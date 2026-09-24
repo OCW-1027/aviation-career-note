@@ -35,5 +35,5 @@ terms:[["Operations Department","オペレーション部門","오퍼레이션 �
 quiz:[{q:"Which is not part of the operations department’s work?",opts:["Allocating staff and GSE","Recording delay codes","Cabin service on board","Sending messages"],a:2,exp:"Cabin service is the cabin crew’s job."},
 {q:"What matters most when allocating load control staff?",opts:["Anyone who is free","Only qualified, in-date people","Give it to new starters","No need to check with the airline"],a:1,exp:"Expired authorisations are a common audit finding."},
 {q:"Where should the station send changes for the handler?",opts:["Directly to individuals on the ramp","To the desk","Nowhere","In a batch the next day"],a:1,exp:"Keep one point of contact."}],
-next:"7-1 Working in ground operations in Japan: hiring routes and visas"});
+next:"6-8 Checking invoices and managing station costs"});
 })(window.ARTS);
