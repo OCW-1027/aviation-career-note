@@ -48,5 +48,5 @@ terms:[["Monthly Report","月報","월간 보고"],["Key Performance Indicator (
 quiz:[{q:"How is the mishandled baggage rate calculated (example)?",opts:["Cases ÷ passengers × 1,000","Cases ÷ flights","Passengers ÷ cases","Cases × 100"],a:0,exp:"Cases per 1,000 passengers."},
 {q:"What belongs on the first page?",opts:["All the raw data","This month’s conclusion: what went well, issues, actions","The staff list","Last year’s report"],a:1,exp:"It gets the message across to busy readers."},
 {q:"What matters most when presenting figures?",opts:["Figures alone","Figures with reasons and actions","Only good figures","A new format each month"],a:1,exp:"Reasons and actions turn figures into decisions."}],
-next:"7-1 Working in ground operations in Japan: hiring routes and visas"});
+next:"6-10 Welcoming new staff: the first 30 days"});
 })(window.ARTS);
