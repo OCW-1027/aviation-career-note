@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>空港を動かす3つの主体 | 航空旅客運送の実務</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--ink:#22303F; --ink-2:#4A5B6E; --sign:#FFC93C; --sign-ink:#3A2A00;
+--sky:#2F8FE0; --sky-d:#1C6FBF; --sky-t:#E7F1FC; --sun-t:#FFF6D9; --mint:#2DB892;
+--bg:#FFFFFF; --tint:#F2F8FD; --paper:#FFFFFF; --line:#E3E9EF; --muted:#5F6F80;
+--go:#1F9E75; --no:#E5534B; --board:#2F8FE0; --flap-ink:#fff;
+--body:"Noto Sans JP","Noto Sans KR","Hiragino Sans","Yu Gothic",sans-serif;
+--disp:"Zen Maru Gothic","Noto Sans JP",sans-serif;
+box-sizing:border-box;
+padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html[lang="ko"]{--disp:"Gowun Dodum","Noto Sans KR",sans-serif;--body:"Noto Sans KR","Noto Sans JP",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E6EDF5;--ink-2:#C3CCD8;--bg:#121A24;--tint:#172332;--paper:#18222F;--line:#2C3A4B;--muted:#A9B7C6;--sky-t:#1B2E45;--sun-t:#2E2A1A}}
+:root[data-theme="dark"]{--ink:#E6EDF5;--ink-2:#C3CCD8;--bg:#121A24;--tint:#172332;--paper:#18222F;--line:#2C3A4B;--muted:#A9B7C6;--sky-t:#1B2E45;--sun-t:#2E2A1A}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased}
+html[lang="ko"] body{word-break:keep-all}
+img,svg{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+/* header */
+.board{max-width:900px;margin:0 auto;padding:16px 20px 0}
+.board-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.board-top .series{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;color:var(--ink)}
+.pict{width:34px;height:34px;border-radius:50%;background:var(--sky);display:grid;place-items:center;flex:none}
+.pict svg{width:19px;height:19px;transform:rotate(45deg)}
+.pict svg path{fill:#fff}
+.lang{appearance:none;cursor:pointer;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font:500 14px var(--body);padding:6px 16px;border-radius:999px}
+.langs{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper);flex:none}
+.langs button{appearance:none;cursor:pointer;border:0;background:transparent;color:var(--ink-2);font:600 13px var(--body);padding:6px 12px;min-width:44px;min-height:34px}
+.langs button+button{border-left:1px solid var(--line)}
+.langs button.on{background:var(--sky);color:#fff}
+html[lang="en"]{--body:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
+.lang:hover{border-color:var(--sky);color:var(--sky-d)}
+.board-inner{margin-top:14px;background:linear-gradient(180deg,#EAF5FF,#FFFFFF);border-radius:26px;padding:26px 30px 24px;position:relative;overflow:hidden}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .board-inner{background:linear-gradient(180deg,#1A2B40,#121A24)}}
+.info{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 14px;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:8px 14px;font-size:13px;color:var(--muted)}
+.info small{display:none}
+.info b{font-family:var(--disp);font-weight:900;font-size:17px;color:var(--sky-d)}
+.info .arrow{color:var(--sky);letter-spacing:-2px}
+.info .wide span{color:var(--ink);font-weight:500}
+.info .date{color:var(--muted)}
+.flaps{font-family:var(--disp);font-weight:900;font-size:clamp(30px,5.4vw,50px);line-height:1.3;margin:18px 0 10px;text-wrap:balance;word-break:keep-all}
+.flaps .hl{background:linear-gradient(transparent 62%,#FFE08A 62%);padding:0 .06em}
+.subtitle{max-width:40em;font-size:16px;color:var(--muted);margin:0}
+.clouds{position:absolute;right:18px;top:14px;width:150px;opacity:.95}
+@media (max-width:600px){.clouds{display:none}.board-inner{padding:22px 20px 20px;border-radius:20px}}
+/* article */
+main{max-width:780px;margin:0 auto;padding:0 20px 80px}
+.lead{margin:26px 0 0;padding:4px 0 0}
+.lead p{margin:0 0 12px}
+.lead p:first-child{font-size:18px;font-weight:500}
+section{margin-top:60px}
+h2{font-family:var(--disp);font-weight:900;font-size:clamp(22px,3.4vw,28px);line-height:1.45;margin:0 0 16px;display:flex;gap:12px;align-items:center}
+h2::before{content:"";flex:none;width:14px;height:14px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 5px var(--sky-t)}
+h3{font-family:var(--disp);font-weight:700;font-size:19px;margin:28px 0 10px}
+p{margin:0 0 14px}
+.hint{font-size:14px;color:var(--muted)}
+.point{display:grid;grid-template-columns:auto 1fr;gap:12px;margin:22px 0 0;padding:16px 18px;background:var(--sun-t);border-radius:16px}
+.point svg{width:26px;height:26px;margin-top:3px;color:#C99700}
+.diagram{background:var(--tint);border-radius:22px;padding:10px}
+.diagram svg{display:block;width:100%;height:auto}
+.node{cursor:pointer}
+.node rect{transition:fill .2s,stroke .2s}
+.node.on rect.box{fill:var(--sky);stroke:var(--sky)}
+.node.on text{fill:#fff}
+.detail{margin-top:12px;padding:16px 18px;border-radius:16px;background:var(--paper);border:1.5px solid var(--sky);min-height:92px}
+.detail b{font-family:var(--disp);font-size:18px;display:block;margin-bottom:4px}
+.detail .role{display:inline-block;font-size:13px;font-weight:700;padding:1px 10px;border-radius:999px;background:var(--sky-t);color:var(--sky-d);margin-bottom:8px}
+.areas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.area{padding:16px 18px;border-radius:16px;background:var(--tint)}
+.area b{font-family:var(--disp);font-size:17px;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.area b i{width:28px;height:28px;border-radius:9px;background:var(--paper);display:grid;place-items:center;font-style:normal;font-size:15px}
+.area span{font-size:15px;color:var(--muted);line-height:1.7}
+@media (max-width:600px){.areas{grid-template-columns:1fr}}
+.apron{margin-top:10px;display:grid;gap:8px}
+.apron .job{display:grid;grid-template-columns:110px 1fr;background:var(--paper);border:1.5px solid var(--line);border-radius:14px;overflow:hidden}
+.apron .job b{background:var(--sky-t);color:var(--sky-d);font-family:var(--disp);display:flex;align-items:center;justify-content:center;padding:12px;font-size:16px;text-align:center}
+.apron .job span{padding:12px 16px;font-size:15px}
+.ciq{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 18px}
+.gate{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px}
+.gate .k{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--disp);font-weight:900;font-size:28px;color:#fff;background:var(--sky)}
+.gate:nth-child(2) .k{background:var(--mint)}
+.gate:nth-child(3) .k{background:#E8618C}
+.gate .en{font-size:12px;color:var(--muted);margin-top:8px}
+.gate b{display:block;font-family:var(--disp);font-size:16px;margin-top:2px}
+.gate span{font-size:14px;color:var(--muted)}
+@media (max-width:560px){.ciq{grid-template-columns:1fr}.gate{display:grid;grid-template-columns:64px 1fr;column-gap:10px}.gate .k{grid-row:span 3}.gate .en{margin-top:0}}
+.rhythm{display:grid;gap:10px;margin-top:10px}
+.band{display:grid;grid-template-columns:128px 1fr;background:var(--paper);border:1.5px solid var(--line);border-radius:16px;overflow:hidden}
+.band .lbl{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2px}
+.band:nth-child(1) .lbl{background:#E7F1FC}.band:nth-child(2) .lbl{background:#E0F5EE}.band:nth-child(3) .lbl{background:#FFF6D9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .band .lbl{background:var(--tint)!important}}
+.band .lbl b{font-family:var(--disp);font-size:20px}
+.band .lbl small{font-size:12px;color:var(--muted)}
+.band ul{margin:0;padding:12px 16px 12px 34px;font-size:15px;line-height:1.7}
+@media (max-width:560px){.band{grid-template-columns:1fr}.band .lbl{flex-direction:row;align-items:baseline;justify-content:center;gap:10px}}
+.dialwrap{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:22px;align-items:center;margin-top:22px;background:var(--tint);border-radius:22px;padding:18px}
+.dialwrap p{margin:0;font-size:15px}
+@media (max-width:600px){.dialwrap{grid-template-columns:1fr}.dialwrap svg{max-width:280px;margin:0 auto;display:block}}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;background:var(--paper);font-size:15px}
+.tbl{border:1.5px solid var(--line);border-radius:16px;overflow:hidden}
+th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{background:var(--sky-t);color:var(--sky-d);font-family:var(--disp);font-weight:700;font-size:14px;white-space:nowrap;text-align:center}
+tbody tr:last-child td{border-bottom:0}
+.mx td.c,.mx th.c{text-align:center;width:14%}
+.dot{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:middle}
+.dot.L{background:var(--sky)}
+.dot.D{border:3px solid var(--sky)}
+.legend{display:flex;gap:20px;font-size:14px;color:var(--muted);margin:0 0 10px}
+.legend span{display:flex;align-items:center;gap:6px}
+.jobs td:first-child{font-weight:700;font-family:var(--disp);min-width:9em;text-align:center;vertical-align:middle}
+.voice{margin-top:10px;padding:22px;border-radius:20px;background:var(--tint);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.voice svg{width:44px;height:44px;padding:8px;border-radius:50%;background:var(--paper)}
+.voice p{margin:0;color:var(--muted)}
+.terms td:first-child{font-weight:700}
+.terms td{text-align:center}
+.quiz{display:grid;gap:14px;margin-top:10px}
+.q{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:18px}
+.q p{font-weight:700;margin-bottom:12px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:520px){.opts{grid-template-columns:1fr}}
+.opt{appearance:none;text-align:left;font:500 15px var(--body);color:var(--ink);background:var(--tint);border:1.5px solid transparent;border-radius:12px;padding:10px 12px;cursor:pointer}
+.opt:hover{border-color:var(--sky)}
+.opt.right{background:var(--go);color:#fff}
+.opt.wrong{background:var(--no);color:#fff}
+.exp{margin:12px 0 0;font-size:15px;color:var(--muted);display:none}
+.q.done .exp{display:block}
+.next{margin-top:56px;padding:18px 20px;border-radius:18px;background:var(--sky-t);color:var(--sky-d);font-weight:700;display:flex;gap:14px;align-items:center;font-size:15px}
+footer{max-width:780px;margin:0 auto;padding:0 20px 40px;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="board">
+<div class="board-top">
+<div class="series"><span class="pict" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#1A1400"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><span id="series"></span></div>
+<button class="lang" id="langBtn" type="button" hidden></button><span class="langs" id="langs" role="group" aria-label="Language"></span>
+</div>
+<div class="board-inner"><svg class="clouds" viewBox="0 0 150 70" aria-hidden="true"><g fill="#fff"><ellipse cx="40" cy="44" rx="34" ry="14"/><ellipse cx="66" cy="34" rx="26" ry="20"/><ellipse cx="96" cy="46" rx="30" ry="12"/></g><circle cx="128" cy="18" r="14" fill="#FFE08A"/></svg>
+<div class="info">
+<b id="vFrom"></b><span class="arrow">- - ✈ - -</span><b id="vTo"></b>
+<span>No.<b id="vNo" style="font-size:15px;margin-left:4px"></b></span>
+<span class="wide"><small id="lblPart"></small><span id="vPart"></span></span>
+<span class="date" id="vDate"></span>
+</div>
+<h1 class="flaps" id="flaps" aria-live="polite"></h1>
+<p class="subtitle" id="subtitle"></p>
+</div>
+</header>
+<main id="main"></main>
+<footer id="foot"></footer>
+<script id="content" type="application/json">{"meta":{"series_no":"0-1","date":"2026-09"},"ja":{"lang_label":"日本語","series":"航空旅客運送の実務","part":"Part 0 オリエンテーション","flight":{"from":"NRT","to":"ICN","no":"0-1","gate":"基準日 2026.09"},"title":"空港を動かす3つの主体","subtitle":"航空会社・グランドハンドリング会社・空港とCIQ ― カウンターの裏側で、誰が何をしているのか","lead":["成田空港から仁川行きの便が1便出発するとします。カウンターでパスポートを受け取るスタッフ、手荷物を搭載するスタッフ、機体を押し出す車両の運転手。彼らは全員、その航空会社の社員でしょうか。","答えは「多くの場合、そうではない」です。空港は、異なる会社と機関が契約と規則でかみ合いながら動く場所です。地上職を目指すなら、まずこの構造を知っておきましょう。自分がどこに応募し、入社後に誰と働くのかが見えてきます。"],"s1":{"h":"全体像 ― 1便を動かす3つの主体","hint":"図の各主体をタップすると、役割が表示されます。","center":"1便の出発","actors":[{"id":"airline","name":"航空会社","sub":"本社＋空港支店","role":"運航の責任者","desc":"誰を乗せ、どのルールで運ぶかを決めます。運送約款、手荷物規定、特別な配慮が必要なお客様の扱いなど、すべての基準は航空会社が持っています。"},{"id":"handler","name":"グランドハンドリング会社","sub":"旅客・ランプ・貨物","role":"現場の実行者","desc":"航空会社から委託を受け、カウンター、ゲート、ランプ、貨物の業務を担います。航空会社の基準どおりに現場を動かすのが仕事です。"},{"id":"airport","name":"空港と行政機関","sub":"空港運営会社・CIQ・航空当局","role":"舞台とルール","desc":"空港運営会社が施設を提供し、CIQが出入国を審査し、航空当局が運航の許可と安全・保安を管理します。"}],"links":["委託契約（SGHA）","現場での連携","許可・届出・施設使用"]},"s2":{"h":"航空会社 ― 支店は「空港にある小さな本社」","p":["航空会社は本社と、各空港の支店（ステーション）で構成されます。支店の規模は航空会社と空港によってさまざまです。拠点空港では多くの社員が現場を直接担い、便数の少ない空港では少人数の支店がハンドリング会社を管理する形が一般的です。","どちらの形でも、支店が見る領域は想像以上に広いものです。"],"areas":[{"name":"旅客運送","items":"ハンドリング会社の管理、定時運航、カウンター・ゲート運営、イレギュラー対応、手荷物事故の処理"},{"name":"行政対応","items":"航空当局への運航・運賃の申請、空港運営会社・CIQとの調整、空港協議会、各種監査"},{"name":"営業","items":"旅行会社・予約システム（GDS）の管理、販売支援、広報"},{"name":"財務・人事総務","items":"経費精算、税務、給与・社会保険、採用、契約管理"}],"point":"支店のスタッフには、本社・ハンドリング会社・官公庁をつなぐ調整力が求められます。語学力はその道具です。"},"s3":{"h":"グランドハンドリング会社 ― 現場を実際に動かす人たち","p":["グランドハンドリング会社は、航空会社と契約を結び、空港の現場業務を代わりに行う会社です。契約はIATAの標準様式であるSGHA（Standard Ground Handling Agreement）をもとに結ばれ、サービス水準はSLA（Service Level Agreement）で定めます。"],"jobs":[{"name":"旅客","items":"チェックイン、搭乗口、乗り継ぎ・到着案内、手荷物事故の受付"},{"name":"ランプ","items":"手荷物・貨物の搭載と取り降ろし、航空機の誘導、プッシュバック、地上支援車両の運用"},{"name":"貨物","items":"貨物ターミナルでの受付、保管、搭載準備"},{"name":"その他","items":"給油、ライン整備、機内清掃、機内食（それぞれ専門会社が担うことが多い）"}],"point":"日本も韓国も、大手航空会社系列のハンドリング会社が大きな比重を占め、独立系の会社も多くあります。地上職の求人の多くは、航空会社ではなくハンドリング会社から出ています。求人を見るときは「どの会社に所属し、どの航空会社の業務を担うのか」を必ず確認しましょう。"},"s4":{"h":"空港運営会社と行政機関 ― 舞台とルール","p":["空港運営会社は、ターミナル、カウンター、搭乗橋、手荷物搬送設備などの施設を運営し、使用料を受け取ります。空港の立入証（IDパス）の発行と保安教育も、空港運営会社の管理のもとで行われます。成田なら成田国際空港株式会社（NAA）、仁川なら仁川国際空港公社がこの役割です。"],"ciq_h":"CIQ ― 国境を守る3つの機関","ciq":[{"k":"C","en":"Customs","name":"税関","desc":"物品の持ち込み・持ち出しの審査"},{"k":"I","en":"Immigration","name":"出入国在留管理庁","desc":"パスポート・ビザの審査"},{"k":"Q","en":"Quarantine","name":"検疫所","desc":"感染症などの検疫"}],"auth":"航空当局（日本は国土交通省航空局、韓国は国土交通部）は、航空会社の運航許可、運賃、安全・保安基準の順守を管理します。支店の行政対応の大部分はここに関わります。"},"s5":{"h":"支店の時間 ― 便ごと・月ごと・年ごと","p":"支店の仕事は、3つのリズムで回っています。","rhythms":[{"name":"便ごと","who":"新人から","items":["カウンター・ゲート運営の管理","定時運航の管理、ランプの安全点検","便の締め：ノーショー整理、現地販売金の精算、日報"]},{"name":"月ごと","who":"マネージャー","items":["航空当局への運送実績報告","ハンドリング会社との月例会議","空港協議会への参加","ハンドリング料・空港使用料の請求書検収"]},{"name":"年ごと","who":"支店長","items":["夏ダイヤ・冬ダイヤの運航計画申請","運賃の申請、保安計画の改訂","人事・税務の年次手続き、次年度予算"]}],"dial_h":"航空業界の1年","dial_note":"航空業界の1年は2つのシーズンに分かれます。夏ダイヤは3月最終日曜日から、冬ダイヤは10月最終日曜日から。各シーズンの1〜2か月前に運航計画を当局へ申請します。","summer":"夏ダイヤ","winter":"冬ダイヤ","apply":"申請","months":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],"point":"新人は「便ごと」のリズムから覚え、マネージャーは「月ごと」、支店長は「年ごと」のリズムまで責任を持ちます。","dial_center":"1年","dial_legend":"● 印は運航計画の申請時期の目安です。"},"s6":{"h":"誰が何をするのか ― 役割マトリクス","legend_lead":"責任を持つ","legend_do":"実行する","cols":["航空会社","ハンドリング","空港運営","CIQ・当局"],"rows":[{"task":"運送ルール（約款・手荷物規定）を決める","v":["L","","",""]},{"task":"チェックイン・搭乗","v":["L","D","",""]},{"task":"手荷物・貨物の搭載","v":["L","D","",""]},{"task":"重量・重心の計算（ロードコントロール）","v":["L","D","",""]},{"task":"出入国審査・税関・検疫","v":["","","","L"]},{"task":"ターミナル施設・IDパス","v":["","","L",""]},{"task":"運航許可・運賃の認可","v":["D","","","L"]}]},"s7":{"h":"職種を知る","cols":["職種","主な所属","主な仕事","求められる力"],"rows":[["チェックイン・ゲートエージェント","ハンドリング会社","搭乗手続き、搭乗、案内","接客力、語学、規定の理解"],["ランプエージェント","ハンドリング会社","搭載、誘導、プッシュバック","安全意識、体力、車両資格"],["ロードコントロール","ハンドリング会社・航空会社","重量・重心計算、ロードシート作成","正確さ、規定の理解"],["運送マネージャー","航空会社支店","現場統括、ハンドリング会社管理、イレギュラー対応","判断力、調整力、語学"],["支店長","航空会社支店","支店全体の運営、行政対応、営業、財務・人事","総合管理力、対外交渉力"]]},"voice":{"h":"現場のひと言","placeholder":"［インタビュー追加予定］航空会社とハンドリング会社がうまくかみ合う空港と、そうでない空港は何が違うのか。地上職を目指す人が入社前にこの構造を知っておくべき理由。"},"terms":{"h":"今日の用語","cols":["日本語","한국어","English"],"rows":[["グランドハンドリング会社","조업사","Ground Handling Company"],["支店","지점","Station"],["搭乗手続き / チェックイン","탑승수속","Check-in"],["搭乗口 / ゲート","탑승구","Gate"],["ランプ","램프","Ramp / Apron"],["グランドハンドリング契約","조업 계약","SGHA"],["税関・出入国管理・検疫","세관·출입국·검역","CIQ"],["航空当局","항공당국","Civil Aviation Authority"],["夏ダイヤ / 冬ダイヤ","하계 / 동계 스케줄","Summer / Winter Schedule"]]},"quiz":{"h":"確認クイズ","show":"答えを見る","hide":"閉じる","items":[{"q":"空港のチェックインカウンター業務を実際に行っているのは、多くの場合どこでしょう？","opts":["空港運営会社","グランドハンドリング会社","出入国在留管理庁","航空当局"],"a":1,"exp":"航空会社はハンドリング会社に現場業務を委託し、支店がそれを管理します。"},{"q":"CIQの「Q」が指す機関は？","opts":["税関","出入国管理","検疫","空港保安"],"a":2,"exp":"Quarantine（検疫）です。"},{"q":"航空業界の夏ダイヤはいつ始まるでしょう？","opts":["1月1日","3月最終日曜日","4月1日","6月第1週"],"a":1,"exp":"夏ダイヤは3月最終日曜日、冬ダイヤは10月最終日曜日に始まります。"}]},"next":"次回：0-2 航空会社の社員とハンドリング会社の社員 ― 仕事、採用ルート、キャリア","lang_btn":"한국어"},"ko":{"lang_label":"한국어","series":"항공 여객운송 실무","part":"Part 0 오리엔테이션","flight":{"from":"NRT","to":"ICN","no":"0-1","gate":"기준일 2026.09"},"title":"공항을 움직이는 세 주체","subtitle":"항공사·조업사·공항과 CIQ — 카운터 뒤에서 누가 무엇을 하나","lead":["나리타공항에서 인천행 비행기가 한 편 출발한다고 해 봅시다. 카운터에서 여권을 받는 직원, 수하물을 싣는 직원, 비행기를 뒤로 밀어내는 차량의 운전자. 이들은 모두 그 항공사의 직원일까요?","답은 \"대부분 아니다\"입니다. 공항은 서로 다른 회사와 기관이 계약과 규정으로 맞물려 돌아가는 곳입니다. 지상직을 준비한다면 먼저 이 구조를 알아 두세요. 내가 어디에 지원하는지, 입사 후 누구와 일하는지가 보입니다."],"s1":{"h":"전체 구조 — 한 편을 움직이는 세 주체","hint":"그림의 각 주체를 누르면 역할이 표시됩니다.","center":"한 편의 출발","actors":[{"id":"airline","name":"항공사","sub":"본사 + 공항 지점","role":"운항의 책임자","desc":"누구를 태우고, 어떤 규정으로 운송할지 정합니다. 운송약관, 수하물 규정, 도움이 필요한 승객의 처리 기준까지 모든 기준은 항공사가 가지고 있습니다."},{"id":"handler","name":"조업사","sub":"여객·램프·화물","role":"현장의 실행자","desc":"항공사의 위탁을 받아 카운터, 게이트, 램프, 화물 업무를 수행합니다. 항공사의 기준대로 현장을 움직이는 것이 일입니다."},{"id":"airport","name":"공항과 정부기관","sub":"공항 운영사·CIQ·항공당국","role":"무대와 규칙","desc":"공항 운영사가 시설을 제공하고, CIQ가 출입국을 심사하며, 항공당국이 운항 허가와 안전·보안을 관리합니다."}],"links":["위탁 계약(SGHA)","현장 협업","허가·신고·시설 사용"]},"s2":{"h":"항공사 — 지점은 \"공항에 있는 작은 본사\"","p":["항공사는 본사와 각 공항의 지점(스테이션)으로 이루어집니다. 지점 규모는 항공사와 공항마다 다릅니다. 거점 공항에서는 많은 직원이 현장을 직접 맡고, 운항 편수가 적은 공항에서는 소수의 지점 인원이 조업사를 관리하는 형태가 일반적입니다.","어느 형태든 지점이 맡는 영역은 생각보다 넓습니다."],"areas":[{"name":"여객 운송","items":"조업사 관리, 정시 운항, 카운터·게이트 운영, 비정상 상황 대응, 수하물 사고 처리"},{"name":"대관","items":"항공당국 운항·운임 신청, 공항 운영사·CIQ 협의, 공항 협의체, 각종 수검"},{"name":"영업","items":"여행사·예약시스템(GDS) 관리, 판매 지원, 홍보"},{"name":"재무·인사총무","items":"비용 정산, 세무, 급여·사회보험, 채용, 계약 관리"}],"point":"지점 직원에게는 본사·조업사·관공서를 연결하는 조율 능력이 필요합니다. 어학은 그 도구입니다."},"s3":{"h":"조업사 — 현장을 실제로 움직이는 사람들","p":["조업사(그라운드 핸들링 회사)는 항공사와 계약을 맺고 공항 현장 업무를 대신 수행하는 회사입니다. 계약은 IATA의 표준 양식인 SGHA(Standard Ground Handling Agreement)를 바탕으로 맺고, 서비스 수준은 SLA(Service Level Agreement)로 정합니다."],"jobs":[{"name":"여객","items":"체크인, 탑승구, 환승·도착 안내, 수하물 사고 접수"},{"name":"램프","items":"수하물·화물 탑재와 하기, 항공기 유도, 푸시백, 지상 장비 운용"},{"name":"화물","items":"화물 터미널에서의 접수, 보관, 탑재 준비"},{"name":"기타","items":"급유, 라인 정비, 기내 청소, 기내식 (각각 전문 업체가 맡는 경우가 많음)"}],"point":"한국과 일본 모두 대형 항공사 계열 조업사가 큰 비중을 차지하고, 독립 조업사도 여러 곳 있습니다. 지상직 채용 공고의 상당수는 항공사가 아니라 조업사에서 나옵니다. 공고를 볼 때는 \"어느 회사 소속으로, 어느 항공사의 업무를 하는지\"를 꼭 확인하세요."},"s4":{"h":"공항 운영사와 정부기관 — 무대와 규칙","p":["공항 운영사는 터미널, 카운터, 탑승교, 수하물 처리 설비 같은 시설을 운영하고 사용료를 받습니다. 공항 출입증(ID 패스) 발급과 보안 교육도 공항 운영사의 관리 아래 이뤄집니다. 인천이라면 인천국제공항공사, 나리타라면 나리타국제공항주식회사(NAA)가 이 역할입니다."],"ciq_h":"CIQ — 국경을 지키는 세 기관","ciq":[{"k":"C","en":"Customs","name":"세관","desc":"물품 반입·반출 심사"},{"k":"I","en":"Immigration","name":"출입국 관리","desc":"여권·비자 심사"},{"k":"Q","en":"Quarantine","name":"검역","desc":"감염병 등 검역"}],"auth":"항공당국(한국은 국토교통부, 일본은 국토교통성 항공국)은 항공사의 운항 허가, 운임, 안전·보안 기준 준수를 관리합니다. 지점 대관 업무의 대부분이 여기에 해당합니다."},"s5":{"h":"지점의 시간 — 편별, 월별, 연간","p":"지점 업무는 세 가지 리듬으로 돌아갑니다.","rhythms":[{"name":"편별","who":"신입부터","items":["카운터·게이트 운영 관리","정시 운항 관리, 램프 안전 점검","편 마감: 노쇼 정리, 현장 판매금 정산, 일일 보고"]},{"name":"월별","who":"매니저","items":["항공당국 운송 실적 보고","조업사 월간 회의","공항 협의체 참석","조업료·공항 사용료 청구서 검수"]},{"name":"연간","who":"지점장","items":["하계·동계 스케줄 운항 계획 신청","운임 신청, 보안계획 개정","인사·세무 연간 절차, 차년도 예산"]}],"dial_h":"항공 업계의 1년","dial_note":"항공 업계의 1년은 두 시즌으로 나뉩니다. 하계 스케줄은 3월 마지막 일요일부터, 동계 스케줄은 10월 마지막 일요일부터 시작합니다. 시즌마다 1~2개월 전에 운항 계획을 당국에 신청합니다.","summer":"하계","winter":"동계","apply":"신청","months":["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],"point":"신입은 \"편별\" 리듬부터 익히고, 매니저가 되면 \"월별\", 지점장이 되면 \"연간\" 리듬까지 책임집니다.","dial_center":"1년","dial_legend":"● 표시는 운항 계획 신청 시기의 기준입니다."},"s6":{"h":"누가 무엇을 하나 — 역할 매트릭스","legend_lead":"책임","legend_do":"실행","cols":["항공사","조업사","공항 운영사","CIQ·당국"],"rows":[{"task":"운송 규정(약관·수하물 규정)을 정한다","v":["L","","",""]},{"task":"체크인·탑승","v":["L","D","",""]},{"task":"수하물·화물 탑재","v":["L","D","",""]},{"task":"무게·균형 계산(탑재관리)","v":["L","D","",""]},{"task":"출입국 심사·세관·검역","v":["","","","L"]},{"task":"터미널 시설·ID 패스","v":["","","L",""]},{"task":"운항 허가·운임 인가","v":["D","","","L"]}]},"s7":{"h":"직무 알아보기","cols":["직무","주요 소속","주로 하는 일","필요한 역량"],"rows":[["체크인·게이트 에이전트","조업사","탑승수속, 탑승, 안내","고객 응대, 어학, 규정 이해"],["램프 에이전트","조업사","탑재, 유도, 푸시백","안전 의식, 체력, 장비 자격"],["탑재관리(로드 컨트롤)","조업사·항공사","무게·균형 계산, 로드시트 작성","정확성, 규정 이해"],["운송 매니저","항공사 지점","현장 총괄, 조업사 관리, 비정상 대응","판단력, 조율 능력, 어학"],["지점장","항공사 지점","지점 운영 전반, 대관, 영업, 재무·인사","종합 관리, 대외 협상"]]},"voice":{"h":"현장 한마디","placeholder":"[인터뷰 보강 예정] 항공사와 조업사가 잘 맞물리는 공항과 그렇지 않은 공항은 무엇이 다른가. 지상직 지망생이 입사 전에 이 구조를 알아 둬야 하는 이유."},"terms":{"h":"오늘의 용어","cols":["한국어","日本語","English"],"rows":[["조업사","グランドハンドリング会社","Ground Handling Company"],["지점","支店","Station"],["탑승수속","搭乗手続き / チェックイン","Check-in"],["탑승구","搭乗口 / ゲート","Gate"],["램프","ランプ","Ramp / Apron"],["조업 계약","グランドハンドリング契約","SGHA"],["세관·출입국·검역","税関・出入国管理・検疫","CIQ"],["항공당국","航空当局","Civil Aviation Authority"],["하계 / 동계 스케줄","夏ダイヤ / 冬ダイヤ","Summer / Winter Schedule"]]},"quiz":{"h":"확인 퀴즈","show":"정답 보기","hide":"닫기","items":[{"q":"공항 체크인 카운터 업무를 실제로 수행하는 곳은 대부분 어디일까요?","opts":["공항 운영사","조업사","출입국 관리 기관","항공당국"],"a":1,"exp":"항공사는 조업사에 현장 업무를 위탁하고, 지점은 이를 관리합니다."},{"q":"CIQ의 \"Q\"가 뜻하는 기관은?","opts":["세관","출입국 관리","검역","공항 보안"],"a":2,"exp":"Quarantine(검역)입니다."},{"q":"항공 업계의 하계 스케줄은 언제 시작할까요?","opts":["1월 1일","3월 마지막 일요일","4월 1일","6월 첫째 주"],"a":1,"exp":"하계는 3월 마지막 일요일, 동계는 10월 마지막 일요일에 시작합니다."}]},"next":"다음 편: 0-2 항공사 직원과 조업사 직원 — 하는 일, 채용 경로, 커리어","lang_btn":"日本語"},"en":{"lang_label":"English","series":"Airline Passenger Operations","part":"Part 0 Orientation","flight":{"from":"NRT","to":"SIN","no":"0-1","gate":"As of 2026.09"},"title":"The Three Players That Run an Airport","subtitle":"Airlines, ground handling companies, and the airport and border agencies — who actually does what behind the counter","lead":["Picture one departure leaving an airport in Japan. The agent who takes your passport at the counter, the staff loading the bags, the driver of the vehicle that pushes the aircraft back. Do they all work for the airline?","In most cases, no. An airport is a place where different companies and agencies mesh together through contracts and rules. If you are aiming for a ground job, start by understanding that structure: it shows you where to apply and who you will work with once you join."],"s1":{"h":"The big picture — three players behind one flight","hint":"Tap each player in the diagram to see what they do.","center":"One departure","actors":[{"id":"airline","name":"Airline","sub":"Head office and station","role":"Responsible for the flight","desc":"Decides who may travel and under what rules. The conditions of carriage, the baggage rules and how passengers needing assistance are handled all belong to the airline."},{"id":"handler","name":"Ground handling company","sub":"Passenger, ramp and cargo","role":"Does the work on the ground","desc":"Works under contract to the airline and runs the counter, the gate, the ramp and cargo. Its job is to deliver the work exactly to the airline’s standards."},{"id":"airport","name":"Airport and authorities","sub":"Airport operator, CIQ, civil aviation authority","role":"The stage and the rules","desc":"The airport operator provides the facilities, CIQ handles the border, and the civil aviation authority licenses operations and oversees safety and security."}],"links":["Handling contract (SGHA)","Working together on the ground","Permits, filings and use of facilities"]},"s2":{"h":"The airline — a station is a small head office at the airport","p":["An airline is made up of its head office and its stations at each airport. How big a station is varies by airline and airport. At a hub, many of the airline’s own staff work the front line; at an airport with few flights, a small station typically manages a ground handling company instead.","Either way, a station covers far more ground than most people expect."],"areas":[{"name":"Passenger services","items":"Managing the handling company, on-time performance, running the counter and gate, irregular operations, baggage claims"},{"name":"Regulatory work","items":"Filings for schedules and fares with the aviation authority, coordination with the airport operator and CIQ, airport committees, audits"},{"name":"Sales","items":"Travel agencies and the reservation systems (GDS), sales support, public relations"},{"name":"Finance, HR and administration","items":"Expenses, tax, payroll and social insurance, hiring, contract management"}],"point":"Station staff need the ability to connect head office, the handling company and government agencies. Language skills are the tool for that."},"s3":{"h":"Ground handling companies — the people who actually run the front line","p":["A ground handling company contracts with airlines to carry out their work at the airport. The contract is normally based on IATA’s standard form, the SGHA (Standard Ground Handling Agreement), with service levels set out in an SLA (Service Level Agreement)."],"jobs":[{"name":"Passenger","items":"Check-in, boarding gate, transfers and arrivals, baggage irregularity desk"},{"name":"Ramp","items":"Loading and unloading baggage and cargo, marshalling aircraft, pushback, operating ground support equipment"},{"name":"Cargo","items":"Acceptance, storage and build-up at the cargo terminal"},{"name":"Others","items":"Fuelling, line maintenance, cabin cleaning and catering (usually specialist companies)"}],"point":"In many countries the large handling companies belong to airline groups, alongside independent operators. Most ground job vacancies come from handling companies rather than from airlines. When you look at a job advertisement, always check which company you would join and which airline’s work you would do."},"s4":{"h":"The airport operator and government agencies — the stage and the rules","p":["The airport operator runs the terminal, the counters, the boarding bridges and the baggage system, and charges for their use. Airport ID passes and security training are also issued and managed by the operator. At Narita, for example, that is Narita International Airport Corporation."],"ciq_h":"CIQ — three agencies that guard the border","ciq":[{"k":"C","en":"Customs","name":"Customs","desc":"Checks goods entering and leaving the country"},{"k":"I","en":"Immigration","name":"Immigration","desc":"Checks passports and visas"},{"k":"Q","en":"Quarantine","name":"Quarantine","desc":"Health and disease control"}],"auth":"The civil aviation authority (in Japan, the Civil Aviation Bureau of the Ministry of Land, Infrastructure, Transport and Tourism) licenses operations, approves fares and oversees safety and security standards. Most of a station’s regulatory work involves this authority."},"s5":{"h":"A station’s calendar — by flight, by month, by year","p":"Station work runs on three rhythms.","rhythms":[{"name":"Every flight","who":"From day one","items":["Supervising the counter and the gate","Watching on-time performance and ramp safety","Closing the flight: no-shows, local sales cash, the daily report"]},{"name":"Every month","who":"Managers","items":["Traffic reports to the aviation authority","Monthly meeting with the handling company","Airport committee meetings","Checking handling and airport invoices"]},{"name":"Every year","who":"The station manager","items":["Filing the summer and winter schedules","Fare filings and revising the security programme","Annual HR and tax procedures, next year’s budget"]}],"dial_h":"A year in the airline industry","dial_note":"The airline year is split into two seasons. The summer schedule starts on the last Sunday of March and the winter schedule on the last Sunday of October. Schedules are filed with the authorities one to two months before each season.","summer":"Summer schedule","winter":"Winter schedule","apply":"Filing","months":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"point":"New staff learn the rhythm of each flight first; managers take on the monthly rhythm, and the station manager is responsible for the yearly one as well.","dial_center":"1 year","dial_legend":"● marks roughly when schedules are filed."},"s6":{"h":"Who does what — the responsibility matrix","legend_lead":"Accountable","legend_do":"Carries it out","cols":["Airline","Handling","Airport","CIQ / authority"],"rows":[{"task":"Setting the rules of carriage (conditions, baggage rules)","v":["L","","",""]},{"task":"Check-in and boarding","v":["L","D","",""]},{"task":"Loading baggage and cargo","v":["L","D","",""]},{"task":"Weight and balance (load control)","v":["L","D","",""]},{"task":"Immigration, customs and quarantine","v":["","","","L"]},{"task":"Terminal facilities and ID passes","v":["","","L",""]},{"task":"Operating permits and fare approvals","v":["D","","","L"]}]},"s7":{"h":"The jobs themselves","cols":["Job","Usually employed by","Main work","What it takes"],"rows":[["Check-in and gate agent","Handling company","Check-in, boarding, passenger information","Service skills, languages, knowing the rules"],["Ramp agent","Handling company","Loading, marshalling, pushback","Safety awareness, fitness, vehicle licences"],["Load control","Handling company or airline","Weight and balance, preparing the loadsheet","Accuracy, knowing the rules"],["Duty manager","Airline station","Supervising the front line, managing the handling company, irregular operations","Judgment, coordination, languages"],["Station manager","Airline station","Running the whole station: regulators, sales, finance and HR","All-round management, external negotiation"]]},"voice":{"h":"Voice from the Field","placeholder":"[Interview to be added] What makes the difference between an airport where the airline and the handling company mesh well and one where they do not, and why anyone aiming for a ground job should understand this structure before joining."},"terms":{"h":"Key Terms","cols":["English","日本語","한국어"],"rows":[["Ground Handling Company","グランドハンドリング会社","조업사"],["Station","支店","지점"],["Check-in","搭乗手続き / チェックイン","탑승수속"],["Gate","搭乗口 / ゲート","탑승구"],["Ramp / Apron","ランプ","램프"],["SGHA","グランドハンドリング契約","조업 계약"],["CIQ","税関・出入国管理・検疫","세관·출입국·검역"],["Civil Aviation Authority","航空当局","항공당국"],["Summer / Winter Schedule","夏ダイヤ / 冬ダイヤ","하계 / 동계 스케줄"]]},"quiz":{"h":"Quick Quiz","show":"Show the answer","hide":"Close","items":[{"q":"Who usually works the check-in counter at an airport?","opts":["The airport operator","A ground handling company","The immigration service","The civil aviation authority"],"a":1,"exp":"Airlines contract the front-line work to handling companies, and the station manages them."},{"q":"What does the “Q” in CIQ stand for?","opts":["Customs","Immigration","Quarantine","Airport security"],"a":2,"exp":"It stands for Quarantine."},{"q":"When does the airline industry’s summer schedule begin?","opts":["1 January","The last Sunday of March","1 April","The first week of June"],"a":1,"exp":"Summer starts on the last Sunday of March and winter on the last Sunday of October."}]},"next":"Next: 0-2 Airline staff and ground handling staff — the work, the ways in, and careers","lang_btn":"日本語"}}</script>
+<script>
+(function(){
+const C = JSON.parse(document.getElementById('content').textContent);
+let lang = 'ja';
+try{ const s = localStorage.getItem('art-lang'); if(s==='ko'||s==='ja'||s==='en') lang=s; }catch(e){}
+const LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
+function langBar(){const g=document.getElementById('langs');g.innerHTML=LANGS.map(l=>`<button type="button" data-l="${l}" lang="${l}" class="${l===lang?'on':''}" aria-pressed="${l===lang}">${LBL[l]}</button>`).join('');g.querySelectorAll('button').forEach(b=>{b.onclick=()=>{lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render();window.scrollTo(0,0)}})}
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const bulb = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V17h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>';
+function flaps(t){
+const el = $('#flaps');
+const m = t.match(/(3つの主体|세 주체|Three Players)/);
+el.innerHTML = m ? esc(t).replace(m[1], '<span class="hl">'+m[1]+'</span>') : esc(t);
+}
+function diagram(d){
+const A=d.actors;
+const node=(a,x,y,w)=>`<g class="node" data-id="${a.id}" tabindex="0" role="button" aria-label="${esc(a.name)}">
+<rect class="box" x="${x-w/2}" y="${y-38}" width="${w}" height="76" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+<text x="${x}" y="${y-4}" text-anchor="middle" font-family="var(--disp)" font-weight="900" font-size="19" fill="var(--ink)">${esc(a.name)}</text>
+<text x="${x}" y="${y+22}" text-anchor="middle" font-size="13" fill="var(--muted)">${esc(a.sub)}</text></g>`;
+const lab=(t,x,y)=>{const w=Math.max(120,[...t].length*14+28);return `<g><rect x="${x-w/2}" y="${y-14}" width="${w}" height="28" rx="14" fill="var(--sun-t)" stroke="var(--sign)" stroke-width="1.5"/><text x="${x}" y="${y+5}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--sign-ink)">${esc(t)}</text></g>`};
+return `<svg viewBox="0 0 720 440" role="img" aria-label="${esc(d.h)}">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"/></marker></defs>
+<path d="M300 104 L150 318" stroke="var(--ink-2)" stroke-width="2.5" fill="none" marker-end="url(#ar)"/>
+<path d="M420 104 L570 318" stroke="var(--ink-2)" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#ar)" marker-start="url(#ar)"/>
+<path d="M250 360 L470 360" stroke="var(--ink-2)" stroke-width="2.5" stroke-dasharray="2 6" stroke-linecap="round" fill="none"/>
+<circle cx="360" cy="236" r="62" fill="var(--sky)"/>
+<path transform="translate(336 196) scale(2)" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" fill="#fff"/>
+<text x="360" y="274" text-anchor="middle" font-size="13" font-weight="700" fill="#F3F5F7">${esc(d.center)}</text>
+${lab(d.links[0],178,214)}${lab(d.links[1],360,392)}${lab(d.links[2],548,214)}
+${node(A[0],360,66,270)}${node(A[1],150,360,250)}${node(A[2],570,360,250)}
+</svg>`;
+}
+function dial(s){
+const cx=150,cy=150,r=110,R=132;
+const ang=m=> (m/12)*2*Math.PI - Math.PI/2;
+const pt=(a,rr)=>[cx+rr*Math.cos(a), cy+rr*Math.sin(a)];
+const arc=(m1,m2,rr,col,w)=>{const a1=ang(m1),a2=ang(m2);const[x1,y1]=pt(a1,rr),[x2,y2]=pt(a2,rr);const large=((m2-m1+12)%12)>6?1:0;return `<path d="M${x1} ${y1} A${rr} ${rr} 0 ${large} 1 ${x2} ${y2}" stroke="${col}" stroke-width="${w}" fill="none"/>`};
+const sStart=2.85, wStart=9.85;
+let g='';
+g+=arc(sStart,wStart,r,'var(--sign)',34);
+g+=arc(wStart,12,r,'var(--sky)',34)+arc(0,sStart,r,'var(--sky)',34);
+for(let m=0;m<12;m++){const a=ang(m+.5);const[x,y]=pt(a,R+10);g+=`<text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(s.months[m])}</text>`;const[t1x,t1y]=pt(ang(m),r-19),[t2x,t2y]=pt(ang(m),r+19);g+=`<line x1="${t1x}" y1="${t1y}" x2="${t2x}" y2="${t2y}" stroke="var(--paper)" stroke-width="1.5"/>`}
+const[sx,sy]=pt(ang(6.3),r),[wx,wy]=pt(ang(0.4),r);
+g+=`<text x="${sx}" y="${sy+5}" text-anchor="middle" font-size="14" font-weight="900" font-family="var(--disp)" fill="var(--sign-ink)">${esc(s.summer)}</text>`;
+g+=`<text x="${wx}" y="${wy+5}" text-anchor="middle" font-size="14" font-weight="900" font-family="var(--disp)" fill="#F3F5F7">${esc(s.winter)}</text>`;
+[1.3,8.3].forEach(m=>{const[x0,y0]=pt(ang(m),r);g+=`<circle cx="${x0}" cy="${y0}" r="8" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>`});
+g+=`<text x="${cx}" y="${cy+8}" text-anchor="middle" font-family="var(--disp)" font-weight="900" font-size="24" fill="var(--ink)">${esc(s.dial_center)}</text>`;
+return `<svg viewBox="0 0 300 300" role="img" aria-label="${esc(s.dial_h)}">${g}</svg>`;
+}
+function render(){
+const L=C[lang];
+document.documentElement.lang = lang;
+document.title = L.title+' | '+L.series;
+$('#series').textContent=L.series;
+$('#langBtn').textContent=L.lang_btn;
+$('#langBtn').setAttribute('aria-label', L.lang_btn); langBar();
+$('#vFrom').textContent=L.flight.from; $('#vTo').textContent=L.flight.to; $('#vNo').textContent=L.flight.no;
+$('#lblPart').textContent='SERIES'; $('#vPart').textContent=L.part; $('#vDate').textContent=L.flight.gate;
+flaps(L.title);
+$('#subtitle').textContent=L.subtitle;
+let h='';
+h+=`<div class="lead">${L.lead.map(p=>`<p>${esc(p)}</p>`).join('')}</div>`;
+h+=`<section><h2>${esc(L.s1.h)}</h2><p class="hint">${esc(L.s1.hint)}</p><div class="diagram">${diagram(L.s1)}</div><div class="detail" id="detail" aria-live="polite"></div></section>`;
+h+=`<section><h2>${esc(L.s2.h)}</h2>${L.s2.p.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="areas">${L.s2.areas.map(a=>`<div class="area"><b><i>${["🧳","🏛","🤝","📊"][L.s2.areas.indexOf(a)]}</i>${esc(a.name)}</b><span>${esc(a.items)}</span></div>`).join('')}</div><div class="point">${bulb}<div>${esc(L.s2.point)}</div></div></section>`;
+h+=`<section><h2>${esc(L.s3.h)}</h2>${L.s3.p.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="apron">${L.s3.jobs.map(j=>`<div class="job"><b>${esc(j.name)}</b><span>${esc(j.items)}</span></div>`).join('')}</div><div class="point">${bulb}<div>${esc(L.s3.point)}</div></div></section>`;
+h+=`<section><h2>${esc(L.s4.h)}</h2>${L.s4.p.map(p=>`<p>${esc(p)}</p>`).join('')}<h3>${esc(L.s4.ciq_h)}</h3><div class="ciq">${L.s4.ciq.map(c=>`<div class="gate"><div class="k">${c.k}</div><div class="en">${c.en}</div><b>${esc(c.name)}</b><span>${esc(c.desc)}</span></div>`).join('')}</div><p>${esc(L.s4.auth)}</p></section>`;
+h+=`<section><h2>${esc(L.s5.h)}</h2><p>${esc(L.s5.p)}</p><div class="rhythm">${L.s5.rhythms.map(r=>`<div class="band"><div class="lbl"><b>${esc(r.name)}</b><small>${esc(r.who)}</small></div><ul>${r.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}</div>
+<div class="dialwrap">${dial(L.s5)}<div><h3 style="margin-top:0">${esc(L.s5.dial_h)}</h3><p>${esc(L.s5.dial_note)}</p><p class="hint" style="margin-top:8px">${esc(L.s5.dial_legend)}</p></div></div>
+<div class="point">${bulb}<div>${esc(L.s5.point)}</div></div></section>`;
+h+=`<section><h2>${esc(L.s6.h)}</h2><div class="legend"><span><i class="dot L"></i>${esc(L.s6.legend_lead)}</span><span><i class="dot D"></i>${esc(L.s6.legend_do)}</span></div>
+<div class="scroll tbl"><table class="mx"><thead><tr><th></th>${L.s6.cols.map(c=>`<th class="c">${esc(c)}</th>`).join('')}</tr></thead><tbody>${L.s6.rows.map(r=>`<tr><td>${esc(r.task)}</td>${r.v.map(v=>`<td class="c">${v?`<i class="dot ${v}" role="img" aria-label="${v==='L'?esc(L.s6.legend_lead):esc(L.s6.legend_do)}"></i>`:''}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+h+=`<section><h2>${esc(L.s7.h)}</h2><div class="scroll tbl"><table class="jobs"><thead><tr>${L.s7.cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${L.s7.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+h+=`<section><h2>${esc(L.voice.h)}</h2><div class="voice"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg><p>${esc(L.voice.placeholder)}</p></div></section>`;
+h+=`<section><h2>${esc(L.terms.h)}</h2><div class="scroll tbl"><table class="terms"><thead><tr>${L.terms.cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${L.terms.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>`;
+h+=`<section><h2>${esc(L.quiz.h)}</h2><div class="quiz">${L.quiz.items.map((q,qi)=>`<div class="q" data-a="${q.a}"><p>Q${qi+1}. ${esc(q.q)}</p><div class="opts">${q.opts.map((o,oi)=>`<button type="button" class="opt" data-i="${oi}">${oi+1}. ${esc(o)}</button>`).join('')}</div><p class="exp">${esc(q.exp)}</p></div>`).join('')}</div></section>`;
+h+=`<div class="next"><span class="pict" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><span>${esc(L.next)}</span></div>`;
+$('#main').innerHTML=h;
+$('#foot').textContent=({ja:'© 航空キャリアノート',ko:'© 항공 커리어 노트',en:'© Aviation Career Note'}[lang]||'© 航空キャリアノート')+' — '+L.series+' '+C.meta.series_no;
+const detail=$('#detail');
+const show=id=>{const a=L.s1.actors.find(x=>x.id===id);document.querySelectorAll('.node').forEach(n=>n.classList.toggle('on',n.dataset.id===id));detail.innerHTML=`<b>${esc(a.name)}</b><span class="role">${esc(a.role)}</span><div>${esc(a.desc)}</div>`};
+document.querySelectorAll('.node').forEach(n=>{n.addEventListener('click',()=>show(n.dataset.id));n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(n.dataset.id)}})});
+show('airline');
+document.querySelectorAll('.q').forEach(q=>{q.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{const a=+q.dataset.a;q.querySelectorAll('.opt').forEach(x=>x.classList.remove('right','wrong'));b.classList.add(+b.dataset.i===a?'right':'wrong');q.querySelector(`.opt[data-i="${a}"]`).classList.add('right');q.classList.add('done')}))});
+}
+render();
+})();
+</script>
+</body>
+</html>

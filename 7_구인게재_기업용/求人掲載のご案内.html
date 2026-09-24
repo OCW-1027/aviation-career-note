@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>求人掲載のご案内（企業向け）</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#2F8FE0;--sky2:#E7F1FC;--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--hl:#FFE08A;--warn:#E5534B}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d;--sky2:#17324d}}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Noto Sans KR',sans-serif;line-height:1.75}
+body.ko{font-family:'Noto Sans KR','Noto Sans JP',sans-serif}
+html[lang="en"] body{font-family:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:24px 18px 60px}
+header{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:22px;padding:30px 24px;position:relative}
+header h1{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:clamp(22px,4vw,34px);margin:6px 0}
+header p{margin:0;max-width:62ch;opacity:.95}
+.langs{position:absolute;top:16px;right:16px;display:inline-flex;border-radius:999px;overflow:hidden;background:#fff}
+.langs button{border:0;background:transparent;color:#1d5fa0;font:700 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px;cursor:pointer}
+.langs button+button{border-left:1px solid #d6e6f6}
+.langs button.on{background:#FFE08A;color:#3A2A00}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:18px -18px 0;padding:10px 18px;display:flex;gap:8px;overflow-x:auto}
+nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px}
+h2{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:22px;margin:40px 0 12px;padding-bottom:6px;border-bottom:3px solid var(--sky)}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.why div{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:14px 16px}
+.why b{display:block;margin-bottom:4px;color:#1d5fa0}
+.steps{counter-reset:s;display:grid;gap:8px}
+.steps div{counter-increment:s;border:1px solid var(--line);border-radius:14px;padding:10px 14px 10px 52px;position:relative}
+.steps div::before{content:counter(s);position:absolute;left:14px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--sky);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+table.plan{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.plan th,.plan td{border-top:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.plan thead th{background:var(--sky2);text-align:center}
+.plan tbody th{background:var(--card);text-align:center;width:22%}
+.plan td{text-align:center}
+.price{font-weight:700;font-size:18px;color:var(--sub)}
+.note{font-size:13px;color:var(--sub);margin:8px 2px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;border:1px solid var(--line);border-radius:18px;padding:18px}
+form .full{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:4px;font-size:14px;font-weight:700}
+input,select,textarea{font:inherit;font-weight:400;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+textarea{min-height:80px}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--hl);outline-offset:1px}
+.req::after{content:" *";color:var(--warn)}
+.agree{flex-direction:row;align-items:flex-start;font-weight:400}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btns button{border:0;background:var(--sky);color:#fff;border-radius:12px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer}
+.btns button.sec{background:var(--bg);color:var(--sky);border:1px solid var(--sky)}
+.err{color:var(--warn);font-size:14px;min-height:1.2em}
+.preview{display:none;margin-top:16px;border:2px solid var(--sky);border-radius:18px;overflow:hidden}
+.preview.show{display:block}
+.pv-top{background:var(--sky2);padding:14px 18px}
+.pv-top .co{font-size:13px;color:var(--sub)}
+.pv-top h3{margin:2px 0 6px;font-size:20px}
+.tags span{display:inline-block;font-size:12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);padding:1px 10px;margin:2px 4px 2px 0}
+.pv-body{display:grid;grid-template-columns:140px 1fr}
+.pv-body b{background:var(--card);padding:8px 12px;border-top:1px solid var(--line);text-align:center;font-size:14px}
+.pv-body span{padding:8px 14px;border-top:1px solid var(--line);white-space:pre-line}
+.tmpl{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tmpl .r{display:grid;grid-template-columns:170px 1fr;border-top:1px solid var(--line)}
+.tmpl .r:first-child{border-top:0}
+.tmpl .r b{background:var(--sky2);padding:9px 12px;text-align:center;display:flex;align-items:center;justify-content:center}
+.tmpl .r span{padding:9px 14px}
+.rules{border:1px solid #f3c7c4;background:#fdf1f0;border-radius:14px;padding:12px 16px;color:#5c1f1b}
+.rules li{margin:4px 0}
+footer{margin-top:40px;color:var(--sub);font-size:13px;text-align:center}
+@media (max-width:680px){form{grid-template-columns:1fr}.pv-body,.tmpl .r{grid-template-columns:1fr}.plan{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<nav id="nav"></nav>
+<main>
+<section id="why"><h2 data-t="h_why"></h2><div class="why" id="whyBox"></div></section>
+<section id="flow"><h2 data-t="h_flow"></h2><div class="steps" id="stepBox"></div></section>
+<section id="plan"><h2 data-t="h_plan"></h2><div style="overflow-x:auto"><table class="plan" id="planTbl"></table></div><p class="note" data-t="plan_note"></p></section>
+<section id="tmpl"><h2 data-t="h_tmpl"></h2><p class="note" data-t="tmpl_note"></p><div class="tmpl" id="tmplBox"></div></section>
+<section id="rules"><h2 data-t="h_rules"></h2><ul class="rules" id="ruleBox"></ul></section>
+<section id="apply"><h2 data-t="h_apply"></h2>
+<form id="f" novalidate></form>
+<div class="preview" id="pv"></div>
+</section>
+</main>
+<footer id="foot"></footer>
+</div>
+<script>
+var T={ja:{kick:'航空キャリアノート',ttl:'求人掲載のご案内（企業向け）',lead:'航空会社・ハンドリング会社・空港関連の企業の皆さまへ。日本の空港で働きたい人に向けて、求人を日本語・韓国語・英語で掲載します。原稿づくりもお手伝いします。',
+nav:[['why','選ばれる理由'],['flow','掲載の流れ'],['plan','プラン'],['tmpl','原稿の項目'],['rules','掲載の基準'],['apply','お申し込み']],
+h_why:'このサイトに掲載する理由',h_flow:'掲載までの流れ',h_plan:'掲載プラン',h_tmpl:'求人原稿に記載する項目',h_rules:'掲載の基準',h_apply:'掲載のお申し込み',
+why:[['航空に特化','読者は空港・航空の仕事に関心のある人。教育記事で業界を理解した応募者が集まります。'],['3つの言語','日本語・韓国語・英語で掲載。外国語ができる人材、日本で働きたい海外の経験者にも届きます。'],['原稿づくりの支援','空港の現場を知る運営者が、仕事の魅力と条件が伝わる原稿をご提案します。'],['外国の航空会社の支店にも','少人数の支店の採用（カウンター・ランプ・運送の管理・営業）にも対応します。']],
+steps:[['お申し込み','下のフォームで内容を送信'],['内容の確認','運営者が掲載の基準・記載の項目を確認し、必要に応じて質問'],['原稿の作成','ご希望の言語の原稿を作成し、ご確認いただく'],['お支払い','プランの料金のお支払い（請求書）'],['掲載開始','掲載期間中の応募はご担当者へ直接'],['掲載終了','採用の結果のご報告にご協力ください']],
+plan_head:['','ライト','スタンダード','プレミアム'],
+plan_rows:[['掲載期間','30日','60日','90日'],['掲載言語','1言語（日・韓・英から選択）','2言語','3言語すべて'],['原稿の作成支援','―','○','○（取材つき）'],['トップページの表示','―','―','○'],['SNSでの紹介','―','1回','2回'],['料金（税別）','¥ ―','¥ ―','¥ ―']],
+plan_note:'※ 料金は準備中です。内容・料金は変更になる場合があります。',
+tmpl_note:'職業安定法にもとづき、求人の条件は正確に、最新の内容で記載してください。★',
+tmpl:[['会社名・事業内容','会社の名前、何をしている会社か'],['職種・仕事の内容','例：空港の旅客サービス（チェックイン・ゲート）。変更の範囲も'],['就業の場所','空港・ターミナル。変更の範囲も'],['雇用の形・期間','正社員・契約社員など、試用期間、契約の更新の有無と上限'],['賃金','基本給、手当（深夜・交通費）、固定残業代がある場合はその時間と金額'],['労働時間・休日','シフト制・早朝・深夜、休憩、年間休日、休暇'],['社会保険','健康保険・厚生年金・雇用保険・労災保険'],['応募の条件','語学（日本語・英語・その他）、経験、資格。在留資格の支援の有無'],['受動喫煙の防止','就業の場所の喫煙に関する措置'],['応募の方法・連絡先','応募の方法、選考の流れ、担当の窓口']],
+rules:['職業安定法・労働基準法など関係する法令に反する求人は掲載しません。','性別・年齢・国籍などを理由とした差別的な条件は掲載できません（年齢の制限は法令の例外に該当する場合を除く）。','実際と異なる条件・誇大な表現の求人は掲載しません。内容の変更は速やかにご連絡ください。','応募者の個人情報は採用の目的だけに使い、適切に管理してください。','運営者の判断で掲載をお断り・中止することがあります。'],
+f:{company:'会社名',dept:'部署・ご担当者名',email:'メールアドレス',tel:'電話番号',job:'募集する職種',jobs:['旅客サービス（カウンター・ゲート）','ランプ・グランドハンドリング','航空貨物','運送の管理・ロードコントロール','営業・予約・発券','支店の管理・事務','その他'],place:'就業の場所',placeH:'例：成田空港 第1ターミナル',emp:'雇用の形',emps:['正社員','契約社員','パート・アルバイト','派遣','その他'],title:'求人のタイトル',titleH:'例：語学を活かせる空港旅客スタッフ',wage:'賃金',wageH:'例：月給◯◯万円〜（深夜手当・交通費別途）',hours:'労働時間・休日',hoursH:'例：シフト制（5:00〜22:00の間で実働8時間）、月9日休み',lang:'語学の条件',langH:'例：日本語ビジネスレベル、英語日常会話以上',desc:'仕事の内容・アピール',start:'入社の時期',plan:'ご希望のプラン',plans:['ライト','スタンダード','プレミアム','相談したい'],pubLang:'掲載の言語',pubLangs:['日本語','韓国語','英語','日本語＋韓国語','日本語＋英語','3言語すべて'],memo:'その他のご要望',agree:'掲載の基準に同意し、記載の内容が事実であることを確認しました。',preview:'内容を確認する',copy:'内容をコピー',mail:'メールで送る',copied:'コピーしました',errMsg:'必須の項目（*）を入力し、同意にチェックしてください。',pvTitle:'掲載のイメージ',
+pv:{job:'職種',place:'就業の場所',emp:'雇用の形',wage:'賃金',hours:'労働時間・休日',lang:'語学の条件',start:'入社の時期',desc:'仕事の内容'}},
+foot:'© 航空キャリアノート — このページは企業向けの掲載のご案内です。フォームの内容はお使いの端末で作成され、送信はメールで行います。'},
+ko:{kick:'항공 커리어 노트',ttl:'구인 게재 안내 (기업용)',lead:'항공사·조업사·공항 관련 기업 여러분께. 일본 공항에서 일하고 싶은 사람에게 구인을 일본어·한국어·영어로 게재합니다. 원고 작성도 돕습니다.',
+nav:[['why','선택받는 이유'],['flow','게재 흐름'],['plan','플랜'],['tmpl','원고 항목'],['rules','게재 기준'],['apply','신청']],
+h_why:'이 사이트에 게재하는 이유',h_flow:'게재까지의 흐름',h_plan:'게재 플랜',h_tmpl:'구인 원고에 기재할 항목',h_rules:'게재 기준',h_apply:'게재 신청',
+why:[['항공 특화','독자는 공항·항공 일에 관심 있는 사람. 교육 기사로 업계를 이해한 지원자가 모입니다.'],['3개 언어','일본어·한국어·영어로 게재. 외국어가 되는 인재, 일본에서 일하고 싶은 해외 경력자에게도 닿습니다.'],['원고 작성 지원','공항 현장을 아는 운영자가 일의 매력과 조건이 전해지는 원고를 제안합니다.'],['외국 항공사 지점도','소수 인원 지점 채용(카운터·램프·운송 관리·영업)에도 대응합니다.']],
+steps:[['신청','아래 폼으로 내용 송신'],['내용 확인','운영자가 게재 기준·기재 항목을 확인하고 필요하면 질문'],['원고 작성','희망 언어 원고를 작성해 확인받음'],['결제','플랜 요금 지급 (청구서)'],['게재 시작','게재 기간 중 지원은 담당자에게 직접'],['게재 종료','채용 결과 보고에 협조 부탁드립니다']],
+plan_head:['','라이트','스탠다드','프리미엄'],
+plan_rows:[['게재 기간','30일','60일','90일'],['게재 언어','1개 언어 (일·한·영 중 선택)','2개 언어','3개 언어 전부'],['원고 작성 지원','―','○','○ (취재 포함)'],['톱페이지 표시','―','―','○'],['SNS 소개','―','1회','2회'],['요금 (세별)','¥ ―','¥ ―','¥ ―']],
+plan_note:'※ 요금은 준비 중입니다. 내용·요금은 변경될 수 있습니다.',
+tmpl_note:'일본 직업안정법에 따라 구인 조건은 정확하게, 최신 내용으로 기재하세요. ★',
+tmpl:[['회사명·사업 내용','회사 이름, 무엇을 하는 회사인지'],['직종·업무 내용','예: 공항 여객 서비스(체크인·게이트). 변경 범위도'],['근무 장소','공항·터미널. 변경 범위도'],['고용 형태·기간','정규직·계약직 등, 수습 기간, 계약 갱신 유무와 상한'],['임금','기본급, 수당(심야·교통비), 고정 잔업수당이 있으면 그 시간과 금액'],['근로시간·휴일','교대제·새벽·심야, 휴게, 연간 휴일, 휴가'],['사회보험','건강보험·후생연금·고용보험·산재보험'],['지원 조건','어학(일본어·영어·기타), 경력, 자격. 재류자격 지원 여부'],['간접흡연 방지','근무 장소 흡연 관련 조치'],['지원 방법·연락처','지원 방법, 전형 흐름, 담당 창구']],
+rules:['직업안정법·노동기준법 등 관계 법령에 반하는 구인은 게재하지 않습니다.','성별·연령·국적 등을 이유로 한 차별적 조건은 게재할 수 없습니다 (연령 제한은 법령 예외에 해당하는 경우 제외).','실제와 다른 조건·과장된 표현의 구인은 게재하지 않습니다. 내용 변경은 신속히 연락해 주세요.','지원자 개인정보는 채용 목적으로만 쓰고 적절히 관리해 주세요.','운영자 판단으로 게재를 거절·중지할 수 있습니다.'],
+f:{company:'회사명',dept:'부서·담당자명',email:'메일 주소',tel:'전화번호',job:'모집 직종',jobs:['여객 서비스 (카운터·게이트)','램프·그라운드 핸들링','항공화물','운송 관리·탑재관리','영업·예약·발권','지점 관리·사무','기타'],place:'근무 장소',placeH:'예: 나리타공항 제1터미널',emp:'고용 형태',emps:['정규직','계약직','파트·아르바이트','파견','기타'],title:'구인 제목',titleH:'예: 어학을 살릴 수 있는 공항 여객 직원',wage:'임금',wageH:'예: 월급 ○○만 엔~ (심야수당·교통비 별도)',hours:'근로시간·휴일',hoursH:'예: 교대제 (5:00~22:00 중 실근무 8시간), 월 9일 휴무',lang:'어학 조건',langH:'예: 일본어 비즈니스 수준, 영어 일상 회화 이상',desc:'업무 내용·어필',start:'입사 시기',plan:'희망 플랜',plans:['라이트','스탠다드','프리미엄','상담 희망'],pubLang:'게재 언어',pubLangs:['일본어','한국어','영어','일본어+한국어','일본어+영어','3개 언어 전부'],memo:'기타 요청',agree:'게재 기준에 동의하며 기재 내용이 사실임을 확인했습니다.',preview:'내용 확인',copy:'내용 복사',mail:'메일로 보내기',copied:'복사했습니다',errMsg:'필수 항목(*)을 입력하고 동의에 체크하세요.',pvTitle:'게재 이미지',
+pv:{job:'직종',place:'근무 장소',emp:'고용 형태',wage:'임금',hours:'근로시간·휴일',lang:'어학 조건',start:'입사 시기',desc:'업무 내용'}},
+foot:'© 항공 커리어 노트 — 이 페이지는 기업용 게재 안내입니다. 폼 내용은 사용 중인 단말에서 작성되며 송신은 메일로 합니다.'},
+en:{kick:'Aviation Career Note',ttl:'Post a Job (for employers)',lead:'For airlines, ground handling companies and airport-related businesses. We publish your vacancies in English, Japanese and Korean for people who want to work at airports in Japan, and we help you write the listing.',
+nav:[['why','Why here'],['flow','How it works'],['plan','Plans'],['tmpl','What to include'],['rules','Our standards'],['apply','Apply']],
+h_why:'Why post here',h_flow:'How it works',h_plan:'Plans',h_tmpl:'What a listing should include',h_rules:'Our publishing standards',h_apply:'Apply to post a job',
+why:[['Aviation only','Our readers are people interested in airport and airline work. They come to you already understanding the industry from our articles.'],['Three languages','Listings are published in English, Japanese and Korean, reaching candidates with language skills and experienced people overseas who want to work in Japan.'],['Help writing the listing','The site is run by someone who has worked at the airport, and we suggest wording that conveys both the appeal and the conditions of the job.'],['Small stations welcome','We also handle hiring for small foreign-airline stations: counter, ramp, load control and sales.']],
+steps:[['Apply','Send us the details in the form below'],['Review','We check the listing against our standards and ask questions if needed'],['Drafting','We prepare the listing in the languages you choose, for your approval'],['Payment','Pay the plan fee (we issue an invoice)'],['Published','Applications during the posting period go directly to your contact person'],['Closing','We would appreciate hearing how the hiring went']],
+plan_head:['','Light','Standard','Premium'],
+plan_rows:[['Posting period','30 days','60 days','90 days'],['Languages','1 language (JA, KO or EN)','2 languages','All 3 languages'],['Help writing the listing','—','Yes','Yes (with an interview)'],['Shown on the home page','—','—','Yes'],['Social media post','—','Once','Twice'],['Fee (excl. tax)','¥ —','¥ —','¥ —']],
+plan_note:'* Fees are being finalized. Content and fees may change.',
+tmpl_note:'Under Japan’s Employment Security Act, the conditions in a job listing must be accurate and current. ★',
+tmpl:[['Company and business','Company name and what the company does'],['Job type and duties','For example, airport passenger services (check-in and gate). Include the scope of possible changes'],['Place of work','Airport and terminal. Include the scope of possible changes'],['Employment type and term','Permanent, fixed-term and so on; probation period; whether the contract is renewed and any limit'],['Pay','Base pay, allowances (night work, commuting); if fixed overtime pay applies, the hours and amount it covers'],['Hours and days off','Shift work, early morning and night work, breaks, annual days off and leave'],['Social insurance','Health insurance, employee pension, employment insurance, workers’ accident insurance'],['Requirements','Languages (Japanese, English and others), experience, qualifications; whether visa support is available'],['Passive smoking measures','Measures on smoking at the place of work'],['How to apply','How to apply, the selection process and the contact point']],
+rules:['We do not publish listings that breach the Employment Security Act, the Labor Standards Act or other applicable law.','We cannot publish discriminatory conditions based on gender, age, nationality and so on (age limits only where the law allows an exception).','We do not publish listings whose conditions differ from reality or are exaggerated. Please tell us promptly if anything changes.','Use applicants’ personal information only for hiring, and manage it appropriately.','We may decline or withdraw a listing at our discretion.'],
+f:{company:'Company name',dept:'Department and contact person',email:'Email address',tel:'Phone number',job:'Job type',jobs:['Passenger services (counter and gate)','Ramp and ground handling','Air cargo','Load control','Sales, reservations and ticketing','Station administration','Other'],place:'Place of work',placeH:'e.g. Narita Airport Terminal 1',emp:'Employment type',emps:['Permanent','Fixed-term contract','Part-time','Agency (dispatch)','Other'],title:'Job title',titleH:'e.g. Passenger Service Agent (language skills welcome)',wage:'Pay',wageH:'e.g. From ¥xxx,xxx per month (night allowance and commuting costs separate)',hours:'Hours and days off',hoursH:'e.g. Shift work (8 hours between 5:00 and 22:00), 9 days off per month',lang:'Language requirements',langH:'e.g. Business-level Japanese, conversational English or above',desc:'The work and what makes it attractive',start:'Start date',plan:'Preferred plan',plans:['Light','Standard','Premium','I would like to discuss'],pubLang:'Languages to publish in',pubLangs:['Japanese','Korean','English','Japanese + Korean','Japanese + English','All three languages'],memo:'Anything else',agree:'I agree to the publishing standards and confirm that the details above are accurate.',preview:'Check the listing',copy:'Copy the details',mail:'Send by email',copied:'Copied',errMsg:'Please fill in the required fields (*) and tick the box.',pvTitle:'How it will look',
+pv:{job:'Job type',place:'Place of work',emp:'Employment type',wage:'Pay',hours:'Hours and days off',lang:'Language requirements',start:'Start date',desc:'The work'}},
+foot:'© Aviation Career Note — This page explains how to post a job. The form is prepared in your own browser and sent by email.'}};
+var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
+var lang='ja';try{var _s=localStorage.getItem('art-lang');if(LANGS.indexOf(_s)>=0)lang=_s}catch(e){}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function $(i){return document.getElementById(i)}
+var FIELDS=[['company','text',1],['dept','text',1],['email','email',1],['tel','tel',0],['job','select',1],['emp','select',1],['place','text',1,1],['title','text',1,1],['wage','text',1,1],['hours','text',1,1],['lang','text',0,1],['start','text',0],['plan','select',1],['pubLang','select',1],['desc','textarea',1,1],['memo','textarea',0,1]];
+function val(k){var e=$('f_'+k);return e?e.value.trim():''}
+function langBar(){var g=$('lang');g.innerHTML=LANGS.map(function(l){return '<button type="button" data-l="'+l+'" lang="'+l+'" class="'+(l===lang?'on':'')+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');
+ Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render()}})}
+function render(){var t=T[lang],saved={};FIELDS.forEach(function(x){saved[x[0]]=val(x[0])});var ag=$('f_agree')&&$('f_agree').checked;
+ document.body.className=lang;document.documentElement.lang=lang;['kick','ttl','lead','foot'].forEach(function(i){$(i).textContent=t[i]});langBar();
+ Array.prototype.forEach.call(document.querySelectorAll('[data-t]'),function(e){e.textContent=t[e.getAttribute('data-t')]});
+ $('nav').innerHTML=t.nav.map(function(n){return '<a href="#'+n[0]+'">'+n[1]+'</a>'}).join('');
+ $('whyBox').innerHTML=t.why.map(function(w){return '<div><b>'+esc(w[0])+'</b>'+esc(w[1])+'</div>'}).join('');
+ $('stepBox').innerHTML=t.steps.map(function(s){return '<div><b>'+esc(s[0])+'</b>　'+esc(s[1])+'</div>'}).join('');
+ $('planTbl').innerHTML='<thead><tr>'+t.plan_head.map(function(h){return '<th>'+esc(h)+'</th>'}).join('')+'</tr></thead><tbody>'+t.plan_rows.map(function(r,i){return '<tr><th>'+esc(r[0])+'</th>'+r.slice(1).map(function(c){return '<td'+(i===t.plan_rows.length-1?' class="price"':'')+'>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody>';
+ $('tmplBox').innerHTML=t.tmpl.map(function(r){return '<div class="r"><b>'+esc(r[0])+'</b><span>'+esc(r[1])+'</span></div>'}).join('');
+ $('ruleBox').innerHTML=t.rules.map(function(r){return '<li>'+esc(r)+'</li>'}).join('');
+ var F=t.f,h='';
+ FIELDS.forEach(function(x){var k=x[0],type=x[1],req=x[2],full=x[3],lab='<span class="'+(req?'req':'')+'">'+esc(F[k])+'</span>',ph=F[k+'H']||'',ctl;
+  if(type==='select'){var opts=F[k+'s'];ctl='<select id="f_'+k+'">'+opts.map(function(o,i){return '<option value="'+i+'">'+esc(o)+'</option>'}).join('')+'</select>'}
+  else if(type==='textarea'){ctl='<textarea id="f_'+k+'" placeholder="'+esc(ph)+'"></textarea>'}
+  else ctl='<input id="f_'+k+'" type="'+type+'" placeholder="'+esc(ph)+'">';
+  h+='<label class="'+(full?'full':'')+'">'+lab+ctl+'</label>'});
+ h+='<label class="agree full"><input type="checkbox" id="f_agree"> <span class="req">'+esc(F.agree)+'</span></label><div class="err full" id="err" role="alert"></div><div class="btns full"><button type="button" id="bPv">'+F.preview+'</button><button type="button" class="sec" id="bCp">'+F.copy+'</button><button type="button" class="sec" id="bMl">'+F.mail+'</button></div>';
+ $('f').innerHTML=h;FIELDS.forEach(function(x){var e=$('f_'+x[0]);if(saved[x[0]])e.value=saved[x[0]]});if(ag)$('f_agree').checked=true;
+ $('bPv').onclick=function(){if(check())showPv()};
+ $('bCp').onclick=function(){if(!check())return;var s=summary();function ok(){$('bCp').textContent=F.copied}if(navigator.clipboard)navigator.clipboard.writeText(s).then(ok,function(){});};
+ $('bMl').onclick=function(){if(!check())return;location.href='mailto:?subject='+encodeURIComponent(T[lang].ttl+'：'+val('company'))+'&body='+encodeURIComponent(summary())};
+ if($('pv').classList.contains('show'))showPv();}
+function opt(k){var e=$('f_'+k);return e.options[e.selectedIndex].text}
+function check(){var ok=FIELDS.every(function(x){return !x[2]||val(x[0])})&&$('f_agree').checked;$('err').textContent=ok?'':T[lang].f.errMsg;return ok}
+function summary(){var F=T[lang].f;return FIELDS.map(function(x){var k=x[0];return '【'+F[k]+'】'+(x[1]==='select'?opt(k):val(k))}).join('\n')}
+function showPv(){var F=T[lang].f,P=F.pv,rows=[['job',opt('job')],['place',val('place')],['emp',opt('emp')],['wage',val('wage')],['hours',val('hours')],['lang',val('lang')],['start',val('start')],['desc',val('desc')]].filter(function(r){return r[1]});
+ $('pv').innerHTML='<div class="pv-top"><div class="co">'+esc(F.pvTitle)+'｜'+esc(val('company'))+'</div><h3>'+esc(val('title'))+'</h3><div class="tags"><span>'+esc(opt('job'))+'</span><span>'+esc(opt('emp'))+'</span><span>'+esc(opt('pubLang'))+'</span></div></div><div class="pv-body">'+rows.map(function(r){return '<b>'+esc(P[r[0]])+'</b><span>'+esc(r[1])+'</span>'}).join('')+'</div>';
+ $('pv').classList.add('show');}
+render();
+</script>
+</body>
+</html>

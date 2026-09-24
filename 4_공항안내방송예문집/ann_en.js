@@ -1,0 +1,61 @@
+/* 空港アナウンス文例集 — 英語の画面用データ（カテゴリ名・説明・基本・場面名・タイミング・ポイント） */
+window.ANN_EN={
+c1:{name:"Announcement Basics",desc:"Common basics for every situation: the order of languages, speaking speed, and how to read flight numbers and times.",
+guide:[["Language order","At Japanese airports the usual order is Japanese, then English, then other languages (such as Korean or Chinese). Follow your airline and airport rules."],
+["Speaking speed","Slower than normal conversation. Take a short pause between sentences."],
+["Flight numbers","Airline name plus the digits one by one (for example, 【Airline】 flight one two three)."],
+["Times","Say “3:15 p.m.” rather than using the 24-hour clock; it is easier to catch over a loudspeaker."],
+["Gate numbers","Say “Gate 【12】” clearly. In some situations, repeat the number."],
+["Opening and closing","Start with a clear opening, and end with an action (“please proceed to…”). Repeating the key point briefly at the end helps listeners."],
+["Irregular operations","Apology first, then the facts (reason and outlook), what passengers should do, and the time of the next update. Do not add promotional phrases."],
+["Voice","Bright, calm and steady. Keep the same distance between your mouth and the microphone."]]},
+c2:{name:"Check-in Counter",desc:"Announcements around the counter, from the opening of check-in to the close.",items:[
+["Check-in opens","About 3 hours before departure","Repeating the counter location twice is helpful."],
+["During check-in","About 30 minutes before check-in closes",null],
+["Last call for check-in","About 10 minutes before check-in closes","Use “immediately” only just before the close."],
+["Check-in closed","At the closing time","Late passengers are handled under the airline’s rules. Do not say they can still board."],
+["Power banks and dangerous goods","To the queue during check-in","Quantity and capacity limits differ by time and airline. ★ Always use the latest rules."],
+["Baggage weight reminder","When the queue is long",null],
+["Passengers checked in online","During check-in",null]]},
+c3:{name:"Boarding Gate",desc:"Gate announcements from before boarding to the final call.",items:[
+["Pre-boarding announcement","About 10 minutes before boarding",null],
+["Priority boarding","At the start of boarding","Priority groups and order follow the airline’s rules."],
+["Boarding by row","After priority boarding","Boarding from the rear reduces congestion in the aisle."],
+["All passengers","After row boarding",null],
+["Final boarding call","About 15 minutes before departure",null],
+["Gate change","When the change is decided","Repeat the new gate number at the end."],
+["Cabin baggage limits","Before boarding on a full flight",null],
+["Boarding delayed","When the planned boarding time has passed",null]]},
+c4:{name:"Paging Passengers",desc:"Calling a specific passenger. Protect privacy and do not give more information than necessary.",items:[
+["Paging to the counter","When something needs checking after check-in","Do not give the reason over the PA."],
+["Paging to the gate","After the final call","Once the closing time has passed, prepare to offload the baggage at the same time."],
+["Checked baggage inspection","When a bag needs to be opened","Do not name the contents (such as batteries) over the PA."],
+["Paging for a travel companion","When someone is separated from their party","For a lost child, check the airport’s procedure for not announcing the child’s name."],
+["Lost property","When an item has been found","Do not describe the item in too much detail, so the owner can be verified."]]},
+c5:{name:"Delays",desc:"Delay announcements follow this order: apology, reason, outlook, request, and the time of the next update. Keep updating at fixed intervals even when nothing has changed.",items:[
+["Delay due to weather","When the delay is decided",null],
+["Delay due to maintenance","When the delay is decided","Do not describe the maintenance in detail."],
+["Delay due to a late inbound aircraft","When the delay is decided",null],
+["Follow-up update (no change)","At fixed intervals","Keep to the promised time of the next update even without news (for example, every 20 minutes)."],
+["New departure time","When the time is confirmed",null],
+["Meal vouchers","For longer delays","Also print the eligible shops, hours and value on the handout."],
+["Boarding after a delay","At the start of boarding",null]]},
+c6:{name:"Cancellations and Diversions",desc:"For cancellations and diversions, tell passengers exactly what to do next.",items:[
+["Cancellation notice","When the cancellation is decided",null],
+["Rebooking and hotels","After the cancellation","Give the conditions for each option (rebooking, other airlines, refund) on a handout."],
+["Passengers who have cleared immigration","In the departure area after a cancellation","Staff escort passengers through the cancellation of their departure record."],
+["For those meeting a diverted flight","In the arrivals hall",null],
+["Flight may return or divert","Before boarding","Always announce conditional operations before boarding."]]},
+c7:{name:"Arrivals",desc:"Information for arriving passengers. Keep baggage, connections and immigration short and clear.",items:[
+["Baggage claim","After arrival",null],
+["Baggage delivery delayed","At baggage claim",null],
+["Connecting passengers","Near the aircraft exit after arrival",null],
+["Delayed arrival (for those meeting)","In the arrivals hall",null],
+["Baggage not arrived","At the end of delivery","See the baggage irregularity procedures in the Ground Staff series."]]},
+c8:{name:"Special Situations",desc:"Requests for medical help, congestion, and passengers who need special assistance.",items:[
+["Request for medical professionals","When a passenger is unwell","Call the airport first aid or emergency services at the same time."],
+["Security checkpoint congestion","When it is crowded",null],
+["Pre-boarding for wheelchair users","Before priority boarding",null],
+["Lost property storage","In the arrivals hall","Storage periods and handover procedures are covered in the Ground Staff series."],
+["Long wait on board (from the gate)","For those meeting or waiting","Long tarmac delay rules are covered in the Ground Staff series."]]}
+};

@@ -1,0 +1,37 @@
+/* サイト共通スタイル — 「晴れた朝の空と搭乗券」 */
+:root{--sky:#2F8FE0;--sky2:#E7F1FC;--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--hl:#FFE08A;--warn:#E5534B}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d;--sky2:#17324d}}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Noto Sans KR',sans-serif;line-height:1.75}
+body.ko{font-family:'Noto Sans KR','Noto Sans JP',sans-serif}
+a{color:#1d5fa0}
+a:focus-visible,button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.topbar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1080px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-weight:900;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand svg{flex:0 0 auto}
+.menu{display:flex;gap:4px;overflow-x:auto;flex:1}
+.menu a{text-decoration:none;color:var(--ink);padding:6px 10px;border-radius:10px;font-size:14px;white-space:nowrap}
+.menu a.on,.menu a:hover{background:var(--sky2);color:#1d5fa0}
+.langbtn{border:1px solid var(--sky);background:var(--bg);color:var(--sky);border-radius:999px;padding:5px 12px;font-weight:700;cursor:pointer;font:inherit;font-size:13px}
+.langs{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg);flex:none}
+.langs button{appearance:none;cursor:pointer;border:0;background:transparent;color:var(--sub);font:600 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px}
+.langs button+button{border-left:1px solid var(--line)}
+.langs button.on{background:var(--sky);color:#fff}
+@media (max-width:420px){.langs button{padding:6px 8px;font-size:12px;min-width:0}}
+html[lang="en"] body{font-family:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 18px 60px}
+h1,h2,h3{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif}
+h2{font-size:22px;margin:40px 0 12px;padding-bottom:6px;border-bottom:3px solid var(--sky)}
+.lead{color:var(--sub);max-width:70ch}
+.page-hero{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:22px;padding:30px 26px}
+.page-hero h1{margin:4px 0 8px;font-size:clamp(24px,4vw,34px)}
+.page-hero p{margin:0;max-width:64ch;opacity:.95}
+.doc h3{margin:26px 0 6px;font-size:17px}
+.doc p,.doc li{max-width:75ch}
+.draft{border:1px dashed var(--warn);background:#fdf1f0;color:#5c1f1b;border-radius:12px;padding:10px 14px;margin:16px 0;font-size:14px}
+.site-foot{border-top:1px solid var(--line);margin-top:50px}
+.site-foot .in{max-width:1080px;margin:0 auto;padding:20px 18px 40px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--sub)}
+.site-foot a{color:var(--sub)}
+@media (max-width:640px){.brand span{display:none}}

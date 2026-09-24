@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IATA遅延コード一覧（AHM730）</title>
+<style>
+:root{--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--acc:#2F8FE0}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Noto Sans KR","Hiragino Sans","Malgun Gothic",system-ui,sans-serif;line-height:1.65}
+.wrap{max-width:1040px;margin:0 auto;padding:22px 16px 90px}
+header{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:20px;padding:24px 22px;position:relative}
+header h1{font-size:clamp(21px,3.6vw,30px);margin:6px 0}header p{margin:0;max-width:70ch;opacity:.95}
+.langs{position:absolute;top:14px;right:14px;display:inline-flex;border-radius:999px;overflow:hidden;background:#fff}.langs button{border:0;background:transparent;color:#1d5fa0;font:700 13px inherit;font-family:inherit;padding:6px 12px;cursor:pointer}.langs button.on{background:#FFE08A;color:#3A2A00}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 8px}.bar input,.bar select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--card);color:var(--ink)}.bar input{flex:1;min-width:200px}
+.cnt{align-self:center;color:var(--sub);font-size:13px}
+h2{font-size:18px;margin:26px 0 6px;padding-bottom:4px;border-bottom:3px solid var(--acc)}
+.tbl{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--card);font-size:13px}
+td.c{font-family:Consolas,Menlo,monospace;font-weight:700;white-space:nowrap}td.en{color:var(--sub);font-size:13px}
+.note{font-size:13px;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:16px}
+a{color:var(--acc)}mark{background:#FFE08A;color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="langs"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<div class="bar"><input id="q" type="search"><select id="grp"></select><span class="cnt" id="cnt"></span></div>
+<div id="list"></div>
+<div class="note" id="note"></div>
+</div>
+<script>
+/* 出典：IATA Airport Handling Manual AHM730/731（EUROCONTROL CODA公開資料「Standard IATA Delay Codes (AHM730)」による）
+   形式：[数字コード, 英字コード, 分類, English, 日本語, 한국어] */
+var G={O:{ja:'その他（社内用・計画）',ko:'기타(사내용·계획)',en:'Others'},P:{ja:'旅客・手荷物',ko:'여객·수하물',en:'Passenger and Baggage'},C:{ja:'貨物・郵便',ko:'화물·우편',en:'Cargo and Mail'},G:{ja:'機体・ランプの作業',ko:'기체·램프 작업',en:'Aircraft and Ramp Handling'},T:{ja:'整備・機材',ko:'정비·기재',en:'Technical and Aircraft Equipment'},D:{ja:'機体の損傷・システムの故障',ko:'기체 손상·시스템 고장',en:'Damage to Aircraft and EDP/Automated Equipment Failure'},F:{ja:'運航・乗務員',ko:'운항·승무원',en:'Flight Operations and Crewing'},W:{ja:'天候',ko:'기상',en:'Weather'},A:{ja:'流量管理・空港・当局',ko:'흐름 관리·공항·당국',en:'ATFM, Airport and Governmental Authorities'},R:{ja:'波及遅延',ko:'연쇄 지연',en:'Reactionary'},M:{ja:'その他の理由',ko:'기타 사유',en:'Miscellaneous'}};
+var D=[
+["00–05","","O","Airline internal codes","航空会社の社内用のコード","항공사 내부용 코드"],
+["06","OA","O","No gate/stand availability due to own airline activity","自社の運用によるゲート・スポットの不足","자사 운용으로 인한 게이트·주기장 부족"],
+["09","SG","O","Scheduled ground time less than declared minimum ground time","計画の地上時間が最小地上時間より短い","계획 지상 시간이 최소 지상 시간보다 짧음"],
+["11","PD","P","Late check-in, acceptance after deadline","締め切り後のチェックインの受け付け","마감 후 체크인 접수"],
+["12","PL","P","Late check-in, congestion in check-in area","チェックインエリアの混雑","체크인 구역 혼잡"],
+["13","PE","P","Check-in error, passenger and baggage","チェックインの誤り（旅客・手荷物）","체크인 오류(승객·수하물)"],
+["14","PO","P","Oversales, booking errors","超過予約・予約の誤り","초과 예약·예약 오류"],
+["15","PH","P","Boarding, discrepancies and paging, missing checked-in passenger","搭乗（人数の不一致・呼び出し・手続き済みで未搭乗のお客様）","탑승(인원 불일치·호출·수속 후 미탑승 승객)"],
+["16","PS","P","Commercial publicity/passenger convenience, VIP, press, ground meals and missing personal items","営業上の配慮・お客様の便宜・VIP・報道・地上での食事・忘れ物","영업상 배려·승객 편의·VIP·보도·지상 식사·분실 소지품"],
+["17","PC","P","Catering order, late or incorrect order given to supplier","機内食の発注の遅れ・誤り","기내식 발주 지연·오류"],
+["18","PB","P","Baggage processing, sorting etc.","手荷物の処理・仕分けなど","수하물 처리·분류 등"],
+["19","PW","P","Reduced mobility, boarding/deboarding of passengers with reduced mobility","移動に配慮が必要なお客様の乗り降り","교통약자 승객의 승하기"],
+["21","CD","C","Documentation, errors etc.","書類の誤りなど","서류 오류 등"],
+["22","CP","C","Late positioning","貨物の搬出の遅れ","화물 반출 지연"],
+["23","CC","C","Late acceptance","受託の遅れ","접수 지연"],
+["24","CI","C","Inadequate packing","梱包の不備","포장 불량"],
+["25","CO","C","Oversales, booking errors","超過予約・予約の誤り","초과 예약·예약 오류"],
+["26","CU","C","Late preparation in warehouse","上屋での準備の遅れ","창고 준비 지연"],
+["27","CE","C","Documentation, packing etc. (mail only)","書類・梱包など（郵便のみ）","서류·포장 등(우편만)"],
+["28","CL","C","Late positioning (mail only)","搬出の遅れ（郵便のみ）","반출 지연(우편만)"],
+["29","CA","C","Late acceptance (mail only)","受託の遅れ（郵便のみ）","접수 지연(우편만)"],
+["31","GD","G","Aircraft documentation late/inaccurate: weight and balance, general declaration, passenger manifest, etc.","書類の遅れ・誤り（重量重心、一般申告書、乗客名簿など）","서류 지연·오류(중량 균형, 일반 신고서, 승객 명단 등)"],
+["32","GL","G","Loading/unloading: bulky, special load, cabin load, lack of loading staff","積み下ろし（大型・特殊な搭載物・客室の搭載・作業員の不足）","하역(대형·특수 탑재물·객실 탑재·작업원 부족)"],
+["33","GE","G","Loading equipment, lack of or breakdown (e.g. container pallet loader), lack of staff","搭載用機材の不足・故障（ローダーなど）・人員の不足","탑재 장비 부족·고장(로더 등)·인원 부족"],
+["34","GS","G","Servicing equipment, lack of or breakdown, lack of staff (e.g. steps)","サービス用機材の不足・故障（ステップなど）・人員の不足","서비스 장비 부족·고장(스텝 등)·인원 부족"],
+["35","GC","G","Aircraft cleaning","機内清掃","기내 청소"],
+["36","GF","G","Fuelling/defuelling, fuel supplier","給油・抜油、燃料会社","급유·연료 배출, 연료 공급사"],
+["37","GB","G","Catering, late delivery or loading","機内食の搬入・搭載の遅れ","기내식 반입·탑재 지연"],
+["38","GU","G","ULD, lack of or serviceability","ULDの不足・不良","ULD 부족·불량"],
+["39","GT","G","Technical equipment, lack of or breakdown, lack of staff (e.g. pushback)","技術用機材の不足・故障（プッシュバックなど）・人員の不足","기술 장비 부족·고장(푸시백 등)·인원 부족"],
+["41","TD","T","Aircraft defects","機体の不具合","기체 결함"],
+["42","TM","T","Scheduled maintenance, late release","定例整備の完了の遅れ","정기 정비 완료 지연"],
+["43","TN","T","Non-scheduled maintenance, special checks and/or additional works","定例外の整備・特別点検・追加作業","비정기 정비·특별 점검·추가 작업"],
+["44","TS","T","Spares and maintenance equipment, lack of or breakdown","部品・整備用機材の不足・故障","부품·정비 장비 부족·고장"],
+["45","TA","T","AOG spares, to be carried to another station","他の空港へ運ぶAOGの部品","다른 공항으로 운송할 AOG 부품"],
+["46","TC","T","Aircraft change, for technical reasons","技術的な理由による機材の変更","기술적 이유에 의한 기재 변경"],
+["47","TL","T","Stand-by aircraft, lack of planned stand-by aircraft for technical reasons","技術的な理由で予定の予備機がない","기술적 이유로 예정된 예비기 없음"],
+["48","TV","T","Scheduled cabin configuration/version adjustments","客室の仕様の計画的な変更","객실 사양의 계획적 변경"],
+["51","DF","D","Damage during flight operations: bird or lightning strike, turbulence, heavy or overweight landing, collision during taxiing","飛行中の損傷（鳥・雷・乱気流・ハードランディング・地上走行中の衝突）","비행 중 손상(조류·낙뢰·난기류·경착륙·지상 활주 중 충돌)"],
+["52","DG","D","Damage during ground operations: collisions (other than taxiing), loading/offloading damage, contamination, towing, extreme weather","地上作業中の損傷（衝突・積み下ろし・汚損・牽引・極端な天候）","지상 작업 중 손상(충돌·하역·오염·견인·극한 기상)"],
+["55","ED","D","Departure control","出発管理システム","출발 관리 시스템"],
+["56","EC","D","Cargo preparation/documentation","貨物の準備・書類のシステム","화물 준비·서류 시스템"],
+["57","EF","D","Flight plans","飛行計画のシステム","비행계획 시스템"],
+["58","EO","D","Other automated system","その他のシステム","기타 자동화 시스템"],
+["61","FP","F","Flight plan, late completion or change of, flight documentation","飛行計画・運航書類の遅れ・変更","비행계획·운항 서류 지연·변경"],
+["62","FF","F","Operational requirements, fuel, load alteration","運航上の要求（燃料・搭載の変更）","운항상 요구(연료·탑재 변경)"],
+["63","FT","F","Late crew boarding or departure procedures (flight deck or entire crew)","乗務員の搭乗・出発手続きの遅れ（運航乗務員または全員）","승무원 탑승·출발 절차 지연(운항 승무원 또는 전원)"],
+["64","FS","F","Flight deck crew shortage: sickness, standby, flight time limitations, crew meals, visa, health documents","運航乗務員の不足（病気・待機・乗務時間の制限・食事・査証・健康書類など）","운항 승무원 부족(질병·대기·비행 시간 제한·식사·비자·건강 서류 등)"],
+["65","FR","F","Flight deck crew special request, not within operational requirements","運航乗務員の運航上必要でない特別な要求","운항 승무원의 운항상 필요하지 않은 특별 요청"],
+["66","FL","F","Late cabin crew boarding or departure procedures","客室乗務員の搭乗・出発手続きの遅れ","객실 승무원 탑승·출발 절차 지연"],
+["67","FC","F","Cabin crew shortage: sickness, standby, flight time limitations, crew meals, visa, health documents","客室乗務員の不足（病気・待機・乗務時間の制限など）","객실 승무원 부족(질병·대기·비행 시간 제한 등)"],
+["68","FA","F","Cabin crew error or special request, not within operational requirements","客室乗務員の誤り・運航上必要でない特別な要求","객실 승무원 오류·운항상 필요하지 않은 특별 요청"],
+["69","FB","F","Captain request for security check, extraordinary","機長による臨時の保安検査の要請","기장의 임시 보안 점검 요청"],
+["71","WO","W","Departure station","出発地の天候","출발지 기상"],
+["72","WT","W","Destination station","到着地の天候","도착지 기상"],
+["73","WR","W","En route or alternate","途中・代替空港の天候","항로상·교체 공항 기상"],
+["75","WI","W","De-icing of aircraft (removal of ice/snow, frost prevention)","機体の除氷・防氷","기체 제빙·방빙"],
+["76","WS","W","Removal of snow, ice, water and sand from airport","空港の除雪・除氷・排水・除砂","공항 제설·제빙·배수·모래 제거"],
+["77","WG","W","Ground handling impaired by adverse weather conditions","悪天候による地上作業の支障","악천후로 인한 지상 작업 지장"],
+["81","AT","A","ATFM due to ATC en-route demand/capacity","航空路の需要・容量による流量管理","항로 수요·용량에 의한 흐름 관리"],
+["82","AX","A","ATFM due to ATC staff/equipment en-route (industrial action, staff shortage, equipment failure, military exercise)","管制の人員・機器などによる流量管理（争議・人員不足・故障・軍の演習など）","관제 인원·장비에 의한 흐름 관리(쟁의·인원 부족·고장·군 훈련 등)"],
+["83","AE","A","ATFM due to restriction at destination airport","到着空港の制限による流量管理","도착 공항 제한에 의한 흐름 관리"],
+["84","AW","A","ATFM due to weather at destination","到着地の天候による流量管理","도착지 기상에 의한 흐름 관리"],
+["85","AS","A","Mandatory security","義務的な保安措置","의무적 보안 조치"],
+["86","AG","A","Immigration, customs, health","出入国管理・税関・検疫","출입국·세관·검역"],
+["87","AF","A","Airport facilities: parking stands, ramp congestion, lighting, buildings, gate limitations","空港の施設（スポット・ランプの混雑・照明・建物・ゲートの制限）","공항 시설(주기장·램프 혼잡·조명·건물·게이트 제한)"],
+["88","AD","A","Restrictions at airport of destination (closure, industrial action, noise abatement, night curfew, special flights)","到着空港の制限（閉鎖・争議・騒音対策・夜間の運用制限・特別便など）","도착 공항 제한(폐쇄·쟁의·소음 대책·야간 운용 제한·특별기 등)"],
+["89","AM","A","Restrictions at airport of departure with or without ATFM (ATS, start-up and pushback, closure, weather, noise, curfew)","出発空港の制限（管制・始動・プッシュバック・閉鎖・天候・騒音・夜間の制限など）","출발 공항 제한(관제·시동·푸시백·폐쇄·기상·소음·야간 제한 등)"],
+["91","RL","R","Load connection, awaiting load from another flight","他の便からの搭載物の接続待ち","다른 편 탑재물 연결 대기"],
+["92","RT","R","Through check-in error, passenger and baggage","スルーチェックインの誤り（旅客・手荷物）","연결 수속 오류(승객·수하물)"],
+["93","RA","R","Aircraft rotation, late arrival of aircraft from another flight or previous sector","機材の回し（前の便・区間からの到着の遅れ）","기재 회전(앞 편·구간 도착 지연)"],
+["94","RS","R","Cabin crew rotation, awaiting cabin crew from another flight","他の便からの客室乗務員の待ち","다른 편 객실 승무원 대기"],
+["95","RC","R","Crew rotation, awaiting crew from another flight (flight deck or entire crew)","他の便からの乗務員の待ち（運航乗務員または全員）","다른 편 승무원 대기(운항 승무원 또는 전원)"],
+["96","RO","R","Operations control: re-routing, diversion, consolidation, aircraft change for non-technical reasons","運航管理の判断（経路の変更・ダイバート・便の統合・技術以外の理由の機材変更）","운항 통제 판단(경로 변경·회항·편 통합·비기술적 기재 변경)"],
+["97","MI","M","Industrial action within own airline","自社の労働争議","자사 노동 쟁의"],
+["98","MO","M","Industrial action outside own airline, excluding ATS","他社の労働争議（管制を除く）","타사 노동 쟁의(관제 제외)"],
+["99","MX","M","Other reason, not matching any code above","上のどれにも当たらないその他の理由","위 어느 코드에도 해당하지 않는 기타 사유"]];
+var T={ja:{kick:'航空キャリアノート',ttl:'IATA遅延コード一覧（AHM730）',lead:'世界の航空会社・空港が共通で使う、IATAの標準の遅延コード（00〜99）です。遅延の原因を2桁の数字と2文字の英字で表し、運航実績電報（MVT）や定時性の分析に使います。',ph:'コード・原因を検索（例：15、PH、搭乗）',all:'すべての分類',cols:['コード','英字','原因','English（原文）'],n:'件',note:'出典：IATA「Airport Handling Manual」AHM730・731（EUROCONTROL CODAの公開資料「Standard IATA Delay Codes (AHM730)」による）。日本語・韓国語は当サイトの訳です。IATAはサブコード（AHM731）や新しい分類（AHM732）も定めており、各社は社内でさらに細かく分けて使うことがあります。正式な内容は最新のAHMで確認してください。'},
+ko:{kick:'항공 커리어 노트',ttl:'IATA 지연 코드 목록 (AHM730)',lead:'세계 항공사·공항이 공통으로 쓰는 IATA 표준 지연 코드(00~99)입니다. 지연 원인을 두 자리 숫자와 두 자리 영문으로 나타내며, 운항 실적 전보(MVT)와 정시성 분석에 씁니다.',ph:'코드·원인 검색 (예: 15, PH, 탑승)',all:'전체 분류',cols:['코드','영문','원인','English(원문)'],n:'건',note:'출처: IATA 「Airport Handling Manual」 AHM730·731 (EUROCONTROL CODA 공개 자료 「Standard IATA Delay Codes (AHM730)」에 따름). 일본어·한국어는 이 사이트의 번역입니다. IATA는 하위 코드(AHM731)와 새 분류(AHM732)도 정하고 있으며, 각사는 사내에서 더 세분해 쓰기도 합니다. 공식 내용은 최신 AHM으로 확인하세요.'},
+en:{kick:'Aviation Career Note',ttl:'IATA Delay Codes (AHM730)',lead:'The standard IATA delay codes (00–99) used by airlines and airports worldwide. Each cause has a two-digit number and a two-letter code, used in movement messages (MVT) and punctuality analysis.',ph:'Search codes and causes (e.g. 15, PH, boarding)',all:'All groups',cols:['Code','Alpha','Cause','Group'],n:' codes',note:'Source: IATA Airport Handling Manual AHM730 and 731, as published by EUROCONTROL CODA (“Standard IATA Delay Codes (AHM730)”). Japanese and Korean translations are this site’s. IATA also defines sub-codes (AHM731) and a newer schema (AHM732), and airlines often subdivide codes internally. Check the latest AHM for the official text.'}};
+var lang='ja';try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)lang=s}catch(e){}
+var m=location.search.match(/lang=(ja|ko|en)/);if(m)lang=m[1];
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function hi(x,q){x=esc(x);if(!q)return x;var i=x.toLowerCase().indexOf(q.toLowerCase());return i<0?x:x.slice(0,i)+'<mark>'+x.slice(i,i+q.length)+'</mark>'+x.slice(i+q.length)}
+function $(i){return document.getElementById(i)}
+function render(){var t=T[lang];document.documentElement.lang=lang;document.title=t.ttl;['kick','ttl','lead','note'].forEach(function(k){$(k).textContent=t[k]});$('q').placeholder=t.ph;
+ $('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===lang?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
+ Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.dataset.l;try{localStorage.setItem('art-lang',lang)}catch(e){}render()}});
+ var gv=$('grp').value;$('grp').innerHTML='<option value="">'+t.all+'</option>'+Object.keys(G).map(function(k){return '<option value="'+k+'">'+G[k][lang]+'</option>'}).join('');$('grp').value=gv;
+ var q=$('q').value.trim(),g=$('grp').value,n=0,h='';
+ Object.keys(G).forEach(function(k){if(g&&g!==k)return;var rows=D.filter(function(r){if(r[2]!==k)return false;if(!q)return true;return (r.join(' ')).toLowerCase().indexOf(q.toLowerCase())>=0});if(!rows.length)return;n+=rows.length;
+  h+='<h2>'+esc(G[k][lang])+(lang==='en'?'':' <small style="font-weight:400;color:var(--sub)">'+esc(G[k].en)+'</small>')+'</h2><div class="tbl"><table><tr>'+t.cols.map(function(c){return '<th>'+c+'</th>'}).join('')+'</tr>'+
+  rows.map(function(r){var main=lang==='ja'?r[4]:lang==='ko'?r[5]:r[3],sub=lang==='en'?G[k].en:r[3];return '<tr><td class="c">'+hi(r[0],q)+'</td><td class="c">'+hi(r[1],q)+'</td><td>'+hi(main,q)+'</td><td class="en">'+hi(sub,q)+'</td></tr>'}).join('')+'</table></div>'});
+ $('list').innerHTML=h;$('cnt').textContent=n+t.n}
+$('q').oninput=render;$('grp').onchange=render;render();
+</script>
+<script src="1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

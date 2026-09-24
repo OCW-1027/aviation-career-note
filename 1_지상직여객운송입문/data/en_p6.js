@@ -1,0 +1,222 @@
+/* 地上職・旅客運送 入門 — English version (Part 6: 支店運営の実務) */
+(function(A){function set(no,en){if(A[no])A[no].en=en}
+set("6-1",{title:"A Day in the Life of a Duty Manager",hl:"duty manager",subtitle:"Running the flight in front of you, and the daily, weekly and monthly closing work",
+lead:["At an overseas station, a small team of duty managers covers everything from supervising the counter, the gate and the ramp to reports, dealing with the handling company, training and inspections. The usual pattern is that the handling company does the work and the airline’s managers supervise it.",
+"Taking a station in Japan as the example, this article covers what a duty manager does for each flight, how a day runs, the closing work, the weekly and monthly routine, and how duties are split."],
+sections:[
+{h:"What every flight needs",blocks:[{t:"check",items:[
+{name:"Managing the handling company",x:"Staffing, procedures and on-time performance."},
+{name:"Running the operation",x:"The counter and the gate, and quality checks."},
+{name:"The ramp",x:"Watching the loading, safety management and quality checks."},
+{name:"CIQ",x:"Dealing with customs, immigration and quarantine."},
+{name:"Passenger service",x:"Passengers needing assistance, complaints and service improvements."},
+{name:"Irregular operations",x:"Handling delays and cancellations, recording them and reporting the outcome."}]}]},
+{h:"How a day runs (one international rotation a day)",blocks:[{t:"table",cols:["Roughly","Main work"],rows:[
+["3 to 4 hours before departure","Check the flight details and head office instructions; brief the handling company"],
+["3 hours before","Confirm the counter is ready; check-in opens"],
+["1 hour before","Check-in closes; move to the gate; check the loading"],
+["Around departure","Boarding, reconciling the count, documents, door close, watching the pushback"],
+["After departure","Send the departure messages and pass on anything notable"],
+["1 to 2 hours after","Closing work (see below)"],
+["Between flights","Training, paperwork and reports, meetings, preparing for tomorrow"]]}]},
+{h:"Closing the flight",blocks:[{t:"check",items:[
+{name:"No-shows",x:"Record and process passengers who did not travel."},
+{name:"Local sales",x:"Settle excess baggage and other airport revenue and enter it in the system."},
+{name:"Daily report",x:"Report the result of the operation, the reason for any delay and anything notable to head office."},
+{name:"Passenger charges",x:"Record passenger service facility charges and departure taxes."},
+{name:"On an irregular day",x:"Sort out cancelled sectors, write the report and advise the outcome (typically another hour and a half)."}]}]},
+{h:"The weekly and monthly routine (example)",blocks:[{t:"table",cols:["How often","Work"],rows:[
+["Weekly","Weekly report by the end of the week, sales report, sharing the booking position"],
+["Start of the month","Monthly report in the first day or two; traffic report to the authorities"],
+["Monthly","Monthly meetings with the handling company (passenger, ramp, cargo), the duty roster, baggage irregularity numbers and compensation"],
+["Monthly","Checking the facility charges, settling meal vouchers, writing up the quality checks"],
+["As required","Airport operators committee (AOC) meetings, preparing for head office audits, manual revisions"]]}]},
+{h:"Splitting the duties (small station example)",blocks:[{t:"table",cols:["Role","Main work"],rows:[
+["Coordination and reporting","Weekly and monthly reports, meetings, audit preparation, manuals"],
+["Baggage and training","Baggage irregularities and reporting, training new handling company staff and developing their trainers"],
+["Documents, supplies and passes","Operational documents and forms, stock of replacement bags, airport ID passes"],
+["Everyone","Supervising each flight and handling irregular operations"]]},
+{t:"point",x:"In a small station, one absence can stop the work. Assign roles, but make sure everyone can cover for everyone else, with written procedures and handover notes."}]}],
+voice:"[Interview to be added] The busiest day you had as a duty manager, and how you got through it.",
+terms:[["Station Manager / Duty Manager","運送マネージャー","운송 매니저"],["No-show","ノーショー","노쇼"],["Daily Report","日報","일일 보고"],["Passenger Service Facility Charge (PSFC)","旅客施設使用料","여객시설 사용료"],["Quality Check","品質点検","품질 점검"],["Duty Roster","勤務表","근무표"]],
+quiz:[{q:"Who usually does the hands-on work at an overseas station?",opts:["Head office staff","The handling company’s staff","Passengers","The authorities"],a:1,exp:"The airline’s managers supervise."},
+{q:"What belongs to closing the flight?",opts:["No-shows and the daily report","Cooking the catering","Ticket sales strategy","Payroll"],a:0,exp:"Records and reports are pulled together flight by flight."},
+{q:"What matters most in a small station?",opts:["Leaving it all to one person","Written procedures and handover notes","Keeping no records","Assigning nothing"],a:1,exp:"So the work continues when someone is away."}],
+next:"6-2 Managing the handling company: meetings, quality checks and training"});
+
+set("6-2",{title:"Managing the Handling Company: Meetings, Quality Checks and Training",hl:"handling company",subtitle:"You can contract out the work, but not the responsibility",
+lead:["At most overseas airports, check-in, loading and the rest are contracted to a ground handling company. The responsibility towards passengers and the authorities, however, stays with the airline. So the airline keeps checking that the contractor works safely and to its own procedures.",
+"This article covers the five pillars of managing a handling company — meetings, quality checks, training, safety audits and cost verification — and how to run each one."],
+sections:[
+{h:"The five pillars",blocks:[{t:"table",cols:["Pillar","What it covers"],rows:[
+["Monthly meeting","Sharing performance, problems and fixes, and what is coming next month"],
+["Quality checks","Scoring the work at the counter, the gate and the ramp against a checklist"],
+["Training","Your procedures, new staff training and developing their trainers"],
+["Safety audits","Regular audits and confirming corrective action"],
+["Cost verification","Matching what is invoiced against what was actually done"]]}]},
+{h:"Running the monthly meeting",blocks:[{t:"check",items:[
+{name:"On-time performance",x:"How many delays and why, by delay code, including those caused by the handling company."},
+{name:"Baggage irregularities",x:"Numbers of delayed and damaged bags, the causes, and how they will be prevented."},
+{name:"Quality check results",x:"Findings and the state of improvement."},
+{name:"Safety",x:"Near misses, aircraft damage and the results of ramp safety inspections."},
+{name:"Instructions from head office",x:"Procedure changes and new rules."},
+{name:"Minutes",x:"Written by the responsible person, confirmed by the manager and shared."}]},
+{t:"point",x:"Make the meeting a place to improve together rather than to blame, and the real information from the front line starts coming out. Show the facts as numbers and work out the causes and fixes jointly."}]},
+{h:"Quality checks",blocks:[{t:"table",cols:["Area","Examples"],rows:[
+["Counter","Pre-opening preparation, document checks, security questions, weighing and tagging, how passengers are treated"],
+["Gate","Preparation times, identity checks, cabin baggage limits, reconciling the count, handing over documents"],
+["Ramp","Safety equipment, positioning of equipment, loading to the instruction, FOD checks, door procedures"],
+["Baggage","Running the claim area, taking reports, the quality of those reports"]]},
+{t:"rows",items:[
+{name:"Unannounced checks",x:"Also check without notice, to see what an ordinary day really looks like."},
+{name:"Afterwards",x:"Give the result on the spot and set a deadline for anything that needs to change."}]}]},
+{h:"Training",blocks:[{t:"check",items:[
+{name:"New staff",x:"Teach your procedures to the handling company’s new staff (typically about two days)."},
+{name:"Developing trainers",x:"Build up people inside the handling company who can teach."},
+{name:"Training flights",x:"Create a training flight and bookings in the system so staff can practise the real screens."},
+{name:"When something changes",x:"Brief everyone as soon as a procedure changes."},
+{name:"Records",x:"The handling company keeps training and assessment records to your standard too (for example, one year)."}]}]},
+{h:"Safety audits and cost verification",blocks:[{t:"rows",items:[
+{name:"Safety audits",x:"Audit regularly, raise findings and confirm both the corrective plan and its implementation."},
+{name:"A safety owner on their side",x:"Ask the handling company to name someone responsible for safety."},
+{name:"Reporting lines",x:"Make sure accidents and near misses there reach the airline."},
+{name:"Cost verification",x:"Each month, check the flights operated and any additional work (extended work during delays) before approving the invoice. Managing the time each task takes also reduces cost."}]},
+{t:"point",warn:true,x:"Review regularly whether the scope in the contract (the SGHA and its annexes) still matches what you actually ask for on the ramp."}]}],
+voice:"[Interview to be added] Why the relationship with the handling company worked.",
+terms:[["Ground Handling Agent (GHA)","ハンドリング会社","조업사"],["SGHA","地上業務委託契約","지상조업 계약"],["Quality Audit / Check","品質点検","품질 점검"],["Corrective Action","是正措置","시정 조치"],["Minutes","議事録","회의록"],["Instructor / Trainer","指導者","강사"]],
+quiz:[{q:"What stays with the airline even when the work is contracted out?",opts:["Nothing","Responsibility towards passengers and the authorities","The manual labour","Only the cost"],a:1,exp:"That is why monitoring, assessment and training are needed."},
+{q:"Why carry out unannounced checks?",opts:["To catch people out","To see what an ordinary day looks like","To cut costs","No reason"],a:1,exp:"They show the work as it normally is."},
+{q:"What do you check before approving the invoice?",opts:["Nothing","The flights operated and any additional work","The weather","Revenue"],a:1,exp:"Match the invoice against what was done."}],
+next:"6-3 Managing airport ID passes"});
+
+set("6-3",{title:"Managing Airport ID Passes",hl:"airport ID passes",subtitle:"The key to the restricted area. The station is responsible from issue to return",
+lead:["Entering an airport’s restricted areas, the departure area and the ramp, requires an ID pass issued by the airport operator or the authorities. The pass is a security control, and losing one or misusing it is a serious matter for the whole airport.",
+"This article covers the types of pass, the path from issue to return, the pass controller’s role, what to do about a loss, and the day-to-day points."],
+sections:[
+{h:"Types of pass (example at a Japanese airport)",blocks:[{t:"table",cols:["Type","What it covers"],rows:[
+["Airport operator pass","Issued by the airport company for the terminal restricted areas and the ramp. Colours and symbols show which zones it covers"],
+["CIQ area pass","For entering customs and immigration areas; arranged with those agencies"],
+["Vehicle permit","To drive on the ramp; requires a driving course"],
+["Temporary pass","For short-term visitors or staff helping out, usually on condition of being escorted"]]}]},
+{h:"The life of a pass",blocks:[{t:"ladder",rise:10,steps:[{name:"Apply",sub:"Documents and identity check"},{name:"Security training",sub:"Take the airport’s security course"},{name:"Issued",sub:"Collected and recorded"},{name:"Use and renewal",sub:"Track the expiry"},{name:"Returned",sub:"Always collected on leaving or transferring"}]}]},
+{h:"The pass controller’s role",blocks:[{t:"check",items:[
+{name:"Keep the list",x:"Who holds which pass and until when."},
+{name:"Track expiry",x:"Prompt renewals before they expire."},
+{name:"Leavers and transfers",x:"Collect the pass on the last working day and return it to the airport company."},
+{name:"Regular reporting",x:"File the pass returns to the airport company and the agencies on time."},
+{name:"Training",x:"Remind everyone how a pass is used: never lend it, wear it visibly, never take someone else through."}]}]},
+{h:"If a pass is lost",blocks:[{t:"ladder",rise:10,steps:[{name:"Report at once",sub:"Holder to the controller to the airport company"},{name:"Deactivate",sub:"Stop the pass working"},{name:"Notify",sub:"The police where required"},{name:"Reissue",sub:"Application and fee"},{name:"Prevent a repeat",sub:"Find out how it happened and tell everyone"}]},
+{t:"point",warn:true,x:"Repeated losses or passes not returned can affect the whole station’s applications. Tie collecting a leaver’s pass to the HR process."}]}],
+voice:"[Interview to be added] A moment when pass management gave you a cold sweat.",
+terms:[["Airport ID Pass","空港IDパス","공항 출입증"],["Restricted Area / Airside","制限区域","보호구역"],["Security Awareness Training","保安講習","보안 교육"],["Airside Driving Permit","車両運転許可","차량 운전 허가"],["Temporary Pass","一時パス","임시 출입증"],["Pass Controller","管理責任者","관리 책임자"]],
+quiz:[{q:"What happens to a leaver’s pass?",opts:["They keep it","It is collected on the last working day and returned","It is passed to a colleague","It stays valid until it expires"],a:1,exp:"It must be collected and returned to the airport company."},
+{q:"Which of these is wrong?",opts:["Wear it visibly","Lend it to a colleague","Never take others through","Keep it in date"],a:1,exp:"Lending a pass is prohibited."},
+{q:"What do you do first if a pass is lost?",opts:["Say nothing","Report it immediately","Keep looking for it","Report it next week"],a:1,exp:"Report at once so it can be deactivated."}],
+next:"6-4 Preparing for audits"});
+
+set("6-4",{title:"Preparing for Audits",hl:"audits",subtitle:"An audit is decided by the records you kept every day, not by the day itself",
+lead:["An overseas station is audited by head office for safety and quality, inspected by its own country’s aviation authority, and audited by the authorities of the country it operates in for security, dangerous goods and safety.",
+"This article covers the main types of audit, what auditors look at, the records a station keeps and for how long, and the habits of a station that does well in audits."],
+sections:[
+{h:"The main audits",blocks:[{t:"table",cols:["Audit","What it covers"],rows:[
+["Head office safety and quality audit","Operating to the manual, training records, management of the handling company. Regular and special (after an incident)"],
+["Home country authority inspection","Operational safety standards, security, dangerous goods and passenger handling"],
+["Host country authority audit","The security programme, security training, dangerous goods, cabin safety (in Japan, the Ministry of Land, Infrastructure, Transport and Tourism)"],
+["Station self-assessment","The station scores itself against the checklist and improves from it"]]}]},
+{h:"What auditors look at",blocks:[{t:"check",items:[
+{name:"Current manuals",x:"Whether the station holds the current version and staff know what is in it."},
+{name:"Training records",x:"Whether everyone has the training they need, in date."},
+{name:"Daily records",x:"Safety inspection logs, records of screening alerts, baggage irregularity records."},
+{name:"Management of the handling company",x:"Quality checks, training and meeting records."},
+{name:"Previous findings",x:"Whether the last round of findings has been fixed."}]}]},
+{h:"Records and retention (examples)",blocks:[{t:"table",cols:["Record","Example retention"],rows:[
+["Loading instructions and loadsheets","A few months to about a year (longer where dangerous goods are involved)"],
+["Daily ramp safety inspection log","A few months to about a year"],
+["Passenger manifests","Often about a year (set by national rules)"],
+["Unaccompanied minor forms, pregnancy certificates","One to several months after travel"],
+["Records of screening alert checks","As the authority requires (years)"],
+["Tarmac delay records","As the authority requires (years)"],
+["Training and assessment records","While employed and for a set period after (company rules)"],
+["Financial and tax records (Japan)","7 years (10 years where tax losses are carried forward)"]]},
+{t:"note",x:"* Guide figures drawn from several airlines. Always check the law and your own regulations. ★"}]},
+{h:"The habits of a station that does well",blocks:[{t:"rows",items:[
+{name:"Write records the same day",x:"Catching up later always leaves gaps."},
+{name:"Fix where things are filed",x:"Agree where paper and electronic records live so anyone can produce them."},
+{name:"Put it in the annual calendar",x:"Audit dates and training renewals belong on the calendar (6-6)."},
+{name:"Self-check",x:"Use the audit checklist on yourselves a few times a year."},
+{name:"Welcome findings",x:"A finding is material for improvement. Do not hide it; show the cause and the fix."}]},
+{t:"point",x:"Audits by the host country focus on whether the security and training programmes match that country’s rules. Keep a station SOP that supplements the head office manual with the local requirements."}]}],
+voice:"[Interview to be added] Something the authorities praised at an audit.",
+terms:[["Audit","監査","심사·감사"],["Corrective Action","是正措置","시정 조치"],["Self-assessment","自己評価","자체 평가"],["Station SOP","支店の手順書","지점 운영절차서"],["Retention Period","保管期間","보존 기한"],["Finding","指摘事項","지적 사항"]],
+quiz:[{q:"What is always checked about previous findings?",opts:["Nothing","Whether they have been fixed","Who raised them","The cost"],a:1,exp:"Closing out previous findings is always checked."},
+{q:"When should records be written?",opts:["The day before the audit","The same day","At month end","Not at all"],a:1,exp:"Catching up later leaves gaps."},
+{q:"Example retention for financial and tax records in Japan?",opts:["1 year","3 years","7 years","Not required"],a:2,exp:"Seven years is the usual requirement in Japan."}],
+next:"6-5 The airport operators committee (AOC)"});
+
+set("6-5",{title:"The Airline Operators Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport company and the agencies",
+lead:["The AOC, the Airline Operators Committee, is the body formed by the airlines serving an airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is the way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
+sections:[
+{h:"What the AOC deals with",blocks:[{t:"table",cols:["Topic","Examples"],rows:[
+["Facilities","Counter allocation, terminal works, baggage systems"],
+["Operations","Handling peaks, improving punctuality (A-CDM), snow clearing and de-icing"],
+["Charges","Revisions to airport charges, discounts and incentive schemes"],
+["Security","Changes to screening, security training, the pass system"],
+["Emergencies","The airport emergency plan and joint exercises"],
+["Information","New services, the state of the handling companies, regulatory changes"]]}]},
+{h:"How to join",blocks:[{t:"ladder",rise:10,steps:[{name:"Apply",sub:"Application and agreement to the constitution"},{name:"Fees",sub:"As the constitution provides"},{name:"Attend",sub:"Terminal and full committees"},{name:"Working groups",sub:"Join where relevant"},{name:"Share internally",sub:"Pass the key points to head office and the team"}]},
+{t:"note",x:"* Procedures and rules differ by AOC. Check the current constitution."}]},
+{h:"What you get out of it",blocks:[{t:"check",items:[
+{name:"Early information",x:"You hear about terminal works and rule changes before they are settled."},
+{name:"A voice",x:"Airline requests reach the airport company as one collective position."},
+{name:"Contacts with other airlines",x:"Help during irregular operations, information on handling companies, shared good practice."},
+{name:"Emergency readiness",x:"You take part in joint exercises and the emergency contact structure."}]}]},
+{h:"How the station manager engages",blocks:[{t:"rows",items:[
+{name:"Attend regularly",x:"Go to the regular meetings and build relationships people can put a face to."},
+{name:"Bring it back",x:"Share what was discussed with head office and the team, and decide what to do."},
+{name:"Talk to peers",x:"Exchanging information with station managers from your own country’s airlines is often just as useful in practice."}]},
+{t:"point",x:"You will often hear about a change at the AOC before head office or your own authority does. Sharing it quickly raises the standing of the station."}]}],
+voice:"[Interview to be added] A time information from the AOC made the difference.",
+terms:[["Airline Operators Committee (AOC)","航空会社運営委員会","항공사 운영위원회"],["Constitution","規約","규약"],["Working Group","作業部会","실무 그룹"],["A-CDM","空港の協調的意思決定","공항 협력적 의사결정"],["Airport Authority / Operator","空港会社","공항공사"],["Joint Exercise","合同訓練","합동 훈련"]],
+quiz:[{q:"What is an AOC?",opts:["Airport police","The committee of airlines serving an airport","A travel agency body","A government department"],a:1,exp:"The Airline Operators Committee."},
+{q:"Which is NOT a benefit of the AOC?",opts:["Early information","A collective voice","Setting fares together","Cooperation in emergencies"],a:2,exp:"Fares are each airline’s own decision and are never discussed, for competition law reasons too."},
+{q:"What does the station manager do after a meeting?",opts:["Nothing","Share it with head office and the team","Leave it to other airlines","Forget it"],a:1,exp:"Bring it back and decide what action is needed."}],
+next:"6-6 The station’s monthly and annual calendar"});
+
+set("6-6",{title:"The Station’s Monthly and Annual Calendar",hl:"the calendar",subtitle:"The more deadlines a task has, the earlier it belongs on the calendar",
+lead:["Besides the work of each flight, a station has closing work that arrives at the same point every month, and major procedures that come once a year: operating approvals, fare filings, revising the security programme, tax and social insurance. Miss any of these deadlines and the problem is serious.","Taking a station in Japan as the example, this article covers the shape of a month, the shape of a year, and how to keep the calendar working."],
+sections:[
+{h:"A month (example)",blocks:[{t:"table",cols:["When","Main work"],rows:[
+["1st to 5th","Close last month’s expenses, settle the company card, file traffic and cargo statistics with the authorities"],
+["Around the 5th to 10th","Check and file passenger facility charges and the departure tax, check airport charges, prepare payroll"],
+["Around the 7th to 12th","Check the handling company’s invoice, including extra work during delays and cancellations"],
+["First week","Monthly meeting with the cargo handling company"],
+["Around the 15th","Second payment run, process the airport company’s invoice"],
+["Around the 15th to 20th","File the fuel surcharge where required that month"],
+["Around the 20th to 28th","Monthly meetings with the passenger and ramp handling companies, pay communications and other bills"],
+["Weekly and month end","Weekly and monthly reports"]]}]},
+{h:"A year (example)",blocks:[{t:"table",cols:["When","Main work"],rows:[
+["January","File the summer schedule (last Sunday of March to last Saturday of October; the deadline is around early February); pay withholding tax for the second half of last year"],
+["January to February","Apply for the general operating approvals under the aviation law"],
+["February","Prepare the consumption tax refund filing"],
+["February to March","File fares for approval; revise and submit the security programme and the security training plan"],
+["March to April","Check changes to social insurance and tax rates; health checks"],
+["June","Social insurance base report"],
+["June to July","Withholding tax for the first half; annual labour insurance renewal"],
+["August to September","File the winter schedule (the deadline is around early September)"],
+["October to December","Security training, next year’s budget, year-end tax adjustment"],
+["Once a year","Internal security audit and the various authority audits"]]},
+{t:"note",x:"* Japanese requirements and one airline’s practice. Dates shift from year to year, so confirm each year with the authorities or your advisers. ★"}]},
+{h:"Keeping the calendar working",blocks:[{t:"check",items:[
+{name:"Work backwards",x:"Enter not only the deadline but the day preparation starts (say, two weeks before)."},
+{name:"Name the owner",x:"Write who does it, and who covers when they are away."},
+{name:"Record the basis",x:"Note what the procedure is for, where it is filed, and where last year’s papers are."},
+{name:"Share it",x:"Use a calendar the whole station can see, and share it with the relevant departments at head office."},
+{name:"Review it yearly",x:"Update it each year as the rules change."}]},
+{t:"point",x:"Procedures that need material from other head office departments (operations, maintenance, sales) should have the request date on the calendar too, so nothing is rushed at the deadline."}]}],
+voice:"[Interview to be added] The calendar rule you invented after being caught out by a deadline.",
+terms:[["Summer / Winter Schedule (IATA Season)","夏ダイヤ・冬ダイヤ","하계·동계 스케줄"],["Change of Business Plan","事業計画変更","사업계획 변경"],["Withholding Income Tax","源泉所得税","원천 소득세"],["Social Insurance Base Report","算定基礎届","산정 기초 신고"],["Year-end Tax Adjustment","年末調整","연말정산"],["International Tourist Tax","国際観光旅客税","국제관광여객세"]],
+quiz:[{q:"When does the IATA summer season run?",opts:["1 April to 30 September","Last Sunday of March to last Saturday of October","January to June","It is not fixed"],a:1,exp:"Winter runs from the last Sunday of October to the last Saturday of March."},
+{q:"What belongs on the calendar beside the deadline?",opts:["Nothing","The day preparation starts, and the owner","The weather","Revenue"],a:1,exp:"So you can work backwards."},
+{q:"When is the social insurance base report filed in Japan?",opts:["January","June","September","December"],a:1,exp:"It is based on the April to June payroll."}],
+next:"Part 7 Career Guide — 7-1 Working as ground staff in Japan"});
+})(window.ARTS);

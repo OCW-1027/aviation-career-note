@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>搭載計算の練習 ― 重量と余裕を確かめる</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--acc:#2f8fe0}
+*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+h1{font-size:22px;margin:6px 0}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px}
+.langs button,.tabs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px}
+.langs button.on,.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--paper)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:780px){.grid{grid-template-columns:1fr}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.card h2{font-size:15px;margin:0 0 10px}
+label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;margin:6px 0}
+input[type=number]{width:120px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:14px;text-align:right}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}td.n{text-align:right;font-family:Consolas,Menlo,monospace}
+.ok{color:var(--ok);font-weight:700}.ng{color:var(--ng);font-weight:700}
+.spec td{font-size:13px}.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer;margin:0 6px 6px 0}
+.btn.sub{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.q input[type=number]{width:120px}.res{margin-top:8px;font-size:14px}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;background:#eef3f8;color:var(--muted);margin-left:4px}
+.list td{font-size:12.5px;padding:4px 6px}.list tr.cur td{background:#eef6ff}
+a{color:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span><a href="00_シリーズ全体_地上職旅客運送入門.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" id="langs"></span></header>
+<h1 id="ttl"></h1><p class="lead" id="lead"></p>
+<div class="bar"><span class="tabs" id="tabs"></span><label style="margin:0"><span id="aclab"></span><select id="acsel"></select></label></div>
+<div id="app"></div>
+<p class="note" id="disc"></p>
+</div>
+<script>
+/* 搭載計算の練習（教育用の簡易モデル。実際の運航には使えない）
+   架空の機材20種（小型6・中型7・大型7）。すべての数値・係数は説明用の架空の値。
+   形式：[名前,区分,座席構成,乗務員,[区画の席数A,B,C],[区画の係数],DOW,DOI,最大ZFW,最大TOW,最大LAW,[[貨物室,上限,係数]...],燃料の係数,[ZFW指数範囲],[TOW指数範囲],[既定：大人,小児,幼児,[区画の人数],[貨物室の重さ],離陸燃料,飛行燃料]] */
+var RAW=[
+["ZT-72","S","Y72","2/2",[24,24,24],[-2.4,0.1,2.6],13600,32.0,20000,23000,22300,[[1,900,-3.0],[4,700,3.2]],-0.3,[23,42],[22,41],[57,2,1,[20,20,19],[400,320],2200,1300]],
+["ZJ-76","S","C6Y70","2/3",[20,28,28],[-2.6,-0.2,2.4],21400,38.0,30600,36500,32800,[[1,1200,-3.4],[4,1000,3.0]],0.2,[29,48],[30,49],[60,2,1,[16,23,23],[540,450],4800,3000]],
+["ZJ-96","S","C8Y88","2/3",[24,36,36],[-2.8,-0.3,2.2],27800,40.5,40300,47800,43000,[[1,1600,-3.6],[4,1400,2.8]],0.1,[30,49],[31,50],[77,2,1,[20,30,29],[720,630],6200,4000]],
+["ZJ-112","S","C12Y100","2/4",[28,40,44],[-3.0,-0.4,2.3],30600,42.0,44600,51800,46000,[[1,1900,-3.8],[4,1700,3.0]],0.15,[32,51],[33,52],[89,3,1,[23,33,36],[860,760],7000,4600]],
+["ZN-128","S","Y128","2/4",[36,48,44],[-3.2,-0.4,2.5],35800,44.0,53600,64000,57500,[[1,2200,-4.0],[3,1600,0.9],[4,1600,2.3]],0.2,[31,50],[33,52],[102,3,1,[30,39,36],[990,720,720],8800,6100]],
+["ZN-140","S","C8Y132","2/4",[40,50,50],[-3.3,-0.5,2.6],38200,45.0,56800,68000,61500,[[1,2400,-4.0],[3,1800,0.8],[4,1800,2.2]],0.18,[32,51],[34,53],[112,3,1,[33,41,41],[1080,810,810],9400,6600]],
+["ZA-162","M","Y162","2/5",[48,60,54],[-3.5,-0.6,2.6],41800,46.0,60500,73500,64500,[[1,3000,-4.1],[3,2400,0.8],[4,2400,2.0],[5,1200,2.9]],0.16,[32,51],[34,53],[129,4,1,[39,49,45],[1350,1080,1080,540],9800,7100]],
+["ZA-174","M","C12Y162","2/6",[40,66,68],[-3.6,-0.6,2.7],43600,47.3,62700,79000,66300,[[1,3400,-4.2],[3,2600,0.8],[4,2600,2.0],[5,1500,3.0]],0.17,[36,55],[37,56],[150,4,1,[40,60,54],[1500,2100,1800,300],12600,10300]],
+["ZA-180","M","Y180","2/6",[54,66,60],[-3.6,-0.5,2.7],42900,46.5,62500,77000,67400,[[1,3300,-4.2],[3,2600,0.8],[4,2600,2.1],[5,1400,3.0]],0.16,[32,51],[34,53],[144,4,1,[44,54,50],[1480,1170,1170,630],10600,7600]],
+["ZA-188","M","C16Y172","2/6",[40,74,74],[-3.7,-0.6,2.8],45300,48.0,64500,79000,67400,[[1,3500,-4.3],[3,2700,0.8],[4,2700,2.1],[5,1500,3.1]],0.17,[38,57],[41,60],[148,5,2,[33,59,61],[1580,1220,1220,680],13000,10200]],
+["ZA-200","M","C8Y192","2/6",[56,72,72],[-3.8,-0.6,2.8],47200,48.5,67500,82000,71500,[[1,3800,-4.4],[3,2900,0.9],[4,2900,2.2],[5,1600,3.1]],0.18,[34,53],[37,56],[159,5,2,[46,59,59],[1710,1300,1300,720],12400,9200]],
+["ZA-220","M","C12Y208","2/7",[60,80,80],[-3.9,-0.6,2.9],50800,49.5,73500,89000,77300,[[1,4200,-4.6],[3,3200,0.9],[4,3200,2.3],[5,1800,3.2]],0.2,[36,55],[39,58],[175,5,2,[49,65,66],[1890,1440,1440,810],15500,12300]],
+["ZA-240","M","Y240","2/7",[72,84,84],[-4.0,-0.6,3.0],52400,50.0,76000,93500,79500,[[1,4500,-4.7],[3,3400,0.9],[4,3400,2.3],[5,1900,3.3]],0.2,[34,53],[36,55],[191,6,2,[59,69,69],[2020,1530,1530,860],13800,10400]],
+["ZW-250","L","C24Y226","2/9",[66,92,92],[-4.2,-0.7,3.1],118500,55.0,170000,227000,182000,[[1,9500,-5.2],[2,9500,-2.6],[3,8200,1.4],[4,8200,3.0],[5,3000,4.1]],-0.05,[31,50],[28,47],[199,6,2,[54,75,76],[4280,4280,3690,3690,1350],52000,43000]],
+["ZW-280","L","C30Y250","2/10",[80,100,100],[-4.3,-0.7,3.2],126000,56.0,181000,242000,193000,[[1,10200,-5.3],[2,10200,-2.7],[3,8800,1.4],[4,8800,3.1],[5,3300,4.2]],-0.05,[28,47],[25,44],[223,7,2,[66,82,82],[4590,4590,3960,3960,1480],58000,48500]],
+["ZW-300","L","C28Y272","2/11",[86,108,106],[-4.4,-0.7,3.3],134500,57.0,195000,254000,205000,[[1,10800,-5.4],[2,10800,-2.8],[3,9400,1.5],[4,9400,3.2],[5,3500,4.3]],-0.06,[28,47],[24,43],[239,7,2,[71,89,86],[4860,4860,4230,4230,1580],60000,49800]],
+["ZW-320","L","F8C36Y276","2/12",[92,116,112],[-4.5,-0.8,3.3],142000,58.0,207000,280000,213000,[[1,11500,-5.5],[2,11500,-2.8],[3,10000,1.5],[4,10000,3.2],[5,3800,4.4]],-0.06,[26,45],[21,40],[254,8,3,[75,95,92],[5180,5180,4500,4500,1710],78000,67000]],
+["ZW-340","L","C36Y304","2/12",[98,122,120],[-4.6,-0.8,3.4],150500,58.5,220000,298000,228000,[[1,12200,-5.6],[2,12200,-2.9],[3,10600,1.6],[4,10600,3.3],[5,4000,4.5]],-0.07,[26,45],[20,39],[271,8,3,[80,100,99],[5490,5490,4770,4770,1800],86000,74500]],
+["ZW-380","L","F8C42Y330","2/14",[110,136,134],[-4.7,-0.8,3.5],168000,59.5,247000,340000,255000,[[1,13600,-5.8],[2,13600,-3.0],[3,11800,1.6],[4,11800,3.4],[5,4400,4.6]],-0.08,[22,41],[14,33],[303,9,3,[90,112,110],[6120,6120,5310,5310,1980],104000,90500]],
+["ZW-420","L","C40Y380","2/15",[124,150,146],[-4.8,-0.8,3.5],176500,60.0,258000,351000,268000,[[1,14200,-5.9],[2,14200,-3.0],[3,12300,1.7],[4,12300,3.5],[5,4600,4.7]],-0.08,[20,39],[12,31],[334,10,3,[102,123,119],[6390,6390,5540,5540,2070],98000,84000]]];
+var AC=RAW.map(function(r){return {id:r[0],cat:r[1],ver:r[2],crew:r[3],zs:r[4],zf:r[5],dow:r[6],doi:r[7],mzfw:r[8],mtow:r[9],mlw:r[10],cpt:r[11].map(function(c){return {id:c[0],max:c[1],f:c[2]}}),fuel:r[12],izfw:r[13],itow:r[14],d:r[15]}});
+var STD={ad:75,ch:35,inf:0};
+var T={
+ja:{t:"搭載計算の練習 ― 重量と余裕を確かめる",lead:"架空の機材20種（小型・中型・大型）から選び、お客様の人数、貨物室ごとの重さ、燃料を入れると、無燃料重量・離陸重量・着陸重量・余裕と、簡易な重心の指数を計算します。3-7「ロードシートの読み方」と合わせて使ってください（ZA-174が3-7の例と同じ条件です）。",back:"← シリーズの目次",tab1:"計算してみる",tab2:"問題を解く",tab3:"機材の一覧",ac:"機材（架空）：",cat:{S:"小型",M:"中型",L:"大型"},spec:"機材の条件",ver:"座席の構成",crew:"乗務員（運航/客室）",pax:"お客様",ad:"大人",ch:"小児",inf:"幼児（座席なし）",zone:"座席の区画（大人＋小児）",cpt:"貨物室（kg）",fuel:"燃料（kg）",tof:"離陸燃料",trip:"飛行燃料",res:"結果",paxw:"お客様の重さ",ttl:"搭載量の合計",zfw:"無燃料重量（ZFW）",tow:"離陸重量（TOW）",law:"着陸重量（LAW）",allow:"許される離陸重量",under:"余裕（アンダーロード）",lim:"制限しているもの",izfw:"無燃料時の指数",itow:"離陸時の指数",max:"最大",ok:"範囲内",ng:"超過",lz:"最大無燃料重量",lt:"最大離陸重量",ll:"最大着陸重量",cptng:"貨物室の上限を超えています",zonechk:"区画の人数の合計が大人＋小児と合いません",zoneover:"区画の席数を超えています",seats:"席",q:"新しい問題",rndac:"機材もランダムに",chk:"答え合わせ",ans:"答えを見る",qlead:"条件を見て、4つの数字を計算してください。",right:"正解",wrong:"もう一度",reset:"既定の値に戻す",disc:"※ 教育用の簡易モデルです。機材の名前・値・標準重量（大人75kg・小児35kg）・指数の係数はすべて架空で、実在の機材・会社とは関係なく、実際の運航には使えません。実際の搭載管理は、各社の規定と承認されたシステム・資料で行います。",dow:"乾燥運航重量（DOW）",doi:"乾燥運航時の指数（DOI）",range:"指数の許容範囲",name:"機材",total:"総席数",pl:"最大搭載量（最大ZFW−DOW）"},
+ko:{t:"탑재 계산 연습 — 중량과 여유를 확인한다",lead:"가상 기종 20종(소형·중형·대형) 중에서 골라 승객 수, 화물칸별 무게, 연료를 넣으면 무연료 중량·이륙 중량·착륙 중량·여유와 간이 무게중심 지수를 계산합니다. 3-7편 「로드시트 읽는 법」과 함께 쓰세요(ZA-174가 3-7편 예와 같은 조건입니다).",back:"← 시리즈 목차",tab1:"계산해 보기",tab2:"문제 풀기",tab3:"기종 목록",ac:"기종(가상): ",cat:{S:"소형",M:"중형",L:"대형"},spec:"기종 조건",ver:"좌석 구성",crew:"승무원(운항/객실)",pax:"승객",ad:"성인",ch:"소아",inf:"유아(좌석 없음)",zone:"좌석 구역(성인+소아)",cpt:"화물칸(kg)",fuel:"연료(kg)",tof:"이륙 연료",trip:"비행 연료",res:"결과",paxw:"승객 무게",ttl:"탑재량 합계",zfw:"무연료 중량(ZFW)",tow:"이륙 중량(TOW)",law:"착륙 중량(LAW)",allow:"허용 이륙 중량",under:"여유(언더로드)",lim:"제한하는 것",izfw:"무연료 시 지수",itow:"이륙 시 지수",max:"최대",ok:"범위 안",ng:"초과",lz:"최대 무연료 중량",lt:"최대 이륙 중량",ll:"최대 착륙 중량",cptng:"화물칸 상한을 넘었습니다",zonechk:"구역 인원 합계가 성인+소아와 맞지 않습니다",zoneover:"구역 좌석 수를 넘었습니다",seats:"석",q:"새 문제",rndac:"기종도 무작위로",chk:"채점",ans:"정답 보기",qlead:"조건을 보고 네 가지 숫자를 계산하세요.",right:"정답",wrong:"다시 한 번",reset:"기본값으로",disc:"※ 교육용 간이 모델입니다. 기종 이름·값·표준 중량(성인 75kg·소아 35kg)·지수 계수는 모두 가상이며 실재 기종·회사와 관계없고 실제 운항에는 쓸 수 없습니다. 실제 탑재관리는 각사 규정과 승인된 시스템·자료로 합니다.",dow:"건조 운항 중량(DOW)",doi:"건조 운항 시 지수(DOI)",range:"지수 허용 범위",name:"기종",total:"총 좌석",pl:"최대 탑재량(최대 ZFW−DOW)"},
+en:{t:"Load Control Practice: Checking Weights and Underload",lead:"Choose one of 20 fictional aircraft (small, medium, large), enter passengers, hold weights and fuel, and see zero fuel, take-off and landing weights, the underload and a simplified balance index. Use it alongside 3-7 “Reading a loadsheet” (ZA-174 matches that example).",back:"← Series contents",tab1:"Calculator",tab2:"Practice questions",tab3:"Aircraft list",ac:"Aircraft (fictional): ",cat:{S:"Small",M:"Medium",L:"Large"},spec:"Aircraft data",ver:"Cabin version",crew:"Crew (flight deck/cabin)",pax:"Passengers",ad:"Adults",ch:"Children",inf:"Infants (no seat)",zone:"Seating by zone (adults + children)",cpt:"Holds (kg)",fuel:"Fuel (kg)",tof:"Take-off fuel",trip:"Trip fuel",res:"Results",paxw:"Passenger weight",ttl:"Total traffic load",zfw:"Zero fuel weight (ZFW)",tow:"Take-off weight (TOW)",law:"Landing weight (LAW)",allow:"Allowed take-off weight",under:"Underload",lim:"Limited by",izfw:"Index at ZFW",itow:"Index at take-off",max:"Max",ok:"Within limits",ng:"Exceeded",lz:"Max zero fuel weight",lt:"Max take-off weight",ll:"Max landing weight",cptng:"A hold limit is exceeded",zonechk:"Zone totals do not match adults + children",zoneover:"A zone has more passengers than seats",seats:" seats",q:"New question",rndac:"Random aircraft too",chk:"Check",ans:"Show answer",qlead:"Read the conditions and calculate the four figures.",right:"Correct",wrong:"Try again",reset:"Reset to defaults",disc:"* A simplified model for training. Aircraft names, data, standard weights (adult 75 kg, child 35 kg) and index factors are all fictional, unrelated to any real aircraft or airline, and must not be used for real operations. Real load control follows each airline’s rules and approved systems and documents.",dow:"Dry operating weight (DOW)",doi:"Dry operating index (DOI)",range:"Allowed index range",name:"Aircraft",total:"Total seats",pl:"Max payload (max ZFW − DOW)"}};
+var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})(),tab=1,cur=7,Q=null,RND=false,S=null;
+function def(){var d=AC[cur].d;S={ad:d[0],ch:d[1],inf:d[2],z:d[3].slice(),c:d[4].slice(),tof:d[5],trip:d[6]}}
+function f(n){return Math.round(n).toLocaleString('en-US')}
+function sum(a){return a.reduce(function(x,y){return x+y},0)}
+function calc(a,s){var pw=s.ad*STD.ad+s.ch*STD.ch+s.inf*STD.inf,cw=sum(s.c),tl=pw+cw,zfw=a.dow+tl,tow=zfw+s.tof,law=tow-s.trip;
+ var lim=[a.mzfw+s.tof,a.mtow,a.mlw+s.trip],k=lim.indexOf(Math.min.apply(null,lim)),al=lim[k],n=s.ad+s.ch,per=n?pw/n:0;
+ var iz=a.doi;for(var i=0;i<3;i++)iz+=s.z[i]*per*a.zf[i]/1000;a.cpt.forEach(function(c,j){iz+=s.c[j]*c.f/1000});
+ return {pw:pw,tl:tl,zfw:zfw,tow:tow,law:law,al:al,lim:k,ul:al-tow,iz:iz,it:iz+s.tof*a.fuel/1000}}
+function row(k,v,ok){return '<tr><td>'+k+'</td><td class="n">'+v+'</td><td>'+(ok===undefined?'':(ok?'<span class="ok">'+T[L].ok+'</span>':'<span class="ng">'+T[L].ng+'</span>'))+'</td></tr>'}
+function specHTML(a){var t=T[L];return '<div class="card"><h2>'+t.spec+'<span class="badge">'+a.id+'</span><span class="badge">'+t.cat[a.cat]+'</span></h2><table class="spec">'+
+ '<tr><td>'+t.ver+'</td><td class="n">'+a.ver+' ('+sum(a.zs)+t.seats+')</td></tr><tr><td>'+t.crew+'</td><td class="n">'+a.crew+'</td></tr>'+
+ '<tr><td>'+t.dow+'</td><td class="n">'+f(a.dow)+'</td></tr><tr><td>'+t.doi+'</td><td class="n">'+a.doi.toFixed(1)+'</td></tr>'+
+ '<tr><td>'+t.lz+'</td><td class="n">'+f(a.mzfw)+'</td></tr><tr><td>'+t.lt+'</td><td class="n">'+f(a.mtow)+'</td></tr><tr><td>'+t.ll+'</td><td class="n">'+f(a.mlw)+'</td></tr>'+
+ '<tr><td>'+t.pl+'</td><td class="n">'+f(a.mzfw-a.dow)+'</td></tr>'+
+ '<tr><td>'+t.zone+'</td><td class="n">A '+a.zs[0]+' / B '+a.zs[1]+' / C '+a.zs[2]+'</td></tr>'+
+ '<tr><td>'+t.cpt+'</td><td class="n">'+a.cpt.map(function(c){return c.id+': '+f(c.max)}).join(' / ')+'</td></tr>'+
+ '<tr><td>'+t.range+'</td><td class="n">ZFW '+a.izfw.join('–')+' / TOW '+a.itow.join('–')+'</td></tr></table></div>'}
+function inp(id,lab,v){return '<label>'+lab+'<input type="number" min="0" step="1" data-k="'+id+'" value="'+v+'"></label>'}
+function render(){var t=T[L],a=AC[cur];document.documentElement.lang=L;document.title=t.t;
+ ['ttl','lead','back','disc'].forEach(function(id){document.getElementById(id).textContent=t[{ttl:'t',lead:'lead',back:'back',disc:'disc'}[id]]});
+ document.getElementById('back').href='00_シリーズ全体_地上職旅客運送入門.html?lang='+L;
+ document.getElementById('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button data-l="'+l+'" class="'+(l===L?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join(' ');
+ document.getElementById('tabs').innerHTML=[1,2,3].map(function(i){return '<button data-t="'+i+'" class="'+(tab==i?'on':'')+'">'+t['tab'+i]+'</button>'}).join('');
+ document.getElementById('aclab').textContent=t.ac;
+ document.getElementById('acsel').innerHTML=['S','M','L'].map(function(c){return '<optgroup label="'+t.cat[c]+'">'+AC.map(function(x,i){return x.cat!==c?'':'<option value="'+i+'"'+(i===cur?' selected':'')+'>'+x.id+' ('+x.ver+')</option>'}).join('')+'</optgroup>'}).join('');
+ document.getElementById('app').innerHTML=tab==1?calcHTML():tab==2?quizHTML():listHTML();bind();if(tab==1)update()}
+function calcHTML(){var t=T[L],a=AC[cur];return '<div class="grid"><div><div class="card"><h2>'+t.pax+'</h2>'+inp('ad',t.ad,S.ad)+inp('ch',t.ch,S.ch)+inp('inf',t.inf,S.inf)+
+ '<h2 style="margin-top:12px">'+t.zone+'</h2>'+[0,1,2].map(function(i){return inp('z'+i,'ABC'[i]+' ('+a.zs[i]+t.seats+')',S.z[i])}).join('')+'</div>'+
+ '<div class="card" style="margin-top:14px"><h2>'+t.cpt+'</h2>'+a.cpt.map(function(c,j){return inp('c'+j,c.id+' ('+t.max+' '+f(c.max)+')',S.c[j])}).join('')+'<h2 style="margin-top:12px">'+t.fuel+'</h2>'+inp('tof',t.tof,S.tof)+inp('trip',t.trip,S.trip)+
+ '<p><button class="btn sub" id="breset">'+t.reset+'</button></p></div></div>'+
+ '<div><div class="card"><h2>'+t.res+'</h2><table id="out"></table><p class="note" id="warn"></p></div><div style="margin-top:14px">'+specHTML(a)+'</div></div></div>'}
+function update(){var t=T[L],a=AC[cur];document.querySelectorAll('#app input[data-k]').forEach(function(e){var k=e.dataset.k,v=Math.max(0,+e.value||0);if(k[0]==='z'&&k.length===2)S.z[+k[1]]=v;else if(k[0]==='c'&&k.length===2)S.c[+k[1]]=v;else S[k]=v});
+ var r=calc(a,S),lim=[t.lz,t.lt,t.ll][r.lim];
+ document.getElementById('out').innerHTML=row(t.paxw,f(r.pw))+row(t.ttl,f(r.tl))+row(t.zfw+' ('+t.max+' '+f(a.mzfw)+')',f(r.zfw),r.zfw<=a.mzfw)+row(t.tow+' ('+t.max+' '+f(a.mtow)+')',f(r.tow),r.tow<=a.mtow)+row(t.law+' ('+t.max+' '+f(a.mlw)+')',f(r.law),r.law<=a.mlw)+
+  row(t.allow,f(r.al))+row(t.lim,lim)+row(t.under,f(r.ul),r.ul>=0)+row(t.izfw+' ('+a.izfw.join('–')+')',r.iz.toFixed(1),r.iz>=a.izfw[0]&&r.iz<=a.izfw[1])+row(t.itow+' ('+a.itow.join('–')+')',r.it.toFixed(1),r.it>=a.itow[0]&&r.it<=a.itow[1]);
+ var w=[];if(a.cpt.some(function(c,j){return S.c[j]>c.max}))w.push(t.cptng);if(sum(S.z)!==S.ad+S.ch)w.push(t.zonechk);if(S.z.some(function(z,i){return z>a.zs[i]}))w.push(t.zoneover);
+ document.getElementById('warn').innerHTML=w.map(function(x){return '<span class="ng">'+x+'</span>'}).join('<br>')}
+function rnd(a,b,st){st=st||1;return Math.round((a+Math.random()*(b-a))/st)*st}
+function newQ(){if(RND){cur=Math.floor(Math.random()*AC.length);def()}var a=AC[cur],seats=sum(a.zs),n=rnd(seats*0.5,seats*0.95),ch=rnd(0,n*0.04),inf=rnd(0,n*0.02),z=a.zs.map(function(s){return Math.round(n*s/seats)});z[2]=n-z[0]-z[1];
+ var tof=rnd(a.d[5]*0.75,a.d[5]*1.2,100),trip=Math.round(tof*rnd(0.72,0.85,0.01)/100)*100;
+ var s={ad:n-ch,ch:ch,inf:inf,z:z,c:a.cpt.map(function(c){return rnd(c.max*0.15,c.max*0.75,10)}),tof:tof,trip:trip};Q={a:cur,s:s,r:calc(a,s)}}
+function quizHTML(){if(!Q||Q.a!==cur)newQ();var t=T[L],s=Q.s,a=AC[Q.a];return '<div class="grid"><div class="card"><h2>'+t.qlead+'<span class="badge">'+a.id+'</span></h2><table>'+
+ '<tr><td>'+t.pax+'</td><td class="n">'+t.ad+' '+s.ad+' / '+t.ch+' '+s.ch+' / '+t.inf+' '+s.inf+'</td></tr>'+
+ '<tr><td>'+t.cpt+'</td><td class="n">'+a.cpt.map(function(c,j){return c.id+'/'+s.c[j]}).join(' ')+'</td></tr>'+
+ '<tr><td>'+t.tof+'</td><td class="n">'+f(s.tof)+'</td></tr><tr><td>'+t.trip+'</td><td class="n">'+f(s.trip)+'</td></tr></table>'+
+ '<div class="q" style="margin-top:10px">'+['zfw','tow','law','under'].map(function(k){return '<label>'+t[k]+'<input type="number" id="q_'+k+'"></label>'}).join('')+
+ '<p><button class="btn" id="bchk">'+t.chk+'</button><button class="btn sub" id="bans">'+t.ans+'</button><button class="btn sub" id="bnew">'+t.q+'</button></p>'+
+ '<label style="justify-content:flex-start"><input type="checkbox" id="rndac"'+(RND?' checked':'')+'> '+t.rndac+'</label><div class="res" id="qres"></div></div>'+specHTML(a)+'</div>'}
+function listHTML(){var t=T[L];return '<div class="card" style="overflow-x:auto"><table class="list"><tr><th>'+t.name+'</th><th></th><th>'+t.ver+'</th><th class="n">DOW</th><th class="n">'+t.lz+'</th><th class="n">'+t.lt+'</th><th class="n">'+t.ll+'</th><th class="n">'+t.pl+'</th><th>'+t.cpt+'</th></tr>'+
+ AC.map(function(a,i){return '<tr class="'+(i===cur?'cur':'')+'"><td><a href="#" data-i="'+i+'">'+a.id+'</a></td><td>'+t.cat[a.cat]+'</td><td>'+a.ver+'</td><td class="n">'+f(a.dow)+'</td><td class="n">'+f(a.mzfw)+'</td><td class="n">'+f(a.mtow)+'</td><td class="n">'+f(a.mlw)+'</td><td class="n">'+f(a.mzfw-a.dow)+'</td><td>'+a.cpt.map(function(c){return c.id}).join('·')+'</td></tr>'}).join('')+'</table></div>'}
+function check(show){var t=T[L],r=Q.r,m={zfw:r.zfw,tow:r.tow,law:r.law,under:r.ul},h='';
+ for(var k in m){var e=document.getElementById('q_'+k),v=+e.value;if(show)e.value=Math.round(m[k]);var ok=show||(e.value!==''&&Math.abs(v-m[k])<1);h+='<div>'+t[k]+': '+(ok?'<span class="ok">'+(show?f(m[k]):t.right)+'</span>':'<span class="ng">'+t.wrong+'</span>')+'</div>'}
+ if(show)h+='<div class="note">'+t.lim+': '+[t.lz,t.lt,t.ll][r.lim]+'</div>';document.getElementById('qres').innerHTML=h}
+function bind(){document.querySelectorAll('#langs button').forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('art-lang',L)}catch(e){}render()}});
+ document.querySelectorAll('#tabs button').forEach(function(b){b.onclick=function(){tab=+b.dataset.t;render()}});
+ document.getElementById('acsel').onchange=function(){cur=+this.value;def();Q=null;render()};
+ document.querySelectorAll('#app input[data-k]').forEach(function(e){e.oninput=update});
+ var rs=document.getElementById('breset');if(rs)rs.onclick=function(){def();render()};
+ document.querySelectorAll('.list a[data-i]').forEach(function(x){x.onclick=function(ev){ev.preventDefault();cur=+x.dataset.i;def();Q=null;tab=1;render()}});
+ var c=document.getElementById('bchk');if(c){c.onclick=function(){check(false)};document.getElementById('bans').onclick=function(){check(true)};document.getElementById('bnew').onclick=function(){newQ();render()};document.getElementById('rndac').onchange=function(){RND=this.checked}}}
+def();render();
+</script>
+<script src="assets/nav.js"></script>
+</body>
+</html>

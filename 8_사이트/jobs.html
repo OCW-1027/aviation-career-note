@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>求人一覧</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.filters select,.filters input{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+.filters input{flex:1 1 220px}
+.cnt{color:var(--sub);font-size:14px}
+details.job{border:1px solid var(--line);border-radius:18px;margin:12px 0;overflow:hidden}
+details.job summary{list-style:none;cursor:pointer;padding:14px 18px;background:var(--card)}
+details.job summary::-webkit-details-marker{display:none}
+.co{font-size:12px;color:var(--sub)}
+.job b.t{display:block;font-size:18px;margin:2px 0 6px;font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 10px;margin:2px 4px 0 0;background:var(--bg)}
+.sample{font-size:11px;color:#fff;background:var(--warn);border-radius:6px;padding:0 6px;margin-left:6px}
+.body{display:grid;grid-template-columns:150px 1fr}
+.body b{background:var(--sky2);padding:8px 12px;border-top:1px solid var(--line);text-align:center;font-size:14px}
+.body span{padding:8px 14px;border-top:1px solid var(--line)}
+.until{font-size:12px;color:var(--sub);padding:8px 18px;border-top:1px solid var(--line)}
+@media (max-width:640px){.body{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-page="jobs">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap">
+<section class="page-hero"><h1 id="h1"></h1><p id="hp"></p></section>
+<div class="filters"><input id="q" type="search"><select id="fj"></select><select id="fe"></select></div>
+<div class="cnt" id="cnt"></div>
+<div id="list"></div>
+<p class="lead" id="note"></p>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+<script src="data/jobs.js"></script>
+<script>
+var T={ja:{h1:'求人一覧',hp:'空港・航空の仕事の求人です。応募は各求人に記載の方法で、掲載企業に直接お申し込みください。',ph:'キーワード（例：英語、成田、ランプ）',all:'すべて',jobL:'職種',empL:'雇用の形',n:'件',sample:'見本',until:'掲載終了',none:'条件に合う求人はありません。',note:'※ このサイトは求人情報を掲載するサイトです。応募・採用の手続きは掲載企業と直接行っていただきます。求人の内容に誤りを見つけた場合はお知らせください。',
+ L:{job:'職種',place:'就業の場所',emp:'雇用の形',wage:'賃金',hours:'労働時間・休日',langReq:'語学の条件',desc:'仕事の内容',apply:'応募の方法'}},
+ko:{h1:'구인 목록',hp:'공항·항공 일 구인입니다. 지원은 각 구인에 적힌 방법으로 게재 기업에 직접 신청하세요.',ph:'키워드 (예: 영어, 나리타, 램프)',all:'전체',jobL:'직종',empL:'고용 형태',n:'건',sample:'견본',until:'게재 종료',none:'조건에 맞는 구인이 없습니다.',note:'※ 이 사이트는 구인 정보를 게재하는 사이트입니다. 지원·채용 절차는 게재 기업과 직접 진행합니다. 구인 내용에 오류를 발견하면 알려 주세요.',
+ L:{job:'직종',place:'근무 장소',emp:'고용 형태',wage:'임금',hours:'근로시간·휴일',langReq:'어학 조건',desc:'업무 내용',apply:'지원 방법'}},
+en:{h1:'Jobs',hp:'Airport and airline jobs. Apply directly to the employer using the method shown in each posting.',ph:'Keyword (e.g. English, Narita, ramp)',all:'All',jobL:'Job type',empL:'Employment type',n:' jobs',sample:'Sample',until:'Closes',none:'No jobs match your filters.',note:'* This site publishes job listings. Applications and hiring are handled directly by the employer. Please let us know if you find an error in a listing.',
+ L:{job:'Job type',place:'Location',emp:'Employment type',wage:'Pay',hours:'Hours and days off',langReq:'Language requirements',desc:'The work',apply:'How to apply'}}};
+var cur='ja';
+function $(i){return document.getElementById(i)}
+function D(j){return j[cur]||j.en||j.ja}
+function uniq(k){var s={};(window.JOBS||[]).forEach(function(j){s[D(j)[k]]=1});return Object.keys(s)}
+function list(){var t=T[cur],E=window.SITE_ESC,q=$('q').value.trim().toLowerCase(),fj=$('fj').value,fe=$('fe').value;
+ var J=(window.JOBS||[]).filter(function(j){var d=D(j);if(fj&&d.job!==fj)return false;if(fe&&d.emp!==fe)return false;if(q&&JSON.stringify(j).toLowerCase().indexOf(q)<0)return false;return true});
+ $('cnt').textContent=J.length+t.n;
+ $('list').innerHTML=J.length?J.map(function(j){var d=D(j);return '<details class="job" id="'+E(j.id)+'"'+(location.hash==='#'+j.id?' open':'')+'><summary><div class="co">'+E(d.company)+(j.sample?'<span class="sample">'+t.sample+'</span>':'')+'</div><b class="t">'+E(d.title)+'</b><span class="chip">'+E(d.job)+'</span><span class="chip">'+E(d.place)+'</span><span class="chip">'+E(d.emp)+'</span></summary><div class="body">'+['job','place','emp','wage','hours','langReq','desc','apply'].map(function(k){return d[k]?'<b>'+t.L[k]+'</b><span>'+E(d[k])+'</span>':''}).join('')+'</div><div class="until">'+t.until+'：'+E(j.until)+'</div></details>'}).join(''):'<p class="lead">'+t.none+'</p>';
+ if(location.hash&&!list.done){var el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el){el.open=true;el.scrollIntoView({block:'start'});list.done=true}}}
+window.render=function(lang){cur=lang;var t=T[lang];$('h1').textContent=t.h1;$('hp').textContent=t.hp;$('q').placeholder=t.ph;$('note').textContent=t.note;
+ $('fj').innerHTML='<option value="">'+t.jobL+'：'+t.all+'</option>'+uniq('job').map(function(v){return '<option>'+window.SITE_ESC(v)+'</option>'}).join('');
+ $('fe').innerHTML='<option value="">'+t.empL+'：'+t.all+'</option>'+uniq('emp').map(function(v){return '<option>'+window.SITE_ESC(v)+'</option>'}).join('');
+ document.title=t.h1+' | '+window.SITE_NAME();list();};
+$('q').oninput=list;$('fj').onchange=list;$('fe').onchange=list;
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

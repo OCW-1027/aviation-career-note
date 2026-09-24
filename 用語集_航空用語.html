@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>航空用語集 ― 日本語・韓国語・英語</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#2F8FE0;--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--hl:#FFE08A}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Noto Sans KR',sans-serif;line-height:1.6}
+body.ko{font-family:'Noto Sans KR','Noto Sans JP',sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 18px 60px}
+header{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:22px;padding:26px 24px;position:relative}
+header h1{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:clamp(22px,4vw,30px);margin:4px 0}
+header p{margin:0;opacity:.95}
+.lang{position:absolute;top:16px;right:16px;border:0;background:#fff;color:var(--sky);border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+.bar input{flex:1 1 260px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:var(--card);color:var(--ink)}
+.bar select{padding:9px 12px;border:1px solid var(--line);border-radius:12px;font:inherit;background:var(--card);color:var(--ink)}
+.cnt{color:var(--sub);font-size:14px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th{background:var(--sky);color:#fff;text-align:center;padding:10px;font-size:14px;position:sticky;top:0}
+td{border-top:1px solid var(--line);padding:9px 10px;vertical-align:top;font-size:15px}
+td.lb{font-weight:700}
+td.df{font-size:13.5px;color:var(--sub);min-width:220px}td.df .ct{display:block;margin-top:4px;font-size:11px;color:var(--sky)}
+tr:nth-child(even) td{background:var(--card)}
+.refs a{display:inline-block;margin:2px 4px 2px 0;font-size:12px;padding:2px 8px;border-radius:999px;background:#e7f1fc;color:#1d5fa0;text-decoration:none}
+.refs a.s2{background:#e3f4e9;color:#1f7a45}
+mark{background:var(--hl);color:inherit}
+footer{margin-top:30px;color:var(--sub);font-size:13px;text-align:center}
+.refs a.s3{background:#fdecd9;color:#9a5310}.refs a.s4{background:#ece9fd;color:#4b3fb0}.refs a.s5{background:#dff1ec;color:#12675a}.refs a.s6{background:#fbeede;color:#8a4b12}.refs a.s7{background:#eef0f3;color:#3d4a5a}.refs a.s8{background:#fbe6f0;color:#a1305f}.refs a.s9{background:#e1f3f3;color:#1f6f6f}.langs{position:absolute;top:16px;right:16px;display:inline-flex;border-radius:999px;overflow:hidden;background:#fff}.langs button{border:0;background:transparent;color:#1d5fa0;font:700 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px;cursor:pointer}.langs button+button{border-left:1px solid #d6e6f6}.langs button.on{background:#FFE08A;color:#3A2A00}
+html[lang="en"] body{font-family:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<div class="bar"><input id="q" type="search"><select id="ser"></select><select id="cat"></select><span class="cnt" id="cnt"></span></div>
+<div class="scroll"><table><thead><tr id="head"></tr></thead><tbody id="body"></tbody></table></div>
+<footer id="foot"></footer>
+</div>
+<!-- シリーズ1の原稿 -->
+<script>window.ARTS={};</script>
+<script src="1_지상직여객운송입문/data/p1.js"></script><script src="1_지상직여객운송입문/data/p1x.js"></script><script src="1_지상직여객운송입문/data/p1y.js"></script><script src="1_지상직여객운송입문/data/p1dg.js"></script>
+<script src="1_지상직여객운송입문/data/p2.js"></script><script src="1_지상직여객운송입문/data/p2x.js"></script>
+<script src="1_지상직여객운송입문/data/p3.js"></script><script src="1_지상직여객운송입문/data/p3x.js"></script><script src="1_지상직여객운송입문/data/p3g.js"></script><script src="1_지상직여객운송입문/data/p3l.js"></script><script src="1_지상직여객운송입문/data/p3r.js"></script>
+<script src="1_지상직여객운송입문/data/p4.js"></script><script src="1_지상직여객운송입문/data/p4x.js"></script>
+<script src="1_지상직여객운송입문/data/p5.js"></script><script src="1_지상직여객운송입문/data/p5x.js"></script><script src="1_지상직여객운송입문/data/p5c.js"></script>
+<script src="1_지상직여객운송입문/data/p6.js"></script><script src="1_지상직여객운송입문/data/p6x.js"></script><script src="1_지상직여객운송입문/data/p6c.js"></script><script src="1_지상직여객운송입문/data/p6o.js"></script>
+<script src="1_지상직여객운송입문/data/p7.js"></script><script src="1_지상직여객운송입문/data/p7x.js"></script><script src="1_지상직여객운송입문/data/p8s.js"></script>
+<script src="1_지상직여객운송입문/data/pz.js"></script><script src="1_지상직여객운송입문/data/en_p1.js"></script><script src="1_지상직여객운송입문/data/en_p1dg.js"></script><script src="1_지상직여객운송입문/data/en_p2.js"></script><script src="1_지상직여객운송입문/data/en_p3.js"></script><script src="1_지상직여객운송입문/data/en_p3g.js"></script><script src="1_지상직여객운송입문/data/en_p3l.js"></script><script src="1_지상직여객운송입문/data/en_p3r.js"></script><script src="1_지상직여객운송입문/data/en_p4.js"></script><script src="1_지상직여객운송입문/data/en_p5.js"></script><script src="1_지상직여객운송입문/data/en_p5c.js"></script><script src="1_지상직여객운송입문/data/en_p6.js"></script><script src="1_지상직여객운송입문/data/en_p6c.js"></script><script src="1_지상직여객운송입문/data/en_p6o.js"></script><script src="1_지상직여객운송입문/data/en_p7.js"></script><script src="1_지상직여객운송입문/data/en_p8s.js"></script>
+<script>window.S1=window.ARTS;window.ARTS={};</script>
+<!-- シリーズ2の原稿 -->
+<script src="2_일본취항지점개설가이드/data/s0.js"></script><script src="2_일본취항지점개설가이드/data/s1.js"></script>
+<script src="2_일본취항지점개설가이드/data/s2.js"></script><script src="2_일본취항지점개설가이드/data/s3.js"></script>
+<script src="2_일본취항지점개설가이드/data/s4.js"></script><script src="2_일본취항지점개설가이드/data/s5.js"></script>
+<script src="2_일본취항지점개설가이드/data/s6.js"></script><script src="2_일본취항지점개설가이드/data/s7.js"></script><script src="2_일본취항지점개설가이드/data/en_s0.js"></script><script src="2_일본취항지점개설가이드/data/en_s1.js"></script><script src="2_일본취항지점개설가이드/data/en_s2.js"></script><script src="2_일본취항지점개설가이드/data/en_s3.js"></script><script src="2_일본취항지점개설가이드/data/en_s4.js"></script><script src="2_일본취항지점개설가이드/data/en_s5.js"></script><script src="2_일본취항지점개설가이드/data/en_s6.js"></script><script src="2_일본취항지점개설가이드/data/en_s7.js"></script>
+<script>window.S2=window.ARTS;</script>
+<!-- シリーズ3以降の原稿 -->
+<script>window.ARTS={};</script><script src="3_현장사례/data/c1.js"></script><script src="3_현장사례/data/c2.js"></script><script src="3_현장사례/data/c3.js"></script><script src="3_현장사례/data/c4.js"></script><script src="3_현장사례/data/en_c1.js"></script><script src="3_현장사례/data/en_c2.js"></script><script src="3_현장사례/data/en_c3.js"></script><script src="3_현장사례/data/en_c4.js"></script><script>window.S3=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="5_면접대비가이드/data/i1.js"></script><script src="5_면접대비가이드/data/i2.js"></script><script src="5_면접대비가이드/data/en_i1.js"></script><script src="5_면접대비가이드/data/en_i2.js"></script><script>window.S4=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="6_항공화물입문/data/g1.js"></script><script src="6_항공화물입문/data/g2.js"></script><script src="6_항공화물입문/data/en_g1.js"></script><script src="6_항공화물입문/data/en_g2.js"></script><script src="6_항공화물입문/data/en_g3.js"></script><script src="6_항공화물입문/data/en_g4.js"></script><script>window.S5=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="11_주재원일본가이드/data/n1.js"></script><script src="11_주재원일본가이드/data/n2.js"></script><script src="11_주재원일본가이드/data/en_n1.js"></script><script>window.S6=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="12_일본지점인사재무실무/data/h1.js"></script><script src="12_일본지점인사재무실무/data/h2.js"></script><script src="12_일본지점인사재무실무/data/en_h1.js"></script><script>window.S7=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="13_항공영업입문/data/e1.js"></script><script src="13_항공영업입문/data/e2.js"></script><script src="13_항공영업입문/data/en_e1.js"></script><script src="13_항공영업입문/data/en_e2.js"></script><script>window.S8=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="15_지점장인수인계가이드/data/t1.js"></script><script src="15_지점장인수인계가이드/data/t2.js"></script><script src="15_지점장인수인계가이드/data/en_t1.js"></script><script>window.S9=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="16_스테이션운영실무/data/s1.js"></script><script src="16_스테이션운영실무/data/s2.js"></script><script src="16_스테이션운영실무/data/s3.js"></script><script src="16_스테이션운영실무/data/en_s1.js"></script><script src="16_스테이션운영실무/data/en_s2.js"></script><script src="16_스테이션운영실무/data/en_s3.js"></script><script>window.S10=window.ARTS;</script>
+<script>window.ARTS={};</script><script src="17_일본주요공항가이드/data/a1.js"></script><script src="17_일본주요공항가이드/data/a2.js"></script><script src="17_일본주요공항가이드/data/en_a1.js"></script><script src="17_일본주요공항가이드/data/en_a2.js"></script><script>window.S11=window.ARTS;</script>
+<script src="glossary_dict1.js"></script><script src="glossary_dict2.js"></script><script src="glossary_dict3.js"></script><script src="glossary_dict4.js"></script>
+<script>
+(function(){
+var SER={1:{dir:'1_지상직여객운송입문',pre:'',ja:'航空旅客運送の実務',ko:'항공 여객운송 실무',en:'Airline Passenger Operations'},2:{dir:'2_일본취항지점개설가이드',pre:'G ',ja:'日本就航・支店開設ガイド',ko:'일본 취항·지점 개설 가이드',en:'Launching Flights to Japan'},3:{dir:'3_현장사례',pre:'IRR ',ja:'現場の事例から学ぶ',ko:'현장 사례로 배우기',en:'Case Studies'},4:{dir:'5_면접대비가이드',pre:'INT ',ja:'航空・空港の面接対策',ko:'항공·공항 면접 대비',en:'Interview Prep'},5:{dir:'6_항공화물입문',pre:'CGO ',ja:'航空貨物 入門',ko:'항공화물 입문',en:'Air Cargo Basics'},6:{dir:'11_주재원일본가이드',pre:'EXP ',ja:'駐在員のための日本ガイド',ko:'주재원 일본 가이드',en:'Expat Guide to Japan'},7:{dir:'12_일본지점인사재무실무',pre:'ADM ',ja:'日本支店 人事・財務の実務',ko:'일본 지점 인사·재무 실무',en:'HR and Finance in Japan'},8:{dir:'13_항공영업입문',pre:'SLS ',ja:'航空営業 入門',ko:'항공 영업 입문',en:'Airline Sales Basics'},9:{dir:'15_지점장인수인계가이드',pre:'HOV ',ja:'管理者の引き継ぎ・着任ガイド',ko:'관리자 인수인계·부임 가이드',en:'Guide for Managers'},10:{dir:'16_스테이션운영실무',pre:'STN ',ja:'ステーション運営の実務',ko:'스테이션 운영 실무',en:'Station Operations in Practice'},11:{dir:'17_일본주요공항가이드',pre:'APT ',ja:'日本の主要空港ガイド',ko:'일본 주요 공항 가이드',en:'Guide to Japan’s Major Airports'}};
+var T={ja:{kick:'航空キャリアノート',ttl:'航空用語集 ― 日本語・韓国語・英語',lead:'航空の仕事で使う用語を、分野ごとの辞典と、シリーズの各記事の「今日の用語」から集めました。記事の番号をクリックすると、その用語が出てくる記事に移動できます。',ph:'用語・説明を検索（日本語・한국어・English）',all:'すべてのシリーズ',allc:'すべての分野',cols:['日本語','한국어','English','説明','掲載記事'],n:'件',btn:'한국어',foot:'© 航空キャリアノート — 用語は各記事の原稿から自動で集めています。'},
+ko:{kick:'항공 커리어 노트',ttl:'항공 용어집 — 일본어·한국어·영어',lead:'항공 업무에서 쓰는 용어를 분야별 사전과 시리즈 각 기사의 “오늘의 용어”에서 모았습니다. 기사 번호를 누르면 그 용어가 나오는 기사로 이동합니다.',ph:'용어·설명 검색 (日本語·한국어·English)',all:'전체 시리즈',allc:'전체 분야',cols:['한국어','日本語','English','설명','게재 기사'],n:'건',btn:'日本語',foot:'© 항공 커리어 노트 — 용어는 각 기사 원고에서 자동으로 모읍니다.'},
+en:{kick:'Aviation Career Note',ttl:'Aviation Glossary: English, Japanese and Korean',lead:'Aviation terms from a subject-by-subject dictionary and from the key terms in every article. Click an article tag to open the article where the term appears.',ph:'Search terms and definitions (English, 日本語, 한국어)',all:'All series',allc:'All subjects',cols:['English','日本語','한국어','Definition','Articles'],n:' terms',btn:'',foot:'© Aviation Career Note — Terms are collected automatically from the articles.'}};
+var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};function langBar(cb){var g=document.getElementById('lang');g.innerHTML=LANGS.map(function(l){return '<button type="button" data-l="'+l+'" lang="'+l+'" class="'+(l===lang?'on':'')+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}cb()}})}
+var map={};
+function take(s,A){for(var no in A){var a=A[no];if(!a||!a.ja)continue;var jt=a.ja.terms||[],kt=(a.ko&&a.ko.terms)||[];
+ if(!Array.isArray(jt))continue;
+ jt.forEach(function(r,i){var k=(r[0]+'|'+r[2]).toLowerCase(),kr=kt[i]||[r[1],r[0],r[2]];
+  if(!map[k])map[k]={ja:r[0],ko:kr[0]||r[1],en:r[2],refs:[]};map[k].refs.push([s,no,a.ja.title,a.ko.title,(a.en&&a.en.title)||a.ja.title]);});}}
+Object.keys(SER).forEach(function(k){take(+k,window['S'+k]||{})});
+var CAT={RES:{ja:'予約・発券・運賃',ko:'예약·발권·운임',en:'Reservations, ticketing and fares'},PAX:{ja:'旅客サービス',ko:'여객 서비스',en:'Passenger services'},SSR:{ja:'特別サービスのコード',ko:'특별 서비스 코드',en:'Special service codes'},BAG:{ja:'手荷物',ko:'수하물',en:'Baggage'},APT:{ja:'空港・施設・ハンドリング',ko:'공항·시설·조업',en:'Airports, facilities and handling'},OPS:{ja:'運航・運航管理',ko:'운항·운항관리',en:'Flight operations'},ATC:{ja:'航空管制・航法',ko:'항공교통관제·항법',en:'Air traffic control and navigation'},WB:{ja:'重量・搭載',ko:'중량·탑재',en:'Weight and balance'},CGO:{ja:'航空貨物',ko:'항공화물',en:'Air cargo'},DG:{ja:'危険物',ko:'위험물',en:'Dangerous goods'},SEC:{ja:'保安',ko:'보안',en:'Security'},SAF:{ja:'安全・SMS',ko:'안전·SMS',en:'Safety and SMS'},MX:{ja:'機体・整備',ko:'기체·정비',en:'Aircraft and maintenance'},WX:{ja:'気象',ko:'기상',en:'Weather'},ORG:{ja:'機関・条約・規則',ko:'기관·협약·규칙',en:'Organisations, treaties and rules'},MSG:{ja:'電報・コード',ko:'전보·코드',en:'Messages and codes'},BIZ:{ja:'経営・営業',ko:'경영·영업',en:'Business and sales'}};
+var enIdx={};Object.keys(map).forEach(function(k){enIdx[String(map[k].en).toLowerCase()]=map[k]});
+(window.DICT||[]).forEach(function(d){var key=String(d[1]).toLowerCase(),x=enIdx[key];if(!x){x={ja:d[2],ko:d[3],en:d[1],refs:[]};map['dict|'+key]=x;enIdx[key]=x}x.cat=d[0];x.dja=d[4];x.dko=d[5];x.den=d[6]});
+var L=Object.keys(map).map(function(k){return map[k]}).sort(function(a,b){return a.ja.localeCompare(b.ja,'ja')});
+var lang='ja';try{var _s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(_s)>=0)lang=_s}catch(e){}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function hi(s,q){s=esc(s);if(!q)return s;var i=s.toLowerCase().indexOf(q.toLowerCase());return i<0?s:s.slice(0,i)+'<mark>'+s.slice(i,i+q.length)+'</mark>'+s.slice(i+q.length)}
+function render(){var t=T[lang];document.body.className=lang;document.documentElement.lang=lang;
+ ['kick','ttl','lead'].forEach(function(id){document.getElementById(id).textContent=t[id]});
+ langBar(render);document.getElementById('foot').textContent=t.foot;
+ var qi=document.getElementById('q');qi.placeholder=t.ph;
+ var se=document.getElementById('ser'),sv=se.value||'0';se.innerHTML='<option value="0">'+t.all+'</option>'+Object.keys(SER).map(function(k){return '<option value="'+k+'">'+SER[k][lang]+'</option>'}).join('');se.value=sv;
+ document.getElementById('head').innerHTML=t.cols.map(function(c){return '<th>'+c+'</th>'}).join('');
+ var ce=document.getElementById('cat'),cv=ce.value||'';ce.innerHTML='<option value="">'+t.allc+'</option>'+Object.keys(CAT).filter(function(k){return L.some(function(x){return x.cat===k})}).map(function(k){return '<option value="'+k+'">'+CAT[k][lang]+'</option>'}).join('');ce.value=cv;
+ var q=qi.value.trim(),s=+se.value,cf=ce.value,rows=L.filter(function(x){if(s&&!x.refs.some(function(r){return r[0]===s}))return false;if(cf&&x.cat!==cf)return false;if(!q)return true;var h=(x.ja+' '+x.ko+' '+x.en+' '+(x.dja||'')+' '+(x.dko||'')+' '+(x.den||'')).toLowerCase();return h.indexOf(q.toLowerCase())>=0});
+ if(lang==='en')rows.sort(function(p,q2){return String(p.en).localeCompare(String(q2.en),'en')});else rows.sort(function(p,q2){return p.ja.localeCompare(q2.ja,'ja')});
+ document.getElementById('cnt').textContent=rows.length+t.n;
+ document.getElementById('body').innerHTML=rows.map(function(x){var a=lang==='ja'?x.ja:lang==='ko'?x.ko:x.en,b=lang==='ja'?x.ko:x.ja,c=lang==='en'?x.ko:x.en;
+  var refs=x.refs.filter(function(r){return !s||r[0]===s}).map(function(r){return '<a class="s'+r[0]+'" href="'+SER[r[0]].dir+'/view.html?no='+r[1]+'" title="'+esc(lang==='ja'?r[2]:lang==='ko'?r[3]:r[4])+'">'+SER[r[0]].pre+r[1]+'</a>'}).join('');
+  var df=lang==='ja'?x.dja:lang==='ko'?x.dko:x.den;return '<tr><td class="lb">'+hi(a,q)+'</td><td>'+hi(b,q)+'</td><td>'+hi(c,q)+'</td><td class="df">'+(df?hi(df,q):'')+(x.cat?'<span class="ct">'+CAT[x.cat][lang]+'</span>':'')+'</td><td class="refs">'+refs+'</td></tr>'}).join('');}
+document.getElementById('q').oninput=render;document.getElementById('ser').onchange=render;document.getElementById('cat').onchange=render;
+render();
+})();
+</script>
+<script src="1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

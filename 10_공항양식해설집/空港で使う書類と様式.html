@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>空港で使う書類と様式 ― 解説と見本</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#2F8FE0;--sky2:#E7F1FC;--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--hl:#FFE08A;--warn:#E5534B;--ivory:#F7F0DC;--ivory2:#FFFCF3;--iline:#E6DCC3}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d;--sky2:#17324d;--ivory:#2c2819;--ivory2:#1f1c13;--iline:#3e3827}}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Noto Sans KR',sans-serif;line-height:1.75}
+body.ko{font-family:'Noto Sans KR','Noto Sans JP',sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:24px 18px 60px}
+header{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:22px;padding:28px 24px;position:relative}
+header h1{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:clamp(22px,4vw,32px);margin:6px 0}
+header p{margin:0;max-width:64ch;opacity:.95}
+.langs{position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;border-radius:999px;overflow:hidden;background:#fff}.langs button{border:0;background:transparent;color:#1d5fa0;font:700 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px;cursor:pointer}.langs button+button{border-left:1px solid #d6e6f6}.langs button.on{background:#FFE08A;color:#3A2A00}
+html[lang="en"] body{font-family:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:18px -18px 0;padding:10px 18px;display:flex;gap:8px;overflow-x:auto}
+nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px}
+.tools{margin:16px 0 4px}.tools input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:var(--card);color:var(--ink)}
+h2{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:22px;margin:36px 0 4px;padding-bottom:6px;border-bottom:3px solid var(--sky)}
+.cdesc{color:var(--sub);margin:6px 0 14px}
+.form{border:1px solid var(--iline);border-radius:18px;margin:14px 0;overflow:hidden;background:var(--ivory2)}
+.form .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:12px 16px;background:var(--ivory);border-bottom:1px solid var(--iline)}
+.form .top b{font-size:17px}.form .top .no{color:var(--sky);font-weight:700;margin-right:6px}
+.form .top .alt{font-size:13px;color:var(--sub)}
+.grid{display:grid;grid-template-columns:150px 1fr}
+.grid b{background:var(--ivory);padding:9px 12px;border-top:1px solid var(--iline);text-align:center;display:flex;align-items:center;justify-content:center;font-size:14px}
+.grid span{padding:9px 14px;border-top:1px solid var(--iline);background:var(--ivory2)}
+.grid b:first-child,.grid b:first-child+span{border-top:0}
+.fields{margin:0;padding-left:1.2em}
+.warn{color:#7f1d1d;background:#fde7e6;border-radius:10px;padding:8px 12px;margin:10px 16px;font-size:14px}
+.bar{display:flex;gap:8px;padding:10px 16px;border-top:1px solid var(--iline)}
+.bar button{border:1px solid var(--sky);background:var(--bg);color:var(--sky);border-radius:10px;padding:6px 12px;font:inherit;font-size:14px;cursor:pointer}
+.sheet{display:none;margin:0 16px 16px;border:2px solid #5a4e32;padding:16px;background:#FFFCF3;color:#111}
+.sheet.open{display:block}
+.sheet h3{text-align:center;margin:0 0 4px;font-size:18px}.sheet .sub{text-align:center;font-size:12px;margin:0 0 12px;color:#444}
+.sheet table{width:100%;border-collapse:collapse}.sheet th,.sheet td{border:1px solid #8a7d5c;padding:8px;font-size:13px}
+.sheet th{width:38%;background:#F4EBD2;text-align:center}.sheet td{height:30px;background:#FFFDF7}
+.sheet .sign{display:flex;justify-content:space-between;margin-top:14px;font-size:13px}
+footer{margin-top:40px;color:var(--sub);font-size:13px;text-align:center}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.grid b{justify-content:flex-start}}
+@media print{body *{visibility:hidden}.sheet.printing,.sheet.printing *{visibility:visible}.sheet.printing{position:absolute;left:0;top:0;width:100%;border:0;margin:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<nav id="nav"></nav>
+<div class="tools"><input id="q" type="search"></div>
+<main id="main"></main>
+<footer id="foot"></footer>
+</div>
+<script src="forms_en.js"></script>
+<script>
+/* 各社の様式の文章・デザインは使わず、項目の考え方だけをまとめ、見本の様式は新しく作成 */
+var DATA=[
+{id:"f1",ja:"特別な対応が必要なお客様",ko:"특별 대응이 필요한 승객",dja:"お客様の安全と、航空会社が必要な情報を確かめるための書類です。",dko:"승객 안전과 항공사가 필요한 정보를 확인하기 위한 서류입니다.",items:[
+{ja:{n:"保護者のいない子どもの旅行申込書",w:"子どもが一人で旅行するとき（年齢の範囲は会社の規定による）",y:"出発地で子どもを預ける人と、到着地で引き取る人を確かめ、確実に引き渡すため",f:["子どもの氏名・生年月日・年齢","便名・日付・区間","出発地の保護者の氏名・連絡先・本人確認","到着地の引取人の氏名・連絡先・本人確認","子どもの言語・健康状態・注意事項","保護者の署名"],c:"引取人の本人確認ができない場合は引き渡さない。乗り継ぎの可否は会社の規定を確認（シリーズ1の1-7）",r:"引き渡しの記録とあわせて会社の規定の期間"},
+ ko:{n:"비동반 소아 여행 신청서",w:"아이가 혼자 여행할 때 (연령 범위는 회사 규정에 따름)",y:"출발지에서 아이를 맡기는 사람과 도착지에서 인수하는 사람을 확인해 확실히 인도하기 위해",f:["아이 성명·생년월일·나이","편명·날짜·구간","출발지 보호자 성명·연락처·본인 확인","도착지 인수자 성명·연락처·본인 확인","아이 언어·건강 상태·주의 사항","보호자 서명"],c:"인수자 본인 확인이 안 되면 인도하지 않음. 환승 가능 여부는 회사 규정 확인 (시리즈 1의 1-7편)",r:"인도 기록과 함께 회사 규정 기간"}},
+{ja:{n:"妊娠中のお客様の確認書",w:"妊娠の週数が会社の定める範囲に入るとき",y:"お客様と胎児の安全、機内での急な体調の変化への備えのため",f:["お客様の氏名・便名・日付","出産予定日・妊娠の週数","医師の診断書の有無と日付","体調の申告","お客様の署名"],c:"週数の基準と診断書の有効期間は会社の規定による。37週以上など搭乗できない場合がある（シリーズ1の1-6）",r:"会社の規定の期間"},
+ ko:{n:"임산부 확인서",w:"임신 주수가 회사가 정한 범위에 들어갈 때",y:"승객과 태아의 안전, 기내 급격한 몸 상태 변화에 대비하기 위해",f:["승객 성명·편명·날짜","출산 예정일·임신 주수","의사 소견서 유무와 날짜","몸 상태 신고","승객 서명"],c:"주수 기준과 소견서 유효기간은 회사 규정에 따름. 37주 이상 등 탑승 불가인 경우가 있음 (시리즈 1의 1-6편)",r:"회사 규정 기간"}},
+{ja:{n:"医療情報の申告書（MEDIF）",w:"病気・けがのお客様が搭乗するとき、機内で医療の器具・酸素を使うとき",y:"航空会社の医療の担当が、搭乗できるか・必要な支援を判断するため",f:["お客様の情報と便","病名・症状（医師が記入）","必要な器具・酸素・付き添い","医師の氏名・連絡先・署名","お客様の同意"],c:"医療の個人情報。必要な人だけが見られるよう管理する。判断は航空会社の医療の担当が行う",r:"個人情報として会社の規定に従い保管・廃棄"},
+ ko:{n:"의료 정보 신고서(MEDIF)",w:"질병·부상 승객이 탑승할 때, 기내에서 의료 기구·산소를 쓸 때",y:"항공사 의료 담당이 탑승 가능 여부·필요 지원을 판단하기 위해",f:["승객 정보와 편","병명·증상 (의사 기재)","필요 기구·산소·동반자","의사 성명·연락처·서명","승객 동의"],c:"의료 개인정보. 필요한 사람만 볼 수 있게 관리. 판단은 항공사 의료 담당이 함",r:"개인정보로서 회사 규정에 따라 보관·폐기"}},
+{ja:{n:"電動車いすの申告書",w:"電動車いすを預けるとき",y:"電池の種類・容量を確かめ、危険物の規則に沿って安全に搭載するため",f:["お客様の氏名・便名","車いすの型式・重さ・寸法","電池の種類（リチウムイオンなど）・容量（Wh）","電池の取り外しの可否・端子の保護","折りたたみ・操作の注意"],c:"電池の種類と容量で扱いが変わる。機長への通知が必要な場合がある（シリーズ1の1-13）★",r:"搭載の記録とあわせて保管"},
+ ko:{n:"전동 휠체어 신고서",w:"전동 휠체어를 맡길 때",y:"배터리 종류·용량을 확인해 위험물 규정에 따라 안전하게 탑재하기 위해",f:["승객 성명·편명","휠체어 형식·무게·치수","배터리 종류(리튬이온 등)·용량(Wh)","배터리 분리 가능 여부·단자 보호","접기·조작 주의"],c:"배터리 종류와 용량에 따라 처리가 달라짐. 기장 통보가 필요할 수 있음 (시리즈 1의 1-13편) ★",r:"탑재 기록과 함께 보관"}}]},
+{id:"f2",ja:"手荷物",ko:"수하물",dja:"特別な手荷物を預かるときに、条件と責任の範囲をお客様と確認する書類です。",dko:"특별한 수하물을 맡을 때 조건과 책임 범위를 승객과 확인하는 서류입니다.",items:[
+{ja:{n:"破損の免責の同意書",w:"すでに傷がある、梱包が不十分、壊れやすい物を預かるとき",y:"預かる時点の状態を記録し、後で責任の範囲を明確にするため",f:["お客様の氏名・便名・手荷物のタグ番号","手荷物の状態（既存の傷・梱包の状態）","免責の範囲の説明","お客様の署名・係員の署名"],c:"航空会社の過失による損害まで免責にはできない。状態は写真でも残す",r:"会社の規定の期間"},
+ ko:{n:"파손 면책 동의서",w:"이미 흠집이 있거나 포장이 불충분하거나 깨지기 쉬운 물건을 맡을 때",y:"맡는 시점 상태를 기록해 나중에 책임 범위를 명확히 하기 위해",f:["승객 성명·편명·수하물 태그 번호","수하물 상태 (기존 흠집·포장 상태)","면책 범위 설명","승객 서명·직원 서명"],c:"항공사 과실에 의한 손해까지 면책할 수는 없음. 상태는 사진으로도 남김",r:"회사 규정 기간"}},
+{ja:{n:"楽器の持ち込み・座席の確認書",w:"楽器を機内に持ち込む、座席を購入して載せるとき",y:"大きさ・固定の方法・責任の範囲を確かめるため",f:["お客様の氏名・便名","楽器の種類・寸法・重さ","持ち込みの方法（座席購入・収納棚）","固定の方法","お客様の署名"],c:"座席に載せる場合は固定の条件と座席の位置の制限がある（シリーズ1の1-10）",r:"会社の規定の期間"},
+ ko:{n:"악기 반입·좌석 확인서",w:"악기를 기내에 반입하거나 좌석을 구매해 실을 때",y:"크기·고정 방법·책임 범위를 확인하기 위해",f:["승객 성명·편명","악기 종류·치수·무게","반입 방법 (좌석 구매·선반)","고정 방법","승객 서명"],c:"좌석에 실을 때는 고정 조건과 좌석 위치 제한이 있음 (시리즈 1의 1-10편)",r:"회사 규정 기간"}},
+{ja:{n:"ペット輸送の同意書",w:"ペットを受託手荷物・機内持ち込みで運ぶとき",y:"動物の健康状態、輸送のリスク、到着国の検疫の条件をお客様と確かめるため",f:["お客様の氏名・便名","動物の種類・品種・年齢・重さ（容器を含む）","健康状態・鎮静剤の使用の有無","容器の条件の確認","検疫の書類の確認","お客様の署名"],c:"短頭種など受け付けない犬種がある会社も。暑い時期の制限も確認（シリーズ1の1-8）★",r:"会社の規定の期間"},
+ ko:{n:"반려동물 운송 동의서",w:"반려동물을 위탁 수하물·기내 반입으로 운송할 때",y:"동물 건강 상태, 운송 위험, 도착국 검역 조건을 승객과 확인하기 위해",f:["승객 성명·편명","동물 종류·품종·나이·무게(용기 포함)","건강 상태·진정제 사용 여부","용기 조건 확인","검역 서류 확인","승객 서명"],c:"단두종 등 받지 않는 견종이 있는 회사도. 혹서기 제한도 확인 (시리즈 1의 1-8편) ★",r:"회사 규정 기간"}},
+{ja:{n:"銃砲刀剣類の引き渡し書",w:"猟銃・競技用の銃・刀剣などを預かるとき",y:"法令に沿って、預かりから引き渡しまでの管理を記録するため",f:["お客様の氏名・便名","品目・数量・番号","所持の許可の確認","弾薬の有無と量","預かり・引き渡しの日時と署名"],c:"法令と空港の手順に従う。弾薬は危険物の規則も確認",r:"法令と会社の規定の期間"},
+ ko:{n:"총포·도검류 인수인계서",w:"엽총·경기용 총·도검 등을 맡을 때",y:"법령에 따라 맡을 때부터 인도까지의 관리를 기록하기 위해",f:["승객 성명·편명","품목·수량·번호","소지 허가 확인","탄약 유무와 양","보관·인도 일시와 서명"],c:"법령과 공항 절차를 따름. 탄약은 위험물 규정도 확인",r:"법령과 회사 규정 기간"}}]},
+{id:"f3",ja:"イレギュラー・補償",ko:"비정상·보상",dja:"遅延・欠航の後に、お客様の手続きを進めるための書類です。",dko:"지연·결항 뒤 승객 절차를 진행하기 위한 서류입니다.",items:[
+{ja:{n:"遅延・欠航の証明書",w:"お客様から、会社・保険のための証明を求められたとき",y:"便の遅延・欠航の事実を証明するため",f:["お客様の氏名","便名・日付・区間","予定の時刻と実際の時刻","遅延・欠航の事実","発行日・発行者"],c:"理由の詳細や補償の約束は書かない。事実だけを記載（シリーズ1の5-4）",r:"発行の記録を保管"},
+ ko:{n:"지연·결항 확인서",w:"승객이 회사·보험용 증명을 요청할 때",y:"편 지연·결항 사실을 증명하기 위해",f:["승객 성명","편명·날짜·구간","예정 시각과 실제 시각","지연·결항 사실","발행일·발행자"],c:"이유 세부나 보상 약속은 쓰지 않음. 사실만 기재 (시리즈 1의 5-4편)",r:"발행 기록 보관"}},
+{ja:{n:"補償金の振込口座の申込書",w:"補償金を現金ではなく振り込みで払うとき",y:"振込先を正確に受け取るため",f:["お客様の氏名・連絡先","便名・日付・対象の事案","金融機関・支店・口座の種類・口座名義","お客様の署名"],c:"口座の情報は個人情報として厳重に管理し、支払い後は規定に従い処理する。メール・チャットで口座番号を送らない",r:"会計の証拠として会社の規定の期間"},
+ ko:{n:"보상금 입금 계좌 신청서",w:"보상금을 현금이 아닌 이체로 지급할 때",y:"입금처를 정확히 받기 위해",f:["승객 성명·연락처","편명·날짜·대상 사안","금융기관·지점·계좌 종류·예금주","승객 서명"],c:"계좌 정보는 개인정보로 엄중 관리하고 지급 후 규정에 따라 처리. 메일·채팅으로 계좌번호를 보내지 않음",r:"회계 증빙으로 회사 규정 기간"}},
+{ja:{n:"払い戻しの確認書",w:"空港で払い戻し・出国取消などの手続きをしたとき",y:"払い戻しの内容をお客様と確かめ、記録するため",f:["お客様の氏名","航空券の番号・便名","払い戻しの内容・方法","手数料の有無","お客様の署名"],c:"払い戻しの条件は運賃の規則による。旅行会社の発券分は販売元を通す場合がある",r:"会計の証拠として保管"},
+ ko:{n:"환불 확인서",w:"공항에서 환불·출국 취소 등 절차를 했을 때",y:"환불 내용을 승객과 확인하고 기록하기 위해",f:["승객 성명","항공권 번호·편명","환불 내용·방법","수수료 유무","승객 서명"],c:"환불 조건은 운임 규정에 따름. 여행사 발권분은 판매처를 거치기도 함",r:"회계 증빙으로 보관"}},
+{ja:{n:"被害救済の申し出書",w:"お客様が遅延・欠航・手荷物などの被害の救済を申し出たとき",y:"申し出の内容を正確に受け付け、担当の部署で処理するため",f:["お客様の氏名・連絡先","便名・日付","被害の内容・求めること","添付の書類（領収書など）","受付の日時・受付者"],c:"韓国の航空会社では、利用者の被害の救済の手続きがカウンターに掲示されている（シリーズ1の7-4）",r:"処理の完了まで管理し、会社の規定の期間保管"},
+ ko:{n:"피해구제 신청서",w:"승객이 지연·결항·수하물 등 피해 구제를 신청할 때",y:"신청 내용을 정확히 접수해 담당 부서에서 처리하기 위해",f:["승객 성명·연락처","편명·날짜","피해 내용·요구 사항","첨부 서류 (영수증 등)","접수 일시·접수자"],c:"한국 항공사는 이용자 피해구제 절차를 카운터에 게시 (시리즈 1의 7-4편)",r:"처리 완료까지 관리하고 회사 규정 기간 보관"}}]},
+{id:"f4",ja:"手荷物の事故・遺失物",ko:"수하물 사고·유실물",dja:"手荷物の事故と忘れ物の受付・引き渡しの書類です。",dko:"수하물 사고와 분실물 접수·인도 서류입니다.",items:[
+{ja:{n:"手荷物の事故の報告書（PIR）",w:"到着した手荷物が届かない・壊れている・中身が足りないとき",y:"事故の内容を記録し、世界の追跡システムで捜索・補償の手続きを進めるため",f:["お客様の氏名・連絡先・滞在先","便名・区間・手荷物のタグ番号","手荷物の種類・色・特徴・中身","事故の種類（未着・破損・不足）","受付の日時・受付者"],c:"破損は受け取りから7日以内、遅延は21日以内に書面で申し出る条約の期限がある（シリーズ1の4-1・4-2）",r:"事案の完了まで管理し、会社の規定の期間保管"},
+ ko:{n:"수하물 사고 보고서(PIR)",w:"도착 수하물이 안 오거나 파손됐거나 내용물이 부족할 때",y:"사고 내용을 기록하고 세계 추적 시스템으로 수색·보상 절차를 진행하기 위해",f:["승객 성명·연락처·체류지","편명·구간·수하물 태그 번호","수하물 종류·색·특징·내용물","사고 종류 (미착·파손·부족)","접수 일시·접수자"],c:"파손은 수령 후 7일, 지연은 21일 이내에 서면으로 이의를 제기하는 조약 기한이 있음 (시리즈 1의 4-1·4-2편)",r:"사안 완료까지 관리하고 회사 규정 기간 보관"}},
+{ja:{n:"遺失物の受け取りの確認書",w:"機内・空港の忘れ物をお客様に返すとき",y:"本人に確実に返したことを記録するため",f:["品名・特徴","発見の日時・場所","受け取る人の氏名・本人確認の方法","受け取りの日時・署名","郵送の場合は送り先と費用"],c:"本人確認を必ず行う。保管の期間を過ぎた物は法令・空港の手順で処理（シリーズ1の4-4）",r:"会社の規定の期間"},
+ ko:{n:"분실물 수령 확인서",w:"기내·공항 분실물을 승객에게 돌려줄 때",y:"본인에게 확실히 돌려줬음을 기록하기 위해",f:["품명·특징","발견 일시·장소","수령자 성명·본인 확인 방법","수령 일시·서명","우송이면 수신처와 비용"],c:"본인 확인을 반드시 함. 보관 기간이 지난 물건은 법령·공항 절차로 처리 (시리즈 1의 4-4편)",r:"회사 규정 기간"}}]},
+{id:"f5",ja:"支店の運営",ko:"지점 운영",dja:"日々の運営と監査への備えのための記録です。",dko:"일상 운영과 감사 대비를 위한 기록입니다.",items:[
+{ja:{n:"教育の記録（教育日誌）",w:"自社・ハンドリング会社のスタッフに教育を行ったとき",y:"当局の監査で教育の実施を証明するため（シリーズ2の5-3）",f:["教育の名称・日時・場所","講師","受講者の氏名・所属","内容・時間","評価の結果","講師・受講者の署名"],c:"監査で最も重視される記録。その日のうちに記入し、決められた期間（例：3年以上）保管する",r:"例：3年以上（会社・当局の規定を確認）★"},
+ ko:{n:"교육 기록(교육 일지)",w:"자사·조업사 직원에게 교육을 했을 때",y:"당국 감사에서 교육 실시를 증명하기 위해 (시리즈 2의 5-3편)",f:["교육 명칭·일시·장소","강사","수강자 성명·소속","내용·시간","평가 결과","강사·수강자 서명"],c:"감사에서 가장 중시되는 기록. 그날 안에 기입하고 정해진 기간(예: 3년 이상) 보관",r:"예: 3년 이상 (회사·당국 규정 확인) ★"}},
+{ja:{n:"カウンターのブリーフィングシート",w:"カウンターを開ける前の打ち合わせ",y:"その日の便の特別な情報を全員で共有するため",f:["便名・日付・機種・搭乗口","予約の人数・上級クラス・特別なお客様","特殊な手荷物・危険物の注意","運用の変更・当局の通知","担当の割り当て","参加者の署名"],c:"打ち合わせの内容は監査でも確認されることがある（シリーズ1の2-1）",r:"会社の規定の期間"},
+ ko:{n:"카운터 브리핑 시트",w:"카운터 오픈 전 브리핑",y:"그날 편의 특별 정보를 모두 공유하기 위해",f:["편명·날짜·기종·탑승구","예약 인원·상위 클래스·특별 승객","특수 수하물·위험물 주의","운용 변경·당국 통지","담당 배정","참가자 서명"],c:"브리핑 내용은 감사에서도 확인하는 경우가 있음 (시리즈 1의 2-1편)",r:"회사 규정 기간"}}]}
+];
+var T={ja:{kick:'航空キャリアノート',ttl:'空港で使う書類と様式 ― 解説と見本',lead:'空港のカウンター・ゲート・手荷物の窓口で使う書類について、いつ使うか、なぜ必要か、何を書くか、どこに気をつけるかをまとめました。各書類には、自由に使える空欄の見本の様式を付けています。',ph:'書類を検索',when:'いつ使う',why:'なぜ必要',fields:'主な項目',caut:'注意',ret:'保管',show:'見本の様式を表示',hide:'見本を閉じる',print:'見本を印刷',sub:'見本の様式（各社の規定に合わせて修正して使用）',sign:['お客様の署名','係員の署名','日付'],btn:'한국어',foot:'© 航空キャリアノート — 見本は一般的な例です。実際の様式・保管期間は各航空会社の規定に従ってください。'},
+ko:{kick:'항공 커리어 노트',ttl:'공항에서 쓰는 서류와 양식 — 해설과 견본',lead:'공항 카운터·게이트·수하물 창구에서 쓰는 서류를 언제 쓰는지, 왜 필요한지, 무엇을 쓰는지, 어디에 주의할지 정리했습니다. 각 서류에는 자유롭게 쓸 수 있는 빈 견본 양식을 붙였습니다.',ph:'서류 검색',when:'언제 쓰나',why:'왜 필요한가',fields:'주요 항목',caut:'주의',ret:'보관',show:'견본 양식 보기',hide:'견본 닫기',print:'견본 인쇄',sub:'견본 양식 (각사 규정에 맞게 수정해 사용)',sign:['승객 서명','직원 서명','날짜'],btn:'日本語',foot:'© 항공 커리어 노트 — 견본은 일반적인 예입니다. 실제 양식·보관 기간은 각 항공사 규정을 따르세요.'},
+en:{kick:'Aviation Career Note',ttl:'Airport Forms Explained, with Blank Samples',lead:'The forms used at the check-in counter, the gate and the baggage office: when each one is used, why it is needed, what goes on it and what to watch out for. Each entry comes with a blank sample form you can adapt.',ph:'Search forms',when:'When it is used',why:'Why it is needed',fields:'Main fields',caut:'Watch out for',ret:'Retention',show:'Show sample form',hide:'Hide sample',print:'Print sample',sub:'Sample form (adapt it to your own airline’s rules)',sign:['Passenger signature','Staff signature','Date'],btn:'',foot:'© Aviation Career Note — These samples are general examples. Follow your airline’s rules for the actual forms and retention periods.'}};
+(function(){var E=window.FORMS_EN||{};DATA.forEach(function(c){var e=E[c.id];if(!e)return;c.en=e.name;c.den=e.desc;c.items.forEach(function(it,i){if(e.items[i])it.en=e.items[i]})})})();
+var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};function langBar(cb){var g=document.getElementById('lang');g.innerHTML=LANGS.map(function(l){return '<button type="button" data-l="'+l+'" lang="'+l+'" class="'+(l===lang?'on':'')+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}cb()}})}
+var lang='ja';try{var _s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(_s)>=0)lang=_s}catch(e){}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function $(i){return document.getElementById(i)}
+function render(){var t=T[lang],q=$('q').value.trim().toLowerCase();
+ document.body.className=lang;document.documentElement.lang=lang;['kick','ttl','lead','foot'].forEach(function(i){$(i).textContent=t[i]});langBar(render);$('q').placeholder=t.ph;
+ $('nav').innerHTML=DATA.map(function(c,i){return '<a href="#'+c.id+'">'+(i+1)+'. '+esc(c[lang])+'</a>'}).join('');
+ var h='';
+ DATA.forEach(function(c,ci){var its=c.items.filter(function(it){if(!q)return true;return JSON.stringify(it).toLowerCase().indexOf(q)>=0});if(!its.length)return;
+  h+='<section id="'+c.id+'"><h2>'+(ci+1)+'. '+esc(c[lang])+'</h2><p class="cdesc">'+esc(lang==='ja'?c.dja:lang==='ko'?c.dko:c.den)+'</p>';
+  its.forEach(function(it,ii){var d=it[lang]||it.ja,o=lang==='ja'?it.ko:it.ja,id=c.id+'-'+ii;
+   h+='<article class="form"><div class="top"><b><span class="no">'+(ci+1)+'-'+(ii+1)+'</span>'+esc(d.n)+'</b><span class="alt">'+esc(o.n)+'</span></div>'+
+   '<div class="grid"><b>'+t.when+'</b><span>'+esc(d.w)+'</span><b>'+t.why+'</b><span>'+esc(d.y)+'</span><b>'+t.fields+'</b><span><ul class="fields">'+d.f.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></span><b>'+t.ret+'</b><span>'+esc(d.r)+'</span></div>'+
+   '<p class="warn"><b>'+t.caut+'</b>　'+esc(d.c)+'</p>'+
+   '<div class="bar"><button type="button" data-t="'+id+'" class="tg">'+t.show+'</button><button type="button" data-p="'+id+'" class="pr">'+t.print+'</button></div>'+
+   '<div class="sheet" id="s-'+id+'"><h3>'+esc(d.n)+'</h3><p class="sub">'+esc(o.n)+'　／　'+t.sub+'</p><table>'+d.f.map(function(x,fi){return '<tr><th>'+esc(x)+'<br><small>'+esc(o.f[fi]||'')+'</small></th><td></td></tr>'}).join('')+'</table><div class="sign">'+t.sign.map(function(s){return '<span>'+s+'：＿＿＿＿＿＿＿＿</span>'}).join('')+'</div></div></article>'});
+  h+='</section>'});
+ $('main').innerHTML=h;
+ Array.prototype.forEach.call(document.querySelectorAll('.tg'),function(b){b.onclick=function(){var s=$('s-'+b.getAttribute('data-t'));s.classList.toggle('open');b.textContent=s.classList.contains('open')?t.hide:t.show}});
+ Array.prototype.forEach.call(document.querySelectorAll('.pr'),function(b){b.onclick=function(){var s=$('s-'+b.getAttribute('data-p'));Array.prototype.forEach.call(document.querySelectorAll('.sheet'),function(x){x.classList.remove('printing')});s.classList.add('open','printing');window.print();setTimeout(function(){s.classList.remove('printing')},500)}});}
+$('q').oninput=render;
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

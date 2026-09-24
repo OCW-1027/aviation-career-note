@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>空港キャリアノート（仮称）― 空港・航空の仕事を学び、探す</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.hero{position:relative;overflow:hidden;background:linear-gradient(170deg,#8cc8f5 0%,#2F8FE0 70%);color:#fff;border-radius:26px;padding:44px 30px 36px}
+.hero h1{font-size:clamp(28px,5vw,46px);line-height:1.25;margin:0 0 12px}
+.hero p{max-width:56ch;margin:0 0 22px;font-size:17px;opacity:.96}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.cta a{text-decoration:none;border-radius:14px;padding:12px 20px;font-weight:700}
+.cta .pri{background:#fff;color:#1d5fa0}
+.cta .sec{border:2px solid #fff;color:#fff}
+.hero .sun{position:absolute;right:34px;top:30px;width:70px;height:70px;border-radius:50%;background:#FFE08A;opacity:.9}
+.hero .cloud{position:absolute;right:70px;top:78px;width:150px;height:38px;border-radius:30px;background:#fff;opacity:.85}
+.hero .cloud::before{content:"";position:absolute;left:30px;top:-22px;width:70px;height:50px;border-radius:50%;background:#fff}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px;font-size:14px}
+.stats b{display:block;font-size:26px;font-family:'Zen Maru Gothic',sans-serif}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.pass{display:grid;grid-template-columns:1fr 92px;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg)}
+.pass .main{padding:14px 16px}
+.pass .who{font-size:12px;color:var(--sub)}
+.pass b{display:block;font-size:17px;margin:2px 0 4px;font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif}
+.pass .d{font-size:13px;color:var(--sub)}
+.pass .stub{border-left:2px dashed var(--line);background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px}
+.pass .stub .code{font-weight:900;font-size:18px;letter-spacing:.04em;color:#1d5fa0}
+.pass .stub small{font-size:11px;color:var(--sub)}
+.pass:hover{border-color:var(--sky)}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.tool{text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--card)}
+.tool b{display:block;margin-bottom:4px}
+.tool span{font-size:13px;color:var(--sub)}
+.jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.job{border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.job .co{font-size:12px;color:var(--sub)}
+.job b{display:block;margin:2px 0 6px}
+.chip{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 10px;margin:2px 4px 0 0}
+.sample{font-size:11px;color:#fff;background:var(--warn);border-radius:6px;padding:0 6px;margin-left:6px}
+.biz{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border:2px solid var(--sky);border-radius:20px;padding:20px 22px;background:var(--sky2)}
+.biz a{text-decoration:none;background:var(--sky);color:#fff;border-radius:12px;padding:10px 18px;font-weight:700}
+.more{display:inline-block;margin-top:10px}
+@media (max-width:640px){.hero .sun,.hero .cloud{display:none}}
+/* 注目の求人（ローリングバナー） */
+.jobroll{margin:0 0 18px}
+.jr-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 8px}
+.jr-head b{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:19px}
+.jr-head a{font-size:14px}
+.jr-view{position:relative;overflow:hidden;border-radius:20px;border:2px solid var(--sky);background:var(--bg)}
+.jr-track{display:flex;transition:transform .5s ease}
+@media (prefers-reduced-motion:reduce){.jr-track{transition:none}}
+.jr-slide{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:1fr auto;gap:10px 22px;align-items:center;padding:18px 24px 46px;text-decoration:none;color:inherit;border-left:8px solid var(--acc,#2F8FE0);box-sizing:border-box}
+.jr-slide .co{font-size:13px;color:var(--sub)}
+.jr-slide h3{margin:4px 0 8px;font-size:clamp(18px,2.6vw,24px);line-height:1.35;border:0;padding:0}
+.jr-slide .wage{margin-top:6px;font-weight:700;color:#1d5fa0}
+.jr-slide .go{background:var(--sky);color:#fff;border-radius:12px;padding:10px 18px;font-weight:700;white-space:nowrap}
+.jr-ctl{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;align-items:center;gap:8px;pointer-events:none}
+.jr-ctl button{pointer-events:auto;cursor:pointer;border:0;background:transparent;padding:6px;line-height:0}
+.jr-ctl .dot{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+.jr-ctl button.on .dot{background:var(--sky);width:22px;border-radius:6px}
+.jr-ctl .arw{font-size:18px;line-height:1;color:var(--sub);padding:2px 8px}
+@media (max-width:640px){.jr-slide{grid-template-columns:1fr;padding:16px 18px 46px}.jr-slide .go{justify-self:start}}
+/* ヒーローを小さく、注目の求人を大きく */
+.hero{padding:24px 28px 22px;border-radius:22px}
+.hero h1{font-size:clamp(22px,3.4vw,32px);margin:0 0 6px}
+.hero p{font-size:15px;margin:0 0 14px;max-width:70ch}
+.hero .cloud{display:none}.hero .sun{width:46px;height:46px;top:22px;right:28px}
+.hero .bottom{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center}
+.hero .cta a{padding:9px 16px}
+.stats{margin-top:0;gap:18px;font-size:13px}.stats b{display:inline;font-size:20px;margin-right:4px}
+.jobroll{margin:20px 0 8px}
+.jr-slide{grid-template-columns:minmax(0,40%) 1fr;gap:0;padding:0;min-height:290px;align-items:stretch;border-left:0}
+.jr-pic{background:var(--sky2) center/cover no-repeat;min-height:290px}
+.jr-body{padding:28px 34px 62px;min-width:0;box-shadow:inset 6px 0 0 var(--acc,#2F8FE0)}
+.jr-body .go{display:inline-block;margin-top:16px}
+.jr-logo{height:26px;width:auto;vertical-align:middle;margin-right:8px}
+.jr-slide h3{font-size:clamp(22px,3.2vw,32px);margin:6px 0 12px}
+.jr-slide .desc{margin:12px 0 0;color:var(--sub);font-size:15px;max-width:62ch}
+.jr-slide .go{padding:14px 26px;font-size:17px}
+@media (max-width:640px){.hero{padding:20px 20px 18px}.jr-slide{grid-template-columns:1fr;min-height:0}.jr-pic{min-height:170px}.jr-body{padding:18px 20px 54px;box-shadow:inset 0 6px 0 var(--acc,#2F8FE0)}.jr-slide .desc{font-size:14px}}
+</style>
+</head>
+<body data-page="home">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap">
+<section class="hero"><div class="sun"></div><div class="cloud"></div>
+<h1 id="h1"></h1><p id="hp"></p>
+<div class="bottom"><div class="cta"><a class="pri" href="#learn" id="c1"></a><a class="sec" href="jobs.html" id="c2"></a></div>
+<div class="stats" id="stats"></div></div></section>
+<section class="jobroll" id="jobroll" aria-roledescription="carousel"><div class="jr-head"><b id="hj"></b><a href="jobs.html" id="jm"></a></div><div class="jr-view" id="jrView"><div class="jr-track" id="jrTrack"></div><div class="jr-ctl" id="jrCtl"></div></div></section>
+<section id="learn"><h2 id="hl"></h2><p class="lead" id="ll"></p><div class="grid" id="series"></div></section>
+<section id="tools"><h2 id="ht"></h2><div class="tools" id="toolBox"></div></section>
+<section><h2 id="hb"></h2><div class="biz"><div><b id="bt"></b><div id="bd" class="lead"></div></div><a href="../7_구인게재_기업용/求人掲載のご案内.html" id="bl"></a></div></section>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+<script src="data/jobs.js"></script>
+<script>
+var SERIES=[
+{p:'../1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html',code:'GND',n:60,ja:['旅客運送の現場で働く人・目指す人','航空旅客運送の実務','カウンター・ゲート・手荷物・イレギュラー・搭載管理まで、旅客運送の実務を体系的に'],ko:['여객운송 현장에서 일하는 사람·지망자','항공 여객운송 실무','카운터·게이트·수하물·비정상·탑재관리까지 여객운송 실무를 체계적으로'],en:['Passenger operations staff and applicants','Airline Passenger Operations','Counters, gates, baggage, irregular operations and load control, set out systematically']},
+{p:'../16_스테이션운영실무/00_シリーズ全体_ステーション運営.html',code:'STN',n:15,ja:['運送総括・マネージャーを目指す人','ステーション運営の実務','定時性・支店評価・ハンドリング会社の管理・総括の姿勢'],ko:['운송 총괄·매니저를 목표로 하는 사람','스테이션 운영 실무','정시성·지점 평가·조업사 관리·총괄의 자세'],en:['Aspiring duty managers','Station Operations in Practice','On-time performance, station evaluation, managing your handler and the duty manager’s mindset']},
+{p:'../17_일본주요공항가이드/00_シリーズ全体_日本の主要空港.html',code:'APT',n:9,ja:['空港で働く人・赴任する人','日本の主要空港ガイド','成田・羽田・関西・伊丹・中部・福岡・新千歳・那覇の特徴と今後の計画'],ko:['공항에서 일하거나 부임하는 사람','일본 주요 공항 가이드','나리타·하네다·간사이·이타미·주부·후쿠오카·신치토세·나하의 특징과 향후 계획'],en:['Anyone working at or posted to a Japanese airport','Guide to Japan’s Major Airports','Narita, Haneda, Kansai, Itami, Chubu, Fukuoka, New Chitose and Naha: features and future plans']},
+{p:'../2_일본취항지점개설가이드/00_シリーズ全体_日本就航支店開設ガイド.html',code:'OPN',n:35,ja:['外国の航空会社・支店の開設担当','日本就航・支店開設ガイド','許認可・登記・空港の契約・システム・保安・初便・営業の定着まで'],ko:['외국 항공사·지점 개설 담당','일본 취항·지점 개설 가이드','인허가·등기·공항 계약·시스템·보안·첫 편·영업 정착까지'],en:['Foreign airlines opening a station','Launching Flights to Japan','Licenses, registration, airport contracts, systems, security, the first flight and steady sales']},
+{p:'../3_현장사례/00_シリーズ全体_現場の事例.html',code:'IRR',n:12,ja:['現場の判断を学びたい人','現場の事例から学ぶ','空港の閉鎖、当日欠航、ターミナル移転、給油、監査'],ko:['현장 판단을 배우고 싶은 사람','현장 사례로 배우기','공항 폐쇄, 당일 결항, 터미널 이전, 급유, 감사'],en:['Anyone learning front-line judgment','Lessons from the Field','Airport closures, same-day cancellations, terminal moves, fuel supply and audits']},
+{p:'../5_면접대비가이드/00_シリーズ全体_面接対策.html',code:'INT',n:12,ja:['就職・転職の準備中の人','航空・空港の面接対策','面接官の視点、よく聞かれる質問、場面の質問、語学'],ko:['취업·이직 준비 중인 사람','항공·공항 면접 대비','면접관 관점, 자주 나오는 질문, 상황 질문, 어학'],en:['Job seekers and career changers','Interview Prep for Airline and Airport Jobs','The interviewer’s view, common questions, situational questions and languages']},
+{p:'../6_항공화물입문/00_シリーズ全体_航空貨物入門.html',code:'CGO',n:23,ja:['貨物・フォワーダーを目指す人','航空貨物 入門','運送状・ULD・危険物・コールドチェーン・精密機械'],ko:['화물·포워더를 목표로 하는 사람','항공화물 입문','운송장·ULD·위험물·콜드체인·정밀기계'],en:['Aiming for cargo or forwarding','Air Cargo Basics','Air waybills, ULDs, dangerous goods, cold chain and precision machinery']},
+{p:'../13_항공영업입문/00_シリーズ全体_航空営業入門.html',code:'SLS',n:12,ja:['航空営業・旅行業界の人','航空営業 入門','日本市場、旅行会社、GDS・BSP、運賃と収入管理'],ko:['항공 영업·여행업계 사람','항공 영업 입문','일본 시장, 여행사, GDS·BSP, 운임과 수익 관리'],en:['Airline sales and the travel trade','Airline Sales Basics','The Japanese market, travel agencies, GDS and BSP, fares and revenue management']},
+{p:'../11_주재원일본가이드/00_シリーズ全体_駐在員ガイド.html',code:'EXP',n:12,ja:['日本に赴任する駐在員と家族','外国企業の駐在員のための日本ガイド','在留資格・住まい・学校・税金・帰任'],ko:['일본에 부임하는 주재원과 가족','외국 기업 주재원 일본 가이드','재류자격·주거·학교·세금·귀임'],en:['Expatriates moving to Japan, and their families','Expat Guide to Japan','Visas, housing, schools, taxes and returning home']},
+{p:'../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',code:'ADM',n:15,ja:['日本支店の管理担当','外資系企業の日本支店 人事・財務の実務','雇用・保険・資金・税務・予算・規程'],ko:['일본 지점 관리 담당','외국계 기업 일본 지점 인사·재무 실무','고용·보험·자금·세무·예산·규정'],en:['Running a Japan branch','HR and Finance in Japan','Employment, insurance, cash, tax, budgets and internal rules']},
+{p:'../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',code:'HOV',n:9,ja:['管理職につく人・交代する人','管理者の引き継ぎ・着任ガイド','引き継ぎ書・業務分掌表・分野ごとの引き継ぎ・着任後30日'],ko:['관리직이 되는 사람·교체되는 사람','관리자 인수인계·부임 가이드','인계서·업무 분장표·분야별 인계·부임 후 30일'],en:['New managers and those handing over','Handing Over and Taking Over: A Guide for Managers','Handover documents, tables of duties, handover by area and your first 30 days in a new post']}];
+var TOOLS=[
+{p:'../1_지상직여객운송입문/搭載計算の練習.html',ja:['搭載計算の練習','架空の機材20種で、重量・余裕・重心を計算してみる'],ko:['탑재 계산 연습','가상 기종 20종으로 중량·여유·무게중심을 계산해 보기'],en:['Load Control Practice','Calculate weights, underload and balance on 20 fictional aircraft']},
+{p:'../遅延コード一覧_IATA.html',ja:['IATA遅延コード一覧','世界共通の標準コード00〜99（AHM730）'],ko:['IATA 지연 코드 목록','세계 공통 표준 코드 00~99 (AHM730)'],en:['IATA Delay Codes','The worldwide standard codes 00–99 (AHM730)']},
+{p:'../用語集_航空用語.html',ja:['航空用語集','日本語・韓国語・英語で引ける空港と航空の用語'],ko:['항공 용어집','일본어·한국어·영어로 찾는 공항과 항공 용어'],en:['Aviation Glossary','Airport and airline terms in English, Japanese and Korean']},
+{p:'../確認クイズ_航空の仕事.html',ja:['確認クイズ','記事の内容を問題で確かめる'],ko:['확인 퀴즈','기사 내용을 문제로 확인'],en:['Quick Quiz','Check what you learned from the articles']},
+{p:'../4_공항안내방송예문집/空港アナウンス文例集.html',ja:['空港アナウンス文例集','日本語・韓国語・英語の案内の文例'],ko:['공항 안내방송 예문집','일본어·한국어·영어 안내 예문'],en:['Announcement Phrasebook','Sample announcements in English, Japanese and Korean']},
+{p:'../10_공항양식해설집/空港で使う書類と様式.html',ja:['空港で使う書類と様式','書類の解説と、印刷できる見本の様式'],ko:['공항에서 쓰는 서류와 양식','서류 해설과 인쇄 가능한 견본 양식'],en:['Airport Forms Explained','What each form is for, with printable blank samples']},
+{p:'../14_승객FAQ/よくある質問_空港と飛行機.html',ja:['よくある質問','手荷物・特別な対応・遅延・出入国'],ko:['자주 묻는 질문','수하물·특별 대응·지연·출입국'],en:['Passenger FAQ','Baggage, special assistance, delays and immigration']}];
+var T={ja:{h1:'航空の仕事を学び、次のキャリアを見つける。',hp:'空港・航空会社・貨物・営業・支店の運営まで、航空の仕事を一から学べる教科書と、航空業界の求人。',c1:'記事を読む',c2:'求人を見る',stats:[['記事',0],['シリーズ',0],['資料・ツール',0]],hl:'講座',ll:'目的に合わせて、講座を選んでください。',ht:'資料・ツール',hj:'注目の求人',jm:'すべての求人を見る →',go:'詳しく見る',prev:'前の求人',nextj:'次の求人',hb:'企業の方へ',bt:'航空・空港の人材の求人を掲載しませんか',bd:'航空の仕事を学んでいる人に、求人を直接届けます。',bl:'掲載のご案内',arts:'本',sample:'見本',none:'現在、掲載中の求人はありません。'},
+ko:{h1:'항공의 일을 배우고, 다음 커리어를 찾다.',hp:'공항·항공사·화물·영업·지점 운영까지, 항공 일을 처음부터 배울 수 있는 교과서와 항공업계 구인.',c1:'기사 읽기',c2:'구인 보기',stats:[['기사',0],['시리즈',0],['자료',0]],hl:'강좌',ll:'목적에 맞는 강좌를 골라 보세요.',ht:'자료실',hj:'주목 구인',jm:'모든 구인 보기 →',go:'자세히 보기',prev:'이전 구인',nextj:'다음 구인',hb:'기업 담당자께',bt:'항공·공항 인재 구인을 게재해 보세요',bd:'항공 일을 배우고 있는 사람에게 구인을 직접 전합니다.',bl:'게재 안내',arts:'편',sample:'견본',none:'현재 게재 중인 구인이 없습니다.'},
+en:{h1:'Learn aviation. Find your next move.',hp:'Textbooks covering the whole of aviation work — airports, airlines, cargo, sales and running a station — plus jobs across the industry.',c1:'Start reading',c2:'See jobs',stats:[['Articles',0],['Series',0],['Resources',0]],hl:'Courses',ll:'Choose the course that fits what you need.',ht:'Resources',hj:'Featured jobs',jm:'See all jobs →',go:'View job',prev:'Previous job',nextj:'Next job',hb:'For employers',bt:'Post your aviation and airport jobs here',bd:'Reach people who are actively learning aviation work.',bl:'How it works',arts:'articles',sample:'Sample',none:'There are no jobs posted at the moment.'}};
+function $(i){return document.getElementById(i)}
+window.render=function(lang){var t=T[lang],E=window.SITE_ESC,total=SERIES.reduce(function(a,s){return a+s.n},0);
+ document.title=window.SITE_NAME()+(lang==='ja'?'（仮称）':lang==='ko'?' (가칭)':' (working title)');
+ $('h1').innerHTML=E(t.h1).replace('\n','<br>');$('hp').textContent=t.hp;$('c1').textContent=t.c1;$('c2').textContent=t.c2;
+ $('stats').innerHTML=[[t.stats[0][0],total],[t.stats[1][0],SERIES.length],[t.stats[2][0],TOOLS.length]].map(function(s){return '<div><b>'+s[1]+'</b>'+E(s[0])+'</div>'}).join('');
+ ['hl','ll','ht','hj','jm','hb','bt','bd','bl'].forEach(function(k){$(k).textContent=t[k]});
+ $('series').innerHTML=SERIES.map(function(s){var d=s[lang]||s.ja;return '<a class="pass" href="'+s.p+'"><div class="main"><div class="who">'+E(d[0])+'</div><b>'+E(d[1])+'</b><div class="d">'+E(d[2])+'</div></div><div class="stub"><span class="code">'+s.code+'</span><small>'+s.n+' '+t.arts+'</small></div></a>'}).join('');
+ $('toolBox').innerHTML=TOOLS.map(function(x){var d=x[lang]||x.ja;return '<a class="tool" href="'+x.p+'"><b>'+E(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
+ var J=(window.JOBS||[]).slice().sort(function(a,b){return (b.posted||'')<(a.posted||'')?-1:1}).slice(0,5),ACC=['#2F8FE0','#2C8C8C','#E08A2F','#7A5CC7','#D0506A'];
+ $('jobroll').style.display=J.length?'':'none';
+ $('jrTrack').innerHTML=J.map(function(j,i){var d=j[lang]||j.en||j.ja;return '<a class="jr-slide" style="--acc:'+ACC[i%ACC.length]+'" href="jobs.html#'+E(j.id)+'" aria-roledescription="slide" aria-label="'+(i+1)+' / '+J.length+'"><div class="jr-pic" role="img" aria-label="'+E(j.imgAlt||d.title)+'" style="background-image:url(\''+E(j.img||'assets/jobs/counter.svg')+'\')"></div><div class="jr-body"><div class="co">'+(j.logo?'<img class="jr-logo" src="'+E(j.logo)+'" alt="">':'')+E(d.company)+(j.sample?'<span class="sample">'+t.sample+'</span>':'')+'</div><h3>'+E(d.title)+'</h3><span class="chip">'+E(d.job)+'</span><span class="chip">'+E(d.place)+'</span><span class="chip">'+E(d.emp)+'</span>'+(d.wage?'<div class="wage">'+E(d.wage)+'</div>':'')+(d.desc?'<p class="desc">'+E(d.desc)+'</p>':'')+'<span class="go">'+t.go+'</span></div></a>'}).join('');
+ $('jrCtl').innerHTML=J.length>1?'<button type="button" class="arw" data-d="-1" aria-label="'+t.prev+'">‹</button>'+J.map(function(j,i){return '<button type="button" data-i="'+i+'" aria-label="'+(i+1)+'"><span class="dot"></span></button>'}).join('')+'<button type="button" class="arw" data-d="1" aria-label="'+t.nextj+'">›</button>':'';
+ window.JR&&window.JR.init(J.length);};
+(function(){var n=0,cur=0,timer=null,hold=false,reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function $(i){return document.getElementById(i)}
+ function show(i){if(!n)return;cur=(i+n)%n;$('jrTrack').style.transform='translateX('+(-cur*100)+'%)';Array.prototype.forEach.call($('jrCtl').querySelectorAll('button[data-i]'),function(b){b.classList.toggle('on',+b.getAttribute('data-i')===cur)})}
+ function play(){clearInterval(timer);if(n>1&&!reduce)timer=setInterval(function(){if(!hold&&!document.hidden)show(cur+1)},6000)}
+ window.JR={init:function(len){n=len;if(cur>=n)cur=0;show(cur);play();
+  Array.prototype.forEach.call($('jrCtl').querySelectorAll('button'),function(b){b.onclick=function(){if(b.hasAttribute('data-i'))show(+b.getAttribute('data-i'));else show(cur+(+b.getAttribute('data-d')));play()}})}};
+ document.addEventListener('DOMContentLoaded',function(){var v=$('jrView'),x0=null;if(!v)return;
+  v.addEventListener('mouseenter',function(){hold=true});v.addEventListener('mouseleave',function(){hold=false});
+  v.addEventListener('focusin',function(){hold=true});v.addEventListener('focusout',function(){hold=false});
+  v.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;hold=true},{passive:true});
+  v.addEventListener('touchend',function(e){if(x0!==null){var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){show(cur+(dx<0?1:-1));play()}}x0=null;hold=false},{passive:true});});
+})();
+</script>
+<script src="assets/site.js"></script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

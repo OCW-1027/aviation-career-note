@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>よくある質問 ― 空港と飛行機</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#2F8FE0;--sky2:#E7F1FC;--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--hl:#FFE08A}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d;--sky2:#17324d}}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Noto Sans KR',sans-serif;line-height:1.75}
+body.ko{font-family:'Noto Sans KR','Noto Sans JP',sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+header{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:22px;padding:28px 24px;position:relative}
+header h1{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:clamp(22px,4vw,32px);margin:6px 0}
+header p{margin:0;max-width:62ch;opacity:.95}
+.langs{position:absolute;top:16px;right:16px;display:inline-flex;border-radius:999px;overflow:hidden;background:#fff}.langs button{border:0;background:transparent;color:#1d5fa0;font:700 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px;cursor:pointer}.langs button+button{border-left:1px solid #d6e6f6}.langs button.on{background:#FFE08A;color:#3A2A00}
+html[lang="en"] body{font-family:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:18px -18px 0;padding:10px 18px;display:flex;gap:8px;overflow-x:auto}
+nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px}
+.tools{margin:16px 0 4px}.tools input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:var(--card);color:var(--ink)}
+.cnt{color:var(--sub);font-size:13px;margin:6px 2px}
+h2{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-size:21px;margin:32px 0 10px;padding-bottom:6px;border-bottom:3px solid var(--sky)}
+details{border:1px solid var(--line);border-radius:14px;margin:8px 0;background:var(--bg)}
+summary{cursor:pointer;padding:12px 16px;font-weight:700;list-style:none;display:flex;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary .q{color:var(--sky);flex:0 0 auto}
+details[open] summary{background:var(--card);border-bottom:1px solid var(--line);border-radius:14px 14px 0 0}
+.ans{padding:12px 16px 14px;display:flex;gap:10px}
+.ans .a{color:#1f7a45;font-weight:700;flex:0 0 auto}
+.ans p{margin:0}
+.more{display:inline-block;margin-top:6px;font-size:13px;color:#1d5fa0}
+.star{color:#C2417A;font-size:12px;margin-left:4px}
+summary:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+footer{margin-top:40px;color:var(--sub);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<nav id="nav"></nav>
+<div class="tools"><input id="q" type="search"><div class="cnt" id="cnt"></div></div>
+<main id="main"></main>
+<footer id="foot"></footer>
+</div>
+<script src="faq_data.js"></script>
+<script>
+var S1='../1_지상직여객운송입문/view.html?no=';
+var T={ja:{kick:'航空キャリアノート ｜ 空港と飛行機',ttl:'よくある質問 ― 空港と飛行機',lead:'チェックイン、手荷物、特別な対応、ペット、遅延・欠航、出入国、忘れ物、国際線の旅行について、よく聞かれる質問にお答えします。規則は航空会社・時期で違うため、最終的にはご利用の航空会社の案内を確認してください。',ph:'質問を検索（例：バッテリー、ペット、欠航）',n:'件',star:'※航空会社・時期で異なります',more:'詳しい解説を読む →',foot:'© 航空キャリアノート — ここでの回答は一般的な案内です。規則・条件はご利用の航空会社と各国の公的な案内をご確認ください。'},
+ko:{kick:'항공 커리어 노트 ｜ 공항과 비행기',ttl:'자주 묻는 질문 — 공항과 비행기',lead:'체크인, 수하물, 특별 대응, 반려동물, 지연·결항, 출입국, 분실물, 국제선 여행에 대해 자주 받는 질문에 답합니다. 규정은 항공사·시기마다 다르므로 최종적으로는 이용하시는 항공사 안내를 확인하세요.',ph:'질문 검색 (예: 배터리, 반려동물, 결항)',n:'건',star:'※항공사·시기마다 다름',more:'자세한 해설 읽기 →',foot:'© 항공 커리어 노트 — 여기 답변은 일반적인 안내입니다. 규정·조건은 이용하시는 항공사와 각국 공적 안내를 확인하세요.'},
+en:{kick:'Aviation Career Note | Airports and Flying',ttl:'FAQ: Airports and Flying',lead:'Answers to common questions about check-in, baggage, special assistance, pets, delays and cancellations, entry and departure, lost property and international travel via Japan. Rules differ by airline and change over time, so always check with your airline.',ph:'Search questions (e.g. battery, pet, cancellation)',n:' questions',star:'* Varies by airline and time',more:'Read the detailed article →',foot:'© Aviation Career Note — These answers are general guidance. Check your airline and official government information for current rules.'}};
+var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
+function langBar(cb){var g=document.getElementById('lang');g.innerHTML=LANGS.map(function(l){return '<button type="button" data-l="'+l+'" lang="'+l+'" class="'+(l===lang?'on':'')+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}cb()}})}
+var lang='ja';try{var _s=localStorage.getItem('art-lang');if(LANGS.indexOf(_s)>=0)lang=_s}catch(e){}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function $(i){return document.getElementById(i)}
+function render(){var t=T[lang],q=$('q').value.trim().toLowerCase(),n=0;
+ document.body.className=lang;document.documentElement.lang=lang;['kick','ttl','lead','foot'].forEach(function(i){$(i).textContent=t[i]});langBar(render);$('q').placeholder=t.ph;
+ $('nav').innerHTML=DATA.map(function(c){return '<a href="#'+c.id+'">'+esc(c[lang])+'</a>'}).join('');
+ var h='';
+ DATA.forEach(function(c){var its=c.items.filter(function(it){if(!q)return true;return (it.ja.join('')+it.ko.join('')+it.en.join('')).toLowerCase().indexOf(q)>=0});if(!its.length)return;n+=its.length;
+  h+='<section id="'+c.id+'"><h2>'+esc(c[lang])+'</h2>'+its.map(function(it){var d=it[lang];
+   return '<details'+(q?' open':'')+'><summary><span class="q">Q</span><span>'+esc(d[0])+(it.s?'<span class="star">'+t.star+'</span>':'')+'</span></summary><div class="ans"><span class="a">A</span><p>'+esc(d[1])+(it.l?'<br><a class="more" href="'+S1+it.l+'">'+t.more+'</a>':'')+'</p></div></details>'}).join('')+'</section>'});
+ $('main').innerHTML=h;$('cnt').textContent=n+t.n;}
+$('q').oninput=render;
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>地上職・旅客運送 入門</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/article.css">
+</head>
+<body>
+<header class="board"><div class="board-top"><a class="series" id="series"></a><button class="lang" id="langBtn" type="button"></button></div>
+<div class="hero"><svg class="clouds" viewBox="0 0 150 70" aria-hidden="true"><g fill="#fff"><ellipse cx="40" cy="44" rx="34" ry="14"/><ellipse cx="66" cy="34" rx="26" ry="20"/><ellipse cx="96" cy="46" rx="30" ry="12"/></g><circle cx="128" cy="18" r="14" fill="#FFE08A"/></svg>
+<div class="info" id="info"></div><h1 id="title"></h1><p class="subtitle" id="subtitle"></p></div></header>
+<main id="main"></main>
+<footer id="foot"></footer>
+<script id="content" type="application/json">
+{
+"meta":{"no":"0-3","from":"NRT","to":"ICN","date":"2026.09","home":"00_シリーズ全体_地上職旅客運送入門.html","file":"0-3_1便が飛ぶまで.html"},
+"ja":{
+"series":"航空旅客運送の実務","part":"Part 0 オリエンテーション",
+"title":"1便が飛ぶまで ― 出発便のタイムライン","hl":"タイムライン",
+"subtitle":"カウンターと機体のまわりで、同じ時刻に何が起きているのか",
+"lead":["定刻に飛行機が動き出す。その数秒のために、地上では数時間前から何十人もの人が同時に動いています。お客様の流れと機体の準備、2つの流れがぴったり合ったとき、はじめて定時出発ができます。","ここでは国際線の出発便を例に、出発予定時刻（STD）から逆算して、旅客側と機体側で何が起きているかを並べてみます。"],
+"sections":[
+{"h":"出発便のタイムライン","blocks":[
+{"t":"timeline","lanes":["旅客側（カウンター・ゲート）","機体側（ランプ・整備）"],"marks":[
+{"time":"前日まで","a":"予約・座席の最終確認、車いすなど特別対応の事前手配","b":"運航計画の確定、搭載予定（手荷物・貨物）の把握"},
+{"time":"STD-3h","a":"ブリーフィング、カウンター準備・オープン","b":"到着便の受け入れ準備、スポット・車両の確認"},
+{"time":"STD-90m","a":"チェックイン対応、手荷物の受託","b":"機体到着・降機、取り降ろし、清掃・機内食・給油・点検"},
+{"time":"STD-60m","a":"チェックイン締め切り（国際線の目安）","b":"手荷物・貨物の搭載、重量・重心の計算"},
+{"time":"STD-40m","a":"搭乗開始（優先搭乗から）","b":"客室準備の完了確認、搭載の最終確認"},
+{"time":"STD-15m","a":"搭乗締め切り、未搭乗のお客様の捜索・オフロード判断","b":"ロードシートの確定、機長への引き渡し"},
+{"time":"STD-5m","a":"ドアクローズ、乗務員への書類引き継ぎ","b":"搭乗橋の離脱、プッシュバックの準備"},
+{"time":"STD","a":"締め作業：ノーショー整理、日報","b":"プッシュバック、出発"},
+{"time":"出発後","a":"出発実績の報告","b":"到着地への運航情報の送信"}]},
+{"t":"note","x":"※ 時刻は一般的な目安です。航空会社・空港・機材・便の状況によって異なります。"}]},
+{"h":"定時出発を支える4つのチーム","blocks":[
+{"t":"rows","items":[
+{"name":"カウンター","x":"受付の締め切りを守り、手荷物の個数と重さを正確に機体側へつなぐ"},
+{"name":"ゲート","x":"搭乗の順番と人数を管理し、最後の1人まで確認する"},
+{"name":"ランプ","x":"決められた順序と時間で、安全に搭載・取り降ろしを行う"},
+{"name":"ロードコントロール","x":"重量と重心を計算し、安全に飛べる搭載かを確かめる"}]},
+{"t":"point","x":"多くの統計では、出発予定時刻から15分以内の出発を「定時」として扱います。どこか1か所の数分の遅れが、全体の遅れにつながります。"}]},
+{"h":"数字で見る出発便","blocks":[
+{"t":"cards","n":3,"items":[
+{"ic":"⏱","name":"約3時間","x":"カウンターオープンから出発まで（国際線の目安）"},
+{"ic":"🧳","name":"約60分前","x":"チェックイン締め切りの目安。これ以降は手荷物の搭載が間に合わない"},
+{"ic":"🚪","name":"約15分前","x":"搭乗締め切りの目安。ここから未搭乗者の捜索が本格化"}]}]},
+{"h":"動画で見る","blocks":[
+{"t":"video","title":"ANAグランドハンドリングの1日を目線カメラで","ch":"ANA","url":"https://www.youtube.com/watch?v=EfLr1yPew1k"}]}
+],
+"voice":{"h":"現場のひと言","x":"［インタビュー追加予定］定時出発のために支店が一番気を配っていたタイミングはどこか。"},
+"terms":{"h":"今日の用語","cols":["日本語","한국어","English"],"rows":[["出発予定時刻","출발 예정 시각","STD (Scheduled Time of Departure)"],["到着予定時刻","도착 예정 시각","STA (Scheduled Time of Arrival)"],["プッシュバック","푸시백","Pushback"],["ロードシート","로드시트","Loadsheet"],["オフロード","오프로드 (하기)","Offload"],["定時出発率","정시 출발률","On-Time Performance (OTP)"]]},
+"quiz":{"h":"確認クイズ","items":[
+{"q":"STDは何の略？","opts":["到着予定時刻","出発予定時刻","標準搭載重量","定時運航率"],"a":1,"exp":"Scheduled Time of Departure、出発予定時刻です。"},
+{"q":"チェックインに締め切りがある一番の理由は？","opts":["スタッフの休憩のため","手荷物の搭載と重量計算を間に合わせるため","空港の規則で決まっているから","混雑を避けるため"],"a":1,"exp":"受託手荷物を機体に積み、重量・重心を計算する時間が必要だからです。"},
+{"q":"ロードシートを最終的に受け取るのは誰？","opts":["ゲートスタッフ","機長","税関","旅行会社"],"a":1,"exp":"重量・重心の最終結果は機長に引き渡され、出発の判断材料になります。"}]},
+"next":"次回：0-4 日本の空港と韓国の空港、何が違う？"
+},
+"ko":{
+"series":"항공 여객운송 실무","part":"Part 0 오리엔테이션",
+"title":"한 편이 뜨기까지 — 출발 편 타임라인","hl":"타임라인",
+"subtitle":"카운터와 항공기 주변에서, 같은 시각에 무슨 일이 일어나고 있나",
+"lead":["정시에 비행기가 움직이기 시작하는 그 몇 초를 위해, 지상에서는 몇 시간 전부터 수십 명이 동시에 움직입니다. 승객의 흐름과 항공기 준비라는 두 흐름이 딱 맞아떨어질 때 비로소 정시 출발이 가능합니다.","여기서는 국제선 출발 편을 예로, 출발 예정 시각(STD)부터 거꾸로 계산해 여객 쪽과 항공기 쪽에서 무슨 일이 일어나는지 나란히 보겠습니다."],
+"sections":[
+{"h":"출발 편 타임라인","blocks":[
+{"t":"timeline","lanes":["여객 쪽 (카운터·게이트)","항공기 쪽 (램프·정비)"],"marks":[
+{"time":"전날까지","a":"예약·좌석 최종 확인, 휠체어 등 특별 승객 사전 준비","b":"운항 계획 확정, 탑재 예정(수하물·화물) 파악"},
+{"time":"STD-3h","a":"브리핑, 카운터 준비·오픈","b":"도착 편 수용 준비, 주기장·장비 확인"},
+{"time":"STD-90m","a":"체크인, 수하물 접수","b":"항공기 도착·하기, 수하물 하기, 청소·기내식·급유·점검"},
+{"time":"STD-60m","a":"체크인 마감 (국제선 기준)","b":"수하물·화물 탑재, 무게·균형 계산"},
+{"time":"STD-40m","a":"탑승 시작 (우선 탑승부터)","b":"객실 준비 완료 확인, 탑재 최종 확인"},
+{"time":"STD-15m","a":"탑승 마감, 미탑승 승객 수색·오프로드 판단","b":"로드시트 확정, 기장에게 전달"},
+{"time":"STD-5m","a":"도어 클로즈, 승무원에게 서류 인계","b":"탑승교 분리, 푸시백 준비"},
+{"time":"STD","a":"마감 업무: 노쇼 정리, 일일 보고","b":"푸시백, 출발"},
+{"time":"출발 후","a":"출발 실적 보고","b":"도착지에 운항 정보 송신"}]},
+{"t":"note","x":"※ 시각은 일반적인 기준입니다. 항공사·공항·기재·편 상황에 따라 다릅니다."}]},
+{"h":"정시 출발을 받치는 네 팀","blocks":[
+{"t":"rows","items":[
+{"name":"카운터","x":"접수 마감을 지키고, 수하물 개수와 무게를 정확히 항공기 쪽에 전달"},
+{"name":"게이트","x":"탑승 순서와 인원을 관리하고 마지막 한 명까지 확인"},
+{"name":"램프","x":"정해진 순서와 시간대로 안전하게 탑재·하기"},
+{"name":"탑재관리","x":"무게와 균형을 계산해 안전하게 비행할 수 있는 탑재인지 확인"}]},
+{"t":"point","x":"많은 통계에서는 출발 예정 시각부터 15분 이내 출발을 \"정시\"로 봅니다. 어느 한 곳의 몇 분 지연이 전체 지연으로 이어집니다."}]},
+{"h":"숫자로 보는 출발 편","blocks":[
+{"t":"cards","n":3,"items":[
+{"ic":"⏱","name":"약 3시간","x":"카운터 오픈부터 출발까지 (국제선 기준)"},
+{"ic":"🧳","name":"약 60분 전","x":"체크인 마감 기준. 이후에는 수하물 탑재가 시간에 맞지 않음"},
+{"ic":"🚪","name":"약 15분 전","x":"탑승 마감 기준. 여기서부터 미탑승 승객 수색이 본격화"}]}]},
+{"h":"영상으로 보기","blocks":[
+{"t":"video","title":"ANA 그라운드 핸들링의 하루 — 1인칭 카메라","ch":"ANA","url":"https://www.youtube.com/watch?v=EfLr1yPew1k"}]}
+],
+"voice":{"h":"현장 한마디","x":"[인터뷰 보강 예정] 정시 출발을 위해 지점이 가장 신경 쓴 타이밍은 어디였나."},
+"terms":{"h":"오늘의 용어","cols":["한국어","日本語","English"],"rows":[["출발 예정 시각","出発予定時刻","STD (Scheduled Time of Departure)"],["도착 예정 시각","到着予定時刻","STA (Scheduled Time of Arrival)"],["푸시백","プッシュバック","Pushback"],["로드시트","ロードシート","Loadsheet"],["오프로드 (하기)","オフロード","Offload"],["정시 출발률","定時出発率","On-Time Performance (OTP)"]]},
+"quiz":{"h":"확인 퀴즈","items":[
+{"q":"STD는 무엇의 약자일까요?","opts":["도착 예정 시각","출발 예정 시각","표준 탑재 중량","정시 운항률"],"a":1,"exp":"Scheduled Time of Departure, 출발 예정 시각입니다."},
+{"q":"체크인에 마감이 있는 가장 큰 이유는?","opts":["직원 휴식을 위해","수하물 탑재와 무게 계산 시간을 확보하기 위해","공항 규칙이라서","혼잡을 피하려고"],"a":1,"exp":"위탁 수하물을 싣고 무게·균형을 계산할 시간이 필요하기 때문입니다."},
+{"q":"로드시트를 최종적으로 받는 사람은?","opts":["게이트 직원","기장","세관","여행사"],"a":1,"exp":"무게·균형의 최종 결과는 기장에게 전달되어 출발 판단의 근거가 됩니다."}]},
+"next":"다음 편: 0-4 한국 공항과 일본 공항, 무엇이 다른가"
+},
+"en":{"series":"Airline Passenger Operations","part":"Part 0 Orientation","title":"Until a Flight Takes Off — The Departure Timeline","hl":"timeline","subtitle":"What is happening at the same moment around the counter and around the aircraft",
+"lead":["An aircraft starts to move on time. For those few seconds, dozens of people on the ground have been working in parallel for hours. Only when the flow of passengers and the preparation of the aircraft meet exactly does an on-time departure happen.","Here we take an international departure and count backwards from the scheduled time of departure (STD), setting out what happens on the passenger side and on the aircraft side."],
+"sections":[
+{"h":"The departure timeline","blocks":[{"t":"timeline","lanes":["Passenger side (counter and gate)","Aircraft side (ramp and maintenance)"],"marks":[
+{"time":"Day before","a":"Final check of bookings and seats, arranging wheelchairs and other assistance","b":"Operational plan confirmed, expected baggage and cargo load"},
+{"time":"STD-3h","a":"Briefing, preparing and opening the counter","b":"Preparing to receive the inbound aircraft, checking the stand and the vehicles"},
+{"time":"STD-90m","a":"Check-in, accepting baggage","b":"Aircraft arrives, passengers disembark, unloading, cleaning, catering, fuelling, checks"},
+{"time":"STD-60m","a":"Check-in closes (typical for international flights)","b":"Loading baggage and cargo, weight and balance calculation"},
+{"time":"STD-40m","a":"Boarding starts, with priority boarding first","b":"Cabin readiness confirmed, final load check"},
+{"time":"STD-15m","a":"Boarding closes; searching for missing passengers and deciding on offload","b":"Loadsheet finalised and handed to the captain"},
+{"time":"STD-5m","a":"Door closed, documents handed to the crew","b":"Boarding bridge removed, pushback prepared"},
+{"time":"STD","a":"Closing the flight: no-shows, daily report","b":"Pushback and departure"},
+{"time":"After departure","a":"Reporting the departure","b":"Sending operational messages to the arrival station"}]},
+{"t":"note","x":"* The times are typical examples. They differ by airline, airport, aircraft type and the situation of the flight."}]},
+{"h":"Four teams behind an on-time departure","blocks":[{"t":"rows","items":[
+{"name":"Counter","x":"Holds the check-in deadline and passes the exact number and weight of bags to the aircraft side"},
+{"name":"Gate","x":"Manages the boarding order and the head count, down to the last passenger"},
+{"name":"Ramp","x":"Loads and unloads safely, in the set order and within the set time"},
+{"name":"Load control","x":"Calculates weight and balance and confirms the aircraft can fly safely as loaded"}]},
+{"t":"point","x":"Most statistics count a departure within 15 minutes of the scheduled time as on time. A few minutes lost anywhere turns into a delay for the whole flight."}]},
+{"h":"A departure in numbers","blocks":[{"t":"cards","n":3,"items":[
+{"ic":"⏱","name":"About 3 hours","x":"From the counter opening to departure (typical international flight)"},
+{"ic":"🧳","name":"About 60 minutes","x":"Typical check-in deadline. After this, bags cannot make the flight"},
+{"ic":"🚪","name":"About 15 minutes","x":"Typical boarding deadline. The search for missing passengers steps up from here"}]}]},
+{"h":"Watch it on video","blocks":[{"t":"video","title":"A day of ground handling, filmed from the staff’s point of view","ch":"Channel being confirmed","url":"https://www.youtube.com/watch?v=EfLr1yPew1k"}]}],
+"voice":{"h":"Voice from the Field","x":"[Interview to be added] The moment in the timeline a station watches most closely to protect an on-time departure."},
+"terms":{"h":"Key Terms","cols":["English","日本語","한국어"],"rows":[["STD (Scheduled Time of Departure)","出発予定時刻","출발 예정 시각"],["STA (Scheduled Time of Arrival)","到着予定時刻","도착 예정 시각"],["Pushback","プッシュバック","푸시백"],["Loadsheet","ロードシート","로드시트"],["Offload","オフロード","오프로드 (하기)"],["On-Time Performance (OTP)","定時出発率","정시 출발률"]]},
+"quiz":{"h":"Quick Quiz","items":[
+{"q":"What does STD stand for?","opts":["Scheduled time of arrival","Scheduled time of departure","Standard load weight","On-time performance"],"a":1,"exp":"Scheduled Time of Departure."},
+{"q":"Why does check-in have a deadline?","opts":["So staff can take a break","So bags can be loaded and weight and balance calculated in time","Because the airport says so","To avoid crowding"],"a":1,"exp":"Checked bags must be loaded and the weight and balance calculated before departure."},
+{"q":"Who receives the final loadsheet?","opts":["Gate staff","The captain","Customs","The travel agency"],"a":1,"exp":"The final weight and balance figures go to the captain, who decides on departure."}]},
+"next":"Next: 0-4 How Japanese airports differ from airports elsewhere"
+}}
+</script>
+<script src="assets/article.js"></script>
+</body>
+</html>

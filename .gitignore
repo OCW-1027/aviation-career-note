@@ -1,0 +1,8 @@
+# 公開しないもの（作業メモ・旧版・Office の一時ファイル）
+*.md
+_이전판_목록페이지/
+9_다운로드_Word_PDF/
+~$*
+Thumbs.db
+desktop.ini
+.DS_Store

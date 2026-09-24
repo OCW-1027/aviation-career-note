@@ -1,0 +1,44 @@
+/* シリーズ一覧ページ共通（日本語・한국어・English） */
+:root{--sky:#2F8FE0;--sky-d:#1C6FBF;--sky-t:#E7F1FC;--ink:#22303F;--ink-2:#4A5B6E;--muted:#5F6F80;--line:#E3E9EF;--bg:#fff;--paper:#fff;--tint:#F2F8FD;--acc:#2F8FE0;
+--body:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;--disp:"Zen Maru Gothic","Noto Sans JP",sans-serif}
+html[lang="ko"]{--body:"Noto Sans KR","Noto Sans JP",sans-serif;--disp:"Gowun Dodum","Noto Sans KR",sans-serif}
+html[lang="en"]{--body:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E6EDF5;--ink-2:#C3CCD8;--muted:#A9B7C6;--line:#2C3A4B;--bg:#121A24;--paper:#18222F;--tint:#172332;--sky-t:#1B2E45}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.7;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html[lang="ko"] body{word-break:keep-all}
+a{color:var(--sky-d)}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:16px 20px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--disp);font-weight:700;font-size:15px}
+.brand i{width:32px;height:32px;border-radius:50%;background:var(--sky);display:grid;place-items:center;flex:none}
+.brand svg{width:18px;height:18px;fill:#fff;transform:rotate(45deg)}
+.langs{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper);flex:none}
+.langs button{appearance:none;cursor:pointer;border:0;background:transparent;color:var(--ink-2);font:600 13px var(--body);padding:6px 12px;min-width:44px;min-height:34px}
+.langs button+button{border-left:1px solid var(--line)}
+.langs button.on{background:var(--sky);color:#fff}
+@media (max-width:420px){.langs button{padding:6px 8px;font-size:12px;min-width:0}}
+.hero{margin-top:14px;border-radius:26px;padding:30px 30px 26px;background:linear-gradient(170deg,#EAF5FF,#fff);position:relative;overflow:hidden;border:1px solid var(--line)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero{background:linear-gradient(170deg,#1A2B40,#121A24)}}
+.hero .code{display:inline-block;font-weight:900;letter-spacing:.06em;color:#fff;background:var(--acc);border-radius:8px;padding:2px 10px;font-size:13px}
+.hero h1{font-family:var(--disp);font-size:clamp(24px,4vw,36px);line-height:1.3;margin:10px 0 10px;max-width:22em}
+.hero p{margin:0;color:var(--ink-2);max-width:62ch}
+.stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;font-size:13px;color:var(--muted)}
+.stats b{display:block;font-size:24px;color:var(--ink);font-family:var(--disp)}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:22px 0 4px;padding-bottom:4px}
+.tabs button{flex:none;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 14px;font:500 14px var(--body)}
+.tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+h2{font-family:var(--disp);font-size:20px;margin:30px 0 4px}
+.desc{margin:0 0 12px;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.card{display:grid;grid-template-columns:1fr 70px;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper)}
+.card:hover{border-color:var(--acc)}
+.card .m{padding:12px 14px}
+.card b{display:block;font-family:var(--disp);font-size:16px;line-height:1.45}
+.card .d{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.card .s{border-left:2px dashed var(--line);background:var(--tint);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-weight:800;color:var(--sky-d)}
+.card .s small{font-size:10px;font-weight:600;color:var(--muted)}
+.tag{display:inline-block;font-size:11px;font-weight:600;border-radius:6px;padding:0 6px;margin-top:6px;background:#FFF4D6;color:#7A5A00}
+footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--muted)}

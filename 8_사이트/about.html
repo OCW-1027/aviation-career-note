@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>このサイトについて</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>.tbl{display:grid;grid-template-columns:170px 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:14px}.tbl b{background:var(--sky2);padding:9px 12px;border-top:1px solid var(--line);text-align:center}.tbl span{padding:9px 14px;border-top:1px solid var(--line)}.tbl b:first-child,.tbl b:first-child+span{border-top:0}@media(max-width:640px){.tbl{grid-template-columns:1fr}}</style>
+</head>
+<body data-page="about">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap doc">
+<section class="page-hero"><h1 id="h1"></h1><p id="hp"></p></section>
+<div id="body"></div>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+<script>
+var T={ja:{h1:'このサイトについて',hp:'このサイトをつくった理由と、運営者について。',
+body:'<h2>このサイトをつくった理由</h2><p>空港の仕事は、航空会社・ハンドリング会社・空港会社・当局など、たくさんの会社と人がバトンをつなぐ仕事です。ところが、その仕事の全体を順を追って学べる教材はほとんどありません。手順は社内のマニュアルに、判断のコツは一人ひとりの経験の中にあり、担当者が替わるたびに同じ苦労が繰り返されています。</p><p>このサイトは、航空会社で長く日本の空港の現場と支店の運営に携わってきた経験をもとに、その「全体の地図」を誰でも読める形にまとめたものです。これから空港で働きたい人、今の仕事の幅を広げたい人、そして日本に就航・進出する会社の担当者に、最初の一冊として使ってもらうことを目指しています。</p><h2>大切にしていること</h2><ul><li>現場で本当に使える内容を、やさしい言葉で書くこと。</li><li>日本語・韓国語・英語の3つの言語で、同じ内容を届けること。</li><li>お客様・社員・取引先の個人の情報、会社の機密は書かないこと。</li><li>制度が変わりやすい内容には印（★）を付け、最新の情報の確認を促すこと。</li></ul><h2>運営者</h2><div class="tbl"><b>運営会社</b><span>（会社名を記載）</span><b>所在地</b><span>（所在地を記載）</span><b>代表者</b><span>（氏名を記載）</span><b>事業の内容</b><span>教育コンテンツの制作・求人情報の掲載 ほか</span><b>お問い合わせ</b><span>（メールアドレスを記載）</span></div><div class="draft">※ 運営者の情報は公開前に記入してください。</div>'},
+ko:{h1:'이 사이트에 대해',hp:'이 사이트를 만든 이유와 운영자에 대해.',
+body:'<h2>이 사이트를 만든 이유</h2><p>공항 일은 항공사·조업사·공항회사·당국 등 많은 회사와 사람이 바통을 잇는 일입니다. 그런데 그 일 전체를 순서대로 배울 수 있는 교재는 거의 없습니다. 절차는 사내 매뉴얼에, 판단의 요령은 한 사람 한 사람의 경험 속에 있어서, 담당자가 바뀔 때마다 같은 고생이 되풀이됩니다.</p><p>이 사이트는 항공사에서 오랫동안 일본 공항 현장과 지점 운영을 맡아 온 경험을 바탕으로, 그 “전체 지도”를 누구나 읽을 수 있는 형태로 정리한 것입니다. 앞으로 공항에서 일하고 싶은 사람, 지금 하는 일의 폭을 넓히고 싶은 사람, 그리고 일본에 취항·진출하는 회사의 담당자에게 첫 번째 교과서가 되는 것을 목표로 합니다.</p><h2>소중히 하는 것</h2><ul><li>현장에서 정말 쓸 수 있는 내용을 쉬운 말로 쓰기.</li><li>일본어·한국어·영어 세 언어로 같은 내용을 전하기.</li><li>승객·직원·거래처 개인정보, 회사 기밀은 쓰지 않기.</li><li>제도가 바뀌기 쉬운 내용에는 표시(★)를 붙여 최신 정보 확인을 권하기.</li></ul><h2>운영자</h2><div class="tbl"><b>운영 회사</b><span>(회사명 기재)</span><b>소재지</b><span>(소재지 기재)</span><b>대표자</b><span>(성명 기재)</span><b>사업 내용</b><span>교육 콘텐츠 제작·구인 정보 게재 외</span><b>문의</b><span>(메일 주소 기재)</span></div><div class="draft">※ 운영자 정보는 공개 전에 기입하세요.</div>'},
+en:{h1:'About this site',hp:'Why this site exists, and who runs it.',
+body:'<h2>Why this site exists</h2><p>Airport work is a relay. Airlines, ground handling companies, airport operators and the authorities all pass the baton to one another. Yet there is almost nowhere to learn the whole of that work step by step. The procedures sit in internal manuals, the judgment sits in individual people’s experience, and every time someone changes jobs the same lessons are learned again the hard way.</p><p>This site draws on long experience at an airline, running operations at Japanese airports and managing a station, to set out that whole map in a form anyone can read. It is meant to be the first textbook for people who want to work at an airport, for people who want to broaden the work they already do, and for companies launching flights to or setting up business in Japan.</p><h2>What we care about</h2><ul><li>Writing what really works on the front line, in plain language.</li><li>Publishing the same content in Japanese, Korean and English.</li><li>Never publishing personal data about passengers, staff or partners, or confidential company information.</li><li>Marking topics that change often with ★, so readers check the latest official information.</li></ul><h2>Who runs it</h2><div class="tbl"><b>Company</b><span>(to be added)</span><b>Address</b><span>(to be added)</span><b>Representative</b><span>(to be added)</span><b>Business</b><span>Producing educational content and publishing job listings</span><b>Contact</b><span>(email address to be added)</span></div><div class="draft">* Operator details are to be filled in before launch.</div>'}};
+window.render=function(l){var t=T[l];document.getElementById('h1').textContent=t.h1;document.getElementById('hp').textContent=t.hp;document.getElementById('body').innerHTML=t.body;document.title=t.h1+' | '+window.SITE_NAME()};
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>
