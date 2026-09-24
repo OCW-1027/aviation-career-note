@@ -37,5 +37,5 @@ terms:[["Invoice","請求書","청구서"],["Landing Fee","着陸料","착륙료
 quiz:[{q:"What is the starting point for checking an invoice?",opts:["The invoice total","The station’s own activity records","Last year’s invoices","The supplier’s explanation"],a:1,exp:"Without your own records you cannot judge whether it is right."},
 {q:"How do you check an overtime surcharge?",opts:["Scheduled times","Actual block times","Ignore it","Leave it to the supplier"],a:1,exp:"Check against actual times."},
 {q:"What should you check for extra work during a delay?",opts:["The weather","The cause and responsibility (delay code)","Only passenger numbers","Nothing"],a:1,exp:"Work not caused by you may need to be charged to someone else."}],
-next:"7-1 Working in ground operations in Japan: hiring routes and visas"});
+next:"6-9 Writing the station’s monthly KPI report"});
 })(window.ARTS);

@@ -2,7 +2,7 @@
 (function(){try{var cs=document.currentScript;if(cs&&cs.src){var ns=document.createElement('script');ns.src=cs.src.replace(/hub\.js(\?.*)?$/,'nav.js');document.head.appendChild(ns)}}catch(e){}})();
 (function(){
 var H=window.HUBS[window.HUB_ID];H.site=window.HUB_SITE;var A=window.ARTS||{},LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
-var UI={ja:{all:'すべて',n:'記事',site:'サイトのトップへ',jp:'',copy:'© 航空キャリアノート'},ko:{all:'전체',n:'기사',site:'사이트 홈으로',jp:'',copy:'© 항공 커리어 노트'},en:{all:'All',n:'Articles',site:'Site home',jp:'Japanese only for now',copy:'© Aviation Career Note'}};
+var UI={ja:{all:'すべて',n:'レッスン',site:'サイトのトップへ',jp:'',copy:'© 航空キャリアノート'},ko:{all:'전체',n:'레슨',site:'사이트 홈으로',jp:'',copy:'© 항공 커리어 노트'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© Aviation Career Note'}};
 var lang='ja';try{var s=localStorage.getItem('art-lang');if(LANGS.indexOf(s)>=0)lang=s}catch(e){}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function $(i){return document.getElementById(i)}
