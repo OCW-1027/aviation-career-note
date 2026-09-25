@@ -49,6 +49,10 @@ parts:{ja:["","支店評価を知る","ハンドリング会社を動かす","�
 "17_일본주요공항가이드":{code:"APT",color:"#3A6EA5",
 name:{ja:"日本の主要空港ガイド",ko:"일본 주요 공항 가이드",en:"Guide to Japan’s Major Airports"},
 lead:{ja:"成田・羽田・関西・伊丹・中部・福岡・新千歳・那覇の8空港を、航空会社の運送・ハンドリングの立場から。運営者・運用時間・発着枠・ターミナル、ハンドリングで気をつけること、滑走路・ターミナルの今後の計画まで（2026年9月時点）。",ko:"나리타·하네다·간사이·이타미·주부·후쿠오카·신치토세·나하 8개 공항을 항공사 운송·조업의 입장에서. 운영자·운용 시간·슬롯·터미널, 조업에서 조심할 것, 활주로·터미널의 향후 계획까지(2026년 9월 기준).",en:"Eight airports — Narita, Haneda, Kansai, Itami, Chubu, Fukuoka, New Chitose and Naha — seen from an airline’s passenger and handling operation: operators, hours, slots, terminals, handling pitfalls and future runway and terminal plans (as of September 2026)."},
-parts:{ja:["空港を理解する","首都圏","関西・中部","九州・北海道・沖縄"],ko:["공항을 이해하다","수도권","간사이·주부","규슈·홋카이도·오키나와"],en:["Understanding Airports","Greater Tokyo","Kansai and Chubu","Kyushu, Hokkaido and Okinawa"]}}
+parts:{ja:["空港を理解する","首都圏","関西・中部","九州・北海道・沖縄"],ko:["공항을 이해하다","수도권","간사이·주부","규슈·홋카이도·오키나와"],en:["Understanding Airports","Greater Tokyo","Kansai and Chubu","Kyushu, Hokkaido and Okinawa"]}},
+"18_항공기초지식":{code:"BAS",color:"#4A7C59",
+name:{ja:"航空の基礎知識",ko:"항공 기초 지식",en:"Aviation Fundamentals"},
+lead:{ja:"航空機のしくみ、空と時間、航空気象（TAF）、スロットなど空港と空のルール、航空の歩み。どの職種にも共通する航空の基礎を、現場での使い方と一緒に。",ko:"항공기의 구조, 하늘과 시간, 항공 기상(TAF), 슬롯 등 공항과 하늘의 규칙, 항공의 역사. 어느 직종에나 공통된 항공 기초를 현장에서 쓰는 법과 함께.",en:"How aircraft work, sky and time, aviation weather (TAF), slots and the rules of airports and the sky, and aviation history: the fundamentals every aviation job shares, with how they are used on the job."},
+parts:{ja:["航空機を知る","空と時間","空港と空のルール","航空の歩み"],ko:["항공기를 알다","하늘과 시간","공항과 하늘의 규칙","항공의 역사"],en:["Knowing the Aircraft","Sky and Time","Airports and the Rules of the Sky","Aviation History"]}}
 };
 window.HUB_SITE={ja:"航空キャリアノート",ko:"항공 커리어 노트",en:"Aviation Career Note"};
