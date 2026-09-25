@@ -34,5 +34,5 @@ terms:[["Freedoms of the Air (Traffic Rights)","空の自由（運輸権）","�
 quiz:[{q:"An airline of country A carries passengers who board in B on to C. Which freedom?",opts:["3rd","4th","5th","9th"],a:2,exp:"Beyond rights."},
 {q:"Why can a foreign airline not carry passengers only between two Japanese airports?",opts:["Cabotage is not permitted","Fares are too high","There is not enough fuel","There are no slots"],a:0,exp:"Most countries reserve domestic carriage for their own airlines."},
 {q:"What is the first freedom?",opts:["Overflying another country without landing","Landing in another country to refuel","Carrying traffic from home to the partner country","Carrying domestic traffic in another country"],a:0,exp:"Many states grant it to each other under the transit agreement."}],
-next:""});
+next:"2-3 Alliances and the LCC model"});
 })(window.ARTS);
