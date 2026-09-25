@@ -43,5 +43,5 @@ terms:[["Lift","揚力","양력"],["Drag","抗力","항력"],["Thrust","推力",
 quiz:[{q:"What is true of the air over the top of the wing?",opts:["It slows and its pressure rises","It speeds up and its pressure drops","It does not move","It is the same as underneath"],a:1,exp:"Lower pressure above than below creates lift."},
 {q:"When are flaps extended?",opts:["In the cruise","For take-off and landing","Only when parked","Always"],a:1,exp:"To get enough lift at low speed."},
 {q:"Why can hot weather restrict the payload?",opts:["Thinner air reduces lift and engine power","More fuel is needed","More passengers board","It does not"],a:0,exp:"Thin air gives less lift at the same speed."}],
-next:"1-3 Reading the airport forecast (TAF)"});
+next:"1-2 Time zones, UTC and the date line"});
 })(window.ARTS);

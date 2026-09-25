@@ -192,6 +192,19 @@ flaps_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 
  s+='<line x1="440" y1="160" x2="440" y2="90" stroke="#D0506A" stroke-width="10" stroke-linecap="round"><animate attributeName="y2" values="90;90;30;30;90" keyTimes="0;.15;.45;.75;1" dur="5s" repeatCount="indefinite"/></line>';
  s+=badge('A',790,250,16,'#1F7A6E')+badge('B',150,120,16,'#2F8FE0')+badge('C',480,70,16,'#D0506A');
  return s+'</svg>'},
+timezones_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><defs><clipPath id="tzc"><rect x="40" y="70" width="820" height="200"/></clipPath></defs><rect width="900" height="360" fill="#F7FAFD"/>',x0=40,w=820/24;
+ function X(o){var i=o>=0?o:24+o;return x0+i*w+w/2}
+ s+=R(x0,70,820,200,'#DDEEFB',6);
+ s+='<g clip-path="url(#tzc)"><g><rect x="'+(x0+12*w)+'" y="70" width="'+(12*w)+'" height="200" fill="#1D2A3A" opacity=".28"/><rect x="'+(x0+36*w)+'" y="70" width="'+(12*w)+'" height="200" fill="#1D2A3A" opacity=".28"/><animateTransform attributeName="transform" type="translate" values="0 0;'+(-24*w)+' 0" dur="24s" repeatCount="indefinite"/></g></g>';
+ for(var i=0;i<24;i++){var o=i<=12?i:i-24;s+='<line x1="'+(x0+i*w)+'" y1="70" x2="'+(x0+i*w)+'" y2="270" stroke="#ffffff" stroke-width="1" opacity=".8"/><text x="'+(x0+i*w+w/2)+'" y="60" font-size="12" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">'+(o>0?'+'+o:o<0?'\u2212'+(-o):'0')+'</text>'}
+ var dl=x0+13*w;s+='<line x1="'+dl+'" y1="40" x2="'+dl+'" y2="300" stroke="#D0506A" stroke-width="3" stroke-dasharray="8 5"/>';
+ s+=R(dl-78,284,62,34,'#fff',6,' stroke="#D0506A" stroke-width="2"')+'<text x="'+(dl-47)+'" y="308" font-size="20" font-weight="700" text-anchor="middle" fill="#D0506A" font-family="Arial">25</text>';
+ s+=R(dl+16,284,62,34,'#fff',6,' stroke="#2F8FE0" stroke-width="2"')+'<text x="'+(dl+47)+'" y="308" font-size="20" font-weight="700" text-anchor="middle" fill="#2F8FE0" font-family="Arial">24</text>';
+ [['LON',0,120],['FRA',1,150],['DXB',4,120],['DEL',5.5,160],['BKK',7,120],['SIN',8,160],['TYO',9,110],['SEL',9,190],['SYD',10,230],['HNL',-10,160],['LAX',-8,110],['NYC',-5,150]].forEach(function(c){var x=X(Math.floor(c[1]))+(c[1]%1?w/2:0);s+='<circle cx="'+x+'" cy="'+c[2]+'" r="6" fill="#E08A2F"/><text x="'+x+'" y="'+(c[2]-10)+'" font-size="13" font-weight="700" text-anchor="middle" fill="'+D+'" font-family="Arial">'+c[0]+'</text>'});
+ var a=X(9),b=X(-8);s+='<path d="M'+a+' 110 Q '+((a+b)/2)+' 70 '+b+' 110" fill="none" stroke="#2F8FE0" stroke-width="2" stroke-dasharray="6 5"/>';
+ s+='<g><path d="M-12 -4 L10 0 L-12 4 L-8 0 Z M-4 -10 L2 0 L-4 10 Z" fill="#2F8FE0"/><animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="M'+a+' 110 Q '+((a+b)/2)+' 70 '+b+' 110"/></g>';
+ s+='<circle cx="870" cy="30" r="14" fill="#FFE08A"/><text x="40" y="348" font-size="13" fill="'+D+'" font-family="Arial">UTC ± h</text>';
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';
