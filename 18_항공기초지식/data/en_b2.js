@@ -41,5 +41,5 @@ terms:[["Airport Slot","スロット（発着枠）","슬롯(발착 시각)"],["
 quiz:[{q:"At which airports does JSC allocate slots?",opts:["Narita, Haneda, Fukuoka, Kansai","Narita, Chubu, Itami, Naha","Haneda, New Chitose, Naha, Fukuoka","Every airport"],a:0,exp:"New Chitose is schedule facilitation."},
 {q:"What earns historic precedence?",opts:["Using 50%","Using at least 80%","Using 100%","Just applying"],a:1,exp:"The 80/20 rule."},
 {q:"What should happen to slots you will not use?",opts:["Return them after the deadline","Return them early, before the deadline","Keep them","Return them next year"],a:1,exp:"Return early."}],
-next:""});
+next:"2-2 Freedoms of the air and air services agreements"});
 })(window.ARTS);
