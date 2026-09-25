@@ -31,6 +31,12 @@ const hubCtx = { window: {} }; vm.createContext(hubCtx);
 vm.runInContext(fs.readFileSync(path.join(SRC, '1_지상직여객운송입문/assets/hubs.js'), 'utf8'), hubCtx);
 const HUBS = hubCtx.window.HUBS;
 
+// レッスンの最終更新日（lesson_dates.js と updates.js の新しい方）
+const dctx = { window: {} }; vm.createContext(dctx);
+for (const f of ['lesson_dates.js', 'updates.js']) { const p = path.join(SRC, '1_지상직여객운송입문/assets', f); if (fs.existsSync(p)) vm.runInContext(fs.readFileSync(p, 'utf8'), dctx); }
+const LDATES = dctx.window.LESSON_DATES || {}, UPD = dctx.window.UPDATES || [];
+const lessonDate = (dir, k) => { const D = LDATES[dir] || {}; let d = D[k] || D['*'] || ''; UPD.forEach(x => { if (x.c === dir && x.k === k && x.d > d) d = x.d; }); return d; };
+
 // ページの読み込み：ローカルのファイルだけ読み、外部（フォントなど）は読まない
 class LocalOnly extends ResourceLoader {
   fetch(url, opts) { return url.startsWith('file:') ? super.fetch(url, opts) : Promise.resolve(Buffer.from('')); }
@@ -91,7 +97,8 @@ for (const dir of Object.keys(HUBS)) {
       const L = A[k][lang] || A[k].ja || A[k].ko;
       const desc = (L.subtitle || (L.lead && L.lead[0]) || '').slice(0, 160);
       const head = `<base href="../../../${dir}/">\n<link rel="canonical" href="${abs(rel)}">\n${alt}\n<meta name="description" content="${esc(desc)}">`;
-      const st = { no: k, lang, code, root: '../', order: keys, index };
+      const updated = lessonDate(dir, k);
+      const st = { no: k, lang, code, root: '../', order: keys, index, updated };
       let html = tpl
         .replace(/<meta charset="utf-8">/i, m => m + '\n' + head)
         .replace('<script>window.ARTS={};</script>', `<script>window.ARTS=${lesson};window.STATIC=${JSON.stringify(st)};</script>`);
@@ -108,7 +115,7 @@ for (const dir of Object.keys(HUBS)) {
         .replace('<footer id="foot"></footer>', `<footer id="foot">${r.foot}</footer>`);
       if (!r.main || r.main.length < 300 || /<p style="padding:40px 0">Not found<\/p>/.test(r.main)) errors.push(`${rel} : empty render`);
       fs.writeFileSync(outFile, html);
-      sitemap.push(rel);
+      sitemap.push([rel, updated]);
       pages++;
     }
   }
@@ -146,7 +153,7 @@ const extra = ['8_사이트/index.html', '8_사이트/jobs.html', '8_사이트/a
 const hubsPages = Object.keys(HUBS).map(dir => { const f = fs.readdirSync(path.join(SRC, dir)).find(n => /^00_.*\.html$/.test(n)); return f ? dir + '/' + f : null; }).filter(Boolean);
 const urls = [...extra.filter(p => fs.existsSync(path.join(SRC, p))), ...hubsPages, ...soloPages, ...sitemap];
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-  + urls.map(u => `  <url><loc>${abs(u)}</loc></url>`).join('\n') + '\n</urlset>\n');
+  + urls.map(u => { const [p, d] = Array.isArray(u) ? u : [u, '']; return `  <url><loc>${abs(p)}</loc>${d ? `<lastmod>${d}</lastmod>` : ''}</url>`; }).join('\n') + '\n</urlset>\n');
 
 console.log(`pages: ${pages}, sitemap urls: ${urls.length}, errors: ${errors.length}`);
 if (errors.length) { console.log(errors.slice(0, 20).join('\n')); process.exitCode = 1; }

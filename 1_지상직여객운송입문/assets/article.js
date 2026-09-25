@@ -6,6 +6,8 @@ var PARTS={ja:['Part 0 オリエンテーション','Part 1 チェックイン�
 var NAVL={ja:{prev:'前のレッスン',next:'次のレッスン',toc:'講座の目次へ'},ko:{prev:'이전 레슨',next:'다음 레슨',toc:'강좌 목차로'},en:{prev:'Previous lesson',next:'Next lesson',toc:'Course contents'}};
 (function(){var st=document.createElement('style');st.textContent='.artnav{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;margin:28px 0 8px;align-items:stretch}.artnav a{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border:1px solid #dbe3ec;border-radius:12px;text-decoration:none;color:inherit;font-weight:700;font-size:14px}.artnav a small{font-weight:400;font-size:12.5px;opacity:.75;line-height:1.4}.artnav a:hover{border-color:#2F8FE0}.artnav .nx{text-align:right}.artnav .toc{justify-content:center;text-align:center}@media(max-width:640px){.artnav{grid-template-columns:1fr 1fr}.artnav .toc{grid-column:1/-1;order:3}}';document.head.appendChild(st)})();
 var ST=window.STATIC||null;
+/* 最終更新日：静的ページは生成時に計算済み、それ以外は lesson_dates.js と updates.js の新しい方 */
+function lessonDate(){if(ST&&ST.updated)return ST.updated;var LD=window.LESSON_DATES;if(!LD)return '';var u=decodeURIComponent(document.baseURI||location.href),dir='';Object.keys(LD).forEach(function(k){if(u.indexOf('/'+k+'/')>=0)dir=k});if(!dir)return '';var D=LD[dir],no=String(C.meta.no),d=D[no]||D['*']||'';(window.UPDATES||[]).forEach(function(x){if(x.c===dir&&x.k===no&&x.d>d)d=x.d});return d}
 function LU(no,lg){return ST?ST.root+(lg||lang)+'/'+ST.code+'/'+no+'/':'view.html?no='+no}
 function navKeys(){if(ST&&ST.index)return ST.order.slice();var A=window.ARTS||{};return Object.keys(A).filter(function(k){return A[k]&&A[k].meta&&(A[k].ja||A[k].ko)}).sort(function(a,b){var x=String(a).split('-').map(Number),y=String(b).split('-').map(Number);return (x[0]-y[0])||((x[1]||0)-(y[1]||0))})}
 function navTitle(k){if(ST&&ST.index){var t=ST.index[k]||{};return t[lang]||t.ja||t.ko||''}var A=window.ARTS||{},a=A[k];if(!a)return '';var l=a[lang]||a.ja||a.ko;return (l&&l.title)||''}
@@ -24,7 +26,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return
 var PLANE='<svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>';
 var BULB='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V17h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>';
 var WARN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
-var UI={ja:{home:'シリーズ一覧へ',video:'関連動画',watch:'YouTubeで見る',ymd:'基準日',copy:'© 航空キャリアノート'},ko:{home:'시리즈 목록으로',video:'관련 영상',watch:'YouTube에서 보기',ymd:'기준일',copy:'© 항공 커리어 노트'},en:{home:'Back to series',video:'Related video',watch:'Watch on YouTube',ymd:'As of',copy:'© Aviation Career Note',fb:'The English version of this article is being prepared. The Japanese text is shown for now.'}};
+var UI={ja:{home:'シリーズ一覧へ',video:'関連動画',watch:'YouTubeで見る',ymd:'基準日',upd:'最終更新',copy:'© 航空キャリアノート'},ko:{home:'시리즈 목록으로',video:'관련 영상',watch:'YouTube에서 보기',ymd:'기준일',upd:'최종 업데이트',copy:'© 항공 커리어 노트'},en:{home:'Back to series',video:'Related video',watch:'Watch on YouTube',ymd:'As of',upd:'Updated',copy:'© Aviation Career Note',fb:'The English version of this article is being prepared. The Japanese text is shown for now.'}};
 var LBL={ja:'日本語',ko:'한국어',en:'English'};
 function langBar(){var b=document.getElementById('langBtn');if(!b)return;var g=document.getElementById('langGroup');if(!g){g=document.createElement('span');g.id='langGroup';g.className='langs';g.setAttribute('role','group');g.setAttribute('aria-label','Language');b.parentNode.insertBefore(g,b);b.style.display='none';}
  g.innerHTML=LANGS.map(function(l){return '<button type="button" class="lg'+(l===lang?' on':'')+'" data-l="'+l+'" lang="'+l+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');
@@ -59,7 +61,7 @@ function render(){
   $('#series').innerHTML='<span class="pict">'+PLANE+'</span>'+esc(L.series);
   $('#series').setAttribute('href',C.meta.home||'#');
   langBar();
-  $('#info').innerHTML='<b>'+esc(C.meta.from)+'</b><span class="arrow">- - ✈ - -</span><b>'+esc(C.meta.to)+'</b><span>No.<b style="font-size:15px;margin-left:4px">'+esc(C.meta.no)+'</b></span><span class="part">'+esc(L.part)+'</span><span>'+esc(U.ymd)+' '+esc(C.meta.date)+'</span>';
+  $('#info').innerHTML='<b>'+esc(C.meta.from)+'</b><span class="arrow">- - ✈ - -</span><b>'+esc(C.meta.to)+'</b><span>No.<b style="font-size:15px;margin-left:4px">'+esc(C.meta.no)+'</b></span><span class="part">'+esc(L.part)+'</span>'+(function(){var d=lessonDate();return d?'<span class="upd">'+esc(U.upd)+' '+esc(d.replace(/-/g,'.'))+'</span>':'<span>'+esc(U.ymd)+' '+esc(C.meta.date)+'</span>'})();
   var t=esc(L.title);if(L._fallback&&!L.series){L.series=C.ja.series}if(L._fallback&&!L.part){L.part=C.ja.part}if(L.hl)t=t.replace(esc(L.hl),'<span class="hl">'+esc(L.hl)+'</span>');
   $('#title').innerHTML=t;
   $('#subtitle').textContent=L.subtitle;
@@ -75,6 +77,7 @@ function render(){
   $('#foot').innerHTML=U.copy+' — '+esc(L.series)+' '+esc(C.meta.no)+(C.meta.home?'　<a href="'+esc(C.meta.home)+'">'+esc(U.home)+'</a>':'');
   document.querySelectorAll('.q').forEach(function(q){q.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var a=+q.dataset.a;q.querySelectorAll('.opt').forEach(function(x){x.classList.remove('right','wrong')});b.classList.add(+b.dataset.i===a?'right':'wrong');q.querySelector('.opt[data-i="'+a+'"]').classList.add('right');q.classList.add('done')})})});
 }
+(function(){if((ST&&ST.updated)||window.LESSON_DATES)return;try{var cs=document.currentScript,b=cs&&cs.src?cs.src.replace(/article\.js(\?.*)?$/,''):'';if(!b)return;var n=0,need=window.UPDATES?1:2,done=function(){if(++n===need)render()};['lesson_dates.js','updates.js'].forEach(function(f){if(f==='updates.js'&&window.UPDATES)return;var el=document.createElement('script');el.src=b+f;el.onload=done;el.onerror=done;document.head.appendChild(el)})}catch(e){}})();
 render();
 })();
 (function(){var s=document.currentScript&&document.currentScript.src;if(!s)return;var e=document.createElement('script');e.src=new URL('nav.js',s).href;document.head.appendChild(e)})();
