@@ -234,6 +234,21 @@ history_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="
   s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+t.toFixed(3)+';'+t2.toFixed(3)+';1" dur="'+dur+'s" repeatCount="indefinite"/><line x1="'+x+'" y1="'+y+'" x2="'+x+'" y2="'+by+'" stroke="'+e[1]+'" stroke-width="2" stroke-dasharray="4 3"/><circle cx="'+x+'" cy="'+y+'" r="7" fill="'+e[1]+'"/>'+badge(i+1,x,by,15,e[1])+'<text x="'+x+'" y="'+(up?by-22:by+32)+'" font-size="12" font-weight="700" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">'+e[0]+'</text></g>'});
  s+='<g><path d="M-12 -4 L10 0 L-12 4 L-8 0 Z M-4 -10 L2 0 L-4 10 Z" fill="#2F8FE0"/><animateMotion dur="'+dur+'s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear" path="M'+x0+' '+(y-16)+' L'+x1+' '+(y-16)+'"/></g>';
  return s+'</svg>'},
+smart_journey:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img"><rect width="900" height="320" fill="#F7FAFD"/>',G2='#1F7A6E',DUR=14;
+ var X=[110,280,450,620,790],kt=[0,.06,.13,.22,.29,.38,.45,.54,.61,.70,.77,.86,1],kp=[0,.085,.085,.293,.293,.5,.5,.707,.707,.915,.915,1,1];
+ s+='<line x1="30" y1="250" x2="870" y2="250" stroke="#cfd8e2" stroke-width="10" stroke-linecap="round"/>';
+ function icon(i,x){var y=150,o='';
+  if(i===0)o=R(x-26,y-40,52,62,'#ffffff',6,' stroke="'+D+'" stroke-width="2"')+R(x-18,y-32,36,26,'#9fd3fa',3);
+  if(i===1)o=R(x-24,y-24,48,40,'#E08A2F',6,' opacity=".85"')+R(x-10,y-34,20,10,'none',3,' stroke="'+D+'" stroke-width="3"')+R(x-40,y+18,80,10,'#8a96a3',3);
+  if(i===2)o='<path d="M'+(x-30)+' '+(y+30)+' L'+(x-30)+' '+(y-30)+' Q'+x+' '+(y-58)+' '+(x+30)+' '+(y-30)+' L'+(x+30)+' '+(y+30)+'" fill="none" stroke="'+D+'" stroke-width="6"/>';
+  if(i===3)o=R(x-20,y-30,40,54,'#2C6BAE',4)+'<circle cx="'+x+'" cy="'+(y-6)+'" r="10" fill="none" stroke="#FFE08A" stroke-width="3"/>';
+  if(i===4)o='<path d="M'+(x-34)+' '+(y+2)+' L'+(x+30)+' '+(y-6)+' L'+(x+38)+' '+(y-2)+' L'+(x+30)+' '+(y+4)+' Z M'+(x-4)+' '+(y-2)+' L'+(x+10)+' '+(y-30)+' L'+(x+18)+' '+(y-30)+' L'+(x+10)+' '+(y+2)+' Z M'+(x-4)+' '+y+' L'+(x+10)+' '+(y+26)+' L'+(x+18)+' '+(y+26)+' L'+(x+10)+' '+y+' Z" fill="#2F8FE0"/>';
+  o+='<circle cx="'+(x+34)+'" cy="'+(y-44)+'" r="9" fill="#fff" stroke="#5b6b7d" stroke-width="2"/><circle cx="'+(x+34)+'" cy="'+(y-44)+'" r="3" fill="#5b6b7d"/>';
+  return o}
+ X.forEach(function(x,i){s+=icon(i,x)+badge(i+1,x,60,15,D);var t=kt[1+2*i];
+  s+='<g opacity="0"><circle cx="'+(x-34)+'" cy="106" r="13" fill="'+G2+'"/><path d="M'+(x-40)+' 106 L'+(x-36)+' 111 L'+(x-27)+' 100" fill="none" stroke="#fff" stroke-width="3"/><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+t+';'+(t+.03).toFixed(2)+';.97;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
+ s+='<g><circle cx="0" cy="-38" r="9" fill="#E08A2F"/><path d="M-10 -26 L10 -26 L8 0 L-8 0 Z" fill="#E08A2F"/><animateMotion dur="'+DUR+'s" repeatCount="indefinite" calcMode="linear" keyPoints="'+kp.join(';')+'" keyTimes="'+kt.join(';')+'" path="M40 248 L860 248"/></g>';
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';
