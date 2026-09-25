@@ -3,6 +3,8 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-25",c:"",k:"",t:"upd",u:"航空コード辞典.html",ja:"航空コード辞典：航空会社を248社に拡充",ko:"항공 코드 사전: 항공사 248곳으로 확대",en:"Code dictionary: airlines expanded to 248"},
+{d:"2026-09-25",c:"",k:"",t:"upd",u:"用語集_航空用語.html",ja:"用語集：販売・客室・出入国の新しい用語を追加",ko:"용어집: 판매·객실·출입국 신규 용어 추가",en:"Glossary: new sales, cabin and border terms"},
 {d:"2026-09-25",c:"1_지상직여객운송입문",k:"9-1",t:"new",ja:"客室乗務員の役割と組織",ko:"객실승무원의 역할과 조직",en:"The role and organisation of cabin crew"},
 {d:"2026-09-25",c:"1_지상직여객운송입문",k:"9-2",t:"new",ja:"地上から客室への引き継ぎ",ko:"지상에서 객실로의 인계",en:"Handover from ground to cabin"},
 {d:"2026-09-25",c:"1_지상직여객운송입문",k:"9-3",t:"new",ja:"乗務員の勤務・休息と飲酒の規則",ko:"승무원 근무·휴식과 음주 규정",en:"Crew duty, rest and alcohol rules"},

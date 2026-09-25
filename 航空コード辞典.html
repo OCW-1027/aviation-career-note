@@ -35,6 +35,7 @@ mark{background:#FFE08A;color:inherit}a{color:var(--acc)}
 <div class="note" id="note"></div>
 </div>
 <script src="airports_data.js"></script>
+<script src="airlines_extra.js"></script>
 <script>
 /* 航空コード辞典（2026-09）
    空港：OurAirports（パブリックドメイン）から定期便のある空港を収録（airports_data.js）
@@ -59,6 +60,7 @@ var AL=[
 ["QF","QFA","Qantas","AU","カンタス航空","콴타스항공"],["JQ","JST","Jetstar Airways","AU","ジェットスター航空","제트스타항공"],["VA","VOZ","Virgin Australia","AU","ヴァージン・オーストラリア","버진오스트레일리아"],["NZ","ANZ","Air New Zealand","NZ","ニュージーランド航空","에어뉴질랜드"],
 ["ET","ETH","Ethiopian Airlines","ET","エチオピア航空","에티오피아항공"],["MS","MSR","EgyptAir","EG","エジプト航空","이집트항공"],["SA","SAA","South African Airways","ZA","南アフリカ航空","남아프리카항공"],
 ["5X","UPS","UPS Airlines","US","UPS航空","UPS 항공"],["FX","FDX","FedEx Express","US","フェデックス","페덱스"]];
+if(window.AL_EXTRA)AL=AL.concat(window.AL_EXTRA.filter(function(x){return !AL.some(function(y){return y[0]===x[0]&&y[1]===x[1]})}));
 var PFX=[["RJ・RO","日本","일본","Japan"],["RK","韓国","한국","South Korea"],["Z","中国（ZB北京・ZS上海・ZG広州など）","중국(ZB 베이징·ZS 상하이·ZG 광저우 등)","China (ZB Beijing, ZS Shanghai, ZG Guangzhou…)"],["RC","台湾","대만","Taiwan"],["VH","香港","홍콩","Hong Kong"],["VM","マカオ","마카오","Macau"],["RP","フィリピン","필리핀","Philippines"],["VV","ベトナム","베트남","Vietnam"],["VT","タイ","태국","Thailand"],["WM","マレーシア（半島）","말레이시아(반도)","Malaysia (peninsula)"],["WS","シンガポール","싱가포르","Singapore"],["WI・WA","インドネシア","인도네시아","Indonesia"],["VA・VI・VO・VE","インド","인도","India"],["ZM","モンゴル","몽골","Mongolia"],["OM","アラブ首長国連邦","아랍에미리트","UAE"],["OT","カタール","카타르","Qatar"],["LT","トルコ","튀르키예","Türkiye"],["EG","イギリス","영국","United Kingdom"],["LF","フランス","프랑스","France"],["ED","ドイツ","독일","Germany"],["EH","オランダ","네덜란드","Netherlands"],["EF","フィンランド","핀란드","Finland"],["LE","スペイン","스페인","Spain"],["LI","イタリア","이탈리아","Italy"],["K","アメリカ本土","미국 본토","Contiguous United States"],["PA","アラスカ","알래스카","Alaska"],["PH","ハワイ","하와이","Hawaii"],["PG","グアム・北マリアナ","괌·북마리아나","Guam and the Northern Marianas"],["C","カナダ","캐나다","Canada"],["MM","メキシコ","멕시코","Mexico"],["Y","オーストラリア","호주","Australia"],["NZ","ニュージーランド","뉴질랜드","New Zealand"],["U","ロシアなど旧ソ連の一部","러시아 등 구소련 일부","Russia and parts of the former USSR"]];
 var TKT=[["131","JL"],["205","NH"],["180","KE"],["988","OZ"],["999","CA"],["781","MU"],["784","CZ"],["880","HU"],["160","CX"],["297","CI"],["695","BR"],["618","SQ"],["217","TG"],["232","MH"],["079","PR"],["738","VN"],["126","GA"],["098","AI"],["176","EK"],["157","QR"],["607","EY"],["235","TK"],["220","LH"],["057","AF"],["074","KL"],["125","BA"],["105","AY"],["001","AA"],["006","DL"],["016","UA"],["014","AC"],["081","QF"],["086","NZ"]];
 var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})();
@@ -94,7 +96,7 @@ function draw(){var t=T[L],q=$('q').value.trim(),ql=q.toLowerCase(),rows=[],cols
    rows.push({s:(a[0].toLowerCase()===ql?0:a[1].toLowerCase()===ql?1:(a[6]===q||a[7]===q)?1:a[5]==='L'?2:3),h:'<tr><td class="c">'+hi(a[0],q)+'</td><td class="c">'+hi(a[1],q)+'</td><td>'+hi(nm,q)+(nm!==a[2]?'<div class="s">'+hi(a[2],q)+'</div>':'')+'</td><td>'+hi(a[3],q)+'</td><td>'+esc(cname(a[4]))+'</td><td><span class="badge">'+t.size[a[5]]+'</span></td></tr>'})});
   if(ql)rows.sort(function(x,y){return x.s-y.s});rows=rows.map(function(x){return x.h})}
  else if(tab==='city'){CITY.forEach(function(c){if(!m(c))return;var nm=L==='ja'?c[2]:L==='ko'?c[3]:c[4];rows.push('<tr><td class="c">'+hi(c[0],q)+'</td><td class="c">'+hi(c[1],q)+'</td><td>'+hi(nm,q)+'</td></tr>')})}
- else if(tab==='al'){AL.forEach(function(a){if(!m(a.concat([cname(a[3])])))return;var nm=alName(a);rows.push('<tr><td class="c">'+hi(a[0],q)+'</td><td class="c">'+hi(a[1],q)+'</td><td>'+hi(nm,q)+(nm!==a[2]?'<div class="s">'+hi(a[2],q)+'</div>':'')+'</td><td>'+esc(cname(a[3]))+'</td></tr>')})}
+ else if(tab==='al'){AL.forEach(function(a){if(!m(a.concat([cname(a[3])])))return;var nm=alName(a);rows.push({s:(a[0].toLowerCase()===ql?0:a[1].toLowerCase()===ql?1:2),h:'<tr><td class="c">'+hi(a[0],q)+'</td><td class="c">'+hi(a[1],q)+'</td><td>'+hi(nm,q)+(nm!==a[2]?'<div class="s">'+hi(a[2],q)+'</div>':'')+'</td><td>'+esc(cname(a[3]))+'</td></tr>'})});if(ql)rows.sort(function(x,y){return x.s-y.s});rows=rows.map(function(x){return x.h})}
  else if(tab==='pfx'){PFX.forEach(function(p){if(!m(p))return;rows.push('<tr><td class="c">'+hi(p[0],q)+'</td><td>'+hi(L==='ja'?p[1]:L==='ko'?p[2]:p[3],q)+'</td></tr>')})}
  else {TKT.forEach(function(k){var a=AL.filter(function(x){return x[0]===k[1]})[0]||[k[1],'','','','',''];if(!m([k[0],k[1],a[2],a[4],a[5]]))return;rows.push('<tr><td class="c">'+hi(k[0],q)+'</td><td class="c">'+hi(k[1],q)+'</td><td>'+hi(alName(a),q)+'</td></tr>')})}
  h='<tr>'+cols.map(function(c){return '<th>'+c+'</th>'}).join('')+'</tr>'+rows.slice(0,limit).join('');
