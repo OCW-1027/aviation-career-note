@@ -132,6 +132,37 @@ taf_timeline:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="
   if(r[4]==='prob'){s+=R(X(12),y,X(15)-X(12),28,r[1],6,' opacity=".25"')+R(X(12.8),y,X(13.5)-X(12.8),28,r[1],4,' opacity=".6"')}
   if(r[4]==='fm')s+=R(X(21),y,X(30)-X(21),28,r[1],6,' opacity=".55"')+'<line x1="'+X(21)+'" y1="'+(y-6)+'" x2="'+X(21)+'" y2="'+(y+34)+'" stroke="'+r[1]+'" stroke-width="4"/>'});
  return s+'</svg>'},
+aircraft_parts:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img"><rect width="900" height="640" fill="#F7FAFD"/>',F='#ffffff',Sd=D;
+ /* top view (nose to the left) */
+ s+='<path d="M60 170 Q60 150 100 146 L700 146 L780 158 L800 170 L780 182 L700 194 L100 194 Q60 190 60 170 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
+ s+='<path d="M330 146 L460 40 L500 40 L470 146 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/><path d="M330 194 L460 300 L500 300 L470 194 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
+ s+='<path d="M700 146 L760 96 L785 96 L770 150 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/><path d="M700 194 L760 244 L785 244 L770 190 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
+ s+='<path d="M352 128 L462 38" stroke="#2F8FE0" stroke-width="6" opacity=".7"/><path d="M352 212 L462 302" stroke="#2F8FE0" stroke-width="6" opacity=".7"/>';
+ s+='<path d="M478 120 L497 44" stroke="#E08A2F" stroke-width="6" opacity=".8"/><path d="M478 220 L497 296" stroke="#E08A2F" stroke-width="6" opacity=".8"/>';
+ s+='<path d="M472 140 L478 120" stroke="#1F7A6E" stroke-width="6"/><path d="M472 200 L478 220" stroke="#1F7A6E" stroke-width="6"/>';
+ s+=R(430,96,34,14,'#7A5CC7',3,' opacity=".8"')+R(430,230,34,14,'#7A5CC7',3,' opacity=".8"');
+ s+='<path d="M500 40 L512 26" stroke="'+Sd+'" stroke-width="5"/><path d="M500 300 L512 314" stroke="'+Sd+'" stroke-width="5"/>';
+ s+=R(378,92,40,16,G,6)+R(378,232,40,16,G,6);
+ s+='<path d="M772 102 L783 150" stroke="#D0506A" stroke-width="5" opacity=".8"/><path d="M772 238 L783 190" stroke="#D0506A" stroke-width="5" opacity=".8"/>';
+ var tb=[[1,70,170,'#5b6b7d'],[2,398,100,'#5b6b7d'],[3,420,72,'#2F8FE0'],[4,490,72,'#E08A2F'],[5,447,237,'#7A5CC7'],[6,475,130,'#1F7A6E'],[7,507,31,'#5b6b7d'],[8,745,112,'#5b6b7d'],[9,778,126,'#D0506A']];
+ var pos={1:[40,110],2:[330,60],3:[400,20],4:[560,60],5:[420,330],6:[560,140],7:[570,20],8:[700,60],9:[850,110]};
+ tb.forEach(function(t){var p=pos[t[0]];s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+t[1]+'" y2="'+t[2]+'" stroke="'+t[3]+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+badge(t[0],p[0],p[1],14,t[3])});
+ /* side view */
+ var y=470;
+ s+='<path d="M70 '+y+' Q70 430 130 426 L700 426 L760 400 L800 330 L840 330 L830 426 L840 470 L760 486 L130 490 Q70 490 70 '+y+' Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
+ s+='<path d="M90 450 L120 438 L140 442 L120 454 Z" fill="#9fd3fa"/>';
+ for(var wx=170;wx<700;wx+=24)s+='<rect x="'+wx+'" y="442" width="10" height="12" rx="4" fill="#9fd3fa"/>';
+ s+=R(150,436,16,42,'#1D2A3A',3,' opacity=".75"')+R(650,436,16,42,'#1D2A3A',3,' opacity=".75"');
+ s+=R(230,468,60,20,'#E08A2F',3,' opacity=".65"')+R(560,468,50,20,'#E08A2F',3,' opacity=".65"');
+ s+='<path d="M812 336 L840 336 L832 424 L806 424 Z" fill="#D0506A" opacity=".5"/>';
+ s+='<circle cx="838" cy="448" r="6" fill="'+Sd+'"/>';
+ s+=R(380,478,70,26,G,10);
+ s+='<line x1="160" y1="490" x2="160" y2="525" stroke="'+Sd+'" stroke-width="4"/><circle cx="160" cy="532" r="9" fill="'+Sd+'"/><line x1="470" y1="490" x2="470" y2="525" stroke="'+Sd+'" stroke-width="5"/><circle cx="462" cy="534" r="11" fill="'+Sd+'"/><circle cx="482" cy="534" r="11" fill="'+Sd+'"/>';
+ s+='<circle cx="84" cy="470" r="4" fill="#E08A2F"/>';
+ var sb=[[10,110,446,70,400,'#5b6b7d'],[11,158,450,180,390,'#1D2A3A'],[12,260,478,260,590,'#E08A2F'],[13,160,528,110,590,'#5b6b7d'],[14,472,525,520,600,'#5b6b7d'],[15,795,370,720,330,'#5b6b7d'],[16,822,380,880,340,'#D0506A'],[17,838,448,880,510,'#5b6b7d'],[18,84,470,40,520,'#E08A2F']];
+ sb.forEach(function(t){s+='<line x1="'+t[3]+'" y1="'+t[4]+'" x2="'+t[1]+'" y2="'+t[2]+'" stroke="'+t[5]+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+badge(t[0],t[3],t[4],14,t[5])});
+ s+='<text x="20" y="630" font-size="14" fill="'+Sd+'" font-family="Arial,sans-serif">← FWD</text><text x="880" y="630" font-size="14" text-anchor="end" fill="'+Sd+'" font-family="Arial,sans-serif">AFT →</text>';
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';
