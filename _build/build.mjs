@@ -24,7 +24,11 @@ const numSort = (a, b) => { const x = String(a).split('-').map(Number), y = Stri
 
 // 1) 元のファイルを全部コピー（今の URL もそのまま使えるように）
 fs.rmSync(OUT, { recursive: true, force: true });
-fs.cpSync(SRC, OUT, { recursive: true, filter: s => !SKIP.has(path.basename(s)) });
+fs.mkdirSync(OUT, { recursive: true });
+for (const name of fs.readdirSync(SRC)) {
+  if (SKIP.has(name)) continue;   // 出力先が元のフォルダの中にあっても大丈夫なように、一番上の項目ごとにコピー
+  fs.cpSync(path.join(SRC, name), path.join(OUT, name), { recursive: true, filter: s => !SKIP.has(path.basename(s)) });
+}
 
 // 2) 講座の設定
 const hubCtx = { window: {} }; vm.createContext(hubCtx);
