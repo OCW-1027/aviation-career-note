@@ -53,7 +53,7 @@ terms:[["Revenue Management","収入管理","수익 관리"],["Load Factor","搭
 quiz:[{q:"Which two measures must be watched together?",opts:["Load factor and yield","Flight number and aircraft","Weather and season","Staff numbers"],a:0,exp:"Load factor alone does not raise revenue."},
 {q:"What information is worth passing to head office?",opts:["Local demand, competitors and group enquiries","Staff hobbies","The office colour","Nothing"],a:0,exp:"The market behind the numbers."},
 {q:"How do you avoid resentment over ancillaries?",opts:["Make the charges clear at booking","Tell them first at the airport","Hide them","Make them free"],a:0,exp:"Clarity is what matters."}],
-next:"5-1 Launch publicity and press briefings"});
+next:"4-3 Types of fare: PEX and IT fares"});
 
 set("5-1",{title:"Launch Publicity and Press Briefings",hl:"launch publicity",subtitle:"Say what is new in one line, and get it written about",
 lead:["A new route, extra frequencies or a terminal move are big chances to be covered by the media. Through press briefings and releases, explain clearly what is new for Japanese readers and what becomes easier.",

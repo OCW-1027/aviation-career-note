@@ -53,7 +53,7 @@ terms:[["Demand","需要","수요"],["Peak Season","繁忙期","성수기"],["Of
 quiz:[{q:"When is demand from the other country likely to peak?",opts:["During that country’s own holidays","Only in Golden Week","Only at Obon","It never changes"],a:0,exp:"Lunar New Year and harvest festivals are examples."},
 {q:"What do you check every week to read demand?",opts:["Booking pace","Only the weather","Staff numbers","The logo"],a:0,exp:"Against last year and last month."},
 {q:"What do you do about the troughs?",opts:["Build products with agencies","Nothing","Cancel every flight","Keep fares secret"],a:0,exp:"Create the demand."}],
-next:"2-1 Indirect and direct sales"});
+next:"1-3 Redefining the market: OTAs and independent travel"});
 
 set("2-1",{title:"Indirect and Direct Sales",hl:"indirect and direct",subtitle:"Not one or the other, but a role for each in each segment",
 lead:["Ticket sales divide into indirect sales through travel agencies and direct sales through your own website, app and call centre. Direct sales carry no commission and give you the customer data; indirect sales bring demand you cannot reach alone, such as groups and packages.",
@@ -106,7 +106,7 @@ terms:[["Global Distribution System (GDS)","GDS","GDS(글로벌 예약 시스템
 quiz:[{q:"Which scheme settles sales between agencies and airlines?",opts:["BSP","GDS","NDC","DCS"],a:0,exp:"Run by IATA."},
 {q:"What characterises NDC?",opts:["Airlines distribute fares, seats and ancillaries together","A settlement scheme","An airport system","Cargo documentation"],a:0,exp:"It widens how the offer can be shown."},
 {q:"What matters in agency briefing material?",opts:["Booking classes, ticketing deadlines and refund rules in Japanese","English only","Verbal only","Nothing"],a:0,exp:"Ease of use comes first."}],
-next:"3-1 Building relationships with agencies, and seat blocks"});
+next:"2-3 NDC and APIs"});
 
 set("3-1",{title:"Building Relationships with Agencies, and Seat Blocks",hl:"agency relationships",subtitle:"Who to meet, what to leave behind, and how to hand over seats",
 lead:["Selling to travel agencies rests on trust with the people there. Who you need to meet depends on the purpose: air purchasing, tour planning, group sales. Running seat blocks — handing agencies seats in bulk for packages and groups — is one of the central jobs in airline sales.",
