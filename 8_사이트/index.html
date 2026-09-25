@@ -91,11 +91,24 @@
 <div class="stats" id="stats"></div></div></section>
 <section class="jobroll" id="jobroll" aria-roledescription="carousel"><div class="jr-head"><b id="hj"></b><a href="jobs.html" id="jm"></a></div><div class="jr-view" id="jrView"><div class="jr-track" id="jrTrack"></div><div class="jr-ctl" id="jrCtl"></div></div></section>
 <section id="learn"><h2 id="hl"></h2><p class="lead" id="ll"></p><div class="grid" id="series"></div></section>
+<section id="updates"><h2 id="hu"></h2><div class="updl" id="updList"></div></section>
 <section id="tools"><h2 id="ht"></h2><div class="tools" id="toolBox"></div></section>
 <section><h2 id="hb"></h2><div class="biz"><div><b id="bt"></b><div id="bd" class="lead"></div></div><a href="../7_구인게재_기업용/求人掲載のご案内.html" id="bl"></a></div></section>
 </div>
 <footer class="site-foot" id="siteFoot"></footer>
 <script src="data/jobs.js"></script>
+<script src="../1_지상직여객운송입문/assets/updates.js"></script>
+<script>
+/* 更新の表示 — 講座のカードにNEW、「最近の更新」の一覧（assets/updates.js） */
+(function(){var LB={ja:{h:'最近の更新',new:'NEW',upd:'更新',tool:'ツール'},ko:{h:'최근 업데이트',new:'NEW',upd:'업데이트',tool:'도구'},en:{h:'Recent updates',new:'NEW',upd:'Updated',tool:'Tool'}};
+function E(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function dirOf(p){return (p||'').split('/')[1]||''}
+function css(){if(document.getElementById('upd-css'))return;var s=document.createElement('style');s.id='upd-css';s.textContent='.pass .nb{display:inline-block;font-size:11px;font-weight:700;padding:0 8px;line-height:1.7;border-radius:999px;background:#D0506A;color:#fff;margin-bottom:4px}.updl{display:grid;gap:8px}.updl a{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;border:1px solid #e3ebf3;border-radius:12px;background:#fff;color:inherit;text-decoration:none}.updl a:hover{border-color:#2F8FE0}.updl .dt{font:600 13px Consolas,monospace;color:#5b6b7d;min-width:5.5em}.updl .ty{font-size:11px;font-weight:700;padding:0 8px;line-height:1.7;border-radius:999px}.updl .ty.new{background:#D0506A;color:#fff}.updl .ty.upd{background:#FFE08A;color:#3A2A00}.updl .cs{font-size:12px;color:#5b6b7d}.updl .tt{font-weight:600;flex:1 1 16em}@media (prefers-color-scheme:dark){.updl a{background:transparent;border-color:#2a3a4c}}';document.head.appendChild(s)}
+window.__updNew=function(p,lang){css();var U=window.UPDATES||[],d=dirOf(p),now=Date.now(),lim=30,hit=U.some(function(x){return x.c===d&&x.t==='new'&&(now-Date.parse(x.d))/864e5<=lim});return hit?'<span class="nb">'+(LB[lang]||LB.ja).new+'</span>':''};
+window.__renderUpdates=function(lang){css();var L=LB[lang]||LB.ja,U=(window.UPDATES||[]).slice().sort(function(a,b){return a.d<b.d?1:a.d>b.d?-1:0}).slice(0,8),box=document.getElementById('updList'),h=document.getElementById('hu');if(!box)return;if(h)h.textContent=L.h;
+ var names={};(window.SERIES||[]).forEach(function(s){var d=s[lang]||s.ja;names[dirOf(s.p)]=d[1]});
+ box.innerHTML=U.map(function(x){var href=x.u?'../'+x.u:'../'+x.c+'/view.html?no='+x.k,cs=x.c?(names[x.c]||'')+(x.k?' '+x.k:''):L.tool;return '<a href="'+E(href)+'"><span class="dt">'+E(x.d.replace(/-/g,'.'))+'</span><span class="ty '+x.t+'">'+L[x.t]+'</span><span class="tt">'+E(x[lang]||x.ja)+'</span><span class="cs">'+E(cs)+'</span></a>'}).join('')}})();
+</script>
 <script>
 var SERIES=[
 {p:'../1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html',code:'GND',n:67,ja:['旅客運送の現場で働く人・目指す人','航空旅客運送の実務','カウンター・ゲート・手荷物・イレギュラー・搭載管理まで、旅客運送の実務を体系的に'],ko:['여객운송 현장에서 일하는 사람·지망자','항공 여객운송 실무','카운터·게이트·수하물·비정상·탑재관리까지 여객운송 실무를 체계적으로'],en:['Passenger operations staff and applicants','Airline Passenger Operations','Counters, gates, baggage, irregular operations and load control, set out systematically']},
@@ -128,7 +141,8 @@ window.render=function(lang){var t=T[lang],E=window.SITE_ESC,total=SERIES.reduce
  $('h1').innerHTML=E(t.h1).replace('\n','<br>');$('hp').textContent=t.hp;$('c1').textContent=t.c1;$('c2').textContent=t.c2;
  $('stats').innerHTML=[[t.stats[0][0],total],[t.stats[1][0],SERIES.length],[t.stats[2][0],TOOLS.length]].map(function(s){return '<div><b>'+s[1]+'</b>'+E(s[0])+'</div>'}).join('');
  ['hl','ll','ht','hj','jm','hb','bt','bd','bl'].forEach(function(k){$(k).textContent=t[k]});
- $('series').innerHTML=SERIES.map(function(s){var d=s[lang]||s.ja;return '<a class="pass" href="'+s.p+'"><div class="main"><div class="who">'+E(d[0])+'</div><b>'+E(d[1])+'</b><div class="d">'+E(d[2])+'</div></div><div class="stub"><span class="code">'+s.code+'</span><small>'+s.n+' '+t.arts+'</small></div></a>'}).join('');
+ $('series').innerHTML=SERIES.map(function(s){var d=s[lang]||s.ja;return '<a class="pass" href="'+s.p+'"><div class="main">'+(window.__updNew?window.__updNew(s.p,lang):'')+'<div class="who">'+E(d[0])+'</div><b>'+E(d[1])+'</b><div class="d">'+E(d[2])+'</div></div><div class="stub"><span class="code">'+s.code+'</span><small>'+s.n+' '+t.arts+'</small></div></a>'}).join('');
+ if(window.__renderUpdates)window.__renderUpdates(lang);
  $('toolBox').innerHTML=TOOLS.map(function(x){var d=x[lang]||x.ja;return '<a class="tool" href="'+x.p+'"><b>'+E(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
  var J=(window.JOBS||[]).slice().sort(function(a,b){return (b.posted||'')<(a.posted||'')?-1:1}).slice(0,5),ACC=['#2F8FE0','#2C8C8C','#E08A2F','#7A5CC7','#D0506A'];
  $('jobroll').style.display=J.length?'':'none';
