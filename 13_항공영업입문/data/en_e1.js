@@ -161,5 +161,5 @@ terms:[["Volume Incentive","ボリュームインセンティブ","볼륨 인센
 quiz:[{q:"What recovers the difference from an agency ticketing error?",opts:["An ADM","The BSP","NDC","The GDS"],a:0,exp:"An agency debit memo."},
 {q:"What should you suspect when the same error keeps producing ADMs?",opts:["That the rule or notice is unclear","Only bad faith by the agency","Only a system fault","Nothing"],a:0,exp:"Prevention comes first."},
 {q:"What is decided first in designing an incentive?",opts:["What you want to grow","The colour","The logo","The president’s name"],a:0,exp:"Then tiers, period and scope."}],
-next:"4-1 Fare structures and fare families"});
+next:"3-3 The questions agencies always ask, and the guideline"});
 })(window.ARTS);
