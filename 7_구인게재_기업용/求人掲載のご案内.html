@@ -66,9 +66,29 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .rules li{margin:4px 0}
 footer{margin-top:40px;color:var(--sub);font-size:13px;text-align:center}
 @media (max-width:680px){form{grid-template-columns:1fr}.pv-body,.tmpl .r{grid-template-columns:1fr}.plan{font-size:14px}}
+/* サイト共通の上部メニュー・フッター（site.js）— このページの header/nav/.langs/footer の規則を打ち消す */
+.topbar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1080px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px}
+.topbar .brand{font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif;font-weight:900;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.topbar .brand svg{flex:0 0 auto}
+.topbar nav.menu{position:static;margin:0;padding:0;border:0;background:none;display:flex;gap:4px;overflow-x:auto;flex:1}
+.topbar nav.menu a{flex:0 0 auto;border:0;background:none;text-decoration:none;color:var(--ink);padding:6px 10px;border-radius:10px;font-size:14px;white-space:nowrap}
+.topbar nav.menu a.on,.topbar nav.menu a:hover{background:var(--sky2);color:#1d5fa0}
+.topbar .langs{position:static;display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg);flex:none}
+.topbar .langs button{appearance:none;cursor:pointer;border:0;background:transparent;color:var(--sub);font:600 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px}
+.topbar .langs button+button{border-left:1px solid var(--line)}
+.topbar .langs button.on{background:var(--sky);color:#fff}
+.site-foot{border-top:1px solid var(--line);margin-top:50px}
+.site-foot .in{max-width:1080px;margin:0 auto;padding:20px 18px 40px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--sub)}
+.site-foot a{color:var(--sub)}
+#lang{display:none}
+#nav{top:57px}
+@media (max-width:640px){.topbar .brand span{display:none}}
+@media (max-width:420px){.topbar .langs button{padding:6px 8px;font-size:12px;min-width:0}}
 </style>
 </head>
-<body>
+<body data-page="biz">
+<div class="topbar" id="siteTop"></div>
 <div class="wrap">
 <header><span class="langs" id="lang" role="group" aria-label="Language"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
 <nav id="nav"></nav>
@@ -85,6 +105,7 @@ footer{margin-top:40px;color:var(--sub);font-size:13px;text-align:center}
 </main>
 <footer id="foot"></footer>
 </div>
+<div class="site-foot" id="siteFoot"></div>
 <script>
 var T={ja:{kick:'航空キャリアノート',ttl:'求人掲載のご案内（企業向け）',lead:'航空会社・ハンドリング会社・空港関連の企業の皆さまへ。日本の空港で働きたい人に向けて、求人を日本語・韓国語・英語で掲載します。原稿づくりもお手伝いします。',
 nav:[['why','選ばれる理由'],['flow','掲載の流れ'],['plan','プラン'],['tmpl','原稿の項目'],['rules','掲載の基準'],['apply','お申し込み']],
@@ -136,7 +157,7 @@ var FIELDS=[['company','text',1],['dept','text',1],['email','email',1],['tel','t
 function val(k){var e=$('f_'+k);return e?e.value.trim():''}
 function langBar(){var g=$('lang');g.innerHTML=LANGS.map(function(l){return '<button type="button" data-l="'+l+'" lang="'+l+'" class="'+(l===lang?'on':'')+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');
  Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render()}})}
-function render(){var t=T[lang],saved={};FIELDS.forEach(function(x){saved[x[0]]=val(x[0])});var ag=$('f_agree')&&$('f_agree').checked;
+function render(l){if(l&&LANGS.indexOf(l)>=0)lang=l;var t=T[lang],saved={};FIELDS.forEach(function(x){saved[x[0]]=val(x[0])});var ag=$('f_agree')&&$('f_agree').checked;
  document.body.className=lang;document.documentElement.lang=lang;['kick','ttl','lead','foot'].forEach(function(i){$(i).textContent=t[i]});langBar();
  Array.prototype.forEach.call(document.querySelectorAll('[data-t]'),function(e){e.textContent=t[e.getAttribute('data-t')]});
  $('nav').innerHTML=t.nav.map(function(n){return '<a href="#'+n[0]+'">'+n[1]+'</a>'}).join('');
@@ -165,5 +186,6 @@ function showPv(){var F=T[lang].f,P=F.pv,rows=[['job',opt('job')],['place',val('
  $('pv').classList.add('show');}
 render();
 </script>
+<script src="../8_사이트/assets/site.js"></script>
 </body>
 </html>
