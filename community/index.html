@@ -46,7 +46,7 @@ textarea{min-height:180px}
 <main id="main"></main>
 </div>
 <script src="config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" integrity="sha384-Rj26LVGvoeRVR6+mwQmFfcR3QOBEwT+ZmuCWpuiqeTzJpCs0ER4ITAWGb4Hiy3Ok" crossorigin="anonymous"></script>
 <script>
 (function(){
 var CFG=window.COMMUNITY_CONFIG||{},LIVE=!!(CFG.url&&CFG.anonKey&&window.supabase),sb=LIVE?window.supabase.createClient(CFG.url,CFG.anonKey):null;

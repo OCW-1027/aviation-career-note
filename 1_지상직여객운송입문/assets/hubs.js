@@ -1,4 +1,4 @@
-/* シリーズ一覧の設定（9シリーズ）— 日本語・한국어・English */
+/* シリーズ一覧の設定（全シリーズ。数はこのファイルの項目数）— 日本語・한국어・English */
 window.HUBS={
 "1_지상직여객운송입문":{code:"GND",color:"#2F8FE0",
 name:{ja:"航空旅客運送の実務",ko:"항공 여객운송 실무",en:"Airline Passenger Operations"},

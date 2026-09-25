@@ -18,7 +18,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--hl);outline-offset:
 .langs{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg);flex:none}
 .langs button{appearance:none;cursor:pointer;border:0;background:transparent;color:var(--sub);font:600 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px}
 .langs button+button{border-left:1px solid var(--line)}
-.langs button.on{background:var(--sky);color:#fff}
+.langs button.on{background:#2477BD;color:#fff}
 @media (max-width:420px){.langs button{padding:6px 8px;font-size:12px;min-width:0}}
 html[lang="en"] body{font-family:"Noto Sans","Noto Sans JP",system-ui,sans-serif}
 .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 60px}
@@ -35,3 +35,5 @@ h2{font-size:22px;margin:40px 0 12px;padding-bottom:6px;border-bottom:3px solid 
 .site-foot .in{max-width:1080px;margin:0 auto;padding:20px 18px 40px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--sub)}
 .site-foot a{color:var(--sub)}
 @media (max-width:640px){.brand span{display:none}}
+/* 暗い画面でも読めるリンク色（文字のコントラスト 4.5:1 以上） */
+@media (prefers-color-scheme:dark){a{color:#79bfff}.site-foot a{color:var(--sub)}}

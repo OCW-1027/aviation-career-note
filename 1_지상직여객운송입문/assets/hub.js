@@ -38,4 +38,3 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  $('foot').innerHTML=U.copy+' — '+esc(H.name[lang])+'　<a href="../8_사이트/index.html">'+U.site+'</a>';}
 render();
 })();
-(function(){var s=document.currentScript&&document.currentScript.src;if(!s)return;var e=document.createElement('script');e.src=new URL('nav.js',s).href;document.head.appendChild(e)})();

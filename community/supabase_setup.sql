@@ -108,6 +108,53 @@ drop trigger if exists posts_touch on public.posts;
 create trigger posts_touch before update on public.posts for each row execute function public.touch_updated_at();
 
 -- ============================================================
+-- 投稿者とニックネームをサーバー側で決める（ブラウザーから送られた値は信用しない）
+-- ・作成時：author をログイン中の本人に、author_name を本人のプロフィールのニックネームに固定
+-- ・変更時：author・author_name・作成日時は変えられない
+-- ============================================================
+create or replace function public.set_author_on_insert() returns trigger
+language plpgsql security definer set search_path = public as
+$$
+declare nm text;
+begin
+  select nickname into nm from public.profiles where id = auth.uid();
+  if nm is null then
+    raise exception 'profile (nickname) is required before posting';
+  end if;
+  new.author := auth.uid();
+  new.author_name := nm;
+  new.deleted := false;
+  new.created_at := now();
+  return new;
+end $$;
+
+create or replace function public.keep_author_on_update() returns trigger
+language plpgsql as
+$$
+begin
+  new.author := old.author;
+  new.author_name := old.author_name;
+  new.created_at := old.created_at;
+  return new;
+end $$;
+
+drop trigger if exists posts_set_author on public.posts;
+create trigger posts_set_author before insert on public.posts for each row execute function public.set_author_on_insert();
+drop trigger if exists posts_keep_author on public.posts;
+create trigger posts_keep_author before update on public.posts for each row execute function public.keep_author_on_update();
+drop trigger if exists comments_set_author on public.comments;
+create trigger comments_set_author before insert on public.comments for each row execute function public.set_author_on_insert();
+drop trigger if exists comments_keep_author on public.comments;
+create trigger comments_keep_author before update on public.comments for each row execute function public.keep_author_on_update();
+
+-- 通報者もサーバー側で固定
+create or replace function public.set_reporter() returns trigger
+language plpgsql security definer set search_path = public as
+$$ begin new.reporter := auth.uid(); new.created_at := now(); return new; end $$;
+drop trigger if exists reports_set_reporter on public.reports;
+create trigger reports_set_reporter before insert on public.reports for each row execute function public.set_reporter();
+
+-- ============================================================
 -- 管理者の登録（自分がログインした後に実行）
 -- 1. サイトの掲示板にメールでログインする
 -- 2. Supabase → Authentication → Users で自分の User UID をコピー

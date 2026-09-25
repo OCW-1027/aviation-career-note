@@ -19,7 +19,7 @@
 .hero .cloud::before{content:"";position:absolute;left:30px;top:-22px;width:70px;height:50px;border-radius:50%;background:#fff}
 .stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px;font-size:14px}
 .stats b{display:block;font-size:26px;font-family:'Zen Maru Gothic',sans-serif}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
 .pass{display:grid;grid-template-columns:1fr 92px;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg)}
 .pass .main{padding:14px 16px}
 .pass .who{font-size:12px;color:var(--sub)}
@@ -33,14 +33,14 @@
 .tool{text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--card)}
 .tool b{display:block;margin-bottom:4px}
 .tool span{font-size:13px;color:var(--sub)}
-.jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:12px}
 .job{border:1px solid var(--line);border-radius:16px;padding:14px 16px}
 .job .co{font-size:12px;color:var(--sub)}
 .job b{display:block;margin:2px 0 6px}
 .chip{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 10px;margin:2px 4px 0 0}
 .sample{font-size:11px;color:#fff;background:var(--warn);border-radius:6px;padding:0 6px;margin-left:6px}
 .biz{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border:2px solid var(--sky);border-radius:20px;padding:20px 22px;background:var(--sky2)}
-.biz a{text-decoration:none;background:var(--sky);color:#fff;border-radius:12px;padding:10px 18px;font-weight:700}
+.biz a{text-decoration:none;background:#2477BD;color:#fff;border-radius:12px;padding:10px 18px;font-weight:700}
 .more{display:inline-block;margin-top:10px}
 @media (max-width:640px){.hero .sun,.hero .cloud{display:none}}
 /* 注目の求人（ローリングバナー） */
@@ -55,7 +55,7 @@
 .jr-slide .co{font-size:13px;color:var(--sub)}
 .jr-slide h3{margin:4px 0 8px;font-size:clamp(18px,2.6vw,24px);line-height:1.35;border:0;padding:0}
 .jr-slide .wage{margin-top:6px;font-weight:700;color:#1d5fa0}
-.jr-slide .go{background:var(--sky);color:#fff;border-radius:12px;padding:10px 18px;font-weight:700;white-space:nowrap}
+.jr-slide .go{background:#2477BD;color:#fff;border-radius:12px;padding:10px 18px;font-weight:700;white-space:nowrap}
 .jr-ctl{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;align-items:center;gap:8px;pointer-events:none}
 .jr-ctl button{pointer-events:auto;cursor:pointer;border:0;background:transparent;padding:6px;line-height:0}
 .jr-ctl .dot{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
@@ -147,22 +147,25 @@ window.render=function(lang){var t=T[lang],E=window.SITE_ESC,total=SERIES.reduce
  var J=(window.JOBS||[]).slice().sort(function(a,b){return (b.posted||'')<(a.posted||'')?-1:1}).slice(0,5),ACC=['#2F8FE0','#2C8C8C','#E08A2F','#7A5CC7','#D0506A'];
  $('jobroll').style.display=J.length?'':'none';
  $('jrTrack').innerHTML=J.map(function(j,i){var d=j[lang]||j.en||j.ja;return '<a class="jr-slide" style="--acc:'+ACC[i%ACC.length]+'" href="jobs.html#'+E(j.id)+'" aria-roledescription="slide" aria-label="'+(i+1)+' / '+J.length+'"><div class="jr-pic" role="img" aria-label="'+E(j.imgAlt||d.title)+'" style="background-image:url(\''+E(j.img||'assets/jobs/counter.svg')+'\')"></div><div class="jr-body"><div class="co">'+(j.logo?'<img class="jr-logo" src="'+E(j.logo)+'" alt="">':'')+E(d.company)+(j.sample?'<span class="sample">'+t.sample+'</span>':'')+'</div><h3>'+E(d.title)+'</h3><span class="chip">'+E(d.job)+'</span><span class="chip">'+E(d.place)+'</span><span class="chip">'+E(d.emp)+'</span>'+(d.wage?'<div class="wage">'+E(d.wage)+'</div>':'')+(d.desc?'<p class="desc">'+E(d.desc)+'</p>':'')+'<span class="go">'+t.go+'</span></div></a>'}).join('');
- $('jrCtl').innerHTML=J.length>1?'<button type="button" class="arw" data-d="-1" aria-label="'+t.prev+'">‹</button>'+J.map(function(j,i){return '<button type="button" data-i="'+i+'" aria-label="'+(i+1)+'"><span class="dot"></span></button>'}).join('')+'<button type="button" class="arw" data-d="1" aria-label="'+t.nextj+'">›</button>':'';
+ $('jrCtl').innerHTML=J.length>1?'<button type="button" class="arw" data-d="-1" aria-label="'+t.prev+'">‹</button>'+J.map(function(j,i){return '<button type="button" data-i="'+i+'" aria-label="'+(i+1)+'"><span class="dot"></span></button>'}).join('')+'<button type="button" class="arw" data-d="1" aria-label="'+t.nextj+'">›</button><button type="button" class="arw" id="jrPP" data-p="1"></button>':'';
  window.JR&&window.JR.init(J.length);};
-(function(){var n=0,cur=0,timer=null,hold=false,reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function(){var n=0,cur=0,timer=null,hold=false,stopped=false,reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(reduce)stopped=true;
  function $(i){return document.getElementById(i)}
- function show(i){if(!n)return;cur=(i+n)%n;$('jrTrack').style.transform='translateX('+(-cur*100)+'%)';Array.prototype.forEach.call($('jrCtl').querySelectorAll('button[data-i]'),function(b){b.classList.toggle('on',+b.getAttribute('data-i')===cur)})}
- function play(){clearInterval(timer);if(n>1&&!reduce)timer=setInterval(function(){if(!hold&&!document.hidden)show(cur+1)},6000)}
+ function lbl(){var L=({ja:['自動回転を一時停止','自動回転を再生'],ko:['자동 회전 일시정지','자동 회전 재생'],en:['Pause auto-rotation','Play auto-rotation']})[document.documentElement.lang]||['Pause','Play'];var b=$('jrPP');if(!b)return;b.textContent=stopped?'▶':'❚❚';b.setAttribute('aria-label',stopped?L[1]:L[0]);b.setAttribute('aria-pressed',stopped?'true':'false')}
+ function show(i){if(!n)return;cur=(i+n)%n;$('jrTrack').style.transform='translateX('+(-cur*100)+'%)';Array.prototype.forEach.call($('jrCtl').querySelectorAll('button[data-i]'),function(b){b.classList.toggle('on',+b.getAttribute('data-i')===cur)});
+  Array.prototype.forEach.call($('jrTrack').children,function(a,k){var on=k===cur;a.setAttribute('aria-hidden',on?'false':'true');a.tabIndex=on?0:-1;if(on)a.removeAttribute('inert');else a.setAttribute('inert','')})}
+ function play(){clearInterval(timer);timer=null;if(n>1&&!reduce&&!stopped)timer=setInterval(function(){if(!hold&&!document.hidden)show(cur+1)},6000);lbl()}
  window.JR={init:function(len){n=len;if(cur>=n)cur=0;show(cur);play();
-  Array.prototype.forEach.call($('jrCtl').querySelectorAll('button'),function(b){b.onclick=function(){if(b.hasAttribute('data-i'))show(+b.getAttribute('data-i'));else show(cur+(+b.getAttribute('data-d')));play()}})}};
+  Array.prototype.forEach.call($('jrCtl').querySelectorAll('button'),function(b){b.onclick=function(){if(b.hasAttribute('data-p')){stopped=!stopped;play();return}if(b.hasAttribute('data-i'))show(+b.getAttribute('data-i'));else show(cur+(+b.getAttribute('data-d')));play()}})}};
  document.addEventListener('DOMContentLoaded',function(){var v=$('jrView'),x0=null;if(!v)return;
   v.addEventListener('mouseenter',function(){hold=true});v.addEventListener('mouseleave',function(){hold=false});
-  v.addEventListener('focusin',function(){hold=true});v.addEventListener('focusout',function(){hold=false});
+  /* キーボードのフォーカスが入ったら止め、利用者が再生を押すまで動かさない */
+  v.addEventListener('focusin',function(e){if(e.target&&e.target.id==='jrPP')return;if(!stopped){stopped=true;play()}});
   v.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;hold=true},{passive:true});
   v.addEventListener('touchend',function(e){if(x0!==null){var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){show(cur+(dx<0?1:-1));play()}}x0=null;hold=false},{passive:true});});
 })();
 </script>
 <script src="assets/site.js"></script>
-<script src="../1_지상직여객운송입문/assets/nav.js"></script>
 </body>
 </html>
