@@ -1,6 +1,6 @@
 /* 共通設定（article.js より前に読み込む）— 航空の基礎知識 */
 (function(){
-var PARTS={ja:['Part 0 航空機を知る','Part 1 空と時間','Part 2 空港と空のルール','Part 3 航空の歩み'],ko:['Part 0 항공기를 알다','Part 1 하늘과 시간','Part 2 공항과 하늘의 규칙','Part 3 항공의 역사'],en:['Part 0 Knowing the Aircraft','Part 1 Sky and Time','Part 2 Airports and the Rules of the Sky','Part 3 Aviation History']};
+var PARTS={ja:['Part 0 航空機を知る','Part 1 空と時間','Part 2 空港と空のルール','Part 3 航空の歩み','Part 4 これからの空港と航空'],ko:['Part 0 항공기를 알다','Part 1 하늘과 시간','Part 2 공항과 하늘의 규칙','Part 3 항공의 역사','Part 4 앞으로의 공항과 항공'],en:['Part 0 Knowing the Aircraft','Part 1 Sky and Time','Part 2 Airports and the Rules of the Sky','Part 3 Aviation History','Part 4 The Future of Airports and Aviation']};
 var S={ja:'航空の基礎知識',ko:'항공 기초 지식',en:'Aviation Fundamentals'};
 var DEF={ja:{voice:'現場のひと言'},ko:{voice:'현장 한마디'},en:{voice:'Voice from the Field'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];
