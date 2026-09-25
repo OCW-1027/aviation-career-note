@@ -45,5 +45,5 @@ terms:[["Onboarding","オンボーディング","온보딩"],["Signing off as Co
 quiz:[{q:"What should you check first once a start date is set?",opts:["Uniform colour","ID pass and initial training dates","The welcome party venue","Holiday plans"],a:1,exp:"Without them the new starter cannot work on the front line."},
 {q:"What order should a buddy follow?",opts:["Hand it over straight away","Show → do together → hand over","Just give them the manual","Nothing"],a:1,exp:"Three steps."},
 {q:"What is the standard for sign-off?",opts:["Did it once","Can do it alone, repeatedly","Their own wish","Days worked"],a:1,exp:"Buddy and supervisor confirm and record it."}],
-next:"7-1 Working in ground operations in Japan: hiring routes and visas"});
+next:"6-11 Customer harassment: Japan’s October 2026 obligation"});
 })(window.ARTS);

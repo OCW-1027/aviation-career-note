@@ -3,6 +3,8 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-25",c:"1_지상직여객운송입문",k:"6-11",t:"new",ja:"カスタマーハラスメント ― 2026年10月の義務化",ko:"고객 괴롭힘(카스하라) — 2026년 10월 의무화",en:"Customer harassment: the October 2026 obligation"},
+{d:"2026-09-25",c:"1_지상직여객운송입문",k:"6-12",t:"new",ja:"現場でのカスハラ対応",ko:"현장에서의 카스하라 대응",en:"Handling customer harassment on the front line"},
 {d:"2026-09-25",c:"",k:"",t:"upd",u:"航空コード辞典.html",ja:"航空コード辞典：航空会社を248社に拡充",ko:"항공 코드 사전: 항공사 248곳으로 확대",en:"Code dictionary: airlines expanded to 248"},
 {d:"2026-09-25",c:"",k:"",t:"upd",u:"用語集_航空用語.html",ja:"用語集：販売・客室・出入国の新しい用語を追加",ko:"용어집: 판매·객실·출입국 신규 용어 추가",en:"Glossary: new sales, cabin and border terms"},
 {d:"2026-09-25",c:"1_지상직여객운송입문",k:"9-1",t:"new",ja:"客室乗務員の役割と組織",ko:"객실승무원의 역할과 조직",en:"The role and organisation of cabin crew"},
