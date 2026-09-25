@@ -39,5 +39,5 @@ terms:[["Airline Alliance","航空連合（アライアンス）","항공 동맹
 quiz:[{q:"Which alliance is JAL in?",opts:["Star Alliance","oneworld","SkyTeam","None"],a:1,exp:"ANA is in Star Alliance and Korean Air in SkyTeam."},
 {q:"On what announced date does Asiana merge into Korean Air?",opts:["1 January 2025","17 December 2026","1 April 2027","Not decided"],a:1,exp:"It leaves Star Alliance the day before, on 16 December."},
 {q:"Why do LCCs often fly a single aircraft type?",opts:["To cut maintenance and training costs","Airport rules","Passenger demand","Fuel type"],a:0,exp:"Parts, engineers and crew training can all be shared."}],
-next:""});
+next:"Part 3 Aviation History — 3-1 A timeline of aviation history"});
 })(window.ARTS);

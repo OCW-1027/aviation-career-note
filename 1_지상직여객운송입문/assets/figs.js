@@ -224,6 +224,16 @@ freedoms_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox=
   s+='<g><path d="M-9 -3 L8 0 L-9 3 L-6 0 Z M-3 -8 L2 0 L-3 8 Z" fill="#1D2A3A"/><animateMotion dur="'+(3+p.segs.length)+'s" repeatCount="indefinite" rotate="auto" path="'+path+'"/></g>';
   s+='</g>'});
  return s+'</svg>'},
+history_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img"><rect width="900" height="340" fill="#F7FAFD"/>',x0=50,x1=860,y=170,T0=1900,T1=2030,dur=20;
+ function X(yr){return x0+(x1-x0)*(yr-T0)/(T1-T0)}
+ s+='<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" stroke="#cfd8e2" stroke-width="8" stroke-linecap="round"/>';
+ s+='<line x1="'+x0+'" y1="'+y+'" x2="'+x0+'" y2="'+y+'" stroke="#2F8FE0" stroke-width="8" stroke-linecap="round"><animate attributeName="x2" values="'+x0+';'+x1+';'+x1+'" keyTimes="0;.85;1" dur="'+dur+'s" repeatCount="indefinite"/></line>';
+ for(var d=1900;d<=2030;d+=10){s+='<line x1="'+X(d)+'" y1="'+(y+10)+'" x2="'+X(d)+'" y2="'+(y+18)+'" stroke="'+D+'"/>';if(d%20===0)s+='<text x="'+X(d)+'" y="'+(y+36)+'" font-size="13" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">'+d+'</text>'}
+ var E=[[1903,'#5b6b7d'],[1919,'#5b6b7d'],[1944,'#1F7A6E'],[1951,'#D0506A'],[1952,'#E08A2F'],[1969,'#2F8FE0'],[1970,'#E08A2F'],[1978,'#1F7A6E'],[1988,'#2F8FE0'],[1997,'#7A5CC7'],[2001,'#2F8FE0'],[2012,'#D0506A'],[2020,'#5b6b7d'],[2026,'#2F8FE0']];
+ E.forEach(function(e,i){var x=X(e[0]),up=i%2===0,by=up?y-70-(i%4===0?24:0):y+70+(i%4===1?24:0),t=((e[0]-T0)/(T1-T0))*.85,t2=Math.min(t+.01,.99);
+  s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+t.toFixed(3)+';'+t2.toFixed(3)+';1" dur="'+dur+'s" repeatCount="indefinite"/><line x1="'+x+'" y1="'+y+'" x2="'+x+'" y2="'+by+'" stroke="'+e[1]+'" stroke-width="2" stroke-dasharray="4 3"/><circle cx="'+x+'" cy="'+y+'" r="7" fill="'+e[1]+'"/>'+badge(i+1,x,by,15,e[1])+'<text x="'+x+'" y="'+(up?by-22:by+32)+'" font-size="12" font-weight="700" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">'+e[0]+'</text></g>'});
+ s+='<g><path d="M-12 -4 L10 0 L-12 4 L-8 0 Z M-4 -10 L2 0 L-4 10 Z" fill="#2F8FE0"/><animateMotion dur="'+dur+'s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear" path="M'+x0+' '+(y-16)+' L'+x1+' '+(y-16)+'"/></g>';
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';
