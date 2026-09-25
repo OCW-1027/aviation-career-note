@@ -1,0 +1,49 @@
+# 航空キャリアノート：静的ページを作って検査し、（手動で実行したときだけ）公開する
+# ・push のたび：生成と検査だけ（今の公開サイトには影響しない）
+# ・Actions 画面から「Run workflow」：生成・検査のあと GitHub Pages に公開
+#   ※ 公開には Settings → Pages → Source を「GitHub Actions」にしておく必要がある
+name: build-and-deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install
+        working-directory: _build
+        run: npm install --no-audit --no-fund
+      - name: Build static pages
+        run: node _build/build.mjs . _site
+      - name: Check the site
+        run: node _build/check.mjs _site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name == 'workflow_dispatch'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

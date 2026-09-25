@@ -1,0 +1,11 @@
+{
+  "name": "aviation-career-note-build",
+  "private": true,
+  "description": "航空キャリアノート：レッスンの静的ページ（日本語・韓国語・英語）を作る",
+  "scripts": {
+    "build": "node build.mjs .. ../_site"
+  },
+  "dependencies": {
+    "jsdom": "24.1.3"
+  }
+}

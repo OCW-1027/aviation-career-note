@@ -6,3 +6,6 @@ _이전판_목록페이지/
 Thumbs.db
 desktop.ini
 .DS_Store
+# 静的ページの生成でできるもの（GitHub の上で作るので、上げない）
+node_modules/
+_site/
