@@ -163,6 +163,35 @@ aircraft_parts:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox
  sb.forEach(function(t){s+='<line x1="'+t[3]+'" y1="'+t[4]+'" x2="'+t[1]+'" y2="'+t[2]+'" stroke="'+t[5]+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+badge(t[0],t[3],t[4],14,t[5])});
  s+='<text x="20" y="630" font-size="14" fill="'+Sd+'" font-family="Arial,sans-serif">← FWD</text><text x="880" y="630" font-size="14" text-anchor="end" fill="'+Sd+'" font-family="Arial,sans-serif">AFT →</text>';
  return s+'</svg>'},
+forces_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><rect width="900" height="460" fill="#EAF4FD"/>';
+ [[120,80,1],[520,60,1.3],[760,120,.9],[300,380,1.1]].forEach(function(c,i){s+='<g opacity=".9"><ellipse cx="'+c[0]+'" cy="'+c[1]+'" rx="'+(46*c[2])+'" ry="'+(16*c[2])+'" fill="#fff"/><ellipse cx="'+(c[0]+30*c[2])+'" cy="'+(c[1]-10*c[2])+'" rx="'+(30*c[2])+'" ry="'+(16*c[2])+'" fill="#fff"/><animateTransform attributeName="transform" type="translate" values="0 0;260 0" dur="'+(7+i*2)+'s" repeatCount="indefinite"/></g>'});
+ s+='<g transform="translate(450 230)"><path d="M-170 0 Q-170 -22 -140 -24 L130 -24 L160 -40 L185 -95 L205 -95 L200 -24 L210 0 L160 12 L-140 14 Q-170 14 -170 0 Z" fill="#fff" stroke="'+D+'" stroke-width="3"/><path d="M-40 -2 L40 -2 L70 10 L-20 10 Z" fill="#cfd8e2" stroke="'+D+'" stroke-width="2"/>';
+ for(var wx=-120;wx<120;wx+=18)s+='<rect x="'+wx+'" y="-14" width="8" height="8" rx="3" fill="#9fd3fa"/>';
+ s+='</g>';
+ function arr(x1,y1,x2,y2,c,v){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+c+'" stroke-width="10" stroke-linecap="round" marker-end="url(#fa)"><animate attributeName="'+(x1===x2?'y2':'x2')+'" values="'+v+'" dur="2.4s" repeatCount="indefinite"/></line>'}
+ s+=arr(450,200,450,70,'#2F8FE0','90;60;90')+arr(450,250,450,400,'#5b6b7d','390;410;390')+arr(270,230,130,230,'#E08A2F','150;110;150')+arr(670,230,800,230,'#D0506A','780;810;780');
+ s+=badge('A',490,80,16,'#2F8FE0')+badge('B',490,395,16,'#5b6b7d')+badge('C',160,195,16,'#E08A2F')+badge('D',770,195,16,'#D0506A');
+ s+='<text x="20" y="448" font-size="14" fill="'+D+'" font-family="Arial,sans-serif">← FWD</text>';
+ return s+'</svg>'},
+wing_airflow:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img"><defs><marker id="wa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2F8FE0"/></marker></defs><rect width="900" height="400" fill="#F7FAFD"/>';
+ s+='<path d="M190 215 C 260 120, 520 110, 730 205 C 540 230, 320 238, 190 215 Z" fill="#dbe9f7" opacity=".0"/>';
+ s+='<ellipse cx="450" cy="120" rx="260" ry="55" fill="#2F8FE0" opacity=".10"/><ellipse cx="450" cy="285" rx="260" ry="40" fill="#E08A2F" opacity=".10"/>';
+ ['360,110','450,95','540,108'].forEach(function(p){var q=p.split(',');s+='<text x="'+q[0]+'" y="'+q[1]+'" font-size="34" font-weight="700" fill="#2F8FE0" text-anchor="middle" font-family="Arial">−</text>'});
+ ['360,300','450,308','540,300'].forEach(function(p){var q=p.split(',');s+='<text x="'+q[0]+'" y="'+q[1]+'" font-size="30" font-weight="700" fill="#E08A2F" text-anchor="middle" font-family="Arial">+</text>'});
+ [[150,0],[128,1],[106,2]].forEach(function(l,i){var y=l[0];s+='<path d="M40 '+(y+50)+' C 200 '+(y+45)+', 330 '+(y-20+i*6)+', 460 '+(y-26+i*8)+' S 720 '+(y+40)+', 870 '+(y+70)+'" fill="none" stroke="#2F8FE0" stroke-width="3" stroke-dasharray="14 12"><animate attributeName="stroke-dashoffset" values="52;0" dur="0.7s" repeatCount="indefinite"/></path>'});
+ [[262,0],[290,1],[318,2]].forEach(function(l,i){var y=l[0];s+='<path d="M40 '+(y-8)+' C 220 '+(y-4)+', 420 '+(y-6)+', 600 '+(y-14)+' S 780 '+(y-20)+', 870 '+(y-20)+'" fill="none" stroke="#E08A2F" stroke-width="3" stroke-dasharray="14 12"><animate attributeName="stroke-dashoffset" values="52;0" dur="1.5s" repeatCount="indefinite"/></path>'});
+ s+='<path d="M190 215 C 260 130, 520 118, 730 205 C 540 228, 320 236, 190 215 Z" fill="#fff" stroke="'+D+'" stroke-width="3"/>';
+ s+='<line x1="450" y1="170" x2="450" y2="40" stroke="#1F7A6E" stroke-width="10" stroke-linecap="round"><animate attributeName="y2" values="60;30;60" dur="2s" repeatCount="indefinite"/></line><polygon points="450,14 436,40 464,40" fill="#1F7A6E"><animateTransform attributeName="transform" type="translate" values="0 20;0 -10;0 20" dur="2s" repeatCount="indefinite"/></polygon>';
+ s+=badge('A',120,130,16,'#2F8FE0')+badge('B',120,285,16,'#E08A2F')+badge('C',490,50,16,'#1F7A6E');
+ s+='<text x="40" y="388" font-size="14" fill="'+D+'" font-family="Arial,sans-serif">AIR →</text>';
+ return s+'</svg>'},
+flaps_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img"><rect width="900" height="340" fill="#F7FAFD"/>';
+ s+='<path d="M200 200 C 260 130, 480 120, 640 185 L 640 205 C 480 215, 300 222, 200 200 Z" fill="#fff" stroke="'+D+'" stroke-width="3"/>';
+ s+='<g><path d="M645 188 C 700 200, 740 205, 780 206 L 645 210 Z" fill="#1F7A6E" opacity=".85"/><animateTransform attributeName="transform" type="rotate" values="0 645 198;0 645 198;26 645 198;26 645 198;0 645 198" keyTimes="0;.15;.45;.75;1" dur="5s" repeatCount="indefinite"/></g>';
+ s+='<g><path d="M205 196 C 190 180, 190 168, 215 158 L 232 178 Z" fill="#2F8FE0" opacity=".85"/><animateTransform attributeName="transform" type="translate" values="0 0;0 0;-22 18;-22 18;0 0" keyTimes="0;.15;.45;.75;1" dur="5s" repeatCount="indefinite"/></g>';
+ s+='<line x1="440" y1="160" x2="440" y2="90" stroke="#D0506A" stroke-width="10" stroke-linecap="round"><animate attributeName="y2" values="90;90;30;30;90" keyTimes="0;.15;.45;.75;1" dur="5s" repeatCount="indefinite"/></line>';
+ s+=badge('A',790,250,16,'#1F7A6E')+badge('B',150,120,16,'#2F8FE0')+badge('C',480,70,16,'#D0506A');
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';
