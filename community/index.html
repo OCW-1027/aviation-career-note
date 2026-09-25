@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>コミュニティ ― 航空キャリアノート</title>
+<style>
+:root{--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--acc:#2F8FE0;--warn:#D0506A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Noto Sans KR","Hiragino Sans","Malgun Gothic",system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:920px;margin:0 auto;padding:18px 16px 100px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{color:var(--ink);text-decoration:none;font-weight:700}
+.langs{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}.langs button{border:0;background:transparent;color:var(--ink);font:600 13px inherit;font-family:inherit;padding:6px 12px;cursor:pointer}.langs button.on{background:var(--acc);color:#fff}
+header.hero{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:18px;padding:22px;margin:14px 0}
+header.hero h1{margin:0 0 6px;font-size:clamp(22px,4vw,30px)}header.hero p{margin:0;opacity:.95}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:10px 0}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}.tabs a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);font-size:14px;background:var(--card)}.tabs a.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn{display:inline-block;border:0;border-radius:10px;padding:8px 14px;font:700 14px inherit;font-family:inherit;cursor:pointer;background:var(--acc);color:#fff;text-decoration:none}
+.btn.sub{background:var(--card);color:var(--ink);border:1px solid var(--line)}.btn.warn{background:transparent;color:var(--warn);border:1px solid var(--warn)}
+.note{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--sub);margin:10px 0}
+.note.prep{border-color:#FFE08A;background:#FFF9E6;color:#6b5500}
+@media (prefers-color-scheme:dark){.note.prep{background:#2a2410;color:#f0dc9a}}
+.list a.row{display:flex;gap:10px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.list a.row:hover .tt{color:var(--acc)}
+.chip{font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--sub);white-space:nowrap}
+.tt{flex:1;font-weight:600}.meta{font-size:12px;color:var(--sub);white-space:nowrap}
+.cnt{font-size:12px;color:var(--acc);font-weight:700}
+.post h2{margin:6px 0}.post .body{white-space:pre-wrap;word-break:break-word;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 2px;margin:10px 0}
+.cmt{padding:10px 2px;border-bottom:1px solid var(--line)}.cmt .b{white-space:pre-wrap;word-break:break-word}
+form label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--bg);color:var(--ink)}
+textarea{min-height:180px}
+.row2{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.rules li{margin:6px 0}
+.muted{color:var(--sub);font-size:13px}
+.pager{display:flex;justify-content:center;gap:8px;margin:14px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><a class="brand" href="../8_사이트/index.html" id="brand"></a><span class="langs" id="langs"></span></div>
+<header class="hero"><h1 id="h1"></h1><p id="lead"></p></header>
+<div id="prep"></div>
+<div class="bar"><div class="tabs" id="tabs"></div><div id="acct"></div></div>
+<main id="main"></main>
+</div>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+var CFG=window.COMMUNITY_CONFIG||{},LIVE=!!(CFG.url&&CFG.anonKey&&window.supabase),sb=LIVE?window.supabase.createClient(CFG.url,CFG.anonKey):null;
+var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
+var lang='ja';try{var s=localStorage.getItem('art-lang');if(LANGS.indexOf(s)>=0)lang=s}catch(e){}
+var BOARDS=['qa','info','career','free'];
+var T={
+ja:{brand:'← 航空キャリアノート',h1:'コミュニティ',lead:'航空・空港で働く人、目指す人が、質問し、情報を分け合い、つながる場所です。',prep:'掲示板は準備中です。公開までもう少しお待ちください。下はサンプルの投稿です。',all:'すべて',b:{qa:'質問',info:'情報交換',career:'キャリア・転職',free:'雑談'},write:'投稿する',login:'ログイン',logout:'ログアウト',rules:'利用のルール',sample:'サンプル',none:'まだ投稿はありません。',back:'← 一覧へ',comments:'コメント',cmtPh:'コメントを書く',send:'送信',del:'削除',hide:'非表示にする',report:'通報',reason:'通報の理由を書いてください',reported:'通報しました。ありがとうございます。',title:'題名',body:'本文',board:'掲示板',post:'投稿する',cancel:'やめる',email:'メールアドレス',sendLink:'ログイン用のリンクを送る',sent:'メールを送りました。届いたリンクを開くとログインできます。',nick:'ニックネーム（2〜20文字。本名や会社名は避けてください）',saveNick:'保存',needLogin:'投稿・コメントにはログインが必要です。',confirmDel:'削除しますか？',prev:'前へ',next:'次へ',err:'エラーが発生しました：',
+ rulesList:['個人を特定できる情報（本名・電話番号・社員番号など）や、会社の機密・内部資料を書かない。','誹謗中傷、差別、ハラスメント、特定の人や会社への攻撃をしない。','営業・勧誘・宣伝・求人の書き込みをしない（求人は求人のページへ）。','安全・保安・運航に関わる判断は、必ず会社の規程と公式の情報で確認する。','ルールに反する投稿は、予告なく非表示にすることがあります。','困った書き込みを見つけたら「通報」を押してください。']},
+ko:{brand:'← 항공 커리어 노트',h1:'커뮤니티',lead:'항공·공항에서 일하는 사람과 이를 목표로 하는 사람이 질문하고, 정보를 나누고, 이어지는 곳입니다.',prep:'게시판은 준비 중입니다. 공개까지 조금만 기다려 주세요. 아래는 샘플 게시글입니다.',all:'전체',b:{qa:'질문',info:'정보 교환',career:'커리어·이직',free:'자유'},write:'글쓰기',login:'로그인',logout:'로그아웃',rules:'이용 규칙',sample:'샘플',none:'아직 게시글이 없습니다.',back:'← 목록으로',comments:'댓글',cmtPh:'댓글 쓰기',send:'보내기',del:'삭제',hide:'숨기기',report:'신고',reason:'신고 이유를 적어 주세요',reported:'신고했습니다. 감사합니다.',title:'제목',body:'본문',board:'게시판',post:'올리기',cancel:'취소',email:'이메일 주소',sendLink:'로그인 링크 보내기',sent:'메일을 보냈습니다. 받은 링크를 열면 로그인됩니다.',nick:'닉네임(2~20자. 실명이나 회사명은 피해 주세요)',saveNick:'저장',needLogin:'글쓰기·댓글에는 로그인이 필요합니다.',confirmDel:'삭제할까요?',prev:'이전',next:'다음',err:'오류가 발생했습니다: ',
+ rulesList:['개인을 특정할 수 있는 정보(실명·전화번호·사번 등)나 회사 기밀·내부 자료를 쓰지 않는다.','비방, 차별, 괴롭힘, 특정인·특정 회사에 대한 공격을 하지 않는다.','영업·권유·광고·구인 글을 쓰지 않는다(구인은 구인 페이지로).','안전·보안·운항에 관한 판단은 반드시 회사 규정과 공식 정보로 확인한다.','규칙에 어긋나는 글은 예고 없이 숨길 수 있습니다.','문제가 있는 글을 발견하면 ‘신고’를 눌러 주세요.']},
+en:{brand:'← Aviation Career Note',h1:'Community',lead:'A place for people working in, or aiming for, airline and airport jobs to ask questions, share information and connect.',prep:'The board is being prepared and will open soon. The posts below are samples.',all:'All',b:{qa:'Questions',info:'Information',career:'Careers',free:'Chat'},write:'New post',login:'Log in',logout:'Log out',rules:'Community rules',sample:'Sample',none:'No posts yet.',back:'← Back to list',comments:'Comments',cmtPh:'Write a comment',send:'Send',del:'Delete',hide:'Hide',report:'Report',reason:'Please tell us why you are reporting this',reported:'Reported. Thank you.',title:'Title',body:'Body',board:'Board',post:'Post',cancel:'Cancel',email:'Email address',sendLink:'Send me a login link',sent:'We have emailed you a link. Open it to log in.',nick:'Nickname (2–20 characters; please avoid your real name or employer)',saveNick:'Save',needLogin:'Please log in to post or comment.',confirmDel:'Delete this?',prev:'Previous',next:'Next',err:'Something went wrong: ',
+ rulesList:['Do not post personal information (real names, phone numbers, staff numbers) or confidential company material.','No abuse, discrimination, harassment or attacks on individuals or companies.','No sales, solicitation, advertising or job ads (use the jobs page).','Always check safety, security and operational decisions against your company’s rules and official sources.','Posts that break these rules may be hidden without notice.','If you see a problem post, press “Report”.']}};
+var SAMPLES=[{id:'s1',board:'qa',title:{ja:'ロードシートの最終版はいつ機長に渡しますか？',ko:'로드시트 최종본은 언제 기장에게 건네나요?',en:'When do you hand the final loadsheet to the captain?'},author_name:'ramp_rookie',created_at:'2026-09-20',n:3},{id:'s2',board:'career',title:{ja:'ハンドリング会社から航空会社への転職について',ko:'조업사에서 항공사로 이직하는 것에 대해',en:'Moving from a ground handler to an airline'},author_name:'gs_osaka',created_at:'2026-09-18',n:5},{id:'s3',board:'info',title:{ja:'EES（欧州の出入国システム）の案内で気をつけていること',ko:'EES(유럽 출입국 시스템) 안내에서 신경 쓰는 점',en:'What we tell passengers about the EU EES'},author_name:'counter_lead',created_at:'2026-09-15',n:2}];
+var me=null,prof=null,admin=false,page=0,PER=20;
+function $(i){return document.getElementById(i)}
+function E(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function d(x){return String(x||'').slice(0,10).replace(/-/g,'.')}
+function route(){var h=location.hash.replace(/^#\/?/,'').split('/');return {v:h[0]||'list',a:h[1]||''}}
+function go(h){location.hash=h}
+function alertErr(e){alert(T[lang].err+(e&&e.message?e.message:e))}
+function frame(){var t=T[lang];document.documentElement.lang=lang;document.title=t.h1+' ― '+t.brand.replace('← ','');
+ $('brand').textContent=t.brand;$('h1').textContent=t.h1;$('lead').textContent=t.lead;
+ $('langs').innerHTML=LANGS.map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===lang?'on':'')+'">'+LBL[l]+'</button>'}).join('');
+ Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render()}});
+ $('prep').innerHTML=LIVE?'':'<div class="note prep">'+E(t.prep)+'</div>';
+ var r=route(),cur=r.v==='b'?r.a:(r.v==='list'?'':null);
+ $('tabs').innerHTML='<a href="#/" class="'+(cur===''?'on':'')+'">'+E(t.all)+'</a>'+BOARDS.map(function(b){return '<a href="#/b/'+b+'" class="'+(cur===b?'on':'')+'">'+E(t.b[b])+'</a>'}).join('')+'<a href="#/rules" class="'+(r.v==='rules'?'on':'')+'">'+E(t.rules)+'</a>';
+ $('acct').innerHTML=(LIVE?(me?'<span class="muted">'+E(prof?prof.nickname:me.email)+'</span> <button class="btn sub" id="lo">'+E(t.logout)+'</button> ':'<a class="btn sub" href="#/login">'+E(t.login)+'</a> '):'')+'<a class="btn" href="#/new">'+E(t.write)+'</a>';
+ if($('lo'))$('lo').onclick=function(){sb.auth.signOut()};}
+function render(){frame();var r=route(),t=T[lang],m=$('main');
+ if(r.v==='rules'){m.innerHTML='<div class="note"><b>'+E(t.rules)+'</b><ul class="rules">'+t.rulesList.map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul></div>';return}
+ if(r.v==='login'){return loginView()}
+ if(r.v==='new'){return newView()}
+ if(r.v==='p'){return postView(r.a)}
+ return listView(r.v==='b'?r.a:'')}
+function listView(board){var t=T[lang],m=$('main');
+ if(!LIVE){var rows=SAMPLES.filter(function(p){return !board||p.board===board});m.innerHTML='<div class="list">'+(rows.map(function(p){return '<a class="row" href="#/rules"><span class="chip">'+E(t.b[p.board])+'</span><span class="tt">'+E(p.title[lang])+' <span class="chip">'+E(t.sample)+'</span></span><span class="cnt">'+p.n+'</span><span class="meta">'+E(p.author_name)+' · '+d(p.created_at)+'</span></a>'}).join('')||'<p class="muted">'+E(t.none)+'</p>')+'</div>';return}
+ m.innerHTML='<p class="muted">…</p>';
+ var q=sb.from('posts').select('id,board,title,author_name,created_at,comments(count)').eq('deleted',false).order('created_at',{ascending:false}).range(page*PER,page*PER+PER);
+ if(board)q=q.eq('board',board);
+ q.then(function(res){if(res.error)return alertErr(res.error);var rows=res.data||[],more=rows.length>PER;rows=rows.slice(0,PER);
+  m.innerHTML='<div class="list">'+(rows.map(function(p){var n=(p.comments&&p.comments[0]&&p.comments[0].count)||0;return '<a class="row" href="#/p/'+p.id+'"><span class="chip">'+E(t.b[p.board]||p.board)+'</span><span class="tt">'+E(p.title)+'</span>'+(n?'<span class="cnt">'+n+'</span>':'')+'<span class="meta">'+E(p.author_name)+' · '+d(p.created_at)+'</span></a>'}).join('')||'<p class="muted">'+E(t.none)+'</p>')+'</div><div class="pager">'+(page>0?'<button class="btn sub" id="pv">'+E(t.prev)+'</button>':'')+(more?'<button class="btn sub" id="nx">'+E(t.next)+'</button>':'')+'</div>';
+  if($('pv'))$('pv').onclick=function(){page--;render()};if($('nx'))$('nx').onclick=function(){page++;render()}})}
+function needLive(){var t=T[lang];$('main').innerHTML='<div class="note prep">'+E(t.prep)+'</div>';return !LIVE}
+function loginView(){if(needLive())return;var t=T[lang],m=$('main');
+ if(me&&!prof)return nickView();if(me)return go('#/');
+ m.innerHTML='<form id="f"><label>'+E(t.email)+'</label><input type="email" id="em" required autocomplete="email"><div class="row2"><button class="btn">'+E(t.sendLink)+'</button></div></form><p class="muted" id="msg"></p>';
+ $('f').onsubmit=function(ev){ev.preventDefault();sb.auth.signInWithOtp({email:$('em').value.trim(),options:{emailRedirectTo:location.href.split('#')[0]}}).then(function(r){if(r.error)return alertErr(r.error);$('msg').textContent=t.sent})}}
+function nickView(){var t=T[lang],m=$('main');
+ m.innerHTML='<form id="f"><label>'+E(t.nick)+'</label><input id="nk" minlength="2" maxlength="20" required><div class="row2"><button class="btn">'+E(t.saveNick)+'</button></div></form>';
+ $('f').onsubmit=function(ev){ev.preventDefault();sb.from('profiles').upsert({id:me.id,nickname:$('nk').value.trim()}).then(function(r){if(r.error)return alertErr(r.error);loadProfile().then(function(){go('#/')})})}}
+function newView(){if(needLive())return;var t=T[lang],m=$('main');
+ if(!me){m.innerHTML='<div class="note">'+E(t.needLogin)+' <a href="#/login">'+E(t.login)+'</a></div>';return}
+ if(!prof)return nickView();
+ m.innerHTML='<form id="f"><label>'+E(t.board)+'</label><select id="bd">'+BOARDS.map(function(b){return '<option value="'+b+'">'+E(t.b[b])+'</option>'}).join('')+'</select><label>'+E(t.title)+'</label><input id="ti" minlength="2" maxlength="80" required><label>'+E(t.body)+'</label><textarea id="bo" minlength="2" maxlength="5000" required></textarea><div class="note">'+t.rulesList.slice(0,3).map(E).join('<br>')+'</div><div class="row2"><button class="btn">'+E(t.post)+'</button><a class="btn sub" href="#/">'+E(t.cancel)+'</a></div></form>';
+ $('f').onsubmit=function(ev){ev.preventDefault();sb.from('posts').insert({board:$('bd').value,title:$('ti').value.trim(),body:$('bo').value.trim(),lang:lang,author:me.id,author_name:prof.nickname}).select('id').single().then(function(r){if(r.error)return alertErr(r.error);go('#/p/'+r.data.id)})}}
+function postView(id){var t=T[lang],m=$('main');if(needLive())return;m.innerHTML='<p class="muted">…</p>';
+ Promise.all([sb.from('posts').select('*').eq('id',id).single(),sb.from('comments').select('*').eq('post_id',id).eq('deleted',false).order('created_at',{ascending:true})]).then(function(rs){
+  if(rs[0].error)return alertErr(rs[0].error);var p=rs[0].data,cs=rs[1].data||[],mine=me&&p.author===me.id;
+  var h='<a href="#/" class="muted">'+E(t.back)+'</a><article class="post"><span class="chip">'+E(t.b[p.board]||p.board)+'</span><h2>'+E(p.title)+'</h2><div class="meta">'+E(p.author_name)+' · '+d(p.created_at)+'</div><div class="body">'+E(p.body)+'</div><div class="row2">'+(mine?'<button class="btn warn" data-del="post">'+E(t.del)+'</button>':'')+(admin&&!mine?'<button class="btn warn" data-del="post">'+E(t.hide)+'</button>':'')+(me&&!mine?'<button class="btn sub" data-rep="post:'+p.id+'">'+E(t.report)+'</button>':'')+'</div></article>';
+  h+='<h3>'+E(t.comments)+' ('+cs.length+')</h3>'+cs.map(function(c){var cm=me&&c.author===me.id;return '<div class="cmt"><div class="meta">'+E(c.author_name)+' · '+d(c.created_at)+'</div><div class="b">'+E(c.body)+'</div><div class="row2">'+((cm||admin)?'<button class="btn warn" data-dc="'+c.id+'">'+E(cm?t.del:t.hide)+'</button>':'')+(me&&!cm?'<button class="btn sub" data-rep="comment:'+c.id+'">'+E(t.report)+'</button>':'')+'</div></div>'}).join('');
+  h+=me&&prof?'<form id="cf"><textarea id="cb" placeholder="'+E(t.cmtPh)+'" maxlength="2000" required style="min-height:90px"></textarea><div class="row2"><button class="btn">'+E(t.send)+'</button></div></form>':'<div class="note">'+E(t.needLogin)+' <a href="#/login">'+E(t.login)+'</a></div>';
+  m.innerHTML=h;
+  Array.prototype.forEach.call(m.querySelectorAll('[data-del]'),function(b){b.onclick=function(){if(!confirm(t.confirmDel))return;sb.from('posts').update({deleted:true}).eq('id',p.id).then(function(r){if(r.error)return alertErr(r.error);go('#/')})}});
+  Array.prototype.forEach.call(m.querySelectorAll('[data-dc]'),function(b){b.onclick=function(){if(!confirm(t.confirmDel))return;sb.from('comments').update({deleted:true}).eq('id',b.getAttribute('data-dc')).then(function(r){if(r.error)return alertErr(r.error);render()})}});
+  Array.prototype.forEach.call(m.querySelectorAll('[data-rep]'),function(b){b.onclick=function(){var why=prompt(t.reason);if(!why)return;var x=b.getAttribute('data-rep').split(':');sb.from('reports').insert({target_type:x[0],target_id:+x[1],reason:why.slice(0,500),reporter:me.id}).then(function(r){if(r.error)return alertErr(r.error);alert(t.reported)})}});
+  if($('cf'))$('cf').onsubmit=function(ev){ev.preventDefault();sb.from('comments').insert({post_id:p.id,body:$('cb').value.trim(),author:me.id,author_name:prof.nickname}).then(function(r){if(r.error)return alertErr(r.error);render()})}})}
+function loadProfile(){if(!me){prof=null;admin=false;return Promise.resolve()}
+ return Promise.all([sb.from('profiles').select('nickname').eq('id',me.id).maybeSingle(),sb.from('admins').select('user_id').eq('user_id',me.id).maybeSingle()]).then(function(rs){prof=rs[0].data||null;admin=!!rs[1].data})}
+window.addEventListener('hashchange',function(){page=0;render()});
+if(LIVE){sb.auth.getSession().then(function(r){me=r.data.session?r.data.session.user:null;return loadProfile()}).then(function(){if(me&&!prof&&route().v!=='login')go('#/login');render()});
+ sb.auth.onAuthStateChange(function(ev,session){me=session?session.user:null;loadProfile().then(render)})}
+else render();
+})();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>
