@@ -4,13 +4,15 @@
 (function(){var cs=document.currentScript,base=(cs&&cs.src)?cs.src.replace(/hub\.js(\?.*)?$/,''):'';
 var LB={ja:{new:'NEW',upd:'更新',last:'最終更新'},ko:{new:'NEW',upd:'업데이트',last:'최종 업데이트'},en:{new:'NEW',upd:'Updated',last:'Last updated'}};
 function apply(){var U=window.UPDATES||[],days=window.UPDATES_DAYS||60,now=Date.now(),hid=window.HUB_ID,m={},last='';
+ var LD=(window.LESSON_DATES||{})[hid]||{};Object.keys(LD).forEach(function(k){if(LD[k]>last)last=LD[k]});
  U.forEach(function(x){if(x.c!==hid)return;if(!last||x.d>last)last=x.d;if(!x.k)return;if((now-Date.parse(x.d))/864e5>days)return;if(!m[x.k]||m[x.k].d<x.d)m[x.k]=x});
  var L=LB[document.documentElement.lang]||LB.ja;
  if(!document.getElementById('upd-css')){var st=document.createElement('style');st.id='upd-css';st.textContent='.card .nb{display:inline-block;font-size:11px;font-weight:700;line-height:1.6;padding:0 8px;border-radius:999px;margin:0 0 4px;letter-spacing:.02em;align-self:flex-start}.card .nb.new{background:#D0506A;color:#fff}.card .nb.upd{background:#FFE08A;color:#3A2A00}';document.head.appendChild(st)}
  Array.prototype.forEach.call(document.querySelectorAll('.card[data-k]'),function(a){var o=a.querySelector('.nb');if(o)o.parentNode.removeChild(o);var x=m[a.getAttribute('data-k')];if(!x)return;var b=document.createElement('span');b.className='nb '+x.t;b.textContent=L[x.t]+' '+x.d.slice(5).replace('-','.');var mm=a.querySelector('.m');if(mm)mm.insertBefore(b,mm.firstChild)});
- var sts=document.getElementById('stats');if(sts&&last&&!sts.querySelector('.upd-stat')){var dv=document.createElement('div');dv.className='upd-stat';dv.innerHTML='<b>'+last.replace(/-/g,'.')+'</b>'+L.last;sts.appendChild(dv)}}
+ var sts=document.getElementById('stats');if(sts&&last){var dv=sts.querySelector('.upd-stat');if(!dv){dv=document.createElement('div');dv.className='upd-stat';sts.appendChild(dv)}dv.innerHTML='<b>'+last.replace(/-/g,'.')+'</b>'+L.last}}
 window.__applyUpdates=apply;
-if(!window.UPDATES){var s=document.createElement('script');s.src=base+'updates.js';s.onload=apply;document.head.appendChild(s)}})();
+/* updates.js と lesson_dates.js（過去の作業日）を読み込んでから、印と最終更新日を付ける */
+['updates.js','lesson_dates.js'].forEach(function(f){if((f==='updates.js'&&window.UPDATES)||(f==='lesson_dates.js'&&window.LESSON_DATES))return;var s=document.createElement('script');s.src=base+f;s.onload=apply;document.head.appendChild(s)});})();
 (function(){
 var H=window.HUBS[window.HUB_ID];H.site=window.HUB_SITE;var A=window.ARTS||{},LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
 var UI={ja:{all:'すべて',n:'レッスン',site:'サイトのトップへ',jp:'',copy:'© 航空キャリアノート'},ko:{all:'전체',n:'레슨',site:'사이트 홈으로',jp:'',copy:'© 항공 커리어 노트'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© Aviation Career Note'}};
@@ -34,7 +36,7 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  var h='';P.forEach(function(p,i){if(!p||(cur>=0&&cur!==i))return;var ks=keys.filter(function(k){return +k.split('-')[0]===i});if(!ks.length)return;
   h+='<h2>Part '+i+'　'+esc(p)+'</h2>'+(H.pdesc?'<p class="desc">'+esc(H.pdesc[lang][i]||'')+'</p>':'')+'<div class="grid">'+ks.map(function(k){var t=title(k,lang);return '<a class="card" data-k="'+esc(k)+'" href="'+esc(url(k))+'"><span class="m"><b>'+esc(t[0])+'</b><span class="d">'+esc(t[1])+'</span>'+(lang==='en'&&t[2]?'<span class="tag">'+U.jp+'</span>':'')+'</span><span class="s">'+esc(k)+'<small>'+H.code+'</small></span></a>'}).join('')+'</div>'});
  $('list').innerHTML=h;
- if(window.UPDATES&&window.__applyUpdates)window.__applyUpdates();
+ if((window.UPDATES||window.LESSON_DATES)&&window.__applyUpdates)window.__applyUpdates();
  $('foot').innerHTML=U.copy+' — '+esc(H.name[lang])+'　<a href="../8_사이트/index.html">'+U.site+'</a>';}
 render();
 })();
