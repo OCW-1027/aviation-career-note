@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-26",c:"18_항공기초지식",k:"2-5",t:"upd",ja:"金浦―済州の航空路図を韓国AIPのデータで詳しく（全地点・報告点・最低高度・合流の流れ・拡大図）",ko:"김포–제주 항로 차트를 한국 AIP 데이터로 상세화(전 지점·보고점·최저 고도·합류 흐름·확대도)",en:"Gimpo–Jeju chart detailed from Korea AIP data (all points, reporting points, minimum altitudes, joining traffic, insets)"},
 {d:"2026-09-26",c:"",k:"",t:"new",u:"18_항공기초지식/航空路図の練習.html",ja:"航空路図の練習：仁川⇄成田・金浦⇄済州を地点ごとにたどる＋問題",ko:"항로 차트 연습: 인천⇄나리타·김포⇄제주를 지점마다 따라가기+문제",en:"Route Chart Practice: follow Incheon–Narita and Gimpo–Jeju point by point, with a quiz"},
 {d:"2026-09-26",c:"18_항공기초지식",k:"2-6",t:"new",ja:"仁川→成田の航空路をたどる（航空路図・高度の断面・FIRの引き継ぎ）",ko:"인천→나리타 항로 따라가기(항로 차트·고도 단면·FIR 이양)",en:"Following Incheon to Narita (enroute chart, vertical profile, FIR hand-off)"},
 {d:"2026-09-26",c:"18_항공기초지식",k:"2-5",t:"new",ja:"航空路 ― 空の道路と航空路図の読み方（航空路図・FIR地図・北極の経路）",ko:"항공로 — 하늘의 도로와 항로 차트 읽기(항로 차트·FIR 지도·북극 경로)",en:"Airways and reading an enroute chart (enroute chart, FIR map, polar routes)"},

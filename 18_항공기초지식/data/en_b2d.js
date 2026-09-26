@@ -9,9 +9,9 @@ sections:[
 ["Airway","A road in the sky linking waypoints or radio beacons (VOR), with a set width (protected airspace either side) and usable altitudes"],
 ["Arrival (STAR) and approach","A set path from the airway exit to the runway; controllers may also vector aircraft by radar in busy periods or bad weather"]]},
 {t:"point",x:"Waypoints carry easy-to-say five-letter names such as BULTI and DOTOL. ICAO manages the names so that none are duplicated worldwide."}]},
-{h:"Reading an enroute chart (AIP and Jeppesen style)",blocks:[{t:"fig",id:"enroute_chart",cap:"Moving diagram: an enroute chart of the Gimpo–Jeju airways (educational sketch; north is to the left). The lower heavy line is Y711 (one-way to Jeju), the upper one Y722 (one-way to Gimpo). ▲ = RNAV waypoints; the graduated circle is the compass rose of the Songtan (SOT) VOR; ringed circles are airports. Boxes on the lines give segment distances in nautical miles; 193° and 013° are magnetic courses. Dashed lines link to departure and arrival procedures. Orange aircraft travel the two airways in opposite directions. Coordinates are approximate, from public data, and some waypoints are omitted."},
+{h:"Reading an enroute chart (AIP and Jeppesen style)",blocks:[{t:"fig",id:"gmp_cju_chart",cap:"Moving diagram: enroute chart of the Gimpo–Jeju airways (educational sketch; north is to the left). Points, distances and minimum altitudes follow the Korea AIP (ENR 3.3, September 2026 edition). The lower line is Y711 (to Jeju, even levels); the upper is Y722 (to Gimpo, odd levels). Filled ▲ = compulsory reporting point; open △ = on request. Boxes give segment distances (NM). Blue dashed lines show traffic joining and leaving from other airports (Cheongju, Gwangju, Muan, Yeosu, Wonju/Yangyang). Purple dotted lines mark roughly where Incheon ACC sectors (frequencies) change. Insets: A = around Gimpo, B = around Jeju (MEA = minimum altitude in feet). Orange aircraft travel the two airways in opposite directions."},
 {t:"table",cols:["Symbol or label","Meaning"],rows:[
-["▲ Waypoint","A five-letter point defined by latitude and longitude, flown by satellite-based navigation (RNAV)"],
+["▲ (filled) and △ (open) waypoints","Five-letter points: filled = compulsory reporting point, open = report on request. Flown by satellite-based navigation (RNAV)"],
 ["Graduated circle (compass rose)","A VOR radio beacon; read magnetic bearings from the scale"],
 ["Airway name (black box)","Such as Y711; arrows show the one-way direction"],
 ["Number on the line","Segment distance in nautical miles (1 NM = 1.852 km)"],
@@ -22,7 +22,8 @@ sections:[
 {h:"The “northbound” and “southbound” carriageways of Gimpo–Jeju",blocks:[{t:"rows",items:[
 {name:"A one-way pair",x:"Gimpo–Jeju is one of the world’s busiest routes. It used to share one airway (B576), separating directions by altitude; from around 2012 it was split into Y711 to Jeju and Y722 to Gimpo, like the two carriageways of a motorway. ★"},
 {name:"Traffic joins from other airports",x:"Flights to Jeju from Cheongju, Wonju, Yangyang and elsewhere join these airways part-way, making them the trunk road of Korean domestic flying."},
-{name:"Summer thunderstorms",x:"Military training areas lie either side of the airways, so on some days there is little room to deviate around thunderstorms; this is one reason for summer-afternoon turbulence and delays."}]}]},
+{name:"Summer thunderstorms",x:"Military training areas lie either side of the airways, so on some days there is little room to deviate around thunderstorms; this is one reason for summer-afternoon turbulence and delays."},
+{name:"Same centre, different frequencies",x:"According to the Korea AIP, Incheon ACC controls the whole Gimpo–Jeju airway, divided north to south into several sectors. There is no hand-off between countries (unlike Incheon–Narita in 2-6); only the frequency changes a few times on the way."}]}]},
 {h:"Reading airway names",blocks:[{t:"table",cols:["First letter","Meaning","Example"],rows:[
 ["A, B, G, R","Regional (international) routes, conventional navigation","B576 (the former Gimpo–Jeju airway)"],
 ["L, M, N, P","Regional (international) RNAV routes","—"],

@@ -50,6 +50,7 @@ header{position:relative}header h1{margin:0 0 8px}
 </div>
 <script src="../1_지상직여객운송입문/assets/route_maps.js"></script>
 <script src="../1_지상직여객운송입문/assets/route_icn_nrt.js"></script>
+<script src="../1_지상직여객운송입문/assets/route_gmp_cju.js"></script>
 <script>
 /* 航空路図の練習（2026.09）
    地図のデータは レッスン2-5・2-6 と同じ route_maps.js・route_icn_nrt.js を使う。
@@ -58,18 +59,20 @@ var PT={RKSI:[37.4691,126.4505],RKSS:[37.5583,126.7906],RKPC:[33.5113,126.493],R
 EGOBA:[37.4875,127.379444],LANAT:[36.373333,131.428333],SAMON:[36.242897,134.503319],LANAI:[37.092136,140.447939],SHELY:[36.888264,140.754389],MELON:[35.849181,140.864217],
 CHINO:[35.8843,138.565492],SAPRA:[35.823889,130.723611],CUN:[36.631944,128.325278],
 BULTI:[36.722778,126.825],GONAX:[36.386389,126.837778],BEDES:[36.151389,126.812222],MANGI:[35.503056,126.742222],DALSU:[35.125278,126.701667],DOTOL:[34.254167,126.610278],
-KAMIT:[34.253889,126.771667],SAMUL:[35.126667,126.865],MAKSA:[35.503056,126.906111],ATASO:[35.895556,126.949167],PEBRI:[36.386389,127.003611],OLMEN:[36.736944,126.991111]};
+KAMIT:[34.253889,126.771667],SAMUL:[35.126667,126.865],MAKSA:[35.503056,126.906111],ATASO:[35.895556,126.949167],PEBRI:[36.386389,127.003611],OLMEN:[36.736944,126.991111],
+MONSI:[37.213056,126.8375],MEKIL:[36.556111,126.831389],ELPOS:[35.902778,126.785278],NULDI:[34.420556,126.6275],KIDOS:[33.841111,126.567222],SOT:[37.094444,127.031667],GUNKU:[36.570556,126.996944],GUKSU:[33.880833,126.7325],LOSNI:[33.554167,126.698056]};
 function C(ja,ko,en){return {ja:ja,ko:ko,en:en}}
 var DEP=C('出発管制','출발 관제','Departure control'),KAC=C('韓国の航空路管制','한국 항로 관제','Korean area control'),JAC=C('日本の航空路管制','일본 항로 관제','Japanese area control');
+var S1=C('仁川航空路管制所（北の持ち場）','인천 항로관제소(북쪽 담당 구역)','Incheon ACC (northern sector)'),S2=C('仁川航空路管制所（中央の持ち場）― 周波数を切り替え','인천 항로관제소(중앙 담당 구역) — 주파수 전환','Incheon ACC (central sector): frequency change'),S3=C('仁川航空路管制所（南の持ち場）― 周波数を切り替え','인천 항로관제소(남쪽 담당 구역) — 주파수 전환','Incheon ACC (southern sector): frequency change');
 var R=[
 {id:'in',map:'inr',name:C('仁川 → 成田','인천 → 나리타','Incheon → Narita'),fl:'FL350',odd:true,fir:'LANAT',
  s:[['RKSI','SID',C('仁川の出発管制','인천 출발 관제','Incheon Departure'),'dep'],['EGOBA','Y697',KAC,'clb'],['LANAT','Y51',C('ここで日本の管制へ引き継ぎ（福岡FIR）','여기서 일본 관제로 이양(후쿠오카 FIR)','Hand-off to Japan here (Fukuoka FIR)'),'crz'],['SAMON','Y517',JAC,'crz'],['LANAI','Y301',JAC,'des'],['SHELY','Y30',C('東京アプローチ','도쿄 어프로치','Tokyo Approach'),'des'],['MELON','APP',C('成田タワー','나리타 타워','Narita Tower'),'des'],['RJAA','',C('到着・成田グランド','도착·나리타 그라운드','Arrived: Narita Ground'),'arr']]},
 {id:'ni',map:'inr',name:C('成田 → 仁川','나리타 → 인천','Narita → Incheon'),fl:'FL340',odd:false,fir:'SAPRA',
  s:[['RJAA','SID',C('東京ディパーチャー','도쿄 디파처','Tokyo Departure'),'dep'],['CHINO','Y16',JAC,'clb'],['SAPRA','G585',C('ここで韓国の管制へ引き継ぎ（仁川FIR）','여기서 한국 관제로 이양(인천 FIR)','Hand-off to Korea here (Incheon FIR)'),'crz'],['CUN','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSI','',C('到着・仁川グランド','도착·인천 그라운드','Arrived: Incheon Ground'),'arr']]},
 {id:'gc',map:'enr',name:C('金浦 → 済州（Y711）','김포 → 제주(Y711)','Gimpo → Jeju (Y711)'),fl:'FL240',odd:false,fir:'',
- s:[['RKSS','SID',C('ソウルの出発管制','서울 출발 관제','Seoul Departure'),'dep'],['BULTI','Y711',KAC,'clb'],['GONAX','Y711',KAC,'crz'],['BEDES','Y711',KAC,'crz'],['MANGI','Y711',KAC,'crz'],['DALSU','Y711',KAC,'des'],['DOTOL','APP',C('済州アプローチ','제주 어프로치','Jeju Approach'),'des'],['RKPC','',C('到着・済州グランド','도착·제주 그라운드','Arrived: Jeju Ground'),'arr']]},
+ s:[['RKSS','SID',C('ソウルの出発管制','서울 출발 관제','Seoul Departure'),'dep'],['MONSI','Y711',S1,'clb'],['BULTI','Y711',S1,'clb'],['MEKIL','Y711',S1,'crz'],['GONAX','Y711',S1,'crz'],['BEDES','Y711',S1,'crz'],['ELPOS','Y711',S2,'crz'],['MANGI','Y711',S2,'crz'],['DALSU','Y711',S2,'des'],['NULDI','Y711',S2,'des'],['DOTOL','Y711',S3,'des'],['KIDOS','APP',C('済州アプローチ','제주 어프로치','Jeju Approach'),'des'],['RKPC','',C('到着・済州グランド','도착·제주 그라운드','Arrived: Jeju Ground'),'arr']]},
 {id:'cg',map:'enr',name:C('済州 → 金浦（Y722）','제주 → 김포(Y722)','Jeju → Gimpo (Y722)'),fl:'FL230',odd:true,fir:'',
- s:[['RKPC','SID',C('済州の出発管制','제주 출발 관제','Jeju Departure'),'dep'],['KAMIT','Y722',KAC,'clb'],['SAMUL','Y722',KAC,'crz'],['MAKSA','Y722',KAC,'crz'],['ATASO','Y722',KAC,'crz'],['PEBRI','Y722',KAC,'des'],['OLMEN','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSS','',C('到着・金浦グランド','도착·김포 그라운드','Arrived: Gimpo Ground'),'arr']]}];
+ s:[['RKPC','SID',C('済州の出発管制','제주 출발 관제','Jeju Departure'),'dep'],['LOSNI','Y722',S3,'clb'],['GUKSU','Y722',S3,'clb'],['KAMIT','Y722',S2,'crz'],['SAMUL','Y722',S2,'crz'],['MAKSA','Y722',S2,'crz'],['ATASO','Y722',S1,'crz'],['PEBRI','Y722',S1,'des'],['GUNKU','Y722',S1,'des'],['OLMEN','Y722',S1,'des'],['SOT','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSS','',C('到着・金浦グランド','도착·김포 그라운드','Arrived: Gimpo Ground'),'arr']]}];
 var T={ja:{kick:'航空キャリアノート',ttl:'航空路図の練習 ― 1便の道をたどる',lead:'路線を選び、「次へ」で地点を1つずつ進めます。区間の航空路・距離・磁方位、累計と残りの距離、今話している管制、飛行の段階が表示されます。「問題を解く」では、選んだ路線から5問が出ます。',follow:'たどる',quiz:'問題を解く',now:'今の地点',next:'次の地点',aw:'この区間の道',dist:'区間の距離',mc:'磁方位（目安）',cum:'累計 / 残り',ctl:'話している相手',ph:'飛行の段階',prev:'◀ 前へ',nx:'次へ ▶',reset:'はじめから',auto:'自動で進む',stop:'止める',nm:'海里',done:'到着しました',PH:{dep:'出発',clb:'上昇',crz:'巡航',des:'降下',arr:'到着'},SID:'出発方式（SID）',APP:'到着方式・進入',none:'—',
  q1:'{a} の次に通る地点は？',q2:'{a} → {b} の区間で通る道は？',q3:'この便で、管制が別の国に引き継がれる地点は？',q4:'{a} → {b} の区間の距離は約？',q5:'この便（{r}）の巡航高度の例として正しいのは？',q5x:'磁方位が000〜179°の便は奇数、180〜359°の便は偶数の高度が基本。この便の主な磁方位は約{m}°なので{oe}。',odd:'奇数',even:'偶数',ok:'正解！',ng:'残念…',ans:'答え：',nextq:'次の問題',res:'結果',again:'もう一度',of:'問中',cor:'問正解',
  note:'地図・経路は教育用の略図です（海岸線：Natural Earth、FIR境界：VATSpy Data Projectの近似、地点の座標：OpenNav、経路：公開の飛行計画データの例）。実際の経路・高度・担当の管制は便ごとに変わります。航法には使えません。レッスン：航空の基礎知識 2-5・2-6',
@@ -93,7 +96,7 @@ function pad(n){return ('00'+n).slice(-3)}
 function mapSVG(r,cur){var L=legs(r),INK='#1B2B4B',MAG='#8E3B8A',s,pts=[],box,vb;
  if(r.map==='inr'){var M=window.RMAP2&&RMAP2.map;if(!M)return '';box=M.box;pts=r.s.map(function(x){return M.pts[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
   s='<svg viewBox="'+vb.join(' ')+'" role="img"><defs><clipPath id="pc"><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'"/></clipPath></defs><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="#DDEBF6"/><g clip-path="url(#pc)"><path d="'+M.land+'" fill="#EDE3C8" stroke="#A89B78" stroke-width=".6"/><path d="'+M.fir+'" fill="none" stroke="'+MAG+'" stroke-width="2" stroke-dasharray="10 4 2 4"/>';}
- else{var E=window.RMAP&&RMAP.enr;if(!E)return '';var m=E.map;box=[m[0],m[1],m[2]-m[0],m[3]-m[1]];pts=r.s.map(function(x){return E.wp[x[0]]||E.ap[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
+ else{var E=window.RMAP3&&RMAP3.main;if(!E)return '';box=E.box;pts=r.s.map(function(x){return E.p[x[0]]||E.a[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
   s='<svg viewBox="'+vb.join(' ')+'" role="img"><defs><clipPath id="pc"><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'"/></clipPath></defs><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="#DDEBF6"/><g clip-path="url(#pc)"><path d="'+E.land+'" fill="#EDE3C8" stroke="#A89B78" stroke-width=".7"/>';}
  s+='<polyline points="'+pts.map(function(p){return p.join(',')}).join(' ')+'" fill="none" stroke="#9AA7B5" stroke-width="3" stroke-dasharray="7 5"/>';
  if(cur>0)s+='<polyline points="'+pts.slice(0,cur+1).map(function(p){return p.join(',')}).join(' ')+'" fill="none" stroke="#2F8FE0" stroke-width="4"/>';
