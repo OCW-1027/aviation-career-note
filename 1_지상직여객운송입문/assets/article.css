@@ -65,6 +65,8 @@ p{margin:0 0 14px}
 /* tables */
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tbl{border:1.5px solid var(--line);border-radius:16px;overflow:hidden;margin:10px 0}
+.scroll.tbl{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+@media (max-width:600px){.scroll.tbl table:has(tr>*:nth-child(4)){min-width:560px}.scroll.tbl table:has(tr>*:nth-child(5)){min-width:680px}td.lb{white-space:normal;min-width:5.5em;max-width:9em}}
 table{border-collapse:collapse;width:100%;background:var(--paper);font-size:15px}
 th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 thead th{background:var(--sky-t);color:var(--sky-d);font-family:var(--disp);font-weight:700;font-size:14px;white-space:nowrap;text-align:center}
