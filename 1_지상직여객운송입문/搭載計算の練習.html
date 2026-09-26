@@ -27,6 +27,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 8px;b
 .ok{color:var(--ok);font-weight:700}.ng{color:var(--ng);font-weight:700}
 .spec td{font-size:13px}.note{font-size:12.5px;color:var(--muted);margin-top:10px}
 .chtg{display:inline-flex;gap:4px;margin-left:auto}.chtg button{border:1px solid var(--line);background:var(--paper);padding:3px 10px;border-radius:999px;font-size:12px;cursor:pointer;color:var(--ink)}.chtg button.on{background:var(--ink);color:#fff}.mv{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}.mv input{width:90px}.badge{margin-left:4px}
+.acrow{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:-4px 0 14px;padding:8px 12px;background:var(--paper);border:1px solid var(--line);border-radius:10px}.acrow label{margin:0;justify-content:flex-start}.acrow b{font-size:14px}
 .btn{background:#2477BD;color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer;margin:0 6px 6px 0}
 .btn.sub{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
 .q input[type=number]{width:120px}.res{margin-top:8px;font-size:14px}
@@ -49,7 +50,8 @@ pre.ls:empty::before{content:"—";color:#5b6b7d}
 <div class="wrap">
 <header><span><a href="00_シリーズ全体_地上職旅客運送入門.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" id="langs"></span></header>
 <h1 id="ttl"></h1><p class="lead" id="lead"></p>
-<div class="bar"><span class="tabs" id="tabs"></span><label style="margin:0"><span id="aclab"></span><select id="acsel"></select></label></div>
+<div class="bar"><span class="tabs" id="tabs"></span></div>
+<div class="acrow"><label><b id="aclab"></b><select id="acsel"></select></label><label id="rndx" style="display:none"><input type="checkbox" id="rndxc"> <span id="rndxl"></span></label></div>
 <div id="app"></div>
 <p class="note" id="disc"></p>
 </div>
@@ -128,6 +130,7 @@ function render(){var t=T[L],a=AC[cur];document.documentElement.lang=L;document.
  document.getElementById('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button data-l="'+l+'" class="'+(l===L?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join(' ');
  document.getElementById('tabs').innerHTML=[1,2,3,4,5,6].map(function(i){return '<button data-t="'+i+'" class="'+(tab==i?'on':'')+'">'+t['tab'+i]+'</button>'}).join('');
  document.getElementById('aclab').textContent=t.ac;
+ var rx=document.getElementById('rndx');rx.style.display=(tab==5||tab==6)?'':'none';document.getElementById('rndxl').textContent=t.rndac;document.getElementById('rndxc').checked=RNDX;
  document.getElementById('acsel').innerHTML=['S','M','L'].map(function(c){return '<optgroup label="'+t.cat[c]+'">'+AC.map(function(x,i){return x.cat!==c?'':'<option value="'+i+'"'+(i===cur?' selected':'')+'>'+x.id+' ('+x.ver+')</option>'}).join('')+'</optgroup>'}).join('');
  document.getElementById('app').innerHTML=tab==1?calcHTML():tab==2?quizHTML():tab==3?listHTML():tab==4?expHTML():tab==5?rbHTML():trHTML();bind();if(tab==1)update()}
 function calcHTML(){var t=T[L],a=AC[cur];return stepsHTML()+'<div class="grid"><div><div class="card"><h2><i>2</i>'+t.pax+'</h2>'+inp('ad',t.ad,S.ad)+inp('ch',t.ch,S.ch)+inp('inf',t.inf,S.inf)+
@@ -233,7 +236,7 @@ function check(show){var t=T[L],r=Q.r,m={zfw:r.zfw,tow:r.tow,law:r.law,under:r.u
  if(show)h+='<div class="note">'+t.lim+': '+[t.lz,t.lt,t.ll][r.lim]+' / LIZFW '+r.iz.toFixed(2)+' / LITOW '+r.it.toFixed(2)+' / MACZFW '+f1(r.mz)+'</div>';document.getElementById('qres').innerHTML=h}
 function bind(){document.querySelectorAll('#langs button').forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('art-lang',L)}catch(e){}render()}});
  document.querySelectorAll('#tabs button').forEach(function(b){b.onclick=function(){tab=+b.dataset.t;render()}});
- document.getElementById('acsel').onchange=function(){cur=+this.value;def();Q=null;render()};
+ document.getElementById('acsel').onchange=function(){cur=+this.value;def();Q=null;if(tab==5)newRB();if(tab==6)newTR();render()};
  document.querySelectorAll('#app input[data-k]').forEach(function(e){if(e.dataset.k[0]!=='l')e.oninput=update});
  var rs=document.getElementById('breset');if(rs)rs.onclick=function(){def();render()};
  var bl=document.getElementById('bls');if(bl)bl.onclick=function(){META.flt=document.getElementById('mflt').value.toUpperCase();META.route=document.getElementById('mroute').value.toUpperCase();readS();LS=calc(AC[cur],S);LMC=null;document.getElementById('ls').textContent=lsText(AC[cur],S,LS,null);document.getElementById('lmcres').innerHTML='';var st=document.querySelector('.steps');if(st)st.outerHTML=stepsHTML()};
@@ -254,7 +257,7 @@ rbLead:"This flight’s CG is out of limits. Move cargo between holds or move pa
 trLead:"Using the conditions and index table below, calculate DLI, LIZFW, LITOW and the ZFW and TOW CGs (%MAC) by hand (index within ±0.05, %MAC within ±0.3). All passengers are adults (75 kg).",trNew:"New exercise",trTable:"Index table (this aircraft, fictional)",trZone:"Zone",trPer:"Index per adult",trCpt:"Hold",trPer100:"Index per 100 kg",trFuel:"Index per 1,000 kg of fuel",trFormula:"%MAC formula",trCond:"Conditions",trChk:"Check",trAns:"Answers and working",trStep1:"DLI = DOI + cargo index",trStep2:"LIZFW = DLI + passenger index",trStep3:"LITOW = LIZFW + take-off fuel index",trStep4:"%MAC = (C × (index − K) ÷ weight − d) ÷ MAC × 100"}};
 ['ja','ko','en'].forEach(function(l){T[l].tab5=TX[l].tab5;T[l].tab6=TX[l].tab6});
 T.ja.lead+=' 機体の側面図で重心の位置を見たり、重心の修正（貨物の積み替え）やトリムシートの手計算の問題にも挑戦できます。';T.ko.lead+=' 기체 측면도로 무게중심 위치를 보고, 무게중심 수정(화물 재배치)과 트림시트 손계산 문제도 풀어 볼 수 있습니다.';T.en.lead+=' You can also see the CG on a side view of the aircraft, and practise fixing an out-of-limit CG by moving cargo and calculating a trim sheet by hand.';
-var CHM='idx',RB=null,TR=null;
+var CHM='idx',RB=null,TR=null,RNDX=false;
 function cgArm(a,I,W){return a.C*(I-BAL.K)/W}
 function anyChart(a,r,r2){return CHM==='mac'?pctChartSVG(a,r,r2):chartSVG(a,r,r2)}
 function chToggle(){var x=TX[L];return '<span class="chtg"><button type="button" data-ch="idx" class="'+(CHM==='idx'?'on':'')+'">'+x.chIdx+'</button><button type="button" data-ch="mac" class="'+(CHM==='mac'?'on':'')+'">'+x.chMac+'</button></span>'}
@@ -309,11 +312,12 @@ function S0(r){return {trip:r.tow-r.law}}
 /* ---- 重心の修正（問題） ---- */
 function inLim(a,s){if(a.cpt.some(function(c,j){return s.c[j]>c.max||s.c[j]<0}))return false;if(s.z.some(function(z,i){return z>a.zs[i]||z<0}))return false;var r=calc(a,s);return r.okz&&r.okt&&r.okl&&r.zfw<=a.mzfw&&r.tow<=a.mtow&&r.law<=a.mlw}
 function cloneS(s){return {ad:s.ad,ch:s.ch,inf:s.inf,z:s.z.slice(),c:s.c.slice(),tof:s.tof,trip:s.trip}}
-function newRB(){for(var tries=0;tries<80;tries++){var ai=Math.floor(Math.random()*AC.length),a=AC[ai];if(a.cpt.length<2)continue;var d=a.d,s={ad:d[0],ch:d[1],inf:d[2],z:d[3].slice(),c:d[4].slice(),tof:d[5],trip:d[6]};
+function newRB(){RB=null;for(var tries=0;tries<80;tries++){var ai=RNDX?Math.floor(Math.random()*AC.length):cur,a=AC[ai];if(a.cpt.length<2)continue;var d=a.d,s={ad:d[0],ch:d[1],inf:d[2],z:d[3].slice(),c:d[4].slice(),tof:d[5],trip:d[6]};
   var aft=Math.random()<0.5,fi=0,ai2=0;a.cpt.forEach(function(c,j){if(c.f<a.cpt[fi].f)fi=j;if(c.f>a.cpt[ai2].f)ai2=j});
   var src=aft?fi:ai2,dst=aft?ai2:fi,mv=Math.min(s.c[src],a.cpt[dst].max-s.c[dst]);s.c[src]-=mv;s.c[dst]+=mv;
   var zs=aft?0:2,zd=aft?2:0,pm=Math.min(s.z[zs],a.zs[zd]-s.z[zd]);s.z[zs]-=pm;s.z[zd]+=pm;
-  var r=calc(a,s);if(r.okz&&r.okt&&r.okl)continue;var sol=solveRB(a,s,aft);if(!sol)continue;RB={a:ai,s:s,aft:aft,sol:sol};cur=ai;def();return}}
+  var r=calc(a,s);if(r.okz&&r.okt&&r.okl)continue;var sol=solveRB(a,s,aft);if(!sol)continue;RB={a:ai,s:s,aft:aft,sol:sol};cur=ai;def();return}
+ if(!RNDX){RNDX=true;newRB();RNDX=false}}
 function solveRB(a,s,aft){var fi=0,ai2=0;a.cpt.forEach(function(c,j){if(c.f<a.cpt[fi].f)fi=j;if(c.f>a.cpt[ai2].f)ai2=j});var from=aft?ai2:fi,to=aft?fi:ai2;
  for(var kg=100;kg<=s.c[from];kg+=100){if(a.cpt[to].max-s.c[to]<kg)break;var t=cloneS(s);t.c[from]-=kg;t.c[to]+=kg;if(inLim(a,t))return {from:from,to:to,kg:kg,pax:0}}
  var kgMax=Math.min(s.c[from],a.cpt[to].max-s.c[to]);kgMax=Math.floor(kgMax/100)*100;var zf=aft?2:0,zt=aft?0:2;
@@ -335,7 +339,7 @@ function rbTry(sol){var x=TX[L],a=AC[RB.a],s=RB.s,t=cloneS(s),g=function(id){ret
  document.getElementById('rbres').innerHTML=txt+'<table>'+row(T[L].maczfw,f1(r2.mz),r2.okz)+row(T[L].mactow,f1(r2.mt),r2.okt)+row(T[L].maclaw,f1(r2.ml),r2.okl)+'</table><p class="'+(ok?'ok':'ng')+'" style="font-size:15px">'+(ok?'✔ '+x.rbOk:'✖ '+x.rbNg)+'</p>';
  document.getElementById('rbchart').innerHTML=pctChartSVG(a,r,r2);document.getElementById('rbplan').innerHTML=planSVG(a,t,r2,null)}
 /* ---- トリムシートの手計算 ---- */
-function newTR(){var ai=Math.floor(Math.random()*AC.length),a=AC[ai],z=a.zs.map(function(n){return rnd(n*0.4,n*0.95)}),s={ad:sum(z),ch:0,inf:0,z:z,c:a.cpt.map(function(c){return rnd(c.max*0.15,c.max*0.8,10)}),tof:rnd(a.d[5]*0.8,a.d[5]*1.15,100),trip:0};s.trip=Math.round(s.tof*0.78/100)*100;TR={a:ai,s:s,r:calc(a,s)};cur=ai;def()}
+function newTR(){var ai=RNDX?Math.floor(Math.random()*AC.length):cur,a=AC[ai],z=a.zs.map(function(n){return rnd(n*0.4,n*0.95)}),s={ad:sum(z),ch:0,inf:0,z:z,c:a.cpt.map(function(c){return rnd(c.max*0.15,c.max*0.8,10)}),tof:rnd(a.d[5]*0.8,a.d[5]*1.15,100),trip:0};s.trip=Math.round(s.tof*0.78/100)*100;TR={a:ai,s:s,r:calc(a,s)};cur=ai;def()}
 function trHTML(){if(!TR)newTR();var x=TX[L],t=T[L],a=AC[TR.a],s=TR.s,d4=function(v){return (v>=0?'+':'')+v.toFixed(4)};
  var ci=function(id,lab){return '<label>'+lab+'<input type="number" step="0.01" id="'+id+'"></label>'};
  return '<div class="grid"><div class="card"><h2>'+x.tab6+'<span class="badge">'+a.id+'</span></h2><p class="note" style="margin-top:0">'+x.trLead+'</p>'+
@@ -349,7 +353,8 @@ function trCheck(show){var x=TX[L],t=T[L],a=AC[TR.a],s=TR.s,r=TR.r,ci=0,pi=0;a.c
  for(var k in A){var e=document.getElementById(k),v=parseFloat(e.value);if(show)e.value=A[k][0].toFixed(k==='tr_mz'||k==='tr_mt'?1:2);var ok=show||(!isNaN(v)&&Math.abs(v-A[k][0])<=A[k][1]);h+='<div>'+k.replace('tr_','').toUpperCase().replace('DLI','DLI').replace('IZ','LIZFW').replace('IT','LITOW').replace('MZ','MACZFW').replace('MT','MACTOW')+': '+(ok?'<span class="ok">'+(show?A[k][0].toFixed(2):t.right)+'</span>':'<span class="ng">'+t.wrong+'</span>')+'</div>'}
  if(show)h+='<div class="formula" style="margin-top:10px">1) '+x.trStep1+' = '+a.doi.toFixed(2)+' '+(ci>=0?'+ ':'− ')+Math.abs(ci).toFixed(2)+' = '+r.dli.toFixed(2)+'<br>2) '+x.trStep2+' = '+r.dli.toFixed(2)+' '+(pi>=0?'+ ':'− ')+Math.abs(pi).toFixed(2)+' = '+r.iz.toFixed(2)+' (ZFW '+f(r.zfw)+')<br>3) '+x.trStep3+' = '+r.iz.toFixed(2)+' '+(fi>=0?'+ ':'− ')+Math.abs(fi).toFixed(2)+' = '+r.it.toFixed(2)+' (TOW '+f(r.tow)+')<br>4) MACZFW = ('+a.C.toFixed(1)+' × ('+r.iz.toFixed(2)+' − '+BAL.K+') ÷ '+f(r.zfw)+' − '+a.d0.toFixed(3)+') ÷ '+a.mac.toFixed(1)+' × 100 = '+r.mz.toFixed(1)+'<br>5) MACTOW = ('+a.C.toFixed(1)+' × ('+r.it.toFixed(2)+' − '+BAL.K+') ÷ '+f(r.tow)+' − '+a.d0.toFixed(3)+') ÷ '+a.mac.toFixed(1)+' × 100 = '+r.mt.toFixed(1)+'</div>';
  document.getElementById('trres').innerHTML=h}
-function bindX(){document.querySelectorAll('.chtg button').forEach(function(b){b.onclick=function(){CHM=b.dataset.ch;document.querySelectorAll('.chtg button').forEach(function(x){x.classList.toggle('on',x.dataset.ch===CHM)});var a=AC[cur],r=calc(a,S),c=document.getElementById('chart');if(c)c.innerHTML=anyChart(a,r,LMC?LMC.r2:null)}});
+function bindX(){var rc=document.getElementById('rndxc');if(rc)rc.onchange=function(){RNDX=this.checked};
+ document.querySelectorAll('.chtg button').forEach(function(b){b.onclick=function(){CHM=b.dataset.ch;document.querySelectorAll('.chtg button').forEach(function(x){x.classList.toggle('on',x.dataset.ch===CHM)});var a=AC[cur],r=calc(a,S),c=document.getElementById('chart');if(c)c.innerHTML=anyChart(a,r,LMC?LMC.r2:null)}});
  var e;if(e=document.getElementById('rbtry'))e.onclick=function(){rbTry(null)};if(e=document.getElementById('rbans'))e.onclick=function(){rbTry(RB.sol)};if(e=document.getElementById('rbnew'))e.onclick=function(){newRB();render()};
  if(e=document.getElementById('trchk'))e.onclick=function(){trCheck(false)};if(e=document.getElementById('trans'))e.onclick=function(){trCheck(true)};if(e=document.getElementById('trnew'))e.onclick=function(){newTR();render()}}
 
