@@ -328,6 +328,31 @@ acdm_queue:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 
  for(var j=0;j<5;j++){var t0=(0.1+j*0.16).toFixed(2),t1=(+t0+0.1).toFixed(2),t2=(+t0+0.14).toFixed(2);
   s+='<g><g>'+pl('#1d3a57')+'</g><animateTransform attributeName="transform" type="translate" values="535 '+(100+j*30)+';535 '+(100+j*30)+';790 165;830 165;830 -40" keyTimes="0;'+t0+';'+t1+';'+t2+';1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'}
  return s+'</svg>'},
+comm_loop:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img"><rect width="900" height="330" fill="#F7FAFD"/>',RD='#D0506A',GR='#1F7A6E',OR='#E08A2F',DUR=10;
+ s+=R(80,110,70,120,'#cfd8e2',6)+R(66,86,98,32,D,8)+R(74,92,82,18,'#9fd3fa',4)+'<text x="115" y="258" font-size="16" font-weight="800" text-anchor="middle" fill="'+D+'" font-family="Arial">ATC</text>';
+ s+='<path d="M620 110 Q700 70 820 110 L820 230 L620 230 Z" fill="#e8eef5" stroke="'+D+'" stroke-width="2"/>'+'<circle cx="670" cy="170" r="26" fill="'+B+'"/><text x="670" y="176" font-size="15" font-weight="800" text-anchor="middle" fill="#fff" font-family="Arial">PF</text><circle cx="770" cy="170" r="26" fill="'+OR+'"/><text x="770" y="176" font-size="15" font-weight="800" text-anchor="middle" fill="#fff" font-family="Arial">PM</text>';
+ s+='<path d="M165 110 Q390 20 620 110" fill="none" stroke="'+B+'" stroke-width="4" marker-end="url(#cl-b)"/><path d="M620 230 Q390 320 165 230" fill="none" stroke="'+OR+'" stroke-width="4" marker-end="url(#cl-o)"/>';
+ s+='<defs><marker id="cl-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="'+B+'"/></marker><marker id="cl-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="'+OR+'"/></marker><marker id="cl-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="'+GR+'"/></marker></defs>';
+ s+=R(300,40,180,30,'#fff',15,' stroke="'+B+'" stroke-width="2"')+'<text x="390" y="61" font-size="14" font-weight="800" text-anchor="middle" fill="'+B+'" font-family="Consolas,monospace">HOLD SHORT RWY</text>';
+ s+=R(300,262,180,30,'#fff',15,' stroke="'+OR+'" stroke-width="2"')+'<text x="390" y="283" font-size="14" font-weight="800" text-anchor="middle" fill="'+OR+'" font-family="Consolas,monospace">HOLD SHORT RWY</text>';
+ s+='<path d="M696 150 Q720 130 744 150" fill="none" stroke="'+GR+'" stroke-width="3" marker-end="url(#cl-g)"/><path d="M744 192 Q720 212 696 192" fill="none" stroke="'+GR+'" stroke-width="3" marker-end="url(#cl-g)"/>';
+ s+=badge(1,230,70,15,B)+badge(2,720,100,15,D)+badge(3,555,300,15,OR)+badge(4,115,290,15,RD)+badge(5,720,240,15,GR);
+ s+='<g><circle cx="175" cy="200" r="14" fill="'+GR+'"/><path d="M168 200 L173 205 L182 194" fill="none" stroke="#fff" stroke-width="3"/><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.68;.72;.95;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+ s+='<circle r="8" fill="#F2B233" stroke="#fff" stroke-width="2"><animateMotion dur="'+DUR+'s" repeatCount="indefinite" keyPoints="0;.5;.5;1;1" keyTimes="0;.3;.45;.7;1" calcMode="linear" path="M165 110 Q390 20 620 110 L620 230 Q390 320 165 230"/></circle>';
+ return s+'</svg>'},
+rwy_hold:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img"><rect width="900" height="330" fill="#F7FAFD"/>',RD='#D0506A',GR='#1F7A6E',Y='#F2B233',DUR=12;
+ s+=R(0,60,900,90,'#4b5b6b');for(var i=0;i<10;i++)s+=R(30+i*90,102,50,6,'#fff');
+ s+='<text x="20" y="50" font-size="14" font-weight="800" fill="#5b6b7d" font-family="Arial">RWY</text>';
+ s+=R(420,150,80,180,'#8a9aab');s+=R(457,150,6,180,Y);
+ s+=R(420,196,80,3,Y)+R(420,202,80,3,Y);for(var k=0;k<4;k++){s+=R(422+k*20,210,12,3,Y)+R(422+k*20,216,12,3,Y)}
+ s+='<g>';for(var k2=0;k2<5;k2++){s+='<circle cx="'+(428+k2*16)+'" cy="226" r="5" fill="'+RD+'"><animate attributeName="fill" values="'+RD+';'+RD+';#4fd18b;#4fd18b;'+RD+'" keyTimes="0;.58;.6;.9;1" dur="'+DUR+'s" repeatCount="indefinite"/></circle>'}s+='</g>';
+ for(var k3=0;k3<3;k3++){s+='<circle cx="460" cy="'+(160+k3*12)+'" r="4" fill="'+RD+'"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.05;.5;.52;1" dur="'+DUR+'s" repeatCount="indefinite"/></circle>'}
+ s+=badge(1,395,205,13,D)+badge(2,535,226,13,RD)+badge(3,535,166,13,'#E08A2F');
+ s+='<g><path d="M-30 0 L22 -3 L30 0 L22 3 Z M-4 -2 L10 -24 L16 -24 L8 -2 Z M-4 2 L10 24 L16 24 L8 2 Z M-26 -2 L-20 -10 L-16 -10 L-20 -2 Z" fill="#fff" stroke="#1d3a57" stroke-width="1.5"/><animateTransform attributeName="transform" type="translate" values="-60 105;960 105;960 105" keyTimes="0;.55;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+ s+='<g><rect x="-14" y="-10" width="28" height="20" rx="4" fill="'+Y+'" stroke="'+D+'" stroke-width="1.5"/><rect x="-8" y="-6" width="16" height="7" rx="2" fill="#9fd3fa"/><animateTransform attributeName="transform" type="translate" values="460 255;460 255;460 40;460 40" keyTimes="0;.62;.82;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+ s+='<g>'+R(560,250,230,34,'#fff',17,' stroke="'+D+'" stroke-width="2"')+badge(4,560,250,12,GR)+'<text x="675" y="272" font-size="14" font-weight="800" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">HOLD SHORT RWY</text><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.55;.57;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0">'+R(560,250,230,34,'#fff',17,' stroke="'+GR+'" stroke-width="2"')+badge(5,560,250,12,GR)+'<text x="675" y="272" font-size="14" font-weight="800" text-anchor="middle" fill="'+GR+'" font-family="Consolas,monospace">CROSS RWY</text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.57;.59;.95;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';
