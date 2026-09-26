@@ -47,6 +47,7 @@ sections:[
 {t:"table",cols:["Date","Flight","Route","Dep.","Taxable (¥3,000)","Taxable (old ¥1,000)","Out of scope","Non-taxable","Exempt","Remarks"],rows:[
 ["07/03","XX123","NRT-ICN","10:00","250","40","1","2","1","INF 2, deportee 1, exemption form 1"]]},
 {t:"note",x:"* Example tally with fictitious numbers. For a while after the increase, splitting the taxable column into new and old rates makes the statement and records easier."},
+{t:"link",href:"files/tourist_tax_monthly_template.xlsx",x:"Download the monthly Excel template (enter by flight; totals and tax by port and the payment deadline are calculated automatically; monthly checklist included)"},
 {t:"check",items:[
 {name:"Daily",x:"After each flight, record numbers and categories from the departure control system (DCS) and advance passenger information (APIS); confirm infants in DCS and APIS."},
 {name:"Evidence",x:"Keep the basis for transit, exemption and out-of-scope cases (ticket itineraries, original exemption forms). Keep original exemption forms for seven years and attach copies to the monthly report."},
