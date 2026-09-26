@@ -369,6 +369,22 @@ smart_compare:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox=
  /* 顔のアイコンが旅の順に進む */
  s+='<g><circle r="11" fill="#F2B233" stroke="#fff" stroke-width="2"/><circle cx="-4" cy="-2" r="1.6" fill="'+D+'"/><circle cx="4" cy="-2" r="1.6" fill="'+D+'"/><path d="M-4 3 Q0 6 4 3" fill="none" stroke="'+D+'" stroke-width="1.6"/><animateTransform attributeName="transform" type="translate" values="'+(X0-40)+' 40;'+(X0+4*DX+40)+' 40;'+(X0+4*DX+40)+' 40" keyTimes="0;.6;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
  return s+'</svg>'},
+jk_year_wave:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img"><rect width="900" height="380" fill="#F7FAFD"/>',OR='#E08A2F',GY='#8a96a3',DUR=10;
+ var KR=[95,92,60,55,65,55,75,95,88,75,55,90],JP=[50,55,85,45,70,40,50,85,75,60,45,65],X0=90,DX=65,Y0=300,H=220;
+ function X(i){return X0+i*DX}function Y(v){return Y0-v/100*H}
+ /* 日本発の閑散期（4月・6月・11月） */
+ [3,5,10].forEach(function(i){s+=R(X(i)-30,Y0-H-6,60,H+6,'#FBEBDC',6)});
+ for(var g=0;g<=100;g+=25)s+='<line x1="'+(X0-30)+'" y1="'+Y(g)+'" x2="'+(X(11)+30)+'" y2="'+Y(g)+'" stroke="#e6ecf2"/>';
+ for(var i=0;i<12;i++)s+='<text x="'+X(i)+'" y="'+(Y0+24)+'" font-size="14" text-anchor="middle" fill="'+GY+'" font-family="Arial">'+(i+1)+'</text>';
+ function line(a,c,name,ly){var d='M'+a.map(function(v,i){return X(i)+' '+Y(v)}).join(' L');
+  return '<path d="'+d+'" fill="none" stroke="'+c+'" stroke-width="4" stroke-linejoin="round" stroke-dasharray="1200" stroke-dashoffset="1200"><animate attributeName="stroke-dashoffset" values="1200;0;0" keyTimes="0;.55;1" dur="'+DUR+'s" repeatCount="indefinite"/></path>'+
+  a.map(function(v,i){return '<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="5" fill="'+c+'" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(0.55*i/11).toFixed(3)+';'+(0.55*i/11+0.02).toFixed(3)+';1" dur="'+DUR+'s" repeatCount="indefinite"/></circle>'}).join('')+
+  '<rect x="'+(X0-20)+'" y="'+ly+'" width="26" height="6" rx="3" fill="'+c+'"/><text x="'+(X0+12)+'" y="'+(ly+7)+'" font-size="14" font-weight="800" fill="'+c+'" font-family="Arial">'+name+'</text>'}
+ s+=line(KR,B,'KR \u2192 JP',22)+line(JP,OR,'JP \u2192 KR',44);
+ /* 番号：連休 */
+ var M=[[1,KR[1],1,B],[8,KR[8],2,B],[2,JP[2],3,OR],[4,JP[4],4,OR],[7,JP[7],5,OR],[11,KR[11],6,D]];
+ M.forEach(function(m){var x=X(m[0]),y=Y(m[1])-22;s+='<g opacity="0">'+badge(m[2],x,y,12,m[3])+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.6;.64;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';

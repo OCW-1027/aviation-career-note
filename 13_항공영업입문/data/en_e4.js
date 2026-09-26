@@ -112,5 +112,5 @@ terms:[["Peak Season","繁忙期","성수기"],["Low Season","閑散期","비수
 quiz:[{q:"Which is a low season from Japan?",opts:["Golden Week","Early to mid-April (new school year)","Obon","Late December"],a:1,exp:"Demand slows at the start of the school year."},
 {q:"When do agencies run their biggest promotion of the year?",opts:["Early January","June","September","It varies"],a:0,exp:"Pre-sales now start from late November or early December."},
 {q:"Which is a good way to fill the low season?",opts:["Pre-sell seats with group and IT fares","Do nothing","Cancel all flights","Keep fares secret"],a:0,exp:"Steadier than last-minute cuts."}],
-next:""});
+next:"6-5 An annual sales calendar for Japan–Korea routes"});
 })(window.ARTS);
