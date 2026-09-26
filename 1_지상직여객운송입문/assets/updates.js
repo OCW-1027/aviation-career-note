@@ -3,6 +3,8 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-26",c:"18_항공기초지식",k:"2-5",t:"new",ja:"航空路 ― 空の道路と航空路図の読み方（航空路図・FIR地図・北極の経路）",ko:"항공로 — 하늘의 도로와 항로 차트 읽기(항로 차트·FIR 지도·북극 경로)",en:"Airways and reading an enroute chart (enroute chart, FIR map, polar routes)"},
+{d:"2026-09-26",c:"",k:"",t:"upd",u:"用語集_航空用語.html",ja:"航空用語集：重なっていた用語をまとめた（1,448→約1,280件）",ko:"항공 용어집: 중복 용어 정리(1,448→약 1,280건)",en:"Aviation glossary: duplicate terms merged (1,448 to about 1,280)"},
 {d:"2026-09-26",c:"13_항공영업입문",k:"6-5",t:"new",ja:"日韓路線の年間販売カレンダー（2027年の暦で実習）",ko:"한일 노선 연간 판매 캘린더(2027년 달력으로 실습)",en:"Annual sales calendar for Japan–Korea routes (2027 exercise)"},
 {d:"2026-09-26",c:"18_항공기초지식",k:"4-1",t:"upd",ja:"スマート空港：空港別の比較（仁川・成田/羽田・チャンギ・ドバイ・アメリカ・EU）と日韓の比較を追加",ko:"스마트 공항: 공항별 비교(인천·나리타/하네다·창이·두바이·미국·EU)와 한일 비교 추가",en:"Smart airports: airport-by-airport comparison and Japan–Korea comparison added"},
 {d:"2026-09-26",c:"",k:"",t:"upd",u:"4_공항안내방송예문집/空港アナウンス文例集.html",ja:"空港アナウンス文例集：読み方を全面見直し、英語の読み方を追加",ko:"공항 안내방송 예문집: 읽는 법 전면 수정, 영어 읽는 법 추가",en:"Airport announcements: readings revised and English readings added"},
