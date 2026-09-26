@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-26",c:"",k:"",t:"upd",u:"1_지상직여객운송입문/搭載計算の練習.html",ja:"搭載計算の練習：重心（%MAC）・バランスチャート・機体の側面図・重心の修正・トリムシートを追加",ko:"탑재 계산 연습: 무게중심(%MAC)·밸런스 차트·기체 측면도·무게중심 수정·트림시트 추가",en:"Load control practice: CG (%MAC), balance chart, side view, CG fixing and trim sheet added"},
 {d:"2026-09-26",c:"18_항공기초지식",k:"2-4",t:"new",ja:"管制交信と滑走路誤進入の防止",ko:"관제 교신과 활주로 오진입 방지",en:"ATC communication and preventing runway incursions"},
 {d:"2026-09-26",c:"16_스테이션운영실무",k:"1-7",t:"new",ja:"A-CDMとTSAT ― 空港全体で定時性を上げる",ko:"A-CDM과 TSAT — 공항 전체로 정시성을 높이다",en:"A-CDM and TSAT: raising punctuality across the airport"},
 {d:"2026-09-26",c:"12_일본지점인사재무실무",k:"5-3",t:"new",ja:"国際観光旅客税（出国税）― 2026年7月の3,000円への引き上げ",ko:"국제관광여객세(출국세) — 2026년 7월 3,000엔 인상",en:"International Tourist Tax: the July 2026 rise to ¥3,000"},

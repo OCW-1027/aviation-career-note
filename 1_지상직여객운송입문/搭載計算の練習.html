@@ -3,32 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>搭載計算の練習 ― 重量と余裕を確かめる</title>
+<title>搭載計算の練習 ― 重量・重心・ロードシート</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--acc:#2f8fe0}
 *{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
-.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
 header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
 h1{font-size:22px;margin:6px 0}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px}
-.langs button,.tabs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px}
+.langs button,.tabs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
 .langs button.on,.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 14px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap}
-select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--paper)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:780px){.grid{grid-template-columns:1fr}}
+select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:var(--paper);color:var(--ink)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:4px 16px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.card h2{font-size:15px;margin:0 0 10px}
+.card h2{font-size:15px;margin:0 0 10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.card h3{font-size:13px;margin:12px 0 4px;color:var(--muted)}
+.card h2 i{font-style:normal;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:12px}
 label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;margin:6px 0}
-input[type=number]{width:120px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:14px;text-align:right}
+input[type=number],input[type=text]{width:120px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:14px;text-align:right;background:var(--paper);color:var(--ink)}
+input[type=text]{text-align:left;text-transform:uppercase}
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}td.n{text-align:right;font-family:Consolas,Menlo,monospace}
 .ok{color:var(--ok);font-weight:700}.ng{color:var(--ng);font-weight:700}
 .spec td{font-size:13px}.note{font-size:12.5px;color:var(--muted);margin-top:10px}
-.btn{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer;margin:0 6px 6px 0}
+.chtg{display:inline-flex;gap:4px;margin-left:auto}.chtg button{border:1px solid var(--line);background:var(--paper);padding:3px 10px;border-radius:999px;font-size:12px;cursor:pointer;color:var(--ink)}.chtg button.on{background:var(--ink);color:#fff}.mv{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}.mv input{width:90px}.badge{margin-left:4px}
+.btn{background:#2477BD;color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer;margin:0 6px 6px 0}
 .btn.sub{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
 .q input[type=number]{width:120px}.res{margin-top:8px;font-size:14px}
 .badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;background:#eef3f8;color:var(--muted);margin-left:4px}
 .list td{font-size:12.5px;padding:4px 6px}.list tr.cur td{background:#eef6ff}
-a{color:var(--acc)}
+a{color:#1d5fa0}
+.steps{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0 0 14px;counter-reset:s}
+.steps li{display:flex;align-items:center;gap:6px;padding:5px 12px 5px 6px;border-radius:999px;background:#eef3f8;color:var(--muted);font-size:13px}
+.steps li b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#c9d5e2;color:#fff;font-size:11px}
+.steps li.on{background:#e3f1ff;color:var(--ink)}.steps li.on b{background:var(--acc)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+pre.ls{background:#0f1720;color:#d8e6f3;border-radius:10px;padding:14px;font-size:12.5px;line-height:1.5;overflow-x:auto;min-height:40px;font-family:Consolas,Menlo,monospace;white-space:pre}
+pre.ls:empty::before{content:"—";color:#5b6b7d}
+.exp{border-bottom:1px solid var(--line);padding:6px 0}.exp p{margin:4px 0 0;font-size:14px}
+.formula{font-family:Consolas,Menlo,monospace;background:#eef6ff;border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:10px}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--muted:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--paper:#16212d}.badge,.steps li{background:#1c2a39}.steps li.on{background:#17324d}.formula{background:#17324d}.list tr.cur td{background:#17324d}a{color:#79bfff}}
 </style>
 </head>
 <body>
@@ -40,9 +54,6 @@ a{color:var(--acc)}
 <p class="note" id="disc"></p>
 </div>
 <script>
-/* 搭載計算の練習（教育用の簡易モデル。実際の運航には使えない）
-   架空の機材20種（小型6・中型7・大型7）。すべての数値・係数は説明用の架空の値。
-   形式：[名前,区分,座席構成,乗務員,[区画の席数A,B,C],[区画の係数],DOW,DOI,最大ZFW,最大TOW,最大LAW,[[貨物室,上限,係数]...],燃料の係数,[ZFW指数範囲],[TOW指数範囲],[既定：大人,小児,幼児,[区画の人数],[貨物室の重さ],離陸燃料,飛行燃料]] */
 var RAW=[
 ["ZT-72","S","Y72","2/2",[24,24,24],[-2.4,0.1,2.6],13600,32.0,20000,23000,22300,[[1,900,-3.0],[4,700,3.2]],-0.3,[23,42],[22,41],[57,2,1,[20,20,19],[400,320],2200,1300]],
 ["ZJ-76","S","C6Y70","2/3",[20,28,28],[-2.6,-0.2,2.4],21400,38.0,30600,36500,32800,[[1,1200,-3.4],[4,1000,3.0]],0.2,[29,48],[30,49],[60,2,1,[16,23,23],[540,450],4800,3000]],
@@ -64,20 +75,41 @@ var RAW=[
 ["ZW-340","L","C36Y304","2/12",[98,122,120],[-4.6,-0.8,3.4],150500,58.5,220000,298000,228000,[[1,12200,-5.6],[2,12200,-2.9],[3,10600,1.6],[4,10600,3.3],[5,4000,4.5]],-0.07,[26,45],[20,39],[271,8,3,[80,100,99],[5490,5490,4770,4770,1800],86000,74500]],
 ["ZW-380","L","F8C42Y330","2/14",[110,136,134],[-4.7,-0.8,3.5],168000,59.5,247000,340000,255000,[[1,13600,-5.8],[2,13600,-3.0],[3,11800,1.6],[4,11800,3.4],[5,4400,4.6]],-0.08,[22,41],[14,33],[303,9,3,[90,112,110],[6120,6120,5310,5310,1980],104000,90500]],
 ["ZW-420","L","C40Y380","2/15",[124,150,146],[-4.8,-0.8,3.5],176500,60.0,258000,351000,268000,[[1,14200,-5.9],[2,14200,-3.0],[3,12300,1.7],[4,12300,3.5],[5,4600,4.7]],-0.08,[20,39],[12,31],[334,10,3,[102,123,119],[6390,6390,5540,5540,2070],98000,84000]]];
-var AC=RAW.map(function(r){return {id:r[0],cat:r[1],ver:r[2],crew:r[3],zs:r[4],zf:r[5],dow:r[6],doi:r[7],mzfw:r[8],mtow:r[9],mlw:r[10],cpt:r[11].map(function(c){return {id:c[0],max:c[1],f:c[2]}}),fuel:r[12],izfw:r[13],itow:r[14],d:r[15]}});
+/* 簡易モデルの重心（すべて架空）：指数 I = 50 + W×(腕の長さ−基準)/C。%MAC = (C×(I−50)/W − d0) / MAC × 100 */
+var BAL={MAC:{S:2.6,M:4.2,L:6.8},U:{S:1.8,M:1.0,L:0.33},K:50};
+var AC=RAW.map(function(r){return {id:r[0],cat:r[1],ver:r[2],crew:r[3],zs:r[4],zf:r[5],dow:r[6],doi:r[7],mzfw:r[8],mtow:r[9],mlw:r[10],cpt:r[11].map(function(c){return {id:c[0],max:c[1],f:c[2]}}),fuel:r[12],d:r[15]}});
 var STD={ad:75,ch:35,inf:0};
+AC.forEach(function(a){a.mac=BAL.MAC[a.cat];a.C=a.mac*a.mzfw*BAL.U[a.cat]/100;var d=a.d,s={ad:d[0],ch:d[1],inf:d[2],z:d[3],c:d[4],tof:d[5],trip:d[6]},r=base(a,s);a.d0=a.C*(r.iz-BAL.K)/r.zfw-0.25*a.mac});
+function pct(a,I,W){return (a.C*(I-BAL.K)/W-a.d0)/a.mac*100}
+function idx(a,p,W){return BAL.K+W*(a.d0+p/100*a.mac)/a.C}
+function envZ(a,W){var fr=Math.max(0,Math.min(1,(W-a.dow)/(a.mzfw-a.dow)));return [12+4*fr,36-4*fr]}
+function envT(a,W){var fr=Math.max(0,Math.min(1,(W-a.dow)/(a.mtow-a.dow)));return [10+6*fr,38-6*fr]}
+function base(a,s){var pw=s.ad*STD.ad+s.ch*STD.ch+s.inf*STD.inf,cw=sum(s.c),n=s.ad+s.ch,per=n?pw/n:0,iz=a.doi,dli=a.doi;
+ for(var i=0;i<3;i++)iz+=s.z[i]*per*a.zf[i]/1000;a.cpt.forEach(function(c,j){iz+=s.c[j]*c.f/1000;dli+=s.c[j]*c.f/1000});return {pw:pw,cw:cw,zfw:a.dow+pw+cw,iz:iz,dli:dli}}
+function calc(a,s){var b=base(a,s),tl=b.pw+b.cw,zfw=b.zfw,tow=zfw+s.tof,law=tow-s.trip;
+ var lim=[a.mzfw+s.tof,a.mtow,a.mlw+s.trip],k=lim.indexOf(Math.min.apply(null,lim)),al=lim[k];
+ var it=b.iz+s.tof*a.fuel/1000,il=it-s.trip*a.fuel/1000,mz=pct(a,b.iz,zfw),mt=pct(a,it,tow),ml=pct(a,il,law),ez=envZ(a,zfw),et=envT(a,tow),el=envT(a,law);
+ return {pw:b.pw,cw:b.cw,tl:tl,zfw:zfw,tow:tow,law:law,al:al,lim:k,ul:al-tow,dli:b.dli,iz:b.iz,it:it,il:il,mz:mz,mt:mt,ml:ml,ez:ez,et:et,el:el,
+  okz:mz>=ez[0]&&mz<=ez[1],okt:mt>=et[0]&&mt<=et[1],okl:ml>=el[0]&&ml<=el[1],stab:Math.max(1.5,Math.min(9,9-0.2*(mt-10)))}}
 var T={
-ja:{t:"搭載計算の練習 ― 重量と余裕を確かめる",lead:"架空の機材20種（小型・中型・大型）から選び、お客様の人数、貨物室ごとの重さ、燃料を入れると、無燃料重量・離陸重量・着陸重量・余裕と、簡易な重心の指数を計算します。3-7「ロードシートの読み方」と合わせて使ってください（ZA-174が3-7の例と同じ条件です）。",back:"← シリーズの目次",tab1:"計算してみる",tab2:"問題を解く",tab3:"機材の一覧",ac:"機材（架空）：",cat:{S:"小型",M:"中型",L:"大型"},spec:"機材の条件",ver:"座席の構成",crew:"乗務員（運航/客室）",pax:"お客様",ad:"大人",ch:"小児",inf:"幼児（座席なし）",zone:"座席の区画（大人＋小児）",cpt:"貨物室（kg）",fuel:"燃料（kg）",tof:"離陸燃料",trip:"飛行燃料",res:"結果",paxw:"お客様の重さ",ttl:"搭載量の合計",zfw:"無燃料重量（ZFW）",tow:"離陸重量（TOW）",law:"着陸重量（LAW）",allow:"許される離陸重量",under:"余裕（アンダーロード）",lim:"制限しているもの",izfw:"無燃料時の指数",itow:"離陸時の指数",max:"最大",ok:"範囲内",ng:"超過",lz:"最大無燃料重量",lt:"最大離陸重量",ll:"最大着陸重量",cptng:"貨物室の上限を超えています",zonechk:"区画の人数の合計が大人＋小児と合いません",zoneover:"区画の席数を超えています",seats:"席",q:"新しい問題",rndac:"機材もランダムに",chk:"答え合わせ",ans:"答えを見る",qlead:"条件を見て、4つの数字を計算してください。",right:"正解",wrong:"もう一度",reset:"既定の値に戻す",disc:"※ 教育用の簡易モデルです。機材の名前・値・標準重量（大人75kg・小児35kg）・指数の係数はすべて架空で、実在の機材・会社とは関係なく、実際の運航には使えません。実際の搭載管理は、各社の規定と承認されたシステム・資料で行います。",dow:"乾燥運航重量（DOW）",doi:"乾燥運航時の指数（DOI）",range:"指数の許容範囲",name:"機材",total:"総席数",pl:"最大搭載量（最大ZFW−DOW）"},
-ko:{t:"탑재 계산 연습 — 중량과 여유를 확인한다",lead:"가상 기종 20종(소형·중형·대형) 중에서 골라 승객 수, 화물칸별 무게, 연료를 넣으면 무연료 중량·이륙 중량·착륙 중량·여유와 간이 무게중심 지수를 계산합니다. 3-7편 「로드시트 읽는 법」과 함께 쓰세요(ZA-174가 3-7편 예와 같은 조건입니다).",back:"← 시리즈 목차",tab1:"계산해 보기",tab2:"문제 풀기",tab3:"기종 목록",ac:"기종(가상): ",cat:{S:"소형",M:"중형",L:"대형"},spec:"기종 조건",ver:"좌석 구성",crew:"승무원(운항/객실)",pax:"승객",ad:"성인",ch:"소아",inf:"유아(좌석 없음)",zone:"좌석 구역(성인+소아)",cpt:"화물칸(kg)",fuel:"연료(kg)",tof:"이륙 연료",trip:"비행 연료",res:"결과",paxw:"승객 무게",ttl:"탑재량 합계",zfw:"무연료 중량(ZFW)",tow:"이륙 중량(TOW)",law:"착륙 중량(LAW)",allow:"허용 이륙 중량",under:"여유(언더로드)",lim:"제한하는 것",izfw:"무연료 시 지수",itow:"이륙 시 지수",max:"최대",ok:"범위 안",ng:"초과",lz:"최대 무연료 중량",lt:"최대 이륙 중량",ll:"최대 착륙 중량",cptng:"화물칸 상한을 넘었습니다",zonechk:"구역 인원 합계가 성인+소아와 맞지 않습니다",zoneover:"구역 좌석 수를 넘었습니다",seats:"석",q:"새 문제",rndac:"기종도 무작위로",chk:"채점",ans:"정답 보기",qlead:"조건을 보고 네 가지 숫자를 계산하세요.",right:"정답",wrong:"다시 한 번",reset:"기본값으로",disc:"※ 교육용 간이 모델입니다. 기종 이름·값·표준 중량(성인 75kg·소아 35kg)·지수 계수는 모두 가상이며 실재 기종·회사와 관계없고 실제 운항에는 쓸 수 없습니다. 실제 탑재관리는 각사 규정과 승인된 시스템·자료로 합니다.",dow:"건조 운항 중량(DOW)",doi:"건조 운항 시 지수(DOI)",range:"지수 허용 범위",name:"기종",total:"총 좌석",pl:"최대 탑재량(최대 ZFW−DOW)"},
-en:{t:"Load Control Practice: Checking Weights and Underload",lead:"Choose one of 20 fictional aircraft (small, medium, large), enter passengers, hold weights and fuel, and see zero fuel, take-off and landing weights, the underload and a simplified balance index. Use it alongside 3-7 “Reading a loadsheet” (ZA-174 matches that example).",back:"← Series contents",tab1:"Calculator",tab2:"Practice questions",tab3:"Aircraft list",ac:"Aircraft (fictional): ",cat:{S:"Small",M:"Medium",L:"Large"},spec:"Aircraft data",ver:"Cabin version",crew:"Crew (flight deck/cabin)",pax:"Passengers",ad:"Adults",ch:"Children",inf:"Infants (no seat)",zone:"Seating by zone (adults + children)",cpt:"Holds (kg)",fuel:"Fuel (kg)",tof:"Take-off fuel",trip:"Trip fuel",res:"Results",paxw:"Passenger weight",ttl:"Total traffic load",zfw:"Zero fuel weight (ZFW)",tow:"Take-off weight (TOW)",law:"Landing weight (LAW)",allow:"Allowed take-off weight",under:"Underload",lim:"Limited by",izfw:"Index at ZFW",itow:"Index at take-off",max:"Max",ok:"Within limits",ng:"Exceeded",lz:"Max zero fuel weight",lt:"Max take-off weight",ll:"Max landing weight",cptng:"A hold limit is exceeded",zonechk:"Zone totals do not match adults + children",zoneover:"A zone has more passengers than seats",seats:" seats",q:"New question",rndac:"Random aircraft too",chk:"Check",ans:"Show answer",qlead:"Read the conditions and calculate the four figures.",right:"Correct",wrong:"Try again",reset:"Reset to defaults",disc:"* A simplified model for training. Aircraft names, data, standard weights (adult 75 kg, child 35 kg) and index factors are all fictional, unrelated to any real aircraft or airline, and must not be used for real operations. Real load control follows each airline’s rules and approved systems and documents.",dow:"Dry operating weight (DOW)",doi:"Dry operating index (DOI)",range:"Allowed index range",name:"Aircraft",total:"Total seats",pl:"Max payload (max ZFW − DOW)"}};
-var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})(),tab=1,cur=7,Q=null,RND=false,S=null;
-function def(){var d=AC[cur].d;S={ad:d[0],ch:d[1],inf:d[2],z:d[3].slice(),c:d[4].slice(),tof:d[5],trip:d[6]}}
+ja:{t:"搭載計算の練習 ― 重量・重心・ロードシート",lead:"架空の機材20種から選び、お客様・貨物室・燃料を入れると、重量と余裕に加えて、重心（%MAC）とバランスチャート、ロードシート、LMC（直前の変更）の判定まで練習できます。3-7「ロードシートの読み方」・3-8「LIRの読み方」と合わせて使ってください（ZA-174が3-7の例と同じ条件）。",back:"← シリーズの目次",tab1:"計算してみる",tab2:"問題を解く",tab3:"機材の一覧",tab4:"重心の考え方",ac:"機材（架空）：",cat:{S:"小型",M:"中型",L:"大型"},spec:"機材の条件",ver:"座席の構成",crew:"乗務員（運航/客室）",pax:"お客様",ad:"大人",ch:"小児",inf:"幼児（座席なし）",zone:"座席の区画（大人＋小児）",cpt:"貨物室（kg）",fuel:"燃料（kg）",tof:"離陸燃料",trip:"飛行燃料",res:"重量の結果",paxw:"お客様の重さ",ttl:"搭載量の合計",zfw:"無燃料重量（ZFW）",tow:"離陸重量（TOW）",law:"着陸重量（LAW）",allow:"許される離陸重量",under:"余裕（アンダーロード）",lim:"制限しているもの",max:"最大",ok:"範囲内",ng:"範囲外",lz:"最大無燃料重量",lt:"最大離陸重量",ll:"最大着陸重量",cptng:"貨物室の上限を超えています",zonechk:"区画の人数の合計が大人＋小児と合いません",zoneover:"区画の席数を超えています",seats:"席",q:"新しい問題",rndac:"機材もランダムに",chk:"答え合わせ",ans:"答えを見る",qlead:"条件を見て、5つの数字を計算してください（重心は小数1けた、±0.3まで正解）。",right:"正解",wrong:"もう一度",reset:"既定の値に戻す",disc:"※ 教育用の簡易モデルです。機材の名前・値・標準重量（大人75kg・小児35kg）・指数の係数・重心の限界・トリムの値はすべて架空で、実在の機材・会社とは関係なく、実際の運航には使えません。実際の搭載管理は、各社の規定と承認されたシステム・資料で行います。",dow:"乾燥運航重量（DOW）",doi:"乾燥運航時の指数（DOI）",name:"機材",total:"総席数",pl:"最大搭載量（最大ZFW−DOW）",
+ steps:["機材・乗務員","お客様","貨物室","燃料","計算・確認","ロードシート","LMC"],bal:"重心の結果",dli:"DLI（DOI＋貨物）",lizfw:"LIZFW（無燃料時の指数）",litow:"LITOW（離陸時の指数）",lilaw:"LILAW（着陸時の指数）",maczfw:"MACZFW",mactow:"MACTOW",maclaw:"MACLAW",stab:"スタビライザーのトリム（架空）",lims:"限界",chart:"バランスチャート（指数と重量）",chartnote:"青の枠＝離陸・着陸の重心の範囲、緑の枠＝無燃料の重心の範囲（すべて架空）。●がZFW・TOW・LAW、◇はLMCの後。",mac:"MACの長さ",lsbtn:"ロードシートを作る",lshead:"ロードシート（練習用の見本）",flt:"便名",route:"区間（発 着）",lsnote:"業界で一般的な項目の並びにもとづく練習用の見本。実際の様式は会社・システムで違う。",lmc:"LMC（ロードシートを出した後の変更）",lmclead:"ロードシートを渡した後に、お客様や手荷物・貨物が増減したとき、LMCで直せるか、作り直すかを判定します。",dad:"大人の増減",dch:"小児の増減",dzone:"座る区画",dcpt:"貨物室",dkg:"重さの増減（kg）",lmcchk:"判定する",tolw:"重量の許容（例：最大着陸重量の0.5%）",tolc:"重心の許容（例：%MACの変化が0.5未満）",lmcok:"LMCで対応できる（ロードシートに記入して機長に伝える）",lmcng:"ロードシートを作り直す",dw:"重量の変化",dmac:"MACTOWの変化",lmcul:"変更後の余裕",lmcenv:"変更後の重心",needls:"先に「ロードシートを作る」を押してください。",lmctol:"※ 許容の値は会社・機材ごとに規定で決める。ここでは練習用の例。",
+ exp:[["重心（CG）とは","機体の重さがつり合う一点。前すぎると機首が上がりにくく、後ろすぎると安定が悪くなる。メーカーが重さごとに前と後ろの限界を決めている。"],["%MAC","重心の位置を、主翼の平均の幅（MAC：平均空力翼弦）の前の端から何%の位置かで表す。例：25%MAC。"],["指数（インデックス）","重さ×（基準からの距離）を扱いやすい数にしたもの。足し算で重心の計算ができる。DOI（機体）に、お客様・貨物・燃料の指数を足していく。"],["DOI・DLI・LIZFW・LITOW","DOI＝乾燥運航時の指数、DLI＝DOIに貨物（デッドロード）を足したもの、LIZFW＝さらにお客様を足した無燃料時の指数、LITOW＝燃料を足した離陸時の指数。"],["バランスチャート","縦が重量、横が指数。重心の許される範囲（エンベロープ）の中に、ZFW・TOW・LAWの点が入っているかを見る。"],["燃料で重心が動く","燃料タンクの位置によって、燃料を積むと重心が前後に動く。離陸と着陸で重心が違うのはこのため。"],["貨物の場所で調整","重心が前すぎ・後ろすぎのときは、貨物・手荷物を別の貨物室に移す、座席を移すなどで調整する。"],["LMC","ロードシートを渡した後の小さな変更。決められた範囲内なら、ロードシートに書き足して機長に伝える。範囲を超えたら作り直す。"]],
+ expnote:"この練習の重心の限界・係数・トリムは説明のための架空の値です。"},
+ko:{t:"탑재 계산 연습 — 중량·무게중심·로드시트",lead:"가상 기종 20종 중에서 골라 승객·화물칸·연료를 넣으면 중량과 여유는 물론 무게중심(%MAC)과 밸런스 차트, 로드시트, LMC(직전 변경) 판정까지 연습할 수 있습니다. 3-7 「로드시트 읽는 법」·3-8 「LIR 읽는 법」과 함께 쓰세요(ZA-174가 3-7 예와 같은 조건).",back:"← 시리즈 목차",tab1:"계산해 보기",tab2:"문제 풀기",tab3:"기종 목록",tab4:"무게중심의 사고방식",ac:"기종(가상): ",cat:{S:"소형",M:"중형",L:"대형"},spec:"기종 조건",ver:"좌석 구성",crew:"승무원(운항/객실)",pax:"승객",ad:"성인",ch:"소아",inf:"유아(좌석 없음)",zone:"좌석 구역(성인+소아)",cpt:"화물칸(kg)",fuel:"연료(kg)",tof:"이륙 연료",trip:"비행 연료",res:"중량 결과",paxw:"승객 무게",ttl:"탑재량 합계",zfw:"무연료 중량(ZFW)",tow:"이륙 중량(TOW)",law:"착륙 중량(LAW)",allow:"허용 이륙 중량",under:"여유(언더로드)",lim:"제한하는 것",max:"최대",ok:"범위 안",ng:"범위 밖",lz:"최대 무연료 중량",lt:"최대 이륙 중량",ll:"최대 착륙 중량",cptng:"화물칸 상한을 넘었습니다",zonechk:"구역 인원 합계가 성인+소아와 맞지 않습니다",zoneover:"구역 좌석 수를 넘었습니다",seats:"석",q:"새 문제",rndac:"기종도 무작위로",chk:"채점",ans:"정답 보기",qlead:"조건을 보고 다섯 가지 숫자를 계산하세요(무게중심은 소수 1자리, ±0.3까지 정답).",right:"정답",wrong:"다시 한 번",reset:"기본값으로",disc:"※ 교육용 간이 모델입니다. 기종 이름·값·표준 중량(성인 75kg·소아 35kg)·지수 계수·무게중심 한계·트림 값은 모두 가상이며 실재 기종·회사와 관계없고 실제 운항에는 쓸 수 없습니다. 실제 탑재관리는 각사 규정과 승인된 시스템·자료로 합니다.",dow:"건조 운항 중량(DOW)",doi:"건조 운항 시 지수(DOI)",name:"기종",total:"총 좌석",pl:"최대 탑재량(최대 ZFW−DOW)",
+ steps:["기종·승무원","승객","화물칸","연료","계산·확인","로드시트","LMC"],bal:"무게중심 결과",dli:"DLI(DOI+화물)",lizfw:"LIZFW(무연료 시 지수)",litow:"LITOW(이륙 시 지수)",lilaw:"LILAW(착륙 시 지수)",maczfw:"MACZFW",mactow:"MACTOW",maclaw:"MACLAW",stab:"스태빌라이저 트림(가상)",lims:"한계",chart:"밸런스 차트(지수와 중량)",chartnote:"파란 틀=이륙·착륙 무게중심 범위, 초록 틀=무연료 무게중심 범위(모두 가상). ●가 ZFW·TOW·LAW, ◇는 LMC 후.",mac:"MAC 길이",lsbtn:"로드시트 만들기",lshead:"로드시트(연습용 견본)",flt:"편명",route:"구간(출발 도착)",lsnote:"업계에서 일반적인 항목 배열을 바탕으로 한 연습용 견본. 실제 양식은 회사·시스템마다 다르다.",lmc:"LMC(로드시트를 낸 뒤의 변경)",lmclead:"로드시트를 건넨 뒤 승객이나 수하물·화물이 늘거나 줄 때, LMC로 고칠 수 있는지 다시 만들어야 하는지 판정합니다.",dad:"성인 증감",dch:"소아 증감",dzone:"앉는 구역",dcpt:"화물칸",dkg:"무게 증감(kg)",lmcchk:"판정하기",tolw:"중량 허용(예: 최대 착륙 중량의 0.5%)",tolc:"무게중심 허용(예: %MAC 변화 0.5 미만)",lmcok:"LMC로 대응 가능(로드시트에 기입해 기장에게 전달)",lmcng:"로드시트를 다시 만든다",dw:"중량 변화",dmac:"MACTOW 변화",lmcul:"변경 후 여유",lmcenv:"변경 후 무게중심",needls:"먼저 ‘로드시트 만들기’를 누르세요.",lmctol:"※ 허용 값은 회사·기종별로 규정으로 정한다. 여기서는 연습용 예.",
+ exp:[["무게중심(CG)이란","기체 무게가 균형을 이루는 한 점. 너무 앞이면 기수가 잘 안 들리고, 너무 뒤면 안정이 나빠진다. 제작사가 무게별로 앞뒤 한계를 정한다."],["%MAC","무게중심 위치를 주익의 평균 폭(MAC: 평균 공력 시위) 앞끝에서 몇 % 위치인지로 나타낸다. 예: 25%MAC."],["지수(인덱스)","무게×(기준에서의 거리)를 다루기 쉬운 수로 만든 것. 덧셈으로 무게중심을 계산할 수 있다. DOI(기체)에 승객·화물·연료 지수를 더해 간다."],["DOI·DLI·LIZFW·LITOW","DOI=건조 운항 시 지수, DLI=DOI에 화물(데드로드)을 더한 것, LIZFW=승객까지 더한 무연료 시 지수, LITOW=연료를 더한 이륙 시 지수."],["밸런스 차트","세로가 중량, 가로가 지수. 무게중심 허용 범위(엔벨로프) 안에 ZFW·TOW·LAW 점이 들어가는지 본다."],["연료로 무게중심이 움직인다","연료 탱크 위치에 따라 연료를 실으면 무게중심이 앞뒤로 움직인다. 이륙과 착륙의 무게중심이 다른 이유."],["화물 위치로 조정","무게중심이 너무 앞·뒤이면 화물·수하물을 다른 화물칸으로 옮기거나 좌석을 옮겨 조정한다."],["LMC","로드시트를 건넨 뒤의 작은 변경. 정해진 범위 안이면 로드시트에 덧붙여 기장에게 알린다. 넘으면 다시 만든다."]],
+ expnote:"이 연습의 무게중심 한계·계수·트림은 설명을 위한 가상 값입니다."},
+en:{t:"Load Control Practice: Weight, Balance and the Loadsheet",lead:"Choose one of 20 fictional aircraft, enter passengers, hold loads and fuel, and practise not only weights and underload but also centre of gravity (%MAC), the balance chart, the loadsheet and last-minute changes (LMC). Use it alongside 3-7 “Reading a loadsheet” and 3-8 “Reading the LIR” (ZA-174 matches the 3-7 example).",back:"← Series contents",tab1:"Calculator",tab2:"Practice questions",tab3:"Aircraft list",tab4:"How balance works",ac:"Aircraft (fictional): ",cat:{S:"Small",M:"Medium",L:"Large"},spec:"Aircraft data",ver:"Cabin version",crew:"Crew (flight deck/cabin)",pax:"Passengers",ad:"Adults",ch:"Children",inf:"Infants (no seat)",zone:"Seating by zone (adults + children)",cpt:"Holds (kg)",fuel:"Fuel (kg)",tof:"Take-off fuel",trip:"Trip fuel",res:"Weights",paxw:"Passenger weight",ttl:"Total traffic load",zfw:"Zero fuel weight (ZFW)",tow:"Take-off weight (TOW)",law:"Landing weight (LAW)",allow:"Allowed take-off weight",under:"Underload",lim:"Limited by",max:"Max",ok:"Within limits",ng:"Out of limits",lz:"Max zero fuel weight",lt:"Max take-off weight",ll:"Max landing weight",cptng:"A hold limit is exceeded",zonechk:"Zone totals do not match adults + children",zoneover:"A zone has more passengers than seats",seats:" seats",q:"New question",rndac:"Random aircraft too",chk:"Check",ans:"Show answer",qlead:"Read the conditions and calculate the five figures (CG to one decimal place; ±0.3 counts as correct).",right:"Correct",wrong:"Try again",reset:"Reset to defaults",disc:"* A simplified model for training. Aircraft names, data, standard weights (adult 75 kg, child 35 kg), index factors, CG limits and trim values are all fictional, unrelated to any real aircraft or airline, and must not be used for real operations. Real load control follows each airline’s rules and approved systems and documents.",dow:"Dry operating weight (DOW)",doi:"Dry operating index (DOI)",name:"Aircraft",total:"Total seats",pl:"Max payload (max ZFW − DOW)",
+ steps:["Aircraft and crew","Passengers","Holds","Fuel","Calculate and check","Loadsheet","LMC"],bal:"Balance",dli:"DLI (DOI + cargo)",lizfw:"LIZFW (index at ZFW)",litow:"LITOW (index at take-off)",lilaw:"LILAW (index at landing)",maczfw:"MACZFW",mactow:"MACTOW",maclaw:"MACLAW",stab:"Stabiliser trim (fictional)",lims:"Limits",chart:"Balance chart (index and weight)",chartnote:"Blue outline = take-off and landing CG limits; green outline = zero fuel CG limits (all fictional). ● marks ZFW, TOW and LAW; ◇ marks values after LMC.",mac:"MAC length",lsbtn:"Create loadsheet",lshead:"Loadsheet (practice sample)",flt:"Flight",route:"Route (from to)",lsnote:"A practice sample based on the commonly used industry layout; real formats vary by airline and system.",lmc:"LMC (changes after the loadsheet is issued)",lmclead:"When passengers, baggage or cargo change after the loadsheet has been handed over, decide whether an LMC is enough or a new loadsheet is needed.",dad:"Change in adults",dch:"Change in children",dzone:"Zone",dcpt:"Hold",dkg:"Change in weight (kg)",lmcchk:"Check",tolw:"Weight tolerance (example: 0.5% of max landing weight)",tolc:"CG tolerance (example: %MAC change under 0.5)",lmcok:"LMC is enough (enter it on the loadsheet and tell the captain)",lmcng:"Issue a new loadsheet",dw:"Weight change",dmac:"Change in MACTOW",lmcul:"Underload after change",lmcenv:"CG after change",needls:"Press “Create loadsheet” first.",lmctol:"* Tolerances are set by each airline for each type; these are practice examples.",
+ exp:[["What CG is","The point where the aircraft’s weight balances. Too far forward and the nose is hard to raise; too far aft and stability suffers. The manufacturer sets forward and aft limits for each weight."],["%MAC","CG position expressed as a percentage of the mean aerodynamic chord (MAC) from its leading edge, e.g. 25% MAC."],["Index","Weight × distance from a reference, scaled to a handy number so that balance can be worked out by addition: start from the DOI and add passenger, cargo and fuel indices."],["DOI, DLI, LIZFW, LITOW","DOI = dry operating index; DLI = DOI plus deadload (cargo); LIZFW = plus passengers, the index at ZFW; LITOW = plus fuel, the index at take-off."],["Balance chart","Weight on the vertical axis, index on the horizontal. Check that the ZFW, TOW and LAW points sit inside the CG envelope."],["Fuel moves the CG","Depending on where the tanks are, fuel moves the CG forward or aft, which is why take-off and landing CG differ."],["Adjusting with load position","If the CG is too far forward or aft, move cargo or baggage to another hold or re-seat passengers."],["LMC","A small change after the loadsheet has been handed over. Within the set limits it is added to the loadsheet and passed to the captain; beyond them a new loadsheet is issued."]],
+ expnote:"CG limits, factors and trim in this practice are fictional values for explanation."}};
+var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})(),tab=1,cur=7,Q=null,RND=false,S=null,LS=null,LMC=null,META={flt:'XX123',route:'NRT ICN'};
+function def(){var d=AC[cur].d;S={ad:d[0],ch:d[1],inf:d[2],z:d[3].slice(),c:d[4].slice(),tof:d[5],trip:d[6]};LS=null;LMC=null}
 function f(n){return Math.round(n).toLocaleString('en-US')}
+function f1(n){return (Math.round(n*10)/10).toFixed(1)}
 function sum(a){return a.reduce(function(x,y){return x+y},0)}
-function calc(a,s){var pw=s.ad*STD.ad+s.ch*STD.ch+s.inf*STD.inf,cw=sum(s.c),tl=pw+cw,zfw=a.dow+tl,tow=zfw+s.tof,law=tow-s.trip;
- var lim=[a.mzfw+s.tof,a.mtow,a.mlw+s.trip],k=lim.indexOf(Math.min.apply(null,lim)),al=lim[k],n=s.ad+s.ch,per=n?pw/n:0;
- var iz=a.doi;for(var i=0;i<3;i++)iz+=s.z[i]*per*a.zf[i]/1000;a.cpt.forEach(function(c,j){iz+=s.c[j]*c.f/1000});
- return {pw:pw,tl:tl,zfw:zfw,tow:tow,law:law,al:al,lim:k,ul:al-tow,iz:iz,it:iz+s.tof*a.fuel/1000}}
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function row(k,v,ok){return '<tr><td>'+k+'</td><td class="n">'+v+'</td><td>'+(ok===undefined?'':(ok?'<span class="ok">'+T[L].ok+'</span>':'<span class="ng">'+T[L].ng+'</span>'))+'</td></tr>'}
 function specHTML(a){var t=T[L];return '<div class="card"><h2>'+t.spec+'<span class="badge">'+a.id+'</span><span class="badge">'+t.cat[a.cat]+'</span></h2><table class="spec">'+
  '<tr><td>'+t.ver+'</td><td class="n">'+a.ver+' ('+sum(a.zs)+t.seats+')</td></tr><tr><td>'+t.crew+'</td><td class="n">'+a.crew+'</td></tr>'+
@@ -86,50 +118,241 @@ function specHTML(a){var t=T[L];return '<div class="card"><h2>'+t.spec+'<span cl
  '<tr><td>'+t.pl+'</td><td class="n">'+f(a.mzfw-a.dow)+'</td></tr>'+
  '<tr><td>'+t.zone+'</td><td class="n">A '+a.zs[0]+' / B '+a.zs[1]+' / C '+a.zs[2]+'</td></tr>'+
  '<tr><td>'+t.cpt+'</td><td class="n">'+a.cpt.map(function(c){return c.id+': '+f(c.max)}).join(' / ')+'</td></tr>'+
- '<tr><td>'+t.range+'</td><td class="n">ZFW '+a.izfw.join('–')+' / TOW '+a.itow.join('–')+'</td></tr></table></div>'}
-function inp(id,lab,v){return '<label>'+lab+'<input type="number" min="0" step="1" data-k="'+id+'" value="'+v+'"></label>'}
+ '<tr><td>'+t.mac+'</td><td class="n">'+a.mac.toFixed(1)+' m</td></tr>'+
+ '<tr><td>'+t.lims+' ZFW / TOW</td><td class="n">'+envZ(a,a.mzfw).map(f1).join('–')+' / '+envT(a,a.mtow).map(f1).join('–')+' %MAC</td></tr></table></div>'}
+function inp(id,lab,v,neg){return '<label>'+lab+'<input type="number" '+(neg?'':'min="0" ')+'step="1" data-k="'+id+'" value="'+v+'"></label>'}
+function stepsHTML(){var t=T[L];return '<ol class="steps">'+t.steps.map(function(s,i){var on=(i<5)||(i===5&&LS)||(i===6&&LMC);return '<li class="'+(on?'on':'')+'"><b>'+(i+1)+'</b>'+s+'</li>'}).join('')+'</ol>'}
 function render(){var t=T[L],a=AC[cur];document.documentElement.lang=L;document.title=t.t;
  ['ttl','lead','back','disc'].forEach(function(id){document.getElementById(id).textContent=t[{ttl:'t',lead:'lead',back:'back',disc:'disc'}[id]]});
  document.getElementById('back').href='00_シリーズ全体_地上職旅客運送入門.html?lang='+L;
  document.getElementById('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button data-l="'+l+'" class="'+(l===L?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join(' ');
- document.getElementById('tabs').innerHTML=[1,2,3].map(function(i){return '<button data-t="'+i+'" class="'+(tab==i?'on':'')+'">'+t['tab'+i]+'</button>'}).join('');
+ document.getElementById('tabs').innerHTML=[1,2,3,4,5,6].map(function(i){return '<button data-t="'+i+'" class="'+(tab==i?'on':'')+'">'+t['tab'+i]+'</button>'}).join('');
  document.getElementById('aclab').textContent=t.ac;
  document.getElementById('acsel').innerHTML=['S','M','L'].map(function(c){return '<optgroup label="'+t.cat[c]+'">'+AC.map(function(x,i){return x.cat!==c?'':'<option value="'+i+'"'+(i===cur?' selected':'')+'>'+x.id+' ('+x.ver+')</option>'}).join('')+'</optgroup>'}).join('');
- document.getElementById('app').innerHTML=tab==1?calcHTML():tab==2?quizHTML():listHTML();bind();if(tab==1)update()}
-function calcHTML(){var t=T[L],a=AC[cur];return '<div class="grid"><div><div class="card"><h2>'+t.pax+'</h2>'+inp('ad',t.ad,S.ad)+inp('ch',t.ch,S.ch)+inp('inf',t.inf,S.inf)+
- '<h2 style="margin-top:12px">'+t.zone+'</h2>'+[0,1,2].map(function(i){return inp('z'+i,'ABC'[i]+' ('+a.zs[i]+t.seats+')',S.z[i])}).join('')+'</div>'+
- '<div class="card" style="margin-top:14px"><h2>'+t.cpt+'</h2>'+a.cpt.map(function(c,j){return inp('c'+j,c.id+' ('+t.max+' '+f(c.max)+')',S.c[j])}).join('')+'<h2 style="margin-top:12px">'+t.fuel+'</h2>'+inp('tof',t.tof,S.tof)+inp('trip',t.trip,S.trip)+
- '<p><button class="btn sub" id="breset">'+t.reset+'</button></p></div></div>'+
- '<div><div class="card"><h2>'+t.res+'</h2><table id="out"></table><p class="note" id="warn"></p></div><div style="margin-top:14px">'+specHTML(a)+'</div></div></div>'}
-function update(){var t=T[L],a=AC[cur];document.querySelectorAll('#app input[data-k]').forEach(function(e){var k=e.dataset.k,v=Math.max(0,+e.value||0);if(k[0]==='z'&&k.length===2)S.z[+k[1]]=v;else if(k[0]==='c'&&k.length===2)S.c[+k[1]]=v;else S[k]=v});
+ document.getElementById('app').innerHTML=tab==1?calcHTML():tab==2?quizHTML():tab==3?listHTML():tab==4?expHTML():tab==5?rbHTML():trHTML();bind();if(tab==1)update()}
+function calcHTML(){var t=T[L],a=AC[cur];return stepsHTML()+'<div class="grid"><div><div class="card"><h2><i>2</i>'+t.pax+'</h2>'+inp('ad',t.ad,S.ad)+inp('ch',t.ch,S.ch)+inp('inf',t.inf,S.inf)+
+ '<h3>'+t.zone+'</h3>'+[0,1,2].map(function(i){return inp('z'+i,'ABC'[i]+' ('+a.zs[i]+t.seats+')',S.z[i])}).join('')+'</div>'+
+ '<div class="card" style="margin-top:14px"><h2><i>3</i>'+t.cpt+'</h2>'+a.cpt.map(function(c,j){return inp('c'+j,c.id+' ('+t.max+' '+f(c.max)+')',S.c[j])}).join('')+'<h2 style="margin-top:12px"><i>4</i>'+t.fuel+'</h2>'+inp('tof',t.tof,S.tof)+inp('trip',t.trip,S.trip)+
+ '<p><button class="btn sub" id="breset">'+t.reset+'</button></p></div><div style="margin-top:14px">'+specHTML(a)+'</div></div>'+
+ '<div><div class="card"><h2><i>5</i>'+t.res+'</h2><table id="out"></table><p class="note" id="warn"></p></div>'+
+ '<div class="card" style="margin-top:14px"><h2>'+t.bal+'</h2><table id="outb"></table></div>'+
+ '<div class="card" style="margin-top:14px"><h2>'+t.chart+chToggle()+'</h2><div id="chart"></div><p class="note">'+t.chartnote+' '+TX[L].fuelline+'</p></div></div></div>'+'<div class="card" style="margin-top:14px"><h2>'+TX[L].plan+'</h2><div id="plan"></div><p class="note">'+TX[L].plannote+'</p></div>'+
+ '<div class="card" style="margin-top:14px"><h2><i>6</i>'+t.lshead+'</h2><div class="meta"><label>'+t.flt+'<input type="text" id="mflt" value="'+esc(META.flt)+'" maxlength="8"></label><label>'+t.route+'<input type="text" id="mroute" value="'+esc(META.route)+'" maxlength="9"></label><button class="btn" id="bls">'+t.lsbtn+'</button></div><pre class="ls" id="ls"></pre><p class="note">'+t.lsnote+'</p></div>'+
+ '<div class="card" style="margin-top:14px"><h2><i>7</i>'+t.lmc+'</h2><p class="note" style="margin-top:0">'+t.lmclead+'</p><div class="grid3">'+
+ inp('lad',t.dad,0,1)+inp('lch',t.dch,0,1)+'<label>'+t.dzone+'<select id="lzone">'+['A','B','C'].map(function(z,i){return '<option value="'+i+'">'+z+'</option>'}).join('')+'</select></label>'+
+ '<label>'+t.dcpt+'<select id="lcpt">'+a.cpt.map(function(c,j){return '<option value="'+j+'">'+c.id+'</option>'}).join('')+'</select></label>'+inp('lkg',t.dkg,0,1)+'</div>'+
+ '<p><button class="btn" id="blmc">'+t.lmcchk+'</button></p><div id="lmcres"></div><p class="note">'+t.lmctol+'</p></div>'}
+function readS(){document.querySelectorAll('#app input[data-k]').forEach(function(e){var k=e.dataset.k;if(k[0]==='l')return;var v=Math.max(0,+e.value||0);if(k[0]==='z'&&k.length===2)S.z[+k[1]]=v;else if(k[0]==='c'&&k.length===2)S.c[+k[1]]=v;else S[k]=v})}
+function update(){var t=T[L],a=AC[cur];readS();LMC=null;
  var r=calc(a,S),lim=[t.lz,t.lt,t.ll][r.lim];
  document.getElementById('out').innerHTML=row(t.paxw,f(r.pw))+row(t.ttl,f(r.tl))+row(t.zfw+' ('+t.max+' '+f(a.mzfw)+')',f(r.zfw),r.zfw<=a.mzfw)+row(t.tow+' ('+t.max+' '+f(a.mtow)+')',f(r.tow),r.tow<=a.mtow)+row(t.law+' ('+t.max+' '+f(a.mlw)+')',f(r.law),r.law<=a.mlw)+
-  row(t.allow,f(r.al))+row(t.lim,lim)+row(t.under,f(r.ul),r.ul>=0)+row(t.izfw+' ('+a.izfw.join('–')+')',r.iz.toFixed(1),r.iz>=a.izfw[0]&&r.iz<=a.izfw[1])+row(t.itow+' ('+a.itow.join('–')+')',r.it.toFixed(1),r.it>=a.itow[0]&&r.it<=a.itow[1]);
+  row(t.allow,f(r.al))+row(t.lim,lim)+row(t.under,f(r.ul),r.ul>=0);
+ document.getElementById('outb').innerHTML=row('DOI',a.doi.toFixed(2))+row(t.dli,r.dli.toFixed(2))+row(t.lizfw,r.iz.toFixed(2))+row(t.litow,r.it.toFixed(2))+row(t.lilaw,r.il.toFixed(2))+
+  row(t.maczfw+' ('+r.ez.map(f1).join('–')+')',f1(r.mz),r.okz)+row(t.mactow+' ('+r.et.map(f1).join('–')+')',f1(r.mt),r.okt)+row(t.maclaw+' ('+r.el.map(f1).join('–')+')',f1(r.ml),r.okl)+row(t.stab,f1(r.stab));
  var w=[];if(a.cpt.some(function(c,j){return S.c[j]>c.max}))w.push(t.cptng);if(sum(S.z)!==S.ad+S.ch)w.push(t.zonechk);if(S.z.some(function(z,i){return z>a.zs[i]}))w.push(t.zoneover);
- document.getElementById('warn').innerHTML=w.map(function(x){return '<span class="ng">'+x+'</span>'}).join('<br>')}
+ document.getElementById('warn').innerHTML=w.map(function(x){return '<span class="ng">'+x+'</span>'}).join('<br>');
+ document.getElementById('chart').innerHTML=anyChart(a,r,null);document.getElementById('plan').innerHTML=planSVG(a,S,r,null);
+ if(LS){LS=r;document.getElementById('ls').textContent=lsText(a,S,r,null)}else document.getElementById('ls').textContent='';
+ document.getElementById('lmcres').innerHTML='';
+ var st=document.querySelector('.steps');if(st)st.outerHTML=stepsHTML()}
+/* バランスチャート：横＝指数、縦＝重量 */
+function chartSVG(a,r,r2){var W=560,H=380,ml=58,mr=18,mt=14,mb=40,w0=a.dow*0.97,w1=a.mtow*1.02,pts=[];
+ function envPts(fn,wmax){var f=[],b=[],n=24;for(var i=0;i<=n;i++){var wt=w0+(wmax-w0)*i/n,l=fn(a,wt);f.push([idx(a,l[0],wt),wt]);b.unshift([idx(a,l[1],wt),wt])}return f.concat(b)}
+ var eT=envPts(envT,a.mtow),eZ=envPts(envZ,a.mzfw),all=eT.concat(eZ).concat([[r.iz,r.zfw],[r.it,r.tow],[r.il,r.law]]);if(r2)all=all.concat([[r2.iz,r2.zfw],[r2.it,r2.tow],[r2.il,r2.law]]);
+ var x0=Math.min.apply(null,all.map(function(p){return p[0]})),x1=Math.max.apply(null,all.map(function(p){return p[0]}));var pad=(x1-x0)*0.08;x0-=pad;x1+=pad;
+ function X(i){return ml+(i-x0)/(x1-x0)*(W-ml-mr)}function Y(wt){return H-mb-(wt-w0)/(w1-w0)*(H-mt-mb)}
+ function poly(p,fill,stroke){return '<polygon points="'+p.map(function(q){return X(q[0]).toFixed(1)+','+Y(q[1]).toFixed(1)}).join(' ')+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2"/>'}
+ var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="balance chart" style="width:100%;height:auto;display:block">';
+ /* 目盛り */
+ var st=Math.pow(10,Math.floor(Math.log10((x1-x0)/5)));if((x1-x0)/st>10)st*=2;for(var gi=Math.ceil(x0/st)*st;gi<=x1;gi+=st){s+='<line x1="'+X(gi)+'" y1="'+mt+'" x2="'+X(gi)+'" y2="'+(H-mb)+'" stroke="#e6ecf2"/><text x="'+X(gi)+'" y="'+(H-mb+16)+'" font-size="11" text-anchor="middle" fill="#5b6b7d">'+(Math.round(gi*10)/10)+'</text>'}
+ var ws=Math.pow(10,Math.floor(Math.log10((w1-w0)/5)));if((w1-w0)/ws>8)ws*=2;for(var gw=Math.ceil(w0/ws)*ws;gw<=w1;gw+=ws){s+='<line x1="'+ml+'" y1="'+Y(gw)+'" x2="'+(W-mr)+'" y2="'+Y(gw)+'" stroke="#e6ecf2"/><text x="'+(ml-6)+'" y="'+(Y(gw)+4)+'" font-size="11" text-anchor="end" fill="#5b6b7d">'+(gw/1000).toFixed(gw%1000?1:0)+'t</text>'}
+ s+=poly(eT,'rgba(47,143,224,.10)','#2f8fe0')+poly(eZ,'rgba(31,122,110,.12)','#1f7a6e');
+ [[a.mzfw,'MZFW'],[a.mlw,'MLW'],[a.mtow,'MTOW']].forEach(function(m){s+='<line x1="'+ml+'" y1="'+Y(m[0])+'" x2="'+(W-mr)+'" y2="'+Y(m[0])+'" stroke="#c2344f" stroke-dasharray="5 4"/><text x="'+(W-mr-4)+'" y="'+(Y(m[0])-4)+'" font-size="11" text-anchor="end" fill="#c2344f" font-weight="700">'+m[1]+'</text>'});
+ s+='<text x="'+((W+ml)/2)+'" y="'+(H-6)+'" font-size="12" text-anchor="middle" fill="#1d2a38" font-weight="700">INDEX</text>';
+ function pts3(rr,hollow){var P=[[rr.iz,rr.zfw,'ZFW',rr.okz&&rr.zfw<=a.mzfw],[rr.it,rr.tow,'TOW',rr.okt&&rr.tow<=a.mtow],[rr.il,rr.law,'LAW',rr.okl&&rr.law<=a.mlw]],o='<polyline points="'+P.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'" fill="none" stroke="#1d2a38" stroke-width="1.5" stroke-dasharray="'+(hollow?'3 3':'0')+'"/>';
+  P.forEach(function(p){var c=p[3]?'#1d2a38':'#c2344f';o+=hollow?'<rect x="'+(X(p[0])-6)+'" y="'+(Y(p[1])-6)+'" width="12" height="12" transform="rotate(45 '+X(p[0])+' '+Y(p[1])+')" fill="#fff" stroke="'+c+'" stroke-width="2"/>':'<circle cx="'+X(p[0])+'" cy="'+Y(p[1])+'" r="6" fill="'+c+'"/><text x="'+(X(p[0])+9)+'" y="'+(Y(p[1])+4)+'" font-size="12" font-weight="700" fill="'+c+'">'+p[2]+'</text>'});return o}
+ s+=pts3(r,false);if(r2)s+=pts3(r2,true);return s+'</svg>'}
+/* ロードシート（練習用） */
+function pad(x,n,right){x=String(x);while(x.length<n)x=right?x+' ':' '+x;return x}
+function lsText(a,s,r,lmc){var t=T[L],d=new Date(),mo=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'][d.getMonth()],dt=pad(d.getDate(),2).replace(' ','0')+mo+String(d.getFullYear()).slice(2),tm=pad(d.getHours(),2).replace(' ','0')+pad(d.getMinutes(),2).replace(' ','0');
+ var fr=(META.route||'').split(/\s+/),L1=[],mk=function(k){return r.lim===k?' L':''};
+ L1.push('LOADSHEET           CHECKED      APPROVED      EDNO');
+ L1.push('ALL WEIGHTS IN KG                                 1');
+ L1.push('FROM/TO  FLIGHT    A/C     VERSION      CREW  DATE     TIME');
+ L1.push(pad((fr[0]||'')+'/'+(fr[1]||''),8,1)+' '+pad(META.flt||'',9,1)+' '+pad(a.id,7,1)+' '+pad(a.ver,12,1)+' '+pad(a.crew,5,1)+' '+pad(dt,8,1)+' '+tm);
+ L1.push('                          WEIGHT   DISTRIBUTION');
+ L1.push('LOAD IN COMPARTMENTS'+pad(f(r.cw),13)+'   '+a.cpt.map(function(c,j){return c.id+'/'+s.c[j]}).join(' '));
+ L1.push('PASSENGER/CABIN BAG '+pad(f(r.pw),13)+'   '+s.ad+'/'+s.ch+'/'+s.inf+'  TTL '+(s.ad+s.ch+s.inf));
+ L1.push('TOTAL TRAFFIC LOAD  '+pad(f(r.tl),13));
+ L1.push('DRY OPERATING WEIGHT'+pad(f(a.dow),13));
+ L1.push('ZERO FUEL WEIGHT ACTUAL'+pad(f(r.zfw),10)+'  MAX'+pad(f(a.mzfw),9)+mk(0));
+ L1.push('TAKE OFF FUEL       '+pad(f(s.tof),13));
+ L1.push('TAKE OFF WEIGHT  ACTUAL'+pad(f(r.tow),10)+'  MAX'+pad(f(a.mtow),9)+mk(1));
+ L1.push('TRIP FUEL           '+pad(f(s.trip),13));
+ L1.push('LANDING WEIGHT   ACTUAL'+pad(f(r.law),10)+'  MAX'+pad(f(a.mlw),9)+mk(2));
+ L1.push('UNDERLOAD BEFORE LMC'+pad(f(r.ul),13));
+ L1.push('BALANCE AND SEATING CONDITIONS');
+ L1.push('DOI '+pad(a.doi.toFixed(2),7)+'   DLI  '+pad(r.dli.toFixed(2),7));
+ L1.push('LIZFW '+pad(r.iz.toFixed(2),7)+' MACZFW '+pad(f1(r.mz),5));
+ L1.push('LITOW '+pad(r.it.toFixed(2),7)+' MACTOW '+pad(f1(r.mt),5)+'   STAB TRIM '+f1(r.stab));
+ L1.push('LILAW '+pad(r.il.toFixed(2),7)+' MACLAW '+pad(f1(r.ml),5));
+ L1.push('SEATING  0A/'+s.z[0]+' 0B/'+s.z[1]+' 0C/'+s.z[2]);
+ L1.push('LAST MINUTE CHANGES');
+ if(lmc)L1.push(lmc);else L1.push('--');
+ L1.push('PREPARED BY ________   CAPTAIN ________');
+ return L1.join('\n')}
+function lmcCheck(){var t=T[L],a=AC[cur];if(!LS){document.getElementById('lmcres').innerHTML='<p class="ng">'+t.needls+'</p>';return}
+ var g=function(id){return +document.querySelector('[data-k="'+id+'"]').value||0},dad=g('lad'),dch=g('lch'),dz=+document.getElementById('lzone').value,dc=+document.getElementById('lcpt').value,dkg=g('lkg');
+ var s2={ad:Math.max(0,S.ad+dad),ch:Math.max(0,S.ch+dch),inf:S.inf,z:S.z.slice(),c:S.c.slice(),tof:S.tof,trip:S.trip};s2.z[dz]=Math.max(0,s2.z[dz]+dad+dch);s2.c[dc]=Math.max(0,s2.c[dc]+dkg);
+ var r=calc(a,S),r2=calc(a,s2),dw=r2.tow-r.tow,dm=r2.mt-r.mt,tw=a.mlw*0.005,okw=Math.abs(dw)<=tw,okc=Math.abs(dm)<0.5,oke=r2.okz&&r2.okt&&r2.okl,oku=r2.ul>=0,ok=okw&&okc&&oke&&oku;
+ LMC={r2:r2};var parts=[];if(dad)parts.push((dad>0?'+':'')+dad+' ADT 0'+'ABC'[dz]);if(dch)parts.push((dch>0?'+':'')+dch+' CHD 0'+'ABC'[dz]);if(dkg)parts.push((dkg>0?'+':'')+dkg+' CPT'+a.cpt[dc].id);
+ var line=(parts.join(' / ')||'--')+'   TTL '+(dw>=0?'+':'')+f(dw)+'  MACTOW '+f1(r2.mt);
+ document.getElementById('ls').textContent=lsText(a,S,r,ok?line:null);
+ document.getElementById('lmcres').innerHTML='<table>'+row(t.dw+' ('+(dw>=0?'+':'')+f(dw)+' / ±'+f(tw)+')',(dw>=0?'+':'')+f(dw),okw)+row(t.dmac+' (±0.5)',(dm>=0?'+':'')+dm.toFixed(2),okc)+row(t.lmcenv,f1(r2.mz)+' / '+f1(r2.mt)+' / '+f1(r2.ml),oke)+row(t.lmcul,f(r2.ul),oku)+'</table><p class="'+(ok?'ok':'ng')+'" style="font-size:15px">'+(ok?'✔ '+t.lmcok:'✖ '+t.lmcng)+'</p>';
+ document.getElementById('chart').innerHTML=anyChart(a,r,r2);document.getElementById('plan').innerHTML=planSVG(a,S,r,r2);var st=document.querySelector('.steps');if(st)st.outerHTML=stepsHTML()}
 function rnd(a,b,st){st=st||1;return Math.round((a+Math.random()*(b-a))/st)*st}
 function newQ(){if(RND){cur=Math.floor(Math.random()*AC.length);def()}var a=AC[cur],seats=sum(a.zs),n=rnd(seats*0.5,seats*0.95),ch=rnd(0,n*0.04),inf=rnd(0,n*0.02),z=a.zs.map(function(s){return Math.round(n*s/seats)});z[2]=n-z[0]-z[1];
  var tof=rnd(a.d[5]*0.75,a.d[5]*1.2,100),trip=Math.round(tof*rnd(0.72,0.85,0.01)/100)*100;
  var s={ad:n-ch,ch:ch,inf:inf,z:z,c:a.cpt.map(function(c){return rnd(c.max*0.15,c.max*0.75,10)}),tof:tof,trip:trip};Q={a:cur,s:s,r:calc(a,s)}}
 function quizHTML(){if(!Q||Q.a!==cur)newQ();var t=T[L],s=Q.s,a=AC[Q.a];return '<div class="grid"><div class="card"><h2>'+t.qlead+'<span class="badge">'+a.id+'</span></h2><table>'+
  '<tr><td>'+t.pax+'</td><td class="n">'+t.ad+' '+s.ad+' / '+t.ch+' '+s.ch+' / '+t.inf+' '+s.inf+'</td></tr>'+
+ '<tr><td>'+t.zone+'</td><td class="n">A '+s.z[0]+' / B '+s.z[1]+' / C '+s.z[2]+'</td></tr>'+
  '<tr><td>'+t.cpt+'</td><td class="n">'+a.cpt.map(function(c,j){return c.id+'/'+s.c[j]}).join(' ')+'</td></tr>'+
  '<tr><td>'+t.tof+'</td><td class="n">'+f(s.tof)+'</td></tr><tr><td>'+t.trip+'</td><td class="n">'+f(s.trip)+'</td></tr></table>'+
- '<div class="q" style="margin-top:10px">'+['zfw','tow','law','under'].map(function(k){return '<label>'+t[k]+'<input type="number" id="q_'+k+'"></label>'}).join('')+
+ '<div class="q" style="margin-top:10px">'+['zfw','tow','law','under','qmac'].map(function(k){return '<label>'+t[k]+'<input type="number" step="0.1" id="q_'+k+'"></label>'}).join('')+
  '<p><button class="btn" id="bchk">'+t.chk+'</button><button class="btn sub" id="bans">'+t.ans+'</button><button class="btn sub" id="bnew">'+t.q+'</button></p>'+
  '<label style="justify-content:flex-start"><input type="checkbox" id="rndac"'+(RND?' checked':'')+'> '+t.rndac+'</label><div class="res" id="qres"></div></div>'+specHTML(a)+'</div>'}
-function listHTML(){var t=T[L];return '<div class="card" style="overflow-x:auto"><table class="list"><tr><th>'+t.name+'</th><th></th><th>'+t.ver+'</th><th class="n">DOW</th><th class="n">'+t.lz+'</th><th class="n">'+t.lt+'</th><th class="n">'+t.ll+'</th><th class="n">'+t.pl+'</th><th>'+t.cpt+'</th></tr>'+
- AC.map(function(a,i){return '<tr class="'+(i===cur?'cur':'')+'"><td><a href="#" data-i="'+i+'">'+a.id+'</a></td><td>'+t.cat[a.cat]+'</td><td>'+a.ver+'</td><td class="n">'+f(a.dow)+'</td><td class="n">'+f(a.mzfw)+'</td><td class="n">'+f(a.mtow)+'</td><td class="n">'+f(a.mlw)+'</td><td class="n">'+f(a.mzfw-a.dow)+'</td><td>'+a.cpt.map(function(c){return c.id}).join('·')+'</td></tr>'}).join('')+'</table></div>'}
-function check(show){var t=T[L],r=Q.r,m={zfw:r.zfw,tow:r.tow,law:r.law,under:r.ul},h='';
- for(var k in m){var e=document.getElementById('q_'+k),v=+e.value;if(show)e.value=Math.round(m[k]);var ok=show||(e.value!==''&&Math.abs(v-m[k])<1);h+='<div>'+t[k]+': '+(ok?'<span class="ok">'+(show?f(m[k]):t.right)+'</span>':'<span class="ng">'+t.wrong+'</span>')+'</div>'}
- if(show)h+='<div class="note">'+t.lim+': '+[t.lz,t.lt,t.ll][r.lim]+'</div>';document.getElementById('qres').innerHTML=h}
+function listHTML(){var t=T[L];return '<div class="card" style="overflow-x:auto"><table class="list"><tr><th>'+t.name+'</th><th></th><th>'+t.ver+'</th><th class="n">DOW</th><th class="n">'+t.lz+'</th><th class="n">'+t.lt+'</th><th class="n">'+t.ll+'</th><th class="n">'+t.pl+'</th><th class="n">'+t.mac+'</th><th>'+t.cpt+'</th></tr>'+
+ AC.map(function(a,i){return '<tr class="'+(i===cur?'cur':'')+'"><td><a href="#" data-i="'+i+'">'+a.id+'</a></td><td>'+t.cat[a.cat]+'</td><td>'+a.ver+'</td><td class="n">'+f(a.dow)+'</td><td class="n">'+f(a.mzfw)+'</td><td class="n">'+f(a.mtow)+'</td><td class="n">'+f(a.mlw)+'</td><td class="n">'+f(a.mzfw-a.dow)+'</td><td class="n">'+a.mac.toFixed(1)+'</td><td>'+a.cpt.map(function(c){return c.id}).join('·')+'</td></tr>'}).join('')+'</table></div>'}
+function expHTML(){var t=T[L],a=AC[cur],r=calc(a,S);return '<div class="grid"><div class="card"><h2>'+t.tab4+'</h2>'+t.exp.map(function(e,i){return '<div class="exp"><b>'+(i+1)+'. '+e[0]+'</b><p>'+e[1]+'</p></div>'}).join('')+'<p class="note">'+t.expnote+'</p></div>'+
+ '<div><div class="card"><h2>%MAC</h2><div class="formula">%MAC = (arm − LEMAC) ÷ MAC × 100<br>INDEX = K + W × (arm − ref) ÷ C</div>'+macSVG(r.mt)+'<p class="note">'+a.id+' TOW: '+f1(r.mt)+' %MAC</p></div>'+
+ '<div class="card" style="margin-top:14px"><h2>'+t.chart+'</h2>'+chartSVG(a,r,null)+'</div></div></div>'}
+function macSVG(p){var x=60+Math.max(0,Math.min(100,p))*3.8;return '<svg viewBox="0 0 500 170" style="width:100%;height:auto;display:block"><path d="M40 90 L470 90" stroke="#9fb3c6" stroke-width="10" stroke-linecap="round"/><path d="M60 70 L440 70 L420 110 L80 110 Z" fill="#e8f1fb" stroke="#2f8fe0" stroke-width="2"/><line x1="60" y1="55" x2="60" y2="125" stroke="#1d2a38" stroke-width="2"/><line x1="440" y1="55" x2="440" y2="125" stroke="#1d2a38" stroke-width="2"/><text x="60" y="48" font-size="12" text-anchor="middle" fill="#1d2a38">0% (LEMAC)</text><text x="440" y="48" font-size="12" text-anchor="middle" fill="#1d2a38">100%</text><path d="M60 140 L440 140" stroke="#1d2a38" marker-end="url(#ma)" marker-start="url(#ma2)"/><text x="250" y="160" font-size="12" text-anchor="middle" fill="#1d2a38">MAC</text><defs><marker id="ma" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1d2a38"/></marker><marker id="ma2" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M10 0 L0 5 L10 10 Z" fill="#1d2a38"/></marker></defs><circle cx="'+x+'" cy="90" r="11" fill="#c2344f"/><text x="'+x+'" y="94" font-size="10" text-anchor="middle" fill="#fff" font-weight="700">CG</text><text x="'+x+'" y="30" font-size="13" text-anchor="middle" fill="#c2344f" font-weight="700">'+f1(p)+'%</text></svg>'}
+function check(show){var t=T[L],r=Q.r,m={zfw:r.zfw,tow:r.tow,law:r.law,under:r.ul,qmac:r.mt},h='';
+ for(var k in m){var e=document.getElementById('q_'+k),v=+e.value,tol=k==='qmac'?0.3:1;if(show)e.value=k==='qmac'?f1(m[k]):Math.round(m[k]);var ok=show||(e.value!==''&&Math.abs(v-m[k])<=tol);h+='<div>'+t[k]+': '+(ok?'<span class="ok">'+(show?(k==='qmac'?f1(m[k]):f(m[k])):t.right)+'</span>':'<span class="ng">'+t.wrong+'</span>')+'</div>'}
+ if(show)h+='<div class="note">'+t.lim+': '+[t.lz,t.lt,t.ll][r.lim]+' / LIZFW '+r.iz.toFixed(2)+' / LITOW '+r.it.toFixed(2)+' / MACZFW '+f1(r.mz)+'</div>';document.getElementById('qres').innerHTML=h}
 function bind(){document.querySelectorAll('#langs button').forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('art-lang',L)}catch(e){}render()}});
  document.querySelectorAll('#tabs button').forEach(function(b){b.onclick=function(){tab=+b.dataset.t;render()}});
  document.getElementById('acsel').onchange=function(){cur=+this.value;def();Q=null;render()};
- document.querySelectorAll('#app input[data-k]').forEach(function(e){e.oninput=update});
+ document.querySelectorAll('#app input[data-k]').forEach(function(e){if(e.dataset.k[0]!=='l')e.oninput=update});
  var rs=document.getElementById('breset');if(rs)rs.onclick=function(){def();render()};
+ var bl=document.getElementById('bls');if(bl)bl.onclick=function(){META.flt=document.getElementById('mflt').value.toUpperCase();META.route=document.getElementById('mroute').value.toUpperCase();readS();LS=calc(AC[cur],S);LMC=null;document.getElementById('ls').textContent=lsText(AC[cur],S,LS,null);document.getElementById('lmcres').innerHTML='';var st=document.querySelector('.steps');if(st)st.outerHTML=stepsHTML()};
+ var bm=document.getElementById('blmc');if(bm)bm.onclick=lmcCheck;
  document.querySelectorAll('.list a[data-i]').forEach(function(x){x.onclick=function(ev){ev.preventDefault();cur=+x.dataset.i;def();Q=null;tab=1;render()}});
- var c=document.getElementById('bchk');if(c){c.onclick=function(){check(false)};document.getElementById('bans').onclick=function(){check(true)};document.getElementById('bnew').onclick=function(){newQ();render()};document.getElementById('rndac').onchange=function(){RND=this.checked}}}
+ var c=document.getElementById('bchk');if(c){c.onclick=function(){check(false)};document.getElementById('bans').onclick=function(){check(true)};document.getElementById('bnew').onclick=function(){newQ();render()};document.getElementById('rndac').onchange=function(){RND=this.checked}}bindX()}
+T.ja.qmac='離陸時の重心（MACTOW, %）';T.ko.qmac='이륙 시 무게중심(MACTOW, %)';T.en.qmac='Take-off CG (MACTOW, %)';
+/* ===== 追加機能（2026-09）：機体の側面図と重心／%MACチャート／重心の修正（貨物の積み替え）／トリムシートの手計算 ===== */
+var TX={
+ja:{tab5:"重心の修正（問題）",tab6:"トリムシートの練習",plan:"機体の側面図と重心",plannote:"客室の区画と貨物室は、重心の計算に使う位置の比率で描いた架空の機体。色が濃いほど多く積んでいる。下のMACの棒に、離陸時の重心の範囲（緑）と、DOW・ZFW・TOW・LAWの重心の位置を示す。",chIdx:"指数のチャート",chMac:"%MACのチャート",fuelline:"点線＝燃料を使うにつれて動く重心（TOW→LAW）",macaxis:"%MAC",
+rbLead:"重心が範囲の外になった便です。貨物を別の貨物室に移す、またはお客様の席の区画を移して、ZFW・TOW・LAWの重心をすべて範囲の中に入れてください。",rbNew:"新しい問題",rbScen:"いまの状態",rbCargo:"貨物を移す",rbPax:"お客様の区画を移す",rbFrom:"から",rbTo:"へ",rbKg:"重さ（kg）",rbN:"人数",rbTry:"移してみる",rbAns:"答えの例",rbOk:"すべての重心が範囲の中に入りました。",rbNg:"まだ範囲の外です（または貨物室・席の上限を超えています）。",rbAfter:"移した後",rbSol:"答えの例：",rbNoSol:"この条件では貨物の移動だけでは直せないため、お客様の区画の移動も組み合わせます。",rbAft:"重心が後ろに寄りすぎ",rbFwd:"重心が前に寄りすぎ",
+trLead:"下の条件と指数の表を使って、DLI・LIZFW・LITOWと、ZFW・TOWの重心（%MAC）を手で計算してください（指数は±0.05、%MACは±0.3まで正解）。お客様は全員大人（75kg）です。",trNew:"新しい問題",trTable:"指数の表（この機材・架空）",trZone:"区画",trPer:"大人1人あたりの指数",trCpt:"貨物室",trPer100:"100kgあたりの指数",trFuel:"燃料1,000kgあたりの指数",trFormula:"%MACの式",trCond:"条件",trChk:"答え合わせ",trAns:"答えと計算の手順",trStep1:"DLI ＝ DOI ＋ 貨物の指数",trStep2:"LIZFW ＝ DLI ＋ お客様の指数",trStep3:"LITOW ＝ LIZFW ＋ 離陸燃料の指数",trStep4:"%MAC ＝ (C × (指数 − K) ÷ 重量 − d) ÷ MAC × 100"},
+ko:{tab5:"무게중심 수정(문제)",tab6:"트림시트 연습",plan:"기체 측면도와 무게중심",plannote:"객실 구역과 화물칸은 무게중심 계산에 쓰는 위치 비율대로 그린 가상 기체. 색이 진할수록 많이 실었다. 아래 MAC 막대에 이륙 시 무게중심 범위(초록)와 DOW·ZFW·TOW·LAW의 무게중심 위치를 표시.",chIdx:"지수 차트",chMac:"%MAC 차트",fuelline:"점선 = 연료를 쓰면서 움직이는 무게중심(TOW→LAW)",macaxis:"%MAC",
+rbLead:"무게중심이 범위를 벗어난 편입니다. 화물을 다른 화물칸으로 옮기거나 승객의 좌석 구역을 옮겨서 ZFW·TOW·LAW의 무게중심을 모두 범위 안에 넣어 보세요.",rbNew:"새 문제",rbScen:"지금 상태",rbCargo:"화물 옮기기",rbPax:"승객 구역 옮기기",rbFrom:"에서",rbTo:"로",rbKg:"무게(kg)",rbN:"인원",rbTry:"옮겨 보기",rbAns:"답 예시",rbOk:"모든 무게중심이 범위 안에 들어왔습니다.",rbNg:"아직 범위 밖입니다(또는 화물칸·좌석 한도를 넘었습니다).",rbAfter:"옮긴 뒤",rbSol:"답 예시: ",rbNoSol:"이 조건에서는 화물 이동만으로 고칠 수 없어 승객 구역 이동도 함께 합니다.",rbAft:"무게중심이 너무 뒤쪽",rbFwd:"무게중심이 너무 앞쪽",
+trLead:"아래 조건과 지수표를 써서 DLI·LIZFW·LITOW와 ZFW·TOW의 무게중심(%MAC)을 손으로 계산해 보세요(지수는 ±0.05, %MAC은 ±0.3까지 정답). 승객은 모두 성인(75kg)입니다.",trNew:"새 문제",trTable:"지수표(이 기종·가상)",trZone:"구역",trPer:"성인 1명당 지수",trCpt:"화물칸",trPer100:"100kg당 지수",trFuel:"연료 1,000kg당 지수",trFormula:"%MAC 공식",trCond:"조건",trChk:"채점하기",trAns:"답과 계산 순서",trStep1:"DLI = DOI + 화물 지수",trStep2:"LIZFW = DLI + 승객 지수",trStep3:"LITOW = LIZFW + 이륙 연료 지수",trStep4:"%MAC = (C × (지수 − K) ÷ 중량 − d) ÷ MAC × 100"},
+en:{tab5:"Fixing the CG (exercise)",tab6:"Trim sheet practice",plan:"Side view and centre of gravity",plannote:"A fictional aircraft with cabin zones and holds drawn at the relative positions used in the CG calculation; darker means more load. The MAC bar below shows the take-off CG range (green) and the CG positions at DOW, ZFW, TOW and LAW.",chIdx:"Index chart",chMac:"%MAC chart",fuelline:"Dotted line = CG movement as fuel is burned (TOW→LAW)",macaxis:"%MAC",
+rbLead:"This flight’s CG is out of limits. Move cargo between holds or move passengers between cabin zones until the ZFW, TOW and LAW CGs are all within limits.",rbNew:"New exercise",rbScen:"Current state",rbCargo:"Move cargo",rbPax:"Move passengers",rbFrom:"from",rbTo:"to",rbKg:"Weight (kg)",rbN:"Passengers",rbTry:"Try this move",rbAns:"Sample answer",rbOk:"All CGs are now within limits.",rbNg:"Still out of limits (or a hold/zone limit is exceeded).",rbAfter:"After the move",rbSol:"Sample answer: ",rbNoSol:"Cargo moves alone cannot fix this case, so passengers are moved as well.",rbAft:"CG too far aft",rbFwd:"CG too far forward",
+trLead:"Using the conditions and index table below, calculate DLI, LIZFW, LITOW and the ZFW and TOW CGs (%MAC) by hand (index within ±0.05, %MAC within ±0.3). All passengers are adults (75 kg).",trNew:"New exercise",trTable:"Index table (this aircraft, fictional)",trZone:"Zone",trPer:"Index per adult",trCpt:"Hold",trPer100:"Index per 100 kg",trFuel:"Index per 1,000 kg of fuel",trFormula:"%MAC formula",trCond:"Conditions",trChk:"Check",trAns:"Answers and working",trStep1:"DLI = DOI + cargo index",trStep2:"LIZFW = DLI + passenger index",trStep3:"LITOW = LIZFW + take-off fuel index",trStep4:"%MAC = (C × (index − K) ÷ weight − d) ÷ MAC × 100"}};
+['ja','ko','en'].forEach(function(l){T[l].tab5=TX[l].tab5;T[l].tab6=TX[l].tab6});
+T.ja.lead+=' 機体の側面図で重心の位置を見たり、重心の修正（貨物の積み替え）やトリムシートの手計算の問題にも挑戦できます。';T.ko.lead+=' 기체 측면도로 무게중심 위치를 보고, 무게중심 수정(화물 재배치)과 트림시트 손계산 문제도 풀어 볼 수 있습니다.';T.en.lead+=' You can also see the CG on a side view of the aircraft, and practise fixing an out-of-limit CG by moving cargo and calculating a trim sheet by hand.';
+var CHM='idx',RB=null,TR=null;
+function cgArm(a,I,W){return a.C*(I-BAL.K)/W}
+function anyChart(a,r,r2){return CHM==='mac'?pctChartSVG(a,r,r2):chartSVG(a,r,r2)}
+function chToggle(){var x=TX[L];return '<span class="chtg"><button type="button" data-ch="idx" class="'+(CHM==='idx'?'on':'')+'">'+x.chIdx+'</button><button type="button" data-ch="mac" class="'+(CHM==='mac'?'on':'')+'">'+x.chMac+'</button></span>'}
+/* 側面図：位置は「指数の係数×C÷1000」＝基準点からの距離（m） */
+function planSVG(a,s,r,r2){var x=TX[L],st=a.zf.map(function(z){return z*a.C/1000}),cs=a.cpt.map(function(c){return c.f*a.C/1000}),le=a.d0,te=a.d0+a.mac;
+ var all=st.concat(cs).concat([le,te]),x0=Math.min.apply(null,all),x1=Math.max.apply(null,all),sp=x1-x0;x0-=sp*0.14;x1+=sp*0.14;
+ var L0=110,R0=800;function X(m){return L0+(m-x0)/(x1-x0)*(R0-L0)}
+ var o='<svg viewBox="0 0 900 360" role="img" aria-label="side view" style="width:100%;height:auto;display:block">';
+ o+='<path d="M'+(L0-10)+' 60 L'+(R0+10)+' 60 L'+(R0+70)+' 30 L'+(R0+92)+' 30 L'+(R0+80)+' 120 L'+(R0+30)+' 190 L'+(L0-10)+' 190 Q'+(L0-80)+' 185 '+(L0-80)+' 125 Q'+(L0-80)+' 62 '+(L0-10)+' 60 Z" fill="#fff" stroke="#1d2a38" stroke-width="2"/>';
+ o+='<line x1="'+(L0-40)+'" y1="140" x2="'+(R0+30)+'" y2="140" stroke="#9fb3c6" stroke-width="2"/>';
+ for(var wi=L0;wi<R0;wi+=22)o+='<circle cx="'+wi+'" cy="80" r="3" fill="#cfe4f8"/>';
+ var cx=st.map(X),bd=[L0-30,(cx[0]+cx[1])/2,(cx[1]+cx[2])/2,R0+10],pax=s.z;
+ for(var i=0;i<3;i++){var op=(0.12+0.78*Math.min(1,pax[i]/Math.max(1,a.zs[i]))).toFixed(2);o+='<rect x="'+(bd[i]+3)+'" y="90" width="'+(bd[i+1]-bd[i]-6)+'" height="44" rx="6" fill="rgba(47,143,224,'+op+')" stroke="#2f8fe0"/><text x="'+((bd[i]+bd[i+1])/2)+'" y="117" font-size="14" font-weight="800" text-anchor="middle" fill="#1d2a38">'+'ABC'[i]+' '+pax[i]+'/'+a.zs[i]+'</text>'}
+ /* 貨物室：隣との間隔に合わせて幅を決め、狭いときは2段にする */
+ var hx=cs.map(X),ord=hx.map(function(v,j){return j}).sort(function(p,q){return hx[p]-hx[q]});
+ ord.forEach(function(j,k){var gl=k>0?hx[j]-hx[ord[k-1]]:999,gr=k<ord.length-1?hx[ord[k+1]]-hx[j]:999,w=Math.min(118,Math.min(gl,gr)*0.92),two=w<62;if(two)w=Math.min(118,Math.min(gl,gr)*1.8);
+  var c=a.cpt[j],yy=two?(k%2?166:146):146,hh=two?17:36,op=(0.12+0.78*Math.min(1,s.c[j]/c.max)).toFixed(2),over=s.c[j]>c.max;
+  o+='<rect x="'+(hx[j]-w/2)+'" y="'+yy+'" width="'+w+'" height="'+hh+'" rx="5" fill="rgba(224,138,47,'+op+')" stroke="'+(over?'#c2344f':'#e08a2f')+'" stroke-width="'+(over?3:1.5)+'"/><text x="'+hx[j]+'" y="'+(yy+(two?13:23))+'" font-size="'+(two?10.5:12.5)+'" font-weight="800" text-anchor="middle" fill="#1d2a38">'+c.id+': '+f(s.c[j])+'</text>'});
+ /* 機体の下のMAC（主翼の位置）と重心の印 */
+ o+='<rect x="'+X(le)+'" y="196" width="'+(X(te)-X(le))+'" height="8" rx="3" fill="#9fb3c6"/><text x="'+(X(le)-6)+'" y="204" font-size="11" font-weight="800" text-anchor="end" fill="#5b6b7d">MAC</text>';
+ var xt=X(cgArm(a,r.it,r.tow));o+='<line x1="'+xt+'" y1="62" x2="'+xt+'" y2="200" stroke="#2f8fe0" stroke-width="2" stroke-dasharray="5 4"/><circle cx="'+xt+'" cy="125" r="9" fill="#fff" stroke="#2f8fe0" stroke-width="3"/><path d="M'+(xt-9)+' 125 A9 9 0 0 1 '+xt+' 116 L'+xt+' 125 Z M'+(xt+9)+' 125 A9 9 0 0 1 '+xt+' 134 L'+xt+' 125 Z" fill="#2f8fe0"/>';
+ /* 拡大したMACの目盛り */
+ var B0=200,B1=780,by=286;function P(p){return B0+Math.max(-10,Math.min(110,p))/100*(B1-B0)}
+ o+='<path d="M'+X(le)+' 204 L'+B0+' '+by+' M'+X(te)+' 204 L'+B1+' '+by+'" stroke="#9fb3c6" stroke-dasharray="3 3" fill="none"/>';
+ var et=envT(a,r.tow);o+='<rect x="'+B0+'" y="'+by+'" width="'+(B1-B0)+'" height="16" fill="#eef3f8" stroke="#1d2a38"/><rect x="'+P(et[0])+'" y="'+by+'" width="'+(P(et[1])-P(et[0]))+'" height="16" fill="rgba(31,122,110,.35)"/>';
+ for(var p=0;p<=100;p+=10)o+='<line x1="'+P(p)+'" y1="'+by+'" x2="'+P(p)+'" y2="'+(by+(p%50?8:16))+'" stroke="#1d2a38"/>'+(p%20===0||p===50?'<text x="'+P(p)+'" y="'+(by+30)+'" font-size="11" text-anchor="middle" fill="#5b6b7d">'+p+'%</text>':'');
+ o+='<text x="'+(B0-8)+'" y="'+(by+12)+'" font-size="12" font-weight="800" text-anchor="end" fill="#1d2a38">%MAC</text>';
+ var M=[[pct(a,a.doi,a.dow),'DOW','#8a96a3'],[r.mz,'ZFW',r.okz?'#1f7a6e':'#c2344f'],[r.mt,'TOW',r.okt?'#2f8fe0':'#c2344f'],[r.ml,'LAW',r.okl?'#e08a2f':'#c2344f']];
+ if(r2)M.push([r2.mt,'TOW\u2032','#1d2a38']);
+ M.forEach(function(m,k){var xm=P(m[0]),ly=by-8-k*12;o+='<line x1="'+xm+'" y1="'+(ly+2)+'" x2="'+xm+'" y2="'+by+'" stroke="'+m[2]+'" stroke-width="2"/><circle cx="'+xm+'" cy="'+by+'" r="4" fill="'+m[2]+'"/><text x="'+(xm+6)+'" y="'+(ly+4)+'" font-size="11" font-weight="800" fill="'+m[2]+'">'+m[1]+' '+f1(m[0])+'</text>'});
+ o+='<text x="'+(L0-70)+'" y="52" font-size="11" fill="#5b6b7d">FWD</text><text x="'+(R0+40)+'" y="205" font-size="11" fill="#5b6b7d">AFT</text>';
+ return o+'</svg>'}
+/* %MACのチャート：横＝%MAC、縦＝重量。点線は燃料を使う間の重心 */
+function pctChartSVG(a,r,r2){var W=560,H=380,ml=58,mr=18,mt=14,mb=40,w0=a.dow*0.97,w1=a.mtow*1.02,n=24;
+ function env(fn,wmax){var fw=[],bk=[];for(var i=0;i<=n;i++){var wt=w0+(wmax-w0)*i/n,l=fn(a,wt);fw.push([l[0],wt]);bk.unshift([l[1],wt])}return fw.concat(bk)}
+ var eT=env(envT,a.mtow),eZ=env(envZ,a.mzfw),burn=[];for(var k=0;k<=12;k++){var fb=S0(r).trip*k/12;burn.push([pct(a,r.it-fb*a.fuel/1000,r.tow-fb),r.tow-fb])}
+ var all=eT.concat(eZ).concat([[r.mz,r.zfw],[r.mt,r.tow],[r.ml,r.law]]);if(r2)all=all.concat([[r2.mz,r2.zfw],[r2.mt,r2.tow],[r2.ml,r2.law]]);
+ var x0=Math.min.apply(null,all.map(function(p){return p[0]}))-2,x1=Math.max.apply(null,all.map(function(p){return p[0]}))+2;
+ function X(v){return ml+(v-x0)/(x1-x0)*(W-ml-mr)}function Y(wt){return H-mb-(wt-w0)/(w1-w0)*(H-mt-mb)}
+ function poly(p,fill,stroke){return '<polygon points="'+p.map(function(q){return X(q[0]).toFixed(1)+','+Y(q[1]).toFixed(1)}).join(' ')+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2"/>'}
+ var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="%MAC chart" style="width:100%;height:auto;display:block">';
+ var stp=(x1-x0)>30?5:2;for(var gi=Math.ceil(x0/stp)*stp;gi<=x1;gi+=stp){s+='<line x1="'+X(gi)+'" y1="'+mt+'" x2="'+X(gi)+'" y2="'+(H-mb)+'" stroke="#e6ecf2"/><text x="'+X(gi)+'" y="'+(H-mb+16)+'" font-size="11" text-anchor="middle" fill="#5b6b7d">'+gi+'</text>'}
+ var ws=Math.pow(10,Math.floor(Math.log10((w1-w0)/5)));if((w1-w0)/ws>8)ws*=2;for(var gw=Math.ceil(w0/ws)*ws;gw<=w1;gw+=ws){s+='<line x1="'+ml+'" y1="'+Y(gw)+'" x2="'+(W-mr)+'" y2="'+Y(gw)+'" stroke="#e6ecf2"/><text x="'+(ml-6)+'" y="'+(Y(gw)+4)+'" font-size="11" text-anchor="end" fill="#5b6b7d">'+(gw/1000).toFixed(gw%1000?1:0)+'t</text>'}
+ s+=poly(eT,'rgba(47,143,224,.10)','#2f8fe0')+poly(eZ,'rgba(31,122,110,.12)','#1f7a6e');
+ [[a.mzfw,'MZFW'],[a.mlw,'MLW'],[a.mtow,'MTOW']].forEach(function(m){s+='<line x1="'+ml+'" y1="'+Y(m[0])+'" x2="'+(W-mr)+'" y2="'+Y(m[0])+'" stroke="#c2344f" stroke-dasharray="5 4"/><text x="'+(W-mr-4)+'" y="'+(Y(m[0])-4)+'" font-size="11" text-anchor="end" fill="#c2344f" font-weight="700">'+m[1]+'</text>'});
+ s+='<text x="'+((W+ml)/2)+'" y="'+(H-6)+'" font-size="12" text-anchor="middle" fill="#1d2a38" font-weight="700">%MAC</text>';
+ s+='<polyline points="'+burn.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'" fill="none" stroke="#e08a2f" stroke-width="2.5" stroke-dasharray="4 4"/>';
+ function pts(rr,hollow){var P=[[rr.mz,rr.zfw,'ZFW',rr.okz&&rr.zfw<=a.mzfw],[rr.mt,rr.tow,'TOW',rr.okt&&rr.tow<=a.mtow],[rr.ml,rr.law,'LAW',rr.okl&&rr.law<=a.mlw]],o='<line x1="'+X(P[0][0])+'" y1="'+Y(P[0][1])+'" x2="'+X(P[1][0])+'" y2="'+Y(P[1][1])+'" stroke="#1d2a38" stroke-width="1.5" stroke-dasharray="'+(hollow?'3 3':'0')+'"/>';
+  P.forEach(function(p){var c=p[3]?'#1d2a38':'#c2344f';o+=hollow?'<rect x="'+(X(p[0])-6)+'" y="'+(Y(p[1])-6)+'" width="12" height="12" transform="rotate(45 '+X(p[0])+' '+Y(p[1])+')" fill="#fff" stroke="'+c+'" stroke-width="2"/>':'<circle cx="'+X(p[0])+'" cy="'+Y(p[1])+'" r="6" fill="'+c+'"/><text x="'+(X(p[0])+9)+'" y="'+(Y(p[1])+4)+'" font-size="12" font-weight="700" fill="'+c+'">'+p[2]+'</text>'});return o}
+ s+=pts(r,false);if(r2)s+=pts(r2,true);return s+'</svg>'}
+function S0(r){return {trip:r.tow-r.law}}
+/* ---- 重心の修正（問題） ---- */
+function inLim(a,s){if(a.cpt.some(function(c,j){return s.c[j]>c.max||s.c[j]<0}))return false;if(s.z.some(function(z,i){return z>a.zs[i]||z<0}))return false;var r=calc(a,s);return r.okz&&r.okt&&r.okl&&r.zfw<=a.mzfw&&r.tow<=a.mtow&&r.law<=a.mlw}
+function cloneS(s){return {ad:s.ad,ch:s.ch,inf:s.inf,z:s.z.slice(),c:s.c.slice(),tof:s.tof,trip:s.trip}}
+function newRB(){for(var tries=0;tries<80;tries++){var ai=Math.floor(Math.random()*AC.length),a=AC[ai];if(a.cpt.length<2)continue;var d=a.d,s={ad:d[0],ch:d[1],inf:d[2],z:d[3].slice(),c:d[4].slice(),tof:d[5],trip:d[6]};
+  var aft=Math.random()<0.5,fi=0,ai2=0;a.cpt.forEach(function(c,j){if(c.f<a.cpt[fi].f)fi=j;if(c.f>a.cpt[ai2].f)ai2=j});
+  var src=aft?fi:ai2,dst=aft?ai2:fi,mv=Math.min(s.c[src],a.cpt[dst].max-s.c[dst]);s.c[src]-=mv;s.c[dst]+=mv;
+  var zs=aft?0:2,zd=aft?2:0,pm=Math.min(s.z[zs],a.zs[zd]-s.z[zd]);s.z[zs]-=pm;s.z[zd]+=pm;
+  var r=calc(a,s);if(r.okz&&r.okt&&r.okl)continue;var sol=solveRB(a,s,aft);if(!sol)continue;RB={a:ai,s:s,aft:aft,sol:sol};cur=ai;def();return}}
+function solveRB(a,s,aft){var fi=0,ai2=0;a.cpt.forEach(function(c,j){if(c.f<a.cpt[fi].f)fi=j;if(c.f>a.cpt[ai2].f)ai2=j});var from=aft?ai2:fi,to=aft?fi:ai2;
+ for(var kg=100;kg<=s.c[from];kg+=100){if(a.cpt[to].max-s.c[to]<kg)break;var t=cloneS(s);t.c[from]-=kg;t.c[to]+=kg;if(inLim(a,t))return {from:from,to:to,kg:kg,pax:0}}
+ var kgMax=Math.min(s.c[from],a.cpt[to].max-s.c[to]);kgMax=Math.floor(kgMax/100)*100;var zf=aft?2:0,zt=aft?0:2;
+ for(var n=5;n<=s.z[zf];n+=5){if(a.zs[zt]-s.z[zt]<n)break;var t2=cloneS(s);t2.c[from]-=kgMax;t2.c[to]+=kgMax;t2.z[zf]-=n;t2.z[zt]+=n;if(inLim(a,t2))return {from:from,to:to,kg:kgMax,pax:n,zf:zf,zt:zt}}return null}
+function rbHTML(){if(!RB)newRB();var x=TX[L],t=T[L],a=AC[RB.a],s=RB.s,r=calc(a,s);
+ var sel=function(id){return '<select id="'+id+'">'+a.cpt.map(function(c,j){return '<option value="'+j+'">'+c.id+'</option>'}).join('')+'</select>'},zsel=function(id){return '<select id="'+id+'">'+['A','B','C'].map(function(z,i){return '<option value="'+i+'">'+z+'</option>'}).join('')+'</select>'};
+ return '<div class="card"><h2>'+x.tab5+'<span class="badge">'+a.id+'</span><span class="ng">'+(RB.aft?x.rbAft:x.rbFwd)+'</span></h2><p class="note" style="margin-top:0">'+x.rbLead+'</p>'+
+ '<div class="grid"><div><h3>'+x.rbScen+'</h3><table>'+row(t.zone,'A '+s.z[0]+' / B '+s.z[1]+' / C '+s.z[2])+row(t.cpt,a.cpt.map(function(c,j){return c.id+': '+f(s.c[j])+'/'+f(c.max)}).join('<br>'))+row(t.tof+' / '+t.trip,f(s.tof)+' / '+f(s.trip))+
+ row(t.maczfw+' ('+r.ez.map(f1).join('–')+')',f1(r.mz),r.okz)+row(t.mactow+' ('+r.et.map(f1).join('–')+')',f1(r.mt),r.okt)+row(t.maclaw+' ('+r.el.map(f1).join('–')+')',f1(r.ml),r.okl)+'</table>'+
+ '<h3>'+x.rbCargo+'</h3><div class="mv">'+sel('rbf')+' '+x.rbFrom+' '+sel('rbt')+' '+x.rbTo+' <input type="number" id="rbkg" min="0" step="100" value="0"> kg</div>'+
+ '<h3>'+x.rbPax+'</h3><div class="mv">'+zsel('rbzf')+' '+x.rbFrom+' '+zsel('rbzt')+' '+x.rbTo+' <input type="number" id="rbn" min="0" step="1" value="0"> '+x.rbN+'</div>'+
+ '<p><button class="btn" id="rbtry">'+x.rbTry+'</button> <button class="btn sub" id="rbans">'+x.rbAns+'</button> <button class="btn sub" id="rbnew">'+x.rbNew+'</button></p><div id="rbres"></div></div>'+
+ '<div><div id="rbchart">'+pctChartSVG(a,r,null)+'</div></div></div><div id="rbplan" style="margin-top:10px">'+planSVG(a,s,r,null)+'</div></div>'}
+function rbTry(sol){var x=TX[L],a=AC[RB.a],s=RB.s,t=cloneS(s),g=function(id){return +document.getElementById(id).value||0};
+ var mv=sol?sol:{from:g('rbf'),to:g('rbt'),kg:g('rbkg'),pax:g('rbn'),zf:g('rbzf'),zt:g('rbzt')};
+ if(mv.from!==mv.to){t.c[mv.from]-=mv.kg;t.c[mv.to]+=mv.kg}if(mv.pax&&mv.zf!==mv.zt){t.z[mv.zf]-=mv.pax;t.z[mv.zt]+=mv.pax}
+ var r=calc(a,s),r2=calc(a,t),ok=inLim(a,t),txt='';
+ if(sol){txt='<p><b>'+x.rbSol+'</b>'+a.cpt[sol.from].id+' → '+a.cpt[sol.to].id+' '+f(sol.kg)+' kg'+(sol.pax?' ＋ '+'ABC'[sol.zf]+' → '+'ABC'[sol.zt]+' '+sol.pax+' '+x.rbN:'')+'</p>'+(sol.pax?'<p class="note">'+x.rbNoSol+'</p>':'')}
+ document.getElementById('rbres').innerHTML=txt+'<table>'+row(T[L].maczfw,f1(r2.mz),r2.okz)+row(T[L].mactow,f1(r2.mt),r2.okt)+row(T[L].maclaw,f1(r2.ml),r2.okl)+'</table><p class="'+(ok?'ok':'ng')+'" style="font-size:15px">'+(ok?'✔ '+x.rbOk:'✖ '+x.rbNg)+'</p>';
+ document.getElementById('rbchart').innerHTML=pctChartSVG(a,r,r2);document.getElementById('rbplan').innerHTML=planSVG(a,t,r2,null)}
+/* ---- トリムシートの手計算 ---- */
+function newTR(){var ai=Math.floor(Math.random()*AC.length),a=AC[ai],z=a.zs.map(function(n){return rnd(n*0.4,n*0.95)}),s={ad:sum(z),ch:0,inf:0,z:z,c:a.cpt.map(function(c){return rnd(c.max*0.15,c.max*0.8,10)}),tof:rnd(a.d[5]*0.8,a.d[5]*1.15,100),trip:0};s.trip=Math.round(s.tof*0.78/100)*100;TR={a:ai,s:s,r:calc(a,s)};cur=ai;def()}
+function trHTML(){if(!TR)newTR();var x=TX[L],t=T[L],a=AC[TR.a],s=TR.s,d4=function(v){return (v>=0?'+':'')+v.toFixed(4)};
+ var ci=function(id,lab){return '<label>'+lab+'<input type="number" step="0.01" id="'+id+'"></label>'};
+ return '<div class="grid"><div class="card"><h2>'+x.tab6+'<span class="badge">'+a.id+'</span></h2><p class="note" style="margin-top:0">'+x.trLead+'</p>'+
+ '<h3>'+x.trCond+'</h3><table>'+row('DOW / DOI',f(a.dow)+' / '+a.doi.toFixed(2))+row(t.zone+' (ADT)','A '+s.z[0]+' / B '+s.z[1]+' / C '+s.z[2])+row(t.cpt,a.cpt.map(function(c,j){return c.id+': '+f(s.c[j])}).join(' / '))+row(t.tof,f(s.tof))+'</table>'+
+ '<h3>'+x.trTable+'</h3><table>'+['A','B','C'].map(function(zn,i){return row(x.trZone+' '+zn+' — '+x.trPer,d4(STD.ad*a.zf[i]/1000))}).join('')+a.cpt.map(function(c){return row(x.trCpt+' '+c.id+' — '+x.trPer100,d4(c.f/10))}).join('')+row(x.trFuel,d4(a.fuel))+'</table>'+
+ '<h3>'+x.trFormula+'</h3><div class="formula">'+x.trStep4+'<br>C = '+a.C.toFixed(1)+' / K = '+BAL.K+' / d = '+a.d0.toFixed(3)+' m / MAC = '+a.mac.toFixed(1)+' m</div></div>'+
+ '<div class="card"><h2>'+t.chk+'</h2>'+ci('tr_dli','DLI')+ci('tr_iz','LIZFW')+ci('tr_it','LITOW')+ci('tr_mz','MACZFW (%)')+ci('tr_mt','MACTOW (%)')+
+ '<p><button class="btn" id="trchk">'+x.trChk+'</button> <button class="btn sub" id="trans">'+x.trAns+'</button> <button class="btn sub" id="trnew">'+x.trNew+'</button></p><div id="trres"></div></div></div>'}
+function trCheck(show){var x=TX[L],t=T[L],a=AC[TR.a],s=TR.s,r=TR.r,ci=0,pi=0;a.cpt.forEach(function(c,j){ci+=s.c[j]*c.f/1000});for(var i=0;i<3;i++)pi+=s.z[i]*STD.ad*a.zf[i]/1000;var fi=s.tof*a.fuel/1000;
+ var A={tr_dli:[r.dli,0.05],tr_iz:[r.iz,0.05],tr_it:[r.it,0.05],tr_mz:[r.mz,0.3],tr_mt:[r.mt,0.3]},h='';
+ for(var k in A){var e=document.getElementById(k),v=parseFloat(e.value);if(show)e.value=A[k][0].toFixed(k==='tr_mz'||k==='tr_mt'?1:2);var ok=show||(!isNaN(v)&&Math.abs(v-A[k][0])<=A[k][1]);h+='<div>'+k.replace('tr_','').toUpperCase().replace('DLI','DLI').replace('IZ','LIZFW').replace('IT','LITOW').replace('MZ','MACZFW').replace('MT','MACTOW')+': '+(ok?'<span class="ok">'+(show?A[k][0].toFixed(2):t.right)+'</span>':'<span class="ng">'+t.wrong+'</span>')+'</div>'}
+ if(show)h+='<div class="formula" style="margin-top:10px">1) '+x.trStep1+' = '+a.doi.toFixed(2)+' '+(ci>=0?'+ ':'− ')+Math.abs(ci).toFixed(2)+' = '+r.dli.toFixed(2)+'<br>2) '+x.trStep2+' = '+r.dli.toFixed(2)+' '+(pi>=0?'+ ':'− ')+Math.abs(pi).toFixed(2)+' = '+r.iz.toFixed(2)+' (ZFW '+f(r.zfw)+')<br>3) '+x.trStep3+' = '+r.iz.toFixed(2)+' '+(fi>=0?'+ ':'− ')+Math.abs(fi).toFixed(2)+' = '+r.it.toFixed(2)+' (TOW '+f(r.tow)+')<br>4) MACZFW = ('+a.C.toFixed(1)+' × ('+r.iz.toFixed(2)+' − '+BAL.K+') ÷ '+f(r.zfw)+' − '+a.d0.toFixed(3)+') ÷ '+a.mac.toFixed(1)+' × 100 = '+r.mz.toFixed(1)+'<br>5) MACTOW = ('+a.C.toFixed(1)+' × ('+r.it.toFixed(2)+' − '+BAL.K+') ÷ '+f(r.tow)+' − '+a.d0.toFixed(3)+') ÷ '+a.mac.toFixed(1)+' × 100 = '+r.mt.toFixed(1)+'</div>';
+ document.getElementById('trres').innerHTML=h}
+function bindX(){document.querySelectorAll('.chtg button').forEach(function(b){b.onclick=function(){CHM=b.dataset.ch;document.querySelectorAll('.chtg button').forEach(function(x){x.classList.toggle('on',x.dataset.ch===CHM)});var a=AC[cur],r=calc(a,S),c=document.getElementById('chart');if(c)c.innerHTML=anyChart(a,r,LMC?LMC.r2:null)}});
+ var e;if(e=document.getElementById('rbtry'))e.onclick=function(){rbTry(null)};if(e=document.getElementById('rbans'))e.onclick=function(){rbTry(RB.sol)};if(e=document.getElementById('rbnew'))e.onclick=function(){newRB();render()};
+ if(e=document.getElementById('trchk'))e.onclick=function(){trCheck(false)};if(e=document.getElementById('trans'))e.onclick=function(){trCheck(true)};if(e=document.getElementById('trnew'))e.onclick=function(){newTR();render()}}
+
 def();render();
 </script>
 <script src="assets/nav.js"></script>
