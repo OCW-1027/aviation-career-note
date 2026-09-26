@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>航空路図の練習</title>
+<style>
+:root{--ink:#22303F;--sub:#5F6F80;--line:#E3E9EF;--acc:#2F8FE0;--paper:#fff;--card:#F4F8FC;--ok:#1F7A6E;--ng:#C2344F}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}
+.langs{display:inline-flex}.langs button{cursor:pointer}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 8px}
+.pill{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:600 14px inherit;font-family:inherit;color:var(--ink);cursor:pointer;min-height:38px}
+.pill.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.tabs .pill.on{background:var(--acc);border-color:var(--acc)}
+.map{border:1.5px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.map svg{display:block;width:100%;height:auto}
+.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:12px;margin-top:12px}
+.card{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--card)}
+.card h3{margin:0 0 8px;font-size:15px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14.5px}.kv b{color:var(--sub);font-weight:600}
+.big{font-size:22px;font-weight:800;letter-spacing:.02em}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{border:0;border-radius:12px;padding:10px 16px;font:700 15px inherit;font-family:inherit;cursor:pointer;background:var(--acc);color:#fff;min-height:44px}
+.btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.bar{position:relative;height:30px;border-radius:8px;overflow:hidden;display:flex;margin-top:6px;font-size:11.5px;font-weight:700;color:#fff}
+.bar span{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden}
+.bar i{position:absolute;top:-2px;bottom:-2px;width:4px;background:#E08A2F;border-radius:2px;transition:left .4s}
+.note{font-size:13px;color:var(--sub);margin-top:14px}
+.q{font-size:17px;font-weight:700;margin:4px 0 10px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;text-align:left;font:600 15px inherit;font-family:inherit;color:var(--ink);cursor:pointer;min-height:46px}
+.opt.ok{border-color:var(--ok);background:#E1F5EE}.opt.ng{border-color:var(--ng);background:#FCEBEB}
+.exp{margin-top:10px;font-size:14px}
+.score{font-size:20px;font-weight:800}
+@media (max-width:760px){.grid{grid-template-columns:1fr}.opts{grid-template-columns:1fr}}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="route"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<div class="row" id="routes"></div>
+<div class="row tabs" id="modes"></div>
+<div class="map" id="map"></div>
+<div id="panel"></div>
+<p class="note" id="note"></p>
+</div>
+<script src="../1_지상직여객운송입문/assets/route_maps.js"></script>
+<script src="../1_지상직여객운송입문/assets/route_icn_nrt.js"></script>
+<script>
+/* 航空路図の練習（2026.09）
+   地図のデータは レッスン2-5・2-6 と同じ route_maps.js・route_icn_nrt.js を使う。
+   経路は公開の飛行計画データの例。距離・磁方位は座標から計算した目安（偏差 約8°W）。教育用で、航法には使えない。 */
+var PT={RKSI:[37.4691,126.4505],RKSS:[37.5583,126.7906],RKPC:[33.5113,126.493],RJAA:[35.7647,140.3864],
+EGOBA:[37.4875,127.379444],LANAT:[36.373333,131.428333],SAMON:[36.242897,134.503319],LANAI:[37.092136,140.447939],SHELY:[36.888264,140.754389],MELON:[35.849181,140.864217],
+CHINO:[35.8843,138.565492],SAPRA:[35.823889,130.723611],CUN:[36.631944,128.325278],
+BULTI:[36.722778,126.825],GONAX:[36.386389,126.837778],BEDES:[36.151389,126.812222],MANGI:[35.503056,126.742222],DALSU:[35.125278,126.701667],DOTOL:[34.254167,126.610278],
+KAMIT:[34.253889,126.771667],SAMUL:[35.126667,126.865],MAKSA:[35.503056,126.906111],ATASO:[35.895556,126.949167],PEBRI:[36.386389,127.003611],OLMEN:[36.736944,126.991111]};
+function C(ja,ko,en){return {ja:ja,ko:ko,en:en}}
+var DEP=C('出発管制','출발 관제','Departure control'),KAC=C('韓国の航空路管制','한국 항로 관제','Korean area control'),JAC=C('日本の航空路管制','일본 항로 관제','Japanese area control');
+var R=[
+{id:'in',map:'inr',name:C('仁川 → 成田','인천 → 나리타','Incheon → Narita'),fl:'FL350',odd:true,fir:'LANAT',
+ s:[['RKSI','SID',C('仁川の出発管制','인천 출발 관제','Incheon Departure'),'dep'],['EGOBA','Y697',KAC,'clb'],['LANAT','Y51',C('ここで日本の管制へ引き継ぎ（福岡FIR）','여기서 일본 관제로 이양(후쿠오카 FIR)','Hand-off to Japan here (Fukuoka FIR)'),'crz'],['SAMON','Y517',JAC,'crz'],['LANAI','Y301',JAC,'des'],['SHELY','Y30',C('東京アプローチ','도쿄 어프로치','Tokyo Approach'),'des'],['MELON','APP',C('成田タワー','나리타 타워','Narita Tower'),'des'],['RJAA','',C('到着・成田グランド','도착·나리타 그라운드','Arrived: Narita Ground'),'arr']]},
+{id:'ni',map:'inr',name:C('成田 → 仁川','나리타 → 인천','Narita → Incheon'),fl:'FL340',odd:false,fir:'SAPRA',
+ s:[['RJAA','SID',C('東京ディパーチャー','도쿄 디파처','Tokyo Departure'),'dep'],['CHINO','Y16',JAC,'clb'],['SAPRA','G585',C('ここで韓国の管制へ引き継ぎ（仁川FIR）','여기서 한국 관제로 이양(인천 FIR)','Hand-off to Korea here (Incheon FIR)'),'crz'],['CUN','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSI','',C('到着・仁川グランド','도착·인천 그라운드','Arrived: Incheon Ground'),'arr']]},
+{id:'gc',map:'enr',name:C('金浦 → 済州（Y711）','김포 → 제주(Y711)','Gimpo → Jeju (Y711)'),fl:'FL240',odd:false,fir:'',
+ s:[['RKSS','SID',C('ソウルの出発管制','서울 출발 관제','Seoul Departure'),'dep'],['BULTI','Y711',KAC,'clb'],['GONAX','Y711',KAC,'crz'],['BEDES','Y711',KAC,'crz'],['MANGI','Y711',KAC,'crz'],['DALSU','Y711',KAC,'des'],['DOTOL','APP',C('済州アプローチ','제주 어프로치','Jeju Approach'),'des'],['RKPC','',C('到着・済州グランド','도착·제주 그라운드','Arrived: Jeju Ground'),'arr']]},
+{id:'cg',map:'enr',name:C('済州 → 金浦（Y722）','제주 → 김포(Y722)','Jeju → Gimpo (Y722)'),fl:'FL230',odd:true,fir:'',
+ s:[['RKPC','SID',C('済州の出発管制','제주 출발 관제','Jeju Departure'),'dep'],['KAMIT','Y722',KAC,'clb'],['SAMUL','Y722',KAC,'crz'],['MAKSA','Y722',KAC,'crz'],['ATASO','Y722',KAC,'crz'],['PEBRI','Y722',KAC,'des'],['OLMEN','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSS','',C('到着・金浦グランド','도착·김포 그라운드','Arrived: Gimpo Ground'),'arr']]}];
+var T={ja:{kick:'航空キャリアノート',ttl:'航空路図の練習 ― 1便の道をたどる',lead:'路線を選び、「次へ」で地点を1つずつ進めます。区間の航空路・距離・磁方位、累計と残りの距離、今話している管制、飛行の段階が表示されます。「問題を解く」では、選んだ路線から5問が出ます。',follow:'たどる',quiz:'問題を解く',now:'今の地点',next:'次の地点',aw:'この区間の道',dist:'区間の距離',mc:'磁方位（目安）',cum:'累計 / 残り',ctl:'話している相手',ph:'飛行の段階',prev:'◀ 前へ',nx:'次へ ▶',reset:'はじめから',auto:'自動で進む',stop:'止める',nm:'海里',done:'到着しました',PH:{dep:'出発',clb:'上昇',crz:'巡航',des:'降下',arr:'到着'},SID:'出発方式（SID）',APP:'到着方式・進入',none:'—',
+ q1:'{a} の次に通る地点は？',q2:'{a} → {b} の区間で通る道は？',q3:'この便で、管制が別の国に引き継がれる地点は？',q4:'{a} → {b} の区間の距離は約？',q5:'この便（{r}）の巡航高度の例として正しいのは？',q5x:'磁方位が000〜179°の便は奇数、180〜359°の便は偶数の高度が基本。この便の主な磁方位は約{m}°なので{oe}。',odd:'奇数',even:'偶数',ok:'正解！',ng:'残念…',ans:'答え：',nextq:'次の問題',res:'結果',again:'もう一度',of:'問中',cor:'問正解',
+ note:'地図・経路は教育用の略図です（海岸線：Natural Earth、FIR境界：VATSpy Data Projectの近似、地点の座標：OpenNav、経路：公開の飛行計画データの例）。実際の経路・高度・担当の管制は便ごとに変わります。航法には使えません。レッスン：航空の基礎知識 2-5・2-6',
+ hint:'北は左（金浦―済州の図）'},
+ko:{kick:'항공 커리어 노트',ttl:'항로 차트 연습 — 한 편의 길 따라가기',lead:'노선을 고르고 ‘다음’으로 지점을 하나씩 나아갑니다. 구간의 항공로·거리·자방위, 누적·남은 거리, 지금 교신하는 관제, 비행 단계가 표시됩니다. ‘문제 풀기’에서는 고른 노선에서 5문제가 나옵니다.',follow:'따라가기',quiz:'문제 풀기',now:'현재 지점',next:'다음 지점',aw:'이 구간의 길',dist:'구간 거리',mc:'자방위(기준)',cum:'누적 / 남은 거리',ctl:'교신 상대',ph:'비행 단계',prev:'◀ 이전',nx:'다음 ▶',reset:'처음부터',auto:'자동 진행',stop:'멈추기',nm:'해리',done:'도착했습니다',PH:{dep:'출발',clb:'상승',crz:'순항',des:'강하',arr:'도착'},SID:'출발 절차(SID)',APP:'도착 절차·접근',none:'—',
+ q1:'{a} 다음에 지나는 지점은?',q2:'{a} → {b} 구간에서 지나는 길은?',q3:'이 편에서 관제가 다른 나라로 이양되는 지점은?',q4:'{a} → {b} 구간 거리는 약?',q5:'이 편({r})의 순항 고도 예로 맞는 것은?',q5x:'자방위 000~179°인 편은 홀수, 180~359°인 편은 짝수 고도가 기본입니다. 이 편의 주된 자방위는 약 {m}°이므로 {oe}입니다.',odd:'홀수',even:'짝수',ok:'정답!',ng:'아쉬워요…',ans:'정답: ',nextq:'다음 문제',res:'결과',again:'다시 하기',of:'문제 중 ',cor:'문제 정답',
+ note:'지도·경로는 교육용 약도입니다(해안선: Natural Earth, FIR 경계: VATSpy Data Project 근사, 지점 좌표: OpenNav, 경로: 공개 비행계획 데이터의 예). 실제 경로·고도·담당 관제는 편마다 다릅니다. 항법에 쓸 수 없습니다. 레슨: 항공 기초 지식 2-5·2-6',
+ hint:'북쪽이 왼쪽(김포–제주 지도)'},
+en:{kick:'Aviation Career Note',ttl:'Route Chart Practice: Following One Flight',lead:'Choose a route and press “Next” to move one point at a time. You will see the airway, distance and magnetic course of each segment, distance flown and remaining, the controller you are talking to, and the flight phase. “Quiz” gives five questions on the chosen route.',follow:'Follow',quiz:'Quiz',now:'Current point',next:'Next point',aw:'Via',dist:'Segment distance',mc:'Magnetic course (approx.)',cum:'Flown / remaining',ctl:'Talking to',ph:'Flight phase',prev:'◀ Back',nx:'Next ▶',reset:'Restart',auto:'Auto play',stop:'Stop',nm:'NM',done:'Arrived',PH:{dep:'Departure',clb:'Climb',crz:'Cruise',des:'Descent',arr:'Arrival'},SID:'Departure (SID)',APP:'Arrival and approach',none:'—',
+ q1:'Which point comes after {a}?',q2:'Which airway is used from {a} to {b}?',q3:'On this flight, where is control handed over to another country?',q4:'About how long is the segment from {a} to {b}?',q5:'Which is a correct example cruising level for this flight ({r})?',q5x:'Flights on magnetic courses 000–179° normally use odd levels, and 180–359° even levels. This flight’s main course is about {m}°, so {oe}.',odd:'odd',even:'even',ok:'Correct!',ng:'Not quite.',ans:'Answer: ',nextq:'Next question',res:'Result',again:'Try again',of:' of ',cor:' correct',
+ note:'Maps and routes are educational sketches (coastlines: Natural Earth; FIR boundaries: approximate, VATSpy Data Project; point coordinates: OpenNav; routes: examples from public flight-plan data). Actual routes, levels and controllers vary by flight. Not for navigation. Lessons: Aviation Fundamentals 2-5 and 2-6.',
+ hint:'North is to the left (Gimpo–Jeju map)'}};
+var lang='ja';try{var _s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(_s)>=0)lang=_s}catch(e){}
+var ri=0,mode='follow',step=0,timer=null,QZ=null;
+function $(i){return document.getElementById(i)}
+function hav(a,b){var r=Math.PI/180,la1=a[0]*r,lo1=a[1]*r,la2=b[0]*r,lo2=b[1]*r,d=2*Math.asin(Math.sqrt(Math.pow(Math.sin((la2-la1)/2),2)+Math.cos(la1)*Math.cos(la2)*Math.pow(Math.sin((lo2-lo1)/2),2)));var y=Math.sin(lo2-lo1)*Math.cos(la2),x=Math.cos(la1)*Math.sin(la2)-Math.sin(la1)*Math.cos(la2)*Math.cos(lo2-lo1);return [d*3440.065,(Math.atan2(y,x)/r+360)%360]}
+function legs(r){var o=[],cum=0;for(var i=0;i<r.s.length;i++){var k=r.s[i][0],n=r.s[i+1];var d=n?hav(PT[k],PT[n[0]]):[0,0];o.push({k:k,aw:r.s[i][1],ctl:r.s[i][2],ph:r.s[i][3],nm:Math.round(d[0]),mc:Math.round((d[1]+8)%360),cum:cum});cum+=Math.round(d[0])}o.total=cum;return o}
+function awName(a){var t=T[lang];return a==='SID'?t.SID:a==='APP'?t.APP:a||t.none}
+function pad(n){return ('00'+n).slice(-3)}
+/* 地図 */
+function mapSVG(r,cur){var L=legs(r),INK='#1B2B4B',MAG='#8E3B8A',s,pts=[],box,vb;
+ if(r.map==='inr'){var M=window.RMAP2&&RMAP2.map;if(!M)return '';box=M.box;pts=r.s.map(function(x){return M.pts[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
+  s='<svg viewBox="'+vb.join(' ')+'" role="img"><defs><clipPath id="pc"><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'"/></clipPath></defs><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="#DDEBF6"/><g clip-path="url(#pc)"><path d="'+M.land+'" fill="#EDE3C8" stroke="#A89B78" stroke-width=".6"/><path d="'+M.fir+'" fill="none" stroke="'+MAG+'" stroke-width="2" stroke-dasharray="10 4 2 4"/>';}
+ else{var E=window.RMAP&&RMAP.enr;if(!E)return '';var m=E.map;box=[m[0],m[1],m[2]-m[0],m[3]-m[1]];pts=r.s.map(function(x){return E.wp[x[0]]||E.ap[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
+  s='<svg viewBox="'+vb.join(' ')+'" role="img"><defs><clipPath id="pc"><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'"/></clipPath></defs><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="#DDEBF6"/><g clip-path="url(#pc)"><path d="'+E.land+'" fill="#EDE3C8" stroke="#A89B78" stroke-width=".7"/>';}
+ s+='<polyline points="'+pts.map(function(p){return p.join(',')}).join(' ')+'" fill="none" stroke="#9AA7B5" stroke-width="3" stroke-dasharray="7 5"/>';
+ if(cur>0)s+='<polyline points="'+pts.slice(0,cur+1).map(function(p){return p.join(',')}).join(' ')+'" fill="none" stroke="#2F8FE0" stroke-width="4"/>';
+ if(cur<pts.length-1)s+='<line x1="'+pts[cur][0]+'" y1="'+pts[cur][1]+'" x2="'+pts[cur+1][0]+'" y2="'+pts[cur+1][1]+'" stroke="#E08A2F" stroke-width="4"/>';
+ r.s.forEach(function(x,i){var p=pts[i],apt=/^R[KJ]/.test(x[0]),on=i===cur,col=i<=cur?'#2F8FE0':INK;
+  if(apt)s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="#fff" stroke="'+col+'" stroke-width="2.4"/>';
+  else s+='<path d="M'+p[0]+' '+(p[1]-7)+' L'+(p[0]+6.5)+' '+(p[1]+4.5)+' L'+(p[0]-6.5)+' '+(p[1]+4.5)+' Z" fill="#fff" stroke="'+col+'" stroke-width="1.8"/>';
+  if(x[0]===r.fir)s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="13" fill="none" stroke="'+MAG+'" stroke-width="2"/>';
+  var dy=(r.map==='enr')?((i%2)?-12:20):(i%2?20:-12);s+='<text x="'+p[0]+'" y="'+(p[1]+dy)+'" font-size="'+(on?13:11)+'" font-weight="800" text-anchor="middle" fill="'+(on?'#b3600a':col)+'" font-family="Arial">'+x[0]+'</text>'});
+ var p=pts[cur],q=pts[Math.min(cur+1,pts.length-1)],pv=pts[Math.max(cur-1,0)],ang=cur<pts.length-1?Math.atan2(q[1]-p[1],q[0]-p[0]):Math.atan2(p[1]-pv[1],p[0]-pv[0]);
+ s+='<g transform="translate('+p[0]+','+p[1]+') rotate('+(ang*180/Math.PI)+')"><circle r="17" fill="#FFE9CC" opacity=".8"/><path d="M-12 0 L8 -3 L14 0 L8 3 Z M-4 -2 L3 -12 L7 -12 L5 -2 Z M-4 2 L3 12 L7 12 L5 2 Z" fill="#E08A2F" stroke="#7a3e0a" stroke-width="1"/></g></g>';
+ s+='<rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="none" stroke="'+INK+'" stroke-width="1.5"/>';
+ if(r.map==='enr')s+='<text x="'+(box[0]+10)+'" y="'+(box[1]+box[3]-10)+'" font-size="12" font-weight="700" fill="'+INK+'" font-family="Arial">\u2190 N</text>';
+ return s+'</svg>'}
+/* たどる */
+function follow(){var r=R[ri],L=legs(r),t=T[lang],c=L[step],n=L[step+1],last=step===L.length-1;
+ $('map').innerHTML=mapSVG(r,step);
+ var ph=['dep','clb','crz','des','arr'],col={dep:'#5F6F80',clb:'#1F7A6E',crz:'#2F8FE0',des:'#B3600A',arr:'#22303F'};
+ var bar='<div class="bar">',grp=[];L.slice(0,L.length-1).forEach(function(l){var g=grp[grp.length-1];if(g&&g.ph===l.ph)g.nm+=l.nm;else grp.push({ph:l.ph,nm:l.nm})});
+ bar+=grp.map(function(g){var w=L.total?g.nm/L.total*100:0;return '<span style="width:'+w.toFixed(2)+'%;background:'+col[g.ph]+'">'+(w>9?t.PH[g.ph]:'')+'</span>'}).join('')+'<i style="left:calc('+(L.total?(c.cum/L.total*100).toFixed(2):0)+'% - 2px)"></i></div>';
+ $('panel').innerHTML='<div class="grid"><div class="card"><h3>'+t.now+'</h3><div class="big">'+c.k+'</div><div class="kv" style="margin-top:8px"><b>'+t.next+'</b><span>'+(n?n.k:t.done)+'</span><b>'+t.aw+'</b><span>'+(last?t.none:awName(c.aw))+'</span><b>'+t.dist+'</b><span>'+(last?t.none:c.nm+' '+t.nm)+'</span><b>'+t.mc+'</b><span>'+(last?t.none:pad(c.mc)+'\u00B0')+'</span><b>'+t.cum+'</b><span>'+c.cum+' / '+(L.total-c.cum)+' '+t.nm+'</span></div></div>'+
+  '<div class="card"><h3>'+t.ctl+'</h3><div class="big" style="font-size:18px">'+c.ctl[lang]+'</div><h3 style="margin-top:12px">'+t.ph+'</h3><div style="font-weight:800">'+t.PH[c.ph]+(c.ph==='crz'?' \u00B7 '+r.fl:'')+'</div>'+bar+'</div></div>'+
+  '<div class="ctl"><button class="btn sec" id="bp">'+t.prev+'</button><button class="btn" id="bn">'+t.nx+'</button><button class="btn sec" id="ba">'+(timer?t.stop:t.auto)+'</button><button class="btn sec" id="br">'+t.reset+'</button></div>';
+ $('bp').disabled=step===0;$('bn').disabled=last;
+ $('bp').onclick=function(){stop();step=Math.max(0,step-1);follow()};$('bn').onclick=function(){stop();step=Math.min(L.length-1,step+1);follow()};
+ $('br').onclick=function(){stop();step=0;follow()};$('ba').onclick=function(){if(timer){stop();follow()}else{if(last)step=0;timer=setInterval(function(){if(step>=L.length-1){stop();follow();return}step++;follow()},1600);follow()}}}
+function stop(){if(timer){clearInterval(timer);timer=null}}
+/* 問題 */
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
+function uniq(a){return a.filter(function(x,i){return a.indexOf(x)===i})}
+function makeQuiz(){var r=R[ri],L=legs(r),out=[],allP=Object.keys(PT).filter(function(k){return !/^R[KJ]/.test(k)}),AW=['Y697','Y51','Y517','Y301','Y30','Y16','G585','Y711','Y722','B576','A593'];
+ var inner=L.slice(1,L.length-1);
+ var a=inner[Math.floor(Math.random()*inner.length)],ai=L.indexOf(a);out.push({t:'q1',a:a.k,ans:L[ai+1].k,opts:uniq([L[ai+1].k].concat(shuf(r.s.map(function(x){return x[0]}).filter(function(k){return k!==L[ai+1].k&&k!==a.k})).slice(0,3)))});
+ var en=L.filter(function(x,i){return i<L.length-1&&/^[A-Z]\d/.test(x.aw)});var e=en[Math.floor(Math.random()*en.length)],ei=L.indexOf(e);
+ out.push({t:'q2',a:e.k,b:L[ei+1].k,ans:e.aw,opts:uniq([e.aw].concat(shuf(AW.filter(function(x){return x!==e.aw})).slice(0,3)))});
+ if(r.fir)out.push({t:'q3',ans:r.fir,opts:uniq([r.fir].concat(shuf(inner.map(function(x){return x.k}).filter(function(k){return k!==r.fir})).slice(0,3)))});
+ var lg=L.slice(0,L.length-1).filter(function(x){return x.nm>=20}),g=lg[Math.floor(Math.random()*lg.length)],gi=L.indexOf(g);
+ var dv=uniq([g.nm,Math.round(g.nm*1.6),Math.round(g.nm*0.55),Math.round(g.nm*2.3)]);out.push({t:'q4',a:g.k,b:L[gi+1].k,ans:g.nm+'',opts:dv.map(function(x){return x+''}),unit:1});
+ var main=L.slice(1,L.length-1).reduce(function(p,x){return x.nm>p.nm?x:p},L[0]);var fl=+r.fl.slice(2),alt=r.odd?[fl-10,fl+10,fl+30]:[fl-10,fl+10,fl-30];
+ out.push({t:'q5',ans:r.fl,opts:[r.fl].concat(alt.map(function(x){return 'FL'+x})),mc:main.mc});
+ if(!r.fir){var b2=inner[Math.floor(Math.random()*inner.length)],bi=L.indexOf(b2);out.push({t:'q1',a:L[bi-1].k,ans:b2.k,opts:uniq([b2.k].concat(shuf(allP.filter(function(k){return k!==b2.k})).slice(0,3)))})}
+ out.forEach(function(q){q.opts=shuf(q.opts)});return {q:shuf(out).slice(0,5),i:0,ok:0,done:false,picked:null}}
+function quiz(){var r=R[ri],t=T[lang];$('map').innerHTML=mapSVG(r,0);if(!QZ)QZ=makeQuiz();
+ if(QZ.i>=QZ.q.length){$('panel').innerHTML='<div class="card" style="margin-top:12px"><h3>'+t.res+'</h3><div class="score">'+(lang==='en'?QZ.ok+t.of+QZ.q.length+t.cor:QZ.q.length+t.of+QZ.ok+t.cor)+'</div><div class="ctl"><button class="btn" id="qa">'+t.again+'</button></div></div>';$('qa').onclick=function(){QZ=null;quiz()};return}
+ var q=QZ.q[QZ.i],txt=t[q.t].replace('{a}',q.a||'').replace('{b}',q.b||'').replace('{r}',r.name[lang]);
+ var h='<div class="card" style="margin-top:12px"><div style="color:var(--sub);font-size:13px">'+(QZ.i+1)+' / '+QZ.q.length+'</div><div class="q">'+txt+'</div><div class="opts">'+q.opts.map(function(o,i){var cls='';if(QZ.picked!==null){if(o===q.ans)cls=' ok';else if(i===QZ.picked)cls=' ng'}return '<button class="opt'+cls+'" data-i="'+i+'"'+(QZ.picked!==null?' disabled':'')+'>'+(q.t==='q2'?awName(o):o)+(q.unit?' '+t.nm:'')+'</button>'}).join('')+'</div>';
+ if(QZ.picked!==null){var good=q.opts[QZ.picked]===q.ans;h+='<div class="exp"><b style="color:'+(good?'var(--ok)':'var(--ng)')+'">'+(good?t.ok:t.ng)+'</b> '+t.ans+(q.t==='q2'?awName(q.ans):q.ans)+(q.unit?' '+t.nm:'')+(q.t==='q5'?'<br>'+t.q5x.replace('{m}',pad(q.mc)).replace('{oe}',r.odd?t.odd:t.even):'')+'</div><div class="ctl"><button class="btn" id="qn">'+t.nextq+'</button></div>'}
+ $('panel').innerHTML=h+'</div>';
+ Array.prototype.forEach.call(document.querySelectorAll('.opt'),function(b){b.onclick=function(){if(QZ.picked!==null)return;QZ.picked=+b.getAttribute('data-i');if(q.opts[QZ.picked]===q.ans)QZ.ok++;quiz()}});
+ if($('qn'))$('qn').onclick=function(){QZ.i++;QZ.picked=null;quiz()}}
+/* 画面 */
+function langBar(){var g=$('lang');g.innerHTML=['ja','ko','en'].map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===lang?'on':'')+'" aria-pressed="'+(l===lang)+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
+ Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render()}})}
+function render(){var t=T[lang];document.documentElement.lang=lang;document.title=t.ttl;['kick','ttl','lead','note'].forEach(function(k){$(k).textContent=t[k]});langBar();
+ $('routes').innerHTML=R.map(function(r,i){return '<button class="pill'+(i===ri?' on':'')+'" data-r="'+i+'">'+r.name[lang]+'</button>'}).join('')+(R[ri].map==='enr'?'<span style="font-size:12.5px;color:var(--sub)">'+t.hint+'</span>':'');
+ $('modes').innerHTML=[['follow',t.follow],['quiz',t.quiz]].map(function(m){return '<button class="pill'+(m[0]===mode?' on':'')+'" data-m="'+m[0]+'">'+m[1]+'</button>'}).join('');
+ Array.prototype.forEach.call(document.querySelectorAll('[data-r]'),function(b){b.onclick=function(){stop();ri=+b.getAttribute('data-r');step=0;QZ=null;render()}});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){stop();mode=b.getAttribute('data-m');QZ=null;step=0;render()}});
+ if(mode==='follow')follow();else quiz()}
+try{var m=location.search.match(/[?&]r=([a-z]+)/);if(m){R.forEach(function(r,i){if(r.id===m[1])ri=i})}}catch(e){}
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

@@ -17,7 +17,7 @@ sections:[
 {t:"check",items:[
 {name:"Look at both ends first",x:"Departures (inset A) and arrivals (inset B) are crowded, so real charts show them in separate insets or airport departure and arrival charts."},
 {name:"Then airway names and distances",x:"“Y697 205” in a box means 205 NM along airway Y697. The longer the segment, the more upper winds matter."},
-{name:"Finally, the boundary",x:"The purple line (FIR boundary) and the points on it (LANAT, SAPRA) are where control is handed over."}]}]},
+{name:"Finally, the boundary",x:"The purple line (FIR boundary) and the points on it (LANAT, SAPRA) are where control is handed over."}]},{t:"link",href:"航空路図の練習.html?lang=en&r=in",x:"Practice page “Route Chart Practice”: step through this flight point by point and try the quiz"}]},
 {h:"What happens at the FIR boundary",blocks:[{t:"table",cols:["Step","What happens"],rows:[
 ["1 Coordination in advance","Korean and Japanese control units exchange each flight’s estimated boundary time and level by message or dedicated line"],
 ["2 Frequency change","Shortly before the boundary, Korean control tells the crew to contact Japanese control on a new frequency"],

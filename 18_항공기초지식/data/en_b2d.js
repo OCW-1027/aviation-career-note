@@ -18,7 +18,7 @@ sections:[
 ["193° and so on","The magnetic course for the segment (from magnetic north, not map north)"],
 ["MEA, MOCA and similar (on real charts)","The lowest usable altitude on the segment, clear of terrain and obstacles"],
 ["Purple dash-dot line (on real charts)","A Flight Information Region (FIR) boundary, where the controlling unit changes"]]},
-{t:"note",x:"* Official enroute charts appear in the ENR section of each country’s Aeronautical Information Publication (AIP). Airline pilots usually use charts from companies such as Jeppesen. This sketch was drawn by this site following those conventions; it is not a copy of any real chart. ★"}]},
+{t:"note",x:"* Official enroute charts appear in the ENR section of each country’s Aeronautical Information Publication (AIP). Airline pilots usually use charts from companies such as Jeppesen. This sketch was drawn by this site following those conventions; it is not a copy of any real chart. ★"},{t:"link",href:"航空路図の練習.html?lang=en&r=gc",x:"Practice page “Route Chart Practice”: step through Y711 and Y722 point by point and try the quiz"}]},
 {h:"The “northbound” and “southbound” carriageways of Gimpo–Jeju",blocks:[{t:"rows",items:[
 {name:"A one-way pair",x:"Gimpo–Jeju is one of the world’s busiest routes. It used to share one airway (B576), separating directions by altitude; from around 2012 it was split into Y711 to Jeju and Y722 to Gimpo, like the two carriageways of a motorway. ★"},
 {name:"Traffic joins from other airports",x:"Flights to Jeju from Cheongju, Wonju, Yangyang and elsewhere join these airways part-way, making them the trunk road of Korean domestic flying."},
