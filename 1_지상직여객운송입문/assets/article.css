@@ -64,6 +64,7 @@ p{margin:0 0 14px}
 @media (max-width:520px){.row{grid-template-columns:1fr}.row b{padding:8px}}
 /* tables */
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:420px){.board-top{flex-wrap:wrap;row-gap:8px}.board-top .series{min-width:0}}
 .tbl{border:1.5px solid var(--line);border-radius:16px;overflow:hidden;margin:10px 0}
 .scroll.tbl{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
 @media (max-width:600px){.scroll.tbl table:has(tr>*:nth-child(4)){min-width:560px}.scroll.tbl table:has(tr>*:nth-child(5)){min-width:680px}td.lb{white-space:normal;min-width:5.5em;max-width:9em}}

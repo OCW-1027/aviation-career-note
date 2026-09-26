@@ -37,6 +37,7 @@ var css=
 'html.sh .wrap>header h1,html.sh .shhero h1{color:#22303F!important;font-size:clamp(23px,4vw,34px)!important;line-height:1.3!important;margin:0 0 10px!important}'+
 'html.sh .wrap>header p,html.sh .shhero p{color:#4A5A6C!important;margin:0!important}'+
 'html.sh-load .wrap>header{display:none!important}html.sh-load .shhero{margin-bottom:12px}'+
+'html.sh select,html.sh input{max-width:100%;min-width:0;box-sizing:border-box}html.sh select{text-overflow:ellipsis}html.sh label:has(>select){max-width:100%;min-width:0}'+
 '@media (max-width:600px){.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+
 'html.sh .shbar .langs button{padding:6px 9px!important;font-size:12.5px!important;min-width:0}'+
 'html.sh .wrap>header,html.sh .shhero{padding:20px 18px 18px!important;border-radius:20px!important}'+
