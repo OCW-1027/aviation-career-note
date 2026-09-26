@@ -249,6 +249,49 @@ smart_journey:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox=
   s+='<g opacity="0"><circle cx="'+(x-34)+'" cy="106" r="13" fill="'+G2+'"/><path d="M'+(x-40)+' 106 L'+(x-36)+' 111 L'+(x-27)+' 100" fill="none" stroke="#fff" stroke-width="3"/><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+t+';'+(t+.03).toFixed(2)+';.97;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
  s+='<g><circle cx="0" cy="-38" r="9" fill="#E08A2F"/><path d="M-10 -26 L10 -26 L8 0 L-8 0 Z" fill="#E08A2F"/><animateMotion dur="'+DUR+'s" repeatCount="indefinite" calcMode="linear" keyPoints="'+kp.join(';')+'" keyTimes="'+kt.join(';')+'" path="M40 248 L860 248"/></g>';
  return s+'</svg>'},
+ttax_timeline:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 290" role="img"><rect width="900" height="290" fill="#F7FAFD"/>',RD='#D0506A',OR='#E08A2F',DUR=9;
+ function ap(t){return '<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+t+';'+(t+.06).toFixed(2)+';1" dur="'+DUR+'s" fill="freeze"/>'}
+ s+='<line x1="40" y1="170" x2="470" y2="170" stroke="'+D+'" stroke-width="4"/><line x1="500" y1="170" x2="870" y2="170" stroke="'+D+'" stroke-width="4"/>';
+ s+='<path d="M474 160 L482 180 M488 160 L496 180" stroke="'+D+'" stroke-width="3"/>';
+ s+=R(40,186,700,26,B,6,' opacity=".85"')+'<text x="390" y="205" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" font-family="Arial">¥1,000</text>';
+ s+='<g opacity="0">'+R(740,186,130,26,RD,6)+'<text x="805" y="205" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" font-family="Arial">¥3,000</text>'+ap(.62)+'</g>';
+ s+='<defs><pattern id="tt-h" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#cfe4f8"/><line x1="0" y1="0" x2="0" y2="10" stroke="'+B+'" stroke-width="4"/></pattern></defs>';
+ s+='<g opacity="0">'+R(740,222,130,24,'url(#tt-h)',6)+'<text x="805" y="239" font-size="13" font-weight="700" fill="'+D+'" text-anchor="middle" font-family="Arial">¥1,000 *</text>'+ap(.78)+'</g>';
+ var P=[[90,'2019.01.07',B,.05],[560,'2025.12',OR,.28],[650,'2026.04',OR,.45],[740,'2026.07.01',RD,.6]];
+ P.forEach(function(p,i){s+='<g opacity="0"><line x1="'+p[0]+'" y1="100" x2="'+p[0]+'" y2="170" stroke="'+p[2]+'" stroke-width="2" stroke-dasharray="4 3"/><circle cx="'+p[0]+'" cy="170" r="8" fill="'+p[2]+'"/>'+badge(i+1,p[0],80,16,p[2])+'<text x="'+p[0]+'" y="135" font-size="14" font-weight="700" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">'+p[1]+'</text>'+ap(p[3])+'</g>'});
+ s+='<g opacity="0"><path d="M740 40 L740 60" stroke="'+RD+'" stroke-width="3"/><text x="740" y="32" font-size="22" font-weight="900" text-anchor="middle" fill="'+RD+'" font-family="Arial">×3</text>'+ap(.66)+'</g>';
+ return s+'</svg>'},
+ttax_decision:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img"><rect width="900" height="330" fill="#F7FAFD"/>',RD='#D0506A',OK='#1F7A6E',DUR=8;
+ function dia(n,x,y){return '<polygon points="'+x+','+(y-44)+' '+(x+50)+','+y+' '+x+','+(y+44)+' '+(x-50)+','+y+'" fill="#fff" stroke="'+D+'" stroke-width="2.5"/>'+badge(n,x,y,20,D)}
+ function arr(x1,y1,x2,y2,c){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+c+'" stroke-width="3" marker-end="url(#tt-a'+(c===RD?'r':'g')+')"/>'}
+ s+='<defs><marker id="tt-ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="'+OK+'"/></marker><marker id="tt-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="'+RD+'"/></marker></defs>';
+ s+=R(20,86,80,68,'#fff',8,' stroke="'+D+'" stroke-width="2"')+R(20,86,80,18,B,8)+R(32,116,56,6,'#cfd8e2',3)+R(32,130,40,6,'#cfd8e2',3)+'<text x="60" y="100" font-size="12" font-weight="700" fill="#fff" text-anchor="middle" font-family="Arial">TKT</text>';
+ var X=[200,370,540,710];
+ s+=arr(100,120,146,120,OK);
+ X.forEach(function(x,i){s+=dia(i+1,x,120);
+  s+=arr(x,166,x,228,RD)+'<text x="'+(x+12)+'" y="203" font-size="18" font-weight="900" fill="'+RD+'" font-family="Arial">✕</text>';
+  if(i<3){s+=arr(x+52,120,X[i+1]-54,120,OK)+'<text x="'+((x+X[i+1])/2)+'" y="110" font-size="18" font-weight="900" fill="'+OK+'" text-anchor="middle" font-family="Arial">✓</text>'}});
+ s+=arr(762,120,806,120,OK)+'<text x="784" y="110" font-size="18" font-weight="900" fill="'+OK+'" text-anchor="middle" font-family="Arial">✓</text>';
+ s+=R(808,92,82,56,OK,10)+'<text x="849" y="126" font-size="17" font-weight="800" fill="#fff" text-anchor="middle" font-family="Arial">¥1,000</text>';
+ s+=R(140,232,630,52,RD,10)+'<text x="455" y="265" font-size="20" font-weight="800" fill="#fff" text-anchor="middle" font-family="Arial">¥3,000</text>';
+ s+='<circle r="7" fill="#F2B233" stroke="#fff" stroke-width="2"><animateMotion dur="'+DUR+'s" repeatCount="indefinite" path="M100 120 L808 120" keyPoints="0;1;1" keyTimes="0;.7;1" calcMode="linear"/></circle>';
+ return s+'</svg>'},
+ttax_monthly:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 290" role="img"><rect width="900" height="290" fill="#F7FAFD"/>',RD='#D0506A',DUR=10;
+ var C=[[30,'M','07'],[320,'M+1','08'],[610,'M+2','09']];
+ C.forEach(function(c){s+=R(c[0],30,260,230,'#fff',14,' stroke="#dbe3ec" stroke-width="2"')+R(c[0],30,260,40,'#eaf3fc',14)+'<text x="'+(c[0]+20)+'" y="57" font-size="18" font-weight="800" fill="'+D+'" font-family="Arial">'+c[1]+'</text><text x="'+(c[0]+240)+'" y="57" font-size="15" text-anchor="end" fill="#5b6b7d" font-family="Consolas,monospace">e.g. '+c[2]+'</text>'});
+ var S=[[90,120,B],[210,200,B],[380,120,'#2C8C8C'],[500,200,'#2C8C8C'],[670,120,'#E08A2F'],[790,200,RD]];
+ var ic=[
+  function(x,y){return '<path d="M'+(x-16)+' '+(y+2)+' L'+(x+14)+' '+(y-2)+' L'+(x+18)+' '+y+' L'+(x+14)+' '+(y+2)+' Z M'+(x-2)+' '+y+' L'+(x+6)+' '+(y-12)+' L'+(x+10)+' '+(y-12)+' L'+(x+6)+' '+y+' Z M'+(x-2)+' '+(y+1)+' L'+(x+6)+' '+(y+13)+' L'+(x+10)+' '+(y+13)+' L'+(x+6)+' '+(y+1)+' Z" fill="#fff"/>'},
+  function(x,y){return R(x-13,y-13,26,26,'none',3,' stroke="#fff" stroke-width="2.5"')+'<path d="M'+(x-13)+' '+(y-4)+' H'+(x+13)+' M'+(x-13)+' '+(y+5)+' H'+(x+13)+' M'+(x-3)+' '+(y-13)+' V'+(y+13)+'" stroke="#fff" stroke-width="2"/>'},
+  function(x,y){return '<path d="M'+(x-12)+' '+y+' L'+(x-3)+' '+(y+9)+' L'+(x+13)+' '+(y-9)+'" fill="none" stroke="#fff" stroke-width="4"/>'},
+  function(x,y){return '<circle cx="'+x+'" cy="'+y+'" r="12" fill="none" stroke="#fff" stroke-width="3"/><circle cx="'+x+'" cy="'+y+'" r="4" fill="#fff"/>'},
+  function(x,y){return R(x-10,y-14,20,28,'#fff',2)+'<path d="M'+(x-6)+' '+(y-6)+' H'+(x+6)+' M'+(x-6)+' '+y+' H'+(x+6)+' M'+(x-6)+' '+(y+6)+' H'+(x+2)+'" stroke="#8a96a3" stroke-width="2"/>'},
+  function(x,y){return '<text x="'+x+'" y="'+(y+9)+'" font-size="26" font-weight="900" text-anchor="middle" fill="#fff" font-family="Arial">¥</text>'}];
+ var path='M'+S.map(function(p){return p[0]+' '+p[1]}).join(' L');
+ s+='<path d="'+path+'" fill="none" stroke="#cfd8e2" stroke-width="4" stroke-dasharray="8 6"/>';
+ S.forEach(function(p,i){var t=(i/6*0.85).toFixed(2);s+='<g><circle cx="'+p[0]+'" cy="'+p[1]+'" r="30" fill="'+p[2]+'"/>'+ic[i](p[0],p[1])+badge(i+1,p[0]-26,p[1]-26,12,D)+'<animate attributeName="opacity" values=".35;.35;1;1" keyTimes="0;'+t+';'+(+t+.05).toFixed(2)+';1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
+ s+='<line x1="862" y1="140" x2="862" y2="250" stroke="'+RD+'" stroke-width="3"/><path d="M862 140 L892 150 L862 160 Z" fill="'+RD+'"/><text x="856" y="272" font-size="13" font-weight="800" text-anchor="end" fill="'+RD+'" font-family="Consolas,monospace">09/30</text>';
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';

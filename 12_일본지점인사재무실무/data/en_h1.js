@@ -284,7 +284,7 @@ terms:[["Consumption Tax Refund","消費税還付","소비세 환급"],["Qualifi
 quiz:[{q:"Which branches tend to get consumption tax refunds?",opts:["Those whose sales are mostly exempt (international transport, exports)","Those with mainly domestic sales","Those with no sales","Cash-only businesses"],a:0,exp:"Tax on purchases exceeds tax on sales."},
 {q:"What must be kept to deduct tax on purchases?",opts:["Invoices showing the registration number and details","Business cards","Receipt copies only","Nothing"],a:0,exp:"The qualified invoice system."},
 {q:"What matters in preparing a refund claim?",opts:["A monthly list of invoices and registration numbers","Searching everything just before filing","Throwing invoices away","Ignoring head office’s costs"],a:0,exp:"Day-to-day organisation is everything."}],
-next:"6-1 The monthly close and reporting to head office"});
+next:"5-3 International Tourist Tax: the July 2026 rise to ¥3,000"});
 
 set("6-1",{title:"The Monthly Close and Reporting to Head Office",hl:"the monthly close",subtitle:"Close last month in the first five days. Accrue what has not been invoiced",
 lead:["To fit head office’s monthly closing, the branch closes last month’s costs in the first few days of the month and reports to head office. Costs not yet invoiced are accrued on an estimate and adjusted the following month to the confirmed figure. The quality of this monthly close decides how fast and accurately head office can close.",
