@@ -58,5 +58,5 @@ terms:[["Airway / ATS Route","航空路","항공로"],["Waypoint","ウェイポ�
 quiz:[{q:"Which airway do flights from Gimpo to Jeju use?",opts:["Y711","Y722","A593","Either"],a:0,exp:"Flights to Gimpo use Y722: a one-way pair."},
 {q:"What does an airway name starting with “Y” indicate?",opts:["An international conventional route","A mainly domestic RNAV route","Upper airspace only","A helicopter route"],a:1,exp:"Q, T, Y and Z are mainly domestic RNAV routes."},
 {q:"Until 2021, who controlled the AKARA corridor east of 125°E?",opts:["Korea","China","Japan","Taiwan"],a:2,exp:"China controlled the west and Japan the east."}],
-next:"Part 3 Aviation History — 3-1 A timeline of aviation history"});
+next:"2-6 Following Incheon to Narita on an enroute chart"});
 })(window.ARTS);

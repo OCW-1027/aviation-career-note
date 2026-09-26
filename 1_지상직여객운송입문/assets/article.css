@@ -67,7 +67,9 @@ p{margin:0 0 14px}
 @media (max-width:420px){.board-top{flex-wrap:wrap;row-gap:8px}.board-top .series{min-width:0}}
 .tbl{border:1.5px solid var(--line);border-radius:16px;overflow:hidden;margin:10px 0}
 .scroll.tbl{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
-@media (max-width:600px){.scroll.tbl table:has(tr>*:nth-child(4)){min-width:560px}.scroll.tbl table:has(tr>*:nth-child(5)){min-width:680px}td.lb{white-space:normal;min-width:5.5em;max-width:9em}}
+.artnav small{overflow-wrap:anywhere;line-break:anywhere;min-width:0}
+@media (max-width:600px){.ladder{flex-wrap:wrap;overflow-x:visible;align-items:stretch}.ladder .step{flex:1 1 calc(50% - 4px);min-height:0!important}}
+@media (max-width:600px){.scroll.tbl table:has(tr>*:nth-child(4)){min-width:560px}.scroll.tbl table:has(tr>*:nth-child(5)){min-width:680px}.tbl td.lb{white-space:normal;min-width:5.5em;max-width:10em;overflow-wrap:anywhere}}
 table{border-collapse:collapse;width:100%;background:var(--paper);font-size:15px}
 th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 thead th{background:var(--sky-t);color:var(--sky-d);font-family:var(--disp);font-weight:700;font-size:14px;white-space:nowrap;text-align:center}
