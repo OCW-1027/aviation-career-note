@@ -140,10 +140,10 @@ function render(){var t=T[lang],L=lang==='ja'?0:lang==='ko'?1:2,q=$('q').value.t
   h+='<section id="'+c.id+'"><h2>'+(ci+1)+'. '+esc(c[lang])+'</h2><p class="cdesc">'+esc(lang==='ja'?c.dja:lang==='ko'?c.dko:c.den)+'</p>';
   if(c.guide&&!q){h+='<div class="guide">'+c.guide[lang].map(function(r){return '<div class="r"><b>'+esc(r[0])+'</b><span>'+ph(r[1])+'</span></div>'}).join('')+'</div>'}
   items.forEach(function(it,ii){cnt++;var id=c.id+'-'+ii,RD=((window.ANN_READ||{})[c.id]||[])[ii],first=lang==='ja'?['JP',it.ja]:['KR',it.ko],second=lang==='ja'?['KR',it.ko]:['JP',it.ja];
-   function rdOf(tag){if(!showRd||!RD)return '';if(lang==='ja'&&tag==='KR')return RD.kk;if(lang==='ko'&&tag==='JP')return RD.jh;if(lang==='ja'&&tag==='EN')return RD.ek||'';if(lang==='ko'&&tag==='EN')return RD.eh||'';if(lang==='en')return tag==='JP'?RD.jr:tag==='KR'?RD.kr:'';return ''}
+   function rdOf(tag){if(!showRd||!RD)return '';if(lang==='ja'&&tag==='KR')return RD.kk;if(lang==='ko'&&tag==='JP')return RD.jh;if(lang==='ja'&&tag==='EN')return RD.ek||'';if(lang==='ko'&&tag==='EN')return [RD.eh||'',RD.ek||''];if(lang==='en')return tag==='JP'?RD.jr:tag==='KR'?RD.kr:'';return ''}
    var rows=[first,second];if(showEn)rows.push(['EN',it.en]);if(lang==='en')rows=[['EN',it.en],['JP',it.ja],['KR',it.ko]];
    h+='<article class="ann"><div class="top"><b><span class="no">'+(ci+1)+'-'+(ii+1)+'</span>'+esc(it.s[L])+'</b><span class="when">'+t.when+'：'+esc(it.w[L])+'</span></div>'+
-   rows.map(function(r,ri){return '<div class="txt"><span class="tag">'+r[0]+'</span><div><p>'+ph(r[1])+'</p>'+(rdOf(r[0])?'<p class="rd" lang="'+(lang==='ja'?'ja':lang==='ko'?'ko':'en')+'">'+ph(rdOf(r[0]))+'</p>':'')+'</div><button class="cp" data-t="'+esc(r[1])+'" type="button">'+t.cp+'</button></div>'}).join('')+
+   rows.map(function(r,ri){return '<div class="txt"><span class="tag">'+r[0]+'</span><div><p>'+ph(r[1])+'</p>'+(function(v){if(!v)return '';var a=Array.isArray(v)?v:[v],lg=[lang==='ja'?'ja':lang==='ko'?'ko':'en','ja'];return a.map(function(x,k){return x?'<p class="rd" lang="'+lg[Math.min(k,1)]+'">'+ph(x)+'</p>':''}).join('')})(rdOf(r[0]))+'</div><button class="cp" data-t="'+esc(r[1])+'" type="button">'+t.cp+'</button></div>'}).join('')+
    (it.n?'<p class="note"><b>'+t.note+'</b>　'+esc(it.n[L])+'</p>':'')+'</article>'});
   h+='</section>'});
  $('main').innerHTML=h;
