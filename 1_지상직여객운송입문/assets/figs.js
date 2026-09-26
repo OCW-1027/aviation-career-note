@@ -353,6 +353,22 @@ rwy_hold:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 
  s+='<g>'+R(560,250,230,34,'#fff',17,' stroke="'+D+'" stroke-width="2"')+badge(4,560,250,12,GR)+'<text x="675" y="272" font-size="14" font-weight="800" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">HOLD SHORT RWY</text><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.55;.57;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
  s+='<g opacity="0">'+R(560,250,230,34,'#fff',17,' stroke="'+GR+'" stroke-width="2"')+badge(5,560,250,12,GR)+'<text x="675" y="272" font-size="14" font-weight="800" text-anchor="middle" fill="'+GR+'" font-family="Consolas,monospace">CROSS RWY</text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.57;.59;.95;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
  return s+'</svg>'},
+smart_compare:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 390" role="img"><rect width="900" height="390" fill="#F7FAFD"/>',GR='#1F7A6E',GY='#B8C4D0',DUR=12;
+ var rows=[['ICN',[0,2,1,1,1]],['NRT/HND',[2,2,2,1,1]],['SIN',[2,0,2,2,1]],['DXB',[2,0,1,1,1]],['USA',[1,1,2,3,2]],['EU (EES)',[0,0,0,1,1]]];
+ var X0=250,DX=130,Y0=78,DY=50;
+ /* 列の番号と矢印（旅の順） */
+ for(var c=0;c<5;c++){s+=badge(c+1,X0+c*DX,40,15,B);if(c<4)s+='<path d="M'+(X0+c*DX+22)+' 40 L'+(X0+(c+1)*DX-22)+' 40" stroke="'+GY+'" stroke-width="2" stroke-dasharray="4 4"/>'}
+ rows.forEach(function(r,i){var y=Y0+i*DY;
+  s+=R(20,y-18,860,36,i%2?'#fff':'#EEF3F8',8)+'<text x="40" y="'+(y+6)+'" font-size="17" font-weight="800" fill="'+D+'" font-family="Arial">'+r[0]+'</text>';
+  r[1].forEach(function(v,c){var x=X0+c*DX,t=(i*5+c)*0.12,op='<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(t/DUR).toFixed(3)+';'+((t+0.4)/DUR).toFixed(3)+';1" dur="'+DUR+'s" repeatCount="indefinite"/>';
+   if(v===2)s+='<g opacity="0"><circle cx="'+x+'" cy="'+y+'" r="13" fill="'+GR+'"/><path d="M'+(x-6)+' '+y+' L'+(x-1)+' '+(y+5)+' L'+(x+7)+' '+(y-5)+'" fill="none" stroke="#fff" stroke-width="3"/>'+op+'</g>';
+   else if(v===1)s+='<g opacity="0"><circle cx="'+x+'" cy="'+y+'" r="12" fill="#fff" stroke="'+GR+'" stroke-width="3"/><path d="M'+x+' '+(y-12)+' A12 12 0 0 1 '+x+' '+(y+12)+' Z" fill="'+GR+'" opacity=".55"/>'+op+'</g>';
+   else if(v===3)s+='<g opacity="0"><text x="'+x+'" y="'+(y+5)+'" font-size="13" text-anchor="middle" fill="#8a96a3" font-family="Arial">n/a</text>'+op+'</g>';
+   else s+='<g opacity="0"><path d="M'+(x-10)+' '+y+' L'+(x+10)+' '+y+'" stroke="'+GY+'" stroke-width="4" stroke-linecap="round"/>'+op+'</g>'});
+ });
+ /* 顔のアイコンが旅の順に進む */
+ s+='<g><circle r="11" fill="#F2B233" stroke="#fff" stroke-width="2"/><circle cx="-4" cy="-2" r="1.6" fill="'+D+'"/><circle cx="4" cy="-2" r="1.6" fill="'+D+'"/><path d="M-4 3 Q0 6 4 3" fill="none" stroke="'+D+'" stroke-width="1.6"/><animateTransform attributeName="transform" type="translate" values="'+(X0-40)+' 40;'+(X0+4*DX+40)+' 40;'+(X0+4*DX+40)+' 40" keyTimes="0;.6;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';

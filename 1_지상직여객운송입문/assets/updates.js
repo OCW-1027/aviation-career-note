@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-26",c:"18_항공기초지식",k:"4-1",t:"upd",ja:"スマート空港：空港別の比較（仁川・成田/羽田・チャンギ・ドバイ・アメリカ・EU）と日韓の比較を追加",ko:"스마트 공항: 공항별 비교(인천·나리타/하네다·창이·두바이·미국·EU)와 한일 비교 추가",en:"Smart airports: airport-by-airport comparison and Japan–Korea comparison added"},
 {d:"2026-09-26",c:"",k:"",t:"upd",u:"4_공항안내방송예문집/空港アナウンス文例集.html",ja:"空港アナウンス文例集：読み方を全面見直し、英語の読み方を追加",ko:"공항 안내방송 예문집: 읽는 법 전면 수정, 영어 읽는 법 추가",en:"Airport announcements: readings revised and English readings added"},
 {d:"2026-09-26",c:"12_일본지점인사재무실무",k:"5-3",t:"upd",ja:"国際観光旅客税：月次集計のエクセルのひな形を追加",ko:"국제관광여객세: 월간 집계 엑셀 서식 추가",en:"International Tourist Tax: monthly Excel template added"},
 {d:"2026-09-26",c:"",k:"",t:"upd",u:"1_지상직여객운송입문/搭載計算の練習.html",ja:"搭載計算の練習：重心（%MAC）・バランスチャート・機体の側面図・重心の修正・トリムシートを追加",ko:"탑재 계산 연습: 무게중심(%MAC)·밸런스 차트·기체 측면도·무게중심 수정·트림시트 추가",en:"Load control practice: CG (%MAC), balance chart, side view, CG fixing and trim sheet added"},
