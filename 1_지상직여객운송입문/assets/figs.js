@@ -292,6 +292,42 @@ ttax_monthly:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="
  S.forEach(function(p,i){var t=(i/6*0.85).toFixed(2);s+='<g><circle cx="'+p[0]+'" cy="'+p[1]+'" r="30" fill="'+p[2]+'"/>'+ic[i](p[0],p[1])+badge(i+1,p[0]-26,p[1]-26,12,D)+'<animate attributeName="opacity" values=".35;.35;1;1" keyTimes="0;'+t+';'+(+t+.05).toFixed(2)+';1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
  s+='<line x1="862" y1="140" x2="862" y2="250" stroke="'+RD+'" stroke-width="3"/><path d="M862 140 L892 150 L862 160 Z" fill="'+RD+'"/><text x="856" y="272" font-size="13" font-weight="800" text-anchor="end" fill="'+RD+'" font-family="Consolas,monospace">09/30</text>';
  return s+'</svg>'},
+acdm_calc:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img"><rect width="900" height="300" fill="#F7FAFD"/>',RD='#D0506A',OR='#E08A2F',GR='#1F7A6E',DUR=10;
+ function ap(t,rep){return '<animate attributeName="opacity" values="0;0;1;1'+(rep?';0':'')+'" keyTimes="0;'+t+';'+(t+.05).toFixed(2)+(rep?';.95;1':';1')+'" dur="'+DUR+'s" repeatCount="indefinite"/>'}
+ s+='<line x1="40" y1="200" x2="870" y2="200" stroke="'+D+'" stroke-width="3"/>';
+ for(var i=0;i<=16;i++){var x=60+i*50;s+='<line x1="'+x+'" y1="194" x2="'+x+'" y2="206" stroke="'+D+'" stroke-width="2"/>'}
+ s+='<g opacity="0">'+badge(1,110,60,15,B)+'<line x1="110" y1="80" x2="110" y2="200" stroke="'+B+'" stroke-width="3"/><text x="110" y="228" font-size="16" font-weight="800" text-anchor="middle" fill="'+B+'" font-family="Arial">TOBT</text>'+ap(.05,1)+'</g>';
+ s+='<g opacity="0">'+R(110,150,80,26,'#9fb3c6',4)+'<text x="150" y="168" font-size="13" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial">PB</text>'+R(190,150,200,26,'#6f86a0',4)+'<text x="290" y="168" font-size="13" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial">TAXI</text>'+ap(.18,1)+'</g>';
+ s+='<g opacity="0">'+badge(2,390,60,15,OR)+'<line x1="390" y1="80" x2="390" y2="200" stroke="'+OR+'" stroke-width="3" stroke-dasharray="6 4"/><text x="390" y="228" font-size="16" font-weight="800" text-anchor="middle" fill="'+OR+'" font-family="Arial">PTOT</text>'+ap(.3,1)+'</g>';
+ s+='<g opacity="0"><path d="M400 110 L560 110" stroke="'+OR+'" stroke-width="3" marker-end="url(#ac-a)"/><text x="480" y="100" font-size="13" font-weight="700" text-anchor="middle" fill="'+OR+'" font-family="Arial">RWY SEQ / EDCT</text>'+ap(.42,1)+'</g>';
+ s+='<defs><marker id="ac-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="'+OR+'"/></marker></defs>';
+ s+='<g opacity="0">'+badge(3,570,60,15,RD)+'<line x1="570" y1="80" x2="570" y2="200" stroke="'+RD+'" stroke-width="3"/><text x="570" y="228" font-size="16" font-weight="800" text-anchor="middle" fill="'+RD+'" font-family="Arial">CTOT</text>'+ap(.52,1)+'</g>';
+ s+='<g opacity="0">'+R(290,236,200,22,'#6f86a0',4)+'<text x="390" y="252" font-size="12" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial">TAXI</text>'+R(490,236,80,22,'#9fb3c6',4)+'<text x="530" y="252" font-size="12" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial">PB</text>'+ap(.64,1)+'</g>';
+ s+='<g opacity="0">'+badge(4,290,60,17,GR)+'<line x1="290" y1="80" x2="290" y2="262" stroke="'+GR+'" stroke-width="4"/><text x="290" y="286" font-size="18" font-weight="900" text-anchor="middle" fill="'+GR+'" font-family="Arial">TSAT</text>'+ap(.76,1)+'</g>';
+ s+='<g opacity="0"><text x="720" y="140" font-size="15" font-weight="800" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">TSAT =</text><text x="720" y="162" font-size="15" font-weight="800" text-anchor="middle" fill="'+D+'" font-family="Consolas,monospace">CTOT − TAXI − PB</text>'+ap(.82,1)+'</g>';
+ return s+'</svg>'},
+acdm_narita:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" role="img"><rect width="900" height="280" fill="#F7FAFD"/>',RD='#D0506A',GR='#1F7A6E',DUR=10;
+ function X(m){return 470+m*13}
+ s+='<line x1="60" y1="150" x2="860" y2="150" stroke="'+D+'" stroke-width="3"/>';
+ [-30,-25,-20,-15,-10,-5,0,5,10,15,20,25,30].forEach(function(m){s+='<line x1="'+X(m)+'" y1="144" x2="'+X(m)+'" y2="156" stroke="'+D+'" stroke-width="2"/><text x="'+X(m)+'" y="176" font-size="12" text-anchor="middle" fill="#5b6b7d" font-family="Consolas,monospace">'+(m>0?'+':'')+m+'</text>'});
+ s+='<line x1="'+X(0)+'" y1="60" x2="'+X(0)+'" y2="150" stroke="'+D+'" stroke-width="3"/><text x="'+X(0)+'" y="52" font-size="16" font-weight="800" text-anchor="middle" fill="'+D+'" font-family="Arial">EOBT</text>';
+ s+=badge(1,X(-25),100,14,B)+'<line x1="'+X(-25)+'" y1="116" x2="'+X(-25)+'" y2="150" stroke="'+B+'" stroke-width="3"/>';
+ s+=badge(2,X(-20),70,14,GR)+'<line x1="'+X(-20)+'" y1="86" x2="'+X(-20)+'" y2="150" stroke="'+GR+'" stroke-width="3" stroke-dasharray="5 4"/>';
+ s+=R(X(-15),196,X(30)-X(-15),16,'#cfe4f8',6)+badge(3,X(-15)-20,204,12,B)+'<text x="'+((X(-15)+X(30))/2)+'" y="209" font-size="12" font-weight="700" text-anchor="middle" fill="'+D+'" font-family="Arial">TOBT</text>';
+ var tob=X(5),ts=X(10);
+ s+=R(tob-65,226,130,16,'#FFE9B3',6)+badge(4,tob-85,234,12,'#E08A2F')+'<text x="'+tob+'" y="239" font-size="12" font-weight="700" text-anchor="middle" fill="'+D+'" font-family="Arial">TOBT ±5</text>';
+ s+=R(ts-39,250,39,16,'#bfe6dc',6)+badge(5,ts-59,258,12,GR)+'<line x1="'+ts+'" y1="120" x2="'+ts+'" y2="266" stroke="'+GR+'" stroke-width="3"/><text x="'+ts+'" y="114" font-size="14" font-weight="800" text-anchor="middle" fill="'+GR+'" font-family="Arial">TSAT</text>';
+ s+='<g><circle cx="0" cy="150" r="7" fill="'+RD+'"/><animateTransform attributeName="transform" type="translate" values="'+X(-30)+' 0;'+X(12)+' 0;'+X(12)+' 0" keyTimes="0;.85;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+ return s+'</svg>'},
+acdm_queue:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img"><rect width="900" height="300" fill="#F7FAFD"/>',RD='#D0506A',GR='#1F7A6E',DUR=12;
+ function pl(c){return '<path d="M-14 0 L10 -2 L15 0 L10 2 Z M-2 -1 L5 -11 L8 -11 L4 -1 Z M-2 1 L5 11 L8 11 L4 1 Z M-12 -1 L-9 -5 L-7 -5 L-9 -1 Z" fill="'+c+'"/>'}
+ function panel(x0,title,col){return R(x0,20,420,260,'#fff',14,' stroke="#dbe3ec" stroke-width="2"')+'<text x="'+(x0+20)+'" y="48" font-size="16" font-weight="800" fill="'+col+'" font-family="Arial">'+title+'</text>'+R(x0+20,70,110,190,'#eef3f8',8)+'<text x="'+(x0+75)+'" y="88" font-size="12" font-weight="700" text-anchor="middle" fill="#5b6b7d" font-family="Arial">GATE</text>'+'<path d="M'+(x0+130)+' 165 L'+(x0+340)+' 165" stroke="#9fb3c6" stroke-width="18" stroke-linecap="round"/>'+R(x0+350,60,40,200,'#4b5b6b',4)+'<text x="'+(x0+370)+'" y="52" font-size="12" font-weight="700" text-anchor="middle" fill="#5b6b7d" font-family="Arial">RWY</text>'}
+ s+=panel(20,'BEFORE',RD)+panel(460,'TSAT',GR);
+ for(var i=0;i<5;i++){var qx=20+330-i*42,d=(i*0.08).toFixed(2);
+  s+='<g><g>'+pl('#1d3a57')+'<circle cx="-18" cy="0" r="3" fill="'+RD+'"><animate attributeName="opacity" values="0;1;0" dur=".6s" repeatCount="indefinite"/></circle></g><animateTransform attributeName="transform" type="translate" values="75 '+(100+i*30)+';75 '+(100+i*30)+';'+qx+' 165;'+qx+' 165" keyTimes="0;'+d+';'+(+d+.15).toFixed(2)+';1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'}
+ for(var j=0;j<5;j++){var t0=(0.1+j*0.16).toFixed(2),t1=(+t0+0.1).toFixed(2),t2=(+t0+0.14).toFixed(2);
+  s+='<g><g>'+pl('#1d3a57')+'</g><animateTransform attributeName="transform" type="translate" values="535 '+(100+j*30)+';535 '+(100+j*30)+';790 165;830 165;830 -40" keyTimes="0;'+t0+';'+t1+';'+t2+';1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'}
+ return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];
  s+='<path d="M70 120 L 350 120 L 350 240 L 650 240 L 820 160" fill="none" stroke="#cfd8e2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';

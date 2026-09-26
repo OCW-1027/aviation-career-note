@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-26",c:"16_스테이션운영실무",k:"1-7",t:"new",ja:"A-CDMとTSAT ― 空港全体で定時性を上げる",ko:"A-CDM과 TSAT — 공항 전체로 정시성을 높이다",en:"A-CDM and TSAT: raising punctuality across the airport"},
 {d:"2026-09-26",c:"12_일본지점인사재무실무",k:"5-3",t:"new",ja:"国際観光旅客税（出国税）― 2026年7月の3,000円への引き上げ",ko:"국제관광여객세(출국세) — 2026년 7월 3,000엔 인상",en:"International Tourist Tax: the July 2026 rise to ¥3,000"},
 {d:"2026-09-25",c:"1_지상직여객운송입문",k:"6-11",t:"new",ja:"カスタマーハラスメント ― 2026年10月の義務化",ko:"고객 괴롭힘(카스하라) — 2026년 10월 의무화",en:"Customer harassment: the October 2026 obligation"},
 {d:"2026-09-25",c:"1_지상직여객운송입문",k:"6-12",t:"new",ja:"現場でのカスハラ対応",ko:"현장에서의 카스하라 대응",en:"Handling customer harassment on the front line"},

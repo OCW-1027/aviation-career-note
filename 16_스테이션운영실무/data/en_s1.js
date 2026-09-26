@@ -180,5 +180,5 @@ terms:[["Online Check-in","オンラインチェックイン","온라인 체크�
 quiz:[{q:"Which is an automation measure?",opts:["Online check-in and kiosk usage rate","Number of staff","Fare levels","The weather"],a:0,exp:"It is measured as a share of boarded passengers."},
 {q:"What is right about excess baggage charges?",opts:["Charging by the rules is fair","Letting it go is good service","Staff decide as they like","Never charge"],a:0,exp:"It is about fairness to passengers who paid."},
 {q:"What must always be checked for a paid exit-row seat?",opts:["That the passenger meets the conditions to assist","Only the fee","The seat colour","Nothing"],a:0,exp:"Safety comes first."}],
-next:"Part 2 Getting the Best from Your Handler — 2-1 What the SGHA and the SLA settle"});
+next:"1-7 A-CDM and TSAT: raising punctuality across the airport"});
 })(window.ARTS);
