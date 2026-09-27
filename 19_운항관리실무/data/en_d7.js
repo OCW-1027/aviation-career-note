@@ -105,5 +105,5 @@ terms:[["Global Reporting Format (GRF)","世界共通の報告の方式","세계
 quiz:[{q:"Which runway condition corresponds to RWYCC 1?",opts:["Dry","Wet","Ice","3 mm or less of snow"],a:2,exp:"1 = ice (POOR); 0 = wet ice and similar (LESS THAN POOR)."},
 {q:"How long is a SNOWTAM valid?",opts:["1 hour","8 hours","24 hours","1 week"],a:1,exp:"Eight hours under GRF."},
 {q:"How should a winter alternate be chosen?",opts:["The nearest to the destination","One under a different weather system","One with a short runway","Any will do"],a:1,exp:"Airports in the same snowstorm can close at the same time."}],
-next:""});
+next:"8-1 Diversions and turn-backs"});
 })(window.ARTS);

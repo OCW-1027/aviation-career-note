@@ -57,6 +57,6 @@ parts:{ja:["航空機を知る","空と時間","空港と空のルール","航�
 "19_운항관리실무":{code:"DSP",color:"#6B4FA0",
 name:{ja:"運航管理の実務",ko:"운항관리 실무",en:"Flight Dispatch Operations"},
 lead:{ja:"運航管理者の仕事を、現行の法令で確かめながら体系的に。運航管理のしくみ、韓国と日本の資格制度、OCCと支店の役割、航空法規から始め、気象・NOTAM・飛行計画書・燃料へと進む。",ko:"운항관리사의 일을 현행 법령으로 확인하며 체계적으로. 운항관리의 구조, 한국과 일본의 자격 제도, OCC와 지점의 역할, 항공법규에서 시작해 기상·NOTAM·비행계획서·연료로 나아갑니다.",en:"The dispatcher’s job, checked against current law: how operational control works, the Korean and Japanese qualification systems, the OCC and stations, and aviation law, moving on to weather, NOTAMs, flight plans and fuel."},
-parts:{ja:["運航管理とは","航空法規","気象","NOTAM","飛行計画書","燃料","乗務割と勤務時間","ランプと冬の運航"],ko:["운항관리란","항공법규","기상","NOTAM","비행계획서","연료","편조와 근무시간","램프와 겨울철 운항"],en:["What Is Flight Dispatch?","Aviation Law","Weather","NOTAM","Flight Plans","Fuel","Crew Scheduling","Ramp and Winter Operations"]}}
+parts:{ja:["運航管理とは","航空法規","気象","NOTAM","飛行計画書","燃料","乗務割と勤務時間","ランプと冬の運航","イレギュラーな運航"],ko:["운항관리란","항공법규","기상","NOTAM","비행계획서","연료","편조와 근무시간","램프와 겨울철 운항","비정상 운항"],en:["What Is Flight Dispatch?","Aviation Law","Weather","NOTAM","Flight Plans","Fuel","Crew Scheduling","Ramp and Winter Operations","Irregular Operations"]}}
 };
 window.HUB_SITE={ja:"航空キャリアノート",ko:"항공 커리어 노트",en:"Aviation Career Note"};

@@ -1,6 +1,6 @@
 /* 共通設定（article.js より前に読み込む）— 運航管理の実務 */
 (function(){
-var PARTS={ja:['Part 0 運航管理とは','Part 1 航空法規','Part 2 気象','Part 3 NOTAM','Part 4 飛行計画書','Part 5 燃料','Part 6 乗務割と勤務時間','Part 7 ランプと冬の運航'],ko:['Part 0 운항관리란','Part 1 항공법규','Part 2 기상','Part 3 NOTAM','Part 4 비행계획서','Part 5 연료','Part 6 편조와 근무시간','Part 7 램프와 겨울철 운항'],en:['Part 0 What Is Flight Dispatch?','Part 1 Aviation Law','Part 2 Weather','Part 3 NOTAM','Part 4 Flight Plans','Part 5 Fuel','Part 6 Crew Scheduling','Part 7 Ramp and Winter Operations']};
+var PARTS={ja:['Part 0 運航管理とは','Part 1 航空法規','Part 2 気象','Part 3 NOTAM','Part 4 飛行計画書','Part 5 燃料','Part 6 乗務割と勤務時間','Part 7 ランプと冬の運航','Part 8 イレギュラーな運航'],ko:['Part 0 운항관리란','Part 1 항공법규','Part 2 기상','Part 3 NOTAM','Part 4 비행계획서','Part 5 연료','Part 6 편조와 근무시간','Part 7 램프와 겨울철 운항','Part 8 비정상 운항'],en:['Part 0 What Is Flight Dispatch?','Part 1 Aviation Law','Part 2 Weather','Part 3 NOTAM','Part 4 Flight Plans','Part 5 Fuel','Part 6 Crew Scheduling','Part 7 Ramp and Winter Operations','Part 8 Irregular Operations']};
 var S={ja:'運航管理の実務',ko:'운항관리 실무',en:'Flight Dispatch Operations'};
 var DEF={ja:{voice:'現場のひと言'},ko:{voice:'현장 한마디'},en:{voice:'Voice from the Field'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];
