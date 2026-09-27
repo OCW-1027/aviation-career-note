@@ -18,7 +18,8 @@ quiz:{ja:'\u78ba\u8a8d\u30af\u30a4\u30ba',ko:'\ud655\uc778 \ud034\uc988',en:'Qui
 ann:{ja:'\u7a7a\u6e2f\u30a2\u30ca\u30a6\u30f3\u30b9\u6587\u4f8b\u96c6',ko:'\uacf5\ud56d \uc548\ub0b4\ubc29\uc1a1 \uc608\ubb38\uc9d1',en:'Airport Announcements'},
 forms:{ja:'\u7a7a\u6e2f\u3067\u4f7f\u3046\u66f8\u985e\u3068\u69d8\u5f0f',ko:'\uacf5\ud56d \uc11c\ub958\uc640 \uc591\uc2dd',en:'Airport Forms'},
 faq:{ja:'\u3088\u304f\u3042\u308b\u8cea\u554f',ko:'\uc790\uc8fc \ubb3b\ub294 \uc9c8\ubb38',en:'FAQ'},
-route:{ja:'\u904b\u822a\u306e\u7dcf\u5408\u7df4\u7fd2',ko:'\uc6b4\ud56d \uc885\ud569 \uc5f0\uc2b5',en:'Flight Operations Trainer'}};
+route:{ja:'\u904b\u822a\u306e\u7dcf\u5408\u7df4\u7fd2',ko:'\uc6b4\ud56d \uc885\ud569 \uc5f0\uc2b5',en:'Flight Operations Trainer'},
+rm:{ja:'\u53ce\u76ca\u7ba1\u7406\u306e\u7df4\u7fd2',ko:'\uc218\uc775\uad00\ub9ac \uc5f0\uc2b5',en:'Revenue Management Practice'}};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=
 '.shbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:2px 0 14px}'+
@@ -37,7 +38,7 @@ var css=
 'html.sh .wrap>header #kick,html.sh .wrap>header .wave{display:none!important}'+
 'html.sh .wrap>header h1,html.sh .shhero h1{color:#22303F!important;font-size:clamp(23px,4vw,34px)!important;line-height:1.3!important;margin:0 0 10px!important}'+
 'html.sh .wrap>header p,html.sh .shhero p{color:#4A5A6C!important;margin:0!important}'+
-'html.sh-load .wrap>header{display:none!important}html.sh-load .shhero{margin-bottom:12px}'+
+'html.sh-load .wrap>header,html.sh-rm .wrap>header{display:none!important}html.sh-load .shhero,html.sh-rm .shhero{margin-bottom:12px}'+
 'html.sh select,html.sh input{max-width:100%;min-width:0;box-sizing:border-box}html.sh select{text-overflow:ellipsis}html.sh label:has(>select){max-width:100%;min-width:0}'+
 '@media (max-width:600px){.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+
 'html.sh .shbar .langs button{padding:6px 9px!important;font-size:12.5px!important;min-width:0}'+
@@ -51,7 +52,7 @@ function init(){var wrap=document.querySelector('.wrap')||document.body;if(docum
   '<div class="shcrumb" role="navigation" aria-label="breadcrumb"><a class="shlib" href="'+HOME+'#tools"></a><span aria-hidden="true">\u203a</span><b class="shcur"></b></div><span class="shlang"></span>';
  wrap.insertBefore(bar,wrap.firstChild);
  var L=document.getElementById('lang')||document.getElementById('langs');if(L)bar.querySelector('.shlang').appendChild(L);
- if(page==='load'){var t=document.getElementById('ttl'),d=document.getElementById('lead');if(t){var h=document.createElement('div');h.className='shhero';t.parentNode.insertBefore(h,t);h.appendChild(t);if(d)h.appendChild(d)}}
+ if(page==='load'||page==='rm'){var t=document.getElementById('ttl'),d=document.getElementById('lead');if(t){var h=document.createElement('div');h.className='shhero';t.parentNode.insertBefore(h,t);h.appendChild(t);if(d)h.appendChild(d)}}
  label();new MutationObserver(label).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})}
 function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.querySelector('.shsite').textContent=SITE[l];b.querySelector('.shlib').textContent=LIB[l];b.querySelector('.shcur').textContent=(NAME[page]||{})[l]||document.title;b.querySelector('.shbrand').href=HOME+'?lang='+l;b.querySelector('.shlib').href=HOME+'?lang='+l+'#tools'}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();

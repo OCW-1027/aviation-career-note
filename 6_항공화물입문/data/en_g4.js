@@ -183,5 +183,5 @@ terms:[["Licensed Customs Specialist","通関士","관세사"],["Incoterms","イ
 quiz:[{q:"Which licensed qualification covers customs declarations?",opts:["Customs specialist","Dispatcher","Cabin crew","Engineer"],a:0,exp:"It is required for customs brokerage work."},
 {q:"What counts for more in cargo?",opts:["Accuracy in documents, data and rules","Smiling alone","The uniform","A loud voice"],a:0,exp:"Your customers are companies."},
 {q:"What characterises the cargo industry?",opts:["Experience carries between employers","You cannot move","No qualifications needed","No English needed"],a:0,exp:"The companies are closely connected."}],
-next:""});
+next:"6-1 The export timeline and how much cargo fits"});
 })(window.ARTS);
