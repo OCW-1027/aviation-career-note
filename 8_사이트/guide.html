@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>学び方ガイド</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 6px;padding:0;list-style:none;counter-reset:s}
+.steps li{background:#fff;border:1.5px solid #d8e4ef;border-radius:14px;padding:12px 14px;counter-increment:s}
+.steps li b{display:block;font-size:15px;margin-bottom:4px}
+.steps li b::before{content:counter(s);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#2F8FE0;color:#fff;font-size:12px;margin-right:6px}
+.steps li span{font-size:13.5px;color:#4a5a6a}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.jump a{border:1.5px solid #2F8FE0;border-radius:999px;padding:6px 12px;font-size:14px;text-decoration:none;color:#1c6fbf;font-weight:700}
+.path{background:#fff;border:1.5px solid #d8e4ef;border-radius:18px;padding:18px 18px 12px;margin:18px 0;scroll-margin-top:80px}
+.path h3{margin:0 0 4px;font-size:19px}
+.path .who{margin:0 0 10px;color:#4a5a6a;font-size:14.5px}
+.path ol{margin:0 0 10px;padding-left:1.3em}
+.path ol li{margin:7px 0;line-height:1.6}
+.path ol li a{font-weight:700}
+.path ol li small{display:block;color:#5d6b79;font-size:13.5px}
+.path .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:#4a5a6a;border-top:1px dashed #d8e4ef;padding-top:9px}
+.path .meta a{white-space:nowrap}
+.tips{margin:6px 0 0;padding-left:1.2em}
+@media(max-width:640px){.steps{grid-template-columns:1fr 1fr}.path{padding:14px 14px 10px}}
+.tips li{margin:6px 0;line-height:1.65}
+</style>
+</head>
+<body data-page="guide">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap doc">
+<section class="page-hero"><h1 id="h1"></h1><p id="hp"></p></section>
+<div id="body"></div>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+<script>
+/* 学び方ガイド（2026.09 新規）— 目的別の学習ルートと、レッスン・クイズ・用語集・練習ページの使い方
+   講座の数・パートの番号は 2026年9月時点。講座を追加したら、ここの経路も見直す */
+var C={GND:['../1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html',69,'旅客ハンドリングの実務','항공 여객운송 실무','Airline Passenger Operations'],
+STN:['../16_스테이션운영실무/00_シリーズ全体_ステーション運営.html',16,'ステーション運営の実務','스테이션 운영 실무','Station Operations in Practice'],
+DSP:['../19_운항관리실무/00_シリーズ全体_運航管理の実務.html',20,'運航管理の実務','운항관리 실무','Flight Dispatch Operations'],
+BAS:['../18_항공기초지식/00_シリーズ全体_航空の基礎知識.html',14,'航空の基礎知識','항공 기초 지식','Aviation Fundamentals'],
+APT:['../17_일본주요공항가이드/00_シリーズ全体_日本の主要空港.html',9,'日本の主要空港ガイド','일본 주요 공항 가이드','Guide to Japan’s Major Airports'],
+OPN:['../2_일본취항지점개설가이드/00_シリーズ全体_日本就航支店開設ガイド.html',35,'日本就航・支店開設ガイド','일본 취항·지점 개설 가이드','Launching Flights to Japan'],
+IRR:['../3_현장사례/00_シリーズ全体_現場の事例.html',12,'現場の事例から学ぶ','현장 사례로 배우기','Lessons from the Field'],
+INT:['../5_면접대비가이드/00_シリーズ全体_面接対策.html',12,'航空・空港の面接対策','항공·공항 면접 대비','Interview Prep'],
+CGO:['../6_항공화물입문/00_シリーズ全体_航空貨物入門.html',23,'航空貨物','항공화물','Air Cargo'],
+SLS:['../13_항공영업입문/00_シリーズ全体_航空営業入門.html',19,'航空営業','항공 영업','Airline Sales'],
+EXP:['../11_주재원일본가이드/00_シリーズ全体_駐在員ガイド.html',12,'駐在員のための日本ガイド','주재원 일본 가이드','Expat Guide to Japan'],
+ADM:['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',16,'日本支店 人事・財務の実務','일본 지점 인사·재무 실무','HR and Finance in Japan'],
+HOV:['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',9,'管理者の引き継ぎ・着任ガイド','관리자 인수인계·부임 가이드','Guide for Managers']};
+var TL={OPS:['../18_항공기초지식/航空路図の練習.html','運航の総合練習','운항 종합 연습','Flight Operations Trainer'],
+LOAD:['../1_지상직여객운송입문/搭載計算の練習.html','搭載計算の練習','탑재 계산 연습','Load Control Practice'],
+CODE:['../航空コード辞典.html','航空コード辞典','항공 코드 사전','Aviation Code Finder'],
+DLY:['../遅延コード一覧_IATA.html','IATA遅延コード一覧','IATA 지연 코드 목록','IATA Delay Codes'],
+GLO:['../用語集_航空用語.html','用語集','용어집','Glossary'],
+QZ:['../確認クイズ_航空の仕事.html','確認クイズ','확인 퀴즈','Quick Quiz'],
+ANN:['../4_공항안내방송예문집/空港アナウンス文例集.html','空港アナウンス文例集','공항 안내방송 예문집','Announcement Phrasebook'],
+FRM:['../10_공항양식해설집/空港で使う書類と様式.html','空港で使う書類と様式','공항에서 쓰는 서류와 양식','Airport Forms Explained'],
+FAQ:['../14_승객FAQ/よくある質問_空港と飛行機.html','よくある質問','자주 묻는 질문','Passenger FAQ']};
+/* 経路：[id, 手順[[講座, {ja,ko,en}の範囲の説明]], 道具, 目安のレッスン数] */
+var P=[
+['p1',[['BAS',['Part 0〜1（航空機・空と時間）','Part 0~1(항공기·하늘과 시간)','Parts 0–1 (aircraft, sky and time)']],['GND',['Part 0〜5 を順番に（カウンター→ゲート→ランプ→手荷物→イレギュラー）','Part 0~5 순서대로(카운터→게이트→램프→수하물→비정상)','Parts 0–5 in order (counter → gate → ramp → baggage → irregular operations)']],['APT',['自分の空港の回を先に','자기 공항 편부터','Start with your own airport']],['INT',['就職・転職の前に','취업·이직 전에','Before you apply']]],['ANN','FRM','FAQ','QZ'],60],
+['p2',[['GND',['Part 5〜9（イレギュラー・支店運営・安全と保安・客室との連携）','Part 5~9(비정상·지점 운영·안전과 보안·객실과의 연결)','Parts 5–9 (irregular operations, station management, safety and security, cabin)']],['STN',['全部を順番に','전부 순서대로','All, in order']],['IRR',['判断の練習として','판단 연습으로','As judgement practice']],['HOV',['役職が変わる前後に','직책이 바뀌기 전후에','Around a change of role']]],['LOAD','DLY','QZ'],70],
+['p3',[['BAS',['Part 1〜2（空と時間・TAF、空港と空のルール・管制・航空路）','Part 1~2(하늘과 시간·TAF, 공항과 하늘의 규칙·관제·항로)','Parts 1–2 (time and TAF, airports and rules of the air, ATC and airways)']],['DSP',['Part 0 から順番に（法規→気象→NOTAM→飛行計画書→燃料→乗務割）','Part 0부터 순서대로(법규→기상→NOTAM→비행계획서→연료→편조)','From Part 0 in order (law → weather → NOTAM → flight plans → fuel → crew scheduling)']],['GND',['Part 3（ロードシート・LIR）','Part 3(로드시트·LIR)','Part 3 (load sheet and LIR)']]],['OPS','LOAD','CODE','GLO'],40],
+['p4',[['BAS',['Part 0（航空機を知る）','Part 0(항공기를 알다)','Part 0 (knowing the aircraft)']],['CGO',['Part 0 から順番に','Part 0부터 순서대로','From Part 0 in order']],['GND',['3-7・3-8（ロードシート・LIRと貨物室）','3-7·3-8(로드시트·LIR과 화물칸)','3-7 and 3-8 (load sheet, LIR and holds)']],['OPN',['Part 4（システムとCIQ）','Part 4(시스템과 CIQ)','Part 4 (systems and CIQ)']]],['LOAD','CODE','GLO'],35],
+['p5',[['BAS',['Part 2（スロット・空の自由・アライアンスとLCC）','Part 2(슬롯·하늘의 자유·얼라이언스와 LCC)','Part 2 (slots, freedoms of the air, alliances and LCCs)']],['SLS',['全部を順番に','전부 순서대로','All, in order']],['APT',['就航している空港の回','취항 중인 공항 편','The airports you serve']]],['CODE','GLO','QZ'],30],
+['p6',[['OPN',['全部を順番に（全体像→許認可→拠点→空港の契約→システム→保安→初便→定着）','전부 순서대로(전체→인허가→거점→공항 계약→시스템→보안→첫 편→정착)','All, in order (overview → licences → entity → airport contracts → systems → security → first flight → stable operation)']],['ADM',['支店の雇用・給与・税務・決算','지점의 고용·급여·세무·결산','Employment, payroll, tax and closing']],['STN',['ハンドリング会社の管理','조업사 관리','Managing the handler']],['HOV',['着任・引き継ぎ','부임·인계','Taking over']],['EXP',['日本に赴任する人','일본에 부임하는 사람','If you are relocating to Japan']]],['FRM','DLY','GLO'],90]];
+var T={ja:{h1:'学び方ガイド',hp:'このサイトの講座は、どこからでも読めます。目的がはっきりしているなら、下の「目的別のルート」の順に進むと、必要な知識が抜けなく身につきます。',
+h_basic:'基本の進め方',basic:[['全体を見る','講座の目次でPartの流れをつかむ'],['レッスンを読む','1回10〜15分。表と図、最後の「ポイント」を中心に'],['クイズで確かめる','レッスンの最後の確認クイズ。まとめて解くなら確認クイズのページ'],['用語を覚える','用語集で日本語・韓国語・英語をあわせて確認'],['手を動かす','搭載計算・運航の総合練習などの練習ページ'],['自分の現場で確かめる','会社のマニュアル・最新の法令と照らし合わせる']],
+h_paths:'目的別のルート',jump:'目的を選ぶ',
+names:{p1:['空港の地上職を目指す人・入社1年目','チェックインやゲートの仕事を、全体のしくみから順に身につけたい人'],p2:['REP（運送総括）・マネージャーを目指す人','便全体を見て判断し、ハンドリング会社と支店を動かす立場を目指す人'],p3:['運航管理者（ディスパッチャー）を目指す人','法規・気象・飛行計画・燃料を、韓国と日本の基準で学びたい人'],p4:['航空貨物の仕事をする人・目指す人','貨物の流れ・書類・倉庫・特殊な貨物・搭載をつなげて理解したい人'],p5:['航空会社の営業・旅行会社の人','市場・販売チャネル・運賃・旅行会社との関係・計画を学びたい人'],p6:['外国の航空会社の日本支店を立ち上げる人・支店長','就航の許認可から支店の運営・人事・財務・引き継ぎまで、一通り押さえたい人']},
+tools:'あわせて使う資料・ツール',time:'目安：約{n}レッスン（平日に1日1レッスンで約{w}週間）',
+h_tips:'学ぶときのコツ',tips:['韓国と日本を比べる表は、まず「同じところ」を見てから「違うところ」を読むと覚えやすくなります。','言語を切り替えて同じレッスンを読むと、現場で使う3か国語の用語が自然に身につきます。','「★」の付いた項目は、法令の改正や空港の運用で変わりやすいところです。仕事で使う前に、必ず最新の情報を確かめてください。','現場で起きたこと（遅延・イレギュラー・監査など）は、あとで関係するレッスンを読み直すと、次に同じ場面で迷わなくなります。','このサイトは学ぶための資料です。実際の業務は、所属する会社のマニュアルと当局の最新の規定に従ってください。'],
+note:'※ 講座の数とPartの番号は2026年9月時点のものです。航空貨物・航空営業の講座は、実務の内容を追加していく予定です。'},
+ko:{h1:'학습 가이드',hp:'이 사이트의 강좌는 어디서부터 읽어도 됩니다. 목표가 분명하다면 아래 ‘목표별 학습 경로’ 순서대로 진행하면 필요한 지식을 빠짐없이 익힐 수 있습니다.',
+h_basic:'기본 학습 방법',basic:[['전체 보기','강좌 목차로 Part 흐름 파악'],['레슨 읽기','1회 10~15분. 표와 그림, 마지막 ‘포인트’ 중심으로'],['퀴즈로 확인','레슨 끝의 확인 퀴즈. 모아서 풀려면 확인 퀴즈 페이지'],['용어 익히기','용어집에서 일본어·한국어·영어를 함께 확인'],['직접 해 보기','탑재 계산·운항 종합 연습 등 연습 페이지'],['내 현장에서 확인','회사 매뉴얼·최신 법령과 대조']],
+h_paths:'목표별 학습 경로',jump:'목표 선택',
+names:{p1:['공항 지상직 지망생·입사 1년 차','체크인·게이트 업무를 전체 구조부터 차례로 익히고 싶은 사람'],p2:['운송 총괄·매니저 지망','편 전체를 보고 판단하며 조업사와 지점을 움직이는 자리를 목표로 하는 사람'],p3:['운항관리사 지망','법규·기상·비행계획·연료를 한국과 일본 기준으로 배우고 싶은 사람'],p4:['항공화물 담당·지망','화물 흐름·서류·창고·특수 화물·탑재를 이어서 이해하고 싶은 사람'],p5:['항공사 영업·여행사','시장·판매 채널·운임·여행사 관계·계획을 배우고 싶은 사람'],p6:['외국 항공사 일본 지점 개설 담당·지점장','취항 인허가부터 지점 운영·인사·재무·인계까지 한 번에 짚고 싶은 사람']},
+tools:'함께 쓰는 자료·도구',time:'기준: 약 {n}개 레슨(평일 하루 1레슨이면 약 {w}주)',
+h_tips:'공부할 때의 팁',tips:['한국과 일본을 비교하는 표는 먼저 ‘같은 점’을 보고 ‘다른 점’을 읽으면 기억하기 쉽습니다.','언어를 바꿔 같은 레슨을 읽으면 현장에서 쓰는 3개 언어 용어가 자연스럽게 익혀집니다.','‘★’ 표시 항목은 법령 개정이나 공항 운용으로 바뀌기 쉬운 부분입니다. 업무에 쓰기 전에 반드시 최신 정보를 확인하세요.','현장에서 겪은 일(지연·비정상·감사 등)은 나중에 관련 레슨을 다시 읽으면 다음에 같은 상황에서 헤매지 않게 됩니다.','이 사이트는 학습 자료입니다. 실제 업무는 소속 회사의 매뉴얼과 당국의 최신 규정을 따르세요.'],
+note:'※ 강좌 수와 Part 번호는 2026년 9월 기준입니다. 항공화물·항공영업 강좌는 실무 내용을 계속 추가할 예정입니다.'},
+en:{h1:'Study Guide',hp:'You can read the courses on this site in any order. If you have a clear goal, follow the matching route below and you will cover what you need without gaps.',
+h_basic:'How to study',basic:[['See the whole','Use the course contents to follow the flow of the parts'],['Read a lesson','10–15 minutes each; focus on the tables, diagrams and the final point'],['Check with a quiz','The quiz at the end of each lesson, or the Quick Quiz page for a mix'],['Learn the terms','Check Japanese, Korean and English together in the glossary'],['Practise','Use the practice pages such as load control and the operations trainer'],['Check against your workplace','Compare with your company manuals and the latest rules']],
+h_paths:'Routes by goal',jump:'Choose your goal',
+names:{p1:['Aspiring airport ground staff and first-year staff','Learn check-in and gate work step by step, starting from how the airport fits together'],p2:['Aspiring duty managers','Aim for the role that runs the whole flight and directs the handler and the station'],p3:['Aspiring flight dispatchers','Learn law, weather, flight planning and fuel under Korean and Japanese rules'],p4:['Air cargo staff','Connect the cargo flow, documents, warehouse, special cargo and loading'],p5:['Airline sales and travel agency staff','Learn the market, sales channels, fares, agency relations and planning'],p6:['Opening a foreign airline’s station in Japan, and station managers','Cover everything from licences to station operation, HR, finance and handover']},
+tools:'Resources to use alongside',time:'Guide: about {n} lessons (about {w} weeks at one lesson each weekday)',
+h_tips:'Study tips',tips:['In tables comparing Korea and Japan, read what is the same first, then what differs.','Switching language on the same lesson is an easy way to pick up the working terms in all three languages.','Items marked ★ change often with new rules or airport practice; always check the latest information before using them at work.','After something happens at work (a delay, an irregular operation, an audit), rereading the related lesson helps you handle it next time.','This site is for learning. At work, follow your company’s manuals and the authorities’ current rules.'],
+note:'* Course counts and part numbers are as of September 2026. Practical content will be added to the Air Cargo and Airline Sales courses.'}};
+window.render=function(l){var t=T[l],E=window.SITE_ESC,li=l==='ja'?2:l==='ko'?3:4,ti=l==='ja'?1:l==='ko'?2:3;
+ document.getElementById('h1').textContent=t.h1;document.getElementById('hp').textContent=t.hp;
+ var h='<h3>'+E(t.h_basic)+'</h3><ol class="steps">'+t.basic.map(function(b){return '<li><b>'+E(b[0])+'</b><span>'+E(b[1])+'</span></li>'}).join('')+'</ol>';
+ h+='<h3>'+E(t.h_paths)+'</h3><div class="jump" aria-label="'+E(t.jump)+'">'+P.map(function(p){return '<a href="#'+p[0]+'">'+E(t.names[p[0]][0])+'</a>'}).join('')+'</div>';
+ h+=P.map(function(p){var n=t.names[p[0]],idx=l==='ja'?0:l==='ko'?1:2;
+  return '<section class="path" id="'+p[0]+'"><h3>'+E(n[0])+'</h3><p class="who">'+E(n[1])+'</p><ol>'+p[1].map(function(s){var c=C[s[0]];return '<li><a href="'+E(c[0])+'?lang='+l+'">'+E(c[li])+'</a><small>'+E(s[1][idx])+'</small></li>'}).join('')+'</ol>'+
+  '<div class="meta"><span>'+E(t.tools)+(l==='ja'?'：':': ')+'</span>'+p[2].map(function(k){var x=TL[k];return '<a href="'+E(x[0])+'?lang='+l+'">'+E(x[ti])+'</a>'}).join('')+'</div>'+
+  '<div class="meta" style="border-top:0;padding-top:4px">'+E(t.time.replace('{n}',p[3]).replace('{w}',Math.ceil(p[3]/5)))+'</div></section>'}).join('');
+ h+='<h3>'+E(t.h_tips)+'</h3><ul class="tips">'+t.tips.map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul><p class="note" style="margin-top:14px;color:#5d6b79;font-size:13.5px">'+E(t.note)+'</p>';
+ document.getElementById('body').innerHTML=h;document.title=t.h1+' | '+window.SITE_NAME()};
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

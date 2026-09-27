@@ -15,7 +15,7 @@ window.__applyUpdates=apply;
 ['updates.js','lesson_dates.js'].forEach(function(f){if((f==='updates.js'&&window.UPDATES)||(f==='lesson_dates.js'&&window.LESSON_DATES))return;var s=document.createElement('script');s.src=base+f;s.onload=apply;document.head.appendChild(s)});})();
 (function(){
 var H=window.HUBS[window.HUB_ID];H.site=window.HUB_SITE;var A=window.ARTS||{},LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
-var UI={ja:{all:'すべて',n:'レッスン',site:'サイトのトップへ',jp:'',copy:'© 航空キャリアノート'},ko:{all:'전체',n:'레슨',site:'사이트 홈으로',jp:'',copy:'© 항공 커리어 노트'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© Aviation Career Note'}};
+var UI={ja:{all:'すべて',n:'レッスン',site:'サイトのトップへ',jp:'',copy:'© 2026 航空キャリアノート　無断転載・複製禁止'},ko:{all:'전체',n:'레슨',site:'사이트 홈으로',jp:'',copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© 2026 Aviation Career Note. All rights reserved.'}};
 var lang='ja';try{var s=localStorage.getItem('art-lang');if(LANGS.indexOf(s)>=0)lang=s}catch(e){}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function $(i){return document.getElementById(i)}
