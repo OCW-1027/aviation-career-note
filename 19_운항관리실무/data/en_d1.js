@@ -41,10 +41,11 @@ sections:[
 ["Training","Art. 65(3): training for the knowledge and experience needed","Training set in the operations manual (reviewed under Art. 104 approval)"]]}]},
 {h:"Fatigue management",blocks:[{t:"table",cols:["","Korea","Japan"],rows:[
 ["Provision","Aviation Safety Act Art. 56 (fatigue management of crew etc.)","Civil Aeronautics Act Art. 68 and Enforcement Regulations Art. 157-3 (crew scheduling standards)"],
-["Who","Flight crew, cabin crew and dispatchers","Flight crew members"],
+["Who","Flight crew, cabin crew and dispatchers","Flight crew members (dispatchers’ duty time is limited separately in the detailed Operations Manual review rules)"],
 ["Method","Follow prescribed duty limits, or operate an approved fatigue risk management system (FRMS)","Limit flight time at least per 24 hours, calendar month, three calendar months and calendar year, and allocate duty so fatigue does not endanger safety"],
+["Dispatchers’ duty","Covered by prescribed limits or FRMS (hours set in the flight safety regulations; Part 6)","No more than 10 consecutive hours per calendar day unless adequate rest is given; if more than 10 hours are planned, at least a 2-hour break on duty and 10 hours’ rest before the next duty; at least one calendar day off in any seven days (detailed rules, ch. 2, 5-3)"],
 ["Records","Keep records for at least 15 months when managing by prescribed limits","Set in operations manuals and related rules"]]},
-{t:"point",x:"In Korea, dispatchers’ own working hours are subject to fatigue management (Art. 56), an important rule for a job with many night shifts. Specific hour limits are set in the flight safety regulations and covered in Part 6."}]},
+{t:"point",x:"In Korea, dispatchers’ own working hours are subject to fatigue management (Art. 56), and Japan limits dispatchers’ duty time through its detailed rules. This matters in a job with many night shifts. Specific Korean hour limits are covered in Part 6."}]},
 {h:"If rules are broken",blocks:[{t:"check",items:[
 {name:"Sanctions on the operator",x:"Operating without dispatchers, or letting them work without the required training, leads to administrative action or penalties (Korea’s Aviation Safety Act)."},
 {name:"Sanctions on the captain",x:"Departing or changing the flight plan without the dispatcher’s approval makes the captain subject to action."},

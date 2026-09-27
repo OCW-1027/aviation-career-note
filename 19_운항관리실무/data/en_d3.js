@@ -28,6 +28,12 @@ sections:[
 ["Z","General flight rules, trigger NOTAMs, flow control, fireworks, missile and laser activity, and others"],
 ["SNOWTAM","Movement area conditions due to snow, ice or slush (separate serial numbers for each aerodrome; 3-2)"]]},
 {t:"note",x:"* Korean NOTAMs are issued by the NOTAM office of the Air Traffic Management Office (Daegu), which also publishes a monthly checklist of valid NOTAMs. Series differ by country."}]},
+{h:"Japan’s NOTAMs",blocks:[{t:"table",cols:["Item","Content"],rows:[
+["Issued by","The Civil Aviation Bureau’s Aeronautical Information Service Center (at Narita Airport, operating since July 2007), which manages and issues NOTAMs centrally"],
+["FIR","Japan’s flight information region is the Fukuoka FIR (RJJJ); the Q-line FIR is RJJJ and A) gives the aerodrome (e.g. RJAA) or FIR"],
+["Access","AIS Japan (the official site; free registration required)"],
+["Series","Divided differently from Korea; check Japan’s AIP (GEN 3.1) in practice"],
+["Times","UTC (add nine hours for Japan time)"]]}]},
 {h:"How dispatchers check NOTAMs",blocks:[{t:"check",items:[
 {name:"Use the pre-flight information bulletin (PIB)",x:"Check every NOTAM for the departure, destination and alternates and the FIRs on the route."},
 {name:"Overlay times and levels",x:"Compare validity (B, C, D) with the flight’s times, and the limits with the cruising level."},
@@ -56,7 +62,8 @@ sections:[
 {h:"What a SNOWTAM tells you",blocks:[{t:"table",cols:["Section","Main content"],rows:[
 ["Aeroplane performance section","Aerodrome, time of observation, runway, RWYCC for each third, coverage, depth, condition description, width to which codes apply"],
 ["Situational awareness section","Reduced runway length, drifting snow, taxiway and apron conditions, snowbanks and more"]]},
-{t:"point",x:"Practice example: RKSS 11200600 14R 5/3/2 100/100/50 NR/06/04 WET/WET SNOW/SLUSH — runway 14R, codes 5, 3 and 2 by third, coverage, depth (NR = not reported) and condition."}]},
+{t:"point",x:"Practice example: RKSS 11200600 14R 5/3/2 100/100/50 NR/06/04 WET/WET SNOW/SLUSH — runway 14R, codes 5, 3 and 2 by third, coverage, depth (NR = not reported) and condition."},
+{t:"note",x:"* Japan’s detailed Operations Manual review rules (ch. 2, 3-6) require captains who find braking worse than the reported runway condition to report braking action matched to the RWYCC (GOOD = 5 to LESS THAN POOR = 0) to ATC."}]},
 {h:"Work for dispatchers and stations",blocks:[{t:"check",items:[
 {name:"Landing distance",x:"Use the RWYCC with each aircraft’s performance data to check landing and take-off distances and weight limits."},
 {name:"Alternates and fuel",x:"With low codes or a possible closure, also check alternate weather and runway conditions and consider holding fuel."},

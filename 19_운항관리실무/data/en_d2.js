@@ -35,39 +35,44 @@ quiz:[{q:"What does “BKN012” mean in a METAR?",opts:["1–2 oktas at 120 ft"
 {q:"Which layer does not count as a ceiling?",opts:["BKN","OVC","VV","SCT"],a:3,exp:"FEW and SCT do not count."},
 {q:"What does “TEMPO” mean in a TAF?",opts:["Changes and persists from that time","Temporarily","40% probability","Cancelled observation"],a:1,exp:"Temporary fluctuations."}],
 next:"2-2 Departure decisions and alternate aerodrome rules"});
-set("2-2",{title:"Departure Decisions and Alternate Aerodrome Rules",hl:"alternate rules",subtitle:"Decided on the forecast for the estimated time of use (one hour either side of arrival): how many destination alternates, how to choose them, and take-off alternates, from Korea’s Flight Safety Regulations (March 2026 edition)",
-lead:["On days when the weather may turn bad, dispatchers must decide whether a flight may depart, which alternates to plan and how many. National rules set this out in detail.","This lesson works from the original text of Korea’s Flight Safety Regulations for Aeroplanes (MOLIT Notice 2026-154, in force 25 March 2026). Japan applies the same ICAO Annex 6 principles through national standards and airline operations manuals."],
+set("2-2",{title:"Departure Decisions and Alternate Aerodrome Rules",hl:"alternate rules",subtitle:"Decided on the forecast for the estimated time of use (one hour either side of arrival): how many destination alternates, how to choose them, and take-off alternates, comparing Korea’s Flight Safety Regulations (March 2026) with Japan’s detailed Operations Manual review rules (November 2025)",
+lead:["On days when the weather may turn bad, dispatchers must decide whether a flight may depart, which alternates to plan and how many. National rules set this out in detail.","This lesson sets the original texts of Korea’s Flight Safety Regulations for Aeroplanes (MOLIT Notice 2026-154, in force 25 March 2026) side by side with Japan’s detailed rules for reviewing Operations Manuals (Civil Aviation Bureau, last amended 28 November 2025; aeroplanes over 5.7 t). Both build on ICAO Annex 6."],
 sections:[
 {h:"The decision window: one hour either side of arrival",blocks:[{t:"fig",id:"dsp_window",cap:"Moving diagram: look at the forecast groups that fall within one hour either side of the 10:00 ETA (orange). The base forecast is good, but BECMG brings fog with a 600 ft ceiling and TEMPO temporarily brings 600 m visibility and 200 ft vertical visibility. Decide on the worst values within the window."},
-{t:"point",x:"The rules judge destination and alternate weather at the “estimated time of use”, taken as one hour before to one hour after arrival (note to 8.1.9.9; ICAO Doc 9976)."}]},
-{h:"May the flight depart?",blocks:[{t:"table",cols:["Condition","Rule (8.1.9.9)"],rows:[
-["Departure aerodrome","Weather at or above the minima"],
-["Destination and alternates","Unless reports or forecasts for the time of use are at or above the minima, the flight must not continue beyond take-off (or the in-flight re-planning point)"],
-["Safety margin","Add ceiling and visibility increments to the company minima for alternates"]]}]},
+{t:"point",x:"Korea judges destination and alternate weather at the “estimated time of use”, taken as one hour before to one hour after arrival (note to 8.1.9.9; ICAO Doc 9976). Japan’s detailed rules also use a window of at least one hour either side of the ETA when deciding whether a destination alternate may be omitted."}]},
+{h:"May the flight depart?",blocks:[{t:"table",cols:["Condition","Korea (FSR 8.1.9.9)","Japan (detailed rules, ch. 2, 2-5)"],rows:[
+["Departure aerodrome","Weather at or above the minima","At or above take-off minima; if no departure alternate is chosen, departure landing minima must also be met"],
+["Destination","Unless reports or forecasts for the time of use are at or above the minima, the flight must not continue beyond take-off (or the re-planning point)","Do not dispatch unless the destination is forecast at or above landing minima at the ETA"],
+["Alternates","As above, with ceiling and visibility increments added to company minima","Forecast at or above the “minima as an alternate” at the ETA there (same intent as Enforcement Regulations Art. 204)"],
+["In flight","—","If destination or alternate is forecast below minima, change or add a destination or alternate considering position, remaining fuel and weather"]]}]},
 {h:"How many destination alternates",blocks:[{t:"rows",items:[
 {name:"Rule: at least one",x:"An IFR flight plan must name at least one destination alternate (8.1.9.10 a)."},
 {name:"Exceptions",x:"When approach and landing in VMC are expected at the time of use and separate runways are available (at least one with an instrument approach), or for an isolated aerodrome with a point of no return."},
-{name:"At least two",x:"Air operator certificate holders must select at least two destination alternates when destination weather at the time of use is below company minima or no destination weather information is available (8.1.9.10 b)."}]}]},
+{name:"At least two (Korea)",x:"Air operator certificate holders must select at least two destination alternates when destination weather at the time of use is below company minima or no destination weather information is available (8.1.9.10 b)."},
+{name:"Japan: rule and exceptions",x:"At least one alternate is named in the flight plan and the ATS flight plan. It may be omitted when the flight is six hours or less and the destination is forecast, for at least one hour either side of the ETA, to have a ceiling of 600 m or more and visibility of 5,000 m or more, or on international flights to an isolated destination with no suitable alternate (detailed rules, ch. 2, 2-5)."}]}]},
 {h:"Choosing an alternate",blocks:[{t:"table",cols:["Case","Criterion (8.1.9.11)"],rows:[
 ["Alternate minima published","Forecast at ETA at or above the minima at take-off (or, for operators, the re-planning point)"],
 ["Not published: precision approach","Ceiling 600 ft (180 m) and visibility 3 km or better"],
 ["Not published: non-precision approach","Ceiling 800 ft (240 m) and visibility 5 km or better"],
-["Operator provision","Alternate minima approved in the operations specifications may be used"]]}]},
+["Operator provision","Alternate minima approved in the operations specifications may be used"],
+["Japan","The actual “minima as an alternate” are set by national standards under Enforcement Regulations Art. 204 and each airline’s operations manual (the detailed rules give no figures)"]]}]},
 {h:"Take-off alternates",blocks:[{t:"table",cols:["","Rule (8.4.4.2)"],rows:[
 ["When required","Departure weather below the aircraft’s landing minima, or return to the departure aerodrome impossible for other reasons"],
 ["Distance: twin-engine","Within one hour at one-engine-inoperative cruise speed (still air, ISA, actual take-off weight)"],
 ["Distance: three or more engines","Within two hours at all-engines cruise speed"],
 ["Distance: EDTO-approved","Within the approved maximum diversion time"],
-["Weather","At or above aerodrome operating minima for the expected time of use"]]},
+["Weather","At or above aerodrome operating minima for the expected time of use"],
+["Japan (detailed rules, ch. 2, 2-5)","When departure weather is below landing minima or return is impossible: within one hour (twins) or two hours (three or more engines) at one-engine-inoperative cruise speed; not needed if the destination or its alternate lies within that range"]]},
 {t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&m=wx",x:"Practice page “Flight Operations Trainer ⑤ Weather & NOTAM”: decide from a TAF and ETA (simplified)"}]}],
 voice:"",
 terms:[["Estimated Time of Use","使用予定時間","사용예정시간"],["Destination Alternate Aerodrome","目的地代替飛行場","목적지 교체비행장"],["Take-off Alternate Aerodrome","離陸代替飛行場","이륙 교체비행장"],["Point of No Return (PNR)","引き返し不能点","귀환불능지점"],["Operations Specifications (OpSpecs)","運営基準","운영기준"]],
 quiz:[{q:"How is the “estimated time of use” taken?",opts:["30 minutes either side of arrival","One hour either side of arrival","From departure to arrival","From three hours before arrival"],a:1,exp:"Note to 8.1.9.9."},
 {q:"How many destination alternates must an operator select when no destination weather is available?",opts:["None","One","At least two","Three or more"],a:2,exp:"8.1.9.10 b."},
-{q:"Where alternate minima are not published, what applies to a precision-approach aerodrome?",opts:["400 ft and 1.5 km","600 ft and 3 km","800 ft and 5 km","1,000 ft and 8 km"],a:1,exp:"8.1.9.11 b 1)."}],
+{q:"Where alternate minima are not published, what applies to a precision-approach aerodrome in Korea?",opts:["400 ft and 1.5 km","600 ft and 3 km","800 ft and 5 km","1,000 ft and 8 km"],a:1,exp:"8.1.9.11 b 1)."},
+{q:"Under Japan’s detailed rules, when may a destination alternate be omitted?",opts:["Flight of six hours or less with at least 600 m ceiling and 5,000 m visibility forecast for an hour either side of the ETA","Any domestic flight","Whenever the captain wishes","When extra fuel is carried"],a:0,exp:"Detailed rules, ch. 2, 2-5; also isolated destinations on international flights."}],
 next:"2-3 Aerodrome operating minima and hazardous weather"});
 set("2-3",{title:"Aerodrome Operating Minima and Hazardous Weather",hl:"operating minima",subtitle:"The aerodrome operating minima airlines set for each airport (with an annex on international standards added in March 2026), and how to think about thunderstorms, turbulence, wind shear and volcanic ash",
-lead:["Even at the same airport, the lowest weather in which an aircraft may land depends on its equipment, the crew’s qualifications and the runway facilities. Airlines set aerodrome operating minima for each airport and have their method approved by the state.","This lesson confirms the rules in 8.1.11.6 of Korea’s Flight Safety Regulations and sets out how dispatchers approach hazardous weather."],
+lead:["Even at the same airport, the lowest weather in which an aircraft may land depends on its equipment, the crew’s qualifications and the runway facilities. Airlines set aerodrome operating minima for each airport and have their method approved by the state.","This lesson confirms the rules in 8.1.11.6 of Korea’s Flight Safety Regulations and Japan’s detailed Operations Manual review rules (November 2025), and sets out how dispatchers approach hazardous weather."],
 sections:[
 {h:"What aerodrome operating minima are",blocks:[{t:"check",items:[
 {name:"Set for each airport",x:"Air operator certificate holders set operating minima for each aerodrome they use and have the method approved by the Minister or a regional aviation administration (8.1.11.6 a)."},
@@ -85,6 +90,14 @@ sections:[
 ["9","Conditions set in the operations specifications"],
 ["10","Minima published by the state where the aerodrome is"]]},
 {t:"note",x:"* Operational credit (lower minima based on advanced aircraft capabilities) requires approval and is stated in the operations specifications (8.1.11.6 e)."}]},
+{h:"Japan’s rules (detailed rules, ch. 2, section 8)",blocks:[{t:"table",cols:["Item","Content"],rows:[
+["Scope","Take-off and landing minima for every aerodrome expected to be used, alternates included"],
+["How they are set","Suited to aircraft type and flight manual limits, equipment, low-visibility approvals, aerodrome characteristics, navaid and weather-observation facilities, and pilot knowledge and experience"],
+["Lower limit","Not below values set by the state or aerodrome operator, or derived from published OCA/H under ICAO manuals; conditions for using converted meteorological visibility (CMV) are stated"],
+["Phases","Application set for 1 flight planning, 2 take-off, 3 approach and landing"],
+["Landing distance","Weight such that the aircraft can stop within 60% of the available runway at destination and alternates (ch. 2, 2-5; extra margin on wet or snow-covered runways)"],
+["Special weather","No flight into forecast icing unless the flight manual allows; measures set for icing, thunderstorms, turbulence, low-level wind shear and volcanic activity"]]},
+{t:"note",x:"* As in Korea, minima are never below the local state’s values and are set by each airline and reviewed by the authority. Japan’s rules explicitly require application by phase: planning, take-off and approach."}]},
 {h:"Approaching hazardous weather",blocks:[{t:"rows",items:[
 {name:"Thunderstorms (CB)",x:"They bring severe turbulence, hail, lightning and wind shear, so the principle is to avoid them. When they affect departure or arrival times, consider adjusting the ETA, the alternate and extra fuel."},
 {name:"Turbulence",x:"Near jet streams, clear air turbulence (CAT) occurs even in clear skies. Use charts and pilot reports to choose levels and routes, and share information with cabin and ground."},
