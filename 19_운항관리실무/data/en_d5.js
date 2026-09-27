@@ -88,5 +88,5 @@ terms:[["MINIMUM FUEL","最低燃料の通報","최소연료 통보"],["MAYDAY F
 quiz:[{q:"What does a MINIMUM FUEL call mean?",opts:["An immediate emergency landing is needed","No further delay can be accepted (not an emergency)","Tanks are full","Diverting to the alternate"],a:1,exp:"It is not an emergency; priority requires MAYDAY FUEL."},
 {q:"Under Korean rules, when is MAYDAY FUEL declared?",opts:["When delay exceeds 10 minutes","When landing even at the nearest aerodrome is expected below final reserve","When contingency starts being used","When the alternate’s weather is poor"],a:1,exp:"FSR 8.1.9.13."},
 {q:"At a specific gravity of 0.8, about how many litres is 4,000 kg?",opts:["3,200 litres","4,000 litres","5,000 litres","8,000 litres"],a:2,exp:"4,000 ÷ 0.8 = 5,000 litres."}],
-next:""});
+next:"Part 6 Crew Scheduling — 6-1 Flight time and flight duty period"});
 })(window.ARTS);

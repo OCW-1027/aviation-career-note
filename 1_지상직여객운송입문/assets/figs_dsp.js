@@ -114,6 +114,25 @@ dsp_fuel:function(){var C={TAXI:'#9AA7B5',TRIP:'#2F8FE0',CONT:'#E08A2F',ALTN:'#1
    x+=w;tot+=g[1]});
   s+='<text x="'+(x+10)+'" y="'+(y+28)+'" font-size="15" font-weight="900" fill="'+D+'" font-family="Arial" opacity="0">= '+tot+'<animate attributeName="opacity" values="0;1;1" keyTimes="0;0.9;1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>'});
  s+=tx(450,452,'SAME AMOUNTS, DIFFERENT NAMES: KOREA SPLITS “FINAL RESERVE” OUT; JAPAN STATES THE HOLDING TIME DIRECTLY',12.5,O,800);
+ return s+'</svg>'},
+/* 乗務割の例：金浦⇄済州（韓国・別表18）と羽田⇄福岡（日本・「航空機乗組員の乗務割について」2024年版）、2名編成・4区間。練習用の時刻 */
+dsp_fdp:function(){var X0=70,PX=56,H0=5,DUR=14,
+ rows=[{c:'KOREA · GIMPO⇄JEJU',col:'#1C6FBF',rep:7,b:[[8,9+5/60,'GMP-CJU'],[9.75,10+50/60,'CJU-GMP'],[11.5,12+35/60,'GMP-CJU'],[13.25,14+20/60,'CJU-GMP']],lim:13,blim:8,rest:'REST ≥ 10 h (FDP < 8 h)'},
+  {c:'JAPAN · HANEDA⇄FUKUOKA',col:'#C2344F',rep:6,b:[[7,9,'HND-FUK'],[10,11+35/60,'FUK-HND'],[12.5,14.5,'HND-FUK'],[15.5,17+5/60,'FUK-HND']],lim:12,blim:9,rest:'REST ≥ 10 h (+2 h IF DUTY TOUCHES 02:00–05:59)'}],
+ s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#F7FAFD');
+ function X(h){return X0+(h-H0)*PX}
+ s+=tx(450,30,'ONE DAY, FOUR SECTORS, TWO PILOTS — BLOCK TIME AND FLIGHT DUTY PERIOD (LOCAL TIME, PRACTICE)',14,D,800);
+ for(var h=5;h<=19;h++)s+='<line x1="'+X(h)+'" y1="48" x2="'+X(h)+'" y2="400" stroke="#E3E9EF"/>'+tx(X(h),416,('0'+h).slice(-2)+':00',10.5,G,700);
+ rows.forEach(function(r,ri){var y=70+ri*165,last=r.b[r.b.length-1][1],fdp=last-r.rep,blk=0;
+  s+='<text x="'+X0+'" y="'+(y+4)+'" font-size="14" font-weight="800" fill="'+r.col+'" font-family="Arial">'+r.c+'</text>';
+  s+='<rect x="'+X(r.rep)+'" y="'+(y+18)+'" width="'+(X(last)-X(r.rep))+'" height="20" rx="4" fill="'+r.col+'" opacity=".18"/><text x="'+(X(r.rep)+6)+'" y="'+(y+33)+'" font-size="11.5" font-weight="800" fill="'+r.col+'" font-family="Arial">FLIGHT DUTY PERIOD '+Math.floor(fdp)+' h '+('0'+Math.round((fdp%1)*60)).slice(-2)+' (LIMIT '+r.lim+' h)</text>';
+  s+=badge('R',X(r.rep),y+62,11,D);
+  r.b.forEach(function(b,i){var a=(i/5).toFixed(3);blk+=b[1]-b[0];
+   s+='<g opacity="0"><rect x="'+X(b[0])+'" y="'+(y+48)+'" width="'+(X(b[1])-X(b[0]))+'" height="28" rx="4" fill="'+r.col+'"/><text x="'+((X(b[0])+X(b[1]))/2)+'" y="'+(y+66)+'" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle" font-family="Arial">'+b[2]+'</text><animate attributeName="opacity" values="0;1;1" keyTimes="0;'+a+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
+  s+='<text x="'+X(r.rep)+'" y="'+(y+98)+'" font-size="12" font-weight="800" fill="'+D+'" font-family="Arial" opacity="0">BLOCK (FLIGHT) TIME '+Math.floor(blk)+' h '+('0'+Math.round((blk%1)*60)).slice(-2)+' (LIMIT '+r.blim+' h)  ·  '+r.rest+'<animate attributeName="opacity" values="0;1;1" keyTimes="0;0.8;1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>';
+  var lx=r.rep+r.lim;if(lx<=19)s+='<line x1="'+X(lx)+'" y1="'+(y+10)+'" x2="'+X(lx)+'" y2="'+(y+84)+'" stroke="'+O+'" stroke-width="2.5" stroke-dasharray="6 4"/><text x="'+(X(lx)+5)+'" y="'+(y+14)+'" font-size="11" font-weight="800" fill="'+O+'" font-family="Arial">FDP LIMIT</text>';
+  else s+='<text x="'+X(19)+'" y="'+(y+14)+'" font-size="11" font-weight="800" fill="'+O+'" text-anchor="end" font-family="Arial">FDP LIMIT '+('0'+lx).slice(-2)+':00 →</text>'});
+ s+=tx(450,446,'JAPAN: A 1-HOUR DELAY ON THE LAST SECTOR WOULD PUSH THE FDP TO 12 h 05 — OVER THE 12 h LIMIT FOR 4 SECTORS STARTING 06:00–13:59',12,O,800);
  return s+'</svg>'}
 };
 function ofpFig(B,label){var N=B.length,DUR=N*2,
