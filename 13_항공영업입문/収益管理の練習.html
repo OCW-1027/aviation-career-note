@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>収益管理の練習 ― 座席の配分・オーバーブッキング・指標</title>
+<meta name="description" content="リトルウッドの法則、EMSR-b、オーバーブッキング、RASK・RevPARの計算を、数字を変えながら練習するページ。">
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--acc:#C2417A}
+*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+header a{color:#1d5fa0;font-size:13px}
+h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:0 0 14px}
+.langs button,.tabs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
+.langs button.on,.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:14px}@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.card h2{font-size:15px;margin:0 0 10px}
+label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;margin:6px 0}
+input[type=number]{width:120px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:14px;text-align:right;background:var(--paper);color:var(--ink)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{background:#f3f6fa;text-align:center;font-weight:700;font-size:13px}td.n{text-align:right;font-family:Consolas,Menlo,monospace}td.c{text-align:center;font-weight:700}
+td input[type=number]{width:90px}
+.big{font-size:20px;font-weight:700;color:var(--acc)}
+.res div{margin:4px 0;font-size:14px}.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+tr.best td{background:#fdf0f5}
+.formula{background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:Consolas,Menlo,monospace;margin-top:8px;overflow-x:auto}
+.btn{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;margin:6px 6px 0 0}
+svg{width:100%;height:auto;display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span><a href="00_シリーズ全体_航空営業入門.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" id="langs"></span></header>
+<h1 id="ttl"></h1><p class="lead" id="lead"></p>
+<div class="tabs" id="tabs"></div>
+<div id="main"></div>
+</div>
+<script>
+var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})(),tab=0;
+var T={
+ja:{t:'収益管理の練習 ― 座席の配分・オーバーブッキング・指標',back:'← 講座の目次',lead:'レッスン7-3・7-4・7-7の計算を、数字を変えながら確かめるページです。数値はすべて練習用で、需要は正規分布、来る確率は1人ずつ独立と仮定しています。',
+tabs:['2つの運賃（リトルウッド）','複数のクラス（EMSR-b）','オーバーブッキング','指標（航空・ホテル）'],
+in:'入力',out:'結果',seats:'座席数',hf:'高い運賃（円）',lf:'安い運賃（円）',mu:'高い運賃の需要の平均（人）',sd:'需要の標準偏差（人）',
+prot:'保護する席数',bl:'安い運賃の上限',ratio:'運賃の比（安い÷高い）',curve:'保護する席数と収入の見込み（安い運賃の需要は十分にあると仮定）',exprev:'収入の見込み',
+cls:'クラス',fare:'運賃',mean:'需要の平均',sdv:'標準偏差',pl:'保護席数（このクラスまで）',lim:'予約の上限',add:'クラスを追加',del:'最後のクラスを削除',emsrNote:'上のクラスをまとめ、需要で重みをつけた運賃と次のクラスの運賃の比でリトルウッドの法則を使います（EMSR-b）。上限＝座席数−上のクラスの保護席数。',
+show:'来る確率（%）',fr:'運賃（来た人の分だけ数える、円）',db:'お断り1人の費用（円）',range:'計算する予約数の上限（座席数＋）',au:'受ける予約',board:'搭乗の見込み',den:'お断りの見込み',rev:'収入の見込み（円）',best:'最善',krPre:'韓国の国際線の基準で費用を入れる',kr:['4時間以内の路線・2〜4時間後の代替（USD 200）','4時間以内の路線・4時間超の代替（USD 400）','4時間超の路線・4時間超の代替（USD 600）'],usd:'為替（円/USD）',obNote:'お断りの費用には、補償のほかに振替・ホテル・信用の損も入れて考えます。韓国の基準は上限額の賠償を求めています（レッスン7-4）。',
+air:'航空',hotel:'ホテル',pax:'旅客数',dist:'距離（km）',revA:'旅客収入（円）',cost:'費用（円）',rooms:'販売可能な客室数',sold:'販売した室数',rrev:'客室の売上（円）',trev:'総売上（円）',gop:'営業総利益（円）',
+lfL:'搭乗率',yld:'イールド（円/人キロ）',rask:'RASK（円）',cask:'CASK（円）',bel:'損益分岐の搭乗率',occ:'稼働率',adr:'ADR（円）',revpar:'RevPAR（円）',trevpar:'TRevPAR（円）',goppar:'GOPPAR（円）'},
+ko:{t:'수익관리 연습 — 좌석 배분·오버부킹·지표',back:'← 강좌 목차',lead:'레슨 7-3·7-4·7-7의 계산을 숫자를 바꿔 가며 확인하는 페이지입니다. 모든 수치는 연습용이며, 수요는 정규분포, 올 확률은 1명씩 독립으로 가정합니다.',
+tabs:['두 운임(리틀우드)','여러 클래스(EMSR-b)','오버부킹','지표(항공·호텔)'],
+in:'입력',out:'결과',seats:'좌석 수',hf:'비싼 운임(엔)',lf:'싼 운임(엔)',mu:'비싼 운임 수요 평균(명)',sd:'수요 표준편차(명)',
+prot:'보호할 좌석 수',bl:'싼 운임 한도',ratio:'운임 비율(싼÷비싼)',curve:'보호 좌석 수와 수입 예상(싼 운임 수요는 충분하다고 가정)',exprev:'수입 예상',
+cls:'클래스',fare:'운임',mean:'수요 평균',sdv:'표준편차',pl:'보호 좌석 수(이 클래스까지)',lim:'판매 한도',add:'클래스 추가',del:'마지막 클래스 삭제',emsrNote:'위 클래스들을 묶어 수요로 가중한 운임과 다음 클래스 운임의 비율로 리틀우드 법칙을 씁니다(EMSR-b). 한도=좌석 수−위 클래스 보호 좌석 수.',
+show:'올 확률(%)',fr:'운임(온 사람만 셈, 엔)',db:'거절 1명 비용(엔)',range:'계산할 예약 수 상한(좌석 수+)',au:'받는 예약',board:'탑승 예상',den:'거절 예상',rev:'수입 예상(엔)',best:'최선',krPre:'한국 국제선 기준으로 비용 넣기',kr:['4시간 이내 노선·2~4시간 후 대체(USD 200)','4시간 이내 노선·4시간 초과 대체(USD 400)','4시간 초과 노선·4시간 초과 대체(USD 600)'],usd:'환율(엔/USD)',obNote:'거절 비용에는 보상 외에 대체편·호텔·신뢰 손실도 넣어 생각합니다. 한국 기준은 최고 한도 배상을 요구합니다(레슨 7-4).',
+air:'항공',hotel:'호텔',pax:'여객 수',dist:'거리(km)',revA:'여객 수입(엔)',cost:'비용(엔)',rooms:'판매 가능 객실 수',sold:'판매 객실 수',rrev:'객실 매출(엔)',trev:'총매출(엔)',gop:'영업총이익(엔)',
+lfL:'탑승률',yld:'일드(엔/인km)',rask:'RASK(엔)',cask:'CASK(엔)',bel:'손익분기 탑승률',occ:'가동률',adr:'ADR(엔)',revpar:'RevPAR(엔)',trevpar:'TRevPAR(엔)',goppar:'GOPPAR(엔)'},
+en:{t:'Revenue Management Practice: Seat Allocation, Overbooking and Metrics',back:'← Course contents',lead:'Check the calculations from lessons 7-3, 7-4 and 7-7 by changing the numbers. All figures are for practice; demand is assumed normal and passengers show up independently.',
+tabs:['Two fares (Littlewood)','Several classes (EMSR-b)','Overbooking','Metrics (airline and hotel)'],
+in:'Inputs',out:'Results',seats:'Seats',hf:'High fare (¥)',lf:'Low fare (¥)',mu:'Mean high-fare demand',sd:'Demand standard deviation',
+prot:'Seats to protect',bl:'Low-fare limit',ratio:'Fare ratio (low ÷ high)',curve:'Protection level and expected revenue (ample low-fare demand assumed)',exprev:'Expected revenue',
+cls:'Class',fare:'Fare',mean:'Mean demand',sdv:'SD',pl:'Protection (this class and above)',lim:'Booking limit',add:'Add class',del:'Remove last class',emsrNote:'Higher classes are pooled; Littlewood’s rule is applied with the demand-weighted pooled fare against the next fare (EMSR-b). Limit = seats − protection for higher classes.',
+show:'Show rate (%)',fr:'Fare (counted for passengers who fly, ¥)',db:'Cost per denied boarding (¥)',range:'Bookings to test (seats +)',au:'Bookings accepted',board:'Expected boarded',den:'Expected denied',rev:'Expected revenue (¥)',best:'Best',krPre:'Use Korean international standards for the cost',kr:['Route ≤4 h, substitute 2–4 h later (US$200)','Route ≤4 h, substitute >4 h later (US$400)','Route >4 h, substitute >4 h later (US$600)'],usd:'Exchange rate (¥/US$)',obNote:'Beyond compensation, include rebooking, hotels and lost goodwill in the cost. Korea requires the maximum amounts to be paid (lesson 7-4).',
+air:'Airline',hotel:'Hotel',pax:'Passengers',dist:'Distance (km)',revA:'Passenger revenue (¥)',cost:'Cost (¥)',rooms:'Rooms available',sold:'Rooms sold',rrev:'Room revenue (¥)',trev:'Total revenue (¥)',gop:'Gross operating profit (¥)',
+lfL:'Load factor',yld:'Yield (¥ per RPK)',rask:'RASK (¥)',cask:'CASK (¥)',bel:'Break-even load factor',occ:'Occupancy',adr:'ADR (¥)',revpar:'RevPAR (¥)',trevpar:'TRevPAR (¥)',goppar:'GOPPAR (¥)'}};
+var S={C:100,pH:50000,pL:20000,mu:30,sd:10,
+ cl:[['Y',60000,15,5],['B',45000,20,7],['M',30000,30,9],['Q',20000,60,15]],C2:100,
+ cap:180,p:95,f:30000,db:60000,rg:15,fx:150,
+ seats:180,pax:153,km:1000,ra:4590000,co:4140000,rm:200,sd2:170,rr:3400000,tr:4500000,gp:1400000};
+/* 正規分布：累積と逆関数（Acklam の近似） */
+function phi(x){return Math.exp(-x*x/2)/Math.sqrt(2*Math.PI)}
+function Phi(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p}
+function inv(p){if(p<=0)return -8;if(p>=1)return 8;var a=[-39.69683028665376,220.9460984245205,-275.9285104469687,138.357751867269,-30.66479806614716,2.506628277459239],b=[-54.47609879822406,161.5858368580409,-155.6989798598866,66.80131188771972,-13.28068155288572],c=[-0.007784894002430293,-0.3223964580411365,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783],d=[0.007784695709041462,0.3224671290700398,2.445134137142996,3.754408661907416],pl=0.02425,q,r;
+ if(p<pl){q=Math.sqrt(-2*Math.log(p));return(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+ if(p>1-pl){q=Math.sqrt(-2*Math.log(1-p));return-(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+ q=p-0.5;r=q*q;return(((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1)}
+function yen(v){return Math.round(v).toLocaleString('ja-JP')}
+function num(id,v,step){return '<input type="number" id="'+id+'" value="'+v+'" step="'+(step||1)+'">'}
+function row(lbl,id,v,step){return '<label><span>'+lbl+'</span>'+num(id,v,step)+'</label>'}
+function g(id){var e=document.getElementById(id);return e?parseFloat(e.value):NaN}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+
+function viewLW(t){return '<div class="grid"><div class="card"><h2>'+t.in+'</h2>'+row(t.seats,'C',S.C)+row(t.hf,'pH',S.pH,1000)+row(t.lf,'pL',S.pL,1000)+row(t.mu,'mu',S.mu)+row(t.sd,'sd',S.sd)+'<div class="res" id="lwres"></div></div><div class="card"><h2>'+t.curve+'</h2><div id="lwchart"></div></div></div>'}
+function calcLW(t){S.C=g('C')||0;S.pH=g('pH')||0;S.pL=g('pL')||0;S.mu=g('mu')||0;S.sd=Math.max(0.1,g('sd')||0.1);
+ var r=S.pH>0?S.pL/S.pH:1,z=inv(1-r),y=clamp(S.mu+S.sd*z,0,S.C),yr=Math.round(y);
+ document.getElementById('lwres').innerHTML='<div>'+t.ratio+'：<b>'+r.toFixed(3)+'</b></div><div>'+t.prot+'：<span class="big">'+yr+'</span>（'+y.toFixed(1)+'）</div><div>'+t.bl+'：<span class="big">'+Math.max(0,S.C-yr)+'</span></div><div class="formula">z = Φ⁻¹(1 − '+r.toFixed(3)+') = '+z.toFixed(3)+'<br>y = '+S.mu+' + '+S.sd+' × '+z.toFixed(3)+' = '+y.toFixed(2)+'</div>';
+ function ER(q){var zz=(q-S.mu)/S.sd,emin=S.mu-S.sd*(phi(zz)-zz*(1-Phi(zz)));return S.pL*(S.C-q)+S.pH*Math.max(0,emin)}
+ var pts=[],mx=0,mn=Infinity;for(var q=0;q<=S.C;q++){var v=ER(q);pts.push(v);mx=Math.max(mx,v);mn=Math.min(mn,v)}
+ var W=560,H=260,P=46,sx=function(q){return P+(W-P-12)*q/Math.max(1,S.C)},sy=function(v){return H-30-(H-50)*(v-mn)/Math.max(1,mx-mn)};
+ var d=pts.map(function(v,q){return(q?'L':'M')+sx(q).toFixed(1)+' '+sy(v).toFixed(1)}).join(' ');
+ var by=pts.indexOf(mx);
+ document.getElementById('lwchart').innerHTML='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+t.curve+'"><rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#fff"/><line x1="'+P+'" y1="'+(H-30)+'" x2="'+(W-12)+'" y2="'+(H-30)+'" stroke="#9aa9b8"/><line x1="'+P+'" y1="10" x2="'+P+'" y2="'+(H-30)+'" stroke="#9aa9b8"/><path d="'+d+'" fill="none" stroke="#C2417A" stroke-width="2.5"/><line x1="'+sx(yr)+'" y1="10" x2="'+sx(yr)+'" y2="'+(H-30)+'" stroke="#1d5fa0" stroke-dasharray="4 4"/><circle cx="'+sx(by)+'" cy="'+sy(mx)+'" r="5" fill="#1d5fa0"/><text x="'+(sx(yr)+6)+'" y="'+(H-40)+'" font-size="12" fill="#1d5fa0">'+t.prot+' '+yr+'</text><text x="'+P+'" y="'+(H-10)+'" font-size="11" fill="#5b6b7d">0</text><text x="'+(W-40)+'" y="'+(H-10)+'" font-size="11" fill="#5b6b7d">'+S.C+'</text><text x="4" y="16" font-size="11" fill="#5b6b7d">¥'+Math.round(mx/1000).toLocaleString()+'k</text><text x="4" y="'+(H-34)+'" font-size="11" fill="#5b6b7d">¥'+Math.round(mn/1000).toLocaleString()+'k</text></svg><div class="note">'+t.exprev+'：¥'+yen(mx)+'（'+t.prot+' '+by+'）</div>'}
+
+function viewEM(t){var h='<div class="card"><h2>'+t.in+'</h2>'+row(t.seats,'C2',S.C2)+'<div class="tw"><table><tr><th>'+t.cls+'</th><th>'+t.fare+'</th><th>'+t.mean+'</th><th>'+t.sdv+'</th></tr>';
+ S.cl.forEach(function(c,i){h+='<tr><td class="c">'+c[0]+'</td><td>'+num('ef'+i,c[1],1000)+'</td><td>'+num('em'+i,c[2])+'</td><td>'+num('es'+i,c[3])+'</td></tr>'});
+ h+='</table></div><button class="btn" id="eadd">'+t.add+'</button><button class="btn" id="edel">'+t.del+'</button></div><div class="card" style="margin-top:14px"><h2>'+t.out+'</h2><div class="tw" id="emres"></div><div class="note">'+t.emsrNote+'</div></div>';return h}
+function calcEM(t){S.C2=g('C2')||0;S.cl.forEach(function(c,i){c[1]=g('ef'+i)||0;c[2]=Math.max(0,g('em'+i)||0);c[3]=Math.max(0.1,g('es'+i)||0.1)});
+ var cl=S.cl.slice().sort(function(a,b){return b[1]-a[1]}),prot=[],h='<table><tr><th>'+t.cls+'</th><th>'+t.fare+'</th><th>'+t.pl+'</th><th>'+t.lim+'</th></tr>';
+ for(var j=0;j<cl.length-1;j++){var agg=cl.slice(0,j+1),m=0,v=0,w=0;agg.forEach(function(c){m+=c[2];v+=c[3]*c[3];w+=c[1]*c[2]});var s=Math.sqrt(v),pb=m>0?w/m:agg[0][1],r=pb>0?cl[j+1][1]/pb:1;prot.push(clamp(m+s*inv(1-r),0,S.C2))}
+ cl.forEach(function(c,i){var lim=i===0?S.C2:Math.max(0,S.C2-Math.round(prot[i-1]));h+='<tr><td class="c">'+c[0]+'</td><td class="n">¥'+yen(c[1])+'</td><td class="n">'+(i<prot.length?prot[i].toFixed(1)+' → '+Math.round(prot[i]):'—')+'</td><td class="n"><b>'+lim+'</b></td></tr>'});
+ document.getElementById('emres').innerHTML=h+'</table>'}
+
+function viewOB(t){return '<div class="grid"><div class="card"><h2>'+t.in+'</h2>'+row(t.seats,'cap',S.cap)+row(t.show,'p',S.p,0.5)+row(t.fr,'f',S.f,1000)+row(t.db,'db',S.db,1000)+row(t.range,'rg',S.rg)+'<h2 style="margin-top:14px">'+t.krPre+'</h2>'+row(t.usd,'fx',S.fx)+'<div>'+t.kr.map(function(k,i){return '<button class="btn" data-usd="'+[200,400,600][i]+'">'+k+'</button>'}).join('')+'</div><div class="note">'+t.obNote+'</div></div><div class="card"><h2>'+t.out+'</h2><div class="tw" id="obres"></div></div></div>'}
+function binomRow(n,p){var q=1-p,lg=[0];for(var i=1;i<=n;i++)lg[i]=lg[i-1]+Math.log(i);var a=[];for(var k=0;k<=n;k++)a.push(Math.exp(lg[n]-lg[k]-lg[n-k]+k*Math.log(p)+(n-k)*Math.log(q)));return a}
+function calcOB(t){S.cap=Math.max(1,Math.round(g('cap')||1));S.p=clamp(g('p')||95,1,99.9);S.f=g('f')||0;S.db=g('db')||0;S.rg=clamp(Math.round(g('rg')||15),1,60);S.fx=g('fx')||150;
+ var p=S.p/100,rows=[],best=-1,bv=-Infinity;
+ for(var au=S.cap;au<=S.cap+S.rg;au++){var pr=binomRow(au,p),eb=0,ed=0;for(var k=0;k<=au;k++){eb+=pr[k]*Math.min(k,S.cap);ed+=pr[k]*Math.max(0,k-S.cap)}var net=S.f*eb-S.db*ed;rows.push([au,eb,ed,net]);if(net>bv){bv=net;best=au}}
+ var base=rows[0][3],h='<table><tr><th>'+t.au+'</th><th>'+t.board+'</th><th>'+t.den+'</th><th>'+t.rev+'</th></tr>';
+ rows.forEach(function(r){h+='<tr class="'+(r[0]===best?'best':'')+'"><td class="c">'+r[0]+(r[0]===best?' ('+t.best+')':'')+'</td><td class="n">'+r[1].toFixed(1)+'</td><td class="n">'+r[2].toFixed(2)+'</td><td class="n">'+yen(r[3])+'</td></tr>'});
+ document.getElementById('obres').innerHTML=h+'</table><div class="note">'+t.best+'：'+best+'（+'+(base>0?((bv/base-1)*100).toFixed(1):'0')+'% vs '+S.cap+'）</div>'}
+
+function viewKP(t){return '<div class="grid"><div class="card"><h2>'+t.air+'</h2>'+row(t.seats,'k1',S.seats)+row(t.pax,'k2',S.pax)+row(t.dist,'k3',S.km)+row(t.revA,'k4',S.ra,10000)+row(t.cost,'k5',S.co,10000)+'<div class="res" id="kpa"></div></div><div class="card"><h2>'+t.hotel+'</h2>'+row(t.rooms,'h1',S.rm)+row(t.sold,'h2',S.sd2)+row(t.rrev,'h3',S.rr,10000)+row(t.trev,'h4',S.tr,10000)+row(t.gop,'h5',S.gp,10000)+'<div class="res" id="kph"></div></div></div>'}
+function calcKP(t){S.seats=g('k1')||0;S.pax=g('k2')||0;S.km=g('k3')||0;S.ra=g('k4')||0;S.co=g('k5')||0;S.rm=g('h1')||0;S.sd2=g('h2')||0;S.rr=g('h3')||0;S.tr=g('h4')||0;S.gp=g('h5')||0;
+ var ask=S.seats*S.km,rpk=S.pax*S.km,lf=S.seats?S.pax/S.seats:0,yl=rpk?S.ra/rpk:0,rk=ask?S.ra/ask:0,ck=ask?S.co/ask:0;
+ document.getElementById('kpa').innerHTML='<div>'+t.lfL+'：<b>'+(lf*100).toFixed(1)+'%</b></div><div>'+t.yld+'：<b>'+yl.toFixed(2)+'</b></div><div>'+t.rask+'：<b>'+rk.toFixed(2)+'</b></div><div>'+t.cask+'：<b>'+ck.toFixed(2)+'</b></div><div>'+t.bel+'：<b>'+(yl?(ck/yl*100).toFixed(1)+'%':'—')+'</b></div>';
+ var occ=S.rm?S.sd2/S.rm:0,adr=S.sd2?S.rr/S.sd2:0;
+ document.getElementById('kph').innerHTML='<div>'+t.occ+'：<b>'+(occ*100).toFixed(1)+'%</b></div><div>'+t.adr+'：<b>'+yen(adr)+'</b></div><div>'+t.revpar+'：<b>'+yen(S.rm?S.rr/S.rm:0)+'</b></div><div>'+t.trevpar+'：<b>'+yen(S.rm?S.tr/S.rm:0)+'</b></div><div>'+t.goppar+'：<b>'+yen(S.rm?S.gp/S.rm:0)+'</b></div>'}
+
+var V=[viewLW,viewEM,viewOB,viewKP],K=[calcLW,calcEM,calcOB,calcKP];
+function render(){var t=T[L];document.documentElement.lang=L;document.title=t.t;
+ document.getElementById('back').textContent=t.back;document.getElementById('back').href='00_シリーズ全体_航空営業入門.html?lang='+L;
+ document.getElementById('ttl').textContent=t.t;document.getElementById('lead').textContent=t.lead;
+ document.getElementById('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button data-l="'+l+'" class="'+(l===L?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join(' ');
+ document.getElementById('tabs').innerHTML=t.tabs.map(function(x,i){return '<button data-t="'+i+'" class="'+(i===tab?'on':'')+'">'+x+'</button>'}).join('');
+ document.getElementById('main').innerHTML=V[tab](t);K[tab](t);
+ document.querySelectorAll('#langs button').forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('art-lang',L)}catch(e){}render()}});
+ document.querySelectorAll('#tabs button').forEach(function(b){b.onclick=function(){tab=+b.dataset.t;render()}});
+ document.querySelectorAll('#main input').forEach(function(e){e.oninput=function(){K[tab](T[L])}});
+ var e;if(e=document.getElementById('eadd'))e.onclick=function(){K[1](T[L]);var n=S.cl.length;if(n<8){S.cl.push([String.fromCharCode(75+n),Math.max(5000,Math.round(S.cl[n-1][1]*0.7/1000)*1000),40,12]);render()}};
+ if(e=document.getElementById('edel'))e.onclick=function(){K[1](T[L]);if(S.cl.length>2){S.cl.pop();render()}};
+ document.querySelectorAll('[data-usd]').forEach(function(b){b.onclick=function(){var fx=g('fx')||150;document.getElementById('db').value=Math.round(+b.dataset.usd*fx);K[2](T[L])}});
+}
+function fromHash(){var m=location.hash.match(/tab=(\d)/);if(m)tab=clamp(+m[1],0,3)}
+fromHash();window.addEventListener('hashchange',function(){fromHash();render()});
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

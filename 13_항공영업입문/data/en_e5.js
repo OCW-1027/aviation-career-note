@@ -61,5 +61,5 @@ terms:[["Annual Sales Calendar","年間販売カレンダー","연간 판매 캘
 quiz:[{q:"In 2025, Koreans visiting Japan outnumbered Japanese visiting Korea by about how much?",opts:["About 1 to 1","About 1.5 to 1","About 2.6 to 1","About 5 to 1"],a:2,exp:"About 9.46 million against about 3.65 million."},
 {q:"What is Korea’s longest holiday break in 2027?",opts:["Seollal (6–10 February)","Children’s Day","Liberation Day","Christmas"],a:0,exp:"7 February is a Sunday, so 10 February becomes a substitute holiday."},
 {q:"Which is a good way to fill Japan-origin low seasons?",opts:["Only offer last-minute specials","Set low days early and sell ahead with group fares and exclusive agency products","Raise fares","Do nothing"],a:1,exp:"The earlier you decide and tell agencies, the better it works."}],
-next:""});
+next:"7-1 What is revenue management?"});
 })(window.ARTS);
