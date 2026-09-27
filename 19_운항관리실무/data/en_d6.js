@@ -79,5 +79,5 @@ terms:[["Fatigue Risk Management System (FRMS)","疲労危険管理システム"
 quiz:[{q:"Under Korea’s Art. 128-2, what is a dispatcher’s maximum duty in 24 consecutive hours?",opts:["8 hours","10 hours","12 hours","13 hours"],a:1,exp:"10 hours or less."},
 {q:"Under Japan’s detailed rules, what is the cabin crew flight time limit?",opts:["80 h a month","100 h a calendar month","120 h a month","1,200 h a year"],a:1,exp:"100 h per calendar month; 1,200 h a year is Korea’s limit."},
 {q:"How long before a flight duty is drinking prohibited in Japan?",opts:["4 hours","8 hours","12 hours","24 hours"],a:1,exp:"Detailed rules 5-5: 8 hours."}],
-next:""});
+next:"7-1 Ground icing and de-/anti-icing"});
 })(window.ARTS);
