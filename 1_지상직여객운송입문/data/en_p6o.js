@@ -25,7 +25,7 @@ sections:[
 {name:"Training records",x:"Records of training in your airline’s procedures (checking the handler’s records, 8-3)."},
 {name:"Message accuracy",x:"Track errors in times and figures on MVT, LDM and other messages as a quality indicator."},
 {name:"Delay code rules",x:"Agree which code applies in which situation, and review it at the monthly meeting."},
-{name:"Contract and SLA",x:"How the department’s work is described in the SGHA and the service level agreement (Station Operations 2-1)."}]}]},
+{name:"Contract and SLA",x:"How the department’s work is described in the SGHA and the service level agreement (Station Management 2-1)."}]}]},
 {h:"Building a good working relationship",blocks:[{t:"rows",items:[
 {name:"One point of contact",x:"Send the station’s changes and requests to the desk, not directly to individuals on the ramp."},
 {name:"Share early",x:"Tell the desk about extra flights, aircraft changes and special passengers as soon as you know."},

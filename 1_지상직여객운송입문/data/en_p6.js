@@ -1,4 +1,4 @@
-/* 地上職・旅客運送 入門 — English version (Part 6: 支店運営の実務) */
+/* 地上職・旅客運送 入門 — English version (Part 6: 支店の日常業務) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-1",{title:"A Day in the Life of a Duty Manager",hl:"duty manager",subtitle:"Running the flight in front of you, and the daily, weekly and monthly closing work",
 lead:["At an overseas station, a small team of duty managers covers everything from supervising the counter, the gate and the ramp to reports, dealing with the handling company, training and inspections. The usual pattern is that the handling company does the work and the airline’s managers supervise it.",
