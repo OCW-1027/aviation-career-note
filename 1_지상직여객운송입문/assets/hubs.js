@@ -53,6 +53,10 @@ parts:{ja:["空港を理解する","首都圏","関西・中部","九州・北�
 "18_항공기초지식":{code:"BAS",color:"#4A7C59",
 name:{ja:"航空の基礎知識",ko:"항공 기초 지식",en:"Aviation Fundamentals"},
 lead:{ja:"航空機のしくみ、空と時間、航空気象（TAF）、スロットなど空港と空のルール、航空の歩み。どの職種にも共通する航空の基礎を、現場での使い方と一緒に。",ko:"항공기의 구조, 하늘과 시간, 항공 기상(TAF), 슬롯 등 공항과 하늘의 규칙, 항공의 역사. 어느 직종에나 공통된 항공 기초를 현장에서 쓰는 법과 함께.",en:"How aircraft work, sky and time, aviation weather (TAF), slots and the rules of airports and the sky, and aviation history: the fundamentals every aviation job shares, with how they are used on the job."},
-parts:{ja:["航空機を知る","空と時間","空港と空のルール","航空の歩み","これからの空港と航空"],ko:["항공기를 알다","하늘과 시간","공항과 하늘의 규칙","항공의 역사","앞으로의 공항과 항공"],en:["Knowing the Aircraft","Sky and Time","Airports and the Rules of the Sky","Aviation History","The Future of Airports and Aviation"]}}
+parts:{ja:["航空機を知る","空と時間","空港と空のルール","航空の歩み","これからの空港と航空"],ko:["항공기를 알다","하늘과 시간","공항과 하늘의 규칙","항공의 역사","앞으로의 공항과 항공"],en:["Knowing the Aircraft","Sky and Time","Airports and the Rules of the Sky","Aviation History","The Future of Airports and Aviation"]}},
+"19_운항관리실무":{code:"DSP",color:"#6B4FA0",
+name:{ja:"運航管理の実務",ko:"운항관리 실무",en:"Flight Dispatch Operations"},
+lead:{ja:"運航管理者の仕事を、現行の法令で確かめながら体系的に。運航管理のしくみ、韓国と日本の資格制度、OCCと支店の役割、航空法規から始め、気象・NOTAM・飛行計画書・燃料へと進む。",ko:"운항관리사의 일을 현행 법령으로 확인하며 체계적으로. 운항관리의 구조, 한국과 일본의 자격 제도, OCC와 지점의 역할, 항공법규에서 시작해 기상·NOTAM·비행계획서·연료로 나아갑니다.",en:"The dispatcher’s job, checked against current law: how operational control works, the Korean and Japanese qualification systems, the OCC and stations, and aviation law, moving on to weather, NOTAMs, flight plans and fuel."},
+parts:{ja:["運航管理とは","航空法規"],ko:["운항관리란","항공법규"],en:["What Is Flight Dispatch?","Aviation Law"]}}
 };
 window.HUB_SITE={ja:"航空キャリアノート",ko:"항공 커리어 노트",en:"Aviation Career Note"};
