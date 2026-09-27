@@ -89,5 +89,5 @@ terms:[["Load Sheet","ロードシート","탑재명세서"],["Flight Release","
 quiz:[{q:"Under Japan’s detailed rules, how long are flight plan, weight and CG documents kept?",opts:["One week","At least one month","At least three months","Five years"],a:2,exp:"Detailed rules, ch. 2, 2-3."},
 {q:"In Korea, how far are copies of the signed documents carried on board?",opts:["Until take-off","Only in cruise","Until arrival at the destination","Not carried"],a:2,exp:"FSR 8.4.4.6 c."},
 {q:"Who mainly prepares the load sheet?",opts:["Cabin crew","Load control","Air traffic control","Airport security"],a:1,exp:"Load control prepares it and notifies the captain."}],
-next:""});
+next:"Part 5 Fuel — 5-1 Fuel categories"});
 })(window.ARTS);

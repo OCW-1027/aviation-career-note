@@ -88,19 +88,33 @@ dsp_rwycc:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
 dsp_ofp:function(){return ofpFig([
  [40,['ACN123  RKSS-RKPC  27SEP26  A20N HL8XXX','STD 0100Z  STA 0205Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
  [100,['RKSS MONSI Y711 KIDOS RKPC','FL240   GND DIST 251NM   AIR DIST 262NM'],'ROUTE, CRUISING LEVEL, DISTANCE'],
- [160,['TRIP  2900   CONT   150   ALTN  1300','FINRES 1100   EXTRA    0   TAXI   200   BLOCK 5650'],'FUEL (kg): TRIP → BLOCK'],
- [220,['ZFW 61200/64300   TOW 66650/79000','LW  63750/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
+ [160,['TRIP  2900   CONT   190   ALTN  1300','FINRES 1140   EXTRA    0   TAXI   200   BLOCK 5730'],'FUEL (kg): TRIP → BLOCK'],
+ [220,['ZFW 61200/64300   TOW 66730/79000','LW  63830/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
  [280,['WPT    AWY   FL   W/V     DIST  ETE  FUEL','MONSI  Y711  240  290/45    38  0:09  5000'],'NAV LOG: POINT BY POINT'],
  [340,['ALTN RKPK  DIST 150NM  FL150  1300','NOTAM / WX ATTACHED'],'ALTERNATE, ATTACHED NOTAM AND WEATHER'],
  [400,['DISPATCHER ________','CAPTAIN ________'],'SIGNATURES: DISPATCHER, THEN CAPTAIN']],'KOREA · PRACTICE OFP')},
 dsp_ofp_jp:function(){return ofpFig([
  [40,['ACN801  RJTT-RJFF  27SEP26  A20N JA00XX','STD 0000Z  STA 0130Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
  [100,['RJTT TIARA GUSRO Y20 KIRIN RJFF','FL380   Y20 GUSRO-KIRIN 420.5NM (AIP)'],'ROUTE, CRUISING LEVEL, DISTANCE'],
- [160,['TRIP  3600   CONT  190 (5%/5MIN)   ALTN RJFR  900','HOLD 30MIN 1100   TAXI  150   BLOCK 5940'],'FUEL (kg): ART. 153 + NOTICE 319'],
- [220,['ZFW 60500/64300   TOW 66290/79000','LW  62690/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
- [280,['WPT    AWY   FL   W/V     DIST  ETE  FUEL','SUGAL  Y20   380  270/80  13.0  0:02  4900'],'NAV LOG: TOKYO → KOBE → FUKUOKA ACC'],
+ [160,['TRIP  3600   CONT  190 (5%/5MIN)   ALTN RJFR  900','HOLD 30MIN 1140   TAXI  150   BLOCK 5980'],'FUEL (kg): ART. 153 + NOTICE 319'],
+ [220,['ZFW 60500/64300   TOW 66330/79000','LW  62730/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
+ [280,['WPT    AWY   FL   W/V     DIST  ETE  FUEL','SUGAL  Y20   380  270/80  13.0  0:02  4900'],'NAV LOG: TOKYO ACC → FUKUOKA ACC (FL335+)'],
  [340,['ALTN RJFR  DIST 45NM  FL120  900','NOTAM / WX ATTACHED'],'ALTERNATE, ATTACHED NOTAM AND WEATHER'],
- [400,['DISPATCHER ________','CAPTAIN ________'],'SIGNATURES: DISPATCHER APPROVES, CAPTAIN CONFIRMS']],'JAPAN · PRACTICE OFP')}
+ [400,['DISPATCHER ________','CAPTAIN ________'],'SIGNATURES: DISPATCHER APPROVES, CAPTAIN CONFIRMS']],'JAPAN · PRACTICE OFP')},
+/* 燃料の区分：韓国（別表17・運航技術基準 8.1.9.15）と日本（施行規則第153条・告示第319号）。羽田→福岡・A320neo の練習用の数値（待機の燃料流量 毎時約2,280kg） */
+dsp_fuel:function(){var C={TAXI:'#9AA7B5',TRIP:'#2F8FE0',CONT:'#E08A2F',ALTN:'#1F7A6E',RES:'#8E3B8A',H15:'#C79BC4',H45:'#8E3B8A'},K=0.095,X0=250,
+ rows=[['KOREA','WITH ALTERNATE',[['TAXI',150],['TRIP',3600],['CONT',190],['ALTN',900],['FINRES 30',1140]]],['JAPAN','WITH ALTERNATE',[['TAXI',150],['TRIP',3600],['CONT',190],['ALTN',900],['HOLD 30',1140]]],['KOREA','NO ALTERNATE',[['TAXI',150],['TRIP',3600],['CONT',190],['HOLD 15',570],['FINRES 30',1140]]],['JAPAN','NO ALTERNATE',[['TAXI',150],['TRIP',3600],['CONT',190],['HOLD 45',1710]]]],
+ N=5,DUR=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#F7FAFD');
+ s+=tx(450,34,'FUEL ON BOARD, BY CATEGORY (kg) — HANEDA → FUKUOKA, A320neo (PRACTICE FIGURES)',15,D,800);
+ rows.forEach(function(r,ri){var y=70+ri*88+(ri>1?24:0),x=X0,tot=0;
+  if(ri===2)s+='<line x1="30" y1="'+(y-22)+'" x2="870" y2="'+(y-22)+'" stroke="#C9D6E3" stroke-dasharray="6 4"/>';
+  s+='<text x="30" y="'+(y+22)+'" font-size="15" font-weight="800" fill="'+(r[0]==='KOREA'?'#1C6FBF':'#C2344F')+'" font-family="Arial">'+r[0]+'</text><text x="30" y="'+(y+42)+'" font-size="12" font-weight="700" fill="'+G+'" font-family="Arial">'+r[1]+'</text>';
+  r[2].forEach(function(g,i){var w=g[1]*K,key=g[0].split(' ')[0],col=g[0]==='HOLD 15'?C.H15:key==='FINRES'||key==='HOLD'?C.RES:C[key],a=(i/N).toFixed(3);
+   s+='<g opacity="0"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="44" fill="'+col+'" stroke="#fff" stroke-width="1.5"/>'+(w>52?'<text x="'+(x+w/2)+'" y="'+(y+20)+'" font-size="12" font-weight="800" fill="#fff" text-anchor="middle" font-family="Arial">'+g[0]+'</text><text x="'+(x+w/2)+'" y="'+(y+36)+'" font-size="11.5" font-weight="700" fill="#fff" text-anchor="middle" font-family="Arial">'+g[1]+'</text>':'<text x="'+(x+w/2)+'" y="'+(y+62)+'" font-size="11" font-weight="700" fill="'+col+'" text-anchor="middle" font-family="Arial">'+g[0]+' '+g[1]+'</text>')+'<animate attributeName="opacity" values="0;1;1" keyTimes="0;'+a+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+   x+=w;tot+=g[1]});
+  s+='<text x="'+(x+10)+'" y="'+(y+28)+'" font-size="15" font-weight="900" fill="'+D+'" font-family="Arial" opacity="0">= '+tot+'<animate attributeName="opacity" values="0;1;1" keyTimes="0;0.9;1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>'});
+ s+=tx(450,452,'SAME AMOUNTS, DIFFERENT NAMES: KOREA SPLITS “FINAL RESERVE” OUT; JAPAN STATES THE HOLDING TIME DIRECTLY',12.5,O,800);
+ return s+'</svg>'}
 };
 function ofpFig(B,label){var N=B.length,DUR=N*2,
  s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img">'+R(0,0,900,520,'#F7FAFD')+R(60,24,560,440,'#fff',6,' stroke="#C9D6E3" stroke-width="2"');

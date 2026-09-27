@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-27",c:"19_운항관리실무",k:"5-1",t:"new",ja:"運航管理 Part 5 燃料：韓国（別表17・運航技術基準）と日本（施行規則第153条・告示第319号）の燃料の区分、計算、MINIMUM FUEL・MAYDAY FUELと給油。練習ページに韓日の基準の切り替え",ko:"운항관리 Part 5 연료: 한국(별표 17·운항기술기준)과 일본(시행규칙 제153조·고시 제319호)의 연료 구분, 계산, MINIMUM FUEL·MAYDAY FUEL과 급유. 연습 페이지에 한일 기준 전환",en:"Dispatch Part 5, Fuel: Korean (Annex 17, FSR) and Japanese (Art. 153, Notice 319) fuel categories, calculation, MINIMUM FUEL and MAYDAY FUEL, and refuelling; the trainer now switches between Korean and Japanese rules"},
 {d:"2026-09-27",c:"",k:"",t:"upd",u:"18_항공기초지식/航空路図の練習.html",ja:"運航の総合練習：日本の国内線「羽田⇄福岡」を追加（日本AIP・AICの標準経路）",ko:"운항 종합 연습: 일본 국내선 「하네다⇄후쿠오카」 추가(일본 AIP·AIC 표준 경로)",en:"Flight Operations Trainer: Japanese domestic route Haneda⇄Fukuoka added (standard routes from Japan’s AIP and AIC)"},
 {d:"2026-09-27",c:"18_항공기초지식",k:"2-6",t:"upd",ja:"仁川⇄成田の航空路図・練習を、韓国AIPと日本AIP・AICの公式の経路に切り替え（FIR境界も韓国AIPに）",ko:"인천⇄나리타 항로 차트·연습을 한국 AIP와 일본 AIP·AIC의 공식 경로로 교체(FIR 경계도 한국 AIP로)",en:"Incheon⇄Narita chart and practice switched to official routes from the Korean and Japanese AIPs and AIC (FIR boundary from the Korean AIP)"},
 {d:"2026-09-27",c:"",k:"",t:"new",u:"8_사이트/sources.html",ja:"「出典と利用条件」のページを新設",ko:"「출처와 이용 조건」 페이지 신설",en:"New page: Sources and terms of use"},
