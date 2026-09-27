@@ -11,7 +11,7 @@ function lessonDate(){if(ST&&ST.updated)return ST.updated;var LD=window.LESSON_D
 function LU(no,lg){return ST?ST.root+(lg||lang)+'/'+ST.code+'/'+no+'/':'view.html?no='+no}
 function navKeys(){if(ST&&ST.index)return ST.order.slice();var A=window.ARTS||{};return Object.keys(A).filter(function(k){return A[k]&&A[k].meta&&(A[k].ja||A[k].ko)}).sort(function(a,b){var x=String(a).split('-').map(Number),y=String(b).split('-').map(Number);return (x[0]-y[0])||((x[1]||0)-(y[1]||0))})}
 function navTitle(k){if(ST&&ST.index){var t=ST.index[k]||{};return t[lang]||t.ja||t.ko||''}var A=window.ARTS||{},a=A[k];if(!a)return '';var l=a[lang]||a.ja||a.ko;return (l&&l.title)||''}
-var DEF={ja:{series:'航空旅客運送の実務',voice:'現場のひと言',terms:'今日の用語',tcols:['日本語','한국어','English'],quiz:'確認クイズ',next:'次のレッスン：'},ko:{series:'항공 여객운송 실무',voice:'현장 한마디',terms:'오늘의 용어',tcols:['한국어','日本語','English'],quiz:'확인 퀴즈',next:'다음 레슨: '},en:{series:'Airline Passenger Operations',voice:'Voice from the Field',terms:'Key Terms',tcols:['English','日本語','한국어'],quiz:'Quick Quiz',next:'Next lesson: '}};
+var DEF={ja:{series:'旅客ハンドリングの実務',voice:'現場のひと言',terms:'今日の用語',tcols:['日本語','한국어','English'],quiz:'確認クイズ',next:'次のレッスン：'},ko:{series:'항공 여객운송 실무',voice:'현장 한마디',terms:'오늘의 용어',tcols:['한국어','日本語','English'],quiz:'확인 퀴즈',next:'다음 레슨: '},en:{series:'Airline Passenger Operations',voice:'Voice from the Field',terms:'Key Terms',tcols:['English','日本語','한국어'],quiz:'Quick Quiz',next:'Next lesson: '}};
 var LANGS=['ja','ko','en'];
 var KRC={ICN:1,GMP:1,SEL:1,PUS:1,CJU:1,TAE:1,CJJ:1};var HUBS=['LHR','SIN','JFK','CDG','SYD','DXB','HKG','FRA','LAX','BKK','AMS','YVR'];
 function hub(no){var h=0;String(no).split('').forEach(function(c){h=(h*31+c.charCodeAt(0))%997});return HUBS[h%HUBS.length]}
