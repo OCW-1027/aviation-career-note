@@ -101,7 +101,7 @@ sections:[
 {name:"Keeping records",x:"Retain the records for the required period."}]},
 {t:"point",warn:true,x:"Mistakes in bonded control can put the warehouse licence itself at risk. Reconcile the system records against the physical cargo regularly."}]}],
 voice:"[Interview to be added] Something in your bonded control that customs praised.",
-terms:[["Bonded Warehouse","保税上屋","보세 상옥"],["Receiving / Release","搬入・搬出","반입·반출"],["Overage / Shortage","過不足","과부족"],["Transfer Cargo","乗り継ぎ貨物","환적 화물"]],
+terms:[["Bonded Warehouse","保税上屋","보세창고"],["Receiving / Release","搬入・搬出","반입·반출"],["Overage / Shortage","過不足","과부족"],["Transfer Cargo","乗り継ぎ貨物","환적 화물"]],
 quiz:[{q:"What is a serious problem in a bonded warehouse?",opts:["Releasing cargo before import permission","Keeping records","Checking stock","Segregating cargo"],a:0,exp:"Build in a double check."},
 {q:"What do you do about a discrepancy against the manifest?",opts:["Ignore it","Report it within the deadline","Hide it","Report it next year"],a:1,exp:"Customs must be told."},
 {q:"How is transfer cargo handled?",opts:["Import it then re-export","Keep it bonded and move it to the next flight","Destroy it","Return it"],a:1,exp:"It stays under bond."}],

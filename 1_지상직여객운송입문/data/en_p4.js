@@ -128,7 +128,7 @@ sections:[
 {name:"If nothing is found",x:"Take their contact details and promise to call if it turns up. Point them to the airport lost property office and the police."}]},
 {t:"point",x:"How lost property is handled goes straight to trust in the airline. “They looked for it” is something passengers remember for a long time."}]}],
 voice:"[Interview to be added] A memorable case where lost property found its way home.",
-terms:[["Lost & Found","遺失物","유실물"],["Found Property","拾得物","습득물"],["Lost Property Act","遺失物法","유실물법"],["Receipt Signature","受領の署名","수령 서명"],["ID Verification","本人確認","본인 확인"],["Cash on Delivery","着払い","착불"]],
+terms:[["Lost & Found","忘れ物・落とし物（遺失物）","유실물"],["Found Property","拾得物","습득물"],["Lost Property Act","遺失物法","유실물법"],["Receipt Signature","受領の署名","수령 서명"],["ID Verification","本人確認","본인 확인"],["Cash on Delivery","着払い","착불"]],
 quiz:[{q:"How should lost property containing cash be handled?",opts:["Count it alone","Check with two people, record the amount and seal it","Just take it to the police","Do not note the amount"],a:1,exp:"Two people prevent later disputes."},
 {q:"What is correct for a found phone?",opts:["Look through it to find the owner","Respect privacy and do not look inside","Dispose of it immediately","Hand it to anyone"],a:1,exp:"Personal data must be respected."},
 {q:"What is needed when returning lost property?",opts:["Nothing","Identity verification and a signature","A fee","A photograph"],a:1,exp:"It records that the item went back to the right person."}],

@@ -54,7 +54,7 @@ window.DICT=(window.DICT||[]).concat([
 ["PAX","Duty-free","免税品","면세품","出国者などが税金なしで買える商品","출국자 등이 세금 없이 살 수 있는 상품","Goods sold free of certain taxes to departing travellers"],
 ["PAX","Inflight Entertainment (IFE)","機内エンターテインメント","기내 엔터테인먼트","機内の映像・音楽などのサービス","기내 영상·음악 등의 서비스","Onboard video, audio and other entertainment"],
 ["PAX","Special Meal (SPML)","特別食","특별식","宗教・健康・年齢などに応じた機内食","종교·건강·나이 등에 맞춘 기내식","Meals ordered for religious, medical or age reasons"],
-["APT","Lost and Found","遺失物の取り扱い","유실물 처리","機内・空港の忘れ物を保管し返す業務","기내·공항 분실물을 보관하고 돌려주는 업무","Handling items left behind in aircraft or terminals"],
+["APT","Lost and Found","忘れ物・落とし物の取り扱い","유실물 처리","機内・空港の忘れ物を保管し返す業務","기내·공항 분실물을 보관하고 돌려주는 업무","Handling items left behind in aircraft or terminals"],
 ["APT","Aviation Fuel (Jet A-1)","航空燃料（ジェットA-1）","항공유(Jet A-1)","ジェット機が使う灯油系の燃料","제트기가 쓰는 등유계 연료","The kerosene-type fuel used by jet aircraft"],
 ["APT","Hydrant Refuelling","ハイドラント給油","하이드런트 급유","地下の配管からディスペンサー車で給油する方式","지하 배관에서 디스펜서 차량으로 급유하는 방식","Refuelling from underground pipes via a dispenser"],
 ["APT","Bowser","給油車（レフューラー）","급유차(바우저)","タンクに燃料を積んだ給油車","탱크에 연료를 실은 급유차","A tanker truck carrying fuel"],

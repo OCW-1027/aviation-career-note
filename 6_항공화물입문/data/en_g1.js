@@ -18,7 +18,7 @@ sections:[
 {name:"Security",x:"Shorter transit means relatively less exposure to damage and theft."}]},
 {t:"point",x:"Air cargo work is about not dropping the baton between those five parties. Whichever one you work for, knowing what happens before and after you cuts mistakes."}]}],
 voice:"[Interview to be added] What surprised you about cargo, coming from the passenger side.",
-terms:[["Shipper","荷主","화주"],["Freight Forwarder","フォワーダー","포워더"],["Cargo Terminal / Warehouse","上屋","상옥(화물 터미널)"],["Customs Clearance","通関","통관"]],
+terms:[["Shipper","荷主","화주"],["Freight Forwarder","フォワーダー","포워더"],["Cargo Terminal / Warehouse","上屋","화물터미널"],["Customs Clearance","通関","통관"]],
 quiz:[{q:"Who books the airline and prepares the documents for the shipper?",opts:["The forwarder","Customs","The airport company","A travel agency"],a:0,exp:"They arrange collection, clearance and delivery too."},
 {q:"What suits air cargo?",opts:["Gravel","Precision equipment with high value for its weight","Bulk coal","Timber"],a:1,exp:"Speed and security are what you are paying for."},
 {q:"Who handles acceptance, weighing and build-up at the airport?",opts:["The handling company","The shipper","Customs","A bank"],a:0,exp:"They work the warehouse."}],
