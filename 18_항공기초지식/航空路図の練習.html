@@ -51,6 +51,7 @@ header{position:relative}header h1{margin:0 0 8px}
 <script src="../1_지상직여객운송입문/assets/route_maps.js"></script>
 <script src="../1_지상직여객운송입문/assets/route_icn_nrt.js"></script>
 <script src="../1_지상직여객운송입문/assets/route_gmp_cju.js"></script>
+<script src="../1_지상직여객운송입문/assets/route_hnd_fuk.js"></script>
 <script src="ops/ops_plan.js"></script>
 <script src="ops/ops_atc.js"></script>
 <script src="ops/ops_sep.js"></script>
@@ -59,36 +60,41 @@ header{position:relative}header h1{margin:0 0 8px}
 <script>
 /* 航空路図の練習（2026.09）
    地図のデータは レッスン2-5・2-6 と同じ route_maps.js・route_icn_nrt.js を使う。
-   経路は公開の飛行計画データの例。距離・磁方位は座標から計算した目安（偏差 約8°W）。教育用で、航法には使えない。 */
+   経路：韓国AIP（ENR 3.3）と日本AIP（ENR 3.3）・AIC 003/24 の標準経路。距離・磁方位は座標から計算した目安（偏差 約8°W）。教育用で、航法には使えない。 */
 var PT={RKSI:[37.4691,126.4505],RKSS:[37.5583,126.7906],RKPC:[33.5113,126.493],RJAA:[35.7647,140.3864],
-EGOBA:[37.4875,127.379444],LANAT:[36.373333,131.428333],SAMON:[36.242897,134.503319],LANAI:[37.092136,140.447939],SHELY:[36.888264,140.754389],MELON:[35.849181,140.864217],
-CHINO:[35.8843,138.565492],SAPRA:[35.823889,130.723611],CUN:[36.631944,128.325278],
+EGOBA:[37.48750,127.37944],LANAT:[36.37333,131.42833],SAMON:[36.24278,134.50333],ESKAS:[37.10972,140.59694],ENTAK:[36.99361,140.79500],SWAMP:[36.32056,140.53806],
+ENPAR:[35.86806,139.83167],SAPRA:[35.82389,130.72361],SEL:[37.41361,126.92833],
 BULTI:[36.722778,126.825],GONAX:[36.386389,126.837778],BEDES:[36.151389,126.812222],MANGI:[35.503056,126.742222],DALSU:[35.125278,126.701667],DOTOL:[34.254167,126.610278],
 KAMIT:[34.253889,126.771667],SAMUL:[35.126667,126.865],MAKSA:[35.503056,126.906111],ATASO:[35.895556,126.949167],PEBRI:[36.386389,127.003611],OLMEN:[36.736944,126.991111],
-MONSI:[37.213056,126.8375],MEKIL:[36.556111,126.831389],ELPOS:[35.902778,126.785278],NULDI:[34.420556,126.6275],KIDOS:[33.841111,126.567222],SOT:[37.094444,127.031667],GUNKU:[36.570556,126.996944],GUKSU:[33.880833,126.7325],LOSNI:[33.554167,126.698056]};
+MONSI:[37.213056,126.8375],MEKIL:[36.556111,126.831389],ELPOS:[35.902778,126.785278],NULDI:[34.420556,126.6275],KIDOS:[33.841111,126.567222],SOT:[37.094444,127.031667],GUNKU:[36.570556,126.996944],GUKSU:[33.880833,126.7325],LOSNI:[33.554167,126.698056],
+RJTT:[35.55333,139.78111],RJFF:[33.58583,130.45139],GUSRO:[35.66250,139.13694],SUGAL:[35.59306,137.79472],KAMMY:[34.99111,134.68861],STOUT:[34.19083,131.01611],KIRIN:[34.12167,130.82194],YANKS:[34.13028,134.49028],FLUTE:[34.53861,136.96361],ARTIC:[34.71556,138.80444],XAC:[34.71222,139.41389]};
 function C(ja,ko,en){return {ja:ja,ko:ko,en:en}}
 var DEP=C('出発管制','출발 관제','Departure control'),KAC=C('韓国の航空路管制','한국 항로 관제','Korean area control'),JAC=C('日本の航空路管制','일본 항로 관제','Japanese area control');
 var S1=C('仁川航空路管制所（北の持ち場）','인천 항로관제소(북쪽 담당 구역)','Incheon ACC (northern sector)'),S2=C('仁川航空路管制所（中央の持ち場）― 周波数を切り替え','인천 항로관제소(중앙 담당 구역) — 주파수 전환','Incheon ACC (central sector): frequency change'),S3=C('仁川航空路管制所（南の持ち場）― 周波数を切り替え','인천 항로관제소(남쪽 담당 구역) — 주파수 전환','Incheon ACC (southern sector): frequency change');
 var R=[
 {id:'in',map:'inr',name:C('仁川 → 成田','인천 → 나리타','Incheon → Narita'),fl:'FL350',odd:true,fir:'LANAT',
- s:[['RKSI','SID',C('仁川の出発管制','인천 출발 관제','Incheon Departure'),'dep'],['EGOBA','Y697',KAC,'clb'],['LANAT','Y51',C('ここで日本の管制へ引き継ぎ（福岡FIR）','여기서 일본 관제로 이양(후쿠오카 FIR)','Hand-off to Japan here (Fukuoka FIR)'),'crz'],['SAMON','Y517',JAC,'crz'],['LANAI','Y301',JAC,'des'],['SHELY','Y30',C('東京アプローチ','도쿄 어프로치','Tokyo Approach'),'des'],['MELON','APP',C('成田タワー','나리타 타워','Narita Tower'),'des'],['RJAA','',C('到着・成田グランド','도착·나리타 그라운드','Arrived: Narita Ground'),'arr']]},
+ s:[['RKSI','SID',C('仁川の出発管制','인천 출발 관제','Incheon Departure'),'dep'],['EGOBA','Y697',KAC,'clb'],['LANAT','Y51',C('ここで日本の管制へ引き継ぎ（福岡FIR）','여기서 일본 관제로 이양(후쿠오카 FIR)','Hand-off to Japan here (Fukuoka FIR)'),'crz'],['SAMON','Y517',JAC,'crz'],['ESKAS','Y303',JAC,'des'],['ENTAK','Y30',JAC,'des'],['SWAMP','APP',C('東京アプローチ','도쿄 어프로치','Tokyo Approach'),'des'],['RJAA','',C('到着・成田タワー → グランド','도착·나리타 타워 → 그라운드','Arrived: Narita Tower → Ground'),'arr']]},
 {id:'ni',map:'inr',name:C('成田 → 仁川','나리타 → 인천','Narita → Incheon'),fl:'FL340',odd:false,fir:'SAPRA',
- s:[['RJAA','SID',C('東京ディパーチャー','도쿄 디파처','Tokyo Departure'),'dep'],['CHINO','Y16',JAC,'clb'],['SAPRA','G585',C('ここで韓国の管制へ引き継ぎ（仁川FIR）','여기서 한국 관제로 이양(인천 FIR)','Hand-off to Korea here (Incheon FIR)'),'crz'],['CUN','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSI','',C('到着・仁川グランド','도착·인천 그라운드','Arrived: Incheon Ground'),'arr']]},
+ s:[['RJAA','SID',C('東京ディパーチャー','도쿄 디파처','Tokyo Departure'),'dep'],['ENPAR','Y16',JAC,'clb'],['SAPRA','Y685',C('ここで韓国の管制へ引き継ぎ（仁川FIR）','여기서 한국 관제로 이양(인천 FIR)','Hand-off to Korea here (Incheon FIR)'),'crz'],['SEL','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSI','',C('到着・仁川グランド','도착·인천 그라운드','Arrived: Incheon Ground'),'arr']]},
 {id:'gc',map:'enr',name:C('金浦 → 済州（Y711）','김포 → 제주(Y711)','Gimpo → Jeju (Y711)'),fl:'FL240',odd:false,fir:'',
  s:[['RKSS','SID',C('ソウルの出発管制','서울 출발 관제','Seoul Departure'),'dep'],['MONSI','Y711',S1,'clb'],['BULTI','Y711',S1,'clb'],['MEKIL','Y711',S1,'crz'],['GONAX','Y711',S1,'crz'],['BEDES','Y711',S1,'crz'],['ELPOS','Y711',S2,'crz'],['MANGI','Y711',S2,'crz'],['DALSU','Y711',S2,'des'],['NULDI','Y711',S2,'des'],['DOTOL','Y711',S3,'des'],['KIDOS','APP',C('済州アプローチ','제주 어프로치','Jeju Approach'),'des'],['RKPC','',C('到着・済州グランド','도착·제주 그라운드','Arrived: Jeju Ground'),'arr']]},
 {id:'cg',map:'enr',name:C('済州 → 金浦（Y722）','제주 → 김포(Y722)','Jeju → Gimpo (Y722)'),fl:'FL230',odd:true,fir:'',
- s:[['RKPC','SID',C('済州の出発管制','제주 출발 관제','Jeju Departure'),'dep'],['LOSNI','Y722',S3,'clb'],['GUKSU','Y722',S3,'clb'],['KAMIT','Y722',S2,'crz'],['SAMUL','Y722',S2,'crz'],['MAKSA','Y722',S2,'crz'],['ATASO','Y722',S1,'crz'],['PEBRI','Y722',S1,'des'],['GUNKU','Y722',S1,'des'],['OLMEN','Y722',S1,'des'],['SOT','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSS','',C('到着・金浦グランド','도착·김포 그라운드','Arrived: Gimpo Ground'),'arr']]}];
+ s:[['RKPC','SID',C('済州の出発管制','제주 출발 관제','Jeju Departure'),'dep'],['LOSNI','Y722',S3,'clb'],['GUKSU','Y722',S3,'clb'],['KAMIT','Y722',S2,'crz'],['SAMUL','Y722',S2,'crz'],['MAKSA','Y722',S2,'crz'],['ATASO','Y722',S1,'crz'],['PEBRI','Y722',S1,'des'],['GUNKU','Y722',S1,'des'],['OLMEN','Y722',S1,'des'],['SOT','APP',C('ソウル・アプローチ','서울 어프로치','Seoul Approach'),'des'],['RKSS','',C('到着・金浦グランド','도착·김포 그라운드','Arrived: Gimpo Ground'),'arr']]},
+{id:'hf',map:'jdm',name:C('羽田 → 福岡（Y20）','하네다 → 후쿠오카(Y20)','Haneda → Fukuoka (Y20)'),fl:'FL380',odd:false,fir:'',
+ s:[['RJTT','SID',C('東京ディパーチャー','도쿄 디파처','Tokyo Departure'),'dep'],['GUSRO','Y20',C('東京航空交通管制部','도쿄 항공교통관제부','Tokyo ACC'),'clb'],['SUGAL','Y20',C('福岡航空交通管制部（FL335以上の高高度を担当）','후쿠오카 항공교통관제부(FL335 이상 고고도 담당)','Fukuoka ACC (upper airspace, FL335 and above)'),'crz'],['KAMMY','Y20',C('福岡航空交通管制部（高高度）','후쿠오카 항공교통관제부(고고도)','Fukuoka ACC (upper airspace)'),'crz'],['STOUT','Y20',C('福岡航空交通管制部 — 降下','후쿠오카 항공교통관제부 — 강하','Fukuoka ACC: descent'),'des'],['KIRIN','APP',C('福岡アプローチ','후쿠오카 어프로치','Fukuoka Approach'),'des'],['RJFF','',C('到着・福岡タワー → グランド','도착·후쿠오카 타워 → 그라운드','Arrived: Fukuoka Tower → Ground'),'arr']]},
+{id:'fh',map:'jdm',name:C('福岡 → 羽田（Y235・Y23）','후쿠오카 → 하네다(Y235·Y23)','Fukuoka → Haneda (Y235, Y23)'),fl:'FL370',odd:true,fir:'',
+ s:[['RJFF','SID',C('福岡ディパーチャー','후쿠오카 디파처','Fukuoka Departure'),'dep'],['YANKS','Y235',C('福岡航空交通管制部（FL335以上の高高度を担当）','후쿠오카 항공교통관제부(FL335 이상 고고도 담당)','Fukuoka ACC (upper airspace, FL335 and above)'),'crz'],['FLUTE','Y23',C('福岡航空交通管制部 — 降下','후쿠오카 항공교통관제부 — 강하','Fukuoka ACC: descent'),'des'],['ARTIC','Y71',C('東京航空交通管制部','도쿄 항공교통관제부','Tokyo ACC'),'des'],['XAC','APP',C('東京アプローチ（大島VORから）','도쿄 어프로치(오시마 VOR부터)','Tokyo Approach (from Oshima VOR)'),'des'],['RJTT','',C('到着・羽田タワー → グランド','도착·하네다 타워 → 그라운드','Arrived: Haneda Tower → Ground'),'arr']]}];
 var T={ja:{kick:'航空キャリアノート',ttl:'運航の総合練習 ― 航空路・飛行計画・管制・間隔・流れ',lead:'運航管理者・操縦士・管制官の仕事を、1便の流れで練習します。路線を選び、上のタブで「たどる」「飛行計画・燃料」「管制の交信」「高度・間隔」「遅延・流れ」を切り替えます。どのタブにも計算と問題があります。',follow:'たどる',quiz:'問題を解く',now:'今の地点',next:'次の地点',aw:'この区間の道',dist:'区間の距離',mc:'磁方位（目安）',cum:'累計 / 残り',ctl:'話している相手',ph:'飛行の段階',prev:'◀ 前へ',nx:'次へ ▶',reset:'はじめから',auto:'自動で進む',stop:'止める',nm:'海里',done:'到着しました',PH:{dep:'出発',clb:'上昇',crz:'巡航',des:'降下',arr:'到着'},SID:'出発方式（SID）',APP:'到着方式・進入',none:'—',
  q1:'{a} の次に通る地点は？',q2:'{a} → {b} の区間で通る道は？',q3:'この便で、管制が別の国に引き継がれる地点は？',q4:'{a} → {b} の区間の距離は約？',q5:'この便（{r}）の巡航高度の例として正しいのは？',q5x:'磁方位が000〜179°の便は奇数、180〜359°の便は偶数の高度が基本。この便の主な磁方位は約{m}°なので{oe}。',odd:'奇数',even:'偶数',ok:'正解！',ng:'残念…',ans:'答え：',nextq:'次の問題',res:'結果',again:'もう一度',of:'問中',cor:'問正解',
- note:'地図・経路は教育用の略図です（海岸線：Natural Earth、FIR境界：VATSpy Data Projectの近似、地点の座標：OpenNav、経路：公開の飛行計画データの例）。実際の経路・高度・担当の管制は便ごとに変わります。航法には使えません。レッスン：航空の基礎知識 2-5・2-6',
+ note:'地図・経路は教育用の略図です（地点・経路：韓国AIP・日本AIP・日本のAIC標準経路、FIR境界：韓国AIP、海岸線：Natural Earth）。実際の経路・高度・担当の管制は便ごとに変わります。航法には使えません。レッスン：航空の基礎知識 2-5・2-6',
  hint:'北は左（金浦―済州の図）'},
 ko:{kick:'항공 커리어 노트',ttl:'운항 종합 연습 — 항공로·비행계획·관제·간격·흐름',lead:'운항관리사·조종사·관제사의 일을 한 편의 흐름으로 연습합니다. 노선을 고르고 위 탭에서 ‘따라가기’ ‘비행계획·연료’ ‘관제 교신’ ‘고도·간격’ ‘지연·흐름’을 바꿉니다. 모든 탭에 계산과 문제가 있습니다.',follow:'따라가기',quiz:'문제 풀기',now:'현재 지점',next:'다음 지점',aw:'이 구간의 길',dist:'구간 거리',mc:'자방위(기준)',cum:'누적 / 남은 거리',ctl:'교신 상대',ph:'비행 단계',prev:'◀ 이전',nx:'다음 ▶',reset:'처음부터',auto:'자동 진행',stop:'멈추기',nm:'해리',done:'도착했습니다',PH:{dep:'출발',clb:'상승',crz:'순항',des:'강하',arr:'도착'},SID:'출발 절차(SID)',APP:'도착 절차·접근',none:'—',
  q1:'{a} 다음에 지나는 지점은?',q2:'{a} → {b} 구간에서 지나는 길은?',q3:'이 편에서 관제가 다른 나라로 이양되는 지점은?',q4:'{a} → {b} 구간 거리는 약?',q5:'이 편({r})의 순항 고도 예로 맞는 것은?',q5x:'자방위 000~179°인 편은 홀수, 180~359°인 편은 짝수 고도가 기본입니다. 이 편의 주된 자방위는 약 {m}°이므로 {oe}입니다.',odd:'홀수',even:'짝수',ok:'정답!',ng:'아쉬워요…',ans:'정답: ',nextq:'다음 문제',res:'결과',again:'다시 하기',of:'문제 중 ',cor:'문제 정답',
- note:'지도·경로는 교육용 약도입니다(해안선: Natural Earth, FIR 경계: VATSpy Data Project 근사, 지점 좌표: OpenNav, 경로: 공개 비행계획 데이터의 예). 실제 경로·고도·담당 관제는 편마다 다릅니다. 항법에 쓸 수 없습니다. 레슨: 항공 기초 지식 2-5·2-6',
+ note:'지도·경로는 교육용 약도입니다(지점·경로: 한국 AIP·일본 AIP·일본 AIC 표준 경로, FIR 경계: 한국 AIP, 해안선: Natural Earth). 실제 경로·고도·담당 관제는 편마다 다릅니다. 항법에 쓸 수 없습니다. 레슨: 항공 기초 지식 2-5·2-6',
  hint:'북쪽이 왼쪽(김포–제주 지도)'},
 en:{kick:'Aviation Career Note',ttl:'Flight Operations Trainer: Airways, Flight Plans, ATC, Separation and Flow',lead:'Practise the work of dispatchers, pilots and controllers through one flight. Choose a route, then switch tabs: Follow, Flight plan & fuel, ATC calls, Levels & separation, and Delays & flow. Every tab has calculations and a quiz.',follow:'Follow',quiz:'Quiz',now:'Current point',next:'Next point',aw:'Via',dist:'Segment distance',mc:'Magnetic course (approx.)',cum:'Flown / remaining',ctl:'Talking to',ph:'Flight phase',prev:'◀ Back',nx:'Next ▶',reset:'Restart',auto:'Auto play',stop:'Stop',nm:'NM',done:'Arrived',PH:{dep:'Departure',clb:'Climb',crz:'Cruise',des:'Descent',arr:'Arrival'},SID:'Departure (SID)',APP:'Arrival and approach',none:'—',
  q1:'Which point comes after {a}?',q2:'Which airway is used from {a} to {b}?',q3:'On this flight, where is control handed over to another country?',q4:'About how long is the segment from {a} to {b}?',q5:'Which is a correct example cruising level for this flight ({r})?',q5x:'Flights on magnetic courses 000–179° normally use odd levels, and 180–359° even levels. This flight’s main course is about {m}°, so {oe}.',odd:'odd',even:'even',ok:'Correct!',ng:'Not quite.',ans:'Answer: ',nextq:'Next question',res:'Result',again:'Try again',of:' of ',cor:' correct',
- note:'Maps and routes are educational sketches (coastlines: Natural Earth; FIR boundaries: approximate, VATSpy Data Project; point coordinates: OpenNav; routes: examples from public flight-plan data). Actual routes, levels and controllers vary by flight. Not for navigation. Lessons: Aviation Fundamentals 2-5 and 2-6.',
+ note:'Maps and routes are educational sketches (points and routes: Korean and Japanese AIPs and Japan’s AIC standard routes; FIR boundary: Korean AIP; coastlines: Natural Earth). Actual routes, levels and controllers vary by flight. Not for navigation. Lessons: Aviation Fundamentals 2-5 and 2-6.',
  hint:'North is to the left (Gimpo–Jeju map)'}};
 var lang='ja';try{var _s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(_s)>=0)lang=_s}catch(e){}
 var ri=0,mode='follow',step=0,timer=null,QZ=null;
@@ -99,7 +105,7 @@ function awName(a){var t=T[lang];return a==='SID'?t.SID:a==='APP'?t.APP:a||t.non
 function pad(n){return ('00'+n).slice(-3)}
 /* 地図 */
 function mapSVG(r,cur){var L=legs(r),INK='#1B2B4B',MAG='#8E3B8A',s,pts=[],box,vb;
- if(r.map==='inr'){var M=window.RMAP2&&RMAP2.map;if(!M)return '';box=M.box;pts=r.s.map(function(x){return M.pts[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
+ if(r.map==='inr'||r.map==='jdm'){var M=r.map==='inr'?(window.RMAP2&&RMAP2.map):(window.RMAP4&&RMAP4.map);if(!M)return '';box=M.box;pts=r.s.map(function(x){return M.pts[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
   s='<svg viewBox="'+vb.join(' ')+'" role="img"><defs><clipPath id="pc"><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'"/></clipPath></defs><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="#DDEBF6"/><g clip-path="url(#pc)"><path d="'+M.land+'" fill="#EDE3C8" stroke="#A89B78" stroke-width=".6"/><path d="'+M.fir+'" fill="none" stroke="'+MAG+'" stroke-width="2" stroke-dasharray="10 4 2 4"/>';}
  else{var E=window.RMAP3&&RMAP3.main;if(!E)return '';box=E.box;pts=r.s.map(function(x){return E.p[x[0]]||E.a[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
   s='<svg viewBox="'+vb.join(' ')+'" role="img"><defs><clipPath id="pc"><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'"/></clipPath></defs><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="#DDEBF6"/><g clip-path="url(#pc)"><path d="'+E.land+'" fill="#EDE3C8" stroke="#A89B78" stroke-width=".7"/>';}
@@ -132,7 +138,7 @@ function stop(){if(timer){clearInterval(timer);timer=null}}
 /* 問題 */
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
 function uniq(a){return a.filter(function(x,i){return a.indexOf(x)===i})}
-function makeQuiz(){var r=R[ri],L=legs(r),out=[],allP=Object.keys(PT).filter(function(k){return !/^R[KJ]/.test(k)}),AW=['Y697','Y51','Y517','Y301','Y30','Y16','G585','Y711','Y722','B576','A593'];
+function makeQuiz(){var r=R[ri],L=legs(r),out=[],allP=Object.keys(PT).filter(function(k){return !/^R[KJ]/.test(k)}),AW=['Y697','Y51','Y517','Y303','Y30','Y16','Y685','Y711','Y722','Y20','Y235','Y23','Y71','B576','A593'];
  var inner=L.slice(1,L.length-1);
  var a=inner[Math.floor(Math.random()*inner.length)],ai=L.indexOf(a);out.push({t:'q1',a:a.k,ans:L[ai+1].k,opts:uniq([L[ai+1].k].concat(shuf(r.s.map(function(x){return x[0]}).filter(function(k){return k!==L[ai+1].k&&k!==a.k})).slice(0,3)))});
  var en=L.filter(function(x,i){return i<L.length-1&&/^[A-Z]\d/.test(x.aw)});var e=en[Math.floor(Math.random()*en.length)],ei=L.indexOf(e);

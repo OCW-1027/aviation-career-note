@@ -6,7 +6,7 @@ function L3(ja,ko,en){return {ja:ja,ko:ko,en:en}}
 function tx(o){return o[lang]||o.ja}
 var DG={'0':'zero','1':'one','2':'two','3':'tree','4':'four','5':'fife','6':'six','7':'seven','8':'eight','9':'niner'};
 var NATO={A:'Alfa',B:'Bravo',C:'Charlie',D:'Delta',E:'Echo',F:'Foxtrot',G:'Golf',H:'Hotel',I:'India',J:'Juliett',K:'Kilo',L:'Lima',M:'Mike',N:'November',O:'Oscar',P:'Papa',Q:'Quebec',R:'Romeo',S:'Sierra',T:'Tango',U:'Uniform',V:'Victor',W:'Whiskey',X:'X-ray',Y:'Yankee',Z:'Zulu'};
-var CITY={RKSS:'Gimpo',RKPC:'Jeju',RKSI:'Incheon',RJAA:'Narita'};
+var CITY={RKSS:'Gimpo',RKPC:'Jeju',RKSI:'Incheon',RJAA:'Narita',RJTT:'Tokyo',RJFF:'Fukuoka'};
 var S={sub:'pilot',sc:null,rb:''};
 function digits(s){return String(s).split('').map(function(c){return c==='.'?'decimal':DG[c]||c}).join(' ')}
 function speak(str){return str.toUpperCase().split(/\s+/).filter(Boolean).map(function(w){
@@ -36,6 +36,8 @@ var TX={pilot:L3('操縦士：復唱の練習','조종사: 복창 연습','Pilot
 var UNIT=function(r){var dep=CITY[r.s[0][0]],arr=CITY[r.s[r.s.length-1][0]];var a=[[L3(dep+' 管制承認（デリバリー）',dep+' 관제 허가(딜리버리)',dep+' Clearance Delivery'),L3('飛行計画どおりの許可をもらう','비행계획대로 허가를 받는다','Receive the route clearance')],[L3(dep+' グランド',dep+' 그라운드',dep+' Ground'),L3('プッシュバック・地上走行','푸시백·지상 이동','Pushback and taxi')],[L3(dep+' タワー',dep+' 타워',dep+' Tower'),L3('離陸の許可','이륙 허가','Take-off clearance')],[L3('出発管制（ディパーチャー）','출발 관제(디파처)','Departure'),L3('出発方式で上昇','출발 절차로 상승','Climb on the departure')]];
  if(r.id==='gc'||r.id==='cg')a=a.concat([[L3('仁川航空路管制所（持ち場1）','인천 항로관제소(구역 1)','Incheon ACC (sector 1)'),L3('巡航','순항','Cruise')],[L3('仁川航空路管制所（持ち場2）','인천 항로관제소(구역 2)','Incheon ACC (sector 2)'),L3('周波数だけ変わる','주파수만 바뀐다','Only the frequency changes')],[L3('仁川航空路管制所（持ち場3）','인천 항로관제소(구역 3)','Incheon ACC (sector 3)'),L3('降下の開始','강하 시작','Start of descent')]]);
  else if(r.id==='in')a=a.concat([[L3('仁川航空路管制所','인천 항로관제소','Incheon ACC'),L3('韓国の上空','한국 상공','Over Korea')],[L3('日本の航空路管制（福岡FIR）','일본 항로관제(후쿠오카 FIR)','Japanese area control (Fukuoka FIR)'),L3('LANATの先で国が替わる','LANAT 뒤에서 나라가 바뀐다','Country changes past LANAT')]]);
+ else if(r.id==='hf')a=a.concat([[L3('東京航空交通管制部','도쿄 항공교통관제부','Tokyo ACC'),L3('関東の上空で上昇','간토 상공에서 상승','Climbing over the Kanto region')],[L3('福岡航空交通管制部（高高度）','후쿠오카 항공교통관제부(고고도)','Fukuoka ACC (upper airspace)'),L3('FL335以上は福岡が担当（SUGALから）','FL335 이상은 후쿠오카 담당(SUGAL부터)','Fukuoka handles FL335 and above (from SUGAL)')]]);
+ else if(r.id==='fh')a=a.concat([[L3('福岡航空交通管制部（高高度）','후쿠오카 항공교통관제부(고고도)','Fukuoka ACC (upper airspace)'),L3('FL335以上は福岡が担当','FL335 이상은 후쿠오카 담당','Fukuoka handles FL335 and above')],[L3('東京航空交通管制部','도쿄 항공교통관제부','Tokyo ACC'),L3('降下して東京の空域へ','강하해 도쿄 공역으로','Descending into Tokyo airspace')]]);
  else a=a.concat([[L3('日本の航空路管制（福岡FIR）','일본 항로관제(후쿠오카 FIR)','Japanese area control (Fukuoka FIR)'),L3('日本の上空','일본 상공','Over Japan')],[L3('仁川航空路管制所','인천 항로관제소','Incheon ACC'),L3('SAPRAで韓国へ','SAPRA에서 한국으로','Into Korea at SAPRA')]]);
  return a.concat([[L3(arr+' アプローチ',arr+' 어프로치',arr+' Approach'),L3('到着方式・進入','도착 절차·접근','Arrival and approach')],[L3(arr+' タワー',arr+' 타워',arr+' Tower'),L3('着陸の許可','착륙 허가','Landing clearance')],[L3(arr+' グランド',arr+' 그라운드',arr+' Ground'),L3('駐機場まで','주기장까지','Taxi to the stand')]])};
 function render(){var sub='<div class="row tabs" id="atSub" style="margin-top:12px">'+[['pilot',TX.pilot],['flow',TX.flow],['conv',TX.conv],['quiz',TX.quiz]].map(function(m){return '<button class="pill'+(S.sub===m[0]?' on':'')+'" data-s="'+m[0]+'">'+tx(m[1])+'</button>'}).join('')+'</div>',h='',r=R[ri];

@@ -5,7 +5,8 @@ lead:["The operational flight plan (OFP) sets out on one sheet the route and lev
 sections:[
 {h:"Korean version: Gimpo→Jeju",blocks:[{t:"fig",id:"dsp_ofp",cap:"Moving diagram: a practice OFP (Gimpo→Jeju via Y711) read in order: 1 header, 2 route, 3 fuel, 4 weights, 5 navigation log, 6 alternate, 7 signatures."}]},
 {h:"Japanese version: Haneda→Fukuoka",blocks:[{t:"fig",id:"dsp_ofp_jp",cap:"Moving diagram: a practice OFP (Haneda→Fukuoka). The route TIARA GUSRO Y20 KIRIN comes from Japan’s standard route table (AIC 003/24) and the 420.5 NM GUSRO–KIRIN distance on Y20 from Japan’s AIP ENR 3.3 (March 2024). Fuel is laid out by the categories of Enforcement Regulations Art. 153."},
-{t:"note",x:"* The Japanese data come from the 2024 AIP and are for training only. Details change (Haneda’s SID numbers were revised in 2025), so real operations use the current AIP."}]},
+{t:"note",x:"* The Japanese data come from the 2024 AIP and are for training only. Details change (Haneda’s SID numbers were revised in 2025), so real operations use the current AIP."},
+{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&r=hf&m=plan",x:"Practice page “Flight Operations Trainer”: work out the flight plan and fuel for Haneda → Fukuoka (Y20)"}]},
 {h:"Reading each block",blocks:[{t:"table",cols:["Block","What to check"],rows:[
 ["1 Header","Flight number, sector, date, type and registration, scheduled times (UTC), cost index (CI)"],
 ["2 Route","Route string, cruising level, distances (ground and air distance allowing for wind)"],

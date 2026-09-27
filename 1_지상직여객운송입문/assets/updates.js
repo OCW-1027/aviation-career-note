@@ -3,6 +3,9 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-27",c:"",k:"",t:"upd",u:"18_항공기초지식/航空路図の練習.html",ja:"運航の総合練習：日本の国内線「羽田⇄福岡」を追加（日本AIP・AICの標準経路）",ko:"운항 종합 연습: 일본 국내선 「하네다⇄후쿠오카」 추가(일본 AIP·AIC 표준 경로)",en:"Flight Operations Trainer: Japanese domestic route Haneda⇄Fukuoka added (standard routes from Japan’s AIP and AIC)"},
+{d:"2026-09-27",c:"18_항공기초지식",k:"2-6",t:"upd",ja:"仁川⇄成田の航空路図・練習を、韓国AIPと日本AIP・AICの公式の経路に切り替え（FIR境界も韓国AIPに）",ko:"인천⇄나리타 항로 차트·연습을 한국 AIP와 일본 AIP·AIC의 공식 경로로 교체(FIR 경계도 한국 AIP로)",en:"Incheon⇄Narita chart and practice switched to official routes from the Korean and Japanese AIPs and AIC (FIR boundary from the Korean AIP)"},
+{d:"2026-09-27",c:"",k:"",t:"new",u:"8_사이트/sources.html",ja:"「出典と利用条件」のページを新設",ko:"「출처와 이용 조건」 페이지 신설",en:"New page: Sources and terms of use"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"4-1",t:"new",ja:"運航管理 Part 4 飛行計画書：OFPを読む（韓国版 金浦→済州・日本版 羽田→福岡）、ATCに出す飛行計画、出発前の書類と署名",ko:"운항관리 Part 4 비행계획서: OFP 읽기(한국판 김포→제주·일본판 하네다→후쿠오카), ATC 비행계획, 출발 전 서류와 서명",en:"Dispatch Part 4, Flight Plans: reading the OFP (Korean Gimpo→Jeju and Japanese Haneda→Fukuoka versions), the ATC flight plan, pre-departure documents and signatures"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"2-2",t:"upd",ja:"運航管理 Part 1〜3に日本の基準（運航規程審査要領細則 2025年11月版）を並べて追加",ko:"운항관리 Part 1~3에 일본 기준(운항규정 심사요령 세칙 2025년 11월판)을 나란히 추가",en:"Dispatch Parts 1–3: Japanese rules (detailed Operations Manual review rules, November 2025) added side by side"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"3-1",t:"new",ja:"運航管理 Part 3 NOTAM：NOTAMの読み方と韓国のシリーズ、SNOWTAMとGRF（滑走路状態コード）、ASHTAMと火山灰",ko:"운항관리 Part 3 NOTAM: NOTAM 읽기와 한국 시리즈, SNOWTAM과 GRF(활주로 상태 코드), ASHTAM과 화산재",en:"Dispatch Part 3, NOTAM: reading NOTAMs and Korea’s series, SNOWTAM and the GRF runway condition codes, ASHTAM and volcanic ash"},

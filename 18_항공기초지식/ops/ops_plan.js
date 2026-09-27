@@ -17,10 +17,11 @@ window.OPS_QUIZ=function(el,make){var st={q:make(),i:0,ok:0,pk:null},Q=L3('問',
 window.OPS_OPTS=function(ans,wrong){var o=[ans].concat(wrong.filter(function(w,i){return w!==ans&&wrong.indexOf(w)===i})).slice(0,4);o=shuf(o);return {o:o,a:o.indexOf(ans)}};
 /* 航空路・出発/到着のつなぎ・代替空港・機材 */
 var AW={Y711:['MONSI','BULTI','MEKIL','GONAX','BEDES','ELPOS','MANGI','DALSU','NULDI','DOTOL','KIDOS'],Y722:['LOSNI','GUKSU','KAMIT','SAMUL','MAKSA','ATASO','PEBRI','GUNKU','OLMEN','SOT'],
- Y697:['EGOBA','LANAT'],Y51:['LANAT','SAMON'],Y517:['SAMON','LANAI'],Y301:['LANAI','SHELY'],Y30:['SHELY','MELON'],Y16:['CHINO','SAPRA'],G585:['SAPRA','CUN']};
-var DEPX={RKSS:['MONSI'],RKPC:['LOSNI'],RKSI:['EGOBA'],RJAA:['CHINO']},ARRX={RKPC:['KIDOS'],RKSS:['SOT'],RJAA:['MELON'],RKSI:['CUN']};
-var ALT={RKPC:'RKPK',RKSS:'RKSI',RJAA:'RJTT',RKSI:'RKSS'},XP={RKPK:[35.1795,128.9382],RJTT:[35.5523,139.7797]};
-var EX={gc:'RKSS MONSI Y711 KIDOS RKPC',cg:'RKPC LOSNI Y722 SOT RKSS',in:'RKSI EGOBA Y697 LANAT Y51 SAMON Y517 LANAI Y301 SHELY Y30 MELON RJAA',ni:'RJAA CHINO Y16 SAPRA G585 CUN RKSI'};
+ Y697:['EGOBA','LANAT'],Y51:['LANAT','SAMON'],Y517:['SAMON','ESKAS'],Y303:['ESKAS','ENTAK'],Y30:['ENTAK','SWAMP'],Y16:['ENPAR','SAPRA'],Y685:['SAPRA','SEL'],
+ Y20:['GUSRO','KIRIN'],Y235:['YANKS','FLUTE'],Y23:['FLUTE','ARTIC'],Y71:['ARTIC','XAC']};
+var DEPX={RKSS:['MONSI'],RKPC:['LOSNI'],RKSI:['EGOBA'],RJAA:['ENPAR'],RJTT:['GUSRO'],RJFF:['YANKS']},ARRX={RKPC:['KIDOS'],RKSS:['SOT'],RJAA:['SWAMP'],RKSI:['SEL'],RJFF:['KIRIN'],RJTT:['XAC']};
+var ALT={RKPC:'RKPK',RKSS:'RKSI',RJAA:'RJTT',RKSI:'RKSS',RJFF:'RJFR',RJTT:'RJAA'},XP={RKPK:[35.1795,128.9382],RJTT:[35.5523,139.7797],RJFR:[33.8459,131.0349]};
+var EX={gc:'RKSS MONSI Y711 KIDOS RKPC',cg:'RKPC LOSNI Y722 SOT RKSS',in:'RKSI EGOBA Y697 LANAT Y51 SAMON Y517 ESKAS Y303 ENTAK Y30 SWAMP RJAA',ni:'RJAA ENPAR Y16 SAPRA Y685 SEL RKSI',hf:'RJTT GUSRO Y20 KIRIN RJFF',fh:'RJFF YANKS Y235 FLUTE Y23 ARTIC Y71 XAC RJTT'};
 var AC={A21N:{n:'A321neo',w:'M',tas:450,ff:2500,taxi:200,mtow:97000,mlw:79200,mzfw:75600,zfw:66000},B738:{n:'B737-800',w:'M',tas:450,ff:2400,taxi:200,mtow:79016,mlw:66361,mzfw:62732,zfw:58000},
  A333:{n:'A330-300',w:'H',tas:470,ff:5800,taxi:350,mtow:242000,mlw:187000,mzfw:175000,zfw:160000},B77W:{n:'B777-300ER',w:'H',tas:490,ff:7500,taxi:450,mtow:351534,mlw:251290,mzfw:237682,zfw:215000}};
 window.OPS_DATA={AW:AW,DEPX:DEPX,ARRX:ARRX,EX:EX,AC:AC};
@@ -120,7 +121,7 @@ function bindSub(){Array.prototype.forEach.call(document.querySelectorAll('#opsS
 function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1))}
 function makeQuiz(){var r=R[ri],out=[],ex=EX[r.id].split(' '),q;
  /* 経路のまちがい探し */
- var t=ex.slice(),bad;if(t.length>5&&Math.random()<.5){var k=2;t[k]=r.id==='gc'?'Y722':r.id==='cg'?'Y711':(t[k]==='Y697'?'Y16':'Y517');bad=t[k]}else{var last=t.length-2;t[last]=r.id==='gc'?'SAMUL':r.id==='cg'?'DOTOL':r.id==='in'?'CHINO':'LANAT';bad=t[last]}
+ var t=ex.slice(),bad;if(t.length>5&&Math.random()<.5){var k=2;t[k]=r.id==='gc'?'Y722':r.id==='cg'?'Y711':(t[k]==='Y697'?'Y16':'Y517');bad=t[k]}else{var last=t.length-2;t[last]=r.id==='gc'?'SAMUL':r.id==='cg'?'DOTOL':r.id==='in'?'ENPAR':'LANAT';bad=t[last]}
  var o=OPS_OPTS(bad,shuf(t.filter(function(x){return x!==bad}))),q1={q:msg('q1',{r:t.join(' ')}),o:o.o,a:o.a,x:tx(TX.q1x)};out.push(q1);
  var d=rnd(8,30)*5,g=rnd(38,52)*10,m=Math.round(d/g*60);o=OPS_OPTS(m+'',[Math.round(d/g*100)+'',Math.round(g/d)+'',(m+15)+'',Math.max(1,m-12)+'']);out.push({q:msg('q2',{d:d,g:g}),o:o.o.map(function(x){return x+(lang==='en'?' min':lang==='ko'?'분':'分')}),a:o.a,x:d+' \u00F7 '+g+' \u00D7 60 = '+m});
  var tr=rnd(30,90)*100;o=OPS_OPTS(f0(tr*0.05),[f0(tr*0.5),f0(tr*0.1),f0(tr*0.005)]);out.push({q:msg('q3',{t:f0(tr)}),o:o.o.map(function(x){return x+' kg'}),a:o.a,x:f0(tr)+' \u00D7 0.05'});
