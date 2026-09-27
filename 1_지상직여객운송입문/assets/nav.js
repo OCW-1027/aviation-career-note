@@ -43,3 +43,16 @@ function prevNext(){var m=location.search.match(/[?&]no=([^&]+)/);if(!m||!window
  var host=document.querySelector('main')||document.body;var f=host.querySelector('footer');if(f&&f.parentNode===host)host.insertBefore(d,f);else host.appendChild(d)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0)});else setTimeout(init,0);
 })();
+
+/* 著作権の表示（2026.09）：© の表示がないページにだけ、ページの最後に1行を付ける。言語の切り替えにも合わせる */
+(function(){if(window.__NV_COPY)return;window.__NV_COPY=1;
+var CP={ja:'\u00a9 2026 \u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8\u3000\u7121\u65ad\u8ee2\u8f09\u30fb\u8907\u88fd\u7981\u6b62',ko:'\u00a9 2026 \ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8\u3000\ubb34\ub2e8 \uc804\uc7ac\u00b7\ubcf5\uc81c \uae08\uc9c0',en:'\u00a9 2026 Aviation Career Note. All rights reserved.'};
+function lg(){var l=(document.documentElement.lang||'ja').slice(0,2);return CP[l]?l:'ja'}
+function put(){if(!document.body)return;var e=document.getElementById('nv-copy');
+ var has=[].some.call(document.querySelectorAll('footer,#foot,#siteFoot,.foot'),function(f){return f!==e&&f.textContent.indexOf('\u00a9')>=0});
+ if(has){if(e)e.parentNode.removeChild(e);return}
+ if(!e){e=document.createElement('div');e.id='nv-copy';e.style.cssText='text-align:center;font-size:12px;color:#6b7a8a;padding:22px 12px calc(30px + env(safe-area-inset-bottom,0px))';document.body.appendChild(e)}
+ e.textContent=CP[lg()]}
+function go(){setTimeout(put,400);setTimeout(put,1500)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+try{new MutationObserver(put).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})}catch(err){}})();

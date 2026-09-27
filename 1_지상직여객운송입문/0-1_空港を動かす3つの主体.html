@@ -240,7 +240,7 @@ h+=`<section><h2>${esc(L.terms.h)}</h2><div class="scroll tbl"><table class="ter
 h+=`<section><h2>${esc(L.quiz.h)}</h2><div class="quiz">${L.quiz.items.map((q,qi)=>`<div class="q" data-a="${q.a}"><p>Q${qi+1}. ${esc(q.q)}</p><div class="opts">${q.opts.map((o,oi)=>`<button type="button" class="opt" data-i="${oi}">${oi+1}. ${esc(o)}</button>`).join('')}</div><p class="exp">${esc(q.exp)}</p></div>`).join('')}</div></section>`;
 h+=`<div class="next"><span class="pict" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><span>${esc(L.next)}</span></div>`;
 $('#main').innerHTML=h;
-$('#foot').textContent=({ja:'© 航空キャリアノート',ko:'© 항공 커리어 노트',en:'© Aviation Career Note'}[lang]||'© 航空キャリアノート')+' — '+L.series+' '+C.meta.series_no;
+$('#foot').textContent=({ja:'© 2026 航空キャリアノート　無断転載・複製禁止',ko:'© 2026 항공 커리어 노트　무단 전재·복제 금지',en:'© 2026 Aviation Career Note. All rights reserved.'}[lang]||'© 2026 航空キャリアノート　無断転載・複製禁止')+' — '+L.series+' '+C.meta.series_no;
 const detail=$('#detail');
 const show=id=>{const a=L.s1.actors.find(x=>x.id===id);document.querySelectorAll('.node').forEach(n=>n.classList.toggle('on',n.dataset.id===id));detail.innerHTML=`<b>${esc(a.name)}</b><span class="role">${esc(a.role)}</span><div>${esc(a.desc)}</div>`};
 document.querySelectorAll('.node').forEach(n=>{n.addEventListener('click',()=>show(n.dataset.id));n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(n.dataset.id)}})});

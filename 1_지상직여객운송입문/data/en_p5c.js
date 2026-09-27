@@ -45,5 +45,5 @@ terms:[["Air Transport User Protection Standards (Korea)","航空交通利用者
 quiz:[{q:"What did the Korean penalty cases have in common?",opts:["High fares","Passengers told late, or not at all, about something the airline already knew","Meals","Seat width"],a:1,exp:"The gap between knowing and telling is what counts."},
 {q:"You learn before departure that some bags cannot be loaded. You…",opts:["Tell passengers on arrival","Tell the passengers affected before departure","Say nothing","Tell them the next day"],a:1,exp:"Also explain how the bags will be sent and collected."},
 {q:"Which delay code applies when late passengers are accepted after the deadline?",opts:["11","36","72","93"],a:0,exp:"11 is late acceptance after the deadline (PD)."}],
-next:"Part 6 Station Management — 6-1 The station organisation and the working day"});
+next:"Part 6 Station Daily Operations — 6-1 The station organisation and the working day"});
 })(window.ARTS);
