@@ -95,5 +95,5 @@ terms:[["EDTO Entry Point (EEP)","EDTOの区域への進入点","EDTO 진입점"
 quiz:[{q:"What is the equal time point (ETP)?",opts:["Halfway between origin and destination","The point where times to the two alternates are equal","Where half the fuel is used","The highest altitude"],a:1,exp:"The diversion alternate changes at this point."},
 {q:"If critical fuel at the ETP exceeds the fuel planned on board there…",opts:["Depart anyway","Carry the difference as additional fuel","Drop an alternate","Fly faster"],a:1,exp:"It is planned as additional fuel."},
 {q:"With a 180-min maximum diversion time and 400 kt one-engine-inoperative speed, alternates must lie within…",opts:["600 NM","1,000 NM","1,200 NM","1,800 NM"],a:2,exp:"400 kt × 3 h = 1,200 NM."}],
-next:""});
+next:"9-1 Flight monitoring and communications"});
 })(window.ARTS);
