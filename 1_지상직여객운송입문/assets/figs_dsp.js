@@ -60,6 +60,29 @@ dsp_window:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 
  s+=R(X(10.5),172,X(15)-X(10.5),28,'#FBE3E3',6)+tx(X(10.5)+8,191,'TEMPO 0600 FG VV002',13,'#C2344F',800,'start');
  s+='<g><rect x="'+(X(10)-110)+'" y="210" width="220" height="34" rx="8" fill="#C2344F"/>'+tx(X(10),232,'WORST: 600 m / 200 ft',14,'#fff',800)+'<animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></g>';
  s+=tx(450,310,'Groups overlapping ETA ±1 h decide the planning weather',12,G,700);
+ return s+'</svg>'},
+/* NOTAM を項目ごとに読む */
+dsp_notam:function(){var L=[['D1234/26 NOTAMN','SERIES D, No.1234 of 2026, NEW'],['Q) RKRR','FIR: INCHEON'],['/QARLC','SUBJECT AR (ATS ROUTE) + CONDITION LC (CLOSED)'],['/IV/NBO/E','IFR+VFR / PURPOSE / SCOPE: EN ROUTE'],['/200/300','LOWER FL200 / UPPER FL300'],['/3530N12650E050','CENTRE AND RADIUS 50 NM'],['A) RKRR','LOCATION'],['B) 2609270000','FROM 27 SEP 2026 00:00 UTC'],['C) 2610052359','TO 05 OCT 2026 23:59 UTC'],['E) ATS RTE Y711 ...','PLAIN-LANGUAGE TEXT']],N=L.length,DUR=N*1.7,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+R(0,0,900,360,'#F7FAFD');
+ var pos=[[30,40],[270,40],[390,40],[540,40],[30,100],[180,100],[30,160],[190,160],[430,160],[30,220]];
+ L.forEach(function(t,i){var p=pos[i],w=t[0].length*11+24,a=(i/N).toFixed(3),b=((i+1)/N).toFixed(3);
+  s+=R(p[0],p[1],w,40,'#fff',8,' stroke="#C9D6E3" stroke-width="2"')+'<text x="'+(p[0]+w/2)+'" y="'+(p[1]+26)+'" font-size="16" font-weight="800" fill="'+D+'" text-anchor="middle" font-family="Consolas,Menlo,monospace">'+t[0]+'</text>'+
+  '<rect x="'+p[0]+'" y="'+p[1]+'" width="'+w+'" height="40" rx="8" fill="none" stroke="'+O+'" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+b+';'+b+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></rect>'+
+  '<text x="450" y="320" font-size="19" font-weight="800" fill="'+O+'" text-anchor="middle" font-family="Arial" opacity="0">'+t[1]+'<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+b+';'+b+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>'});
+ s+=tx(450,282,'PRACTICE EXAMPLE — NOT A REAL NOTAM',12,G,700);
+ return s+'</svg>'},
+/* 滑走路の3分の1ごとの状態コード（GRF） */
+dsp_rwycc:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+R(0,0,900,330,'#F7FAFD'),col={6:'#1F7A6E',5:'#4A9C6B',4:'#8DB24A',3:'#E0B32F',2:'#E08A2F',1:'#C2344F',0:'#6E1F2E'},DUR=9,
+ sets=[[5,5,5],[5,3,2],[3,2,1]];
+ s+=R(60,110,780,90,'#3A4350',6);for(var i=1;i<3;i++)s+='<line x1="'+(60+i*260)+'" y1="110" x2="'+(60+i*260)+'" y2="200" stroke="#fff" stroke-width="2" stroke-dasharray="8 6"/>';
+ s+='<line x1="70" y1="155" x2="830" y2="155" stroke="#fff" stroke-width="3" stroke-dasharray="30 20"/>'+tx(80,100,'RWY 14R',14,D,800,'start')+tx(820,100,'32L',14,D,800,'end');
+ ['TOUCHDOWN','MIDPOINT','STOP-END'].forEach(function(n,i){s+=tx(190+i*260,228,n,12,G,700)});
+ sets.forEach(function(v,k){var a=(k/3).toFixed(3),b=((k+1)/3).toFixed(3);s+='<g opacity="0">';
+  v.forEach(function(c,i){var x=190+i*260;s+='<circle cx="'+x+'" cy="155" r="32" fill="'+col[c]+'" stroke="#fff" stroke-width="3"/>'+tx(x,165,c,30,'#fff',900)});
+  s+=R(250,250,400,40,'#fff',8,' stroke="#C9D6E3" stroke-width="2"')+'<text x="450" y="277" font-size="18" font-weight="800" fill="'+D+'" text-anchor="middle" font-family="Consolas,Menlo,monospace">RWYCC '+v.join('/')+'</text>';
+  s+='<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+b+';'+b+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
+ var lg=[[6,'DRY'],[5,'GOOD'],[4,'GOOD TO MEDIUM'],[3,'MEDIUM'],[2,'MEDIUM TO POOR'],[1,'POOR'],[0,'LESS THAN POOR']];
+ var lx=80;lg.forEach(function(l){s+='<rect x="'+lx+'" y="26" width="24" height="24" rx="5" fill="'+col[l[0]]+'"/>'+tx(lx+12,43,l[0],14,'#fff',900)+tx(lx+30,43,l[1],10,D,700,'start');lx+=48+l[1].length*6.4});
+ s+=tx(450,316,'Code for each third of the runway (6 = dry … 0 = nil braking, runway closure considered)',12,G,700);
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];

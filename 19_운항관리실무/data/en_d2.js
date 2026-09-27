@@ -99,5 +99,5 @@ terms:[["Aerodrome Operating Minima","飛行場運営最低値","비행장운영
 quiz:[{q:"Which is true of aerodrome operating minima?",opts:["One worldwide value","Set by each airline for each airport, with the method approved","Chosen freely by pilots each time","Set by the airport for all airlines"],a:1,exp:"8.1.11.6 a."},
 {q:"How do they relate to the minima of the state where the airport is?",opts:["Not lower, unless specifically approved","May always be lower","No relation","Must be double"],a:0,exp:"8.1.11.6 a."},
 {q:"Which turbulence occurs in clear skies?",opts:["Wind shear","Clear air turbulence (CAT)","Thunderstorms","Icing"],a:1,exp:"Common near jet streams."}],
-next:""});
+next:"Part 3 NOTAM — 3-1 How NOTAMs work and how to read them"});
 })(window.ARTS);

@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-27",c:"19_운항관리실무",k:"3-1",t:"new",ja:"運航管理 Part 3 NOTAM：NOTAMの読み方と韓国のシリーズ、SNOWTAMとGRF（滑走路状態コード）、ASHTAMと火山灰",ko:"운항관리 Part 3 NOTAM: NOTAM 읽기와 한국 시리즈, SNOWTAM과 GRF(활주로 상태 코드), ASHTAM과 화산재",en:"Dispatch Part 3, NOTAM: reading NOTAMs and Korea’s series, SNOWTAM and the GRF runway condition codes, ASHTAM and volcanic ash"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"2-1",t:"new",ja:"運航管理 Part 2 気象：METAR・TAFの読み方、出発の判断と代替空港の基準、飛行場運営最低値（運航技術基準 2026年3月版）",ko:"운항관리 Part 2 기상: METAR·TAF 읽기, 출발 판단과 교체공항 기준, 비행장운영최저치(운항기술기준 2026년 3월판)",en:"Dispatch Part 2, Weather: reading METAR and TAF, departure and alternate rules, aerodrome operating minima (March 2026 regulations)"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"0-1",t:"new",ja:"新講座「運航管理の実務」開講：運航管理とは・韓日の資格制度・OCC・航空法規（現行法令で確認）",ko:"새 강좌 「운항관리 실무」 개강: 운항관리란·한일 자격 제도·OCC·항공법규(현행 법령 확인)",en:"New course, Flight Dispatch Operations: operational control, Korean and Japanese qualifications, the OCC and aviation law (checked against current law)"},
 {d:"2026-09-26",c:"",k:"",t:"upd",u:"18_항공기초지식/航空路図の練習.html",ja:"運航の総合練習：飛行計画・燃料と重量、管制の復唱、高度と間隔、スロットと遅延を追加",ko:"운항 종합 연습: 비행계획·연료와 중량, 관제 복창, 고도와 간격, 슬롯과 지연 추가",en:"Flight Operations Trainer: flight plans, fuel and weight, ATC readbacks, levels and separation, slots and delays added"},
