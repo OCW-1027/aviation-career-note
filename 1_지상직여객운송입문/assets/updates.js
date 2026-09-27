@@ -3,6 +3,8 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-27",c:"19_운항관리실무",k:"4-1",t:"new",ja:"運航管理 Part 4 飛行計画書：OFPを読む（韓国版 金浦→済州・日本版 羽田→福岡）、ATCに出す飛行計画、出発前の書類と署名",ko:"운항관리 Part 4 비행계획서: OFP 읽기(한국판 김포→제주·일본판 하네다→후쿠오카), ATC 비행계획, 출발 전 서류와 서명",en:"Dispatch Part 4, Flight Plans: reading the OFP (Korean Gimpo→Jeju and Japanese Haneda→Fukuoka versions), the ATC flight plan, pre-departure documents and signatures"},
+{d:"2026-09-27",c:"19_운항관리실무",k:"2-2",t:"upd",ja:"運航管理 Part 1〜3に日本の基準（運航規程審査要領細則 2025年11月版）を並べて追加",ko:"운항관리 Part 1~3에 일본 기준(운항규정 심사요령 세칙 2025년 11월판)을 나란히 추가",en:"Dispatch Parts 1–3: Japanese rules (detailed Operations Manual review rules, November 2025) added side by side"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"3-1",t:"new",ja:"運航管理 Part 3 NOTAM：NOTAMの読み方と韓国のシリーズ、SNOWTAMとGRF（滑走路状態コード）、ASHTAMと火山灰",ko:"운항관리 Part 3 NOTAM: NOTAM 읽기와 한국 시리즈, SNOWTAM과 GRF(활주로 상태 코드), ASHTAM과 화산재",en:"Dispatch Part 3, NOTAM: reading NOTAMs and Korea’s series, SNOWTAM and the GRF runway condition codes, ASHTAM and volcanic ash"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"2-1",t:"new",ja:"運航管理 Part 2 気象：METAR・TAFの読み方、出発の判断と代替空港の基準、飛行場運営最低値（運航技術基準 2026年3月版）",ko:"운항관리 Part 2 기상: METAR·TAF 읽기, 출발 판단과 교체공항 기준, 비행장운영최저치(운항기술기준 2026년 3월판)",en:"Dispatch Part 2, Weather: reading METAR and TAF, departure and alternate rules, aerodrome operating minima (March 2026 regulations)"},
 {d:"2026-09-27",c:"19_운항관리실무",k:"0-1",t:"new",ja:"新講座「運航管理の実務」開講：運航管理とは・韓日の資格制度・OCC・航空法規（現行法令で確認）",ko:"새 강좌 「운항관리 실무」 개강: 운항관리란·한일 자격 제도·OCC·항공법규(현행 법령 확인)",en:"New course, Flight Dispatch Operations: operational control, Korean and Japanese qualifications, the OCC and aviation law (checked against current law)"},

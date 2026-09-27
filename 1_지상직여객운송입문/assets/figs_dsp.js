@@ -83,7 +83,34 @@ dsp_rwycc:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
  var lg=[[6,'DRY'],[5,'GOOD'],[4,'GOOD TO MEDIUM'],[3,'MEDIUM'],[2,'MEDIUM TO POOR'],[1,'POOR'],[0,'LESS THAN POOR']];
  var lx=80;lg.forEach(function(l){s+='<rect x="'+lx+'" y="26" width="24" height="24" rx="5" fill="'+col[l[0]]+'"/>'+tx(lx+12,43,l[0],14,'#fff',900)+tx(lx+30,43,l[1],10,D,700,'start');lx+=48+l[1].length*6.4});
  s+=tx(450,316,'Code for each third of the runway (6 = dry … 0 = nil braking, runway closure considered)',12,G,700);
- return s+'</svg>'}
+ return s+'</svg>'},
+/* 運航飛行計画書（OFP）をブロックごとに読む（練習用）。韓国版：金浦→済州、日本版：羽田→福岡（Y20の地点・距離は日本AIP ENR 3.3、2024年3月版） */
+dsp_ofp:function(){return ofpFig([
+ [40,['ACN123  RKSS-RKPC  27SEP26  A20N HL8XXX','STD 0100Z  STA 0205Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
+ [100,['RKSS MONSI Y711 KIDOS RKPC','FL240   GND DIST 251NM   AIR DIST 262NM'],'ROUTE, CRUISING LEVEL, DISTANCE'],
+ [160,['TRIP  2900   CONT   150   ALTN  1300','FINRES 1100   EXTRA    0   TAXI   200   BLOCK 5650'],'FUEL (kg): TRIP → BLOCK'],
+ [220,['ZFW 61200/64300   TOW 66650/79000','LW  63750/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
+ [280,['WPT    AWY   FL   W/V     DIST  ETE  FUEL','MONSI  Y711  240  290/45    38  0:09  5000'],'NAV LOG: POINT BY POINT'],
+ [340,['ALTN RKPK  DIST 150NM  FL150  1300','NOTAM / WX ATTACHED'],'ALTERNATE, ATTACHED NOTAM AND WEATHER'],
+ [400,['DISPATCHER ________','CAPTAIN ________'],'SIGNATURES: DISPATCHER, THEN CAPTAIN']],'KOREA · PRACTICE OFP')},
+dsp_ofp_jp:function(){return ofpFig([
+ [40,['ACN801  RJTT-RJFF  27SEP26  A20N JA00XX','STD 0000Z  STA 0130Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
+ [100,['RJTT TIARA GUSRO Y20 KIRIN RJFF','FL380   Y20 GUSRO-KIRIN 420.5NM (AIP)'],'ROUTE, CRUISING LEVEL, DISTANCE'],
+ [160,['TRIP  3600   CONT  190 (5%/5MIN)   ALTN RJFR  900','HOLD 30MIN 1100   TAXI  150   BLOCK 5940'],'FUEL (kg): ART. 153 + NOTICE 319'],
+ [220,['ZFW 60500/64300   TOW 66290/79000','LW  62690/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
+ [280,['WPT    AWY   FL   W/V     DIST  ETE  FUEL','SUGAL  Y20   380  270/80  13.0  0:02  4900'],'NAV LOG: TOKYO → KOBE → FUKUOKA ACC'],
+ [340,['ALTN RJFR  DIST 45NM  FL120  900','NOTAM / WX ATTACHED'],'ALTERNATE, ATTACHED NOTAM AND WEATHER'],
+ [400,['DISPATCHER ________','CAPTAIN ________'],'SIGNATURES: DISPATCHER APPROVES, CAPTAIN CONFIRMS']],'JAPAN · PRACTICE OFP')}
 };
+function ofpFig(B,label){var N=B.length,DUR=N*2,
+ s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img">'+R(0,0,900,520,'#F7FAFD')+R(60,24,560,440,'#fff',6,' stroke="#C9D6E3" stroke-width="2"');
+ B.forEach(function(b,i){var a=(i/N).toFixed(3),e=((i+1)/N).toFixed(3);
+  b[1].forEach(function(l,j){s+='<text x="80" y="'+(b[0]+18+j*20)+'" font-size="14" font-weight="700" fill="'+D+'" font-family="Consolas,Menlo,monospace" xml:space="preserve">'+l+'</text>'});
+  if(i<N-1)s+='<line x1="70" y1="'+(b[0]+54)+'" x2="610" y2="'+(b[0]+54)+'" stroke="#E3E9EF"/>';
+  s+='<rect x="66" y="'+(b[0]-2)+'" width="548" height="52" rx="6" fill="none" stroke="'+O+'" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+e+';'+e+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></rect>';
+  s+='<g opacity="0">'+badge(i+1,660,b[0]+24,14,O)+'<line x1="614" y1="'+(b[0]+24)+'" x2="644" y2="'+(b[0]+24)+'" stroke="'+O+'" stroke-width="2"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+e+';'+e+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
+  s+='<text x="450" y="496" font-size="17" font-weight="800" fill="'+O+'" text-anchor="middle" font-family="Arial" opacity="0">'+b[2]+'<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+e+';'+e+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>'});
+ s+=tx(770,60,label,13,G,800)+tx(770,80,'not a real flight',11,G,700);
+ return s+'</svg>'}
 for(var k in F)window.FIGS[k]=F[k];
 })();
