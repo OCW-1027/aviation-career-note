@@ -37,7 +37,7 @@ sections:[
 {name:"Returning slots",x:"Once a suspension is decided, have head office return the slots to the coordinator early, not at the deadline."},
 {name:"Ground capacity",x:"A slot does not guarantee stands, counters or handler staff; check those separately."}]}]}],
 voice:"[Interview to be added] Securing a slot for an extra flight.",
-terms:[["Airport Slot","スロット（発着枠）","슬롯(발착 시각)"],["Worldwide Airport Slot Guidelines (WASG)","世界空港スロットガイドライン","세계 공항 슬롯 가이드라인"],["Slot Coordinator","調整者（コーディネーター）","슬롯 조정자"],["Historic Precedence","ヒストリック","역사적 우선권"],["Use It or Lose It","80/20ルール","80/20 규칙"],["Japan Schedule Coordination (JSC)","国際線発着調整事務局","일본 슬롯 조정 기관(JSC)"]],
+terms:[["Airport Slot","スロット（発着枠）","슬롯(출도착 시각)"],["Worldwide Airport Slot Guidelines (WASG)","世界空港スロットガイドライン","세계 공항 슬롯 가이드라인"],["Slot Coordinator","調整者（コーディネーター）","슬롯 조정자"],["Historic Precedence","ヒストリック","역사적 우선권"],["Use It or Lose It","80/20ルール","80/20 규칙"],["Japan Schedule Coordination (JSC)","国際線発着調整事務局","일본 슬롯 조정 기관(JSC)"]],
 quiz:[{q:"At which airports does JSC allocate slots?",opts:["Narita, Haneda, Fukuoka, Kansai","Narita, Chubu, Itami, Naha","Haneda, New Chitose, Naha, Fukuoka","Every airport"],a:0,exp:"New Chitose is schedule facilitation."},
 {q:"What earns historic precedence?",opts:["Using 50%","Using at least 80%","Using 100%","Just applying"],a:1,exp:"The 80/20 rule."},
 {q:"What should happen to slots you will not use?",opts:["Return them after the deadline","Return them early, before the deadline","Keep them","Return them next year"],a:1,exp:"Return early."}],

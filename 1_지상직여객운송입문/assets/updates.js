@@ -46,7 +46,7 @@ window.UPDATES=[
 {d:"2026-09-25",c:"18_항공기초지식",k:"3-1",t:"new",ja:"航空の歴史の年表",ko:"항공 역사 연표",en:"A timeline of aviation history"},
 {d:"2026-09-25",c:"18_항공기초지식",k:"2-3",t:"new",ja:"アライアンスとLCCのしくみ",ko:"얼라이언스와 LCC의 구조",en:"Alliances and the LCC model"},
 {d:"2026-09-25",c:"18_항공기초지식",k:"2-2",t:"new",ja:"空の自由と航空協定",ko:"하늘의 자유와 항공협정",en:"Freedoms of the air and air services agreements"},
-{d:"2026-09-25",c:"18_항공기초지식",k:"2-1",t:"new",ja:"スロット（発着枠）のしくみ",ko:"슬롯(발착 시각)의 구조",en:"How airport slots work"},
+{d:"2026-09-25",c:"18_항공기초지식",k:"2-1",t:"new",ja:"スロット（発着枠）のしくみ",ko:"슬롯(출도착 시각)의 구조",en:"How airport slots work"},
 {d:"2026-09-25",c:"18_항공기초지식",k:"1-3",t:"new",ja:"空港の天気予報TAFを読む",ko:"공항 기상 예보 TAF 읽기",en:"Reading the airport forecast (TAF)"},
 {d:"2026-09-25",c:"18_항공기초지식",k:"1-2",t:"new",ja:"時差・UTC・日付変更線",ko:"시차·UTC·날짜 변경선",en:"Time zones, UTC and the date line"},
 {d:"2026-09-25",c:"18_항공기초지식",k:"1-1",t:"new",ja:"飛行機はなぜ飛ぶのか",ko:"비행기는 왜 나는가",en:"Why planes fly"},

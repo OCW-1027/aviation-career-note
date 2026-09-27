@@ -122,7 +122,7 @@ sections:[
 {name:"Who checks",x:"Cargo handling invoices are sometimes verified by a different department from passenger ones. Make the internal owner clear."}]},
 {t:"point",x:"Cargo quality problems reach the passenger side too: late loading becomes a late departure. Keep the passenger and cargo teams sharing information."}]}],
 voice:"[Interview to be added] What came up most at meetings with the cargo handler.",
-terms:[["Quality Audit","品質点検","품질 점검"],["Monthly Meeting","月例会議","월간 회의"],["Handling Charge","取り扱い料","취급료"],["Offload","積み残し","미탑재"]],
+terms:[["Quality Audit","品質監査","품질 점검"],["Monthly Meeting","月例会議","월간 회의"],["Handling Charge","取り扱い料","취급료"],["Offload","積み残し","미탑재"]],
 quiz:[{q:"Where does responsibility sit when warehouse work is contracted out?",opts:["With the handler alone","With the airline","With the shipper","With customs"],a:1,exp:"Contracting out does not move it."},
 {q:"How does a cargo problem reach passengers?",opts:["Late loading becomes a late departure","The catering changes","More seats appear","The fare falls"],a:0,exp:"Share information between the teams."},
 {q:"What do you check on special handling charges?",opts:["Whether they match the work actually done","The colour","The length","The font"],a:0,exp:"Dangerous goods, temperature control and the rest."}],

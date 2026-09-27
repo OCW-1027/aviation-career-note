@@ -52,7 +52,7 @@ sections:[
 {name:"Passenger: during check-in",x:"Checking passports and visas, checking bags and asking the dangerous goods questions, running the bag-drop counter, managing the cut-off."}]},
 {t:"point",x:"Write facts in the remarks, not impressions. Not “slow”, but “equipment not in position 15 minutes before arrival (it arrived 5 minutes before)”. Facts let the other side answer with improvements rather than arguments."}]}],
 voice:"[Interview to be added] A small audit finding that you believe prevented a serious incident.",
-terms:[["Quality Audit","品質審査","품질심사"],["Foreign Object Debris (FOD)","異物（FOD）","이물질(FOD)"],["Chocks","輪止め","고임목"],["IATA Safety Audit for Ground Operations (ISAGO)","地上業務の安全監査","지상조업 안전감사"]],
+terms:[["Quality Audit","品質監査","품질심사"],["Foreign Object Debris (FOD)","異物（FOD）","이물질(FOD)"],["Chocks","輪止め","고임목"],["IATA Safety Audit for Ground Operations (ISAGO)","地上業務の安全監査","지상조업 안전감사"]],
 quiz:[{q:"What do you check first on a checklist?",opts:["Whether last time’s findings were fixed","The auditor’s preferences","The weather","Charges"],a:0,exp:"If old problems are not fixed, the same findings keep coming back."},
 {q:"How should remarks be written?",opts:["As facts: times, headcounts","As impressions: “slow”","Not at all","Verbally only"],a:0,exp:"Facts lead to improvement."},
 {q:"What is checked on the ramp before arrival?",opts:["Staff and equipment in position, and the FOD walk","Passenger boarding","Fares","Bookings"],a:0,exp:"Preparation before arrival underpins safety and punctuality."}],

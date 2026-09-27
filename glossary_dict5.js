@@ -61,6 +61,6 @@ window.DICT=(window.DICT||[]).concat([
 ["OPS","Security Seal","保安シール","보안 봉인","扉や機内食のカートが開けられていないことを示す封印","문이나 기내식 카트가 열리지 않았음을 보여 주는 봉인","A seal showing a door or cart has not been opened"],
 ["WX","Typhoon","台風","태풍","北西太平洋の強い熱帯低気圧。欠航・振り替えの計画が必要","북서태평양의 강한 열대저기압. 결항·대체 계획이 필요","A strong tropical cyclone in the north-west Pacific"],
 ["WX","Snow Removal Plan","除雪計画","제설 계획","空港が滑走路・誘導路・エプロンの除雪の順番と時間を決めた計画","공항이 활주로·유도로·계류장 제설 순서와 시간을 정한 계획","The airport’s plan for clearing runways, taxiways and aprons"],
-["BIZ","Slot Conference","スロット調整会議","슬롯 조정 회의","IATAの世界会議。季節ごとに混雑空港の発着枠を調整する","IATA 세계 회의. 계절마다 혼잡 공항의 발착 시각을 조정","IATA’s twice-yearly conference allocating slots at congested airports"],
+["BIZ","Slot Conference","スロット調整会議","슬롯 조정 회의","IATAの世界会議。季節ごとに混雑空港の発着枠を調整する","IATA 세계 회의. 계절마다 혼잡 공항의 출도착 시각을 조정","IATA’s twice-yearly conference allocating slots at congested airports"],
 ["BIZ","Use It or Lose It (80/20 Rule)","80/20ルール","80/20 규칙","割り当てられた発着枠を一定の割合以上使わないと翌年に失う規則","배정받은 슬롯을 일정 비율 이상 쓰지 않으면 다음 해에 잃는 규칙","Slots must be used at least 80% of the time to be kept"]
 ]);

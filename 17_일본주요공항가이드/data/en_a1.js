@@ -33,7 +33,7 @@ sections:[
 {name:"Plans change",x:"New runways and terminals often slip because of land or budgets. Always check figures against the latest announcement."}]},
 {t:"point",x:"Knowing how airports differ feeds straight into punctuality and safety. When you are posted to a new airport, aim to explain these six lenses in your own words within the first month."}]}],
 voice:"[Interview to be added] The airport rule that caught you out when you started at a new airport.",
-terms:[["Operating Hours","運用時間","운용 시간"],["Curfew","夜間の運用制限","야간 운항 제한"],["Slot","発着枠","발착 슬롯"],["Standard Operating Procedure (SOP)","標準作業手順（SOP）","표준 작업 절차(SOP)"]],
+terms:[["Operating Hours","運用時間","운용 시간"],["Curfew","夜間の運用制限","야간 운항 제한"],["Slot","発着枠","이착륙 슬롯"],["Standard Operating Procedure (SOP)","標準作業手順（SOP）","표준 작업 절차(SOP)"]],
 quiz:[{q:"What should you check first to understand an airport?",opts:["Operator, hours, slots, facilities, rules and committees","The number of shops","Parking charges","Nearby sights"],a:0,exp:"Look at the airport through the six lenses."},
 {q:"Why are operating hours hard to extend for a late flight?",opts:["They often come from agreements with the local community","The airline sets them","Because of charges","No reason"],a:0,exp:"They are promises made over noise."},
 {q:"How often should an SOP be reviewed?",opts:["At least yearly, and whenever something changes","Never once written","Every ten years","Not at all"],a:0,exp:"Airport rules change often."}],

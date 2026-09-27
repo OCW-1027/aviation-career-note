@@ -49,7 +49,7 @@ sections:[
 {name:"De-icing",x:"Snow is rare, but winter-morning frost or cold snaps can require it. Make sure the queue for on-stand de-icing does not collide with the 21:00 close. Dyed fluids since the 2024 winter schedule. ★"}]},
 {t:"point",x:"At Itami, keeping to time is what the airport’s very existence rests on. Operations built around the 21:00 wall, and diversion plans, are essential."}]}],
 voice:"[Interview to be added] Looking after passengers on a flight that missed the 21:00 close.",
-terms:[["City Airport","都市型空港","도시형 공항"],["Movement Cap","発着回数の上限","발착 횟수 상한"],["Jet Slots","ジェット枠","제트기 슬롯"],["Alternate Acceptance","代替受け入れ","대체 수용"]],
+terms:[["City Airport","都市型空港","도시형 공항"],["Movement Cap","発着回数の上限","이착륙 횟수 상한"],["Jet Slots","ジェット枠","제트기 슬롯"],["Alternate Acceptance","代替受け入れ","대체 수용"]],
 quiz:[{q:"What are Itami’s operating hours?",opts:["7:00–21:00","24 hours","6:00–24:00","7:00–22:00"],a:0,exp:"A city airport surrounded by housing."},
 {q:"What routes does Itami serve today?",opts:["Domestic only","International only","Both","Cargo only"],a:0,exp:"International flights use Kansai."},
 {q:"What can happen to an arrival that misses 21:00?",opts:["Diversion to Kansai or elsewhere","It lands anyway","Only postponement to the next day","Holding indefinitely"],a:0,exp:"Landing after hours is not normally allowed."}],

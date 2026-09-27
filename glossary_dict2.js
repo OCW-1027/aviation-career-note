@@ -12,7 +12,7 @@ window.DICT=(window.DICT||[]).concat([
 ["APT","Runway","滑走路","활주로","離陸・着陸に使う舗装された帯状の区域","이착륙에 쓰는 포장된 띠 모양 구역","The paved strip for take-off and landing"],
 ["APT","Airside","エアサイド（制限区域側）","에어사이드(보호구역 쪽)","保安検査・出国審査の後ろ側の区域","보안검색·출국심사 뒤쪽 구역","The area beyond security and passport control"],
 ["APT","Landside","ランドサイド（一般区域側）","랜드사이드(일반구역 쪽)","誰でも入れる保安検査前の区域","누구나 들어갈 수 있는 보안검색 전 구역","The public area before security"],
-["APT","Slot","発着枠（スロット）","슬롯(발착 시각)","混雑空港で離陸・着陸できる時刻の枠","혼잡 공항에서 이착륙할 수 있는 시각의 틀","A permission to land or take off at a congested airport at a given time"],
+["APT","Slot","発着枠（スロット）","슬롯(출도착 시각)","混雑空港で離陸・着陸できる時刻の枠","혼잡 공항에서 이착륙할 수 있는 시각의 틀","A permission to land or take off at a congested airport at a given time"],
 ["APT","Curfew","運用時間の制限（カーフュー）","운용 시간 제한(커퓨)","騒音対策などで夜間に離着陸できない時間","소음 대책 등으로 야간에 이착륙할 수 없는 시간","Hours when flights are banned, usually at night for noise"],
 ["APT","Airport Operations Committee (AOC)","空港運営委員会（AOC）","공항운영위원회(AOC)","空港の航空会社がつくる協議体","공항의 항공사들이 만드는 협의체","The committee of airlines operating at an airport"],
 ["APT","Ground Handling Agent (GHA)","ハンドリング会社","지상조업사","航空会社から委託されて地上の業務を行う会社","항공사 위탁을 받아 지상 업무를 하는 회사","A company providing ground services under contract to airlines"],
