@@ -57,5 +57,5 @@ terms:[["Approval / Release","承認","승인"],["Fatigue Risk Management System
 quiz:[{q:"Which Korean provision makes dispatchers’ own working hours subject to fatigue management?",opts:["Art. 35","Art. 56","Art. 77","Art. 93"],a:1,exp:"Aviation Safety Act Art. 56."},
 {q:"Which Japanese rule sets the crew scheduling standards?",opts:["Act Art. 104","Enforcement Regulations Art. 157-3","Act Art. 78","Enforcement Regulations Art. 167"],a:1,exp:"Limits per 24 hours, calendar month, three calendar months and calendar year."},
 {q:"How long must Korean records be kept when fatigue is managed by prescribed limits?",opts:["3 months","6 months","15 months","5 years"],a:2,exp:"Aviation Safety Act Art. 56(3)."}],
-next:""});
+next:"Part 2 Weather — 2-1 Reading weather information"});
 })(window.ARTS);

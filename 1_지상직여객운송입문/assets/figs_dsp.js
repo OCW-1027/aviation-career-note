@@ -41,6 +41,25 @@ dsp_occ:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9
  s+='<path id="oc1" d="M190 75 C290 75 360 150 400 170" fill="none" stroke="'+T+'" stroke-width="2" stroke-dasharray="6 5"/><path id="oc2" d="M500 170 C560 130 640 75 710 75" fill="none" stroke="'+O+'" stroke-width="2" stroke-dasharray="6 5"/>';
  [['M190 75 C290 75 360 150 400 170',T,0],['M400 170 C360 150 290 75 190 75',T,-3],['M500 170 C560 130 640 75 710 75',O,-1],['M710 75 C640 75 560 130 500 170',O,-4]].forEach(function(m){s+='<circle r="6" fill="'+m[1]+'"><animateMotion dur="'+DUR+'s" begin="'+m[2]+'s" repeatCount="indefinite" path="'+m[0]+'"/></circle>'});
  s+=badge(1,115,140,14,T)+badge(2,785,140,14,O);
+ return s+'</svg>'},
+/* METAR を1語ずつ読む */
+dsp_metar:function(){var tk=[['METAR','REPORT TYPE'],['RKSI','STATION (ICAO)'],['270600Z','DAY 27, 06:00 UTC'],['33015G25KT','WIND 330° 15 KT, GUST 25'],['4000','VISIBILITY 4,000 m'],['-SHRA','LIGHT RAIN SHOWERS'],['BR','MIST'],['BKN012','BROKEN 1,200 ft = CEILING'],['OVC030','OVERCAST 3,000 ft'],['16/13','TEMP 16 / DEW POINT 13'],['Q1009','QNH 1009 hPa'],['TEMPO 2000 SHRA','TREND: TEMPORARILY 2,000 m']],N=tk.length,DUR=N*1.6,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img">'+R(0,0,900,300,'#F7FAFD');
+ var x=24,y=60,pos=[];tk.forEach(function(t){var w=t[0].length*11+22;if(x+w>880){x=24;y+=70}pos.push([x,y,w]);x+=w+10});
+ tk.forEach(function(t,i){var p=pos[i],a=(i/N).toFixed(3),b=((i+1)/N).toFixed(3);
+  s+='<g>'+R(p[0],p[1],p[2],40,'#fff',8,' stroke="#C9D6E3" stroke-width="2"')+'<text x="'+(p[0]+p[2]/2)+'" y="'+(p[1]+26)+'" font-size="17" font-weight="800" fill="'+D+'" text-anchor="middle" font-family="Consolas,Menlo,monospace">'+t[0]+'</text>'+
+  '<rect x="'+p[0]+'" y="'+p[1]+'" width="'+p[2]+'" height="40" rx="8" fill="none" stroke="'+O+'" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+b+';'+b+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></rect></g>';
+  s+='<text x="450" y="262" font-size="20" font-weight="800" fill="'+O+'" text-anchor="middle" font-family="Arial" opacity="0">'+t[1]+'<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+b+';'+b+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>'});
+ s+=tx(450,222,'READ ONE GROUP AT A TIME',12,G,700);
+ return s+'</svg>'},
+/* 到着予定の前後1時間と予報の重なり */
+dsp_window:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+R(0,0,900,330,'#F7FAFD'),X=function(h){return 80+(h-6)*80};
+ for(var h=6;h<=15;h++){s+='<line x1="'+X(h)+'" y1="50" x2="'+X(h)+'" y2="250" stroke="#E3E9EF"/>'+tx(X(h),272,('0'+h).slice(-2)+'Z',12,G,700)}
+ s+=R(X(9),40,X(11)-X(9),220,'#FFE9CC',0,' opacity="0.8"')+tx(X(10),34,'ETA ±1 h',13,O,800)+'<line x1="'+X(10)+'" y1="40" x2="'+X(10)+'" y2="260" stroke="'+O+'" stroke-width="3"/>';
+ s+=R(X(6),80,X(15)-X(6),28,'#DDEFE9',6)+tx(X(6)+8,99,'BASE 9999 FEW020',13,T,800,'start');
+ s+=R(X(9),126,X(11)-X(9),28,'#E3EDFA',6)+tx(X(9)+8,145,'BECMG 3000 BR BKN006',13,B,800,'start');
+ s+=R(X(10.5),172,X(15)-X(10.5),28,'#FBE3E3',6)+tx(X(10.5)+8,191,'TEMPO 0600 FG VV002',13,'#C2344F',800,'start');
+ s+='<g><rect x="'+(X(10)-110)+'" y="210" width="220" height="34" rx="8" fill="#C2344F"/>'+tx(X(10),232,'WORST: 600 m / 200 ft',14,'#fff',800)+'<animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></g>';
+ s+=tx(450,310,'Groups overlapping ETA ±1 h decide the planning weather',12,G,700);
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
