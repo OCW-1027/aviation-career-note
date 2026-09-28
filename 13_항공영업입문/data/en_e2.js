@@ -137,7 +137,7 @@ next:"6-2 Tracking and reporting performance"});
 
 set("6-2",{title:"Tracking and Reporting Performance",hl:"tracking performance",subtitle:"Watch the movement weekly, explain the causes monthly, and act on both",
 lead:["Waiting for the results is too late. Watch the booking pace week by week and act as soon as a gap against target opens. Monthly reports explain not just the numbers but the causes of the gap and what comes next.",
-"This article covers the measures to watch, the shape of weekly and monthly reports, and a summary of the series."],
+"This article covers the measures to watch, the shape of weekly and monthly reports, and a look back at Parts 1–6."],
 sections:[
 {h:"Measures to watch (examples)",blocks:[{t:"table",cols:["Measure","How to read it"],rows:[
 ["Booking pace","Bookings by departure month, against last year"],
@@ -147,7 +147,7 @@ sections:[
 ["Ancillaries","Revenue from baggage, seat selection and the rest"]]}]},
 {h:"The shape of a report",blocks:[{t:"ladder",rise:10,steps:[{name:"Conclusion",sub:"Ahead of or behind target"},{name:"Numbers",sub:"Actual, last year, target"},{name:"Causes",sub:"Market, competitors, ourselves"},{name:"Actions",sub:"What we do next"},{name:"Requests to head office",sub:"Fares, seats, budget"}]},
 {t:"point",x:"Bad news first, and early. Report it with the cause and the next step, and head office will trust the station to handle it (Expat Guide to Japan 4-2)."}]},
-{h:"Summary of the series",blocks:[{t:"rows",items:[
+{h:"Looking back at Parts 1–6",blocks:[{t:"rows",items:[
 {name:"The market",x:"Japan is a market you sell together with agencies; international routes carry demand both ways with strong seasonal swings (Part 1)."},
 {name:"Channels",x:"Indirect and direct are a division of roles; GDS, BSP and NDC are the infrastructure (Part 2)."},
 {name:"Agencies",x:"Trust, blocks, incentives and ADMs (Part 3)."},

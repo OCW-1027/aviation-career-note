@@ -157,7 +157,7 @@ next:"5-4 Careers and qualifications in cargo"});
 
 set("5-4",{title:"Careers and Qualifications in Cargo",hl:"cargo careers",subtitle:"Airline, handler, forwarder, GSA — one industry you can move around in",
 lead:["Air cargo work spans many companies: airlines, handling companies, forwarders, GSAs and customs brokers. Wherever you gain experience, it carries over to the others, and that is the character of this industry.",
-"This article closes the series with the main jobs, useful qualifications and training, the career paths, and how cargo differs from the passenger side."],
+"This article covers the main jobs, useful qualifications and training, the career paths, and how cargo differs from the passenger side."],
 sections:[
 {h:"The main jobs",blocks:[{t:"table",cols:["Job","What it involves"],rows:[
 ["Warehouse staff","Acceptance, weighing, build-up and storage"],
@@ -172,11 +172,11 @@ sections:[
 {name:"Trade knowledge",x:"Incoterms, invoices and the basics of insurance."},
 {name:"Languages",x:"English is essential for documents and messages, and a further language is a real advantage on the routes you serve."},
 {name:"Equipment skills",x:"Some warehouse work requires certified training, for example on forklifts."}]}]},
-{h:"Career paths, and closing the series",blocks:[{t:"rows",items:[
+{h:"Career paths and the course route",blocks:[{t:"rows",items:[
 {name:"From the floor to management",x:"Warehouse work, then load control, then quality and safety, then management."},
 {name:"Moving between employers",x:"Handling company, then forwarder, then airline or GSA cargo sales."},
 {name:"How cargo differs",x:"Your customers are companies: shippers and forwarders. Accuracy in documents, data and rules counts for even more."},
-{name:"This series",x:"The whole picture (Part 0), documents (Part 1), the warehouse (Part 2), special cargo (Part 3), loading (Part 4), sales and organisation (Part 5)."}]},
+{name:"The course route",x:"The whole picture (Part 0), documents (Part 1), the warehouse (Part 2), special cargo (Part 3), loading (Part 4), sales and organisation (Part 5), export, import and transfer (Part 6), and security, DG, claims and handler management (Part 7)."}]},
 {t:"point",x:"Air cargo is the invisible infrastructure beneath modern industry and daily life. Knowing it alongside the passenger side is what lets you see how an airport really works."}]}],
 voice:"[Interview to be added] What you felt having worked both passenger and cargo.",
 terms:[["Licensed Customs Specialist","通関士","관세사"],["Incoterms","インコタームズ","인코텀즈"],["Load Control","ロードコントロール","탑재관리"],["Career Path","キャリアパス","커리어 경로"]],

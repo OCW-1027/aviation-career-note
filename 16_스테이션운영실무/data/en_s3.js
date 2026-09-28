@@ -101,7 +101,7 @@ quiz:[{q:"What goes in the timeline of an incident report?",opts:["Times and fac
 next:"3-5 Growing people, and for those who want the job"});
 
 set("3-5",{title:"Growing People, and for Those Who Want the Job",hl:"growing people",subtitle:"A good duty manager builds a floor that runs without them",
-lead:["Every excellent station has an excellent duty manager — and around that person, the next duty managers are growing. The last job of a duty manager is to develop people who can do the job in their place.","To close the series, here are the habits of a duty manager who grows people, and what to prepare if you want the job yourself."],
+lead:["Every excellent station has an excellent duty manager — and around that person, the next duty managers are growing. The last job of a duty manager is to develop people who can do the job in their place.","This article sets out the habits of a duty manager who grows people, and what to prepare if you want the job yourself."],
 sections:[
 {h:"Habits that grow people",blocks:[{t:"check",items:[
 {name:"Praise specifically",x:"Not “good job” but “closing boarding two minutes earlier was the right call”."},

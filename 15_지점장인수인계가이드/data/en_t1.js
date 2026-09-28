@@ -224,7 +224,7 @@ next:"3-1 The first thirty days for the incoming manager"});
 
 set("3-1",{title:"The First Thirty Days for the Incoming Manager",hl:"the first thirty days",subtitle:"Listen, verify, and do not change things yet. Understand the whole before you move",
 lead:["For a newly arrived manager, the first thirty days are for understanding the operation: reading the handover, meeting staff, partners and the authorities, and verifying the numbers and open issues. Understanding the whole before making big changes turns out to be the quickest route to results.",
-"This article sets out a thirty-day plan and the questions to ask your predecessor, and closes the series."],
+"This article sets out a thirty-day plan and the questions to ask your predecessor."],
 sections:[
 {h:"A thirty-day plan (example)",blocks:[{t:"table",cols:["When","What to do"],rows:[
 ["Week 1","Read the handover, the table of duties and the annual calendar. Meet each member of staff. Verify balances and payables"],
@@ -237,7 +237,7 @@ sections:[
 {name:"Relationships",x:"“Who should I be especially careful with, and why?”"},
 {name:"People",x:"“Have you made any promises to the staff?”"},
 {name:"Failures",x:"“What went wrong in the past, and what did you change as a result?”"}]}]},
-{h:"Summary of the series",blocks:[{t:"rows",items:[
+{h:"Looking back",blocks:[{t:"rows",items:[
 {name:"Foundations",x:"The handover document (why, when, with whom), the table of duties, the annual and monthly calendars (Part 1)."},
 {name:"By area",x:"The authorities, finance, HR and administration, sales, absence cover and accounts (Part 2)."},
 {name:"The incoming side",x:"Listen, verify, do not change things straight away, and list and share what you notice (Part 3)."}]},

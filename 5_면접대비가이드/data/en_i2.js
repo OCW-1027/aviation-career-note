@@ -210,7 +210,7 @@ quiz:[{q:"Who applies for the Certificate of Eligibility when you join from abro
 next:"3-4 From the interviewer’s side: what hiring tends to overlook"});
 
 set("3-4",{title:"From the Interviewer’s Side: What Hiring Tends to Overlook",hl:"the interviewer’s side",subtitle:"The hiring side learns a lot too. The smaller the station, the heavier each hire",
-lead:["The series closes from the employer’s side. In a small airport station, a single hire shapes the atmosphere and the quality of the whole team. From experience as an interviewer, this article sets out what hiring tends to overlook, and what candidates should look for in a company."],
+lead:["This article takes the employer’s side. In a small airport station, a single hire shapes the atmosphere and the quality of the whole team. From experience as an interviewer, this article sets out what hiring tends to overlook, and what candidates should look for in a company."],
 sections:[
 {h:"What hiring tends to overlook",blocks:[{t:"check",items:[
 {name:"The reality of the commute",x:"Whether the first train gets them in on time for an early shift. Sometimes it only emerges after hiring that they cannot."},
@@ -225,7 +225,7 @@ sections:[
 ["Career path","Whether there is a route to leader, instructor and manager"],
 ["Atmosphere","The interviewer’s attitude, and what the office and airport feel like"]]},
 {t:"point",x:"An interview is where the company chooses you, and also where you choose the company. Use your time for questions to find out whether you could stay there for the long term."}]},
-{h:"Summary of the series",blocks:[{t:"rows",items:[
+{h:"Looking back",blocks:[{t:"rows",items:[
 {name:"Preparation",x:"Know the interviewer’s view, match the type of company, and present your experience concretely on paper (1-1 to 1-3)."},
 {name:"The interview",x:"A one-minute self-introduction, answers that address the intent, safety then rules then passenger then report, and language you can actually use (2-1 to 2-5)."},
 {name:"Experienced hires and after the offer",x:"Present experience as how it will work here, show managers’ achievements built into systems, and confirm status of residence and terms early (3-1 to 3-3)."}]}]}],
