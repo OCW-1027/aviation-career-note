@@ -173,5 +173,5 @@ terms:[["Taiwan Taoyuan International Airport","桃園国際空港","타오위�
 quiz:[{q:"When did Taoyuan’s Terminal 3 north concourse enter full operation?",opts:["2023","25 December 2025","End of 2027","2030"],a:1,exp:"Trial operation began on 1 December."},
 {q:"Which airport do city-centre routes from Haneda and Gimpo to Taipei use?",opts:["Taoyuan","Songshan","Kaohsiung","Taichung"],a:1,exp:"Songshan, in the city."},
 {q:"What is the most common transfer flow at Taoyuan?",opts:["North America to/from Southeast Asia","Europe–South America","Africa–Middle East","Domestic"],a:0,exp:"About 40% of transfers."}],
-next:""});
+next:"2-1 Singapore Changi (SIN)"});
 })(window.ARTS);
