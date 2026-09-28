@@ -138,5 +138,5 @@ terms:[["Royal Schiphol Group","ロイヤル・スキポール・グループ","
 quiz:[{q:"What annual movement cap did the Dutch government set for Schiphol?",opts:["500,000","478,000","400,000","No cap"],a:1,exp:"Including 27,000 at night."},
 {q:"What did the Council of State decide on 11 March 2026?",opts:["Annulled the 2025 cap decision","Raised the cap","Closed the airport","Approved a new runway"],a:0,exp:"The process continues."},
 {q:"What characterises connections at Schiphol?",opts:["Within one terminal","Changing airports","A bus to another airport","Always entering the country"],a:0,exp:"Simple and quick."}],
-next:""});
+next:"5-1 Atlanta (ATL)"});
 })(window.ARTS);

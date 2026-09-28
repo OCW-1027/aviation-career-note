@@ -53,7 +53,7 @@ parts:{ja:["空港を理解する","首都圏","関西・中部","九州・北�
 "20_세계주요공항가이드":{code:"WLD",color:"#1B8FB0",
 name:{ja:"世界の主要空港ガイド",ko:"세계 주요 공항 가이드",en:"Guide to the World’s Major Airports"},
 lead:{ja:"日本と韓国からの路線が多い世界の主要20空港を、運用・ハンドリング、乗り継ぎと入国の制度、歴史と今後の計画、韓国・日本との路線の4つの視点で。ACI Worldの2025年の統計と各国・各空港の公式の発表をもとにまとめています（2026年9月時点）。",ko:"한국과 일본에서 노선이 많은 세계 주요 20개 공항을 운영·조업, 환승과 입국 제도, 역사와 향후 계획, 한국·일본과의 노선이라는 네 가지 관점으로. ACI World 2025년 통계와 각국·각 공항 공식 발표를 바탕으로 정리했습니다(2026년 9월 기준).",en:"Twenty major airports with strong links to Korea and Japan, seen from four angles: operations and handling, transfer and entry rules, history and future plans, and routes to Korea and Japan. Based on ACI World 2025 statistics and official national and airport sources (as of September 2026)."},
-parts:{ja:["世界の空港を理解する","東アジア","東南アジア・南アジア","中東・トルコ","欧州"],ko:["세계 공항을 이해하다","동아시아","동남아·남아시아","중동·튀르키예","유럽"],en:["Understanding the World’s Airports","East Asia","Southeast and South Asia","Middle East and Türkiye","Europe"]}},
+parts:{ja:["世界の空港を理解する","東アジア","東南アジア・南アジア","中東・トルコ","欧州","米州・オセアニア"],ko:["세계 공항을 이해하다","동아시아","동남아·남아시아","중동·튀르키예","유럽","미주·오세아니아"],en:["Understanding the World’s Airports","East Asia","Southeast and South Asia","Middle East and Türkiye","Europe","The Americas and Oceania"]}},
 "18_항공기초지식":{code:"BAS",color:"#4A7C59",
 name:{ja:"航空の基礎知識",ko:"항공 기초 지식",en:"Aviation Fundamentals"},
 lead:{ja:"航空機のしくみ、空と時間、航空気象（TAF）、スロットなど空港と空のルール、航空の歩み。どの職種にも共通する航空の基礎を、現場での使い方と一緒に。",ko:"항공기의 구조, 하늘과 시간, 항공 기상(TAF), 슬롯 등 공항과 하늘의 규칙, 항공의 역사. 어느 직종에나 공통된 항공 기초를 현장에서 쓰는 법과 함께.",en:"How aircraft work, sky and time, aviation weather (TAF), slots and the rules of airports and the sky, and aviation history: the fundamentals every aviation job shares, with how they are used on the job."},
