@@ -17,6 +17,8 @@ window.__applyUpdates=apply;
 var H=window.HUBS[window.HUB_ID];H.site=window.HUB_SITE;var A=window.ARTS||{},LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
 var UI={ja:{all:'すべて',n:'レッスン',site:'サイトのトップへ',jp:'',copy:'© 2026 航空キャリアノート　無断転載・複製禁止'},ko:{all:'전체',n:'레슨',site:'사이트 홈으로',jp:'',copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© 2026 Aviation Career Note. All rights reserved.'}};
 var lang='ja';try{var s=localStorage.getItem('art-lang');if(LANGS.indexOf(s)>=0)lang=s}catch(e){}
+/* 「K-ETA」「A-CDM」のようにハイフンを含む英数字の語は途中で改行しない（語の前で改行させる） */
+function nw(s){return String(s).replace(/[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+/g,function(m){return '<span class="nw">'+m+'</span>'})}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function $(i){return document.getElementById(i)}
 var keys=Object.keys(A).concat(Object.keys(H.extra||{})).filter(function(k,i,a){return a.indexOf(k)===i}).sort(function(a,b){var x=a.split('-'),y=b.split('-');return x[0]-y[0]||x[1]-y[1]});
@@ -34,7 +36,7 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  $('tabs').innerHTML='<button data-p="-1" class="'+(cur<0?'on':'')+'">'+U.all+'</button>'+P.map(function(p,i){return p?'<button data-p="'+i+'" class="'+(cur===i?'on':'')+'">Part '+i+'</button>':''}).join('');
  Array.prototype.forEach.call($('tabs').querySelectorAll('button'),function(b){b.onclick=function(){cur=+b.getAttribute('data-p');render()}});
  var h='';P.forEach(function(p,i){if(!p||(cur>=0&&cur!==i))return;var ks=keys.filter(function(k){return +k.split('-')[0]===i});if(!ks.length)return;
-  h+='<h2>Part '+i+'　'+esc(p)+'</h2>'+(H.pdesc?'<p class="desc">'+esc(H.pdesc[lang][i]||'')+'</p>':'')+'<div class="grid">'+ks.map(function(k){var t=title(k,lang);return '<a class="card" data-k="'+esc(k)+'" href="'+esc(url(k))+'"><span class="m"><b>'+esc(t[0])+'</b><span class="d">'+esc(t[1])+'</span>'+(lang==='en'&&t[2]?'<span class="tag">'+U.jp+'</span>':'')+'</span><span class="s">'+esc(k)+'<small>'+H.code+'</small></span></a>'}).join('')+'</div>'});
+  h+='<h2>Part '+i+'　'+esc(p)+'</h2>'+(H.pdesc?'<p class="desc">'+esc(H.pdesc[lang][i]||'')+'</p>':'')+'<div class="grid">'+ks.map(function(k){var t=title(k,lang);return '<a class="card" data-k="'+esc(k)+'" href="'+esc(url(k))+'"><span class="m"><b>'+nw(esc(t[0]))+'</b><span class="d">'+esc(t[1])+'</span>'+(lang==='en'&&t[2]?'<span class="tag">'+U.jp+'</span>':'')+'</span><span class="s">'+esc(k)+'<small>'+H.code+'</small></span></a>'}).join('')+'</div>'});
  $('list').innerHTML=h;
  if((window.UPDATES||window.LESSON_DATES)&&window.__applyUpdates)window.__applyUpdates();
  $('foot').innerHTML=U.copy+' — '+esc(H.name[lang])+'　<a href="../8_사이트/index.html">'+U.site+'</a>';}

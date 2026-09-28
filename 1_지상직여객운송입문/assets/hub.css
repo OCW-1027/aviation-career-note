@@ -36,6 +36,8 @@ h2{font-family:var(--disp);font-size:20px;margin:30px 0 4px}
 .card:hover{border-color:var(--acc)}
 .card .m{padding:12px 14px}
 .card b{display:block;font-family:var(--disp);font-size:16px;line-height:1.45}
+.card b .nw{white-space:nowrap}
+html[lang=ko] .card b{word-break:keep-all;overflow-wrap:anywhere}
 .card .d{display:block;font-size:13px;color:var(--muted);margin-top:4px}
 .card .s{border-left:2px dashed var(--line);background:var(--tint);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-weight:800;color:var(--sky-d)}
 .card .s small{font-size:10px;font-weight:600;color:var(--muted)}
