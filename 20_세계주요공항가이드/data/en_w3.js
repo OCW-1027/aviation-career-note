@@ -104,5 +104,5 @@ terms:[["Istanbul Airport (IST)","イスタンブール空港","이스탄불공�
 quiz:[{q:"When did all passenger flights move from Atatürk to Istanbul Airport?",opts:["29 October 2018","6 April 2019","5 February 2022","17 April 2025"],a:1,exp:"The opening ceremony was on 29 October 2018."},
 {q:"What share of Istanbul Airport passengers were connecting in 2025?",opts:["About 10%","About 25%","48%","80%"],a:2,exp:"52% started or ended their journey there."},
 {q:"Which Istanbul airport, on the Asian side, is Pegasus Airlines’ base?",opts:["Istanbul","Sabiha Gökçen","Atatürk","Ankara"],a:1,exp:"It passed 48 million in 2025."}],
-next:""});
+next:"4-1 London Heathrow (LHR)"});
 })(window.ARTS);

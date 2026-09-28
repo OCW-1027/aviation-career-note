@@ -1,0 +1,142 @@
+/* 世界の主要空港ガイド Part 4 — English version */
+(function(A){function set(no,en){if(A[no])A[no].en=en}
+set("4-1",{title:"London Heathrow (LHR): 84.5 Million on Two Runways, and the Fate of a Third",hl:"Heathrow",subtitle:"Europe’s biggest hub, with a record 84.5 million passengers in 2025 and some of the world’s most valuable slots. The third runway faces a parliamentary vote in autumn 2026, consent by 2029 and first flights in about ten years",
+lead:["London Heathrow handles 84.5 million passengers a year on just two runways (2025, a record), making it Europe’s biggest hub (Heathrow Airport). It ranks second in the world for international passengers and was named Europe’s most punctual hub in 2025.","With only two runways, its slots are among the hardest to obtain anywhere. After decades of debate, the government backed a third runway in 2025 and Parliament is due to vote in 2026. This lesson covers Heathrow’s features and how the third runway is progressing."],
+sections:[
+{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+["Codes","IATA: LHR / ICAO: EGLL"],
+["Operator","Heathrow Airport Ltd (private)"],
+["Opened","1946"],
+["Runways and terminals","Two parallel east–west runways; T2, T3, T4 and T5"],
+["2025 results","84.5 million (a record, Europe’s biggest hub); 79.87 million international (2nd in the world); about 7.2 million in December"],
+["Top markets","EU 28.4 million, North America 20.6 million"],
+["Annual movement limit","About 480,000 (planning limit)"],
+["Main airlines","British Airways (oneworld), Virgin Atlantic"]]}]},
+{h:"Progress on the third runway",blocks:[{t:"table",cols:["When","Details"],rows:[
+["January 2025","Government backs expansion"],
+["August 2025","Heathrow submits a £49 billion plan for a third runway and new terminal"],
+["25 November 2025","Government selects it as the preferred basis for reviewing the Airports National Policy Statement (ANPS)"],
+["18 June to 1 September 2026","Government consults on the ANPS review (air quality, noise, climate and economic tests)"],
+["Autumn 2026","Parliament due to vote on the ANPS"],
+["By 2029","Target for a Development Consent Order (DCO)"],
+["In about ten years","First flights from the third runway, towards 756,000 movements and 150 million passengers a year"]]},
+{t:"note",x:"* Each stage could change with government decisions and legal challenges. ★"}]},
+{h:"Operations and handling",blocks:[{t:"check",items:[
+{name:"Slots",x:"A Level 3 airport where slots trade between airlines for large sums; new entry is extremely difficult."},
+{name:"Runway alternation",x:"To share noise, the runways used for arrivals and departures switch at set times."},
+{name:"Night restrictions",x:"Night movements are tightly limited by quota; late arrivals may have to divert."},
+{name:"Check the terminal",x:"Four terminals split by airline and alliance; connections between terminals take time."}]}]},
+{h:"Entry and routes to Korea and Japan",blocks:[{t:"rows",items:[
+{name:"Entry",x:"Korean and Japanese nationals need a UK ETA (0-2); check current guidance for airside-only transit ★."},
+{name:"Japan",x:"JAL, ANA and British Airways link Haneda and Heathrow."},
+{name:"Korea",x:"Korean Air and others link Incheon and Heathrow."}]}]}],
+voice:"",
+terms:[["Airports National Policy Statement (ANPS)","空港の国の政策","공항 국가정책서"],["Development Consent Order (DCO)","開発の許可","개발 인가"],["Runway Alternation","滑走路の交代","활주로 교대 운용"],["Night Quota","夜間の割当","야간 할당"],["Third Runway","第3滑走路","제3활주로"]],
+quiz:[{q:"How many passengers did Heathrow handle in 2025?",opts:["60 million","72 million","84.5 million","100 million"],a:2,exp:"A record, making it Europe’s biggest hub."},
+{q:"How many annual movements would a third runway allow?",opts:["480,000","560,000","756,000","1 million"],a:2,exp:"The current limit is about 480,000."},
+{q:"Which practice does Heathrow use to manage noise?",opts:["Runway alternation","Unrestricted 24-hour operation","Closing a runway","Banning arrivals"],a:0,exp:"Arrival and departure runways switch at set times."}],
+next:"4-2 Paris Charles de Gaulle (CDG)"});
+set("4-2",{title:"Paris Charles de Gaulle (CDG): Four Runways, Nine Terminals and Air France’s Home",hl:"Charles de Gaulle",subtitle:"Opened in 1974. About 72 million passengers in 2025 and 66.14 million international, seventh in the world. Four parallel runways operating 24 hours; a Terminal 4 plan cancelled in 2021; and the split with Orly",
+lead:["Paris Charles de Gaulle, at Roissy about 25 km northeast of Paris, is France’s largest airport. Opened in 1974, it is the central European hub for Air France and SkyTeam. In 2025 it handled 66.14 million international passengers, seventh in the world (ACI World).","It is divided into Terminal 1, Terminal 2 (2A to 2G) and Terminal 3, and going to the wrong one costs time. This lesson covers the terminal layout, the split with Orly and operational features."],
+sections:[
+{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+["Codes","IATA: CDG / ICAO: LFPG"],
+["Operator","Groupe ADP (Paris Aéroport)"],
+["Opened","1974"],
+["Runways","Four parallel runways (two to the north, two to the south)"],
+["Terminals","T1 (the circular building), T2 (seven halls, 2A to 2G), T3 (charter and low-cost)"],
+["2025 results","About 72 million ★; 66.14 million international (7th)"],
+["Main airlines","Air France (SkyTeam) and many SkyTeam carriers"]]},
+{t:"note",x:"* Check Groupe ADP’s final figure for 2025 total passengers. ★"}]},
+{h:"Terminals and airlines",blocks:[{t:"table",cols:["Terminal","Main use"],rows:[
+["T2E and T2F","Air France long-haul and European flights, SkyTeam carriers (including Korean Air)"],
+["T2C, T2D and T2A","Other foreign airlines (including JAL)"],
+["T1","Star Alliance carriers (including ANA) and other foreign airlines"],
+["T2G","Air France regional short-haul flights"]]},
+{t:"note",x:"* Allocations change; check the booking and airport information. ★ Within T2, use the CDGVAL automated train and buses; T2G is reached by shuttle bus."}]},
+{h:"History and outlook",blocks:[{t:"table",cols:["Year","Event"],rows:[
+["1974","Opens with the circular T1"],
+["From 1982","T2 halls open in stages"],
+["February 2021","Government cancels the Terminal 4 plan (to align with climate goals)"],
+["Future","Refurbishment of existing terminals and the CDG Express rail link to central Paris ★"]]}]},
+{h:"Operations, entry and routes to Korea and Japan",blocks:[{t:"check",items:[
+{name:"CDG and Orly",x:"Orly (ORY), south of the city, focuses on domestic, short-haul European and low-cost flights (about 35 million in 2025); international connections go through CDG."},
+{name:"EES",x:"The EU EES has been fully operational since April 2026; first-time Schengen entrants take longer to register (0-2)."},
+{name:"Strikes",x:"France sees frequent air traffic control and airport strikes, sometimes with pre-announced flight reductions."},
+{name:"Japan",x:"Air France serves Haneda and Kansai; JAL and ANA fly from Haneda to Paris."},
+{name:"Korea",x:"Korean Air, Air France and others link Incheon and Paris."}]}]}],
+voice:"",
+terms:[["Groupe ADP (Paris Aéroport)","パリ空港（グループADP）","파리공항공사(ADP그룹)"],["Paris Charles de Gaulle Airport","シャルル・ド・ゴール空港","샤를드골공항"],["Paris Orly Airport","オルリー空港","오를리공항"],["Strike","ストライキ","파업"],["CDGVAL","ターミナル間の電車","터미널 간 셔틀 열차"]],
+quiz:[{q:"What happened to CDG’s Terminal 4 plan?",opts:["Cancelled by the government in 2021","Opened in 2025","Due to open in 2027","Still under study"],a:0,exp:"To align with climate goals."},
+{q:"Where did CDG rank for international passengers in 2025?",opts:["2nd","5th","7th","15th"],a:2,exp:"66.14 million."},
+{q:"Which Paris airport focuses on domestic and low-cost flights?",opts:["Charles de Gaulle","Orly","Le Bourget","Beauvais"],a:1,exp:"It lies south of the city."}],
+next:"4-3 Frankfurt (FRA)"});
+set("4-3",{title:"Frankfurt (FRA): Terminal 3 Opens in April 2026 at an Airport with a Night Ban",hl:"Frankfurt",subtitle:"Lufthansa’s home. 63.19 million passengers in 2025. Terminal 3 (19 million a year) opened on 22 April 2026, with 57 airlines including Korean Air moving in by June. Scheduled flights are banned between 23:00 and 05:00",
+lead:["Frankfurt is Germany’s largest airport and the central European hub for Lufthansa and Star Alliance. It handled 63.19 million passengers in 2025 (+2.6%) and 57.53 million international passengers, ninth in the world.","On 22 April 2026 a new Terminal 3 opened on the south side, a roughly €4 billion project and Europe’s largest privately funded airport facility; 57 airlines including Korean Air moved there from Terminal 2. This lesson covers the new terminal and operational features such as the night ban."],
+sections:[
+{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+["Codes","IATA: FRA / ICAO: EDDF"],
+["Operator","Fraport"],
+["Runways","Four (the Northwest Runway opened in 2011)"],
+["Terminals","T1 (Lufthansa and Star Alliance), T3 (opened April 2026); T2 to be refurbished after the move ★"],
+["2025 results","63.19 million (+2.6%); 57.53 million international (9th)"],
+["Night","Scheduled movements generally banned from 23:00 to 05:00"],
+["Main airlines","Lufthansa (Star Alliance), Condor"]]}]},
+{h:"Terminal 3",blocks:[{t:"table",cols:["When","Details"],rows:[
+["15 October 2015","Groundbreaking"],
+["27 January to 16 April 2026","Trial operations with about 8,000 volunteers"],
+["22 April 2026","Opening ceremony (operations from 23 April); main building and Piers H and J (19 million a year including Pier G)"],
+["April to 9 June 2026","57 airlines move from Terminal 2 in four phases (including Korean Air, Cathay Pacific, Emirates and Qatar Airways)"],
+["Summer 2027","Condor, the airport’s second-largest airline, also moves"],
+["Future","Expansion to 25 million a year"]]},
+{t:"point",x:"The new SkyLine people mover links T3 and T1 in about eight minutes. For connections from T3 to Lufthansa flights at T1, include transfer and security time in your advice."}]},
+{h:"Operations and handling",blocks:[{t:"check",items:[
+{name:"Night ban",x:"Generally no movements from 23:00 to 05:00; badly delayed arrivals divert or wait until morning, so watch long-haul departure delays closely."},
+{name:"Slots",x:"A Level 3 airport."},
+{name:"Cargo",x:"One of Europe’s leading cargo airports and home of Lufthansa Cargo."},
+{name:"Check the terminal",x:"T1 and T3 are far apart; after the 2026 move, always confirm the terminal in information and bookings."}]}]},
+{h:"Entry and routes to Korea and Japan",blocks:[{t:"rows",items:[
+{name:"Entry",x:"Passengers arriving from outside Schengen and connecting within Schengen clear immigration (and EES registration) at Frankfurt (0-2)."},
+{name:"Japan",x:"Lufthansa, ANA and JAL link Haneda and Frankfurt, and Lufthansa also serves Kansai ★."},
+{name:"Korea",x:"Korean Air (at T3 from 2026) and others link Incheon and Frankfurt."}]}]}],
+voice:"",
+terms:[["Fraport AG","フラポート","프라포트"],["Terminal 3","第3ターミナル","제3터미널"],["Night Flight Ban","夜間の飛行禁止","야간 비행 금지"],["SkyLine (people mover)","スカイライン","스카이라인"],["Pier","ピア","피어(탑승동)"]],
+quiz:[{q:"When did Frankfurt’s Terminal 3 open?",opts:["October 2015","2024","22 April 2026","2028"],a:2,exp:"Operations began on 23 April."},
+{q:"When are movements generally banned at Frankfurt?",opts:["21:00–06:00","23:00–05:00","00:00–05:00","No ban"],a:1,exp:"Late arrivals may have to divert."},
+{q:"Which airline moved from Terminal 2 to Terminal 3 in 2026?",opts:["Lufthansa","Korean Air","ANA","Condor (spring 2026)"],a:1,exp:"Condor moves in summer 2027."}],
+next:"4-4 Amsterdam Schiphol (AMS)"});
+set("4-4",{title:"Amsterdam Schiphol (AMS): A Single-terminal Transfer Hub and Its Movement Cap",hl:"Schiphol",subtitle:"Opened in 1916. 68.8 million passengers and 477,552 movements in 2025. A 478,000-movement cap with 27,000 night movements, set to cut noise, is contested; the response is bigger aircraft",
+lead:["Amsterdam Schiphol is the hub for KLM and SkyTeam, known for connections within a single large terminal. It handled 68.8 million passengers in 2025 (+3%), still below 71.7 million in 2019 (Royal Schiphol Group).","To reduce noise, the Dutch government moved to cut annual movements from 500,000 to 478,000, including 27,000 at night, and legal challenges continue. This lesson covers Schiphol’s layout and how the cap affects operations."],
+sections:[
+{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+["Codes","IATA: AMS / ICAO: EHAM"],
+["Operator","Royal Schiphol Group"],
+["Opened","19 September 1916"],
+["Runways and terminal","Six runways; one terminal (departure halls 1–4, Schengen and non-Schengen piers)"],
+["2025 results","68.8 million (+3%), 477,552 movements; 68.77 million international (5th); 1.43 million tonnes of cargo"],
+["2026 outlook","68–72 million"],
+["Main airlines","KLM Royal Dutch Airlines (SkyTeam), Transavia"]]}]},
+{h:"The movement cap",blocks:[{t:"table",cols:["When","Details"],rows:[
+["Until 2024","A 500,000-movement limit"],
+["6 May 2025","Government decides on 478,000 a year, with 27,000 at night (down from 32,000)"],
+["2025","477,552 movements, just under the new limit"],
+["11 March 2026","The Council of State annuls the 2025 decision as not carefully prepared"],
+["2026","A new Airport Traffic Decree again proposes 478,000; the process continues ★"]]},
+{t:"note",x:"* The cap depends on legal proceedings. A path back to 500,000 exists if noise falls by 20%. Check the latest decisions. ★"},
+{t:"point",x:"Unable to add movements, Schiphol and KLM are carrying more passengers per flight with larger aircraft (about 144 passengers per movement in 2025)."}]},
+{h:"Operations and handling",blocks:[{t:"check",items:[
+{name:"One terminal",x:"All flights leave from one terminal, so connections are simple and minimum connecting times short."},
+{name:"Schengen entry",x:"Passengers connecting from outside Schengen into Schengen clear immigration (EES) at Schiphol."},
+{name:"Wind",x:"Close to the North Sea, strong winds are common and change runway use, causing delays."},
+{name:"Airport charges",x:"Airport charges rose by about 41% in April 2025, raising airline costs."}]}]},
+{h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[
+{name:"Japan",x:"KLM links Narita and Kansai with Amsterdam ★."},
+{name:"Korea",x:"KLM and Korean Air (both SkyTeam) link Incheon and Amsterdam ★."},
+{name:"Cargo",x:"A European logistics hub for flowers and perishables."}]}]}],
+voice:"",
+terms:[["Royal Schiphol Group","ロイヤル・スキポール・グループ","로열 스히폴 그룹"],["Movement Cap","発着の上限","이착륙 상한"],["Airport Traffic Decree","空港交通令","공항교통령"],["Council of State (Raad van State)","国家評議会","국가평의회(최고행정법원)"],["Upgauging","機材の大型化","기재 대형화"]],
+quiz:[{q:"What annual movement cap did the Dutch government set for Schiphol?",opts:["500,000","478,000","400,000","No cap"],a:1,exp:"Including 27,000 at night."},
+{q:"What did the Council of State decide on 11 March 2026?",opts:["Annulled the 2025 cap decision","Raised the cap","Closed the airport","Approved a new runway"],a:0,exp:"The process continues."},
+{q:"What characterises connections at Schiphol?",opts:["Within one terminal","Changing airports","A bus to another airport","Always entering the country"],a:0,exp:"Simple and quick."}],
+next:""});
+})(window.ARTS);
