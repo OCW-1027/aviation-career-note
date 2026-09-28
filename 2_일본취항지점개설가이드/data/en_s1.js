@@ -1,42 +1,6 @@
 /* 外国航空会社の日本就航・支店開設ガイド — English version (Part 1: 許認可) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("1-1",{title:"The Foreign Air Carrier Operating Licence",hl:"the operating licence",subtitle:"The door into Japan for scheduled service, and it includes a safety review ★",
-lead:["To operate scheduled international services to and from Japan, a foreign airline needs a licence to conduct foreign international air transport business, granted by the Minister of Land, Infrastructure, Transport and Tourism under the Civil Aeronautics Act. The industry often calls it the FAOC, the foreign air operator certificate.",
-"This article covers the legal basis and the filing deadline, what goes in the application, the safety review, the approvals that follow, and how to work with a filing agent. The detail changes from time to time, so always check the ministry’s current guidance."],
-sections:[
-{h:"The basics",blocks:[{t:"table",cols:["Item","Detail"],rows:[
-["Legal basis","Article 129(1) of the Civil Aeronautics Act; Article 232 of its enforcement regulations"],
-["Who needs it","Anyone intending to conduct foreign international air transport business"],
-["When to file","By three months before the planned start of service"],
-["Where to file","International Air Transport Division, Civil Aviation Bureau"],
-["Fee","Registration and licence tax per application (check the current amount)"],
-["Form","The ministry publishes a model application"]]},
-{t:"note",x:"* Summarised from the ministry’s one-stop guide to procedures. ★"}]},
-{h:"What goes in the application",blocks:[{t:"check",items:[
-{name:"The applicant",x:"Company name, address and nationality."},
-{name:"Offices in Japan",x:"The name and location of the principal office and any others."},
-{name:"The business",x:"The purpose, whether passenger or cargo, and the planned start date."},
-{name:"Existing operations",x:"An outline of the air transport business you already operate."},
-{name:"The operating plan",x:"Routes, airports used, frequencies and aircraft types."},
-{name:"Safety material",x:"The documents needed for the safety review, such as the operational control and maintenance set-up."}]}]},
-{h:"The safety review",blocks:[{t:"p",x:"The review covers not only the business plan but safety. The ministry publishes guidance on how it reviews safety for foreign carrier licences and how it carries out safety oversight afterwards, drawing on the results of ICAO and other audits."},
-{t:"rows",items:[
-{name:"Your own authority’s certificate",x:"The air operator certificate (AOC) issued by your own civil aviation authority, and its conditions."},
-{name:"Operations and maintenance",x:"Operational control, the maintenance organisation and information on the aircraft used."},
-{name:"Oversight after launch",x:"Safety is also checked through ramp inspections of foreign aircraft."}]}]},
-{h:"What follows the licence",blocks:[{t:"ladder",rise:10,steps:[{name:"Operating licence",sub:"Article 129"},{name:"Fare approval",sub:"By 30 days before (1-4)"},{name:"Business plan filing",sub:"The seasonal schedule (1-2)"},{name:"Slots confirmed",sub:"JSC and FAIB (1-3)"},{name:"Equipment approvals",sub:"Articles 60 and 61 (1-5)"},{name:"Reporting after launch",sub:"Traffic, delays and so on (1-6)"}]},
-{t:"point",x:"International charter flights need a separate permission for carrying passengers departing from or arriving in Japan (Article 130-2). Do not confuse it with the scheduled licence."}]},
-{h:"Working with a filing agent",blocks:[{t:"check",items:[
-{name:"What the agent does",x:"Prepares and files the documents, and is named in the application as the filing agent."},
-{name:"The station’s part",x:"Do not leave it entirely to the agent: know the timing, the content and any questions from the authorities."},
-{name:"Translation",x:"The quality of the Japanese translation of head office material decides how many rounds of questions you get."},
-{name:"Keep the copies",x:"The licence and the filed application are the basis for every later change; file them safely."}]}]}],
-voice:"[Interview to be added] The points the authorities asked about most during the review.",
-terms:[["Foreign International Air Transport Business","外国人国際航空運送事業","외국인 국제항공운송사업"],["Operating Permit (FAOC)","経営の許可","경영 허가"],["Air Operator Certificate (AOC)","運航者証明書","운항증명"],["Filing Agent","申請代行者","신청 대행자"],["Registration and License Tax","登録免許税","등록면허세"],["Safety Oversight","安全監視","안전 감시"]],
-quiz:[{q:"Which article is the basis for the foreign carrier licence?",opts:["Article 100","Article 129","Article 60","Article 130"],a:1,exp:"Article 129(1). Article 100 covers Japanese carriers."},
-{q:"When must it be filed?",opts:["One month before service","By three months before service","After service starts","Any time"],a:1,exp:"By three months before the planned start."},
-{q:"What separate permission do international charters need?",opts:["None","The Article 130-2 permission","Only the airport company’s approval","A travel agency registration"],a:1,exp:"It is a separate procedure from the scheduled licence."}],
-next:"1-2 Filing the schedule: approval and changes to the business plan"});
+/* 1-1 is in en_s1_permit.js (2026.09.28) */
 
 set("1-2",{title:"Filing the Schedule: Approval and Changes to the Business Plan",hl:"the business plan",subtitle:"Seasonal filings, change applications and after-the-event notifications: know which to use ★",
 lead:["Even with the licence in hand, the business plan — which routes, when, with what aircraft and how often — must be approved by the minister before you can fly it. Changing it also needs prior approval, apart from minor changes.",
