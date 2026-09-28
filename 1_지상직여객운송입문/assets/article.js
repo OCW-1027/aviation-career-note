@@ -43,7 +43,9 @@ function block(b,L){
   case 'cards': return '<div class="cards" style="--n:'+(b.n||2)+'">'+b.items.map(function(i){return '<div class="card">'+(i.ic?'<span class="ic">'+i.ic+'</span>':'')+'<b>'+esc(i.name)+'</b>'+(i.tag?'<span class="tag">'+esc(i.tag)+'</span>':'')+'<span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
   case 'rows': return '<div class="rows">'+b.items.map(function(i){return '<div class="row"><b>'+esc(i.name)+'</b><span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
   case 'table':
-    return '<div class="scroll tbl"><table><thead><tr>'+b.cols.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(i===0&&b.label!==false?'lb':(b.center?'c':''))+'">'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
+    /* 列の中身が短い（どの行も1行ほど）列は中央ぞろえにして、中央ぞろえの見出しと位置を合わせる */
+    var shortCol=b.cols.map(function(_,ci){var m=0;b.rows.forEach(function(r){var s=String(r[ci]==null?'':r[ci]),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>m)m=w});return m<=18});
+    return '<div class="scroll tbl"><table><thead><tr>'+b.cols.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(i===0&&b.label!==false?'lb':((b.center||shortCol[i])?'c':''))+'">'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
   case 'ladder':
     return '<div class="ladder">'+b.steps.map(function(s,i){var h=120+i*(b.rise||28);return '<div class="step'+(s.alt?' alt':'')+'" style="min-height:'+h+'px"><span class="n">'+(i+1)+'</span><b>'+esc(s.name)+'</b><small>'+esc(s.sub||'')+'</small></div>'}).join('')+'</div>';
   case 'timeline':
@@ -81,3 +83,12 @@ function render(){
 render();
 })();
 (function(){var s=document.currentScript&&document.currentScript.src;if(!s)return;var e=document.createElement('script');e.src=new URL('nav.js',s).href;document.head.appendChild(e)})();
+
+/* 表の見出し（中央ぞろえ）と中身の位置をそろえる：すべての行が1行で表示される列は中央ぞろえにする。言語の切り替え・画面の幅の変更のたびに判断し直す */
+(function(){
+function oneLine(td){var r=document.createRange();r.selectNodeContents(td);var rs=r.getClientRects(),tops={};for(var i=0;i<rs.length;i++){if(rs[i].width>0)tops[Math.round(rs[i].top)]=1}return Object.keys(tops).length<=1}
+function run(){var m=document.getElementById('main');if(!m)return;Array.prototype.forEach.call(m.querySelectorAll('.tbl table'),function(tb){var rows=tb.tBodies[0]?Array.prototype.slice.call(tb.tBodies[0].rows):[];if(!rows.length)return;var n=rows[0].cells.length;for(var c=0;c<n;c++){var cells=[],base=true;rows.forEach(function(r){var td=r.cells[c];if(td)cells.push(td)});if(!cells.length||cells[0].classList.contains('lb'))continue;cells.forEach(function(td){td.classList.remove('ac')});var all=cells.every(function(td){return td.classList.contains('c')||oneLine(td)});if(all)cells.forEach(function(td){if(!td.classList.contains('c'))td.classList.add('ac')})}})}
+var q=0;function soon(){if(q)return;q=1;setTimeout(function(){q=0;run()},60)}
+function start(){try{if(typeof document.createRange().getClientRects!=='function')return}catch(e){return}var st=document.createElement('style');st.textContent='td.ac{text-align:center}';document.head.appendChild(st);run();var m=document.getElementById('main');if(m)new MutationObserver(soon).observe(m,{childList:true});window.addEventListener('resize',soon);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(soon)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+})();
