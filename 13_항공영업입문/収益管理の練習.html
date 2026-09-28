@@ -41,10 +41,11 @@ svg{width:100%;height:auto;display:block}
 <div class="tabs" id="tabs"></div>
 <div id="main"></div>
 </div>
+<script src="rm/rm_ext.js"></script>
 <script>
 var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})(),tab=0;
 var T={
-ja:{t:'Revenue Management（収益管理）の練習 ― 座席の配分・オーバーブッキング・指標',back:'← 講座の目次',lead:'レッスン7-3・7-4・7-7の計算を、数字を変えながら確かめるページです。数値はすべて練習用で、需要は正規分布、来る確率は1人ずつ独立と仮定しています。',
+ja:{t:'Revenue Management（収益管理）の練習 ― 座席の配分・オーバーブッキング・指標',back:'← 講座の目次',lead:'レッスン7-3・7-4・7-7の計算を、数字を変えながら確かめるページです。⑤〜⑦では、客室ごとの26クラス、予約の積み上がりのシミュレーション、問題と解説に進めます。数値はすべて練習用で、需要は正規分布、来る確率は1人ずつ独立と仮定しています。',
 tabs:['2つの運賃（リトルウッド）','複数のクラス（EMSR-b）','オーバーブッキング','指標（航空・ホテル）'],
 in:'入力',out:'結果',seats:'座席数',hf:'高い運賃（円）',lf:'安い運賃（円）',mu:'高い運賃の需要の平均（人）',sd:'需要の標準偏差（人）',
 prot:'保護する席数',bl:'安い運賃の上限',ratio:'運賃の比（安い÷高い）',curve:'保護する席数と収入の見込み（安い運賃の需要は十分にあると仮定）',exprev:'収入の見込み',
@@ -52,7 +53,7 @@ cls:'クラス',fare:'運賃',mean:'需要の平均',sdv:'標準偏差',pl:'保�
 show:'来る確率（%）',fr:'運賃（来た人の分だけ数える、円）',db:'お断り1人の費用（円）',range:'計算する予約数の上限（座席数＋）',au:'受ける予約',board:'搭乗の見込み',den:'お断りの見込み',rev:'収入の見込み（円）',best:'最善',krPre:'韓国の国際線の基準で費用を入れる',kr:['4時間以内の路線・2〜4時間後の代替（USD 200）','4時間以内の路線・4時間超の代替（USD 400）','4時間超の路線・4時間超の代替（USD 600）'],usd:'為替（円/USD）',obNote:'お断りの費用には、補償のほかに振替・ホテル・信用の損も入れて考えます。韓国の基準は上限額の賠償を求めています（レッスン7-4）。',
 air:'航空',hotel:'ホテル',pax:'旅客数',dist:'距離（km）',revA:'旅客収入（円）',cost:'費用（円）',rooms:'販売可能な客室数',sold:'販売した室数',rrev:'客室の売上（円）',trev:'総売上（円）',gop:'営業総利益（円）',
 lfL:'搭乗率',yld:'イールド（円/人キロ）',rask:'RASK（円）',cask:'CASK（円）',bel:'損益分岐の搭乗率',occ:'稼働率',adr:'ADR（円）',revpar:'RevPAR（円）',trevpar:'TRevPAR（円）',goppar:'GOPPAR（円）'},
-ko:{t:'Revenue Management(수익관리) 연습 — 좌석 배분·오버부킹·지표',back:'← 강좌 목차',lead:'레슨 7-3·7-4·7-7의 계산을 숫자를 바꿔 가며 확인하는 페이지입니다. 모든 수치는 연습용이며, 수요는 정규분포, 올 확률은 1명씩 독립으로 가정합니다.',
+ko:{t:'Revenue Management(수익관리) 연습 — 좌석 배분·오버부킹·지표',back:'← 강좌 목차',lead:'레슨 7-3·7-4·7-7의 계산을 숫자를 바꿔 가며 확인하는 페이지입니다. ⑤~⑦에서는 객실별 26클래스, 부킹 커브 시뮬레이션, 문제와 해설로 이어집니다. 모든 수치는 연습용이며, 수요는 정규분포, 올 확률은 1명씩 독립으로 가정합니다.',
 tabs:['두 운임(리틀우드)','여러 클래스(EMSR-b)','오버부킹','지표(항공·호텔)'],
 in:'입력',out:'결과',seats:'좌석 수',hf:'비싼 운임(엔)',lf:'싼 운임(엔)',mu:'비싼 운임 수요 평균(명)',sd:'수요 표준편차(명)',
 prot:'보호할 좌석 수',bl:'싼 운임 한도',ratio:'운임 비율(싼÷비싼)',curve:'보호 좌석 수와 수입 예상(싼 운임 수요는 충분하다고 가정)',exprev:'수입 예상',
@@ -60,7 +61,7 @@ cls:'클래스',fare:'운임',mean:'수요 평균',sdv:'표준편차',pl:'보호
 show:'올 확률(%)',fr:'운임(온 사람만 셈, 엔)',db:'거절 1명 비용(엔)',range:'계산할 예약 수 상한(좌석 수+)',au:'받는 예약',board:'탑승 예상',den:'거절 예상',rev:'수입 예상(엔)',best:'최선',krPre:'한국 국제선 기준으로 비용 넣기',kr:['4시간 이내 노선·2~4시간 후 대체(USD 200)','4시간 이내 노선·4시간 초과 대체(USD 400)','4시간 초과 노선·4시간 초과 대체(USD 600)'],usd:'환율(엔/USD)',obNote:'거절 비용에는 보상 외에 대체편·호텔·신뢰 손실도 넣어 생각합니다. 한국 기준은 최고 한도 배상을 요구합니다(레슨 7-4).',
 air:'항공',hotel:'호텔',pax:'여객 수',dist:'거리(km)',revA:'여객 수입(엔)',cost:'비용(엔)',rooms:'판매 가능 객실 수',sold:'판매 객실 수',rrev:'객실 매출(엔)',trev:'총매출(엔)',gop:'영업총이익(엔)',
 lfL:'탑승률',yld:'일드(엔/인km)',rask:'RASK(엔)',cask:'CASK(엔)',bel:'손익분기 탑승률',occ:'가동률',adr:'ADR(엔)',revpar:'RevPAR(엔)',trevpar:'TRevPAR(엔)',goppar:'GOPPAR(엔)'},
-en:{t:'Revenue Management Practice: Seat Allocation, Overbooking and Metrics',back:'← Course contents',lead:'Check the calculations from lessons 7-3, 7-4 and 7-7 by changing the numbers. All figures are for practice; demand is assumed normal and passengers show up independently.',
+en:{t:'Revenue Management Practice: Seat Allocation, Overbooking and Metrics',back:'← Course contents',lead:'Check the calculations from lessons 7-3, 7-4 and 7-7 by changing the numbers. Tabs ⑤ to ⑦ go on to 26 classes by cabin, a booking-curve simulation and a quiz with explanations. All figures are for practice; demand is assumed normal and passengers show up independently.',
 tabs:['Two fares (Littlewood)','Several classes (EMSR-b)','Overbooking','Metrics (airline and hotel)'],
 in:'Inputs',out:'Results',seats:'Seats',hf:'High fare (¥)',lf:'Low fare (¥)',mu:'Mean high-fare demand',sd:'Demand standard deviation',
 prot:'Seats to protect',bl:'Low-fare limit',ratio:'Fare ratio (low ÷ high)',curve:'Protection level and expected revenue (ample low-fare demand assumed)',exprev:'Expected revenue',
@@ -131,16 +132,17 @@ function render(){var t=T[L];document.documentElement.lang=L;document.title=t.t;
  document.getElementById('back').textContent=t.back;document.getElementById('back').href='00_シリーズ全体_航空営業入門.html?lang='+L;
  document.getElementById('ttl').textContent=t.t;document.getElementById('lead').textContent=t.lead;
  document.getElementById('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button data-l="'+l+'" class="'+(l===L?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join(' ');
- document.getElementById('tabs').innerHTML=t.tabs.map(function(x,i){return '<button data-t="'+i+'" class="'+(i===tab?'on':'')+'">'+x+'</button>'}).join('');
- document.getElementById('main').innerHTML=V[tab](t);K[tab](t);
+ var ext=window.RM_EXT||[],labs=t.tabs.concat(ext.map(function(m){return m.label[L]||m.label.ja}));
+ document.getElementById('tabs').innerHTML=labs.map(function(x,i){return '<button data-t="'+i+'" class="'+(i===tab?'on':'')+'">'+x+'</button>'}).join('');
+ if(tab<V.length){document.getElementById('main').innerHTML=V[tab](t);K[tab](t)}else{var m=ext[tab-V.length];document.getElementById('main').innerHTML=m.view();m.bind()}
  document.querySelectorAll('#langs button').forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('art-lang',L)}catch(e){}render()}});
  document.querySelectorAll('#tabs button').forEach(function(b){b.onclick=function(){tab=+b.dataset.t;render()}});
- document.querySelectorAll('#main input').forEach(function(e){e.oninput=function(){K[tab](T[L])}});
+ if(tab<V.length)document.querySelectorAll('#main input').forEach(function(e){e.oninput=function(){K[tab](T[L])}});
  var e;if(e=document.getElementById('eadd'))e.onclick=function(){K[1](T[L]);var n=S.cl.length;if(n<8){S.cl.push([String.fromCharCode(75+n),Math.max(5000,Math.round(S.cl[n-1][1]*0.7/1000)*1000),40,12]);render()}};
  if(e=document.getElementById('edel'))e.onclick=function(){K[1](T[L]);if(S.cl.length>2){S.cl.pop();render()}};
  document.querySelectorAll('[data-usd]').forEach(function(b){b.onclick=function(){var fx=g('fx')||150;document.getElementById('db').value=Math.round(+b.dataset.usd*fx);K[2](T[L])}});
 }
-function fromHash(){var m=location.hash.match(/tab=(\d)/);if(m)tab=clamp(+m[1],0,3)}
+function fromHash(){var m=location.hash.match(/tab=(\d)/);if(m)tab=clamp(+m[1],0,3+(window.RM_EXT||[]).length)}
 fromHash();window.addEventListener('hashchange',function(){fromHash();render()});
 render();
 </script>
