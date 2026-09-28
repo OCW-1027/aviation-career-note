@@ -45,9 +45,9 @@ sections:[
 ["Opened","1974"],
 ["Runways","Four parallel runways (two to the north, two to the south)"],
 ["Terminals","T1 (the circular building), T2 (seven halls, 2A to 2G), T3 (charter and low-cost)"],
-["2025 results","About 72 million ★; 66.14 million international (7th)"],
+["2025 results","72.03 million (+2.5%; the 106.96 million total for Paris minus 34.93 million at Orly); 66.14 million international (7th)"],
 ["Main airlines","Air France (SkyTeam) and many SkyTeam carriers"]]},
-{t:"note",x:"* Check Groupe ADP’s final figure for 2025 total passengers. ★"}]},
+{t:"note",x:"* 2025 figures from Groupe ADP’s annual results (February 2026). CDG is still below its 2019 total of 76.15 million."}]},
 {h:"Terminals and airlines",blocks:[{t:"table",cols:["Terminal","Main use"],rows:[
 ["T2E and T2F","Air France long-haul and European flights, SkyTeam carriers (including Korean Air)"],
 ["T2C, T2D and T2A","Other foreign airlines (including JAL)"],
@@ -58,7 +58,7 @@ sections:[
 ["1974","Opens with the circular T1"],
 ["From 1982","T2 halls open in stages"],
 ["February 2021","Government cancels the Terminal 4 plan (to align with climate goals)"],
-["Future","Refurbishment of existing terminals and the CDG Express rail link to central Paris ★"]]}]},
+["Future","The CDG Express rail link to central Paris is due to open in 2027; the terminals will also be renamed in March 2027 (announced by Groupe ADP in December 2025)"]]}]},
 {h:"Operations, entry and routes to Korea and Japan",blocks:[{t:"check",items:[
 {name:"CDG and Orly",x:"Orly (ORY), south of the city, focuses on domestic, short-haul European and low-cost flights (about 35 million in 2025); international connections go through CDG."},
 {name:"EES",x:"The EU EES has been fully operational since April 2026; first-time Schengen entrants take longer to register (0-2)."},

@@ -17,8 +17,8 @@ sections:[
 ["April 2024","Dubai’s ruler approves a new passenger terminal (AED 128 billion, US$35 billion)"],
 ["Next decade","DWC able to handle 150 million passengers a year"],
 ["Final","260 million passengers and 12 million tonnes of cargo a year, with five parallel runways"],
-["The move","Once enough capacity exists, all DXB services move to DWC; Dubai will not run two giant hubs side by side ★"]]},
-{t:"note",x:"* Reports differ on timing (for example ‘from around 2032’); check official announcements. ★"}]},
+["The move","Once enough capacity exists, all DXB services move to DWC; Dubai will not run two giant hubs side by side. Phase 1 operations are due to start in 2032"]]},
+{t:"note",x:"* In June 2026 the Dubai government confirmed that phase 1 works are on schedule for operations to start in 2032. The official release says all services will move ‘in the coming years’, without a fixed date. DXB handled a record 95.2 million passengers in 2025."}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"24-hour waves",x:"Emirates’ arrival and departure waves run through the night and early morning, keeping the airport busy around the clock."},
 {name:"Summer heat",x:"Temperatures above 45 °C from June to September; watch ramp safety (heat stress) and take-off weight limits."},

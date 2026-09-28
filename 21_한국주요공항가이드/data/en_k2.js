@@ -1,20 +1,20 @@
 /* 韓国の主要空港ガイド Part 2 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("2-1",{title:"Gimhae International Airport (PUS)",hl:"Gimhae",subtitle:"Gateway to Busan and South Gyeongsang and the busiest regional airport for international flights. Shared with the Air Force and almost out of slots; next comes Gadeokdo New Airport (target opening 2035)",
-lead:["Gimhae International Airport, in western Busan, is a joint civil-military airport sharing its runways with an Air Force base ★. In 2025 it handled 10.44 million international passengers, first among regional airports, with routes to 16 countries and territories (Korea Airports Corporation).","Its slots are nearly full and delays are rising. This lesson covers the basics, what to watch in operations and handling, and the Gadeokdo New Airport plan."],
+lead:["Gimhae International Airport, in western Busan, is a joint civil-military airport sharing its runways with an Air Force base (the 5th Air Mobility Wing). In 2025 it handled 10.44 million international passengers, first among regional airports, with routes to 16 countries and territories (Korea Airports Corporation).","Its slots are nearly full and delays are rising. This lesson covers the basics, what to watch in operations and handling, and the Gadeokdo New Airport plan."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: PUS / ICAO: RKPK"],
-["Operator","Korea Airports Corporation (airfield shared with the Air Force) ★"],
-["Runways","Two ★"],
+["Operator","Korea Airports Corporation (airfield shared with the Air Force’s 5th Air Mobility Wing)"],
+["Runways","Two, parallel"],
 ["Terminals","Domestic terminal and international terminal"],
-["Hours","06:00–23:00 (night flights restricted) ★"],
+["Hours","06:00–23:00 (curfew: no take-offs or landings from 23:00 to 06:00)"],
 ["2025 international","10.44 million (Japan 3.98 million, Vietnam 2.09 million, Taiwan 1.33 million, China 1.07 million, the Philippines 0.65 million)"],
 ["Network","16 countries and territories (including Singapore, Laos and Kazakhstan)"],
 ["Main airlines","Air Busan, Korean Air, Jin Air, T’way Air and others ★"]]}]},
 {h:"What to watch in operations and handling",blocks:[{t:"check",items:[
 {name:"Slots are full",x:"Hourly slots are over 90% used; a small delay ripples through later flights."},
-{name:"Circling approaches",x:"With hills to the north, southerly winds require circling approaches; cloud and visibility can then cause delays or diversions ★"},
+{name:"Circling approaches",x:"With hills to the north, southerly winds require circling approaches; cloud and visibility can then cause delays or diversions"},
 {name:"International delays",x:"Delays at Gimhae have risen 21% since 2023, over half on international flights; protecting the morning departure wave sets the day’s punctuality."},
 {name:"Military operations",x:"Air Force exercises and national events bring time restrictions; check NOTAMs daily."},
 {name:"The 23:00 restriction",x:"Evening delays easily run into the restricted hours; decide alternates and passenger accommodation early."}]}]},
@@ -32,19 +32,19 @@ voice:"",
 terms:[["Joint Civil-Military Airport","民軍共用の空港","민군 공용 공항"],["Circling Approach","旋回進入","선회 접근"],["Gadeokdo New Airport","加徳島新空港","가덕도신공항"],["Slot","発着の枠","슬롯"],["Negotiated Contract","随意契約","수의계약"]],
 quiz:[{q:"Which regional airport had the most international passengers in 2025?",opts:["Gimpo","Gimhae","Jeju","Cheongju"],a:1,exp:"10.44 million."},
 {q:"What is Gadeokdo New Airport’s target opening (announced November 2025)?",opts:["2029","2032","2035","Undecided"],a:2,exp:"Construction extended to 106 months."},
-{q:"Which approach is needed at Gimhae in southerly winds?",opts:["A circling approach","A visual landing without instruments","A sea landing","No approach is possible"],a:0,exp:"Because of the hills to the north. ★"}],
+{q:"Which approach is needed at Gimhae in southerly winds?",opts:["A circling approach","A visual landing without instruments","A sea landing","No approach is possible"],a:0,exp:"Because of the hills to the north."}],
 next:"2-2 Jeju International Airport (CJU)"});
-set("2-2",{title:"Jeju International Airport (CJU)",hl:"Jeju",subtitle:"87.6% of Korea’s domestic passengers fly Jeju routes. It runs 24 hours, but strong winds and heavy snow cause mass cancellations. The second airport’s basic plan is published and its environmental assessment is under way",
+set("2-2",{title:"Jeju International Airport (CJU)",hl:"Jeju",subtitle:"87.6% of Korea’s domestic passengers fly Jeju routes. There is no legal curfew, but it normally closes at 23:00, and strong winds and heavy snow cause mass cancellations. The second airport’s basic plan is published and its environmental assessment is under way",
 lead:["Jeju International Airport is the gateway to Jeju Island, Korea’s largest holiday destination. Of Korea’s 30.25 million domestic passengers in 2025, 26.51 million (87.6%) flew Jeju routes, 15.12 million on Gimpo–Jeju alone; international traffic was 3.01 million (Korea Airports Corporation).","As an island airport, weather-related mass cancellations leave large numbers of passengers stranded. This lesson covers the basics, what to watch in operations and handling, and the second-airport plan."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: CJU / ICAO: RKPC"],
 ["Operator","Korea Airports Corporation"],
-["Runways","Two (intersecting) ★"],
-["Hours","24 hours (few night flights) ★"],
+["Runways","Two, intersecting (07/25: 3,180 m; 13/31: 1,910 m). They cannot be used at the same time, so in practice almost everything uses 07/25"],
+["Hours","No legal curfew, but the airport normally operates from about 06:00 to 23:00; after mass cancellations, extra flights may run late into the night (as after the February 2026 snowstorm)"],
 ["2025 results","Jeju routes (domestic) 26.51 million; international 3.01 million"],
 ["Main international routes","China, Japan, Taiwan, Southeast Asia and others ★"],
-["Special entry rule","Foreign nationals, except those of certain countries, may stay in Jeju for up to 30 days without a visa ★"]]}]},
+["Special entry rule","Foreign nationals, except those of countries designated by the Minister of Justice, may stay in Jeju for up to 30 days without a visa; travelling on to the mainland requires a permit to extend the area of stay from the Jeju Immigration Office"]]}]},
 {h:"What to watch in operations and handling",blocks:[{t:"check",items:[
 {name:"Strong winds and wind shear",x:"Strong sea winds and wind-shear warnings can halt take-offs and landings."},
 {name:"Heavy snow",x:"In January 2016 heavy snow stopped flights for about two days and left many passengers at the airport; confirm runway snow clearance and de-icing procedures before winter."},

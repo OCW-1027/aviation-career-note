@@ -31,16 +31,16 @@ quiz:[{q:"Which airport was first in the world for passengers in 2025?",opts:["D
 {q:"When connecting between international flights at a US airport, what happens to checked bags?",opts:["Collected at the first airport and rechecked after customs","Sent through automatically","Discarded","Carried on board"],a:0,exp:"Because there is no airside transit."}],
 next:"5-2 Los Angeles (LAX)"});
 set("5-2",{title:"Los Angeles (LAX): The Pacific Gateway and a Major Rebuild for the 2028 Olympics",hl:"Los Angeles",subtitle:"America’s Pacific gateway and a rare airport where Delta, American and United all have hubs. The centrepiece of a roughly US$30 billion rebuild is the Automated People Mover (APM)",
-lead:["Los Angeles International is the Pacific gateway linking Asia and the United States. Unusually, all three big US airlines, Delta, American and United, operate hubs there, and many flights from Japan and Korea arrive.","About 73.71 million passengers used it in 2025, still below 88 million in 2019 (★). The airport is investing about US$30 billion ahead of the 2028 Olympics, centred on an Automated People Mover (APM) linking the terminals with rail and rental-car facilities."],
+lead:["Los Angeles International is the Pacific gateway linking Asia and the United States. Unusually, all three big US airlines, Delta, American and United, operate hubs there, and many flights from Japan and Korea arrive.","About 73.71 million passengers used it in 2025, still below 88 million in 2019 (76.59 million in 2024). The airport is investing about US$30 billion ahead of the 2028 Olympics, centred on an Automated People Mover (APM) linking the terminals with rail and rental-car facilities."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: LAX / ICAO: KLAX"],
 ["Operator","Los Angeles World Airports (LAWA, a city department)"],
 ["Runways","Four parallel runways (two north, two south)"],
 ["Terminals","Nine terminals around the horseshoe road (World Way) plus the Tom Bradley International Terminal (TBIT)"],
-["2025 results","About 73.71 million (−3.76%) ★"],
+["2025 results","About 73.71 million (−3.76%; about 50.11 million domestic and 23.6 million international)"],
 ["Main airlines","Delta, United, American, Alaska, Southwest"]]},
-{t:"note",x:"* The 2025 figure is from a secondary source; check LAWA’s published statistics. ★"}]},
+{t:"note",x:"* The 2025 figure is the sum of LAWA’s monthly statistics as compiled by the Los Angeles Business Journal; the fall came mainly from domestic capacity cuts."}]},
 {h:"The rebuild for 2028",blocks:[{t:"table",cols:["Project","Details"],rows:[
 ["Automated People Mover (APM)","3.62 km with six stations, linking the terminals with the LAX/Metro Transit Center (opened June 2025) and a consolidated rental-car facility; opening has been repeatedly delayed ★"],
 ["Consolidated rental-car facility","Brings rental companies together to ease road congestion"],
@@ -71,19 +71,19 @@ sections:[
 ["Terminals","T1, T4 (Delta and others), T5 (JetBlue), T6 (opened 2026), T7 (being phased out), T8 (American, JAL and others)"],
 ["Main airlines","Delta, American, JetBlue and many foreign carriers"]]}]},
 {h:"The US$19 billion redevelopment",blocks:[{t:"table",cols:["Project","Details"],rows:[
-["Terminal 6 (north)","US$4.2 billion; first gates opened in 2026; linked to T5 by an indoor walkway; 10 gates at completion (9 for widebodies), with phase 2 on the Terminal 7 site"],
-["New Terminal One (south)","US$9.5 billion on the site of the old T1, T2 and T3; 23 gates at completion, JFK’s largest terminal; first phase (arrivals and departures halls, 14 gates) expected in 2027"],
+["Terminal 6 (north)","US$4.2 billion; first phase opened in the first half of 2026; as of August 2026 only JetBlue operates there, with other airlines moving in stages through 2027; linked to T5 by an indoor walkway; 10 gates at completion (9 for widebodies), with phase 2 on the Terminal 7 site"],
+["New Terminal One (south)","US$9.5 billion on the site of the old T1, T2 and T3; 23 gates at completion, JFK’s largest terminal; first phase (arrivals and departures halls, 13 gates plus one temporary gate) slipped from June 2026 to the first quarter of 2027 (target: March)"],
 ["T4 and T8 upgrades","Expansion and renovation of Delta’s T4 and American’s T8"],
 ["Roads","A new, simpler road network and ground transportation centre (US$3.9 billion from the Port Authority)"]]},
-{t:"note",x:"* Opening dates have changed several times; check each airline and the Port Authority for which airline moves to which terminal. ★"}]},
+{t:"note",x:"* Opening dates have changed several times, and a planned move is not a completed one. Before advising passengers, check the current terminal with the airline and the Port Authority. (Checked 28 September 2026.)"}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Terminal moves",x:"Many airlines change terminals in 2026–2027; watch terminal information in bookings, passenger information and transport documents."},
 {name:"Busy airspace",x:"Three major airports (JFK, Newark and LaGuardia) sit close together, so delays spread easily."},
 {name:"Winter storms",x:"Heavy snow and nor’easters cause large-scale cancellations in winter."},
 {name:"AirTrain",x:"AirTrain JFK links the terminals with subway and rail stations."}]}]},
 {h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[
-{name:"Japan",x:"JAL, ANA, Delta, American and others link Haneda and Narita with JFK (ANA to the new T6 ★)."},
-{name:"Korea",x:"Korean Air, Asiana and others link Incheon with JFK; check planned terminal moves ★."}]}]}],
+{name:"Japan",x:"JAL, ANA, Delta, American and others link Haneda and Narita with JFK. JAL uses T8; ANA is due to move from T7 to the new T6 (check the airline for the date)."},
+{name:"Korea",x:"Korean Air, Asiana and others link Incheon with JFK. Korean Air stays in the current T1 until the New Terminal One opens (planned for the first quarter of 2027)."}]}]}],
 voice:"",
 terms:[["Port Authority of New York and New Jersey","ニューヨーク・ニュージャージー港湾公社","뉴욕·뉴저지 항만청"],["New Terminal One","ニュー・ターミナル・ワン","뉴 터미널 원"],["AirTrain JFK","エアトレイン","에어트레인"],["Nor'easter","ノーイースター","노이스터(북동풍 폭풍)"],["Terminal Relocation","ターミナルの移動","터미널 이전"]],
 quiz:[{q:"How much is the JFK redevelopment worth in total?",opts:["US$4 billion","US$9.5 billion","US$19 billion","US$50 billion"],a:2,exp:"Including two new terminals."},
