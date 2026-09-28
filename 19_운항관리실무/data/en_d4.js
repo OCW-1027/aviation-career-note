@@ -29,9 +29,9 @@ sections:[
 ["Intermediate stops","A new OFP after a stop of six hours or more","—"]]}]}],
 voice:"",
 terms:[["Operational Flight Plan (OFP)","運航飛行計画書","운항비행계획서"],["Zero Fuel Weight (ZFW)","無燃料重量","무연료중량"],["Navigation Log","ナビゲーションログ","항법 기록"],["Cost Index (CI)","コスト・インデックス","비용 지수"],["Block Fuel","ブロック燃料","블록 연료"]],
-quiz:[{q:"In Korea, in what order is the OFP signed?",opts:["Captain, then dispatcher","Dispatcher, then captain","Station manager, then captain","Captain only"],a:1,exp:"FSR 8.4.4.8."},
-{q:"Under Japan’s Art. 153, how much holding fuel over the alternate is required?",opts:["15 minutes at 450 m","30 minutes at 450 m","Two hours at cruising level","None"],a:1,exp:"For turbine aeroplanes filing an alternate."},
-{q:"In Korea, after how long at an intermediate stop is a new OFP needed?",opts:["1 hour","3 hours","6 hours","24 hours"],a:2,exp:"FSR 8.4.4.8 e."}],
+quiz:[{q:"In Korea, in what order is the OFP signed?",opts:["Captain, then dispatcher","Dispatcher, then captain","Station manager, then captain","Captain only"],a:1,exp:"In Korea the dispatcher prepares and signs the OFP, then the captain checks and signs it (FSR 8.4.4.8); the two signatures show joint responsibility for the plan."},
+{q:"Under Japan’s Art. 153, how much holding fuel over the alternate is required?",opts:["15 minutes at 450 m","30 minutes at 450 m","Two hours at cruising level","None"],a:1,exp:"A turbine aircraft with an alternate in its plan carries fuel to hold for 30 minutes at 450 m over the alternate (Enforcement Regulations Art. 153); without an alternate it is 45 minutes over the destination (5-1)."},
+{q:"In Korea, after how long at an intermediate stop is a new OFP needed?",opts:["1 hour","3 hours","6 hours","24 hours"],a:2,exp:"A new OFP is needed when a stop at an intermediate airport lasts six hours or more (FSR 8.4.4.8 e), because weather, NOTAMs and weights may have changed."}],
 next:"4-2 The flight plan filed with ATC"});
 set("4-2",{title:"The Flight Plan Filed with ATC: Items and Filing Rules",hl:"flight plan filed with ATC",subtitle:"Separate from the company OFP, the ICAO-format flight plan filed with air traffic services: what each item means, and Korean and Japanese filing rules side by side",
 lead:["The OFP is a company document, but a flight plan must also be filed with air traffic services, which use it to coordinate airspace and prepare search and rescue. Its format, the ICAO FPL, is common worldwide.","This lesson goes through the FPL items and compares Korean and Japanese filing rules."],
@@ -60,9 +60,9 @@ sections:[
 {name:"The station’s role",x:"Changes of departure time or aircraft lead to FPL changes (delay or cancellation), so stations tell the OCC at once."}]}]}],
 voice:"",
 terms:[["ATS Flight Plan (FPL)","飛行計画（管制用）","비행계획서(관제용)"],["Aircraft Identification","航空機の識別","항공기 식별"],["Endurance","持久時間","체공 가능 시간"],["Flight Planned Routes (AIC)","標準経路表","표준 경로표"]],
-quiz:[{q:"In Korea, unless ATS decides otherwise, when must an FPL be filed?",opts:["10 minutes before departure","At least 60 minutes before departure","The day before","After arrival"],a:1,exp:"FSR 8.1.9.1 c."},
-{q:"Under Japan’s Art. 203, what must be notified to change a flight plan?",opts:["Every item","The call sign and the changed items","Only the captain’s name","Nothing"],a:1,exp:"Enforcement Regulations Art. 203(3)."},
-{q:"What goes in FPL item 15?",opts:["Captain’s name","Cruising speed, level and route","Persons on board","Alternate"],a:1,exp:"e.g. N0450F380 TIARA GUSRO Y20 KIRIN."}],
+quiz:[{q:"In Korea, unless ATS decides otherwise, when must an FPL be filed?",opts:["10 minutes before departure","At least 60 minutes before departure","The day before","After arrival"],a:1,exp:"Unless the ATS authority specifies otherwise, the ATS flight plan is filed at least 60 minutes before departure (FSR 8.1.9.1 c); filing late can delay route and level coordination and the departure."},
+{q:"Under Japan’s Art. 203, what must be notified to change a flight plan?",opts:["Every item","The call sign and the changed items","Only the captain’s name","Nothing"],a:1,exp:"In Japan a flight plan change needs only the call sign and the items being changed (Enforcement Regulations Art. 203(3)); the whole plan need not be refiled."},
+{q:"What goes in FPL item 15?",opts:["Captain’s name","Cruising speed, level and route","Persons on board","Alternate"],a:1,exp:"Item 15 holds cruising speed, level and route (e.g. N0450F380 TIARA GUSRO Y20 KIRIN). Persons on board and alternates go in Items 19 and 16; the pilot in command in Item 19."}],
 next:"4-3 Pre-departure documents and signatures"});
 set("4-3",{title:"Pre-departure Documents and Signatures: What to Hand Over and What to Keep",hl:"pre-departure documents",subtitle:"OFP, load sheet, NOTAMs and weather, technical log: the documents the captain checks, signatures and retention periods in Korea and Japan",
 lead:["Before departure the captain checks and signs several documents; if any is missing or out of date, the flight cannot leave. Stations are responsible for delivering them correctly and on time.","This lesson compares the pre-departure document set and the signing and retention rules of Korea and Japan."],
@@ -86,8 +86,8 @@ sections:[
 {name:"Contact the OCC",x:"Missing or late documents delay departure, so report them early."}]}]}],
 voice:"",
 terms:[["Load Sheet","ロードシート","탑재명세서"],["Flight Release","飛行の認可","비행 인가"],["Technical Log","航空日誌","항공일지"],["Load Control","搭載管理","탑재관리"]],
-quiz:[{q:"Under Japan’s detailed rules, how long are flight plan, weight and CG documents kept?",opts:["One week","At least one month","At least three months","Five years"],a:2,exp:"Detailed rules, ch. 2, 2-3."},
-{q:"In Korea, how far are copies of the signed documents carried on board?",opts:["Until take-off","Only in cruise","Until arrival at the destination","Not carried"],a:2,exp:"FSR 8.4.4.6 c."},
-{q:"Who mainly prepares the load sheet?",opts:["Cabin crew","Load control","Air traffic control","Airport security"],a:1,exp:"Load control prepares it and notifies the captain."}],
+quiz:[{q:"Under Japan’s detailed rules, how long are flight plan, weight and CG documents kept?",opts:["One week","At least one month","At least three months","Five years"],a:2,exp:"Japan’s detailed rules require flight plan and weight-and-balance documents to be kept for at least three months (Ch. 2, 2-3), so that events can be reviewed."},
+{q:"In Korea, how far are copies of the signed documents carried on board?",opts:["Until take-off","Only in cruise","Until arrival at the destination","Not carried"],a:2,exp:"In Korea copies of the documents signed by the captain are carried on board until the destination (FSR 8.4.4.6 c), as the reference for any check or change in flight."},
+{q:"Who mainly prepares the load sheet?",opts:["Cabin crew","Load control","Air traffic control","Airport security"],a:1,exp:"The load sheet is produced by load control and notified to the captain for acceptance. Cabin crew provide information such as passenger counts; ATC and security have other roles."}],
 next:"Part 5 Fuel — 5-1 Fuel categories"});
 })(window.ARTS);

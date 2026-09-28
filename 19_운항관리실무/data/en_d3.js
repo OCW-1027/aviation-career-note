@@ -41,9 +41,9 @@ sections:[
 {name:"Share with stations",x:"Share NOTAMs affecting ground work, such as airport works or gate and stand restrictions."}]}]}],
 voice:"",
 terms:[["Notice to Airmen (NOTAM)","航空情報（ノータム）","항공고시보(NOTAM)"],["NOTAM Code (Q-code)","NOTAMコード","NOTAM 부호"],["Pre-flight Information Bulletin (PIB)","飛行前情報","비행 전 정보"],["Trigger NOTAM","トリガーNOTAM","트리거 NOTAM"],["EST (estimated)","見込み（終了時刻）","예상(종료 시각)"]],
-quiz:[{q:"What does “NOTAMR” mean?",opts:["New","Replacement","Cancellation","Practice"],a:1,exp:"N = new, R = replacement, C = cancellation."},
-{q:"What does the code “QMRLC” mean?",opts:["Route closed","Runway closed","VOR unserviceable","ILS unserviceable"],a:1,exp:"MR = runway, LC = closed."},
-{q:"Which Korean series covers temporary restricted areas?",opts:["A","C","D","E"],a:3,exp:"Korea AIP GEN 3.1: series E."}],
+quiz:[{q:"What does “NOTAMR” mean?",opts:["New","Replacement","Cancellation","Practice"],a:1,exp:"NOTAM types are N (new), R (replacement of an earlier NOTAM) and C (cancellation). An R NOTAM quotes the number of the NOTAM it replaces."},
+{q:"What does the code “QMRLC” mean?",opts:["Route closed","Runway closed","VOR unserviceable","ILS unserviceable"],a:1,exp:"In a Q-code, letters 2–3 give the subject and 4–5 the condition: MR = runway, LC = closed, so “runway closed”. Airways start AR, VORs NV and ILS IC."},
+{q:"Which Korean series covers temporary restricted areas?",opts:["A","C","D","E"],a:3,exp:"Korea AIP GEN 3.1 puts temporary restricted-airspace NOTAMs in series E. Series divide content by type, so briefings must cover every relevant series."}],
 next:"3-2 SNOWTAM and runway condition reporting (GRF)"});
 set("3-2",{title:"SNOWTAM and Runway Condition Reporting (GRF)",hl:"GRF",subtitle:"The Global Reporting Format used worldwide since November 2021: the runway is split into thirds, each given a runway condition code (RWYCC) from 0 to 6",
 lead:["On runways made slippery by snow, ice or standing water, the distance needed to land grows sharply. Reporting methods once varied by country; since 4 November 2021 ICAO has applied a common Global Reporting Format (GRF).","This lesson explains the GRF approach, what each runway condition code (RWYCC) means, and what a SNOWTAM tells you."],
@@ -70,9 +70,9 @@ sections:[
 {name:"Snow clearance and delays",x:"Temporary runway closures for clearing or de-icing delay departures; stations share clearance plans with the OCC (Part 7)."}]}]}],
 voice:"",
 terms:[["Global Reporting Format (GRF)","グローバル・レポーティング・フォーマット","글로벌 리포팅 포맷"],["Runway Condition Code (RWYCC)","滑走路状態コード","활주로 상태 코드"],["Runway Condition Assessment Matrix (RCAM)","滑走路状態評価表","활주로 상태 평가표"],["Runway Condition Report (RCR)","滑走路状態報告","활주로 상태 보고"],["Slush","雪泥","슬러시"]],
-quiz:[{q:"When was the GRF applied worldwide?",opts:["2011","2019","November 2021","March 2026"],a:2,exp:"From 4 November 2021."},
-{q:"What runway condition does RWYCC 1 indicate?",opts:["Dry","Wet","Ice","Compacted snow (−15°C or colder)"],a:2,exp:"Ice is 1; wet ice is 0."},
-{q:"How is the RWYCC reported?",opts:["One for the whole runway","For each third of the runway","Every metre","For each taxiway"],a:1,exp:"Touchdown, midpoint and stop-end thirds."}],
+quiz:[{q:"When was the GRF applied worldwide?",opts:["2011","2019","November 2021","March 2026"],a:2,exp:"ICAO’s Global Reporting Format (GRF) for runway condition has applied since 4 November 2021, expressing braking with a runway condition code (RWYCC) of 0–6."},
+{q:"What runway condition does RWYCC 1 indicate?",opts:["Dry","Wet","Ice","Compacted snow (−15°C or colder)"],a:2,exp:"RWYCC runs from 6 (dry) to 0. Ice is 1 (POOR) and wet ice is 0 (LESS THAN POOR). Lower numbers mean poorer braking and longer landing distances."},
+{q:"How is the RWYCC reported?",opts:["One for the whole runway","For each third of the runway","Every metre","For each taxiway"],a:1,exp:"RWYCC is reported for each runway third — touchdown, midpoint and stop-end (for example 5/5/3) — because conditions can differ along the runway."}],
 next:"3-3 ASHTAM and volcanic ash"});
 set("3-3",{title:"ASHTAM and Volcanic Ash",hl:"volcanic ash",subtitle:"ASHTAMs on volcanic activity, the aviation colour code (green, yellow, orange, red), Volcanic Ash Advisory Centre (VAAC) information and dispatch decisions",
 lead:["Volcanic ash can cause engine flame-out and damage instruments and windscreens, making it extremely dangerous to aircraft. Japan has many active volcanoes, so ash information matters on flights between Korea and Japan too.","This lesson sets out the kinds of volcanic ash information and how dispatchers decide."],
@@ -95,8 +95,8 @@ sections:[
 {name:"After ash fall",x:"Aircraft parked under ash need maintenance checks; stations work with maintenance and give the OCC an expected departure time."}]}]}],
 voice:"",
 terms:[["ASHTAM","火山灰の特別なNOTAM","화산재 특별 NOTAM"],["Volcanic Ash Advisory Centre (VAAC)","火山灰情報センター","화산재정보센터"],["Aviation Colour Code","航空用カラーコード","항공용 색 경보"],["Volcanic Ash Fall","降灰","강회"]],
-quiz:[{q:"Which VAAC covers much of East Asia, including Japan and Korea?",opts:["Washington","Tokyo","Darwin","London"],a:1,exp:"Tokyo VAAC (Japan Meteorological Agency)."},
-{q:"Which colour means an eruption is imminent or under way?",opts:["Green","Yellow","Orange","Red"],a:3,exp:"Red."},
-{q:"When the route crosses an ash area, what comes first?",opts:["Fly as planned","A route or level that avoids it, and the fuel for it","Reduce fuel","Think about it after arrival"],a:1,exp:"Plan to avoid and review fuel."}],
+quiz:[{q:"Which VAAC covers much of East Asia, including Japan and Korea?",opts:["Washington","Tokyo","Darwin","London"],a:1,exp:"Tokyo VAAC (Japan Meteorological Agency) issues volcanic ash advisories for much of East Asia, including Japan and Korea. Washington, Darwin and London cover other regions."},
+{q:"Which colour means an eruption is imminent or under way?",opts:["Green","Yellow","Orange","Red"],a:3,exp:"The aviation colour code rises green → yellow → orange → red; red means an eruption is under way or imminent, orange that one is increasingly likely."},
+{q:"When the route crosses an ash area, what comes first?",opts:["Fly as planned","A route or level that avoids it, and the fuel for it","Reduce fuel","Think about it after arrival"],a:1,exp:"Volcanic ash can shut down engines and damage windscreens, so first plan a route and level that avoid it and revise fuel accordingly. Cutting fuel or deferring the decision is the wrong way round."}],
 next:"Part 4 Flight Plans — 4-1 Reading the operational flight plan"});
 })(window.ARTS);

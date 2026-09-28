@@ -23,9 +23,9 @@ sections:[
 {t:"point",x:"Remember it this way: Korea keeps limits flat and lengthens rest with longer duty; Japan changes the limits with report time and sectors, and adds rest when duty touches the early-morning low."}]}],
 voice:"",
 terms:[["Flight Time","乗務時間","승무시간"],["Flight Duty Period (FDP)","飛行勤務時間","비행근무시간"],["Rest Period","休養","휴식"],["Window of Circadian Low (WOCL)","身体的低調期","생체리듬 저하 시간대"],["Crew Rest Facility","仮眠設備","휴식시설"]],
-quiz:[{q:"Under Korea’s Annex 18, what is the maximum FDP in 24 hours for a two-pilot crew?",opts:["8 hours","10 hours","13 hours","16 hours"],a:2,exp:"Flight time 8 h, FDP 13 h."},
-{q:"What sets the FDP limit under Japan’s rules?",opts:["The captain’s age","Report time and planned number of sectors","Airport size","Number of passengers"],a:1,exp:"Table 3: 9–13 h by start time and sectors."},
-{q:"What is Japan’s minimum rest between duties?",opts:["8 hours","10 hours","12 hours","24 hours"],a:1,exp:"At least 10 h, plus more for early-morning duty."}],
+quiz:[{q:"Under Korea’s Annex 18, what is the maximum FDP in 24 hours for a two-pilot crew?",opts:["8 hours","10 hours","13 hours","16 hours"],a:2,exp:"Under Korea’s Annex Table 18, a two-pilot crew may have up to 13 hours of flight duty and 8 hours of flight time in 24 consecutive hours; 8 is the flight-time figure, easily confused."},
+{q:"What sets the FDP limit under Japan’s rules?",opts:["The captain’s age","Report time and planned number of sectors","Airport size","Number of passengers"],a:1,exp:"Japan’s standard (Table 3) sets the flight-duty limit at 9–13 hours by report time and planned sectors: early starts and more sectors mean more fatigue and a shorter limit."},
+{q:"What is Japan’s minimum rest between duties?",opts:["8 hours","10 hours","12 hours","24 hours"],a:1,exp:"Japan requires at least 10 hours’ rest between duties, with more after duty extending into the night or early morning. Eight hours is the alcohol rule (6-3)."}],
 next:"6-2 Building a crew pairing"});
 set("6-2",{title:"Building a Crew Pairing: Four Sectors on Gimpo⇄Jeju and Haneda⇄Fukuoka",hl:"building a crew pairing",subtitle:"The same four-sector day checked under Korean and Japanese rules: flight time, FDP and the next rest, and which system reaches its limit first when a delay hits",
 lead:["Domestic pilots often shuttle back and forth on one route several times a day. This lesson builds two four-sector days and checks them under Korean and Japanese rules.","The key point is that Japan’s limits change with report time and number of sectors. Two similar days can have very different margins depending on an early start or extra sectors."],
@@ -49,9 +49,9 @@ sections:[
 {name:"Margin",x:"Avoid plans at the limit on times and airports prone to delay."}]}]}],
 voice:"",
 terms:[["Crew Pairing / Roster","乗務割","편조(승무 편성)"],["Report Time","出頭","출근 보고"],["Buffer","余裕","여유"],["Crew Change","乗員の交代","승무원 교체"]],
-quiz:[{q:"Under Japan’s rules, what is the FDP limit for a 06:00 start, 4 sectors, two pilots?",opts:["10 hours","11 hours","12 hours","13 hours"],a:2,exp:"Table 3: 12 h for 4 sectors starting 06:00–13:59."},
-{q:"In the Japanese example, if report moves to 05:30, what happens to the limit?",opts:["No change","It drops to 11 hours","It rises to 13 hours","It drops to 9 hours"],a:1,exp:"05:00–05:59 start with 4 sectors: 11 h."},
-{q:"Under Korean rules, what rest follows an FDP of 8 h 20?",opts:["At least 10 hours","At least 11 hours","At least 12 hours","At least 8 hours"],a:1,exp:"8 h to under 9 h requires at least 11 h."}],
+quiz:[{q:"Under Japan’s rules, what is the FDP limit for a 06:00 start, 4 sectors, two pilots?",opts:["10 hours","11 hours","12 hours","13 hours"],a:2,exp:"In Table 3, a duty starting between 06:00 and 13:59 with four sectors is limited to 12 hours; read the table by start-time band and sector count."},
+{q:"In the Japanese example, if report moves to 05:30, what happens to the limit?",opts:["No change","It drops to 11 hours","It rises to 13 hours","It drops to 9 hours"],a:1,exp:"Reporting at 05:30 moves the duty into the 05:00–05:59 band, where four sectors are limited to 11 hours: thirty minutes earlier costs an hour, a point to watch for early flights."},
+{q:"Under Korean rules, what rest follows an FDP of 8 h 20?",opts:["At least 10 hours","At least 11 hours","At least 12 hours","At least 8 hours"],a:1,exp:"Under Korean rules, a flight duty of at least 8 but under 9 hours requires at least 11 hours’ rest; the table steps up rest as duty lengthens."}],
 next:"6-3 Dispatcher duty and fatigue management"});
 set("6-3",{title:"Dispatcher Duty and Fatigue Management: Cabin Crew, Alcohol and the Station’s Role",hl:"dispatcher duty",subtitle:"Limits on the dispatcher’s own duty, cabin crew rules, fatigue management and alcohol rules, and what stations can do to keep pairings legal",
 lead:["Fatigue management is not only for pilots. Dispatchers watching over flights have duty limits too, and cabin crew have their own rules.","This lesson compares the rules for dispatchers and cabin crew in Korea and Japan and sums up the station’s part in keeping pairings within limits."],
@@ -76,8 +76,8 @@ sections:[
 {name:"Records",x:"Keep records of flight time, duty and rest (in Korea for at least 15 months under Art. 56)."}]}]}],
 voice:"",
 terms:[["Fatigue Risk Management System (FRMS)","疲労危険管理システム","피로위험관리시스템"],["Break","休憩","휴식(근무 중)"],["Standby","待機","대기"],["Cabin Crew","客室乗務員","객실승무원"]],
-quiz:[{q:"Under Korea’s Art. 128-2, what is a dispatcher’s maximum duty in 24 consecutive hours?",opts:["8 hours","10 hours","12 hours","13 hours"],a:1,exp:"10 hours or less."},
-{q:"Under Japan’s detailed rules, what is the cabin crew flight time limit?",opts:["80 h a month","100 h a calendar month","120 h a month","1,200 h a year"],a:1,exp:"100 h per calendar month; 1,200 h a year is Korea’s limit."},
-{q:"How long before a flight duty is drinking prohibited in Japan?",opts:["4 hours","8 hours","12 hours","24 hours"],a:1,exp:"Detailed rules 5-5: 8 hours."}],
+quiz:[{q:"Under Korea’s Art. 128-2, what is a dispatcher’s maximum duty in 24 consecutive hours?",opts:["8 hours","10 hours","12 hours","13 hours"],a:1,exp:"Korea’s Enforcement Rules Art. 128-2 limit a dispatcher to 10 hours’ duty in 24 consecutive hours: dispatcher fatigue affects safety too, so there is a limit as for crew."},
+{q:"Under Japan’s detailed rules, what is the cabin crew flight time limit?",opts:["80 h a month","100 h a calendar month","120 h a month","1,200 h a year"],a:1,exp:"Japan’s detailed rules do not allow cabin crew to be scheduled for more than 100 flight hours in a calendar month. The 1,200-hour annual figure is Korea’s limit; don’t mix them up."},
+{q:"How long before a flight duty is drinking prohibited in Japan?",opts:["4 hours","8 hours","12 hours","24 hours"],a:1,exp:"Japan’s detailed rules 5-5 ban drinking within 8 hours before flight duty, and a pre-duty breath test above the limit also bars flying. Alcohol can remain even after 8 hours, so in practice stop earlier."}],
 next:"7-1 Ground icing and de-/anti-icing"});
 })(window.ARTS);
