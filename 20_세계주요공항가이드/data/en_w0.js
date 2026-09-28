@@ -34,7 +34,9 @@ sections:[
 ["United States","ESTA","Required for Visa Waiver Program nationals. Fee US$40 from 30 September 2025 (was $21). Valid two years"],
 ["United Kingdom","ETA","Required of Korean and Japanese nationals since 8 January 2025. Fee raised to £20 in April 2026 (was £16). Valid two years ★"],
 ["EU (Schengen area)","EES (Entry/Exit System)","Progressive start 12 October 2025; fully operational 10 April 2026. Replaces passport stamps with facial image and fingerprints"],
-["EU (Schengen area)","ETIAS","Scheduled for the last quarter of 2026; applications not yet open in September 2026 ★"]]},
+["EU (Schengen area)","ETIAS","Scheduled for the last quarter of 2026; applications not yet open in September 2026 ★"],
+["Korea","K-ETA (Korea Electronic Travel Authorization)","Required for visa-exempt nationals; Japan and 21 other countries and territories exempt until 31 December 2026 (Guide to Korea’s Major Airports 0-2)"],
+["Japan","JESTA (electronic travel authorisation)","Targeted for fiscal 2028; expected to cover Korean passports too (Guide to Japan’s Major Airports 0-1) ★"]]},
 {t:"note",x:"* Rules and fees change often. At the counter, always check official guidance (CBP, the UK Home Office, the EU) and TIMATIC, IATA’s travel document database."}]},
 {h:"What to check at the counter",blocks:[{t:"check",items:[
 {name:"Transit points as well as the destination",x:"If the connection passes through immigration, the transit country’s rules apply too (for example a UK ETA when clearing UK immigration to connect)."},
@@ -52,5 +54,5 @@ terms:[["ESTA (Electronic System for Travel Authorization)","電子渡航認証�
 quiz:[{q:"What is the ESTA fee from 30 September 2025?",opts:["$14","$21","$40","$60"],a:2,exp:"It rose from $21 to $40."},
 {q:"When did the EU EES become fully operational?",opts:["1 January 2024","12 October 2025","10 April 2026","Not yet"],a:2,exp:"It started progressively on 12 October 2025."},
 {q:"A passenger connecting between international flights at a US airport…",opts:["Passes immigration, so needs an ESTA or visa","Needs nothing","Needs an EU ETIAS","Needs a UK ETA"],a:0,exp:"The US has no airside transit."}],
-next:"1-1 Incheon International Airport (ICN)"});
+next:"1-1 Beijing Capital (PEK) and Beijing Daxing (PKX)"});
 })(window.ARTS);

@@ -26,6 +26,14 @@ sections:[
 ["The time limit","Holdover time — how long the anti-icing stays effective — ranges from tens of minutes to several hours depending on temperature and precipitation. If it runs out, the aircraft must be treated again"],
 ["Coloured fluids","Following a revision of international standards, dyed fluids have been used at Haneda, Narita, Kansai, Chubu and New Chitose since the 2023 winter schedule, and at other airports since the 2024 winter schedule, making missed areas easier to see"]]},
 {t:"note",x:"* Each airport article also covers where and how de-icing is done. Confirm details against the airport’s operating rules and your contractor’s procedures. ★"}]},
+{h:"What comes next for entry: JESTA (electronic travel authorisation)",blocks:[{t:"table",cols:["Item","Details (September 2026)"],rows:[
+["Scheme","Online authorisation before travel for foreign nationals coming to Japan without a visa (similar to the US ESTA)"],
+["Who","Short-stay visitors from the 74 visa-exempt countries and territories (tourism, business and similar), plus some cruise passengers and some transit passengers entering temporarily ★"],
+["Airline duties","Reporting booking data and refusing boarding to passengers without authorisation"],
+["Progress","Cabinet approved the Immigration Control Act amendment on 10 March 2026; the House of Councillors’ Judicial Affairs Committee passed it on 28 May (check the Immigration Services Agency for enactment and promulgation) ★"],
+["Start","Targeted during fiscal 2028"],
+["Fee and validity","Not yet decided ★"]]},
+{t:"point",x:"Korean passports are visa-exempt, so once JESTA starts, passengers flying from Korea to Japan will need authorisation before departure. As with Korea’s K-ETA (Guide to Korea’s Major Airports 0-2), check-in will have more to verify. When the start date and procedures are set, update the station SOP and passenger information at once."}]},
 {h:"What anyone working in aviation should know",blocks:[{t:"rows",items:[
 {name:"The airport is borrowed space",x:"Counters, stands and offices all belong to the airport. Break the rules on their use and it can affect next season’s allocation."},
 {name:"Promises to the community",x:"Many operating hours and flight paths come from agreements with local communities over noise. They cannot simply be extended because a flight is late."},
