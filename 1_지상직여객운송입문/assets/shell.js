@@ -19,7 +19,8 @@ ann:{ja:'\u7a7a\u6e2f\u30a2\u30ca\u30a6\u30f3\u30b9\u6587\u4f8b\u96c6',ko:'\uacf
 forms:{ja:'\u7a7a\u6e2f\u3067\u4f7f\u3046\u66f8\u985e\u3068\u69d8\u5f0f',ko:'\uacf5\ud56d \uc11c\ub958\uc640 \uc591\uc2dd',en:'Airport Forms'},
 faq:{ja:'\u3088\u304f\u3042\u308b\u8cea\u554f',ko:'\uc790\uc8fc \ubb3b\ub294 \uc9c8\ubb38',en:'FAQ'},
 route:{ja:'\u904b\u822a\u306e\u7dcf\u5408\u7df4\u7fd2',ko:'\uc6b4\ud56d \uc885\ud569 \uc5f0\uc2b5',en:'Flight Operations Trainer'},
-rm:{ja:'Revenue Management\uff08\u53ce\u76ca\u7ba1\u7406\uff09\u306e\u7df4\u7fd2',ko:'Revenue Management(\uc218\uc775\uad00\ub9ac) \uc5f0\uc2b5',en:'Revenue Management Practice'}};
+rm:{ja:'Revenue Management\uff08\u53ce\u76ca\u7ba1\u7406\uff09\u306e\u7df4\u7fd2',ko:'Revenue Management(\uc218\uc775\uad00\ub9ac) \uc5f0\uc2b5',en:'Revenue Management Practice'},
+story:{ja:'\u30b9\u30c8\u30fc\u30ea\u30fc\u8a2d\u8a08\u30b7\u30fc\u30c8',ko:'\uc2a4\ud1a0\ub9ac \uc124\uacc4 \uc2dc\ud2b8',en:'Story Design Sheet'}};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=
 '.shbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:2px 0 14px}'+

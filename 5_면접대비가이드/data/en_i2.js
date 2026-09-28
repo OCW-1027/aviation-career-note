@@ -142,7 +142,8 @@ sections:[
 {h:"Showing you understand the differences",blocks:[{t:"rows",items:[
 {name:"Know what is different about Japanese airports",x:"Who runs what (airport companies, handling companies), the CIQ procedures, the level of detail in service (Ground Staff 0-4)."},
 {name:"A learning attitude",x:"Say that you want to learn the Japanese way first and then put your experience to use."},
-{name:"Compare specifically, judge sparingly",x:"Not “it was better at home” but “we did it this way, so I will pick this up quickly”."}]}]},
+{name:"Compare specifically, judge sparingly",x:"Not “it was better at home” but “we did it this way, so I will pick this up quickly”."},
+{name:"If the role changes, show you know the difference",x:"Moving from a ground handler to an airline’s station rep, for example, recast task experience as the ability to check work, decide and report. The interviewer wants someone who can fill the role, not someone who is good at the tasks (4-2)."}]}]},
 {h:"Explaining why you are moving",blocks:[{t:"check",items:[
 {name:"Forward-looking reasons",x:"“I want to work in Japan connecting the two countries” or “I want to take on a broader role”."},
 {name:"Never criticise your former employer",x:"Even if dissatisfaction is the reason, reframe it as what you want to do next."},
@@ -234,5 +235,5 @@ terms:[["Hiring","採用","채용"],["Fit","相性","궁합"],["Training System"
 quiz:[{q:"What does hiring for a small station tend to overlook?",opts:["The reality of the early commute","The company logo","The weather","Revenue"],a:0,exp:"Check that the first train gets them in."},
 {q:"What is an interview for the candidate?",opts:["Only a place to be chosen","Also a place to choose the company","A place where you cannot ask anything","A formality"],a:1,exp:"Find out whether you could stay."},
 {q:"What is worth checking about a company?",opts:["Training and career paths","The president’s age","The office rent","The other candidates"],a:0,exp:"Rostering and atmosphere too."}],
-next:""});
+next:"4-1 One consistent story: one conclusion, from past to future"});
 })(window.ARTS);

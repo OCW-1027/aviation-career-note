@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ストーリー設計シート ― 面接対策</title>
+<style>
+:root{--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--acc:#7A6FF0;--ok:#1F7A6E;--warn:#B5561B}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Noto Sans KR","Hiragino Sans","Malgun Gothic",system-ui,sans-serif;line-height:1.65}
+.wrap{max-width:1000px;margin:0 auto;padding:22px 16px 90px}
+header{background:linear-gradient(160deg,#9b93f5,#7A6FF0);color:#fff;border-radius:20px;padding:24px 22px;position:relative}
+header h1{font-size:clamp(21px,3.6vw,30px);margin:6px 0}header p{margin:0;max-width:72ch;opacity:.95}
+.langs{position:absolute;top:14px;right:14px;display:inline-flex;border-radius:999px;overflow:hidden;background:#fff}.langs button{border:0;background:transparent;color:#4b3fc4;font:700 13px inherit;font-family:inherit;padding:6px 12px;cursor:pointer}.langs button.on{background:#FFE08A;color:#3A2A00}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;font:600 14px inherit;font-family:inherit;cursor:pointer}
+a.btn{text-decoration:none;display:inline-block}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}.btn.del{color:var(--warn)}
+.saved{font-size:13px;color:var(--sub);margin-left:auto}
+.privacy{font-size:13px;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0 14px}
+.step{border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:14px 0;background:#fff}
+.step h2{font-size:18px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+.step h2 .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--acc);color:#fff;font-size:14px;flex:none}
+.step .hint{font-size:13.5px;color:var(--sub);margin:0 0 10px}
+label{display:block;font-size:13.5px;font-weight:700;margin:10px 0 4px}
+label small{font-weight:400;color:var(--sub);margin-left:6px}
+textarea,input[type=text]{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:15px;background:var(--card);color:var(--ink);resize:vertical}
+textarea{min-height:64px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:0 14px}
+@media (max-width:720px){.grid2,.grid3{grid-template-columns:1fr}}
+.exp{border:1px dashed #cfd6f7;border-radius:12px;padding:6px 12px 12px;margin:10px 0;background:#fbfbff}
+.exp b.t{display:block;margin-top:6px;color:var(--acc)}
+.out{border:2px solid var(--acc);border-radius:16px;padding:16px 18px;margin:18px 0;background:#faf9ff}
+.out h2{font-size:18px;margin:0 0 8px}
+.draft{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px;min-height:48px}
+.meta{font-size:13px;color:var(--sub);margin:4px 0 12px}
+.meter{display:grid;grid-template-columns:150px 1fr 60px;gap:10px;align-items:center;margin:6px 0;font-size:14px}
+.meter .track{height:12px;border-radius:6px;background:#eceff6;overflow:hidden}.meter .fill{height:100%;border-radius:6px}
+@media (max-width:560px){.meter{grid-template-columns:1fr 60px}.meter .track{grid-column:1 / -1;order:3}}
+ul.chk{list-style:none;padding:0;margin:8px 0}ul.chk li{padding:6px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+ul.chk li label{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:0;font-size:14.5px}
+.miss{color:var(--warn);font-size:14px;margin:6px 0}
+.note{font-size:13px;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:16px}
+a{color:#4b3fc4}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="story"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="langs"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<div class="bar" id="bar"></div>
+<p class="privacy" id="privacy"></p>
+<div id="form"></div>
+<div id="outs"></div>
+<p class="note" id="note"></p>
+</div>
+<script>
+/* ストーリー設計シート（2026-09）
+   面接対策 Part 4（4-1〜4-6）の手順で、経験→軸→接点→未来→核の一文を書き込む。
+   入力はこの端末のブラウザ（localStorage）にだけ保存し、外に送らない。下書きは型に当てはめて組み立てるだけで、AIは使わない。 */
+var KEY='acn-story-v1';
+var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})();
+var F=['name','pos','list','e1s','e1t','e1a','e1r','e1l','e2s','e2t','e2a','e2r','e2l','e3s','e3t','e3a','e3r','e3l','axis','heard','co','role','cofeat','fit','y1','y3','y5','core'];
+var D={},CK={};
+try{var o=JSON.parse(localStorage.getItem(KEY)||'{}');D=o.d||{};CK=o.c||{}}catch(e){}
+var T={
+ja:{kick:'航空業界の面接対策',ttl:'ストーリー設計シート',lead:'経験を書き出し、軸を見つけ、会社と重ね、入社後の計画まで一本の線でつなぎます。書き込むと、核の一文・1分の自己紹介・志望動機の下書きと、つながりの点検が下に出ます。',
+privacy:'書き込んだ内容は、このブラウザ（この端末）にだけ自動で保存され、どこにも送られません。共用のパソコンでは、使い終わったら「すべて消す」を押してください。',
+saved:'保存しました',ex:'例を入れる',exConfirm:'今の内容を例で置き換えます。よろしいですか？',exp:'テキストで書き出す',copy:'下書きをコピー',copied:'コピーしました',clr:'すべて消す',clrConfirm:'書き込んだ内容をすべて消します。元に戻せません。よろしいですか？',
+st:[['経験を書き出す','仕事・アルバイト・学業など、小さなことでも10個以上。1行に1つ、「いつ・どこで・何があったか」だけ。'],['3つを選んで掘り下げる','状況・課題・行動・結果・学び。「行動」には、自分が考えて実際にしたことを書きます。'],['軸を見つける','3つの経験に共通する考え方。「なぜそうしたのか」を3回繰り返すと見えてきます。'],['会社と仕事を重ねる','まず応募する仕事の役割を面接官の立場で読み解き（4-2）、会社の特徴（路線・お客様・事業・働き方）と自分の軸が重なるところを接点にします。'],['未来を描く','1年目（基本）・3年目（任される）・5年目（教える・まとめる・専門）の段階で。'],['核の一文','過去・現在・接点・未来を1文に。30秒以内で言えるかを目安に。']],
+f:{name:'名前',pos:'今の立場',posh:'例：〇〇大学4年／ホテルのフロント7年',list:'経験のリスト',listh:'1行に1つ',e:'経験',s:'状況',t:'課題',a:'行動',r:'結果',l:'学び',axis:'軸（大切にしている考え）',axish:'例：見通しを先に伝えて安心してもらう',heard:'周りからよく言われること',co:'会社名',role:'応募する仕事の役割',roleh:'作業ではなく、任される判断・管理・調整。面接官はなぜこのポジションを採るのか',cofeat:'会社の特徴',cofeath:'路線・お客様・事業・働き方など、その会社でしか言えないこと',fit:'接点（なぜこの会社か）',y1:'1年目',y3:'3年目',y5:'5年目',core:'核の一文',coreh:'「型から組み立てる」で下書きを作り、自分の言葉に直します'},
+build:'型から組み立てる',
+o:{h:'下書きと点検',core:'核の一文',intro:'1分の自己紹介（下書き）',mot:'志望動機（下書き）',chk:'つながりの点検',miss:'まだ書いていない所：',meter:'軸とのつながり（目安）',man:'自分で確かめる6つの点',none:'—'},
+parts:{role:'仕事の役割',e:'経験（掘り下げ）',axis:'軸',fit:'接点',fut:'未来（5年目）',core:'核の一文'},
+mt:['接点に軸が表れているか','未来に軸が表れているか','核の一文に軸が表れているか'],
+mc:['応募する仕事の役割（作業ではなく、何を任されるのか）を自分の言葉で説明できる','結論を一文で、30秒以内に言える','3つの経験が同じ軸につながる','会社名を入れ替えると通じなくなる接点になっている','未来に段階があり、その会社の仕事と制度の中で描けている','書類と面接で、強みと軸を同じ言葉で言う'],
+time:function(n){return n+'字 ・ 話すと約'+Math.max(1,Math.round(n/300*60))+'秒（1分に約300字として）'},
+tpl:{core:function(d){return '私は'+c(d.e1s)+'の経験で身につけた「'+c(d.axis)+'」を、'+c(d.fit)+'貴社で活かし、将来は'+c(d.y5)+'を担いたいと考えています。'},
+intro:function(d){return c(d.pos)+'の'+c(d.name)+'です。\n'+c(d.e1s)+'で、'+c(d.e1t)+'とき、'+c(d.e1a)+'。'+c(d.e1r)+'。\nこの経験から、「'+c(d.axis)+'」ことを大切にしています。\n'+c(d.fit)+'貴社で、この力を活かしたいと考えています。\n本日はよろしくお願いいたします。'},
+mot:function(d){return c(d.co)+'を志望する理由は、'+c(d.cofeat)+'ためです。\nこの仕事は、'+c(d.role)+'役割だと理解しています。\n私は'+c(d.e1s)+'で、'+c(d.e1a)+'経験から、「'+c(d.axis)+'」ことを大切にしてきました。\n'+c(d.fit)+'貴社でこそ、この力が活きると考えています。\n入社後はまず'+c(d.y1)+'。3年目には'+c(d.y3)+'。将来は'+c(d.y5)+'を担いたいと考えています。'}},
+fill:'（　）',
+note:'このシートは、講座「航空業界の面接対策」Part 4（4-1〜4-6）の手順に沿っています。下書きは型に当てはめて並べるだけなので、必ず自分の言葉に直してください。「軸とのつながり」は、軸の言葉が各欄にどれだけ出てくるかを文字の並びで数えた目安で、内容の良し悪しを判定するものではありません。例の人物と経験は架空です。',
+back:'講座に戻る'},
+ko:{kick:'항공업계 면접 대비',ttl:'스토리 설계 시트',lead:'경험을 적어 내고, 축을 찾고, 회사와 겹쳐, 입사 후 계획까지 한 줄로 잇습니다. 적어 넣으면 핵심 한 문장·1분 자기소개·지원 동기 초안과 연결 점검이 아래에 나옵니다.',
+privacy:'적어 넣은 내용은 이 브라우저(이 기기)에만 자동 저장되며 어디에도 보내지 않습니다. 공용 컴퓨터에서는 다 쓴 뒤 ‘모두 지우기’를 눌러 주세요.',
+saved:'저장했습니다',ex:'예시 넣기',exConfirm:'지금 내용을 예시로 바꿉니다. 괜찮습니까?',exp:'텍스트로 내보내기',copy:'초안 복사',copied:'복사했습니다',clr:'모두 지우기',clrConfirm:'적어 넣은 내용을 모두 지웁니다. 되돌릴 수 없습니다. 괜찮습니까?',
+st:[['경험을 적어 낸다','일·아르바이트·학업 등 작은 것도 10개 이상. 한 줄에 하나, ‘언제·어디서·무슨 일이 있었나’만.'],['셋을 골라 파고든다','상황·과제·행동·결과·배움. ‘행동’에는 내가 생각하고 실제로 한 것을 씁니다.'],['축을 찾는다','세 경험에 공통된 생각. “왜 그렇게 했나”를 세 번 되풀이하면 보입니다.'],['회사와 일을 겹친다','먼저 지원하는 일의 역할을 면접관 입장에서 읽어 내고(4-2), 회사의 특징(노선·승객·사업·일하는 방식)과 나의 축이 겹치는 곳을 접점으로 삼습니다.'],['미래를 그린다','1년 차(기본)·3년 차(맡는다)·5년 차(가르친다·이끈다·전문) 단계로.'],['핵심 한 문장','과거·현재·접점·미래를 한 문장으로. 30초 안에 말할 수 있는지가 기준.']],
+f:{name:'이름',pos:'지금의 위치',posh:'예: ○○대학 4학년 / 호텔 프런트 7년',list:'경험 목록',listh:'한 줄에 하나',e:'경험',s:'상황',t:'과제',a:'행동',r:'결과',l:'배움',axis:'축(소중히 여기는 생각)',axish:'예: 전망을 먼저 알려 안심시킨다',heard:'주변에서 자주 듣는 말',co:'회사 이름',role:'지원하는 일의 역할',roleh:'작업이 아니라 맡게 될 판단·관리·조정. 면접관은 왜 이 자리를 뽑는가',cofeat:'회사의 특징',cofeath:'노선·승객·사업·일하는 방식 등 그 회사에서만 말할 수 있는 것',fit:'접점(왜 이 회사인가)',y1:'1년 차',y3:'3년 차',y5:'5년 차',core:'핵심 한 문장',coreh:'‘틀로 조립하기’로 초안을 만들고 자기 말로 고칩니다'},
+build:'틀로 조립하기',
+o:{h:'초안과 점검',core:'핵심 한 문장',intro:'1분 자기소개(초안)',mot:'지원 동기(초안)',chk:'연결 점검',miss:'아직 쓰지 않은 곳: ',meter:'축과의 연결(기준)',man:'스스로 확인할 여섯 가지',none:'—'},
+parts:{role:'일의 역할',e:'경험(파고들기)',axis:'축',fit:'접점',fut:'미래(5년 차)',core:'핵심 한 문장'},
+mt:['접점에 축이 드러나는가','미래에 축이 드러나는가','핵심 한 문장에 축이 드러나는가'],
+mc:['지원하는 일의 역할(작업이 아니라 무엇을 맡는가)을 자기 말로 설명할 수 있다','결론을 한 문장으로 30초 안에 말할 수 있다','세 경험이 같은 축으로 이어진다','회사 이름을 바꾸면 통하지 않는 접점이다','미래에 단계가 있고 그 회사의 일과 제도 안에서 그려져 있다','서류와 면접에서 강점과 축을 같은 말로 말한다'],
+time:function(n){return n+'자 · 말하면 약 '+Math.max(1,Math.round(n/300*60))+'초(1분에 약 300자 기준)'},
+tpl:{core:function(d){return '저는 '+c(d.e1s)+' 경험으로 익힌 ‘'+c(d.axis)+'’를 '+c(d.fit)+' 귀사에서 살려, 앞으로는 '+jo(d.y5,'을','를')+' 맡고 싶습니다.'},
+intro:function(d){return c(d.pos)+' '+c(d.name)+'입니다.\n'+c(d.e1s)+'에서 '+c(d.e1t)+' 때, '+c(d.e1a)+'. '+c(d.e1r)+'.\n이 경험으로 ‘'+c(d.axis)+'’는 것을 소중히 여기게 되었습니다.\n'+c(d.fit)+' 귀사에서 이 힘을 살리고 싶습니다.\n오늘 잘 부탁드립니다.'},
+mot:function(d){return c(d.co)+'에 지원한 이유는 '+c(d.cofeat)+' 때문입니다.\n이 일은 '+c(d.role)+' 역할이라고 이해하고 있습니다.\n저는 '+c(d.e1s)+'에서 '+c(d.e1t)+' 때의 경험으로 ‘'+c(d.axis)+'’는 것을 소중히 해 왔습니다.\n'+c(d.fit)+' 귀사이기에 이 힘이 살아난다고 생각합니다.\n입사 후에는 먼저 '+c(d.y1)+'. 3년 차에는 '+c(d.y3)+'. 앞으로는 '+jo(d.y5,'을','를')+' 맡고 싶습니다.'}},
+fill:'( )',
+note:'이 시트는 강좌 ‘항공업계 면접 대비’ Part 4(4-1~4-6)의 순서를 따릅니다. 초안은 틀에 맞춰 늘어놓을 뿐이니 반드시 자기 말로 고치세요. ‘축과의 연결’은 축의 말이 각 칸에 얼마나 나오는지를 글자 배열로 센 기준이며, 내용의 좋고 나쁨을 판정하는 것이 아닙니다. 예시의 인물과 경험은 가상입니다.',
+back:'강좌로 돌아가기'},
+en:{kick:'Aviation Industry Interview Prep',ttl:'Story Design Sheet',lead:'List your experiences, find your core value, lay it over the company and draw one line through to your plans after joining. As you write, drafts of your core sentence, one-minute self-introduction and motivation appear below, with a check on how well they connect.',
+privacy:'What you write is saved automatically in this browser on this device only and is never sent anywhere. On a shared computer, press “Clear all” when you finish.',
+saved:'Saved',ex:'Fill with example',exConfirm:'Replace what you have written with the example?',exp:'Export as text',copy:'Copy drafts',copied:'Copied',clr:'Clear all',clrConfirm:'This deletes everything you have written and cannot be undone. Continue?',
+st:[['List your experiences','Ten or more, however small, from work, part-time jobs or study. One per line: when, where, what happened.'],['Dig into three','Situation, task, action, result, learning. Under “action,” write what you thought and actually did.'],['Find your core value','The idea your three experiences share. Asking “why did I do that?” three times brings it out.'],['Lay it over the company and the role','First read the role you are applying for from the interviewer’s side (4-2); then the point of fit is where the company’s features (routes, passengers, business, way of working) overlap with your core value.'],['Draw the future','In stages: year 1 (basics), year 3 (trusted with more), year 5 (teach, lead or specialise).'],['Core sentence','Past, present, fit and future in one sentence you can say in under 30 seconds.']],
+f:{name:'Name',pos:'Current position',posh:'e.g. final-year student at … University / 7 years at a hotel front desk',list:'List of experiences',listh:'One per line',e:'Experience',s:'Situation',t:'Task',a:'Action',r:'Result',l:'Learning',axis:'Core value (what you value)',axish:'e.g. giving people the outlook first so they feel reassured',heard:'What others often say about you',co:'Company name',role:'The role you are applying for',roleh:'Not the tasks but the decisions, supervision and coordination entrusted; why the interviewer is hiring for this position',cofeat:'Company features',cofeath:'Routes, passengers, business, way of working: things only true of this company',fit:'Point of fit (why this company)',y1:'Year 1',y3:'Year 3',y5:'Year 5',core:'Core sentence',coreh:'Use “Build from pattern” for a draft, then rewrite it in your own words'},
+build:'Build from pattern',
+o:{h:'Drafts and checks',core:'Core sentence',intro:'One-minute self-introduction (draft)',mot:'Motivation (draft)',chk:'Connection check',miss:'Not yet written: ',meter:'Link to your core value (rough guide)',man:'Six points to check yourself',none:'—'},
+parts:{role:'The role',e:'Experience (dug into)',axis:'Core value',fit:'Point of fit',fut:'Future (year 5)',core:'Core sentence'},
+mt:['Core value shows in the point of fit','Core value shows in the future','Core value shows in the core sentence'],
+mc:['You can explain the role you are applying for (what you will be entrusted with, not just the tasks) in your own words','You can state the conclusion in one sentence, under 30 seconds','All three experiences lead to the same core value','The point of fit would stop working if you swapped the company name','The future has stages and fits the company’s work and systems','You use the same words for your strength and core value on paper and in the room'],
+time:function(n,w){return w+' words · about '+Math.max(1,Math.round(w/140*60))+' seconds aloud (at about 140 words a minute)'},
+tpl:{core:function(d){return 'Through my experience of '+c(d.e1s)+', I learned to '+c(d.axis)+'. I want to use this at your company, where '+c(d.fit)+', and in future take on '+c(d.y5)+'.'},
+intro:function(d){return 'My name is '+c(d.name)+', '+c(d.pos)+'.\nIn '+c(d.e1s)+', when '+c(d.e1t)+', I '+c(d.e1a)+'. '+c(d.e1r)+'.\nThis taught me to '+c(d.axis)+'.\nI want to use this strength at your company, where '+c(d.fit)+'.\nThank you for seeing me today.'},
+mot:function(d){return 'I am applying to '+c(d.co)+' because '+c(d.cofeat)+'.\nI understand this role as one that '+c(d.role)+'.\nIn '+c(d.e1s)+', I '+c(d.e1a)+', and since then I have tried to '+c(d.axis)+'.\nThat strength fits best at your company, where '+c(d.fit)+'.\nAfter joining, I will first '+c(d.y1)+'. By year 3, '+c(d.y3)+'. In future I want to take on '+c(d.y5)+'.'}},
+fill:'( )',
+note:'This sheet follows the steps in Part 4 (4-1 to 4-6) of the Aviation Industry Interview Prep course. The drafts simply slot your entries into patterns, so always rewrite them in your own words. “Link to your core value” is a rough count of how often the words of your core value appear in each field; it does not judge quality. The example person and experiences are fictional.',
+back:'Back to the course'}};
+var EX={
+ja:{name:'〇〇',pos:'ホテルのフロント7年',list:'団体と個人の到着が重なり、ロビーに長い列ができた日\nシステムの障害で予約が確認できなくなった夜\n外国のお客様の忘れ物を空港まで届ける手配をした\n新人に夜勤の手順を教えた\n苦情のお客様の話を30分聞いた',
+e1s:'ホテルのフロント',e1t:'システムの障害で予約が確認できなくなった',e1a:'手書きの一覧で受付を続け、お客様に今わかることと次の見通しを先に伝えた',e1r:'その夜の苦情はなく、復旧後の照合もすぐに終わった',e1l:'障害のときの手順を書き出し、チームで共有した',
+e2s:'ホテルのフロントの夕方',e2t:'40人の団体と個人のお客様の到着が重なり、長い列ができた',e2a:'団体は代表者に鍵をまとめて渡し、個人のお客様には待ち時間の目安を先に伝えた',e2r:'列は約20分で解消した',e2l:'混む時間を予測して準備する手順を作った',
+e3s:'夜勤の新人教育',e3t:'新人が一人で夜勤に入るのを不安に思っていた',e3a:'よくある場面ごとに、先に何を伝えるかの一覧を作って渡した',e3r:'新人は2週間で一人で夜勤に入れた',e3l:'「先に見通しを伝える」は、お客様にも仲間にも効くと気づいた',
+axis:'見通しを先に伝えて、相手に安心してもらう',heard:'落ち着いている、説明がわかりやすい',co:'〇〇航空',role:'お客様の案内だけでなく、遅延や変更の日に会社の立場で情報を集め、お客様と現場に見通しを伝え、空港の関係先と調整する',cofeat:'日本とアジアの路線が多く、遅延や機材の変更の案内が毎日のように必要で、空港所の少人数のチームで幅広い業務を担っている',fit:'予定が変わることが多い空港の仕事で、見通しを伝える案内が安全と満足の両方につながる',
+y1:'空港の規則と手順、出発の締め切りの考え方を身につける',y3:'イレギュラーの日に、見通しを先に伝える案内の中心になり、手順の改善を提案する',y5:'見通しを伝える案内を含むお客様対応の教育'},
+ko:{name:'○○',pos:'호텔 프런트 7년',list:'단체와 개인 도착이 겹쳐 로비에 긴 줄이 생긴 날\n시스템 장애로 예약을 확인할 수 없게 된 밤\n외국인 손님의 분실물을 공항까지 전달하도록 수배했다\n신입에게 야간 근무 절차를 가르쳤다\n불만을 가진 손님의 이야기를 30분 들었다',
+e1s:'호텔 프런트',e1t:'시스템 장애로 예약을 확인할 수 없게 되었을',e1a:'손으로 쓴 목록으로 접수를 이어 가며 손님에게 지금 아는 것과 다음 전망을 먼저 알렸습니다',e1r:'그날 밤 불만은 없었고 복구 후 대조도 금방 끝났습니다',e1l:'장애 시 절차를 적어 팀과 공유했다',
+e2s:'호텔 프런트의 저녁',e2t:'40명 단체와 개인 손님 도착이 겹쳐 긴 줄이 생겼다',e2a:'단체는 대표자에게 열쇠를 한꺼번에 건네고, 개인 손님에게는 대기 시간 예상을 먼저 알렸다',e2r:'줄은 약 20분 만에 해소되었다',e2l:'붐비는 시간을 예측해 준비하는 절차를 만들었다',
+e3s:'야간 근무 신입 교육',e3t:'신입이 혼자 야간 근무에 들어가는 것을 불안해했다',e3a:'자주 있는 장면마다 먼저 무엇을 알릴지 목록을 만들어 건넸다',e3r:'신입은 2주 만에 혼자 야간 근무에 들어갈 수 있었다',e3l:'‘전망을 먼저 알린다’는 손님에게도 동료에게도 통한다는 것을 알았다',
+axis:'전망을 먼저 알려 상대를 안심시킨다',heard:'침착하다, 설명이 알기 쉽다',co:'○○항공',role:'승객 안내뿐 아니라 지연이나 변경이 있는 날 회사 입장에서 정보를 모아 승객과 현장에 전망을 알리고 공항의 관계처와 조정하는',cofeat:'일본과 아시아 노선이 많아 지연이나 기재 변경 안내가 거의 매일 필요하고, 공항 지점의 소수 인원 팀이 폭넓은 업무를 맡고 있기',fit:'예정이 자주 바뀌는 공항 일에서 전망을 알리는 안내가 안전과 만족 모두로 이어지는',
+y1:'공항의 규정과 절차, 출발 마감의 사고방식을 익히겠습니다',y3:'비정상 운항 날 전망을 먼저 알리는 안내의 중심이 되어 절차 개선을 제안하겠습니다',y5:'전망을 알리는 안내를 포함한 승객 응대 교육'},
+en:{name:'…',pos:'with seven years at a hotel front desk',list:'The day a group and individual guests arrived together and a long queue formed\nThe night the booking system failed\nArranged for a foreign guest’s lost item to reach them at the airport\nTaught new staff the night-shift procedures\nListened to a complaining guest for 30 minutes',
+e1s:'hotel front-desk work',e1t:'the booking system failed one night',e1a:'kept checking guests in from a handwritten list and told them first what we knew and what would happen next',e1r:'There were no complaints that night, and matching up after the system came back was quick',e1l:'Wrote down the outage procedure and shared it with the team',
+e2s:'the evening front-desk shift',e2t:'a 40-person group and individual guests arrived together and a long queue formed',e2a:'handed the group’s keys to the tour leader and told individual guests the likely wait first',e2r:'The queue cleared in about 20 minutes',e2l:'Created a procedure to predict busy times and prepare',
+e3s:'training new night staff',e3t:'a new colleague was nervous about working nights alone',e3a:'made a list of what to tell guests first in common situations',e3r:'They were working nights alone within two weeks',e3l:'Realised that giving the outlook first works for colleagues as well as guests',
+axis:'give people the outlook first so they feel reassured',heard:'Calm; explains things clearly',co:'… Airlines',role:'goes beyond guiding passengers: on days of delay or change it gathers information for the airline, gives passengers and staff the outlook, and coordinates with other parties at the airport',cofeat:'it flies many routes between Japan and Asia, needs delay and aircraft-change announcements almost daily, and runs its airport office with a small team covering a wide range of duties',fit:'plans change often and guidance that gives the outlook leads to both safety and satisfaction',
+y1:'learn the airport rules, procedures and how departure cut-offs work',y3:'I will lead guidance on disrupted days, giving passengers the outlook first, and propose improvements',y5:'training in passenger handling, including giving people the outlook first'}};
+function $(i){return document.getElementById(i)}
+function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(ch){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]})}
+function jo(v,a,b){v=c(v);var ch=v.charCodeAt(v.length-1);if(ch<0xAC00||ch>0xD7A3)return v+a+'('+b+')';return v+((ch-0xAC00)%28?a:b)}
+function c(v){v=(v||'').trim().replace(/[。．.]+$/,'');return v||T[L].fill}
+var tm=null;function save(){try{localStorage.setItem(KEY,JSON.stringify({d:D,c:CK}));$('sv').textContent=T[L].saved+' '+new Date().toLocaleTimeString(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit'})}catch(e){}}
+function field(id,lab,hint,ta){var v=D[id]||'';return '<label for="f_'+id+'">'+esc(lab)+(hint?'<small>'+esc(hint)+'</small>':'')+'</label>'+(ta?'<textarea id="f_'+id+'" data-k="'+id+'" rows="'+(ta===true?2:ta)+'">'+esc(v)+'</textarea>':'<input type="text" id="f_'+id+'" data-k="'+id+'" value="'+esc(v)+'">')}
+function step(n,h,body){return '<section class="step"><h2><span class="n">'+n+'</span>'+esc(h[0])+'</h2><p class="hint">'+esc(h[1])+'</p>'+body+'</section>'}
+function render(){var t=T[L],f=t.f;document.documentElement.lang=L;document.title=t.ttl+' ― '+t.kick;
+ ['kick','ttl','lead','privacy','note'].forEach(function(k){$(k).textContent=t[k]});
+ $('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===L?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
+ Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('art-lang',L)}catch(e){}render()}});
+ $('bar').innerHTML='<button class="btn" id="bEx" type="button">'+esc(t.ex)+'</button><button class="btn" id="bCp" type="button">'+esc(t.copy)+'</button><button class="btn" id="bTx" type="button">'+esc(t.exp)+'</button><button class="btn del" id="bCl" type="button">'+esc(t.clr)+'</button><a class="btn" href="00_シリーズ全体_面接対策.html">'+esc(t.back)+'</a><span class="saved" id="sv"></span>';
+ var h='';
+ h+=step(1,t.st[0],'<div class="grid2">'+field('name',f.name)+field('pos',f.pos,f.posh)+'</div>'+field('list',f.list,f.listh,5));
+ var ex='';[1,2,3].forEach(function(i){ex+='<div class="exp"><b class="t">'+esc(f.e)+' '+i+'</b><div class="grid2">'+field('e'+i+'s',f.s,'',true)+field('e'+i+'t',f.t,'',true)+'</div>'+field('e'+i+'a',f.a,'',true)+'<div class="grid2">'+field('e'+i+'r',f.r,'',true)+field('e'+i+'l',f.l,'',true)+'</div></div>'});
+ h+=step(2,t.st[1],ex);
+ h+=step(3,t.st[2],field('axis',f.axis,f.axish)+field('heard',f.heard));
+ h+=step(4,t.st[3],field('co',f.co)+field('role',f.role,f.roleh,true)+field('cofeat',f.cofeat,f.cofeath,true)+field('fit',f.fit,'',true));
+ h+=step(5,t.st[4],'<div class="grid3">'+field('y1',f.y1,'',3)+field('y3',f.y3,'',3)+field('y5',f.y5,'',3)+'</div>');
+ h+=step(6,t.st[5],field('core',f.core,f.coreh,3)+'<p><button class="btn pri" id="bBuild" type="button">'+esc(t.build)+'</button></p>');
+ $('form').innerHTML=h;
+ Array.prototype.forEach.call($('form').querySelectorAll('[data-k]'),function(el){el.oninput=function(){D[el.dataset.k]=el.value;clearTimeout(tm);tm=setTimeout(function(){save();outs()},250)}});
+ $('bBuild').onclick=function(){D.core=t.tpl.core(D);$('f_core').value=D.core;save();outs()};
+ $('bEx').onclick=function(){if(Object.keys(D).some(function(k){return D[k]})&&!confirm(t.exConfirm))return;D=JSON.parse(JSON.stringify(EX[L]));D.core=t.tpl.core(D);save();render()};
+ $('bCl').onclick=function(){if(!confirm(t.clrConfirm))return;D={};CK={};try{localStorage.removeItem(KEY)}catch(e){}render()};
+ $('bCp').onclick=function(){var s=draftText();try{navigator.clipboard.writeText(s).then(function(){$('sv').textContent=t.copied})}catch(e){}};
+ $('bTx').onclick=function(){var b=new Blob([exportText()],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(L==='ja'?'ストーリー設計シート':L==='ko'?'스토리_설계_시트':'story_design_sheet')+'.txt';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)};
+ outs()}
+/* 軸の言葉が、ほかの欄にどれだけ出てくるか（2文字ずつの並び。英語は単語）。内容の良し悪しではなく、言葉のつながりの目安 */
+function grams(s){s=(s||'').toLowerCase();if(L==='en'){var st={the:1,a:1,an:1,to:1,of:1,and:1,or:1,in:1,on:1,at:1,for:1,so:1,they:1,them:1,it:1,is:1,be:1,that:1,this:1,with:1,people:1,feel:1};return s.split(/[^a-z0-9’']+/).filter(function(w){return w.length>2&&!st[w]}).map(function(w){return w.slice(0,5)})}
+ s=s.replace(/[\s、。，．・「」『』（）()！？!?,.\-—‘’“”:：;；]/g,'');var r=[];for(var i=0;i<s.length-1;i++)r.push(s.slice(i,i+2));return r}
+function link(a,b){var A=grams(a),B=grams(b);if(!A.length||!B.length)return null;var set={};B.forEach(function(g){set[g]=1});var u={},hit=0,n=0;A.forEach(function(g){if(u[g])return;u[g]=1;n++;if(set[g])hit++});return Math.round(hit/n*100)}
+function len(s){s=s||'';return L==='en'?{n:s.length,w:(s.trim().match(/\S+/g)||[]).length}:{n:s.replace(/\s/g,'').length,w:0}}
+function draftText(){var t=T[L];return t.o.core+'\n'+(D.core||t.tpl.core(D))+'\n\n'+t.o.intro+'\n'+t.tpl.intro(D)+'\n\n'+t.o.mot+'\n'+t.tpl.mot(D)}
+function exportText(){var t=T[L],f=t.f,o=[t.ttl,'('+new Date().toISOString().slice(0,10)+')',''];
+ o.push('■ 1 '+t.st[0][0],f.name+': '+(D.name||''),f.pos+': '+(D.pos||''),f.list+':',(D.list||''),'');
+ o.push('■ 2 '+t.st[1][0]);[1,2,3].forEach(function(i){o.push('['+f.e+' '+i+']',f.s+': '+(D['e'+i+'s']||''),f.t+': '+(D['e'+i+'t']||''),f.a+': '+(D['e'+i+'a']||''),f.r+': '+(D['e'+i+'r']||''),f.l+': '+(D['e'+i+'l']||''))});
+ o.push('','■ 3 '+t.st[2][0],f.axis+': '+(D.axis||''),f.heard+': '+(D.heard||''),'','■ 4 '+t.st[3][0],f.co+': '+(D.co||''),f.role+': '+(D.role||''),f.cofeat+': '+(D.cofeat||''),f.fit+': '+(D.fit||''),'','■ 5 '+t.st[4][0],f.y1+': '+(D.y1||''),f.y3+': '+(D.y3||''),f.y5+': '+(D.y5||''),'','■ 6 '+t.st[5][0],(D.core||''),'','■ '+t.o.h,draftText());
+ return o.join('\n')}
+function outs(){var t=T[L],o=t.o;var core=D.core||'';
+ var need=[['e1a',t.parts.e],['axis',t.parts.axis],['role',t.parts.role],['fit',t.parts.fit],['y5',t.parts.fut],['core',t.parts.core]].filter(function(x){return !(D[x[0]]||'').trim()}).map(function(x){return x[1]});
+ function box(title,txt){var m=len(txt);return '<h3 style="font-size:15px;margin:14px 0 6px">'+esc(title)+'</h3><div class="draft">'+esc(txt)+'</div><p class="meta">'+esc(t.time(m.n,m.w))+'</p>'}
+ var h='<section class="out"><h2>'+esc(o.h)+'</h2>';
+ h+=box(o.core,core||t.tpl.core(D))+box(o.intro,t.tpl.intro(D))+box(o.mot,t.tpl.mot(D));
+ h+='<h3 style="font-size:15px;margin:18px 0 6px">'+esc(o.chk)+'</h3>';
+ if(need.length)h+='<p class="miss">'+esc(o.miss)+esc(need.join(L==='en'?', ':'・'))+'</p>';
+ h+='<p class="meta">'+esc(o.meter)+'</p>';
+ [['fit',D.fit],['fut',[D.y1,D.y3,D.y5].join(' ')],['core',core]].forEach(function(x,i){var v=link(D.axis,x[1]);var col=v==null?'#cfd6e3':v>=40?'#1F7A6E':v>=20?'#E0A82F':'#D9663B';
+  h+='<div class="meter"><span>'+esc(t.mt[i])+'</span><div class="track"><div class="fill" style="width:'+(v==null?0:Math.max(4,v))+'%;background:'+col+'"></div></div><b style="text-align:right">'+(v==null?o.none:v+'%')+'</b></div>'});
+ h+='<h3 style="font-size:15px;margin:18px 0 6px">'+esc(o.man)+'</h3><ul class="chk">'+t.mc.map(function(x,i){return '<li><label><input type="checkbox" data-c="'+i+'"'+(CK[i]?' checked':'')+'> <span>'+esc(x)+'</span></label></li>'}).join('')+'</ul></section>';
+ $('outs').innerHTML=h;
+ Array.prototype.forEach.call($('outs').querySelectorAll('[data-c]'),function(el){el.onchange=function(){CK[el.dataset.c]=el.checked;save()}})}
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

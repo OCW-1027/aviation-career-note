@@ -41,7 +41,8 @@ sections:[
 {name:"Head office language",x:"Whether you can work with head office in its language — Korean for a Korean airline, for example — including emails and reports."},
 {name:"Breadth of work",x:"Not just the counter: reporting, documents, coordinating the handler and training, all in a small team."},
 {name:"A supervisory view",x:"Less “I do the work” and more “I make sure the work is done right”."},
-{name:"Responsibility in disruption",x:"In cancellations and delays you judge as the station and report to head office."}]}]},
+{name:"Responsibility in disruption",x:"In cancellations and delays you judge as the station and report to head office."},
+{name:"Applying to be station rep",x:"Many ground handling staff apply, but the role is not speed at check-in or arrivals; it is checking the handler’s work, making decisions and reporting to head office. Recast task experience in the language of supervision, judgement and reporting (4-2)."}]}]},
 {h:"How to prepare",blocks:[{t:"rows",items:[
 {name:"Research the company",x:"Routes, frequencies, aircraft, handling arrangements and the profile described on the recruitment page."},
 {name:"Translate your experience",x:"Re-describe your experience in the language of this company’s work: sales experience becomes explaining to passengers and handling complaints."},
