@@ -30,6 +30,7 @@ tr.best td{background:#fdf0f5}
 .formula{background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:Consolas,Menlo,monospace;margin-top:8px;overflow-x:auto}
 .btn{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;margin:6px 6px 0 0}
 svg{width:100%;height:auto;display:block}
+.xpl{margin-top:10px;padding:10px 12px;background:rgba(47,143,224,.07);border:1px solid var(--line);border-radius:10px;line-height:1.75;font-size:14px}.xpl ol{margin:6px 0 0;padding-left:20px}.xpl li{margin:4px 0}.xpl b.h{display:block;color:var(--muted);font-size:12.5px}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="rm"></script>
 </head>
@@ -85,9 +86,14 @@ function g(id){var e=document.getElementById(id);return e?parseFloat(e.value):Na
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 
 function viewLW(t){return '<div class="grid"><div class="card"><h2>'+t.in+'</h2>'+row(t.seats,'C',S.C)+row(t.hf,'pH',S.pH,1000)+row(t.lf,'pL',S.pL,1000)+row(t.mu,'mu',S.mu)+row(t.sd,'sd',S.sd)+'<div class="res" id="lwres"></div></div><div class="card"><h2>'+t.curve+'</h2><div id="lwchart"></div></div></div>'}
+/* 計算の考え方と過程（答えだけでなく、なぜそうなるか） */
+var XR={ja:{h:'考え方',lw:'安い運賃で1席売ると確実に¥{pl}。その席を残すと、高い運賃の需要が保護席数を超えたときだけ¥{ph}になります。「高い運賃の需要がy席を超える確率」が運賃の比 r＝{r} と同じになる所まで守るのが最善です（リトルウッドの法則）。需要を正規分布とみなすと、y＝平均＋標準偏差×z で求められます。rが小さい（安い運賃がずっと安い）ほど、zが大きくなり、多くの席を守ります。',eh:'計算の過程（上のクラスから順に）',em:'{g}を守る：まとめた需要の平均 {m}、標準偏差 √({vs})＝{s}、需要で重みをつけた運賃 ¥{pb}。次の{n}の運賃との比 r＝{pn}÷{pb}＝{r}、z＝Φ⁻¹(1−r)＝{z}、保護席数＝{m}＋{s}×{zp}＝{y} → {n}の上限＝{C}−{yr}＝{lim}席'},
+ko:{h:'사고방식',lw:'싼 운임으로 한 석 팔면 확실히 ¥{pl}. 그 좌석을 남겨 두면 비싼 운임 수요가 보호 좌석 수를 넘을 때만 ¥{ph}가 됩니다. ‘비싼 운임 수요가 y석을 넘을 확률’이 운임 비율 r={r}과 같아지는 지점까지 지키는 것이 최선입니다(리틀우드 법칙). 수요를 정규분포로 보면 y=평균+표준편차×z로 구합니다. r이 작을수록(싼 운임이 훨씬 쌀수록) z가 커지고 더 많은 좌석을 지킵니다.',eh:'계산 과정(위 클래스부터 차례로)',em:'{g} 보호: 묶은 수요 평균 {m}, 표준편차 √({vs})={s}, 수요로 가중한 운임 ¥{pb}. 다음 {n} 운임과의 비율 r={pn}÷{pb}={r}, z=Φ⁻¹(1−r)={z}, 보호 좌석 수={m}+{s}×{zp}={y} → {n} 한도={C}−{yr}={lim}석'},
+en:{h:'The logic',lw:'Selling one more seat at the low fare earns ¥{pl} for certain; holding it back earns ¥{ph} only if high-fare demand exceeds the protection level. Protect up to the point where the probability that high-fare demand exceeds y equals the fare ratio r = {r} (Littlewood’s rule). With normally distributed demand, y = mean + standard deviation × z. The smaller r is (the cheaper the low fare), the larger z and the more seats are protected.',eh:'Working (from the top class down)',em:'Protect {g}: combined mean demand {m}, standard deviation √({vs}) = {s}, demand-weighted fare ¥{pb}. Ratio to the next class {n}: r = {pn} ÷ {pb} = {r}; z = Φ⁻¹(1 − r) = {z}; protection = {m} + {s} × {zp} = {y} → limit for {n} = {C} − {yr} = {lim} seats'}};
+function xr(k,v){var s=(XR[L]||XR.ja)[k];for(var q in v)s=s.split('{'+q+'}').join(v[q]);return s}
 function calcLW(t){S.C=g('C')||0;S.pH=g('pH')||0;S.pL=g('pL')||0;S.mu=g('mu')||0;S.sd=Math.max(0.1,g('sd')||0.1);
  var r=S.pH>0?S.pL/S.pH:1,z=inv(1-r),y=clamp(S.mu+S.sd*z,0,S.C),yr=Math.round(y);
- document.getElementById('lwres').innerHTML='<div>'+t.ratio+'：<b>'+r.toFixed(3)+'</b></div><div>'+t.prot+'：<span class="big">'+yr+'</span>（'+y.toFixed(1)+'）</div><div>'+t.bl+'：<span class="big">'+Math.max(0,S.C-yr)+'</span></div><div class="formula">z = Φ⁻¹(1 − '+r.toFixed(3)+') = '+z.toFixed(3)+'<br>y = '+S.mu+' + '+S.sd+' × '+z.toFixed(3)+' = '+y.toFixed(2)+'</div>';
+ document.getElementById('lwres').innerHTML='<div>'+t.ratio+'：<b>'+r.toFixed(3)+'</b></div><div>'+t.prot+'：<span class="big">'+yr+'</span>（'+y.toFixed(1)+'）</div><div>'+t.bl+'：<span class="big">'+Math.max(0,S.C-yr)+'</span></div><div class="formula">z = Φ⁻¹(1 − '+r.toFixed(3)+') = '+z.toFixed(3)+'<br>y = '+S.mu+' + '+S.sd+' × '+z.toFixed(3)+' = '+y.toFixed(2)+'</div><div class="xpl"><b class="h">'+xr('h',{})+'</b>'+xr('lw',{pl:yen(S.pL),ph:yen(S.pH),r:r.toFixed(3)})+'</div>';
  function ER(q){var zz=(q-S.mu)/S.sd,emin=S.mu-S.sd*(phi(zz)-zz*(1-Phi(zz)));return S.pL*(S.C-q)+S.pH*Math.max(0,emin)}
  var pts=[],mx=0,mn=Infinity;for(var q=0;q<=S.C;q++){var v=ER(q);pts.push(v);mx=Math.max(mx,v);mn=Math.min(mn,v)}
  var W=560,H=260,P=46,sx=function(q){return P+(W-P-12)*q/Math.max(1,S.C)},sy=function(v){return H-30-(H-50)*(v-mn)/Math.max(1,mx-mn)};
@@ -100,9 +106,9 @@ function viewEM(t){var h='<div class="card"><h2>'+t.in+'</h2>'+row(t.seats,'C2',
  h+='</table></div><button class="btn" id="eadd">'+t.add+'</button><button class="btn" id="edel">'+t.del+'</button></div><div class="card" style="margin-top:14px"><h2>'+t.out+'</h2><div class="tw" id="emres"></div><div class="note">'+t.emsrNote+'</div></div>';return h}
 function calcEM(t){S.C2=g('C2')||0;S.cl.forEach(function(c,i){c[1]=g('ef'+i)||0;c[2]=Math.max(0,g('em'+i)||0);c[3]=Math.max(0.1,g('es'+i)||0.1)});
  var cl=S.cl.slice().sort(function(a,b){return b[1]-a[1]}),prot=[],h='<table><tr><th>'+t.cls+'</th><th>'+t.fare+'</th><th>'+t.pl+'</th><th>'+t.lim+'</th></tr>';
- for(var j=0;j<cl.length-1;j++){var agg=cl.slice(0,j+1),m=0,v=0,w=0;agg.forEach(function(c){m+=c[2];v+=c[3]*c[3];w+=c[1]*c[2]});var s=Math.sqrt(v),pb=m>0?w/m:agg[0][1],r=pb>0?cl[j+1][1]/pb:1;prot.push(clamp(m+s*inv(1-r),0,S.C2))}
+ var steps=[];for(var j=0;j<cl.length-1;j++){var agg=cl.slice(0,j+1),m=0,v=0,w=0;agg.forEach(function(c){m+=c[2];v+=c[3]*c[3];w+=c[1]*c[2]});var s=Math.sqrt(v),pb=m>0?w/m:agg[0][1],r=pb>0?cl[j+1][1]/pb:1,zz=inv(1-r),yy=clamp(m+s*zz,0,S.C2);prot.push(yy);steps.push(xr('em',{g:agg.map(function(c){return c[0]}).join('+'),m:m,vs:agg.map(function(c){return c[3]+'²'}).join('+'),s:s.toFixed(2),pb:yen(pb),n:cl[j+1][0],pn:yen(cl[j+1][1]),r:r.toFixed(3),z:zz.toFixed(3).replace('-','−'),zp:(zz<0?'('+zz.toFixed(3).replace('-','−')+')':zz.toFixed(3)),y:yy.toFixed(1),C:S.C2,yr:Math.round(yy),lim:Math.max(0,S.C2-Math.round(yy))}))}
  cl.forEach(function(c,i){var lim=i===0?S.C2:Math.max(0,S.C2-Math.round(prot[i-1]));h+='<tr><td class="c">'+c[0]+'</td><td class="n">¥'+yen(c[1])+'</td><td class="n">'+(i<prot.length?prot[i].toFixed(1)+' → '+Math.round(prot[i]):'—')+'</td><td class="n"><b>'+lim+'</b></td></tr>'});
- document.getElementById('emres').innerHTML=h+'</table>'}
+ document.getElementById('emres').innerHTML=h+'</table><div class="xpl"><b class="h">'+xr('eh',{})+'</b><ol>'+steps.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ol></div>'}
 
 function viewOB(t){return '<div class="grid"><div class="card"><h2>'+t.in+'</h2>'+row(t.seats,'cap',S.cap)+row(t.show,'p',S.p,0.5)+row(t.fr,'f',S.f,1000)+row(t.db,'db',S.db,1000)+row(t.range,'rg',S.rg)+'<h2 style="margin-top:14px">'+t.krPre+'</h2>'+row(t.usd,'fx',S.fx)+'<div>'+t.kr.map(function(k,i){return '<button class="btn" data-usd="'+[200,400,600][i]+'">'+k+'</button>'}).join('')+'</div><div class="note">'+t.obNote+'</div></div><div class="card"><h2>'+t.out+'</h2><div class="tw" id="obres"></div></div></div>'}
 function binomRow(n,p){var q=1-p,lg=[0];for(var i=1;i<=n;i++)lg[i]=lg[i-1]+Math.log(i);var a=[];for(var k=0;k<=n;k++)a.push(Math.exp(lg[n]-lg[k]-lg[n-k]+k*Math.log(p)+(n-k)*Math.log(q)));return a}

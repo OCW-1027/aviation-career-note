@@ -62,15 +62,21 @@ var Q={hb:L3('管制官として聞き返しをします。許可は「{c}」。
  rbx:L3('高度・機首方位・速度・滑走路・周波数・スコーク・許可などの指示は復唱します。天気などの情報は「了解」で足ります。','고도·기수 방위·속도·활주로·주파수·스쿼크·허가 등 지시는 복창합니다. 날씨 등 정보는 ‘라저’로 충분합니다.','Instructions such as levels, headings, speeds, runways, frequencies, squawks and clearances are read back; information such as weather needs only acknowledgement.')};
 var EMG=[['7500',L3('不法な妨害（ハイジャック）','불법 방해(하이재킹)','Unlawful interference (hijack)')],['7600',L3('無線の故障','무선 고장','Radio failure')],['7700',L3('緊急事態','비상 상황','Emergency')],['2000',L3('割り当て前の番号','배정 전 번호','Code before assignment')]];
 function mq(t,v){var s=tx(Q[t]);for(var k in v)s=s.split('{'+k+'}').join(v[k]);return s}
+function xpf(o,v){var s=tx(o);for(var k in v)s=s.split('{'+k+'}').join(v[k]);return s}
+var XA={hb:L3('{i}：許可と復唱が違います（許可 {r} → 復唱 {b}）。高度・周波数・スコークなどの数字のまちがいは、高度の逸脱や交信の途絶につながります。管制官は復唱を最後まで聞き、違っていれば「negative」と言ってすぐに訂正します。','{i}: 허가와 복창이 다릅니다(허가 {r} → 복창 {b}). 고도·주파수·스쿼크 같은 숫자 실수는 고도 이탈이나 교신 두절로 이어집니다. 관제사는 복창을 끝까지 듣고 틀리면 ‘negative’라고 말해 바로 정정합니다.','{i}: the readback differs from the clearance (cleared {r}, read back {b}). Wrong numbers for levels, frequencies or squawks can lead to level busts or lost communications; the controller listens to the whole readback and corrects at once with “negative”.'),
+em:L3('7500＝不法な妨害（ハイジャック）、7600＝無線の故障、7700＝緊急事態。2000は、コードを割り当てられていない便が使う番号です。この3つの緊急のコードは、管制の画面ですぐに目立つように表示されます。','7500=불법 방해(하이재킹), 7600=무선 고장, 7700=비상 상황. 2000은 코드를 배정받지 않은 편이 쓰는 번호입니다. 이 세 가지 비상 코드는 관제 화면에 바로 눈에 띄게 표시됩니다.','7500 = unlawful interference, 7600 = radio failure, 7700 = emergency; 2000 is used when no code has been assigned. The three emergency codes are highlighted at once on controllers’ screens.'),
+ph:L3('ICAOの読み方では、3＝TREE、5＝FIFE、9＝NINER、小数点＝DECIMAL。フライトレベルは「FLIGHT LEVEL」のあとに数字を1つずつ、千の位の高度は「…THOUSAND」と読みます。聞きまちがいを防ぐための決まりです。正しい読み方：{r}','ICAO 읽는 법에서는 3=TREE, 5=FIFE, 9=NINER, 소수점=DECIMAL. 비행고도는 ‘FLIGHT LEVEL’ 뒤에 숫자를 하나씩, 천 단위 고도는 ‘…THOUSAND’로 읽습니다. 잘못 듣는 것을 막기 위한 규칙입니다. 올바른 읽는 법: {r}','ICAO phraseology uses TREE for 3, FIFE for 5, NINER for 9 and DECIMAL for the decimal point. Flight levels are “FLIGHT LEVEL” followed by each digit; whole thousands are read as “… THOUSAND”. The rules prevent mishearing. Correct: {r}'),
+nx:L3('飛行の段階ごとに話す相手が変わります：{s}。{a}の次は{b}です。','비행 단계마다 교신 상대가 바뀝니다: {s}. {a} 다음은 {b}입니다.','Each phase has its own unit: {s}. After {a} comes {b}.'),
+rb:L3('指示を聞きまちがえると、高度の逸脱や周波数の喪失につながるためです。','지시를 잘못 들으면 고도 이탈이나 주파수 상실로 이어지기 때문입니다.','Mishearing an instruction can lead to a level bust or lost communications.')};
 function makeQuiz(){var out=[],c=newScenario(),cl=clearance(c),o;
  var errs=[['sq',function(){var s=c.sq.split('');s[3]=s[3]==='7'?'6':String(+s[3]+1);return s.join('')}],['alt',function(){return c.alt+1000}],['fq',function(){return c.fq.replace(/.$/,function(d){return d==='9'?'8':String(+d+1)})}]],e=errs[rnd(0,2)],bad=e[1](),rb=model(c).replace(e[0]==='sq'?c.sq:e[0]==='alt'?String(c.alt):c.fq,String(bad));
- o=OPS_OPTS(tx(EL[e[0]]),[tx(EL.cs),tx(EL.dest),tx(EL.route),tx(EL.alt),tx(EL.fq),tx(EL.sq)]);out.push({q:mq('hb',{c:cl,r:rb}),o:o.o,a:o.a});
- var em=EMG[rnd(0,2)];o=OPS_OPTS(tx(em[1]),EMG.map(function(x){return tx(x[1])}));out.push({q:mq('em',{c:em[0]}),o:o.o,a:o.a});
+ o=OPS_OPTS(tx(EL[e[0]]),[tx(EL.cs),tx(EL.dest),tx(EL.route),tx(EL.alt),tx(EL.fq),tx(EL.sq)]);out.push({q:mq('hb',{c:cl,r:rb}),o:o.o,a:o.a,x:xpf(XA.hb,{i:tx(EL[e[0]]),r:(e[0]==='sq'?c.sq:e[0]==='alt'?c.alt:c.fq),b:bad})});
+ var em=EMG[rnd(0,2)];o=OPS_OPTS(tx(em[1]),EMG.map(function(x){return tx(x[1])}));out.push({q:mq('em',{c:em[0]}),o:o.o,a:o.a,x:tx(XA.em)});
  var wds=['FL350','FL290','119.35','9000'],w=wds[rnd(0,3)],right=speak(w),wr=[right.replace('tree','three').replace('fife','five').replace('niner','nine'),right.replace('decimal','point'),w.replace(/\d/g,function(d){return ['zero','one','two','three','four','five','six','seven','eight','nine'][+d]+' '})];
- if(right===wr[0])wr[0]=right+' feet';o=OPS_OPTS(right,wr);out.push({q:mq('ph',{w:w}),o:o.o,a:o.a});
- var U=UNIT(R[ri]),k=rnd(0,U.length-2);o=OPS_OPTS(tx(U[k+1][0]),shuf(U.filter(function(u,i){return i!==k+1&&i!==k})).map(function(u){return tx(u[0])}));out.push({q:mq('nx',{a:tx(U[k][0])}),o:o.o,a:o.a});
+ if(right===wr[0])wr[0]=right+' feet';o=OPS_OPTS(right,wr);out.push({q:mq('ph',{w:w}),o:o.o,a:o.a,x:xpf(XA.ph,{r:right})});
+ var U=UNIT(R[ri]),k=rnd(0,U.length-2);o=OPS_OPTS(tx(U[k+1][0]),shuf(U.filter(function(u,i){return i!==k+1&&i!==k})).map(function(u){return tx(u[0])}));out.push({q:mq('nx',{a:tx(U[k][0])}),o:o.o,a:o.a,x:xpf(XA.nx,{s:U.map(function(u){return tx(u[0])}).join(' → '),a:tx(U[k][0]),b:tx(U[k+1][0])})});
  var yes=[L3('上昇する高度','상승 고도','The cleared level'),L3('新しい周波数','새 주파수','A new frequency'),L3('スコーク','스쿼크','A squawk')][rnd(0,2)],no=[L3('空港の気温','공항 기온','The airport temperature'),L3('ほかの便の位置の情報','다른 편의 위치 정보','Traffic information about other aircraft'),L3('雲の量','구름의 양','Cloud cover')];
- o=OPS_OPTS(tx(yes),no.map(tx));out.push({q:tx(Q.rb),o:o.o,a:o.a,x:tx(Q.rbx)});
+ o=OPS_OPTS(tx(yes),no.map(tx));out.push({q:tx(Q.rb),o:o.o,a:o.a,x:tx(Q.rbx)+' '+tx(XA.rb)});
  return shuf(out)}
 window.OPS_SPEAK=speak;
 OPS_MODS.atc={label:L3('② 管制の交信','② 관제 교신','② ATC calls'),render:render};

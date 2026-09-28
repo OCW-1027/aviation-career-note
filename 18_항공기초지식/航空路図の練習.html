@@ -34,6 +34,7 @@ header{position:relative}header h1{margin:0 0 8px}
 .opt{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;text-align:left;font:600 15px inherit;font-family:inherit;color:var(--ink);cursor:pointer;min-height:46px}
 .opt.ok{border-color:var(--ok);background:#E1F5EE}.opt.ng{border-color:var(--ng);background:#FCEBEB}
 .exp{margin-top:10px;font-size:14px}
+.xp{margin-top:8px;padding:10px 12px;background:rgba(47,143,224,.07);border:1px solid var(--line);border-radius:10px;line-height:1.75}.xp b{display:block;margin-bottom:4px;color:var(--sub);font-size:12.5px;letter-spacing:.04em}
 .score{font-size:20px;font-weight:800}
 @media (max-width:760px){.grid{grid-template-columns:1fr}.opts{grid-template-columns:1fr}}
 </style>
@@ -138,6 +139,14 @@ function stop(){if(timer){clearInterval(timer);timer=null}}
 /* 問題 */
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
 function uniq(a){return a.filter(function(x,i){return a.indexOf(x)===i})}
+/* 問題の解説（なぜその答えか・計算の過程） */
+var XM={ja:{h:'解説',q1:'経路は地点を順番にたどります：{s}。{a}の次は{b}です。「たどる」のタブで1区間ずつ確かめられます。',q2:'{a} → {b} の区間は{w}を通ります。経路は「地点 → 航空路 → 地点」の順に書き、前後の地点がその航空路の上にあります（飛行計画書の経路の欄と同じ書き方）。',q3:'{b}は飛行情報区（FIR）の境界の地点です。ここで管制が隣の国の管制機関に引き継がれます。境界に着く前に、次の管制機関の周波数に移るよう指示されます。',q4:'{a} → {b} は約{n}NM（1NM＝1.852kmなので約{k}km）。区間の距離は2つの地点の緯度・経度から計算した大圏の距離で、各区間を足すと路線の全体の距離になります。',q5:'磁方位が000〜179°の便は奇数、180〜359°の便は偶数の高度が基本です（半円方式）。この便の主な磁方位は約{m}°なので{oe}の{a}。反対向きの便と同じ高度で向かい合わないための決まりです。'},
+ko:{h:'해설',q1:'경로는 지점을 순서대로 따라갑니다: {s}. {a} 다음은 {b}입니다. ‘따라가기’ 탭에서 한 구간씩 확인할 수 있습니다.',q2:'{a} → {b} 구간은 {w}를 지납니다. 경로는 ‘지점 → 항공로 → 지점’ 순으로 쓰며, 앞뒤 지점이 그 항공로 위에 있습니다(비행계획서 경로 칸과 같은 표기).',q3:'{b}는 비행정보구역(FIR) 경계 지점입니다. 여기서 관제가 이웃 나라 관제 기관으로 넘어갑니다. 경계에 닿기 전에 다음 관제 기관 주파수로 옮기라는 지시를 받습니다.',q4:'{a} → {b}는 약 {n}NM(1NM=1.852km이므로 약 {k}km). 구간 거리는 두 지점의 위도·경도로 계산한 대권 거리이며, 구간을 모두 더하면 노선 전체 거리가 됩니다.',q5:'자방위 000~179°인 편은 홀수, 180~359°인 편은 짝수 고도가 기본입니다(반원 방식). 이 편의 주된 자방위는 약 {m}°이므로 {oe}인 {a}. 반대 방향 편과 같은 고도에서 마주 보지 않기 위한 규칙입니다.'},
+en:{h:'Explanation',q1:'A route follows its points in order: {s}. After {a} comes {b}. Use the Follow tab to step through each segment.',q2:'The {a} → {b} segment uses {w}. Routes are written point → airway → point, with the points on either side lying on the airway (as in the route field of a flight plan).',q3:'{b} is on the flight information region (FIR) boundary, where control passes to the neighbouring country’s ATC unit. Aircraft are told to change to the next unit’s frequency before reaching it.',q4:'{a} → {b} is about {n} NM (1 NM = 1.852 km, so about {k} km). Segment distances are great-circle distances from the two points’ coordinates; together they give the route length.',q5:'Magnetic courses 000–179° normally use odd levels and 180–359° even levels (the semicircular rule). This flight’s main course is about {m}°, so {oe}: {a}. The rule keeps opposite-direction traffic off the same level.'}};
+function xpMain(q,r){var t=T[lang],x=XM[lang],L=legs(r),s=x[q.t],v={a:q.a||'',b:q.t==='q3'?q.ans:(q.b||q.ans),w:awName(q.ans),n:q.ans,k:Math.round((+q.ans||0)*1.852),m:pad(q.mc),oe:r.odd?t.odd:t.even};
+ if(q.t==='q1'){v.b=q.ans;v.s=L.map(function(p){return (p.k===q.a||p.k===q.ans)?'<b>'+p.k+'</b>':p.k}).join(' → ')}
+ if(q.t==='q5')v.a=q.ans;
+ for(var k in v)s=s.split('{'+k+'}').join(v[k]);return s}
 function makeQuiz(){var r=R[ri],L=legs(r),out=[],allP=Object.keys(PT).filter(function(k){return !/^R[KJ]/.test(k)}),AW=['Y697','Y51','Y517','Y303','Y30','Y16','Y685','Y711','Y722','Y20','Y235','Y23','Y71','B576','A593'];
  var inner=L.slice(1,L.length-1);
  var a=inner[Math.floor(Math.random()*inner.length)],ai=L.indexOf(a);out.push({t:'q1',a:a.k,ans:L[ai+1].k,opts:uniq([L[ai+1].k].concat(shuf(r.s.map(function(x){return x[0]}).filter(function(k){return k!==L[ai+1].k&&k!==a.k})).slice(0,3)))});
@@ -154,7 +163,7 @@ function quiz(){var r=R[ri],t=T[lang];$('map').innerHTML=mapSVG(r,0);if(!QZ)QZ=m
  if(QZ.i>=QZ.q.length){$('panel').innerHTML='<div class="card" style="margin-top:12px"><h3>'+t.res+'</h3><div class="score">'+(lang==='en'?QZ.ok+t.of+QZ.q.length+t.cor:QZ.q.length+t.of+QZ.ok+t.cor)+'</div><div class="ctl"><button class="btn" id="qa">'+t.again+'</button></div></div>';$('qa').onclick=function(){QZ=null;quiz()};return}
  var q=QZ.q[QZ.i],txt=t[q.t].replace('{a}',q.a||'').replace('{b}',q.b||'').replace('{r}',r.name[lang]);
  var h='<div class="card" style="margin-top:12px"><div style="color:var(--sub);font-size:13px">'+(QZ.i+1)+' / '+QZ.q.length+'</div><div class="q">'+txt+'</div><div class="opts">'+q.opts.map(function(o,i){var cls='';if(QZ.picked!==null){if(o===q.ans)cls=' ok';else if(i===QZ.picked)cls=' ng'}return '<button class="opt'+cls+'" data-i="'+i+'"'+(QZ.picked!==null?' disabled':'')+'>'+(q.t==='q2'?awName(o):o)+(q.unit?' '+t.nm:'')+'</button>'}).join('')+'</div>';
- if(QZ.picked!==null){var good=q.opts[QZ.picked]===q.ans;h+='<div class="exp"><b style="color:'+(good?'var(--ok)':'var(--ng)')+'">'+(good?t.ok:t.ng)+'</b> '+t.ans+(q.t==='q2'?awName(q.ans):q.ans)+(q.unit?' '+t.nm:'')+(q.t==='q5'?'<br>'+t.q5x.replace('{m}',pad(q.mc)).replace('{oe}',r.odd?t.odd:t.even):'')+'</div><div class="ctl"><button class="btn" id="qn">'+t.nextq+'</button></div>'}
+ if(QZ.picked!==null){var good=q.opts[QZ.picked]===q.ans;h+='<div class="exp"><b style="color:'+(good?'var(--ok)':'var(--ng)')+'">'+(good?t.ok:t.ng)+'</b> '+t.ans+(q.t==='q2'?awName(q.ans):q.ans)+(q.unit?' '+t.nm:'')+'<div class="xp"><b>'+XM[lang].h+'</b>'+xpMain(q,r)+'</div></div><div class="ctl"><button class="btn" id="qn">'+t.nextq+'</button></div>'}
  $('panel').innerHTML=h+'</div>';
  Array.prototype.forEach.call(document.querySelectorAll('.opt'),function(b){b.onclick=function(){if(QZ.picked!==null)return;QZ.picked=+b.getAttribute('data-i');if(q.opts[QZ.picked]===q.ans)QZ.ok++;quiz()}});
  if($('qn'))$('qn').onclick=function(){QZ.i++;QZ.picked=null;quiz()}}

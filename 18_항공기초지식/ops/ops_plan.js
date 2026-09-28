@@ -6,10 +6,10 @@ window.OPS_MODS=window.OPS_MODS||{};
 function L3(ja,ko,en){return {ja:ja,ko:ko,en:en}}
 function tx(o){return o[lang]||o.ja}
 /* 共通：問題の画面（ほかのモジュールも使う） */
-window.OPS_QUIZ=function(el,make){var st={q:make(),i:0,ok:0,pk:null},Q=L3('問','문제','Q'),OK=L3('正解！','정답!','Correct!'),NG=L3('残念…','아쉬워요…','Not quite.'),NX=L3('次の問題','다음 문제','Next question'),AG=L3('もう一度（新しい問題）','다시 하기(새 문제)','Try again (new questions)'),RS=L3('結果','결과','Result'),AN=L3('答え：','정답: ','Answer: ');
+window.OPS_QUIZ=function(el,make){var st={q:make(),i:0,ok:0,pk:null},Q=L3('問','문제','Q'),OK=L3('正解！','정답!','Correct!'),NG=L3('残念…','아쉬워요…','Not quite.'),NX=L3('次の問題','다음 문제','Next question'),AG=L3('もう一度（新しい問題）','다시 하기(새 문제)','Try again (new questions)'),RS=L3('結果','결과','Result'),AN=L3('答え：','정답: ','Answer: '),XP=L3('解説','해설','Explanation');
  function draw(){if(st.i>=st.q.length){el.innerHTML='<div class="card" style="margin-top:12px"><h3>'+tx(RS)+'</h3><div class="score">'+st.ok+' / '+st.q.length+'</div><div class="ctl"><button class="btn" id="oqa">'+tx(AG)+'</button></div></div>';$('oqa').onclick=function(){st={q:make(),i:0,ok:0,pk:null};draw()};return}
   var q=st.q[st.i],h='<div class="card" style="margin-top:12px"><div style="color:var(--sub);font-size:13px">'+tx(Q)+' '+(st.i+1)+' / '+st.q.length+'</div><div class="q">'+q.q+'</div><div class="opts">'+q.o.map(function(o,i){var c='';if(st.pk!==null){if(i===q.a)c=' ok';else if(i===st.pk)c=' ng'}return '<button class="opt'+c+'" data-i="'+i+'"'+(st.pk!==null?' disabled':'')+'>'+o+'</button>'}).join('')+'</div>';
-  if(st.pk!==null)h+='<div class="exp"><b style="color:'+(st.pk===q.a?'var(--ok)':'var(--ng)')+'">'+(st.pk===q.a?tx(OK):tx(NG))+'</b> '+tx(AN)+q.o[q.a]+(q.x?'<br>'+q.x:'')+'</div><div class="ctl"><button class="btn" id="oqn">'+tx(NX)+'</button></div>';
+  if(st.pk!==null)h+='<div class="exp"><b style="color:'+(st.pk===q.a?'var(--ok)':'var(--ng)')+'">'+(st.pk===q.a?tx(OK):tx(NG))+'</b> '+tx(AN)+q.o[q.a]+(q.x?'<div class="xp"><b>'+tx(XP)+'</b>'+q.x+'</div>':'')+'</div><div class="ctl"><button class="btn" id="oqn">'+tx(NX)+'</button></div>';
   el.innerHTML=h+'</div>';
   Array.prototype.forEach.call(el.querySelectorAll('.opt'),function(b){b.onclick=function(){if(st.pk!==null)return;st.pk=+b.getAttribute('data-i');if(st.pk===q.a)st.ok++;draw()}});
   if($('oqn'))$('oqn').onclick=function(){st.i++;st.pk=null;draw()}}
@@ -127,14 +127,24 @@ function render(){var r=R[ri],dep=r.s[0][0],arr=r.s[r.s.length-1][0];if(S.rid!==
  upd()}
 function bindSub(){Array.prototype.forEach.call(document.querySelectorAll('#opsSub [data-s]'),function(b){b.onclick=function(){S.sub=b.getAttribute('data-s');render()}})}
 function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function xpf(o,v){var s=tx(o);for(var k in v)s=s.split('{'+k+'}').join(v[k]);return s}
+var XQ={
+aw:L3('この区間（または向き）では使えない航空路です。金浦→済州はY711、済州→金浦はY722のように、向きが決まった一方通行の航空路があります。経路は「地点→航空路→地点」とつながり、前後の地点がその航空路の上にある必要があります。','이 구간(또는 방향)에서는 쓸 수 없는 항공로입니다. 김포→제주는 Y711, 제주→김포는 Y722처럼 방향이 정해진 일방통행 항공로가 있습니다. 경로는 ‘지점 → 항공로 → 지점’으로 이어지며, 앞뒤 지점이 그 항공로 위에 있어야 합니다.','This airway cannot be used on this segment or in this direction. Some airways are one-way, such as Y711 (Gimpo→Jeju) and Y722 (Jeju→Gimpo). A route runs point → airway → point, and the points on either side must lie on that airway.'),
+pt:L3('この経路の最後の地点ではありません。航空路の最後の地点は、到着方式（STAR）の始まりの地点とつながっている必要があります。','이 경로의 마지막 지점이 아닙니다. 항공로의 마지막 지점은 도착 절차(STAR)의 시작 지점과 이어져야 합니다.','This is not the last point of this route. The last point on the airway must connect to the start of the arrival procedure (STAR).'),
+wr:L3('まちがい：','틀린 곳: ','Wrong item: '),
+t:L3('時間（分）＝距離÷対地速度×60。{d}÷{g}＝{h}時間、×60で約{m}分です。ktは「1時間に進む海里」なので、割ると「時間」が出て、60を掛けて分にします。×100にしたり、速度÷距離と逆に割ったりしないよう注意。','시간(분)=거리÷대지속도×60. {d}÷{g}={h}시간, ×60 하면 약 {m}분입니다. kt는 ‘1시간에 가는 해리’이므로 나누면 ‘시간’이 나오고, 60을 곱해 분으로 바꿉니다. ×100을 하거나 속도÷거리로 거꾸로 나누지 않도록 주의.','Time (min) = distance ÷ groundspeed × 60. {d} ÷ {g} = {h} h; × 60 ≈ {m} min. A knot is nautical miles per hour, so dividing gives hours and × 60 gives minutes. Don’t multiply by 100 or divide speed by distance.'),
+c:L3('補正燃料＝運航燃料×5%。{t}×0.05＝{a}kg。風の予報の違いや、管制の指示による経路・高度の変更など、予測できない燃料の消費に備える燃料です（条件によって減らせる場合があり、各社の規程に従います）。','비상(보정) 연료=운항 연료×5%. {t}×0.05={a}kg. 바람 예보 차이나 관제 지시에 따른 경로·고도 변경 등 예측하지 못한 연료 소비에 대비하는 연료입니다(조건에 따라 줄일 수 있는 경우가 있으며 각사 규정에 따릅니다).','Contingency = trip fuel × 5%. {t} × 0.05 = {a} kg. It covers unforeseen burn such as wind forecast errors or ATC re-routes and level changes (reductions may be allowed under conditions; follow company rules).'),
+w:L3('離陸重量＝ZFW＋搭載燃料−地上走行の燃料。{z}＋{b}＝{r}kg（ランプ重量）、ここから地上走行の{x}kgを引いて{a}kg。地上走行の燃料は離陸の前に使い切るので、離陸重量には入りません。','이륙 중량=ZFW+탑재 연료−지상 이동 연료. {z}+{b}={r}kg(램프 중량), 여기서 지상 이동 {x}kg을 빼면 {a}kg. 지상 이동 연료는 이륙 전에 다 쓰므로 이륙 중량에 들어가지 않습니다.','TOW = ZFW + block fuel − taxi fuel. {z} + {b} = {r} kg (ramp weight); minus {x} kg of taxi fuel gives {a} kg. Taxi fuel is burned before take-off, so it is not part of the take-off weight.'),
+g:L3('向かい風は引き、追い風は足します。{t}−{w}＝{a}kt。横風の成分があると実際は少し変わりますが、ここでは真正面の向かい風として計算します。','맞바람은 빼고 뒷바람은 더합니다. {t}−{w}={a}kt. 측풍 성분이 있으면 실제로는 조금 달라지지만 여기서는 정면 맞바람으로 계산합니다.','Subtract a headwind and add a tailwind: {t} − {w} = {a} kt. A crosswind component would change this slightly; here it is treated as a direct headwind.')};
+function xq1(b){return tx(XQ.wr)+'<code>'+b+'</code><br>'+tx(/^[A-Z]\d+$/.test(b)?XQ.aw:XQ.pt)+'<br>'+tx(TX.q1x)}
 function makeQuiz(){var r=R[ri],out=[],ex=EX[r.id].split(' '),q;
  /* 経路のまちがい探し */
  var t=ex.slice(),bad;if(t.length>5&&Math.random()<.5){var k=2;t[k]=r.id==='gc'?'Y722':r.id==='cg'?'Y711':(t[k]==='Y697'?'Y16':'Y517');bad=t[k]}else{var last=t.length-2;t[last]=r.id==='gc'?'SAMUL':r.id==='cg'?'DOTOL':r.id==='in'?'ENPAR':'LANAT';bad=t[last]}
- var o=OPS_OPTS(bad,shuf(t.filter(function(x){return x!==bad}))),q1={q:msg('q1',{r:t.join(' ')}),o:o.o,a:o.a,x:tx(TX.q1x)};out.push(q1);
- var d=rnd(8,30)*5,g=rnd(38,52)*10,m=Math.round(d/g*60);o=OPS_OPTS(m+'',[Math.round(d/g*100)+'',Math.round(g/d)+'',(m+15)+'',Math.max(1,m-12)+'']);out.push({q:msg('q2',{d:d,g:g}),o:o.o.map(function(x){return x+(lang==='en'?' min':lang==='ko'?'분':'分')}),a:o.a,x:d+' \u00F7 '+g+' \u00D7 60 = '+m});
- var tr=rnd(30,90)*100;o=OPS_OPTS(f0(tr*0.05),[f0(tr*0.5),f0(tr*0.1),f0(tr*0.005)]);out.push({q:msg('q3',{t:f0(tr)}),o:o.o.map(function(x){return x+' kg'}),a:o.a,x:f0(tr)+' \u00D7 0.05'});
- var z=rnd(55,68)*1000,bl=rnd(60,120)*100,xt=200;o=OPS_OPTS(f0(z+bl-xt),[f0(z+bl),f0(z+bl+xt),f0(z-bl)]);out.push({q:msg('q4',{z:f0(z),b:f0(bl),x:xt}),o:o.o.map(function(x){return x+' kg'}),a:o.a,x:tx(TX.q4x)});
- var ta=rnd(44,49)*10,w=rnd(4,14)*10;o=OPS_OPTS((ta-w)+' kt',[(ta+w)+' kt',ta+' kt',(ta-2*w)+' kt']);out.push({q:msg('q5',{t:ta,w:w}),o:o.o,a:o.a,x:ta+' \u2212 '+w});
+ var o=OPS_OPTS(bad,shuf(t.filter(function(x){return x!==bad}))),q1={q:msg('q1',{r:t.join(' ')}),o:o.o,a:o.a,x:xq1(bad)};out.push(q1);
+ var d=rnd(8,30)*5,g=rnd(38,52)*10,m=Math.round(d/g*60);o=OPS_OPTS(m+'',[Math.round(d/g*100)+'',Math.round(g/d)+'',(m+15)+'',Math.max(1,m-12)+'']);out.push({q:msg('q2',{d:d,g:g}),o:o.o.map(function(x){return x+(lang==='en'?' min':lang==='ko'?'분':'分')}),a:o.a,x:xpf(XQ.t,{d:d,g:g,h:(d/g).toFixed(3),m:m})});
+ var tr=rnd(30,90)*100;o=OPS_OPTS(f0(tr*0.05),[f0(tr*0.5),f0(tr*0.1),f0(tr*0.005)]);out.push({q:msg('q3',{t:f0(tr)}),o:o.o.map(function(x){return x+' kg'}),a:o.a,x:xpf(XQ.c,{t:f0(tr),a:f0(tr*0.05)})});
+ var z=rnd(55,68)*1000,bl=rnd(60,120)*100,xt=200;o=OPS_OPTS(f0(z+bl-xt),[f0(z+bl),f0(z+bl+xt),f0(z-bl)]);out.push({q:msg('q4',{z:f0(z),b:f0(bl),x:xt}),o:o.o.map(function(x){return x+' kg'}),a:o.a,x:xpf(XQ.w,{z:f0(z),b:f0(bl),r:f0(z+bl),x:xt,a:f0(z+bl-xt)})});
+ var ta=rnd(44,49)*10,w=rnd(4,14)*10;o=OPS_OPTS((ta-w)+' kt',[(ta+w)+' kt',ta+' kt',(ta-2*w)+' kt']);out.push({q:msg('q5',{t:ta,w:w}),o:o.o,a:o.a,x:xpf(XQ.g,{t:ta,w:w,a:ta-w})});
  return shuf(out)}
 OPS_MODS.plan={label:L3('① 飛行計画・燃料','① 비행계획·연료','① Flight plan & fuel'),render:render};
 })();

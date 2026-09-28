@@ -130,7 +130,9 @@ td.c{text-align:center}
 .opt:hover{border-color:var(--sky)}
 .opt.right{background:var(--go);color:#fff}
 .opt.wrong{background:var(--no);color:#fff}
-.exp{margin:12px 0 0;font-size:15px;color:var(--muted);display:none}
+.exp{margin:12px 0 0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(47,143,224,.07);font-size:15px;line-height:1.75;color:var(--ink);display:none}
+.exa{font-weight:700;margin-bottom:6px}
+.exl{display:block;font-size:12.5px;color:var(--muted);letter-spacing:.04em;margin-bottom:2px}
 .q.done .exp{display:block}
 .next{margin-top:56px;padding:18px 20px;border-radius:18px;background:var(--sky-t);color:var(--sky-d);font-weight:700;display:flex;gap:14px;align-items:center;font-size:15px}
 footer{max-width:780px;margin:0 auto;padding:0 20px 40px;font-size:13px;color:var(--muted)}
