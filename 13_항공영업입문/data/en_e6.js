@@ -33,7 +33,7 @@ sections:[
 ["Advertising, parking, meeting rooms","Slots × time","Pricing by time and day"]]},
 {t:"point",x:"Any business with fixed capacity, perishable inventory and fluctuating demand can use RM thinking. Lesson 7-8 shows how to apply it beyond aviation and what to check when evaluating a business or investment."}]}],
 voice:"",
-terms:[["Revenue Management (RM)","レベニューマネジメント（収益管理）","레비뉴 매니지먼트(수익관리)"],["Yield Management","イールドマネジメント","일드 매니지먼트"],["Marginal Cost","限界費用","한계비용"],["Perishable Inventory","在庫が消える商品","소멸성 재고"],["Capacity","容量","용량"]],
+terms:[["Revenue Management (RM)","Revenue Management（収益管理）","Revenue Management(수익관리)"],["Yield Management","イールドマネジメント","일드 매니지먼트"],["Marginal Cost","限界費用","한계비용"],["Perishable Inventory","在庫が消える商品","소멸성 재고"],["Capacity","容量","용량"]],
 quiz:[{q:"Which is NOT a condition that favours RM?",opts:["Fixed capacity","Inventory can be carried over to the next day","Fluctuating demand","Customers differ in willingness to pay"],a:1,exp:"Inventory must be perishable."},
 {q:"What benefit did American Airlines’ developers report in 1992?",opts:["US$100 million a year","US$1.4 billion over three years","US$100 billion over ten years","None"],a:1,exp:"Reported in Interfaces."},
 {q:"Which best describes RM?",opts:["Only raising prices","Protecting seats for high-paying customers while still selling seats that would go empty","Selling everything at one price","An advertising technique"],a:1,exp:"It does both at once."}],

@@ -1,4 +1,4 @@
-/* 航空・空港の面接対策 — English version (2-2 to 2-5) */
+/* 航空業界の面接対策 — English version (2-2 to 2-5) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("2-2",{title:"Thirty Common Questions",hl:"common questions",subtitle:"Understand why the question is asked, and the shape of the answer follows",
 lead:["Here are the questions most often asked in airport ground staff interviews, thirty of them in six themes. What matters is not memorising model answers but understanding what the interviewer wants to find out with each question — its intent — and answering from your own experience.",

@@ -1,4 +1,4 @@
-/* 航空・空港の面接対策 — English version (Part 1 + 2-1) */
+/* 航空業界の面接対策 — English version (Part 1 + 2-1) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("1-1",{title:"What the Interviewer Is Looking For",hl:"the interviewer’s view",subtitle:"What airport work really needs is the ability to keep the rules and still be kind to people",
 lead:["In an airport ground staff interview, the interviewer is not judging how smoothly you talk. They are asking whether you can be put in front of passengers, whether you will stay calm on a disrupted day, and whether you will last as part of the team.",
