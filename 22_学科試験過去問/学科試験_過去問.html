@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>航空従事者学科試験 過去問題 ― 運航管理者</title>
+<meta name="description" content="国土交通省が公開した航空従事者学科試験の過去問題と例題（2026年6月）を、スマートフォンで1問ずつ解ける問題集。運航管理者の6科目・1,210問。解説はこのサイトのオリジナル。">
+<style>
+:root{--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--acc:#2F8FE0;--acc-d:#1d5fa0;--ok:#1F8A5B;--ng:#D0453E;--hl:#FFE08A}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;line-height:1.75}
+.wrap{max-width:760px;margin:0 auto;padding:18px 14px 90px}
+header.top{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:20px;padding:20px 20px 18px}
+header.top h1{font-size:clamp(20px,4.6vw,28px);margin:2px 0 6px;line-height:1.35}
+header.top p{margin:0;font-size:14px;opacity:.95}
+.kick{font-size:12px;font-weight:700;opacity:.9}
+.src{font-size:12px;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:12px 0}
+.src a{color:var(--acc-d)}
+h2{font-size:17px;margin:22px 0 8px}
+.lic{display:flex;flex-wrap:wrap;gap:8px}
+.lic span{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--sub)}
+.lic span.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+.sets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.sets button,.subs button,.modes button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:10px 12px;text-align:left;cursor:pointer;min-height:48px}
+.sets button.on,.subs button.on,.modes button.on{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset;background:#EAF4FE}
+@media (prefers-color-scheme:dark){.sets button.on,.subs button.on,.modes button.on{background:#12324f}}
+.sets button b{display:block;font-size:14px}
+.sets button small,.subs button small{display:block;font-size:12px;color:var(--sub)}
+.sets .new{display:inline-block;font-size:10px;font-weight:700;background:#D0506A;color:#fff;border-radius:999px;padding:0 7px;margin-left:4px;vertical-align:1px}
+.subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.modes button b{display:block;font-size:14px}.modes button small{display:block;font-size:12px;color:var(--sub)}
+.start{display:block;width:100%;margin:18px 0 6px;padding:15px;border:0;border-radius:16px;background:var(--acc-d);color:#fff;font:700 17px inherit;font-family:inherit;cursor:pointer}
+.start:disabled{opacity:.45}
+.note{font-size:12px;color:var(--sub)}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.stats div{border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:13px}
+.stats b{font-size:18px}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:var(--ok)}
+/* 問題 */
+.qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2;border-bottom:1px solid var(--line)}
+.qhead .back{font:inherit;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:4px 10px;cursor:pointer;color:var(--ink)}
+.qhead .pos{font-weight:700}
+.qhead .tag{font-size:12px;border-radius:999px;padding:1px 9px;background:#EAF4FE;color:var(--acc-d)}
+@media (prefers-color-scheme:dark){.qhead .tag{background:#12324f;color:#9fcdf7}}
+.qhead .sc{margin-left:auto;font-size:13px;color:var(--sub)}
+.prog{height:4px;background:var(--line);border-radius:2px;margin:6px 0 12px;overflow:hidden}.prog i{display:block;height:100%;background:var(--acc)}
+.qtext{white-space:pre-wrap;font-size:16px;margin:8px 0 12px}
+.figs img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin:6px 0;background:#fff}
+.figs summary{cursor:pointer;color:var(--acc-d);font-size:14px;margin:6px 0}
+.opts{display:grid;gap:8px}
+.opts button{font:inherit;text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start;min-height:52px}
+.opts button .k{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--sub);display:grid;place-items:center;font-size:13px;font-weight:700}
+.opts button:disabled{cursor:default}
+.opts button.ok{border-color:var(--ok);background:#E9F7EF}.opts button.ok .k{background:var(--ok);border-color:var(--ok);color:#fff}
+.opts button.ng{border-color:var(--ng);background:#FDECEB}.opts button.ng .k{background:var(--ng);border-color:var(--ng);color:#fff}
+@media (prefers-color-scheme:dark){.opts button.ok{background:#12392a}.opts button.ng{background:#3d1a18}}
+.res{margin:14px 0;border-radius:14px;padding:12px 14px;border:1px solid var(--line);background:var(--card)}
+.res .v{font-weight:800;font-size:17px}.res .v.ok{color:var(--ok)}.res .v.ng{color:var(--ng)}
+.res .exp{white-space:pre-wrap;margin-top:6px;font-size:15px}
+.res .pend{color:var(--sub);font-size:14px;margin-top:6px}
+.res .orig{font-size:12px;margin-top:8px}.res .orig a{color:var(--acc-d)}
+.navq{display:flex;gap:8px;margin-top:10px}
+.navq button{flex:1;font:700 16px inherit;font-family:inherit;border-radius:14px;padding:13px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.navq button.pri{background:var(--acc-d);border-color:var(--acc-d);color:#fff}
+.mark{font:inherit;font-size:13px;border:1px solid var(--line);background:transparent;color:var(--sub);border-radius:999px;padding:3px 10px;cursor:pointer}
+.mark.on{background:var(--hl);color:#3A2A00;border-color:var(--hl)}
+/* 結果 */
+.score{text-align:center;padding:18px;border:2px solid var(--line);border-radius:18px;margin:14px 0}
+.score .big{font-size:44px;font-weight:900;line-height:1.1}
+.score .pass{display:inline-block;margin-top:6px;border-radius:999px;padding:2px 14px;font-weight:800;color:#fff}
+.score .pass.y{background:var(--ok)}.score .pass.n{background:var(--ng)}
+.rlist{display:grid;gap:6px}
+.rlist button{font:inherit;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 12px;cursor:pointer;display:flex;gap:8px}
+.rlist .m{font-weight:800;width:1.4em}.rlist .m.ok{color:var(--ok)}.rlist .m.ng{color:var(--ng)}
+.rlist .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+footer{margin-top:28px;font-size:12px;color:var(--sub)}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="kako"></script>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>window.KAKO={sets:[],q:{},e:{}};</script>
+<script src="data/ops_EX2606.js"></script>
+<script src="data/ops_R0507.js"></script>
+<script src="data/ops_R0503.js"></script>
+<script src="data/ops_R0407.js"></script>
+<script src="data/ops_R0403.js"></script>
+<script src="data/ops_R0307.js"></script>
+<script src="data/ops_R0303.js"></script>
+<script src="data/ops_R0207.js"></script>
+<script src="data/ops_R0203.js"></script>
+<script src="data/ops_R0107.js"></script>
+<script src="data/ops_H3103.js"></script>
+<script src="data/exp_EX2606.js"></script>
+<script>
+/* 航空従事者学科試験 過去問題（2026-09）
+   ・問題と正答：国土交通省「航空従事者等学科試験解答及び過去問」を読み取り・整形したもの（data/ops_*.js）
+   ・解説：このサイトのオリジナル（data/exp_*.js）。KAKO.e["試験期-科目-問"]
+   ・解いた記録はこの端末（localStorage）にだけ保存する。会員登録ができたら会員の記録に移す予定 */
+(function(){
+var K=window.KAKO,KEY='acn-kako-v1';
+var SUB=[['P42','空中航法',20],['P43','航空法規等',20],['P44','航空気象',20],['P45','航空工学',20],['P46','航空通信',20],['P47','施設',10]];
+var SUBN={};SUB.forEach(function(s){SUBN[s[0]]=s[1]});
+var LIC=['運航管理者','航空通信士','事業用操縦士','自家用操縦士','定期運送用操縦士','計器飛行証明','一等航空整備士','二等航空整備士'];
+var ST={v:1,r:{},mark:{}};try{var o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.v===1)ST=o}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
+var $=function(s){return document.querySelector(s)},app=$('#app');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function id(s,q){return s+'-'+q.c+'-'+q.n}
+function setName(s){for(var i=0;i<K.sets.length;i++)if(K.sets[i].id===s)return K.sets[i].name;return s}
+function setPdf(s){for(var i=0;i<K.sets.length;i++)if(K.sets[i].id===s)return K.sets[i].pdf;return ''}
+var sel={set:'EX2606',subs:{},mode:'all'};SUB.forEach(function(s){sel.subs[s[0]]=true});
+var run=null;
+/* ---------- ホーム ---------- */
+function home(){
+ var h='<header class="top"><div class="kick">航空従事者学科試験</div><h1>過去問題と例題 ― 運航管理者</h1><p>国土交通省が公開した問題を、1問ずつ解いて、正答と解説をすぐに確かめられます。</p></header>';
+ h+='<p class="src">問題と正答の出典：国土交通省「<a href="https://www.mlit.go.jp/koku/koku_fr10_000025.html" target="_blank" rel="noopener">航空従事者等学科試験解答及び過去問</a>」。このサイトが読み取り、改行や記号を整えて作成しています（原本の誤り・訂正もそのまま反映）。解説はこのサイトが作成したもので、国の見解ではありません。法令は改正されるため、解説では2026年9月時点の内容も示します。</p>';
+ h+='<h2>資格</h2><div class="lic">'+LIC.map(function(l,i){return '<span class="'+(i?'':'on')+'">'+esc(l)+(i?'（準備中）':'')+'</span>'}).join('')+'</div>';
+ h+='<h2>問題の種類</h2><div class="sets">'+K.sets.map(function(s){var d=doneOf(s.id);return '<button data-set="'+s.id+'" class="'+(sel.set===s.id?'on':'')+'"><b>'+esc(s.name)+(s.id==='EX2606'?'<span class="new">最新</span>':'')+'</b><small>'+d.n+' / '+d.t+'問 解答済み'+(d.n?'・正答率 '+Math.round(d.ok/d.n*100)+'%':'')+'</small></button>'}).join('')+'<button data-set="ALL" class="'+(sel.set==='ALL'?'on':'')+'"><b>すべての試験期</b><small>'+allCount()+'問から</small></button></div>';
+ h+='<h2>科目</h2><div class="subs">'+SUB.map(function(s){return '<button data-sub="'+s[0]+'" class="'+(sel.subs[s[0]]?'on':'')+'">'+esc(s[1])+'<small>'+s[0]+'</small></button>'}).join('')+'</div>';
+ h+='<h2>解き方</h2><div class="modes">'+[['all','順番に全問','本番と同じ順・合否の判定つき'],['rand10','ランダム10問','すきま時間に'],['wrong','間違えた問題','最後に間違えた問題だけ'],['mark','あとで見る','印を付けた問題']].map(function(m){return '<button data-mode="'+m[0]+'" class="'+(sel.mode===m[0]?'on':'')+'"><b>'+m[1]+'</b><small>'+m[2]+'</small></button>'}).join('')+'</div>';
+ var pool=buildPool();
+ h+='<button class="start" id="go"'+(pool.length?'':' disabled')+'>'+(pool.length?pool.length+'問をはじめる':'該当する問題がありません')+'</button><p class="note">記録はこの端末に保存されます。会員登録の準備ができたら、会員の記録に引き継げるようにする予定です。</p>';
+ h+='<h2>科目別の正答率（すべての記録）</h2><div class="stats">'+SUB.map(function(s){var a=0,ok=0;for(var k in ST.r){if(k.split('-')[1]===s[0]){a++;if(ST.r[k][0])ok++}}var p=a?Math.round(ok/a*100):0;return '<div>'+esc(s[1])+'<br><b>'+(a?p+'%':'—')+'</b> <small>'+a+'問</small><div class="bar"><i style="width:'+p+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<footer>© 2026 航空キャリアノート　問題・正答：国土交通省（加工して作成）／解説：航空キャリアノート　<a href="../8_사이트/index.html">サイトのトップへ</a>　<button class="mark" id="reset">記録を消す</button></footer>';
+ app.innerHTML=h;window.scrollTo(0,0);
+ Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home()}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-sub]'),function(b){b.onclick=function(){sel.subs[b.dataset.sub]=!sel.subs[b.dataset.sub];if(!Object.keys(sel.subs).some(function(k){return sel.subs[k]}))sel.subs[b.dataset.sub]=true;home()}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){sel.mode=b.dataset.mode;home()}});
+ $('#go').onclick=function(){start(buildPool())};
+ $('#reset').onclick=function(){if(confirm('この端末に保存した解答の記録と印をすべて消します。よろしいですか？')){ST={v:1,r:{},mark:{}};save();home()}};
+}
+function allCount(){var n=0;for(var k in K.q)n+=K.q[k].length;return n}
+function doneOf(s){var t=K.q[s].length,n=0,ok=0;K.q[s].forEach(function(q){var r=ST.r[id(s,q)];if(r){n++;if(r[0])ok++}});return {t:t,n:n,ok:ok}}
+function buildPool(){
+ var sets=sel.set==='ALL'?K.sets.map(function(s){return s.id}):[sel.set],p=[];
+ sets.forEach(function(s){K.q[s].forEach(function(q){if(sel.subs[q.c])p.push({s:s,q:q})})});
+ if(sel.mode==='wrong')p=p.filter(function(x){var r=ST.r[id(x.s,x.q)];return r&&!r[0]});
+ if(sel.mode==='mark')p=p.filter(function(x){return ST.mark[id(x.s,x.q)]});
+ if(sel.mode==='rand10'){for(var i=p.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=p[i];p[i]=p[j];p[j]=t}p=p.slice(0,10)}
+ return p}
+/* ---------- 出題 ---------- */
+function start(pool){run={pool:pool,i:0,ans:[]};show()}
+function show(){
+ var x=run.pool[run.i],q=x.q,k=id(x.s,q),done=run.ans[run.i];
+ var ok=run.ans.filter(function(a){return a&&a.ok}).length,cnt=run.ans.filter(Boolean).length;
+ var h='<div class="qhead"><button class="back" id="bk">← 戻る</button><span class="pos">'+(run.i+1)+' / '+run.pool.length+'</span><span class="tag">'+esc(setName(x.s))+'</span><span class="tag">'+esc(SUBN[q.c])+' 問'+q.n+'</span><span class="sc">'+ok+' / '+cnt+' 正解</span></div>';
+ h+='<div class="prog"><i style="width:'+Math.round((run.i+1)/run.pool.length*100)+'%"></i></div>';
+ h+='<div class="qtext">'+esc(q.q)+'</div>';
+ if(q.img&&q.img.length){h+='<details class="figs"'+(done?'':' open')+'><summary>原本の図・資料（'+q.img.length+'ページ）</summary>'+q.img.map(function(f){return '<img loading="lazy" src="img/'+esc(f)+'" alt="原本の図">'}).join('')+'<p class="note">画像が表示されないときは <a href="'+esc(setPdf(x.s))+'#page='+p0(q)+'" target="_blank" rel="noopener">原本のPDF</a> を開いてください。</p></details>'}
+ h+='<div class="opts">'+q.o.map(function(o,i){var c='';if(done){if(i+1===q.a)c='ok';else if(i+1===done.pick)c='ng'}return '<button data-i="'+(i+1)+'" class="'+c+'"'+(done?' disabled':'')+'><span class="k">'+(i+1)+'</span><span>'+esc(o)+'</span></button>'}).join('')+'</div>';
+ if(done){
+  var e=K.e[k];
+  h+='<div class="res"><div class="v '+(done.ok?'ok':'ng')+'">'+(done.ok?'正解':'不正解')+'　正答は（'+q.a+'）</div>'+(q.fix?'<div class="pend">※ 国土交通省が試験後に正答を訂正した問題です（訂正後の正答で表示）。</div>':'')+(e?'<div class="exp">'+esc(e)+'</div>':'<div class="pend">この問題の解説は準備中です。</div>')+'<div class="orig"><button class="mark'+(ST.mark[k]?' on':'')+'" id="mk">'+(ST.mark[k]?'★ あとで見る':'☆ あとで見る')+'</button>　原本：<a href="'+esc(setPdf(x.s))+'#page='+p0(q)+'" target="_blank" rel="noopener">'+esc(setName(x.s))+' '+(q.pg?q.pg+'ページ':'')+'</a></div></div>';
+  h+='<div class="navq">'+(run.i>0?'<button id="pv">前へ</button>':'')+'<button class="pri" id="nx">'+(run.i+1<run.pool.length?'次の問題':'結果を見る')+'</button></div>';
+ }
+ app.innerHTML=h;
+ $('#bk').onclick=function(){if(!cnt||confirm('ホームに戻ります。ここまでの解答は記録に残っています。'))home()};
+ if(!done)Array.prototype.forEach.call(app.querySelectorAll('.opts button'),function(b){b.onclick=function(){var pick=+b.dataset.i,okk=pick===q.a;run.ans[run.i]={pick:pick,ok:okk};ST.r[k]=[okk?1:0,Date.now()];save();show();var r=app.querySelector('.res');if(r)r.scrollIntoView({behavior:'smooth',block:'nearest'})}});
+ else{$('#nx').onclick=function(){if(run.i+1<run.pool.length){run.i++;show();window.scrollTo(0,0)}else result()};var pv=$('#pv');if(pv)pv.onclick=function(){run.i--;show();window.scrollTo(0,0)};$('#mk').onclick=function(){if(ST.mark[k])delete ST.mark[k];else ST.mark[k]=1;save();show()}}
+}
+function p0(q){if(q.img&&q.img.length){var m=/_p?(\d+)\.webp$/.exec(q.img[0]);if(m)return m[1]}return q.pg||1}
+/* ---------- 結果 ---------- */
+function result(){
+ var n=run.pool.length,ok=run.ans.filter(function(a){return a&&a.ok}).length,h='';
+ h+='<div class="qhead"><button class="back" id="bk">← ホーム</button><span class="pos">結果</span></div>';
+ /* 科目ごとの得点（「順番に全問」で1科目を通して解いたときは、配点で合否を判定：P47は1問10点、ほかは1問5点、70点以上で合格） */
+ var by={};run.pool.forEach(function(x,i){var c=x.q.c;by[c]=by[c]||{n:0,ok:0};by[c].n++;if(run.ans[i]&&run.ans[i].ok)by[c].ok++});
+ h+='<div class="score"><div class="big">'+ok+' / '+n+'</div><div>正答率 '+Math.round(ok/n*100)+'%</div></div>';
+ h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],full=(c==='P47'?10:20),pt=Math.round(b.ok/b.n*100),judge=sel.mode==='all'&&b.n===full;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'点</b> <small>'+b.ok+'/'+b.n+'</small>'+(judge?'<br><span class="pass '+(pt>=70?'y':'n')+'" style="display:inline-block;border-radius:999px;padding:0 10px;color:#fff;font-size:12px;background:'+(pt>=70?'var(--ok)':'var(--ng)')+'">'+(pt>=70?'合格ライン':'不合格ライン')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<p class="note">合否の目安：各科目100点満点の70点以上（施設は1問10点、ほかの科目は1問5点）。科目の全問を順番に解いたときだけ表示します。</p>';
+ h+='<h2>ふり返り</h2><div class="rlist">'+run.pool.map(function(x,i){var a=run.ans[i];return '<button data-i="'+i+'"><span class="m '+(a?(a.ok?'ok':'ng'):'')+'">'+(a?(a.ok?'○':'×'):'－')+'</span><span class="t">'+esc(SUBN[x.q.c])+' 問'+x.q.n+'　'+esc(x.q.q.split('\n')[0])+'</span></button>'}).join('')+'</div>';
+ h+='<button class="start" id="again">間違えた問題だけもう一度</button>';
+ app.innerHTML=h;window.scrollTo(0,0);
+ $('#bk').onclick=home;
+ Array.prototype.forEach.call(app.querySelectorAll('.rlist button'),function(b){b.onclick=function(){run.i=+b.dataset.i;show();window.scrollTo(0,0)}});
+ var wr=run.pool.filter(function(x,i){return !(run.ans[i]&&run.ans[i].ok)});
+ var ag=$('#again');if(!wr.length){ag.disabled=true;ag.textContent='全問正解です'}else ag.onclick=function(){start(wr)};
+}
+home();
+})();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>
