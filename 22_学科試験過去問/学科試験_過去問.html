@@ -80,9 +80,11 @@ h2{font-size:17px;margin:22px 0 8px}
 footer{margin-top:28px;font-size:12px;color:var(--sub)}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="kako"></script>
+<script src="../8_사이트/assets/member_config.js"></script>
+<script src="../1_지상직여객운송입문/assets/member.js"></script>
 </head>
 <body>
-<div class="wrap" id="app"></div>
+<div class="wrap"><div id="app"></div></div>
 <script>window.KAKO={sets:[],q:{},e:{}};</script>
 <script src="data/ops_EX2606.js"></script>
 <script src="data/ops_R0507.js"></script>
@@ -105,6 +107,7 @@ footer{margin-top:28px;font-size:12px;color:var(--sub)}
 var K=window.KAKO,KEY='acn-kako-v1';
 var SUB=[['P42','空中航法',20],['P43','航空法規等',20],['P44','航空気象',20],['P45','航空工学',20],['P46','航空通信',20],['P47','施設',10]];
 var SUBN={};SUB.forEach(function(s){SUBN[s[0]]=s[1]});
+var MB={ja:{need:'過去問題を解くには、無料の会員登録（ログイン）が必要です。記録は会員ごとに保存され、スマートフォンとPCのどちらからでも続きから解けます。',btn:'ログインして始める',sync:'会員の記録と同期しました',local:'記録はこの端末に保存されます。会員登録の準備ができたら、会員の記録に引き継げるようにする予定です。'},ko:{need:'과거문제를 풀려면 무료 회원가입(로그인)이 필요합니다. 기록은 회원별로 저장되어 휴대폰과 PC 어디서든 이어서 풀 수 있습니다.',btn:'로그인하고 시작하기',sync:'회원 기록과 동기화했습니다',local:'기록은 이 기기에 저장됩니다. 회원 기능이 준비되면 회원 기록으로 옮길 수 있게 할 예정입니다.'},en:{need:'A free account (log in) is needed to practise the past papers. Your records are kept per member, so you can continue on your phone or PC.',btn:'Log in to start',sync:'Synced with your member records',local:'Records are saved on this device. Once member accounts are ready, you will be able to move them to your account.'}};
 var LIC=['運航管理者','航空通信士','事業用操縦士','自家用操縦士','定期運送用操縦士','計器飛行証明','一等航空整備士','二等航空整備士'];
 var ST={v:1,r:{},mark:{}};try{var o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.v===1)ST=o}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
@@ -125,14 +128,16 @@ function home(){
  h+='<h2>科目</h2><div class="subs">'+SUB.map(function(s){return '<button data-sub="'+s[0]+'" class="'+(sel.subs[s[0]]?'on':'')+'">'+esc(s[1])+'<small>'+s[0]+'</small></button>'}).join('')+'</div>';
  h+='<h2>解き方</h2><div class="modes">'+[['all','順番に全問','本番と同じ順・合否の判定つき'],['rand10','ランダム10問','すきま時間に'],['wrong','間違えた問題','最後に間違えた問題だけ'],['mark','あとで見る','印を付けた問題']].map(function(m){return '<button data-mode="'+m[0]+'" class="'+(sel.mode===m[0]?'on':'')+'"><b>'+m[1]+'</b><small>'+m[2]+'</small></button>'}).join('')+'</div>';
  var pool=buildPool();
- h+='<button class="start" id="go"'+(pool.length?'':' disabled')+'>'+(pool.length?pool.length+'問をはじめる':'該当する問題がありません')+'</button><p class="note">記録はこの端末に保存されます。会員登録の準備ができたら、会員の記録に引き継げるようにする予定です。</p>';
+ var M=window.Member,mb=MB[(M&&M.lang())||'ja'],gate=M&&M.enabled()&&!M.user();
+ if(gate)h+='<p class="src jp">'+esc(mb.need)+'</p><button class="start" id="go">'+esc(mb.btn)+'</button>';
+ else h+='<button class="start" id="go"'+(pool.length?'':' disabled')+'>'+(pool.length?pool.length+'問をはじめる':'該当する問題がありません')+'</button><p class="note">'+esc(M&&M.enabled()?(SYNCED?mb.sync:''):mb.local)+'</p>';
  h+='<h2>科目別の正答率（すべての記録）</h2><div class="stats">'+SUB.map(function(s){var a=0,ok=0;for(var k in ST.r){if(k.split('-')[1]===s[0]){a++;if(ST.r[k][0])ok++}}var p=a?Math.round(ok/a*100):0;return '<div>'+esc(s[1])+'<br><b>'+(a?p+'%':'—')+'</b> <small>'+a+'問</small><div class="bar"><i style="width:'+p+'%"></i></div></div>'}).join('')+'</div>';
  h+='<footer>© 2026 航空キャリアノート　問題・正答：国土交通省（加工して作成）／解説：航空キャリアノート　<a href="../8_사이트/index.html">サイトのトップへ</a>　<button class="mark" id="reset">記録を消す</button></footer>';
  app.innerHTML=h;window.scrollTo(0,0);
  Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home()}});
  Array.prototype.forEach.call(app.querySelectorAll('[data-sub]'),function(b){b.onclick=function(){sel.subs[b.dataset.sub]=!sel.subs[b.dataset.sub];if(!Object.keys(sel.subs).some(function(k){return sel.subs[k]}))sel.subs[b.dataset.sub]=true;home()}});
  Array.prototype.forEach.call(app.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){sel.mode=b.dataset.mode;home()}});
- $('#go').onclick=function(){start(buildPool())};
+ $('#go').onclick=function(){if(gate){M.login();return}start(buildPool())};
  $('#reset').onclick=function(){if(confirm('この端末に保存した解答の記録と印をすべて消します。よろしいですか？')){ST={v:1,r:{},mark:{}};save();home()}};
 }
 function allCount(){var n=0;for(var k in K.q)n+=K.q[k].length;return n}
@@ -161,8 +166,8 @@ function show(){
  }
  app.innerHTML=h;
  $('#bk').onclick=function(){if(!cnt||confirm('ホームに戻ります。ここまでの解答は記録に残っています。'))home()};
- if(!done)Array.prototype.forEach.call(app.querySelectorAll('.opts button'),function(b){b.onclick=function(){var pick=+b.dataset.i,okk=pick===q.a;run.ans[run.i]={pick:pick,ok:okk};ST.r[k]=[okk?1:0,Date.now()];save();show();var r=app.querySelector('.res');if(r)r.scrollIntoView({behavior:'smooth',block:'nearest'})}});
- else{$('#nx').onclick=function(){if(run.i+1<run.pool.length){run.i++;show();window.scrollTo(0,0)}else result()};var pv=$('#pv');if(pv)pv.onclick=function(){run.i--;show();window.scrollTo(0,0)};$('#mk').onclick=function(){if(ST.mark[k])delete ST.mark[k];else ST.mark[k]=1;save();show()}}
+ if(!done)Array.prototype.forEach.call(app.querySelectorAll('.opts button'),function(b){b.onclick=function(){var pick=+b.dataset.i,okk=pick===q.a;run.ans[run.i]={pick:pick,ok:okk};ST.r[k]=[okk?1:0,Date.now()];save();push(k);show();var r=app.querySelector('.res');if(r)r.scrollIntoView({behavior:'smooth',block:'nearest'})}});
+ else{$('#nx').onclick=function(){if(run.i+1<run.pool.length){run.i++;show();window.scrollTo(0,0)}else result()};var pv=$('#pv');if(pv)pv.onclick=function(){run.i--;show();window.scrollTo(0,0)};$('#mk').onclick=function(){if(ST.mark[k])delete ST.mark[k];else ST.mark[k]=1;save();push(k);show()}}
 }
 function p0(q){if(q.img&&q.img.length){var m=/_p?(\d+)\.webp$/.exec(q.img[0]);if(m)return m[1]}return q.pg||1}
 /* ---------- 結果 ---------- */
@@ -182,6 +187,16 @@ function result(){
  var wr=run.pool.filter(function(x,i){return !(run.ans[i]&&run.ans[i].ok)});
  var ag=$('#again');if(!wr.length){ag.disabled=true;ag.textContent='全問正解です'}else ag.onclick=function(){start(wr)};
 }
+/* ---------- 会員の記録との同期 ---------- */
+var SYNCED=false;
+function push(k){var M=window.Member;if(!M||!M.user())return;var r=ST.r[k];M.saveRecords([{item_id:k,ok:!!(r&&r[0]),marked:!!ST.mark[k],answered_at:new Date(r?r[1]:Date.now()).toISOString()}]).catch(function(){})}
+function syncAll(){var M=window.Member;if(!M||!M.user())return;
+ M.loadRecords().then(function(rows){var up=[];
+  rows.forEach(function(x){var t=Date.parse(x.answered_at)||0,loc=ST.r[x.item_id];if(!loc||loc[1]<t){ST.r[x.item_id]=[x.ok?1:0,t];if(x.marked)ST.mark[x.item_id]=1;else delete ST.mark[x.item_id]}});
+  var have={};rows.forEach(function(x){have[x.item_id]=Date.parse(x.answered_at)||0});
+  for(var k in ST.r){if(!(k in have)||have[k]<ST.r[k][1])up.push({item_id:k,ok:!!ST.r[k][0],marked:!!ST.mark[k],answered_at:new Date(ST.r[k][1]).toISOString()})}
+  save();SYNCED=true;if(!run)home();return M.saveRecords(up)}).catch(function(){})}
+if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home()});
 home();
 })();
 </script>

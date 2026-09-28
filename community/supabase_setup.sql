@@ -161,3 +161,65 @@ create trigger reports_set_reporter before insert on public.reports for each row
 -- 3. 下の行の 'ここにUID' を置き換えて、先頭の「-- 」を消して実行
 -- ============================================================
 -- insert into public.admins (user_id) values ('ここにUID');
+
+-- ============================================================
+-- 会員システム（2026-09 追加）：プロフィールの言語、学習の記録、会員ごとの保存データ、退会
+-- 掲示板と同じプロジェクトで使う。何度実行しても壊れない
+-- ============================================================
+
+-- プロフィールに言語を足す
+alter table public.profiles add column if not exists lang text not null default 'ja' check (lang in ('ja','ko','en'));
+
+-- 学習の記録（過去問題など）：1問1行。item_id は "試験期-科目-問番号"（例 EX2606-P42-1）。資格が増えても同じ表を使う
+create table if not exists public.study_records (
+  user_id uuid not null references auth.users(id) on delete cascade default auth.uid(),
+  item_id text not null check (char_length(item_id) between 3 and 60),
+  ok boolean not null default false,
+  marked boolean not null default false,
+  answered_at timestamptz not null default now(),
+  primary key (user_id, item_id)
+);
+create index if not exists study_records_user on public.study_records (user_id, answered_at desc);
+
+-- 会員ごとの保存データ（ストーリー設計シートなど）：kind ごとに JSON を1つ
+create table if not exists public.user_docs (
+  user_id uuid not null references auth.users(id) on delete cascade default auth.uid(),
+  kind text not null check (char_length(kind) between 1 and 40),
+  data jsonb not null default '{}'::jsonb check (pg_column_size(data) < 200000),
+  updated_at timestamptz not null default now(),
+  primary key (user_id, kind)
+);
+
+alter table public.study_records enable row level security;
+alter table public.user_docs     enable row level security;
+
+-- 本人だけが読み書きできる
+drop policy if exists "study own select" on public.study_records;
+create policy "study own select" on public.study_records for select using (user_id = auth.uid());
+drop policy if exists "study own insert" on public.study_records;
+create policy "study own insert" on public.study_records for insert with check (user_id = auth.uid());
+drop policy if exists "study own update" on public.study_records;
+create policy "study own update" on public.study_records for update using (user_id = auth.uid()) with check (user_id = auth.uid());
+drop policy if exists "study own delete" on public.study_records;
+create policy "study own delete" on public.study_records for delete using (user_id = auth.uid());
+
+drop policy if exists "docs own select" on public.user_docs;
+create policy "docs own select" on public.user_docs for select using (user_id = auth.uid());
+drop policy if exists "docs own insert" on public.user_docs;
+create policy "docs own insert" on public.user_docs for insert with check (user_id = auth.uid());
+drop policy if exists "docs own update" on public.user_docs;
+create policy "docs own update" on public.user_docs for update using (user_id = auth.uid()) with check (user_id = auth.uid());
+drop policy if exists "docs own delete" on public.user_docs;
+create policy "docs own delete" on public.user_docs for delete using (user_id = auth.uid());
+
+-- 退会：本人が自分のアカウントを消す（投稿・記録は on delete cascade で一緒に消える）
+create or replace function public.delete_me() returns void
+language plpgsql security definer set search_path = public, auth as
+$$
+begin
+  if auth.uid() is null then raise exception 'not logged in'; end if;
+  delete from auth.users where id = auth.uid();
+end
+$$;
+revoke all on function public.delete_me() from public;
+grant execute on function public.delete_me() to authenticated;

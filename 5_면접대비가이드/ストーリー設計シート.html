@@ -43,6 +43,8 @@ ul.chk li label{display:flex;gap:10px;align-items:flex-start;font-weight:400;mar
 a{color:#4b3fc4}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="story"></script>
+<script src="../8_사이트/assets/member_config.js"></script>
+<script src="../1_지상직여객운송입문/assets/member.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -137,7 +139,7 @@ function $(i){return document.getElementById(i)}
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(ch){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]})}
 function jo(v,a,b){v=c(v);var ch=v.charCodeAt(v.length-1);if(ch<0xAC00||ch>0xD7A3)return v+a+'('+b+')';return v+((ch-0xAC00)%28?a:b)}
 function c(v){v=(v||'').trim().replace(/[。．.]+$/,'');return v||T[L].fill}
-var tm=null;function save(){try{localStorage.setItem(KEY,JSON.stringify({d:D,c:CK}));$('sv').textContent=T[L].saved+' '+new Date().toLocaleTimeString(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit'})}catch(e){}}
+var tm=null,tm2=null;function save(){try{localStorage.setItem(KEY,JSON.stringify({d:D,c:CK,t:Date.now()}));if(window.Member&&window.Member.user()){clearTimeout(tm2);tm2=setTimeout(function(){window.Member.saveDoc('story',{d:D,c:CK,t:Date.now()}).catch(function(){})},1200)}$('sv').textContent=T[L].saved+' '+new Date().toLocaleTimeString(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit'})}catch(e){}}
 function field(id,lab,hint,ta){var v=D[id]||'';return '<label for="f_'+id+'">'+esc(lab)+(hint?'<small>'+esc(hint)+'</small>':'')+'</label>'+(ta?'<textarea id="f_'+id+'" data-k="'+id+'" rows="'+(ta===true?2:ta)+'">'+esc(v)+'</textarea>':'<input type="text" id="f_'+id+'" data-k="'+id+'" value="'+esc(v)+'">')}
 function step(n,h,body){return '<section class="step"><h2><span class="n">'+n+'</span>'+esc(h[0])+'</h2><p class="hint">'+esc(h[1])+'</p>'+body+'</section>'}
 function render(){var t=T[L],f=t.f;document.documentElement.lang=L;document.title=t.ttl+' ― '+t.kick;
@@ -185,6 +187,8 @@ function outs(){var t=T[L],o=t.o;var core=D.core||'';
  h+='<h3 style="font-size:15px;margin:18px 0 6px">'+esc(o.man)+'</h3><ul class="chk">'+t.mc.map(function(x,i){return '<li><label><input type="checkbox" data-c="'+i+'"'+(CK[i]?' checked':'')+'> <span>'+esc(x)+'</span></label></li>'}).join('')+'</ul></section>';
  $('outs').innerHTML=h;
  Array.prototype.forEach.call($('outs').querySelectorAll('[data-c]'),function(el){el.onchange=function(){CK[el.dataset.c]=el.checked;save()}})}
+/* 会員の記録：ログインしていれば、会員に保存した内容の方が新しいときはそれを使う */
+if(window.Member)window.Member.onChange(function(u){if(!u)return;window.Member.loadDoc('story').then(function(doc){if(!doc||!doc.data)return;var lt=0;try{lt=(JSON.parse(localStorage.getItem(KEY)||'{}').t)||0}catch(e){}var st=doc.data.t||Date.parse(doc.updated_at)||0;if(st>lt){D=doc.data.d||{};CK=doc.data.c||{};try{localStorage.setItem(KEY,JSON.stringify({d:D,c:CK,t:st}))}catch(e){}render()}}).catch(function(){})});
 render();
 </script>
 <script src="../1_지상직여객운송입문/assets/nav.js"></script>
