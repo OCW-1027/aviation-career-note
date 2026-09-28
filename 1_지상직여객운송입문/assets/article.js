@@ -45,7 +45,7 @@ function block(b,L){
   case 'table':
     /* 列の中身が短い（どの行も1行ほど）列は中央ぞろえにして、中央ぞろえの見出しと位置を合わせる */
     var shortCol=b.cols.map(function(_,ci){var m=0;b.rows.forEach(function(r){var s=String(r[ci]==null?'':r[ci]),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>m)m=w});return m<=18});
-    return '<div class="scroll tbl"><table><thead><tr>'+b.cols.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(i===0&&b.label!==false?'lb':((b.center||shortCol[i])?'c':''))+'">'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
+    return '<div class="scroll tbl"><table><thead><tr>'+b.cols.map(function(c){var s=String(c),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}return '<th'+(w>8?' class="w"':'')+'>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(i===0&&b.label!==false?(shortCol[0]?'lb':'lb lw'):((b.center||shortCol[i])?'c':''))+'">'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
   case 'ladder':
     return '<div class="ladder">'+b.steps.map(function(s,i){var h=120+i*(b.rise||28);return '<div class="step'+(s.alt?' alt':'')+'" style="min-height:'+h+'px"><span class="n">'+(i+1)+'</span><b>'+esc(s.name)+'</b><small>'+esc(s.sub||'')+'</small></div>'}).join('')+'</div>';
   case 'timeline':
@@ -81,6 +81,11 @@ function render(){
 }
 (function(){if((ST&&ST.updated)||window.LESSON_DATES)return;try{var cs=document.currentScript,b=cs&&cs.src?cs.src.replace(/article\.js(\?.*)?$/,''):'';if(!b)return;var n=0,need=window.UPDATES?1:2,done=function(){if(++n===need)render()};['lesson_dates.js','updates.js'].forEach(function(f){if(f==='updates.js'&&window.UPDATES)return;var el=document.createElement('script');el.src=b+f;el.onload=done;el.onerror=done;document.head.appendChild(el)})}catch(e){}})();
 render();
+/* 画面からはみ出す表に .fit を付ける（article.css で長い1列目・見出しを折り返す）。開いたとき・画面の大きさが変わったとき・再描画のときに確かめ直す */
+(function(){function fit(){Array.prototype.forEach.call(document.querySelectorAll('.tbl'),function(t){t.classList.remove('fit');if(t.scrollWidth>t.clientWidth+2)t.classList.add('fit')})}
+var q=0;function soon(){if(q)return;q=1;setTimeout(function(){q=0;fit()},80)}
+function start(){fit();var m=document.getElementById('main');if(m&&window.MutationObserver)new MutationObserver(soon).observe(m,{childList:true});window.addEventListener('resize',soon);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(soon)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start()})();
 })();
 (function(){var s=document.currentScript&&document.currentScript.src;if(!s)return;var e=document.createElement('script');e.src=new URL('nav.js',s).href;document.head.appendChild(e)})();
 

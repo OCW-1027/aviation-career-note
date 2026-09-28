@@ -75,6 +75,10 @@ th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vert
 thead th{background:var(--sky-t);color:var(--sky-d);font-family:var(--disp);font-weight:700;font-size:14px;white-space:nowrap;text-align:center}
 tbody tr:last-child td{border-bottom:0}
 td.lb{font-weight:700;font-family:var(--disp);text-align:center;vertical-align:middle;background:var(--tint);white-space:nowrap}
+/* 画面からはみ出す表（article.js が .fit を付ける）だけ、長い1列目と長い見出しを折り返して横スクロールをなくす。
+   はみ出さない表はこれまでどおり1行のまま。韓国語・英語は語の途中で切らない */
+.tbl.fit td.lb.lw{white-space:normal;min-width:8em;max-width:18em;overflow-wrap:anywhere}
+.tbl.fit thead th.w{white-space:normal;min-width:4.5em;word-break:keep-all;overflow-wrap:anywhere}
 td.c{text-align:center}
 /* ladder */
 .ladder{display:flex;align-items:flex-end;gap:8px;margin:14px 0 6px;overflow-x:auto;padding-bottom:6px}
