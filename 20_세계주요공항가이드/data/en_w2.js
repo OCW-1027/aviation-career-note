@@ -150,5 +150,5 @@ terms:[["Delhi International Airport Ltd (DIAL)","デリー国際空港（運営
 quiz:[{q:"When did Delhi’s expanded T1 begin full operation?",opts:["2023","15 April 2025","26 October 2025","2030"],a:1,exp:"26 October was the T2 reopening."},
 {q:"When did Noida International Airport (Jewar) open?",opts:["2024","2025","28 March 2026","2030"],a:2,exp:"Phase 1 handles 12 million a year."},
 {q:"Which weather is the main winter concern at Delhi?",opts:["Dense fog","Typhoons","Heavy snow","Sandstorms"],a:0,exp:"Fog in December and January causes delays and cancellations."}],
-next:""});
+next:"3-1 Dubai (DXB)"});
 })(window.ARTS);
