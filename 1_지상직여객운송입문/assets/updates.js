@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-28",c:"13_항공영업입문",k:"7-1",t:"upd",ja:"航空営業の実務 Part 7 Revenue Management（収益管理）：8レッスンの確認問題（24問）の解説を、計算の過程・考え方・ほかの選択肢が違う理由まで書き直し",ko:"항공 영업 실무 Part 7 Revenue Management(수익관리): 8레슨 확인 문제(24문제)의 해설을 계산 과정·사고방식·다른 보기가 틀린 이유까지 다시 씀",en:"Airline Sales Operations Part 7, Revenue Management: explanations for the 24 quiz questions across 8 lessons rewritten with the working, the logic and why the other options are wrong"},
 {d:"2026-09-28",c:"19_운항관리실무",k:"0-1",t:"upd",ja:"運航管理の実務：全29レッスンの確認問題（87問）の解説を、根拠の条文・計算の過程・ほかの選択肢が違う理由まで書き直し。レッスンの問題は答えると「正解」と「解説」が表示されるように",ko:"운항관리 실무: 전체 29레슨 확인 문제(87문제)의 해설을 근거 조문·계산 과정·다른 보기가 틀린 이유까지 다시 씀. 레슨 문제는 답하면 ‘정답’과 ‘해설’이 표시되도록",en:"Flight Dispatch Operations: explanations for all 87 quiz questions across 29 lessons rewritten with the rule, the working and why the other options are wrong; lesson quizzes now show the answer and an explanation"},
 {d:"2026-09-28",c:"",k:"",t:"upd",u:"18_항공기초지식/航空路図の練習.html",ja:"運航の総合練習：すべての問題（6つのタブの30問）に、なぜその答えになるかと計算の過程の解説を追加",ko:"운항 종합 연습: 모든 문제(6개 탭 30문제)에 왜 그 답이 되는지와 계산 과정 해설을 추가",en:"Flight Operations Trainer: every question (30 across six tabs) now explains why the answer is right and shows the working"},
 {d:"2026-09-28",c:"",k:"",t:"upd",u:"1_지상직여객운송입문/搭載計算の練習.html",ja:"搭載計算の練習：「答えを見る」で、ZFW→TOW→LAW→余裕→重心の解き方を8つの手順で表示",ko:"탑재 계산 연습: ‘정답 보기’에서 ZFW→TOW→LAW→여유→무게중심 푸는 법을 8단계로 표시",en:"Load Control Practice: “Show answers” now walks through ZFW → TOW → LAW → underload → balance in eight steps"},
