@@ -350,7 +350,84 @@ nav_turns:function(l){
  if(nar){var y=56,body='';for(var k=0;k<3;k++){var p=panel(20,y,540,k);body+=p.s;y+=p.h+14}HH=y+4;s=R(0,0,580,HH,'#F7FAFD')+TTL(290,30,W.t,15,'#0f3558',540)+body;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 '+HH.toFixed(0)+'" role="img">'+s+'</svg>'}
  var ps=[0,1,2].map(function(k){return panel(20+k*290,56,270,k)}),mh=Math.max(ps[0].h,ps[1].h,ps[2].h);HH=56+mh+14;
  s=R(0,0,900,HH,'#F7FAFD')+TTL(450,30,W.t,16,'#0f3558',860)+ps.map(function(p){return p.s}).join('');
- return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+HH.toFixed(0)+'" role="img">'+s+'</svg>'}
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+HH.toFixed(0)+'" role="img">'+s+'</svg>'},
+/* 17 最低高度の種類：MOCA は障害物だけ、MEA は障害物＋無線の電波が届く高さ */
+nav_minalt:function(l){
+ var W=({ja:{t:'航空路の最低高度',mea:'MEA（最低経路高度）：障害物をよける＋電波が届く',moca:'MOCA（最低障害物回避高度）：障害物だけをよける',clr:'障害物の上に 1,000ft（山岳地は 2,000ft）',sig:'電波が届く範囲',vor:'VOR'},
+  ko:{t:'항공로의 최저고도',mea:'MEA(최저항로고도): 장애물 회피 + 전파 수신',moca:'MOCA(최저장애물회피고도): 장애물만 피한다',clr:'장애물 위로 1,000ft(산악지는 2,000ft)',sig:'전파가 닿는 범위',vor:'VOR'},
+  en:{t:'Minimum altitudes on airways',mea:'MEA (minimum en-route altitude): obstacle clearance + signal reception',moca:'MOCA (minimum obstacle clearance altitude): obstacle clearance only',clr:'1,000 ft above obstacles (2,000 ft in mountains)',sig:'Signal coverage',vor:'VOR'}})[l];
+ if(!W)return F.nav_minalt('ja');
+ setK(1);var FS=H.FS,LI=H.LINES;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,300,'#DCEEFB',14);
+ s+='<path d="M20 356 L20 300 L110 290 L170 230 L220 270 L300 180 L350 240 L420 200 L480 270 L560 260 L620 300 L620 356 Z" fill="#9C8A62"/>';
+ s+='<g transform="translate(300 180)"><rect x="-3" y="-30" width="6" height="30" fill="#D64545"/><circle cy="-30" r="4" fill="#D64545"/></g>';
+ s+='<g transform="translate(60 294)"><path d="M-12 0 L-6 -10 L6 -10 L12 0 L6 10 L-6 10 Z" fill="#fff" stroke="#2F6FD6" stroke-width="3"/></g>'+tx(60,330,W.vor,11,'#fff',900);
+ s+='<g opacity=".5">';for(var i=1;i<=3;i++)s+='<path d="M60 294 m-'+(i*80)+' 0 a'+(i*80)+' '+(i*80)+' 0 0 1 '+(i*160)+' 0" fill="none" stroke="#2F6FD6" stroke-width="2" stroke-dasharray="6 6"><animate attributeName="opacity" values="1;.2;1" dur="2s" begin="'+(i*0.3)+'s" repeatCount="indefinite"/></path>';s+='</g>';
+ s+=LB(150,214,W.sig,10.5,'#2F6FD6','middle','#fff');
+ s+='<line x1="20" y1="130" x2="620" y2="130" stroke="#1F7A6E" stroke-width="3" stroke-dasharray="10 6"/><line x1="20" y1="96" x2="620" y2="96" stroke="#2F6FD6" stroke-width="4"/>';
+ s+='<line x1="330" y1="150" x2="330" y2="130" stroke="#6B4FA0" stroke-width="2"/>'+LBW(450,166,W.clr,10.5,'#6B4FA0','middle','#fff',280);
+ s+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" path="M30 96 L610 96"/></g>';
+ var y=368,body='',items=[[W.mea,'#2F6FD6'],[W.moca,'#1F7A6E']];
+ items.forEach(function(v){var n=LI(v[0],11.5,540).length,lh=FS(11.5)*1.3,h=n*lh+14;body+=R(20,y,600,h,'#fff',10,' stroke="'+v[1]+'" stroke-width="2"')+WR(320,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,540);y+=h+6});
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+
+/* 18 MSA（最低扇形別高度）：施設から25NMの円を向きで分け、区域ごとに最低高度を決める */
+nav_msa:function(l){
+ var W=({ja:{t:'MSA（最低扇形別高度）',r:'半径 25NM',c:'障害物の上に 1,000ft 以上',use:'計器進入図に載っていて、緊急のときに安全な高さの目安になる',ft:'ft'},
+  ko:{t:'MSA(최저구역고도)',r:'반경 25NM',c:'장애물 위로 1,000ft 이상',use:'계기접근도에 실려 있으며, 비상시 안전한 높이의 기준이 된다',ft:'ft'},
+  en:{t:'MSA (minimum sector altitude)',r:'Radius 25 NM',c:'At least 1,000 ft above obstacles',use:'Shown on approach charts as a safe height to use in an emergency',ft:'ft'}})[l];
+ if(!W)return F.nav_msa('ja');
+ setK(1);var FS=H.FS,LI=H.LINES;
+ var cx=320,cy=230,r=150;
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ var secs=[[270,30,'9,500','#D64545'],[30,150,'5,600','#E08A2F'],[150,270,'3,000','#1F7A6E']];
+ secs.forEach(function(v,i){var a0=(v[0]-90)*Math.PI/180,a1=(v[1]-90)*Math.PI/180,x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1),am=((v[0]+(v[1]<v[0]?v[1]+360:v[1]))/2-90)*Math.PI/180;
+  s+='<path d="M'+cx+' '+cy+' L'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+r+' '+r+' 0 0 1 '+x1.toFixed(1)+' '+y1.toFixed(1)+' Z" fill="'+v[3]+'" opacity=".22" stroke="'+v[3]+'" stroke-width="2"><animate attributeName="opacity" values=".22;.22;.55;.22;.22" keyTimes="0;'+(i/3).toFixed(2)+';'+(i/3+0.15).toFixed(2)+';'+((i+1)/3).toFixed(2)+';1" dur="7.5s" repeatCount="indefinite"/></path>';
+  s+=LB(cx+r*0.6*Math.cos(am),cy+r*0.6*Math.sin(am)+5,v[2]+W.ft,13,'#fff','middle',v[3])});
+ [30,150,270].forEach(function(d){s+=tx(cx+(r+18)*Math.cos((d-90)*Math.PI/180),cy+(r+18)*Math.sin((d-90)*Math.PI/180)+5,d+'°',11,G,800)});
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="10" fill="#fff" stroke="#2F6FD6" stroke-width="3"/><line x1="'+cx+'" y1="'+cy+'" x2="'+cx+'" y2="'+(cy+r)+'" stroke="#40566B" stroke-width="1.5" stroke-dasharray="4 4"/>'+LB(cx+8,cy+r*0.8,W.r,10.5,'#40566B','start','#fff');
+ var y=cy+r+34,body='',items=[[W.c,D],[W.use,G]];
+ items.forEach(function(v){var n=LI(v[0],11.5,560).length,lh=FS(11.5)*1.3;body+=WR(320,y+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,560);y+=n*lh+10});
+ var HH=y+10;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+
+/* 19 High to Low, Look out below：高気圧から低気圧へ、暖かい所から寒い所へ飛ぶと、同じ指示でも実際は低い */
+nav_highlow:function(l){
+ var W=({ja:{t:'「High to Low, Look out below」',p:'気圧：高い所から低い所へ',tm:'気温：暖かい所から寒い所へ',hp:'高気圧',lp:'低気圧',wm:'暖かい',cd:'寒い',ind:'高度計の表示は同じ 5,000ft',tru:'本当の高さは下がる',r1:'QNHを入れ直さないと、1hPaで約30ft低い（10hPaで約300ft）',r2:'気温が標準より10℃低いと、約4％低い（ISA−20℃なら約8％）'},
+  ko:{t:'‘High to Low, Look out below’',p:'기압: 높은 곳에서 낮은 곳으로',tm:'기온: 따뜻한 곳에서 추운 곳으로',hp:'고기압',lp:'저기압',wm:'따뜻하다',cd:'춥다',ind:'고도계 표시는 똑같이 5,000ft',tru:'진짜 높이는 내려간다',r1:'QNH를 다시 넣지 않으면 1hPa에 약 30ft 낮다(10hPa면 약 300ft)',r2:'기온이 표준보다 10℃ 낮으면 약 4% 낮다(ISA−20℃면 약 8%)'},
+  en:{t:'“High to low, look out below”',p:'Pressure: from high to low',tm:'Temperature: from warm to cold',hp:'High',lp:'Low',wm:'Warm',cd:'Cold',ind:'The altimeter still reads 5,000 ft',tru:'True height drops',r1:'Without resetting QNH, about 30 ft lower per hPa (about 300 ft for 10 hPa)',r2:'About 4% lower for every 10 °C below standard (about 8% at ISA−20 °C)'}})[l];
+ if(!W)return F.nav_highlow('ja');
+ setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;
+ function panel(x0,y0,w,k){var col=k?'#2F6FD6':'#6B4FA0',g=R(x0,y0,w,230,'#EEF5FB',14)+tx(x0+w/2,y0+26,k?W.tm:W.p,13,col,900);
+  var L=k?[W.wm,W.cd]:[W.hp,W.lp];g+=LB(x0+50,y0+54,L[0],11,'#fff','middle',k?'#E08A2F':'#D64545')+LB(x0+w-50,y0+54,L[1],11,'#fff','middle',k?'#2F6FD6':'#1d4d8a');
+  g+='<path d="M'+x0+' '+(y0+230)+' L'+x0+' '+(y0+205)+' L'+(x0+w*0.7)+' '+(y0+205)+' L'+(x0+w*0.85)+' '+(y0+160)+' L'+(x0+w)+' '+(y0+190)+' L'+(x0+w)+' '+(y0+230)+' Z" fill="#9C8A62"/>';
+  g+='<path d="M'+(x0+10)+' '+(y0+90)+' L'+(x0+w-10)+' '+(y0+140)+'" stroke="'+col+'" stroke-width="3" stroke-dasharray="8 6"/><path d="M'+(x0+10)+' '+(y0+90)+' L'+(x0+w-10)+' '+(y0+90)+'" stroke="#9FB0C2" stroke-width="2" stroke-dasharray="3 5"/>';
+  g+='<g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M'+(x0+14)+' '+(y0+90)+' L'+(x0+w-14)+' '+(y0+140)+'"/></g>';
+  g+=LBW(x0+w*0.38,y0+128,W.tru+' ↘',11,'#D64545','middle','#fff',w*0.6);
+  return g}
+ var s,y0=56,HH;
+ if(nar){s=panel(20,56,540,0)+panel(20,300,540,1);y0=544}else{s=panel(20,56,420,0)+panel(460,56,420,1);y0=300}
+ var vw=nar?580:900,body='',y=y0,items=[[W.ind,D],[W.r1,'#6B4FA0'],[W.r2,'#2F6FD6']];
+ items.forEach(function(v){var n=LI(v[0],12,vw-60).length,lh=FS(12)*1.3;body+=WR(vw/2,y+n*lh/2+FS(12)*0.3,v[0],12,v[1],900,vw-60);y+=n*lh+10});
+ HH=y+10;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+vw+' '+HH.toFixed(0)+'" role="img">'+R(0,0,vw,HH,'#F7FAFD')+TTL(vw/2,30,W.t,15,'#0f3558',vw-40)+s+body+'</svg>'},
+
+/* 20 RVSM：FL290〜FL410 は 1,000ft 間隔。東向き（000〜179°）は奇数、西向きは偶数の高度 */
+nav_rvsm:function(l){
+ var W=({ja:{t:'RVSM（短縮垂直間隔）',in:'FL290〜FL410：1,000ft 間隔',out:'FL410 より上：2,000ft 間隔',east:'東向き（000〜179°）＝ 奇数',west:'西向き（180〜359°）＝ 偶数',req:'使う条件：独立した2つの高度計、自動操縦の高度保持、高度の警報、高度を伝えるトランスポンダー、会社と機体の承認（飛行計画の項目10に W）'},
+  ko:{t:'RVSM(수직분리 축소)',in:'FL290~FL410: 1,000ft 간격',out:'FL410 위: 2,000ft 간격',east:'동쪽행(000~179°) = 홀수',west:'서쪽행(180~359°) = 짝수',req:'쓰는 조건: 독립된 고도계 2개, 자동조종의 고도 유지, 고도 경보, 고도를 알리는 트랜스폰더, 회사와 기체의 승인(비행계획 항목 10에 W)'},
+  en:{t:'RVSM (reduced vertical separation minimum)',in:'FL290–FL410: 1,000 ft apart',out:'Above FL410: 2,000 ft apart',east:'Eastbound (000–179°) = odd levels',west:'Westbound (180–359°) = even levels',req:'Requirements: two independent altimeters, autopilot altitude hold, altitude alerting, an altitude-reporting transponder, and operator and aircraft approval (W in flight-plan item 10)'}})[l];
+ if(!W)return F.nav_rvsm('ja');
+ setK(1);var FS=H.FS,LI=H.LINES;
+ var lv=[290,300,310,320,330,340,350,360,370,380,390,400,410,430,450],Y=function(f){return 470-(f-290)*2.4};
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,440,'#EEF5FB',14)+R(20,Y(410)-6,600,Y(290)-Y(410)+12,'#1F7A6E',0,' opacity=".08"');
+ lv.forEach(function(f,i){var y=Y(f),odd=(f/10)%2===1;
+  var east=f<=410?odd:(f===450);s+='<line x1="120" y1="'+y+'" x2="600" y2="'+y+'" stroke="'+(east?'#2F6FD6':'#E08A2F')+'" stroke-width="1.5" opacity=".6"/>'+tx(100,y+4,'FL'+f,10.5,east?'#2F6FD6':'#8a3b00',900,'end');
+  var dir=f<=410?(odd?1:-1):(f===450?1:-1),xa=dir>0?150:570,xb=dir>0?570:150;
+  s+='<g><g transform="scale('+(dir>0?1:-1)+' 1)">'+plane('#fff')+'</g><animateMotion dur="'+(6+i%3)+'s" begin="-'+(i*0.4+0.2).toFixed(1)+'s" repeatCount="indefinite" path="M'+xa+' '+y+' L'+xb+' '+y+'"/></g>';
+ });
+ s+=LBW(360,Y(350)+14,W.in,12,'#fff','middle','#1F7A6E',400)+LBW(360,Y(440)-6,W.out,11.5,'#1F7A6E','middle','#fff',400);
+ var y=508,body='',items=[[W.east,'#2F6FD6'],[W.west,'#8a3b00'],[W.req,G]];
+ items.forEach(function(v,i){var sz=i<2?12:11,n=LI(v[0],sz,560).length,lh=FS(sz)*1.3;body+=WR(320,y+n*lh/2+FS(sz)*0.3,v[0],sz,v[1],900,560);y+=n*lh+10});
+ var HH=y+10;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

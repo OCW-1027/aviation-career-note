@@ -195,7 +195,7 @@ met_inversion:function(l){
  s+=R(250,250,26,110,'#8C96A1')+R(246,244,34,10,'#6B7785');
  /* 煙：上がって、ふたで横に広がる */
  for(var i=0;i<6;i++){var dl=(i*1.1).toFixed(1);
-  s+='<circle r="12" fill="#9AA3AD" opacity="0"><animateMotion dur="6.6s" begin="'+dl+'s" repeatCount="indefinite" path="M263 240 L263 222 L263 212 Q263 205 '+(i%2?330:196)+' 210 L'+(i%2?520:60)+' 214"/><animate attributeName="opacity" values="0;.8;.8;.5;0" keyTimes="0;.1;.4;.8;1" dur="6.6s" begin="'+dl+'s" repeatCount="indefinite"/><animate attributeName="r" values="8;14;20;26" dur="6.6s" begin="'+dl+'s" repeatCount="indefinite"/></circle>'}
+  s+='<circle r="12" fill="#9AA3AD" opacity="0"><animateMotion dur="6.6s" begin="-'+dl+'s" repeatCount="indefinite" path="M263 240 L263 222 L263 212 Q263 205 '+(i%2?330:196)+' 210 L'+(i%2?520:60)+' 214"/><animate attributeName="opacity" values="0;.8;.8;.5;0" keyTimes="0;.1;.4;.8;1" dur="6.6s" begin="'+dl+'s" repeatCount="indefinite"/><animate attributeName="r" values="8;14;20;26" dur="6.6s" begin="'+dl+'s" repeatCount="indefinite"/></circle>'}
  /* 霧 */
  s+='<g opacity=".55"><rect x="20" y="300" width="560" height="60" fill="#fff"><animate attributeName="opacity" values=".3;.8;.3" dur="5s" repeatCount="indefinite"/></rect></g>';
  s+=tx(300,290,W[1],13,'#34495e',800);
@@ -280,7 +280,7 @@ met_fronts:function(l){
   var cl=[[372,82,'Ci',.55],[312,110,'Cs',.7],[236,150,'As',.9],[140,212,'Ns',1.15]];
   cl.forEach(function(c,i){g+='<g opacity="0"><g transform="translate('+c[0]+' '+c[1]+') scale('+c[3]+')"><ellipse cx="0" cy="0" rx="46" ry="'+(i<2?7:14)+'" fill="'+(i<2?'#EDF2F7':'#D5DDE5')+'" stroke="#9FB0C2" stroke-width="1.5"/></g>'+tx(c[0],c[1]+5,c[2],12,'#40566B',900)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+(0.1+i*0.15).toFixed(2)+';'+(0.18+i*0.15).toFixed(2)+';.92;1" dur="8s" repeatCount="indefinite"/></g>'});
   g+='<g stroke="#5E8FD9" stroke-width="2" stroke-linecap="round" opacity=".85">';for(var i=0;i<10;i++)g+='<line x1="'+(70+i*16)+'" y1="238" x2="'+(66+i*16)+'" y2="252"><animate attributeName="y1" values="238;320" dur="1.6s" begin="'+(i*.16)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="252;334" dur="1.6s" begin="'+(i*.16)+'s" repeatCount="indefinite"/></line>';g+='</g>';
-  g+='<g><circle r="7" fill="#E08A2F"/><animateMotion dur="4s" repeatCount="indefinite" path="M40 330 Q200 300 400 250"/></g><g><circle r="7" fill="#E08A2F"/><animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M40 330 Q200 300 400 250"/></g>';
+  g+='<g><circle r="7" fill="#E08A2F"/><animateMotion dur="4s" repeatCount="indefinite" path="M40 330 Q200 300 400 250"/></g><g><circle r="7" fill="#E08A2F"/><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" path="M40 330 Q200 300 400 250"/></g>';
   g+=ARW(40,62,120,62,'#D64545',5)+tx(130,67,W.go,12,'#D64545',800,'start');
   g+=R(12,350,406,6,'#9CC98B');
   g+=WR(215,380,W.w1,12.5,D,800,396)+WR(215,405,W.w2,11.5,G,700,396)+WR(215,428,W.w3,11.5,G,700,396)+WR(215,458,W.w4,12,'#1d4d8a',800,396);
@@ -697,7 +697,7 @@ met_upper_chart:function(l){
  hs.forEach(function(h,i){var off=OFF[i],amp=140-i*10;s+='<path d="'+wave(off,amp)+'" fill="none" stroke="'+cols[i]+'" stroke-width="3"/>'+LB(28,150+off-6,String(h),10,cols[i],'start')});
  s+='<path d="M220 150 L220 470" stroke="#6B4FA0" stroke-width="3" stroke-dasharray="10 6"/>'+LB(220,488,W.tr,11.5,'#fff','middle','#6B4FA0');
  s+='<path d="M420 60 L420 380" stroke="#C0392B" stroke-width="3" stroke-dasharray="4 6"/>'+LB(420,72,W.ri,11.5,'#fff','middle','#C0392B');
- s+='<g opacity=".85">';for(var i=0;i<4;i++){s+='<g><path d="M-10 -5 L6 0 L-10 5 Z" fill="#6B4FA0"/><animateMotion dur="6s" begin="'+(i*1.5)+'s" repeatCount="indefinite" rotate="auto" path="'+wave(58,125)+'"/></g>'}s+='</g>';
+ s+='<g opacity=".85">';for(var i=0;i<4;i++){s+='<g><path d="M-10 -5 L6 0 L-10 5 Z" fill="#6B4FA0"/><animateMotion dur="6s" begin="-'+(i*1.5)+'s" repeatCount="indefinite" rotate="auto" path="'+wave(58,125)+'"/></g>'}s+='</g>';
  s+='<ellipse cx="310" cy="300" rx="44" ry="26" fill="#9FB0C2" opacity=".55"/><ellipse cx="290" cy="310" rx="30" ry="18" fill="#9FB0C2" opacity=".55"/>';
  s+='</g>';
  s+=LB(120,96,W.lo+' ↑',11,'#1d4d8a','middle','#DCEBFA')+LB(520,470,W.hi+' ↓',11,'#8a3b00','middle','#FDE7D3');
