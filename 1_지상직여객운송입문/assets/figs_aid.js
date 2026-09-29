@@ -4,6 +4,8 @@
 var H=window.FIGH;if(!H)return;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,LBW=H.LBW,TTL=H.TTL,ARW=H.ARW,SCR=H.SCR,plane=H.plane,NARROW=H.NARROW,setK=H.setK,FS=H.FS,LI=H.LINES;
 var D=H.C.D,G=H.C.G,RD=H.C.RD;
+/* 番号の丸：文字の大きさに合わせて丸も大きくする */
+function BADGE(x,y,n,sz){var r=Math.max(11,FS(sz)*0.72);return '<circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'" fill="#FFD23F" stroke="#0f3558" stroke-width="1.5"/>'+tx(x,y+FS(sz)*0.35,String(n),sz,'#0f3558',900)}
 function box(items,x0,y0,w,sz){var y=y0,g='';items.forEach(function(v){var n=LI(v[0],sz,w-40).length,lh=FS(sz)*1.3,h=n*lh+14;g+=R(x0,y,w,h,v[2]||'#fff',10,v[2]?'':' stroke="#D9E3EC"')+WR(x0+w/2,y+7+n*lh/2+FS(sz)*0.3,v[0],sz,v[1],900,w-40);y+=h+6});return {s:g,y:y}}
 var F={
 /* 1 VORのしくみ（灯台のたとえ）：全方向の光と回る光の時間差で方位が分かる */
@@ -163,6 +165,103 @@ aid_radar:function(l){
  s+=tx(110,90,'PSR',13,'#9FD3F7',900)+tx(320,90,'SSR',13,'#FFD23F',900)+tx(530,90,'ADS-B',13,'#7CF2B0',900);
  var y=368,body='',items=[[W.psr,'#1d4d8a','#E3F1FB'],[W.ssr,'#8a6d00','#FFF7DA'],[W.ads,'#1F7A6E','#E8F5F2'],[W.codes,'#D64545','#FDEAE3']];
  items.forEach(function(v){var n=LI(v[0],11.5,560).length,lh=FS(11.5)*1.3,h=n*lh+14;body+=R(20,y,600,h,v[2],10)+WR(320,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,560);y+=h+6});
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+/* 9 夜の滑走路の灯火：番号を付け、説明は下の一覧に */
+aid_lights:function(l){
+ var W=({ja:{t:'夜の滑走路の灯火',items:['進入灯：白。横棒つき（CAT Iで約900m）。順に光る閃光灯（ラビット）で向きを示す','進入端灯：緑（滑走路の始まり）','滑走路灯：白。計器用の滑走路では最後の600mが黄色（残りが少ない）','中心線灯：白。残り900〜300mは白と赤の交互、最後の300mは赤','接地帯灯：白の横棒（CAT II／IIIの最初の900m）','滑走路末端灯：赤（ここで滑走路が終わる）']},
+  ko:{t:'밤의 활주로 등화',items:['접근등: 흰색. 가로 막대 포함(CAT I에서 약 900m). 차례로 번쩍이는 섬광등(래빗)으로 방향을 알린다','시단등: 녹색(활주로의 시작)','활주로등: 흰색. 계기용 활주로에서는 마지막 600m가 노란색(남은 거리가 적다)','중심선등: 흰색. 남은 900~300m는 흰색·빨강 교대, 마지막 300m는 빨강','접지대등: 흰색 가로 막대(CAT II/III의 처음 900m)','활주로 종단등: 빨강(여기서 활주로가 끝난다)']},
+  en:{t:'Runway lighting at night',items:['Approach lights: white, with crossbars (about 900 m for CAT I); sequenced flashers (the “rabbit”) show the direction','Threshold lights: green (start of the runway)','Runway edge lights: white; on instrument runways the last 600 m are yellow (little runway left)','Centreline lights: white; alternating red and white from 900 m to 300 m remaining, red for the last 300 m','Touchdown zone lights: white barrettes (first 900 m on CAT II/III runways)','Runway end lights: red (the runway ends here)']}})[l];
+ if(!W)return F.aid_lights('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#0B1726',14);
+ var ry=156,x0=190,x1=600;
+ s+=R(x0,ry-26,x1-x0,52,'#1E2A36',4);
+ /* 進入灯と閃光 */
+ for(var i=0;i<9;i++){var x=40+i*16;s+='<circle cx="'+x+'" cy="'+ry+'" r="3" fill="#FFFFFF"/>'}
+ s+='<line x1="96" y1="'+(ry-22)+'" x2="96" y2="'+(ry+22)+'" stroke="#fff" stroke-width="3" stroke-dasharray="3 5"/>';
+ for(var i=0;i<6;i++){var x=40+i*16;s+='<circle cx="'+x+'" cy="'+ry+'" r="6" fill="#fff" opacity="0"><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.05;.12;1" dur="1.2s" begin="-'+(1.2-i*0.12).toFixed(2)+'s" repeatCount="indefinite"/></circle>'}
+ /* 進入端・末端 */
+ for(var j=-2;j<=2;j++)s+='<circle cx="'+x0+'" cy="'+(ry+j*10)+'" r="3.5" fill="#39D98A"/><circle cx="'+x1+'" cy="'+(ry+j*10)+'" r="3.5" fill="#FF4D4D"/>';
+ /* 滑走路灯：最後の600m（右側の約3割）は黄色 */
+ for(var x=x0+12;x<x1;x+=18){var yl=x>x0+(x1-x0)*0.72;s+='<circle cx="'+x+'" cy="'+(ry-26)+'" r="2.8" fill="'+(yl?'#FFD23F':'#fff')+'"/><circle cx="'+x+'" cy="'+(ry+26)+'" r="2.8" fill="'+(yl?'#FFD23F':'#fff')+'"/>'}
+ /* 中心線灯 */
+ var k=0;for(var x=x0+10;x<x1;x+=10){var rem=(x1-x)/(x1-x0),c='#fff';if(rem<0.1)c='#FF4D4D';else if(rem<0.3)c=(k%2?'#FF4D4D':'#fff');s+='<circle cx="'+x+'" cy="'+ry+'" r="1.8" fill="'+c+'"/>';k++}
+ /* 接地帯灯 */
+ for(var x=x0+20;x<x0+130;x+=22)s+='<line x1="'+x+'" y1="'+(ry-14)+'" x2="'+x+'" y2="'+(ry-6)+'" stroke="#fff" stroke-width="2"/><line x1="'+x+'" y1="'+(ry+6)+'" x2="'+x+'" y2="'+(ry+14)+'" stroke="#fff" stroke-width="2"/>';
+ s+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" path="M30 '+(ry-50)+' L'+x0+' '+(ry-8)+' L'+(x1-40)+' '+(ry-4)+'"/></g>';
+ /* 番号 */
+ var cx4=x0+(x1-x0)*0.9;s+='<line x1="'+cx4+'" y1="'+(ry+2)+'" x2="'+cx4+'" y2="'+(ry+34)+'" stroke="#FFD23F" stroke-width="2"/><line x1="'+(x0+(x1-x0)*0.8)+'" y1="'+(ry-28)+'" x2="'+(x0+(x1-x0)*0.8)+'" y2="'+(ry-34)+'" stroke="#FFD23F" stroke-width="2"/>';
+ var tags=[[80,ry+46],[x0,ry+46],[x0+(x1-x0)*0.8,ry-46],[cx4,ry+46],[x0+60,ry+46],[x1,ry+46]];
+ tags.forEach(function(p,i){s+=BADGE(p[0],p[1],i+1,12)});
+ var y=268,body='';W.items.forEach(function(v,i){var n=LI(v,11,520).length,lh=FS(11)*1.3,h=n*lh+12;body+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,11)+WR(64,y+6+n*lh/2+FS(11)*0.3,v,11,D,800,520,'start');y+=h+4});
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+
+/* 10 PAPI：4つの灯火の白と赤で、坂の上か下かが分かる */
+aid_papi:function(l){
+ var W=({ja:{t:'PAPI ― 4つの灯火で坂を知る',st:['高すぎる','少し高い','ちょうどよい（約3°）','少し低い','低すぎる'],rule:'白2・赤2 がちょうどよい。赤が増えるほど低い（「赤は危ない」）',pos:'ふつう滑走路の左側、接地点の横に置く'},
+  ko:{t:'PAPI — 등 4개로 경사를 안다',st:['너무 높다','조금 높다','딱 좋다(약 3°)','조금 낮다','너무 낮다'],rule:'흰색 2·빨강 2가 딱 좋다. 빨강이 늘수록 낮다(‘빨강은 위험’)',pos:'보통 활주로 왼쪽, 접지점 옆에 둔다'},
+  en:{t:'PAPI: four lights show the slope',st:['Too high','Slightly high','On slope (about 3°)','Slightly low','Too low'],rule:'Two white and two red means on slope; more red means lower (“red is danger”)',pos:'Usually on the left of the runway, beside the touchdown point'}})[l];
+ if(!W)return F.aid_papi('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,250,'#0E2238',14)+R(20,276,600,30,'#2B3A2B',0);
+ s+=R(380,272,220,8,'#5B6770',3);
+ var ys=[105,145,185,225,255],pat=[4,3,2,1,0],dur=10,n=ys.length;
+ s+='<line x1="40" y1="120" x2="420" y2="274" stroke="#7CF2B0" stroke-width="2" stroke-dasharray="6 6"/>';
+ /* 飛行機の上下と灯火の変化 */
+ var kp=ys.map(function(v,i){return (i/n).toFixed(2)}).join(';'),vals=ys.map(function(v){return '0 '+(v-185)}).join(';');
+ s+='<g><g transform="translate(200 185)">'+plane('#fff')+'</g><animateTransform attributeName="transform" type="translate" values="'+vals+'" keyTimes="'+kp+'" dur="'+dur+'s" calcMode="discrete" repeatCount="indefinite"/></g>';
+ ys.forEach(function(v,i){var w=pat[i],a0=(i/n).toFixed(3),a1=((i+1)/n).toFixed(3),vs,kt;
+  if(i===0){vs='1;1;0;0';kt='0;'+a1+';'+(+a1+0.001).toFixed(3)+';1'}else if(i===n-1){vs='0;0;1;1';kt='0;'+a0+';'+(+a0+0.001).toFixed(3)+';1'}else{vs='0;0;1;1;0;0';kt='0;'+a0+';'+(+a0+0.001).toFixed(3)+';'+a1+';'+(+a1+0.001).toFixed(3)+';1'}
+  var g='';for(var q=0;q<4;q++)g+='<circle cx="'+(440+q*36)+'" cy="248" r="11" fill="'+(q<w?'#FFFFFF':'#FF4D4D')+'"/>';
+  g+=LB(494,222,W.st[i],12,'#0f3558','middle',i===2?'#7CF2B0':'#fff');
+  s+='<g opacity="'+(i===0?1:0)+'">'+g+'<animate attributeName="opacity" values="'+vs+'" keyTimes="'+kt+'" dur="'+dur+'s" calcMode="discrete" repeatCount="indefinite"/></g>'});
+ var y=318,body='',items=[[W.rule,D,'#fff'],[W.pos,G,'#F4F7FB']];
+ items.forEach(function(v){var n2=LI(v[0],11.5,560).length,lh=FS(11.5)*1.3,h=n2*lh+14;body+=R(20,y,600,h,v[2],10,v[2]==='#fff'?' stroke="#D9E3EC"':'')+WR(320,y+7+n2*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,560);y+=h+6});
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+
+/* 11 滑走路の標識：番号を付け、説明は下の一覧に */
+aid_marks:function(l){
+ var W=({ja:{t:'滑走路の標識（白）と停止位置（黄）',items:['進入端の標識：縦の線の数で滑走路の幅が分かる','滑走路の番号：磁方位を10で割った数（337°→34）。平行な滑走路は L・C・R','目標点の標識：大きな2本の帯。進入の目標にする','接地帯の標識：接地する範囲を示す','中心線','滑走路停止位置の標識（誘導路・黄）：実線の側で止まる。許可なく越えない']},
+  ko:{t:'활주로 표지(흰색)와 정지 위치(노랑)',items:['시단 표지: 세로 줄 수로 활주로 폭을 알 수 있다','활주로 번호: 자방위를 10으로 나눈 수(337°→34). 평행 활주로는 L·C·R','조준점 표지: 큰 띠 2개. 접근의 목표로 삼는다','접지대 표지: 접지하는 범위를 보여 준다','중심선','활주로 정지 위치 표지(유도로·노랑): 실선 쪽에서 멈춘다. 허가 없이 넘지 않는다']},
+  en:{t:'Runway markings (white) and holding position (yellow)',items:['Threshold marking: the number of stripes shows the runway width','Runway designator: magnetic heading divided by 10 (337° → 34); parallel runways add L, C, R','Aiming point marking: two large bars used as the approach target','Touchdown zone markings: show where to touch down','Centreline','Runway-holding position marking (taxiway, yellow): stop on the solid-line side; never cross without clearance']}})[l];
+ if(!W)return F.aid_marks('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,240,'#DDE8D4',14);
+ var ry=150,x0=40,x1=600;
+ s+=R(x0,ry-40,x1-x0,80,'#4A545E',4);
+ for(var i=0;i<8;i++)s+='<rect x="'+(x0+8)+'" y="'+(ry-34+i*9)+'" width="34" height="5" fill="#fff"/>';
+ s+='<g transform="translate('+(x0+70)+' '+ry+') rotate(90)"><text x="0" y="8" font-size="26" font-weight="900" fill="#fff" text-anchor="middle" font-family="Arial,sans-serif">34L</text></g>';
+ s+='<rect x="'+(x0+170)+'" y="'+(ry-30)+'" width="60" height="12" fill="#fff"/><rect x="'+(x0+170)+'" y="'+(ry+18)+'" width="60" height="12" fill="#fff"/>';
+ [110,270,330].forEach(function(dx){s+='<rect x="'+(x0+dx)+'" y="'+(ry-26)+'" width="26" height="4" fill="#fff"/><rect x="'+(x0+dx)+'" y="'+(ry-18)+'" width="26" height="4" fill="#fff"/><rect x="'+(x0+dx)+'" y="'+(ry+14)+'" width="26" height="4" fill="#fff"/><rect x="'+(x0+dx)+'" y="'+(ry+22)+'" width="26" height="4" fill="#fff"/>'});
+ for(var x=x0+110;x<x1-10;x+=40)s+='<rect x="'+x+'" y="'+(ry-2)+'" width="22" height="4" fill="#fff"/>';
+ /* 誘導路と停止位置 */
+ s+=R(440,ry+40,40,90,'#4A545E',0)+'<line x1="460" y1="'+(ry+130)+'" x2="460" y2="'+(ry+44)+'" stroke="#F2D233" stroke-width="3"/>';
+ s+='<line x1="442" y1="'+(ry+66)+'" x2="478" y2="'+(ry+66)+'" stroke="#F2D233" stroke-width="3" stroke-dasharray="5 4"/><line x1="442" y1="'+(ry+72)+'" x2="478" y2="'+(ry+72)+'" stroke="#F2D233" stroke-width="3" stroke-dasharray="5 4"/><line x1="442" y1="'+(ry+80)+'" x2="478" y2="'+(ry+80)+'" stroke="#F2D233" stroke-width="3"/><line x1="442" y1="'+(ry+86)+'" x2="478" y2="'+(ry+86)+'" stroke="#F2D233" stroke-width="3"/>';
+ s+='<g><rect x="-10" y="-6" width="20" height="12" rx="3" fill="#E08A2F"/><animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.6;1" calcMode="linear" path="M460 '+(ry+128)+' L460 '+(ry+96)+'"/></g>';
+ var tags=[[x0+25,ry-54],[x0+70,ry+56],[x0+200,ry-50],[x0+283,ry+56],[x0+470,ry-20],[500,ry+76]];
+ tags.forEach(function(p,i){s+=BADGE(p[0],p[1],i+1,12)});
+ var y=308,body='';W.items.forEach(function(v,i){var n=LI(v,11,520).length,lh=FS(11)*1.3,h=n*lh+12;body+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,11)+WR(64,y+6+n*lh/2+FS(11)*0.3,v,11,D,800,520,'start');y+=h+4});
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+
+/* 12 表示板と停止線灯：赤は「止まる」、黒は「今いる所」、黄は「行き先」 */
+aid_signs:function(l){
+ var W=({ja:{t:'飛行場の表示板と停止線灯',mand:'指示表示板（赤地・白字）：滑走路の手前など。許可なく先へ進まない',loc:'位置表示板（黒地・黄字）：今いる誘導路',dir:'方向表示板（黄地・黒字）：行き先の誘導路と向き',ne:'進入禁止（赤地・白の横棒）',bar:'停止線灯（赤）：点いていたら止まる。管制が消したら進める',rgl:'滑走路警戒灯（黄の点滅）：この先は滑走路'},
+  ko:{t:'비행장 표지판과 정지선 등화',mand:'의무 지시 표지판(빨강 바탕·흰 글자): 활주로 앞 등. 허가 없이 넘지 않는다',loc:'위치 표지판(검정 바탕·노란 글자): 지금 있는 유도로',dir:'방향 표지판(노랑 바탕·검정 글자): 갈 유도로와 방향',ne:'진입 금지(빨강 바탕·흰 가로 막대)',bar:'정지선 등화(빨강): 켜져 있으면 멈춘다. 관제가 끄면 나아간다',rgl:'활주로 경계등(노랑 점멸): 이 앞은 활주로'},
+  en:{t:'Aerodrome signs and stop bars',mand:'Mandatory instruction sign (red with white text): e.g. before a runway; do not proceed without clearance',loc:'Location sign (black with yellow text): the taxiway you are on',dir:'Direction sign (yellow with black text): the taxiway ahead and its direction',ne:'No entry (red with a white bar)',bar:'Stop bar (red lights): stop while lit; proceed when ATC switches it off',rgl:'Runway guard lights (flashing yellow): runway ahead'}})[l];
+ if(!W)return F.aid_signs('ja');
+ setK(1);
+ function sign(x,y,w,bg,fg,txt,br){return '<g transform="translate('+x+' '+y+')"><rect x="0" y="0" width="'+w+'" height="40" rx="4" fill="'+bg+'" stroke="'+(br||bg)+'" stroke-width="3"/><text x="'+(w/2)+'" y="28" font-size="22" font-weight="900" fill="'+fg+'" text-anchor="middle" font-family="Arial,sans-serif">'+txt+'</text></g>'}
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,190,'#DDE8D4',14);
+ s+=sign(40,76,120,'#C62828','#fff','16R-34L')+sign(170,76,50,'#1B1B1B','#FFD23F','B','#FFD23F')+sign(230,76,90,'#FFD23F','#1B1B1B','← A')+'<g transform="translate(330 76)"><rect width="50" height="40" rx="4" fill="#C62828"/><rect x="8" y="16" width="34" height="8" fill="#fff"/></g>';
+ [['1',100],['2',195],['3',275],['4',355]].forEach(function(v){s+=BADGE(v[1],138,v[0],11)});
+ /* 停止線灯と滑走路警戒灯 */
+ s+=R(400,70,210,160,'#4A545E',8)+'<line x1="505" y1="70" x2="505" y2="230" stroke="#F2D233" stroke-width="3"/>';
+ s+='<g>';for(var i=0;i<6;i++)s+='<circle cx="'+(420+i*34)+'" cy="160" r="6" fill="#FF4D4D"><animate attributeName="opacity" values="1;1;.15;.15" keyTimes="0;.5;.52;1" dur="6s" repeatCount="indefinite"/></circle>';s+='</g>';
+ s+='<circle cx="410" cy="190" r="7" fill="#FFD23F"><animate attributeName="opacity" values="1;.1;1" dur=".8s" repeatCount="indefinite"/></circle><circle cx="600" cy="190" r="7" fill="#FFD23F"><animate attributeName="opacity" values=".1;1;.1" dur=".8s" repeatCount="indefinite"/></circle>';
+ s+='<g><rect x="-12" y="-7" width="24" height="14" rx="3" fill="#fff"/><animateMotion dur="6s" repeatCount="indefinite" keyPoints="0;.45;.45;1" keyTimes="0;.4;.55;1" calcMode="linear" path="M505 225 L505 100"/></g>';
+ [['5',440],['6',600]].forEach(function(v){s+=BADGE(v[1],(v[0]==='5'?140:214),v[0],11)});
+ var items=[W.mand,W.loc,W.dir,W.ne,W.bar,W.rgl],y=258,body='';
+ items.forEach(function(v,i){var n=LI(v,11,520).length,lh=FS(11)*1.3,h=n*lh+12;body+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,11)+WR(64,y+6+n*lh/2+FS(11)*0.3,v,11,D,800,520,'start');y+=h+4});
  var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
