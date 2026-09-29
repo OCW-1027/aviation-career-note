@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>한국 운항관리사 학과시험 대비 연습문제</title>
+<meta name="description" content="한국 운항관리사 학과시험(한국교통안전공단) 5과목에 맞춰 항공 커리어 노트가 직접 만든 연습문제. 과목별 25문, 해설과 관련 레슨 링크, 과목별 70% 합격 판정.">
+<style>
+:root{--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--acc:#2F8FE0;--acc-d:#1d5fa0;--ok:#1F8A5B;--ng:#D0453E;--hl:#FFE08A}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;line-height:1.75}
+.wrap{max-width:760px;margin:0 auto;padding:18px 14px 90px}
+header.top{background:linear-gradient(160deg,#6db8f2,#2F8FE0);color:#fff;border-radius:20px;padding:20px 20px 18px}
+header.top h1{font-size:clamp(20px,4.6vw,28px);margin:2px 0 6px;line-height:1.35}
+header.top p{margin:0;font-size:14px;opacity:.95}
+.kick{font-size:12px;font-weight:700;opacity:.9}
+.src{font-size:12px;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:12px 0}
+.src a{color:var(--acc-d)}
+.src.jp{border-left:5px solid var(--acc);font-size:13px;color:var(--ink)}
+h2{font-size:17px;margin:22px 0 8px}
+.lic{display:flex;flex-wrap:wrap;gap:8px}
+.lic span{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--sub)}
+.lic span.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+.sets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.sets button,.subs button,.modes button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:10px 12px;text-align:left;cursor:pointer;min-height:48px}
+.sets button.on,.subs button.on,.modes button.on{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset;background:#EAF4FE}
+@media (prefers-color-scheme:dark){.sets button.on,.subs button.on,.modes button.on{background:#12324f}}
+.sets button b{display:block;font-size:14px}
+.sets button small,.subs button small{display:block;font-size:12px;color:var(--sub)}
+.sets .new{display:inline-block;font-size:10px;font-weight:700;background:#D0506A;color:#fff;border-radius:999px;padding:0 7px;margin-left:4px;vertical-align:1px}
+.subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.modes button b{display:block;font-size:14px}.modes button small{display:block;font-size:12px;color:var(--sub)}
+.start{display:block;width:100%;margin:18px 0 6px;padding:15px;border:0;border-radius:16px;background:var(--acc-d);color:#fff;font:700 17px inherit;font-family:inherit;cursor:pointer}
+.start:disabled{opacity:.45}
+.note{font-size:12px;color:var(--sub)}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.stats div{border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:13px}
+.stats b{font-size:18px}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:var(--ok)}
+/* 問題 */
+.qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2;border-bottom:1px solid var(--line)}
+.qhead .back{font:inherit;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:4px 10px;cursor:pointer;color:var(--ink)}
+.qhead .pos{font-weight:700}
+.qhead .tag{font-size:12px;border-radius:999px;padding:1px 9px;background:#EAF4FE;color:var(--acc-d)}
+@media (prefers-color-scheme:dark){.qhead .tag{background:#12324f;color:#9fcdf7}}
+.qhead .sc{margin-left:auto;font-size:13px;color:var(--sub)}
+.prog{height:4px;background:var(--line);border-radius:2px;margin:6px 0 12px;overflow:hidden}.prog i{display:block;height:100%;background:var(--acc)}
+.qtext{white-space:pre-wrap;font-size:16px;margin:8px 0 12px}
+.figs img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin:6px 0;background:#fff}
+.figs summary{cursor:pointer;color:var(--acc-d);font-size:14px;margin:6px 0}
+.opts{display:grid;gap:8px}
+.opts button{font:inherit;text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start;min-height:52px}
+.opts button .k{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--sub);display:grid;place-items:center;font-size:13px;font-weight:700}
+.opts button:disabled{cursor:default}
+.opts button.ok{border-color:var(--ok);background:#E9F7EF}.opts button.ok .k{background:var(--ok);border-color:var(--ok);color:#fff}
+.opts button.ng{border-color:var(--ng);background:#FDECEB}.opts button.ng .k{background:var(--ng);border-color:var(--ng);color:#fff}
+@media (prefers-color-scheme:dark){.opts button.ok{background:#12392a}.opts button.ng{background:#3d1a18}}
+.res{margin:14px 0;border-radius:14px;padding:12px 14px;border:1px solid var(--line);background:var(--card)}
+.res .v{font-weight:800;font-size:17px}.res .v.ok{color:var(--ok)}.res .v.ng{color:var(--ng)}
+.res .exp{white-space:pre-wrap;margin-top:6px;font-size:15px}
+.res .pend{color:var(--sub);font-size:14px;margin-top:6px}
+.res .orig{font-size:12px;margin-top:8px}.res .orig a{color:var(--acc-d)}
+.navq{display:flex;gap:8px;margin-top:10px}
+.navq button{flex:1;font:700 16px inherit;font-family:inherit;border-radius:14px;padding:13px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.navq button.pri{background:var(--acc-d);border-color:var(--acc-d);color:#fff}
+.mark{font:inherit;font-size:13px;border:1px solid var(--line);background:transparent;color:var(--sub);border-radius:999px;padding:3px 10px;cursor:pointer}
+.mark.on{background:var(--hl);color:#3A2A00;border-color:var(--hl)}
+/* 結果 */
+.score{text-align:center;padding:18px;border:2px solid var(--line);border-radius:18px;margin:14px 0}
+.score .big{font-size:44px;font-weight:900;line-height:1.1}
+.score .pass{display:inline-block;margin-top:6px;border-radius:999px;padding:2px 14px;font-weight:800;color:#fff}
+.score .pass.y{background:var(--ok)}.score .pass.n{background:var(--ng)}
+.rlist{display:grid;gap:6px;grid-template-columns:minmax(0,1fr)}.rlist button{min-width:0}.rlist .t{min-width:0}
+.rlist button{font:inherit;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 12px;cursor:pointer;display:flex;gap:8px}
+.rlist .m{font-weight:800;width:1.4em}.rlist .m.ok{color:var(--ok)}.rlist .m.ng{color:var(--ng)}
+.rlist .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+footer{margin-top:28px;font-size:12px;color:var(--sub)}
+</style><style>.subs button.soon{opacity:.55}.pass{display:inline-block;border-radius:999px;padding:0 10px;color:#fff;font-size:12px}.lessonlink{font-size:13px;margin-top:8px}.lessonlink a{color:var(--acc-d);font-weight:700}</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="krdsp"></script>
+<script src="../8_사이트/assets/member_config.js"></script>
+<script src="../1_지상직여객운송입문/assets/member.js"></script>
+</head>
+<body>
+<div class="wrap"><div id="app"></div></div>
+<script src="data/kr_dsp_wx1.js"></script>
+<script>
+/* 韓国 運航管理士 学科試験の練習問題（2026-09）
+   ・問題はこのサイトのオリジナル（韓国交通安全公団の試験問題は公開されていないため、公開の基準・資料をもとに作成）
+   ・画面は韓国語。記録はこの端末（localStorage）と、会員登録ができていれば会員の記録に保存する */
+(function(){
+var K=window.KRX,KEY='acn-krdsp-v1';
+var SUB=[['LAW','항공법규'],['ACFT','항공기'],['NAV','항행안전시설'],['COM','항공통신'],['WX','항공기상']];
+var SUBN={};SUB.forEach(function(s){SUBN[s[0]]=s[1]});
+var ST={v:1,r:{},mark:{}};try{var o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.v===1)ST=o}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
+var $=function(s){return document.querySelector(s)},app=$('#app');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function id(s,q){return s+'-'+q.c+'-'+q.n}
+function setName(s){for(var i=0;i<K.sets.length;i++)if(K.sets[i].id===s)return K.sets[i].name;return s}
+function has(c){for(var s in K.q)for(var i=0;i<K.q[s].length;i++)if(K.q[s][i].c===c)return true;return false}
+var sel={set:K.sets[0].id,subs:{},mode:'all'};SUB.forEach(function(s){sel.subs[s[0]]=has(s[0])});
+var run=null;
+function home(){
+ var h='<header class="top"><div class="kick">한국교통안전공단 운항관리사 학과시험 대비</div><h1>한국 운항관리사 연습문제</h1><p>시험 5과목에 맞춰 만든 연습문제를 한 문제씩 풀고, 정답과 해설, 관련 레슨을 바로 확인할 수 있습니다.</p></header>';
+ h+='<p class="src jp">이 문제는 <b>항공 커리어 노트가 직접 만든 연습문제</b>입니다. 한국교통안전공단의 실제 시험 문제(기출)는 공개되지 않으며, 이 문제는 기출이 아닙니다. 공개된 기준(ICAO, 기상청, 미국 FAA 안내 등)과 사이트의 레슨을 바탕으로 만들었습니다.<br><span lang="ja">韓国の運航管理士（学科試験）に向けた、このサイトのオリジナル練習問題です（韓国語のみ）。</span><br><span lang="en">Original practice questions for Korea’s flight dispatcher written exam (Korean only). These are not past exam questions.</span></p>';
+ h+='<p class="src">시험 개요(2026년 9월 확인): 항공법규·항공기·항행안전시설·항공통신·항공기상의 5과목, 과목마다 25문항·30분, 과목별 70% 이상이면 합격(과목 합격은 2년간 유효). 실제 시험 안내는 <a href="https://lic.kotsa.or.kr/airtest/html.do?menu_idx=57" target="_blank" rel="noopener">한국교통안전공단 TS국가자격시험</a>에서 확인하세요.</p>';
+ h+='<h2>문제 세트</h2><div class="sets">'+K.sets.map(function(s){var d=doneOf(s.id);return '<button data-set="'+s.id+'" class="'+(sel.set===s.id?'on':'')+'"><b>'+esc(s.name)+'<span class="new">NEW</span></b><small>'+esc(s.note||'')+'</small><small>'+d.n+' / '+d.t+'문 풀이'+(d.n?' · 정답률 '+Math.round(d.ok/d.n*100)+'%':'')+'</small></button>'}).join('')+'</div>';
+ h+='<h2>과목</h2><div class="subs">'+SUB.map(function(s){var ok=has(s[0]);return '<button data-sub="'+s[0]+'" class="'+(sel.subs[s[0]]?'on':'')+(ok?'':' soon')+'"'+(ok?'':' disabled')+'>'+esc(s[1])+'<small>'+(ok?'25문':'준비 중')+'</small></button>'}).join('')+'</div>';
+ h+='<h2>푸는 방법</h2><div class="modes">'+[['all','순서대로 전체','실제 시험 순서·합격 판정'],['rand10','무작위 10문','짬 날 때'],['wrong','틀린 문제','마지막에 틀린 문제만'],['mark','나중에 보기','표시한 문제']].map(function(m){return '<button data-mode="'+m[0]+'" class="'+(sel.mode===m[0]?'on':'')+'"><b>'+m[1]+'</b><small>'+m[2]+'</small></button>'}).join('')+'</div>';
+ var pool=buildPool();
+ var M=window.Member,gate=M&&M.enabled()&&!M.user();
+ if(gate)h+='<p class="src jp">연습문제를 풀려면 무료 회원가입(로그인)이 필요합니다. 기록은 회원별로 저장되어 휴대폰과 PC 어디서든 이어서 풀 수 있습니다.</p><button class="start" id="go">로그인하고 시작하기</button>';
+ else h+='<button class="start" id="go"'+(pool.length?'':' disabled')+'>'+(pool.length?pool.length+'문 시작하기':'해당하는 문제가 없습니다')+'</button><p class="note">'+(M&&M.enabled()?(SYNCED?'회원 기록과 동기화했습니다':''):'기록은 이 기기에 저장됩니다. 회원 기능이 준비되면 회원 기록으로 옮길 수 있게 할 예정입니다.')+'</p>';
+ h+='<h2>과목별 정답률(전체 기록)</h2><div class="stats">'+SUB.map(function(s){var a=0,ok=0;for(var k in ST.r){if(k.split('-')[1]===s[0]){a++;if(ST.r[k][0])ok++}}var p=a?Math.round(ok/a*100):0;return '<div>'+esc(s[1])+'<br><b>'+(a?p+'%':'—')+'</b> <small>'+a+'문</small><div class="bar"><i style="width:'+p+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<p class="note">관련 강좌: <a href="../19_운항관리실무/00_シリーズ全体_運航管理の実務.html">운항관리 실무</a>(Part 10 항공기상 기초 등). 일본 시험 대비는 <a href="学科試験_過去問.html">일본 학과시험 과거문제</a>(1,210문, 일본어).</p>';
+ h+='<footer>© 2026 항공 커리어 노트　문제·해설: 항공 커리어 노트(자체 제작)　<a href="../8_사이트/index.html">사이트 홈으로</a>　<button class="mark" id="reset">기록 지우기</button></footer>';
+ app.innerHTML=h;window.scrollTo(0,0);
+ Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home()}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-sub]'),function(b){b.onclick=function(){if(b.disabled)return;sel.subs[b.dataset.sub]=!sel.subs[b.dataset.sub];if(!Object.keys(sel.subs).some(function(k){return sel.subs[k]}))sel.subs[b.dataset.sub]=true;home()}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){sel.mode=b.dataset.mode;home()}});
+ $('#go').onclick=function(){if(gate){M.login();return}start(buildPool())};
+ $('#reset').onclick=function(){if(confirm('이 기기에 저장한 풀이 기록과 표시를 모두 지웁니다. 괜찮습니까?')){ST={v:1,r:{},mark:{}};save();home()}};
+}
+function doneOf(s){var t=K.q[s].length,n=0,ok=0;K.q[s].forEach(function(q){var r=ST.r[id(s,q)];if(r){n++;if(r[0])ok++}});return {t:t,n:n,ok:ok}}
+function buildPool(){
+ var p=[];K.q[sel.set].forEach(function(q){if(sel.subs[q.c])p.push({s:sel.set,q:q})});
+ if(sel.mode==='wrong')p=p.filter(function(x){var r=ST.r[id(x.s,x.q)];return r&&!r[0]});
+ if(sel.mode==='mark')p=p.filter(function(x){return ST.mark[id(x.s,x.q)]});
+ if(sel.mode==='rand10'){for(var i=p.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=p[i];p[i]=p[j];p[j]=t}p=p.slice(0,10)}
+ return p}
+function start(pool){run={pool:pool,i:0,ans:[]};show()}
+function show(){
+ var x=run.pool[run.i],q=x.q,k=id(x.s,q),done=run.ans[run.i];
+ var ok=run.ans.filter(function(a){return a&&a.ok}).length,cnt=run.ans.filter(Boolean).length;
+ var h='<div class="qhead"><button class="back" id="bk">← 돌아가기</button><span class="pos">'+(run.i+1)+' / '+run.pool.length+'</span><span class="tag">'+esc(setName(x.s))+'</span><span class="tag">'+esc(SUBN[q.c])+' '+q.n+'번</span><span class="sc">'+ok+' / '+cnt+' 정답</span></div>';
+ h+='<div class="prog"><i style="width:'+Math.round((run.i+1)/run.pool.length*100)+'%"></i></div>';
+ h+='<div class="qtext">'+esc(q.q)+'</div>';
+ h+='<div class="opts">'+q.o.map(function(o,i){var c='';if(done){if(i+1===q.a)c='ok';else if(i+1===done.pick)c='ng'}return '<button data-i="'+(i+1)+'" class="'+c+'"'+(done?' disabled':'')+'><span class="k">'+(i+1)+'</span><span>'+esc(o)+'</span></button>'}).join('')+'</div>';
+ if(done){
+  h+='<div class="res"><div class="v '+(done.ok?'ok':'ng')+'">'+(done.ok?'정답':'오답')+'　정답은 ('+q.a+')</div><div class="exp">'+esc(q.e)+'</div>'+(q.r?'<div class="lessonlink">관련 레슨: <a href="../ko/dsp/'+esc(q.r)+'/">운항관리 실무 '+esc(q.r)+' →</a></div>':'')+'<div class="orig"><button class="mark'+(ST.mark[k]?' on':'')+'" id="mk">'+(ST.mark[k]?'★ 나중에 보기':'☆ 나중에 보기')+'</button></div></div>';
+  h+='<div class="navq">'+(run.i>0?'<button id="pv">이전</button>':'')+'<button class="pri" id="nx">'+(run.i+1<run.pool.length?'다음 문제':'결과 보기')+'</button></div>';
+ }
+ app.innerHTML=h;
+ $('#bk').onclick=function(){if(!cnt||confirm('처음 화면으로 돌아갑니다. 지금까지의 풀이는 기록에 남아 있습니다.'))home()};
+ if(!done)Array.prototype.forEach.call(app.querySelectorAll('.opts button'),function(b){b.onclick=function(){var pick=+b.dataset.i,okk=pick===q.a;run.ans[run.i]={pick:pick,ok:okk};ST.r[k]=[okk?1:0,Date.now()];save();push(k);show();var r=app.querySelector('.res');if(r)r.scrollIntoView({behavior:'smooth',block:'nearest'})}});
+ else{$('#nx').onclick=function(){if(run.i+1<run.pool.length){run.i++;show();window.scrollTo(0,0)}else result()};var pv=$('#pv');if(pv)pv.onclick=function(){run.i--;show();window.scrollTo(0,0)};$('#mk').onclick=function(){if(ST.mark[k])delete ST.mark[k];else ST.mark[k]=1;save();push(k);show()}}
+}
+function result(){
+ var n=run.pool.length,ok=run.ans.filter(function(a){return a&&a.ok}).length,h='';
+ h+='<div class="qhead"><button class="back" id="bk">← 처음 화면</button><span class="pos">결과</span></div>';
+ /* 과목마다 25문을 순서대로 모두 풀었을 때만 합격 판정（1문 4점, 70점 이상） */
+ var by={};run.pool.forEach(function(x,i){var c=x.q.c;by[c]=by[c]||{n:0,ok:0};by[c].n++;if(run.ans[i]&&run.ans[i].ok)by[c].ok++});
+ h+='<div class="score"><div class="big">'+ok+' / '+n+'</div><div>정답률 '+Math.round(ok/n*100)+'%</div></div>';
+ h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],pt=Math.round(b.ok/b.n*100),judge=sel.mode==='all'&&b.n===25;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'점</b> <small>'+b.ok+'/'+b.n+'</small>'+(judge?'<br><span class="pass" style="background:'+(pt>=70?'var(--ok)':'var(--ng)')+'">'+(pt>=70?'합격선 이상':'합격선 미만')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<p class="note">합격 기준: 과목마다 70% 이상(25문 중 18문 이상). 한 과목 25문을 순서대로 모두 풀었을 때만 표시합니다.</p>';
+ h+='<h2>다시 보기</h2><div class="rlist">'+run.pool.map(function(x,i){var a=run.ans[i];return '<button data-i="'+i+'"><span class="m '+(a?(a.ok?'ok':'ng'):'')+'">'+(a?(a.ok?'○':'×'):'－')+'</span><span class="t">'+esc(SUBN[x.q.c])+' '+x.q.n+'번　'+esc(x.q.q)+'</span></button>'}).join('')+'</div>';
+ h+='<button class="start" id="again">틀린 문제만 다시 풀기</button>';
+ app.innerHTML=h;window.scrollTo(0,0);
+ $('#bk').onclick=home;
+ Array.prototype.forEach.call(app.querySelectorAll('.rlist button'),function(b){b.onclick=function(){run.i=+b.dataset.i;show();window.scrollTo(0,0)}});
+ var wr=run.pool.filter(function(x,i){return !(run.ans[i]&&run.ans[i].ok)});
+ var ag=$('#again');if(!wr.length){ag.disabled=true;ag.textContent='모두 정답입니다'}else ag.onclick=function(){start(wr)};
+}
+var SYNCED=false;
+function push(k){var M=window.Member;if(!M||!M.user())return;var r=ST.r[k];M.saveRecords([{item_id:'KR:'+k,ok:!!(r&&r[0]),marked:!!ST.mark[k],answered_at:new Date(r?r[1]:Date.now()).toISOString()}]).catch(function(){})}
+function syncAll(){var M=window.Member;if(!M||!M.user())return;
+ M.loadRecords().then(function(rows){var up=[];rows=rows.filter(function(x){return String(x.item_id).indexOf('KR:')===0});
+  rows.forEach(function(x){var kk=x.item_id.slice(3),t=Date.parse(x.answered_at)||0,loc=ST.r[kk];if(!loc||loc[1]<t){ST.r[kk]=[x.ok?1:0,t];if(x.marked)ST.mark[kk]=1;else delete ST.mark[kk]}});
+  var have={};rows.forEach(function(x){have[x.item_id.slice(3)]=Date.parse(x.answered_at)||0});
+  for(var kk in ST.r){if(!(kk in have)||have[kk]<ST.r[kk][1])up.push({item_id:'KR:'+kk,ok:!!ST.r[kk][0],marked:!!ST.mark[kk],answered_at:new Date(ST.r[kk][1]).toISOString()})}
+  save();SYNCED=true;if(!run)home();return M.saveRecords(up)}).catch(function(){})}
+if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home()});
+home();
+})();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

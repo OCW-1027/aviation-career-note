@@ -153,7 +153,8 @@ fs.writeFileSync(path.join(OUT, 'catalog.js'), '/* 自動生成：講座ごと�
 // 4) サイトマップ（新しいレッスンのURL＋講座の目次・ツールなどの主なページ）
 const extra = ['8_사이트/index.html', '8_사이트/jobs.html', '8_사이트/about.html', '7_구인게재_기업용/求人掲載のご案内.html', '8_사이트/terms.html', '8_사이트/sources.html', '8_사이트/guide.html', '8_사이트/privacy.html',
   '航空コード辞典.html', '遅延コード一覧_IATA.html', '用語集_航空用語.html', '確認クイズ_航空の仕事.html',
-  '1_지상직여객운송입문/搭載計算の練習.html', '4_공항안내방송예문집/空港アナウンス文例集.html', '10_공항양식해설집/空港で使う書類と様式.html', '14_승객FAQ/よくある質問_空港と飛行機.html', '18_항공기초지식/航空路図の練習.html', '13_항공영업입문/収益管理の練習.html'];
+  '1_지상직여객운송입문/搭載計算の練習.html', '4_공항안내방송예문집/空港アナウンス文例集.html', '10_공항양식해설집/空港で使う書類と様式.html', '14_승객FAQ/よくある質問_空港と飛行機.html', '18_항공기초지식/航空路図の練習.html', '13_항공영업입문/収益管理の練習.html',
+  '22_学科試験過去問/学科試験_過去問.html', '22_学科試験過去問/운항관리사_연습문제.html'];
 const hubsPages = Object.keys(HUBS).map(dir => { const f = fs.readdirSync(path.join(SRC, dir)).find(n => /^00_.*\.html$/.test(n)); return f ? dir + '/' + f : null; }).filter(Boolean);
 const urls = [...extra.filter(p => fs.existsSync(path.join(SRC, p))), ...hubsPages, ...soloPages, ...sitemap];
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
