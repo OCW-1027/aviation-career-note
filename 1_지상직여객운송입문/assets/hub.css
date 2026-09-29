@@ -26,7 +26,9 @@ a{color:var(--sky-d)}
 .hero p{margin:0;color:var(--ink-2);max-width:62ch}
 .stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;font-size:13px;color:var(--muted)}
 .stats b{display:block;font-size:24px;color:var(--ink);font-family:var(--disp)}
-.tabs{display:flex;gap:6px;overflow-x:auto;margin:22px 0 4px;padding-bottom:4px}
+/* 2026-09 章のタブは横スクロールさせず折り返して、すべての章を見せる */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;overflow-x:visible;margin:22px 0 4px;padding-bottom:4px}
+@media (max-width:640px){.tabs button{padding:6px 11px;font-size:13px}}
 .tabs button{flex:none;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 14px;font:500 14px var(--body)}
 .tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
 h2{font-family:var(--disp);font-size:20px;margin:30px 0 4px}

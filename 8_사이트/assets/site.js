@@ -13,6 +13,17 @@ var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
 var lang='ja';try{var _s=localStorage.getItem('art-lang');if(LANGS.indexOf(_s)>=0)lang=_s}catch(e){}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var logo='<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="6" width="28" height="18" rx="4" fill="#2F8FE0"/><path d="M7 17l6-2 5-5 2 .6-3 5 5-1.5 1.4 1.2-6 3-8 1z" fill="#fff"/><circle cx="24" cy="10" r="2.5" fill="#FFE08A"/></svg>';
+/* スマートフォンの上部バー：メニューを横スクロールさせず、7項目を4列でぜんぶ見せる。
+   site.css を読まないページ（独自のスタイルを持つページ）でも同じにするため、上部バーを作るこのファイルで入れる */
+(function(){if(document.getElementById('st-topbar-m'))return;var c='@media (max-width:720px){'+
+'html body .topbar{position:static!important}'+
+'html body .topbar .in{flex-wrap:wrap!important;gap:8px 10px!important;padding:8px 12px!important}'+
+'html body .topbar .in .brand{order:1}html body .topbar .in .langs{order:3;margin-left:auto!important}'+
+'html body .topbar .in .mb-slot{order:2;margin-left:auto!important}html body .topbar .in:has(.mb-slot) .langs{margin-left:0!important}'+
+'html body .topbar nav.menu{order:4;flex:1 1 100%!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:5px!important;overflow:visible!important;margin:0!important;padding:0!important}'+
+'html body .topbar nav.menu a{display:flex!important;align-items:center;justify-content:center;text-align:center;padding:6px 3px!important;font-size:13px!important;line-height:1.25;white-space:normal!important;min-height:38px;border:1px solid var(--line,#dfe8f2)!important;border-radius:10px!important;flex:none!important}'+
+'html body .topbar nav.menu a.on{border-color:#9cc7ee!important}}';
+var st=document.createElement('style');st.id='st-topbar-m';st.textContent=c;(document.head||document.documentElement).appendChild(st)})();
 function draw(){var s=SITE[lang],page=document.body.getAttribute('data-page');
  document.body.className=lang;document.documentElement.lang=lang;
  var top=document.getElementById('siteTop');

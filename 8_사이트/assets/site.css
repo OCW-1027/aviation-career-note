@@ -37,15 +37,17 @@ h2{font-size:22px;margin:40px 0 12px;padding-bottom:6px;border-bottom:3px solid 
 @media (max-width:640px){.brand span{display:none}}
 /* 暗い画面でも読めるリンク色（文字のコントラスト 4.5:1 以上） */
 @media (prefers-color-scheme:dark){a{color:#79bfff}.site-foot a{color:var(--sub)}}
-/* 2026-09 スマートフォンの上部バー：メニューを横スクロールさせず、7項目を4列でぜんぶ見せる。バーは追従させない */
+/* 2026-09 スマートフォンの上部バー：メニューを横スクロールさせず、7項目を4列でぜんぶ見せる。バーは追従させない。
+   ページ独自のスタイル（.topbar nav.menu など）より優先させるため、詳しい指定と !important を使う */
 @media (max-width:720px){
-.topbar{position:static}
-.topbar .in{flex-wrap:wrap;gap:8px 10px;padding:8px 12px}
-.topbar .in .brand{order:1}
-.topbar .in .langs{order:3;margin-left:auto}
-.topbar .in .mb-slot{order:2;margin-left:auto!important}
-.topbar .in:has(.mb-slot) .langs{margin-left:0}
-.menu{order:4;flex:1 1 100%;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;overflow:visible}
-.menu a{display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 3px;font-size:13px;line-height:1.25;white-space:normal;min-height:38px;border:1px solid var(--line);border-radius:10px}
-.menu a.on{border-color:#9cc7ee}
+html body .topbar{position:static!important}
+html body .topbar .in{flex-wrap:wrap!important;gap:8px 10px!important;padding:8px 12px!important}
+html body .topbar .in .brand{order:1}
+html body .topbar .in .langs{order:3;margin-left:auto!important}
+html body .topbar .in .mb-slot{order:2;margin-left:auto!important}
+html body .topbar .in:has(.mb-slot) .langs{margin-left:0!important}
+html body .topbar nav.menu,html body .menu{order:4;flex:1 1 100%!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:5px!important;overflow:visible!important;margin:0!important;padding:0!important}
+html body .topbar nav.menu a,html body .menu a{display:flex!important;align-items:center;justify-content:center;text-align:center;padding:6px 3px!important;font-size:13px!important;line-height:1.25;white-space:normal!important;min-height:38px;border:1px solid var(--line)!important;border-radius:10px!important;flex:none!important}
+html body .topbar nav.menu a.on,html body .menu a.on{border-color:#9cc7ee!important}
 }
+
