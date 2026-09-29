@@ -4,7 +4,7 @@
 (function(){
 var H=window.FIGH;if(!H)return;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,ARW=H.ARW,SCR=H.SCR,plane=H.plane,NARROW=H.NARROW,setK=H.setK;
-var LBW=H.LBW;
+var LBW=H.LBW,TTL=H.TTL;
 var D=H.C.D,B=H.C.B,T=H.C.T,O=H.C.O,RD=H.C.RD,P=H.C.P,G=H.C.G;
 var F={
 /* 1 速度のはしご：IAS → CAS → EAS → TAS → GS */
@@ -17,12 +17,12 @@ nav_speeds:function(l){
  var cols=['#6B7785','#2F8FE0','#1F7A6E','#E08A2F','#D64545'];
  var s='';
  if(nar){
-  s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 1080" role="img">'+R(0,0,460,1080,'#F7FAFD')+WR(230,30,W.t,15,'#0f3558',900,420);
+  s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 1080" role="img">'+R(0,0,460,1080,'#F7FAFD')+TTL(230,30,W.t,15,'#0f3558',420);
   W.s.forEach(function(v,i){var y=70+i*200,c=cols[i];
    s+='<g>'+R(20,y,420,150,'#fff',16,' stroke="'+c+'" stroke-width="3"')+tx(70,y+62,v[0],30,c,900)+tx(150,y+50,v[1],15,D,900,'start')+WR(290,y+92,v[2],12,G,800,270)+LB(290,y+132,W.use[i],11,'#fff','middle',c)+'<animate attributeName="opacity" values=".45;1;1;.45" keyTimes="0;'+(i*0.18).toFixed(2)+';'+(i*0.18+0.2).toFixed(2)+';1" dur="9s" repeatCount="indefinite"/></g>';
    if(i<4)s+=ARW(230,y+156,230,y+194,'#9FB0C2',5)+LB(300,y+178,W.fx[i],11,'#40566B','start')});
  }else{
-  s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img">'+R(0,0,900,380,'#F7FAFD')+tx(450,30,W.t,15,'#0f3558',900);
+  s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img">'+R(0,0,900,380,'#F7FAFD')+TTL(450,30,W.t,15,'#0f3558',860);
   W.s.forEach(function(v,i){var x=14+i*178,c=cols[i];
    s+='<g>'+R(x,60,160,230,'#fff',16,' stroke="'+c+'" stroke-width="3"')+tx(x+80,108,v[0],30,c,900)+WR(x+80,140,v[1],13,D,900,150)+WR(x+80,196,v[2],11.5,G,800,146)+LB(x+80,270,W.use[i],10.5,'#fff','middle',c)+'<animate attributeName="opacity" values=".45;1;1;.45" keyTimes="0;'+(i*0.18).toFixed(2)+';'+(i*0.18+0.2).toFixed(2)+';1" dur="9s" repeatCount="indefinite"/></g>';
    if(i<4)s+=ARW(x+162,176,x+176,176,'#9FB0C2',4)+WR(x+170,330,W.fx[i],10.5,'#40566B',800,120)});
@@ -36,7 +36,7 @@ nav_ias_tas:function(l){
   en:{t:'Same 250 kt IAS, but faster in reality the higher you go',ias:'IAS (instrument)',tas:'TAS (true speed)',thin:'Thin air up high',thick:'Dense air down low',rule:'Rule of thumb: TAS ≈ IAS × (1 + 0.02 × altitude in thousands of ft)',h:'Altitude'}})[l];
  if(!W)return F.nav_ias_tas('ja');
  var nar=NARROW();setK(nar?1.35:1);
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+WR(320,28,W.t,15,'#0f3558',900,600);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
  s+='<defs><linearGradient id="itg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9FD3F7"/><stop offset="1" stop-color="#2B4F8F"/></linearGradient></defs>'+R(20,54,340,440,'url(#itg)',14)+R(20,494,340,16,'#9CC98B',0);
  /* 空気の粒：下ほど多く */
  var dots='';for(var r=0;r<14;r++){var y=480-r*30,n=Math.max(1,Math.round(14*Math.pow(1-r/14,1.6)));for(var j=0;j<n;j++){var x=32+(j+0.5)*(320/n)+((r%2)?8:-8);dots+='<circle cx="'+x.toFixed(0)+'" cy="'+y+'" r="3.2" fill="#fff" opacity=".65"/>'}}
@@ -68,7 +68,7 @@ nav_mach:function(l){
   g+='<circle cx="80" cy="'+(y+60)+'" r="12" fill="'+col+'"/>'+tx(80,y+65,'♪',14,'#fff',900);
   g+=LB(340,y+36,ac,12,col,'middle')+LB(340,y+96,mc,13,'#fff','middle',col);
   return g}
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+WR(320,28,W.t,15,'#0f3558',900,600);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
  s+='<defs><clipPath id="mcl1"><rect x="20" y="56" width="600" height="120" rx="14"/></clipPath><clipPath id="mcl2"><rect x="20" y="196" width="600" height="120" rx="14"/></clipPath></defs>';
  s+='<g clip-path="url(#mcl1)">'+lane(56,'#E08A2F',W.a0,W.m0,2.4)+'</g><g clip-path="url(#mcl2)">'+lane(196,'#2F6FD6',W.a1,W.m1,2.8)+'</g>';
  s+=R(20,334,600,170,'#fff',14,' stroke="#D9E3EC"')+WR(320,366,W.why,12.5,D,900,570)+WR(320,408,W.rule,12,'#8a3b00',900,570);
@@ -88,7 +88,7 @@ nav_densalt:function(l){
   g+='<g>'+plane('#fff')+'<animateMotion dur="'+dur+'s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.7;1" calcMode="linear" path="M60 '+(y+100)+' L'+end+' '+(y+100)+' L'+(end+40)+' '+(y+70)+'"/></g>';
   g+=LB(330,y+62,da,11.5,'#fff','middle',col)+tx(end,y+144,'▲',12,col,900);
   return g}
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+WR(320,28,W.t,15,'#0f3558',900,600);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
  s+=rw(50,W.cool,W.da0,'#2F8FE0',330,5,false)+rw(214,W.hot,W.da1,'#D64545',470,5,true);
  var LI=H.LINES,FS=H.FS,n1=LI(W.eff,12,560).length,n2=LI(W.rule,11.5,560).length,l1=FS(12)*1.3,l2=FS(11.5)*1.3,y=392,bh=n1*l1+n2*l2+34;
  s+=R(20,y,600,bh,'#fff',14,' stroke="#D9E3EC"')+WR(320,y+12+n1*l1/2+FS(12)*0.3,W.eff,12,D,900,560)+WR(320,y+22+n1*l1+n2*l2/2+FS(11.5)*0.3,W.rule,11.5,'#8a3b00',900,560);
@@ -112,8 +112,8 @@ nav_river:function(l){
   g+=WR(210,350,corr?W.ok:W.drift,12,corr?T:RD,900,390);
   return g+'</g>'}
  var s;
- if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 890" role="img">'+R(0,0,460,890,'#F7FAFD')+WR(230,30,W.t,15,'#0f3558',900,420)+panel(20,56,false)+panel(20,450,true)+LB(230,880,W.cur+' →',11,'#1d4d8a','middle','#DCEBFA');
- else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#F7FAFD')+tx(450,30,W.t,15,'#0f3558',900)+panel(20,50,false)+panel(460,50,true)+LB(450,456,W.cur+' →',11,'#1d4d8a','middle','#DCEBFA');
+ if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 890" role="img">'+R(0,0,460,890,'#F7FAFD')+TTL(230,30,W.t,15,'#0f3558',420)+panel(20,56,false)+panel(20,450,true)+LB(230,880,W.cur+' →',11,'#1d4d8a','middle','#DCEBFA');
+ else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#F7FAFD')+TTL(450,30,W.t,15,'#0f3558',860)+panel(20,50,false)+panel(460,50,true)+LB(450,456,W.cur+' →',11,'#1d4d8a','middle','#DCEBFA');
  setK(1);return s+'</svg>'},
 
 /* 6 風の三角形：機首方位とTAS ＋ 風 ＝ 航跡とGS。機体は少し斜めに（クラブ）飛ぶ */
@@ -124,7 +124,7 @@ nav_windtri:function(l){
  if(!W)return F.nav_windtri('ja');
  var nar=NARROW();setK(nar?1.3:1);
  var o=[120,470],hd=[380,120],tr=[470,170];
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+tx(320,30,W.t,16,'#0f3558',900)+R(20,50,600,450,'#EEF5FB',14);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,30,W.t,16,'#0f3558',600)+R(20,50,600,450,'#EEF5FB',14);
  s+='<g opacity=".5"><path d="M60 110 L60 70" stroke="#6B7785" stroke-width="3"/><path d="M52 82 L60 66 L68 82" fill="#6B7785"/>'+tx(60,128,W.n,12,G,900)+'</g>';
  function vec(a,b,c,lab,d,lx,ly){return '<g opacity="0">'+ARW(a[0],a[1],b[0],b[1],c,6)+LB(lx,ly,lab,12,'#fff','middle',c)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+d+';'+(d+0.08)+';1" dur="9s" repeatCount="indefinite"/></g>'}
  s+=vec(o,hd,'#2F6FD6',W.th,0.02,210,280)+vec(hd,tr,'#E08A2F',W.wv,0.2,500,120)+vec(o,tr,'#D64545',W.tr,0.38,370,370);
@@ -142,7 +142,7 @@ nav_comp:function(l){
   en:{t:'Wind components: the angle sets headwind and crosswind',rw:'Runway',hw:'Headwind',xw:'Crosswind',wind:'Wind 20 kt',clk:'Clock method: 15° = ¼, 30° = ½, 45° = ¾, 60° or more = almost all crosswind',ang:'Angle between wind and runway'}})[l];
  if(!W)return F.nav_comp('ja');
  var nar=NARROW();setK(nar?1.3:1);
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 612" role="img">'+R(0,0,640,612,'#F7FAFD')+WR(320,30,W.t,15,'#0f3558',900,600)+R(20,54,600,380,'#EEF5FB',14);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 612" role="img">'+R(0,0,640,612,'#F7FAFD')+TTL(320,30,W.t,15,'#0f3558',600)+R(20,54,600,380,'#EEF5FB',14);
  s+=R(270,90,60,320,'#5B6770',6)+'<line x1="300" y1="100" x2="300" y2="400" stroke="#fff" stroke-width="3" stroke-dasharray="16 12"/>'+tx(300,425,W.rw,12,G,900);
  var angs=[0,15,30,45,60,90],n=angs.length,dur=12;
  angs.forEach(function(a,i){var r=a*Math.PI/180,hw=20*Math.cos(r),xw=20*Math.sin(r),k0=(i/n).toFixed(3),k1=((i+1)/n).toFixed(3);
@@ -167,7 +167,7 @@ nav_var:function(l){
  if(!W)return F.nav_var('ja');
  var nar=NARROW();setK(nar?1.3:1);
  var cx=320,cy=290;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 630" role="img">'+R(0,0,640,630,'#F7FAFD')+WR(320,30,W.t,15,'#0f3558',900,600);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 630" role="img">'+R(0,0,640,630,'#F7FAFD')+TTL(320,30,W.t,15,'#0f3558',600);
  s+='<circle cx="'+cx+'" cy="'+cy+'" r="170" fill="#fff" stroke="#D9E3EC" stroke-width="3"/>';
  for(var a=0;a<360;a+=30){var r=a*Math.PI/180;s+='<line x1="'+(cx+Math.sin(r)*150).toFixed(0)+'" y1="'+(cy-Math.cos(r)*150).toFixed(0)+'" x2="'+(cx+Math.sin(r)*165).toFixed(0)+'" y2="'+(cy-Math.cos(r)*165).toFixed(0)+'" stroke="#9FB0C2" stroke-width="3"/>'}
  s+=ARW(cx,cy,cx,cy-190,'#2F6FD6',6)+LB(cx,cy-206,W.tn,12,'#fff','middle','#2F6FD6');
@@ -186,7 +186,7 @@ nav_1in60:function(l){
  if(!W)return F.nav_1in60('ja');
  setK(1);
  var x0=50,y0=250,px=4.3; /* 1NM = 4.3（横）、ずれは見やすいように縦を大きくする */
- var s=R(0,0,640,420,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600)+R(20,54,600,260,'#EEF5FB',14);
+ var s=R(0,0,640,420,'#F7FAFD')+TTL(320,30,W.t,16,'#0f3558',600)+R(20,54,600,260,'#EEF5FB',14);
  s+='<line x1="'+x0+'" y1="'+y0+'" x2="600" y2="'+y0+'" stroke="#2F6FD6" stroke-width="4"/>'+LBW(420,y0+48,W.p,11,'#2F6FD6','middle','#fff',200);
  var ey=function(nm){return y0-nm/60*60}; /* 60NM で 60px 上（誇張） */
  s+='<line x1="'+x0+'" y1="'+y0+'" x2="'+(x0+120*px)+'" y2="'+ey(120)+'" stroke="#D64545" stroke-width="3" stroke-dasharray="8 6"/>';
@@ -205,7 +205,7 @@ nav_offtrack:function(l){
  if(!W)return F.nav_offtrack('ja');
  setK(1);
  var A=[60,320],B=[580,320],X=[233,248];
- var s=R(0,0,640,440,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600)+R(20,54,600,330,'#EEF5FB',14);
+ var s=R(0,0,640,440,'#F7FAFD')+TTL(320,30,W.t,16,'#0f3558',600)+R(20,54,600,330,'#EEF5FB',14);
  s+='<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" stroke="#2F6FD6" stroke-width="4" stroke-dasharray="12 8"/>';
  s+='<circle cx="'+A[0]+'" cy="'+A[1]+'" r="10" fill="#2F6FD6"/>'+tx(A[0],A[1]+34,W.a,12,'#2F6FD6',900)+'<circle cx="'+B[0]+'" cy="'+B[1]+'" r="10" fill="#D64545"/>'+tx(B[0]-10,B[1]+34,W.b,12,'#D64545',900);
  s+='<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+X[0]+'" y2="'+X[1]+'" stroke="#E08A2F" stroke-width="4"/>';
@@ -226,7 +226,7 @@ nav_tsd:function(l){
   en:{t:'The time–speed–distance triangle',d:'Distance',s:'Speed',tm:'Time',f1:'Distance = speed × time',f2:'Time = distance ÷ speed',f3:'Speed = distance ÷ time',ex:'GS 480 kt = 8 NM a minute → 240 NM takes 30 minutes',min:'min'}})[l];
  if(!W)return F.nav_tsd('ja');
  setK(1);
- var s=R(0,0,640,560,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600);
+ var s=R(0,0,640,560,'#F7FAFD')+TTL(320,30,W.t,16,'#0f3558',600);
  s+='<path d="M320 70 L500 330 L140 330 Z" fill="#fff" stroke="#243447" stroke-width="3"/><line x1="200" y1="240" x2="440" y2="240" stroke="#243447" stroke-width="3"/><line x1="320" y1="240" x2="320" y2="330" stroke="#243447" stroke-width="3"/>';
  s+=tx(320,200,W.d,18,'#2F6FD6',900)+tx(250,300,W.s,18,'#E08A2F',900)+tx(390,300,W.tm,18,'#1F7A6E',900);
  var fs=[W.f1,W.f2,W.f3],cov=[[250,290,140,40],[330,290,120,40],[290,180,60,40]];
@@ -247,14 +247,110 @@ nav_descent:function(l){
   en:{t:'Planning a 3° descent',tod:'Top of descent (TOD)',rw:'Runway',r1:'3° slope = about 300 ft per NM',r2:'Distance to start descent (NM) ≈ height to lose (thousands of ft) × 3',r3:'Rate of descent (ft/min) ≈ GS (kt) × 5',ex:'Example: FL350 to 3,000 ft → 32 × 3 = start about 96 NM out'}})[l];
  if(!W)return F.nav_descent('ja');
  setK(1);
- var s=R(0,0,640,560,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600)+R(20,54,600,280,'#DCEEFB',14)+R(20,310,600,24,'#9CC98B',0);
+ var s=R(0,0,640,560,'#F7FAFD')+TTL(320,30,W.t,16,'#0f3558',600)+R(20,54,600,280,'#DCEEFB',14)+R(20,310,600,24,'#9CC98B',0);
  s+='<line x1="40" y1="90" x2="150" y2="90" stroke="#6B7785" stroke-width="3"/><path d="M150 90 L560 300" stroke="#D64545" stroke-width="4"/>'+R(540,298,70,10,'#5B6770',3);
  s+='<circle cx="150" cy="90" r="7" fill="#D64545"/>'+LBW(200,74,W.tod,11,'#fff','start','#D64545',240)+tx(575,330,W.rw,11,G,900);
  s+='<g><g>'+plane('#fff')+'</g><animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M40 90 L150 90 L560 300"/></g>';
  var y=348,body='',items=[[W.r1,12,D],[W.r2,12,'#2F6FD6'],[W.r3,12,'#1F7A6E'],[W.ex,11.5,'#8a3b00']];
  items.forEach(function(v){var n=H.LINES(v[0],v[1],560).length,lh=H.FS(v[1])*1.3;body+=WR(320,y+10+n*lh/2+H.FS(v[1])*0.3,v[0],v[1],v[2],900,560);y+=n*lh+10});
  var bh=y-348+12;s+=R(20,344,600,bh,'#fff',14,' stroke="#D9E3EC"')+body;
- var HH=344+bh+12;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,560,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'))+'</svg>'}
+ var HH=344+bh+12;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,560,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'))+'</svg>'},
+/* 13 従来の航法とRNAV：無線施設を順に通る道と、ウェイポイントをまっすぐ結ぶ道 */
+nav_rnav:function(l){
+ var W=({ja:{t:'従来の航法とRNAV（広域航法）',a:'従来の航法',b:'RNAV',vor:'VOR（地上の無線施設）',wp:'ウェイポイント（座標の点）',na:'無線施設の上を順に通るので、道が曲がり長くなる',nb:'座標の点をまっすぐ結べるので、道が短く自由になる',dep:'出発',arr:'到着'},
+  ko:{t:'기존 항법과 RNAV(광역항법)',a:'기존 항법',b:'RNAV',vor:'VOR(지상 무선시설)',wp:'웨이포인트(좌표 지점)',na:'무선시설 위를 차례로 지나므로 길이 굽고 길어진다',nb:'좌표 지점을 곧게 이을 수 있어 길이 짧고 자유롭다',dep:'출발',arr:'도착'},
+  en:{t:'Conventional navigation and RNAV (area navigation)',a:'Conventional',b:'RNAV',vor:'VOR (ground radio station)',wp:'Waypoint (a set of coordinates)',na:'Flying over each station in turn bends and lengthens the route',nb:'Joining coordinates directly makes routes shorter and more flexible',dep:'Dep',arr:'Arr'}})[l];
+ if(!W)return F.nav_rnav('ja');
+ setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;
+ function vor(x,y){return '<g transform="translate('+x+' '+y+')"><path d="M-12 0 L-6 -10 L6 -10 L12 0 L6 10 L-6 10 Z" fill="#fff" stroke="#2F6FD6" stroke-width="3"/><circle r="3" fill="#2F6FD6"/></g>'}
+ function wpt(x,y){return '<g transform="translate('+x+' '+y+')"><path d="M0 -11 L10 7 L-10 7 Z" fill="#fff" stroke="#1F7A6E" stroke-width="3"/></g>'}
+ function panel(x0,y0,w,conv){var h=250,g=R(x0,y0,w,h,'#fff',16,' stroke="'+(conv?'#2F6FD6':'#1F7A6E')+'" stroke-width="3"')+tx(x0+w/2,y0+30,conv?W.a:W.b,15,conv?'#2F6FD6':'#1F7A6E',900);
+  var A=[x0+34,y0+200],B=[x0+w-34,y0+80];
+  g+='<circle cx="'+A[0]+'" cy="'+A[1]+'" r="8" fill="#6B7785"/>'+tx(A[0],A[1]+26,W.dep,11,G,800)+'<circle cx="'+B[0]+'" cy="'+B[1]+'" r="8" fill="#D64545"/>'+tx(B[0],B[1]-16,W.arr,11,'#D64545',800);
+  var pts;
+  if(conv){pts=[A,[x0+w*0.3,y0+110],[x0+w*0.55,y0+190],[x0+w*0.78,y0+100],B];pts.slice(1,4).forEach(function(p){g+=vor(p[0],p[1])})}
+  else{pts=[A,[x0+w*0.35,y0+160],[x0+w*0.68,y0+120],B];pts.slice(1,3).forEach(function(p){g+=wpt(p[0],p[1])})}
+  var d='M'+pts.map(function(p){return p[0].toFixed(0)+' '+p[1].toFixed(0)}).join(' L');
+  g+='<path d="'+d+'" fill="none" stroke="'+(conv?'#2F6FD6':'#1F7A6E')+'" stroke-width="3" stroke-dasharray="8 6"/>';
+  g+='<g>'+plane('#fff')+'<animateMotion dur="'+(conv?8:6)+'s" repeatCount="indefinite" rotate="auto" path="'+d+'"/></g>';
+  var n=LI(conv?W.na:W.nb,11.5,w-30).length,lh=FS(11.5)*1.3;
+  g+=R(x0,y0+h+10,w,n*lh+18,conv?'#E3F1FB':'#E8F5F2',12)+WR(x0+w/2,y0+h+19+n*lh/2+FS(11.5)*0.3,conv?W.na:W.nb,11.5,D,800,w-30);
+  return {s:g,h:h+10+n*lh+18}}
+ var s,HH;
+ if(nar){var p1=panel(20,56,540,true),p2=panel(20,56+p1.h+20,540,false);HH=56+p1.h+20+p2.h+14;s=R(0,0,580,HH,'#F7FAFD')+TTL(290,30,W.t,15,'#0f3558',540)+p1.s+p2.s;
+  var H0=HH,ln=LI(W.vor+' / '+W.wp,10.5,520).length,llh=FS(10.5)*1.3;s+=LBW(290,H0+10+llh*0.8+(ln-1)*llh/2,W.vor+' / '+W.wp,10.5,'#40566B','middle','#fff',520);HH=H0+ln*llh+28;s=s.replace(R(0,0,580,H0,'#F7FAFD'),R(0,0,580,HH,'#F7FAFD'));return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 '+HH.toFixed(0)+'" role="img">'+s+'</svg>'}
+ var q1=panel(20,56,420,true),q2=panel(460,56,420,false);HH=56+Math.max(q1.h,q2.h)+52;
+ s=R(0,0,900,HH,'#F7FAFD')+TTL(450,30,W.t,16,'#0f3558',860)+q1.s+q2.s+vor(200,HH-26)+tx(220,HH-21,W.vor,11,'#2F6FD6',800,'start')+wpt(520,HH-26)+tx(540,HH-21,W.wp,11,'#1F7A6E',800,'start');
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+HH.toFixed(0)+'" role="img">'+s+'</svg>'},
+
+/* 14 RNPの「トンネル」：±x NM の幅の中を飛行時間の95%以上で飛び、はみ出すと機内で警報が出る */
+nav_rnp:function(l){
+ var W=({ja:{t:'RNP ― 決められた幅の中を飛ぶ',band:'±1NM（RNP 1）',alert:'警報',in:'飛行時間の95%以上はこの幅の中',mon:'RNPは機体が自分の精度を監視し、守れないと警報を出す（RNAVにはこの機能の決まりがない）',sp:'主な仕様と幅',rows:[['RNAV 10','洋上・遠隔地','10NM',10],['RNP 4','洋上','4NM',4],['RNAV 5','大陸の航空路','5NM',5],['RNAV 1・RNP 1','出発（SID）・到着（STAR）','1NM',1],['RNP APCH','計器進入（最終進入は0.3NM）','0.3NM',0.3],['RNP AR APCH','特別な承認が必要な進入','0.3〜0.1NM',0.1]]},
+  ko:{t:'RNP — 정해진 폭 안을 난다',band:'±1NM(RNP 1)',alert:'경보',in:'비행시간의 95% 이상은 이 폭 안',mon:'RNP는 기체가 스스로 정밀도를 감시하고, 지키지 못하면 경보를 낸다(RNAV에는 이 기능의 규정이 없다)',sp:'주요 사양과 폭',rows:[['RNAV 10','해상·원격지','10NM',10],['RNP 4','해상','4NM',4],['RNAV 5','대륙 항공로','5NM',5],['RNAV 1·RNP 1','출발(SID)·도착(STAR)','1NM',1],['RNP APCH','계기접근(최종접근은 0.3NM)','0.3NM',0.3],['RNP AR APCH','특별 승인이 필요한 접근','0.3~0.1NM',0.1]]},
+  en:{t:'RNP: flying inside a set width',band:'±1 NM (RNP 1)',alert:'Alert',in:'Inside this width for at least 95% of flight time',mon:'Under RNP the aircraft monitors its own accuracy and alerts if it cannot meet it (RNAV has no such requirement)',sp:'Main specifications and widths',rows:[['RNAV 10','Oceanic, remote','10 NM',10],['RNP 4','Oceanic','4 NM',4],['RNAV 5','Continental en route','5 NM',5],['RNAV 1 · RNP 1','Departures (SID), arrivals (STAR)','1 NM',1],['RNP APCH','Instrument approach (0.3 NM on final)','0.3 NM',0.3],['RNP AR APCH','Approach needing special approval','0.3–0.1 NM',0.1]]}})[l];
+ if(!W)return F.nav_rnp('ja');
+ setK(1);var FS=H.FS,LI=H.LINES;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#EEF5FB',14);
+ s+=R(30,106,580,100,'#1F7A6E',0,' opacity=".15"')+'<line x1="30" y1="156" x2="610" y2="156" stroke="#1F7A6E" stroke-width="3" stroke-dasharray="10 6"/><line x1="30" y1="106" x2="610" y2="106" stroke="#1F7A6E" stroke-width="2"/><line x1="30" y1="206" x2="610" y2="206" stroke="#1F7A6E" stroke-width="2"/>';
+ s+=LB(40,100,W.band,11,'#1F7A6E','start','#fff');
+ s+='<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" path="M40 156 C140 130 220 180 320 150 C420 120 480 170 560 226"/></g>';
+ s+='<g opacity="0">'+LB(560,246,'⚠ '+W.alert,13,'#fff','middle','#D64545')+'<animate attributeName="opacity" values="0;0;1;0;1;0" keyTimes="0;.88;.9;.94;.97;1" dur="8s" repeatCount="indefinite"/></g>';
+ s+=LBW(320,238,W.in,11,'#1F7A6E','middle','#fff',420);
+ var y=272,n=LI(W.mon,11.5,560).length,lh=FS(11.5)*1.3;s+=R(20,y,600,n*lh+18,'#FFF1E3',12)+WR(320,y+9+n*lh/2+FS(11.5)*0.3,W.mon,11.5,'#8a3b00',800,560);y+=n*lh+30;
+ s+=tx(320,y+FS(13)*0.9,W.sp,13,D,900);y+=FS(13)*1.4+8;
+ W.rows.forEach(function(r,i){var nl=LI(r[1],10.5,200).length,rh=Math.max(FS(12)*1.4,nl*FS(10.5)*1.3)+12,bw=Math.max(6,Math.log(r[3]*10+1)/Math.log(101)*170);
+  s+=R(20,y,600,rh,i%2?'#fff':'#F4F7FB',8)+tx(30,y+rh/2+FS(12)*0.35,r[0],12,D,900,'start')+WR(270,y+rh/2+FS(10.5)*0.3,r[1],10.5,G,800,200)+R(380,y+rh/2-8,bw,16,'#1F7A6E',8,' opacity=".75"')+tx(380+bw+8,y+rh/2+FS(11)*0.35,r[2],11,'#1F7A6E',900,'start');y+=rh+4});
+ var HH=y+12;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+'</svg>'},
+
+/* 15 GNSS：4機で位置、5機で異常を見つけ（RAIM）、6機で異常な衛星を外す（FDE）。静止衛星（SBAS）が補正を送る */
+nav_gnss:function(l){
+ var W=({ja:{t:'GNSS（衛星航法）のしくみ',s4:'4機：位置（緯度・経度・高さ）と時計のずれを求める',s5:'5機：おかしな衛星がないかを見つける（RAIM）',s6:'6機：おかしな衛星を外して使い続ける（FDE）',sbas:'静止衛星（SBAS）：地上の基準局で求めた補正と信頼性の情報を送る',names:'GPS（米）・GLONASS（露）・Galileo（欧）・BeiDou（中）。日本の「みちびき」はGPSを補う',ref:'基準局'},
+  ko:{t:'GNSS(위성항법)의 원리',s4:'4기: 위치(위도·경도·높이)와 시계 오차를 구한다',s5:'5기: 이상한 위성이 없는지 찾아낸다(RAIM)',s6:'6기: 이상한 위성을 빼고 계속 쓴다(FDE)',sbas:'정지위성(SBAS): 지상 기준국에서 구한 보정과 신뢰성 정보를 보낸다',names:'GPS(미)·GLONASS(러)·Galileo(유럽)·BeiDou(중). 일본의 ‘미치비키’는 GPS를 보완',ref:'기준국'},
+  en:{t:'How GNSS (satellite navigation) works',s4:'4 satellites: position (latitude, longitude, height) and receiver clock error',s5:'5 satellites: detect a faulty satellite (RAIM)',s6:'6 satellites: exclude the faulty one and carry on (FDE)',sbas:'Geostationary satellite (SBAS): sends corrections and integrity data worked out by ground reference stations',names:'GPS (US), GLONASS (Russia), Galileo (EU), BeiDou (China); Japan’s QZSS (Michibiki) supplements GPS',ref:'Reference station'}})[l];
+ if(!W)return F.nav_gnss('ja');
+ setK(1);var FS=H.FS,LI=H.LINES;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,330,'#0E2238',14);
+ s+='<path d="M20 386 Q320 300 620 386 Z" fill="#2F6FA8"/><path d="M20 386 Q320 330 620 386" fill="none" stroke="#9FD3F7" stroke-width="2"/>';
+ var sats=[[90,110],[200,80],[330,70],[450,95],[500,160],[140,190]],rx=320,ry=300;
+ sats.forEach(function(p,i){s+='<g transform="translate('+p[0]+' '+p[1]+')"><rect x="-8" y="-6" width="16" height="12" rx="2" fill="#F2D233"/><rect x="-24" y="-3" width="14" height="6" fill="#9FD3F7"/><rect x="10" y="-3" width="14" height="6" fill="#9FD3F7"/></g>'});
+ /* 何機の衛星を使うかを順に示す */
+ [[0,4,'#7CF2B0'],[1,5,'#FFD23F'],[2,6,'#FF9B7A']].forEach(function(v,k){var g='';for(var i=0;i<v[1];i++)g+='<line x1="'+sats[i][0]+'" y1="'+sats[i][1]+'" x2="'+rx+'" y2="'+ry+'" stroke="'+v[2]+'" stroke-width="2.5" stroke-dasharray="6 5"/>';
+  s+='<g opacity="0">'+g+'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;'+(k/3).toFixed(2)+';'+(k/3+0.02).toFixed(2)+';'+((k+1)/3-0.02).toFixed(2)+';'+((k+1)/3).toFixed(2)+';1" dur="9s" repeatCount="indefinite"/></g>'});
+ s+='<g transform="translate('+rx+' '+ry+')">'+plane('#fff')+'</g>';
+ /* SBAS */
+ s+='<g transform="translate(575 78)"><circle r="14" fill="#E08A2F"/><rect x="-26" y="-4" width="12" height="8" fill="#9FD3F7"/><rect x="14" y="-4" width="12" height="8" fill="#9FD3F7"/></g>'+tx(575,110,'SBAS',11,'#FFB870',900);
+ s+='<g transform="translate(520 360)"><path d="M-8 0 L0 -22 L8 0 Z" fill="#fff"/></g>'+tx(520,378,W.ref,10.5,'#fff',800);
+ s+='<path d="M520 336 L570 96" stroke="#E08A2F" stroke-width="2" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/></path><path d="M565 96 L340 290" stroke="#E08A2F" stroke-width="2" stroke-dasharray="4 4" opacity=".8"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/></path>';
+ var y=398,items=[[W.s4,'#1F7A6E'],[W.s5,'#8a6d00'],[W.s6,'#B8451F'],[W.sbas,'#8a3b00'],[W.names,G]];
+ items.forEach(function(v,i){var n=LI(v[0],11.5,540).length,lh=FS(11.5)*1.3,h=n*lh+14;s+=R(20,y,600,h,['#E8F5F2','#FFF7DA','#FDEAE3','#FFF1E3','#F4F7FB'][i],10)+WR(40,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],800,540,'start');y+=h+6});
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+'</svg>'},
+
+/* 16 ウェイポイントでの曲がり方：フライバイ・フライオーバー・RF（一定の半径の円弧） */
+nav_turns:function(l){
+ var W=({ja:{t:'ウェイポイントでの曲がり方',fb:'フライバイ',fo:'フライオーバー',rf:'RF（円弧）',dfb:'手前から曲がり始め、点の内側を回る。ふつうはこちら',dfo:'点の真上を通ってから曲がるので、外へふくらむ',drf:'決まった半径の円弧を正確に飛ぶ。RNP AR などで使う'},
+  ko:{t:'웨이포인트에서 도는 방법',fb:'플라이바이',fo:'플라이오버',rf:'RF(원호)',dfb:'앞에서부터 돌기 시작해 점의 안쪽을 돈다. 보통은 이쪽',dfo:'점 바로 위를 지난 뒤 돌기 때문에 바깥으로 부푼다',drf:'정해진 반지름의 원호를 정확히 난다. RNP AR 등에서 쓴다'},
+  en:{t:'How aircraft turn at waypoints',fb:'Fly-by',fo:'Fly-over',rf:'RF (arc)',dfb:'Starts turning early and cuts inside the point; the usual case',dfo:'Passes directly over the point before turning, so it swings wide',drf:'Flies an arc of a fixed radius precisely; used in RNP AR and similar'}})[l];
+ if(!W)return F.nav_turns('ja');
+ setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;
+ function panel(x0,y0,w,k){var name=[W.fb,W.fo,W.rf][k],desc=[W.dfb,W.dfo,W.drf][k],col=['#2F6FD6','#E08A2F','#1F7A6E'][k];
+  var g=R(x0,y0,w,200,'#fff',14,' stroke="'+col+'" stroke-width="3"')+tx(x0+w/2,y0+28,name,14,col,900);
+  var A=[x0+30,y0+170],P=[x0+w*0.5,y0+70],B=[x0+w-30,y0+170];
+  g+='<path d="M'+A[0]+' '+A[1]+' L'+P[0]+' '+P[1]+' L'+B[0]+' '+B[1]+'" fill="none" stroke="#9FB0C2" stroke-width="2" stroke-dasharray="6 5"/>';
+  if(k<2)g+='<g transform="translate('+P[0]+' '+P[1]+')"><path d="M0 -10 L9 6 L-9 6 Z" fill="#fff" stroke="'+col+'" stroke-width="3"/>'+(k===1?'<circle r="14" fill="none" stroke="'+col+'" stroke-width="2"/>':'')+'</g>';
+  var path;
+  if(k===0){var a1=[A[0]+(P[0]-A[0])*0.68,A[1]+(P[1]-A[1])*0.68],b1=[P[0]+(B[0]-P[0])*0.32,P[1]+(B[1]-P[1])*0.32];path='M'+A[0]+' '+A[1]+' L'+a1[0].toFixed(0)+' '+a1[1].toFixed(0)+' Q'+P[0]+' '+P[1]+' '+b1[0].toFixed(0)+' '+b1[1].toFixed(0)+' L'+B[0]+' '+B[1]}
+  else if(k===1){var dx=P[0]-A[0],dy=P[1]-A[1],dl=Math.sqrt(dx*dx+dy*dy),ux=dx/dl,uy=dy/dl,ex=B[0]-P[0],ey=B[1]-P[1],el=Math.sqrt(ex*ex+ey*ey),vx=ex/el,vy=ey/el,O=[P[0]+ux*34,P[1]+uy*34],J=[P[0]+ex*0.62,P[1]+ey*0.62];
+   path='M'+A[0]+' '+A[1]+' L'+P[0]+' '+P[1]+' L'+O[0].toFixed(0)+' '+O[1].toFixed(0)+' C'+(O[0]+ux*40).toFixed(0)+' '+(O[1]+uy*40).toFixed(0)+' '+(J[0]-vx*50).toFixed(0)+' '+(J[1]-vy*50).toFixed(0)+' '+J[0].toFixed(0)+' '+J[1].toFixed(0)+' L'+B[0]+' '+B[1]}
+  else{var cx=x0+w/2,cy=y0+170,r=w*0.34;path='M'+(cx-r)+' '+cy+' A'+r+' '+r+' 0 0 1 '+(cx+r)+' '+cy;g+='<circle cx="'+cx+'" cy="'+cy+'" r="4" fill="'+col+'"/><line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+r*0.7).toFixed(0)+'" y2="'+(cy-r*0.7).toFixed(0)+'" stroke="'+col+'" stroke-width="1.5" stroke-dasharray="3 3"/>'}
+  g+='<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="4"/>';
+  g+='<g>'+plane('#fff')+'<animateMotion dur="5s" repeatCount="indefinite" rotate="auto" path="'+path+'"/></g>';
+  var n=LI(desc,11,w-24).length,lh=FS(11)*1.3;g+=R(x0,y0+208,w,n*lh+16,'#F4F7FB',10)+WR(x0+w/2,y0+216+n*lh/2+FS(11)*0.3,desc,11,D,800,w-24);
+  return {s:g,h:208+n*lh+16}}
+ var s,HH;
+ if(nar){var y=56,body='';for(var k=0;k<3;k++){var p=panel(20,y,540,k);body+=p.s;y+=p.h+14}HH=y+4;s=R(0,0,580,HH,'#F7FAFD')+TTL(290,30,W.t,15,'#0f3558',540)+body;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 '+HH.toFixed(0)+'" role="img">'+s+'</svg>'}
+ var ps=[0,1,2].map(function(k){return panel(20+k*290,56,270,k)}),mh=Math.max(ps[0].h,ps[1].h,ps[2].h);HH=56+mh+14;
+ s=R(0,0,900,HH,'#F7FAFD')+TTL(450,30,W.t,16,'#0f3558',860)+ps.map(function(p){return p.s}).join('');
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+HH.toFixed(0)+'" role="img">'+s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

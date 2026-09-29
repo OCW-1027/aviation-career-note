@@ -47,6 +47,9 @@ function LINES(s,sz,maxw){var units=SPLITU(String(s)),lines=[],cur='';
  if(cur.trim())lines.push(cur.trim());return lines}
 function WR(x,y,s,sz,c,w,maxw,a){var lines=LINES(s,sz,maxw),lh=FS(sz)*1.3,y0=y-(lines.length-1)*lh/2;return lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,w,a)}).join('')}
 /* 白い下地つきの、折り返す文字（長い説明を図の中に置くとき） */
+/* 図のいちばん上の題名：折り返したときは、FIX2 が題名より下の中身をその分だけ下にずらす（data-ttl） */
+function TTL(x,y,s,sz,c,maxw){var L=LINES(s,sz,maxw),lh=FS(sz)*1.3,yb=Math.max(y,FS(sz)*1.0+8),dy=(L.length-1)*lh+(yb-y);
+ return '<g data-ttl="'+L.length+'" data-dy="'+dy.toFixed(1)+'">'+L.map(function(ln,i){return tx(x,yb+i*lh,ln,sz,c,900)}).join('')+'</g>'}
 function LBW(x,y,s,sz,c,a,bg,maxw){var lines=LINES(s,sz,maxw),lh=FS(sz)*1.3,w=0;lines.forEach(function(l){w=Math.max(w,TW(l,sz))});w+=14;var h=lines.length*lh+6,x0=a==='start'?x-7:(a==='end'?x-w+7:x-w/2),y0=y-(lines.length-1)*lh/2;
  return '<rect x="'+x0.toFixed(1)+'" y="'+(y0-lh*0.78-3).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+Math.min(12,h/2).toFixed(1)+'" fill="'+(bg||'#fff')+'" opacity=".94"/>'+lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,900,a)}).join('')}
 function plane(c){return '<path d="M-16 0 L12 -3 L18 0 L12 3 Z M-5 -2 L4 -14 L8 -14 L4 -2 Z M-5 2 L4 14 L8 14 L4 2 Z M-15 -1 L-12 -7 L-9 -7 L-11 -1 Z" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.2"/>'}
@@ -236,7 +239,7 @@ met_airmass:function(l){
   var mw=(i===4?110:120),L1=LINES(m[0],12,mw),L2=nar?[m[1]]:LINES(m[1]+' · '+m[2],11,mw),L3=nar?LINES(m[2],11,mw):LINES(m[3],11,mw),lh=FS(11.5)*1.25,nl=L1.length+L2.length+L3.length,th=nl*lh,rr=Math.max(r,th/2+18,mw/2+10);
   s+='<circle cx="'+x+'" cy="'+y+'" r="'+rr.toFixed(0)+'" fill="'+c+'" opacity=".92"/><circle cx="'+(x-rr*.3)+'" cy="'+(y-rr*.35)+'" r="'+rr*.55+'" fill="url(#amg)"/>';
   var yy=y-th/2+lh*0.8;L1.forEach(function(v){s+=tx(x,yy,v,12,'#fff',900);yy+=lh});L2.forEach(function(v){s+=tx(x,yy,v,11,'#fff',900);yy+=lh});L3.forEach(function(v){s+=tx(x,yy,v,11,'#fff',700);yy+=lh})});
- s+=tx(290,36,W.ttl,15,'#0f3558',900);
+ s+=TTL(290,36,W.ttl,15,'#0f3558',540);
  var sm=s;K=1;
  function LG(x0,y0,w){var rows=[W.l1,W.l2,W.l3,W.l4],cols=['#F4EEDC','#E3F1FB','#FDE9DE','#EAF4EA'],lh=FS(12)*1.3,y=y0+58,g='';
   rows.forEach(function(v,i){var n=LINES(v[1],12,w-48).length,h=50+n*lh+8;g+=R(x0+14,y,w-28,h,cols[i],12)+tx(x0+w/2,y+32,v[0],20,D,900)+WR(x0+w/2,y+50+n*lh/2+FS(12)*0.3,v[1],12,D,700,w-48);y+=h+10});
@@ -297,7 +300,7 @@ met_front_map:function(l){
    d:['Triangles point the way the front moves','Semicircles point the way it moves','Hardly moves (e.g. the rainy-season front)','The cold front has caught the warm front'],nw:'Wind shifts to northwest',sw:'Southerly wind'}})[l];
  if(!W)return F.met_front_map('ja');
  var nar=NARROW();K=nar?1.2:1;
- var s=R(10,10,560,480,'#EEF5FB',16)+tx(290,38,W.t,15,'#0f3558',900);
+ var s=R(10,10,560,480,'#EEF5FB',16)+TTL(290,38,W.t,15,'#0f3558',540);
  s+='<g><animateTransform attributeName="transform" type="translate" values="0 0;40 -6;40 -6" keyTimes="0;.85;1" dur="10s" repeatCount="indefinite"/>';
  s+='<path d="M280 180 L470 238 Q420 330 300 400 Q220 380 200 360 Z" fill="#FFE3C8" opacity=".75"/>'+tx(350,300,W.sec,13,'#8a3b00',900);
  [[70,1],[110,.8],[150,.6]].forEach(function(r){s+='<ellipse cx="280" cy="180" rx="'+r[0]*1.5+'" ry="'+r[0]+'" fill="none" stroke="#9FB0C2" stroke-width="1.5" stroke-dasharray="4 4" opacity="'+r[1]+'"/>'});
@@ -353,7 +356,7 @@ met_jet_section:function(l){
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img">'+R(0,0,900,500,'#F7FAFD');
  s+='<defs><linearGradient id="jsg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D6E6F7"/><stop offset="1" stop-color="#FCE6D2"/></linearGradient></defs>';
  s+=R(60,Y(17),800,Y(0)-Y(17),'url(#jsg)',8);
- s+=tx(450,28,W.t,15,'#0f3558',900);
+ s+=TTL(450,28,W.t,15,'#0f3558',860);
  /* 圏界面：極側は低く、赤道側は高い。切れ目が2つ */
  s+='<path d="M60 '+Y(8.5)+' L300 '+Y(9.5)+'" stroke="'+G+'" stroke-width="3" stroke-dasharray="8 6"/><path d="M330 '+Y(11.2)+' L560 '+Y(12.2)+'" stroke="'+G+'" stroke-width="3" stroke-dasharray="8 6"/><path d="M590 '+Y(15.5)+' L860 '+Y(16.5)+'" stroke="'+G+'" stroke-width="3" stroke-dasharray="8 6"/>'+LB(110,Y(8.1)+22,W.tp,12,G,'middle');
  /* 寒帯前線（地上から上へ傾く） */
@@ -412,7 +415,7 @@ met_kh:function(l){
   en:{t:'Clear-air turbulence (CAT): bumps without cloud',fa:'Fast wind',sl:'Slow wind',br:'Waves curl up and break at the boundary',c:['Jet core speed','110 kt or more'],v:['Vertical wind shear','5 kt per 1,000 ft or more'],h:['Horizontal wind shear','40 kt per 150 NM or more'],tm:['Isotherm spacing','Closer than 5 °C per 120 NM'],src:'Rules of thumb: FAA AC 00-30C; isotherms from the Japanese exam'}})[l];
  if(!W)return F.met_kh('ja');
  var nar=NARROW();K=nar?1.25:1;
- var sc=R(10,40,560,300,'#EAF4FC',14)+tx(290,30,W.t,15,'#0f3558',900);
+ var sc=R(10,40,560,300,'#EAF4FC',14)+TTL(290,30,W.t,15,'#0f3558',540);
  sc+=R(10,40,560,150,'#D2E6F8',14);
  [70,110,150].forEach(function(y,i){sc+='<path d="M20 '+y+' h520" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="26 18" opacity=".7"><animate attributeName="stroke-dashoffset" values="0;-88" dur="'+(0.9+i*.05)+'s" repeatCount="indefinite"/></path>'});
  [250,290].forEach(function(y,i){sc+='<path d="M20 '+y+' h520" stroke="#7FA6C4" stroke-width="3" stroke-dasharray="26 18" opacity=".7"><animate attributeName="stroke-dashoffset" values="0;-88" dur="'+(3+i*.2)+'s" repeatCount="indefinite"/></path>'});
@@ -439,7 +442,7 @@ met_mtnwave:function(l){
   en:{t:'Mountain waves: waves form downwind of a ridge',wind:'Strong wind (nearly at right angles to the ridge)',cap:'Cap cloud',len:'Lenticular clouds (on the wave crests)',rot:'Rotor cloud: the most severe turbulence',dn:'Strong downdraft',st:'Stable layer',far:'Can extend hundreds of km downwind'}})[l];
  if(!W)return F.met_mtnwave('ja');
  var nar=NARROW();K=nar?1.1:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img">'+R(0,0,900,460,'#DCEEFB')+tx(450,30,W.t,15,'#0f3558',900);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img">'+R(0,0,900,460,'#DCEEFB')+TTL(450,30,W.t,15,'#0f3558',860);
  s+=R(0,130,900,40,'#FFE3C8',0,' opacity=".5"')+LB(880,188,W.st,11,'#8a3b00','end','#FFF1E3');
  /* 流線 */
  var lines=[[200,'M0 200 C120 200 170 150 230 150 C300 150 320 250 380 250 C440 250 470 170 530 170 C590 170 620 240 680 240 C740 240 770 190 900 190'],[260,'M0 260 C120 260 170 200 230 200 C300 200 320 300 380 300 C440 300 470 230 530 230 C590 230 620 290 680 290 C740 290 770 250 900 250'],[110,'M0 110 C150 110 190 90 250 90 C310 90 330 140 390 140 C450 140 480 105 540 105 C600 105 630 135 690 135 C750 135 800 115 900 115']];
@@ -493,7 +496,7 @@ met_cb_hazards:function(l){
   en:{t:'The hazards of a cumulonimbus',anv:'Anvil (spreads hundreds of km downwind)',ot:'Overshooting top = strong updraft',hail:'Hail: also outside the cloud, under the anvil',turb:'Severe turbulence: up to 20 miles from the storm',ice:'Icing (0 °C to −20 °C layer)',ltg:'Lightning',rain:'Heavy rain, poor visibility',db:'Downburst',gf:'Gust front (first gust): sudden wind shift'}})[l];
  if(!W)return F.met_cb_hazards('ja');
  var nar=NARROW();K=nar?1.1:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img">'+R(0,0,900,520,'#DCEEFB')+tx(450,30,W.t,16,'#0f3558',900);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img">'+R(0,0,900,520,'#DCEEFB')+TTL(450,30,W.t,16,'#0f3558',860);
  s+=R(0,470,900,50,'#9CC98B');
  /* 雲 */
  s+='<path d="M250 470 Q230 400 262 360 Q240 300 280 262 Q270 190 320 160 Q330 110 380 100 L620 86 L760 96 L640 118 Q560 124 520 150 Q560 200 540 262 Q580 300 560 360 Q590 420 570 470 Z" fill="#DCE3EA" stroke="#8C9BAA" stroke-width="2.5"/>';
@@ -523,7 +526,7 @@ met_microburst:function(l){
   en:{t:'A landing aircraft flying into a microburst',p:'Planned glide path',a:'① Headwind increases: airspeed rises, the aircraft floats above the path',b:'② Strong downdraft: the aircraft is pushed down',c:'③ The wind turns to a tailwind: airspeed and lift fall and it sinks below the path (the most dangerous point)',sz:'Less than 4 km across; strong winds last a few minutes to about a quarter of an hour',gd:'Ground'}})[l];
  if(!W)return F.met_microburst('ja');
  var nar=NARROW();K=nar?1.1:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" role="img">'+R(0,0,900,480,'#DCEEFB')+tx(450,28,W.t,16,'#0f3558',900);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" role="img">'+R(0,0,900,480,'#DCEEFB')+TTL(450,28,W.t,16,'#0f3558',860);
  s+=R(0,420,900,60,'#9CC98B')+R(760,414,140,8,'#5B6770');
  s+='<g transform="translate(0 34)"><path d="M330 60 Q300 40 360 34 Q420 20 480 40 Q540 30 560 60 Q600 80 560 96 L340 96 Q300 90 330 60 Z" fill="#C8D1DA" stroke="#8C9BAA" stroke-width="2"/></g>';
  /* 下降気流と外へ広がる風 */
@@ -549,7 +552,7 @@ met_ts_avoid:function(l){
   en:{t:'Avoiding thunderstorms on weather radar',r:'Strong echo (red)',y:'Moderate (yellow)',g:'Weak (green)',w:'Upper wind',ok:'Go round on the upwind side, 20 miles or more away',ng:'Do not fly between echoes less than 40 miles apart',an:'Under the anvil (downwind): risk of hail',p:'Planned route'}})[l];
  if(!W)return F.met_ts_avoid('ja');
  var nar=NARROW();K=nar?1.3:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" role="img">'+R(0,0,640,600,'#0E2238',16)+tx(320,32,W.t,16,'#fff',900);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" role="img">'+R(0,0,640,600,'#0E2238',16)+TTL(320,32,W.t,16,'#fff',600);
  [80,160,240].forEach(function(r){s+='<path d="M'+(320-r)+' 560 A'+r+' '+r+' 0 0 1 '+(320+r)+' 560" fill="none" stroke="#3A5A7A" stroke-width="1.5"/>'});
  function cell(x,y,sc){return '<g transform="translate('+x+' '+y+') scale('+sc+')"><ellipse rx="70" ry="46" fill="#2FAE5A" opacity=".85"/><ellipse rx="46" ry="30" fill="#F2D233"/><ellipse rx="22" ry="15" fill="#E03B3B"><animate attributeName="rx" values="20;25;20" dur="2s" repeatCount="indefinite"/></ellipse></g>'}
  s+=cell(250,250,1)+cell(420,230,.9);
@@ -572,7 +575,7 @@ met_ty_section:function(l){
   en:{t:'Cross-section of a typhoon',eye:'Eye: light wind, clear sky (sinking air)',wall:'Eyewall: the strongest wind and rain',band:'Spiral rain bands',in:'Low level: moist air is drawn in',out:'Upper level: air flows out and cirrus spreads',warm:'The centre is warmer than its surroundings (warm core)',sea:'A warm sea (26–27 °C or more) supplies water vapour'}})[l];
  if(!W)return F.met_ty_section('ja');
  var nar=NARROW();K=nar?1.1:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#DCEEFB')+tx(450,28,W.t,16,'#0f3558',900);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#DCEEFB')+TTL(450,28,W.t,16,'#0f3558',860);
  s+=R(0,400,900,70,'#3F8FD0')+'<path d="M0 402 q30 -8 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#9FD3F7" stroke-width="3"><animateTransform attributeName="transform" type="translate" values="0 0;-60 0" dur="2s" repeatCount="indefinite"/></path>';
  /* 巻雲の傘 */
  s+='<path d="M90 110 Q450 40 810 110 Q450 90 90 110 Z" fill="#EEF2F6" stroke="#B4C0CC" stroke-width="2"/>';
@@ -602,7 +605,7 @@ met_ty_plan:function(l){
  if(!W)return F.met_ty_plan('ja');
  var nar=NARROW();K=nar?1.3:1;
  var cx=320,cy=360;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 700" role="img">'+R(0,0,640,700,'#0E2238',16)+tx(320,30,W.t,15,'#fff',900);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 700" role="img">'+R(0,0,640,700,'#0E2238',16)+TTL(320,30,W.t,15,'#fff',600);
  s+='<path d="M'+cx+' '+(cy-230)+' A230 230 0 0 1 '+cx+' '+(cy+230)+' Z" fill="#D64545" opacity=".22"/><path d="M'+cx+' '+(cy-230)+' A230 230 0 0 0 '+cx+' '+(cy+230)+' Z" fill="#2F8FE0" opacity=".14"/>';
  s+='<circle cx="'+cx+'" cy="'+cy+'" r="230" fill="none" stroke="#F2D233" stroke-width="2" stroke-dasharray="8 6"/><circle cx="'+cx+'" cy="'+cy+'" r="130" fill="none" stroke="#E03B3B" stroke-width="3"/>';
  /* 回るうず */
@@ -621,7 +624,7 @@ met_ty_track:function(l){
   en:{t:'How typhoons move, and the forecast circles',hi:'Pacific high',we:'Westerlies',bo:'Forms over warm sea (about 5–20°N)',cur:'Recurvature: turns northeast',fast:'Speeds up on the westerlies',kr:'Korea',jp:'Japan',fc:'Forecast circle: 70% chance the centre is inside',warn:'Storm warning area'}})[l];
  if(!W)return F.met_ty_track('ja');
  var nar=NARROW();K=nar?1.3:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img">'+R(0,0,640,640,'#CFE8F7',16)+tx(320,30,W.t,15,'#0f3558',900);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img">'+R(0,0,640,640,'#CFE8F7',16)+TTL(320,30,W.t,15,'#0f3558',600);
  s+='<path d="M0 44 H300 V80 Q262 120 254 152 L240 178 Q210 230 150 260 Q80 300 0 300 Z" fill="#EADFC6"/>';
  s+='<path d="M232 150 L252 154 L256 186 L246 206 L236 200 L230 176 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="1.5"/>'+tx(222,222,W.kr,12,'#2F5E24',900);
  s+='<path d="M270 226 Q300 214 318 186 Q334 156 356 136 L364 142 Q348 166 336 194 Q316 230 278 240 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="1.5"/>'+tx(350,236,W.jp,12,'#2F5E24',900);
@@ -666,7 +669,7 @@ met_levels:function(l){
  var L=[['850hPa','約1,500m','5,000ft',70],['700hPa','約3,000m','10,000ft',150],['500hPa','約5,500m','18,000ft',250],['300hPa','約9,000m','FL300',380],['250hPa','約10,400m','FL340',430],['200hPa','約11,800m','FL390',480]];
  if(l!=='ja')L=L.map(function(v){return [v[0],v[1].replace('約',l==='ko'?'약 ':'about '),v[2],v[3]]});
  var H=560,Y=function(v){return H-40-v*0.9};
- var s=R(0,0,640,H,'#F7FAFD')+WR(320,28,W.t,15,'#0f3558',900,600);
+ var s=R(0,0,640,H,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
  s+='<defs><linearGradient id="lvg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#CFE8F7"/><stop offset="1" stop-color="#3F6FA8"/></linearGradient></defs>'+R(20,54,600,H-94,'url(#lvg)',12)+R(20,H-40,600,20,'#9CC98B');
  L.forEach(function(v,i){var y=Y(v[3]).toFixed(0),c=i<2?'#0f3558':'#fff';
   s+='<g><line x1="30" y1="'+y+'" x2="610" y2="'+y+'" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" opacity=".6"/><rect x="30" y="'+(y-22)+'" width="580" height="30" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" values="0;0;.35;0;0" keyTimes="0;'+(0.08+i*0.13).toFixed(2)+';'+(0.12+i*0.13).toFixed(2)+';'+(0.2+i*0.13).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></rect></g>';
@@ -686,7 +689,7 @@ met_upper_chart:function(l){
   en:{t:'The 500 hPa chart (about 5,500 m up)',tr:'Trough',ri:'Ridge',lo:'Low (cold)',hi:'High (warm)',wi:'Wind blows along the height lines, with low heights on its left',fast:'Crowded lines = strong wind',bad:'Ahead of the trough: rising air, bad weather',good:'Under the ridge: fine weather'}})[l];
  if(!W)return F.met_upper_chart('ja');
  var nar=NARROW();K=nar?1.3:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900)+R(14,44,612,460,'#EEF5FB',12);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600)+R(14,44,612,460,'#EEF5FB',12);
  var hs=[5400,5520,5640,5760,5880],cols=['#3F6FD6','#5E8FD9','#8FA7C8','#E3A15B','#D86A3A'];
  function wave(off,amp){return 'M20 '+(150+off)+' C110 '+(150+off)+' 150 '+(150+off+amp)+' 220 '+(150+off+amp)+' C300 '+(150+off+amp)+' 330 '+(150+off-amp*0.7)+' 420 '+(150+off-amp*0.7)+' C500 '+(150+off-amp*0.7)+' 540 '+(150+off)+' 620 '+(150+off)}
  s+='<g><animateTransform attributeName="transform" type="translate" values="-30 0;30 0" dur="12s" repeatCount="indefinite"/>';
@@ -709,7 +712,7 @@ met_barbs:function(l){
  if(!W)return F.met_barbs('ja');
  var nar=NARROW();K=nar?1.3:1;
  var cx=380,cy=240;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900)+R(14,44,612,300,'#fff',14,' stroke="#D9E3EC"');
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600)+R(14,44,612,300,'#fff',14,' stroke="#D9E3EC"');
  s+='<circle cx="'+cx+'" cy="'+cy+'" r="12" fill="#fff" stroke="#243447" stroke-width="3"/>';
  s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx-230)+'" y2="'+cy+'" stroke="#243447" stroke-width="4"/>';
  function ap(d,g){return '<g opacity="0">'+g+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+d+';'+(d+.05).toFixed(2)+';.92;1" dur="8s" repeatCount="indefinite"/></g>'}
@@ -733,7 +736,7 @@ met_vort:function(l){
   en:{t:'Vorticity (how strongly the air spins)',tr:'Trough: anticlockwise = positive vorticity',ri:'Ridge: clockwise = negative vorticity',up:'Ahead of the trough: air rises and cloud forms',dn:'Behind the trough: air sinks and skies clear',wind:'Westerly'}})[l];
  if(!W)return F.met_vort('ja');
  var nar=NARROW();K=nar?1.3:1;
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img">'+R(0,0,640,480,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900)+R(14,44,612,400,'#EEF5FB',12);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img">'+R(0,0,640,480,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600)+R(14,44,612,400,'#EEF5FB',12);
  var wv='M20 150 C120 150 140 330 220 330 C300 330 330 110 430 110 C520 110 560 200 620 200';
  s+='<path d="'+wv+'" fill="none" stroke="#6B7785" stroke-width="10" opacity=".25"/><path d="'+wv+'" fill="none" stroke="#6B4FA0" stroke-width="4" stroke-dasharray="16 12"><animate attributeName="stroke-dashoffset" values="0;-56" dur="1.2s" repeatCount="indefinite"/></path>';
  function wheel(x,y,dir,c){var g='<g transform="translate('+x+' '+y+')"><circle r="34" fill="#fff" stroke="'+c+'" stroke-width="3"/><g>';for(var a=0;a<4;a++)g+='<path d="M0 0 L0 -28 L10 -20 Z" fill="'+c+'" transform="rotate('+(a*90)+')"/>';return g+'<animateTransform attributeName="transform" type="rotate" values="0;'+(dir*360)+'" dur="3s" repeatCount="indefinite"/></g></g>'}
@@ -744,11 +747,20 @@ met_vort:function(l){
  s+=ARW(40,72,120,72,'#6B4FA0',4)+tx(130,77,W.wind,11,'#6B4FA0',800,'start');
  K=1;return s+'</svg>'}
 };
+/* 題名が折り返したとき：背景と題名はそのまま、残りの中身を dy だけ下げ、図の高さ（viewBox）と背景を伸ばす */
+function SHIFTTTL(h){var m=/<g data-ttl="(\d+)" data-dy="([\d.]+)">/.exec(h);if(!m)return h;var dy=+m[2];if(dy<0.5)return h;
+ var so=h.indexOf('<svg'),se=h.indexOf('>',so)+1,ce=h.lastIndexOf('</svg>');if(so<0||ce<0)return h;
+ var open=h.slice(so,se),vb=/viewBox="([\d.\-]+) ([\d.\-]+) ([\d.]+) ([\d.]+)"/.exec(open);if(!vb)return h;
+ var H0=+vb[4],H1=H0+dy;open=open.replace(vb[0],'viewBox="'+vb[1]+' '+vb[2]+' '+vb[3]+' '+H1.toFixed(1)+'"');
+ var inner=h.slice(se,ce),ts=inner.indexOf(m[0]),te=inner.indexOf('</g>',ts)+4,title=inner.slice(ts,te);inner=inner.slice(0,ts)+inner.slice(te);
+ var bg='',bm=/^<rect x="0" y="0" width="[\d.]+" height="([\d.]+)"[^>]*\/>/.exec(inner);
+ if(bm){bg=bm[0].replace('height="'+bm[1]+'"','height="'+(+bm[1]+dy).toFixed(1)+'"');inner=inner.slice(bm[0].length)}
+ return h.slice(0,so)+open+bg+title+'<g transform="translate(0 '+dy.toFixed(1)+')">'+inner+'</g>'+h.slice(ce)}
 /* FIX2：一度描いて表示の倍率を求め、最小の文字の大きさを決めて描き直す */
 function FIX2(fn){return function(l){FLOORU=0;K=1;var s1=fn(l),m=/viewBox="[\d.\-]+ [\d.\-]+ ([\d.]+) [\d.]+"/.exec(s1);if(!m)return s1;
  var vw=+m[1],w=Math.min(740,((typeof window!=='undefined'&&window.innerWidth)||1024)-40),mm=/min-width:(\d+)px/.exec(s1);if(mm)w=Math.max(w,+mm[1]);
- FLOORU=FLOORPX*vw/w;var s2=fn(l);FLOORU=0;K=1;return s2.replace('<svg ','<svg data-flr="1" ')}}
+ FLOORU=FLOORPX*vw/w;var s2=SHIFTTTL(fn(l));FLOORU=0;K=1;return s2.replace('<svg ','<svg data-flr="1" ')}}
 for(var k in F)window.FIGS[k]=FIX2(F[k]);
 /* ほかの図のファイル（figs_nav.js など）から同じ部品を使えるように公開する */
-window.FIGH={R:R,tx:tx,WR:WR,LB:LB,LBW:LBW,LINES:LINES,ARW:ARW,SCR:SCR,plane:plane,cloud:cloud,FR:FR,TW:TW,NARROW:NARROW,FIX2:FIX2,FS:FS,setK:function(v){K=v},C:{D:D,B:B,T:T,O:O,RD:RD,P:P,G:G}};
+window.FIGH={R:R,tx:tx,WR:WR,LB:LB,LBW:LBW,TTL:TTL,LINES:LINES,ARW:ARW,SCR:SCR,plane:plane,cloud:cloud,FR:FR,TW:TW,NARROW:NARROW,FIX2:FIX2,FS:FS,setK:function(v){K=v},C:{D:D,B:B,T:T,O:O,RD:RD,P:P,G:G}};
 })();
