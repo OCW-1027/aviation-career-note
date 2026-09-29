@@ -28,6 +28,10 @@ function FR(pts,type,side,sp,sw){sp=sp||34;sw=sw||4;side=side||1;
   else{var q=[];for(var a=0;a<=8;a++){var th=Math.PI*a/8;q.push((px-tx_*7*Math.cos(th)+nx*sd*7*Math.sin(th)).toFixed(1)+' '+(py-ty_*7*Math.cos(th)+ny*sd*7*Math.sin(th)).toFixed(1))}g+='<path d="M'+q.join(' L')+' Z" fill="'+c+'"/>'}
   k++}
  return g}
+/* スマートフォンで横に広い断面図は、少し大きく描いて横にスクロールさせる（nav.js が「横にスクロール」の案内を付ける） */
+function SCR(svg,mw){return '<div class="figscroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="min-width:'+(mw||720)+'px">'+svg+'</div></div>'}
+/* 白い下地つきの文字（線と重なっても読めるように） */
+function LB(x,y,s,sz,c,a,bg){var w=TW(s,sz)+12,h=sz*K*1.45,x0=a==='start'?x-6:(a==='end'?x-w+6:x-w/2);return '<rect x="'+x0.toFixed(1)+'" y="'+(y-h*0.78).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+(h/2).toFixed(1)+'" fill="'+(bg||'#fff')+'" opacity=".92"/>'+tx(x,y,s,sz,c,900,a)}
 function ARW(x1,y1,x2,y2,c,w){var dx=x2-x1,dy=y2-y1,l=Math.sqrt(dx*dx+dy*dy),ux=dx/l,uy=dy/l;return '<path d="M'+x1+' '+y1+' L'+x2+' '+y2+'" stroke="'+c+'" stroke-width="'+(w||4)+'" stroke-linecap="round" fill="none"/><path d="M'+(x2-ux*12-uy*7).toFixed(1)+' '+(y2-uy*12+ux*7).toFixed(1)+' L'+x2+' '+y2+' L'+(x2-ux*12+uy*7).toFixed(1)+' '+(y2-uy*12-ux*7).toFixed(1)+'" stroke="'+c+'" stroke-width="'+(w||4)+'" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'}
 window.FIGS=window.FIGS||{};
 var F={
@@ -295,7 +299,124 @@ met_cyclone_life:function(l){
  else{s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 290" role="img">'+R(0,0,900,290,'#F7FAFD');
   [0,1,2,3].forEach(function(i){s+='<g transform="translate('+(14+i*222)+' 12)">'+st(i)+'</g>';if(i<3)s+='<g transform="translate('+(218+i*222)+' 126)">'+ar+'</g>'});
   s+=tx(450,272,W[6],13,'#6B4FA0',900)}
- K=1;return s+'</svg>'}
+ K=1;return s+'</svg>'},
+/* 9 ジェット気流の断面：寒帯前線ジェットと亜熱帯ジェット、圏界面の切れ目、晴天乱気流が起きやすい所 */
+met_jet_section:function(l){
+ var W=({ja:{t:'ジェット気流の断面（北半球・西から見る）',n:'北（極側・寒い）',s:'南（赤道側・暖かい）',pj:'寒帯前線ジェット（約300hPa・9km）',sj:'亜熱帯ジェット（約200hPa・12km）',tp:'対流圏界面',cat:'晴天乱気流が起きやすい',f:'寒帯前線',h:'高さ(km)',in:'風は画面の奥へ（西風）'},
+  ko:{t:'제트기류의 단면(북반구·서쪽에서 본 모습)',n:'북(극 쪽·춥다)',s:'남(적도 쪽·따뜻하다)',pj:'한대전선 제트(약 300hPa·9km)',sj:'아열대 제트(약 200hPa·12km)',tp:'대류권계면',cat:'청천난류가 생기기 쉽다',f:'한대전선',h:'높이(km)',in:'바람은 화면 안쪽으로(서풍)'},
+  en:{t:'Cross-section of the jet streams (northern hemisphere, looking east)',n:'North (polar side, cold)',s:'South (equator side, warm)',pj:'Polar-front jet (about 300 hPa, 9 km)',sj:'Subtropical jet (about 200 hPa, 12 km)',tp:'Tropopause',cat:'Clear-air turbulence likely',f:'Polar front',h:'Height (km)',in:'Wind blows into the page (westerly)'}})[l];
+ if(!W)return F.met_jet_section('ja');
+ var nar=NARROW();K=nar?1.1:1;
+ function Y(h){return 440-h*24}
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img">'+R(0,0,900,500,'#F7FAFD');
+ s+='<defs><linearGradient id="jsg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D6E6F7"/><stop offset="1" stop-color="#FCE6D2"/></linearGradient></defs>';
+ s+=R(60,Y(17),800,Y(0)-Y(17),'url(#jsg)',8);
+ s+=tx(450,28,W.t,15,'#0f3558',900);
+ /* 圏界面：極側は低く、赤道側は高い。切れ目が2つ */
+ s+='<path d="M60 '+Y(8.5)+' L300 '+Y(9.5)+'" stroke="'+G+'" stroke-width="3" stroke-dasharray="8 6"/><path d="M330 '+Y(11.2)+' L560 '+Y(12.2)+'" stroke="'+G+'" stroke-width="3" stroke-dasharray="8 6"/><path d="M590 '+Y(15.5)+' L860 '+Y(16.5)+'" stroke="'+G+'" stroke-width="3" stroke-dasharray="8 6"/>'+LB(110,Y(8.1)+22,W.tp,12,G,'middle');
+ /* 寒帯前線（地上から上へ傾く） */
+ s+='<path d="M200 '+Y(0)+' Q260 '+Y(4)+' 310 '+Y(9)+'" stroke="#2F6FD6" stroke-width="4" fill="none"/>'+tx(180,Y(1.2),W.f,12,'#2F6FD6',900);
+ /* 等風速線（核） */
+ function core(x,y,lab,c){var g='';[[110,46,.25],[74,30,.45],[40,17,.9]].forEach(function(r){g+='<ellipse cx="'+x+'" cy="'+y+'" rx="'+r[0]+'" ry="'+r[1]+'" fill="'+c+'" opacity="'+r[2]*.5+'" stroke="'+c+'" stroke-width="1.5"/>'});
+  g+='<g><circle cx="'+x+'" cy="'+y+'" r="11" fill="#fff" stroke="'+c+'" stroke-width="3"/><path d="M'+(x-6)+' '+(y-6)+' l12 12 m0 -12 l-12 12" stroke="'+c+'" stroke-width="3"/><animate attributeName="opacity" values=".4;1;.4" dur="1.6s" repeatCount="indefinite"/></g>';
+  return g}
+ s+=core(318,Y(9.8),W.pj,'#7B4FB0')+core(578,Y(12.6),W.sj,'#C0392B');
+ s+=LB(150,Y(14.4),W.pj,12,'#7B4FB0','middle')+'<path d="M190 '+(Y(14.4)+6)+' L300 '+(Y(10.4))+'" stroke="#7B4FB0" stroke-width="2" stroke-dasharray="3 3"/>'+LB(760,Y(10.2),W.sj,12,'#C0392B','middle')+'<path d="M720 '+(Y(10.2)-12)+' L600 '+(Y(12.3))+'" stroke="#C0392B" stroke-width="2" stroke-dasharray="3 3"/>';
+ /* 晴天乱気流の所：核の上の傾いた圏界面の近く、核の下の極側（ジェット前線） */
+ function catz(x,y,w,h,d){return '<g><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="#F4A340" opacity=".55"/><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="none" stroke="#C26A00" stroke-width="2" stroke-dasharray="5 4"/><animate attributeName="opacity" values=".35;1;.35" dur="2s" begin="'+d+'s" repeatCount="indefinite"/></g>'}
+ s+=catz(262,Y(12),100,26,0)+catz(222,Y(8.6),76,40,.5)+catz(520,Y(14.6),100,26,1);
+ s+=R(650,Y(4.6)-18,20,20,'#F4A340',5,' opacity=".8"')+tx(678,Y(4.6)-3,W.cat,12,'#8a4a00',900,'start');
+ s+='<g><circle cx="690" cy="'+(Y(3)-5)+'" r="9" fill="#fff" stroke="#7B4FB0" stroke-width="2.5"/><path d="M684 '+(Y(3)-11)+' l12 12 m0 -12 l-12 12" stroke="#7B4FB0" stroke-width="2.5"/></g>'+tx(706,Y(3),W.in,11,G,800,'start');
+ /* 飛行機：乱気流の所で揺れる */
+ s+='<g><g>'+plane('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -5;0 5;0 -4;0 3;0 0;0 0" keyTimes="0;.28;.32;.36;.4;.44;.48;1" dur="9s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="9s" repeatCount="indefinite" path="M80 '+Y(11)+' L840 '+Y(11)+'"/></g>';
+ s+=tx(70,Y(0)+26,'← '+W.n,12,'#1d4d8a',900,'start')+tx(850,Y(0)+26,W.s+' →',12,'#8a3b00',900,'end');
+ [0,4,8,12,16].forEach(function(h){s+=tx(52,Y(h)+4,h,11,G,700,'end')});s+=tx(20,Y(17)-6,W.h,11,G,800,'start');
+ K=1;
+ if(nar)return SCR(s+'</svg>',760);
+ return s+'</svg>'},
+
+/* 10 ジェット気流の地図：冬は日本の上で強く、夏は北へ移って弱まる。東行きは追い風、西行きは向かい風 */
+met_jet_map:function(l){
+ var W=({ja:{t:'上空約10kmのジェット気流',w:'冬',su:'夏',kr:'韓国',jp:'日本',cn:'中国',us:'北アメリカへ',wi:'冬は日本の上で世界有数の強さ（150〜200kt以上のことも）',sm:'夏は北へ移り、弱くなる',e:'東へ（韓国・日本→北米）：追い風で速い',wbd:'西へ（北米→韓国・日本）：向かい風で遅い'},
+  ko:{t:'상공 약 10km의 제트기류',w:'겨울',su:'여름',kr:'한국',jp:'일본',cn:'중국',us:'북미로',wi:'겨울에는 일본 위에서 세계적으로 강하다(150~200kt 이상일 때도)',sm:'여름에는 북쪽으로 옮겨 가며 약해진다',e:'동쪽으로(한국·일본→북미): 뒷바람으로 빠르다',wbd:'서쪽으로(북미→한국·일본): 맞바람으로 느리다'},
+  en:{t:'The jet stream about 10 km up',w:'Winter',su:'Summer',kr:'Korea',jp:'Japan',cn:'China',us:'To North America',wi:'In winter it is among the world’s strongest over Japan (sometimes 150–200 kt or more)',sm:'In summer it moves north and weakens',e:'Eastbound (Korea/Japan → North America): tailwind, faster',wbd:'Westbound (North America → Korea/Japan): headwind, slower'}})[l];
+ if(!W)return F.met_jet_map('ja');
+ var nar=NARROW();K=nar?1.35:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#F7FAFD')+R(10,40,880,330,'#CFE8F7',14);
+ s+=tx(nar?450:450,28,W.t,15,'#0f3558',900);
+ s+='<path d="M10 40 H420 V120 Q380 170 360 220 Q330 270 300 300 Q220 350 10 370 Z" fill="#EADFC6"/>'+tx(nar?230:120,nar?120:230,W.cn,15,'#9C8A62',900);
+ s+='<path d="M300 170 L318 172 L322 205 L312 228 L302 222 L296 195 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="1.5"/>'+tx(300,246,W.kr,12,'#2F5E24',900);
+ s+='<path d="M340 250 Q380 238 400 205 Q418 170 440 150 L448 156 Q430 180 418 210 Q396 250 350 262 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="1.5"/>'+tx(430,250,W.jp,12,'#2F5E24',900);
+ /* ジェット：冬と夏の位置を行き来する */
+ var dW='M20 150 C150 190 260 230 360 210 C470 190 560 200 700 190 C780 185 840 180 890 175',dS='M20 90 C150 70 260 80 360 70 C470 60 560 80 700 70 C780 66 840 62 890 60';
+ s+='<path d="'+dW+'" fill="none" stroke="#7B4FB0" stroke-width="30" stroke-linecap="round" opacity=".28"><animate attributeName="d" values="'+dW+';'+dW+';'+dS+';'+dS+';'+dW+'" keyTimes="0;.35;.5;.85;1" dur="12s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="30;30;14;14;30" keyTimes="0;.35;.5;.85;1" dur="12s" repeatCount="indefinite"/></path>';
+ s+='<path d="'+dW+'" fill="none" stroke="#7B4FB0" stroke-width="5" stroke-dasharray="18 14"><animate attributeName="d" values="'+dW+';'+dW+';'+dS+';'+dS+';'+dW+'" keyTimes="0;.35;.5;.85;1" dur="12s" repeatCount="indefinite"/><animate attributeName="stroke-dashoffset" values="0;-320" dur="2s" repeatCount="indefinite"/></path>';
+ var bx=nar?480:560;
+ s+='<g>'+R(bx,300,150,34,'#fff',17,' stroke="#7B4FB0" stroke-width="2"')+tx(bx+75,323,W.w,16,'#7B4FB0',900)+'<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.35;.45;.9;1" dur="12s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0">'+R(bx,300,150,34,'#fff',17,' stroke="#E08A2F" stroke-width="2"')+tx(bx+75,323,W.su,16,'#E08A2F',900)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.4;.5;.85;.95" dur="12s" repeatCount="indefinite"/></g>';
+ s+=nar?ARW(610,270,735,270,'#2F8FE0',5)+tx(672,258,W.us,12,'#1d4d8a',900):ARW(700,250,860,250,'#2F8FE0',5)+tx(780,240,W.us,12,'#1d4d8a',900);
+ /* 説明 */
+ if(nar){K=1.35;s=s.replace('viewBox="0 0 900 470"','viewBox="150 0 600 800"').replace(R(0,0,900,470,'#F7FAFD'),R(0,0,900,800,'#F7FAFD'));
+  [[W.wi,'#7B4FB0'],[W.sm,'#E08A2F'],[W.e,'#1d4d8a'],[W.wbd,'#8a3b00']].forEach(function(v,i){var y=392+i*100;s+=R(160,y,580,88,'#fff',12,' stroke="#D9E3EC"')+WR(450,y+46,v[0],13,v[1],900,540)})}
+ else{s+=R(10,382,880,80,'#fff',12,' stroke="#D9E3EC"');
+  s+=WR(230,408,W.wi,12,'#7B4FB0',900,420)+WR(230,442,W.sm,12,'#E08A2F',900,420)+WR(675,408,W.e,12,'#1d4d8a',900,410)+WR(675,442,W.wbd,12,'#8a3b00',900,410)}
+ K=1;
+ return s+'</svg>'},
+
+/* 11 晴天乱気流のしくみ：速い層と遅い層の境で波が巻き上がって砕ける（ケルビン・ヘルムホルツ波）＋目安の数字 */
+met_kh:function(l){
+ var W=({ja:{t:'晴天乱気流（CAT）：雲がなくても揺れる',fa:'速い風',sl:'遅い風',br:'境目で波が巻き上がって砕ける',c:['ジェットの中心の風速','110kt以上'],v:['上下の風の差（鉛直シアー）','5kt／1,000ft以上'],h:['横の風の差（水平シアー）','40kt／150NM以上'],tm:['等温線の間隔','5℃／120NMより密'],src:'目安：米国FAA AC 00-30C、日本の試験（等温線）'},
+  ko:{t:'청천난류(CAT): 구름이 없어도 흔들린다',fa:'빠른 바람',sl:'느린 바람',br:'경계에서 파도가 말려 올라가 부서진다',c:['제트 중심의 풍속','110kt 이상'],v:['위아래 바람 차이(연직 시어)','5kt/1,000ft 이상'],h:['옆 바람 차이(수평 시어)','40kt/150NM 이상'],tm:['등온선 간격','5℃/120NM보다 촘촘'],src:'기준: 미국 FAA AC 00-30C, 일본 시험(등온선)'},
+  en:{t:'Clear-air turbulence (CAT): bumps without cloud',fa:'Fast wind',sl:'Slow wind',br:'Waves curl up and break at the boundary',c:['Jet core speed','110 kt or more'],v:['Vertical wind shear','5 kt per 1,000 ft or more'],h:['Horizontal wind shear','40 kt per 150 NM or more'],tm:['Isotherm spacing','Closer than 5 °C per 120 NM'],src:'Rules of thumb: FAA AC 00-30C; isotherms from the Japanese exam'}})[l];
+ if(!W)return F.met_kh('ja');
+ var nar=NARROW();K=nar?1.25:1;
+ var sc=R(10,40,560,300,'#EAF4FC',14)+tx(290,30,W.t,15,'#0f3558',900);
+ sc+=R(10,40,560,150,'#D2E6F8',14);
+ [70,110,150].forEach(function(y,i){sc+='<path d="M20 '+y+' h520" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="26 18" opacity=".7"><animate attributeName="stroke-dashoffset" values="0;-88" dur="'+(0.9+i*.05)+'s" repeatCount="indefinite"/></path>'});
+ [250,290].forEach(function(y,i){sc+='<path d="M20 '+y+' h520" stroke="#7FA6C4" stroke-width="3" stroke-dasharray="26 18" opacity=".7"><animate attributeName="stroke-dashoffset" values="0;-88" dur="'+(3+i*.2)+'s" repeatCount="indefinite"/></path>'});
+ sc+=tx(470,88,W.fa+' ⇒⇒',14,'#1d4d8a',900)+tx(470,312,W.sl+' →',14,'#40566B',900);
+ /* 巻き上がる波 */
+ var wave='';for(var i=0;i<5;i++){var x=40+i*110;wave+='<path d="M'+x+' 200 q30 -42 62 -8 q10 12 -6 18 q-14 4 -14 -10" fill="none" stroke="#6B4FA0" stroke-width="4" stroke-linecap="round"/>'}
+ sc+='<defs><clipPath id="khc"><rect x="10" y="40" width="560" height="300" rx="14"/></clipPath></defs><g clip-path="url(#khc)"><g transform="translate(-110 0)">'+wave+'<animateTransform attributeName="transform" type="translate" values="-110 0;0 0" dur="3.2s" repeatCount="indefinite"/></g></g>';
+ sc+='<path d="M20 200 H550" stroke="#6B4FA0" stroke-width="2" stroke-dasharray="4 5" opacity=".6"/>'+tx(290,236,W.br,13,'#6B4FA0',900);
+ sc+='<g><g>'+plane('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 6;0 -5;0 4;0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="7s" repeatCount="indefinite" path="M40 190 L540 190"/></g>';
+ var cr='';cr+=R(590,10,300,330,'#fff',16,' stroke="#D9E3EC"');
+ [W.c,W.v,W.h,W.tm].forEach(function(v,i){var y=24+i*74;cr+=R(604,y,272,64,['#F1EAFB','#E3F1FB','#E8F5F2','#FDEEDF'][i],12)+WR(740,y+22,v[0],11.5,G,800,256)+tx(740,y+50,v[1],15,D,900)});
+ cr+=WR(740,330,W.src,9.5,G,700,280);
+ var s;
+ if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 960" role="img">'+R(0,0,580,960,'#F7FAFD')+sc+'<g transform="translate(-575 355) scale(1.9) translate(0 0)"></g><g transform="translate(20 352) scale(1.8) translate(-596 -6)">'+cr+'</g>';
+ else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 350" role="img">'+R(0,0,900,350,'#F7FAFD')+sc+cr;
+ K=1;return s+'</svg>'},
+
+/* 12 山岳波：山を越えた風が波打ち、レンズ雲・笠雲・ローター雲ができる。一番激しいのはローター */
+met_mtnwave:function(l){
+ var W=({ja:{t:'山岳波：山の風下に波ができる',wind:'強い風（山にほぼ直角）',cap:'笠雲',len:'レンズ雲（波の山にできる）',rot:'ローター雲：最も激しい乱気流',dn:'強い下降気流',st:'安定な層',far:'風下へ数百kmまで続くことも'},
+  ko:{t:'산악파: 산의 바람 아래쪽에 파도가 생긴다',wind:'강한 바람(산에 거의 직각)',cap:'삿갓구름',len:'렌즈구름(파도 마루에 생긴다)',rot:'로터 구름: 가장 심한 난기류',dn:'강한 하강기류',st:'안정한 층',far:'바람 아래쪽 수백 km까지 이어지기도'},
+  en:{t:'Mountain waves: waves form downwind of a ridge',wind:'Strong wind (nearly at right angles to the ridge)',cap:'Cap cloud',len:'Lenticular clouds (on the wave crests)',rot:'Rotor cloud: the most severe turbulence',dn:'Strong downdraft',st:'Stable layer',far:'Can extend hundreds of km downwind'}})[l];
+ if(!W)return F.met_mtnwave('ja');
+ var nar=NARROW();K=nar?1.1:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img">'+R(0,0,900,460,'#DCEEFB')+tx(450,30,W.t,15,'#0f3558',900);
+ s+=R(0,130,900,40,'#FFE3C8',0,' opacity=".5"')+LB(880,188,W.st,11,'#8a3b00','end','#FFF1E3');
+ /* 流線 */
+ var lines=[[200,'M0 200 C120 200 170 150 230 150 C300 150 320 250 380 250 C440 250 470 170 530 170 C590 170 620 240 680 240 C740 240 770 190 900 190'],[260,'M0 260 C120 260 170 200 230 200 C300 200 320 300 380 300 C440 300 470 230 530 230 C590 230 620 290 680 290 C740 290 770 250 900 250'],[110,'M0 110 C150 110 190 90 250 90 C310 90 330 140 390 140 C450 140 480 105 540 105 C600 105 630 135 690 135 C750 135 800 115 900 115']];
+ lines.forEach(function(v,i){s+='<path d="'+v[1]+'" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="22 16" opacity=".75"><animate attributeName="stroke-dashoffset" values="0;-76" dur="1.4s" repeatCount="indefinite"/></path>'});
+ /* 山 */
+ s+='<path d="M60 460 L230 190 L300 250 L360 460 Z" fill="#7C8A74"/><path d="M230 190 L260 238 L244 236 L230 250 L214 232 L204 236 Z" fill="#fff"/>';
+ s+=R(0,440,900,20,'#9CC98B');
+ /* 笠雲 */
+ s+='<ellipse cx="235" cy="176" rx="62" ry="16" fill="#fff" stroke="#9FB0C2" stroke-width="2"/>'+LB(235,146,W.cap,12,'#40566B','middle');
+ /* レンズ雲 */
+ [[530,160],[800,175]].forEach(function(p){s+='<g><ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="70" ry="14" fill="#fff" stroke="#9FB0C2" stroke-width="2"/><ellipse cx="'+p[0]+'" cy="'+(p[1]-10)+'" rx="50" ry="9" fill="#fff" stroke="#9FB0C2" stroke-width="2"/><animate attributeName="opacity" values=".7;1;.7" dur="3s" repeatCount="indefinite"/></g>'});
+ s+=LB(640,126,W.len,12,'#40566B','middle');
+ /* ローター */
+ s+='<g transform="translate(520 330)"><ellipse cx="0" cy="0" rx="70" ry="30" fill="#EEF1F4" stroke="#9FB0C2" stroke-width="2"/><g><path d="M-40 0 A40 22 0 1 1 40 0" fill="none" stroke="#D64545" stroke-width="4" stroke-linecap="round"/><path d="M40 0 l-10 -8 m10 8 l-12 4" stroke="#D64545" stroke-width="4" stroke-linecap="round"/><animateTransform attributeName="transform" type="rotate" values="0;360" dur="3s" repeatCount="indefinite"/></g></g>';
+ s+=LB(560,398,W.rot,13,'#D64545','middle');
+ /* 下降気流 */
+ s+='<g>'+ARW(330,240,380,330,'#D64545',6)+'<animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/></g>'+LB(392,232,W.dn,12,'#D64545','start');
+ s+=ARW(20,74,110,74,'#2F6FD6',6)+LB(122,79,W.wind,11.5,'#1d4d8a','start')+LB(880,286,W.far+' →',11,G,'end');
+ K=1;
+ if(nar)return SCR(s+'</svg>',760);
+ return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
 })();
