@@ -698,4 +698,6 @@ met_vort:function(l){
  K=1;return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
+/* ほかの図のファイル（figs_nav.js など）から同じ部品を使えるように公開する */
+window.FIGH={R:R,tx:tx,WR:WR,LB:LB,ARW:ARW,SCR:SCR,plane:plane,cloud:cloud,FR:FR,TW:TW,NARROW:NARROW,setK:function(v){K=v},C:{D:D,B:B,T:T,O:O,RD:RD,P:P,G:G}};
 })();
