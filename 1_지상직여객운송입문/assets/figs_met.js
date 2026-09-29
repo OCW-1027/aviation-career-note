@@ -12,6 +12,23 @@ function TW(s,sz){var w=0;s=String(s);for(var i=0;i<s.length;i++){w+=s.charCodeA
 function WR(x,y,s,sz,c,w,maxw,a){var parts=String(s).split(/( → |、|，|, | )/),lines=[],cur='';parts.forEach(function(p){if(!p)return;var cand=cur+p;if(TW(cand,sz)>maxw&&cur.trim()){lines.push(cur.trim());cur=p.replace(/^ /,'')}else cur=cand});if(cur.trim())lines.push(cur.trim());var lh=sz*K*1.35,y0=y-(lines.length-1)*lh/2;return lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,w,a)}).join('')}
 function plane(c){return '<path d="M-16 0 L12 -3 L18 0 L12 3 Z M-5 -2 L4 -14 L8 -14 L4 -2 Z M-5 2 L4 14 L8 14 L4 2 Z M-15 -1 L-12 -7 L-9 -7 L-11 -1 Z" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.2"/>'}
 function cloud(x,y,s,c){s=s||1;return '<g transform="translate('+x+' '+y+') scale('+s+')"><ellipse cx="0" cy="0" rx="26" ry="14" fill="'+(c||'#fff')+'"/><ellipse cx="-18" cy="4" rx="16" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="18" cy="4" rx="17" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="4" cy="-9" rx="15" ry="11" fill="'+(c||'#fff')+'"/></g>'}
+
+/* 前線の記号を線に沿って描く。pts：[[x,y],…]、type：cold・warm・stat・occl、side：記号を出す向き（1か−1）、sp：記号の間隔 */
+function FR(pts,type,side,sp,sw){sp=sp||34;sw=sw||4;side=side||1;
+ var col={cold:'#2F6FD6',warm:'#D64545',stat:'#2F6FD6',occl:'#7B4FB0'}[type];
+ var d='M'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L');
+ var g='<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="'+sw+'" stroke-linejoin="round" stroke-linecap="round"/>';
+ if(type==='stat')g+='<path d="'+d+'" fill="none" stroke="#D64545" stroke-width="'+sw+'" stroke-dasharray="'+sp/2+' '+sp/2+'" stroke-dashoffset="'+(-sp/4)+'"/>';
+ var segs=[],tot=0;for(var i=1;i<pts.length;i++){var dx=pts[i][0]-pts[i-1][0],dy=pts[i][1]-pts[i-1][1],l=Math.sqrt(dx*dx+dy*dy);segs.push([pts[i-1],dx/l,dy/l,l]);tot+=l}
+ var k=0;for(var s=sp/2;s<tot;s+=sp){var acc=0,sg=null;for(var j=0;j<segs.length;j++){if(acc+segs[j][3]>=s){sg=segs[j];break}acc+=segs[j][3]}if(!sg)break;
+  var u=s-acc,px=sg[0][0]+sg[1]*u,py=sg[0][1]+sg[2]*u,tx_=sg[1],ty_=sg[2],nx=-ty_*side,ny=tx_*side,kind;
+  if(type==='cold')kind='t';else if(type==='warm')kind='s';else kind=(k%2?'s':'t');
+  var c=type==='occl'?col:(kind==='t'?'#2F6FD6':'#D64545'),sd=(type==='stat'&&kind==='s')?-1:1;
+  if(kind==='t')g+='<path d="M'+(px-tx_*7).toFixed(1)+' '+(py-ty_*7).toFixed(1)+' L'+(px+nx*sd*10).toFixed(1)+' '+(py+ny*sd*10).toFixed(1)+' L'+(px+tx_*7).toFixed(1)+' '+(py+ty_*7).toFixed(1)+' Z" fill="'+c+'"/>';
+  else{var q=[];for(var a=0;a<=8;a++){var th=Math.PI*a/8;q.push((px-tx_*7*Math.cos(th)+nx*sd*7*Math.sin(th)).toFixed(1)+' '+(py-ty_*7*Math.cos(th)+ny*sd*7*Math.sin(th)).toFixed(1))}g+='<path d="M'+q.join(' L')+' Z" fill="'+c+'"/>'}
+  k++}
+ return g}
+function ARW(x1,y1,x2,y2,c,w){var dx=x2-x1,dy=y2-y1,l=Math.sqrt(dx*dx+dy*dy),ux=dx/l,uy=dy/l;return '<path d="M'+x1+' '+y1+' L'+x2+' '+y2+'" stroke="'+c+'" stroke-width="'+(w||4)+'" stroke-linecap="round" fill="none"/><path d="M'+(x2-ux*12-uy*7).toFixed(1)+' '+(y2-uy*12+ux*7).toFixed(1)+' L'+x2+' '+y2+' L'+(x2-ux*12+uy*7).toFixed(1)+' '+(y2-uy*12-ux*7).toFixed(1)+'" stroke="'+c+'" stroke-width="'+(w||4)+'" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'}
 window.FIGS=window.FIGS||{};
 var F={
 /* 1 空の層：対流圏・成層圏・中間圏・熱圏。気温の線を描き、旅客機は対流圏の上のほうを飛ぶ */
@@ -149,7 +166,136 @@ met_inversion:function(l){
  s+=tx(745,410,'↗ '+W[6],12,'#8a3b00',800);
  K=1;
  if(nar)return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img">'+R(0,0,600,900,'#F7FAFD')+'<g transform="translate(0 0)">'+sS+'</g><g transform="translate(-445 448)">'+s+'</g></svg>';
- return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 446" role="img">'+R(0,0,900,446,'#F7FAFD')+sS+s+'</svg>'}
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 446" role="img">'+R(0,0,900,446,'#F7FAFD')+sS+s+'</svg>'},
+/* 5 日本・韓国の周りの気団：季節ごとにやってくる5つの気団 */
+met_airmass:function(l){
+ var W=({ja:{ttl:'日本・韓国の周りの気団',kr:'韓国',jp:'日本',sea:'海',land:'大陸',
+   m:[['シベリア気団','cPk','冬','冷たい・乾いている'],['オホーツク海気団','mPk','梅雨〜初夏','冷たい・湿っている'],['小笠原気団','mTw','夏','暑い・湿っている'],['揚子江気団','cT','春・秋','暖かい・乾いている'],['赤道気団','mE','台風の季節','とても暑く湿っている']],
+   lg:'記号の読み方',l1:['c','大陸の上で育つ → 乾いている'],l2:['m','海の上で育つ → 湿っている'],l3:['P・T・E','P：寒い地方　T：暑い地方　E：赤道'],l4:['k・w','k：下の地面より冷たい　w：下の地面より暖かい']},
+  ko:{ttl:'한국·일본 주변의 기단',kr:'한국',jp:'일본',sea:'바다',land:'대륙',
+   m:[['시베리아 기단','cPk','겨울','차갑고 건조하다'],['오호츠크해 기단','mPk','늦봄~초여름','차갑고 습하다'],['북태평양 기단(오가사와라)','mTw','여름','덥고 습하다'],['양쯔강 기단','cT','봄·가을','따뜻하고 건조하다'],['적도 기단','mE','태풍철','매우 덥고 습하다']],
+   lg:'기호 읽는 법',l1:['c','대륙 위에서 생김 → 건조하다'],l2:['m','바다 위에서 생김 → 습하다'],l3:['P·T·E','P: 추운 지방  T: 더운 지방  E: 적도'],l4:['k·w','k: 아래 지면보다 차갑다  w: 아래 지면보다 따뜻하다']},
+  en:{ttl:'Air masses around Korea and Japan',kr:'Korea',jp:'Japan',sea:'Ocean',land:'Continent',
+   m:[['Siberian air mass','cPk','Winter','Cold and dry'],['Okhotsk Sea air mass','mPk','Rainy season to early summer','Cold and moist'],['Ogasawara (North Pacific) air mass','mTw','Summer','Hot and moist'],['Yangtze air mass','cT','Spring and autumn','Warm and dry'],['Equatorial air mass','mE','Typhoon season','Very hot and moist']],
+   lg:'Reading the codes',l1:['c','Formed over land → dry'],l2:['m','Formed over sea → moist'],l3:['P · T · E','P: polar  T: tropical  E: equatorial'],l4:['k · w','k: colder than the ground below  w: warmer than the ground below']}})[l];
+ if(!W)return F.met_airmass('ja');
+ var nar=NARROW();K=nar?1.25:1;
+ var s='<defs><radialGradient id="amg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
+ s+=R(10,10,560,500,'#CFE8F7',16);
+ s+='<path d="M10 10 H430 V40 Q360 70 330 120 L306 146 L302 168 L270 176 Q250 200 236 230 L190 300 Q130 350 10 360 Z" fill="#EADFC6"/>';
+ s+=tx(90,200,W.land,16,'#9C8A62',900)+tx(470,330,W.sea,16,'#7FA6C4',900);
+ s+='<path d="M268 146 L300 150 L298 214 L288 250 L272 258 L262 232 L256 200 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="2"/>'+tx(250,282,W.kr,13,'#2F5E24',900);
+ s+='<path d="M300 300 Q340 288 362 258 Q392 218 402 178 Q412 146 432 124 L442 132 Q428 156 420 184 Q408 228 378 266 Q352 296 312 310 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="2"/>'+tx(392,300,W.jp,13,'#2F5E24',900);
+ var C=[[120,92,'#5E8FD9'],[470,82,'#86C5E8'],[478,418,'#F08A5D'],[118,420,'#E8C35A'],[300,448,'#E86A6A']],cx=320,cy=225;
+ W.m.forEach(function(m,i){var x=C[i][0],y=C[i][1],c=C[i][2],dx=cx-x,dy=cy-y,dl=Math.sqrt(dx*dx+dy*dy),ux=dx/dl,uy=dy/dl,r=i===4?60:66;
+  var ax1=x+ux*(r+6),ay1=y+uy*(r+6),ax2=x+ux*(r+46),ay2=y+uy*(r+46);
+  s+='<g>'+ARW(ax1.toFixed(0),ay1.toFixed(0),ax2.toFixed(0),ay2.toFixed(0),c,6)+'<animate attributeName="opacity" values=".25;1;.25" dur="3s" begin="'+(i*0.6)+'s" repeatCount="indefinite"/></g>';
+  s+='<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+c+'" opacity=".9"/><circle cx="'+(x-r*.3)+'" cy="'+(y-r*.35)+'" r="'+r*.55+'" fill="url(#amg)"/>';
+  s+=WR(x,y-r*.42,m[0],12.5,'#fff',900,r*1.8)+tx(x,y+2,m[1],15,'#fff',900)+tx(x,y+r*.36,m[2],11.5,'#fff',800)+tx(x,y+r*.36+15*K,m[3],10.5,'#fff',700)});
+ s+=tx(290,36,W.ttl,15,'#0f3558',900);
+ var sm=s;s='';K=nar?1.1:1;
+ s+=R(590,10,300,500,'#fff',16,' stroke="#D9E3EC"')+tx(740,44,W.lg,16,D,900);
+ [W.l1,W.l2,W.l3,W.l4].forEach(function(v,i){var y=84+i*104;s+=R(606,y,268,90,['#F4EEDC','#E3F1FB','#FDE9DE','#EAF4EA'][i],12)+tx(740,y+30,v[0],20,D,900)+WR(740,y+62,v[1],12,D,700,250)});
+ var lg=s;K=1;
+ if(nar)return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 1050" role="img">'+R(0,0,580,1050,'#F7FAFD')+sm+'<g transform="translate(20 522) scale(1.8) translate(-596 -8)">'+lg+'</g></svg>';
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img">'+R(0,0,900,520,'#F7FAFD')+sm+lg+'</svg>'},
+
+/* 6 寒冷前線と温暖前線の断面：冷たい空気がもぐり込む急な前線と、暖かい空気がはい上がるゆるい前線 */
+met_fronts:function(l){
+ var W=({ja:{c:'寒冷前線',w:'温暖前線',cold:'冷たい空気',warm:'暖かい空気',go:'進む向き',
+   c1:'冷たい空気が暖かい空気の下にもぐり込む',c2:'急な坂（約1/50〜1/100）',c3:'積乱雲・強いにわか雨・雷・突風',c4:'悪天の幅はせまい（数十km）',
+   w1:'暖かい空気が冷たい空気の上をはい上がる',w2:'ゆるい坂（約1/100〜1/300）',w3:'層状の雲：巻雲→巻層雲→高層雲→乱層雲',w4:'しとしと雨・低い雲が広い範囲（数百km）',rain:'雨'},
+  ko:{c:'한랭전선',w:'온난전선',cold:'찬 공기',warm:'따뜻한 공기',go:'나아가는 방향',
+   c1:'찬 공기가 따뜻한 공기 아래로 파고든다',c2:'가파른 경사(약 1/50~1/100)',c3:'적란운·강한 소나기·뇌우·돌풍',c4:'악천후 폭은 좁다(수십 km)',
+   w1:'따뜻한 공기가 찬 공기 위를 타고 오른다',w2:'완만한 경사(약 1/100~1/300)',w3:'층상 구름: 권운→권층운→고층운→난층운',w4:'부슬비·낮은 구름이 넓은 범위(수백 km)',rain:'비'},
+  en:{c:'Cold front',w:'Warm front',cold:'Cold air',warm:'Warm air',go:'Direction of travel',
+   c1:'Cold air pushes in under the warm air',c2:'Steep slope (about 1/50–1/100)',c3:'Cumulonimbus, heavy showers, thunder, gusts',c4:'A narrow band of bad weather (tens of km)',
+   w1:'Warm air slides up over the cold air',w2:'Gentle slope (about 1/100–1/300)',w3:'Layer cloud: Ci → Cs → As → Ns',w4:'Steady rain and low cloud over a wide area (hundreds of km)',rain:'Rain'}})[l];
+ if(!W)return F.met_fronts('ja');
+ var nar=NARROW();K=nar?1.2:1;
+ function cb(x,y,s){return '<g transform="translate('+x+' '+y+') scale('+s+')"><path d="M-40 60 Q-46 20 -26 8 Q-30 -30 0 -36 Q6 -70 30 -60 Q44 -86 64 -70 L90 -78 L70 -64 Q86 -40 70 -20 Q86 10 60 30 Q66 56 40 60 Z" fill="#DCE3EA" stroke="#8C9BAA" stroke-width="2"/></g>'}
+ function panelC(){var g=R(0,0,430,478,'#fff',16,' stroke="#2F6FD6" stroke-width="3"')+tx(215,34,W.c,22,'#2F6FD6',900);
+  g+=R(12,50,406,300,'#FFF1E3',10);
+  g+='<g><path d="M12 350 L12 176 Q120 190 186 262 Q206 300 218 350 Z" fill="#9CC4F0"/><animateTransform attributeName="transform" type="translate" values="0 0;46 0;46 0" keyTimes="0;.8;1" dur="7s" repeatCount="indefinite"/></g>';
+  g+=tx(80,300,W.cold,14,'#1d4d8a',900)+tx(352,262,W.warm,14,'#8a3b00',900);
+  g+='<g>'+cb(236,176,1.05)+'<animate attributeName="opacity" values=".6;1;.6" dur="3s" repeatCount="indefinite"/></g>';
+  g+='<g stroke="#5E8FD9" stroke-width="2.5" stroke-linecap="round">';for(var i=0;i<6;i++)g+='<line x1="'+(222+i*12)+'" y1="246" x2="'+(216+i*12)+'" y2="262"><animate attributeName="y1" values="246;300" dur=".9s" begin="'+(i*.15)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="262;316" dur=".9s" begin="'+(i*.15)+'s" repeatCount="indefinite"/></line>';g+='</g>';
+  g+='<g>'+ARW(248,320,300,180,'#E08A2F',4)+'<animate attributeName="opacity" values=".2;1;.2" dur="2.4s" repeatCount="indefinite"/></g>';
+  g+=ARW(40,340,120,340,'#2F6FD6',5)+tx(130,345,W.go,12,'#2F6FD6',800,'start');
+  g+=R(12,350,406,6,'#9CC98B');
+  g+=WR(215,380,W.c1,12.5,D,800,396)+WR(215,405,W.c2,11.5,G,700,396)+WR(215,428,W.c4,11.5,G,700,396)+WR(215,455,W.c3,12,RD,800,396);
+  return g}
+ function panelW(){var g=R(0,0,430,478,'#fff',16,' stroke="#D64545" stroke-width="3"')+tx(215,34,W.w,22,'#D64545',900);
+  g+=R(12,50,406,300,'#FFF1E3',10);
+  g+='<path d="M418 350 L418 238 Q260 290 12 342 L12 350 Z" fill="#9CC4F0"/>';
+  g+=tx(360,322,W.cold,14,'#1d4d8a',900)+tx(80,150,W.warm,14,'#8a3b00',900);
+  var cl=[[372,82,'Ci',.55],[312,110,'Cs',.7],[236,150,'As',.9],[140,212,'Ns',1.15]];
+  cl.forEach(function(c,i){g+='<g opacity="0"><g transform="translate('+c[0]+' '+c[1]+') scale('+c[3]+')"><ellipse cx="0" cy="0" rx="46" ry="'+(i<2?7:14)+'" fill="'+(i<2?'#EDF2F7':'#D5DDE5')+'" stroke="#9FB0C2" stroke-width="1.5"/></g>'+tx(c[0],c[1]+5,c[2],12,'#40566B',900)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+(0.1+i*0.15).toFixed(2)+';'+(0.18+i*0.15).toFixed(2)+';.92;1" dur="8s" repeatCount="indefinite"/></g>'});
+  g+='<g stroke="#5E8FD9" stroke-width="2" stroke-linecap="round" opacity=".85">';for(var i=0;i<10;i++)g+='<line x1="'+(70+i*16)+'" y1="238" x2="'+(66+i*16)+'" y2="252"><animate attributeName="y1" values="238;320" dur="1.6s" begin="'+(i*.16)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="252;334" dur="1.6s" begin="'+(i*.16)+'s" repeatCount="indefinite"/></line>';g+='</g>';
+  g+='<g><circle r="7" fill="#E08A2F"/><animateMotion dur="4s" repeatCount="indefinite" path="M40 330 Q200 300 400 250"/></g><g><circle r="7" fill="#E08A2F"/><animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M40 330 Q200 300 400 250"/></g>';
+  g+=ARW(40,62,120,62,'#D64545',5)+tx(130,67,W.go,12,'#D64545',800,'start');
+  g+=R(12,350,406,6,'#9CC98B');
+  g+=WR(215,380,W.w1,12.5,D,800,396)+WR(215,405,W.w2,11.5,G,700,396)+WR(215,428,W.w3,11.5,G,700,396)+WR(215,458,W.w4,12,'#1d4d8a',800,396);
+  return g}
+ var a=panelC(),b=panelW(),s;K=1;
+ if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 1000" role="img">'+R(0,0,460,1000,'#F7FAFD')+'<g transform="translate(15 10)">'+a+'</g><g transform="translate(15 508)">'+b+'</g>';
+ else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 498" role="img">'+R(0,0,900,498,'#F7FAFD')+'<g transform="translate(15 10)">'+a+'</g><g transform="translate(455 10)">'+b+'</g>';
+ return s+'</svg>'},
+
+/* 7 天気図の前線と低気圧：前線の記号4種類と、低気圧の周りの天気 */
+met_front_map:function(l){
+ var W=({ja:{t:'天気図の低気圧と前線',L:'低',sec:'暖域（暖かい区域）',sh:'にわか雨・雷',rn:'広い範囲の雨',cold:'寒冷前線',warm:'温暖前線',stat:'停滞前線',occl:'閉塞前線',lg:'前線の記号',
+   d:['記号の向きが前線の進む方向','赤い半円が進む方向','ほとんど動かない（梅雨前線など）','寒冷前線が温暖前線に追いついた'],nw:'北西の風に変わる',sw:'南寄りの風'},
+  ko:{t:'일기도의 저기압과 전선',L:'저',sec:'난역(따뜻한 구역)',sh:'소나기·뇌우',rn:'넓은 범위의 비',cold:'한랭전선',warm:'온난전선',stat:'정체전선',occl:'폐색전선',lg:'전선 기호',
+   d:['기호가 향한 쪽이 전선이 나아가는 방향','빨간 반원이 나아가는 방향','거의 움직이지 않는다(장마전선 등)','한랭전선이 온난전선을 따라잡았다'],nw:'북서풍으로 바뀐다',sw:'남쪽 바람'},
+  en:{t:'A low and its fronts on a weather chart',L:'L',sec:'Warm sector',sh:'Showers, thunder',rn:'Widespread rain',cold:'Cold front',warm:'Warm front',stat:'Stationary front',occl:'Occluded front',lg:'Front symbols',
+   d:['Triangles point the way the front moves','Semicircles point the way it moves','Hardly moves (e.g. the rainy-season front)','The cold front has caught the warm front'],nw:'Wind shifts to northwest',sw:'Southerly wind'}})[l];
+ if(!W)return F.met_front_map('ja');
+ var nar=NARROW();K=nar?1.2:1;
+ var s=R(10,10,560,480,'#EEF5FB',16)+tx(290,38,W.t,15,'#0f3558',900);
+ s+='<g><animateTransform attributeName="transform" type="translate" values="0 0;40 -6;40 -6" keyTimes="0;.85;1" dur="10s" repeatCount="indefinite"/>';
+ s+='<path d="M280 180 L470 238 Q420 330 300 400 Q220 380 200 360 Z" fill="#FFE3C8" opacity=".75"/>'+tx(350,300,W.sec,13,'#8a3b00',900);
+ [[70,1],[110,.8],[150,.6]].forEach(function(r){s+='<ellipse cx="280" cy="180" rx="'+r[0]*1.5+'" ry="'+r[0]+'" fill="none" stroke="#9FB0C2" stroke-width="1.5" stroke-dasharray="4 4" opacity="'+r[1]+'"/>'});
+ s+='<g opacity=".8">';for(var i=0;i<16;i++){var x=330+((i*37)%190),y=110+((i*53)%72);s+='<line x1="'+x+'" y1="'+y+'" x2="'+(x-4)+'" y2="'+(y+10)+'" stroke="#5E8FD9" stroke-width="2"><animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="'+(i*.1)+'s" repeatCount="indefinite"/></line>'}s+='</g>';
+ s+=R(356,78,150,24,'#fff',12,' opacity=".85"')+tx(431,95,W.rn,12,'#1d4d8a',900);
+ s+=FR([[280,180],[262,240],[232,300],[196,360],[160,410]],'cold',-1,34);
+ s+=FR([[280,180],[340,190],[400,206],[470,238]],'warm',-1,34);
+ s+='<g><rect x="160" y="300" width="80" height="24" rx="12" fill="#fff" opacity=".9"/><animate attributeName="opacity" values=".5;1;.5" dur="2s" repeatCount="indefinite"/></g>'+tx(200,317,W.sh,11,RD,900);
+ s+='<circle cx="280" cy="180" r="22" fill="#fff" stroke="#D64545" stroke-width="3"/>'+tx(280,188,W.L,20,'#D64545',900);
+ s+=ARW(150,280,120,240,'#6B4FA0',4)+tx(120,228,W.nw,11,'#6B4FA0',800)+ARW(330,370,360,330,'#E08A2F',4)+tx(372,388,W.sw,11,'#8a3b00',800);
+ s+='</g>';
+ var mp=s;s='';K=nar?1.1:1;
+ s+=R(590,10,300,480,'#fff',16,' stroke="#D9E3EC"')+tx(740,42,W.lg,16,D,900);
+ [['cold',W.cold,W.d[0]],['warm',W.warm,W.d[1]],['stat',W.stat,W.d[2]],['occl',W.occl,W.d[3]]].forEach(function(v,i){var y=70+i*104;
+  s+=R(606,y,268,92,'#F7FAFD',12)+tx(740,y+22,v[1],14,{cold:'#2F6FD6',warm:'#D64545',stat:'#6B7785',occl:'#7B4FB0'}[v[0]],900)+FR([[630,y+50],[850,y+50]],v[0],-1,36,4)+WR(740,y+78,v[2],11,G,700,252)});
+ var lg=s;K=1;
+ if(nar)return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 1010" role="img">'+R(0,0,580,1010,'#F7FAFD')+mp+'<g transform="translate(20 505) scale(1.8) translate(-596 -8)">'+lg+'</g></svg>';
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img">'+R(0,0,900,500,'#F7FAFD')+mp+lg+'</svg>'},
+
+/* 8 温帯低気圧の一生：波 → 発達 → 閉塞 → 衰える */
+met_cyclone_life:function(l){
+ var W=({ja:['前線の上に波ができる','低気圧が発達する（暖域が広い）','寒冷前線が追いつく（閉塞が始まる）','閉塞して衰える','寒い','暖かい','エネルギーのもと：寒気と暖気の温度差'],
+  ko:['전선 위에 파동이 생긴다','저기압이 발달한다(난역이 넓다)','한랭전선이 따라잡는다(폐색 시작)','폐색되어 약해진다','춥다','따뜻하다','에너지의 원천: 찬 공기와 따뜻한 공기의 온도 차'],
+  en:['A wave forms on a front','The low deepens (wide warm sector)','The cold front catches up (occlusion begins)','Fully occluded, the low weakens','Cold','Warm','Energy source: the temperature contrast between cold and warm air']})[l];
+ if(!W)return F.met_cyclone_life('ja');
+ var nar=NARROW();K=nar?1.25:1;
+ function st(i){var g=R(0,0,200,230,'#fff',14,' stroke="#D9E3EC" stroke-width="2"')+'<circle cx="24" cy="24" r="15" fill="#6B4FA0"/>'+tx(24,30,i+1,15,'#fff',900);
+  g+=R(10,46,180,62,'#DCEBFA',0)+R(10,108,180,70,'#FDE7D3',0)+tx(160,64,W[4],10,'#1d4d8a',800)+tx(160,172,W[5],10,'#8a3b00',800);
+  if(i===0)g+=FR([[14,110],[70,112],[100,98],[130,112],[186,110]],'stat',1,28,3);
+  if(i===1)g+='<path d="M100 96 L170 120 L130 176 Z" fill="#FFD2A8" opacity=".8"/>'+FR([[100,96],[140,104],[176,122]],'warm',-1,26,3)+FR([[100,96],[92,130],[74,170]],'cold',-1,26,3)+'<circle cx="100" cy="96" r="9" fill="#fff" stroke="#D64545" stroke-width="2.5"/>';
+  if(i===2)g+='<path d="M118 104 L172 124 L136 170 Z" fill="#FFD2A8" opacity=".8"/>'+FR([[96,86],[118,104]],'occl',-1,22,3)+FR([[118,104],[150,112],[178,126]],'warm',-1,26,3)+FR([[118,104],[106,138],[90,174]],'cold',-1,26,3)+'<circle cx="96" cy="86" r="10" fill="#fff" stroke="#D64545" stroke-width="2.5"/>';
+  if(i===3)g+=FR([[86,80],[120,104],[146,118]],'occl',-1,22,3)+FR([[146,118],[178,126]],'warm',-1,26,3)+FR([[146,118],[132,150],[118,176]],'cold',-1,26,3)+'<circle cx="86" cy="80" r="12" fill="#fff" stroke="#9FB0C2" stroke-width="2.5"/>';
+  g+=WR(100,206,W[i],11.5,D,800,184);
+  g+='<rect x="0" y="0" width="200" height="230" rx="14" fill="none" stroke="#6B4FA0" stroke-width="4" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.22;.25;1" dur="8s" begin="'+(i*2)+'s" repeatCount="indefinite"/></rect>';
+  return g}
+ var s,ar='<path d="M0 0 l14 0 m-6 -6 l6 6 l-6 6" stroke="#6B4FA0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+ if(nar){s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 560" role="img">'+R(0,0,440,560,'#F7FAFD');
+  [[10,10],[230,10],[10,262],[230,262]].forEach(function(p,i){s+='<g transform="translate('+p[0]+' '+p[1]+')">'+st(i)+'</g>'});
+  s+=WR(220,528,W[6],12,'#6B4FA0',900,410)}
+ else{s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 290" role="img">'+R(0,0,900,290,'#F7FAFD');
+  [0,1,2,3].forEach(function(i){s+='<g transform="translate('+(14+i*222)+' 12)">'+st(i)+'</g>';if(i<3)s+='<g transform="translate('+(218+i*222)+' 126)">'+ar+'</g>'});
+  s+=tx(450,272,W[6],13,'#6B4FA0',900)}
+ K=1;return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
 })();
