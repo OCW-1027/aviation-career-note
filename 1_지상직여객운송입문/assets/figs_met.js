@@ -416,7 +416,111 @@ met_mtnwave:function(l){
  s+=ARW(20,74,110,74,'#2F6FD6',6)+LB(122,79,W.wind,11.5,'#1d4d8a','start')+LB(880,286,W.far+' →',11,G,'end');
  K=1;
  if(nar)return SCR(s+'</svg>',760);
- return s+'</svg>'}
+ return s+'</svg>'},
+/* 13 雷雨の一生：積雲期・成熟期・消散期 */
+met_ts_life:function(l){
+ var W=({ja:{t:['積雲期','成熟期','消散期'],d:['上昇気流だけ。雲がぐんぐん伸びる','上昇気流と下降気流が並ぶ。強い雨・雷・ひょう・突風','下降気流だけ。雨が弱まり雲がくずれる'],tm:['約10〜15分','約15〜30分','約30分'],life:'ひとつの雷雨の一生はおよそ1時間。いくつも続くと数時間になる',up:'上昇',dn:'下降'},
+  ko:{t:['적운기','성숙기','소산기'],d:['상승기류만 있다. 구름이 쑥쑥 자란다','상승기류와 하강기류가 함께 있다. 강한 비·번개·우박·돌풍','하강기류만 있다. 비가 약해지고 구름이 무너진다'],tm:['약 10~15분','약 15~30분','약 30분'],life:'뇌우 하나의 일생은 약 1시간. 여러 개가 이어지면 몇 시간이 된다',up:'상승',dn:'하강'},
+  en:{t:['Cumulus stage','Mature stage','Dissipating stage'],d:['Updrafts only; the cloud grows fast','Updrafts and downdrafts side by side: heavy rain, lightning, hail, gusts','Downdrafts only; rain eases and the cloud collapses'],tm:['About 10–15 min','About 15–30 min','About 30 min'],life:'A single thunderstorm lasts about an hour; a series of cells can go on for hours',up:'Up',dn:'Down'}})[l];
+ if(!W)return F.met_ts_life('ja');
+ var nar=NARROW();K=nar?1.2:1;
+ function up(x,y1,y2,d){return '<g>'+ARW(x,y1,x,y2,'#E08A2F',5)+'<animate attributeName="opacity" values=".3;1;.3" dur="1.4s" begin="'+(d||0)+'s" repeatCount="indefinite"/></g>'}
+ function dn(x,y1,y2,d){return '<g>'+ARW(x,y1,x,y2,'#2F6FD6',5)+'<animate attributeName="opacity" values=".3;1;.3" dur="1.4s" begin="'+(d||0)+'s" repeatCount="indefinite"/></g>'}
+ function st(i){var g=R(0,0,270,380,'#fff',16,' stroke="#D9E3EC" stroke-width="2"')+'<circle cx="26" cy="28" r="16" fill="#6B4FA0"/>'+tx(26,34,i+1,15,'#fff',900)+tx(150,34,W.t[i],17,D,900)+tx(150,56,W.tm[i],11,G,800);
+  g+=R(10,300,250,8,'#9CC98B',3);
+  if(i===0){g+='<path d="M80 290 Q70 240 100 220 Q90 170 135 160 Q180 150 190 200 Q215 220 200 260 Q205 290 190 290 Z" fill="#E6ECF2" stroke="#9FB0C2" stroke-width="2"/>'+up(115,280,175,0)+up(160,280,185,.5)}
+  if(i===1){g+='<path d="M50 290 Q40 230 70 200 Q60 130 110 110 Q120 80 160 86 L240 76 L200 96 Q230 140 212 200 Q235 240 220 290 Z" fill="#DCE3EA" stroke="#8C9BAA" stroke-width="2"/>'+up(100,280,110,0)+dn(175,130,290,.4);
+   g+='<g stroke="#5E8FD9" stroke-width="2.5">';for(var k=0;k<6;k++)g+='<line x1="'+(158+k*8)+'" y1="250" x2="'+(154+k*8)+'" y2="264"><animate attributeName="y1" values="250;296" dur=".8s" begin="'+(k*.12)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="264;310" dur=".8s" begin="'+(k*.12)+'s" repeatCount="indefinite"/></line>';g+='</g>';
+   g+='<path d="M140 150 l-14 26 h12 l-10 26 l26 -34 h-12 l10 -18 z" fill="#FFD23F" stroke="#C99A00" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0;1;0" keyTimes="0;.4;.42;.46;.7;.72;.76" dur="3s" repeatCount="indefinite"/></path>'}
+  if(i===2){g+='<path d="M60 290 Q50 250 80 230 L90 150 Q110 120 150 122 L230 110 L200 136 Q210 180 200 230 Q225 260 210 290 Z" fill="#EEF1F4" stroke="#B4C0CC" stroke-width="2" opacity=".85"/>'+dn(110,160,290,0)+dn(170,160,290,.5);
+   g+='<g stroke="#8FB0D8" stroke-width="2">';for(var k=0;k<4;k++)g+='<line x1="'+(100+k*22)+'" y1="262" x2="'+(97+k*22)+'" y2="272"><animate attributeName="y1" values="262;296" dur="1.6s" begin="'+(k*.3)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="272;306" dur="1.6s" begin="'+(k*.3)+'s" repeatCount="indefinite"/></line>';g+='</g>'}
+  g+=WR(135,344,W.d[i],12,D,800,244);
+  g+='<rect x="0" y="0" width="270" height="380" rx="16" fill="none" stroke="#6B4FA0" stroke-width="4" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.3;.33;1" dur="9s" begin="'+(i*3)+'s" repeatCount="indefinite"/></rect>';
+  return g}
+ var s;
+ if(nar){s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 1240" role="img">'+R(0,0,300,1240,'#F7FAFD');[0,1,2].forEach(function(i){s+='<g transform="translate(15 '+(10+i*395)+')">'+st(i)+'</g>'});s+=WR(150,1210,W.life,12,'#6B4FA0',900,280)}
+ else{s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img">'+R(0,0,900,440,'#F7FAFD');[0,1,2].forEach(function(i){s+='<g transform="translate('+(20+i*295)+' 10)">'+st(i)+'</g>'});s+=tx(450,420,W.life,13,'#6B4FA0',900)}
+ K=1;return s+'</svg>'},
+
+/* 14 積乱雲の危険：かなとこ・ひょう・乱気流・着氷・雷・強い雨・ダウンバースト・ガストフロント */
+met_cb_hazards:function(l){
+ var W=({ja:{t:'積乱雲の危険',anv:'かなとこ雲（風下へ何百kmも広がる）',ot:'かなとこの上の盛り上がり＝強い上昇気流',hail:'ひょう：雲の外、かなとこの下にも降る',turb:'激しい乱気流：雲の外20マイル先まで',ice:'着氷（0℃〜−20℃の層）',ltg:'雷',rain:'強い雨・視程不良',db:'ダウンバースト',gf:'ガストフロント（初期突風）：風向・風速の急変'},
+  ko:{t:'적란운의 위험',anv:'모루구름(바람 아래쪽으로 수백 km 퍼짐)',ot:'모루 위의 솟은 부분=강한 상승기류',hail:'우박: 구름 밖, 모루 아래에도 떨어진다',turb:'심한 난기류: 구름 밖 20마일까지',ice:'착빙(0℃~−20℃ 층)',ltg:'번개',rain:'강한 비·나쁜 시정',db:'다운버스트',gf:'돌풍전선(초기돌풍): 풍향·풍속 급변'},
+  en:{t:'The hazards of a cumulonimbus',anv:'Anvil (spreads hundreds of km downwind)',ot:'Overshooting top = strong updraft',hail:'Hail: also outside the cloud, under the anvil',turb:'Severe turbulence: up to 20 miles from the storm',ice:'Icing (0 °C to −20 °C layer)',ltg:'Lightning',rain:'Heavy rain, poor visibility',db:'Downburst',gf:'Gust front (first gust): sudden wind shift'}})[l];
+ if(!W)return F.met_cb_hazards('ja');
+ var nar=NARROW();K=nar?1.1:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img">'+R(0,0,900,520,'#DCEEFB')+tx(450,30,W.t,16,'#0f3558',900);
+ s+=R(0,470,900,50,'#9CC98B');
+ /* 雲 */
+ s+='<path d="M250 470 Q230 400 262 360 Q240 300 280 262 Q270 190 320 160 Q330 110 380 100 L620 86 L760 96 L640 118 Q560 124 520 150 Q560 200 540 262 Q580 300 560 360 Q590 420 570 470 Z" fill="#DCE3EA" stroke="#8C9BAA" stroke-width="2.5"/>';
+ s+='<path d="M380 100 Q400 60 430 72 Q440 90 420 100 Z" fill="#E8EDF2" stroke="#8C9BAA" stroke-width="2"><animate attributeName="d" values="M380 100 Q400 60 430 72 Q440 90 420 100 Z;M380 100 Q398 48 432 62 Q446 88 420 100 Z;M380 100 Q400 60 430 72 Q440 90 420 100 Z" dur="3s" repeatCount="indefinite"/></path>';
+ s+=R(262,262,280,64,'#B5E3F5',0,' opacity=".45"');
+ /* 雷 */
+ s+='<path d="M430 190 l-22 40 h18 l-16 42 l40 -54 h-18 l14 -28 z" fill="#FFD23F" stroke="#C99A00" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0;1;0" keyTimes="0;.5;.52;.56;.75;.77;.8" dur="3s" repeatCount="indefinite"/></path>';
+ /* 雨 */
+ s+='<g stroke="#5E8FD9" stroke-width="2.5">';for(var k=0;k<10;k++)s+='<line x1="'+(300+k*22)+'" y1="400" x2="'+(296+k*22)+'" y2="416"><animate attributeName="y1" values="400;462" dur=".8s" begin="'+(k*.08)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="416;478" dur=".8s" begin="'+(k*.08)+'s" repeatCount="indefinite"/></line>';s+='</g>';
+ /* ひょう（かなとこの下） */
+ s+='<g fill="#fff" stroke="#8C9BAA">';for(var k=0;k<5;k++)s+='<circle cx="'+(640+k*20)+'" cy="140" r="5"><animate attributeName="cy" values="130;300" dur="1.8s" begin="'+(k*.3)+'s" repeatCount="indefinite"/></circle>';s+='</g>';
+ /* ダウンバースト・ガストフロント */
+ s+='<g>'+ARW(420,380,420,455,'#2F6FD6',6)+ARW(420,462,300,462,'#2F6FD6',5)+ARW(420,462,560,462,'#2F6FD6',5)+'<animate attributeName="opacity" values=".35;1;.35" dur="1.6s" repeatCount="indefinite"/></g>';
+ s+='<g><path d="M600 470 Q620 440 660 444 Q690 430 720 448 Q740 470 740 470 Z" fill="#C8D1DA" opacity=".9"/><animateTransform attributeName="transform" type="translate" values="-40 0;60 0" dur="4s" repeatCount="indefinite"/></g>';
+ /* 乱気流の範囲 */
+ s+='<path d="M200 470 Q170 260 270 130 Q380 40 560 60 Q760 70 820 140" fill="none" stroke="#D64545" stroke-width="3" stroke-dasharray="10 8"><animate attributeName="stroke-dashoffset" values="0;-36" dur="1.2s" repeatCount="indefinite"/></path>';
+ /* ラベル */
+ s+=LB(700,64,W.anv,12,'#40566B','middle')+LB(312,50,W.ot,11.5,'#8a3b00','middle')+LB(730,318,W.hail,12,'#40566B','middle')+LB(150,160,W.turb,12,'#D64545','middle')+LB(300,294,W.ice,12,'#1d6fa0','start')+LB(470,210,W.ltg,12,'#C99A00','start')+LB(470,396,W.rain,12,'#2F6FD6','start')+LB(420,500,W.db,12,'#2F6FD6','middle')+LB(740,500,W.gf,11.5,'#40566B','middle');
+ K=1;
+ if(nar)return SCR(s+'</svg>',780);
+ return s+'</svg>'},
+
+/* 15 マイクロバーストの中の着陸：向かい風が増える → 下降気流 → 追い風に変わって沈む */
+met_microburst:function(l){
+ var W=({ja:{t:'マイクロバーストに入った着陸機',p:'予定の降下経路',a:'① 向かい風が増える：速度が増え、経路より上に浮く',b:'② 強い下降気流：押し下げられる',c:'③ 追い風に変わる：速度と揚力が減り、経路より下に沈む（最も危険）',sz:'直径 4km 未満・強い風は数分〜十数分',gd:'地面'},
+  ko:{t:'마이크로버스트에 들어간 착륙기',p:'예정 강하 경로',a:'① 맞바람이 늘어난다: 속도가 늘어 경로보다 위로 뜬다',b:'② 강한 하강기류: 아래로 밀린다',c:'③ 뒷바람으로 바뀐다: 속도와 양력이 줄어 경로보다 아래로 가라앉는다(가장 위험)',sz:'지름 4km 미만·강한 바람은 몇 분~십수 분',gd:'지면'},
+  en:{t:'A landing aircraft flying into a microburst',p:'Planned glide path',a:'① Headwind increases: airspeed rises, the aircraft floats above the path',b:'② Strong downdraft: the aircraft is pushed down',c:'③ The wind turns to a tailwind: airspeed and lift fall and it sinks below the path (the most dangerous point)',sz:'Less than 4 km across; strong winds last a few minutes to about a quarter of an hour',gd:'Ground'}})[l];
+ if(!W)return F.met_microburst('ja');
+ var nar=NARROW();K=nar?1.1:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" role="img">'+R(0,0,900,480,'#DCEEFB')+tx(450,28,W.t,16,'#0f3558',900);
+ s+=R(0,420,900,60,'#9CC98B')+R(760,414,140,8,'#5B6770');
+ s+='<g transform="translate(0 34)"><path d="M330 60 Q300 40 360 34 Q420 20 480 40 Q540 30 560 60 Q600 80 560 96 L340 96 Q300 90 330 60 Z" fill="#C8D1DA" stroke="#8C9BAA" stroke-width="2"/></g>';
+ /* 下降気流と外へ広がる風 */
+ s+='<g opacity=".85">';[420,450,480].forEach(function(x){s+='<path d="M'+x+' 132 L'+x+' 370" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="14 10"><animate attributeName="stroke-dashoffset" values="0;-48" dur=".9s" repeatCount="indefinite"/></path>'});
+ s+='<path d="M450 370 Q450 408 250 414" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="14 10"><animate attributeName="stroke-dashoffset" values="0;-48" dur=".9s" repeatCount="indefinite"/></path><path d="M450 370 Q450 408 650 414" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="14 10"><animate attributeName="stroke-dashoffset" values="0;-48" dur=".9s" repeatCount="indefinite"/></path></g>';
+ s+=ARW(300,404,230,404,'#2F6FD6',5)+ARW(600,404,680,404,'#2F6FD6',5);
+ /* 予定の経路と実際の経路 */
+ s+='<path d="M40 150 L800 414" stroke="#6B7785" stroke-width="3" stroke-dasharray="10 8"/>'+LB(120,160,W.p,12,G,'start');
+ var act='M40 150 C200 170 280 190 340 190 C420 200 460 280 520 330 C580 380 620 420 660 440';
+ s+='<path d="'+act+'" fill="none" stroke="#D64545" stroke-width="4"/>';
+ s+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+act+'"/></g>';
+ s+='<circle cx="300" cy="190" r="15" fill="#E08A2F"/>'+tx(300,196,'1',14,'#fff',900)+'<circle cx="450" cy="250" r="15" fill="#2F6FD6"/>'+tx(450,256,'2',14,'#fff',900)+'<circle cx="560" cy="360" r="15" fill="#D64545"/>'+tx(560,366,'3',14,'#fff',900);
+ s+=LB(450,462,W.sz,12,'#40566B','middle');
+ s+=R(610,60,280,190,'#fff',12,' stroke="#D9E3EC" opacity=".96"')+WR(750,96,W.a,11.5,'#8a3b00',800,260)+WR(750,150,W.b,11.5,'#1d4d8a',800,260)+WR(750,210,W.c,11.5,'#D64545',900,260);
+ K=1;
+ if(nar)return SCR(s+'</svg>',780);
+ return s+'</svg>'},
+
+/* 16 雷雨を避ける：強いエコーから20マイル以上、風上側を回る */
+met_ts_avoid:function(l){
+ var W=({ja:{t:'気象レーダーで雷雨を避ける',r:'強いエコー（赤）',y:'中くらい（黄）',g:'弱い（緑）',w:'上空の風',ok:'風上側を20マイル以上はなれて回る',ng:'エコーの間は40マイル以上ないと通らない',an:'かなとこの下（風下）はひょうの危険',p:'予定の経路'},
+  ko:{t:'기상 레이더로 뇌우 피하기',r:'강한 에코(빨강)',y:'중간(노랑)',g:'약함(초록)',w:'상공의 바람',ok:'바람이 불어오는 쪽으로 20마일 이상 떨어져 돌아간다',ng:'에코 사이가 40마일 이상이 아니면 지나가지 않는다',an:'모루 아래(바람 아래쪽)는 우박 위험',p:'예정 경로'},
+  en:{t:'Avoiding thunderstorms on weather radar',r:'Strong echo (red)',y:'Moderate (yellow)',g:'Weak (green)',w:'Upper wind',ok:'Go round on the upwind side, 20 miles or more away',ng:'Do not fly between echoes less than 40 miles apart',an:'Under the anvil (downwind): risk of hail',p:'Planned route'}})[l];
+ if(!W)return F.met_ts_avoid('ja');
+ var nar=NARROW();K=nar?1.3:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" role="img">'+R(0,0,640,600,'#0E2238',16)+tx(320,32,W.t,16,'#fff',900);
+ [80,160,240].forEach(function(r){s+='<path d="M'+(320-r)+' 560 A'+r+' '+r+' 0 0 1 '+(320+r)+' 560" fill="none" stroke="#3A5A7A" stroke-width="1.5"/>'});
+ function cell(x,y,sc){return '<g transform="translate('+x+' '+y+') scale('+sc+')"><ellipse rx="70" ry="46" fill="#2FAE5A" opacity=".85"/><ellipse rx="46" ry="30" fill="#F2D233"/><ellipse rx="22" ry="15" fill="#E03B3B"><animate attributeName="rx" values="20;25;20" dur="2s" repeatCount="indefinite"/></ellipse></g>'}
+ s+=cell(250,250,1)+cell(420,230,.9);
+ s+='<path d="M252 262 C300 300 350 330 380 360 L400 340 C360 300 310 270 262 244 Z" fill="#fff" opacity=".12"/>';
+ s+=LB(360,392,W.an,11,'#8a3b00','middle','#FFE3C8');
+ /* 予定の経路（真上へ）と回避の経路（風上＝左を回る） */
+ s+='<path d="M320 560 L320 70" stroke="#9FB0C2" stroke-width="3" stroke-dasharray="10 8"/>'+LB(330,540,W.p,11,'#40566B','start');
+ var av='M320 560 C320 480 170 470 130 380 C100 300 120 190 190 130 C240 90 320 90 320 60';
+ s+='<path d="'+av+'" fill="none" stroke="#7CF2B0" stroke-width="4"/>';
+ s+='<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="'+av+'"/></g>';
+ s+='<circle cx="250" cy="250" r="118" fill="none" stroke="#FFB870" stroke-width="2" stroke-dasharray="6 6"/>'+LB(118,236,'20 NM',11,'#8a3b00','middle','#FFE3C8');
+ s+=ARW(40,440,100,490,'#9FD3F7',5)+LB(80,424,W.w+' ↘',11,'#1d4d8a','middle','#DCEEFB');
+ s+=R(20,70,176,74,'#13304E',10)+'<ellipse cx="38" cy="88" rx="8" ry="6" fill="#E03B3B"/>'+tx(52,92,W.r,10.5,'#fff',800,'start')+'<ellipse cx="38" cy="108" rx="8" ry="6" fill="#F2D233"/>'+tx(52,112,W.y,10.5,'#fff',800,'start')+'<ellipse cx="38" cy="128" rx="8" ry="6" fill="#2FAE5A"/>'+tx(52,132,W.g,10.5,'#fff',800,'start');
+ s+=LB(430,470,W.ok,11.5,'#0f3558','middle','#7CF2B0')+LB(430,504,W.ng,11.5,'#0f3558','middle','#FFE08A');
+ K=1;return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
 })();
