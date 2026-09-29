@@ -398,7 +398,7 @@ met_jet_map:function(l){
  s+='<path d="'+dW+'" fill="none" stroke="#7B4FB0" stroke-width="5" stroke-dasharray="18 14"><animate attributeName="d" values="'+dW+';'+dW+';'+dS+';'+dS+';'+dW+'" keyTimes="0;.35;.5;.85;1" dur="12s" repeatCount="indefinite"/><animate attributeName="stroke-dashoffset" values="0;-320" dur="2s" repeatCount="indefinite"/></path>';
  var bx=nar?480:560;
  s+='<g>'+R(bx,300,150,34,'#fff',17,' stroke="#7B4FB0" stroke-width="2"')+tx(bx+75,323,W.w,16,'#7B4FB0',900)+'<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.35;.45;.9;1" dur="12s" repeatCount="indefinite"/></g>';
- s+='<g opacity="0">'+R(bx,300,150,34,'#fff',17,' stroke="#E08A2F" stroke-width="2"')+tx(bx+75,323,W.su,16,'#E08A2F',900)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.4;.5;.85;.95" dur="12s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0">'+R(bx,300,150,34,'#fff',17,' stroke="#E08A2F" stroke-width="2"')+tx(bx+75,323,W.su,16,'#E08A2F',900)+'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.4;.5;.85;.95;1" dur="12s" repeatCount="indefinite"/></g>';
  s+=nar?ARW(610,270,735,270,'#2F8FE0',5)+tx(672,258,W.us,12,'#1d4d8a',900):ARW(700,250,860,250,'#2F8FE0',5)+tx(780,240,W.us,12,'#1d4d8a',900);
  /* 説明 */
  if(nar){K=1.35;s=s.replace('viewBox="0 0 900 470"','viewBox="150 0 600 800"').replace(R(0,0,900,470,'#F7FAFD'),R(0,0,900,800,'#F7FAFD'));
@@ -478,7 +478,7 @@ met_ts_life:function(l){
   if(i===0){g+='<path d="M80 290 Q70 240 100 220 Q90 170 135 160 Q180 150 190 200 Q215 220 200 260 Q205 290 190 290 Z" fill="#E6ECF2" stroke="#9FB0C2" stroke-width="2"/>'+up(115,280,175,0)+up(160,280,185,.5)}
   if(i===1){g+='<path d="M50 290 Q40 230 70 200 Q60 130 110 110 Q120 80 160 86 L240 76 L200 96 Q230 140 212 200 Q235 240 220 290 Z" fill="#DCE3EA" stroke="#8C9BAA" stroke-width="2"/>'+up(100,280,110,0)+dn(175,130,290,.4);
    g+='<g stroke="#5E8FD9" stroke-width="2.5">';for(var k=0;k<6;k++)g+='<line x1="'+(158+k*8)+'" y1="250" x2="'+(154+k*8)+'" y2="264"><animate attributeName="y1" values="250;296" dur=".8s" begin="'+(k*.12)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="264;310" dur=".8s" begin="'+(k*.12)+'s" repeatCount="indefinite"/></line>';g+='</g>';
-   g+='<path d="M140 150 l-14 26 h12 l-10 26 l26 -34 h-12 l10 -18 z" fill="#FFD23F" stroke="#C99A00" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0;1;0" keyTimes="0;.4;.42;.46;.7;.72;.76" dur="3s" repeatCount="indefinite"/></path>'}
+   g+='<path d="M140 150 l-14 26 h12 l-10 26 l26 -34 h-12 l10 -18 z" fill="#FFD23F" stroke="#C99A00" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0;1;0;0" keyTimes="0;.4;.42;.46;.7;.72;.76;1" dur="3s" repeatCount="indefinite"/></path>'}
   if(i===2){g+='<path d="M60 290 Q50 250 80 230 L90 150 Q110 120 150 122 L230 110 L200 136 Q210 180 200 230 Q225 260 210 290 Z" fill="#EEF1F4" stroke="#B4C0CC" stroke-width="2" opacity=".85"/>'+dn(110,160,290,0)+dn(170,160,290,.5);
    g+='<g stroke="#8FB0D8" stroke-width="2">';for(var k=0;k<4;k++)g+='<line x1="'+(100+k*22)+'" y1="262" x2="'+(97+k*22)+'" y2="272"><animate attributeName="y1" values="262;296" dur="1.6s" begin="'+(k*.3)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="272;306" dur="1.6s" begin="'+(k*.3)+'s" repeatCount="indefinite"/></line>';g+='</g>'}
   g+=WR(135,344,W.d[i],12,D,800,244);
@@ -503,7 +503,7 @@ met_cb_hazards:function(l){
  s+='<path d="M380 100 Q400 60 430 72 Q440 90 420 100 Z" fill="#E8EDF2" stroke="#8C9BAA" stroke-width="2"><animate attributeName="d" values="M380 100 Q400 60 430 72 Q440 90 420 100 Z;M380 100 Q398 48 432 62 Q446 88 420 100 Z;M380 100 Q400 60 430 72 Q440 90 420 100 Z" dur="3s" repeatCount="indefinite"/></path>';
  s+=R(262,262,280,64,'#B5E3F5',0,' opacity=".45"');
  /* 雷 */
- s+='<path d="M430 190 l-22 40 h18 l-16 42 l40 -54 h-18 l14 -28 z" fill="#FFD23F" stroke="#C99A00" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0;1;0" keyTimes="0;.5;.52;.56;.75;.77;.8" dur="3s" repeatCount="indefinite"/></path>';
+ s+='<path d="M430 190 l-22 40 h18 l-16 42 l40 -54 h-18 l14 -28 z" fill="#FFD23F" stroke="#C99A00" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0;1;0;0" keyTimes="0;.5;.52;.56;.75;.77;.8;1" dur="3s" repeatCount="indefinite"/></path>';
  /* 雨 */
  s+='<g stroke="#5E8FD9" stroke-width="2.5">';for(var k=0;k<10;k++)s+='<line x1="'+(300+k*22)+'" y1="400" x2="'+(296+k*22)+'" y2="416"><animate attributeName="y1" values="400;462" dur=".8s" begin="'+(k*.08)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="416;478" dur=".8s" begin="'+(k*.08)+'s" repeatCount="indefinite"/></line>';s+='</g>';
  /* ひょう（かなとこの下） */
