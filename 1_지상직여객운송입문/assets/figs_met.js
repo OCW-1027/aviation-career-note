@@ -520,6 +520,97 @@ met_ts_avoid:function(l){
  s+=ARW(40,440,100,490,'#9FD3F7',5)+LB(80,424,W.w+' ↘',11,'#1d4d8a','middle','#DCEEFB');
  s+=R(20,70,176,74,'#13304E',10)+'<ellipse cx="38" cy="88" rx="8" ry="6" fill="#E03B3B"/>'+tx(52,92,W.r,10.5,'#fff',800,'start')+'<ellipse cx="38" cy="108" rx="8" ry="6" fill="#F2D233"/>'+tx(52,112,W.y,10.5,'#fff',800,'start')+'<ellipse cx="38" cy="128" rx="8" ry="6" fill="#2FAE5A"/>'+tx(52,132,W.g,10.5,'#fff',800,'start');
  s+=LB(430,470,W.ok,11.5,'#0f3558','middle','#7CF2B0')+LB(430,504,W.ng,11.5,'#0f3558','middle','#FFE08A');
+ K=1;return s+'</svg>'},
+/* 17 台風の断面：眼・眼の壁・らせん状の雨の帯、下から吸い込み上から吹き出す */
+met_ty_section:function(l){
+ var W=({ja:{t:'台風の断面',eye:'眼：風が弱く晴れている（下降気流）',wall:'眼の壁：最も強い風と雨',band:'らせん状の雨の帯',in:'下の層：湿った空気が吸い込まれる',out:'上の層：吹き出して巻雲が広がる',warm:'中心は周りより暖かい（暖気核）',sea:'暖かい海（26〜27℃以上）から水蒸気が補給される'},
+  ko:{t:'태풍의 단면',eye:'눈: 바람이 약하고 맑다(하강기류)',wall:'눈벽: 가장 강한 바람과 비',band:'나선형 비구름대',in:'아래층: 습한 공기가 빨려 들어간다',out:'위층: 뿜어져 나가 권운이 퍼진다',warm:'중심은 주변보다 따뜻하다(온난핵)',sea:'따뜻한 바다(26~27℃ 이상)에서 수증기가 공급된다'},
+  en:{t:'Cross-section of a typhoon',eye:'Eye: light wind, clear sky (sinking air)',wall:'Eyewall: the strongest wind and rain',band:'Spiral rain bands',in:'Low level: moist air is drawn in',out:'Upper level: air flows out and cirrus spreads',warm:'The centre is warmer than its surroundings (warm core)',sea:'A warm sea (26–27 °C or more) supplies water vapour'}})[l];
+ if(!W)return F.met_ty_section('ja');
+ var nar=NARROW();K=nar?1.1:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#DCEEFB')+tx(450,28,W.t,16,'#0f3558',900);
+ s+=R(0,400,900,70,'#3F8FD0')+'<path d="M0 402 q30 -8 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#9FD3F7" stroke-width="3"><animateTransform attributeName="transform" type="translate" values="0 0;-60 0" dur="2s" repeatCount="indefinite"/></path>';
+ /* 巻雲の傘 */
+ s+='<path d="M90 110 Q450 40 810 110 Q450 90 90 110 Z" fill="#EEF2F6" stroke="#B4C0CC" stroke-width="2"/>';
+ /* 雨の帯（左右） */
+ [[160,300,.8],[250,250,1],[650,250,1],[740,300,.8]].forEach(function(c){s+='<g transform="translate('+c[0]+' '+c[1]+') scale('+c[2]+')"><path d="M-40 100 Q-50 40 -20 20 Q-30 -30 0 -40 Q30 -30 22 16 Q50 40 40 100 Z" fill="#D5DDE5" stroke="#9FB0C2" stroke-width="2"/></g>'});
+ /* 眼の壁 */
+ s+='<path d="M330 400 Q300 250 340 150 Q360 100 400 96 L410 400 Z" fill="#C3CDD7" stroke="#8C9BAA" stroke-width="2.5"/><path d="M570 400 Q600 250 560 150 Q540 100 500 96 L490 400 Z" fill="#C3CDD7" stroke="#8C9BAA" stroke-width="2.5"/>';
+ s+=R(410,96,80,304,'#EAF6FF',0);
+ /* 雨 */
+ s+='<g stroke="#5E8FD9" stroke-width="2.5">';[340,360,380,520,540,560].forEach(function(x,k){s+='<line x1="'+x+'" y1="330" x2="'+(x-4)+'" y2="346"><animate attributeName="y1" values="330;396" dur=".7s" begin="'+(k*.1)+'s" repeatCount="indefinite"/><animate attributeName="y2" values="346;412" dur=".7s" begin="'+(k*.1)+'s" repeatCount="indefinite"/></line>'});s+='</g>';
+ /* 吸い込み・上昇・吹き出し */
+ s+='<g opacity=".9">'+ARW(60,380,300,380,'#E08A2F',5)+ARW(840,380,600,380,'#E08A2F',5)+'<animate attributeName="opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/></g>';
+ s+='<g>'+ARW(370,360,380,150,'#E08A2F',5)+ARW(530,360,520,150,'#E08A2F',5)+'<animate attributeName="opacity" values=".35;1;.35" dur="2s" begin=".6s" repeatCount="indefinite"/></g>';
+ s+='<g>'+ARW(390,110,160,96,'#E08A2F',5)+ARW(510,110,740,96,'#E08A2F',5)+'<animate attributeName="opacity" values=".35;1;.35" dur="2s" begin="1.2s" repeatCount="indefinite"/></g>';
+ s+='<g>'+ARW(450,150,450,330,'#2F6FD6',4)+'<animate attributeName="opacity" values=".3;1;.3" dur="2.4s" repeatCount="indefinite"/></g>';
+ /* ラベル */
+ s+=LB(450,76,W.out,12,'#40566B','middle')+LB(450,236,W.eye,11.5,'#1d4d8a','middle','#fff')+LB(660,190,W.wall,12,'#40566B','middle')+LB(170,196,W.band,12,'#40566B','middle')+LB(180,366,W.in,11.5,'#8a3b00','middle','#FFF1E3')+LB(450,262,W.warm,11,'#8a3b00','middle','#FFE3C8')+LB(450,444,W.sea,12,'#fff','middle','#2F6FA8');
+ K=1;
+ if(nar)return SCR(s+'</svg>',780);
+ return s+'</svg>'},
+
+/* 18 上から見た台風：反時計回りのうず、進む向きの右側が危険（風と進む速さが足し合わさる） */
+met_ty_plan:function(l){
+ var W=({ja:{t:'上から見た台風（北半球）',go:'進む向き',R:'右側：危険半円（風＋進む速さ）',Lf:'左側：可航半円（風−進む速さ）',st:'強風域（15m/s以上）',vio:'暴風域（25m/s以上）',ex:'例：風40m/s＋移動10m/s＝50m/s',ex2:'例：風40m/s−移動10m/s＝30m/s'},
+  ko:{t:'위에서 본 태풍(북반구)',go:'진행 방향',R:'오른쪽: 위험반원(바람+이동 속도)',Lf:'왼쪽: 가항반원(바람−이동 속도)',st:'강풍역(15m/s 이상)',vio:'폭풍역(25m/s 이상)',ex:'예: 바람 40m/s+이동 10m/s=50m/s',ex2:'예: 바람 40m/s−이동 10m/s=30m/s'},
+  en:{t:'A typhoon seen from above (northern hemisphere)',go:'Direction of travel',R:'Right: dangerous semicircle (wind + speed of travel)',Lf:'Left: navigable semicircle (wind − speed of travel)',st:'Strong-wind area (15 m/s or more)',vio:'Storm area (25 m/s or more)',ex:'e.g. wind 40 m/s + movement 10 m/s = 50 m/s',ex2:'e.g. wind 40 m/s − movement 10 m/s = 30 m/s'}})[l];
+ if(!W)return F.met_ty_plan('ja');
+ var nar=NARROW();K=nar?1.3:1;
+ var cx=320,cy=360;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 700" role="img">'+R(0,0,640,700,'#0E2238',16)+tx(320,30,W.t,15,'#fff',900);
+ s+='<path d="M'+cx+' '+(cy-230)+' A230 230 0 0 1 '+cx+' '+(cy+230)+' Z" fill="#D64545" opacity=".22"/><path d="M'+cx+' '+(cy-230)+' A230 230 0 0 0 '+cx+' '+(cy+230)+' Z" fill="#2F8FE0" opacity=".14"/>';
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="230" fill="none" stroke="#F2D233" stroke-width="2" stroke-dasharray="8 6"/><circle cx="'+cx+'" cy="'+cy+'" r="130" fill="none" stroke="#E03B3B" stroke-width="3"/>';
+ /* 回るうず */
+ var sp='';for(var a=0;a<4;a++){sp+='<path d="M0 -24 C 60 -40 110 -10 120 60 C 126 110 90 160 40 190" fill="none" stroke="#fff" stroke-width="'+(12-a*2)+'" stroke-linecap="round" opacity=".55" transform="rotate('+(a*90)+')"/>'}
+ s+='<g transform="translate('+cx+' '+cy+')"><g>'+sp+'<circle r="18" fill="#0E2238" stroke="#fff" stroke-width="3"/><animateTransform attributeName="transform" type="rotate" values="0;-360" dur="10s" repeatCount="indefinite"/></g></g>';
+ s+=ARW(cx,cy-238,cx,cy-282,'#7CF2B0',6)+LB(cx+14,cy-262,W.go,12,'#0f3558','start','#7CF2B0');
+ s+=LB(cx+120,cy+268,W.R,11.5,'#fff','middle','#B23434')+LB(cx-120,cy+298,W.Lf,11.5,'#fff','middle','#2465A8');
+ s+=LB(cx+118,cy-20,W.ex,10.5,'#8a1f1f','middle','#FFD6D6')+LB(cx-118,cy+20,W.ex2,10.5,'#0f3558','middle','#D6E9FF');
+ s+=LB(cx,cy+220,W.st,10.5,'#5a4a00','middle','#F2D233')+LB(cx,cy+122,W.vio,10.5,'#fff','middle','#E03B3B');
+ K=1;return s+'</svg>'},
+
+/* 19 台風の進路と予報円：太平洋高気圧の縁を回り、偏西風に乗って北東へ速く進む */
+met_ty_track:function(l){
+ var W=({ja:{t:'台風の進み方と予報円',hi:'太平洋高気圧',we:'偏西風',bo:'発生：暖かい海（北緯5〜20°ぐらい）',cur:'転向：向きを北東に変える',fast:'偏西風に乗って速く進む',kr:'韓国',jp:'日本',fc:'予報円：中心が入る確率70%',warn:'暴風警戒域'},
+  ko:{t:'태풍의 진로와 예보원',hi:'북태평양 고기압',we:'편서풍',bo:'발생: 따뜻한 바다(북위 5~20° 정도)',cur:'전향: 방향을 북동쪽으로 바꾼다',fast:'편서풍을 타고 빠르게 나아간다',kr:'한국',jp:'일본',fc:'예보원: 중심이 들어갈 확률 70%',warn:'폭풍경계역'},
+  en:{t:'How typhoons move, and the forecast circles',hi:'Pacific high',we:'Westerlies',bo:'Forms over warm sea (about 5–20°N)',cur:'Recurvature: turns northeast',fast:'Speeds up on the westerlies',kr:'Korea',jp:'Japan',fc:'Forecast circle: 70% chance the centre is inside',warn:'Storm warning area'}})[l];
+ if(!W)return F.met_ty_track('ja');
+ var nar=NARROW();K=nar?1.3:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img">'+R(0,0,640,640,'#CFE8F7',16)+tx(320,30,W.t,15,'#0f3558',900);
+ s+='<path d="M0 44 H300 V80 Q262 120 254 152 L240 178 Q210 230 150 260 Q80 300 0 300 Z" fill="#EADFC6"/>';
+ s+='<path d="M232 150 L252 154 L256 186 L246 206 L236 200 L230 176 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="1.5"/>'+tx(222,222,W.kr,12,'#2F5E24',900);
+ s+='<path d="M270 226 Q300 214 318 186 Q334 156 356 136 L364 142 Q348 166 336 194 Q316 230 278 240 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="1.5"/>'+tx(350,236,W.jp,12,'#2F5E24',900);
+ s+='<ellipse cx="500" cy="330" rx="150" ry="110" fill="#F7B26B" opacity=".35"/>'+tx(500,336,W.hi,15,'#8a3b00',900);
+ s+='<path d="M60 110 Q300 70 620 120" fill="none" stroke="#7B4FB0" stroke-width="10" opacity=".35" stroke-linecap="round"/>'+LB(560,98,W.we+' →',12,'#7B4FB0','middle');
+ var tr='M430 560 C380 520 320 480 280 430 C250 390 250 340 280 300 C300 270 330 250 380 220 C430 190 500 160 580 130';
+ s+='<path d="'+tr+'" fill="none" stroke="#D64545" stroke-width="4" stroke-dasharray="10 8"/>';
+ /* 予報円（だんだん大きく） */
+ [[280,430,26],[266,360,40],[300,284,58],[380,220,78]].forEach(function(c,i){s+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 5" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(0.15+i*0.15).toFixed(2)+';'+(0.2+i*0.15).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></circle>'});
+ [[280,430,26],[266,360,40],[300,284,58],[380,220,78]].forEach(function(c){s+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+(c[2]+26)+'" fill="#D64545" opacity=".10"/>'});
+ /* 台風のマーク */
+ s+='<g><g><circle r="14" fill="#fff" stroke="#D64545" stroke-width="3"/><path d="M-10 -8 Q0 -20 10 -8 M10 8 Q0 20 -10 8" stroke="#D64545" stroke-width="3" fill="none"/><animateTransform attributeName="transform" type="rotate" values="0;-360" dur="2s" repeatCount="indefinite"/></g><animateMotion dur="8s" repeatCount="indefinite" path="'+tr+'"/></g>';
+ s+=WR(440,600,W.bo,11.5,'#8a3b00',900,300)+LB(260,262,W.cur,11,'#40566B','end')+LB(620,168,W.fast,11,'#40566B','end')+'<path d="M200 452 L256 438" stroke="#0f3558" stroke-width="1.5" stroke-dasharray="3 3"/>'+WR(130,470,W.fc,11,'#0f3558',900,200)+LB(214,392,W.warn,11,'#fff','end','#D64545');
+ K=1;return s+'</svg>'},
+
+/* 20 台風の強さと大きさのものさし（気象庁） */
+met_ty_scale:function(l){
+ var W=({ja:{t1:'強さ（最大風速）',t2:'大きさ（風速15m/s以上の範囲の半径）',s:['強い','非常に強い','猛烈な'],v:['33m/s以上（64kt）','44m/s以上（85kt）','54m/s以上（105kt）'],z:['大型','超大型'],r:['500km以上','800km以上'],n:'台風：最大風速 約17m/s（34kt）以上',jp:'日本列島の長さ（約2,000km）'},
+  ko:{t1:'세기(최대풍속)',t2:'크기(풍속 15m/s 이상 범위의 반경)',s:['강한','매우 강한','맹렬한'],v:['33m/s 이상(64kt)','44m/s 이상(85kt)','54m/s 이상(105kt)'],z:['대형','초대형'],r:['500km 이상','800km 이상'],n:'태풍: 최대풍속 약 17m/s(34kt) 이상',jp:'일본 열도 길이(약 2,000km)'},
+  en:{t1:'Intensity (maximum wind)',t2:'Size (radius of winds of 15 m/s or more)',s:['Strong','Very strong','Violent'],v:['33 m/s or more (64 kt)','44 m/s or more (85 kt)','54 m/s or more (105 kt)'],z:['Large','Very large'],r:['500 km or more','800 km or more'],n:'Typhoon: maximum wind about 17 m/s (34 kt) or more',jp:'Length of Japan (about 2,000 km)'}})[l];
+ if(!W)return F.met_ty_scale('ja');
+ var nar=NARROW();K=nar?1.25:1;
+ var a=R(0,0,420,330,'#fff',16,' stroke="#D9E3EC"')+tx(210,32,W.t1,15,D,900);
+ a+=R(20,52,380,34,'#EEF3F8',10)+tx(210,74,W.n,12,G,800);
+ [0,1,2].forEach(function(i){var y=110+i*70,w=[170,230,300][i],c=['#F2B233','#E6772E','#C0392B'][i];
+  a+=tx(24,y+22,W.s[i],14,c,900,'start')+'<rect x="130" y="'+y+'" height="34" rx="8" fill="'+c+'" width="0"><animate attributeName="width" values="0;'+(w-40)+';'+(w-40)+'" keyTimes="0;.4;1" dur="4s" begin="'+(i*.3)+'s" repeatCount="indefinite"/></rect>'+tx(140,y+22,W.v[i],12,'#fff',900,'start')});
+ var b=R(0,0,420,330,'#fff',16,' stroke="#D9E3EC"')+tx(210,32,W.t2,14,D,900);
+ b+='<circle cx="140" cy="190" r="0" fill="#2F8FE0" opacity=".3"><animate attributeName="r" values="0;62;62" keyTimes="0;.4;1" dur="4s" repeatCount="indefinite"/></circle><circle cx="300" cy="190" r="0" fill="#2F6FD6" opacity=".3"><animate attributeName="r" values="0;100;100" keyTimes="0;.4;1" dur="4s" begin=".3s" repeatCount="indefinite"/></circle>';
+ b+=tx(140,186,W.z[0],15,'#1d4d8a',900)+tx(140,206,W.r[0],11,'#1d4d8a',800)+tx(300,186,W.z[1],15,'#0f3558',900)+tx(300,206,W.r[1],11,'#0f3558',800);
+ b+='<line x1="86" y1="306" x2="334" y2="306" stroke="#6B7785" stroke-width="3"/><line x1="86" y1="300" x2="86" y2="312" stroke="#6B7785" stroke-width="3"/><line x1="334" y1="300" x2="334" y2="312" stroke="#6B7785" stroke-width="3"/>'+tx(210,298,W.jp,10.5,G,800);
+ var s;
+ if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 690" role="img">'+R(0,0,440,690,'#F7FAFD')+'<g transform="translate(10 10)">'+a+'</g><g transform="translate(10 350)">'+b+'</g>';
+ else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 350" role="img">'+R(0,0,880,350,'#F7FAFD')+'<g transform="translate(10 10)">'+a+'</g><g transform="translate(450 10)">'+b+'</g>';
  K=1;return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
