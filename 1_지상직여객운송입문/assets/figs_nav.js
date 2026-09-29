@@ -4,6 +4,7 @@
 (function(){
 var H=window.FIGH;if(!H)return;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,ARW=H.ARW,SCR=H.SCR,plane=H.plane,NARROW=H.NARROW,setK=H.setK;
+var LBW=H.LBW;
 var D=H.C.D,B=H.C.B,T=H.C.T,O=H.C.O,RD=H.C.RD,P=H.C.P,G=H.C.G;
 var F={
 /* 1 速度のはしご：IAS → CAS → EAS → TAS → GS */
@@ -39,7 +40,7 @@ nav_ias_tas:function(l){
  s+='<defs><linearGradient id="itg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9FD3F7"/><stop offset="1" stop-color="#2B4F8F"/></linearGradient></defs>'+R(20,54,340,440,'url(#itg)',14)+R(20,494,340,16,'#9CC98B',0);
  /* 空気の粒：下ほど多く */
  var dots='';for(var r=0;r<14;r++){var y=480-r*30,n=Math.max(1,Math.round(14*Math.pow(1-r/14,1.6)));for(var j=0;j<n;j++){var x=32+(j+0.5)*(320/n)+((r%2)?8:-8);dots+='<circle cx="'+x.toFixed(0)+'" cy="'+y+'" r="3.2" fill="#fff" opacity=".65"/>'}}
- s+=dots+LB(190,86,W.thin,11,'#fff','middle','#2B4F8F')+LB(190,466,W.thick,11,'#0f3558','middle','#CFE8F7');
+ s+=dots+LB(190,124,W.thin,11,'#fff','middle','#2B4F8F')+LB(190,466,W.thick,11,'#0f3558','middle','#CFE8F7');
  [[0,'0'],[10,'10,000'],[20,'20,000'],[30,'30,000']].forEach(function(v){var y=494-v[0]*13.5;s+='<line x1="20" y1="'+y+'" x2="360" y2="'+y+'" stroke="#fff" stroke-dasharray="6 6" opacity=".5"/>'+tx(30,y-4,v[1]+' ft',10.5,'#fff',800,'start')});
  s+='<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear" path="M70 494 L320 89"/></g>';
  /* 計器：値を時間で切り替える */
@@ -89,7 +90,9 @@ nav_densalt:function(l){
   return g}
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+WR(320,28,W.t,15,'#0f3558',900,600);
  s+=rw(50,W.cool,W.da0,'#2F8FE0',330,5,false)+rw(214,W.hot,W.da1,'#D64545',470,5,true);
- s+=R(20,380,600,126,'#fff',14,' stroke="#D9E3EC"')+WR(320,414,W.eff,12,D,900,570)+WR(320,462,W.rule,11.5,'#8a3b00',900,570);
+ var LI=H.LINES,FS=H.FS,n1=LI(W.eff,12,560).length,n2=LI(W.rule,11.5,560).length,l1=FS(12)*1.3,l2=FS(11.5)*1.3,y=392,bh=n1*l1+n2*l2+34;
+ s+=R(20,y,600,bh,'#fff',14,' stroke="#D9E3EC"')+WR(320,y+12+n1*l1/2+FS(12)*0.3,W.eff,12,D,900,560)+WR(320,y+22+n1*l1+n2*l2/2+FS(11.5)*0.3,W.rule,11.5,'#8a3b00',900,560);
+ var HH=y+bh+12;s=s.replace('viewBox="0 0 640 520"','viewBox="0 0 640 '+HH.toFixed(0)+'"').replace(R(0,0,640,520,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'));
  setK(1);return s+'</svg>'},
 /* 5 川を渡る船：流れに負けないように、へさきを上流に向ける（偏流修正） */
 nav_river:function(l){
@@ -150,7 +153,7 @@ nav_comp:function(l){
   var g='<g opacity="'+(i===0?1:0)+'">'+ARW(ex.toFixed(0),ey.toFixed(0),(300+Math.sin(r)*60).toFixed(0),(250-Math.cos(r)*60).toFixed(0),'#2F6FD6',7)+LB(ex,ey-14,W.wind,11,'#fff','middle','#2F6FD6');
   g+=R(60,470,Math.max(4,hw*13),26,'#1F7A6E',6)+tx(70,462,W.hw+' '+hw.toFixed(0)+'kt',12,'#1F7A6E',900,'start');
   g+=R(60,530,Math.max(4,xw*13),26,'#D64545',6)+tx(70,522,W.xw+' '+xw.toFixed(0)+'kt',12,'#D64545',900,'start');
-  g+=LB(500,120,W.ang+' '+a+'°',12,'#0f3558','middle','#FFF1E3');
+  g+=H.LBW(150,96,W.ang+' '+a+'°',12,'#0f3558','middle','#FFF1E3',220);
   g+='<animate attributeName="opacity" values="'+vs+'" keyTimes="'+kt+'" dur="'+dur+'s" repeatCount="indefinite"/></g>';
   s+=g});
  s+=WR(320,588,W.clk,11,'#40566B',800,580);
@@ -170,8 +173,88 @@ nav_var:function(l){
  s+=ARW(cx,cy,cx,cy-190,'#2F6FD6',6)+LB(cx,cy-206,W.tn,12,'#fff','middle','#2F6FD6');
  s+='<g transform="translate('+cx+' '+cy+')"><g><path d="M0 -150 L11 0 L-11 0 Z" fill="#D64545"/><path d="M0 150 L11 0 L-11 0 Z" fill="#9FB0C2"/><animateTransform attributeName="transform" type="rotate" values="0;-12;-4;-9;-7;-7" keyTimes="0;.15;.3;.45;.6;1" dur="5s" repeatCount="indefinite"/></g><circle r="10" fill="#243447"/></g>';
  s+=LB(cx-110,cy-150,W.mn,11,'#fff','middle','#D64545')+LB(cx+70,cy-120,W.var,12,'#6B4FA0','middle','#EFE7FA');
- s+=R(20,478,600,140,'#fff',14,' stroke="#D9E3EC"')+WR(320,508,W.rule,12,D,900,570)+WR(320,548,W.ex,12,'#8a3b00',900,570)+WR(320,590,W.rwy,11,'#40566B',800,570);
- setK(1);return s+'</svg>'}
+ var LI=H.LINES,FS=H.FS,items=[[W.rule,12,D,900],[W.ex,12,'#8a3b00',900],[W.rwy,11,'#40566B',800]],y=478,yy=y+12,body='';
+ items.forEach(function(v){var n=LI(v[0],v[1],560).length,lh=FS(v[1])*1.3;body+=WR(320,yy+n*lh/2+FS(v[1])*0.3,v[0],v[1],v[2],v[3],560);yy+=n*lh+10});
+ var bh=yy-y+4;s+=R(20,y,600,bh,'#fff',14,' stroke="#D9E3EC"')+body;var HH=y+bh+12;
+ s=s.replace('viewBox="0 0 640 630"','viewBox="0 0 640 '+HH.toFixed(0)+'"').replace(R(0,0,640,630,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'));
+ setK(1);return s+'</svg>'},
+/* 9 1 in 60 の法則：1°ずれると、60NM 先で約1NM ずれる */
+nav_1in60:function(l){
+ var W=({ja:{t:'1 in 60 の法則',p:'予定の針路',e:'1°ずれた航跡',r:'1°のずれ → 60NM 先で約1NM',r2:'30NM で約0.5NM、120NM で約2NM',f:'ずれ（NM）≒ 角度（度）× 距離（NM）÷ 60'},
+  ko:{t:'1 in 60 법칙',p:'예정 침로',e:'1° 벗어난 항적',r:'1° 벗어나면 → 60NM 앞에서 약 1NM',r2:'30NM에서 약 0.5NM, 120NM에서 약 2NM',f:'벗어난 거리(NM) ≒ 각도(도) × 거리(NM) ÷ 60'},
+  en:{t:'The 1-in-60 rule',p:'Planned course',e:'Track 1° off',r:'1° off → about 1 NM off after 60 NM',r2:'About 0.5 NM at 30 NM and 2 NM at 120 NM',f:'Off-track distance (NM) ≈ angle (°) × distance (NM) ÷ 60'}})[l];
+ if(!W)return F.nav_1in60('ja');
+ setK(1);
+ var x0=50,y0=250,px=4.3; /* 1NM = 4.3（横）、ずれは見やすいように縦を大きくする */
+ var s=R(0,0,640,420,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600)+R(20,54,600,260,'#EEF5FB',14);
+ s+='<line x1="'+x0+'" y1="'+y0+'" x2="600" y2="'+y0+'" stroke="#2F6FD6" stroke-width="4"/>'+LBW(420,y0+48,W.p,11,'#2F6FD6','middle','#fff',200);
+ var ey=function(nm){return y0-nm/60*60}; /* 60NM で 60px 上（誇張） */
+ s+='<line x1="'+x0+'" y1="'+y0+'" x2="'+(x0+120*px)+'" y2="'+ey(120)+'" stroke="#D64545" stroke-width="3" stroke-dasharray="8 6"/>';
+ [[30,'0.5NM'],[60,'1NM'],[120,'2NM']].forEach(function(v,i){var x=x0+v[0]*px;s+='<g opacity="0"><line x1="'+x+'" y1="'+y0+'" x2="'+x+'" y2="'+ey(v[0])+'" stroke="#6B4FA0" stroke-width="3"/>'+tx(x,y0+22,v[0]+'NM',11,G,800)+LB(x+4,ey(v[0])-12,v[1],11,'#fff','start','#6B4FA0')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(0.2+i*0.25).toFixed(2)+';'+(0.25+i*0.25).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></g>'});
+ s+='<g><g transform="rotate(-6.5)">'+plane('#fff')+'</g><animateMotion dur="8s" repeatCount="indefinite" path="M'+x0+' '+y0+' L'+(x0+120*px)+' '+ey(120)+'"/></g>';
+ s+=LBW(150,110,W.e,11,'#D64545','middle','#fff',200);
+ var lh=H.FS(12)*1.3,n1=H.LINES(W.r,12,560).length,n2=H.LINES(W.r2,11,560).length,n3=H.LINES(W.f,12,560).length,y=330,bh=(n1+n3)*lh+n2*H.FS(11)*1.3+36;
+ s+=R(20,y,600,bh,'#fff',14,' stroke="#D9E3EC"')+WR(320,y+10+n1*lh/2+H.FS(12)*0.3,W.r,12,D,900,560)+WR(320,y+18+n1*lh+n2*H.FS(11)*1.3/2+H.FS(11)*0.3,W.r2,11,G,800,560)+WR(320,y+26+n1*lh+n2*H.FS(11)*1.3+n3*lh/2+H.FS(12)*0.3,W.f,12,'#8a3b00',900,560);
+ var HH=y+bh+12;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,420,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'))+'</svg>'},
+
+/* 10 航路からのずれの修正：ずれた角度＋合流の角度で、目的地に向かう */
+nav_offtrack:function(l){
+ var W=({ja:{t:'針路からずれたときの修正',a:'出発地',b:'目的地',x:'今の位置',off:'4NM ずれている',flown:'40NM 飛んだ',togo:'残り 80NM',te:'ずれた角度 4×60÷40＝6°',ca:'合流の角度 4×60÷80＝3°',tot:'右へ 6°＋3°＝9° 変えて目的地へ'},
+  ko:{t:'침로에서 벗어났을 때의 수정',a:'출발지',b:'목적지',x:'현재 위치',off:'4NM 벗어나 있다',flown:'40NM 비행',togo:'남은 80NM',te:'벗어난 각도 4×60÷40=6°',ca:'합류 각도 4×60÷80=3°',tot:'오른쪽으로 6°+3°=9° 바꿔 목적지로'},
+  en:{t:'Correcting after drifting off course',a:'Departure',b:'Destination',x:'Present position',off:'4 NM off course',flown:'40 NM flown',togo:'80 NM to go',te:'Track error 4 × 60 ÷ 40 = 6°',ca:'Closing angle 4 × 60 ÷ 80 = 3°',tot:'Turn right 6° + 3° = 9° to reach the destination'}})[l];
+ if(!W)return F.nav_offtrack('ja');
+ setK(1);
+ var A=[60,320],B=[580,320],X=[233,248];
+ var s=R(0,0,640,440,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600)+R(20,54,600,330,'#EEF5FB',14);
+ s+='<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" stroke="#2F6FD6" stroke-width="4" stroke-dasharray="12 8"/>';
+ s+='<circle cx="'+A[0]+'" cy="'+A[1]+'" r="10" fill="#2F6FD6"/>'+tx(A[0],A[1]+34,W.a,12,'#2F6FD6',900)+'<circle cx="'+B[0]+'" cy="'+B[1]+'" r="10" fill="#D64545"/>'+tx(B[0]-10,B[1]+34,W.b,12,'#D64545',900);
+ s+='<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+X[0]+'" y2="'+X[1]+'" stroke="#E08A2F" stroke-width="4"/>';
+ s+='<line x1="'+X[0]+'" y1="'+X[1]+'" x2="'+X[0]+'" y2="'+A[1]+'" stroke="#6B4FA0" stroke-width="3" stroke-dasharray="4 4"/>'+LBW(X[0]+10,284,W.off,11,'#6B4FA0','start','#fff',150);
+ s+='<g opacity="0"><line x1="'+X[0]+'" y1="'+X[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" stroke="#1F7A6E" stroke-width="4"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.45;.5;1" dur="10s" repeatCount="indefinite"/></g>';
+ s+='<circle cx="'+X[0]+'" cy="'+X[1]+'" r="8" fill="#E08A2F"/>'+LB(X[0],X[1]-18,W.x,11,'#fff','middle','#E08A2F');
+ s+=tx((A[0]+X[0])/2+20,A[1]+62,W.flown,11,G,800)+tx((X[0]+B[0])/2,A[1]+62,W.togo,11,G,800);
+ s+='<g><g>'+plane('#fff')+'</g><animateMotion dur="10s" repeatCount="indefinite" rotate="auto" keyPoints="0;.35;.35;1;1" keyTimes="0;.35;.5;.9;1" calcMode="linear" path="M'+A[0]+' '+A[1]+' L'+X[0]+' '+X[1]+' L'+B[0]+' '+B[1]+'"/></g>';
+ var lines=[[W.te,'#E08A2F'],[W.ca,'#1F7A6E'],[W.tot,D]],y=400,body='',lh=H.FS(12)*1.3;
+ lines.forEach(function(v){var n=H.LINES(v[0],12,560).length;body+=WR(320,y+n*lh/2+H.FS(12)*0.3,v[0],12,v[1],900,560);y+=n*lh+8});
+ var bh=y-392;s+=R(20,392,600,bh+6,'#fff',14,' stroke="#D9E3EC"')+body;
+ var HH=392+bh+18;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,440,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'))+'</svg>'},
+
+/* 11 時間・速さ・距離：隠したところを残りの2つで計算する。GS 480kt は1分に8NM */
+nav_tsd:function(l){
+ var W=({ja:{t:'時間・速さ・距離の三角形',d:'距離',s:'速さ',tm:'時間',f1:'距離 ＝ 速さ × 時間',f2:'時間 ＝ 距離 ÷ 速さ',f3:'速さ ＝ 距離 ÷ 時間',ex:'GS 480kt ＝ 1分に8NM → 240NM は30分',min:'分'},
+  ko:{t:'시간·속도·거리 삼각형',d:'거리',s:'속도',tm:'시간',f1:'거리 = 속도 × 시간',f2:'시간 = 거리 ÷ 속도',f3:'속도 = 거리 ÷ 시간',ex:'GS 480kt = 1분에 8NM → 240NM은 30분',min:'분'},
+  en:{t:'The time–speed–distance triangle',d:'Distance',s:'Speed',tm:'Time',f1:'Distance = speed × time',f2:'Time = distance ÷ speed',f3:'Speed = distance ÷ time',ex:'GS 480 kt = 8 NM a minute → 240 NM takes 30 minutes',min:'min'}})[l];
+ if(!W)return F.nav_tsd('ja');
+ setK(1);
+ var s=R(0,0,640,560,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600);
+ s+='<path d="M320 70 L500 330 L140 330 Z" fill="#fff" stroke="#243447" stroke-width="3"/><line x1="200" y1="240" x2="440" y2="240" stroke="#243447" stroke-width="3"/><line x1="320" y1="240" x2="320" y2="330" stroke="#243447" stroke-width="3"/>';
+ s+=tx(320,200,W.d,18,'#2F6FD6',900)+tx(250,300,W.s,18,'#E08A2F',900)+tx(390,300,W.tm,18,'#1F7A6E',900);
+ var fs=[W.f1,W.f2,W.f3],cov=[[250,290,140,40],[330,290,120,40],[290,180,60,40]];
+ fs.forEach(function(f,i){var k0=(i/3).toFixed(3),k1=((i+1)/3).toFixed(3);var vs=i===0?'1;1;0;0':(i===2?'0;0;1;1':'0;0;1;1;0;0'),kt=i===0?'0;'+k1+';'+(+k1+0.005).toFixed(3)+';1':(i===2?'0;'+k0+';'+(+k0+0.005).toFixed(3)+';1':'0;'+k0+';'+(+k0+0.005).toFixed(3)+';'+k1+';'+(+k1+0.005).toFixed(3)+';1');
+  var c=[[320,200],[250,300],[390,300]][[0,2,1][i]];
+  s+='<g opacity="'+(i===0?1:0)+'"><circle cx="'+c[0]+'" cy="'+(c[1]-7)+'" r="34" fill="#FFD23F" opacity=".45"/>'+LBW(320,372,f,14,'#fff','middle','#243447',560)+'<animate attributeName="opacity" values="'+vs+'" keyTimes="'+kt+'" dur="9s" repeatCount="indefinite"/></g>'});
+ /* 飛行機と距離の目盛り、時計 */
+ s+=R(20,410,600,90,'#EEF5FB',12);for(var i=0;i<=6;i++){var x=60+i*80;s+='<line x1="'+x+'" y1="452" x2="'+x+'" y2="460" stroke="#6B7785" stroke-width="2"/>'+tx(x,488,(i*40)+'NM',10.5,G,800)}
+ s+='<g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M60 440 L540 440"/></g>';
+ s+='<g transform="translate(570 90)"><circle r="40" fill="#fff" stroke="#243447" stroke-width="3"/><line x1="0" y1="0" x2="0" y2="-30" stroke="#D64545" stroke-width="3" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0;180" dur="6s" repeatCount="indefinite"/></line><circle r="4" fill="#243447"/></g>'+tx(570,150,'0–30'+W.min,11,G,800);
+ var n=H.LINES(W.ex,12,560).length,lh=H.FS(12)*1.3;s+=WR(320,522+n*lh/2,W.ex,12,'#8a3b00',900,560);
+ var HH=522+n*lh+20;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,560,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'))+'</svg>'},
+
+/* 12 3°の降下：1NMで約300ft、降下を始める距離は「高さ（千ft）× 3」、降下率は GS × 5 */
+nav_descent:function(l){
+ var W=({ja:{t:'3°で降りる計画',tod:'降下開始（TOD）',rw:'滑走路',r1:'3°の坂 ＝ 1NMで約300ft',r2:'降下を始める距離（NM）≒ 降りる高さ（千ft）× 3',r3:'降下率（ft/分）≒ GS（kt）× 5',ex:'例：FL350 から 3,000ft まで → 32 × 3 ＝ 約96NM 手前から'},
+  ko:{t:'3°로 내려오는 계획',tod:'강하 시작(TOD)',rw:'활주로',r1:'3° 경사 = 1NM에 약 300ft',r2:'강하 시작 거리(NM) ≒ 내려갈 높이(천 ft) × 3',r3:'강하율(ft/분) ≒ GS(kt) × 5',ex:'예: FL350에서 3,000ft까지 → 32 × 3 = 약 96NM 전부터'},
+  en:{t:'Planning a 3° descent',tod:'Top of descent (TOD)',rw:'Runway',r1:'3° slope = about 300 ft per NM',r2:'Distance to start descent (NM) ≈ height to lose (thousands of ft) × 3',r3:'Rate of descent (ft/min) ≈ GS (kt) × 5',ex:'Example: FL350 to 3,000 ft → 32 × 3 = start about 96 NM out'}})[l];
+ if(!W)return F.nav_descent('ja');
+ setK(1);
+ var s=R(0,0,640,560,'#F7FAFD')+WR(320,30,W.t,16,'#0f3558',900,600)+R(20,54,600,280,'#DCEEFB',14)+R(20,310,600,24,'#9CC98B',0);
+ s+='<line x1="40" y1="90" x2="150" y2="90" stroke="#6B7785" stroke-width="3"/><path d="M150 90 L560 300" stroke="#D64545" stroke-width="4"/>'+R(540,298,70,10,'#5B6770',3);
+ s+='<circle cx="150" cy="90" r="7" fill="#D64545"/>'+LBW(200,74,W.tod,11,'#fff','start','#D64545',240)+tx(575,330,W.rw,11,G,900);
+ s+='<g><g>'+plane('#fff')+'</g><animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M40 90 L150 90 L560 300"/></g>';
+ var y=348,body='',items=[[W.r1,12,D],[W.r2,12,'#2F6FD6'],[W.r3,12,'#1F7A6E'],[W.ex,11.5,'#8a3b00']];
+ items.forEach(function(v){var n=H.LINES(v[0],v[1],560).length,lh=H.FS(v[1])*1.3;body+=WR(320,y+10+n*lh/2+H.FS(v[1])*0.3,v[0],v[1],v[2],900,560);y+=n*lh+10});
+ var bh=y-348+12;s+=R(20,344,600,bh,'#fff',14,' stroke="#D9E3EC"')+body;
+ var HH=344+bh+12;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,560,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'))+'</svg>'}
 };
-for(var k in F)window.FIGS[k]=F[k];
+for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

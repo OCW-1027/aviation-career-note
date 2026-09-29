@@ -1,3 +1,14 @@
+/* 図の文字の大きさの共通ルール（2026.09）：図の中の文字は、画面の上で 11px より小さくしない。
+   ・新しい図（data-flr の付いたもの）は、図のファイルの中で自分で合わせるので、そのまま
+   ・それ以外の図は、PC（表示の幅600px以上）では小さい文字を大きくし、スマートフォンでは 11px を保てる幅で描いて横にスクロールさせる */
+window.FIGFIX=function(h){
+ if(!h||h.indexOf('data-flr')>=0)return h;
+ var m=/viewBox="[\d.\-]+ [\d.\-]+ ([\d.]+) [\d.]+"/.exec(h);if(!m)return h;
+ var vw=+m[1],avail=Math.min(740,((typeof window!=='undefined'&&window.innerWidth)||1024)-40),P=11,fu=P*vw/avail,sz=[];
+ h.replace(/font-size="([\d.]+)"/g,function(_,v){sz.push(+v)});if(!sz.length)return h;
+ if(avail>=600)return h.replace(/font-size="([\d.]+)"/g,function(_,v){return 'font-size="'+Math.max(+v,fu).toFixed(1)+'"'});
+ var mn=Math.min.apply(null,sz),need=Math.ceil(vw*P/mn);if(need<=avail)return h;
+ return '<div class="figscroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="min-width:'+need+'px">'+h+'</div></div>'};
 (function(){
 var C=(function(){var el=document.getElementById('content');if(el)return JSON.parse(el.textContent);var no=(window.STATIC&&window.STATIC.no)||new URLSearchParams(location.search).get('no');return (window.ARTS||{})[no];})();
 if(!C){document.getElementById('main').innerHTML='<p style="padding:40px 0">Not found</p>';return;}
@@ -38,7 +49,7 @@ function block(b,L){
   case 'h3': return '<h3>'+esc(b.x)+'</h3>';
   case 'note': return '<p class="note">'+esc(b.x)+'</p>';
   case 'link': return '<p class="note"><a href="'+esc(b.href||'#')+'" style="font-weight:700">'+esc(b.x)+' →</a></p>';
-  case 'fig': var fg=window.FIGS&&window.FIGS[b.id]; if(!fg)return ''; return '<figure class="fig">'+fg(lang)+(b.cap?'<figcaption>'+esc(b.cap)+'</figcaption>':'')+'</figure>';
+  case 'fig': var fg=window.FIGS&&window.FIGS[b.id]; if(!fg)return ''; return '<figure class="fig">'+(window.FIGFIX?window.FIGFIX(fg(lang)):fg(lang))+(b.cap?'<figcaption>'+esc(b.cap)+'</figcaption>':'')+'</figure>';
   case 'point': return '<div class="point'+(b.warn?' warn':'')+'">'+(b.warn?WARN:BULB)+'<div>'+esc(b.x)+'</div></div>';
   case 'cards': return '<div class="cards" style="--n:'+(b.n||2)+'">'+b.items.map(function(i){return '<div class="card">'+(i.ic?'<span class="ic">'+i.ic+'</span>':'')+'<b>'+esc(i.name)+'</b>'+(i.tag?'<span class="tag">'+esc(i.tag)+'</span>':'')+'<span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
   case 'rows': return '<div class="rows">'+b.items.map(function(i){return '<div class="row"><b>'+esc(i.name)+'</b><span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';

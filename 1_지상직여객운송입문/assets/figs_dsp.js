@@ -81,7 +81,7 @@ dsp_rwycc:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
   s+=R(250,250,400,40,'#fff',8,' stroke="#C9D6E3" stroke-width="2"')+'<text x="450" y="277" font-size="18" font-weight="800" fill="'+D+'" text-anchor="middle" font-family="Consolas,Menlo,monospace">RWYCC '+v.join('/')+'</text>';
   s+='<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+b+';'+b+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
  var lg=[[6,'DRY'],[5,'GOOD'],[4,'GOOD TO MEDIUM'],[3,'MEDIUM'],[2,'MEDIUM TO POOR'],[1,'POOR'],[0,'LESS THAN POOR']];
- var lx=80;lg.forEach(function(l){s+='<rect x="'+lx+'" y="26" width="24" height="24" rx="5" fill="'+col[l[0]]+'"/>'+tx(lx+12,43,l[0],14,'#fff',900)+tx(lx+30,43,l[1],10,D,700,'start');lx+=48+l[1].length*6.4});
+ var lx=80,ly=14;lg.forEach(function(l,i){if(i===4){lx=150;ly=48}s+='<rect x="'+lx+'" y="'+ly+'" width="24" height="24" rx="5" fill="'+col[l[0]]+'"/>'+tx(lx+12,ly+17,l[0],14,'#fff',900)+tx(lx+30,ly+17,l[1],10,D,700,'start');lx+=56+l[1].length*9});
  s+=tx(450,316,'Code for each third of the runway (6 = dry … 0 = nil braking, runway closure considered)',12,G,700);
  return s+'</svg>'},
 /* 運航飛行計画書（OFP）をブロックごとに読む（練習用）。韓国版：金浦→済州、日本版：羽田→福岡（Y20の地点・距離は日本AIP ENR 3.3、2024年3月版） */
@@ -132,7 +132,7 @@ dsp_fdp:function(){var X0=70,PX=56,H0=5,DUR=14,
   s+='<text x="'+X(r.rep)+'" y="'+(y+98)+'" font-size="12" font-weight="800" fill="'+D+'" font-family="Arial" opacity="0">BLOCK (FLIGHT) TIME '+Math.floor(blk)+' h '+('0'+Math.round((blk%1)*60)).slice(-2)+' (LIMIT '+r.blim+' h)  ·  '+r.rest+'<animate attributeName="opacity" values="0;1;1" keyTimes="0;0.8;1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>';
   var lx=r.rep+r.lim;if(lx<=19)s+='<line x1="'+X(lx)+'" y1="'+(y+10)+'" x2="'+X(lx)+'" y2="'+(y+84)+'" stroke="'+O+'" stroke-width="2.5" stroke-dasharray="6 4"/><text x="'+(X(lx)+5)+'" y="'+(y+14)+'" font-size="11" font-weight="800" fill="'+O+'" font-family="Arial">FDP LIMIT</text>';
   else s+='<text x="'+X(19)+'" y="'+(y+14)+'" font-size="11" font-weight="800" fill="'+O+'" text-anchor="end" font-family="Arial">FDP LIMIT '+('0'+lx).slice(-2)+':00 →</text>'});
- s+=tx(450,446,'JAPAN: A 1-HOUR DELAY ON THE LAST SECTOR WOULD PUSH THE FDP TO 12 h 05 — OVER THE 12 h LIMIT FOR 4 SECTORS STARTING 06:00–13:59',12,O,800);
+ s+=tx(450,436,'JAPAN: A 1-HOUR DELAY ON THE LAST SECTOR WOULD PUSH THE FDP TO 12 h 05',12,O,800)+tx(450,454,'— OVER THE 12 h LIMIT FOR 4 SECTORS STARTING 06:00–13:59',12,O,800);
  return s+'</svg>'}
 };
 function ofpFig(B,label){var N=B.length,DUR=N*2,

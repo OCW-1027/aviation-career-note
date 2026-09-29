@@ -1,15 +1,54 @@
+/* ===== 図の作成ルール（2026.09 再整理。詳しくは 00_그림작성규칙.md） =====
+   1. 図の中の文字は画面の上で 11px 以上（FIX2 が自動で保証）
+   2. 文は必ず WR／LBW（折り返す）で書く。tx／LB（1行）は短い名札だけ（日韓 約12字・英 約22字まで）
+   3. 日本語は1文字ごと、韓国語・英語は単語ごとに折り返す。句読点・括弧の禁則つき（SPLITU）
+   4. 枠・凡例の高さは行数（LINES）から計算する。高さの固定は禁止
+   5. スマートフォン（幅700px未満）では縦並び・一覧に変える。凡例を scale で拡大しない。縮められない断面図は SCR（横スクロール）
+   6. 公開前に自動点検（3言語×スマホ350px・PC740px×アニメ6時点）：重なり0・はみ出し0・11px未満0
+   ================================================================== */
 /* 航空気象の基礎（Part 10）の図（2026.09）— figs.js の後に読み込み、window.FIGS に追加する
    ・どの図も lang（ja / ko / en）を受け取り、図の中の文字をその言語で書く（受け取れないときは日本語）
    ・小中高生でも分かるように、たとえ（ボール・風船・ふた）と色で見せる。動きは SVG のアニメーション（SMIL） */
 (function(){
 var D='#243447',B='#2F8FE0',T='#1F7A6E',O='#E08A2F',RD='#D64545',P='#6B4FA0',G='#6B7785';
 function R(x,y,w,h,f,rx,ex){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(rx||0)+'" fill="'+f+'"'+(ex||'')+'/>'}
-function tx(x,y,s,sz,c,w,a){return '<text x="'+x+'" y="'+y+'" font-size="'+((sz||14)*K).toFixed(1)+'" font-weight="'+(w||700)+'" fill="'+(c||D)+'" text-anchor="'+(a||'middle')+'" font-family="Arial,Helvetica,\'Noto Sans JP\',\'Noto Sans KR\',sans-serif">'+s+'</text>'}
+function tx(x,y,s,sz,c,w,a){return '<text x="'+x+'" y="'+y+'" font-size="'+FS(sz).toFixed(1)+'" font-weight="'+(w||700)+'" fill="'+(c||D)+'" text-anchor="'+(a||'middle')+'" font-family="Arial,Helvetica,\'Noto Sans JP\',\'Noto Sans KR\',sans-serif">'+s+'</text>'}
 var K=1; /* 文字の倍率（スマートフォンの縦並びのときに大きくする） */
+/* 文字の最小の大きさ（2026.09 作成ルール）：図の中の文字は、画面の上で FLOORPX（11px）より小さくしない。
+   図を一度描いて viewBox の幅と実際の表示幅から倍率を求め、FLOORU（viewBox の単位での最小の大きさ）を決めて描き直す（FIX2） */
+var FLOORPX=11,FLOORU=0;
+function FS(sz){return Math.max((sz||14)*K,FLOORU)}
 function NARROW(){try{return (window.innerWidth||1024)<700}catch(e){return false}}
-function TW(s,sz){var w=0;s=String(s);for(var i=0;i<s.length;i++){w+=s.charCodeAt(i)>255?1:0.56}return w*sz*K}
-/* 幅に収まるように「 → 」や空白で折り返して、複数行の文字にする */
-function WR(x,y,s,sz,c,w,maxw,a){var parts=String(s).split(/( → |、|，|, | )/),lines=[],cur='';parts.forEach(function(p){if(!p)return;var cand=cur+p;if(TW(cand,sz)>maxw&&cur.trim()){lines.push(cur.trim());cur=p.replace(/^ /,'')}else cur=cand});if(cur.trim())lines.push(cur.trim());var lh=sz*K*1.35,y0=y-(lines.length-1)*lh/2;return lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,w,a)}).join('')}
+function TW(s,sz){var w=0;s=String(s);for(var i=0;i<s.length;i++){w+=s.charCodeAt(i)>255?1:0.56}return w*FS(sz)}
+/* 幅に収まるように折り返して、複数行の文字にする（2026.09 改訂）
+   ・日本語（かな・漢字）は1文字ごとに折り返せる。韓国語・英語は単語（空白）ごと
+   ・「、。）」」などは行の先頭に来ないように、前の文字にくっつける（禁則）。「（「」は次の文字にくっつける
+   ・1語が幅より長いときは、その語を文字ごとに分ける */
+var KIN_END='、。，．）」』】〉》・ー々ゃゅょっぁぃぅぇぉャュョッァィゥェォ！？：；,.)!?:;%℃°’”…';
+var KIN_BEG='（「『【〈《‘“(';
+function SPLITU(s){var u=[],cur='',i,c,code;
+ function flush(){if(cur){u.push(cur);cur=''}}
+ for(i=0;i<s.length;i++){c=s.charAt(i);code=c.charCodeAt(0);
+  if(c===' '){flush();u.push(' ');continue}
+  var cjk=(code>=0x3000&&code<=0x30FF)||(code>=0x3400&&code<=0x9FFF)||(code>=0xFF00&&code<=0xFFEF)||code===0x2192||code===0x2014||code===0x2015||code===0x301C||code===0x2026;
+  if(cjk){flush();u.push(c);continue}
+  cur+=c}
+ flush();
+ /* 禁則：行頭に来てはいけない文字は前にくっつけ、行末に残ってはいけない文字は後ろにくっつける */
+ var o=[];for(i=0;i<u.length;i++){var x=u[i];
+  if(o.length&&x!==' '&&KIN_END.indexOf(x.charAt(0))>=0&&o[o.length-1]!==' '){o[o.length-1]+=x;continue}
+  o.push(x)}
+ var r=[];for(i=0;i<o.length;i++){if(r.length&&KIN_BEG.indexOf(r[r.length-1].slice(-1))>=0&&r[r.length-1]!==' '&&o[i]!==' '){r[r.length-1]+=o[i]}else r.push(o[i])}
+ return r}
+function LINES(s,sz,maxw){var units=SPLITU(String(s)),lines=[],cur='';
+ units.forEach(function(p){
+  if(TW(p,sz)>maxw){for(var j=0;j<p.length;j++){var ch=p.charAt(j);if(TW(cur+ch,sz)>maxw&&cur.trim()){lines.push(cur.trim());cur=ch}else cur+=ch}return}
+  var cand=cur+p;if(TW(cand,sz)>maxw&&cur.trim()){lines.push(cur.trim());cur=(p===' '?'':p)}else cur=cand});
+ if(cur.trim())lines.push(cur.trim());return lines}
+function WR(x,y,s,sz,c,w,maxw,a){var lines=LINES(s,sz,maxw),lh=FS(sz)*1.3,y0=y-(lines.length-1)*lh/2;return lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,w,a)}).join('')}
+/* 白い下地つきの、折り返す文字（長い説明を図の中に置くとき） */
+function LBW(x,y,s,sz,c,a,bg,maxw){var lines=LINES(s,sz,maxw),lh=FS(sz)*1.3,w=0;lines.forEach(function(l){w=Math.max(w,TW(l,sz))});w+=14;var h=lines.length*lh+6,x0=a==='start'?x-7:(a==='end'?x-w+7:x-w/2),y0=y-(lines.length-1)*lh/2;
+ return '<rect x="'+x0.toFixed(1)+'" y="'+(y0-lh*0.78-3).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+Math.min(12,h/2).toFixed(1)+'" fill="'+(bg||'#fff')+'" opacity=".94"/>'+lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,900,a)}).join('')}
 function plane(c){return '<path d="M-16 0 L12 -3 L18 0 L12 3 Z M-5 -2 L4 -14 L8 -14 L4 -2 Z M-5 2 L4 14 L8 14 L4 2 Z M-15 -1 L-12 -7 L-9 -7 L-11 -1 Z" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.2"/>'}
 function cloud(x,y,s,c){s=s||1;return '<g transform="translate('+x+' '+y+') scale('+s+')"><ellipse cx="0" cy="0" rx="26" ry="14" fill="'+(c||'#fff')+'"/><ellipse cx="-18" cy="4" rx="16" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="18" cy="4" rx="17" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="4" cy="-9" rx="15" ry="11" fill="'+(c||'#fff')+'"/></g>'}
 
@@ -31,7 +70,7 @@ function FR(pts,type,side,sp,sw){sp=sp||34;sw=sw||4;side=side||1;
 /* スマートフォンで横に広い断面図は、少し大きく描いて横にスクロールさせる（nav.js が「横にスクロール」の案内を付ける） */
 function SCR(svg,mw){return '<div class="figscroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="min-width:'+(mw||720)+'px">'+svg+'</div></div>'}
 /* 白い下地つきの文字（線と重なっても読めるように） */
-function LB(x,y,s,sz,c,a,bg){var w=TW(s,sz)+12,h=sz*K*1.45,x0=a==='start'?x-6:(a==='end'?x-w+6:x-w/2);return '<rect x="'+x0.toFixed(1)+'" y="'+(y-h*0.78).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+(h/2).toFixed(1)+'" fill="'+(bg||'#fff')+'" opacity=".92"/>'+tx(x,y,s,sz,c,900,a)}
+function LB(x,y,s,sz,c,a,bg){var w=TW(s,sz)+12,h=FS(sz)*1.45,x0=a==='start'?x-6:(a==='end'?x-w+6:x-w/2);return '<rect x="'+x0.toFixed(1)+'" y="'+(y-h*0.78).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+(h/2).toFixed(1)+'" fill="'+(bg||'#fff')+'" opacity=".92"/>'+tx(x,y,s,sz,c,900,a)}
 function ARW(x1,y1,x2,y2,c,w){var dx=x2-x1,dy=y2-y1,l=Math.sqrt(dx*dx+dy*dy),ux=dx/l,uy=dy/l;return '<path d="M'+x1+' '+y1+' L'+x2+' '+y2+'" stroke="'+c+'" stroke-width="'+(w||4)+'" stroke-linecap="round" fill="none"/><path d="M'+(x2-ux*12-uy*7).toFixed(1)+' '+(y2-uy*12+ux*7).toFixed(1)+' L'+x2+' '+y2+' L'+(x2-ux*12+uy*7).toFixed(1)+' '+(y2-uy*12-ux*7).toFixed(1)+'" stroke="'+c+'" stroke-width="'+(w||4)+'" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'}
 window.FIGS=window.FIGS||{};
 var F={
@@ -158,15 +197,15 @@ met_inversion:function(l){
  s+='<g opacity=".55"><rect x="20" y="300" width="560" height="60" fill="#fff"><animate attributeName="opacity" values=".3;.8;.3" dur="5s" repeatCount="indefinite"/></rect></g>';
  s+=tx(300,290,W[1],13,'#34495e',800);
  /* 風の矢印（ふたの上と下で違う） */
- s+='<g stroke="'+P+'" stroke-width="4" stroke-linecap="round" fill="none"><path d="M60 120 h120"/><path d="M168 112 l12 8 l-12 8"/><path d="M60 240 h40"/><path d="M92 232 l8 8 l-8 8"/></g>'+tx(190,124,'40 kt',12,P,800,'start')+tx(110,244,'5 kt',12,P,800,'start');
- s+=WR(300,142,W[7],12,P,800,540);
+ s+='<g stroke="'+P+'" stroke-width="4" stroke-linecap="round" fill="none"><path d="M60 120 h120"/><path d="M168 112 l12 8 l-12 8"/><path d="M60 240 h40"/><path d="M92 232 l8 8 l-8 8"/></g>'+tx(70,106,'40 kt',12,P,800,'start')+tx(110,244,'5 kt',12,P,800,'start');
+ s+=WR(330,138,W[7],12,P,800,480);
  /* 気温の図 */
  var sS=s;s='';K=nar?1.1:1;
- s+=R(610,20,270,416,'#fff',14,' stroke="#D9E3EC"')+tx(745,48,W[3]+' × '+W[4],13,G,800);
+ s+=R(610,20,270,416,'#fff',14,' stroke="#D9E3EC"')+tx(745,44,W[3]+' × '+W[4],13,G,800);
  s+='<line x1="650" y1="380" x2="860" y2="380" stroke="'+G+'"/><line x1="650" y1="380" x2="650" y2="70" stroke="'+G+'"/>';
  s+='<path d="M770 380 L722 252 L800 188 L752 70" fill="none" stroke="'+RD+'" stroke-width="4" stroke-linejoin="round" stroke-dasharray="500" stroke-dashoffset="500"><animate attributeName="stroke-dashoffset" values="500;0;0" keyTimes="0;.6;1" dur="6s" repeatCount="indefinite"/></path>';
  s+=R(652,188,206,64,'#FFB870',0,' opacity=".25"');
- s+=tx(745,428,'↖ '+W[5],11,RD,800)+tx(826,226,'↗',18,RD,900)+tx(862,392,W[3]+' →',11,G,800,'end')+tx(660,64,'↑ '+W[4],11,G,800,'start');
+ s+=tx(745,428,'↖ '+W[5],11,RD,800)+tx(826,226,'↗',18,RD,900)+tx(862,392,W[3]+' →',11,G,800,'end')+tx(660,92,'↑ '+W[4],11,G,800,'start');
  s+=tx(745,410,'↗ '+W[6],12,'#8a3b00',800);
  K=1;
  if(nar)return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img">'+R(0,0,600,900,'#F7FAFD')+'<g transform="translate(0 0)">'+sS+'</g><g transform="translate(-445 448)">'+s+'</g></svg>';
@@ -175,34 +214,36 @@ met_inversion:function(l){
 met_airmass:function(l){
  var W=({ja:{ttl:'日本・韓国の周りの気団',kr:'韓国',jp:'日本',sea:'海',land:'大陸',
    m:[['シベリア気団','cPk','冬','冷たい・乾いている'],['オホーツク海気団','mPk','梅雨〜初夏','冷たい・湿っている'],['小笠原気団','mTw','夏','暑い・湿っている'],['揚子江気団','cT','春・秋','暖かい・乾いている'],['赤道気団','mE','台風の季節','とても暑く湿っている']],
-   lg:'記号の読み方',l1:['c','大陸の上で育つ → 乾いている'],l2:['m','海の上で育つ → 湿っている'],l3:['P・T・E','P：寒い地方　T：暑い地方　E：赤道'],l4:['k・w','k：下の地面より冷たい　w：下の地面より暖かい']},
+   lg:'記号の読み方',l1:['c','大陸の上で育つ → 乾いている'],l2:['m','海の上で育つ → 湿っている'],l3:['P・T・E','P：寒い地方／T：暑い地方／E：赤道'],l4:['k・w','k：下の地面より冷たい／w：下の地面より暖かい']},
   ko:{ttl:'한국·일본 주변의 기단',kr:'한국',jp:'일본',sea:'바다',land:'대륙',
-   m:[['시베리아 기단','cPk','겨울','차갑고 건조하다'],['오호츠크해 기단','mPk','늦봄~초여름','차갑고 습하다'],['북태평양 기단(오가사와라)','mTw','여름','덥고 습하다'],['양쯔강 기단','cT','봄·가을','따뜻하고 건조하다'],['적도 기단','mE','태풍철','매우 덥고 습하다']],
-   lg:'기호 읽는 법',l1:['c','대륙 위에서 생김 → 건조하다'],l2:['m','바다 위에서 생김 → 습하다'],l3:['P·T·E','P: 추운 지방  T: 더운 지방  E: 적도'],l4:['k·w','k: 아래 지면보다 차갑다  w: 아래 지면보다 따뜻하다']},
+   m:[['시베리아 기단','cPk','겨울','차갑고 건조하다'],['오호츠크해 기단','mPk','늦봄~초여름','차갑고 습하다'],['북태평양 기단','mTw','여름','덥고 습하다'],['양쯔강 기단','cT','봄·가을','따뜻하고 건조하다'],['적도 기단','mE','태풍철','매우 덥고 습하다']],
+   lg:'기호 읽는 법',l1:['c','대륙 위에서 생김 → 건조하다'],l2:['m','바다 위에서 생김 → 습하다'],l3:['P·T·E','P: 추운 지방 / T: 더운 지방 / E: 적도'],l4:['k·w','k: 아래 지면보다 차갑다 / w: 아래 지면보다 따뜻하다']},
   en:{ttl:'Air masses around Korea and Japan',kr:'Korea',jp:'Japan',sea:'Ocean',land:'Continent',
-   m:[['Siberian air mass','cPk','Winter','Cold and dry'],['Okhotsk Sea air mass','mPk','Rainy season to early summer','Cold and moist'],['Ogasawara (North Pacific) air mass','mTw','Summer','Hot and moist'],['Yangtze air mass','cT','Spring and autumn','Warm and dry'],['Equatorial air mass','mE','Typhoon season','Very hot and moist']],
-   lg:'Reading the codes',l1:['c','Formed over land → dry'],l2:['m','Formed over sea → moist'],l3:['P · T · E','P: polar  T: tropical  E: equatorial'],l4:['k · w','k: colder than the ground below  w: warmer than the ground below']}})[l];
+   m:[['Siberian','cPk','Winter','Cold and dry'],['Okhotsk Sea','mPk','Early summer','Cold and moist'],['Ogasawara (N. Pacific)','mTw','Summer','Hot and moist'],['Yangtze','cT','Spring, autumn','Warm and dry'],['Equatorial','mE','Typhoon season','Very hot, moist']],
+   lg:'Reading the codes',l1:['c','Formed over land → dry'],l2:['m','Formed over sea → moist'],l3:['P · T · E','P: polar / T: tropical / E: equatorial'],l4:['k · w','k: colder than the ground below / w: warmer than the ground below']}})[l];
  if(!W)return F.met_airmass('ja');
  var nar=NARROW();K=nar?1.25:1;
  var s='<defs><radialGradient id="amg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
  s+=R(10,10,560,500,'#CFE8F7',16);
  s+='<path d="M10 10 H430 V40 Q360 70 330 120 L306 146 L302 168 L270 176 Q250 200 236 230 L190 300 Q130 350 10 360 Z" fill="#EADFC6"/>';
- s+=tx(90,200,W.land,16,'#9C8A62',900)+tx(470,330,W.sea,16,'#7FA6C4',900);
+ s+=tx(90,200,W.land,16,'#9C8A62',900)+tx(520,262,W.sea,16,'#7FA6C4',900);
  s+='<path d="M268 146 L300 150 L298 214 L288 250 L272 258 L262 232 L256 200 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="2"/>'+tx(250,282,W.kr,13,'#2F5E24',900);
  s+='<path d="M300 300 Q340 288 362 258 Q392 218 402 178 Q412 146 432 124 L442 132 Q428 156 420 184 Q408 228 378 266 Q352 296 312 310 Z" fill="#9CC98B" stroke="#5E8A4F" stroke-width="2"/>'+tx(392,300,W.jp,13,'#2F5E24',900);
- var C=[[120,92,'#5E8FD9'],[470,82,'#86C5E8'],[478,418,'#F08A5D'],[118,420,'#E8C35A'],[300,448,'#E86A6A']],cx=320,cy=225;
+ var C=[[118,112,'#5E8FD9'],[466,112,'#86C5E8'],[474,408,'#F08A5D'],[118,408,'#E8C35A'],[300,436,'#E86A6A']],cx=320,cy=225;
  W.m.forEach(function(m,i){var x=C[i][0],y=C[i][1],c=C[i][2],dx=cx-x,dy=cy-y,dl=Math.sqrt(dx*dx+dy*dy),ux=dx/dl,uy=dy/dl,r=i===4?60:66;
   var ax1=x+ux*(r+6),ay1=y+uy*(r+6),ax2=x+ux*(r+46),ay2=y+uy*(r+46);
   s+='<g>'+ARW(ax1.toFixed(0),ay1.toFixed(0),ax2.toFixed(0),ay2.toFixed(0),c,6)+'<animate attributeName="opacity" values=".25;1;.25" dur="3s" begin="'+(i*0.6)+'s" repeatCount="indefinite"/></g>';
-  s+='<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+c+'" opacity=".9"/><circle cx="'+(x-r*.3)+'" cy="'+(y-r*.35)+'" r="'+r*.55+'" fill="url(#amg)"/>';
-  s+=WR(x,y-r*.42,m[0],12.5,'#fff',900,r*1.8)+tx(x,y+2,m[1],15,'#fff',900)+tx(x,y+r*.36,m[2],11.5,'#fff',800)+tx(x,y+r*.36+15*K,m[3],10.5,'#fff',700)});
+  var mw=(i===4?110:120),L1=LINES(m[0],12,mw),L2=nar?[m[1]]:LINES(m[1]+' · '+m[2],11,mw),L3=nar?LINES(m[2],11,mw):LINES(m[3],11,mw),lh=FS(11.5)*1.25,nl=L1.length+L2.length+L3.length,th=nl*lh,rr=Math.max(r,th/2+18,mw/2+10);
+  s+='<circle cx="'+x+'" cy="'+y+'" r="'+rr.toFixed(0)+'" fill="'+c+'" opacity=".92"/><circle cx="'+(x-rr*.3)+'" cy="'+(y-rr*.35)+'" r="'+rr*.55+'" fill="url(#amg)"/>';
+  var yy=y-th/2+lh*0.8;L1.forEach(function(v){s+=tx(x,yy,v,12,'#fff',900);yy+=lh});L2.forEach(function(v){s+=tx(x,yy,v,11,'#fff',900);yy+=lh});L3.forEach(function(v){s+=tx(x,yy,v,11,'#fff',700);yy+=lh})});
  s+=tx(290,36,W.ttl,15,'#0f3558',900);
- var sm=s;s='';K=nar?1.1:1;
- s+=R(590,10,300,500,'#fff',16,' stroke="#D9E3EC"')+tx(740,44,W.lg,16,D,900);
- [W.l1,W.l2,W.l3,W.l4].forEach(function(v,i){var y=84+i*104;s+=R(606,y,268,90,['#F4EEDC','#E3F1FB','#FDE9DE','#EAF4EA'][i],12)+tx(740,y+30,v[0],20,D,900)+WR(740,y+62,v[1],12,D,700,250)});
- var lg=s;K=1;
- if(nar)return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 1050" role="img">'+R(0,0,580,1050,'#F7FAFD')+sm+'<g transform="translate(20 522) scale(1.8) translate(-596 -8)">'+lg+'</g></svg>';
- return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img">'+R(0,0,900,520,'#F7FAFD')+sm+lg+'</svg>'},
+ var sm=s;K=1;
+ function LG(x0,y0,w){var rows=[W.l1,W.l2,W.l3,W.l4],cols=['#F4EEDC','#E3F1FB','#FDE9DE','#EAF4EA'],lh=FS(12)*1.3,y=y0+58,g='';
+  rows.forEach(function(v,i){var n=LINES(v[1],12,w-48).length,h=50+n*lh+8;g+=R(x0+14,y,w-28,h,cols[i],12)+tx(x0+w/2,y+32,v[0],20,D,900)+WR(x0+w/2,y+50+n*lh/2+FS(12)*0.3,v[1],12,D,700,w-48);y+=h+10});
+  var H=y-y0;return {s:R(x0,y0,w,H,'#fff',16,' stroke="#D9E3EC"')+tx(x0+w/2,y0+36,W.lg,16,D,900)+g,h:H}}
+ if(nar){var lg=LG(20,524,540),HH=524+lg.h+16;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 '+HH.toFixed(0)+'" role="img">'+R(0,0,580,HH,'#F7FAFD')+sm+lg.s+'</svg>'}
+ var lg2=LG(590,10,300),H2=Math.max(520,lg2.h+20);
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+H2.toFixed(0)+'" role="img">'+R(0,0,900,H2,'#F7FAFD')+sm+lg2.s+'</svg>'},
 
 /* 6 寒冷前線と温暖前線の断面：冷たい空気がもぐり込む急な前線と、暖かい空気がはい上がるゆるい前線 */
 met_fronts:function(l){
@@ -268,13 +309,14 @@ met_front_map:function(l){
  s+='<circle cx="280" cy="180" r="22" fill="#fff" stroke="#D64545" stroke-width="3"/>'+tx(280,188,W.L,20,'#D64545',900);
  s+=ARW(150,280,120,240,'#6B4FA0',4)+tx(120,228,W.nw,11,'#6B4FA0',800)+ARW(330,370,360,330,'#E08A2F',4)+tx(372,388,W.sw,11,'#8a3b00',800);
  s+='</g>';
- var mp=s;s='';K=nar?1.1:1;
- s+=R(590,10,300,480,'#fff',16,' stroke="#D9E3EC"')+tx(740,42,W.lg,16,D,900);
- [['cold',W.cold,W.d[0]],['warm',W.warm,W.d[1]],['stat',W.stat,W.d[2]],['occl',W.occl,W.d[3]]].forEach(function(v,i){var y=70+i*104;
-  s+=R(606,y,268,92,'#F7FAFD',12)+tx(740,y+22,v[1],14,{cold:'#2F6FD6',warm:'#D64545',stat:'#6B7785',occl:'#7B4FB0'}[v[0]],900)+FR([[630,y+50],[850,y+50]],v[0],-1,36,4)+WR(740,y+78,v[2],11,G,700,252)});
- var lg=s;K=1;
- if(nar)return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 1010" role="img">'+R(0,0,580,1010,'#F7FAFD')+mp+'<g transform="translate(20 505) scale(1.8) translate(-596 -8)">'+lg+'</g></svg>';
- return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img">'+R(0,0,900,500,'#F7FAFD')+mp+lg+'</svg>'},
+ var mp=s;K=1;
+ function LG(x0,y0,w){var lh=FS(11)*1.3,y=y0+54,g='';
+  [['cold',W.cold,W.d[0]],['warm',W.warm,W.d[1]],['stat',W.stat,W.d[2]],['occl',W.occl,W.d[3]]].forEach(function(v,i){var n=LINES(v[2],11,w-48).length,h=70+n*lh+8;
+   g+=R(x0+14,y,w-28,h,'#F7FAFD',12)+tx(x0+w/2,y+26,v[1],14,{cold:'#2F6FD6',warm:'#D64545',stat:'#6B7785',occl:'#7B4FB0'}[v[0]],900)+FR([[x0+40,y+52],[x0+w-40,y+52]],v[0],-1,36,4)+WR(x0+w/2,y+70+n*lh/2+FS(11)*0.3,v[2],11,G,700,w-48);y+=h+10});
+  var H=y-y0;return {s:R(x0,y0,w,H,'#fff',16,' stroke="#D9E3EC"')+tx(x0+w/2,y0+34,W.lg,16,D,900)+g,h:H}}
+ if(nar){var lg=LG(20,504,540),HH=504+lg.h+16;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 '+HH.toFixed(0)+'" role="img">'+R(0,0,580,HH,'#F7FAFD')+mp+lg.s+'</svg>'}
+ var lg2=LG(590,10,300),H2=Math.max(500,lg2.h+20);
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+H2.toFixed(0)+'" role="img">'+R(0,0,900,H2,'#F7FAFD')+mp+lg2.s+'</svg>'},
 
 /* 8 温帯低気圧の一生：波 → 発達 → 閉塞 → 衰える */
 met_cyclone_life:function(l){
@@ -326,7 +368,7 @@ met_jet_section:function(l){
  function catz(x,y,w,h,d){return '<g><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="#F4A340" opacity=".55"/><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="none" stroke="#C26A00" stroke-width="2" stroke-dasharray="5 4"/><animate attributeName="opacity" values=".35;1;.35" dur="2s" begin="'+d+'s" repeatCount="indefinite"/></g>'}
  s+=catz(262,Y(12),100,26,0)+catz(222,Y(8.6),76,40,.5)+catz(520,Y(14.6),100,26,1);
  s+=R(650,Y(4.6)-18,20,20,'#F4A340',5,' opacity=".8"')+tx(678,Y(4.6)-3,W.cat,12,'#8a4a00',900,'start');
- s+='<g><circle cx="690" cy="'+(Y(3)-5)+'" r="9" fill="#fff" stroke="#7B4FB0" stroke-width="2.5"/><path d="M684 '+(Y(3)-11)+' l12 12 m0 -12 l-12 12" stroke="#7B4FB0" stroke-width="2.5"/></g>'+tx(706,Y(3),W.in,11,G,800,'start');
+ s+='<g><circle cx="690" cy="'+(Y(3)-5)+'" r="9" fill="#fff" stroke="#7B4FB0" stroke-width="2.5"/><path d="M684 '+(Y(3)-11)+' l12 12 m0 -12 l-12 12" stroke="#7B4FB0" stroke-width="2.5"/></g>'+WR(706,Y(3),W.in,11,G,800,170,'start');
  /* 飛行機：乱気流の所で揺れる */
  s+='<g><g>'+plane('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -5;0 5;0 -4;0 3;0 0;0 0" keyTimes="0;.28;.32;.36;.4;.44;.48;1" dur="9s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="9s" repeatCount="indefinite" path="M80 '+Y(11)+' L840 '+Y(11)+'"/></g>';
  s+=tx(70,Y(0)+26,'← '+W.n,12,'#1d4d8a',900,'start')+tx(850,Y(0)+26,W.s+' →',12,'#8a3b00',900,'end');
@@ -380,13 +422,15 @@ met_kh:function(l){
  sc+='<defs><clipPath id="khc"><rect x="10" y="40" width="560" height="300" rx="14"/></clipPath></defs><g clip-path="url(#khc)"><g transform="translate(-110 0)">'+wave+'<animateTransform attributeName="transform" type="translate" values="-110 0;0 0" dur="3.2s" repeatCount="indefinite"/></g></g>';
  sc+='<path d="M20 200 H550" stroke="#6B4FA0" stroke-width="2" stroke-dasharray="4 5" opacity=".6"/>'+tx(290,236,W.br,13,'#6B4FA0',900);
  sc+='<g><g>'+plane('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 6;0 -5;0 4;0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="7s" repeatCount="indefinite" path="M40 190 L540 190"/></g>';
- var cr='';cr+=R(590,10,300,330,'#fff',16,' stroke="#D9E3EC"');
- [W.c,W.v,W.h,W.tm].forEach(function(v,i){var y=24+i*74;cr+=R(604,y,272,64,['#F1EAFB','#E3F1FB','#E8F5F2','#FDEEDF'][i],12)+WR(740,y+22,v[0],11.5,G,800,256)+tx(740,y+50,v[1],15,D,900)});
- cr+=WR(740,330,W.src,9.5,G,700,280);
+ K=1;
+ function CR(x0,y0,w){var lh=FS(11.5)*1.3,y=y0+14,g='',cols=['#F1EAFB','#E3F1FB','#E8F5F2','#FDEEDF'];
+  [W.c,W.v,W.h,W.tm].forEach(function(v,i){var n=LINES(v[0],11.5,w-40).length,h=n*lh+FS(15)*1.5+14;g+=R(x0+14,y,w-28,h,cols[i],12)+WR(x0+w/2,y+8+n*lh/2+FS(11.5)*0.35,v[0],11.5,G,800,w-40)+tx(x0+w/2,y+n*lh+FS(15)*1.2+6,v[1],15,D,900);y+=h+8});
+  var ns=LINES(W.src,10,w-28).length,sh=ns*FS(10)*1.3+10;g+=WR(x0+w/2,y+sh/2+FS(10)*0.3,W.src,10,G,700,w-28);y+=sh+6;
+  var H=y-y0;return {s:R(x0,y0,w,H,'#fff',16,' stroke="#D9E3EC"')+g,h:H}}
  var s;
- if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 960" role="img">'+R(0,0,580,960,'#F7FAFD')+sc+'<g transform="translate(-575 355) scale(1.9) translate(0 0)"></g><g transform="translate(20 352) scale(1.8) translate(-596 -6)">'+cr+'</g>';
- else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 350" role="img">'+R(0,0,900,350,'#F7FAFD')+sc+cr;
- K=1;return s+'</svg>'},
+ if(nar){var c1=CR(20,352,540),HH=352+c1.h+14;s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 '+HH.toFixed(0)+'" role="img">'+R(0,0,580,HH,'#F7FAFD')+sc+c1.s}
+ else{var c2=CR(590,10,300),H2=Math.max(350,c2.h+20);s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+H2.toFixed(0)+'" role="img">'+R(0,0,900,H2,'#F7FAFD')+sc+c2.s}
+ return s+'</svg>'},
 
 /* 12 山岳波：山を越えた風が波打ち、レンズ雲・笠雲・ローター雲ができる。一番激しいのはローター */
 met_mtnwave:function(l){
@@ -467,7 +511,7 @@ met_cb_hazards:function(l){
  /* 乱気流の範囲 */
  s+='<path d="M200 470 Q170 260 270 130 Q380 40 560 60 Q760 70 820 140" fill="none" stroke="#D64545" stroke-width="3" stroke-dasharray="10 8"><animate attributeName="stroke-dashoffset" values="0;-36" dur="1.2s" repeatCount="indefinite"/></path>';
  /* ラベル */
- s+=LB(700,64,W.anv,12,'#40566B','middle')+LB(312,50,W.ot,11.5,'#8a3b00','middle')+LB(730,318,W.hail,12,'#40566B','middle')+LB(150,160,W.turb,12,'#D64545','middle')+LB(300,294,W.ice,12,'#1d6fa0','start')+LB(470,210,W.ltg,12,'#C99A00','start')+LB(470,396,W.rain,12,'#2F6FD6','start')+LB(420,500,W.db,12,'#2F6FD6','middle')+LB(740,500,W.gf,11.5,'#40566B','middle');
+ s+=LB(700,64,W.anv,12,'#40566B','middle')+LB(312,50,W.ot,11.5,'#8a3b00','middle')+LB(730,318,W.hail,12,'#40566B','middle')+LBW(140,170,W.turb,12,'#D64545','middle','#fff',230)+LB(300,294,W.ice,12,'#1d6fa0','start')+LB(470,210,W.ltg,12,'#C99A00','start')+LB(470,396,W.rain,12,'#2F6FD6','start')+LB(420,500,W.db,12,'#2F6FD6','middle')+LB(740,500,W.gf,11.5,'#40566B','middle');
  K=1;
  if(nar)return SCR(s+'</svg>',780);
  return s+'</svg>'},
@@ -512,14 +556,14 @@ met_ts_avoid:function(l){
  s+='<path d="M252 262 C300 300 350 330 380 360 L400 340 C360 300 310 270 262 244 Z" fill="#fff" opacity=".12"/>';
  s+=LB(360,392,W.an,11,'#8a3b00','middle','#FFE3C8');
  /* 予定の経路（真上へ）と回避の経路（風上＝左を回る） */
- s+='<path d="M320 560 L320 70" stroke="#9FB0C2" stroke-width="3" stroke-dasharray="10 8"/>'+LB(330,540,W.p,11,'#40566B','start');
+ s+='<path d="M320 560 L320 70" stroke="#9FB0C2" stroke-width="3" stroke-dasharray="10 8"/>'+LB(330,96,W.p,11,'#40566B','start');
  var av='M320 560 C320 480 170 470 130 380 C100 300 120 190 190 130 C240 90 320 90 320 60';
  s+='<path d="'+av+'" fill="none" stroke="#7CF2B0" stroke-width="4"/>';
  s+='<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="'+av+'"/></g>';
  s+='<circle cx="250" cy="250" r="118" fill="none" stroke="#FFB870" stroke-width="2" stroke-dasharray="6 6"/>'+LB(118,236,'20 NM',11,'#8a3b00','middle','#FFE3C8');
  s+=ARW(40,440,100,490,'#9FD3F7',5)+LB(80,424,W.w+' ↘',11,'#1d4d8a','middle','#DCEEFB');
- s+=R(20,70,176,74,'#13304E',10)+'<ellipse cx="38" cy="88" rx="8" ry="6" fill="#E03B3B"/>'+tx(52,92,W.r,10.5,'#fff',800,'start')+'<ellipse cx="38" cy="108" rx="8" ry="6" fill="#F2D233"/>'+tx(52,112,W.y,10.5,'#fff',800,'start')+'<ellipse cx="38" cy="128" rx="8" ry="6" fill="#2FAE5A"/>'+tx(52,132,W.g,10.5,'#fff',800,'start');
- s+=LB(430,470,W.ok,11.5,'#0f3558','middle','#7CF2B0')+LB(430,504,W.ng,11.5,'#0f3558','middle','#FFE08A');
+ var lgh=FS(10.5)*1.5,lgw=0;[W.r,W.y,W.g].forEach(function(v){lgw=Math.max(lgw,TW(v,10.5))});s+=R(20,60,lgw+54,lgh*3+14,'#13304E',10);[[W.r,'#E03B3B'],[W.y,'#F2D233'],[W.g,'#2FAE5A']].forEach(function(v,i){var yy=60+10+lgh*(i+0.7);s+='<ellipse cx="38" cy="'+(yy-FS(10.5)*0.3).toFixed(1)+'" rx="8" ry="6" fill="'+v[1]+'"/>'+tx(54,yy,v[0],10.5,'#fff',800,'start')});
+ s+=LBW(400,478,W.ok,11.5,'#0f3558','middle','#7CF2B0',420)+LBW(400,548,W.ng,11.5,'#0f3558','middle','#FFE08A',420);
  K=1;return s+'</svg>'},
 /* 17 台風の断面：眼・眼の壁・らせん状の雨の帯、下から吸い込み上から吹き出す */
 met_ty_section:function(l){
@@ -565,8 +609,8 @@ met_ty_plan:function(l){
  var sp='';for(var a=0;a<4;a++){sp+='<path d="M0 -24 C 60 -40 110 -10 120 60 C 126 110 90 160 40 190" fill="none" stroke="#fff" stroke-width="'+(12-a*2)+'" stroke-linecap="round" opacity=".55" transform="rotate('+(a*90)+')"/>'}
  s+='<g transform="translate('+cx+' '+cy+')"><g>'+sp+'<circle r="18" fill="#0E2238" stroke="#fff" stroke-width="3"/><animateTransform attributeName="transform" type="rotate" values="0;-360" dur="10s" repeatCount="indefinite"/></g></g>';
  s+=ARW(cx,cy-238,cx,cy-282,'#7CF2B0',6)+LB(cx+14,cy-262,W.go,12,'#0f3558','start','#7CF2B0');
- s+=LB(cx+120,cy+268,W.R,11.5,'#fff','middle','#B23434')+LB(cx-120,cy+298,W.Lf,11.5,'#fff','middle','#2465A8');
- s+=LB(cx+118,cy-20,W.ex,10.5,'#8a1f1f','middle','#FFD6D6')+LB(cx-118,cy+20,W.ex2,10.5,'#0f3558','middle','#D6E9FF');
+ s+=LBW(cx+150,cy+280,W.R,11.5,'#fff','middle','#B23434',280)+LBW(cx-150,cy+280,W.Lf,11.5,'#fff','middle','#2465A8',280);
+ s+=LBW(cx+140,cy-30,W.ex,10.5,'#8a1f1f','middle','#FFD6D6',230)+LBW(cx-140,cy+30,W.ex2,10.5,'#0f3558','middle','#D6E9FF',230);
  s+=LB(cx,cy+220,W.st,10.5,'#5a4a00','middle','#F2D233')+LB(cx,cy+122,W.vio,10.5,'#fff','middle','#E03B3B');
  K=1;return s+'</svg>'},
 
@@ -590,7 +634,7 @@ met_ty_track:function(l){
  [[280,430,26],[266,360,40],[300,284,58],[380,220,78]].forEach(function(c){s+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+(c[2]+26)+'" fill="#D64545" opacity=".10"/>'});
  /* 台風のマーク */
  s+='<g><g><circle r="14" fill="#fff" stroke="#D64545" stroke-width="3"/><path d="M-10 -8 Q0 -20 10 -8 M10 8 Q0 20 -10 8" stroke="#D64545" stroke-width="3" fill="none"/><animateTransform attributeName="transform" type="rotate" values="0;-360" dur="2s" repeatCount="indefinite"/></g><animateMotion dur="8s" repeatCount="indefinite" path="'+tr+'"/></g>';
- s+=WR(440,600,W.bo,11.5,'#8a3b00',900,300)+LB(260,262,W.cur,11,'#40566B','end')+LB(620,168,W.fast,11,'#40566B','end')+'<path d="M200 452 L256 438" stroke="#0f3558" stroke-width="1.5" stroke-dasharray="3 3"/>'+WR(130,470,W.fc,11,'#0f3558',900,200)+LB(214,392,W.warn,11,'#fff','end','#D64545');
+ s+=WR(440,600,W.bo,11.5,'#8a3b00',900,300)+LBW(140,262,W.cur,11,'#40566B','middle','#fff',230)+LBW(520,174,W.fast,11,'#40566B','middle','#fff',210)+'<path d="M200 452 L256 438" stroke="#0f3558" stroke-width="1.5" stroke-dasharray="3 3"/>'+WR(130,470,W.fc,11,'#0f3558',900,200)+LB(214,392,W.warn,11,'#fff','end','#D64545');
  K=1;return s+'</svg>'},
 
 /* 20 台風の強さと大きさのものさし（気象庁） */
@@ -618,19 +662,22 @@ met_levels:function(l){
   ko:{t:'기압면의 높이(표준대기)',u:['아래층의 기온·습도, 눈인지 비인지','구름이 생기기 쉬운지(습수), 상승기류','기압골과 기압마루, 상공의 찬 공기','제트기류, 순항고도의 바람','제트기류의 중심, 순항고도','제트기류·대류권계면 근처'],son:'라디오존데(하루 2회, 세계 동시 관측)',h:'높이'},
   en:{t:'Heights of the pressure levels (standard atmosphere)',u:['Low-level temperature and moisture; snow or rain','Cloud (dew-point depression), rising air','Troughs and ridges, cold air aloft','Jet stream, winds at cruising level','Jet core, cruising level','Jet stream, near the tropopause'],son:'Radiosonde (launched twice a day, worldwide at the same time)',h:'Height'}})[l];
  if(!W)return F.met_levels('ja');
- var nar=NARROW();K=nar?1.3:1;
+ var nar=NARROW();K=1;
  var L=[['850hPa','約1,500m','5,000ft',70],['700hPa','約3,000m','10,000ft',150],['500hPa','約5,500m','18,000ft',250],['300hPa','約9,000m','FL300',380],['250hPa','約10,400m','FL340',430],['200hPa','約11,800m','FL390',480]];
- if(l!=='ja')L=L.map(function(v){return [v[0],v[1].replace('約','about ').replace('about ',l==='ko'?'약 ':'about '),v[2],v[3]]});
+ if(l!=='ja')L=L.map(function(v){return [v[0],v[1].replace('約',l==='ko'?'약 ':'about '),v[2],v[3]]});
  var H=560,Y=function(v){return H-40-v*0.9};
- var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+H+'" role="img">'+R(0,0,640,H,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900);
- s+='<defs><linearGradient id="lvg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#CFE8F7"/><stop offset="1" stop-color="#3F6FA8"/></linearGradient></defs>'+R(20,44,600,H-84,'url(#lvg)',12)+R(20,H-40,600,20,'#9CC98B');
+ var s=R(0,0,640,H,'#F7FAFD')+WR(320,28,W.t,15,'#0f3558',900,600);
+ s+='<defs><linearGradient id="lvg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#CFE8F7"/><stop offset="1" stop-color="#3F6FA8"/></linearGradient></defs>'+R(20,54,600,H-94,'url(#lvg)',12)+R(20,H-40,600,20,'#9CC98B');
  L.forEach(function(v,i){var y=Y(v[3]).toFixed(0),c=i<2?'#0f3558':'#fff';
   s+='<g><line x1="30" y1="'+y+'" x2="610" y2="'+y+'" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" opacity=".6"/><rect x="30" y="'+(y-22)+'" width="580" height="30" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" values="0;0;.35;0;0" keyTimes="0;'+(0.08+i*0.13).toFixed(2)+';'+(0.12+i*0.13).toFixed(2)+';'+(0.2+i*0.13).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></rect></g>';
-  s+=tx(40,y-4,v[0],13,c,900,'start')+tx(130,y-4,v[1]+' / '+v[2],11,c,800,'start')+LB(606,y-4,W.u[i],10.5,'#0f3558','end','#fff')});
- s+='<g><g><ellipse cx="0" cy="-26" rx="16" ry="20" fill="#fff" stroke="#9FB0C2" stroke-width="2"/><line x1="0" y1="-6" x2="0" y2="14" stroke="#6B7785" stroke-width="1.5"/><rect x="-6" y="14" width="12" height="10" fill="#E08A2F"/></g><animateMotion dur="8s" repeatCount="indefinite" path="M300 '+(H-50)+' L300 60"/></g>';
- s+=LB(320,H-8,W.son,11,'#40566B','middle');
- s+='<g transform="translate(372 '+(Y(430)-10)+')">'+plane('#fff')+'</g>';
- K=1;return s+'</svg>'},
+  s+=tx(40,y-5,v[0],13,c,900,'start')+tx(40+TW(v[0],13)+14,y-5,v[1]+' / '+v[2],11,c,800,'start');
+  if(!nar)s+=LB(606,y-5,W.u[i],10.5,'#0f3558','end','#fff')});
+ s+='<g><g><ellipse cx="0" cy="-26" rx="16" ry="20" fill="#fff" stroke="#9FB0C2" stroke-width="2"/><line x1="0" y1="-6" x2="0" y2="14" stroke="#6B7785" stroke-width="1.5"/><rect x="-6" y="14" width="12" height="10" fill="#E08A2F"/></g><animateMotion dur="8s" repeatCount="indefinite" path="M'+(nar?560:300)+' '+(H-50)+' L'+(nar?560:300)+' 70"/></g>';
+ s+='<g transform="translate(520 '+(Y(430)-12)+')">'+plane('#fff')+'</g>';
+ var y=H+8;
+ if(nar){var lh=FS(11)*1.3;L.forEach(function(v,i){var n=LINES(v[0]+(l==='ja'?'：':': ')+W.u[i],11,580).length;s+=WR(30,y+lh*0.8+(n-1)*lh/2,v[0]+(l==='ja'?'：':': ')+W.u[i],11,'#0f3558',800,580,'start');y+=n*lh+8})}
+ var ns=LINES(W.son,11,580).length,sh=ns*FS(11)*1.3;s+=WR(320,y+sh/2+FS(11)*0.3,W.son,11,'#40566B',800,580);y+=sh+14;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,H,'#F7FAFD'),R(0,0,640,y,'#F7FAFD'))+'</svg>'},
 
 /* 22 500hPa の天気図を読む：等高度線、気圧の谷と尾根、線に沿って吹く風 */
 met_upper_chart:function(l){
@@ -651,7 +698,7 @@ met_upper_chart:function(l){
  s+='<ellipse cx="310" cy="300" rx="44" ry="26" fill="#9FB0C2" opacity=".55"/><ellipse cx="290" cy="310" rx="30" ry="18" fill="#9FB0C2" opacity=".55"/>';
  s+='</g>';
  s+=LB(120,96,W.lo+' ↑',11,'#1d4d8a','middle','#DCEBFA')+LB(520,470,W.hi+' ↓',11,'#8a3b00','middle','#FDE7D3');
- s+=LB(320,522,W.wi,11,'#40566B','middle')+LB(548,120,W.fast,10.5,'#40566B','middle')+LB(300,358,W.bad,10.5,'#fff','middle','#40566B')+LB(430,238,W.good,10.5,'#8a3b00','middle','#FFF1E3');
+ s+=LB(320,522,W.wi,11,'#40566B','middle')+LBW(530,120,W.fast,10.5,'#40566B','middle','#fff',180)+LB(300,358,W.bad,10.5,'#fff','middle','#40566B')+LB(430,238,W.good,10.5,'#8a3b00','middle','#FFF1E3');
  K=1;return s+'</svg>'},
 
 /* 23 風の矢羽根を読む：半分の羽根5kt、羽根10kt、旗50kt。気温と湿数も */
@@ -694,10 +741,14 @@ met_vort:function(l){
  s+=LB(220,368,W.tr,11,'#fff','middle','#2F6FD6')+LB(430,86,W.ri,11,'#fff','middle','#D64545');
  s+='<g opacity=".9">'+cloud(330,250,1,'#DCE3EA')+'</g><g>'+ARW(330,300,330,262,'#E08A2F',4)+'<animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/></g>'+LB(330,420,W.up,11,'#8a3b00','middle','#FFF1E3');
  s+='<g>'+ARW(110,200,110,238,'#2F6FD6',4)+'<animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/></g>'+LB(28,262,W.dn,10.5,'#1d4d8a','start','#DCEBFA');
- s+=ARW(40,420,120,420,'#6B4FA0',4)+tx(130,425,W.wind,11,'#6B4FA0',800,'start');
+ s+=ARW(40,72,120,72,'#6B4FA0',4)+tx(130,77,W.wind,11,'#6B4FA0',800,'start');
  K=1;return s+'</svg>'}
 };
-for(var k in F)window.FIGS[k]=F[k];
+/* FIX2：一度描いて表示の倍率を求め、最小の文字の大きさを決めて描き直す */
+function FIX2(fn){return function(l){FLOORU=0;K=1;var s1=fn(l),m=/viewBox="[\d.\-]+ [\d.\-]+ ([\d.]+) [\d.]+"/.exec(s1);if(!m)return s1;
+ var vw=+m[1],w=Math.min(740,((typeof window!=='undefined'&&window.innerWidth)||1024)-40),mm=/min-width:(\d+)px/.exec(s1);if(mm)w=Math.max(w,+mm[1]);
+ FLOORU=FLOORPX*vw/w;var s2=fn(l);FLOORU=0;K=1;return s2.replace('<svg ','<svg data-flr="1" ')}}
+for(var k in F)window.FIGS[k]=FIX2(F[k]);
 /* ほかの図のファイル（figs_nav.js など）から同じ部品を使えるように公開する */
-window.FIGH={R:R,tx:tx,WR:WR,LB:LB,ARW:ARW,SCR:SCR,plane:plane,cloud:cloud,FR:FR,TW:TW,NARROW:NARROW,setK:function(v){K=v},C:{D:D,B:B,T:T,O:O,RD:RD,P:P,G:G}};
+window.FIGH={R:R,tx:tx,WR:WR,LB:LB,LBW:LBW,LINES:LINES,ARW:ARW,SCR:SCR,plane:plane,cloud:cloud,FR:FR,TW:TW,NARROW:NARROW,FIX2:FIX2,FS:FS,setK:function(v){K=v},C:{D:D,B:B,T:T,O:O,RD:RD,P:P,G:G}};
 })();
