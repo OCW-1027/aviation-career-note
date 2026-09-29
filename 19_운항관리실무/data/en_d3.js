@@ -18,7 +18,7 @@ sections:[
 ["QICAS","IC = ILS","AS = unserviceable","ILS unserviceable"],
 ["QNVAS","NV = VOR","AS = unserviceable","VOR unserviceable"],
 ["QRTCA","RT = temporary restricted area","CA = activated","Temporary restricted area active"]]},
-{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&m=wx",x:"Practice page “Flight Operations Trainer ⑤ Weather & NOTAM”: read five NOTAMs and judge their effect and the response"}]},
+{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&m=wx",x:"Practice page “Flight Dispatch Practice ⑤ Weather & NOTAM”: read five NOTAMs and judge their effect and the response"}]},
 {h:"Korea’s NOTAM series",blocks:[{t:"table",cols:["Series","Content (Korea AIP GEN 3.1)"],rows:[
 ["A","International airports (including navigation and communication facilities)"],
 ["C","Domestic airports (including navigation and communication facilities)"],

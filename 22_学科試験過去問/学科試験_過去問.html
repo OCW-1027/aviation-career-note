@@ -102,6 +102,7 @@ footer{margin-top:28px;font-size:12px;color:var(--sub)}
 <script src="data/exp_R0503.js"></script>
 <script src="data/exp_R0407.js"></script>
 <script src="data/exp_R0403.js"></script>
+<script src="data/exp_R0307.js"></script>
 <script>
 /* 航空従事者学科試験 過去問題（2026-09）
    ・問題と正答：国土交通省「航空従事者等学科試験解答及び過去問」を読み取り・整形したもの（data/ops_*.js）
@@ -126,7 +127,7 @@ var run=null;
 function home(){
  var h='<header class="top"><div class="kick">日本（国土交通省）の航空従事者学科試験</div><h1>過去問題と例題 ― 運航管理者</h1><p>国土交通省が公開した問題を、1問ずつ解いて、正答と解説をすぐに確かめられます。</p></header>';
  h+='<p class="src jp">この問題集は、日本の国土交通省が行う航空従事者学科試験（運航管理者）の問題です。<br><span lang="ko">일본 국토교통성이 시행하는 항공종사자 학과시험(운항관리자) 문제입니다. 일본어로만 제공됩니다.</span><br><span lang="en">These are questions from Japan’s MLIT aviation licence exam (aircraft dispatcher), in Japanese only.</span></p>';
- h+='<p class="src">問題と正答の出典：国土交通省「<a href="https://www.mlit.go.jp/koku/koku_fr10_000025.html" target="_blank" rel="noopener">航空従事者等学科試験解答及び過去問</a>」。このサイトが読み取り、改行や記号を整えて作成しています（原本の誤り・訂正もそのまま反映）。解説はこのサイトが作成したもので、国の見解ではありません（例題集と令和4年3月期以降の試験期は全問に解説あり。ほかの試験期は順次追加）。法令は改正されるため、解説では2026年9月時点の内容も示します。</p>';
+ h+='<p class="src">問題と正答の出典：国土交通省「<a href="https://www.mlit.go.jp/koku/koku_fr10_000025.html" target="_blank" rel="noopener">航空従事者等学科試験解答及び過去問</a>」。このサイトが読み取り、改行や記号を整えて作成しています（原本の誤り・訂正もそのまま反映）。解説はこのサイトが作成したもので、国の見解ではありません（例題集と令和3年7月期以降の試験期は全問に解説あり。ほかの試験期は順次追加）。法令は改正されるため、解説では2026年9月時点の内容も示します。</p>';
  h+='<h2>資格</h2><div class="lic">'+LIC.map(function(l,i){return '<span class="'+(i?'':'on')+'">'+esc(l)+(i?'（準備中）':'')+'</span>'}).join('')+'</div>';
  h+='<h2>問題の種類</h2><div class="sets">'+K.sets.map(function(s){var d=doneOf(s.id);return '<button data-set="'+s.id+'" class="'+(sel.set===s.id?'on':'')+'"><b>'+esc(s.name)+(s.id==='EX2606'?'<span class="new">最新</span>':'')+'</b><small>'+d.n+' / '+d.t+'問 解答済み'+(d.n?'・正答率 '+Math.round(d.ok/d.n*100)+'%':'')+'</small></button>'}).join('')+'<button data-set="ALL" class="'+(sel.set==='ALL'?'on':'')+'"><b>すべての試験期</b><small>'+allCount()+'問から</small></button></div>';
  h+='<h2>科目</h2><div class="subs">'+SUB.map(function(s){return '<button data-sub="'+s[0]+'" class="'+(sel.subs[s[0]]?'on':'')+'">'+esc(s[1])+'<small>'+s[0]+'</small></button>'}).join('')+'</div>';

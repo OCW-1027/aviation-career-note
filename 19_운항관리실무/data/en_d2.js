@@ -28,7 +28,7 @@ sections:[
 {h:"How this connects to ground work",blocks:[{t:"check",items:[
 {name:"Report local weather",x:"Stations tell dispatchers about sudden thunderstorms, fog or snow before they appear in observations."},
 {name:"Times are UTC",x:"Weather times are in UTC; add nine hours for Japan and Korea."}]},
-{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&m=wx",x:"Practice page “Flight Operations Trainer ⑤ Weather & NOTAM”: decide on alternates from a TAF"}]}],
+{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&m=wx",x:"Practice page “Flight Dispatch Practice ⑤ Weather & NOTAM”: decide on alternates from a TAF"}]}],
 voice:"",
 terms:[["METAR","定時の気象実況","정시 기상 실황"],["Terminal Aerodrome Forecast (TAF)","飛行場予報","비행장 예보"],["SIGMET","空域の危険な天気の警報","공역 위험 기상 경보"],["Ceiling","雲底（シーリング）","운고(실링)"],["Vertical Visibility (VV)","鉛直視程","수직 시정"]],
 quiz:[{q:"What does “BKN012” mean in a METAR?",opts:["1–2 oktas at 120 ft","5–7 oktas at 1,200 ft","Overcast at 12,000 ft","Visibility 1,200 m"],a:1,exp:"BKN means 5–7 oktas (more than half the sky), and 012 is in hundreds of feet: 1,200 ft. FEW is 1–2 oktas, OVC is full cover, and visibility is a separate four-digit group in metres."},
@@ -63,7 +63,7 @@ sections:[
 ["Distance: EDTO-approved","Within the approved maximum diversion time"],
 ["Weather","At or above aerodrome operating minima for the expected time of use"],
 ["Japan (detailed rules, ch. 2, 2-5)","When departure weather is below landing minima or return is impossible: within one hour (twins) or two hours (three or more engines) at one-engine-inoperative cruise speed; not needed if the destination or its alternate lies within that range"]]},
-{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&m=wx",x:"Practice page “Flight Operations Trainer ⑤ Weather & NOTAM”: decide from a TAF and ETA (simplified)"}]}],
+{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&m=wx",x:"Practice page “Flight Dispatch Practice ⑤ Weather & NOTAM”: decide from a TAF and ETA (simplified)"}]}],
 voice:"",
 terms:[["Estimated Time of Use","使用予定時間","사용예정시간"],["Destination Alternate Aerodrome","目的地代替飛行場","목적지 교체비행장"],["Take-off Alternate Aerodrome","離陸代替飛行場","이륙 교체비행장"],["Point of No Return (PNR)","引き返し不能点","귀환불능지점"],["Operations Specifications (OpSpecs)","運営基準","운영기준"]],
 quiz:[{q:"How is the “estimated time of use” taken?",opts:["30 minutes either side of arrival","One hour either side of arrival","From departure to arrival","From three hours before arrival"],a:1,exp:"The period of use is taken as one hour before to one hour after the estimated arrival (note to Korea FSR 8.1.9.9). The worst forecast within that window decides whether the destination and alternates are usable."},

@@ -46,7 +46,7 @@ sections:[
 ["ZFW → TOW","61,200 → 66,730 (limit 79,000)","60,500 → 66,330 (limit 79,000)"],
 ["LW","63,830 (limit 67,400)","62,730 (limit 67,400)"]]},
 {t:"note",x:"* Practice figures. On short sectors 5-minute holding often exceeds 5%, so it usually sets the contingency."},
-{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&r=hf&m=plan",x:"Practice page “Flight Operations Trainer”: switch between Korean and Japanese rules and choose whether to file an alternate"}]},
+{t:"link",href:"../18_항공기초지식/航空路図の練習.html?lang=en&r=hf&m=plan",x:"Practice page “Flight Dispatch Practice”: switch between Korean and Japanese rules and choose whether to file an alternate"}]},
 {h:"Without an alternate",blocks:[{t:"table",cols:["","Korea","Japan"],rows:[
 ["Rule","15 min over the destination + 30-min final reserve","45 min holding over the landing aerodrome"],
 ["Haneda→Fukuoka","570 + 1,140 = 1,710","1,710"],
