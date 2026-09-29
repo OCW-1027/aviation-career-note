@@ -38,7 +38,7 @@ function block(b,L){
   case 'h3': return '<h3>'+esc(b.x)+'</h3>';
   case 'note': return '<p class="note">'+esc(b.x)+'</p>';
   case 'link': return '<p class="note"><a href="'+esc(b.href||'#')+'" style="font-weight:700">'+esc(b.x)+' →</a></p>';
-  case 'fig': var fg=window.FIGS&&window.FIGS[b.id]; if(!fg)return ''; return '<figure class="fig">'+fg()+(b.cap?'<figcaption>'+esc(b.cap)+'</figcaption>':'')+'</figure>';
+  case 'fig': var fg=window.FIGS&&window.FIGS[b.id]; if(!fg)return ''; return '<figure class="fig">'+fg(lang)+(b.cap?'<figcaption>'+esc(b.cap)+'</figcaption>':'')+'</figure>';
   case 'point': return '<div class="point'+(b.warn?' warn':'')+'">'+(b.warn?WARN:BULB)+'<div>'+esc(b.x)+'</div></div>';
   case 'cards': return '<div class="cards" style="--n:'+(b.n||2)+'">'+b.items.map(function(i){return '<div class="card">'+(i.ic?'<span class="ic">'+i.ic+'</span>':'')+'<b>'+esc(i.name)+'</b>'+(i.tag?'<span class="tag">'+esc(i.tag)+'</span>':'')+'<span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
   case 'rows': return '<div class="rows">'+b.items.map(function(i){return '<div class="row"><b>'+esc(i.name)+'</b><span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
