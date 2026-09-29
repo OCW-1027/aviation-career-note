@@ -10,7 +10,7 @@ var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me.src).href:'#';
 try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'||q==='en')localStorage.setItem('art-lang',q)}catch(e){}
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
 var LIB={ja:'\u8cc7\u6599\u5ba4',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
-var NAME={load:{ja:'\u642d\u8f09\u8a08\u7b97\u306e\u7df4\u7fd2',ko:'\ud0d1\uc7ac \uacc4\uc0b0 \uc5f0\uc2b5',en:'Load Control Practice'},
+var NAME={load:{ja:'\u642d\u8f09\u8a08\u7b97\u306e\u7df4\u7fd2',ko:'\ud0d1\uc7ac\uad00\ub9ac(W&B) \uc5f0\uc2b5',en:'Load Control Practice'},
 codes:{ja:'\u822a\u7a7a\u30b3\u30fc\u30c9\u8f9e\u5178',ko:'\ud56d\uacf5 \ucf54\ub4dc \uc0ac\uc804',en:'Aviation Code Dictionary'},
 delay:{ja:'IATA\u9045\u5ef6\u30b3\u30fc\u30c9\u4e00\u89a7',ko:'IATA \uc9c0\uc5f0 \ucf54\ub4dc \ubaa9\ub85d',en:'IATA Delay Codes'},
 glossary:{ja:'\u822a\u7a7a\u7528\u8a9e\u96c6',ko:'\ud56d\uacf5 \uc6a9\uc5b4\uc9d1',en:'Aviation Glossary'},
