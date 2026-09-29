@@ -262,7 +262,78 @@ aid_signs:function(l){
  [['5',440],['6',600]].forEach(function(v){s+=BADGE(v[1],(v[0]==='5'?140:214),v[0],11)});
  var items=[W.mand,W.loc,W.dir,W.ne,W.bar,W.rgl],y=258,body='';
  items.forEach(function(v,i){var n=LI(v,11,520).length,lh=FS(11)*1.3,h=n*lh+12;body+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,11)+WR(64,y+6+n*lh/2+FS(11)*0.3,v,11,D,800,520,'start');y+=h+4});
- var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'}
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+/* 13 降り方の違い：段階降下（ダイブ・アンド・ドライブ）と、一定の坂で降りるCDFA */
+app_types:function(l){
+ var W=({ja:{t:'非精密進入の降り方',a:'段階降下（ダイブ・アンド・ドライブ）',b:'CDFA（一定の坂で連続して降りる）',mda:'MDA（最低降下高度）',da:'DA（CDFAで使う決心の高さ）',na:'MDAで水平に飛びながら滑走路を探す。地面に近い所で姿勢や推力を何度も変える',nb:'精密進入と同じように一定の坂で降り、DAで決める。安定した進入になり、事故が少ない',rw:'滑走路'},
+  ko:{t:'비정밀접근의 강하 방법',a:'계단식 강하(다이브 앤드 드라이브)',b:'CDFA(일정한 경사로 연속 강하)',mda:'MDA(최저강하고도)',da:'DA(CDFA에서 쓰는 결심 높이)',na:'MDA에서 수평 비행하며 활주로를 찾는다. 지면 가까이에서 자세와 추력을 여러 번 바꾼다',nb:'정밀접근처럼 일정한 경사로 내려와 DA에서 정한다. 안정된 접근이 되어 사고가 적다',rw:'활주로'},
+  en:{t:'Two ways to fly a non-precision approach',a:'Step-down (“dive and drive”)',b:'CDFA (continuous descent on a constant slope)',mda:'MDA (minimum descent altitude)',da:'DA (decision point used with CDFA)',na:'Level off at the MDA and search for the runway, changing attitude and thrust repeatedly close to the ground',nb:'Descend on a constant slope as in a precision approach and decide at the DA: a stable approach with fewer accidents',rw:'Runway'}})[l];
+ if(!W)return F.app_types('ja');
+ setK(1);var nar=NARROW();
+ function panel(x0,y0,w,k){var col=k?'#1F7A6E':'#D64545',g=R(x0,y0,w,200,'#DCEEFB',14)+tx(x0+w/2,y0+26,k?W.b:W.a,13,col,900)+R(x0,y0+176,w,24,'#9CC98B',0);
+  var rx=x0+w-110;g+=R(rx,y0+172,90,6,'#5B6770',2)+tx(rx+45,y0+194,W.rw,10.5,'#2F5E24',800);
+  var my=y0+140;g+='<line x1="'+(x0+10)+'" y1="'+my+'" x2="'+(x0+w-10)+'" y2="'+my+'" stroke="'+(k?'#1F7A6E':'#D64545')+'" stroke-width="2" stroke-dasharray="5 5"/>'+LB(x0+14,my-8,k?W.da:W.mda,10,'#fff','start',col);
+  var p=k?'M'+(x0+20)+' '+(y0+54)+' L'+(rx-30)+' '+my+' L'+(rx+10)+' '+(y0+172):'M'+(x0+20)+' '+(y0+54)+' L'+(x0+w*0.3)+' '+(y0+54)+' L'+(x0+w*0.38)+' '+(y0+96)+' L'+(x0+w*0.5)+' '+(y0+96)+' L'+(x0+w*0.58)+' '+my+' L'+(rx-10)+' '+my+' L'+(rx+10)+' '+(y0+172);
+  g+='<path d="'+p+'" fill="none" stroke="'+col+'" stroke-width="3"/><g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>';
+  var n=LI(k?W.nb:W.na,11,w-24).length,lh=FS(11)*1.3;g+=R(x0,y0+208,w,n*lh+16,'#fff',10,' stroke="#D9E3EC"')+WR(x0+w/2,y0+216+n*lh/2+FS(11)*0.3,k?W.nb:W.na,11,D,800,w-24);
+  return {s:g,h:208+n*lh+16}}
+ var s,HH,vw;
+ if(nar){vw=580;var p1=panel(20,56,540,0),p2=panel(20,56+p1.h+14,540,1);s=p1.s+p2.s;HH=56+p1.h+14+p2.h+12}
+ else{vw=900;var q1=panel(20,56,420,0),q2=panel(460,56,420,1);s=q1.s+q2.s;HH=56+Math.max(q1.h,q2.h)+12}
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+vw+' '+HH.toFixed(0)+'" role="img">'+R(0,0,vw,HH,'#F7FAFD')+TTL(vw/2,30,W.t,15,'#0f3558',vw-40)+s+'</svg>'},
+
+/* 14 DA／MDAでの判断：目で見る目標が見えれば着陸、見えなければ復行（上昇勾配2.5％） */
+app_dec:function(l){
+ var W=({ja:{t:'DA／MDA での判断',see:'見えた → 着陸',nosee:'見えない → 復行',vis:'見るもの：進入灯、進入端とその灯火・標識、接地帯とその灯火・標識、PAPI など',ma:'復行：決められた経路を上昇（ふつう2.5％以上の上昇勾配）',dh:'DA／MDA'},
+  ko:{t:'DA/MDA에서의 판단',see:'보였다 → 착륙',nosee:'안 보인다 → 복행',vis:'볼 것: 접근등, 시단과 그 등화·표지, 접지대와 그 등화·표지, PAPI 등',ma:'복행: 정해진 경로로 상승(보통 2.5% 이상의 상승 경사)',dh:'DA/MDA'},
+  en:{t:'The decision at DA/MDA',see:'In sight → land',nosee:'Not in sight → go around',vis:'What to see: approach lights, the threshold and its lights or markings, the touchdown zone and its lights or markings, PAPI and so on',ma:'Missed approach: climb along the published path (normally at least a 2.5% gradient)',dh:'DA/MDA'}})[l];
+ if(!W)return F.app_dec('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,250,'#DCEEFB',14)+R(20,276,600,30,'#9CC98B',0);
+ s+='<rect x="20" y="110" width="600" height="110" fill="#E6ECF2"><animate attributeName="opacity" values=".2;.2;.95;.95;.2" keyTimes="0;.45;.5;.95;1" dur="12s" repeatCount="indefinite"/></rect>';
+ s+=R(430,270,160,8,'#5B6770',3);for(var i=0;i<5;i++)s+='<circle cx="'+(440+i*34)+'" cy="266" r="4" fill="#FFD23F"/>';
+ s+='<line x1="20" y1="200" x2="620" y2="200" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(30,194,W.dh,10.5,'#fff','start','#D64545');
+ var land='M40 90 L330 200 L440 268',ga='M40 90 L330 200 C380 200 420 150 600 80';
+ s+='<g><g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="'+land+'"/></g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0"><g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="'+ga+'"/></g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
+ s+='<g>'+LB(470,150,W.see,12,'#fff','middle','#1F7A6E')+'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g><g opacity="0">'+LB(470,150,W.nosee,12,'#fff','middle','#D64545')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
+ var y=318,body='',items=[[W.vis,D,'#fff'],[W.ma,'#8a3b00','#FFF1E3']];
+ items.forEach(function(v){var n=LI(v[0],11.5,560).length,lh=FS(11.5)*1.3,h=n*lh+14;body+=R(20,y,600,h,v[2],10,v[2]==='#fff'?' stroke="#D9E3EC"':'')+WR(320,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,560);y+=h+6});
+ var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
+
+/* 15 周回進入：一方の滑走路に向けて進入し、目で見ながら回って反対の滑走路に降りる */
+app_circ:function(l){
+ var W=({ja:{t:'周回進入（サークリング）',ap:'計器で進入',vis:'目で見ながら回る',land:'反対向きに着陸',cat:'航空機のカテゴリー（進入の速さ Vat）',rows:[['A','91kt 未満'],['B','91〜120kt'],['C','121〜140kt'],['D','141〜165kt'],['E','166〜210kt']],note:'速い機ほど回る範囲が広く、周回進入の最低気象条件は高い'},
+  ko:{t:'선회접근(서클링)',ap:'계기로 접근',vis:'눈으로 보며 돈다',land:'반대 방향으로 착륙',cat:'항공기 카테고리(접근 속도 Vat)',rows:[['A','91kt 미만'],['B','91~120kt'],['C','121~140kt'],['D','141~165kt'],['E','166~210kt']],note:'빠른 항공기일수록 도는 범위가 넓고, 선회접근 최저기상조건이 높다'},
+  en:{t:'Circling approach',ap:'Instrument approach',vis:'Visual circling',land:'Land in the opposite direction',cat:'Aircraft categories (approach speed Vat)',rows:[['A','Below 91 kt'],['B','91–120 kt'],['C','121–140 kt'],['D','141–165 kt'],['E','166–210 kt']],note:'The faster the aircraft, the wider the circling area and the higher the circling minima'}})[l];
+ if(!W)return F.app_circ('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,250,'#DDE8D4',14);
+ s+=R(180,170,280,24,'#4A545E',4)+tx(196,188,'34',10,'#fff',900)+tx(444,188,'16',10,'#fff',900);
+ var p='M40 182 L230 182 C280 182 300 120 360 110 C460 96 560 110 560 160 C560 220 520 250 470 240 C440 234 440 190 460 182';
+ s+='<path d="'+p+'" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="8 5"/><g>'+plane('#fff')+'<animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>';
+ s+=LB(110,168,W.ap,10.5,'#fff','middle','#2F6FD6')+LB(440,86,W.vis,10.5,'#0f3558','middle','#fff')+LB(380,262,W.land,10.5,'#fff','middle','#1F7A6E');
+ var y=318,lh=FS(11.5)*1.5;s+=R(20,y,600,lh+10,'#243447',8)+tx(320,y+lh*0.75,W.cat,11.5,'#fff',900);y+=lh+14;
+ W.rows.forEach(function(r,i){s+=R(20,y,600,lh,i%2?'#fff':'#F4F7FB',6)+tx(160,y+lh*0.7,'CAT '+r[0],11.5,D,900)+tx(420,y+lh*0.7,r[1],11.5,D,800);y+=lh+4});
+ var n=LI(W.note,11,580).length;s+=WR(320,y+8+n*FS(11)*1.3/2,W.note,11,'#8a3b00',900,580);y+=n*FS(11)*1.3+18;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 16 最低気象条件のくらべ：進入の種類でDA／MDAが違い、代替空港の計画ではさらに上乗せする */
+app_min:function(l){
+ var W=({ja:{t:'進入の種類と最低の高さ（例）',lbl:[['CAT III','0〜50ft'],['CAT II','100ft'],['CAT I（ILS）','200ft'],['RNP（LPV）','250ft'],['RNP（LNAV）','400ft'],['VOR','500ft'],['周回進入','700ft']],alt:'代替空港の計画用（上乗せ）',note:'数字は分かりやすくした例。本当の値は空港ごとの進入図と、会社・国の決まりで決まる'},
+  ko:{t:'접근 종류와 최저 높이(예)',lbl:[['CAT III','0~50ft'],['CAT II','100ft'],['CAT I(ILS)','200ft'],['RNP(LPV)','250ft'],['RNP(LNAV)','400ft'],['VOR','500ft'],['선회접근','700ft']],alt:'교체공항 계획용(추가분)',note:'숫자는 알기 쉽게 만든 예. 실제 값은 공항별 접근도와 회사·국가 규정으로 정해진다'},
+  en:{t:'Approach type and minimum height (examples)',lbl:[['CAT III','0–50 ft'],['CAT II','100 ft'],['CAT I (ILS)','200 ft'],['RNP (LPV)','250 ft'],['RNP (LNAV)','400 ft'],['VOR','500 ft'],['Circling','700 ft']],alt:'Alternate planning margin',note:'Illustrative numbers only; real values come from each airport’s approach charts and company and national rules'}})[l];
+ if(!W)return F.app_min('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),hv=[25,100,200,250,400,500,700],y=62,lh=FS(11.5)*1.5;
+ W.lbl.forEach(function(r,i){var bw=Math.max(8,hv[i]/700*250),ex=i>=2?60:0;
+  s+=R(20,y,600,lh+8,i%2?'#fff':'#F4F7FB',8)+tx(30,y+lh*0.8,r[0],11.5,D,900,'start');
+  s+='<rect x="210" y="'+(y+5)+'" width="0" height="'+(lh-2)+'" rx="5" fill="#2F6FD6"><animate attributeName="width" values="0;'+bw+';'+bw+'" keyTimes="0;.4;1" dur="5s" repeatCount="indefinite"/></rect>';
+  if(ex)s+='<rect x="'+(210+bw)+'" y="'+(y+5)+'" width="'+ex+'" height="'+(lh-2)+'" rx="5" fill="#E08A2F" opacity="0"><animate attributeName="opacity" values="0;0;.75;.75" keyTimes="0;.45;.55;1" dur="5s" repeatCount="indefinite"/></rect>';
+  s+=tx(600,y+lh*0.8,r[1],11,'#1d4d8a',900,'end');y+=lh+12});
+ s+='<rect x="30" y="'+(y+4)+'" width="22" height="14" rx="4" fill="#E08A2F" opacity=".75"/>'+tx(60,y+16,W.alt,11,'#8a3b00',900,'start');y+=30;
+ var n=LI(W.note,10.5,580).length;s+=WR(320,y+n*FS(10.5)*1.3/2,W.note,10.5,G,800,580);y+=n*FS(10.5)*1.3+16;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
