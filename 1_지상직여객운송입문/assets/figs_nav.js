@@ -90,6 +90,87 @@ nav_densalt:function(l){
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+WR(320,28,W.t,15,'#0f3558',900,600);
  s+=rw(50,W.cool,W.da0,'#2F8FE0',330,5,false)+rw(214,W.hot,W.da1,'#D64545',470,5,true);
  s+=R(20,380,600,126,'#fff',14,' stroke="#D9E3EC"')+WR(320,414,W.eff,12,D,900,570)+WR(320,462,W.rule,11.5,'#8a3b00',900,570);
+ setK(1);return s+'</svg>'},
+/* 5 川を渡る船：流れに負けないように、へさきを上流に向ける（偏流修正） */
+nav_river:function(l){
+ var W=({ja:{t:'川を渡る船で考える偏流',a:'へさきをまっすぐ向けると…',b:'へさきを上流に向けると…',drift:'流されて、目的地の下流に着く',ok:'まっすぐ目的地に着く',cur:'川の流れ＝風',goal:'目的地',wca:'修正角'},
+  ko:{t:'강을 건너는 배로 생각하는 편류',a:'뱃머리를 똑바로 향하면…',b:'뱃머리를 상류로 향하면…',drift:'떠밀려서 목적지 하류에 닿는다',ok:'똑바로 목적지에 닿는다',cur:'강물의 흐름=바람',goal:'목적지',wca:'수정각'},
+  en:{t:'Drift, explained with a boat crossing a river',a:'Point the bow straight across…',b:'Point the bow upstream…',drift:'…and the current carries you downstream of the target',ok:'…and you arrive straight at the target',cur:'River current = wind',goal:'Target',wca:'Correction angle'}})[l];
+ if(!W)return F.nav_river('ja');
+ var nar=NARROW();setK(nar?1.3:1);
+ function panel(ox,oy,corr){var g='<g transform="translate('+ox+' '+oy+')">'+R(0,0,420,380,'#fff',16,' stroke="'+(corr?T:RD)+'" stroke-width="3"')+tx(210,30,corr?W.b:W.a,14,corr?T:RD,900);
+  g+=R(14,70,392,230,'#9FD3F7',0)+R(14,50,392,20,'#9CC98B')+R(14,300,392,20,'#9CC98B');
+  for(var i=0;i<5;i++)g+='<path d="M'+(30+i*80)+' '+(110+i%2*90)+' h40" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"><animateTransform attributeName="transform" type="translate" values="0 0;80 0" dur="2s" repeatCount="indefinite"/></path>';
+  g+='<g transform="translate(210 46)"><path d="M0 -14 L10 0 L0 14 L-10 0 Z" fill="#D64545"/></g>'+tx(250,48,W.goal,12,'#D64545',900,'start');
+  var path=corr?'M210 300 L210 70':'M210 300 L330 70',rot=corr?-28:0;
+  g+='<g><g transform="rotate('+rot+')"><path d="M-10 14 L-10 -6 L0 -20 L10 -6 L10 14 Z" fill="#E08A2F" stroke="#7a3e0a" stroke-width="1.5"/></g><animateMotion dur="5s" repeatCount="indefinite" path="'+path+'"/></g>';
+  g+='<path d="'+path+'" stroke="'+(corr?T:RD)+'" stroke-width="2.5" stroke-dasharray="6 6" fill="none"/>';
+  if(corr)g+=LB(150,190,W.wca,11,'#fff','middle',T);
+  g+=WR(210,350,corr?W.ok:W.drift,12,corr?T:RD,900,390);
+  return g+'</g>'}
+ var s;
+ if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 890" role="img">'+R(0,0,460,890,'#F7FAFD')+WR(230,30,W.t,15,'#0f3558',900,420)+panel(20,56,false)+panel(20,450,true)+LB(230,880,W.cur+' →',11,'#1d4d8a','middle','#DCEBFA');
+ else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#F7FAFD')+tx(450,30,W.t,15,'#0f3558',900)+panel(20,50,false)+panel(460,50,true)+LB(450,456,W.cur+' →',11,'#1d4d8a','middle','#DCEBFA');
+ setK(1);return s+'</svg>'},
+
+/* 6 風の三角形：機首方位とTAS ＋ 風 ＝ 航跡とGS。機体は少し斜めに（クラブ）飛ぶ */
+nav_windtri:function(l){
+ var W=({ja:{t:'風の三角形',th:'機首方位（TH）とTAS',wv:'風（W/V）',tr:'航跡（TR）とGS',wca:'偏流修正角（WCA）',crab:'機首は風上に向け、航跡は目的地へ',n:'北'},
+  ko:{t:'바람 삼각형',th:'기수 방위(TH)와 TAS',wv:'바람(W/V)',tr:'항적(TR)과 GS',wca:'편류 수정각(WCA)',crab:'기수는 바람 불어오는 쪽으로, 항적은 목적지로',n:'북'},
+  en:{t:'The wind triangle',th:'Heading (TH) and TAS',wv:'Wind (W/V)',tr:'Track (TR) and GS',wca:'Wind correction angle (WCA)',crab:'Nose into wind, track to the destination',n:'N'}})[l];
+ if(!W)return F.nav_windtri('ja');
+ var nar=NARROW();setK(nar?1.3:1);
+ var o=[120,470],hd=[380,120],tr=[470,170];
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+tx(320,30,W.t,16,'#0f3558',900)+R(20,50,600,450,'#EEF5FB',14);
+ s+='<g opacity=".5"><path d="M60 110 L60 70" stroke="#6B7785" stroke-width="3"/><path d="M52 82 L60 66 L68 82" fill="#6B7785"/>'+tx(60,128,W.n,12,G,900)+'</g>';
+ function vec(a,b,c,lab,d,lx,ly){return '<g opacity="0">'+ARW(a[0],a[1],b[0],b[1],c,6)+LB(lx,ly,lab,12,'#fff','middle',c)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+d+';'+(d+0.08)+';1" dur="9s" repeatCount="indefinite"/></g>'}
+ s+=vec(o,hd,'#2F6FD6',W.th,0.02,210,280)+vec(hd,tr,'#E08A2F',W.wv,0.2,500,120)+vec(o,tr,'#D64545',W.tr,0.38,370,370);
+ s+='<g opacity="0"><path d="M'+(o[0]+70)+' '+(o[1]-95)+' A120 120 0 0 1 '+(o[0]+100)+' '+(o[1]-70)+'" fill="none" stroke="#6B4FA0" stroke-width="3"/>'+LB(o[0]+160,o[1]-60,W.wca,11,'#fff','middle','#6B4FA0')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.5;.58;1" dur="9s" repeatCount="indefinite"/></g>';
+ /* 航跡に沿って斜めに飛ぶ飛行機 */
+ var ang=Math.atan2(hd[1]-o[1],hd[0]-o[0])*180/Math.PI;
+ s+='<g opacity="0"><g><g transform="rotate('+ang.toFixed(1)+')">'+plane('#fff')+'</g><animateMotion dur="3s" begin="0s" repeatCount="indefinite" path="M'+o[0]+' '+o[1]+' L'+tr[0]+' '+tr[1]+'"/></g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.62;.66;1" dur="9s" repeatCount="indefinite"/></g>';
+ s+=LB(320,530,W.crab,12,'#0f3558','middle','#FFF1E3');
+ setK(1);return s+'</svg>'},
+
+/* 7 風の成分：滑走路に対する角度で、向かい風と横風が変わる（時計の方法） */
+nav_comp:function(l){
+ var W=({ja:{t:'風の成分 ― 角度で向かい風と横風が変わる',rw:'滑走路',hw:'向かい風',xw:'横風',wind:'風 20kt',clk:'時計の方法：15°＝¼、30°＝½、45°＝¾、60°以上＝ほぼ全部が横風',ang:'風と滑走路の角度'},
+  ko:{t:'바람 성분 — 각도에 따라 맞바람과 측풍이 달라진다',rw:'활주로',hw:'맞바람',xw:'측풍',wind:'바람 20kt',clk:'시계 방법: 15°=¼, 30°=½, 45°=¾, 60° 이상=거의 전부가 측풍',ang:'바람과 활주로의 각도'},
+  en:{t:'Wind components: the angle sets headwind and crosswind',rw:'Runway',hw:'Headwind',xw:'Crosswind',wind:'Wind 20 kt',clk:'Clock method: 15° = ¼, 30° = ½, 45° = ¾, 60° or more = almost all crosswind',ang:'Angle between wind and runway'}})[l];
+ if(!W)return F.nav_comp('ja');
+ var nar=NARROW();setK(nar?1.3:1);
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 612" role="img">'+R(0,0,640,612,'#F7FAFD')+WR(320,30,W.t,15,'#0f3558',900,600)+R(20,54,600,380,'#EEF5FB',14);
+ s+=R(270,90,60,320,'#5B6770',6)+'<line x1="300" y1="100" x2="300" y2="400" stroke="#fff" stroke-width="3" stroke-dasharray="16 12"/>'+tx(300,425,W.rw,12,G,900);
+ var angs=[0,15,30,45,60,90],n=angs.length,dur=12;
+ angs.forEach(function(a,i){var r=a*Math.PI/180,hw=20*Math.cos(r),xw=20*Math.sin(r),k0=(i/n).toFixed(3),k1=((i+1)/n).toFixed(3);
+  var kt='0;'+k0+';'+(+k0+0.005).toFixed(3)+';'+k1+';'+(+k1+0.005).toFixed(3)+';1',vs=i===0?'1;1;1;1;0;0':'0;0;1;1;0;0';
+  if(i===0)kt='0;'+k1+';'+(+k1+0.005).toFixed(3)+';1',vs='1;1;0;0';
+  if(i===n-1)kt='0;'+k0+';'+(+k0+0.005).toFixed(3)+';1',vs='0;0;1;1';
+  var ex=300+Math.sin(r)*170,ey=250-Math.cos(r)*170;
+  var g='<g opacity="'+(i===0?1:0)+'">'+ARW(ex.toFixed(0),ey.toFixed(0),(300+Math.sin(r)*60).toFixed(0),(250-Math.cos(r)*60).toFixed(0),'#2F6FD6',7)+LB(ex,ey-14,W.wind,11,'#fff','middle','#2F6FD6');
+  g+=R(60,470,Math.max(4,hw*13),26,'#1F7A6E',6)+tx(70,462,W.hw+' '+hw.toFixed(0)+'kt',12,'#1F7A6E',900,'start');
+  g+=R(60,530,Math.max(4,xw*13),26,'#D64545',6)+tx(70,522,W.xw+' '+xw.toFixed(0)+'kt',12,'#D64545',900,'start');
+  g+=LB(500,120,W.ang+' '+a+'°',12,'#0f3558','middle','#FFF1E3');
+  g+='<animate attributeName="opacity" values="'+vs+'" keyTimes="'+kt+'" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+  s+=g});
+ s+=WR(320,588,W.clk,11,'#40566B',800,580);
+ setK(1);return s+'</svg>'},
+
+/* 8 真北と磁北（偏差）：方位磁針は磁北を指す。日本・韓国は西偏 */
+nav_var:function(l){
+ var W=({ja:{t:'真北と磁北のずれ（偏差）',tn:'真北（地図の北）',mn:'磁北（方位磁針の北）',var:'偏差 7°W',rule:'西偏（W）は足す、東偏（E）は引く：磁方位 ＝ 真方位 ＋ 西偏',ex:'例：真針路 100° ＋ 7°W ＝ 磁針路 107°',rwy:'滑走路の番号と管制の風は磁方位、METARの風は真方位'},
+  ko:{t:'진북과 자북의 차이(편차)',tn:'진북(지도의 북)',mn:'자북(나침반의 북)',var:'편차 7°W',rule:'서편(W)은 더하고, 동편(E)은 뺀다: 자방위 = 진방위 + 서편',ex:'예: 진침로 100° + 7°W = 자침로 107°',rwy:'활주로 번호와 관제가 알려 주는 바람은 자방위, METAR의 바람은 진방위'},
+  en:{t:'True north and magnetic north (variation)',tn:'True north (map north)',mn:'Magnetic north (compass north)',var:'Variation 7°W',rule:'West is best (add), east is least (subtract): magnetic = true + westerly variation',ex:'Example: true course 100° + 7°W = magnetic course 107°',rwy:'Runway numbers and ATC winds are magnetic; METAR winds are true'}})[l];
+ if(!W)return F.nav_var('ja');
+ var nar=NARROW();setK(nar?1.3:1);
+ var cx=320,cy=290;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 630" role="img">'+R(0,0,640,630,'#F7FAFD')+WR(320,30,W.t,15,'#0f3558',900,600);
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="170" fill="#fff" stroke="#D9E3EC" stroke-width="3"/>';
+ for(var a=0;a<360;a+=30){var r=a*Math.PI/180;s+='<line x1="'+(cx+Math.sin(r)*150).toFixed(0)+'" y1="'+(cy-Math.cos(r)*150).toFixed(0)+'" x2="'+(cx+Math.sin(r)*165).toFixed(0)+'" y2="'+(cy-Math.cos(r)*165).toFixed(0)+'" stroke="#9FB0C2" stroke-width="3"/>'}
+ s+=ARW(cx,cy,cx,cy-190,'#2F6FD6',6)+LB(cx,cy-206,W.tn,12,'#fff','middle','#2F6FD6');
+ s+='<g transform="translate('+cx+' '+cy+')"><g><path d="M0 -150 L11 0 L-11 0 Z" fill="#D64545"/><path d="M0 150 L11 0 L-11 0 Z" fill="#9FB0C2"/><animateTransform attributeName="transform" type="rotate" values="0;-12;-4;-9;-7;-7" keyTimes="0;.15;.3;.45;.6;1" dur="5s" repeatCount="indefinite"/></g><circle r="10" fill="#243447"/></g>';
+ s+=LB(cx-110,cy-150,W.mn,11,'#fff','middle','#D64545')+LB(cx+70,cy-120,W.var,12,'#6B4FA0','middle','#EFE7FA');
+ s+=R(20,478,600,140,'#fff',14,' stroke="#D9E3EC"')+WR(320,508,W.rule,12,D,900,570)+WR(320,548,W.ex,12,'#8a3b00',900,570)+WR(320,590,W.rwy,11,'#40566B',800,570);
  setK(1);return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
