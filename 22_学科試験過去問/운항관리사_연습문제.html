@@ -115,7 +115,7 @@ function home(){
  if(gate)h+='<p class="src jp">연습문제를 풀려면 무료 회원가입(로그인)이 필요합니다. 기록은 회원별로 저장되어 휴대폰과 PC 어디서든 이어서 풀 수 있습니다.</p><button class="start" id="go">로그인하고 시작하기</button>';
  else h+='<button class="start" id="go"'+(pool.length?'':' disabled')+'>'+(pool.length?pool.length+'문 시작하기':'해당하는 문제가 없습니다')+'</button><p class="note">'+(M&&M.enabled()?(SYNCED?'회원 기록과 동기화했습니다':''):'기록은 이 기기에 저장됩니다. 회원 기능이 준비되면 회원 기록으로 옮길 수 있게 할 예정입니다.')+'</p>';
  h+='<h2>과목별 정답률(전체 기록)</h2><div class="stats">'+SUB.map(function(s){var a=0,ok=0;for(var k in ST.r){if(k.split('-')[1]===s[0]){a++;if(ST.r[k][0])ok++}}var p=a?Math.round(ok/a*100):0;return '<div>'+esc(s[1])+'<br><b>'+(a?p+'%':'—')+'</b> <small>'+a+'문</small><div class="bar"><i style="width:'+p+'%"></i></div></div>'}).join('')+'</div>';
- h+='<p class="note">관련 강좌: <a href="../19_운항관리실무/00_シリーズ全体_運航管理の実務.html">운항관리 실무</a>(Part 10 항공기상 기초 등). 일본 시험 대비는 <a href="学科試験_過去問.html">일본 학과시험 과거문제</a>(1,210문, 일본어).</p>';
+ h+='<p class="note">관련 강좌: <a href="../19_운항관리실무/00_シリーズ全体_運航管理の実務.html">운항관리 실무</a>(Part 10 항공기상 기초 등). 일본 시험 대비는 <a href="学科試験_過去問.html">일본 항공종사자 학과시험 기출문제</a>(1,210문, 일본어).</p>';
  h+='<footer>© 2026 항공 커리어 노트　문제·해설: 항공 커리어 노트(자체 제작)　<a href="../8_사이트/index.html">사이트 홈으로</a>　<button class="mark" id="reset">기록 지우기</button></footer>';
  app.innerHTML=h;window.scrollTo(0,0);
  Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home()}});
