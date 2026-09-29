@@ -611,6 +611,90 @@ met_ty_scale:function(l){
  var s;
  if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 690" role="img">'+R(0,0,440,690,'#F7FAFD')+'<g transform="translate(10 10)">'+a+'</g><g transform="translate(10 350)">'+b+'</g>';
  else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 350" role="img">'+R(0,0,880,350,'#F7FAFD')+'<g transform="translate(10 10)">'+a+'</g><g transform="translate(450 10)">'+b+'</g>';
+ K=1;return s+'</svg>'},
+/* 21 気圧面の高さ：ラジオゾンデが上がると、850〜200hPa の面が順に光る */
+met_levels:function(l){
+ var W=({ja:{t:'気圧面の高さ（標準大気）',u:['下の層の気温・湿り気、雪か雨か','雲のできやすさ（湿数）、上昇気流','気圧の谷と尾根、上空の寒気','ジェット気流、巡航高度の風','ジェット気流の中心、巡航高度','ジェット気流・圏界面の近く'],son:'ラジオゾンデ（1日2回、世界同時刻に観測）',h:'高さ'},
+  ko:{t:'기압면의 높이(표준대기)',u:['아래층의 기온·습도, 눈인지 비인지','구름이 생기기 쉬운지(습수), 상승기류','기압골과 기압마루, 상공의 찬 공기','제트기류, 순항고도의 바람','제트기류의 중심, 순항고도','제트기류·대류권계면 근처'],son:'라디오존데(하루 2회, 세계 동시 관측)',h:'높이'},
+  en:{t:'Heights of the pressure levels (standard atmosphere)',u:['Low-level temperature and moisture; snow or rain','Cloud (dew-point depression), rising air','Troughs and ridges, cold air aloft','Jet stream, winds at cruising level','Jet core, cruising level','Jet stream, near the tropopause'],son:'Radiosonde (launched twice a day, worldwide at the same time)',h:'Height'}})[l];
+ if(!W)return F.met_levels('ja');
+ var nar=NARROW();K=nar?1.3:1;
+ var L=[['850hPa','約1,500m','5,000ft',70],['700hPa','約3,000m','10,000ft',150],['500hPa','約5,500m','18,000ft',250],['300hPa','約9,000m','FL300',380],['250hPa','約10,400m','FL340',430],['200hPa','約11,800m','FL390',480]];
+ if(l!=='ja')L=L.map(function(v){return [v[0],v[1].replace('約','about ').replace('about ',l==='ko'?'약 ':'about '),v[2],v[3]]});
+ var H=560,Y=function(v){return H-40-v*0.9};
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+H+'" role="img">'+R(0,0,640,H,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900);
+ s+='<defs><linearGradient id="lvg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#CFE8F7"/><stop offset="1" stop-color="#3F6FA8"/></linearGradient></defs>'+R(20,44,600,H-84,'url(#lvg)',12)+R(20,H-40,600,20,'#9CC98B');
+ L.forEach(function(v,i){var y=Y(v[3]).toFixed(0),c=i<2?'#0f3558':'#fff';
+  s+='<g><line x1="30" y1="'+y+'" x2="610" y2="'+y+'" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" opacity=".6"/><rect x="30" y="'+(y-22)+'" width="580" height="30" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" values="0;0;.35;0;0" keyTimes="0;'+(0.08+i*0.13).toFixed(2)+';'+(0.12+i*0.13).toFixed(2)+';'+(0.2+i*0.13).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></rect></g>';
+  s+=tx(40,y-4,v[0],13,c,900,'start')+tx(130,y-4,v[1]+' / '+v[2],11,c,800,'start')+LB(606,y-4,W.u[i],10.5,'#0f3558','end','#fff')});
+ s+='<g><g><ellipse cx="0" cy="-26" rx="16" ry="20" fill="#fff" stroke="#9FB0C2" stroke-width="2"/><line x1="0" y1="-6" x2="0" y2="14" stroke="#6B7785" stroke-width="1.5"/><rect x="-6" y="14" width="12" height="10" fill="#E08A2F"/></g><animateMotion dur="8s" repeatCount="indefinite" path="M300 '+(H-50)+' L300 60"/></g>';
+ s+=LB(320,H-8,W.son,11,'#40566B','middle');
+ s+='<g transform="translate(372 '+(Y(430)-10)+')">'+plane('#fff')+'</g>';
+ K=1;return s+'</svg>'},
+
+/* 22 500hPa の天気図を読む：等高度線、気圧の谷と尾根、線に沿って吹く風 */
+met_upper_chart:function(l){
+ var W=({ja:{t:'500hPa（上空約5,500m）の天気図',tr:'気圧の谷（トラフ）',ri:'気圧の尾根（リッジ）',lo:'低い（寒い）',hi:'高い（暖かい）',wi:'風は等高度線に沿って吹く（低い方を左に見て）',fast:'線が混む＝風が強い',bad:'谷の前面：上昇気流で天気が悪い',good:'尾根の下：晴れやすい'},
+  ko:{t:'500hPa(상공 약 5,500m) 일기도',tr:'기압골(트로프)',ri:'기압마루(리지)',lo:'낮다(춥다)',hi:'높다(따뜻하다)',wi:'바람은 등고도선을 따라 분다(낮은 쪽을 왼쪽에 두고)',fast:'선이 촘촘=바람이 강하다',bad:'기압골 앞쪽: 상승기류로 날씨가 나쁘다',good:'기압마루 아래: 맑기 쉽다'},
+  en:{t:'The 500 hPa chart (about 5,500 m up)',tr:'Trough',ri:'Ridge',lo:'Low (cold)',hi:'High (warm)',wi:'Wind blows along the height lines, with low heights on its left',fast:'Crowded lines = strong wind',bad:'Ahead of the trough: rising air, bad weather',good:'Under the ridge: fine weather'}})[l];
+ if(!W)return F.met_upper_chart('ja');
+ var nar=NARROW();K=nar?1.3:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900)+R(14,44,612,460,'#EEF5FB',12);
+ var hs=[5400,5520,5640,5760,5880],cols=['#3F6FD6','#5E8FD9','#8FA7C8','#E3A15B','#D86A3A'];
+ function wave(off,amp){return 'M20 '+(150+off)+' C110 '+(150+off)+' 150 '+(150+off+amp)+' 220 '+(150+off+amp)+' C300 '+(150+off+amp)+' 330 '+(150+off-amp*0.7)+' 420 '+(150+off-amp*0.7)+' C500 '+(150+off-amp*0.7)+' 540 '+(150+off)+' 620 '+(150+off)}
+ s+='<g><animateTransform attributeName="transform" type="translate" values="-30 0;30 0" dur="12s" repeatCount="indefinite"/>';
+ var OFF=[0,28,80,132,184];
+ hs.forEach(function(h,i){var off=OFF[i],amp=140-i*10;s+='<path d="'+wave(off,amp)+'" fill="none" stroke="'+cols[i]+'" stroke-width="3"/>'+LB(28,150+off-6,String(h),10,cols[i],'start')});
+ s+='<path d="M220 150 L220 470" stroke="#6B4FA0" stroke-width="3" stroke-dasharray="10 6"/>'+LB(220,488,W.tr,11.5,'#fff','middle','#6B4FA0');
+ s+='<path d="M420 60 L420 380" stroke="#C0392B" stroke-width="3" stroke-dasharray="4 6"/>'+LB(420,72,W.ri,11.5,'#fff','middle','#C0392B');
+ s+='<g opacity=".85">';for(var i=0;i<4;i++){s+='<g><path d="M-10 -5 L6 0 L-10 5 Z" fill="#6B4FA0"/><animateMotion dur="6s" begin="'+(i*1.5)+'s" repeatCount="indefinite" rotate="auto" path="'+wave(58,125)+'"/></g>'}s+='</g>';
+ s+='<ellipse cx="310" cy="300" rx="44" ry="26" fill="#9FB0C2" opacity=".55"/><ellipse cx="290" cy="310" rx="30" ry="18" fill="#9FB0C2" opacity=".55"/>';
+ s+='</g>';
+ s+=LB(120,96,W.lo+' ↑',11,'#1d4d8a','middle','#DCEBFA')+LB(520,470,W.hi+' ↓',11,'#8a3b00','middle','#FDE7D3');
+ s+=LB(320,522,W.wi,11,'#40566B','middle')+LB(548,120,W.fast,10.5,'#40566B','middle')+LB(300,358,W.bad,10.5,'#fff','middle','#40566B')+LB(430,238,W.good,10.5,'#8a3b00','middle','#FFF1E3');
+ K=1;return s+'</svg>'},
+
+/* 23 風の矢羽根を読む：半分の羽根5kt、羽根10kt、旗50kt。気温と湿数も */
+met_barbs:function(l){
+ var W=({ja:{t:'観測点の記入の読み方',hb:'短い羽根＝5kt',fb:'長い羽根＝10kt',pn:'旗＝50kt',sum:'50＋10＋5＝65kt',from:'棒が出ている方向から風が吹いてくる',tm:'気温',dd:'湿数（気温−露点）',wet:'湿数3℃未満＝湿っていて雲がありそう',ex:'例：西の風 65kt',tms:'気温 −22℃',dds:'湿数 2℃'},
+  ko:{t:'관측점 기입 읽는 법',hb:'짧은 깃=5kt',fb:'긴 깃=10kt',pn:'삼각기=50kt',sum:'50+10+5=65kt',from:'막대가 뻗은 방향에서 바람이 불어온다',tm:'기온',dd:'습수(기온−이슬점)',wet:'습수 3℃ 미만=습해서 구름이 있을 듯',ex:'예: 서풍 65kt',tms:'기온 −22℃',dds:'습수 2℃'},
+  en:{t:'Reading a station plot',hb:'Short barb = 5 kt',fb:'Long barb = 10 kt',pn:'Pennant = 50 kt',sum:'50 + 10 + 5 = 65 kt',from:'The wind blows from the direction the shaft points',tm:'Temperature',dd:'Dew-point depression (temperature − dew point)',wet:'Depression under 3 °C = moist, cloud likely',ex:'Example: westerly, 65 kt',tms:'Temp −22 °C',dds:'T − Td 2 °C'}})[l];
+ if(!W)return F.met_barbs('ja');
+ var nar=NARROW();K=nar?1.3:1;
+ var cx=380,cy=240;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900)+R(14,44,612,300,'#fff',14,' stroke="#D9E3EC"');
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="12" fill="#fff" stroke="#243447" stroke-width="3"/>';
+ s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx-230)+'" y2="'+cy+'" stroke="#243447" stroke-width="4"/>';
+ function ap(d,g){return '<g opacity="0">'+g+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+d+';'+(d+.05).toFixed(2)+';.92;1" dur="8s" repeatCount="indefinite"/></g>'}
+ s+=ap(.1,'<path d="M'+(cx-230)+' '+cy+' L'+(cx-230)+' '+(cy-50)+' L'+(cx-196)+' '+cy+' Z" fill="#243447"/>');
+ s+=ap(.35,'<line x1="'+(cx-186)+'" y1="'+cy+'" x2="'+(cx-200)+'" y2="'+(cy-50)+'" stroke="#243447" stroke-width="4"/>');
+ s+=ap(.6,'<line x1="'+(cx-166)+'" y1="'+cy+'" x2="'+(cx-173)+'" y2="'+(cy-25)+'" stroke="#243447" stroke-width="4"/>');
+ s+=ap(.1,LB(110,cy-72,W.pn,11.5,'#fff','middle','#243447'))+ap(.35,LB(180,cy+34,W.fb,11.5,'#fff','middle','#40566B'))+ap(.6,LB(270,cy-64,W.hb,11.5,'#fff','middle','#6B7785'))+ap(.8,LB(200,cy+76,W.sum,14,'#fff','middle','#E08A2F'));
+ s+=tx(cx+22,cy-10,'−22',16,'#D64545',900,'start')+tx(cx+22,cy+24,'2',16,'#2F6FD6',900,'start');
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="30" fill="#2F6FD6" opacity=".12"/>';
+ s+=LB(cx+86,cy-16,'← '+W.tms,11,'#D64545','start','#FDE7D3')+LB(cx+50,cy+20,'← '+W.dds,11,'#1d4d8a','start','#DCEBFA');
+ s+=LB(320,318,W.ex,12,'#0f3558','middle','#EEF3F8');
+ s+=R(14,358,612,146,'#fff',14,' stroke="#D9E3EC"');
+ s+=WR(320,390,W.from,12,D,800,580)+WR(320,432,W.wet,12,'#1d4d8a',800,580);
+ s+='<circle cx="80" cy="472" r="12" fill="#fff" stroke="#243447" stroke-width="3"/><circle cx="80" cy="472" r="20" fill="#2F6FD6" opacity=".2"/>'+tx(110,478,W.dd+' < 3℃',11.5,G,800,'start');
+ K=1;return s+'</svg>'},
+
+/* 24 渦度：谷では反時計回り（正）、尾根では時計回り（負）。谷の前面で空気が上がる */
+met_vort:function(l){
+ var W=({ja:{t:'渦度（うずの強さ）',tr:'谷：反時計回り＝正の渦度',ri:'尾根：時計回り＝負の渦度',up:'谷の前面：空気が上がり雲ができる',dn:'谷の後ろ：空気が下がり晴れる',wind:'西風'},
+  ko:{t:'와도(소용돌이의 세기)',tr:'기압골: 반시계=양의 와도',ri:'기압마루: 시계 방향=음의 와도',up:'기압골 앞쪽: 공기가 올라가 구름이 생긴다',dn:'기압골 뒤쪽: 공기가 내려가 맑다',wind:'서풍'},
+  en:{t:'Vorticity (how strongly the air spins)',tr:'Trough: anticlockwise = positive vorticity',ri:'Ridge: clockwise = negative vorticity',up:'Ahead of the trough: air rises and cloud forms',dn:'Behind the trough: air sinks and skies clear',wind:'Westerly'}})[l];
+ if(!W)return F.met_vort('ja');
+ var nar=NARROW();K=nar?1.3:1;
+ var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img">'+R(0,0,640,480,'#F7FAFD')+tx(320,28,W.t,15,'#0f3558',900)+R(14,44,612,400,'#EEF5FB',12);
+ var wv='M20 150 C120 150 140 330 220 330 C300 330 330 110 430 110 C520 110 560 200 620 200';
+ s+='<path d="'+wv+'" fill="none" stroke="#6B7785" stroke-width="10" opacity=".25"/><path d="'+wv+'" fill="none" stroke="#6B4FA0" stroke-width="4" stroke-dasharray="16 12"><animate attributeName="stroke-dashoffset" values="0;-56" dur="1.2s" repeatCount="indefinite"/></path>';
+ function wheel(x,y,dir,c){var g='<g transform="translate('+x+' '+y+')"><circle r="34" fill="#fff" stroke="'+c+'" stroke-width="3"/><g>';for(var a=0;a<4;a++)g+='<path d="M0 0 L0 -28 L10 -20 Z" fill="'+c+'" transform="rotate('+(a*90)+')"/>';return g+'<animateTransform attributeName="transform" type="rotate" values="0;'+(dir*360)+'" dur="3s" repeatCount="indefinite"/></g></g>'}
+ s+=wheel(220,300,-1,'#2F6FD6')+wheel(430,140,1,'#D64545');
+ s+=LB(220,368,W.tr,11,'#fff','middle','#2F6FD6')+LB(430,86,W.ri,11,'#fff','middle','#D64545');
+ s+='<g opacity=".9">'+cloud(330,250,1,'#DCE3EA')+'</g><g>'+ARW(330,300,330,262,'#E08A2F',4)+'<animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/></g>'+LB(330,420,W.up,11,'#8a3b00','middle','#FFF1E3');
+ s+='<g>'+ARW(110,200,110,238,'#2F6FD6',4)+'<animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/></g>'+LB(28,262,W.dn,10.5,'#1d4d8a','start','#DCEBFA');
+ s+=ARW(40,420,120,420,'#6B4FA0',4)+tx(130,425,W.wind,11,'#6B4FA0',800,'start');
  K=1;return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
