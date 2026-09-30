@@ -9,3 +9,4 @@ desktop.ini
 # 静的ページの生成でできるもの（GitHub の上で作るので、上げない）
 node_modules/
 _site/
+*.zip
