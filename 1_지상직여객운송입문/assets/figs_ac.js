@@ -241,7 +241,77 @@ ac_freeze:function(l){
  s+='<path d="'+cur+'" fill="none" stroke="#2F6FD6" stroke-width="3.5"/><circle r="7" fill="#FFD23F" stroke="#0f3558"><animateMotion dur="8s" repeatCount="indefinite" path="'+cur+'"/></circle>';
  s+='<g opacity="0">'+LBW(gx0+300,gy0-128,W.act,10.5,'#1F7A6E','middle','#fff',300)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.55;.6;.95;1" dur="8s" repeatCount="indefinite"/></g>';
  var L=LIST(W.n,298,600,11);
- var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+/* 13 与圧と急減圧：機体の高度と客室の高度。急減圧で客室の高度が上がり、酸素マスクが出て、10,000ftへ緊急降下 */
+ac_press:function(l){
+ var W=({ja:{t:'与圧と急減圧',ac:'機体の高度',cb:'客室の高度（ふつう 8,000ft 以下）',dec:'急減圧',mask:'酸素マスク',ed:'緊急降下 → 10,000ft',n:['客室の高度は、いちばん高く飛んでも 8,000ft 以下に保たれる（輸送用の飛行機の基準）','客室の高度が約14,000ftを超えると、乗客の酸素マスクが自動で出る。乗客用の酸素は十数分分なので、すぐに降下する','高い山の上の経路では、10,000ftまで降りられないので、酸素が足りる逃げ道を前もって決める（11-5）']},
+  ko:{t:'여압과 급감압',ac:'기체 고도',cb:'객실 고도(보통 8,000ft 이하)',dec:'급감압',mask:'산소마스크',ed:'긴급 강하 → 10,000ft',n:['객실 고도는 가장 높이 날아도 8,000ft 이하로 유지된다(수송용 비행기 기준)','객실 고도가 약 14,000ft를 넘으면 승객 산소마스크가 자동으로 내려온다. 승객용 산소는 십수 분 분량이라 곧바로 강하한다','높은 산 위의 경로에서는 10,000ft까지 내려갈 수 없으므로 산소가 충분한 탈출 경로를 미리 정한다(11-5)']},
+  en:{t:'Pressurisation and rapid decompression',ac:'Aircraft altitude',cb:'Cabin altitude (normally 8,000 ft or below)',dec:'Rapid decompression',mask:'Oxygen masks',ed:'Emergency descent → 10,000 ft',n:['Cabin altitude is kept at or below 8,000 ft even at the highest cruise level (transport aeroplane standard)','Above a cabin altitude of about 14,000 ft, passenger oxygen masks drop automatically; passenger oxygen lasts only a dozen or so minutes, so the crew descends at once','Over high terrain the aircraft cannot descend to 10,000 ft, so escape routes with enough oxygen are planned in advance (11-5)']}})[l];
+ if(!W)return F.ac_press('ja');
+ setK(1);var gx0=70,gy0=250,gw=520,gh=180,Y=function(ft){return gy0-ft/41000*gh};
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,220,'#EEF5FB',14);
+ s+='<line x1="'+gx0+'" y1="'+gy0+'" x2="'+(gx0+gw)+'" y2="'+gy0+'" stroke="#40566B" stroke-width="2"/>';
+ [0,10000,20000,30000,40000].forEach(function(f){s+='<line x1="'+gx0+'" y1="'+Y(f)+'" x2="'+(gx0+gw)+'" y2="'+Y(f)+'" stroke="#C8D3DE" stroke-dasharray="3 5"/>'+tx(gx0-6,Y(f)+4,(f/1000)+'k',10,G,800,'end')});
+ var ac='M'+gx0+' '+Y(0)+' L'+(gx0+120)+' '+Y(37000)+' L'+(gx0+280)+' '+Y(37000)+' L'+(gx0+360)+' '+Y(10000)+' L'+(gx0+gw)+' '+Y(10000);
+ var cb='M'+gx0+' '+Y(0)+' L'+(gx0+120)+' '+Y(7000)+' L'+(gx0+280)+' '+Y(7000)+' L'+(gx0+292)+' '+Y(30000)+' L'+(gx0+360)+' '+Y(10000)+' L'+(gx0+gw)+' '+Y(10000);
+ s+='<path d="'+ac+'" fill="none" stroke="#2F6FD6" stroke-width="3.5"/><path d="'+cb+'" fill="none" stroke="#E08A2F" stroke-width="3" stroke-dasharray="7 4"/>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="'+ac+'"/></g>';
+ s+=LB(gx0+200,Y(37000)-14,W.ac,10.5,'#fff','middle','#2F6FD6')+LBW(gx0+200,Y(7000)+22,W.cb,10.5,'#E08A2F','middle','#fff',260);
+ s+='<g opacity="0">'+LB(gx0+300,Y(33000)-4,'⚠ '+W.dec,11,'#fff','start','#D64545')+LB(gx0+190,Y(22000),W.mask+' ↓',10.5,'#0f3558','middle','#FFD23F')+LBW(gx0+440,Y(10000)-24,W.ed,10.5,'#fff','middle','#1F7A6E',170)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.5;.53;.97;1" dur="9s" repeatCount="indefinite"/></g>';
+ var L=LIST(W.n,288,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+
+/* 14 系統の多重化：油圧3系統、電気はエンジンの発電機 → APUの発電機 → バッテリー → RAT */
+ac_redund:function(l){
+ var W=({ja:{t:'系統をいくつも持つ（多重化）',hyd:'油圧（3系統）',use:['操縦翼面','脚','ブレーキ'],el:'電気（代わりの順）',src:['エンジンの発電機','APUの発電機','バッテリー','RAT（風で回る発電機）'],note:'1つが壊れても、ほかの系統で飛び続けられるように作られている。どこまで壊れても出発できるかを決めるのが MEL'},
+  ko:{t:'계통을 여러 개 갖는다(다중화)',hyd:'유압(3계통)',use:['조종면','착륙장치','브레이크'],el:'전기(대신하는 순서)',src:['엔진 발전기','APU 발전기','배터리','RAT(바람으로 도는 발전기)'],note:'하나가 고장 나도 다른 계통으로 계속 날 수 있도록 만들어져 있다. 어디까지 고장 나도 출발할 수 있는지를 정하는 것이 MEL'},
+  en:{t:'Built-in redundancy',hyd:'Hydraulics (three systems)',use:['Flight controls','Landing gear','Brakes'],el:'Electrical (backup order)',src:['Engine generators','APU generator','Battery','RAT (wind-driven generator)'],note:'Aircraft are built to keep flying when one system fails; the MEL decides how much may be inoperative at departure'}})[l];
+ if(!W)return F.ac_redund('ja');
+ setK(1);var nar=NARROW();
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ var hc=['#1F7A6E','#2F6FD6','#E0A800'],y0=62,bw=nar?560:280;
+ function hydPanel(x0,y0,w){var g=R(x0,y0,w,200,'#EEF5FB',14)+tx(x0+w/2,y0+26,W.hyd,13,D,900),lh=FS(11)*1.5;
+  hc.forEach(function(c,i){var yy=y0+56+i*44;g+='<rect x="'+(x0+16)+'" y="'+(yy-14)+'" width="36" height="28" rx="6" fill="'+c+'"/>'+tx(x0+34,yy+5,['A','B','C'][i],12,'#fff',900);
+   g+='<line x1="'+(x0+52)+'" y1="'+yy+'" x2="'+(x0+w-110)+'" y2="'+yy+'" stroke="'+c+'" stroke-width="4" stroke-dasharray="10 6"><animate attributeName="stroke-dashoffset" values="0;-32" dur="1s" repeatCount="indefinite"/></line>';
+   g+=LB(x0+w-16,yy+4,W.use[i],10.5,'#fff','end',c)});return g}
+ function elPanel(x0,y0,w){var g=R(x0,y0,w,200,'#EEF5FB',14)+tx(x0+w/2,y0+26,W.el,13,D,900);
+  W.src.forEach(function(t,i){var yy=y0+56+i*36;g+='<g><rect x="'+(x0+16)+'" y="'+(yy-14)+'" width="'+(w-32)+'" height="28" rx="8" fill="#fff" stroke="#C8D3DE"/><rect x="'+(x0+16)+'" y="'+(yy-14)+'" width="'+(w-32)+'" height="28" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,4,0,.7)+' dur="10s" repeatCount="indefinite"/></rect>'+BADGE(x0+34,yy,i+1,10.5)+tx(x0+54,yy+FS(10.5)*0.35,t,10.5,D,800,'start')+'</g>'});return g}
+ var HH;
+ if(nar){s+=hydPanel(20,62,600)+elPanel(20,274,600);HH=486}else{s+=hydPanel(20,62,290)+elPanel(330,62,290);HH=274}
+ var n=LI(W.note,11,580).length;s+=R(20,HH,600,n*FS(11)*1.3+16,'#FFF1E3',10)+WR(320,HH+8+n*FS(11)*1.3/2+FS(11)*0.3,W.note,11,'#8a3b00',900,580);HH+=n*FS(11)*1.3+28;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+'</svg>'},
+
+/* 15 地上での防除雪氷：Type I（オレンジ・温かい）で落とし、Type IV（緑・とろみ）で防ぐ。ホールドオーバータイムの中で離陸 */
+ac_deice:function(l){
+ var W=({ja:{t:'地上での防除雪氷（デアイシング）',t1:'① Type I：温めた液で雪・氷を落とす',t4:'② Type IV：とろみのある液で、しばらく付かないように守る',hot:'ホールドオーバータイム：守りが効いている時間',take:'この時間の中で離陸する。過ぎたら、もう一度',n:['効いている時間は、雪の強さ・気温・液の種類で表から決まる（数分〜数十分）','除雪氷の場所・順番・時間が出発の遅れに直結する。冬は運航管理者・地上係員・整備が連携する']},
+  ko:{t:'지상 방빙·제빙(디아이싱)',t1:'① Type I: 데운 액으로 눈·얼음을 떨어낸다',t4:'② Type IV: 끈적한 액으로 한동안 붙지 않게 막는다',hot:'홀드오버 타임: 막아 주는 효과가 지속되는 시간',take:'이 시간 안에 이륙한다. 지나면 다시 한다',n:['지속 시간은 눈의 세기·기온·액 종류로 표에서 정한다(몇 분~수십 분)','제빙 장소·순서·시간이 출발 지연으로 바로 이어진다. 겨울에는 운항관리사·지상 직원·정비가 연계한다']},
+  en:{t:'De-icing and anti-icing on the ground',t1:'① Type I: heated fluid removes snow and ice',t4:'② Type IV: thickened fluid keeps it from building up again for a while',hot:'Holdover time: how long the protection lasts',take:'Take off within this time, or treat the aircraft again',n:['Holdover times come from tables based on precipitation, temperature and fluid type (a few minutes to tens of minutes)','De-icing location, sequence and time translate directly into departure delays; in winter, dispatch, ground handling and maintenance work closely together']}})[l];
+ if(!W)return F.ac_deice('ja');
+ setK(1);var dur=10;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,190,'#DCE6F0',14)+R(20,216,600,30,'#EEF2F6',0);
+ for(var i=0;i<14;i++){var x=40+i*42;s+='<circle cx="'+x+'" cy="60" r="2.5" fill="#fff"><animate attributeName="cy" values="60;240" dur="'+(2.4+i%3*0.5)+'s" begin="-'+(i*0.3).toFixed(1)+'s" repeatCount="indefinite"/></circle>'}
+ s+='<g transform="translate(360 190) scale(3.4)">'+planeS('#fff')+'</g>';
+ s+='<g transform="translate(150 200)"><rect x="-40" y="-18" width="80" height="30" rx="4" fill="#E08A2F"/><rect x="-10" y="-60" width="8" height="44" fill="#8C9BAA"/><rect x="-14" y="-66" width="16" height="10" fill="#8C9BAA"/><circle cx="-24" cy="14" r="7" fill="#243447"/><circle cx="24" cy="14" r="7" fill="#243447"/></g>';
+ s+='<g><path d="M146 136 Q240 110 330 164" fill="none" stroke="#FF9B3D" stroke-width="7" stroke-linecap="round" stroke-dasharray="4 8"><animate attributeName="stroke-dashoffset" values="0;-24" dur=".6s" repeatCount="indefinite"/></path><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.45;.47;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0"><path d="M146 136 Q240 110 330 164" fill="none" stroke="#39B26B" stroke-width="7" stroke-linecap="round" stroke-dasharray="4 8"><animate attributeName="stroke-dashoffset" values="0;-24" dur=".6s" repeatCount="indefinite"/></path><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.47;.5;.8;.82;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ s+='<g transform="translate(560 96)"><circle r="26" fill="#fff" stroke="#243447" stroke-width="3"/><line x1="0" y1="0" x2="0" y2="-20" stroke="#D64545" stroke-width="3" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0;0;0;330;330" keyTimes="0;.8;.82;.99;1" dur="'+dur+'s" repeatCount="indefinite"/></line><circle r="3" fill="#243447"/></g>';
+ var y=258,items=[[W.t1,'#B85A00','#FFF1E3'],[W.t4,'#1F7A6E','#E8F5F2'],[W.hot+' → '+W.take,'#D64545','#FDEAE3']];
+ items.forEach(function(v){var n=LI(v[0],11.5,560).length,lh=FS(11.5)*1.3,h=n*lh+14;s+=R(20,y,600,h,v[2],10)+WR(320,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,560);y+=h+6});
+ var L=LIST(W.n,y+4,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+
+/* 16 MELで出発する：故障の発見 → MELの項目 → 修理の期限 → (M)(O)の手順 → INOPの表示 → 制限つきで出発 */
+ac_mel:function(l){
+ var W=({ja:{t:'MEL（最小装備品目録）で出発する',steps:['故障を見つけて記録する（航空日誌）','MELの項目があるか確かめる（なければ出発できない）','修理の期限の区分を確かめる','(M) 整備の手順・(O) 運航の手順を行う','操縦室に「INOP（不作動）」の表示を付ける','制限（高度・空港・天気など）を飛行計画に入れて出発'],cat:[['A','項目ごとに決まった期限'],['B','3日'],['C','10日'],['D','120日']],ch:'区分',dy:'修理までの期限（見つけた日を除く暦日）'},
+  ko:{t:'MEL(최소장비목록)로 출발하기',steps:['고장을 발견해 기록한다(항공일지)','MEL 항목이 있는지 확인한다(없으면 출발할 수 없다)','수리 기한 등급을 확인한다','(M) 정비 절차·(O) 운항 절차를 한다','조종실에 ‘INOP(작동 불능)’ 표시를 붙인다','제한(고도·공항·날씨 등)을 비행계획에 넣고 출발'],cat:[['A','항목마다 정해진 기한'],['B','3일'],['C','10일'],['D','120일']],ch:'등급',dy:'수리까지의 기한(발견한 날을 뺀 달력 날짜)'},
+  en:{t:'Dispatching under the MEL (minimum equipment list)',steps:['Find the defect and record it (technical log)','Check that the MEL has an item for it (if not, no dispatch)','Check the repair interval category','Carry out the (M) maintenance and (O) operational procedures','Placard the item “INOP” in the cockpit','Put the restrictions (altitude, airports, weather, etc.) into the flight plan and dispatch'],cat:[['A','Interval set in the item'],['B','3 days'],['C','10 days'],['D','120 days']],ch:'Category',dy:'Repair interval (calendar days, excluding the day of discovery)'}})[l];
+ if(!W)return F.ac_mel('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(11)*1.3,n=W.steps.length;
+ W.steps.forEach(function(t,i){var nn=LI(t,11,500).length,h=nn*lh+14;s+='<g>'+R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.55)+' dur="12s" repeatCount="indefinite"/></rect>'+BADGE(44,y+h/2,i+1,11)+WR(70,y+h/2+FS(11)*0.35,t,11,D,800,500,'start')+'</g>';y+=h;if(i<n-1){s+=ARW(320,y+2,320,y+14,'#9FB0C2',3);y+=16}});
+ y+=14;var rh=FS(12)*1.6,nh=LI(W.dy,11,400).length,hh=Math.max(rh,nh*lh+12);s+=R(20,y,600,hh,'#243447',8)+tx(90,y+hh/2+FS(11.5)*0.35,W.ch,11.5,'#fff',900)+WR(390,y+hh/2+FS(11)*0.3,W.dy,11,'#fff',900,400);y+=hh+4;
+ W.cat.forEach(function(r,i){s+=R(20,y,600,rh,i%2?'#fff':'#F4F7FB',6)+tx(90,y+rh*0.7,r[0],13,'#2F6FD6',900)+tx(390,y+rh*0.7,r[1],11.5,D,800);y+=rh+4});
+ y+=10;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
