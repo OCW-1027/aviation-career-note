@@ -143,7 +143,78 @@ atc_hold:function(l){
  s+='<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M'+(fx-L)+' '+fy+' L'+fx+' '+fy+' A'+r+' '+r+' 0 0 1 '+fx+' '+(fy+2*r)+' L'+(fx-L)+' '+(fy+2*r)+' A'+r+' '+r+' 0 0 1 '+(fx-L)+' '+fy+'"/></g>';
  s+=BADGE(fx-L/2,fy+2*r+24,1,11);
  var Lst=LIST(W.items,278,600,11);
- var HH=Lst.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+Lst.s+'</svg>'}
+ var HH=Lst.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+Lst.s+'</svg>'},
+/* 9 音声アルファベットと数字：RJTT を順に読み、特別な読み方の数字も示す */
+atc_phon:function(l){
+ var W=({ja:{t:'音声アルファベットと数字',ex:'例：羽田の地名略号 RJTT ＝ ロメオ・ジュリエット・タンゴ・タンゴ',num:'読み方に気をつける数字',note:'聞き違えやすい文字や数字を、決まった言い方で伝える（ICAO Annex 10）'},
+  ko:{t:'음성 알파벳과 숫자',ex:'예: 하네다의 지명 약호 RJTT = 로미오·줄리엣·탱고·탱고',num:'읽는 법에 주의할 숫자',note:'잘못 듣기 쉬운 글자와 숫자를 정해진 말로 전한다(ICAO Annex 10)'},
+  en:{t:'The phonetic alphabet and numbers',ex:'Example: Haneda’s location indicator RJTT = Romeo Juliett Tango Tango',num:'Numbers with special pronunciation',note:'Letters and numbers that are easily misheard are sent with set words (ICAO Annex 10)'}})[l];
+ if(!W)return F.atc_phon('ja');
+ setK(1);
+ var A=['Alfa','Bravo','Charlie','Delta','Echo','Foxtrot','Golf','Hotel','India','Juliett','Kilo','Lima','Mike','November','Oscar','Papa','Quebec','Romeo','Sierra','Tango','Uniform','Victor','Whiskey','X-ray','Yankee','Zulu'];
+ var s=TTL(320,30,W.t,15,'#0f3558',600),cols=NARROW()?4:5,cw=600/cols,ch=Math.max(34,FS(11)*1.6),x0=20,y0=56;
+ var seq=['R','J','T','T'],order={};seq.forEach(function(c,i){(order[c]=order[c]||[]).push(i)});
+ A.forEach(function(w,i){var c=i%cols,r=Math.floor(i/cols),x=x0+c*cw,y=y0+r*(ch+4),L=w.charAt(0);
+  s+=R(x,y,cw-6,ch,'#fff',8,' stroke="#D9E3EC"');
+  if(order[L]){order[L].forEach(function(k){s+='<rect x="'+x+'" y="'+y+'" width="'+(cw-6)+'" height="'+ch+'" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(k,4,0,0.8)+' dur="8s" repeatCount="indefinite"/></rect>'})}
+  s+=tx(x+14,y+ch/2+FS(12)*0.35,L,12,'#2F6FD6',900,'start')+tx(x+34,y+ch/2+FS(11)*0.35,w,11,D,800,'start')});
+ var y=y0+Math.ceil(26/cols)*(ch+4)+8;
+ var n=LI(W.ex,11.5,580).length;s+=WR(320,y+n*FS(11.5)*1.3/2+FS(11.5)*0.3,W.ex,11.5,'#8a3b00',900,580);y+=n*FS(11.5)*1.3+14;
+ s+=R(20,y,600,FS(12)*1.6+10,'#243447',8)+tx(320,y+FS(12)*1.2,W.num,12,'#fff',900);y+=FS(12)*1.6+16;
+ [['3','TREE'],['4','FOW-er'],['5','FIFE'],['9','NIN-er'],['1000','TOU-SAND'],['.','DAY-SEE-MAL']].forEach(function(v,i){var x=20+(i%3)*202,yy=y+Math.floor(i/3)*(FS(12)*1.8+8);s+=R(x,yy,196,FS(12)*1.8,'#F4F7FB',8)+tx(x+16,yy+FS(12)*1.25,v[0],12,'#2F6FD6',900,'start')+tx(x+(v[0].length>2?74:48),yy+FS(12)*1.25,v[1],11.5,D,900,'start')});
+ y+=2*(FS(12)*1.8+8)+6;
+ var n2=LI(W.note,10.5,580).length;s+=WR(320,y+n2*FS(10.5)*1.3/2,W.note,10.5,G,800,580);y+=n2*FS(10.5)*1.3+14;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 10 呼び出しと復唱の流れ：最初の呼び出し → 指示 → 復唱（最後にコールサイン） */
+atc_call:function(l){
+ var W=({ja:{t:'呼び出しと復唱の流れ',p:'パイロット',a:'管制',k:['最初の呼び出し：相手 → 自分 → 用件（高度など）','管制の指示','復唱：大事な部分をくり返し、最後に自分のコールサイン'],note:'コールサインは航空会社の呼び名＋便名（例：KOREAN AIR 705 ＝ コリアンエア セブン ゼロ ファイブ）'},
+  ko:{t:'호출과 복창의 흐름',p:'조종사',a:'관제',k:['첫 호출: 상대 → 자신 → 용건(고도 등)','관제 지시','복창: 중요한 부분을 되풀이하고 마지막에 자신의 호출부호'],note:'호출부호는 항공사 호칭 + 편명(예: KOREAN AIR 705 = 코리안에어 세븐 제로 파이브)'},
+  en:{t:'The flow of a call and readback',p:'Pilot',a:'ATC',k:['Initial call: whom you are calling → who you are → the message (e.g. level)','ATC instruction','Readback: repeat the key parts and end with your call sign'],note:'Call signs are the airline’s telephony designator plus the flight number (e.g. KOREAN AIR 705 = “Korean Air Seven Zero Five”)'}})[l];
+ if(!W)return F.atc_call('ja');
+ setK(1);
+ var msgs=[[0,'Tokyo Control, Korean Air 705, flight level 350'],[1,'Korean Air 705, Tokyo Control, radar contact, descend and maintain flight level 240'],[0,'Descend and maintain flight level 240, Korean Air 705']];
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=72;
+ msgs.forEach(function(m,i){var atc=m[0]===1,n=LI(m[1],11.5,420).length,lh=FS(11.5)*1.3,h=n*lh+20,x=atc?180:40,col=atc?'#2F6FD6':'#1F7A6E';
+  var g=R(x,y,440,h,atc?'#E3F1FB':'#E8F5F2',14,' stroke="'+col+'" stroke-width="2"')+WR(x+220,y+10+n*lh/2+FS(11.5)*0.3,m[1],11.5,D,800,420)+LB(atc?x+440:x,y-2,atc?W.a:W.p,10.5,'#fff',atc?'end':'start',col)+BADGE(atc?x-24:x+464,y+h/2,i+1,11);
+  s+='<g opacity="0">'+g+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(i*0.25).toFixed(2)+';'+(i*0.25+0.05).toFixed(2)+';1" dur="9s" repeatCount="indefinite"/></g>';y+=h+18});
+ var L=LIST(W.k,y+4,600,11);var n=LI(W.note,10.5,580).length,yy=L.y+6;var note=WR(320,yy+n*FS(10.5)*1.3/2+FS(10.5)*0.3,W.note,10.5,G,800,580);yy+=n*FS(10.5)*1.3+14;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+yy.toFixed(0)+'" role="img">'+R(0,0,640,yy,'#F7FAFD')+s+L.s+note+'</svg>'},
+
+/* 11 「ROGER」は復唱ではない：高度の指示に Roger だけでは足りない */
+atc_roger:function(l){
+ var W=({ja:{t:'「ROGER」は復唱ではない',bad:'よくない例',good:'よい例',why:'ROGER は「受け取った」という意味だけ。高度・針路・速さ・滑走路の指示は、数字をくり返して復唱する',w:[['ROGER','全部受け取った'],['WILCO','分かった、そのとおりにする'],['AFFIRM／NEGATIVE','はい／いいえ'],['UNABLE','できない（理由を添える）'],['SAY AGAIN','もう一度言ってください'],['STANDBY','待ってください（あとで呼ぶ）']]},
+  ko:{t:'‘ROGER’는 복창이 아니다',bad:'나쁜 예',good:'좋은 예',why:'ROGER는 ‘받았다’는 뜻뿐이다. 고도·기수 방향·속도·활주로 지시는 숫자를 되풀이해 복창한다',w:[['ROGER','모두 받았다'],['WILCO','알았다, 그대로 하겠다'],['AFFIRM/NEGATIVE','네/아니오'],['UNABLE','할 수 없다(이유를 덧붙인다)'],['SAY AGAIN','다시 말해 달라'],['STANDBY','기다려 달라(나중에 부른다)']]},
+  en:{t:'“ROGER” is not a readback',bad:'Poor',good:'Good',why:'ROGER only means “received”. Level, heading, speed and runway instructions must be read back with the numbers',w:[['ROGER','I have received all of your transmission'],['WILCO','Understood, will comply'],['AFFIRM / NEGATIVE','Yes / no'],['UNABLE','Cannot comply (give the reason)'],['SAY AGAIN','Repeat your last transmission'],['STANDBY','Wait, I will call you']]}})[l];
+ if(!W)return F.atc_roger('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),atc='Korean Air 705, climb and maintain flight level 350';
+ var n0=LI(atc,11.5,560).length,lh=FS(11.5)*1.3,h0=n0*lh+18;s+=R(40,58,560,h0,'#E3F1FB',14,' stroke="#2F6FD6" stroke-width="2"')+WR(320,58+9+n0*lh/2+FS(11.5)*0.3,atc,11.5,D,800,540);
+ var y=58+h0+16,hb=lh+20;
+ s+='<g>'+R(20,y,290,hb,'#FDEAE3',12,' stroke="#D64545" stroke-width="2"')+tx(165,y+hb/2+FS(11.5)*0.35,'Roger, Korean Air 705',11.5,'#D64545',900)+LB(24,y-2,'✗ '+W.bad,10.5,'#fff','start','#D64545')+'<animate attributeName="opacity" values=".35;1;1;.35" keyTimes="0;.1;.45;.5" dur="8s" repeatCount="indefinite"/></g>';
+ var gtxt='Climb and maintain flight level 350, Korean Air 705',ng=LI(gtxt,11.5,270).length,hg=Math.max(hb,ng*lh+20);
+ s+='<g>'+R(330,y,290,hg,'#E8F5F2',12,' stroke="#1F7A6E" stroke-width="2"')+WR(475,y+10+ng*lh/2+FS(11.5)*0.3,gtxt,11.5,'#1F7A6E',900,270)+LB(334,y-2,'✓ '+W.good,10.5,'#fff','start','#1F7A6E')+'<animate attributeName="opacity" values=".35;.35;1;1" keyTimes="0;.5;.6;1" dur="8s" repeatCount="indefinite"/></g>';
+ y+=Math.max(hb,hg)+14;var n1=LI(W.why,11.5,560).length;s+=R(20,y,600,n1*lh+16,'#FFF1E3',10)+WR(320,y+8+n1*lh/2+FS(11.5)*0.3,W.why,11.5,'#8a3b00',900,560);y+=n1*lh+26;
+ W.w.forEach(function(r,i){var nn=LI(r[1],11,340).length,hh=Math.max(FS(11.5)*1.5,nn*FS(11)*1.3+10);s+=R(20,y,600,hh,i%2?'#fff':'#F4F7FB',6)+tx(36,y+hh/2+FS(11.5)*0.35,r[0],11.5,'#2F6FD6',900,'start')+WR(440,y+hh/2+FS(11)*0.3,r[1],11,D,800,340);y+=hh+4});
+ y+=10;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 12 洋上の通信：陸の近くはVHF、離れるとHF（電離層で反射）とSELCAL、衛星でCPDLC・ADS-C */
+atc_ocean:function(l){
+ var W=({ja:{t:'洋上の通信',vhf:'VHF（見通しの範囲だけ）',hf:'HF（電離層で反射して遠くへ）',sat:'衛星：CPDLC・ADS-C',items:['VHF：118〜137MHz。陸の近くだけ届く。緊急は121.5MHz','HF：電離層で反射して遠くまで届くが、雑音が多い。SELCAL（呼び出し音）で呼ばれるまで聞き続けなくてよい','CPDLC：管制と文字でやりとりする。ADS-C：機体が位置を自動で報告する','位置通報の順：コールサイン・位置・時刻・高度・次の位置と予定時刻・その次の位置']},
+  ko:{t:'해상의 통신',vhf:'VHF(가시거리 안에서만)',hf:'HF(전리층에 반사되어 멀리)',sat:'위성: CPDLC·ADS-C',items:['VHF: 118~137MHz. 육지 근처에서만 닿는다. 비상은 121.5MHz','HF: 전리층에 반사되어 멀리까지 닿지만 잡음이 많다. SELCAL(호출음)로 불릴 때까지 계속 듣지 않아도 된다','CPDLC: 관제와 문자로 주고받는다. ADS-C: 항공기가 위치를 자동으로 보고한다','위치 보고 순서: 호출부호·위치·시각·고도·다음 위치와 예정 시각·그다음 위치']},
+  en:{t:'Communications over the ocean',vhf:'VHF (line of sight only)',hf:'HF (reflected by the ionosphere)',sat:'Satellite: CPDLC, ADS-C',items:['VHF: 118–137 MHz, reaching only near land; emergency frequency 121.5 MHz','HF: reflected by the ionosphere to reach far but noisy; SELCAL chimes mean the crew need not listen continuously','CPDLC: text messages with ATC. ADS-C: the aircraft reports its position automatically','Position report order: call sign, position, time, level, next position and estimate, the one after']}})[l];
+ if(!W)return F.atc_ocean('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,220,'#0E2238',14)+'<defs><clipPath id="ocl"><rect x="20" y="56" width="600" height="220" rx="14"/></clipPath></defs><g clip-path="url(#ocl)"><path d="M20 74 Q320 56 620 74" fill="none" stroke="#6B4FA0" stroke-width="3" stroke-dasharray="6 5" opacity=".8"/>';
+ s+='<path d="M20 276 L20 236 L120 236 L140 276 Z" fill="#9C8A62"/>'+R(140,236,480,40,'#2F6FA8',0);
+ s+='<g transform="translate(70 226)"><rect x="-3" y="-20" width="6" height="20" fill="#9FB0C2"/><circle cy="-22" r="4" fill="#9FD3F7"/></g>';
+ for(var i=1;i<=3;i++)s+='<path d="M70 204 m-'+(i*36)+' 0 a'+(i*36)+' '+(i*36)+' 0 0 1 '+(i*72)+' 0" fill="none" stroke="#9FD3F7" stroke-width="2" opacity=".7"/>';
+ s+=LB(150,120,W.vhf,10.5,'#0f3558','middle','#9FD3F7');
+ s+='<path d="M70 204 L300 66 L520 180" fill="none" stroke="#FFB870" stroke-width="3" stroke-dasharray="8 6"><animate attributeName="stroke-dashoffset" values="0;-28" dur="1s" repeatCount="indefinite"/></path>'+LB(330,90,W.hf,10.5,'#0f3558','middle','#FFB870');
+ s+='<g transform="translate(560 84)"><rect x="-8" y="-6" width="16" height="12" rx="2" fill="#F2D233"/><rect x="-24" y="-3" width="14" height="6" fill="#9FD3F7"/><rect x="10" y="-3" width="14" height="6" fill="#9FD3F7"/></g><path d="M556 94 L522 174" stroke="#7CF2B0" stroke-width="2" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/></path>'+LB(560,120,W.sat,10.5,'#0f3558','end','#7CF2B0');
+ s+='<g transform="translate(520 186)">'+plane('#fff')+'</g></g>';
+ var L=LIST(W.items,288,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
