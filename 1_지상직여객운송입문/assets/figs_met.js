@@ -55,11 +55,14 @@ function LBW(x,y,s,sz,c,a,bg,maxw){var lines=LINES(s,sz,maxw),lh=FS(sz)*1.3,w=0;
 /* 飛行機のアイコン（2026.09 改訂）：機首は右（+x）。長さ約40
    plane(c) … 上から見た形（後退翼・エンジン2つ・後退した水平尾翼）。地図・平面の図に使う
    planeS(c) … 横から見た形（胴体・窓・翼・エンジン・垂直尾翼）。高さの断面・横からの図に使う */
-var PLANE_TOP='M20 0 C18.5 -2 15 -3 11 -3 L-13 -3 L-18 -1.6 L-20 0 L-18 1.6 L-13 3 L11 3 C15 3 18.5 2 20 0 Z M7 -3 L-5 -18 L-9.5 -18 L-3 -3 Z M7 3 L-5 18 L-9.5 18 L-3 3 Z M-12.5 -2.8 L-18 -8.5 L-20.5 -8.5 L-17 -2.8 Z M-12.5 2.8 L-18 8.5 L-20.5 8.5 L-17 2.8 Z M6 -9.4 C6 -10.3 5.2 -10.6 4 -10.6 L-1 -10.6 L-1 -8 L4 -8 C5.2 -8 6 -8.4 6 -9.4 Z M6 9.4 C6 10.3 5.2 10.6 4 10.6 L-1 10.6 L-1 8 L4 8 C5.2 8 6 8.4 6 9.4 Z';
-var PLANE_SIDE='M20 0.5 C19 -1.8 16 -3.2 11 -3.4 L-12 -3.4 L-17 -13 L-21 -13 L-19.5 -3 L-21 -0.5 L-19 1.8 L-12 3.2 L11 3.2 C16 3.2 19 2.2 20 0.5 Z M-14 -1.2 L-21.5 -3.2 L-23 -2.4 L-15.5 0.6 Z M5 2.6 L-5 6.4 L-8.5 6.4 L-2 2.8 Z M6.5 5 C6.5 4 5.5 3.4 4 3.4 L-1 3.4 L-1 6.4 L4 6.4 C5.5 6.4 6.5 5.9 6.5 5 Z';
-function plane(c){return '<path d="'+PLANE_TOP+'" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"/>'}
-function planeS(c){var w='';for(var x=-10;x<=11;x+=2.4)w+='<circle cx="'+x.toFixed(1)+'" cy="-1.2" r="0.6" fill="#2F6FD6" opacity=".85"/>';
- return '<path d="'+PLANE_SIDE+'" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"/>'+w+'<path d="M15.2 -1.9 L18.2 -1.3 L17.8 -0.4 L14.8 -0.8 Z" fill="#243447"/>'}
+var PLANE_ENG='M6.2 -9.3 C6.2 -10.4 5.4 -10.8 4.2 -10.8 L-2 -10.8 L-2 -7.8 L4.2 -7.8 C5.4 -7.8 6.2 -8.2 6.2 -9.3 Z M6.2 9.3 C6.2 10.4 5.4 10.8 4.2 10.8 L-2 10.8 L-2 7.8 L4.2 7.8 C5.4 7.8 6.2 8.2 6.2 9.3 Z';
+var PLANE_TOP='M20 0 C18.5 -2 15 -3 11 -3 L-13 -3 L-18 -1.6 L-20 0 L-18 1.6 L-13 3 L11 3 C15 3 18.5 2 20 0 Z M7 -2.9 L-5 -18 L-9.5 -18 L-3 -2.9 Z M7 2.9 L-5 18 L-9.5 18 L-3 2.9 Z M-12.5 -2.7 L-18 -8.5 L-20.5 -8.5 L-17 -2.7 Z M-12.5 2.7 L-18 8.5 L-20.5 8.5 L-17 2.7 Z';
+var PLANE_SIDE='M20 0.8 C19.6 -1.5 17 -3.2 12 -3.2 L-13 -3.2 L-19 -2.4 L-21 -1.2 L-20.8 -0.4 L-16 1.4 L-12 3.2 L12 3.2 C17 3.2 19.6 2.4 20 0.8 Z M-12.5 -3.1 L-17.5 -12.5 L-21 -12.5 L-19.6 -2.9 Z M-15.5 -1.1 L-21 -2.3 L-22.2 -1.8 L-17 -0.1 Z';
+var PLANE_SWING='M5 2.6 L-3.5 5 L-7.5 5 L-2.5 2.6 Z';
+var PLANE_SENG='M3.6 3.9 L1.2 2.6 L-0.4 2.6 L0.4 3.9 Z M7.2 5.3 C7.2 4 6.4 3.6 5 3.6 L0.8 3.8 L-1.6 4.7 L-1.6 5.9 L0.8 6.8 L5 7 C6.4 7 7.2 6.6 7.2 5.3 Z';
+function plane(c){var st=' stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"';return '<path d="'+PLANE_ENG+'" fill="#DCE3EA"'+st+'/><path d="'+PLANE_TOP+'" fill="'+(c||'#fff')+'"'+st+'/>'}
+function planeS(c){var st=' stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"',w='';for(var x=-10;x<=10.5;x+=2.3)w+='<circle cx="'+x.toFixed(1)+'" cy="-1" r="0.6" fill="#2F6FD6" opacity=".85"/>';
+ return '<path d="'+PLANE_SIDE+'" fill="'+(c||'#fff')+'"'+st+'/>'+w+'<path d="M15.4 -1.9 L18.3 -1.2 L17.9 -0.3 L15 -0.7 Z" fill="#243447"/><path d="'+PLANE_SWING+'" fill="#C9D3DD"'+st+'/><path d="'+PLANE_SENG+'" fill="#DCE3EA"'+st+'/><ellipse cx="6.7" cy="5.3" rx="0.55" ry="1.35" fill="#243447"/>'}
 function cloud(x,y,s,c){s=s||1;return '<g transform="translate('+x+' '+y+') scale('+s+')"><ellipse cx="0" cy="0" rx="26" ry="14" fill="'+(c||'#fff')+'"/><ellipse cx="-18" cy="4" rx="16" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="18" cy="4" rx="17" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="4" cy="-9" rx="15" ry="11" fill="'+(c||'#fff')+'"/></g>'}
 
 /* 前線の記号を線に沿って描く。pts：[[x,y],…]、type：cold・warm・stat・occl、side：記号を出す向き（1か−1）、sp：記号の間隔 */

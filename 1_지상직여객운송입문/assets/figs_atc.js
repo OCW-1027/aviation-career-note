@@ -139,7 +139,7 @@ atc_hold:function(l){
  var fx=440,fy=120,r=46,L=200;
  var race='M'+fx+' '+fy+' A'+r+' '+r+' 0 0 1 '+fx+' '+(fy+2*r)+' L'+(fx-L)+' '+(fy+2*r)+' A'+r+' '+r+' 0 0 1 '+(fx-L)+' '+fy+' Z';
  s+='<path d="'+race+'" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="8 6"/>';
- s+='<line x1="'+(fx-L)+'" y1="'+fy+'" x2="'+fx+'" y2="'+fy+'" stroke="#1F7A6E" stroke-width="4"/>'+LB((fx-L/2),fy-14,W.inb,10.5,'#fff','middle','#1F7A6E');
+ s+='<line x1="'+(fx-L)+'" y1="'+fy+'" x2="'+fx+'" y2="'+fy+'" stroke="#1F7A6E" stroke-width="4"/>'+LB((fx-L/2),fy+26,W.inb,10.5,'#fff','middle','#1F7A6E');
  s+='<g transform="translate('+fx+' '+fy+')"><path d="M0 -10 L9 6 L-9 6 Z" fill="#fff" stroke="#D64545" stroke-width="3"/></g>'+LB(fx+20,fy+6,W.fix,10.5,'#D64545','start','#fff');
  s+='<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M'+(fx-L)+' '+fy+' L'+fx+' '+fy+' A'+r+' '+r+' 0 0 1 '+fx+' '+(fy+2*r)+' L'+(fx-L)+' '+(fy+2*r)+' A'+r+' '+r+' 0 0 1 '+(fx-L)+' '+fy+'"/></g>';
  s+=BADGE(fx-L/2,fy+2*r+24,1,11);
