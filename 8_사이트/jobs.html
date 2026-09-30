@@ -48,7 +48,7 @@ function $(i){return document.getElementById(i)}
 function D(j){return j[cur]||j.en||j.ja}
 function uniq(k){var s={};(window.JOBS||[]).forEach(function(j){s[D(j)[k]]=1});return Object.keys(s)}
 function list(){var t=T[cur],E=window.SITE_ESC,q=$('q').value.trim().toLowerCase(),fj=$('fj').value,fe=$('fe').value;
- var J=(window.JOBS||[]).filter(function(j){var d=D(j);if(fj&&d.job!==fj)return false;if(fe&&d.emp!==fe)return false;if(q&&JSON.stringify(j).toLowerCase().indexOf(q)<0)return false;return true});
+ var TODAY=new Date(Date.now()+9*36e5).toISOString().slice(0,10);var J=(window.JOBS||[]).filter(function(j){var d=D(j);if(j.until&&j.until<TODAY)return false;if(fj&&d.job!==fj)return false;if(fe&&d.emp!==fe)return false;if(q&&JSON.stringify(j).toLowerCase().indexOf(q)<0)return false;return true});
  $('cnt').textContent=J.length+t.n;
  $('list').innerHTML=J.length?J.map(function(j){var d=D(j);return '<details class="job" id="'+E(j.id)+'"'+(location.hash==='#'+j.id?' open':'')+'><summary><div class="co">'+E(d.company)+(j.sample?'<span class="sample">'+t.sample+'</span>':'')+'</div><b class="t">'+E(d.title)+'</b><span class="chip">'+E(d.job)+'</span><span class="chip">'+E(d.place)+'</span><span class="chip">'+E(d.emp)+'</span></summary><div class="body">'+['job','place','emp','wage','hours','langReq','desc','apply'].map(function(k){return d[k]?'<b>'+t.L[k]+'</b><span>'+E(d[k])+'</span>':''}).join('')+'</div><div class="until">'+t.until+'：'+E(j.until)+'</div></details>'}).join(''):'<p class="lead">'+t.none+'</p>';
  if(location.hash&&!list.done){var el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el){el.open=true;el.scrollIntoView({block:'start'});list.done=true}}}
