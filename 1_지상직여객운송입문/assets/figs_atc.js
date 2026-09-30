@@ -192,7 +192,7 @@ atc_roger:function(l){
  var s=TTL(320,30,W.t,15,'#0f3558',600),atc='Korean Air 705, climb and maintain flight level 350';
  var n0=LI(atc,11.5,560).length,lh=FS(11.5)*1.3,h0=n0*lh+18;s+=R(40,58,560,h0,'#E3F1FB',14,' stroke="#2F6FD6" stroke-width="2"')+WR(320,58+9+n0*lh/2+FS(11.5)*0.3,atc,11.5,D,800,540);
  var y=58+h0+16,hb=lh+20;
- s+='<g>'+R(20,y,290,hb,'#FDEAE3',12,' stroke="#D64545" stroke-width="2"')+tx(165,y+hb/2+FS(11.5)*0.35,'Roger, Korean Air 705',11.5,'#D64545',900)+LB(24,y-2,'✗ '+W.bad,10.5,'#fff','start','#D64545')+'<animate attributeName="opacity" values=".35;1;1;.35" keyTimes="0;.1;.45;.5" dur="8s" repeatCount="indefinite"/></g>';
+ s+='<g>'+R(20,y,290,hb,'#FDEAE3',12,' stroke="#D64545" stroke-width="2"')+tx(165,y+hb/2+FS(11.5)*0.35,'Roger, Korean Air 705',11.5,'#D64545',900)+LB(24,y-2,'✗ '+W.bad,10.5,'#fff','start','#D64545')+'<animate attributeName="opacity" values=".35;1;1;.35;.35" keyTimes="0;.1;.45;.5;1" dur="8s" repeatCount="indefinite"/></g>';
  var gtxt='Climb and maintain flight level 350, Korean Air 705',ng=LI(gtxt,11.5,270).length,hg=Math.max(hb,ng*lh+20);
  s+='<g>'+R(330,y,290,hg,'#E8F5F2',12,' stroke="#1F7A6E" stroke-width="2"')+WR(475,y+10+ng*lh/2+FS(11.5)*0.3,gtxt,11.5,'#1F7A6E',900,270)+LB(334,y-2,'✓ '+W.good,10.5,'#fff','start','#1F7A6E')+'<animate attributeName="opacity" values=".35;.35;1;1" keyTimes="0;.5;.6;1" dur="8s" repeatCount="indefinite"/></g>';
  y+=Math.max(hb,hg)+14;var n1=LI(W.why,11.5,560).length;s+=R(20,y,600,n1*lh+16,'#FFF1E3',10)+WR(320,y+8+n1*lh/2+FS(11.5)*0.3,W.why,11.5,'#8a3b00',900,560);y+=n1*lh+26;

@@ -100,6 +100,89 @@ ops_retain:function(l){
   s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+WR(30,y+h/2+FS(11)*0.3,r[0],11,D,800,290,'start');
   s+='<rect x="'+x0+'" y="'+(y+h/2-9)+'" width="0" height="18" rx="6" fill="#2F6FD6"><animate attributeName="width" values="0;'+bw.toFixed(0)+';'+bw.toFixed(0)+'" keyTimes="0;'+(0.1+i*0.05).toFixed(2)+';1" dur="'+dur+'s" repeatCount="indefinite"/></rect>'+tx(x0+bw+8,y+h/2+FS(11)*0.35,r[1],11,'#1d4d8a',900,'start');y+=h+4});
  var n2=LI(W.note,10.5,580).length;s+=WR(320,y+8+n2*FS(10.5)*1.3/2+FS(10.5)*0.3,W.note,10.5,G,800,580);y+=n2*FS(10.5)*1.3+20;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+/* 6 運航管理者になる道：韓国と日本 */
+ops_path:function(l){
+ var W=({ja:{t:'運航管理者になる道 ― 韓国と日本',kr:'韓国：運航管理士',jp:'日本：運航管理者',ks:['経歴（2年など）','学科試験 5科目','実技試験','資格証明（航空従事者）','会社の教育・業務'],js:['経験（2年など）','学科試験 6科目','実地試験','技能検定の合格','会社の審査・業務'],note:'年齢はどちらも21歳以上（韓国：第34条、日本：施行規則第167条）。学科は科目ごとに70%以上（点）で合格'},
+  ko:{t:'운항관리사가 되는 길 — 한국과 일본',kr:'한국: 운항관리사',jp:'일본: 운항관리자',ks:['경력(2년 등)','학과시험 5과목','실기시험','자격증명(항공종사자)','회사 교육·업무'],js:['경험(2년 등)','학과시험 6과목','실지시험','기능검정 합격','회사 심사·업무'],note:'나이는 두 나라 모두 21세 이상(한국: 제34조, 일본: 시행규칙 제167조). 학과는 과목마다 70% 이상(점)이면 합격'},
+  en:{t:'Becoming a dispatcher: Korea and Japan',kr:'Korea: flight dispatcher',jp:'Japan: aircraft dispatcher',ks:['Experience (e.g. 2 years)','Written exam, 5 subjects','Practical exam','Licence (aviation personnel)','Company training and duties'],js:['Experience (e.g. 2 years)','Written exam, 6 subjects','Practical exam','Pass the competency test','Company checks and duties'],note:'Minimum age 21 in both (Korea Art. 34; Japan Enforcement Rule Art. 167); each written subject is passed at 70%'}})[l];
+ if(!W)return F.ops_path('ja');
+ setK(1);var dur=10,nar=NARROW();
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ function track(y0,title,steps,col){var g=R(20,y0,600,40,col,10)+tx(320,y0+26,title,13,'#fff',900),y=y0+48;
+  steps.forEach(function(t,i){var n=LI(t,11,500).length,lh=FS(11)*1.3,h=n*lh+14;g+='<g>'+R(20,y,600,h,'#fff',10,' stroke="'+col+'" stroke-width="1.5"')+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="10" fill="'+col+'" opacity="0"><animate attributeName="opacity" '+SEG(i,5,0,.18)+' dur="'+dur+'s" repeatCount="indefinite"/></rect>'+BADGE(44,y+h/2,i+1,11)+WR(70,y+h/2+FS(11)*0.3,t,11,D,800,500,'start')+'</g>';y+=h;if(i<4){g+=ARW(320,y+1,320,y+11,'#9FB0C2',3);y+=13}});return {s:g,y:y}}
+ var a=track(56,W.kr,W.ks,'#2F6FD6'),b=track(a.y+16,W.jp,W.js,'#D64545');s+=a.s+b.s;var y=b.y;
+ var n2=LI(W.note,11,580).length;s+=R(20,y+12,600,n2*FS(11)*1.3+16,'#FFF1E3',10)+WR(320,y+20+n2*FS(11)*1.3/2+FS(11)*0.3,W.note,11,'#8a3b00',900,580);y+=n2*FS(11)*1.3+40;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 7 出発と飛行計画の変更には運航管理者の承認が必要（韓：第65条②、日：第77条） */
+ops_approve:function(l){
+ var W=({ja:{t:'出発と計画の変更は「2人で決める」',dsp:'運航管理者',cap:'機長',st:['運航管理者が飛行計画（OFP）をつくる','機長が確かめ、2人が同意して署名','承認があって、はじめて出発','飛行中に計画を変えるときも、運航管理者の承認'],law:'韓国：航空安全法 第65条②／日本：航空法 第77条'},
+  ko:{t:'출발과 계획 변경은 ‘둘이 함께 정한다’',dsp:'운항관리사',cap:'기장',st:['운항관리사가 비행계획(OFP)을 만든다','기장이 확인하고 둘이 동의해 서명','승인이 있어야 비로소 출발','비행 중 계획을 바꿀 때도 운항관리사의 승인'],law:'한국: 항공안전법 제65조② / 일본: 항공법 제77조'},
+  en:{t:'Departure and plan changes are decided by two people',dsp:'Dispatcher',cap:'Captain',st:['The dispatcher prepares the flight plan (OFP)','The captain reviews it; both agree and sign','Only then may the flight depart','Changing the plan in flight also needs the dispatcher’s approval'],law:'Korea: Aviation Safety Act Art. 65(2) / Japan: Civil Aeronautics Act Art. 77'}})[l];
+ if(!W)return F.ops_approve('ja');
+ setK(1);var dur=12;
+ function person(x,y,c,lab){return '<g transform="translate('+x+' '+y+')"><circle cy="-26" r="14" fill="'+c+'"/><path d="M-22 14 Q-22 -8 0 -8 Q22 -8 22 14 Z" fill="'+c+'"/></g>'+LB(x,y+32,lab,11,'#fff','middle',c)}
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,190,'#EEF5FB',14);
+ s+=person(90,140,'#1F7A6E',W.dsp)+person(550,140,'#2F6FD6',W.cap);
+ s+='<g><rect x="-18" y="-24" width="36" height="48" rx="4" fill="#fff" stroke="#243447" stroke-width="2"/><path d="M-10 -12 h20 M-10 -4 h20 M-10 4 h14" stroke="#9FB0C2" stroke-width="3"/><animateMotion dur="'+dur+'s" repeatCount="indefinite" path="M130 120 L320 120 L510 120" keyPoints="0;0;.5;.5;1;1" keyTimes="0;.1;.25;.3;.45;1" calcMode="linear"/></g>';
+ s+='<g opacity="0">'+'<circle cx="320" cy="92" r="16" fill="#39B26B"/><path d="M311 92 l6 6 l12 -13" fill="none" stroke="#fff" stroke-width="4"/>'+'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.3;.32;.6;.62;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0"><g transform="translate(470 222)">'+planeS('#fff')+'</g><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.5;.52;.72;.74;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0"><path d="M520 88 C420 60 220 60 130 88" fill="none" stroke="#E08A2F" stroke-width="3" stroke-dasharray="7 5"/>'+ARW(160,82,128,90,'#E08A2F',3)+'<path d="M130 100 C220 128 420 128 520 100" fill="none" stroke="#39B26B" stroke-width="3" stroke-dasharray="7 5"/>'+ARW(490,106,522,98,'#39B26B',3)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.75;.77;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ var y=258,lh=FS(11)*1.3;
+ W.st.forEach(function(t,i){var n=LI(t,11,520).length,h=n*lh+14;s+='<g>'+R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,4,0,.55)+' dur="'+dur+'s" repeatCount="indefinite"/></rect>'+BADGE(42,y+h/2,i+1,11)+WR(64,y+h/2+FS(11)*0.3,t,11,D,800,520,'start')+'</g>';y+=h+4});
+ var n2=LI(W.law,11,580).length;s+=WR(320,y+8+n2*FS(11)*1.3/2+FS(11)*0.3,W.law,11,'#1d4d8a',900,580);y+=n2*FS(11)*1.3+22;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 8 ICAO の飛行計画（FPL）の主な項目 */
+ops_fpl:function(l){
+ var W=({ja:{t:'ATCに出す飛行計画（FPL）の主な項目',it:[['7','便名','ACN801'],['8','飛行の方式・種類','IS'],['9','機種・後方乱気流の区分','A20N/M'],['10','無線・航法の装備','SDE2FGHIRWY/LB1'],['13','出発空港・時刻','RJTT0000'],['15','速度・高度・経路','N0450F380 TIARA GUSRO Y20 KIRIN'],['16','目的地・所要時間・代替空港','RJFF0130 RJFR'],['18','その他（PBN・登録記号など）','PBN/… REG/…'],['19','補足（燃料の飛行可能時間・人数）','E/0300 P/165']],note:'韓国では、管制当局が別に定めない限り出発の60分前までに出す。OFPと経路・高度・時刻・代替空港をそろえる'},
+  ko:{t:'ATC에 내는 비행계획(FPL)의 주요 항목',it:[['7','편명','ACN801'],['8','비행 방식·종류','IS'],['9','기종·후류 요란 구분','A20N/M'],['10','무선·항법 장비','SDE2FGHIRWY/LB1'],['13','출발공항·시각','RJTT0000'],['15','속도·고도·경로','N0450F380 TIARA GUSRO Y20 KIRIN'],['16','목적공항·소요 시간·교체공항','RJFF0130 RJFR'],['18','기타(PBN·등록부호 등)','PBN/… REG/…'],['19','보충(연료 체공 시간·인원)','E/0300 P/165']],note:'한국은 관제 당국이 달리 정하지 않는 한 출발 60분 전까지 낸다. OFP와 경로·고도·시각·교체공항을 맞춘다'},
+  en:{t:'Main items of the ATC flight plan (FPL)',it:[['7','Aircraft identification','ACN801'],['8','Flight rules and type','IS'],['9','Type and wake category','A20N/M'],['10','Radio and navigation equipment','SDE2FGHIRWY/LB1'],['13','Departure aerodrome and time','RJTT0000'],['15','Speed, level and route','N0450F380 TIARA GUSRO Y20 KIRIN'],['16','Destination, EET and alternate','RJFF0130 RJFR'],['18','Other information (PBN, registration)','PBN/… REG/…'],['19','Supplementary (endurance, persons)','E/0300 P/165']],note:'In Korea, file at least 60 minutes before departure unless ATC specifies otherwise, and keep route, level, times and alternates the same as the OFP'}})[l];
+ if(!W)return F.ops_fpl('ja');
+ setK(1);var dur=12,n=W.it.length,y=62,lh=FS(11)*1.3;
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ W.it.forEach(function(r,i){var n1=LI(r[1],11,220).length,n2=LI(r[2],11,250).length,h=Math.max(n1,n2)*lh+14;
+  s+='<g>'+R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.55)+' dur="'+dur+'s" repeatCount="indefinite"/></rect>'+R(28,y+h/2-14,44,28,'#243447',6)+tx(50,y+h/2+FS(12)*0.35,r[0],12,'#fff',900)+WR(84,y+h/2+FS(11)*0.3,r[1],11,D,800,220,'start')+WR(340,y+h/2+FS(11)*0.3,r[2],11,'#1d4d8a',900,270,'start')+'</g>';y+=h+4});
+ var n3=LI(W.note,11,580).length;s+=R(20,y+8,600,n3*lh+16,'#FFF1E3',10)+WR(320,y+16+n3*lh/2+FS(11)*0.3,W.note,11,'#8a3b00',900,580);y+=n3*lh+34;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 9 出発前の書類の束：機長のフォルダーに集まり、署名して出発の許可 */
+ops_docs:function(l){
+ var W=({ja:{t:'出発前の書類の束と機長の署名',docs:['OFP（運航飛行計画書）','NOTAMと気象','ロードシート','特殊な搭載物の通知（NOTOC）','航空日誌の関係ページ'],who:['運航管理者','運航管理者','搭載管理','貨物・搭載','整備'],fold:'機長のフォルダー',sign:'機長の確認・署名 → 出発の許可',note:'作り直したOFP・ロードシートは古い版を回収し、新しい版だけを機内に置く。署名した書類は決められた期間保存する（9-2）'},
+  ko:{t:'출발 전 서류 묶음과 기장 서명',docs:['OFP(운항비행계획서)','NOTAM과 기상','로드시트','특수 탑재물 통지(NOTOC)','항공일지 관련 페이지'],who:['운항관리사','운항관리사','탑재관리','화물·탑재','정비'],fold:'기장 폴더',sign:'기장 확인·서명 → 비행 인가',note:'다시 만든 OFP·로드시트는 옛 판을 회수하고 새 판만 기내에 둔다. 서명한 서류는 정해진 기간 보존한다(9-2)'},
+  en:{t:'The pre-departure document pack and the captain’s signature',docs:['OFP (operational flight plan)','NOTAMs and weather','Load sheet','Special load notification (NOTOC)','Relevant technical log pages'],who:['Dispatcher','Dispatcher','Load control','Cargo and loading','Maintenance'],fold:'Captain’s folder',sign:'Captain checks and signs → flight release',note:'When the OFP or load sheet is reissued, collect the old version so only the new one is on board; keep signed documents for the set period (9-2)'}})[l];
+ if(!W)return F.ops_docs('ja');
+ setK(1);var dur=10,n=W.docs.length,y=62,lh=FS(11)*1.3;
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ var cols=['#2F6FD6','#1F7A6E','#E08A2F','#D64545','#6B4FA0'];
+ W.docs.forEach(function(t,i){var n1=LI(t,11,260).length,n2=LI(W.who[i],10.5,120).length,h=Math.max(n1,n2)*lh+14;
+  s+='<g>'+R(20,y,420,h,'#fff',8,' stroke="'+cols[i]+'" stroke-width="2"')+'<rect x="20" y="'+y+'" width="8" height="'+h+'" rx="3" fill="'+cols[i]+'"/>'+WR(40,y+h/2+FS(11)*0.3,t,11,D,800,260,'start')+WR(430,y+h/2+FS(10.5)*0.3,W.who[i],10.5,G,800,120,'end')+'</g>';
+  s+='<rect x="0" y="0" width="22" height="28" rx="3" fill="'+cols[i]+'" opacity="0"><animateMotion dur="'+dur+'s" repeatCount="indefinite" path="M440 '+(y+h/2-14)+' L520 '+(y+h/2-14)+' L540 150" keyPoints="0;0;1;1" keyTimes="0;'+(i*0.1).toFixed(2)+';'+(i*0.1+0.15).toFixed(2)+';1" calcMode="linear"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;'+(i*0.1).toFixed(2)+';'+(i*0.1+0.01).toFixed(2)+';'+(i*0.1+0.15).toFixed(2)+';'+(i*0.1+0.16).toFixed(2)+';1" dur="'+dur+'s" repeatCount="indefinite"/></rect>';
+  y+=h+6});
+ s+='<path d="M500 140 L600 140 L600 210 L500 210 Z" fill="#FFE9B0" stroke="#8a6d00" stroke-width="2"/><path d="M500 140 L520 128 L560 128 L570 140" fill="#FFD76B" stroke="#8a6d00" stroke-width="2"/>'+WR(550,178,W.fold,10.5,'#8a6d00',900,90);
+ s+='<g opacity="0"><circle cx="550" cy="240" r="16" fill="#39B26B"/><path d="M541 240 l6 6 l12 -13" fill="none" stroke="#fff" stroke-width="4"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.62;.64;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ y=Math.max(y,270)+6;var n2=LI(W.sign,12,560).length;s+=R(20,y,600,n2*FS(12)*1.3+16,'#1F7A6E',10)+WR(320,y+8+n2*FS(12)*1.3/2+FS(12)*0.3,W.sign,12,'#fff',900,560);y+=n2*FS(12)*1.3+24;
+ var n3=LI(W.note,10.5,580).length;s+=WR(320,y+n3*FS(10.5)*1.3/2+FS(10.5)*0.3,W.note,10.5,G,800,580);y+=n3*FS(10.5)*1.3+16;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 10 ホールドオーバータイム（練習：新千歳の朝）：散布開始から効いている時間と、離陸の見込みを比べる */
+ops_hot:function(l){
+ var W=({ja:{t:'ホールドオーバータイムと離陸の見込み（練習）',start:'散布開始 07:10（ここから数える）',win:'効いている時間 07:35〜07:55（25〜45分、架空の値）',dep:'出発 07:33',to:'離陸の見込み 07:56',bad:'長いほうも越える見込み → 作業の順番を遅らせる・地上走行を短くする・会社の手順で再作業や確認',note:'数え始めは「散布が終わった時刻」ではなく「最後の散布を始めた時刻」。2段階の作業なら2段階目の開始（7-2の表）'},
+  ko:{t:'홀드오버 타임과 이륙 예상(연습)',start:'살포 시작 07:10(여기서부터 센다)',win:'지속시간 07:35~07:55(25~45분, 가상의 값)',dep:'출발 07:33',to:'이륙 예상 07:56',bad:'긴 쪽도 넘길 전망 → 작업 순서를 늦춘다·지상 활주를 줄인다·회사 절차로 재작업이나 확인',note:'세기 시작하는 시점은 ‘살포가 끝난 시각’이 아니라 ‘마지막 살포를 시작한 시각’. 2단계 작업이면 2단계 시작(7-2 표)'},
+  en:{t:'Holdover time and the expected take-off (exercise)',start:'Spraying starts 07:10 (count from here)',win:'Protection 07:35–07:55 (25–45 min, fictitious values)',dep:'Off blocks 07:33',to:'Expected take-off 07:56',bad:'Even the longer limit will be exceeded → delay the treatment slot, shorten the taxi, or recheck or re-treat under company procedure',note:'Timing starts when the final application begins, not when spraying ends; in a two-step process, from the start of the second step (table in 7-2)'}})[l];
+ if(!W)return F.ops_hot('ja');
+ setK(1);var dur=10,x0=60,x1=600,t0=0,t1=50,X=function(m){return x0+(m-t0)/(t1-t0)*(x1-x0)};
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,190,'#EEF5FB',14);
+ s+='<line x1="'+x0+'" y1="170" x2="'+x1+'" y2="170" stroke="#40566B" stroke-width="3"/>';
+ for(var m=0;m<=50;m+=10){s+='<line x1="'+X(m)+'" y1="164" x2="'+X(m)+'" y2="176" stroke="#40566B" stroke-width="2"/>'+tx(X(m),194,(function(v){var h=7+Math.floor((10+v)/60),mm=(10+v)%60;return '0'+h+':'+(mm<10?'0':'')+mm})(m),10.5,G,800)}
+ s+='<rect x="'+X(25)+'" y="120" width="'+(X(45)-X(25))+'" height="36" rx="6" fill="#39B26B" opacity=".35"/><rect x="'+X(0)+'" y="132" width="'+(X(25)-X(0))+'" height="12" rx="6" fill="#39B26B" opacity=".8"/>';
+ s+='<line x1="'+X(0)+'" y1="100" x2="'+X(0)+'" y2="170" stroke="#E08A2F" stroke-width="3"/><line x1="'+X(23)+'" y1="150" x2="'+X(23)+'" y2="170" stroke="#2F6FD6" stroke-width="3"/><line x1="'+X(46)+'" y1="96" x2="'+X(46)+'" y2="170" stroke="#D64545" stroke-width="3"/>';
+ s+='<circle r="8" fill="#FFD23F" stroke="#0f3558"><animateMotion dur="'+dur+'s" repeatCount="indefinite" path="M'+X(0)+' 170 L'+X(46)+' 170" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear"/></circle>';
+ var y=258,rows=[['#E08A2F',W.start],['#39B26B',W.win],['#2F6FD6',W.dep],['#D64545',W.to]];
+ rows.forEach(function(r,i){var n=LI(r[1],11,540).length,lh=FS(11)*1.3,h=n*lh+12;s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="34" y="'+(y+h/2-6)+'" width="26" height="12" rx="4" fill="'+r[0]+'"/>'+WR(72,y+6+n*lh/2+FS(11)*0.3,r[1],11,D,800,540,'start');y+=h+4});
+ var n2=LI(W.bad,11,560).length;s+=R(20,y+6,600,n2*FS(11)*1.3+16,'#FDEAE3',10)+WR(320,y+14+n2*FS(11)*1.3/2+FS(11)*0.3,W.bad,11,'#8a1f1f',900,560);y+=n2*FS(11)*1.3+30;
+ var n3=LI(W.note,10.5,580).length;s+=WR(320,y+n3*FS(10.5)*1.3/2+FS(10.5)*0.3,W.note,10.5,G,800,580);y+=n3*FS(10.5)*1.3+16;
  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
