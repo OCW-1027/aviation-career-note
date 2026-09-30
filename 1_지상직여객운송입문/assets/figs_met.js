@@ -768,7 +768,7 @@ function SHIFTTTL(h){var m=/<g data-ttl="(\d+)" data-dy="([\d.]+)">/.exec(h);if(
  return h.slice(0,so)+open+bg+title+'<g transform="translate(0 '+dy.toFixed(1)+')">'+inner+'</g>'+h.slice(ce)}
 /* FIX2：一度描いて表示の倍率を求め、最小の文字の大きさを決めて描き直す */
 function FIX2(fn){return function(l){FLOORU=0;K=1;var s1=fn(l),m=/viewBox="[\d.\-]+ [\d.\-]+ ([\d.]+) [\d.]+"/.exec(s1);if(!m)return s1;
- var vw=+m[1],w=Math.min(740,((typeof window!=='undefined'&&window.innerWidth)||1024)-40),mm=/min-width:(\d+)px/.exec(s1);if(mm)w=Math.max(w,+mm[1]);
+ var vw=+m[1],w=Math.min(740,(function(){try{var iw=window.innerWidth||1024,cw=(document.documentElement&&document.documentElement.clientWidth)||iw;return Math.min(iw,cw)}catch(e){return 1024}})()-40),mm=/min-width:(\d+)px/.exec(s1);if(mm)w=Math.max(w,+mm[1]);
  FLOORU=FLOORPX*vw/w;var s2=SHIFTTTL(fn(l));FLOORU=0;K=1;return s2.replace('<svg ','<svg data-flr="1" ')}}
 for(var k in F)window.FIGS[k]=FIX2(F[k]);
 /* ほかの図のファイル（figs_nav.js など）から同じ部品を使えるように公開する */
