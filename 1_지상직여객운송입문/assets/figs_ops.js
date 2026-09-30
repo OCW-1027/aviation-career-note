@@ -221,7 +221,30 @@ case_edto:function(l){
  s+=LB(210,124,W.a,10,'#fff','middle','#243447')+LB(350,262,W.b,10,'#fff','middle','#243447')+LB(560,260,W.c,10,'#fff','end','#243447')+LB(392,168,W.etp,10,'#0f3558','start','#FFD23F')+LB(320,97,W.ash,10,'#fff','middle','#6B6B6B');
  s+='<g opacity="0">'+LBW(165,222,W.dec,10.5,'#fff','middle','#D64545',220)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.62;.64;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
  var L=LIST(W.items,288,600,11);
- var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+/* 13 総合事例の時間の流れ（共通の描き方） */
+_caseTL:function(title,ev){
+ setK(1);var dur=14,n=ev.length,y=62;
+ var s=TTL(320,30,title,15,'#0f3558',600),rows='',top=y;
+ ev.forEach(function(e,i){var n1=LI(e[1],11.5,440).length,n2=LI(e[2],10.5,440).length,h=n1*FS(11.5)*1.3+n2*FS(10.5)*1.3+18;
+  rows+='<g>'+R(110,y,510,h,'#fff',10,' stroke="#D9E3EC"')+'<rect x="110" y="'+y+'" width="510" height="'+h+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.5)+' dur="'+dur+'s" repeatCount="indefinite"/></rect>'+tx(70,y+h/2+FS(11)*0.35,e[0],11,'#2F6FD6',900)+WR(126,y+8+n1*FS(11.5)*1.3/2+FS(11.5)*0.3,e[1],11.5,D,900,480,'start')+WR(126,y+12+n1*FS(11.5)*1.3+n2*FS(10.5)*1.3/2+FS(10.5)*0.3,e[2],10.5,G,800,480,'start')+'</g>';y+=h+8});
+ s+='<line x1="70" y1="'+(top+4)+'" x2="70" y2="'+(y-8)+'" stroke="#C8D3DE" stroke-width="4"/>'+rows;
+ s+='<circle cx="70" r="8" fill="#FFD23F" stroke="#0f3558"><animate attributeName="cy" values="'+(top+10)+';'+(y-14)+'" dur="'+dur+'s" repeatCount="indefinite"/></circle>';
+ y+=6;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 14 総合事例③：夏の午後の雷雨とダイバート（金浦→関西・架空） */
+case_summer:function(l){
+ var W=({ja:{t:'事例③の流れ ― 夏の午後の金浦→関西（練習用・架空の値）',ev:[['11:30','TAF：15〜18時に雷雨（TEMPO TSRA）','関西の到着予定16:10がその時間に入る'],['12:00','燃料と代替空港','待機と迂回の追加燃料。代替空港は同じ雷雨の列に入らない中部'],['15:40','到着地の雷雨で待機','管制のEFCと残りの燃料を確かめる'],['16:05','マイクロバーストの警報','進入をやめて復行（ゴーアラウンド）'],['16:25','ダイバートの判断','2回目の待機で基準の燃料に近づく → 中部へ'],['17:20','中部に着陸','地上の手配・乗員の勤務時間・再出発か運航終了か']]},
+  ko:{t:'사례 ③의 흐름 — 여름 오후의 김포→간사이(연습용·가상의 값)',ev:[['11:30','TAF: 15~18시 뇌우(TEMPO TSRA)','간사이 도착 예정 16:10이 그 시간에 든다'],['12:00','연료와 교체공항','대기와 우회의 추가 연료. 교체공항은 같은 뇌우 열에 들지 않는 주부'],['15:40','도착지 뇌우로 대기','관제의 EFC와 남은 연료를 확인'],['16:05','마이크로버스트 경보','접근을 멈추고 실패접근(고어라운드)'],['16:25','다이버트 판단','두 번째 대기로 기준 연료에 가까워진다 → 주부로'],['17:20','주부에 착륙','지상 준비·승무원 근무시간·재출발인지 운항 종료인지']]},
+  en:{t:'Case 3 flow: a summer afternoon, Gimpo to Kansai (exercise, fictitious values)',ev:[['11:30','TAF: thunderstorms 15–18 (TEMPO TSRA)','The 16:10 arrival at Kansai falls within that period'],['12:00','Fuel and alternates','Additional fuel for holding and deviations; Chubu chosen as the alternate, clear of the same line of storms'],['15:40','Holding for storms at the destination','Check the ATC EFC time and remaining fuel'],['16:05','Microburst alert','Approach abandoned, go-around'],['16:25','Diversion decision','A second hold brings fuel close to the limit → divert to Chubu'],['17:20','Landing at Chubu','Ground arrangements, crew duty time, re-departure or end of operation']]}})[l];
+ if(!W)return F.case_summer('ja');return F._caseTL(W.t,W.ev)},
+
+/* 15 総合事例④：台風の接近（架空） */
+case_typhoon:function(l){
+ var W=({ja:{t:'事例④の流れ ― 台風の接近と那覇の便（練習用・架空の値）',ev:[['2日前','予報円と暴風域の時刻を読む','那覇に暴風域がかかるのは明日18時〜明後日6時の見込み'],['前日 10:00','欠航と時刻の変更','明日15時以降の那覇発着を欠航、朝の便を前倒し・増便'],['前日 18:00','航空機の避難','那覇に泊まる機体を福岡へ回送（夜間駐機を避ける）'],['当日 12:00','地上の備え','地上の機材・車両の固定、搭乗橋の格納、ランプ作業の中止'],['通過後','運航の再開','滑走路・施設の点検の後、乗員と機体の配置を戻して臨時便']]},
+  ko:{t:'사례 ④의 흐름 — 태풍 접근과 나하 편(연습용·가상의 값)',ev:[['이틀 전','예보원과 폭풍역 시각 읽기','나하에 폭풍역이 걸리는 것은 내일 18시~모레 6시 전망'],['전날 10:00','결항과 시각 변경','내일 15시 이후 나하 출발·도착 결항, 아침 편을 앞당기거나 증편'],['전날 18:00','항공기 피난','나하에 밤을 보낼 기체를 후쿠오카로 회송(야간 주기를 피한다)'],['당일 12:00','지상 대비','지상 장비·차량 고정, 탑승교 격납, 램프 작업 중지'],['통과 뒤','운항 재개','활주로·시설 점검 뒤 승무원과 기체 배치를 되돌려 임시편']]},
+  en:{t:'Case 4 flow: an approaching typhoon and flights to Naha (exercise, fictitious values)',ev:[['D−2','Read the forecast circle and storm-area timing','Storm-force winds expected at Naha from 18:00 tomorrow to 06:00 the day after'],['D−1 10:00','Cancellations and retiming','Cancel Naha flights from 15:00 tomorrow; bring morning flights forward or add extras'],['D−1 18:00','Evacuating aircraft','Ferry the aircraft due to night-stop at Naha to Fukuoka'],['Day 12:00','Ground preparations','Secure ground equipment and vehicles, retract boarding bridges, stop ramp work'],['After','Resuming operations','After runway and facility checks, reposition crews and aircraft and run extra flights']]}})[l];
+ if(!W)return F.case_typhoon('ja');return F._caseTL(W.t,W.ev)}
 };
-for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
+for(var k in F)if(k.charAt(0)!=='_')window.FIGS[k]=H.FIX2(F[k]);
 })();
