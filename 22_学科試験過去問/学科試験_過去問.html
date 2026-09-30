@@ -80,6 +80,8 @@ h2{font-size:17px;margin:22px 0 8px}
 footer{margin-top:28px;font-size:12px;color:var(--sub)}
 .rel{margin:10px 0 0;padding:10px 12px;background:#EEF5FB;border:1.5px solid #cfe0f0;border-radius:12px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:14px}.rel b{color:#1d4d8a}.rel a{font-weight:700;color:#1c6fbf;text-decoration:none;border-bottom:1.5px solid #9cc3ea}.rel small{flex-basis:100%;color:#5d6b79;font-size:12.5px}
 .guidelink{display:block;margin:10px 0 0;padding:10px 12px;border:1.5px solid #2F8FE0;border-radius:12px;color:#1c6fbf;font-weight:700;text-decoration:none;font-size:14.5px}
+.opts button.sel{border-color:#2F6FD6;background:#E3F1FB;box-shadow:0 0 0 2px #2F6FD6 inset}
+#tm{font-variant-numeric:tabular-nums}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="kako"></script>
 <script src="../8_사이트/assets/member_config.js"></script>
@@ -132,6 +134,7 @@ var sel={set:'EX2606',subs:{},mode:'all'};SUB.forEach(function(s){sel.subs[s[0]]
 var run=null;
 /* ---------- ホーム ---------- */
 function home(){
+ if(typeof run!=='undefined'&&run&&run.tick){clearInterval(run.tick);run.tick=null;run.exam=false}
  var h='<header class="top"><div class="kick">日本（国土交通省）の航空従事者学科試験</div><h1>過去問題と例題</h1><p>国土交通省が公開した問題を、1問ずつ解いて、正答と解説をすぐに確かめられます。</p></header>';
  h+='<p class="src jp">この問題集は、日本の国土交通省が行う航空従事者学科試験の過去問題です。いまは運航管理者の問題を載せていて、ほかの資格も順次追加します。<br><span lang="ko">일본 국토교통성이 시행하는 항공종사자 학과시험의 기출문제입니다. 현재는 운항관리자 문제를 싣고 있으며, 다른 자격도 차례로 추가합니다. 일본어로만 제공됩니다.</span><br><span lang="en">Past papers from Japan’s MLIT aviation licence exams. Aircraft dispatcher questions are available now, with other licences to follow. Japanese only.</span></p>';
  h+='<a class="guidelink" href="../8_사이트/guide.html#p7">科目ごとにレッスンで学ぶ：学び方ガイド「運航管理の学科試験を受ける人」→<br><small lang="ko">과목별로 레슨으로 배우기: 학습 가이드 ‘운항관리 학과시험 준비’ 경로</small></a>';
@@ -139,7 +142,7 @@ function home(){
  h+='<h2>資格</h2><div class="lic">'+LIC.map(function(l,i){return '<span class="'+(i?'':'on')+'">'+esc(l)+(i?'（準備中）':'')+'</span>'}).join('')+'</div>';
  h+='<h2>問題の種類</h2><div class="sets">'+K.sets.map(function(s){var d=doneOf(s.id);return '<button data-set="'+s.id+'" class="'+(sel.set===s.id?'on':'')+'"><b>'+esc(s.name)+(s.id==='EX2606'?'<span class="new">最新</span>':'')+'</b><small>'+d.n+' / '+d.t+'問 解答済み'+(d.n?'・正答率 '+Math.round(d.ok/d.n*100)+'%':'')+'</small></button>'}).join('')+'<button data-set="ALL" class="'+(sel.set==='ALL'?'on':'')+'"><b>すべての試験期</b><small>'+allCount()+'問から</small></button></div>';
  h+='<h2>科目</h2><div class="subs">'+SUB.map(function(s){return '<button data-sub="'+s[0]+'" class="'+(sel.subs[s[0]]?'on':'')+'">'+esc(s[1])+'<small>'+s[0]+'</small></button>'}).join('')+'</div>';
- h+='<h2>解き方</h2><div class="modes">'+[['all','順番に全問','本番と同じ順・合否の判定つき'],['rand10','ランダム10問','すきま時間に'],['wrong','間違えた問題','最後に間違えた問題だけ'],['mark','あとで見る','印を付けた問題']].map(function(m){return '<button data-mode="'+m[0]+'" class="'+(sel.mode===m[0]?'on':'')+'"><b>'+m[1]+'</b><small>'+m[2]+'</small></button>'}).join('')+'</div>';
+ h+='<h2>解き方</h2><div class="modes">'+[['all','順番に全問','本番と同じ順・合否の判定つき'],['exam','試験モード','本番の制限時間・最後に採点'],['rand10','ランダム10問','すきま時間に'],['wrong','間違えた問題','最後に間違えた問題だけ'],['mark','あとで見る','印を付けた問題']].map(function(m){return '<button data-mode="'+m[0]+'" class="'+(sel.mode===m[0]?'on':'')+'"><b>'+m[1]+'</b><small>'+m[2]+'</small></button>'}).join('')+'</div>';
  var pool=buildPool();
  var M=window.Member,mb=MB[(M&&M.lang())||'ja'],gate=M&&M.enabled()&&!M.user();
  if(gate)h+='<p class="src jp">'+esc(mb.need)+'</p><button class="start" id="go">'+esc(mb.btn)+'</button>';
@@ -163,7 +166,33 @@ function buildPool(){
  if(sel.mode==='rand10'){for(var i=p.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=p[i];p[i]=p[j];p[j]=t}p=p.slice(0,10)}
  return p}
 /* ---------- 出題 ---------- */
-function start(pool){run={pool:pool,i:0,ans:[]};show()}
+function start(pool){stopTimer();run={pool:pool,i:0,ans:[]};if(sel.mode==='exam'&&pool.length){run.exam=true;run.pick=[];run.t0=Date.now();run.limit=examLimit(pool);run.tick=setInterval(tickTimer,1000)}show()}
+/* 試験モード（2026.09 追加）：本番の題数と時間（運航管理者、令和5年3月期の問題用紙の表記）から、解く問題数に比例して制限時間を決める。
+   空中航法 20題2時間・航空気象 20題1時間・航空工学 20題1時間・航空法規等 20題40分・航空通信 20題40分・施設 10題40分 */
+var EXAM={P42:[20,120],P44:[20,60],P45:[20,60],P43:[20,40],P46:[20,40],P47:[10,40]};
+function examLimit(pool){var c={},ms=0;pool.forEach(function(x){c[x.q.c]=(c[x.q.c]||0)+1});for(var k in c){var e=EXAM[k]||[20,40];ms+=c[k]/e[0]*e[1]*60000}return Math.round(ms/1000)*1000}
+function stopTimer(){if(run&&run.tick){clearInterval(run.tick);run.tick=null}}
+function fmtT(ms){ms=Math.max(0,ms);var s=Math.ceil(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);s=s%60;return (h?h+':'+(m<10?'0':''):'')+m+':'+(s<10?'0':'')+s}
+function tickTimer(){if(!run||!run.exam)return stopTimer();var left=run.limit-(Date.now()-run.t0),el=document.getElementById('tm');if(el){el.textContent='残り '+fmtT(left);if(left<300000)el.style.color='var(--ng)'}if(left<=0)finishExam(true)}
+function finishExam(timeup){stopTimer();run.used=Date.now()-run.t0;run.exam=false;run.timeup=!!timeup;
+ run.pool.forEach(function(x,i){var p=run.pick[i];if(p){var okk=p===x.q.a,k=id(x.s,x.q);run.ans[i]={pick:p,ok:okk};ST.r[k]=[okk?1:0,Date.now()];push(k)}else run.ans[i]={pick:0,ok:false}});
+ save();result()}
+function showExam(){
+ var x=run.pool[run.i],q=x.q,pk=run.pick[run.i],done=run.pick.filter(Boolean).length;
+ var h='<div class="qhead"><button class="back" id="bk">← やめる</button><span class="pos">'+(run.i+1)+' / '+run.pool.length+'</span><span class="tag">'+esc(SUBN[q.c])+' 問'+q.n+'</span><span class="sc" id="tm">残り '+fmtT(run.limit-(Date.now()-run.t0))+'</span></div>';
+ h+='<div class="prog"><i style="width:'+Math.round((run.i+1)/run.pool.length*100)+'%"></i></div>';
+ h+='<div class="qtext">'+esc(q.q)+'</div>';
+ if(q.img&&q.img.length){h+='<details class="figs"'+(q.img.length>2?'':' open')+'><summary>'+(q.fp?'飛行計画問題の条件・航法DATA・航法ログ（原本 '+q.img.length+'ページ）':'原本の図・資料（'+q.img.length+'ページ）')+'</summary>'+q.img.map(function(f){return '<img loading="lazy" src="img/'+esc(f)+'" alt="原本の図">'}).join('')+'</details>'}
+ h+='<div class="opts">'+q.o.map(function(o,i){return '<button data-i="'+(i+1)+'" class="'+(pk===i+1?'sel':'')+'"><span class="k">'+(i+1)+'</span><span>'+esc(o)+'</span></button>'}).join('')+'</div>';
+ h+='<p class="note">試験モード：正答と解説は、提出したあとにまとめて表示します。選んだ答えは何度でも変えられます。解答済み '+done+' / '+run.pool.length+'</p>';
+ h+='<div class="navq">'+(run.i>0?'<button id="pv">前へ</button>':'')+(run.i+1<run.pool.length?'<button class="pri" id="nx">次の問題</button>':'')+'<button id="sb"'+(run.i+1<run.pool.length?'':' class="pri"')+'>提出する</button></div>';
+ app.innerHTML=h;
+ $('#bk').onclick=function(){if(confirm('試験をやめてホームに戻ります。今回の解答は記録に残りません。')){stopTimer();run.exam=false;home()}};
+ Array.prototype.forEach.call(app.querySelectorAll('.opts button'),function(b){b.onclick=function(){run.pick[run.i]=+b.dataset.i;showExam()}});
+ var nx=$('#nx');if(nx)nx.onclick=function(){run.i++;showExam();window.scrollTo(0,0)};
+ var pv=$('#pv');if(pv)pv.onclick=function(){run.i--;showExam();window.scrollTo(0,0)};
+ $('#sb').onclick=function(){var left=run.pool.length-run.pick.filter(Boolean).length;if(confirm(left?'まだ答えていない問題が'+left+'問あります。提出すると不正解として採点します。提出しますか？':'提出して採点しますか？'))finishExam(false)};
+}
 
 /* 関連レッスン（2026.09 追加）：問題文と選択肢の言葉から、運航管理の実務のレッスンを最大2つ選ぶ。見つからなければ科目の最初のレッスン */
 var LES={"0-2": "運航管理者になるには", "1-1": "法規のしくみ", "1-2": "運航管理の主な条文", "1-3": "機長の権限と飛行の規則", "1-4": "航空運送事業のしくみ", "2-1": "気象情報を読む", "2-2": "出発の判断と代替空港の基準", "3-1": "NOTAMのしくみと読み方", "3-3": "ASHTAMと火山灰", "4-1": "運航飛行計画書（OFP）を読む", "5-1": "燃料の区分", "5-2": "燃料を計算する", "6-1": "乗務時間と飛行勤務時間", "7-1": "地上の着氷と防除雪氷", "8-2": "EDTO（回航時間延長運航）", "9-2": "記録と保存", "9-3": "報告と安全の情報", "10-1": "大気の構造と安定度", "10-2": "気団と前線", "10-3": "ジェット気流・晴天乱気流・山岳波", "10-4": "雷雨・ダウンバースト・ウインドシア", "10-5": "台風", "10-6": "高層天気図を読む", "11-1": "速度の種類と換算", "11-2": "風の三角形と横風", "11-3": "1 in 60の法則とタイム・ディスタンス", "11-4": "RNAV・RNP・GNSS", "11-5": "最低高度とRVSM", "12-1": "VOR・DME・NDB", "12-2": "ILSとレーダー", "12-3": "飛行場の灯火と標識", "12-4": "進入方式と最低気象条件", "13-1": "空域と航空交通業務", "13-2": "管制の手順と間隔", "13-3": "無線の交信", "13-4": "通信の途絶・緊急・TCAS", "14-1": "飛ぶしくみ", "14-2": "離陸と着陸の性能", "14-3": "ジェットエンジンと燃料", "14-4": "機体のシステムとMEL"};
@@ -172,6 +201,7 @@ var LFB={"P44": "10-1", "P42": "11-1", "P47": "12-1", "P46": "13-1", "P45": "14-
 function relLessons(q){var out=[],R=LRULE[q.c]||[],T=[(q.q||'').split('\n')[0],q.q||'',(q.o||[]).join(' ')];for(var j=0;j<3;j++)for(var i=0;i<R.length&&out.length<2;i++){if(new RegExp(R[i][0]).test(T[j])&&out.indexOf(R[i][1])<0)out.push(R[i][1])}if(!out.length&&LFB[q.c])out.push(LFB[q.c]);return out}
 function relHtml(q){var L=relLessons(q);if(!L.length)return '';return '<div class="rel"><b>関連レッスン</b>'+L.map(function(no){return '<a href="../ja/dsp/'+no+'/" target="_blank" rel="noopener">'+no+' '+esc(LES[no]||'')+'</a>'}).join('')+'<small lang="ko">레슨은 한국어·영어로도 읽을 수 있습니다</small></div>'}
 function show(){
+ if(run.exam){showExam();return}
  var x=run.pool[run.i],q=x.q,k=id(x.s,q),done=run.ans[run.i];
  var ok=run.ans.filter(function(a){return a&&a.ok}).length,cnt=run.ans.filter(Boolean).length;
  var h='<div class="qhead"><button class="back" id="bk">← 戻る</button><span class="pos">'+(run.i+1)+' / '+run.pool.length+'</span><span class="tag">'+esc(setName(x.s))+'</span><span class="tag">'+esc(SUBN[q.c])+' 問'+q.n+'</span><span class="sc">'+ok+' / '+cnt+' 正解</span></div>';
@@ -196,9 +226,9 @@ function result(){
  h+='<div class="qhead"><button class="back" id="bk">← ホーム</button><span class="pos">結果</span></div>';
  /* 科目ごとの得点（「順番に全問」で1科目を通して解いたときは、配点で合否を判定：P47は1問10点、ほかは1問5点、70点以上で合格） */
  var by={};run.pool.forEach(function(x,i){var c=x.q.c;by[c]=by[c]||{n:0,ok:0};by[c].n++;if(run.ans[i]&&run.ans[i].ok)by[c].ok++});
- h+='<div class="score"><div class="big">'+ok+' / '+n+'</div><div>正答率 '+Math.round(ok/n*100)+'%</div></div>';
- h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],full=(c==='P47'?10:20),pt=Math.round(b.ok/b.n*100),judge=sel.mode==='all'&&b.n===full;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'点</b> <small>'+b.ok+'/'+b.n+'</small>'+(judge?'<br><span class="pass '+(pt>=70?'y':'n')+'" style="display:inline-block;border-radius:999px;padding:0 10px;color:#fff;font-size:12px;background:'+(pt>=70?'var(--ok)':'var(--ng)')+'">'+(pt>=70?'合格ライン':'不合格ライン')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
- h+='<p class="note">合否の目安：各科目100点満点の70点以上（施設は1問10点、ほかの科目は1問5点）。科目の全問を順番に解いたときだけ表示します。</p>';
+ h+='<div class="score"><div class="big">'+ok+' / '+n+'</div><div>正答率 '+Math.round(ok/n*100)+'%</div>'+(run.used!=null?'<div>試験モード・かかった時間 '+fmtT(Math.min(run.used,run.limit))+' ／ 制限 '+fmtT(run.limit)+(run.timeup?'（時間切れで自動提出）':'')+'</div>':'')+'</div>';
+ h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],full=(c==='P47'?10:20),pt=Math.round(b.ok/b.n*100),judge=(sel.mode==='all'||sel.mode==='exam')&&b.n===full;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'点</b> <small>'+b.ok+'/'+b.n+'</small>'+(judge?'<br><span class="pass '+(pt>=70?'y':'n')+'" style="display:inline-block;border-radius:999px;padding:0 10px;color:#fff;font-size:12px;background:'+(pt>=70?'var(--ok)':'var(--ng)')+'">'+(pt>=70?'合格ライン':'不合格ライン')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<p class="note">合否の目安：各科目100点満点の70点以上（施設は1問10点、ほかの科目は1問5点）。科目の全問を「順番に全問」か「試験モード」で解いたときだけ表示します。</p>';
  h+='<h2>ふり返り</h2><div class="rlist">'+run.pool.map(function(x,i){var a=run.ans[i];return '<button data-i="'+i+'"><span class="m '+(a?(a.ok?'ok':'ng'):'')+'">'+(a?(a.ok?'○':'×'):'－')+'</span><span class="t">'+esc(SUBN[x.q.c])+' 問'+x.q.n+'　'+esc(x.q.q.split('\n')[0])+'</span></button>'}).join('')+'</div>';
  h+='<button class="start" id="again">間違えた問題だけもう一度</button>';
  app.innerHTML=h;window.scrollTo(0,0);
