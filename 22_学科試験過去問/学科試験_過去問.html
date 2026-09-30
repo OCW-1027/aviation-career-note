@@ -207,6 +207,7 @@ function show(){
  var x=run.pool[run.i],q=x.q,k=id(x.s,q),done=run.ans[run.i];
  var ok=run.ans.filter(function(a){return a&&a.ok}).length,cnt=run.ans.filter(Boolean).length;
  var h='<div class="qhead"><button class="back" id="bk">← 戻る</button><span class="pos">'+(run.i+1)+' / '+run.pool.length+'</span><span class="tag">'+esc(setName(x.s))+'</span><span class="tag">'+esc(SUBN[q.c])+' 問'+q.n+'</span><span class="sc">'+ok+' / '+cnt+' 正解</span></div>';
+ h+=(run.lesson?'<p class="note">レッスン '+esc(run.lesson)+'「'+esc(LES[run.lesson]||'')+'」に関係する国の過去問題（'+run.pool.length+'問）。<a href="../ja/dsp/'+esc(run.lesson)+'/">レッスンへ戻る</a></p>':'');
  h+='<div class="prog"><i style="width:'+Math.round((run.i+1)/run.pool.length*100)+'%"></i></div>';
  h+='<div class="qtext">'+esc(q.q)+'</div>';
  if(q.img&&q.img.length){h+='<details class="figs"'+(done||q.img.length>2?'':' open')+'><summary>'+(q.fp?'飛行計画問題の条件・航法DATA・航法ログ（原本 '+q.img.length+'ページ）':'原本の図・資料（'+q.img.length+'ページ）')+'</summary>'+q.img.map(function(f){return '<img loading="lazy" src="img/'+esc(f)+'" alt="原本の図">'}).join('')+'<p class="note">画像が表示されないときは <a href="'+esc(setPdf(x.s))+'#page='+p0(q)+'" target="_blank" rel="noopener">原本のPDF</a> を開いてください。</p></details>'}
@@ -249,7 +250,8 @@ function syncAll(){var M=window.Member;if(!M||!M.user())return;
   for(var k in ST.r){if(k.indexOf('KR:')===0)continue;if(!(k in have)||have[k]<ST.r[k][1])up.push({item_id:k,ok:!!ST.r[k][0],marked:!!ST.mark[k],answered_at:new Date(ST.r[k][1]).toISOString()})}
   save();SYNCED=true;if(!run)home();return M.saveRecords(up)}).catch(function(){})}
 if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home()});
-home();
+/* ?lesson=11-1 のように開くと、そのレッスンに関係する国の過去問題だけを集めて始める（2026.09） */
+(function(){var m=/[?&]lesson=([0-9]+-[0-9]+)/.exec(location.search);if(m){var no=m[1],p=[];K.sets.forEach(function(s){if(s.org)return;(K.q[s.id]||[]).forEach(function(q){if(relLessons(q).indexOf(no)>=0)p.push({s:s.id,q:q})})});if(p.length){sel.mode='all';start(p);run.lesson=no;show();return}}home()})();
 })();
 </script>
 <script src="../1_지상직여객운송입문/assets/nav.js"></script>
