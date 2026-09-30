@@ -215,6 +215,75 @@ atc_ocean:function(l){
  s+='<g transform="translate(560 84)"><rect x="-8" y="-6" width="16" height="12" rx="2" fill="#F2D233"/><rect x="-24" y="-3" width="14" height="6" fill="#9FD3F7"/><rect x="10" y="-3" width="14" height="6" fill="#9FD3F7"/></g><path d="M556 94 L522 174" stroke="#7CF2B0" stroke-width="2" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/></path>'+LB(560,120,W.sat,10.5,'#0f3558','end','#7CF2B0');
  s+='<g transform="translate(520 186)">'+planeS('#fff')+'</g></g>';
  var L=LIST(W.items,288,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+/* 13 通信の途絶（計器気象状態・ICAOの基本）：7600 → 最後の高度・速さを保つ → 飛行計画の高度 → 目的地の施設 → 待機 → 予定の時刻に降下・進入 → 30分以内に着陸 */
+atc_lost:function(l){
+ var W=({ja:{t:'通信が途絶えたとき（計器気象状態・ICAOの基本）',st:['トランスポンダーを 7600 にする','最後に指示された高度と速さを保つ（レーダーの下では7分間）','飛行計画の高度・速さに戻して飛ぶ','目的地の航法施設へ向かい、待機する','予定の時刻（EAT か到着予定）に降下・進入を始める','その時刻から30分以内に着陸する'],note:'有視界気象状態なら、そのまま有視界で近くの適当な空港に着陸して報告する。細かい決まりは各国のAIPで確かめる'},
+  ko:{t:'통신이 끊겼을 때(계기기상상태·ICAO 기본)',st:['트랜스폰더를 7600으로 한다','마지막으로 지시받은 고도와 속도를 유지한다(레이더 아래에서는 7분간)','비행계획의 고도·속도로 돌아가 난다','목적지 항행시설로 향해 대기한다','예정 시각(EAT 또는 도착 예정)에 강하·접근을 시작한다','그 시각부터 30분 안에 착륙한다'],note:'시계기상상태라면 그대로 시계비행으로 가까운 적당한 공항에 착륙해 보고한다. 세부 규정은 각국 AIP로 확인한다'},
+  en:{t:'Radio failure (IMC, ICAO basic procedure)',st:['Set the transponder to 7600','Keep the last assigned level and speed (for 7 minutes under radar)','Resume the flight-planned level and speed','Proceed to the navigation aid serving the destination and hold','Begin descent and approach at the expected time (EAT or ETA)','Land within 30 minutes of that time'],note:'In VMC, continue in VMC, land at the nearest suitable aerodrome and report. Check the details in each country’s AIP'}})[l];
+ if(!W)return F.atc_lost('ja');
+ setK(1);var n=6,dur=12;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,150,'#DCEEFB',14)+R(20,186,600,20,'#9CC98B',0);
+ var prof='M40 150 L120 150 L200 150 L260 100 L420 100 L470 150 L500 150 C530 150 540 110 510 110 C480 110 480 150 520 150 L600 180';
+ s+='<path d="'+prof+'" fill="none" stroke="#2F6FD6" stroke-width="2.5" stroke-dasharray="7 5"/>'+R(560,178,50,6,'#5B6770',2);
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="'+dur+'s" repeatCount="indefinite" rotate="auto" keyPoints="0;.117;.234;.582;.876;.95;1" keyTimes="0;.167;.333;.5;.667;.833;1" calcMode="linear" path="'+prof+'"/></g>';
+ s+=LB(70,128,'7600',12,'#fff','middle','#D64545');
+ var y=218,body='';
+ W.st.forEach(function(v,i){var nn=LI(v,11,520).length,lh=FS(11)*1.3,h=nn*lh+12;
+  body+='<g>'+R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,0.5)+' dur="'+dur+'s" repeatCount="indefinite"/></rect>'+BADGE(42,y+h/2,i+1,11)+WR(64,y+6+nn*lh/2+FS(11)*0.3,v,11,D,800,520,'start')+'</g>';y+=h+4});
+ var n2=LI(W.note,10.5,580).length;body+=WR(320,y+8+n2*FS(10.5)*1.3/2,W.note,10.5,G,800,580);y+=n2*FS(10.5)*1.3+18;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+body+'</svg>'},
+
+/* 14 緊急の宣言とトランスポンダーのコード */
+atc_emerg:function(l){
+ var W=({ja:{t:'緊急の宣言とトランスポンダーのコード',may:'遭難（命に関わる危険が迫っている）',pan:'緊急（急ぐが、すぐの危険ではない）',codes:[['7500','不法な妨害（ハイジャックなど）'],['7600','通信の途絶'],['7700','緊急事態']],note:'呼び出しは3回くり返す。管制は優先して扱い、ほかの機の交信を止めることもある'},
+  ko:{t:'비상 선언과 트랜스폰더 코드',may:'조난(생명에 관련된 위험이 닥쳤다)',pan:'긴급(서둘러야 하지만 당장의 위험은 아니다)',codes:[['7500','불법 방해(하이재킹 등)'],['7600','통신 두절'],['7700','비상사태']],note:'호출은 3번 되풀이한다. 관제는 우선으로 다루며 다른 항공기의 교신을 멈추게 하기도 한다'},
+  en:{t:'Declaring an emergency and transponder codes',may:'Distress (grave and imminent danger)',pan:'Urgency (urgent, but no immediate danger)',codes:[['7500','Unlawful interference (e.g. hijacking)'],['7600','Radio failure'],['7700','Emergency']],note:'The call is repeated three times. ATC gives priority and may impose silence on other traffic'}})[l];
+ if(!W)return F.atc_emerg('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),lh=FS(11.5)*1.3;
+ function card(x,y,w,word,desc,col,bg){var nn=LI(desc,11.5,w-24).length,h=FS(16)*1.6+nn*lh+22;return {s:R(x,y,w,h,bg,14,' stroke="'+col+'" stroke-width="2.5"')+tx(x+w/2,y+FS(16)*1.3,word,16,col,900)+WR(x+w/2,y+FS(16)*1.6+10+nn*lh/2+FS(11.5)*0.3,desc,11.5,D,800,w-24),h:h}}
+ var c1=card(20,58,290,'MAYDAY ×3',W.may,'#D64545','#FDEAE3'),c2=card(330,58,290,'PAN PAN ×3',W.pan,'#E08A2F','#FFF1E3'),y=58+Math.max(c1.h,c2.h)+16;
+ s+=c1.s+c2.s;
+ /* トランスポンダーの表示 */
+ s+=R(170,y,300,70,'#1B1B1B',12)+tx(200,y+42,'XPDR',12,'#9FB0C2',900,'start');
+ W.codes.forEach(function(c,i){s+='<g opacity="0"><text x="440" y="'+(y+48)+'" font-size="'+FS(30).toFixed(1)+'" font-weight="900" fill="#39D98A" text-anchor="end" font-family="Arial,sans-serif">'+c[0]+'</text><animate attributeName="opacity" '+SEG(i,3,0,1)+' dur="9s" repeatCount="indefinite"/></g>'});
+ y+=86;
+ W.codes.forEach(function(c,i){var nn=LI(c[1],11.5,420).length,h=Math.max(FS(13)*1.5,nn*lh+10);s+='<g>'+R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,3,0,0.5)+' dur="9s" repeatCount="indefinite"/></rect>'+tx(80,y+h/2+FS(13)*0.35,c[0],13,'#D64545',900)+WR(390,y+h/2+FS(11.5)*0.3,c[1],11.5,D,800,420)+'</g>';y+=h+4});
+ var n2=LI(W.note,10.5,580).length;s+=WR(320,y+8+n2*FS(10.5)*1.3/2,W.note,10.5,G,800,580);y+=n2*FS(10.5)*1.3+18;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 15 要撃の信号：要撃機が横に来て翼を振り、前に出る。要撃された機は翼を振って答え、ついていく */
+atc_intercept:function(l){
+ var W=({ja:{t:'要撃されたときの信号',ic:'要撃機',you:'要撃された機',items:['要撃機：左前方に来て翼を振り、灯火を点滅させてから、ゆっくり向きを変える＝「ついてこい」','要撃された機：翼を振り、灯火を点滅させて答え、ついていく','すぐに 121.5MHz で呼び、トランスポンダーは指示がなければ 7700 にする'],note:'合図の決まりは ICAO Annex 2 の付録。運航管理者は、飛行計画と防空識別圏の手続きを正しく行い、要撃を招かないようにする'},
+  ko:{t:'요격당했을 때의 신호',ic:'요격기',you:'요격당한 항공기',items:['요격기: 왼쪽 앞으로 와 날개를 흔들고 등을 깜박인 뒤 천천히 방향을 바꾼다 = ‘따라오라’','요격당한 항공기: 날개를 흔들고 등을 깜박여 답하고 따라간다','곧바로 121.5MHz로 부르고, 트랜스폰더는 지시가 없으면 7700으로 한다'],note:'신호 규정은 ICAO Annex 2 부록. 운항관리사는 비행계획과 방공식별구역 절차를 올바르게 해 요격을 부르지 않도록 한다'},
+  en:{t:'Signals when intercepted',ic:'Interceptor',you:'Intercepted aircraft',items:['Interceptor: comes alongside ahead on the left, rocks its wings and flashes its lights, then turns slowly away = “follow me”','Intercepted aircraft: rocks its wings and flashes its lights to acknowledge, then follows','Call at once on 121.5 MHz and, unless instructed otherwise, set the transponder to 7700'],note:'The signals are in an appendix to ICAO Annex 2. Dispatchers prevent interceptions by filing correct flight plans and following ADIZ procedures'}})[l];
+ if(!W)return F.atc_intercept('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#DCEEFB',14);
+ var fighter='<path d="M16 0 L4 -2 L-2 -12 L-6 -12 L-4 -2 L-12 -2 L-15 -7 L-17 -7 L-16 0 L-17 7 L-15 7 L-12 2 L-4 2 L-6 12 L-2 12 L4 2 Z" fill="#8C9BAA" stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"/>';
+ var path='M120 160 L300 160 C360 160 420 150 520 120';
+ s+='<path d="'+path+'" fill="none" stroke="#9FB0C2" stroke-width="2" stroke-dasharray="6 6"/>';
+ s+='<g><g><g>'+plane('#fff')+'</g><animateTransform attributeName="transform" type="scale" values="1 1;1 .7;1 1;1 .7;1 1;1 1" keyTimes="0;.55;.6;.65;.7;1" dur="8s" repeatCount="indefinite"/></g><animateMotion dur="8s" repeatCount="indefinite" rotate="auto" keyPoints="0;.3;1" keyTimes="0;.5;1" calcMode="linear" path="'+path+'"/></g>';
+ s+='<g><g><g transform="scale(1.1)">'+fighter+'</g><animateTransform attributeName="transform" type="scale" values="1 1;1 .6;1 1;1 .6;1 1;1 1" keyTimes="0;.25;.3;.35;.4;1" dur="8s" repeatCount="indefinite"/></g><animateMotion dur="8s" repeatCount="indefinite" rotate="auto" keyPoints="0;.45;1" keyTimes="0;.5;1" calcMode="linear" path="M150 110 L340 110 C380 110 440 100 560 70"/></g>';
+ s+=LB(160,86,W.ic,10.5,'#fff','middle','#6B7785')+LB(130,196,W.you,10.5,'#fff','middle','#2F6FD6');
+ var L=LIST(W.items,268,600,11),y=L.y+6,n2=LI(W.note,10.5,580).length;var note=WR(320,y+n2*FS(10.5)*1.3/2+FS(10.5)*0.3,W.note,10.5,G,800,580);y+=n2*FS(10.5)*1.3+14;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+L.s+note+'</svg>'},
+
+/* 16 TCAS：近づくと TA（交通情報）、さらに近づくと RA（回避の指示）。一方は上昇、もう一方は降下 */
+atc_tcas:function(l){
+ var W=({ja:{t:'TCAS（航空機衝突防止装置）',ta:'TA「TRAFFIC, TRAFFIC」',ra1:'RA「CLIMB, CLIMB」',ra2:'RA「DESCEND, DESCEND」',items:['TA（交通情報）：近づく機を知らせる。すれ違うおよそ40秒前（高さで変わる）','RA（回避の指示）：上昇か降下を指示する。およそ25秒前。相手の機のTCASと調整して、反対の向きを出す','RAが出たら、管制の指示と違っても RA に従い、すぐ管制に「TCAS RA」と伝える','「CLEAR OF CONFLICT」が出たら、元の許可された高度に戻る']},
+  ko:{t:'TCAS(공중충돌방지장치)',ta:'TA ‘TRAFFIC, TRAFFIC’',ra1:'RA ‘CLIMB, CLIMB’',ra2:'RA ‘DESCEND, DESCEND’',items:['TA(교통 정보): 다가오는 항공기를 알린다. 스쳐 지나기 약 40초 전(높이에 따라 다르다)','RA(회피 지시): 상승이나 강하를 지시한다. 약 25초 전. 상대 항공기의 TCAS와 조정해 반대 방향을 낸다','RA가 나오면 관제 지시와 달라도 RA를 따르고, 곧바로 관제에 ‘TCAS RA’라고 알린다','‘CLEAR OF CONFLICT’가 나오면 원래 허가된 고도로 돌아간다']},
+  en:{t:'TCAS (traffic alert and collision avoidance system)',ta:'TA “TRAFFIC, TRAFFIC”',ra1:'RA “CLIMB, CLIMB”',ra2:'RA “DESCEND, DESCEND”',items:['TA (traffic advisory): warns of nearby traffic about 40 seconds before closest approach (varies with altitude)','RA (resolution advisory): commands a climb or descent about 25 seconds before; the two TCAS units coordinate so the aircraft go opposite ways','Follow the RA even if it conflicts with ATC, and tell ATC “TCAS RA” at once','When “CLEAR OF CONFLICT” sounds, return to the cleared level']}})[l];
+ if(!W)return F.atc_tcas('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,220,'#0E2238',14);
+ var pa='M40 166 L250 166 C300 166 320 120 400 116 L600 116',pb='M600 166 L390 166 C340 166 320 212 240 216 L40 216';
+ s+='<line x1="30" y1="166" x2="610" y2="166" stroke="#9FB0C2" stroke-dasharray="4 6" opacity=".5"/>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="'+pa+'"/></g><g><g transform="scale(-1 1)">'+planeS('#fff')+'</g><animateMotion dur="8s" repeatCount="indefinite" rotate="auto-reverse" path="'+pb+'"/></g>';
+ s+='<g opacity="0">'+LB(320,90,W.ta,12,'#0f3558','middle','#FFD23F')+'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.15;.18;.34;.36;1" dur="8s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0">'+LB(200,90,W.ra1,12,'#fff','middle','#D64545')+LB(440,250,W.ra2,12,'#fff','middle','#D64545')+'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.36;.38;.7;.72;1" dur="8s" repeatCount="indefinite"/></g>';
+ var L=LIST(W.items,288,600,11);
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
