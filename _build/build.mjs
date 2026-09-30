@@ -22,7 +22,15 @@ try {
     for (const n of fs.readdirSync(path.join(KD, 'data')).filter(n => /^ops_.+\.js$/.test(n))) vm.runInContext(fs.readFileSync(path.join(KD, 'data', n), 'utf8'), kc);
     const map = {};
     for (const s of kc.KAKO.sets) { if (s.org) continue; for (const q of (kc.KAKO.q[s.id] || [])) for (const no of kc.relLessons(q)) map[no] = (map[no] || 0) + 1; }
-    const out = '/* 運航管理の実務のレッスンごとの、関係する国の過去問題の数（ビルドのときに自動で作る。手で直さない） */\nwindow.KAKO_LESSON=' + JSON.stringify(map) + ';\n';
+    // 韓国 運航管理士 練習問題（問題ごとにレッスン番号 r を持つ）
+    const kr = {};
+    try {
+      const pt = fs.readFileSync(path.join(KD, '운항관리사_연습문제.html'), 'utf8');
+      const rc = { KRX: { sets: [], q: {} } }; rc.window = rc; vm.createContext(rc);
+      for (const m of pt.matchAll(/<script src="data\/(kr[^"]+\.js)"><\/script>/g)) vm.runInContext(fs.readFileSync(path.join(KD, 'data', m[1]), 'utf8'), rc);
+      for (const s in rc.KRX.q) for (const q of rc.KRX.q[s]) if (q.r) kr[q.r] = (kr[q.r] || 0) + 1;
+    } catch (e) { console.error('lesson_map(KR):', e.message); }
+    const out = '/* 運航管理の実務のレッスンごとの、関係する問題の数（ビルドのときに自動で作る。手で直さない）\n   KAKO_LESSON：日本の国の過去問題　KRX_LESSON：韓国 運航管理士 練習問題 */\nwindow.KAKO_LESSON=' + JSON.stringify(map) + ';\nwindow.KRX_LESSON=' + JSON.stringify(kr) + ';\n';
     const mf = path.join(KD, 'data', 'lesson_map.js');
     if (!fs.existsSync(mf) || fs.readFileSync(mf, 'utf8') !== out) fs.writeFileSync(mf, out);
   }

@@ -175,6 +175,7 @@ function show(){
  var x=run.pool[run.i],q=x.q,k=id(x.s,q),done=run.ans[run.i];
  var ok=run.ans.filter(function(a){return a&&a.ok}).length,cnt=run.ans.filter(Boolean).length;
  var h='<div class="qhead"><button class="back" id="bk">← 돌아가기</button><span class="pos">'+(run.i+1)+' / '+run.pool.length+'</span><span class="tag">'+esc(setName(x.s))+'</span><span class="tag">'+esc(SUBN[q.c])+' '+q.n+'번</span><span class="sc">'+ok+' / '+cnt+' 정답</span></div>';
+ h+=(run.lesson?'<p class="note">레슨 '+esc(run.lesson)+' 관련 연습문제('+run.pool.length+'문, 모든 회차). <a href="../ko/dsp/'+esc(run.lesson)+'/">레슨으로 돌아가기</a></p>':'');
  h+='<div class="prog"><i style="width:'+Math.round((run.i+1)/run.pool.length*100)+'%"></i></div>';
  h+='<div class="qtext">'+esc(q.q)+'</div>';
  h+='<div class="opts">'+q.o.map(function(o,i){var c='';if(done){if(i+1===q.a)c='ok';else if(i+1===done.pick)c='ng'}return '<button data-i="'+(i+1)+'" class="'+c+'"'+(done?' disabled':'')+'><span class="k">'+(i+1)+'</span><span>'+esc(o)+'</span></button>'}).join('')+'</div>';
@@ -212,7 +213,8 @@ function syncAll(){var M=window.Member;if(!M||!M.user())return;
   for(var kk in ST.r){if(!(kk in have)||have[kk]<ST.r[kk][1])up.push({item_id:'KR:'+kk,ok:!!ST.r[kk][0],marked:!!ST.mark[kk],answered_at:new Date(ST.r[kk][1]).toISOString()})}
   save();SYNCED=true;if(!run)home();return M.saveRecords(up)}).catch(function(){})}
 if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home()});
-home();
+/* ?lesson=11-1 처럼 열면 그 레슨과 관련된 문제만 모아 시작한다（2026.09） */
+(function(){var m=/[?&]lesson=([0-9]+-[0-9]+)/.exec(location.search);if(m){var no=m[1],p=[];K.sets.forEach(function(s){(K.q[s.id]||[]).forEach(function(q){if(q.r===no)p.push({s:s.id,q:q})})});if(p.length){sel.mode='all';start(p);run.lesson=no;show();return}}home()})();
 })();
 </script>
 <script src="../1_지상직여객운송입문/assets/nav.js"></script>
