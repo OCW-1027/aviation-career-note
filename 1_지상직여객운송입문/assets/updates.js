@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-09-30",c:"",k:"",t:"upd",u:"22_学科試験過去問/운항관리사_연습문제.html",ja:"韓国 運航管理士 練習問題に「試験モード」を追加：1科目25問・30分の制限時間、解いている間は正解を隠し、提出（または時間切れ）で一括採点",ko:"한국 운항관리사 연습문제에 ‘시험 모드’ 추가: 과목당 25문·30분 제한, 푸는 동안 정답을 숨기고 제출(또는 시간 종료) 때 한꺼번에 채점",en:"Korea dispatcher practice questions: new exam mode with 30 minutes per 25-question subject, answers hidden until you submit or time runs out"},
 {d:"2026-09-30",c:"",k:"",t:"upd",u:"22_学科試験過去問/学科試験_過去問.html",ja:"学科試験 過去問題の解説の下に「関連レッスン」を追加：問題の言葉から運航管理の実務のレッスンを最大2つ案内（1,210問すべて）",ko:"학과시험 기출문제 해설 아래에 ‘관련 레슨’ 추가: 문제의 낱말로 운항관리 실무 레슨을 최대 2개 안내(1,210문 모두)",en:"Past papers: a related-lessons box under each explanation, suggesting up to two Flight Dispatch Operations lessons from the question’s wording (all 1,210 questions)"},
 {d:"2026-09-30",c:"",k:"",t:"upd",u:"8_사이트/guide.html#p7",ja:"学び方ガイドに「運航管理の学科試験を受ける人」のルートを追加：科目ごとに最初のレッスンへ直接進み、韓国の練習問題・日本の過去問題へつなぐ",ko:"학습 가이드에 ‘운항관리 학과시험 준비’ 경로 추가: 과목별로 첫 레슨에 바로 가고, 한국 연습문제·일본 기출문제로 이어진다",en:"Learning guide: new path for dispatcher written exams, linking each subject straight to its first lesson and on to Korean practice questions and Japanese past papers"},
 {d:"2026-09-30",c:"",k:"",t:"new",u:"22_学科試験過去問/운항관리사_연습문제.html",ja:"韓国 運航管理士 練習問題「第2回」（5科目125問）を追加。第1回と合わせて模擬試験2回分・250問",ko:"한국 운항관리사 연습문제 ‘제2회’(5과목 125문) 추가. 제1회와 합쳐 모의고사 2회분 250문",en:"Korea dispatcher practice questions: a second full mock exam (five subjects, 125 questions) added, 250 questions in two sets"},
