@@ -183,7 +183,45 @@ ops_hot:function(l){
  rows.forEach(function(r,i){var n=LI(r[1],11,540).length,lh=FS(11)*1.3,h=n*lh+12;s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="34" y="'+(y+h/2-6)+'" width="26" height="12" rx="4" fill="'+r[0]+'"/>'+WR(72,y+6+n*lh/2+FS(11)*0.3,r[1],11,D,800,540,'start');y+=h+4});
  var n2=LI(W.bad,11,560).length;s+=R(20,y+6,600,n2*FS(11)*1.3+16,'#FDEAE3',10)+WR(320,y+14+n2*FS(11)*1.3/2+FS(11)*0.3,W.bad,11,'#8a1f1f',900,560);y+=n2*FS(11)*1.3+30;
  var n3=LI(W.note,10.5,580).length;s+=WR(320,y+n3*FS(10.5)*1.3/2+FS(10.5)*0.3,W.note,10.5,G,800,580);y+=n3*FS(10.5)*1.3+16;
- return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'}
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+/* 11 総合事例①：冬の朝の国内線（新千歳→羽田）。時間の流れに沿って判断の場面が光る */
+case_winter:function(l){
+ var W=({ja:{t:'事例①の流れ ― 冬の朝の新千歳→羽田（練習用・架空の値）',ev:[['05:30','天気：雪・視程1,200m','TAF・METARで出発と到着の見込み'],['05:50','NOTAM・SNOWTAM','除雪で1本閉鎖、RWYCC 5/5/3'],['06:10','MEL：APUが使えない','地上の電源・空気の手配'],['06:30','燃料と代替空港','待機と除雪氷の地上走行分を足す'],['07:20','除雪氷の開始','ホールドオーバーに合わせて順番を遅らせる'],['08:40','到着地の混雑','遅延情報→MINIMUM FUELの判断']]},
+  ko:{t:'사례 ①의 흐름 — 겨울 아침 신치토세→하네다(연습용·가상의 값)',ev:[['05:30','날씨: 눈·시정 1,200m','TAF·METAR로 출발과 도착 전망'],['05:50','NOTAM·SNOWTAM','제설로 1개 폐쇄, RWYCC 5/5/3'],['06:10','MEL: APU 불능','지상 전원·공기 준비'],['06:30','연료와 교체공항','대기와 제빙 지상 활주분을 더한다'],['07:20','제빙 시작','홀드오버에 맞춰 순서를 늦춘다'],['08:40','도착지 혼잡','지연 정보→MINIMUM FUEL 판단']]},
+  en:{t:'Case 1 flow: a winter morning, New Chitose to Haneda (exercise, fictitious values)',ev:[['05:30','Weather: snow, 1,200 m','Departure and arrival outlook from TAF and METAR'],['05:50','NOTAM and SNOWTAM','One runway closed for clearing, RWYCC 5/5/3'],['06:10','MEL: APU inoperative','Arrange ground power and air'],['06:30','Fuel and alternates','Add holding and de-icing taxi fuel'],['07:20','De-icing starts','Slot moved later to fit the holdover time'],['08:40','Congestion at destination','Delay information → MINIMUM FUEL decision']]}})[l];
+ if(!W)return F.case_winter('ja');
+ setK(1);var dur=14,n=W.ev.length,y=62,lh=FS(11)*1.3;
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ var rows='',top=y;
+ W.ev.forEach(function(e,i){var n1=LI(e[1],11.5,440).length,n2=LI(e[2],10.5,440).length,h=n1*FS(11.5)*1.3+n2*FS(10.5)*1.3+18;
+  rows+='<g>'+R(110,y,510,h,'#fff',10,' stroke="#D9E3EC"')+'<rect x="110" y="'+y+'" width="510" height="'+h+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.5)+' dur="'+dur+'s" repeatCount="indefinite"/></rect>'+tx(70,y+h/2+FS(11)*0.35,e[0],11,'#2F6FD6',900)+WR(126,y+8+n1*FS(11.5)*1.3/2+FS(11.5)*0.3,e[1],11.5,D,900,480,'start')+WR(126,y+12+n1*FS(11.5)*1.3+n2*FS(10.5)*1.3/2+FS(10.5)*0.3,e[2],10.5,G,800,480,'start')+'</g>';y+=h+8});
+ s+='<line x1="70" y1="'+(top+4)+'" x2="70" y2="'+(y-8)+'" stroke="#C8D3DE" stroke-width="4"/>'+rows;
+ s+='<circle cx="70" r="8" fill="#FFD23F" stroke="#0f3558"><animate attributeName="cy" values="'+(top+10)+';'+(y-14)+'" dur="'+dur+'s" repeatCount="indefinite"/></circle>';
+ y+=6;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 12 総合事例②：太平洋のEDTO夜間便。経路・交替空港・等時点、急減圧で交替空港へ */
+case_edto:function(l){
+ var W=({ja:{t:'事例②の流れ ― 仁川→ホノルル（EDTO 180分・練習用・架空の値）',a:'交替空港A',b:'交替空港B',c:'交替空港C',etp:'等時点（ETP）',ash:'火山灰（VA SIGMET）',dec:'急減圧 → 10,000ftへ降下し、Bへ回航',items:['出発前：ジェット気流の追い風で経路と高度を選び、交替空港A・B・Cの天気を使う可能性のある時間の前後1時間で確かめる','MEL で片方の空調が使えないと上がれる高さが制限され、燃料が足りない → 機材を替える判断','EDTO 臨界燃料：最も厳しい等時点で急減圧とエンジン故障を想定し、交替空港まで飛べる燃料を確保','飛行中：火山灰の範囲を避けて経路を変え、急減圧のときは交替空港Bへ']},
+  ko:{t:'사례 ②의 흐름 — 인천→호놀룰루(EDTO 180분·연습용·가상의 값)',a:'교체공항 A',b:'교체공항 B',c:'교체공항 C',etp:'등시점(ETP)',ash:'화산재(VA SIGMET)',dec:'급감압 → 10,000ft로 강하해 B로 회항',items:['출발 전: 제트기류 뒷바람으로 경로와 고도를 고르고, 교체공항 A·B·C 날씨를 쓸 수 있는 시간 전후 1시간으로 확인','MEL로 한쪽 공조를 쓸 수 없으면 올라갈 수 있는 높이가 제한되어 연료가 모자란다 → 기재 변경 판단','EDTO 임계연료: 가장 엄격한 등시점에서 급감압과 엔진 고장을 가정해 교체공항까지 날 연료를 확보','비행 중: 화산재 범위를 피해 경로를 바꾸고, 급감압 때는 교체공항 B로']},
+  en:{t:'Case 2 flow: Incheon to Honolulu (EDTO 180 min, exercise, fictitious values)',a:'Alternate A',b:'Alternate B',c:'Alternate C',etp:'Equal-time point (ETP)',ash:'Volcanic ash (VA SIGMET)',dec:'Decompression → descend to 10,000 ft and divert to B',items:['Before departure: choose route and level for the jet-stream tailwind, and check the weather at alternates A, B and C for one hour either side of possible use','An MEL item with one air-conditioning pack inoperative limits altitude so fuel is insufficient → decide to swap aircraft','EDTO critical fuel: assume decompression plus engine failure at the most critical ETP and carry enough to reach the alternate','In flight: reroute around the ash, and after a decompression divert to alternate B']}})[l];
+ if(!W)return F.case_edto('ja');
+ setK(1);var dur=12;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,220,'#2F6FA8',14)+'<defs><clipPath id="cec"><rect x="20" y="56" width="600" height="220" rx="14"/></clipPath></defs><g clip-path="url(#cec)">';
+ s+='<path d="M20 56 L110 56 L95 140 L20 170 Z" fill="#9C8A62"/><path d="M180 56 L240 56 L230 110 L190 120 Z" fill="#9C8A62"/><path d="M560 230 q30 -10 45 10 q-20 20 -45 -10 z" fill="#9C8A62"/><path d="M340 200 q12 -8 20 0 q-8 10 -20 0 z" fill="#9C8A62"/>';
+ var alts=[[210,95,W.a],[350,200,W.b],[585,238,W.c]];
+ alts.forEach(function(a){s+='<circle cx="'+a[0]+'" cy="'+a[1]+'" r="150" fill="#7CF2B0" fill-opacity=".08" stroke="#7CF2B0" stroke-width="2" stroke-dasharray="6 5"/>'});
+ s+='<ellipse cx="300" cy="96" rx="46" ry="22" fill="#6B6B6B" opacity=".75"/>';
+ var route='M60 110 C160 150 260 150 380 150 C470 150 540 190 590 232';
+ s+='<path d="'+route+'" fill="none" stroke="#fff" stroke-width="3"/>';
+ s+='<path d="M380 150 L350 200" fill="none" stroke="#D64545" stroke-width="3" stroke-dasharray="7 5" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.6;.62;1" dur="'+dur+'s" repeatCount="indefinite"/></path>';
+ s+='<g transform="translate(380 150)"><circle r="7" fill="#FFD23F" stroke="#0f3558" stroke-width="2"/></g>';
+ alts.forEach(function(a){s+='<g transform="translate('+a[0]+' '+a[1]+')"><path d="M0 -9 L8 5 L-8 5 Z" fill="#fff" stroke="#243447" stroke-width="2"/></g>'});
+ s+='<g>'+plane('#fff')+'<animateMotion dur="'+dur+'s" repeatCount="indefinite" rotate="auto" keyPoints="0;.55;.55;.55" keyTimes="0;.6;.62;1" calcMode="linear" path="'+route+'"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.6;.62;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0">'+plane('#fff')+'<animateMotion dur="'+dur+'s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.62;.85;1" calcMode="linear" path="M380 150 L350 200"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.61;.62;1" dur="'+dur+'s" repeatCount="indefinite"/></g></g>';
+ s+=LB(210,124,W.a,10,'#fff','middle','#243447')+LB(350,262,W.b,10,'#fff','middle','#243447')+LB(560,260,W.c,10,'#fff','end','#243447')+LB(392,168,W.etp,10,'#0f3558','start','#FFD23F')+LB(320,97,W.ash,10,'#fff','middle','#6B6B6B');
+ s+='<g opacity="0">'+LBW(165,222,W.dec,10.5,'#fff','middle','#D64545',220)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.62;.64;1" dur="'+dur+'s" repeatCount="indefinite"/></g>';
+ var L=LIST(W.items,288,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
