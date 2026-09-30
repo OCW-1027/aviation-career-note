@@ -52,7 +52,14 @@ function TTL(x,y,s,sz,c,maxw){var L=LINES(s,sz,maxw),lh=FS(sz)*1.3,yb=Math.max(y
  return '<g data-ttl="'+L.length+'" data-dy="'+dy.toFixed(1)+'">'+L.map(function(ln,i){return tx(x,yb+i*lh,ln,sz,c,900)}).join('')+'</g>'}
 function LBW(x,y,s,sz,c,a,bg,maxw){var lines=LINES(s,sz,maxw),lh=FS(sz)*1.3,w=0;lines.forEach(function(l){w=Math.max(w,TW(l,sz))});w+=14;var h=lines.length*lh+6,x0=a==='start'?x-7:(a==='end'?x-w+7:x-w/2),y0=y-(lines.length-1)*lh/2;
  return '<rect x="'+x0.toFixed(1)+'" y="'+(y0-lh*0.78-3).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+Math.min(12,h/2).toFixed(1)+'" fill="'+(bg||'#fff')+'" opacity=".94"/>'+lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,900,a)}).join('')}
-function plane(c){return '<path d="M-16 0 L12 -3 L18 0 L12 3 Z M-5 -2 L4 -14 L8 -14 L4 -2 Z M-5 2 L4 14 L8 14 L4 2 Z M-15 -1 L-12 -7 L-9 -7 L-11 -1 Z" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.2"/>'}
+/* 飛行機のアイコン（2026.09 改訂）：機首は右（+x）。長さ約40
+   plane(c) … 上から見た形（後退翼・エンジン2つ・後退した水平尾翼）。地図・平面の図に使う
+   planeS(c) … 横から見た形（胴体・窓・翼・エンジン・垂直尾翼）。高さの断面・横からの図に使う */
+var PLANE_TOP='M20 0 C18.5 -2 15 -3 11 -3 L-13 -3 L-18 -1.6 L-20 0 L-18 1.6 L-13 3 L11 3 C15 3 18.5 2 20 0 Z M7 -3 L-5 -18 L-9.5 -18 L-3 -3 Z M7 3 L-5 18 L-9.5 18 L-3 3 Z M-12.5 -2.8 L-18 -8.5 L-20.5 -8.5 L-17 -2.8 Z M-12.5 2.8 L-18 8.5 L-20.5 8.5 L-17 2.8 Z M6 -9.4 C6 -10.3 5.2 -10.6 4 -10.6 L-1 -10.6 L-1 -8 L4 -8 C5.2 -8 6 -8.4 6 -9.4 Z M6 9.4 C6 10.3 5.2 10.6 4 10.6 L-1 10.6 L-1 8 L4 8 C5.2 8 6 8.4 6 9.4 Z';
+var PLANE_SIDE='M20 0.5 C19 -1.8 16 -3.2 11 -3.4 L-12 -3.4 L-17 -13 L-21 -13 L-19.5 -3 L-21 -0.5 L-19 1.8 L-12 3.2 L11 3.2 C16 3.2 19 2.2 20 0.5 Z M-14 -1.2 L-21.5 -3.2 L-23 -2.4 L-15.5 0.6 Z M5 2.6 L-5 6.4 L-8.5 6.4 L-2 2.8 Z M6.5 5 C6.5 4 5.5 3.4 4 3.4 L-1 3.4 L-1 6.4 L4 6.4 C5.5 6.4 6.5 5.9 6.5 5 Z';
+function plane(c){return '<path d="'+PLANE_TOP+'" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"/>'}
+function planeS(c){var w='';for(var x=-10;x<=11;x+=2.4)w+='<circle cx="'+x.toFixed(1)+'" cy="-1.2" r="0.6" fill="#2F6FD6" opacity=".85"/>';
+ return '<path d="'+PLANE_SIDE+'" fill="'+(c||'#fff')+'" stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"/>'+w+'<path d="M15.2 -1.9 L18.2 -1.3 L17.8 -0.4 L14.8 -0.8 Z" fill="#243447"/>'}
 function cloud(x,y,s,c){s=s||1;return '<g transform="translate('+x+' '+y+') scale('+s+')"><ellipse cx="0" cy="0" rx="26" ry="14" fill="'+(c||'#fff')+'"/><ellipse cx="-18" cy="4" rx="16" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="18" cy="4" rx="17" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="4" cy="-9" rx="15" ry="11" fill="'+(c||'#fff')+'"/></g>'}
 
 /* 前線の記号を線に沿って描く。pts：[[x,y],…]、type：cold・warm・stat・occl、side：記号を出す向き（1か−1）、sp：記号の間隔 */
@@ -99,7 +106,7 @@ met_layers:function(l){l=l||'ja';
  s+=tx(315,Y(8.8)-8,W[14],11,'#0f3558',700);
  s+=cloud(140,Y(2.5),1)+cloud(215,Y(4.2),.8)+'<g opacity=".95">'+cloud(400,Y(3),.7)+'</g>';
  s+=tx(260,Y(1)+2,W[9],12,'#0f3558',800);
- s+='<g>'+plane('#fff')+'<animateMotion dur="9s" repeatCount="indefinite" path="M90 '+Y(10.6)+' L430 '+Y(10.6)+'"/></g>'+tx(86,Y(9.3),W[13],11,'#0f3558',800,'start');
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="9s" repeatCount="indefinite" path="M90 '+Y(10.6)+' L430 '+Y(10.6)+'"/></g>'+tx(86,Y(9.3),W[13],11,'#0f3558',800,'start');
  /* 成層圏：オゾン */
  s+='<g opacity=".9"><circle cx="330" cy="'+Y(25)+'" r="16" fill="#8FD0B5"/>'+tx(330,Y(25)+5,'O₃',13,'#0f3558',900)+'<animate attributeName="opacity" values=".5;1;.5" dur="3s" repeatCount="indefinite"/></g>'+tx(250,Y(25)+26,W[10],11,'#fff',700);
  /* 中間圏：流れ星 */
@@ -373,7 +380,7 @@ met_jet_section:function(l){
  s+=R(650,Y(4.6)-18,20,20,'#F4A340',5,' opacity=".8"')+tx(678,Y(4.6)-3,W.cat,12,'#8a4a00',900,'start');
  s+='<g><circle cx="690" cy="'+(Y(3)-5)+'" r="9" fill="#fff" stroke="#7B4FB0" stroke-width="2.5"/><path d="M684 '+(Y(3)-11)+' l12 12 m0 -12 l-12 12" stroke="#7B4FB0" stroke-width="2.5"/></g>'+WR(706,Y(3),W.in,11,G,800,170,'start');
  /* 飛行機：乱気流の所で揺れる */
- s+='<g><g>'+plane('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -5;0 5;0 -4;0 3;0 0;0 0" keyTimes="0;.28;.32;.36;.4;.44;.48;1" dur="9s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="9s" repeatCount="indefinite" path="M80 '+Y(11)+' L840 '+Y(11)+'"/></g>';
+ s+='<g><g>'+planeS('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -5;0 5;0 -4;0 3;0 0;0 0" keyTimes="0;.28;.32;.36;.4;.44;.48;1" dur="9s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="9s" repeatCount="indefinite" path="M80 '+Y(11)+' L840 '+Y(11)+'"/></g>';
  s+=tx(70,Y(0)+26,'← '+W.n,12,'#1d4d8a',900,'start')+tx(850,Y(0)+26,W.s+' →',12,'#8a3b00',900,'end');
  [0,4,8,12,16].forEach(function(h){s+=tx(52,Y(h)+4,h,11,G,700,'end')});s+=tx(20,Y(17)-6,W.h,11,G,800,'start');
  K=1;
@@ -424,7 +431,7 @@ met_kh:function(l){
  var wave='';for(var i=0;i<5;i++){var x=40+i*110;wave+='<path d="M'+x+' 200 q30 -42 62 -8 q10 12 -6 18 q-14 4 -14 -10" fill="none" stroke="#6B4FA0" stroke-width="4" stroke-linecap="round"/>'}
  sc+='<defs><clipPath id="khc"><rect x="10" y="40" width="560" height="300" rx="14"/></clipPath></defs><g clip-path="url(#khc)"><g transform="translate(-110 0)">'+wave+'<animateTransform attributeName="transform" type="translate" values="-110 0;0 0" dur="3.2s" repeatCount="indefinite"/></g></g>';
  sc+='<path d="M20 200 H550" stroke="#6B4FA0" stroke-width="2" stroke-dasharray="4 5" opacity=".6"/>'+tx(290,236,W.br,13,'#6B4FA0',900);
- sc+='<g><g>'+plane('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 6;0 -5;0 4;0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="7s" repeatCount="indefinite" path="M40 190 L540 190"/></g>';
+ sc+='<g><g>'+planeS('#fff')+'<animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 6;0 -5;0 4;0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/></g><animateMotion dur="7s" repeatCount="indefinite" path="M40 190 L540 190"/></g>';
  K=1;
  function CR(x0,y0,w){var lh=FS(11.5)*1.3,y=y0+14,g='',cols=['#F1EAFB','#E3F1FB','#E8F5F2','#FDEEDF'];
   [W.c,W.v,W.h,W.tm].forEach(function(v,i){var n=LINES(v[0],11.5,w-40).length,h=n*lh+FS(15)*1.5+14;g+=R(x0+14,y,w-28,h,cols[i],12)+WR(x0+w/2,y+8+n*lh/2+FS(11.5)*0.35,v[0],11.5,G,800,w-40)+tx(x0+w/2,y+n*lh+FS(15)*1.2+6,v[1],15,D,900);y+=h+8});
@@ -537,7 +544,7 @@ met_microburst:function(l){
  s+='<path d="M40 150 L800 414" stroke="#6B7785" stroke-width="3" stroke-dasharray="10 8"/>'+LB(120,160,W.p,12,G,'start');
  var act='M40 150 C200 170 280 190 340 190 C420 200 460 280 520 330 C580 380 620 420 660 440';
  s+='<path d="'+act+'" fill="none" stroke="#D64545" stroke-width="4"/>';
- s+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+act+'"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+act+'"/></g>';
  s+='<circle cx="300" cy="190" r="15" fill="#E08A2F"/>'+tx(300,196,'1',14,'#fff',900)+'<circle cx="450" cy="250" r="15" fill="#2F6FD6"/>'+tx(450,256,'2',14,'#fff',900)+'<circle cx="560" cy="360" r="15" fill="#D64545"/>'+tx(560,366,'3',14,'#fff',900);
  s+=LB(450,462,W.sz,12,'#40566B','middle');
  s+=R(610,60,280,190,'#fff',12,' stroke="#D9E3EC" opacity=".96"')+WR(750,96,W.a,11.5,'#8a3b00',800,260)+WR(750,150,W.b,11.5,'#1d4d8a',800,260)+WR(750,210,W.c,11.5,'#D64545',900,260);
@@ -676,7 +683,7 @@ met_levels:function(l){
   s+=tx(40,y-5,v[0],13,c,900,'start')+tx(40+TW(v[0],13)+14,y-5,v[1]+' / '+v[2],11,c,800,'start');
   if(!nar)s+=LB(606,y-5,W.u[i],10.5,'#0f3558','end','#fff')});
  s+='<g><g><ellipse cx="0" cy="-26" rx="16" ry="20" fill="#fff" stroke="#9FB0C2" stroke-width="2"/><line x1="0" y1="-6" x2="0" y2="14" stroke="#6B7785" stroke-width="1.5"/><rect x="-6" y="14" width="12" height="10" fill="#E08A2F"/></g><animateMotion dur="8s" repeatCount="indefinite" path="M'+(nar?560:300)+' '+(H-50)+' L'+(nar?560:300)+' 70"/></g>';
- s+='<g transform="translate(520 '+(Y(430)-12)+')">'+plane('#fff')+'</g>';
+ s+='<g transform="translate(520 '+(Y(430)-12)+')">'+planeS('#fff')+'</g>';
  var y=H+8;
  if(nar){var lh=FS(11)*1.3;L.forEach(function(v,i){var n=LINES(v[0]+(l==='ja'?'：':': ')+W.u[i],11,580).length;s+=WR(30,y+lh*0.8+(n-1)*lh/2,v[0]+(l==='ja'?'：':': ')+W.u[i],11,'#0f3558',800,580,'start');y+=n*lh+8})}
  var ns=LINES(W.son,11,580).length,sh=ns*FS(11)*1.3;s+=WR(320,y+sh/2+FS(11)*0.3,W.son,11,'#40566B',800,580);y+=sh+14;
@@ -762,5 +769,5 @@ function FIX2(fn){return function(l){FLOORU=0;K=1;var s1=fn(l),m=/viewBox="[\d.\
  FLOORU=FLOORPX*vw/w;var s2=SHIFTTTL(fn(l));FLOORU=0;K=1;return s2.replace('<svg ','<svg data-flr="1" ')}}
 for(var k in F)window.FIGS[k]=FIX2(F[k]);
 /* ほかの図のファイル（figs_nav.js など）から同じ部品を使えるように公開する */
-window.FIGH={R:R,tx:tx,WR:WR,LB:LB,LBW:LBW,TTL:TTL,LINES:LINES,ARW:ARW,SCR:SCR,plane:plane,cloud:cloud,FR:FR,TW:TW,NARROW:NARROW,FIX2:FIX2,FS:FS,setK:function(v){K=v},C:{D:D,B:B,T:T,O:O,RD:RD,P:P,G:G}};
+window.FIGH={R:R,tx:tx,WR:WR,LB:LB,LBW:LBW,TTL:TTL,planeS:planeS,LINES:LINES,ARW:ARW,SCR:SCR,plane:plane,cloud:cloud,FR:FR,TW:TW,NARROW:NARROW,FIX2:FIX2,FS:FS,setK:function(v){K=v},C:{D:D,B:B,T:T,O:O,RD:RD,P:P,G:G}};
 })();

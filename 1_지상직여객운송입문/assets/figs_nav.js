@@ -3,6 +3,7 @@
    ・スマートフォン（幅700px未満）では縦に並べるか、横にスクロールさせる */
 (function(){
 var H=window.FIGH;if(!H)return;
+var planeS=H.planeS;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,ARW=H.ARW,SCR=H.SCR,plane=H.plane,NARROW=H.NARROW,setK=H.setK;
 var LBW=H.LBW,TTL=H.TTL;
 var D=H.C.D,B=H.C.B,T=H.C.T,O=H.C.O,RD=H.C.RD,P=H.C.P,G=H.C.G;
@@ -42,7 +43,7 @@ nav_ias_tas:function(l){
  var dots='';for(var r=0;r<14;r++){var y=480-r*30,n=Math.max(1,Math.round(14*Math.pow(1-r/14,1.6)));for(var j=0;j<n;j++){var x=32+(j+0.5)*(320/n)+((r%2)?8:-8);dots+='<circle cx="'+x.toFixed(0)+'" cy="'+y+'" r="3.2" fill="#fff" opacity=".65"/>'}}
  s+=dots+LB(190,124,W.thin,11,'#fff','middle','#2B4F8F')+LB(190,466,W.thick,11,'#0f3558','middle','#CFE8F7');
  [[0,'0'],[10,'10,000'],[20,'20,000'],[30,'30,000']].forEach(function(v){var y=494-v[0]*13.5;s+='<line x1="20" y1="'+y+'" x2="360" y2="'+y+'" stroke="#fff" stroke-dasharray="6 6" opacity=".5"/>'+tx(30,y-4,v[1]+' ft',10.5,'#fff',800,'start')});
- s+='<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear" path="M70 494 L320 89"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear" path="M70 494 L320 89"/></g>';
  /* 計器：値を時間で切り替える */
  function gauge(cx,cy,lab,col,vals){var g='<circle cx="'+cx+'" cy="'+cy+'" r="62" fill="#fff" stroke="'+col+'" stroke-width="4"/>'+tx(cx,cy-74,lab,12,col,900),fs=(26*(nar?1.3:1)).toFixed(0),n=vals.length;
   vals.forEach(function(v,i){var a=i/n*0.85,b=(i+1)/n*0.85;if(i===n-1)b=1;var kt,vs;
@@ -85,7 +86,7 @@ nav_densalt:function(l){
  function rw(y,lab,da,col,end,dur,sun){var g=R(20,y,600,150,'#fff',14,' stroke="'+col+'" stroke-width="2"')+tx(40,y+30,lab,14,col,900,'start')+(sun?'<circle cx="590" cy="'+(y+28)+'" r="14" fill="#F2B233"><animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/></circle>':'');
   g+=R(40,y+96,560,26,'#5B6770',6)+'<line x1="50" y1="'+(y+109)+'" x2="590" y2="'+(y+109)+'" stroke="#fff" stroke-width="2" stroke-dasharray="14 10"/>';
   g+='<rect x="60" y="'+(y+86)+'" width="0" height="6" rx="3" fill="'+col+'" opacity=".6"><animate attributeName="width" values="0;'+(end-60)+';'+(end-60)+'" keyTimes="0;.7;1" dur="'+dur+'s" repeatCount="indefinite"/></rect>';
-  g+='<g>'+plane('#fff')+'<animateMotion dur="'+dur+'s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.7;1" calcMode="linear" path="M60 '+(y+100)+' L'+end+' '+(y+100)+' L'+(end+40)+' '+(y+70)+'"/></g>';
+  g+='<g>'+planeS('#fff')+'<animateMotion dur="'+dur+'s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.7;1" calcMode="linear" path="M60 '+(y+100)+' L'+end+' '+(y+100)+' L'+(end+40)+' '+(y+70)+'"/></g>';
   g+=LB(330,y+62,da,11.5,'#fff','middle',col)+tx(end,y+144,'▲',12,col,900);
   return g}
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img">'+R(0,0,640,520,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
@@ -235,7 +236,7 @@ nav_tsd:function(l){
   s+='<g opacity="'+(i===0?1:0)+'"><circle cx="'+c[0]+'" cy="'+(c[1]-7)+'" r="34" fill="#FFD23F" opacity=".45"/>'+LBW(320,372,f,14,'#fff','middle','#243447',560)+'<animate attributeName="opacity" values="'+vs+'" keyTimes="'+kt+'" dur="9s" repeatCount="indefinite"/></g>'});
  /* 飛行機と距離の目盛り、時計 */
  s+=R(20,410,600,90,'#EEF5FB',12);for(var i=0;i<=6;i++){var x=60+i*80;s+='<line x1="'+x+'" y1="452" x2="'+x+'" y2="460" stroke="#6B7785" stroke-width="2"/>'+tx(x,488,(i*40)+'NM',10.5,G,800)}
- s+='<g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M60 440 L540 440"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M60 440 L540 440"/></g>';
  s+='<g transform="translate(570 90)"><circle r="40" fill="#fff" stroke="#243447" stroke-width="3"/><line x1="0" y1="0" x2="0" y2="-30" stroke="#D64545" stroke-width="3" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0;180" dur="6s" repeatCount="indefinite"/></line><circle r="4" fill="#243447"/></g>'+tx(570,150,'0–30'+W.min,11,G,800);
  var n=H.LINES(W.ex,12,560).length,lh=H.FS(12)*1.3;s+=WR(320,522+n*lh/2,W.ex,12,'#8a3b00',900,560);
  var HH=522+n*lh+20;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+s.replace(R(0,0,640,560,'#F7FAFD'),R(0,0,640,HH,'#F7FAFD'))+'</svg>'},
@@ -250,7 +251,7 @@ nav_descent:function(l){
  var s=R(0,0,640,560,'#F7FAFD')+TTL(320,30,W.t,16,'#0f3558',600)+R(20,54,600,280,'#DCEEFB',14)+R(20,310,600,24,'#9CC98B',0);
  s+='<line x1="40" y1="90" x2="150" y2="90" stroke="#6B7785" stroke-width="3"/><path d="M150 90 L560 300" stroke="#D64545" stroke-width="4"/>'+R(540,298,70,10,'#5B6770',3);
  s+='<circle cx="150" cy="90" r="7" fill="#D64545"/>'+LBW(200,74,W.tod,11,'#fff','start','#D64545',240)+tx(575,330,W.rw,11,G,900);
- s+='<g><g>'+plane('#fff')+'</g><animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M40 90 L150 90 L560 300"/></g>';
+ s+='<g><g>'+planeS('#fff')+'</g><animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M40 90 L150 90 L560 300"/></g>';
  var y=348,body='',items=[[W.r1,12,D],[W.r2,12,'#2F6FD6'],[W.r3,12,'#1F7A6E'],[W.ex,11.5,'#8a3b00']];
  items.forEach(function(v){var n=H.LINES(v[0],v[1],560).length,lh=H.FS(v[1])*1.3;body+=WR(320,y+10+n*lh/2+H.FS(v[1])*0.3,v[0],v[1],v[2],900,560);y+=n*lh+10});
  var bh=y-348+12;s+=R(20,344,600,bh,'#fff',14,' stroke="#D9E3EC"')+body;
@@ -316,7 +317,7 @@ nav_gnss:function(l){
  /* 何機の衛星を使うかを順に示す */
  [[0,4,'#7CF2B0'],[1,5,'#FFD23F'],[2,6,'#FF9B7A']].forEach(function(v,k){var g='';for(var i=0;i<v[1];i++)g+='<line x1="'+sats[i][0]+'" y1="'+sats[i][1]+'" x2="'+rx+'" y2="'+ry+'" stroke="'+v[2]+'" stroke-width="2.5" stroke-dasharray="6 5"/>';
   s+='<g opacity="0">'+g+'<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;'+(k/3).toFixed(2)+';'+(k/3+0.02).toFixed(2)+';'+((k+1)/3-0.02).toFixed(2)+';'+((k+1)/3).toFixed(2)+';1" dur="9s" repeatCount="indefinite"/></g>'});
- s+='<g transform="translate('+rx+' '+ry+')">'+plane('#fff')+'</g>';
+ s+='<g transform="translate('+rx+' '+ry+')">'+planeS('#fff')+'</g>';
  /* SBAS */
  s+='<g transform="translate(575 78)"><circle r="14" fill="#E08A2F"/><rect x="-26" y="-4" width="12" height="8" fill="#9FD3F7"/><rect x="14" y="-4" width="12" height="8" fill="#9FD3F7"/></g>'+tx(575,110,'SBAS',11,'#FFB870',900);
  s+='<g transform="translate(520 360)"><path d="M-8 0 L0 -22 L8 0 Z" fill="#fff"/></g>'+tx(520,378,W.ref,10.5,'#fff',800);
@@ -366,7 +367,7 @@ nav_minalt:function(l){
  s+=LB(150,214,W.sig,10.5,'#2F6FD6','middle','#fff');
  s+='<line x1="20" y1="130" x2="620" y2="130" stroke="#1F7A6E" stroke-width="3" stroke-dasharray="10 6"/><line x1="20" y1="96" x2="620" y2="96" stroke="#2F6FD6" stroke-width="4"/>';
  s+='<line x1="330" y1="150" x2="330" y2="130" stroke="#6B4FA0" stroke-width="2"/>'+LBW(450,166,W.clr,10.5,'#6B4FA0','middle','#fff',280);
- s+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" path="M30 96 L610 96"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" path="M30 96 L610 96"/></g>';
  var y=368,body='',items=[[W.mea,'#2F6FD6'],[W.moca,'#1F7A6E']];
  items.forEach(function(v){var n=LI(v[0],11.5,540).length,lh=FS(11.5)*1.3,h=n*lh+14;body+=R(20,y,600,h,'#fff',10,' stroke="'+v[1]+'" stroke-width="2"')+WR(320,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,540);y+=h+6});
  var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
@@ -401,7 +402,7 @@ nav_highlow:function(l){
   var L=k?[W.wm,W.cd]:[W.hp,W.lp];g+=LB(x0+50,y0+54,L[0],11,'#fff','middle',k?'#E08A2F':'#D64545')+LB(x0+w-50,y0+54,L[1],11,'#fff','middle',k?'#2F6FD6':'#1d4d8a');
   g+='<path d="M'+x0+' '+(y0+230)+' L'+x0+' '+(y0+205)+' L'+(x0+w*0.7)+' '+(y0+205)+' L'+(x0+w*0.85)+' '+(y0+160)+' L'+(x0+w)+' '+(y0+190)+' L'+(x0+w)+' '+(y0+230)+' Z" fill="#9C8A62"/>';
   g+='<path d="M'+(x0+10)+' '+(y0+90)+' L'+(x0+w-10)+' '+(y0+140)+'" stroke="'+col+'" stroke-width="3" stroke-dasharray="8 6"/><path d="M'+(x0+10)+' '+(y0+90)+' L'+(x0+w-10)+' '+(y0+90)+'" stroke="#9FB0C2" stroke-width="2" stroke-dasharray="3 5"/>';
-  g+='<g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M'+(x0+14)+' '+(y0+90)+' L'+(x0+w-14)+' '+(y0+140)+'"/></g>';
+  g+='<g>'+planeS('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M'+(x0+14)+' '+(y0+90)+' L'+(x0+w-14)+' '+(y0+140)+'"/></g>';
   g+=LBW(x0+w*0.38,y0+128,W.tru+' ↘',11,'#D64545','middle','#fff',w*0.6);
   return g}
  var s,y0=56,HH;
@@ -422,7 +423,7 @@ nav_rvsm:function(l){
  lv.forEach(function(f,i){var y=Y(f),odd=(f/10)%2===1;
   var east=f<=410?odd:(f===450);s+='<line x1="120" y1="'+y+'" x2="600" y2="'+y+'" stroke="'+(east?'#2F6FD6':'#E08A2F')+'" stroke-width="1.5" opacity=".6"/>'+tx(100,y+4,'FL'+f,10.5,east?'#2F6FD6':'#8a3b00',900,'end');
   var dir=f<=410?(odd?1:-1):(f===450?1:-1),xa=dir>0?150:570,xb=dir>0?570:150;
-  s+='<g><g transform="scale('+(dir>0?1:-1)+' 1)">'+plane('#fff')+'</g><animateMotion dur="'+(6+i%3)+'s" begin="-'+(i*0.4+0.2).toFixed(1)+'s" repeatCount="indefinite" path="M'+xa+' '+y+' L'+xb+' '+y+'"/></g>';
+  s+='<g><g transform="scale('+(dir>0?1:-1)+' 1)">'+planeS('#fff')+'</g><animateMotion dur="'+(6+i%3)+'s" begin="-'+(i*0.4+0.2).toFixed(1)+'s" repeatCount="indefinite" path="M'+xa+' '+y+' L'+xb+' '+y+'"/></g>';
  });
  s+=LBW(360,Y(350)+14,W.in,12,'#fff','middle','#1F7A6E',400)+LBW(360,Y(440)-6,W.out,11.5,'#1F7A6E','middle','#fff',400);
  var y=508,body='',items=[[W.east,'#2F6FD6'],[W.west,'#8a3b00'],[W.req,G]];

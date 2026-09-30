@@ -2,6 +2,7 @@
    作成ルール：00_그림작성규칙.md（文字は画面で11px以上＝FIX2、文は WR／LBW、題名は TTL、高さは行数で計算） */
 (function(){
 var H=window.FIGH;if(!H)return;
+var planeS=H.planeS;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,LBW=H.LBW,TTL=H.TTL,ARW=H.ARW,SCR=H.SCR,plane=H.plane,NARROW=H.NARROW,setK=H.setK,FS=H.FS,LI=H.LINES;
 var D=H.C.D,G=H.C.G,RD=H.C.RD;
 /* 番号の丸：文字の大きさに合わせて丸も大きくする */
@@ -41,7 +42,7 @@ aid_dme:function(l){
  /* 動く斜めの線と地面の線 */
  s+='<g><line x1="0" y1="0" x2="0" y2="0" stroke="#D64545" stroke-width="3"><animate attributeName="x1" values="60;'+gx+';'+gx+'" keyTimes="0;.8;1" dur="7s" repeatCount="indefinite"/><animate attributeName="y1" values="'+(gy-alt)+'" dur="7s" repeatCount="indefinite"/><animate attributeName="x2" values="'+gx+'" dur="7s" repeatCount="indefinite"/><animate attributeName="y2" values="'+(gy-34)+'" dur="7s" repeatCount="indefinite"/></line></g>';
  s+='<line x1="60" y1="'+(gy-6)+'" x2="'+gx+'" y2="'+(gy-6)+'" stroke="#1F7A6E" stroke-width="4"><animate attributeName="x1" values="60;'+gx+';'+gx+'" keyTimes="0;.8;1" dur="7s" repeatCount="indefinite"/></line>';
- s+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.8;1" calcMode="linear" path="'+path+'"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.8;1" calcMode="linear" path="'+path+'"/></g>';
  s+=LB(150,gy-alt-22,W.dme,11,'#fff','middle','#D64545')+LB(250,gy+22,W.gnd+' →',11,'#1F7A6E','middle','#fff');
  s+='<g opacity="0">'+LBW(gx-160,gy-alt-60,W.over,11.5,'#fff','middle','#D64545',280)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.78;.82;1" dur="7s" repeatCount="indefinite"/></g>';
  var b=box([[W.far,D],[W.rule,'#8a3b00','#FFF1E3']],20,368,600,11.5);
@@ -76,8 +77,8 @@ aid_los:function(l){
  s+='<path d="M20 356 Q320 250 620 356 Z" fill="#2F6FA8"/><path d="M20 356 Q320 250 620 356" fill="none" stroke="#9FD3F7" stroke-width="2"/>';
  s+='<g transform="translate(100 318)"><path d="M-10 0 L-5 -9 L5 -9 L10 0 L5 9 L-5 9 Z" fill="#fff" stroke="#2F6FD6" stroke-width="3"/></g>'+tx(100,344,W.st,11,'#fff',900);
  [[250,286,'1,000ft','#7CF2B0'],[400,200,'10,000ft','#FFD23F'],[560,120,'36,000ft','#FF9B7A']].forEach(function(v,i){
-  s+='<line x1="100" y1="310" x2="'+v[0]+'" y2="'+v[1]+'" stroke="'+v[3]+'" stroke-width="2.5" stroke-dasharray="6 5"><animate attributeName="stroke-dashoffset" values="0;-22" dur="1s" repeatCount="indefinite"/></line><g transform="translate('+v[0]+' '+v[1]+')">'+plane('#fff')+'</g>'+LB(v[0],v[1]-20,v[2],10.5,'#0f3558','middle',v[3])});
- s+='<g transform="translate(575 318)">'+plane('#fff')+'</g><line x1="100" y1="312" x2="296" y2="306" stroke="#D64545" stroke-width="2.5" stroke-dasharray="6 5"/>';
+  s+='<line x1="100" y1="310" x2="'+v[0]+'" y2="'+v[1]+'" stroke="'+v[3]+'" stroke-width="2.5" stroke-dasharray="6 5"><animate attributeName="stroke-dashoffset" values="0;-22" dur="1s" repeatCount="indefinite"/></line><g transform="translate('+v[0]+' '+v[1]+')">'+planeS('#fff')+'</g>'+LB(v[0],v[1]-20,v[2],10.5,'#0f3558','middle',v[3])});
+ s+='<g transform="translate(575 318)">'+planeS('#fff')+'</g><line x1="100" y1="312" x2="296" y2="306" stroke="#D64545" stroke-width="2.5" stroke-dasharray="6 5"/>';
  s+='<g><path d="M290 296 l16 16 M306 296 l-16 16" stroke="#D64545" stroke-width="4" stroke-linecap="round"/><animate attributeName="opacity" values=".3;1;.3" dur="1.6s" repeatCount="indefinite"/></g>'+LBW(520,280,W.blk,10.5,'#fff','middle','#D64545',180);
  var b=box([[W.f,'#8a3b00','#FFF1E3'],[W.ex,D]],20,368,600,11.5);
  var HH=b.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+b.s+'</svg>'},
@@ -97,7 +98,7 @@ aid_ils:function(l){
  function side(x0,y0,w){var g=R(x0,y0,w,190,'#DCEEFB',14)+tx(x0+w/2,y0+24,W.side,13,'#2F6FD6',900)+R(x0,y0+160,w,30,'#9CC98B',0);var ty=y0+160,tx0=x0+w-150;
   g+=R(tx0,ty-6,110,8,'#5B6770',3)+'<line x1="'+(x0+30)+'" y1="'+(ty-100)+'" x2="'+(tx0+20)+'" y2="'+(ty-4)+'" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="10 6"/>';
   g+='<g transform="translate('+(tx0+30)+' '+(ty-10)+')"><rect x="-4" y="-22" width="8" height="22" fill="#2F6FD6"/></g>';
-  g+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" path="M'+(x0+40)+' '+(ty-60)+' C'+(x0+w*0.3)+' '+(ty-60)+' '+(x0+w*0.4)+' '+(ty-60)+' '+(tx0+20)+' '+(ty-6)+'"/></g>';
+  g+='<g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" path="M'+(x0+40)+' '+(ty-60)+' C'+(x0+w*0.3)+' '+(ty-60)+' '+(x0+w*0.4)+' '+(ty-60)+' '+(tx0+20)+' '+(ty-6)+'"/></g>';
   g+=LBW(tx0+40,ty-44,W.gp,10.5,'#2F6FD6','middle','#fff',170);return g}
  var s,HH,vw;
  if(nar){vw=580;s=top(20,56,540)+side(20,262,540);var y=468}else{vw=900;s=top(20,56,420)+side(460,56,420);var y=262}
@@ -120,7 +121,7 @@ aid_cat:function(l){
  s+=R(430,270,180,10,'#5B6770',3);for(var i=0;i<6;i++)s+='<circle cx="'+(440+i*30)+'" cy="266" r="4" fill="#FFD23F"><animate attributeName="opacity" values=".3;1;.3" dur="1.2s" begin="-'+(i*0.2)+'s" repeatCount="indefinite"/></circle>';
  s+='<line x1="40" y1="90" x2="440" y2="266" stroke="#2F6FD6" stroke-width="2" stroke-dasharray="8 6"/>';
  s+='<line x1="20" y1="200" x2="620" y2="200" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(80,194,W.dh,10.5,'#fff','start','#D64545');
- s+='<g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="M40 90 L260 187 C300 200 320 170 380 120"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="M40 90 L260 187 C300 200 320 170 380 120"/></g>';
  s+=LBW(320,140,W.see,11,'#0f3558','middle','#fff',360);
  var y=320,lh=FS(12)*1.5,cw=[140,220,220];
  s+=R(20,y,600,lh+10,'#243447',8)+tx(90,y+lh*0.8,'CAT',12,'#fff',900)+tx(270,y+lh*0.8,W.dh,11,'#fff',900)+tx(490,y+lh*0.8,W.rvr,11,'#fff',900);y+=lh+14;
@@ -158,7 +159,7 @@ aid_radar:function(l){
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,300,'#0E2238',14);
  function ant(x,y,c){return '<g transform="translate('+x+' '+y+')"><rect x="-4" y="-4" width="8" height="30" fill="#6B7785"/><path d="M-22 -10 Q0 -24 22 -10" fill="none" stroke="'+c+'" stroke-width="5"/></g>'}
  s+=ant(110,320,'#9FD3F7')+ant(320,320,'#FFD23F')+'<g transform="translate(530 330)"><rect x="-14" y="-10" width="28" height="20" rx="3" fill="#6B7785"/><path d="M-8 -10 L0 -22 L8 -10" fill="none" stroke="#7CF2B0" stroke-width="3"/></g>';
- s+='<g transform="translate(110 150)">'+plane('#fff')+'</g><g transform="translate(320 150)">'+plane('#fff')+'</g><g transform="translate(530 150)">'+plane('#fff')+'</g>';
+ s+='<g transform="translate(110 150)">'+planeS('#fff')+'</g><g transform="translate(320 150)">'+planeS('#fff')+'</g><g transform="translate(530 150)">'+planeS('#fff')+'</g>';
  s+='<path d="M110 300 L110 170" stroke="#9FD3F7" stroke-width="3" stroke-dasharray="8 8"><animate attributeName="stroke-dashoffset" values="0;32" dur="1s" repeatCount="indefinite"/></path><path d="M100 170 L100 300" stroke="#9FD3F7" stroke-width="2" stroke-dasharray="3 9" opacity=".6"><animate attributeName="stroke-dashoffset" values="0;-24" dur="1s" repeatCount="indefinite"/></path>';
  s+='<path d="M320 300 L320 170" stroke="#FFD23F" stroke-width="3" stroke-dasharray="8 8"><animate attributeName="stroke-dashoffset" values="0;32" dur="1s" repeatCount="indefinite"/></path><path d="M332 170 L332 300" stroke="#FF9B7A" stroke-width="3" stroke-dasharray="8 8"><animate attributeName="stroke-dashoffset" values="0;-32" dur="1s" repeatCount="indefinite"/></path>'+LB(390,120,'A1234 / FL350',10.5,'#0f3558','middle','#FFD23F');
  for(var i=1;i<=3;i++)s+='<circle cx="530" cy="150" r="10" fill="none" stroke="#7CF2B0" stroke-width="2"><animate attributeName="r" values="10;90" dur="2s" begin="-'+(i*0.66).toFixed(2)+'s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="2s" begin="-'+(i*0.66).toFixed(2)+'s" repeatCount="indefinite"/></circle>';
@@ -209,7 +210,7 @@ aid_papi:function(l){
  s+='<line x1="40" y1="120" x2="420" y2="274" stroke="#7CF2B0" stroke-width="2" stroke-dasharray="6 6"/>';
  /* 飛行機の上下と灯火の変化 */
  var kp=ys.map(function(v,i){return (i/n).toFixed(2)}).join(';'),vals=ys.map(function(v){return '0 '+(v-185)}).join(';');
- s+='<g><g transform="translate(200 185)">'+plane('#fff')+'</g><animateTransform attributeName="transform" type="translate" values="'+vals+'" keyTimes="'+kp+'" dur="'+dur+'s" calcMode="discrete" repeatCount="indefinite"/></g>';
+ s+='<g><g transform="translate(200 185)">'+planeS('#fff')+'</g><animateTransform attributeName="transform" type="translate" values="'+vals+'" keyTimes="'+kp+'" dur="'+dur+'s" calcMode="discrete" repeatCount="indefinite"/></g>';
  ys.forEach(function(v,i){var w=pat[i],a0=(i/n).toFixed(3),a1=((i+1)/n).toFixed(3),vs,kt;
   if(i===0){vs='1;1;0;0';kt='0;'+a1+';'+(+a1+0.001).toFixed(3)+';1'}else if(i===n-1){vs='0;0;1;1';kt='0;'+a0+';'+(+a0+0.001).toFixed(3)+';1'}else{vs='0;0;1;1;0;0';kt='0;'+a0+';'+(+a0+0.001).toFixed(3)+';'+a1+';'+(+a1+0.001).toFixed(3)+';1'}
   var g='';for(var q=0;q<4;q++)g+='<circle cx="'+(440+q*36)+'" cy="248" r="11" fill="'+(q<w?'#FFFFFF':'#FF4D4D')+'"/>';
@@ -274,7 +275,7 @@ app_types:function(l){
   var rx=x0+w-110;g+=R(rx,y0+172,90,6,'#5B6770',2)+tx(rx+45,y0+194,W.rw,10.5,'#2F5E24',800);
   var my=y0+140;g+='<line x1="'+(x0+10)+'" y1="'+my+'" x2="'+(x0+w-10)+'" y2="'+my+'" stroke="'+(k?'#1F7A6E':'#D64545')+'" stroke-width="2" stroke-dasharray="5 5"/>'+LB(x0+14,my-8,k?W.da:W.mda,10,'#fff','start',col);
   var p=k?'M'+(x0+20)+' '+(y0+54)+' L'+(rx-30)+' '+my+' L'+(rx+10)+' '+(y0+172):'M'+(x0+20)+' '+(y0+54)+' L'+(x0+w*0.3)+' '+(y0+54)+' L'+(x0+w*0.38)+' '+(y0+96)+' L'+(x0+w*0.5)+' '+(y0+96)+' L'+(x0+w*0.58)+' '+my+' L'+(rx-10)+' '+my+' L'+(rx+10)+' '+(y0+172);
-  g+='<path d="'+p+'" fill="none" stroke="'+col+'" stroke-width="3"/><g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>';
+  g+='<path d="'+p+'" fill="none" stroke="'+col+'" stroke-width="3"/><g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>';
   var n=LI(k?W.nb:W.na,11,w-24).length,lh=FS(11)*1.3;g+=R(x0,y0+208,w,n*lh+16,'#fff',10,' stroke="#D9E3EC"')+WR(x0+w/2,y0+216+n*lh/2+FS(11)*0.3,k?W.nb:W.na,11,D,800,w-24);
   return {s:g,h:208+n*lh+16}}
  var s,HH,vw;
@@ -294,8 +295,8 @@ app_dec:function(l){
  s+=R(430,270,160,8,'#5B6770',3);for(var i=0;i<5;i++)s+='<circle cx="'+(440+i*34)+'" cy="266" r="4" fill="#FFD23F"/>';
  s+='<line x1="20" y1="200" x2="620" y2="200" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(30,194,W.dh,10.5,'#fff','start','#D64545');
  var land='M40 90 L330 200 L440 268',ga='M40 90 L330 200 C380 200 420 150 600 80';
- s+='<g><g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="'+land+'"/></g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
- s+='<g opacity="0"><g>'+plane('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="'+ga+'"/></g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
+ s+='<g><g>'+planeS('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="'+land+'"/></g><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
+ s+='<g opacity="0"><g>'+planeS('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="'+ga+'"/></g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
  s+='<g>'+LB(470,150,W.see,12,'#fff','middle','#1F7A6E')+'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g><g opacity="0">'+LB(470,150,W.nosee,12,'#fff','middle','#D64545')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.49;.5;1" dur="12s" repeatCount="indefinite"/></g>';
  var y=318,body='',items=[[W.vis,D,'#fff'],[W.ma,'#8a3b00','#FFF1E3']];
  items.forEach(function(v){var n=LI(v[0],11.5,560).length,lh=FS(11.5)*1.3,h=n*lh+14;body+=R(20,y,600,h,v[2],10,v[2]==='#fff'?' stroke="#D9E3EC"':'')+WR(320,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,560);y+=h+6});

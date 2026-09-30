@@ -2,6 +2,7 @@
    作成ルール：00_그림작성규칙.md（文字は画面で11px以上＝FIX2、文は WR／LBW、題名は TTL、高さは行数で計算） */
 (function(){
 var H=window.FIGH;if(!H)return;
+var planeS=H.planeS;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,LBW=H.LBW,TTL=H.TTL,ARW=H.ARW,plane=H.plane,NARROW=H.NARROW,setK=H.setK,FS=H.FS,LI=H.LINES;
 var D=H.C.D,G=H.C.G;
 function BADGE(x,y,n,sz){var r=Math.max(11,FS(sz)*0.72);return '<circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'" fill="#FFD23F" stroke="#0f3558" stroke-width="1.5"/>'+tx(x,y+FS(sz)*0.35,String(n),sz,'#0f3558',900)}
@@ -19,7 +20,7 @@ atc_flow:function(l){
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,190,'#DCEEFB',14)+R(20,222,600,24,'#9CC98B',0);
  var P='M40 226 L90 226 L130 226 C170 226 180 200 220 160 C260 110 280 90 320 90 L420 90 C460 90 480 130 520 180 C540 210 560 226 580 226 L600 226';
  s+='<path d="'+P+'" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="8 6"/>';
- s+='<g>'+plane('#fff')+'<animateMotion dur="16s" repeatCount="indefinite" rotate="auto" path="'+P+'"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="16s" repeatCount="indefinite" rotate="auto" path="'+P+'"/></g>';
  var pos=[[40,208],[90,208],[140,208],[210,140],[370,72],[500,140],[560,208],[600,190]];
  pos.forEach(function(p,i){s+='<g>'+BADGE(p[0],p[1],i+1,11)+'<animate attributeName="opacity" '+SEG(i,8,'.35','1')+' dur="16s" repeatCount="indefinite"/></g>'});
  var L=LIST(W.u,258,600,11);
@@ -50,7 +51,7 @@ atc_struct:function(l){
  function cake(cx){return '<path d="M'+(cx-20)+' 262 L'+(cx-20)+' 220 L'+(cx-60)+' 220 L'+(cx-60)+' 180 L'+(cx-100)+' 180 L'+(cx-100)+' 140 L'+(cx+100)+' 140 L'+(cx+100)+' 180 L'+(cx+60)+' 180 L'+(cx+60)+' 220 L'+(cx+20)+' 220 L'+(cx+20)+' 262 Z" fill="#2F6FD6" opacity=".18" stroke="#2F6FD6" stroke-width="2"/><rect x="'+(cx-20)+'" y="220" width="40" height="42" fill="#1F7A6E" opacity=".35"/>'}
  s+=cake(130)+cake(510)+R(230,100,180,24,'#E08A2F',0,' opacity=".3"')+'<line x1="320" y1="70" x2="320" y2="262" stroke="#6B4FA0" stroke-width="3" stroke-dasharray="8 6"/>';
  s+=tx(250,80,W.inc,11,'#6B4FA0',900,'end')+tx(390,80,W.fuk,11,'#6B4FA0',900,'start');
- s+='<g>'+plane('#fff')+'<animateMotion dur="10s" repeatCount="indefinite" rotate="auto" path="M130 250 L130 200 C150 150 200 112 240 112 L400 112 C450 112 490 150 510 200 L510 250"/></g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="10s" repeatCount="indefinite" rotate="auto" path="M130 250 L130 200 C150 150 200 112 240 112 L400 112 C450 112 490 150 510 200 L510 250"/></g>';
  [[130,244],[130,160],[320,112],[570,240],[320,200]].forEach(function(p,i){s+=BADGE(p[0]+(i===2?60:0),p[1],i+1,11)});
  var L=LIST(W.items,298,600,11);
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
@@ -96,7 +97,7 @@ atc_sep:function(l){
  setK(1);var nar=NARROW();
  function panel(x0,y0,w,k){var col=['#2F6FD6','#1F7A6E','#E08A2F'][k],g=R(x0,y0,w,170,'#0E2238',14)+tx(x0+w/2,y0+26,[W.v,W.h,W.lg][k],13,'#fff',900),cx=x0+w/2;
   if(k===0){g+='<line x1="'+(x0+20)+'" y1="'+(y0+80)+'" x2="'+(x0+w-20)+'" y2="'+(y0+80)+'" stroke="#9FB0C2" stroke-dasharray="4 5"/><line x1="'+(x0+20)+'" y1="'+(y0+130)+'" x2="'+(x0+w-20)+'" y2="'+(y0+130)+'" stroke="#9FB0C2" stroke-dasharray="4 5"/>';
-   g+='<g>'+plane('#fff')+'<animateMotion dur="5s" repeatCount="indefinite" path="M'+(x0+20)+' '+(y0+80)+' L'+(x0+w-20)+' '+(y0+80)+'"/></g><g><g transform="scale(-1 1)">'+plane('#fff')+'</g><animateMotion dur="5s" repeatCount="indefinite" path="M'+(x0+w-20)+' '+(y0+130)+' L'+(x0+20)+' '+(y0+130)+'"/></g>';
+   g+='<g>'+planeS('#fff')+'<animateMotion dur="5s" repeatCount="indefinite" path="M'+(x0+20)+' '+(y0+80)+' L'+(x0+w-20)+' '+(y0+80)+'"/></g><g><g transform="scale(-1 1)">'+planeS('#fff')+'</g><animateMotion dur="5s" repeatCount="indefinite" path="M'+(x0+w-20)+' '+(y0+130)+' L'+(x0+20)+' '+(y0+130)+'"/></g>';
    g+=ARW(cx,y0+88,cx,y0+122,col,3)+ARW(cx,y0+122,cx,y0+88,col,3)+LB(cx+8,y0+110,'1,000ft',11,'#fff','start',col)}
   if(k===1){g+='<line x1="'+(x0+20)+'" y1="'+(y0+70)+'" x2="'+(x0+w-20)+'" y2="'+(y0+70)+'" stroke="#1F7A6E" stroke-width="2" stroke-dasharray="8 6"/><line x1="'+(x0+20)+'" y1="'+(y0+140)+'" x2="'+(x0+w-20)+'" y2="'+(y0+140)+'" stroke="#1F7A6E" stroke-width="2" stroke-dasharray="8 6"/>';
    g+='<g>'+plane('#fff')+'<animateMotion dur="5s" repeatCount="indefinite" path="M'+(x0+20)+' '+(y0+70)+' L'+(x0+w-20)+' '+(y0+70)+'"/></g><g>'+plane('#fff')+'<animateMotion dur="5s" begin="-2s" repeatCount="indefinite" path="M'+(x0+20)+' '+(y0+140)+' L'+(x0+w-20)+' '+(y0+140)+'"/></g>'+ARW(cx,y0+78,cx,y0+132,col,3)+ARW(cx,y0+132,cx,y0+78,col,3)}
@@ -117,9 +118,9 @@ atc_wake:function(l){
  if(!W)return F.atc_wake('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#DCEEFB',14);
- s+='<g transform="translate(470 110) scale(1.8)">'+plane('#fff')+'</g>';
- for(var i=0;i<6;i++){var x=440-i*62,y=118+i*12,r=8+i*2.5;s+='<g><circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="#6B4FA0" stroke-width="2.5" opacity="'+(1-i*0.13).toFixed(2)+'" stroke-dasharray="'+(r*4.5).toFixed(0)+' '+(r*1.8).toFixed(0)+'"><animateTransform attributeName="transform" type="rotate" values="0 '+x+' '+y+';360 '+x+' '+y+'" dur="1.4s" repeatCount="indefinite"/></circle></g>'}
- s+='<g><g transform="translate(90 150)">'+plane('#fff')+'</g><animateTransform attributeName="transform" type="translate" values="0 0;-30 0;0 0" dur="4s" repeatCount="indefinite"/></g>';
+ s+='<g transform="translate(470 110) scale(1.8)">'+planeS('#fff')+'</g>';
+ for(var i=0;i<6;i++){var x=418-i*60,y=120+i*12,r=8+i*2.5;s+='<g><circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="#6B4FA0" stroke-width="2.5" opacity="'+(1-i*0.13).toFixed(2)+'" stroke-dasharray="'+(r*4.5).toFixed(0)+' '+(r*1.8).toFixed(0)+'"><animateTransform attributeName="transform" type="rotate" values="0 '+x+' '+y+';360 '+x+' '+y+'" dur="1.4s" repeatCount="indefinite"/></circle></g>'}
+ s+='<g><g transform="translate(90 150)">'+planeS('#fff')+'</g><animateTransform attributeName="transform" type="translate" values="0 0;-30 0;0 0" dur="4s" repeatCount="indefinite"/></g>';
  s+=LB(470,80,W.lead,11,'#fff','middle','#243447')+LB(90,188,W.fol,11,'#fff','middle','#243447')+LBW(300,232,W.sink,10.5,'#6B4FA0','middle','#fff',420);
  var y=270,lh=FS(11.5)*1.5;s+=R(20,y,600,lh+10,'#243447',8)+tx(320,y+lh*0.75,W.tbl,11.5,'#fff',900);y+=lh+14;
  s+=R(20,y,600,lh,'#DCE3EA',6)+tx(40,y+lh*0.7,W.lead+' ↓',11,D,900,'start')+tx(420,y+lh*0.7,W.fol+' → NM',11,D,900);y+=lh+4;
@@ -212,7 +213,7 @@ atc_ocean:function(l){
  s+=LB(150,120,W.vhf,10.5,'#0f3558','middle','#9FD3F7');
  s+='<path d="M70 204 L300 66 L520 180" fill="none" stroke="#FFB870" stroke-width="3" stroke-dasharray="8 6"><animate attributeName="stroke-dashoffset" values="0;-28" dur="1s" repeatCount="indefinite"/></path>'+LB(330,90,W.hf,10.5,'#0f3558','middle','#FFB870');
  s+='<g transform="translate(560 84)"><rect x="-8" y="-6" width="16" height="12" rx="2" fill="#F2D233"/><rect x="-24" y="-3" width="14" height="6" fill="#9FD3F7"/><rect x="10" y="-3" width="14" height="6" fill="#9FD3F7"/></g><path d="M556 94 L522 174" stroke="#7CF2B0" stroke-width="2" stroke-dasharray="4 4"><animate attributeName="stroke-dashoffset" values="0;-16" dur="1s" repeatCount="indefinite"/></path>'+LB(560,120,W.sat,10.5,'#0f3558','end','#7CF2B0');
- s+='<g transform="translate(520 186)">'+plane('#fff')+'</g></g>';
+ s+='<g transform="translate(520 186)">'+planeS('#fff')+'</g></g>';
  var L=LIST(W.items,288,600,11);
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
 };
