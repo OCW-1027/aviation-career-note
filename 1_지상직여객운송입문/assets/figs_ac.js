@@ -91,6 +91,78 @@ ac_coffin:function(l){
  s+=LB(gx0+250,gy0-204,W.cc,11,'#fff','middle','#243447')+LBW(gx0+95,gy0-40,W.lo,10.5,'#D64545','middle','#fff',150)+LBW(gx0+405,gy0-40,W.hi,10.5,'#6B4FA0','middle','#fff',150);
  s+='<g>'+planeS('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" path="M'+(gx0+250)+' '+(gy0-20)+' L'+(gx0+250)+' '+(gy0-160)+' L'+(gx0+250)+' '+(gy0-160)+'" keyPoints="0;1;1" keyTimes="0;.45;1" calcMode="linear"/></g>';
  var L=LIST(W.n,318,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+/* 5 離陸の速さ：V1（決心速度）→ VR（機首上げ）→ V2（35ftでの安全速度） */
+ac_vspeeds:function(l){
+ var W=({ja:{t:'離陸の速さ V1・VR・V2',v1:'V1：これを超えたら止まらずに離陸を続ける',vr:'VR：機首を上げ始める',v2:'V2：エンジン1つが止まっても安全に上昇できる速さ（高さ35ftまでに）',ft:'35ft',n:['V1 ≦ VR ≦ V2 の順。重さ・気温・滑走路の長さと状態で毎回変わる','V1の前に大きな故障が起きたら離陸を中止し、V1の後なら離陸を続けるのが原則']},
+  ko:{t:'이륙 속도 V1·VR·V2',v1:'V1: 이 속도를 넘으면 멈추지 않고 이륙을 계속한다',vr:'VR: 기수를 들기 시작한다',v2:'V2: 엔진 하나가 멈춰도 안전하게 상승할 수 있는 속도(높이 35ft까지)',ft:'35ft',n:['V1 ≦ VR ≦ V2 순서. 무게·기온·활주로 길이와 상태에 따라 매번 바뀐다','V1 전에 큰 고장이 나면 이륙을 중단하고, V1 뒤라면 이륙을 계속하는 것이 원칙']},
+  en:{t:'Take-off speeds V1, VR and V2',v1:'V1: beyond this speed, continue the take-off rather than stop',vr:'VR: start to raise the nose',v2:'V2: the speed at which the aircraft can climb safely with one engine out (by 35 ft)',ft:'35 ft',n:['Always V1 ≤ VR ≤ V2; they change every flight with weight, temperature and runway length and condition','As a rule, reject the take-off for a serious failure before V1, and continue after V1']}})[l];
+ if(!W)return F.ac_vspeeds('ja');
+ setK(1);var dur=9;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,190,'#DCEEFB',14)+R(20,218,600,28,'#9CC98B',0)+R(40,214,560,8,'#5B6770',3);
+ var path='M60 206 L330 206 L400 200 L520 150 L600 118';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="'+dur+'s" repeatCount="indefinite" rotate="auto" keyPoints="0;.53;.66;.9;1" keyTimes="0;.45;.6;.85;1" calcMode="linear" path="'+path+'"/></g>';
+ s+='<line x1="420" y1="162" x2="600" y2="162" stroke="#6B4FA0" stroke-width="2" stroke-dasharray="5 4"/>'+LB(430,162,W.ft,10.5,'#6B4FA0','start','#fff');
+ [[250,'V1','#D64545',.28],[330,'VR','#E08A2F',.45],[505,'V2','#1F7A6E',.8]].forEach(function(v){s+='<g opacity="0"><line x1="'+v[0]+'" y1="70" x2="'+v[0]+'" y2="214" stroke="'+v[2]+'" stroke-width="2.5"/>'+LB(v[0],84,v[1],13,'#fff','middle',v[2])+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+v[3]+';'+(v[3]+0.03)+';.97;1" dur="'+dur+'s" repeatCount="indefinite"/></g>'});
+ var y=258,items=[[W.v1,'#D64545'],[W.vr,'#E08A2F'],[W.v2,'#1F7A6E']];
+ items.forEach(function(v){var n=LI(v[0],11.5,560).length,lh=FS(11.5)*1.3,h=n*lh+14;s+=R(20,y,600,h,'#fff',10,' stroke="'+v[1]+'" stroke-width="2"')+WR(320,y+7+n*lh/2+FS(11.5)*0.3,v[0],11.5,v[1],900,560);y+=h+6});
+ var L=LIST(W.n,y+4,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+
+/* 6 公示された距離：TORA・TODA（＋クリアウェイ）・ASDA（＋ストップウェイ）・LDA（移設された進入端） */
+ac_decl:function(l){
+ var W=({ja:{t:'空港が公示する4つの距離',rw:'滑走路',sw:'ストップウェイ',cw:'クリアウェイ',dt:'移設された進入端',rows:[['TORA','離陸滑走に使える長さ','滑走路'],['TODA','離陸（35ftまで）に使える長さ','滑走路＋クリアウェイ'],['ASDA','加速して止まるまでに使える長さ','滑走路＋ストップウェイ'],['LDA','着陸に使える長さ','移設された進入端から']],note:'長さはAIPの飛行場の項（AD 2）に空港・滑走路ごとに載っている。工事などで変わるときはNOTAMで知らせる'},
+  ko:{t:'공항이 공시하는 4가지 거리',rw:'활주로',sw:'정지로',cw:'개방로',dt:'이설된 시단',rows:[['TORA','이륙 활주에 쓸 수 있는 길이','활주로'],['TODA','이륙(35ft까지)에 쓸 수 있는 길이','활주로+개방로'],['ASDA','가속해 멈출 때까지 쓸 수 있는 길이','활주로+정지로'],['LDA','착륙에 쓸 수 있는 길이','이설된 시단부터']],note:'길이는 AIP의 비행장 항목(AD 2)에 공항·활주로별로 실려 있다. 공사 등으로 바뀔 때는 NOTAM으로 알린다'},
+  en:{t:'The four declared distances',rw:'Runway',sw:'Stopway',cw:'Clearway',dt:'Displaced threshold',rows:[['TORA','Length available for the take-off run','Runway'],['TODA','Length available for take-off (to 35 ft)','Runway + clearway'],['ASDA','Length available to accelerate and stop','Runway + stopway'],['LDA','Length available for landing','From the displaced threshold']],note:'Published per airport and runway in the aerodrome section of the AIP (AD 2); changes, e.g. for works, are notified by NOTAM'}})[l];
+ if(!W)return F.ac_decl('ja');
+ setK(1);
+ var x0=40,xr=480,xs=530,xc=600,xd=120;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,150,'#DDE8D4',14);
+ s+=R(x0,104,xr-x0,34,'#4A545E',3)+'<rect x="'+xr+'" y="104" width="'+(xs-xr)+'" height="34" fill="#8C9BAA"/><rect x="'+xr+'" y="96" width="'+(xc-xr)+'" height="50" fill="none" stroke="#1F7A6E" stroke-width="2" stroke-dasharray="6 4"/>';
+ s+='<line x1="'+xd+'" y1="100" x2="'+xd+'" y2="142" stroke="#fff" stroke-width="3"/>';for(var i=0;i<3;i++)s+='<path d="M'+(x0+14+i*22)+' 121 l12 0 l-4 -4 M'+(x0+26+i*22)+' 121 l-4 4" stroke="#fff" stroke-width="2" fill="none"/>';
+ s+=tx((x0+xr)/2,127,W.rw,11,'#fff',900)+LB(xs-10,86,W.sw,10,'#fff','end','#6B7785')+LB(xc-2,160,W.cw,10,'#1F7A6E','end','#fff')+LB(xd,178,W.dt,10,'#fff','middle','#40566B');
+ var bars=[[x0,xr,'#2F6FD6'],[x0,xc,'#1F7A6E'],[x0,xs,'#E08A2F'],[xd,xr,'#6B4FA0']],y=220,lh=FS(12)*1.5;
+ W.rows.forEach(function(r,i){var b=bars[i],op=l==='ja'?'（':' (',cl=l==='ja'?'）':')',txt=r[1]+op+r[2]+cl,ld=FS(10.5)*1.3,nn=LI(txt,10.5,480).length,h=Math.max(lh,nn*ld)+26;
+  s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+tx(34,y+lh*0.8,r[0],12,b[2],900,'start')+WR(120,y+6+nn*ld/2+FS(10.5)*0.3,txt,10.5,D,800,480,'start');
+  var by=y+Math.max(lh,nn*ld)+10;
+  s+='<rect x="'+b[0]+'" y="'+by+'" width="0" height="8" rx="4" fill="'+b[2]+'"><animate attributeName="width" values="0;'+(b[1]-b[0])+';'+(b[1]-b[0])+'" keyTimes="0;.35;1" dur="6s" begin="-'+(i*0.3)+'s" repeatCount="indefinite"/></rect>';
+  y+=h+4});
+ var n2=LI(W.note,10.5,580).length;s+=WR(320,y+8+n2*FS(10.5)*1.3/2,W.note,10.5,G,800,580);y+=n2*FS(10.5)*1.3+18;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 7 V1でエンジンが止まったら：続ければ TODA の中で35ftに、やめれば ASDA の中で止まる */
+ac_go_stop:function(l){
+ var W=({ja:{t:'V1でエンジンが止まったら',go:'離陸を続ける：TODAの中で高さ35ftに届く',stop:'離陸をやめる：ASDAの中で止まる',fail:'エンジン停止',note:'この2つが両方成り立つように、重さとV1を決める。滑走路が濡れていると、止まるための距離が長くなる'},
+  ko:{t:'V1에서 엔진이 멈추면',go:'이륙을 계속한다: TODA 안에서 높이 35ft에 닿는다',stop:'이륙을 멈춘다: ASDA 안에서 선다',fail:'엔진 정지',note:'이 두 가지가 모두 성립하도록 무게와 V1을 정한다. 활주로가 젖어 있으면 멈추는 거리가 길어진다'},
+  en:{t:'If an engine fails at V1',go:'Continue: reach 35 ft within the TODA',stop:'Reject: stop within the ASDA',fail:'Engine failure',note:'Weight and V1 are chosen so that both are possible; on a wet runway the stopping distance is longer'}})[l];
+ if(!W)return F.ac_go_stop('ja');
+ setK(1);
+ function lane(y0,go){var g=R(20,y0,600,120,go?'#DCEEFB':'#EEF5FB',12)+R(20,y0+92,600,28,'#9CC98B',0)+R(40,y0+88,500,8,'#5B6770',3)+(go?'<rect x="540" y="'+(y0+80)+'" width="70" height="20" fill="none" stroke="#1F7A6E" stroke-dasharray="5 4"/>':'<rect x="540" y="'+(y0+88)+'" width="40" height="8" fill="#8C9BAA"/>');
+  g+='<line x1="260" y1="'+(y0+30)+'" x2="260" y2="'+(y0+100)+'" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(260,y0+26,'V1 ✕ '+W.fail,10.5,'#fff','middle','#D64545');
+  var p=go?'M60 '+(y0+80)+' L260 '+(y0+80)+' L440 '+(y0+80)+' L600 '+(y0+56):'M60 '+(y0+80)+' L260 '+(y0+80)+' L560 '+(y0+80);
+  g+='<g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="'+(go?'0;.38;1;1':'0;.4;1;1')+'" keyTimes="0;.4;.85;1" calcMode="'+(go?'linear':'spline')+'"'+(go?'':' keySplines="0 0 1 1;0 0 .3 1;0 0 1 1"')+' path="'+p+'"/></g>';
+  var t=go?W.go:W.stop;g+=LBW(320,y0+56,t,11.5,go?'#1F7A6E':'#8a3b00','middle','#fff',540);
+  return g}
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+lane(56,true)+lane(188,false),y=320;
+ var n2=LI(W.note,11,580).length;s+=R(20,y,600,n2*FS(11)*1.3+16,'#FFF1E3',10)+WR(320,y+8+n2*FS(11)*1.3/2+FS(11)*0.3,W.note,11,'#8a3b00',900,580);y+=n2*FS(11)*1.3+28;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 8 性能で決まる最大離陸重量：いくつかの制限のうち、いちばん小さい値 */
+ac_mtow:function(l){
+ var W=({ja:{t:'その日の最大離陸重量は「いちばん小さい制限」',lims:['構造の限界（機体の強さ）','滑走路の長さ','上昇の勾配（エンジン1つ停止）','障害物を越える','タイヤ・ブレーキ','着陸重量から逆算'],pick:'この日の最大離陸重量',n:['暑い・高い空港・濡れた滑走路・追い風は、多くの制限を小さくする','最大離陸重量から、燃料（出発に必要な量）を引いた残りが、旅客・貨物に使える重さ（ペイロード）の上限になる']},
+  ko:{t:'그날의 최대 이륙 중량은 ‘가장 작은 제한’',lims:['구조 한계(기체 강도)','활주로 길이','상승 경사(엔진 하나 정지)','장애물 넘기','타이어·브레이크','착륙 중량에서 역산'],pick:'이날의 최대 이륙 중량',n:['덥고·높은 공항·젖은 활주로·뒷바람은 많은 제한을 작게 만든다','최대 이륙 중량에서 연료(출발에 필요한 양)를 뺀 나머지가 승객·화물에 쓸 수 있는 무게(페이로드)의 상한이 된다']},
+  en:{t:'Today’s maximum take-off weight is the smallest limit',lims:['Structural limit (airframe strength)','Runway length','Climb gradient (one engine out)','Obstacle clearance','Tyres and brakes','Back-calculated from landing weight'],pick:'Today’s maximum take-off weight',n:['Hot, high airports, wet runways and tailwinds shrink many of the limits','Maximum take-off weight minus the fuel needed for departure caps the weight available for passengers and cargo (payload)']}})[l];
+ if(!W)return F.ac_mtow('ja');
+ setK(1);
+ var vals=[100,86,82,90,95,88],mn=Math.min.apply(null,vals),y=64,lh=FS(11)*1.3;
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ W.lims.forEach(function(t,i){var nn=LI(t,11,230).length,h=Math.max(FS(11)*1.9,nn*lh+10),bw=(vals[i]-60)/40*300,isMin=vals[i]===mn;
+  s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+WR(30,y+h/2-(nn-1)*lh/2+FS(11)*0.35,t,11,D,800,230,'start');
+  s+='<rect x="290" y="'+(y+h/2-9)+'" width="0" height="18" rx="6" fill="'+(isMin?'#D64545':'#2F6FD6')+'" opacity="'+(isMin?1:.55)+'"><animate attributeName="width" values="0;'+bw+';'+bw+'" keyTimes="0;.35;1" dur="7s" repeatCount="indefinite"/></rect>';
+  y+=h+4});
+ var xm=290+(mn-60)/40*300;s+='<line x1="'+xm+'" y1="60" x2="'+xm+'" y2="'+y+'" stroke="#D64545" stroke-width="2.5" stroke-dasharray="6 4"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.4;.45;1" dur="7s" repeatCount="indefinite"/></line>';
+ s+=LBW(xm,y+18,W.pick+' ↑',11.5,'#fff','middle','#D64545',260);y+=40;
+ var L=LIST(W.n,y,600,11);
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
