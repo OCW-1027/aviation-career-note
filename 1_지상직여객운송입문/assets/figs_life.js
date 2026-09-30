@@ -112,4 +112,23 @@ function figSSW(l){setK(1);var d=SSW[l]||SSW.ja,s=TTL(320,30,d[0],15,'#0f3558',6
   if(i<d[1].length-1){s+='<path d="M320 '+(y+2)+' l-10 0 l10 12 l10 -12 z" fill="'+r[2]+'"/>';y+=18}else y+=8});
  var hn=hgt(d[2],11,580);s+=TW2(30,y+4,d[2],11,G,700,580,'start');y+=hn+14;return svg(y,s)}
 window.FIGS.life_cat=H.FIX2(figCat);window.FIGS.life_pr=H.FIX2(figPR);window.FIGS.life_bm=H.FIX2(figBM);window.FIGS.life_ssw=H.FIX2(figSSW);
+/* 10. 留学から就職まで */
+var STW={ja:['留学生が日本で就職するまで（大学・専門学校）',[['在学中','資格外活動の許可でアルバイト（週28時間まで）。就職活動を始める','#2C8C8C'],['内定','仕事の内容が専攻と合うかを会社と確かめる','#2F8FE0'],['入社の前','在留資格の変更を申請（4月入社なら前の年の12月ごろから受付）','#2F8FE0'],['卒業しても決まらない','「継続就職活動」の特定活動で6か月、1回更新して最長1年（学校の推薦状が要る）','#E08A2F'],['入社','技術・人文知識・国際業務など。日本の大学を出てN1なら特定活動46号も','#1F8A5B']],'※ 専門学校の卒業生は、専攻と仕事の関係をとくに厳しく見られます。'],
+ ko:['유학생이 일본에서 취업하기까지(대학·전문학교)',[['재학 중','자격외활동 허가로 아르바이트(주 28시간까지). 취업 활동 시작','#2C8C8C'],['내정','일의 내용이 전공과 맞는지 회사와 확인','#2F8FE0'],['입사 전','재류자격 변경 신청(4월 입사면 전년 12월경부터 접수)','#2F8FE0'],['졸업해도 못 정했을 때','「계속 취업 활동」 특정활동으로 6개월, 1회 갱신해 최장 1년(학교 추천서 필요)','#E08A2F'],['입사','기술·인문지식·국제업무 등. 일본 대학 졸업 + N1이면 특정활동 46호도','#1F8A5B']],'※ 전문학교 졸업생은 전공과 일의 관련성을 특히 엄격하게 봅니다.'],
+ en:['From student to employee in Japan (university or vocational school)',[['While studying','Part-time work with permission (up to 28 hours a week); start job hunting','#2C8C8C'],['Job offer','Check with the employer that the job matches your major','#2F8FE0'],['Before starting','Apply to change status (for an April start, applications open around the previous December)','#2F8FE0'],['Graduated without a job','Designated Activities for continued job hunting: 6 months, extendable once to a maximum of 1 year (school recommendation needed)','#E08A2F'],['Start work','Engineer/Humanities or similar; Japanese university graduates with N1 can also use Designated Activities No. 46','#1F8A5B']],'* For vocational school graduates, the link between major and job is checked especially strictly.']};
+function figSTW(l){setK(1);var d=STW[l]||STW.ja,y=58,s=TTL(320,30,d[0],15,'#0f3558',600),top=y,rows='';
+ d[1].forEach(function(r,i){var h1=hgt(r[0],12,420),h2=hgt(r[1],11.5,420),h=h1+h2+22;
+  rows+=R(150,y,470,h,'#fff',10,' stroke="'+r[2]+'" stroke-width="1.5"')+'<circle cx="112" cy="'+(y+h/2)+'" r="10" fill="'+r[2]+'"/>'+tx(112,y+h/2+4,String(i+1),11,'#fff',900)+TW2(166,y+8,r[0],12,r[2],900,440,'start')+TW2(166,y+12+h1,r[1],11.5,D,700,440,'start');y+=h+10});
+ s+='<line x1="112" y1="'+(top+10)+'" x2="112" y2="'+(y-18)+'" stroke="#C8D3DE" stroke-width="3"/>'+rows;
+ var hn=hgt(d[2],11,580);s+=TW2(30,y,d[2],11,G,700,580,'start');y+=hn+12;return svg(y,s)}
+/* 11. 永住と帰化の比べ */
+var PN={ja:['永住と帰化のちがい',['','永住','帰化'],[['国籍','いまの国籍のまま','日本国籍になる（もとの国籍は失う）'],['どこへ申請','出入国在留管理庁','法務局'],['年数の目安','原則10年（うち就労など5年）','原則5年（うち就労3年）'],['できること','在留期間の制限なし・仕事の制限なし','日本の旅券・選挙権'],['注意','在留カードの更新（7年ごと）、再入国の手続きは続く。取消しの事由あり','韓国籍の人は、外国籍を自ら取ると韓国籍を失う（国籍喪失の届出）']],'※ 目安です。どちらも素行・生計・税や社会保険の納付などが審査されます。'],
+ ko:['영주와 귀화의 차이',['','영주','귀화'],[['국적','지금의 국적 그대로','일본 국적이 됨(원래 국적은 잃음)'],['어디에 신청','출입국재류관리청','법무국'],['연수 기준','원칙 10년(그중 취업 등 5년)','원칙 5년(그중 취업 3년)'],['할 수 있는 것','재류 기간 제한 없음·일의 제한 없음','일본 여권·선거권'],['주의','재류카드 갱신(7년마다), 재입국 수속은 계속. 취소 사유 있음','한국 국적자는 외국 국적을 스스로 취득하면 한국 국적을 잃음(국적상실신고)']],'※ 기준입니다. 둘 다 품행·생계·세금과 사회보험 납부 등을 심사합니다.'],
+ en:['Permanent residence versus naturalisation',['','Permanent residence','Naturalisation'],[['Nationality','Keep your current nationality','Become a Japanese national (and lose your original one)'],['Apply to','Immigration Services Agency','Legal Affairs Bureau'],['Years (guide)','10 in principle (5 of them working)','5 in principle (3 of them working)'],['What you gain','No limit on stay or on work','A Japanese passport and the vote'],['Watch out','Card renewal every 7 years and re-entry rules still apply; can be revoked','Korean nationals who voluntarily acquire another nationality lose Korean nationality (report the loss)']],'* A guide; both examine conduct, income and payment of taxes and social insurance.']};
+function figPN(l){setK(1);var d=PN[l]||PN.ja,s=TTL(320,30,d[0],15,'#0f3558',600),y=60,xL=30,xA=150,xB=390,w=220;
+ s+=R(140,y,235,26,'#1F8A5B',8)+R(380,y,240,26,'#2F8FE0',8)+tx(257,y+18,d[1][1],12,'#fff',900)+tx(500,y+18,d[1][2],12,'#fff',900);y+=34;
+ d[2].forEach(function(r){var h0=hgt(r[0],11.5,105),h1=hgt(r[1],11.5,w),h2=hgt(r[2],11.5,w),h=Math.max(h0,h1,h2)+16;
+  s+=R(20,y,600,h,'#fff',10,' stroke="#D9E3EC"')+TW2(xL,y+8,r[0],11.5,G,900,105,'start')+TW2(xA,y+8,r[1],11.5,D,700,w,'start')+TW2(xB,y+8,r[2],11.5,D,700,w,'start');y+=h+6});
+ var hn=hgt(d[3],11,580);s+=TW2(30,y+6,d[3],11,G,700,580,'start');y+=hn+16;return svg(y,s)}
+window.FIGS.life_stw=H.FIX2(figSTW);window.FIGS.life_pn=H.FIX2(figPN);
 })();

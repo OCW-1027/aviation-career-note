@@ -4,7 +4,7 @@ var PARTS={ja:['Part 0 はじめに','Part 1 在留資格の基本','Part 2 在�
 ko:['Part 0 시작하기','Part 1 재류자격의 기초','Part 2 재류자격의 종류','Part 3 제도의 변화','Part 4 도착 후 14일','Part 5 집','Part 6 돈과 세금','Part 7 생활','Part 8 주재원 편','Part 9 새 도시에서 시작하기','Part 10 재난 대비','Part 11 곤란할 때'],
 en:['Part 0 Getting Started','Part 1 Residence Status Basics','Part 2 Types of Residence Status','Part 3 What Is Changing','Part 4 Your First 14 Days','Part 5 Housing','Part 6 Money and Tax','Part 7 Daily Life','Part 8 For Expatriates','Part 9 Starting in a New City','Part 10 Disaster Preparedness','Part 11 When You Need Help']};
 var S={ja:'日本の暮らしガイド ― 外国人・駐在員・新しい土地で始める人へ',ko:'일본 생활 가이드 — 외국인·주재원·새 출발하는 사람을 위해',en:'Living in Japan: For Newcomers, Expatriates and Anyone Starting Out'};
-var DEF={ja:{voice:'日本14年目のひと言'},ko:{voice:'일본 14년 차 한마디'},en:{voice:'Advice from 14 Years in Japan'}};
+var DEF={ja:{voice:'日本で暮らしてきた人のひと言'},ko:{voice:'일본에서 살아 본 사람의 한마디'},en:{voice:'Advice from Someone Who Lives Here'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];
  a.meta.home=a.meta.home||'00_シリーズ全体_駐在員ガイド.html';a.meta.from=a.meta.from||'HND';
  a.meta.en={series:S.en,part:PARTS.en[pn]};
