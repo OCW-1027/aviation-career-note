@@ -139,6 +139,9 @@ tbody tr:last-child td{border-bottom:0}
 .q.done .exp{display:block}
 .next{margin-top:56px;padding:18px 20px;border-radius:18px;background:var(--sky-t);color:var(--sky-d);font-weight:700;display:flex;gap:14px;align-items:center;font-size:15px}
 footer{max-width:780px;margin:0 auto;padding:0 20px 40px;font-size:13px;color:var(--muted)}
+
+/* 2026.09：スマートフォンでは図を読める最小の幅で描き、図の枠の中だけ横にスクロール（文字が11px以上になるように） */
+@media (max-width:660px){.diagram,.dialwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}.diagram svg{min-width:620px}.dialwrap svg{min-width:320px;flex-shrink:0}}
 </style>
 </head>
 <body>
