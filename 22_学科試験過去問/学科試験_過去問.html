@@ -101,6 +101,7 @@ footer{margin-top:28px;font-size:12px;color:var(--sub)}
 <script src="data/ops_R0203.js"></script>
 <script src="data/ops_R0107.js"></script>
 <script src="data/ops_H3103.js"></script>
+<script src="data/ops_ORG1.js"></script>
 <script src="data/exp_EX2606.js"></script>
 <script src="data/exp_R0507.js"></script>
 <script src="data/exp_R0503.js"></script>
@@ -112,6 +113,7 @@ footer{margin-top:28px;font-size:12px;color:var(--sub)}
 <script src="data/exp_R0203.js"></script>
 <script src="data/exp_R0107.js"></script>
 <script src="data/exp_H3103.js"></script>
+<script src="data/exp_ORG1.js"></script>
 <script>
 /* 航空従事者学科試験 過去問題（2026-09）
    ・問題と正答：国土交通省「航空従事者等学科試験解答及び過去問」を読み取り・整形したもの（data/ops_*.js）
@@ -138,9 +140,9 @@ function home(){
  var h='<header class="top"><div class="kick">日本（国土交通省）の航空従事者学科試験</div><h1>過去問題と例題</h1><p>国土交通省が公開した問題を、1問ずつ解いて、正答と解説をすぐに確かめられます。</p></header>';
  h+='<p class="src jp">この問題集は、日本の国土交通省が行う航空従事者学科試験の過去問題です。いまは運航管理者の問題を載せていて、ほかの資格も順次追加します。<br><span lang="ko">일본 국토교통성이 시행하는 항공종사자 학과시험의 기출문제입니다. 현재는 운항관리자 문제를 싣고 있으며, 다른 자격도 차례로 추가합니다. 일본어로만 제공됩니다.</span><br><span lang="en">Past papers from Japan’s MLIT aviation licence exams. Aircraft dispatcher questions are available now, with other licences to follow. Japanese only.</span></p>';
  h+='<a class="guidelink" href="../8_사이트/guide.html#p7">科目ごとにレッスンで学ぶ：学び方ガイド「運航管理の学科試験を受ける人」→<br><small lang="ko">과목별로 레슨으로 배우기: 학습 가이드 ‘운항관리 학과시험 준비’ 경로</small></a>';
- h+='<p class="src">問題と正答の出典：国土交通省「<a href="https://www.mlit.go.jp/koku/koku_fr10_000025.html" target="_blank" rel="noopener">航空従事者等学科試験解答及び過去問</a>」。このサイトが読み取り、改行や記号を整えて作成しています（原本の誤り・訂正もそのまま反映）。解説はこのサイトが作成したもので、国の見解ではありません（例題集と全10回の試験期、計1,210問すべてに解説あり）。法令は改正されるため、解説では2026年9月時点の内容も示します。</p>';
+ h+='<p class="src">問題と正答の出典：国土交通省「<a href="https://www.mlit.go.jp/koku/koku_fr10_000025.html" target="_blank" rel="noopener">航空従事者等学科試験解答及び過去問</a>」。このサイトが読み取り、改行や記号を整えて作成しています（原本の誤り・訂正もそのまま反映）。解説はこのサイトが作成したもので、国の見解ではありません（例題集と全10回の試験期、計1,210問すべてに解説あり）。「オリジナル練習」は、本番と同じ科目・題数でこのサイトが作った練習問題です（国の過去問題ではありません。「すべての試験期」には含めません）。法令は改正されるため、解説では2026年9月時点の内容も示します。</p>';
  h+='<h2>資格</h2><div class="lic">'+LIC.map(function(l,i){return '<span class="'+(i?'':'on')+'">'+esc(l)+(i?'（準備中）':'')+'</span>'}).join('')+'</div>';
- h+='<h2>問題の種類</h2><div class="sets">'+K.sets.map(function(s){var d=doneOf(s.id);return '<button data-set="'+s.id+'" class="'+(sel.set===s.id?'on':'')+'"><b>'+esc(s.name)+(s.id==='EX2606'?'<span class="new">最新</span>':'')+'</b><small>'+d.n+' / '+d.t+'問 解答済み'+(d.n?'・正答率 '+Math.round(d.ok/d.n*100)+'%':'')+'</small></button>'}).join('')+'<button data-set="ALL" class="'+(sel.set==='ALL'?'on':'')+'"><b>すべての試験期</b><small>'+allCount()+'問から</small></button></div>';
+ h+='<h2>問題の種類</h2><div class="sets">'+K.sets.map(function(s){var d=doneOf(s.id);return '<button data-set="'+s.id+'" class="'+(sel.set===s.id?'on':'')+'"><b>'+esc(s.name)+(s.id==='EX2606'?'<span class="new">最新</span>':'')+(s.org?'<span class="new" style="background:#1F7A6E">オリジナル</span>':'')+'</b><small>'+d.n+' / '+d.t+'問 解答済み'+(d.n?'・正答率 '+Math.round(d.ok/d.n*100)+'%':'')+'</small></button>'}).join('')+'<button data-set="ALL" class="'+(sel.set==='ALL'?'on':'')+'"><b>すべての試験期</b><small>'+allCount()+'問から</small></button></div>';
  h+='<h2>科目</h2><div class="subs">'+SUB.map(function(s){return '<button data-sub="'+s[0]+'" class="'+(sel.subs[s[0]]?'on':'')+'">'+esc(s[1])+'<small>'+s[0]+'</small></button>'}).join('')+'</div>';
  h+='<h2>解き方</h2><div class="modes">'+[['all','順番に全問','本番と同じ順・合否の判定つき'],['exam','試験モード','本番の制限時間・最後に採点'],['rand10','ランダム10問','すきま時間に'],['wrong','間違えた問題','最後に間違えた問題だけ'],['mark','あとで見る','印を付けた問題']].map(function(m){return '<button data-mode="'+m[0]+'" class="'+(sel.mode===m[0]?'on':'')+'"><b>'+m[1]+'</b><small>'+m[2]+'</small></button>'}).join('')+'</div>';
  var pool=buildPool();
@@ -156,10 +158,10 @@ function home(){
  $('#go').onclick=function(){if(gate){M.login();return}start(buildPool())};
  $('#reset').onclick=function(){if(confirm('この端末に保存した解答の記録と印をすべて消します。よろしいですか？')){ST={v:1,r:{},mark:{}};save();home()}};
 }
-function allCount(){var n=0;for(var k in K.q)n+=K.q[k].length;return n}
+function allCount(){var n=0;K.sets.forEach(function(s){if(!s.org&&K.q[s.id])n+=K.q[s.id].length});return n}
 function doneOf(s){var t=K.q[s].length,n=0,ok=0;K.q[s].forEach(function(q){var r=ST.r[id(s,q)];if(r){n++;if(r[0])ok++}});return {t:t,n:n,ok:ok}}
 function buildPool(){
- var sets=sel.set==='ALL'?K.sets.map(function(s){return s.id}):[sel.set],p=[];
+ var sets=sel.set==='ALL'?K.sets.filter(function(s){return !s.org}).map(function(s){return s.id}):[sel.set],p=[];
  sets.forEach(function(s){K.q[s].forEach(function(q){if(sel.subs[q.c])p.push({s:s,q:q})})});
  if(sel.mode==='wrong')p=p.filter(function(x){var r=ST.r[id(x.s,x.q)];return r&&!r[0]});
  if(sel.mode==='mark')p=p.filter(function(x){return ST.mark[id(x.s,x.q)]});
@@ -211,7 +213,7 @@ function show(){
  h+='<div class="opts">'+q.o.map(function(o,i){var c='';if(done){if(i+1===q.a)c='ok';else if(i+1===done.pick)c='ng'}return '<button data-i="'+(i+1)+'" class="'+c+'"'+(done?' disabled':'')+'><span class="k">'+(i+1)+'</span><span>'+esc(o)+'</span></button>'}).join('')+'</div>';
  if(done){
   var e=K.e[k];
-  h+='<div class="res"><div class="v '+(done.ok?'ok':'ng')+'">'+(done.ok?'正解':'不正解')+'　正答は（'+q.a+'）</div>'+(q.fix?'<div class="pend">※ 国土交通省が試験後に正答を訂正した問題です（訂正後の正答で表示）。</div>':'')+(e?'<div class="exp">'+esc(e)+'</div>':'<div class="pend">この問題の解説は準備中です。</div>')+relHtml(q)+'<div class="orig"><button class="mark'+(ST.mark[k]?' on':'')+'" id="mk">'+(ST.mark[k]?'★ あとで見る':'☆ あとで見る')+'</button>　原本：<a href="'+esc(setPdf(x.s))+'#page='+p0(q)+'" target="_blank" rel="noopener">'+esc(setName(x.s))+' '+(q.pg?q.pg+'ページ':'')+'</a></div></div>';
+  h+='<div class="res"><div class="v '+(done.ok?'ok':'ng')+'">'+(done.ok?'正解':'不正解')+'　正答は（'+q.a+'）</div>'+(q.fix?'<div class="pend">※ 国土交通省が試験後に正答を訂正した問題です（訂正後の正答で表示）。</div>':'')+(e?'<div class="exp">'+esc(e)+'</div>':'<div class="pend">この問題の解説は準備中です。</div>')+relHtml(q)+'<div class="orig"><button class="mark'+(ST.mark[k]?' on':'')+'" id="mk">'+(ST.mark[k]?'★ あとで見る':'☆ あとで見る')+'</button>'+(setPdf(x.s)?'　原本：<a href="'+esc(setPdf(x.s))+'#page='+p0(q)+'" target="_blank" rel="noopener">'+esc(setName(x.s))+' '+(q.pg?q.pg+'ページ':'')+'</a>':'　出典：このサイトのオリジナル問題（'+esc(setName(x.s))+'）')+'</div></div>';
   h+='<div class="navq">'+(run.i>0?'<button id="pv">前へ</button>':'')+'<button class="pri" id="nx">'+(run.i+1<run.pool.length?'次の問題':'結果を見る')+'</button></div>';
  }
  app.innerHTML=h;
