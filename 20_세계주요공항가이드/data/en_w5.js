@@ -42,7 +42,7 @@ sections:[
 ["Main airlines","Delta, United, American, Alaska, Southwest"]]},
 {t:"note",x:"* The 2025 figure is the sum of LAWA’s monthly statistics as compiled by the Los Angeles Business Journal; the fall came mainly from domestic capacity cuts."}]},
 {h:"The rebuild for 2028",blocks:[{t:"table",cols:["Project","Details"],rows:[
-["Automated People Mover (APM)","3.62 km with six stations, linking the terminals with the LAX/Metro Transit Center (opened June 2025) and a consolidated rental-car facility; opening has been repeatedly delayed ★"],
+["Automated People Mover (APM)","3.62 km with six stations, linking the terminals with the LAX/Metro Transit Center (opened June 2025) and a consolidated rental-car facility; opening has been repeatedly delayed; a September 2026 filing put construction completion at 8 December and passenger service in January 2027, with no guarantee of no further delay ★"],
 ["Consolidated rental-car facility","Brings rental companies together to ease road congestion"],
 ["Terminal works","Rebuilding Terminal 5, upgrading TBIT and more"],
 ["2028","Construction to pause during the Olympics; the traffic forecast has been cut to about 90 million"]]}]},

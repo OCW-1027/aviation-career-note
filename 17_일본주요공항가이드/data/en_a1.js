@@ -30,7 +30,7 @@ sections:[
 ["Scheme","Online authorisation before travel for foreign nationals coming to Japan without a visa (similar to the US ESTA)"],
 ["Who","Short-stay visitors from the 74 visa-exempt countries and territories (tourism, business and similar), plus some cruise passengers and some transit passengers entering temporarily ★"],
 ["Airline duties","Reporting booking data and refusing boarding to passengers without authorisation"],
-["Progress","Cabinet approved the Immigration Control Act amendment on 10 March 2026; the House of Councillors’ Judicial Affairs Committee passed it on 28 May (check the Immigration Services Agency for enactment and promulgation) ★"],
+["Progress","Cabinet approved the Immigration Control Act amendment on 10 March 2026; the House of Councillors passed it in plenary on 29 May, and it was enacted (check the Immigration Services Agency for promulgation and commencement dates) ★"],
 ["Start","Targeted during fiscal 2028"],
 ["Fee and validity","Not yet decided ★"]]},
 {t:"point",x:"Korean passports are visa-exempt, so once JESTA starts, passengers flying from Korea to Japan will need authorisation before departure. As with Korea’s K-ETA (Guide to Korea’s Major Airports 0-2), check-in will have more to verify. When the start date and procedures are set, update the station SOP and passenger information at once."}]},

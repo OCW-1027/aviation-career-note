@@ -34,7 +34,7 @@ sections:[
 ["United States","ESTA","Required for Visa Waiver Program nationals. Fee US$40 from 30 September 2025 (was $21). Valid two years"],
 ["United Kingdom","ETA","Required of Korean and Japanese nationals since 8 January 2025. Fee raised to £20 in April 2026 (was £16). Valid two years ★"],
 ["EU (Schengen area)","EES (Entry/Exit System)","Progressive start 12 October 2025; fully operational 10 April 2026. Replaces passport stamps with facial image and fingerprints"],
-["EU (Schengen area)","ETIAS","Scheduled for the last quarter of 2026; applications not yet open in September 2026 ★"],
+["EU (Schengen area)","ETIAS","No start date set: the official site no longer shows the ‘last quarter of 2026’, and reports point to 2027 or later. Applications not open in September 2026 (planned fee €20) ★"],
 ["Korea","K-ETA (Korea Electronic Travel Authorization)","Required for visa-exempt nationals; Japan and 21 other countries and territories exempt until 31 December 2026 (Guide to Korea’s Major Airports 0-2)"],
 ["Japan","JESTA (electronic travel authorisation)","Targeted for fiscal 2028; expected to cover Korean passports too (Guide to Japan’s Major Airports 0-1) ★"]]},
 {t:"note",x:"* Rules and fees change often. At the counter, always check official guidance (CBP, the UK Home Office, the EU) and TIMATIC, IATA’s travel document database."}]},
