@@ -163,6 +163,84 @@ ac_mtow:function(l){
  var xm=290+(mn-60)/40*300;s+='<line x1="'+xm+'" y1="60" x2="'+xm+'" y2="'+y+'" stroke="#D64545" stroke-width="2.5" stroke-dasharray="6 4"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.4;.45;1" dur="7s" repeatCount="indefinite"/></line>';
  s+=LBW(xm,y+18,W.pick+' ↑',11.5,'#fff','middle','#D64545',260);y+=40;
  var L=LIST(W.n,y,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+/* 9 ターボファンの中：ファンが吸った空気の大部分は外側（バイパス）へ、一部が圧縮機→燃焼室→タービン→ノズルを通る */
+ac_engine:function(l){
+ var W=({ja:{t:'ターボファン・エンジンのしくみ',items:['ファン：たくさんの空気を後ろへ押し出す。推力の大部分はここから','圧縮機：空気を何十分の一に押し縮める','燃焼室：燃料を燃やして高温・高圧のガスにする','タービン：ガスの力で回り、ファンと圧縮機を回す','ノズル：ガスを後ろへ噴き出す'],by:'バイパス（外側を流れる空気）',core:'コア（中を通る空気）',ratio:'今の旅客機はバイパス比 約9〜12：外側を流れる空気が中の約10倍。静かで燃料の効率がよい'},
+  ko:{t:'터보팬 엔진의 원리',items:['팬: 많은 공기를 뒤로 밀어낸다. 추력 대부분은 여기서 나온다','압축기: 공기를 몇십 분의 일로 압축한다','연소실: 연료를 태워 고온·고압 가스로 만든다','터빈: 가스의 힘으로 돌며 팬과 압축기를 돌린다','노즐: 가스를 뒤로 내뿜는다'],by:'바이패스(바깥을 흐르는 공기)',core:'코어(안을 지나는 공기)',ratio:'지금 여객기는 바이패스비 약 9~12: 바깥을 흐르는 공기가 안의 약 10배. 조용하고 연료 효율이 좋다'},
+  en:{t:'How a turbofan engine works',items:['Fan: pushes a large mass of air backwards and produces most of the thrust','Compressor: squeezes the air to a small fraction of its volume','Combustor: burns fuel to make hot, high-pressure gas','Turbine: driven by the gas, it turns the fan and compressor','Nozzle: exhausts the gas rearwards'],by:'Bypass air (around the outside)',core:'Core air (through the middle)',ratio:'Modern airliners have bypass ratios of about 9–12: roughly ten times as much air flows around the core as through it, making them quiet and fuel-efficient'}})[l];
+ if(!W)return F.ac_engine('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,230,'#EEF5FB',14);
+ /* ナセル（外殻）とコア */
+ s+='<path d="M70 90 C90 76 150 72 200 74 L520 88 C560 92 580 110 590 124" fill="none" stroke="#243447" stroke-width="5"/><path d="M70 250 C90 264 150 268 200 266 L520 252 C560 248 580 230 590 216" fill="none" stroke="#243447" stroke-width="5"/>';
+ s+='<path d="M150 170 C160 130 190 118 240 116 L450 120 C500 124 540 150 560 170 C540 190 500 216 450 220 L240 224 C190 222 160 210 150 170 Z" fill="#DCE3EA" stroke="#243447" stroke-width="3"/>';
+ /* スピナーとファンの羽根 */
+ s+='<path d="M92 170 C96 158 108 152 122 152 L122 188 C108 188 96 182 92 170 Z" fill="#8C9BAA" stroke="#243447" stroke-width="2"/>';
+ for(var b=0;b<7;b++){var bx=112+b*2.2;s+='<line x1="'+bx+'" y1="'+(84+b%2*4)+'" x2="'+(bx+6)+'" y2="'+(256-b%2*4)+'" stroke="#2F6FD6" stroke-width="3" opacity=".8"><animate attributeName="opacity" values=".9;.3;.9" dur=".25s" begin="-'+(b*0.035).toFixed(3)+'s" repeatCount="indefinite"/></line>'}
+ /* 圧縮機（後ろほど短い羽根） */
+ s+='<rect x="230" y="140" width="70" height="60" fill="#DCEBFA"/>';for(var c=0;c<8;c++){var cx2=234+c*8.5,hh=28-c*2.2;s+='<line x1="'+cx2+'" y1="'+(170-hh)+'" x2="'+cx2+'" y2="'+(170+hh)+'" stroke="#2F6FD6" stroke-width="2.4"/>'}
+ /* 燃焼室の炎 */
+ s+='<rect x="300" y="140" width="50" height="60" fill="#FFE3D6"/>';for(var fl=0;fl<3;fl++)s+='<ellipse cx="'+(314+fl*11)+'" cy="170" rx="5" ry="16" fill="#FF7A45"><animate attributeName="ry" values="12;19;12" dur=".5s" begin="-'+(fl*0.15)+'s" repeatCount="indefinite"/></ellipse>';
+ /* タービン（羽根の列） */
+ s+='<rect x="350" y="140" width="70" height="60" fill="#FFF1C9"/>';for(var tb=0;tb<6;tb++){var tx2=356+tb*11,hh2=18+tb*1.6;s+='<line x1="'+tx2+'" y1="'+(170-hh2)+'" x2="'+tx2+'" y2="'+(170+hh2)+'" stroke="#C98A00" stroke-width="3"/>'}
+ /* 排気コーン */
+ s+='<path d="M430 150 L560 170 L430 190 Z" fill="#8C9BAA" stroke="#243447" stroke-width="2"/>';
+ for(var i=0;i<6;i++){var y1=98+i*5,y2=242-i*5;s+='<circle r="3" fill="#2F6FD6"><animateMotion dur="2s" begin="-'+(i*0.33).toFixed(2)+'s" repeatCount="indefinite" path="M60 '+y1+' L590 '+(y1+12)+'"/></circle><circle r="3" fill="#2F6FD6"><animateMotion dur="2s" begin="-'+(i*0.33+0.15).toFixed(2)+'s" repeatCount="indefinite" path="M60 '+y2+' L590 '+(y2-12)+'"/></circle>'}
+ for(var i=0;i<4;i++)s+='<circle r="3.5" fill="#D64545"><animateMotion dur="2.6s" begin="-'+(i*0.65).toFixed(2)+'s" repeatCount="indefinite" path="M60 170 L230 170 L520 170 L600 170"/></circle>';
+ [[118,70,1],[265,126,2],[325,126,3],[385,126,4],[572,112,5]].forEach(function(p){s+=BADGE(p[0],p[1],p[2],11)});
+ s+=LB(330,102,W.by,10,'#2F6FD6','middle','#fff')+LB(330,214,W.core,10,'#8a3b00','middle','#fff');
+ var L=LIST(W.items,298,600,11),y=L.y+6,n=LI(W.ratio,11,580).length,note=R(20,y,600,n*FS(11)*1.3+16,'#FFF1E3',10)+WR(320,y+8+n*FS(11)*1.3/2+FS(11)*0.3,W.ratio,11,'#8a3b00',900,580);y+=n*FS(11)*1.3+28;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+L.s+note+'</svg>'},
+
+/* 10 気温と離陸推力：ある気温（フラット・レート）までは同じ推力、それより暑いと減る */
+ac_thrust:function(l){
+ var W=({ja:{t:'気温と離陸の推力',x:'外気温度',y:'離陸推力',flat:'ここまでは同じ推力（フラット・レート）',down:'暑いと推力が減る',n:['エンジンは、ある気温（例：ISA＋15℃ 前後）までは同じ最大推力を出せるように作られている','それより暑いと、エンジンの温度の限界を守るため推力が下がる。夏の昼に離陸重量が制限されやすいのはこのため','高い所ほど空気が薄く、推力は小さいが、燃料の効率はよくなる（だから高く飛ぶ）']},
+  ko:{t:'기온과 이륙 추력',x:'외기온도',y:'이륙 추력',flat:'여기까지는 같은 추력(평탄 정격)',down:'더우면 추력이 준다',n:['엔진은 어느 기온(예: ISA+15℃ 전후)까지는 같은 최대 추력을 낼 수 있도록 만들어져 있다','그보다 더우면 엔진 온도 한계를 지키려고 추력이 내려간다. 여름 낮에 이륙 무게가 제한되기 쉬운 이유','높은 곳일수록 공기가 옅어 추력은 작지만 연료 효율은 좋아진다(그래서 높이 난다)']},
+  en:{t:'Temperature and take-off thrust',x:'Outside air temperature',y:'Take-off thrust',flat:'Same thrust up to here (flat rating)',down:'Less thrust in the heat',n:['Engines are built to give the same maximum thrust up to a certain temperature (e.g. around ISA+15 °C)','Above that, thrust is reduced to stay within engine temperature limits, which is why take-off weight is often limited on summer afternoons','Higher up the air is thinner, so there is less thrust but better fuel efficiency (which is why aircraft cruise high)']}})[l];
+ if(!W)return F.ac_thrust('ja');
+ setK(1);var gx0=90,gy0=250,gw=500,gh=170;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,230,'#EEF5FB',14);
+ s+='<line x1="'+gx0+'" y1="'+gy0+'" x2="'+(gx0+gw)+'" y2="'+gy0+'" stroke="#40566B" stroke-width="2"/><line x1="'+gx0+'" y1="'+gy0+'" x2="'+gx0+'" y2="'+(gy0-gh)+'" stroke="#40566B" stroke-width="2"/>'+tx(gx0+gw,gy0+22,W.x+' →',10.5,G,800,'end')+tx(gx0+6,gy0-gh-8,W.y+' ↑',10.5,G,800,'start');
+ var fx=gx0+280,top=gy0-140;
+ s+='<path d="M'+gx0+' '+top+' L'+fx+' '+top+' L'+(gx0+gw-10)+' '+(gy0-50)+'" fill="none" stroke="#2F6FD6" stroke-width="3.5"/>';
+ s+='<line x1="'+fx+'" y1="'+top+'" x2="'+fx+'" y2="'+gy0+'" stroke="#E08A2F" stroke-width="2" stroke-dasharray="5 4"/>';
+ s+='<circle r="7" fill="#FFD23F" stroke="#0f3558"><animateMotion dur="7s" repeatCount="indefinite" path="M'+gx0+' '+top+' L'+fx+' '+top+' L'+(gx0+gw-10)+' '+(gy0-50)+'"/></circle>';
+ s+=LBW(gx0+140,top+26,W.flat,10.5,'#2F6FD6','middle','#fff',240)+LBW(fx+110,gy0-110,W.down,10.5,'#D64545','middle','#fff',160);
+ var L=LIST(W.n,298,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+
+/* 11 燃料の計画の中身（ICAO Annex 6 の考え方） */
+ac_fuel:function(l){
+ var W=({ja:{t:'燃料の計画の中身',items:[['地上走行','出発前の地上走行・APU'],['飛行','目的地に着くまでに使う量'],['予備（コンティンジェンシー）','予想とのずれに備える。飛行の燃料の5％など'],['代替空港','目的地に降りられず、代替空港へ行く量'],['最終予備','代替空港の上空1,500ftで30分待機できる量（ジェット機）'],['追加・機長の判断','待機の予想、特別な事情、機長の判断で足す量']],note:'細かい決まりは各国の規則と会社の運航規程による。「最終予備に手をつけそうなら緊急（MAYDAY FUEL）」'},
+  ko:{t:'연료 계획의 구성',items:[['지상 이동','출발 전 지상 이동·APU'],['운항','목적지에 닿을 때까지 쓰는 양'],['예비(컨틴전시)','예상과의 차이에 대비한다. 운항 연료의 5% 등'],['교체공항','목적지에 내리지 못하고 교체공항으로 가는 양'],['최종 예비','교체공항 상공 1,500ft에서 30분 대기할 수 있는 양(제트기)'],['추가·기장 판단','대기 예상, 특별한 사정, 기장 판단으로 더하는 양']],note:'세부 규정은 각국 규칙과 회사 운항규정에 따른다. ‘최종 예비에 손댈 것 같으면 비상(MAYDAY FUEL)’'},
+  en:{t:'What goes into the fuel plan',items:[['Taxi','Taxiing and APU use before departure'],['Trip','Fuel to reach the destination'],['Contingency','For deviations from the plan, e.g. 5% of trip fuel'],['Alternate','Fuel to go on to the alternate if the destination is unusable'],['Final reserve','30 minutes holding at 1,500 ft over the alternate (turbine aircraft)'],['Additional and discretionary','For expected holding, special circumstances or the captain’s decision']],note:'Details follow national rules and the operations manual. If final reserve is about to be used, declare an emergency (MAYDAY FUEL)'}})[l];
+ if(!W)return F.ac_fuel('ja');
+ setK(1);
+ var cols=['#9FB0C2','#2F6FD6','#1F7A6E','#E08A2F','#D64545','#6B4FA0'],vals=[4,60,6,12,8,10],tot=0;vals.forEach(function(v){tot+=v});
+ var s=TTL(320,30,W.t,15,'#0f3558',600),x=40,bw=560,y0=66,bh=40,acc=0,n=vals.length;
+ vals.forEach(function(v,i){var w=v/tot*bw,a0=(i/n*0.8).toFixed(2);
+  s+='<rect x="'+(x+acc)+'" y="'+y0+'" width="'+w.toFixed(1)+'" height="'+bh+'" fill="'+cols[i]+'" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+a0+';'+(+a0+0.05).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></rect>';
+  s+=BADGE(x+acc+w/2,y0+bh+20,i+1,10.5);acc+=w});
+ var y=y0+bh+46,lh=FS(11)*1.3;
+ W.items.forEach(function(r,i){var nn=LI(r[1],11,360).length,h=Math.max(FS(11.5)*1.6,nn*lh+12);s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="20" y="'+y+'" width="8" height="'+h+'" rx="3" fill="'+cols[i]+'"/>'+BADGE(48,y+h/2,i+1,10.5)+WR(72,y+h/2+FS(11.5)*0.35,r[0],11.5,cols[i]===cols[0]?'#40566B':cols[i],900,160,'start')+WR(250,y+h/2+FS(11)*0.35,r[1],11,D,800,360,'start');y+=h+4});
+ var n2=LI(W.note,10.5,580).length;s+=WR(320,y+8+n2*FS(10.5)*1.3/2,W.note,10.5,'#8a3b00',900,580);y+=n2*FS(10.5)*1.3+18;
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+
+/* 12 燃料が凍らないように：長い巡航で燃料の温度が下がる。凍る温度に近づいたら降下するか速さを上げる */
+ac_freeze:function(l){
+ var W=({ja:{t:'燃料の温度に気をつける',x:'飛行時間',y:'燃料の温度',fp:'Jet A-1 の凍る温度 −47℃',act:'近づいたら：降下する・速さを上げる（空気との摩擦で温める）',n:['日本・韓国の空港の燃料は多くが Jet A-1（凍る温度 −47℃）。米国の国内は Jet A（−40℃）も使われる','寒い上空を長く飛ぶと、燃料の温度はゆっくり下がる。極地に近い経路では特に注意','燃料は体積（リットル）で入れ、計画は重さ（kg）で行う。密度 約0.8で換算する（10,000L ≒ 8,000kg）']},
+  ko:{t:'연료 온도에 주의한다',x:'비행시간',y:'연료 온도',fp:'Jet A-1의 어는점 −47℃',act:'가까워지면: 강하하거나 속도를 올린다(공기와의 마찰로 데운다)',n:['한국·일본 공항 연료는 대부분 Jet A-1(어는점 −47℃). 미국 국내에서는 Jet A(−40℃)도 쓴다','추운 상공을 오래 날면 연료 온도가 천천히 내려간다. 극지에 가까운 경로에서 특히 주의','연료는 부피(리터)로 넣고 계획은 무게(kg)로 한다. 밀도 약 0.8로 환산한다(10,000L ≒ 8,000kg)']},
+  en:{t:'Watch the fuel temperature',x:'Flight time',y:'Fuel temperature',fp:'Jet A-1 freezing point −47 °C',act:'If it gets close: descend or fly faster (warming from air friction)',n:['Most fuel at Korean and Japanese airports is Jet A-1 (freezing point −47 °C); Jet A (−40 °C) is also used within the US','On long flights in very cold air the fuel slowly cools, especially on routes near the poles','Fuel is uplifted by volume (litres) but planned by mass (kg), converted with a density of about 0.8 (10,000 L ≈ 8,000 kg)']}})[l];
+ if(!W)return F.ac_freeze('ja');
+ setK(1);var gx0=90,gy0=250,gw=500,gh=170;
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,230,'#EEF5FB',14);
+ s+='<line x1="'+gx0+'" y1="'+gy0+'" x2="'+(gx0+gw)+'" y2="'+gy0+'" stroke="#40566B" stroke-width="2"/><line x1="'+gx0+'" y1="'+gy0+'" x2="'+gx0+'" y2="'+(gy0-gh)+'" stroke="#40566B" stroke-width="2"/>'+tx(gx0+gw,gy0+22,W.x+' →',10.5,G,800,'end')+tx(gx0+6,gy0-gh-8,W.y+' ↑',10.5,G,800,'start');
+ var fpY=gy0-40;s+='<line x1="'+gx0+'" y1="'+fpY+'" x2="'+(gx0+gw)+'" y2="'+fpY+'" stroke="#D64545" stroke-width="2.5" stroke-dasharray="8 5"/>'+LB(gx0+gw-6,fpY+16,W.fp,10.5,'#fff','end','#D64545');
+ var cur='M'+gx0+' '+(gy0-150)+' C'+(gx0+120)+' '+(gy0-100)+' '+(gx0+230)+' '+(gy0-60)+' '+(gx0+300)+' '+(gy0-54)+' C'+(gx0+340)+' '+(gy0-50)+' '+(gx0+380)+' '+(gy0-80)+' '+(gx0+480)+' '+(gy0-96);
+ s+='<path d="'+cur+'" fill="none" stroke="#2F6FD6" stroke-width="3.5"/><circle r="7" fill="#FFD23F" stroke="#0f3558"><animateMotion dur="8s" repeatCount="indefinite" path="'+cur+'"/></circle>';
+ s+='<g opacity="0">'+LBW(gx0+300,gy0-128,W.act,10.5,'#1F7A6E','middle','#fff',300)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.55;.6;.95;1" dur="8s" repeatCount="indefinite"/></g>';
+ var L=LIST(W.n,298,600,11);
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
