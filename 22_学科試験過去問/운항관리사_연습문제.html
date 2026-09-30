@@ -198,10 +198,10 @@ function result(){
  var n=run.pool.length,ok=run.ans.filter(function(a){return a&&a.ok}).length,h='';
  h+='<div class="qhead"><button class="back" id="bk">← 처음 화면</button><span class="pos">결과</span></div>';
  /* 과목마다 25문을 순서대로 모두 풀었을 때만 합격 판정（1문 4점, 70점 이상） */
- var by={};run.pool.forEach(function(x,i){var c=x.q.c;by[c]=by[c]||{n:0,ok:0};by[c].n++;if(run.ans[i]&&run.ans[i].ok)by[c].ok++});
+ var by={};run.pool.forEach(function(x,i){var c=x.q.c,jp=/^\[한일 비교\]/.test(x.q.q),g=run.ans[i]&&run.ans[i].ok;by[c]=by[c]||{n:0,ok:0,jn:0,jok:0};by[c].n++;if(g)by[c].ok++;if(jp){by[c].jn++;if(g)by[c].jok++}});
  h+='<div class="score"><div class="big">'+ok+' / '+n+'</div><div>정답률 '+Math.round(ok/n*100)+'%</div>'+(run.used!=null?'<div>시험 모드 · 걸린 시간 '+fmtT(Math.min(run.used,run.limit))+' / 제한 '+fmtT(run.limit)+(run.timeup?' (시간 종료로 자동 제출)':'')+'</div>':'')+'</div>';
- h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],pt=Math.round(b.ok/b.n*100),judge=(sel.mode==='all'||sel.mode==='exam')&&b.n===25;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'점</b> <small>'+b.ok+'/'+b.n+'</small>'+(judge?'<br><span class="pass" style="background:'+(pt>=70?'var(--ok)':'var(--ng)')+'">'+(pt>=70?'합격선 이상':'합격선 미만')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
- h+='<p class="note">합격 기준: 과목마다 70% 이상(25문 중 18문 이상). 한 과목 25문을 ‘순서대로 전체’나 ‘시험 모드’로 모두 풀었을 때만 표시합니다.</p>';
+ h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],pt=Math.round(b.ok/b.n*100),kn=b.n-b.jn,kp=kn?Math.round((b.ok-b.jok)/kn*100):pt,judge=(sel.mode==='all'||sel.mode==='exam')&&b.n===25;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'점</b> <small>'+b.ok+'/'+b.n+'</small>'+(b.jn?'<br><small>한국 시험 기준 '+kp+'점('+(b.ok-b.jok)+'/'+kn+') · 한일 비교 '+b.jok+'/'+b.jn+'</small>':'')+(judge?'<br><span class="pass" style="background:'+(kp>=70?'var(--ok)':'var(--ng)')+'">'+(kp>=70?'합격선 이상':'합격선 미만')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<p class="note">[한일 비교] 표시 문항은 일본 제도를 함께 익히기 위한 비교 문제로, 한국 시험 범위가 아니므로 합격 판정에서는 빼고 계산합니다. 합격 기준: 과목마다 70% 이상(25문 중 18문 이상). 한 과목 25문을 ‘순서대로 전체’나 ‘시험 모드’로 모두 풀었을 때만 표시합니다.</p>';
  h+='<h2>다시 보기</h2><div class="rlist">'+run.pool.map(function(x,i){var a=run.ans[i];return '<button data-i="'+i+'"><span class="m '+(a?(a.ok?'ok':'ng'):'')+'">'+(a?(a.ok?'○':'×'):'－')+'</span><span class="t">'+esc(SUBN[x.q.c])+' '+x.q.n+'번　'+esc(x.q.q)+'</span></button>'}).join('')+'</div>';
  h+='<button class="start" id="again">틀린 문제만 다시 풀기</button>';
  app.innerHTML=h;window.scrollTo(0,0);

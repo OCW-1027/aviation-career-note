@@ -28,7 +28,7 @@ var DEF={ja:{series:'旅客ハンドリングの実務',voice:'現場のひと�
 var LANGS=['ja','ko','en'];
 var KRC={ICN:1,GMP:1,SEL:1,PUS:1,CJU:1,TAE:1,CJJ:1};var HUBS=['LHR','SIN','JFK','CDG','SYD','DXB','HKG','FRA','LAX','BKK','AMS','YVR'];
 function hub(no){var h=0;String(no).split('').forEach(function(c){h=(h*31+c.charCodeAt(0))%997});return HUBS[h%HUBS.length]}
-(function(m){if(KRC[m.from]){m.from=(m.to&&!KRC[m.to])?m.to:'NRT';m.to=hub(m.no);}if(!m.from)m.from='NRT';if(!m.to||KRC[m.to]||m.to===m.from)m.to=hub(m.no);})(C.meta);
+(function(m){if(m.route)return;/* 実際の路線を示す回（事例など）は空港コードをそのまま表示 */if(KRC[m.from]){m.from=(m.to&&!KRC[m.to])?m.to:'NRT';m.to=hub(m.no);}if(!m.from)m.from='NRT';if(!m.to||KRC[m.to]||m.to===m.from)m.to=hub(m.no);})(C.meta);
 var ENF=!C.en;if(ENF){C.en=JSON.parse(JSON.stringify(C.ja));C.en.series=(C.meta.en&&C.meta.en.series)||null;C.en.part=(C.meta.en&&C.meta.en.part)||null;C.en._fallback=true;if(Array.isArray(C.ja.terms))C.en.terms=C.ja.terms.map(function(r){return [r[2],r[0],r[1]]});if(C.en.voice&&typeof C.en.voice==='object')C.en.voice.h=(C.meta.en&&C.meta.en.voice)||null;}
 LANGS.forEach(function(lg){var L=C[lg],D=DEF[lg],pn=+String(C.meta.no).split('-')[0];if(!L)return;C.meta.date=C.meta.date||'2026.09';C.meta.home=C.meta.home||'00_シリーズ全体_地上職旅客運送入門.html';L.series=L.series||D.series;L.part=L.part||PARTS[lg][pn];if(L.voice&&typeof L.voice==='string')L.voice={h:D.voice,x:L.voice};if(L.voice&&!L.voice.h)L.voice.h=D.voice;if(L.terms&&Array.isArray(L.terms))L.terms={h:D.terms,cols:D.tcols,rows:L.terms};if(L.quiz&&Array.isArray(L.quiz))L.quiz={h:D.quiz,items:L.quiz};if(L.next&&L.next.indexOf(D.next)!==0&&!/^(次回|次の|다음|Next)/.test(L.next))L.next=D.next+L.next;});
 var lang='ja';
