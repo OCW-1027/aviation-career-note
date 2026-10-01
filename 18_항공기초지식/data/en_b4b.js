@@ -32,7 +32,7 @@ sections:[
 {name:"Identity on Japanese domestic flights",x:"How to use technology such as facial recognition to raise certainty while keeping the process quick."},
 {name:"Privacy",x:"The stronger identity checks become, the more rules on data handling, consent and retention matter."},
 {name:"Cross-border systems",x:"Internationally, initiatives such as One ID aim to use the same identity check across countries (4-1)."}]}]}],
-voice:"[Interview to be added] Spotting a name mismatch before departure and helping the passenger.",
+voice:"A mismatch between the booking name and the passport can mean refused boarding. Checking every letter at check-in protects the passenger’s trip.",
 terms:[["Identity Verification","本人確認","신원 확인"],["Identification (ID)","身分証","신분증"],["Real-name System","実名制","실명제"],["REAL ID","REAL ID（アメリカ）","리얼 아이디(미국)"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"],["Restricted Area","制限区域","보호구역"]],
 quiz:[{q:"Since when has boarding been restricted on Korean domestic flights without an original ID?",opts:["2010","28 January 2022","7 May 2025","It is not restricted"],a:1,exp:"Under amended rules of Korea’s Aviation Security Act."},
 {q:"What option exists in the US from 1 February 2026 for people without REAL ID or similar?",opts:["Free manual check","The $45 TSA ConfirmID","No boarding at all","The travel agent checks"],a:1,exp:"Valid for 10 days, and it can take time."},

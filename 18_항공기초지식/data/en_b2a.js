@@ -34,7 +34,7 @@ sections:[
 {name:"Baggage charges",x:"Weigh and count bags accurately and collect extra charges (EMD) on the spot."},
 {name:"Self-service",x:"Kiosks and self-tagging let small teams handle the flow."},
 {name:"Quick turnarounds",x:"Cleaning, loading and boarding run in parallel; one delay easily spreads to later flights (5-8 in Course 1; delay code 93)."}]}]}],
-voice:"[Interview to be added] Coordinating with a partner airline over an alliance passenger’s bags.",
+voice:"For alliance connections, baggage rules usually follow the first carrier checked in. Where rules differ from the partner airline’s, check at check-in.",
 terms:[["Airline Alliance","航空連合（アライアンス）","항공 동맹(얼라이언스)"],["Codeshare","コードシェア","공동운항(코드셰어)"],["Low-cost Carrier (LCC)","低コスト航空会社","저비용항공사"],["Full-service Carrier (FSC)","フルサービス航空会社","대형항공사(풀서비스)"],["Ancillary Revenue","付帯収入","부가 수익"],["Interline","インターライン","인터라인"]],
 quiz:[{q:"Which alliance is JAL in?",opts:["Star Alliance","oneworld","SkyTeam","None"],a:1,exp:"ANA is in Star Alliance and Korean Air in SkyTeam."},
 {q:"On what announced date does Asiana merge into Korean Air?",opts:["1 January 2025","17 December 2026","1 April 2027","Not decided"],a:1,exp:"It leaves Star Alliance the day before, on 16 December."},

@@ -38,7 +38,7 @@ sections:[
 ["Headwinds and tailwinds","A headwind shortens the take-off run; a tailwind lengthens it"],
 ["Centre of gravity","Poor balance makes pitch control harder (Course 1, lesson 3-8)"]]},
 {t:"point",x:"When operations control warns that heat may restrict the payload today, this is the physics behind it. Knowing why makes adjusting bags and cargo calmer."}]}],
-voice:"[Interview to be added] Adjusting bags and cargo under a summer payload restriction.",
+voice:"High summer temperatures reduce take-off performance and often bring payload limits. On hot days, anticipate possible baggage and cargo adjustments.",
 terms:[["Lift","揚力","양력"],["Drag","抗力","항력"],["Thrust","推力","추력"],["Angle of Attack","迎え角","받음각"],["Stall","失速","실속"],["Takeoff Decision Speed (V1)","離陸決定速度","이륙 결심 속도"]],
 quiz:[{q:"What is true of the air over the top of the wing?",opts:["It slows and its pressure rises","It speeds up and its pressure drops","It does not move","It is the same as underneath"],a:1,exp:"Lower pressure above than below creates lift."},
 {q:"When are flaps extended?",opts:["In the cruise","For take-off and landing","Only when parked","Always"],a:1,exp:"To get enough lift at low speed."},

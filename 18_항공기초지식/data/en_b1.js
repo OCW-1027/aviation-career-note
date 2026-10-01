@@ -42,7 +42,7 @@ sections:[
 {name:"Fog and low cloud",x:"Poor visibility raises the risk of delays and diversions; think about receiving inbound flights and diversion stations."},
 {name:"Typhoons",x:"Follow forecasts days ahead and prepare cancellations, rebooking and early passenger notices (5-8 in Course 1)."}]},
 {t:"point",x:"Dispatch and the captain decide. Stations and handlers read the TAF so they can start preparing early, protecting passengers and safety on the ramp."}]}],
-voice:"[Interview to be added] Spotting a TEMPO line and preparing early for lightning.",
+voice:"TEMPO and PROB lines in a TAF warn that conditions may briefly worsen. If you see thunderstorms or strong winds, warn the handler early that ramp work may stop.",
 terms:[["Terminal Aerodrome Forecast (TAF)","運航用飛行場予報","공항 예보(TAF)"],["METAR","定時飛行場実況気象","정시 관측(METAR)"],["TEMPO","一時的な変動","일시적 변동"],["BECMG","徐々に変わる","서서히 변화"],["Gust","突風","돌풍"],["Visibility","視程","시정"]],
 quiz:[{q:"What does TEMPO mean?",opts:["A complete change from that time","Temporary fluctuations, each under an hour and together under half the period","A 30% probability","An observation"],a:1,exp:"The base forecast still applies; it is the line most often missed."},
 {q:"How do you read what follows FM?",opts:["Add it to the previous forecast","As a completely new forecast","Ignore it","As a probability"],a:1,exp:"Nothing carries over after FM."},

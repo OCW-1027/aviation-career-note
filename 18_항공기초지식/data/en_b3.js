@@ -35,7 +35,7 @@ sections:[
 {name:"Deregulation and competition",x:"LCCs transformed fares and sales, spreading ancillary charges and self-service (2-3)."},
 {name:"After the pandemic",x:"Contactless processes, automation and facial recognition — smart airport initiatives — advanced rapidly."}]},
 {t:"point",x:"Today’s rules carry lessons from past accidents, incidents and changes. Asking “why does this procedure exist?” through history makes the work more meaningful."}]}],
-voice:"[Interview to be added] The airport when flights stopped during the pandemic, and what changed afterwards.",
+voice:"Living through a time when flights stopped shows how many people’s work lies behind everyday normal. Knowing the history makes you steadier when change comes.",
 terms:[["Powered Flight","動力飛行","동력 비행"],["Jet Airliner","ジェット旅客機","제트 여객기"],["Deregulation","規制緩和","규제 완화"],["Hub Airport","ハブ空港","허브 공항"],["Supersonic Transport","超音速旅客機","초음속 여객기"],["The First Year of LCCs","LCC元年","LCC 원년"]],
 quiz:[{q:"Which treaty created ICAO?",opts:["The Chicago Convention","The Montreal Convention","The Tokyo Convention","The Warsaw Convention"],a:0,exp:"The 1944 Chicago Convention; ICAO began in 1947."},
 {q:"Which year is called Japan’s “first year of LCCs”?",opts:["1994","2001","2012","2020"],a:2,exp:"Peach and others launched."},

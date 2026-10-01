@@ -42,7 +42,7 @@ sections:[
 {name:"Connections across midnight",x:"Check whether the onward flight is “+1” so dates are not confused."},
 {name:"The weeks when daylight saving changes",x:"Local times and connection times on European and American routes shift; check information, notices and bookings in advance."},
 {name:"Crew hours",x:"Crew duty limits are managed in UTC or similar; align time references with operations control when deciding on delays."}]}]}],
-voice:"[Interview to be added] Taking care with connection information during the daylight-saving changeover.",
+voice:"In the week clocks change, connection times can look different from reality. Checking schedules in both local time and UTC prevents mistakes.",
 terms:[["Coordinated Universal Time (UTC)","協定世界時","협정 세계시"],["Local Time (LT)","現地時刻","현지 시각"],["Time Difference","時差","시차"],["Daylight Saving Time (DST)","サマータイム","서머타임"],["International Date Line","日付変更線","날짜 변경선"],["Flight Time / Block Time","飛行時間","비행 시간"]],
 quiz:[{q:"Narita dep 17:00 (UTC+9) → Los Angeles arr 10:30 (UTC−7), same day. Flight time?",opts:["6 h 30 min","9 h 30 min","17 h 30 min","14 h"],a:1,exp:"08:00 UTC to 17:30 UTC is 9 h 30 min."},
 {q:"What does “+1” mean in a timetable?",opts:["One hour late","Arrives the next day","First flight","Offset from UTC"],a:1,exp:"It arrives the day after departure."},

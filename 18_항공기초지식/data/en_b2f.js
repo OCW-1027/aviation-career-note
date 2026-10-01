@@ -29,7 +29,7 @@ sections:[
 {name:"Fifth-freedom sectors",x:"Sales, fares and baggage handling on beyond-rights sectors may have special rules."},
 {name:"Codeshares",x:"Putting your code on another airline’s flight also needs government approval and traffic rights."},
 {name:"Domestic sectors",x:"Use systems and procedures to avoid accepting passengers or bags that would be cabotage."}]}]}],
-voice:"[Interview to be added] Taking care with passenger information on a fifth-freedom sector.",
+voice:"On fifth-freedom sectors, passenger guidance can differ by leg on the same flight. Check in advance the procedures for passengers getting on and off at the intermediate stop.",
 terms:[["Freedoms of the Air (Traffic Rights)","空の自由（運輸権）","하늘의 자유(운수권)"],["Air Services Agreement (ASA)","航空協定","항공협정"],["Fifth Freedom (Beyond Rights)","以遠権","이원권"],["Cabotage","カボタージュ","카보타지(국내 운송)"],["Open Skies","オープンスカイ","오픈스카이"],["Chicago Convention","シカゴ条約","시카고 협약"]],
 quiz:[{q:"An airline of country A carries passengers who board in B on to C. Which freedom?",opts:["3rd","4th","5th","9th"],a:2,exp:"Beyond rights."},
 {q:"Why can a foreign airline not carry passengers only between two Japanese airports?",opts:["Cabotage is not permitted","Fares are too high","There is not enough fuel","There are no slots"],a:0,exp:"Most countries reserve domestic carriage for their own airlines."},
