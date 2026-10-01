@@ -65,7 +65,9 @@
 /* ヒーローを小さく、注目の求人を大きく */
 .hero{padding:24px 28px 22px;border-radius:22px}
 .hero h1{font-size:clamp(22px,3.4vw,32px);margin:0 0 6px}
-.hero p{font-size:15px;margin:0 0 14px;max-width:70ch}
+.hero p{font-size:15px;margin:0 0 14px;max-width:none;word-break:auto-phrase;text-wrap:balance}
+html[lang=ko] .hero p{word-break:keep-all}
+.hero p .seg{display:inline-block}
 .hero .cloud{display:none}.hero .sun{width:46px;height:46px;top:22px;right:28px}
 .hero .bottom{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center}
 .hero .cta a{padding:9px 16px}
@@ -152,7 +154,7 @@ en:{h1:'Bringing aviation work closer.',hp:'The knowledge and judgment once lear
 function $(i){return document.getElementById(i)}
 window.render=function(lang){var t=T[lang],E=window.SITE_ESC,total=SERIES.reduce(function(a,s){return a+s.n},0);
  document.title=window.SITE_NAME()+(lang==='ja'?'（仮称）':lang==='ko'?' (가칭)':' (working title)');
- $('h1').innerHTML=E(t.h1).replace('\n','<br>');$('hp').textContent=t.hp;$('c1').textContent=t.c1;$('c2').textContent=t.c2;
+ $('h1').innerHTML=E(t.h1).replace('\n','<br>');$('hp').innerHTML=E(t.hp).replace(/^(.+?[、,])\s*(.*)$/,'<span class="seg">$1</span> <span class="seg">$2</span>');$('c1').textContent=t.c1;$('c2').textContent=t.c2;
  $('stats').innerHTML=[[t.stats[0][0],total],[t.stats[1][0],SERIES.length],[t.stats[2][0],TOOLS.length]].map(function(s){return '<div><b>'+s[1]+'</b>'+E(s[0])+'</div>'}).join('');
  ['hl','ll','ht','hj','jm','hb','bt','bd','bl'].forEach(function(k){$(k).textContent=t[k]});
  $('series').innerHTML=SERIES.map(function(s){var d=s[lang]||s.ja;return '<a class="pass" href="'+s.p+'"><div class="main"><div class="who">'+E(d[0])+'</div><b>'+E(d[1])+'</b><div class="d">'+E(d[2])+'</div></div><div class="stub">'+(window.__updNew?window.__updNew(s.p,lang):'')+'<span class="code">'+s.code+'</span><small>'+s.n+' '+t.arts+'</small></div></a>'}).join('');
