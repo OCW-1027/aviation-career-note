@@ -77,7 +77,7 @@ sections:[
 {name:"One sheet",x:"Twelve months on one sheet for the year; detail for each month on separate sheets."},
 {name:"Put it in the calendar",x:"Enter it as recurring events in a shared calendar so the owner gets a reminder."},
 {name:"Record what happened",x:"Each year, add the date it was actually done and anything noticed."}]},
-{t:"point",x:"The annual calendar is the station’s memory. Let the successor see from the start the year the predecessor lived through (Launching Flights to Japan 7-3; HR and Finance in Japan 2-1)."}]}],
+{t:"point",x:"The annual calendar is the station’s memory. Let the successor see from the start the year the predecessor lived through (Launching Flights to Japan 7-3; HR, Admin and Finance in Practice 2-1)."}]}],
 voice:"Nobody remembers a once-a-year procedure a year later. Putting it in a shared calendar with a reminder a month before the deadline is the surest safeguard.",
 terms:[["Annual Calendar","年間スケジュール","연간 스케줄"],["Backward Planning","逆算","역산"],["Renewal Deadline","更新期限","갱신 기한"],["Notice of Termination","解約予告","해지 예고"]],
 quiz:[{q:"Which work is most likely to be dropped at handover?",opts:["Annual procedures","Daily work","Weekly meetings","Phone calls"],a:0,exp:"Even the predecessor has done them only a few times."},
@@ -114,7 +114,7 @@ next:"2-2 Handing over finance"});
 
 set("2-2",{title:"Handing Over Finance",hl:"handing over finance",subtitle:"Balances, payables, receivables and payment terms. Fix the numbers as at the handover date",
 lead:["The most important thing in handing over finance is to fix the numbers as at the handover date. The predecessor and the successor check together the account balances, the costs still to be paid, the money still to come in and anything prepaid, and put it in writing.",
-"This article covers what to hand over, the checks on the handover date, and switching authorities (for the practice in detail, see HR and Finance in Japan, Parts 4 to 7)."],
+"This article covers what to hand over, the checks on the handover date, and switching authorities (for the practice in detail, see HR, Admin and Finance in Practice, Parts 4 to 7)."],
 sections:[
 {h:"What to hand over (example)",blocks:[{t:"table",cols:["Area","What to hand over"],rows:[
 ["Accounts","The list of accounts and what each is for, and who holds online banking authority"],
@@ -143,7 +143,7 @@ next:"2-3 Handing over HR and administration"});
 
 set("2-3",{title:"Handing Over HR and Administration",hl:"HR and administration",subtitle:"Staff, insurance, housing, assets and contracts: handing over the care of people and things",
 lead:["Handing over HR and administration means passing on the staff’s employment terms and the status of their procedures, social and labour insurance, the housing and office contracts, and assets such as equipment, keys and seals. Because much of it is personal information, how it is handed over matters too.",
-"This article covers what to hand over, how to treat personal information, and how to explain the change to staff (for the rules, see HR and Finance in Japan and the Expat Guide to Japan)."],
+"This article covers what to hand over, how to treat personal information, and how to explain the change to staff (for the rules, see HR, Admin and Finance in Practice and the Expat Guide to Japan)."],
 sections:[
 {h:"What to hand over (example)",blocks:[{t:"table",cols:["Area","What to hand over"],rows:[
 ["Staff","Employment type, contract periods and renewal dates, status of residence expiry for foreign staff"],
