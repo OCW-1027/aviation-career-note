@@ -40,7 +40,7 @@ sections:[
 ["Passenger care","Meal vouchers, rebooking, hotel, information on bags left behind"],
 ["Who decided and why","Who decided, and on what basis"],
 ["Delay code","For example 93 (late arrival of aircraft)"]]}]}],
-voice:"[Interview to be added] How the speed of a notice changed passengers’ reactions.",
+voice:"The same delay draws a different reaction when information comes early. The rule is to share what you know now rather than wait for confirmation.",
 terms:[["Air Transport User Protection Standards (Korea)","航空交通利用者保護基準（韓国）","항공교통이용자 보호기준"],["Administrative Fine","過料","과태료"],["Short-shipped Baggage","未搭載の手荷物","미탑재 수하물"],["Delay Notification","遅延の案内","지연 안내"],["Decision Criteria","判断基準","판단 기준"],["Record / Log","記録","기록"]],
 quiz:[{q:"What did the Korean penalty cases have in common?",opts:["High fares","Passengers told late, or not at all, about something the airline already knew","Meals","Seat width"],a:1,exp:"The gap between knowing and telling is what counts."},
 {q:"You learn before departure that some bags cannot be loaded. You…",opts:["Tell passengers on arrival","Tell the passengers affected before departure","Say nothing","Tell them the next day"],a:1,exp:"Also explain how the bags will be sent and collected."},

@@ -34,7 +34,7 @@ sections:[
 {name:"Share it",x:"Use a shared calendar the whole station can see, and share it with head office departments."},
 {name:"Review yearly",x:"Update it every year for rule changes and changes in destinations or frequencies."}]},
 {t:"point",x:"A calendar is a preparation plan, not a list of deadlines. Record every procedure in the first year and it becomes next year’s calendar."}]}],
-voice:"[Interview to be added] Personal calendar rules learned from chasing deadlines.",
+voice:"To avoid chasing deadlines, put your own deadline in the calendar a week before the real one. Recurring annual tasks get easier next year once you list them.",
 terms:[["Summer / Winter Schedule (IATA Season)","夏ダイヤ・冬ダイヤ","하계·동계 스케줄"],["Change of Business Plan","事業計画変更","사업계획 변경"],["Withholding Income Tax","源泉所得税","원천 소득세"],["Social Insurance Base Report","算定基礎届","산정 기초 신고"],["Annual Labour Insurance Renewal","労働保険の年度更新","노동보험 연도 갱신"],["Year-end Tax Adjustment","年末調整","연말정산"]],
 quiz:[{q:"When is the IATA summer season?",opts:["1 April to 30 September","Last Sunday of March to last Saturday of October","January to June","Not fixed"],a:1,exp:"Winter runs from the last Sunday of October to the last Saturday of March."},
 {q:"What should go on the calendar alongside each deadline?",opts:["Nothing","The preparation start date and the owner","The weather","Sales"],a:1,exp:"So you can work backwards."},

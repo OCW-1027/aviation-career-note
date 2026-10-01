@@ -32,7 +32,7 @@ sections:[
 {name:"Recording causes",x:"For work during delays or disruption, agree the cause and delay code before invoicing."},
 {name:"Invoice format",x:"Ask for detail by flight and by day; checking becomes much faster."},
 {name:"Monthly meeting",x:"Put open queries on the monthly meeting agenda and close them by a set date (6-2)."}]}]}],
-voice:"[Interview to be added] Finding a major error while checking an invoice.",
+voice:"Checking invoices means reconciling them against actual flights and work records. Start with the largest items and you find errors faster.",
 terms:[["Invoice","請求書","청구서"],["Landing Fee","着陸料","착륙료"],["Parking Charge","停留料","정류료"],["Overtime Surcharge","時間外の割増","시간외 할증"],["Budget vs Actual","予算と実績","예산과 실적"],["Cost per Flight","1便あたりの費用","편당 비용"]],
 quiz:[{q:"What is the starting point for checking an invoice?",opts:["The invoice total","The station’s own activity records","Last year’s invoices","The supplier’s explanation"],a:1,exp:"Without your own records you cannot judge whether it is right."},
 {q:"How do you check an overtime surcharge?",opts:["Scheduled times","Actual block times","Ignore it","Leave it to the supplier"],a:1,exp:"Check against actual times."},

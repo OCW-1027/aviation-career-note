@@ -40,7 +40,7 @@ sections:[
 {name:"End of week 1",x:"Any problems; worries about commuting or daily life."},
 {name:"End of week 2",x:"How well they understand the work; how they get on with the buddy."},
 {name:"Day 30",x:"The sign-off result, goals for the next three months and the training plan."}]}]}],
-voice:"[Interview to be added] What helped as a new starter, and what to keep in mind as a buddy.",
+voice:"New starters grow fastest when they have someone they can ask anything. Assign a mentor and hold a short weekly review for the first three months.",
 terms:[["Onboarding","オンボーディング","온보딩"],["Signing off as Competent","独り立ち","독립 근무"],["Buddy / Mentor","指導者（バディ）","지도 선배(버디)"],["Initial Training","初期教育","초기 교육"],["Competency Checklist","チェックリスト","체크리스트"],["One-to-one Meeting","面談","면담"]],
 quiz:[{q:"What should you check first once a start date is set?",opts:["Uniform colour","ID pass and initial training dates","The welcome party venue","Holiday plans"],a:1,exp:"Without them the new starter cannot work on the front line."},
 {q:"What order should a buddy follow?",opts:["Hand it over straight away","Show → do together → hand over","Just give them the manual","Nothing"],a:1,exp:"Three steps."},
