@@ -166,7 +166,35 @@ var AREA={
    [{ja:'京急蒲田',ko:'게이큐카마타',en:'Keikyu-Kamata'},{ja:'京急本線・空港線',ko:'게이큐 본선·공항선',en:'Keikyu Main / Airport Line'},10,7.5],
    [{ja:'京急川崎',ko:'게이큐가와사키',en:'Keikyu-Kawasaki'},{ja:'京急本線・大師線',ko:'게이큐 본선·다이시선',en:'Keikyu Main / Daishi Line'},20,6.9],
    [{ja:'川崎大師',ko:'가와사키다이시',en:'Kawasaki-Daishi'},{ja:'京急大師線（乗り換え）',ko:'게이큐 다이시선(환승)',en:'Keikyu Daishi Line (change)'},30,6.3],
-   [{ja:'小島新田',ko:'고지마신덴',en:'Kojima-shinden'},{ja:'京急大師線（乗り換え）',ko:'게이큐 다이시선(환승)',en:'Keikyu Daishi Line (change)'},35,4.9]]}};
+   [{ja:'小島新田',ko:'고지마신덴',en:'Kojima-shinden'},{ja:'京急大師線（乗り換え）',ko:'게이큐 다이시선(환승)',en:'Keikyu Daishi Line (change)'},35,4.9]]},
+ kix:{ja:['関西空港の通勤圏（一人暮らし向けの家賃の目安）','空港まで約','分','万円'],ko:['간사이 공항 통근권(1인 가구용 임대료 시세)','공항까지 약','분','만 엔'],en:['Kansai Airport commuter belt (rent guide for single households)','to the airport ~','min','¥10k'],
+  rows:[[{ja:'りんくうタウン',ko:'린쿠타운',en:'Rinku Town'},{ja:'南海空港線・JR関西空港線',ko:'난카이 공항선·JR 간사이공항선',en:'Nankai Airport / JR Kansai-Airport Line'},6,5.6],
+   [{ja:'泉佐野',ko:'이즈미사노',en:'Izumisano'},{ja:'南海本線・空港線',ko:'난카이 본선·공항선',en:'Nankai Main / Airport Line'},10,5.2],
+   [{ja:'羽倉崎',ko:'하쿠라자키',en:'Hagurazaki'},{ja:'南海本線（泉佐野で乗り換え）',ko:'난카이 본선(이즈미사노 환승)',en:'Nankai Main Line (change at Izumisano)'},15,4.7],
+   [{ja:'吉見ノ里',ko:'요시미노사토',en:'Yoshiminosato'},{ja:'南海本線（泉佐野で乗り換え）',ko:'난카이 본선(이즈미사노 환승)',en:'Nankai Main Line (change at Izumisano)'},18,4.5],
+   [{ja:'井原里',ko:'이하라노사토',en:'Iharanosato'},{ja:'南海本線（泉佐野で乗り換え）',ko:'난카이 본선(이즈미사노 환승)',en:'Nankai Main Line (change at Izumisano)'},15,5.0],
+   [{ja:'鶴原',ko:'쓰루하라',en:'Tsuruhara'},{ja:'南海本線（泉佐野で乗り換え）',ko:'난카이 본선(이즈미사노 환승)',en:'Nankai Main Line (change at Izumisano)'},17,5.3]]},
+ ngo:{ja:['中部空港（セントレア）の通勤圏（一人暮らし向けの家賃の目安）','空港まで約','分','万円'],ko:['주부 공항(센트레아) 통근권(1인 가구용 임대료 시세)','공항까지 약','분','만 엔'],en:['Chubu Centrair commuter belt (rent guide for single households)','to the airport ~','min','¥10k'],
+  rows:[[{ja:'常滑',ko:'도코나메',en:'Tokoname'},{ja:'名鉄常滑線・空港線',ko:'메이테쓰 도코나메선·공항선',en:'Meitetsu Tokoname / Airport Line'},5,4.2],
+   [{ja:'新舞子',ko:'신마이코',en:'Shin-Maiko'},{ja:'名鉄常滑線',ko:'메이테쓰 도코나메선',en:'Meitetsu Tokoname Line'},15,4.0],
+   [{ja:'朝倉',ko:'아사쿠라',en:'Asakura'},{ja:'名鉄常滑線',ko:'메이테쓰 도코나메선',en:'Meitetsu Tokoname Line'},20,4.2],
+   [{ja:'太田川',ko:'오타가와',en:'Otagawa'},{ja:'名鉄常滑線（急行が止まる）',ko:'메이테쓰 도코나메선(급행 정차)',en:'Meitetsu Tokoname Line (express stop)'},22,4.7],
+   [{ja:'尾張横須賀',ko:'오와리요코스카',en:'Owari-Yokosuka'},{ja:'名鉄常滑線',ko:'메이테쓰 도코나메선',en:'Meitetsu Tokoname Line'},25,4.9]]},
+ cts:{ja:['新千歳空港の通勤圏（一人暮らし向けの家賃の目安）','空港まで約','分','万円'],ko:['신치토세 공항 통근권(1인 가구용 임대료 시세)','공항까지 약','분','만 엔'],en:['New Chitose Airport commuter belt (rent guide for single households)','to the airport ~','min','¥10k'],
+  rows:[[{ja:'南千歳',ko:'미나미치토세',en:'Minami-Chitose'},{ja:'JR千歳線・石勝線',ko:'JR 지토세선·세키쇼선',en:'JR Chitose / Sekisho Line'},3,4.2],
+   [{ja:'千歳',ko:'지토세',en:'Chitose'},{ja:'JR千歳線',ko:'JR 지토세선',en:'JR Chitose Line'},7,4.1],
+   [{ja:'長都',ko:'오사쓰',en:'Osatsu'},{ja:'JR千歳線',ko:'JR 지토세선',en:'JR Chitose Line'},10,3.9],
+   [{ja:'恵庭・恵み野',ko:'에니와·에미노',en:'Eniwa / Emino'},{ja:'JR千歳線',ko:'JR 지토세선',en:'JR Chitose Line'},16,3.2],
+   [{ja:'北広島',ko:'기타히로시마',en:'Kitahiroshima'},{ja:'JR千歳線（快速エアポート）',ko:'JR 지토세선(쾌속 에어포트)',en:'JR Chitose Line (Rapid Airport)'},22,3.5],
+   [{ja:'苫小牧',ko:'도마코마이',en:'Tomakomai'},{ja:'JR千歳線（南千歳で乗り換え）',ko:'JR 지토세선(미나미치토세 환승)',en:'JR Chitose Line (change at Minami-Chitose)'},30,2.9]]},
+ fuk:{ja:['福岡空港の通勤圏（一人暮らし向けの家賃の目安）','空港まで約','分','万円'],ko:['후쿠오카 공항 통근권(1인 가구용 임대료 시세)','공항까지 약','분','만 엔'],en:['Fukuoka Airport commuter belt (rent guide for single households)','to the airport ~','min','¥10k'],
+  rows:[[{ja:'東比恵',ko:'히가시히에',en:'Higashi-Hie'},{ja:'地下鉄空港線',ko:'지하철 공항선',en:'Subway Airport Line'},3,5.5],
+   [{ja:'博多',ko:'하카타',en:'Hakata'},{ja:'地下鉄空港線・JR',ko:'지하철 공항선·JR',en:'Subway Airport Line / JR'},5,5.5],
+   [{ja:'箱崎',ko:'하코자키',en:'Hakozaki'},{ja:'JR鹿児島本線（博多で乗り換え）',ko:'JR 가고시마 본선(하카타 환승)',en:'JR Kagoshima Line (change at Hakata)'},15,4.1],
+   [{ja:'香椎',ko:'가시이',en:'Kashii'},{ja:'JR鹿児島本線（博多で乗り換え）',ko:'JR 가고시마 본선(하카타 환승)',en:'JR Kagoshima Line (change at Hakata)'},22,4.5],
+   [{ja:'西新',ko:'니시진',en:'Nishijin'},{ja:'地下鉄空港線（乗り換えなし）',ko:'지하철 공항선(환승 없음)',en:'Subway Airport Line (direct)'},17,4.6],
+   [{ja:'室見・姪浜',ko:'무로미·메이노하마',en:'Muromi / Meinohama'},{ja:'地下鉄空港線（乗り換えなし）',ko:'지하철 공항선(환승 없음)',en:'Subway Airport Line (direct)'},22,4.3]]}
+};
 var ANOTE={ja:'※ 家賃はSUUMOの駅ごとの家賃相場（一人暮らし向け、2025〜2026年に確認）を丸めた目安。所要時間は乗り換えを含むおよその時間で、時間帯で変わります。',ko:'※ 임대료는 SUUMO 역별 시세(1인 가구용, 2025~2026년 확인)를 반올림한 기준. 소요 시간은 환승을 포함한 대략의 시간이며 시간대에 따라 다릅니다.',en:'* Rents are rounded from SUUMO station averages for single households (checked 2025–26). Times are approximate, including changes, and vary by time of day.'};
 function areaFig(key){return function(l){setK(1);var A=AREA[key],d=A[l]||A.ja,s=TTL(320,30,d[0],15,'#0f3558',600),y=60,x0=30,wmax=400,mx=8;
  A.rows.forEach(function(r){var nm=r[0][l]||r[0].ja,ln=r[1][l]||r[1].ja,h1=hgt(nm,12.5,560),h2=hgt(ln,11,560);
@@ -174,5 +202,5 @@ function areaFig(key){return function(l){setK(1);var A=AREA[key],d=A[l]||A.ja,s=
   var w=wmax*r[3]/mx;s+=R(x0,y,w,16,'#2F8FE0',6);var lab=(l==='en'?'¥'+Math.round(r[3]*10000).toLocaleString('en-US'):r[3].toFixed(1)+d[3])+'  ·  '+d[1]+' '+r[2]+d[2];
   y+=22;var ha=hgt(lab,11.5,580);s+=TW2(x0,y,lab,11.5,D,800,580,'start');y+=ha+14});
  var hn=hgt(ANOTE[l]||ANOTE.ja,11,580);s+=TW2(x0,y,ANOTE[l]||ANOTE.ja,11,G,700,580,'start');y+=hn+12;return svg(y,s)}}
-window.FIGS.life_nrt=H.FIX2(areaFig('nrt'));window.FIGS.life_hnd=H.FIX2(areaFig('hnd'));
+window.FIGS.life_nrt=H.FIX2(areaFig('nrt'));window.FIGS.life_hnd=H.FIX2(areaFig('hnd'));window.FIGS.life_kix=H.FIX2(areaFig('kix'));window.FIGS.life_ngo=H.FIX2(areaFig('ngo'));window.FIGS.life_cts=H.FIX2(areaFig('cts'));window.FIGS.life_fuk=H.FIX2(areaFig('fuk'));
 })();
