@@ -151,4 +151,28 @@ function figSH(l){setK(1);var d=SH[l]||SH.ja,s=TTL(320,30,d[0],15,'#0f3558',600)
   s+=R(20,y,600,h,'#F4F9FE',10,' stroke="#CFE0F0"')+'<circle cx="50" cy="'+(y+h/2)+'" r="13" fill="#1F8A5B"/>'+tx(50,y+h/2+4,String(i+1),12,'#fff',900)+TW2(76,y+8,r[0],12,'#0f3558',900,520,'start')+TW2(76,y+10+h1,r[1],11,G,700,520,'start');y+=h+8});
  return svg(y+8,s)}
 window.FIGS.life_lv=H.FIX2(figLV);window.FIGS.life_shel=H.FIX2(figSH);
+/* 14. 空港の通勤圏：駅ごとの家賃の目安と空港までの時間（縦に積む） */
+var AREA={
+ nrt:{ja:['成田空港の通勤圏（一人暮らし向けの家賃の目安）','空港まで約','分','万円'],ko:['나리타 공항 통근권(1인 가구용 임대료 시세)','공항까지 약','분','만 엔'],en:['Narita Airport commuter belt (rent guide for single households)','to the airport ~','min','¥10k'],
+  rows:[[{ja:'京成成田・JR成田',ko:'게이세이나리타·JR나리타',en:'Keisei-Narita / JR Narita'},{ja:'京成本線・JR成田線',ko:'게이세이 본선·JR 나리타선',en:'Keisei Main Line / JR Narita Line'},10,5.6],
+   [{ja:'公津の杜',ko:'고즈노모리',en:'Kozunomori'},{ja:'京成本線',ko:'게이세이 본선',en:'Keisei Main Line'},15,5.4],
+   [{ja:'宗吾参道',ko:'소고산도',en:'Sogo-sando'},{ja:'京成本線',ko:'게이세이 본선',en:'Keisei Main Line'},20,4.9],
+   [{ja:'京成酒々井・JR酒々井',ko:'게이세이시스이·JR시스이',en:'Keisei-Shisui / JR Shisui'},{ja:'京成本線・JR成田線',ko:'게이세이 본선·JR 나리타선',en:'Keisei Main Line / JR Narita Line'},25,4.6],
+   [{ja:'京成佐倉・JR佐倉',ko:'게이세이사쿠라·JR사쿠라',en:'Keisei-Sakura / JR Sakura'},{ja:'京成本線・JR総武本線',ko:'게이세이 본선·JR 소부 본선',en:'Keisei Main Line / JR Sobu Line'},30,5.2]]},
+ hnd:{ja:['羽田空港の通勤圏（一人暮らし向けの家賃の目安）','空港まで約','分','万円'],ko:['하네다 공항 통근권(1인 가구용 임대료 시세)','공항까지 약','분','만 엔'],en:['Haneda Airport commuter belt (rent guide for single households)','to the airport ~','min','¥10k'],
+  rows:[[{ja:'穴守稲荷',ko:'아나모리이나리',en:'Anamori-inari'},{ja:'京急空港線',ko:'게이큐 공항선',en:'Keikyu Airport Line'},5,7.5],
+   [{ja:'大鳥居',ko:'오토리이',en:'Otorii'},{ja:'京急空港線',ko:'게이큐 공항선',en:'Keikyu Airport Line'},7,7.5],
+   [{ja:'糀谷',ko:'고지야',en:'Kojiya'},{ja:'京急空港線',ko:'게이큐 공항선',en:'Keikyu Airport Line'},9,7.3],
+   [{ja:'京急蒲田',ko:'게이큐카마타',en:'Keikyu-Kamata'},{ja:'京急本線・空港線',ko:'게이큐 본선·공항선',en:'Keikyu Main / Airport Line'},10,7.5],
+   [{ja:'京急川崎',ko:'게이큐가와사키',en:'Keikyu-Kawasaki'},{ja:'京急本線・大師線',ko:'게이큐 본선·다이시선',en:'Keikyu Main / Daishi Line'},20,6.9],
+   [{ja:'川崎大師',ko:'가와사키다이시',en:'Kawasaki-Daishi'},{ja:'京急大師線（乗り換え）',ko:'게이큐 다이시선(환승)',en:'Keikyu Daishi Line (change)'},30,6.3],
+   [{ja:'小島新田',ko:'고지마신덴',en:'Kojima-shinden'},{ja:'京急大師線（乗り換え）',ko:'게이큐 다이시선(환승)',en:'Keikyu Daishi Line (change)'},35,4.9]]}};
+var ANOTE={ja:'※ 家賃はSUUMOの駅ごとの家賃相場（一人暮らし向け、2025〜2026年に確認）を丸めた目安。所要時間は乗り換えを含むおよその時間で、時間帯で変わります。',ko:'※ 임대료는 SUUMO 역별 시세(1인 가구용, 2025~2026년 확인)를 반올림한 기준. 소요 시간은 환승을 포함한 대략의 시간이며 시간대에 따라 다릅니다.',en:'* Rents are rounded from SUUMO station averages for single households (checked 2025–26). Times are approximate, including changes, and vary by time of day.'};
+function areaFig(key){return function(l){setK(1);var A=AREA[key],d=A[l]||A.ja,s=TTL(320,30,d[0],15,'#0f3558',600),y=60,x0=30,wmax=400,mx=8;
+ A.rows.forEach(function(r){var nm=r[0][l]||r[0].ja,ln=r[1][l]||r[1].ja,h1=hgt(nm,12.5,560),h2=hgt(ln,11,560);
+  s+=TW2(x0,y,nm,12.5,'#0f3558',900,560,'start');y+=h1;s+=TW2(x0,y+2,ln,11,G,700,560,'start');y+=h2+6;
+  var w=wmax*r[3]/mx;s+=R(x0,y,w,16,'#2F8FE0',6);var lab=(l==='en'?'¥'+Math.round(r[3]*10000).toLocaleString('en-US'):r[3].toFixed(1)+d[3])+'  ·  '+d[1]+' '+r[2]+d[2];
+  y+=22;var ha=hgt(lab,11.5,580);s+=TW2(x0,y,lab,11.5,D,800,580,'start');y+=ha+14});
+ var hn=hgt(ANOTE[l]||ANOTE.ja,11,580);s+=TW2(x0,y,ANOTE[l]||ANOTE.ja,11,G,700,580,'start');y+=hn+12;return svg(y,s)}}
+window.FIGS.life_nrt=H.FIX2(areaFig('nrt'));window.FIGS.life_hnd=H.FIX2(areaFig('hnd'));
 })();
