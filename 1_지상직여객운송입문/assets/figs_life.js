@@ -131,4 +131,24 @@ function figPN(l){setK(1);var d=PN[l]||PN.ja,s=TTL(320,30,d[0],15,'#0f3558',600)
   s+=R(20,y,600,h,'#fff',10,' stroke="#D9E3EC"')+TW2(xL,y+8,r[0],11.5,G,900,105,'start')+TW2(xA,y+8,r[1],11.5,D,700,w,'start')+TW2(xB,y+8,r[2],11.5,D,700,w,'start');y+=h+6});
  var hn=hgt(d[3],11,580);s+=TW2(30,y+6,d[3],11,G,700,580,'start');y+=hn+16;return svg(y,s)}
 window.FIGS.life_stw=H.FIX2(figSTW);window.FIGS.life_pn=H.FIX2(figPN);
+/* 12. 警戒レベル（避難情報） */
+var LV={ja:['避難の目安 ― 警戒レベル',[['5','緊急安全確保','すでに災害が起きている。命を守る最善の行動を（家の2階以上・近くの頑丈な建物へ）','#111111','#fff'],['4','避難指示','危険な場所から全員避難。ここまでに必ず逃げる','#7A3FB0','#fff'],['3','高齢者等避難','高齢者・障害のある人・乳幼児のいる家庭は避難。ほかの人も準備','#D0453E','#fff'],['2','大雨・洪水注意報など','ハザードマップで避難先と道を確かめる','#F2C94C','#1d2a3a'],['1','早期注意情報','最新の気象情報に注意','#FFFFFF','#1d2a3a']],'※ レベル4の「避難指示」で必ず避難。レベル5を待たない（内閣府「避難情報に関するガイドライン」）。'],
+ ko:['대피의 기준 — 경계 레벨',[['5','긴급 안전 확보','이미 재해가 일어남. 목숨을 지키는 최선의 행동을(집 2층 이상·근처 튼튼한 건물로)','#111111','#fff'],['4','대피 지시','위험한 곳에서 모두 대피. 여기까지 반드시 대피','#7A3FB0','#fff'],['3','고령자 등 대피','고령자·장애가 있는 사람·영유아가 있는 가정은 대피. 다른 사람도 준비','#D0453E','#fff'],['2','호우·홍수 주의보 등','해저드맵으로 대피처와 길을 확인','#F2C94C','#1d2a3a'],['1','조기 주의 정보','최신 기상 정보에 주의','#FFFFFF','#1d2a3a']],'※ 레벨 4 「대피 지시」에서 반드시 대피. 레벨 5를 기다리지 않습니다(내각부 「대피 정보에 관한 가이드라인」).'],
+ en:['When to evacuate: alert levels',[['5','Emergency safety measures','Disaster already happening; do whatever protects your life (upper floors, a nearby sturdy building)','#111111','#fff'],['4','Evacuation instruction','Everyone leaves dangerous areas; evacuate by this level at the latest','#7A3FB0','#fff'],['3','Evacuation of older people and others','Older people, people with disabilities and families with small children evacuate; others prepare','#D0453E','#fff'],['2','Heavy rain or flood advisory','Check your evacuation site and route on the hazard map','#F2C94C','#1d2a3a'],['1','Early warning information','Watch the latest weather information','#FFFFFF','#1d2a3a']],'* Always evacuate at level 4; do not wait for level 5 (Cabinet Office evacuation guidelines).']};
+function figLV(l){setK(1);var d=LV[l]||LV.ja,s=TTL(320,30,d[0],15,'#0f3558',600),y=60;
+ d[1].forEach(function(r){var h1=hgt(r[1],12.5,420),h2=hgt(r[2],11.5,420),h=h1+h2+22;
+  s+=R(20,y,600,h,'#fff',12,' stroke="#C8D3DE"')+R(20,y,120,h,r[3],12,r[3]==='#FFFFFF'?' stroke="#C8D3DE"':'')+tx(80,y+h/2+FS(16)*0.35,'Lv '+r[0],16,r[4],900)+TW2(156,y+8,r[1],12.5,'#0f3558',900,440,'start')+TW2(156,y+12+h1,r[2],11.5,D,700,440,'start');y+=h+8});
+ var hn=hgt(d[2],11,580);s+=TW2(30,y+4,d[2],11,'#7A3FB0',800,580,'start');y+=hn+14;return svg(y,s)}
+/* 13. 2つの避難の場所と、確かめる3か所 */
+var SH={ja:['避難の場所は2種類、確かめるのは3か所',[['指定緊急避難場所','命を守るため、まず一時的に逃げる場所。洪水・土砂・津波・地震・大火事など災害の種類ごとに決まっている。看板の絵記号で確かめる','#D0453E'],['指定避難所','家に戻れないときに、しばらく暮らす場所（学校の体育館・公民館など）。水・食べ物・情報が集まる','#2F8FE0']],[['家','寝ている夜にも行ける道で'],['職場・学校','昼間いる時間がいちばん長い場所'],['通勤・通学の道','電車が止まったときの歩ける道']],'確かめる3か所（それぞれ洪水と地震・津波で行き先が違うことがある）'],
+ ko:['대피 장소는 두 종류, 확인할 곳은 세 곳',[['지정 긴급 대피 장소','목숨을 지키기 위해 먼저 잠시 피하는 곳. 홍수·토사·해일·지진·대화재 등 재해 종류마다 정해져 있음. 표지판의 그림 기호로 확인','#D0453E'],['지정 대피소','집에 돌아갈 수 없을 때 한동안 지내는 곳(학교 체육관·공민관 등). 물·음식·정보가 모이는 곳','#2F8FE0']],[['집','자고 있는 밤에도 갈 수 있는 길로'],['직장·학교','낮에 가장 오래 있는 곳'],['통근·통학길','전철이 멈췄을 때 걸을 수 있는 길']],'확인할 세 곳(각각 홍수와 지진·해일 때 가는 곳이 다를 수 있음)'],
+ en:['Two kinds of evacuation site; three places to check',[['Designated emergency evacuation site','Where you first flee to save your life. Set separately for floods, landslides, tsunamis, earthquakes, large fires and so on; check the pictograms on the signs','#D0453E'],['Designated shelter','Where you stay for a while if you cannot go home (school gyms, community centres); water, food and information gather here','#2F8FE0']],[['Home','A route you can take at night, when you are asleep'],['Work or school','Where you spend most of the day'],['Commute','A walking route for when trains stop']],'Check three places (the destination may differ for floods versus earthquakes and tsunamis)']};
+function figSH(l){setK(1);var d=SH[l]||SH.ja,s=TTL(320,30,d[0],15,'#0f3558',600),y=60;
+ d[1].forEach(function(r){var h1=hgt(r[0],12.5,560),h2=hgt(r[1],11.5,560),h=h1+h2+28;
+  s+=R(20,y,600,h,'#fff',12,' stroke="'+r[2]+'" stroke-width="2"')+R(20,y,600,h1+12,r[2],12)+R(20,y+h1,600,12,r[2])+TW2(40,y+5,r[0],12.5,'#fff',900,560,'start')+TW2(40,y+h1+18,r[1],11.5,D,700,560,'start');y+=h+10});
+ var hc=hgt(d[3],12,580);s+=TW2(30,y+4,d[3],12,'#0f3558',900,580,'start');y+=hc+12;
+ d[2].forEach(function(r,i){var h1=hgt(r[0],12,420),h2=hgt(r[1],11,420),h=h1+h2+18;
+  s+=R(20,y,600,h,'#F4F9FE',10,' stroke="#CFE0F0"')+'<circle cx="50" cy="'+(y+h/2)+'" r="13" fill="#1F8A5B"/>'+tx(50,y+h/2+4,String(i+1),12,'#fff',900)+TW2(76,y+8,r[0],12,'#0f3558',900,520,'start')+TW2(76,y+10+h1,r[1],11,G,700,520,'start');y+=h+8});
+ return svg(y+8,s)}
+window.FIGS.life_lv=H.FIX2(figLV);window.FIGS.life_shel=H.FIX2(figSH);
 })();
