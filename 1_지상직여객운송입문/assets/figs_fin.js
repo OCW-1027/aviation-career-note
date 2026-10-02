@@ -363,7 +363,48 @@ fin_memo_page:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" view
  return s+'</svg>'},
 fin_return_bridge:function(lang){return WF(L(lang,'株式の価値が800から1,340になる内訳（百万円、計画）','주식 가치가 800에서 1,340이 되는 내역(백만 엔, 계획)','How equity value grows from 800 to 1,340 (million yen, plan)'),[
  [L(lang,['買うときの','株式の価値'],['살 때의','주식 가치'],['Equity value','at purchase']),800,1,PL],[L(lang,['EBITDAの成長','（229 → 280）'],['EBITDA의 성장','(229 → 280)'],['EBITDA growth','(229 → 280)']),280,0],[L(lang,['借入の返済','（460 → 200）'],['차입 상환','(460 → 200)'],['Debt repaid','(460 → 200)']),260,0],[L(lang,['5年後の','株式の価値'],['5년 뒤의','주식 가치'],['Equity value','in five years']),1340,1,BS]],
- {h:372,base:262,sc:0.14,x0:95,step:200,bw:130,ly:286,note:L(lang,'倍率は5.5倍のまま。増える分は、稼ぎの成長と借入の返済から生まれる','배수는 5.5배 그대로. 늘어나는 몫은 벌이의 성장과 차입 상환에서 나온다','The multiple stays at 5.5×: the gain comes from earnings growth and debt repayment')})}
+ {h:372,base:262,sc:0.14,x0:95,step:200,bw:130,ly:286,note:L(lang,'倍率は5.5倍のまま。増える分は、稼ぎの成長と借入の返済から生まれる','배수는 5.5배 그대로. 늘어나는 몫은 벌이의 성장과 차입 상환에서 나온다','The multiple stays at 5.5×: the gain comes from earnings growth and debt repayment')})},
+/* ===== Part 8 の図（2026.10）。年間の日程の図は下の TLN() で描く ===== */
+fin_gaap_map:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD');
+ function tg(x,y,t,c){var w=22;for(var i=0;i<t.length;i++)w+=t.charCodeAt(i)>255?12.6:7;return [Rc(x,y,w,30,'#fff',15,' stroke="'+c+'" stroke-width="2.5"')+tx(x+w/2,y+20,t,12,c,800),w]}
+ var jg=L(lang,'日本基準','일본 기준','Japanese GAAP');
+ var rows=[[L(lang,['上場会社'],['상장회사'],['Listed','companies']),[[jg,BS],[L(lang,'IFRS（任意）','IFRS(임의)','IFRS (optional)'),PL],[L(lang,'米国基準','미국 기준','US GAAP'),G],[L(lang,'修正国際基準','수정국제기준','JMIS'),G]],[[L(lang,'K-IFRS（義務）','K-IFRS(의무)','K-IFRS (mandatory)'),PL]]],
+  [L(lang,['非上場','（監査を受ける会社）'],['비상장','(감사를 받는 회사)'],['Unlisted,','audited']),[[jg,BS]],[[L(lang,'一般企業会計基準','일반기업회계기준','K-GAAP'),CF],[L(lang,'K-IFRS（選択）','K-IFRS(선택)','K-IFRS (optional)'),PL]]],
+  [L(lang,['中小企業'],['중소기업'],['Small','companies']),[[L(lang,'中小会計指針・要領','중소회계지침·요령','SME guidelines'),BS]],[[L(lang,'中小企業会計基準','중소기업회계기준','SME standard'),CF]]]];
+ s+=tx(390,62,L(lang,'日本','일본','Japan'),15,D,800)+tx(734,62,L(lang,'韓国','한국','Korea'),15,D,800);
+ rows.forEach(function(r,i){var y=80+i*76,x=196;s+=Rc(24,y,852,64,i%2?'#fff':'#EEF3F8',10);r[0].forEach(function(l,j){s+=tx(40,y+(r[0].length>1?28:38)+j*17,l,12.5,D,800,'start')});
+  r[1].forEach(function(q){var a=tg(x,y+17,q[0],q[1]);s+=a[0];x+=a[1]+8});x=600;r[2].forEach(function(q){var a=tg(x,y+17,q[0],q[1]);s+=a[0];x+=a[1]+8})});
+ s+='<line x1="590" y1="46" x2="590" y2="304" stroke="'+G+'" stroke-width="1.5" stroke-dasharray="4 4"/>'+tx(450,28,L(lang,'どの会社が、どの基準で決算書を作るか','어느 회사가 어느 기준으로 결산서를 만드나','Which companies use which accounting standard'),12.5,D,600);
+ return s+'</svg>'},
+fin_pl_compare:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
+ var C=[[L(lang,'日本基準','일본 기준','Japanese GAAP'),BS,3,[L(lang,'売上高','매출액','Net sales'),L(lang,'売上総利益','매출총이익','Gross profit'),L(lang,'営業利益','영업이익','Operating profit'),L(lang,'経常利益','경상이익','Ordinary profit'),L(lang,'税金等調整前当期純利益','세금 등 조정 전 당기순이익','Profit before income taxes'),L(lang,'当期純利益','당기순이익','Net profit')]],
+  [L(lang,'IFRS（日本の適用会社）','IFRS(일본의 적용 회사)','IFRS (Japanese adopters)'),PL,-1,[L(lang,'売上収益','매출수익','Revenue'),L(lang,'売上総利益','매출총이익','Gross profit'),L(lang,'営業利益（会社が定義）','영업이익(회사가 정의)','Operating profit (company-defined)'),null,L(lang,'税引前利益','세전이익','Profit before tax'),L(lang,'当期利益','당기이익','Profit for the year')]],
+  [L(lang,'K-IFRS（現行）','K-IFRS(현행)','K-IFRS (current)'),CF,-1,[L(lang,'売上高','매출액','Revenue'),L(lang,'売上総利益','매출총이익','Gross profit'),L(lang,'営業利益（表示が義務）','영업이익(표시 의무)','Operating profit (required)'),null,L(lang,'税引前純利益','법인세비용차감전순이익','Profit before tax'),L(lang,'当期純利益','당기순이익','Net profit')]]];
+ C.forEach(function(c,k){var x=30+k*290;s+=tx(x+130,62,c[0],14,c[1],800);c[3].forEach(function(l,i){var y=78+i*48;
+  if(l===null)s+=Rc(x,y,260,36,'none',8,' stroke="'+G+'" stroke-width="1.5" stroke-dasharray="5 4"')+tx(x+130,y+23,'—',13,G,700);
+  else s+=Rc(x,y,260,36,i===c[2]?c[1]:'#fff',8,' stroke="'+c[1]+'" stroke-width="2.5"')+tx(x+130,y+23,l,12.5,i===c[2]?'#fff':D,800)})});
+ s+=tx(450,28,L(lang,'損益計算書の利益の段階を、基準ごとに並べる','손익계산서의 이익 단계를 기준별로 나란히 놓는다','The steps of profit on the income statement, by standard'),12.5,D,600)+tx(450,384,L(lang,'経常利益と特別損益の区分は、日本基準だけにある','경상이익과 특별손익의 구분은 일본 기준에만 있다','Ordinary profit and extraordinary items exist only under Japanese GAAP'),12.5,D,600);
+ return s+'</svg>'},
+fin_lease_timeline:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img">'+Rc(0,0,900,300,'#F7FAFD'),x0=250,sc=50,X=function(y){return x0+(y-2018)*sc},O='#C9D2DC';
+ var Rw=[[L(lang,'IFRS（IFRS第16号）','IFRS(IFRS 제16호)','IFRS (IFRS 16)'),2019],[L(lang,'K-IFRS（第1116号）','K-IFRS(제1116호)','K-IFRS (1116)'),2019],[L(lang,'日本基準','일본 기준','Japanese GAAP'),2027.25]];
+ Rw.forEach(function(r,i){var y=72+i*52;s+=tx(x0-14,y+24,r[0],13,D,800,'end')+Rc(X(2018),y,X(r[1])-X(2018),36,O,0)+Rc(X(r[1]),y,X(2030.5)-X(r[1]),36,BS,0)+tx((X(r[1])+X(2030.5))/2,y+23,L(lang,'貸借対照表に載る','재무상태표에 실린다','On the balance sheet'),12.5,'#fff',800);
+  if(i===2)s+=tx((X(2018)+X(r[1]))/2,y+23,L(lang,'オペレーティング・リースは注記だけ','운용리스는 주석만','Operating leases in the notes only'),12.5,D,700)+tx(X(r[1]),y+56,L(lang,'2027年4月以後に始まる年度から','2027년 4월 이후 시작하는 연도부터','Years starting on or after April 2027'),12,R,800)});
+ s+='<line x1="'+X(2018)+'" y1="236" x2="'+X(2030.5)+'" y2="236" stroke="'+D+'" stroke-width="2"/>';[2018,2020,2022,2024,2026,2028,2030].forEach(function(y){s+='<line x1="'+X(y)+'" y1="236" x2="'+X(y)+'" y2="242" stroke="'+D+'" stroke-width="2"/>'+tx(X(y),258,y,11.5,G,600)});
+ s+=tx(450,28,L(lang,'借りた機材や事務所が、貸借対照表に載るようになる時期','빌린 기재와 사무실이 재무상태표에 실리게 되는 시기','When leased aircraft and offices come onto the balance sheet'),12.5,D,600)+tx(450,286,L(lang,'2019年から2027年まで、日本基準の会社だけ資産と負債が小さく見える','2019년부터 2027년까지 일본 기준 회사만 자산과 부채가 작게 보인다','From 2019 to 2027, only Japanese GAAP companies show smaller assets and liabilities'),12.5,D,600);
+ return s+'</svg>'},
+fin_jp_disclosure:function(lang){var E=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],d45=L(lang,'45日以内が目安','45일 이내가 기준','within about 45 days');
+ return TLN(L(lang,'日本の上場会社が決算のあとに出す書類（3月決算の例）','일본의 상장회사가 결산 뒤에 내는 서류(3월 결산의 예)','What a listed Japanese company publishes after its year-end (March year-end)'),[4,5,6,7,8,9,10,11,12,1,2,3].map(function(m){return L(lang,m+'月',m+'월',E[m])}),[
+  [1.5,[L(lang,'決算短信（通期）','결산단신(연간)','Earnings release'),d45],PL],[3,[L(lang,'有価証券報告書','유가증권보고서','Securities report'),L(lang,'3か月以内','3개월 이내','within three months')],BS],[4.4,[L(lang,'第1四半期 決算短信','1분기 결산단신','Q1 earnings release'),d45],PL],[7.4,[L(lang,'半期報告書','반기보고서','Half-year report'),L(lang,'上半期のあと','상반기 뒤','after the first half')],BS],[10.4,[L(lang,'第3四半期 決算短信','3분기 결산단신','Q3 earnings release'),d45],PL]],
+  L(lang,'速いのは決算短信（TDnet）、詳しいのは有価証券報告書（EDINET）','빠른 것은 결산단신(TDnet), 자세한 것은 유가증권보고서(EDINET)','Fast: the earnings release (TDnet). Detailed: the securities report (EDINET)'))},
+fin_kr_disclosure:function(lang){var E=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],d45=L(lang,'45日以内','45일 이내','within 45 days');
+ return TLN(L(lang,'韓国の上場会社が決算のあとに出す書類（12月決算の例）','한국의 상장회사가 결산 뒤에 내는 서류(12월 결산의 예)','What a listed Korean company files after its year-end (December year-end)'),[1,2,3,4,5,6,7,8,9,10,11,12].map(function(m){return L(lang,m+'月',m+'월',E[m])}),[
+  [3,[L(lang,'事業報告書','사업보고서','Annual business report'),L(lang,'90日以内','90일 이내','within 90 days')],BS],[4.5,[L(lang,'第1四半期 分期報告書','1분기 분기보고서','Q1 report'),d45],PL],[7.5,[L(lang,'半期報告書','반기보고서','Half-year report'),d45],PL],[10.5,[L(lang,'第3四半期 分期報告書','3분기 분기보고서','Q3 report'),d45],PL]],
+  L(lang,'すべてDART（電子公示システム）で見られる','모두 DART(전자공시시스템)에서 볼 수 있다','All of it is on DART, the electronic disclosure system'))},
+fin_align:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 236" role="img">'+Rc(0,0,900,236,'#F7FAFD');
+ var B=[[L(lang,'① 会計基準','① 회계 기준','1. Standard'),L(lang,['日本基準・IFRS・','K-IFRS'],['일본 기준·IFRS·','K-IFRS'],['Japanese GAAP,','IFRS, K-IFRS']),BS],[L(lang,'② 決算期','② 결산기','2. Year-end'),L(lang,['3月と12月は','3か月ずれる'],['3월과 12월은','3개월 어긋난다'],['March and December','are three months apart']),PL],[L(lang,'③ 通貨と単位','③ 통화와 단위','3. Currency, units'),L(lang,['損益は平均レート、','残高は期末レート'],['손익은 평균환율,','잔액은 기말환율'],['Income at average rate,','balances at closing rate']),CF],[L(lang,'④ リースとのれん','④ 리스와 영업권','4. Leases, goodwill'),L(lang,['EBITDAとリース込みの','負債でならす'],['EBITDA와 리스 포함','부채로 고르게 한다'],['Even out with EBITDA','and debt incl. leases']),R],[L(lang,'並べて比べる','나란히 비교한다','Compare'),L(lang,['1枚の表に','前提と数字を置く'],['한 장의 표에','전제와 숫자를 놓는다'],['Assumptions and','figures on one page']),D]];
+ B.forEach(function(b,i){var x=22+i*176;s+=Rc(x,60,156,108,i===4?'#EEF3F8':'#fff',12,' stroke="'+b[2]+'" stroke-width="3"')+tx(x+78,90,b[0],13,b[2],800);b[1].forEach(function(l,j){s+=tx(x+78,120+j*17,l,11,D,600)});if(i<4)s+=tx(x+166,121,'→',19,G,800)});
+ s+=tx(450,28,L(lang,'日本の会社と韓国の会社を並べる前に、そろえる4つのこと','일본 회사와 한국 회사를 나란히 놓기 전에 맞출 네 가지','Four things to align before comparing a Japanese and a Korean company'),12.5,D,600)+tx(450,208,L(lang,'そろえた内容は、表のいちばん上に書いておく','맞춘 내용은 표의 맨 위에 적어 둔다','Write what you aligned at the top of the table'),12.5,D,600);
+ return s+'</svg>'}
 };
 /* 滑り台（ウォーターフォール）グラフ。items：[ラベルの行の配列, 値, 1＝合計の棒／0＝増減の棒, 色]。o.off で縦軸の始まりを変える */
 function WF(title,items,o){var off=o.off||0,run=off,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+o.h+'" role="img">'+Rc(0,0,900,o.h,'#F7FAFD')+tx(450,28,title,12.5,D,600)+'<line x1="30" y1="'+o.base+'" x2="870" y2="'+o.base+'" stroke="'+D+'" stroke-width="2"/>';
@@ -374,6 +415,13 @@ function WF(title,items,o){var off=o.off||0,run=off,s='<svg xmlns="http://www.w3
   it[0].forEach(function(l,j){s+=tx(x+o.bw/2,o.ly+j*15,l,11.5,D,700)});
   if(i<items.length-1){var yl=o.base-(run-off)*o.sc;s+='<line x1="'+(x+o.bw)+'" y1="'+yl+'" x2="'+(x+o.step)+'" y2="'+yl+'" stroke="'+G+'" stroke-width="1.5" stroke-dasharray="3 3"/>'}});
  if(o.note)s+=tx(450,o.h-14,o.note,12.5,D,600);
+ return s+'</svg>'}
+/* 年間の日程の図。mo：12か月のラベル、ev：[位置（0〜12）, [名前, 期限], 色] */
+function TLN(title,mo,ev,note){var x0=66,st=64,ax=172,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD')+tx(450,28,title,12.5,D,600)+'<line x1="'+x0+'" y1="'+ax+'" x2="'+(x0+12*st)+'" y2="'+ax+'" stroke="'+D+'" stroke-width="2"/>';
+ for(var i=0;i<=12;i++){s+='<line x1="'+(x0+i*st)+'" y1="'+(ax-5)+'" x2="'+(x0+i*st)+'" y2="'+(ax+5)+'" stroke="'+D+'" stroke-width="1.5"/>';if(i<12)s+=tx(x0+i*st+st/2,ax+20,mo[i],11.5,G,600)}
+ ev.forEach(function(e,k){var x=x0+e[0]*st,up=k%2===0,by=up?56:214,c=e[2]||PL;
+  s+='<line x1="'+x+'" y1="'+(up?by+62:ax)+'" x2="'+x+'" y2="'+(up?ax:by)+'" stroke="'+c+'" stroke-width="2"/><circle cx="'+x+'" cy="'+ax+'" r="6" fill="'+c+'"/>'+Rc(x-86,by,172,62,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+tx(x,by+26,e[1][0],12.5,c,800)+tx(x,by+46,e[1][1],11.5,D,600)});
+ if(note)s+=tx(450,312,note,12.5,D,600);
  return s+'</svg>'}
 for(var k in F)window.FIGS[k]=F[k];
 })();
