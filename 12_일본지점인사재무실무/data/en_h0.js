@@ -179,45 +179,50 @@ sections:[
 {name:"Amount and payment terms",x:"Monthly or annual, and the conditions for price rises."},
 {name:"Owner and location",x:"Where the original is and who manages it."}]},
 {t:"point",x:"Keep contracts in one list (a contract register) and put the notice deadlines in the calendar. That alone prevents many mistakes."}]},
-{h:"Japanese document habits",blocks:[{t:"rows",items:[
+{h:"Documents, seals and stamps",blocks:[{t:"region",jp:[{t:"rows",items:[
 {name:"Seals",x:"Keep the registered company seal, the bank seal and the company stamp separately, and record each use."},
 {name:"Ringi approvals",x:"Spending or contracts above a set amount are decided only after a written (or electronic) request has passed through the approvers in order."},
 {name:"Revenue stamps",x:"Certain contracts and receipts need a revenue stamp according to the amount. Electronic contracts do not. ★"},
-{name:"Keeping records",x:"Accounting and tax records must be kept for set periods, usually seven years (7-2)."}]}]},
-{h:"Disaster preparedness and office safety",blocks:[{t:"check",items:[
+{name:"Keeping records",x:"Accounting and tax records must be kept for set periods, usually seven years (7-2)."}]}],
+kr:[{"t":"rows","items":[{"name":"Seals","x":"Keep the corporate seal registered with the court registry (proved by a seal certificate) separate from the day-to-day seal used for contracts, which is linked to it by a usage declaration."},{"name":"Approvals","x":"Spending or contracts above a set amount usually go through electronic approval in a set order."},{"name":"Stamp duty","x":"Applies only to specified documents such as property transfers, loans from financial institutions and construction contracts, at ₩20,000 to ₩350,000 depending on the amount. Electronic documents are taxed too, using electronic revenue stamps. Ordinary supply contracts and leases are not taxed. ★"},{"name":"Keeping records","x":"Tax books and evidence for five years, employment contracts and wage ledgers for three, commercial books for ten. ★"}]}]}]},
+{h:"Disaster preparedness and office safety",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Contact list",x:"Decide how to confirm staff are safe at night and on holidays."},
 {name:"Stockpile",x:"Water, food, blankets. Tokyo’s ordinance asks employers to try to keep three days’ supplies for staff. ★"},
 {name:"Drills",x:"Walk the evacuation route and assembly point at least once a year."},
 {name:"Office checks",x:"Shelves fixed to walls, fire extinguishers located, emergency exits kept clear."}]},
-{t:"point",x:"Disaster preparedness at home is covered in detail in Part 10 of Living in Japan."}]}],
+{t:"point",x:"Disaster preparedness at home is covered in detail in Part 10 of Living in Japan."}],
+kr:[{"t":"check","items":[{"name":"Contact list","x":"Decide how to confirm staff are safe at night and on holidays."},{"name":"Stockpile","x":"Not a legal duty, but keeping a few days of water and food is reassuring."},{"name":"Drills","x":"Take part in fire drills under the building’s fire safety plan, at least once a year. ★"},{"name":"Office checks","x":"Shelves fixed to walls, fire extinguishers located, emergency exits kept clear."}]}]}]}],
 voice:"General affairs work is invisible until something goes wrong. Simply putting renewal dates and notice deadlines in the calendar prevents most of the big mistakes.",
 terms:[["General Affairs","総務","총무"],["Approval Request (Ringi)","稟議","품의"],["Company Seal","印鑑","인감"],["Revenue Stamp","収入印紙","수입인지"],["Automatic Renewal","自動更新","자동 갱신"]],
 quiz:[{q:"What is most easily missed in managing contracts?",opts:["The colour of the contract","The notice deadline","The typeface of the address","The page count"],a:1,exp:"Miss it and the contract may renew automatically."},
 {q:"What is ringi?",opts:["A company event","Deciding spending or contracts after approvals pass in a set order","Payroll","Filing tax"],a:1,exp:"It runs on set thresholds such as amounts."},
-{q:"Does an electronic contract need a revenue stamp?",opts:["Always","No","Twice the amount","The other party pays"],a:1,exp:"Stamp duty applies to paper documents, not electronic ones."}],
+{q:"(Japan) Does an electronic contract need a revenue stamp?",opts:["Always","No","Twice the amount","The other party pays"],a:1,exp:"Stamp duty applies to paper documents, not electronic ones."}],
 next:"0-7 A year in HR: from hiring to year-end adjustment"});
 
 set("0-7",{title:"A Year in HR: From Hiring to Year-end Adjustment",hl:"a year in HR",subtitle:"The same tasks return in the same months each year. With a map of the year, nothing catches you out",
 lead:["HR and payroll work has procedures that come round at fixed times every year: April starters, insurance procedures in June and July, year-end tax adjustment in December. Each has a deadline, and being late causes trouble for staff and the company.","This article covers the annual cycle of HR and payroll work, the steps from hiring to the first day, appraisal and pay rises, and the procedures when someone leaves."],
 sections:[
-{h:"The HR and payroll year",blocks:[{t:"fig",id:"adm_hrcal",cap:"Colours show the type of work: purple for pay and tax, blue for hiring and training, orange for social and labour insurance."}]},
+{h:"The HR and payroll year",blocks:[{t:"region",jp:[{t:"fig",id:"adm_hrcal",cap:"Colours show the type of work: purple for pay and tax, blue for hiring and training, orange for social and labour insurance."}],
+kr:[{"t":"fig","id":"adm_hrcalkr","cap":"Colours show the type of work: purple for pay and tax, blue for hiring and HR, orange for the four social insurances."}]}]},
 {h:"From hiring to the first day",blocks:[{t:"ladder",rise:10,steps:[{name:"Hiring plan",sub:"Numbers, timing, budget"},{name:"Recruiting and interviews",sub:"Advertising and selection"},{name:"Offer",sub:"Written terms of employment"},{name:"Joining procedures",sub:"Insurance enrolment"},{name:"Training",sub:"The job and the rules"}]},
-{t:"note",x:"* Enrolment in health insurance and pension is normally due within five days of joining; employment insurance by the 10th of the following month. ★"}]},
+{t:"region",jp:[{t:"note",x:"* Enrolment in health insurance and pension is normally due within five days of joining; employment insurance by the 10th of the following month. ★"}],
+kr:[{"t":"note","x":"* Insurance enrolment is normally due within 14 days for health insurance, and by the 15th of the following month for national pension, employment and industrial accident insurance. A written employment contract must be given to the employee. ★"}]}]},
 {h:"Appraisal and pay rises",blocks:[{t:"rows",items:[
 {name:"Start of year: set goals",x:"Manager and employee agree what will be done, and to what level, over the year."},
 {name:"Mid-year: review meeting",x:"Check progress and hear about any difficulties."},
 {name:"End of year: appraisal",x:"Assess against the agreed goals and explain the reasons to the employee."},
 {name:"Apply the result",x:"Reflect it in pay rises or bonuses, and confirm in writing when the change takes effect."}]},
 {t:"point",x:"Sharing the appraisal criteria at the start of the year makes the year-end result much easier to accept."}]},
-{h:"When someone leaves",blocks:[{t:"check",items:[
+{h:"When someone leaves",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Fix the leaving date",x:"Receive the resignation and confirm the last working day and remaining paid leave."},
 {name:"Insurance procedures",x:"Notify loss of health insurance and pension cover (within five days) and issue the employment insurance separation notice (within ten days). ★"},
 {name:"Tax documents",x:"Give the withholding tax slip within a month of leaving, and settle how the remaining residence tax is handled. ★"},
-{name:"Returns and handover",x:"Collect the ID card, building pass, computer and keys, and hand over the work."}]}]}],
+{name:"Returns and handover",x:"Collect the ID card, building pass, computer and keys, and hand over the work."}]}],
+kr:[{"t":"check","items":[{"name":"Fix the leaving date","x":"Receive the resignation and confirm the last working day and remaining annual leave (and pay for unused leave)."},{"name":"Insurance procedures","x":"Notify loss of the four insurances (health within 14 days; pension, employment and accident insurance by the 15th of the following month) and issue the employment insurance separation certificate. ★"},{"name":"Severance and wages","x":"Pay severance and any outstanding wages within 14 days of leaving, and give the retirement income withholding slip. ★"},{"name":"Returns and handover","x":"Collect the ID card, building pass, computer and keys, and hand over the work."}]}]}]}],
 voice:"The HR year brings the same tasks back in the same months. Leave a note of what you did this year against each month, and next year’s you, and your successor, will thank you.",
 terms:[["Year-end Tax Adjustment","年末調整","연말정산"],["Annual Social Insurance Base Report","算定基礎届","산정기초신고"],["Annual Labour Insurance Renewal","労働保険の年度更新","노동보험 연도 갱신"],["Insurance Enrolment Notification","資格取得届","자격취득신고"],["Separation Notice (for Unemployment Benefits)","離職票","이직표"]],
-quiz:[{q:"In which month is year-end tax adjustment done?",opts:["April","July","December","Every month"],a:2,exp:"The year’s income tax is settled through December’s pay."},
-{q:"What is the deadline for the social insurance base report?",opts:["31 January","10 July","25 December","There is none"],a:1,exp:"It is based on April–June pay and normally due by 10 July."},
+quiz:[{q:"(Japan) In which month is year-end tax adjustment done?",opts:["April","July","December","Every month"],a:2,exp:"The year’s income tax is settled through December’s pay."},
+{q:"(Japan) What is the deadline for the social insurance base report?",opts:["31 January","10 July","25 December","There is none"],a:1,exp:"It is based on April–June pay and normally due by 10 July."},
 {q:"How do you make appraisals easier to accept?",opts:["Share the criteria at the start of the year","Decide suddenly at year end","Say nothing","Judge on pay alone"],a:0,exp:"Knowing the criteria in advance makes the result easier to accept."}],
 next:"0-8 Reporting, informing, consulting and work emails"});
 
@@ -288,31 +293,36 @@ next:"0-10 Rules of employment, payslips and paid leave from the employee’s si
 set("0-10",{title:"Rules of Employment, Payslips and Paid Leave from the Employee’s Side",hl:"the employee’s side",subtitle:"Read the agreement between you and the company once, when you join",
 lead:["So far we have looked at HR and money from the company’s side. This article looks from the other side, the employee’s: the documents you receive on joining, what to read first in the rules of employment, the rules on paid leave, and what to check on your monthly payslip.","Knowing your rights and duties is the foundation for working well with a company for a long time."],
 sections:[
-{h:"Documents you receive on joining",blocks:[{t:"rows",items:[
+{h:"Documents you receive on joining",blocks:[{t:"region",jp:[{t:"rows",items:[
 {name:"Statement of employment terms",x:"Your pay, working hours, days off and contract period (1-1)."},
 {name:"Rules of employment",x:"The company-wide rules. Companies with ten or more employees must draw them up and file them, and staff can see them at any time. ★"},
 {name:"Pay regulations",x:"How pay is calculated, allowances and the rules for pay rises."},
-{name:"Article 36 agreement",x:"The agreement between the company and staff representatives that allows overtime and holiday work, including the overtime limits."}]}]},
+{name:"Article 36 agreement",x:"The agreement between the company and staff representatives that allows overtime and holiday work, including the overtime limits."}]}],
+kr:[{"t":"rows","items":[{"name":"Employment contract","x":"Pay, hours, days off, annual leave and other terms must be set out in writing and given to the employee. ★"},{"name":"Rules of employment","x":"Companies with ten or more regular employees must draw them up and file them."},{"name":"Wage statement","x":"Each payday, a statement showing the items and how they were calculated must be given."},{"name":"Overtime limit","x":"Up to 12 hours a week by agreement (a 52-hour week)."}]}]}]},
 {h:"What to read first in the rules",blocks:[{t:"check",items:[
 {name:"Hours, breaks and days off",x:"Start and finish times, break times and company holidays."},
 {name:"Overtime and premiums",x:"How to apply for overtime and the premium rates."},
 {name:"Leave",x:"Paid leave and special leave for weddings, funerals and similar."},
 {name:"Payday",x:"Which day each month you are paid, and for which period."},
 {name:"Leaving",x:"How much notice to give, for example one month, and the procedure."}]}]},
-{h:"The rules on paid leave",blocks:[{t:"table",cols:["Length of service","Days per year"],rows:[
+{h:"The rules on paid leave",blocks:[{t:"region",jp:[{t:"table",cols:["Length of service","Days per year"],rows:[
 ["6 months","10"],["1 year 6 months","11"],["2 years 6 months","12"],["3 years 6 months","14"],["4 years 6 months","16"],["5 years 6 months","18"],["6 years 6 months or more","20"]]},
-{t:"note",x:"* You must have attended at least 80% of working days. Employers must make sure anyone entitled to ten or more days takes at least five a year. Unused days expire after two years. Part-timers receive fewer days in proportion to the days they work. ★"}]},
-{h:"What to check on your payslip",blocks:[{t:"check",items:[
+{t:"note",x:"* You must have attended at least 80% of working days. Employers must make sure anyone entitled to ten or more days takes at least five a year. Unused days expire after two years. Part-timers receive fewer days in proportion to the days they work. ★"}],
+kr:[{"t":"table","cols":["Length of service","Annual leave"],"rows":[["Under 1 year","1 day per month of full attendance (up to 11)"],["1 year (80% attendance)","15 days"],["3 years","16 days"],["5 years","17 days"],["21 years or more","25 days (the maximum)"]]},
+{"t":"note","x":"* From the third year, one day is added every two years, up to 25. Workplaces with fewer than five regular employees are exempt. Unused leave is normally paid out, unless the employer used the formal procedure to encourage it to be taken. ★"},
+{"t":"rows","items":[{"name":"Weekly paid holiday","x":"Anyone working 15 hours or more a week who attends every scheduled day gets one paid day off a week."},{"name":"Severance pay","x":"Anyone employed for a year or more at 15 hours or more a week receives 30 days’ average wages per year of service, paid within 14 days of leaving."}]}]}]},
+{h:"What to check on your payslip",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Attendance figures",x:"Do days worked and overtime hours match your own record?"},
 {name:"Overtime pay",x:"Has premium pay been paid for the overtime hours?"},
 {name:"The month premiums change",x:"Social insurance changes to the new amount in September’s (or October’s) pay."},
 {name:"The month residence tax changes",x:"The new residence tax amount starts with June’s pay."},
 {name:"Year-end adjustment result",x:"December’s or January’s pay includes any income tax refund (or extra charge)."}]},
-{t:"point",x:"How to read each line of a payslip in detail is also covered in lesson 6-1 of Living in Japan."}]}],
+{t:"point",x:"How to read each line of a payslip in detail is also covered in lesson 6-1 of Living in Japan."}],
+kr:[{"t":"check","items":[{"name":"Attendance figures","x":"Do days worked and overtime hours match your own record?"},{"name":"Overtime pay","x":"Has at least a 50% premium on ordinary wages been paid?"},{"name":"The months premiums change","x":"National pension changes in July; health insurance is settled in April."},{"name":"Year-end settlement result","x":"February’s pay includes any income tax refund (or extra charge)."}]}]}]}],
 voice:"The rules of employment are the agreement between you and the company. Read them once when you join, and you will not be caught off guard at important moments such as taking leave or resigning.",
 terms:[["Rules of Employment","就業規則","취업규칙"],["Statement of Employment Terms","労働条件通知書","근로조건통지서"],["Annual Paid Leave","年次有給休暇","연차 유급휴가"],["Article 36 Overtime Agreement","36協定","36협정"],["Employer-designated Leave Dates","時季指定","시기 지정"]],
-quiz:[{q:"After six months with 80% attendance, how many days of paid leave do you get?",opts:["5","10","15","20"],a:1,exp:"It starts at ten days and rises with length of service."},
-{q:"What happens to unused paid leave?",opts:["It lasts for ever","It expires after two years","It expires next month","It is always paid out"],a:1,exp:"The limitation period is two years."},
-{q:"Around which month do social insurance deductions usually change?",opts:["January","April","September–October","December"],a:2,exp:"Based on the base report, they change from September."}],
+quiz:[{q:"(Japan) After six months with 80% attendance, how many days of paid leave do you get?",opts:["5","10","15","20"],a:1,exp:"It starts at ten days and rises with length of service."},
+{q:"(Japan) What happens to unused paid leave?",opts:["It lasts for ever","It expires after two years","It expires next month","It is always paid out"],a:1,exp:"The limitation period is two years."},
+{q:"(Japan) Around which month do social insurance deductions usually change?",opts:["January","April","September–October","December"],a:2,exp:"Based on the base report, they change from September."}],
 next:"Part 1 1-1 Types of employment and stating the terms"});
 })(window.ARTS);

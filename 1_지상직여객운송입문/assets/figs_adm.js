@@ -195,8 +195,38 @@ var PAYKR={
  ko:['한국: 월급 300만 원의 예 — 총지급액에서 수령액까지',[['총지급액',3000000,'#9DB4C8'],['국민연금(4.75%)',142500,'#E08A2F'],['건강보험(3.595%)',107850,'#E08A2F'],['장기요양보험(건강보험료의 13.14%)',14170,'#E08A2F'],['고용보험(0.9%)',27000,'#E08A2F'],['소득세(간이세액표)',89730,'#7A5CC7'],['지방소득세(소득세의 10%)',8970,'#7A5CC7'],['수령액',2609780,'#1F8A5B']],'원','※ 2026년 요율, 부양가족 본인 1명, 비과세 수당 없음의 개산 예입니다. 소득세는 부양가족 수에 따라 크게 달라집니다. ★'],
  en:['Korea: monthly salary of ₩3,000,000, from gross to take-home',[['Gross pay',3000000,'#9DB4C8'],['National pension (4.75%)',142500,'#E08A2F'],['Health insurance (3.595%)',107850,'#E08A2F'],['Long-term care (13.14% of health premium)',14170,'#E08A2F'],['Employment insurance (0.9%)',27000,'#E08A2F'],['Income tax (simplified tax table)',89730,'#7A5CC7'],['Local income tax (10% of income tax)',8970,'#7A5CC7'],['Take-home pay',2609780,'#1F8A5B']],'','* Rough example at 2026 rates: no dependants other than the employee, no tax-free allowances. Income tax varies a lot with the number of dependants. ★','₩']};
 
+/* 6-2. 人事・給与の1年（韓国） */
+var HRCALKR={
+ ja:['韓国：人事・給与の仕事の1年（例）',[
+  ['1月','年末精算の準備（控除資料の簡素化サービス）。源泉税の半期納付（7〜12月分）','#7A5CC7'],
+  ['2月','2月の給与で年末精算','#7A5CC7'],
+  ['3月','支払調書の提出（3月10日まで）。雇用・労災保険と健康保険の報酬総額の申告','#E08A2F'],
+  ['4月','前の年の健康保険料を精算して4月分の保険料に反映','#E08A2F'],
+  ['7月','国民年金の基準所得月額が変わる。源泉税の半期納付（1〜6月分）','#E08A2F'],
+  ['8月','翌年の最低賃金が告示される（翌年1月から適用）','#2F8FE0'],
+  ['12月','年次休暇の残りと未使用手当の確認、翌年の採用計画','#2F8FE0']],
+  ['給与・税','採用・人事','4大保険'],'1年を通して：4大保険の取得・喪失の申告、法定の義務教育（年1回）、健康診断。日付は年や会社で違うので確かめましょう。★'],
+ ko:['한국: 인사·급여 업무의 1년(예)',[
+  ['1월','연말정산 준비(간소화 서비스 자료). 원천세 반기 납부(7~12월분)','#7A5CC7'],
+  ['2월','2월 급여에서 연말정산','#7A5CC7'],
+  ['3월','지급명세서 제출(3월 10일까지). 고용·산재보험과 건강보험 보수총액 신고','#E08A2F'],
+  ['4월','전년 건강보험료를 정산해 4월분 보험료에 반영','#E08A2F'],
+  ['7월','국민연금 기준소득월액 변경. 원천세 반기 납부(1~6월분)','#E08A2F'],
+  ['8월','다음 해 최저임금 고시(다음 해 1월부터 적용)','#2F8FE0'],
+  ['12월','남은 연차와 미사용 수당 확인, 다음 해 채용 계획','#2F8FE0']],
+  ['급여·세금','채용·인사','4대보험'],'1년 내내: 4대보험 취득·상실 신고, 법정 의무교육(연 1회), 건강검진. 날짜는 해와 회사마다 다르니 확인하세요. ★'],
+ en:['Korea: a year of HR and payroll work (example)',[
+  ['Jan','Prepare the year-end settlement (simplified deduction data). Half-yearly withholding tax for July–December','#7A5CC7'],
+  ['Feb','Year-end tax settlement in February’s pay','#7A5CC7'],
+  ['Mar','Submit payment statements (by 10 March). Report total remuneration for employment, industrial accident and health insurance','#E08A2F'],
+  ['Apr','Last year’s health insurance is settled through April’s premiums','#E08A2F'],
+  ['Jul','National pension income base changes. Half-yearly withholding tax for January–June','#E08A2F'],
+  ['Aug','Next year’s minimum wage is announced (applies from January)','#2F8FE0'],
+  ['Dec','Check remaining annual leave and unused-leave pay; plan next year’s hiring','#2F8FE0']],
+  ['Pay and tax','Hiring and HR','Four social insurances'],'All year: insurance enrolment and loss notifications, statutory training (once a year), health checks. Dates vary by year and company, so check them. ★']};
+
 window.FIGS=window.FIGS||{};
-window.FIGS.adm_paykr=H.FIX2(payFig(PAYKR));
+window.FIGS.adm_paykr=H.FIX2(payFig(PAYKR));window.FIGS.adm_hrcalkr=H.FIX2(hrcalFig(HRCALKR));
 window.FIGS.adm_hrcal=H.FIX2(hrcalFig(HRCAL));window.FIGS.adm_xl=H.FIX2(xlFig(XL));
 window.FIGS.adm_cash=H.FIX2(cashFig(CASH));window.FIGS.adm_pay=H.FIX2(payFig(PAY2));
 window.FIGS.adm_org=H.FIX2(orgFig(ORG));window.FIGS.adm_jnl=H.FIX2(jnlFig(JNL));window.FIGS.adm_fs3=H.FIX2(fs3Fig(FS3));
