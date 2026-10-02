@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>3つの表の連動シミュレーター ― 小さな会社の1年を動かす</title>
+<title>財務諸表の連動シミュレーター ― 小さな会社の1年を動かす</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
 *{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 70px}
 header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-h1{font-size:22px;margin:6px 0}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
+header a{color:#1d5fa0;font-size:13px}
+h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
 .langs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
 .langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
@@ -41,10 +42,8 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 </head>
 <body>
 <div class="wrap">
-<header>
- <div><h1 id="t_title"></h1><p class="lead" id="t_lead"></p></div>
- <div class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></div>
-</header>
+<header><span><a href="00_シリーズ全体_財務3表.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></span></header>
+<h1 id="t_title"></h1><p class="lead" id="t_lead"></p>
 
 <div class="card">
  <h2 id="t_presets"></h2>
@@ -76,7 +75,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 
 <script>
 var L={
-ja:{title:'3つの表の連動シミュレーター ― 小さな会社の1年を動かす',lead:'つまみを動かすと、損益計算書・貸借対照表・キャッシュフロー計算書が同時に変わります。利益と現金がどこでずれるかを、自分の手で確かめてください。単位は百万円。期首の数字は講座0-3の「小さな会社」です。',
+ja:{title:'財務諸表の連動シミュレーター ― 小さな会社の1年を動かす',lead:'つまみを動かすと、損益計算書・貸借対照表・キャッシュフロー計算書が同時に変わります。利益と現金がどこでずれるかを、自分の手で確かめてください。単位は百万円。期首の数字は講座0-3の「小さな会社」です。',
  presets:'場面を選ぶ（つまみが動きます）',pl:'損益計算書（1年）',bs:'貸借対照表（期末）',cf:'キャッシュフロー計算書（1年）',bridge:'利益 → 現金の橋（営業キャッシュフローまで）',how:'このシミュレーターの仕組み',
  g1:'商売',g2:'運転資本（お金をしばる3つ）',g3:'投資と資金',
  S:{rev:'売上',cogs:'売上原価率',sga:'人件費・家賃などの固定費',dep:'減価償却費',ard:'売掛金の回収までの日数',invd:'在庫を持つ日数',apd:'買掛金を払うまでの日数',capex:'設備投資',loan:'新しい借入',repay:'借入の返済',div:'配当'},
@@ -90,7 +89,7 @@ ja:{title:'3つの表の連動シミュレーター ― 小さな会社の1年�
  why:{ar:'売掛金の増加',inv:'在庫の増加',ap:'買掛金の変化',dep:'減価償却（現金が出ない費用）',capex:'設備投資',fin:'借入・返済・配当'},
  bridgenote:'緑は現金を増やす調整、赤は減らす調整。この橋の先に、投資（設備）と財務（借入・返済・配当）が続いて期末現金になります。',
  howtxt:'売上原価 ＝ 売上 × 原価率。売掛金 ＝ 売上 × 回収日数 ÷ 365、在庫 ＝ 原価 × 在庫日数 ÷ 365、買掛金 ＝ 原価 × 支払日数 ÷ 365（期首はそれぞれ 3・4・5）。支払利息 ＝ 期首借入＋新規借入 の 3.3%。法人税は税引前利益の30%（赤字ならゼロ、その年に納付）。設備の期首簿価60に投資を足し減価償却を引く。営業CF ＝ 利益＋減価償却−売掛金増−在庫増＋買掛金増。資産＝負債＋純資産は、つまみをどう動かしても必ず一致します ― 一致しないつまみは存在しません。'},
-ko:{title:'세 표 연동 시뮬레이터 — 작은 회사의 1년을 움직인다',lead:'손잡이를 움직이면 손익계산서·재무상태표·현금흐름표가 동시에 바뀝니다. 이익과 현금이 어디서 어긋나는지 직접 확인하세요. 단위는 백만 엔. 기초 숫자는 강좌 0-3의 「작은 회사」입니다.',
+ko:{title:'재무제표 연동 시뮬레이터 — 작은 회사의 1년을 움직인다',lead:'손잡이를 움직이면 손익계산서·재무상태표·현금흐름표가 동시에 바뀝니다. 이익과 현금이 어디서 어긋나는지 직접 확인하세요. 단위는 백만 엔. 기초 숫자는 강좌 0-3의 「작은 회사」입니다.',
  presets:'장면을 고른다(손잡이가 움직입니다)',pl:'손익계산서(1년)',bs:'재무상태표(기말)',cf:'현금흐름표(1년)',bridge:'이익 → 현금의 다리(영업현금흐름까지)',how:'이 시뮬레이터의 구조',
  g1:'장사',g2:'운전자본(현금을 묶는 셋)',g3:'투자와 자금',
  S:{rev:'매출',cogs:'매출원가율',sga:'인건비·임대료 등 고정비',dep:'감가상각비',ard:'매출채권 회수까지의 일수',invd:'재고를 가지는 일수',apd:'매입채무를 내기까지의 일수',capex:'설비투자',loan:'새 차입',repay:'차입 상환',div:'배당'},
@@ -104,7 +103,7 @@ ko:{title:'세 표 연동 시뮬레이터 — 작은 회사의 1년을 움직인
  why:{ar:'매출채권 증가',inv:'재고 증가',ap:'매입채무 변화',dep:'감가상각(현금이 나가지 않는 비용)',capex:'설비투자',fin:'차입·상환·배당'},
  bridgenote:'초록은 현금을 늘리는 조정, 빨강은 줄이는 조정. 이 다리 끝에 투자(설비)와 재무(차입·상환·배당)가 이어져 기말 현금이 됩니다.',
  howtxt:'매출원가 = 매출 × 원가율. 매출채권 = 매출 × 회수 일수 ÷ 365, 재고 = 원가 × 재고 일수 ÷ 365, 매입채무 = 원가 × 지급 일수 ÷ 365(기초는 각각 3·4·5). 이자 비용 = (기초 차입 + 새 차입)의 3.3%. 법인세는 세전이익의 30%(적자면 0, 그해에 납부). 설비 기초 장부가 60에 투자를 더하고 감가상각을 뺀다. 영업CF = 이익 + 감가상각 − 매출채권 증가 − 재고 증가 + 매입채무 증가. 자산 = 부채 + 자본은 손잡이를 어떻게 움직여도 반드시 일치합니다 — 일치하지 않는 손잡이는 존재하지 않습니다.'},
-en:{title:'Three-Statement Simulator: Run a Small Company for a Year',lead:'Move the sliders and the income statement, balance sheet and cash flow statement change together. See for yourself where profit and cash part ways. Unit: millions of yen. Opening figures are the small company from lesson 0-3.',
+en:{title:'Linked Financial Statements Simulator: Run a Small Company for a Year',lead:'Move the sliders and the income statement, balance sheet and cash flow statement change together. See for yourself where profit and cash part ways. Unit: millions of yen. Opening figures are the small company from lesson 0-3.',
  presets:'Pick a scenario (the sliders move)',pl:'Income statement (year)',bs:'Balance sheet (year end)',cf:'Cash flow statement (year)',bridge:'Bridge from profit to cash (to operating cash flow)',how:'How this simulator works',
  g1:'Trading',g2:'Working capital (the three that tie up cash)',g3:'Investment and funding',
  S:{rev:'Sales',cogs:'Cost of sales ratio',sga:'Fixed costs (staff, rent etc.)',dep:'Depreciation',ard:'Days to collect receivables',invd:'Days of inventory held',apd:'Days to pay suppliers',capex:'Capital expenditure',loan:'New borrowing',repay:'Loan repayment',div:'Dividend'},
@@ -121,7 +120,7 @@ en:{title:'Three-Statement Simulator: Run a Small Company for a Year',lead:'Move
 var OPEN={cash:20,ar:3,inv:4,ppe:60,ap:5,loan:30,cap:30,re:22};
 var SL=[['rev',150,600,10,300,'g1'],['cogs',25,55,0.5,36.7,'g1','%'],['sga',100,220,2,148,'g1'],['dep',0,40,1,12,'g1'],['ard',0,90,1,10,'g2','d'],['invd',0,120,1,20,'g2','d'],['apd',0,90,1,23,'g2','d'],['capex',0,100,2,20,'g3'],['loan',0,100,2,0,'g3'],['repay',0,30,1,6,'g3'],['div',0,40,1,5,'g3']];
 var PRE={base:{},ar:{ard:60},inv:{invd:90},capex:{capex:60,loan:40,dep:18},repay:{repay:30},div:{div:20},boom:{rev:480,ard:45,invd:40,sga:170},slump:{rev:210}};
-var lang=localStorage.getItem('fin_lang')||'ja',V={},preset='base';
+var lang=localStorage.getItem('art-lang')||'ja',V={},preset='base';
 function f1(n){var s=(Math.round(n*10)/10).toLocaleString('ja-JP',{minimumFractionDigits:1,maximumFractionDigits:1});return s}
 function sg(n){return (n>=0?'+':'−')+f1(Math.abs(n))}
 function calc(v){var cogs=v.rev*v.cogs/100,gross=v.rev-cogs,op=gross-v.sga-v.dep,intr=(OPEN.loan+v.loan)*0.033,pretax=op-intr,tax=Math.max(0,pretax)*0.3,net=pretax-tax;
@@ -132,7 +131,7 @@ function calc(v){var cogs=v.rev*v.cogs/100,gross=v.rev-cogs,op=gross-v.sga-v.dep
 var BASEV={};SL.forEach(function(s){BASEV[s[0]]=s[4]});var BASE=calc(BASEV);
 function row(k,val,base,cls){var d='';if(base!=null&&Math.abs(val-base)>=0.05){var up=val>base;d='<span class="d '+(up?'up':'dn')+'">'+sg(val-base)+'</span>'}return '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+L[lang].R[k]+'</td><td>'+f1(val)+d+'</td></tr>'}
 function render(){var d=L[lang];['title','lead','presets','pl','bs','cf','bridge','how','bridgenote'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});document.getElementById('how').textContent=d.howtxt;
- document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
  var P=document.getElementById('presets');P.innerHTML='';Object.keys(PRE).forEach(function(k){var b=document.createElement('button');b.innerHTML='<b>'+d.P[k][0]+'</b><br><small>'+d.P[k][1]+'</small>';b.className=preset===k?'on':'';b.onclick=function(){preset=k;SL.forEach(function(s){V[s[0]]=(PRE[k][s[0]]!=null)?PRE[k][s[0]]:s[4]});render()};P.appendChild(b)});
  var S=document.getElementById('sliders');S.innerHTML='';var groups={g1:[],g2:[],g3:[]};SL.forEach(function(s){groups[s[5]].push(s)});
  var col={g1:'var(--pl)',g2:'var(--bs)',g3:'var(--cf)'};
@@ -154,7 +153,7 @@ function update(){var d=L[lang],c=calc(V),b=BASE,v=V;
  var steps=[['b_net',c.net,'t','var(--pl)'],['b_dep',v.dep,'d'],['b_ar',-c.dAR,'d'],['b_inv',-c.dInv,'d'],['b_ap',c.dAP,'d'],['b_cfo',c.cfo,'t','var(--cf)']];
  var mx=Math.max(1,Math.abs(c.net),Math.abs(c.cfo),Math.abs(c.net)+v.dep+Math.abs(c.dAR)+Math.abs(c.dInv)+Math.abs(c.dAP));var H=110;
  document.getElementById('bridge').innerHTML=steps.map(function(s){var val=s[1],h=Math.max(3,Math.abs(val)/mx*H),color=s[2]==='t'?s[3]:(val>=0?'var(--ok)':'var(--ng)');return '<div class="bar"><b>'+(s[2]==='t'?f1(val):sg(val))+'</b><i style="height:'+h+'px;background:'+color+'"></i><small>'+d.R[s[0]]+'</small></div>'}).join('')}
-document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('fin_lang',lang);render()}});
+document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
 SL.forEach(function(s){V[s[0]]=s[4]});render();
 </script>
 </body>

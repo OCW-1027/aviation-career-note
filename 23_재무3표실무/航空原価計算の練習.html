@@ -9,7 +9,8 @@
 *{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 70px}
 header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-h1{font-size:22px;margin:6px 0}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
+header a{color:#1d5fa0;font-size:13px}
+h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
 .langs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
 .langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
@@ -51,10 +52,8 @@ details{border:1px solid var(--line);border-radius:12px;padding:0;margin:8px 0;b
 </head>
 <body>
 <div class="wrap">
-<header>
- <div><h1 id="t_title"></h1><p class="lead" id="t_lead"></p></div>
- <div class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></div>
-</header>
+<header><span><a href="00_シリーズ全体_財務3表.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></span></header>
+<h1 id="t_title"></h1><p class="lead" id="t_lead"></p>
 
 <div class="card"><h2 id="t_carrier"></h2><div class="seg" id="carriers"></div></div>
 <div class="row2">
@@ -269,7 +268,7 @@ function seg(id,obj,key,sel){var el=document.getElementById(id);el.innerHTML='';
 var SCEN={base:{},fuel1:{fuel:0.99},delay:{delay:30},lf5:{lf:0.05},kero:{kero:1.5},fx:{fx:1.1}};
 function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title+' ― Vela Air';
  ['title','lead','route','type','lf','lfnote','perflight','rev','k1','k2','k2e','k3','k4','sc','tbl','th1','th2','th3','th4','note'].forEach(function(k){var e=document.getElementById(k.length<=3&&k.indexOf('th')===0?k:'t_'+k);if(e)e.textContent=d[k]});
- document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
  seg('carriers',d.CR,'cr');seg('routes',d.R,'r');seg('types',d.T,'t');document.getElementById('t_carrier').textContent=d.carrier;document.getElementById('t_seatnote').textContent=d.seatnote;
  document.getElementById('lfv').textContent=Math.round(st.lf*100)+'%';
  var sc=document.getElementById('scen');sc.innerHTML='';Object.keys(SCEN).forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=d.S[k];b.className=st.sc===k?'on':'';b.setAttribute('aria-pressed',st.sc===k);b.onclick=function(){st.sc=k;render()};sc.appendChild(b)});

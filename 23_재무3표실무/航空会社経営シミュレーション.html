@@ -9,7 +9,8 @@
 *{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 70px}
 header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-h1{font-size:22px;margin:6px 0}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
+header a{color:#1d5fa0;font-size:13px}
+h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
 .langs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
 .langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
@@ -48,10 +49,8 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 </head>
 <body>
 <div class="wrap">
-<header>
- <div><h1 id="t_title"></h1><p class="lead" id="t_lead"></p></div>
- <div class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></div>
-</header>
+<header><span><a href="00_シリーズ全体_財務3表.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></span></header>
+<h1 id="t_title"></h1><p class="lead" id="t_lead"></p>
 
 <div class="card">
  <div class="qbar" id="qbar"></div>
@@ -233,7 +232,7 @@ function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k]!==und
 function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title;
  ['title','lead','situ','dec','stmts','pl','bs','cf','assets','liabeq','why','sum','how','note','ovr','ovrlead','oil','fx','lfd','cust','cfare','ccap','ccut','cbuy','clease','chedge','cfsc'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});
  document.getElementById('custbox').style.display=picked==='custom'?'':'none';document.getElementById('ovrbox').style.display=S.q>=4?'none':'';
- document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
  var done=S.q>=4, qn=Math.min(S.q+1,4);
  document.getElementById('qbar').innerHTML=[0,1,2,3].map(function(i){return '<span class="'+(i<S.q?'done':i===S.q&&!done?'now':'')+'"></span>'}).join('');
  document.getElementById('t_q').textContent=done?d.done:fill(d.q,{n:qn});
