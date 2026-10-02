@@ -181,5 +181,124 @@ terms:[["General Affairs","総務","총무"],["Approval Request (Ringi)","稟議
 quiz:[{q:"What is most easily missed in managing contracts?",opts:["The colour of the contract","The notice deadline","The typeface of the address","The page count"],a:1,exp:"Miss it and the contract may renew automatically."},
 {q:"What is ringi?",opts:["A company event","Deciding spending or contracts after approvals pass in a set order","Payroll","Filing tax"],a:1,exp:"It runs on set thresholds such as amounts."},
 {q:"Does an electronic contract need a revenue stamp?",opts:["Always","No","Twice the amount","The other party pays"],a:1,exp:"Stamp duty applies to paper documents, not electronic ones."}],
+next:"0-7 A year in HR: from hiring to year-end adjustment"});
+
+set("0-7",{title:"A Year in HR: From Hiring to Year-end Adjustment",hl:"a year in HR",subtitle:"The same tasks return in the same months each year. With a map of the year, nothing catches you out",
+lead:["HR and payroll work has procedures that come round at fixed times every year: April starters, insurance procedures in June and July, year-end tax adjustment in December. Each has a deadline, and being late causes trouble for staff and the company.","This article covers the annual cycle of HR and payroll work, the steps from hiring to the first day, appraisal and pay rises, and the procedures when someone leaves."],
+sections:[
+{h:"The HR and payroll year",blocks:[{t:"fig",id:"adm_hrcal",cap:"Colours show the type of work: purple for pay and tax, blue for hiring and training, orange for social and labour insurance."}]},
+{h:"From hiring to the first day",blocks:[{t:"ladder",rise:10,steps:[{name:"Hiring plan",sub:"Numbers, timing, budget"},{name:"Recruiting and interviews",sub:"Advertising and selection"},{name:"Offer",sub:"Written terms of employment"},{name:"Joining procedures",sub:"Insurance enrolment"},{name:"Training",sub:"The job and the rules"}]},
+{t:"note",x:"* Enrolment in health insurance and pension is normally due within five days of joining; employment insurance by the 10th of the following month. ★"}]},
+{h:"Appraisal and pay rises",blocks:[{t:"rows",items:[
+{name:"Start of year: set goals",x:"Manager and employee agree what will be done, and to what level, over the year."},
+{name:"Mid-year: review meeting",x:"Check progress and hear about any difficulties."},
+{name:"End of year: appraisal",x:"Assess against the agreed goals and explain the reasons to the employee."},
+{name:"Apply the result",x:"Reflect it in pay rises or bonuses, and confirm in writing when the change takes effect."}]},
+{t:"point",x:"Sharing the appraisal criteria at the start of the year makes the year-end result much easier to accept."}]},
+{h:"When someone leaves",blocks:[{t:"check",items:[
+{name:"Fix the leaving date",x:"Receive the resignation and confirm the last working day and remaining paid leave."},
+{name:"Insurance procedures",x:"Notify loss of health insurance and pension cover (within five days) and issue the employment insurance separation notice (within ten days). ★"},
+{name:"Tax documents",x:"Give the withholding tax slip within a month of leaving, and settle how the remaining residence tax is handled. ★"},
+{name:"Returns and handover",x:"Collect the ID card, building pass, computer and keys, and hand over the work."}]}]}],
+voice:"The HR year brings the same tasks back in the same months. Leave a note of what you did this year against each month, and next year’s you, and your successor, will thank you.",
+terms:[["Year-end Tax Adjustment","年末調整","연말정산"],["Annual Social Insurance Base Report","算定基礎届","산정기초신고"],["Annual Labour Insurance Renewal","労働保険の年度更新","노동보험 연도 갱신"],["Insurance Enrolment Notification","資格取得届","자격취득신고"],["Separation Notice (for Unemployment Benefits)","離職票","이직표"]],
+quiz:[{q:"In which month is year-end tax adjustment done?",opts:["April","July","December","Every month"],a:2,exp:"The year’s income tax is settled through December’s pay."},
+{q:"What is the deadline for the social insurance base report?",opts:["31 January","10 July","25 December","There is none"],a:1,exp:"It is based on April–June pay and normally due by 10 July."},
+{q:"How do you make appraisals easier to accept?",opts:["Share the criteria at the start of the year","Decide suddenly at year end","Say nothing","Judge on pay alone"],a:0,exp:"Knowing the criteria in advance makes the result easier to accept."}],
+next:"0-8 Reporting, informing, consulting and work emails"});
+
+set("0-8",{title:"Reporting, Informing, Consulting and Work Emails",hl:"reporting and email",subtitle:"Lead with the conclusion, and share bad news early. Communication that speeds work up",
+lead:["No job in a company is finished alone. Work moves when you tell your manager, colleagues, head office and partners what they need, when they need it. Japanese companies call this hō-ren-sō: report, inform, consult. It is one of the first things a new employee is taught.","This article covers what each part means, how to report starting from the conclusion, how to structure a work email, and points to watch when working across countries, such as between a Korean head office and a Japanese branch."],
+sections:[
+{h:"Report, inform, consult",blocks:[{t:"rows",items:[
+{name:"Report",x:"Tell the person who gave you the task how it went or how it is progressing."},
+{name:"Inform",x:"Share decisions and facts with those concerned, without adding your own opinion."},
+{name:"Consult",x:"When unsure, ask for views before deciding. Do not carry it alone."}]}]},
+{h:"Report the conclusion first",blocks:[{t:"ladder",rise:10,steps:[{name:"Conclusion",sub:"What happened, what the outcome is"},{name:"Reason",sub:"Why it happened"},{name:"Details",sub:"Figures and facts"},{name:"Next step",sub:"What you will do, what you need decided"}]},
+{t:"point",x:"The worse the news, the sooner you share it. A first report need not be complete: say what you know now and when you will report next."}]},
+{h:"Structuring a work email",blocks:[{t:"table",cols:["Part","How to write it","Example"],rows:[
+["Subject","Make the content and deadline clear at a glance","[Please check] October travel expense claim (by 10 Oct)"],
+["To and CC","To for those who must act, CC for those who should know","To: the person in charge; CC: their manager"],
+["Greeting","Japanese emails open with a set greeting","いつもお世話になっております。"],
+["Conclusion and request","In the first three lines","Please review the October expense claim."],
+["Details","Short points","Amounts, dates, what is attached"],
+["Signature","Name, team, contact details","Company, phone, email"]]}]},
+{h:"Working across countries",blocks:[{t:"check",items:[
+{name:"Be precise with dates and figures",x:"Write dates starting with the year, such as 2026-10-02, and state the currency (yen or won)."},
+{name:"Holidays differ",x:"Check the other side’s holidays first: Lunar New Year and Chuseok in Korea, Golden Week and Obon in Japan."},
+{name:"Put decisions in writing",x:"Send a short summary email the same day for anything decided by phone or in a meeting."},
+{name:"Key points in both languages",x:"Where a misunderstanding would be costly, write in both Japanese and Korean, or show it in figures and tables."}]}]}],
+voice:"The key to a report is that the reader knows straight away what they need to do. Simply putting the conclusion and your request in the first line makes work move much faster.",
+terms:[["Report, Inform, Consult","報連相","보고·연락·상담"],["Subject Line","件名","제목"],["CC (Carbon Copy)","CC","참조"],["Bottom Line Up Front","結論から","결론부터"],["Escalation","エスカレーション","에스컬레이션"]],
+quiz:[{q:"What comes first in a report?",opts:["A long greeting","The conclusion","Excuses","The weather"],a:1,exp:"Conclusion, reason, details, next step."},
+{q:"What should you do with bad news?",opts:["Wait until you know everything","Share it as early as possible","Keep it to yourself","Save it for the weekend"],a:1,exp:"A first report does not need to be complete."},
+{q:"What about something decided by phone?",opts:["Remember it","Email a summary the same day","Raise it at the next meeting","Do nothing"],a:1,exp:"Putting it in writing prevents misunderstandings."}],
+next:"0-9 Spreadsheet basics"});
+
+set("0-9",{title:"Spreadsheet Basics: Features Used Every Day at Work",hl:"spreadsheet basics",subtitle:"Table layout before functions: building tables that are easy to total and hard to get wrong",
+lead:["Payroll totals, expense lists, cash forecasts, sales tracking: much of a company’s number work is done in spreadsheets such as Excel. Before learning clever functions, it matters more to know the table layout that makes totals easy later.","This article covers the principles of building a table, the functions you will use most, how to total and check, and habits that prevent mistakes."],
+sections:[
+{h:"Principles of a good table",blocks:[{t:"check",items:[
+{name:"One record per row",x:"One transaction or one employee per row."},
+{name:"One header row",x:"Put the field names along the top row; avoid two-level headers."},
+{name:"No merged cells",x:"Merged cells get in the way of sorting and totalling."},
+{name:"Enter numbers as numbers",x:"Type 12000, not ¥12,000, and put the unit in the header."},
+{name:"Separate input from totals",x:"Keep the sheet you type into separate from the sheet that totals."}]}]},
+{h:"Functions you will use most",blocks:[{t:"fig",id:"adm_xl",cap:"Examples of a total (SUM), a conditional total (SUMIF) and a conditional display (IF)."},
+{t:"table",cols:["Function","What it does","Typical use"],rows:[
+["SUM / AVERAGE","Total / average","Total monthly expenses"],
+["ROUND","Rounds a number","Fractions in tax and premiums"],
+["IF","Changes the result by condition","Show Check above a limit"],
+["SUMIF / COUNTIF","Adds / counts only matching rows","Expenses by item, headcount by team"],
+["XLOOKUP (VLOOKUP)","Finds and returns a value from a table","Name from an employee number"],
+["EOMONTH","Returns the last day of a month","Calculating payment due dates"]]}]},
+{h:"Totalling and checking",blocks:[{t:"rows",items:[
+{name:"Pivot tables",x:"Summarise totals by item and month without writing functions."},
+{name:"Filter and sort",x:"Show only matching rows; order from largest to smallest."},
+{name:"Conditional formatting",x:"Colour negatives or overdue items so they stand out."},
+{name:"Cross-check",x:"Check that the column totals and row totals agree."}]}]},
+{h:"Habits that prevent mistakes",blocks:[{t:"check",items:[
+{name:"Absolute references ($)",x:"Fix cells that must not move when a formula is copied, as in $A$1."},
+{name:"Colour formula cells",x:"Separate input cells from formula cells by colour so formulas are not overwritten."},
+{name:"Numbers stored as text",x:"Left-aligned numbers may have been entered as text and will be left out of totals."},
+{name:"Keep the original",x:"Save a copy before major changes and put the date in the file name."},
+{name:"Personal information",x:"Password-protect payroll and address files and limit who can open them."}]},
+{t:"point",x:"When you rework figures from accounting or payroll software in a spreadsheet, finish by checking that your totals still match the source software."}]}],
+voice:"In spreadsheets, layout comes before functions. Build tables with one record per row and no merged cells, and any total you need later becomes easy.",
+terms:[["Function","関数","함수"],["Absolute Reference","絶対参照","절대 참조"],["Pivot Table","ピボットテーブル","피벗 테이블"],["Conditional Formatting","条件付き書式","조건부 서식"],["Cross-check","検算","검산"]],
+quiz:[{q:"Which is a principle of an easy-to-total table?",opts:["Merge cells","One record per row","Three header rows","Type units with the numbers"],a:1,exp:"One record per row, one header row, no merged cells."},
+{q:"Which function adds only the rows where the item is Travel?",opts:["SUM","SUMIF","ROUND","EOMONTH"],a:1,exp:"It adds only rows that meet the condition."},
+{q:"How do you stop a cell reference moving when copying a formula?",opts:["Fix it as $A$1","Colour it","Delete it","Merge it"],a:0,exp:"Use an absolute reference."}],
+next:"0-10 Rules of employment, payslips and paid leave from the employee’s side"});
+
+set("0-10",{title:"Rules of Employment, Payslips and Paid Leave from the Employee’s Side",hl:"the employee’s side",subtitle:"Read the agreement between you and the company once, when you join",
+lead:["So far we have looked at HR and money from the company’s side. This article looks from the other side, the employee’s: the documents you receive on joining, what to read first in the rules of employment, the rules on paid leave, and what to check on your monthly payslip.","Knowing your rights and duties is the foundation for working well with a company for a long time."],
+sections:[
+{h:"Documents you receive on joining",blocks:[{t:"rows",items:[
+{name:"Statement of employment terms",x:"Your pay, working hours, days off and contract period (1-1)."},
+{name:"Rules of employment",x:"The company-wide rules. Companies with ten or more employees must draw them up and file them, and staff can see them at any time. ★"},
+{name:"Pay regulations",x:"How pay is calculated, allowances and the rules for pay rises."},
+{name:"Article 36 agreement",x:"The agreement between the company and staff representatives that allows overtime and holiday work, including the overtime limits."}]}]},
+{h:"What to read first in the rules",blocks:[{t:"check",items:[
+{name:"Hours, breaks and days off",x:"Start and finish times, break times and company holidays."},
+{name:"Overtime and premiums",x:"How to apply for overtime and the premium rates."},
+{name:"Leave",x:"Paid leave and special leave for weddings, funerals and similar."},
+{name:"Payday",x:"Which day each month you are paid, and for which period."},
+{name:"Leaving",x:"How much notice to give, for example one month, and the procedure."}]}]},
+{h:"The rules on paid leave",blocks:[{t:"table",cols:["Length of service","Days per year"],rows:[
+["6 months","10"],["1 year 6 months","11"],["2 years 6 months","12"],["3 years 6 months","14"],["4 years 6 months","16"],["5 years 6 months","18"],["6 years 6 months or more","20"]]},
+{t:"note",x:"* You must have attended at least 80% of working days. Employers must make sure anyone entitled to ten or more days takes at least five a year. Unused days expire after two years. Part-timers receive fewer days in proportion to the days they work. ★"}]},
+{h:"What to check on your payslip",blocks:[{t:"check",items:[
+{name:"Attendance figures",x:"Do days worked and overtime hours match your own record?"},
+{name:"Overtime pay",x:"Has premium pay been paid for the overtime hours?"},
+{name:"The month premiums change",x:"Social insurance changes to the new amount in September’s (or October’s) pay."},
+{name:"The month residence tax changes",x:"The new residence tax amount starts with June’s pay."},
+{name:"Year-end adjustment result",x:"December’s or January’s pay includes any income tax refund (or extra charge)."}]},
+{t:"point",x:"How to read each line of a payslip in detail is also covered in lesson 6-1 of Living in Japan."}]}],
+voice:"The rules of employment are the agreement between you and the company. Read them once when you join, and you will not be caught off guard at important moments such as taking leave or resigning.",
+terms:[["Rules of Employment","就業規則","취업규칙"],["Statement of Employment Terms","労働条件通知書","근로조건통지서"],["Annual Paid Leave","年次有給休暇","연차 유급휴가"],["Article 36 Overtime Agreement","36協定","36협정"],["Employer-designated Leave Dates","時季指定","시기 지정"]],
+quiz:[{q:"After six months with 80% attendance, how many days of paid leave do you get?",opts:["5","10","15","20"],a:1,exp:"It starts at ten days and rises with length of service."},
+{q:"What happens to unused paid leave?",opts:["It lasts for ever","It expires after two years","It expires next month","It is always paid out"],a:1,exp:"The limitation period is two years."},
+{q:"Around which month do social insurance deductions usually change?",opts:["January","April","September–October","December"],a:2,exp:"Based on the base report, they change from September."}],
 next:"Part 1 1-1 Types of employment and stating the terms"});
 })(window.ARTS);

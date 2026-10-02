@@ -130,7 +130,67 @@ function payFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
   if(i===0||i===5){s+='<line x1="20" y1="'+(y-2)+'" x2="620" y2="'+(y-2)+'" stroke="#DCE3EA" stroke-dasharray="4 4"/>';y+=8}});
  var hn=hgt(d[3],11,580);s+=TW2(30,y+4,d[3],11,G,700,580,'start');y+=hn+22;return svg(y,s)}}
 
+/* 6. 人事・給与の1年（日本・3月決算でない一般的な例） */
+var HRCAL={
+ ja:['人事・給与の仕事の1年（例）',[
+  ['1月','給与支払報告書・法定調書を提出（1月31日まで）','#7A5CC7'],
+  ['2〜3月','新卒・中途の採用、4月の配属と研修の準備','#2F8FE0'],
+  ['4月','入社・研修。雇用保険の料率が変わる月','#2F8FE0'],
+  ['6月','住民税の新しい額で天引きが始まる。夏の賞与','#7A5CC7'],
+  ['6〜7月','労働保険の年度更新、社会保険の算定基礎届（7月10日まで）','#E08A2F'],
+  ['9〜10月','新しい標準報酬月額で保険料が変わる。最低賃金の改定','#E08A2F'],
+  ['11月','年末調整の書類を社員に配って集める','#7A5CC7'],
+  ['12月','年末調整、冬の賞与','#7A5CC7']],
+  ['給与・税','採用・教育','社会保険・労働保険'],'1年を通して：健康診断（年1回）、有給休暇の年5日の取得の管理。日付は年や会社で違うので確かめましょう。★'],
+ ko:['인사·급여 업무의 1년(예)',[
+  ['1월','급여지급보고서·법정조서 제출(1월 31일까지)','#7A5CC7'],
+  ['2~3월','신입·경력 채용, 4월 배치와 연수 준비','#2F8FE0'],
+  ['4월','입사·연수. 고용보험 요율이 바뀌는 달','#2F8FE0'],
+  ['6월','새 주민세 금액으로 공제 시작. 여름 상여','#7A5CC7'],
+  ['6~7월','노동보험 연도 갱신, 사회보험 산정기초신고(7월 10일까지)','#E08A2F'],
+  ['9~10월','새 표준보수월액으로 보험료 변경. 최저임금 개정','#E08A2F'],
+  ['11월','연말정산 서류를 직원에게 나눠 주고 걷기','#7A5CC7'],
+  ['12월','연말정산, 겨울 상여','#7A5CC7']],
+  ['급여·세금','채용·교육','사회보험·노동보험'],'1년 내내: 건강검진(연 1회), 유급휴가 연 5일 사용 관리. 날짜는 해와 회사마다 다르니 확인하세요. ★'],
+ en:['A year of HR and payroll work (example)',[
+  ['Jan','Submit payment reports and statutory returns (by 31 January)','#7A5CC7'],
+  ['Feb–Mar','Hiring graduates and mid-career staff; preparing April placements and training','#2F8FE0'],
+  ['Apr','New starters and training. Employment insurance rates change','#2F8FE0'],
+  ['Jun','Deductions start at the new residence tax amount. Summer bonus','#7A5CC7'],
+  ['Jun–Jul','Annual labour insurance renewal; social insurance base report (by 10 July)','#E08A2F'],
+  ['Sep–Oct','Premiums change with the new standard remuneration. Minimum wage revised','#E08A2F'],
+  ['Nov','Hand out and collect year-end adjustment forms','#7A5CC7'],
+  ['Dec','Year-end tax adjustment, winter bonus','#7A5CC7']],
+  ['Pay and tax','Hiring and training','Social and labour insurance'],'All year: annual health checks and making sure staff take five days of paid leave. Dates vary by year and company, so check them. ★']};
+function hrcalFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600);
+ var cols=['#7A5CC7','#2F8FE0','#E08A2F'],lx=30;
+ d[2].forEach(function(g,i){var W=[100,140,180,240,320,420,560].filter(function(v){return LI(g,11,v).length===1})[0]||560,w=W+40;
+  if(lx+w>630&&lx>30){lx=30;y+=FS(11)*1.7}s+=R(lx,y-9,14,14,cols[i],4)+tx(lx+20,y+2,g,11,'#0f3558',900,'start');lx+=w});y+=FS(11)*1.2+12;
+ d[1].forEach(function(r){var hm=hgt(r[0],12,96),ht=hgt(r[1],12,460),h=Math.max(hm,ht)+18;
+  s+=R(20,y,600,h,'#fff',10,' stroke="#DCE3EA"')+R(20,y,112,h,r[2],10)+R(122,y,10,h,r[2],0)+TW2(76,y+(h-hm)/2,r[0],12,'#fff',900,96)+TW2(148,y+(h-ht)/2,r[1],12,D,700,460,'start');y+=h+8});
+ var hn=hgt(d[3],11.5,580);s+=R(20,y+4,600,hn+18,'#FFF3E0',10)+TW2(320,y+13,d[3],11.5,'#B45309',900,570);y+=hn+34;return svg(y,s)}}
+
+/* 7. 表計算ソフト：合計と条件付きの合計 */
+var XL={
+ ja:['表計算の例 ― 合計と、条件をつけた合計',['月','項目','金額'],[['4月','給与','300,000'],['4月','家賃','200,000'],['4月','交通費','12,000'],['5月','給与','300,000'],['5月','交通費','9,000']],'合計','821,000',
+  [['=SUM(C2:C6)','C2からC6までを全部足す → 821,000'],['=SUMIF(B2:B6,"交通費",C2:C6)','項目が「交通費」の行だけ足す → 21,000'],['=IF(C2>250000,"確認","")','25万円を超えたら「確認」と表示する']]],
+ ko:['스프레드시트 예 — 합계와 조건을 붙인 합계',['월','항목','금액'],[['4월','급여','300,000'],['4월','임차료','200,000'],['4월','교통비','12,000'],['5월','급여','300,000'],['5월','교통비','9,000']],'합계','821,000',
+  [['=SUM(C2:C6)','C2부터 C6까지 모두 더함 → 821,000'],['=SUMIF(B2:B6,"교통비",C2:C6)','항목이 「교통비」인 행만 더함 → 21,000'],['=IF(C2>250000,"확인","")','25만 엔을 넘으면 「확인」이라고 표시']]],
+ en:['Spreadsheet example: a total and a conditional total',['Month','Item','Amount'],[['Apr','Salary','300,000'],['Apr','Rent','200,000'],['Apr','Travel','12,000'],['May','Salary','300,000'],['May','Travel','9,000']],'Total','821,000',
+  [['=SUM(C2:C6)','Adds everything from C2 to C6 → 821,000'],['=SUMIF(B2:B6,"Travel",C2:C6)','Adds only rows where the item is Travel → 21,000'],['=IF(C2>250000,"Check","")','Shows Check if the amount is over ¥250,000']]]};
+function xlFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600);
+ var X0=20,cw=[50,150,190,210],rh=Math.max(30,FS(12)*1.9),xs=[X0];for(var i=0;i<cw.length;i++)xs.push(xs[i]+cw[i]);
+ function cell(ci,yy,t,fill,col,w8,anc){var o=R(xs[ci],yy,cw[ci],rh,fill,0,' stroke="#C9D3DD"');var tx0=anc==='end'?xs[ci]+cw[ci]-10:anc==='start'?xs[ci]+10:xs[ci]+cw[ci]/2;return o+tx(tx0,yy+rh/2+FS(12)*0.36,t,12,col,w8,anc||'middle')}
+ s+=cell(0,y,'','#E9EEF3','#5B6B7D',700);['A','B','C'].forEach(function(c,i){s+=cell(i+1,y,c,'#E9EEF3','#5B6B7D',700)});y+=rh;
+ s+=cell(0,y,'1','#E9EEF3','#5B6B7D',700);d[1].forEach(function(c,i){s+=cell(i+1,y,c,'#DCEBFA','#0f3558',900)});y+=rh;
+ d[2].forEach(function(r,j){s+=cell(0,y,String(j+2),'#E9EEF3','#5B6B7D',700)+cell(1,y,r[0],'#fff',D,700)+cell(2,y,r[1],'#fff',D,700,'start')+cell(3,y,r[2],'#fff',D,700,'end');y+=rh});
+ s+=cell(0,y,'7','#E9EEF3','#5B6B7D',700)+cell(1,y,'','#FFF7E6',D,700)+cell(2,y,d[3],'#FFF7E6','#0f3558',900,'start')+cell(3,y,d[4],'#FFF7E6','#B45309',900,'end')+R(xs[3],y,cw[3],rh,'none',0,' stroke="#E08A2F" stroke-width="3"');y+=rh+18;
+ d[5].forEach(function(f,i){var h1=hgt(f[0],12,560),h2=hgt(f[1],11.5,560),h=h1+h2+22,c=i===0?'#E08A2F':'#2F8FE0';
+  s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="1.5"')+R(20,y,8,h,c,4)+TW2(40,y+7,f[0],12,c,900,560,'start')+TW2(40,y+11+h1,f[1],11.5,D,700,560,'start');y+=h+8});
+ return svg(y+10,s)}}
+
 window.FIGS=window.FIGS||{};
+window.FIGS.adm_hrcal=H.FIX2(hrcalFig(HRCAL));window.FIGS.adm_xl=H.FIX2(xlFig(XL));
 window.FIGS.adm_cash=H.FIX2(cashFig(CASH));window.FIGS.adm_pay=H.FIX2(payFig(PAY2));
 window.FIGS.adm_org=H.FIX2(orgFig(ORG));window.FIGS.adm_jnl=H.FIX2(jnlFig(JNL));window.FIGS.adm_fs3=H.FIX2(fs3Fig(FS3));
 })();
