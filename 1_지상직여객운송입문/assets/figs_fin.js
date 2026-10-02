@@ -156,6 +156,17 @@ fin_cf_patterns:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vi
  P.forEach(function(r,i){var y=60+i*64;H.forEach(function(h,j){var x=40+j*70,c=r[0][j]==='+'?BS:R;s+=Rc(x,y,60,46,c,8)+tx(x+30,y+30,r[0][j],22,'#fff',800)+tx(x+30,y+58,h,10,G,600)});
   s+=tx(290,y+22,r[1],14,D,800,'start')+tx(290,y+40,r[2],11,G,500,'start');
   s+='<rect x="30" y="'+(y-6)+'" width="840" height="58" rx="10" fill="'+PL+'" opacity="0"><animate attributeName="opacity" values="0;0;0.08;0.08;0" keyTimes="0;'+(i*0.22).toFixed(2)+';'+(i*0.22+0.05).toFixed(2)+';'+(i*0.22+0.2).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></rect>'});
+ return s+'</svg>'},
+/* 4-1 3つの表のつながり（Vela Air 1年目）：利益→利益剰余金、期末現金→現金、減価償却→航空機 */
+fin_links_vela:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img">'+DEFS+Rc(0,0,900,420,'#F7FAFD');
+ function box(x,col,title,rows,hl){s+=Rc(x,40,270,330,'#fff',14,' stroke="'+col+'" stroke-width="3"')+Rc(x,40,270,40,col,14)+Rc(x,66,270,14,col)+tx(x+135,66,title,14,'#fff',800);
+  rows.forEach(function(r,i){var y=108+i*36,b=hl.indexOf(i)>=0;if(b)s+=Rc(x+10,y-17,250,28,'#FFF4D6',6);s+=tx(x+18,y+2,r[0],12,D,b?800:500,'start')+tx(x+255,y+2,r[1],12.5,b?D:G,b?800:600,'end')})}
+ box(20,PL,L(lang,'損益計算書（1年目）','손익계산서(1년 차)','Income statement (year 1)'),[[L(lang,'売上','매출','Revenue'),'3,000'],[L(lang,'燃油・人件費など','연료·인건비 등','Fuel, staff etc.'),'−2,566'],[L(lang,'減価償却費','감가상각비','Depreciation'),'−254'],[L(lang,'営業利益','영업이익','Operating profit'),'180'],[L(lang,'利息・税金','이자·세금','Interest, tax'),'−90'],[L(lang,'当期純利益','당기순이익','Net profit'),'90']],[2,5]);
+ box(315,BS,L(lang,'貸借対照表（1年目末）','재무상태표(1년 차 말)','Balance sheet (end of year 1)'),[[L(lang,'現金','현금','Cash'),'1,044'],[L(lang,'航空機 2,100→','항공기 2,100→','Aircraft 2,100→'),'2,146'],[L(lang,'その他の資産','기타 자산','Other assets'),'2,720'],[L(lang,'負債','부채','Liabilities'),'3,940'],[L(lang,'資本金・剰余金','자본금·잉여금','Capital'),'900'],[L(lang,'利益剰余金 1,020→','이익잉여금 1,020→','Retained earnings 1,020→'),'1,070']],[0,1,5]);
+ box(610,CF,L(lang,'キャッシュフロー（1年目）','현금흐름표(1년 차)','Cash flow (year 1)'),[[L(lang,'当期純利益','당기순이익','Net profit'),'90'],[L(lang,'＋減価償却','+감가상각','+ Depreciation'),'254'],[L(lang,'営業活動','영업활동','Operating'),'394'],[L(lang,'投資（機材 −300）','투자(기재 −300)','Investing (aircraft −300)'),'−300'],[L(lang,'財務（返済・配当40）','재무(상환·배당 40)','Financing (repay, dividend 40)'),'−250'],[L(lang,'期末現金','기말 현금','Closing cash'),'1,044']],[1,5]);
+ var A=[['M290,290 C330,290 330,290 325,290',PL,'0;1;1;0;0;0;0'],['M620,290 C540,290 540,108 595,108',CF,'0;0;0;1;1;0;0'],['M620,146 C560,146 560,144 595,144',G,'0;0;0;0;0;1;1']];
+ A.forEach(function(a){s+='<path d="'+a[0]+'" fill="none" stroke="'+a[1]+'" stroke-width="3" marker-end="url(#fa)"><animate attributeName="opacity" values="'+a[2]+'" dur="7s" repeatCount="indefinite"/></path>'});
+ s+=tx(450,392,L(lang,'① 利益90は配当40を引いて利益剰余金へ（+50）　② 期末現金1,044は資産の現金へ　③ 減価償却254は費用でもあり、航空機の帳簿価値を減らし、現金には影響しない','① 이익 90은 배당 40을 빼고 이익잉여금으로(+50)　② 기말 현금 1,044는 자산의 현금으로　③ 감가상각 254는 비용이면서 항공기 장부가를 줄이고 현금에는 영향이 없다','① Profit 90 less dividend 40 goes to retained earnings (+50)　② Closing cash 1,044 is the cash on the balance sheet　③ Depreciation 254 is a cost, reduces the aircraft book value, and leaves cash untouched'),11.5,D,600);
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];

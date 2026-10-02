@@ -116,7 +116,7 @@ sections:[
 {t:"point",x:"Net profit is not ‘cash left in hand’ (0-3). With a profit of 9.0bn, cash may have risen more or even fallen. Profit increases equity; cash is tracked separately in the cash flow statement."}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Change the tax rate",x:"If the stall’s tax rate were 30%, what would net profit and retained earnings be? Does assets = liabilities + equity still hold?"},
-{name:"Think about the loss year",x:"How does Vela Air’s year-2 loss of 10.5bn affect tax on year 3’s profit before tax of 17.0bn? Estimate year 3’s tax."}]}]}],
+{name:"Think about the loss year",x:"How does Vela Air’s year-2 loss of 10.5bn affect tax on year 3’s profit before tax of 18.1bn? Estimate year 3’s tax."}]}]}],
 voice:"Do not leave a loss year at ‘at least we paid no tax’. Loss carry-forwards have time limits and caps, and are worthless unless the company returns to profit. Head-office finance values the deferred tax asset on exactly that outlook.",
 terms:[["Corporate income tax","法人税","법인세"],["Effective tax rate","実効税率","실효세율"],["Tax loss carryforward","繰越欠損金","이월결손금"],["Deferred tax asset","繰延税金資産","이연법인세자산"],["Retained earnings","利益剰余金","이익잉여금"],["Dividend","配当","배당"]],
 quiz:[{q:"Which is true of corporate tax in a loss year?",opts:["None is paid, and the loss can be offset against future profits","A fixed share of sales is still paid","The same amount as last year is paid","Shareholders pay instead"],a:0,exp:"This is the loss carry-forward system (periods and caps vary by country)."},
