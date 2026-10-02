@@ -3,7 +3,8 @@
 set("6-1",{title:"Profitability and the ROE Breakdown: Margin × Turnover × Leverage",hl:"the ROE Breakdown",subtitle:"Earning power splits into profit on sales, how hard the assets work, and how much is borrowed. The same ROE can hide very different businesses",
 lead:["Parts 0 to 5 covered how to read the three statements and the items special to airlines. Part 6 divides one number by another to make ratios. Ratios let you compare companies of different sizes, and the same company from one year to the next.","We start with profitability. Return on equity (ROE) shows how much profit the owners’ money produced, and it splits into margin, turnover and leverage. Worked on the small company that grew out of the taiyaki stall and on Vela Air, the shape of each business shows up directly in the numbers."],
 sections:[
-{h:"Three margins",blocks:[{t:"table",cols:["Measure","Formula","Small company (million yen)","Vela Air year 1 (100m yen)"],rows:[
+{h:"Three margins",blocks:[{t:"fig",id:"fin_margin_steps",cap:"Margins of the small company and Vela Air side by side. With heavy depreciation and interest, the airline falls further behind at each lower level of profit"},
+{t:"table",cols:["Measure","Formula","Small company (million yen)","Vela Air year 1 (100m yen)"],rows:[
 ["Gross margin","Gross profit ÷ sales","190 ÷ 300 = 63.3%","(airlines are read by operating cost items)"],
 ["Operating margin","Operating profit ÷ sales","30 ÷ 300 = 10.0%","180 ÷ 3,000 = 6.0%"],
 ["EBITDA margin","(Operating profit + depreciation) ÷ sales","42 ÷ 300 = 14.0%","434 ÷ 3,000 = 14.5%"],
@@ -54,7 +55,8 @@ sections:[
 ["Net D/E ratio","0.57×","0.53×","0.44×","0.38×"]]},
 {t:"point",x:"Japan usually talks in terms of the equity ratio and the D/E ratio; Korea in terms of the debt ratio (liabilities to equity). They are the same thing seen from different sides: equity ratio = 1 ÷ (1 + debt ratio). A debt ratio of 200% is an equity ratio of 33.3%. ★"},
 {t:"note",x:"* The debt ratio counts all liabilities, including unearned revenue and provisions; the D/E ratio counts only liabilities that bear interest. Whether leases are in liabilities depends on the accounting standard (2-3, 5-2), so align this before comparing companies."}]},
-{h:"3. Do earnings cover interest and debt?",blocks:[{t:"table",cols:["","Year 1","Year 2 (fuel spike)","Year 3","Reading"],rows:[
+{h:"3. Do earnings cover interest and debt?",blocks:[{t:"fig",id:"fin_coverage",cap:"Vela Air’s three years: how many times green (earnings) covers orange (interest). In year 2 earnings were negative"},
+{t:"table",cols:["","Year 1","Year 2 (fuel spike)","Year 3","Reading"],rows:[
 ["Interest coverage ((operating profit + financial income) ÷ interest expense)","3.2×","−0.8×","3.5×","Below 1×, the core business is not covering interest"],
 ["EBITDA (operating profit + depreciation)","434","208","501","Earnings with non-cash depreciation added back"],
 ["Interest-bearing debt ÷ EBITDA","4.8×","10.0×","4.1×","How many years of earnings the debt represents"],
@@ -77,7 +79,8 @@ quiz:[{q:"A company has a debt ratio of 200%. What is its equity ratio?",opts:["
 set("6-3",{title:"Efficiency: How Many Times Do the Assets Turn?",hl:"How Many Times Do the Assets Turn?",subtitle:"Is the same revenue being earned with fewer assets and in fewer days? Read it through turnover and turnover periods",
 lead:["Efficiency asks how well the company uses what it owns. For the same sales, the fewer the assets and the shorter the wait between selling and being paid, the less money the business needs.","There are two yardsticks: turnover, how many times a year the assets turn into sales; and turnover periods, how many days of receivables, inventory and payables are outstanding (2-4). Airlines add one of their own: how hard the aircraft work."],
 sections:[
-{h:"Turnover: how many times assets become sales",blocks:[{t:"table",cols:["","Sales","Total assets (average)","Asset turnover","Meaning"],rows:[
+{h:"Turnover: how many times assets become sales",blocks:[{t:"fig",id:"fin_asset_turn",cap:"Total assets and sales as bars. The figure on the right is asset turnover"},
+{t:"table",cols:["","Sales","Total assets (average)","Asset turnover","Meaning"],rows:[
 ["Small company (million yen)","300","92.65","3.24×","Sells more than three times its assets in a year"],
 ["Vela Air year 1 (100m yen)","3,000","5,955","0.50×","A year’s sales are half the assets"],
 ["Vela Air year 3 (100m yen)","3,300","5,946","0.55×","Sales up 10% without adding assets"]]},
@@ -137,7 +140,8 @@ sections:[
 {t:"rows",items:[
 {name:"Contribution = that business’s increase ÷ last year’s total sales",x:"International passenger in year 2: 100 ÷ 3,000 = +3.3 points. It produced about 60% of the 5.3% growth."},
 {name:"Ancillaries are small but growing fast",x:"120 → 130 → 150: up 25% in two years. Seat selection, baggage and in-flight sales, revenue other than the fare (5-6)."}]}]},
-{h:"Profit growth, and growth that can be sustained",blocks:[{t:"rows",items:[
+{h:"Profit growth, and growth that can be sustained",blocks:[{t:"fig",id:"fin_profit_bridge",cap:"The reasons operating profit moved from year 1 to year 2, stacked in order"},
+{t:"rows",items:[
 {name:"Sales up, profit down",x:"In year 2 sales rose 160 but fuel rose 323, and non-fuel costs also rose from 2,143 to 2,214 (+71). Costs rose more than sales, and operating profit went from 180 to −54."},
 {name:"Read cost growth as ‘fuel’ and ‘everything else’",x:"With year 1 as 100, year 3 is sales 110.0, ASK 107.5, non-fuel costs 106.3, fuel 116.7. If non-fuel costs grow more slowly than capacity (ASK), efficiency has improved."},
 {name:"Sustainable growth rate = ROE × (1 − payout ratio)",x:"Only the profit that is kept, not paid out, lets assets grow without changing the share of borrowing. Vela Air year 3: 6.7% × (1 − 50 ÷ 127) = about 4.0%. Growing faster than this for long requires more borrowing or new equity."}]},
@@ -177,7 +181,8 @@ sections:[
 ["Change in loans","−150","+50","+50","−50"],
 ["Change in cash","−156","+212","+82","+138"]]},
 {t:"note",x:"* Under IFRS and K-IFRS the principal part of lease payments appears in financing activities, so operating cash flow and FCF look larger. When comparing airlines, the practical standard is FCF after lease repayments (5-2). Under current Japanese GAAP, operating lease payments sit in operating costs, so no adjustment is needed. ★"}]},
-{h:"How many years to repay the debt?",blocks:[{t:"table",cols:["","Year 1","Year 2","Year 3"],rows:[
+{h:"How many years to repay the debt?",blocks:[{t:"fig",id:"fin_cash_use",cap:"Where the 105.8bn yen of operating cash flow over three years went"},
+{t:"table",cols:["","Year 1","Year 2","Year 3"],rows:[
 ["Interest-bearing debt ÷ operating cash flow (years)","5.3","9.4","4.7"],
 ["Operating cash flow ÷ interest expense (times)","6.8×","3.4×","6.5×"]]},
 {t:"rows",items:[
@@ -208,6 +213,7 @@ sections:[
 {h:"Reading over time: index and common size",blocks:[{t:"fig",id:"fin_trend_index",cap:"Vela Air’s three years as an index with year 1 = 100"},
 {t:"table",cols:["Year 1 = 100","Year 1","Year 2","Year 3"],rows:[
 ["Sales","100","105.3","110.0"],["ASK","100","102.5","107.5"],["Fuel","100","147.7","116.7"],["Non-fuel operating costs","100","103.3","106.3"]]},
+{t:"fig",id:"fin_common_size",cap:"The make-up of each 100 of sales. Non-fuel costs (grey) get thinner each year"},
 {t:"table",cols:["As a share of sales","Year 1","Year 2","Year 3"],rows:[
 ["Fuel","22.6%","31.6%","23.9%"],["Non-fuel operating costs","71.4%","70.1%","69.1%"],["Operating profit","6.0%","−1.7%","7.0%"]]},
 {t:"point",x:"An index shows what grew faster than what; a common-size statement shows how each 100 yen of sales was spent. Non-fuel costs fell from 71.4% to 69.1% of sales. It is hidden behind the fuel swing, but Vela Air’s underlying cost base improved over the three years."}]},

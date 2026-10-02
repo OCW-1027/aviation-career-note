@@ -256,7 +256,87 @@ fin_trend_index:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vi
  var lx=[70,250,400,590],fv=['110.0','107.5','116.7','106.3'];
  S.forEach(function(q,k){s+=Rc(lx[k],346,14,14,q[2],3)+tx(lx[k]+20,358,q[0]+' '+fv[k],12,D,600,'start')});
  s+=tx(450,30,L(lang,'1年目を100とした指数。燃油費だけが大きく動き、燃油以外の費用は供給（ASK）より緩やかに伸びた','1년 차를 100으로 한 지수. 연료비만 크게 움직였고, 연료 외 비용은 공급(ASK)보다 천천히 늘었다','Index, year 1 = 100. Only fuel swung widely; non-fuel costs grew more slowly than capacity (ASK)'),12.5,D,600);
+ return s+'</svg>'},
+/* ===== Part 6 追加の図・Part 7 の図（2026.10）。滑り台グラフは下の WF() で描く ===== */
+fin_margin_steps:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+Rc(0,0,900,360,'#F7FAFD'),base=270,sc=12,Gy='#8A96A3';
+ var C=[[L(lang,'EBITDAマージン','EBITDA 마진','EBITDA margin'),14.0,14.5],[L(lang,'営業利益率','영업이익률','Operating margin'),10.0,6.0],[L(lang,'当期純利益率','당기순이익률','Net margin'),6.8,3.0]];
+ C.forEach(function(c,i){var x=120+i*260;s+=Rc(x,base-c[1]*sc,84,c[1]*sc,Gy,6)+tx(x+42,base-c[1]*sc-8,c[1].toFixed(1)+'%',14,D,800)+Rc(x+100,base-c[2]*sc,84,c[2]*sc,PL,6)+tx(x+142,base-c[2]*sc-8,c[2].toFixed(1)+'%',14,PL,800)+tx(x+92,base+22,c[0],13,D,800)});
+ s+='<line x1="60" y1="'+base+'" x2="860" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ s+=Rc(230,322,14,14,Gy,3)+tx(250,334,L(lang,'小さな会社','작은 회사','Small company'),12,D,600,'start')+Rc(480,322,14,14,PL,3)+tx(500,334,L(lang,'Vela Air 1年目','Vela Air 1년 차','Vela Air year 1'),12,D,600,'start');
+ s+=tx(450,30,L(lang,'売上100のうち、それぞれの利益として残る分','매출 100 가운데 각 이익으로 남는 몫','Out of every 100 of sales, what remains at each level of profit'),12.5,D,600);
+ return s+'</svg>'},
+fin_coverage:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 370" role="img">'+Rc(0,0,900,370,'#F7FAFD'),base=250,sc=0.6;
+ var Y=[[L(lang,'1年目','1년 차','Year 1'),186,58,L(lang,'3.2倍','3.2배','3.2×')],[L(lang,'2年目（燃油高騰）','2년 차(유가 급등)','Year 2 (fuel spike)'),-49,65,L(lang,'−0.8倍','−0.8배','−0.8×')],[L(lang,'3年目','3년 차','Year 3'),237,68,L(lang,'3.5倍','3.5배','3.5×')]];
+ Y.forEach(function(y,i){var x=110+i*270,h=Math.abs(y[1])*sc,ng=y[1]<0;
+  s+=Rc(x,ng?base:base-h,84,h,ng?R:BS,6)+tx(x+42,ng?base+h+16:base-h-8,(ng?'−':'')+Math.abs(y[1]),14,ng?R:D,800);
+  s+=Rc(x+100,base-y[2]*sc,84,y[2]*sc,CF,6)+tx(x+142,base-y[2]*sc-8,y[2],14,D,800);
+  s+=tx(x+92,base+(ng?66:24),y[0],13,D,800)+Rc(x+46,base+(ng?76:34),92,28,ng?'#FDEEF0':'#E8F3F0',14)+tx(x+92,base+(ng?95:53),y[3],14,ng?R:BS,800)});
+ s+='<line x1="60" y1="'+base+'" x2="860" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ s+=Rc(190,52,14,14,BS,3)+tx(210,64,L(lang,'営業利益＋金融収益','영업이익+금융수익','Operating profit + financial income'),12,D,600,'start')+Rc(560,52,14,14,CF,3)+tx(580,64,L(lang,'支払利息','이자비용','Interest expense'),12,D,600,'start');
+ s+=tx(450,30,L(lang,'本業の稼ぎは支払利息の何倍か（億円）。1倍を下回ると、利息を稼ぎで払えていない','본업의 벌이는 이자비용의 몇 배인가(억 엔). 1배를 밑돌면 벌이로 이자를 못 내고 있다','How many times core earnings cover interest (100m yen). Below 1×, interest is not covered'),12.5,D,600);
+ return s+'</svg>'},
+fin_asset_turn:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD');
+ var Rw=[[L(lang,'小さな会社（百万円）','작은 회사(백만 엔)','Small company (million yen)'),92.65,300,1.9,L(lang,'3.24回','3.24회','3.24×'),'92.65','300'],[L(lang,'Vela Air 1年目（億円）','Vela Air 1년 차(억 엔)','Vela Air year 1 (100m yen)'),5955,3000,0.1,L(lang,'0.50回','0.50회','0.50×'),'5,955','3,000']];
+ Rw.forEach(function(r,j){var y=78+j*118;s+=tx(40,y-9,r[0],13,D,800,'start')+Rc(40,y,r[1]*r[3],30,BS,6)+tx(50+r[1]*r[3],y+21,L(lang,'総資産 ','총자산 ','Assets ')+r[5],13,BS,800,'start')+Rc(40,y+38,r[2]*r[3],30,PL,6)+tx(50+r[2]*r[3],y+59,L(lang,'売上 ','매출 ','Sales ')+r[6],13,PL,800,'start')+Rc(762,y+10,104,48,'#fff',12,' stroke="'+D+'" stroke-width="2.5"')+tx(814,y+41,r[4],18,D,800)});
+ s+=tx(450,28,L(lang,'緑＝総資産、青＝1年の売上。小さな会社は資産の3倍を売り、航空会社は資産の半分を売る','초록 = 총자산, 파랑 = 1년 매출. 작은 회사는 자산의 3배를 팔고, 항공사는 자산의 절반을 판다','Green = total assets, blue = a year’s sales. The small company sells three times its assets; the airline, half'),12.5,D,600);
+ s+=tx(450,314,L(lang,'※ 2つの行は別々の縮尺で描いています','※ 두 줄은 서로 다른 축척으로 그렸습니다','* The two rows are drawn to different scales'),11.5,G,600);
+ return s+'</svg>'},
+fin_profit_bridge:function(lang){return WF(L(lang,'営業利益が180から−54になった道すじ（億円）','영업이익이 180에서 −54가 된 길(억 엔)','How operating profit went from 180 to −54 (100m yen)'),[
+ [L(lang,['1年目の','営業利益'],['1년 차','영업이익'],['Year 1','operating profit']),180,1],[L(lang,['売上の増加'],['매출 증가'],['Higher sales']),160,0],[L(lang,['燃油費の増加'],['연료비 증가'],['Higher fuel cost']),-323,0],[L(lang,['燃油以外の','費用の増加'],['연료 외','비용 증가'],['Higher','non-fuel costs']),-71,0],[L(lang,['2年目の','営業利益'],['2년 차','영업이익'],['Year 2','operating profit']),-54,1]],
+ {h:372,base:236,sc:0.55,x0:80,step:160,bw:100,ly:300,note:L(lang,'売上は増えたが、燃油費の増加がその2倍だった','매출은 늘었지만 연료비 증가가 그 2배였다','Sales rose, but fuel rose twice as much')})},
+fin_cash_use:function(lang){return WF(L(lang,'3年間に稼いだ現金の使い道（億円）','3년 동안 번 현금의 쓰임새(억 엔)','Where three years of cash went (100m yen)'),[
+ [L(lang,['営業CF','（3年合計）'],['영업현금흐름','(3년 합계)'],['Operating cash','flow (3 years)']),1058,1,CF],[L(lang,['機材への投資'],['기재 투자'],['Aircraft']),-600,0],[L(lang,['リース返済'],['리스 상환'],['Lease','repayments']),-180,0],[L(lang,['配当'],['배당'],['Dividends']),-90,0],[L(lang,['借入の','純返済'],['차입','순상환'],['Net loan','repayment']),-50,0],[L(lang,['現金の増加'],['현금 증가'],['Increase','in cash']),138,1,BS]],
+ {h:372,base:270,sc:0.19,x0:52,step:138,bw:92,ly:292,note:L(lang,'稼いだ現金の6割近くが機材に向かった','번 현금의 6할 가까이가 기재로 갔다','Nearly 60% of the cash earned went into aircraft')})},
+fin_common_size:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img">'+Rc(0,0,900,340,'#F7FAFD'),x0=190,sc=6,O='#B9C4D0';
+ var Y=[[L(lang,'1年目','1년 차','Year 1'),22.6,71.4,6.0],[L(lang,'2年目（燃油高騰）','2년 차(유가 급등)','Year 2 (fuel spike)'),31.6,70.1,-1.7],[L(lang,'3年目','3년 차','Year 3'),23.9,69.1,7.0]];
+ Y.forEach(function(y,i){var yy=74+i*72,w1=y[1]*sc,w2=y[2]*sc;
+  s+=tx(x0-12,yy+26,y[0],12.5,D,800,'end')+Rc(x0,yy,w1,40,CF,0)+tx(x0+w1/2,yy+25,y[1].toFixed(1)+'%',13,'#fff',800)+Rc(x0+w1,yy,w2,40,O,0)+tx(x0+w1+w2/2,yy+25,y[2].toFixed(1)+'%',13,D,800);
+  if(y[3]>=0)s+=Rc(x0+w1+w2,yy,y[3]*sc,40,BS,0)+tx(x0+w1+w2+y[3]*sc+8,yy+25,'+'+y[3].toFixed(1)+'%',13,BS,800,'start');
+  else s+=Rc(x0+600,yy,-y[3]*sc,40,R,0)+tx(x0+600-y[3]*sc+8,yy+25,'−'+(-y[3]).toFixed(1)+'%',13,R,800,'start')});
+ s+='<line x1="'+(x0+600)+'" y1="62" x2="'+(x0+600)+'" y2="282" stroke="'+D+'" stroke-width="2" stroke-dasharray="5 4"/>'+tx(x0+600,56,L(lang,'売上 100%','매출 100%','Sales 100%'),11.5,D,700);
+ s+=Rc(150,306,14,14,CF,3)+tx(170,318,L(lang,'燃油費','연료비','Fuel'),12,D,600,'start')+Rc(300,306,14,14,O,3)+tx(320,318,L(lang,'燃油以外の営業費用','연료 외 영업비용','Non-fuel operating costs'),12,D,600,'start')+Rc(560,306,14,14,BS,3)+tx(580,318,L(lang,'営業利益（赤は赤字）','영업이익(빨강은 적자)','Operating profit (red = loss)'),12,D,600,'start');
+ s+=tx(450,28,L(lang,'売上を100としたときの費用と利益。2年目は費用が100を超えた','매출을 100으로 했을 때의 비용과 이익. 2년 차는 비용이 100을 넘었다','Costs and profit per 100 of sales. In year 2 costs exceeded 100'),12.5,D,600);
+ return s+'</svg>'},
+fin_ev_bridge:function(lang){return WF(L(lang,'企業価値（EV）＝ 時価総額 ＋ 純有利子負債（Vela Air、億円）','기업가치(EV) = 시가총액 + 순차입금(Vela Air, 억 엔)','Enterprise value (EV) = market cap + net debt (Vela Air, 100m yen)'),[
+ [L(lang,['株式時価総額','（株主の値段）'],['시가총액','(주주의 값)'],['Market cap','(the owners’ price)']),1500,1,PL],[L(lang,['純有利子負債','（借入 − 現金）'],['순차입금','(차입 − 현금)'],['Net debt','(debt − cash)']),732,0,R],[L(lang,['企業価値（EV）','（事業の値段）'],['기업가치(EV)','(사업의 값)'],['Enterprise value','(price of the business)']),2232,1,D]],
+ {h:372,base:262,sc:0.085,x0:120,step:250,bw:150,ly:286,note:L(lang,'EV 2,232 ÷ EBITDA 501 ＝ 4.5倍　／　時価総額 1,500 ÷ 純利益 127 ＝ PER 11.8倍','EV 2,232 ÷ EBITDA 501 = 4.5배 / 시가총액 1,500 ÷ 순이익 127 = PER 11.8배','EV 2,232 ÷ EBITDA 501 = 4.5× / market cap 1,500 ÷ net profit 127 = PER 11.8×')})},
+fin_dcf_value:function(lang){return WF(L(lang,'DCFで出したVela Airの価値（億円、割引率5%・成長率0.5%）','DCF로 구한 Vela Air의 가치(억 엔, 할인율 5%·성장률 0.5%)','Vela Air valued by DCF (100m yen; 5% discount rate, 0.5% growth)'),[
+ [L(lang,['5年分のFCFの','現在価値'],['5년 치 FCF의','현재가치'],['PV of five','years of FCF']),517,1,PL],[L(lang,['継続価値の','現在価値'],['영구가치의','현재가치'],['PV of the','terminal value']),2275,0,CF],[L(lang,['企業価値','（EV）'],['기업가치','(EV)'],['Enterprise','value']),2792,1,D],[L(lang,['純有利子負債'],['순차입금'],['Net debt']),-732,0,R],[L(lang,['株主価値','（1株2,060円）'],['주주가치','(1주 2,060엔)'],['Equity value','(2,060 yen a share)']),2060,1,BS]],
+ {h:372,base:262,sc:0.07,x0:70,step:162,bw:104,ly:286,note:L(lang,'企業価値の8割が継続価値。前提が少し動くだけで答えは大きく変わる','기업가치의 8할이 영구가치. 전제가 조금만 움직여도 답이 크게 바뀐다','Four-fifths of the value is terminal value: small changes in assumptions move the answer a lot')})},
+fin_normalize:function(lang){return WF(L(lang,'決算書のEBITDAを「正常な稼ぎ」に直す（ミナト・グランドサービス、百万円）','결산서의 EBITDA를 「정상적인 벌이」로 고친다(미나토 그라운드 서비스, 백만 엔)','From reported EBITDA to normalised earnings (Minato Ground Services, million yen)'),[
+ [L(lang,['決算書の','EBITDA'],['결산서의','EBITDA'],['Reported','EBITDA']),180,1,'#8A96A3'],[L(lang,['役員報酬'],['임원 보수'],['Owner pay']),40,0],[L(lang,['節税保険'],['절세 보험'],['Tax-driven','insurance']),20,0],[L(lang,['私的な','経費'],['사적','경비'],['Private','expenses']),10,0],[L(lang,['未払いの','残業代'],['미지급','잔업수당'],['Unpaid','overtime']),-15,0],[L(lang,['一時の','修繕費'],['일회성','수선비'],['One-off','repairs']),12,0],[L(lang,['一時の','補助金'],['일회성','보조금'],['One-off','subsidy']),-18,0],[L(lang,['正常収益力'],['정상 수익력'],['Normalised','earnings']),229,1,BS]],
+ {h:372,base:262,sc:1.2,off:100,x0:44,step:104,bw:74,ly:286,note:L(lang,'足す調整だけでなく、引く調整も探す。※ 縦軸は100から','더하는 조정뿐 아니라 빼는 조정도 찾는다. ※ 세로축은 100부터','Look for adjustments that reduce earnings, not only those that add. * Axis starts at 100')})},
+fin_net_assets:function(lang){return WF(L(lang,'帳簿の純資産を「実態純資産」に直す（百万円）','장부의 순자산을 「실질 순자산」으로 고친다(백만 엔)','From book net assets to real net assets (million yen)'),[
+ [L(lang,['帳簿の','純資産'],['장부의','순자산'],['Book','net assets']),500,1,'#8A96A3'],[L(lang,['社長への','貸付金'],['사장','대여금'],['Loan to','the owner']),-60,0],[L(lang,['古い売掛金','・在庫'],['오래된 채권','·재고'],['Old receivables','and stock']),-20,0],[L(lang,['退職給付の','積立不足'],['퇴직급여','미적립'],['Pension','shortfall']),-80,0],[L(lang,['未払いの','残業代'],['미지급','잔업수당'],['Unpaid','overtime']),-30,0],[L(lang,['保険の','含み益'],['보험의','평가이익'],['Gain on','insurance']),30,0],[L(lang,['実態純資産'],['실질 순자산'],['Real net','assets']),340,1,BS]],
+ {h:372,base:262,sc:0.6,off:200,x0:52,step:118,bw:82,ly:286,note:L(lang,'差の160は、決算書を読むだけでは見えない。※ 縦軸は200から','차이 160은 결산서를 읽는 것만으로는 보이지 않는다. ※ 세로축은 200부터','The gap of 160 cannot be seen from the accounts alone. * Axis starts at 200')})},
+fin_report_map:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 370" role="img">'+Rc(0,0,900,370,'#F7FAFD');
+ function bx(x,y,w,h,c,t1,t2){var o=Rc(x,y,w,h,'#fff',12,' stroke="'+c+'" stroke-width="3"')+tx(x+w/2,y+25,t1,14.5,c,800);t2.forEach(function(l,j){o+=tx(x+w/2,y+46+j*15,l,11.5,D,600)});return o}
+ function ln(x1,y1,x2,y2){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+G+'" stroke-width="2"/>'}
+ s+=ln(450,104,450,124)+ln(165,124,735,124);[165,450,735].forEach(function(x){s+=ln(x,124,x,142)+ln(x,222,x,252)});
+ s+=bx(230,36,440,68,PL,L(lang,'① 結論','① 결론','1. Conclusion'),L(lang,['投資するか・いくらで・どんな条件で'],['투자할 것인가·얼마에·어떤 조건으로'],['Invest or not, at what price, on what terms']));
+ var M=[[L(lang,'② 事業','② 사업','2. Business'),L(lang,['何で稼ぎ、誰が払い、','なぜ続くか'],['무엇으로 벌고 누가 내며','왜 이어지는가'],['What it earns from, who pays,','and why it lasts'])],[L(lang,'③ 数字','③ 숫자','3. Numbers'),L(lang,['正常収益力・実態純資産・','純有利子負債'],['정상 수익력·실질 순자산·','순차입금'],['Normalised earnings, real','net assets, net debt'])],[L(lang,'④ 価値','④ 가치','4. Value'),L(lang,['倍率とDCFで幅を出し、','価格を決める'],['배수와 DCF로 범위를 내고','가격을 정한다'],['A range from multiples','and DCF, then a price'])]];
+ var B=[[L(lang,'⑤ リスクと対応','⑤ 리스크와 대응','5. Risks and responses'),L(lang,['価格・契約・条件の','どれで受けるか'],['가격·계약·조건 가운데','어느 것으로 받을까'],['Price, contract or','condition?'])],[L(lang,'⑥ 投資の形と回収','⑥ 투자 구조와 회수','6. Structure and exit'),L(lang,['出資と借入、買ったあとの','計画、出口'],['출자와 차입, 인수 후의','계획, 회수'],['Equity and debt, the plan','after buying, the exit'])],[L(lang,'⑦ 次にすること','⑦ 다음에 할 일','7. Next steps'),L(lang,['追加の確認、日程、','承認を求める事項'],['추가 확인, 일정,','승인을 구하는 사항'],['Further checks, timetable,','approvals sought'])]];
+ [40,325,610].forEach(function(x,i){s+=bx(x,142,250,80,BS,M[i][0],M[i][1])+bx(x,252,250,80,CF,B[i][0],B[i][1])});
+ s+=tx(450,356,L(lang,'読む人は上から読む。書く人は③の数字から固めて、①を最後に書く','읽는 사람은 위에서부터 읽는다. 쓰는 사람은 ③ 숫자부터 굳히고 ①을 마지막에 쓴다','Readers start at the top; the writer firms up box 3 first and writes box 1 last'),12.5,D,600);
+ return s+'</svg>'},
+fin_value_range:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD'),x0=280,sc=0.47;function X(v){return x0+v*sc}
+ s+='<line x1="'+X(0)+'" y1="262" x2="'+X(1200)+'" y2="262" stroke="'+D+'" stroke-width="2"/>';[0,200,400,600,800,1000,1200].forEach(function(v){s+='<line x1="'+X(v)+'" y1="262" x2="'+X(v)+'" y2="268" stroke="'+D+'" stroke-width="2"/>'+tx(X(v),284,v.toLocaleString('en-US'),11.5,G,600)});
+ var Rw=[[L(lang,'倍率法（EBITDAの5〜6倍）','배수법(EBITDA의 5~6배)','Multiples (5–6× EBITDA)'),685,914,PL],[L(lang,'DCF（割引率8〜10%）','DCF(할인율 8~10%)','DCF (8–10% discount rate)'),762,1111,CF]];
+ Rw.forEach(function(r,i){var y=84+i*58;s+=tx(x0-16,y+24,r[0],12.5,D,800,'end')+Rc(X(r[1]),y,(r[2]-r[1])*sc,36,r[3],8)+tx(X(r[1])-7,y+24,r[1].toLocaleString('en-US'),12.5,D,800,'end')+tx(X(r[2])+7,y+24,r[2].toLocaleString('en-US'),12.5,D,800,'start')});
+ s+=tx(x0-16,224,L(lang,'実態純資産（下の目安）','실질 순자산(아래쪽 기준)','Real net assets (a floor)'),12.5,D,800,'end')+Rc(X(340)-6,200,12,36,BS,4)+tx(X(340)+14,224,'340',12.5,BS,800,'start');
+ s+='<line x1="'+X(800)+'" y1="66" x2="'+X(800)+'" y2="258" stroke="'+D+'" stroke-width="2.5" stroke-dasharray="6 4"/>'+tx(X(800),58,L(lang,'提示する価格 800','제시 가격 800','Offer 800'),13,D,800);
+ s+=tx(450,28,L(lang,'ミナト・グランドサービスの株式の価値：方法ごとの幅を重ねる','미나토 그라운드 서비스의 주식 가치: 방법별 범위를 겹쳐 본다','Minato Ground Services, equity value: overlaying the range from each method'),12.5,D,600)+tx(X(1200),308,L(lang,'（百万円）','(백만 엔)','(million yen)'),11.5,G,600,'end');
  return s+'</svg>'}
 };
+/* 滑り台（ウォーターフォール）グラフ。items：[ラベルの行の配列, 値, 1＝合計の棒／0＝増減の棒, 色]。o.off で縦軸の始まりを変える */
+function WF(title,items,o){var off=o.off||0,run=off,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+o.h+'" role="img">'+Rc(0,0,900,o.h,'#F7FAFD')+tx(450,28,title,12.5,D,600)+'<line x1="30" y1="'+o.base+'" x2="870" y2="'+o.base+'" stroke="'+D+'" stroke-width="2"/>';
+ items.forEach(function(it,i){var x=o.x0+i*o.step,v=it[1],a,b,c;
+  if(it[2]){a=off;b=v;c=it[3]||(v<0?R:PL)}else{a=run;b=run+v;c=it[3]||(v<0?R:BS)}run=b;
+  var hi=Math.max(a,b),top=o.base-(hi-off)*o.sc,ht=Math.max(Math.abs(b-a)*o.sc,2),below=hi<=off&&off===0&&b<0;
+  s+=Rc(x,top,o.bw,ht,c,5)+tx(x+o.bw/2,below?top+ht+16:top-7,(v<0?'−':(it[2]?'':'+'))+Math.abs(v).toLocaleString('en-US'),13.5,c===R?R:D,800);
+  it[0].forEach(function(l,j){s+=tx(x+o.bw/2,o.ly+j*15,l,11.5,D,700)});
+  if(i<items.length-1){var yl=o.base-(run-off)*o.sc;s+='<line x1="'+(x+o.bw)+'" y1="'+yl+'" x2="'+(x+o.step)+'" y2="'+yl+'" stroke="'+G+'" stroke-width="1.5" stroke-dasharray="3 3"/>'}});
+ if(o.note)s+=tx(450,o.h-14,o.note,12.5,D,600);
+ return s+'</svg>'}
 for(var k in F)window.FIGS[k]=F[k];
 })();
