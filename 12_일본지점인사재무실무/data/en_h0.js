@@ -173,6 +173,20 @@ deep:[
 {name:"Employment insurance",x:"The rate is applied to total pay for the month, including the commuting allowance. Unlike health insurance, it uses the amount actually paid, not the standard monthly remuneration. There are three rates by type of business, and they can change every April."},
 {name:"Workers’ accident insurance",x:"Paid entirely by the employer. The rate differs by type of business (the table shows “other businesses”). It is applied to total wages for the year and declared and paid together with employment insurance in the annual renewal each June to July. ★"},
 {name:"Child and childcare contribution",x:"Paid entirely by the employer. It is applied to the pension standard monthly remuneration and billed with social insurance. It is a different scheme from the support levy deducted from pay."}]}]},
+{h:"Income tax: monthly withholding and the year-end adjustment",blocks:[
+{t:"p",x:"Income tax is charged on a year’s income. The company deducts an estimate from each month’s pay (withholding), recalculates the full year in the December year-end adjustment, and refunds or collects the difference."},
+{t:"taxcalc",pay:3600000},
+{t:"rows",items:[
+{name:"Monthly withholding",x:"The tax comes from column A (甲) of the withholding tax table, using pay after social insurance and the number of dependants. Anyone who has not filed the dependants declaration falls under column B (乙), where the tax is higher."},
+{name:"Changes for 2026",x:"The basic deduction is now 620,000 yen, and 1,040,000 yen including a special addition for those with total income of 4.89 million yen or less. The minimum employment income deduction is 740,000 yen. The monthly tables did not change: the increase is settled in one go in the December year-end adjustment. ★"},
+{name:"Rates",x:"5% on taxable income up to 1.95 million yen, 10% up to 3.3 million and 20% up to 6.95 million, then 23%, 33%, 40% and 45%. A higher rate applies only to the part above each band. A 2.1% reconstruction surtax is added to the income tax. ★"},
+{name:"What the year-end adjustment reflects",x:"The spouse and dependant deductions, life insurance deduction, housing loan credit and so on. People paid over 20 million yen, or with side income over 200,000 yen, file their own return."}]}]},
+{h:"Residence tax: 10% of last year’s income",blocks:[
+{t:"rows",items:[
+{name:"Calculation",x:"An income-based part (last year’s taxable income × 10%) plus a flat part (5,000 yen a year). In Tokyo’s 23 wards the 10% is 4% metropolitan tax and 6% ward tax. The 5,000 yen includes a 1,000 yen forest environment tax. ★"},
+{name:"How it is deducted",x:"The company deducts it from monthly pay and pays it to the municipality where the employee lives (special collection): twelve instalments from June to the following May, exactly as stated in the tax notice the municipality sends around May."},
+{name:"First year and leaving",x:"With no income in the previous year there is no residence tax in the first year. On leaving, the balance is either deducted in full from the final pay or switched to payment by the individual."},
+{name:"Differences by area",x:"The 10% is almost the same nationwide. Some municipalities add a few hundred to a thousand yen to the flat part. ★"}]}]},
 {h:"When rates change and where to check",blocks:[
 {t:"table",cols:["Item","When it changes","Where to check"],rows:[
 ["Health and long-term care insurance","From the March portion (paid in April) each year","The Association’s premium table for each prefecture"],
@@ -180,8 +194,31 @@ deep:[
 ["Employees’ pension","Fixed at 18.3% (since September 2017)","Japan Pension Service"],
 ["Employment insurance","1 April each year","Ministry of Health, Labour and Welfare"],
 ["Workers’ accident insurance","Every three years as a rule (next expected April 2027 ★)","Ministry of Health, Labour and Welfare"],
-["Child and childcare contribution","April each year (0.36% in recent years)","Japan Pension Service"]]},
+["Child and childcare contribution","April each year (0.36% in recent years)","Japan Pension Service"],
+["Income tax","When the tax law changes (2026 is reflected at year-end; the tables change from January 2027 ★)","National Tax Agency"],
+["Residence tax","A new annual amount from June each year","The municipality’s tax notice"]]},
 {t:"note",x:"* The rate tables and the calculation in this lesson are generated from a single list of rates. Check the “rates checked on” date under each table, and always use the official premium table in force for real payroll. ★"}]}],
+deepKr:[
+{h:"Calculating the four social insurances",blocks:[
+{t:"p",x:"From here on the basis is the Korean system. The National Pension, health insurance, long-term care insurance and employment insurance are a rate applied to pay, split equally between employee and employer. Industrial accident insurance is paid entirely by the employer."},
+{t:"rates",keys:["kr_np","kr_hi","kr_ltc","kr_ei","kr_ei2","kr_ia"]},
+{t:"rows",items:[
+{name:"Standard monthly income (National Pension)",x:"The pension rate is applied to a standard monthly income with an upper and a lower limit: 6.59 million won and 410,000 won from July 2026, revised every July. ★"},
+{name:"Monthly remuneration (health and employment insurance)",x:"Monthly pay excluding tax-free allowances. Health insurance is trued up the following April, once the previous year’s pay is final."},
+{name:"Long-term care insurance",x:"A set percentage of the health insurance premium (13.14% in 2026), equal to 0.9448% of monthly remuneration."}]}]},
+{h:"A worked example at 3 million won",blocks:[
+{t:"paycalc",kr:1,std:3000000},
+{t:"point",x:"On top of pay, the employer pays about 11% of pay for the four insurances. It is smaller than in Japan (about 16%) because the pension and health insurance rates are lower."}]},
+{h:"Income tax and local income tax",blocks:[{t:"rows",items:[
+{name:"Monthly withholding",x:"The tax comes from the National Tax Service’s simplified withholding table, using monthly pay and the number of dependants. Local income tax is 10% of the income tax and is deducted with it."},
+{name:"Year-end settlement",x:"The year’s tax is recalculated and the difference settled in the following February’s pay. Deductions for insurance, medical and education costs and card spending are reflected here."},
+{name:"Rates",x:"6% on a tax base up to 14 million won, 15% up to 50 million and 24% up to 88 million, then 35%, 38%, 40%, 42% and 45%. ★"}]}]},
+{h:"When Korean rates change and where to check",blocks:[{t:"table",cols:["Item","When it changes","Where to check"],rows:[
+["National Pension","The rate rises 0.5 points a year from 2026, to reach 13% in 2033 as planned; limits change every July ★","National Pension Service"],
+["Health and long-term care insurance","January each year","National Health Insurance Service"],
+["Employment insurance","When amended (the 1.8% for unemployment benefit dates from July 2022)","Korea Workers’ Compensation and Welfare Service; Ministry of Employment and Labor"],
+["Industrial accident insurance","January each year, by industry","Korea Workers’ Compensation and Welfare Service"],
+["Income tax","When the tax law changes; the simplified table is published by the tax authority","National Tax Service (Hometax)"]]}]}],
 voice:"Payroll mistakes cost trust quickly. Make it a habit for someone other than the person who calculated it to check at least anyone whose pay differs a lot from last month.",
 terms:[["Gross Pay","総支給額","총지급액"],["Take-home Pay","手取り","수령액"],["Withholding Tax","源泉徴収","원천징수"],["Standard Monthly Remuneration","標準報酬月額","표준보수월액"],["Residence Tax Deducted from Pay","特別徴収","특별징수"]],
 quiz:[{q:"(Japan) What is residence tax based on?",opts:["This month’s pay","Last year’s income","Next year’s forecast","Company profit"],a:1,exp:"It is based on last year’s income and deducted in twelve instalments from June."},
