@@ -3,13 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>航空会社経営シミュレーション ― Vela Airの1年を3つの表で動かす</title>
+<title>航空会社経営シミュレーション ― Vela Airの1年</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
 *{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 .wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
 header{position:relative}header h1{margin:0 0 8px}html[lang=ko] header h1,html[lang=ko] header p{word-break:keep-all}
-.courselink{font-size:13px;margin:16px 4px 0}.courselink a{color:#1d5fa0}
 h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
 .langs{display:inline-flex}.langs button{cursor:pointer}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
@@ -76,11 +75,10 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 <div class="card"><div class="why" id="why"></div></div>
 <div class="card summary" id="sumcard" style="display:none"><h2 id="t_sum"></h2><div id="summary"></div><div class="verdict" id="verdict"></div></div>
 <div class="card"><h2 id="t_how"></h2><div id="how"></div><div class="note" id="t_note"></div></div>
-<p class="courselink"><a href="00_シリーズ全体_財務3表.html" id="back"></a></p>
 </div>
 <script>
 var L={
-ja:{title:'航空会社経営シミュレーション ― Vela Airの1年を3つの表で動かす',lead:'架空の航空会社 Vela Air の経営を1年（4四半期）担当します。四半期ごとに状況が示され、対応を1つ選びます。損益計算書・貸借対照表・キャッシュフロー計算書が同時に動き、「なぜそう動いたか」を毎回解説します。',
+ja:{title:'航空会社経営シミュレーション ― Vela Airの1年',lead:'架空の航空会社 Vela Air の経営を1年（4四半期）担当します。四半期ごとに状況が示され、対応を1つ選びます。損益計算書・貸借対照表・キャッシュフロー計算書が同時に動き、「なぜそう動いたか」を毎回解説します。',
  q:'第{n}四半期',situ:'状況',dec:'対応（1つ選ぶ）',ovr:'状況を自分で変える',ovrlead:'空欄なら決まった状況のまま。入力すると、この四半期だけ上書きします。',oil:'原油価格の変化（%）',fx:'為替（円/ドル）',lfd:'座席利用率の変化（ポイント）',cust:'対応を直接入力',cfare:'運賃の変化（%）',ccap:'供給（座席キロ）の変化（%）',ccut:'燃油・ハンドリングの削減（%）',cbuy:'機材の購入（機）',clease:'機材のリース（機）',chedge:'燃油ヘッジを結ぶ',cfsc:'燃油サーチャージを改定',go:'この四半期を進める',restart:'最初からやり直す',done:'1年が終わりました。下に結果があります。',hint:'対応を選ぶと進められます',
  stmts:'3つの表（この四半期）',pl:'損益計算書',bs:'貸借対照表（四半期末）',cf:'キャッシュフロー計算書',assets:'資産',liabeq:'負債＋純資産',unit:'億円',
  rev:'売上高',costs:'営業費用',op:'営業利益',int:'支払利息（純額）',tax:'法人税',net:'当期純利益',
@@ -114,7 +112,7 @@ ja:{title:'航空会社経営シミュレーション ― Vela Airの1年を3つ
       ['費用の動き方','燃油・ハンドリング・整備・空港使用料は座席キロ（飛ばした量）に比例して増減します。人件費・減価償却・賃借料は飛ばしても飛ばさなくてもほぼ同じ（固定費）。販売費は旅客収入の4%前後、その他は半分が乗客数に比例、半分が固定です。'],
       ['利益と現金のずれ','減価償却は過去に払った機材代を分割して費用にしているので、お金は出ていきません。航空券は乗る前に売れるので、前受金が増えると利益より先に現金が入ります。逆に機材の購入は一度に現金が出ますが、費用には少しずつしかなりません。'],
       ['指標','座席キロあたり収入（RASK）＝売上÷座席キロ、座席キロあたり費用（CASK）＝費用÷座席キロ。RASKがCASKを上回れば黒字。損益分岐の利用率は、いまの単価で何%席が埋まれば費用を回収できるかです。']]},
-ko:{title:'항공사 경영 시뮬레이션 — Vela Air의 1년을 세 가지 재무제표로 움직이기',lead:'가상 항공사 Vela Air의 경영을 1년(4분기) 맡습니다. 분기마다 상황이 주어지고, 한 가지 대응을 고릅니다. 손익계산서·재무상태표·현금흐름표가 동시에 움직이고, 「왜 그렇게 움직였나」를 매번 해설합니다.',
+ko:{title:'항공사 경영 시뮬레이션 — Vela Air의 1년',lead:'가상 항공사 Vela Air의 경영을 1년(4분기) 맡습니다. 분기마다 상황이 주어지고, 한 가지 대응을 고릅니다. 손익계산서·재무상태표·현금흐름표가 동시에 움직이고, 「왜 그렇게 움직였나」를 매번 해설합니다.',
  q:'제{n}분기',situ:'상황',dec:'대응(하나 선택)',ovr:'상황을 직접 바꾸기',ovrlead:'비워 두면 정해진 상황 그대로. 입력하면 이번 분기만 덮어씁니다.',oil:'유가 변동(%)',fx:'환율(엔/달러)',lfd:'탑승률 변화(%p)',cust:'대응 직접 입력',cfare:'운임 변동(%)',ccap:'공급(좌석킬로) 변동(%)',ccut:'연료·조업 절감(%)',cbuy:'항공기 구매(대)',clease:'항공기 리스(대)',chedge:'연료 헤지 계약',cfsc:'유류할증료 개정',go:'이 분기를 진행',restart:'처음부터 다시',done:'1년이 끝났습니다. 아래에 결과가 있습니다.',hint:'대응을 고르면 진행할 수 있습니다',
  stmts:'세 가지 재무제표(이번 분기)',pl:'손익계산서',bs:'재무상태표(분기 말)',cf:'현금흐름표',assets:'자산',liabeq:'부채+자본',unit:'억 엔',
  rev:'매출',costs:'영업비용',op:'영업이익',int:'이자 비용(순액)',tax:'법인세',net:'당기순이익',
@@ -148,7 +146,7 @@ ko:{title:'항공사 경영 시뮬레이션 — Vela Air의 1년을 세 가지 �
       ['비용이 움직이는 법','연료·조업·정비·공항 사용료는 좌석킬로(띄운 양)에 비례해 늘고 줍니다. 인건비·감가상각·임차료는 띄우든 안 띄우든 거의 같습니다(고정비). 판매비는 여객 수입의 4% 안팎, 기타는 절반이 승객 수에 비례하고 절반은 고정입니다.'],
       ['이익과 현금의 어긋남','감가상각은 과거에 낸 항공기 대금을 나눠서 비용으로 잡는 것이라 돈이 나가지 않습니다. 항공권은 타기 전에 팔리므로 선수금이 늘면 이익보다 먼저 현금이 들어옵니다. 반대로 항공기 구매는 한 번에 현금이 나가지만 비용으로는 조금씩만 잡힙니다.'],
       ['지표','좌석킬로당 수입(RASK) = 매출 ÷ 좌석킬로, 좌석킬로당 비용(CASK) = 비용 ÷ 좌석킬로. RASK가 CASK를 넘으면 흑자. 손익분기 탑승률은 지금 단가로 좌석을 몇 % 채워야 비용을 회수하는지입니다.']]},
-en:{title:'Airline Management Simulation: a year of Vela Air in three statements',lead:'Run the fictional airline Vela Air for one year, quarter by quarter. Each quarter you are given a situation and choose one response. The income statement, balance sheet and cash flow statement move together, and every quarter the simulation explains why.',
+en:{title:'Airline Management Simulation: Vela Air',lead:'Run the fictional airline Vela Air for one year, quarter by quarter. Each quarter you are given a situation and choose one response. The income statement, balance sheet and cash flow statement move together, and every quarter the simulation explains why.',
  q:'Quarter {n}',situ:'Situation',dec:'Response (choose one)',ovr:'Change the situation yourself',ovrlead:'Leave blank to keep the scripted situation. Entered values override this quarter only.',oil:'Oil price change (%)',fx:'Exchange rate (yen/USD)',lfd:'Load factor change (points)',cust:'Enter your own response',cfare:'Fare change (%)',ccap:'Capacity (seat-km) change (%)',ccut:'Fuel and handling savings (%)',cbuy:'Aircraft purchased',clease:'Aircraft leased',chedge:'Hedge fuel',cfsc:'Revise fuel surcharges',go:'Run this quarter',restart:'Start over',done:'The year is over. Results are below.',hint:'Choose a response to continue',
  stmts:'The three statements (this quarter)',pl:'Income statement',bs:'Balance sheet (quarter end)',cf:'Cash flow statement',assets:'Assets',liabeq:'Liabilities + equity',unit:'100m yen',
  rev:'Revenue',costs:'Operating costs',op:'Operating profit',int:'Net interest',tax:'Income tax',net:'Net profit',
@@ -232,7 +230,7 @@ function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k]!==und
 function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title;
  ['title','lead','situ','dec','stmts','pl','bs','cf','assets','liabeq','why','sum','how','note','ovr','ovrlead','oil','fx','lfd','cust','cfare','ccap','ccut','cbuy','clease','chedge','cfsc'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});
  document.getElementById('custbox').style.display=picked==='custom'?'':'none';document.getElementById('ovrbox').style.display=S.q>=4?'none':'';
- document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
  var done=S.q>=4, qn=Math.min(S.q+1,4);
  document.getElementById('qbar').innerHTML=[0,1,2,3].map(function(i){return '<span class="'+(i<S.q?'done':i===S.q&&!done?'now':'')+'"></span>'}).join('');
  document.getElementById('t_q').textContent=done?d.done:fill(d.q,{n:qn});

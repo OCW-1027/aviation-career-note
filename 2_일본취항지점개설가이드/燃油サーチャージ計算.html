@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>日本発 燃油サーチャージの計算 ― 基準の燃油価格から申請書の下書きまで</title>
+<title>日本発 燃油サーチャージの計算 ― 申請書の下書きまで</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--acc:#2f8fe0;--cf:#e08a2f}
 *{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
@@ -54,10 +54,9 @@ ol.why code{background:#f2f6fa;border-radius:5px;padding:1px 6px;font-family:ui-
 .paper h3{text-align:center;font-size:17px;margin:22px 0 14px}.paper h4{font-size:14.5px;margin:18px 0 6px}
 .paper .r{text-align:right}.paper p{margin:6px 0}.paper table{font-size:13px;margin:8px 0}
 .paper th,.paper td{border:1px solid #000;background:#fff}.paper hr{border:0;border-top:1px dashed #999;margin:26px 0}
-.courselink{font-size:13px;margin:16px 4px 0}.courselink a{color:#1d5fa0}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 @media(max-width:700px){.paper{padding:18px 14px}}
-@media print{body{background:#fff}.shbar,header,.bar,.privacy,#note,.courselink,.nv-fab,#app>.card:not(#docsec),#docsec>*:not(.paper){display:none!important}.wrap{padding:0;max-width:none}#docsec{border:0;padding:0;margin:0}.paper{border:0;padding:0;margin:0}}
+@media print{body{background:#fff}.shbar,header,.bar,.privacy,#note,.shfoot,.nv-fab,#app>.card:not(#docsec),#docsec>*:not(.paper){display:none!important}.wrap{padding:0;max-width:none}#docsec{border:0;padding:0;margin:0}.paper{border:0;padding:0;margin:0}}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="fsc"></script>
 <script src="../8_사이트/assets/member_config.js"></script>
@@ -70,18 +69,17 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 <p class="privacy" id="privacy"></p>
 <div id="app"></div>
 <p class="note" id="note"></p>
-<p class="courselink"><a href="00_シリーズ全体_財務3表.html" id="back"></a></p>
 </div>
 <script>
 /* 日本発 燃油サーチャージの計算（2026-10）
    参照期間のシンガポールケロシン平均（USD/バレル）× 為替平均 → 円換算 → 自社の適用表で旅客・貨物の額を決め、
    追加の燃油コストに対する回収率（補填率）を確かめ、申請書の下書き（日本語）を作る。
-   入っている数字は Vela Air（架空）の例。入力はこのブラウザに保存し、ログイン中は会員の記録（user_docs: fsc）にも保存する。 */
+   入っている数字は Vela Air（架空）の例。講座は「外国航空会社の日本就航・支店開設ガイド」1-4（運賃・燃油サーチャージの認可）。入力はこのブラウザに保存し、ログイン中は会員の記録（user_docs: fsc）にも保存する。 */
 var KEY='acn-fsc-v1',LS=['ja','ko','en'],NL=String.fromCharCode(10),TAB=String.fromCharCode(9);
 var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(LS.indexOf(s)>=0)return s}catch(e){}return 'ja'})();
 var LI=LS.indexOf(L),doc='p';
 var X={
-ttl:['日本発 燃油サーチャージの計算 ― 基準の燃油価格から申請書の下書きまで','일본발 유류할증료 계산 — 기준 유가에서 신청서 초안까지','Japan-Origin Fuel Surcharge Calculator: From the Baseline Fuel Price to a Filing Draft'],
+ttl:['日本発 燃油サーチャージの計算 ― 申請書の下書きまで','일본발 유류할증료 계산 — 신청서 초안까지','Japan-Origin Fuel Surcharge Calculator'],
 lead:['シンガポールケロシンの平均価格と為替の平均から円換算額を出し、自社の適用表で旅客・貨物の燃油サーチャージ額を決め、追加の燃油コストに対する回収率を確かめて、申請書の下書きまで作ります。入っている数字は Vela Air（架空の航空会社）の例です。自社の数字に書きかえて使ってください。','싱가포르 케로신 평균 가격과 환율 평균으로 엔화 환산액을 구하고, 자사 적용표로 여객·화물 유류할증료를 정한 뒤, 추가 연료비 대비 회수율을 확인하고 신청서 초안까지 만듭니다. 들어 있는 숫자는 Vela Air(가상 항공사)의 예시입니다. 자사 숫자로 바꿔서 쓰세요.','Turn the average Singapore kerosene price and the average exchange rate into yen per barrel, read the passenger and cargo surcharge off your own bracket tables, check the recovery ratio against the extra fuel cost, and produce a filing draft. The figures shown are an example for Vela Air, a fictional airline: replace them with your own.'],
 privacy:['入力した内容は、このブラウザ（この端末）に自動で保存されます。ログインしているときは会員の記録にも保存され、別の端末でも続きから使えます。共用のパソコンでは、使い終わったら「すべて消す」を押してください。','입력한 내용은 이 브라우저(이 기기)에 자동으로 저장됩니다. 로그인한 상태에서는 회원 기록에도 저장되어 다른 기기에서도 이어서 쓸 수 있습니다. 공용 컴퓨터에서는 다 쓴 뒤 「모두 지우기」를 눌러 주세요.','What you enter is saved automatically in this browser on this device. When you are logged in it is also saved to your member record, so you can continue on another device. On a shared computer, press “Clear all” when you finish.'],
 ex:['例に戻す','예시로 되돌리기','Reset to example'],exC:['今の内容を例で置き換えます。よろしいですか？','지금 내용을 예시로 바꿉니다. 괜찮습니까?','Replace everything with the example?'],
@@ -125,7 +123,6 @@ sumn:['相手国発の便や収入も合わせて申請する場合は、便と�
 doc1:['旅客の申請書','여객 신청서','Passenger filing'],doc2:['貨物の申請書','화물 신청서','Cargo filing'],prt:['印刷・PDFに保存','인쇄·PDF 저장','Print / save as PDF'],wrd:['Wordで保存','Word로 저장','Save as Word'],cpy:['文章をコピー','문장 복사','Copy text'],cpd:['コピーしました','복사했습니다','Copied'],
 docn:['申請書は日本語で作ります。様式・記載事項・提出先は変わることがあります。提出の前に国土交通省の最新の案内と、自社の前回の申請書で確認してください ★','신청서는 일본어로 만듭니다. 양식·기재 사항·제출처는 바뀔 수 있습니다. 제출 전에 국토교통성의 최신 안내와 자사의 지난 신청서로 확인하세요 ★','The filing is produced in Japanese. Forms, required items and where to file can change: check the latest MLIT guidance and your own previous filing before submitting ★'],
 note:['※ 入っている会社名・便・数字はすべて架空の例です。計算の考え方を学ぶためのもので、実際の申請の可否や金額を保証するものではありません。','※ 들어 있는 회사명·편·숫자는 모두 가상의 예시입니다. 계산 방식을 익히기 위한 것으로, 실제 신청의 가부나 금액을 보증하지 않습니다.','* The company, flights and figures are fictional examples for learning how the calculation works; they do not guarantee any real filing or amount.'],
-back:['← 講座の目次','← 강좌 목차','← Course index'],
 swipe:['← 横にスクロールできます →','← 옆으로 밀어서 보기 →','← Scroll sideways →']};
 var FL={name:['会社名（申請書の表記）','회사명(신청서 표기)','Company name (as filed)'],addr:['本社の住所','본사 주소','Head office address'],jp:['日本の事務所の住所','일본 사무소 주소','Office address in Japan'],tel:['電話','전화','Telephone'],rep:['日本における代表者','일본 내 대표자','Representative in Japan'],min:['国土交通大臣の氏名','국토교통대신 이름','Name of the Minister (MLIT)'],docP:['文書番号（旅客）','문서 번호(여객)','Document no. (passenger)'],docC:['文書番号（貨物）','문서 번호(화물)','Document no. (cargo)'],date:['申請日','신청일','Filing date']};
 var T1=[['4月1日','2月','12月から1月'],['6月1日','4月','2月から3月'],['8月1日','6月','4月から5月'],['10月1日','8月','6月から7月'],['12月1日','10月','8月から9月'],['2月1日','12月','10月から11月']];
@@ -230,7 +227,7 @@ function sw(){return '<p class="sw">'+t('swipe')+'</p>'}
 function add(a,k){return '<button type="button" class="btn" data-act="'+a+'">＋ '+esc(t(k))+'</button>'}
 function langBar(){var g=$('lang');g.innerHTML=LS.map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===L?'on':'')+'" aria-pressed="'+(l===L)+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
  Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){L=b.getAttribute('data-l');LI=LS.indexOf(L);try{localStorage.setItem('art-lang',L)}catch(e){}render()}})}
-function render(){document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('privacy').textContent=t('privacy');$('note').textContent=t('note');$('back').textContent=t('back');langBar();
+function render(){document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('privacy').textContent=t('privacy');$('note').textContent=t('note');langBar();
  D.pax.table.sort(function(a,b){return num(b.th)-num(a.th)});D.cg.table.sort(function(a,b){return num(b.lo)-num(a.lo)});
  $('bar').innerHTML='<button class="btn" id="bEx" type="button">'+esc(t('ex'))+'</button><button class="btn" id="bExp" type="button">'+esc(t('exp'))+'</button><label class="btn" for="fImp">'+esc(t('imp'))+'</label><input type="file" id="fImp" accept=".json,application/json" style="display:none"><button class="btn del" id="bCl" type="button">'+esc(t('clr'))+'</button><span class="saved" id="sv"></span>';
  $('bEx').onclick=function(){if(confirm(t('exC'))){D=EX();save();render()}};

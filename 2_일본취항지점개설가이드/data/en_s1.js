@@ -68,7 +68,7 @@ quiz:[{q:"What proportion of a slot series must normally be used to keep histori
 {q:"Where does planning a new service start?",opts:["Finding a venue for the ceremony","Whether the slots you want are obtainable","Uniform design","Advertising"],a:1,exp:"Without slots there is no service."}],
 next:"1-4 Fare and fuel surcharge approvals"});
 
-set("1-4",{title:"Fare and Fuel Surcharge Approvals",hl:"fare approvals",subtitle:"Fares from Japan, fares from the other end, and the fuel surcharge — all by 30 days before ★",
+set("1-4",{title:"Fare and Fuel Surcharge Approvals",hl:"Fuel Surcharge Approvals",subtitle:"Fares from Japan, fares from the other end, and the fuel surcharge — all by 30 days before ★",
 lead:["The fares and charges a foreign airline uses on services touching Japan need the minister’s approval. That covers ordinary fares, promotional fares, changes to rules such as baggage charges, and the fuel surcharge.","This article covers the legal basis and the deadline, what needs approval, how a fuel surcharge filing runs, and how the work splits between the station and head office."],
 sections:[
 {h:"Approval of fares and charges (Article 129-2)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
@@ -88,7 +88,8 @@ sections:[
 {t:"rows",items:[
 {name:"Review interval (example)",x:"Some airlines review the Japan-origin surcharge every two months and the other origin monthly, in line with the reference price periods."},
 {name:"When the work falls (example)",x:"Prepared and filed in the middle to end of each month, on head office’s instruction."},
-{name:"What competitors do",x:"Watch when and how other airlines on the route change theirs."}]}]},
+{name:"What competitors do",x:"Watch when and how other airlines on the route change theirs."}]},
+{t:"link",href:"燃油サーチャージ計算.html",x:"[Practice page] Japan-Origin Fuel Surcharge Calculator: set the amount from kerosene and exchange-rate averages, check the recovery ratio and draft the filing"}]},
 {h:"Who does what",blocks:[{t:"table",cols:["Task","Usually"],rows:[
 ["Setting the amounts and rules","Head office pricing and sales"],
 ["Drafting and filing in Japanese","The station, or the filing agent"],

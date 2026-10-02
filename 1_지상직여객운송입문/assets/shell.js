@@ -28,6 +28,16 @@ finlink:{ja:'財務諸表の連動シミュレーター',ko:'재무제표 연동
 fincost:{ja:'航空原価計算の練習',ko:'항공 원가 계산 연습',en:'Airline Cost & Break-even Practice'},
 finsim:{ja:'航空会社経営シミュレーション',ko:'항공사 경영 시뮬레이션',en:'Airline Management Simulation'},
 fsc:{ja:'日本発 燃油サーチャージの計算',ko:'일본발 유류할증료 계산',en:'Japan-Origin Fuel Surcharge Calculator'}};
+/* 下の共通ボタン（2026.10）：ツールが属する講座の目次へ・資料室へ。講座のないツールは資料室のボタンだけ */
+var CR={p1:['1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html','旅客ハンドリングの実務','항공 여객운송 실무','Airline Passenger Operations'],
+p2:['2_일본취항지점개설가이드/00_シリーズ全体_日本就航支店開設ガイド.html','外国航空会社の日本就航・支店開設ガイド','외국 항공사 일본 취항·지점 개설 가이드','Launching Flights to Japan: A Station Setup Guide for Foreign Airlines'],
+p5:['5_면접대비가이드/00_シリーズ全体_面接対策.html','航空業界の面接対策','항공업계 면접 대비','Aviation Industry Interview Prep'],
+p13:['13_항공영업입문/00_シリーズ全体_航空営業入門.html','航空営業の実務','항공 영업 실무','Airline Sales Operations'],
+p18:['18_항공기초지식/00_シリーズ全体_航空の基礎知識.html','航空の基礎知識','항공 기초 지식','Aviation Fundamentals'],
+p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','運航管理の実務','운항관리 실무','Flight Dispatch Operations'],
+p23:['23_재무3표실무/00_シリーズ全体_財務3表.html','数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers']};
+var CMAP={load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p18',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23'};
+var FT={ja:['← 講座の目次','資料室','ほかのツールを見る →'],ko:['← 강좌 목차','자료실','다른 도구 보기 →'],en:['\u2190 Course contents','Resources','See other tools \u2192']};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=
 '.shbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:2px 0 14px}'+
@@ -48,7 +58,15 @@ var css=
 'html.sh .wrap>header p,html.sh .shhero p{color:#4A5A6C!important;margin:0!important}'+
 'html.sh-load .wrap>header,html.sh-rm .wrap>header{display:none!important}html.sh-load .shhero,html.sh-rm .shhero{margin-bottom:12px}'+
 'html.sh select,html.sh input{max-width:100%;min-width:0;box-sizing:border-box}html.sh select{text-overflow:ellipsis}html.sh label:has(>select){max-width:100%;min-width:0}'+
-'@media (max-width:600px){.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+
+'.shfoot{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 8px}'+
+'.shfoot a{flex:1 1 260px;display:block;border:1px solid #D6DEE8;border-radius:14px;padding:12px 18px;background:#fff;color:#22303F;text-decoration:none;box-shadow:0 1px 3px rgba(20,40,70,.06);transition:background .15s,border-color .15s}'+
+'.shfoot a:hover{background:#EEF5FD;border-color:#9CC3EA}.shfoot a:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}'+
+'.shfoot small{display:block;font-size:12.5px;font-weight:600;color:#1C6FBF;margin-bottom:3px}.shfoot b{display:block;font-size:15px;font-weight:700;line-height:1.45}'+
+'.shfoot .shl{text-align:right}.shfoot .shl:only-child{flex:0 1 340px;text-align:left}'+
+'html.sh:lang(ko) .wrap>header h1,html.sh:lang(ko) .wrap>header p,html.sh:lang(ko) .shhero h1,html.sh:lang(ko) .shhero p,html.sh:lang(ko) .shfoot b{word-break:keep-all;overflow-wrap:break-word}'+
+'html.sh:lang(en) .wrap>header h1,html.sh:lang(en) .shhero h1{font-size:clamp(22px,3.6vw,31px)!important}'+
+'@media print{.shfoot{display:none!important}}@media (min-width:601px){.shfoot{margin-bottom:130px}}'+
+'@media (max-width:600px){.shfoot .shl{text-align:left}.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+
 'html.sh .shbar .langs button{padding:6px 9px!important;font-size:12.5px!important;min-width:0}'+
 'html.sh .wrap>header,html.sh .shhero{padding:20px 18px 18px!important;border-radius:20px!important}'+
 'html.sh input,html.sh select{min-height:40px}}';
@@ -59,10 +77,14 @@ function init(){var wrap=document.querySelector('.wrap')||document.body;if(docum
  bar.innerHTML='<a class="shbrand" href="'+HOME+'"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></i><span class="shsite"></span></a>'+
   '<div class="shcrumb" role="navigation" aria-label="breadcrumb"><a class="shlib" href="'+HOME+'#tools"></a><span aria-hidden="true">\u203a</span><b class="shcur"></b></div><span class="shlang"></span>';
  wrap.insertBefore(bar,wrap.firstChild);
+ var ck=CMAP[page],ft=document.createElement('nav');ft.className='shfoot';
+ ft.innerHTML=(ck&&me?'<a class="shc" href="'+new URL('../../'+CR[ck][0],me.src).href+'"><small></small><b></b></a>':'')+'<a class="shl" href="'+HOME+'#tools"><small></small><b></b></a>';
+ wrap.appendChild(ft);
  var L=document.getElementById('lang')||document.getElementById('langs');if(L)bar.querySelector('.shlang').appendChild(L);
  if(page==='load'||page==='rm'){var t=document.getElementById('ttl'),d=document.getElementById('lead');if(t){var h=document.createElement('div');h.className='shhero';t.parentNode.insertBefore(h,t);h.appendChild(t);if(d)h.appendChild(d)}}
  label();new MutationObserver(label).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})}
-function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.querySelector('.shsite').textContent=SITE[l];b.querySelector('.shlib').textContent=LIB[l];b.querySelector('.shcur').textContent=(NAME[page]||{})[l]||document.title;b.querySelector('.shbrand').href=HOME+'?lang='+l;b.querySelector('.shlib').href=HOME+'?lang='+l+'#tools'}
+function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.querySelector('.shsite').textContent=SITE[l];b.querySelector('.shlib').textContent=LIB[l];b.querySelector('.shcur').textContent=(NAME[page]||{})[l]||document.title;b.querySelector('.shbrand').href=HOME+'?lang='+l;b.querySelector('.shlib').href=HOME+'?lang='+l+'#tools';
+ var f=document.querySelector('.shfoot');if(f){var x=FT[l],c=f.querySelector('.shc'),s=f.querySelector('.shl');if(c){c.querySelector('small').textContent=x[0];c.querySelector('b').textContent=CR[CMAP[page]][{ja:1,ko:2,en:3}[l]]}s.querySelector('small').textContent=x[1];s.querySelector('b').textContent=x[2];s.href=HOME+'?lang='+l+'#tools'}}
 /* 表の見出しと中身の位置をそろえる：中身が短い列・入力欄の列は、見出しと中身を中央ぞろえにする（表が描き直されるたびに適用） */
 function alignTables(){Array.prototype.forEach.call(document.querySelectorAll('table'),function(tb){var rows=Array.prototype.slice.call(tb.rows);if(rows.length<2)return;var hr=null;for(var i=0;i<rows.length;i++){if(rows[i].querySelector('th')&&!rows[i].querySelector('td')){hr=rows[i];break}}if(!hr)return;var n=hr.cells.length;for(var c=0;c<n;c++){var ok=true,cnt=0;for(var r=0;r<rows.length;r++){var row=rows[r];if(row===hr||row.cells.length!==n)continue;var td=row.cells[c];if(!td||td.tagName!=='TD')continue;cnt++;if(td.querySelector('input,select,button'))continue;var s=(td.textContent||'').trim(),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>18){ok=false;break}}if(ok&&cnt){hr.cells[c].style.textAlign='center';for(var r2=0;r2<rows.length;r2++){var rw=rows[r2];if(rw!==hr&&rw.cells.length===n&&rw.cells[c].tagName==='TD')rw.cells[c].style.textAlign='center'}}}})}
 var alignQ=0;function alignSoon(){if(alignQ)return;alignQ=1;(window.requestAnimationFrame||setTimeout)(function(){alignQ=0;alignTables()})}

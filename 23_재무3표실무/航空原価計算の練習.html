@@ -9,7 +9,6 @@
 *{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 .wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
 header{position:relative}header h1{margin:0 0 8px}html[lang=ko] header h1,html[lang=ko] header p{word-break:keep-all}
-.courselink{font-size:13px;margin:16px 4px 0}.courselink a{color:#1d5fa0}
 h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
 .langs{display:inline-flex}.langs button{cursor:pointer}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
@@ -95,7 +94,6 @@ details{border:1px solid var(--line);border-radius:12px;padding:0;margin:8px 0;b
  <table><thead><tr><th id="th1"></th><th class="n" id="th2"></th><th class="n" id="th3"></th><th id="th4"></th></tr></thead><tbody id="tbody"></tbody></table>
  <div class="note" id="t_note"></div>
 </div>
-<p class="courselink"><a href="00_シリーズ全体_財務3表.html" id="back"></a></p>
 </div>
 <script>
 var L={
@@ -123,7 +121,7 @@ ko:{title:'항공 원가 계산 연습 — 한 편의 비용과 손익분기점'
  RV:{fare:'운임 수입',anc:'부대수입',cargo:'화물 수입'},
  S:{base:'기본',fuel1:'연료 1% 절감',delay:'출발 30분 지연',lf5:'탑승률 +5%p',kero:'유가 +50%',fx:'엔저 +10%'},
  profit:'이익',loss:'손실',pax:'명',seats:'석',yen:'엔',vs:'기본과의 차이: 비용 ',rev2:', 손익 ',bego:'지금 탑승률보다',beok:'낮음 → 흑자',beng:'높음 → 적자',cask:'수입은(RASK)',na:'이 기종으로는 운항하지 않는 설정입니다'},
-en:{title:'Airline Cost & Break-even Practice: What One Flight Costs',lead:'Where the money goes to operate a single flight. Pick a route and aircraft, move the load factor, and watch the cost breakdown and break-even point change. Practice figures based on Vela Air, a fictional airline.',
+en:{title:'Airline Cost & Break-even Practice',lead:'Where the money goes to operate a single flight. Pick a route and aircraft, move the load factor, and watch the cost breakdown and break-even point change. Practice figures based on Vela Air, a fictional airline.',
  route:'Route',type:'Aircraft',lf:'Load factor',lfnote:'Real airlines average around 80% over a year, with full days and 60% days.',
  perflight:'cost per flight (yen)',rev:'revenue per flight (yen)',k1:'Result for this flight',k2:'Cost per seat',k2e:'the same whether the seat is sold or empty',k3:'Cost per seat-km (CASK)',k4:'Break-even load factor',
  sc:'What if…',tbl:'Cost breakdown',th1:'Item',th2:'Yen',th3:'Share',th4:'What the money pays for',
@@ -268,7 +266,7 @@ function seg(id,obj,key,sel){var el=document.getElementById(id);el.innerHTML='';
 var SCEN={base:{},fuel1:{fuel:0.99},delay:{delay:30},lf5:{lf:0.05},kero:{kero:1.5},fx:{fx:1.1}};
 function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title+' ― Vela Air';
  ['title','lead','route','type','lf','lfnote','perflight','rev','k1','k2','k2e','k3','k4','sc','tbl','th1','th2','th3','th4','note'].forEach(function(k){var e=document.getElementById(k.length<=3&&k.indexOf('th')===0?k:'t_'+k);if(e)e.textContent=d[k]});
- document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
  seg('carriers',d.CR,'cr');seg('routes',d.R,'r');seg('types',d.T,'t');document.getElementById('t_carrier').textContent=d.carrier;document.getElementById('t_seatnote').textContent=d.seatnote;
  document.getElementById('lfv').textContent=Math.round(st.lf*100)+'%';
  var sc=document.getElementById('scen');sc.innerHTML='';Object.keys(SCEN).forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=d.S[k];b.className=st.sc===k?'on':'';b.setAttribute('aria-pressed',st.sc===k);b.onclick=function(){st.sc=k;render()};sc.appendChild(b)});

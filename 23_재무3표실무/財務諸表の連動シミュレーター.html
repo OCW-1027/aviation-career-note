@@ -9,7 +9,6 @@
 *{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 .wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
 header{position:relative}header h1{margin:0 0 8px}html[lang=ko] header h1,html[lang=ko] header p{word-break:keep-all}
-.courselink{font-size:13px;margin:16px 4px 0}.courselink a{color:#1d5fa0}
 h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
 .langs{display:inline-flex}.langs button{cursor:pointer}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
@@ -70,7 +69,6 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 <div class="card">
  <details><summary id="t_how"></summary><div class="dbody" id="how"></div></details>
 </div>
-<p class="courselink"><a href="00_シリーズ全体_財務3表.html" id="back"></a></p>
 </div>
 
 <script>
@@ -103,7 +101,7 @@ ko:{title:'재무제표 연동 시뮬레이터 — 작은 회사의 1년을 움�
  why:{ar:'매출채권 증가',inv:'재고 증가',ap:'매입채무 변화',dep:'감가상각(현금이 나가지 않는 비용)',capex:'설비투자',fin:'차입·상환·배당'},
  bridgenote:'초록은 현금을 늘리는 조정, 빨강은 줄이는 조정. 이 다리 끝에 투자(설비)와 재무(차입·상환·배당)가 이어져 기말 현금이 됩니다.',
  howtxt:'매출원가 = 매출 × 원가율. 매출채권 = 매출 × 회수 일수 ÷ 365, 재고 = 원가 × 재고 일수 ÷ 365, 매입채무 = 원가 × 지급 일수 ÷ 365(기초는 각각 3·4·5). 이자 비용 = (기초 차입 + 새 차입)의 3.3%. 법인세는 세전이익의 30%(적자면 0, 그해에 납부). 설비 기초 장부가 60에 투자를 더하고 감가상각을 뺀다. 영업CF = 이익 + 감가상각 − 매출채권 증가 − 재고 증가 + 매입채무 증가. 자산 = 부채 + 자본은 손잡이를 어떻게 움직여도 반드시 일치합니다 — 일치하지 않는 손잡이는 존재하지 않습니다.'},
-en:{title:'Linked Financial Statements Simulator: Run a Small Company for a Year',lead:'Move the sliders and the income statement, balance sheet and cash flow statement change together. See for yourself where profit and cash part ways. Unit: millions of yen. Opening figures are the small company from lesson 0-3.',
+en:{title:'Linked Financial Statements Simulator',lead:'Move the sliders and the income statement, balance sheet and cash flow statement change together. See for yourself where profit and cash part ways. Unit: millions of yen. Opening figures are the small company from lesson 0-3.',
  presets:'Pick a scenario (the sliders move)',pl:'Income statement (year)',bs:'Balance sheet (year end)',cf:'Cash flow statement (year)',bridge:'Bridge from profit to cash (to operating cash flow)',how:'How this simulator works',
  g1:'Trading',g2:'Working capital (the three that tie up cash)',g3:'Investment and funding',
  S:{rev:'Sales',cogs:'Cost of sales ratio',sga:'Fixed costs (staff, rent etc.)',dep:'Depreciation',ard:'Days to collect receivables',invd:'Days of inventory held',apd:'Days to pay suppliers',capex:'Capital expenditure',loan:'New borrowing',repay:'Loan repayment',div:'Dividend'},
@@ -131,7 +129,7 @@ function calc(v){var cogs=v.rev*v.cogs/100,gross=v.rev-cogs,op=gross-v.sga-v.dep
 var BASEV={};SL.forEach(function(s){BASEV[s[0]]=s[4]});var BASE=calc(BASEV);
 function row(k,val,base,cls){var d='';if(base!=null&&Math.abs(val-base)>=0.05){var up=val>base;d='<span class="d '+(up?'up':'dn')+'">'+sg(val-base)+'</span>'}return '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+L[lang].R[k]+'</td><td>'+f1(val)+d+'</td></tr>'}
 function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title;['title','lead','presets','pl','bs','cf','bridge','how','bridgenote'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});document.getElementById('how').textContent=d.howtxt;
- document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
  var P=document.getElementById('presets');P.innerHTML='';Object.keys(PRE).forEach(function(k){var b=document.createElement('button');b.innerHTML='<b>'+d.P[k][0]+'</b><br><small>'+d.P[k][1]+'</small>';b.className=preset===k?'on':'';b.onclick=function(){preset=k;SL.forEach(function(s){V[s[0]]=(PRE[k][s[0]]!=null)?PRE[k][s[0]]:s[4]});render()};P.appendChild(b)});
  var S=document.getElementById('sliders');S.innerHTML='';var groups={g1:[],g2:[],g3:[]};SL.forEach(function(s){groups[s[5]].push(s)});
  var col={g1:'var(--pl)',g2:'var(--bs)',g3:'var(--cf)'};
