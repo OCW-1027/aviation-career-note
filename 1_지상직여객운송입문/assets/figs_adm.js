@@ -93,6 +93,44 @@ function fs3Fig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
  s+=box(d[1][0])+link(d[2][0],'#2F8FE0',false,'0.12','0.24')+box(d[1][1])+link(d[2][1],'#1F8A5B',true,'0.48','0.6')+box(d[1][2]);
  y+=16;var hn=hgt(d[3],12,560);s+=R(20,y,600,hn+18,'#FFF3E0',10)+TW2(320,y+9,d[3],12,'#B45309',900,560);y+=hn+30;return svg(y,s)}}
 
+/* 4. 黒字倒産：利益は増えているのに、現金が足りなくなる（動き） */
+var CASH={
+ ja:['利益が出ていても、現金が足りなくなることがある',['利益（累計）','現金の残高'],['月','万円'],[40,80,120,160,200,240],[300,180,90,-20,60,150],
+  '4か月目：売上の代金がまだ入らず、給与と家賃の支払いで現金が足りない','売上が増えるほど、回収までの「立て替え」も増えます。資金繰り表で前もって確かめます。'],
+ ko:['이익이 나도 현금이 모자랄 수 있다',['이익(누계)','현금 잔액'],['월','만 엔'],[40,80,120,160,200,240],[300,180,90,-20,60,150],
+  '4개월째: 매출 대금이 아직 들어오지 않아 급여와 임차료를 낼 현금이 모자람','매출이 늘수록 회수까지 「먼저 내는 돈」도 늘어납니다. 자금 계획표로 미리 확인합니다.'],
+ en:['A company can make a profit and still run out of cash',['Profit (cumulative)','Cash balance'],['Month','¥10k'],[40,80,120,160,200,240],[300,180,90,-20,60,150],
+  'Month 4: customers have not paid yet, so there is not enough cash for salaries and rent','The more sales grow, the more you pay out before customers pay you. Check it in advance with a cash plan.']};
+function cashFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),dur=9;
+ var cx=70,cw=530,ch=200,top=y+10,mn=-60,mx=320,X=function(i){return cx+cw*(i+0.5)/6},Y=function(v){return top+ch*(mx-v)/(mx-mn)};
+ s+=R(cx,top,cw,ch,'#fff',8,' stroke="#DCE3EA"')+R(cx,Y(0),cw,top+ch-Y(0),'#FDECEC',0);
+ [0,100,200,300].forEach(function(v){s+='<line x1="'+cx+'" y1="'+Y(v)+'" x2="'+(cx+cw)+'" y2="'+Y(v)+'" stroke="#E6ECF2"/>'+tx(cx-8,Y(v)+4,String(v),11,G,700,'end')});
+ s+='<line x1="'+cx+'" y1="'+Y(0)+'" x2="'+(cx+cw)+'" y2="'+Y(0)+'" stroke="#9AA9B8" stroke-width="1.5"/>';
+ var f1=FS(11);for(var i=0;i<6;i++)s+=tx(X(i),top+ch+f1*1.3,String(i+1),11,G,700);
+ s+=tx(cx+cw,top+ch+f1*2.8,d[2][0],11,G,700,'end')+tx(cx-8,top-8,d[2][1],11,G,700,'end');
+ function line(vs,c){var p=vs.map(function(v,i){return (i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)}).join(' '),L=900;
+  return '<path d="'+p+'" fill="none" stroke="'+c+'" stroke-width="4" stroke-linejoin="round" stroke-dasharray="'+L+'" stroke-dashoffset="'+L+'"><animate attributeName="stroke-dashoffset" values="'+L+';'+L+';0;0;'+L+'" keyTimes="0;0.05;0.45;0.92;1" dur="'+dur+'s" repeatCount="indefinite"/></path>'
+   +vs.map(function(v,i){return '<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(v).toFixed(1)+'" r="5" fill="'+c+'" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+(0.08+i*0.065).toFixed(3)+';'+(0.1+i*0.065).toFixed(3)+';0.92;1" dur="'+dur+'s" repeatCount="indefinite"/></circle>'}).join('')}
+ s+=line(d[3],'#2F8FE0')+line(d[4],'#1F8A5B');
+ s+='<g opacity="0">'+fade('0.5','0.58',dur)+'<circle cx="'+X(3)+'" cy="'+Y(d[4][3])+'" r="14" fill="none" stroke="#D0453E" stroke-width="3"/></g>';
+ y=top+ch+f1*2.8+FS(12)*1.6;
+ [[d[1][0],'#2F8FE0'],[d[1][1],'#1F8A5B']].forEach(function(g,i){s+=R(80+i*270,y-10,26,6,g[1],3)+tx(114+i*270,y-2,g[0],12,'#0f3558',900,'start')});y+=18;
+ var hw=hgt(d[5],12,560);s+='<g opacity="0">'+fade('0.55','0.63',dur)+R(20,y,600,hw+18,'#FDECEC',10)+TW2(320,y+9,d[5],12,'#B42318',900,560)+'</g>';y+=hw+30;
+ var hn=hgt(d[6],11.5,580);s+=TW2(320,y,d[6],11.5,G,700,580);y+=hn+18;return svg(y,s)}}
+
+/* 5. 給与明細：総支給から手取りまで */
+var PAY2={
+ ja:['月給30万円の例 ― 総支給から手取りまで',[['総支給（基本給＋手当）',300000,'#9DB4C8'],['健康保険料（介護保険は40歳から）',14900,'#E08A2F'],['厚生年金保険料',27450,'#E08A2F'],['雇用保険料',1650,'#E08A2F'],['所得税（源泉徴収）',6800,'#7A5CC7'],['住民税（前の年の所得から）',15000,'#7A5CC7'],['手取り',234200,'#1F8A5B']],'円','※ 東京都・扶養なし・39歳以下の概算の例です。料率は毎年見直されます。★'],
+ ko:['월급 30만 엔의 예 — 총지급액에서 수령액까지',[['총지급(기본급+수당)',300000,'#9DB4C8'],['건강보험료(개호보험은 40세부터)',14900,'#E08A2F'],['후생연금보험료',27450,'#E08A2F'],['고용보험료',1650,'#E08A2F'],['소득세(원천징수)',6800,'#7A5CC7'],['주민세(전년 소득 기준)',15000,'#7A5CC7'],['수령액',234200,'#1F8A5B']],'엔','※ 도쿄도·부양가족 없음·39세 이하의 개산 예입니다. 요율은 매년 바뀝니다. ★'],
+ en:['Example: monthly salary of ¥300,000, from gross to take-home',[['Gross pay (base + allowances)',300000,'#9DB4C8'],['Health insurance (long-term care from age 40)',14900,'#E08A2F'],['Employees’ pension',27450,'#E08A2F'],['Employment insurance',1650,'#E08A2F'],['Income tax (withheld)',6800,'#7A5CC7'],['Residence tax (based on last year)',15000,'#7A5CC7'],['Take-home pay',234200,'#1F8A5B']],'','* Rough example: Tokyo, no dependants, aged 39 or under. Rates change every year. ★']};
+function payFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),mx=300000,wmax=420,x0=30;
+ d[1].forEach(function(r,i){var h1=hgt(r[0],12,580);s+=TW2(x0,y,r[0],12,i===0||i===6?'#0f3558':D,900,580,'start');y+=h1+3;
+  var w=Math.max(4,wmax*r[1]/mx),lab=(l==='en'?'¥':'')+r[1].toLocaleString('en-US')+d[2];
+  s+=R(x0,y,w,16,r[2],5)+tx(x0+w+10,y+13,(i>0&&i<6?'− ':'')+lab,12,i===6?'#1F8A5B':'#0f3558',900,'start');y+=26;
+  if(i===0||i===5){s+='<line x1="20" y1="'+(y-2)+'" x2="620" y2="'+(y-2)+'" stroke="#DCE3EA" stroke-dasharray="4 4"/>';y+=8}});
+ var hn=hgt(d[3],11,580);s+=TW2(30,y+4,d[3],11,G,700,580,'start');y+=hn+22;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
+window.FIGS.adm_cash=H.FIX2(cashFig(CASH));window.FIGS.adm_pay=H.FIX2(payFig(PAY2));
 window.FIGS.adm_org=H.FIX2(orgFig(ORG));window.FIGS.adm_jnl=H.FIX2(jnlFig(JNL));window.FIGS.adm_fs3=H.FIX2(fs3Fig(FS3));
 })();

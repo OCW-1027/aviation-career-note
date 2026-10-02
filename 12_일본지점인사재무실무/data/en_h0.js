@@ -88,5 +88,98 @@ terms:[["Profit and Loss Statement (P/L)","損益計算書","손익계산서"],[
 quiz:[{q:"Which line shows profit from the core business?",opts:["Sales","Operating profit","Net profit for the year","Cost of sales"],a:1,exp:"Operating profit is gross profit minus SG&A."},
 {q:"What does the right side of the balance sheet show?",opts:["What the money is used for","Where the money came from","The year’s profit","Cash in and out"],a:1,exp:"Left is the use; right is the source."},
 {q:"Where does the year’s profit build up on the balance sheet?",opts:["Current assets","Long-term liabilities","Net assets (retained earnings)","Receivables"],a:2,exp:"Profit is added to retained earnings in net assets."}],
+next:"0-4 Cash management: profit and cash are not the same"});
+
+set("0-4",{title:"Cash Management: Profit and Cash Are Not the Same",hl:"cash management",subtitle:"Using a cash flow forecast to avoid running out of money while making a profit",
+lead:["Companies do not only fail because they make losses. Even a profitable company cannot continue if it lacks cash on the day a payment is due. This is sometimes called going bankrupt in the black. Profit is a figure in the books; cash is money actually in the bank, and the two do not move together.","This article covers why profit and cash diverge, how to build a cash flow forecast, daily habits that protect cash, and points specific to the branch of a foreign company."],
+sections:[
+{h:"Why profit and cash diverge",blocks:[{t:"fig",id:"adm_cash",cap:"Profit (blue) keeps rising, but if customers pay late, cash (green) can briefly go negative."},
+{t:"rows",items:[
+{name:"Late collection of receivables",x:"Sales are booked, but the money arrives next month or the month after. Salaries and rent have to be paid in the meantime."},
+{name:"Buying equipment",x:"The cost is spread over several years as depreciation, but the cash goes out all at once."},
+{name:"Repaying loans",x:"Repayment is not an expense, so profit is unchanged, but cash goes down."},
+{name:"Large payments falling together",x:"Bonuses, taxes, insurance renewals and annual contracts can land in the same month."}]}]},
+{h:"Building a cash flow forecast",blocks:[{t:"table",cols:["Item (¥10k)","Month 2","Month 3","Month 4"],rows:[
+["Opening balance","300","180","90"],
+["Receipts (customer payments)","200","210","230"],
+["Payments (salaries, rent, suppliers)","320","300","340"],
+["Closing balance","180","90","−20"]]},
+{t:"note",x:"* The same example as the figure. Opening balance + receipts − payments = closing balance. The table exists to spot a negative month several months ahead."},
+{t:"point",x:"Forecast at least three months ahead, ideally a full year. As a rule, assume receipts come late and payments go early."}]},
+{h:"Daily habits that protect cash",blocks:[{t:"check",items:[
+{name:"Look at the balance every day",x:"Compare the bank balance with today’s and this week’s payments."},
+{name:"Track collection dates",x:"List receivables by customer and chase anything overdue straight away."},
+{name:"Standardise payment terms",x:"Terms such as closing at month end and paying at the end of the next month make planning easier."},
+{name:"Enter large payments first",x:"Put bonuses, taxes and insurance renewals into the forecast at the start of the year."},
+{name:"Set a cash buffer",x:"Many companies aim, for example, for two to three months of fixed costs."}]}]},
+{h:"For the branch of a foreign company",blocks:[{t:"rows",items:[
+{name:"Funding from head office",x:"If working capital comes from head office, request it allowing for the days the remittance takes (4-2)."},
+{name:"Exchange rates",x:"Movements between head office’s currency and the yen change the yen value of the same budget."},
+{name:"Airport income",x:"At an airline station, charges collected and refunds paid at the airport are part of the cash flow too (4-1)."}]},
+{t:"point",x:"Opening accounts and preparing funds when setting up in Japan are covered in lesson 2-2 of Launching Flights and a Station in Japan."}]}],
+voice:"A cash forecast built on optimism is useless. If you assume money comes in late and goes out early, you can see in advance the month you will really be short.",
+terms:[["Bankruptcy Despite Profit","黒字倒産","흑자도산"],["Cash Flow Forecast","資金繰り表","자금 계획표"],["Accounts Receivable","売掛金","매출채권"],["Working Capital","運転資金","운전 자금"],["Cash on Hand","手元資金","보유 현금"]],
+quiz:[{q:"What does going bankrupt in the black mean?",opts:["Failing because of losses","Failing for lack of cash despite making a profit","Not paying tax","Having no sales"],a:1,exp:"Profit and cash do not move together."},
+{q:"What happens when a loan is repaid?",opts:["Profit and cash both fall","Profit is unchanged but cash falls","Only profit falls","Neither changes"],a:1,exp:"Repayment is not an expense."},
+{q:"What is the basic rule for a cash forecast?",opts:["Receipts early, payments late","Receipts late, payments early","Be optimistic about both","Do not make one"],a:1,exp:"A cautious forecast shows shortfalls sooner."}],
+next:"0-5 Payroll: from gross pay to take-home pay"});
+
+set("0-5",{title:"Payroll: From Gross Pay to Take-home Pay",hl:"payroll",subtitle:"What is deducted and how much, seen from both the payroll team’s side and the employee’s",
+lead:["A payslip lists set items: the time worked (attendance), the amounts paid (earnings), and social insurance and taxes (deductions). Gross pay minus deductions is the take-home pay that actually reaches the bank account.","This article covers the three parts of a payslip, the size of deductions on a ¥300,000 salary, how each deduction is set, and the monthly payroll cycle."],
+sections:[
+{h:"The three parts of a payslip",blocks:[{t:"rows",items:[
+{name:"Attendance",x:"Days worked, overtime hours, holiday work and paid leave taken."},
+{name:"Earnings",x:"Base salary, allowances, overtime pay at premium rates and commuting allowance. Commuting allowance is free of income tax up to a limit. ★"},
+{name:"Deductions",x:"Social insurance (health, long-term care, employees’ pension, employment insurance) and taxes (income tax and residence tax)."}]}]},
+{h:"From gross to take-home",blocks:[{t:"fig",id:"adm_pay",cap:"Around a fifth of gross pay goes in social insurance and taxes."},
+{t:"note",x:"* Since April 2026, a child and childcare support levy is also collected with health insurance. The amount is small, but a new line appears on the payslip. ★"}]},
+{h:"How deductions are set",blocks:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
+["Health insurance and pension","Standard monthly remuneration (from average April–June pay)","Usually for a year from September, or mid-year if pay changes a lot"],
+["Employment insurance","That month’s gross pay × the rate","Monthly; the rate is reviewed each April"],
+["Income tax","That month’s pay after social insurance, and the number of dependants","Monthly; settled for the year in December’s year-end adjustment"],
+["Residence tax","Last year’s income","Twelve instalments from June to the following May"]]},
+{t:"note",x:"* The employer also pays its own share of social insurance, so the cost of employing someone is usually about 15% more than their salary. ★"}]},
+{h:"The monthly payroll cycle",blocks:[{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Overtime and leave fixed"},{name:"Calculate",sub:"Earnings and deductions"},{name:"Second check",sub:"Anyone very different from last month"},{name:"Pay",sub:"Bank transfer on payday"},{name:"Payslips",sub:"Paper or electronic"},{name:"Pay over",sub:"Withheld tax by the 10th of next month"}]},
+{t:"point",x:"Withheld income tax is normally paid over by the 10th of the month after payday. Companies with fewer than ten employees can apply to pay twice a year instead. Social insurance is debited from the bank at the end of the following month. ★"}]}],
+voice:"Payroll mistakes cost trust quickly. Make it a habit for someone other than the person who calculated it to check at least anyone whose pay differs a lot from last month.",
+terms:[["Gross Pay","総支給額","총지급액"],["Take-home Pay","手取り","수령액"],["Withholding Tax","源泉徴収","원천징수"],["Standard Monthly Remuneration","標準報酬月額","표준보수월액"],["Residence Tax Deducted from Pay","特別徴収","특별징수"]],
+quiz:[{q:"What is residence tax based on?",opts:["This month’s pay","Last year’s income","Next year’s forecast","Company profit"],a:1,exp:"It is based on last year’s income and deducted in twelve instalments from June."},
+{q:"What are health insurance and pension contributions based on?",opts:["Standard monthly remuneration","Today’s sales","Age alone","Company size"],a:0,exp:"It is set from April–June pay and normally used for a year from September."},
+{q:"What is an effective payroll check?",opts:["No check","Someone else checks anyone very different from last month","Leave it to employees","Once a year"],a:1,exp:"A second check prevents mistakes."}],
+next:"0-6 General affairs: contracts, equipment, the office and documents"});
+
+set("0-6",{title:"General Affairs: Contracts, Equipment, the Office and Documents",hl:"general affairs",subtitle:"The groundwork that keeps a company running, done before problems arise",
+lead:["General affairs work goes unnoticed while nothing goes wrong. But a forgotten contract renewal or loose control of equipment can lead to large losses and trouble. General affairs looks after the foundations the company relies on every day.","This article covers what general affairs handles, how to manage contracts, Japanese document habits (seals, ringi approvals, revenue stamps), and disaster preparedness and office safety."],
+sections:[
+{h:"What general affairs handles",blocks:[{t:"table",cols:["Area","What it covers","When to check"],rows:[
+["Contracts","Office lease, leasing, maintenance, insurance","One to three months before renewal"],
+["Equipment and assets","Computers, mobile phones, keys, company cars","Keep a register and check against the items once a year"],
+["The office","Faults, cleaning, visitors, post","Daily"],
+["Documents and seals","Keeping contracts and internal records, use of seals","Record each use"],
+["Disaster and safety","Evacuation drills, stockpiles, contact lists","Once or twice a year"],
+["Welfare and events","Arranging health checks, welcome and farewell events","Put in the annual calendar"]]}]},
+{h:"Managing contracts",blocks:[{t:"check",items:[
+{name:"Party and subject",x:"Who the contract is with, and what it covers."},
+{name:"Term and automatic renewal",x:"When it ends, and whether it renews automatically if nothing is done."},
+{name:"Notice deadline",x:"For example, written notice three months before expiry. Miss it and the contract may run for another year."},
+{name:"Amount and payment terms",x:"Monthly or annual, and the conditions for price rises."},
+{name:"Owner and location",x:"Where the original is and who manages it."}]},
+{t:"point",x:"Keep contracts in one list (a contract register) and put the notice deadlines in the calendar. That alone prevents many mistakes."}]},
+{h:"Japanese document habits",blocks:[{t:"rows",items:[
+{name:"Seals",x:"Keep the registered company seal, the bank seal and the company stamp separately, and record each use."},
+{name:"Ringi approvals",x:"Spending or contracts above a set amount are decided only after a written (or electronic) request has passed through the approvers in order."},
+{name:"Revenue stamps",x:"Certain contracts and receipts need a revenue stamp according to the amount. Electronic contracts do not. ★"},
+{name:"Keeping records",x:"Accounting and tax records must be kept for set periods, usually seven years (7-2)."}]}]},
+{h:"Disaster preparedness and office safety",blocks:[{t:"check",items:[
+{name:"Contact list",x:"Decide how to confirm staff are safe at night and on holidays."},
+{name:"Stockpile",x:"Water, food, blankets. Tokyo’s ordinance asks employers to try to keep three days’ supplies for staff. ★"},
+{name:"Drills",x:"Walk the evacuation route and assembly point at least once a year."},
+{name:"Office checks",x:"Shelves fixed to walls, fire extinguishers located, emergency exits kept clear."}]},
+{t:"point",x:"Disaster preparedness at home is covered in detail in Part 10 of Living in Japan."}]}],
+voice:"General affairs work is invisible until something goes wrong. Simply putting renewal dates and notice deadlines in the calendar prevents most of the big mistakes.",
+terms:[["General Affairs","総務","총무"],["Approval Request (Ringi)","稟議","품의"],["Company Seal","印鑑","인감"],["Revenue Stamp","収入印紙","수입인지"],["Automatic Renewal","自動更新","자동 갱신"]],
+quiz:[{q:"What is most easily missed in managing contracts?",opts:["The colour of the contract","The notice deadline","The typeface of the address","The page count"],a:1,exp:"Miss it and the contract may renew automatically."},
+{q:"What is ringi?",opts:["A company event","Deciding spending or contracts after approvals pass in a set order","Payroll","Filing tax"],a:1,exp:"It runs on set thresholds such as amounts."},
+{q:"Does an electronic contract need a revenue stamp?",opts:["Always","No","Twice the amount","The other party pays"],a:1,exp:"Stamp duty applies to paper documents, not electronic ones."}],
 next:"Part 1 1-1 Types of employment and stating the terms"});
 })(window.ARTS);

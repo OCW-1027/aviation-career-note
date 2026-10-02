@@ -3,6 +3,7 @@
    u: ツールなどのページ（講座のフォルダからの相対でなく、サイトの最上位からのパス）
    ja/ko/en: 一覧に出す短い題名 */
 window.UPDATES=[
+{d:"2026-10-02",c:"12_일본지점인사재무실무",k:"0-4",t:"new",ja:"会社の人事・総務・財務の実務 Part 0 に3回を追加：資金の管理（黒字倒産）、給与の計算、総務の仕事",ko:"회사의 인사·총무·재무 실무 Part 0에 3편 추가: 자금 관리(흑자도산), 급여 계산, 총무의 일",en:"Three more lessons in Part 0 of HR, General Affairs and Finance in Practice: cash management, payroll, and general affairs"},
 {d:"2026-10-02",c:"12_일본지점인사재무실무",k:"0-1",t:"new",ja:"「会社の人事・総務・財務の実務」に名前を変え、Part 0「はじめて学ぶ会社のお金と人」を新設：会社の仕組み、仕訳、財務諸表の3つの表",ko:"「회사의 인사·총무·재무 실무」로 이름을 바꾸고 Part 0 ‘처음 배우는 회사의 돈과 사람’ 신설: 회사의 구조, 분개, 재무제표의 세 가지 표",en:"Renamed HR, General Affairs and Finance in Practice, with a new Part 0, Money and People: First Steps: how a company works, journal entries and the three financial statements"},
 {d:"2026-10-01",c:"11_주재원일본가이드",k:"7-1",t:"new",ja:"日本の暮らしガイド Part 7「暮らし」3回とPart 11「困ったとき」2回を公開：病院と薬、ごみと町の決まり、子育てと学校、場面ごとの相談の窓口、急ぐとき",ko:"일본 생활 가이드 Part 7 ‘생활’ 3편과 Part 11 ‘곤란할 때’ 2편 공개: 병원과 약, 쓰레기와 동네 규칙, 아이 키우기와 학교, 상황별 상담 창구, 긴급할 때",en:"Living in Japan Part 7, Daily Life (3 lessons) and Part 11, When You Need Help (2): clinics and medicines, rubbish and local rules, raising children and school, where to ask, and emergencies"},
 {d:"2026-10-01",c:"11_주재원일본가이드",k:"6-1",t:"new",ja:"日本の暮らしガイド Part 6「お金と税金」4回を公開：給与明細の読み方、年末調整と確定申告、韓国とかかわる税金、海外への送金",ko:"일본 생활 가이드 Part 6 ‘돈과 세금’ 4편 공개: 급여명세서 읽기, 연말정산과 확정신고, 한국과 관련된 세금, 해외 송금",en:"Living in Japan Part 6, Money and Tax (4 lessons): reading your payslip, year-end adjustment and tax returns, tax links with Korea, and sending money abroad"},
