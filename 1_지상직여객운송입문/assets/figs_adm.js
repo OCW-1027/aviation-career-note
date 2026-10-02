@@ -123,11 +123,11 @@ var PAY2={
  ja:['月給30万円の例 ― 総支給から手取りまで',[['総支給（基本給＋手当）',300000,'#9DB4C8'],['健康保険料（介護保険は40歳から）',14900,'#E08A2F'],['厚生年金保険料',27450,'#E08A2F'],['雇用保険料',1650,'#E08A2F'],['所得税（源泉徴収）',6800,'#7A5CC7'],['住民税（前の年の所得から）',15000,'#7A5CC7'],['手取り',234200,'#1F8A5B']],'円','※ 東京都・扶養なし・39歳以下の概算の例です。料率は毎年見直されます。★'],
  ko:['월급 30만 엔의 예 — 총지급액에서 수령액까지',[['총지급(기본급+수당)',300000,'#9DB4C8'],['건강보험료(개호보험은 40세부터)',14900,'#E08A2F'],['후생연금보험료',27450,'#E08A2F'],['고용보험료',1650,'#E08A2F'],['소득세(원천징수)',6800,'#7A5CC7'],['주민세(전년 소득 기준)',15000,'#7A5CC7'],['수령액',234200,'#1F8A5B']],'엔','※ 도쿄도·부양가족 없음·39세 이하의 개산 예입니다. 요율은 매년 바뀝니다. ★'],
  en:['Example: monthly salary of ¥300,000, from gross to take-home',[['Gross pay (base + allowances)',300000,'#9DB4C8'],['Health insurance (long-term care from age 40)',14900,'#E08A2F'],['Employees’ pension',27450,'#E08A2F'],['Employment insurance',1650,'#E08A2F'],['Income tax (withheld)',6800,'#7A5CC7'],['Residence tax (based on last year)',15000,'#7A5CC7'],['Take-home pay',234200,'#1F8A5B']],'','* Rough example: Tokyo, no dependants, aged 39 or under. Rates change every year. ★']};
-function payFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),mx=300000,wmax=420,x0=30;
- d[1].forEach(function(r,i){var h1=hgt(r[0],12,580);s+=TW2(x0,y,r[0],12,i===0||i===6?'#0f3558':D,900,580,'start');y+=h1+3;
-  var w=Math.max(4,wmax*r[1]/mx),lab=(l==='en'?'¥':'')+r[1].toLocaleString('en-US')+d[2];
-  s+=R(x0,y,w,16,r[2],5)+tx(x0+w+10,y+13,(i>0&&i<6?'− ':'')+lab,12,i===6?'#1F8A5B':'#0f3558',900,'start');y+=26;
-  if(i===0||i===5){s+='<line x1="20" y1="'+(y-2)+'" x2="620" y2="'+(y-2)+'" stroke="#DCE3EA" stroke-dasharray="4 4"/>';y+=8}});
+function payFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),mx=d[1][0][1],wmax=420,x0=30,last=d[1].length-1;
+ d[1].forEach(function(r,i){var h1=hgt(r[0],12,580);s+=TW2(x0,y,r[0],12,i===0||i===last?'#0f3558':D,900,580,'start');y+=h1+3;
+  var w=Math.max(4,wmax*r[1]/mx),lab=(l==='en'?(d[4]||'¥'):'')+r[1].toLocaleString('en-US')+d[2];
+  s+=R(x0,y,w,16,r[2],5)+tx(x0+w+10,y+13,(i>0&&i<last?'− ':'')+lab,12,i===last?'#1F8A5B':'#0f3558',900,'start');y+=26;
+  if(i===0||i===last-1){s+='<line x1="20" y1="'+(y-2)+'" x2="620" y2="'+(y-2)+'" stroke="#DCE3EA" stroke-dasharray="4 4"/>';y+=8}});
  var hn=hgt(d[3],11,580);s+=TW2(30,y+4,d[3],11,G,700,580,'start');y+=hn+22;return svg(y,s)}}
 
 /* 6. 人事・給与の1年（日本・3月決算でない一般的な例） */
@@ -189,7 +189,14 @@ function xlFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=
   s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="1.5"')+R(20,y,8,h,c,4)+TW2(40,y+7,f[0],12,c,900,560,'start')+TW2(40,y+11+h1,f[1],11.5,D,700,560,'start');y+=h+8});
  return svg(y+10,s)}}
 
+/* 5-2. 給与明細（韓国）：月給300万ウォンの例 */
+var PAYKR={
+ ja:['韓国：月給300万ウォンの例 ― 総支給から手取りまで',[['総支給',3000000,'#9DB4C8'],['国民年金（4.75%）',142500,'#E08A2F'],['健康保険（3.595%）',107850,'#E08A2F'],['長期療養保険（健康保険料の13.14%）',14170,'#E08A2F'],['雇用保険（0.9%）',27000,'#E08A2F'],['所得税（簡易税額表）',89730,'#7A5CC7'],['地方所得税（所得税の10%）',8970,'#7A5CC7'],['手取り',2609780,'#1F8A5B']],'ウォン','※ 2026年の料率、扶養は本人1人、非課税の手当なしの概算の例です。所得税は扶養の人数で大きく変わります。★'],
+ ko:['한국: 월급 300만 원의 예 — 총지급액에서 수령액까지',[['총지급액',3000000,'#9DB4C8'],['국민연금(4.75%)',142500,'#E08A2F'],['건강보험(3.595%)',107850,'#E08A2F'],['장기요양보험(건강보험료의 13.14%)',14170,'#E08A2F'],['고용보험(0.9%)',27000,'#E08A2F'],['소득세(간이세액표)',89730,'#7A5CC7'],['지방소득세(소득세의 10%)',8970,'#7A5CC7'],['수령액',2609780,'#1F8A5B']],'원','※ 2026년 요율, 부양가족 본인 1명, 비과세 수당 없음의 개산 예입니다. 소득세는 부양가족 수에 따라 크게 달라집니다. ★'],
+ en:['Korea: monthly salary of ₩3,000,000, from gross to take-home',[['Gross pay',3000000,'#9DB4C8'],['National pension (4.75%)',142500,'#E08A2F'],['Health insurance (3.595%)',107850,'#E08A2F'],['Long-term care (13.14% of health premium)',14170,'#E08A2F'],['Employment insurance (0.9%)',27000,'#E08A2F'],['Income tax (simplified tax table)',89730,'#7A5CC7'],['Local income tax (10% of income tax)',8970,'#7A5CC7'],['Take-home pay',2609780,'#1F8A5B']],'','* Rough example at 2026 rates: no dependants other than the employee, no tax-free allowances. Income tax varies a lot with the number of dependants. ★','₩']};
+
 window.FIGS=window.FIGS||{};
+window.FIGS.adm_paykr=H.FIX2(payFig(PAYKR));
 window.FIGS.adm_hrcal=H.FIX2(hrcalFig(HRCAL));window.FIGS.adm_xl=H.FIX2(xlFig(XL));
 window.FIGS.adm_cash=H.FIX2(cashFig(CASH));window.FIGS.adm_pay=H.FIX2(payFig(PAY2));
 window.FIGS.adm_org=H.FIX2(orgFig(ORG));window.FIGS.adm_jnl=H.FIX2(jnlFig(JNL));window.FIGS.adm_fs3=H.FIX2(fs3Fig(FS3));

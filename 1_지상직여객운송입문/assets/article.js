@@ -41,6 +41,11 @@ var BULB='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
 var WARN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
 var UI={ja:{home:'シリーズ一覧へ',video:'関連動画',watch:'YouTubeで見る',ymd:'基準日',upd:'最終更新',rev:'内容の確認',revt:'法令・数値などを出典と照らして確かめた日',copy:'© 2026 航空キャリアノート　無断転載・複製禁止'},ko:{home:'시리즈 목록으로',video:'관련 영상',watch:'YouTube에서 보기',ymd:'기준일',upd:'최종 업데이트',rev:'내용 확인',revt:'법령·수치 등을 출처와 대조해 확인한 날',copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지'},en:{home:'Back to series',video:'Related video',watch:'Watch on YouTube',ymd:'As of',upd:'Updated',rev:'Content checked',revt:'Date facts and rules were checked against sources',copy:'© 2026 Aviation Career Note. All rights reserved.',fb:'The English version of this article is being prepared. The Japanese text is shown for now.'}};
 var LBL={ja:'日本語',ko:'한국어',en:'English'};
+/* 制度の国の切り替え（日本／韓国）：region ブロックと、レッスン冒頭の「基準」表示 */
+var RG={ja:{q:'制度の国',jp:'日本',kr:'韓国',common:'国を問わず使える内容です',jpkr:'日本と韓国の制度を切り替えて見られます',jp_only:'日本の制度にもとづく内容です'},ko:{q:'제도 기준',jp:'일본',kr:'한국',common:'나라와 관계없이 쓸 수 있는 내용입니다',jpkr:'일본과 한국의 제도를 바꿔 볼 수 있습니다',jp_only:'일본 제도를 기준으로 한 내용입니다'},en:{q:'Rules for',jp:'Japan',kr:'Korea',common:'Applies in any country',jpkr:'Switch between Japanese and Korean rules',jp_only:'Based on Japanese rules'}};
+var region='jp';try{var r0=localStorage.getItem('art-region');if(r0==='jp'||r0==='kr')region=r0}catch(e){}
+document.documentElement.setAttribute('data-region',region);
+function setRegion(c){region=c;try{localStorage.setItem('art-region',c)}catch(e){}document.documentElement.setAttribute('data-region',c);document.querySelectorAll('.rg-b').forEach(function(x){x.setAttribute('aria-pressed',String(x.getAttribute('data-rg')===c))})}
 function langBar(){var b=document.getElementById('langBtn');if(!b)return;var g=document.getElementById('langGroup');if(!g){g=document.createElement('span');g.id='langGroup';g.className='langs';g.setAttribute('role','group');g.setAttribute('aria-label','Language');b.parentNode.insertBefore(g,b);b.style.display='none';}
  g.innerHTML=LANGS.map(function(l){return '<button type="button" class="lg'+(l===lang?' on':'')+'" data-l="'+l+'" lang="'+l+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');
  g.querySelectorAll('button').forEach(function(x){x.onclick=function(){var nl=x.getAttribute('data-l');try{localStorage.setItem('art-lang',nl)}catch(e){}if(ST){location.href=LU(C.meta.no,nl);return}lang=nl;render();window.scrollTo(0,0)}});}
@@ -48,6 +53,7 @@ function langBar(){var b=document.getElementById('langBtn');if(!b)return;var g=d
 function block(b,L){
   switch(b.t){
   case 'p': return '<p>'+esc(b.x)+'</p>';
+  case 'region': var R=RG[lang]||RG.ja; return '<div class="rg"><div class="rg-bar" role="group" aria-label="'+esc(R.q)+'"><span>'+esc(R.q)+'</span>'+['jp','kr'].map(function(c){return '<button type="button" class="rg-b" data-rg="'+c+'" aria-pressed="'+(region===c)+'">'+esc(R[c])+'</button>'}).join('')+'</div>'+['jp','kr'].map(function(c){return '<div class="rg-p rg-'+c+'">'+(b[c]||[]).map(function(x){return block(x,L)}).join('')+'</div>'}).join('')+'</div>';
   case 'h3': return '<h3>'+esc(b.x)+'</h3>';
   case 'note': return '<p class="note">'+esc(b.x)+'</p>';
   case 'link': return '<p class="note"><a href="'+esc(b.href||'#')+'" style="font-weight:700">'+esc(b.x)+' →</a></p>';
@@ -80,7 +86,8 @@ function render(){
   var t=esc(L.title);if(L._fallback&&!L.series){L.series=C.ja.series}if(L._fallback&&!L.part){L.part=C.ja.part}if(L.hl)t=t.replace(esc(L.hl),'<span class="hl">'+esc(L.hl)+'</span>');
   $('#title').innerHTML=t;
   $('#subtitle').textContent=L.subtitle;
-  var h=(L._fallback?'<p class="note fb">'+esc(U.fb)+'</p>':'')+'<div class="lead">'+L.lead.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>';
+  var BS={common:'common',jpkr:'jpkr',jp:'jp_only'}[C.meta.basis||''];
+  var h=(BS?'<p class="basis b-'+esc(C.meta.basis)+'">'+esc((RG[lang]||RG.ja)[BS])+'</p>':'')+(L._fallback?'<p class="note fb">'+esc(U.fb)+'</p>':'')+'<div class="lead">'+L.lead.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>';
   L.sections.forEach(function(s){var bd=s.blocks.map(function(b){return block(b,L)}).join('');if(!bd.replace(/\s/g,''))return;h+='<section><h2>'+esc(s.h)+'</h2>'+bd+'</section>'});
   if(L.voice&&L.voice.x&&!/インタビュー(追加|補強)予定|인터뷰\s*(보강|추가)\s*예정|Interview to be added/i.test(L.voice.x))h+='<section><h2>'+esc(L.voice.h)+'</h2><div class="voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg><p>'+esc(L.voice.x)+'</p></div></section>';
   if(L.terms)h+='<section><h2>'+esc(L.terms.h)+'</h2><div class="scroll tbl"><table class="terms"><thead><tr>'+L.terms.cols.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+L.terms.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div></section>';
@@ -92,6 +99,7 @@ function render(){
   var ks=navKeys(),ix=ks.indexOf(String(C.meta.no)),pv=ix>0?ks[ix-1]:null,nk=(C.meta.nextno&&(ST&&ST.index?ST.index[C.meta.nextno]:(window.ARTS||{})[C.meta.nextno]))?C.meta.nextno:(ix>=0&&ix<ks.length-1?ks[ix+1]:null),N=NAVL[lang]||NAVL.ja,home=C.meta.home||($('#series')&&$('#series').getAttribute('href'))||'#';
   h+='<nav class="artnav">'+(pv?'<a class="pv" href="'+LU(pv)+'">← '+esc(N.prev)+'<small>'+esc(pv)+' '+esc(navTitle(pv))+'</small></a>':'<span></span>')+'<a class="toc" href="'+esc(home)+'">☰ '+esc(N.toc)+'</a>'+(nk?'<a class="nx" href="'+LU(nk)+'">'+esc(N.next)+' →<small>'+esc(nk)+' '+esc(navTitle(nk))+'</small></a>':'<span></span>')+'</nav>';
   $('#main').innerHTML=h;
+  document.querySelectorAll('.rg-b').forEach(function(x){x.addEventListener('click',function(){setRegion(x.getAttribute('data-rg'))})});
   $('#foot').innerHTML=U.copy+' — '+esc(L.series)+' '+esc(C.meta.no)+(C.meta.home?'　<a href="'+esc(C.meta.home)+'">'+esc(U.home)+'</a>':'');
   document.querySelectorAll('.q').forEach(function(q){q.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var a=+q.dataset.a;q.querySelectorAll('.opt').forEach(function(x){x.classList.remove('right','wrong')});b.classList.add(+b.dataset.i===a?'right':'wrong');q.querySelector('.opt[data-i="'+a+'"]').classList.add('right');q.classList.add('done')})})});
 }

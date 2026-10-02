@@ -125,26 +125,40 @@ quiz:[{q:"What does going bankrupt in the black mean?",opts:["Failing because of
 next:"0-5 Payroll: from gross pay to take-home pay"});
 
 set("0-5",{title:"Payroll: From Gross Pay to Take-home Pay",hl:"payroll",subtitle:"What is deducted and how much, seen from both the payroll team’s side and the employee’s",
-lead:["A payslip lists set items: the time worked (attendance), the amounts paid (earnings), and social insurance and taxes (deductions). Gross pay minus deductions is the take-home pay that actually reaches the bank account.","This article covers the three parts of a payslip, the size of deductions on a ¥300,000 salary, how each deduction is set, and the monthly payroll cycle."],
+lead:["A payslip lists set items: the time worked (attendance), the amounts paid (earnings), and social insurance and taxes (deductions). Gross pay minus deductions is the take-home pay that actually reaches the bank account.","This article covers the three parts of a payslip, the size of deductions on a ¥300,000 salary in Japan and a ₩3,000,000 salary in Korea, how each deduction is set, and the monthly payroll cycle."],
 sections:[
-{h:"The three parts of a payslip",blocks:[{t:"rows",items:[
+{h:"The three parts of a payslip",blocks:[{t:"region",jp:[{t:"rows",items:[
 {name:"Attendance",x:"Days worked, overtime hours, holiday work and paid leave taken."},
 {name:"Earnings",x:"Base salary, allowances, overtime pay at premium rates and commuting allowance. Commuting allowance is free of income tax up to a limit. ★"},
-{name:"Deductions",x:"Social insurance (health, long-term care, employees’ pension, employment insurance) and taxes (income tax and residence tax)."}]}]},
-{h:"From gross to take-home",blocks:[{t:"fig",id:"adm_pay",cap:"Around a fifth of gross pay goes in social insurance and taxes."},
-{t:"note",x:"* Since April 2026, a child and childcare support levy is also collected with health insurance. The amount is small, but a new line appears on the payslip. ★"}]},
-{h:"How deductions are set",blocks:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
+{name:"Deductions",x:"Social insurance (health, long-term care, employees’ pension, employment insurance) and taxes (income tax and residence tax)."}]}],
+kr:[{t:"rows",items:[
+{name:"Attendance",x:"Days worked, overtime hours, holiday work and annual leave taken."},
+{name:"Earnings",x:"Base salary, allowances and overtime pay with a 50% premium on ordinary wages. Meal allowance is free of income tax up to ₩200,000 a month. ★"},
+{name:"Deductions",x:"The four social insurances (national pension, health, long-term care, employment) and taxes (income tax and local income tax)."}]}]}]},
+{h:"From gross to take-home",blocks:[{t:"region",jp:[{t:"fig",id:"adm_pay",cap:"Around a fifth of gross pay goes in social insurance and taxes."},
+{t:"note",x:"* Since April 2026, a child and childcare support levy is also collected with health insurance. The amount is small, but a new line appears on the payslip. ★"}],
+kr:[{t:"fig",id:"adm_paykr",cap:"Around 13% of gross pay goes in social insurance and taxes."},
+{t:"note",x:"* The national pension rate rises by 0.5 points a year from 2026, reaching 13% in 2033. ★"}]}]},
+{h:"How deductions are set",blocks:[{t:"region",jp:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
 ["Health insurance and pension","Standard monthly remuneration (from average April–June pay)","Usually for a year from September, or mid-year if pay changes a lot"],
 ["Employment insurance","That month’s gross pay × the rate","Monthly; the rate is reviewed each April"],
 ["Income tax","That month’s pay after social insurance, and the number of dependants","Monthly; settled for the year in December’s year-end adjustment"],
 ["Residence tax","Last year’s income","Twelve instalments from June to the following May"]]},
-{t:"note",x:"* The employer also pays its own share of social insurance, so the cost of employing someone is usually about 15% more than their salary. ★"}]},
+{t:"note",x:"* The employer also pays its own share of social insurance, so the cost of employing someone is usually about 15% more than their salary. ★"}],
+kr:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
+["National pension","Standard monthly income (from last year’s income)","Reset every July"],
+["Health and long-term care","Monthly remuneration","Monthly; last year is settled the following April"],
+["Employment insurance","That month’s pay × the rate","Monthly"],
+["Income tax","Simplified tax table (pay and dependants)","Monthly; settled in the year-end settlement in February’s pay"],
+["Local income tax","10% of income tax","With income tax"]]},
+{t:"note",x:"* The employer also pays its share of the four insurances plus industrial accident insurance, so employment costs are usually around 10% more than salary. ★"}]}]},
 {h:"The monthly payroll cycle",blocks:[{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Overtime and leave fixed"},{name:"Calculate",sub:"Earnings and deductions"},{name:"Second check",sub:"Anyone very different from last month"},{name:"Pay",sub:"Bank transfer on payday"},{name:"Payslips",sub:"Paper or electronic"},{name:"Pay over",sub:"Withheld tax by the 10th of next month"}]},
-{t:"point",x:"Withheld income tax is normally paid over by the 10th of the month after payday. Companies with fewer than ten employees can apply to pay twice a year instead. Social insurance is debited from the bank at the end of the following month. ★"}]}],
+{t:"region",jp:[{t:"point",x:"Withheld income tax is normally paid over by the 10th of the month after payday. Companies with fewer than ten employees can apply to pay twice a year instead. Social insurance is debited from the bank at the end of the following month. ★"}],
+kr:[{t:"point",x:"Withheld income tax and local income tax are filed and paid by the 10th of the month after payday. Companies with 20 or fewer regular employees in the previous year can apply to pay half-yearly. Social insurance premiums are also due on the 10th of the following month. ★"}]}]}],
 voice:"Payroll mistakes cost trust quickly. Make it a habit for someone other than the person who calculated it to check at least anyone whose pay differs a lot from last month.",
 terms:[["Gross Pay","総支給額","총지급액"],["Take-home Pay","手取り","수령액"],["Withholding Tax","源泉徴収","원천징수"],["Standard Monthly Remuneration","標準報酬月額","표준보수월액"],["Residence Tax Deducted from Pay","特別徴収","특별징수"]],
-quiz:[{q:"What is residence tax based on?",opts:["This month’s pay","Last year’s income","Next year’s forecast","Company profit"],a:1,exp:"It is based on last year’s income and deducted in twelve instalments from June."},
-{q:"What are health insurance and pension contributions based on?",opts:["Standard monthly remuneration","Today’s sales","Age alone","Company size"],a:0,exp:"It is set from April–June pay and normally used for a year from September."},
+quiz:[{q:"(Japan) What is residence tax based on?",opts:["This month’s pay","Last year’s income","Next year’s forecast","Company profit"],a:1,exp:"It is based on last year’s income and deducted in twelve instalments from June."},
+{q:"(Japan) What are health insurance and pension contributions based on?",opts:["Standard monthly remuneration","Today’s sales","Age alone","Company size"],a:0,exp:"It is set from April–June pay and normally used for a year from September."},
 {q:"What is an effective payroll check?",opts:["No check","Someone else checks anyone very different from last month","Leave it to employees","Once a year"],a:1,exp:"A second check prevents mistakes."}],
 next:"0-6 General affairs: contracts, equipment, the office and documents"});
 

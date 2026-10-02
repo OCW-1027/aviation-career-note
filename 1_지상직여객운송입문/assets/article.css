@@ -150,3 +150,16 @@ html[lang="en"]{--disp:"Zen Maru Gothic","Noto Sans",sans-serif;--body:"Noto San
 @media (max-width:420px){.langs .lg,.langs button{padding:6px 8px;font-size:12px;min-width:0}}
 .langs .lg:not(.on):hover{color:var(--sky-d);background:var(--sky-t)}
 .note.fb{border:1px dashed var(--sky);background:var(--sky-t);border-radius:12px;padding:8px 14px;margin:18px 0 0;font-size:14px}
+
+/* 制度の国の切り替え（region）とレッスン冒頭の基準表示 */
+.rg{margin:14px 0}
+.rg-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:6px 0 10px;font-size:13px;font-weight:700;color:var(--muted)}
+.rg-b{font:inherit;font-size:14px;font-weight:700;min-height:40px;padding:6px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.rg-b[aria-pressed="true"]{background:var(--sky);border-color:var(--sky);color:#fff}
+.rg-p{display:none}
+html:not([data-region="kr"]) .rg-jp,html[data-region="kr"] .rg-kr{display:block}
+.basis{display:inline-block;font-size:13px;font-weight:700;line-height:1.5;padding:5px 14px;border-radius:999px;background:var(--tint);color:var(--ink-2);margin:0 0 14px}
+.basis.b-jpkr{background:var(--sky-t);color:var(--sky-d)}
+.basis.b-jp{background:var(--sun-t);color:#7A5A00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .basis.b-jpkr{color:#9CCBF5}:root:not([data-theme="light"]) .basis.b-jp{color:#F2D27A}}
+:root[data-theme="dark"] .basis.b-jpkr{color:#9CCBF5}:root[data-theme="dark"] .basis.b-jp{color:#F2D27A}
