@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>財務比率の計算練習</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}html[lang=ko] body{word-break:keep-all;overflow-wrap:break-word}
+h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
+.langs{display:inline-flex}.langs button{cursor:pointer}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.card h2{font-size:16px;margin:0 0 10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.card h2 .tag{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 10px}
+.pre{display:flex;flex-wrap:wrap;gap:8px}
+.pre button{min-height:44px;padding:8px 14px;border:2px solid var(--line);background:var(--paper);border-radius:12px;font:inherit;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer}
+.pre button.on{border-color:var(--ink);background:#eef3f8}.pre button.sub{font-weight:500;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.grp{border-left:5px solid var(--line);padding:2px 0 2px 12px;margin:14px 0 0}.grp.pl{border-color:var(--pl)}.grp.bs{border-color:var(--bs)}.grp.cf{border-color:var(--cf)}
+.grp h3{font-size:14px;margin:0 0 8px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px 12px}
+.g label{display:block;font-size:12.5px;color:var(--muted);font-weight:700}
+.g input{display:block;width:100%;height:44px;margin-top:3px;padding:6px 10px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:16px;text-align:right;background:#fff;color:var(--ink)}
+.du{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:4px 0 6px}
+.du div{border:3px solid var(--line);border-radius:12px;padding:8px 14px;text-align:center;min-width:112px;background:#fff}
+.du div span{display:block;font-size:12px;font-weight:700}.du div b{display:block;font-size:22px;line-height:1.3}
+.du i{font-style:normal;font-size:20px;color:var(--muted);font-weight:700}
+.du .m{border-color:var(--pl)}.du .m b,.du .m span{color:var(--pl)}.du .t{border-color:var(--bs)}.du .t b,.du .t span{color:var(--bs)}.du .l{border-color:var(--cf)}.du .l b,.du .l span{color:#b96a12}.du .e{border-color:var(--ink);background:#eef3f8}
+.r{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-top:1px solid var(--line)}
+.r:first-of-type{border-top:0}
+.r .nm{font-weight:700;font-size:14.5px}.r .v{font-size:20px;font-weight:800;text-align:right;white-space:nowrap}
+.r .fm{grid-column:1/-1;font-size:13px;color:var(--muted);overflow-wrap:anywhere}.r .hn{grid-column:1/-1;font-size:13px}
+.r.neg .v{color:var(--ng)}.r.na .v{color:var(--muted);font-weight:500}.r .al{color:var(--ng);font-weight:700}
+.warn{background:#fdeef0;border:1px solid #f1c4cc;border-radius:10px;padding:8px 12px;font-size:13px;color:#8a1f33;margin:10px 0 0}
+button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+@media(max-width:600px){.card{padding:14px 12px}.du div{min-width:96px;padding:6px 10px}.du div b{font-size:19px}}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="finratio"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"><button type="button" data-l="ja">日本語</button><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button></span><h1 id="t_title"></h1><p id="t_lead" class="lead"></p></header>
+<div class="card"><h2 id="t_pre"></h2><div class="pre" id="pre"></div><p class="note" id="t_pren"></p></div>
+<div class="card"><h2 id="t_in"></h2><div id="inp"></div><div id="chk"></div></div>
+<div id="res"></div>
+<p class="note" id="t_note"></p>
+</div>
+<script>
+var KEY='acn-finratio-v1';
+var X={title:['財務比率の計算練習','재무 비율 계산 연습','Financial Ratio Practice'],
+lead:['財務諸表の主な数字を入れると、収益性・安全性・効率性・成長性・キャッシュフローの比率を、式と数字つきで計算します。まず例（小さな会社、Vela Airの3年）で確かめてから、自分の会社や気になる会社の数字に入れかえてください。','재무제표의 주요 숫자를 넣으면 수익성·안전성·효율성·성장성·현금흐름의 비율을 식과 숫자와 함께 계산합니다. 먼저 예시(작은 회사, Vela Air의 3년)로 확인한 뒤, 내 회사나 궁금한 회사의 숫자로 바꿔 넣어 보세요.','Enter the main figures from the financial statements and the tool calculates ratios for profitability, safety, efficiency, growth and cash flow, showing the formula and the numbers used. Start with the examples (the small company, Vela Air’s three years), then replace them with your own company’s figures.'],
+pre:['例を選ぶ','예시를 고른다','Choose an example'],pren:['例を選ぶと数字が入ります。そのあと、どの欄も自由に書きかえられます。','예시를 고르면 숫자가 들어갑니다. 그 뒤에는 어느 칸이든 자유롭게 바꿀 수 있습니다.','Choosing an example fills in the figures. You can then change any field.'],
+inh:['数字を入れる','숫자를 넣는다','Enter the figures'],blank:['空欄から始める','빈칸에서 시작','Start blank'],
+unit:['単位','단위','Unit'],opt:['任意','선택','optional'],
+pl:['損益計算書','손익계산서','Income statement'],bs:['貸借対照表','재무상태표','Balance sheet'],cf:['キャッシュフロー計算書','현금흐름표','Cash flow statement'],
+du:['ROEの分解','ROE 분해','ROE breakdown'],
+g1:['収益性 ― もうける力','수익성 — 버는 힘','Profitability'],g2:['安全性 ― 耐える力','안전성 — 버티는 힘','Safety'],g3:['効率性 ― 資産の使い方','효율성 — 자산을 쓰는 법','Efficiency'],g4:['成長性 ― 伸びる力','성장성 — 늘어나는 힘','Growth'],g5:['キャッシュフロー ― 現金の裏づけ','현금흐름 — 현금의 뒷받침','Cash flow'],
+les:['レッスン','레슨','Lesson'],avg:['期首と期末の平均','기초와 기말의 평균','average of opening and closing'],end:['期末の残高（期首が空欄のため）','기말 잔액(기초가 빈칸이므로)','closing balance (opening is blank)'],
+need:['次の数字を入れると計算します：','다음 숫자를 넣으면 계산합니다: ','Enter these to calculate: '],
+x:['倍','배','×'],tm:['回','회','×'],dy:['日','일',' days'],yr:['年','년',' years'],mo:['か月分','개월분',' months'],
+nopos:['当期純利益がマイナスのため計算しません','당기순이익이 마이너스라 계산하지 않습니다','Not calculated: net profit is negative'],
+noeq:['自己資本がゼロ以下のため計算しません','자기자본이 0 이하라 계산하지 않습니다','Not calculated: equity is zero or negative'],
+w1:['自己資本が総資産より大きくなっています。入力を確かめてください。','자기자본이 총자산보다 큽니다. 입력을 확인하세요.','Equity is larger than total assets. Check the figures.'],
+w2:['現金が総資産より大きくなっています。入力を確かめてください。','현금이 총자산보다 큽니다. 입력을 확인하세요.','Cash is larger than total assets. Check the figures.'],
+w3:['営業利益が売上より大きくなっています。入力を確かめてください。','영업이익이 매출보다 큽니다. 입력을 확인하세요.','Operating profit is larger than sales. Check the figures.'],
+note:['※ 例の数字は架空です。計算の考え方を学ぶためのもので、投資の助言ではありません。比率の定義は資料によって違うので、比べるときは式をそろえてください。入れた数字はこの端末のブラウザーにだけ保存されます。','※ 예시 숫자는 가상입니다. 계산 방식을 익히기 위한 것이며 투자 조언이 아닙니다. 비율의 정의는 자료마다 다르므로 비교할 때는 식을 맞추세요. 넣은 숫자는 이 기기의 브라우저에만 저장됩니다.','* The example figures are fictional. The tool is for learning how the ratios work and is not investment advice. Definitions differ between sources, so align the formulas before comparing. Your figures are saved only in this browser.']};
+var PN={small:['小さな会社（1年）','작은 회사(1년)','Small company (1 year)'],v1:['Vela Air 1年目','Vela Air 1년 차','Vela Air year 1'],v2:['Vela Air 2年目（燃油高騰）','Vela Air 2년 차(유가 급등)','Vela Air year 2 (fuel spike)'],v3:['Vela Air 3年目','Vela Air 3년 차','Vela Air year 3']};
+var PU={small:['百万円','백만 엔','million yen'],v1:['億円','억 엔','100m yen'],v2:['億円','억 엔','100m yen'],v3:['億円','억 엔','100m yen'],blank:['自由（すべて同じ単位で）','자유(모두 같은 단위로)','any (use one unit throughout)']};
+var PRE={small:{rev:300,rev0:'',cogs:110,op:30,dep:12,fi:'',int:1,ni:20.3,ta0:87,ta1:98.3,eq0:52,eq1:67.3,debt:24,cash:16.3,ca:'',cl:'',ar:8,inv:6,ap:7,ocf:27.3,capex:20,lease:'',div:5},
+v1:{rev:3000,rev0:'',cogs:'',op:180,dep:254,fi:6,int:58,ni:90,ta0:6000,ta1:5910,eq0:1920,eq1:1970,debt:2090,cash:1044,ca:'',cl:'',ar:'',inv:'',ap:'',ocf:394,capex:300,lease:60,div:40},
+v2:{rev:3160,rev0:3000,cogs:'',op:-54,dep:262,fi:5,int:65,ni:-105,ta0:5910,ta1:5880,eq0:1970,eq1:1865,debt:2080,cash:1256,ca:'',cl:'',ar:'',inv:'',ap:'',ocf:222,capex:0,lease:60,div:0},
+v3:{rev:3300,rev0:3160,cogs:'',op:231,dep:270,fi:6,int:68,ni:127,ta0:5880,ta1:6012,eq0:1865,eq1:1942,debt:2070,cash:1338,ca:'',cl:'',ar:'',inv:'',ap:'',ocf:442,capex:300,lease:60,div:50}};
+var FIELDS=[['pl',['rev','rev0','cogs','op','dep','fi','int','ni']],['bs',['ta0','ta1','eq0','eq1','debt','cash','ca','cl','ar','inv','ap']],['cf',['ocf','capex','lease','div']]];
+var OPT={rev0:1,cogs:1,fi:1,ta0:1,eq0:1,ca:1,cl:1,ar:1,inv:1,ap:1,lease:1,div:1};
+var FL={rev:['売上','매출','Sales'],rev0:['前年の売上','전년 매출','Prior-year sales'],cogs:['売上原価','매출원가','Cost of sales'],op:['営業利益','영업이익','Operating profit'],dep:['減価償却費','감가상각비','Depreciation'],fi:['金融収益（受取利息など）','금융수익(이자수익 등)','Financial income'],int:['支払利息','이자비용','Interest expense'],ni:['当期純利益','당기순이익','Net profit'],
+ta0:['総資産（期首）','총자산(기초)','Total assets, opening'],ta1:['総資産（期末）','총자산(기말)','Total assets, closing'],eq0:['自己資本（期首）','자기자본(기초)','Equity, opening'],eq1:['自己資本（期末）','자기자본(기말)','Equity, closing'],debt:['有利子負債（期末）','유이자부채(기말)','Interest-bearing debt'],cash:['現金（期末）','현금(기말)','Cash, closing'],ca:['流動資産','유동자산','Current assets'],cl:['流動負債','유동부채','Current liabilities'],ar:['売掛金','매출채권','Receivables'],inv:['在庫','재고','Inventory'],ap:['買掛金','매입채무','Payables'],
+ocf:['営業キャッシュフロー','영업현금흐름','Operating cash flow'],capex:['設備投資（支出額）','설비투자(지출액)','Capital expenditure (spent)'],lease:['リース債務の返済','리스부채 상환','Lease repayments'],div:['配当','배당','Dividends']};
+/* 比率：[名前, 式（言葉）, 読み方] */
+var RT={gpm:[['売上総利益率','매출총이익률','Gross margin'],['（売上 − 売上原価）÷ 売上','(매출 − 매출원가) ÷ 매출','(Sales − cost of sales) ÷ sales'],['売った値段のうち、原価を引いて残る割合','판 값에서 원가를 빼고 남는 비율','What is left of the selling price after direct costs']],
+opm:[['営業利益率','영업이익률','Operating margin'],['営業利益 ÷ 売上','영업이익 ÷ 매출','Operating profit ÷ sales'],['本業でもうける力','본업으로 버는 힘','The earning power of the core business']],
+ebm:[['EBITDAマージン','EBITDA 마진','EBITDA margin'],['（営業利益 ＋ 減価償却費）÷ 売上','(영업이익 + 감가상각비) ÷ 매출','(Operating profit + depreciation) ÷ sales'],['設備を買った会社と借りた会社をならして比べるときに使う','설비를 산 회사와 빌린 회사를 고르게 비교할 때 쓴다','Used to compare companies that own assets with those that lease']],
+npm:[['当期純利益率','당기순이익률','Net margin'],['当期純利益 ÷ 売上','당기순이익 ÷ 매출','Net profit ÷ sales'],['株主の取り分になる割合','주주 몫이 되는 비율','The share that reaches shareholders']],
+roe:[['ROE（自己資本利益率）','ROE(자기자본이익률)','Return on equity'],['当期純利益 ÷ 自己資本','당기순이익 ÷ 자기자본','Net profit ÷ equity'],['株主のお金がどれだけ利益を生んだか','주주의 돈이 얼마나 이익을 냈나','How much profit the owners’ money produced']],
+roa:[['ROA（総資産利益率）','ROA(총자산이익률)','Return on assets'],['当期純利益 ÷ 総資産','당기순이익 ÷ 총자산','Net profit ÷ total assets'],['借入で買ったものも含め、全部の資産が生んだ利益','차입으로 산 것까지 포함한 전체 자산이 낸 이익','Profit produced by all assets, including those funded by debt']],
+eqr:[['自己資本比率','자기자본비율','Equity ratio'],['自己資本 ÷ 総資産','자기자본 ÷ 총자산','Equity ÷ total assets'],['高いほど赤字に耐えられる。航空会社は30〜40%で健全とされることが多い','높을수록 적자를 버틸 수 있다. 항공사는 30~40%면 건전하다고 보는 경우가 많다','Higher means more room to absorb losses; 30–40% is often seen as sound for airlines']],
+dbr:[['負債比率','부채비율','Debt ratio (liabilities to equity)'],['（総資産 − 自己資本）÷ 自己資本','(총자산 − 자기자본) ÷ 자기자본','(Total assets − equity) ÷ equity'],['韓国でよく使う。自己資本比率 ＝ 1 ÷（1 ＋ 負債比率）','한국에서 자주 쓴다. 자기자본비율 = 1 ÷ (1 + 부채비율)','Common in Korea. Equity ratio = 1 ÷ (1 + debt ratio)']],
+de:[['D/Eレシオ','D/E 비율','Debt-to-equity ratio'],['有利子負債 ÷ 自己資本','유이자부채 ÷ 자기자본','Interest-bearing debt ÷ equity'],['利息のつく負債が、自己資本の何倍か','이자가 붙는 부채가 자기자본의 몇 배인가','Interest-bearing debt as a multiple of equity']],
+nd:[['純有利子負債','순차입금','Net debt'],['有利子負債 − 現金','유이자부채 − 현금','Interest-bearing debt − cash'],['マイナスなら、借入より現金のほうが多い（純現金）','마이너스면 차입보다 현금이 많다(순현금)','Negative means more cash than debt (net cash)']],
+cur:[['流動比率','유동비율','Current ratio'],['流動資産 ÷ 流動負債','유동자산 ÷ 유동부채','Current assets ÷ current liabilities'],['100%を超えると1年以内の支払いをまかなえる。航空会社は前受金を除いても見る','100%를 넘으면 1년 안의 지급을 감당한다. 항공사는 선수금을 빼고도 본다','Above 100% covers payments due within a year; for airlines, also read it without unearned revenue']],
+icv:[['インタレスト・カバレッジ','이자보상배율','Interest coverage'],['（営業利益 ＋ 金融収益）÷ 支払利息','(영업이익 + 금융수익) ÷ 이자비용','(Operating profit + financial income) ÷ interest expense'],['1倍を下回ると、本業で利息を払えていない','1배를 밑돌면 본업으로 이자를 못 내고 있다','Below 1×, the core business is not covering interest']],
+deb:[['有利子負債 ÷ EBITDA','유이자부채 ÷ EBITDA','Debt to EBITDA'],['有利子負債 ÷（営業利益 ＋ 減価償却費）','유이자부채 ÷ (영업이익 + 감가상각비)','Interest-bearing debt ÷ (operating profit + depreciation)'],['借入が稼ぎの何年分か','차입이 벌이의 몇 년 치인가','How many years of earnings the debt represents']],
+ndeb:[['純有利子負債 ÷ EBITDA','순차입금 ÷ EBITDA','Net debt to EBITDA'],['（有利子負債 − 現金）÷ EBITDA','(유이자부채 − 현금) ÷ EBITDA','(Debt − cash) ÷ EBITDA'],['現金を引いたあとの借入の重さ','현금을 뺀 뒤의 차입의 무게','The weight of debt after deducting cash']],
+liq:[['手元流動性','보유 유동성','Liquidity on hand'],['現金 ÷（売上 ÷ 12）','현금 ÷ (매출 ÷ 12)','Cash ÷ (sales ÷ 12)'],['売上が止まっても何か月払えるかの目安','매출이 멈춰도 몇 달을 낼 수 있는지의 기준','How many months of sales the cash covers']],
+trn:[['総資産回転率','총자산회전율','Asset turnover'],['売上 ÷ 総資産','매출 ÷ 총자산','Sales ÷ total assets'],['資産が1年に何回売上に変わるか。設備の重い商売は低い','자산이 1년에 몇 번 매출로 바뀌나. 설비가 무거운 장사는 낮다','How many times a year assets turn into sales; low in asset-heavy businesses']],
+ard:[['売掛金の回転期間','매출채권 회전기간','Receivable days'],['売掛金 ÷ 売上 × 365','매출채권 ÷ 매출 × 365','Receivables ÷ sales × 365'],['売ってから入金までの日数','팔고 나서 입금까지의 일수','Days from sale to payment']],
+ivd:[['在庫の回転期間','재고 회전기간','Inventory days'],['在庫 ÷ 売上原価 × 365','재고 ÷ 매출원가 × 365','Inventory ÷ cost of sales × 365'],['仕入れてから使う（売る）までの日数','사들여서 쓰기(팔기)까지의 일수','Days from purchase to use or sale']],
+apd:[['買掛金の回転期間','매입채무 회전기간','Payable days'],['買掛金 ÷ 売上原価 × 365（簡便な式）','매입채무 ÷ 매출원가 × 365(간편식)','Payables ÷ cost of sales × 365 (simplified)'],['仕入れてから払うまでの日数。正確には分母は仕入額','사들여서 내기까지의 일수. 정확히는 분모가 매입액','Days from purchase to payment; strictly the denominator is purchases']],
+ccc:[['現金が戻るまでの日数（CCC）','현금이 돌아오기까지의 일수(CCC)','Cash conversion cycle'],['売掛金の日数 ＋ 在庫の日数 − 買掛金の日数','매출채권 일수 + 재고 일수 − 매입채무 일수','Receivable days + inventory days − payable days'],['短いほど、商売を回すために寝かせる現金が少ない','짧을수록 장사를 돌리려고 잠재우는 현금이 적다','The shorter it is, the less cash is tied up in running the business']],
+grw:[['売上の前年比','매출의 전년 대비','Sales growth, year-on-year'],['（今年 − 前年）÷ 前年','(올해 − 전년) ÷ 전년','(This year − last year) ÷ last year'],['量が増えたのか単価が上がったのかを、別に確かめる','양이 늘었는지 단가가 올랐는지는 따로 확인한다','Check separately whether volume or price drove it']],
+sgr:[['持続可能な成長率','지속가능 성장률','Sustainable growth rate'],['ROE ×（1 − 配当 ÷ 当期純利益）','ROE × (1 − 배당 ÷ 당기순이익)','ROE × (1 − dividends ÷ net profit)'],['借入の割合を変えず、増資もせずに続けられる成長の速さ','차입의 비율을 바꾸지 않고 증자도 없이 이어 갈 수 있는 성장 속도','Growth that can be sustained without changing leverage or raising equity']],
+ocn:[['営業CF ÷ 当期純利益','영업현금흐름 ÷ 당기순이익','Operating cash flow ÷ net profit'],['営業キャッシュフロー ÷ 当期純利益','영업현금흐름 ÷ 당기순이익','Operating cash flow ÷ net profit'],['1倍を大きく下回る年が続いたら、利益が現金になっていない','1배를 크게 밑도는 해가 이어지면 이익이 현금이 되지 않고 있다','If it stays well below 1×, profit is not turning into cash']],
+ocm:[['営業CFマージン','영업현금흐름 마진','Operating cash flow margin'],['営業キャッシュフロー ÷ 売上','영업현금흐름 ÷ 매출','Operating cash flow ÷ sales'],['売上100のうち、現金として残る分','매출 100 가운데 현금으로 남는 몫','Cash generated per 100 of sales']],
+fcf:[['フリーキャッシュフロー','잉여현금흐름','Free cash flow'],['営業キャッシュフロー − 設備投資','영업현금흐름 − 설비투자','Operating cash flow − capital expenditure'],['稼いだ現金から投資を引いて残るお金','번 현금에서 투자를 빼고 남는 돈','Cash left after investment']],
+fcl:[['リース返済後のFCF','리스 상환 후 FCF','FCF after lease payments'],['フリーキャッシュフロー − リース債務の返済','잉여현금흐름 − 리스부채 상환','Free cash flow − lease repayments'],['航空会社を比べるときは、ここまで引いて見る','항공사를 비교할 때는 여기까지 빼고 본다','The practical measure when comparing airlines']],
+cxd:[['設備投資 ÷ 減価償却費','설비투자 ÷ 감가상각비','Capital expenditure ÷ depreciation'],['設備投資 ÷ 減価償却費','설비투자 ÷ 감가상각비','Capital expenditure ÷ depreciation'],['1倍を下回る年が続くと、設備は古くなっていく','1배를 밑도는 해가 이어지면 설비는 낡아 간다','Below 1× for years, the assets are ageing']],
+dco:[['有利子負債 ÷ 営業CF','유이자부채 ÷ 영업현금흐름','Debt to operating cash flow'],['有利子負債 ÷ 営業キャッシュフロー','유이자부채 ÷ 영업현금흐름','Interest-bearing debt ÷ operating cash flow'],['稼いだ現金で借入を返すのに何年かかるか','번 현금으로 차입을 갚는 데 몇 년 걸리나','Years of operating cash flow needed to repay the debt']],
+oci:[['営業CF ÷ 支払利息','영업현금흐름 ÷ 이자비용','Operating cash flow ÷ interest'],['営業キャッシュフロー ÷ 支払利息','영업현금흐름 ÷ 이자비용','Operating cash flow ÷ interest expense'],['日本の決算短信に載るインタレスト・カバレッジ・レシオと同じ考え方','일본 결산단신에 실리는 인터레스트 커버리지 비율과 같은 방식','The same idea as the interest coverage ratio in Japanese earnings releases']],
+dm:[['当期純利益率','순이익률','Net margin']],dt:[['総資産回転率','총자산회전율','Asset turnover']],dl:[['レバレッジ','레버리지','Leverage']]};
+var lang=localStorage.getItem('art-lang')||'ja',LI=0,P='small',D=null;
+function cp(o){return JSON.parse(JSON.stringify(o))}
+function blank(){var o={};FIELDS.forEach(function(g){g[1].forEach(function(k){o[k]=''})});return o}
+try{var s0=JSON.parse(localStorage.getItem(KEY)||'null');if(s0&&s0.d&&typeof s0.d==='object'){P=s0.p||'blank';D=blank();for(var k0 in D)if(s0.d[k0]!=null)D[k0]=s0.d[k0]}}catch(e){}
+if(!D){P='small';D=cp(PRE.small)}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({p:P,d:D}))}catch(e){}}
+function t(a){return a[LI]}
+function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function N(k){var v=D[k];if(v===''||v==null)return NaN;v=parseFloat(String(v).replace(/[,，\s]/g,'').replace(/[−–△▲]/g,'-'));return isFinite(v)?v:NaN}
+function f(v,d){if(!isFinite(v))return '—';var a=Math.abs(v),s=a.toLocaleString('en-US',d==null?{maximumFractionDigits:2}:{minimumFractionDigits:d,maximumFractionDigits:d});return (v<0&&+a.toFixed(d==null?2:d)!==0?'−':'')+s}
+function dv(a,b){return isFinite(a)&&isFinite(b)&&b!==0?a/b:NaN}
+/* 計算：値（V）と表示用の行（G）を返す */
+function calc(){var rev=N('rev'),rev0=N('rev0'),cogs=N('cogs'),op=N('op'),dep=N('dep'),fi=N('fi'),it=N('int'),ni=N('ni'),ta0=N('ta0'),ta1=N('ta1'),eq0=N('eq0'),eq1=N('eq1'),debt=N('debt'),cash=N('cash'),ca=N('ca'),cl=N('cl'),ar=N('ar'),inv=N('inv'),ap=N('ap'),ocf=N('ocf'),capex=N('capex'),lease=N('lease'),div=N('div');
+ var fi0=isNaN(fi)?0:fi,le0=isNaN(lease)?0:lease,dv0=isNaN(div)?0:div;
+ var ata=isNaN(ta0)?ta1:(ta0+ta1)/2,aeq=isNaN(eq0)?eq1:(eq0+eq1)/2,ta_n=t(isNaN(ta0)?X.end:X.avg),eq_n=t(isNaN(eq0)?X.end:X.avg);
+ var eb=op+dep,nd=debt-cash,fcf=ocf-capex,V={},G={g1:[],g2:[],g3:[],g4:[],g5:[]};
+ function need(ks){return ks.filter(function(k){return isNaN(N(k))}).map(function(k){return t(FL[k])})}
+ function add(g,id,val,txt,num,ks,o){o=o||{};var miss=need(ks),ok=isFinite(val)&&!miss.length&&!o.na;V[id]=ok?val:NaN;
+  G[g].push({id:id,ok:ok,val:val,txt:ok?txt:'—',num:ok?num:(o.na?o.na:(miss.length?t(X.need)+miss.join(LI===2?', ':'、'):'—')),al:ok&&o.al?o.al:'',neg:ok&&val<0})}
+ var pc=function(v){return f(v*100,1)+'%'},xx=function(v){return f(v,2)+t(X.x)};
+ /* 収益性 */
+ add('g1','gpm',dv(rev-cogs,rev),pc(dv(rev-cogs,rev)),'（'+f(rev)+' − '+f(cogs)+'）÷ '+f(rev),['rev','cogs']);
+ add('g1','opm',dv(op,rev),pc(dv(op,rev)),f(op)+' ÷ '+f(rev),['op','rev']);
+ add('g1','ebm',dv(eb,rev),pc(dv(eb,rev)),'（'+f(op)+' ＋ '+f(dep)+'）÷ '+f(rev)+'　EBITDA ＝ '+f(eb),['op','dep','rev']);
+ add('g1','npm',dv(ni,rev),pc(dv(ni,rev)),f(ni)+' ÷ '+f(rev),['ni','rev']);
+ add('g1','roe',dv(ni,aeq),pc(dv(ni,aeq)),f(ni)+' ÷ '+f(aeq)+'（'+eq_n+'）',['ni','eq1'],aeq<=0?{na:t(X.noeq)}:null);
+ add('g1','roa',dv(ni,ata),pc(dv(ni,ata)),f(ni)+' ÷ '+f(ata)+'（'+ta_n+'）',['ni','ta1']);
+ V.dm=dv(ni,rev);V.dt=dv(rev,ata);V.dl=aeq>0?dv(ata,aeq):NaN;
+ /* 安全性 */
+ add('g2','eqr',dv(eq1,ta1),pc(dv(eq1,ta1)),f(eq1)+' ÷ '+f(ta1),['eq1','ta1']);
+ add('g2','dbr',dv(ta1-eq1,eq1),pc(dv(ta1-eq1,eq1)),'（'+f(ta1)+' − '+f(eq1)+'）÷ '+f(eq1),['ta1','eq1'],eq1<=0?{na:t(X.noeq)}:null);
+ add('g2','de',dv(debt,eq1),xx(dv(debt,eq1)),f(debt)+' ÷ '+f(eq1),['debt','eq1'],eq1<=0?{na:t(X.noeq)}:null);
+ add('g2','nd',nd,f(nd),f(debt)+' − '+f(cash),['debt','cash']);
+ add('g2','cur',dv(ca,cl),pc(dv(ca,cl)),f(ca)+' ÷ '+f(cl),['ca','cl']);
+ add('g2','icv',dv(op+fi0,it),f(dv(op+fi0,it),1)+t(X.x),'（'+f(op)+' ＋ '+f(fi0)+'）÷ '+f(it),['op','int'],dv(op+fi0,it)<1?{al:1}:null);
+ add('g2','deb',dv(debt,eb),f(dv(debt,eb),1)+t(X.x),f(debt)+' ÷ '+f(eb),['debt','op','dep'],eb<=0?{na:'EBITDA ≦ 0'}:null);
+ add('g2','ndeb',dv(nd,eb),f(dv(nd,eb),1)+t(X.x),f(nd)+' ÷ '+f(eb),['debt','cash','op','dep'],eb<=0?{na:'EBITDA ≦ 0'}:null);
+ add('g2','liq',dv(cash,rev/12),f(dv(cash,rev/12),1)+t(X.mo),f(cash)+' ÷（'+f(rev)+' ÷ 12）',['cash','rev']);
+ /* 効率性 */
+ add('g3','trn',dv(rev,ata),f(dv(rev,ata),2)+t(X.tm),f(rev)+' ÷ '+f(ata)+'（'+ta_n+'）',['rev','ta1']);
+ var ard=dv(ar,rev)*365,ivd=dv(inv,cogs)*365,apd=dv(ap,cogs)*365;
+ add('g3','ard',ard,f(ard,1)+t(X.dy),f(ar)+' ÷ '+f(rev)+' × 365',['ar','rev']);
+ add('g3','ivd',ivd,f(ivd,1)+t(X.dy),f(inv)+' ÷ '+f(cogs)+' × 365',['inv','cogs']);
+ add('g3','apd',apd,f(apd,1)+t(X.dy),f(ap)+' ÷ '+f(cogs)+' × 365',['ap','cogs']);
+ add('g3','ccc',ard+ivd-apd,f(ard+ivd-apd,1)+t(X.dy),f(ard,1)+' ＋ '+f(ivd,1)+' − '+f(apd,1),['ar','inv','ap','cogs','rev']);
+ /* 成長性 */
+ add('g4','grw',dv(rev-rev0,rev0),(rev>=rev0?'+':'')+pc(dv(rev-rev0,rev0)),'（'+f(rev)+' − '+f(rev0)+'）÷ '+f(rev0),['rev','rev0'],rev0<=0?{na:'—'}:null);
+ var sg=dv(ni,aeq)*(1-dv(dv0,ni));
+ add('g4','sgr',sg,pc(sg),pc(dv(ni,aeq))+' ×（1 − '+f(dv0)+' ÷ '+f(ni)+'）',['ni','eq1'],ni<=0?{na:t(X.nopos)}:(aeq<=0?{na:t(X.noeq)}:null));
+ /* キャッシュフロー */
+ add('g5','ocn',dv(ocf,ni),xx(dv(ocf,ni)),f(ocf)+' ÷ '+f(ni),['ocf','ni'],ni<=0?{na:t(X.nopos)}:null);
+ add('g5','ocm',dv(ocf,rev),pc(dv(ocf,rev)),f(ocf)+' ÷ '+f(rev),['ocf','rev']);
+ add('g5','fcf',fcf,(fcf>0?'+':'')+f(fcf),f(ocf)+' − '+f(capex),['ocf','capex']);
+ add('g5','fcl',fcf-le0,(fcf-le0>0?'+':'')+f(fcf-le0),f(fcf)+' − '+f(le0),['ocf','capex']);
+ add('g5','cxd',dv(capex,dep),xx(dv(capex,dep)),f(capex)+' ÷ '+f(dep),['capex','dep'],dv(capex,dep)<1?{al:1}:null);
+ add('g5','dco',dv(debt,ocf),f(dv(debt,ocf),1)+t(X.yr),f(debt)+' ÷ '+f(ocf),['debt','ocf'],ocf<=0?{na:'—'}:null);
+ add('g5','oci',dv(ocf,it),f(dv(ocf,it),1)+t(X.x),f(ocf)+' ÷ '+f(it),['ocf','int']);
+ var W=[];if(isFinite(eq1)&&isFinite(ta1)&&eq1>ta1)W.push(t(X.w1));if(isFinite(cash)&&isFinite(ta1)&&cash>ta1)W.push(t(X.w2));if(isFinite(op)&&isFinite(rev)&&op>rev)W.push(t(X.w3));
+ return{V:V,G:G,W:W}}
+function rows(a){return a.map(function(r){var d=RT[r.id];return '<div class="r'+(r.neg?' neg':'')+(r.ok?'':' na')+'"><span class="nm">'+esc(t(d[0]))+'</span><span class="v">'+esc(r.txt)+'</span><span class="fm">'+esc(t(d[1]))+(r.ok?' ＝ ':'　')+esc(r.num)+'</span><span class="hn'+(r.al?' al':'')+'">'+esc(t(d[2]))+'</span></div>'}).join('')}
+function out(){var R=calc(),V=R.V,h='';
+ var du=isFinite(V.roe)&&isFinite(V.dm)&&isFinite(V.dt)&&isFinite(V.dl)?'<div class="du"><div class="m"><span>'+esc(t(RT.dm[0]))+'</span><b>'+f(V.dm*100,1)+'%</b></div><i>×</i><div class="t"><span>'+esc(t(RT.dt[0]))+'</span><b>'+f(V.dt,2)+t(X.tm)+'</b></div><i>×</i><div class="l"><span>'+esc(t(RT.dl[0]))+'</span><b>'+f(V.dl,2)+t(X.x)+'</b></div><i>＝</i><div class="e"><span>ROE</span><b>'+f(V.roe*100,1)+'%</b></div></div>':'';
+ var GS=[['g1','6-1','pl'],['g2','6-2','bs'],['g3','6-3','bs'],['g4','6-4','pl'],['g5','6-5','cf']];
+ GS.forEach(function(g){h+='<div class="card"><h2 style="border-left:6px solid var(--'+g[2]+');padding-left:10px">'+esc(t(X[g[0]]))+'<span class="tag">'+esc(t(X.les))+' '+g[1]+'</span></h2>'+(g[0]==='g1'&&du?'<p class="note" style="margin:0 0 4px">'+esc(t(X.du))+'</p>'+du:'')+rows(R.G[g[0]])+'</div>'});
+ document.getElementById('res').innerHTML=h;
+ document.getElementById('chk').innerHTML=R.W.map(function(w){return '<div class="warn">'+esc(w)+'</div>'}).join('')}
+function render(){LI=lang==='ja'?0:lang==='ko'?1:2;document.documentElement.lang=lang;document.title=t(X.title);
+ ['title','lead','pre','pren','note'].forEach(function(k){document.getElementById('t_'+k).textContent=t(X[k])});
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ document.getElementById('pre').innerHTML=Object.keys(PRE).map(function(k){return '<button type="button" data-p="'+k+'"'+(P===k?' class="on"':'')+'>'+esc(t(PN[k]))+'</button>'}).join('')+'<button type="button" data-p="blank" class="sub'+(P==='blank'?' on':'')+'">'+esc(t(X.blank))+'</button>';
+ document.getElementById('t_in').innerHTML=esc(t(X.inh))+'<span class="tag">'+esc(t(X.unit))+'：'+esc(t(PU[P]||PU.blank))+'</span>';
+ document.getElementById('inp').innerHTML=FIELDS.map(function(g){return '<div class="grp '+g[0]+'"><h3>'+esc(t(X[g[0]]))+'</h3><div class="g">'+g[1].map(function(k){return '<label>'+esc(t(FL[k]))+(OPT[k]?'（'+esc(t(X.opt))+'）':'')+'<input type="text" inputmode="decimal" autocomplete="off" data-k="'+k+'" value="'+esc(D[k])+'"></label>'}).join('')+'</div></div>'}).join('');
+ out()}
+document.getElementById('pre').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;P=b.dataset.p;D=P==='blank'?blank():cp(PRE[P]);save();render()});
+document.getElementById('inp').addEventListener('input',function(e){var k=e.target.dataset.k;if(!k)return;D[k]=e.target.value;save();out()});
+document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

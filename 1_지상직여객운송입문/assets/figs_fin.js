@@ -180,6 +180,82 @@ fin_rask_cask:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" view
  s+='<line x1="40" y1="'+base+'" x2="880" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
  s+=Rc(60,340,14,14,PL,3)+tx(80,352,L(lang,'座席キロあたり収入（旅客＋貨物＋付帯）','좌석킬로당 수입(여객+화물+부대)','Revenue per ASK (passenger, cargo, ancillary)'),12,D,600,'start')+Rc(470,340,14,14,R,3)+tx(490,352,L(lang,'座席キロあたり費用（CASK）','좌석킬로당 비용(CASK)','Cost per ASK (CASK)'),12,D,600,'start');
  s+=tx(450,40,L(lang,'2年目は費用が収入を上回り、損益分岐の利用率（81.4%）が実際の利用率（80%）を超えた','2년 차는 비용이 수입을 웃돌아 손익분기 탑승률(81.4%)이 실제 탑승률(80%)을 넘었다','In year 2 cost exceeded revenue per ASK and the break-even load factor (81.4%) rose above the actual 80%'),12,D,600);
+ return s+'</svg>'},
+/* 6-1 ROEの分解：小さな会社と Vela Air 1年目。利益率 × 回転率 × レバレッジ ＝ ROE */
+fin_roe_tree:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
+ var H=[[L(lang,'当期純利益率','순이익률','Net margin'),L(lang,'純利益 ÷ 売上','순이익 ÷ 매출','profit ÷ sales'),PL],[L(lang,'総資産回転率','총자산회전율','Asset turnover'),L(lang,'売上 ÷ 総資産','매출 ÷ 총자산','sales ÷ assets'),BS],[L(lang,'レバレッジ','레버리지','Leverage'),L(lang,'総資産 ÷ 自己資本','총자산 ÷ 자기자본','assets ÷ equity'),CF]];
+ var u=L(lang,'回','회','×'),v=L(lang,'倍','배','×');
+ var Rw=[[L(lang,'小さな会社','작은 회사','Small company'),'6.8%','3.24'+u,'1.55'+v,'34.0%'],[L(lang,'Vela Air 1年目','Vela Air 1년 차','Vela Air, year 1'),'3.0%','0.50'+u,'3.06'+v,'4.6%']];
+ H.forEach(function(h,i){var x=170+i*190;s+=tx(x+70,52,h[0],14,h[2],800)+tx(x+70,72,h[1],11,G,600)});
+ s+=tx(790,52,'ROE',16,D,800)+tx(790,72,L(lang,'純利益 ÷ 自己資本','순이익 ÷ 자기자본','profit ÷ equity'),11,G,600);
+ Rw.forEach(function(r,j){var y=96+j*130,g='<g><animate attributeName="opacity" values="0;1;1" keyTimes="0;'+(0.15+j*0.2).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/>';
+  g+=tx(84,y+48,r[0],13,D,800);
+  H.forEach(function(h,i){var x=170+i*190;g+=Rc(x,y,140,80,'#fff',12,' stroke="'+h[2]+'" stroke-width="3"')+tx(x+70,y+50,r[i+1],24,h[2],800);if(i<2)g+=tx(x+165,y+50,'×',22,G,700)});
+  g+=tx(700,y+50,'＝',22,G,700)+Rc(725,y,130,80,j?'#EAF3FD':'#E8F3F0',12,' stroke="'+D+'" stroke-width="3"')+tx(790,y+52,r[4],26,D,800);s+=g+'</g>'});
+ s+=tx(450,378,L(lang,'小さな会社は回転率で、航空会社はレバレッジでROEを作っている','작은 회사는 회전율로, 항공사는 레버리지로 ROE를 만든다','The small company earns its ROE from turnover; the airline from leverage'),12.5,D,600);
+ return s+'</svg>'},
+/* 6-2 安全性：Vela Air の総資産を「自己資本・有利子負債・その他の負債」に分けた4時点 */
+fin_safety:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
+ var Y=[[L(lang,'期首','기초','Opening'),1920,2300,1780,'32.0%',1200],[L(lang,'1年目末','1년 차 말','End of year 1'),1970,2090,1850,'33.3%',1044],[L(lang,'2年目末','2년 차 말','End of year 2'),1865,2080,1935,'31.7%',1256],[L(lang,'3年目末','3년 차 말','End of year 3'),1942,2070,2000,'32.3%',1338]];
+ var base=300,sc=0.038,O='#B9C4D0';
+ Y.forEach(function(y,i){var x=90+i*200,h1=y[1]*sc,h2=y[2]*sc,h3=y[3]*sc;
+  s+=Rc(x,base-h1,120,h1,BS,0)+tx(x+60,base-h1/2+5,y[1].toLocaleString('en-US'),13,'#fff',800);
+  s+=Rc(x,base-h1-h2,120,h2,R,0)+tx(x+60,base-h1-h2/2+5,y[2].toLocaleString('en-US'),13,'#fff',800);
+  s+=Rc(x,base-h1-h2-h3,120,h3,O,0)+tx(x+60,base-h1-h2-h3/2+5,y[3].toLocaleString('en-US'),13,D,800);
+  s+=tx(x+60,base-h1-h2-h3-10,y[4],15,BS,800)+tx(x+60,base+20,y[0],13,D,800)+tx(x+60,base+38,L(lang,'現金 ','현금 ','Cash ')+y[5].toLocaleString('en-US'),11.5,G,600)});
+ s+='<line x1="60" y1="'+base+'" x2="870" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ s+=Rc(70,358,14,14,BS,3)+tx(90,370,L(lang,'自己資本（上の％は自己資本比率）','자기자본(위의 %는 자기자본비율)','Equity (% above = equity ratio)'),12,D,600,'start');
+ s+=Rc(390,358,14,14,R,3)+tx(410,370,L(lang,'有利子負債（借入＋リース）','유이자부채(차입+리스)','Interest-bearing debt'),12,D,600,'start');
+ s+=Rc(650,358,14,14,O,3)+tx(670,370,L(lang,'その他の負債（前受金など）','그 밖의 부채(선수금 등)','Other liabilities'),12,D,600,'start');
+ s+=tx(450,28,L(lang,'赤字の2年目は自己資本が減ったが、有利子負債は増やさず、現金は増えた（億円）','적자인 2년 차는 자기자본이 줄었지만 유이자부채는 늘리지 않았고 현금은 늘었다(억 엔)','In loss-making year 2 equity fell, but debt did not rise and cash grew (100m yen)'),12.5,D,600);
+ return s+'</svg>'},
+/* 6-4 成長性：旅客収入の伸びを「量（RPK）× 単価（イールド）」に分ける */
+fin_growth_split:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+Rc(0,0,900,360,'#F7FAFD');
+ var P=[[L(lang,'2年目（燃油高騰）','2년 차(유가 급등)','Year 2 (fuel spike)'),5.3,0,5.3],[L(lang,'3年目（回復）','3년 차(회복)','Year 3 (recovery)'),3.9,8.8,-4.5]];
+ var N=[L(lang,'旅客収入','여객 수입','Passenger revenue'),L(lang,'量（RPK）','양(RPK)','Volume (RPK)'),L(lang,'単価（イールド）','단가(일드)','Price (yield)')],C=[PL,BS,CF],sc=13;
+ P.forEach(function(p,i){var x0=250+i*430;s+=tx(x0,46,p[0],15,D,800);
+  s+='<line x1="'+x0+'" y1="66" x2="'+x0+'" y2="290" stroke="'+D+'" stroke-width="2"/>';
+  [1,2,3].forEach(function(k){var v=p[k],y=84+(k-1)*70,w=Math.abs(v)*sc,c=v<0?R:C[k-1];
+   s+=tx(x0-(v<0?w+12:12),y+17,(i?'':N[k-1]),12.5,D,700,'end');
+   s+=Rc(v<0?x0-w:x0,y,Math.max(w,2),44,c,6)+tx(v<0?x0+10:x0+w+10,y+29,(v>0?'+':v<0?'−':'±')+Math.abs(v).toFixed(1)+'%',16,c,800,'start')})});
+ s+=tx(450,326,L(lang,'2年目の増収はすべて値上げ、3年目の増収はすべて量。同じ増収でも中身は逆','2년 차의 증수는 모두 가격 인상, 3년 차의 증수는 모두 양. 같은 증수라도 속은 반대','Year 2 grew entirely on price, year 3 entirely on volume: the same growth, opposite causes'),12.5,D,600);
+ return s+'</svg>'},
+/* 6-5 利益の質：純利益 → 営業CF → FCF → リース返済後のFCF（Vela Air 3年） */
+fin_cf_quality:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
+ var Y=[[L(lang,'1年目','1년 차','Year 1'),90,394,94,34],[L(lang,'2年目（燃油高騰）','2년 차(유가 급등)','Year 2 (fuel spike)'),-105,222,222,162],[L(lang,'3年目','3년 차','Year 3'),127,442,142,82]];
+ var C=[PL,CF,BS,'#7FB5AC'],base=262,sc=0.42;
+ Y.forEach(function(y,i){var x=60+i*285;
+  [1,2,3,4].forEach(function(k){var v=y[k],h=Math.abs(v)*sc,bx=x+(k-1)*60;
+   s+=Rc(bx,v<0?base:base-h,48,Math.max(h,2),v<0?R:C[k-1],5)+tx(bx+24,v<0?base+h+16:base-h-7,(v<0?'−':'+')+Math.abs(v),12.5,v<0?R:D,800)});
+  s+=tx(x+114,base+(i===1?70:24),y[0],13,D,800)});
+ s+='<line x1="40" y1="'+base+'" x2="880" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ var G4=[L(lang,'当期純利益','당기순이익','Net profit'),L(lang,'営業キャッシュフロー','영업현금흐름','Operating cash flow'),L(lang,'フリーキャッシュフロー','잉여현금흐름','Free cash flow'),L(lang,'リース返済後のFCF','리스 상환 후 FCF','FCF after lease payments')];
+ G4.forEach(function(g,k){var lx=70+(k%2)*400,ly=352+Math.floor(k/2)*24;s+=Rc(lx,ly,14,14,C[k],3)+tx(lx+20,ly+12,g,12,D,600,'start')});
+ s+=tx(450,28,L(lang,'利益より営業CFがずっと大きい。機材投資とリース返済を引くと、残りは小さくなる（億円）','이익보다 영업현금흐름이 훨씬 크다. 기재 투자와 리스 상환을 빼면 남는 돈은 작아진다(억 엔)','Operating cash flow far exceeds profit; after aircraft and lease payments little is left (100m yen)'),12.5,D,600);
+ return s+'</svg>'},
+/* 6-3 回転期間：小さな会社の「仕入れてから現金が戻るまで」（在庫20日＋売掛金10日−買掛金23日＝CCC 7日） */
+fin_ccc:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img">'+Rc(0,0,900,340,'#F7FAFD');
+ var x0=170,sc=22,dy=L(lang,'日','일',' d');
+ var E=[[0,L(lang,'仕入れる','사들인다','Buy'),62],[20,L(lang,'売る','판다','Sell'),62],[23,L(lang,'支払う','대금을 낸다','Pay supplier'),318],[30,L(lang,'入金','입금','Cash in'),62]];
+ E.forEach(function(e){var x=x0+e[0]*sc;s+='<line x1="'+x+'" y1="72" x2="'+x+'" y2="296" stroke="'+G+'" stroke-width="1.5" stroke-dasharray="4 4"/>'+tx(x,e[2],e[1]+'（'+e[0]+dy+'）',12,D,700)});
+ s+=Rc(x0,88,20*sc,46,BS,8)+tx(x0+10*sc,117,L(lang,'在庫 20日','재고 20일','Inventory 20 days'),14,'#fff',800);
+ s+=Rc(x0+20*sc,88,10*sc,46,PL,8)+tx(x0+25*sc,117,L(lang,'売掛金 10日','매출채권 10일','Receivables 10 d'),14,'#fff',800);
+ s+=Rc(x0,158,23*sc,46,CF,8)+tx(x0+11.5*sc,187,L(lang,'買掛金 23日（まだ払っていない）','매입채무 23일(아직 내지 않았다)','Payables 23 days (not yet paid)'),14,'#fff',800);
+ s+=Rc(x0+23*sc,228,7*sc,46,R,8)+tx(x0+26.5*sc,257,'CCC 7'+L(lang,'日','일',' days'),14,'#fff',800);
+ s+=tx(x0+23*sc-12,257,L(lang,'自分のお金で立て替える期間 →','내 돈으로 메우는 기간 →','Funded with own cash →'),12.5,R,700,'end');
+ s+=tx(450,28,L(lang,'小さな会社：仕入れてから現金が戻るまで（10 ＋ 20 − 23 ＝ 7日）','작은 회사: 사들여서 현금이 돌아오기까지(10 + 20 − 23 = 7일)','Small company: from purchase to cash back (10 + 20 − 23 = 7 days)'),13,D,700);
+ return s+'</svg>'},
+/* 6-6 時系列：Vela Air の指数（1年目＝100）。売上・ASK・燃油費・燃油以外の費用 */
+fin_trend_index:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img">'+Rc(0,0,900,380,'#F7FAFD');
+ var X=[170,450,730],yy=function(v){return 296-(v-95)*4.1};
+ [100,110,120,130,140,150].forEach(function(v){s+='<line x1="110" y1="'+yy(v)+'" x2="800" y2="'+yy(v)+'" stroke="'+(v===100?D:'#D5DEE8')+'" stroke-width="'+(v===100?2:1)+'"/>'+tx(100,yy(v)+4,v,11.5,G,600,'end')});
+ var S=[[L(lang,'売上','매출','Sales'),[100,105.3,110.0],PL],['ASK',[100,102.5,107.5],D],[L(lang,'燃油費','연료비','Fuel'),[100,147.7,116.7],R],[L(lang,'燃油以外の費用','연료 외 비용','Non-fuel costs'),[100,103.3,106.3],BS]];
+ S.forEach(function(q){s+='<polyline fill="none" stroke="'+q[2]+'" stroke-width="3.5" stroke-linejoin="round" points="'+q[1].map(function(v,i){return X[i]+','+yy(v).toFixed(1)}).join(' ')+'"/>';q[1].forEach(function(v,i){s+='<circle cx="'+X[i]+'" cy="'+yy(v).toFixed(1)+'" r="5" fill="'+q[2]+'"/>'})});
+ s+=tx(X[1],yy(147.7)-12,'147.7',14,R,800)+tx(X[2]+14,yy(116.7)+4,'116.7',13,R,800,'start')+tx(X[2]+14,yy(110.0)+2,'110.0',13,PL,800,'start');
+ [L(lang,'1年目','1년 차','Year 1'),L(lang,'2年目（燃油高騰）','2년 차(유가 급등)','Year 2 (fuel spike)'),L(lang,'3年目','3년 차','Year 3')].forEach(function(n,i){s+=tx(X[i],318,n,12.5,D,800)});
+ var lx=[70,250,400,590],fv=['110.0','107.5','116.7','106.3'];
+ S.forEach(function(q,k){s+=Rc(lx[k],346,14,14,q[2],3)+tx(lx[k]+20,358,q[0]+' '+fv[k],12,D,600,'start')});
+ s+=tx(450,30,L(lang,'1年目を100とした指数。燃油費だけが大きく動き、燃油以外の費用は供給（ASK）より緩やかに伸びた','1년 차를 100으로 한 지수. 연료비만 크게 움직였고, 연료 외 비용은 공급(ASK)보다 천천히 늘었다','Index, year 1 = 100. Only fuel swung widely; non-fuel costs grew more slowly than capacity (ASK)'),12.5,D,600);
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
