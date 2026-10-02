@@ -141,7 +141,7 @@ sections:[
 {name:"Consolidated or standalone?",x:"The figures above are consolidated (whole group), not the airline entity alone. ANA’s costs are for the air transportation segment."},
 {name:"Separate one-off factors",x:"Where the scope changed, as with NCA’s consolidation, do not read growth rates as underlying strength."},
 {name:"Cite source and date",x:"Whenever you use a figure, note which document and which date it came from. The examples in this course will change as documents are updated ★."}]},
-{t:"link",href:"航空会社経営ゲーム.html",x:"[Practice page] Airline Management Game: a year of Vela Air in three statements"}]}],
+{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Management Simulation: a year of Vela Air in three statements"}]}],
 voice:"An earnings release has a summary on its first page or two. Do not try to read it all: practise picking out just four numbers in the ①–④ order every quarter. Within six months you will know the temperature of your own company and its competitors.",
 terms:[["Earnings release (kessan tanshin)","決算短信","결산단신(실적 공시)"],["Results presentation","決算説明資料","결산 설명 자료"],["Consolidated","連結","연결"],["Non-consolidated / separate","単体","단체(별도)"],["Higher revenue and higher profit","増収増益","증수증익"],["EBIT margin","EBITマージン","EBIT 마진"]],
 quiz:[{q:"In what order does this lesson suggest reading an income statement?",opts:["Size → margin → cost mix → year-on-year","Year-on-year → size → tax → dividend","Costs → sales → tax → profit","Look only at net profit"],a:0,exp:"So that every company can be read by the same procedure."},

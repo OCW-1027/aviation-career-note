@@ -171,7 +171,7 @@ sections:[
 {name:"A point-in-time figure",x:"The balance sheet is a photograph of 31 March. Airline cash swings with the season, so take care comparing with December or September figures."},
 {name:"Consolidation scope",x:"Subsidiaries (ZIPAIR, JALUX and others) are included; aircraft include subsidiaries’ fleets."},
 {name:"Source and date",x:"Figures are from the earnings release of 30 April 2026. The annual securities report (June) adds detailed notes. ★"}]},
-{t:"link",href:"航空会社経営ゲーム.html",x:"[Practice page] Airline Management Game: watch the balance sheet move quarter by quarter"}]}],
+{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Management Simulation: watch the balance sheet move quarter by quarter"}]}],
 voice:"Pick two numbers to look at first and you will read a balance sheet quickly. Mine are cash and interest-bearing debt. The difference between them, net cash, tells you how well the company can withstand the next downturn.",
 terms:[["Total assets","総資産","총자산"],["Contract liabilities","契約負債","계약부채"],["Interest-bearing debt","有利子負債","유이자부채(이자부 부채)"],["Net cash","ネット・キャッシュ","순현금"],["Deferred tax assets","繰延税金資産","이연법인세자산"],["Provisions","引当金","충당금"]],
 quiz:[{q:"Aircraft as a share of JAL’s total assets at 31 March 2026?",opts:["About 33%","About 10%","About 50%","About 5%"],a:0,exp:"1,041.7bn ÷ 3,198.8bn = 32.6% ★."},
