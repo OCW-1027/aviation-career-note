@@ -366,6 +366,47 @@ kr:[{"t":"check","items":[{"name":"Rate","x":"10%; exports and international tra
 {name:"Non-taxable costs",x:"Keep costs outside consumption tax — salaries, insurance premiums, some fees — separate."},
 {name:"The tax office’s check",x:"Refund claims may prompt questions. Keep the supporting material ready."}]},
 {t:"point",x:"A consumption tax refund is all about organising invoices day to day. List the month’s invoices and registration numbers at month end and filing time will not be a scramble."}]}],
+deep:[
+{h:"Calculating consumption tax: standard and simplified methods",blocks:[
+{t:"p",x:"Consumption tax is the tax collected on sales minus the tax paid on purchases and expenses. International fares and exports are zero-rated (0%), so a branch focused on international flights often pays more tax than it collects and gets the difference back as a refund. Change the amounts to try it."},
+{t:"ctaxcalc"},
+{t:"note",x:"* The example figures are fictional, for a small branch selling mainly international flights. Companies whose taxable sales ratio is below 95% and whose taxable sales exceed 500 million yen, among others, can deduct less input tax. ★"}]},
+{h:"Transitional relief for purchases without a qualified invoice",blocks:[
+{t:"table",cols:["Date of purchase","Share deductible"],rows:[["1 Oct 2023 – 30 Sep 2026","80%"],["1 Oct 2026 – 30 Sep 2028","70% (now)"],["1 Oct 2028 – 30 Sep 2030","50%"],["1 Oct 2030 – 30 Sep 2031","30%"],["From 1 Oct 2031","Not deductible"]]},
+{t:"rows",items:[
+{name:"The FY2026 reform",x:"The original plan was 50% from October 2026 and 0% from October 2029. The reform inserted two years at 70% and extended relief to September 2031. Make sure your accounting software has a “70% deductible” category. ★"},
+{name:"Cap per supplier",x:"Purchases from a single supplier without qualified invoices above 100 million yen a year (tax included) do not qualify, for tax periods beginning on or after 1 October 2026. The cap was previously 1 billion yen. ★"},
+{name:"The 20% special rule has ended",x:"The rule letting businesses that registered for invoices pay just 20% of their output tax ended with the tax period that includes 30 September 2026. Individual sole traders only may choose a 30% rule for 2027 and 2028. ★"},
+{name:"What the books must show",x:"To use the relief, the books must note that the purchase is covered, for example “80% deductible” or “70% deductible”."}]}]},
+{h:"Who must pay and how often to file",blocks:[{t:"rows",items:[
+{name:"Exempt businesses",x:"If taxable sales in the base period (two years earlier) were 10 million yen or less, the business is in principle exempt. Registering to issue qualified invoices makes it taxable, however. The same applies to branches of foreign companies."},
+{name:"Simplified method",x:"With base-period taxable sales of 50 million yen or less, a business can elect the simplified method, which calculates input tax with deemed rates by type of business. It never gives a refund, so it does not suit branches focused on international flights."},
+{name:"Filing deadline",x:"For companies, within two months of the end of the tax period (usually the business year). Companies with an extended corporation tax deadline can extend consumption tax by one month by notification. ★"},
+{name:"Interim returns",x:"If last year’s consumption tax (national portion) exceeded 480,000 yen, file one interim return a year; above 4 million yen, three; above 48 million yen, eleven. ★"}]}]},
+{h:"International flights and consumption tax",blocks:[{t:"rows",items:[
+{name:"International transport is zero-rated",x:"Passenger and cargo fares on international flights are zero-rated like exports. Zero-rated sales count as taxable sales, so input tax is usually fully deductible."},
+{name:"Costs in Japan",x:"Airport facility charges, handling, office rent and communications carry consumption tax. Obtain qualified invoices, check the registration numbers and keep them."},
+{name:"Getting a refund",x:"An exempt business cannot get a refund. A branch focused on international flights should first confirm that it has notified the tax office that it is a taxable business. ★"}]},
+{t:"point",x:"Whether there is a refund depends on sorting the invoices every month. Now that purchases without qualified invoices are only 70% deductible, keeping a list of which suppliers are registered prevents missed deductions and calculation errors."}]}],
+deepKr:[
+{h:"Calculating VAT",blocks:[
+{t:"p",x:"From here on the basis is the Korean system. VAT payable is output tax minus input tax. Exports and international transport are zero-rated, so if input tax is larger, the difference is refunded."},
+{t:"ctaxcalc",kr:1},
+{t:"note",x:"* The example figures are fictional, for a company selling mainly international flights."}]},
+{h:"Filing calendar (companies)",blocks:[
+{t:"table",cols:["Return","Period covered","Due"],rows:[["First-half preliminary","January–March","25 April"],["First-half final","April–June","25 July"],["Second-half preliminary","July–September","25 October"],["Second-half final","October–December","25 January"]]},
+{t:"note",x:"* Companies with supplies under 150 million won in the previous tax period pay a notice from the tax office of 50% of the previous tax instead of filing a preliminary return (no notice if under 500,000 won). A deadline on a holiday moves to the next working day. ★"}]},
+{h:"Points to know",blocks:[{t:"rows",items:[
+{name:"Simplified taxation is for individuals only",x:"Only individual businesses with prior-year supplies under 104 million won can be simplified taxpayers. Companies are general taxpayers however small their sales. ★"},
+{name:"Zero rating",x:"Exports and international transport are zero-rated: no output tax, but input tax is deductible, so a refund arises."},
+{name:"Early refund",x:"With zero-rated sales or capital investment, an early refund can be claimed and paid within 15 days of the filing deadline. Ordinary refunds are paid within 30 days of the final return deadline. ★"},
+{name:"Input tax that cannot be deducted",x:"Entertainment, small passenger cars not used for business, purchases for VAT-exempt business and purchases without a tax invoice are not deductible."}]}]},
+{h:"Japan and Korea compared",blocks:[{t:"table",cols:["","Japan (consumption tax)","Korea (VAT)"],rows:[
+["Rate","10%; 8% for food and some other items","10%"],
+["International transport and exports","Zero-rated (0%)","Zero-rated (0%)"],
+["Document needed to deduct","Qualified invoice","Tax invoice (electronic issue required for companies)"],
+["Small businesses","Exempt if base-period sales are 10 million yen or less","Simplified taxation, individuals only (under 104 million won)"],
+["Returns a year (companies)","One, plus interim returns","Four (two preliminary, two final)"]]}]}],
 voice:"After our refund claim, the tax office asked for the contracts behind our overseas transactions and the detail of the airport cost invoices. Because we kept a monthly list of invoices with registration numbers, we finished explaining within about a week.",
 terms:[["Consumption Tax Refund","消費税還付","소비세 환급"],["Qualified Invoice","適格請求書","적격 청구서(인보이스)"],["Taxable Enterprise","課税事業者","과세 사업자"],["Tax-exempt Transaction","免税取引","면세 거래"]],
 quiz:[{q:"Which branches tend to get consumption tax refunds?",opts:["Those whose sales are mostly exempt (international transport, exports)","Those with mainly domestic sales","Those with no sales","Cash-only businesses"],a:0,exp:"Tax on purchases exceeds tax on sales."},
