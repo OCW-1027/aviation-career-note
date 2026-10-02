@@ -50,13 +50,15 @@ function langBar(){var b=document.getElementById('langBtn');if(!b)return;var g=d
  g.innerHTML=LANGS.map(function(l){return '<button type="button" class="lg'+(l===lang?' on':'')+'" data-l="'+l+'" lang="'+l+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');
  g.querySelectorAll('button').forEach(function(x){x.onclick=function(){var nl=x.getAttribute('data-l');try{localStorage.setItem('art-lang',nl)}catch(e){}if(ST){location.href=LU(C.meta.no,nl);return}lang=nl;render();window.scrollTo(0,0)}});}
 
+/* 練習ページへのリンクに、いま読んでいる言語を付ける（2026.10）。公開サイトのレッスンは言語をURLで決めるため、付けないとツールが日本語で開くことがある */
+function withLang(h){if(!/^[^:#?]+\.html(?:[?#]|$)/.test(h)||/[?&]lang=/.test(h))return h;var k=h.indexOf('#'),a=k<0?h:h.slice(0,k),t=k<0?'':h.slice(k);return a+(a.indexOf('?')<0?'?':'&')+'lang='+lang+t}
 function block(b,L){
   switch(b.t){
   case 'p': return '<p>'+esc(b.x)+'</p>';
   case 'region': var R=RG[lang]||RG.ja; return '<div class="rg"><div class="rg-bar" role="group" aria-label="'+esc(R.q)+'"><span>'+esc(R.q)+'</span>'+['jp','kr'].map(function(c){return '<button type="button" class="rg-b" data-rg="'+c+'" aria-pressed="'+(region===c)+'">'+esc(R[c])+'</button>'}).join('')+'</div>'+['jp','kr'].map(function(c){return '<div class="rg-p rg-'+c+'">'+(b[c]||[]).map(function(x){return block(x,L)}).join('')+'</div>'}).join('')+'</div>';
   case 'h3': return '<h3>'+esc(b.x)+'</h3>';
   case 'note': return '<p class="note">'+esc(b.x)+'</p>';
-  case 'link': return '<p class="note"><a href="'+esc(b.href||'#')+'" style="font-weight:700">'+esc(b.x)+' →</a></p>';
+  case 'link': return '<p class="note"><a href="'+esc(withLang(b.href||'#'))+'" style="font-weight:700">'+esc(b.x)+' →</a></p>';
   case 'fig': var fg=window.FIGS&&window.FIGS[b.id]; if(!fg)return ''; return '<figure class="fig">'+(window.FIGFIX?window.FIGFIX(fg(lang)):fg(lang))+(b.cap?'<figcaption>'+esc(b.cap)+'</figcaption>':'')+'</figure>';
   case 'point': return '<div class="point'+(b.warn?' warn':'')+'">'+(b.warn?WARN:BULB)+'<div>'+esc(b.x)+'</div></div>';
   case 'cards': return '<div class="cards" style="--n:'+(b.n||2)+'">'+b.items.map(function(i){return '<div class="card">'+(i.ic?'<span class="ic">'+i.ic+'</span>':'')+'<b>'+esc(i.name)+'</b>'+(i.tag?'<span class="tag">'+esc(i.tag)+'</span>':'')+'<span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
