@@ -81,6 +81,30 @@ fin_cost_types:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vie
   [L(lang,'航空会社','항공사','Airline'),[[L(lang,'燃油','연료','Fuel'),23,R],[L(lang,'人件費','인건비','Staff'),17,R],[L(lang,'整備・ハンドリング・空港','정비·조업·공항','Maintenance, handling, airports'),27,R],[L(lang,'減価償却・賃借','감가상각·임차','Depreciation, leases'),14,G],[L(lang,'販売・その他','판매·기타','Sales, other'),13,CF],[L(lang,'利益','이익','Profit'),6,PL]]]];
  cols.forEach(function(c,i){var x=40+i*290;s+=tx(x+120,40,c[0],14,D,800);var y=60;c[1].forEach(function(seg){var h=seg[1]*2.2;s+=Rc(x,y,240,h,seg[2],3)+'<rect x="'+x+'" y="'+y+'" width="240" height="'+h+'" fill="#fff" opacity="0.08"/>';if(h>=16)s+=tx(x+120,y+h/2+4,seg[0]+' '+seg[1]+'%',11,'#fff',700);y+=h+2})});
  s+=tx(450,322,L(lang,'売上を100としたときの構成（概念図）。航空会社は「原価」と「販管費」の線を引かず、費用を項目で並べる会社が多い','매출을 100으로 본 구성(개념도). 항공사는 「원가」와 「판관비」 선을 긋지 않고 비용을 항목으로 나열하는 회사가 많다','Share of sales = 100 (conceptual). Many airlines list costs by item rather than splitting cost of sales from overheads'),12,D,600);
+ return s+'</svg>'},
+/* 2-1 貸借対照表のブロック：たい焼き屋の月末。左＝資産、右＝負債＋純資産。高さが金額 */
+fin_bs_blocks:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
+ var yen=L(lang,'円','엔','yen');
+ var A=[[L(lang,'現金','현금','Cash'),309000,PL],[L(lang,'売掛金','매출채권','Receivable'),20000,'#7FB6E8'],[L(lang,'材料（在庫）','재료(재고)','Stock'),15000,'#A9CBE8'],[L(lang,'屋台（償却後）','포장마차(상각 후)','Cart (net)'),236000,BS]];
+ var B=[[L(lang,'借入金','차입금','Loan'),200000,R],[L(lang,'未払税金','미지급 세금','Tax payable'),16000,'#E08A8A'],[L(lang,'資本金','자본금','Capital'),300000,D],[L(lang,'利益剰余金','이익잉여금','Retained earnings'),64000,'#5A6E85']];
+ var tot=580000,H=280,base=330,sc=H/tot;
+ function col(x,items,title){var y=base;s+=tx(x+110,40,title,15,D,800);items.forEach(function(it,i){var h=it[1]*sc;y-=h;s+='<g>'+Rc(x,y,220,h-2,it[2],4)+(h>22?tx(x+110,y+h/2+5,it[0]+'  '+it[1].toLocaleString('ja-JP'),12,'#fff',700):tx(x+230,y+h/2+4,it[0]+' '+it[1].toLocaleString('ja-JP'),11,D,600,'start'))+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(i*0.12).toFixed(2)+';'+(i*0.12+0.1).toFixed(2)+';1" dur="5s" repeatCount="indefinite"/></g>'})}
+ col(120,A,L(lang,'資産（何を持っているか）','자산(무엇을 갖고 있나)','Assets (what we hold)'));col(560,B,L(lang,'負債＋純資産（どこから来たか）','부채+자본(어디서 왔나)','Liabilities + equity (where it came from)'));
+ s+='<line x1="60" y1="'+base+'" x2="840" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>'+tx(450,200,'＝',40,D,800);
+ s+=tx(230,base+22,'580,000 '+yen,14,D,800)+tx(670,base+22,'580,000 '+yen,14,D,800);
+ s+=tx(450,380,L(lang,'左右の高さは必ず同じになる。右の負債は返す義務、純資産は返さなくてよい自分の分','좌우의 높이는 반드시 같아진다. 오른쪽 부채는 갚을 의무, 자본은 갚지 않아도 되는 내 몫','The two sides are always the same height: liabilities must be repaid, equity need not be'),12,D,600);
+ return s+'</svg>'},
+/* 2-3 減価償却：屋台240,000円が60か月で費用になる。残高の線と毎月の費用 */
+fin_depreciation:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+Rc(0,0,900,360,'#F7FAFD');
+ var x0=80,x1=840,y0=60,y1=290;
+ s+='<line x1="'+x0+'" y1="'+y1+'" x2="'+x1+'" y2="'+y1+'" stroke="'+D+'" stroke-width="2"/><line x1="'+x0+'" y1="'+y0+'" x2="'+x0+'" y2="'+y1+'" stroke="'+D+'" stroke-width="2"/>';
+ [0,12,24,36,48,60].forEach(function(m){var x=x0+(x1-x0)*m/60;s+=tx(x,y1+18,m+L(lang,'か月','개월',' mo'),11,G,600)});
+ [0,120000,240000].forEach(function(v){var y=y1-(y1-y0)*v/240000;s+=tx(x0-8,y+4,v.toLocaleString('ja-JP'),11,G,600,'end')+'<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" stroke="#E6ECF2"/>'});
+ s+='<line x1="'+x0+'" y1="'+y0+'" x2="'+x1+'" y2="'+y1+'" stroke="'+BS+'" stroke-width="4" stroke-dasharray="1200"><animate attributeName="stroke-dashoffset" values="1200;0" dur="5s" repeatCount="indefinite"/></line>';
+ for(var m=0;m<60;m+=3){var x=x0+(x1-x0)*m/60;s+=Rc(x+2,y1-10,(x1-x0)/60*3-4,10,PL,2)}
+ s+=tx(x0+20,y0+16,L(lang,'屋台の帳簿上の価値（貸借対照表）','포장마차의 장부상 가치(재무상태표)','Cart’s book value (balance sheet)'),13,BS,800,'start');
+ s+=tx(x1-10,y1-20,L(lang,'毎月4,000円ずつ費用（損益計算書）','매달 4,000엔씩 비용(손익계산서)','4,000 yen a month as cost (income statement)'),13,PL,800,'end');
+ s+=tx(450,335,L(lang,'買った日に240,000円の現金が出て、費用は60回に分けて出る。1か月目の帳簿価値 236,000円 ＝ 240,000 − 4,000','산 날에 현금 240,000엔이 나가고, 비용은 60번에 나눠 나온다. 1개월째 장부 가치 236,000엔 = 240,000 − 4,000','Cash of 240,000 leaves on purchase day; the cost is spread over 60 months. Book value after month 1: 236,000 = 240,000 − 4,000'),12,D,600);
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
