@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>日本発 燃油サーチャージの計算 ― 基準の燃油価格から申請書の下書きまで</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--acc:#2f8fe0;--cf:#e08a2f}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}html[lang=ko] header h1,html[lang=ko] header p{word-break:keep-all}
+.langs{display:inline-flex}.langs button{cursor:pointer}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px;align-items:center}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;min-height:38px;display:inline-flex;align-items:center}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}.btn.del{color:var(--ng)}.btn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.saved{font-size:13px;color:var(--muted);margin-left:auto}
+.privacy,.note{font-size:13px;color:var(--muted)}
+.privacy{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0 4px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.card h2{font-size:17px;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.card h2 .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:14px}
+.card h3{font-size:14.5px;margin:18px 0 8px}
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px 14px}
+label.f{display:block;font-size:13px;font-weight:600;color:var(--muted)}label.f input,label.f select{display:block;margin-top:4px}
+input,select,textarea{font:inherit;font-size:15px;font-weight:400;color:var(--ink);border:1px solid #c5d0dc;border-radius:8px;padding:7px 9px;width:100%;background:#fff;min-height:38px}
+textarea{font-family:ui-monospace,Consolas,monospace;font-size:13px;line-height:1.5}
+input[type=radio],input[type=checkbox]{width:auto;min-height:0}
+.seg{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 6px;font-size:14px}.seg label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.tw{overflow-x:auto;margin:8px 0}
+.sw{display:none;font-size:12px;color:var(--muted);text-align:right;margin:8px 0 -4px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:middle}
+th{background:#f2f6fa;text-align:center;font-weight:600;font-size:13px}
+td.n{text-align:right;white-space:nowrap}td.c{text-align:center}
+table.ed input,table.ed select,html.sh table.ed input,html.sh table.ed select{min-width:86px;padding:5px 7px;min-height:34px}
+html[lang=ko] .card,html[lang=ko] .privacy,html[lang=ko] .note{word-break:keep-all;overflow-wrap:break-word}
+table.ed td.x,table.ed th.x{width:44px;text-align:center}
+tr.hit td{background:#fff6e5}tr.hit td:first-child{box-shadow:inset 4px 0 0 var(--cf)}
+.xb{border:0;background:none;color:var(--ng);font-size:18px;cursor:pointer;padding:2px 8px;min-height:32px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin:12px 0 4px}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fbfdff}
+.kpi span{display:block;font-size:12.5px;color:var(--muted)}.kpi b{font-size:21px}.kpi em{font-style:normal;font-size:12px;color:var(--muted);margin-left:6px}
+.res{border-left:5px solid var(--acc);background:#f2f8ff;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:15px}
+.res b{font-size:19px}.res.ng{border-color:var(--ng);background:#fdf1f3}.res.ok{border-color:var(--ok);background:#f0f8f6}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:10px 0}
+.flow div{flex:1 1 150px;border:2px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}
+.flow div.k{border-color:var(--cf);background:#fff8f0}
+.flow span{display:block;font-size:12px;color:var(--muted)}.flow b{font-size:17px}
+.flow i{flex:none;align-self:center;font-style:normal;color:var(--muted);font-size:18px}
+.bars div{margin:8px 0}.bars span{font-size:13.5px}.bars i{display:block;height:20px;border-radius:5px;min-width:3px;margin-top:3px}
+ol.why{padding-left:22px;font-size:14.5px}ol.why li{margin:8px 0}
+ol.why code{background:#f2f6fa;border-radius:5px;padding:1px 6px;font-family:ui-monospace,Consolas,monospace;font-size:13.5px}
+.paper{background:#fff;border:1px solid #b9c4d0;padding:34px 38px;margin-top:12px;font-family:"Noto Serif JP","Yu Mincho","MS Mincho",serif;font-size:14px;line-height:1.9;color:#000}
+.paper h3{text-align:center;font-size:17px;margin:22px 0 14px}.paper h4{font-size:14.5px;margin:18px 0 6px}
+.paper .r{text-align:right}.paper p{margin:6px 0}.paper table{font-size:13px;margin:8px 0}
+.paper th,.paper td{border:1px solid #000;background:#fff}.paper hr{border:0;border-top:1px dashed #999;margin:26px 0}
+.courselink{font-size:13px;margin:16px 4px 0}.courselink a{color:#1d5fa0}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+@media(max-width:700px){.paper{padding:18px 14px}}
+@media print{body{background:#fff}.shbar,header,.bar,.privacy,#note,.courselink,.nv-fab,#app>.card:not(#docsec),#docsec>*:not(.paper){display:none!important}.wrap{padding:0;max-width:none}#docsec{border:0;padding:0;margin:0}.paper{border:0;padding:0;margin:0}}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="fsc"></script>
+<script src="../8_사이트/assets/member_config.js"></script>
+<script src="../1_지상직여객운송입문/assets/member.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><h1 id="ttl"></h1><p id="lead"></p></header>
+<div class="bar" id="bar"></div>
+<p class="privacy" id="privacy"></p>
+<div id="app"></div>
+<p class="note" id="note"></p>
+<p class="courselink"><a href="00_シリーズ全体_財務3表.html" id="back"></a></p>
+</div>
+<script>
+/* 日本発 燃油サーチャージの計算（2026-10）
+   参照期間のシンガポールケロシン平均（USD/バレル）× 為替平均 → 円換算 → 自社の適用表で旅客・貨物の額を決め、
+   追加の燃油コストに対する回収率（補填率）を確かめ、申請書の下書き（日本語）を作る。
+   入っている数字は Vela Air（架空）の例。入力はこのブラウザに保存し、ログイン中は会員の記録（user_docs: fsc）にも保存する。 */
+var KEY='acn-fsc-v1',LS=['ja','ko','en'],NL=String.fromCharCode(10),TAB=String.fromCharCode(9);
+var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(LS.indexOf(s)>=0)return s}catch(e){}return 'ja'})();
+var LI=LS.indexOf(L),doc='p';
+var X={
+ttl:['日本発 燃油サーチャージの計算 ― 基準の燃油価格から申請書の下書きまで','일본발 유류할증료 계산 — 기준 유가에서 신청서 초안까지','Japan-Origin Fuel Surcharge Calculator: From the Baseline Fuel Price to a Filing Draft'],
+lead:['シンガポールケロシンの平均価格と為替の平均から円換算額を出し、自社の適用表で旅客・貨物の燃油サーチャージ額を決め、追加の燃油コストに対する回収率を確かめて、申請書の下書きまで作ります。入っている数字は Vela Air（架空の航空会社）の例です。自社の数字に書きかえて使ってください。','싱가포르 케로신 평균 가격과 환율 평균으로 엔화 환산액을 구하고, 자사 적용표로 여객·화물 유류할증료를 정한 뒤, 추가 연료비 대비 회수율을 확인하고 신청서 초안까지 만듭니다. 들어 있는 숫자는 Vela Air(가상 항공사)의 예시입니다. 자사 숫자로 바꿔서 쓰세요.','Turn the average Singapore kerosene price and the average exchange rate into yen per barrel, read the passenger and cargo surcharge off your own bracket tables, check the recovery ratio against the extra fuel cost, and produce a filing draft. The figures shown are an example for Vela Air, a fictional airline: replace them with your own.'],
+privacy:['入力した内容は、このブラウザ（この端末）に自動で保存されます。ログインしているときは会員の記録にも保存され、別の端末でも続きから使えます。共用のパソコンでは、使い終わったら「すべて消す」を押してください。','입력한 내용은 이 브라우저(이 기기)에 자동으로 저장됩니다. 로그인한 상태에서는 회원 기록에도 저장되어 다른 기기에서도 이어서 쓸 수 있습니다. 공용 컴퓨터에서는 다 쓴 뒤 「모두 지우기」를 눌러 주세요.','What you enter is saved automatically in this browser on this device. When you are logged in it is also saved to your member record, so you can continue on another device. On a shared computer, press “Clear all” when you finish.'],
+ex:['例に戻す','예시로 되돌리기','Reset to example'],exC:['今の内容を例で置き換えます。よろしいですか？','지금 내용을 예시로 바꿉니다. 괜찮습니까?','Replace everything with the example?'],
+clr:['すべて消す','모두 지우기','Clear all'],clrC:['入力した内容をすべて消します。元に戻せません。よろしいですか？','입력한 내용을 모두 지웁니다. 되돌릴 수 없습니다. 괜찮습니까?','Clear everything? This cannot be undone.'],
+exp:['ファイルに書き出す','파일로 내보내기','Export to file'],imp:['ファイルから読み込む','파일에서 불러오기','Import from file'],impE:['読み込めませんでした。このツールで書き出したファイルを選んでください。','불러오지 못했습니다. 이 도구에서 내보낸 파일을 골라 주세요.','Could not read the file. Choose a file exported from this tool.'],
+saved:['保存しました','저장했습니다','Saved'],
+s1:['会社と申請の情報','회사와 신청 정보','Company and filing details'],
+s2:['燃油価格と為替（参照期間の平均）','유가와 환율(참조 기간 평균)','Fuel price and exchange rate (reference-period averages)'],
+s3:['旅客：適用表と金額','여객: 적용표와 금액','Passenger: bracket table and amount'],
+s4:['貨物：適用表と金額','화물: 적용표와 금액','Cargo: bracket table and amount'],
+s5:['総括計算書：追加の燃油コストと回収率','총괄계산서: 추가 연료비와 회수율','Summary statement: extra fuel cost and recovery ratio'],
+s6:['この金額になる理由','이 금액이 되는 이유','Why the numbers come out this way'],
+s7:['申請書の下書き（日本語）','신청서 초안(일본어)','Filing draft (in Japanese)'],
+start:['適用を始める月','적용 시작 월','First month of application'],
+refl:['参照期間（申請書に書く表記）','참조 기간(신청서 표기)','Reference period (as written in the filing)'],
+refn:['旅客は、適用を始める月の4か月前と3か月前の2か月平均を使う運用が一般的です（例：10月1日から → 6月と7月の平均）。貨物やほかの周期のときは、参照期間と日別の数字を自由に入れてください。','여객은 적용 시작 월의 4개월 전과 3개월 전, 두 달 평균을 쓰는 운용이 일반적입니다(예: 10월 1일부터 → 6월과 7월 평균). 화물이나 다른 주기일 때는 참조 기간과 일별 숫자를 자유롭게 넣으세요.','For passenger surcharges, the two-month average of the 4th and 3rd months before the start month is commonly used (for example, from 1 October → June and July). For cargo or other cycles, enter the period and the daily figures freely.'],
+mode1:['日別の数字を貼り付ける','일별 숫자 붙여넣기','Paste daily figures'],mode2:['平均を直接入れる','평균을 직접 입력','Enter the averages directly'],
+rows:['1行に「日付・ケロシン（USD/バレル）・為替（円/USD）」。エクセルからそのまま貼り付けられます。空欄の日は平均から除きます。','한 줄에 「날짜·케로신(USD/배럴)·환율(엔/USD)」. 엑셀에서 그대로 붙여 넣을 수 있습니다. 빈칸인 날은 평균에서 뺍니다.','One line per day: date, kerosene (USD/bbl), exchange rate (JPY/USD). Paste straight from Excel. Blank days are left out of the average.'],
+exd:['例の数字を入れる（架空）','예시 숫자 넣기(가상)','Fill with sample figures (fictional)'],
+avU:['平均燃油価格（USD/バレル）','평균 유가(USD/배럴)','Average fuel price (USD/bbl)'],avF:['平均為替（円/USD）','평균 환율(엔/USD)','Average rate (JPY/USD)'],
+base:['基準とする燃油価格（USD/バレル）','기준 유가(USD/배럴)','Baseline fuel price (USD/bbl)'],
+basen:['基準の価格は、自社の申請で定めたものを入れます（例は2003年平均の32.82ドル ★）。','기준 가격은 자사 신청에서 정한 것을 넣습니다(예시는 2003년 평균 32.82달러 ★).','Enter the baseline set in your own filing (the example uses the 2003 average, USD 32.82 ★).'],
+days:['日','일','days'],
+kJ:['円換算（1バレルあたり）','엔화 환산(배럴당)','In yen (per barrel)'],kR:['適用する区分（次の額を下回る）','적용 구간(다음 금액 미만)','Bracket applied (below)'],
+grp:['路線グループ','노선 그룹','Route group'],cur:['現行の額','현행 금액','Current amount'],dif:['差','차이','change'],
+th:['1バレルあたりの円換算額が次の額を下回る','배럴당 엔화 환산액이 다음 금액 미만','Yen per barrel below'],
+addG:['路線グループを足す','노선 그룹 추가','Add route group'],addR:['行を足す','행 추가','Add row'],del:['消す','삭제','Remove'],
+abo:['廃止','폐지','abolished'],over:['適用表のいちばん上の区分を超えています。表に行を足してください。','적용표의 가장 높은 구간을 넘었습니다. 표에 행을 추가하세요.','Above the top bracket. Add a row to the table.'],
+yen:['円','엔','yen'],k:['千円','천 엔','thousand yen'],pc:['旅客','여객','passenger'],cc:['貨物','화물','cargo'],
+cRoute:['区間','구간','Sector'],cLo:['平均燃油価格（USD/バレル）が次の額以上','평균 유가(USD/배럴)가 다음 금액 이상','Average fuel price (USD/bbl) at or above'],cAmt:['1kgあたりの額（円）','kg당 금액(엔)','Amount per kg (yen)'],ykg:['円/kg','엔/kg','yen/kg'],
+eff:['発効予定日','발효 예정일','Effective date'],until:['期間の終わり','기간 종료일','End of period'],
+unit:['1便あたりの燃料の単位','편당 연료 단위','Unit of fuel per flight'],gal:['ガロン','갤런','gallons'],bbl:['バレル','배럴','barrels'],
+fNo:['便名','편명','Flight'],fRt:['路線','노선','Route'],fAc:['機材','기종','Aircraft'],fN:['年間便数','연간 편수','Flights per year'],fFu:['1便の燃料','편당 연료','Fuel per flight'],fAn:['年間の消費量（バレル）','연간 소비량(배럴)','Annual use (bbl)'],tot:['合計','합계','Total'],addF:['便を足す','편 추가','Add flight'],
+iLb:['収入の区分','수입 구분','Income line'],iN:['年間の旅客数','연간 여객 수','Passengers per year'],iSrc:['金額のもと','금액 기준','Amount source'],iAmt:['金額','금액','Amount'],iAuto:['上の計算結果','위 계산 결과','result above'],iMan:['直接入力','직접 입력','manual'],iCur:['通貨','통화','Currency'],iSum:['収入（千円）','수입(천 엔)','Income (thousand yen)'],addI:['行を足す','행 추가','Add line'],
+ton:['日本発の貨物の年間輸送重量（トン）','일본발 화물 연간 수송 중량(톤)','Annual cargo weight from Japan (tonnes)'],
+fl:['年間の燃料消費量','연간 연료 소비량','Annual fuel consumption'],
+cost:['追加の燃油コスト','추가 연료비','Extra fuel cost'],inc:['燃油サーチャージ収入','유류할증료 수입','Surcharge income'],rat:['回収率（補填率）','회수율(보전율)','Recovery ratio'],
+ok:['100%以下：収入が追加コストの範囲に収まっています','100% 이하: 수입이 추가 비용 범위 안입니다','At or below 100%: income stays within the extra cost'],
+ng:['100%を超えています：金額や前提を見直してください','100%를 넘었습니다: 금액이나 전제를 다시 검토하세요','Above 100%: review the amounts or the assumptions'],
+sumn:['相手国発の便や収入も合わせて申請する場合は、便と収入の行を足し、金額は「直接入力」、通貨はUSDなどにして入れます。','상대국 출발편의 비용과 수입도 함께 신청하는 경우에는 편과 수입 행을 추가하고, 금액은 「직접 입력」, 통화는 USD 등으로 넣습니다.','If the filing also covers flights and income from the other country, add flight and income lines, set the amount to “manual” and choose the currency.'],
+doc1:['旅客の申請書','여객 신청서','Passenger filing'],doc2:['貨物の申請書','화물 신청서','Cargo filing'],prt:['印刷・PDFに保存','인쇄·PDF 저장','Print / save as PDF'],wrd:['Wordで保存','Word로 저장','Save as Word'],cpy:['文章をコピー','문장 복사','Copy text'],cpd:['コピーしました','복사했습니다','Copied'],
+docn:['申請書は日本語で作ります。様式・記載事項・提出先は変わることがあります。提出の前に国土交通省の最新の案内と、自社の前回の申請書で確認してください ★','신청서는 일본어로 만듭니다. 양식·기재 사항·제출처는 바뀔 수 있습니다. 제출 전에 국토교통성의 최신 안내와 자사의 지난 신청서로 확인하세요 ★','The filing is produced in Japanese. Forms, required items and where to file can change: check the latest MLIT guidance and your own previous filing before submitting ★'],
+note:['※ 入っている会社名・便・数字はすべて架空の例です。計算の考え方を学ぶためのもので、実際の申請の可否や金額を保証するものではありません。','※ 들어 있는 회사명·편·숫자는 모두 가상의 예시입니다. 계산 방식을 익히기 위한 것으로, 실제 신청의 가부나 금액을 보증하지 않습니다.','* The company, flights and figures are fictional examples for learning how the calculation works; they do not guarantee any real filing or amount.'],
+back:['← 講座の目次','← 강좌 목차','← Course index'],
+swipe:['← 横にスクロールできます →','← 옆으로 밀어서 보기 →','← Scroll sideways →']};
+var FL={name:['会社名（申請書の表記）','회사명(신청서 표기)','Company name (as filed)'],addr:['本社の住所','본사 주소','Head office address'],jp:['日本の事務所の住所','일본 사무소 주소','Office address in Japan'],tel:['電話','전화','Telephone'],rep:['日本における代表者','일본 내 대표자','Representative in Japan'],min:['国土交通大臣の氏名','국토교통대신 이름','Name of the Minister (MLIT)'],docP:['文書番号（旅客）','문서 번호(여객)','Document no. (passenger)'],docC:['文書番号（貨物）','문서 번호(화물)','Document no. (cargo)'],date:['申請日','신청일','Filing date']};
+var T1=[['4月1日','2月','12月から1月'],['6月1日','4月','2月から3月'],['8月1日','6月','4月から5月'],['10月1日','8月','6月から7月'],['12月1日','10月','8月から9月'],['2月1日','12月','10月から11月']];
+function t(k){return X[k][LI]}
+function $(i){return document.getElementById(i)}
+function each(q,f){Array.prototype.forEach.call(document.querySelectorAll(q),f)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function num(v){var n=parseFloat(String(v==null?'':v).replace(/,/g,''));return isNaN(n)?0:n}
+function fy(n){return isFinite(n)?Math.round(n).toLocaleString('ja-JP'):'—'}
+function f2(n){return isFinite(n)?(Math.round(n*100)/100).toLocaleString('ja-JP',{minimumFractionDigits:2,maximumFractionDigits:2}):'—'}
+function pad(n){return('0'+n).slice(-2)}
+function jd(s){if(!s)return '';var p=s.split('-');return +p[0]+'年'+(+p[1])+'月'+(+p[2])+'日'}
+function sd(s){if(!s)return '';var p=s.split('-');return +p[0]+'/'+(+p[1])+'/'+(+p[2])}
+function refLabel(ym){var p=ym.split('-'),a=new Date(+p[0],+p[1]-5,1),b=new Date(+p[0],+p[1]-4,1);return a.getFullYear()+'/'+(a.getMonth()+1)+'～'+b.getFullYear()+'/'+(b.getMonth()+1)}
+/* 例の日別データ（架空）：適用を始める月の4か月前・3か月前の平日 */
+function exRows(ym){var p=ym.split('-'),y=+p[0],m=+p[1]-1,out=[],i=0,d=new Date(y,m-4,1),e=new Date(y,m-2,1);
+ for(;d<e;d.setDate(d.getDate()+1)){var w=d.getDay();if(w===0||w===6)continue;
+  var k=85.9+3.2*Math.sin(i/5)+((i*7)%5-2)*0.31,f=146.6+2.1*Math.cos(i/7)+((i*3)%4-1.5)*0.2;
+  out.push(d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+TAB+k.toFixed(2)+TAB+f.toFixed(2));i++}
+ return out.join(NL)}
+function EX(){var st='2025-10';return{t:0,
+ co:{name:'株式会社ヴェラエア（Vela Air・架空）',addr:'（本社の住所）',jp:'〒000-0000 東京都（日本の事務所の住所）',tel:'(03)0000-0000',rep:'（代表者の氏名）',min:'（大臣の氏名）',docP:'VLA-P-20250820',docC:'VLA-C-20250820',date:'2025-08-20'},
+ ref:{start:st,label:refLabel(st),mode:'daily',rows:exRows(st),avgUsd:85.9,avgFx:146.6},base:32.82,unit:'bbl',
+ pax:{eff:'2025-10-01',until:'2025-11-30',groups:[{name:'日本―韓国',cur:2200},{name:'日本―グアム',cur:6400}],
+  table:[[21000,7500,21500],[20000,6900,19800],[19000,6300,18100],[18000,5700,16400],[17000,5100,14700],[16000,4500,13000],[15000,3900,11300],[14000,3300,9600],[13000,2700,7900],[12000,2200,6400],[11000,1700,5000],[10000,1200,3700],[9000,800,2500],[8000,500,1500],[7000,300,800],[6000,0,0]].map(function(r){return{th:r[0],a:r.slice(1)}})},
+ cg:{route:'日本―韓国',eff:'2025-10-01',until:'2026-03-31',cur:36,
+  table:[[150,68],[140,64],[130,60],[120,56],[110,52],[100,48],[90,44],[80,40],[70,36],[60,32],[50,28],[40,24],[30,20]].map(function(r){return{lo:r[0],a:r[1]}})},
+ fl:[{no:'VL101',rt:'NRT-ICN',ac:'A321neo',n:365,fu:46},{no:'VL103',rt:'NRT-ICN',ac:'A321neo',n:365,fu:46},{no:'VL201',rt:'KIX-ICN',ac:'A321neo',n:365,fu:32},{no:'VL203',rt:'KIX-ICN',ac:'A321neo',n:261,fu:32},{no:'VL301',rt:'NRT-GUM',ac:'A321neo',n:208,fu:78}],
+ inc:[{lb:'日本発（日本―韓国）',n:150000,src:'g0',amt:0,cur:'JPY'},{lb:'日本発（日本―グアム）',n:12000,src:'g1',amt:0,cur:'JPY'}],ton:300}}
+function BLANK(){var e=EX();e.co={name:'',addr:'',jp:'',tel:'',rep:'',min:'',docP:'',docC:'',date:''};e.ref.rows='';e.ref.avgUsd=0;e.ref.avgFx=0;e.base=0;
+ e.pax={eff:'',until:'',groups:[{name:'',cur:0}],table:[{th:0,a:[0]}]};e.cg={route:'',eff:'',until:'',cur:0,table:[{lo:0,a:0}]};
+ e.fl=[{no:'',rt:'',ac:'',n:0,fu:0}];e.inc=[{lb:'',n:0,src:'g0',amt:0,cur:'JPY'}];e.ton=0;return e}
+function valid(o){return o&&o.co&&o.ref&&o.pax&&o.pax.groups&&o.pax.table&&o.cg&&o.cg.table&&o.fl&&o.inc}
+var D=null;try{var o0=JSON.parse(localStorage.getItem(KEY)||'null');if(valid(o0))D=o0}catch(e){}
+if(!D)D=EX();
+function getp(p){var o=D;p.split('.').forEach(function(k){o=o==null?o:o[k]});return o}
+function setp(p,v){var a=p.split('.'),o=D;for(var i=0;i<a.length-1;i++)o=o[a[i]];o[a[a.length-1]]=v}
+var tm2=null;
+function save(){try{D.t=Date.now();localStorage.setItem(KEY,JSON.stringify(D));
+ if(window.Member&&window.Member.user()){clearTimeout(tm2);tm2=setTimeout(function(){window.Member.saveDoc('fsc',D).catch(function(){})},1200)}
+ if($('sv'))$('sv').textContent=t('saved')+' '+new Date().toLocaleTimeString(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit'})}catch(e){}}
+
+/* ---- 計算 ---- */
+function calc(){var r=D.ref,R={nU:0,nF:0},su=0,sf=0;
+ if(r.mode==='avg'){R.usd=num(r.avgUsd);R.fx=num(r.avgFx)}
+ else{String(r.rows||'').split(NL).forEach(function(l){if(!l.trim())return;
+   var c=l.indexOf(TAB)>=0?l.split(TAB):l.trim().split(/[, ]+/),a=parseFloat(c[1]),b=parseFloat(c[2]);
+   if(!isNaN(a)){su+=a;R.nU++}if(!isNaN(b)){sf+=b;R.nF++}});
+  R.usd=R.nU?su/R.nU:0;R.fx=R.nF?sf/R.nF:0}
+ R.jpy=R.usd*R.fx;
+ /* 旅客：円換算額が「下回る」最初の行（小さい順に見る）。どの行も下回らなければ、いちばん上の行（表の上限を超えた） */
+ var T=D.pax.table,ix=T.map(function(_,i){return i}).sort(function(a,b){return num(T[a].th)-num(T[b].th)});
+ R.pj=-1;R.pover=false;
+ if(R.jpy>0&&ix.length){for(var i=0;i<ix.length;i++){if(R.jpy<num(T[ix[i]].th)){R.pj=ix[i];break}}if(R.pj<0){R.pj=ix[ix.length-1];R.pover=true}}
+ R.pa=D.pax.groups.map(function(_,g){return R.pj<0?0:num(T[R.pj].a[g])});
+ /* 貨物：平均燃油価格（USD）が「以上」のいちばん高い行。どの行にも届かなければ廃止 */
+ var C=D.cg.table,cx=C.map(function(_,i){return i}).sort(function(a,b){return num(C[a].lo)-num(C[b].lo)});
+ R.cj=-1;R.chi=null;
+ if(R.usd>0){for(var k=cx.length-1;k>=0;k--){if(R.usd>=num(C[cx[k]].lo)){R.cj=cx[k];R.chi=k<cx.length-1?num(C[cx[k+1]].lo):null;break}}}
+ R.ca=R.cj<0?0:num(C[R.cj].a);R.cmin=cx.length?num(C[cx[0]].lo):0;
+ /* 総括計算書 */
+ var f=D.unit==='gal'?1/42:1;R.fa=D.fl.map(function(x){return num(x.n)*num(x.fu)*f});R.bbl=R.fa.reduce(function(a,b){return a+b},0);
+ R.diff=Math.max(0,R.usd-num(D.base));R.costU=R.bbl*R.diff;R.costJ=R.costU*R.fx;
+ R.il=D.inc.map(function(x){var g=x.src==='m'?-1:+String(x.src).slice(1),amt=g<0?num(x.amt):(R.pa[g]||0),cur=g<0?(x.cur||'JPY'):'JPY';return{amt:amt,cur:cur,jpy:num(x.n)*amt*(cur==='USD'?R.fx:1)}});
+ R.incP=R.il.reduce(function(a,b){return a+b.jpy},0);R.incC=num(D.ton)*1000*R.ca;R.incJ=R.incP+R.incC;R.ratio=R.costJ>0?R.incJ/R.costJ:NaN;
+ return R}
+
+/* ---- 申請書（日本語） ---- */
+function am(a){return a>0?fy(a)+' 円':'廃止'}
+function head(no,ti){var c=D.co;return '<p class="r">'+esc(c.name)+'　'+esc(c.jp)+'　TEL '+esc(c.tel)+'</p><p class="r">'+esc(no)+'<br>'+jd(c.date)+'</p><p>国土交通大臣<br>'+esc(c.min)+'　殿</p><p class="r">申請者の住所及び氏名　'+esc(c.addr)+'　'+esc(c.name)+'<br>日本における代表者　'+esc(c.rep)+'</p><h3>'+ti+'</h3><p>航空法第129条の2の規定に基づき、別添のとおり'+ti+'を提出いたしますので、ご認可くださいますようお願いいたします。</p><p class="r">以上</p><hr><p class="r">別添　'+esc(no)+'</p><h3>'+ti+'</h3><h4>１．申請者の住所および氏名</h4><p>'+esc(c.addr)+'　'+esc(c.name)+'</p>'}
+function ftab(R){var u=D.unit==='gal'?'ガロン':'バレル';
+ return '<table><tr><th>便名</th><th>路線</th><th>機材</th><th>年間運航便数</th><th>1便の燃油消費量（'+u+'）</th><th>年間燃油消費量（バレル）</th></tr>'+D.fl.map(function(x,i){return '<tr><td>'+esc(x.no)+'</td><td>'+esc(x.rt)+'</td><td>'+esc(x.ac)+'</td><td class="n">'+fy(num(x.n))+'</td><td class="n">'+fy(num(x.fu))+'</td><td class="n">'+fy(R.fa[i])+'</td></tr>'}).join('')+'<tr><th colspan="3">合計</th><td class="n">'+fy(D.fl.reduce(function(a,x){return a+num(x.n)},0))+'</td><td></td><td class="n">'+fy(R.bbl)+'</td></tr></table>'+(D.unit==='gal'?'<p>（1バレル＝42ガロンで換算）</p>':'')}
+function pct(R){return isFinite(R.ratio)?(R.ratio*100).toFixed(1)+'%':'―'}
+function sumtxt(R){var s='<p>燃油価格の上昇による年間の追加燃油コスト ……①<br>（USD '+f2(R.usd)+' − USD '+f2(num(D.base))+'）× '+fy(R.bbl)+' バレル ＝ USD '+fy(R.costU)+' ＝ '+fy(R.costJ/1000)+' 千円（1.00USD＝'+f2(R.fx)+' 円）</p><p>燃油サーチャージによる増収効果 ……②</p><table><tr><th>区分</th><th>計算</th><th>金額（千円）</th></tr>';
+ D.inc.forEach(function(x,i){var l=R.il[i];s+='<tr><td>旅客：'+esc(x.lb)+'</td><td>'+fy(num(x.n))+' 人 × '+(l.cur==='USD'?'USD '+f2(l.amt)+'（× '+f2(R.fx)+' 円）':fy(l.amt)+' 円')+'</td><td class="n">'+fy(l.jpy/1000)+'</td></tr>'});
+ if(num(D.ton)>0)s+='<tr><td>貨物：'+esc(D.cg.route)+'</td><td>'+fy(num(D.ton))+' トン × 1キログラム当り '+fy(R.ca)+' 円</td><td class="n">'+fy(R.incC/1000)+'</td></tr>';
+ return s+'<tr><th colspan="2">合計</th><td class="n">'+fy(R.incJ/1000)+'</td></tr></table><p>追加燃油コスト補填率　② ÷ ① ＝ '+fy(R.incJ/1000)+' 千円 ÷ '+fy(R.costJ/1000)+' 千円 ＝ '+pct(R)+'</p>'}
+function docP(R){var p=D.pax,ti='国際旅客運賃の変更認可申請書',no=D.co.docP,h=head(no,ti);
+ h+='<h4>２．変更しようとする国際旅客運賃</h4><p>別紙のとおりであります。</p><h4>３．変更を必要とする理由</h4><p>燃油価格の変動による燃油サーチャージ額の変更であります。</p><h4>４．発効予定日</h4><p>'+sd(p.eff)+'<br>ただし、関係国政府の認可取得後、正式に発効致します。</p><p class="r">以上</p><hr><p class="r">別紙　'+esc(no)+'</p><h3>燃油特別付加運賃の変更</h3>';
+ h+='<p>運賃・料金の種別：運賃（名称：燃油サーチャージ）</p><p>金額（1区間あたり）</p><table><tr><th>路線・区間</th><th>現行</th><th>変更後</th></tr>'+p.groups.map(function(g,i){return '<tr><td>日本発（'+esc(g.name)+'）</td><td class="n">'+am(num(g.cur))+'</td><td class="n">'+am(R.pa[i])+'</td></tr>'}).join('')+'</table>';
+ h+='<p>期間：'+sd(p.eff)+'～'+sd(p.until)+'（発券日ベース）</p><p>路線・区間：'+p.groups.map(function(g){return esc(g.name)}).join('、')+'（日本発の国際航空運送に適用）</p>';
+ h+='<h4>燃油価格の変動に対する措置</h4><p>【表1】の確認時期に航空燃油（シンガポールケロシン）価格を確認し、直前の2ヶ月平均価格に同期間の為替平均を乗じた円貨換算額が【表2】の条件額を下回った場合、【表1】の実施時期をもとに、額の改定を関係国政府に認可申請致します。</p><p>【表1】</p><table><tr><th>実施時期（発券日ベース）</th><th>燃油価格動向の確認時期</th><th>燃油価格動向の把握</th></tr>'+T1.map(function(r){return '<tr><td class="c">'+r[0]+'</td><td class="c">'+r[1]+'に確認</td><td>'+r[2]+'までの2ヶ月平均価格</td></tr>'}).join('')+'</table>';
+ h+='<p>【表2】</p><table><tr><th>シンガポールケロシン価格（1バレルあたり円単位）</th>'+p.groups.map(function(g){return '<th>'+esc(g.name)+'<br>燃油特別付加運賃額（日本発）</th>'}).join('')+'</tr>'+p.table.map(function(r,j){return '<tr><td>'+fy(num(r.th))+' 円を下回った場合'+(j===R.pj&&!R.pover?'（今回適用）':'')+'</td>'+r.a.map(function(a){return '<td class="n">'+am(num(a))+'</td>'}).join('')+'</tr>'}).join('')+'</table>';
+ h+='<h4>算定の根拠</h4><p>基準とする燃油価格（1バレル当たり）：USD '+f2(num(D.base))+'<br>申請時（直近）の平均燃油価格（1バレル当たり）：USD '+f2(R.usd)+'　……　'+esc(D.ref.label)+'（2ヶ月平均）<br>申請時（直近）の為替平均：1.00USD＝JPY '+f2(R.fx)+'　……　'+esc(D.ref.label)+'（2ヶ月平均）<br>申請時（直近）の平均燃油価格（1バレル当たり日本円）：'+fy(R.jpy)+' 円</p><p>（注）燃油価格はシンガポールケロシンの市況価格、為替は日本銀行が公表している日次データ（中心相場）を使用</p>';
+ h+='<h4>総括計算書</h4>'+ftab(R)+sumtxt(R);
+ h+='<h4>その他</h4><p>燃油特別付加運賃は、すべての航空券（ただし、座席を使用しない幼児を除く）に適用し、航空券の発券時に徴収する。発券後に額の変更があっても差額の調整は行わない。<br>燃油特別付加運賃は、YQのコードで航空券の「TAX」欄に記載する。<br>未使用航空券の払い戻しの際は全額を払い戻す。<br>弊社ホームページおよび運賃表に、燃油特別付加運賃の額と改定の基準を掲載し、支払額は燃油特別付加運賃を含む総額で表示する。</p><p class="r">以上</p>';
+ return h}
+function docC(R){var c=D.cg,C=c.table,ti='国際航空貨物運賃の設定認可申請書',no=D.co.docC,h=head(no,ti);
+ h+='<h4>２．設定しようとする国際航空貨物運賃</h4><p>別紙のとおりであります。</p><h4>３．発効予定日</h4><p>'+sd(c.eff)+' から '+sd(c.until)+'<br>ただし、関係国政府の認可取得後、正式に発効致します。</p><p class="r">以上</p><hr><p class="r">別紙　'+esc(no)+'</p><h3>燃油サーチャージの設定</h3>';
+ h+='<p>運賃・料金の種別：運賃（名称：燃油サーチャージ）<br>額：日本発（'+esc(c.route)+'）　現行 運賃適用重量1キログラム当り '+fy(num(c.cur))+' 円　→　新 '+(R.ca>0?'運賃適用重量1キログラム当り '+fy(R.ca)+' 円':'廃止')+'<br>区間：'+esc(c.route)+'（日本発の航空輸送に適用）</p><p>その他：<br>燃油サーチャージは、最低料金が適用される貨物を除くすべての貨物に適用される。<br>燃油サーチャージは、航空運送状に記載された運賃適用重量に適用され、重量運賃に加えて適用される。<br>燃油サーチャージは、MYのコードで、航空運送状の「その他料金の欄」に記載される。</p><p class="r">以上</p><hr><h3>燃油サーチャージ申請資料</h3>';
+ h+='<table><tr><td>価格安定時（基準）の燃油価格</td><td class="n">USD '+f2(num(D.base))+' / バレル</td><td class="c">A</td></tr><tr><td>申請時の燃油価格（'+esc(D.ref.label)+' の2ヶ月平均値）</td><td class="n">USD '+f2(R.usd)+' / バレル</td><td class="c">B</td></tr><tr><td>燃油価格の上昇による追加燃油コスト</td><td class="n">'+fy(R.costJ/1000)+' 千円</td><td class="c">C</td></tr><tr><td>貨物積載量（年間）</td><td class="n">'+fy(num(D.ton))+' トン</td><td class="c">D</td></tr><tr><td>追加燃油コスト補填率</td><td class="n">'+pct(R)+'</td><td class="c">E</td></tr></table>';
+ h+='<h4>年間の燃油消費量と補填率の計算</h4>'+ftab(R)+sumtxt(R);
+ h+='<h4>適用基準</h4><p>シンガポール市場におけるジェット燃料（ケロシン）の2ヶ月平均価格が変動した場合、燃油サーチャージ額を下表の通り変更または廃止する。</p><table><tr><th>燃油価格（1バレル当たりUSD）</th><th>燃油サーチャージ額</th></tr>'+C.map(function(r,j){var hi=j>0?num(C[j-1].lo):null;return '<tr><td>'+fy(num(r.lo))+' 以上'+(hi!=null?' '+fy(hi)+' 未満':'')+(j===R.cj?'（今回適用）':'')+'</td><td class="n">'+fy(num(r.a))+' 円/kg</td></tr>'}).join('')+'<tr><td>'+fy(R.cmin)+' 未満'+(R.cj<0&&R.usd>0?'（今回適用）':'')+'</td><td class="n">廃止</td></tr></table><p class="r">以上</p>';
+ return h}
+
+/* ---- 画面 ---- */
+function inp(p,o){o=o||{};var v=getp(p);return '<input data-p="'+p+'"'+(o.n?' data-n="1" inputmode="decimal"':'')+(o.r?' data-r="1"':'')+' type="'+(o.t||'text')+'" value="'+esc(v==null?'':v)+'">'}
+function lab(a,b){return '<label class="f">'+esc(a)+b+'</label>'}
+function card(n,b,id){return '<section class="card"'+(id?' id="'+id+'"':'')+'><h2><span class="n">'+n+'</span>'+esc(t('s'+n))+'</h2>'+b+'</section>'}
+function xb(a,i){return '<button type="button" class="xb" data-act="'+a+'" data-i="'+i+'" aria-label="'+esc(t('del'))+'">×</button>'}
+function sw(){return '<p class="sw">'+t('swipe')+'</p>'}
+function add(a,k){return '<button type="button" class="btn" data-act="'+a+'">＋ '+esc(t(k))+'</button>'}
+function langBar(){var g=$('lang');g.innerHTML=LS.map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===L?'on':'')+'" aria-pressed="'+(l===L)+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
+ Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){L=b.getAttribute('data-l');LI=LS.indexOf(L);try{localStorage.setItem('art-lang',L)}catch(e){}render()}})}
+function render(){document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('privacy').textContent=t('privacy');$('note').textContent=t('note');$('back').textContent=t('back');langBar();
+ D.pax.table.sort(function(a,b){return num(b.th)-num(a.th)});D.cg.table.sort(function(a,b){return num(b.lo)-num(a.lo)});
+ $('bar').innerHTML='<button class="btn" id="bEx" type="button">'+esc(t('ex'))+'</button><button class="btn" id="bExp" type="button">'+esc(t('exp'))+'</button><label class="btn" for="fImp">'+esc(t('imp'))+'</label><input type="file" id="fImp" accept=".json,application/json" style="display:none"><button class="btn del" id="bCl" type="button">'+esc(t('clr'))+'</button><span class="saved" id="sv"></span>';
+ $('bEx').onclick=function(){if(confirm(t('exC'))){D=EX();save();render()}};
+ $('bCl').onclick=function(){if(confirm(t('clrC'))){D=BLANK();save();render()}};
+ $('bExp').onclick=function(){dl(JSON.stringify(D,null,1),'fuel-surcharge.json','application/json')};
+ $('fImp').onchange=function(e){var f=e.target.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){try{var o=JSON.parse(rd.result);if(!valid(o))throw 0;D=o;save();render()}catch(x){alert(t('impE'))}};rd.readAsText(f)};
+ var h='',s,y=t('yen'),P=D.pax,C=D.cg;
+ /* 1 */
+ h+=card(1,'<div class="g3">'+['name','addr','jp','tel','rep','min','docP','docC'].map(function(k){return lab(FL[k][LI],inp('co.'+k))}).join('')+lab(FL.date[LI],inp('co.date',{t:'date'}))+'</div>');
+ /* 2 */
+ s='<div class="g3">'+lab(t('start'),inp('ref.start',{t:'month',r:1}))+lab(t('refl'),inp('ref.label'))+lab(t('base'),inp('base',{n:1}))+'</div><p class="note">'+t('refn')+' '+t('basen')+'</p>';
+ s+='<div class="seg">'+['daily','avg'].map(function(m,i){return '<label><input type="radio" name="md" data-p="ref.mode" data-r="1" value="'+m+'"'+(D.ref.mode===m?' checked':'')+'>'+esc(t('mode'+(i+1)))+'</label>'}).join('')+'</div>';
+ if(D.ref.mode==='avg')s+='<div class="g3">'+lab(t('avU'),inp('ref.avgUsd',{n:1}))+lab(t('avF'),inp('ref.avgFx',{n:1}))+'</div>';
+ else s+='<p class="note">'+t('rows')+'</p><textarea data-p="ref.rows" rows="8" spellcheck="false">'+esc(D.ref.rows)+'</textarea><div class="bar"><button type="button" class="btn" data-act="exd">'+esc(t('exd'))+'</button></div>';
+ h+=card(2,s+'<div class="kpis" id="o_ref"></div>');
+ /* 3 旅客 */
+ s='<div class="g3">'+lab(t('eff'),inp('pax.eff',{t:'date'}))+lab(t('until'),inp('pax.until',{t:'date'}))+'</div>'+sw()+'<div class="tw"><table class="ed" id="tp"><thead><tr><th>'+esc(t('grp'))+'</th>'+P.groups.map(function(g,i){return '<th>'+inp('pax.groups.'+i+'.name')+(P.groups.length>1?xb('delG',i):'')+'</th>'}).join('')+'<th class="x"></th></tr><tr><th>'+esc(t('cur'))+'（'+y+'）</th>'+P.groups.map(function(g,i){return '<td>'+inp('pax.groups.'+i+'.cur',{n:1})+'</td>'}).join('')+'<td class="x"></td></tr><tr><th>'+esc(t('th'))+'（'+y+'）</th><th colspan="'+P.groups.length+'">'+esc(t('iAmt'))+'（'+y+'）</th><th class="x"></th></tr></thead><tbody>';
+ P.table.forEach(function(r,j){s+='<tr data-j="'+j+'"><td>'+inp('pax.table.'+j+'.th',{n:1})+'</td>'+P.groups.map(function(g,i){return '<td>'+inp('pax.table.'+j+'.a.'+i,{n:1})+'</td>'}).join('')+'<td class="x">'+xb('delR',j)+'</td></tr>'});
+ h+=card(3,s+'</tbody></table></div><div class="bar">'+add('addR','addR')+add('addG','addG')+'</div><div id="o_pax"></div>');
+ /* 4 貨物 */
+ s='<div class="g3">'+lab(t('cRoute'),inp('cg.route'))+lab(t('eff'),inp('cg.eff',{t:'date'}))+lab(t('until'),inp('cg.until',{t:'date'}))+lab(t('cur')+'（'+t('ykg')+'）',inp('cg.cur',{n:1}))+'</div><div class="tw"><table class="ed" id="tc"><thead><tr><th>'+esc(t('cLo'))+'</th><th>'+esc(t('cAmt'))+'</th><th class="x"></th></tr></thead><tbody>';
+ C.table.forEach(function(r,j){s+='<tr data-j="'+j+'"><td>'+inp('cg.table.'+j+'.lo',{n:1})+'</td><td>'+inp('cg.table.'+j+'.a',{n:1})+'</td><td class="x">'+xb('delC',j)+'</td></tr>'});
+ h+=card(4,s+'</tbody></table></div><div class="bar">'+add('addC','addR')+'</div><div id="o_cg"></div>');
+ /* 5 総括計算書 */
+ var u=D.unit==='gal'?t('gal'):t('bbl');
+ s='<div class="g3">'+lab(t('unit'),'<select data-p="unit" data-r="1"><option value="bbl"'+(D.unit==='bbl'?' selected':'')+'>'+esc(t('bbl'))+'</option><option value="gal"'+(D.unit==='gal'?' selected':'')+'>'+esc(t('gal'))+'</option></select>')+lab(t('ton'),inp('ton',{n:1}))+'</div><h3>'+esc(t('fl'))+'</h3>'+sw()+'<div class="tw"><table class="ed"><thead><tr><th>'+esc(t('fNo'))+'</th><th>'+esc(t('fRt'))+'</th><th>'+esc(t('fAc'))+'</th><th>'+esc(t('fN'))+'</th><th>'+esc(t('fFu'))+'（'+esc(u)+'）</th><th>'+esc(t('fAn'))+'</th><th class="x"></th></tr></thead><tbody>';
+ D.fl.forEach(function(x,i){s+='<tr><td>'+inp('fl.'+i+'.no')+'</td><td>'+inp('fl.'+i+'.rt')+'</td><td>'+inp('fl.'+i+'.ac')+'</td><td>'+inp('fl.'+i+'.n',{n:1})+'</td><td>'+inp('fl.'+i+'.fu',{n:1})+'</td><td class="n" id="fa'+i+'"></td><td class="x">'+xb('delF',i)+'</td></tr>'});
+ s+='<tr><th colspan="5">'+esc(t('tot'))+'</th><td class="n" id="ftot"></td><td class="x"></td></tr></tbody></table></div><div class="bar">'+add('addF','addF')+'</div><h3>'+esc(t('inc'))+'</h3>'+sw()+'<div class="tw"><table class="ed"><thead><tr><th>'+esc(t('iLb'))+'</th><th>'+esc(t('iN'))+'</th><th>'+esc(t('iSrc'))+'</th><th>'+esc(t('iAmt'))+'</th><th>'+esc(t('iCur'))+'</th><th>'+esc(t('iSum'))+'</th><th class="x"></th></tr></thead><tbody>';
+ D.inc.forEach(function(x,i){var m=x.src==='m';s+='<tr><td>'+inp('inc.'+i+'.lb')+'</td><td>'+inp('inc.'+i+'.n',{n:1})+'</td><td><select data-p="inc.'+i+'.src" data-r="1">'+P.groups.map(function(g,k){return '<option value="g'+k+'"'+(x.src==='g'+k?' selected':'')+'>'+esc(t('iAuto')+'：'+(g.name||(k+1)))+'</option>'}).join('')+'<option value="m"'+(m?' selected':'')+'>'+esc(t('iMan'))+'</option></select></td>'+(m?'<td>'+inp('inc.'+i+'.amt',{n:1})+'</td><td><select data-p="inc.'+i+'.cur"><option'+(x.cur!=='USD'?' selected':'')+'>JPY</option><option'+(x.cur==='USD'?' selected':'')+'>USD</option></select></td>':'<td class="n" id="ia'+i+'"></td><td class="c">JPY</td>')+'<td class="n" id="ii'+i+'"></td><td class="x">'+xb('delI',i)+'</td></tr>'});
+ h+=card(5,s+'</tbody></table></div><div class="bar">'+add('addI','addI')+'</div><p class="note">'+t('sumn')+'</p><div id="o_sum"></div>');
+ /* 6・7 */
+ h+=card(6,'<div id="o_why"></div>');
+ h+=card(7,'<div class="bar"><button type="button" class="btn'+(doc==='p'?' on':'')+'" data-act="doc" data-v="p">'+esc(t('doc1'))+'</button><button type="button" class="btn'+(doc==='c'?' on':'')+'" data-act="doc" data-v="c">'+esc(t('doc2'))+'</button><button type="button" class="btn pri" data-act="prt">'+esc(t('prt'))+'</button><button type="button" class="btn" data-act="wrd">'+esc(t('wrd'))+'</button><button type="button" class="btn" data-act="cpy" id="bCp">'+esc(t('cpy'))+'</button></div><p class="note">'+t('docn')+'</p><div class="paper" id="paper" lang="ja"></div>','docsec');
+ $('app').innerHTML=h;out()}
+function kpi(a,b,c){return '<div class="kpi"><span>'+esc(a)+'</span><b>'+b+'</b>'+(c?'<em>'+esc(c)+'</em>':'')+'</div>'}
+function out(){var R=calc(),y=t('yen'),has=R.jpy>0,dl=D.ref.mode==='avg',P=D.pax,h='';
+ $('o_ref').innerHTML=kpi(t('avU'),R.usd?'$'+f2(R.usd):'—',dl?'':R.nU+' '+t('days'))+kpi(t('avF'),R.fx?f2(R.fx)+' '+y:'—',dl?'':R.nF+' '+t('days'))+kpi(t('kJ'),has?fy(R.jpy)+' '+y:'—')+kpi(t('kR'),R.pj>=0&&!R.pover?fy(num(P.table[R.pj].th))+' '+y:'—');
+ P.groups.forEach(function(g,i){var a=R.pa[i],c=num(g.cur);h+='<div class="res">'+esc(g.name||t('grp'))+'： '+fy(c)+' '+y+' → <b>'+(has?(a>0?fy(a)+' '+y:t('abo')):'—')+'</b>'+(has?'　（'+t('dif')+' '+(a-c>=0?'+':'−')+fy(Math.abs(a-c))+' '+y+'）':'')+'</div>'});
+ if(R.pover)h+='<div class="res ng">'+t('over')+'</div>';$('o_pax').innerHTML=h;
+ each('#tp tbody tr',function(tr){tr.classList.toggle('hit',+tr.getAttribute('data-j')===R.pj)});
+ var cc=num(D.cg.cur);
+ $('o_cg').innerHTML='<div class="res">'+esc(D.cg.route||t('cRoute'))+'： '+fy(cc)+' '+t('ykg')+' → <b>'+(R.usd>0?(R.ca>0?fy(R.ca)+' '+t('ykg'):t('abo')):'—')+'</b>'+(R.usd>0?'　（'+t('dif')+' '+(R.ca-cc>=0?'+':'−')+fy(Math.abs(R.ca-cc))+' '+t('ykg')+'）':'')+'</div>';
+ each('#tc tbody tr',function(tr){tr.classList.toggle('hit',+tr.getAttribute('data-j')===R.cj)});
+ D.fl.forEach(function(x,i){if($('fa'+i))$('fa'+i).textContent=fy(R.fa[i])});$('ftot').textContent=fy(R.bbl);
+ D.inc.forEach(function(x,i){if($('ia'+i))$('ia'+i).textContent=fy(R.il[i].amt);if($('ii'+i))$('ii'+i).textContent=fy(R.il[i].jpy/1000)});
+ var mx=Math.max(R.costJ,R.incJ,1);
+ $('o_sum').innerHTML='<div class="bars"><div><span>'+t('cost')+'： <b>'+fy(R.costJ/1000)+'</b> '+t('k')+'（$'+fy(R.costU)+'）</span><i style="width:'+(R.costJ/mx*100)+'%;background:var(--ng)"></i></div><div><span>'+t('inc')+'： <b>'+fy(R.incJ/1000)+'</b> '+t('k')+'（'+t('pc')+' '+fy(R.incP/1000)+' ＋ '+t('cc')+' '+fy(R.incC/1000)+'）</span><i style="width:'+(R.incJ/mx*100)+'%;background:var(--ok)"></i></div></div>'+(isFinite(R.ratio)?'<div class="res '+(R.ratio<=1?'ok':'ng')+'">'+t('rat')+'： <b>'+pct(R)+'</b>　'+t(R.ratio<=1?'ok':'ng')+'</div>':'');
+ $('o_why').innerHTML=why(R);
+ $('paper').innerHTML=doc==='p'?docP(R):docC(R)}
+function why(R){var y=t('yen'),has=R.jpy>0,g0=D.pax.groups[0]||{},th=R.pj>=0?fy(num(D.pax.table[R.pj].th)):'—',lo=R.cj>=0?fy(num(D.cg.table[R.cj].lo)):'—',W=[];
+ var fl='<div class="flow"><div><span>'+t('avU')+'</span><b>'+(R.usd?'$'+f2(R.usd):'—')+'</b></div><i>×</i><div><span>'+t('avF')+'</span><b>'+(R.fx?f2(R.fx):'—')+'</b></div><i>＝</i><div class="k"><span>'+t('kJ')+'</span><b>'+(has?fy(R.jpy)+' '+y:'—')+'</b></div><i>→</i><div><span>'+t('pc')+'：'+esc(g0.name||'')+'</span><b>'+(has?(R.pa[0]>0?fy(R.pa[0])+' '+y:t('abo')):'—')+'</b></div><div><span>'+t('cc')+'：'+esc(D.cg.route||'')+'</span><b>'+(R.usd>0?(R.ca>0?fy(R.ca)+' '+t('ykg'):t('abo')):'—')+'</b></div></div>';
+ if(!has)return fl;
+ if(D.ref.mode!=='avg'){
+  W.push(['平均燃油価格 ＝ 日別のケロシン価格の合計 ÷ 日数 ＝ <code>$'+f2(R.usd)+'</code>（'+R.nU+'日分）','평균 유가 = 일별 케로신 가격 합계 ÷ 일수 = <code>$'+f2(R.usd)+'</code>('+R.nU+'일분)','Average fuel price = sum of the daily kerosene prices ÷ number of days = <code>$'+f2(R.usd)+'</code> ('+R.nU+' days)']);
+  W.push(['平均為替 ＝ 日別の為替の合計 ÷ 日数 ＝ <code>'+f2(R.fx)+' 円</code>（'+R.nF+'日分）。価格のない日・為替のない日は、それぞれの平均から除いています。','평균 환율 = 일별 환율 합계 ÷ 일수 = <code>'+f2(R.fx)+'엔</code>('+R.nF+'일분). 가격이 없는 날과 환율이 없는 날은 각각의 평균에서 뺐습니다.','Average rate = sum of the daily rates ÷ number of days = <code>'+f2(R.fx)+' yen</code> ('+R.nF+' days). Days with no price or no rate are left out of their own average.'])}
+ W.push(['円換算 ＝ 平均燃油価格 × 平均為替 ＝ <code>'+f2(R.usd)+' × '+f2(R.fx)+' ＝ '+fy(R.jpy)+' 円</code>（1バレルあたり）','엔화 환산 = 평균 유가 × 평균 환율 = <code>'+f2(R.usd)+' × '+f2(R.fx)+' = '+fy(R.jpy)+'엔</code>(배럴당)','In yen = average fuel price × average rate = <code>'+f2(R.usd)+' × '+f2(R.fx)+' = '+fy(R.jpy)+' yen</code> per barrel']);
+ W.push(R.pover?[t('over'),t('over'),t('over')]:['旅客：'+fy(R.jpy)+' 円は、適用表の「'+th+' 円を下回る」の行にあたります（色のついた行）。その行の金額が新しい額です。ちょうど境目の額のときは「下回って」いないので、1つ上の行になります。','여객: '+fy(R.jpy)+'엔은 적용표의 「'+th+'엔 미만」 행에 해당합니다(색이 칠해진 행). 그 행의 금액이 새 금액입니다. 정확히 경계 금액일 때는 「미만」이 아니므로 한 단계 위 행이 됩니다.','Passenger: '+fy(R.jpy)+' yen falls in the row “below '+th+' yen” (the highlighted row), which gives the new amount. A figure exactly on a boundary is not below it, so the next row up applies.']);
+ W.push(R.cj<0?['貨物：平均燃油価格 $'+f2(R.usd)+' は適用表のいちばん低い区分（'+fy(R.cmin)+'ドル）に届かないので、廃止になります。','화물: 평균 유가 $'+f2(R.usd)+'는 적용표의 가장 낮은 구간('+fy(R.cmin)+'달러)에 못 미치므로 폐지가 됩니다.','Cargo: the average price of $'+f2(R.usd)+' is under the lowest bracket ('+fy(R.cmin)+' dollars), so the surcharge is abolished.']:['貨物：平均燃油価格 $'+f2(R.usd)+' は「'+lo+' 以上'+(R.chi!=null?' '+fy(R.chi)+' 未満':'')+'」の行にあたり、1kgあたり '+fy(R.ca)+' 円です。貨物は円に換算せず、ドルのままの価格で区分を決めます。','화물: 평균 유가 $'+f2(R.usd)+'는 「'+lo+' 이상'+(R.chi!=null?' '+fy(R.chi)+' 미만':'')+'」 행에 해당하며, kg당 '+fy(R.ca)+'엔입니다. 화물은 엔화로 환산하지 않고 달러 가격 그대로 구간을 정합니다.','Cargo: the average price of $'+f2(R.usd)+' falls in the row “'+lo+' or more'+(R.chi!=null?', under '+fy(R.chi):'')+'”, giving '+fy(R.ca)+' yen per kg. Cargo brackets use the dollar price directly, without converting to yen.']);
+ W.push(['追加の燃油コスト ＝（平均燃油価格 − 基準の価格）× 年間の燃料消費量 ＝ <code>('+f2(R.usd)+' − '+f2(num(D.base))+') × '+fy(R.bbl)+' バレル ＝ $'+fy(R.costU)+'</code>、円では <code>× '+f2(R.fx)+' ＝ '+fy(R.costJ/1000)+' 千円</code>。基準の価格より上がった分だけが「追加」です。','추가 연료비 = (평균 유가 − 기준 가격) × 연간 연료 소비량 = <code>('+f2(R.usd)+' − '+f2(num(D.base))+') × '+fy(R.bbl)+'배럴 = $'+fy(R.costU)+'</code>, 엔화로는 <code>× '+f2(R.fx)+' = '+fy(R.costJ/1000)+'천 엔</code>. 기준 가격보다 오른 만큼만 「추가」입니다.','Extra fuel cost = (average price − baseline) × annual fuel consumption = <code>('+f2(R.usd)+' − '+f2(num(D.base))+') × '+fy(R.bbl)+' bbl = $'+fy(R.costU)+'</code>, or in yen <code>× '+f2(R.fx)+' = '+fy(R.costJ/1000)+' thousand yen</code>. Only the rise above the baseline counts as extra.']);
+ W.push(['収入 ＝ 旅客数 × 金額 ＋ 貨物の重量（kg）× 1kgあたりの額 ＝ <code>'+fy(R.incP/1000)+' ＋ '+fy(R.incC/1000)+' ＝ '+fy(R.incJ/1000)+' 千円</code>。回収率 ＝ 収入 ÷ 追加の燃油コスト ＝ <code>'+pct(R)+'</code>。燃油サーチャージは燃油の値上がり分を補うためのものなので、収入が追加コストを超えない（100%以下）ことを確かめます。','수입 = 여객 수 × 금액 + 화물 중량(kg) × kg당 금액 = <code>'+fy(R.incP/1000)+' + '+fy(R.incC/1000)+' = '+fy(R.incJ/1000)+'천 엔</code>. 회수율 = 수입 ÷ 추가 연료비 = <code>'+pct(R)+'</code>. 유류할증료는 유가가 오른 만큼을 보전하기 위한 것이므로, 수입이 추가 비용을 넘지 않는지(100% 이하) 확인합니다.','Income = passengers × amount + cargo weight (kg) × amount per kg = <code>'+fy(R.incP/1000)+' + '+fy(R.incC/1000)+' = '+fy(R.incJ/1000)+' thousand yen</code>. Recovery ratio = income ÷ extra fuel cost = <code>'+pct(R)+'</code>. A fuel surcharge exists to cover the rise in fuel cost, so check that income does not exceed the extra cost (100% or less).']);
+ return fl+'<ol class="why">'+W.map(function(w){return '<li>'+w[LI]+'</li>'}).join('')+'</ol>'}
+function dl(txt,name,type){var b=new Blob([txt],{type:type}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove()}
+function word(){var h='<html><head><meta charset="utf-8"><style>body{font-family:"MS Mincho",serif;font-size:10.5pt;line-height:1.8}table{border-collapse:collapse}td,th{border:1px solid #000;padding:3pt 6pt}.r{text-align:right}.n{text-align:right}.c{text-align:center}h3{text-align:center}</style></head><body>'+$('paper').innerHTML+'</body></html>';
+ dl(String.fromCharCode(65279)+h,((doc==='p'?D.co.docP:D.co.docC)||'fuel-surcharge')+'.doc','application/msword')}
+
+/* ---- 入力の受け取り ---- */
+var app=$('app');
+function onIn(e){var el=e.target,p=el.getAttribute&&el.getAttribute('data-p');if(!p)return;
+ var v=el.type==='checkbox'?el.checked:el.getAttribute('data-n')?num(el.value):el.value;
+ if(el.type==='radio'&&!el.checked)return;
+ setp(p,v);if(p==='ref.start'&&v)D.ref.label=refLabel(v);save();
+ if(el.getAttribute('data-r'))render();else out()}
+app.addEventListener('input',onIn);app.addEventListener('change',onIn);
+app.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var a=b.getAttribute('data-act'),i=+b.getAttribute('data-i'),P=D.pax,m;
+ if(a==='doc'){doc=b.getAttribute('data-v');render();return}
+ if(a==='prt'){window.print();return}
+ if(a==='wrd'){word();return}
+ if(a==='cpy'){var tx=$('paper').innerText;if(navigator.clipboard)navigator.clipboard.writeText(tx).then(function(){$('bCp').textContent=t('cpd')});return}
+ if(a==='addG'){P.groups.push({name:'',cur:0});P.table.forEach(function(r){r.a.push(0)})}
+ else if(a==='delG'){if(P.groups.length<2)return;P.groups.splice(i,1);P.table.forEach(function(r){r.a.splice(i,1)});D.inc.forEach(function(x){if(x.src!=='m'){var g=+String(x.src).slice(1);if(g===i)x.src='m';else if(g>i)x.src='g'+(g-1)}})}
+ else if(a==='addR'){m=Math.max.apply(null,P.table.map(function(r){return num(r.th)}).concat(0));P.table.push({th:m+1000,a:P.groups.map(function(){return 0})})}
+ else if(a==='delR'){if(P.table.length<2)return;P.table.splice(i,1)}
+ else if(a==='addC'){m=Math.max.apply(null,D.cg.table.map(function(r){return num(r.lo)}).concat(0));D.cg.table.push({lo:m+10,a:0})}
+ else if(a==='delC'){if(D.cg.table.length<2)return;D.cg.table.splice(i,1)}
+ else if(a==='addF')D.fl.push({no:'',rt:'',ac:'',n:0,fu:0});
+ else if(a==='delF'){if(D.fl.length<2)return;D.fl.splice(i,1)}
+ else if(a==='addI')D.inc.push({lb:'',n:0,src:'m',amt:0,cur:'JPY'});
+ else if(a==='delI'){if(D.inc.length<2)return;D.inc.splice(i,1)}
+ else if(a==='exd')D.ref.rows=exRows(D.ref.start||'2025-10');
+ else return;
+ save();render()});
+render();
+/* 会員の記録：ログインしていれば、会員に保存した内容の方が新しいときはそれを使う */
+if(window.Member)window.Member.onChange(function(u){if(!u)return;window.Member.loadDoc('fsc').then(function(d){if(!d||!valid(d.data))return;var st=d.data.t||Date.parse(d.updated_at)||0;if(st>(D.t||0)){D=d.data;try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}render()}}).catch(function(){})});
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>
