@@ -167,6 +167,19 @@ fin_links_vela:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vie
  var A=[['M290,290 C330,290 330,290 325,290',PL,'0;1;1;0;0;0;0'],['M620,290 C540,290 540,108 595,108',CF,'0;0;0;1;1;0;0'],['M620,146 C560,146 560,144 595,144',G,'0;0;0;0;0;1;1']];
  A.forEach(function(a){s+='<path d="'+a[0]+'" fill="none" stroke="'+a[1]+'" stroke-width="3" marker-end="url(#fa)"><animate attributeName="opacity" values="'+a[2]+'" dur="7s" repeatCount="indefinite"/></path>'});
  s+=tx(450,392,L(lang,'① 利益90は配当40を引いて利益剰余金へ（+50）　② 期末現金1,044は資産の現金へ　③ 減価償却254は費用でもあり、航空機の帳簿価値を減らし、現金には影響しない','① 이익 90은 배당 40을 빼고 이익잉여금으로(+50)　② 기말 현금 1,044는 자산의 현금으로　③ 감가상각 254는 비용이면서 항공기 장부가를 줄이고 현금에는 영향이 없다','① Profit 90 less dividend 40 goes to retained earnings (+50)　② Closing cash 1,044 is the cash on the balance sheet　③ Depreciation 254 is a cost, reduces the aircraft book value, and leaves cash untouched'),11.5,D,600);
+ return s+'</svg>'},
+/* 5-5 RASK と CASK（Vela Air 3年）：座席キロあたりの収入と費用、損益分岐の座席利用率 */
+fin_rask_cask:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img">'+Rc(0,0,900,380,'#F7FAFD');
+ var Y=[[L(lang,'1年目','1년 차','Year 1'),15.0,14.1,82,77.1],[L(lang,'2年目（燃油高騰）','2년 차(유가 급등)','Year 2 (fuel spike)'),15.41,15.68,80,81.4],[L(lang,'3年目','3년 차','Year 3'),15.35,14.27,83,77.2]];
+ var base=300,sc=14;
+ Y.forEach(function(y,i){var x=70+i*280;var hr=(y[1]-10)*sc,hc=(y[2]-10)*sc;
+  s+=Rc(x,base-hr,80,hr,PL,6)+tx(x+40,base-hr-8,y[1].toFixed(1),13,PL,800)+Rc(x+95,base-hc,80,hc,R,6)+tx(x+135,base-hc-8,y[2].toFixed(1),13,R,800);
+  var ok=y[1]>=y[2];s+=Rc(x+190,base-70,70,70,ok?'#E8F3F0':'#FDEEF0',10)+tx(x+225,base-45,(ok?'+':'−')+Math.abs(y[1]-y[2]).toFixed(2),15,ok?BS:R,800)+tx(x+225,base-25,L(lang,'円/座席km','엔/좌석km','yen/ASK'),9,G,600)+tx(x+225,base-10,L(lang,'利用率 ','탑승률 ','LF ')+y[3]+'% / '+y[4]+'%',9,G,600);
+  s+=tx(x+130,base+20,y[0],13,D,800);
+  s+='<g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(i*0.25).toFixed(2)+';'+(i*0.25+0.15).toFixed(2)+';1" dur="5s" repeatCount="indefinite"/></g>'});
+ s+='<line x1="40" y1="'+base+'" x2="880" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ s+=Rc(60,340,14,14,PL,3)+tx(80,352,L(lang,'座席キロあたり収入（旅客＋貨物＋付帯）','좌석킬로당 수입(여객+화물+부대)','Revenue per ASK (passenger, cargo, ancillary)'),12,D,600,'start')+Rc(470,340,14,14,R,3)+tx(490,352,L(lang,'座席キロあたり費用（CASK）','좌석킬로당 비용(CASK)','Cost per ASK (CASK)'),12,D,600,'start');
+ s+=tx(450,40,L(lang,'2年目は費用が収入を上回り、損益分岐の利用率（81.4%）が実際の利用率（80%）を超えた','2년 차는 비용이 수입을 웃돌아 손익분기 탑승률(81.4%)이 실제 탑승률(80%)을 넘었다','In year 2 cost exceeded revenue per ASK and the break-even load factor (81.4%) rose above the actual 80%'),12,D,600);
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
