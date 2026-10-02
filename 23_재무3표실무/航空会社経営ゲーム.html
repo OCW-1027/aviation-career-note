@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>航空会社経営ゲーム ― Vela Airの1年を3つの表で動かす</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
+*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 70px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+h1{font-size:22px;margin:6px 0}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
+.langs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
+.langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.card h2{font-size:15px;margin:0 0 10px}
+.qbar{display:flex;gap:6px;margin:0 0 10px}.qbar span{flex:1;height:8px;border-radius:4px;background:#e6ecf2}.qbar span.done{background:var(--ink)}.qbar span.now{background:var(--pl)}
+.event{border-left:5px solid var(--cf);padding:10px 14px;background:#fff8f0;border-radius:10px}.event b{display:block;font-size:16px}.event span{font-size:14px}
+.event.calm{border-color:var(--bs);background:#f0f8f6}
+.dec{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:10px}
+.dec button{text-align:left;border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 12px;cursor:pointer;color:var(--ink);min-height:70px;font-size:14px;line-height:1.35}
+.dec button small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:2px}
+.dec button.on{border-color:var(--ink);background:#eef3f8}
+.go{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.go button{min-height:48px;border:0;background:var(--ink);color:#fff;border-radius:12px;padding:0 20px;font-size:15px;cursor:pointer;font-weight:700}
+.go button.sec{background:var(--paper);color:var(--ink);border:2px solid var(--line)}.go button:disabled{opacity:.4;cursor:default}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}@media(max-width:820px){.three{grid-template-columns:1fr}}
+.stmt{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--paper)}
+.stmt h3{margin:0 0 8px;font-size:14px;display:flex;align-items:center;gap:8px}.stmt h3 i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.stmt table{width:100%;border-collapse:collapse;font-size:13px}.stmt td{padding:3px 2px;border-bottom:1px solid #eef2f6}.stmt td.n{text-align:right;font-variant-numeric:tabular-nums}
+.stmt tr.tot td{font-weight:800;border-top:2px solid var(--line)}.stmt td.pos{color:var(--ok)}.stmt td.neg{color:var(--ng)}
+.bar{display:flex;height:20px;border-radius:6px;overflow:hidden;background:#edf2f7;margin:4px 0 8px}.bar div{height:100%;transition:width .5s}
+.bsbars{display:flex;gap:10px;align-items:flex-end;height:150px;margin:6px 0 4px}.bsbars>div{flex:1;display:flex;flex-direction:column-reverse;border-radius:8px;overflow:hidden;background:#edf2f7;height:100%}
+.bsbars>div>div{width:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;overflow:hidden;transition:height .5s}
+.bsl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:10px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.kpi span{display:block;color:var(--muted);font-size:12px}.kpi b{font-size:20px;font-variant-numeric:tabular-nums}.kpi em{font-style:normal;font-size:12px;color:var(--muted)}
+.why{background:#f3f6fa;border-radius:12px;padding:12px 14px;font-size:14px}.why h3{margin:0 0 6px;font-size:14px}.why ul{margin:4px 0;padding-left:20px}.why li{margin:4px 0}
+.summary table{width:100%;border-collapse:collapse;font-size:13px}.summary td,.summary th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}.summary th:first-child,.summary td:first-child{text-align:left}
+.verdict{font-size:15px;font-weight:700;margin-top:10px}
+.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+details{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:var(--paper)}summary{cursor:pointer;padding:12px 14px;font-weight:700;min-height:46px;display:flex;align-items:center}.dbody{padding:0 14px 14px;font-size:14px}.dbody p{margin:6px 0}
+button:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.bar div,.bsbars>div>div{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div><h1 id="t_title"></h1><p class="lead" id="t_lead"></p></div>
+ <div class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></div>
+</header>
+
+<div class="card">
+ <div class="qbar" id="qbar"></div>
+ <h2 id="t_q"></h2>
+ <div class="event" id="event"></div>
+ <h2 id="t_dec" style="margin-top:14px"></h2>
+ <div class="dec" id="dec"></div>
+ <div class="go"><button id="btn_go"></button><button class="sec" id="btn_reset"></button><span class="note" id="t_hint" style="margin:0"></span></div>
+</div>
+
+<div class="card">
+ <h2 id="t_stmts"></h2>
+ <div class="three">
+  <div class="stmt"><h3><i style="background:var(--pl)"></i><span id="t_pl"></span></h3><div class="bar" id="plbar"></div><table id="pl"></table></div>
+  <div class="stmt"><h3><i style="background:var(--bs)"></i><span id="t_bs"></span></h3><div class="bsbars" id="bsbars"></div><div class="bsl"><span id="t_assets"></span><span id="t_liabeq"></span></div><table id="bs"></table></div>
+  <div class="stmt"><h3><i style="background:var(--cf)"></i><span id="t_cf"></span></h3><table id="cf"></table></div>
+ </div>
+ <div class="kpis" id="kpis"></div>
+</div>
+
+<div class="card"><div class="why" id="why"></div></div>
+<div class="card summary" id="sumcard" style="display:none"><h2 id="t_sum"></h2><div id="summary"></div><div class="verdict" id="verdict"></div></div>
+<div class="card"><h2 id="t_how"></h2><div id="how"></div><div class="note" id="t_note"></div></div>
+</div>
+<script>
+var L={
+ja:{title:'航空会社経営ゲーム ― Vela Airの1年を3つの表で動かす',lead:'架空の航空会社 Vela Air の経営を1年（4四半期）担当します。四半期ごとに出来事が起き、あなたは1つだけ手を打ちます。損益計算書・貸借対照表・キャッシュフロー計算書が同時に動き、「なぜそう動いたか」を毎回解説します。',
+ q:'第{n}四半期',dec:'あなたの打ち手（1つ選ぶ）',go:'この四半期を進める',restart:'最初からやり直す',done:'1年が終わりました。下に結果があります。',hint:'打ち手を選ぶと進められます',
+ stmts:'3つの表（この四半期）',pl:'損益計算書',bs:'貸借対照表（四半期末）',cf:'キャッシュフロー計算書',assets:'資産',liabeq:'負債＋純資産',unit:'億円',
+ rev:'売上高',costs:'営業費用',op:'営業利益',int:'支払利息（純額）',tax:'法人税',net:'当期純利益',
+ C:{fuel:'燃油費',labor:'人件費',handling:'地上ハンドリング委託費',maint:'整備費',dep:'減価償却費',airport:'空港使用料',lease:'機材賃借料',sales:'販売費',misc:'その他'},
+ B:{cash:'現金',ar:'売掛金・その他',aircraft:'航空機（簿価）',otherA:'その他の資産',unearned:'航空券の前受金・マイル',debt:'借入金・リース債務',otherL:'その他の負債',equity:'純資産'},
+ F:{cfo:'営業活動',cfi:'投資活動',cff:'財務活動',net:'現金の増減',end:'期末現金'},
+ K:{lf:'座席利用率',rask:'座席キロあたり収入',cask:'座席キロあたり費用',be:'損益分岐の利用率',eqr:'自己資本比率',cash:'手元現金'},
+ why:'なぜ、こう動いたか',sum:'1年の結果',col:['','第1','第2','第3','第4','年間','何もしなかった場合'],rows:['売上高','営業利益','当期純利益','営業キャッシュフロー','期末現金','自己資本比率'],
+ verdict:{good:'何もしなかった場合より年間の純利益が {d}億円多くなりました。打ち手が効いています。',bad:'何もしなかった場合より年間の純利益が {d}億円少なくなりました。費用だけ増えて収入が追いつかなかった打ち手がどれか、解説を読み返してみましょう。',even:'何もしなかった場合とほぼ同じ結果でした。'},
+ how:'このゲームの仕組み',note:'※ 架空の数字です。実際の航空会社の公開資料の範囲を参考に Vela Air の設定として作りました。四半期ごとの季節変動や税金の計算は簡略化しています。',
+ EV:{calm:['平常どおりの四半期','原油85ドル/バレル、為替150円、座席利用率82%。まず3つの表の形を見てください。'],
+     oil:['原油価格が40%上昇','中東情勢で原油が85→119ドル/バレル。燃油費が一気に増えます。国際線は燃油サーチャージで一部を回収できますが、国内線は回収できません。'],
+     boom:['訪日需要の増加と円安','円が150→160円。訪日客が増え座席利用率が上がりますが、ドル建ての燃油・整備・リース料も円で見ると増えます。'],
+     storm:['大型台風で3%の便が欠航','欠航しても機材費・人件費・減価償却はそのままかかります。お客様への補償も発生します。']},
+ D:{none:['何もしない','現状のまま進める'],add:['増便する（供給+5%）','座席キロが5%増。燃油・ハンドリング・空港使用料も増える。利用率は少し下がる'],fare:['運賃を5%上げる','単価が上がるが、お客様が減って利用率が3ポイント下がる'],cost:['現場の費用削減','燃油2%・ハンドリング3%を削減。定時運航と搭載の精度で実現する前提'],lease:['機材を1機リース','翌四半期から座席キロ+2%。賃借料が毎四半期増える。現金は減らない'],buy:['機材を1機購入（60億円）','現金30億円＋借入30億円。費用ではなく資産になり、減価償却で少しずつ費用化'],hedge:['燃油ヘッジを結ぶ','保険料1.5億円/四半期。以後、燃油価格の変動による影響が半分になる'],fsc:['国際線の燃油サーチャージ改定','燃油が高いとき、増えた燃油費の4割を国際線で回収できる']},
+ X:{ev_calm:'出来事はありません。売上 {rev}億円に対して費用 {cost}億円、営業利益率 {opm}。燃油費は費用の {fuelpct} です。',
+    ev_oil:'原油40%高で燃油費が {dfuel}億円増えました。費用の中で燃油の比率は {fuelpct} に上がり、損益分岐の利用率は {be} まで上がりました。{fscnote}',
+    ev_boom:'利用率が {lf} に上がり、旅客収入が {drev}億円増えました。一方、円安でドル建て費用が増え、燃油費は {dfuel}億円増えています。',
+    ev_storm:'欠航で売上は {drev}億円減りましたが、費用は {dcost}億円しか減りません。欠航しても機材・人・減価償却はかかるからです。補償 {comp}億円も「その他」に入りました。',
+    d_none:'打ち手なし。', d_add:'増便で座席キロが5%増え、収入 {drev}億円・費用 {dcost}億円。増えた座席が埋まるかで結果が決まります。',
+    d_fare:'運賃5%増で単価は上がりましたが利用率が下がり、旅客収入は差し引き {drev}億円の変化。費用はほぼ変わらないので、収入の増減がそのまま利益になります。',
+    d_cost:'燃油2%・ハンドリング3%の削減で費用が {dcost}億円減りました。収入を増やすより確実に利益に効く、現場の積み上げです。',
+    d_lease:'リースは契約した四半期は費用だけ（賃借料 +0.9億円）。座席キロが増えるのは翌四半期から。貸借対照表の資産は増えません（この設定では賃借として処理）。',
+    d_buy:'購入した60億円は費用ではなく「航空機」という資産になり、現金30億円と借入30億円で払いました。費用になるのは減価償却 0.75億円/四半期ずつ。だから利益はほとんど変わらず、現金は30億円減り、借入が30億円増えています。',
+    d_hedge:'ヘッジの保険料1.5億円が費用に乗りました。この後、燃油価格が動いても影響は半分になります。',
+    d_fsc:'サーチャージで燃油費増加の4割（{fsc}億円）を国際線で回収しました。国内線には使えません。',
+    link1:'当期純利益は {net}億円、営業キャッシュフローは {cfo}億円。差額の主な中身は、減価償却 {dep}億円（お金が出ていかない費用）と、前受金の増減 {dun}億円（先に受け取った航空券代）です。',
+    link2:'現金は {dcash}億円変わりました。営業 {cfo}、投資 {cfi}（機材の購入）、財務 {cff}（借入と返済・リース返済）の合計です。',
+    link3:'純資産は利益の分だけ増え（損失なら減り）、資産＝負債＋純資産 は毎四半期末に必ず一致します（いま {assets}億円）。'},
+ HOW:[['3つの表のつながり','損益計算書の当期純利益は、貸借対照表の純資産（利益剰余金）に積み上がります。キャッシュフロー計算書の期末現金は、貸借対照表の現金と同じ数字です。このゲームはその3つを毎四半期つないで計算しています。'],
+      ['費用の動き方','燃油・ハンドリング・整備・空港使用料は座席キロ（飛ばした量）に比例して増減します。人件費・減価償却・賃借料は飛ばしても飛ばさなくてもほぼ同じ（固定費）。販売費は旅客収入の4%前後、その他は半分が乗客数に比例、半分が固定です。'],
+      ['利益と現金のずれ','減価償却は過去に払った機材代を分割して費用にしているので、お金は出ていきません。航空券は乗る前に売れるので、前受金が増えると利益より先に現金が入ります。逆に機材の購入は一度に現金が出ますが、費用には少しずつしかなりません。'],
+      ['指標','座席キロあたり収入（RASK）＝売上÷座席キロ、座席キロあたり費用（CASK）＝費用÷座席キロ。RASKがCASKを上回れば黒字。損益分岐の利用率は、いまの単価で何%席が埋まれば費用を回収できるかです。']]},
+ko:{title:'항공사 경영 게임 — Vela Air의 1년을 세 표로 움직이기',lead:'가상 항공사 Vela Air의 경영을 1년(4분기) 맡습니다. 분기마다 사건이 일어나고, 당신은 한 가지 결정을 내립니다. 손익계산서·재무상태표·현금흐름표가 동시에 움직이고, 「왜 그렇게 움직였나」를 매번 해설합니다.',
+ q:'제{n}분기',dec:'당신의 결정(하나 선택)',go:'이 분기를 진행',restart:'처음부터 다시',done:'1년이 끝났습니다. 아래에 결과가 있습니다.',hint:'결정을 고르면 진행할 수 있습니다',
+ stmts:'세 표(이번 분기)',pl:'손익계산서',bs:'재무상태표(분기 말)',cf:'현금흐름표',assets:'자산',liabeq:'부채+자본',unit:'억 엔',
+ rev:'매출',costs:'영업비용',op:'영업이익',int:'이자 비용(순액)',tax:'법인세',net:'당기순이익',
+ C:{fuel:'연료비',labor:'인건비',handling:'지상조업 위탁비',maint:'정비비',dep:'감가상각비',airport:'공항 사용료',lease:'항공기 임차료',sales:'판매비',misc:'기타'},
+ B:{cash:'현금',ar:'매출채권·기타',aircraft:'항공기(장부가)',otherA:'기타 자산',unearned:'항공권 선수금·마일리지',debt:'차입금·리스채무',otherL:'기타 부채',equity:'자본'},
+ F:{cfo:'영업활동',cfi:'투자활동',cff:'재무활동',net:'현금 증감',end:'기말 현금'},
+ K:{lf:'탑승률',rask:'좌석킬로당 수입',cask:'좌석킬로당 비용',be:'손익분기 탑승률',eqr:'자기자본비율',cash:'보유 현금'},
+ why:'왜 이렇게 움직였나',sum:'1년의 결과',col:['','1분기','2분기','3분기','4분기','연간','아무것도 안 했을 때'],rows:['매출','영업이익','당기순이익','영업현금흐름','기말 현금','자기자본비율'],
+ verdict:{good:'아무것도 하지 않았을 때보다 연간 순이익이 {d}억 엔 많습니다. 결정이 효과를 냈습니다.',bad:'아무것도 하지 않았을 때보다 연간 순이익이 {d}억 엔 적습니다. 비용만 늘고 수입이 따라오지 못한 결정이 무엇이었는지 해설을 다시 읽어 보세요.',even:'아무것도 하지 않았을 때와 거의 같은 결과입니다.'},
+ how:'이 게임의 구조',note:'※ 가상의 숫자입니다. 실제 항공사 공개 자료의 범위를 참고해 Vela Air 설정으로 만들었습니다. 분기별 계절 변동과 세금 계산은 단순화했습니다.',
+ EV:{calm:['평상시의 분기','유가 85달러/배럴, 환율 150엔, 탑승률 82%. 먼저 세 표의 모양을 보세요.'],
+     oil:['유가 40% 상승','중동 정세로 유가가 85→119달러/배럴. 연료비가 단숨에 늘어납니다. 국제선은 유류할증료로 일부를 회수할 수 있지만 국내선은 회수할 수 없습니다.'],
+     boom:['방일 수요 증가와 엔저','엔화가 150→160엔. 방일객이 늘어 탑승률이 오르지만, 달러로 내는 연료·정비·리스료도 엔으로 보면 늘어납니다.'],
+     storm:['대형 태풍으로 3% 결항','결항해도 항공기 비용·인건비·감가상각은 그대로 듭니다. 승객 보상도 발생합니다.']},
+ D:{none:['아무것도 안 함','현 상태로 진행'],add:['증편(공급 +5%)','좌석킬로 5% 증가. 연료·조업·공항 사용료도 증가. 탑승률은 조금 하락'],fare:['운임 5% 인상','단가는 오르지만 승객이 줄어 탑승률 3%p 하락'],cost:['현장 비용 절감','연료 2%·조업 3% 절감. 정시 운항과 탑재 정확성으로 실현하는 전제'],lease:['항공기 1대 리스','다음 분기부터 좌석킬로 +2%. 임차료가 매 분기 증가. 현금은 줄지 않음'],buy:['항공기 1대 구매(60억 엔)','현금 30억 + 차입 30억. 비용이 아니라 자산이 되고, 감가상각으로 조금씩 비용화'],hedge:['연료 헤지 계약','보험료 1.5억 엔/분기. 이후 유가 변동의 영향이 절반으로'],fsc:['국제선 유류할증료 개정','유가가 높을 때 늘어난 연료비의 4할을 국제선에서 회수']},
+ X:{ev_calm:'사건은 없습니다. 매출 {rev}억 엔에 비용 {cost}억 엔, 영업이익률 {opm}. 연료비는 비용의 {fuelpct}입니다.',
+    ev_oil:'유가 40% 상승으로 연료비가 {dfuel}억 엔 늘었습니다. 비용 중 연료 비율은 {fuelpct}로 올랐고, 손익분기 탑승률은 {be}까지 올라갔습니다.{fscnote}',
+    ev_boom:'탑승률이 {lf}로 올라 여객 수입이 {drev}억 엔 늘었습니다. 한편 엔저로 달러 비용이 늘어 연료비가 {dfuel}억 엔 증가했습니다.',
+    ev_storm:'결항으로 매출은 {drev}억 엔 줄었지만 비용은 {dcost}억 엔밖에 줄지 않았습니다. 결항해도 항공기·사람·감가상각은 들기 때문입니다. 보상 {comp}억 엔도 「기타」에 들어갔습니다.',
+    d_none:'결정 없음.', d_add:'증편으로 좌석킬로가 5% 늘어 수입 {drev}억 엔·비용 {dcost}억 엔. 늘어난 좌석이 채워지는지가 결과를 가릅니다.',
+    d_fare:'운임 5% 인상으로 단가는 올랐지만 탑승률이 내려, 여객 수입은 차감 {drev}억 엔 변화. 비용은 거의 그대로라 수입 증감이 그대로 이익이 됩니다.',
+    d_cost:'연료 2%·조업 3% 절감으로 비용이 {dcost}억 엔 줄었습니다. 수입을 늘리는 것보다 확실하게 이익에 닿는, 현장의 쌓아 올림입니다.',
+    d_lease:'리스는 계약한 분기에는 비용만(임차료 +0.9억 엔). 좌석킬로가 느는 것은 다음 분기부터. 재무상태표의 자산은 늘지 않습니다(이 설정에서는 임차로 처리).',
+    d_buy:'구매한 60억 엔은 비용이 아니라 「항공기」라는 자산이 되고, 현금 30억과 차입 30억으로 냈습니다. 비용이 되는 것은 감가상각 0.75억 엔/분기씩. 그래서 이익은 거의 변하지 않고, 현금은 30억 줄고 차입은 30억 늘었습니다.',
+    d_hedge:'헤지 보험료 1.5억 엔이 비용에 얹혔습니다. 이후 유가가 움직여도 영향은 절반이 됩니다.',
+    d_fsc:'유류할증료로 연료비 증가분의 4할({fsc}억 엔)을 국제선에서 회수했습니다. 국내선에는 쓸 수 없습니다.',
+    link1:'당기순이익은 {net}억 엔, 영업현금흐름은 {cfo}억 엔. 차액의 주된 내용은 감가상각 {dep}억 엔(돈이 나가지 않는 비용)과 선수금 증감 {dun}억 엔(먼저 받은 항공권 대금)입니다.',
+    link2:'현금은 {dcash}억 엔 변했습니다. 영업 {cfo}, 투자 {cfi}(항공기 구매), 재무 {cff}(차입과 상환·리스 상환)의 합계입니다.',
+    link3:'자본은 이익만큼 늘고(손실이면 줄고), 자산 = 부채 + 자본은 매 분기 말 반드시 일치합니다(지금 {assets}억 엔).'},
+ HOW:[['세 표의 연결','손익계산서의 당기순이익은 재무상태표의 자본(이익잉여금)에 쌓입니다. 현금흐름표의 기말 현금은 재무상태표의 현금과 같은 숫자입니다. 이 게임은 이 셋을 매 분기 연결해 계산합니다.'],
+      ['비용이 움직이는 법','연료·조업·정비·공항 사용료는 좌석킬로(띄운 양)에 비례해 늘고 줍니다. 인건비·감가상각·임차료는 띄우든 안 띄우든 거의 같습니다(고정비). 판매비는 여객 수입의 4% 안팎, 기타는 절반이 승객 수에 비례하고 절반은 고정입니다.'],
+      ['이익과 현금의 어긋남','감가상각은 과거에 낸 항공기 대금을 나눠서 비용으로 잡는 것이라 돈이 나가지 않습니다. 항공권은 타기 전에 팔리므로 선수금이 늘면 이익보다 먼저 현금이 들어옵니다. 반대로 항공기 구매는 한 번에 현금이 나가지만 비용으로는 조금씩만 잡힙니다.'],
+      ['지표','좌석킬로당 수입(RASK) = 매출 ÷ 좌석킬로, 좌석킬로당 비용(CASK) = 비용 ÷ 좌석킬로. RASK가 CASK를 넘으면 흑자. 손익분기 탑승률은 지금 단가로 좌석을 몇 % 채워야 비용을 회수하는지입니다.']]},
+en:{title:'Airline Management Game: a year of Vela Air in three statements',lead:'Run the fictional airline Vela Air for one year, quarter by quarter. Each quarter something happens and you make one decision. The income statement, balance sheet and cash flow statement move together, and every quarter the game explains why.',
+ q:'Quarter {n}',dec:'Your decision (choose one)',go:'Run this quarter',restart:'Start over',done:'The year is over. Results are below.',hint:'Choose a decision to continue',
+ stmts:'The three statements (this quarter)',pl:'Income statement',bs:'Balance sheet (quarter end)',cf:'Cash flow statement',assets:'Assets',liabeq:'Liabilities + equity',unit:'100m yen',
+ rev:'Revenue',costs:'Operating costs',op:'Operating profit',int:'Net interest',tax:'Income tax',net:'Net profit',
+ C:{fuel:'Fuel',labor:'Staff costs',handling:'Ground handling',maint:'Maintenance',dep:'Depreciation',airport:'Airport charges',lease:'Aircraft leases',sales:'Distribution',misc:'Other'},
+ B:{cash:'Cash',ar:'Receivables and other',aircraft:'Aircraft (book value)',otherA:'Other assets',unearned:'Unflown tickets and miles',debt:'Borrowings and lease liabilities',otherL:'Other liabilities',equity:'Equity'},
+ F:{cfo:'Operating',cfi:'Investing',cff:'Financing',net:'Change in cash',end:'Closing cash'},
+ K:{lf:'Load factor',rask:'Revenue per seat-km',cask:'Cost per seat-km',be:'Break-even load factor',eqr:'Equity ratio',cash:'Cash on hand'},
+ why:'Why the numbers moved',sum:'Results for the year',col:['','Q1','Q2','Q3','Q4','Year','If you had done nothing'],rows:['Revenue','Operating profit','Net profit','Operating cash flow','Closing cash','Equity ratio'],
+ verdict:{good:'Net profit for the year is {d} (100m yen) higher than doing nothing. Your decisions paid off.',bad:'Net profit for the year is {d} (100m yen) lower than doing nothing. Re-read the explanations to find the decision that added cost without enough revenue.',even:'About the same result as doing nothing.'},
+ how:'How the game works',note:'* Fictional figures, built as Vela Air settings from the range seen in real airlines’ published data. Seasonality and tax are simplified.',
+ EV:{calm:['An ordinary quarter','Oil at $85/bbl, 150 yen to the dollar, load factor 82%. Start by looking at the shape of the three statements.'],
+     oil:['Oil price up 40%','Middle East tension lifts oil from $85 to $119/bbl. Fuel cost jumps. International fuel surcharges recover part of it; domestic flights recover nothing.'],
+     boom:['Inbound boom and a weaker yen','The yen falls from 150 to 160. More visitors lift the load factor, but dollar-priced fuel, maintenance and leases cost more in yen.'],
+     storm:['Typhoon cancels 3% of flights','Aircraft, staff and depreciation cost the same even when flights are cancelled, and passengers must be compensated.']},
+ D:{none:['Do nothing','Carry on as is'],add:['Add capacity (+5%)','Seat-km up 5%. Fuel, handling and airport charges rise too. Load factor slips a little'],fare:['Raise fares 5%','Higher yield, but fewer passengers: load factor down 3 points'],cost:['Cut costs on the ground','Fuel −2%, handling −3%, achieved through punctuality and accurate loading'],lease:['Lease one aircraft','Seat-km +2% from next quarter. Lease cost rises every quarter. Cash is not reduced'],buy:['Buy one aircraft (6.0bn yen)','3.0bn cash + 3.0bn loan. An asset, not a cost; expensed gradually through depreciation'],hedge:['Hedge fuel','Premium 150m yen per quarter. Fuel price swings hit only half as hard from now on'],fsc:['Revise international fuel surcharges','When oil is high, recover 40% of the extra fuel cost on international routes']},
+ X:{ev_calm:'No event. Revenue {rev} against costs {cost}, operating margin {opm}. Fuel is {fuelpct} of costs.',
+    ev_oil:'Oil up 40% added {dfuel} to fuel cost. Fuel is now {fuelpct} of costs and the break-even load factor rose to {be}.{fscnote}',
+    ev_boom:'Load factor rose to {lf} and passenger revenue grew by {drev}. The weaker yen raised dollar costs: fuel up {dfuel}.',
+    ev_storm:'Cancellations cut revenue by {drev} but costs by only {dcost}: aircraft, people and depreciation keep costing money. Compensation of {comp} landed in Other.',
+    d_none:'No decision.', d_add:'Extra capacity added {drev} revenue and {dcost} cost. Whether the extra seats fill decides the outcome.',
+    d_fare:'Higher fares raised yield but lowered the load factor; passenger revenue changed by {drev} net. Costs barely move, so the revenue change goes straight to profit.',
+    d_cost:'Fuel −2% and handling −3% cut costs by {dcost}. Small gains on the ground reach profit more reliably than chasing revenue.',
+    d_lease:'In the quarter you sign, a lease only adds cost (+0.9 lease expense). Seat-km rise from next quarter. No asset is added (treated as a rental in this setting).',
+    d_buy:'The 6.0bn yen purchase is not a cost but an asset, paid with 3.0bn cash and a 3.0bn loan. Only depreciation of 75m per quarter becomes cost. Profit hardly changes, cash falls 3.0bn and borrowings rise 3.0bn.',
+    d_hedge:'The hedge premium of 150m yen is now a cost. From here on, oil price moves hit only half as hard.',
+    d_fsc:'Surcharges recovered 40% of the extra fuel cost ({fsc}) on international routes. Domestic routes cannot use them.',
+    link1:'Net profit {net}, operating cash flow {cfo}. The gap is mainly depreciation {dep} (a cost with no cash leaving) and the change in unearned revenue {dun} (tickets paid before flying).',
+    link2:'Cash changed by {dcash}: operating {cfo}, investing {cfi} (aircraft purchase), financing {cff} (loans, repayments and lease payments).',
+    link3:'Equity rises by the profit (falls by a loss), and assets always equal liabilities plus equity at quarter end (now {assets}).'},
+ HOW:[['How the three statements connect','Net profit from the income statement is added to equity (retained earnings) on the balance sheet. Closing cash on the cash flow statement is the same number as cash on the balance sheet. The game links all three every quarter.'],
+      ['How costs move','Fuel, handling, maintenance and airport charges scale with seat-km flown. Staff costs, depreciation and leases are nearly fixed whether you fly or not. Distribution is about 4% of passenger revenue; Other is half passenger-driven, half fixed.'],
+      ['Why profit and cash differ','Depreciation spreads an aircraft paid for in the past, so no cash leaves. Tickets are sold before the flight, so rising unearned revenue brings cash in ahead of profit. Buying an aircraft takes cash at once but becomes cost only gradually.'],
+      ['Indicators','RASK = revenue ÷ seat-km, CASK = cost ÷ seat-km; profit when RASK exceeds CASK. The break-even load factor is the share of seats that must be sold at current yields to cover costs.']]}};
+/* ---- model (단위: 억 엔, 분기) ---- */
+var BASE={ask:50,lf:0.82,yld:15.0,cargo:75,ancPer:0.7317,other:30,
+ fuel:169.25,labor:127,handling:84.5,maint:70.5,dep:63.5,airport:49.25,lease:42.25,salesPct:0.046,misc:70.5,
+ bs:{cash:1200,ar:370,aircraft:2100,otherA:2330,unearned:720,debt:2300,otherL:1060,equity:1920},
+ debtRepay:37.5,leaseRepay:15,intRate:0.025/4,tax:0.3};
+var EVENTS=['calm','oil','boom','storm'];
+function newState(){return {q:0,oil:1,fx:1,askX:1,leaseX:0,extraDep:0,hedge:false,fsc:false,costCut:false,bs:JSON.parse(JSON.stringify(BASE.bs)),hist:[],decs:[]}}
+function runQuarter(S,ev,dec){var N=JSON.parse(JSON.stringify(S));var note={};
+ if(ev==='oil')N.oil=1.4; if(ev==='boom')N.fx=160/150;
+ if(dec==='hedge')N.hedge=true; if(dec==='fsc')N.fsc=true; if(dec==='cost')N.costCut=true;
+ var askX=N.askX,lf=BASE.lf,yld=BASE.yld,cancel=0,comp=0;
+ if(dec==='add'){askX*=1.05;lf-=0.02} if(dec==='fare'){yld*=1.05;lf-=0.03}
+ if(ev==='boom')lf=Math.min(0.95,lf+0.05); if(ev==='storm'){cancel=0.03;comp=3}
+ var ask=BASE.ask*askX*(1-cancel); var pax=ask*lf; var paxRev=pax*yld; var anc=pax*BASE.ancPer; var cargo=BASE.cargo*askX*(1-cancel);
+ var oilEff=N.hedge?1+(N.oil-1)*0.5:N.oil; var fxEff=N.fx;
+ var fuelBase=BASE.fuel*askX*(1-cancel); var fuel=fuelBase*oilEff*fxEff*(N.costCut?0.98:1);
+ var fsc=0; if(N.fsc&&N.oil>1.1){fsc=(fuel-fuelBase*fxEff*(N.costCut?0.98:1))*0.4*0.6}
+ var c={fuel:fuel,labor:BASE.labor*(0.7+0.3*askX),handling:BASE.handling*askX*(N.costCut?0.97:1),maint:BASE.maint*askX*(1-cancel*0.5)*(0.8+0.2*fxEff),dep:BASE.dep+N.extraDep,
+  airport:BASE.airport*askX*(1-cancel),lease:(BASE.lease+N.leaseX)*(0.5+0.5*fxEff),sales:paxRev*BASE.salesPct,misc:BASE.misc*(0.5+0.5*lf/BASE.lf)+comp+(N.hedge?1.5:0)};
+ var rev=paxRev+anc+cargo+BASE.other+fsc; var cost=0;for(var k in c)cost+=c[k]; var op=rev-cost;
+ var interest=N.bs.debt*BASE.intRate-N.bs.cash*0.001; var pretax=op-interest; var tax=pretax>0?pretax*BASE.tax:0; var net=pretax-tax;
+ var capex=0,newLoan=0; if(dec==='buy'){capex=60;newLoan=30;N.extraDep+=0.75;N.askX+=0.02} if(dec==='lease'){N.leaseX+=0.9;N.askX+=0.02}
+ var unearnedNew=BASE.bs.unearned*(rev/750); var dun=unearnedNew-N.bs.unearned; var dar=(rev/750-1)*20;
+ var cfo=net+c.dep+dun-dar; var cfi=-capex; var cff=newLoan-BASE.debtRepay-BASE.leaseRepay;
+ var b=N.bs; b.cash=b.cash+cfo+cfi+cff; b.ar=b.ar+dar; b.aircraft=b.aircraft+capex-c.dep; b.unearned=unearnedNew; b.debt=b.debt+newLoan-BASE.debtRepay-BASE.leaseRepay; b.equity=b.equity+net;
+ var assets=b.cash+b.ar+b.aircraft+b.otherA, le=b.unearned+b.debt+b.otherL+b.equity; b.otherL+= (assets-le); /* 미세 차이는 기타 부채(미지급 세금 등)로 흡수 */
+ var unit=(yld*lf+BASE.ancPer*lf)*ask/lf; var be=(cost-cargo-BASE.other-fsc)/(ask*(yld+BASE.ancPer));
+ var r={ev:ev,dec:dec,rev:rev,c:c,cost:cost,op:op,interest:interest,tax:tax,net:net,cfo:cfo,cfi:cfi,cff:cff,dun:dun,bs:JSON.parse(JSON.stringify(b)),ask:ask,lf:lf,rask:rev/ask,cask:cost/ask,be:be,fsc:fsc,comp:comp,fuel:fuel,paxRev:paxRev,eqr:b.equity/(b.cash+b.ar+b.aircraft+b.otherA)};
+ N.hist.push(r);N.decs.push(dec);N.q++;return N}
+function simulate(decs){var S=newState();for(var i=0;i<4;i++)S=runQuarter(S,EVENTS[i],decs[i]||'none');return S}
+/* ---- UI ---- */
+var lang=localStorage.getItem('art-lang')||(document.documentElement.lang||'ja');if(!L[lang])lang='ja';
+var S=newState(),picked=null;
+var COL={fuel:'#e08a2f',labor:'#2f8fe0',handling:'#1f7a6e',maint:'#6b4fa0',dep:'#243447',airport:'#8a96a3',lease:'#5a8fb8',sales:'#c2344f',misc:'#d4a72c'};
+var ORDER=['fuel','labor','handling','maint','dep','airport','lease','sales','misc'];
+function f1(n){return (Math.round(n*10)/10).toLocaleString('ja-JP',{minimumFractionDigits:1,maximumFractionDigits:1})}
+function f0(n){return Math.round(n).toLocaleString('ja-JP')}
+function sg(n){return (n>=0?'+':'−')+f1(Math.abs(n))}
+function pct(x){return (x*100).toFixed(1)+'%'}
+function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k]!==undefined?o[k]:'{'+k+'}'})}
+function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title;
+ ['title','lead','dec','stmts','pl','bs','cf','assets','liabeq','why','sum','how','note'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ var done=S.q>=4, qn=Math.min(S.q+1,4);
+ document.getElementById('qbar').innerHTML=[0,1,2,3].map(function(i){return '<span class="'+(i<S.q?'done':i===S.q&&!done?'now':'')+'"></span>'}).join('');
+ document.getElementById('t_q').textContent=done?d.done:fill(d.q,{n:qn});
+ var ev=EVENTS[Math.min(S.q,3)],E=d.EV[ev];document.getElementById('event').className='event'+(ev==='calm'?' calm':'');document.getElementById('event').innerHTML='<b>'+E[0]+'</b><span>'+E[1]+'</span>';
+ var dec=document.getElementById('dec');dec.innerHTML='';
+ Object.keys(d.D).forEach(function(k){var b=document.createElement('button');b.type='button';b.innerHTML=d.D[k][0]+'<small>'+d.D[k][1]+'</small>';b.className=picked===k?'on':'';b.setAttribute('aria-pressed',picked===k);b.disabled=done;b.onclick=function(){picked=k;render()};dec.appendChild(b)});
+ var go=document.getElementById('btn_go');go.textContent=d.go;go.disabled=done||!picked;document.getElementById('btn_reset').textContent=d.restart;document.getElementById('t_hint').textContent=(!done&&!picked)?d.hint:'';
+ var r=S.hist[S.hist.length-1];
+ if(!r){var base=simulate([]).hist[0];r=base;r.preview=true}
+ var c=r.c;
+ document.getElementById('plbar').innerHTML=ORDER.map(function(k){return '<div style="width:'+(c[k]/r.cost*100)+'%;background:'+COL[k]+'" title="'+d.C[k]+'"></div>'}).join('');
+ var rows=[[d.rev,r.rev,'tot']];ORDER.forEach(function(k){rows.push(['<i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:'+COL[k]+';margin-right:5px"></i>'+d.C[k],-c[k]])});
+ rows.push([d.costs,-r.cost,'tot'],[d.op,r.op,'tot'],[d.int,-r.interest],[d.tax,-r.tax],[d.net,r.net,'tot']);
+ document.getElementById('pl').innerHTML=rows.map(function(x){return '<tr class="'+(x[2]||'')+'"><td>'+x[0]+'</td><td class="n '+(x[2]&&x[1]<0?'neg':x[2]&&x[1]>0?'pos':'')+'">'+(x[1]<0&&!x[2]?'−':'')+f1(Math.abs(x[1]))+(x[2]&&x[1]<0?'':'')+'</td></tr>'}).join('').replace(/<td class="n neg">/g,'<td class="n neg">−');
+ var b=r.bs,A=b.cash+b.ar+b.aircraft+b.otherA;
+ var AC={cash:'#2f8fe0',ar:'#7fb6e8',aircraft:'#1f7a6e',otherA:'#8fc7bb',unearned:'#e08a2f',debt:'#c2344f',otherL:'#9bb0c4',equity:'#243447'};
+ document.getElementById('bsbars').innerHTML='<div>'+['cash','ar','aircraft','otherA'].map(function(k){return '<div style="height:'+(b[k]/A*100)+'%;background:'+AC[k]+'">'+(b[k]/A>0.12?f0(b[k]):'')+'</div>'}).join('')+'</div><div>'+['unearned','debt','otherL','equity'].map(function(k){return '<div style="height:'+(b[k]/A*100)+'%;background:'+AC[k]+'">'+(b[k]/A>0.12?f0(b[k]):'')+'</div>'}).join('')+'</div>';
+ var bsr=[];['cash','ar','aircraft','otherA'].forEach(function(k){bsr.push(['<i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:'+AC[k]+';margin-right:5px"></i>'+d.B[k],b[k]])});bsr.push([d.assets,A,'tot']);
+ ['unearned','debt','otherL','equity'].forEach(function(k){bsr.push(['<i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:'+AC[k]+';margin-right:5px"></i>'+d.B[k],b[k]])});bsr.push([d.liabeq,b.unearned+b.debt+b.otherL+b.equity,'tot']);
+ document.getElementById('bs').innerHTML=bsr.map(function(x){return '<tr class="'+(x[2]||'')+'"><td>'+x[0]+'</td><td class="n">'+f0(x[1])+'</td></tr>'}).join('');
+ var cash0=r.bs.cash-(r.cfo+r.cfi+r.cff);
+ var cfr=[[d.F.cfo,r.cfo],[d.F.cfi,r.cfi],[d.F.cff,r.cff],[d.F.net,r.cfo+r.cfi+r.cff,'tot'],[d.F.end,r.bs.cash,'tot']];
+ document.getElementById('cf').innerHTML=cfr.map(function(x){return '<tr class="'+(x[2]||'')+'"><td>'+x[0]+'</td><td class="n '+(x[1]<0?'neg':'')+'">'+(x[1]<0?'−':'')+f1(Math.abs(x[1]))+'</td></tr>'}).join('');
+ var kp=[[d.K.lf,pct(r.lf)],[d.K.rask,r.rask.toFixed(2)+' '+(lang==='en'?'yen':'円')],[d.K.cask,r.cask.toFixed(2)+' '+(lang==='en'?'yen':'円')],[d.K.be,pct(r.be)],[d.K.eqr,pct(r.eqr)],[d.K.cash,f0(r.bs.cash)+' '+d.unit]];
+ document.getElementById('kpis').innerHTML=kp.map(function(x){return '<div class="kpi"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>'}).join('');
+ /* why */
+ var W=document.getElementById('why');var X=d.X;
+ if(r.preview){W.innerHTML='<h3>'+d.why+'</h3><p>'+fill(X.ev_calm,{rev:f1(r.rev),cost:f1(r.cost),opm:pct(r.op/r.rev),fuelpct:pct(r.c.fuel/r.cost)})+'</p>'}
+ else{var prev=S.hist.length>1?S.hist[S.hist.length-2]:simulate([]).hist[0];var nodec=runQuarter(prevState(S),r.ev,'none').hist.slice(-1)[0];
+  var o={rev:f1(r.rev),cost:f1(r.cost),opm:pct(r.op/r.rev),fuelpct:pct(r.c.fuel/r.cost),dfuel:sg(nodec.c.fuel-prev.c.fuel),be:pct(r.be),lf:pct(r.lf),drev:sg(nodec.rev-prev.rev),dcost:sg(nodec.cost-prev.cost),comp:f1(r.comp),fsc:f1(r.fsc),
+   fscnote:(r.fsc>0?' ':''),net:sg(r.net),cfo:sg(r.cfo),cfi:sg(r.cfi),cff:sg(r.cff),dep:f1(r.c.dep),dun:sg(r.dun),dcash:sg(r.cfo+r.cfi+r.cff),assets:f0(A)};
+  var od={drev:sg(r.rev-nodec.rev),dcost:sg(r.cost-nodec.cost),fsc:f1(r.fsc)};
+  W.innerHTML='<h3>'+d.why+'</h3><ul><li>'+fill(X['ev_'+r.ev],o)+'</li><li>'+fill(X['d_'+r.dec],od)+'</li><li>'+fill(X.link1,o)+'</li><li>'+fill(X.link2,o)+'</li><li>'+fill(X.link3,o)+'</li></ul>'}
+ /* summary */
+ var sc=document.getElementById('sumcard');
+ if(done){sc.style.display='';var base=simulate([]);var H=S.hist,BH=base.hist;function sum(h,k){return h.reduce(function(a,x){return a+x[k]},0)}
+  var vals=[[function(x){return f1(x.rev)},sum(H,'rev'),sum(BH,'rev')],[function(x){return f1(x.op)},sum(H,'op'),sum(BH,'op')],[function(x){return f1(x.net)},sum(H,'net'),sum(BH,'net')],[function(x){return f1(x.cfo)},sum(H,'cfo'),sum(BH,'cfo')],[function(x){return f0(x.bs.cash)},H[3].bs.cash,BH[3].bs.cash],[function(x){return pct(x.eqr)},null,null]];
+  var html='<table><tr>'+d.col.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr>';
+  d.rows.forEach(function(rn,i){var v=vals[i];html+='<tr><td>'+rn+'</td>'+H.map(function(x){return '<td>'+v[0](x)+'</td>'}).join('')+'<td><b>'+(i===5?pct(H[3].eqr):i===4?f0(v[1]):f1(v[1]))+'</b></td><td>'+(i===5?pct(BH[3].eqr):i===4?f0(v[2]):f1(v[2]))+'</td></tr>'});
+  html+='</table>';document.getElementById('summary').innerHTML=html;
+  var dn=sum(H,'net')-sum(BH,'net');document.getElementById('verdict').textContent=fill(Math.abs(dn)<1?d.verdict.even:dn>0?d.verdict.good:d.verdict.bad,{d:f1(Math.abs(dn))})}
+ else sc.style.display='none';
+ document.getElementById('how').innerHTML=d.HOW.map(function(h){return '<details><summary>'+h[0]+'</summary><div class="dbody"><p>'+h[1]+'</p></div></details>'}).join('');}
+function prevState(S){var P=newState();for(var i=0;i<S.q-1;i++)P=runQuarter(P,EVENTS[i],S.decs[i]);return P}
+document.getElementById('btn_go').onclick=function(){if(!picked||S.q>=4)return;S=runQuarter(S,EVENTS[S.q],picked);picked=null;render();var el=document.getElementById('t_stmts');if(el.scrollIntoView)el.scrollIntoView({behavior:'smooth',block:'start'})};
+document.getElementById('btn_reset').onclick=function(){S=newState();picked=null;render()};
+document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/shell.js"></script><script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body></html>
