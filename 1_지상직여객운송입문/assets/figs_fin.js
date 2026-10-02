@@ -58,6 +58,29 @@ fin_taiyaki:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBo
  /* link 2: closing cash -> BS cash */
  s+='<path d="M620,234 C560,234 560,114 595,114" fill="none" stroke="'+CF+'" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#fa)"><animate attributeName="opacity" values="0;0;1;1;0" dur="5s" repeatCount="indefinite"/></path>';
  s+=tx(450,392,L(lang,'利益 64,000'+yen+' は純資産に、期末の現金 309,000'+yen+' は資産に ― 同じ数字が2つの表に現れる','이익 64,000'+yen+'은 자본으로, 기말 현금 309,000'+yen+'은 자산으로 — 같은 숫자가 두 표에 나타난다','Profit 64,000 '+yen+' lands in equity; closing cash 309,000 '+yen+' lands in assets: the same numbers appear in two statements'),12,D,600);
+ return s+'</svg>'},
+/* 1-2 五つの利益の滝：たい焼き屋の1か月（売上 → 売上総利益 → 営業利益 → 経常利益 → 税引前利益 → 当期純利益） */
+fin_waterfall:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
+ var steps=[[L(lang,'売上','매출','Sales'),260000,'t',PL],[L(lang,'材料費','재료비','Ingredients'),-75000,'d',R],[L(lang,'売上総利益','매출총이익','Gross profit'),185000,'t',PL],
+  [L(lang,'家賃・人件費など','임대료·인건비 등','Rent, wages etc.'),-104000,'d',R],[L(lang,'営業利益','영업이익','Operating profit'),81000,'t',PL],[L(lang,'支払利息','이자 비용','Interest'),-1000,'d',R],
+  [L(lang,'経常利益','경상이익','Ordinary profit'),80000,'t',PL],[L(lang,'税金','세금','Tax'),-16000,'d',R],[L(lang,'当期純利益','당기순이익','Net profit'),64000,'t',BS]];
+ var x0=40,w=78,gap=16,base=330,scale=260/260000,run=0;
+ steps.forEach(function(st,i){var x=x0+i*(w+gap),h,y;
+  if(st[2]==='t'){run=st[1];h=run*scale;y=base-h;s+=Rc(x,y,w,h,st[3],6)+tx(x+w/2,y-8,st[1].toLocaleString('ja-JP'),12,D,800)}
+  else{var top=run;run=run+st[1];h=-st[1]*scale;y=base-top*scale;s+=Rc(x,y,w,h,st[3],6)+tx(x+w/2,y-8,'−'+(-st[1]).toLocaleString('ja-JP'),12,R,800);
+   s+='<line x1="'+(x-gap)+'" y1="'+(base-top*scale)+'" x2="'+x+'" y2="'+(base-top*scale)+'" stroke="'+G+'" stroke-dasharray="3 3"/>'}
+  s+='<g><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(i/9*0.6).toFixed(2)+';'+((i+1)/9*0.6).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/>'+Rc(x,y,w,h,'#fff',6,' opacity="0"')+'</g>';
+  s+=tx(x+w/2,base+18,st[0],11,D,st[2]==='t'?800:500)});
+ s+='<line x1="30" y1="'+base+'" x2="870" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ s+=tx(450,375,L(lang,'たい焼き屋の1か月（円）。青＝残った利益、赤＝引かれた費用。段ごとに「どんな費用を引いた後か」が変わる','붕어빵 가게의 한 달(엔). 파랑 = 남은 이익, 빨강 = 빼는 비용. 단마다 「어떤 비용을 뺀 뒤인가」가 달라진다','Taiyaki stall, one month (yen). Blue = profit remaining, red = costs deducted. Each step shows profit after a different set of costs'),12,D,600);
+ return s+'</svg>'},
+/* 1-3 業種で違う「原価」：小売・製造・航空 */
+fin_cost_types:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img">'+Rc(0,0,900,340,'#F7FAFD');
+ var cols=[[L(lang,'たい焼き屋（小売・飲食）','붕어빵 가게(소매·음식)','Taiyaki stall (retail)'),[[L(lang,'材料費','재료비','Ingredients'),29,R],[L(lang,'家賃・人件費・光熱費','임대료·인건비·수도광열','Rent, wages, utilities'),38,CF],[L(lang,'減価償却','감가상각','Depreciation'),2,G],[L(lang,'利益','이익','Profit'),31,PL]]],
+  [L(lang,'製造業（工場）','제조업(공장)','Manufacturer'),[[L(lang,'材料・工場の人件費・設備','재료·공장 인건비·설비','Materials, factory labour, plant'),70,R],[L(lang,'販売費・本社','판매비·본사','Selling and admin'),20,CF],[L(lang,'利益','이익','Profit'),10,PL]]],
+  [L(lang,'航空会社','항공사','Airline'),[[L(lang,'燃油','연료','Fuel'),23,R],[L(lang,'人件費','인건비','Staff'),17,R],[L(lang,'整備・ハンドリング・空港','정비·조업·공항','Maintenance, handling, airports'),27,R],[L(lang,'減価償却・賃借','감가상각·임차','Depreciation, leases'),14,G],[L(lang,'販売・その他','판매·기타','Sales, other'),13,CF],[L(lang,'利益','이익','Profit'),6,PL]]]];
+ cols.forEach(function(c,i){var x=40+i*290;s+=tx(x+120,40,c[0],14,D,800);var y=60;c[1].forEach(function(seg){var h=seg[1]*2.2;s+=Rc(x,y,240,h,seg[2],3)+'<rect x="'+x+'" y="'+y+'" width="240" height="'+h+'" fill="#fff" opacity="0.08"/>';if(h>=16)s+=tx(x+120,y+h/2+4,seg[0]+' '+seg[1]+'%',11,'#fff',700);y+=h+2})});
+ s+=tx(450,322,L(lang,'売上を100としたときの構成（概念図）。航空会社は「原価」と「販管費」の線を引かず、費用を項目で並べる会社が多い','매출을 100으로 본 구성(개념도). 항공사는 「원가」와 「판관비」 선을 긋지 않고 비용을 항목으로 나열하는 회사가 많다','Share of sales = 100 (conceptual). Many airlines list costs by item rather than splitting cost of sales from overheads'),12,D,600);
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
