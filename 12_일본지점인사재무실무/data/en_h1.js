@@ -299,6 +299,44 @@ sections:[
 {t:"point",x:"With tax, “we didn’t know” is no defence. Keep an annual list of filings and payments and review it with your tax accountant every year."}]},
 {h:"Branch or subsidiary?",blocks:[{"t":"table","cols":["Item","Branch","Subsidiary (Japanese company)"],"rows":[["Legal status","Part of the same company as head office","An independent Japanese company"],["Income taxed in Japan","Income attributable to the branch","All of the company’s income"],["Sending profits to head office","Normally no withholding tax","Withholding tax on dividends (reduced by treaty)"],["Liability","Borne directly by head office","Limited to the capital invested"],["Setting up","Branch registration (relatively simple)","Company incorporation, articles and so on"]]},
 {"t":"note","x":"* Which suits you depends on the scale of the business and your plans. Compare them with a professional before deciding. ★"}]}],
+deep:[
+{h:"Calculating a company’s taxes: a small company in Tokyo",blocks:[
+{t:"p",x:"Tax on a company’s income is more than the national corporation tax. Local corporation tax, inhabitant tax, enterprise tax and special corporate enterprise tax are layered on top, and for years beginning on or after April 2026 a defence special corporation tax is added. Here we calculate from income to tax for a company with capital of 100 million yen or less in Tokyo’s 23 wards."},
+{t:"corpcalc",inc:10000000},
+{t:"table",cols:["Tax","Applied to","Rate (Tokyo 23 wards, capital of 100 million yen or less)","Paid to"],rows:[
+["Corporation tax","Income","15% up to 8 million yen, 23.2% above ★","The state (tax office)"],
+["Local corporation tax","Corporation tax","10.3%","The state (tax office)"],
+["Defence special corporation tax","Corporation tax − 5 million yen","4% (years beginning on or after 1 April 2026)","The state (tax office)"],
+["Inhabitant tax (tax-based part)","Corporation tax","7.0% (10.4% once corporation tax exceeds 10 million yen a year)","Metropolitan tax office"],
+["Inhabitant tax (per-capita part)","Capital and number of employees","From 70,000 yen a year (charged even in a loss)","Metropolitan tax office"],
+["Enterprise tax","Income","3.5%, 5.3% and 7.0% (excess rates once income exceeds 25 million yen a year)","Metropolitan tax office"],
+["Special corporate enterprise tax","Enterprise tax at standard rates","37%","Metropolitan tax office (a national tax)"]]},
+{t:"note",x:"* The 15% up to 8 million yen is a special rate for small companies, for years beginning on or before 31 March 2027. Check each year’s tax reform to see whether it is extended. ★"}]},
+{h:"What changes with area and company size",blocks:[{t:"rows",items:[
+{name:"What differs by area",x:"Inhabitant tax and enterprise tax rates are set by prefectures and municipalities. Some use “excess rates” above the national standard rates, and Tokyo is one of them. Corporation tax, local corporation tax and the defence special corporation tax are the same nationwide."},
+{name:"Tokyo’s 23 wards",x:"In the 23 wards the metropolitan government also levies the part that elsewhere goes to the municipality, so the return goes to the metropolitan tax office. With an office outside the 23 wards, you file with both the prefecture and the municipality."},
+{name:"Companies with capital above 100 million yen",x:"The 15% rate is not available and 23.2% applies to all income. Enterprise tax becomes size-based, charged on added value and capital as well as income, so tax arises even in a loss. ★"},
+{name:"Branches of foreign companies",x:"Income attributable to the branch is taxed at the same rates as a Japanese company. Capital is judged for the whole foreign company, so even a small branch normally cannot use the small-company rate. Income from operating international flights is often not taxed in Japan under tax treaties, so confirm the scope of taxable income with a tax accountant. ★"}]}]},
+{h:"Filing and payment",blocks:[{t:"ladder",steps:[
+{name:"Close the accounts",sub:"After the year-end"},
+{name:"Calculate the taxes",sub:"Income → corporation tax → local taxes"},
+{name:"File and pay",sub:"Within two months of the year-end"},
+{name:"Interim return",sub:"If last year’s corporation tax exceeded 200,000 yen, prepay half a year on"},
+{name:"Next year",sub:"Enterprise tax is an expense in the year it is paid"}]},
+{t:"point",x:"The line “income taxes” in the accounts is the total of the taxes calculated here. For the company in this example it runs from about 25% to 38% of income, rising with income. In the cash plan, enter this payment two months after the year-end and in the interim return month."}]}],
+deepKr:[
+{h:"Calculating Korean corporation tax",blocks:[
+{t:"p",x:"In Korea there are two: the national corporation tax and the local income tax. For years beginning on or after 1 January 2026, the corporation tax rate rose by one point in every band."},
+{t:"corpcalc",kr:1,inc:1000000000},
+{t:"table",cols:["Tax base","Corporation tax","Including local income tax"],rows:[["Up to 200 million won","10%","11%"],["Over 200 million, up to 20 billion won","20%","22%"],["Over 20 billion, up to 300 billion won","22%","24.2%"],["Over 300 billion won","25%","27.5%"]]},
+{t:"note",x:"* For years that began in or before 2025 each rate was one point lower (9%, 19%, 21%, 24%). ★"}]},
+{h:"Filing and payment compared with Japan",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
+["Filing deadline","Within two months of the year-end (extension available)","Within three months of the year-end (end of March for a December year-end)"],
+["Local taxes","Inhabitant tax, enterprise tax, special corporate enterprise tax","Local income tax (filed within four months of the year-end)"],
+["Tax charged even in a loss","Per-capita inhabitant tax (from 70,000 yen a year)","None"],
+["Prepayment","Interim return (half a year into the year)","Interim prepayment (within two months of the end of the first half)"],
+["Small-company rate","15% on income up to 8 million yen","10% on a tax base up to 200 million won"]]},
+{t:"point",x:"On a tax base of 1 billion won, corporation tax is 180 million won (200 million × 10% + 800 million × 20%) and local income tax is 18 million won: 198 million won in all, or 19.8%."}]}],
 voice:"In the branch’s first year I did not know that computers and desks count for the depreciable assets return, and very nearly missed the end-of-January deadline. Since then, going through the annual tax list with our tax accountant at the start of each year has been a fixed rule.",
 terms:[["Permanent Establishment (PE)","恒久的施設","고정사업장"],["Per Capita Levy","均等割","균등할"],["Stamp Duty","印紙税","인지세"],["Depreciable Assets Tax","償却資産税","상각자산세"]],
 quiz:[{q:"Which local tax applies even in a loss-making year?",opts:["The per capita levy of corporate inhabitant tax","Corporate tax","Consumption tax","Income tax"],a:0,exp:"It applies regardless of income."},
