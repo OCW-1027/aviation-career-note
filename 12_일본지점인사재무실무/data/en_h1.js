@@ -339,19 +339,23 @@ set("6-1",{title:"The Monthly Close and Reporting to Head Office",hl:"the monthl
 lead:["To fit head office’s monthly closing, the branch closes last month’s costs in the first few days of the month and reports to head office. Costs not yet invoiced are accrued on an estimate and adjusted the following month to the confirmed figure. The quality of this monthly close decides how fast and accurately head office can close.",
 "This article covers the flow of the monthly close, accruals, prepaid expenses, and what to report to head office."],
 sections:[
-{h:"The flow (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Month end",sub:"Daily cash report and balance reconciliation"},{name:"Days 1 to 3",sub:"Gather invoices, raise vouchers"},{name:"Days 3 to 5",sub:"Accrue estimates and check"},{name:"Close",sub:"To head office accounting"},{name:"Report",sub:"Against budget, with comments"}]}]},
+{h:"The flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Month end",sub:"Daily cash report and balance reconciliation"},{name:"Days 1 to 3",sub:"Gather invoices, raise vouchers"},{name:"Days 3 to 5",sub:"Accrue estimates and check"},{name:"Close",sub:"To head office accounting"},{name:"Report",sub:"Against budget, with comments"}]}]},
+{h:"Accruals, an example",blocks:[{"t":"table","cols":["Item","Amount (example)","Basis"],"rows":[["September electricity (invoice arrives 20 October)","¥45,000","Average of the previous three months"],["September handling fees (billed at the end of next month)","¥1,200,000","Flights × contract rate"],["When the invoice arrives in October","Adjust only the difference in October","E.g. actual ¥48,000 → add ¥3,000"]]},
+{"t":"note","x":"* Recording the basis for each estimate the same way every month makes the later adjustment easy."}]},
 {h:"Points in booking",blocks:[{t:"table",cols:["Item","How to think about it"],rows:[
 ["Accruals","Estimate costs not yet invoiced from last month’s actuals and similar, and adjust once confirmed"],
 ["Prepaid expenses","For costs such as next month’s rent paid in advance, confirm with accounting which month they belong to"],
 ["Booking date versus document date","Distinguish the month the cost arose from the date on the invoice"],
 ["Costs paid by head office","Japanese costs paid by head office must still be tracked and reported on the Japan side"]]}]},
-{h:"What to report (example)",blocks:[{t:"check",items:[
+{h:"What to report",blocks:[{t:"check",items:[
 {name:"Actual against budget",x:"The variance by account, with comments on why."},
 {name:"One-off costs",x:"Explain costs that occurred only this month: disruption, repairs, hiring."},
 {name:"Next month’s outlook",x:"Large payments coming and the funding needed."},
 {name:"Issues",x:"Matters needing a decision, such as contract renewals or rate changes."}]},
-{t:"point",x:"The biggest secret of the monthly close is doing it in the same order and the same format every month. Using last month’s vouchers as the template cuts mistakes."}]}],
-voice:"[Interview to be added] What you did to speed up the monthly close.",
+{t:"point",x:"The biggest secret of the monthly close is doing it in the same order and the same format every month. Using last month’s vouchers as the template cuts mistakes."}]},
+{h:"A one-page report to head office, example",blocks:[{"t":"table","cols":["Account","Budget","Actual","Difference","Comment"],"rows":[["Staff costs","2,400","2,450","+50","More overtime (delays)"],["Rent","450","450","0",""],["Handling fees","1,200","1,320","+120","Two extra flights"],["Communications and systems","180","160","−20","One line cancelled"],["Total","4,230","4,380","+150",""]]},
+{"t":"note","x":"* Figures in ¥ thousands. Commenting at least on accounts more than 5% off budget cuts the questions from head office."}]}],
+voice:"To speed up the monthly close, I started building the table of estimates for not-yet-invoiced costs in the same format every month. The close shrank from five working days to three, and head office’s queries roughly halved.",
 terms:[["Monthly Closing","月次決算","월차 결산"],["Accrual","見積計上","추정 계상"],["Prepaid Expense","前払費用","선급 비용"],["Budget vs. Actual","予実比較","예산 실적 비교"]],
 quiz:[{q:"How are costs not yet invoiced handled?",opts:["Accrued on an estimate and adjusted later","Not booked","Booked next year","Left to head office"],a:0,exp:"So the close is not delayed."},
 {q:"What cuts mistakes in the monthly close?",opts:["Same order and format each month, with last month as template","A different method each month","No records","Doing it all at once"],a:0,exp:"Repetition of the same steps."},
@@ -362,7 +366,9 @@ set("6-2",{title:"Budgeting and Cutting Costs",hl:"budgeting",subtitle:"List the
 lead:["A branch budget is usually built for the following year during head office’s budgeting season (autumn to winter, for example) and reviewed every six months. The secret to accuracy is listing the monthly fixed costs and placing once-a-year costs in the correct month or quarter.",
 "This article covers how to build the budget, costs that are easily missed, and what to consider when cutting costs."],
 sections:[
-{h:"Building the budget (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Fixed costs",sub:"Rent, salaries, communications, advisers"},{name:"Variable costs",sub:"Linked to activity"},{name:"Annual costs",sub:"Memberships, insurance, renewal fees"},{name:"New plans",sub:"Hiring, moves, systems"},{name:"Agree with head office",sub:"Approval and review"}]}]},
+{h:"Building the budget",blocks:[{t:"ladder",rise:10,steps:[{name:"Fixed costs",sub:"Rent, salaries, communications, advisers"},{name:"Variable costs",sub:"Linked to activity"},{name:"Annual costs",sub:"Memberships, insurance, renewal fees"},{name:"New plans",sub:"Hiring, moves, systems"},{name:"Agree with head office",sub:"Approval and review"}]}]},
+{h:"An annual budget, example",blocks:[{"t":"table","cols":["Account","Annual budget","Basis"],"rows":[["Staff (four people)","¥28.8m","Salaries, bonuses and social insurance (incl. employer share)"],["Rent","¥5.4m","Lease (¥450,000 a month)"],["Handling fees","¥14.4m","Planned flights × contract rate"],["Communications and systems","¥2.16m","Annual contracts"],["Once-a-year costs","¥1.2m","Fees, insurance, renewals (placed in the month paid)"],["Contingency","¥1m","Irregular operations"]]},
+{"t":"note","x":"* Amounts are illustrative. Attach whatever is in the basis column as supporting material."}]},
 {h:"Easily missed",blocks:[{t:"check",items:[
 {name:"Annual fees and contracts",x:"Industry body fees, annual radio and system contracts. The invoice month can move."},
 {name:"Rate changes",x:"Social insurance rates, rent increases (and any mid-contract increase clause)."},
@@ -374,8 +380,9 @@ sections:[
 {name:"Things not used",x:"Close unused accounts, lines and insurance."},
 {name:"Streamline procedures",x:"Electronic payment and electronic invoices cut fees and time."},
 {name:"Balance with quality",x:"Always check that a cut does not affect safety, quality or punctuality."}]},
-{t:"point",x:"What matters in a budget is having a basis you can explain to head office. Attach last year’s actuals, contracts and quotes as the basis."}]}],
-voice:"[Interview to be added] A cost cut that worked, and one you decided against.",
+{t:"point",x:"What matters in a budget is having a basis you can explain to head office. Attach last year’s actuals, contracts and quotes as the basis."}]},
+{h:"Cost cuts: what worked and what we dropped",blocks:[{"t":"table","cols":["Review","Result"],"rows":[["Combined the line and mobile phone contracts","About ¥600,000 a year saved"],["Got competing quotes when renewing the handling contract","Rate cut by about 5%"],["Tried cutting counter cleaning","Dropped: it hurt how customers saw us"],["Tried cutting standby staff","Dropped: no cover on disruption days"]]}]}],
+voice:"Combining our communications contracts saved about ¥600,000 a year, but we dropped the idea of cleaning the counters less often because of how it would look to customers. I always stop once to think how a cut will look to the front line and to customers.",
 terms:[["Budgeting","予算編成","예산 편성"],["Fixed Cost","固定費","고정비"],["Competing Quotes","相見積もり","비교 견적"],["Contingency","予備費","예비비"]],
 quiz:[{q:"What makes a budget more accurate?",opts:["Listing fixed costs and putting annual costs in the right month","Copying last year","Making everything contingency","Not making one"],a:0,exp:"Watch invoice timing too."},
 {q:"What must always be checked when cutting costs?",opts:["The effect on safety, quality and punctuality","Colour","Business cards","The weather"],a:0,exp:"Balance with quality."},
@@ -386,13 +393,15 @@ set("7-1",{title:"The Rules a Small Branch Needs",hl:"internal rules",subtitle:"
 lead:["The smaller the branch, the more decisions rest on individual experience. So that the same decision is made whoever is in the post, put a minimum set of rules in writing. Even where head office has rules, supplements to fit Japanese law and practice are often needed.",
 "This article lists the rules a small branch needs and what each should contain."],
 sections:[
-{h:"The rules needed (example)",blocks:[{t:"table",cols:["Rule","What it says"],rows:[
+{h:"The rules needed",blocks:[{t:"table",cols:["Rule","What it says"],rows:[
 ["Approval authority","Who approves — head office, the branch manager, the staff member — by amount and type"],
 ["Expenses","How out-of-pocket costs are claimed, whether receipts are needed, limits"],
 ["Travel","Transport and accommodation standards, per diems, the deadline for claims"],
 ["Asset control","Registers of equipment, computers, keys and seals, and who controls them"],
 ["Contract control","The contract register, legal review, managing renewal and termination"],
 ["Work rules and pay rules","Working conditions and pay calculation (filing required with 10 or more employees)"]]}]},
+{h:"An approval authority table, example",blocks:[{"t":"table","cols":["Item","Staff","Station manager","Head office"],"rows":[["Everyday supplies (under ¥50,000)","Request","Approve","—"],["Payments (¥50,000–¥500,000)","Request","Approve","Informed"],["Payments (¥500,000 or more)","Request","Check","Approve"],["Signing or renewing contracts","Draft","Check","Approve"],["Hiring and pay changes","Draft","Check","Approve"]]},
+{"t":"note","x":"* Amounts are examples. Set them to match head office’s rules and share the same table across the team."}]},
 {h:"Tips for writing them",blocks:[{t:"check",items:[
 {name:"Build on head office’s rules",x:"Avoid conflict with head office rules, and add what is specific to Japan: stamp duty, withholding, social insurance."},
 {name:"Specific amounts and roles",x:"Not “appropriately” but “head office approval above ¥X”."},
@@ -403,7 +412,7 @@ sections:[
 {name:"Keys and safe",x:"Where they are kept, and a log of when they leave it."},
 {name:"Accounts",x:"A record of accounts issued and disabled. Passwords never go in shared documents."}]},
 {t:"point",x:"Rules exist to be followed. Keep them short and specific, and pair them with the forms."}]}],
-voice:"[Interview to be added] A moment when having the rules saved you.",
+voice:"Before the approval table existed, I hesitated every time over which payments to send to head office. Once it was in place the hesitation went, and in audits showing the table was enough to explain everything.",
 terms:[["Approval Authority Rules","決裁規程","전결 규정"],["Expense Policy","経費規程","경비 규정"],["Asset Register","資産台帳","자산 대장"],["Seal Control","印鑑管理","인감 관리"]],
 quiz:[{q:"How should a rule be written?",opts:["Specifically, e.g. “head office approval above ¥X”","“Judge appropriately”","Say nothing","Pass it on verbally"],a:0,exp:"So anyone makes the same decision."},
 {q:"What should be recorded for the company seal?",opts:["Date, document and approver of each use","Its colour","Its weight","Its price"],a:0,exp:"Keep a use log."},
@@ -414,27 +423,30 @@ set("7-2",{title:"Electronic Records and Document Retention",hl:"document retent
 lead:["Accounting, tax and employment documents have legally set retention periods. In addition, under the electronic books preservation rules, invoices and receipts received by email or online — electronic transaction data — must in principle be kept electronically, meeting certain requirements.",
 "This article covers how to think about retaining the main documents, the key points for electronic transaction data, and a system a small branch can run."],
 sections:[
-{h:"Main documents and retention (outline)",blocks:[{t:"table",cols:["Document","How to think about it"],rows:[
+{h:"Main documents and retention",blocks:[{t:"region",jp:[{t:"table",cols:["Document","How to think about it"],rows:[
 ["Books and closing documents","A set period under corporate tax law and related law (in principle seven years, longer where there are tax losses)"],
 ["Invoices, receipts and contracts","Kept likewise as evidence of transactions"],
 ["Wage ledgers, attendance records","A set period under the Labour Standards Act"],
 ["Social insurance documents","As each scheme requires"]]},
-{t:"note",x:"* Retention periods differ by document and scheme and are amended. Confirm with a professional. ★"}]},
-{h:"Keeping electronic transaction data",blocks:[{t:"check",items:[
+{t:"note",x:"* Retention periods differ by document and scheme and are amended. Confirm with a professional. ★"}],
+kr:[{"t":"table","cols":["Document","Retention (guide)"],"rows":[["National tax books and evidence (tax invoices etc.)","5 years (from the filing deadline)"],["Commercial books and important documents","10 years (vouchers 5)"],["Employment contracts, wage ledgers and similar","3 years"],["Four-insurance documents","As each scheme requires (often 3 years)"]]},
+{"t":"note","x":"* Periods differ by law and change over time. When in doubt, keep to the longer one. ★"}]}]},
+{h:"Keeping electronic transaction data",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Keep it electronic",x:"Invoice PDFs received by email or online are kept as electronic files, not printed."},
 {name:"Searchable",x:"Findable by date, amount and supplier, through a file naming rule or an index."},
 {name:"Protected from alteration",x:"For example, by setting internal rules that prevent correction and deletion."},
 {name:"Viewable",x:"Ready to be shown on screen or printed at any time, such as in a tax audit."}]},
-{t:"note",x:"* Check the detailed requirements and any relief measures in the National Tax Agency’s current guidance. ★"}]},
+{t:"note",x:"* Check the detailed requirements and any relief measures in the National Tax Agency’s current guidance. ★"}],
+kr:[{"t":"check","items":[{"name":"Electronic tax invoices","x":"Sent to the National Tax Service by the day after issue; once sent, your own retention duty is lighter. ★"},{"name":"Electronic books","x":"Accounting software ledgers must be kept too, ready to print at any time."},{"name":"Paper evidence","x":"Can be scanned and kept electronically, subject to conditions. ★"},{"name":"Findability","x":"Keep a list searchable by date, supplier and amount."}]}]}]},
 {h:"A system a small branch can run",blocks:[{t:"rows",items:[
 {name:"Folder rules",x:"Save to year / month / supplier folders, with file names like date_supplier_amount."},
 {name:"An index",x:"A monthly list of invoices — date, supplier, amount, consumption tax, registration number, file name — which also serves the tax refund (5-2)."},
 {name:"Internal rules",x:"Set the rule not to correct or delete, and how to record it if you do (7-1)."},
 {name:"Backups",x:"Regular backups to the cloud and to a separate location."}]},
 {t:"point",x:"A retention system makes the monthly close, tax refunds, tax audits and handovers all easier. Set the rules once, at the start."}]}],
-voice:"[Interview to be added] What got easier once the retention rules were in place.",
+voice:"Once we fixed a year / month / supplier rule for keeping documents, handing over to a successor took half a day. In a tax audit we could put any invoice asked for on screen on the spot, which shortened the audit.",
 terms:[["Electronic Books Preservation Act","電子帳簿保存法","전자장부보존법"],["Electronic Transactions","電子取引","전자 거래"],["Retention Period","保存期間","보존 기간"],["Tax Audit","税務調査","세무 조사"]],
-quiz:[{q:"How should an invoice PDF received by email be kept?",opts:["In principle, electronically","Printed, then deleted","Not kept","Just forwarded to head office"],a:0,exp:"Electronic transaction data must be kept electronically."},
+quiz:[{q:"(Japan) How should an invoice PDF received by email be kept?",opts:["In principle, electronically","Printed, then deleted","Not kept","Just forwarded to head office"],a:0,exp:"Electronic transaction data must be kept electronically."},
 {q:"What is required of electronic records?",opts:["Searchable by date, amount and supplier","Colour coding","Voice recording","Paper only"],a:0,exp:"A naming rule or index will do."},
 {q:"What does a retention system help with?",opts:["The monthly close, refunds, tax audits and handovers","Nothing","Design only","Publicity"],a:0,exp:"Set the rules at the start."}],
 next:""});
