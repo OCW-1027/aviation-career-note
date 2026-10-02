@@ -74,7 +74,7 @@ sections:[
 {name:"A 2.0bn provision for future heavy maintenance",x:"Profit: cost −20. Balance sheet: — / maintenance provision +20, retained earnings −20. Cash flow: no."}]}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Write three columns yourself",x:"‘Paid the handler 5m yen for last month (accrued last month)’, ‘A passenger flew on redeemed miles’, ‘Sold an old aircraft with a book value of 3.0bn for 3.5bn’."},
-{name:"Name the pattern",x:"Which of the four patterns does each of the three belong to?"}]},{t:"link",href:"どの表が動くか練習.html",x:"[Practice page] Which Statement Moves? Transaction Card Practice: practise “which statement moves” at Beginner, Applied and Airline levels"}]}],
+{name:"Name the pattern",x:"Which of the four patterns does each of the three belong to?"}]},{t:"link",href:"取引と財務諸表の練習.html",x:"[Practice page] Transactions and Financial Statements Practice: practise “which statement moves” at Beginner, Applied and Airline levels"}]}],
 voice:"When a station report says ‘a cost was incurred’, adding one word, whether it was paid this month, accrued, or drawn from a provision, changes how head-office finance reads it.",
 terms:[["Transaction","取引","거래"],["Accrued expenses","未払費用","미지급비용"],["Recognising a provision","引当金の計上","충당금 설정"],["Reclassification / transfer","振替","대체"]],
 quiz:[{q:"‘Selling on credit’ moves which statements?",opts:["Income statement and balance sheet (not cash)","All three","Only the cash flow statement","Only the balance sheet"],a:0,exp:"A sale and a receivable are recorded; no cash moves."},

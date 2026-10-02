@@ -5,6 +5,7 @@
 html{scroll-padding-top:70px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Noto Sans KR',sans-serif;line-height:1.75}
 body.ko{font-family:'Noto Sans KR','Noto Sans JP',sans-serif}
+body.ko{word-break:keep-all;overflow-wrap:break-word}
 a{color:#1d5fa0}
 a:focus-visible,button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
 .topbar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}

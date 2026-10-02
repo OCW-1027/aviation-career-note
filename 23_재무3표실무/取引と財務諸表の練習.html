@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>どの表が動く？― 取引カードの練習</title>
+<title>取引と財務諸表の練習</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
 *{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
@@ -65,7 +65,7 @@ button:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 
 <script>
 var L={
-ja:{title:'どの表が動く？― 取引カードの練習',lead:'取引のカードを見て、損益計算書は動くか、現金は動くか、貸借対照表のどこが動くかを当てます。1枚3点、全問正解で満点。入門はたい焼き屋の初月、応用はお店のいろいろな取引、航空は航空会社の取引です。',
+ja:{title:'取引と財務諸表の練習',lead:'取引のカードを見て、損益計算書は動くか、現金は動くか、貸借対照表のどこが動くかを当てます。1枚3点、全問正解で満点。入門はたい焼き屋の初月、応用はお店のいろいろな取引、航空は航空会社の取引です。',
  level:'レベルを選ぶ',LV:{a:['入門：たい焼き屋の初月','講座0-3の11の取引を順番に。終わると3つの表が完成します'],b:['応用：お店の取引いろいろ','掛け買い・前受金・借り換え・減損など12問をランダムに'],c:['航空：航空会社の取引','航空券の販売と搭乗、リース、ヘッジ、整備引当金など12問']},
  q1:'損益計算書は動く？',q2:'現金は動く？',q3:'貸借対照表で、現金と利益剰余金のほかに動く項目は？（すべて選ぶ）',q3note:'※ 現金と利益剰余金は上の2問で決まるので除きます。何も動かなければ「なし」。',
  O1:{rev:'売上が増える',cost:'費用が増える',none:'動かない'},O2:{'in':'入ってくる',out:'出ていく',none:'動かない'},
@@ -76,7 +76,7 @@ ja:{title:'どの表が動く？― 取引カードの練習',lead:'取引のカ
  verdict:['3つの表のつながりが身についています。航空レベルや講座Part 4-3へ。','だいたい見えています。間違えたカードの解説をもう一度読んでください。','「損益だけ」「現金だけ」の区別で迷っています。講座3-2・4-3を見てからもう一度。'],
  finalh:'完成した3つの表（たい焼き屋の初月）',pl:'損益計算書',bs:'貸借対照表',cf:'キャッシュフロー計算書',
  ex:{pl:'損益計算書：',cash:'現金：',bs:'貸借対照表：',re:'利益剰余金',cashw:'現金',plus:'＋',minus:'−',nomove:'動かない'}},
-ko:{title:'어느 표가 움직이나? — 거래 카드 연습',lead:'거래 카드를 보고 손익계산서가 움직이나, 현금이 움직이나, 재무상태표의 어디가 움직이나를 맞힙니다. 한 장 3점, 전부 맞히면 만점. 입문은 붕어빵 가게 첫 달, 응용은 가게의 여러 거래, 항공은 항공사의 거래입니다.',
+ko:{title:'거래와 재무제표 연습',lead:'거래 카드를 보고 손익계산서가 움직이나, 현금이 움직이나, 재무상태표의 어디가 움직이나를 맞힙니다. 한 장 3점, 전부 맞히면 만점. 입문은 붕어빵 가게 첫 달, 응용은 가게의 여러 거래, 항공은 항공사의 거래입니다.',
  level:'레벨을 고른다',LV:{a:['입문: 붕어빵 가게 첫 달','강좌 0-3의 거래 11개를 차례로. 끝나면 세 가지 재무제표가 완성됩니다'],b:['응용: 가게의 여러 거래','외상 매입·선수금·차환·손상 등 12문제를 무작위로'],c:['항공: 항공사의 거래','항공권 판매와 탑승, 리스, 헤지, 정비충당금 등 12문제']},
  q1:'손익계산서는 움직이나?',q2:'현금은 움직이나?',q3:'재무상태표에서 현금과 이익잉여금 외에 움직이는 항목은?(모두 고른다)',q3note:'※ 현금과 이익잉여금은 위 두 문제로 정해지므로 제외합니다. 아무것도 안 움직이면 「없음」.',
  O1:{rev:'매출이 는다',cost:'비용이 는다',none:'안 움직인다'},O2:{'in':'들어온다',out:'나간다',none:'안 움직인다'},
@@ -87,7 +87,7 @@ ko:{title:'어느 표가 움직이나? — 거래 카드 연습',lead:'거래 �
  verdict:['세 가지 재무제표의 연결이 몸에 뱄습니다. 항공 레벨이나 강좌 Part 4-3으로.','대체로 보입니다. 틀린 카드의 해설을 다시 읽어 보세요.','「손익만」「현금만」의 구별에서 헤매고 있습니다. 강좌 3-2·4-3을 보고 다시 한번.'],
  finalh:'완성된 세 가지 재무제표(붕어빵 가게 첫 달)',pl:'손익계산서',bs:'재무상태표',cf:'현금흐름표',
  ex:{pl:'손익계산서: ',cash:'현금: ',bs:'재무상태표: ',re:'이익잉여금',cashw:'현금',plus:'+',minus:'−',nomove:'안 움직임'}},
-en:{title:'Which Statement Moves? Transaction Card Practice',lead:'Read each transaction card and decide whether the income statement moves, whether cash moves, and which balance-sheet items move. Three points a card. Beginner is the stall’s first month, Applied is a mix of shop transactions, Airline is an airline’s.',
+en:{title:'Transactions and Financial Statements Practice',lead:'Read each transaction card and decide whether the income statement moves, whether cash moves, and which balance-sheet items move. Three points a card. Beginner is the stall’s first month, Applied is a mix of shop transactions, Airline is an airline’s.',
  level:'Choose a level',LV:{a:['Beginner: the stall’s first month','The 11 transactions of lesson 0-3 in order; the three statements are built at the end'],b:['Applied: assorted shop transactions','Credit purchases, advances, refinancing, impairment: 12 random questions'],c:['Airline: airline transactions','Ticket sales and travel, leases, hedging, maintenance provisions: 12 questions']},
  q1:'Does the income statement move?',q2:'Does cash move?',q3:'Besides cash and retained earnings, which balance-sheet items move? (choose all)',q3note:'* Cash and retained earnings follow from the first two questions, so they are excluded. If nothing else moves, choose “None”.',
  O1:{rev:'Revenue rises',cost:'A cost rises',none:'No movement'},O2:{'in':'Cash comes in',out:'Cash goes out',none:'No movement'},

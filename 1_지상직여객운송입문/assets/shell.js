@@ -23,7 +23,7 @@ rm:{ja:'Revenue Management\uff08\u53ce\u76ca\u7ba1\u7406\uff09\u306e\u7df4\u7fd2
 story:{ja:'\u30b9\u30c8\u30fc\u30ea\u30fc\u8a2d\u8a08\u30b7\u30fc\u30c8',ko:'\uc2a4\ud1a0\ub9ac \uc124\uacc4 \uc2dc\ud2b8',en:'Story Design Sheet'},
 kako:{ja:'\u822a\u7a7a\u5f93\u4e8b\u8005\u5b66\u79d1\u8a66\u9a13\u0020\u904e\u53bb\u554f\u984c',ko:'\uc77c\ubcf8\u0020\ud559\uacfc\uc2dc\ud5d8\u0020\uae30\ucd9c\ubb38\uc81c',en:'Japan Licence Exam Past Papers'},
 krdsp:{ja:'\u97d3\u56fd\u0020\u904b\u822a\u7ba1\u7406\u58eb\u0020\u7df4\u7fd2\u554f\u984c',ko:'\ud55c\uad6d\u0020\uc6b4\ud56d\uad00\ub9ac\uc0ac\u0020\uc5f0\uc2b5\ubb38\uc81c',en:'Korea Flight Dispatcher Practice Questions'},
-fincard:{ja:'どの表が動く？― 取引カードの練習',ko:'어느 표가 움직이나? — 거래 카드 연습',en:'Which Statement Moves? Transaction Card Practice'},
+fincard:{ja:'取引と財務諸表の練習',ko:'거래와 재무제표 연습',en:'Transactions and Financial Statements Practice'},
 finlink:{ja:'財務諸表の連動シミュレーター',ko:'재무제표 연동 시뮬레이터',en:'Linked Financial Statements Simulator'},
 fincost:{ja:'航空原価計算の練習',ko:'항공 원가 계산 연습',en:'Airline Cost & Break-even Practice'},
 finsim:{ja:'航空会社経営シミュレーション',ko:'항공사 경영 시뮬레이션',en:'Airline Management Simulation'},
