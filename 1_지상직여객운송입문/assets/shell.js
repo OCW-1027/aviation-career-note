@@ -28,6 +28,7 @@ finlink:{ja:'財務諸表の連動シミュレーター',ko:'재무제표 연동
 fincost:{ja:'航空原価計算の練習',ko:'항공 원가 계산 연습',en:'Airline Cost & Break-even Practice'},
 finsim:{ja:'航空会社経営シミュレーション',ko:'항공사 경영 시뮬레이션',en:'Airline Management Simulation'},
 finratio:{ja:'財務比率の計算練習',ko:'재무 비율 계산 연습',en:'Financial Ratio Practice'},
+finval:{ja:'企業価値の計算練習',ko:'기업가치 계산 연습',en:'Company Valuation Practice'},
 fsc:{ja:'日本発 燃油サーチャージの計算',ko:'일본발 유류할증료 계산',en:'Japan-Origin Fuel Surcharge Calculator'}};
 /* 下の共通ボタン（2026.10）：ツールが属する講座の目次へ・資料室へ。講座のないツールは資料室のボタンだけ */
 var CR={p1:['1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html','旅客ハンドリングの実務','항공 여객운송 실무','Airline Passenger Operations'],
@@ -37,7 +38,7 @@ p13:['13_항공영업입문/00_シリーズ全体_航空営業入門.html','航�
 p18:['18_항공기초지식/00_シリーズ全体_航空の基礎知識.html','航空の基礎知識','항공 기초 지식','Aviation Fundamentals'],
 p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','運航管理の実務','운항관리 실무','Flight Dispatch Operations'],
 p23:['23_재무3표실무/00_シリーズ全体_財務3表.html','数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers']};
-var CMAP={load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p18',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23'};
+var CMAP={load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p18',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23'};
 var FT={ja:['← 講座の目次','資料室','ほかのツールを見る →'],ko:['← 강좌 목차','자료실','다른 도구 보기 →'],en:['\u2190 Course contents','Resources','See other tools \u2192']};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=

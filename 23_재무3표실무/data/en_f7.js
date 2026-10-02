@@ -10,7 +10,8 @@ sections:[
 {name:"Enterprise value (EV) = market cap + net debt",x:"1,500 + (interest-bearing debt 2,070 − cash 1,338) = 2,232. What it would cost to buy the company together with its debt: the price of the business itself."},
 {name:"Why separate them?",x:"The same business is worth different amounts to shareholders depending on how much it has borrowed. Use EV to compare businesses, market cap to compare what shareholders hold."}]},
 {t:"note",x:"* This part is not investment advice; it explains general methods. Vela Air’s share price and share count are fictional figures set for the calculation."}]},
-{h:"The multiples in common use",blocks:[{t:"table",cols:["Multiple","Formula","Vela Air year 3","What it shows"],rows:[
+{h:"The multiples in common use",blocks:[{t:"fig",id:"fin_multiples",cap:"The three multiples as lengths. The red dotted line is 1×"},
+{t:"table",cols:["Multiple","Formula","Vela Air year 3","What it shows"],rows:[
 ["PER (price-to-earnings)","Share price ÷ earnings per share","1,500 ÷ 127 = 11.8×","How many years of profit the price represents"],
 ["PBR (price-to-book)","Share price ÷ net assets per share","1,500 ÷ 1,942 = 0.77×","Dear or cheap against net assets; 1× is the rough break-up value"],
 ["EV/EBITDA","Enterprise value ÷ EBITDA","2,232 ÷ 501 = 4.5×","The price of the business, evened out for debt and depreciation"],
@@ -43,7 +44,8 @@ sections:[
 {t:"rows",items:[
 {name:"What the discount rate is",x:"The return the money could have earned elsewhere; the higher the risk, the higher the rate. For a company, use the weighted average cost of capital (WACC): the returns that shareholders and lenders require, weighted by their shares of the funding."},
 {name:"Vela Air’s WACC",x:"Shareholders’ required return 9.3% (risk-free rate 1.5% + beta 1.3 × 6.0%) and the cost of debt 2.7% × (1 − 30% tax) = 1.9%. Weighted at market values (equity 42%, debt 58%) this gives 5.0%. Interest rates and beta change over time. ★"}]}]},
-{h:"Discounting five years of cash",blocks:[{t:"table",cols:["(100m yen)","Year 4","Year 5","Year 6","Year 7","Year 8","Total"],rows:[
+{h:"Discounting five years of cash",blocks:[{t:"fig",id:"fin_discount",cap:"White is the cash in that year, blue its value today. The gap widens the further out you go"},
+{t:"table",cols:["(100m yen)","Year 4","Year 5","Year 6","Year 7","Year 8","Total"],rows:[
 ["Free cash flow (forecast)","110","115","120","125","130","600"],
 ["Discount factor (5%)","0.952","0.907","0.864","0.823","0.784","—"],
 ["Present value","104.8","104.3","103.7","102.8","101.9","517"]]},
@@ -60,7 +62,8 @@ sections:[
 {t:"point",x:"Half a point on the discount rate and half a point on growth move equity value from 1,587 to 2,803. A DCF answer is a range, not a single number. Take particular care over the growth assumption behind the terminal value, which makes up four-fifths of the total."},
 {t:"check",items:[
 {name:"Recalculate at a 6% discount rate",x:"The discount factors are 0.943, 0.890, 0.840, 0.792 and 0.747. Work out the present value of the five years and the terminal value at 0.5% growth, then enterprise value and equity value."},
-{name:"Compare with the multiple",x:"The DCF enterprise value of 2,792 is what multiple of EBITDA 501? (5.6×.) In one line, say which assumption creates the gap from the 4.5× in 7-1."}]}]}],
+{name:"Compare with the multiple",x:"The DCF enterprise value of 2,792 is what multiple of EBITDA 501? (5.6×.) In one line, say which assumption creates the gap from the 4.5× in 7-1."}]},
+{t:"link",href:"企業価値の計算練習.html",x:"[Practice page] Company Valuation Practice: move the discount and growth rates and watch the DCF answer change"}]}],
 voice:"When someone shows you a DCF, look first not at the answer but at how much of it is terminal value, and at the growth and discount rates. If those are optimistic, no amount of detail in the forecast matters.",
 terms:[["Discounted cash flow","DCF（割引キャッシュフロー法）","DCF(현금흐름할인법)"],["Discount rate","割引率","할인율"],["Weighted average cost of capital","加重平均資本コスト（WACC）","가중평균자본비용(WACC)"],["Terminal value","継続価値（ターミナルバリュー）","영구가치(터미널 밸류)"],["Sensitivity analysis","感度分析","민감도 분석"]],
 quiz:[{q:"At a 5% discount rate, what is 100 received in one year worth today?",opts:["About 95","100","105","About 90"],a:0,exp:"100 ÷ 1.05 = 95.2."},
@@ -69,7 +72,8 @@ quiz:[{q:"At a 5% discount rate, what is 100 received in one year worth today?",
 set("7-3",{title:"Reading an Unlisted Company’s Numbers: Restating the Accounts to Normal",hl:"Restating the Accounts to Normal",subtitle:"The accounts of an owner-managed company are shaped by tax and by the family’s affairs. For an investment, redraw them as the company will look after it is bought",
 lead:["From here we look at companies that are not listed. Their accounts are mostly prepared for the tax return and are not audited. The owner’s pay and insurance, and money moving between the company and the owner personally, are commonly mixed in.","Our example is a fictional company, Minato Ground Services: ground handling at regional airports, sales of 2.4bn yen, about 300 staff, wholly owned by the founding family. We restate its reported profit to the normal earnings that will continue after a purchase."],
 sections:[
-{h:"The company as reported",blocks:[{t:"table",cols:["Income (million yen)","Amount","Balance sheet (million yen)","Amount"],rows:[
+{h:"The company as reported",blocks:[{t:"fig",id:"fin_bs_check",cap:"Minato Ground Services’ balance sheet. The red items are checked in 7-4"},
+{t:"table",cols:["Income (million yen)","Amount","Balance sheet (million yen)","Amount"],rows:[
 ["Sales","2,400","Cash","300"],["Operating profit","96 (4.0%)","Receivables","400"],["Depreciation","84","Vehicles and equipment (GSE)","500"],["EBITDA","180 (7.5%)","Insurance reserve assets","120"],["","","Loan to the owner","60"],["","","Other assets","120"],["","","Total assets","1,500"],["","","Borrowings","600"],["","","Payables and accruals","400"],["","","Net assets","500"]]},
 {t:"point",x:"Read as it stands, this is a company with a 4% operating margin and EBITDA of 180 million yen. But the figures include the owner family’s affairs and events that happened only this year."}]},
 {h:"Restating to normalised earnings",blocks:[{t:"fig",id:"fin_normalize",cap:"From reported EBITDA of 180 to the 229 that will continue after the purchase"},
@@ -107,7 +111,8 @@ sections:[
 {t:"table",cols:["Item","Amount (million yen)","Reason"],rows:[
 ["Book net assets","500","As reported"],["Loan to the owner","−60","No prospect of repayment"],["Uncollectable receivables and old inventory","−20","No movement for over a year"],["Unfunded retirement benefits","−80","Short of the amount calculated under the company’s rules"],["Unpaid overtime (past two years)","−30","An obligation to pay retrospectively"],["Unrealised gain on insurance","+30","Surrender value 150 − book value 120"],["Real net assets","340","500 − 60 − 20 − 80 − 30 + 30"]]},
 {t:"point",x:"Net assets were 340, not 500. The gap of 160 cannot be seen from the accounts alone. It appears only after requesting documents, questioning the staff, and matching the rules against the payroll records."}]},
-{h:"3. Net debt: what counts as borrowing?",blocks:[{t:"table",cols:["Item","Amount (million yen)","Thinking"],rows:[
+{h:"3. Net debt: what counts as borrowing?",blocks:[{t:"fig",id:"fin_net_debt",cap:"Start from bank borrowings of 600, add the items treated as debt, deduct cash"},
+{t:"table",cols:["Item","Amount (million yen)","Thinking"],rows:[
 ["Borrowings","600","Bank loans"],["Lease obligations (not on the books)","+50","Vehicle leases: the obligation to pay is the same as a loan"],["Unfunded retirement benefits","+80","Will be paid in cash one day; treated as debt"],["Unpaid overtime","+30","Likewise an obligation to pay"],["Cash","−300","Deduct cash on hand"],["Net debt (as defined in the DD)","460","600 + 50 + 80 + 30 − 300"]]},
 {t:"rows",items:[
 {name:"Why it matters",x:"Price of the shares = enterprise value − net debt (7-1). Every 30 added to the items treated as debt takes 30 off the share price. What goes in is the negotiation between seller and buyer."},
@@ -148,7 +153,8 @@ sections:[
 {name:"2 and 6. Write the business and the plan",sub:"Explain the numbers in the language of the business"},
 {name:"1. Write the conclusion last",sub:"Once everything is settled, reduce it to one page"}]},
 {t:"point",x:"Write so that the decision can be made from the conclusion page alone. Busy people read only page one. The remaining pages are there to show the basis when questions are asked."}]},
-{h:"Rules for presenting numbers",blocks:[{t:"rows",items:[
+{h:"Rules for presenting numbers",blocks:[{t:"fig",id:"fin_memo_page",cap:"A sample conclusion page: the unit, the basis and the largest risk all on one page"},
+{t:"rows",items:[
 {name:"Always state the unit and the date",x:"Million yen or 100 million yen, as of when, reported or adjusted. State it on every table."},
 {name:"State the source",x:"Distinguish ‘the accounts’, ‘monthly data received from the company’ and ‘our estimate’. Give the assumptions behind an estimate."},
 {name:"Separate fact from opinion",x:"‘45% of sales come from one customer’ is fact; ‘dependence is high’ is opinion. Fact first, opinion after."},
@@ -181,7 +187,8 @@ sections:[
 ["Key staff leave when the owner steps down","With fewer people, flights cannot be handled","A contract keeping the owner for two years and commitments on terms for key staff"],
 ["Labour shortage and rising wages","Staff costs assumed to rise 2–3% a year","Check the price-revision clauses with the airlines and build them into the plan"],
 ["Errors in past tax or social insurance filings","Amount unknown","Protect through warranties and indemnities in the contract"]]}]},
-{h:"Does it stand up as an investment?",blocks:[{t:"table",cols:["","At purchase","In five years (plan)"],rows:[
+{h:"Does it stand up as an investment?",blocks:[{t:"fig",id:"fin_return_bridge",cap:"Why 800 becomes 1,340, split into earnings growth and debt repayment"},
+{t:"table",cols:["","At purchase","In five years (plan)"],rows:[
 ["EBITDA","229","280 (4.1% growth a year)"],["Enterprise value (5.5×)","1,260","1,540"],["Net debt","460","200 (260 repaid from cash earned)"],["Equity value","800","1,340"]]},
 {t:"rows",items:[
 {name:"The return",x:"800 becomes 1,340 in five years: 1.7 times, or 10.9% a year. That is the figure if the plan is met."},
@@ -189,7 +196,8 @@ sections:[
 {t:"check",items:[
 {name:"Write your own conclusion",x:"Would you invest in this company at 800? Choose ‘yes’, ‘no’ or ‘yes, with conditions’, and give three reasons plus the largest risk and how you would absorb it."},
 {name:"Move the price",x:"Change the proposed price to 700 and to 900 and calculate how the return changes if equity is worth 1,340 in five years."}]},
-{t:"note",x:"Part 8 covers the differences between Japanese and Korean accounting and how to find accounts and filings. The same company takes a different shape under a different standard."}]}],
+{t:"note",x:"Part 8 covers the differences between Japanese and Korean accounting and how to find accounts and filings. The same company takes a different shape under a different standard."},
+{t:"link",href:"企業価値の計算練習.html",x:"[Practice page] Company Valuation Practice: work the Minato Ground Services example yourself, changing the value range, the price and the return"}]}],
 voice:"Price is never settled by arithmetic alone. But without the arithmetic you cannot say whether the other side’s number is high or low. If you can explain normalised earnings, net debt and the multiple in your own words, you can sit at the negotiating table.",
 terms:[["Goodwill","のれん","영업권"],["Multiple on invested capital","投資倍率（MOIC）","투자 배수(MOIC)"],["Internal rate of return","内部収益率（IRR）","내부수익률(IRR)"],["Key-person clause","キーマン条項","핵심 인력 조항"],["Football field chart","価値の幅の図（フットボール・フィールド）","가치 범위 그림(풋볼 필드)"]],
 quiz:[{q:"The shares are bought for 800 and real net assets are 340. What is the goodwill?",opts:["460","340","800","1,140"],a:0,exp:"800 − 340 = 460: the part paid for future earning power."},

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>企業価値の計算練習</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}html[lang=ko] body{word-break:keep-all;overflow-wrap:break-word}
+h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
+.langs{display:inline-flex}.langs button{cursor:pointer}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.card h2{font-size:16px;margin:0 0 10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.card h2 .tag{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 10px}
+.pre{display:flex;flex-wrap:wrap;gap:8px}
+.pre button{min-height:44px;padding:8px 14px;border:2px solid var(--line);background:var(--paper);border-radius:12px;font:inherit;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer}
+.pre button.on{border-color:var(--ink);background:#eef3f8}.pre button.sub{font-weight:500;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.grp{border-left:5px solid var(--line);padding:2px 0 2px 12px;margin:14px 0 0}.grp.g1{border-color:var(--ink)}.grp.g2{border-color:var(--pl)}.grp.g3{border-color:var(--cf)}.grp.g4{border-color:var(--bs)}
+.grp h3{font-size:14px;margin:0 0 8px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px 12px}
+.g label{display:block;font-size:12.5px;color:var(--muted);font-weight:700}
+.g input{display:block;width:100%;height:44px;margin-top:3px;padding:6px 10px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:16px;text-align:right;background:#fff;color:var(--ink)}
+.r{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-top:1px solid var(--line)}
+.r:first-of-type{border-top:0}
+.r .nm{font-weight:700;font-size:14.5px}.r .v{font-size:20px;font-weight:800;text-align:right;white-space:nowrap}
+.r .fm{grid-column:1/-1;font-size:13px;color:var(--muted);overflow-wrap:anywhere}.r .hn{grid-column:1/-1;font-size:13px}
+.r.neg .v{color:var(--ng)}.r.na .v{color:var(--muted);font-weight:500}.r .al{color:var(--ng);font-weight:700}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:460px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:right;white-space:nowrap}
+th{background:#eef3f8;text-align:center;font-weight:700}td:first-child,th:first-child{text-align:center;font-weight:700;background:#f4f7fa}
+td.base{background:#fff6e9;font-weight:800}
+.sw{display:none;font-size:12px;color:var(--muted);margin:0 0 6px}
+.ff{display:block;width:100%;max-width:640px;height:auto;margin:0 auto}
+button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+@media(max-width:600px){.card{padding:14px 12px}.sw{display:block}}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="finval"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"><button type="button" data-l="ja">日本語</button><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button></span><h1 id="t_title"></h1><p id="t_lead" class="lead"></p></header>
+<div class="card"><h2 id="t_pre"></h2><div class="pre" id="pre"></div><p class="note" id="t_pren"></p></div>
+<div class="card"><h2 id="t_in"></h2><div id="inp"></div></div>
+<div id="res"></div>
+<p class="note" id="t_note"></p>
+</div>
+<script>
+var KEY='acn-finval-v1';
+var X={title:['企業価値の計算練習','기업가치 계산 연습','Company Valuation Practice'],
+lead:['EBITDAと純有利子負債、これからのフリーキャッシュフローを入れると、倍率法とDCFで企業価値と株式の価値を計算し、価値の幅を1つの図に重ねます。式と、使った数字もいっしょに出します。まず例（Vela Air、ミナト・グランドサービス）で確かめてから、自分の数字に入れかえてください。','EBITDA와 순차입금, 앞으로의 잉여현금흐름을 넣으면 배수법과 DCF로 기업가치와 주식 가치를 계산하고, 가치의 범위를 하나의 그림에 겹쳐 보여 줍니다. 식과 쓴 숫자도 함께 나옵니다. 먼저 예시(Vela Air, 미나토 그라운드 서비스)로 확인한 뒤 내 숫자로 바꿔 넣어 보세요.','Enter EBITDA, net debt and the free cash flow ahead, and the tool values the company by multiples and by DCF, then overlays the ranges on one chart, showing each formula and the numbers used. Start with the examples (Vela Air, Minato Ground Services), then replace them with your own figures.'],
+pre:['例を選ぶ','예시를 고른다','Choose an example'],pren:['例を選ぶと数字が入ります。そのあと、どの欄も自由に書きかえられます。','예시를 고르면 숫자가 들어갑니다. 그 뒤에는 어느 칸이든 자유롭게 바꿀 수 있습니다.','Choosing an example fills in the figures. You can then change any field.'],
+inh:['数字を入れる','숫자를 넣는다','Enter the figures'],blank:['空欄から始める','빈칸에서 시작','Start blank'],unit:['単位','단위','Unit'],opt:['任意','선택','optional'],
+g1:['会社の数字','회사의 숫자','The company'],g2:['倍率法','배수법','Multiples'],g3:['DCF','DCF','DCF'],g4:['5年後に売るとき（利回りの確認）','5년 뒤에 팔 때(수익률 확인)','Selling in five years (return check)'],
+r1:['倍率法 ― EBITDAの何倍か','배수법 — EBITDA의 몇 배인가','Multiples: how many times EBITDA'],r2:['DCF ― これからの現金を今日の価値に直す','DCF — 앞으로의 현금을 오늘의 가치로 고친다','DCF: future cash in today’s money'],r3:['前提を動かす（感度分析）','전제를 움직인다(민감도 분석)','Moving the assumptions (sensitivity)'],r4:['価値の幅を重ねる','가치의 범위를 겹쳐 본다','Overlaying the value ranges'],r5:['その価格で買うと','그 가격에 사면','At that price'],r6:['5年後の利回り','5년 뒤의 수익률','The return after five years'],
+les:['レッスン','레슨','Lesson'],sw:['← 横にスクロールできます →','← 옆으로 밀어서 볼 수 있습니다 →','← Scroll sideways →'],
+need:['次の数字を入れると計算します：','다음 숫자를 넣으면 계산합니다: ','Enter these to calculate: '],
+x:['倍','배','×'],yr:['年目','년 차',''],yrp:['','','Year '],
+fcf:['フリーキャッシュフロー','잉여현금흐름','Free cash flow'],df:['割引係数','할인계수','Discount factor'],pv:['現在価値','현재가치','Present value'],
+eqv:['株式の価値','주식 가치','Equity value'],dr:['割引率','할인율','Discount rate'],gr:['成長率','성장률','Growth'],
+wg:['割引率は成長率より大きくしてください','할인율은 성장률보다 크게 넣어 주세요','The discount rate must be higher than the growth rate'],
+ff1:['倍率法','배수법','Multiples'],ff2:['DCF（幅）','DCF(범위)','DCF (range)'],ff3:['純資産','순자산','Net assets'],ffp:['価格','가격','Price'],
+note:['※ 例の数字は架空です。計算の考え方を学ぶためのもので、投資の助言ではありません。倍率・割引率・成長率は置いた前提で、答えは前提しだいで大きく変わります。入れた数字はこの端末のブラウザーにだけ保存されます。','※ 예시 숫자는 가상입니다. 계산 방식을 익히기 위한 것이며 투자 조언이 아닙니다. 배수·할인율·성장률은 둔 전제이고, 답은 전제에 따라 크게 달라집니다. 넣은 숫자는 이 기기의 브라우저에만 저장됩니다.','* The example figures are fictional. The tool is for learning how valuation works and is not investment advice. The multiple, discount rate and growth rate are assumptions, and the answer depends heavily on them. Your figures are saved only in this browser.']};
+var PN={vela:['Vela Air 3年目','Vela Air 3년 차','Vela Air year 3'],minato:['ミナト・グランドサービス','미나토 그라운드 서비스','Minato Ground Services']};
+var PU={vela:['億円','억 엔','100m yen'],minato:['百万円','백만 엔','million yen'],blank:['自由（すべて同じ単位で）','자유(모두 같은 단위로)','any (use one unit throughout)']};
+var PRE={vela:{ebitda:501,nd:732,na:1942,ni:127,px:1500,m1:4,m2:5,f1:110,f2:115,f3:120,f4:125,f5:130,w:5,g:0.5,dw:0.5,dg:0.5,e5:'',xm:'',xnd:''},
+minato:{ebitda:229,nd:460,na:340,ni:'',px:800,m1:5,m2:6,f1:110,f2:111.1,f3:112.21,f4:113.33,f5:114.46,w:9,g:1,dw:1,dg:'',e5:280,xm:5.5,xnd:200}};
+var FIELDS=[['g1',['ebitda','nd','na','ni','px']],['g2',['m1','m2']],['g3',['f1','f2','f3','f4','f5','w','g','dw','dg']],['g4',['e5','xm','xnd']]];
+var OPT={na:1,ni:1,px:1,dw:1,dg:1,e5:1,xm:1,xnd:1};
+var FL={ebitda:['EBITDA（正常収益力）','EBITDA(정상 수익력)','EBITDA (normalised)'],nd:['純有利子負債','순차입금','Net debt'],na:['純資産','순자산','Net assets'],ni:['当期純利益','당기순이익','Net profit'],px:['株式の価格（時価総額・提示価格）','주식의 가격(시가총액·제시 가격)','Price of the shares'],
+m1:['倍率（下）','배수(아래)','Multiple, low'],m2:['倍率（上）','배수(위)','Multiple, high'],
+f1:['FCF 1年目','FCF 1년 차','FCF year 1'],f2:['FCF 2年目','FCF 2년 차','FCF year 2'],f3:['FCF 3年目','FCF 3년 차','FCF year 3'],f4:['FCF 4年目','FCF 4년 차','FCF year 4'],f5:['FCF 5年目','FCF 5년 차','FCF year 5'],
+w:['割引率（%）','할인율(%)','Discount rate (%)'],g:['6年目からの成長率（%）','6년 차부터의 성장률(%)','Growth from year 6 (%)'],dw:['感度：割引率の幅（±%）','민감도: 할인율의 폭(±%)','Sensitivity: discount rate (±%)'],dg:['感度：成長率の幅（±%）','민감도: 성장률의 폭(±%)','Sensitivity: growth (±%)'],
+e5:['5年後のEBITDA','5년 뒤 EBITDA','EBITDA in five years'],xm:['売るときの倍率','팔 때의 배수','Exit multiple'],xnd:['5年後の純有利子負債','5년 뒤 순차입금','Net debt in five years']};
+/* 結果の行：[名前, 式（言葉）, 読み方] */
+var RT={evm:[['企業価値','기업가치','Enterprise value'],['EBITDA × 倍率','EBITDA × 배수','EBITDA × multiple'],['似た会社が取引されている倍率を、この会社の稼ぎに掛ける','비슷한 회사가 거래되는 배수를 이 회사의 벌이에 곱한다','Apply the multiple at which similar companies trade to this company’s earnings']],
+eqm:[['株式の価値','주식 가치','Equity value'],['企業価値 − 純有利子負債','기업가치 − 순차입금','Enterprise value − net debt'],['借入を引いた残りが、株主の取り分','차입을 빼고 남는 것이 주주의 몫','What is left after debt belongs to the shareholders']],
+sum:[['5年分の現在価値','5년 치 현재가치','Present value of five years'],['各年のFCF ÷（1 ＋ 割引率）の年数乗 の合計','각 해의 FCF ÷ (1 + 할인율)의 연수 제곱의 합계','Sum of each year’s FCF ÷ (1 + rate) to the power of the year'],['先の年ほど、今日の価値は小さくなる','먼 해일수록 오늘의 가치는 작아진다','The further out, the smaller the value today']],
+tv:[['継続価値','영구가치','Terminal value'],['5年目のFCF ×（1 ＋ 成長率）÷（割引率 − 成長率）','5년 차 FCF × (1 + 성장률) ÷ (할인율 − 성장률)','Year-5 FCF × (1 + growth) ÷ (rate − growth)'],['6年目から先ずっと続く現金の、5年目時点での価値','6년 차부터 계속 이어지는 현금의 5년 차 시점 가치','The value, at year 5, of all the cash from year 6 onwards']],
+ptv:[['継続価値の現在価値','영구가치의 현재가치','Present value of the terminal value'],['継続価値 ÷（1 ＋ 割引率）の5乗','영구가치 ÷ (1 + 할인율)의 5제곱','Terminal value ÷ (1 + rate) to the power 5'],['5年目時点の価値を、さらに今日に直す','5년 차 시점의 가치를 다시 오늘로 고친다','Bring the year-5 value back to today']],
+ev:[['企業価値（DCF）','기업가치(DCF)','Enterprise value (DCF)'],['5年分の現在価値 ＋ 継続価値の現在価値','5년 치 현재가치 + 영구가치의 현재가치','PV of five years + PV of terminal value'],['会社がこれから生む現金の、今日の価値の合計','회사가 앞으로 만들 현금의 오늘 가치 합계','Today’s value of all the cash the company will generate']],
+eq:[['株式の価値（DCF）','주식 가치(DCF)','Equity value (DCF)'],['企業価値 − 純有利子負債','기업가치 − 순차입금','Enterprise value − net debt'],['倍率法の幅と比べて、差の理由を考える','배수법의 범위와 비교해 차이의 이유를 생각한다','Compare with the multiples range and ask why they differ']],
+tvs:[['継続価値が占める割合','영구가치가 차지하는 비율','Terminal value as a share of the total'],['継続価値の現在価値 ÷ 企業価値','영구가치의 현재가치 ÷ 기업가치','PV of terminal value ÷ enterprise value'],['7〜8割を超えたら、成長率と割引率の前提が答えを決めている','7~8할을 넘으면 성장률과 할인율의 전제가 답을 정하고 있다','Above 70–80%, the growth and discount assumptions are deciding the answer']],
+evp:[['企業価値（価格から）','기업가치(가격에서)','Enterprise value (from the price)'],['株式の価格 ＋ 純有利子負債','주식의 가격 + 순차입금','Price of the shares + net debt'],['その価格で買うと、事業全体にいくら払うことになるか','그 가격에 사면 사업 전체에 얼마를 내는 셈인가','What the price means for the business as a whole']],
+imp:[['EV/EBITDA','EV/EBITDA','EV/EBITDA'],['企業価値 ÷ EBITDA','기업가치 ÷ EBITDA','Enterprise value ÷ EBITDA'],['倍率法で置いた幅の中に入っているか','배수법에서 둔 범위 안에 들어가나','Is it inside the range assumed for multiples?']],
+per:[['PER','PER','PER'],['株式の価格 ÷ 当期純利益','주식의 가격 ÷ 당기순이익','Price ÷ net profit'],['利益の何年分で買うか','이익의 몇 년 치로 사나','How many years of profit the price represents']],
+pbr:[['PBR','PBR','PBR'],['株式の価格 ÷ 純資産','주식의 가격 ÷ 순자산','Price ÷ net assets'],['1倍を下回ると、純資産より安い','1배를 밑돌면 순자산보다 싸다','Below 1×, the price is under net assets']],
+gw:[['のれん（価格 − 純資産）','영업권(가격 − 순자산)','Goodwill (price − net assets)'],['株式の価格 − 純資産','주식의 가격 − 순자산','Price − net assets'],['資産の裏づけがなく、これから稼ぐ力に払う部分','자산의 뒷받침 없이 앞으로 벌 힘에 내는 부분','The part not backed by assets, paid for future earning power']],
+xeq:[['5年後の株式の価値','5년 뒤의 주식 가치','Equity value in five years'],['5年後のEBITDA × 倍率 − 5年後の純有利子負債','5년 뒤 EBITDA × 배수 − 5년 뒤 순차입금','EBITDA in five years × multiple − net debt then'],['稼ぎの成長と借入の返済で増える','벌이의 성장과 차입 상환으로 늘어난다','It grows through earnings growth and debt repayment']],
+moic:[['投資倍率','투자 배수','Multiple on invested capital'],['5年後の株式の価値 ÷ 株式の価格','5년 뒤 주식 가치 ÷ 주식의 가격','Equity value in five years ÷ price paid'],['払ったお金が何倍になるか','낸 돈이 몇 배가 되나','How many times the money comes back']],
+irr:[['年あたりの利回り','연 수익률','Return per year'],['投資倍率の5乗根 − 1','투자 배수의 5제곱근 − 1','Fifth root of the multiple − 1'],['計画どおりにいった場合の数字。悪い場合も入れて確かめる','계획대로 됐을 때의 숫자. 나쁜 경우도 넣어 확인한다','This assumes the plan is met. Enter a downside case too']]};
+var lang=localStorage.getItem('art-lang')||'ja',LI=0,P='minato',D=null;
+function cp(o){return JSON.parse(JSON.stringify(o))}
+function blank(){var o={};FIELDS.forEach(function(g){g[1].forEach(function(k){o[k]=''})});return o}
+try{var s0=JSON.parse(localStorage.getItem(KEY)||'null');if(s0&&s0.d&&typeof s0.d==='object'){P=s0.p||'blank';D=blank();for(var k0 in D)if(s0.d[k0]!=null)D[k0]=s0.d[k0]}}catch(e){}
+if(!D){P='minato';D=cp(PRE.minato)}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({p:P,d:D}))}catch(e){}}
+function t(a){return a[LI]}
+function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function N(k){var v=D[k];if(v===''||v==null)return NaN;v=parseFloat(String(v).replace(/[０-９．]/g,function(c){return c==='．'?'.':String.fromCharCode(c.charCodeAt(0)-65248)}).replace(/[,，\s]/g,'').replace(/[−–△▲]/g,'-'));return isFinite(v)?v:NaN}
+function f(v,d){if(!isFinite(v))return '—';var a=Math.abs(v),s=a.toLocaleString('en-US',d==null?{maximumFractionDigits:2}:{minimumFractionDigits:d,maximumFractionDigits:d});return (v<0&&+a.toFixed(d==null?2:d)!==0?'−':'')+s}
+function dv(a,b){return isFinite(a)&&isFinite(b)&&b!==0?a/b:NaN}
+function dcf(F,w,g){if(!(w>g)||!(1+w>0))return null;var pv=F.map(function(x,i){return x/Math.pow(1+w,i+1)}),sum=pv.reduce(function(a,b){return a+b},0),tv=F[4]*(1+g)/(w-g),ptv=tv/Math.pow(1+w,5);return{pv:pv,sum:sum,tv:tv,ptv:ptv,ev:sum+ptv}}
+function calc(){var eb=N('ebitda'),nd=N('nd'),na=N('na'),ni=N('ni'),px=N('px'),m1=N('m1'),m2=N('m2'),F=['f1','f2','f3','f4','f5'].map(N),w=N('w')/100,g=N('g')/100,dw=N('dw'),dg=N('dg'),e5=N('e5'),xm=N('xm'),xnd=N('xnd'),V={};
+ dw=isNaN(dw)||dw<0?0:dw/100;dg=isNaN(dg)||dg<0?0:dg/100;
+ V.evm1=eb*m1;V.evm2=eb*m2;V.eqm1=V.evm1-nd;V.eqm2=V.evm2-nd;
+ V.okF=F.every(isFinite)&&isFinite(w)&&isFinite(g);V.bad=V.okF&&!(w>g);V.F=F;V.w=w;V.g=g;
+ var d=V.okF?dcf(F,w,g):null;V.d=d;V.ev=d?d.ev:NaN;V.eq=d?d.ev-nd:NaN;V.tvs=d?dv(d.ptv,d.ev):NaN;
+ V.ws=dw>0?[w-dw,w,w+dw]:[w];V.gs=dg>0?[g-dg,g,g+dg]:[g];
+ V.grid=V.ws.map(function(a){return V.gs.map(function(b){var r=V.okF?dcf(F,a,b):null;return r?r.ev-nd:NaN})});
+ var fl=[].concat.apply([],V.grid).filter(isFinite);V.dmin=fl.length?Math.min.apply(null,fl):NaN;V.dmax=fl.length?Math.max.apply(null,fl):NaN;
+ V.evp=px+nd;V.imp=dv(px+nd,eb);V.per=ni>0?dv(px,ni):NaN;V.pbr=na>0?dv(px,na):NaN;V.gw=px-na;
+ V.xeq=e5*xm-(isNaN(xnd)?0:xnd);V.moic=px>0?dv(V.xeq,px):NaN;V.irr=V.moic>0?Math.pow(V.moic,0.2)-1:NaN;
+ V.eb=eb;V.nd=nd;V.na=na;V.ni=ni;V.px=px;V.m1=m1;V.m2=m2;V.e5=e5;V.xm=xm;V.xnd=isNaN(xnd)?0:xnd;return V}
+function row(id,ok,txt,num,o){o=o||{};var d=RT[id];return '<div class="r'+(o.neg?' neg':'')+(ok?'':' na')+'"><span class="nm">'+esc(t(d[0]))+'</span><span class="v">'+esc(ok?txt:'—')+'</span><span class="fm">'+esc(t(d[1]))+(ok?' ＝ '+esc(num):(o.msg?'　'+esc(o.msg):''))+'</span><span class="hn'+(o.al?' al':'')+'">'+esc(t(d[2]))+'</span></div>'}
+function miss(ks){var m=ks.filter(function(k){return isNaN(N(k))}).map(function(k){return t(FL[k])});return m.length?t(X.need)+m.join(LI===2?', ':'、'):''}
+function card(k,les,col,body){return '<div class="card"><h2 style="border-left:6px solid var(--'+col+');padding-left:10px">'+esc(t(X[k]))+'<span class="tag">'+esc(t(X.les))+' '+les+'</span></h2>'+body+'</div>'}
+function yl(i){return t(X.yrp)+(i+1)+t(X.yr)}
+function ff(V){var rows=[],vals=[];
+ if(isFinite(V.eqm1)&&isFinite(V.eqm2)){var a=Math.min(V.eqm1,V.eqm2),b=Math.max(V.eqm1,V.eqm2);rows.push([t(X.ff1),a,b,'#2f8fe0']);vals.push(a,b)}
+ if(isFinite(V.dmin)){rows.push([t(X.ff2),V.dmin,V.dmax,'#e08a2f']);vals.push(V.dmin,V.dmax)}
+ if(isFinite(V.na)){rows.push([t(X.ff3),V.na,V.na,'#1f7a6e']);vals.push(V.na)}
+ if(!rows.length)return '';if(isFinite(V.px))vals.push(V.px);
+ var lo=Math.min(0,Math.min.apply(null,vals)),hi=Math.max.apply(null,vals);if(hi<=lo)hi=lo+1;hi=lo+(hi-lo)*1.1;
+ var x0=126,x1=404,H=58+rows.length*46+34,ax=58+rows.length*46;function Xp(v){return x0+(v-lo)/(hi-lo)*(x1-x0)}
+ var s='<svg class="ff" viewBox="0 0 420 '+H+'" role="img" xmlns="http://www.w3.org/2000/svg">';
+ rows.forEach(function(r,i){var y=44+i*46,wd=Math.max(Xp(r[2])-Xp(r[1]),6);s+='<text x="'+(x0-10)+'" y="'+(y+13)+'" text-anchor="end" font-size="12" font-weight="800" fill="#1d2a38">'+esc(r[0])+'</text><text x="'+(x0-10)+'" y="'+(y+28)+'" text-anchor="end" font-size="11" font-weight="600" fill="#5b6b7d">'+(r[1]===r[2]?f(r[1],0):f(r[1],0)+' 〜 '+f(r[2],0))+'</text><rect x="'+(Xp(r[1])-(r[1]===r[2]?3:0))+'" y="'+y+'" width="'+wd+'" height="30" rx="6" fill="'+r[3]+'"/>'});
+ s+='<line x1="'+x0+'" y1="'+ax+'" x2="'+x1+'" y2="'+ax+'" stroke="#1d2a38" stroke-width="1.5"/>';
+ for(var k=0;k<=4;k++){var v=lo+(hi-lo)/1.1*k/4;s+='<line x1="'+Xp(v)+'" y1="'+ax+'" x2="'+Xp(v)+'" y2="'+(ax+5)+'" stroke="#1d2a38" stroke-width="1.5"/><text x="'+Xp(v)+'" y="'+(ax+19)+'" text-anchor="middle" font-size="10.5" font-weight="600" fill="#5b6b7d">'+f(v,0)+'</text>'}
+ if(isFinite(V.px)){var xp=Xp(V.px),an=xp>x1-40?'end':(xp<x0+40?'start':'middle');s+='<line x1="'+xp+'" y1="30" x2="'+xp+'" y2="'+(ax-2)+'" stroke="#1d2a38" stroke-width="2" stroke-dasharray="5 4"/><text x="'+xp+'" y="22" text-anchor="'+an+'" font-size="12" font-weight="800" fill="#1d2a38">'+esc(t(X.ffp))+' '+f(V.px,0)+'</text>'}
+ return s+'</svg>'}
+function out(){var V=calc(),h='',x=t(X.x),pc=function(v){return f(v*100,1)+'%'};
+ var ok1=isFinite(V.evm1)&&isFinite(V.evm2),ok1e=ok1&&isFinite(V.nd);
+ h+=card('r1','7-1','pl',row('evm',ok1,f(V.evm1,0)+' 〜 '+f(V.evm2,0),f(V.eb)+' × '+f(V.m1)+x+' 〜 '+f(V.eb)+' × '+f(V.m2)+x,{msg:miss(['ebitda','m1','m2'])})+row('eqm',ok1e,f(V.eqm1,0)+' 〜 '+f(V.eqm2,0),f(V.evm1,0)+' − '+f(V.nd)+' 〜 '+f(V.evm2,0)+' − '+f(V.nd),{msg:miss(['ebitda','m1','m2','nd']),neg:V.eqm1<0}));
+ var d=V.d,b2='';
+ if(d){b2+='<p class="sw">'+esc(t(X.sw))+'</p><div class="tw"><table><tr><th></th>'+V.F.map(function(_,i){return '<th>'+esc(yl(i))+'</th>'}).join('')+'</tr><tr><td>'+esc(t(X.fcf))+'</td>'+V.F.map(function(v){return '<td>'+f(v)+'</td>'}).join('')+'</tr><tr><td>'+esc(t(X.df))+'</td>'+V.F.map(function(_,i){return '<td>'+f(1/Math.pow(1+V.w,i+1),3)+'</td>'}).join('')+'</tr><tr><td>'+esc(t(X.pv))+'</td>'+d.pv.map(function(v){return '<td>'+f(v,1)+'</td>'}).join('')+'</tr></table></div>'}
+ var m3=V.bad?t(X.wg):miss(['f1','f2','f3','f4','f5','w','g']);
+ b2+=row('sum',!!d,d?f(d.sum,0):'',d?d.pv.map(function(v){return f(v,1)}).join(' ＋ '):'',{msg:m3})+row('tv',!!d,d?f(d.tv,0):'',d?f(V.F[4])+' × '+f(1+V.g,3)+' ÷（'+f(V.w,3)+' − '+f(V.g,3)+'）':'',{msg:m3})+row('ptv',!!d,d?f(d.ptv,0):'',d?f(d.tv,0)+' × '+f(1/Math.pow(1+V.w,5),3):'',{msg:m3})+row('ev',!!d,d?f(d.ev,0):'',d?f(d.sum,0)+' ＋ '+f(d.ptv,0):'',{msg:m3})+row('eq',!!d&&isFinite(V.eq),f(V.eq,0),d?f(d.ev,0)+' − '+f(V.nd):'',{msg:m3||miss(['nd']),neg:V.eq<0})+row('tvs',!!d,pc(V.tvs),d?f(d.ptv,0)+' ÷ '+f(d.ev,0):'',{msg:m3,al:V.tvs>0.75});
+ h+=card('r2','7-2','cf',b2);
+ if(d&&isFinite(V.nd)&&(V.ws.length>1||V.gs.length>1)){var tb='<p class="sw">'+esc(t(X.sw))+'</p><div class="tw"><table><tr><th>'+esc(t(X.eqv))+'</th>'+V.gs.map(function(g){return '<th>'+esc(t(X.gr))+' '+f(g*100,1)+'%</th>'}).join('')+'</tr>'+V.ws.map(function(w,i){return '<tr><td>'+esc(t(X.dr))+' '+f(w*100,1)+'%</td>'+V.grid[i].map(function(v,j){return '<td'+(w===V.w&&V.gs[j]===V.g?' class="base"':'')+'>'+f(v,0)+'</td>'}).join('')+'</tr>'}).join('')+'</table></div><p class="note">'+esc(f(V.dmin,0)+' 〜 '+f(V.dmax,0))+'</p>';h+=card('r3','7-2','cf',tb)}
+ var fg=ff(V);if(fg)h+=card('r4','7-6','ink',fg);
+ if(isFinite(V.px)){h+=card('r5','7-6','bs',row('evp',isFinite(V.evp),f(V.evp,0),f(V.px)+' ＋ '+f(V.nd),{msg:miss(['nd'])})+row('imp',isFinite(V.imp),f(V.imp,1)+x,f(V.evp,0)+' ÷ '+f(V.eb),{msg:miss(['nd','ebitda']),al:isFinite(V.imp)&&ok1&&(V.imp>Math.max(V.m1,V.m2)+1e-9)})+(isFinite(V.ni)?row('per',isFinite(V.per),f(V.per,1)+x,f(V.px)+' ÷ '+f(V.ni)):'')+(isFinite(V.na)?row('pbr',isFinite(V.pbr),f(V.pbr,2)+x,f(V.px)+' ÷ '+f(V.na))+row('gw',true,f(V.gw,0),f(V.px)+' − '+f(V.na),{neg:V.gw<0}):''))}
+ if(isFinite(V.e5)||isFinite(V.xm)){var okx=isFinite(V.xeq);h+=card('r6','7-6','bs',row('xeq',okx,f(V.xeq,0),f(V.e5)+' × '+f(V.xm)+x+' − '+f(V.xnd),{msg:miss(['e5','xm'])})+row('moic',isFinite(V.moic),f(V.moic,2)+x,f(V.xeq,0)+' ÷ '+f(V.px),{msg:miss(['e5','xm','px'])})+row('irr',isFinite(V.irr),pc(V.irr),f(V.moic,2)+' ^（1 ÷ 5）− 1',{msg:miss(['e5','xm','px']),neg:V.irr<0}))}
+ document.getElementById('res').innerHTML=h}
+function render(){LI=lang==='ja'?0:lang==='ko'?1:2;document.documentElement.lang=lang;document.title=t(X.title);
+ ['title','lead','pre','pren','note'].forEach(function(k){document.getElementById('t_'+k).textContent=t(X[k])});
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ document.getElementById('pre').innerHTML=Object.keys(PRE).map(function(k){return '<button type="button" data-p="'+k+'"'+(P===k?' class="on"':'')+'>'+esc(t(PN[k]))+'</button>'}).join('')+'<button type="button" data-p="blank" class="sub'+(P==='blank'?' on':'')+'">'+esc(t(X.blank))+'</button>';
+ document.getElementById('t_in').innerHTML=esc(t(X.inh))+'<span class="tag">'+esc(t(X.unit))+'：'+esc(t(PU[P]||PU.blank))+'</span>';
+ document.getElementById('inp').innerHTML=FIELDS.map(function(g){return '<div class="grp '+g[0]+'"><h3>'+esc(t(X[g[0]]))+'</h3><div class="g">'+g[1].map(function(k){return '<label>'+esc(t(FL[k]))+(OPT[k]?'（'+esc(t(X.opt))+'）':'')+'<input type="text" inputmode="decimal" autocomplete="off" data-k="'+k+'" value="'+esc(D[k])+'"></label>'}).join('')+'</div></div>'}).join('');
+ out()}
+document.getElementById('pre').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;P=b.dataset.p;D=P==='blank'?blank():cp(PRE[P]);save();render()});
+document.getElementById('inp').addEventListener('input',function(e){var k=e.target.dataset.k;if(!k)return;D[k]=e.target.value;save();out()});
+document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>
