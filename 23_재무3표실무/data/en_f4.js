@@ -74,7 +74,7 @@ sections:[
 {name:"A 2.0bn provision for future heavy maintenance",x:"Profit: cost −20. Balance sheet: — / maintenance provision +20, retained earnings −20. Cash flow: no."}]}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Write three columns yourself",x:"‘Paid the handler 5m yen for last month (accrued last month)’, ‘A passenger flew on redeemed miles’, ‘Sold an old aircraft with a book value of 3.0bn for 3.5bn’."},
-{name:"Name the pattern",x:"Which of the four patterns does each of the three belong to?"}]}]}],
+{name:"Name the pattern",x:"Which of the four patterns does each of the three belong to?"}]},{t:"link",href:"たい焼き屋の決算ゲーム.html",x:"[Practice page] Taiyaki Stall Closing Game: practise “which statement moves” at Beginner, Applied and Airline levels"}]}],
 voice:"When a station report says ‘a cost was incurred’, adding one word, whether it was paid this month, accrued, or drawn from a provision, changes how head-office finance reads it.",
 terms:[["Transaction","取引","거래"],["Accrued expenses","未払費用","미지급비용"],["Recognising a provision","引当金の計上","충당금 설정"],["Reclassification / transfer","振替","대체"]],
 quiz:[{q:"‘Selling on credit’ moves which statements?",opts:["Income statement and balance sheet (not cash)","All three","Only the cash flow statement","Only the balance sheet"],a:0,exp:"A sale and a receivable are recorded; no cash moves."},
@@ -97,7 +97,7 @@ sections:[
 {t:"point",x:"2020 was this picture on a vast scale for airlines. Refunds of tickets paid in advance kept flowing out (a fall in unearned revenue rather than a rise in receivables), income was near zero, and fixed costs and repayments continued. Cash would have run out before profit; airlines prevented it with loans, share issues and government support. ★"}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Change the terms",x:"If 200,000 of the order had been paid in advance, what is month-end cash? What if the loan had been refinanced to 6,000 a month?"},
-{name:"Write a cash forecast",x:"Forecast month 3’s cash movements (the 400,000 arrives after 60 days, 59,000 of tax is paid, and so on). Is cash positive again at the end of month 3?"}]}]}],
+{name:"Write a cash forecast",x:"Forecast month 3’s cash movements (the 400,000 arrives after 60 days, 59,000 of tax is paid, and so on). Is cash positive again at the end of month 3?"}]},{t:"link",href:"3つの表の連動シミュレーター.html",x:"[Practice page] Three-Statement Simulator: recreate insolvency while profitable with “More credit sales” and “Sales jump”"}]}],
 voice:"A station can report ‘sales are strong’ while its account is nearly empty. Add ‘how much is still uncollected’ to every sales report. Insolvency while profitable starts in the front-line numbers, not at head office.",
 terms:[["Insolvency while profitable","黒字倒産","흑자 도산"],["Cash flow forecast / cash budget","資金繰り表","자금 수지표(자금 계획표)"],["Inability to pay","支払い不能","지급 불능"],["Refinancing","借り換え","차환"],["Advance payment","前金","선금"]],
 quiz:[{q:"The direct cause of insolvency while profitable is…",opts:["No cash on the day a payment is due","A loss","Falling sales","High taxes"],a:0,exp:"Profit cannot pay a bill; only cash can."},

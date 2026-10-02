@@ -42,7 +42,7 @@ sections:[
 {t:"point",x:"In a year with a 10.5bn loss, cash rose 21.2bn: depreciation took no cash, unearned revenue arrived early and investment was paused. The reverse also happens, as in the stall’s first month and Vela Air year 1 (profit 90, cash −156). Read profit and cash separately."}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Explain the gap",x:"Vela Air year 1 earned 9.0bn yet cash fell 15.6bn. Using the tables in 3-1, 1-2 and 2-1, explain why under the five headings."},
-{name:"Gaps at the station",x:"If your station hit its sales target yet was short of cash, which of the five reasons could be behind it?"}]}]}],
+{name:"Gaps at the station",x:"If your station hit its sales target yet was short of cash, which of the five reasons could be behind it?"}]},{t:"link",href:"3つの表の連動シミュレーター.html",x:"[Practice page] Three-Statement Simulator: move receivables, inventory and investment and create the profit–cash gap yourself"}]}],
 voice:"‘Profitable but no cash’ and ‘loss-making but plenty of cash’ both happen routinely. Rather than being alarmed, run through the five reasons in order; usually two of them explain everything.",
 terms:[["Change in receivables","売掛金の増減","매출채권 증감"],["Change in inventories","棚卸資産の増減","재고자산 증감"],["Non-cash expense","非資金費用","비현금 비용"],["Change in unearned revenue","前受金の増減","선수금 증감"],["Insolvency while profitable","黒字倒産","흑자 도산"]],
 quiz:[{q:"Why does depreciation create a gap between profit and cash?",opts:["It is a cost with no cash leaving","It is paid in cash monthly","It is included in sales","It increases liabilities"],a:0,exp:"Fully paid at purchase; no cash moves when it is expensed."},

@@ -89,7 +89,7 @@ sections:[
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Change a number and check",x:"If sales had been 200,000 yen, what would profit, cash and equity be? Does assets = liabilities + equity still hold?"},
 {name:"Explain it in your own words",x:"If the owner asks ‘Did we make money this month? Do we have more cash?’, answer in two sentences."}]},
-{t:"note",x:"* These figures are used again and again in Parts 1 to 4. Keep a note of them."}]}],
+{t:"note",x:"* These figures are used again and again in Parts 1 to 4. Keep a note of them."},{t:"link",href:"たい焼き屋の決算ゲーム.html",x:"[Practice page] Taiyaki Stall Closing Game: which statement moves for each of these 11 transactions?"}]}],
 voice:"The only statements whose numbers you truly trust are the ones you have built yourself. Rewrite the stall’s ten lines by hand. An airline’s accounts do the same thing, just with more lines.",
 terms:[["Accounts receivable","売掛金","매출채권(외상)"],["Inventory","在庫","재고"],["Depreciation","減価償却費","감가상각비"],["Tax payable","未払税金","미지급 세금"],["Retained earnings","利益剰余金","이익잉여금"]],
 quiz:[{q:"How is the 20,000 yen supplied to the school event (paid next month) treated this month?",opts:["Counted as a sale and shown as a receivable in assets","Not counted as a sale until the cash arrives","Treated as a cost","Counted as next month’s sale"],a:0,exp:"Sales are recognised on delivery; with no cash yet, it becomes a receivable."},

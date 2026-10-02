@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3つの表の連動シミュレーター ― 小さな会社の1年を動かす</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
+*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 70px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+h1{font-size:22px;margin:6px 0}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
+.langs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
+.langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.card h2{font-size:15px;margin:0 0 10px}
+.lay{display:grid;grid-template-columns:340px 1fr;gap:14px}@media(max-width:900px){.lay{grid-template-columns:1fr}}
+.grp{margin-bottom:12px}.grp h3{font-size:13px;margin:0 0 6px;color:var(--muted);display:flex;align-items:center;gap:8px}.grp h3 i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.sl{display:grid;grid-template-columns:1fr 70px;gap:6px;align-items:center;margin:4px 0}
+.sl label{font-size:13px;grid-column:1/3;display:flex;justify-content:space-between}.sl label b{font-weight:700}
+.sl input[type=range]{width:100%;grid-column:1/2}.sl output{font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.presets button{border:2px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;cursor:pointer;font-size:13px;color:var(--ink);min-height:40px;text-align:left}
+.presets button.on{border-color:var(--ink);background:#eef3f8}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}@media(max-width:1080px){.three{grid-template-columns:1fr}}
+.stmt{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--paper)}
+.stmt h3{margin:0 0 8px;font-size:14px;display:flex;align-items:center;gap:8px}.stmt h3 i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.stmt table{width:100%;border-collapse:collapse;font-size:13px}.stmt td{padding:3px 2px;border-bottom:1px dashed #eef2f6}.stmt td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stmt tr.sum td{font-weight:700;border-top:2px solid var(--line);border-bottom:0}.stmt tr.hd td{font-weight:700;color:var(--muted);border-bottom:0;padding-top:8px}
+.d{font-size:11px;margin-left:4px}.d.up{color:var(--ok)}.d.dn{color:var(--ng)}
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-top:10px}
+.chk{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;background:#f0f8f6}.chk.bad{background:#fff0f2;border-color:#f1c2c9}.chk b{display:block}
+.bridge{display:flex;align-items:flex-end;gap:6px;height:150px;margin:8px 0 4px;overflow-x:auto;padding-bottom:4px}
+.bar{flex:1;min-width:52px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.bar i{display:block;width:100%;border-radius:4px 4px 0 0}.bar small{font-size:10px;color:var(--muted);text-align:center;line-height:1.2;margin-top:3px;height:26px}.bar b{font-size:11px}
+.note{font-size:12px;color:var(--muted)}
+.warn{border-left:5px solid var(--ng);background:#fff0f2;padding:8px 12px;border-radius:10px;margin-top:10px;font-size:14px}
+.warn.ok{border-color:var(--ok);background:#f0f8f6}
+details summary{cursor:pointer;font-weight:700;font-size:14px}.dbody{font-size:13px;color:var(--muted);margin-top:6px}
+button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div><h1 id="t_title"></h1><p class="lead" id="t_lead"></p></div>
+ <div class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></div>
+</header>
+
+<div class="card">
+ <h2 id="t_presets"></h2>
+ <div class="presets" id="presets"></div>
+ <div class="lay">
+  <div id="sliders"></div>
+  <div>
+   <div class="three">
+    <div class="stmt"><h3><i style="background:var(--pl)"></i><span id="t_pl"></span></h3><table id="pl"></table></div>
+    <div class="stmt"><h3><i style="background:var(--bs)"></i><span id="t_bs"></span></h3><table id="bs"></table></div>
+    <div class="stmt"><h3><i style="background:var(--cf)"></i><span id="t_cf"></span></h3><table id="cf"></table></div>
+   </div>
+   <div class="checks" id="checks"></div>
+   <div id="warn"></div>
+  </div>
+ </div>
+</div>
+
+<div class="card">
+ <h2 id="t_bridge"></h2>
+ <div class="bridge" id="bridge"></div>
+ <p class="note" id="t_bridgenote"></p>
+</div>
+
+<div class="card">
+ <details><summary id="t_how"></summary><div class="dbody" id="how"></div></details>
+</div>
+</div>
+
+<script>
+var L={
+ja:{title:'3つの表の連動シミュレーター ― 小さな会社の1年を動かす',lead:'つまみを動かすと、損益計算書・貸借対照表・キャッシュフロー計算書が同時に変わります。利益と現金がどこでずれるかを、自分の手で確かめてください。単位は百万円。期首の数字は講座0-3の「小さな会社」です。',
+ presets:'場面を選ぶ（つまみが動きます）',pl:'損益計算書（1年）',bs:'貸借対照表（期末）',cf:'キャッシュフロー計算書（1年）',bridge:'利益 → 現金の橋（営業キャッシュフローまで）',how:'このシミュレーターの仕組み',
+ g1:'商売',g2:'運転資本（お金をしばる3つ）',g3:'投資と資金',
+ S:{rev:'売上',cogs:'売上原価率',sga:'人件費・家賃などの固定費',dep:'減価償却費',ard:'売掛金の回収までの日数',invd:'在庫を持つ日数',apd:'買掛金を払うまでの日数',capex:'設備投資',loan:'新しい借入',repay:'借入の返済',div:'配当'},
+ P:{base:['基本の年','講座0-3の小さな会社そのまま'],ar:['掛け売りが増えた','大口の取引先が増え、回収が60日後に'],inv:['在庫を積み増した','先買いで在庫90日分'],capex:['大きな設備投資','設備60を買い、借入40で補う'],repay:['借入を一気に返す','借入30を全額返済'],div:['配当を増やす','利益のほとんどを配当に'],boom:['売上が急に伸びた','売上1.6倍、ただし回収は45日後、在庫も増える'],slump:['売上が落ちた','売上7割、固定費はそのまま']},
+ R:{rev:'売上',cogs:'売上原価',gross:'売上総利益',sga:'人件費・家賃など',dep:'減価償却費',op:'営業利益',int:'支払利息',pretax:'税引前利益',tax:'法人税（30%）',net:'当期純利益',
+  a:'資産',cash:'現金',ar:'売掛金',inv:'在庫',ppe:'設備（簿価）',ta:'資産合計',l:'負債・純資産',ap:'買掛金',ln:'借入金',cap:'資本金',re:'利益剰余金',tl:'負債・純資産合計',
+  cfo:'営業活動',cfi:'投資活動',cff:'財務活動',chg:'現金の増減',beg:'期首現金',end:'期末現金',
+  b_net:'当期純利益',b_dep:'＋減価償却',b_ar:'売掛金の増減',b_inv:'在庫の増減',b_ap:'買掛金の増減',b_cfo:'営業CF'},
+ C:{eq:'資産 ＝ 負債＋純資産',cash:'期末現金 ＝ C/Fの期末現金',re:'利益剰余金 ＝ 期首＋利益−配当',ratio:'自己資本比率'},
+ W:{neg:'期末の現金がマイナスです。利益が{net}でも、払うべき日に現金がありません ― 黒字倒産の形です（講座4-4）。回収を早める、在庫を減らす、借入を長期にする、のどれかが要ります。',loss:'赤字の年です。税金はゼロ、利益剰余金は減ります。現金は{cash}。',gap:'利益 {net} に対して現金は {chg} 動きました。差の主な理由：{why}。',ok:'利益も現金もプラスです。利益 {net}、現金の増減 {chg}。'},
+ why:{ar:'売掛金の増加',inv:'在庫の増加',ap:'買掛金の変化',dep:'減価償却（現金が出ない費用）',capex:'設備投資',fin:'借入・返済・配当'},
+ bridgenote:'緑は現金を増やす調整、赤は減らす調整。この橋の先に、投資（設備）と財務（借入・返済・配当）が続いて期末現金になります。',
+ howtxt:'売上原価 ＝ 売上 × 原価率。売掛金 ＝ 売上 × 回収日数 ÷ 365、在庫 ＝ 原価 × 在庫日数 ÷ 365、買掛金 ＝ 原価 × 支払日数 ÷ 365（期首はそれぞれ 3・4・5）。支払利息 ＝ 期首借入＋新規借入 の 3.3%。法人税は税引前利益の30%（赤字ならゼロ、その年に納付）。設備の期首簿価60に投資を足し減価償却を引く。営業CF ＝ 利益＋減価償却−売掛金増−在庫増＋買掛金増。資産＝負債＋純資産は、つまみをどう動かしても必ず一致します ― 一致しないつまみは存在しません。'},
+ko:{title:'세 표 연동 시뮬레이터 — 작은 회사의 1년을 움직인다',lead:'손잡이를 움직이면 손익계산서·재무상태표·현금흐름표가 동시에 바뀝니다. 이익과 현금이 어디서 어긋나는지 직접 확인하세요. 단위는 백만 엔. 기초 숫자는 강좌 0-3의 「작은 회사」입니다.',
+ presets:'장면을 고른다(손잡이가 움직입니다)',pl:'손익계산서(1년)',bs:'재무상태표(기말)',cf:'현금흐름표(1년)',bridge:'이익 → 현금의 다리(영업현금흐름까지)',how:'이 시뮬레이터의 구조',
+ g1:'장사',g2:'운전자본(현금을 묶는 셋)',g3:'투자와 자금',
+ S:{rev:'매출',cogs:'매출원가율',sga:'인건비·임대료 등 고정비',dep:'감가상각비',ard:'매출채권 회수까지의 일수',invd:'재고를 가지는 일수',apd:'매입채무를 내기까지의 일수',capex:'설비투자',loan:'새 차입',repay:'차입 상환',div:'배당'},
+ P:{base:['기본의 해','강좌 0-3의 작은 회사 그대로'],ar:['외상이 늘었다','큰 거래처가 늘어 회수가 60일 뒤로'],inv:['재고를 쌓았다','먼저 사서 재고 90일분'],capex:['큰 설비투자','설비 60을 사고 차입 40으로 보충'],repay:['빚을 한꺼번에 갚는다','차입 30을 전액 상환'],div:['배당을 늘린다','이익 대부분을 배당으로'],boom:['매출이 급히 늘었다','매출 1.6배, 다만 회수는 45일 뒤, 재고도 는다'],slump:['매출이 떨어졌다','매출 7할, 고정비는 그대로']},
+ R:{rev:'매출',cogs:'매출원가',gross:'매출총이익',sga:'인건비·임대료 등',dep:'감가상각비',op:'영업이익',int:'이자 비용',pretax:'세전이익',tax:'법인세(30%)',net:'당기순이익',
+  a:'자산',cash:'현금',ar:'매출채권',inv:'재고',ppe:'설비(장부가)',ta:'자산 합계',l:'부채·자본',ap:'매입채무',ln:'차입금',cap:'자본금',re:'이익잉여금',tl:'부채·자본 합계',
+  cfo:'영업활동',cfi:'투자활동',cff:'재무활동',chg:'현금 증감',beg:'기초 현금',end:'기말 현금',
+  b_net:'당기순이익',b_dep:'+감가상각',b_ar:'매출채권 증감',b_inv:'재고 증감',b_ap:'매입채무 증감',b_cfo:'영업CF'},
+ C:{eq:'자산 = 부채 + 자본',cash:'기말 현금 = C/F의 기말 현금',re:'이익잉여금 = 기초 + 이익 − 배당',ratio:'자기자본비율'},
+ W:{neg:'기말 현금이 마이너스입니다. 이익이 {net}이어도 내야 할 날에 현금이 없습니다 — 흑자 도산의 모양입니다(강좌 4-4). 회수를 앞당기거나, 재고를 줄이거나, 차입을 장기로 바꾸는 것 중 하나가 필요합니다.',loss:'적자인 해입니다. 세금은 0, 이익잉여금은 줍니다. 현금은 {cash}.',gap:'이익 {net}에 대해 현금은 {chg} 움직였습니다. 차이의 주된 이유: {why}.',ok:'이익도 현금도 플러스입니다. 이익 {net}, 현금 증감 {chg}.'},
+ why:{ar:'매출채권 증가',inv:'재고 증가',ap:'매입채무 변화',dep:'감가상각(현금이 나가지 않는 비용)',capex:'설비투자',fin:'차입·상환·배당'},
+ bridgenote:'초록은 현금을 늘리는 조정, 빨강은 줄이는 조정. 이 다리 끝에 투자(설비)와 재무(차입·상환·배당)가 이어져 기말 현금이 됩니다.',
+ howtxt:'매출원가 = 매출 × 원가율. 매출채권 = 매출 × 회수 일수 ÷ 365, 재고 = 원가 × 재고 일수 ÷ 365, 매입채무 = 원가 × 지급 일수 ÷ 365(기초는 각각 3·4·5). 이자 비용 = (기초 차입 + 새 차입)의 3.3%. 법인세는 세전이익의 30%(적자면 0, 그해에 납부). 설비 기초 장부가 60에 투자를 더하고 감가상각을 뺀다. 영업CF = 이익 + 감가상각 − 매출채권 증가 − 재고 증가 + 매입채무 증가. 자산 = 부채 + 자본은 손잡이를 어떻게 움직여도 반드시 일치합니다 — 일치하지 않는 손잡이는 존재하지 않습니다.'},
+en:{title:'Three-Statement Simulator: Run a Small Company for a Year',lead:'Move the sliders and the income statement, balance sheet and cash flow statement change together. See for yourself where profit and cash part ways. Unit: millions of yen. Opening figures are the small company from lesson 0-3.',
+ presets:'Pick a scenario (the sliders move)',pl:'Income statement (year)',bs:'Balance sheet (year end)',cf:'Cash flow statement (year)',bridge:'Bridge from profit to cash (to operating cash flow)',how:'How this simulator works',
+ g1:'Trading',g2:'Working capital (the three that tie up cash)',g3:'Investment and funding',
+ S:{rev:'Sales',cogs:'Cost of sales ratio',sga:'Fixed costs (staff, rent etc.)',dep:'Depreciation',ard:'Days to collect receivables',invd:'Days of inventory held',apd:'Days to pay suppliers',capex:'Capital expenditure',loan:'New borrowing',repay:'Loan repayment',div:'Dividend'},
+ P:{base:['Base year','The small company from lesson 0-3'],ar:['More credit sales','Big customers paying after 60 days'],inv:['Stocking up','Buying ahead: 90 days of inventory'],capex:['Big investment','Buy 60 of equipment, 40 funded by a loan'],repay:['Repay all debt','Repay the 30 loan in full'],div:['Raise the dividend','Pay out most of the profit'],boom:['Sales jump','Sales ×1.6, but collection takes 45 days and inventory grows'],slump:['Sales fall','Sales at 70%, fixed costs unchanged']},
+ R:{rev:'Sales',cogs:'Cost of sales',gross:'Gross profit',sga:'Staff, rent etc.',dep:'Depreciation',op:'Operating profit',int:'Interest',pretax:'Profit before tax',tax:'Tax (30%)',net:'Net profit',
+  a:'Assets',cash:'Cash',ar:'Receivables',inv:'Inventory',ppe:'Equipment (net)',ta:'Total assets',l:'Liabilities and equity',ap:'Payables',ln:'Loan',cap:'Capital',re:'Retained earnings',tl:'Total liabilities and equity',
+  cfo:'Operating',cfi:'Investing',cff:'Financing',chg:'Change in cash',beg:'Opening cash',end:'Closing cash',
+  b_net:'Net profit',b_dep:'+ Depreciation',b_ar:'Receivables change',b_inv:'Inventory change',b_ap:'Payables change',b_cfo:'Operating CF'},
+ C:{eq:'Assets = liabilities + equity',cash:'Closing cash = cash flow closing cash',re:'Retained earnings = opening + profit − dividend',ratio:'Equity ratio'},
+ W:{neg:'Closing cash is negative. Profit is {net}, yet there is no cash on the day payments fall due: insolvency while profitable (lesson 4-4). Collect faster, hold less inventory or refinance the loan long-term.',loss:'A loss year. No tax, and retained earnings fall. Cash: {cash}.',gap:'Profit {net}, but cash moved {chg}. Main reasons: {why}.',ok:'Both profit and cash are positive. Profit {net}, change in cash {chg}.'},
+ why:{ar:'rise in receivables',inv:'rise in inventory',ap:'change in payables',dep:'depreciation (a non-cash cost)',capex:'capital expenditure',fin:'borrowing, repayment and dividends'},
+ bridgenote:'Green adjustments add cash, red ones take it away. After this bridge come investing (equipment) and financing (loans, repayments, dividends) to reach closing cash.',
+ howtxt:'Cost of sales = sales × ratio. Receivables = sales × collection days ÷ 365, inventory = cost × inventory days ÷ 365, payables = cost × payment days ÷ 365 (opening 3, 4 and 5). Interest = 3.3% of opening plus new loans. Tax is 30% of profit before tax (zero on a loss, paid in the year). Equipment: opening 60 plus capex less depreciation. Operating CF = profit + depreciation − receivables increase − inventory increase + payables increase. Assets always equal liabilities plus equity, whatever you do: there is no slider that breaks it.'}};
+var OPEN={cash:20,ar:3,inv:4,ppe:60,ap:5,loan:30,cap:30,re:22};
+var SL=[['rev',150,600,10,300,'g1'],['cogs',25,55,0.5,36.7,'g1','%'],['sga',100,220,2,148,'g1'],['dep',0,40,1,12,'g1'],['ard',0,90,1,10,'g2','d'],['invd',0,120,1,20,'g2','d'],['apd',0,90,1,23,'g2','d'],['capex',0,100,2,20,'g3'],['loan',0,100,2,0,'g3'],['repay',0,30,1,6,'g3'],['div',0,40,1,5,'g3']];
+var PRE={base:{},ar:{ard:60},inv:{invd:90},capex:{capex:60,loan:40,dep:18},repay:{repay:30},div:{div:20},boom:{rev:480,ard:45,invd:40,sga:170},slump:{rev:210}};
+var lang=localStorage.getItem('fin_lang')||'ja',V={},preset='base';
+function f1(n){var s=(Math.round(n*10)/10).toLocaleString('ja-JP',{minimumFractionDigits:1,maximumFractionDigits:1});return s}
+function sg(n){return (n>=0?'+':'−')+f1(Math.abs(n))}
+function calc(v){var cogs=v.rev*v.cogs/100,gross=v.rev-cogs,op=gross-v.sga-v.dep,intr=(OPEN.loan+v.loan)*0.033,pretax=op-intr,tax=Math.max(0,pretax)*0.3,net=pretax-tax;
+ var ar=v.rev*v.ard/365,inv=cogs*v.invd/365,ap=cogs*v.apd/365;var dAR=ar-OPEN.ar,dInv=inv-OPEN.inv,dAP=ap-OPEN.ap;
+ var cfo=net+v.dep-dAR-dInv+dAP,cfi=-v.capex,cff=v.loan-v.repay-v.div,chg=cfo+cfi+cff,cash=OPEN.cash+chg;
+ var ppe=OPEN.ppe+v.capex-v.dep,loan=OPEN.loan+v.loan-v.repay,re=OPEN.re+net-v.div;
+ return {cogs:cogs,gross:gross,op:op,intr:intr,pretax:pretax,tax:tax,net:net,ar:ar,inv:inv,ap:ap,dAR:dAR,dInv:dInv,dAP:dAP,cfo:cfo,cfi:cfi,cff:cff,chg:chg,cash:cash,ppe:ppe,loan:loan,re:re,ta:cash+ar+inv+ppe,tl:ap+loan+OPEN.cap+re,v:v}}
+var BASEV={};SL.forEach(function(s){BASEV[s[0]]=s[4]});var BASE=calc(BASEV);
+function row(k,val,base,cls){var d='';if(base!=null&&Math.abs(val-base)>=0.05){var up=val>base;d='<span class="d '+(up?'up':'dn')+'">'+sg(val-base)+'</span>'}return '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+L[lang].R[k]+'</td><td>'+f1(val)+d+'</td></tr>'}
+function render(){var d=L[lang];['title','lead','presets','pl','bs','cf','bridge','how','bridgenote'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});document.getElementById('how').textContent=d.howtxt;
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ var P=document.getElementById('presets');P.innerHTML='';Object.keys(PRE).forEach(function(k){var b=document.createElement('button');b.innerHTML='<b>'+d.P[k][0]+'</b><br><small>'+d.P[k][1]+'</small>';b.className=preset===k?'on':'';b.onclick=function(){preset=k;SL.forEach(function(s){V[s[0]]=(PRE[k][s[0]]!=null)?PRE[k][s[0]]:s[4]});render()};P.appendChild(b)});
+ var S=document.getElementById('sliders');S.innerHTML='';var groups={g1:[],g2:[],g3:[]};SL.forEach(function(s){groups[s[5]].push(s)});
+ var col={g1:'var(--pl)',g2:'var(--bs)',g3:'var(--cf)'};
+ Object.keys(groups).forEach(function(g){var div=document.createElement('div');div.className='grp';div.innerHTML='<h3><i style="background:'+col[g]+'"></i>'+d[g]+'</h3>';groups[g].forEach(function(s){var id=s[0],unit=s[6]==='%'?'%':s[6]==='d'?(lang==='ja'?'日':lang==='ko'?'일':' days'):'';var w=document.createElement('div');w.className='sl';w.innerHTML='<label><span>'+d.S[id]+'</span><b id="v_'+id+'">'+V[id]+unit+'</b></label><input type="range" min="'+s[1]+'" max="'+s[2]+'" step="'+s[3]+'" value="'+V[id]+'" data-k="'+id+'" aria-label="'+d.S[id]+'"><output></output>';div.appendChild(w)});S.appendChild(div)});
+ S.querySelectorAll('input[type=range]').forEach(function(r){r.oninput=function(){V[r.dataset.k]=parseFloat(r.value);preset=null;document.querySelectorAll('.presets button').forEach(function(b){b.classList.remove('on')});update()}});
+ update()}
+function update(){var d=L[lang],c=calc(V),b=BASE,v=V;
+ SL.forEach(function(s){var unit=s[6]==='%'?'%':s[6]==='d'?(lang==='ja'?'日':lang==='ko'?'일':' days'):'';var e=document.getElementById('v_'+s[0]);if(e)e.textContent=V[s[0]]+unit});
+ document.getElementById('pl').innerHTML=row('rev',v.rev,b.v.rev)+row('cogs',-c.cogs,-b.cogs)+row('gross',c.gross,b.gross,'sum')+row('sga',-v.sga,-b.v.sga)+row('dep',-v.dep,-b.v.dep)+row('op',c.op,b.op,'sum')+row('int',-c.intr,-b.intr)+row('pretax',c.pretax,b.pretax)+row('tax',-c.tax,-b.tax)+row('net',c.net,b.net,'sum');
+ document.getElementById('bs').innerHTML='<tr class="hd"><td>'+d.R.a+'</td><td></td></tr>'+row('cash',c.cash,b.cash)+row('ar',c.ar,b.ar)+row('inv',c.inv,b.inv)+row('ppe',c.ppe,b.ppe)+row('ta',c.ta,b.ta,'sum')+'<tr class="hd"><td>'+d.R.l+'</td><td></td></tr>'+row('ap',c.ap,b.ap)+row('ln',c.loan,b.loan)+row('cap',OPEN.cap,OPEN.cap)+row('re',c.re,b.re)+row('tl',c.tl,b.tl,'sum');
+ document.getElementById('cf').innerHTML=row('cfo',c.cfo,b.cfo)+row('cfi',c.cfi,b.cfi)+row('cff',c.cff,b.cff)+row('chg',c.chg,b.chg,'sum')+row('beg',OPEN.cash,OPEN.cash)+row('end',c.cash,b.cash,'sum');
+ var ratio=c.re+OPEN.cap;var eqr=c.ta>0?ratio/c.ta*100:0;
+ var CK=[[d.C.eq,Math.abs(c.ta-c.tl)<0.05,f1(c.ta)+' = '+f1(c.tl)],[d.C.cash,true,f1(c.cash)],[d.C.re,true,f1(OPEN.re)+' + '+f1(c.net)+' − '+f1(v.div)+' = '+f1(c.re)],[d.C.ratio,eqr>=20,Math.round(eqr*10)/10+'%']];
+ document.getElementById('checks').innerHTML=CK.map(function(k){return '<div class="chk'+(k[1]?'':' bad')+'"><b>'+(k[1]?'✓ ':'✗ ')+k[0]+'</b>'+k[2]+'</div>'}).join('');
+ var W=document.getElementById('warn');var msg,cls='';
+ var reasons=[];[['ar',-c.dAR],['inv',-c.dInv],['ap',c.dAP],['dep',v.dep],['capex',-v.capex],['fin',c.cff]].sort(function(a,b){return Math.abs(b[1])-Math.abs(a[1])}).slice(0,2).forEach(function(r){reasons.push(d.why[r[0]]+'（'+sg(r[1])+'）')});
+ if(c.cash<0){msg=d.W.neg.replace('{net}',f1(c.net))}else if(c.net<0){msg=d.W.loss.replace('{cash}',sg(c.chg))}else if(Math.abs(c.chg-c.net)>5){msg=d.W.gap.replace('{net}',f1(c.net)).replace('{chg}',sg(c.chg)).replace('{why}',reasons.join(lang==='en'?', ':'、'));cls=' ok'}else{msg=d.W.ok.replace('{net}',f1(c.net)).replace('{chg}',sg(c.chg));cls=' ok'}
+ W.innerHTML='<div class="warn'+cls+'">'+msg+'</div>';
+ var steps=[['b_net',c.net,'t','var(--pl)'],['b_dep',v.dep,'d'],['b_ar',-c.dAR,'d'],['b_inv',-c.dInv,'d'],['b_ap',c.dAP,'d'],['b_cfo',c.cfo,'t','var(--cf)']];
+ var mx=Math.max(1,Math.abs(c.net),Math.abs(c.cfo),Math.abs(c.net)+v.dep+Math.abs(c.dAR)+Math.abs(c.dInv)+Math.abs(c.dAP));var H=110;
+ document.getElementById('bridge').innerHTML=steps.map(function(s){var val=s[1],h=Math.max(3,Math.abs(val)/mx*H),color=s[2]==='t'?s[3]:(val>=0?'var(--ok)':'var(--ng)');return '<div class="bar"><b>'+(s[2]==='t'?f1(val):sg(val))+'</b><i style="height:'+h+'px;background:'+color+'"></i><small>'+d.R[s[0]]+'</small></div>'}).join('')}
+document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('fin_lang',lang);render()}});
+SL.forEach(function(s){V[s[0]]=s[4]});render();
+</script>
+</body>
+</html>
