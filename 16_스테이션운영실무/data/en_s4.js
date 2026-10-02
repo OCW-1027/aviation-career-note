@@ -56,7 +56,7 @@ sections:[
 {name:"Waiting even when on schedule",x:"Even if you are ready on time, the runway sequence may give a later TSAT. Separate time spent waiting for TSAT from delay you caused when reviewing punctuality figures."},
 {name:"TOBT accuracy as a measure",x:"Some airports and airlines track how often TOBT was changed and whether start-up happened within 5 minutes of TOBT, as measures for stations and handlers."},
 {name:"Review in the monthly meeting",x:"Review flights that missed TSAT or updated TOBT late in the monthly handler meeting and fix the procedure (2-3)."}]}]}],
-voice:"",
+voice:"When TSAT started, some tried to get ahead in the queue by declaring an early TOBT. Once we made sure the floor updated the TOBT as soon as readiness changed, our departures actually became more stable.",
 terms:[["Airport Collaborative Decision Making (A-CDM)","空港の協調的意思決定（A-CDM）","공항 협력적 의사결정(A-CDM)"],["Target Off-Block Time (TOBT)","目標オフブロック時刻（TOBT）","목표 오프블록 시각(TOBT)"],["Target Start-up Approval Time (TSAT)","目標スタートアップ承認時刻（TSAT）","목표 시동 승인 시각(TSAT)"],["Possible Take-Off Time (PTOT)","離陸可能時刻（PTOT）","이륙 가능 시각(PTOT)"],["Estimated Off-Block Time (EOBT)","出発予定時刻（EOBT）","출발 예정 시각(EOBT)"],["Taxi Time","地上走行の時間","지상 주행 시간"]],
 quiz:[{q:"How is TSAT calculated?",opts:["TOBT + 30 minutes","CTOT − taxi time − pushback time","STD − 10 minutes","EOBT + TOBT"],a:1,exp:"It works back from the take-off time to when you may start moving."},
 {q:"At Narita, when must TOBT be entered?",opts:["5 minutes before EOBT","By 25 minutes before EOBT","The day before","There is no deadline"],a:1,exp:"Without it, the flight plan EOBT is treated as the TOBT."},

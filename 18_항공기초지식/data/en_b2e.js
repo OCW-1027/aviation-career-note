@@ -42,7 +42,7 @@ sections:[
 {name:"Causes of departure delays",x:"When flow restrictions apply at the boundary or the arrival airport because of traffic or weather, a departure time is assigned (TSAT, EDCT)."},
 {name:"Turbulence and cabin service",x:"The jet stream makes the area over the Sea of Japan / East Sea bumpy in winter; cabin and ground share information on seat-belt signs and service timing."},
 {name:"Explaining to passengers",x:"“Why does the return take longer?” or “Why are we landing a little late today?” can be explained by winds, airways and ATC flow management."}]}]}],
-voice:"",
+voice:"Once I could read a flight plan route, I could work out for myself, from dispatch’s explanation, how much time a late departure might make up. It still helps me check before announcing an expected arrival time.",
 terms:[["Flight Plan","飛行計画","비행계획"],["Hand-off","管制の引き継ぎ","관제 이양"],["Top of Climb (TOC)","上昇の終わり（TOC）","상승 종료점(TOC)"],["Top of Descent (TOD)","降下の始まり（TOD）","강하 시작점(TOD)"],["Cruising Level","巡航高度","순항 고도"],["Jet Stream","ジェット気流","제트기류"]],
 quiz:[{q:"In this example, where is the outbound flight handed from Korean to Japanese control?",opts:["EGOBA","LANAT","ESKAS","SWAMP"],a:1,exp:"The FIR boundary lies just past LANAT; on the return it is SAPRA."},
 {q:"Which is a suitable cruising level for the eastbound outbound flight?",opts:["FL340","FL350","FL360","FL380"],a:1,exp:"Eastbound flights normally use odd levels (FL330, FL350 and so on)."},
