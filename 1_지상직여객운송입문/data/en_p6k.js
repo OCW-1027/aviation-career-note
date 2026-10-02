@@ -43,7 +43,8 @@ sections:[
 {h:"Using the report",blocks:[{t:"rows",items:[
 {name:"To head office",x:"Submit by the set deadline (month-end on the calendar, 6-6)."},
 {name:"With the handler",x:"Use the same punctuality, baggage and safety pages as the monthly meeting pack (6-2)."},
-{name:"Within the station",x:"Share results and actions with staff at briefings or on the notice board."}]}]}],
+{name:"Within the station",x:"Share results and actions with staff at briefings or on the notice board."}]},
+{t:"note",x:"* Comparing indicators as rates, and putting the monthly meeting pack on one page, are covered in Airport Station Management in Practice 1-4 and 2-3."}]}],
 voice:"Monthly report figures mean something when you compare them with last month. Where something changed, write the cause in one line with next month’s action.",
 terms:[["Monthly Report","月報","월간 보고"],["Key Performance Indicator (KPI)","重要業績評価指標","핵심성과지표"],["On-time Performance (OTP)","定時率","정시율"],["Mishandled Baggage Rate","手荷物事故率","수하물 사고율"],["Complaint Rate","苦情率","불만율"],["Year-on-year","前年同月比","전년 동월 대비"]],
 quiz:[{q:"How is the mishandled baggage rate calculated (example)?",opts:["Cases ÷ passengers × 1,000","Cases ÷ flights","Passengers ÷ cases","Cases × 100"],a:0,exp:"Cases per 1,000 passengers."},

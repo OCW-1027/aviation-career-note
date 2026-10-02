@@ -29,7 +29,8 @@ sections:[
 {h:"Building a good working relationship",blocks:[{t:"rows",items:[
 {name:"One point of contact",x:"Send the station’s changes and requests to the desk, not directly to individuals on the ramp."},
 {name:"Share early",x:"Tell the desk about extra flights, aircraft changes and special passengers as soon as you know."},
-{name:"Review together",x:"After a major delay or disruption, put the desk’s log and the station’s log side by side and review them."}]}]}],
+{name:"Review together",x:"After a major delay or disruption, put the desk’s log and the station’s log side by side and review them."}]},
+{t:"note",x:"* Working with the operations department from the airline duty manager’s side is covered in Airport Station Management in Practice 2-4."}]}],
 voice:"In major disruption, contact with the handler’s operations desk is your lifeline. Confirm contact points and decision authority with each other in normal times.",
 terms:[["Operations Department","オペレーション部門","오퍼레이션 부서"],["Operations Control Desk","運営の統括（デスク）","운영 통제(데스크)"],["Resource Allocation","資源の割り当て","자원 배정"],["Load Control","搭載管理","탑재관리"],["Authorisation List","資格の名簿","자격 명단"],["Escalation","エスカレーション","에스컬레이션(상향 보고)"]],
 quiz:[{q:"Which is not part of the operations department’s work?",opts:["Allocating staff and GSE","Recording delay codes","Cabin service on board","Sending messages"],a:2,exp:"Cabin service is the cabin crew’s job."},
