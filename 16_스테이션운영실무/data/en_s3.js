@@ -127,5 +127,5 @@ terms:[["Deputy","代行者","대행자"],["Qualification Expiry","資格の有�
 quiz:[{q:"What is a duty manager’s last job?",opts:["Developing people who can do the job in their place","Doing everything alone","Moving to head office","Nothing"],a:0,exp:"Build a floor that runs without you."},
 {q:"How should mistakes be fixed?",opts:["Change procedures, training or deployment and protect the reporter","Blame the individual","Hide them","Do nothing"],a:0,exp:"Fixing the system makes repeats less likely."},
 {q:"What does the “numbers” skill mean for an aspiring duty manager?",opts:["Reading on-time rates, baggage rates and delay codes and breaking them down by cause","Fast mental arithmetic","Forecasting sales","Analysing share prices"],a:0,exp:"Breaking numbers down by cause is the basis of good decisions."}],
-next:""});
+next:"4-1 How Head Office Is Organised, and Who to Contact"});
 })(window.ARTS);
