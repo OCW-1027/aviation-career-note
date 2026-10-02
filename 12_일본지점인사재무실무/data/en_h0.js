@@ -155,6 +155,33 @@ kr:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
 {h:"The monthly payroll cycle",blocks:[{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Overtime and leave fixed"},{name:"Calculate",sub:"Earnings and deductions"},{name:"Second check",sub:"Anyone very different from last month"},{name:"Pay",sub:"Bank transfer on payday"},{name:"Payslips",sub:"Paper or electronic"},{name:"Pay over",sub:"Withheld tax by the 10th of next month"}]},
 {t:"region",jp:[{t:"point",x:"Withheld income tax is normally paid over by the 10th of the month after payday. Companies with fewer than ten employees can apply to pay twice a year instead. Social insurance is debited from the bank at the end of the following month. ★"}],
 kr:[{t:"point",x:"Withheld income tax and local income tax are filed and paid by the 10th of the month after payday. Companies with 20 or fewer regular employees in the previous year can apply to pay half-yearly. Social insurance premiums are also due on the 10th of the following month. ★"}]}]}],
+deep:[
+{h:"Calculating social insurance: Tokyo rates",blocks:[
+{t:"p",x:"From here on the basis is the Japanese system, and within it Tokyo (the Tokyo branch of the Japan Health Insurance Association). Health insurance, long-term care insurance and the employees’ pension are calculated as standard monthly remuneration × rate, split equally between the employee and the employer."},
+{t:"rates",keys:["kenpo","kaigo","shien","kosei"]},
+{t:"rows",items:[
+{name:"Standard monthly remuneration",x:"Pay fitted to a band. It is set from the average of April to June pay and used for a year from September. Pay of 300,000 yen gives a standard monthly remuneration of 300,000 yen (the band from 290,000 to under 310,000)."},
+{name:"What differs by area",x:"The health insurance rate differs by prefecture. Association rates for FY2026: Tokyo 9.85%, Saitama 9.67%, Chiba 9.73%, Hokkaido 10.28%. Long-term care insurance, the child and childcare support levy and the employees’ pension are the same nationwide. ★"},
+{name:"Companies in a health insurance society",x:"Health insurance societies set up by large companies have their own rates and their own split between employee and employer. Check your society’s notice."}]}]},
+{h:"A worked example at 300,000 yen",blocks:[
+{t:"p",x:"Change the standard monthly remuneration and the age band, and the employee and employer amounts are recalculated."},
+{t:"paycalc",std:300000},
+{t:"point",x:"On top of pay, the employer pays about 16% of pay in social and labour insurance. Budget for a new hire as pay plus the employer’s share, not pay alone."}]},
+{h:"Employment insurance, workers’ accident insurance and the child and childcare contribution",blocks:[
+{t:"rates",keys:["koyo","rosai","kyoshutsu"]},
+{t:"rows",items:[
+{name:"Employment insurance",x:"The rate is applied to total pay for the month, including the commuting allowance. Unlike health insurance, it uses the amount actually paid, not the standard monthly remuneration. There are three rates by type of business, and they can change every April."},
+{name:"Workers’ accident insurance",x:"Paid entirely by the employer. The rate differs by type of business (the table shows “other businesses”). It is applied to total wages for the year and declared and paid together with employment insurance in the annual renewal each June to July. ★"},
+{name:"Child and childcare contribution",x:"Paid entirely by the employer. It is applied to the pension standard monthly remuneration and billed with social insurance. It is a different scheme from the support levy deducted from pay."}]}]},
+{h:"When rates change and where to check",blocks:[
+{t:"table",cols:["Item","When it changes","Where to check"],rows:[
+["Health and long-term care insurance","From the March portion (paid in April) each year","The Association’s premium table for each prefecture"],
+["Child and childcare support levy","From the April portion (paid in May) each year ★","The Association; Children and Families Agency"],
+["Employees’ pension","Fixed at 18.3% (since September 2017)","Japan Pension Service"],
+["Employment insurance","1 April each year","Ministry of Health, Labour and Welfare"],
+["Workers’ accident insurance","Every three years as a rule (next expected April 2027 ★)","Ministry of Health, Labour and Welfare"],
+["Child and childcare contribution","April each year (0.36% in recent years)","Japan Pension Service"]]},
+{t:"note",x:"* The rate tables and the calculation in this lesson are generated from a single list of rates. Check the “rates checked on” date under each table, and always use the official premium table in force for real payroll. ★"}]}],
 voice:"Payroll mistakes cost trust quickly. Make it a habit for someone other than the person who calculated it to check at least anyone whose pay differs a lot from last month.",
 terms:[["Gross Pay","総支給額","총지급액"],["Take-home Pay","手取り","수령액"],["Withholding Tax","源泉徴収","원천징수"],["Standard Monthly Remuneration","標準報酬月額","표준보수월액"],["Residence Tax Deducted from Pay","特別徴収","특별징수"]],
 quiz:[{q:"(Japan) What is residence tax based on?",opts:["This month’s pay","Last year’s income","Next year’s forecast","Company profit"],a:1,exp:"It is based on last year’s income and deducted in twelve instalments from June."},

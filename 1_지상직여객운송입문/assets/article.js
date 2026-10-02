@@ -71,11 +71,34 @@ function block(b,L){
     return '<div class="ladder">'+b.steps.map(function(s,i){var h=120+i*(b.rise||28);return '<div class="step'+(s.alt?' alt':'')+'" style="min-height:'+h+'px"><span class="n">'+(i+1)+'</span><b>'+esc(s.name)+'</b><small>'+esc(s.sub||'')+'</small></div>'}).join('')+'</div>';
   case 'timeline':
     return '<div class="tl"><div class="tl-head"><span>'+esc(b.lanes[0])+'</span><span></span><span>'+esc(b.lanes[1])+'</span></div>'+b.marks.map(function(m){return '<div class="tl-row"><div class="tl-c a">'+esc(m.a||'')+'</div><div class="tl-t">'+esc(m.time)+'</div><div class="tl-c b">'+esc(m.b||'')+'</div></div>'}).join('')+'</div>';
+  case 'rates': return ratesTable(b.keys||[]);
+  case 'paycalc': return payCalc(b);
   case 'check': return '<ul class="check">'+b.items.map(function(i){return '<li><div><b>'+esc(i.name)+'</b>'+esc(i.x||'')+'</div></li>'}).join('')+'</ul>';
   case 'video': if(!b.url||/確認中|확인 중|to be confirmed|being confirmed|unconfirmed/i.test(b.ch||''))return ''; /* 公式チャンネルを確認できない動画は表示しない。埋め込みはせず、外部リンクのみ */ return '<a class="video" href="'+esc(b.url)+'" target="_blank" rel="noopener"><span class="th"><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></span></span><span class="bd"><small>'+esc(UI[lang].video)+'｜'+esc(b.ch||'')+'</small><b>'+esc(b.title)+'</b><span>'+esc(UI[lang].watch)+'</span></span></a>';
   }
   return '';
 }
+
+/* ---- 「基本／くわしく」のタブと、料率の表・計算例（2026.10）。料率は rates_jp.js の window.RATES から読む ---- */
+var curTab='base',TABL={ja:['基本','くわしく：計算と料率'],ko:['기본','심화: 계산과 요율'],en:['Basics','In depth: calculations and rates']};
+var RT={ja:{item:'項目',tot:'料率（全体）',emp:'本人',co:'会社',from:'いつから',base:'掛ける金額',std:'標準報酬月額',pay:'その月の給与の総額',chk:'料率を確かめた日',area:'基準',sel:'標準報酬月額（円）',age:'40〜64歳（介護保険がかかる）',calc:'計算',sum:'合計',note:'※ 給与の総額が標準報酬月額と同じ場合の例です。厚生年金と子ども・子育て拠出金は、標準報酬月額8.8万円から65万円までで計算します。端数の扱いは、実際の給与計算と少し違うことがあります。',ratio:'本人の負担は給与の{e}%、会社の負担は給与の{c}%です。'},
+ ko:{item:'항목',tot:'요율(전체)',emp:'본인',co:'회사',from:'적용 시작',base:'곱하는 금액',std:'표준보수월액',pay:'그달 급여 총액',chk:'요율을 확인한 날',area:'기준',sel:'표준보수월액(엔)',age:'40~64세(개호보험이 붙는다)',calc:'계산',sum:'합계',note:'※ 급여 총액이 표준보수월액과 같은 경우의 예입니다. 후생연금과 아동·육아 거출금은 표준보수월액 8.8만 엔부터 65만 엔까지로 계산합니다. 단수 처리는 실제 급여 계산과 조금 다를 수 있습니다.',ratio:'본인 부담은 급여의 {e}%, 회사 부담은 급여의 {c}%입니다.'},
+ en:{item:'Item',tot:'Rate (total)',emp:'Employee',co:'Employer',from:'From',base:'Applied to',std:'Standard monthly remuneration',pay:'Total pay for the month',chk:'Rates checked on',area:'Basis',sel:'Standard monthly remuneration (yen)',age:'Aged 40–64 (long-term care insurance applies)',calc:'Calculation',sum:'Total',note:'* An example where total pay equals the standard monthly remuneration. Employees’ pension and the child and childcare contribution are calculated between 88,000 and 650,000 yen. Rounding may differ slightly from real payroll.',ratio:'The employee pays {e}% of pay and the employer pays {c}%.'}};
+var GRD=[58,68,78,88,98,104,110,118,126,134,142,150,160,170,180,190,200,220,240,260,280,300,320,340,360,380,410,440,470,500,530,560,590,620,650,680,710,750,790,830,880,930,980,1030,1090,1150,1210,1270,1330,1390];
+function rfmt(v){return (Math.round(v*1000)/1000)+'%'}
+function yen(v){return Math.round(v).toLocaleString('ja-JP')}
+function rli(){var i=LANGS.indexOf(lang);return i<0?0:i}
+function rshare(r){return r.sp==='half'?[r.v/2,r.v/2]:[r.e,r.c]}
+function ratesTable(keys){var R=window.RATES,T=RT[lang]||RT.ja,li=rli();if(!R)return '';
+ return '<div class="scroll tbl"><table><thead><tr>'+[T.item,T.tot,T.emp,T.co,T.base,T.from].map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+keys.map(function(k){var r=R.it[k];if(!r)return '';var s=rshare(r),p=String(r.from).split('-');return '<tr><td class="lb lw">'+esc(r.n[li])+'</td><td class="c"><b>'+rfmt(r.v)+'</b></td><td class="c">'+(s[0]?rfmt(s[0]):'—')+'</td><td class="c">'+rfmt(s[1])+'</td><td class="c">'+esc(r.base==='pay'?T.pay:T.std)+'</td><td class="c">'+p[0]+'.'+(+p[1])+'</td></tr>'}).join('')+'</tbody></table></div><p class="note">'+esc(T.area)+'：'+esc(R.area[li])+'　'+esc(T.chk)+'：'+esc(String(R.checked).replace(/-/g,'.'))+'</p>'}
+function payRows(std,old){var R=window.RATES,li=rli(),sp=Math.min(Math.max(std,88000),650000),rows=[],se=0,sc=0;
+ ['kenpo','kaigo','shien','kosei','koyo','rosai','kyoshutsu'].forEach(function(k){var r=R.it[k];if(!r||(k==='kaigo'&&!old))return;var b=r.base==='stdp'?sp:std,s=rshare(r),e=b*s[0]/100,c=b*s[1]/100;se+=e;sc+=c;rows.push([r.n[li],yen(b)+' × '+rfmt(r.v),e,c])});
+ return {rows:rows,e:se,c:sc}}
+function payHtml(std,old){var T=RT[lang]||RT.ja,P=payRows(std,old);
+ return '<table><thead><tr>'+[T.item,T.calc,T.emp,T.co].map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+P.rows.map(function(r){return '<tr><td class="lb lw">'+esc(r[0])+'</td><td class="c">'+esc(r[1])+'</td><td class="c">'+(r[2]?yen(r[2]):'—')+'</td><td class="c">'+yen(r[3])+'</td></tr>'}).join('')+'<tr><td class="lb lw"><b>'+esc(T.sum)+'</b></td><td></td><td class="c"><b>'+yen(P.e)+'</b></td><td class="c"><b>'+yen(P.c)+'</b></td></tr></tbody></table>'}
+function payCalc(b){var T=RT[lang]||RT.ja,std=b.std||300000;if(!window.RATES)return '';
+ return '<div class="paycalc"><div class="pc-in"><label>'+esc(T.sel)+' <select class="pc-s">'+GRD.map(function(g){var v=g*1000;return '<option value="'+v+'"'+(v===std?' selected':'')+'>'+yen(v)+'</option>'}).join('')+'</select></label><label><input type="checkbox" class="pc-a"> '+esc(T.age)+'</label></div><div class="scroll tbl pc-out"></div><p class="pc-r"></p><p class="note">'+esc(T.note)+'</p></div>'}
+(function(){var st=document.createElement('style');st.textContent='.lvtabs{display:flex;gap:8px;margin:26px 0 6px}.lvt{flex:1;min-height:48px;padding:6px 8px;border:2px solid #d5dde6;border-radius:12px;background:#fff;font:inherit;font-size:15.5px;font-weight:800;color:#5b6b7b;cursor:pointer}.lvt[aria-selected=true]{border-color:#1d2a38;background:#1d2a38;color:#fff}.paycalc{border:2px solid #d5dde6;border-radius:14px;padding:14px 16px;margin:14px 0;background:#fff}.pc-in{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-bottom:10px;font-weight:700;font-size:14.5px}.pc-in select{font:inherit;padding:8px 10px;border:1.5px solid #b9c4d0;border-radius:8px;min-height:44px;background:#fff}.pc-in input{width:20px;height:20px;vertical-align:-4px}.pc-r{font-weight:800;margin:10px 0 0}@media print{.lvtabs{display:none}.lvp[hidden]{display:block!important}}';document.head.appendChild(st)})();
 
 function render(){
   var L=C[lang],U=UI[lang];
@@ -90,7 +113,10 @@ function render(){
   $('#subtitle').textContent=L.subtitle;
   var BS={common:'common',jpkr:'jpkr',jp:'jp_only'}[C.meta.basis||''];
   var h=(BS?'<p class="basis b-'+esc(C.meta.basis)+'">'+esc((RG[lang]||RG.ja)[BS])+'</p>':'')+(L._fallback?'<p class="note fb">'+esc(U.fb)+'</p>':'')+'<div class="lead">'+L.lead.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+'</div>';
+  var DP=L.deep&&L.deep.length,TB=TABL[lang]||TABL.ja;
+  if(DP)h+='<div class="lvtabs" role="tablist">'+['base','deep'].map(function(k,i){return '<button type="button" role="tab" class="lvt" data-tb="'+k+'" aria-selected="'+(i===0)+'">'+esc(i?(L.deepLabel||TB[1]):TB[0])+'</button>'}).join('')+'</div><div class="lvp" data-tb="base">';
   L.sections.forEach(function(s){var bd=s.blocks.map(function(b){return block(b,L)}).join('');if(!bd.replace(/\s/g,''))return;h+='<section><h2>'+esc(s.h)+'</h2>'+bd+'</section>'});
+  if(DP){h+='</div><div class="lvp" data-tb="deep" hidden>';L.deep.forEach(function(s){h+='<section><h2>'+esc(s.h)+'</h2>'+s.blocks.map(function(b){return block(b,L)}).join('')+'</section>'});h+='</div>'}
   if(L.voice&&L.voice.x&&!/インタビュー(追加|補強)予定|인터뷰\s*(보강|추가)\s*예정|Interview to be added/i.test(L.voice.x))h+='<section><h2>'+esc(L.voice.h)+'</h2><div class="voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg><p>'+esc(L.voice.x)+'</p></div></section>';
   if(L.terms)h+='<section><h2>'+esc(L.terms.h)+'</h2><div class="scroll tbl"><table class="terms"><thead><tr>'+L.terms.cols.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+L.terms.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div></section>';
   if(L.quiz)h+='<section><h2>'+esc(L.quiz.h)+'</h2><div class="quiz">'+L.quiz.items.map(function(q,qi){return '<div class="q" data-a="'+q.a+'"><p>Q'+(qi+1)+'. '+esc(q.q)+'</p><div class="opts">'+q.opts.map(function(o,oi){return '<button type="button" class="opt" data-i="'+oi+'">'+(oi+1)+'. '+esc(o)+'</button>'}).join('')+'</div><div class="exp"><div class="exa">'+({ja:'正解：',ko:'정답: ',en:'Answer: '}[lang]||'正解：')+(q.a+1)+'. '+esc(q.opts[q.a])+'</div><b class="exl">'+({ja:'解説',ko:'해설',en:'Explanation'}[lang]||'解説')+'</b>'+esc(q.exp)+'</div></div>'}).join('')+'</div></section>';
@@ -101,6 +127,11 @@ function render(){
   var ks=navKeys(),ix=ks.indexOf(String(C.meta.no)),pv=ix>0?ks[ix-1]:null,nk=(C.meta.nextno&&(ST&&ST.index?ST.index[C.meta.nextno]:(window.ARTS||{})[C.meta.nextno]))?C.meta.nextno:(ix>=0&&ix<ks.length-1?ks[ix+1]:null),N=NAVL[lang]||NAVL.ja,home=C.meta.home||($('#series')&&$('#series').getAttribute('href'))||'#';
   h+='<nav class="artnav">'+(pv?'<a class="pv" href="'+LU(pv)+'">← '+esc(N.prev)+'<small>'+esc(pv)+' '+esc(navTitle(pv))+'</small></a>':'<span></span>')+'<a class="toc" href="'+esc(home)+'">☰ '+esc(N.toc)+'</a>'+(nk?'<a class="nx" href="'+LU(nk)+'">'+esc(N.next)+' →<small>'+esc(nk)+' '+esc(navTitle(nk))+'</small></a>':'<span></span>')+'</nav>';
   $('#main').innerHTML=h;
+  (function(){var tb=document.querySelectorAll('.lvt');if(!tb.length)return;
+   function show(k){curTab=k;tb.forEach(function(x){x.setAttribute('aria-selected',String(x.getAttribute('data-tb')===k))});document.querySelectorAll('.lvp').forEach(function(p){p.hidden=p.getAttribute('data-tb')!==k});try{window.dispatchEvent(new Event('resize'))}catch(e){}}
+   tb.forEach(function(x){x.onclick=function(){show(x.getAttribute('data-tb'));try{history.replaceState(null,'',location.pathname+location.search+(curTab==='deep'?'#deep':''))}catch(e){}}});
+   show(location.hash==='#deep'||curTab==='deep'?'deep':'base')})();
+  document.querySelectorAll('.paycalc').forEach(function(pc){var s=pc.querySelector('.pc-s'),a=pc.querySelector('.pc-a'),up=function(){var v=+s.value,P=payRows(v,a.checked),T=RT[lang]||RT.ja;pc.querySelector('.pc-out').innerHTML=payHtml(v,a.checked);pc.querySelector('.pc-r').textContent=T.ratio.replace('{e}',(P.e/v*100).toFixed(1)).replace('{c}',(P.c/v*100).toFixed(1))};s.onchange=up;a.onchange=up;up()});
   document.querySelectorAll('.rg-b').forEach(function(x){x.addEventListener('click',function(){setRegion(x.getAttribute('data-rg'))})});
   $('#foot').innerHTML=U.copy+' — '+esc(L.series)+' '+esc(C.meta.no)+(C.meta.home?'　<a href="'+esc(C.meta.home)+'">'+esc(U.home)+'</a>':'');
   document.querySelectorAll('.q').forEach(function(q){q.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){var a=+q.dataset.a;q.querySelectorAll('.opt').forEach(function(x){x.classList.remove('right','wrong')});b.classList.add(+b.dataset.i===a?'right':'wrong');q.querySelector('.opt[data-i="'+a+'"]').classList.add('right');q.classList.add('done')})})});

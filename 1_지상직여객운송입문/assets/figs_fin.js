@@ -420,7 +420,7 @@ function WF(title,items,o){var off=o.off||0,run=off,s='<svg xmlns="http://www.w3
 function TLN(title,mo,ev,note){var x0=66,st=64,ax=172,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD')+tx(450,28,title,12.5,D,600)+'<line x1="'+x0+'" y1="'+ax+'" x2="'+(x0+12*st)+'" y2="'+ax+'" stroke="'+D+'" stroke-width="2"/>';
  for(var i=0;i<=12;i++){s+='<line x1="'+(x0+i*st)+'" y1="'+(ax-5)+'" x2="'+(x0+i*st)+'" y2="'+(ax+5)+'" stroke="'+D+'" stroke-width="1.5"/>';if(i<12)s+=tx(x0+i*st+st/2,ax+20,mo[i],11.5,G,600)}
  ev.forEach(function(e,k){var x=x0+e[0]*st,up=k%2===0,by=up?56:214,c=e[2]||PL;
-  s+='<line x1="'+x+'" y1="'+(up?by+62:ax)+'" x2="'+x+'" y2="'+(up?ax:by)+'" stroke="'+c+'" stroke-width="2"/><circle cx="'+x+'" cy="'+ax+'" r="6" fill="'+c+'"/>'+Rc(x-86,by,172,62,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+tx(x,by+26,e[1][0],12.5,c,800)+tx(x,by+46,e[1][1],11.5,D,600)});
+  s+='<line x1="'+x+'" y1="'+(up?by+62:ax+28)+'" x2="'+x+'" y2="'+(up?ax:by)+'" stroke="'+c+'" stroke-width="2"/><circle cx="'+x+'" cy="'+ax+'" r="6" fill="'+c+'"/>'+Rc(x-86,by,172,62,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+tx(x,by+26,e[1][0],12.5,c,800)+tx(x,by+46,e[1][1],11.5,D,600)});
  if(note)s+=tx(450,312,note,12.5,D,600);
  return s+'</svg>'}
 for(var k in F)window.FIGS[k]=F[k];
