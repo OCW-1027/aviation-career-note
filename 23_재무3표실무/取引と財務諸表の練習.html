@@ -31,9 +31,13 @@ h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;marg
 .stmt table{width:100%;border-collapse:collapse;font-size:13px}.stmt td{padding:3px 2px;border-bottom:1px dashed #eef2f6}.stmt td:last-child{text-align:right;font-variant-numeric:tabular-nums}.stmt tr.sum td{font-weight:700;border-top:2px solid var(--line);border-bottom:0}
 .pat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px}.pat div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px}.pat b{display:block}
 .note{font-size:12px;color:var(--muted)}
+.books{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}@media(max-width:820px){.books{grid-template-columns:1fr}}
+.books .stmt{max-height:340px;overflow:auto}.books .stmt td{white-space:nowrap}.jl td:first-child{color:var(--muted);width:2em}.jl .cr{padding-left:1.6em}
+.lk{display:block;margin-top:12px;font-weight:700;color:#1C6FBF}
 button:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="fincard"></script>
+<script src="../1_지상직여객운송입문/assets/accounts.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -54,6 +58,16 @@ button:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
  <div id="exp"></div>
 </div>
 
+<div class="card" id="jplay" style="display:none">
+ <div class="bar" id="jbar"></div>
+ <div class="tx" id="jtx"></div>
+ <div class="q"><h3><i style="background:var(--pl)"></i><span id="t_jdr"></span></h3><div class="opts" id="jdr"></div></div>
+ <div class="q"><h3><i style="background:var(--cf)"></i><span id="t_jcr"></span></h3><div class="opts" id="jcr"></div></div>
+ <div class="go"><button id="jans"></button><button id="jnext" class="sec" style="display:none"></button><span class="score" id="jscore"></span></div>
+ <div id="jexp"></div>
+ <div class="books" id="jbooks"></div>
+</div>
+
 <div class="card" id="result" style="display:none">
  <h2 id="t_result"></h2>
  <p id="verdict" style="font-size:15px;font-weight:700"></p>
@@ -65,7 +79,7 @@ button:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 
 <script>
 var L={
-ja:{title:'取引と財務諸表の練習',lead:'取引のカードを見て、損益計算書は動くか、現金は動くか、貸借対照表のどこが動くかを当てます。1枚3点、全問正解で満点。入門はたい焼き屋の初月、応用はお店のいろいろな取引、航空は航空会社の取引です。',
+ja:{title:'取引と財務諸表の練習',lead:'取引のカードを見て、損益計算書は動くか、現金は動くか、貸借対照表のどこが動くかを当てます。1枚3点、全問正解で満点。入門はたい焼き屋の初月、応用はお店のいろいろな取引、航空は航空会社の取引です。仕訳のレベルでは、取引を仕訳にして試算表と決算書まで作ります。',
  level:'レベルを選ぶ',LV:{a:['入門：たい焼き屋の初月','講座0-3の11の取引を順番に。終わると3つの表が完成します'],b:['応用：お店の取引いろいろ','掛け買い・前受金・借り換え・減損など12問をランダムに'],c:['航空：航空会社の取引','航空券の販売と搭乗、リース、ヘッジ、整備引当金など12問']},
  q1:'損益計算書は動く？',q2:'現金は動く？',q3:'貸借対照表で、現金と利益剰余金のほかに動く項目は？（すべて選ぶ）',q3note:'※ 現金と利益剰余金は上の2問で決まるので除きます。何も動かなければ「なし」。',
  O1:{rev:'売上が増える',cost:'費用が増える',none:'動かない'},O2:{'in':'入ってくる',out:'出ていく',none:'動かない'},
@@ -76,7 +90,7 @@ ja:{title:'取引と財務諸表の練習',lead:'取引のカードを見て、�
  verdict:['3つの表のつながりが身についています。航空レベルや講座Part 4-3へ。','だいたい見えています。間違えたカードの解説をもう一度読んでください。','「損益だけ」「現金だけ」の区別で迷っています。講座3-2・4-3を見てからもう一度。'],
  finalh:'完成した3つの表（たい焼き屋の初月）',pl:'損益計算書',bs:'貸借対照表',cf:'キャッシュフロー計算書',
  ex:{pl:'損益計算書：',cash:'現金：',bs:'貸借対照表：',re:'利益剰余金',cashw:'現金',plus:'＋',minus:'−',nomove:'動かない'}},
-ko:{title:'거래와 재무제표 연습',lead:'거래 카드를 보고 손익계산서가 움직이나, 현금이 움직이나, 재무상태표의 어디가 움직이나를 맞힙니다. 한 장 3점, 전부 맞히면 만점. 입문은 붕어빵 가게 첫 달, 응용은 가게의 여러 거래, 항공은 항공사의 거래입니다.',
+ko:{title:'거래와 재무제표 연습',lead:'거래 카드를 보고 손익계산서가 움직이나, 현금이 움직이나, 재무상태표의 어디가 움직이나를 맞힙니다. 한 장 3점, 전부 맞히면 만점. 입문은 붕어빵 가게 첫 달, 응용은 가게의 여러 거래, 항공은 항공사의 거래입니다. 분개 레벨에서는 거래를 분개로 바꿔 시산표와 결산서까지 만듭니다.',
  level:'레벨을 고른다',LV:{a:['입문: 붕어빵 가게 첫 달','강좌 0-3의 거래 11개를 차례로. 끝나면 세 가지 재무제표가 완성됩니다'],b:['응용: 가게의 여러 거래','외상 매입·선수금·차환·손상 등 12문제를 무작위로'],c:['항공: 항공사의 거래','항공권 판매와 탑승, 리스, 헤지, 정비충당금 등 12문제']},
  q1:'손익계산서는 움직이나?',q2:'현금은 움직이나?',q3:'재무상태표에서 현금과 이익잉여금 외에 움직이는 항목은?(모두 고른다)',q3note:'※ 현금과 이익잉여금은 위 두 문제로 정해지므로 제외합니다. 아무것도 안 움직이면 「없음」.',
  O1:{rev:'매출이 는다',cost:'비용이 는다',none:'안 움직인다'},O2:{'in':'들어온다',out:'나간다',none:'안 움직인다'},
@@ -87,7 +101,7 @@ ko:{title:'거래와 재무제표 연습',lead:'거래 카드를 보고 손익�
  verdict:['세 가지 재무제표의 연결이 몸에 뱄습니다. 항공 레벨이나 강좌 Part 4-3으로.','대체로 보입니다. 틀린 카드의 해설을 다시 읽어 보세요.','「손익만」「현금만」의 구별에서 헤매고 있습니다. 강좌 3-2·4-3을 보고 다시 한번.'],
  finalh:'완성된 세 가지 재무제표(붕어빵 가게 첫 달)',pl:'손익계산서',bs:'재무상태표',cf:'현금흐름표',
  ex:{pl:'손익계산서: ',cash:'현금: ',bs:'재무상태표: ',re:'이익잉여금',cashw:'현금',plus:'+',minus:'−',nomove:'안 움직임'}},
-en:{title:'Transactions and Financial Statements Practice',lead:'Read each transaction card and decide whether the income statement moves, whether cash moves, and which balance-sheet items move. Three points a card. Beginner is the stall’s first month, Applied is a mix of shop transactions, Airline is an airline’s.',
+en:{title:'Transactions and Financial Statements Practice',lead:'Read each transaction card and decide whether the income statement moves, whether cash moves, and which balance-sheet items move. Three points a card. Beginner is the stall’s first month, Applied is a mix of shop transactions, Airline is an airline’s. The Journal level turns transactions into entries and builds the trial balance and statements.',
  level:'Choose a level',LV:{a:['Beginner: the stall’s first month','The 11 transactions of lesson 0-3 in order; the three statements are built at the end'],b:['Applied: assorted shop transactions','Credit purchases, advances, refinancing, impairment: 12 random questions'],c:['Airline: airline transactions','Ticket sales and travel, leases, hedging, maintenance provisions: 12 questions']},
  q1:'Does the income statement move?',q2:'Does cash move?',q3:'Besides cash and retained earnings, which balance-sheet items move? (choose all)',q3note:'* Cash and retained earnings follow from the first two questions, so they are excluded. If nothing else moves, choose “None”.',
  O1:{rev:'Revenue rises',cost:'A cost rises',none:'No movement'},O2:{'in':'Cash comes in',out:'Cash goes out',none:'No movement'},
@@ -176,6 +190,69 @@ function showResult(){var d=L[lang];document.getElementById('play').style.displa
   F.innerHTML='<h2 style="font-size:15px;margin:14px 0 0">'+d.finalh+'</h2><div class="three"><div class="stmt"><h3><i style="background:var(--pl)"></i>'+d.pl+'</h3>'+tb('pl')+'</div><div class="stmt"><h3><i style="background:var(--bs)"></i>'+d.bs+'</h3>'+tb('bs')+'</div><div class="stmt"><h3><i style="background:var(--cf)"></i>'+d.cf+'</h3>'+tb('cf')+'</div></div>'}else F.innerHTML=''}
 document.getElementById('btn_again').onclick=function(){start(level)};document.getElementById('btn_lv').onclick=function(){document.getElementById('result').style.display='none';document.getElementById('play').style.display='none';level=null;render()};
 document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
+render();
+</script>
+<script>
+/* レベル「仕訳から3つの表へ」（2026.10）：たい焼き屋の初月の取引を仕訳にして、元帳・試算表・決算書まで。科目は accounts.js（window.ACCTS） */
+var LJ={ja:{lv:['仕訳：仕訳から3つの表へ','たい焼き屋の初月の13の取引を仕訳にして、元帳・試算表・決算書までたどります'],dr:'借方（左）の科目は？',cr:'貸方（右）の科目は？',ans:'答え合わせ',next:'次の取引',jr:'仕訳帳',led:'総勘定元帳（科目ごとの合計）',tb:'試算表',pl:'損益計算書',bs:'貸借対照表',acc:'科目',d:'借方',c:'貸方',bal:'残高',tot:'合計',ni:'当期純利益',re:'利益剰余金（今月の利益）',ta:'資産合計',tle:'負債・純資産合計',ok:'正解',ng:'ちがう',half:'おしい',right:'正しい仕訳',why:'考え方',match:'借方の合計と貸方の合計が一致しました',nomatch:'借方と貸方が合いません',
+ verdict:['借方と貸方の決まりが身についています。次は1年分の決算の練習へ。','だいたい合っています。間違えた仕訳の考え方をもう一度読んでください。','「資産と費用は左、負債・純資産・収益は右」を確かめてから、もう一度。'],more:'次は1年分で：1年の決算の練習 →',rule:'決まり：資産が増える・費用が出るときは借方（左）、負債や純資産が増える・収益が出るときは貸方（右）。減るときは反対側。'},
+ ko:{lv:['분개: 분개에서 재무제표까지','붕어빵 가게 첫 달의 거래 13개를 분개로 바꾸고, 원장·시산표·결산서까지 따라갑니다'],dr:'차변(왼쪽) 계정은?',cr:'대변(오른쪽) 계정은?',ans:'정답 확인',next:'다음 거래',jr:'분개장',led:'총계정원장(계정별 합계)',tb:'시산표',pl:'손익계산서',bs:'재무상태표',acc:'계정',d:'차변',c:'대변',bal:'잔액',tot:'합계',ni:'당기순이익',re:'이익잉여금(이번 달 이익)',ta:'자산 합계',tle:'부채·자본 합계',ok:'정답',ng:'틀림',half:'아깝다',right:'바른 분개',why:'생각하는 법',match:'차변 합계와 대변 합계가 일치했습니다',nomatch:'차변과 대변이 맞지 않습니다',
+ verdict:['차변과 대변의 규칙이 몸에 백습니다. 다음은 1년 결산 연습으로.','대체로 맞습니다. 틀린 분개의 생각하는 법을 다시 읽어 보세요.','「자산과 비용은 왼쪽, 부채·자본·수익은 오른쪽」을 확인하고 다시 한번.'],more:'다음은 1년 치로: 1년 결산 연습 →',rule:'규칙: 자산이 늘거나 비용이 생기면 차변(왼쪽), 부채나 자본이 늘거나 수익이 생기면 대변(오른쪽). 줄어들 때는 반대쪽.'},
+ en:{lv:['Journal: from entries to the statements','Turn the stall’s 13 first-month transactions into journal entries and follow them through the ledger, trial balance and statements'],dr:'Which account is debited (left)?',cr:'Which account is credited (right)?',ans:'Check',next:'Next transaction',jr:'Journal',led:'General ledger (totals by account)',tb:'Trial balance',pl:'Income statement',bs:'Balance sheet',acc:'Account',d:'Debit',c:'Credit',bal:'Balance',tot:'Total',ni:'Net profit',re:'Retained earnings (this month’s profit)',ta:'Total assets',tle:'Total liabilities and equity',ok:'Correct',ng:'Not quite',half:'Close',right:'Correct entry',why:'How to think about it',match:'Total debits equal total credits',nomatch:'Debits and credits do not agree',
+ verdict:['You have the debit and credit rules. Next, try a full year in Year-End Closing Practice.','Mostly right. Reread the reasoning for the entries you missed.','Check the rule “assets and expenses on the left; liabilities, equity and revenue on the right”, then try again.'],more:'Next, a full year: Year-End Closing Practice →',rule:'Rule: when an asset rises or an expense arises, debit (left); when a liability or equity rises or revenue arises, credit (right). Decreases go on the opposite side.'}};
+var JC=[{t:['店主が自分のお金30万円を店に入れた','주인이 자기 돈 30만 엔을 가게에 넣었다','The owner puts 300,000 yen of her own money into the stall'],a:300000,dr:'100',cr:'300',w:['現金（資産）が増えるので左、店主の元手（純資産）が増えるので右。','현금(자산)이 늘어 왼쪽, 주인의 밑천(자본)이 늘어 오른쪽.','Cash (an asset) rises: left. The owner’s capital (equity) rises: right.']},
+ {t:['銀行から20万円を借りた','은행에서 20만 엔을 빌렸다','Borrowed 200,000 yen from the bank'],a:200000,dr:'100',cr:'220',w:['現金が増えて左、返す義務（負債）が増えて右。','현금이 늘어 왼쪽, 갚을 의무(부채)가 늘어 오른쪽.','Cash rises: left. The obligation to repay (a liability) rises: right.']},
+ {t:['屋台を24万円で買った（5年使う）','포장마차를 24만 엔에 샀다(5년 사용)','Bought a 240,000-yen cart (to last 5 years)'],a:240000,dr:'165',cr:'100',w:['屋台という資産が増えて左、現金が減って右。費用にはまだならない。','포장마차라는 자산이 늘어 왼쪽, 현금이 줄어 오른쪽. 아직 비용이 아니다.','The cart, an asset, rises: left. Cash falls: right. It is not yet an expense.']},
+ {t:['材料を現金で9万円買った','재료를 현금으로 9만 엔 샀다','Bought 90,000 yen of ingredients for cash'],a:90000,dr:'142',cr:'100',w:['材料はまず在庫（資産）として左。使った分だけ、あとで費用にする。','재료는 먼저 재고(자산)로 왼쪽. 쓴 만큼만 나중에 비용으로 한다.','Ingredients are first stock (an asset): left. Only what is used becomes an expense later.']},
+ {t:['店頭で現金24万円を売り上げた','매장에서 현금 24만 엔을 팔았다','Sold 240,000 yen of taiyaki for cash'],a:240000,dr:'100',cr:'400',w:['現金が増えて左、売上（収益）が出て右。','현금이 늘어 왼쪽, 매출(수익)이 생겨 오른쪽.','Cash rises: left. Revenue arises: right.']},
+ {t:['学校行事に2万円分を納品、代金は翌月','학교 행사에 2만 엔어치 납품, 대금은 다음 달','Supplied 20,000 yen to a school event, paid next month'],a:20000,dr:'121',cr:'400',w:['お金はまだだが、もらう権利（売掛金）が増えて左、売上は右。','돈은 아직이지만 받을 권리(외상매출금)가 늘어 왼쪽, 매출은 오른쪽.','No cash yet, but the right to collect (a receivable) rises: left. Revenue: right.']},
+ {t:['家賃5万円を現金で払った','임대료 5만 엔을 현금으로 냈다','Paid 50,000 yen of rent in cash'],a:50000,dr:'526',cr:'100',w:['費用が出て左、現金が減って右。','비용이 생겨 왼쪽, 현금이 줄어 오른쪽.','An expense arises: left. Cash falls: right.']},
+ {t:['アルバイト代4万円を現金で払った','아르바이트비 4만 엔을 현금으로 냈다','Paid 40,000 yen of part-time wages in cash'],a:40000,dr:'511',cr:'100',w:['人件費（費用）が左、現金が右。','인건비(비용)가 왼쪽, 현금이 오른쪽.','Wages (an expense): left. Cash: right.']},
+ {t:['光熱費1万円を現金で払った','수도광열비 1만 엔을 현금으로 냈다','Paid 10,000 yen of utilities in cash'],a:10000,dr:'525',cr:'100',w:['費用が左、現金が右。','비용이 왼쪽, 현금이 오른쪽.','Expense: left. Cash: right.']},
+ {t:['借入の利息1,000円を払った','차입 이자 1,000엔을 냈다','Paid 1,000 yen of interest on the loan'],a:1000,dr:'540',cr:'100',w:['利息は費用（営業外費用）。元本は減らない。','이자는 비용(영업외비용). 원금은 줄지 않는다.','Interest is an expense (non-operating). The principal does not change.']},
+ {t:['屋台の1か月分の減価償却4,000円を計上した','포장마차 한 달 치 감가상각 4,000엔을 계상했다','Recorded one month’s depreciation of 4,000 yen on the cart'],a:4000,dr:'529',cr:'165',w:['減価償却費（費用）が左。屋台の価値を直接減らすので右は器具備品（直接法）。','감가상각비(비용)가 왼쪽. 포장마차의 가치를 직접 줄이므로 오른쪽은 비품(직접법).','Depreciation (an expense): left. The cart’s value is reduced directly, so equipment goes on the right (direct method).']},
+ {t:['今月使った材料7万5,000円を費用にした（残り1万5,000円は在庫）','이번 달 쓴 재료 7만 5,000엔을 비용으로 잡았다(남은 1만 5,000엔은 재고)','Expensed 75,000 yen of ingredients used (15,000 remains as stock)'],a:75000,dr:'502',cr:'142',w:['使った分を在庫（資産）から費用へ移す。費用が左、在庫が右。','쓴 만큼을 재고(자산)에서 비용으로 옮긴다. 비용이 왼쪽, 재고가 오른쪽.','Move what was used from stock (an asset) to expense: expense left, stock right.']},
+ {t:['今月の税金1万6,000円を見積もった（来月払う）','이번 달 세금 1만 6,000엔을 추정했다(다음 달 냄)','Accrued 16,000 yen of tax for the month (paid next month)'],a:16000,dr:'550',cr:'205',w:['税金（費用）が左、まだ払っていないので未払法人税等（負債）が右。','세금(비용)이 왼쪽, 아직 내지 않았으므로 미지급법인세(부채)가 오른쪽.','Tax (an expense): left. Not yet paid, so income taxes payable (a liability): right.']}];
+var JA=['100','121','142','165','220','205','300','400','502','526','511','525','540','529','550'];
+var jdeck=[],ji=0,jpick={dr:null,cr:null},jdone=false,jscore=0,jres=[],jpost=[];
+function an(c){var a=window.ACCTS&&ACCTS.by[c];return a?a.n[LI]:c}
+function yf(v){return Math.round(v).toLocaleString('ja-JP')}
+function jbal(){var B={};jpost.forEach(function(p){(B[p.dr]=B[p.dr]||{d:0,c:0}).d+=p.a;(B[p.cr]=B[p.cr]||{d:0,c:0}).c+=p.a});return B}
+function nb(c,b){var g=ACCTS.by[c].g;return (g==='a'||g==='x')?b.d-b.c:b.c-b.d}
+function jbooks(){var T=LJ[lang],B=jbal(),ks=Object.keys(B).sort();
+ var jl='<div class="stmt"><h3><i style="background:var(--pl)"></i>'+T.jr+'</h3><table class="jl">'+jpost.map(function(p,k){return '<tr><td>'+(k+1)+'</td><td>'+an(p.dr)+'</td><td>'+yf(p.a)+'</td></tr><tr><td></td><td class="cr">'+an(p.cr)+'</td><td>'+yf(p.a)+'</td></tr>'}).join('')+'</table></div>';
+ var lg='<div class="stmt"><h3><i style="background:var(--bs)"></i>'+T.led+'</h3><table><tr><td><b>'+T.acc+'</b></td><td><b>'+T.d+'</b></td><td><b>'+T.c+'</b></td><td><b>'+T.bal+'</b></td></tr>'+ks.map(function(c){return '<tr><td>'+an(c)+'</td><td>'+(B[c].d?yf(B[c].d):'')+'</td><td>'+(B[c].c?yf(B[c].c):'')+'</td><td>'+yf(nb(c,B[c]))+'</td></tr>'}).join('')+'</table></div>';
+ document.getElementById('jbooks').innerHTML=jpost.length?jl+lg:''}
+function startJ(){level='d';jdeck=JC.slice();ji=0;jscore=0;jres=[];jpost=[];document.getElementById('play').style.display='none';document.getElementById('result').style.display='none';document.getElementById('jplay').style.display='';render();jcard()}
+function jcard(){var T=LJ[lang],c=jdeck[ji];jdone=false;jpick={dr:null,cr:null};
+ document.getElementById('t_jdr').textContent=T.dr;document.getElementById('t_jcr').textContent=T.cr;document.getElementById('jans').textContent=T.ans;document.getElementById('jnext').textContent=T.next;
+ document.getElementById('jbar').innerHTML=jdeck.map(function(_,k){return '<span class="'+(k<ji?(jres[k]===2?'ok':'ng'):k===ji?'now':'')+'"></span>'}).join('');
+ document.getElementById('jtx').innerHTML=c.t[LI]+'　'+yf(c.a)+(lang==='en'?' yen':'円').replace('円',lang==='ko'?'엔':'円')+'<small>'+(ji+1)+' '+L[lang].of+' '+jdeck.length+'</small>';
+ ['dr','cr'].forEach(function(side){var el=document.getElementById('j'+side);el.innerHTML='';JA.forEach(function(k){var b=document.createElement('button');b.textContent=an(k);b.dataset.k=k;b.onclick=function(){if(jdone)return;jpick[side]=k;el.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x.dataset.k===k)});document.getElementById('jans').disabled=!(jpick.dr&&jpick.cr)};el.appendChild(b)})});
+ document.getElementById('jans').disabled=true;document.getElementById('jans').style.display='';document.getElementById('jnext').style.display='none';document.getElementById('jexp').innerHTML='<p class="note">'+T.rule+'</p>';
+ document.getElementById('jscore').innerHTML=L[lang].score+' <b>'+jscore+'</b> '+L[lang].of+' '+(jdeck.length*2);jbooks()}
+function jrestore(){var T=LJ[lang],c=jdeck[ji],pts=jres[ji];
+ ['dr','cr'].forEach(function(side){var el=document.getElementById('j'+side);el.querySelectorAll('button').forEach(function(b){b.disabled=true;var k=b.dataset.k;b.classList.toggle('on',k===jpick[side]);if(k===c[side])b.classList.add('right');else if(k===jpick[side])b.classList.add('wrong')})});
+ var v=pts===2?'<span class="v ok">'+T.ok+'</span>':pts===0?'<span class="v ng">'+T.ng+'</span>':'<span class="v">'+T.half+'</span>';
+ document.getElementById('jexp').innerHTML='<div class="exp">'+v+'<ul><li>'+T.right+(lang==='en'?': Debit ':'：（'+T.d+'）')+an(c.dr)+' '+yf(c.a)+(lang==='en'?' / Credit ':' ／（'+T.c+'）')+an(c.cr)+' '+yf(c.a)+'</li><li>'+T.why+(lang==='en'?': ':'：')+c.w[LI]+'</li></ul></div>';
+ document.getElementById('jans').style.display='none';document.getElementById('jnext').style.display='';document.getElementById('jscore').innerHTML=L[lang].score+' <b>'+jscore+'</b> '+L[lang].of+' '+(jdeck.length*2);jbooks()}
+document.getElementById('jans').onclick=function(){if(jdone)return;var c=jdeck[ji];jdone=true;var pts=(jpick.dr===c.dr?1:0)+(jpick.cr===c.cr?1:0);jscore+=pts;jres[ji]=pts;jpost.push({dr:c.dr,cr:c.cr,a:c.a});jrestore()};
+document.getElementById('jnext').onclick=function(){ji++;if(ji<jdeck.length)jcard();else showJ()};
+function showJ(){var T=LJ[lang],d=L[lang],B=jbal(),max=jdeck.length*2,rate=jscore/max;document.getElementById('jplay').style.display='none';document.getElementById('result').style.display='';document.getElementById('t_result').textContent=d.result;
+ document.getElementById('verdict').textContent=d.score+' '+jscore+' '+d.of+' '+max+'（'+Math.round(rate*100)+'%） ― '+T.verdict[rate>=0.9?0:rate>=0.6?1:2];document.getElementById('pat').innerHTML='';
+ var ks=Object.keys(B).sort(),td=0,tc=0,tb=ks.map(function(c){var v=B[c].d-B[c].c;if(v>=0)td+=v;else tc-=v;return '<tr><td>'+an(c)+'</td><td>'+(v>0?yf(v):'')+'</td><td>'+(v<0?yf(-v):'')+'</td></tr>'}).join('');
+ var rev=0,cost=0,pl='',bsa='',bsl='',ta=0,tl=0;ks.forEach(function(c){var A=ACCTS.by[c],v=nb(c,B[c]);if(A.g==='r'){rev+=v;pl+='<tr><td>'+an(c)+'</td><td>'+yf(v)+'</td></tr>'}else if(A.g==='x'){cost+=v;pl+='<tr><td>'+an(c)+'</td><td>−'+yf(v)+'</td></tr>'}else if(A.g==='a'){ta+=v;bsa+='<tr><td>'+an(c)+'</td><td>'+yf(v)+'</td></tr>'}else{tl+=v;bsl+='<tr><td>'+an(c)+'</td><td>'+yf(v)+'</td></tr>'}});
+ var ni=rev-cost;
+ document.getElementById('final').innerHTML='<div class="three"><div class="stmt"><h3><i style="background:var(--muted)"></i>'+T.tb+'</h3><table><tr><td><b>'+T.acc+'</b></td><td><b>'+T.d+'</b></td><td><b>'+T.c+'</b></td></tr>'+tb+'<tr class="sum"><td>'+T.tot+'</td><td>'+yf(td)+'</td><td>'+yf(tc)+'</td></tr></table><p class="note">'+(td===tc?T.match:T.nomatch)+'</p></div>'+
+  '<div class="stmt"><h3><i style="background:var(--pl)"></i>'+T.pl+'</h3><table>'+pl+'<tr class="sum"><td>'+T.ni+'</td><td>'+yf(ni)+'</td></tr></table></div>'+
+  '<div class="stmt"><h3><i style="background:var(--bs)"></i>'+T.bs+'</h3><table>'+bsa+'<tr class="sum"><td>'+T.ta+'</td><td>'+yf(ta)+'</td></tr>'+bsl+'<tr><td>'+T.re+'</td><td>'+yf(ni)+'</td></tr><tr class="sum"><td>'+T.tle+'</td><td>'+yf(tl+ni)+'</td></tr></table></div></div>'+
+  '<a class="lk" href="../12_일본지점인사재무실무/決算の練習.html">'+T.more+'</a>'}
+var _render=render;render=function(){_render();var T=LJ[lang],LV=document.getElementById('levels');if(LV&&!LV.querySelector('[data-lv=d]')){var b=document.createElement('button');b.dataset.lv='d';b.innerHTML='<b>'+T.lv[0]+'</b><small>'+T.lv[1]+'</small>';b.className=level==='d'?'on':'';b.onclick=function(){startJ()};LV.appendChild(b)}
+ if(level!=='d'){document.getElementById('jplay').style.display='none';return}
+ if(document.getElementById('jplay').style.display!=='none'){if(jdone)jrestore();else{var keep=jpick;jcard();['dr','cr'].forEach(function(s){if(keep[s]){jpick[s]=keep[s];document.querySelectorAll('#j'+s+' button').forEach(function(x){x.classList.toggle('on',x.dataset.k===keep[s])})}});document.getElementById('jans').disabled=!(jpick.dr&&jpick.cr)}}};
+var _show=showResult;showResult=function(){if(level==='d'){showJ();return}_show()};
+var _start=start;start=function(k){if(k==='d'){startJ();return}document.getElementById('jplay').style.display='none';_start(k)};
+document.getElementById('btn_again').onclick=function(){start(level)};
 render();
 </script>
 <script src="../1_지상직여객운송입문/assets/nav.js"></script>

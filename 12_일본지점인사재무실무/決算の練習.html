@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1年の決算の練習</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f;--warn:#b7791f}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}
+.langs{display:inline-flex;gap:0}.langs button{border:1px solid var(--line);background:#fff;padding:6px 12px;cursor:pointer}.langs button.on{background:var(--pl);color:#fff}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.btn{min-height:44px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 14px;font:inherit;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff}.btn.del{color:var(--ng)}.btn.on{border-color:var(--ink);background:#eef3f8}
+.saved{font-size:12.5px;color:var(--muted)}
+.privacy,.note{font-size:12.5px;color:var(--muted)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:16px 0}
+.card h2{margin:0 0 12px;font-size:19px;display:flex;align-items:center;gap:10px}.card h2 .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--pl);color:#fff;display:grid;place-items:center;font-size:15px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 14px}@media(max-width:760px){.g3{grid-template-columns:1fr}}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700;color:var(--muted)}
+input,select{font:inherit;font-size:14.5px;color:var(--ink);border:1.5px solid #b9c4d0;border-radius:8px;padding:7px 9px;min-height:40px;background:#fff;width:100%}
+input[data-n]{text-align:right;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%}
+table.ed{min-width:980px}table.ed th,table.ed td{border-bottom:1px solid var(--line);padding:5px 4px;vertical-align:middle}table.ed th{font-size:12.5px;color:var(--muted);text-align:center;background:#f3f7fb}
+table.ed td.x{width:40px;text-align:center}table.ed tr.bad td{background:#fdeef0}table.ed tr.adj td:first-child{box-shadow:inset 4px 0 0 var(--cf)}
+.xb{border:0;background:none;color:var(--ng);font-size:20px;cursor:pointer;min-width:36px;min-height:36px}
+table.v{font-size:14px}table.v th,table.v td{border-bottom:1px solid var(--line);padding:6px 8px}table.v th{background:#f3f7fb;color:var(--muted);font-size:12.5px}
+table.v td.n,table.v th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}table.v tr.sum td{font-weight:800;border-top:2px solid var(--line)}table.v tr.sec td{font-weight:800;background:#f7fafd}
+.chk{list-style:none;padding:0;margin:0}.chk li{padding:8px 12px;border-radius:10px;margin:6px 0;font-size:14px;border:1px solid var(--line)}.chk li.ok{border-color:#b9ddd5;background:#f0f8f6}.chk li.ng{border-color:#f0b9c4;background:#fdf1f3}.chk li.wa{border-color:#ead6a8;background:#fdf8ec}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin:10px 0}.kpi{border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:#fff}.kpi span{display:block;font-size:12.5px;color:var(--muted)}.kpi b{font-size:18px;font-variant-numeric:tabular-nums}
+.paper{background:#fff;border:1px solid #b9c4d0;padding:30px 36px;margin-top:12px;font-family:"Noto Serif JP","Yu Mincho","MS Mincho",serif;font-size:14px;line-height:1.8;color:#000}
+.paper h3{text-align:center;font-size:18px;margin:18px 0 6px}.paper .c{text-align:center}.paper .r{text-align:right}.paper p{margin:4px 0}
+.paper table{font-size:13.5px;margin:8px 0}.paper th,.paper td{border:1px solid #000;padding:3px 8px}.paper td.n,.paper th.n{text-align:right;white-space:nowrap}.paper tr.sec td{font-weight:700;background:#f4f4f4}.paper tr.sum td{font-weight:700}.paper td.i1{padding-left:22px}.paper td.i2{padding-left:40px}
+.paper hr{border:0;border-top:1px dashed #999;margin:24px 0}
+.paper td,.paper th,table.v td,table.v th{text-align:left}.paper td.n,.paper th.n,table.v td.n,table.v th.n{text-align:right}.paper th{text-align:center}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+@media(max-width:700px){.paper{padding:16px 12px}.card{padding:14px 12px}}
+@media print{body{background:#fff}.shbar,header,.bar,.privacy,#note,.shfoot,.nv-fab,#nv-copy,#app>.card:not(#outsec),#outsec>*:not(.paper){display:none!important}.paper hr{border:0;margin:0;break-after:page;page-break-after:always}.wrap{padding:0;max-width:none}#outsec{border:0;padding:0;margin:0}.paper{border:0;padding:0;margin:0}}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="finclose"></script>
+<script src="../8_사이트/assets/member_config.js"></script>
+<script src="../1_지상직여객운송입문/assets/member.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><h1 id="ttl"></h1><p id="lead"></p></header>
+<div class="bar" id="bar"></div>
+<p class="privacy" id="privacy"></p>
+<div id="app"></div>
+<p class="note" id="note"></p>
+</div>
+<script src="../1_지상직여객운송입문/assets/accounts.js"></script>
+<script src="../1_지상직여객운송입문/assets/rates_jp.js"></script>
+<script>
+/* 1年の決算の練習（2026.10）。決算書（#paper）は、科目を左・金額を右にそろえる日本の様式に合わせるため、shell.js の中央ぞろえから外す（data-noalign）
+   小さな会社の1年分の仕訳から、総勘定元帳・試算表・決算書（貸借対照表・損益計算書）・法人税等の見積もりまでを作り、決算書を日本語で出力する。
+   勘定科目は accounts.js（window.ACCTS）、法人の税率は rates_jp.js（window.RATES.corp）から読む。入っている会社と数字はすべて架空。
+   入力はこのブラウザに保存し、ログイン中は会員の記録（user_docs: close）にも保存する。 */
+var KEY='acn-close-v1',LS=['ja','ko','en'];
+var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(LS.indexOf(s)>=0)return s}catch(e){}return 'ja'})();
+var LI=LS.indexOf(L),SEL=null;
+var X={
+ttl:['1年の決算の練習','1년 결산 연습','Year-End Closing Practice'],
+lead:['小さな会社の1年分の仕訳から、総勘定元帳・試算表・決算書を作り、法人税等を見積もって、決算書を日本語で出力します。入っているのは架空の会社「さくらグランドサービス」（東京23区、資本金1,000万円、3月決算）の例です。仕訳を直したり足したりすると、すべての表がその場で変わります。','작은 회사의 1년 치 분개에서 총계정원장·시산표·결산서를 만들고, 법인세 등을 추정해 결산서를 일본어로 출력합니다. 들어 있는 것은 가상의 회사 「사쿠라 그라운드 서비스」(도쿄 23구, 자본금 1,000만 엔, 3월 결산)의 예입니다. 분개를 고치거나 더하면 모든 표가 바로 바뀝니다.','Build the general ledger, trial balance and financial statements from a small company’s year of journal entries, estimate its income taxes, and output the statements in Japanese. The example is a fictional company, Sakura Ground Services (Tokyo 23 wards, capital 10 million yen, March year-end). Edit or add entries and every table updates at once.'],
+privacy:['入力した内容は、このブラウザ（この端末）に自動で保存されます。ログインしているときは会員の記録にも保存されます。共用のパソコンでは、使い終わったら「すべて消す」を押してください。','입력한 내용은 이 브라우저(이 기기)에 자동으로 저장됩니다. 로그인한 상태에서는 회원 기록에도 저장됩니다. 공용 컴퓨터에서는 다 쓴 뒤 「모두 지우기」를 눌러 주세요.','What you enter is saved automatically in this browser. When you are logged in it is also saved to your member record. On a shared computer, press “Clear all” when you finish.'],
+ex:['例に戻す','예시로 되돌리기','Reset to example'],exC:['今の内容を例で置き換えます。よろしいですか？','지금 내용을 예시로 바꿉니다. 괜찮습니까?','Replace everything with the example?'],
+clr:['すべて消す','모두 지우기','Clear all'],clrC:['入力した内容をすべて消します。元に戻せません。よろしいですか？','입력한 내용을 모두 지웁니다. 되돌릴 수 없습니다. 괜찮습니까?','Clear everything? This cannot be undone.'],
+exp:['ファイルに書き出す','파일로 내보내기','Export to file'],imp:['ファイルから読み込む','파일에서 불러오기','Import from file'],impE:['読み込めませんでした。このツールで書き出したファイルを選んでください。','불러오지 못했습니다. 이 도구에서 내보낸 파일을 골라 주세요.','Could not read the file. Choose a file exported from this tool.'],saved:['保存しました','저장했습니다','Saved'],
+s1:['会社と会計期間','회사와 회계기간','Company and accounting period'],name:['会社名','회사명','Company name'],start:['期首（始まる日）','기초(시작일)','Start of year'],end:['期末（終わる日）','기말(종료일)','End of year'],
+s2:['期首の残高','기초 잔액','Opening balances'],s2n:['前の期の貸借対照表の残高です。資産は借方、負債と純資産は貸方に入ります。','전기 재무상태표의 잔액입니다. 자산은 차변, 부채와 자본은 대변에 들어갑니다.','Balances from last year’s balance sheet. Assets go on the debit side, liabilities and equity on the credit side.'],
+acc:['勘定科目','계정과목','Account'],amt:['金額（円）','금액(엔)','Amount (yen)'],side:['借方／貸方','차변/대변','Side'],dr:['借方','차변','Debit'],cr:['貸方','대변','Credit'],tot:['合計','합계','Total'],del:['消す','삭제','Remove'],addO:['科目を足す','계정 추가','Add account'],
+s3:['仕訳','분개','Journal entries'],s3n:['1行に1つの仕訳です（借方1科目・貸方1科目）。複数の科目にまたがる取引は、行を分けて入れます。期末の日付の行は決算整理として色をつけています。','한 줄에 분개 하나입니다(차변 1계정·대변 1계정). 여러 계정에 걸친 거래는 줄을 나눠 넣습니다. 기말 날짜의 줄은 결산 정리로 보고 색을 칠했습니다.','One entry per line (one debit account, one credit account). Split transactions that touch several accounts across lines. Lines dated at the year-end are marked as closing entries.'],
+date:['日付','날짜','Date'],memo:['摘要','적요','Description'],addJ:['仕訳を足す','분개 추가','Add entry'],pick:['選ぶ','고른다','Choose'],
+s4:['総勘定元帳','총계정원장','General ledger'],s4n:['科目を選ぶと、その科目に記録された仕訳と残高の動きが見られます。','계정을 고르면 그 계정에 기록된 분개와 잔액의 움직임을 볼 수 있습니다.','Choose an account to see the entries posted to it and how its balance moved.'],
+other:['相手科目','상대 계정','Contra account'],bal:['残高','잔액','Balance'],ob:['期首残高','기초 잔액','Opening balance'],taxl:['法人税等の計上（自動）','법인세 등 계상(자동)','Income taxes (automatic)'],
+s5:['試算表と決算前のチェック','시산표와 결산 전 점검','Trial balance and pre-closing checks'],s5n:['決算整理と法人税等を入れたあとの、残高の試算表です。借方の合計と貸方の合計は必ず一致します。','결산 정리와 법인세 등을 넣은 뒤의 잔액 시산표입니다. 차변 합계와 대변 합계는 반드시 일치합니다.','The trial balance after closing entries and income taxes. Total debits always equal total credits.'],
+s6:['法人税等の見積もり','법인세 등 추정','Income tax estimate'],s6n:['資本金1億円以下で東京23区に事務所が1つの会社として計算します。税率はレッスン「外国法人の支店にかかる税金」の計算と同じものを使います。','자본금 1억 엔 이하이고 도쿄 23구에 사무소가 하나인 회사로 계산합니다. 세율은 레슨 「외국 법인 지점 세금」의 계산과 같은 것을 씁니다.','Calculated for a company with capital of 100 million yen or less and one office in Tokyo’s 23 wards, using the same rates as the corporate tax calculation in the lessons.'],
+pre:['税引前当期純利益','법인세 차감 전 순이익','Profit before tax'],adj:['申告調整（加算 − 減算、円）','세무 조정(가산 − 감산, 엔)','Tax adjustments (add − deduct, yen)'],adjn:['交際費の損金にならない分などを足し、受取配当の益金不算入などを引きます。ここでは合計だけを入れます。','접대비 중 손금이 되지 않는 몫 등을 더하고, 수입배당금 익금불산입 등을 뺍니다. 여기서는 합계만 넣습니다.','Add items that are not deductible (such as part of entertainment costs) and subtract income that is exempt (such as some dividends). Enter the net figure only.'],
+tinc:['課税所得','과세소득','Taxable income'],auto:['法人税等を決算書に入れる（自動の仕訳）','법인세 등을 결산서에 넣는다(자동 분개)','Book income taxes in the statements (automatic entry)'],
+interim:['中間納付（仮払法人税）','중간납부(선납법인세)','Interim payment (prepaid tax)'],pay:['確定申告で納める額（未払法人税等）','확정신고로 낼 금액(미지급법인세)','Payable on filing (income taxes payable)'],refund:['戻ってくる額（未収入金）','돌려받을 금액(미수금)','Refund due (other receivable)'],
+taxn:['※ 事業税は払った年の経費になる、繰越欠損金、税額控除などは入れていない概算です。実際の申告は税理士と確かめてください。','※ 사업세가 낸 해의 비용이 되는 점, 이월결손금, 세액공제 등은 넣지 않은 어림 계산입니다. 실제 신고는 세리사와 확인하세요.','* An estimate that ignores the deductibility of enterprise tax in the year paid, loss carry-forwards and tax credits. Confirm actual filings with a tax accountant.'],
+manualTax:['仕訳に「法人税、住民税及び事業税」が入っているので、自動の計上はしていません。','분개에 「법인세 비용」이 들어 있으므로 자동 계상은 하지 않았습니다.','An income-tax entry already exists in the journal, so nothing is booked automatically.'],
+cj:[['法人税','地方法人税','防衛特別法人税','法人住民税（法人税割＋均等割）','法人事業税','特別法人事業税'],['법인세','지방법인세','방위특별법인세','법인주민세(법인세할 + 균등할)','법인사업세','특별법인사업세'],['Corporation tax','Local corporation tax','Defence special corporation tax','Inhabitant tax','Enterprise tax','Special corporate enterprise tax']],
+s7:['決算書（日本語で出力）','결산서(일본어로 출력)','Financial statements (output in Japanese)'],s7n:['下の決算書は、日本の会社の様式に合わせて日本語で作ります。印刷・PDF、Word、試算表のCSV（エクセルで開ける）で保存できます。','아래 결산서는 일본 회사의 양식에 맞춰 일본어로 만듭니다. 인쇄·PDF, Word, 시산표 CSV(엑셀로 열림)로 저장할 수 있습니다.','The statements below follow the Japanese company format and are produced in Japanese. Save them by printing to PDF, as Word, or the trial balance as CSV (opens in Excel).'],
+prt:['印刷・PDFに保存','인쇄·PDF 저장','Print / save as PDF'],wrd:['Wordで保存','Word로 저장','Save as Word'],csv:['試算表をCSVで保存','시산표를 CSV로 저장','Save trial balance as CSV'],
+k:[['売上高','営業利益','経常利益','税引前当期純利益','法人税等','当期純利益','総資産','純資産','自己資本比率'],['매출액','영업이익','경상이익','법인세 차감 전 순이익','법인세 등','당기순이익','총자산','자본(순자산)','자기자본비율'],['Net sales','Operating profit','Ordinary profit','Profit before tax','Income taxes','Net profit','Total assets','Net assets','Equity ratio']],
+c:{obOk:['期首残高の借方と貸方が一致しています','기초 잔액의 차변과 대변이 일치합니다','Opening debits and credits agree'],obNg:['期首残高の借方と貸方が {d} 円違います。前の期の貸借対照表と見比べてください','기초 잔액의 차변과 대변이 {d}엔 다릅니다. 전기 재무상태표와 비교해 보세요','Opening debits and credits differ by {d} yen. Compare with last year’s balance sheet'],
+ bad:['科目か金額が足りない仕訳が {n} 行あります（色のついた行）。その行は計算に入れていません','계정이나 금액이 빠진 분개가 {n}줄 있습니다(색이 칠해진 줄). 그 줄은 계산에 넣지 않았습니다','{n} entries are missing an account or amount (highlighted). They are left out of the calculation'],
+ tbOk:['試算表の借方合計と貸方合計が一致しています','시산표의 차변 합계와 대변 합계가 일치합니다','Trial balance debits equal credits'],bsOk:['貸借対照表の資産合計と、負債・純資産合計が一致しています','재무상태표의 자산 합계와 부채·자본 합계가 일치합니다','Total assets equal total liabilities and net assets'],bsNg:['貸借対照表が {d} 円合いません','재무상태표가 {d}엔 맞지 않습니다','The balance sheet is out by {d} yen'],
+ sus:['仮払金・仮受金が残っています。決算までに正しい科目に振り替えます','가지급금·가수금이 남아 있습니다. 결산까지 바른 계정으로 바꿉니다','Suspense accounts still have balances. Reclassify them before the year-end'],
+ cash:['現金・預金がマイナスです。入力の漏れや、借方と貸方の逆を確かめてください','현금·예금이 마이너스입니다. 빠진 입력이나 차변·대변이 거꾸로 된 곳을 확인하세요','Cash or deposits are negative. Check for missing entries or reversed sides'],
+ dep:['固定資産があるのに減価償却費がありません。忘れていませんか','고정자산이 있는데 감가상각비가 없습니다. 잊지 않았나요','There are fixed assets but no depreciation. Has it been forgotten?'],
+ pre:['仮払法人税が残っています。法人税等を計上すると、ここに振り替わります','선납법인세가 남아 있습니다. 법인세 등을 계상하면 여기로 바뀝니다','Prepaid tax remains. Booking income taxes clears it'],
+ loss:['当期は赤字です。それでも法人住民税の均等割はかかります','이번 기는 적자입니다. 그래도 법인주민세 균등할은 붙습니다','The year is a loss. The per-capita inhabitant tax is still due']},
+note:['※ 会社名・数字はすべて架空の例です。決算の流れを学ぶためのもので、実際の決算書や申告の内容を保証するものではありません。','※ 회사명·숫자는 모두 가상의 예시입니다. 결산의 흐름을 익히기 위한 것으로, 실제 결산서나 신고 내용을 보증하지 않습니다.','* The company and figures are fictional, for learning the closing process; they do not guarantee any real accounts or filing.'],
+swipe:['← 横にスクロールできます →','← 옆으로 밀어서 보기 →','← Scroll sideways →'],yen:['円','엔','yen']};
+var M={o1:['前の期の未払金を払った','전기 미지급금을 지급했다','Paid last year’s other payables'],o2:['パソコンと机を買った','컴퓨터와 책상을 샀다','Bought computers and desks'],o3:['借入金の返済（1年分）','차입금 상환(1년 치)','Loan repayments (year)'],o4:['法人税等の中間納付','법인세 등 중간납부','Interim income tax payment'],
+ s1:['売上（1年分の合計、掛け）','매출(1년 치 합계, 외상)','Sales for the year (on credit)'],s2:['売掛金の回収（1年分の合計）','외상매출금 회수(1년 치 합계)','Receivables collected (year)'],s3:['外注費（1年分）','외주용역비(1년 치)','Outsourcing costs (year)'],s4:['役員報酬（1年分）','임원급여(1년 치)','Directors’ remuneration (year)'],
+ s5:['給料の支払い（手取り、11か月分）','급여 지급(실수령, 11개월 치)','Salaries paid (net, 11 months)'],s6:['給料から引いた税金・社会保険料','급여에서 뺀 세금·사회보험료','Tax and insurance withheld from salaries'],s7:['預り金の納付','예수금 납부','Withholdings paid over'],s8:['社会保険料の会社負担（1年分）','사회보험료 회사 부담(1년 치)','Employer social insurance (year)'],
+ s9:['事務所の家賃（1年分）','사무실 임차료(1년 치)','Office rent (year)'],s10:['交通費（1年分）','교통비(1년 치)','Travel (year)'],s11:['電話・インターネット（1年分）','전화·인터넷(1년 치)','Phone and internet (year)'],s12:['電気・水道（1年分）','전기·수도(1년 치)','Utilities (year)'],s13:['消耗品（1年分）','소모품(1년 치)','Consumables (year)'],s14:['取引先の接待（1年分）','거래처 접대(1년 치)','Entertainment (year)'],s15:['振込手数料など（1年分）','이체 수수료 등(1년 치)','Bank charges and fees (year)'],s16:['印紙税など','인지세 등','Stamp duty and similar'],s17:['借入金の利息（1年分）','차입금 이자(1년 치)','Loan interest (year)'],s18:['預金の利息','예금 이자','Deposit interest'],
+ a1:['減価償却（決算整理）','감가상각(결산 정리)','Depreciation (closing entry)'],a2:['3月分の給料（4月払い、決算整理）','3월분 급여(4월 지급, 결산 정리)','March salaries paid in April (closing entry)'],a3:['4月分の家賃を3月に払った分（決算整理）','4월분 임차료를 3월에 낸 몫(결산 정리)','April rent paid in March (closing entry)']};
+function t(k){return X[k][LI]}
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function num(v){var s=String(v==null?'':v).replace(/[０-９．－]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)}).replace(/[,，\s円]/g,'');var n=parseFloat(s);return isNaN(n)?0:n}
+function fy(n){return isFinite(n)?(n<0?'△':'')+Math.round(Math.abs(n)).toLocaleString('ja-JP'):'—'}
+function fs(n){return isFinite(n)?(n<0?'−':'')+Math.round(Math.abs(n)).toLocaleString('ja-JP'):'—'}
+function jd(s){if(!s)return '';var p=s.split('-');return +p[0]+'年'+(+p[1])+'月'+(+p[2])+'日'}
+var A=window.ACCTS;
+function an(c){var a=A&&A.by[c];if(!a)return c;return LI===0?a.n[0]:a.n[LI]+'（'+a.n[0]+'）'}
+function jn(c){return A&&A.by[c]?A.by[c].n[0]:c}
+function g(c){return A&&A.by[c]?A.by[c].g:''}
+function debitNormal(c){var a=A.by[c];if(!a)return true;var d=a.g==='a'||a.g==='x';return a.ctr?!d:d}
+function EX(){function m(k){return M[k][LI]}var E='2027-03-31';return{t:0,co:{name:'株式会社さくらグランドサービス（架空）',start:'2026-04-01',end:E},
+ ob:[['110',18000000],['121',6000000],['165',2400000],['180',1500000],['203',1200000],['220',5000000],['300',10000000],['311',11700000]].map(function(r){return{c:r[0],a:r[1]}}),
+ je:[['2026-04-30','o1','203','110',1200000],['2026-05-31','o2','165','110',1200000],['2026-06-30','o3','220','110',1000000],['2026-11-30','o4','155','110',1000000],
+  [E,'s1','121','400',60000000],[E,'s2','110','121',58000000],[E,'s3','539','110',12000000],[E,'s4','510','110',9600000],[E,'s5','511','110',15500000],[E,'s6','511','218',2500000],[E,'s7','218','110',2400000],[E,'s8','513','110',2900000],
+  [E,'s9','526','110',4800000],[E,'s10','520','110',1200000],[E,'s11','522','110',600000],[E,'s12','525','110',360000],[E,'s13','523','110',480000],[E,'s14','532','110',400000],[E,'s15','536','110',300000],[E,'s16','530','110',150000],[E,'s17','540','110',90000],[E,'s18','110','401',5000],
+  [E,'a1','529','165',900000],[E,'a2','511','204',1500000],[E,'a3','150','526',400000]].map(function(r){return{d:r[0],m:m(r[1]),dr:r[2],cr:r[3],a:r[4]}}),adj:0,auto:true}}
+function BLANK(){return{t:0,co:{name:'',start:'',end:''},ob:[{c:'',a:0}],je:[{d:'',m:'',dr:'',cr:'',a:0}],adj:0,auto:true}}
+function valid(o){return o&&o.co&&Array.isArray(o.ob)&&Array.isArray(o.je)}
+var D=null;try{var o0=JSON.parse(localStorage.getItem(KEY)||'null');if(valid(o0))D=o0}catch(e){}
+if(!D)D=EX();
+function getp(p){var o=D;p.split('.').forEach(function(k){o=o==null?o:o[k]});return o}
+function setp(p,v){var a=p.split('.'),o=D;for(var i=0;i<a.length-1;i++)o=o[a[i]];o[a[a.length-1]]=v}
+var tm2=null;
+function save(){try{D.t=Date.now();localStorage.setItem(KEY,JSON.stringify(D));
+ if(window.Member&&window.Member.user()){clearTimeout(tm2);tm2=setTimeout(function(){window.Member.saveDoc('close',D).catch(function(){})},1200)}
+ if($('sv'))$('sv').textContent=t('saved')+' '+new Date().toLocaleTimeString(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit'})}catch(e){}}
+
+/* ---- 計算 ---- */
+function okRow(r){return r.dr&&r.cr&&r.dr!==r.cr&&A.by[r.dr]&&A.by[r.cr]&&num(r.a)>0}
+function prog(tb,v){var s=0,p=0;for(var i=0;i<tb.length;i++){var u=Math.min(v,tb[i][0]);if(u>p)s+=(u-p)*tb[i][1]/100;p=tb[i][0];if(v<=p)break}return s}
+function corpTax(I){var C=window.RATES&&window.RATES.corp;if(!C)return null;var J=C.jp;I=Math.max(0,I);
+ var h=Math.floor((Math.min(I,J.lowTo)*J.low/100+Math.max(0,I-J.lowTo)*J.high/100)),ch=Math.floor(h*J.chiho/100),bo=Math.floor(Math.max(0,h-J.boeiDed)*J.boei/100),jr=h>J.juminLim?J.juminHi:J.jumin,ju=Math.floor(h*jr/100)+J.kinto,ov=I>J.jigLim,jg=Math.floor(prog(ov?J.jigHi:J.jig,I)),tk=Math.floor(prog(J.jig,I)*J.toku/100);
+ var v=[h,ch,bo,ju,jg,tk];return{v:v,sum:v.reduce(function(a,b){return a+b},0)}}
+function balances(posts){var B={};function add(c,d,cr){(B[c]=B[c]||{d:0,c:0});B[c].d+=d;B[c].c+=cr}
+ D.ob.forEach(function(r){if(!A.by[r.c]||!num(r.a))return;if(debitNormal(r.c))add(r.c,num(r.a),0);else add(r.c,0,num(r.a))});
+ posts.forEach(function(p){add(p.dr,p.a,0);add(p.cr,0,p.a)});return B}
+function nbal(c,b){return debitNormal(c)?b.d-b.c:b.c-b.d}
+function pl(B){var S={};Object.keys(B).forEach(function(c){var a=A.by[c];if(!a)return;if(a.g==='x')S[a.s]=(S[a.s]||0)+B[c].d-B[c].c;else if(a.g==='r')S[a.s]=(S[a.s]||0)+B[c].c-B[c].d});
+ var f=function(k){return S[k]||0},R={sl:f('sl'),cs:f('cs'),ga:f('ga'),ni:f('ni'),ne:f('ne'),si:f('si'),sx:f('sx'),tx:f('tx')};
+ R.gp=R.sl-R.cs;R.op=R.gp-R.ga;R.ord=R.op+R.ni-R.ne;R.pre=R.ord+R.si-R.sx;R.net=R.pre-R.tx;return R}
+function calc(){var R={bad:0},posts=[];D.je.forEach(function(r,i){if(okRow(r))posts.push({d:r.d||'',m:r.m||'',dr:r.dr,cr:r.cr,a:num(r.a),i:i});else if(r.dr||r.cr||num(r.a))R.bad++});
+ R.manual=posts.some(function(p){return g(p.dr)==='x'&&A.by[p.dr].s==='tx'||g(p.cr)==='x'&&A.by[p.cr].s==='tx'});
+ var B0=balances(posts),P0=pl(B0);R.pre=P0.pre;R.tinc=P0.pre+num(D.adj);R.tax=corpTax(R.tinc);
+ var b155=B0['155']?nbal('155',B0['155']):0;R.interim=b155;R.virt=[];
+ if(D.auto&&!R.manual&&R.tax){var T=R.tax.sum,end=D.co.end||'',m=X.taxl[LI],fromPre=Math.min(Math.max(b155,0),T);if(fromPre>0)R.virt.push({d:end,m:m,dr:'550',cr:'155',a:fromPre,v:1});
+  if(T-fromPre>0)R.virt.push({d:end,m:m,dr:'550',cr:'205',a:T-fromPre,v:1});if(b155-fromPre>0)R.virt.push({d:end,m:m,dr:'122',cr:'155',a:b155-fromPre,v:1});R.payable=T-fromPre;R.refund=b155-fromPre}
+ R.posts=posts.concat(R.virt);R.B=balances(R.posts);R.P=pl(R.B);
+ var td=0,tc=0;R.tb=Object.keys(R.B).sort().map(function(c){var b=R.B[c],v=b.d-b.c;if(v>0)td+=v;else tc-=v;return{c:c,d:v>0?v:0,cr:v<0?-v:0}}).filter(function(r){return r.d||r.cr});R.td=td;R.tc=tc;
+ var od=0,oc=0;D.ob.forEach(function(r){if(!A.by[r.c])return;if(debitNormal(r.c))od+=num(r.a);else oc+=num(r.a)});R.od=od;R.oc=oc;
+ var S={};Object.keys(R.B).forEach(function(c){var a=A.by[c];if(!a)return;if(a.g==='a'||a.g==='l'||a.g==='e'){var v=a.g==='a'?R.B[c].d-R.B[c].c:R.B[c].c-R.B[c].d;S[a.s]=(S[a.s]||0)+v}});
+ R.ta=(S.ca||0)+(S.fa||0)+(S.ia||0)+(S.oa||0);R.tl=(S.cl||0)+(S.ll||0);R.te=(S.eq||0)+R.P.net;R.S=S;return R}
+
+/* ---- 決算書（日本語） ---- */
+function lines(B,secs,sign){var out=[];Object.keys(B).sort().forEach(function(c){var a=A.by[c];if(!a||secs.indexOf(a.s)<0)return;var v=a.g==='a'?B[c].d-B[c].c:a.g==='l'||a.g==='e'?B[c].c-B[c].d:a.g==='x'?B[c].d-B[c].c:B[c].c-B[c].d;if(Math.round(v))out.push([jn(c),v,c])});return out}
+function rowsHtml(ls,cls){return ls.map(function(l){return '<tr><td class="'+(cls||'i2')+'">'+esc(l[0])+'</td><td class="n">'+fy(l[1])+'</td><td></td></tr>'}).join('')}
+function paper(R){var B=R.B,c=D.co,h='<h3>決算報告書</h3><p class="c">'+esc(c.name)+'</p><p class="c">自 '+jd(c.start)+'　至 '+jd(c.end)+'</p><hr>';
+ var reOpen=B['311']?B['311'].c-B['311'].d:0,eqL=lines(B,['eq']).filter(function(l){return l[2]!=='311'});
+ h+='<h3>貸借対照表</h3><p class="r">'+jd(c.end)+'現在　（単位：円）</p><table><tr><th>科目</th><th class="n">金額</th><th class="n">合計</th></tr>';
+ h+='<tr class="sec"><td>【資産の部】</td><td></td><td></td></tr><tr><td class="i1">流動資産</td><td></td><td class="n">'+fy(R.S.ca||0)+'</td></tr>'+rowsHtml(lines(B,['ca']));
+ var fix=(R.S.fa||0)+(R.S.ia||0)+(R.S.oa||0);h+='<tr><td class="i1">固定資産</td><td></td><td class="n">'+fy(fix)+'</td></tr>';
+ [['fa','有形固定資産'],['ia','無形固定資産'],['oa','投資その他の資産']].forEach(function(s){var ls=lines(B,[s[0]]);if(ls.length)h+='<tr><td class="i1">　'+s[1]+'</td><td></td><td class="n">'+fy(R.S[s[0]]||0)+'</td></tr>'+rowsHtml(ls)});
+ h+='<tr class="sum"><td>資産合計</td><td></td><td class="n">'+fy(R.ta)+'</td></tr>';
+ h+='<tr class="sec"><td>【負債の部】</td><td></td><td></td></tr><tr><td class="i1">流動負債</td><td></td><td class="n">'+fy(R.S.cl||0)+'</td></tr>'+rowsHtml(lines(B,['cl']));
+ var ll=lines(B,['ll']);if(ll.length)h+='<tr><td class="i1">固定負債</td><td></td><td class="n">'+fy(R.S.ll||0)+'</td></tr>'+rowsHtml(ll);
+ h+='<tr class="sum"><td>負債合計</td><td></td><td class="n">'+fy(R.tl)+'</td></tr>';
+ h+='<tr class="sec"><td>【純資産の部】</td><td></td><td></td></tr>'+rowsHtml(eqL,'i1')+'<tr><td class="i1">繰越利益剰余金</td><td class="n">'+fy(reOpen+R.P.net)+'</td><td></td></tr><tr><td class="i2">（うち当期純利益）</td><td class="n">'+fy(R.P.net)+'</td><td></td></tr>';
+ h+='<tr class="sum"><td>純資産合計</td><td></td><td class="n">'+fy(R.te)+'</td></tr><tr class="sum"><td>負債・純資産合計</td><td></td><td class="n">'+fy(R.tl+R.te)+'</td></tr></table><hr>';
+ var P=R.P;h+='<h3>損益計算書</h3><p class="r">自 '+jd(c.start)+'　至 '+jd(c.end)+'　（単位：円）</p><table><tr><th>科目</th><th class="n">金額</th><th class="n">合計</th></tr>';
+ function blk(t,secs,tot){var ls=lines(B,secs);if(!ls.length&&!tot)return '';return '<tr><td class="i1">'+t+'</td><td></td><td class="n">'+fy(tot)+'</td></tr>'+rowsHtml(ls)}
+ function st(t,v){return '<tr class="sum"><td>'+(v<0?t.replace('利益','損失'):t)+'</td><td></td><td class="n">'+fy(v)+'</td></tr>'}
+ h+='<tr><td>売上高</td><td></td><td class="n">'+fy(P.sl)+'</td></tr>'+blk('売上原価',['cs'],P.cs)+st('売上総利益',P.gp)+blk('販売費及び一般管理費',['ga'],P.ga)+st('営業利益',P.op)+blk('営業外収益',['ni'],P.ni)+blk('営業外費用',['ne'],P.ne)+st('経常利益',P.ord)+blk('特別利益',['si'],P.si)+blk('特別損失',['sx'],P.sx)+st('税引前当期純利益',P.pre);
+ lines(B,['tx']).forEach(function(l){h+='<tr><td class="i1">'+esc(l[0])+'</td><td></td><td class="n">'+fy(l[1])+'</td></tr>'});
+ h+=st('当期純利益',P.net)+'</table><hr>';
+ h+='<h3>決算整理後残高試算表</h3><p class="r">'+jd(c.end)+'現在　（単位：円）</p><table><tr><th class="n">借方</th><th>勘定科目</th><th class="n">貸方</th></tr>'+R.tb.map(function(r){return '<tr><td class="n">'+(r.d?fy(r.d):'')+'</td><td>'+esc(r.c+' '+jn(r.c))+'</td><td class="n">'+(r.cr?fy(r.cr):'')+'</td></tr>'}).join('')+'<tr class="sum"><td class="n">'+fy(R.td)+'</td><td style="text-align:center">合計</td><td class="n">'+fy(R.tc)+'</td></tr></table>';
+ return h}
+
+/* ---- 画面 ---- */
+function opts(v){var h='<option value="">'+esc(t('pick'))+'</option>';Object.keys(A.SEC).forEach(function(s){h+='<optgroup label="'+esc(A.SEC[s][LI])+'">'+A.list.filter(function(r){return r[1]===s}).map(function(r){return '<option value="'+r[0]+'"'+(r[0]===v?' selected':'')+'>'+esc(r[0]+' '+an(r[0]))+'</option>'}).join('')+'</optgroup>'});return h}
+function inp(p,o){o=o||{};var v=getp(p);return '<input data-p="'+p+'"'+(o.n?' data-n="1" inputmode="decimal"':'')+' type="'+(o.t||'text')+'" value="'+esc(o.n?(num(v)?Math.round(num(v)).toLocaleString('ja-JP'):''):(v==null?'':v))+'"'+(o.lab?' aria-label="'+esc(o.lab)+'"':'')+'>'}
+function card(n,b,id){return '<section class="card"'+(id?' id="'+id+'"':'')+'><h2><span class="n">'+n+'</span>'+esc(t('s'+n))+'</h2>'+b+'</section>'}
+function xb(a,i){return '<button type="button" class="xb" data-act="'+a+'" data-i="'+i+'" aria-label="'+esc(t('del'))+'">×</button>'}
+function sw(){return '<p class="note">'+t('swipe')+'</p>'}
+function langBar(){var gEl=$('lang');gEl.innerHTML=LS.map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===L?'on':'')+'" aria-pressed="'+(l===L)+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
+ Array.prototype.forEach.call(gEl.querySelectorAll('button'),function(b){b.onclick=function(){L=b.getAttribute('data-l');LI=LS.indexOf(L);try{localStorage.setItem('art-lang',L)}catch(e){}render()}})}
+function render(){document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('privacy').textContent=t('privacy');$('note').textContent=t('note');langBar();
+ $('bar').innerHTML='<button class="btn" id="bEx" type="button">'+esc(t('ex'))+'</button><button class="btn" id="bExp" type="button">'+esc(t('exp'))+'</button><label class="btn" for="fImp">'+esc(t('imp'))+'</label><input type="file" id="fImp" accept=".json,application/json" style="display:none"><button class="btn del" id="bCl" type="button">'+esc(t('clr'))+'</button><span class="saved" id="sv"></span>';
+ $('bEx').onclick=function(){if(confirm(t('exC'))){D=EX();save();render()}};
+ $('bCl').onclick=function(){if(confirm(t('clrC'))){D=BLANK();save();render()}};
+ $('bExp').onclick=function(){dl(JSON.stringify(D,null,1),'year-end-closing.json','application/json')};
+ $('fImp').onchange=function(e){var f=e.target.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){try{var o=JSON.parse(rd.result);if(!valid(o))throw 0;D=o;save();render()}catch(x){alert(t('impE'))}};rd.readAsText(f)};
+ var h='';
+ h+=card(1,'<div class="g3">'+'<label class="f">'+esc(t('name'))+inp('co.name')+'</label><label class="f">'+esc(t('start'))+inp('co.start',{t:'date'})+'</label><label class="f">'+esc(t('end'))+inp('co.end',{t:'date'})+'</label></div>');
+ var s='<p class="note">'+t('s2n')+'</p><div class="tw"><table class="ed" style="min-width:560px"><thead><tr><th>'+esc(t('acc'))+'</th><th>'+esc(t('side'))+'</th><th>'+esc(t('amt'))+'</th><th class="x"></th></tr></thead><tbody>';
+ D.ob.forEach(function(r,i){s+='<tr><td><select data-p="ob.'+i+'.c" data-r="1" aria-label="'+esc(t('acc'))+'">'+opts(r.c)+'</select></td><td style="text-align:center" id="obs'+i+'"></td><td>'+inp('ob.'+i+'.a',{n:1,lab:t('amt')})+'</td><td class="x">'+xb('delO',i)+'</td></tr>'});
+ s+='<tr><th>'+esc(t('tot'))+'</th><td colspan="2" id="obt" style="text-align:right"></td><td class="x"></td></tr></tbody></table></div><div class="bar"><button type="button" class="btn" data-act="addO">＋ '+esc(t('addO'))+'</button></div>';h+=card(2,s);
+ s='<p class="note">'+t('s3n')+'</p>'+sw()+'<div class="tw"><table class="ed" id="jt"><thead><tr><th style="width:150px">'+esc(t('date'))+'</th><th style="min-width:220px">'+esc(t('memo'))+'</th><th>'+esc(t('dr'))+'</th><th>'+esc(t('cr'))+'</th><th style="width:140px">'+esc(t('amt'))+'</th><th class="x"></th></tr></thead><tbody>';
+ D.je.forEach(function(r,i){s+='<tr data-i="'+i+'"><td>'+inp('je.'+i+'.d',{t:'date',lab:t('date')})+'</td><td>'+inp('je.'+i+'.m',{lab:t('memo')})+'</td><td><select data-p="je.'+i+'.dr" aria-label="'+esc(t('dr'))+'">'+opts(r.dr)+'</select></td><td><select data-p="je.'+i+'.cr" aria-label="'+esc(t('cr'))+'">'+opts(r.cr)+'</select></td><td>'+inp('je.'+i+'.a',{n:1,lab:t('amt')})+'</td><td class="x">'+xb('delJ',i)+'</td></tr>'});
+ s+='</tbody></table></div><div class="bar"><button type="button" class="btn" data-act="addJ">＋ '+esc(t('addJ'))+'</button></div>';h+=card(3,s);
+ h+=card(4,'<p class="note">'+t('s4n')+'</p><div class="g3"><label class="f">'+esc(t('acc'))+'<select id="lsel" aria-label="'+esc(t('acc'))+'"></select></label></div>'+sw()+'<div class="tw" id="led"></div>');
+ h+=card(5,'<p class="note">'+t('s5n')+'</p><ul class="chk" id="chk"></ul><div class="tw" id="tb"></div>');
+ h+=card(6,'<p class="note">'+t('s6n')+'</p><div class="g3"><label class="f">'+esc(t('adj'))+inp('adj',{n:1,lab:t('adj')})+'</label><label class="f" style="flex-direction:row;align-items:center;gap:8px;grid-column:span 2"><input type="checkbox" id="auto" style="width:22px;min-height:22px"'+(D.auto?' checked':'')+'>'+esc(t('auto'))+'</label></div><p class="note">'+t('adjn')+'</p><div class="tw" id="tax"></div><p class="note">'+t('taxn')+'</p>');
+ h+=card(7,'<p class="note">'+t('s7n')+'</p><div class="kpis" id="kp"></div><div class="bar"><button type="button" class="btn pri" data-act="prt">'+esc(t('prt'))+'</button><button type="button" class="btn" data-act="wrd">'+esc(t('wrd'))+'</button><button type="button" class="btn" data-act="csv">'+esc(t('csv'))+'</button></div><div class="paper" id="paper" lang="ja" data-noalign="1"></div>','outsec');
+ $('app').innerHTML=h;$('auto').onchange=function(){D.auto=this.checked;save();out()};$('lsel').onchange=function(){SEL=this.value;out()};out()}
+function out(){var R=calc(),y=t('yen');
+ D.ob.forEach(function(r,i){var e=$('obs'+i);if(e)e.textContent=A.by[r.c]?(debitNormal(r.c)?t('dr'):t('cr')):''});
+ $('obt').innerHTML=esc(t('dr'))+' '+fs(R.od)+'　/　'+esc(t('cr'))+' '+fs(R.oc);
+ Array.prototype.forEach.call(document.querySelectorAll('#jt tbody tr'),function(tr){var r=D.je[+tr.getAttribute('data-i')];if(!r)return;var bad=!okRow(r)&&(r.dr||r.cr||num(r.a));tr.classList.toggle('bad',!!bad);tr.classList.toggle('adj',!!(r.d&&D.co.end&&r.d===D.co.end))});
+ /* 元帳 */
+ var used=Object.keys(R.B).sort();if(!SEL||used.indexOf(SEL)<0)SEL=used.indexOf('110')>=0?'110':used[0];
+ $('lsel').innerHTML=used.map(function(c){return '<option value="'+c+'"'+(c===SEL?' selected':'')+'>'+esc(c+' '+an(c))+'</option>'}).join('');
+ if(SEL){var dn=debitNormal(SEL),ob=0;D.ob.forEach(function(r){if(r.c===SEL)ob+=num(r.a)});var run=ob,rows='<tr><td></td><td>'+esc(t('ob'))+'</td><td></td><td class="n"></td><td class="n"></td><td class="n">'+fs(ob)+'</td></tr>';
+  R.posts.filter(function(p){return p.dr===SEL||p.cr===SEL}).sort(function(a,b){return (a.d||'')<(b.d||'')?-1:(a.d||'')>(b.d||'')?1:(a.i||999)-(b.i||999)}).forEach(function(p){var d=p.dr===SEL?p.a:0,c=p.cr===SEL?p.a:0;run+=dn?d-c:c-d;rows+='<tr><td>'+esc(p.d)+'</td><td>'+esc(p.m)+'</td><td>'+esc(an(p.dr===SEL?p.cr:p.dr))+'</td><td class="n">'+(d?fs(d):'')+'</td><td class="n">'+(c?fs(c):'')+'</td><td class="n">'+fs(run)+'</td></tr>'});
+  $('led').innerHTML='<table class="v" style="min-width:720px"><thead><tr><th>'+esc(t('date'))+'</th><th>'+esc(t('memo'))+'</th><th>'+esc(t('other'))+'</th><th class="n">'+esc(t('dr'))+'</th><th class="n">'+esc(t('cr'))+'</th><th class="n">'+esc(t('bal'))+'</th></tr></thead><tbody>'+rows+'</tbody></table>'}else $('led').innerHTML='';
+ /* チェック */
+ var C=X.c,ck=[],L2=function(k){return C[k][LI]};
+ ck.push(Math.round(R.od-R.oc)===0?['ok',L2('obOk')]:['ng',L2('obNg').replace('{d}',fs(Math.abs(R.od-R.oc)))]);
+ if(R.bad)ck.push(['ng',L2('bad').replace('{n}',R.bad)]);
+ ck.push(Math.round(R.td-R.tc)===0?['ok',L2('tbOk')]:['ng',L2('bsNg').replace('{d}',fs(R.td-R.tc))]);
+ var diff=Math.round(R.ta-R.tl-R.te);ck.push(diff===0?['ok',L2('bsOk')]:['ng',L2('bsNg').replace('{d}',fs(Math.abs(diff)))]);
+ function nb(c){return R.B[c]?nbal(c,R.B[c]):0}
+ if(nb('153')||nb('210'))ck.push(['wa',L2('sus')]);if(nb('100')<0||nb('110')<0||nb('111')<0)ck.push(['wa',L2('cash')]);
+ if((R.S.fa||0)+(R.S.ia||0)>0&&!nb('529'))ck.push(['wa',L2('dep')]);if(nb('155')>0)ck.push(['wa',L2('pre')]);if(R.P.pre<0)ck.push(['wa',L2('loss')]);
+ $('chk').innerHTML=ck.map(function(c){return '<li class="'+c[0]+'">'+(c[0]==='ok'?'✓ ':c[0]==='ng'?'✕ ':'！ ')+esc(c[1])+'</li>'}).join('');
+ $('tb').innerHTML='<table class="v" style="min-width:520px"><thead><tr><th class="n">'+esc(t('dr'))+'</th><th>'+esc(t('acc'))+'</th><th class="n">'+esc(t('cr'))+'</th></tr></thead><tbody>'+R.tb.map(function(r){return '<tr><td class="n">'+(r.d?fs(r.d):'')+'</td><td>'+esc(r.c+' '+an(r.c))+'</td><td class="n">'+(r.cr?fs(r.cr):'')+'</td></tr>'}).join('')+'<tr class="sum"><td class="n">'+fs(R.td)+'</td><td style="text-align:center">'+esc(t('tot'))+'</td><td class="n">'+fs(R.tc)+'</td></tr></tbody></table>';
+ /* 税金 */
+ var tx='<table class="v" style="min-width:480px"><tbody><tr><td>'+esc(t('pre'))+'</td><td class="n">'+fs(R.pre)+'</td></tr><tr><td>'+esc(t('adj'))+'</td><td class="n">'+fs(num(D.adj))+'</td></tr><tr class="sum"><td>'+esc(t('tinc'))+'</td><td class="n">'+fs(Math.max(0,R.tinc))+'</td></tr>';
+ if(R.tax){X.cj[LI].forEach(function(n,i){tx+='<tr><td>　'+esc(n)+'</td><td class="n">'+(R.tax.v[i]?fs(R.tax.v[i]):'—')+'</td></tr>'});tx+='<tr class="sum"><td>'+esc(t('tot'))+'</td><td class="n">'+fs(R.tax.sum)+'</td></tr><tr><td>'+esc(t('interim'))+'</td><td class="n">'+fs(R.interim)+'</td></tr>';
+  if(R.virt.length)tx+=R.refund>0?'<tr class="sum"><td>'+esc(t('refund'))+'</td><td class="n">'+fs(R.refund)+'</td></tr>':'<tr class="sum"><td>'+esc(t('pay'))+'</td><td class="n">'+fs(R.payable)+'</td></tr>'}
+ tx+='</tbody></table>'+(R.manual?'<p class="note">'+esc(t('manualTax'))+'</p>':'');$('tax').innerHTML=tx;
+ /* 指標と決算書 */
+ var P=R.P,K=X.k[LI],kv=[P.sl,P.op,P.ord,P.pre,P.tx,P.net,R.ta,R.te];
+ $('kp').innerHTML=kv.map(function(v,i){return '<div class="kpi"><span>'+esc(K[i])+'</span><b>'+fs(v)+'</b> '+esc(y)+'</div>'}).join('')+'<div class="kpi"><span>'+esc(K[8])+'</span><b>'+(R.ta>0?(R.te/R.ta*100).toFixed(1):'—')+'</b> %</div>';
+ $('paper').innerHTML=paper(R)}
+function dl(txt,name,type){var b=new Blob([txt],{type:type}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove()}
+function word(){var b=$('paper').innerHTML.replace(/<hr>/g,'<br clear="all" style="page-break-before:always">').replace(/<table>/g,'<table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse;border:1px solid #000;width:100%">').replace(/<h3>/g,'<h3 align="center" style="text-align:center">').replace(/ class="r"/g,' align="right" style="text-align:right"').replace(/ class="c"/g,' align="center" style="text-align:center"').replace(/ class="n"/g,' align="right" style="text-align:right"').replace(/ class="i1"/g,' style="padding-left:18pt"').replace(/ class="i2"/g,' style="padding-left:32pt"');
+ var h='<html><head><meta charset="utf-8"><style>body{font-family:"MS Mincho","Yu Mincho",serif;font-size:10.5pt;line-height:1.6}td,th{border:1px solid #000;padding:2pt 6pt}tr.sec td,tr.sum td{font-weight:bold}</style></head><body>'+b+'</body></html>';
+ dl(String.fromCharCode(65279)+h,'決算報告書.doc','application/msword')}
+function csv(){var R=calc(),rows=[['借方','勘定科目番号','勘定科目','貸方']];R.tb.forEach(function(r){rows.push([r.d||'',r.c,jn(r.c),r.cr||''])});rows.push([R.td,'','合計',R.tc]);
+ dl(String.fromCharCode(65279)+rows.map(function(r){return r.map(function(v){v=String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(',')}).join('\r\n'),'試算表.csv','text/csv')}
+
+/* ---- 入力の受け取り ---- */
+var app=$('app');
+function onIn(e){var el=e.target,p=el.getAttribute&&el.getAttribute('data-p');if(!p)return;var v=el.getAttribute('data-n')?num(el.value):el.value;setp(p,v);save();if(el.getAttribute('data-r'))render();else out()}
+app.addEventListener('input',onIn);app.addEventListener('change',onIn);
+app.addEventListener('focusout',function(e){var el=e.target;if(el.getAttribute&&el.getAttribute('data-n')&&num(el.value))el.value=Math.round(num(el.value)).toLocaleString('ja-JP')});
+app.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var a=b.getAttribute('data-act'),i=+b.getAttribute('data-i');
+ if(a==='prt'){window.print();return}if(a==='wrd'){word();return}if(a==='csv'){csv();return}
+ if(a==='addO')D.ob.push({c:'',a:0});else if(a==='delO'){if(D.ob.length<2)return;D.ob.splice(i,1)}
+ else if(a==='addJ')D.je.push({d:D.co.end||'',m:'',dr:'',cr:'',a:0});else if(a==='delJ'){if(D.je.length<2)return;D.je.splice(i,1)}else return;
+ save();render()});
+render();
+if(window.Member)window.Member.onChange(function(u){if(!u)return;window.Member.loadDoc('close').then(function(d){if(!d||!valid(d.data))return;var st=d.data.t||Date.parse(d.updated_at)||0;if(st>(D.t||0)){D=d.data;try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}render()}}).catch(function(){})});
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

@@ -53,6 +53,35 @@ sections:[
 {t:"note",x:"* Equipment costing ¥100,000 or more is recorded as an asset and expensed over several years (depreciation). Check current tax rules, including special treatment for small companies. ★"}]},
 {h:"From receipt to accounts",blocks:[{t:"ladder",rise:10,steps:[{name:"Evidence",sub:"Receipts, invoices, contracts"},{name:"Journal entry",sub:"Recorded left and right"},{name:"General ledger",sub:"Grouped by account"},{name:"Trial balance",sub:"Left and right totals checked"},{name:"Accounts",sub:"P/L and balance sheet (0-3)"}]},
 {t:"point",x:"Accounting software now produces everything from entries to accounts automatically. Even so, if you understand what an entry means, you will spot figures that look wrong straight away."}]}],
+deepLabel:"In depth: accounts and the books",
+deep:[
+{h:"Account names in Japanese, Korean and English",blocks:[
+{t:"p",x:"Common accounts side by side in Japanese, Korean and English. The Korean names are those used in Korean accounting practice. Filter by type with the buttons, or search by name."},
+{t:"accts"},
+{t:"note",x:"* The numbers are one small company’s way of coding its books; every company differs. Korean companies use K-IFRS or Korean GAAP names, so the same account may be worded slightly differently."}]},
+{h:"Numbering and order",blocks:[
+{t:"table",cols:["Number","Type","Normal balance","Statement"],rows:[["100s","Assets","Debit (left)","Balance sheet"],["200s","Liabilities","Credit (right)","Balance sheet"],["300s","Equity","Credit (right)","Balance sheet"],["400s","Revenue","Credit (right)","Income statement"],["500s","Expenses","Debit (left)","Income statement"]]},
+{t:"point",x:"Accounting software numbers each account to speed up entry and sorting. Numbering differs between companies, but the order assets → liabilities → equity → revenue → expenses is the same everywhere. Some accounts, such as the allowance for doubtful accounts and accumulated depreciation, sit among the assets but carry a credit balance."}]},
+{h:"Accounts named differently in Japan and Korea",blocks:[
+{t:"table",cols:["Japanese","Korean (as used in practice)","What it records"],rows:[
+["売掛金","외상매출금, 매출채권","Amounts owed by customers"],
+["仮払消費税・仮受消費税","부가세대급금, 부가세예수금","Consumption tax paid and collected (VAT in Korea)"],
+["預り金","예수금","Tax and social insurance withheld from pay, held until paid over"],
+["法定福利費","법정복리비","The employer’s share of social insurance"],
+["地代家賃","지급임차료","Office and parking rent"],
+["租税公課","세금과공과","Stamp duty, property tax, vehicle tax and so on; not corporation tax"],
+["接待交際費","접대비","Entertaining and gifts for business partners"],
+["繰越利益剰余金","이월이익잉여금","Profits accumulated so far"]]}]},
+{h:"Accounts that are easy to confuse",blocks:[{t:"rows",items:[
+{name:"Advance payments and prepaid expenses",x:"An advance payment is paid before goods or services are received. A prepaid expense is the next period’s share of rent or insurance already paid."},
+{name:"Accounts payable, other payables, accrued expenses",x:"Accounts payable are for goods and materials, other payables for other purchases, and accrued expenses for continuing services such as rent or wages that have been received but not yet paid."},
+{name:"Suspense payments and receipts",x:"A temporary home for money whose purpose is not yet known. Move it to the right account before the year-end; large balances left in the accounts invite questions."},
+{name:"Taxes and dues versus income taxes",x:"Stamp duty and property tax are taxes and dues (an SG&A expense). Corporation, inhabitant and enterprise taxes go in the last line of the income statement, “income taxes”."},
+{name:"Recording depreciation",x:"Either reduce the asset directly (direct method) or use accumulated depreciation (indirect method). Small companies tend to use the direct method, larger ones the indirect method."}]}]},
+{h:"From the books to the accounts",blocks:[
+{t:"ladder",steps:[{name:"Vouchers",sub:"Invoices, receipts, bank book"},{name:"Journal",sub:"Split into debit and credit"},{name:"General ledger",sub:"Gather by account"},{name:"Trial balance",sub:"Do debits equal credits?"},{name:"Closing entries",sub:"Depreciation, accruals, prepayments"},{name:"Statements",sub:"Balance sheet, income statement"}]},
+{t:"link",href:"../23_재무3표실무/取引と財務諸表の練習.html",x:"[Practice page] Transactions and Financial Statements Practice: the “From journal entries to the statements” level follows one month from entries to accounts"},
+{t:"link",href:"決算の練習.html",x:"[Practice page] Year-End Closing Practice: a small company’s year of entries through the ledger, trial balance, statements and an income tax estimate"}]}],
 voice:"Rather than memorising entries, first explain in words where the money came from and where it went. Once you can say it, left and right fall into place.",
 terms:[["Journal Entry","仕訳","분개"],["Debit","借方","차변"],["Credit","貸方","대변"],["Account Title","勘定科目","계정과목"],["Trial Balance","試算表","시산표"]],
 quiz:[{q:"Stationery is bought with cash. What goes on the debit (left)?",opts:["Cash","Supplies expense","Sales","Loans"],a:1,exp:"An expense increased, so it is a debit; cash decreased, so it is a credit."},
