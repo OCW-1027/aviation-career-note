@@ -6,13 +6,12 @@
 <title>財務諸表の連動シミュレーター ― 小さな会社の1年を動かす</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
-*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
-.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 70px}
-header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-header a{color:#1d5fa0;font-size:13px}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}html[lang=ko] header h1,html[lang=ko] header p{word-break:keep-all}
+.courselink{font-size:13px;margin:16px 4px 0}.courselink a{color:#1d5fa0}
 h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
-.langs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
-.langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.langs{display:inline-flex}.langs button{cursor:pointer}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
 .card h2{font-size:15px;margin:0 0 10px}
 .lay{display:grid;grid-template-columns:340px 1fr;gap:14px}@media(max-width:900px){.lay{grid-template-columns:1fr}}
@@ -39,11 +38,11 @@ h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;marg
 details summary{cursor:pointer;font-weight:700;font-size:14px}.dbody{font-size:13px;color:var(--muted);margin-top:6px}
 button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 </style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="finlink"></script>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="00_シリーズ全体_財務3表.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></span></header>
-<h1 id="t_title"></h1><p class="lead" id="t_lead"></p>
+<header><span class="langs" id="lang" role="group" aria-label="Language"><button type="button" data-l="ja">日本語</button><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button></span><h1 id="t_title"></h1><p id="t_lead"></p></header>
 
 <div class="card">
  <h2 id="t_presets"></h2>
@@ -71,6 +70,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 <div class="card">
  <details><summary id="t_how"></summary><div class="dbody" id="how"></div></details>
 </div>
+<p class="courselink"><a href="00_シリーズ全体_財務3表.html" id="back"></a></p>
 </div>
 
 <script>
@@ -130,7 +130,7 @@ function calc(v){var cogs=v.rev*v.cogs/100,gross=v.rev-cogs,op=gross-v.sga-v.dep
  return {cogs:cogs,gross:gross,op:op,intr:intr,pretax:pretax,tax:tax,net:net,ar:ar,inv:inv,ap:ap,dAR:dAR,dInv:dInv,dAP:dAP,cfo:cfo,cfi:cfi,cff:cff,chg:chg,cash:cash,ppe:ppe,loan:loan,re:re,ta:cash+ar+inv+ppe,tl:ap+loan+OPEN.cap+re,v:v}}
 var BASEV={};SL.forEach(function(s){BASEV[s[0]]=s[4]});var BASE=calc(BASEV);
 function row(k,val,base,cls){var d='';if(base!=null&&Math.abs(val-base)>=0.05){var up=val>base;d='<span class="d '+(up?'up':'dn')+'">'+sg(val-base)+'</span>'}return '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+L[lang].R[k]+'</td><td>'+f1(val)+d+'</td></tr>'}
-function render(){var d=L[lang];['title','lead','presets','pl','bs','cf','bridge','how','bridgenote'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});document.getElementById('how').textContent=d.howtxt;
+function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title;['title','lead','presets','pl','bs','cf','bridge','how','bridgenote'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});document.getElementById('how').textContent=d.howtxt;
  document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
  var P=document.getElementById('presets');P.innerHTML='';Object.keys(PRE).forEach(function(k){var b=document.createElement('button');b.innerHTML='<b>'+d.P[k][0]+'</b><br><small>'+d.P[k][1]+'</small>';b.className=preset===k?'on':'';b.onclick=function(){preset=k;SL.forEach(function(s){V[s[0]]=(PRE[k][s[0]]!=null)?PRE[k][s[0]]:s[4]});render()};P.appendChild(b)});
  var S=document.getElementById('sliders');S.innerHTML='';var groups={g1:[],g2:[],g3:[]};SL.forEach(function(s){groups[s[5]].push(s)});
@@ -156,5 +156,6 @@ function update(){var d=L[lang],c=calc(V),b=BASE,v=V;
 document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
 SL.forEach(function(s){V[s[0]]=s[4]});render();
 </script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
 </body>
 </html>

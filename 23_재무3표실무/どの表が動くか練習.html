@@ -6,13 +6,12 @@
 <title>どの表が動く？― 取引カードの練習（たい焼き屋から航空会社まで）</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
-*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Sans","Noto Sans JP","Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
-.wrap{max-width:900px;margin:0 auto;padding:20px 16px 70px}
-header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-header a{color:#1d5fa0;font-size:13px}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}html[lang=ko] header h1,html[lang=ko] header p{word-break:keep-all}
+.courselink{font-size:13px;margin:16px 4px 0}.courselink a{color:#1d5fa0}
 h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:70ch}
-.langs button{border:1px solid var(--line);background:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;color:var(--ink)}
-.langs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.langs{display:inline-flex}.langs button{cursor:pointer}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
 .card h2{font-size:15px;margin:0 0 10px}
 .levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
@@ -35,11 +34,11 @@ h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;marg
 .note{font-size:12px;color:var(--muted)}
 button:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 </style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="fincard"></script>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="00_シリーズ全体_財務3表.html" id="back"></a> ・ <a href="../8_사이트/index.html" id="home">Home</a></span><span class="langs" role="group" aria-label="language"><button data-l="ja">日本語</button><button data-l="ko">한국어</button><button data-l="en">English</button></span></header>
-<h1 id="t_title"></h1><p class="lead" id="t_lead"></p>
+<header><span class="langs" id="lang" role="group" aria-label="Language"><button type="button" data-l="ja">日本語</button><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button></span><h1 id="t_title"></h1><p id="t_lead"></p></header>
 
 <div class="card" id="lvcard">
  <h2 id="t_level"></h2>
@@ -63,6 +62,7 @@ button:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
  <div id="final"></div>
  <div class="go"><button id="btn_again"></button><button id="btn_lv" class="sec"></button></div>
 </div>
+<p class="courselink"><a href="00_シリーズ全体_財務3表.html" id="back"></a></p>
 </div>
 
 <script>
@@ -146,7 +146,7 @@ var lang=localStorage.getItem('art-lang')||'ja',LI=lang==='ja'?0:lang==='ko'?1:2
 function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t}return a}
 function cashAns(c){return c.cash==='none_in'?'in':c.cash}
 function patternOf(c){var p=c.pl!=='none',q=cashAns(c)!=='none';return p&&q?'both':p?'pl':q?'cash':'none'}
-function render(){var d=L[lang];LI=lang==='ja'?0:lang==='ko'?1:2;['title','lead','level','q1','q2','q3','q3note','result'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});
+function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title;LI=lang==='ja'?0:lang==='ko'?1:2;['title','lead','level','q1','q2','q3','q3note','result'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});
  document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});document.getElementById('back').textContent={ja:'← 講座の目次',ko:'← 강좌 목차',en:'← Course index'}[lang];
  var LV=document.getElementById('levels');LV.innerHTML='';['a','b','c'].forEach(function(k){var b=document.createElement('button');b.innerHTML='<b>'+d.LV[k][0]+'</b><small>'+d.LV[k][1]+'</small>';b.className=level===k?'on':'';b.onclick=function(){start(k)};LV.appendChild(b)});
  document.getElementById('btn_ans').textContent=d.ans;document.getElementById('btn_next').textContent=d.next;document.getElementById('btn_again').textContent=d.again;document.getElementById('btn_lv').textContent=d.lv;
@@ -180,5 +180,6 @@ document.getElementById('btn_again').onclick=function(){start(level)};document.g
 document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
 render();
 </script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
 </body>
 </html>
