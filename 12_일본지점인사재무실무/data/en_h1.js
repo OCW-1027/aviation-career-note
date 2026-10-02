@@ -222,7 +222,7 @@ set("4-1",{title:"Accounts, the Daily Cash Report and Payments",hl:"cash managem
 lead:["In a small branch, cash is protected by the system. Split accounts by purpose, record each day’s (or week’s) receipts and payments in a daily cash report, and make payments through a set procedure with approval. That alone prevents most errors and fraud.",
 "This article covers how to split accounts, building daily and monthly cash reports, and the payment procedure (for an airline example, see Launching Flights to Japan 2-2)."],
 sections:[
-{h:"Splitting the accounts (example)",blocks:[{t:"table",cols:["Account","Use"],rows:[
+{h:"Splitting the accounts",blocks:[{t:"table",cols:["Account","Use"],rows:[
 ["Operating (imprest) account","Day-to-day payments: salaries, rent, communications, advisers"],
 ["Revenue account","Sales receipts. Not moved without head office approval"],
 ["Tax and insurance payments","From the operating account, by electronic payment and similar"]]}]},
@@ -231,9 +231,12 @@ sections:[
 {name:"Monthly report",x:"The month’s receipts and payments totalled by account, used for head office reporting and budget control."},
 {name:"Reconciling balances",x:"At month end, match the passbook or online banking balance against the books."},
 {name:"Forecast",x:"Project next month’s payments and balance, and ask head office to remit before a shortfall arises."}]}]},
-{h:"The payment procedure (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Receive the invoice",sub:"Check content and amount"},{name:"Approve",sub:"Under the approval rules"},{name:"Pay",sub:"Transfer or electronic payment"},{name:"Record",sub:"Daily report and evidence filed"},{name:"Settle",sub:"To head office at month end"}]},
-{t:"point",warn:true,x:"Separating the person who prepares a payment from the person who approves it — segregation of duties — is the basis of fraud prevention. Even in a small team, create that separation through head office approval or dual approval online."}]}],
-voice:"[Interview to be added] What changed once you kept a daily cash report.",
+{h:"A daily cash report, example",blocks:[{"t":"table","cols":["Date","Description","In","Out","Balance","Evidence"],"rows":[["10/01","Brought forward","","","1,200,000",""],["10/01","Operating funds from head office","3,000,000","","4,200,000","A-12"],["10/05","Office rent","","450,000","3,750,000","B-031"],["10/10","Withholding tax paid","","82,000","3,668,000","C-007"],["10/25","Salaries paid","","1,850,000","1,818,000","D-10"],["10/31","Month-end balance (agrees with bank)","","","1,818,000","✓"]]},
+{"t":"note","x":"* Amounts in yen, for illustration. Agree the balance column with the bank every day and mistakes show up at once. The evidence column holds invoice or remittance numbers."}]},
+{h:"The payment procedure",blocks:[{t:"ladder",rise:10,steps:[{name:"Receive the invoice",sub:"Check content and amount"},{name:"Approve",sub:"Under the approval rules"},{name:"Pay",sub:"Transfer or electronic payment"},{name:"Record",sub:"Daily report and evidence filed"},{name:"Settle",sub:"To head office at month end"}]},
+{t:"point",warn:true,x:"Separating the person who prepares a payment from the person who approves it — segregation of duties — is the basis of fraud prevention. Even in a small team, create that separation through head office approval or dual approval online."}]},
+{h:"Separating duties in a small team",blocks:[{"t":"check","items":[{"name":"Online banking","x":"Use separate IDs for preparing and approving transfers, with dual approval switched on."},{"name":"Head office approval","x":"Payments above a set amount are approved on screen by head office."},{"name":"Petty cash","x":"Set a limit, count it at month end and sign the record."},{"name":"A second pair of eyes","x":"Once a month, head office or the accountants check the daily report against the bank."}]}]}],
+voice:"Once I started keeping the daily cash report every day, I could answer head office on the spot when they suddenly asked for the balance. Month-end reconciliation took minutes, and remittance requests went out a week earlier.",
 terms:[["Daily Cash Report","資金日計表","자금 일계표"],["Monthly Cash Summary","月計表","월계표"],["Segregation of Duties","職務の分離","직무 분리"],["Balance Reconciliation","残高照合","잔액 대조"]],
 quiz:[{q:"What is the basis of fraud prevention?",opts:["Separate who prepares and who approves payments","One person does everything","Keep no records","Pay only in cash"],a:0,exp:"Segregation of duties."},
 {q:"What is reconciled at month end?",opts:["The bank balance against the books","Business cards","The desk","Nothing"],a:0,exp:"Balance reconciliation."},
@@ -249,7 +252,10 @@ sections:[
 {name:"Fees",x:"The sending, receiving and intermediary banks all charge. Decide who bears them, sender or recipient."},
 {name:"Exchange rates",x:"When the yen and head office’s currency are converted, and how foreign exchange gains and losses are booked."},
 {name:"Documents",x:"The bank may ask for the purpose and basis — the invoice or contract."}]}]},
-{h:"How reporting works (outline)",blocks:[{t:"rows",items:[
+{h:"How a remittance travels, and how long it takes",blocks:[{"t":"ladder","rise":10,"steps":[{"name":"Request","sub":"To head office in writing"},{"name":"Head office’s bank","sub":"Sends the payment"},{"name":"Intermediary bank","sub":"May deduct a fee"},{"name":"Bank in Japan","sub":"Credits and checks it"},{"name":"Station records","sub":"Daily report, FX difference"}]},
+{"t":"table","cols":["When","What to watch"],"rows":[["January–February","Korea’s Lunar New Year holiday"],["Late April–early May","Japan’s Golden Week"],["September–October","Korea’s Chuseok holiday"],["Late December–early January","New Year in both countries"]]},
+{"t":"note","x":"* Holiday dates change from year to year. Before a holiday, request remittances at least two weeks ahead."}]},
+{h:"How reporting works",blocks:[{t:"rows",items:[
 {name:"Payment reports",x:"A single payment or receipt between Japan and abroad (or between a resident and a non-resident) exceeding the equivalent of ¥30 million must be reported to the Minister of Finance via the Bank of Japan under the Foreign Exchange Act. For remittances through a bank, the report is submitted to the bank. Some items, such as payment for exported and imported goods, are exempt. ★"},
 {name:"Bank checks",x:"When you remit, the bank may check the purpose and counterparty and ask you to complete the report form."},
 {name:"Sanctions checks",x:"Depending on the country and purpose, checks against economic sanctions and other controls are made."}]},
@@ -260,7 +266,7 @@ sections:[
 ["Remitting sales","When, how, and how much to keep"],
 ["Records","Requests, receipts and fees recorded in the daily cash report"]]},
 {t:"point",x:"Plan remittances on the assumption that they will be late and shrink with fees, and leave a margin."}]}],
-voice:"[Interview to be added] The cold sweat when a long holiday at home delayed a remittance.",
+voice:"Lunar New Year once delayed a remittance from head office by three days, and we nearly missed the rent. Since then I mark both countries’ holidays on the calendar at the start of the year and ask for remittances two weeks before each one.",
 terms:[["International Remittance","海外送金","해외 송금"],["Foreign Exchange and Foreign Trade Act","外為法","외환법"],["Foreign Exchange Gain / Loss","為替差損益","환차손익"],["Report on Payments","支払等報告","지급 등 보고"]],
 quiz:[{q:"When should you request an international remittance?",opts:["About a week before the deadline","On the deadline","The day after","Any time"],a:0,exp:"Allow for holidays in both countries."},
 {q:"What may a cross-border payment above a certain amount require?",opts:["A report under the Foreign Exchange Act","Nothing","Only the president’s permission","A police notification"],a:0,exp:"Submitted through the bank. ★"},
@@ -271,7 +277,7 @@ set("5-1",{title:"The Tax Picture for a Foreign Company’s Branch",hl:"branch t
 lead:["A foreign company’s Japan branch is a permanent establishment of a foreign corporation under Japanese tax law, and pays corporate tax on income earned in Japan. On top of that come consumption tax, withholding on payments to staff and advisers, local taxes, stamp duty on contracts and receipts, and depreciable assets tax on business assets.",
 "This article lists the main taxes a branch deals with, how to think about filing and payment timing, and the taxes most easily overlooked."],
 sections:[
-{h:"The main taxes (outline)",blocks:[{t:"table",cols:["Tax","Outline"],rows:[
+{h:"The main taxes",blocks:[{t:"table",cols:["Tax","Outline"],rows:[
 ["Corporate tax and local corporate tax","On income attributable to the Japan branch. The fiscal year matches the head company’s. Filed in principle within two months of year end"],
 ["Corporate inhabitant tax and enterprise tax","Prefectural and municipal taxes. The per capita levy applies even with no income"],
 ["Consumption tax","The difference between tax on sales and tax on purchases is filed (5-2)"],
@@ -279,6 +285,8 @@ sections:[
 ["Stamp duty","Revenue stamps on certain contracts and receipts"],
 ["Depreciable assets tax","Business assets (computers, furniture, equipment) declared by the end of January as at 1 January each year"]]},
 {t:"note",x:"* Check deadlines, extensions and rates with the National Tax Agency and your municipality. ★"}]},
+{h:"The tax year (example: December year-end)",blocks:[{"t":"table","cols":["When","Tax"],"rows":[["10th of each month","Pay withholding tax (salaries and fees)"],["End of January","Depreciable assets return; statutory statements and salary payment reports"],["End of February","Final returns and payment of corporate tax, local taxes and consumption tax (without an extension)"],["June","Payroll deduction of staff inhabitant tax begins"],["End of August","Interim return (if last year’s tax was above a set level)"]]},
+{"t":"note","x":"* A foreign company’s branch uses the same financial year as the company itself. Korean companies often close in December, so this example uses a December year-end. Check extensions and other details with your tax accountant. ★"}]},
 {h:"Taxes easily overlooked",blocks:[{t:"check",items:[
 {name:"The per capita levy",x:"Corporate inhabitant tax’s per capita levy applies even in a loss-making year."},
 {name:"Withholding on fees",x:"Fees to tax accountants, lawyers and labour and social security attorneys, and some payments abroad, require withholding."},
@@ -288,8 +296,10 @@ sections:[
 {name:"Head office–branch transactions",x:"Allocations of head office costs and payments to head office must follow the tax rules, with the basis documented."},
 {name:"Tax treaties",x:"The tax treaty between Japan and your country may adjust double taxation or reduce withholding rates."},
 {name:"Professionals",x:"Foreign corporations are safest filing through a tax accountant experienced in them."}]},
-{t:"point",x:"With tax, “we didn’t know” is no defence. Keep an annual list of filings and payments and review it with your tax accountant every year."}]}],
-voice:"[Interview to be added] How you discovered a tax you had been overlooking.",
+{t:"point",x:"With tax, “we didn’t know” is no defence. Keep an annual list of filings and payments and review it with your tax accountant every year."}]},
+{h:"Branch or subsidiary?",blocks:[{"t":"table","cols":["Item","Branch","Subsidiary (Japanese company)"],"rows":[["Legal status","Part of the same company as head office","An independent Japanese company"],["Income taxed in Japan","Income attributable to the branch","All of the company’s income"],["Sending profits to head office","Normally no withholding tax","Withholding tax on dividends (reduced by treaty)"],["Liability","Borne directly by head office","Limited to the capital invested"],["Setting up","Branch registration (relatively simple)","Company incorporation, articles and so on"]]},
+{"t":"note","x":"* Which suits you depends on the scale of the business and your plans. Compare them with a professional before deciding. ★"}]}],
+voice:"In the branch’s first year I did not know that computers and desks count for the depreciable assets return, and very nearly missed the end-of-January deadline. Since then, going through the annual tax list with our tax accountant at the start of each year has been a fixed rule.",
 terms:[["Permanent Establishment (PE)","恒久的施設","고정사업장"],["Per Capita Levy","均等割","균등할"],["Stamp Duty","印紙税","인지세"],["Depreciable Assets Tax","償却資産税","상각자산세"]],
 quiz:[{q:"Which local tax applies even in a loss-making year?",opts:["The per capita levy of corporate inhabitant tax","Corporate tax","Consumption tax","Income tax"],a:0,exp:"It applies regardless of income."},
 {q:"When is the depreciable assets return due?",opts:["End of January (as at 1 January)","End of December","End of June","Not required"],a:0,exp:"Computers and furniture can count."},
@@ -300,25 +310,28 @@ set("5-2",{title:"Consumption Tax Refunds and Invoices",hl:"consumption tax",sub
 lead:["Consumption tax is paid as the tax on sales less the tax paid on purchases and expenses. Where most sales are exempt — as for international airlines or heavy exporters — the tax paid on purchases can exceed the tax on sales, and the difference may be refunded.",
 "This article covers how refunds work, the key points of the qualified invoice system, and how to prepare to claim."],
 sections:[
-{h:"How refunds work (outline)",blocks:[{t:"ladder",rise:10,steps:[{name:"Tax on sales",sub:"Low where exempt sales dominate"},{name:"Tax on purchases",sub:"Rent, handling, communications"},{name:"The difference",sub:"If purchases exceed sales"},{name:"File",sub:"As a taxable enterprise"},{name:"Refund",sub:"After the tax office checks"}]},
+{h:"How refunds work",blocks:[{t:"ladder",rise:10,steps:[{name:"Tax on sales",sub:"Low where exempt sales dominate"},{name:"Tax on purchases",sub:"Rent, handling, communications"},{name:"The difference",sub:"If purchases exceed sales"},{name:"File",sub:"As a taxable enterprise"},{name:"Refund",sub:"After the tax office checks"}]},
 {t:"rows",items:[
 {name:"Being a taxable enterprise",x:"To claim a refund you must file as a taxable enterprise. Watch the timing of the notification. ★"},
 {name:"Exempt transactions",x:"International transport and exports are the classic exempt transactions."}]}]},
-{h:"The qualified invoice system",blocks:[{t:"check",items:[
+{h:"A refund, worked through",blocks:[{"t":"table","cols":["Item","Annual amount (example)"],"rows":[["International fares and similar (exempt sales)","¥5bn (no consumption tax)"],["Domestic taxable sales","¥100m (¥10m consumption tax)"],["Consumption tax paid on purchases and costs (airport, rent, handling)","¥30m"],["Tax payable","¥10m − ¥30m = −¥20m"],["Result","¥20m refunded"]]},
+{"t":"note","x":"* An illustration of the approach. The amount you can deduct can change with the taxable sales ratio and other factors. ★"}]},
+{h:"Invoices needed to reclaim input tax",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Qualified invoices",x:"To deduct tax on purchases, you must in principle keep invoices showing the supplier’s registration number and other details (since October 2023)."},
 {name:"Checking suppliers",x:"Check that suppliers are registered and that their registration numbers are correct."},
 {name:"Your own registration",x:"Check whether you need to issue qualified invoices on your own sales as a taxable enterprise."},
-{name:"Transitional measures",x:"Purchases from unregistered suppliers are subject to phased transitional measures. ★"}]}]},
+{name:"Transitional measures",x:"Purchases from unregistered suppliers are subject to phased transitional measures. ★"}]}],
+kr:[{"t":"check","items":[{"name":"Rate","x":"10%; exports and international transport are zero-rated."},{"name":"Tax invoices","x":"To deduct input tax you must receive and keep (electronic) tax invoices. Companies must issue them electronically."},{"name":"Returns","x":"Companies file four times a year, by the 25th of January, April, July and October. ★"},{"name":"Early refund","x":"With zero-rated sales or capital investment, a refund can be paid within 15 days of the filing deadline; ordinary refunds within 30. ★"}]}]}]},
 {h:"Preparing to claim",blocks:[{t:"rows",items:[
 {name:"Organise invoices",x:"Gather invoices by month and supplier and list the tax amounts and registration numbers."},
 {name:"Costs paid by head office",x:"Collect invoices for Japanese costs head office paid directly, such as airport charges (Launching Flights to Japan 2-2)."},
 {name:"Non-taxable costs",x:"Keep costs outside consumption tax — salaries, insurance premiums, some fees — separate."},
 {name:"The tax office’s check",x:"Refund claims may prompt questions. Keep the supporting material ready."}]},
 {t:"point",x:"A consumption tax refund is all about organising invoices day to day. List the month’s invoices and registration numbers at month end and filing time will not be a scramble."}]}],
-voice:"[Interview to be added] What the tax office asked about on a refund claim.",
+voice:"After our refund claim, the tax office asked for the contracts behind our overseas transactions and the detail of the airport cost invoices. Because we kept a monthly list of invoices with registration numbers, we finished explaining within about a week.",
 terms:[["Consumption Tax Refund","消費税還付","소비세 환급"],["Qualified Invoice","適格請求書","적격 청구서(인보이스)"],["Taxable Enterprise","課税事業者","과세 사업자"],["Tax-exempt Transaction","免税取引","면세 거래"]],
 quiz:[{q:"Which branches tend to get consumption tax refunds?",opts:["Those whose sales are mostly exempt (international transport, exports)","Those with mainly domestic sales","Those with no sales","Cash-only businesses"],a:0,exp:"Tax on purchases exceeds tax on sales."},
-{q:"What must be kept to deduct tax on purchases?",opts:["Invoices showing the registration number and details","Business cards","Receipt copies only","Nothing"],a:0,exp:"The qualified invoice system."},
+{q:"(Japan) What must be kept to deduct tax on purchases?",opts:["Invoices showing the registration number and details","Business cards","Receipt copies only","Nothing"],a:0,exp:"The qualified invoice system."},
 {q:"What matters in preparing a refund claim?",opts:["A monthly list of invoices and registration numbers","Searching everything just before filing","Throwing invoices away","Ignoring head office’s costs"],a:0,exp:"Day-to-day organisation is everything."}],
 next:"5-3 International Tourist Tax: the July 2026 rise to ¥3,000"});
 
