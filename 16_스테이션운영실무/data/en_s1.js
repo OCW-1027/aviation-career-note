@@ -62,6 +62,13 @@ sections:[
 ["81–89","Air traffic, airport and authorities","ATC restrictions, airport facilities, CIQ"],
 ["91–96","Reactionary","Late inbound aircraft (rotation), waiting for crew or connecting passengers"]]},
 {t:"note",x:"* Check detailed definitions and in-house practice against your company’s rules and the latest IATA material. ★"}]},
+{h:"Practising delay codes (examples)",blocks:[{t:"table",cols:["Situation","Main code","Why"],rows:[
+["The inbound aircraft arrived 40 minutes late and the departure followed","93","Late arrival of the aircraft from its previous flight"],
+["One passenger never reached the gate after closing, so their bag was offloaded","15","Boarding: discrepancies and paging"],
+["Bag sorting fell behind and loading started late","18","Baggage processing"],
+["Too few loaders for the cargo, so the doors could not be closed","32","Loading and unloading"],
+["A departure-airport ATC restriction held up pushback approval","89","Restrictions at the airport of departure"]]},
+{t:"note",x:"* The numbers are typical IATA standard delay codes. How to use sub-codes, and how to split main and secondary codes when causes overlap, follows each airline’s own rules. ★ The full list is in Course 1’s IATA delay code tool."}]},
 {h:"Using delay codes",blocks:[{t:"check",items:[
 {name:"Delays the station can control",x:"Many codes in the 10s and 30s come from ground processes. They feed straight into your score, and they can be fixed."},
 {name:"Code honestly",x:"Choosing a convenient code hides the cause and misleads head office’s analysis."},
@@ -88,6 +95,13 @@ sections:[
 ["Passengers needing wheelchairs or other help","Arrange it beforehand and fix a pre-boarding time"],
 ["Seat and booking problems","Check bookings and seats the day before and prepare for oversales"],
 ["Gate changes","Allow for walking time and bring announcements forward"]]}]},
+{h:"Digging into causes by asking why (example)",blocks:[{t:"rows",items:[
+{name:"What happened",x:"Baggage loading ran late and the departure was 8 minutes behind."},
+{name:"Why 1",x:"The sorting area was one person short."},
+{name:"Why 2",x:"Breaks were all scheduled for that time slot."},
+{name:"Why 3",x:"The break plan had not been revised when the flight schedule changed."},
+{name:"Action",x:"Review the break plan with the handler at every seasonal schedule change."}]},
+{t:"note",x:"* Do not stop at an answer that blames a person; keep asking why until you reach a procedure or a system. See 2-3 for corrective actions and 4-5 for seasonal preparation."}]},
 {h:"After a delay",blocks:[{t:"check",items:[
 {name:"Record the facts in times",x:"Log the start and end of each process so it is clear where the minutes were lost."},
 {name:"Code and cause",x:"Separate the primary delay code, the direct cause and the underlying cause (ask why, and why again)."},
@@ -114,6 +128,11 @@ sections:[
 {name:"Count compliments too",x:"Finding and sharing good service raises the standard on the floor."},
 {name:"How MBR is counted",x:"Mishandled bags per 1,000 passengers. Targets vary widely with the company, the route and how many passengers connect. Companies also set their own rules on what counts — for instance whether cases that became complaints through poor follow-up are added. ★"},
 {name:"Station self-audit",x:"At set intervals — often once a year — check the operation against a checklist, including the handler’s work. ★"}]}]},
+{h:"Compare rates, not counts (worked examples)",blocks:[{t:"table",cols:["Indicator","Calculation","Example (24,000 passengers, 300 flights a month)"],rows:[
+["Mishandled bag rate","Mishandled bags ÷ passengers × 1,000","12 ÷ 24,000 × 1,000 = 0.5 per thousand"],
+["Complaint rate","Complaints ÷ passengers × 10,000","6 ÷ 24,000 × 10,000 = 2.5 per ten thousand"],
+["On-time departure rate","On-time flights ÷ all flights × 100","285 ÷ 300 × 100 = 95%"]]},
+{t:"note",x:"* Busy months bring more incidents. Compare month on month and year on year using rates divided by the base, not raw counts, and use the base your company defines (passengers, bags loaded and so on). ★ Airline Passenger Operations 6-9 lets you practise putting these in a monthly report."}]},
 {h:"How to improve",blocks:[{t:"ladder",rise:10,steps:[{name:"Break down the numbers",sub:"Flight, process, cause"},{name:"Go and see",sub:"Watch that process"},{name:"Settle the cause",sub:"Direct and underlying"},{name:"Actions and owners",sub:"Agreed with the handler"},{name:"Check next month",sub:"See the effect in numbers"}]},
 {t:"point",x:"Punctuality, baggage, customers and safety are connected. Forcing flights out on time creates incidents and complaints. A duty manager needs the balance to watch all four at once."}]}],
 voice:"When baggage incidents keep happening, break them down by flight and by stage, not just by count. The causes usually cluster in one or two places.",
@@ -169,6 +188,11 @@ sections:[
 {name:"Direct people before the counter",x:"Put an agent at the head of the queue to help passengers who can check in on their phones. QR code signs help."},
 {name:"Bag-drop-only counters",x:"Open a dedicated position just for passengers who have already checked in."},
 {name:"Measure the effect",x:"Record the usage rate alongside counter waiting times and staffing."}]}]},
+{h:"Looking after the floor when moving to self-service",blocks:[{t:"rows",items:[
+{name:"Put guides on the floor",x:"Station staff by the machines. In the first few months especially, walk passengers through the steps."},
+{name:"Passengers who need help",x:"Keep a quick route to a staffed counter for older passengers, wheelchair users, families with infants and international passengers whose documents need checking."},
+{name:"Machine faults",x:"Agree whom to call for breakdowns and paper jams, and the fallback procedure until they are fixed."},
+{name:"Reading the numbers",x:"Look not only at usage rates but at how many passengers started on a machine and then came to a staffed counter. That is where improvements lie."}]}]},
 {h:"How to think about ancillary revenue",blocks:[{t:"rows",items:[
 {name:"Charge by the rules",x:"Letting excess baggage through is unfair to passengers who paid. Keep everyone to the same standard."},
 {name:"No hard selling",x:"Offer upgrades naturally, with agreed wording. Pushy selling turns into complaints."},

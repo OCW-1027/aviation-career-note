@@ -11,6 +11,13 @@ sections:[
 {name:"Previous findings",x:"Problems from audits or complaints, and what to watch today."},
 {name:"Today’s goal",x:"Share it in a phrase: “out on D0”, “zero mishandled bags”."}]},
 {t:"note",x:"* At stations staffed mainly by the handler, run it with the handler’s supervisor or give them the key points to pass on."}]},
+{h:"Running a five-minute briefing (example)",blocks:[{t:"ladder",rise:8,steps:[
+{name:"1 min: today’s flights and staff",sub:"Flights, aircraft, positions, who is off"},
+{name:"1 min: flights to watch",sub:"Full flights, groups, special passengers, tight connections"},
+{name:"1 min: looking back at yesterday",sub:"One thing that went well, one to fix"},
+{name:"1 min: a safety point",sub:"Today’s reminder for the ramp or counter"},
+{name:"1 min: questions",sub:"Ask anything unclear on the spot"}]},
+{t:"note",x:"* Timings are a guide. Using the same order every day helps people pick out the key points. For the shape of a duty manager’s day, see also Airline Passenger Operations 6-1."}]},
 {h:"The debrief after the flight",blocks:[{t:"rows",items:[
 {name:"Short, and the same day",x:"Five minutes is enough: what went well, what was hard, what to change next time."},
 {name:"Talk in facts",x:"Not who was to blame, but which process lost how many minutes."},
@@ -35,6 +42,13 @@ sections:[
 ["Rerouting on another airline","Departure-time conditions, compensation, prior agreement with head office"],
 ["Decisions beyond you","Whom to call, in what order (head office duty officer, your manager)"]]},
 {t:"note",x:"* The standards differ by company. Company A may offer meals to everyone after a set number of hours; Company B may decide by cause (weather or the airline’s own). ★"}]},
+{h:"Questions to ask when unsure",blocks:[{t:"check",items:[
+{name:"Is it safe?",x:"Does the decision put anyone at risk? When in doubt, choose the safer option."},
+{name:"Is it within the rules?",x:"Does it break company rules, airport rules or the law?"},
+{name:"Can you explain it to passengers?",x:"Could you explain the same decision to other passengers in the same words?"},
+{name:"Can you record it?",x:"Can you write down why you decided, so that someone reading later understands?"},
+{name:"Who needs to know?",x:"Have you missed anyone who should be told: head office, the handler, the airport?"}]},
+{t:"note",x:"* Field case 8-1 (the decision log) lets you practise writing decisions down."}]},
 {h:"Record your decisions",blocks:[{t:"check",items:[
 {name:"What and why",x:"Note the decision and the reason (facts and standards) briefly."},
 {name:"Who you consulted",x:"Head office, the captain, the handler — with times."},
@@ -61,6 +75,13 @@ sections:[
 {name:"Fuel",x:"Is the fuel contract limited to certain routes or airports? If not covered, coordinate with operations control and purchasing."},
 {name:"Crew duty time",x:"On long-haul diversions, crew duty limits can stop the flight from continuing. Factor it in from the start."},
 {name:"CIQ",x:"Disembark or keep passengers on board? If they come off, immigration, customs and quarantine procedures and security must be arranged."}]}]},
+{h:"Assigning roles (example)",blocks:[{t:"table",cols:["Role","What they do"],rows:[
+["Duty manager","Overall decisions, contact with head office and OCC, telling staff the plan"],
+["Counter lead","Rebooking and refund information, managing queues"],
+["Gate lead","Updates for waiting passengers, handing out drinks and meals"],
+["Arrangements","Hotels, buses and meal vouchers; contact with the airport and authorities"],
+["Recorder","Logging times, decisions and passenger numbers as the basis for the report"]]},
+{t:"note",x:"* At a small station one person covers several roles. Deciding who does what in the first five minutes, and saying it out loud, stops two people doing the same job or nobody doing it. See 4-3 for how decisions are split with head office."}]},
 {h:"Rerouting on another airline",blocks:[{t:"rows",items:[
 {name:"Securing seats",x:"This is where everyday relationships with other airlines’ station staff pay off."},
 {name:"Flights earlier than yours",x:"Passengers cooperate readily. Moving them to later flights often means considering compensation."},
@@ -88,6 +109,14 @@ sections:[
 {name:"Separate facts from opinions",x:"“It appears that…” goes in the opinion section. The timeline holds facts only."},
 {name:"Use numbers",x:"Minutes of delay, passengers affected, estimated cost."},
 {name:"Send it early",x:"An initial report the same day, the full one later. A fast first report beats a late perfect one."}]}]},
+{h:"An incident report (extract)",blocks:[{t:"rows",items:[
+{name:"Subject",x:"XX701 (2 October): 4-hour delay due to a technical fault"},
+{name:"Occurrence",x:"09:20 fault found in the pre-departure check; maintenance decided to replace a part."},
+{name:"Timeline",x:"09:35 initial report to head office OCC. 10:00 passengers informed, meal vouchers issued. 12:30 part arrived. 13:10 departed."},
+{name:"Impact",x:"168 passengers; 12 missed connections (all rebooked on later flights); 2 complaints."},
+{name:"Costs",x:"168 meal vouchers; no hotels."},
+{name:"Lessons",x:"At one point passengers went 45 minutes without an update. Add 30-minute updates to the procedure."}]},
+{t:"note",x:"* A fictional example. Write in times and numbers, not guesses. See 4-3 for the stages of reporting."}]},
 {h:"Routine reports",blocks:[{t:"rows",items:[
 {name:"Weekly",x:"The numbers and only what was out of the ordinary. Leave out the routine."},
 {name:"Monthly",x:"Trends, progress on promises with the handler, next month’s plans and issues."},
@@ -115,6 +144,13 @@ sections:[
 ["Numbers","Read on-time rates, mishandled baggage rates and delay codes, and break them down by cause"],
 ["Writing","Write incident and weekly reports briefly, in facts and numbers"],
 ["Languages","Explain things to passengers, the handler, head office and the authorities in each one’s language"]]}]},
+{h:"Steps to working alone (example)",blocks:[{t:"ladder",rise:8,steps:[
+{name:"Watch",sub:"Observe a senior’s decisions and ask why"},
+{name:"Do it together",sub:"Make small decisions jointly with a senior"},
+{name:"Lead with support",sub:"They decide; the senior stays close by"},
+{name:"Take charge",sub:"Handle it alone and review afterwards"},
+{name:"Teach",sub:"Check their own understanding by teaching the next person"}]},
+{t:"note",x:"* Do not skip steps, and agree with the person what they need to show at each step before moving on. For a new joiner’s first 30 days, see also Airline Passenger Operations 6-10."}]},
 {h:"The duty manager’s attitude",blocks:[{t:"rows",items:[
 {name:"Stay on the floor",x:"Judge from the counter, the gate and the ramp, not from a screen in the office."},
 {name:"Be fair",x:"Hold staff and the handler to the same standard."},

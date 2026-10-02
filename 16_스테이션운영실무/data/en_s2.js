@@ -15,6 +15,12 @@ sections:[
 ["Load control","Loadsheet finalised on time, zero load errors"],
 ["Quality and training","Validity of licences and training, deadlines for correcting audit findings"]]},
 {t:"note",x:"* Target values vary with the airport, aircraft and number of flights. Methods differ too: Company A may define queue time as “90% of passengers within x minutes”, Company B as “an average of x minutes”. ★"}]},
+{h:"An SLA scorecard (example)",blocks:[{t:"table",cols:["Indicator","Target","This month","Result"],rows:[
+["Check-in queue","90% of passengers within 15 min","92%","Met"],
+["First bag","Within 15 min of arrival","88%","Missed: corrective plan"],
+["Load sheet finalised","By 20 min before departure","100%","Met"],
+["Ground-caused delays","3 or fewer a month","5","Missed: cause analysis"]]},
+{t:"note",x:"* Figures are examples. Showing the same table every month makes it clear at a glance whether things are improving. For costs, see Airline Passenger Operations 6-8 (checking invoices); for handler management overall, see 6-2 of the same course."}]},
 {h:"How to agree it",blocks:[{t:"check",items:[
 {name:"Only what can be measured",x:"Not “treat passengers courteously” but times, counts and percentages."},
 {name:"Agree the data source",x:"Decide at the outset who measures, and from which system or record."},
@@ -45,6 +51,13 @@ sections:[
 ["Corrective action needed","2","Non-conforming"],
 ["Stop immediately","1 (immediate correction)","Non-conforming (major)"]]},
 {t:"note",x:"* Some audits, such as IATA’s Safety Audit for Ground Operations (ISAGO), judge simply conforming or non-conforming. ★"}]},
+{h:"Writing findings well",blocks:[{t:"check",items:[
+{name:"Write what you saw",x:"When, where and what. Not “poor handling” but “10:05, counter 3: bag tagged without checking the weight”."},
+{name:"Cite the standard",x:"Add which rule or procedure, and which section, was not met. A finding with no standard gives the other side nothing to fix."},
+{name:"State the impact",x:"One sentence on what happens if it is left (safety, punctuality, passengers)."},
+{name:"Keep evidence",x:"Attach photos or copies of records. Look at procedures and systems rather than individuals."},
+{name:"Confirm on the spot",x:"At the end of the check, read the findings through with the handler’s manager and agree the facts before finalising."}]},
+{t:"note",x:"* For the audit process as a whole, see Airline Passenger Operations 6-2 (managing handlers) and 6-4 (preparing for audits)."}]},
 {h:"What to look at (examples)",blocks:[{t:"check",items:[
 {name:"Ramp: before arrival",x:"Staff and equipment in position before the aircraft arrives; FOD walk; safety equipment (ear defenders, safety shoes); chocks on parked equipment."},
 {name:"Ramp: arrival and departure",x:"Marshalling hand signals or standing by the docking system’s emergency stop; cone positions; how equipment approaches; door procedures; loading to the load plan."},
@@ -68,6 +81,12 @@ sections:[
 ["Action","Who does what by when, including something that stops a repeat (a procedure change, training)"],
 ["Verify","Check at next month’s meeting and the next audit that it really is fixed"],
 ["Record","Minute it and have both sides confirm"]]}]},
+{h:"Putting the meeting pack on one page",blocks:[{t:"rows",items:[
+{name:"Last month’s numbers",x:"The SLA scorecard (2-1) and punctuality, baggage and safety figures, side by side with the previous month and year."},
+{name:"Causes",x:"For each missed item, separate the causes you know from those still being investigated."},
+{name:"Progress on corrective actions",x:"The list of actions agreed so far, with owner, deadline and done or not done."},
+{name:"Next month’s focus",x:"Narrow it to two or three points, such as extra flights or seasonal preparation."}]},
+{t:"note",x:"* Airline Passenger Operations 6-9 (the station KPI monthly report) teaches how to build the monthly report, with practice material."}]},
 {h:"Signs the meeting has become a formality",blocks:[{t:"check",items:[
 {name:"The same findings keep appearing",x:"In many companies’ scorecards, repeated identical corrective actions also count against the station."},
 {name:"Months with no meeting",x:"The busier the month, the more it matters to meet, even briefly. Some companies count a skipped meeting as “not done” in their scorecard. ★"},
@@ -94,6 +113,12 @@ sections:[
 {name:"Treat extra work as a given",x:"Ask first about anything outside the contract; if it costs money, settle it with head office."},
 {name:"Escalate behind their backs",x:"Tell the handler first, check the cause together, then report."},
 {name:"Play favourites",x:"Use the same standard for everyone. Rely on one person and nothing works on their day off."}]}]},
+{h:"Working with the operations department",blocks:[{t:"rows",items:[
+{name:"Point of contact on the day",x:"Know the handler’s duty manager for the day and route flight-by-flight contact through them."},
+{name:"Sharing training records",x:"Receive the list of qualification and training expiry dates every month and check together who is about to lapse."},
+{name:"Joint exercises",x:"Run tabletop exercises for disruptions and pre-season briefings together."},
+{name:"Saying thank you",x:"Tell the handler, by name, about flights that went well and staff who did a good job."}]},
+{t:"note",x:"* The role and training of a handler’s operations department are covered in detail in Airline Passenger Operations 6-7."}]},
 {h:"Where the duty manager stands",blocks:[{t:"table",cols:["Towards","What the duty manager does"],rows:[
 ["The handler","Explains the airline’s standards and listens to the floor’s problems; looks for ways to make things work, not reasons they cannot"],
 ["Head office","Explains local realities — staffing, facilities, airport rules — in facts and numbers, and asks for the support needed"],
