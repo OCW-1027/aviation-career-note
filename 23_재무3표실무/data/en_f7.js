@@ -164,7 +164,8 @@ sections:[
 ["Writing everything in the order investigated","Only what the conclusion needs in the body; the rest in an appendix"],["Using the seller’s numbers as they are","Write with your own adjusted figure (normalised earnings)"],["Only listing risks","Give the amount, and whether price, contract or condition absorbs it"],["One basis for the price","Check with both multiples and DCF and explain the gap"],["No plan for after the purchase","Write what happens in the first 100 days and where the company is in five years"]]},
 {t:"check",items:[
 {name:"Write the conclusion in three lines",x:"For Minato Ground Services, write three lines: invest or not, the price, and the largest risk with how it is absorbed (figures from 7-3 and 7-4; the price is tested in 7-6)."},
-{name:"Separate fact from opinion",x:"Take a paragraph from a report or approval paper you wrote recently and mark the sentences of fact and of opinion in different colours."}]}]}],
+{name:"Separate fact from opinion",x:"Take a paragraph from a report or approval paper you wrote recently and mark the sentences of fact and of opinion in different colours."}]},
+{t:"link",href:"投資検討報告書の下書き.html",x:"[Practice page] Investment Memo Draft: fill in the seven boxes and the tool calculates the numbers and assembles the memo"}]}],
 voice:"When the report is finished, have someone else read only page one. If they ask ‘so are we doing it, and at what price?’, the conclusion has not been written yet.",
 terms:[["Investment memorandum","投資検討報告書","투자 검토 보고서"],["Investment committee","投資委員会","투자위원회"],["Exit","出口（エグジット）","회수(엑시트)"],["Scenarios (upside, base, downside)","シナリオ（良い・基本・悪い）","시나리오(낙관·기본·비관)"],["Internal approval (ringi)","稟議","품의"]],
 quiz:[{q:"What goes on page one of the report?",opts:["The conclusion: invest or not, at what price, on what terms","The company’s history","Market statistics","A glossary"],a:0,exp:"The reader decides from page one."},

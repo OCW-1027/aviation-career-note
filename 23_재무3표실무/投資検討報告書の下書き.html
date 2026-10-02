@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>投資検討報告書の下書き</title>
+<style>
+:root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:18px 16px 60px}
+header{position:relative}header h1{margin:0 0 8px}html[lang=ko] body{word-break:keep-all;overflow-wrap:break-word}
+h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;margin:4px 0 14px;max-width:72ch}
+.langs{display:inline-flex}.langs button{cursor:pointer}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.card h2{font-size:16px;margin:0 0 6px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.card h2 .tag{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 10px}
+.pre{display:flex;flex-wrap:wrap;gap:8px}
+.pre button,.acts button{min-height:44px;padding:8px 14px;border:2px solid var(--line);background:var(--paper);border-radius:12px;font:inherit;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer}
+.acts button.main{background:var(--ink);border-color:var(--ink);color:#fff}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0 12px}
+label{display:block;font-size:12.5px;color:var(--muted);font-weight:700;margin:10px 0 0}
+input[type=text],select,textarea{display:block;width:100%;margin-top:3px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:16px;font-weight:500;background:#fff;color:var(--ink);min-height:44px!important}
+input.n{text-align:right}textarea{min-height:76px!important;resize:vertical;line-height:1.5}
+.li{display:grid;grid-template-columns:1fr 120px;gap:6px;margin:4px 0}.li input{margin:0}
+.rk{display:grid;grid-template-columns:1.3fr 1fr 150px 1.5fr;gap:6px;margin:6px 0;padding-bottom:6px;border-bottom:1px dashed var(--line)}.rk input,.rk select{margin:0}
+.sum{background:#eef3f8;border-radius:10px;padding:8px 12px;font-size:14px;font-weight:700;margin:10px 0 0}
+.ck{margin:0;padding-left:20px;font-size:14px}.ck li{margin:3px 0}.okmsg{color:var(--ok);font-weight:700;font-size:14px;margin:0}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}.acts select{width:auto;margin:0}.acts span{font-size:13px;color:var(--muted);font-weight:700}
+.doc{background:#fff;border:1px solid var(--line);border-radius:6px;padding:26px 28px;font-size:14px;line-height:1.7;overflow-wrap:anywhere}
+.doc h1{font-size:20px;margin:0 0 2px}.doc h2{font-size:15.5px;margin:20px 0 8px;padding:0 0 4px;border-bottom:2px solid var(--ink);display:block}
+.doc h3{font-size:14px;margin:12px 0 2px}.doc .meta{color:var(--muted);font-size:13px;margin:0 0 6px}
+.doc table{border-collapse:collapse;width:100%;margin:6px 0 10px;font-size:13.5px}
+.doc th,.doc td{border:1px solid #9aa7b4;padding:5px 8px;vertical-align:top;text-align:left}
+.doc th{background:#eef3f8;text-align:center}.doc td.r{text-align:right;white-space:nowrap}.doc tr.t td{font-weight:800;background:#f6f9fc}
+.doc .ph{color:#9aa7b4}.doc p{margin:4px 0}.doc ol{margin:4px 0;padding-left:22px}
+.dtw{overflow-x:auto}
+#printroot{display:none}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+@media(max-width:760px){.rk{grid-template-columns:1fr 1fr}.li{grid-template-columns:1fr 96px}}
+@media(max-width:600px){.card{padding:14px 12px}.doc{padding:16px 14px}}
+@media print{body>*:not(#printroot){display:none!important}#printroot{display:block!important}#printroot .doc{border:0;padding:0}}
+</style>
+<script src="../1_지상직여객운송입문/assets/shell.js" data-page="finmemo"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"><button type="button" data-l="ja">日本語</button><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button></span><h1 id="t_title"></h1><p id="t_lead" class="lead"></p></header>
+<div class="card"><h2 id="t_pre"></h2><div class="pre" id="pre"></div><p class="note" id="t_pren"></p></div>
+<div id="form"></div>
+<div class="card"><h2 id="t_ck"></h2><div id="ck"></div></div>
+<div class="card"><h2 id="t_out"></h2><div class="acts" id="acts"></div><div class="dtw"><div class="doc" id="doc"></div></div></div>
+<p class="note" id="t_note"></p>
+</div>
+<script>
+var KEY='acn-finmemo-v1',NL={adj:6,naadj:5,dl:4,risks:5};
+var U={title:['投資検討報告書の下書き','투자 검토 보고서 초안','Investment Memo Draft'],
+lead:['7つの箱（結論・事業・数字・価値・リスク・投資の形・次にすること）に入れていくと、正常収益力・実態純資産・純有利子負債・倍率・利回りを計算し、報告書の下書きに組み立てます。足りないところも知らせます。まず例を入れて形を確かめてから、自分の案件に書きかえてください。','일곱 상자(결론·사업·숫자·가치·리스크·투자 구조·다음에 할 일)에 넣어 가면 정상 수익력·실질 순자산·순차입금·배수·수익률을 계산해 보고서 초안으로 조립합니다. 빠진 곳도 알려 줍니다. 먼저 예시를 넣어 모양을 확인한 뒤 내 안건으로 바꿔 써 보세요.','Fill in the seven boxes (conclusion, business, numbers, value, risks, structure, next steps) and the tool calculates normalised earnings, real net assets, net debt, multiples and the return, then assembles a draft memo and flags what is missing. Load the example first to see the shape, then overwrite it with your own case.'],
+pre:['始め方','시작하기','Getting started'],ex:['例を入れる（ミナト・グランドサービス）','예시 넣기(미나토 그라운드 서비스)','Load the example (Minato Ground Services)'],blank:['空欄から始める','빈칸에서 시작','Start blank'],
+pren:['例は、いま表示している言語で入ります。入れた内容はこの端末のブラウザーにだけ保存されます。','예시는 지금 보고 있는 언어로 들어갑니다. 넣은 내용은 이 기기의 브라우저에만 저장됩니다.','The example loads in the language now shown. What you enter is saved only in this browser.'],
+b1:['① 結論','① 결론','1. Conclusion'],b2:['② 事業','② 사업','2. Business'],b3:['③ 数字','③ 숫자','3. Numbers'],b4:['④ 価値','④ 가치','4. Value'],b5:['⑤ リスクと対応','⑤ 리스크와 대응','5. Risks and responses'],b6:['⑥ 投資の形と回収','⑥ 투자 구조와 회수','6. Structure and exit'],b7:['⑦ 次にすること','⑦ 다음에 할 일','7. Next steps'],
+h1:['最後に書く。1ページ目だけで判断できるように','마지막에 쓴다. 첫 쪽만으로 판단할 수 있게','Write this last, so the decision can be made from page one'],h3:['ここから書き始める','여기서부터 쓰기 시작한다','Start writing here'],
+les:['レッスン','레슨','Lesson'],nm:['項目','항목','Item'],am:['金額（±）','금액(±)','Amount (±)'],pk:['リスク','리스크','Risk'],ps:['大きさ','크기','Size'],pd:['どう受け止めるか','어떻게 받아 낼까','How it is absorbed'],sel:['選ぶ','선택','Choose'],
+s3:['正常収益力 {a} ／ 実態純資産 {b} ／ 純有利子負債 {c}','정상 수익력 {a} / 실질 순자산 {b} / 순차입금 {c}','Normalised earnings {a} / real net assets {b} / net debt {c}'],
+s4:['倍率法の株式の価値 {a} 〜 {b} ／ 提示する価格は正常収益力の {c}倍（決算書のEBITDAの {d}倍）／ のれん {e}','배수법의 주식 가치 {a} ~ {b} / 제시 가격은 정상 수익력의 {c}배(결산서 EBITDA의 {d}배) / 영업권 {e}','Equity value by multiples {a} to {b} / the proposed price is {c}× normalised earnings ({d}× reported EBITDA) / goodwill {e}'],
+s6:['5年後の株式の価値 {a} ／ 投資倍率 {b}倍 ／ 年あたり {c}','5년 뒤 주식 가치 {a} / 투자 배수 {b}배 / 연 {c}','Equity value in five years {a} / multiple {b}× / {c} a year'],
+ck:['足りないところ','빠진 곳','What is missing'],okmsg:['必要な項目はそろっています。事実と意見が分かれているか、出典が書いてあるかを読み直してください。','필요한 항목은 갖춰졌습니다. 사실과 의견이 나뉘어 있는지, 출처가 적혀 있는지 다시 읽어 보세요.','The required items are in place. Re-read to check that fact and opinion are separate and sources are stated.'],
+out:['報告書の下書き','보고서 초안','Draft memo'],ol:['報告書の言語','보고서의 언어','Memo language'],print:['印刷・PDF','인쇄·PDF','Print / PDF'],word:['Wordで保存','Word로 저장','Save as Word'],copy:['文字をコピー','글자 복사','Copy text'],copied:['コピーしました','복사했습니다','Copied'],
+note:['※ 例の会社と数字は架空です。報告書の組み立て方を学ぶためのもので、投資の助言ではありません。実際の案件では、事業・法務・税務の調査と社内の様式に合わせてください。','※ 예시의 회사와 숫자는 가상입니다. 보고서를 조립하는 방법을 익히기 위한 것이며 투자 조언이 아닙니다. 실제 안건에서는 사업·법무·세무 조사와 사내 양식에 맞춰 주세요.','* The example company and figures are fictional. The tool teaches how to assemble a memo and is not investment advice. For a real case, add commercial, legal and tax work and follow your house format.']};
+var CK={c1:['① 判断が選ばれていません','① 판단을 고르지 않았습니다','1. No decision selected'],c2:['① 提示する価格がありません','① 제시 가격이 없습니다','1. No proposed price'],c3:['① 理由が3つそろっていません','① 이유 세 가지가 갖춰지지 않았습니다','1. Fewer than three reasons'],c4:['② 金額の単位が書かれていません','② 금액 단위가 적혀 있지 않습니다','2. The unit is not stated'],c5:['③ 決算書のEBITDAがありません','③ 결산서의 EBITDA가 없습니다','3. Reported EBITDA is missing'],c6:['③ 引く調整が1つもありません。未払いの残業代や一時の利益を確かめましたか','③ 빼는 조정이 하나도 없습니다. 미지급 잔업수당이나 일회성 이익을 확인했나요','3. No deductions among the adjustments. Have you checked unpaid overtime and one-off gains?'],c7:['③ 借入金が入っていないので、純有利子負債を計算できません','③ 차입금이 없어 순차입금을 계산할 수 없습니다','3. Borrowings are missing, so net debt cannot be calculated'],c8:['⑤ リスクが1つも書かれていません','⑤ 리스크가 하나도 적혀 있지 않습니다','5. No risks listed'],c9:['⑤ 受け止め方（価格・契約・条件）が決まっていないリスクがあります','⑤ 받아 내는 법(가격·계약·조건)이 정해지지 않은 리스크가 있습니다','5. Some risks have no response (price, contract or condition)'],c10:['④ 提示する価格が、倍率法とDCFの幅の外にあります。理由を書いてください','④ 제시 가격이 배수법과 DCF의 범위 밖에 있습니다. 이유를 써 주세요','4. The proposed price is outside the multiples and DCF ranges. Explain why'],c11:['⑥ 5年後のEBITDAと売るときの倍率がないので、利回りを計算できません','⑥ 5년 뒤 EBITDA와 팔 때의 배수가 없어 수익률을 계산할 수 없습니다','6. EBITDA in five years and the exit multiple are missing, so no return can be calculated'],c12:['⑦ 次にすることが書かれていません','⑦ 다음에 할 일이 적혀 있지 않습니다','7. Next steps are empty'],c13:['④ 倍率（下・上）がありません','④ 배수(아래·위)가 없습니다','4. The multiple range is missing']};
+var LB={judge:['判断','판단','Decision'],price:['提示する価格（株式）','제시 가격(주식)','Proposed price (shares)'],cond:['条件（実行の条件・契約で守ること）','조건(거래 종결 조건·계약으로 지킬 것)','Conditions (of completion; contract protections)'],r1:['理由 ①','이유 ①','Reason 1'],r2:['理由 ②','이유 ②','Reason 2'],r3:['理由 ③','이유 ③','Reason 3'],
+co:['会社名','회사명','Company'],date:['日付','날짜','Date'],unit:['金額の単位（例：百万円）','금액 단위(예: 백만 엔)','Unit (e.g. million yen)'],biz:['事業の内容','사업 내용','What the business does'],cust:['得意先と稼ぎ方','거래처와 버는 방식','Customers and how it earns'],mkt:['市場と競争','시장과 경쟁','Market and competition'],str:['強み（なぜ続くか）','강점(왜 이어지는가)','Strengths (why it lasts)'],
+rev:['売上','매출','Sales'],ebitda:['決算書のEBITDA','결산서의 EBITDA','Reported EBITDA'],adj:['正常収益力への調整（足すものは＋、引くものは−）','정상 수익력으로의 조정(더할 것은 +, 뺄 것은 −)','Adjustments to normalised earnings (+ adds, − deducts)'],bookna:['帳簿の純資産','장부의 순자산','Book net assets'],naadj:['実態純資産への調整（＋／−）','실질 순자산으로의 조정(+/−)','Adjustments to real net assets (+/−)'],debt:['借入金','차입금','Borrowings'],dl:['借入とみなす項目（リース・退職給付の不足など）','차입으로 보는 항목(리스·퇴직급여 미적립 등)','Items treated as debt (leases, pension shortfall, etc.)'],cash:['現金','현금','Cash'],
+m1:['倍率（下）','배수(아래)','Multiple, low'],m2:['倍率（上）','배수(위)','Multiple, high'],d1:['DCFの株式の価値（下）','DCF의 주식 가치(아래)','DCF equity value, low'],d2:['DCFの株式の価値（上）','DCF의 주식 가치(위)','DCF equity value, high'],
+risks:['リスク（大きい順に5つまで）','리스크(큰 순서로 5개까지)','Risks (up to five, largest first)'],
+eqin:['出資額（空欄なら提示する価格）','출자액(빈칸이면 제시 가격)','Equity invested (blank = proposed price)'],e5:['5年後のEBITDA','5년 뒤 EBITDA','EBITDA in five years'],xm:['売るときの倍率','팔 때의 배수','Exit multiple'],xnd:['5年後の純有利子負債','5년 뒤 순차입금','Net debt in five years'],plan:['買ったあとの計画（最初の100日・5年後の姿）','인수 후 계획(첫 100일·5년 뒤의 모습)','Plan after buying (first 100 days, five-year picture)'],next:['追加で確かめること・日程・承認を求める事項','추가로 확인할 것·일정·승인을 구하는 사항','Further checks, timetable, approvals sought']};
+var JG=[['yes',['投資する','투자한다','Invest']],['cond',['条件つきで投資する','조건부로 투자한다','Invest, with conditions']],['no',['投資しない','투자하지 않는다','Do not invest']]];
+var HW=[['price',['価格に反映','가격에 반영','Reflect in price']],['contract',['契約で守る','계약으로 지킨다','Protect by contract']],['cond',['実行の条件','거래 종결 조건','Condition of completion']],['hold',['見送る','접는다','Walk away']]];
+var BX=[['b1','pl','7-5',[['judge','s'],['price','n'],['cond','a'],['r1','t'],['r2','t'],['r3','t']]],['b2','bs','7-5',[['co','t'],['date','t'],['unit','t'],['biz','a'],['cust','a'],['mkt','a'],['str','a']]],['b3','bs','7-3・7-4',[['rev','n'],['ebitda','n'],['adj','l'],['bookna','n'],['naadj','l'],['debt','n'],['cash','n'],['dl','l']]],['b4','cf','7-1・7-2',[['m1','n'],['m2','n'],['d1','n'],['d2','n']]],['b5','cf','7-4',[['risks','k']]],['b6','cf','7-6',[['eqin','n'],['e5','n'],['xm','n'],['xnd','n'],['plan','a']]],['b7','pl','7-5',[['next','a']]]];
+/* 報告書の文言（日・韓・英） */
+var DS={title:['投資検討報告書（下書き）','투자 검토 보고서(초안)','Investment Review Memo (draft)'],unit:['単位','단위','Unit'],h1:['1. 結論','1. 결론','1. Conclusion'],h2:['2. 事業','2. 사업','2. Business'],h3:['3. 数字','3. 숫자','3. Numbers'],h4:['4. 価値','4. 가치','4. Value'],h5:['5. リスクと対応','5. 리스크와 대응','5. Risks and responses'],h6:['6. 投資の形と回収','6. 투자 구조와 회수','6. Structure and exit'],h7:['7. 次にすること','7. 다음에 할 일','7. Next steps'],
+judge:['判断','판단','Decision'],price:['価格（株式）','가격(주식)','Price (shares)'],evx:['企業価値 {a}、正常収益力の{b}倍','기업가치 {a}, 정상 수익력의 {b}배','enterprise value {a}; {b}× normalised earnings'],cond:['条件','조건','Conditions'],topr:['いちばん大きいリスク','가장 큰 리스크','Largest risk'],reasons:['理由','이유','Reasons'],
+biz:['事業の内容','사업 내용','Business'],cust:['得意先と稼ぎ方','거래처와 버는 방식','Customers and earnings'],mkt:['市場と競争','시장과 경쟁','Market and competition'],str:['強み','강점','Strengths'],
+t31:['3-1 正常収益力','3-1 정상 수익력','3-1 Normalised earnings'],t32:['3-2 実態純資産','3-2 실질 순자산','3-2 Real net assets'],t33:['3-3 純有利子負債','3-3 순차입금','3-3 Net debt'],item:['項目','항목','Item'],amt:['金額','금액','Amount'],rev:['売上','매출','Sales'],repe:['決算書のEBITDA','결산서의 EBITDA','Reported EBITDA'],neb:['正常収益力（調整後EBITDA）','정상 수익력(조정 EBITDA)','Normalised earnings (adjusted EBITDA)'],bookna:['帳簿の純資産','장부의 순자산','Book net assets'],rna:['実態純資産','실질 순자산','Real net assets'],debt:['借入金','차입금','Borrowings'],cash:['現金','현금','Cash'],nd:['純有利子負債','순차입금','Net debt'],
+meth:['方法','방법','Method'],evh:['企業価値','기업가치','Enterprise value'],eqv:['株式の価値','주식 가치','Equity value'],mlt:['倍率法（{a}倍）','배수법({a}배)','Multiples ({a}×)'],dlo:['DCF（下）','DCF(아래)','DCF (low)'],dhi:['DCF（上）','DCF(위)','DCF (high)'],offer:['提示する価格','제시 가격','Proposed price'],
+s4:['提示する価格は、正常収益力の{a}倍、決算書のEBITDAの{b}倍。のれん（価格 − 実態純資産）は{c}。','제시 가격은 정상 수익력의 {a}배, 결산서 EBITDA의 {b}배. 영업권(가격 − 실질 순자산)은 {c}.','The proposed price is {a}× normalised earnings and {b}× reported EBITDA. Goodwill (price − real net assets) is {c}.'],
+rk:['リスク','리스크','Risk'],sz:['大きさ','크기','Size'],how:['受け止め方','받아 내는 법','Response'],det:['内容','내용','Detail'],
+eqin:['出資額','출자액','Equity invested'],e5:['5年後のEBITDA','5년 뒤 EBITDA','EBITDA in five years'],xm:['売るときの倍率','팔 때의 배수','Exit multiple'],xnd:['5年後の純有利子負債','5년 뒤 순차입금','Net debt in five years'],xeq:['5年後の株式の価値','5년 뒤 주식 가치','Equity value in five years'],moic:['投資倍率','투자 배수','Multiple on invested capital'],irr:['年あたりの利回り','연 수익률','Return per year'],plan:['買ったあとの計画','인수 후 계획','Plan after buying'],
+foot:['※ 下書きです。表ごとに単位・時点・出典（決算書／会社の資料／当方の推定）を書き、事実と意見を分けてください。','※ 초안입니다. 표마다 단위·시점·출처(결산서/회사 자료/우리 쪽 추정)를 쓰고, 사실과 의견을 나눠 주세요.','* Draft. State the unit, date and source (accounts / company data / our estimate) on each table, and separate fact from opinion.'],
+ph:['（未記入）','(미기재)','(not filled in)'],x:['倍','배','×']};
+/* 例（ミナト・グランドサービス、架空）。数字は Part 7 のもの */
+var PT={co:['ミナト・グランドサービス（架空）','미나토 그라운드 서비스(가상)','Minato Ground Services (fictional)'],unit:['百万円','백만 엔','million yen'],
+cond:['最大の得意先から継続の意向を確かめること。社長への貸付金60を、実行日までに返済してもらうこと。','가장 큰 거래처의 계속 의사를 확인할 것. 사장 대여금 60을 거래 종결일까지 갚게 할 것.','Confirmation that the largest customer intends to continue. Repayment of the 60 loan to the owner by completion.'],
+r:[['正常収益力は229。決算書のEBITDA 180より27%高い','純有利子負債は正常収益力の2.0倍で、稼いだ現金で返済できる','計画どおりなら5年で1.7倍（年10.9%）'],['정상 수익력은 229. 결산서의 EBITDA 180보다 27% 높다','순차입금은 정상 수익력의 2.0배로, 번 현금으로 갚을 수 있다','계획대로라면 5년에 1.7배(연 10.9%)'],['Normalised earnings are 229, 27% above reported EBITDA of 180','Net debt is 2.0× normalised earnings and repayable from cash earned','On plan, 1.7× in five years (10.9% a year)']],
+biz:['地方空港でのグランドハンドリング（旅客・ランプ・貨物）。社員約300人。創業家が全株を保有。','지방 공항의 지상조업(여객·램프·화물). 직원 약 300명. 창업 가족이 전 주식 보유.','Ground handling at regional airports (passenger, ramp, cargo). About 300 staff. Wholly owned by the founding family.'],
+cust:['航空会社との受託契約（1年更新）。最大の得意先が売上の45%。','항공사와의 수탁 계약(1년 갱신). 가장 큰 거래처가 매출의 45%.','Handling contracts with airlines, renewed yearly. The largest customer is 45% of sales.'],
+mkt:['便数は増加。人手不足と賃金の上昇が続く。同じ地域に競合が2社。','편수는 증가. 인력 부족과 임금 상승이 이어진다. 같은 지역에 경쟁사 2곳.','Flight numbers are rising. Labour shortage and wage growth continue. Two competitors in the region.'],
+str:['資格を持つ社員と車両（GSE）をそろえ、複数の空港で対応できる。','자격을 가진 직원과 차량(GSE)을 갖춰 여러 공항에서 대응할 수 있다.','Qualified staff and equipment (GSE) in place, able to serve several airports.'],
+adj:[['役員報酬','임원 보수','Directors’ pay'],['節税目的の保険料','절세 목적의 보험료','Tax-driven insurance'],['私的な経費','사적 경비','Private expenses'],['未払いの残業代','미지급 잔업수당','Unpaid overtime'],['一時の修繕費','일회성 수선비','One-off repairs'],['一時の補助金','일회성 보조금','One-off subsidy']],
+naadj:[['社長への貸付金','사장 대여금','Loan to the owner'],['回収できない売掛金・古い在庫','회수할 수 없는 채권·오래된 재고','Uncollectable receivables, old stock'],['退職給付の積立不足','퇴직급여 미적립분','Unfunded retirement benefits'],['未払いの残業代（過去2年分）','미지급 잔업수당(과거 2년 치)','Unpaid overtime (past two years)'],['保険の含み益','보험의 평가이익','Unrealised gain on insurance']],
+dl:[['リース債務（帳簿に載っていない分）','리스부채(장부에 없는 분)','Lease obligations (off the books)'],['退職給付の積立不足','퇴직급여 미적립분','Unfunded retirement benefits'],['未払いの残業代','미지급 잔업수당','Unpaid overtime']],
+risks:[[['最大の得意先（売上の45%）の契約が1年更新','失えば正常収益力の半分近く','継続の意向の確認を実行の条件にする'],['가장 큰 거래처(매출의 45%)의 계약이 1년 갱신','잃으면 정상 수익력의 절반 가까이','계속 의사의 확인을 거래 종결의 조건으로 한다'],['Largest customer (45% of sales) on a one-year contract','Losing it removes nearly half of normalised earnings','Its intention to continue is a condition of completion']],
+[['未払いの残業代と労務管理','過去分30、今後は年15','過去分は純有利子負債に算入、今後分は正常収益力に反映'],['미지급 잔업수당과 노무 관리','과거분 30, 앞으로는 연 15','과거분은 순차입금에 산입, 앞으로의 분은 정상 수익력에 반영'],['Unpaid overtime and labour management','30 for the past; 15 a year ahead','Past amount in net debt; future amount in normalised earnings']],
+[['社長の退任で主要な社員が辞める','人が減れば便を受けられない','社長が2年間残る契約と、主要な社員への処遇の約束'],['사장이 물러나면 주요 직원이 그만둔다','사람이 줄면 편을 받을 수 없다','사장이 2년간 남는 계약과 주요 직원에 대한 처우 약속'],['Key staff leave when the owner steps down','Fewer people means flights cannot be handled','Owner stays two years; commitments to key staff']],
+[['人手不足と賃金の上昇','人件費が年2〜3%上がる前提','料金改定の条項を確かめ、計画に織り込む'],['인력 부족과 임금 상승','인건비가 연 2~3% 오른다는 전제','요금 개정 조항을 확인하고 계획에 반영한다'],['Labour shortage and rising wages','Staff costs assumed up 2–3% a year','Check price-revision clauses and build them into the plan']],
+[['過去の税務・社会保険の誤り','金額は不明','表明保証と補償で守る'],['과거 세무·사회보험의 잘못','금액은 알 수 없다','진술 및 보장과 보상으로 지킨다'],['Errors in past tax or social insurance filings','Amount unknown','Warranties and indemnities']]],
+plan:['最初の100日：労務管理の是正、月次決算の整備、主要な社員との面談。\n5年後：最大の得意先の割合を45%から35%へ、料金改定、車両の計画的な更新。','첫 100일: 노무 관리 시정, 월차 결산 정비, 주요 직원 면담.\n5년 뒤: 가장 큰 거래처의 비중을 45%에서 35%로, 요금 개정, 차량의 계획적인 교체.','First 100 days: correct labour management, set up monthly closing, meet key staff.\nFive years: reduce the largest customer from 45% to 35% of sales, revise prices, renew vehicles on a plan.'],
+next:['得意先への確認、労務・税務の追加調査、契約書の案、投資委員会の日程。','거래처 확인, 노무·세무 추가 조사, 계약서 안, 투자위원회 일정.','Customer confirmation, further labour and tax work, draft contract, investment committee date.']};
+var lang=localStorage.getItem('art-lang')||'ja',LI=0,OL=null,D=null;
+function rows(n,m){var a=[];for(var i=0;i<n;i++){var r=[];for(var j=0;j<m;j++)r.push('');a.push(r)}return a}
+function blank(){return{co:'',date:'',unit:'',judge:'',price:'',cond:'',r1:'',r2:'',r3:'',biz:'',cust:'',mkt:'',str:'',rev:'',ebitda:'',adj:rows(6,2),bookna:'',naadj:rows(5,2),debt:'',dl:rows(4,2),cash:'',m1:'',m2:'',d1:'',d2:'',risks:rows(5,4),eqin:'',e5:'',xm:'',xnd:'',plan:'',next:''}}
+function preset(i){var d=blank(),A=[40,20,10,-15,12,-18],B=[-60,-20,-80,-30,30],C=[50,80,30],H=['cond','price','contract','price','contract'];
+ d.co=PT.co[i];d.unit=PT.unit[i];d.judge='cond';d.price=800;d.cond=PT.cond[i];d.r1=PT.r[i][0];d.r2=PT.r[i][1];d.r3=PT.r[i][2];d.biz=PT.biz[i];d.cust=PT.cust[i];d.mkt=PT.mkt[i];d.str=PT.str[i];
+ d.rev=2400;d.ebitda=180;A.forEach(function(v,k){d.adj[k]=[PT.adj[k][i],v]});d.bookna=500;B.forEach(function(v,k){d.naadj[k]=[PT.naadj[k][i],v]});d.debt=600;d.cash=300;C.forEach(function(v,k){d.dl[k]=[PT.dl[k][i],v]});
+ d.m1=5;d.m2=6;d.d1=762;d.d2=1111;PT.risks.forEach(function(r,k){d.risks[k]=[r[i][0],r[i][1],H[k],r[i][2]]});d.e5=280;d.xm=5.5;d.xnd=200;d.plan=PT.plan[i];d.next=PT.next[i];return d}
+try{var s0=JSON.parse(localStorage.getItem(KEY)||'null');if(s0&&s0.d&&typeof s0.d==='object'){D=blank();for(var k0 in D){var v0=s0.d[k0];if(v0==null)continue;if(Array.isArray(D[k0])){if(Array.isArray(v0))D[k0].forEach(function(r,i){if(Array.isArray(v0[i]))r.forEach(function(_,j){if(v0[i][j]!=null)r[j]=v0[i][j]})})}else D[k0]=v0}if(s0.ol)OL=s0.ol}}catch(e){}
+if(!D)D=blank();
+function save(){try{localStorage.setItem(KEY,JSON.stringify({d:D,ol:OL}))}catch(e){}}
+function t(a){return a[LI]}
+function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function num(v){if(v===''||v==null)return NaN;v=parseFloat(String(v).replace(/[０-９．]/g,function(c){return c==='．'?'.':String.fromCharCode(c.charCodeAt(0)-65248)}).replace(/[,，\s]/g,'').replace(/[−–△▲＋]/g,function(c){return c==='＋'?'+':'-'}));return isFinite(v)?v:NaN}
+function f(v,d){if(!isFinite(v))return '—';var a=Math.abs(v),s=a.toLocaleString('en-US',d==null?{maximumFractionDigits:1}:{minimumFractionDigits:d,maximumFractionDigits:d});return (v<0&&+a.toFixed(d==null?1:d)!==0?'−':'')+s}
+function sg(v){return isFinite(v)?(v>0?'+':'')+f(v):'—'}
+function dv(a,b){return isFinite(a)&&isFinite(b)&&b!==0?a/b:NaN}
+function fill(s,o){return s.replace(/\{(\w)\}/g,function(_,k){return o[k]})}
+function lsum(a){var s=0,n=0,neg=0;a.forEach(function(r){var v=num(r[1]);if(isFinite(v)){s+=v;n++;if(v<0)neg++}});return{s:s,n:n,neg:neg}}
+function calc(){var V={},A=lsum(D.adj),B=lsum(D.naadj),C=lsum(D.dl),eb=num(D.ebitda),cash=num(D.cash);
+ V.rev=num(D.rev);V.eb=eb;V.A=A;V.neb=eb+A.s;V.bookna=num(D.bookna);V.rna=V.bookna+B.s;V.debt=num(D.debt);V.cash=cash;V.nd=V.debt+C.s-(isNaN(cash)?0:cash);
+ V.px=num(D.price);V.evp=V.px+V.nd;V.mult=dv(V.evp,V.neb);V.multR=dv(V.evp,eb);V.gw=V.px-V.rna;
+ V.m1=num(D.m1);V.m2=num(D.m2);V.evm1=V.neb*V.m1;V.evm2=V.neb*V.m2;V.eqm1=V.evm1-V.nd;V.eqm2=V.evm2-V.nd;V.d1=num(D.d1);V.d2=num(D.d2);
+ V.inv=isNaN(num(D.eqin))?V.px:num(D.eqin);V.e5=num(D.e5);V.xm=num(D.xm);V.xnd=isNaN(num(D.xnd))?0:num(D.xnd);V.xeq=V.e5*V.xm-V.xnd;V.moic=V.inv>0?dv(V.xeq,V.inv):NaN;V.irr=V.moic>0?Math.pow(V.moic,0.2)-1:NaN;return V}
+function checks(V){var c=[],has=function(k){return String(D[k]||'').trim()!==''};
+ if(!has('judge'))c.push('c1');if(!isFinite(V.px))c.push('c2');if(!(has('r1')&&has('r2')&&has('r3')))c.push('c3');if(!has('unit'))c.push('c4');if(!isFinite(V.eb))c.push('c5');else if(V.A.n>0&&V.A.neg===0)c.push('c6');if(!isFinite(V.debt))c.push('c7');
+ if(!(isFinite(V.m1)&&isFinite(V.m2)))c.push('c13');
+ var los=[V.eqm1,V.eqm2,V.d1,V.d2].filter(isFinite);if(isFinite(V.px)&&los.length&&(V.px<Math.min.apply(null,los)||V.px>Math.max.apply(null,los)))c.push('c10');
+ var rk=D.risks.filter(function(r){return String(r[0]).trim()!==''});if(!rk.length)c.push('c8');else if(rk.some(function(r){return !r[2]||String(r[3]).trim()===''}))c.push('c9');
+ if(!(isFinite(V.e5)&&isFinite(V.xm)))c.push('c11');if(!has('next'))c.push('c12');return c}
+function doc(V,o){function d(k){return DS[k][o]}var ph='<span class="ph">'+esc(d('ph'))+'</span>',x=d('x');
+ function tv(s){s=String(s==null?'':s).trim();return s?esc(s).replace(/\n/g,'<br>'):ph}function nv(v,dd){return isFinite(v)?f(v,dd):ph}function opt(L,k){for(var i=0;i<L.length;i++)if(L[i][0]===k)return esc(L[i][1][o]);return ph}
+ function tr(a,b,c){return '<tr'+(c?' class="t"':'')+'><td>'+a+'</td><td class="r">'+b+'</td></tr>'}
+ function lrows(a){return a.filter(function(r){return String(r[0]).trim()!==''||isFinite(num(r[1]))}).map(function(r){return tr(tv(r[0]),sg(num(r[1])))}).join('')}
+ var rk=D.risks.filter(function(r){return String(r[0]).trim()!==''}),h='';
+ h+='<h1>'+esc(d('title'))+'：'+tv(D.co)+'</h1><p class="meta">'+(String(D.date).trim()?esc(D.date)+'　':'')+esc(d('unit'))+'：'+tv(D.unit)+'</p>';
+ h+='<h2>'+esc(d('h1'))+'</h2><table><tr><th>'+esc(d('judge'))+'</th><td>'+opt(JG,D.judge)+'</td></tr><tr><th>'+esc(d('price'))+'</th><td>'+nv(V.px)+(isFinite(V.evp)&&isFinite(V.mult)?'（'+esc(fill(d('evx'),{a:f(V.evp),b:f(V.mult,1)}))+'）':'')+'</td></tr><tr><th>'+esc(d('cond'))+'</th><td>'+tv(D.cond)+'</td></tr><tr><th>'+esc(d('topr'))+'</th><td>'+(rk.length?tv(rk[0][0])+' → '+opt(HW,rk[0][2])+'：'+tv(rk[0][3]):ph)+'</td></tr></table><p><b>'+esc(d('reasons'))+'</b></p><ol><li>'+tv(D.r1)+'</li><li>'+tv(D.r2)+'</li><li>'+tv(D.r3)+'</li></ol>';
+ h+='<h2>'+esc(d('h2'))+'</h2><table>'+['biz','cust','mkt','str'].map(function(k){return '<tr><th>'+esc(d(k))+'</th><td>'+tv(D[k])+'</td></tr>'}).join('')+'</table>';
+ h+='<h2>'+esc(d('h3'))+'</h2><h3>'+esc(d('t31'))+'</h3><table><tr><th>'+esc(d('item'))+'</th><th>'+esc(d('amt'))+'</th></tr>'+tr(esc(d('rev')),nv(V.rev))+tr(esc(d('repe')),nv(V.eb)+(isFinite(dv(V.eb,V.rev))?'（'+f(dv(V.eb,V.rev)*100,1)+'%）':''))+lrows(D.adj)+tr(esc(d('neb')),nv(V.neb)+(isFinite(dv(V.neb,V.rev))?'（'+f(dv(V.neb,V.rev)*100,1)+'%）':''),1)+'</table>';
+ h+='<h3>'+esc(d('t32'))+'</h3><table><tr><th>'+esc(d('item'))+'</th><th>'+esc(d('amt'))+'</th></tr>'+tr(esc(d('bookna')),nv(V.bookna))+lrows(D.naadj)+tr(esc(d('rna')),nv(V.rna),1)+'</table>';
+ h+='<h3>'+esc(d('t33'))+'</h3><table><tr><th>'+esc(d('item'))+'</th><th>'+esc(d('amt'))+'</th></tr>'+tr(esc(d('debt')),nv(V.debt))+lrows(D.dl)+tr(esc(d('cash')),isFinite(V.cash)?sg(-V.cash):ph)+tr(esc(d('nd')),nv(V.nd),1)+'</table>';
+ function vr(a,b,c,tt){return '<tr'+(tt?' class="t"':'')+'><td>'+a+'</td><td class="r">'+b+'</td><td class="r">'+c+'</td></tr>'}
+ h+='<h2>'+esc(d('h4'))+'</h2><table><tr><th>'+esc(d('meth'))+'</th><th>'+esc(d('evh'))+'</th><th>'+esc(d('eqv'))+'</th></tr>'+vr(esc(fill(d('mlt'),{a:isFinite(V.m1)?f(V.m1):'—'})),nv(V.evm1,0),nv(V.eqm1,0))+vr(esc(fill(d('mlt'),{a:isFinite(V.m2)?f(V.m2):'—'})),nv(V.evm2,0),nv(V.eqm2,0))+vr(esc(d('dlo')),isFinite(V.d1+V.nd)?f(V.d1+V.nd,0):'—',nv(V.d1,0))+vr(esc(d('dhi')),isFinite(V.d2+V.nd)?f(V.d2+V.nd,0):'—',nv(V.d2,0))+vr(esc(d('offer')),nv(V.evp,0),nv(V.px,0),1)+'</table>'+(isFinite(V.mult)?'<p>'+esc(fill(d('s4'),{a:f(V.mult,1),b:isFinite(V.multR)?f(V.multR,1):'—',c:isFinite(V.gw)?f(V.gw,0):'—'}))+'</p>':'');
+ h+='<h2>'+esc(d('h5'))+'</h2>'+(rk.length?'<table><tr><th>'+esc(d('rk'))+'</th><th>'+esc(d('sz'))+'</th><th>'+esc(d('how'))+'</th><th>'+esc(d('det'))+'</th></tr>'+rk.map(function(r){return '<tr><td>'+tv(r[0])+'</td><td>'+tv(r[1])+'</td><td>'+opt(HW,r[2])+'</td><td>'+tv(r[3])+'</td></tr>'}).join('')+'</table>':'<p>'+ph+'</p>');
+ h+='<h2>'+esc(d('h6'))+'</h2><table><tr><th>'+esc(d('item'))+'</th><th>'+esc(d('amt'))+'</th></tr>'+tr(esc(d('eqin')),nv(V.inv,0))+tr(esc(d('e5')),nv(V.e5))+tr(esc(d('xm')),isFinite(V.xm)?f(V.xm)+x:ph)+tr(esc(d('xnd')),isFinite(num(D.xnd))?f(V.xnd):ph)+tr(esc(d('xeq')),nv(V.xeq,0),1)+tr(esc(d('moic')),isFinite(V.moic)?f(V.moic,2)+x:ph,1)+tr(esc(d('irr')),isFinite(V.irr)?f(V.irr*100,1)+'%':ph,1)+'</table><p><b>'+esc(d('plan'))+'</b></p><p>'+tv(D.plan)+'</p>';
+ h+='<h2>'+esc(d('h7'))+'</h2><p>'+tv(D.next)+'</p><p class="meta">'+esc(d('foot'))+'</p>';return h}
+function out(){var V=calc(),c=checks(V);
+ var e=document.getElementById('s_b3');if(e)e.textContent=fill(t(U.s3),{a:f(V.neb),b:f(V.rna),c:f(V.nd)});
+ e=document.getElementById('s_b4');if(e)e.textContent=fill(t(U.s4),{a:f(V.eqm1,0),b:f(V.eqm2,0),c:f(V.mult,1),d:f(V.multR,1),e:f(V.gw,0)});
+ e=document.getElementById('s_b6');if(e)e.textContent=fill(t(U.s6),{a:f(V.xeq,0),b:f(V.moic,2),c:isFinite(V.irr)?f(V.irr*100,1)+'%':'—'});
+ document.getElementById('ck').innerHTML=c.length?'<ul class="ck">'+c.map(function(k){return '<li>'+esc(t(CK[k]))+'</li>'}).join('')+'</ul>':'<p class="okmsg">'+esc(t(U.okmsg))+'</p>';
+ document.getElementById('doc').innerHTML=doc(V,OL==null?LI:OL)}
+function fld(k,ty){var lb=esc(t(LB[k])),v=D[k];
+ if(ty==='t')return '<label>'+lb+'<input type="text" data-k="'+k+'" value="'+esc(v)+'"></label>';
+ if(ty==='n')return '<label>'+lb+'<input type="text" class="n" inputmode="decimal" autocomplete="off" data-k="'+k+'" value="'+esc(v)+'"></label>';
+ if(ty==='s')return '<label>'+lb+'<select data-k="'+k+'"><option value="">'+esc(t(U.sel))+'</option>'+JG.map(function(o){return '<option value="'+o[0]+'"'+(v===o[0]?' selected':'')+'>'+esc(t(o[1]))+'</option>'}).join('')+'</select></label>';
+ if(ty==='a')return '<label>'+lb+'<textarea data-k="'+k+'">'+esc(v)+'</textarea></label>';
+ if(ty==='l')return '<label>'+lb+'</label>'+v.map(function(r,i){return '<div class="li"><input type="text" data-k="'+k+'" data-i="'+i+'" data-j="0" value="'+esc(r[0])+'" placeholder="'+esc(t(U.nm))+'" aria-label="'+esc(t(U.nm))+' '+(i+1)+'"><input type="text" class="n" inputmode="text" autocomplete="off" data-k="'+k+'" data-i="'+i+'" data-j="1" value="'+esc(r[1])+'" placeholder="'+esc(t(U.am))+'" aria-label="'+esc(t(U.am))+' '+(i+1)+'"></div>'}).join('');
+ return '<label>'+lb+'</label>'+v.map(function(r,i){return '<div class="rk"><input type="text" data-k="'+k+'" data-i="'+i+'" data-j="0" value="'+esc(r[0])+'" placeholder="'+esc(t(U.pk))+' '+(i+1)+'" aria-label="'+esc(t(U.pk))+' '+(i+1)+'"><input type="text" data-k="'+k+'" data-i="'+i+'" data-j="1" value="'+esc(r[1])+'" placeholder="'+esc(t(U.ps))+'" aria-label="'+esc(t(U.ps))+' '+(i+1)+'"><select data-k="'+k+'" data-i="'+i+'" data-j="2" aria-label="'+esc(t(DS.how))+' '+(i+1)+'"><option value="">'+esc(t(U.sel))+'</option>'+HW.map(function(o){return '<option value="'+o[0]+'"'+(r[2]===o[0]?' selected':'')+'>'+esc(t(o[1]))+'</option>'}).join('')+'</select><input type="text" data-k="'+k+'" data-i="'+i+'" data-j="3" value="'+esc(r[3])+'" placeholder="'+esc(t(U.pd))+'" aria-label="'+esc(t(U.pd))+' '+(i+1)+'"></div>'}).join('')}
+function render(){LI=lang==='ja'?0:lang==='ko'?1:2;document.documentElement.lang=lang;document.title=t(U.title);
+ ['title','lead','pre','pren','ck','out','note'].forEach(function(k){document.getElementById('t_'+k).textContent=t(U[k])});
+ document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ document.getElementById('pre').innerHTML='<button type="button" data-p="ex">'+esc(t(U.ex))+'</button><button type="button" data-p="blank">'+esc(t(U.blank))+'</button>';
+ document.getElementById('form').innerHTML=BX.map(function(b){var h='',g='';b[3].forEach(function(q){var short=q[1]==='t'||q[1]==='n'||q[1]==='s';if(short)g+=fld(q[0],q[1]);else{if(g){h+='<div class="g">'+g+'</div>';g=''}h+=fld(q[0],q[1])}});if(g)h+='<div class="g">'+g+'</div>';
+  return '<div class="card"><h2 style="border-left:6px solid var(--'+b[1]+');padding-left:10px">'+esc(t(U[b[0]]))+'<span class="tag">'+esc(t(U.les))+' '+b[2]+'</span></h2>'+(b[0]==='b1'||b[0]==='b3'?'<p class="note" style="margin:0">'+esc(t(U[b[0]==='b1'?'h1':'h3']))+'</p>':'')+h+(b[0]==='b3'||b[0]==='b4'||b[0]==='b6'?'<div class="sum" id="s_'+b[0]+'"></div>':'')+'</div>'}).join('');
+ var cur=OL==null?LI:OL;document.getElementById('acts').innerHTML='<span>'+esc(t(U.ol))+'</span><select id="ol" aria-label="'+esc(t(U.ol))+'">'+['日本語','한국어','English'].map(function(n,i){return '<option value="'+i+'"'+(cur===i?' selected':'')+'>'+n+'</option>'}).join('')+'</select><button type="button" class="main" id="b_print">'+esc(t(U.print))+'</button><button type="button" id="b_word">'+esc(t(U.word))+'</button><button type="button" id="b_copy">'+esc(t(U.copy))+'</button>';
+ out()}
+document.getElementById('pre').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;D=b.dataset.p==='ex'?preset(LI):blank();save();render()});
+function onIn(e){var el=e.target,k=el.dataset.k;if(!k)return;if(el.dataset.i!=null)D[k][+el.dataset.i][+el.dataset.j]=el.value;else D[k]=el.value;save();out()}
+document.getElementById('form').addEventListener('input',onIn);document.getElementById('form').addEventListener('change',onIn);
+document.getElementById('acts').addEventListener('change',function(e){if(e.target.id==='ol'){OL=+e.target.value;save();out()}});
+document.getElementById('acts').addEventListener('click',function(e){var id=e.target.id,dc=document.getElementById('doc');
+ if(id==='b_print'){var r=document.getElementById('printroot');if(r)r.remove();r=document.createElement('div');r.id='printroot';r.innerHTML='<div class="doc">'+dc.innerHTML+'</div>';document.body.appendChild(r);window.print();setTimeout(function(){r.remove()},1000)}
+ if(id==='b_word'){var css='body{font-family:"Yu Gothic","Malgun Gothic",Arial,sans-serif;font-size:10.5pt;line-height:1.6}h1{font-size:16pt}h2{font-size:12pt;border-bottom:2px solid #333;margin-top:16pt}h3{font-size:10.5pt}table{border-collapse:collapse;width:100%}th,td{border:1px solid #888;padding:3pt 5pt;vertical-align:top}th{background:#eee}td.r{text-align:right}tr.t td{font-weight:bold}.ph{color:#999}.meta{color:#555;font-size:9.5pt}';
+  var html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><style>'+css+'</style></head><body>'+dc.innerHTML+'</body></html>';
+  var bl=new Blob(['\ufeff',html],{type:'application/msword'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=(String(D.co).trim().replace(/[\\\/:*?"<>|]/g,'')||'memo')+'.doc';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},800)}
+ if(id==='b_copy'){var tx=dc.innerText,done=function(){e.target.textContent=t(U.copied);setTimeout(function(){e.target.textContent=t(U.copy)},1500)};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(tx).then(done,function(){});else{var ta=document.createElement('textarea');ta.value=tx;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(er){}ta.remove()}}});
+document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});
+render();
+</script>
+<script src="../1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

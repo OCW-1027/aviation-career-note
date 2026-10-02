@@ -116,7 +116,7 @@ if(!D){P='small';D=cp(PRE.small)}
 function save(){try{localStorage.setItem(KEY,JSON.stringify({p:P,d:D}))}catch(e){}}
 function t(a){return a[LI]}
 function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function N(k){var v=D[k];if(v===''||v==null)return NaN;v=parseFloat(String(v).replace(/[,，\s]/g,'').replace(/[−–△▲]/g,'-'));return isFinite(v)?v:NaN}
+function N(k){var v=D[k];if(v===''||v==null)return NaN;v=parseFloat(String(v).replace(/[０-９．]/g,function(c){return c==='．'?'.':String.fromCharCode(c.charCodeAt(0)-65248)}).replace(/[,，\s]/g,'').replace(/[−–△▲]/g,'-'));return isFinite(v)?v:NaN}
 function f(v,d){if(!isFinite(v))return '—';var a=Math.abs(v),s=a.toLocaleString('en-US',d==null?{maximumFractionDigits:2}:{minimumFractionDigits:d,maximumFractionDigits:d});return (v<0&&+a.toFixed(d==null?2:d)!==0?'−':'')+s}
 function dv(a,b){return isFinite(a)&&isFinite(b)&&b!==0?a/b:NaN}
 /* 計算：値（V）と表示用の行（G）を返す */

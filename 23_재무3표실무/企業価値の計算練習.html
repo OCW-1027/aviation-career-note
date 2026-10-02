@@ -29,14 +29,14 @@ h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;marg
 .r .fm{grid-column:1/-1;font-size:13px;color:var(--muted);overflow-wrap:anywhere}.r .hn{grid-column:1/-1;font-size:13px}
 .r.neg .v{color:var(--ng)}.r.na .v{color:var(--muted);font-weight:500}.r .al{color:var(--ng);font-weight:700}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{border-collapse:collapse;width:100%;font-size:14px;min-width:460px}
+table{border-collapse:collapse;width:100%;font-size:14px}table.wide{min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:right;white-space:nowrap}
 th{background:#eef3f8;text-align:center;font-weight:700}td:first-child,th:first-child{text-align:center;font-weight:700;background:#f4f7fa}
 td.base{background:#fff6e9;font-weight:800}
 .sw{display:none;font-size:12px;color:var(--muted);margin:0 0 6px}
-.ff{display:block;width:100%;max-width:640px;height:auto;margin:0 auto}
+.ff{display:block;width:100%;max-width:580px;height:auto;margin:0 auto}
 button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
-@media(max-width:600px){.card{padding:14px 12px}.sw{display:block}}
+@media(max-width:600px){.card{padding:14px 12px}html.sh[lang=en] header h1{font-size:20px!important;letter-spacing:-.01em}}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="finval"></script>
 </head>
@@ -119,6 +119,7 @@ function row(id,ok,txt,num,o){o=o||{};var d=RT[id];return '<div class="r'+(o.neg
 function miss(ks){var m=ks.filter(function(k){return isNaN(N(k))}).map(function(k){return t(FL[k])});return m.length?t(X.need)+m.join(LI===2?', ':'、'):''}
 function card(k,les,col,body){return '<div class="card"><h2 style="border-left:6px solid var(--'+col+');padding-left:10px">'+esc(t(X[k]))+'<span class="tag">'+esc(t(X.les))+' '+les+'</span></h2>'+body+'</div>'}
 function yl(i){return t(X.yrp)+(i+1)+t(X.yr)}
+function nice(x){var p=Math.pow(10,Math.floor(Math.log(x)/Math.LN10)),m=x/p;return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p}
 function ff(V){var rows=[],vals=[];
  if(isFinite(V.eqm1)&&isFinite(V.eqm2)){var a=Math.min(V.eqm1,V.eqm2),b=Math.max(V.eqm1,V.eqm2);rows.push([t(X.ff1),a,b,'#2f8fe0']);vals.push(a,b)}
  if(isFinite(V.dmin)){rows.push([t(X.ff2),V.dmin,V.dmax,'#e08a2f']);vals.push(V.dmin,V.dmax)}
@@ -129,18 +130,18 @@ function ff(V){var rows=[],vals=[];
  var s='<svg class="ff" viewBox="0 0 420 '+H+'" role="img" xmlns="http://www.w3.org/2000/svg">';
  rows.forEach(function(r,i){var y=44+i*46,wd=Math.max(Xp(r[2])-Xp(r[1]),6);s+='<text x="'+(x0-10)+'" y="'+(y+13)+'" text-anchor="end" font-size="12" font-weight="800" fill="#1d2a38">'+esc(r[0])+'</text><text x="'+(x0-10)+'" y="'+(y+28)+'" text-anchor="end" font-size="11" font-weight="600" fill="#5b6b7d">'+(r[1]===r[2]?f(r[1],0):f(r[1],0)+' 〜 '+f(r[2],0))+'</text><rect x="'+(Xp(r[1])-(r[1]===r[2]?3:0))+'" y="'+y+'" width="'+wd+'" height="30" rx="6" fill="'+r[3]+'"/>'});
  s+='<line x1="'+x0+'" y1="'+ax+'" x2="'+x1+'" y2="'+ax+'" stroke="#1d2a38" stroke-width="1.5"/>';
- for(var k=0;k<=4;k++){var v=lo+(hi-lo)/1.1*k/4;s+='<line x1="'+Xp(v)+'" y1="'+ax+'" x2="'+Xp(v)+'" y2="'+(ax+5)+'" stroke="#1d2a38" stroke-width="1.5"/><text x="'+Xp(v)+'" y="'+(ax+19)+'" text-anchor="middle" font-size="10.5" font-weight="600" fill="#5b6b7d">'+f(v,0)+'</text>'}
+ var st=nice((hi-lo)/5.5);for(var v=Math.ceil(lo/st-1e-9)*st;v<=hi+1e-9;v+=st){s+='<line x1="'+Xp(v)+'" y1="'+ax+'" x2="'+Xp(v)+'" y2="'+(ax+5)+'" stroke="#1d2a38" stroke-width="1.5"/><text x="'+Xp(v)+'" y="'+(ax+19)+'" text-anchor="middle" font-size="10.5" font-weight="600" fill="#5b6b7d">'+f(v,0)+'</text>'}
  if(isFinite(V.px)){var xp=Xp(V.px),an=xp>x1-40?'end':(xp<x0+40?'start':'middle');s+='<line x1="'+xp+'" y1="30" x2="'+xp+'" y2="'+(ax-2)+'" stroke="#1d2a38" stroke-width="2" stroke-dasharray="5 4"/><text x="'+xp+'" y="22" text-anchor="'+an+'" font-size="12" font-weight="800" fill="#1d2a38">'+esc(t(X.ffp))+' '+f(V.px,0)+'</text>'}
  return s+'</svg>'}
 function out(){var V=calc(),h='',x=t(X.x),pc=function(v){return f(v*100,1)+'%'};
  var ok1=isFinite(V.evm1)&&isFinite(V.evm2),ok1e=ok1&&isFinite(V.nd);
  h+=card('r1','7-1','pl',row('evm',ok1,f(V.evm1,0)+' 〜 '+f(V.evm2,0),f(V.eb)+' × '+f(V.m1)+x+' 〜 '+f(V.eb)+' × '+f(V.m2)+x,{msg:miss(['ebitda','m1','m2'])})+row('eqm',ok1e,f(V.eqm1,0)+' 〜 '+f(V.eqm2,0),f(V.evm1,0)+' − '+f(V.nd)+' 〜 '+f(V.evm2,0)+' − '+f(V.nd),{msg:miss(['ebitda','m1','m2','nd']),neg:V.eqm1<0}));
  var d=V.d,b2='';
- if(d){b2+='<p class="sw">'+esc(t(X.sw))+'</p><div class="tw"><table><tr><th></th>'+V.F.map(function(_,i){return '<th>'+esc(yl(i))+'</th>'}).join('')+'</tr><tr><td>'+esc(t(X.fcf))+'</td>'+V.F.map(function(v){return '<td>'+f(v)+'</td>'}).join('')+'</tr><tr><td>'+esc(t(X.df))+'</td>'+V.F.map(function(_,i){return '<td>'+f(1/Math.pow(1+V.w,i+1),3)+'</td>'}).join('')+'</tr><tr><td>'+esc(t(X.pv))+'</td>'+d.pv.map(function(v){return '<td>'+f(v,1)+'</td>'}).join('')+'</tr></table></div>'}
+ if(d){b2+='<div class="tw"><table class="wide"><tr><th></th>'+V.F.map(function(_,i){return '<th>'+esc(yl(i))+'</th>'}).join('')+'</tr><tr><td>'+esc(t(X.fcf))+'</td>'+V.F.map(function(v){return '<td>'+f(v)+'</td>'}).join('')+'</tr><tr><td>'+esc(t(X.df))+'</td>'+V.F.map(function(_,i){return '<td>'+f(1/Math.pow(1+V.w,i+1),3)+'</td>'}).join('')+'</tr><tr><td>'+esc(t(X.pv))+'</td>'+d.pv.map(function(v){return '<td>'+f(v,1)+'</td>'}).join('')+'</tr></table></div>'}
  var m3=V.bad?t(X.wg):miss(['f1','f2','f3','f4','f5','w','g']);
  b2+=row('sum',!!d,d?f(d.sum,0):'',d?d.pv.map(function(v){return f(v,1)}).join(' ＋ '):'',{msg:m3})+row('tv',!!d,d?f(d.tv,0):'',d?f(V.F[4])+' × '+f(1+V.g,3)+' ÷（'+f(V.w,3)+' − '+f(V.g,3)+'）':'',{msg:m3})+row('ptv',!!d,d?f(d.ptv,0):'',d?f(d.tv,0)+' × '+f(1/Math.pow(1+V.w,5),3):'',{msg:m3})+row('ev',!!d,d?f(d.ev,0):'',d?f(d.sum,0)+' ＋ '+f(d.ptv,0):'',{msg:m3})+row('eq',!!d&&isFinite(V.eq),f(V.eq,0),d?f(d.ev,0)+' − '+f(V.nd):'',{msg:m3||miss(['nd']),neg:V.eq<0})+row('tvs',!!d,pc(V.tvs),d?f(d.ptv,0)+' ÷ '+f(d.ev,0):'',{msg:m3,al:V.tvs>0.75});
  h+=card('r2','7-2','cf',b2);
- if(d&&isFinite(V.nd)&&(V.ws.length>1||V.gs.length>1)){var tb='<p class="sw">'+esc(t(X.sw))+'</p><div class="tw"><table><tr><th>'+esc(t(X.eqv))+'</th>'+V.gs.map(function(g){return '<th>'+esc(t(X.gr))+' '+f(g*100,1)+'%</th>'}).join('')+'</tr>'+V.ws.map(function(w,i){return '<tr><td>'+esc(t(X.dr))+' '+f(w*100,1)+'%</td>'+V.grid[i].map(function(v,j){return '<td'+(w===V.w&&V.gs[j]===V.g?' class="base"':'')+'>'+f(v,0)+'</td>'}).join('')+'</tr>'}).join('')+'</table></div><p class="note">'+esc(f(V.dmin,0)+' 〜 '+f(V.dmax,0))+'</p>';h+=card('r3','7-2','cf',tb)}
+ if(d&&isFinite(V.nd)&&(V.ws.length>1||V.gs.length>1)){var tb='<div class="tw"><table><tr><th>'+esc(t(X.eqv))+'</th>'+V.gs.map(function(g){return '<th>'+esc(t(X.gr))+' '+f(g*100,1)+'%</th>'}).join('')+'</tr>'+V.ws.map(function(w,i){return '<tr><td>'+esc(t(X.dr))+' '+f(w*100,1)+'%</td>'+V.grid[i].map(function(v,j){return '<td'+(w===V.w&&V.gs[j]===V.g?' class="base"':'')+'>'+f(v,0)+'</td>'}).join('')+'</tr>'}).join('')+'</table></div><p class="note">'+esc(f(V.dmin,0)+' 〜 '+f(V.dmax,0))+'</p>';h+=card('r3','7-2','cf',tb)}
  var fg=ff(V);if(fg)h+=card('r4','7-6','ink',fg);
  if(isFinite(V.px)){h+=card('r5','7-6','bs',row('evp',isFinite(V.evp),f(V.evp,0),f(V.px)+' ＋ '+f(V.nd),{msg:miss(['nd'])})+row('imp',isFinite(V.imp),f(V.imp,1)+x,f(V.evp,0)+' ÷ '+f(V.eb),{msg:miss(['nd','ebitda']),al:isFinite(V.imp)&&ok1&&(V.imp>Math.max(V.m1,V.m2)+1e-9)})+(isFinite(V.ni)?row('per',isFinite(V.per),f(V.per,1)+x,f(V.px)+' ÷ '+f(V.ni)):'')+(isFinite(V.na)?row('pbr',isFinite(V.pbr),f(V.pbr,2)+x,f(V.px)+' ÷ '+f(V.na))+row('gw',true,f(V.gw,0),f(V.px)+' − '+f(V.na),{neg:V.gw<0}):''))}
  if(isFinite(V.e5)||isFinite(V.xm)){var okx=isFinite(V.xeq);h+=card('r6','7-6','bs',row('xeq',okx,f(V.xeq,0),f(V.e5)+' × '+f(V.xm)+x+' − '+f(V.xnd),{msg:miss(['e5','xm'])})+row('moic',isFinite(V.moic),f(V.moic,2)+x,f(V.xeq,0)+' ÷ '+f(V.px),{msg:miss(['e5','xm','px'])})+row('irr',isFinite(V.irr),pc(V.irr),f(V.moic,2)+' ^（1 ÷ 5）− 1',{msg:miss(['e5','xm','px']),neg:V.irr<0}))}
