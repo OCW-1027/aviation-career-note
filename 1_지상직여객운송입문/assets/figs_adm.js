@@ -225,8 +225,41 @@ var HRCALKR={
   ['Dec','Check remaining annual leave and unused-leave pay; plan next year’s hiring','#2F8FE0']],
   ['Pay and tax','Hiring and HR','Four social insurances'],'All year: insurance enrolment and loss notifications, statutory training (once a year), health checks. Dates vary by year and company, so check them. ★']};
 
+/* 8. 残業の上限（日本・韓国）：横の棒 */
+var OTJP={
+ ja:['日本：残業（時間外労働）の上限',[['原則の上限（1か月）',45,'#2F8FE0','45時間'],['特別条項：2〜6か月の平均（休日労働を含む）',80,'#E08A2F','80時間'],['特別条項：1か月（休日労働を含む）',100,'#D0453E','100時間未満']],'年の上限：原則360時間、特別条項でも720時間。月45時間を超えられるのは年6か月まで。★'],
+ ko:['일본: 연장근로(시간외 근로)의 상한',[['원칙 상한(1개월)',45,'#2F8FE0','45시간'],['특별조항: 2~6개월 평균(휴일근로 포함)',80,'#E08A2F','80시간'],['특별조항: 1개월(휴일근로 포함)',100,'#D0453E','100시간 미만']],'연간 상한: 원칙 360시간, 특별조항이라도 720시간. 월 45시간을 넘길 수 있는 것은 연 6개월까지. ★'],
+ en:['Japan: limits on overtime',[['Standard limit (one month)',45,'#2F8FE0','45 h'],['Special clause: average over 2–6 months (incl. holiday work)',80,'#E08A2F','80 h'],['Special clause: one month (incl. holiday work)',100,'#D0453E','under 100 h']],'Annual limit: 360 hours as standard, 720 even under a special clause. Months over 45 hours: no more than six a year. ★']};
+var OTKR={
+ ja:['韓国：1週の労働時間の上限',[['法定の労働時間（1週）',40,'#2F8FE0','40時間'],['延長労働の上限（1週）',12,'#E08A2F','12時間'],['1週の最大（休日労働を含む）',52,'#D0453E','52時間']],'常時5人未満の事業場には、52時間の上限と割増の手当が適用されません。★'],
+ ko:['한국: 1주 근로시간의 상한',[['법정 근로시간(1주)',40,'#2F8FE0','40시간'],['연장근로 상한(1주)',12,'#E08A2F','12시간'],['1주 최대(휴일근로 포함)',52,'#D0453E','52시간']],'상시 5명 미만 사업장에는 52시간 상한과 가산수당이 적용되지 않습니다. ★'],
+ en:['Korea: weekly limits on working hours',[['Statutory hours (per week)',40,'#2F8FE0','40 h'],['Overtime limit (per week)',12,'#E08A2F','12 h'],['Weekly maximum (incl. holiday work)',52,'#D0453E','52 h']],'Workplaces with fewer than five regular employees are exempt from the 52-hour limit and the premium pay rules. ★']};
+function limFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),mx=0,wmax=430,x0=30;
+ d[1].forEach(function(r){mx=Math.max(mx,r[1])});
+ d[1].forEach(function(r){var h1=hgt(r[0],12,580);s+=TW2(x0,y,r[0],12,'#0f3558',900,580,'start');y+=h1+4;
+  var w=Math.max(6,wmax*r[1]/mx);s+=R(x0,y,w,20,r[2],6)+tx(x0+w+10,y+15,r[3],13,r[2],900,'start');y+=34});
+ var hn=hgt(d[2],11.5,580);s+=R(20,y+2,600,hn+18,'#FFF3E0',10)+TW2(320,y+11,d[2],11.5,'#B45309',900,570);y+=hn+32;return svg(y,s)}}
+
+/* 9. 出産と育児の休み（日本・韓国）：時間の帯 */
+var LVJP={
+ ja:['日本：出産と育児の休み（例）',[['産前休業（6週）',6,'#E08A2F'],['産後休業（8週）',8,'#D0453E'],['育児休業（子が1歳まで）',44,'#2F8FE0'],['延長（保育所に入れないなど。最長2歳まで）',52,'#9DB4C8']],6,'出産','父親は、子の出生から8週間以内に4週間までの「出生時の育児休業」も取れます。★'],
+ ko:['일본: 출산과 육아의 휴업(예)',[['산전휴업(6주)',6,'#E08A2F'],['산후휴업(8주)',8,'#D0453E'],['육아휴업(자녀가 1세까지)',44,'#2F8FE0'],['연장(보육원에 못 들어가는 경우 등. 최장 2세까지)',52,'#9DB4C8']],6,'출산','아버지는 자녀 출생 후 8주 이내에 4주까지 「출생 시 육아휴업」도 쓸 수 있습니다. ★'],
+ en:['Japan: leave for birth and childcare (example)',[['Pre-birth leave (6 weeks)',6,'#E08A2F'],['Post-birth leave (8 weeks)',8,'#D0453E'],['Childcare leave (until the child turns 1)',44,'#2F8FE0'],['Extension (e.g. no nursery place; up to age 2)',52,'#9DB4C8']],6,'Birth','Fathers can also take up to four weeks of birth-time childcare leave within eight weeks of the birth. ★']};
+var LVKR={
+ ja:['韓国：出産と育児の休み（例）',[['出産前後休暇（90日。出産後45日以上）',13,'#E08A2F'],['育児休職（1年）',52,'#2F8FE0'],['追加の6か月（父母がそれぞれ3か月以上使うと）',26,'#9DB4C8']],6.4,'出産','配偶者の出産休暇は20日（出産から120日以内、4回まで分けて使える）。★'],
+ ko:['한국: 출산과 육아의 휴가(예)',[['출산전후휴가(90일, 출산 후 45일 이상)',13,'#E08A2F'],['육아휴직(1년)',52,'#2F8FE0'],['추가 6개월(부모가 각각 3개월 이상 쓰면)',26,'#9DB4C8']],6.4,'출산','배우자 출산휴가는 20일(출산일부터 120일 이내, 4번까지 나눠 사용). ★'],
+ en:['Korea: leave for birth and childcare (example)',[['Maternity leave (90 days, at least 45 after birth)',13,'#E08A2F'],['Childcare leave (1 year)',52,'#2F8FE0'],['Extra 6 months (if each parent takes 3 months or more)',26,'#9DB4C8']],6.4,'Birth','Paternity leave is 20 days, taken within 120 days of the birth in up to four blocks. ★']};
+function lvFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),tot=0,x=30,W=580;
+ d[1].forEach(function(r){tot+=r[1]});y+=FS(12)*1.6;
+ var bx=x+W*d[2]/tot;s+='<line x1="'+bx+'" y1="'+(y-FS(12)*1.2)+'" x2="'+bx+'" y2="'+(y+40)+'" stroke="#0f3558" stroke-width="2" stroke-dasharray="4 3"/>'+tx(bx,y-FS(12)*1.4,d[3],12,'#0f3558',900);
+ d[1].forEach(function(r,i){var w=W*r[1]/tot;s+=R(x,y,Math.max(3,w-2),30,r[2],4)+(i===d[1].length-1?'<rect x="'+x+'" y="'+y+'" width="'+Math.max(3,w-2)+'" height="30" rx="4" fill="none" stroke="#5B6B7D" stroke-dasharray="5 4"/>':'');x+=w});
+ y+=48;
+ d[1].forEach(function(r){var h1=hgt(r[0],12,540);s+=R(30,y+FS(12)*0.25,18,14,r[2],4)+TW2(58,y,r[0],12,D,700,540,'start');y+=h1+10});
+ var hn=hgt(d[4],11.5,580);s+=R(20,y+6,600,hn+18,'#E8F6EE',10)+TW2(320,y+15,d[4],11.5,'#1F6E4A',900,570);y+=hn+36;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.adm_paykr=H.FIX2(payFig(PAYKR));window.FIGS.adm_hrcalkr=H.FIX2(hrcalFig(HRCALKR));
+window.FIGS.adm_otjp=H.FIX2(limFig(OTJP));window.FIGS.adm_otkr=H.FIX2(limFig(OTKR));window.FIGS.adm_lvjp=H.FIX2(lvFig(LVJP));window.FIGS.adm_lvkr=H.FIX2(lvFig(LVKR));
 window.FIGS.adm_hrcal=H.FIX2(hrcalFig(HRCAL));window.FIGS.adm_xl=H.FIX2(xlFig(XL));
 window.FIGS.adm_cash=H.FIX2(cashFig(CASH));window.FIGS.adm_pay=H.FIX2(payFig(PAY2));
 window.FIGS.adm_org=H.FIX2(orgFig(ORG));window.FIGS.adm_jnl=H.FIX2(jnlFig(JNL));window.FIGS.adm_fs3=H.FIX2(fs3Fig(FS3));

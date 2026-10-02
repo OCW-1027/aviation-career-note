@@ -4,27 +4,34 @@ set("1-1",{title:"Types of Employment and Stating the Terms",hl:"types of employ
 lead:["When a Japan branch hires, the first decision is the type of employment. Permanent employees with no fixed term, fixed-term contract employees, and part-timers with shorter hours each come with their own legal rules. And the employer is obliged to set out the working conditions in writing or equivalent.",
 "This article covers the differences between the types, the terms that must be stated in writing, and the points head office tends to misunderstand."],
 sections:[
-{h:"Types of employment (outline)",blocks:[{t:"table",cols:["Type","Character"],rows:[
+{h:"Types of employment",blocks:[{t:"region",jp:[{t:"table",cols:["Type","Character"],rows:[
 ["Permanent (indefinite term)","No fixed term. Dismissal is tightly restricted (3-1)"],
 ["Contract (fixed term)","A set term. Once renewals take the total beyond five years, the employee can apply to convert to indefinite employment"],
 ["Part-time","Shorter scheduled hours. Subject to social insurance depending on conditions (2-2)"],
 ["Agency workers","Employees of a staffing agency placed with you, with limits such as on the placement period"]]},
-{t:"note",x:"* Unreasonable differences in treatment between regular and non-regular employees are prohibited (equal pay for equal work). ★"}]},
-{h:"Terms that must be stated in writing",blocks:[{t:"check",items:[
+{t:"note",x:"* Unreasonable differences in treatment between regular and non-regular employees are prohibited (equal pay for equal work). ★"}],
+kr:[{"t":"table","cols":["Type","Key points"],"rows":[["Regular (no fixed term)","Dismissal needs just cause (3-1)"],["Fixed-term","Using the same person for more than two years makes the contract open-ended"],["Part-time","Treatment in proportion to hours; under 15 hours a week, no weekly paid holiday, annual leave or severance"],["Dispatched","Usually up to two years, and only for permitted kinds of work"]]},
+{"t":"note","x":"* Unreasonable discrimination because a worker is fixed-term or part-time is prohibited. ★"}]}]},
+{h:"Terms that must be stated in writing",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Term and renewal",x:"Whether there is a term, whether and on what basis it renews, and any cap on renewals."},
 {name:"Place and work",x:"Workplace and duties, and the scope within which they may change."},
 {name:"Hours and days off",x:"Start and finish times, breaks, days off, leave, shift arrangements."},
 {name:"Pay",x:"Amount, how calculated, how and when paid, the cut-off date."},
 {name:"Leaving",x:"Grounds and procedures for resignation and dismissal."}]},
-{t:"note",x:"* Required items are added by amendment from time to time; for example, since April 2024 the scope of change and any renewal cap must be stated. ★"}]},
+{t:"note",x:"* Required items are added by amendment from time to time; for example, since April 2024 the scope of change and any renewal cap must be stated. ★"}],
+kr:[{"t":"check","items":[{"name":"Pay","x":"Components, calculation and payment method"},{"name":"Hours","x":"Scheduled hours and breaks"},{"name":"Days off and leave","x":"Weekly holiday and annual paid leave"},{"name":"Place and work","x":"Where the employee works and what they do"},{"name":"Fixed-term or part-time","x":"Contract period, working days and hours"}]},
+{"t":"note","x":"* A written employment contract must be given to the employee; failing to do so can lead to a fine. ★"}]}]},
+{h:"Probation",blocks:[{"t":"region","jp":[{"t":"rows","items":[{"name":"Length","x":"Usually three to six months, written into the rules of employment and the statement of terms."},{"name":"Not confirming the hire","x":"Needs an objective, reasonable ground, as with any dismissal."},{"name":"The first 14 days","x":"Within 14 days of joining during probation no notice is needed, but a reason still is. ★"}]}],"kr":[{"t":"rows","items":[{"name":"Length","x":"Usually three months, written into the contract and the rules of employment."},{"name":"Minimum wage exception","x":"On a contract of a year or more, pay in the first three months of probation can be as low as 90% of the minimum wage (not for simple manual work). ★"},{"name":"Not confirming the hire","x":"Allowed more widely than an ordinary dismissal, but still needs an objective, reasonable ground."}]}]},
+{"t":"point","x":"Share the probation criteria and the review dates with the new hire on their first day; it heads off disputes later."}]},
+{h:"Hiring foreign nationals",blocks:[{"t":"region","jp":[{"t":"check","items":[{"name":"Check the residence card","x":"Check the status, period of stay and any work restrictions on the original card."},{"name":"Does the job fit the status?","x":"Make sure the work is within the activities the status allows."},{"name":"Notification","x":"File a foreign employment notification with Hello Work on hiring and on leaving. ★"},{"name":"Track expiry dates","x":"Keep renewal dates in a register and remind the employee early."}]}],"kr":[{"t":"check","items":[{"name":"Check the alien registration card","x":"Check the status of stay (such as E-7), period and the scope of permitted work."},{"name":"Does the job fit the status?","x":"Make sure the work is within the scope the status allows."},{"name":"Report changes","x":"Report changes such as resignation or dismissal within 15 days. ★"},{"name":"Track expiry dates","x":"Keep extension dates in a register and remind the employee early."}]}]}]},
 {h:"What head office tends to misunderstand",blocks:[{t:"rows",items:[
 {name:"“Contract staff can be let go freely”",x:"Not renewing a contract that has been renewed repeatedly is restricted."},
 {name:"“Annual salary means no overtime pay”",x:"Premium pay for overtime is still required under an annual salary, except for managerial staff and similar."},
 {name:"“Just translate our own employment contract”",x:"The items and wording must fit Japanese law. Have a professional check it."}]},
 {t:"point",x:"Agree the type and terms of employment with head office before hiring, and have a labour and social security attorney check them before putting them in writing (Launching Flights to Japan 2-4, 2-5)."}]}],
-voice:"[Interview to be added] Explaining Japanese employment rules to head office and getting them accepted.",
+voice:"Once a hire is agreed, head office asks for a contract straight away. Building the items of Japan’s statement of terms into head office’s contract template from the start saves making two documents and stops them contradicting each other.",
 terms:[["Conversion to Indefinite-term Employment","無期転換","무기 전환"],["Notice of Employment Terms","労働条件通知書","근로조건 통지서"],["Equal Pay for Equal Work","同一労働同一賃金","동일노동 동일임금"],["Non-renewal of Contract","雇い止め","계약 갱신 거절"]],
-quiz:[{q:"What happens when a fixed-term contract is renewed beyond five years in total?",opts:["The employee can apply to convert to indefinite employment","Automatic retirement","Pay falls","Nothing changes"],a:0,exp:"The indefinite conversion rule."},
+quiz:[{q:"(Japan) What happens when a fixed-term contract is renewed beyond five years in total?",opts:["The employee can apply to convert to indefinite employment","Automatic retirement","Pay falls","Nothing changes"],a:0,exp:"The indefinite conversion rule."},
 {q:"Is overtime pay due to an employee on an annual salary?",opts:["In principle, premium pay is required","Never","Once a year","Head office decides"],a:0,exp:"Managerial staff and similar are excepted."},
 {q:"How must working conditions be set out?",opts:["In writing or equivalent","Verbally only","Not at all","After joining"],a:0,exp:"There is a duty to state them."}],
 next:"1-2 Working hours, overtime and premium pay"});
@@ -33,28 +40,35 @@ set("1-2",{title:"Working Hours, Overtime and Premium Pay",hl:"working hours",su
 lead:["The basic rule on working hours in Japan is eight hours a day and forty a week. To have staff work beyond that, you must conclude an agreement on overtime and holiday work with a workers’ representative (the so-called Article 36 agreement), file it with the labour standards office, and pay premium rates.",
 "This article covers the rules, the overtime caps, the premium rates, and what to watch with airport-style shift work."],
 sections:[
-{h:"The rules and the overtime caps (outline)",blocks:[{t:"table",cols:["Item","Content"],rows:[
+{h:"The rules and the overtime caps",blocks:[{t:"region",jp:[{t:"table",cols:["Item","Content"],rows:[
 ["Statutory hours","8 hours a day, 40 a week"],
 ["Breaks","45 minutes if over 6 hours; at least 1 hour if over 8"],
 ["Statutory days off","At least one a week (or four in four weeks)"],
 ["Overtime cap","In principle 45 hours a month, 360 a year, with limits even in special circumstances"],
 ["The agreement","Required, and filed, before overtime or holiday work"]]},
-{t:"note",x:"* Check the detail and exceptions in the law and current guidance. ★"}]},
-{h:"Premium rates (outline)",blocks:[{t:"table",cols:["Type","Premium"],rows:[
+{t:"note",x:"* Check the detail and exceptions in the law and current guidance. ★"},
+{"t":"fig","id":"adm_otjp","cap":"The special-clause limits, including holiday work, apply both to a single month and to the multi-month average."}],
+kr:[{"t":"fig","id":"adm_otkr","cap":"Overtime requires the employee’s agreement and cannot exceed 12 hours a week."},
+{"t":"table","cols":["Item","Rule"],"rows":[["Statutory hours","8 hours a day, 40 a week"],["Breaks","30 minutes per 4 hours, 1 hour per 8 hours or more"],["Weekly holiday","At least one paid day off a week"],["Overtime","Up to 12 hours a week by agreement"]]}]}]},
+{h:"Premium rates",blocks:[{t:"region",jp:[{t:"table",cols:["Type","Premium"],rows:[
 ["Overtime","25% or more (50% or more beyond 60 hours a month)"],
 ["Late-night work (22:00 to 05:00)","25% or more"],
 ["Work on a statutory day off","35% or more"],
-["Overtime that is also late-night","50% or more"]]}]},
+["Overtime that is also late-night","50% or more"]]}],
+kr:[{"t":"table","cols":["Type","Premium"],"rows":[["Overtime","50% or more"],["Night work (22:00–06:00)","50% or more"],["Holiday work (up to 8 hours)","50% or more"],["Holiday work beyond 8 hours","100% or more"]]},
+{"t":"note","x":"* The premium rules do not apply to workplaces with fewer than five regular employees. ★"}]}]},
+{h:"Flexible working arrangements",blocks:[{"t":"region","jp":[{"t":"rows","items":[{"name":"Variable working hours","x":"Average 40 hours a week over a month or a year; suits workplaces with busy and quiet seasons."},{"name":"Flextime","x":"Employees choose their start and finish within total hours for a settlement period of up to three months."},{"name":"Discretionary work","x":"For specialist roles, a set number of hours is deemed worked regardless of actual time. Strict procedures apply."},{"name":"Managers","x":"Not covered by overtime and holiday premiums, but night premiums and health care still apply. Judged by the reality of the role, not the title. ★"}]}],"kr":[{"t":"rows","items":[{"name":"Flexible hours","x":"Average 40 hours a week over two weeks, three months or six months."},{"name":"Optional hours","x":"Employees choose their start and finish within total hours for a settlement period, usually one month."},{"name":"Discretionary work","x":"For specified work such as research or design, an agreed number of hours is deemed worked."},{"name":"Managers","x":"Excluded from the hours and holiday rules, but night premiums still apply. Judged by the reality of the role, not the title. ★"}]}]}]},
+{h:"Recording and checking attendance",blocks:[{"t":"check","items":[{"name":"Objective records","x":"Use IC cards or computer logs rather than self-reporting alone."},{"name":"Request and approval","x":"Make prior request and manager approval the norm for overtime."},{"name":"Mid-month check","x":"Look at overtime mid-month and speak early to anyone nearing the limit."},{"name":"Match against payroll","x":"At every close, check attendance records against overtime pay."}]}]},
 {h:"Shift work",blocks:[{t:"check",items:[
 {name:"Variable working hours",x:"Averaging hours over a month or a year requires provisions in the work rules or an agreement."},
 {name:"Early and late shifts",x:"Early and late airport shifts include hours that attract the late-night premium."},
 {name:"Overtime in disruption",x:"Record and pay overtime on delay and cancellation days too."},
 {name:"Attendance records",x:"Record attendance objectively, for example with a timekeeping system."}]},
 {t:"point",warn:true,x:"Unpaid overtime can be claimed later for several years at once. Reconcile attendance records with payroll every month."}]}],
-voice:"[Interview to be added] How you managed attendance for shift work.",
+voice:"When early-morning and late-night flights overlap, the same people tend to work long stretches. Once a month, look not only at the hours but at the gap between one shift ending and the next starting; it cuts both fatigue-related mistakes and lopsided overtime.",
 terms:[["Statutory Working Hours","法定労働時間","법정 근로시간"],["Article 36 Agreement","36協定","36협정(시간외 근로 협정)"],["Premium Pay","割増賃金","할증 임금"],["Variable Working Hours System","変形労働時間制","변형 근로시간제"]],
 quiz:[{q:"What are Japan’s statutory working hours in principle?",opts:["8 a day, 40 a week","10 a day, 50 a week","No limit","6 a day"],a:0,exp:"Beyond that you need an agreement and premium pay."},
-{q:"What is the premium for late-night work (22:00 to 05:00)?",opts:["25% or more","5%","100%","None"],a:0,exp:"50% or more when combined with overtime."},
+{q:"(Japan) What is the premium for late-night work (22:00 to 05:00)?",opts:["25% or more","5%","100%","None"],a:0,exp:"50% or more when combined with overtime."},
 {q:"How do you prevent unpaid overtime?",opts:["Reconcile attendance and payroll monthly","Keep no records","Check once a year","Leave it to staff"],a:0,exp:"Claims can come later."}],
 next:"1-3 Leave: annual, childcare, family care and sickness"});
 
@@ -62,27 +76,32 @@ set("1-3",{title:"Leave: Annual, Childcare, Family Care and Sickness",hl:"leave"
 lead:["Leave in Japan divides into leave the law requires you to give — annual paid leave, maternity leave, childcare leave, family care leave — and leave the company sets itself, such as summer holidays, bereavement leave and sick leave. In a small branch, one person’s absence affects the operation, so understanding the rules and planning ahead are essential.",
 "This article outlines the main types of leave and how to run them in a small branch."],
 sections:[
-{h:"Main leave required by law (outline)",blocks:[{t:"table",cols:["Leave","Outline"],rows:[
+{h:"Main leave required by law",blocks:[{t:"region",jp:[{"t":"fig","id":"adm_lvjp","cap":"Pre- and post-birth leave lead into childcare leave, with the birth as the dividing line."},
+{t:"table",cols:["Leave","Outline"],rows:[
 ["Annual paid leave","10 days after six months with 80% attendance, rising with service to a maximum of 20. Anyone granted 10 days or more must take at least 5 a year"],
 ["Maternity leave","6 weeks before birth (14 for multiple births) and 8 weeks after"],
 ["Childcare leave","In principle until the child turns one (up to two in some circumstances). There is also a scheme for fathers around the birth"],
 ["Family care leave","Up to 93 days in total per family member, in up to three blocks"],
 ["Short leave for care","Leave to look after a sick child or a family member needing care"]]},
-{t:"note",x:"* Amendments in April and October 2025 renamed child nursing leave and extended it to the end of the third year of elementary school (also covering class closures and school ceremonies), extended exemption from overtime to parents of pre-school children, and obliged employers to offer at least two flexible working options to employees raising children from age three to school entry. Amendments continue, so check the labour ministry’s current guidance. ★"}]},
+{t:"note",x:"* Amendments in April and October 2025 renamed child nursing leave and extended it to the end of the third year of elementary school (also covering class closures and school ceremonies), extended exemption from overtime to parents of pre-school children, and obliged employers to offer at least two flexible working options to employees raising children from age three to school entry. Amendments continue, so check the labour ministry’s current guidance. ★"}],
+kr:[{"t":"fig","id":"adm_lvkr","cap":"Maternity leave leads into childcare leave."},
+{"t":"table","cols":["Leave","Outline"],"rows":[["Annual paid leave","15 days after a year with 80% attendance, up to 25 (0-10)"],["Maternity leave","90 days (120 for multiple births), at least 45 after the birth"],["Paternity leave","20 days within 120 days of the birth, in up to four blocks"],["Childcare leave","One year for a child aged 8 or under; 18 months if each parent takes three months or more"],["Reduced hours for childcare","For a child aged 12 or under, hours can be cut to 15–35 a week"],["Family care leave","Up to 90 days a year, including up to 10 days of short-notice leave"]]},
+{"t":"note","x":"* The February 2025 reforms extended childcare leave and paternity leave. Part of the pay during leave comes from employment insurance. ★"}]}]},
 {h:"Leave set by the company (examples)",blocks:[{t:"check",items:[
 {name:"Summer and New Year",x:"A Japanese workplace custom. At airports these coincide with peaks, so they are taken in turns."},
 {name:"Bereavement and celebration leave",x:"Weddings, funerals and so on, with days set in the rules."},
 {name:"Sick leave",x:"Not required by law. The rules decide whether it is paid and whether a certificate is needed."},
 {name:"Unpaid leave",x:"Long absences at the employee’s request, with the conditions for granting them set out."}]}]},
+{h:"Before and after long leave",blocks:[{"t":"region","jp":[{"t":"check","items":[{"name":"Receive the request","x":"Take requests for maternity and childcare leave in writing and fix the dates (childcare leave usually a month ahead)."},{"name":"Benefit claims","x":"Help with the maternity allowance (health insurance) and childcare leave benefit (employment insurance). ★"},{"name":"Social insurance","x":"Premiums are waived during maternity and childcare leave on application. ★"},{"name":"Return","x":"Discuss the return date, any wish for shorter hours and the work allocation a month ahead."}]}],"kr":[{"t":"check","items":[{"name":"Receive the request","x":"Childcare leave is normally requested at least 30 days ahead; fix the dates."},{"name":"Benefit claims","x":"Help with maternity leave pay and childcare leave benefit from employment insurance. ★"},{"name":"Cover","x":"Check subsidies for hiring a replacement."},{"name":"Return","x":"The employee must return to the same work, or work at the same pay level."}]}]}]},
 {h:"Running leave in a small branch",blocks:[{t:"rows",items:[
 {name:"Plan the year",x:"Collect annual leave plans at the start of the year and adjust them away from peak periods."},
 {name:"Keep a register",x:"Track grant dates, days and leave taken, and confirm the five days are taken."},
 {name:"Cover",x:"Plan support for long absences from other stations, head office or the handling company."},
 {name:"No detrimental treatment",x:"Treating someone unfavourably for requesting or taking childcare or family care leave is prohibited."}]},
 {t:"point",x:"A workplace where people can take leave is one where people stay. Precisely because the team is small, build a system — planning and cover — that lets people take it."}]}],
-voice:"[Interview to be added] Supporting a colleague’s long leave in a small branch.",
+voice:"When maternity and childcare leave came up in a small station, we got through by combining help from the handling agent with short-term support from head office. Building the handover notes together from three months before the leave reassured the employee and helped them get back up to speed quickly on return.",
 terms:[["Annual Paid Leave","年次有給休暇","연차 유급휴가"],["Childcare Leave","育児休業","육아휴직"],["Family Care Leave","介護休業","간병휴직"],["Bereavement / Celebration Leave","慶弔休暇","경조 휴가"]],
-quiz:[{q:"How many days must someone granted 10 or more days of annual leave take?",opts:["5 a year","1 a year","None","All of them"],a:0,exp:"The employer must make sure they are taken."},
+quiz:[{q:"(Japan) How many days must someone granted 10 or more days of annual leave take?",opts:["5 a year","1 a year","None","All of them"],a:0,exp:"The employer must make sure they are taken."},
 {q:"Which is true of sick leave?",opts:["Not required by law; set in the rules","Always paid by law","It does not exist","Only head office decides"],a:0,exp:"The rules set pay and certificates."},
 {q:"How do you run annual leave in a small branch?",opts:["Collect plans at the start of the year and adjust","Do not let people take it","Concentrate it in peaks","Keep no record"],a:0,exp:"Track it in a register too."}],
 next:"2-1 The annual cycle of payroll and insurance"});
