@@ -105,6 +105,57 @@ fin_depreciation:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" v
  s+=tx(x0+20,y0+16,L(lang,'屋台の帳簿上の価値（貸借対照表）','포장마차의 장부상 가치(재무상태표)','Cart’s book value (balance sheet)'),13,BS,800,'start');
  s+=tx(x1-10,y1-20,L(lang,'毎月4,000円ずつ費用（損益計算書）','매달 4,000엔씩 비용(손익계산서)','4,000 yen a month as cost (income statement)'),13,PL,800,'end');
  s+=tx(450,335,L(lang,'買った日に240,000円の現金が出て、費用は60回に分けて出る。1か月目の帳簿価値 236,000円 ＝ 240,000 − 4,000','산 날에 현금 240,000엔이 나가고, 비용은 60번에 나눠 나온다. 1개월째 장부 가치 236,000엔 = 240,000 − 4,000','Cash of 240,000 leaves on purchase day; the cost is spread over 60 months. Book value after month 1: 236,000 = 240,000 − 4,000'),12,D,600);
+ return s+'</svg>'},
+/* 3-3 利益から営業キャッシュフローへの橋：たい焼き屋（間接法） */
+fin_cash_bridge:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img">'+Rc(0,0,900,380,'#F7FAFD');
+ var st=[[L(lang,'当期純利益','당기순이익','Net profit'),64000,'t',PL],[L(lang,'＋減価償却費','+감가상각비','+ Depreciation'),4000,'d',BS],[L(lang,'−売掛金の増加','−매출채권 증가','− Receivable up'),-20000,'d',R],[L(lang,'−在庫の増加','−재고 증가','− Inventory up'),-15000,'d',R],[L(lang,'＋未払税金の増加','+미지급 세금 증가','+ Tax payable up'),16000,'d',BS],[L(lang,'営業キャッシュフロー','영업현금흐름','Operating cash flow'),49000,'t',CF]];
+ var x0=50,w=110,gap=22,base=300,sc=220/70000,run=0;
+ st.forEach(function(v,i){var x=x0+i*(w+gap),h,y;
+  if(v[2]==='t'){run=v[1];h=run*sc;y=base-h;s+=Rc(x,y,w,h,v[3],6)+tx(x+w/2,y-8,v[1].toLocaleString('ja-JP'),13,D,800)}
+  else{var top=run;run+=v[1];if(v[1]>=0){h=v[1]*sc;y=base-run*sc}else{h=-v[1]*sc;y=base-top*sc}s+=Rc(x,y,w,h,v[3],6)+tx(x+w/2,y-8,(v[1]>=0?'+':'−')+Math.abs(v[1]).toLocaleString('ja-JP'),12,v[1]>=0?BS:R,800);
+   s+='<line x1="'+(x-gap)+'" y1="'+(base-top*sc)+'" x2="'+x+'" y2="'+(base-top*sc)+'" stroke="'+G+'" stroke-dasharray="3 3"/>'}
+  s+='<g>'+Rc(x,y,w,h,'#F7FAFD',6)+'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;'+(i/6*0.6).toFixed(2)+';'+((i+1)/6*0.6).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/></g>';
+  s+=tx(x+w/2,base+18,v[0],11,D,v[2]==='t'?800:500)});
+ s+='<line x1="30" y1="'+base+'" x2="870" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ s+=tx(450,352,L(lang,'利益64,000円 → 現金が動かない費用を足し、現金が入っていない売上と、払ったのに費用でない分を引く → 商売が生んだ現金49,000円','이익 64,000엔 → 현금이 움직이지 않는 비용을 더하고, 현금이 안 들어온 매출과 냈는데 비용이 아닌 몫을 뺀다 → 장사가 낳은 현금 49,000엔','Profit 64,000 → add costs with no cash, subtract sales not yet collected and payments that are not costs → cash from trading 49,000'),12,D,600);
+ return s+'</svg>'},
+/* 3-5 3つの活動の符号パターン：会社の状態を読む */
+fin_cf_patterns:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+Rc(0,0,900,360,'#F7FAFD');
+ var P=[['+','−','−',L(lang,'健全・成熟','건전·성숙','Healthy, mature'),L(lang,'稼いだ現金で投資し、借入を返す','번 현금으로 투자하고 차입을 갚는다','Earns cash, invests, repays debt'),BS],
+  ['+','−','+',L(lang,'成長・拡大','성장·확대','Growing'),L(lang,'稼ぎ以上に投資し、不足を借入で補う','버는 것 이상으로 투자하고 부족분을 차입으로','Invests beyond earnings, borrows the gap'),PL],
+  ['+','+','−',L(lang,'縮小・整理','축소·정리','Shrinking'),L(lang,'資産を売って借入を返している','자산을 팔아 차입을 갚고 있다','Sells assets to repay debt'),CF],
+  ['−','−','+',L(lang,'立ち上げ・危機','창업·위기','Start-up or crisis'),L(lang,'本業で現金が出ていき、投資も続け、借入で支える','본업에서 현금이 나가고 투자도 하며 차입으로 버틴다','Core business burns cash, still investing, funded by borrowing'),R]];
+ var hd=[L(lang,'営業','영업','Operating'),L(lang,'投資','투자','Investing'),L(lang,'財務','재무','Financing')];
+ s+=tx(140,40,hd[0],13,G,700)+tx(210,40,hd[1],13,G,700)+tx(280,40,hd[2],13,G,700);
+ P.forEach(function(p,i){var y=70+i*70;s+='<g>'+Rc(40,y,820,56,'#fff',10,' stroke="'+p[5]+'" stroke-width="3"');
+  [0,1,2].forEach(function(k){var x=140+k*70;s+='<circle cx="'+x+'" cy="'+(y+28)+'" r="18" fill="'+(p[k]==='+'?BS:R)+'"/>'+tx(x,y+35,p[k],20,'#fff',800)});
+  s+=tx(340,y+25,p[3],15,D,800,'start')+tx(340,y+45,p[4],12,G,500,'start');
+  s+='<animate attributeName="opacity" values="0.35;1;1;0.35" keyTimes="0;'+(i*0.22).toFixed(2)+';'+(i*0.22+0.25).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/></g>'});
+ s+=tx(450,350,L(lang,'JAL 2026年3月期は「＋・−・＋」。営業で3,949億円を稼ぎ、1,831億円を投資し、永久劣後債などで446億円を調達（成長投資の局面）','JAL 2026년 3월기는 「+·−·+」. 영업으로 3,949억 엔을 벌고 1,831억 엔을 투자하고 영구후순위채 등으로 446억 엔을 조달(성장 투자 국면)','JAL, year to March 2026: + / − / +. Earned 394.9bn from operations, invested 183.1bn and raised 44.6bn through perpetual bonds and other financing: a growth-investment phase'),11,D,600);
+ return s+'</svg>'},
+/* 3-3 当期純利益から営業キャッシュフローへの橋（Vela Air 1年目、億円） */
+fin_cash_bridge:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
+ var st=[[L(lang,'当期純利益','당기순이익','Net profit'),90,'t',PL],[L(lang,'＋減価償却','+감가상각','+ Depreciation'),254,'d',BS],[L(lang,'−売掛金の増加','−매출채권 증가','− Receivables up'),-15,'d',R],[L(lang,'−在庫の増加','−재고 증가','− Inventory up'),-5,'d',R],[L(lang,'＋買掛金の増加','+매입채무 증가','+ Payables up'),20,'d',BS],[L(lang,'＋前受金の増加','+선수금 증가','+ Unearned up'),40,'d',BS],[L(lang,'＋マイル負債の増加','+마일 부채 증가','+ Miles up'),10,'d',BS],[L(lang,'営業キャッシュフロー','영업현금흐름','Operating cash flow'),394,'t',CF]];
+ var x0=40,w=86,gap=20,base=320,sc=240/400,run=0;
+ st.forEach(function(v,i){var x=x0+i*(w+gap),h,y;
+  if(v[2]==='t'){run=v[1];h=run*sc;y=base-h;s+=Rc(x,y,w,h,v[3],6)+tx(x+w/2,y-8,v[1],13,D,800)}
+  else{var top=run;run=run+v[1];var lo=Math.min(top,run),hi=Math.max(top,run);h=(hi-lo)*sc;y=base-hi*sc;s+=Rc(x,y,w,Math.max(h,3),v[3],4)+tx(x+w/2,y-8,(v[1]>0?'+':'−')+Math.abs(v[1]),12,v[3],800);s+='<line x1="'+(x-gap)+'" y1="'+(base-top*sc)+'" x2="'+x+'" y2="'+(base-top*sc)+'" stroke="'+G+'" stroke-dasharray="3 3"/>'}
+  s+='<g>'+Rc(x,y-14,w,Math.max(h,3)+16,'#F7FAFD',0)+'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;'+(i/8*0.6).toFixed(2)+';'+((i+0.6)/8*0.6).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/></g>';
+  s+=tx(x+w/2,base+16,v[0],10.5,D,v[2]==='t'?800:500)});
+ s+='<line x1="30" y1="'+base+'" x2="880" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
+ s+=tx(450,372,L(lang,'利益90億円が、お金の出ていかない費用（減価償却）と、先に受け取った前受金で、営業キャッシュフロー394億円になる','이익 90억 엔이, 돈이 나가지 않는 비용(감가상각)과 먼저 받은 선수금으로 영업현금흐름 394억 엔이 된다','Profit of 9.0bn becomes operating cash flow of 39.4bn through non-cash depreciation and cash received in advance'),12,D,600);
+ return s+'</svg>'},
+/* 3-1 3つの区分の符号パターン */
+fin_cf_patterns:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD');
+ var H=[L(lang,'営業','영업','Operating'),L(lang,'投資','투자','Investing'),L(lang,'財務','재무','Financing')];
+ var P=[[['+','−','−'],L(lang,'成熟した優良企業','성숙한 우량 기업','Mature, healthy'),L(lang,'稼いだ現金で投資し、借入を返し配当する','번 현금으로 투자하고 빚을 갚고 배당','Earns cash, invests, repays and pays dividends')],
+  [['+','−','+'],L(lang,'成長投資の時期','성장 투자기','Growth investment'),L(lang,'稼ぎ以上に投資し、借入や増資で補う（機材の大量発注）','버는 것 이상으로 투자하고 차입·증자로 보충(기재 대량 발주)','Invests beyond earnings, funded by borrowing or new shares (big fleet orders)')],
+  [['+','+','−'],L(lang,'縮小・資産の売却','축소·자산 매각','Shrinking, selling assets'),L(lang,'資産を売って借入を返す。再建中の会社に多い','자산을 팔아 빚을 갚는다. 재건 중인 회사에 많다','Sells assets to repay debt; common in restructuring')],
+  [['−','−','+'],L(lang,'創業期・危機','창업기·위기','Start-up or crisis'),L(lang,'本業で現金が出ていき、借入で投資も運転資金もまかなう（たい焼き屋の初月、コロナ禍の航空会社）','본업에서 현금이 나가고 차입으로 투자도 운전자금도 댄다(붕어빵 가게 첫 달, 코로나 때 항공사)','Cash leaves the business; borrowing funds both investment and operations (the stall’s first month, airlines in 2020)')]];
+ s+=tx(140,34,L(lang,'符号の組み合わせ','부호의 조합','Sign pattern'),13,G,700)+tx(560,34,L(lang,'会社の状態','회사의 상태','What it says'),13,G,700,'start');
+ P.forEach(function(r,i){var y=60+i*64;H.forEach(function(h,j){var x=40+j*70,c=r[0][j]==='+'?BS:R;s+=Rc(x,y,60,46,c,8)+tx(x+30,y+30,r[0][j],22,'#fff',800)+tx(x+30,y+58,h,10,G,600)});
+  s+=tx(290,y+22,r[1],14,D,800,'start')+tx(290,y+40,r[2],11,G,500,'start');
+  s+='<rect x="30" y="'+(y-6)+'" width="840" height="58" rx="10" fill="'+PL+'" opacity="0"><animate attributeName="opacity" values="0;0;0.08;0.08;0" keyTimes="0;'+(i*0.22).toFixed(2)+';'+(i*0.22+0.05).toFixed(2)+';'+(i*0.22+0.2).toFixed(2)+';1" dur="8s" repeatCount="indefinite"/></rect>'});
  return s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=F[k];
