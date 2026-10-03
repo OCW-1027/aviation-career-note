@@ -76,6 +76,23 @@ sections:[
 {name:"Which delays count against you",x:"Many companies count only delays caused by passenger services or handling that exceed a set time (for example three or five minutes, depending on the company). Airport facilities or handler staff shortages may be only partly counted after review. Some companies use their own letter codes alongside IATA’s numeric ones. ★"},
 {name:"Chase reactionary delays",x:"If 90s codes are frequent, trace the cause at the previous station, usually the other end of the route, and share it."}]},
 {t:"point",x:"Delay codes are not about whose fault it was. They are a map of what to fix."}]}],
+deepLabel:"In depth: calculate the on-time rate yourself",
+deep:[
+{h:"On-time rate calculator",blocks:[
+{t:"p",x:"Enter how many minutes after the scheduled time each flight left, and its delay code, to get D0, D15 and delay minutes by code. Change the numbers to see how much fixing each delay would move the result."},
+{t:"otpcalc"}]},
+{h:"Reading the numbers",blocks:[{t:"table",cols:["What you see","What it may mean","What to look at next"],rows:[
+["High D15 but low D0","Many small delays of a few minutes: ground processes such as boarding and loading adding up","Minutes per flight for codes in the 10s and 30s"],
+["Both D0 and D15 low","Many long delays: late inbound aircraft, ATC or weather","The share of codes 93, 89 and 71; slack in the schedule"],
+["Low only on certain days or times","Staffing, congestion or equipment shortages","Results by day of week and time of day"],
+["Few delayed flights but many minutes","A handful of long delays pushing up the total","The incident reports for those flights"]]},
+{t:"point",x:"Do not stop at the rate. Turn it into “how many minutes of which code can we remove” and you have an action you can commit to at the meeting."}]},
+{h:"What the authorities publish in Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
+["Published by","Ministry of Land, Infrastructure, Transport and Tourism","Ministry of Land, Infrastructure and Transport"],
+["Definition of a delay","A flight that left more than 15 minutes after the scheduled time ★","Since 2023, for domestic and international flights alike: left or arrived at the gate more than 15 minutes after schedule"],
+["Earlier definition","—","Until 2022: take-off or landing more than 30 minutes late (domestic) or 60 minutes late (international)"],
+["Next","—","From 2026, the length of the delay itself is due to count in airline evaluations"]]},
+{t:"note",x:"* Figures published by the authorities and internal targets such as D0 use different definitions. Always check which one a number uses. The Korean details are based on press reports up to 2025; check the authority’s own material for the current rules. ★"}]}],
 voice:"Delay codes exist to find what to fix, not whom to blame. When you disagree with head office, argue from timestamps and facts.",
 terms:[["On-Time Departure Rate","定時出発率","정시 출발률"],["Off-Block Time","オフブロック","오프블록"],["Delay Code","遅延コード","지연 코드"],["Reactionary Delay","玉突き遅延","연결 지연"]],
 quiz:[{q:"What is D15?",opts:["Share of flights leaving within 15 minutes of STD","Delays per 15 flights","Flights leaving 15 minutes early","Arrival delay"],a:0,exp:"Japan’s published on-time departure rate uses the same 15-minute idea. ★"},
