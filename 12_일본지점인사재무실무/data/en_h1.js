@@ -127,6 +127,31 @@ kr:[{"t":"table","cols":["When","Procedure"],"rows":[["January","Half-yearly wit
 {name:"Rate changes",x:"Confirm that the March and April rate changes reached the payroll."},
 {name:"Head office check",x:"Agree the head office HR check: who, and by when."},
 {name:"Records",x:"Keep the statutory ledgers such as the wage ledger (7-2)."}]}]}],
+deepLabel:"In depth: standard remuneration and bonuses",
+deep:[
+{h:"Setting standard monthly remuneration from April–June pay",blocks:[
+{t:"p",x:"Social insurance is not charged on each month’s actual pay but on a rounded “standard monthly remuneration”. Every year the grade is reset from the average pay for April, May and June (the annual determination) and used from September. Enter three months’ pay to see the grade and the monthly premiums."},
+{t:"stdcalc"}]},
+{h:"Three points at which the standard amount is set",blocks:[{t:"rows",items:[
+{name:"On joining",x:"Set from the contracted salary, allowances and expected overtime. File the enrolment notice within five days of joining."},
+{name:"Each year (the annual determination)",x:"Set from the average pay for April to June and filed between 1 and 10 July. It applies from September’s premiums, which are deducted from October’s pay."},
+{name:"When pay changes a lot (occasional revision)",x:"If fixed pay changes (a raise, a cut, a new allowance) and the average of the three months from the change differs by two grades or more, the amount is revised from the fourth month. File a change notice."},
+{name:"What counts as remuneration",x:"Base pay, overtime, commuting and housing allowances count. Expense reimbursements, one-off gifts and bonuses paid three times a year or less do not. Bonuses paid four or more times a year count as remuneration."}]},
+{t:"point",x:"If commuting allowances are paid six months at a time, convert them to a monthly amount. Workplaces with heavy overtime in April to June tend to move up a grade, which affects a whole year of premiums."}]},
+{h:"Premiums on bonuses",blocks:[
+{t:"p",x:"Social insurance is also deducted from bonuses: the same rates apply to the “standard bonus amount”, the bonus rounded down to the nearest 1,000 yen. File a bonus payment notice within five days."},
+{t:"bonuscalc"}]},
+{h:"The pension ceiling is rising",blocks:[
+{t:"table",cols:["From","Pension ceiling (standard monthly remuneration)","Monthly pay affected"],rows:[["Until August 2027","650,000 yen (grade 32)","—"],["September 2027","680,000 yen","665,000 yen or more"],["September 2028","710,000 yen","695,000 yen or more"],["September 2029","750,000 yen","730,000 yen or more"]]},
+{t:"note",x:"* Under the pension reform law passed in June 2025. Directors and staff paid above the ceiling will see both their own and the company’s premiums rise. The health insurance ceiling (1.39 million yen) is unchanged. ★"}]}],
+deepKr:[
+{h:"How Korean premiums are set",blocks:[
+{t:"p",x:"From here on the basis is the Korean system. Korea has no grade table like Japan’s: premiums are based on actual pay and later reconciled with the pay actually received."},
+{t:"table",cols:["Insurance","Based on","When it is reset"],rows:[["National Pension","Standard monthly income (from the previous year’s income)","Every July, when the limits are also revised"],["Health and long-term care insurance","Monthly remuneration","Reconciled each April against last year’s actual pay; the difference is added to or taken from April’s premium, and can be paid in instalments"],["Employment and industrial accident insurance","Monthly pay","Reconciled by reporting last year’s total pay by 15 March"]]},
+{t:"rows",items:[
+{name:"Bonuses",x:"In Korea bonuses count as pay and there is no separate “standard bonus amount”. In a year with large bonuses, the difference is paid in the following April’s health insurance reconciliation."},
+{name:"When pay changes",x:"After a significant change such as a raise, the employer can report new monthly remuneration and change premiums from that month."}]},
+{t:"point",x:"Japan sets a grade in advance and uses it for a year; Korea charges on actual pay and settles up later. That one contrast explains most of the difference in payroll between the two countries."}]}],
 voice:"I once nearly forgot to enter March’s rate change into the payroll system. Since then I mark the months when rates change on the annual calendar, and in each such month I recalculate one payslip by hand to check it.",
 terms:[["Payslip","給与明細","급여명세서"],["Wage Ledger","賃金台帳","임금 대장"],["Premium Rate","料率","요율"],["Year-end Tax Adjustment","年末調整","연말정산"]],
 quiz:[{q:"What is an effective monthly payroll check?",opts:["Compare with last month","No check","Once a year","Leave it to staff"],a:0,exp:"Find the reason for big differences."},
@@ -142,10 +167,10 @@ sections:[
 ["Health insurance and pension","Anyone working at least three quarters of a regular employee’s hours is enrolled. Below that, conditions such as 20 or more hours a week, together with company size, can bring people in"],
 ["Employment insurance","Enrolled on conditions such as 20 or more hours a week and an expected employment of 31 days or more"],
 ["Workers’ accident insurance","Covers every worker regardless of employment type"]]},
-{t:"note",x:"* As of September 2026, short-hours workers are covered in principle at companies with 51 or more employees. Under the pension reform law passed in June 2025, the company size threshold will fall in stages — 36 or more in October 2027, 21 or more in October 2029, 11 or more in October 2032 — and be abolished in October 2035. The monthly wage requirement of ¥88,000 (the so-called ¥1.06 million wall) is also due to be abolished, depending on minimum wage trends. Small branches will be covered in future. ★"}],
+{t:"note",x:"* As of September 2026, short-hours workers are covered in principle at companies with 51 or more employees. Under the pension reform law passed in June 2025, the company size threshold will fall in stages — 36 or more in October 2027, 21 or more in October 2029, 11 or more in October 2032 — and be abolished in October 2035. The monthly wage requirement of ¥88,000 (the so-called ¥1.06 million wall) was abolished on 1 October 2026. Small branches will be covered in future. ★"}],
 kr:[{"t":"table","cols":["Insurance","How it works"],"rows":[["National pension","Enrolment after a month or more of work at 60 hours a month (15 a week) or more; below 60 hours, still enrolled if working 8 days or more a month or earning ₩2.2 million or more a month"],["Health insurance","Workplace member after a month or more at 60 hours a month or more; not covered below 60 hours"],["Employment insurance","Normally not covered below 60 hours a month, but covered after three months of continuous work"],["Industrial accident insurance","Covers every worker regardless of type of employment or hours"]]},
 {"t":"note","x":"* People working under 15 hours a week also get no weekly paid holiday, annual leave or severance (1-1). ★"}]}]},
-{h:"How to check",blocks:[{t:"ladder",rise:10,steps:[{name:"Contracted hours",sub:"Scheduled weekly hours"},{name:"Expected employment",sub:"Its length"},{name:"Wages",sub:"The monthly threshold"},{name:"Company conditions",sub:"Size and coverage status"},{name:"Decide and file",sub:"Confirmed with your adviser"}]}]},
+{h:"How to check",blocks:[{t:"ladder",rise:10,steps:[{name:"Contracted hours",sub:"Scheduled weekly hours"},{name:"Expected employment",sub:"Its length"},{name:"Wages",sub:"No longer a test from October 2026"},{name:"Company conditions",sub:"Size and coverage status"},{name:"Decide and file",sub:"Confirmed with your adviser"}]}]},
 {h:"Worked examples",blocks:[{"t":"region","jp":[{"t":"table","cols":["Working pattern (example)","Insurance"],"rows":[["30 hours a week (three-quarters of full-time or more)","Health, employees’ pension, employment and accident insurance"],["22 hours a week, ¥100,000 a month, company of 60 staff","Health and pension (short-hours rules), employment and accident insurance"],["22 hours a week, company of 20 staff","Employment and accident insurance (social insurance expected to apply later as the size threshold falls) ★"],["15 hours a week","Accident insurance only"]]}],"kr":[{"t":"table","cols":["Working pattern (example)","Insurance"],"rows":[["40 hours a week (full-time)","All four insurances"],["20 hours a week, six-month contract","National pension, health, employment and accident insurance"],["10 hours a week, two-month contract","Accident insurance only"],["10 hours a week, one-year contract","Employment insurance (once working three months or more) and accident insurance"]]}]},
 {"t":"note","x":"* Re-assess on the hours actually worked, not just the contract. If in doubt, ask a professional."}]},
 {h:"Easily missed",blocks:[{t:"check",items:[
@@ -154,6 +179,27 @@ kr:[{"t":"table","cols":["Insurance","How it works"],"rows":[["National pension"
 {name:"Foreign staff",x:"Enrolled on the same conditions regardless of nationality. For pension, check whether a social security agreement applies (Expat Guide to Japan 2-2)."},
 {name:"The employee’s wishes",x:"Even if the employee does not want to join, you must enrol them if they meet the conditions."}]},
 {t:"point",warn:true,x:"Missed enrolment can mean being asked for back contributions later. Re-assess every time a contract changes."}]}],
+deepLabel:"In depth: the October 2026 changes",
+deep:[
+{h:"What changed on 1 October 2026",blocks:[
+{t:"table",cols:["Condition","Until September 2026","From 1 October 2026"],rows:[["Scheduled weekly hours","20 or more","20 or more (unchanged)"],["Monthly wage","88,000 yen or more (the ¥1.06m wall)","No requirement (abolished)"],["Expected employment","More than two months","More than two months (unchanged)"],["Students","Excluded (with exceptions)","Excluded (unchanged)"],["Company size","51 or more pension-insured staff","51 or more (widening in stages from October 2027)"]]},
+{t:"point",x:"From now on, 20 hours a week is almost the only test. Keeping pay under 88,000 yen no longer keeps someone out of social insurance."},
+{t:"note",x:"* People covered by the minimum-wage reduction exception and paid under 88,000 yen a month are in principle not enrolled, though they may join if they ask. ★"}]},
+{h:"The premium adjustment scheme (from October 2026)",blocks:[{t:"rows",items:[
+{name:"What it is",x:"For newly enrolled part-time workers, it reduces their own premiums for a total of three years. The employer covers part of the worker’s share and recovers it later from the premiums it pays, so the employer’s cost does not ultimately rise."},
+{name:"Who can use it",x:"From 1 October 2026, companies with 50 or fewer pension-insured staff that voluntarily enrol part-timers with the agreement of at least half their employees. From October 2027 it extends to companies newly covered as the size threshold falls."},
+{name:"How to use it",x:"The employer must apply; it is not automatic. Confirm who qualifies, how much is reduced and for how long with a labour and social security attorney before applying. ★"}]}]},
+{h:"The company-size threshold timetable",blocks:[
+{t:"table",cols:["From","Companies whose part-timers must be enrolled"],rows:[["Now (since October 2024)","51 or more pension-insured staff"],["October 2027","36 or more"],["October 2029","21 or more"],["October 2032","11 or more"],["October 2035","No size requirement (all companies)"]]},
+{t:"note",x:"* Companies about to be covered are notified in advance by the Japan Pension Service. Small branches will be covered in line with this timetable. ★"}]},
+{h:"Premiums for someone working 20 hours a week (example)",blocks:[
+{t:"table",cols:["Item","Employee","Employer"],rows:[["Monthly pay (20 hours a week at 1,200 yen)","about 104,000 yen",""],["Health insurance (Tokyo, 4.925% each)","5,122 yen","5,122 yen"],["Child and childcare support levy (0.115% each)","120 yen","120 yen"],["Employees’ pension (9.15% each)","9,516 yen","9,516 yen"],["Employment insurance (0.5% / 0.85%)","520 yen","884 yen"],["Workers’ accident and child contribution (employer only)","—","686 yen"],["Total","about 15,300 yen","about 16,300 yen"]]},
+{t:"note",x:"* Standard monthly remuneration of 104,000 yen (grade 6), Tokyo, Japan Health Insurance Association, FY2026 rates; an estimate. Long-term care insurance is added at ages 40–64."}]}],
+deepKr:[
+{h:"Part-time workers and the four insurances in Korea",blocks:[
+{t:"p",x:"From here on the basis is the Korean system. The Korean benchmark is 60 hours a month (15 hours a week)."},
+{t:"table",cols:["Insurance","Conditions","People under 60 hours a month"],rows:[["National Pension","One month or more, 60 hours a month or more","Enrolled if working 8 or more days a month or earning above a set amount"],["Health insurance","One month or more, 60 hours a month or more","Not an employee member (covered as a regional member)"],["Employment insurance","60 hours a month or more","Excluded in principle; enrolled after three months of continuous work"],["Industrial accident insurance","All workers regardless of hours or type","Enrolled"]]},
+{t:"point",x:"Japan’s line is 20 hours a week, Korea’s 60 hours a month (15 a week). Because the lines differ, do not apply head office’s Korean rule directly to the Japanese branch."}]}],
 voice:"One part-timer was contracted for 18 hours a week but went over 20 every busy season. Once we made it a rule to total actual hours from attendance records every three months and re-assess, missed enrolments and the backdated paperwork that followed stopped.",
 terms:[["Part-time Worker","短時間労働者","단시간 근로자"],["Expansion of Coverage","適用拡大","적용 확대"],["Scheduled Working Hours","所定労働時間","소정 근로시간"],["Retroactive Application","遡及","소급"]],
 quiz:[{q:"Which insurance covers every worker regardless of employment type?",opts:["Workers’ accident insurance","Employees’ pension","National pension","Private insurance"],a:0,exp:"It covers all workers."},
