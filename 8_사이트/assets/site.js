@@ -10,7 +10,8 @@ ko:{name:'항공 커리어 노트',menu:[['index.html','home','홈'],['index.htm
 en:{name:'Aviation Career Note',menu:[['index.html','home','Home'],['index.html#learn','learn','Courses'],['guide.html','guide','Study guide'],['index.html#tools','tools','Resources'],['jobs.html','jobs','Jobs'],['../7_구인게재_기업용/求人掲載のご案内.html','biz','For employers'],['about.html','about','About']],
  foot:[['about.html','About this site'],['account.html','My page'],['terms.html','Terms of use'],['sources.html','Sources'],['privacy.html','Privacy policy'],['../7_구인게재_기업용/求人掲載のご案内.html','Post a job']],copy:'© 2026 Aviation Career Note. All rights reserved.'}};
 var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
-var lang='ja';try{var _s=localStorage.getItem('art-lang');if(LANGS.indexOf(_s)>=0)lang=_s}catch(e){}
+/* 言語：?lang= → 保存した言語 → 端末の言語の順。決まった言語は保存する（2026.10） */
+var lang='ja';try{var _q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],_s=localStorage.getItem('art-lang');lang=_q||(LANGS.indexOf(_s)>=0?_s:(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})());localStorage.setItem('art-lang',lang)}catch(e){}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var logo='<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="6" width="28" height="18" rx="4" fill="#2F8FE0"/><path d="M7 17l6-2 5-5 2 .6-3 5 5-1.5 1.4 1.2-6 3-8 1z" fill="#fff"/><circle cx="24" cy="10" r="2.5" fill="#FFE08A"/></svg>';
 /* スマートフォンの上部バー：メニューを横スクロールさせず、7項目を4列でぜんぶ見せる。

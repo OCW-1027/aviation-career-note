@@ -31,9 +31,11 @@ function hub(no){var h=0;String(no).split('').forEach(function(c){h=(h*31+c.char
 (function(m){if(m.route)return;/* 実際の路線を示す回（事例など）は空港コードをそのまま表示 */if(KRC[m.from]){m.from=(m.to&&!KRC[m.to])?m.to:'NRT';m.to=hub(m.no);}if(!m.from)m.from='NRT';if(!m.to||KRC[m.to]||m.to===m.from)m.to=hub(m.no);})(C.meta);
 var ENF=!C.en;if(ENF){C.en=JSON.parse(JSON.stringify(C.ja));C.en.series=(C.meta.en&&C.meta.en.series)||null;C.en.part=(C.meta.en&&C.meta.en.part)||null;C.en._fallback=true;if(Array.isArray(C.ja.terms))C.en.terms=C.ja.terms.map(function(r){return [r[2],r[0],r[1]]});if(C.en.voice&&typeof C.en.voice==='object')C.en.voice.h=(C.meta.en&&C.meta.en.voice)||null;}
 LANGS.forEach(function(lg){var L=C[lg],D=DEF[lg],pn=+String(C.meta.no).split('-')[0];if(!L)return;C.meta.date=C.meta.date||'2026.09';C.meta.home=C.meta.home||'00_シリーズ全体_地上職旅客運送入門.html';L.series=L.series||D.series;L.part=L.part||PARTS[lg][pn];if(L.voice&&typeof L.voice==='string')L.voice={h:D.voice,x:L.voice};if(L.voice&&!L.voice.h)L.voice.h=D.voice;if(L.terms&&Array.isArray(L.terms))L.terms={h:D.terms,cols:D.tcols,rows:L.terms};if(L.quiz&&Array.isArray(L.quiz))L.quiz={h:D.quiz,items:L.quiz};if(L.next&&L.next.indexOf(D.next)!==0&&!/^(次回|次の|다음|Next)/.test(L.next))L.next=D.next+L.next;});
-var lang='ja';
-try{var s=localStorage.getItem('art-lang');if(LANGS.indexOf(s)>=0)lang=s}catch(e){}
+/* 言語：公開サイトのレッスンはURL（/ko/…）で決まる。それ以外は ?lang= → 保存した言語 → 端末の言語の順。決まった言語は保存し、ほかのページ（講座の目次・ツール）でも同じ言語で開くようにする（2026.10） */
+var lang='ja',_q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],_s=null;try{_s=localStorage.getItem('art-lang')}catch(e){}
+if(_q)lang=_q;else if(LANGS.indexOf(_s)>=0)lang=_s;else lang=(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})();
 if(ST&&LANGS.indexOf(ST.lang)>=0)lang=ST.lang;
+try{localStorage.setItem('art-lang',lang)}catch(e){}
 function $(s){return document.querySelector(s)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 var PLANE='<svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>';
@@ -52,6 +54,8 @@ function langBar(){var b=document.getElementById('langBtn');if(!b)return;var g=d
 
 /* 練習ページへのリンクに、いま読んでいる言語を付ける（2026.10）。公開サイトのレッスンは言語をURLで決めるため、付けないとツールが日本語で開くことがある */
 function withLang(h){if(!/^[^:#?]+\.html(?:[?#]|$)/.test(h)||/[?&]lang=/.test(h))return h;var k=h.indexOf('#'),a=k<0?h:h.slice(0,k),t=k<0?'':h.slice(k);return a+(a.indexOf('?')<0?'?':'&')+'lang='+lang+t}
+/* レッスンの中のリンク（講座の目次・シリーズの一覧など）も、押したときに言語を付ける */
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href'),n=withLang(h);if(n!==h)a.setAttribute('href',n)},true);
 function block(b,L){
   switch(b.t){
   case 'p': return '<p>'+esc(b.x)+'</p>';

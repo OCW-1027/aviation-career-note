@@ -7,7 +7,7 @@
 if(window.__SHELL)return;window.__SHELL=1;
 var me=document.currentScript,page=(me&&me.getAttribute('data-page'))||'';
 var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me.src).href:'#';
-try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'||q==='en')localStorage.setItem('art-lang',q)}catch(e){}
+try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'||q==='en')localStorage.setItem('art-lang',q);else if(['ja','ko','en'].indexOf(localStorage.getItem('art-lang'))<0)localStorage.setItem('art-lang',(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})())}catch(e){} /* 言語を選んだことのない人は端末の言語（2026.10） */
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
 var LIB={ja:'\u8cc7\u6599\u5ba4',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
 var NAME={load:{ja:'\u642d\u8f09\u7ba1\u7406\uff08W&B\uff09\u306e\u7df4\u7fd2',ko:'\ud0d1\uc7ac\uad00\ub9ac(W&B) \uc5f0\uc2b5',en:'Load Control (W&B) Practice'},

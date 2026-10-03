@@ -16,7 +16,8 @@ window.__applyUpdates=apply;
 (function(){
 var H=window.HUBS[window.HUB_ID];H.site=window.HUB_SITE;var A=window.ARTS||{},LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
 var UI={ja:{all:'すべて',n:'レッスン',site:'サイトのトップへ',jp:'',copy:'© 2026 航空キャリアノート　無断転載・複製禁止'},ko:{all:'전체',n:'레슨',site:'사이트 홈으로',jp:'',copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© 2026 Aviation Career Note. All rights reserved.'}};
-var lang='ja';try{var s=localStorage.getItem('art-lang');if(LANGS.indexOf(s)>=0)lang=s}catch(e){}
+/* 言語：?lang= → 保存した言語 → 端末の言語の順。決まった言語は保存する（2026.10） */
+var lang='ja';try{var q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],s=localStorage.getItem('art-lang');lang=q||(LANGS.indexOf(s)>=0?s:(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})());localStorage.setItem('art-lang',lang)}catch(e){}
 /* 「K-ETA」「A-CDM」のようにハイフンを含む英数字の語は途中で改行しない（語の前で改行させる） */
 function nw(s){return String(s).replace(/[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+/g,function(m){return '<span class="nw">'+m+'</span>'})}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
