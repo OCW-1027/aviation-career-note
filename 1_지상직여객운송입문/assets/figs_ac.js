@@ -9,7 +9,7 @@ function BADGE(x,y,n,sz){var r=Math.max(11,FS(sz)*0.72);return '<circle cx="'+x+
 function SEG(i,n,lo,hi){var a=i/n,b=(i+1)/n;if(i===n-1)return 'values="'+lo+';'+lo+';'+hi+';'+hi+'" keyTimes="0;'+a.toFixed(3)+';'+(a+0.005).toFixed(3)+';1"';if(i===0)return 'values="'+hi+';'+hi+';'+lo+';'+lo+'" keyTimes="0;'+b.toFixed(3)+';'+(b+0.005).toFixed(3)+';1"';return 'values="'+lo+';'+lo+';'+hi+';'+hi+';'+lo+';'+lo+'" keyTimes="0;'+a.toFixed(3)+';'+(a+0.005).toFixed(3)+';'+b.toFixed(3)+';'+(b+0.005).toFixed(3)+';1"'}
 function LIST(items,y,w,sz){var g='';items.forEach(function(v,i){var n=LI(v,sz,w-80).length,lh=FS(sz)*1.3,h=n*lh+12;g+=R(20,y,w,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,sz)+WR(64,y+6+n*lh/2+FS(sz)*0.3,v,sz,D,800,w-80,'start');y+=h+4});return {s:g,y:y}}
 /* 正面から見た旅客機（胴体・上反角のある主翼・翼の下のエンジン・垂直尾翼）。幅約80 */
-function FRONT(){var st=' stroke="#1d2b3a" stroke-width="1.4" stroke-linejoin="round"';
+function FRONT(){if(window.ACFT)return '<g transform="scale(1.75)">'+window.ACFT.front({c:'#fff'})+'</g>';var st=' stroke="#1d2b3a" stroke-width="1.4" stroke-linejoin="round"';
  return '<path d="M-6 -14 L-3 -30 L3 -30 L6 -14 Z" fill="#fff"'+st+'/><path d="M-40 -2 L-6 -6 L6 -6 L40 -2 L40 1 L6 2 L-6 2 L-40 1 Z" fill="#fff"'+st+'/><path d="M-26 -6 L-29 -6 L-29 1 L-26 1 Z M26 -6 L29 -6 L29 1 L26 1 Z" fill="#fff"'+st+'/><circle cx="-18" cy="5" r="4.5" fill="#DCE3EA"'+st+'/><circle cx="18" cy="5" r="4.5" fill="#DCE3EA"'+st+'/><circle cx="-18" cy="5" r="1.8" fill="#243447"/><circle cx="18" cy="5" r="1.8" fill="#243447"/><circle cx="0" cy="-4" r="8.5" fill="#fff"'+st+'/><path d="M-4 -8 L4 -8 L3 -5.5 L-3 -5.5 Z" fill="#243447"/>'}
 var F={
 /* 1 4つの力：揚力と重さ、推力と抗力がつり合う */

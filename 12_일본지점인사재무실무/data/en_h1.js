@@ -480,6 +480,24 @@ sections:[
 {t:"point",x:"The biggest secret of the monthly close is doing it in the same order and the same format every month. Using last month’s vouchers as the template cuts mistakes."}]},
 {h:"A one-page report to head office, example",blocks:[{"t":"table","cols":["Account","Budget","Actual","Difference","Comment"],"rows":[["Staff costs","2,400","2,450","+50","More overtime (delays)"],["Rent","450","450","0",""],["Handling fees","1,200","1,320","+120","Two extra flights"],["Communications and systems","180","160","−20","One line cancelled"],["Total","4,230","4,380","+150",""]]},
 {"t":"note","x":"* Figures in ¥ thousands. Commenting at least on accounts more than 5% off budget cuts the questions from head office."}]}],
+deepLabel:"In depth: from the monthly close to the year-end",
+deep:[
+{h:"The once-a-year closing adjustments",blocks:[
+{t:"p",x:"On top of each monthly close, the year-end brings “closing adjustments” that put the whole year right. If estimates have gone in every month, there is little left to adjust."},
+{t:"table",cols:["Item","Example entry (debit / credit)","Point"],rows:[["Depreciation","Depreciation / Equipment","Spread computers and desks over their useful lives"],["Accrued expenses","Salaries / Accrued expenses","March salaries paid in April belong to March"],["Prepaid expenses","Prepaid expenses / Rent","April rent paid in March belongs to next year"],["Clearing suspense","Travel / Suspense payments","Move settled items to the right account"],["Income taxes","Income taxes / Income taxes payable","Estimate the year’s tax and book it, netting off interim payments"]]},
+{t:"note",x:"* The example company in Year-End Closing Practice makes its adjustments in this order."}]},
+{h:"Timetable for a March year-end company (example)",blocks:[
+{t:"table",cols:["When","What"],rows:[["31 March","Year-end. Count cash, deposits and stock"],["Early to mid-April","Closing adjustments; finalise the trial balance"],["Late April to mid-May","Prepare the accounts; the tax accountant calculates tax"],["Late May","Board approves the accounts"],["By 31 May","File and pay corporation tax, local taxes and consumption tax (two months after the year-end)"],["June","Annual general meeting (companies with an extension file by the end of June)"],["November","Interim return (if last year’s corporation tax was above a set level)"]]},
+{t:"note",x:"* A Japanese branch of a foreign company files in Japan on its head office’s financial year. When head office closes late, applying for an extension of the filing deadline is common. ★"}]},
+{h:"Timetable for a Korean company (December year-end example)",blocks:[
+{t:"table",cols:["When","What"],rows:[["31 December","Year-end"],["January to February","Closing adjustments; prepare the accounts"],["February to March","External audit (where required)"],["March","Annual general meeting"],["By 31 March","File and pay corporation tax (three months from the end of the year-end month)"],["By 30 April","File local corporate income tax"],["August","Interim prepayment (first half)"]]},
+{t:"note",x:"* Japan’s filing deadline is two months after the year-end; Korea’s is three. If head office in Korea and the branch in Japan close on different timetables, agree first how the Japanese figures will reach head office in time. ★"}]},
+{h:"Monthly habits that make the year-end easier",blocks:[{t:"check",items:[
+{name:"Book estimates every month",x:"Estimating costs whose invoices have not arrived each month leaves less to correct at the year-end."},
+{name:"Clear suspense within the month",x:"Keeping suspense payments and receipts near zero each month saves re-investigating them at the year-end."},
+{name:"A fixed asset register",x:"Recording purchase date, cost and useful life makes depreciation quick to calculate."},
+{name:"Balance confirmations",x:"Obtain year-end balance certificates for deposits and loans from the banks and agree them to the books."}]},
+{t:"link",href:"決算の練習.html",x:"[Practice] Year-End Closing Practice: from closing adjustments to the tax estimate and Japanese accounts"}]}],
 voice:"To speed up the monthly close, I started building the table of estimates for not-yet-invoiced costs in the same format every month. The close shrank from five working days to three, and head office’s queries roughly halved.",
 terms:[["Monthly Closing","月次決算","월차 결산"],["Accrual","見積計上","추정 계상"],["Prepaid Expense","前払費用","선급 비용"],["Budget vs. Actual","予実比較","예산 실적 비교"]],
 quiz:[{q:"How are costs not yet invoiced handled?",opts:["Accrued on an estimate and adjusted later","Not booked","Booked next year","Left to head office"],a:0,exp:"So the close is not delayed."},

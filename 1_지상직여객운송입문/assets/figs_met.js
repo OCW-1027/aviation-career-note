@@ -52,7 +52,7 @@ function TTL(x,y,s,sz,c,maxw){var L=LINES(s,sz,maxw),lh=FS(sz)*1.3,yb=Math.max(y
  return '<g data-ttl="'+L.length+'" data-dy="'+dy.toFixed(1)+'">'+L.map(function(ln,i){return tx(x,yb+i*lh,ln,sz,c,900)}).join('')+'</g>'}
 function LBW(x,y,s,sz,c,a,bg,maxw){var lines=LINES(s,sz,maxw),lh=FS(sz)*1.3,w=0;lines.forEach(function(l){w=Math.max(w,TW(l,sz))});w+=14;var h=lines.length*lh+6,x0=a==='start'?x-7:(a==='end'?x-w+7:x-w/2),y0=y-(lines.length-1)*lh/2;
  return '<rect x="'+x0.toFixed(1)+'" y="'+(y0-lh*0.78-3).toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+Math.min(12,h/2).toFixed(1)+'" fill="'+(bg||'#fff')+'" opacity=".94"/>'+lines.map(function(ln,i){return tx(x,y0+i*lh,ln,sz,c,900,a)}).join('')}
-/* 飛行機のアイコン（2026.09 改訂）：機首は右（+x）。長さ約40
+/* 飛行機のアイコン（2026.10：形は aircraft.js の ACFT に統一。下の PLANE_* は aircraft.js がないときの予備）：機首は右（+x）。長さ約40
    plane(c) … 上から見た形（後退翼・エンジン2つ・後退した水平尾翼）。地図・平面の図に使う
    planeS(c) … 横から見た形（胴体・窓・翼・エンジン・垂直尾翼）。高さの断面・横からの図に使う */
 var PLANE_ENG='M6.2 -9.3 C6.2 -10.4 5.4 -10.8 4.2 -10.8 L-2 -10.8 L-2 -7.8 L4.2 -7.8 C5.4 -7.8 6.2 -8.2 6.2 -9.3 Z M6.2 9.3 C6.2 10.4 5.4 10.8 4.2 10.8 L-2 10.8 L-2 7.8 L4.2 7.8 C5.4 7.8 6.2 8.2 6.2 9.3 Z';
@@ -60,8 +60,8 @@ var PLANE_TOP='M20 0 C18.5 -2 15 -3 11 -3 L-13 -3 L-18 -1.6 L-20 0 L-18 1.6 L-13
 var PLANE_SIDE='M20 0.8 C19.6 -1.5 17 -3.2 12 -3.2 L-13 -3.2 L-19 -2.4 L-21 -1.2 L-20.8 -0.4 L-16 1.4 L-12 3.2 L12 3.2 C17 3.2 19.6 2.4 20 0.8 Z M-12.5 -3.1 L-17.5 -12.5 L-21 -12.5 L-19.6 -2.9 Z M-15.5 -1.1 L-21 -2.3 L-22.2 -1.8 L-17 -0.1 Z';
 var PLANE_SWING='M5 2.6 L-3.5 5 L-7.5 5 L-2.5 2.6 Z';
 var PLANE_SENG='M3.6 3.9 L1.2 2.6 L-0.4 2.6 L0.4 3.9 Z M7.2 5.3 C7.2 4 6.4 3.6 5 3.6 L0.8 3.8 L-1.6 4.7 L-1.6 5.9 L0.8 6.8 L5 7 C6.4 7 7.2 6.6 7.2 5.3 Z';
-function plane(c){var st=' stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"';return '<path d="'+PLANE_ENG+'" fill="#DCE3EA"'+st+'/><path d="'+PLANE_TOP+'" fill="'+(c||'#fff')+'"'+st+'/>'}
-function planeS(c){var st=' stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"',w='';for(var x=-10;x<=10.5;x+=2.3)w+='<circle cx="'+x.toFixed(1)+'" cy="-1" r="0.6" fill="#2F6FD6" opacity=".85"/>';
+function plane(c){if(window.ACFT)return window.ACFT.top({c:c||'#fff'});var st=' stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"';return '<path d="'+PLANE_ENG+'" fill="#DCE3EA"'+st+'/><path d="'+PLANE_TOP+'" fill="'+(c||'#fff')+'"'+st+'/>'}
+function planeS(c){if(window.ACFT)return window.ACFT.side({c:c||'#fff'});var st=' stroke="#1d2b3a" stroke-width="1.1" stroke-linejoin="round"',w='';for(var x=-10;x<=10.5;x+=2.3)w+='<circle cx="'+x.toFixed(1)+'" cy="-1" r="0.6" fill="#2F6FD6" opacity=".85"/>';
  return '<path d="'+PLANE_SIDE+'" fill="'+(c||'#fff')+'"'+st+'/>'+w+'<path d="M15.4 -1.9 L18.3 -1.2 L17.9 -0.3 L15 -0.7 Z" fill="#243447"/><path d="'+PLANE_SWING+'" fill="#C9D3DD"'+st+'/><path d="'+PLANE_SENG+'" fill="#DCE3EA"'+st+'/><ellipse cx="6.7" cy="5.3" rx="0.55" ry="1.35" fill="#243447"/>'}
 function cloud(x,y,s,c){s=s||1;return '<g transform="translate('+x+' '+y+') scale('+s+')"><ellipse cx="0" cy="0" rx="26" ry="14" fill="'+(c||'#fff')+'"/><ellipse cx="-18" cy="4" rx="16" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="18" cy="4" rx="17" ry="10" fill="'+(c||'#fff')+'"/><ellipse cx="4" cy="-9" rx="15" ry="11" fill="'+(c||'#fff')+'"/></g>'}
 

@@ -12,7 +12,7 @@ dsp_flow:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 
  s+='<line x1="70" y1="120" x2="830" y2="120" stroke="#C9D6E3" stroke-width="6" stroke-linecap="round"/>';
  st.forEach(function(v,i){var x=70+i*126.7;s+='<g><circle cx="'+x+'" cy="120" r="30" fill="#fff" stroke="'+v[2]+'" stroke-width="4"/>'+tx(x,126,i+1,20,v[2],800)+
   '<animate attributeName="opacity" values="0.35;1;1;0.35" keyTimes="0;'+(i/7).toFixed(3)+';'+((i+1)/7).toFixed(3)+';1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'+tx(x,178,v[0],14,v[2],800)+tx(x,198,v[1],12,G,700)});
- s+='<g><path d="M-14 0 L10 -3 L16 0 L10 3 Z M-4 -2 L4 -13 L8 -13 L4 -2 Z M-4 2 L4 13 L8 13 L4 2 Z" fill="'+O+'" stroke="#7a3e0a" stroke-width="1"/><animateMotion dur="'+DUR+'s" repeatCount="indefinite" path="M70 80 L830 80"/></g>';
+ s+='<g>'+(window.ACFT?'<g transform="scale(0.85)">'+window.ACFT.top({c:'#FFD9A8'})+'</g>':'<path d="M-14 0 L10 -3 L16 0 L10 3 Z M-4 -2 L4 -13 L8 -13 L4 -2 Z M-4 2 L4 13 L8 13 L4 2 Z" fill="'+O+'" stroke="#7a3e0a" stroke-width="1"/>')+'<animateMotion dur="'+DUR+'s" repeatCount="indefinite" path="M70 80 L830 80"/></g>';
  s+=R(120,236,300,92,'#fff',14,' stroke="'+P+'" stroke-width="2"')+tx(270,268,'PIC',18,P,800)+tx(270,294,'CAPTAIN',12,G)+tx(270,314,'final authority in flight',11,G,600);
  s+=R(480,236,300,92,'#fff',14,' stroke="'+P+'" stroke-width="2"')+tx(630,268,'DISPATCHER',18,P,800)+tx(630,294,'OPERATIONAL CONTROL',12,G)+tx(630,314,'plan, fuel, monitor',11,G,600);
  s+='<path d="M424 282 L476 282" stroke="'+P+'" stroke-width="3" marker-end="url(#da)" marker-start="url(#da)"/><defs><marker id="da" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9Z" fill="'+P+'"/></marker></defs>';

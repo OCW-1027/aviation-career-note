@@ -112,6 +112,21 @@ sections:[
 ["Current ratio","Current assets ÷ current liabilities","Whether payments due within a year are covered (100% or more as a guide)"],
 ["Equity ratio","Net assets ÷ total assets","Whether the company leans too heavily on debt"]]},
 {t:"note",x:"* Benchmarks vary widely by industry. Compare with similar companies and with the previous year."}]}],
+deepLabel:"In depth: reading real financial statements",
+deep:[
+{h:"What a Japanese set of accounts contains",blocks:[
+{t:"table",cols:["Document","Contents","Small companies"],rows:[["Balance sheet","Assets, liabilities and net assets at the year-end","Always prepared"],["Income statement","The year’s revenue, expenses and profit","Always prepared"],["Statement of changes in shareholders’ equity","How net assets changed over the year","Always prepared"],["Notes to the financial statements","Accounting policies and important matters","Always prepared"],["Cash flow statement","The year’s cash movements","Required for listed companies and similar; not required for SMEs"],["Account-by-account schedules","Counterparties and amounts for deposits, receivables, loans and so on","Attached to the corporation tax return"]]},
+{t:"note",x:"* The first four are the “financial documents” under the Companies Act. Listed companies also file consolidated statements and a cash flow statement in their annual securities report under the Financial Instruments and Exchange Act. ★"}]},
+{h:"Financial statements in Korea",blocks:[
+{t:"table",cols:["","Japan (SMEs)","Korea"],rows:[["Core statements","Balance sheet, income statement, statement of changes in equity, notes","Statement of financial position, income statement (comprehensive income), statement of changes in equity, cash flow statement, notes"],["Cash flow statement","Not required","One of the core statements"],["Accounting standards","SME accounting guidelines and similar","K-IFRS for listed companies; general accounting standards for others"],["Publication","Public notice of results (e.g. in the official gazette)","Companies subject to external audit publish on DART"]]},
+{t:"note",x:"* Whether a Korean company is subject to external audit depends on its assets, sales and headcount. ★"}]},
+{h:"Tips for reading Japanese accounts",blocks:[{t:"rows",items:[
+{name:"△ means minus",x:"Japanese accounts show negatives with “△”. “Net loss △500,000” is a loss of 500,000 yen."},
+{name:"Check the unit first",x:"Yen, thousands or millions: check the top right of the table. Reading a thousands table as yen puts you out by a factor of 1,000."},
+{name:"Start and end dates",x:"“自 2026年4月1日　至 2027年3月31日” is the income statement’s period; “2027年3月31日現在” is the balance sheet date."},
+{name:"Breakdowns on separate sheets",x:"Breakdowns of selling, general and administrative expenses or manufacturing costs are often given in separate schedules."},
+{name:"Compare with last year",x:"One year alone tells you little. Put last year’s accounts beside this year’s, account by account, and look for the reasons behind big changes."}]},
+{t:"link",href:"決算の練習.html",x:"[Practice] Year-End Closing Practice: build a fictional company’s accounts in this Japanese format"}]}],
 voice:"When you first look at financial statements, look for what changed most from last year rather than reading every figure. Asking why it changed is where analysis begins.",
 terms:[["Profit and Loss Statement (P/L)","損益計算書","손익계산서"],["Balance Sheet (B/S)","貸借対照表","대차대조표(재무상태표)"],["Cash Flow Statement (C/F)","キャッシュ・フロー計算書","현금흐름표"],["Operating Profit","営業利益","영업이익"],["Net Assets","純資産","순자산"]],
 quiz:[{q:"Which line shows profit from the core business?",opts:["Sales","Operating profit","Net profit for the year","Cost of sales"],a:1,exp:"Operating profit is gross profit minus SG&A."},

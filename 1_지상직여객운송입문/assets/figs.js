@@ -18,8 +18,8 @@ var GSE={
 10:cab(30)+R(92,100,170,60,B,22)+'<path d="M262 118 C 280 118 280 80 292 80" stroke="'+D+'" stroke-width="6" fill="none"/><path d="M178 112 C 190 128 192 134 192 138 A 14 14 0 0 1 164 138 C 164 134 166 128 178 112 Z" fill="#fff"/>'+wh(60,165)+wh(130,165)+wh(230,165),
 11:cab(40)+R(100,120,160,40,'#D0506A',6)+R(170,70,70,50,G,4)+R(176,60,58,12,Y)+'<path d="M110 150 C 90 150 80 172 60 172" stroke="'+D+'" stroke-width="7" fill="none"/><text x="135" y="147" font-size="18" font-weight="700" fill="#fff" font-family="Arial">FUEL</text>'+wh(70,165)+wh(225,165),
 12:cab(30)+R(92,110,150,50,'#E08A2F',12)+'<line x1="170" y1="110" x2="230" y2="50" stroke="'+D+'" stroke-width="10"/>'+R(220,30,46,30,Y,6)+'<path d="M266 40 q 16 10 26 30" stroke="#E08A2F" stroke-width="4" stroke-dasharray="4 4" fill="none"/>'+wh(60,165)+wh(130,165)+wh(215,165)};
-function plane(y0){/* 上から見た機体（機首が上） */
- var y=y0||0;return '<g transform="translate(0,'+y+')"><path d="M444 150 C 470 150 478 190 478 230 L 478 520 C 478 560 460 600 444 610 C 428 600 410 560 410 520 L 410 230 C 410 190 418 150 444 150 Z" fill="#fff" stroke="#5b6b7d" stroke-width="3"/><path d="M410 320 L 170 400 L 170 425 L 410 385 Z M478 320 L 718 400 L 718 425 L 478 385 Z" fill="#fff" stroke="#5b6b7d" stroke-width="3"/><path d="M420 560 L 350 600 L 350 612 L 430 595 Z M468 560 L 538 600 L 538 612 L 458 595 Z" fill="#fff" stroke="#5b6b7d" stroke-width="3"/>'+R(290,372,28,56,'#dbe3ec',10,' stroke="#5b6b7d" stroke-width="2"')+R(570,372,28,56,'#dbe3ec',10,' stroke="#5b6b7d" stroke-width="2"')+'</g>'}
+function plane(y0){/* 上から見た機体（機首が上）。形は aircraft.js（ACFT）。機首 y=150、尾 y=615、翼端 x=170・718、エンジンの前 x=337・551 y=314 */
+ var y=y0||0;if(window.ACFT)return '<g transform="translate(444,'+(380+y)+') rotate(-90) scale(11.5,14.4)">'+window.ACFT.top({sw:2.4})+'</g>';return '<g transform="translate(0,'+y+')"><path d="M444 150 C 470 150 478 190 478 230 L 478 520 C 478 560 460 600 444 610 C 428 600 410 560 410 520 L 410 230 C 410 190 418 150 444 150 Z" fill="#fff" stroke="#5b6b7d" stroke-width="3"/><path d="M410 320 L 170 400 L 170 425 L 410 385 Z M478 320 L 718 400 L 718 425 L 478 385 Z" fill="#fff" stroke="#5b6b7d" stroke-width="3"/><path d="M420 560 L 350 600 L 350 612 L 430 595 Z M468 560 L 538 600 L 538 612 L 458 595 Z" fill="#fff" stroke="#5b6b7d" stroke-width="3"/>'+R(290,372,28,56,'#dbe3ec',10,' stroke="#5b6b7d" stroke-width="2"')+R(570,372,28,56,'#dbe3ec',10,' stroke="#5b6b7d" stroke-width="2"')+'</g>'}
 var DUR=14;
 function show(t){var a=Math.max(.001,t/DUR-.001),b=t/DUR;return '<animate attributeName="opacity" dur="'+DUR+'s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;'+a.toFixed(3)+';'+b.toFixed(3)+';0.93;1"/>'}
 function veh(x,y,w,h,c,t,rot){return '<g opacity="0"'+(rot?' transform="rotate('+rot+' '+(x+w/2)+' '+(y+h/2)+')"':'')+'>'+show(t)+R(x,y,w,h,c,6,' stroke="'+D+'" stroke-width="2"')+'</g>'}
@@ -30,7 +30,7 @@ gse_catalog:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0
  for(var n=1;n<=12;n++){var c=(n-1)%4,r=Math.floor((n-1)/4);s+='<g transform="translate('+(c*300)+','+(r*220+10)+')">'+R(8,0,284,200,W,16,' stroke="#e3eaf2"')+R(10,176,280,4,'#dbe3ec',2)+GSE[n]+badge(n,34,28)+'</g>'}
  return s+'</svg>'},
 turnaround:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img"><rect width="900" height="640" fill="#9aa5b1"/>'+R(0,0,900,110,'#e8eef5')+'<text x="20" y="40" font-size="20" fill="#5b6b7d" font-family="Arial">TERMINAL</text>'+R(440,120,8,500,'#FFE08A')+plane();
- s+='<g opacity="0">'+show(.3)+R(436,226,16,8,Y)+R(420,470,10,16,Y)+R(458,470,10,16,Y)+cone(172,425)+cone(716,425)+cone(444,615)+cone(303,427)+cone(585,427)+'</g>';
+ s+='<g opacity="0">'+show(.3)+R(436,226,16,8,Y)+R(420,470,10,16,Y)+R(458,470,10,16,Y)+cone(172,478)+cone(716,478)+cone(444,615)+cone(337,400)+cone(551,400)+'</g>';
  s+='<g opacity="0">'+show(1)+'<rect x="300" y="100" width="40" height="120" fill="#cfd8e2" stroke="'+D+'" stroke-width="2" transform="rotate(-30 320 160)"/>'+R(386,196,30,24,'#cfd8e2',0,' stroke="'+D+'" stroke-width="2"')+'</g>'+num(300,120,7,1);
  var L=[[470,130,60,34,W,2,0,545,130,5],[340,260,40,60,W,2.5,0,330,250,6],[478,260,90,26,Y,3.5,-15,585,250,2],[478,470,100,44,Y,4,0,595,480,3],[478,180,70,40,G,6,0,560,180,8],[478,540,70,40,G,6.3,0],[330,520,70,34,'#7A5CC7',7,0,318,520,9],[330,460,70,34,B,7.5,0,318,462,10],[560,420,70,34,'#D0506A',8.5,0,645,440,11],[426,110,36,40,Y,11,0,470,96,1]];
  L.forEach(function(v){s+=veh(v[0],v[1],v[2],v[3],v[4],v[5],v[6]);if(v[9])s+=num(v[7],v[8],v[9],v[5])});
@@ -135,6 +135,7 @@ taf_timeline:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="
 aircraft_parts:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img"><rect width="900" height="640" fill="#F7FAFD"/>',F='#ffffff',Sd=D;
  /* top view (nose to the left) */
  s+='<path d="M60 170 Q60 150 100 146 L700 146 L780 158 L800 170 L780 182 L700 194 L100 194 Q60 190 60 170 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
+ s+='<path d="M350 92 L410 93 L410 107 L350 108 Q344 100 350 92 Z M350 232 L410 233 L410 247 L350 248 Q344 240 350 232 Z" fill="#C3CCD6" stroke="'+Sd+'" stroke-width="2.5"/><ellipse cx="349" cy="100" rx="3" ry="7" fill="#2B3642"/><ellipse cx="349" cy="240" rx="3" ry="7" fill="#2B3642"/>';
  s+='<path d="M330 146 L460 40 L500 40 L470 146 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/><path d="M330 194 L460 300 L500 300 L470 194 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
  s+='<path d="M700 146 L760 96 L785 96 L770 150 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/><path d="M700 194 L760 244 L785 244 L770 190 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
  s+='<path d="M352 128 L462 38" stroke="#2F8FE0" stroke-width="6" opacity=".7"/><path d="M352 212 L462 302" stroke="#2F8FE0" stroke-width="6" opacity=".7"/>';
@@ -142,9 +143,8 @@ aircraft_parts:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox
  s+='<path d="M472 140 L478 120" stroke="#1F7A6E" stroke-width="6"/><path d="M472 200 L478 220" stroke="#1F7A6E" stroke-width="6"/>';
  s+=R(430,96,34,14,'#7A5CC7',3,' opacity=".8"')+R(430,230,34,14,'#7A5CC7',3,' opacity=".8"');
  s+='<path d="M500 40 L512 26" stroke="'+Sd+'" stroke-width="5"/><path d="M500 300 L512 314" stroke="'+Sd+'" stroke-width="5"/>';
- s+=R(378,92,40,16,G,6)+R(378,232,40,16,G,6);
- s+='<path d="M772 102 L783 150" stroke="#D0506A" stroke-width="5" opacity=".8"/><path d="M772 238 L783 190" stroke="#D0506A" stroke-width="5" opacity=".8"/>';
- var tb=[[1,70,170,'#5b6b7d'],[2,398,100,'#5b6b7d'],[3,420,72,'#2F8FE0'],[4,490,72,'#E08A2F'],[5,447,237,'#7A5CC7'],[6,475,130,'#1F7A6E'],[7,507,31,'#5b6b7d'],[8,745,112,'#5b6b7d'],[9,778,126,'#D0506A']];
+  s+='<path d="M772 102 L783 150" stroke="#D0506A" stroke-width="5" opacity=".8"/><path d="M772 238 L783 190" stroke="#D0506A" stroke-width="5" opacity=".8"/>';
+ var tb=[[1,70,170,'#5b6b7d'],[2,362,100,'#5b6b7d'],[3,420,72,'#2F8FE0'],[4,490,72,'#E08A2F'],[5,447,237,'#7A5CC7'],[6,475,130,'#1F7A6E'],[7,507,31,'#5b6b7d'],[8,745,112,'#5b6b7d'],[9,778,126,'#D0506A']];
  var pos={1:[40,110],2:[330,60],3:[400,20],4:[560,60],5:[420,330],6:[560,140],7:[570,20],8:[700,60],9:[850,110]};
  tb.forEach(function(t){var p=pos[t[0]];s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+t[1]+'" y2="'+t[2]+'" stroke="'+t[3]+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+badge(t[0],p[0],p[1],14,t[3])});
  /* side view */
@@ -156,7 +156,7 @@ aircraft_parts:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox
  s+=R(230,468,60,20,'#E08A2F',3,' opacity=".65"')+R(560,468,50,20,'#E08A2F',3,' opacity=".65"');
  s+='<path d="M812 336 L840 336 L832 424 L806 424 Z" fill="#D0506A" opacity=".5"/>';
  s+='<circle cx="838" cy="448" r="6" fill="'+Sd+'"/>';
- s+=R(380,478,70,26,G,10);
+ s+='<path d="M330 484 L520 506 L556 506 L470 488 Z" fill="#DCE3EA" stroke="'+Sd+'" stroke-width="2.5" stroke-linejoin="round"/><path d="M372 488 L392 497 L410 497 L398 488 Z" fill="#C3CCD6" stroke="'+Sd+'" stroke-width="2"/><path d="M318 508 Q318 497 330 496 L404 496 L414 503 L414 517 L404 524 L330 524 Q318 523 318 508 Z" fill="#C3CCD6" stroke="'+Sd+'" stroke-width="2.5"/><ellipse cx="321" cy="510" rx="3" ry="10" fill="#2B3642"/>';
  s+='<line x1="160" y1="490" x2="160" y2="525" stroke="'+Sd+'" stroke-width="4"/><circle cx="160" cy="532" r="9" fill="'+Sd+'"/><line x1="470" y1="490" x2="470" y2="525" stroke="'+Sd+'" stroke-width="5"/><circle cx="462" cy="534" r="11" fill="'+Sd+'"/><circle cx="482" cy="534" r="11" fill="'+Sd+'"/>';
  s+='<circle cx="84" cy="470" r="4" fill="#E08A2F"/>';
  var sb=[[10,110,446,70,400,'#5b6b7d'],[11,158,450,180,390,'#1D2A3A'],[12,260,478,260,590,'#E08A2F'],[13,160,528,110,590,'#5b6b7d'],[14,472,525,520,600,'#5b6b7d'],[15,795,370,720,330,'#5b6b7d'],[16,822,380,880,340,'#D0506A'],[17,838,448,880,510,'#5b6b7d'],[18,84,470,40,520,'#E08A2F']];
@@ -165,9 +165,9 @@ aircraft_parts:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox
  return s+'</svg>'},
 forces_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><rect width="900" height="460" fill="#EAF4FD"/>';
  [[120,80,1],[520,60,1.3],[760,120,.9],[300,380,1.1]].forEach(function(c,i){s+='<g opacity=".9"><ellipse cx="'+c[0]+'" cy="'+c[1]+'" rx="'+(46*c[2])+'" ry="'+(16*c[2])+'" fill="#fff"/><ellipse cx="'+(c[0]+30*c[2])+'" cy="'+(c[1]-10*c[2])+'" rx="'+(30*c[2])+'" ry="'+(16*c[2])+'" fill="#fff"/><animateTransform attributeName="transform" type="translate" values="0 0;260 0" dur="'+(7+i*2)+'s" repeatCount="indefinite"/></g>'});
- s+='<g transform="translate(450 230)"><path d="M-170 0 Q-170 -22 -140 -24 L130 -24 L160 -40 L185 -95 L205 -95 L200 -24 L210 0 L160 12 L-140 14 Q-170 14 -170 0 Z" fill="#fff" stroke="'+D+'" stroke-width="3"/><path d="M-40 -2 L40 -2 L70 10 L-20 10 Z" fill="#cfd8e2" stroke="'+D+'" stroke-width="2"/>';
+ if(window.ACFT)s+='<g transform="translate(450 230) scale(-9.5,9.5)">'+window.ACFT.side({c:'#fff',sw:2.5})+'</g>';else{s+='<g transform="translate(450 230)"><path d="M-170 0 Q-170 -22 -140 -24 L130 -24 L160 -40 L185 -95 L205 -95 L200 -24 L210 0 L160 12 L-140 14 Q-170 14 -170 0 Z" fill="#fff" stroke="'+D+'" stroke-width="3"/><path d="M-40 -2 L40 -2 L70 10 L-20 10 Z" fill="#cfd8e2" stroke="'+D+'" stroke-width="2"/>';
  for(var wx=-120;wx<120;wx+=18)s+='<rect x="'+wx+'" y="-14" width="8" height="8" rx="3" fill="#9fd3fa"/>';
- s+='</g>';
+ s+='</g>'}
  function arr(x1,y1,x2,y2,c,v){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+c+'" stroke-width="10" stroke-linecap="round" marker-end="url(#fa)"><animate attributeName="'+(x1===x2?'y2':'x2')+'" values="'+v+'" dur="2.4s" repeatCount="indefinite"/></line>'}
  s+=arr(450,200,450,70,'#2F8FE0','90;60;90')+arr(450,250,450,400,'#5b6b7d','390;410;390')+arr(270,230,130,230,'#E08A2F','150;110;150')+arr(670,230,800,230,'#D0506A','780;810;780');
  s+=badge('A',490,80,16,'#2F8FE0')+badge('B',490,395,16,'#5b6b7d')+badge('C',160,195,16,'#E08A2F')+badge('D',770,195,16,'#D0506A');
@@ -320,7 +320,7 @@ acdm_narita:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0
  s+='<g><circle cx="0" cy="150" r="7" fill="'+RD+'"/><animateTransform attributeName="transform" type="translate" values="'+X(-30)+' 0;'+X(12)+' 0;'+X(12)+' 0" keyTimes="0;.85;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
  return s+'</svg>'},
 acdm_queue:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img"><rect width="900" height="300" fill="#F7FAFD"/>',RD='#D0506A',GR='#1F7A6E',DUR=12;
- function pl(c){return '<path d="M-14 0 L10 -2 L15 0 L10 2 Z M-2 -1 L5 -11 L8 -11 L4 -1 Z M-2 1 L5 11 L8 11 L4 1 Z M-12 -1 L-9 -5 L-7 -5 L-9 -1 Z" fill="'+c+'"/>'}
+ function pl(c){return ''+(window.ACFT?'<g transform="scale(0.72)">'+window.ACFT.top({c:c,w:c})+'</g>':'<path d="M-14 0 L10 -2 L15 0 L10 2 Z M-2 -1 L5 -11 L8 -11 L4 -1 Z M-2 1 L5 11 L8 11 L4 1 Z M-12 -1 L-9 -5 L-7 -5 L-9 -1 Z" fill="'+c+'"/>')+''}
  function panel(x0,title,col){return R(x0,20,420,260,'#fff',14,' stroke="#dbe3ec" stroke-width="2"')+'<text x="'+(x0+20)+'" y="48" font-size="16" font-weight="800" fill="'+col+'" font-family="Arial">'+title+'</text>'+R(x0+20,70,110,190,'#eef3f8',8)+'<text x="'+(x0+75)+'" y="88" font-size="12" font-weight="700" text-anchor="middle" fill="#5b6b7d" font-family="Arial">GATE</text>'+'<path d="M'+(x0+130)+' 165 L'+(x0+340)+' 165" stroke="#9fb3c6" stroke-width="18" stroke-linecap="round"/>'+R(x0+350,60,40,200,'#4b5b6b',4)+'<text x="'+(x0+370)+'" y="52" font-size="12" font-weight="700" text-anchor="middle" fill="#5b6b7d" font-family="Arial">RWY</text>'}
  s+=panel(20,'BEFORE',RD)+panel(460,'TSAT',GR);
  for(var i=0;i<5;i++){var qx=20+330-i*42,d=(i*0.08).toFixed(2);
@@ -406,9 +406,9 @@ boarding_order:function(){var D2=12,s='<svg xmlns="http://www.w3.org/2000/svg" v
  s+='<text x="880" y="40" font-size="16" text-anchor="end" fill="#5b6b7d" font-family="Arial">BOARDING → CLOSE</text>'+R(700,52,180,10,'#dbe3ec',5)+'<rect x="700" y="52" width="0" height="10" rx="5" fill="'+T+'"><animate attributeName="width" dur="'+D2+'s" values="0;180;180" keyTimes="0;0.9;1" repeatCount="indefinite"/></rect>';
  return s+'</svg>'},
 ramp_safety:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img"><rect width="900" height="640" fill="#9aa5b1"/><rect x="170" y="110" width="560" height="500" fill="none" stroke="#FFE08A" stroke-width="4" stroke-dasharray="14 10"/>';
- [303,585].forEach(function(x){s+='<circle cx="'+x+'" cy="330" r="60" fill="#D0506A" opacity=".45"/><circle cx="'+x+'" cy="330" r="60" fill="none" stroke="#D0506A" stroke-width="3"><animate attributeName="r" values="52;64;52" dur="2s" repeatCount="indefinite"/></circle><path d="M'+(x-23)+' 460 L '+(x-53)+' 630 L '+(x+53)+' 630 L '+(x+23)+' 460 Z" fill="#E08A2F" opacity=".45"/>'});
- s+=plane(0)+cone(172,425)+cone(716,425)+cone(444,615)+'<g stroke="'+T+'" stroke-width="4" stroke-dasharray="8 6"><line x1="444" y1="20" x2="444" y2="140"/></g>';
- s+=badge('A',230,270,18,'#D0506A')+badge('A',660,270,18,'#D0506A')+badge('B',230,590,18,'#E08A2F')+badge('B',660,590,18,'#E08A2F')+badge('C',200,140,18,D)+badge('D',760,430,18,'#E08A2F')+badge('E',480,60,18,T);
+ [337,551].forEach(function(x){s+='<circle cx="'+x+'" cy="300" r="60" fill="#D0506A" opacity=".45"/><circle cx="'+x+'" cy="300" r="60" fill="none" stroke="#D0506A" stroke-width="3"><animate attributeName="r" values="52;64;52" dur="2s" repeatCount="indefinite"/></circle><path d="M'+(x-18)+' 470 L '+(x-48)+' 630 L '+(x+48)+' 630 L '+(x+18)+' 470 Z" fill="#E08A2F" opacity=".45"/>'});
+ s+=plane(0)+cone(172,478)+cone(716,478)+cone(444,615)+'<g stroke="'+T+'" stroke-width="4" stroke-dasharray="8 6"><line x1="444" y1="20" x2="444" y2="140"/></g>';
+ s+=badge('A',262,238,18,'#D0506A')+badge('A',626,238,18,'#D0506A')+badge('B',262,590,18,'#E08A2F')+badge('B',626,590,18,'#E08A2F')+badge('C',200,140,18,D)+badge('D',760,430,18,'#E08A2F')+badge('E',480,60,18,T);
  return s+'</svg>'},
 checkin_layout:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img"><rect width="900" height="460" fill="#F7FAFD"/>'+R(40,40,820,40,'#8a96a3',6)+'<text x="450" y="66" font-size="16" fill="#fff" text-anchor="middle" font-family="Arial">BHS</text>';
  var L=[['A',80,'#7A5CC7'],['B',250,B],['C',520,'#2C8C8C'],['D',690,'#E08A2F']];

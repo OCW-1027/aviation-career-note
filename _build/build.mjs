@@ -200,5 +200,17 @@ const VER = (process.env.GITHUB_SHA || Date.now().toString(36)).slice(0, 8);
   }
 })(OUT);
 
+// 料率の「次に確かめる月」（rates_jp.js の next）を過ぎた項目を知らせる（2026.10）。警告だけで、ビルドは止めない。RATES_MONTH=YYYY-MM で月を指定して試せる
+try {
+  const rc = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(SRC, '1_지상직여객운송입문/assets/rates_jp.js'), 'utf8'), rc);
+  const now = process.env.RATES_MONTH || new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 7), late = [];
+  (function walk(o, p) {
+    if (!o || typeof o !== 'object') return;
+    if (typeof o.next === 'string' && o.next < now) late.push(`${p}  next ${o.next}${o.n ? '  ' + (Array.isArray(o.n) ? o.n[0] : (o.n.ja || '')) : ''}`);
+    for (const k of Object.keys(o)) if (k !== 'n') walk(o[k], p + '.' + k);
+  })(rc.window.RATES, 'RATES');
+  console.log(late.length ? `⚠ 料率の確認の月を過ぎた項目 ${late.length}件（公式の資料で確かめて rates_jp.js を直す）:\n  ` + late.join('\n  ') : `rates: 確認の月を過ぎた項目なし（${now}）`);
+} catch (e) { console.log('rates check skipped: ' + e.message); }
 console.log(`pages: ${pages}, sitemap urls: ${urls.length}, errors: ${errors.length}`);
 if (errors.length) { console.log(errors.slice(0, 20).join('\n')); process.exitCode = 1; }

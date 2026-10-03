@@ -26,7 +26,7 @@ icn_nrt_chart:function(){var Q=window.RMAP2;if(!Q)return '';var M=Q.map,b=M.box,
  s+=apt(P.RKSI,'RKSI','INCHEON',6,28)+apt(P.RJAA,'RJAA','NARITA',10,20);
  Object.keys(M.lab).forEach(function(k){var p=M.lab[k],t={RKRR:'INCHEON FIR',RJJJ:'FUKUOKA FIR',ZKKP:'PYONGYANG FIR'}[k],w=t.length*6.6+12;s+='<rect x="'+(p[0]-w/2)+'" y="'+(p[1]-10)+'" width="'+w+'" height="17" rx="2" fill="#fff" stroke="'+MAG+'"/><text x="'+p[0]+'" y="'+(p[1]+3)+'" font-size="10.5" font-weight="800" text-anchor="middle" fill="'+MAG+'">'+t+'</text>'});
  var path='M'+E.map(function(p){return p.join(' ')}).join(' L');
- s+='<g><path d="M-10 0 L7 -2.5 L12 0 L7 2.5 Z M-3 -1.5 L3 -10 L6 -10 L4 -1.5 Z M-3 1.5 L3 10 L6 10 L4 1.5 Z" fill="#E08A2F" stroke="#7a3e0a" stroke-width="1"/><animateMotion dur="'+DUR+'s" repeatCount="indefinite" rotate="auto" path="'+path+'"/></g></g>';
+ s+='<g>'+(window.ACFT?'<g transform="scale(0.56)">'+window.ACFT.top({c:'#E08A2F',w:'#F4B979',line:'#7a3e0a'})+'</g>':'<path d="M-10 0 L7 -2.5 L12 0 L7 2.5 Z M-3 -1.5 L3 -10 L6 -10 L4 -1.5 Z M-3 1.5 L3 10 L6 10 L4 1.5 Z" fill="#E08A2F" stroke="#7a3e0a" stroke-width="1"/>')+'<animateMotion dur="'+DUR+'s" repeatCount="indefinite" rotate="auto" path="'+path+'"/></g></g>';
  s+='<rect x="'+b[0]+'" y="'+b[1]+'" width="'+b[2]+'" height="'+b[3]+'" fill="none" stroke="'+INK+'" stroke-width="1.5"/>';
  M.grid.lon.forEach(function(l){s+='<text x="'+l[1]+'" y="'+(b[1]-6)+'" font-size="10.5" text-anchor="middle" fill="'+INK+'">E'+l[0]+'\u00B0</text>'});
  M.grid.lat.forEach(function(l){s+='<text x="'+(b[0]+b[2]+4)+'" y="'+(l[1]+4)+'" font-size="10.5" fill="'+INK+'">N'+l[0]+'</text>'});
@@ -61,7 +61,7 @@ icn_nrt_profile:function(){var Q=window.RMAP2;if(!Q)return '';var PR=Q.prof,INK=
  [['TOC',TOC],['TOD',TOD]].forEach(function(t){s+='<circle cx="'+X(t[1])+'" cy="'+TOP+'" r="5" fill="#E08A2F"/><text x="'+X(t[1])+'" y="'+(TOP+18)+'" font-size="10.5" font-weight="800" text-anchor="middle" fill="#b3600a">'+t[0]+'</text>'});
  PR.pts.forEach(function(w,i){var x=X(w[1]),y=G-22-(i%2)*16;s+='<line x1="'+x+'" y1="'+(G-4)+'" x2="'+x+'" y2="'+G+'" stroke="'+INK+'"/><path d="M'+x+' '+(y-10)+' L'+(x+5)+' '+(y-2)+' L'+(x-5)+' '+(y-2)+' Z" fill="#fff" stroke="'+INK+'" stroke-width="1.3"/><text x="'+x+'" y="'+(y+10)+'" font-size="9.5" font-weight="800" text-anchor="middle" fill="'+INK+'">'+w[0]+'</text>'});
  s+='<text x="'+X(0)+'" y="'+(G+32)+'" font-size="10.5" font-weight="800" fill="'+INK+'">RKSI</text><text x="'+X(N)+'" y="'+(G+46)+'" font-size="10.5" font-weight="800" text-anchor="end" fill="'+INK+'">RJAA</text>';
- s+='<g><path d="M-10 0 L7 -2.5 L12 0 L7 2.5 Z M-3 -1.5 L3 -10 L6 -10 L4 -1.5 Z M-3 1.5 L3 10 L6 10 L4 1.5 Z" fill="#E08A2F" stroke="#7a3e0a" stroke-width="1"/><animateMotion dur="'+DUR+'s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>';
+ s+='<g>'+(window.ACFT?'<g transform="scale(0.6)">'+window.ACFT.side({c:'#FFE3C2',w:'#F4B979',line:'#7a3e0a'})+'</g>':'<path d="M-10 0 L7 -2.5 L12 0 L7 2.5 Z M-3 -1.5 L3 -10 L6 -10 L4 -1.5 Z M-3 1.5 L3 10 L6 10 L4 1.5 Z" fill="#E08A2F" stroke="#7a3e0a" stroke-width="1"/>')+'<animateMotion dur="'+DUR+'s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>';
  s+='<text x="'+X0+'" y="'+(G+62)+'" font-size="10" fill="#8a4a07">SCHEMATIC PROFILE (VERTICAL SCALE EXAGGERATED). TOC/TOD POSITIONS ARE TYPICAL, NOT FIXED.</text>';
  return s+'</svg>'}
 };for(var k in F)window.FIGS[k]=F[k];})();
