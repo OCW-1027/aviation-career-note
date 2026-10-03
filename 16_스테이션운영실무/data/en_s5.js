@@ -29,7 +29,7 @@ sections:[
 {name:"Keep it current",x:"Update every quarter or after any staff move. An out-of-date sheet is the most dangerous kind."},
 {name:"Put it in writing",x:"Phone when it is urgent, then always email the key points, so there is no doubt about what was said."},
 {name:"One voice",x:"Do not ask several departments the same question separately. If answers differ, ask planning to settle it."}]}]},
-{h:"The station’s role alongside head office",blocks:[{t:"rows",items:[
+{h:"The station’s role alongside head office",blocks:[{t:"fig",id:"stn_tier",cap:"Three layers: head office, the station and the local parties. The red dotted line shows that head office does not contact the local parties directly."},{t:"rows",items:[
 {name:"Head office",x:"Makes the rules, decides and approves, balancing the whole network."},
 {name:"The station",x:"Gathers local facts accurately, carries out decisions and feeds the front line’s view back."},
 {name:"Local contact point",x:"The station is the contact for the airport company, authorities and handler; head office normally does not contact them directly."},
@@ -44,7 +44,7 @@ next:"4-2 Daily Reporting"});
 set("4-2",{title:"Daily Reporting: Getting the Daily Operations Report Right",hl:"Daily Reporting",subtitle:"Head office sees the station through its daily report. A report whose numbers add up builds trust on its own",
 lead:["Head office follows operations every day through reports from every station. Punctuality figures, passenger numbers, mishandled bags and special passengers are all compiled from station reports.","This lesson covers what goes in the daily operations report, how reporting flows through the day, tips for accuracy, and common mistakes."],
 sections:[
-{h:"Items in the daily operations report (example)",blocks:[{t:"table",cols:["Item","What to write","Example"],rows:[
+{h:"Items in the daily operations report (example)",blocks:[{t:"fig",id:"stn_dailyrep",cap:"A sample daily operations report (fictional flight). The orange frame is the delay code section."},{t:"table",cols:["Item","What to write","Example"],rows:[
 ["Flight and date","Flight number, date (local and UTC), aircraft registration","XX701 / 2 Oct / HL0000"],
 ["Actual times","Door close, off-block, take-off, arrival","STD 10:00 / ATD 10:12"],
 ["Delay and delay code","Minutes late and cause codes (main and secondary)","12 min / main: passengers, secondary: baggage"],
@@ -85,7 +85,7 @@ sections:[
 {name:"Interim reports",sub:"Progress, decisions needed, time of the next report (at set intervals)"},
 {name:"Final report",sub:"Outcome, costs, cause, prevention (by the next working day as a guide)"}]},
 {t:"note",x:"* Times are examples. Safety events have separate deadlines under company rules and for reports to authorities; check the current rules. ★"}]},
-{h:"Who decides (example)",blocks:[{t:"table",cols:["Decision","Head office (OCC etc.)","Station"],rows:[
+{h:"Who decides (example)",blocks:[{t:"fig",id:"stn_decide",cap:"Facts go up from the station to head office; decisions and rules come down."},{t:"table",cols:["Decision","Head office (OCC etc.)","Station"],rows:[
 ["Cancelling or delaying","Decides","Supplies facts and the local outlook"],
 ["Aircraft change","Decides","Reports the effect on seats and special passengers"],
 ["Rebooking onto other or replacement flights","Sets the rules","Arranges individual cases within them"],
@@ -113,7 +113,7 @@ next:"4-4 Passing On Instructions and Manual Revisions"});
 set("4-4",{title:"Passing On Instructions and Manual Revisions",hl:"Passing On Revisions",subtitle:"An instruction means nothing until the front line follows it. Read, align, pass on, confirm, record",
 lead:["Revisions, operational instructions and safety reminders arrive from head office almost every week. If the station only receives them, the front line carries on the old way.","This lesson covers the steps from receiving an instruction to embedding it, checking it against Japanese and airport rules, passing it to the handler, and keeping records."],
 sections:[
-{h:"The flow",blocks:[{t:"ladder",rise:10,steps:[
+{h:"The flow",blocks:[{t:"fig",id:"stn_relay",cap:"Moving diagram: an instruction travels from head office through the station to the handler, and the signatures come back to the station."},{t:"ladder",rise:10,steps:[
 {name:"Receive",sub:"Log it in the register"},
 {name:"Read and assess",sub:"Which tasks and flights does it affect?"},
 {name:"Update station procedures",sub:"Revise the station SOP and notices"},
@@ -148,7 +148,7 @@ next:"4-5 Schedule Changes and Seasonal Preparation"});
 set("4-5",{title:"Schedule Changes and Seasonal Preparation",hl:"Seasonal Preparation",subtitle:"Summer and winter seasons, time and aircraft changes, extra flights and charters. Waiting until it is decided is too late",
 lead:["Airline schedules are built around IATA’s two seasons, summer and winter. At every change of season, departure times, aircraft and frequencies change, and the station has to coordinate all of it with the airport, the handler and the authorities.","This lesson covers the seasons, the station’s preparation once a change is decided, what to check for each kind of change, and points to watch with extra flights and charters."],
 sections:[
-{h:"IATA seasons",blocks:[{t:"table",cols:["Season","Period","What the station does (example)"],rows:[
+{h:"IATA seasons",blocks:[{t:"fig",id:"stn_season",cap:"The strip shows the months of the year: orange for the summer season, blue for winter. The bars below show when preparation starts."},{t:"table",cols:["Season","Period","What the station does (example)"],rows:[
 ["Summer (S)","Last Sunday of March to last Saturday of October","Prepare from the previous autumn; extra flights and larger aircraft"],
 ["Winter (W)","Last Sunday of October to last Saturday of March","Prepare from late summer; winter suspensions, snow clearing and de-icing"]]},
 {t:"note",x:"* Slots are requested and coordinated each season by head office and the airport coordinator. The station feeds back airport conditions and local constraints (OPN 1-3)."}]},
@@ -193,7 +193,7 @@ sections:[
 ["Deportee (DEPA/DEPU)","Whether escorted, documents from the authorities","Timing with the authorities, seat position"],
 ["Pets and animals","Cabin or hold, cage size","Acceptance time, temperature and seasonal limits"]]},
 {t:"note",x:"* Codes and form names vary by airline. Medical forms are approved by head office’s medical staff."}]},
-{h:"Deadlines for receiving information",blocks:[{t:"check",items:[
+{h:"Deadlines for receiving information",blocks:[{t:"fig",id:"stn_deadline",cap:"Moving diagram: from seven days before departure to the day itself. Flags are deadlines; the red zone is after the deadline."},{t:"check",items:[
 {name:"Set deadlines",x:"For example, groups seven days before and special services by 17:00 the day before, agreed in writing."},
 {name:"After the deadline",x:"The station decides whether a late request can be accepted and replies."},
 {name:"Receive it as a list",x:"A list in a fixed format, not text in an email, means fewer omissions."},
@@ -218,7 +218,7 @@ sections:[
 ["Flight details","Gate, time and aircraft changes","Operations control, systems"],
 ["Forms and printing","Boarding pass and tag formats, printer set-up","System help desk"],
 ["User access","IDs and permissions for new staff","Systems, training"]]}]},
-{h:"Stages of a failure",blocks:[{t:"ladder",rise:10,steps:[
+{h:"Stages of a failure",blocks:[{t:"fig",id:"stn_manual",cap:"Moving diagram: time to departure. The red line is the switch-over to manual processing (for example 90 minutes before departure)."},{t:"ladder",rise:10,steps:[
 {name:"Notice",sub:"Which function, since when, which flights"},
 {name:"Call the help desk",sub:"Always note the incident number"},
 {name:"Inform OCC and head office",sub:"Flights affected and the outlook"},
@@ -245,7 +245,7 @@ next:"4-8 Performance Reports, Budgets and Head-Office Audits"});
 set("4-8",{title:"Performance Reports, Budgets and Head-Office Audits",hl:"Head-Office Audits",subtitle:"Report in numbers, explain in numbers, and turn findings into improvements. A station manager’s year is made of this exchange with head office",
 lead:["Every month the station reports its operational quality and costs to head office. Once a year it sets a budget and explains the difference from actual results. And head office’s internal auditors come to check that the station works to the rules.","This lesson covers what goes in the monthly report, how to build a budget and explain variances, the annual review, and how to handle a head-office audit. For cost thinking, see also HR, General Affairs and Finance in Practice 6-1 and 6-2."],
 sections:[
-{h:"Monthly performance report (example)",blocks:[{t:"table",cols:["Item","Content"],rows:[
+{h:"Monthly performance report (example)",blocks:[{t:"fig",id:"stn_cycle",cap:"Moving diagram: report, explain, receive findings, improve. The dotted line shows the cycle starting again the next year."},{t:"table",cols:["Item","Content"],rows:[
 ["Punctuality","On-time departure rate; delay causes (airline, airport, weather and so on)"],
 ["Baggage","Mishandled bags per thousand passengers; main causes"],
 ["Customer feedback","Complaints and compliments, what they were about, and the response"],

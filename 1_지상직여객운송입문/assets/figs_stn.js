@@ -264,9 +264,128 @@ function growFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),
    +R(52,y+h-22,bw,12,BL,6)+(sw>0?R(52,y+h-22,sw,12,GY,6)+(sw<bw?R(52+sw-6,y+h-22,6,12,GY,0):''):'');y+=h+6});
  y+=6;var b=BOX(y,d[3],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+10;var hn=hgt(d[4],11.5,580);s+=TW2(320,y,d[4],11.5,G,700,580);y+=hn+16;return svg(y,s)}}
 
+/* ===== Part 4 本社の運送部門と働く（4-1〜4-8） ===== */
+/* 色の帯がついたカード。戻り値は [図, 高さ] */
+function CARD(x,y,w,head,text,c,fill){var h1=hgt(head,12.5,w-36),h2=text?hgt(text,11.5,w-36):0,h=h1+h2+(text?22:18);
+ return [R(x,y,w,h,fill||'#fff',10,' stroke="'+c+'" stroke-width="2"')+R(x,y,8,h,c,4)+TW2(x+22,y+8,head,12.5,c,900,w-36,'start')+(text?TW2(x+22,y+12+h1,text,11.5,D,700,w-36,'start'):''),h]}
+/* 矢印つきの1行。dir：1=下向き、-1=上向き、0=両方。戻り値は [図, 高さ] */
+function FLOW(y,t,dir,c){var h=Math.max(hgt(t,11.5,440),26),ax=122;
+ return [(dir>=0?ARW(ax,y+2,ax,y+h-2,c||GY,3.5):'')+(dir<=0?ARW(ax+(dir===0?20:0),y+h-2,ax+(dir===0?20:0),y+2,c||GY,3.5):'')+TW2(164,y+(h-hgt(t,11.5,440))/2,t,11.5,D,800,440,'start'),h]}
+
+/* 17. 本社 ― 支店 ― 現地の3つの層（4-1） */
+var TIER={
+ ja:['支店は、本社と現地をつなぐただ1つの窓口',[['本社','規程を作り、判断し、承認する。全社のバランスを見る',NV],['支店','現地の事実を正確に集め、決まったことを実行する。日本の規則や空港の告知を、本社が判断できる形に訳して伝える',BL],['現地（空港会社・当局・ハンドリング会社）','空港の運営、当局の手続き、ハンドリングの現場',TE]],['規程・判断・承認','正確で早い現地の情報','交渉・申請・報告（日本語で）'],'本社は現地に直接連絡しないのが普通です。窓口は支店の1つだけ。','支店が送る情報の正確さと速さが、本社の判断の質を決めます。'],
+ ko:['지점은 본사와 현지를 잇는 단 하나의 창구',[['본사','규정을 만들고, 판단하고, 승인한다. 회사 전체의 균형을 본다',NV],['지점','현지 사실을 정확히 모으고, 정해진 것을 실행한다. 일본 규칙이나 공항 공지를 본사가 판단할 수 있는 형태로 옮겨 전한다',BL],['현지(공항 회사·당국·조업사)','공항 운영, 당국 절차, 조업 현장',TE]],['규정·판단·승인','정확하고 빠른 현지 정보','협의·신청·보고(일본어로)'],'본사는 현지에 직접 연락하지 않는 것이 보통입니다. 창구는 지점 하나.','지점이 보내는 정보의 정확성과 속도가 본사 판단의 질을 정합니다.'],
+ en:['The station is the single link between head office and the local parties',[['Head office','Makes the rules, decides and approves, balancing the whole network',NV],['The station','Gathers local facts accurately and carries out decisions. Turns Japanese rules and airport notices into something head office can decide on',BL],['Local parties (airport company, authorities, handler)','Airport operations, official procedures, the handling floor',TE]],['Rules, decisions, approvals','Accurate, fast local information','Negotiation, applications, reports (in Japanese)'],'Head office does not normally contact the local parties directly. The station is the one contact point.','The accuracy and speed of what the station sends set the quality of head office’s decisions.']};
+function tierFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),mids=[];
+ d[1].forEach(function(t,i){var c=CARD(90,y,530,t[0],t[1],t[2]);s+=c[0];mids.push(y+c[1]/2);y+=c[1];
+  if(i<2){y+=8;(i===0?[[d[2][0],1],[d[2][1],-1]]:[[d[2][2],0]]).forEach(function(q){var f=FLOW(y,q[0],q[1]);s+=f[0];y+=f[1]+6});y+=2}});
+ var a=mids[0],b=mids[2],m=(a+b)/2;
+ s+='<path d="M90 '+a+' L50 '+a+' L50 '+b+' L90 '+b+'" fill="none" stroke="'+RD+'" stroke-width="3" stroke-dasharray="7 6"/><circle cx="50" cy="'+m+'" r="14" fill="#fff" stroke="'+RD+'" stroke-width="3"/><path d="M44 '+(m-6)+' L56 '+(m+6)+' M56 '+(m-6)+' L44 '+(m+6)+'" stroke="'+RD+'" stroke-width="3" stroke-linecap="round"/>';
+ y+=12;var b1=BOX(y,d[3],'#FDECEC','#B42318',12);s+=b1[0];y+=b1[1]+10;var hn=hgt(d[4],11.5,580);s+=TW2(320,y,d[4],11.5,G,700,580);y+=hn+16;return svg(y,s)}}
+
+/* 18. 運航の日報の見本（4-2）。行：[項目, 例] */
+var DREP={
+ ja:['運航の日報 ― 事実・数字・理由がそろえば十分（例）','運航の日報　XX701',[['便と日付','XX701 / 10月2日 / HL0000'],['実際の時刻','STD 10:00 / ATD 10:12'],['遅れと遅延コード','12分 / 主：旅客　従：手荷物'],['乗客の数','C 8 / Y 162 / INF 2'],['ノーショー・オフロード','ノーショー 3 / オフロード 1（書類不備）'],['手荷物','185個・2,960kg / 積み残し 0'],['特別なお客様','WCHR 4 / UM 1'],['特記事項','ゲート変更（工事）']],'遅延コードは、いちばん大きい原因を主に、残りを従にします。',['事実','数字','理由'],'何もなかった日は、特記事項に「なし」と書きます。時刻は自分の時計ではなく、システム・電報の時刻に合わせます。'],
+ ko:['일일 운항 보고 — 사실·숫자·이유가 갖춰지면 충분하다(예)','일일 운항 보고　XX701',[['편과 날짜','XX701 / 10월 2일 / HL0000'],['실제 시각','STD 10:00 / ATD 10:12'],['지연과 지연 코드','12분 / 주: 여객　부: 수하물'],['승객 수','C 8 / Y 162 / INF 2'],['노쇼·오프로드','노쇼 3 / 오프로드 1(서류 미비)'],['수하물','185개·2,960kg / 미탑재 0'],['특별 승객','WCHR 4 / UM 1'],['특이 사항','게이트 변경(공사)']],'지연 코드는 가장 큰 원인을 주, 나머지를 부로 합니다.',['사실','숫자','이유'],'아무 일 없는 날은 특이 사항에 「없음」이라고 씁니다. 시각은 내 시계가 아니라 시스템·전문의 시각에 맞춥니다.'],
+ en:['The daily operations report: facts, numbers and reasons are enough (example)','Daily operations report  XX701',[['Flight and date','XX701 / 2 Oct / HL0000'],['Actual times','STD 10:00 / ATD 10:12'],['Delay and delay code','12 min / main: passengers, secondary: baggage'],['Passengers','C 8 / Y 162 / INF 2'],['No-shows and offloads','No-shows 3 / offload 1 (documents)'],['Baggage','185 pcs, 2,960 kg / left behind 0'],['Special passengers','WCHR 4 / UM 1'],['Remarks','Gate change (works)']],'For the delay code, the largest cause is the main code and the rest are secondary.',['Facts','Numbers','Reasons'],'On a day with nothing to report, write “none” under remarks. Use system and message times, not your own watch.']};
+function drepFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),top=y,inner='';
+ var hh=hgt(d[1],12.5,500)+16;inner+=R(40,y,560,hh,NV,8)+TW2(60,y+8,d[1],12.5,'#fff',900,500,'start');y+=hh+8;
+ d[2].forEach(function(r,i){var hot=i===2,hl=hgt(r[0],11,500),hv=hgt(r[1],12.5,500),ht=hot?hgt(d[3],11,480)+10:0,h=hl+hv+ht+(hot?22:14);
+  inner+=R(54,y,532,h,hot?'#FFF3E0':(i%2?'#F4F7FB':'#fff'),6,hot?' stroke="'+OR+'" stroke-width="2"':'')+TW2(66,y+5,r[0],11,G,800,500,'start')+TW2(66,y+8+hl,r[1],12.5,D,900,500,'start')
+   +(hot?TW2(66,y+14+hl+hv,d[3],11,'#B45309',800,480,'start'):'');y+=h+4});
+ y+=8;s+=R(40,top,560,y-top,'#fff',8,' stroke="#9AA9B8" stroke-width="2"')+inner;y+=12;
+ var ch=0;d[4].forEach(function(t){ch=Math.max(ch,hgt(t,12.5,160)+16)});
+ d[4].forEach(function(t,i){var x=40+i*190;s+=R(x,y,180,ch,[BL,TE,OR][i],ch/2>18?16:ch/2)+TW2(x+90,y+(ch-hgt(t,12.5,160))/2,t,12.5,'#fff',900,160)});y+=ch+12;
+ var hn=hgt(d[5],11.5,580);s+=TW2(320,y,d[5],11.5,G,700,580);y+=hn+16;return svg(y,s)}}
+
+/* 19. 事実は上へ、決定は下へ（4-3） */
+var DEC={
+ ja:['イレギュラーのとき ― 事実は上へ、決定は下へ',['本社（運航統制など）― 決める',['欠航・遅延、機材の変更を決める','振り替え・ホテル・食事の基準と上限を決める','補償の基準を決める。報道には広報が答える']],['支店 ― 事実を伝え、基準の中で動く',['事実と現地の見通しを伝える','基準の中で、個別に手配する','空港・当局の窓口として交渉・報告する。約束はしない']],'事実・影響・いま分からないこと（第一報は15〜30分以内が目安）','決定と基準','最初の30分で支店がすべきことは、決めることではなく、決める人が判断できる事実をそろえることです。'],
+ ko:['비정상 때 — 사실은 위로, 결정은 아래로',['본사(운항 통제 등) — 정한다',['결항·지연, 기재 변경을 정한다','대체편·호텔·식사의 기준과 상한을 정한다','보상 기준을 정한다. 언론에는 홍보가 답한다']],['지점 — 사실을 전하고, 기준 안에서 움직인다',['사실과 현지 전망을 전한다','기준 안에서 개별로 수배한다','공항·당국의 창구로서 협의·보고한다. 약속하지 않는다']],'사실·영향·지금 모르는 것(1차 보고는 15~30분 이내가 기준)','결정과 기준','첫 30분에 지점이 할 일은 정하는 것이 아니라, 정할 사람이 판단할 수 있는 사실을 갖추는 것입니다.'],
+ en:['In an irregularity: facts go up, decisions come down',['Head office (OCC and others): decides',['Decides cancellations, delays and aircraft changes','Sets the rules and limits for rebooking, hotels and meals','Sets compensation standards. Corporate communications answers the media']],['The station: supplies facts and acts within the rules',['Supplies facts and the local outlook','Arranges individual cases within the rules','Negotiates and reports as the contact for the airport and authorities. Makes no promises']],'Facts, impact and what is not yet known (first report within 15–30 minutes as a guide)','Decisions and rules','In the first thirty minutes the station’s job is not to decide but to give the decider the facts needed to decide.']};
+function decFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ function blk(b,c){var h1=hgt(b[0],13,550),hs=b[1].map(function(t){return hgt('・'+t,11.5,550)}),h=h1+22;hs.forEach(function(v){h+=v+4});
+  var g=R(20,y,600,h,c,12)+TW2(40,y+9,b[0],13,'#fff',900,550,'start'),yy=y+15+h1;b[1].forEach(function(t,i){g+=TW2(40,yy,'・'+t,11.5,'#fff',700,550,'start');yy+=hs[i]+4});s+=g;y+=h}
+ blk(d[1],NV);y+=8;
+ [[d[3],-1,OR],[d[4],1,BL]].forEach(function(q){var f=FLOW(y,q[0],q[1],q[2]);s+='<g>'+f[0]+'<animate attributeName="opacity" values="1;0.35;1" keyTimes="0;0.5;1" dur="'+(q[1]<0?2:2.6)+'s" repeatCount="indefinite"/></g>';y+=f[1]+6});
+ y+=2;blk(d[2],BL);y+=12;var b=BOX(y,d[5],'#FFF3E0','#B45309',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
+/* 20. 本社の指示を現場まで届けるリレー（4-4） */
+var RLY={
+ ja:['本社の指示は、現場で守られて初めて意味がある',['本社','指示・マニュアルの改訂（韓国語・英語）'],['支店 ― 読んで、影響を見て、支店の手順に反映する','影響を見るときの問い'],['日本の法令とぶつからないか','空港のルールと合うか','契約の範囲の中か','システムの設定が要るか','施行日までに間に合うか'],['ハンドリング会社','教育と確認の署名。施行日の最初の便は、支店の担当が現場で見る'],['受け取る（受付の台帳に記録）','日本語に訳して伝える（「これまで」と「これから」を表にする）','確認の署名と記録が、支店に戻ってくる'],'伝えたことを確かめるまでが、支店の仕事です。'],
+ ko:['본사 지시는 현장에서 지켜질 때 비로소 의미가 있다',['본사','지시·매뉴얼 개정(한국어·영어)'],['지점 — 읽고, 영향을 보고, 지점 절차에 반영한다','영향을 볼 때의 질문'],['일본 법령과 부딪치지 않나','공항 규칙과 맞나','계약 범위 안인가','시스템 설정이 필요한가','시행일까지 될까'],['조업사','교육과 확인 서명. 시행일 첫 편은 지점 담당이 현장에서 본다'],['받는다(접수 대장에 기록)','일본어로 옮겨 전한다(「지금까지」와 「앞으로」를 표로)','확인 서명과 기록이 지점으로 돌아온다'],'전한 것을 확인하기까지가 지점의 일입니다.'],
+ en:['A head-office instruction only matters once the floor follows it',['Head office','Instructions and manual revisions (Korean, English)'],['The station: read it, assess the impact, update station procedures','Questions for assessing impact'],['Does it conflict with Japanese law?','Does it fit the airport’s rules?','Is it within the contract?','Does the system need changing?','Can it be ready in time?'],['The handler','Training and read-and-sign. The station watches the first flight on the effective date'],['Receive (log it in the register)','Pass it on in Japanese (a table of “until now” and “from now”)','Signatures and records come back to the station'],'The station’s job runs until what was passed on has been confirmed.']};
+function rlyFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),x0=70,w=550;
+ var c1=CARD(x0,y,w,d[1][0],d[1][1],NV);s+=c1[0];y+=c1[1]+6;var f1=FLOW(y,d[5][0],1);s+=f1[0];y+=f1[1]+6;
+ var y0=y,h1=hgt(d[2][0],12.5,w-36),h2=hgt(d[2][1],11,w-36),inner=TW2(x0+22,y+8,d[2][0],12.5,BL,900,w-36,'start')+TW2(x0+22,y+14+h1,d[2][1],11,G,800,w-36,'start'),yy=y+20+h1+h2;
+ d[3].forEach(function(t){var q='✓ '+t,hq=hgt(q,11.5,w-60);inner+=R(x0+20,yy,w-36,hq+10,'#EEF4FA',6)+TW2(x0+30,yy+5,q,11.5,D,700,w-60,'start');yy+=hq+14});
+ yy+=4;s+=R(x0,y0,w,yy-y0,'#fff',10,' stroke="'+BL+'" stroke-width="2"')+R(x0,y0,8,yy-y0,BL,4)+inner;var m1=(y0+yy)/2;y=yy+6;
+ var f2=FLOW(y,d[5][1],1);s+=f2[0];y+=f2[1]+6;var c3=CARD(x0,y,w,d[4][0],d[4][1],TE);s+=c3[0];var m2=y+c3[1]/2;y+=c3[1];
+ s+='<path d="M'+x0+' '+m2+' L40 '+m2+' L40 '+m1+' L60 '+m1+'" fill="none" stroke="'+TE+'" stroke-width="3.5" stroke-dasharray="9 6" stroke-linejoin="round"><animate attributeName="stroke-dashoffset" values="30;0" keyTimes="0;1" dur="1.2s" repeatCount="indefinite"/></path><path d="M58 '+(m1-7)+' L68 '+m1+' L58 '+(m1+7)+'" fill="none" stroke="'+TE+'" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>';
+ y+=12;var hl=hgt(d[5][2],12,560);s+=TW2(320,y,d[5][2],12,'#14633F',900,560);y+=hl+10;var b=BOX(y,d[6],'#FFF3E0','#B45309',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
+/* 21. IATAの季節と準備の時期（4-5） */
+var SEAS={
+ ja:['夏ダイヤと冬ダイヤ ― 準備は、決まる前から始まる',['夏ダイヤ（S）：3月の最終日曜日〜10月の最終土曜日','冬ダイヤ（W）：10月の最終日曜日〜翌年3月の最終土曜日'],['夏ダイヤの準備：前年の秋から','冬ダイヤの準備：夏の終わりから'],'変更が決まってからの準備',[['本社から確定の連絡','変更の内容・開始日・対象の便'],['空港・当局','カウンター・ゲート・駐機場の割り当て、CIQの時間'],['ハンドリング会社','人員・機材の手配、作業の時刻の変更'],['システム','DCSへの便の登録、帳票の確認'],['案内','旅行会社・お客様・スタッフへの告知'],['初日の確認','最初の便を現場で見る']],'数字は月。本社が計画している段階で現地の制約を伝えておくと、確定後の準備がずっと楽になります。'],
+ ko:['하계와 동계 스케줄 — 준비는 정해지기 전부터 시작된다',['하계(S): 3월 마지막 일요일~10월 마지막 토요일','동계(W): 10월 마지막 일요일~다음 해 3월 마지막 토요일'],['하계 준비: 전년 가을부터','동계 준비: 늦여름부터'],'변경이 정해진 뒤의 준비',[['본사의 확정 연락','변경 내용·시작일·대상 편'],['공항·당국','카운터·게이트·주기장 배정, CIQ 시간'],['조업사','인원·장비 수배, 작업 시각 변경'],['시스템','DCS에 편 등록, 서식 확인'],['안내','여행사·승객·직원에게 공지'],['첫날 확인','첫 편을 현장에서 본다']],'숫자는 월. 본사가 계획하는 단계에서 현지 제약을 전해 두면 확정 뒤의 준비가 훨씬 수월합니다.'],
+ en:['Summer and winter seasons: preparation starts before anything is decided',['Summer (S): last Sunday of March to last Saturday of October','Winter (W): last Sunday of October to last Saturday of March'],['Preparing for summer: from the previous autumn','Preparing for winter: from late summer'],'Preparing once a change is decided',[['Confirmation from head office','What changes, from when, which flights'],['Airport and authorities','Counters, gates, stands; CIQ hours'],['Handler','Staff and equipment; new work times'],['System','Flight set-up in the DCS; check forms'],['Notices','Travel agencies, passengers and staff'],['First-day check','Watch the first flight on site']],'Numbers are months. Telling head office about local constraints while it is still planning makes preparation after confirmation far easier.']};
+function seasFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),f=FS(11),cw=50,x0=20,ch=Math.max(34,f*1.9),SC='#FFE7C7',WC='#DCEBFA';
+ for(var m=1;m<=12;m++){var su=m>=4&&m<=10;s+=R(x0+(m-1)*cw,y,cw-2,ch,su?SC:WC,4)+tx(x0+(m-1)*cw+cw/2-1,y+ch/2+f*0.35,String(m),11,su?'#7A3E0A':'#1B5FA6',900)}
+ [3,10].forEach(function(m){s+='<line x1="'+(x0+m*cw-1)+'" y1="'+(y-6)+'" x2="'+(x0+m*cw-1)+'" y2="'+(y+ch+6)+'" stroke="'+D+'" stroke-width="2.5"/>'});
+ y+=ch+12;s+=R(x0+9*cw,y,3*cw-2,12,OR,6)+R(x0,y,3*cw-2,12,OR,6);y+=18;s+=R(x0+7*cw,y,3*cw-2,12,BL,6);y+=24;
+ [[SC,d[1][0]],[WC,d[1][1]],[OR,d[2][0]],[BL,d[2][1]]].forEach(function(g){var q=LEG(y,g[1],g[0]);s+=q[0];y+=q[1]});y+=8;
+ var hh=hgt(d[3],12.5,560)+14;s+=R(20,y,600,hh,NV,10)+TW2(320,y+7,d[3],12.5,'#fff',900,560);y+=hh+8;
+ var r0=Math.max(12,FS(11.5)*0.72);
+ d[4].forEach(function(r,i){var h1=hgt(r[0],12,520),h2=hgt(r[1],11.5,520),h=h1+h2+14;s+=(i%2?'':R(20,y,600,h,'#EEF4FA',8))+'<circle cx="'+(34+r0)+'" cy="'+(y+h/2)+'" r="'+r0+'" fill="'+BL+'"/>'+tx(34+r0,y+h/2+FS(11.5)*0.35,String(i+1),11.5,'#fff',900)+TW2(46+r0*2,y+5,r[0],12,D,900,520-r0,'start')+TW2(46+r0*2,y+8+h1,r[1],11.5,G,700,520-r0,'start');y+=h+2});
+ y+=10;var hn=hgt(d[5],11.5,580);s+=TW2(320,y,d[5],11.5,G,700,580);y+=hn+16;return svg(y,s)}}
+
+/* 22. 情報を受け取る締め切り（4-6） */
+var DEAD={
+ ja:['特別なお客様の情報 ― 締め切りを決めて、前日までにそろえる（例）',['D-7：団体の名簿・VIPの情報の締め切り','D-1の17時：特別なサービスの一覧（SSR）の締め切り','締め切りのあと：受けられるかを支店が判断して返事をする'],'決まった形の一覧で受け取り、受け取ったことと準備できることを本社に返します。','締め切りは本社と支店で決めて書面にします。日付は例です。Dは出発の日。'],
+ ko:['특별 승객 정보 — 마감을 정하고, 전날까지 갖춘다(예)',['D-7: 단체 명단·VIP 정보의 마감','D-1 17시: 특별 서비스 목록(SSR)의 마감','마감 뒤: 받을 수 있는지 지점이 판단해 답한다'],'정해진 형식의 목록으로 받고, 받았다는 것과 준비 가능한 것을 본사에 회신합니다.','마감은 본사와 지점이 정해 서면으로 남깁니다. 날짜는 예입니다. D는 출발일.'],
+ en:['Special passenger information: set deadlines and have it all by the day before (example)',['D-7: deadline for group lists and VIP details','D-1, 17:00: deadline for the special service list (SSR)','After the deadline: the station decides whether a request can be accepted and replies'],'Receive it as a list in a fixed format, and tell head office what you received and what you can prepare.','Deadlines are agreed between head office and the station in writing. The dates are examples. D is the day of departure.']};
+function deadFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),f=FS(11),X=function(dy){return 60+520*(7-dy)/7},top=y+18,bh=Math.max(30,f*1.7),dur=9;
+ s+=R(X(7),top,X(1)-X(7),bh,'#E3F4EA',6)+R(X(1),top,X(0)-X(1),bh,'#FBD5D2',6);
+ [[7,OR],[1,RD]].forEach(function(g){var x=X(g[0]);s+='<line x1="'+x+'" y1="'+(top-16)+'" x2="'+x+'" y2="'+(top+bh)+'" stroke="'+g[1]+'" stroke-width="3.5"/><path d="M'+x+' '+(top-16)+' L'+(x+16)+' '+(top-10)+' L'+x+' '+(top-4)+' Z" fill="'+g[1]+'"/>'});
+ s+='<line x1="0" y1="'+(top-2)+'" x2="0" y2="'+(top+bh+2)+'" stroke="'+NV+'" stroke-width="3"><animateTransform attributeName="transform" type="translate" values="'+X(7)+' 0;'+X(0)+' 0;'+X(0)+' 0" keyTimes="0;0.9;1" dur="'+dur+'s" repeatCount="indefinite"/></line>';
+ y=top+bh+f*1.3;[[7,'D-7','start'],[3,'D-3','middle'],[1,'D-1','middle'],[0,'D','end']].forEach(function(t){s+=tx(X(t[0])+(t[2]==='end'?4:0),y,t[1],11,G,800,t[2])});y+=f*0.8;
+ [OR,RD,'#F2A49E'].forEach(function(c,i){var g=LEG(y,d[1][i],c);s+=g[0];y+=g[1]});y+=6;
+ var b=BOX(y,d[2],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+10;var hn=hgt(d[3],11.5,580);s+=TW2(320,y,d[3],11.5,G,700,580);y+=hn+16;return svg(y,s)}}
+
+/* 23. システムの障害：手作業に切り替える時刻（4-7） */
+var MAN={
+ ja:['システムが止まったら ― 切り替える時刻を、先に決めておく（例）','出発予定時刻（STD）までの分',[['障害に気づく 〜 切り替えの時刻','ヘルプデスクに連絡（障害の番号を控える）、運航統制・本社に共有、手作業の準備',OR],['切り替えの時刻のあと（例：出発の90分前）','手書きの搭乗券・タグ、先に出しておいた乗客の名簿（PNL）、手計算のロードシートで進める',BL],['戻ったあと','手で処理したデータをシステムに合わせる。ここまで終わって、はじめて通常に戻る',GN]],'切り替えの基準は、時刻で前もって決めておきます。90分は例です。年に一度は手作業のチェックインを練習します。'],
+ ko:['시스템이 멈추면 — 전환할 시각을 먼저 정해 둔다(예)','출발 예정 시각(STD)까지의 분',[['장애를 알아챈다 ~ 전환 기준 시각','헬프데스크에 연락(장애 번호를 적는다), 운항 통제·본사에 공유, 수작업 준비',OR],['전환 기준 시각 이후(예: 출발 90분 전)','수기 탑승권·태그, 미리 뽑아 둔 승객 명단(PNL), 수계산 로드시트로 진행한다',BL],['복구 뒤','손으로 처리한 데이터를 시스템에 맞춘다. 여기까지 끝나야 비로소 정상',GN]],'전환 기준은 시각으로 미리 정해 둡니다. 90분은 예입니다. 1년에 한 번은 수작업 체크인을 연습합니다.'],
+ en:['When the system stops: decide the switch-over time in advance (example)','Minutes to scheduled departure (STD)',[['From noticing the failure to the switch-over time','Call the help desk (note the incident number), inform OCC and head office, get ready to work by hand',OR],['After the switch-over time (for example 90 minutes before departure)','Proceed with manual boarding passes and tags, the passenger list (PNL) printed earlier and a hand-calculated load sheet',BL],['After recovery','Bring the manually processed data into the system. Only then is the operation back to normal',GN]],'Set the switch-over rule by time, in advance. Ninety minutes is an example. Practise manual check-in at least once a year.']};
+function manFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),f=FS(11),X=function(m){return 40+560*(m+150)/150},top=y+8,bh=Math.max(34,f*1.9),dur=9;
+ s+=R(X(-150),top,X(-90)-X(-150),bh,'#FFE7C7',6)+R(X(-90),top,X(0)-X(-90),bh,'#D6E8FA',6);
+ s+='<line x1="'+X(-90)+'" y1="'+(top-8)+'" x2="'+X(-90)+'" y2="'+(top+bh+8)+'" stroke="'+RD+'" stroke-width="4"/><line x1="'+X(0)+'" y1="'+(top-8)+'" x2="'+X(0)+'" y2="'+(top+bh+8)+'" stroke="'+NV+'" stroke-width="4"/>';
+ s+='<circle cx="0" cy="'+(top+bh/2)+'" r="8" fill="'+NV+'" stroke="#fff" stroke-width="2"><animateTransform attributeName="transform" type="translate" values="'+X(-150)+' 0;'+X(0)+' 0;'+X(0)+' 0" keyTimes="0;0.9;1" dur="'+dur+'s" repeatCount="indefinite"/></circle>';
+ y=top+bh+8+f*1.2;[[-150,'start'],[-120,'middle'],[-90,'middle'],[-60,'middle'],[-30,'middle']].forEach(function(t){s+=tx(X(t[0]),y,String(t[0]),11,t[0]===-90?RD:G,t[0]===-90?900:700,t[1])});s+=tx(X(0),y,'STD',11,NV,900,'end');y+=f*0.7;
+ var ha=hgt(d[1],11,560);s+=TW2(320,y,d[1],11,G,700,560);y+=ha+12;
+ d[2].forEach(function(r){var c=CARD(20,y,600,r[0],r[1],r[2]);s+=c[0];y+=c[1]+8});
+ y+=2;var hn=hgt(d[3],11.5,580);s+=TW2(320,y,d[3],11.5,G,700,580);y+=hn+16;return svg(y,s)}}
+
+/* 24. 支店長の1年：本社との往復（4-8） */
+var CYC={
+ ja:['支店長の1年 ― 数字で報告し、数字で説明し、指摘を改善につなげる',[['数字で報告する','月の実績：定時性・手荷物・お客様の声・安全・費用・人員',BL],['数字で説明する','予算との差を、便数・単価・イレギュラー・為替に分けて説明する',TE],['指摘を受ける','本社の監査・年に一度の評価の面談。事実を確かめ、言い訳をしない',OR],['次の改善につなげる','是正の計画（原因・対策・期限・担当）→ 完了の報告（証拠を添える）',GN]],'完了まで終えた記録が、次の年の報告と監査で支店を守ります。','監査は支店を責める場ではなく、支店が自分で気づけなかったことを見つけてくれる場です。'],
+ ko:['지점장의 1년 — 숫자로 보고하고, 숫자로 설명하고, 지적을 개선으로 잇는다',[['숫자로 보고한다','월간 실적: 정시성·수하물·고객의 목소리·안전·비용·인원',BL],['숫자로 설명한다','예산과의 차이를 편수·단가·비정상·환율로 나눠 설명한다',TE],['지적을 받는다','본사 감사·연간 평가 면담. 사실을 확인하고 변명하지 않는다',OR],['다음 개선으로 잇는다','시정 계획(원인·대책·기한·담당) → 완료 보고(증거를 붙인다)',GN]],'완료까지 마친 기록이 다음 해의 보고와 감사에서 지점을 지킵니다.','감사는 지점을 탓하는 자리가 아니라, 지점이 스스로 알아채지 못한 것을 찾아 주는 자리입니다.'],
+ en:['A station manager’s year: report in numbers, explain in numbers, turn findings into improvements',[['Report in numbers','Monthly results: punctuality, baggage, customer feedback, safety, costs, staffing',BL],['Explain in numbers','Split the variance from budget into flights, unit prices, irregularities and exchange rates',TE],['Receive findings','Head-office audits and the annual review. Confirm the facts; no excuses',OR],['Turn them into improvements','Corrective action plan (cause, action, deadline, owner), then a completion report with evidence',GN]],'Records of actions carried through to completion protect the station in the next year’s reports and audits.','An audit is not there to blame the station. It finds what the station could not see for itself.']};
+function cycFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),mid=[],r0=Math.max(13,FS(12)*0.72);
+ d[1].forEach(function(r,i){var c=r[2],h1=hgt(r[0],12.5,480),h2=hgt(r[1],11.5,480),h=h1+h2+22;
+  s+=R(70,y,550,h,'#fff',10,' stroke="'+c+'" stroke-width="2"')+'<circle cx="'+(70+r0+10)+'" cy="'+(y+h/2)+'" r="'+r0+'" fill="'+c+'"/>'+tx(70+r0+10,y+h/2+FS(12)*0.35,String(i+1),12,'#fff',900)
+   +TW2(70+r0*2+24,y+8,r[0],12.5,c,900,480-r0,'start')+TW2(70+r0*2+24,y+12+h1,r[1],11.5,D,700,480-r0,'start');mid.push(y+h/2);y+=h;
+  if(i<d[1].length-1){s+=ARW(345,y+3,345,y+17,GY,3.5);y+=22}});
+ var a=mid[0],b=mid[mid.length-1];
+ s+='<path d="M70 '+b+' L40 '+b+' L40 '+a+' L60 '+a+'" fill="none" stroke="'+GN+'" stroke-width="3.5" stroke-dasharray="9 6" stroke-linejoin="round"><animate attributeName="stroke-dashoffset" values="30;0" keyTimes="0;1" dur="1.2s" repeatCount="indefinite"/></path><path d="M58 '+(a-7)+' L68 '+a+' L58 '+(a+7)+'" fill="none" stroke="'+GN+'" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>';
+ y+=12;var hl=hgt(d[2],12,560);s+=TW2(320,y,d[2],12,'#14633F',900,560);y+=hl+10;var bx=BOX(y,d[3],'#EEF4FA',NV,12);s+=bx[0];y+=bx[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.stn_eval=H.FIX2(evalFig(EVAL));window.FIGS.stn_otp=H.FIX2(otpFig(OTP));window.FIGS.stn_delay=H.FIX2(delayFig(DLY));
 window.FIGS.stn_crit=H.FIX2(critFig(CRIT));window.FIGS.stn_ratio=H.FIX2(ratioFig(RATIO));window.FIGS.stn_spi=H.FIX2(spiFig(SPI));window.FIGS.stn_self=H.FIX2(selfFig(SELF));
 window.FIGS.stn_sla=H.FIX2(slaFig(SLA));window.FIGS.stn_audit=H.FIX2(audFig(AUD));window.FIGS.stn_capa=H.FIX2(capaFig(CAPA));window.FIGS.stn_team=H.FIX2(teamFig(TEAM));
 window.FIGS.stn_day=H.FIX2(dayFig(DAY));window.FIGS.stn_prio=H.FIX2(prioFig(PRIO));window.FIGS.stn_irr=H.FIX2(irrFig(IRR));window.FIGS.stn_report=H.FIX2(repFig(REP));window.FIGS.stn_grow=H.FIX2(growFig(GROW));
+window.FIGS.stn_tier=H.FIX2(tierFig(TIER));window.FIGS.stn_dailyrep=H.FIX2(drepFig(DREP));window.FIGS.stn_decide=H.FIX2(decFig(DEC));window.FIGS.stn_relay=H.FIX2(rlyFig(RLY));
+window.FIGS.stn_season=H.FIX2(seasFig(SEAS));window.FIGS.stn_deadline=H.FIX2(deadFig(DEAD));window.FIGS.stn_manual=H.FIX2(manFig(MAN));window.FIGS.stn_cycle=H.FIX2(cycFig(CYC));
 })();
