@@ -41,7 +41,7 @@ p18:['18_항공기초지식/00_シリーズ全体_航空の基礎知識.html','�
 p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','運航管理の実務','운항관리 실무','Flight Dispatch Operations'],
 p23:['23_재무3표실무/00_シリーズ全体_財務3表.html','数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],
 p12:['12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','会社の人事・総務・財務の実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice']};
-var CMAP={load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p18',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23',finmemo:'p23',finclose:'p12'};
+var CMAP={load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p19',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23',finmemo:'p23',finclose:'p12'};
 var FT={ja:['← 講座の目次','資料室','ほかのツールを見る →'],ko:['← 강좌 목차','자료실','다른 도구 보기 →'],en:['\u2190 Course contents','Resources','See other tools \u2192']};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=
@@ -92,7 +92,15 @@ function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.qu
  var f=document.querySelector('.shfoot');if(f){var x=FT[l],c=f.querySelector('.shc'),s=f.querySelector('.shl');if(c){c.querySelector('small').textContent=x[0];c.querySelector('b').textContent=CR[CMAP[page]][{ja:1,ko:2,en:3}[l]]}s.querySelector('small').textContent=x[1];s.querySelector('b').textContent=x[2];s.href=HOME+'?lang='+l+'#tools'}}
 /* 表の見出しと中身の位置をそろえる：中身が短い列・入力欄の列は、見出しと中身を中央ぞろえにする（表が描き直されるたびに適用） */
 function alignTables(){Array.prototype.forEach.call(document.querySelectorAll('table'),function(tb){if(tb.closest&&tb.closest('[data-noalign]'))return;var rows=Array.prototype.slice.call(tb.rows);if(rows.length<2)return;var hr=null;for(var i=0;i<rows.length;i++){if(rows[i].querySelector('th')&&!rows[i].querySelector('td')){hr=rows[i];break}}if(!hr)return;var n=hr.cells.length;for(var c=0;c<n;c++){var ok=true,cnt=0;for(var r=0;r<rows.length;r++){var row=rows[r];if(row===hr||row.cells.length!==n)continue;var td=row.cells[c];if(!td||td.tagName!=='TD')continue;cnt++;if(td.querySelector('input,select,button'))continue;var s=(td.textContent||'').trim(),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>18){ok=false;break}}if(ok&&cnt){hr.cells[c].style.textAlign='center';for(var r2=0;r2<rows.length;r2++){var rw=rows[r2];if(rw!==hr&&rw.cells.length===n&&rw.cells[c].tagName==='TD')rw.cells[c].style.textAlign='center'}}}})}
-var alignQ=0;function alignSoon(){if(alignQ)return;alignQ=1;(window.requestAnimationFrame||setTimeout)(function(){alignQ=0;alignTables()})}
-function startAlign(){alignTables();new MutationObserver(alignSoon).observe(document.body,{childList:true,subtree:true})}
+/* 휴대폰（幅600px以下）では、横にはみ出す表・図を画面の幅に合わせて縮める（2026.10）。まず最小幅を外して折り返し、それでも広ければ全体を縮小（zoom）。
+   入力欄のある表は指で操作しにくくなるので縮めない。data-nofit の中も対象外。縮めてもピンチで拡大できる */
+window.FZ=window.FZ||(function(){var SEL='.tbl,.scroll,.figscroll,.tw,.dtw,.ls,.formula,.bridge,.dialwrap,[style*="overflow-x"]';
+function reset(){Array.prototype.forEach.call(document.querySelectorAll('[data-fz]'),function(c){var m=c.getAttribute('data-fz');c.style.zoom='';c.style.minWidth=m==='-'?'':m;c.removeAttribute('data-fz')})}
+function apply(){if((window.innerWidth||1024)>600)return;Array.prototype.forEach.call(document.querySelectorAll(SEL),function(box){if(box.closest('[data-nofit]')||box.querySelector('input,select,textarea'))return;var cs=getComputedStyle(box),aw=box.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0);if(aw<=0)return;
+ Array.prototype.forEach.call(box.children,function(c){if(c.hasAttribute('data-fz')||(c.parentElement&&c.parentElement.closest('[data-fz]')))return;if(c.scrollWidth<=aw+1&&!c.style.minWidth)return;c.setAttribute('data-fz',c.style.minWidth||'-');c.style.minWidth='0';var w=c.scrollWidth;if(w>aw+1)c.style.zoom=Math.max(.3,aw/w).toFixed(4)});if(box.scrollWidth>box.clientWidth+1&&!box.hasAttribute('data-fz')){box.setAttribute('data-fz',box.style.minWidth||'-');box.style.zoom=Math.max(.3,(box.clientWidth-1)/box.scrollWidth).toFixed(4)}})}
+return {reset:reset,apply:apply}})();
+function fitAll(){if(window.FZ){FZ.reset();FZ.apply()}}
+var alignQ=0;function alignSoon(){if(alignQ)return;alignQ=1;(window.requestAnimationFrame||setTimeout)(function(){alignQ=0;alignTables();fitAll()})}
+function startAlign(){alignTables();fitAll();new MutationObserver(alignSoon).observe(document.body,{childList:true,subtree:true});window.addEventListener('resize',alignSoon);document.addEventListener('click',function(){setTimeout(alignSoon,30)});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(alignSoon)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){init();startAlign()});else{init();startAlign()}
 })();

@@ -46,3 +46,6 @@ html[lang=ko] .card b{word-break:keep-all;overflow-wrap:anywhere}
 .tag{display:inline-block;font-size:11px;font-weight:600;border-radius:6px;padding:0 6px;margin-top:6px;background:#FFF4D6;color:#7A5A00}
 footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
 footer a{color:var(--muted)}
+
+/* 1つの講座の中の地域タブ（主要空港ガイド）2026.10 */
+.grp{display:flex;gap:8px;margin:16px 0 0}.grp a{flex:1;text-align:center;padding:11px 8px;border:2px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:700 16px var(--disp);text-decoration:none}.grp a:hover{border-color:var(--sky)}.grp a.on{background:var(--ink);border-color:var(--ink);color:#fff}.grp a:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}

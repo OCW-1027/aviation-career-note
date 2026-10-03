@@ -32,6 +32,9 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  $('brandTxt').textContent=H.site?H.site[lang]:'';
  $('code').textContent=H.code;$('h1').textContent=H.name[lang];$('lead').textContent=H.lead[lang];
  $('stats').innerHTML='<div><b>'+keys.length+'</b>'+U.n+'</div><div><b>'+(H.parts[lang].filter(function(p){return p}).length)+'</b>Parts</div>';
+ /* 1つの講座の中の地域タブ（主要空港ガイド：日本・韓国・世界） */
+ if(H.grp){var gn=document.getElementById('grp');if(!gn){gn=document.createElement('nav');gn.id='grp';gn.className='grp';var hero=document.querySelector('.hero');if(hero)hero.parentNode.insertBefore(gn,hero.nextSibling)}
+  gn.setAttribute('aria-label',{ja:'地域',ko:'지역',en:'Region'}[lang]);gn.innerHTML=H.grp.map(function(x){var on=x[0]===window.HUB_ID;return '<a href="'+x[1]+'?lang='+lang+'"'+(on?' class="on" aria-current="page"':'')+'>'+x[2][lang]+'</a>'}).join('')}
  var P=H.parts[lang];
  $('tabs').innerHTML='<button data-p="-1" class="'+(cur<0?'on':'')+'">'+U.all+'</button>'+P.map(function(p,i){return p?'<button data-p="'+i+'" class="'+(cur===i?'on':'')+'">Part '+i+'</button>':''}).join('');
  Array.prototype.forEach.call($('tabs').querySelectorAll('button'),function(b){b.onclick=function(){cur=+b.getAttribute('data-p');render()}});

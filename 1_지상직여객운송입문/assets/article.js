@@ -210,9 +210,16 @@ function render(){
 (function(){if((ST&&ST.updated)||window.LESSON_DATES)return;try{var cs=document.currentScript,b=cs&&cs.src?cs.src.replace(/article\.js(\?.*)?$/,''):'';if(!b)return;var n=0,need=window.UPDATES?1:2,done=function(){if(++n===need)render()};['lesson_dates.js','updates.js'].forEach(function(f){if(f==='updates.js'&&window.UPDATES)return;var el=document.createElement('script');el.src=b+f;el.onload=done;el.onerror=done;document.head.appendChild(el)})}catch(e){}})();
 render();
 /* 画面からはみ出す表に .fit を付ける（article.css で長い1列目・見出しを折り返す）。開いたとき・画面の大きさが変わったとき・再描画のときに確かめ直す */
-(function(){function fit(){Array.prototype.forEach.call(document.querySelectorAll('.tbl'),function(t){t.classList.remove('fit');if(t.scrollWidth>t.clientWidth+2)t.classList.add('fit')})}
+/* 휴대폰（幅600px以下）では、横にはみ出す表・図を画面の幅に合わせて縮める（2026.10）。まず最小幅を外して折り返し、それでも広ければ全体を縮小（zoom）。
+   入力欄のある表は指で操作しにくくなるので縮めない。data-nofit の中も対象外。縮めてもピンチで拡大できる */
+window.FZ=window.FZ||(function(){var SEL='.tbl,.scroll,.figscroll,.tw,.dtw,.ls,.formula,.bridge,.dialwrap,[style*="overflow-x"]';
+function reset(){Array.prototype.forEach.call(document.querySelectorAll('[data-fz]'),function(c){var m=c.getAttribute('data-fz');c.style.zoom='';c.style.minWidth=m==='-'?'':m;c.removeAttribute('data-fz')})}
+function apply(){if((window.innerWidth||1024)>600)return;Array.prototype.forEach.call(document.querySelectorAll(SEL),function(box){if(box.closest('[data-nofit]')||box.querySelector('input,select,textarea'))return;var cs=getComputedStyle(box),aw=box.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0);if(aw<=0)return;
+ Array.prototype.forEach.call(box.children,function(c){if(c.hasAttribute('data-fz')||(c.parentElement&&c.parentElement.closest('[data-fz]')))return;if(c.scrollWidth<=aw+1&&!c.style.minWidth)return;c.setAttribute('data-fz',c.style.minWidth||'-');c.style.minWidth='0';var w=c.scrollWidth;if(w>aw+1)c.style.zoom=Math.max(.3,aw/w).toFixed(4)});if(box.scrollWidth>box.clientWidth+1&&!box.hasAttribute('data-fz')){box.setAttribute('data-fz',box.style.minWidth||'-');box.style.zoom=Math.max(.3,(box.clientWidth-1)/box.scrollWidth).toFixed(4)}})}
+return {reset:reset,apply:apply}})();
+(function(){function fit(){if(window.FZ)FZ.reset();Array.prototype.forEach.call(document.querySelectorAll('.tbl'),function(t){t.classList.remove('fit');if(t.scrollWidth>t.clientWidth+2)t.classList.add('fit')});if(window.FZ)FZ.apply()}
 var q=0;function soon(){if(q)return;q=1;setTimeout(function(){q=0;fit()},80)}
-function start(){fit();var m=document.getElementById('main');if(m&&window.MutationObserver)new MutationObserver(soon).observe(m,{childList:true});window.addEventListener('resize',soon);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(soon)}
+function start(){fit();var m=document.getElementById('main');if(m&&window.MutationObserver)new MutationObserver(soon).observe(m,{childList:true,subtree:true});window.addEventListener('resize',soon);document.addEventListener('click',function(){setTimeout(soon,30)});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(soon)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start()})();
 })();
 (function(){var s=document.currentScript&&document.currentScript.src;if(!s)return;var e=document.createElement('script');e.src=new URL('nav.js',s).href;document.head.appendChild(e)})();

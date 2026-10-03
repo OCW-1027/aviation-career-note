@@ -163,3 +163,8 @@ html:not([data-region="kr"]) .rg-jp,html[data-region="kr"] .rg-kr{display:block}
 .basis.b-jp{background:var(--sun-t);color:#7A5A00}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .basis.b-jpkr{color:#9CCBF5}:root:not([data-theme="light"]) .basis.b-jp{color:#F2D27A}}
 :root[data-theme="dark"] .basis.b-jpkr{color:#9CCBF5}:root[data-theme="dark"] .basis.b-jp{color:#F2D27A}
+
+/* 휴대폰では表を小さめの文字・狭い余白にして、横スクロールをなくす（2026.10）。図のスクロール枠は使わず、画面の幅に合わせて縮める（article.js の FZ と組み合わせ） */
+@media (max-width:600px){table{font-size:13.5px}th,td{padding:8px 7px}thead th{white-space:normal;word-break:keep-all;font-size:12.5px}td.lb{white-space:normal;word-break:keep-all}
+.scroll.tbl table:has(tr>*:nth-child(4)),.scroll.tbl table:has(tr>*:nth-child(5)){min-width:0}
+.figscroll{overflow-x:visible!important}.figscroll>div{min-width:0!important}}

@@ -1,4 +1,6 @@
 /* シリーズ一覧の設定（全シリーズ。数はこのファイルの項目数）— 日本語・한국어・English */
+/* 主要空港ガイド（2026.10）：日本・韓国・世界の3つを1つの講座として見せ、一覧ページの上でタブで切り替える */
+var AIRPORT_GRP=[['17_일본주요공항가이드','../17_일본주요공항가이드/00_シリーズ全体_日本の主要空港.html',{ja:'日本',ko:'일본',en:'Japan'}],['21_한국주요공항가이드','../21_한국주요공항가이드/00_シリーズ全体_韓国の主要空港.html',{ja:'韓国',ko:'한국',en:'Korea'}],['20_세계주요공항가이드','../20_세계주요공항가이드/00_シリーズ全体_世界の主要空港.html',{ja:'世界',ko:'세계',en:'World'}]];
 window.HUBS={
 "1_지상직여객운송입문":{code:"GND",color:"#2F8FE0",
 name:{ja:"旅客ハンドリングの実務",ko:"항공 여객운송 실무",en:"Airline Passenger Operations"},
@@ -46,20 +48,20 @@ parts:{ja:["","引き継ぎの土台","分野ごとの引き継ぎ","受け取�
 name:{ja:"空港支店の運営の実務 ― 運送総括と本社をつなぐ仕事",ko:"공항 지점 운영 실무 — 운송 총괄과 본사를 잇는 일",en:"Airport Station Management in Practice: Linking the Duty Manager and Head Office"},
 lead:{ja:"ハンドリングをこなすだけでなく、便全体を動かすREP（運送総括）を目指す人のためのシリーズ。支店は何で評価されるのか（定時性・安全・手荷物・お客様）、ハンドリング会社をどう動かすか、総括に求められる判断と姿勢、そして本社の運送部門とどう連携するかまで。",ko:"핸들링만 하는 것이 아니라, 편 전체를 움직이는 운송 총괄을 목표로 하는 사람을 위한 시리즈. 지점은 무엇으로 평가받는가(정시성·안전·수하물·고객), 조업사를 어떻게 움직이는가, 총괄에게 필요한 판단과 자세, 그리고 본사 운송 부서와 어떻게 연계하는가까지.",en:"For people who want to do more than handle flights — who want to run them. How a station is evaluated (punctuality, safety, baggage, customers), how to get the best from your ground handler, the judgment and attitude a duty manager needs, and how to work with head office."},
 parts:{ja:["","支店評価を知る","ハンドリング会社を動かす","総括の姿勢と判断","本社の運送部門と働く"],ko:["","지점 평가를 알다","조업사를 움직이다","총괄의 자세와 판단","본사 운송 부서와 일하기"],en:["","How Stations Are Evaluated","Getting the Best from Your Handler","The Duty Manager’s Judgment and Attitude","Working with Head Office"]}},
-"17_일본주요공항가이드":{code:"APT",color:"#3A6EA5",
-name:{ja:"日本の主要空港ガイド",ko:"일본 주요 공항 가이드",en:"Guide to Japan’s Major Airports"},
+"17_일본주요공항가이드":{code:"APT",grp:AIRPORT_GRP,color:"#3A6EA5",
+name:{ja:"主要空港ガイド・日本",ko:"주요 공항 가이드 · 일본",en:"Guide to Major Airports: Japan"},
 lead:{ja:"成田・羽田・関西・伊丹・中部・福岡・新千歳・那覇の8空港を、航空会社の運送・ハンドリングの立場から。運営者・運用時間・発着枠・ターミナル、ハンドリングで気をつけること、滑走路・ターミナルの今後の計画まで（2026年9月時点）。",ko:"나리타·하네다·간사이·이타미·주부·후쿠오카·신치토세·나하 8개 공항을 항공사 운송·조업의 입장에서. 운영자·운용 시간·슬롯·터미널, 조업에서 조심할 것, 활주로·터미널의 향후 계획까지(2026년 9월 기준).",en:"Eight airports — Narita, Haneda, Kansai, Itami, Chubu, Fukuoka, New Chitose and Naha — seen from an airline’s passenger and handling operation: operators, hours, slots, terminals, handling pitfalls and future runway and terminal plans (as of September 2026)."},
 parts:{ja:["空港を理解する","首都圏","関西・中部","九州・北海道・沖縄"],ko:["공항을 이해하다","수도권","간사이·주부","규슈·홋카이도·오키나와"],en:["Understanding Airports","Greater Tokyo","Kansai and Chubu","Kyushu, Hokkaido and Okinawa"]}},
-"21_한국주요공항가이드":{code:"KOR",color:"#D35F3C",
-name:{ja:"韓国の主要空港ガイド",ko:"한국 주요 공항 가이드",en:"Guide to Korea’s Major Airports"},
+"21_한국주요공항가이드":{code:"KOR",grp:AIRPORT_GRP,color:"#D35F3C",
+name:{ja:"主要空港ガイド・韓国",ko:"주요 공항 가이드 · 한국",en:"Guide to Major Airports: Korea"},
 lead:{ja:"仁川・金浦・金海・済州の4空港を、航空会社の運送・ハンドリングの立場から。運営する組織・運用時間・発着の枠・出入国の機関、K-ETA（電子渡航許可）、ハンドリングで気をつけること、加徳島新空港・済州第2空港などの今後の計画まで（2026年9月時点）。",ko:"인천·김포·김해·제주 4개 공항을 항공사 운송·조업의 입장에서. 운영 조직·운영 시간·슬롯·출입국 기관, K-ETA(전자여행허가), 조업에서 조심할 것, 가덕도신공항·제주 제2공항 등 향후 계획까지(2026년 9월 기준).",en:"Four airports — Incheon, Gimpo, Gimhae and Jeju — seen from an airline’s passenger and handling operation: operators, hours, slots, border agencies, K-ETA, handling pitfalls and future plans such as Gadeokdo New Airport and Jeju’s second airport (as of September 2026)."},
 parts:{ja:["空港を理解する","首都圏","釜山・済州"],ko:["공항을 이해하다","수도권","부산·제주"],en:["Understanding Korea’s Airports","The Seoul Area","Busan and Jeju"]}},
 "23_재무3표실무":{code:"FIN",color:"#2F8FE0",
 name:{ja:"数字で読む会社 ― 財務諸表の基礎から投資の判断まで",ko:"숫자로 읽는 회사 — 재무제표 기초부터 투자 판단까지",en:"Reading a Company Through Its Numbers: From the Basics of Financial Statements to Investment Decisions"},
 lead:{ja:"損益計算書・貸借対照表・キャッシュフロー計算書を、たい焼き屋の1か月から航空会社の決算まで、同じ一本の流れで学ぶシリーズ。会社のお金がどこから来てどこへ行くかを図で理解し、航空会社ならではの費用と資産、財務分析、投資検討の実務まで。中高生にも、投資・財務の実務者にも。",ko:"손익계산서·재무상태표·현금흐름표를 붕어빵 가게의 한 달부터 항공사 결산까지 하나의 흐름으로 배우는 시리즈. 회사의 돈이 어디서 와서 어디로 가는지를 그림으로 이해하고, 항공사만의 비용과 자산, 재무 분석, 투자 검토 실무까지. 중고생에게도, 투자·재무 실무자에게도.",en:"The income statement, balance sheet and cash flow statement learned as one continuous story, from a taiyaki stall’s first month to an airline’s annual accounts. See where a company’s money comes from and goes, then airline-specific costs and assets, financial analysis and investment appraisal. For students and finance practitioners alike."},
 parts:{ja:["お金の流れと3つの表","損益計算書","貸借対照表","キャッシュフロー計算書","3つの表のつながり","航空会社の財務","財務分析","投資検討の実務","日本と韓国の会計"],ko:["돈의 흐름과 세 가지 재무제표","손익계산서","재무상태표","현금흐름표","세 가지 재무제표의 연결","항공사의 재무","재무 분석","투자 검토 실무","한국과 일본의 회계"],en:["Where the Money Flows","The Income Statement","The Balance Sheet","The Cash Flow Statement","How the Three Connect","Airline Finances","Financial Analysis","Investment Appraisal in Practice","Accounting in Japan and Korea"]}},
-"20_세계주요공항가이드":{code:"WLD",color:"#1B8FB0",
-name:{ja:"世界の主要空港ガイド",ko:"세계 주요 공항 가이드",en:"Guide to the World’s Major Airports"},
+"20_세계주요공항가이드":{code:"WLD",grp:AIRPORT_GRP,color:"#1B8FB0",
+name:{ja:"主要空港ガイド・世界",ko:"주요 공항 가이드 · 세계",en:"Guide to Major Airports: World"},
 lead:{ja:"日本と韓国からの路線が多い世界の主要20空港を、運用・ハンドリング、乗り継ぎと入国の制度、歴史と今後の計画、韓国・日本との路線の4つの視点で。ACI Worldの2025年の統計と各国・各空港の公式の発表をもとにまとめています（2026年9月時点）。",ko:"한국과 일본에서 노선이 많은 세계 주요 20개 공항을 운영·조업, 환승과 입국 제도, 역사와 향후 계획, 한국·일본과의 노선이라는 네 가지 관점으로. ACI World 2025년 통계와 각국·각 공항 공식 발표를 바탕으로 정리했습니다(2026년 9월 기준).",en:"Twenty major airports with strong links to Korea and Japan, seen from four angles: operations and handling, transfer and entry rules, history and future plans, and routes to Korea and Japan. Based on ACI World 2025 statistics and official national and airport sources (as of September 2026)."},
 parts:{ja:["世界の空港を理解する","東アジア","東南アジア・南アジア","中東・トルコ","欧州","米州・オセアニア"],ko:["세계 공항을 이해하다","동아시아","동남아·남아시아","중동·튀르키예","유럽","미주·오세아니아"],en:["Understanding the World’s Airports","East Asia","Southeast and South Asia","Middle East and Türkiye","Europe","The Americas and Oceania"]}},
 "18_항공기초지식":{code:"BAS",color:"#4A7C59",
