@@ -3,7 +3,7 @@
 set("3-1",{title:"The Duty Manager’s Day and the Briefing",hl:"briefing",subtitle:"The ten minutes before a flight decide the quality of the day",
 lead:["A duty manager is neither the person at the counter nor the person loading bags. It is the person who watches the whole flight, makes the calls and joins everything up. At the centre of that job are the briefing before the flight and the debrief after it.","This article covers a duty manager’s day, what to say at the briefing, and how to run the debrief."],
 sections:[
-{h:"A duty manager’s day (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"The day before",sub:"Bookings, special passengers, changes"},{name:"Arriving",sub:"Operational info, weather, staffing"},{name:"Briefing",sub:"Before the counter opens"},{name:"Supervising",sub:"Counter, gate and ramp rounds"},{name:"Debrief",sub:"Closing, records, reports"}]}]},
+{h:"A duty manager’s day (example)",blocks:[{t:"fig",id:"stn_day",cap:"Moving diagram: the day at the top, the five-minute briefing below. The orange block moves on one minute at a time."},{t:"ladder",rise:10,steps:[{name:"The day before",sub:"Bookings, special passengers, changes"},{name:"Arriving",sub:"Operational info, weather, staffing"},{name:"Briefing",sub:"Before the counter opens"},{name:"Supervising",sub:"Counter, gate and ramp rounds"},{name:"Debrief",sub:"Closing, records, reports"}]}]},
 {h:"What to say at the briefing",blocks:[{t:"check",items:[
 {name:"Flight information",x:"Bookings and expected passengers, aircraft, gate, departure time, weather, the inbound flight’s status."},
 {name:"Special passengers",x:"Wheelchairs, families with infants, groups, VIPs, deportees — the plan and who handles each."},
@@ -33,7 +33,7 @@ next:"3-2 Setting priorities for decisions"});
 set("3-2",{title:"Setting Priorities for Decisions",hl:"priorities",subtitle:"Decide the order before you need it. Safety before punctuality, rules before requests",
 lead:["A duty manager makes dozens of small decisions every day: how long to wait for a missing passenger, whether to offload a bag, how to answer a seat complaint. Agonise over each and the flight will not leave on time.","This article covers the order of priorities, the standards to agree in advance, and why decisions should be recorded."],
 sections:[
-{h:"The order of priorities",blocks:[{t:"ladder",rise:10,steps:[{name:"1 Safety",sub:"Of the flight and people"},{name:"2 Security",sub:"Passenger–bag reconciliation and more"},{name:"3 Rules and law",sub:"Authority and company rules"},{name:"4 Passenger care",sub:"Information, assistance, compensation"},{name:"5 Punctuality",sub:"Keeping delays out"},{name:"6 Cost",sub:"Considered last"}]},
+{h:"The order of priorities",blocks:[{t:"fig",id:"stn_prio",cap:"Higher steps are considered first. The red boxes are examples of an order that must not be reversed."},{t:"ladder",rise:10,steps:[{name:"1 Safety",sub:"Of the flight and people"},{name:"2 Security",sub:"Passenger–bag reconciliation and more"},{name:"3 Rules and law",sub:"Authority and company rules"},{name:"4 Passenger care",sub:"Information, assistance, compensation"},{name:"5 Punctuality",sub:"Keeping delays out"},{name:"6 Cost",sub:"Considered last"}]},
 {t:"point",x:"Higher steps come first. Never trade safety for punctuality; never bend a rule for a request. But do everything the rules allow."}]},
 {h:"Standards to agree in advance (examples)",blocks:[{t:"table",cols:["Situation","What to decide beforehand"],rows:[
 ["Missing passengers","How many minutes before departure the offload decision is made, and who makes it"],
@@ -64,7 +64,7 @@ next:"3-3 The duty manager in irregular operations"});
 set("3-3",{title:"The Duty Manager in Irregular Operations",hl:"irregular operations",subtitle:"Decide, inform, notify, arrange — all four at once",
 lead:["Delays, cancellations, diversions, technical landings. When things go wrong, a pile of tasks lands on the duty manager at once. Without a sense of order, passenger information comes late or the notification to the authorities is forgotten.","This article covers the four jobs a duty manager runs in parallel, and the particular points to watch in diversions and in rerouting passengers on other airlines. See Part 5 of the Airline Passenger Operations series for the detailed procedures."],
 sections:[
-{h:"Four jobs at once",blocks:[{t:"table",cols:["Job","What it involves (examples)"],rows:[
+{h:"Four jobs at once",blocks:[{t:"fig",id:"stn_irr",cap:"Moving diagram: the four jobs progress together."},{t:"table",cols:["Job","What it involves (examples)"],rows:[
 ["Decide","With head office and operations control, settle the new time, cancellation or alternative; decide meals and hotels against the agreed standards"],
 ["Inform","Passengers (SMS, email, airport announcements and notices), the handler, the airport company, key travel agencies, the GDS message boards"],
 ["Notify","Report the schedule change to slot coordination and the aviation authority (before or after, depending on the country and airport) ★"],
@@ -104,7 +104,7 @@ sections:[
 ["Partners","Confirm extra work by the handler and airport company, and agree the costs"],
 ["Records","Passenger lists, rerouting lists, items handed out, photos"]]},
 {t:"note",x:"* When taking passengers’ bank details for compensation, handle personal data with particular care and dispose of it as the rules require once it is no longer needed."}]},
-{h:"Writing an incident report",blocks:[{t:"ladder",rise:10,steps:[{name:"Summary",sub:"One or two lines"},{name:"Timeline",sub:"Times and facts"},{name:"Actions",sub:"What was done"},{name:"Cause",sub:"Direct and underlying"},{name:"Prevention",sub:"Who, what, by when"}]},
+{h:"Writing an incident report",blocks:[{t:"fig",id:"stn_report",cap:"Top: the first report and the full report. Bottom: the five parts of an incident report. The timeline holds facts only; opinions go separately under cause."},{t:"ladder",rise:10,steps:[{name:"Summary",sub:"One or two lines"},{name:"Timeline",sub:"Times and facts"},{name:"Actions",sub:"What was done"},{name:"Cause",sub:"Direct and underlying"},{name:"Prevention",sub:"Who, what, by when"}]},
 {t:"check",items:[
 {name:"Separate facts from opinions",x:"“It appears that…” goes in the opinion section. The timeline holds facts only."},
 {name:"Use numbers",x:"Minutes of delay, passengers affected, estimated cost."},
@@ -144,7 +144,7 @@ sections:[
 ["Numbers","Read on-time rates, mishandled baggage rates and delay codes, and break them down by cause"],
 ["Writing","Write incident and weekly reports briefly, in facts and numbers"],
 ["Languages","Explain things to passengers, the handler, head office and the authorities in each one’s language"]]}]},
-{h:"Steps to working alone (example)",blocks:[{t:"ladder",rise:8,steps:[
+{h:"Steps to working alone (example)",blocks:[{t:"fig",id:"stn_grow",cap:"Grey is the senior’s involvement, blue the trainee’s own decisions. Blue grows with each step."},{t:"ladder",rise:8,steps:[
 {name:"Watch",sub:"Observe a senior’s decisions and ask why"},
 {name:"Do it together",sub:"Make small decisions jointly with a senior"},
 {name:"Lead with support",sub:"They decide; the senior stays close by"},

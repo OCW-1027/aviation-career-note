@@ -3,7 +3,7 @@
 set("2-1",{title:"What the SGHA and the SLA Settle",hl:"SGHA and SLA",subtitle:"The contract says what is done; the SLA says how well. Promise in numbers and you can manage in numbers",
 lead:["A station’s relationship with its ground handler starts with IATA’s Standard Ground Handling Agreement (SGHA). But the SGHA mainly settles which services are contracted and what they cost. How well they must be done is set in a separate service level agreement (SLA).","If the SLA is vague, every quality problem ends with “we are doing what the contract says”. This article covers the different roles of the SGHA and the SLA, what to measure in an SLA, and how to agree it."],
 sections:[
-{h:"SGHA versus SLA",blocks:[{t:"table",cols:["","SGHA","SLA"],rows:[
+{h:"SGHA versus SLA",blocks:[{t:"fig",id:"stn_sla",cap:"Top: what the SGHA and the SLA each settle. Bottom: an example SLA scorecard (green met, red missed)."},{t:"table",cols:["","SGHA","SLA"],rows:[
 ["What it settles","Scope of services, charges, liability and indemnity","Service standards (times, accuracy, staffing), how they are measured, how shortfalls are fixed"],
 ["Form","IATA standard form (main agreement plus Annexes A and B)","Written by each company in its own format"],
 ["Reviewed","At rate changes or contract renewal","Regularly against results, every six to twelve months"]]},
@@ -38,7 +38,7 @@ next:"2-2 Using a quality audit checklist"});
 set("2-2",{title:"Using a Quality Audit Checklist",hl:"checklist",subtitle:"The point is not the score. It is a tool for checking that last time’s findings were fixed",
 lead:["Many airlines have their stations audit the handler’s work regularly. They keep a checklist for each area — passenger, ramp, service — pick one flight and watch it from start to finish.","This article covers how a checklist is laid out, how scores and findings are graded, and what to look at during an audit."],
 sections:[
-{h:"How a checklist is laid out (example)",blocks:[{t:"table",cols:["Section","Content"],rows:[
+{h:"How a checklist is laid out (example)",blocks:[{t:"fig",id:"stn_audit",cap:"Moving diagram: the dotted line shows the next audit returning to the previous findings. Below: an example of how to write a remark."},{t:"table",cols:["Section","Content"],rows:[
 ["Flight details","Date, flight number, scheduled and actual arrival and departure times, auditor, station manager’s signature"],
 ["Previous findings","Problems found last time and whether they have been fixed"],
 ["Check items","Items in process order: before arrival, arrival, loading, departure"],
@@ -75,7 +75,7 @@ set("2-3",{title:"The Monthly Meeting and Corrective Action",hl:"monthly meeting
 lead:["The monthly meeting with the handler is at the heart of station management. Bring the audit findings, the delay and baggage numbers and the customer feedback; discuss the causes, agree corrections, and check them the following month.","This article covers a standard agenda, how to run corrective actions, and the signs that the meeting has become a formality."],
 sections:[
 {h:"A standard agenda (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Last month’s promises",sub:"Progress on corrections"},{name:"Numbers",sub:"Punctuality, baggage, complaints, safety"},{name:"Audit findings",sub:"This month’s"},{name:"Changes",sub:"Rules, schedules, facilities"},{name:"New promises",sub:"Owners and deadlines"}]}]},
-{h:"Running corrective actions",blocks:[{t:"table",cols:["Stage","What happens"],rows:[
+{h:"Running corrective actions",blocks:[{t:"fig",id:"stn_capa",cap:"Two findings followed over three months: one closed, one repeated."},{t:"table",cols:["Stage","What happens"],rows:[
 ["Share the facts","When, on which flight, what happened — shown with records and photos"],
 ["Cause","The direct cause, and why it happened (training, staffing, procedure, equipment)"],
 ["Action","Who does what by when, including something that stops a repeat (a procedure change, training)"],
@@ -119,7 +119,7 @@ sections:[
 {name:"Joint exercises",x:"Run tabletop exercises for disruptions and pre-season briefings together."},
 {name:"Saying thank you",x:"Tell the handler, by name, about flights that went well and staff who did a good job."}]},
 {t:"note",x:"* The role and training of a handler’s operations department are covered in detail in Airline Passenger Operations 6-7."}]},
-{h:"Where the duty manager stands",blocks:[{t:"table",cols:["Towards","What the duty manager does"],rows:[
+{h:"Where the duty manager stands",blocks:[{t:"fig",id:"stn_team",cap:"What the duty manager gives to and takes from the handler, head office and station staff."},{t:"table",cols:["Towards","What the duty manager does"],rows:[
 ["The handler","Explains the airline’s standards and listens to the floor’s problems; looks for ways to make things work, not reasons they cannot"],
 ["Head office","Explains local realities — staffing, facilities, airport rules — in facts and numbers, and asks for the support needed"],
 ["Station staff","Makes it a rule that findings for the handler go through the duty manager, so there is one point of contact"]]},

@@ -12,7 +12,7 @@ sections:[
 ["Training","Course completion, tracking of licence and certificate expiry","The duty manager and the handler"],
 ["Cost","Handling charges, disruption costs (hotels, compensation)","The station"]]},
 {t:"note",x:"* Items, definitions and weightings differ from airline to airline. Always check your own company’s scorecard. ★"}]},
-{h:"Two axes: performance and capability (example)",blocks:[{t:"table",cols:["Axis","Item","What it covers"],rows:[
+{h:"Two axes: performance and capability (example)",blocks:[{t:"fig",id:"stn_eval",cap:"Performance (what the numbers show) and capability (how the work is done) are weighted into one overall grade. Meeting the target is a B."},{t:"table",cols:["Axis","Item","What it covers"],rows:[
 ["Performance (results)","Punctuality","Delays caused by passenger services or handling, or the on-time rate"],
 ["Performance (results)","Automation","Use of online check-in and kiosks (1-6)"],
 ["Performance (results)","Ancillary revenue","Revenue per flight from upgrades, excess baggage, paid seats and so on (1-6)"],
@@ -51,7 +51,7 @@ sections:[
 ["When departure is measured","Usually the moment the aircraft starts to move off its stand (off-block)"],
 ["D0","Share of flights leaving at or before the scheduled time of departure (STD). Often used as an internal target"],
 ["D15","Share of flights leaving within 15 minutes of STD. The on-time departure rate published by Japan’s transport ministry follows the same idea ★"],
-["Example","51 of 60 flights in a month leave within 15 minutes → D15 of 85%"]]}]},
+["Example","51 of 60 flights in a month leave within 15 minutes → D15 of 85%"]]},{t:"fig",id:"stn_otp",cap:"Moving diagram: ten flights depart in turn. Green counts for D0, blue for D15, and red is more than 15 minutes late. The same ten flights give 40% for D0 and 80% for D15."}]},
 {h:"Delay codes (IATA standard two-digit codes)",blocks:[{t:"table",cols:["Codes","Group","Examples close to the station"],rows:[
 ["11–19","Passenger and baggage","Late acceptance after deadline, check-in error, boarding (searching for missing passengers, offloading their bags), baggage processing"],
 ["21–29","Cargo and mail","Late documents or build-up"],
@@ -69,7 +69,7 @@ sections:[
 ["Too few loaders for the cargo, so the doors could not be closed","32","Loading and unloading"],
 ["A departure-airport ATC restriction held up pushback approval","89","Restrictions at the airport of departure"]]},
 {t:"note",x:"* The numbers are typical IATA standard delay codes. How to use sub-codes, and how to split main and secondary codes when causes overlap, follows each airline’s own rules. ★ The full list is in Course 1’s IATA delay code tool."}]},
-{h:"Using delay codes",blocks:[{t:"check",items:[
+{h:"Using delay codes",blocks:[{t:"fig",id:"stn_delay",cap:"A month’s delay minutes sorted by code. Blue is what the station and handler can control; grey is outside causes."},{t:"check",items:[
 {name:"Delays the station can control",x:"Many codes in the 10s and 30s come from ground processes. They feed straight into your score, and they can be fixed."},
 {name:"Code honestly",x:"Choosing a convenient code hides the cause and misleads head office’s analysis."},
 {name:"One primary cause",x:"If there are several causes, make the one that lost the most time primary and record the rest."},
@@ -86,7 +86,7 @@ next:"1-3 Cutting ground-caused delays"});
 set("1-3",{title:"Cutting Ground-Caused Delays",hl:"ground-caused delays",subtitle:"Delays are minutes that add up. Protect the critical path and bring work forward",
 lead:["Most big delays are really a string of small ones. Boarding starts three minutes late, five minutes go on searching for the last passenger, four more on finalising the loadsheet. None is large on its own; together they cost you the on-time departure.","This article covers the critical path to departure, the common ground-caused delays and how to prevent them, and what to do once a delay has happened."],
 sections:[
-{h:"The critical path to departure (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Arrival and block-in",sub:"The inbound time sets the clock"},{name:"Disembarking and unloading",sub:"Passengers and bags"},{name:"Cleaning, catering, fuel",sub:"Run in parallel"},{name:"Loading and loadsheet",sub:"Final figures deadline"},{name:"Boarding and door close",sub:"Headcount reconciled"},{name:"Pushback",sub:"Off-block"}]},
+{h:"The critical path to departure (example)",blocks:[{t:"fig",id:"stn_crit",cap:"Moving diagram: the red line is time passing. A delay on an orange task (the critical path) delays departure by the same amount."},{t:"ladder",rise:10,steps:[{name:"Arrival and block-in",sub:"The inbound time sets the clock"},{name:"Disembarking and unloading",sub:"Passengers and bags"},{name:"Cleaning, catering, fuel",sub:"Run in parallel"},{name:"Loading and loadsheet",sub:"Final figures deadline"},{name:"Boarding and door close",sub:"Headcount reconciled"},{name:"Pushback",sub:"Off-block"}]},
 {t:"note",x:"* The order and timing of each process are set by the aircraft type, the airport and your company’s standard turnaround. ★"}]},
 {h:"Common ground-caused delays and how to prevent them",blocks:[{t:"table",cols:["Cause","Prevention"],rows:[
 ["Passengers who do not come to the gate","Enforce the boarding cut-off, page early, and agree in advance when to offload their bags"],
@@ -128,7 +128,7 @@ sections:[
 {name:"Count compliments too",x:"Finding and sharing good service raises the standard on the floor."},
 {name:"How MBR is counted",x:"Mishandled bags per 1,000 passengers. Targets vary widely with the company, the route and how many passengers connect. Companies also set their own rules on what counts — for instance whether cases that became complaints through poor follow-up are added. ★"},
 {name:"Station self-audit",x:"At set intervals — often once a year — check the operation against a checklist, including the handler’s work. ★"}]}]},
-{h:"Compare rates, not counts (worked examples)",blocks:[{t:"table",cols:["Indicator","Calculation","Example (24,000 passengers, 300 flights a month)"],rows:[
+{h:"Compare rates, not counts (worked examples)",blocks:[{t:"fig",id:"stn_ratio",cap:"Counts (grey) and rates per 1,000 passengers (coloured) compared over three months."},{t:"table",cols:["Indicator","Calculation","Example (24,000 passengers, 300 flights a month)"],rows:[
 ["Mishandled bag rate","Mishandled bags ÷ passengers × 1,000","12 ÷ 24,000 × 1,000 = 0.5 per thousand"],
 ["Complaint rate","Complaints ÷ passengers × 10,000","6 ÷ 24,000 × 10,000 = 2.5 per ten thousand"],
 ["On-time departure rate","On-time flights ÷ all flights × 100","285 ÷ 300 × 100 = 95%"]]},
@@ -159,7 +159,7 @@ sections:[
 ["Alert levels","Set in three stages — caution, warning, critical — using the past average and its spread (standard deviation)"],
 ["Potential outcome","An aviation safety occurrence (incorrect weight distribution)"]]},
 {t:"note",x:"* An example based on the way SMS indicators are commonly set up. Formulas, targets and alert levels are set in each company’s SMS. ★"}]},
-{h:"Hazards, precursors and leading indicators",blocks:[{t:"table",cols:["Type","Examples"],rows:[
+{h:"Hazards, precursors and leading indicators",blocks:[{t:"fig",id:"stn_spi",cap:"Top: monthly figures and alert lines. Bottom: the path from leading indicators to accidents."},{t:"table",cols:["Type","Examples"],rows:[
 ["Hazards (why it happens)","Carelessness, weak supervision by the station or handler, staff shortages, gaps in training and knowledge, miscommunication"],
 ["Precursors (warning signs)","Regular meetings not held, procedures skipped such as missing signatures or cross-checks, reports or changes not passed on"],
 ["Leading indicators (actions taken first)","Stronger job training, quality audits, holding and following up monthly meetings, load monitoring, sharing other stations’ cases"]]}]},
@@ -179,7 +179,7 @@ next:"1-6 Automation and ancillary revenue"});
 set("1-6",{title:"Automation and Ancillary Revenue",hl:"automation and ancillary revenue",subtitle:"Passenger operations contribute to efficiency and revenue too",
 lead:["Station scorecards can include online check-in rates and ancillary revenue earned at the airport, not just safety and punctuality. Shorter counter queues help punctuality, and charging correctly under the rules is also a matter of fairness.","This article covers the automation and ancillary revenue measures, and what a duty manager can do on the ground."],
 sections:[
-{h:"The two measures (example)",blocks:[{t:"table",cols:["Measure","How it is measured","Example target"],rows:[
+{h:"The two measures (example)",blocks:[{t:"fig",id:"stn_self",cap:"Top: how the check-in channels change. Bottom: ancillary revenue per flight by item."},{t:"table",cols:["Measure","How it is measured","Example target"],rows:[
 ["Automation","Share of boarded passengers who used online check-in or a kiosk (charter flights excluded)","Anywhere from 30% to 70%, depending on the route and airport facilities; growth over the previous quarter is also scored"],
 ["Ancillary revenue","Revenue per flight from upgrades, excess baggage, paid seats such as front rows or exit rows, and oversize baggage charges","Above the station’s average for the previous period (the margin varies by company)"]]},
 {t:"note",x:"* Definitions and targets differ by company. ★"}]},
