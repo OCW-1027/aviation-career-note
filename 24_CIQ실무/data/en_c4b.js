@@ -91,5 +91,5 @@ terms:[["Biosecurity","生物の安全","생물 보안"],["Infringement Notice",
 quiz:[{q:"What can happen in Australia if goods are not declared?",opts:["An infringement notice of up to AUD 6,600 and visa cancellation","A warning only","Nothing","A fine of AUD 10"],a:0,exp:"A cancelled visa can mean being barred for up to three years."},
 {q:"What is the instant fine in New Zealand for not declaring?",opts:["NZD 400","NZD 40","NZD 4","There is none"],a:0,exp:"Deliberate concealment carries much heavier penalties."},
 {q:"Besides food, what do these two countries examine?",opts:["Shoes with soil, wooden items, seeds","Books","Only clothing","Nothing"],a:0,exp:"Anything that could carry disease or pests."}],
-next:""});
+next:"4-7 China, Taiwan and Hong Kong"});
 })(window.ARTS);
