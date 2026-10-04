@@ -59,7 +59,7 @@ sections:[
 {name:"A different input gives a different answer",x:"Leave out the nationality, passport type or a transit point and the answer will be wrong."},
 {name:"Even when the automatic check says OK",x:"If there is a transit not in the booking (a separately bought ticket), look it up yourself."},
 {name:"If the answer is unclear, ask",x:"Confirm with your supervisor or head office’s duty officer before deciding to board."},
-{name:"Keep what you looked up",x:"Save the screen or a printout. It is your evidence if a penalty or complaint follows. ★"}]},
+{name:"Keep what you looked up",x:"Save the screen or a printout. It is your evidence if a penalty or complaint follows."}]},
 {t:"point",x:"TIMATIC is not a machine that gives the answer; it is a reference that tells you the requirements. Applying them is your job, because you are the one looking at the passenger."}]}],
 voice:"The automatic check passed and I relaxed, but the passenger was connecting to a third country on a separately bought ticket, and needed a visa there. Now I always ask, “Are you travelling on anywhere after this on another ticket?”",
 terms:[["Travel Information Manual Automatic (TIMATIC)","TIMATIC","TIMATIC"],["Transit Visa","乗り継ぎ査証","환승 비자"],["Purpose of Stay","滞在の目的","체류 목적"],["Automated Document Check","書類の自動確認","서류 자동 확인"]],
@@ -77,13 +77,13 @@ sections:[
 ["Australia: ETA","AUD 20 application service fee. One year","Applied for through the official app"],
 ["New Zealand: NZeTA","NZD 17 to 23 (depending on app or website) plus a visitor levy of NZD 100. Two years","Required even for transit"],
 ["Korea: K-ETA","KRW 10,000. Three years, or until the passport expires","22 countries and territories, including Japan and the United States, are exempt until 31 December 2026"],
-["Europe (Schengen): ETIAS","EUR 20 (free under 18 and over 70). Three years","Announced as starting in the last quarter of 2026. Check the official start date ★"],
+["Europe (Schengen): ETIAS","EUR 20 (free under 18 and over 70). Three years","Due to start in the last quarter of 2026; the exact date is announced months in advance (not yet announced as of October 2026). Transitional and grace periods of at least 12 months follow the start"],
 ["Japan: JESTA","Not yet set","Targeted for fiscal 2028 (0-4)"]]},
 {t:"note",x:"* Items marked ★ were not confirmed this time. Fees, eligibility and validity change."}]},
 {h:"Europe: EES and ETIAS are different things",blocks:[{t:"table",cols:["","EES (Entry/Exit System)","ETIAS (authorisation before travel)"],rows:[
 ["What it does","Registers face and fingerprints at the border and records entries and exits, replacing passport stamps","An online application before travel, resulting in an authorisation"],
 ["Application and fee","No application. Free","Application required. EUR 20"],
-["When","Began on 12 October 2025; fully operational from 10 April 2026","Announced for the last quarter of 2026 ★"]]},
+["When","Began on 12 October 2025; fully operational from 10 April 2026","Due in the last quarter of 2026 (start date not yet announced)"]]},
 {t:"note",x:"* At airports using EES, first-time registration takes time, which affects connection times on arrival."}]},
 {h:"Korea: K-ETA",blocks:[{t:"rows",items:[
 {name:"Since when, and for whom",x:"Introduced in September 2021 for nationals of the 112 countries and territories that can enter without a visa."},
@@ -120,7 +120,7 @@ sections:[
 {name:"Waiting for departure",sub:"In a facility within the airport, under the authority’s control"},
 {name:"Boarding",sub:"The crew may hold the passport and papers until arrival"},
 {name:"Arrival at the origin",sub:"The origin station meets the flight and hands over to the authorities"}]},
-{t:"note",x:"* Procedures and document names differ by country. ★"}]},
+{t:"note",x:"* Procedures and document names differ by country."}]},
 {h:"What the sending station does",blocks:[{t:"rows",items:[
 {name:"Receive the notification",x:"The destination station or head office sends the name, flight, reason and return flight."},
 {name:"Check the check-in record",x:"Who checked what and accepted the passenger, and whether the result was kept."},
@@ -128,7 +128,7 @@ sections:[
 {name:"Meet the returning passenger",x:"Meet the flight and explain costs and next steps. It is not the place for blame."},
 {name:"Do not let it happen again",x:"If something was missed, share that requirement with everyone."}]}]},
 {h:"Costs, records and deportees",blocks:[{t:"check",items:[
-{name:"The return fare",x:"The return sector of the passenger’s own ticket can sometimes be used. Whether any shortfall is charged to the passenger depends on company rules. ★"},
+{name:"The return fare",x:"The return sector of the passenger’s own ticket can sometimes be used. Whether any shortfall is charged to the passenger depends on company rules."},
 {name:"Costs while waiting",x:"The airline may be asked to pay for meals or the facility."},
 {name:"Records",x:"Keep the name, flight, reason for refusal, actions and costs. They are needed if the authority issues a penalty notice."},
 {name:"Deportees (DEPO) are handled separately",x:"When carrying someone removed by the state, obtain head-office approval in advance, confirm whether there is an escort and inform the captain."}]},

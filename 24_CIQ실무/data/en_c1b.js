@@ -48,7 +48,7 @@ sections:[
 ["Permission to land","Crew landing permission (up to 15 days)","Crew landing permission (up to 15 days)"],
 ["Legal basis","Immigration Control and Refugee Recognition Act","Immigration Act"],
 ["Arrival card","Not required","Not required (crew are exempt)"]]},
-{t:"note",x:"* Check the authorities’ and airport’s guidance for the application procedure and documents. ★"}]},
+{t:"note",x:"* Check the authorities’ and airport’s guidance for the application procedure and documents."}]},
 {h:"Where the station is involved",blocks:[{t:"check",items:[
 {name:"Deadhead crew",x:"Whether crew travelling without operating are treated as crew or as passengers differs by country. Confirm with head office how to list them."},
 {name:"A crew member falls ill and is offloaded or stays behind",x:"The list no longer matches reality. Check what must be reported and the immigration status of the person who stays."},
@@ -72,7 +72,7 @@ sections:[
 {t:"note",x:"* Check the authority’s guidance on how long Korea’s paper arrival card remains in use. ★"}]},
 {h:"When a resident returns",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Proof of status","Residence card (special permanent residents: special permanent resident certificate)","Residence card (permanent resident card, domestic residence report card)"],
-["Re-entry rule","Special re-entry permit: no re-entry permit is needed if returning within one year of leaving (two years for special permanent residents), or by the expiry of the period of stay if that comes first","Registered foreign residents are exempt from a re-entry permit if returning within one year (two years for permanent residents) ★"],
+["Re-entry rule","Special re-entry permit: no re-entry permit is needed if returning within one year of leaving (two years for special permanent residents), or by the expiry of the period of stay if that comes first","Registered foreign residents need no re-entry permit if returning within one year of departure, or within their remaining period of stay if shorter (two years for permanent residents, F-5)"],
 ["On leaving","Indicate the intention to re-enter (tick the box on the departure record) and carry the residence card","Carry the residence card"]]},
 {t:"point",x:"Overstaying the special re-entry period by even one day means losing the status of residence itself. Advise anyone leaving for a long time to obtain a re-entry permit from the immigration office before departure."}]},
 {h:"Automated gates",blocks:[{t:"rows",items:[

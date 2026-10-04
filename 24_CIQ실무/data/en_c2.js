@@ -43,7 +43,7 @@ sections:[
 ["Age","No alcohol or tobacco allowance under 20. Under six: only items for the child’s own use","No alcohol or tobacco allowance for minors ★"]]}]},
 {h:"How Japan counts",blocks:[{t:"rows",items:[
 {name:"Items of 10,000 yen or less",x:"Where the total for one item is 10,000 yen or less it is in principle exempt and not counted towards the 200,000 yen."},
-{name:"A single item over 200,000 yen",x:"A bag costing 250,000 yen, for example, is taxed on the full 250,000 yen, not on the amount above 200,000. ★"},
+{name:"A single item over 200,000 yen",x:"A bag costing 250,000 yen, for example, is taxed on the full 250,000 yen, not on the amount above 200,000."},
 {name:"Accompanied and unaccompanied goods",x:"Counted together when a passenger has both."},
 {name:"Commercial goods and samples",x:"Not for personal use, so not exempt."}]}]},
 {h:"How Korea counts",blocks:[{t:"rows",items:[
@@ -67,15 +67,15 @@ set("2-3",{title:"Declaring Cash, and What Cannot Be Brought In",hl:"What Cannot
 lead:["Tax is not the only reason passengers are stopped at customs. Some have not declared large amounts of cash. Some carry things that need a permit. Some carry things that cannot be brought in at all.","Most do so without knowing. A word at the counter or on board is the best prevention."],
 sections:[
 {h:"Declaring cash and the like",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
-["When a declaration is needed","When cash, cheques and similar exceed the equivalent of 1 million yen in total; gold bullion over 1 kg ★","When the total exceeds the equivalent of USD 10,000"],
-["When","On both departure and arrival","On both departure and arrival ★"],
+["When a declaration is needed","When cash, cheques and similar exceed the equivalent of 1 million yen in total; gold bullion (90% purity or more) over 1 kg","When the total exceeds the equivalent of USD 10,000"],
+["When","On both departure and arrival","On both departure and arrival"],
 ["If not declared","Liable to penalty or confiscation","Liable to penalty or confiscation"]]},
 {t:"note",x:"* Carrying money in or out is not prohibited; it only has to be declared. Tell passengers this."}]},
 {h:"Prohibited goods and goods needing formalities (Japan as an example)",blocks:[{t:"table",cols:["Category","Examples"],rows:[
 ["Prohibited","Narcotics, stimulants, cannabis and designated drugs; pistols and other firearms and ammunition; explosives; counterfeit money and cards; obscene magazines and DVDs and child pornography; counterfeit branded goods and pirated copies"],
 ["Permit or formalities required","Hunting guns, air guns and swords; animals and plants protected by CITES and products made from them (ivory, crocodile leather, some traditional medicines); medicines and cosmetics (up to personal-use quantities)"],
 ["Quarantine required","Meat products, fruit, vegetables, plants, animals (Part 3)"]]},
-{t:"note",x:"* Korea uses the same division into prohibited, restricted and quarantine items. Check Korea Customs for the details of items and quantities. ★"}]},
+{t:"note",x:"* Korea uses the same division into prohibited, restricted and quarantine items. Check Korea Customs for the details of items and quantities."}]},
 {h:"Situations that come up",blocks:[{t:"rows",items:[
 {name:"Packages carried for others",x:"Packages that someone asked to be handed over at the airport have contained drugs. Tell passengers to refuse anything whose contents they do not know."},
 {name:"Medicines",x:"Carry prescription medicines in their original containers with a document showing the prescription. An ingredient sold freely at home may be restricted at the destination."},
@@ -101,7 +101,7 @@ sections:[
 ["Duty-free goods for sale on board","Counted, and kept sealed after arrival ★"],
 ["Fuel","Fuel for international flights is treated differently for tax from domestic fuel ★"],
 ["Using an international aircraft on a domestic flight","Remaining stores and duty-free goods need formalities before they can be used domestically ★"]]},
-{t:"note",x:"* The names and details of procedures differ by country and airport. Check your company’s rules and the customs authority’s guidance. ★"}]},
+{t:"note",x:"* The names and details of procedures differ by country and airport. Check your company’s rules and the customs authority’s guidance."}]},
 {h:"Delayed baggage",blocks:[{t:"ladder",steps:[
 {name:"The passenger reports the missing bag",sub:"A property irregularity report (PIR) is made at the baggage desk on arrival"},
 {name:"A customs declaration is made",sub:"The passenger submits a form. Ask about the contents and any lock combination"},

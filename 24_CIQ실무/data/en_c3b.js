@@ -47,7 +47,7 @@ sections:[
 {name:"Handled by authorised contractors",x:"Unloading, transport and disposal are each done by contractors and procedures approved by the authorities. ★"},
 {name:"Nothing is taken away",x:"Cleaning staff and employees must not take leftover meals home, and they cannot be used on domestic flights."},
 {name:"Passengers too",x:"Before arrival, ask passengers not to take meals or fruit off the aircraft (3-2, 3-3)."}]},
-{t:"note",x:"* Procedures and contractor rules differ by country and airport. Check your company’s rules and the authorities’ guidance. ★"}]},
+{t:"note",x:"* Procedures and contractor rules differ by country and airport. Check your company’s rules and the authorities’ guidance."}]},
 {h:"Disinsection",blocks:[{t:"table",cols:["","Details"],rows:[
 ["Purpose","To stop mosquitoes and other insects carrying disease or pests"],
 ["Countries that require it","Some countries, such as Australia and New Zealand, require it of arriving aircraft ★"],

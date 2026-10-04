@@ -78,7 +78,7 @@ sections:[
 {name:"Japanese and Korean law",x:"Japan’s Immigration Control and Refugee Recognition Act and Korea’s Immigration Act both place a duty of return on the carrier. ★"},
 {name:"The international framework",x:"Annex 9 (Facilitation) to the Chicago Convention sets out the roles of states and airlines."}]}]},
 {h:"What the airline bears",blocks:[{t:"rows",items:[
-{name:"Penalties",x:"Many countries fine the airline for each improperly documented passenger. Amounts differ by country (Parts 4 and 5). ★"},
+{name:"Penalties",x:"Many countries fine the airline for each improperly documented passenger. Amounts differ by country (Parts 4 and 5)."},
 {name:"Cost of return",x:"The return seat, and accommodation or escorts until the passenger leaves."},
 {name:"Standing with the authorities",x:"Repeat cases bring closer scrutiny and affect the operation."}]}]},
 {h:"The basics at the counter",blocks:[{t:"check",items:[
@@ -100,16 +100,16 @@ sections:[
 ["API (Advance Passenger Information)","Passport details (name, nationality, passport number, date of birth) and the flight","From before departure to just after"],
 ["PNR (Passenger Name Record)","Itinerary, contact details, form of payment, travelling companions, seat and more","Several times at set points from days before departure"],
 ["iAPI (interactive API)","Data is sent at each check-in and the authorities answer “board” or “do not board” on the spot","At check-in"]]},
-{t:"note",x:"* What is sent, when and in what format is set by each country. In some, a flight cannot leave without it or the airline is fined. ★"}]},
+{t:"note",x:"* What is sent, when and in what format is set by each country. In some, a flight cannot leave without it or the airline is fined."}]},
 {h:"Electronic travel authorisations",blocks:[{t:"table",cols:["Country or region","Name"],rows:[
-["United States","ESTA"],["Canada","eTA"],["United Kingdom","ETA"],["Australia","ETA"],["New Zealand","NZeTA"],["Korea","K-ETA"],["Europe (Schengen)","ETIAS (planned) ★"],["Japan","JESTA (targeted for fiscal 2028)"]]},
-{t:"note",x:"* Eligible nationalities, fees, validity and exemptions change often. Parts 1 and 4 cover them from official sources. ★"}]},
+["United States","ESTA"],["Canada","eTA"],["United Kingdom","ETA"],["Australia","ETA"],["New Zealand","NZeTA"],["Korea","K-ETA"],["Europe (Schengen)","ETIAS (planned for the last quarter of 2026)"],["Japan","JESTA (targeted for fiscal 2028)"]]},
+{t:"note",x:"* Eligible nationalities, fees, validity and exemptions change often. Parts 1 and 4 cover them from official sources."}]},
 {h:"Japan’s JESTA",blocks:[{t:"rows",items:[
 {name:"What has been decided",x:"On 10 March 2026 the cabinet approved a bill amending the Immigration Control and Refugee Recognition Act and related law to create an electronic travel authorisation."},
 {name:"Who it covers",x:"Short-stay visitors from the 74 visa-exempt countries and regions."},
 {name:"What they do",x:"Before travel they submit their name, purpose and place of stay online and receive an authorisation."},
 {name:"The airline’s duty",x:"An airline must not carry to Japan a foreign national for whom it has not received notice from the authorities that boarding is permitted."},
-{name:"When",x:"The target is fiscal 2028 (by the end of March 2029). Check the latest official material for the bill’s passage and the detailed rules. ★"}]}]},
+{name:"When",x:"The target is fiscal 2028 (by the end of March 2029). Check the latest official material for the bill’s passage and the detailed rules."}]}]},
 {h:"How counter work changes",blocks:[{t:"check",items:[
 {name:"Scan the passport correctly",x:"What you scan goes straight to the authorities. A scanning or typing error becomes an error in their records."},
 {name:"If the system answers “do not board”",x:"Do not decide yourself. Confirm with the set contact (the authority or head office), and do not guess at the reason to the passenger."},

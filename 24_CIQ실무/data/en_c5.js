@@ -21,7 +21,7 @@ sections:[
 {name:"Report to head office",sub:"In the incident report format of lesson 3-4 (Airport Station Management)"},
 {name:"Decide whether to appeal",sub:"The documents were correct; a forgery could not have been detected. There is a deadline ★"},
 {name:"Prevent a repeat",sub:"Choose one measure that fits the cause and tell everyone"}]},
-{t:"note",x:"* How to appeal and the deadline differ by country. ★"}]},
+{t:"note",x:"* How to appeal and the deadline differ by country."}]},
 {h:"Look at the numbers",blocks:[{t:"check",items:[
 {name:"Look at the rate, not the count",x:"How many per 10,000 passengers carried. More flights naturally mean more cases."},
 {name:"Break it down by cause",x:"Transit points, passport validity, travel authorisations. Start with the commonest."},
@@ -47,7 +47,7 @@ sections:[
 ["Quarantine (human)","Origin, passenger numbers"],
 ["Animal and plant quarantine","Origin (whether it is a higher-risk area for disease or pests), handling of catering waste"],
 ["The airport operator","Time of use, stand, facilities"]]},
-{t:"note",x:"* Application forms and deadlines differ by country and airport. ★"}]},
+{t:"note",x:"* Application forms and deadlines differ by country and airport."}]},
 {h:"When and how to proceed",blocks:[{t:"rows",items:[
 {name:"Sound them out at the planning stage",x:"Consult while the flight is still under consideration, not after it is decided. You learn early which times cannot be handled."},
 {name:"Tell them at once when something changes",x:"Time, aircraft, passenger numbers: pass on each change."},
@@ -83,7 +83,7 @@ sections:[
 ["The station","Customs, immigration, quarantine and the airport operator","New arrival time, passenger numbers, request for extension"],
 ["The station","Head office operations","The answers from CIQ and the airport"],
 ["The handling company","Its own staff and equipment","Extension of shifts"]]},
-{t:"note",x:"* Whether a fee is charged for extending hours differs by country and airport. ★"}]},
+{t:"note",x:"* Whether a fee is charged for extending hours differs by country and airport."}]},
 {h:"Being prepared",blocks:[{t:"check",items:[
 {name:"A list of hours and contacts",x:"Put each agency’s normal hours and out-of-hours contacts on the duty roster."},
 {name:"Decide how much delay triggers a call",x:"Set a threshold for the station so that nobody hesitates."},

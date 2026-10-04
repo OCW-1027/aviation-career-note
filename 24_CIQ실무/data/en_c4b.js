@@ -6,7 +6,7 @@ sections:[
 {h:"Entry",blocks:[{t:"rows",items:[
 {name:"Electronic travel authorisation (eTA)",x:"Required of visa-exempt nationals arriving by air, including when only transiting. ★"},
 {name:"Immigration and customs",x:"The Canada Border Services Agency (CBSA) carries out both. The rules on food are set by the Canadian Food Inspection Agency (CFIA)."},
-{name:"Advance declaration",x:"At some airports the customs declaration can be completed before arrival through an app or website. ★"},
+{name:"Advance declaration",x:"At some airports the customs declaration can be completed before arrival through an app or website."},
 {name:"Flying from Canada to the United States",x:"At Canada’s main airports US immigration is cleared before departure (4-1). Passengers need to arrive at the airport earlier."}]}]},
 {h:"Declare all food, plants and animals",blocks:[{t:"table",cols:["","Details"],rows:[
 ["What to declare","Meat (raw or cooked), milk, butter and cheese, eggs, fish, fruit, vegetables, seeds, nuts, wooden products, soil"],
@@ -20,8 +20,8 @@ sections:[
 {name:"Herbs and traditional medicines",x:"They are treated as plants."},
 {name:"Soil",x:"Including soil on shoes and equipment."}]}]},
 {h:"Other points",blocks:[{t:"check",items:[
-{name:"Cash",x:"Cash and the like of CAD 10,000 or more must be declared. ★"},
-{name:"Cannabis",x:"Even though it is permitted within Canada, taking it across the border in either direction is illegal. ★"},
+{name:"Cash",x:"Cash and the like of CAD 10,000 or more must be declared, both on entering and on leaving."},
+{name:"Cannabis",x:"Even though it is permitted within Canada, taking it across the border in either direction is illegal."},
 {name:"What to say at the counter",x:"As for the United States: “Please declare all food.”"}]},
 {t:"point",x:"In Canada too, the offence is not having the item but failing to declare it."}]}],
 voice:"I have seen many announcements from the Canadian authorities: declared meat was simply confiscated, while a traveller who did not declare was fined CAD 1,300. The same item, and a completely different outcome depending on whether it was declared.",
@@ -36,8 +36,8 @@ sections:[
 {h:"Entering Europe (the Schengen area)",blocks:[{t:"rows",items:[
 {name:"Entry is at the first country",x:"Immigration is cleared at the first Schengen airport. Onward flights within the area are boarded like domestic ones."},
 {name:"Entry/Exit System (EES)",x:"Registers face and fingerprints and records entries and exits. It has operated at all external borders since 10 April 2026. First-time registration takes time (1-3)."},
-{name:"Authorisation before travel (ETIAS)",x:"Requires visa-exempt nationals to apply before travelling. Check the official guidance for the start date (1-3). ★"},
-{name:"Permitted stay",x:"Short stays without a visa are limited to 90 days in any 180, counted across all countries in the area. ★"},
+{name:"Authorisation before travel (ETIAS)",x:"Requires visa-exempt nationals to apply before travelling. It is due to start in the last quarter of 2026. Check the official guidance for the start date (1-3)."},
+{name:"Permitted stay",x:"Short stays without a visa are limited to 90 days in any 180, counted across all countries in the area."},
 {name:"Schengen and the EU are not the same",x:"Ireland is in the EU but not in Schengen. Switzerland and Norway are not in the EU but are in Schengen. ★"}]}]},
 {h:"Food that cannot be brought into Europe",blocks:[{t:"table",cols:["Item","Treatment"],rows:[
 ["Meat and dairy products","Cannot be brought in from outside the EU in personal baggage"],
@@ -56,7 +56,7 @@ sections:[
 {name:"Connecting within Europe",x:"Immigration is cleared at the first airport, and so is EES registration, so allow more connection time."},
 {name:"Counting the 90 days",x:"Days from earlier trips count too. Remind passengers staying a long time to check."},
 {name:"Passengers going from Europe to Britain",x:"Cheese and cured meats bought as presents cannot be taken into Britain. Tell them before departure."},
-{name:"Connecting in London",x:"Check in TIMATIC whether UK entry requirements (ETA or visa) apply. ★"}]},
+{name:"Connecting in London",x:"Check in TIMATIC whether UK entry requirements (ETA or visa) apply."}]},
 {t:"point",x:"Do not treat “Europe” as one thing. Think of Schengen, the EU and the United Kingdom separately."}]}],
 voice:"A passenger had bought cheese in Paris to take to family in London. That used to be possible, but not since April 2025. Luckily I noticed the bag at the gate and was able to tell him.",
 terms:[["Schengen Area","シェンゲン圏","솅겐 지역"],["Foot-and-Mouth Disease","口蹄疫","구제역"],["Personal Imports","個人の持ち込み","개인 반입"],["90/180-Day Rule","90日の決まり","90일 규칙"]],
