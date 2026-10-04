@@ -68,7 +68,17 @@ function alwFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
   [0,1].forEach(function(i){s+=R(20+i*310,y,290,h,'#fff',8,' stroke="'+C2[i]+'" stroke-width="2"')+TW2(165+i*310,y+9,r[1+i],12,D,800,262)});y+=h+10});
  var b=BOX(y,d[3],'#EEF4FA',NV,11.5);s+=b[0];y+=b[1]+16;return svg(y,s)}}
 
+/* 3-2 食べ物を3つに分ける。行：[区分, 例, 色]。赤=持ち込めない、黄=証明書と検査、緑=申告して確かめる */
+var FOOD={
+ ja:['食べ物を3つに分けて考える（日本・韓国に入るとき）',[['持ち込めない','肉、ハム・ソーセージ・ジャーキー、肉まん・餃子、肉の入った即席食品、機内食の残り、土のついた植物','#C2344F'],['証明書と検査が要る','生の果物・野菜、穀類・豆、種・苗・球根、切り花。輸出した国の政府の証明書がなければ持ち込めない','#B7791F'],['申告して確かめる','乳製品、ドライフルーツ、香辛料、お茶や加工した食品。国と品目で扱いが変わる',QC]],'迷ったら、申告する。申告すれば、持ち込めない物は捨てるだけで済みます。'],
+ ko:['음식을 셋으로 나눠 생각한다(일본·한국에 들어갈 때)',[['가져올 수 없다','고기, 햄·소시지·육포, 고기만두·교자, 고기가 든 즉석식품, 남은 기내식, 흙이 묻은 식물','#C2344F'],['증명서와 검사가 필요하다','생과일·채소, 곡류·콩, 씨앗·모종·알뿌리, 꺾은 꽃. 수출한 나라 정부의 증명서가 없으면 가져올 수 없다','#B7791F'],['신고해서 확인한다','유제품, 건조 과일, 향신료, 차와 가공한 식품. 나라와 품목에 따라 취급이 달라진다',QC]],'망설여지면 신고한다. 신고하면 가져올 수 없는 물건은 버리는 것으로 끝납니다.'],
+ en:['Think of food in three groups (entering Japan or Korea)',[['Cannot be brought in','Meat; ham, sausages and jerky; meat buns and dumplings; instant foods containing meat; leftover in-flight meals; plants with soil','#C2344F'],['Needs a certificate and inspection','Fresh fruit and vegetables; grains and beans; seeds, seedlings and bulbs; cut flowers. Not allowed without a certificate from the exporting country’s government','#B7791F'],['Declare and check','Dairy products, dried fruit, spices, tea and processed foods. Treatment depends on the country and the item',QC]],'If in doubt, declare. Declared items that cannot be brought in are simply surrendered.']};
+function foodFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ d[1].forEach(function(r){var c=r[2],h1=hgt(r[0],13.5,560)+14,h2=hgt(r[1],12,560),h=h1+h2+22;
+  s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+R(20,y,600,h1,c,10)+TW2(36,y+7,r[0],13.5,'#fff',900,560,'start')+TW2(36,y+h1+10,r[1],12,D,700,560,'start');y+=h+10});
+ y+=4;var b=BOX(y,d[2],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
-window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));
 })();

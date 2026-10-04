@@ -122,5 +122,5 @@ terms:[["Aircraft Stores","機用品","기용품"],["Bonded (Under Customs Contr
 quiz:[{q:"How does customs treat catering and drinks on an international flight?",opts:["They are loaded untaxed, with formalities for loading and unloading","They have nothing to do with customs","Tax is paid on every arrival","They count as passenger baggage"],a:0,exp:"What the aircraft carries is also under customs control."},
 {q:"What is needed before a delayed bag is delivered to the passenger?",opts:["Customs inspection","Nothing","Only the passenger’s signature","Only the airport company’s permission"],a:0,exp:"The airline presents the bag on the passenger’s behalf."},
 {q:"What comes first when a flight arrives at an unplanned airport?",opts:["Do not move passengers, bags or stores until customs gives instructions","Let everyone off at once","Sell duty-free goods","Unload and discard the stores"],a:0,exp:"If in doubt, ask before moving anything."}],
-next:""});
+next:"3-1 Human quarantine: keeping infections out"});
 })(window.ARTS);
