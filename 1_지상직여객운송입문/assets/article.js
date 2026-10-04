@@ -1,3 +1,15 @@
+/* 確認クイズの選択肢を並べ替える（2026.10）：正解がいつも同じ位置にならないように、表示のときだけ順番を変える（データはそのまま）。
+   ・seed が同じなら、同じ順番。位置を固定するかは ref（日本語の選択肢）で決めるので、言語を切り替えても並びは変わらない
+   ・「3つすべて」「両方」など、ほかの選択肢をまとめて指すものは、元の位置に置く
+   戻り値：表示する順に並べた、元の選択肢の番号の配列 */
+window.OPTORD=function(opts,seed,ref){
+ var n=opts.length,pin=/^(All of (them|the above)|None of (them|the above)|Both|[2-9２-９]つすべて|上のすべて|以上すべて|両方|둘 다|셋 모두|넷 모두|위의 모두)$/,R=(ref&&ref.length===n)?ref:opts,free=[],out=[],i,h=2166136261,s=String(seed);
+ for(i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}
+ function rnd(){h=(h+0x6D2B79F5)>>>0;var t=h;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}
+ for(i=0;i<n;i++)if(!pin.test(String(R[i])))free.push(i);
+ for(i=free.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1)),t=free[i];free[i]=free[j];free[j]=t}
+ for(i=0;i<n;i++)out.push(pin.test(String(R[i]))?i:free.shift());
+ return out};
 /* 図の文字の大きさの共通ルール（2026.09）：図の中の文字は、画面の上で 11px より小さくしない。
    ・新しい図（data-flr の付いたもの）は、図のファイルの中で自分で合わせるので、そのまま
    ・それ以外の図は、PC（表示の幅600px以上）では小さい文字を大きくし、スマートフォンでは 11px を保てる幅で描いて横にスクロールさせる */
@@ -229,7 +241,7 @@ function render(){
    h+='</div>'}
   if(L.voice&&L.voice.x&&!/インタビュー(追加|補強)予定|인터뷰\s*(보강|추가)\s*예정|Interview to be added/i.test(L.voice.x))h+='<section><h2>'+esc(L.voice.h)+'</h2><div class="voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg><p>'+esc(L.voice.x)+'</p></div></section>';
   if(L.terms)h+='<section><h2>'+esc(L.terms.h)+'</h2><div class="scroll tbl"><table class="terms"><thead><tr>'+L.terms.cols.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+L.terms.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div></section>';
-  if(L.quiz)h+='<section><h2>'+esc(L.quiz.h)+'</h2><div class="quiz">'+L.quiz.items.map(function(q,qi){return '<div class="q" data-a="'+q.a+'"><p>Q'+(qi+1)+'. '+esc(q.q)+'</p><div class="opts">'+q.opts.map(function(o,oi){return '<button type="button" class="opt" data-i="'+oi+'">'+(oi+1)+'. '+esc(o)+'</button>'}).join('')+'</div><div class="exp"><div class="exa">'+({ja:'正解：',ko:'정답: ',en:'Answer: '}[lang]||'正解：')+(q.a+1)+'. '+esc(q.opts[q.a])+'</div><b class="exl">'+({ja:'解説',ko:'해설',en:'Explanation'}[lang]||'解説')+'</b>'+esc(q.exp)+'</div></div>'}).join('')+'</div></section>';
+  if(L.quiz)h+='<section><h2>'+esc(L.quiz.h)+'</h2><div class="quiz">'+L.quiz.items.map(function(q,qi){var ord=window.OPTORD(q.opts,(C.meta.home||'')+'|'+C.meta.no+'|'+qi,C.ja&&Array.isArray(C.ja.quiz)&&C.ja.quiz[qi]&&C.ja.quiz[qi].opts);return '<div class="q" data-a="'+q.a+'"><p>Q'+(qi+1)+'. '+esc(q.q)+'</p><div class="opts">'+ord.map(function(oi,pos){return '<button type="button" class="opt" data-i="'+oi+'">'+(pos+1)+'. '+esc(q.opts[oi])+'</button>'}).join('')+'</div><div class="exp"><div class="exa">'+({ja:'正解：',ko:'정답: ',en:'Answer: '}[lang]||'正解：')+(ord.indexOf(q.a)+1)+'. '+esc(q.opts[q.a])+'</div><b class="exl">'+({ja:'解説',ko:'해설',en:'Explanation'}[lang]||'解説')+'</b>'+esc(q.exp)+'</div></div>'}).join('')+'</div></section>';
   (function(){var no=C.meta.no,kn=window.KAKO_LESSON&&window.KAKO_LESSON[no],rn=window.KRX_LESSON&&window.KRX_LESSON[no];if(!kn&&!rn)return;
    var T={ja:['問題で確かめる','この回に関係する問題を、続けて解けます。','日本の過去問題 '+kn+'問（日本語）→','韓国の運航管理士 練習問題 '+rn+'問（韓国語）→'],ko:['문제로 확인하기','이 레슨과 관련된 문제를 이어서 풀 수 있습니다.','일본 국가 기출문제 '+kn+'문(일본어) →','한국 운항관리사 연습문제 '+rn+'문 →'],en:['Check with questions','Work through the questions related to this lesson.','Japanese past papers: '+kn+' (Japanese) →','Korean practice questions: '+rn+' (Korean) →']}[lang]||[];
    h+='<section class="kakobox"><h2>'+esc(T[0])+'</h2><p>'+esc(T[1])+'</p><p class="kakobtns">'+(kn?'<a class="kakobtn" href="../22_学科試験過去問/学科試験_過去問.html?lesson='+encodeURIComponent(no)+'">'+esc(T[2])+'</a>':'')+(rn?'<a class="kakobtn kr" href="../22_学科試験過去問/운항관리사_연습문제.html?lesson='+encodeURIComponent(no)+'">'+esc(T[3])+'</a>':'')+'</p></section>';})();
