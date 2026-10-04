@@ -11,7 +11,7 @@ sections:[
 ["Unlisted but audited","Japanese GAAP (accounts under the Companies Act)","Korean GAAP for non-listed companies; K-IFRS may be chosen"],
 ["Small companies","Guidelines for SME accounting","Accounting standard for SMEs"]]},
 {t:"note",x:"* In Japan, IFRS can be chosen for the consolidated statements of companies that meet certain conditions. The parent-only accounts are prepared under Japanese GAAP. ★"}]},
-{h:"Where to find the standard",blocks:[{t:"rows",items:[
+{h:"Where to find the standard",blocks:[{t:"fig",id:"fin_std_where",cap:"Where the standard is stated in three documents. The yellow box shows the actual wording."},{t:"rows",items:[
 {name:"Japanese earnings release",x:"It is in the title on the cover, in brackets: 〔IFRS〕 or 〔日本基準〕 (Japanese GAAP)."},
 {name:"Japanese annual securities report",x:"The opening of the financial section (経理の状況) states the standard used for the consolidated statements."},
 {name:"Korean annual report and audit report",x:"The note on the basis of preparation (재무제표 작성기준) says whether the accounts follow K-IFRS (한국채택국제회계기준) or Korean GAAP (일반기업회계기준)."},
@@ -54,7 +54,7 @@ sections:[
 ["Equity-method results","Excluded (non-operating)","Depends on the company","Depends on the company ★"]]},
 {t:"point",x:"In Korea, a new standard (K-IFRS 1118) changes the idea of operating profit for years beginning on or after 1 January 2027. Everything that is not investing, financing and so on falls into operating, so gains and losses on disposing of fixed assets and impairment losses move into operating profit. Operating profit under the present definition will be given in the notes. ★"},
 {t:"note",x:"* The underlying IFRS 18 also takes effect in 2027 and defines operating profit in IFRS for the first time. The Japanese GAAP steps of operating and ordinary profit do not change. ★"}]},
-{h:"How to restate, and practice",blocks:[{t:"ladder",steps:[
+{h:"How to restate, and practice",blocks:[{t:"fig",id:"fin_op_bridge",cap:"An example of putting a Japanese GAAP company and an IFRS company on the same footing."},{t:"ladder",steps:[
 {name:"Decide which profit to compare",sub:"Operating profit for the main business; profit before tax to include borrowing and currency"},
 {name:"Check what is inside operating profit",sub:"Notes and results presentations show how impairment and disposals are treated"},
 {name:"Take out one-off items",sub:"Build your own profit excluding impairment, disposals and disasters"},
@@ -77,7 +77,7 @@ sections:[
 {name:"Japanese GAAP (now)",x:"Finance leases are on the balance sheet. Operating leases are not; the future lease payments are given in a note."},
 {name:"Japanese GAAP (new standard)",x:"ASBJ Statement No. 34 (issued September 2024) puts all leases on the balance sheet. It applies to years beginning on or after 1 April 2027, with early adoption allowed from April 2025. For a March year-end company, that means the year ending March 2028. ★"}]},
 {t:"point",x:"Put a Japanese GAAP airline beside an IFRS or K-IFRS airline and the second shows larger assets and liabilities and a lower equity ratio. To compare, add the future operating lease payments in the Japanese GAAP company’s notes to its liabilities."}]},
-{h:"Goodwill: amortise or not",blocks:[{t:"table",cols:["","Japanese GAAP","IFRS and K-IFRS"],rows:[
+{h:"Goodwill: amortise or not",blocks:[{t:"fig",id:"fin_goodwill",cap:"How the same goodwill of 100 changes over ten years under each standard. Red marks the impairment year."},{t:"table",cols:["","Japanese GAAP","IFRS and K-IFRS"],rows:[
 ["Treatment","Amortised over 20 years or less; an expense every year","Not amortised; impaired when the value falls"],
 ["Effect on profit","Lowers operating profit a little every year","Nothing in normal years; a large loss at once when impaired"],
 ["Balance sheet","Goodwill shrinks each year","Goodwill stays"]]},
@@ -112,7 +112,7 @@ sections:[
 ["Quarterly earnings release (Q1 and Q3)","Within about 45 days of each quarter-end","TDnet; the company’s investor relations page","Quarterly results and financial statements"],
 ["Half-year report","After the first half ★","EDINET","Half-year financial statements and state of the business"]]},
 {t:"note",x:"* For quarters beginning on or after 1 April 2024, the statutory quarterly report was abolished and Q1 and Q3 reporting was unified into the stock exchange’s quarterly earnings release. A half-year report is filed for the second quarter. ★"}]},
-{h:"Choose the document by what you want to know",blocks:[{t:"rows",items:[
+{h:"Choose the document by what you want to know",blocks:[{t:"fig",id:"fin_doc_pick",cap:"What you want to know, and the document to open. Orange is the earnings release, blue the annual securities report, green EDINET."},{t:"rows",items:[
 {name:"This year’s figures and next year’s forecast",x:"The first page of the earnings release. Carrying the company’s own forecast is a feature of the Japanese earnings release."},
 {name:"Segments, routes, fleet",x:"The business and facilities sections of the annual securities report, and the results presentation."},
 {name:"Leases, debt repayment schedule, pensions",x:"The notes in the annual securities report."},
@@ -159,7 +159,7 @@ sections:[
 {t:"rows",items:[
 {name:"English version",x:"englishdart.fss.or.kr has English pages, and some companies file English disclosures. ★"},
 {name:"Exchange disclosure",x:"The Korea Exchange’s KIND site also gathers listed companies’ disclosures."}]}]},
-{h:"Unlisted companies are visible too",blocks:[{t:"table",cols:["Stock companies subject to statutory audit","Threshold"],rows:[
+{h:"Unlisted companies are visible too",blocks:[{t:"fig",id:"fin_kr_audit",cap:"Check from the top. One “yes” is enough for the audit report to be on DART."},{t:"table",cols:["Stock companies subject to statutory audit","Threshold"],rows:[
 ["Large companies","Total assets or sales of 50 billion won or more in the previous year"],
 ["Companies meeting two or more of four tests","Total assets of 12 billion won or more, total liabilities of 7 billion won or more, sales of 10 billion won or more, 100 or more employees"],
 ["Listed companies and companies preparing to list","Covered regardless of size"]]},
@@ -203,7 +203,7 @@ sections:[
 ["自己資本比率","자기자본비율","Equity ratio","Korea often uses the debt ratio (부채비율)"],
 ["減価償却費","감가상각비","Depreciation",""],
 ["前受金・契約負債","선수금·계약부채","Unearned revenue",""]]}]},
-{h:"Put the assumptions on one page",blocks:[{t:"table",cols:["","JAL","ANA","Korean Air"],rows:[
+{h:"Put the assumptions on one page",blocks:[{t:"fig",id:"fin_period",cap:"Orange is Korea’s December year-end, blue Japan’s March year-end. The yellow months are the nine that overlap."},{t:"table",cols:["","JAL","ANA","Korean Air"],rows:[
 ["Accounting standard","IFRS","Japanese GAAP","K-IFRS"],["Year-end","March","March","December"],["Currency","Yen","Yen","Won"],["Name of the main profit","EBIT","Operating profit","Operating profit (영업이익)"],["Leases (lessee)","On the balance sheet","Operating leases in the notes (on the balance sheet from the year to March 2028)","On the balance sheet"],["Annual report","Annual securities report","Annual securities report","Annual business report"]]},
 {t:"point",x:"The trick is to put assumptions, not numbers, at the top of the table. The reader then knows which figures can be compared as they are and which need care, before looking at a single number."},
 {t:"note",x:"* Each company’s standard and presentation are as shown in published documents available in October 2026. They can change, so check the latest earnings release or annual report when you use them. ★"}]},

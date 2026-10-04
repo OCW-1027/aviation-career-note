@@ -425,3 +425,102 @@ function TLN(title,mo,ev,note){var x0=66,st=64,ax=172,s='<svg xmlns="http://www.
  return s+'</svg>'}
 for(var k in F)window.FIGS[k]=F[k];
 })();
+
+/* ===== Part 8 の2つ目の図（2026.10）。新しい作り方（幅640・縦に積む・文は折り返す）。figs_met.js の window.FIGH を使うので、view.html で figs_met.js を先に読み込む ===== */
+(function(){
+var H=window.FIGH;if(!H)return;
+var R=H.R,tx=H.tx,WR=H.WR,TTL=H.TTL,FS=H.FS,LI=H.LINES,setK=H.setK,ARW=H.ARW;
+var D=H.C.D,G=H.C.G,PL='#2F8FE0',BS='#1F7A6E',CF='#E08A2F',RD='#C2344F',GN='#1F8A5B',NV='#0f3558',GY='#9AA9B8';
+function svg(h,body){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+Math.ceil(h)+'" role="img">'+R(0,0,640,Math.ceil(h),'#F7FAFD')+body+'</svg>'}
+function hgt(s,sz,w){return LI(s,sz,w).length*FS(sz)*1.3}
+function TW2(x,top,s,sz,c,w,maxw,a){var n=LI(s,sz,maxw).length,lh=FS(sz)*1.3;return WR(x,top+FS(sz)*0.95+(n-1)*lh/2,s,sz,c,w,maxw,a)}
+function ttlH(s){return Math.max(58,30+hgt(s,15,600)+14)}
+function BOX(y,s,bg,c,sz){sz=sz||12;var h=hgt(s,sz,560)+18;return [R(20,y,600,h,bg,10)+TW2(320,y+9,s,sz,c,900,560),h]}
+function NOTE(y,s){var h=hgt(s,11.5,580);return [TW2(320,y,s,11.5,G,700,580),h]}
+
+/* 8-1 基準はどこに書いてあるか。行：[書類, どこ, 書いてある文（原文）, 意味] */
+var WHERE={
+ ja:['基準は、ここに書いてある',[['日本の決算短信','表紙のタイトル','2026年3月期 決算短信〔IFRS〕（連結）','〔 〕の中が基準。〔日本基準〕〔IFRS〕など',CF],['日本の有価証券報告書','「経理の状況」のいちばん初め','連結財務諸表の作成方法について','どの基準で連結財務諸表を作ったかが書いてある',PL],['韓国の事業報告書・監査報告書','財務諸表の注記「재무제표 작성기준」','한국채택국제회계기준(K-IFRS)에 따라 작성','K-IFRSか、一般企業会計基準かが書いてある',BS]],'航空会社の例',['JAL ― IFRS','ANA ― 日本基準','大韓航空・チェジュ航空 ― K-IFRS'],'数字を比べる前に、まず基準を確かめます。'],
+ ko:['기준은 여기에 적혀 있다',[['일본의 결산단신','표지의 제목','2026年3月期 決算短信〔IFRS〕（連結）','〔 〕 안이 기준. 〔日本基準〕〔IFRS〕 등',CF],['일본의 유가증권보고서','「経理の状況」의 맨 처음','連結財務諸表の作成方法について','어느 기준으로 연결재무제표를 만들었는지 적혀 있다',PL],['한국의 사업보고서·감사보고서','재무제표 주석 「재무제표 작성기준」','한국채택국제회계기준(K-IFRS)에 따라 작성','K-IFRS인지 일반기업회계기준인지 적혀 있다',BS]],'항공사의 예',['JAL — IFRS','ANA — 일본 기준','대한항공·제주항공 — K-IFRS'],'숫자를 비교하기 전에 먼저 기준을 확인합니다.'],
+ en:['Where the accounting standard is stated',[['Japanese earnings release (kessan tanshin)','The title on the cover','2026年3月期 決算短信〔IFRS〕（連結）','The standard is in the brackets: 〔日本基準〕 (Japanese GAAP), 〔IFRS〕 and so on',CF],['Japanese annual securities report','The start of “経理の状況” (financial information)','連結財務諸表の作成方法について','States which standard the consolidated statements follow',PL],['Korean business report and audit report','The note “재무제표 작성기준” (basis of preparation)','한국채택국제회계기준(K-IFRS)에 따라 작성','States K-IFRS or Korean general accounting standards',BS]],'Airline examples',['JAL: IFRS','ANA: Japanese GAAP','Korean Air, Jeju Air: K-IFRS'],'Check the standard before you compare any numbers.']};
+function whereFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ d[1].forEach(function(r){var c=r[4],h0=hgt(r[0],13,560)+14,h1=hgt(r[1],11.5,540),h2=hgt(r[2],12.5,520)+14,h3=hgt(r[3],11.5,540),y0=y;
+  var g=R(20,y,600,h0,c,10)+TW2(36,y+7,r[0],13,'#fff',900,560,'start'),yy=y+h0+8;
+  g+=TW2(36,yy,r[1],11.5,G,800,540,'start');yy+=h1+6;
+  g+=R(36,yy,568,h2,'#FFF8E1',6,' stroke="#E0B84A" stroke-width="1.5"')+TW2(48,yy+7,r[2],12.5,D,900,520,'start');yy+=h2+6;
+  g+=TW2(36,yy,r[3],11.5,D,700,540,'start');yy+=h3+12;
+  s+=R(20,y0,600,yy-y0,'#fff',10,' stroke="'+c+'" stroke-width="2"')+g;y=yy+10});
+ var hh=hgt(d[2],12.5,560)+14;s+=R(20,y,600,hh,NV,10)+TW2(320,y+7,d[2],12.5,'#fff',900,560);y+=hh+8;
+ d[3].forEach(function(t,i){var h=hgt(t,12,540)+14;s+=R(20,y,600,h,i%2?'#fff':'#EEF4FA',8)+TW2(36,y+7,t,12,D,800,540,'start');y+=h+4});
+ y+=8;var n=NOTE(y,d[4]);s+=n[0];y+=n[1]+16;return svg(y,s)}}
+
+/* 8-2 営業利益を同じ範囲にそろえる。行：[名前, 始まり, 終わり, 色, 値の表示] */
+var BRG={
+ ja:['営業利益を、同じ範囲にそろえる（例）',['A社（日本基準）','B社（IFRS）'],[['営業利益（発表）',0,100,PL,'100']],[['営業利益（発表）',0,90,GY,'90'],['＋ 減損損失（臨時の損失を戻す）',90,110,GN,'+20'],['－ 固定資産の売却益（臨時の利益を引く）',100,110,RD,'−10'],['そろえたあとの営業利益',0,100,PL,'100']],'発表の数字は100と90ですが、範囲をそろえると同じです。日本基準では、減損損失と売却益は営業利益の外（特別損益）に出ます。','架空の数字（億円）。実際には、注記で何が営業利益に入っているかを確かめてから直します。'],
+ ko:['영업이익을 같은 범위로 맞춘다(예)',['A사(일본 기준)','B사(IFRS)'],[['영업이익(발표)',0,100,PL,'100']],[['영업이익(발표)',0,90,GY,'90'],['＋ 손상차손(임시 손실을 되돌린다)',90,110,GN,'+20'],['－ 고정자산 매각이익(임시 이익을 뺀다)',100,110,RD,'−10'],['맞춘 뒤의 영업이익',0,100,PL,'100']],'발표 숫자는 100과 90이지만, 범위를 맞추면 같습니다. 일본 기준에서는 손상차손과 매각이익이 영업이익 밖(특별손익)에 나옵니다.','가상의 숫자(억 엔). 실제로는 주석에서 무엇이 영업이익에 들어 있는지 확인한 뒤에 고칩니다.'],
+ en:['Putting operating profit on the same footing (example)',['Company A (Japanese GAAP)','Company B (IFRS)'],[['Operating profit (reported)',0,100,PL,'100']],[['Operating profit (reported)',0,90,GY,'90'],['+ Impairment loss (add back a one-off loss)',90,110,GN,'+20'],['− Gain on sale of fixed assets (remove a one-off gain)',100,110,RD,'−10'],['Operating profit after alignment',0,100,PL,'100']],'The reported figures are 100 and 90, but on the same footing they are equal. Under Japanese GAAP, impairment losses and gains on sale sit outside operating profit, in extraordinary items.','Fictional figures (100 million yen). In practice, check the notes to see what operating profit includes before adjusting.']};
+function brgFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),X=function(v){return 36+430*v/110},bh=Math.max(18,FS(12)*0.95);
+ [[d[1][0],d[2],NV],[d[1][1],d[3],CF]].forEach(function(co){var y0=y,hh=hgt(co[0],13,560)+14,g=R(20,y,600,hh,co[2],10)+TW2(36,y+7,co[0],13,'#fff',900,560,'start'),yy=y+hh+10;
+  co[1].forEach(function(r){var hl=hgt(r[0],12,560);g+=TW2(36,yy,r[0],12,D,800,560,'start');yy+=hl+4;
+   g+=R(X(Math.min(r[1],r[2])),yy,Math.abs(X(r[2])-X(r[1])),bh,r[3],4)+tx(X(Math.max(r[1],r[2]))+8,yy+bh/2+FS(12)*0.35,r[4],12,r[3]===GY?G:r[3],900,'start')+(r[1]>0?'<line x1="'+X(r[1])+'" y1="'+(yy-4)+'" x2="'+X(r[1])+'" y2="'+(yy+bh+4)+'" stroke="#9AA9B8" stroke-width="1.5" stroke-dasharray="3 3"/>':'');yy+=bh+12});
+  s+=R(20,y0,600,yy-y0,'#fff',10,' stroke="'+co[2]+'" stroke-width="2"')+g;y=yy+10});
+ var b=BOX(y,d[4],'#E4F0FB','#1B5FA6',12);s+=b[0];y+=b[1]+10;var n=NOTE(y,d[5]);s+=n[0];y+=n[1]+16;return svg(y,s)}}
+
+/* 8-3 のれんの10年：日本基準は毎年減り、IFRSは残って減損で一度に減る */
+var GW={
+ ja:['のれんの10年 ― 償却する基準、しない基準（例）',['日本基準 ― 20年以内に償却（ここでは10年）','のれんは毎年10ずつ減る。営業利益も毎年10下がる'],['IFRS・K-IFRS ― 償却しない','ふだんは100のまま。6年目に減損で60減り、その年の利益が一度に下がる'],'年','買収のときに100ののれんが生まれた場合。数字は考え方を示す架空の例です。','買収が多い会社を比べるときは、のれんの償却の分を足し戻してから並べます（EBITDAなど）。'],
+ ko:['영업권의 10년 — 상각하는 기준, 하지 않는 기준(예)',['일본 기준 — 20년 이내에 상각(여기서는 10년)','영업권은 해마다 10씩 줄어든다. 영업이익도 해마다 10 내려간다'],['IFRS·K-IFRS — 상각하지 않는다','평소에는 100 그대로. 6년째에 손상으로 60이 줄고, 그해 이익이 한꺼번에 내려간다'],'년','인수 때 100의 영업권이 생긴 경우. 숫자는 개념을 보여 주는 가상의 예입니다.','인수가 많은 회사를 비교할 때는 영업권 상각만큼을 더해 되돌린 뒤 나란히 놓습니다(EBITDA 등).'],
+ en:['Ten years of goodwill: amortised under one standard, not under another (example)',['Japanese GAAP: amortised within 20 years (10 here)','Goodwill falls by 10 a year, and so does operating profit'],['IFRS and K-IFRS: not amortised','It stays at 100. In year 6 an impairment removes 60, and that year’s profit falls in one go'],'Year','Goodwill of 100 arising on an acquisition. The figures are fictional, to show the idea.','When comparing acquisitive companies, add back goodwill amortisation first (EBITDA and similar).']};
+function gwFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),f=FS(11),ch=120,bw=36,x0=64;
+ [[d[1],[100,90,80,70,60,50,40,30,20,10,0],NV,-1],[d[2],[100,100,100,100,100,100,40,40,40,40,40],CF,6]].forEach(function(p){var y0=y,hh=hgt(p[0][0],13,560)+14,g=R(20,y,600,hh,p[2],10)+TW2(36,y+7,p[0][0],13,'#fff',900,560,'start'),yy=y+hh+14,base=yy+ch;
+  g+='<line x1="'+(x0-6)+'" y1="'+base+'" x2="'+(x0+11*48)+'" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>'+tx(x0-10,yy+f*0.35,'100',11,G,700,'end')+tx(x0-10,base+f*0.35,'0',11,G,700,'end');
+  p[1].forEach(function(v,i){var h=ch*v/100,hot=i===p[3];g+=(v?R(x0+i*48,base-h,bw,h,hot?RD:(p[2]===NV?PL:CF),3):'')+(hot?R(x0+i*48,base-ch,bw,ch-h,'none',3,' stroke="'+RD+'" stroke-width="2" stroke-dasharray="5 4"'):'')+tx(x0+i*48+bw/2,base+f*1.25,String(i),11,hot?RD:G,hot?900:700)});
+  yy=base+f*1.25+4;g+=tx(x0+5*48+bw/2,yy+f,d[3],11,G,700);yy+=f+6;
+  var ht=hgt(p[0][1],12,560);g+=TW2(36,yy+6,p[0][1],12,D,800,560,'start');yy+=ht+18;
+  s+=R(20,y0,600,yy-y0,'#fff',10,' stroke="'+p[2]+'" stroke-width="2"')+g;y=yy+10});
+ var n=NOTE(y,d[4]);s+=n[0];y+=n[1]+8;var b=BOX(y,d[5],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
+/* 8-4 知りたいこと → 開く書類。行：[知りたいこと, 開く書類, 色] */
+var PICK={
+ ja:['知りたいことで、開く書類を決める',[['今期の数字と、来期の予想','決算短信の1ページ目',CF],['部門・路線別・機材','有価証券報告書「事業の状況」「設備の状況」、決算説明資料',PL],['リース、借入の返済の予定、年金','有価証券報告書の注記',PL],['大株主、役員、従業員の数、平均の給与','有価証券報告書「提出会社の状況」',PL],['過去の書類をまとめて','EDINET（金融庁）で、会社名か証券コードで検索',BS]],['決算短信：速報。会社のIRのページ・TDnet','有価証券報告書：詳しい。EDINET・会社のIRのページ','EDINET：検索も閲覧も無料'],'会社の業績予想が載るのは、日本の決算短信の特徴です。'],
+ ko:['알고 싶은 것에 따라 열 서류를 정한다',[['이번 기의 숫자와 다음 기의 예상','결산단신(決算短信)의 첫 쪽',CF],['부문·노선별·기재','유가증권보고서 「事業の状況」「設備の状況」, 결산 설명 자료',PL],['리스, 차입 상환 일정, 연금','유가증권보고서의 주석',PL],['대주주, 임원, 종업원 수, 평균 급여','유가증권보고서 「提出会社の状況」',PL],['과거 서류를 한꺼번에','EDINET(일본 금융청)에서 회사명이나 증권 코드로 검색',BS]],['결산단신: 속보. 회사의 IR 페이지·TDnet','유가증권보고서: 자세하다. EDINET·회사의 IR 페이지','EDINET: 검색도 열람도 무료'],'회사의 실적 예상이 실리는 것은 일본 결산단신의 특징입니다.'],
+ en:['Choose the document by what you want to know',[['This year’s figures and next year’s forecast','Page one of the earnings release (kessan tanshin)',CF],['Segments, routes, fleet','Annual securities report: “事業の状況” and “設備の状況”; results presentation',PL],['Leases, debt repayment schedule, pensions','Notes in the annual securities report',PL],['Major shareholders, directors, headcount, average pay','Annual securities report: “提出会社の状況”',PL],['Past filings in one place','EDINET (FSA): search by company name or securities code',BS]],['Earnings release: the quick summary. Company IR page, TDnet','Annual securities report: the detail. EDINET, company IR page','EDINET: free to search and read'],'Publishing the company’s own forecast is a distinctive feature of the Japanese earnings release.']};
+function pickFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ d[1].forEach(function(r){var c=r[2],h1=hgt(r[0],12.5,548),h2=hgt(r[1],12,500)+12,h=h1+h2+24;
+  s+=R(20,y,600,h,'#fff',10,' stroke="#DCE3EA" stroke-width="1.5"')+TW2(36,y+8,r[0],12.5,D,900,548,'start')+ARW(46,y+14+h1,46,y+12+h1+h2-2,c,3.5)+R(64,y+12+h1,540,h2,c,8)+TW2(76,y+18+h1,r[1],12,'#fff',800,500,'start');y+=h+8});
+ y+=4;[CF,PL,BS].forEach(function(c,i){var h=hgt(d[2][i],11.5,550);s+=R(24,y+FS(11.5)*0.28,18,FS(11.5)*0.75,c,4)+TW2(52,y,d[2][i],11.5,D,700,550,'start');y+=h+8});
+ y+=4;var n=NOTE(y,d[3]);s+=n[0];y+=n[1]+16;return svg(y,s)}}
+
+/* 8-5 韓国の外部監査の対象かどうか（上から順に確かめる） */
+var AUD={
+ ja:['韓国の上場していない会社 ― 監査報告書がDARTにあるか（判定の順）',['上場会社か、上場を準備している会社か','直前の事業年度の資産総額、または売上高が500億ウォン以上か','次の4つのうち2つ以上に当てはまるか：資産総額120億ウォン以上、負債総額70億ウォン以上、売上高100億ウォン以上、従業員100人以上'],['はい','いいえ'],'外部監査の対象 → 監査報告書（財務諸表と注記）がDARTで公開される','外部監査の対象ではない → DARTに監査報告書はない','株式会社の場合。有限会社は要件が少し違います。金額は直前の事業年度で見ます。'],
+ ko:['한국의 비상장회사 — 감사보고서가 DART에 있는가(판정 순서)',['상장회사이거나 상장을 준비하는 회사인가','직전 사업연도의 자산총액 또는 매출액이 500억 원 이상인가','다음 넷 가운데 둘 이상에 해당하는가: 자산총액 120억 원 이상, 부채총액 70억 원 이상, 매출액 100억 원 이상, 종업원 100명 이상'],['예','아니오'],'외부감사 대상 → 감사보고서(재무제표와 주석)가 DART에 공개된다','외부감사 대상이 아니다 → DART에 감사보고서가 없다','주식회사의 경우. 유한회사는 요건이 조금 다릅니다. 금액은 직전 사업연도로 봅니다.'],
+ en:['An unlisted Korean company: is its audit report on DART? (in order)',['Is it listed, or preparing to list?','Were total assets or sales at least KRW 50 billion in the previous year?','Does it meet two or more of these four: total assets of KRW 12 billion or more, total liabilities of KRW 7 billion or more, sales of KRW 10 billion or more, 100 or more employees?'],['Yes','No'],'Subject to external audit: the audit report (statements and notes) is published on DART','Not subject to external audit: no audit report on DART','For stock companies. The tests for limited companies differ slightly. Amounts are for the previous financial year.']};
+function audFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),r0=Math.max(13,FS(12)*0.72),yw=Math.max(H.TW(d[2][0],12)+26,70),outs=[];
+ d[1].forEach(function(q,i){var tw=600-r0*2-40-yw-20,h=Math.max(hgt(q,12,tw),r0*2)+20;
+  s+=R(20,y,600-yw-16,h,'#fff',10,' stroke="'+PL+'" stroke-width="2"')+'<circle cx="'+(34+r0)+'" cy="'+(y+h/2)+'" r="'+r0+'" fill="'+PL+'"/>'+tx(34+r0,y+h/2+FS(12)*0.35,String(i+1),12,'#fff',900)+TW2(46+r0*2,y+(h-hgt(q,12,tw))/2,q,12,D,800,tw,'start');
+  s+='<line x1="'+(620-yw-16)+'" y1="'+(y+h/2)+'" x2="'+(620-yw)+'" y2="'+(y+h/2)+'" stroke="'+GN+'" stroke-width="3"/>'+R(620-yw,y+h/2-FS(12)*0.95,yw,FS(12)*1.9,GN,FS(12)*0.95)+tx(620-yw/2,y+h/2+FS(12)*0.35,d[2][0],12,'#fff',900);outs.push(y+h/2);y+=h;
+  var hn=FS(11)*1.3;s+=ARW(60,y+3,60,y+hn+7,GY,3.5)+tx(76,y+hn*0.5+FS(11)*0.35+4,d[2][1],11,G,800,'start');y+=hn+14});
+ var b2=BOX(y,d[4],'#F0F2F5',D,12);s+=b2[0];y+=b2[1]+10;var b1=BOX(y,d[3],'#E3F4EA','#14633F',12.5);s+=b1[0];y+=b1[1]+10;
+ var n=NOTE(y,d[5]);s+=n[0];y+=n[1]+16;return svg(y,s)}}
+
+/* 8-6 決算期のずれと、為替の使い分け */
+var PER={
+ ja:['決算期のずれと、為替レートの使い分け',['韓国：12月決算（1月〜12月）','日本：3月決算（4月〜翌年3月）'],'重なるのは9か月。3か月ずれています。季節の影響が大きい航空会社では、四半期の数字を足し合わせて同じ12か月にそろえます。',[['損益計算書（売上・利益）','期間の平均のレートで換算する',PL],['貸借対照表（資産・負債）','期末の日のレートで換算する',BS]],'数字は月。「2025年度」と書いてあっても、日本と韓国では指している期間が違います。'],
+ ko:['결산기의 어긋남과 환율 쓰는 법',['한국: 12월 결산(1월~12월)','일본: 3월 결산(4월~다음 해 3월)'],'겹치는 것은 9개월. 3개월이 어긋납니다. 계절의 영향이 큰 항공사는 분기 숫자를 더해 같은 12개월로 맞춥니다.',[['손익계산서(매출·이익)','기간의 평균 환율로 환산한다',PL],['재무상태표(자산·부채)','기말 날짜의 환율로 환산한다',BS]],'숫자는 월. 「2025년도」라고 적혀 있어도 일본과 한국은 가리키는 기간이 다릅니다.'],
+ en:['Different year-ends, and which exchange rate to use',['Korea: December year-end (January to December)','Japan: March year-end (April to the following March)'],'Nine months overlap; three do not. For airlines, where seasons matter, add up quarterly figures to cover the same twelve months.',[['Income statement (sales, profit)','Translate at the average rate for the period',PL],['Balance sheet (assets, liabilities)','Translate at the rate on the closing date',BS]],'Numbers are months. Even when both say “fiscal 2025”, Japan and Korea mean different periods.']};
+function perFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),f=FS(11),cw=40,x0=20,bh=Math.max(26,f*1.5);
+ var mo=[1,2,3,4,5,6,7,8,9,10,11,12,1,2,3];
+ s+=R(x0+3*cw,y,9*cw,bh*2+10+f*1.6,'#FFF3D6',6);
+ s+=R(x0,y+4,12*cw-2,bh,CF,6)+R(x0+3*cw,y+bh+10,12*cw-2,bh,PL,6);y+=bh*2+14;
+ mo.forEach(function(m,i){s+=tx(x0+i*cw+cw/2,y+f,String(m),11,(i>=3&&i<12)?'#7A5A00':G,(i>=3&&i<12)?900:700)});
+ s+='<line x1="'+(x0+12*cw)+'" y1="'+(y-bh*2-14)+'" x2="'+(x0+12*cw)+'" y2="'+(y+f*1.4)+'" stroke="'+D+'" stroke-width="1.5" stroke-dasharray="4 4"/>';y+=f*1.6+12;
+ [[CF,d[1][0]],[PL,d[1][1]]].forEach(function(g){var h=hgt(g[1],11.5,550);s+=R(24,y+FS(11.5)*0.28,18,FS(11.5)*0.75,g[0],4)+TW2(52,y,g[1],11.5,D,700,550,'start');y+=h+8});
+ y+=4;var b=BOX(y,d[2],'#FFF3D6','#7A5A00',12);s+=b[0];y+=b[1]+12;
+ d[3].forEach(function(r){var c=r[2],h1=hgt(r[0],12.5,548),h2=hgt(r[1],12,548),h=h1+h2+22;s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="2"')+R(20,y,8,h,c,4)+TW2(42,y+8,r[0],12.5,c,900,548,'start')+TW2(42,y+12+h1,r[1],12,D,700,548,'start');y+=h+8});
+ y+=4;var n=NOTE(y,d[4]);s+=n[0];y+=n[1]+16;return svg(y,s)}}
+
+window.FIGS=window.FIGS||{};
+window.FIGS.fin_std_where=H.FIX2(whereFig(WHERE));window.FIGS.fin_op_bridge=H.FIX2(brgFig(BRG));window.FIGS.fin_goodwill=H.FIX2(gwFig(GW));
+window.FIGS.fin_doc_pick=H.FIX2(pickFig(PICK));window.FIGS.fin_kr_audit=H.FIX2(audFig(AUD));window.FIGS.fin_period=H.FIX2(perFig(PER));
+})();
