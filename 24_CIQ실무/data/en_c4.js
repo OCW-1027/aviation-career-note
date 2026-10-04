@@ -70,12 +70,12 @@ set("4-3",{title:"United States 3: Customs, Cash and Pets",hl:"Customs and Pets"
 lead:["What US customs asks about is much the same as elsewhere: goods above the allowance, large amounts of cash, items that cannot be brought in. This lesson gives only the main points.","What has changed greatly is the rule for bringing in dogs. Since August 2024, new conditions apply to every dog."],
 sections:[
 {h:"Allowances (as a guide)",blocks:[{t:"table",cols:["","Details"],rows:[
-["US residents returning","Up to USD 800 ★"],
-["Visitors","Gifts up to USD 100; personal effects are exempt ★"],
-["Alcohol","One litre, aged 21 or over ★"],
-["Tobacco","200 cigarettes and so on ★"],
+["US residents returning","Up to USD 800"],
+["Visitors","Gifts up to USD 100; personal effects are exempt"],
+["Alcohol","One litre, aged 21 or over"],
+["Tobacco","200 cigarettes and 100 cigars"],
 ["State rules","Individual states have their own rules on bringing in alcohol"]]},
-{t:"note",x:"* Amounts and quantities vary with length of stay and where the passenger has been. They were not checked against official sources this time; check the US customs website before relying on them. ★"}]},
+{t:"note",x:"* The USD 800 for US residents applies after at least 48 hours abroad (once every 30 days). Visitors’ USD 100 gift exemption applies to stays of at least 72 hours and cannot include alcohol. Check the US customs website before relying on these figures."}]},
 {h:"Declaring cash and the like",blocks:[{t:"rows",items:[
 {name:"Over USD 10,000",x:"When cash, cheques and the like total more than USD 10,000, they must be declared, both on entering and on leaving."},
 {name:"The total for people travelling together",x:"Family members and others travelling together are counted together. ★"},

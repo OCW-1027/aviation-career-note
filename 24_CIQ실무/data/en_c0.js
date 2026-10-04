@@ -38,7 +38,7 @@ sections:[
 ["2","Immigration","Passport, visa, status of residence; photograph and fingerprints","In both countries foreign nationals in principle give a photograph and fingerprints"],
 ["3","Baggage reclaim","—","—"],
 ["4","Animal and plant quarantine","Meat products, fruit, vegetables, plants, seeds, pets","Anyone carrying them declares before customs"],
-["5","Customs","Goods over the duty-free allowance, prohibited or restricted goods, large amounts of cash","Japan: everyone submits a declaration (paper or Visit Japan Web). Korea: only those with something to declare (since May 2023) ★"]]},
+["5","Customs","Goods over the duty-free allowance, prohibited or restricted goods, large amounts of cash","Japan: everyone submits a declaration (paper or Visit Japan Web). Korea: only those with something to declare (since May 2023)"]]},
 {t:"note",x:"* Human quarantine comes first so that infections are found before they enter the country. Animal and plant quarantine comes after baggage reclaim because it concerns what is in the bags."}]},
 {h:"The departure flow",blocks:[{t:"table",cols:["Step","Place","What is checked"],rows:[
 ["1","Check-in (airline)","Passport; visas and travel authorisations for the destination and transit points (0-3)"],

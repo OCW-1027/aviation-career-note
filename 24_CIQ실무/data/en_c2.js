@@ -9,7 +9,7 @@ sections:[
 {name:"Handles export and import formalities",x:"For cargo, goods loaded on the aircraft (aircraft stores) and unaccompanied baggage."},
 {name:"Tracks money moving in and out",x:"People carrying large amounts of cash and the like must declare them (2-3)."}]}]},
 {h:"The passenger declaration in Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
-["Who submits","Everyone entering, even with nothing to declare","Only those with something to declare (since May 2023) ★"],
+["Who submits","Everyone entering, even with nothing to declare","Only those with something to declare (since May 2023)"],
 ["How","The paper declaration for accompanied and unaccompanied goods, or electronically through Visit Japan Web","A paper form or a mobile declaration ★"],
 ["Families","A family entering together may submit one form through a representative ★","A family may submit one form ★"],
 ["Baggage sent separately","Anyone with unaccompanied baggage declares that fact","Anyone with unaccompanied baggage declares that fact"]]},

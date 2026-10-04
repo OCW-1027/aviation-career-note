@@ -40,14 +40,14 @@ sections:[
 {name:"Permitted stay",x:"Short stays without a visa are limited to 90 days in any 180, counted across all countries in the area. ★"},
 {name:"Schengen and the EU are not the same",x:"Ireland is in the EU but not in Schengen. Switzerland and Norway are not in the EU but are in Schengen. ★"}]}]},
 {h:"Food that cannot be brought into Europe",blocks:[{t:"table",cols:["Item","Treatment"],rows:[
-["Meat and dairy products","Cannot be brought in from outside the EU in personal baggage ★"],
-["Exceptions","Small amounts of powdered infant milk and food needed for medical reasons ★"],
+["Meat and dairy products","Cannot be brought in from outside the EU in personal baggage"],
+["Exceptions","Up to 2 kg in total of powdered infant milk, infant food or food needed for medical reasons (commercially packaged, shelf-stable and unopened)"],
 ["Fruit, vegetables and plants","Most need a certificate from the exporting country ★"],
-["Cash","EUR 10,000 or more must be declared ★"]]},
-{t:"note",x:"* Europe’s food rules were not checked against official sources this time. Check the European Commission’s or the destination country’s website before relying on them. ★"}]},
+["Cash","EUR 10,000 or more must be declared (counted per person)"]]},
+{t:"note",x:"* The rules on meat, dairy and cash were confirmed from European Commission sources (October 2026). Check the destination country’s authorities for fruit, vegetables and plants."}]},
 {h:"The United Kingdom",blocks:[{t:"table",cols:["","Details"],rows:[
 ["Entry","In neither Schengen nor the EU. There is immigration control even when arriving from Europe"],
-["Electronic travel authorisation (ETA)","Required of nationals who need no visa. GBP 16 (since April 2025)"],
+["Electronic travel authorisation (ETA)","Required of nationals who need no visa. GBP 20 (since 8 April 2026)"],
 ["Meat and dairy products","Not allowed from outside the EU. Since 12 April 2025, meat from cattle, sheep, goats and pigs and dairy products cannot be brought in from the EU either. This includes sandwiches, cheese and cured meats, whether packaged or bought duty-free"],
 ["What is allowed","Up to 2 kg per person of powdered infant milk or food needed for medical reasons. Chocolate, confectionery, bread, cakes, biscuits and pasta are allowed"],
 ["Penalty","Items are surrendered at the border or seized. In serious cases, fines of up to GBP 5,000 in England"]]},
@@ -72,7 +72,7 @@ sections:[
 {name:"Protecting industry",x:"Exports of farm products support the economy. A single disease can stop exports."},
 {name:"Not only food",x:"Wooden items, seeds, straw decorations, shoes or tents with soil on them, and golf equipment are all examined."}]}]},
 {h:"The rules and penalties",blocks:[{t:"table",cols:["","Australia","New Zealand"],rows:[
-["Before entry","A visa or electronic travel authority is always required and cannot be obtained on arrival","An NZeTA and a visitor levy ★. The New Zealand Traveller Declaration (NZTD) is submitted on the website or app, free of charge"],
+["Before entry","A visa or electronic travel authority is always required and cannot be obtained on arrival","An NZeTA and a visitor levy (1-3). The New Zealand Traveller Declaration (NZTD) is submitted on the website or app, free of charge"],
 ["What to declare","Food, plants, animal products and other goods that could carry disease or pests","All food, animal products, plants and other specified items"],
 ["If declared","No penalty, even for items that are not allowed","An officer examines the items and decides"],
 ["If not declared","An infringement notice of up to AUD 6,600. The visa may be cancelled, entry refused and return barred for up to three years","An instant fine of NZD 400. Deliberate smuggling: a fine of up to NZD 100,000 and up to five years in prison"]]}]},

@@ -72,10 +72,10 @@ lead:["Even travellers who need no visa must now, for a growing number of countr
 sections:[
 {h:"The main electronic travel authorisations",blocks:[{t:"fig",id:"ciq_levels",cap:"An electronic travel authorisation sits between “a visa is needed” and “nothing is needed”."},{t:"table",cols:["Country or region, and name","Fee and validity","Notes"],rows:[
 ["United States: ESTA","USD 40 (from 30 September 2025). Two years, or until the passport expires","For nationals of Visa Waiver Program countries; stays of up to 90 days"],
-["Canada: eTA","CAD 7. Five years, or until the passport expires ★","Visa-exempt nationals arriving by air"],
-["United Kingdom: ETA","GBP 16 (from April 2025). Two years, or until the passport expires ★","Nationals who need no visa"],
-["Australia: ETA","AUD 20 application service fee. One year ★","Applied for through the official app"],
-["New Zealand: NZeTA","NZD 17 to 23 plus a visitor levy. Two years ★","Required even for transit"],
+["Canada: eTA","CAD 7. Five years, or until the passport expires","Visa-exempt nationals arriving by air"],
+["United Kingdom: ETA","GBP 20 (since 8 April 2026; GBP 16 before that). Two years, or until the passport expires","Nationals who need no visa"],
+["Australia: ETA","AUD 20 application service fee. One year","Applied for through the official app"],
+["New Zealand: NZeTA","NZD 17 to 23 (depending on app or website) plus a visitor levy of NZD 100. Two years","Required even for transit"],
 ["Korea: K-ETA","KRW 10,000. Three years, or until the passport expires","22 countries and territories, including Japan and the United States, are exempt until 31 December 2026"],
 ["Europe (Schengen): ETIAS","EUR 20 (free under 18 and over 70). Three years","Announced as starting in the last quarter of 2026. Check the official start date ★"],
 ["Japan: JESTA","Not yet set","Targeted for fiscal 2028 (0-4)"]]},

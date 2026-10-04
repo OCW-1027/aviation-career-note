@@ -106,11 +106,11 @@ sections:[
 {h:"Three situations",blocks:[{t:"table",cols:["Situation","What to do"],rows:[
 ["Landed at an airport with CIQ","Contact the authorities and follow their instructions. Decide whether passengers enter and disembark, or wait on board and continue"],
 ["Landed at an airport without CIQ","In principle, wait on board. Contact the authorities and decide whether officers will come or the flight will go on to an airport with CIQ"],
-["A medical emergency","Life comes first. Call the emergency services and inform the authorities at the same time. Obtain emergency landing permission ★"]]}]},
+["A medical emergency","Life comes first. Call the emergency services and inform the authorities at the same time. Obtain emergency landing permission"]]}]},
 {h:"The legal terms in Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
-["Urgent disembarkation for illness and the like","Emergency landing permission ★","Emergency landing permission ★"],
-["In distress","Landing permission due to distress ★","Landing permission due to disaster ★"]]},
-{t:"note",x:"* The names and procedures of these permissions were not checked against official sources this time. Check your company’s rules and the authorities’ guidance. ★"}]},
+["Urgent disembarkation for illness and the like","Emergency landing permission (Immigration Control and Refugee Recognition Act, Article 17)","Emergency landing permission (Immigration Act, Article 15)"],
+["In distress","Landing permission due to distress (Immigration Control and Refugee Recognition Act, Article 18)","Landing permission due to disaster (Immigration Act, Article 16)"]]},
+{t:"note",x:"* These are set out in Japan’s Immigration Control and Refugee Recognition Act and Korea’s Immigration Act (confirmed in October 2026). Check your company’s rules and the authorities’ guidance for the procedures."}]},
 {h:"What the station does",blocks:[{t:"check",items:[
 {name:"First, contact the authorities and the airport",x:"Customs, immigration, quarantine and the airport operator. Be able to find the contacts even for an unplanned airport."},
 {name:"Doors and disembarkation wait for instructions",x:"Nothing moves until the captain and the authorities have agreed."},
