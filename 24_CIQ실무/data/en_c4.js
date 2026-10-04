@@ -99,5 +99,5 @@ terms:[["Personal Exemption","個人の免税の枠","개인 면세 한도"],["C
 quiz:[{q:"Since August 2024, what is required of every dog entering the United States?",opts:["At least six months old, a microchip and a CDC Dog Import Form","Only to be three months old","Nothing","A 180-day wait"],a:0,exp:"Dogs that have been in high-risk countries face additional conditions."},
 {q:"When must cash and the like be declared in the United States?",opts:["When the total exceeds USD 10,000","When it exceeds USD 1,000","Always, whatever the amount","Never"],a:0,exp:"It is declared both on entering and on leaving."},
 {q:"How do you check whether a dog has been in a high-risk country?",opts:["Check the CDC list against every country visited in the six months","Look only at the destination","The airline decides","There is no need to check"],a:0,exp:"Countries visited on the way count too."}],
-next:""});
+next:"4-4 Canada"});
 })(window.ARTS);

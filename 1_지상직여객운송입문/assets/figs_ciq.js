@@ -101,7 +101,17 @@ function usFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=
   [0,1].forEach(function(i){s+=R(20+i*310,y,290,h,last?(i?'#FDECEF':'#E3F4EA'):'#fff',8,' stroke="'+C2[i]+'" stroke-width="'+(last?3:2)+'"')+TW2(165+i*310,y+9,r[i],12,D,last?900:700,262)});y+=h});
  y+=14;var b=BOX(y,d[3],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
 
+/* 4-6 食べ物・動植物を申告しなかったときの罰（国ごと）。行：[国, 罰]。2026年10月に確かめた内容 */
+var FINE={
+ ja:['食べ物・動植物を申告しなかったときの罰',[['日本','3年以下の拘禁刑、または300万円以下の罰金'],['韓国','過料 最高1,000万ウォン'],['米国','罰金 初めて300ドル、2回目500ドル（最高1,000ドル）'],['カナダ','過料 最高1,300カナダドル'],['英国','重い場合、最高5,000ポンドの罰金'],['オーストラリア','過料 最高6,600豪ドル。査証の取り消しも'],['ニュージーランド','過料 400NZドル（その場で）']],'どの国でも、申告した人は罰を受けません。2026年10月に確かめた内容です。'],
+ ko:['음식·동식물을 신고하지 않았을 때의 벌칙',[['일본','3년 이하의 구금형 또는 300만 엔 이하의 벌금'],['한국','과태료 최고 1,000만 원'],['미국','벌금 처음 300달러, 두 번째 500달러(최고 1,000달러)'],['캐나다','과태료 최고 1,300캐나다달러'],['영국','심한 경우 최고 5,000파운드의 벌금'],['호주','과태료 최고 6,600호주달러. 비자 취소도'],['뉴질랜드','과태료 400뉴질랜드달러(그 자리에서)']],'어느 나라든 신고한 사람은 벌을 받지 않습니다. 2026년 10월에 확인한 내용입니다.'],
+ en:['Penalties for not declaring food, animals or plants',[['Japan','Imprisonment for up to three years, or a fine of up to 3 million yen'],['Korea','An administrative fine of up to KRW 10 million'],['United States','A fine of USD 300 the first time, USD 500 the second (up to USD 1,000)'],['Canada','A penalty of up to CAD 1,300'],['United Kingdom','In serious cases, a fine of up to GBP 5,000'],['Australia','An infringement notice of up to AUD 6,600, and possible visa cancellation'],['New Zealand','An instant fine of NZD 400']],'In every country, those who declare are not penalised. Confirmed in October 2026.']};
+function fineFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ d[1].forEach(function(r,i){var h1=hgt(r[0],13,548),h2=hgt(r[1],12,548),h=h1+h2+22;
+  s+=R(20,y,600,h,i%2?'#fff':'#FBF6F0',10,' stroke="#E2D5C6" stroke-width="1.5"')+R(20,y,8,h,CC,4)+TW2(42,y+8,r[0],13,NV,900,548,'start')+TW2(42,y+12+h1,r[1],12,D,700,548,'start');y+=h+6});
+ y+=8;var b=BOX(y,d[2],'#E3F4EA','#14633F',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
-window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));window.FIGS.ciq_us=H.FIX2(usFig(USD));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));window.FIGS.ciq_us=H.FIX2(usFig(USD));window.FIGS.ciq_fines=H.FIX2(fineFig(FINE));
 })();
