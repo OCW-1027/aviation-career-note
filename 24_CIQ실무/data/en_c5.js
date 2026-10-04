@@ -157,5 +157,5 @@ terms:[["Pre-travel Information","事前の案内","사전 안내"],["Cabin Anno
 quiz:[{q:"When should passengers be told about things that take days to prepare, such as visas and travel authorisations?",opts:["At booking and a few days before departure","At the gate","On board before arrival","Never"],a:0,exp:"That is the only time it can still be dealt with."},
 {q:"What matters in a pre-arrival announcement?",opts:["Keep it short and say what to do","Speak for as long as possible","Read out every prohibited item","Say “that will be fine”"],a:0,exp:"Say what to do: “please declare it”."},
 {q:"What is the most dangerous kind of passenger information?",opts:["Information that is out of date","Short information","Information in a foreign language","Information that encourages declaring"],a:0,exp:"Revise as soon as something changes."}],
-next:""});
+next:"6-1 At the departure counter: thinking in situations"});
 })(window.ARTS);

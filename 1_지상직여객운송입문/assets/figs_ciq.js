@@ -122,7 +122,13 @@ function divFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
   s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+R(20,y,600,h1,c,10)+TW2(36,y+7,r[0],13,'#fff',900,560,'start')+TW2(36,y+h1+10,r[1],12,D,700,560,'start');y+=h+10});
  y+=4;var b=BOX(y,d[3],'#FFF3D6','#7A5A00',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
 
+/* 6-4 この講座の3つの原則（docFig の枠を使う） */
+var RULE={
+ ja:['この講座の3つの原則',[['旅程に出てくる国は、すべて調べる','目的地だけでなく、乗り継ぎ地も。経験ではなく、当局の案内で',IC],['迷ったら、申告する','お客様にも、そう伝える。申告した人は、罰を受けない',QC],['当局の指示の前に、動かさない','人も、手荷物も、機内食も。困ったときほど、先に知らせる',CC]],'決めるのは、当局です','航空会社の仕事は、確かめること、知らせること、従うこと'],
+ ko:['이 강좌의 세 가지 원칙',[['일정에 나오는 나라는 모두 확인한다','목적지뿐 아니라 환승지도. 경험이 아니라 당국의 안내로',IC],['망설여지면 신고한다','승객에게도 그렇게 알린다. 신고한 사람은 벌을 받지 않는다',QC],['당국의 지시 전에 움직이지 않는다','사람도, 수하물도, 기내식도. 곤란할수록 먼저 알린다',CC]],'정하는 것은 당국입니다','항공사의 일은 확인하는 것, 알리는 것, 따르는 것'],
+ en:['The three principles of this course',[['Look up every country on the itinerary','Not only the destination but the transit points too, from the authorities’ guidance rather than experience',IC],['If in doubt, declare','Tell passengers the same. Those who declare are not penalised',QC],['Move nothing before the authorities instruct','Not passengers, bags or catering. The harder the situation, the sooner you tell them',CC]],'The authorities decide','The airline’s job is to check, to inform and to comply']};
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
-window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));window.FIGS.ciq_us=H.FIX2(usFig(USD));window.FIGS.ciq_fines=H.FIX2(fineFig(FINE));window.FIGS.ciq_divert=H.FIX2(divFig(DIV));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));window.FIGS.ciq_us=H.FIX2(usFig(USD));window.FIGS.ciq_fines=H.FIX2(fineFig(FINE));window.FIGS.ciq_divert=H.FIX2(divFig(DIV));window.FIGS.ciq_rules=H.FIX2(docFig(RULE));
 })();
