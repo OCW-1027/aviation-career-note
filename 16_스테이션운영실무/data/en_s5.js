@@ -71,6 +71,31 @@ sections:[
 ["Remarks left blank","No record when a complaint arrives later","Write “none” on quiet days"],
 ["Sending at a different time each day","Head-office compilation is delayed","Set a sending time and keep to it"]]},
 {t:"point",x:"The test of a daily report is whether someone reading it later could picture the scene. Short is fine, as long as the facts, numbers and reasons are there."}]}],
+deepLabel:"In depth: a sample daily operations report",
+deep:[
+{h:"A line-by-line daily report (sample)",blocks:[
+{t:"p",x:"A daily report is short and follows a fixed order. Below is an example for a fictional flight. Formats are set by each company, so look at what is written and in what order."},
+{t:"table",cols:["Line (example)","Meaning"],rows:[
+["XX701 / 02OCT / HL0000","Flight number, date, aircraft registration"],
+["STD 1000 / ATD 1012 / DLY 12","Scheduled and actual departure; 12 minutes late"],
+["CODE 15 (9) / 18 (3)","Delay codes: main code 15 for 9 minutes, secondary 18 for 3. They add up to the delay"],
+["PAX C8 Y162 / INF 2","Passengers by class, and infants"],
+["NOSHOW 3 / OFFLD 1 (DOCS)","Three no-shows; one passenger offloaded for documents"],
+["BAG 185 / 2,960KG / LEFT 0","Bags and weight; none left behind"],
+["SPCL WCHR 4 / UM 1","Special passengers"],
+["RMK GATE CHG (WORKS)","Remarks. Write NIL when there is nothing to report"]]},
+{t:"note",x:"* Abbreviations and order differ by airline. Follow your own company’s format."}]},
+{h:"A thirty-second check before sending",blocks:[{t:"check",items:[
+{name:"Do the totals add up?",x:"Do the class figures add up to the number boarded?"},
+{name:"Do the times match the system?",x:"Use system and message times, not your own watch."},
+{name:"Do the delay minutes and codes agree?",x:"Do the minutes per code add up to the delay?"},
+{name:"Any blanks?",x:"Write “none” where there is nothing to report."},
+{name:"Right recipients?",x:"Sent to the agreed addresses by the agreed time."}]}]},
+{h:"When the numbers do not match",blocks:[{t:"table",cols:["What does not match","Common cause","How to fix it"],rows:[
+["Passengers boarded and the system figure","Manual boarding at the gate; transfer passengers not processed","Reconcile with the gate records (stubs, scanner log)"],
+["Number of bags","Gate-checked or offloaded bags not reflected","Reconcile with the baggage reconciliation record"],
+["Delay minutes","A change to the scheduled time not reflected","Use operations control’s time and note the change under remarks"]]},
+{t:"point",x:"Do not send numbers that do not match. If you do not know why, write “under review” and send a correction once you do."}]}],
 voice:"When our daily figures kept failing to match the DCS, I set aside five minutes after closing to check them with the agent on duty. After that, queries from head office almost stopped.",
 terms:[["Daily Operations Report","運航の日報","일일 운항 보고"],["Movement Message (MVT)","出発の電報","출발 전문"],["Delay Code","遅延コード","지연 코드"],["No-show","ノーショー","노쇼"],["Offload","オフロード","오프로드"]],
 quiz:[{q:"What should times in the daily report match?",opts:["System and message records","Your own watch","Rough times","Nothing; leave them out"],a:0,exp:"If report and record times differ, totals will not reconcile."},
@@ -104,6 +129,28 @@ sections:[
 {name:"Messages run on UTC",x:"Both countries are on UTC+9, but messages and operational records use UTC; take care around the change of date."},
 {name:"Language",x:"Reports to head office are in Korean, contact with the airport and authorities in Japanese. Say the same facts in both without contradiction."}]},
 {t:"point",x:"In the first thirty minutes of a disruption, the station’s job is not to decide but to give the decider the facts needed to decide."}]}],
+deepLabel:"In depth: sample irregularity reports",
+deep:[
+{h:"A sample initial report",blocks:[
+{t:"p",x:"An initial report is short and separates what is known from what is not. The example below is fictional."},
+{t:"table",cols:["Section","What to write","Example"],rows:[
+["What, when, where","What happened, in one or two lines","XX702 (10:40 departure) delayed by an aircraft defect. Engineering is inspecting"],
+["Impact","The flight and passenger numbers","168 passengers, 12 of them connecting"],
+["Done so far","Actions already taken","Boarding held and announced. Meal vouchers being prepared"],
+["Not yet known","Be frank about what is open","Departure time not known. Engineering reports again at 11:30"],
+["Decision needed","What you need head office to decide","Rebooking and hotel rules if the delay passes two hours"],
+["Next report","Commit to a time","11:30"]]},
+{t:"point",x:"Do not hesitate to write “not known”. Saying clearly what you do not know is also accurate reporting."}]},
+{h:"What interim and final reports add",blocks:[{t:"table",cols:["Report","What it adds"],rows:[
+["Interim","What has changed since the last report, what has been decided, new decisions needed, time of the next report"],
+["Final","The outcome (departure time, cancellation, passengers rebooked), expected cost, cause, prevention"]]},
+{t:"note",x:"* Write the final report in the incident report format from lesson 3-4."}]},
+{h:"Local contacts in Japan and Korea (typical examples)",blocks:[{t:"table",cols:["Contact","Japan","Korea"],rows:[
+["The aviation authority’s local office","Regional Civil Aviation Bureau and airport office (MLIT)","Regional Office of Aviation (MOLIT)"],
+["Airport operator","An airport company (Narita, Kansai, Chubu and others), or the state or a local government","Incheon International Airport Corporation, Korea Airports Corporation"],
+["Slot coordination","Japan Schedule Coordination (JSC)","Korea Airport Schedule Office (KASO)"],
+["CIQ","Customs, Immigration Services Bureau, quarantine station","Customs, Immigration Office, quarantine station"]]},
+{t:"note",x:"* Which events must be reported, to whom and by when depends on the country, the airport and the event. Check your company’s rules and each airport’s procedures. ★"}]}],
 voice:"When I could not reach head office’s duty officer during a cancellation late at night, I booked hotels within my delegated authority and reported everything first thing in the morning. Having confirmed that authority in writing is what carried me through that night.",
 terms:[["Initial Report","第一報","1차 보고"],["Interim Report","途中の報告","중간 보고"],["Final Report","最終の報告","최종 보고"],["Delegated Authority","任された権限","위임된 권한"],["Corporate Communications","広報","홍보"]],
 quiz:[{q:"What belongs in the initial report?",opts:["What happened, the impact and what is not yet known","The conclusion on cause","The compensation amount","Nothing"],a:0,exp:"Speed matters most; say what is unknown as unknown."},
