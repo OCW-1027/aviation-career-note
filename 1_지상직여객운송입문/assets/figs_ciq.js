@@ -78,7 +78,18 @@ function foodFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),
   s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+R(20,y,600,h1,c,10)+TW2(36,y+7,r[0],13.5,'#fff',900,560,'start')+TW2(36,y+h1+10,r[1],12,D,700,560,'start');y+=h+10});
  y+=4;var b=BOX(y,d[2],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
 
+/* 3-4 日本に犬・猫を連れて入る順番（指定地域以外）。行：[すること, いつ・条件, 色]。5番目（180日の待機）を強調 */
+var PET={
+ ja:['日本に犬・猫を連れて入る ― 到着の日から逆に数える（指定地域以外）',[['マイクロチップを入れる','いちばん初めに',IC],['狂犬病の予防注射 1回目','マイクロチップのあとで',IC],['狂犬病の予防注射 2回目','1回目から間をあけて',IC],['採血して、抗体を検査する','0.5IU/ml以上',QC],['180日、待つ','採血の日から数える',CC],['届け出る','到着の40日前までに',QC],['到着して、検査を受ける','条件を満たせば12時間以内',NV]],'準備には7か月以上かかります。条件を満たさないと、到着のあと最長180日、検疫の施設で預かられます。'],
+ ko:['일본에 개·고양이를 데리고 들어간다 — 도착일부터 거꾸로 센다(지정 지역 외)',[['마이크로칩을 이식한다','가장 먼저',IC],['광견병 예방 주사 1회째','마이크로칩 다음에',IC],['광견병 예방 주사 2회째','1회째와 간격을 두고',IC],['채혈해서 항체를 검사한다','0.5IU/ml 이상',QC],['180일 기다린다','채혈한 날부터 센다',CC],['신고한다','도착 40일 전까지',QC],['도착해서 검사를 받는다','조건을 충족하면 12시간 이내',NV]],'준비에 7개월 이상 걸립니다. 조건을 충족하지 못하면 도착한 뒤 최장 180일 동안 검역 시설에 맡겨집니다.'],
+ en:['Bringing a dog or cat into Japan: count back from the arrival date (non-designated regions)',[['Implant a microchip','First of all',IC],['First rabies vaccination','After the microchip',IC],['Second rabies vaccination','After an interval from the first',IC],['Blood sample and antibody test','0.5 IU/ml or more',QC],['Wait 180 days','Counted from the date of the blood sample',CC],['Give advance notification','At least 40 days before arrival',QC],['Arrive and be inspected','Within 12 hours if the conditions are met',NV]],'Preparation takes more than seven months. If the conditions are not met, the animal is held at a quarantine facility for up to 180 days after arrival.']};
+function petFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),r0=Math.max(13,FS(12)*0.72);
+ d[1].forEach(function(r,i){var c=r[2],hot=i===4,tw=600-r0*2-56,h1=hgt(r[0],12.5,tw),h2=hgt(r[1],11.5,tw),h=Math.max(h1+h2+20,r0*2+12);
+  s+=R(20,y,600,h,hot?'#FFF6E8':'#fff',10,' stroke="'+c+'" stroke-width="'+(hot?4:2)+'"')+'<circle cx="'+(40+r0)+'" cy="'+(y+h/2)+'" r="'+r0+'" fill="'+c+'"/>'+tx(40+r0,y+h/2+FS(12)*0.35,String(i+1),12,'#fff',900)+TW2(52+r0*2,y+8,r[0],12.5,c,900,tw,'start')+TW2(52+r0*2,y+12+h1,r[1],11.5,D,700,tw,'start');y+=h;
+  if(i<d[1].length-1){s+=ARW(40+r0,y+2,40+r0,y+14,GY,3.5);y+=18}});
+ y+=12;var b=BOX(y,d[2],'#FFF3D6','#7A5A00',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
-window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));
 })();

@@ -92,5 +92,5 @@ terms:[["Plant Quarantine","植物の検疫","식물 검역"],["Phytosanitary Ce
 quiz:[{q:"What is needed to bring fresh fruit into Japan?",opts:["An inspection certificate from the exporting country’s government, and inspection on arrival","Only a receipt","Nothing","A duty-free bag"],a:0,exp:"Without the certificate it cannot be brought in."},
 {q:"How do the rules for meat and for plants differ?",opts:["Meat is almost never allowed; some plants are allowed with a certificate and inspection","Both can be brought in freely","Plants are stricter","There is no difference"],a:0,exp:"Knowing the difference makes it easier to advise passengers."},
 {q:"What should a passenger do with fruit left over from the in-flight service?",opts:["Leave it on board","Put it in a bag and take it off","Eat it at the transit airport","Take it home"],a:0,exp:"It is subject to quarantine at the destination."}],
-next:""});
+next:"3-4 Travelling with pets: dogs and cats across borders"});
 })(window.ARTS);
