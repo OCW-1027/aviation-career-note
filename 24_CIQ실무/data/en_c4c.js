@@ -67,5 +67,5 @@ terms:[["Digital Arrival Card","デジタルの入国カード","디지털 입�
 quiz:[{q:"What has Thailand required of non-Thai nationals since 1 May 2025?",opts:["A digital arrival card submitted within three days before arrival","Only a paper arrival card","Nothing","Always a visa"],a:0,exp:"It is submitted online."},
 {q:"What is illegal in both Thailand and Singapore?",opts:["E-cigarettes","Paper books","Water","Umbrellas"],a:0,exp:"Both bringing them in and using them are illegal."},
 {q:"What decides whether a medicine can be brought in?",opts:["The ingredients","The brand name","The price","The shop it was bought in"],a:0,exp:"Over-the-counter medicines can contain controlled ingredients."}],
-next:""});
+next:"5-1 Reducing document errors: building the station’s system"});
 })(window.ARTS);

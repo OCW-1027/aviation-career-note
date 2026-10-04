@@ -111,7 +111,18 @@ function fineFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),
   s+=R(20,y,600,h,i%2?'#fff':'#FBF6F0',10,' stroke="#E2D5C6" stroke-width="1.5"')+R(20,y,8,h,CC,4)+TW2(42,y+8,r[0],13,NV,900,548,'start')+TW2(42,y+12+h1,r[1],12,D,700,548,'start');y+=h+6});
  y+=8;var b=BOX(y,d[2],'#E3F4EA','#14633F',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
 
+/* 5-4 予定していない空港に着いたとき。[題, まずすること, [場合, すること, 色]×3, 注意] */
+var DIV={
+ ja:['国際線が、予定していない空港に着いたとき','まず連絡する：税関・出入国・検疫・空港の運営者',[['CIQのある空港','当局の指示に従う。入国して降りるか、機内で待って再出発するかを決める',QC],['CIQのない空港','原則として機内で待つ。係官が来るか、CIQのある空港へ向かうかを、当局と決める',CC],['急病人がいる','人命が先。救急を呼ぶのと同時に、当局へ知らせる','#C2344F']],'当局の指示があるまで、人も、手荷物も、機内食も、ごみも降ろしません。'],
+ ko:['국제선이 예정에 없던 공항에 도착했을 때','먼저 연락한다: 세관·출입국·검역·공항 운영자',[['CIQ가 있는 공항','당국의 지시를 따른다. 입국해서 내릴지, 기내에서 기다렸다가 재출발할지를 정한다',QC],['CIQ가 없는 공항','원칙적으로 기내에서 기다린다. 직원이 올지, CIQ가 있는 공항으로 갈지를 당국과 정한다',CC],['응급 환자가 있다','인명이 먼저. 구급을 부르는 것과 동시에 당국에 알린다','#C2344F']],'당국의 지시가 있을 때까지 사람도, 수하물도, 기내식도, 쓰레기도 내리지 않습니다.'],
+ en:['When an international flight arrives at an unplanned airport','First, contact customs, immigration, quarantine and the airport operator',[['An airport with CIQ','Follow the authorities’ instructions. Decide whether passengers enter and disembark, or wait on board and continue',QC],['An airport without CIQ','In principle, wait on board. Decide with the authorities whether officers will come or the flight will go to an airport with CIQ',CC],['A medical emergency','Life comes first. Call the emergency services and inform the authorities at the same time','#C2344F']],'Until the authorities give instructions, nothing leaves the aircraft: not passengers, bags, catering or waste.']};
+function divFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),h0=hgt(d[1],13,560)+20;
+ s+=R(20,y,600,h0,NV,10)+TW2(320,y+10,d[1],13,'#fff',900,560);y+=h0;s+=ARW(320,y+2,320,y+16,GY,3.5);y+=22;
+ d[2].forEach(function(r){var c=r[2],h1=hgt(r[0],13,560)+14,h2=hgt(r[1],12,560),h=h1+h2+22;
+  s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+R(20,y,600,h1,c,10)+TW2(36,y+7,r[0],13,'#fff',900,560,'start')+TW2(36,y+h1+10,r[1],12,D,700,560,'start');y+=h+10});
+ y+=4;var b=BOX(y,d[3],'#FFF3D6','#7A5A00',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
-window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));window.FIGS.ciq_us=H.FIX2(usFig(USD));window.FIGS.ciq_fines=H.FIX2(fineFig(FINE));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));window.FIGS.ciq_us=H.FIX2(usFig(USD));window.FIGS.ciq_fines=H.FIX2(fineFig(FINE));window.FIGS.ciq_divert=H.FIX2(divFig(DIV));
 })();
