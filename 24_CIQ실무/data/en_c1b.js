@@ -91,5 +91,5 @@ terms:[["Residence Card (Japan)","在留カード","재류카드"],["Special Re-
 quiz:[{q:"Under Japan’s special re-entry permit, when is no re-entry permit needed?",opts:["When returning within one year of leaving (two years for special permanent residents)","Whenever the person returns","Only within three months","Only for Japanese nationals"],a:0,exp:"Miss the period and the status of residence is lost."},
 {q:"From when can Korea’s e-Arrival Card be submitted?",opts:["From three days before arrival","From a month before","After arrival","It cannot be submitted"],a:0,exp:"It began on 24 February 2025 and is free."},
 {q:"What do you work out first at the counter on Japan–Korea routes?",opts:["Whether the passenger is a visitor or a resident","The cabin class","The number of bags","The form of payment"],a:0,exp:"It decides which documents to check."}],
-next:""});
+next:"2-1 What customs does, and the passenger declaration"});
 })(window.ARTS);

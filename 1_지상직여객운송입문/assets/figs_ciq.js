@@ -56,7 +56,19 @@ function levFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
   s+=R(20,y,600,h,hot?'#FFF6E8':'#fff',10,' stroke="'+c+'" stroke-width="'+(hot?4:2)+'"')+R(20,y,10,h,c,5)+TW2(42,y+10,r[0],13.5,c===GY?D:c,900,tw,'start')+(hot?R(600-tagw,y+10,tagw,FS(11)*1.7,c,FS(11)*0.85)+tx(600-tagw/2,y+10+FS(11)*1.2,d[2],11,'#fff',900):'')+TW2(42,y+14+h1,r[1],12,D,700,560,'start');y+=h+10});
  y+=4;var b=BOX(y,d[3],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
 
+/* 2-2 免税の範囲：日本と韓国。行：[品目, 日本, 韓国]。2026年10月に確かめた内容 */
+var ALW={
+ ja:['免税の範囲 ― 日本と韓国（入国する人1人あたり）',['日本','韓国'],[['酒','3本（1本760ml）','合計2リットル以下で、400米ドル以下'],['たばこ','紙巻200本（葉巻50本、加熱式は個装等10箱）','紙巻200本（葉巻50本、ニコチン液20ml）'],['香水','2オンス（約56ml）','100ml'],['そのほかの品物','海外での価格の合計 20万円まで','800米ドルまで']],'未成年の人には、酒とたばこの免税がありません。2026年10月に確かめた内容です。'],
+ ko:['면세 범위 — 일본과 한국(입국하는 사람 1명당)',['일본','한국'],[['술','3병(1병 760ml)','합계 2리터 이하이면서 400달러 이하'],['담배','궐련 200개비(시가 50개비, 가열식은 개별 포장 등 10갑)','궐련 200개비(시가 50개비, 니코틴 용액 20ml)'],['향수','2온스(약 56ml)','100ml'],['그 밖의 물건','해외 가격 합계 20만 엔까지','800달러까지']],'미성년자에게는 술과 담배의 면세가 없습니다. 2026년 10월에 확인한 내용입니다.'],
+ en:['Duty-free allowances in Japan and Korea (per person entering)',['Japan','Korea'],[['Alcohol','Three bottles (760 ml each)','Up to two litres in total and up to USD 400'],['Tobacco','200 cigarettes (50 cigars; 10 packs of heated tobacco)','200 cigarettes (50 cigars; 20 ml of nicotine liquid)'],['Perfume','Two ounces (about 56 ml)','100 ml'],['Other goods','Up to 200,000 yen in total overseas value','Up to USD 800']],'Minors have no alcohol or tobacco allowance. Confirmed in October 2026.']};
+function alwFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),C2=[NV,'#1F7A6E'],hh=hgt(d[1][0],13,270)+12;
+ [0,1].forEach(function(i){s+=R(20+i*310,y,290,hh,C2[i],8)+TW2(165+i*310,y+6,d[1][i],13,'#fff',900,270)});y+=hh+8;
+ d[2].forEach(function(r){var hl=hgt(r[0],12.5,560)+10,h=Math.max(hgt(r[1],12,262),hgt(r[2],12,262))+18;
+  s+=R(20,y,600,hl,'#FFF1DE',6)+TW2(320,y+5,r[0],12.5,'#8A4B00',900,560);y+=hl+4;
+  [0,1].forEach(function(i){s+=R(20+i*310,y,290,h,'#fff',8,' stroke="'+C2[i]+'" stroke-width="2"')+TW2(165+i*310,y+9,r[1+i],12,D,800,262)});y+=h+10});
+ var b=BOX(y,d[3],'#EEF4FA',NV,11.5);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
-window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));
 })();
