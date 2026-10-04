@@ -89,7 +89,19 @@ function petFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
   if(i<d[1].length-1){s+=ARW(40+r0,y+2,40+r0,y+14,GY,3.5);y+=18}});
  y+=12;var b=BOX(y,d[2],'#FFF3D6','#7A5A00',12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
 
+/* 4-2 米国：食べ物を申告する人と、しない人。行：[申告する, 申告しない]。左=緑、右=赤 */
+var USD={
+ ja:['米国に入るとき ― 食べ物を持っていたら',['申告する','申告しない'],[['係官が中身を見る','検査や探知犬で見つかる'],['持ち込める物は、そのまま持って入る','品物は没収される'],['持ち込めない物は、その場で手放す。罰はない','罰金。初めて300ドル、2回目500ドル']],'肉、果物、野菜、種、機内で配られた果物も「食べ物」です。迷ったら「はい」と答えます。'],
+ ko:['미국에 들어갈 때 — 음식을 가지고 있다면',['신고한다','신고하지 않는다'],[['직원이 내용을 본다','검사나 탐지견에게 발견된다'],['가져올 수 있는 것은 그대로 가지고 들어간다','물건은 몰수된다'],['가져올 수 없는 것은 그 자리에서 내놓는다. 벌칙은 없다','벌금. 처음 300달러, 두 번째 500달러']],'고기, 과일, 채소, 씨앗, 기내에서 나눠 준 과일도 「음식」입니다. 망설여지면 「예」라고 답합니다.'],
+ en:['Entering the United States with food',['Declare','Do not declare'],[['An officer looks at it','Found by inspection or a detector dog'],['What is allowed goes in with you','The item is confiscated'],['What is not allowed is surrendered on the spot. No penalty','A fine: USD 300 the first time, USD 500 the second']],'Meat, fruit, vegetables, seeds and fruit handed out on board are all food. If in doubt, answer “yes”.']};
+function usFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),C2=[QC,'#C2344F'],hh=Math.max(hgt(d[1][0],13,270),hgt(d[1][1],13,270))+14;
+ [0,1].forEach(function(i){s+=R(20+i*310,y,290,hh,C2[i],8)+TW2(165+i*310,y+7,d[1][i],13,'#fff',900,270)});y+=hh;
+ d[2].forEach(function(r,j){[0,1].forEach(function(i){s+=ARW(165+i*310,y+2,165+i*310,y+14,C2[i],3.5)});y+=18;
+  var h=Math.max(hgt(r[0],12,262),hgt(r[1],12,262))+18,last=j===d[2].length-1;
+  [0,1].forEach(function(i){s+=R(20+i*310,y,290,h,last?(i?'#FDECEF':'#E3F4EA'):'#fff',8,' stroke="'+C2[i]+'" stroke-width="'+(last?3:2)+'"')+TW2(165+i*310,y+9,r[i],12,D,last?900:700,262)});y+=h});
+ y+=14;var b=BOX(y,d[3],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
-window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));window.FIGS.ciq_allow=H.FIX2(alwFig(ALW));window.FIGS.ciq_food=H.FIX2(foodFig(FOOD));window.FIGS.ciq_pet=H.FIX2(petFig(PET));window.FIGS.ciq_us=H.FIX2(usFig(USD));
 })();

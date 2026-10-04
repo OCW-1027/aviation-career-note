@@ -65,5 +65,5 @@ terms:[["International Catering Waste","国際線のごみ","국제선 폐기물
 quiz:[{q:"How is leftover food from an international flight handled?",opts:["Kept separate from domestic rubbish and disposed of in the prescribed way","Thrown away with domestic rubbish","Taken home by cleaning staff","Served on domestic flights"],a:0,exp:"It can carry livestock diseases and pests."},
 {q:"What is the purpose of disinsection?",opts:["To stop insects such as mosquitoes carrying disease or pests","To make the cabin look clean","To remove smells","To cool the aircraft"],a:0,exp:"Some countries require it of arriving aircraft."},
 {q:"At an unplanned airport, what happens to meals and rubbish?",opts:["They stay on board until quarantine and customs give instructions","They are unloaded and thrown away at once","They are given to passengers","They are used on the next flight"],a:0,exp:"Check with the authorities before moving anything."}],
-next:""});
+next:"4-1 United States 1: entry"});
 })(window.ARTS);
