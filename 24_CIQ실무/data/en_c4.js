@@ -17,7 +17,7 @@ sections:[
 ["Transfer passengers enter","Even international-to-international passengers all clear immigration and customs. A visa or ESTA is required"],
 ["Electronic travel authorisation (ESTA)","For nationals of Visa Waiver Program countries. The fee is USD 40 (since 30 September 2025). Stays of up to 90 days"],
 ["No departure control","Passengers do not pass an officer when leaving. Departure is recorded from data sent by the airline ★"],
-["Immigration at the departure airport","At some airports in Canada, Ireland, Abu Dhabi, the Bahamas, Bermuda and Aruba, US immigration is cleared before departure and the flight arrives like a domestic one ★"]]},
+["Immigration at the departure airport","At some airports in Canada, Ireland, Abu Dhabi, the Bahamas, Bermuda and Aruba, US immigration is cleared before departure and the flight arrives like a domestic one"]]},
 {t:"note",x:"* At airports with US immigration before departure, passengers need to arrive at the airport earlier than usual."}]},
 {h:"What the airline does",blocks:[{t:"check",items:[
 {name:"Enter passport details accurately",x:"Name, date of birth and sex are used for pre-departure matching. The name in the booking must be spelled as in the passport."},

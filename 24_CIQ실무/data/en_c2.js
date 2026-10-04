@@ -10,8 +10,8 @@ sections:[
 {name:"Tracks money moving in and out",x:"People carrying large amounts of cash and the like must declare them (2-3)."}]}]},
 {h:"The passenger declaration in Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Who submits","Everyone entering, even with nothing to declare","Only those with something to declare (since May 2023)"],
-["How","The paper declaration for accompanied and unaccompanied goods, or electronically through Visit Japan Web","A paper form or a mobile declaration ★"],
-["Families","A family entering together may submit one form through a representative ★","A family may submit one form ★"],
+["How","The paper declaration for accompanied and unaccompanied goods, or electronically through Visit Japan Web","A paper form or a mobile declaration (the Korea Customs traveller declaration app, at all airports)"],
+["Families","A family entering together may submit one form through a representative","A family may submit one form"],
 ["Baggage sent separately","Anyone with unaccompanied baggage declares that fact","Anyone with unaccompanied baggage declares that fact"]]},
 {t:"note",x:"* In Japan, submission by everyone has been mandatory since July 2007."}]},
 {h:"The inspection flow",blocks:[{t:"ladder",steps:[
@@ -40,7 +40,7 @@ sections:[
 ["Tobacco","200 cigarettes; or 50 cigars, 10 packs of heated tobacco, or 250 g of other tobacco","200 cigarettes; or 50 cigars, or 20 ml of e-cigarette nicotine liquid"],
 ["Perfume","Two ounces (about 56 ml)","100 ml"],
 ["Other goods","Up to 200,000 yen in total overseas value","Up to USD 800"],
-["Age","No alcohol or tobacco allowance under 20. Under six: only items for the child’s own use","No alcohol or tobacco allowance for minors ★"]]}]},
+["Age","No alcohol or tobacco allowance under 20. Under six: only items for the child’s own use","No alcohol or tobacco allowance under 19 (counted by year of birth)"]]}]},
 {h:"How Japan counts",blocks:[{t:"rows",items:[
 {name:"Items of 10,000 yen or less",x:"Where the total for one item is 10,000 yen or less it is in principle exempt and not counted towards the 200,000 yen."},
 {name:"A single item over 200,000 yen",x:"A bag costing 250,000 yen, for example, is taxed on the full 250,000 yen, not on the amount above 200,000."},

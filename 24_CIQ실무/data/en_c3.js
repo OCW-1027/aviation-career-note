@@ -11,7 +11,7 @@ sections:[
 {h:"Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Agency","Quarantine stations (Ministry of Health, Labour and Welfare)","National Quarantine Stations (Korea Disease Control and Prevention Agency)"],
 ["Legal basis","Quarantine Act","Quarantine Act"],
-["On arrival","Anyone feeling unwell reports it; thermal cameras are used","Arrivals from designated areas submit a health declaration (Q-CODE in advance, or on paper) ★"],
+["On arrival","Anyone feeling unwell reports it; thermal cameras are used","Everyone arriving from priority designated areas, and anyone with symptoms arriving from other designated areas, submits a health declaration (Q-CODE, which can be entered from seven days before arrival, or on paper)"],
 ["Designated areas","Change with outbreaks","Change with outbreaks"]]},
 {t:"note",x:"* The diseases and areas covered change. Keep the pre-arrival announcement in line with the authority’s latest guidance."}]},
 {h:"When someone falls ill on board",blocks:[{t:"ladder",steps:[

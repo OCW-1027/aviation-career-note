@@ -4,7 +4,7 @@ set("4-4",{title:"Canada: Declare All Food, Plants and Animals",hl:"Canada",subt
 lead:["Canada shares a border with the United States and thinks about these rules in much the same way. Anything to do with food, plants or animals is declared, and the officer decides whether it may come in.","Travellers arriving by air need an electronic travel authorisation (eTA), even if they need no visa."],
 sections:[
 {h:"Entry",blocks:[{t:"rows",items:[
-{name:"Electronic travel authorisation (eTA)",x:"Required of visa-exempt nationals arriving by air, including when only transiting. ★"},
+{name:"Electronic travel authorisation (eTA)",x:"Required of visa-exempt nationals arriving by air, including when only transiting."},
 {name:"Immigration and customs",x:"The Canada Border Services Agency (CBSA) carries out both. The rules on food are set by the Canadian Food Inspection Agency (CFIA)."},
 {name:"Advance declaration",x:"At some airports the customs declaration can be completed before arrival through an app or website."},
 {name:"Flying from Canada to the United States",x:"At Canada’s main airports US immigration is cleared before departure (4-1). Passengers need to arrive at the airport earlier."}]}]},

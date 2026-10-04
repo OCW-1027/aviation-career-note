@@ -34,7 +34,7 @@ set("0-2",{title:"Departure, Arrival and Transfer",hl:"flow",subtitle:"On arriva
 lead:["CIQ desks are laid out in a fixed order. Knowing it lets you see where passengers are likely to be held up and how long a transfer will really take.","This lesson describes the usual flow in Japan and Korea. Layouts differ a little from airport to airport."],
 sections:[
 {h:"The arrival flow",blocks:[{t:"fig",id:"ciq_flow",cap:"The order on arrival and on departure. Green is quarantine, blue immigration, orange customs."},{t:"table",cols:["Step","Place","What is checked","Japan and Korea"],rows:[
-["1","Quarantine (people)","Fever and other symptoms; arrivals from affected areas","Korea asks arrivals from designated areas for a health declaration (Q-CODE) ★"],
+["1","Quarantine (people)","Fever and other symptoms; arrivals from affected areas","Korea asks arrivals from designated areas (set each quarter) for a health declaration (Q-CODE or a paper questionnaire)"],
 ["2","Immigration","Passport, visa, status of residence; photograph and fingerprints","In both countries foreign nationals in principle give a photograph and fingerprints"],
 ["3","Baggage reclaim","—","—"],
 ["4","Animal and plant quarantine","Meat products, fruit, vegetables, plants, seeds, pets","Anyone carrying them declares before customs"],

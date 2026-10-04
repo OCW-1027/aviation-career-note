@@ -9,7 +9,7 @@ sections:[
 ["Immigration for every transfer passenger","The United States, Canada and others","A visa or electronic travel authorisation"]]}]},
 {h:"Examples by country",blocks:[{t:"table",cols:["Country or region","How transit is treated"],rows:[
 ["United States","Even international-to-international passengers all clear immigration and customs. A visa or ESTA is required, and checked bags are normally reclaimed"],
-["Canada","Visa-exempt nationals also need an eTA to transit by air ★"],
+["Canada","Visa-exempt nationals also need an eTA to transit by air"],
 ["United Kingdom and Europe (Schengen)","An airport transit visa is required from certain nationalities. Check the official list ★"],
 ["China","A visa-free transit scheme of up to 240 hours. It covers ordinary passports of 57 countries, entry through 65 ports and stays within designated areas. The route must be “country A to China to a different third country or region”, with a ticket for a fixed date"],
 ["China (visa exemption)","Nationals of 45 countries and regions, including Japan, need no visa for stays of up to 30 days (until 31 December 2026)"],
