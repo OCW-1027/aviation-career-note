@@ -35,6 +35,28 @@ function flowFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),
    if(i<p[1].length-1){s+=ARW(40+r0,y+2,40+r0,y+14,GY,3.5);y+=18}});y+=14});
  var hn=hgt(d[5],11.5,580);s+=TW2(320,y,d[5],11.5,G,700,580);y+=hn+16;return svg(y,s)}}
 
+/* 1-1 搭乗券を渡す前の3つの問い。行：[問い, 見るもの, 色] */
+var DOC={
+ ja:['搭乗券を渡す前の、3つの問い',[['本人か','顔写真・年齢・性別が本人と合う。氏名が予約と同じ',IC],['旅券は有効か','到着の日に有効。行き先が求める残りの期間がある。傷みがない',QC],['条件に合うか','目的地と乗り継ぎ地の、査証・電子渡航認証・帰りの航空券',CC]],'3つとも「はい」なら、搭乗券を渡す','1つでも「いいえ」「分からない」なら、決める前に調べる・相談する'],
+ ko:['탑승권을 건네기 전의 세 가지 질문',[['본인인가','얼굴 사진·나이·성별이 본인과 맞는다. 이름이 예약과 같다',IC],['여권은 유효한가','도착하는 날에 유효하다. 목적지가 요구하는 남은 기간이 있다. 훼손이 없다',QC],['조건에 맞는가','목적지와 환승지의 비자·전자여행허가·돌아오는 항공권',CC]],'셋 다 「예」이면 탑승권을 건넨다','하나라도 「아니오」 「모르겠다」이면, 정하기 전에 찾아보고 상의한다'],
+ en:['Three questions before handing over a boarding pass',[['Is it theirs?','Photo, age and sex match the passenger. The name matches the booking',IC],['Is the passport valid?','Valid on the day of arrival, with the remaining period the destination requires, and undamaged',QC],['Does it meet the requirements?','Visa, travel authorisation and return ticket for the destination and every transit point',CC]],'Three times “yes”: hand over the boarding pass','Any “no” or “not sure”: look it up or ask before deciding']};
+function docFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),r0=Math.max(15,FS(13)*0.8);
+ d[1].forEach(function(r,i){var c=r[2],tw=600-r0*2-56,h1=hgt(r[0],13.5,tw),h2=hgt(r[1],12,tw),h=Math.max(h1+h2+24,r0*2+16);
+  s+=R(20,y,600,h,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+'<circle cx="'+(40+r0)+'" cy="'+(y+h/2)+'" r="'+r0+'" fill="'+c+'"/>'+tx(40+r0,y+h/2+FS(13)*0.35,String(i+1),13,'#fff',900)+TW2(52+r0*2,y+9,r[0],13.5,c,900,tw,'start')+TW2(52+r0*2,y+13+h1,r[1],12,D,700,tw,'start');y+=h;
+  if(i<d[1].length-1){s+=ARW(320,y+2,320,y+14,GY,3.5);y+=18}});
+ y+=12;var b=BOX(y,d[2],'#E3F4EA','#14633F',12.5);s+=b[0];y+=b[1]+8;var b2=BOX(y,d[3],'#FFF3D6','#7A5A00',12);s+=b2[0];y+=b2[1]+16;return svg(y,s)}}
+
+/* 1-3 査証・電子渡航認証・旅券だけの3つの段階。行：[段階, 説明, 色]。まん中を強調 */
+var LEV={
+ ja:['「査証が要る」と「何も要らない」の間',[['査証が要る','大使館などに申請する。日数がかかる',GY],['電子渡航認証が要る','査証は要らないが、渡航の前にオンラインで申請する。料金がかかる',CC],['旅券だけでよい','査証も認証も要らない',QC]],'増えている','同じ行き先でも、国籍によってどれになるかが変わります。'],
+ ko:['「비자가 필요하다」와 「아무것도 필요 없다」의 사이',[['비자가 필요하다','대사관 등에 신청한다. 며칠이 걸린다',GY],['전자여행허가가 필요하다','비자는 필요 없지만 여행 전에 온라인으로 신청한다. 요금이 든다',CC],['여권만 있으면 된다','비자도 허가도 필요 없다',QC]],'늘고 있다','같은 목적지라도 국적에 따라 어느 쪽이 되는지가 달라집니다.'],
+ en:['Between “a visa is needed” and “nothing is needed”',[['A visa is needed','Applied for at an embassy or consulate. Takes days',GY],['A travel authorisation is needed','No visa, but an online application before travel, with a fee',CC],['A passport is enough','No visa and no authorisation',QC]],'Growing','For the same destination, which one applies depends on nationality.']};
+function levFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ d[1].forEach(function(r,i){var c=r[2],hot=i===1,tagw=hot?H.TW(d[2],11)+22:0,tw=560-(hot?tagw+10:0),h1=hgt(r[0],13.5,tw),h2=hgt(r[1],12,560),h=h1+h2+26;
+  s+=R(20,y,600,h,hot?'#FFF6E8':'#fff',10,' stroke="'+c+'" stroke-width="'+(hot?4:2)+'"')+R(20,y,10,h,c,5)+TW2(42,y+10,r[0],13.5,c===GY?D:c,900,tw,'start')+(hot?R(600-tagw,y+10,tagw,FS(11)*1.7,c,FS(11)*0.85)+tx(600-tagw/2,y+10+FS(11)*1.2,d[2],11,'#fff',900):'')+TW2(42,y+14+h1,r[1],12,D,700,560,'start');y+=h+10});
+ y+=4;var b=BOX(y,d[3],'#EEF4FA',NV,12);s+=b[0];y+=b[1]+16;return svg(y,s)}}
+
 window.FIGS=window.FIGS||{};
 window.FIGS.ciq_three=H.FIX2(threeFig(THREE));window.FIGS.ciq_flow=H.FIX2(flowFig(FLOW));
+window.FIGS.ciq_doccheck=H.FIX2(docFig(DOC));window.FIGS.ciq_levels=H.FIX2(levFig(LEV));
 })();

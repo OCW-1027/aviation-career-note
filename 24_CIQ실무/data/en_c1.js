@@ -22,7 +22,7 @@ sections:[
 ["Residence status or re-entry permit","For people returning to where they live: Japan’s residence card, Korea’s residence card and so on"],
 ["Minors","Some countries require a parental consent letter ★"],
 ["Vaccination certificate","Some countries require one from arrivals from areas with yellow fever"]]}]},
-{h:"Check in the same order every time",blocks:[{t:"check",items:[
+{h:"Check in the same order every time",blocks:[{t:"fig",id:"ciq_doccheck",cap:"The three questions to settle before handing over a boarding pass, and their order."},{t:"check",items:[
 {name:"1. Is it theirs? 2. Is it valid? 3. Does it meet the requirements?",x:"A fixed order means nothing is missed when it is busy."},
 {name:"Dual nationals",x:"Confirm which passport is used to leave and which to enter, and that the name and nationality in the booking match it."},
 {name:"Do not decide from your own experience",x:"Even for the same nationality, requirements change with residence status and previous immigration history."}]},
@@ -70,7 +70,7 @@ next:"1-3 Electronic travel authorisations: the rules by country"});
 set("1-3",{title:"Electronic Travel Authorisations: The Rules by Country",hl:"Electronic Travel Authorisations",subtitle:"More and more countries require an application before travel, even from people who need no visa",
 lead:["Even travellers who need no visa must now, for a growing number of countries, apply online before travel and be authorised before they can board. The United States’ ESTA is the best known, but the United Kingdom, Korea, Europe and Japan are all adopting the same idea.","Fees and eligibility change often. What follows was confirmed in October 2026. Always check the authority’s official website before relying on it."],
 sections:[
-{h:"The main electronic travel authorisations",blocks:[{t:"table",cols:["Country or region, and name","Fee and validity","Notes"],rows:[
+{h:"The main electronic travel authorisations",blocks:[{t:"fig",id:"ciq_levels",cap:"An electronic travel authorisation sits between “a visa is needed” and “nothing is needed”."},{t:"table",cols:["Country or region, and name","Fee and validity","Notes"],rows:[
 ["United States: ESTA","USD 40 (from 30 September 2025). Two years, or until the passport expires","For nationals of Visa Waiver Program countries; stays of up to 90 days"],
 ["Canada: eTA","CAD 7. Five years, or until the passport expires ★","Visa-exempt nationals arriving by air"],
 ["United Kingdom: ETA","GBP 16 (from April 2025). Two years, or until the passport expires ★","Nationals who need no visa"],
@@ -138,5 +138,5 @@ terms:[["Refusal of Entry","入国拒否","입국 거부"],["Removal","送還","
 quiz:[{q:"Why can a passenger with complete documents still be refused entry?",opts:["Answers at immigration and past records also count","The airline refuses them","Customs decides","It never happens"],a:0,exp:"The immigration officer at the destination makes the final decision."},
 {q:"Who, in principle, arranges the return flight of a refused passenger?",opts:["The airline that brought them","The passenger","The destination airport company","The embassy"],a:0,exp:"The carrying airline has the duty of return."},
 {q:"What does the sending station check first?",opts:["The record of what was checked at check-in","The passenger’s occupation","The weather at the destination","The number of meals"],a:0,exp:"It confirms what was looked up before the passenger was accepted."}],
-next:""});
+next:"1-5 Transit without a visa"});
 })(window.ARTS);
