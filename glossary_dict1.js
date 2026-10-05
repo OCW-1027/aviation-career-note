@@ -43,7 +43,7 @@ window.DICT=(window.DICT||[]).concat([
 ["PAX","Common Use Terminal Equipment (CUTE/CUPPS)","共用端末","공용 단말","カウンターやゲートで複数の航空会社が共用する端末","카운터·게이트에서 여러 항공사가 함께 쓰는 단말","Counter and gate terminals shared by several airlines"],
 ["PAX","Bag Drop","手荷物預け入れ（バゲージドロップ）","수하물 위탁(백 드롭)","手続きを済ませたお客様が手荷物だけを預ける場所","수속을 마친 승객이 수하물만 맡기는 곳","Where checked-in passengers leave their bags"],
 ["PAX","Bar Coded Boarding Pass (BCBP)","バーコード搭乗券","바코드 탑승권","IATAの規格のバーコードを印刷・表示する搭乗券","IATA 규격 바코드를 인쇄·표시하는 탑승권","A boarding pass carrying an IATA-standard barcode"],
-["PAX","Pre-boarding","事前搭乗","사전 탑승","助けが必要なお客様などに先に乗ってもらうこと","도움이 필요한 승객 등을 먼저 태우는 것","Boarding passengers who need assistance first"],
+["PAX","Pre-boarding","事前搭乗","사전 탑승","助けが必要なお客様などに先に乗ってもらうこと","도움이 필요한 승객 등을 먼저 탑승시키는 것","Boarding passengers who need assistance first"],
 ["PAX","Final Call","最終案内","최종 안내","搭乗締め切り前の最後の呼び出し","탑승 마감 전 마지막 호출","The last call before boarding closes"],
 ["PAX","Gate Closure","搭乗締め切り","탑승 마감","この時刻を過ぎると搭乗できない締め切り","이 시각이 지나면 탑승할 수 없는 마감","The time after which passengers can no longer board"],
 ["PAX","Denied Boarding (DB)","搭乗拒否","탑승 거절","超過予約などで予約のあるお客様が乗れないこと","초과 예약 등으로 예약 승객이 타지 못하는 것","A booked passenger not carried, for example because of overbooking"],
