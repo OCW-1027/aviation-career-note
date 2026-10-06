@@ -56,7 +56,7 @@ sections:[
 {name:"Look at both directions",x:"Watching only Korea-origin bookings means spotting empty Japan-origin seats too late; manage load factor by direction."},
 {name:"Lay out the calendar a year ahead",x:"Put both countries’ holidays and substitute holidays, school breaks and big events (concerts, sports) on one calendar."},
 {name:"Know agencies’ timelines",x:"Large agencies plan products early; discuss promotions at least three months ahead."}]}]}],
-voice:"In a year when empty seats stood out in the Japan-origin low season, I proposed campaigns timed to Japanese holidays and school breaks. Once the Korea-origin and Japan-origin waves were laid over each other on one calendar, discussions with head office ran on numbers.",
+voice:"If empty seats stand out in the Japan-origin low season, propose campaigns timed to Japanese holidays and school breaks to head office. Laying the Korea-origin and Japan-origin waves over each other on one calendar lets those discussions run on numbers.",
 terms:[["Annual Sales Calendar","年間販売カレンダー","연간 판매 캘린더"],["Low Season","閑散期","비수기"],["Peak Season","繁忙期","성수기"],["Minimum Selling Price","最低販売価格","최저 판매가"],["Group Fare","団体運賃","단체 운임"],["Incentive Travel","インセンティブ旅行","인센티브 여행"]],
 quiz:[{q:"In 2025, Koreans visiting Japan outnumbered Japanese visiting Korea by about how much?",opts:["About 1 to 1","About 1.5 to 1","About 2.6 to 1","About 5 to 1"],a:2,exp:"About 9.46 million against about 3.65 million."},
 {q:"What is Korea’s longest holiday break in 2027?",opts:["Seollal (6–10 February)","Children’s Day","Liberation Day","Christmas"],a:0,exp:"7 February is a Sunday, so 10 February becomes a substitute holiday."},
