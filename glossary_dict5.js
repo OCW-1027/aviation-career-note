@@ -50,7 +50,7 @@ window.DICT=(window.DICT||[]).concat([
 ["ORG","Aviation Security Act (Korea)","航空保安法（韓国）","항공보안법","韓国の航空保安の基本の法律。保安計画・教育などを定める","한국 항공보안의 기본 법률. 보안계획·교육 등을 정함","Korea’s aviation security law, covering programmes and training"],
 ["ORG","Aviation Business Act (Korea)","航空事業法（韓国）","항공사업법","韓国の航空事業の法律。利用者の保護（案内の義務など）も定める","한국 항공사업 법률. 이용자 보호(안내 의무 등)도 정함","Korea’s aviation business law, including passenger protection duties"],
 ["ORG","Airport Facilities Act (Korea)","空港施設法（韓国）","공항시설법","韓国の空港・航行の施設の法律","한국 공항·항행 시설 법률","Korea’s law on airports and navigation facilities"],
-["ORG","EU261","EU261（欧州の旅客の権利の規則）","EU261(유럽 승객 권리 규정)","欧州発着などの遅延・欠航・搭乗拒否の補償と世話を定めた規則","유럽 출발 등의 지연·결항·탑승 거절 보상과 돌봄을 정한 규정","The EU rules on compensation and care for delays, cancellations and denied boarding"],
+["ORG","EU261","EU261（欧州の旅客の権利の規則）","EU261(유럽 승객 권리 규정)","欧州発着などの遅延・欠航・搭乗拒否の補償と世話を定めた規則","유럽 출발 등의 지연·결항·탑승 거절 보상과 케어를 정한 규정","The EU rules on compensation and care for delays, cancellations and denied boarding"],
 ["ORG","Tokyo Convention","東京条約","도쿄 협약","機内での犯罪・不法な行為と機長の権限を定めた条約","기내 범죄·불법 행위와 기장 권한을 정한 협약","The treaty on offences on board and the captain’s powers"],
 ["MSG","SITA","SITA（航空の通信会社）","SITA(항공 통신 회사)","航空会社・空港の電報・システムを支える業界の通信会社","항공사·공항 전보·시스템을 지원하는 업계 통신 회사","The industry-owned provider of airline communications and IT"],
 ["MSG","Teletype Address","電報のアドレス","전보 주소","空港3文字＋部署2文字＋航空会社2文字の7文字の宛先（例：NRTKLXX）","공항 3자리+부서 2자리+항공사 2자리의 7자리 수신처","A seven-letter address: airport, department and airline codes"],
