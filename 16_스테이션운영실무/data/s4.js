@@ -120,7 +120,7 @@ sections:[
 {h:"정시성을 보는 눈이 바뀐다",blocks:[{t:"rows",items:[
 {name:"시간표대로여도 기다린다",x:"준비가 시간표대로 끝나도 활주로 순서로 TSAT가 뒤가 될 수 있다. 정시성 수치를 볼 때는 TSAT를 기다린 분과 자사로 늦은 분을 나눠 본다."},
 {name:"TOBT 정확도도 지표로",x:"TOBT를 몇 번 고쳤는지, TOBT 전후 5분 안에 움직였는지를 지점과 조업사의 지표로 보는 공항·회사도 있다."},
-{name:"월례 회의에서 확인",x:"TSAT를 놓친 편, TOBT 갱신이 늦은 편을 조업사와의 월례 회의에서 확인하고 절차를 고친다(2-3)."}]}]}],
+{name:"월간 회의에서 확인",x:"TSAT를 놓친 편, TOBT 갱신이 늦은 편을 조업사와의 월간 회의에서 확인하고 절차를 고친다(2-3)."}]}]}],
 voice:"TSAT가 시작되면 TOBT를 일찍 내서 조금이라도 앞에 서려는 움직임이 나오기 쉽습니다. 준비 상황이 바뀌면 곧바로 TOBT를 갱신하도록 현장에서 철저히 하면 오히려 출발이 안정됩니다.",
 terms:[["공항 협력적 의사결정(A-CDM)","空港の協調的意思決定（A-CDM）","Airport Collaborative Decision Making (A-CDM)"],["목표 오프블록 시각(TOBT)","目標オフブロック時刻（TOBT）","Target Off-Block Time (TOBT)"],["목표 시동 승인 시각(TSAT)","目標スタートアップ承認時刻（TSAT）","Target Start-up Approval Time (TSAT)"],["이륙 가능 시각(PTOT)","離陸可能時刻（PTOT）","Possible Take-Off Time (PTOT)"],["출발 예정 시각(EOBT)","出発予定時刻（EOBT）","Estimated Off-Block Time (EOBT)"],["지상 주행 시간","地上走行の時間","Taxi Time"]],
 quiz:[{q:"TSAT 계산으로 맞는 것은?",opts:["TOBT＋30분","CTOT − 지상 주행 시간 − 푸시백 시간","STD − 10분","EOBT＋TOBT"],a:1,exp:"이륙 시각에서 역산해 움직여도 되는 시각을 냅니다."},

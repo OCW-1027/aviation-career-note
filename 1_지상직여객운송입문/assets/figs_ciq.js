@@ -71,7 +71,7 @@ function alwFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 /* 3-2 食べ物を3つに分ける。行：[区分, 例, 色]。赤=持ち込めない、黄=証明書と検査、緑=申告して確かめる */
 var FOOD={
  ja:['食べ物を3つに分けて考える（日本・韓国に入るとき）',[['持ち込めない','肉、ハム・ソーセージ・ジャーキー、肉まん・餃子、肉の入った即席食品、機内食の残り、土のついた植物','#C2344F'],['証明書と検査が要る','生の果物・野菜、穀類・豆、種・苗・球根、切り花。輸出した国の政府の証明書がなければ持ち込めない','#B7791F'],['申告して確かめる','乳製品、ドライフルーツ、香辛料、お茶や加工した食品。国と品目で扱いが変わる',QC]],'迷ったら、申告する。申告すれば、持ち込めない物は捨てるだけで済みます。'],
- ko:['음식을 셋으로 나눠 생각한다(일본·한국에 들어갈 때)',[['가져올 수 없다','고기, 햄·소시지·육포, 고기만두·교자, 고기가 든 즉석식품, 남은 기내식, 흙이 묻은 식물','#C2344F'],['증명서와 검사가 필요하다','생과일·채소, 곡류·콩, 씨앗·모종·알뿌리, 꺾은 꽃. 수출한 나라 정부의 증명서가 없으면 가져올 수 없다','#B7791F'],['신고해서 확인한다','유제품, 건조 과일, 향신료, 차와 가공한 식품. 나라와 품목에 따라 취급이 달라진다',QC]],'망설여지면 신고한다. 신고하면 가져올 수 없는 물건은 버리는 것으로 끝납니다.'],
+ ko:['음식을 셋으로 나눠 생각한다(일본·한국에 들어갈 때)',[['가져올 수 없다','고기, 햄·소시지·육포, 고기만두·교자, 고기가 든 즉석식품, 남은 기내식, 흙이 묻은 식물','#C2344F'],['증명서와 검사가 필요하다','생과일·채소, 곡류·콩, 씨앗·모종·알뿌리, 꺾은 꽃. 수출한 나라 정부의 증명서가 없으면 가져올 수 없다','#B7791F'],['신고해서 확인한다','유제품, 건조 과일, 향신료, 차와 가공한 식품. 나라와 품목에 따라 취급이 달라진다',QC]],'애매하면 신고한다. 신고하면 가져올 수 없는 물건은 버리는 것으로 끝납니다.'],
  en:['Think of food in three groups (entering Japan or Korea)',[['Cannot be brought in','Meat; ham, sausages and jerky; meat buns and dumplings; instant foods containing meat; leftover in-flight meals; plants with soil','#C2344F'],['Needs a certificate and inspection','Fresh fruit and vegetables; grains and beans; seeds, seedlings and bulbs; cut flowers. Not allowed without a certificate from the exporting country’s government','#B7791F'],['Declare and check','Dairy products, dried fruit, spices, tea and processed foods. Treatment depends on the country and the item',QC]],'If in doubt, declare. Declared items that cannot be brought in are simply surrendered.']};
 function foodFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
  d[1].forEach(function(r){var c=r[2],h1=hgt(r[0],13.5,560)+14,h2=hgt(r[1],12,560),h=h1+h2+22;
@@ -92,7 +92,7 @@ function petFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 /* 4-2 米国：食べ物を申告する人と、しない人。行：[申告する, 申告しない]。左=緑、右=赤 */
 var USD={
  ja:['米国に入るとき ― 食べ物を持っていたら',['申告する','申告しない'],[['係官が中身を見る','検査や探知犬で見つかる'],['持ち込める物は、そのまま持って入る','品物は没収される'],['持ち込めない物は、その場で手放す。罰はない','罰金。初めて300ドル、2回目500ドル']],'肉、果物、野菜、種、機内で配られた果物も「食べ物」です。迷ったら「はい」と答えます。'],
- ko:['미국에 들어갈 때 — 음식을 가지고 있다면',['신고한다','신고하지 않는다'],[['직원이 내용을 본다','검사나 탐지견에게 발견된다'],['가져올 수 있는 것은 그대로 가지고 들어간다','물건은 몰수된다'],['가져올 수 없는 것은 그 자리에서 내놓는다. 벌칙은 없다','벌금. 처음 300달러, 두 번째 500달러']],'고기, 과일, 채소, 씨앗, 기내에서 나눠 준 과일도 「음식」입니다. 망설여지면 「예」라고 답합니다.'],
+ ko:['미국에 들어갈 때 — 음식을 가지고 있다면',['신고한다','신고하지 않는다'],[['직원이 내용을 본다','검사나 탐지견에게 발견된다'],['가져올 수 있는 것은 그대로 가지고 들어간다','물건은 몰수된다'],['가져올 수 없는 것은 그 자리에서 내놓는다. 벌칙은 없다','벌금. 처음 300달러, 두 번째 500달러']],'고기, 과일, 채소, 씨앗, 기내에서 나눠 준 과일도 「음식」입니다. 애매하면 「예」라고 답합니다.'],
  en:['Entering the United States with food',['Declare','Do not declare'],[['An officer looks at it','Found by inspection or a detector dog'],['What is allowed goes in with you','The item is confiscated'],['What is not allowed is surrendered on the spot. No penalty','A fine: USD 300 the first time, USD 500 the second']],'Meat, fruit, vegetables, seeds and fruit handed out on board are all food. If in doubt, answer “yes”.']};
 function usFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),C2=[QC,'#C2344F'],hh=Math.max(hgt(d[1][0],13,270),hgt(d[1][1],13,270))+14;
  [0,1].forEach(function(i){s+=R(20+i*310,y,290,hh,C2[i],8)+TW2(165+i*310,y+7,d[1][i],13,'#fff',900,270)});y+=hh;
@@ -125,7 +125,7 @@ function divFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 /* 6-4 この講座の3つの原則（docFig の枠を使う） */
 var RULE={
  ja:['この講座の3つの原則',[['旅程に出てくる国は、すべて調べる','目的地だけでなく、乗り継ぎ地も。経験ではなく、当局の案内で',IC],['迷ったら、申告する','お客様にも、そう伝える。申告した人は、罰を受けない',QC],['当局の指示の前に、動かさない','人も、手荷物も、機内食も。困ったときほど、先に知らせる',CC]],'決めるのは、当局です','航空会社の仕事は、確かめること、知らせること、従うこと'],
- ko:['이 강좌의 세 가지 원칙',[['일정에 나오는 나라는 모두 확인한다','목적지뿐 아니라 환승지도. 경험이 아니라 당국의 안내로',IC],['망설여지면 신고한다','승객에게도 그렇게 알린다. 신고한 사람은 벌을 받지 않는다',QC],['당국의 지시 전에 움직이지 않는다','사람도, 수하물도, 기내식도. 곤란할수록 먼저 알린다',CC]],'정하는 것은 당국입니다','항공사의 일은 확인하는 것, 알리는 것, 따르는 것'],
+ ko:['이 강좌의 세 가지 원칙',[['일정에 나오는 나라는 모두 확인한다','목적지뿐 아니라 환승지도. 경험이 아니라 당국의 안내로',IC],['애매하면 신고한다','승객에게도 그렇게 알린다. 신고한 사람은 벌을 받지 않는다',QC],['당국의 지시 전에 움직이지 않는다','사람도, 수하물도, 기내식도. 곤란할수록 먼저 알린다',CC]],'정하는 것은 당국입니다','항공사의 일은 확인하는 것, 알리는 것, 따르는 것'],
  en:['The three principles of this course',[['Look up every country on the itinerary','Not only the destination but the transit points too, from the authorities’ guidance rather than experience',IC],['If in doubt, declare','Tell passengers the same. Those who declare are not penalised',QC],['Move nothing before the authorities instruct','Not passengers, bags or catering. The harder the situation, the sooner you tell them',CC]],'The authorities decide','The airline’s job is to check, to inform and to comply']};
 
 window.FIGS=window.FIGS||{};
