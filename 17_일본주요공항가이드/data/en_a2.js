@@ -21,7 +21,7 @@ sections:[
 {name:"De-icing",x:"Snow is rare, but cold snaps and frost sometimes require de-icing, normally on stand before departure. Because it is infrequent, confirm your contractor and equipment before winter. Dyed fluids since the 2023 winter schedule. ★"}]},
 {t:"point",x:"Kansai is a convenient airport with few restrictions in normal times — and an island in an emergency. Your eye on the weather forecast is your station’s crisis management."}]}],
 voice:"Kansai sits on an island, and typhoons can close the bridge. When one is forecast, the first decision is who stays at the airport and who goes home.",
-terms:[["Offshore Airport","海上空港","해상 공항"],["Access Bridge","連絡橋","연결교"],["Storm Surge","高潮","폭풍 해일"],["Business Continuity Plan (BCP)","事業継続計画","사업 연속성 계획"]],
+terms:[["Offshore Airport","海上空港","해상 공항"],["Access Bridge","連絡橋","연륙교"],["Storm Surge","高潮","폭풍해일"],["Business Continuity Plan (BCP)","事業継続計画","사업 연속성 계획"]],
 quiz:[{q:"What are Kansai’s operating hours?",opts:["24 hours","6:00–24:00","7:00–21:00","7:00–22:00"],a:0,exp:"An offshore airport with few noise restrictions."},
 {q:"What happened in the 2018 typhoon?",opts:["Flooding and damage to the access bridge closed the airport","A runway was added","A new terminal opened","Nothing"],a:0,exp:"The BCP was overhauled afterwards."},
 {q:"What is a major cause of transport stopping at Kansai?",opts:["Closure of the access bridge","Snow","Volcanoes","Only land subsidence"],a:0,exp:"One bridge links the island to land."}],
