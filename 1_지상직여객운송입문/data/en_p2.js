@@ -1,152 +1,188 @@
-/* 地上職・旅客運送 入門 — English version (Part 2: 搭乗口) */
+/* 地上職・旅客運送 入門 — English version (Part 2: 搭乗口) — 2026.10 増補版に合わせて全面改訂 */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("2-1",{title:"Preparing for Gate Duty",hl:"the gate",subtitle:"Before boarding starts, line up three things: information, people and the flow",
-lead:["The gate is the last place staff meet passengers on the ground. Anything missing here turns directly into a late departure. Before boarding starts, make sure the information, the people and the flow are all in place."],
-sections:[
-{h:"What to check when you reach the gate",blocks:[{t:"check",items:[
-{name:"Flight information",x:"How many have checked in, passengers needing assistance, connecting passengers, and those not yet checked in."},
-{name:"Aircraft status",x:"Progress of the arrival, cleaning, catering and maintenance, and the expected time boarding can start."},
-{name:"Briefing with the cabin crew",x:"When boarding starts, where passengers needing assistance are seated, how much cabin baggage to expect."},
-{name:"Equipment and displays",x:"Boarding pass readers, the flight display (number, destination, time) and radios."},
-{name:"The flow",x:"The route by boarding bridge or bus, and where the priority queue forms."}]}]},
-{h:"Timings, worked back from departure (example)",blocks:[{t:"table",cols:["","International","Domestic"],rows:[
-["Arrive at the gate","60–75 minutes before departure","40–50 minutes before"],
-["Preparation complete","10–15 minutes before boarding starts","10 minutes before boarding starts"],
-["Pre-boarding announcement (documents, boarding order)","10–15 minutes before boarding starts","5–10 minutes before"],
-["Boarding starts","30–45 minutes before departure (earlier for widebodies)","20–30 minutes before"],
-["Final call and paging","From 10–15 minutes before boarding closes","From 5–10 minutes before"],
-["Boarding closes","Commonly about 10 minutes before departure","Commonly about 10 minutes before"],
-["Door close","Once the count is reconciled and documents handed over (5–10 minutes before)","Same"]]},
-{t:"note",x:"* Guide figures drawn from several airlines. Start earlier for bus boarding, larger aircraft or many transfer passengers. Some airlines close boarding 15–20 minutes before departure. ★"},
-{t:"point",x:"Everything works back from the boarding close time. Start announcements late and the last passengers board late, and an on-time departure slips away. Handling passengers who miss the close is covered in 2-5."}]},
-{h:"Who does what",blocks:[{t:"rows",items:[
-{name:"Gate leader",x:"Makes the calls, keeps in contact with the cabin crew and the ramp, and decides when boarding starts and closes."},
-{name:"Boarding pass reader",x:"Checks the boarding pass and passport and scans each pass."},
-{name:"Floor staff",x:"Manages the queue, gives information, checks the size of cabin bags and pages passengers."}]},
-{t:"point",x:"Boarding starts only once the cabin reports it is ready. If that looks like slipping, announce it early rather than late."}]}],
-voice:"Gate checks are the last chance to match name, flight and date on the boarding pass and passport. The busier it is, the more important it is not to skip these three.",
-terms:[["Boarding Gate","搭乗口（ゲート）","탑승구(게이트)"],["Boarding Bridge (PBB)","搭乗橋","탑승교"],["Priority Boarding","優先搭乗","우선 탑승"],["Cabin Crew","客室乗務員","객실 승무원"]],
-quiz:[{q:"What triggers the decision to start boarding?",opts:["Passengers gathering at the gate","The cabin reporting it is ready","Arriving at the gate","Exactly 30 minutes before departure"],a:1,exp:"Boarding begins once cabin preparation is complete."},
-{q:"What is the gate leader’s role?",opts:["Only managing the queue","Making the calls and keeping everyone in contact","Cleaning","Loading catering"],a:1,exp:"They judge the situation and coordinate with the cabin crew and the ramp."}],
-next:"2-2 Gate-checked bags and wheelchairs"});
-
-set("2-2",{title:"Gate-checked Bags and Wheelchairs",hl:"gate-checked bags",subtitle:"Everything taken at the gate needs the right tag and the right delivery point",
-lead:["When the overhead bins are about to fill up, when a bag is too large, when a stroller or wheelchair is used right up to the gate. Anything taken at the gate has to get back to the passenger at the other end."],
-sections:[
-{h:"What gets taken at the gate",blocks:[{t:"table",cols:["Item","Where it is returned","Watch for"],rows:[
-["Oversized cabin bags","Baggage claim at the destination","Ask the passenger to take out valuables and batteries"],
-["Strollers","Planeside or at the gate on arrival","Tell the passenger in advance which it will be"],
-["Passengers’ own wheelchairs","Planeside on arrival","Battery type and removal, and any fragile parts"]]}]},
-{h:"The steps",blocks:[{t:"check",items:[
-{name:"Tag it",x:"Attach a tag showing the destination and the delivery point, and give the passenger the receipt."},
-{name:"Check the contents",x:"Power banks, valuables and medication should stay with the passenger in the cabin."},
-{name:"Tell the ramp",x:"Pass on the number and type of items and confirm they are loaded."},
-{name:"Tell the arrival station",x:"Items for planeside delivery must be advised to staff at the destination in advance."}]},
-{t:"point",warn:true,x:"A mis-tagged gate bag becomes a missing bag. Be especially careful with connecting passengers."}]}],
-voice:"Gate-to-gate handover errors happen when it is unclear who took over. At each handover, confirm names and times out loud and record them.",
-terms:[["Gate Check Bag","ゲートで預かる手荷物","게이트 위탁 수하물"],["Delivery at Aircraft","機側返却","기측 인도"],["Stroller","ベビーカー","유모차"],["Baggage Claim","手荷物受取所","수하물 수취대"]],
-quiz:[{q:"What should passengers take out of a bag left at the gate?",opts:["Clothes","Power banks and valuables","Books","Souvenirs"],a:1,exp:"Batteries, valuables and medication stay with the passenger."},
-{q:"What is needed for items returned planeside?",opts:["Nothing","Advise the arrival station in advance","Leave it to the passenger","Think about it after departure"],a:1,exp:"Staff at the destination need to prepare for planeside delivery."}],
-next:"2-3 Handling a bag search with the passenger"});
-
-set("2-3",{title:"Handling a Bag Search with the Passenger",hl:"bag search",subtitle:"When a checked bag has to be opened, you move with the passenger",
-lead:["When security screening cannot confirm what is inside a checked bag, the bag may be opened and checked in the presence of its owner. It happens with departure approaching, so it takes quick, accurate teamwork."],
-sections:[
-{h:"How it usually goes",blocks:[{t:"ladder",rise:10,steps:[{name:"You are called",sub:"Screening gives the flight and tag number"},{name:"Find the passenger",sub:"At the gate, or by paging"},{name:"Escort them",sub:"Staff take them to the screening area"},{name:"Check and resolve",sub:"Surrender the item, move it to the cabin and so on"},{name:"Share the result",sub:"With the ramp and the gate"}]}]},
-{h:"Key points",blocks:[{t:"check",items:[
-{name:"Explain calmly",x:"Make clear this is a security check and not an accusation."},
-{name:"Manage the clock",x:"If it will take time, tell the gate leader so boarding and the closing time can be adjusted."},
-{name:"Record the outcome",x:"Record what was surrendered or moved to the cabin, and confirm the bag is loaded."}]},
-{t:"point",warn:true,x:"Where and how the search is done is set by each airport. Follow your own airport’s rules, and as a principle do not discuss the detail of security procedures with passengers or anyone outside."}]}],
-voice:"Passengers accept bag searches more readily when you explain first why it is necessary. Open it in front of them, and putting things back neatly is part of the search.",
-terms:[["Bag Search with Passenger","開披検査","개봉 검사"],["Security Screening","保安検査","보안 검색"],["Checked Baggage","受託手荷物","위탁 수하물"],["Abandon / Surrender","放棄","포기"]],
-quiz:[{q:"What is a bag search with the passenger?",opts:["Weighing a cabin bag","Opening and checking a checked bag with its owner present","Checking a passport","Changing a seat"],a:1,exp:"The contents are checked in the presence of the passenger."},
-{q:"What is the rule on the detail of security procedures?",opts:["Explain it fully to passengers","Share it on social media","Do not discuss it outside","Anyone may be told"],a:2,exp:"Details of security procedures are not discussed outside."}],
-next:"2-4 The boarding sequence"});
-
-set("2-4",{title:"The Boarding Sequence",hl:"boarding sequence",subtitle:"Board in a set order and the aisle never jams",
-lead:["The boarding order is not only about service. It is also how you keep the cabin from jamming and get the flight away on time."],
-sections:[
-{h:"A typical boarding order",blocks:[{t:"fig",id:"boarding_order",cap:"Groups are called in turn and move from the gate onto the bridge. The numbers follow the order below, with passengers needing assistance first."},{t:"ladder",rise:10,steps:[{name:"1 Pre-boarding",sub:"Passengers needing assistance, families with infants, pregnant passengers"},{name:"2 Premium and top-tier",sub:"First, business and top-tier members"},{name:"3 Rear rows",sub:"Economy, rear zone"},{name:"4 Middle rows",sub:"Economy, middle zone"},{name:"5 Everyone else",sub:"Front rows, then final call"}]},
-{t:"note",x:"* The order differs by airline."}]},
-{h:"What the boarding pass check confirms",blocks:[{t:"check",items:[
-{name:"Flight and date",x:"That it is not a boarding pass for another flight."},
-{name:"Identity",x:"On international flights, match the name and face on the passport and the boarding pass."},
-{name:"Reader errors",x:"Always find out why the reader rejects a pass; never force it through."}]},
-{t:"point",x:"Departing with the boarded count out of step with the system is a serious error. Always reconcile the numbers before closing the flight."}]},
-{h:"Watch it on video",blocks:[{t:"video",title:"A day in the life of ground staff at Narita Airport (counter, gate and lounge)",ch:"Channel being confirmed",url:"https://www.youtube.com/watch?v=Kl0vSx9hZ1k"}]}],
-voice:"Boarding finishes faster when the boarding order is kept and cabin baggage is reduced in advance. On full flights, encourage gate check-in of bags early.",
-terms:[["Pre-boarding","事前改札","사전 탑승"],["Boarding Pass","搭乗券","탑승권"],["Final Call","最終案内","최종 안내"],["Boarded Count","搭乗人数","탑승 인원"]],
-quiz:[{q:"Who is usually invited to pre-board?",opts:["Top-tier members","Passengers needing assistance and families with children","Whoever arrives last","Passengers seated at the rear"],a:1,exp:"Those who need more time board first."},
-{q:"What must always be done before closing the flight?",opts:["Reconcile the numbers","Leave the gate","Check the catering","Turn off the lights"],a:0,exp:"The boarded count and the system must match."}],
-next:"2-5 Searching for missing passengers, and offloading"});
-
-set("2-5",{title:"Searching for Missing Passengers, and Offloading",hl:"offloading",subtitle:"Wait, or take them off? The clock and the baggage decide",
-lead:["A passenger has checked in but never reaches the gate. When paging brings no one, ground staff search and prepare to offload at the same time."],
-sections:[
-{h:"How the search runs",blocks:[{t:"check",items:[
-{name:"Paging",x:"Repeat the page at the gate and across the airport at the set times."},
-{name:"Split up and look",x:"Lounges, duty-free shops, lavatories, the area before departure immigration: the usual places, coordinated by radio."},
-{name:"Check whether they have cleared immigration",x:"What happens next depends on whether they have already been processed for departure."}]}]},
-{h:"Late passengers: a procedure driven by the clock (example)",blocks:[{t:"table",cols:["When","What to do","Who"],rows:[
-["Just after boarding starts","Pull the list of passengers not yet boarded; check transfers, groups, special handling, and checked bags (count)","Gate agent"],
-["15 minutes before boarding closes","Page by name (gate and terminal); call the booking contact, companions, the lounge; check exit-control and security records","Gate agent, counter"],
-["10 minutes before boarding closes","Warn the handler which bags may need offloading (tag numbers, count, loaded position); tell load control the count may change","Gate lead"],
-["Boarding close","The lead decides to offload. Passengers arriving after the decision are, as a rule, not boarded","Duty manager or lead"],
-["Immediately after","Order the bags off; correct the count and seats in the system; LMC or a new loadsheet; correct the final API transmission","Gate, load control"],
-["Bags offloaded","Confirm by tag number; give the captain and purser the final count and bag numbers; close the door","Gate lead"],
-["After departure","Rebook the passenger and explain costs, store the bags, record the case (and the delay cause if any)","Counter, gate"]]},
-{t:"note",x:"* An example based on several airlines’ procedures. Timings, decision-makers and how bags are located depend on the airline and airport. ★"},
-{t:"rows",items:[
-{name:"Know where the bags are",x:"Bags inside a container take time to find. If the reconciliation system records where each bag was loaded, it takes minutes."},
-{name:"The cost of waiting",x:"A few minutes spent waiting for one passenger can affect later flights, connections, crew duty time and the slot at the destination. Decide for the flight as a whole."},
-{name:"When waiting may be right",x:"Connecting passengers delayed by your own late inbound, or most of a group still missing. Set the criteria in advance and let the lead decide."},
-{name:"Prevention at check-in",x:"State boarding and closing times clearly and write them on the pass; add a word for passengers likely to linger in duty-free or the lounge."}]},
-{t:"point",warn:true,x:"Offloading at the set time, by the set person, by the set procedure is the surest way to protect punctuality. Record each decision and review when and why delays happen."}]},
-{h:"Deciding to offload",blocks:[{t:"table",cols:["Situation","What you do"],rows:[
-["No checked baggage","Correct the seat and the count, fix the paperwork and depart"],
-["With checked baggage","As a rule the bag comes off. Give the ramp the tag number for removal"],
-["Checked in online only","Cancel the check-in of the passenger who never arrived"]]},
-{t:"point",warn:true,x:"Never depart with a bag whose owner is not on board. That is a basic security principle. Identify the bag by its tag number and take it off."}]},
-{h:"Set the cut-off in advance",blocks:[{t:"p",x:"If the gate leader decides in advance “if they are not found by X minutes before departure, we start offloading,” nobody hesitates when the moment comes."}]}],
-voice:"If the passenger appears right after an offload decision, first check the status of the unloaded bags and documents. Decide by procedure, not on impulse.",
-terms:[["Late Show","搭乗遅れ","탑승 지연 승객"],["Offload","オフロード","하기(오프로드)"],["No Show","未搭乗","미탑승"],["Bag Removal","手荷物の取り降ろし","수하물 하기"]],
-quiz:[{q:"What happens to the checked bag of a passenger who does not board?",opts:["It travels anyway","As a rule it is removed","Deal with it at the destination","Ask the passenger"],a:1,exp:"For security, bags travel only with their owner."},
-{q:"What makes the offload decision easier?",opts:["Setting the cut-off time in advance","Going on instinct","Waiting until they turn up","Leaving it to head office"],a:0,exp:"A pre-agreed cut-off removes the hesitation."}],
-next:"2-6 Cancelling a departure record"});
-
-set("2-6",{title:"Cancelling a Departure Record",hl:"cancelling departure",subtitle:"When a passenger who has cleared immigration does not fly, the record has to be undone",
-lead:["If a passenger who has already cleared departure immigration cannot travel — illness, a family matter, an offload — their departure record must be cancelled. They are never sent back alone; a staff member escorts them through the process."],
-sections:[
-{h:"The usual flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Cancel the boarding",sub:"Deplane in the system"},{name:"Notify",sub:"Immigration, customs and others"},{name:"Escort them back",sub:"Staff accompany them"},{name:"Cancel the departure",sub:"Processed by immigration"},{name:"Return the baggage",sub:"Checked bags handed back"}]}]},
-{h:"Points to watch",blocks:[{t:"check",items:[
-{name:"Always escort",x:"Coming back from the departure area, staff accompany the passenger along the agreed route."},
-{name:"Duty-free goods",x:"Anything bought in the departure area is handled according to customs and shop procedures."},
-{name:"Baggage",x:"Checked bags are always offloaded and returned."},
-{name:"Records",x:"Record the reason and what was done, and report it to the parties concerned."}]},
-{t:"point",warn:true,x:"The detailed steps and the contacts differ by airport. Always work from your own airport’s current procedure."}]}],
-voice:"Cancelling departures on a night of cancellations means long queues. Agree the route with immigration first and escort passengers in groups to reduce confusion.",
-terms:[["Cancellation of Departure","出国取消","출국 취소"],["Immigration","出入国管理","출입국 관리"],["Deplaning","降機","하기"],["Duty-free Goods","免税品","면세품"]],
-quiz:[{q:"What happens when a passenger who has cleared immigration cannot travel?",opts:["They go back on their own","Staff escort them and the departure record is cancelled","They stay in the airport","They are rebooked automatically for the next day"],a:1,exp:"A staff member escorts them through the cancellation."},
-{q:"What happens to their checked bag?",opts:["It travels anyway","It is offloaded and returned","It is held at the destination","It is disposed of"],a:1,exp:"Bags of passengers who do not fly are removed and returned."}],
-next:"2-7 Flight documents, closing the flight and manual boarding"});
-
-set("2-7",{title:"Flight Documents, Closing the Flight and Manual Boarding",hl:"closing the flight",subtitle:"Before the door closes, every document and every number has to agree",
-lead:["Once boarding is finished, there is a final check before the door closes: the number of passengers, the number of bags, passengers needing assistance, and the documents handed to the crew. Everything agreeing is the condition for a safe departure."],
-sections:[
-{h:"Before the door closes",blocks:[{t:"check",items:[
-{name:"The count agrees",x:"The number of passes scanned, the number in the system and the cabin crew’s count all match."},
-{name:"The baggage agrees",x:"The number of checked bags matches what the ramp has loaded."},
-{name:"Hand over special assistance",x:"Tell the cabin crew about wheelchairs, unaccompanied children, special meals and so on."},
-{name:"Hand over the documents",x:"Give the crew the passenger manifest, the special assistance list and anything else required."}]}]},
-{h:"Manual boarding",blocks:[{t:"p",x:"If a system failure takes the readers out, boarding is managed by hand: collect the boarding pass stubs and count passengers against the manifest."},
-{t:"point",x:"Practise manual boarding regularly. Failures do not give notice."}]},
-{h:"Closing after departure",blocks:[{t:"rows",items:[
-{name:"Send the figures",x:"Departure time, passenger numbers and so on go to everyone who needs them."},
-{name:"Daily report",x:"Record no-shows, problems and anything notable."}]}]}],
-voice:"What helps on a day the system goes down is the manual forms and procedures you prepared beforehand. Practise manual boarding at least once a year.",
-terms:[["Door Close","ドアクローズ","도어 클로즈"],["Passenger Manifest","旅客名簿","승객 명단"],["Manual Boarding","マニュアル搭乗","수동 탑승"],["Daily Report","日報","일일 보고"]],
-quiz:[{q:"Which numbers must agree before the door closes?",opts:["Passengers and bags","Seat colours","Gate numbers","The number of shops"],a:0,exp:"The passenger count and the baggage count."},
-{q:"When is manual boarding needed?",opts:["In good weather","During a system failure","When few passengers travel","Every time"],a:1,exp:"It is used when the readers cannot be used."}],
-next:"Part 3 Shipside and Ramp — 3-1 Aircraft doors: the basics"});
+set("2-1",{"title":"Preparing for Gate Duty","hl":"Gate","subtitle":"Be at the gate on time, finish preparing before boarding starts, and make the last checks",
+"lead":["The gate is the last place passengers are checked before they board the aircraft. Problems missed at the counter can still be stopped here. So gate staff take up their positions at the set time, with the flight information and the documents they need.","This lesson covers the overall flow of gate work, standard times for being in position, the preparation checklist, coordinating with the cabin, and the idea of “gate filtering”."],
+"sections":[
+{"h":"The flow of gate work","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"In position","sub":"Flight information and documents ready"},{"name":"Check preparations","sub":"Comments, equipment, signs"},{"name":"Pre-boarding information","sub":"Priority boarding and baggage information"},{"name":"Gate filtering","sub":"The last checks"},{"name":"Boarding","sub":"Call passengers in order"},{"name":"Closing","sub":"Reconcile the numbers, close the door"}]}]},
+{"h":"Standard times (an example, counted back from departure)","blocks":[{"t":"table","cols":["","International","Domestic"],"rows":[["In position at the gate","60–75 minutes before departure","40–50 minutes before departure"],["Preparations complete","By 10–15 minutes before boarding starts","By 10 minutes before boarding starts"],["Pre-boarding announcement (documents ready, boarding order)","10–15 minutes before boarding starts","5–10 minutes before boarding starts"],["Boarding starts","30–45 minutes before departure (earlier for large aircraft)","20–30 minutes before departure"],["Final calls and paging","From 10–15 minutes before boarding closes","From 5–10 minutes before boarding closes"],["Boarding closes (boarding complete)","Often around 10 minutes before departure","Often around 10 minutes before departure"],["Door closed","As soon as the numbers are reconciled and documents handed over (5–10 minutes before departure)","As left"]]},
+{"t":"note","x":"* Guidelines based on several airlines’ examples. Times are brought forward depending on whether boarding is by air bridge or bus, the size of the aircraft and the number of connecting passengers. Some airlines close boarding 15–20 minutes before departure. ★"},
+{"t":"point","x":"The reference point is when boarding closes. Count back from it and start calling early; otherwise the last passengers board late and an on-time departure becomes difficult. Handling passengers who miss the close is covered in detail in lesson 2-5."}]},
+{"h":"Preparation checklist","blocks":[{"t":"check","items":[
+{"name":"Flight information","x":"Booking status, expected number boarding, VIPs, special passengers, connecting passengers."},
+{"name":"Gate comments","x":"What has been passed on from the counter: wheelchairs, UMs, groups with a lot of cabin baggage, passengers likely to be late and so on."},
+{"name":"Documents and items to hand over","x":"Documents for the crew (immigration documents, the passenger manifest, the special handling report and so on) and items to hand over on board."},
+{"name":"Equipment","x":"Boarding pass readers, the PA system, terminals, printers."},
+{"name":"Signs","x":"Flight number, destination and time display; boarding order signs."}]}]},
+{"h":"Coordinating with the cabin","blocks":[{"t":"rows","items":[
+{"name":"Boarding signal","x":"Check how preparations on board are going (cleaning, catering, safety checks) and agree the boarding start time and signal with the purser."},
+{"name":"What to tell them","x":"Special passengers, passengers in exit rows, items taken at the gate, late passengers."},
+{"name":"What to ask","x":"Delays on board, stowage space, broken seats."}]}]},
+{"h":"Gate filtering","blocks":[{"t":"p","x":"This is the system for catching, one last time before passengers enter the aircraft, problems not caught at check-in and elsewhere. Problems left for various reasons, such as check-in by someone else, staff mistakes or deliberate acts by passengers, are stopped here."},
+{"t":"check","items":[
+{"name":"Unauthorised access","x":"Control access so that no one without permission approaches the aircraft or gate."},
+{"name":"Prohibited items and oversized bags","x":"Bags beyond the rules are switched to checked baggage here (lesson 2-2)."},
+{"name":"Passengers needing help","x":"Whether passengers with infants, wheelchair passengers and others are ready."},
+{"name":"Passengers’ condition","x":"Whether anyone seems heavily drunk or unwell."},
+{"name":"Doubts about documents","x":"Suspected forged or altered passports or visas; checking visas again."}]},
+{"t":"point","x":"Anything not resolved by departure is passed on to the destination station. Gate filtering is also a chance to check that the handler’s staff are following procedures."}]}],
+"voice":"Gate checks are the last chance to match name, flight and date on the boarding pass and passport. The busier it is, the more important it is not to skip these three.",
+"terms":[["Gate Comment","ゲートコメント","게이트 코멘트"],["Gate Filtering","ゲートフィルタリング","게이트 필터링"],["Purser / Cabin Manager","客室責任者","객실사무장"],["Boarding Sign","搭乗開始の合図","탑승 사인"],["Passenger Manifest","乗客名簿","승객 명단"],["General Declaration (GD)","出入国の書類","출입국 서류"]],
+"quiz":[{"q":"When does boarding usually close (boarding complete)?","opts":["Just before departure","Around 10 minutes before departure","One hour before departure","There is no set time"],"a":1,"exp":"Often around 10 minutes before departure; 15–20 minutes at some airlines. ★"},
+{"q":"What is gate filtering for?","opts":["Hurrying passengers","Catching missed problems before boarding","Directing passengers to duty-free","Changing seats"],"a":1,"exp":"It is the system of last checks."},
+{"q":"What happens to anything not resolved by departure?","opts":["It is forgotten","It is passed on to the destination","It is left to the passenger","It is dealt with the next day"],"a":1,"exp":"Contact the destination so it can be resolved there."}],
+"next":"2-2 Gate-checked bags and wheelchairs"});
+set("2-2",{"title":"Gate-Checked Bags and Wheelchairs","hl":"Gate bags","subtitle":"Oversized bags go in the hold; pushchairs and wheelchairs are returned at the arrival gate",
+"lead":["At the gate, staff take cabin bags that exceed the rules, and let passengers use pushchairs and wheelchairs up to the aircraft before returning them at the arrival gate. In both cases, a mistake in tagging or in telling the destination means the item never reaches the passenger.","This lesson covers the problems caused by too much cabin baggage, the procedure and charges for gate check-in, the “gate to gate” service that returns items at the arrival gate, and handling wheelchairs and powered wheelchairs."],
+"sections":[
+{"h":"What is wrong with too much cabin baggage","blocks":[{"t":"cards","n":2,"items":[
+{"ic":"⚠️","name":"A safety problem","x":"Bags blocking the aisle and the space around seats can fatally obstruct an emergency evacuation. They can also fall from bins and injure people."},
+{"ic":"🧍","name":"A service problem","x":"They block the aisle for passengers and crew. Arguments over stowage space slow boarding and hurt on-time departure."}]}]},
+{"h":"Gate check-in procedure","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Identify","sub":"Check from the end of preparations, before boarding"},{"name":"Switch to checked","sub":"Issue a tag and give a receipt"},{"name":"Charge","sub":"Collect the set charge if needed"},{"name":"Hand over","sub":"To the handler"},{"name":"Record","sub":"Number of bags and tag numbers"}]},
+{"t":"rows","items":[
+{"name":"When to start","x":"Once preparations are complete (e.g. 20 minutes before boarding starts), switch bags that do not meet the rules to checked baggage."},
+{"name":"Charges (example)","x":"Some airlines set a charge for bags checked at the gate (separate from the free allowance), with limits such as 23 kg and 158 cm per bag."},
+{"name":"When it is free","x":"Many airlines do it free when even a bag within the rules has to be taken because there is not enough stowage space on board."},
+{"name":"Where to hand over","x":"Agree with the handler, depending on the airport: inside the gate, at the aircraft door and so on."}]},
+{"t":"point","x":"Always check that bags taken at the gate do not contain items that cannot be checked, such as power banks or e-cigarettes. Have the passenger take them out and carry them on board."}]},
+{"h":"Gate to gate (returned at the arrival gate)","blocks":[{"t":"p","x":"A service in which items the passenger wants to use straight away at the arrival gate, such as pushchairs and wheelchairs, are taken at the departure gate and returned at the arrival gate."},
+{"t":"ladder","rise":10,"steps":[{"name":"Special tag","sub":"Attach a gate-use tag"},{"name":"Load by the door","sub":"Near the hold door"},{"name":"Tell the destination","sub":"Share the service request after departure"},{"name":"Instruct the work","sub":"The destination instructs its handler"},{"name":"To the passenger","sub":"Handed over at the arrival gate"}]},
+{"t":"point","warn":true,"x":"Some airlines set a time standard (e.g. handed over within 5 minutes of parking). If it cannot be met, tell the passenger and hand it over as soon as possible."}]},
+{"h":"Wheelchairs and powered wheelchairs","blocks":[{"t":"check","items":[
+{"name":"Passenger’s own wheelchair","x":"Let them use it to the gate and take it near the aircraft. Ask the passenger whether they want it back at the arrival gate or at baggage claim."},
+{"name":"Powered wheelchairs","x":"Check the battery type, whether it is removable and how the terminals are protected, and load it under the dangerous goods rules. Gate check-in takes time to load, so ask the passenger to come to the gate early (e.g. one hour before departure)."},
+{"name":"Stowing folding wheelchairs in the cabin","x":"On sectors where US rules apply, space in the cabin must be provided for one folding wheelchair that meets the conditions."},
+{"name":"Wheelchair passengers arriving during boarding","x":"Board them last, for example, so the flow is not interrupted."}]}]}],
+"voice":"Gate-to-gate handover errors happen when it is unclear who took over. At each handover, confirm names and times out loud and record them.",
+"terms":[["Gate Checked Baggage","ゲートで預かる手荷物","게이트 위탁 수하물"],["Oversized Baggage","大きすぎる手荷物","과대 수하물"],["Gate to Gate Delivery","ゲート・トゥ・ゲート","게이트 투 게이트"],["Gate Use Tag","ゲート使用タグ","게이트 사용 태그"],["Overhead Bin","収納棚","선반"],["Powered Wheelchair","電動車いす","전동 휠체어"]],
+"quiz":[{"q":"What is the safety problem with too much cabin baggage?","opts":["Appearance","It obstructs emergency evacuation","Fewer meals","None"],"a":1,"exp":"It blocks the aisle and the space around seats."},
+{"q":"Where are gate-to-gate items loaded?","opts":["Deep in the hold","Near the hold door","In the overhead bins","In the flight deck"],"a":1,"exp":"By the door, so they can be unloaded straight away."},
+{"q":"What must always be checked in bags taken at the gate?","opts":["Colour","Whether they contain items that cannot be checked (such as batteries)","The brand","The price"],"a":1,"exp":"Have the passenger take them out and carry them on board."}],
+"next":"2-3 Handling a bag search with the passenger"});
+set("2-3",{"title":"Handling a Bag Search with the Passenger","hl":"Bag search","subtitle":"When a checked bag shows a suspicious item, open it with the passenger present and check",
+"lead":["Checked bags are screened by X-ray and other means before loading. If a suspicious item such as a power bank, lighter or aerosol shows up, the bag is opened in the passenger’s presence to check the contents. This is called an open-bag inspection.","Because passengers are called just before departure, how quickly they are called and how well the gate, counter and screening area work together decide whether the flight leaves on time. This lesson covers the flow of the inspection, items often found, and the key points in handling it."],
+"sections":[
+{"h":"Flow of an open-bag inspection (typical example)","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Suspicion","sub":"Alert in hold baggage screening"},{"name":"Identify the passenger","sub":"Name and flight from the tag number"},{"name":"Call","sub":"Announce at the counter or gate"},{"name":"Open together","sub":"Check in front of the passenger"},{"name":"Deal with it","sub":"Remove, surrender or repack"},{"name":"Load and record","sub":"Load after rescreening; record what happened"}]}]},
+{"h":"Items often found, and what to do","blocks":[{"t":"table","cols":["Item found","Main action"],"rows":[["Power banks and spare batteries","Have the passenger take them out and carry them on board"],["E-cigarettes and lighters","Take them out and carry them on board (one lighter at most)"],["Aerosols","Allowed if within the limits; flammable ones and the like are surrendered"],["Knives and tools","Often fine in checked baggage as they are (not allowed in the cabin)"],["Other dangerous goods","Have them surrendered, or explain other options"]]}]},
+{"h":"When to call the passenger","blocks":[{"t":"rows","items":[
+{"name":"Just after check-in","x":"At airports where passengers are asked to wait a few minutes near the counter, they can be called there. Some stations announce before check-in, “Please wait about five minutes after checking in” (lesson 1-2)."},
+{"name":"After passport control","x":"Call them at the gate and have staff take them to the screening area. Moving back after departure formalities takes time."},
+{"name":"If they cannot come","x":"If departure is near and the passenger cannot come, offload the bag or deal with it according to the rules. Decide together with a senior member of staff."}]},
+{"t":"point","x":"There is no need to state the reason for the call in the announcement. Say something like “regarding your baggage”, so other passengers cannot tell what it is about."}]},
+{"h":"Key points in handling it","blocks":[{"t":"check","items":[
+{"name":"Always with the passenger present","x":"Staff do not open a passenger’s bag on their own (except where airport or national rules allow)."},
+{"name":"Explain politely","x":"Explain why the bag is being opened and what the problem is, based on the rules."},
+{"name":"Repacking","x":"After opening, have the passenger close the bag themselves and check its condition together."},
+{"name":"Record","x":"Record the flight number, passenger name, tag number, item found and action taken."},
+{"name":"Prevention","x":"Reduce the number of inspections in the first place through security questions at the counter, notices and announcements beforehand."}]}]}],
+"voice":"Passengers accept bag searches more readily when you explain first why it is necessary. Open it in front of them, and putting things back neatly is part of the search.",
+"terms":[["Baggage Reconciliation Search / Open Inspection","開披検査","개봉 검사"],["Hold Baggage Screening (HBS)","受託手荷物の保安検査","위탁 수하물 보안 검색"],["Paging","お呼び出し","호출"],["Abandon","放棄","포기"],["Repack","再梱包","재포장"],["Presence of Passenger","立ち会い","입회"]],
+"quiz":[{"q":"What is required, in principle, for an open-bag inspection?","opts":["Staff open it alone","The passenger is present","The police are present","Nothing"],"a":1,"exp":"The bag is opened and checked in front of the passenger."},
+{"q":"A power bank is found in checked baggage. What happens?","opts":["It is loaded as it is","The passenger takes it out and carries it on board","It has to be thrown away","It is sent separately"],"a":1,"exp":"Spare batteries may only be carried in the cabin."},
+{"q":"What should you take care over in the paging announcement?","opts":["Describe the item found in detail","Word it so the contents cannot be guessed","Do not announce","English only"],"a":1,"exp":"To protect privacy and avoid confusion."}],
+"next":"2-4 The boarding procedure and boarding order"});
+set("2-4",{"title":"The Boarding Procedure and Boarding Order","hl":"Boarding","subtitle":"Those who need help first, then from the back. The order makes the on-time departure",
+"lead":["There are reasons for the boarding order. When passengers who need help sit down calmly first and the rest board from the back, the aisle stays clearer and boarding finishes sooner.","This lesson covers the flow from the start to the end of boarding, the boarding order, identity checks at the gate, checks with the boarding pass reader, and the basics of disembarking and operating doors on arrival."],
+"sections":[
+{"h":"The flow of boarding","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Pre-boarding announcement","sub":"10–15 minutes before; priority boarding and baggage information"},{"name":"Receive the signal","sub":"Boarding signal from the cabin"},{"name":"Boarding starts","sub":"All staff greet passengers"},{"name":"Call in order","sub":"Priority → class → from the back"},{"name":"Page missing passengers","sub":"Watching progress"},{"name":"Boarding closes","sub":"Around 10 minutes before departure (example)"}]},
+{"t":"point","x":"Even when a delay or similar means the pre-boarding announcement cannot be made, still make the boarding start greeting and board passengers needing help first."}]},
+{"h":"Boarding order (example)","blocks":[{"t":"fig","id":"boarding_order","cap":"The numbers follow the order in the table below. Passengers are called by group and go from the gate onto the air bridge."},
+{"t":"table","cols":["Order","Who"],"rows":[["1","Passengers needing help (passengers with disabilities, unwell passengers), passengers with infants, pregnant passengers and so on (pre-boarding)"],["2","Premium cabins and top-tier members"],["3","Economy rear seats"],["4","Economy middle seats"],["5","All remaining passengers (front seats, final call)"]]},
+{"t":"note","x":"* The order differs by airline. Some call passengers by zone number. Wheelchair passengers who arrive during boarding are sometimes boarded last."}]},
+{"h":"Identity checks at the gate","blocks":[{"t":"check","items":[
+{"name":"Match passport and boarding pass","x":"Check that the name on the boarding pass matches the passport or other ID."},
+{"name":"Mark it as checked","x":"Some stations mark the boarding pass to show the check is done (each station decides how)."},
+{"name":"No boarding pass","x":"Each passenger carries their own boarding pass. Anyone without one does not pass through the gate."},
+{"name":"Flight and date","x":"Check the flight number, date and identity before passengers enter the gate, to prevent boarding the wrong flight or fraudulent boarding."}]}]},
+{"h":"When the reader gives a warning","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Stop boarding","sub":"Explain why; wait in a separate spot"},{"name":"Check boarding records","sub":"Is there a record in the system?"},{"name":"Record exists","sub":"Give the cabin the seat number and ask them to check"},{"name":"No record","sub":"Compare ID, boarding pass and face"},{"name":"Record and approve","sub":"Note on the checklist; the person in charge confirms"}]},
+{"t":"point","warn":true,"x":"A warning that the same boarding pass was read twice, or that it is for another flight, is a sign of fraudulent boarding or boarding the wrong flight. Some airlines keep the check records for a set period (e.g. two years)."}]},
+{"h":"Disembarking and doors on arrival","blocks":[{"t":"rows","items":[
+{"name":"Who opens the door","x":"For disembarking, the door is normally opened from outside by ground staff (including the handler). When opened from inside, it is done by cabin crew or engineers."},
+{"name":"Checks before opening","x":"Check the air bridge or steps are properly in place and there are no obstacles, then exchange a hand signal (e.g. thumbs up) with the cabin crew through the door window before opening."},
+{"name":"Why the hand signal is needed","x":"If the door is opened with the escape slide still armed, the slide inflates, causing an accident or major damage."},
+{"name":"Closing the door","x":"Cabin crew close it from inside; ground staff check from outside that it is fully closed."}]}]},
+{"h":"Watch it on video","blocks":[{"t":"video","title":"A day in the life of JAL ground staff at Narita Airport (counter, gate, lounge)","ch":"JAL (sub-channel)","url":"https://www.youtube.com/watch?v=Kl0vSx9hZ1k"}]}],
+"voice":"Boarding finishes faster when the boarding order is kept and cabin baggage is reduced in advance. On full flights, encourage gate check-in of bags early.",
+"terms":[["Boarding","搭乗","탑승"],["Priority Boarding","優先搭乗","우선 탑승"],["Boarding Gate Reader (BGR)","搭乗券読み取り機","탑승권 리더기"],["ID Check","本人確認","신원 확인"],["Escape Slide","脱出用スライド","탈출 슬라이드"],["Step Car","ステップ車","스텝카"]],
+"quiz":[{"q":"Why are economy passengers boarded from the back?","opts":["Because it is the rule","The aisle stays clearer, so boarding finishes sooner","Front seats are more expensive","No reason"],"a":1,"exp":"Less time is spent stopped in the aisle."},
+{"q":"The reader gives a warning and there is a boarding record. What do you do?","opts":["Let them through","Give the cabin the seat number and ask them to check","Refuse boarding","Ignore it"],"a":1,"exp":"Check whether someone else is in the seat."},
+{"q":"What is needed before opening the door from outside?","opts":["A knock","A hand signal with the cabin crew","A passenger announcement","Nothing"],"a":1,"exp":"To prevent the slide deploying by mistake."}],
+"next":"2-5 Searching for late passengers, and offloading"});
+set("2-5",{"title":"Searching for Late Passengers, and Offloading","hl":"Offloading","subtitle":"Search, wait or offload. What you decide are the times, the criteria and who decides",
+"lead":["When a passenger has checked in but does not come to the gate, the gate must decide whether to search, whether to wait and whether to offload their bags. This is because, in principle, checked baggage is not carried unless its passenger is on board.","This lesson covers how to search, the principle and exceptions for closing the door, the procedure and exceptions for offloading the bags of passengers who do not board, and follow-up for passengers refused departure or who arrive late."],
+"sections":[
+{"h":"How to search","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Paging announcement","sub":"At the gate and across the airport"},{"name":"Check information","sub":"Passport control and security records, companions"},{"name":"Contact","sub":"Phone number in the booking, companions, lounges"},{"name":"Search in person","sub":"Around duty-free shops, lounges, toilets"},{"name":"Decide","sub":"At the set time, wait or offload"}]},
+{"t":"point","x":"Whether the passenger has passed passport control makes a big difference to where to search. At airports where departure records can be checked, check that first."}]},
+{"h":"Late passengers: a procedure that moves by the clock (example)","blocks":[{"t":"table","cols":["Time","What to do","Who"],"rows":[["Just after boarding starts","Print the list of passengers not yet boarded. Check for connecting, group and special passengers, and whether they have checked bags and how many","Gate staff"],["15 minutes before boarding closes","Page by name (gate and whole airport). Contact the phone number in the booking, companions and lounges. Check passport control and security records","Gate staff and counter"],["10 minutes before boarding closes","Warn the handler of bags that may need offloading (tag numbers, number, loading position). Also tell load control that the numbers may change","Gate supervisor"],["Boarding closes","The person in charge decides to offload. In principle, passengers who arrive after the decision are not boarded","Duty manager / person in charge"],["Right after the decision","Instruct the bags to be offloaded. Correct the numbers and seats in the system. Send a last-minute change (LMC) or redo the loadsheet. Correct the final advance passenger information","Gate and load control"],["When the bags are off","Check by tag number that they have been offloaded. Tell the captain and purser the final numbers and baggage, then close the door","Gate supervisor"],["After departure","Look after the passenger who did not travel (changes, explaining costs), store the bags, record it (classify the cause if there was a delay)","Counter and gate"]]},
+{"t":"note","x":"* An example based on several airlines’ procedures. The times, who decides and how bags are found differ by company and airport facilities. ★"},
+{"t":"rows","items":[
+{"name":"Know where the bags are beforehand","x":"Bags inside containers take time to get out. If the loading position is recorded in the baggage reconciliation system, they can be found within minutes."},
+{"name":"The cost of deciding to wait","x":"Waiting a few minutes for one passenger affects later flights, connections, crew duty hours and even the slot at the destination. Decide whether to wait by looking at the flight as a whole."},
+{"name":"Examples of when to wait","x":"When connecting passengers are late because your own inbound flight was delayed, or when most of a group has not yet arrived. Set the criteria in advance and let the person in charge decide."},
+{"name":"Prevention at the counter","x":"Tell passengers the boarding time and closing time clearly and write them on the boarding pass. Add a word for passengers likely to linger in duty-free shops or lounges."}]},
+{"t":"point","warn":true,"x":"Offloading “at the set time, by the set person, by the set procedure” is the quickest way to protect punctuality. Record every decision and look back at which times of day, and why, delays are most frequent."}]},
+{"h":"Closing the door: the principle and exceptions","blocks":[{"t":"rows","items":[
+{"name":"Principle","x":"Close the door after all checked-in passengers have boarded (except for special reasons such as a travel ban)."},
+{"name":"Exceptions","x":"If a long delay is expected or the passenger appears to have given up boarding, the door can be closed before everyone has boarded."},
+{"name":"Set a time standard","x":"Setting a standard time for each flight, such as “offload if not here by X minutes before departure”, removes hesitation."}]}]},
+{"h":"Offloading the bags of passengers who do not board","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Check the information","sub":"Flight, seat, name, number of bags, tag numbers"},{"name":"Request offloading","sub":"To the handler; tell the captain too"},{"name":"Recheck the numbers","sub":"Reconcile the final number boarded"},{"name":"Confirm offloading","sub":"Check the right bags came off"},{"name":"Record and store","sub":"Note in the gate log; hand to lost and found"}]},
+{"t":"note","x":"Exceptions: the bags alone may be carried when a passenger could not board for reasons that are not their fault (such as a lack of seats or excess weight), when bags were sent on a later flight because of weight limits, when passengers and bags were separated for the airline’s operational reasons, or when mishandled bags have passed appropriate security screening."}]},
+{"h":"Looking after passengers who did not travel","blocks":[{"t":"table","cols":["Case","Example of what to do"],"rows":[["Refused departure","Hand the bags and ticket at once to the authorities or the passenger. If the passenger asks, keep them until collected"],["Late through the passenger’s own fault","Arrange alternatives and other follow-up, but the airline does not bear the extra cost"],["Taken off because unwell","Check their health, arrange a later flight, return the bags"]]}]},
+{"h":"Returning to the stand after pushback","blocks":[{"t":"p","x":"An aircraft returns to the stand after pushback (a ramp return) for reasons such as a weather cancellation or delay, a medical emergency, a security situation such as a terrorist threat, or unlawful behaviour that continues despite crew warnings and leads the captain to decide to return. A ramp return at a passenger’s request is normally limited to medical emergencies. The captain makes the final decision on disembarking; the ground supplies the staff needed."}]}],
+"voice":"If the passenger appears right after an offload decision, first check the status of the unloaded bags and documents. Decide by procedure, not on impulse.",
+"terms":[["Offload","オフロード","오프로드(하기)"],["Late Show","搭乗遅れ","지각 탑승"],["Paging","お呼び出し","호출"],["Door Close","ドアクローズ","도어 클로즈"],["Ramp Return","ランプリターン","램프 리턴"],["Lost & Found","忘れ物・落とし物（遺失物）","유실물"]],
+"quiz":[{"q":"What is the principle for the checked bags of passengers who do not board?","opts":["Carry them","Offload them","Keep them at the destination","Send them on the next flight automatically"],"a":1,"exp":"In principle, they are not carried unless the passenger is on board."},
+{"q":"What do you tell the captain when offloading bags?","opts":["There is no need to tell them","That bags are being offloaded","The passenger’s occupation","The weather"],"a":1,"exp":"Tell them offloading is under way and when it is complete."},
+{"q":"When is a ramp return at a passenger’s request normally made?","opts":["When they have left something behind","For a medical emergency","For a seat change","At any time"],"a":1,"exp":"It is normally limited to medical emergencies."}],
+"next":"2-6 Cancelling a departure record"});
+set("2-6",{"title":"Cancelling a Departure Record","hl":"Departure cancellation","subtitle":"When a passenger who has completed departure formalities does not fly, return them to “not departed”",
+"lead":["Passengers who have passed departure immigration sometimes do not fly, because they are unwell, because of a family emergency, because of a delay or cancellation, or because boarding is refused. These passengers are already recorded as having left the country, so immigration must cancel the departure record, customs procedures must be settled, and only then can they return to the landside.","This lesson covers when a departure cancellation is needed, the flow of the procedure, handling bags, duty-free goods and the passenger list, and common points to watch. Detailed procedures differ by airport, so compare with your own airport’s latest procedures."],
+"sections":[
+{"h":"Main situations needing a departure cancellation","blocks":[{"t":"table","cols":["Situation","Examples"],"rows":[["The passenger’s reasons","Feeling unwell, a family emergency, deciding not to travel"],["The airline’s reasons","Cancellation, a long delay leading to a change to the next day"],["Boarding refused","Heavy drunkenness, safety reasons, a document problem found later"],["Taken off the aircraft","Passengers who disembark before pushback or after a ramp return"]]}]},
+{"h":"Flow of the procedure (typical example)","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Cancel boarding","sub":"Offload in the system and release the seat"},{"name":"Offload bags","sub":"Offload checked bags (lesson 2-5)"},{"name":"Contact the agencies","sub":"Immigration, customs, security"},{"name":"Escort by staff","sub":"Back by the set route"},{"name":"Cancel the departure","sub":"Immigration cancels the record"},{"name":"Customs check","sub":"Deal with duty-free and declared goods"},{"name":"Return the bags","sub":"Return checked bags on the landside"}]}]},
+{"h":"Handling bags, duty-free goods and documents","blocks":[{"t":"check","items":[
+{"name":"Checked bags","x":"Always offload and return them. Record the number offloaded and the tag numbers."},
+{"name":"Duty-free goods bought airside","x":"Goods bought after passport control are returned or held according to the shop’s and customs’ instructions. For liquids such as alcohol and cosmetics, watch the security screening at the next boarding too."},
+{"name":"Goods bought free of consumption tax","x":"Goods whose tax exemption was confirmed at departure may be treated differently when the departure is cancelled. Japan is reforming its tax-free system (moving to a refund method), so check the latest rules."},
+{"name":"Passenger list and documents","x":"Remove the passenger from the passenger list, the arrival and departure documents and the loadsheet, and correct the numbers."},
+{"name":"Advance passenger information","x":"The passenger information (API) sent to the authorities may need correcting."}]}]},
+{"h":"Points to watch","blocks":[{"t":"rows","items":[
+{"name":"Always escorted","x":"When returning from the airside, a member of staff must always go with the passenger, by the set route. Never send the passenger back alone."},
+{"name":"Large numbers","x":"When many passengers return because of a cancellation, agree arrangements with immigration and customs first, and split staff to guide them."},
+{"name":"Information on the alternative flight","x":"Tell passengers the check-in time for the next flight and that they will need to check their bags again."},
+{"name":"Record and report","x":"Record the reason, time, number of passengers, bags and staff involved, and report to the agencies concerned and head office."}]},
+{"t":"point","warn":true,"x":"Detailed procedures and contacts differ by airport. Always check your own airport’s latest procedures and write them into the station procedures manual."}]}],
+"voice":"Cancelling departures on a night of cancellations means long queues. Agree the route with immigration first and escort passengers in groups to reduce confusion.",
+"terms":[["Departure Cancellation","出国取消","출국 취소"],["Departure Immigration","出国審査","출국 심사"],["Landside","一般区域","일반 구역"],["Airside","出国エリア","출국 구역"],["Duty-free Goods","免税品","면세품"],["API","事前旅客情報","사전 승객 정보"]],
+"quiz":[{"q":"What is the principle when returning from the airside to the landside?","opts":["The passenger goes alone","Escorted by staff, by the set route","Any route","The next day"],"a":1,"exp":"For security, staff must always go with them."},
+{"q":"What happens to checked bags when a departure is cancelled?","opts":["They are carried anyway","They are always offloaded and returned","They are returned at the destination","They are disposed of"],"a":1,"exp":"Bags whose passenger is not flying are offloaded."},
+{"q":"Which documents need correcting when a departure is cancelled?","opts":["None","The passenger list, arrival and departure documents and the loadsheet","The menu","The duty roster"],"a":1,"exp":"Correct the numbers."}],
+"next":"2-7 Flight documents, closing the flight and manual boarding"});
+set("2-7",{"title":"Flight Documents, Closing the Flight and Manual Boarding","hl":"Closing","subtitle":"Reconciling numbers, handing over documents, and being ready for the day the system stops",
+"lead":["Gate work does not end when boarding does. Staff reconcile the number boarded with the number checked in, hand the documents to the cabin, give the door-close signal and watch until the aircraft moves under its own power.","This lesson covers the checks before closing the door, what to do when fraudulent or duplicate boarding is found, closing after departure, and manual procedures when the system stops."],
+"sections":[
+{"h":"Checks before closing the door","blocks":[{"t":"check","items":[
+{"name":"Reconcile the numbers","x":"Check that the number of boarding passes issued in the system (checked-in passengers) matches the number actually on board. Cross-check the numbers with the purser too."},
+{"name":"Hand over documents","x":"Hand the immigration document (GD), the passenger manifest, the special handling report, the in-flight service list and so on to the purser."},
+{"name":"Bags of passengers not on board","x":"Check that offloading is complete (lesson 2-5)."},
+{"name":"Signal","x":"Once everything is checked, give the purser the door-close signal."}]}]},
+{"h":"When the numbers do not match","blocks":[{"t":"rows","items":[
+{"name":"Tell the cabin at once","x":"If they do not match, tell the purser and ask them to check for fraudulent or duplicate boarding on board."},
+{"name":"If fraudulent boarding is found","x":"Take the passenger off, keep them under supervision and notify the airport operations centre or equivalent, leading to a joint investigation with the agencies concerned."}]},
+{"t":"point","warn":true,"x":"Reconciling the numbers matters for both security and safety (weight and balance). The door is never closed on the basis that the numbers are probably right."}]},
+{"h":"Closing after departure","blocks":[{"t":"check","items":[
+{"name":"Watch","x":"Watch from pushback until the aircraft moves under its own power, and report anything unusual to a senior member of staff at once."},
+{"name":"Departure message","x":"Send the departure time, number boarded, bags, special passengers and so on to the destination and transfer points."},
+{"name":"Report and record","x":"Report anything unusual during boarding to a senior member of staff and keep a record. Notify the teams concerned if needed."},
+{"name":"Sort the forms","x":"Sort the forms and documents used at the gate and separate those to be kept."}]}]},
+{"h":"Manual procedures","blocks":[{"t":"p","x":"Be ready to work by hand in case the check-in or boarding system stops. Keep the materials separately, check their condition regularly (e.g. every quarter), and train at least once a year."},
+{"t":"table","cols":["Materials","Use"],"rows":[["List of booked passengers","To check who to board, especially on overbooked flights"],["Seat maps","Assigning seats by hand"],["Immigration document forms","Preparing the GD and other documents"],["Handwritten boarding passes and bag tags","Issuing them without the system"]]},
+{"t":"rows","items":[
+{"name":"What to do depends on when it stops","x":"Before check-in, during check-in, after check-in, or only partly. Each station sets its procedures."},
+{"name":"Numbers and weights","x":"Counting passengers and bags by hand is error-prone. Have someone other than the person who counted cross-check."}]}]}],
+"voice":"What helps on a day the system goes down is the manual forms and procedures you prepared beforehand. Practise manual boarding at least once a year.",
+"terms":[["Door Close","ドアクローズ","도어 클로즈"],["General Declaration (GD)","出入国の書類","출입국 서류"],["Passenger Manifest","乗客名簿","승객 명단"],["Departure Message (MVT/PSM)","出発電報","출발 전문"],["Manual Check-in / Boarding","マニュアル手続き","수동 수속"],["System Down","システム停止","시스템 다운"]],
+"quiz":[{"q":"What must be checked to match before closing the door?","opts":["The weather","The number checked in and the number on board","Sales","Seat colours"],"a":1,"exp":"It matters for both security and weight and balance."},
+{"q":"What is the first step when the numbers do not match?","opts":["Close the door anyway","Tell the purser and ask for a check on board","Ask the passengers","Investigate the next day"],"a":1,"exp":"Check for fraudulent or duplicate boarding."},
+{"q":"How should materials for manual procedures be managed?","opts":["Made when needed","Kept separately, checked and trained on regularly","Not used","Kept at head office"],"a":1,"exp":"Regular checks and training at least once a year are needed."}],
+"next":"Part 3 Shipside and Ramp — 3-1 Aircraft doors: the basics"});
 })(window.ARTS);

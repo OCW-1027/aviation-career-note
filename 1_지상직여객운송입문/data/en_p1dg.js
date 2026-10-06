@@ -44,40 +44,36 @@ terms:[["Dangerous Goods (DG)","危険物","위험물"],["Smart Baggage","スマ
 quiz:[{q:"What is the limit on toiletry and medicinal aerosols?",opts:["No limit","0.5 L per container and 2 L per person","One per person","Checked only"],a:1,exp:"Up to 2 L per person in total."},
 {q:"Smart baggage whose battery cannot be removed…",opts:["can be checked","can go in the cabin","can be neither carried on nor checked","can be checked if switched off"],a:2,exp:"If removable, the battery goes in the cabin and the bag is checked."},
 {q:"Alcohol over 70%…",opts:["up to 5 L","cabin only","not allowed at all","checked only"],a:2,exp:"Over 24% and up to 70% is limited to 5 L per person."}],
-next:"1-13 Lithium batteries and power banks: quick reference and latest rules"});
+next:"1-13 Lithium batteries and power banks: the latest rules in Japan and Korea"});
 
-set("1-13",{title:"Lithium Batteries and Power Banks: Quick Reference and Latest Rules",hl:"Quick reference",subtitle:"The rating (Wh) and whether the battery is installed or spare decide the treatment. Japan tightened its rules in April 2026",
-lead:["Smoke and fire from lithium batteries on board have increased worldwide, and ICAO revised its standards. In response, Japan has applied new rules to power banks in the cabin since 24 April 2026.","Treatment of lithium batteries is decided almost entirely by two things: the rating in watt-hours, and whether the battery is installed in a device or carried as a spare. Start with the quick reference table."],
-sections:[
-{h:"Quick reference (per person)",blocks:[{t:"table",cols:["Type","Up to 100 Wh","Over 100 Wh, up to 160 Wh","Over 160 Wh"],rows:[
-["Installed in a device (phone, laptop, camera)","Cabin yes / checked yes (switched off and protected)","Cabin yes / checked yes (airline approval may be needed)","No"],
-["Power banks","Cabin yes (max. 2 per person) / checked no","Cabin yes (max. 2 per person) / checked no","No"],
-["Spare batteries (removed from a device)","Cabin yes / checked no","Cabin yes (max. 2 per person) / checked no","No"],
-["Smart baggage batteries","Removed and carried in the cabin (rating limits apply)","Removed and carried in the cabin (max. 2)","No"],
-["Powered wheelchair batteries","Separate rules (1-7); lithium-ion up to 300 Wh","",""]]},
-{t:"note",x:"* Based on Japan’s rules from 24 April 2026 and ICAO/IATA provisions. Some airlines are stricter. ★"}]},
-{h:"Working out the rating",blocks:[{t:"p",x:"If the battery shows mAh and voltage but no Wh, calculate it."},
-{t:"table",cols:["Formula","Examples"],rows:[
-["Wh = mAh × V ÷ 1000","20,000 mAh × 3.7 V ÷ 1000 = 74 Wh (up to 100 Wh)"],
-["","27,000 mAh × 3.7 V ÷ 1000 = 99.9 Wh (up to 100 Wh)"],
-["","40,000 mAh × 3.7 V ÷ 1000 = 148 Wh (100–160 Wh)"]]},
-{t:"point",x:"Most ordinary power banks (about 5,000–20,000 mAh) are under 100 Wh. A battery with no rating shown may be refused."}]},
-{h:"Japan’s rules (from 24 April 2026)",blocks:[{t:"table",cols:["Item","Rule"],rows:[
-["Checked baggage","Not allowed (unchanged)"],["Rating","160 Wh or less only"],["Number","Maximum two per person in the cabin (new)"],["Charging on board","Do not charge the power bank from aircraft sockets (new)"],["Powering devices on board","Do not charge phones or other devices from the power bank (new)"],["Storage","Keep it with you, not in the overhead bin; protect the terminals with tape or separate bags"]]},
-{t:"point",warn:true,x:"Exceeding the number or rating, or charging on board, may be subject to penalties under the Civil Aeronautics Act."}]},
-{h:"What is covered and what is not",blocks:[{t:"rows",items:[
-{name:"Covered",x:"Power banks with lithium-ion cells designed to charge other devices."},
-{name:"Not counted toward the two",x:"Spare batteries removed from cameras and similar devices (rating limits still apply; over 100 Wh, max. two per person)."},
-{name:"Not allowed",x:"Sodium-ion power banks may not be carried in the cabin or checked in Japan."}]}]},
-{h:"At the counter and gate",blocks:[{t:"check",items:[
-{name:"Ask",x:"“How many power banks do you have? Are any in your checked bag?”"},
-{name:"Look",x:"Check the rating on the unit together (Wh, or mAh and voltage)."},
-{name:"Tell",x:"No charging or powering devices on board; keep it with you; protect the terminals."},
-{name:"Korea routes",x:"Korea also bans power banks from checked baggage and requires insulated terminals and no overhead-bin storage. Check the latest guidance at origin, destination and from the airline."}]}]}],
-voice:"The day new battery rules start, both passengers and staff are confused. Before it begins, put the wording and decision criteria on one page so everyone says the same thing.",
-terms:[["Power Bank","モバイルバッテリー","보조배터리"],["Watt-hour Rating (Wh)","ワット時定格量","와트시 정격용량"],["Rated Capacity (mAh)","定格容量","정격 용량"],["Insulation","絶縁","절연"],["Sodium-ion Battery","ナトリウムイオン電池","나트륨이온 배터리"]],
-quiz:[{q:"Under Japan’s new rules, what power banks may be carried?",opts:["No limit","Up to 160 Wh, max. two per person","Up to 100 Wh, one per person","Checked only"],a:1,exp:"Two per person, each 160 Wh or less."},
-{q:"What is the rating of a 20,000 mAh, 3.7 V power bank?",opts:["About 20 Wh","About 74 Wh","About 200 Wh","About 740 Wh"],a:1,exp:"20,000 × 3.7 ÷ 1000 = 74 Wh."},
-{q:"How should a power bank be used on board?",opts:["It may be charged","It may charge a phone","Kept with the passenger, not charged or used","Stored in the overhead bin"],a:2,exp:"Keep it at hand; no charging and no powering devices."}],
-next:"Part 2 The Gate — 2-1 Preparing for gate duty"});
+set("1-13",{"title":"Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea","hl":"Power banks","subtitle":"Tightened again and again since 2025. The basics: do not check them, carry two at most, do not use them, keep them on you",
+"lead":["After a series of power bank fires on board, authorities and airlines in many countries have tightened the rules repeatedly since 2025. Around April 2026, many airlines in Japan and Korea started new standards at the same time, such as “up to two per person”.","This lesson sets out how the rules developed in Japan and Korea, how to calculate capacity (Wh), what is and is not covered, how to explain the rules at the counter and gate, and what to do when one is found. The rules change at short intervals, so always compare with the latest notices. Airlines are also advising that, under changes to IATA rules, the capacity allowed may be limited to 100 Wh or less from January 2027 (as of September 2026). ★"],
+"sections":[
+{"h":"How the rules have tightened","blocks":[{"t":"table","cols":["When","Main developments"],"rows":[["January 2025","Fire on an aircraft before departure at a Korean airport (a power bank was named as the cause)"],["March 2025","Korea: strict ban on checking them, terminals insulated, not stored in overhead bins, charging on board restricted"],["January 2026","Five airlines in a major Korean group: using power banks on board banned completely"],["April 2026","Many airlines in Japan and Korea: new standards such as up to two per person, up to 160 Wh. New national rules in Japan from 24 April"]]}]},
+{"h":"At a glance (per person)","blocks":[{"t":"table","cols":["Type","100 Wh or less","Over 100 Wh up to 160 Wh","Over 160 Wh"],"rows":[["Batteries installed in devices (phones, laptops, cameras and so on)","Cabin ○ / checked ○ (switched off and protected)","Cabin ○ / checked ○ (airline approval may be needed)","×"],["Power banks","Cabin ○ (up to two per person) / checked ×","Cabin ○ (up to two per person) / checked ×","×"],["Spare batteries (removed from devices, e.g. camera batteries)","Cabin ○ / checked ×","Cabin ○ (up to two per person) / checked ×","×"],["Batteries in smart luggage","Removed and carried in the cabin (subject to the capacity conditions)","Removed and carried in the cabin (up to two per person)","×"],["Powered wheelchair batteries","Separate rules (1-7). Lithium-ion up to 300 Wh","",""]]},
+{"t":"note","x":"* General handling under Japan’s rules from 24 April 2026 and ICAO and IATA rules. Some airlines are stricter. ★"}]},
+{"h":"Japan’s new rules (from 24 April 2026)","blocks":[{"t":"table","cols":["Item","Rule"],"rows":[["Checked baggage","Must not be packed in it (unchanged)"],["Capacity","160 Wh or less only"],["Number","Up to two per person in the cabin (new)"],["Charging on board","Charging the power bank itself is banned (new)"],["Powering on board","Using a power bank to charge other devices is also banned (new)"],["Storage","Kept on the passenger, not in overhead bins, with terminals insulated"]]},
+{"t":"point","warn":true,"x":"Carrying more than allowed or over the capacity, or charging on board, can be subject to penalties under the Civil Aeronautics Act. Some airlines set stricter rules, so check each airline’s notices too."}]},
+{"h":"Calculating capacity (Wh)","blocks":[{"t":"p","x":"If the Wh rating is not marked on the unit, calculate it from the mAh and voltage (V). The formula is “Wh = mAh × V ÷ 1000”. Most power banks are 3.6–3.7 V."},
+{"t":"table","cols":["Marking (example)","Calculation","Result"],"rows":[["10,000 mAh, 3.7 V","10,000 × 3.7 ÷ 1000","37 Wh (allowed in the cabin)"],["20,000 mAh, 3.7 V","20,000 × 3.7 ÷ 1000","74 Wh (allowed in the cabin)"],["30,000 mAh, 3.7 V","30,000 × 3.7 ÷ 1000","111 Wh (airline approval may be needed)"],["50,000 mAh, 3.7 V","50,000 × 3.7 ÷ 1000","185 Wh (not allowed)"]]},
+{"t":"point","x":"Many airlines do not allow batteries whose markings are worn off or unreadable, because the capacity cannot be checked."}]},
+{"h":"What is and is not covered","blocks":[{"t":"rows","items":[
+{"name":"Covered","x":"Power banks with built-in lithium-ion batteries, used to charge other electronic devices."},
+{"name":"Not counted in the number limit","x":"Spare batteries removed from cameras and other devices (capacity limits still apply)."},
+{"name":"Not allowed","x":"Power banks with sodium-ion batteries are not allowed in Japan, in the cabin or checked."},
+{"name":"Batteries installed in devices","x":"Batteries inside phones, laptops and other devices are normally carried in the cabin. If checked, the device must be switched off and protected against accidental activation."}]}]},
+{"h":"What to tell passengers at the counter and gate","blocks":[{"t":"check","items":[
+{"name":"Ask at the counter","x":"“How many power banks do you have with you? Are there any in the bags you are checking?”"},
+{"name":"Check the capacity","x":"Look at the marking on the unit together with the passenger (Wh, or mAh and voltage)."},
+{"name":"How to insulate","x":"Tape over the terminals, or put each one in its own plastic bag or pouch."},
+{"name":"Using them on board","x":"Explain that charging them and charging other devices from them are both banned, and that they must be kept on the passenger, not in the overhead bin."},
+{"name":"Bags checked at the gate","x":"Make sure passengers take them out of bags being checked at the gate too (lesson 2-2)."}]}]},
+{"h":"When one is found","blocks":[{"t":"table","cols":["Situation","Action"],"rows":[["Found in checked baggage","Take it out and carry it in the cabin (call the passenger for an open-bag inspection, lesson 2-3)"],["Carrying three or more","Items over two are surrendered or handed to someone seeing the passenger off"],["Over 160 Wh or unmarked","Explain that it cannot be carried and advise surrendering it, for example"],["Used on board","Cabin crew stop it; the ground is informed by a report after arrival"]]},
+{"t":"point","warn":true,"x":"How surrendered items are stored or disposed of is set by the airport or airline. Explain what will happen in front of the passenger and keep a record."}]}],
+"voice":"The day new battery rules start, both passengers and staff are confused. Before it begins, put the wording and decision criteria on one page so everyone says the same thing.",
+"terms":[["Power Bank","モバイルバッテリー","보조배터리"],["Lithium-ion Battery","リチウムイオン電池","리튬이온 배터리"],["Watt-hour (Wh)","ワット時定格量","와트시 정격용량"],["Terminal Protection","端子の絶縁","단자 절연"],["Sodium-ion Battery","ナトリウムイオン電池","나트륨이온 배터리"],["Abandon","放棄","포기"]],
+"quiz":[{"q":"What is the rating of a 20,000 mAh, 3.7 V power bank?","opts":["About 20 Wh","About 37 Wh","About 74 Wh","About 185 Wh"],"a":2,"exp":"20,000 × 3.7 ÷ 1000 = 74 Wh."},
+{"q":"Under Japan’s new rules, how many power banks may be carried in the cabin?","opts":["No limit","Up to two per person","Up to one per person","Up to five per person"],"a":1,"exp":"Up to two per person from 24 April 2026."},
+{"q":"How should power banks be handled on board?","opts":["Put in the overhead bin","Kept on the passenger, not charged and not used to charge","Packed in checked baggage","Charged under the seat"],"a":1,"exp":"The basics are to keep them on you and not use them."}],
+"next":"Part 2 The Gate — 2-1 Preparing for gate duty"});
 })(window.ARTS);

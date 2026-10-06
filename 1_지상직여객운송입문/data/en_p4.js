@@ -35,7 +35,7 @@ sections:[
 ["BDO","Bag delivery order","When the arrived bag is delivered to the passenger’s home or hotel"]]},
 {t:"note",x:"* Record types used in the most common tracing system (WorldTracer). Names and use can differ by system and airline. ★"},
 {t:"point",x:"AHL and OHD are a pair: the bag being looked for, and the bag with no owner. The better both records are (tag number, colour, type, contents, name), the faster automatic matching finds the bag."}]},
-{h:"Watch it on video",blocks:[{t:"video",title:"Where does your checked bag actually go?",ch:"Channel being confirmed",url:"https://www.youtube.com/watch?v=U8wF3uBf13s"}]}],
+{h:"Watch it on video",blocks:[{t:"video",title:"Where does your checked bag actually go?",ch:"JAL (sub-channel)",url:"https://www.youtube.com/watch?v=U8wF3uBf13s"}]}],
 voice:"With an angry passenger at the baggage desk, say first that you are sorry for the trouble and that you will search together, before explaining anything. Stating the next step calms things down.",
 terms:[["Mishandled Baggage","手荷物事故","수하물 사고"],["Property Irregularity Report (PIR)","事故報告書","사고 보고서"],["Delayed Baggage","未着","지연 도착"],["Damaged Baggage","破損","파손"],["Special Drawing Rights (SDR)","特別引出権","특별인출권"],["Excess Value Declaration","価額申告","종가 신고"]],
 quiz:[{q:"Under the Montreal Convention, when must damage be reported?",opts:["Within 7 days of receiving the bag","Within 21 days","Within a month","No deadline"],a:0,exp:"Damage within 7 days; delay within 21 days, in writing."},

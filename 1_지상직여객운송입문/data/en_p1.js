@@ -1,322 +1,348 @@
-/* 地上職・旅客運送 入門 — English version (Part 1: 1-1〜) */
+/* 地上職・旅客運送 入門 — English version (Part 1: 1-1〜1-11. 1-12・1-13 は en_p1dg.js) — 2026.10 増補版に合わせて全面改訂 */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("1-1",{title:"Getting the Counter Ready, and How to Lay It Out",hl:"Preparation",subtitle:"The 30 minutes before passengers line up decide how the whole day runs",
-lead:["Work at the counter starts long before the first passenger arrives. Staff check the flight, start up the equipment and set out the signs. The quality of this preparation decides how many flights leave on time and how many problems come up."],
-sections:[
-{h:"Pre-opening checklist",blocks:[{t:"check",items:[
-{name:"Briefing",x:"Share the flight number, aircraft type, number of bookings, passengers needing assistance (wheelchairs, unaccompanied children and so on) and anything to watch for."},
-{name:"Systems and equipment",x:"Check that the check-in terminals, boarding pass and tag printers, scales and radios all work."},
-{name:"Stock and supplies",x:"Check how many baggage tags, boarding pass stock, special assistance forms and information cards are left."},
-{name:"Signage",x:"Check the flight display above the counter, the priority lane signs and the baggage rules on display."},
-{name:"Information from CIQ and partners",x:"Check for changes to immigration procedures, notices from the airport and any planned gate changes."}]}]},
-{h:"Laying out the counter area",blocks:[{t:"fig",id:"checkin_layout",cap:"A priority counter, B general counters (with queue control), C bag drop, D service counter, E kiosks. Checked bags flow back into the BHS. Layouts differ by airport and airline."},{t:"rows",items:[
-{name:"Priority lane",x:"For premium cabins, members and passengers needing assistance. Sign it separately from the general lane."},
-{name:"General lane",x:"When it is busy, put someone on queue control and remind passengers to have their documents ready."},
-{name:"Bag drop",x:"A desk for passengers who checked in online and only need to drop off their bags."},
-{name:"Service counter",x:"Handles booking changes, excess baggage payments and problems."}]},
-{t:"point",x:"The shape of the queue and the way lanes are split change waiting times dramatically. For flights you expect to be busy, decide the lane allocation before opening."}]},
-{h:"The basic steps at check-in, and how they differ",blocks:[{t:"ladder",rise:10,steps:[{name:"Greeting",sub:"Take the ticket and passport; ask about checked bags"},{name:"Check-in",sub:"Flight, destination, class, booking; match documents to the person"},{name:"Bags",sub:"Weight, number, contents; tag them"},{name:"Security questions",sub:"The set questions about checked bags"},{name:"Close",sub:"Return documents with an explanation; give gate and time"}]},
-{t:"table",cols:["What differs","Examples"],rows:[
-["Whether questions are asked","Some countries require them in their security rules; others rely on signs or self-declaration"],
-["Wording and number","Some airlines ask two questions, others three or four; wording is set by the authority or the airline’s security programme"],
-["How they are asked","Spoken, by pointing to a sign, or on the kiosk screen"],
-["If the answer is yes","Checking the contents, calling security staff — procedures differ by airline"]]},
-{t:"note",x:"* The basic steps themselves — how to greet, receive and return documents, and the order of information — are set by each airline. The flow above is a general example; follow your own manual. ★"}]},
-{h:"Watch it on video",blocks:[{t:"video",title:"A day in the life of ground staff at Narita Airport (counter, gate and lounge)",ch:"Channel being confirmed",url:"https://www.youtube.com/watch?v=Kl0vSx9hZ1k"}]}],
-voice:"Experienced staff check first what is unusual about today’s flight. Knowing about aircraft changes, special passengers and groups before opening changes how the counter runs.",
-terms:[["Briefing","ブリーフィング","브리핑"],["Baggage Tag","手荷物タグ","수하물 태그"],["Priority Lane","優先レーン","우선 카운터"],["Bag Drop","手荷物ドロップ","수하물 위탁 전용 카운터"]],
-quiz:[{q:"Which of these is NOT shared at the pre-opening briefing?",opts:["Information on passengers needing assistance","The number of bookings","Personal opinions about passengers","The aircraft type"],a:2,exp:"A briefing covers the information needed to run the flight."},
-{q:"Where do passengers who checked in online drop off their bags?",opts:["The service counter","The bag drop","The priority lane","The gate"],a:1,exp:"That is the bag drop."}],
-next:"1-2 The basics of airport announcements"});
-
-set("1-2",{title:"The Basics of Airport Announcements (Normal and Irregular Operations)",hl:"Announcements",subtitle:"Short, accurate, always in the same order, and telling people what to do next",
-lead:["An announcement is the only way to give the same information to many passengers at once. A good announcement leaves the listener knowing exactly what to do next."],
-sections:[
-{h:"The standard shape of an announcement",blocks:[{t:"check",items:[
-{name:"1. Opening",x:"“Ladies and gentlemen, this is an announcement for passengers on flight [Airline] [No.] to [Destination].”"},
-{name:"2. What has happened",x:"What is starting or what has changed: boarding, a gate change, a delay and so on."},
-{name:"3. What to do",x:"What you want passengers to do, for example “please proceed to gate [12].”"},
-{name:"4. Repeat",x:"Say the important numbers again: flight number, gate and time."}]},
-{t:"point",x:"At Japanese airports the usual order is Japanese, then English, then the language of the route. Prepare set phrases so the content does not drift between languages."}]},
-{h:"Normal operations and irregular operations",blocks:[{t:"table",cols:["","Normal","Irregular"],rows:[
-["Main content","Boarding, final call, paging","Delays, cancellations, gate and aircraft changes"],
-["What matters","On time and easy to hear","Say what is known, and when the next update will come"],
-["What to avoid","Sentences that run too long","Guesswork, and repeating “shortly”"]]},
-{t:"point",x:"During a delay, simply saying “the next announcement will be at [time]” greatly reduces anxiety and the number of questions at the counter."}]},
-{h:"The most important rule in irregular operations",blocks:[{t:"point",warn:true,x:"In an irregular operation, two things matter above all: announce only accurate information, and announce changes the moment they happen. Do not guess; give the confirmed facts and the time of the next update."},{t:"rows",items:[
-{name:"Update everything at once",x:"When the time, gate or status changes, update announcements, the counter, the gate, the displays and text messages together. Old information left in one place causes confusion."},
-{name:"One source of information",x:"Announce only confirmed information from operations control or the duty manager, so that no two agents say different things."}]}]},
-{h:"Announcements by location, and how airlines differ",blocks:[{t:"table",cols:["Location","Typical announcements"],rows:[
-["Check-in counter","Baggage rules before opening, check-in opening, closing warning, final paging"],
-["Gate","Documents ready, boarding order (assistance and premium first), final call"],
-["Baggage claim","Belt information, paging passengers whose bags will arrive later"]]},
-{t:"table",cols:["What differs","Company A (example)","Company B (example)"],rows:[
-["Opening and closing announcements","Made by agents for every flight","Left to the airport’s general announcements"],
-["Baggage reminders","Repeated at set intervals before opening","Once at opening"],
-["Language order","Local language, English, then head office language","Head office language first"],
-["Scripts","Read word for word","Key points fixed; agents compose the wording"]]},
-{t:"note",x:"* Illustrative examples only. Where, when and what is announced, and in which languages, is set by each airline and also by airport rules (permitted times, volume, whether the airport makes general announcements). Always follow your own announcement rules and scripts. ★"}]},
-{h:"Paging a passenger",blocks:[{t:"p",x:"When paging a passenger close to the boarding deadline, give the full name, the flight number and where to go, clearly. The reason is never announced, to protect the passenger’s privacy."}]}],
-voice:"In disruption announcements, passengers settle when you say what has happened and when the next update will come. Say honestly that something is being checked when you do not know.",
-terms:[["Boarding Start","搭乗開始","탑승 시작"],["Final Call","最終案内","최종 안내"],["Gate Change","ゲート変更","게이트 변경"],["Paging","お呼び出し","호출"]],
-quiz:[{q:"What must a delay announcement always include?",opts:["A guess at the cause","The time of the next announcement","Only an apology","Talk about the weather"],a:1,exp:"Knowing when the next update comes lets passengers wait calmly."},
-{q:"What is never announced when paging a passenger?",opts:["Their name","The flight number","Where to go","The reason for the page"],a:3,exp:"The reason is kept private."}],
-next:"1-3 The check-in flow and checking passports and visas"});
-
-set("1-3",{title:"The Check-in Flow, and Checking Passports and Visas",hl:"Passport and visa checks",subtitle:"Confirming that a passenger may travel is the most important job at check-in",
-lead:["Check-in is not simply assigning a seat and printing a boarding pass. On international flights the airline is responsible for confirming that each passenger holds the documents needed to enter the destination country. Carrying someone who cannot enter can leave the airline paying for their return and facing penalties."],
-sections:[
-{h:"The five steps of check-in",blocks:[{t:"ladder",rise:10,steps:[{name:"Check the booking",sub:"Name, flight and sector"},{name:"Check the passport",sub:"Identity and validity"},{name:"Travel documents",sub:"Visa, electronic travel authorization"},{name:"Seat and baggage",sub:"Seat assignment, checked bags"},{name:"Issue the boarding pass",sub:"Gate and boarding time"}]}]},
-{h:"Key points when checking documents",blocks:[{t:"check",items:[
-{name:"Person and photo match",x:"Compare the spelling of the name on the booking and the passport, and the photo with the person in front of you."},
-{name:"Passport validity",x:"Check that it meets the remaining validity the destination requires. The rule differs by country."},
-{name:"Visas and electronic travel authorizations",x:"What is required depends on nationality and destination. Electronic authorizations are introduced and changed from time to time, so always check the current requirement."},
-{name:"Advance passenger information",x:"Many countries, Japan included, check passenger information before boarding. Follow the instructions the system gives you."}]},
-{t:"point",x:"Always check the travel document database your airline uses (such as TIMATIC) rather than relying on memory. The rules change often."}]},
-{h:"Cases where the decision is not obvious",blocks:[{t:"check",items:[
-{name:"Name differences",x:"The spelling on the booking and the passport differ. Decide under your rules whether it is a minor difference or a different person, and correct the booking if needed."},
-{name:"Borderline validity",x:"The passport does not have enough validity left. Do not make exceptions; check with your supervisor and the rules."},
-{name:"One-way tickets",x:"Some countries require a return or onward ticket as a condition of entry."}]}]},
-{h:"Fines differ from country to country",blocks:[{t:"table",cols:["Difference","Detail"],rows:[
-["Countries that fine","Some countries fine the airline per improperly documented passenger (for example the US, UK, Canada, Australia and many European countries)"],
-["Countries that do not","Even without fines, the airline usually bears the cost and effort of returning an inadmissible passenger (INAD)"],
-["Faulty passenger data","Some countries fine or demand corrective action when the data sent is inaccurate, missing or late, even if the passenger’s documents were fine"],
-["Reductions","Some countries reduce fines for airlines with good document-checking systems and records"]]},
-{t:"note",x:"* Whether fines apply, how much and for what differs by country and changes over time. “No fines there” is never a reason to check less: check to the same standard everywhere, and keep each destination’s current rules in the station SOP. ★"}]},
-{h:"Why advance passenger information (API) must be accurate",blocks:[{t:"rows",items:[
-{name:"What is sent",x:"Name, date of birth, sex, nationality, passport number and expiry, and so on — sent before departure (or just after, depending on the country) to the destination authorities, and in some cases the departure country too."},
-{name:"1. Protects the passenger",x:"The destination pre-screens arrivals with this data. A wrong number or name can see the passenger stopped at immigration."},
-{name:"2. Protects security",x:"The data is checked against watch lists. Errors can let the wrong person through or stop someone who has nothing to do with it."},
-{name:"3. Protects the airline",x:"Inaccurate, missing or late data can bring fines or corrective demands. A head count that does not match the manifest and immigration documents is treated as a security issue."},
-{name:"Data entry",x:"Read passports with the scanner rather than typing. Watch for dual nationals, renewed passports, name order and spelling, and duplicate records for the same person."},
-{name:"Korea’s example",x:"For flights to and from Korea, airlines send passenger data to Korean immigration and receive a result before boarding (pre-boarding passenger checks). A CIQ portal for airlines shows duplicate passport records and transmission status. ★"}]},
-{t:"point",warn:true,x:"Check the transmission results — errors, duplicates, do-not-board replies — before check-in closes. Once the gate count is final, send the final data and confirm the numbers match the manifest."}]}],
-voice:"When refusing boarding for missing documents, explain first what is missing and how the passenger could travel, rather than citing the rule. They need to know their next step.",
-terms:[["Passport","旅券（パスポート）","여권"],["Visa","査証（ビザ）","사증(비자)"],["Remaining Validity","残存期間","잔여 유효기간"],["Inadmissible (INAD)","入国拒否","입국 거부"]],
-quiz:[{q:"What is the airline responsible for checking at international check-in?",opts:["The details of the passenger’s travel plans","Whether the passenger holds documents allowing entry to the destination","The passenger’s occupation","The passenger’s hotel booking"],a:1,exp:"Carrying someone without valid documents can leave the airline liable."},
-{q:"What is the most reliable way to check entry requirements?",opts:["Asking a senior colleague from memory","Checking the travel document database every time","Taking the passenger’s word for it","Assuming it is the same as last time"],a:1,exp:"The rules change often, so check every time."}],
-next:"1-4 Passengers with onward and connecting flights"});
-
-set("1-4",{title:"Onward Sectors and Connecting Passengers",hl:"Connections",subtitle:"Look through to the final destination and connect the baggage and the documents",
-lead:["Passengers often connect through one airport on the way to another country, and the first counter may complete the formalities all the way to the final destination. A mistake here turns into a serious problem at the connecting point or at the end of the journey."],
-sections:[
-{h:"Connections on your own flights and on another airline",blocks:[{t:"table",cols:["","Your own flights","Connecting to another airline"],rows:[
-["Boarding pass","Usually can be issued to the final destination","Can be issued where an interline agreement exists"],
-["Baggage","Checked through to the final destination","Depends on the agreement and the ticket conditions"],
-["What to check","Connecting time","Whether an agreement exists, the type of ticket, the connecting time"]]}]},
-{h:"Three things to check every time",blocks:[{t:"check",items:[
-{name:"Minimum connecting time",x:"Whether the connection meets the minimum connecting time (MCT) set for that airport."},
-{name:"Entry requirements for the final destination",x:"Check the documents for the final destination at the first counter, not only for the first stop."},
-{name:"Where the baggage tag is going",x:"Check that the final destination and the routing on the tag are correct, together with the passenger."}]},
-{t:"point",x:"Tell the passenger clearly how far their bags are checked. If you forget to mention that they must collect the bags at the connecting point, the bags get left behind."}]}],
-voice:"With transfer tags, everything depends on the final destination code. Make a habit of checking it once more against the last sector of the ticket before attaching the tag.",
-terms:[["Transfer / Connection","乗り継ぎ","환승"],["Minimum Connecting Time (MCT)","最低乗り継ぎ時間","최소 연결 시간"],["Interline","インターライン","인터라인"],["Through Check-in","スルーチェックイン","연결 수속"]],
-quiz:[{q:"What does MCT stand for?",opts:["Maximum cargo tonnage","Minimum connecting time","The number of bags","The departure time"],a:1,exp:"It is the minimum connecting time set for each airport."},
-{q:"How far do you check entry documents for a connecting passenger?",opts:["Only the first arrival point","All the way to the final destination","You do not check them","Staff at the connecting point will do it"],a:1,exp:"The first counter checks the requirements for the final destination."}],
-next:"1-5 Seat assignment, upgrades and exit row seats"});
-
-set("1-5",{title:"Seat Assignment, Upgrades and Exit Row Seats",hl:"Exit row seats",subtitle:"Seats affect comfort, but also safety and the balance of the aircraft",
-lead:["Seat assignment has a direct effect on how satisfied passengers are, but that is not all. Exit row seats come with safety conditions, and where people sit affects the aircraft’s centre of gravity."],
-sections:[
-{h:"What to consider when assigning seats",blocks:[{t:"rows",items:[
-{name:"Families and companions",x:"Seat passengers travelling with children next to each other wherever possible."},
-{name:"Special assistance",x:"Follow the rules on seating for wheelchair users, passengers with infants and others needing assistance."},
-{name:"Centre of gravity",x:"On lightly booked flights, think about the balance front to rear and follow the instructions from load control."},
-{name:"Upgrades",x:"Apply your airline’s priority rules and treat passengers fairly."}]}]},
-{h:"Conditions for exit row seats",blocks:[{t:"p",x:"Passengers in an exit row may be asked to help the crew open the door in an emergency. Airlines therefore set conditions such as the following."},
-{t:"check",items:[
-{name:"Willing and able to help",x:"Willing to assist an evacuation, and physically able to do so."},
-{name:"Age",x:"Above a set age (the age is set by each airline)."},
-{name:"Language",x:"Able to understand the crew’s instructions and pass them on."},
-{name:"Travelling companions",x:"Passengers with infants, those needing assistance and those travelling with a pet in the cabin cannot sit there."}]},
-{t:"point",warn:true,x:"Confirm willingness verbally at check-in, and change the seat whenever the conditions are not met. Regulators check this in audits."}]},
-{h:"How airlines differ (examples)",blocks:[{t:"table",cols:["What differs","Examples"],rows:[
-["Advance seat selection","Free for all seats; charged for front or extra-legroom seats; free range depending on fare type or membership tier"],
-["Exit row seats","Sold for a fee, or assigned free at the airport after checking the conditions. Either way the conditions must be checked"],
-["Paid upgrades","Paying the fare difference at the airport, bidding, using miles, or a fixed same-day upgrade price"],
-["Choosing free (operational) upgrades","By the airline’s set criteria — highest fare, highest membership tier, longest journey and so on"],
-["What the upgrade includes","The seat only, or also priority baggage, lounge access and premium meals"],
-["Standby priority","The order of staff on duty travel, staff tickets and paying passengers is set by each airline"]]},
-{t:"note",x:"* Examples drawn from several airlines. Always follow your own airline’s rules. ★"}]}],
-voice:"For exit rows, prevention means checking the conditions at the point of allocation, not afterwards. Standard wording for the questions keeps judgments consistent across staff.",
-terms:[["Exit Row Seat","非常口座席","비상구 열 좌석"],["Upgrade","アップグレード","업그레이드"],["Seat Assignment","座席指定","좌석 배정"],["Centre of Gravity","重心","무게중심"]],
-quiz:[{q:"Who cannot sit in an exit row?",opts:["An adult travelling alone","A passenger travelling with an infant","A business traveller","Someone who speaks English"],a:1,exp:"Passengers with infants or who need assistance cannot sit there."},
-{q:"Why does seating matter on a lightly booked flight?",opts:["It looks better","It affects the aircraft’s centre of gravity","For cleaning","It does not matter"],a:1,exp:"The balance front to rear affects the centre of gravity."}],
-next:"1-6 Special assistance 1: infants, children and pregnant passengers"});
-
-set("1-6",{title:"Special Assistance 1: Infants, Children and Pregnant Passengers",hl:"Special assistance",subtitle:"Rules set by age and by stage of pregnancy, explained kindly and accurately",
-lead:["Families travelling with a baby, and passengers who are pregnant, face more preparation and more worry than most. The job of ground staff is to follow the rules exactly while helping them set off with confidence."],
-sections:[
-{h:"Categories by age (typical example)",blocks:[{t:"table",cols:["Category","Guide","Key points"],rows:[
-["Infant (INF)","Under 2 years","On an adult’s lap; one per adult. A bassinet must be booked in advance"],
-["Child (CHD)","2 to under 12 years","Needs a seat; the fare follows the airline’s rules"],
-["Unaccompanied minor","The age set by the airline","Covered in detail in 1-7"]]},
-{t:"note",x:"* Age categories and conditions differ by airline and route."}]},
-{h:"Pregnant passengers",blocks:[{t:"check",items:[
-{name:"Check the due date",x:"Most airlines require a doctor’s certificate after a certain stage, and do not accept travel close to the due date."},
-{name:"Check the documents",x:"Whether the certificate is still valid and contains what the rules require."},
-{name:"Seating and care",x:"Exit rows are not allowed. Where possible, offer an aisle seat near the lavatory."}]},
-{t:"point",x:"Be careful about asking whether someone is pregnant. Work from what the passenger tells you and from the booking, and explain the rules calmly, sticking to the facts."}]}],
-voice:"For pregnant passengers, the week of pregnancy and the issue date of the medical note are what count. If unsure, do not decide alone; check with the supervisor and company rules first.",
-terms:[["Infant (INF)","幼児","유아"],["Child (CHD)","小児","소아"],["Bassinet","バシネット","유아용 요람"],["Medical Certificate","診断書","진단서"]],
-quiz:[{q:"Who is generally counted as an infant (INF)?",opts:["Under 2 years","Under 5 years","Under 12 years","Age does not matter"],a:0,exp:"Generally, passengers under 2 years old."},
-{q:"Which seat can a pregnant passenger not take?",opts:["An aisle seat","A window seat","An exit row seat","A forward seat"],a:2,exp:"They do not meet the exit row conditions."}],
-next:"1-7 Special assistance 2: wheelchair users and unaccompanied children"});
-
-set("1-7",{title:"Special Assistance 2: Wheelchair Users and Unaccompanied Children",hl:"Wheelchairs",subtitle:"It starts with knowing exactly how much help is needed",
-lead:["Arranging a wheelchair is not simply a matter of whether one is needed. How far the passenger can walk, whether they can manage stairs, whether they can reach their seat: the level of help decides how many staff and what equipment you prepare."],
-sections:[
-{h:"Wheelchair categories (IATA codes)",blocks:[{t:"table",cols:["Code","The passenger","What to arrange"],rows:[
-["WCHR","Cannot walk long distances, but can manage stairs and move inside the cabin","A wheelchair as far as the gate"],
-["WCHS","Cannot manage stairs, but can move to their seat in the cabin","A wheelchair plus step-free boarding"],
-["WCHC","Cannot move to their seat unaided","An on-board wheelchair and assistance"]]},
-{t:"point",x:"Power wheelchairs are handled differently depending on the battery. Before accepting one, check the battery type and whether it can be removed."}]},
-{h:"Powered wheelchairs",blocks:[{t:"p",x:"Powered wheelchairs are safe on the ground, but in the air vibration can switch them on, pressure and temperature changes can make electrolyte leak, and impact can set a battery on fire. The rules therefore depend on the battery type."},
-{t:"table",cols:["Battery","How it travels","Key conditions"],rows:[
-["Lithium-ion","Chair in the hold; if designed to be removed, the battery goes in the cabin","Removed and spare batteries up to 300 Wh; spares up to one of 300 Wh or two of 160 Wh. Non-removable batteries stay fitted, protected against short circuit and activation"],
-["Non-spillable (sealed), NiMH and other dry batteries","Fitted, in the hold","Terminals protected, chair made unable to switch on, securely restrained"],
-["Spillable (wet) batteries","Fitted and upright in the hold; if it cannot be loaded upright, the battery is removed and packed","No leakage; the captain must be notified"]]},
-{t:"note",x:"* Summary based on Japan’s Civil Aviation Bureau guidance and ICAO/IATA provisions. ★"},
-{t:"table",cols:["Item","Typical airline practice (several airlines)"],rows:[
-["Advance notice","Commonly 48 hours before departure (24–72 hours at some airlines); same-day requests may not be accepted"],
-["Declaration form","Model, modifications, battery type and Wh, spares, dimensions and weight"],
-["Check-in time","Earlier than usual (for example 90–120 minutes before departure)"],
-["Size and weight","Limited by the hold door and aircraft type; small aircraft may not take it"],
-["Not accepted (examples)","Removable lithium-ion batteries over 300 Wh; batteries that cannot be removed without tools, have no protection against activation and whose terminals cannot be disconnected"],
-["On arrival","Confirm how to reassemble and refit the battery; photograph the chair’s condition before and after"]]}]},
-{h:"Unaccompanied minors (UM)",blocks:[{t:"check",items:[
-{name:"Advance request",x:"Most airlines require the service to be requested in advance. The eligible ages and the fee are set by the airline."},
-{name:"The person seeing them off",x:"Ask them to stay at the airport until the aircraft has departed."},
-{name:"The person meeting them",x:"Check the ID of the person collecting the child at the destination and record it on the form."},
-{name:"Handover",x:"Hand the child over, with the paperwork, from ground staff to cabin crew and then to staff at the destination."}]}]}],
-voice:"With unaccompanied minors, everything comes down to checking, with documents and ID, who hands the child over and who receives them. Always record the time and signatures.",
-terms:[["Wheelchair (WCH)","車いす","휠체어"],["Unaccompanied Minor (UM)","お一人で旅行する子ども","비동반 소아"],["Assistance","介助","보조"],["Handover","引き継ぎ","인계"]],
-quiz:[{q:"Which code is used for a passenger who cannot reach their seat unaided?",opts:["WCHR","WCHS","WCHC","UMNR"],a:2,exp:"WCHC passengers need assistance all the way to the seat."},
-{q:"What do you ask the person seeing off an unaccompanied minor to do?",opts:["Leave straight away","Stay at the airport until the aircraft departs","Walk to the gate with the child","Nothing in particular"],a:1,exp:"They normally stay until departure is confirmed."}],
-next:"1-8 Special assistance 3: carrying pets"});
-
-set("1-8",{title:"Special Assistance 3: Carrying Pets",hl:"Pets",subtitle:"The airline’s rules and the destination’s quarantine rules, checked together",
-lead:["A pet can only travel when both the airline’s acceptance conditions and the destination country’s animal quarantine requirements are met. If either is missing, the journey stops at the airport."],
-sections:[
-{h:"Two ways to carry a pet",blocks:[{t:"cards",n:2,items:[
-{ic:"💺",name:"In the cabin (PETC)",tag:"Depends on the airline",x:"A small pet travels in a carrier under the seat. Whether it is accepted, and the limits on weight and carrier size, differ by airline."},
-{ic:"📦",name:"In the hold (AVIH)",tag:"Book in advance",x:"Carried in a temperature and pressure controlled hold. Some breeds, such as those sensitive to heat, may not be accepted."}]}]},
-{h:"Quarantine matters most",blocks:[{t:"p",x:"To bring a dog or cat into Japan from a region that is not designated rabies-free, a long preparation is required: a microchip, rabies vaccinations, an antibody test and a waiting period. It can take several months."},
-{t:"point",warn:true,x:"Quarantine requirements differ by country and region and are revised often. Always check the current information from the destination’s quarantine authority (in Japan, the Animal Quarantine Service), and ask the passenger to check as well."}]},
-{h:"Checks at the counter",blocks:[{t:"check",items:[
-{name:"The booking",x:"Whether the pet is booked, and whether it travels in the cabin or in the hold."},
-{name:"The carrier",x:"Whether it meets the airline’s standards for size, strength and water supply."},
-{name:"Documents",x:"Whether the quarantine and health certificates are complete."},
-{name:"Charges",x:"Collecting the pet fee."}]}]}],
-voice:"Most pet transport problems come from kennel size and advance booking. Explaining the requirements and documents at booking reduces refusals on the day.",
-terms:[["Pet in Cabin (PETC)","機内持ち込みペット","기내 반입 반려동물"],["Animal in Hold (AVIH)","貨物室のペット","화물칸 반려동물"],["Animal Quarantine","動物検疫","동물 검역"],["Kennel / Carrier","ケージ","케이지"]],
-quiz:[{q:"What must be checked alongside the airline’s conditions when carrying a pet?",opts:["The weather","The destination’s animal quarantine rules","How busy the airport is","Whether there is a lounge"],a:1,exp:"Without meeting quarantine requirements the animal cannot enter."},
-{q:"Which code means a pet carried in the hold?",opts:["PETC","AVIH","WCHR","INF"],a:1,exp:"AVIH stands for Animal in Hold."}],
-next:"1-9 Cabin seating and aircraft layout"});
-
-set("1-9",{title:"Cabin Seating and Aircraft Layout",hl:"aircraft layout",subtitle:"Same flight number, different aircraft — and the seat numbers change with it",
-lead:["To assign seats, offer upgrades or handle an aircraft change, you need to know the layout flying that day. Seat numbers follow a set of conventions."],
-sections:[
-{h:"How to read a seat number",blocks:[{t:"rows",items:[
-{name:"The number",x:"The row, counted from the front. Premium cabins are usually at the front."},
-{name:"The letter",x:"The position across the cabin. Which letters are window or aisle depends on the aircraft."},
-{name:"Missing numbers",x:"On some aircraft certain row numbers or letters are not used at all."}]}]},
-{h:"Differences worth knowing",blocks:[{t:"table",cols:["","Narrow-body (single aisle)","Wide-body (twin aisle)"],rows:[
-["Aisles","One","Two"],
-["Typical routes","Short and medium haul","Medium and long haul"],
-["Seats across","Usually six","Eight to ten"]]},
-{t:"point",x:"When an aircraft change reduces the number of seats, passengers have to be reseated. Check your airline’s priority rules before it happens."}]},
-{h:"Seats that cannot be used (INOP)",blocks:[{t:"p",x:"Maintenance will advise when a seat cannot be used, for example because the recline is broken. Block it in the system so it cannot be sold or assigned, and reseat any passenger already holding it."}]}],
-voice:"On aircraft-change days, check first whether seat count or layout shrinks. Listing the passengers who need reseating before opening keeps the counter calmer.",
-terms:[["Aircraft Type / Equipment","機材","기재"],["Equipment Change","機材変更","기재 변경"],["INOP Seat","使用不能座席","사용 불가 좌석"],["Aisle","通路","통로"]],
-quiz:[{q:"Which aircraft has two aisles?",opts:["Narrow-body","Wide-body","Turboprop","All small aircraft"],a:1,exp:"Wide-body aircraft have twin aisles."},
-{q:"What do you do when a passenger holds an INOP seat?",opts:["Leave it as it is","Move them to another seat","Refuse to carry them","Ask them to fix it"],a:1,exp:"Block the seat in the system and reseat the passenger."}],
-next:"1-10 Baggage rules 1: checked, carry-on and excess"});
-
-set("1-10",{title:"Baggage Rules 1: Checked, Carry-on and Excess",hl:"baggage rules",subtitle:"Piece concept, weight concept, and allowances that change with the fare",
-lead:["Baggage rules differ by airline, route and fare type. The job at the counter is to apply the rules that match the passenger’s ticket, correctly."],
-sections:[
-{h:"Two ways of counting",blocks:[{t:"cards",n:2,items:[
-{ic:"🔢",name:"Piece concept",x:"So many bags, each up to so many kilograms. Common on routes to and from the Americas."},
-{ic:"⚖️",name:"Weight concept",x:"A single total weight allowance. Used on some routes within Asia and elsewhere."}]},
-{t:"note",x:"* The actual allowance depends on the airline, route, fare and frequent flyer status."}]},
-{h:"Checked and carry-on",blocks:[{t:"table",cols:["","Checked baggage","Carry-on"],rows:[
-["What to check","Number, weight and size; items that must not be inside","Number, weight and size; liquids, sharp objects and so on"],
-["Watch for","The weight limit per bag also protects the people who handle it","If there is too much at the gate, switch it to checked baggage"]]}]},
-{h:"Excess baggage",blocks:[{t:"check",items:[
-{name:"Show how the charge is calculated",x:"Explain the allowance and the excess in concrete terms."},
-{name:"Suggest moving items",x:"Often the problem is solved by moving items into carry-on."},
-{name:"Collect and record",x:"Take the payment and record it as the rules require."}]},
-{t:"point",x:"Excess baggage is where disputes start. Show the rule, then give the passenger the choice — pay, reduce, or ship separately — and they are far more likely to accept it."}]},
-{h:"Watch it on video",blocks:[{t:"video",title:"Where does your checked bag actually go?",ch:"Channel being confirmed",url:"https://www.youtube.com/watch?v=U8wF3uBf13s"}]}],
-voice:"Excess baggage disputes grow from the feeling of not having been told, more than from the amount. Show the rule first and offer choices, such as repacking.",
-terms:[["Checked Baggage","受託手荷物","위탁 수하물"],["Carry-on Baggage","機内持ち込み手荷物","기내 수하물"],["Excess Baggage","超過手荷物","초과 수하물"],["Free Baggage Allowance","無料手荷物許容量","무료 수하물 허용량"]],
-quiz:[{q:"Which approach counts bags and a weight limit per bag?",opts:["Weight concept","Piece concept","Fare concept","Distance concept"],a:1,exp:"That is the piece concept."},
-{q:"What works best when explaining excess baggage?",opts:["State the rule and stop there","Set out the options and let the passenger choose","Waive the charge","Just call a supervisor"],a:1,exp:"Giving choices makes the outcome easier to accept."}],
-next:"1-11 Baggage rules 2: sports equipment, instruments and other special items"});
-
-set("1-11",{title:"Baggage Rules 2: Sports Equipment, Instruments and Other Special Items",hl:"special baggage",subtitle:"Large, fragile or oddly shaped — each has its own handling",
-lead:["Golf bags, skis, bicycles, surfboards, musical instruments. Baggage with an unusual size or shape is charged differently and packed differently from ordinary bags."],
-sections:[
-{h:"Common special items",blocks:[{t:"table",cols:["Item","What to check"],rows:[
-["Golf and ski equipment","Whether it is in a proper case, and whether it counts within the free allowance"],
-["Bicycles","Handlebars and pedals secured, tyre pressure, packing"],
-["Musical instruments","Whether it travels on a purchased seat or is checked; explaining the risk of damage if checked"],
-["Large or long items","Whether it fits through the cargo door of that aircraft"]]}]},
-{h:"Handling fragile items",blocks:[{t:"check",items:[
-{name:"Check the packing",x:"Look at the item and judge whether the passenger’s packing is adequate."},
-{name:"Explain the limits of liability",x:"For poorly packed or fragile items, explain that the airline’s liability is limited and obtain the required signature."},
-{name:"Fragile tag",x:"Attach a fragile tag, while explaining that it cannot fully prevent damage."}]},
-{t:"point",x:"Some special baggage simply will not fit the hold of the aircraft operating that day. Always check whether it was booked in advance, and what aircraft is flying."}]}],
-voice:"For instruments and bicycles, check the packing and the limits of liability with the passenger before accepting. When asking for a damage waiver, briefly explain why.",
-terms:[["Special Baggage","特殊手荷物","특수 수하물"],["Sporting Equipment","スポーツ用品","스포츠 장비"],["Limited Release","免責","면책"],["Fragile","取り扱い注意","취급 주의"]],
-quiz:[{q:"What is true of a fragile tag?",opts:["It prevents damage completely","It marks the bag for careful handling but cannot prevent damage completely","It makes the bag free of charge","It means the bag goes in the cabin"],a:1,exp:"It is a marker, not a guarantee."},
-{q:"What must you always check for a large item?",opts:["Its colour","Whether it fits the hold of that day’s aircraft","The passenger’s occupation","The weather"],a:1,exp:"What can be carried depends on the aircraft."}],
-next:"1-12 The basics of dangerous goods"});
-
-set("1-12",{title:"The Basics of Dangerous Goods",hl:"dangerous goods",subtitle:"Telling apart what cannot be checked, what cannot be carried on, and what is banned altogether",
-lead:["Aerosols, lighters, batteries, fireworks. Everyday items can count as dangerous goods on an aircraft. Ground staff are the first line that keeps them out of passengers’ baggage."],
-sections:[
-{h:"Three categories",blocks:[{t:"cards",n:3,items:[
-{ic:"🚫",name:"Banned altogether",x:"Fireworks, explosives, highly flammable gases and liquids. Neither checked nor carried on."},
-{ic:"🧳",name:"Not in checked baggage",x:"Spare lithium batteries and power banks. Allowed in the cabin under conditions."},
-{ic:"👜",name:"Not in the cabin",x:"Sharp objects and similar items barred for security reasons. Often acceptable as checked baggage."}]},
-{t:"note",x:"* The exact items and conditions come from the international dangerous goods rules (ICAO and IATA), national rules and your airline’s own regulations. They are revised every year."}]},
-{h:"Checking at the counter",blocks:[{t:"check",items:[
-{name:"Ask",x:"Ask about specific items: “Do you have aerosols, batteries or lighters in your bag?”"},
-{name:"Point at the notice",x:"Pointing to the dangerous goods notice while you ask makes it easier to understand."},
-{name:"If you find something",x:"Follow the rules: have it removed from the checked bag, moved to the cabin, or surrendered."}]},
-{t:"point",warn:true,x:"Missing a dangerous item can lead to a serious incident such as a fire on board. If you suspect something in accepted baggage, raise it with security and your supervisor immediately."}]}],
-voice:"[Interview to be added] The most surprising dangerous item ever found at the counter.",
-terms:[["Dangerous Goods (DG)","危険物","위험물"],["Dangerous Goods Regulations (DGR)","危険物規則","위험물 규정"],["Flammable","引火性","인화성"],["Security Screening","保安検査","보안 검색"]],
-quiz:[{q:"How are power banks handled?",opts:["Checked baggage only","Cabin only, under conditions","Either is fine","Neither is allowed"],a:1,exp:"They cannot be checked; they travel in the cabin under conditions. See 1-13."},
-{q:"What is the most effective way to ask about dangerous goods?",opts:["“Any dangerous goods?”","“Do you have aerosols, batteries or lighters in your bag?”","Say nothing","“Nothing unusual, right?”"],a:1,exp:"Naming specific items helps passengers remember what they packed."}],
-next:"1-13 Lithium batteries and power banks: the latest rules"});
-
-set("1-13",{title:"Lithium Batteries and Power Banks: The Latest Rules",hl:"latest rules",subtitle:"Japan tightened its rules in April 2026, and what you tell passengers changed with them",
-lead:["Smoke and fire from lithium batteries on board have increased worldwide, and ICAO revised the international standard as a matter of urgency. Following that, new rules on carrying power banks in the cabin have applied in Japan since 24 April 2026."],
-sections:[
-{h:"Japan’s rules (from 24 April 2026)",blocks:[{t:"table",cols:["Item","Rule"],rows:[
-["Checked baggage","Never (unchanged)"],
-["Capacity","Up to 160 Wh"],
-["Quantity","Up to 2 per person in the cabin (new)"],
-["Charging on board","Do not charge the power bank itself (new)"],
-["Powering devices on board","Do not charge other devices from the power bank (new)"],
-["Storage","Keep it with you rather than in the overhead bin, with the terminals insulated"]]},
-{t:"point",warn:true,x:"Exceeding the quantity or capacity, or charging on board, may carry penalties under aviation law. Some airlines apply stricter rules, so check each airline’s guidance as well."}]},
-{h:"What is covered and what is not",blocks:[{t:"rows",items:[
-{name:"Covered",x:"Power banks containing lithium-ion cells, used to charge other devices."},
-{name:"Outside the quantity limit",x:"Spare batteries removed from cameras and similar devices (capacity limits still apply)."},
-{name:"Not permitted",x:"Power banks using sodium-ion cells may not be carried in the cabin or checked in Japan."}]},
-{t:"note",x:"* IATA has also indicated that from January 2027 the limit may fall from 160 Wh to 100 Wh. Always work from the current guidance. ★"}]},
-{h:"At the counter",blocks:[{t:"p",x:"Other countries are updating their rules in line with the same international revision, so on international routes check the guidance of the departure and arrival countries and of the airline."},
-{t:"check",items:[
-{name:"Ask",x:"“How many power banks are you carrying? Is there one in the bag you are checking?”"},
-{name:"Check the capacity",x:"Look at the marking on the unit together with the passenger (Wh, or mAh and voltage)."},
-{name:"Explain use on board",x:"No charging, no powering other devices, and keep it within reach."}]}]}],
-voice:"[Interview to be added] The questions that came up most at the counter right after the new rules started.",
-terms:[["Power Bank","モバイルバッテリー","보조배터리"],["Watt-hour Rating (Wh)","ワット時定格量","와트시 정격용량"],["Insulation","絶縁","절연"],["Sodium-ion Battery","ナトリウムイオン電池","나트륨이온 배터리"]],
-quiz:[{q:"Under Japan’s rules from April 2026, how many power banks may one person carry in the cabin?",opts:["No limit","Up to 2","Only 1","Up to 5"],a:1,exp:"Up to two, each 160 Wh or less."},
-{q:"Which statement matches the new rules?",opts:["You may charge a power bank on board","You may charge your phone from a power bank on board","Keep the power bank within reach","Put it in your checked bag"],a:2,exp:"No charging either way; keep it with you."}],
-next:"Part 2 Boarding Gate — 2-1 Preparing for gate duty"});
+set("1-1",{"title":"Getting the Counter Ready, and How to Lay It Out","hl":"Preparation","subtitle":"Check-in runs in three stages: prepare, process, close. The first stage decides the day",
+"lead":["Check-in work falls into three stages: preparation, processing and closing. Before passengers start queuing, checking the flight information, the counter, the forms, the equipment and the surrounding area is the quickest way to cut the day’s problems.","This lesson walks through the pre-opening checks that airline ground handling manuals typically set out, how the area around the counter is laid out, and the key points while processing and when closing."],
+"sections":[
+{"h":"The three stages of check-in","blocks":[{"t":"ladder","rise":18,"steps":[{"name":"Prepare","sub":"Flight information, counter, forms, equipment, surroundings"},{"name":"Process","sub":"Document checks, seats, baggage, security questions"},{"name":"Close","sub":"Collect forms, tidy up, report"}]}]},
+{"h":"Before opening (1): flight information","blocks":[{"t":"check","items":[
+{"name":"Flight type and departure time","x":"Is it a scheduled or an extra flight? Has the departure time changed? If it has, update the signs and the information notices too."},
+{"name":"Booking status","x":"Number of bookings, whether the flight is overbooked, whether there are groups. For flights with groups, decide the counter allocation first."},
+{"name":"Seat status","x":"Pre-assigned seats, blocked seats, seats that cannot be used (INOP)."},
+{"name":"Passengers needing special handling","x":"VIPs, wheelchair users, unaccompanied minors, pregnant passengers, passengers travelling with pets, passengers carrying medical devices and so on."},
+{"name":"Other instructions","x":"Head office instructions for the day, aircraft changes, airport and CIQ notices."}]}]},
+{"h":"Before opening (2): counter, forms and equipment","blocks":[{"t":"table","cols":["What to check","Main points"],"rows":[["Counter","Flight display (FIDS and above the counter), signs, a clear floor"],["Forms","Boarding pass stock, bag tags, documents for special passengers, forms for manual check-in"],["Equipment","Boarding pass printers, bag tag printers, card terminals, scales, the PA system"],["Surroundings","Clean and tidy inside and around the counter; dangerous goods and baggage rules on display"]]},
+{"t":"point","x":"An equipment fault found after the queue has formed turns into a long delay. Run a test print on the printers and zero the scales before opening."}]},
+{"h":"Laying out the counter area","blocks":[{"t":"fig","id":"checkin_layout","cap":"A priority counter, B standard counters (with queue control), C bag drop, D service counter, E kiosks. Checked bags flow to the BHS behind. Layouts vary by airport and airline."},
+{"t":"rows","items":[
+{"name":"Priority counter","x":"For premium cabins, top-tier members and passengers needing special handling. Clearly signed apart from the standard counters."},
+{"name":"Standard counters","x":"For flights expected to be busy, put someone on queue control to ask passengers to have their documents ready."},
+{"name":"Bag drop","x":"For passengers who have checked in online or at a kiosk and only need to drop their bags."},
+{"name":"Service counter","x":"Handles booking changes, payments for excess baggage and seats, and problems."},
+{"name":"Kiosks","x":"Station a member of staff to help passengers use them. On routes that need document checks, add a staff check after the machine."}]},
+{"t":"point","x":"The shape of the queue and how counters are allocated can change waiting times a great deal. For busy flights, decide the allocation and where the queue staff stand before opening."}]},
+{"h":"Basic steps while processing","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Greeting","sub":"Greet, take the ticket and passport, ask about checked bags"},{"name":"Check-in","sub":"Confirm flight, destination, class and booking; match documents to the passenger"},{"name":"Baggage","sub":"Check weight, number and contents; attach bag tags and name tags"},{"name":"Security questions","sub":"The set questions about checked baggage"},{"name":"Finishing","sub":"Hand back documents with an explanation; tell the passenger the gate and time"}]},
+{"t":"p","x":"Passengers checking bags are asked the security questions. If answering aloud is difficult, they can answer using the security notice displayed at the counter. Typical questions are:"},
+{"t":"check","items":[
+{"name":"Items from strangers","x":"“Are you carrying anything in your baggage that a stranger asked you to take?”"},
+{"name":"Bags left unattended","x":"“Have your bags been left anywhere since you packed them?”"},
+{"name":"Dangerous goods","x":"“Do you have any firearms, lighters, batteries, e-cigarettes or flammable sprays?”"}]},
+{"t":"table","cols":["What differs","Examples"],"rows":[["Whether the questions are asked","Some countries require them under security rules; others, or some airlines, rely on notices or self-declaration instead"],["Wording and number of questions","Some airlines use two, others three or four. The wording is set by the authority’s standards or the airline’s security programme"],["How they are asked","Aloud / by pointing to a notice / on a kiosk screen"],["When the answer is “yes”","Steps such as checking the contents or calling security vary by airline"]]},
+{"t":"note","x":"* The basic steps while processing (greeting, how documents are taken and returned, the order of information) are also set by each country and airline. The flow above is a typical example. Follow your own company’s manual. ★"},
+{"t":"point","x":"Always check the size and weight of cabin bags at the counter too. Fewer bags checked again at the gate means more on-time departures."}]},
+{"h":"Closing (after check-in ends)","blocks":[{"t":"check","items":[
+{"name":"Collect unused forms","x":"Keep boarding pass and tag stock where unauthorised people cannot reach it, to prevent fraudulent boarding passes being issued."},
+{"name":"Tidy the counter area","x":"Clean and tidy for the next flight."},
+{"name":"Handover","x":"Tell the gate about special passengers, passengers likely to be late, groups with a lot of cabin baggage and so on."}]}]},
+{"h":"Watch it on video","blocks":[{"t":"video","title":"A day in the life of JAL ground staff at Narita Airport (counter, gate, lounge)","ch":"JAL (sub-channel)","url":"https://www.youtube.com/watch?v=Kl0vSx9hZ1k"}]}],
+"voice":"Experienced staff check first what is unusual about today’s flight. Knowing about aircraft changes, special passengers and groups before opening changes how the counter runs.",
+"terms":[["FIDS","フライト情報表示","운항 정보 표시"],["Boarding Pass Printer (BPP)","搭乗券プリンター","탑승권 프린터"],["Bag Tag Printer (BTP)","手荷物タグプリンター","수하물 태그 프린터"],["Security Questions","保安質問","보안 질의"],["Kiosk","自動チェックイン機","키오스크"],["Bag Drop","手荷物ドロップ","수하물 위탁 전용"]],
+"quiz":[{"q":"Which are the three stages of check-in work?","opts":["Prepare → process → close","Reception → boarding → arrival","Booking → ticketing → refund","Cleaning → inspection → fuelling"],"a":0,"exp":"Check-in runs in three stages: preparation, processing and closing."},
+{"q":"Why are unused forms collected at closing?","opts":["To save paper","To prevent fraudulent boarding passes being issued","To keep things looking neat","No particular reason"],"a":1,"exp":"They are stored where unauthorised people cannot reach them, to prevent misuse."},
+{"q":"Which is not one of the security questions about checked baggage?","opts":["Items from strangers","Bags left unattended","Purpose of travel","Dangerous goods"],"a":2,"exp":"The security questions are about the safety of the baggage."}],
+"next":"1-2 The basics of airport announcements"});
+set("1-2",{"title":"The Basics of Airport Announcements (Normal and Irregular Operations)","hl":"Announcements","subtitle":"Place, situation and the passenger’s point of view: build announcements on three axes",
+"lead":["Announcements are the only way to give the same information to many passengers at once. Airlines set sample texts and speaking standards for each place (counter, gate, baggage claim) and each situation (normal or irregular operations).","This lesson covers the basic approach to announcing, the flow at each place, the key points in delays and cancellations, and templates for real announcements."],
+"sections":[
+{"h":"The basic approach","blocks":[{"t":"check","items":[
+{"name":"Check the equipment","x":"Before announcing, check the equipment works and the volume and sound quality are right. Agree timings in advance so you do not overlap with the airline next door."},
+{"name":"How to speak","x":"Look tidy and stand properly. Speak brightly and clearly, and pronounce slowly."},
+{"name":"Tone in disruptions","x":"For delays and cancellations, use a polite, serious tone. Leave out cheerful catch phrases."},
+{"name":"Keep it short","x":"Keep the content short and clear. Help passengers who want to know more individually."},
+{"name":"If you make a mistake","x":"Finish the announcement, then make a corrected one."},
+{"name":"Order of languages","x":"Decide the order from the nationalities of booked and boarding passengers. A language can be left out if no passengers of that nationality are on the flight."}]}]},
+{"h":"Three things passengers want to know","blocks":[{"t":"cards","n":3,"items":[
+{"ic":"❓","name":"Why the delay?","x":"The reason, in plain words. Avoid jargon and foreign terms."},
+{"ic":"🕒","name":"When will we leave?","x":"The expected time. If it is not known, the time of the next update."},
+{"ic":"🧾","name":"What will you do for us?","x":"Measures such as alternative flights, changes and meal vouchers."}]}]},
+{"h":"Announcements by place","blocks":[{"t":"table","cols":["Place","When","Main announcements"],"rows":[["Counter","10 and 5 minutes before check-in opens","Baggage information (batteries and lighters cannot be checked, cabin bag weight, liquids limits)"],["Counter","When check-in opens","Greeting and start of check-in (some airlines also set the staff’s actions)"],["Counter","During check-in and before closing","Check-in in progress, closing warning, calls for the last passengers, calls for baggage re-inspection"],["Gate","Before boarding","Have passports and boarding passes ready; hot drinks cannot be taken on board"],["Gate","At boarding","In order, starting with priority boarding (passengers needing assistance, premium cabins)"],["Baggage claim","Before the belt starts","Information on the claim area; calls for passengers whose bags will arrive later"]]},
+{"t":"note","x":"* This flow is one example. Where, when, what and in which language order to announce are set by each airline, and also depend on airport rules (permitted hours, volume, whether the airport makes common announcements). Always follow your company’s announcement rules and phrasebook. ★"}]},
+{"h":"How airlines differ (examples)","blocks":[{"t":"table","cols":["What differs","Airline A","Airline B"],"rows":[["Check-in opening and closing announcements","Staff announce for every flight","Left to the airport’s common announcements; staff do not announce"],["Baggage information","Repeated at set intervals from before check-in opens","Once only, when check-in opens"],["Order of languages","Local language → English → head-office language","Head-office language → local language → English"],["Actions during announcements","All staff stand and bow","No particular actions set"],["Use of sample texts","Read the set text as written","Only the key points are set; staff word it themselves"]]},
+{"t":"note","x":"* These are examples to show the thinking, not the actual rules of any particular airline."}]},
+{"h":"Announcements in irregular operations","blocks":[{"t":"point","warn":true,"x":"In irregular operations, what matters most is (1) giving only accurate information and (2) announcing changes immediately. Do not speculate: give the confirmed facts and the time of the next update."},
+{"t":"rows","items":[
+{"name":"Update everything at once","x":"When the departure time, gate or cancellation status changes, update announcements, counters, gates, signs and text messages at the same time. Old information left in even one place causes confusion."},
+{"name":"One source of information","x":"Announce only confirmed information from operations control or the duty manager. Staff must not each say something different."},
+{"name":"Brief first","x":"Brief all staff before announcing so everyone gives the same information."},
+{"name":"The manager announces","x":"For long delays, cancellations and other cases needing careful handling, the station manager (or equivalent) should make the announcement in principle."},
+{"name":"Intervals","x":"If the departure time cannot be predicted, repeat at set intervals, for example every five minutes."},
+{"name":"Apologies","x":"Make apologies sincerely."},
+{"name":"Share","x":"Share the content of announcements with flight and cabin crew as far as possible."}]},
+{"t":"point","warn":true,"x":"Rather than repeating “shortly”, saying “the next update will be at hh:mm” reduces passengers’ anxiety and questions at the counter."}]},
+{"h":"Templates","blocks":[{"t":"table","cols":["Situation","Template (outline)"],"rows":[["Check-in opens","“Check-in for XX Airlines flight XX to XX is now open. Thank you for flying with us today.”"],["Closing warning","“Check-in for flight XX to XX, departing at hh:mm, will close shortly. Passengers who have not yet checked in, please hurry.”"],["Paging","“Would passenger XX travelling on flight XX to XX please come to counter number X.” (Do not give the reason.)"],["Check-in suspended","“Check-in is currently suspended because of a temporary system problem. Thank you for your patience.”"],["Cancellation","“Flight XX to XX has been cancelled because of XX. Please follow the instructions of our staff. We sincerely apologise for the inconvenience.”"],["Overbooking","“Flight XX is overbooked. We are looking for passengers who are able to change their travel plans.”"]]},
+{"t":"note","x":"* Actual texts are set by each airline. Use your company’s phrasebook."}]}],
+"voice":"In disruption announcements, passengers settle when you say what has happened and when the next update will come. Say honestly that something is being checked when you do not know.",
+"terms":[["Announcement","アナウンス","안내방송"],["Catch Phrase","キャッチフレーズ","캐치프레이즈"],["Final Call","最終案内","최종 안내"],["Paging","お呼び出し","호출"],["Overbooking","オーバーブッキング","초과 예약"],["Check-in Suspension","受付の中断","수속 중단"]],
+"quiz":[{"q":"What is left out of delay and cancellation announcements?","opts":["The apology","Cheerful catch phrases","The time of the next update","The measures being taken"],"a":1,"exp":"In irregular operations, use a serious tone and leave out catch phrases."},
+{"q":"What should you do if you make a mistake during an announcement?","opts":["Stop halfway","Finish, then make a corrected announcement","Leave it as it is","Hand over to someone else"],"a":1,"exp":"Finish the announcement, then correct it."},
+{"q":"Who should announce a long delay, in principle?","opts":["A new member of staff","The station manager","A passenger","Cabin crew"],"a":1,"exp":"When careful handling is needed, the person in charge makes the announcement."}],
+"next":"1-3 The check-in flow and checking passports and visas"});
+set("1-3",{"title":"The Check-in Flow and Checking Passports and Visas","hl":"Passport and visa checks","subtitle":"Does the passenger have the documents to enter? Why the airline checks at the point of departure",
+"lead":["The most important part of international check-in is confirming that the passenger has the documents to enter the destination country (and any transit country). Carry a passenger with the wrong documents and they will be refused entry on arrival, at great cost to them, while the airline faces fines and the cost of returning them.","This lesson follows the working flow: the items that must be checked, the checking flow by nationality, documents used instead of passports, and what happens when an infringement occurs."],
+"sections":[
+{"h":"Why documents are checked","blocks":[{"t":"cards","n":3,"items":[
+{"ic":"🧳","name":"Protect the passenger","x":"Prevent the financial and emotional cost of being refused entry, and the complaints that follow."},
+{"ic":"💴","name":"Avoid fines","x":"Prevent fines imposed for inadequate documents."},
+{"ic":"✈️","name":"Protect the operation","x":"Avoid the effort and cost of removal and rebooking."}]}]},
+{"h":"Four things to check every time","blocks":[{"t":"check","items":[
+{"name":"Passport validity","x":"Expiry date, remaining validity, type of passport, any damage."},
+{"name":"Photo matches the passenger","x":"If the face is hidden by a hat, sunglasses or mask, ask the passenger to remove it before comparing."},
+{"name":"Visas for entry and transit","x":"For both the destination and transit points. For single-entry visas, whether it has been used; whether a re-entry permit is needed."},
+{"name":"A valid ticket","x":"The name matches; the actual journey matches the ticketed journey; validity and fare conditions."}]}]},
+{"h":"Checking flow by nationality (example)","blocks":[{"t":"table","cols":["Passenger","What to look at mainly"],"rows":[["Citizens of the departure country","Passport type (ordinary, official, diplomatic), expiry, whether the destination requires a visa"],["Citizens living abroad","Permanent residence or re-entry permit for their country of residence, destination visa"],["Foreign nationals","Whether they have overstayed, re-entry permit, visa for the destination (other than their own country)"],["All passengers","Transfer time and confirmed onward tickets, conditions for transit without visa (TWOV)"]]},
+{"t":"note","x":"* Actual requirements depend on the combination of nationality, destination and transit points. Check every time in an entry requirements database such as TIMATIC."}]},
+{"h":"Documents used instead of passports","blocks":[{"t":"p","x":"These include certificates of identity, travel certificates and military ID cards. Many countries do not treat them as equal to passports, so a visa for the country visited is usually needed separately. Some, such as certain countries’ identity cards for children, are treated as equivalent to passports. In every case, check the rules of the destination and transit points."},
+{"t":"point","x":"When a passenger asks about an expired or lost passport, explain that they can travel after an embassy or consulate extends the passport or issues a travel certificate."}]},
+{"h":"Health and quarantine checks","blocks":[{"t":"rows","items":[
+{"name":"Vaccination certificates","x":"Most countries do not require them, but some require proof such as yellow fever vaccination from travellers coming from certain regions."},
+{"name":"Animals and plants","x":"Animals and plants that passengers take with them need quarantine procedures. Without the certificates, politely decline check-in first and advise the passenger to travel once the documents are in order."}]}]},
+{"h":"When the decision is difficult","blocks":[{"t":"ladder","rise":12,"steps":[{"name":"Check the rules","sub":"CIQ rules for the destination and transit points"},{"name":"Explain","sub":"Show the passenger the basis for the decision"},{"name":"Escalate","sub":"If they do not accept it, to the supervisor or manager"},{"name":"Record","sub":"Record the decision and what happened"}]},
+{"t":"point","warn":true,"x":"The golden rule is that frontline staff do not make exceptions. If a passenger still insists on boarding after the rules have been checked, hand the decision to a senior member of staff."}]},
+{"h":"When an infringement occurs","blocks":[{"t":"p","x":"If immigration at the destination finds the documents inadequate, the airline may receive an infringement notice. The main types are no visa (including an expired one), breaches of the destination’s entry rules, and breaches of the conditions for transit without visa (TWOV)."},
+{"t":"ladder","rise":10,"steps":[{"name":"Immigration","sub":"Inadequate documents found at the destination"},{"name":"Notice","sub":"The airline is notified"},{"name":"Investigation","sub":"Check the check-in at departure"},{"name":"Decision","sub":"At fault → corrective action / not at fault → appeal"},{"name":"Close","sub":"Share measures to prevent a repeat"}]},
+{"t":"point","x":"The key checks for preventing infringements are whether the passenger has funds for the stay and a return ticket, whether they have checked baggage, signs that the photo in the passport or visa has been replaced or forged, and a short conversation with the passenger."}]},
+{"h":"Whether fines apply, and how they are handled, differs by country","blocks":[{"t":"table","cols":["Difference","Details"],"rows":[["Countries that fine","Some countries fine the carrier per passenger brought in without adequate documents (the US, the UK, Canada, Australia and many European countries, among others)"],["Countries without fines","Even without fines, the airline normally bears the cost and effort of returning passengers refused entry (INAD)"],["Inadequate advance passenger information","Even when a passenger’s documents are in order, some countries impose fines or demand corrections if the information sent is inaccurate, missing or late"],["Reduced fines","Some countries reduce fines for airlines with good document-checking systems and records"]]},
+{"t":"note","x":"* Whether fines apply, how much and to what differ by country and change over time. A country without fines is no reason to check less: apply the same standard everywhere. Write the latest rules for each destination into the station SOP. ★"}]},
+{"h":"Why advance passenger information (API) must be accurate","blocks":[{"t":"rows","items":[
+{"name":"What is sent","x":"Name, date of birth, sex, nationality, passport number and expiry, and so on. Sent before departure (in some countries up to just after departure) to the authorities of the destination country (and in some cases the departure country)."},
+{"name":"1. It protects the passenger","x":"The destination uses this information for pre-arrival screening. If the number or name is wrong, the passenger is stopped at immigration."},
+{"name":"2. It protects security","x":"It is used to check against watch lists. Wrong information means missing someone who should be stopped, or stopping someone unconnected."},
+{"name":"3. It protects the company","x":"In some countries, inaccurate, missing or late information leads to fines or demands for correction. If the numbers differ from the passenger list and immigration documents, it is treated as a security issue."},
+{"name":"Take care when entering it","x":"Read passports with a scanner (to reduce manual entry). Watch for dual nationals, replaced passports, name order and spelling, and the same person registered twice."},
+{"name":"Korea’s example","x":"For flights to and from Korea, airlines send passenger information to the Korean immigration authority and receive the result before boarding (the advance boarding check). The CIQ portal for airlines shows duplicate passport records (dupes) and the transmission status. ★"}]},
+{"t":"point","warn":true,"x":"Always check the transmission results (errors, duplicates, do-not-board replies) before closing. When the numbers are finalised at the gate, send the final information and confirm that it matches the passenger list."}]}],
+"voice":"When refusing boarding for missing documents, explain first what is missing and how the passenger could travel, rather than citing the rule. They need to know their next step.",
+"terms":[["Passport","旅券（パスポート）","여권"],["Visa","査証（ビザ）","사증(비자)"],["TWOV (Transit Without Visa)","ビザなし通過","무비자 통과"],["Infringement Notice","違反通知","위반 통지"],["Fine","罰金","벌금"],["Re-entry Permit","再入国許可","재입국 허가"]],
+"quiz":[{"q":"Which is not one of the items that must be checked?","opts":["Passport validity","Photo matches the passenger","The passenger’s occupation","Visas required"],"a":2,"exp":"The four are validity, identity, visas and the ticket."},
+{"q":"What is TWOV?","opts":["Two visas","Transit without a visa","A return ticket","The flight home"],"a":1,"exp":"Transit Without Visa: the conditions for transiting without a visa."},
+{"q":"If a passenger still insists on boarding after the rules have been checked?","opts":["Make an exception and board them","Hand the decision to a senior member of staff","Ignore them","Only suggest another flight"],"a":1,"exp":"Frontline staff do not make exceptions; a senior member of staff decides."}],
+"next":"1-4 Passengers with onward and connecting flights"});
+set("1-4",{"title":"Passengers with Onward and Connecting Flights","hl":"Transfers","subtitle":"From the first counter, look ahead to the documents, bags and charges all the way to the final destination",
+"lead":["Via Incheon to the US, via Narita to Southeast Asia: connecting passengers are often checked through to their final destination at the first counter. A missed check here becomes a big problem at the transfer point or the final destination.","This lesson covers the difference between connections on your own flights and with other airlines, minimum connecting times, handling documents, bags and excess charges, and the basics of rerouting and endorsement."],
+"sections":[
+{"h":"Two types of connection","blocks":[{"t":"table","cols":["","Own flights","With another airline"],"rows":[["Boarding passes","Often issued to the final destination","Can be issued if there is an interline agreement"],["Baggage","Checked through to the final destination","Depends on agreements between the airlines; otherwise only for your own sector"],["Excess baggage charges","Can be collected to the final destination in one go","Collected to the final destination only with airlines that have a settlement agreement"],["What to check","Transfer time, documents","Whether an agreement exists, ticket type, transfer time, documents"]]}]},
+{"h":"Four things to check every time","blocks":[{"t":"check","items":[
+{"name":"Minimum connecting time (MCT)","x":"Whether the minimum time set for each airport, terminal and domestic/international combination is met."},
+{"name":"Documents for the final destination and transfer point","x":"Whether the passenger must enter the transfer country, whether the conditions for transit without visa (TWOV) are met, the visa for the final destination."},
+{"name":"Bag tag destinations","x":"Check with the passenger that the airport codes for the final destination and transfer points are right."},
+{"name":"Whether bags must be collected at the transfer point","x":"Depending on the country and airport, bags must be collected once at the transfer point and taken through customs. Tell the passenger clearly."}]},
+{"t":"point","warn":true,"x":"If you do not tell passengers when bags must be collected at the transfer point, the bags are left behind. Writing the destination and where to collect them on the boarding pass makes sure."}]},
+{"h":"Stopovers and excess charges","blocks":[{"t":"p","x":"When a passenger stays in an intermediate city rather than connecting on the same day, excess baggage charges can be paid once from the origin to the final destination, or only as far as the stopover and then, when the journey resumes, under the rules of that flight (depending on the airline’s rules)."}]},
+{"h":"Rerouting and endorsement","blocks":[{"t":"rows","items":[
+{"name":"Rerouting","x":"Changing to another route or flight when a delay or cancellation means the planned connection cannot be made. Check the fare conditions and seat availability on the new flight."},
+{"name":"Endorsement","x":"The procedure that lets a passenger fly on a partner airline’s flight on your ticket as it is. It requires an agreement between the airlines."},
+{"name":"Order of checks","x":"(1) The passenger’s final destination and wishes, (2) seats on alternative flights, (3) fare conditions and agreements, (4) changing the bag destinations, (5) contacting the transfer point and destination."}]}]},
+{"h":"What to tell connecting passengers","blocks":[{"t":"check","items":[
+{"name":"Gate for the next flight","x":"Tell them if it is known; if not, ask them to check the information screens at the transfer point."},
+{"name":"Transfer procedures","x":"Security screening at the transfer point, and whether they pass through immigration."},
+{"name":"If they are delayed","x":"Who to contact if arrival is late, and where the transfer counter is."}]}]}],
+"voice":"With transfer tags, everything depends on the final destination code. Make a habit of checking it once more against the last sector of the ticket before attaching the tag.",
+"terms":[["Transfer / Connection","乗り継ぎ","환승"],["MCT","最低乗り継ぎ時間","최소 연결 시간"],["Interline","インターライン","인터라인"],["Through Check-in","スルーチェックイン","연결 수속"],["Stopover","途中降機","도중 체류"],["Rerouting","旅程変更","여정 변경"]],
+"quiz":[{"q":"When can bags be checked through to the final destination on a connection with another airline?","opts":["Always","When there is an agreement between the airlines","When the passenger asks","When the bags are light"],"a":1,"exp":"It requires an (interline) agreement."},
+{"q":"What is MCT?","opts":["Maximum cargo tonnage","Minimum connecting time","Number of bags","Departure time"],"a":1,"exp":"Minimum Connecting Time."},
+{"q":"What matters when bags must be collected once at the transfer point?","opts":["Say nothing","Tell the passenger clearly and write it down","Tell them at the destination","Remove the tag"],"a":1,"exp":"If passengers are not told, their bags are left behind."}],
+"next":"1-5 Seat assignment, upgrades and exit row seats"});
+set("1-5",{"title":"Seat Assignment, Upgrades and Exit Row Seats","hl":"Exit row seats","subtitle":"Seats are about safety, oxygen masks and balance as well as comfort",
+"lead":["Seat assignment is closely tied to passenger satisfaction, but that is not all. Where children and infants sit is tied to the number of emergency oxygen masks, and exit row seats come with conditions set in law. Upgrades and stand-by passengers also need fair rules.","This lesson looks in detail at how to seat each type of passenger, the conditions and procedure for exit row seats, and the order of priority for upgrades and stand-by."],
+"sections":[
+{"h":"Seating by type of passenger","blocks":[{"t":"table","cols":["Passenger","How to seat","Exit row"],"rows":[["Children","Next to the accompanying adult as a priority","Not allowed (nor are adults travelling with a child)"],["Unaccompanied minors (UM)","Front aisle seats where cabin crew can look after them easily","Not allowed"],["Infants (under 24 months)","On an adult’s lap. Spread them out rather than putting several in one row, because of the number of emergency oxygen masks","Not allowed (nor are adults travelling with an infant)"],["Passengers with disabilities","Front aisle seats that make boarding and leaving easy. Some airlines block seats for passengers with reduced mobility","Not allowed"]]},
+{"t":"point","x":"Each row has a set number of spare oxygen masks, so spread passengers with infants out rather than putting them in the same row."}]},
+{"h":"Conditions for exit row seats","blocks":[{"t":"p","x":"Passengers in exit row seats may have to help cabin crew in an emergency evacuation by opening the door or helping other passengers out. In Korea, the Ministry of Land, Infrastructure and Transport’s operations standards say the following people must not be seated there (Japanese airlines have rules to the same effect)."},
+{"t":"check","items":[
+{"name":"Strength and mobility","x":"People lacking the strength or agility to reach the exit or slide controls, push, pull or turn them, lift and move a window exit, or get out quickly."},
+{"name":"Age","x":"Under 15. Even with an adult ticket, a passenger under 15 cannot sit there."},
+{"name":"Understanding and communicating","x":"People who cannot understand the evacuation instructions (text or pictures) or the crew’s spoken instructions, or who cannot pass information on to other passengers."},
+{"name":"Sight and hearing","x":"People who cannot carry out the role without aids other than glasses or contact lenses, or cannot hear instructions without aids other than an ordinary hearing aid."},
+{"name":"Looking after others","x":"People travelling with a child or someone needing help, whose care would get in the way of the role."},
+{"name":"Willingness","x":"People who are not willing to follow the exit row rules or do not want the role."},
+{"name":"Special passengers","x":"Pregnant passengers, passengers with infants or children and so on."}]}]},
+{"h":"Procedure for assigning exit row seats","blocks":[{"t":"ladder","rise":12,"steps":[{"name":"Notice in advance","sub":"Explain the rules on the website and app"},{"name":"Check the conditions","sub":"Confirm verbally at check-in"},{"name":"Agreement","sub":"Explain and get agreement (e.g. a consent sticker on the boarding pass)"},{"name":"Record and share","sub":"Pass to the cabin on the special handling report"},{"name":"Check again on board","sub":"Crew explain; change seats if needed"}]},
+{"t":"table","cols":["Priority (example)","Who"],"rows":[["1","Airline crew and others who know the emergency procedures"],["2","Able-bodied passengers working in aviation"],["3","Healthy passengers who bought an exit row seat and can communicate with the crew"],["4","Healthy passengers aged 15 or over who can communicate with the crew"]]},
+{"t":"point","warn":true,"x":"The captain cannot start pushback until the crew have confirmed that nobody unsuitable is in an exit row seat. If there is no suitable passenger, the seat can stay empty."}]},
+{"h":"Upgrades","blocks":[{"t":"cards","n":2,"items":[
+{"ic":"💳","name":"Paid upgrade","tag":"The passenger asks","x":"The passenger pays the fare difference to the higher class at the departure airport. Some fares, such as those ticketed by travel agents, may be excluded."},
+{"ic":"🔄","name":"Free upgrade","tag":"For the airline’s reasons","x":"When economy is short because of overbooking or a broken seat, passengers chosen by fare and other criteria are given the seat only (meals and priority baggage are often not included)."}]},
+{"t":"point","x":"Choose passengers for free upgrades fairly, in the set order (for example highest fare first). Choosing by the agent’s own preference leads to serious complaints later."}]},
+{"h":"How airlines differ (examples)","blocks":[{"t":"table","cols":["What differs","Examples"],"rows":[["Advance seat selection","Some airlines let passengers choose any seat free / some charge for front seats or extra legroom / some vary the free range by fare type or membership tier"],["Exit row seats","Some sell them / some assign them free after checking the conditions at the airport. Either way, the conditions are always checked"],["Paid upgrades","Paying the difference at the airport / bidding / using miles / a fixed-price upgrade on the day"],["Choosing free upgrades","By criteria the airline sets, such as highest fare, highest membership tier or length of journey"],["What comes with the higher class","Only the seat, or also priority baggage, lounge access and meals"],["Stand-by priority","Each airline sets the order for staff on duty travel, concession tickets and paying passengers"]]},
+{"t":"note","x":"* These examples summarise several airlines’ practices. For the order and criteria in this lesson’s other sections too, follow your own company’s rules in practice. ★"}]},
+{"h":"Handling stand-by passengers","blocks":[{"t":"check","items":[
+{"name":"All the way to the final destination","x":"In principle, board only when a seat can be given all the way to the final destination. If only part of the way, the passenger must agree and the documents for the transfer point must be checked."},
+{"name":"Order of registration","x":"Give each passenger a number when they register, so handling is transparent."},
+{"name":"Priority (example)","x":"Employees travelling on duty → paying passengers who came to the airport that day → staff concession tickets that can be booked → space-available concession tickets."},
+{"name":"When priority is equal","x":"Higher-class tickets first, then longer journeys first."}]}]}],
+"voice":"For exit rows, prevention means checking the conditions at the point of allocation, not afterwards. Standard wording for the questions keeps judgments consistent across staff.",
+"terms":[["Exit Row Seat","非常口座席","비상구 열 좌석"],["Bassinet","バシネット","요람"],["Voluntary Upgrade","有償アップグレード","유상 업그레이드"],["Involuntary Upgrade","無償アップグレード","무상 업그레이드"],["Stand-by","空席待ち","대기"],["Special Handling Report (SHR)","特別対応リスト","특별 취급 보고서"]],
+"quiz":[{"q":"Why are passengers with infants not put together in the same row?","opts":["Appearance","The number of spare oxygen masks is limited","Noise","Cleaning"],"a":1,"exp":"They are spread out because of the number of oxygen masks in each row."},
+{"q":"Which is true of exit row seats?","opts":["A 12-year-old can sit there with an adult ticket","Under-15s are not allowed","Passengers with children are allowed","Someone must sit there even if nobody is suitable"],"a":1,"exp":"Under-15s are not allowed, and the seat can be left empty if nobody is suitable."},
+{"q":"How should free upgrades be allocated?","opts":["By the agent’s preference","Fairly, in the order of set criteria","First come, first served only","Not at all"],"a":1,"exp":"Choose fairly by fare and other set criteria."}],
+"next":"1-6 Special assistance 1: infants, children and pregnant passengers"});
+set("1-6",{"title":"Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs","hl":"Special passengers","subtitle":"Age, weeks of pregnancy, medical certificates: apply the rules exactly, explain them kindly",
+"lead":["Families with babies, pregnant passengers, passengers with a chronic condition or a medical device: for all of them, deciding whether they can fly rests on concrete criteria such as age, weeks of pregnancy and a doctor’s certificate. Ground staff apply those criteria exactly while helping passengers set off with peace of mind.","Based on examples of airline rules, this lesson covers the basic rules for infants and children, how pregnant passengers are handled by week, when a doctor’s note is needed, and when boarding is refused."],
+"sections":[
+{"h":"Infants and children: the basics","blocks":[{"t":"table","cols":["Category","Age (typical example)","Main rules"],"rows":[["Infant (INF)","Under 2","On an adult’s lap, no seat. One per adult. Bassinets must be booked in advance"],["Child (CHD)","2 to under 12","Needs a seat. Seated next to the accompanying adult"],["Newborn","Under 7 days old","Many airlines refuse carriage as unfit to fly"]]},
+{"t":"rows","items":[
+{"name":"Infant baggage (example)","x":"Some airlines allow one bag (up to about 10 kg) on an infant fare and some do not. Many accept a folding pushchair and a car seat free. Number and weight vary by airline and fare. ★"},
+{"name":"Cabin items (example)","x":"Baby food to give on board; car seats certified for use on aircraft (with conditions such as a width of 43 cm or less). Some baby foods are exempt from the liquids limit."}]}]},
+{"h":"Pregnant passengers (example by week)","blocks":[{"t":"table","cols":["Week of pregnancy","Handling (example; the cut-off weeks vary by airline, e.g. 28, 32 or 36) ★"],"rows":[["Under 32 weeks","The same as other passengers, unless a doctor has advised against flying"],["32 to under 37 weeks","A note from an obstetrician (original and copy) is required, stating fitness to fly, the due date and whether there are signs of labour or complications"],["37 weeks or more (33 or more for multiple pregnancies)","Carriage refused for the health of mother and baby"]]},
+{"t":"check","items":[
+{"name":"Date of the note","x":"Whether it was written within a set period before the flight (e.g. within 7 days). If both outbound and return fall within the period, the same note can be used; otherwise a new one is needed."},
+{"name":"Keeping it","x":"The departure station keeps the original for a set period (e.g. one month); the passenger carries a copy."},
+{"name":"If there was no advance request","x":"If the passenger first asks at the airport, hold the check-in until the note and a signed declaration are in order."},
+{"name":"Seating and care","x":"Exit row seats are not allowed. Help with boarding on request."}]},
+{"t":"note","x":"* The cut-off weeks and required documents vary by airline. Always check your company’s rules."}]},
+{"h":"Main cases needing a doctor’s note","blocks":[{"t":"check","items":[
+{"name":"Passengers carrying syringes","x":"Passengers who inject themselves on board for diabetes or allergies. Syringes beyond what is needed are checked in or handled by security."},
+{"name":"Passengers with implanted medical devices","x":"Pacemakers, insulin pumps, spinal cord stimulators and so on. Only when their condition is stable and they can manage it themselves."},
+{"name":"Passengers with infectious diseases","x":"A note stating that they cannot infect others during the flight is required."},
+{"name":"Passengers with chronic conditions or recent surgery","x":"Heart, respiratory or brain conditions, recent surgery and so on. Some airlines require, besides the note, a signed release stating who is responsible if harm occurs."}]},
+{"t":"point","x":"Passengers taking medication for a chronic condition such as high blood pressure or diabetes can fly if the condition is stable on medication without complications. Make sure they carry their medicines with them."}]},
+{"h":"When carriage is refused (examples)","blocks":[{"t":"table","cols":["Condition (example)","Criterion"],"rows":[["Heart attack or heart surgery","Less than 10 days after diagnosis or surgery"],["Angiography","Less than 24 hours after the procedure"],["Full-body plaster cast","Less than 24 hours for flights up to 2 hours; less than 48 hours for flights of 2 hours or more"],["Decompression sickness","Less than 24 hours after scuba diving"],["Infectious disease","If it could be passed to others"],["Newborn","Less than 7 days old"]]},
+{"t":"note","x":"* Medical criteria follow the airline’s rules and the doctor’s judgment. The table is one example. The final decision rests with the designated person, such as the station manager."}]}],
+"voice":"For pregnant passengers, the week of pregnancy and the issue date of the medical note are what count. If unsure, do not decide alone; check with the supervisor and company rules first.",
+"terms":[["Infant (INF)","幼児","유아"],["Child (CHD)","小児","소아"],["Medical Certificate","診断書","진단서·의사소견서"],["Indemnity / Release Form","誓約書","서약서"],["Medical Device","医療機器","의료기기"],["Newborn","新生児","신생아"]],
+"quiz":[{"q":"What is often required from passengers in late pregnancy (e.g. around 32–36 weeks)?","opts":["Nothing","A note from an obstetrician","Travel insurance only","Only family consent"],"a":1,"exp":"Many airlines require a note stating fitness to fly and the due date (the cut-off weeks vary by airline)."},
+{"q":"A passenger in late pregnancy first asks at the airport and has no note. What happens?","opts":["She boards as she is","Check-in is held until the documents are in order","She is always refused","She is upgraded"],"a":1,"exp":"Hold the check-in until the required documents are in order."},
+{"q":"What is the right advice for passengers taking medication for a chronic condition?","opts":["Pack the medicine in checked baggage","Always carry the medicine with them","Hand it to the crew on board","Do not bring it"],"a":1,"exp":"Medicines needed during the flight must be carried by the passenger."}],
+"next":"1-7 Special assistance 2: wheelchair users and unaccompanied children"});
+set("1-7",{"title":"Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors","hl":"Wheelchairs","subtitle":"Find out exactly how much help is needed, and pass it on from departure to arrival",
+"lead":["Passengers with disabilities and unaccompanied minors are looked after like a relay: the departure station, the cabin crew and the arrival station pass the baton. If the information breaks at any point, the passenger is left alone at the destination.","This lesson looks in detail at assistance by type of disability, the range of wheelchair services, handling powered wheelchairs, and unaccompanied minors (UM) from acceptance to handover."],
+"sections":[
+{"h":"The basic approach to passengers with disabilities","blocks":[{"t":"check","items":[
+{"name":"Do not ask for medical certificates","x":"Do not ask for a medical certificate, doctor’s note or indemnity form simply because a passenger has a disability."},
+{"name":"Order of boarding and leaving","x":"Priority is the principle, but depending on the situation they may board last and leave last. Ask the passenger’s wishes in advance."},
+{"name":"No carrying by staff","x":"Staff do not lift or carry passengers, even if the passenger agrees (except in emergency evacuations and similar)."},
+{"name":"No exit rows","x":"Passengers with disabilities are not seated in exit rows."}]}]},
+{"h":"Assistance by type of disability","blocks":[{"t":"table","cols":["Passenger","Code","Key points"],"rows":[["Deaf or hard-of-hearing passengers","DEAF","Speak with a friendly expression and clear mouth movements; some passengers lip-read"],["Blind or visually impaired passengers","BLND","If travelling with an adult, the same as other passengers. If travelling alone, they must be able to walk and eat on their own and be met at the destination"],["Passengers with a guide dog","SVAN","Travels free in the cabin. Needs a certificate, a harness and to meet the destination’s quarantine rules. Sits at the passenger’s feet. Advance notice needed"],["Passengers who cannot bend their legs","—","No note needed if permanent; a note confirming fitness to travel if due to a temporary injury"],["Passengers with speech impairments","—","Most have no hearing difficulty, so do not speak unnecessarily loudly"]]}]},
+{"h":"Wheelchair services","blocks":[{"t":"table","cols":["IATA code","Passenger’s condition","Main preparations"],"rows":[["WCHR","Cannot walk long distances but can manage steps and move within the cabin","Wheelchair to the gate"],["WCHS","Cannot go up or down steps but can get to their seat on board","Wheelchair plus step-free boarding (air bridge or ambulift)"],["WCHC","Cannot get to their seat on their own","Aisle wheelchair and assistance"]]},
+{"t":"rows","items":[
+{"name":"Wheelchair only","x":"When a companion is travelling and only the wheelchair is needed."},
+{"name":"Wheelchair plus assistance","x":"Staff accompany the passenger from check-in through departure formalities to boarding."},
+{"name":"Assistance only","x":"When the passenger has their own wheelchair and only needs staff help."}]},
+{"t":"point","x":"For flights with wheelchair passengers, ask the airport to allocate a stand with an air bridge as a priority. If there is no air bridge, arrange an ambulift from the handler or the airport."}]},
+{"h":"Handling powered wheelchairs","blocks":[{"t":"p","x":"Powered wheelchairs are safe on the ground, but in air transport vibration can switch them on and make them move, changes in pressure and temperature can make electrolyte leak, and impact can set a battery alight. So the way they are carried is set by battery type."},
+{"t":"table","cols":["Battery type","How it is carried (basic)","Main conditions"],"rows":[["Lithium-ion battery","Wheelchair in the hold. If designed to be removable, the battery is taken off and carried in the cabin","Removed and spare batteries up to 300 Wh. Spares: one up to 300 Wh or two up to 160 Wh. A non-removable battery stays fitted, protected against short circuits and accidental activation"],["Sealed (non-spillable) or nickel-metal hydride and other dry batteries","In the hold, fitted to the wheelchair","Terminals protected against short circuits, measures to stop it switching on, secure fastening"],["Non-sealed (wet) batteries","In the hold, fitted to the wheelchair and upright. If it cannot be loaded upright, the battery is removed and put in a special container","Prevent electrolyte leaking; the captain must be notified"]]},
+{"t":"note","x":"* An outline based on the standards of Japan’s Civil Aviation Bureau (MLIT) for powered wheelchairs and on ICAO and IATA rules. ★"},
+{"t":"table","cols":["Item","Common airline standards (examples from several airlines)"],"rows":[["Advance notice","Often up to 48 hours before departure (24 to 72 hours at some airlines). Requests on the day sometimes cannot be met"],["Declaration","Asks for the product name and model, any modifications, the battery type and Wh, spare batteries, size and weight"],["Time to arrive at the counter","Earlier than usual (e.g. 90 to 120 minutes before departure). Gate check-in also allows time for loading"],["Size and weight","Upper limits are set by the hold door size and aircraft type. It may not fit on small aircraft"],["Examples not accepted","Removable lithium-ion batteries over 300 Wh. Batteries that cannot be removed without tools, have no protection against accidental activation and whose terminals cannot be disconnected"],["At the destination","Confirm how it is reassembled and the battery refitted. Photograph its condition before taking it and when returning it"]]},
+{"t":"check","items":[
+{"name":"Ask how to switch it off","x":"Learn from the passenger how the switch, key or manual release works and pass it on to the ramp. Use the manufacturer’s air travel guide if there is one."},
+{"name":"How to take it","x":"Take it at the counter and use an airline wheelchair to the gate. If taking it at the gate, ask the passenger to arrive in time for loading."},
+{"name":"At the destination","x":"Take the passenger to baggage claim in an airline wheelchair and return the powered wheelchair there. Also decide how to handle requests to return it at the aircraft door."}]}]},
+{"h":"Unaccompanied minors (UM)","blocks":[{"t":"table","cols":["Item","Details (examples; vary by airline)"],"rows":[["Age","On international flights often 5 to under 12 (some airlines set a different upper limit on domestic flights). Younger children cannot travel alone"],["Request","Often from several days to 48 hours before departure. Seated where crew can keep an eye on them, such as front aisle seats"],["Conditions","Guardians at departure and arrival, and a completed request form. Many airlines limit it to their own flights and cap connection times"],["Ages 12 to 17","Many airlines offer the same service on request (whether there is a charge varies)"]]}]},
+{"h":"Handing over a UM","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Departure counter","sub":"The guardian completes the request form and declaration"},{"name":"Documents round the neck","sub":"The form goes in a pouch hung round the child’s neck"},{"name":"Priority bag tag","sub":"So bags can be collected straight away on arrival"},{"name":"To the cabin crew","sub":"Documents checked by both sides, then signed"},{"name":"Received at the destination","sub":"Taken over from the crew; helped through arrival formalities"},{"name":"To the guardian","sub":"Identity checked, then the handover is signed"}]},
+{"t":"point","warn":true,"x":"Ask the guardian at departure to stay at the airport until the aircraft has left. At the destination, tell the guardian the expected arrival time in advance, and let the departure station know when the handover is complete. Both stations keep the request form for a set period."}]}],
+"voice":"With unaccompanied minors, everything comes down to checking, with documents and ID, who hands the child over and who receives them. Always record the time and signatures.",
+"terms":[["Wheelchair (WCHR/WCHS/WCHC)","車いす","휠체어"],["Unaccompanied Minor (UM)","お一人で旅行する子ども","비동반 소아"],["Service Animal (SVAN)","盲導犬・介助犬","장애인 안내견"],["DEAF","耳の不自由な方","청각장애인"],["BLND","目の不自由な方","시각장애인"],["Ambulift","リフト車","휠체어 리프트카"]],
+"quiz":[{"q":"What is the code for a passenger who cannot go up or down steps but can get to their seat on board?","opts":["WCHR","WCHS","WCHC","BLND"],"a":1,"exp":"WCHS. Step-free boarding is needed."},
+{"q":"Which is right when assisting passengers with disabilities?","opts":["Always ask for a medical certificate if they have a disability","Carry them if they agree","Do not ask for a certificate simply because of a disability","Give them exit rows first"],"a":2,"exp":"Do not ask for a medical certificate simply because a passenger has a disability."},
+{"q":"What is the guardian at departure asked to do for a UM?","opts":["Go home straight away","Stay at the airport until the aircraft leaves","Board with the child","Nothing"],"a":1,"exp":"They are asked to stay until the departure is confirmed."}],
+"next":"1-8 Special assistance 3: carrying pets"});
+set("1-8",{"title":"Special Assistance 3: Carrying Pets","hl":"Pets","subtitle":"Age, kennel, breed and quarantine: check all four conditions before departure",
+"lead":["Pets can travel only if they meet both the airline’s acceptance conditions and the animal quarantine rules of the departure, transfer and destination countries. If even one is missing, they cannot leave the airport.","Based on examples of airline rules, this lesson covers the difference between the cabin (PETC) and the hold (AVIH), age and breed limits, kennel requirements, the procedure and information sharing, and quarantine when entering Japan."],
+"sections":[
+{"h":"Two ways to carry pets","blocks":[{"t":"table","cols":["","In the cabin (PETC)","In the hold (AVIH)"],"rows":[["Animals (example)","Dogs, cats, birds","Dogs, cats, birds"],["Weight including kennel (example)","Up to about 7–10 kg (depending on the airline)","Up to about 32–45 kg (depending on the airline)"],["Kennel size (example)","Must fit under the seat in front (limits on total dimensions and height vary by aircraft and airline)","Upper limits set by the hold door size and aircraft type"],["Age limit (example)","Many airlines do not accept animals under 8 to 16 weeks old","As left. Some airlines do not accept short-nosed dogs and cats"],["Number (example)","Often one animal (one kennel) per adult","One or two per adult, for example"]]},
+{"t":"note","x":"* Guidelines based on several airlines’ rules. Some airlines do not allow pets in the cabin at all. ★"}]},
+{"h":"Main cases where pets cannot be carried","blocks":[{"t":"check","items":[
+{"name":"Sedatives and sleeping drugs","x":"Animals that have been given them cannot be carried."},
+{"name":"Pregnancy and strong odour","x":"Pregnant females and animals with a strong odour cannot be carried."},
+{"name":"Short-nosed (brachycephalic) breeds","x":"Pugs, bulldogs, shih tzus, Persian cats and others cope badly with heat and stress, so many airlines restrict carrying them in the hold."},
+{"name":"Dangerous or aggressive animals","x":"Breeds classed as dangerous by law and animals with aggressive tendencies are restricted."},
+{"name":"One animal per kennel","x":"Exceptions include two puppies or kittens under six months, a mother with her young, and a pair of birds."}]}]},
+{"h":"Procedure and information sharing","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Advance booking","sub":"Request and approval up to 48 hours before departure"},{"name":"Check documents","sub":"Copies of vaccination, health and quarantine certificates"},{"name":"Declaration","sub":"On responsibility for accidents during transport"},{"name":"Charge","sub":"Separate from the free baggage allowance"},{"name":"Share the information","sub":"With the cabin, load control, the captain, transfer points and the destination"}]},
+{"t":"rows","items":[
+{"name":"PETC seating","x":"Window seats at the back of a zone as standard, with pets in the same zone kept apart. Some airlines block the next seat. Not allowed in exit rows or seats with nothing in front to stow under. There are also cabin-wide limits, such as two per zone."},
+{"name":"AVIH loading","x":"Check the hold can be ventilated and its temperature controlled. Load control decides the loading position and notifies the captain. Do not load natural enemies in the same compartment. Attach copies of the certificates to the kennel."},
+{"name":"Birds","x":"Cover the cage with a cloth during the flight."}]}]},
+{"h":"Taking dogs and cats into Japan","blocks":[{"t":"p","x":"To bring a dog or cat into Japan from a place not designated rabies-free, it needs a microchip, rabies vaccinations (several), an antibody test and a set waiting period, and preparation can take several months. Advance notice of arrival is also required."},
+{"t":"point","warn":true,"x":"Quarantine requirements differ by country and usually change without warning. Always tell passengers to check directly with the destination country’s embassy or animal quarantine authority (in Japan, the Animal Quarantine Service)."}]},
+{"h":"Guide dogs and assistance dogs are treated separately","blocks":[{"t":"p","x":"Guide dogs and other assistance dogs are not treated as pets: they travel free in the cabin and do not count towards pet limits. They need a certificate, a harness and to meet the destination’s quarantine rules (see lesson 1-7)."}]}],
+"voice":"Most pet transport problems come from kennel size and advance booking. Explaining the requirements and documents at booking reduces refusals on the day.",
+"terms":[["PETC","機内持ち込みペット","기내 반입 반려동물"],["AVIH","貨物室のペット","화물칸 반려동물"],["Brachycephalic / Short-nosed Breeds","短頭種","단두종"],["Animal Quarantine","動物検疫","동물 검역"],["Indemnity Form","誓約書","서약서"],["Service Animal","補助犬","장애인 보조견"]],
+"quiz":[{"q":"Which dogs are most likely to be restricted from travelling in the hold?","opts":["Large hunting dogs","Short-nosed dogs such as pugs and bulldogs","All puppies","All small dogs"],"a":1,"exp":"Short-nosed breeds cope badly with heat and stress."},
+{"q":"A dog has been given a sedative. Can it be carried?","opts":["Yes","No","Only in the cabin","At a lower charge"],"a":1,"exp":"Animals given sedatives or sleeping drugs cannot be carried."},
+{"q":"Which is true of guide dogs?","opts":["The pet charge applies","They count towards the pet limit","They are not treated as pets and travel free","Hold only"],"a":2,"exp":"Assistance dogs are treated separately from pets."}],
+"next":"1-9 Cabin seating and aircraft layout"});
+set("1-9",{"title":"Cabin Seating and Aircraft Layout","hl":"Aircraft layout","subtitle":"Same flight number, different aircraft: seat numbers, seat count and door positions all change",
+"lead":["Seat assignment, upgrades, handling aircraft changes, operating doors, preparing wheelchairs: all of them assume you know the layout of the day’s aircraft.","This lesson covers how to read seat numbers, the differences between aircraft sizes, types of seat, handling unusable and blocked seats, and what to do on a day when the aircraft changes."],
+"sections":[
+{"h":"Reading seat numbers","blocks":[{"t":"rows","items":[
+{"name":"Number","x":"The row number, counted from the front. Higher classes are often at the front."},
+{"name":"Letter","x":"The position across the row. Which letters are windows and aisles differs by aircraft (e.g. nine abreast: ABC, DEF, GHJ)."},
+{"name":"Missing numbers and letters","x":"Many aircraft do not use “I”, because it is easily confused with the number 1. Some airlines skip row 13 and others."},
+{"name":"Zones","x":"The cabin is divided into several zones, used for boarding order, managing the number of pets and calculating the centre of gravity."}]}]},
+{"h":"Differences by aircraft size","blocks":[{"t":"table","cols":["","Narrow-body (single aisle)","Wide-body (twin aisle)"],"rows":[["Aisles","One","Two"],["Seats across","Often six","Eight to ten, for example"],["Main routes","Short and medium haul (e.g. Japan–Korea)","Medium and long haul"],["Hold","Some are mainly bulk-loaded","Loaded in containers (ULDs)"],["Boarding","One air bridge or by bus","Sometimes two air bridges"]]}]},
+{"h":"Types of seat","blocks":[{"t":"table","cols":["Type","Features and cautions"],"rows":[["Exit row seats","More legroom, but with conditions (lesson 1-5). Nothing may be left on the floor"],["Bassinet seats","A bassinet can be fitted to the wall in front. For passengers with infants"],["Aisle and window","Popular with passengers. Wheelchair passengers get front aisle seats that are easy to get in and out of"],["Front seats","Many airlines sell them for a fee"],["Crew rest seats","Used by crew to rest on long-haul flights. Not sold"]]}]},
+{"h":"Unusable and blocked seats","blocks":[{"t":"check","items":[
+{"name":"Unusable seats (INOP)","x":"A broken seat back or table, for example. On word from maintenance, stop the seat being sold or assigned and move any passenger already in it."},
+{"name":"Seat blocks","x":"Block seats for set reasons: for passengers with disabilities, for crew, for balance, next to pets and so on. Decide who has authority to release them."},
+{"name":"When overbooked","x":"If there are more bookings than seats, ask for help through upgrades or later flights (lessons 1-5 and 5-6)."}]}]},
+{"h":"What to do on an aircraft-change day","blocks":[{"t":"ladder","rise":10,"steps":[{"name":"Check the new layout","sub":"Seat count, classes, exits"},{"name":"Reassign seats","sub":"In order of priority"},{"name":"Recheck special passengers","sub":"Wheelchairs, infants, pets"},{"name":"Tell passengers","sub":"Explain why their seat has changed"},{"name":"Inform others","sub":"Cabin crew, load control, the gate"}]},
+{"t":"point","x":"If an aircraft change reduces the number of higher-class seats, a downgrade must be handled (refunding the fare difference and so on). Do not forget to explain it according to the rules and to keep a record."}]}],
+"voice":"On aircraft-change days, check first whether seat count or layout shrinks. Listing the passengers who need reseating before opening keeps the counter calmer.",
+"terms":[["Aircraft Type / Equipment","機材","기재"],["Equipment Change / Swap","機材変更","기재 변경"],["INOP Seat","使用不能座席","사용 불가 좌석"],["Seat Block","座席ブロック","좌석 블록"],["Seat Map / Configuration","座席配置図","좌석 배치도"],["Downgrade","ダウングレード","다운그레이드"]],
+"quiz":[{"q":"Why do many aircraft not use the letter “I” for seats?","opts":["Superstition","It is easily confused with the number 1","The law","No particular reason"],"a":1,"exp":"To prevent misreading."},
+{"q":"A passenger has been assigned an INOP seat. What happens?","opts":["Leave it","Move them to another seat","Refuse boarding","Ask the passenger to fix it"],"a":1,"exp":"Block it in the system and move the passenger."},
+{"q":"What is needed when an aircraft change reduces the higher class?","opts":["Nothing","Handling the downgrade according to the rules, with a record","Move everyone to a later flight","Free upgrades"],"a":1,"exp":"Handle the fare difference and so on according to the rules."}],
+"next":"1-10 Baggage rules 1: checked, carry-on and excess"});
+set("1-10",{"title":"Baggage Rules 1: Checked, Carry-on and Excess","hl":"Baggage rules","subtitle":"Weight, size, number and contents: judge by four measures",
+"lead":["Baggage rules differ by airline, route, fare and class. The measures used to judge are common, though: weight, size (the sum of the three dimensions), number and contents. At the counter, check these four in turn and apply the rules that match the passenger’s ticket.","Based on examples of airline rules, this lesson looks in detail at the standards for checked and carry-on baggage, items that cannot be checked or carried on, and how excess baggage charges work."],
+"sections":[
+{"h":"Checked baggage: the basics","blocks":[{"t":"p","x":"Checked baggage is accepted on the basis that it travels on the same flight as the passenger. So if the passenger does not board, their bags must be offloaded (the exception being bags the airline decides to send separately)."},
+{"t":"table","cols":["Item","Example standard"],"rows":[["Limit per bag","32 kg (a common limit for the safety of handlers), total dimensions within 292 cm"],["Free size","Total dimensions within 158 cm; oversize charges above that"],["Free allowance (example)","Higher classes: 32 kg × 1–2 bags / economy: 23 kg × 1–2 bags / discount fares: 15–23 kg × 1 bag (varies by route)"],["Domestic (example)","Managed by total weight (e.g. 20–30 kg), with no limit on the number of bags"]]},
+{"t":"note","x":"* The figures are guidelines based on several airlines’ examples. Actual allowances depend on the airline, route and fare. ★"}]},
+{"h":"Rules to know","blocks":[{"t":"rows","items":[
+{"name":"Pooling","x":"When two or more passengers on the same booking check in together, their piece allowances can be combined. Weights cannot be combined, though; any bag over the weight or size limit is charged."},
+{"name":"Infants","x":"One bag (e.g. up to 10 kg) plus one of a pushchair, car seat or carrycot."},
+{"name":"Passengers with disabilities","x":"Wheelchairs and other mobility aids are free and not counted in the allowance."},
+{"name":"Own bags only","x":"For security, bags that are not the passenger’s own or that they did not pack themselves are not accepted."}]}]},
+{"h":"Items that must not be checked","blocks":[{"t":"check","items":[
+{"name":"Dangerous goods","x":"Items forbidden under international rules, or items that may only be carried in the cabin (such as power banks)."},
+{"name":"Live animals","x":"Need a separate procedure as pets (lesson 1-8)."},
+{"name":"Items with a strong smell","x":"Items that smell bad or cause offence."},
+{"name":"Restricted items","x":"Items restricted by the laws of the departure or destination country."},
+{"name":"Valuables and fragile items","x":"Laptops, cameras, cash, securities, important documents, artworks, musical instruments and so on. Airlines often accept no liability if they are damaged or lost in checked baggage, so have passengers carry them on board."}]}]},
+{"h":"Carry-on baggage","blocks":[{"t":"table","cols":["Item","Example standard"],"rows":[["Weight per bag","Up to 10 kg (7 to 12 kg depending on the airline)"],["Size","Total dimensions within 115 cm, about 55 × 40 × 20 cm"],["Number (example)","Two in higher classes, one in economy"],["Also allowed (example)","Walking sticks and crutches, baby food for the flight, small folding pushchairs, car seats for use on board, and so on (as far as they can be stowed)"],["Liquids (international)","Containers of 100 ml or less in one clear bag of up to 1 litre. Exceptions for medicines, baby food and so on"]]},
+{"t":"check","items":[
+{"name":"Not allowed in the cabin (security)","x":"Items that could be used as weapons, such as knives, scissors, tools, golf clubs, batons and toy guns. Have the passenger put them in checked baggage."},
+{"name":"Where to stow","x":"Overhead bins with doors, under seats with restraint bars, wardrobes with doors. Nothing may be left on the floor at exit row seats."},
+{"name":"If it is too big","x":"Switch it to checked baggage at the counter. Many airlines do this free when the reason is cabin space."}]}]},
+{"h":"Excess baggage charges","blocks":[{"t":"rows","items":[
+{"name":"Three kinds of excess","x":"Extra pieces, excess weight (e.g. over 23 kg) and oversize (e.g. 159–203 cm, 204–292 cm). If more than one applies, the charges are added together."},
+{"name":"Buying in advance","x":"Many airlines sell it more cheaply online and elsewhere before departure. Airport rates on the day are high."},
+{"name":"Connections","x":"Can be paid once to the final destination or only as far as a stopover (depending on the airline’s rules)."},
+{"name":"Sports equipment","x":"Has its own size standards, so oversize charges often do not apply (lesson 1-11)."}]},
+{"t":"point","x":"Excess charges are a common source of disputes. Show the allowance and the excess in concrete terms and let the passenger choose between paying, reducing the bag (moving items to the cabin) or sending it separately; this makes acceptance easier."}]},
+{"h":"Watch it on video","blocks":[{"t":"video","title":"Where does your checked bag go at the airport?","ch":"JAL (sub-channel)","url":"https://www.youtube.com/watch?v=U8wF3uBf13s"}]}],
+"voice":"Excess baggage disputes grow from the feeling of not having been told, more than from the amount. Show the rule first and offer choices, such as repacking.",
+"terms":[["Checked Baggage","受託手荷物","위탁 수하물"],["Carry-on Baggage","機内持ち込み手荷物","휴대 수하물"],["Free Baggage Allowance (FBA)","無料手荷物許容量","무료 수하물 허용량"],["Pooling","合算","합산"],["Excess Baggage","超過手荷物","초과 수하물"],["Security Removed Item (SRI)","保安上の持ち込み制限品","기내 반입 제한 품목"]],
+"quiz":[{"q":"What happens to checked baggage if the passenger does not board?","opts":["It travels anyway","In principle it is offloaded","It is kept at the destination","It is sent on the next flight automatically"],"a":1,"exp":"Checked baggage assumes the passenger is on board."},
+{"q":"When two passengers on the same booking pool their allowance, what can be combined?","opts":["Weight","Number of pieces","Size","Charges"],"a":1,"exp":"Only the number of pieces can be combined."},
+{"q":"What is the right advice for laptops and cash?","opts":["Check them in","Carry them on board","Check them at the gate","Either is fine"],"a":1,"exp":"Have passengers carry valuables and fragile items on board."}],
+"next":"1-11 Baggage rules 2: sports equipment, instruments and other special items"});
+set("1-11",{"title":"Baggage Rules 2: Sports Equipment, Musical Instruments and Other Special Items","hl":"Special baggage","subtitle":"A golf bag counts as one piece together with an ordinary bag. Each type is counted differently",
+"lead":["Golf bags, skis, bicycles, surfboards, musical instruments: baggage with unusual shapes and sizes is counted differently against the free allowance, charged differently and packed under different conditions from ordinary baggage.","This lesson looks in detail at examples of how sports equipment is counted, “cabin bulky baggage” such as instruments that occupy a seat, waivers for fragile items, and the checks at the counter."],
+"sections":[
+{"h":"Sports equipment: the basics","blocks":[{"t":"rows","items":[
+{"name":"Limits","x":"32 kg and 292 cm total dimensions per item is the usual limit. It may differ depending on airport facilities."},
+{"name":"Oversize charges","x":"Sports equipment has its own size standards, so many airlines do not apply oversize charges."},
+{"name":"Declaration","x":"At check-in, take a declaration for carrying special baggage (waiving liability for damage and so on)."}]}]},
+{"h":"Examples of how items are counted (vary by airline)","blocks":[{"t":"table","cols":["Type","How it is counted","Charges"],"rows":[["Golf bag","One golf bag plus one ordinary bag, by combined weight, count as one piece of the free allowance","No handling fee"],["Skis and snowboards","As for golf","As for golf"],["Others (surfboards, diving equipment, bicycles, rackets, skateboards and so on)","Counted as one piece of checked baggage. No oversize charge within 292 cm","Excess weight charges plus a handling fee may apply"]]},
+{"t":"table","cols":["Example: an economy passenger (23 kg × 1 piece) checks a golf bag","Handling"],"rows":[["Golf bag and bag together 23 kg or less","One piece, free"],["Together over 23 kg up to 32 kg","Treated as one piece, with an excess weight charge"],["Together over 32 kg up to 45 kg","Treated as two pieces"]]},
+{"t":"note","x":"* The figures are guidelines based on several airlines’ examples. Some airlines count a golf bag as one ordinary piece, some charge separately and so on, so check each airline’s handling. ★"}]},
+{"h":"Instruments and valuables can also be “cabin bulky baggage”","blocks":[{"t":"p","x":"Instruments and valuables unsuitable for the hold can sometimes travel as “cabin bulky baggage” (CBBG), kept in the cabin on a seat bought for them. A request and approval are needed at booking."},
+{"t":"check","items":[
+{"name":"Size and weight (example)","x":"Up to 90 cm high (some allow up to 155 cm for instruments and the like), up to 75 kg per seat."},
+{"name":"Securing it","x":"It must be possible to secure it with a seat belt or similar. Items containing dangerous goods are not allowed."},
+{"name":"Seat position","x":"At the window, next to the passenger. Not in an exit row or the row behind it. Passengers nearby must be able to see the no-smoking, seat belt and exit signs."},
+{"name":"Charges and documents","x":"Not part of the free allowance; charged a seat fare at the same fare as the passenger. Issue a boarding pass for each item and pass it to the cabin on the special handling report."}]}]},
+{"h":"Fragile and poorly packed items","blocks":[{"t":"check","items":[
+{"name":"Check the packing","x":"Look to see whether the passenger’s packing is adequate."},
+{"name":"Confirm the waiver","x":"For poorly packed or fragile items, explain that the airline’s liability for damage or loss is limited, and get the waiver confirmed (signed)."},
+{"name":"FRAGILE tag","x":"Attach a handle-with-care tag, but explain that it cannot completely prevent damage."},
+{"name":"Suggest the cabin","x":"Small instruments can sometimes be carried on board if their total dimensions are within the cabin baggage standard."}]},
+{"t":"point","x":"Special baggage sometimes cannot be carried because of the size of the aircraft’s hold door. Always check whether it was booked in advance and what aircraft is operating that day."}]}],
+"voice":"For instruments and bicycles, check the packing and the limits of liability with the passenger before accepting. When asking for a damage waiver, briefly explain why.",
+"terms":[["Special Baggage","特殊手荷物","특수 수하물"],["Sporting Equipment","スポーツ用品","스포츠 장비"],["CBBG (Cabin Bulky Baggage)","座席占有手荷物","좌석 점유 수하물"],["Limited Release","免責","면책"],["Fragile","取り扱い注意","취급 주의"],["Handling Fee","取り扱い手数料","취급 수수료"]],
+"quiz":[{"q":"How is a golf bag commonly counted (example)?","opts":["Always as two pieces","As one piece together with an ordinary bag","Any number free","Carried on board"],"a":1,"exp":"Many airlines count it with one ordinary bag, by combined weight, as one piece."},
+{"q":"Where can cabin bulky baggage (CBBG) not be placed?","opts":["At the window","In an exit row or the row behind it","In the front rows","Next to the passenger"],"a":1,"exp":"It cannot go anywhere it would obstruct an evacuation."},
+{"q":"What is needed when accepting a poorly packed item?","opts":["Nothing","Explain the waiver and get it confirmed","Carry it free","Refuse it, nothing else"],"a":1,"exp":"Explain the limited liability and get it confirmed."}],
+"next":"1-12 The basics of dangerous goods"});
 })(window.ARTS);
