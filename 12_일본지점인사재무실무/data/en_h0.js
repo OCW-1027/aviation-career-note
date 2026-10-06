@@ -80,7 +80,7 @@ deep:[
 {name:"Recording depreciation",x:"Either reduce the asset directly (direct method) or use accumulated depreciation (indirect method). Small companies tend to use the direct method, larger ones the indirect method."}]}]},
 {h:"From the books to the accounts",blocks:[
 {t:"ladder",steps:[{name:"Vouchers",sub:"Invoices, receipts, bank book"},{name:"Journal",sub:"Split into debit and credit"},{name:"General ledger",sub:"Gather by account"},{name:"Trial balance",sub:"Do debits equal credits?"},{name:"Closing entries",sub:"Depreciation, accruals, prepayments"},{name:"Statements",sub:"Balance sheet, income statement"}]},
-{t:"link",href:"../23_재무3표실무/取引と財務諸表の練習.html",x:"[Practice page] Transactions and Financial Statements Practice: the “From journal entries to the statements” level follows one month from entries to accounts"},
+{t:"link",href:"../23_재무3표실무/取引と財務諸表の練習.html",x:"[Practice page] Transactions & Statements Practice: the “From journal entries to the statements” level follows one month from entries to accounts"},
 {t:"link",href:"決算の練習.html",x:"[Practice page] Year-End Closing Practice: a small company’s year of entries through the ledger, trial balance, statements and an income tax estimate"}]}],
 voice:"Rather than memorising entries, first explain in words where the money came from and where it went. Once you can say it, left and right fall into place.",
 terms:[["Journal Entry","仕訳","분개"],["Debit","借方","차변"],["Credit","貸方","대변"],["Account Title","勘定科目","계정과목"],["Trial Balance","試算表","시산표"]],
