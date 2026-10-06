@@ -253,7 +253,7 @@ deepKr:[
 {h:"A worked example at 3 million won",blocks:[
 {t:"paycalc",kr:1,std:3000000},
 {t:"point",x:"On top of pay, the employer pays about 11% of pay for the four insurances. It is smaller than in Japan (about 16%) because the pension and health insurance rates are lower."}]},
-{h:"Income tax and local income tax",blocks:[{t:"rows",items:[
+{h:"Income tax and local income tax",blocks:[{t:"krtaxcalc"},{t:"rows",items:[
 {name:"Monthly withholding",x:"The tax comes from the National Tax Service’s simplified withholding table, using monthly pay and the number of dependants. Local income tax is 10% of the income tax and is deducted with it."},
 {name:"Year-end settlement",x:"The year’s tax is recalculated and the difference settled in the following February’s pay. Deductions for insurance, medical and education costs and card spending are reflected here."},
 {name:"Rates",x:"6% on a tax base up to 14 million won, 15% up to 50 million and 24% up to 88 million, then 35%, 38%, 40%, 42% and 45%. ★"}]}]},

@@ -71,7 +71,7 @@ var css=
 'html.sh:lang(ko) .wrap>header h1,html.sh:lang(ko) .wrap>header p,html.sh:lang(ko) .shhero h1,html.sh:lang(ko) .shhero p,html.sh:lang(ko) .shfoot b{word-break:keep-all;overflow-wrap:break-word}'+
 'html.sh:lang(en) .wrap>header h1,html.sh:lang(en) .shhero h1{font-size:clamp(22px,3.6vw,31px)!important}'+
 '@media print{.shfoot{display:none!important}}@media (min-width:601px){.shfoot{margin-bottom:130px}}'+
-'@media (max-width:600px){.shfoot .shl{text-align:left}.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+
+'@media (max-width:600px){html.sh .wrap>header h1,html.sh .shhero h1{font-size:21px!important}html.sh:lang(en) .wrap>header h1,html.sh:lang(en) .shhero h1{font-size:19px!important;letter-spacing:-.01em}.shfoot .shl{text-align:left}.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+
 'html.sh .shbar .langs button{padding:6px 9px!important;font-size:12.5px!important;min-width:0}'+
 'html.sh .wrap>header,html.sh .shhero{padding:20px 18px 18px!important;border-radius:20px!important}'+
 'html.sh input,html.sh select{min-height:40px}}';
