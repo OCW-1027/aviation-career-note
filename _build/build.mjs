@@ -188,13 +188,16 @@ fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="U
 
 // ブラウザのキャッシュ対策（2026.09）：出力したページの中のローカルの .js・.css に ?v=ビルド番号 を付ける
 const VER = (process.env.GITHUB_SHA || Date.now().toString(36)).slice(0, 8);
+// 韓国語の画面で「」を引用符にする小さなスクリプト（_build/koq.js）を、すべてのページの <meta charset> のすぐ後に入れる（2026.10）
+const KOQ = '\n<script>/*KOQ*/' + fs.readFileSync(path.join(SRC, '_build', 'koq.js'), 'utf8').replace(/^\/\*[\s\S]*?\*\/\s*/, '').trim() + '</script>';
 (function addVer(dir) {
   for (const n of fs.readdirSync(dir, { withFileTypes: true })) {
     const p = path.join(dir, n.name);
     if (n.isDirectory()) addVer(p);
     else if (n.name.endsWith('.html')) {
       const s = fs.readFileSync(p, 'utf8');
-      const t = s.replace(/(\s(?:src|href)=")(?!https?:|\/\/|data:|#|mailto:)([^"?#]+\.(?:js|css))(")/g, `$1$2?v=${VER}$3`);
+      let t = s.replace(/(\s(?:src|href)=")(?!https?:|\/\/|data:|#|mailto:)([^"?#]+\.(?:js|css))(")/g, `$1$2?v=${VER}$3`);
+      if (!t.includes('/*KOQ*/')) t = t.replace(/<meta charset="utf-8">/i, m => m + KOQ);
       if (t !== s) fs.writeFileSync(p, t);
     }
   }

@@ -13,7 +13,7 @@ window.DICT=(window.DICT||[]).concat([
 ["BIZ","Group Inclusive Tour Fare (GV)","GV運賃（グループ包括旅行運賃）","GV 운임(그룹 포괄 여행 운임)","グループの形のIT運賃。日本では1名から使えるGV1が多い","그룹 형태의 IT 운임. 일본에서는 1명부터 쓰는 GV1이 많다","A group-form IT fare; in Japan GV1, applicable from one passenger, is common"],
 ["BIZ","Tour Code","ツアーコード","투어 코드","IT運賃・特別な条件の発券で入れる識別の番号","IT 운임·특별 조건 발권 때 넣는 식별 번호","An identifier entered when ticketing IT or special fares"],
 ["BIZ","Void","VOID（発券の取り消し）","VOID(발권 취소)","発券の直後、決められた時間内に航空券を無効にすること","발권 직후 정해진 시간 안에 항공권을 무효로 하는 것","Cancelling a ticket within a set time after issue"],
-["BIZ","Involuntary Refund","会社都合の払い戻し","비자발적 환불","欠航・大幅な時刻の変更など、航空会社の都合による払い戻し","결항·큰 시각 변경 등 항공사 사정에 의한 환불","A refund caused by the airline, such as a cancellation"],
+["BIZ","Involuntary Refund","会社都合の払い戻し","비자발적 환불","欠航・大幅な時刻の変更など、航空会社の都合による払い戻し","결항·큰 시각 변경 등 항공사 사정으로 인한 환불","A refund caused by the airline, such as a cancellation"],
 ["BIZ","Refund Application (RA)","払い戻しの申請（RA）","환불 신청(RA)","BSPLinkで航空会社に払い戻しを申請する手続き","BSPLink로 항공사에 환불을 신청하는 절차","Applying to the airline for a refund through BSPlink"],
 ["BIZ","Agency Debit Memo (ADM)","ADM（旅行会社への追加の請求）","ADM(여행사 추가 청구)","旅行会社の発券の誤りなどに対して航空会社が差額を請求する書類","여행사 발권 오류 등에 대해 항공사가 차액을 청구하는 서류","A memo charging an agency for ticketing errors"],
 ["BIZ","Agency Credit Memo (ACM)","ACM（旅行会社への返金）","ACM(여행사 반환)","航空会社から旅行会社へ金額を返すときの書類","항공사가 여행사에 금액을 돌려줄 때의 서류","A memo crediting an agency"],
