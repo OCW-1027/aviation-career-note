@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Aviation Career Note — Global Learning UI Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --navy:#102a43;--blue:#1769e0;--blue2:#eaf3ff;--cyan:#00a7b5;--ink:#172b4d;--muted:#60758a;
+ --line:#dfe7ef;--paper:#fff;--wash:#f6f8fb;--warm:#fff7df;--yellow:#f7c948;--green:#147d64;
+ --shadow:0 16px 40px rgba(16,42,67,.10);--r:18px;--max:1180px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--paper);font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans-serif;line-height:1.55}
+a{color:inherit}button,input{font:inherit}.shell{max-width:var(--max);margin:auto;padding:0 24px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:99;background:#fff;padding:10px;border-radius:8px}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(223,231,239,.9)}
+.topin{height:72px;display:flex;align-items:center;gap:26px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.02em;color:var(--navy);white-space:nowrap}
+.mark{width:38px;height:38px;border-radius:11px;background:var(--navy);display:grid;place-items:center;box-shadow:inset 0 -6px 14px rgba(0,0,0,.14)}
+.nav{display:flex;align-items:center;gap:5px;flex:1}.nav a{text-decoration:none;padding:9px 11px;border-radius:9px;font-size:14px;font-weight:600;color:#3e5368}.nav a:hover{background:var(--wash);color:var(--blue)}
+.actions{display:flex;align-items:center;gap:8px}.searchBtn,.lang button,.member{border:1px solid var(--line);background:#fff;border-radius:10px;min-height:40px}
+.searchBtn{width:42px;display:grid;place-items:center;cursor:pointer}.lang{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}.lang button{border:0;border-radius:0;padding:0 9px;cursor:pointer;color:var(--muted);font-size:12px;font-weight:700}.lang button.on{background:var(--navy);color:#fff}.member{padding:0 14px;font-weight:700;color:var(--navy);text-decoration:none;display:flex;align-items:center}
+.hero{position:relative;overflow:hidden;background:linear-gradient(118deg,#0f2d4d 0%,#124f8f 58%,#147c9e 100%);color:#fff;padding:76px 0 70px}
+.hero:after{content:"";position:absolute;right:-120px;top:-180px;width:620px;height:620px;border-radius:50%;border:1px solid rgba(255,255,255,.18);box-shadow:0 0 0 70px rgba(255,255,255,.035),0 0 0 140px rgba(255,255,255,.025)}
+.heroGrid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);gap:64px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#a9ddff}.eyebrow:before{content:"";width:26px;height:2px;background:#67d7df}
+.hero h1{font-size:clamp(38px,5.4vw,66px);line-height:1.08;letter-spacing:-.045em;margin:14px 0 20px;max-width:820px}.hero p{font-size:18px;line-height:1.75;color:#d8e8f6;max-width:680px;margin:0 0 28px}
+.find{background:#fff;border-radius:14px;padding:7px;display:flex;max-width:690px;box-shadow:0 16px 38px rgba(0,0,0,.18)}.find svg{margin:0 10px;flex:none}.find input{border:0;outline:0;min-width:0;flex:1;padding:0 4px;color:var(--ink)}.find button{border:0;background:var(--blue);color:#fff;border-radius:10px;padding:13px 20px;font-weight:800;cursor:pointer}
+.heroMeta{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;color:#d8e8f6;font-size:13px}.heroMeta b{color:#fff;font-size:18px;margin-right:5px}
+.flightCard{position:relative;min-height:380px}.orbit{position:absolute;inset:0;border:1px solid rgba(255,255,255,.22);border-radius:50%;transform:rotate(-14deg)}.orbit:before,.orbit:after{content:"";position:absolute;width:11px;height:11px;background:var(--yellow);border-radius:50%}.orbit:before{left:14%;top:16%}.orbit:after{right:10%;bottom:23%;background:#67d7df}
+.routePanel{position:absolute;inset:42px 22px 28px 38px;background:rgba(255,255,255,.97);color:var(--ink);border-radius:24px;padding:26px;box-shadow:0 28px 60px rgba(0,0,0,.22);transform:rotate(2deg)}
+.routePanel small{color:var(--muted);font-weight:700}.routePanel h3{margin:6px 0 20px;font-size:23px;color:var(--navy)}.routeLine{height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));position:relative;margin:34px 10px}.routeLine:before,.routeLine:after{content:"";position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:#fff;border:4px solid var(--blue);transform:translateY(-50%)}.routeLine:before{left:-4px}.routeLine:after{right:-4px;border-color:var(--cyan)}
+.plane{position:absolute;left:48%;top:50%;transform:translate(-50%,-50%) rotate(8deg);background:#fff;border:2px solid var(--line);width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--blue)}
+.routeLabels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}.routeLabels b{display:block;color:var(--navy);font-size:16px}.miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}.mini{background:var(--wash);border-radius:12px;padding:12px}.mini b{display:block;color:var(--navy);font-size:15px}.mini span{font-size:11px;color:var(--muted)}
+.goalbar{border-bottom:1px solid var(--line);background:#fff}.goalin{display:grid;grid-template-columns:1.1fr repeat(4,1fr);align-items:stretch}.goalLead{padding:22px 20px 22px 0}.goalLead b{display:block;color:var(--navy);font-size:16px}.goalLead span{font-size:13px;color:var(--muted)}.goal{border-left:1px solid var(--line);padding:20px;text-decoration:none;display:flex;gap:12px;align-items:center;transition:.2s}.goal:hover{background:var(--blue2)}.goal i{font-style:normal;width:38px;height:38px;border-radius:10px;background:var(--blue2);display:grid;place-items:center;color:var(--blue);font-weight:800}.goal b{font-size:14px}.goal span{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.section{padding:72px 0}.section.alt{background:var(--wash)}.secHead{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px}.kicker{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--blue);text-transform:uppercase}.secHead h2{font-size:clamp(28px,3.4vw,40px);line-height:1.18;letter-spacing:-.035em;margin:6px 0 0;color:var(--navy)}.secHead p{margin:0;color:var(--muted);max-width:500px}.textLink{font-weight:800;color:var(--blue);text-decoration:none;white-space:nowrap}
+.courseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.course{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;transition:transform .18s,box-shadow .18s,border-color .18s}.course:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bfd5ec}.cover{height:150px;padding:20px;display:flex;align-items:flex-end;position:relative;overflow:hidden}.cover:after{content:"";position:absolute;right:-32px;top:-35px;width:140px;height:140px;border:24px solid rgba(255,255,255,.18);border-radius:50%}.cover .code{position:relative;z-index:1;color:#fff;font-size:12px;font-weight:800;letter-spacing:.08em;background:rgba(0,0,0,.18);padding:5px 8px;border-radius:7px}.c1{background:linear-gradient(135deg,#1769e0,#4b9cff)}.c2{background:linear-gradient(135deg,#007f8b,#23b7c3)}.c3{background:linear-gradient(135deg,#5b4ab8,#8b7be8)}.c4{background:linear-gradient(135deg,#d06b20,#ef9f4a)}.c5{background:linear-gradient(135deg,#1f7a57,#45a97d)}.c6{background:linear-gradient(135deg,#9d3e67,#d05b86)}
+.courseBody{padding:19px 20px 20px}.courseType{font-size:12px;font-weight:700;color:var(--blue)}.course h3{font-size:18px;line-height:1.35;margin:7px 0 8px;color:var(--navy)}.course p{font-size:13px;color:var(--muted);margin:0 0 16px;min-height:42px}.courseMeta{border-top:1px solid var(--line);padding-top:13px;display:flex;gap:14px;color:var(--muted);font-size:12px}.courseMeta b{color:var(--ink)}
+.pathGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.path{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;text-decoration:none}.pathNum{font-size:12px;font-weight:800;color:var(--blue)}.path h3{font-size:17px;margin:22px 0 8px;color:var(--navy)}.path p{font-size:13px;color:var(--muted);margin:0}.pathArrow{margin-top:22px;color:var(--blue);font-weight:800}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:22px}.labFeature{border-radius:22px;background:var(--navy);color:#fff;padding:32px;min-height:320px;position:relative;overflow:hidden}.labFeature:after{content:"";position:absolute;right:-60px;bottom:-80px;width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,rgba(103,215,223,.35),rgba(23,105,224,.1))}.labFeature .kicker{color:#67d7df}.labFeature h3{font-size:31px;line-height:1.2;margin:12px 0}.labFeature p{color:#d8e8f6;max-width:500px}.labFeature a{display:inline-block;margin-top:18px;background:#fff;color:var(--navy);padding:11px 16px;border-radius:10px;text-decoration:none;font-weight:800}
+.labList{display:grid;grid-template-columns:1fr 1fr;gap:14px}.labItem{border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;background:#fff}.labItem i{font-style:normal;font-size:22px}.labItem b{display:block;margin:12px 0 5px;color:var(--navy)}.labItem span{font-size:12px;color:var(--muted)}
+.jobsBand{background:linear-gradient(110deg,#eef6ff,#f0fbfa);border:1px solid #d3e7f5;border-radius:24px;padding:32px;display:grid;grid-template-columns:.85fr 1.15fr;gap:32px;align-items:center}.jobsBand h2{font-size:34px;line-height:1.2;margin:8px 0;color:var(--navy)}.jobsBand p{color:var(--muted)}.jobsBand .buttons{display:flex;gap:9px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:10px;text-decoration:none;font-weight:800;font-size:14px}.btn.primary{background:var(--blue);color:#fff}.btn.secondary{background:#fff;border:1px solid var(--line);color:var(--navy)}
+.jobCard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 10px 26px rgba(16,42,67,.07)}.jobTop{display:flex;justify-content:space-between;gap:10px}.jobTop small{color:var(--muted)}.badge{font-size:11px;font-weight:800;color:var(--green);background:#e9f8f2;padding:5px 8px;border-radius:999px}.jobCard h3{margin:9px 0 12px;color:var(--navy)}.chips{display:flex;gap:6px;flex-wrap:wrap}.chips span{font-size:11px;background:var(--wash);padding:6px 8px;border-radius:7px;color:var(--muted)}
+.trust{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.trustCard{border-top:3px solid var(--blue);padding:20px 4px}.trustCard:nth-child(2){border-color:var(--cyan)}.trustCard:nth-child(3){border-color:var(--yellow)}.trustCard b{display:block;color:var(--navy);margin-bottom:6px}.trustCard p{font-size:13px;color:var(--muted);margin:0}
+footer{background:#0d2238;color:#d8e8f6;padding:46px 0}.footGrid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px}.footGrid h4{color:#fff;margin:0 0 12px}.footGrid a{display:block;text-decoration:none;color:#b9ccdd;font-size:13px;margin:7px 0}.footBrand{font-weight:800;color:#fff;font-size:18px}.footBrand p{font-size:12px;color:#9fb5c8;font-weight:400;max-width:300px}
+.prototype{position:fixed;right:14px;bottom:14px;z-index:30;background:#fff3c4;color:#5d4500;border:1px solid #f0d978;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+@media(max-width:980px){.nav{display:none}.heroGrid{grid-template-columns:1fr}.flightCard{display:none}.goalin{grid-template-columns:1fr 1fr}.goalLead{grid-column:1/-1}.goal:nth-child(2),.goal:nth-child(4){border-left:0}.courseGrid{grid-template-columns:repeat(2,1fr)}.pathGrid{grid-template-columns:repeat(2,1fr)}.lab{grid-template-columns:1fr}.jobsBand{grid-template-columns:1fr}.footGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.shell{padding:0 16px}.topin{height:62px;gap:8px}.brand span{display:none}.member{display:none}.lang button{padding:0 7px}.hero{padding:52px 0}.hero h1{font-size:39px}.hero p{font-size:16px}.find{display:grid;grid-template-columns:auto 1fr}.find button{grid-column:1/-1}.goalin{display:block}.goalLead{padding:18px 0}.goal{border-left:0;border-top:1px solid var(--line);padding:15px 0}.section{padding:52px 0}.secHead{display:block}.secHead p{margin-top:12px}.courseGrid,.pathGrid,.labList,.trust{grid-template-columns:1fr}.cover{height:125px}.jobsBand{padding:22px}.footGrid{grid-template-columns:1fr}.prototype{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.course{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 이동</a>
+<header class="top">
+ <div class="shell topin">
+  <a class="brand" href="../8_사이트/index.html" aria-label="Aviation Career Note">
+   <span class="mark"><svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M2 13.2 10.2 11l5.7-6.4 2.3.7-3.7 6 5.8-1.6 1.7 1.6-7.5 3.8-2.5 5.2-1.8-.5.7-4.2-6.8 1.2z"/></svg></span>
+   <span>Aviation Career Note</span>
+  </a>
+  <nav class="nav" aria-label="주요 메뉴">
+   <a href="#courses">강좌</a><a href="#paths">커리어 패스</a><a href="#practice">실습</a><a href="../8_사이트/jobs.html">구인</a><a href="../8_사이트/index.html#tools">자료실</a><a href="../8_사이트/about.html">소개</a>
+  </nav>
+  <div class="actions">
+   <button class="searchBtn" type="button" aria-label="검색"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+   <div class="lang" role="group" aria-label="Language"><button type="button">JA</button><button type="button" class="on">KO</button><button type="button">EN</button></div>
+   <a class="member" href="../8_사이트/account.html">내 학습</a>
+  </div>
+ </div>
+</header>
+
+<main id="main">
+<section class="hero">
+ <div class="shell heroGrid">
+  <div>
+   <div class="eyebrow">AVIATION LEARNING & CAREER</div>
+   <h1>항공의 일을,<br>지식에서 커리어까지.</h1>
+   <p>공항·항공사 현장에서 필요한 실무 지식, 자격시험, 시뮬레이션, 커리어 정보를 하나의 학습 경로로 연결합니다.</p>
+   <form class="find" action="../8_사이트/index.html" method="get">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60758a" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <input type="search" name="q" placeholder="무엇을 배우고 싶으세요? 예: 운항관리, 공항, 면접">
+    <button type="submit">학습 찾기</button>
+   </form>
+   <div class="heroMeta"><span><b>16</b> 학습 시리즈</span><span><b>500+</b> 레슨</span><span><b>20+</b> 실습·도구</span><span>日本語 · 한국어 · English</span></div>
+  </div>
+  <div class="flightCard" aria-hidden="true">
+   <div class="orbit"></div>
+   <div class="routePanel">
+    <small>YOUR LEARNING ROUTE</small>
+    <h3>Airport Operations → Career</h3>
+    <div class="routeLine"><span class="plane">✈</span></div>
+    <div class="routeLabels"><span><b>START</b>기초 지식</span><span style="text-align:right"><b>GOAL</b>현장 판단</span></div>
+    <div class="miniGrid">
+     <div class="mini"><b>01 · Learn</b><span>개념과 규정 이해</span></div>
+     <div class="mini"><b>02 · Practice</b><span>실무 시뮬레이션</span></div>
+     <div class="mini"><b>03 · Check</b><span>퀴즈·시험 대비</span></div>
+     <div class="mini"><b>04 · Career</b><span>직무·구인 연결</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="goalbar">
+ <div class="shell goalin">
+  <div class="goalLead"><b>지금 나에게 맞는 시작점</b><span>콘텐츠 목록보다 먼저 ‘목표’를 선택합니다.</span></div>
+  <a class="goal" href="#courses"><i>01</i><span><b>처음 시작해요</b><span>항공 기초부터</span></span></a>
+  <a class="goal" href="#paths"><i>02</i><span><b>현장 실무를 배워요</b><span>직무별 학습 경로</span></span></a>
+  <a class="goal" href="#practice"><i>03</i><span><b>시험을 준비해요</b><span>문제·퀴즈·실습</span></span></a>
+  <a class="goal" href="../8_사이트/jobs.html"><i>04</i><span><b>커리어를 찾아요</b><span>면접·구인 정보</span></span></a>
+ </div>
+</section>
+
+<section class="section" id="courses">
+ <div class="shell">
+  <div class="secHead"><div><div class="kicker">Featured learning</div><h2>현장에서 바로 쓰는 학습 시리즈</h2></div><a class="textLink" href="../8_사이트/index.html#learn">전체 강좌 보기 →</a></div>
+  <div class="courseGrid">
+   <a class="course" href="../1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html"><div class="cover c1"><span class="code">GND · AIRPORT</span></div><div class="courseBody"><span class="courseType">직무 핵심 과정</span><h3>항공 여객운송 실무</h3><p>카운터·게이트·수하물·비정상 상황·탑재관리까지 공항 여객 업무를 구조적으로 익힙니다.</p><div class="courseMeta"><span><b>65</b> 레슨</span><span>초급 → 실무</span></div></div></a>
+   <a class="course" href="../19_운항관리실무/00_シリーズ全体_運航管理の実務.html"><div class="cover c2"><span class="code">DSP · DISPATCH</span></div><div class="courseBody"><span class="courseType">전문 실무 과정</span><h3>운항관리 실무</h3><p>법규·기상·NOTAM·비행계획·연료·승무 기준을 실제 운항 흐름으로 연결합니다.</p><div class="courseMeta"><span><b>60</b> 레슨</span><span>중급 → 실무</span></div></div></a>
+   <a class="course" href="../6_항공화물입문/00_シリーズ全体_航空貨物入門.html"><div class="cover c3"><span class="code">CGO · CARGO</span></div><div class="courseBody"><span class="courseType">직무 핵심 과정</span><h3>항공화물 실무</h3><p>수출입·환적·위험물·보안·클레임·SLA까지 화물 운영의 전체 흐름을 학습합니다.</p><div class="courseMeta"><span><b>33</b> 레슨</span><span>초급 → 실무</span></div></div></a>
+   <a class="course" href="../16_스테이션운영실무/00_シリーズ全体_ステーション運営.html"><div class="cover c4"><span class="code">STN · MANAGEMENT</span></div><div class="courseBody"><span class="courseType">리더십 과정</span><h3>공항 지점 운영 실무</h3><p>정시성·지점 평가·조업사 관리·본사 협업을 REP와 지점장 관점에서 정리합니다.</p><div class="courseMeta"><span><b>24</b> 레슨</span><span>실무 → 관리자</span></div></div></a>
+   <a class="course" href="../5_면접대비가이드/00_シリーズ全体_面接対策.html"><div class="cover c5"><span class="code">INT · CAREER</span></div><div class="courseBody"><span class="courseType">커리어 과정</span><h3>항공업계 면접 대비</h3><p>면접관의 관점, 빈출 질문, 상황형 질문, 언어 대응을 직무 이해와 함께 준비합니다.</p><div class="courseMeta"><span><b>18</b> 레슨</span><span>취업·이직</span></div></div></a>
+   <a class="course" href="../23_재무3표실무/00_シリーズ全体_財務3表.html"><div class="cover c6"><span class="code">FIN · BUSINESS</span></div><div class="courseBody"><span class="courseType">비즈니스 과정</span><h3>숫자로 읽는 항공회사</h3><p>재무 3표부터 항공사 재무, 투자 판단까지 숫자를 실제 경영 의사결정으로 연결합니다.</p><div class="courseMeta"><span><b>49</b> 레슨</span><span>입문 → 응용</span></div></div></a>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="paths">
+ <div class="shell">
+  <div class="secHead"><div><div class="kicker">Career pathways</div><h2>직무가 보이는 학습 경로</h2></div><p>글을 나열하는 대신 “어떤 일을 하고 싶은가”에서 출발해 필요한 강좌·실습·시험·면접으로 이어집니다.</p></div>
+  <div class="pathGrid">
+   <a class="path" href="../1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html"><span class="pathNum">PATH 01</span><h3>Airport Passenger</h3><p>항공 기초 → 여객운송 → 비정상 대응 → 탑재관리 → 면접</p><div class="pathArrow">경로 시작 →</div></a>
+   <a class="path" href="../19_운항관리실무/00_シリーズ全体_運航管理の実務.html"><span class="pathNum">PATH 02</span><h3>Flight Dispatcher</h3><p>항공 기초 → 기상·법규 → 운항관리 → 항공로 실습 → 시험</p><div class="pathArrow">경로 시작 →</div></a>
+   <a class="path" href="../16_스테이션운영실무/00_シリーズ全体_ステーション運営.html"><span class="pathNum">PATH 03</span><h3>Station Manager</h3><p>여객·운항 이해 → 지점 운영 → 인사·재무 → 인수인계</p><div class="pathArrow">경로 시작 →</div></a>
+   <a class="path" href="../13_항공영업입문/00_シリーズ全体_航空営業入門.html"><span class="pathNum">PATH 04</span><h3>Airline Business</h3><p>항공영업 → Revenue Management → 재무 → 회사 가치 판단</p><div class="pathArrow">경로 시작 →</div></a>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="practice">
+ <div class="shell">
+  <div class="secHead"><div><div class="kicker">Practice lab</div><h2>읽고 끝내지 않는 실습형 학습</h2></div><a class="textLink" href="../8_사이트/index.html#tools">모든 실습·도구 →</a></div>
+  <div class="lab">
+   <div class="labFeature"><div class="kicker">Interactive practice</div><h3>운항관리 실무 연습</h3><p>항공로, 비행계획, 연료, 관제, 슬롯을 하나의 상황 안에서 판단해 보세요. 강의 콘텐츠와 도구를 같은 학습 경험으로 묶는 것이 이 사이트의 차별점입니다.</p><a href="../18_항공기초지식/航空路図の練習.html">실습 시작하기 →</a></div>
+   <div class="labList">
+    <a class="labItem" href="../1_지상직여객운송입문/搭載計算の練習.html"><i>⚖</i><b>Load Control</b><span>10개 기종 W&B·로드시트</span></a>
+    <a class="labItem" href="../13_항공영업입문/収益管理の練習.html"><i>↗</i><b>Revenue Management</b><span>좌석 배분·오버부킹·RevPAR</span></a>
+    <a class="labItem" href="../22_学科試験過去問/学科試験_過去問.html"><i>✓</i><b>Japan Exam</b><span>운항관리자 기출·해설</span></a>
+    <a class="labItem" href="../23_재무3표실무/航空会社経営シミュレーション.html"><i>▦</i><b>Airline Management</b><span>4분기 항공사 경영 시뮬레이션</span></a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section alt">
+ <div class="shell">
+  <div class="jobsBand">
+   <div><div class="kicker">Learning → Career</div><h2>배운 다음의 선택까지 연결합니다.</h2><p>교육 콘텐츠와 채용을 같은 화면에서 뒤섞지 않고, 학습을 마친 이용자가 자연스럽게 커리어 정보로 이동하도록 분리합니다.</p><div class="buttons"><a class="btn primary" href="../8_사이트/jobs.html">항공·공항 구인 보기</a><a class="btn secondary" href="../5_면접대비가이드/00_シリーズ全体_面接対策.html">면접 준비하기</a></div></div>
+   <div class="jobCard"><div class="jobTop"><small>FEATURED CAREER</small><span class="badge">Career board</span></div><h3>현장 지식을 쌓고, 다음 역할을 찾으세요.</h3><div class="chips"><span>Airport Operations</span><span>Flight Dispatch</span><span>Cargo</span><span>Station Management</span><span>Sales</span></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="shell">
+  <div class="secHead"><div><div class="kicker">Trust & quality</div><h2>항공 교육 사이트에서 디자인만큼 중요한 것</h2></div></div>
+  <div class="trust">
+   <div class="trustCard"><b>공식 출처를 눈에 보이게</b><p>법규·시험·운항 정보에는 출처 기관, 기준일, 마지막 검토일을 레슨 상단에 표시합니다.</p></div>
+   <div class="trustCard"><b>콘텐츠 상태를 명확하게</b><p>기초·실무·참고·예시를 구분하고, 실제 회사 규정과 다를 수 있는 부분은 별도 주의문으로 분리합니다.</p></div>
+   <div class="trustCard"><b>다국어는 같은 구조로</b><p>JA/KO/EN에서 메뉴와 학습 경로가 동일하게 유지되도록 언어보다 정보구조를 먼저 표준화합니다.</p></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="shell footGrid">
+  <div class="footBrand">Aviation Career Note<p>항공의 실무 지식, 학습, 도구, 커리어를 연결하는 독립 교육 프로젝트.</p></div>
+  <div><h4>Learn</h4><a href="../8_사이트/index.html#learn">강좌</a><a href="../8_사이트/guide.html">학습 가이드</a><a href="../8_사이트/index.html#tools">실습·자료</a></div>
+  <div><h4>Career</h4><a href="../8_사이트/jobs.html">구인</a><a href="../5_면접대비가이드/00_シリーズ全体_面接対策.html">면접 대비</a><a href="../7_구인게재_기업용/求人掲載のご案内.html">기업용 구인 게재</a></div>
+  <div><h4>About</h4><a href="../8_사이트/about.html">사이트 소개</a><a href="../8_사이트/sources.html">출처</a><a href="../8_사이트/terms.html">이용약관</a><a href="../8_사이트/privacy.html">개인정보</a></div>
+ </div>
+</footer>
+<div class="prototype">DESIGN PROTOTYPE · noindex</div>
+<script>
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.lang button').forEach(function(x){x.classList.remove('on')});b.classList.add('on')})});
+</script>
+</body>
+</html>
