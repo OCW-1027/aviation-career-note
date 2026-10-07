@@ -164,7 +164,76 @@ cgo_bond:function(l){
   ko:{t:'보세 화물터미널: 도착에서 인도까지',st:['도착: 적하목록과 실제 화물을 대조한다','과부족·파손을 기록하고 정해진 기한까지 보고한다','수입 허가가 나올 때까지 미허가 구역에 보관한다','NACCS로 수입 허가를 확인한다','인수하는 사람과 서류를 두 사람이 확인한다','인도하고 반출 시각과 상대를 기록한다'],who:['화물터미널','화물터미널→세관','화물터미널','화물터미널','화물터미널(2인)','화물터미널']},
   en:{t:'Bonded terminal: from arrival to release',st:['Arrival: check the actual cargo against the manifest','Record shortages, overages and damage, and report them by the deadline','Store in the uncleared area until import permission','Confirm import permission on NACCS','Two staff check the collector and the documents','Release, and record the time and the recipient'],who:['Terminal','Terminal → customs','Terminal','Terminal','Terminal (two people)','Terminal']}})[l];
  if(!W)return F.cgo_bond('ja');setK(1);
- return STEPS(W.t,W.st,W.who,['#2F6FD6','#E08A2E','#6B4FA0','#2E9B5F','#D64545','#2C7A7B'],'13s')}
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#E08A2E','#6B4FA0','#2E9B5F','#D64545','#2C7A7B'],'13s')},
+/* 3-1 危険物の9つの分類：ひし形のラベルを色と番号で示し、順に光る（形は簡略化） */
+cgo_dg:function(l){
+ var W=({ja:{t:'危険物の9つの分類（ラベルは簡略化）',c:['火薬類','ガス','引火性液体','可燃性物質','酸化性物質','毒物・感染性物質','放射性物質','腐食性物質','その他（リチウム電池など）'],n:['ラベルは縦横10cm以上のひし形。分類の番号が下の角に入る','リチウム電池・ドライアイスは「9 その他」。身近な物ほど申告もれ（隠れ危険物）が起きやすい']},
+  ko:{t:'위험물 9개 분류(라벨은 단순화)',c:['화약류','가스','인화성 액체','가연성 물질','산화성 물질','독물·감염성 물질','방사성 물질','부식성 물질','기타(리튬 배터리 등)'],n:['라벨은 가로세로 10cm 이상의 마름모. 분류 번호가 아래 꼭짓점에 들어간다','리튬 배터리·드라이아이스는 「9 기타」. 흔한 물건일수록 신고 누락(숨은 위험물)이 생기기 쉽다']},
+  en:{t:'The nine classes of dangerous goods (labels simplified)',c:['Explosives','Gases','Flammable liquids','Flammable solids','Oxidisers','Toxic & infectious','Radioactive','Corrosives','Miscellaneous (lithium batteries etc.)'],n:['Labels are diamonds at least 10 cm a side, with the class number in the bottom corner','Lithium batteries and dry ice are Class 9; everyday items are where undeclared (hidden) dangerous goods most often slip through']}})[l];
+ if(!W)return F.cgo_dg('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),C=[['#F28C28','#F28C28'],['#D64545','#2E9B5F'],['#D64545','#D64545'],['#D64545','#fff'],['#F5C518','#F5C518'],['#fff','#fff'],['#F5C518','#fff'],['#fff','#222'],['#fff','#fff']],y0=60,cw=200,lh=FS(10)*1.3,rows=[0,0,0];
+ for(var r=0;r<3;r++){var m=0;for(var c=0;c<3;c++)m=Math.max(m,LI(W.c[r*3+c],10,180).length);rows[r]=96+m*lh}
+ var y=y0;
+ for(var i=0;i<9;i++){var r=Math.floor(i/3),c=i%3,cx=20+c*cw+cw/2,yy=y0;for(var k=0;k<r;k++)yy+=rows[k]+6;var cy=yy+44,d=34;
+  s+='<g>'+R(22+c*cw,yy,cw-4,rows[r],'#fff',10,' stroke="#D5DEE8"')+'<rect x="'+(22+c*cw)+'" y="'+yy+'" width="'+(cw-4)+'" height="'+rows[r]+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,9,0,.45)+' dur="13s" repeatCount="indefinite"/></rect>';
+  s+='<polygon points="'+cx+','+(cy-d)+' '+(cx+d)+','+cy+' '+cx+','+(cy+d)+' '+(cx-d)+','+cy+'" fill="'+C[i][0]+'" stroke="#222" stroke-width="1.5"/>';
+  if(C[i][1]!==C[i][0])s+='<polygon points="'+(cx-d)+','+cy+' '+(cx+d)+','+cy+' '+cx+','+(cy+d)+'" fill="'+C[i][1]+'" stroke="#222" stroke-width="1.5"/>';
+  if(i===8)for(var t=0;t<4;t++)s+='<line x1="'+(cx-14+t*7)+'" y1="'+(cy-d+10+t*0)+'" x2="'+(cx-14+t*7)+'" y2="'+(cy-6)+'" stroke="#222" stroke-width="3"/>';
+  s+='<circle cx="'+cx+'" cy="'+(cy+d-12)+'" r="'+(FS(11)*0.7+2).toFixed(1)+'" fill="#fff" stroke="#222" stroke-width="1.2"/>'+tx(cx,cy+d-12+FS(11)*0.36,String(i+1),11,'#222',900)+WR(cx,cy+d+10+LI(W.c[i],10,180).length*lh/2,W.c[i],10,D,800,180)+'</g>'}
+ for(var k=0;k<3;k++)y+=rows[k]+6;
+ var L=LIST(W.n,y+6,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-1 運ぶための4つの条件：リチウムイオン電池（機器と同梱）の例 */
+cgo_dg4:function(l){
+ var W=({ja:{t:'危険物を運ぶための4つの条件（例：機器と同梱のリチウムイオン電池）',st:['分類：正しい品名と国連番号を決める','包装：認められた容器と、1個あたりの量の上限を守る','表示：危険物のラベルと、品名・国連番号のマーク','書類：荷主が危険物の申告書を作り、署名する'],who:['UN3481・9','包装の基準 966★','9のラベル（電池）','申告書']},
+  ko:{t:'위험물을 운송하기 위한 네 가지 조건(예: 기기와 동포장된 리튬이온 배터리)',st:['분류: 올바른 품명과 UN 번호를 정한다','포장: 인정된 용기와 1개당 양의 상한을 지킨다','표시: 위험물 라벨과 품명·UN 번호 마크','서류: 화주가 위험물 신고서를 작성하고 서명한다'],who:['UN3481·9','포장 기준 966★','9 라벨(배터리)','신고서']},
+  en:{t:'Four conditions for carrying dangerous goods (example: lithium ion batteries packed with equipment)',st:['Classification: the correct proper shipping name and UN number','Packing: an approved packaging within the quantity limit per package','Marking and labels: hazard label plus name and UN number marks','Documents: the shipper completes and signs the declaration'],who:['UN3481, Class 9','Packing instruction 966 ★','Class 9 battery label','Declaration']}})[l];
+ if(!W)return F.cgo_dg4('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#E08A2E','#2E9B5F'],'10s')},
+/* 3-2 生きた動物：予約から検疫まで */
+cgo_avi:function(l){
+ var W=({ja:{t:'生きた動物を運ぶ流れ（例）',st:['予約：便と機種で運べるか、暑い時期・寒い時期の制限はないか','受け付け：容器の大きさ・換気・水と餌の入れ口を確かめる','書類：健康証明書、種類によっては輸出入の許可','搭載：温度と換気が管理された区画へ。ドライアイスとは離す','機長に知らせる：特別な搭載物の通知（NOTOC）に書く','到着：最優先で取り降ろし、動物検疫を受ける'],who:['予約の係','上屋','荷主','搭載の係','搭載管理','上屋・検疫所']},
+  ko:{t:'생동물을 운송하는 흐름(예)',st:['예약: 편과 기종으로 운송 가능한지, 더운 시기·추운 시기 제한은 없는지','접수: 용기 크기·환기·물과 먹이 투입구를 확인한다','서류: 건강증명서, 종류에 따라 수출입 허가','탑재: 온도와 환기가 관리되는 구역에. 드라이아이스와는 떨어뜨린다','기장에게 알림: 특수 탑재물 통지(NOTOC)에 적는다','도착: 최우선으로 하기하고 동물 검역을 받는다'],who:['예약 담당','화물터미널','화주','탑재 담당','탑재관리','화물터미널·검역소']},
+  en:{t:'Carrying live animals (example)',st:['Booking: can this flight and type carry it; any hot or cold season limits?','Acceptance: check container size, ventilation and food and water access','Documents: health certificate and, for some species, import or export permits','Loading: into a temperature- and ventilation-controlled zone, away from dry ice','Tell the captain: list it on the special load notification (NOTOC)','Arrival: offload first and pass animal quarantine'],who:['Reservations','Terminal','Shipper','Loading team','Load control','Terminal & quarantine']}})[l];
+ if(!W)return F.cgo_avi('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#6B4FA0','#E08A2E','#D64545','#2E9B5F'],'13s')},
+/* 3-3 温度の記録（ロガー）：2〜8℃の帯の中を進み、ランプでの待機で外れる */
+cgo_cold:function(l){
+ var W=({ja:{t:'温度の記録（2〜8℃の医薬品、架空の例）',b:'許される範囲 2〜8℃',st:['出発の倉庫','トラック','上屋','ランプで待機','機内','到着の倉庫'],ex:'外れた！',n:['ランプでの待機（夏の炎天下）で9.5℃まで上がり、範囲を外れた例','外れた時間と温度は記録に残り、到着時に荷主が使えるかどうかを判断する','防ぐには、待機を短くする・保冷の覆いを使う・搭載の順番を最後にする']},
+  ko:{t:'온도 기록(2~8℃ 의약품, 가상의 예)',b:'허용 범위 2~8℃',st:['출발 창고','트럭','화물터미널','램프 대기','기내','도착 창고'],ex:'벗어났다!',n:['램프 대기(여름 땡볕)에서 9.5℃까지 올라 범위를 벗어난 예','벗어난 시간과 온도는 기록에 남고, 도착 때 화주가 쓸 수 있는지 판단한다','막으려면 대기를 줄이고, 보냉 덮개를 쓰고, 탑재 순서를 마지막으로 한다']},
+  en:{t:'Temperature log (2–8 °C pharmaceuticals, fictional example)',b:'Allowed range 2–8 °C',st:['Origin warehouse','Truck','Terminal','Ramp wait','On board','Destination warehouse'],ex:'Excursion!',n:['During a ramp wait in summer sun the shipment reached 9.5 °C, outside the range','The time and temperature of the excursion stay on the log; at arrival the shipper decides whether the goods can be used','To prevent it: shorten the wait, use thermal covers and load it last']}})[l];
+ if(!W)return F.cgo_cold('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),x0=70,x1=610,y0=70,y1=250,T=function(t){return y1-(t-0)/12*(y1-y0)};
+ s+=R(20,58,600,230,'#fff',12,' stroke="#D5DEE8"')+'<rect x="'+x0+'" y="'+T(8)+'" width="'+(x1-x0)+'" height="'+(T(2)-T(8))+'" fill="#2E9B5F" opacity=".14"/>';
+ [0,2,4,6,8,10,12].forEach(function(t){s+='<line x1="'+x0+'" y1="'+T(t)+'" x2="'+x1+'" y2="'+T(t)+'" stroke="#E2E8F0"/>'+tx(x0-12,T(t)+4,String(t),9,'#5B6B7D',700,'end')});
+ s+=tx(x0+8,T(8)-6,W.b,10,'#2E9B5F',800,'start');
+ var pts=[[0,5],[60,5.2],[100,4.8],[160,5.5],[200,6],[230,7.5],[260,9.5],[290,8.6],[320,6.5],[380,5],[440,4.6],[490,5],[540,5.1]],d='';
+ pts.forEach(function(p,i){d+=(i?'L':'M')+(x0+p[0])+' '+T(p[1]).toFixed(1)});
+ s+='<path d="'+d+'" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-dasharray="900" stroke-dashoffset="900"><animate attributeName="stroke-dashoffset" values="900;0;0" keyTimes="0;.7;1" dur="7s" repeatCount="indefinite"/></path>';
+ s+='<circle cx="'+(x0+260)+'" cy="'+T(9.5)+'" r="7" fill="#D64545" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.35;.4;1" dur="7s" repeatCount="indefinite"/></circle>'+'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.35;.4;1" dur="7s" repeatCount="indefinite"/>'+LB(x0+275,T(10.6),W.ex,10,'#fff','start','#D64545')+'</g>';
+ var seg=[[0,90],[90,170],[170,230],[230,300],[300,450],[450,540]],y=258;
+ seg.forEach(function(g,i){var cx=x0+(g[0]+g[1])/2;s+='<line x1="'+(x0+g[1])+'" y1="'+y0+'" x2="'+(x0+g[1])+'" y2="'+y1+'" stroke="#CBD5E1" stroke-dasharray="3 4"/>'+WR(cx,y+14,W.st[i],8.5,i===3?'#D64545':'#334155',800,Math.max(60,g[1]-g[0]))});
+ var L=LIST(W.n,300,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-4 扉の大きさ：木箱が貨物室の扉を通るか（B787の前方の扉の例、数字は目安） */
+cgo_door:function(l){
+ var W=({ja:{t:'扉を通るか：寸法を先に確かめる（数字は目安★）',d:'貨物室の扉 約270×170cm',a:'木箱A 240×150cm',b:'木箱B 240×185cm',ok:'通る',ng:'通らない',n:['木箱Aは扉より小さいので通る。木箱Bは高さが15cm足りず通らない','扉の大きさは機種と扉の位置で違う。予約の前にメーカーの資料・航空会社の表で確かめる','通らないときは、梱包を変えるか、扉の大きい貨物専用機を検討する']},
+  ko:{t:'문을 통과하는가: 치수를 먼저 확인한다(숫자는 기준★)',d:'화물칸 문 약 270×170cm',a:'나무상자 A 240×150cm',b:'나무상자 B 240×185cm',ok:'통과',ng:'통과 못 함',n:['나무상자 A는 문보다 작아 통과한다. B는 높이가 15cm 모자라 통과하지 못한다','문 크기는 기종과 문 위치에 따라 다르다. 예약 전에 제작사 자료·항공사 표로 확인한다','통과하지 못하면 포장을 바꾸거나 문이 큰 화물기를 검토한다']},
+  en:{t:'Will it go through the door? Check dimensions first (figures are guides ★)',d:'Cargo door about 270×170 cm',a:'Crate A 240×150 cm',b:'Crate B 240×185 cm',ok:'Fits',ng:'Does not fit',n:['Crate A is smaller than the door and goes in; crate B is 15 cm too tall','Door sizes differ by aircraft type and door position; check the manufacturer data and the airline’s tables before booking','If it will not fit, repack it or look at a freighter with a larger door']}})[l];
+ if(!W)return F.cgo_door('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),sc=0.9,dur='8s',yend=0;
+ [[W.a,150,'#2E9B5F',W.ok,0],[W.b,185,'#D64545',W.ng,1]].forEach(function(c,i){var ox=20+i*310,oy=60,dw=270*sc,dh=170*sc,dx=ox+(290-dw)/2,dy=oy+20+LI(W.d,9,270).length*FS(9)*1.3;
+  var bh=(dy+dh-oy)+FS(12)*1.3+30;yend=oy+bh;s+=R(ox,oy,290,bh,'#F4F7FB',12)+'<rect x="'+dx+'" y="'+dy+'" width="'+dw+'" height="'+dh+'" fill="#fff" stroke="#0f3558" stroke-width="3" stroke-dasharray="8 5"/>'+WR(ox+145,oy+18,W.d,9,'#0f3558',800,270);
+  var cw=240*sc,ch=c[1]*sc,cx=ox+(290-cw)/2,cy=dy+dh-ch;
+  s+='<rect x="'+cx+'" y="'+cy+'" width="'+cw+'" height="'+ch+'" rx="3" fill="'+c[2]+'" opacity=".55" stroke="'+c[2]+'" stroke-width="2"><animate attributeName="opacity" values="0;.55;.55" keyTimes="0;.2;1" dur="'+dur+'" repeatCount="indefinite"/></rect>';
+  s+=WR(ox+145,cy+ch/2+FS(10)*0.35,c[0],10,'#0f3558',900,cw-14);
+  s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.35;.4;1" dur="'+dur+'" repeatCount="indefinite"/>'+LB(ox+145,dy+dh+14+FS(12)*0.5,c[3],12,'#fff','middle',c[2])+'</g>'});
+ var L=LIST(W.n,yend+10,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-5 半導体の装置の輸送：準備から据え付けまで */
+cgo_semi:function(l){
+ var W=({ja:{t:'半導体の装置を運ぶ流れ（例）',st:['輸出の管理：該当・非該当を判定し、必要なら許可を取る','梱包：防振・防湿、衝撃と傾きのセンサーを付ける','国内の輸送：空気ばね付きのトラックで上屋へ','上屋・搭載：フォークリフトの差し込み位置を守り、機体に固定','到着：センサーと梱包を確かめ、写真で記録','据え付けの場所へ：日程に合わせて国内の配送'],who:['メーカー・荷主','梱包の会社','運送会社','上屋・航空会社','フォワーダー','運送会社']},
+  ko:{t:'반도체 장비를 운송하는 흐름(예)',st:['수출 관리: 해당·비해당을 판정하고 필요하면 허가를 받는다','포장: 방진·방습, 충격·기울기 센서를 붙인다','국내 운송: 에어 서스펜션 트럭으로 화물터미널에','화물터미널·탑재: 지게차 삽입 위치를 지키고 기체에 고정','도착: 센서와 포장을 확인하고 사진으로 기록','설치 장소로: 일정에 맞춰 국내 배송'],who:['제조사·화주','포장 회사','운송 회사','화물터미널·항공사','포워더','운송 회사']},
+  en:{t:'Moving semiconductor equipment (example)',st:['Export control: classify the item and obtain a licence if required','Packing: anti-vibration and moisture protection, shock and tilt indicators','Road leg: air-suspension truck to the terminal','Terminal and loading: forklift points respected, secured to the aircraft','Arrival: check indicators and packing, record with photos','To the installation site: domestic delivery on schedule'],who:['Maker & shipper','Packing company','Haulier','Terminal & airline','Forwarder','Haulier']}})[l];
+ if(!W)return F.cgo_semi('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#2C7A7B','#E08A2E','#D64545','#2E9B5F'],'13s')}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

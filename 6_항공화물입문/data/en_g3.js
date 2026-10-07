@@ -4,7 +4,8 @@ set("3-1",{title:"Dangerous Goods: What Can and Cannot Fly",hl:"dangerous goods"
 lead:["Lithium batteries, paint, aerosols, dry ice, chemicals. Many everyday goods count as dangerous goods in air transport. Under the international rules — ICAO’s technical instructions and the IATA dangerous goods regulations — they divide into goods that can fly, goods that can fly under conditions, and goods that cannot.",
 "This article covers the classes, the four conditions for carriage, what acceptance checks, and the notification to the captain. The rules are revised every year, so always use the current edition."],
 sections:[
-{h:"The nine classes",blocks:[{t:"table",cols:["Class","Examples"],rows:[
+{h:"The nine classes",blocks:[{t:"fig",id:"cgo_dg",cap:"Animated figure: the nine class labels (shapes and colours simplified) light up in turn; numbers are the class numbers."},
+{t:"table",cols:["Class","Examples"],rows:[
 ["1 Explosives","Fireworks, ammunition"],
 ["2 Gases","Aerosols, fire extinguishers, oxygen cylinders"],
 ["3 Flammable liquids","Paint, alcohol, fuel"],
@@ -14,7 +15,7 @@ sections:[
 ["7 Radioactive material","Medical isotopes"],
 ["8 Corrosives","Battery acid, acids"],
 ["9 Miscellaneous","Lithium batteries, dry ice, magnetised material"]]}]},
-{h:"The four conditions",blocks:[{t:"ladder",rise:10,steps:[{name:"Classify",sub:"The proper shipping name and UN number"},{name:"Pack",sub:"Approved packaging and quantities"},{name:"Mark and label",sub:"Labels and markings"},{name:"Document",sub:"The shipper’s declaration"}]},
+{h:"The four conditions",blocks:[{t:"fig",id:"cgo_dg4",cap:"Animated figure: using lithium ion batteries packed with equipment (UN3481), the four conditions of classification, packing, marking and documents light up in turn. Confirm the packing instruction number ★."},
 {t:"point",warn:true,x:"Shipping dangerous goods without declaring them causes serious accidents and breaks the law. Where the commodity description is vague, check what is inside."}]},
 {h:"Acceptance and loading",blocks:[{t:"check",items:[
 {name:"Acceptance checklist",x:"Check documents, packing and marking against the set items, and refuse anything deficient."},
@@ -33,7 +34,8 @@ set("3-2",{title:"Live Animals",hl:"live animals",subtitle:"The animal’s welfa
 lead:["Pets, ornamental fish, laboratory animals, livestock, racehorses. Aircraft carry a great many live animals. An animal is a living thing before it is cargo: temperature, ventilation, water and stress all have to be managed, and the destination’s quarantine requirements met.",
 "This article covers the basics of carrying animals, the container requirements, loading, and quarantine on arrival (for pets as passenger baggage, see Ground Staff 1-8)."],
 sections:[
-{h:"The basics",blocks:[{t:"check",items:[
+{h:"The basics",blocks:[{t:"fig",id:"cgo_avi",cap:"Animated figure: booking, acceptance, documents, loading, notifying the captain, and arrival with quarantine light up in turn, with who is mainly responsible."},
+{t:"check",items:[
 {name:"International rules",x:"Follow IATA’s live animals regulations and the container and condition requirements for each species."},
 {name:"Check at booking",x:"Which animals and how many can travel depends on the flight and aircraft, and there may be restrictions in hot or cold weather."},
 {name:"Documents",x:"Health certificates, import and export permits where required, and the shipper’s certification."},
@@ -66,7 +68,8 @@ sections:[
 ["Controlled room temperature (15 to 25°C)","Some pharmaceuticals"],
 ["Ambient","General cargo"]]},
 {t:"note",x:"* The range is set by the shipper’s instructions and the commodity."}]},
-{h:"Where the chain breaks",blocks:[{t:"check",items:[
+{h:"Where the chain breaks",blocks:[{t:"fig",id:"cgo_cold",cap:"Animated figure: a fictional temperature log for 2–8 °C pharmaceuticals; the line draws left to right and leaves the green band during the ramp wait."},
+{t:"check",items:[
 {name:"Waiting on the ramp",x:"Time spent waiting to load in summer heat or winter wind."},
 {name:"Transfers",x:"Being transferred at a connecting airport."},
 {name:"Waiting for clearance",x:"Where it is stored while import permission is pending."},
@@ -93,7 +96,8 @@ sections:[
 {name:"Storage",x:"A locked area or a safe, with a named witness."},
 {name:"Handover",x:"Signed for at every handover."},
 {name:"Information",x:"Do not tell more people than necessary what the cargo is, or which flight and time it moves."}]}]},
-{h:"Heavy and outsized cargo",blocks:[{t:"table",cols:["Check","What it means"],rows:[
+{h:"Heavy and outsized cargo",blocks:[{t:"fig",id:"cgo_door",cap:"Animated figure: two crates are laid over the cargo door (dotted). A fits; B is too tall. Figures are guides ★."},
+{t:"table",cols:["Check","What it means"],rows:[
 ["Floor loading","The limit per square metre. Spread the weight with skids"],
 ["Door dimensions","Height, width and diagonal, and the geometry if it has to be tilted in"],
 ["Securing","Strapped and fixed to the aircraft so nothing moves in flight"],
@@ -115,7 +119,8 @@ set("3-5",{title:"Semiconductor and Precision Equipment",hl:"precision equipment
 lead:["Semiconductor production and inspection equipment can be worth hundreds of thousands or millions per unit. Slight vibration, shock or humidity throws the performance out, so packing, transport and installation need consistent control. Such equipment may also contain technology with military applications, which brings export control into the picture.",
 "This article follows the air transport of semiconductor-related equipment and covers the preparation, the packing, the journey and the arrival."],
 sections:[
-{h:"Preparation",blocks:[{t:"check",items:[
+{h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal and loading, arrival checks and delivery to site light up in turn, with who is mainly responsible."},
+{t:"check",items:[
 {name:"Export control",x:"Confirm with the manufacturer and shipper whether the equipment or parts require an export licence. Obtaining one takes time. ★"},
 {name:"Dimensions and weight",x:"Confirm the packed dimensions, weight and centre of gravity from a drawing. Will it fit a passenger belly, or is a freighter needed (0-2, 3-4)?"},
 {name:"Insurance",x:"For high-value shipments, confirm the cover and the limits."},
