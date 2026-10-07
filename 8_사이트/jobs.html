@@ -3,61 +3,133 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>求人一覧</title>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<style>
-.filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.filters select,.filters input{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
-.filters input{flex:1 1 220px;min-width:0;max-width:100%}
-.cnt{color:var(--sub);font-size:14px}
-details.job{border:1px solid var(--line);border-radius:18px;margin:12px 0;overflow:hidden}
-details.job summary{list-style:none;cursor:pointer;padding:14px 18px;background:var(--card)}
-details.job summary::-webkit-details-marker{display:none}
-.co{font-size:12px;color:var(--sub)}
-.job b.t{display:block;font-size:18px;margin:2px 0 6px;font-family:'Zen Maru Gothic','Gowun Dodum',sans-serif}
-.chip{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 10px;margin:2px 4px 0 0;background:var(--bg)}
-.sample{font-size:11px;color:#fff;background:var(--warn);border-radius:6px;padding:0 6px;margin-left:6px}
-.body{display:grid;grid-template-columns:150px 1fr}
-.body b{background:var(--sky2);padding:8px 12px;border-top:1px solid var(--line);text-align:center;font-size:14px}
-.body span{padding:8px 14px;border-top:1px solid var(--line)}
-.until{font-size:12px;color:var(--sub);padding:8px 18px;border-top:1px solid var(--line)}
-@media (max-width:640px){.body{grid-template-columns:1fr}}
-</style>
+<title>Jobs | Aviation Career Note</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/v3.css">
 </head>
 <body data-page="jobs">
-<header class="topbar" id="siteTop"></header>
-<div class="wrap">
-<section class="page-hero"><h1 id="h1"></h1><p id="hp"></p></section>
-<div class="filters"><input id="q" type="search"><select id="fj"></select><select id="fe"></select></div>
-<div class="cnt" id="cnt"></div>
-<div id="list"></div>
-<p class="lead" id="note"></p>
+<div class="topbar">Aviation Career Note · Learn · Jobs · Business Skills · Coaching · Community</div>
+<header>
+  <nav class="nav" aria-label="menu">
+    <a href="index_v3.html" class="brand"><b>A·</b> AVIATION CAREER NOTE</a>
+    <div class="navlinks" id="navlinks"></div>
+    <div class="navright">
+      <span class="pill" id="langs" role="group" aria-label="Language"></span>
+      <a href="account.html" class="btn primary" id="mem"></a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="jobs-hero"><div class="in">
+  <div class="eyebrow" style="color:#78d6df">Aviation Jobs</div>
+  <h1 id="h1"></h1>
+  <p id="hp"></p>
+</div></section>
+
+<div class="jobs-wrap">
+  <aside class="jobs-side" aria-labelledby="fh">
+    <b id="fh"></b>
+    <div id="mktBox"><label id="mkL"></label><div class="mkt" id="jmkt" role="group"></div></div>
+    <label for="q" id="qL"></label><input id="q" type="search" autocomplete="off">
+    <label for="fj" id="jL"></label><select id="fj"></select>
+    <label for="fe" id="eL"></label><select id="fe"></select>
+  </aside>
+  <section aria-live="polite">
+    <p class="jobs-cnt" id="cnt"></p>
+    <div class="jobs-list" id="list"></div>
+  </section>
 </div>
-<footer class="site-foot" id="siteFoot"></footer>
+<p class="jobs-note" id="note"></p>
+
+<section class="section" id="employer" style="padding-top:48px;padding-bottom:20px">
+  <div class="job-empty" style="background:#fff">
+    <div><b id="eb"></b><span class="muted" id="ep"></span></div>
+    <a class="btn primary" href="../7_구인게재_기업용/求人掲載のご案内.html" id="el"></a>
+  </div>
+</section>
+
+<section class="section alt" id="prepare">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Career &amp; Interview</div>
+        <h2 id="hr"></h2>
+        <p id="lr"></p>
+      </div>
+    </div>
+    <div class="course-grid" id="rel"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot" id="foot"></div>
+  <div class="copy" id="copy"></div>
+</footer>
+
 <script src="data/jobs.js"></script>
+<script src="data/home_data.js"></script>
+<script src="../catalog.js" onerror="this.remove()"></script>
 <script>
-var T={ja:{h1:'求人一覧',hp:'空港・航空の仕事の求人です。応募は各求人に記載の方法で、掲載企業に直接お申し込みください。',ph:'キーワード（例：英語、成田、ランプ）',all:'すべて',jobL:'職種',empL:'雇用の形',n:'件',sample:'見本',until:'掲載終了',none:'条件に合う求人はありません。',note:'※ このサイトは求人情報を掲載するサイトです。応募・採用の手続きは掲載企業と直接行っていただきます。求人の内容に誤りを見つけた場合はお知らせください。',
+/* 求人のページ（v3 の見た目 2026.10）
+   求人の国：韓国語のページは韓国（country:kr）、日本語のページは日本（jp）、英語のページは切り替え（?c=kr|jp でも指定できる）。country が無い求人は jp
+   求人の中身は data/jobs.js。#求人のid でその求人を開いた状態で表示する */
+var T={
+ja:{h1:'航空業界の、<br>次のチャンスを探す。',hp:'航空会社・空港・グランドハンドリング・貨物まで、日本の航空業界の求人を確認できます。応募は各求人に記載の方法で、掲載企業に直接お申し込みください。',
+ fh:'絞り込み',mkL:'国',mk:['韓国','日本'],qL:'キーワード',ph:'例：英語、成田、ランプ',jL:'職種',eL:'雇用の形',all:'すべて',n:'件の求人',sample:'見本',until:'掲載終了',open:'詳しく見る',
+ none:['条件に合う求人はありません','キーワードや条件を変えてみてください。'],empty:['掲載中の求人はまだありません','航空・空港の人材を探している企業の方は、掲載のご案内をご覧ください。'],
+ note:'※ このサイトは求人情報を掲載するサイトです。応募・採用の手続きは掲載企業と直接行っていただきます。求人の内容に誤りを見つけた場合はお知らせください。',
+ eb:'求人を載せたい企業の方へ',ep:'航空・空港の仕事を学んでいる人に、求人を直接届けます。',el:'掲載のご案内',
+ hr:'応募の前に、<br>準備しておくこと。',lr:'面接の準備と、職種の実務を知っておくと、選考で話せることが増えます。',view:'講座を見る →',tool:'ツールを開く →',lessons:'Lessons',
  L:{job:'職種',place:'就業の場所',emp:'雇用の形',wage:'賃金',hours:'労働時間・休日',langReq:'語学の条件',desc:'仕事の内容',apply:'応募の方法'}},
-ko:{h1:'구인 목록',hp:'공항·항공 일 구인입니다. 지원은 각 구인에 적힌 방법으로 게재 기업에 직접 신청하세요.',ph:'키워드 (예: 영어, 나리타, 램프)',all:'전체',jobL:'직종',empL:'고용 형태',n:'건',sample:'예시',until:'게재 종료',none:'조건에 맞는 구인이 없습니다.',note:'※ 이 사이트는 구인 정보를 게재하는 사이트입니다. 지원·채용 절차는 게재 기업과 직접 진행합니다. 구인 내용에 오류를 발견하면 알려 주세요.',
+ko:{h1:'항공업계의 다음 기회를<br>찾으세요.',hp:'항공사·공항·지상조업·화물까지, 국내 항공업계의 채용공고를 확인할 수 있습니다. 지원은 각 공고에 적힌 방법으로 게재 기업에 직접 신청해 주세요.',
+ fh:'검색 필터',mkL:'국가',mk:['한국','일본'],qL:'키워드',ph:'예: 영어, 인천, 램프',jL:'직종',eL:'고용 형태',all:'전체',n:'건의 채용공고',sample:'예시',until:'게재 종료',open:'자세히 보기',
+ none:['조건에 맞는 채용공고가 없습니다','키워드나 조건을 바꿔 보세요.'],empty:['게재 중인 채용공고가 아직 없습니다','항공·공항 인재를 찾는 기업 담당자께서는 게재 안내를 확인해 주세요.'],
+ note:'※ 이 사이트는 채용 정보를 게재하는 사이트입니다. 지원·채용 절차는 게재 기업과 직접 진행합니다. 공고 내용에 오류를 발견하면 알려 주세요.',
+ eb:'채용공고를 올리고 싶은 기업 담당자께',ep:'항공 업무를 배우는 사람들에게 채용 정보를 직접 전합니다.',el:'게재 안내',
+ hr:'지원하기 전에<br>준비해 둘 것.',lr:'면접 준비와 직무 실무를 알아 두면, 전형에서 이야기할 수 있는 것이 많아집니다.',view:'과정 보기 →',tool:'도구 열기 →',lessons:'Lessons',
  L:{job:'직종',place:'근무 장소',emp:'고용 형태',wage:'임금',hours:'근로시간·휴일',langReq:'어학 조건',desc:'업무 내용',apply:'지원 방법'}},
-en:{h1:'Jobs',hp:'Airport and airline jobs. Apply directly to the employer using the method shown in each posting.',ph:'Keyword (e.g. English, Narita, ramp)',all:'All',jobL:'Job type',empL:'Employment type',n:' jobs',sample:'Sample',until:'Closes',none:'No jobs match your filters.',note:'* This site publishes job listings. Applications and hiring are handled directly by the employer. Please let us know if you find an error in a listing.',
+en:{h1:'Find your next move<br>in aviation.',hp:'Openings across the aviation industry in Korea and Japan, from airlines and airports to ground handling and cargo. Apply directly to the employer using the method in each listing.',
+ fh:'Filters',mkL:'Country',mk:['Korea','Japan'],qL:'Keyword',ph:'e.g. English, Narita, ramp',jL:'Job type',eL:'Employment type',all:'All',n:' jobs',sample:'Sample',until:'Closes',open:'View details',
+ none:['No jobs match your filters','Try a different keyword or filter.'],empty:['No jobs are listed yet','If you are hiring for aviation or airport roles, see how to post a job.'],
+ note:'* This site publishes job listings. Applications and hiring are handled directly by the employer. Please let us know if you find an error in a listing.',
+ eb:'Hiring?',ep:'Reach people who are actively learning aviation work.',el:'How to post a job',
+ hr:'Before you apply,<br>get ready.',lr:'Interview preparation and a working knowledge of the role give you more to talk about.',view:'View course →',tool:'Open the tool →',lessons:'Lessons',
  L:{job:'Job type',place:'Location',emp:'Employment type',wage:'Pay',hours:'Hours and days off',langReq:'Language requirements',desc:'The work',apply:'How to apply'}}};
-var cur='ja';
+var KICK={INT:'Career & Interview',GND:'Passenger Operations',CGO:'Air Cargo',DSP:'Flight Operations'};
+var lang='ja',MKT=(location.search.match(/[?&]c=(kr|jp)/)||[])[1]||'jp',opened=false;
 function $(i){return document.getElementById(i)}
-function D(j){return j[cur]||j.en||j.ja}
-function uniq(k){var s={};(window.JOBS||[]).forEach(function(j){s[D(j)[k]]=1});return Object.keys(s)}
-function list(){var t=T[cur],E=window.SITE_ESC,q=$('q').value.trim().toLowerCase(),fj=$('fj').value,fe=$('fe').value;
- var TODAY=new Date(Date.now()+9*36e5).toISOString().slice(0,10);var J=(window.JOBS||[]).filter(function(j){var d=D(j);if(j.until&&j.until<TODAY)return false;if(fj&&d.job!==fj)return false;if(fe&&d.emp!==fe)return false;if(q&&JSON.stringify(j).toLowerCase().indexOf(q)<0)return false;return true});
+function E(s){return window.ACN?ACN.E(s):String(s)}
+function D(j){return j[lang]||j.en||j.ja}
+function mk(){return lang==='ko'?'kr':lang==='ja'?'jp':MKT}
+function pool(){var TODAY=new Date(Date.now()+9*36e5).toISOString().slice(0,10);return (window.JOBS||[]).filter(function(j){return (!j.until||j.until>=TODAY)&&(j.country||'jp')===mk()}).sort(function(a,b){return (b.posted||'')<(a.posted||'')?-1:1})}
+function uniq(k,P){var s={};P.forEach(function(j){var v=D(j)[k];if(v)s[v]=1});return Object.keys(s)}
+function list(){var t=T[lang],P=pool(),q=$('q').value.trim().toLowerCase(),fj=$('fj').value,fe=$('fe').value;
+ var J=P.filter(function(j){var d=D(j);if(fj&&d.job!==fj)return false;if(fe&&d.emp!==fe)return false;if(q&&JSON.stringify(j).toLowerCase().indexOf(q)<0)return false;return true});
  $('cnt').textContent=J.length+t.n;
- $('list').innerHTML=J.length?J.map(function(j){var d=D(j);return '<details class="job" id="'+E(j.id)+'"'+(location.hash==='#'+j.id?' open':'')+'><summary><div class="co">'+E(d.company)+(j.sample?'<span class="sample">'+t.sample+'</span>':'')+'</div><b class="t">'+E(d.title)+'</b><span class="chip">'+E(d.job)+'</span><span class="chip">'+E(d.place)+'</span><span class="chip">'+E(d.emp)+'</span></summary><div class="body">'+['job','place','emp','wage','hours','langReq','desc','apply'].map(function(k){return d[k]?'<b>'+t.L[k]+'</b><span>'+E(d[k])+'</span>':''}).join('')+'</div><div class="until">'+t.until+'：'+E(j.until)+'</div></details>'}).join(''):'<p class="lead">'+t.none+'</p>';
- if(location.hash&&!list.done){var el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el){el.open=true;el.scrollIntoView({block:'start'});list.done=true}}}
-window.render=function(lang){cur=lang;var t=T[lang];$('h1').textContent=t.h1;$('hp').textContent=t.hp;$('q').placeholder=t.ph;$('note').textContent=t.note;
- $('fj').innerHTML='<option value="">'+t.jobL+'：'+t.all+'</option>'+uniq('job').map(function(v){return '<option>'+window.SITE_ESC(v)+'</option>'}).join('');
- $('fe').innerHTML='<option value="">'+t.empL+'：'+t.all+'</option>'+uniq('emp').map(function(v){return '<option>'+window.SITE_ESC(v)+'</option>'}).join('');
- document.title=t.h1+' | '+window.SITE_NAME();list();};
+ $('list').innerHTML=J.length?J.map(function(j){var d=D(j);return '<details class="jl" id="'+E(j.id)+'"><summary><div><div class="kicker">'+[d.job,d.emp].filter(Boolean).map(E).join(' · ')+'</div><h3>'+E(d.title)+(j.sample?'<span class="tag">'+E(t.sample)+'</span>':'')+'</h3><p class="muted">'+[d.company,d.place].filter(Boolean).map(E).join(' · ')+'</p></div><div class="side">'+(j.until?E(t.until)+' '+E(j.until.replace(/-/g,'.')):'')+'<span class="go">'+E(t.open)+'</span></div></summary><div class="body">'+['job','place','emp','wage','hours','langReq','desc','apply'].map(function(k){return d[k]?'<b>'+E(t.L[k])+'</b><span>'+E(d[k])+'</span>':''}).join('')+'</div></details>'}).join('')
+  :'<div class="jobs-none"><b>'+E(P.length?t.none[0]:t.empty[0])+'</b><span class="muted">'+E(P.length?t.none[1]:t.empty[1])+'</span></div>';
+ /* #求人のid で来たときは、その求人を開いて見せる（最初の1回だけ） */
+ if(location.hash&&!opened){var el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el&&el.tagName==='DETAILS'){el.open=true;opened=true;setTimeout(function(){el.scrollIntoView({block:'start'})},50)}}}
+window.PAGE_RENDER=function(l){lang=l;var t=T[lang],P=pool(),S={};SERIES.forEach(function(s){S[s.code]=s});
+ document.title=(lang==='ja'?'求人':lang==='ko'?'채용':'Jobs')+' | Aviation Career Note';
+ $('h1').innerHTML=t.h1;$('hp').textContent=t.hp;['fh','mkL','qL','jL','eL','note','eb','ep','el','lr'].forEach(function(k){$(k).textContent=t[k]});$('hr').innerHTML=t.hr;$('q').placeholder=t.ph;
+ $('mktBox').style.display=lang==='en'?'':'none';
+ $('jmkt').innerHTML=lang==='en'?[['kr',t.mk[0]],['jp',t.mk[1]]].map(function(x){return '<button type="button" data-m="'+x[0]+'" class="'+(x[0]===MKT?'on':'')+'" aria-pressed="'+(x[0]===MKT)+'">'+x[1]+'</button>'}).join(''):'';
+ Array.prototype.forEach.call($('jmkt').querySelectorAll('button'),function(b){b.onclick=function(){MKT=b.getAttribute('data-m');window.PAGE_RENDER(lang)}});
+ var fj=$('fj').value,fe=$('fe').value,J=uniq('job',P),M=uniq('emp',P);
+ $('fj').innerHTML='<option value="">'+E(t.all)+'</option>'+J.map(function(v){return '<option'+(v===fj?' selected':'')+'>'+E(v)+'</option>'}).join('');
+ $('fe').innerHTML='<option value="">'+E(t.all)+'</option>'+M.map(function(v){return '<option'+(v===fe?' selected':'')+'>'+E(v)+'</option>'}).join('');
+ list();
+ /* 応募の前に：面接対策・ストーリー設計シート・職種の講座 */
+ var st=TOOLS.filter(function(x){return /ストーリー設計シート/.test(decodeURIComponent(x.p))})[0];
+ $('rel').innerHTML=['INT','GND'].filter(function(c){return S[c]}).map(function(c,i){var s=S[c],d=s[lang]||s.ja;return '<a class="course-card" href="'+s.p+'"><div class="kicker">'+E(KICK[c])+'</div><h3>'+E(d[1])+'</h3><p class="muted">'+E(d[2])+'</p><div class="meta-row"><span>'+s.n+' '+t.lessons+'</span><span class="go">'+E(t.view)+'</span></div></a>'}).join('')+
+  (st?(function(){var d=st[lang]||st.ja;return '<a class="course-card" href="'+st.p+'"><div class="kicker">Practice · Interview</div><h3>'+E(String(d[0]).replace(/\n/g,' '))+'</h3><p class="muted">'+E(d[1])+'</p><div class="meta-row"><span>Tool</span><span class="go">'+E(t.tool)+'</span></div></a>'})():'');
+};
+(function(){if(!window.CATALOG)return;SERIES.forEach(function(s){var d=(s.p||'').split('/')[1];if(!s.dirs&&CATALOG[d])s.n=CATALOG[d].n})})();
 $('q').oninput=list;$('fj').onchange=list;$('fe').onchange=list;
 </script>
-<script src="assets/site.js"></script>
+<script src="assets/v3.js"></script>
 </body>
 </html>
