@@ -4,7 +4,14 @@ set("0-1",{title:"How Air Cargo Moves, from Shipper to Consignee",hl:"how air ca
 lead:["Air cargo passes through many hands before it reaches an aircraft: the company sending the goods (the shipper), the company arranging the transport (the forwarder), the airline that carries it, the handling company working the warehouse, and customs.",
 "This article follows an export shipment from origin to the consignee at the other end, and sets out what each party does."],
 sections:[
-{h:"From export to import",blocks:[{t:"ladder",rise:10,steps:[{name:"Shipper",sub:"What is being sent, and on what terms"},{name:"Forwarder",sub:"Booking, documents, collection"},{name:"Cargo warehouse",sub:"Acceptance, weighing, screening"},{name:"Airline",sub:"Loading and carriage"},{name:"Destination",sub:"Unloading, clearance, delivery"}]}]},
+{h:"From export to import",blocks:[{t:"fig",id:"cgo_flow",cap:"Animated figure: seven stages from shipper to forwarder, terminal, airline, destination and delivery light up in turn. Times on the right are a guide relative to departure and vary by airport, airline and cargo type ★."}]},
+{h:"The documents that travel with the cargo",blocks:[{t:"table",cols:["Document","Prepared by","Contents"],rows:[
+["Air waybill (AWB)","Airline or forwarder","Shipper, consignee, origin and destination, pieces, weight, description and charges; an 11-digit number (3-digit airline prefix + 8 digits)"],
+["Commercial invoice","Shipper","Description, quantity, unit price, value and terms; customs checks the value"],
+["Packing list","Shipper","Contents, weight and size of each package"],
+["Export permit","Customs (declared by a broker)","Permission to export; without it the cargo cannot be loaded"],
+["Dangerous goods declaration","Shipper","When batteries, chemicals or other dangerous goods are included (4-3)"]]},
+{t:"point",x:"The AWB number is the key to tracing a shipment. When someone asks about cargo, start by asking for the AWB number; the 3-digit prefix (for example Korean Air 180, Japan Airlines 131) also tells you at once which airline carries it."}]},
 {h:"Who does what",blocks:[{t:"table",cols:["Party","Main role"],rows:[
 ["Shipper","The company sending goods. Decides the commodity, weight, dimensions, destination and deadline"],
 ["Freight forwarder","Books the airline on the shipper’s behalf, prepares the documents and arranges collection, clearance and delivery"],
@@ -28,7 +35,8 @@ set("0-2",{title:"Belly Hold and Freighter",hl:"belly and freighter",subtitle:"T
 lead:["Air cargo travels either in the hold beneath a passenger cabin (the belly) or on a dedicated freighter. On short routes with many passenger flights, a great deal of cargo moves in the belly.",
 "This article covers the characteristics of each, the difference in what fits, and how to choose."],
 sections:[
-{h:"Belly and freighter compared",blocks:[{t:"table",cols:["","Passenger belly","Freighter"],rows:[
+{h:"Belly and freighter compared",blocks:[{t:"fig",id:"cgo_hold",cap:"Animated figure: rough cargo volume for the B737-800 and B787-9 lower decks and the B777F freighter, compared by bar length."},
+{t:"table",cols:["","Passenger belly","Freighter"],rows:[
 ["Frequency","As many as the passenger flights","Fewer"],
 ["Height that fits","Limited by the cargo door of the hold","Large items fit on the main deck"],
 ["Weight available","What is left after passengers and baggage","Considerably more"],
@@ -40,7 +48,8 @@ sections:[
 {name:"The ULD",x:"The shape and size of the containers and pallets used (2-2)."},
 {name:"Balance",x:"Whether the load stays within the weight and balance plan (4-1)."}]},
 {t:"point",warn:true,x:"“The weight was fine but it was a few centimetres too tall” is a common story. For large shipments, confirm the aircraft type and the dimensions with the airline before booking (3-5)."}]},
-{h:"Consolidation and direct shipments",blocks:[{t:"check",items:[
+{h:"Consolidation and direct shipments",blocks:[{t:"fig",id:"cgo_awb",cap:"Animated figure: three house AWBs (forwarder and each shipper) light up under one master AWB (airline and forwarder). Figures are examples."},
+{t:"check",items:[
 {name:"Consolidation",x:"The forwarder combines several shippers’ cargo into one consignment for the airline, bringing the rate down."},
 {name:"Direct",x:"One shipper’s cargo travels as a single consignment."},
 {name:"Documents",x:"In a consolidation there are two levels: the airline’s master air waybill and the forwarder’s house air waybills (1-2)."}]}]}],
@@ -55,7 +64,8 @@ set("0-3",{title:"Cargo Airports",hl:"cargo airports",subtitle:"What makes an ai
 lead:["Japan’s international air cargo is concentrated at Narita, with Kansai next. Elsewhere in Asia, Incheon is one of the world’s major cargo airports. Airports differ in how the cargo terminal is run, whether they operate around the clock, and how they handle transit cargo.",
 "This article sets out the characteristics of the main airports and the shape of the traffic. Figures move from year to year, so it describes tendencies."],
 sections:[
-{h:"The main airports (tendencies)",blocks:[{t:"table",cols:["Airport","Character"],rows:[
+{h:"The main airports (tendencies)",blocks:[{t:"fig",id:"cgo_map",cap:"Animated figure: major cargo airports in Korea and Japan; lines flow from Incheon to Japanese airports, showing its role as a transfer hub."},
+{t:"table",cols:["Airport","Character"],rows:[
 ["Narita","Japan’s largest international cargo gateway, with many freighters. Night operations are restricted"],
 ["Kansai","Operates 24 hours. The western Japan gateway, with dedicated pharmaceutical facilities"],
 ["Haneda","Mostly passenger belly. Close to central Tokyo and strong on urgent consignments"],
