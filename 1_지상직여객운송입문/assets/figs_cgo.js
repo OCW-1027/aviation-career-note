@@ -68,7 +68,55 @@ cgo_map:function(l){
  var y=oy+H2+10,lh=FS(11)*1.3,keys=['ICN','NRT','HND','KIX','NGO','FUK','PUS'];
  for(var i=0;i<keys.length;i+=2){var row=keys.slice(i,i+2),hh=0;row.forEach(function(k){hh=Math.max(hh,LI(W.a[k],11,262).length*lh)});hh+=12;
   row.forEach(function(k,j){var x=20+j*306,big=k==='ICN'||k==='NRT';s+=R(x,y,294,hh,'#fff',8,' stroke="#D5DEE8"')+'<circle cx="'+(x+14)+'" cy="'+(y+hh/2)+'" r="6" fill="'+(big?'#D64545':'#2F6FD6')+'"/>'+WR(x+28,y+hh/2+FS(11)*0.35,W.a[k],11,D,800,258,'start')});y+=hh+6}
- var L=LIST(W.n,y+6,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,y+6,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-1 チャージャブル・ウェイト：実際の重さと容積重量（縦×横×高さ÷6,000）の大きい方。2つの例で棒を比べる */
+cgo_chw:function(l){
+ var W=({ja:{t:'運賃の計算に使う重さ（チャージャブル・ウェイト）',ex:[['例1：軽くて大きい箱','100×100×100cm、実際の重さ50kg'],['例2：小さくて重い箱','40×30×20cm、実際の重さ25kg']],a:'実際の重さ',v:'容積重量',c:'こちらで計算',n:['容積重量（kg）＝ 縦×横×高さ（cm）÷ 6,000。例1は 1,000,000 ÷ 6,000 ＝ 約167kg','実際の重さと容積重量のうち大きい方が、運賃の計算に使う重さになる。例1は167kg、例2は25kg','割る数（6,000）は一般的な例。会社や運賃の種類で違うことがある★']},
+  ko:{t:'운임 계산에 쓰는 무게(차지어블 웨이트)',ex:[['예1: 가볍고 큰 상자','100×100×100cm, 실제 무게 50kg'],['예2: 작고 무거운 상자','40×30×20cm, 실제 무게 25kg']],a:'실제 무게',v:'용적 중량',c:'이것으로 계산',n:['용적 중량(kg) = 가로×세로×높이(cm) ÷ 6,000. 예1은 1,000,000 ÷ 6,000 = 약 167kg','실제 무게와 용적 중량 중 큰 쪽이 운임 계산에 쓰는 무게. 예1은 167kg, 예2는 25kg','나누는 수(6,000)는 일반적인 예. 회사나 운임 종류에 따라 다를 수 있다★']},
+  en:{t:'The weight used for charges (chargeable weight)',ex:[['Example 1: light, bulky box','100×100×100 cm, actual weight 50 kg'],['Example 2: small, heavy box','40×30×20 cm, actual weight 25 kg']],a:'Actual weight',v:'Volume weight',c:'Charged on this',n:['Volume weight (kg) = length × width × height (cm) ÷ 6,000. Example 1: 1,000,000 ÷ 6,000 = about 167 kg','Whichever is greater, actual or volume weight, is the chargeable weight: 167 kg in example 1, 25 kg in example 2','The divisor (6,000) is a common example; it can differ by airline or rate type ★']}})[l];
+ if(!W)return F.cgo_chw('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,lh=FS(11)*1.3,vals=[[50,167],[25,4]],mx=180;
+ W.ex.forEach(function(e,i){var t1=LI(e[0],12,560).length,t2=LI(e[1],11,560).length,hh=t1*FS(12)*1.3+t2*lh+FS(11)*1.3*2+86;
+  s+=R(20,y,600,hh,i?'#fff':'#F4F7FB',12,' stroke="#D5DEE8"')+WR(36,y+10+t1*FS(12)*1.3/2+FS(12)*0.35,e[0],12,'#0f3558',900,560,'start')+WR(36,y+14+t1*FS(12)*1.3+t2*lh/2+FS(11)*0.35,e[1],11,D,800,560,'start');
+  var yy=y+22+t1*FS(12)*1.3+t2*lh,big=vals[i][0]>=vals[i][1]?0:1;
+  [[W.a,vals[i][0],'#2F6FD6'],[W.v,vals[i][1],'#E08A2E']].forEach(function(b,j){var by=yy+j*(FS(11)*1.3+26),bw=Math.max(6,b[1]/mx*540),lab=b[0]+' '+b[1]+'kg'+(j===big?(l==='ja'?' ― ':' — ')+W.c:'');
+   s+=WR(36,by+FS(11)*0.9,lab,11,j===big?'#D64545':D,900,560,'start')+'<rect x="36" y="'+(by+FS(11)*1.3+2)+'" width="0" height="14" rx="6" fill="'+b[2]+'"><animate attributeName="width" values="0;'+bw.toFixed(1)+';'+bw.toFixed(1)+'" keyTimes="0;.3;1" dur="4s" begin="'+(i*0.6+j*0.3)+'s" fill="freeze"/></rect>'});
+  y+=hh+8});
+ var L=LIST(W.n,y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-2 AWBの書式：主な欄が順に光る（架空の例） */
+cgo_awbform:function(l){
+ var W=({ja:{t:'航空運送状（AWB）の主な欄（架空の例）',n:['運送状の番号：航空会社の3けた＋8けた。最後の1けたは、前の7けたを7で割った余り（検査の数字）','荷送人：送る会社の名前と住所','荷受人：受け取る会社の名前と住所。違っていると到着地で引き渡せない','出発地と到着地：空港の3文字のコード','個数・実際の重さ・運賃の計算に使う重さ・単価・運賃（167kg×300円）','品名：具体的に書く。「部品」ではなく「半導体製造装置用の部品」','取り扱いの指示（壊れ物・温度など）と、運賃の前払い・着払い']},
+  ko:{t:'항공화물운송장(AWB)의 주요 칸(가상의 예)',n:['운송장 번호: 항공사 3자리+8자리. 마지막 1자리는 앞 7자리를 7로 나눈 나머지(체크 디지트)','송하인: 보내는 회사의 이름과 주소','수하인: 받는 회사의 이름과 주소. 틀리면 도착지에서 인도할 수 없다','출발지와 도착지: 공항 3글자 코드','개수·실제 무게·운임 계산 무게·단가·운임(167kg×300엔)','품명: 구체적으로. ‘부품’이 아니라 ‘반도체 제조장비용 부품’','취급 지시(파손 주의·온도 등)와 운임 선불·착불']},
+  en:{t:'Main boxes on an air waybill (fictional example)',n:['AWB number: 3-digit airline prefix + 8 digits; the last digit is the remainder of the first seven divided by 7 (check digit)','Shipper: name and address of the sender','Consignee: name and address of the receiver; if wrong, the cargo cannot be delivered at destination','Airports of departure and destination: 3-letter codes','Pieces, actual weight, chargeable weight, rate and charge (167 kg × ¥300)','Nature of goods: be specific, e.g. “parts for semiconductor equipment”, not just “parts”','Handling information (fragile, temperature, etc.) and prepaid or collect charges']}})[l];
+ if(!W)return F.cgo_awbform('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),dur='14s',y=58,lh=FS(11)*1.3;
+ var C=[['AWB No.','180-12345675'],['Shipper','XYZ PARTS CO., LTD. TOKYO'],['Consignee','ABC ELECTRONICS CO., LTD. SEOUL'],['Airport of Departure / Destination','NRT → ICN'],['Pieces / Gross Wt / Chargeable Wt / Rate / Charge','2 PCS / 50.0 KG / 167.0 KG / 300 / 50,100'],['Nature and Quantity of Goods','PARTS FOR SEMICONDUCTOR EQUIPMENT'],['Handling Information / Charges','FRAGILE / PREPAID']];
+ s+=R(16,y-4,608,0,'#fff',0);var top=y;
+ C.forEach(function(c,i){var nl=LI(c[0],9,540).length,nv=LI(c[1],11,540).length,h=nl*FS(9)*1.3+nv*lh+16;
+  s+='<g>'+R(20,y,600,h,'#fff',4,' stroke="#9FB0C2"')+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="4" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,C.length,0,.5)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+BADGE(40,y+h/2,i+1,10)+WR(64,y+6+nl*FS(9)*1.3/2+FS(9)*0.35,c[0],9,'#5B6B7D',700,540,'start')+WR(64,y+8+nl*FS(9)*1.3+nv*lh/2+FS(11)*0.35,c[1],11,'#0f3558',900,540,'start')+'</g>';y+=h});
+ s+='<rect x="16" y="'+(top-4)+'" width="608" height="'+(y-top+8)+'" rx="6" fill="none" stroke="#0f3558" stroke-width="2"/>';
+ var L=LIST(W.n,y+14,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-3 貨物の状況のコード：予約から引き渡しまで、順に光る */
+cgo_status:function(l){
+ var W=({ja:{t:'貨物の状況を知らせるコード（よく見るもの）',st:['予約が確定した','荷主（フォワーダー）から貨物を受け取った','便の搭載の一覧（マニフェスト）に載った','便が出発した','便が到着した','便から貨物を取り降ろした','荷受人に到着を知らせた','荷受人に引き渡した']},
+  ko:{t:'화물 상태를 알리는 코드(자주 보는 것)',st:['예약이 확정됐다','화주(포워더)에게서 화물을 받았다','편의 적하목록(매니페스트)에 실렸다','편이 출발했다','편이 도착했다','편에서 화물을 내렸다','수하인에게 도착을 알렸다','수하인에게 인도했다']},
+  en:{t:'Status codes you will see most',st:['Booking confirmed','Cargo received from the shipper (forwarder)','Listed on the flight manifest','Flight departed','Flight arrived','Cargo received from the flight','Consignee notified of arrival','Delivered to the consignee']}})[l];
+ if(!W)return F.cgo_status('ja');setK(1);
+ return STEPS(W.t,W.st,['BKD','RCS','MAN','DEP','ARR','RCF','NFD','DLV'],['#6B4FA0','#2F6FD6','#2C7A7B','#D64545','#D64545','#E08A2E','#E08A2E','#2E9B5F'],'16s')},
+/* 1-4 輸出の流れ（日本）：保税の上屋に入ってから搭載まで */
+cgo_exp:function(l){
+ var W=({ja:{t:'輸出の流れ（日本の例）',st:['保税の上屋に搬入する（ここから税関の管理下）','通関業者がNACCSで輸出の申告をする','税関の審査。必要なときは書類の確認や貨物の検査','輸出の許可。これで搭載できる状態になる','航空会社が搭載し、積荷目録（マニフェスト）を出す'],who:['フォワーダー・上屋','通関業者','税関','税関','航空会社']},
+  ko:{t:'수출 흐름(일본의 예)',st:['보세 화물터미널에 반입(여기서부터 세관 관리 아래)','관세사(통관업자)가 NACCS로 수출 신고','세관 심사. 필요하면 서류 확인이나 화물 검사','수출 허가. 이제 탑재할 수 있는 상태','항공사가 탑재하고 적하목록(매니페스트)을 낸다'],who:['포워더·화물터미널','관세사','세관','세관','항공사']},
+  en:{t:'Export flow (Japan example)',st:['Delivered into the bonded terminal (now under customs control)','The customs broker files the export declaration on NACCS','Customs review; document checks or inspection when needed','Export permission: the cargo can now be loaded','The airline loads it and submits the cargo manifest'],who:['Forwarder & terminal','Customs broker','Customs','Customs','Airline']}})[l];
+ if(!W)return F.cgo_exp('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#6B4FA0','#D64545','#2E9B5F','#E08A2E'],'12s')},
+/* 1-4 輸入の流れ（日本）：到着前の報告から引き渡しまで */
+cgo_imp:function(l){
+ var W=({ja:{t:'輸入の流れ（日本の例）',st:['到着の前に、マスター・ハウスの運送状の情報と積荷目録を税関に報告する★','到着後、取り降ろして保税の上屋へ運ぶ','通関業者が輸入の申告をする（関税・消費税）','納税のあと輸入の許可。保税の管理から外れる','フォワーダーが受け取り、荷受人へ引き渡す'],who:['航空会社・フォワーダー','上屋','通関業者','税関','フォワーダー']},
+  ko:{t:'수입 흐름(일본의 예)',st:['도착 전에 마스터·하우스 운송장 정보와 적하목록을 세관에 보고★','도착 후 하기해 보세 화물터미널로 옮긴다','관세사가 수입 신고(관세·소비세)','납세 후 수입 허가. 보세 관리에서 벗어난다','포워더가 인수해 수하인에게 인도'],who:['항공사·포워더','화물터미널','관세사','세관','포워더']},
+  en:{t:'Import flow (Japan example)',st:['Before arrival, master and house AWB data and the manifest are reported to customs ★','After arrival, cargo is offloaded and taken to the bonded terminal','The customs broker files the import declaration (duty and consumption tax)','After payment, import permission: the cargo leaves bonded control','The forwarder collects and delivers to the consignee'],who:['Airline & forwarder','Terminal','Customs broker','Customs','Forwarder']}})[l];
+ if(!W)return F.cgo_imp('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#E08A2E','#2F6FD6','#6B4FA0','#2E9B5F','#2C7A7B'],'12s')}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

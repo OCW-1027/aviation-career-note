@@ -94,11 +94,18 @@ lead:["Air cargo rates are calculated on whichever is greater: the actual weight
 "This article covers the booking flow, volumetric weight, what makes up the rate, and the common surcharges. Actual rates differ by carrier, route and season and are not covered."],
 sections:[
 {h:"The booking flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Enquiry",sub:"Commodity, pieces, weight, dimensions, dates"},{name:"Check the space",sub:"Flight, aircraft type, special handling"},{name:"Confirm",sub:"An air waybill number is allocated"},{name:"Delivery in",sub:"To the warehouse by the cut-off"},{name:"Loading",sub:"Anything offloaded goes on the next flight"}]}]},
-{h:"Volumetric weight",blocks:[{t:"rows",items:[
+{h:"Volumetric weight",blocks:[{t:"fig",id:"cgo_chw",cap:"Animated figure: a light, bulky box and a small, heavy box. Bars compare actual and volume weight; the greater one is the chargeable weight."},
+{t:"rows",items:[
 {name:"How it is worked out",x:"Length by width by height in centimetres, divided by a standard divisor, commonly 6,000, giving a weight in kilograms. ★"},
 {name:"Compare",x:"The greater of the actual weight and the volumetric weight is the chargeable weight."},
 {name:"An example",x:"A box 100 cm by 100 cm by 100 cm weighing 50 kg has a volumetric weight of about 167 kg, and is charged on 167 kg."}]},
 {t:"point",x:"Packing a little smaller can lower the rate. Suggesting that to a shipper is part of the craft of cargo work."}]},
+{h:"A worked charge (fictional rates)",blocks:[{t:"table",cols:["Item","Calculation","Amount"],rows:[
+["Freight","167 kg × ¥300","¥50,100"],
+["Fuel surcharge","167 kg × ¥100","¥16,700"],
+["Security charge","167 kg × ¥20","¥3,340"],
+["Total","","¥70,140"]]},
+{t:"note",x:"* All rates are fictional. Some airlines apply surcharges to the actual weight instead ★. Smaller packaging lowers the volume weight and every line with it."}]},
 {h:"What makes up the rate (example)",blocks:[{t:"table",cols:["Item","What it is"],rows:[
 ["Base rate","A unit rate by weight break, falling as the weight rises"],
 ["Fuel surcharge","Linked to fuel prices"],
@@ -120,7 +127,8 @@ sections:[
 {name:"Eleven digits",x:"The first three identify the airline; the remaining eight are the serial, the last digit being a check digit."},
 {name:"The airline prefix",x:"A three-digit number allocated to each airline by IATA."},
 {name:"The check digit",x:"A digit that catches keying errors in the number."}]}]},
-{h:"What it records",blocks:[{t:"table",cols:["Field","Content"],rows:[
+{h:"What it records",blocks:[{t:"fig",id:"cgo_awbform",cap:"Animated figure: the main boxes of a fictional AWB (Narita to Incheon, semiconductor equipment parts) light up in numbered order, matching the notes below."},
+{t:"table",cols:["Field","Content"],rows:[
 ["Shipper","Name and address of the sender"],
 ["Consignee","Name and address of the receiver"],
 ["Origin and destination","Airport codes"],
@@ -145,7 +153,8 @@ sections:[
 {name:"Less double entry",x:"The airline can use the data the forwarder entered, so keying errors fall."},
 {name:"Checks in advance",x:"Security and customs checks can run on the data before the freight arrives."},
 {name:"Tracking",x:"Everyone sees the same status updates: accepted, loaded, arrived, delivered."}]}]},
-{h:"The main messages (examples)",blocks:[{t:"table",cols:["Type","What it carries"],rows:[
+{h:"The main messages (examples)",blocks:[{t:"fig",id:"cgo_status",cap:"Animated figure: status codes from booking to delivery (BKD, RCS, MAN, DEP, ARR, RCF, NFD, DLV) light up in turn, as seen on tracking screens."},
+{t:"table",cols:["Type","What it carries"],rows:[
 ["Waybill data","The content of the master air waybill"],
 ["House data","The content of the house waybills in a consolidation"],
 ["Flight manifest","Which shipments were loaded on which flight"],
@@ -164,8 +173,8 @@ set("1-4",{title:"The Cargo Manifest and Customs",hl:"manifest and customs",subt
 lead:["In Japan most air cargo import and export formalities go through NACCS, the customs and port information system. Airlines and handlers file the cargo manifest for each flight, and forwarders and customs brokers make the declarations.",
 "This article covers the export and import flows, what the manifest does, and the idea of bonded status. For passenger flight formalities see 4-2 of the Launching Flights to Japan series."],
 sections:[
-{h:"Export (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Into the bonded warehouse",sub:"The cargo comes under customs control"},{name:"Export declaration",sub:"Filed in NACCS by the customs broker"},{name:"Examination",sub:"Where required"},{name:"Export permission",sub:"The cargo may now be loaded"},{name:"Loading and manifest",sub:"Filed by the carrier side"}]}]},
-{h:"Import (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Manifest filed",sub:"Before arrival"},{name:"Unloading",sub:"Into the bonded warehouse"},{name:"Import declaration",sub:"Duty and consumption tax"},{name:"Permission",sub:"After payment"},{name:"Release",sub:"To the consignee"}]}]},
+{h:"Export (example)",blocks:[{t:"fig",id:"cgo_exp",cap:"Animated figure: from delivery into the bonded terminal to the NACCS declaration, review, export permission and loading. The right column shows who is mainly responsible."}]},
+{h:"Import (example)",blocks:[{t:"fig",id:"cgo_imp",cap:"Animated figure: from advance reporting to offloading, the import declaration, permission and delivery. The right column shows who is mainly responsible."}]},
 {h:"Ideas worth holding on to",blocks:[{t:"rows",items:[
 {name:"Bonded status",x:"Cargo before export or import permission sits under customs control in a bonded area and cannot simply be moved."},
 {name:"An accurate manifest",x:"If it does not match what was actually loaded, customs will require a correction. Reflect offloads and late additions immediately."},
