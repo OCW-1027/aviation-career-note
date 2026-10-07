@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>航空キャリアノート</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/v2.css">
+<script>window.SITE_V2=1;</script>
+</head>
+<body data-page="home">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap v2">
+<p class="proto" id="proto"></p>
+
+<section class="hero2" aria-labelledby="h1">
+ <div>
+  <h1 id="h1"></h1>
+  <p class="lead" id="hp"></p>
+  <div class="srch" id="srch">
+   <form id="sf" role="search"><input id="sq" type="search" autocomplete="off" aria-controls="sres"><button type="submit" id="sb"></button></form>
+   <div class="sres" id="sres" role="listbox"></div>
+  </div>
+ </div>
+ <div class="dep">
+  <img class="plane" src="../1_지상직여객운송입문/assets/img/b787.webp" alt="" width="1100" height="333">
+  <div class="board" id="board"></div>
+ </div>
+</section>
+
+<section class="sec" id="jobs" aria-labelledby="hj">
+ <div class="sec-head"><div><h2 id="hj"></h2><p class="lead" id="lj"></p></div><a class="more" href="jobs.html" id="mj"></a></div>
+ <div id="jobBox"></div>
+ <div class="emp"><span id="et"></span><a href="../7_구인게재_기업용/求人掲載のご案内.html" id="el"></a></div>
+</section>
+
+<section class="sec" id="learn" aria-labelledby="hl">
+ <div class="sec-head"><div><h2 id="hl"></h2><p class="lead" id="ll"></p></div></div>
+ <ol class="path" id="path"></ol>
+ <div id="courses"></div>
+</section>
+
+<div class="band">
+<section class="sec" id="business" aria-labelledby="hbz">
+ <div class="sec-head"><div><h2 id="hbz"></h2><p class="lead" id="lbz"></p></div><a class="more" href="business.html" id="mbz"></a></div>
+ <div class="biz2" id="bizBox"></div>
+</section>
+</div>
+
+<section class="sec" id="practice" aria-labelledby="hpr">
+ <div class="sec-head"><div><h2 id="hpr"></h2><p class="lead" id="lpr"></p></div></div>
+ <div class="tl2" id="toolTop"></div>
+ <details class="all"><summary id="sall"></summary><div id="toolAll"></div></details>
+</section>
+
+<section class="sec" id="updates" aria-labelledby="hu">
+ <div class="sec-head"><div><h2 id="hu"></h2></div></div>
+ <div class="updl" id="updList"></div>
+</section>
+
+<section class="sec" id="connect" aria-labelledby="hc">
+ <div class="sec-head"><div><h2 id="hc"></h2><p class="lead" id="lc"></p></div></div>
+ <div class="cx" id="cx"></div>
+ <p class="trust" id="trust"></p>
+</section>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+
+<script src="data/jobs.js"></script>
+<script src="data/home_data.js"></script>
+<script src="../1_지상직여객운송입문/assets/updates.js"></script>
+<script src="assets/home_updates.js"></script>
+<script>
+/* 新しいトップページ（試作 2026.10）
+   講座・ツールは data/home_data.js、求人は data/jobs.js、更新は updates.js をそのまま使う。
+   レッスンの検索は、公開サイトでビルドが作る ../search_index.js を読む（無いときは講座とツールだけを探す） */
+var T={
+ja:{title:'航空キャリアノート',proto:['これは新しいトップページの試作です。いまのトップページは','こちら'],
+ h1:['航空の仕事を学び、','次の一歩につなげる。'],hp:'空港・運航・貨物の実務から、会社の数字や人事・総務まで。現場の経験をもとにした講座と練習ツール、求人を一つの場所にまとめました。',
+ sq:'講座・レッスン・ツールを探す（例：NOTAM、搭載、決算）',sb:'検索',kinds:{c:'講座',l:'レッスン',t:'ツール'},none:'見つかりませんでした。別の言葉で試してください。',more:'件以上あります。言葉を足して絞り込んでください。',
+ bh:'出発案内',bt:'本日の便',cols:['便','行き先','状況'],ok:'搭乗中',wait:'準備中',
+ dest:{learn:['航空の講座','{c}講座・{l}レッスン'],biz:['会社の実務','{c}講座・{l}レッスン'],tools:['実習・ツール','{n}種類'],jobs:['求人','{n}件'],jobs0:['求人','掲載を受け付け中'],int:['面接と転職','{l}レッスン'],com:['コミュニティ','質問と経験の掲示板'],coach:['1対1のコーチング','経験者に相談']},
+ hj:'募集中の求人',lj:'航空会社・空港・ハンドリング・貨物の求人です。',mj:'すべての求人',sample:'見本',samp:'いま表示しているのは見本です。',go:'詳しく見る',
+ e0b:'掲載中の求人はまだありません',e0p:'航空・空港の人材を探している企業の方は、掲載のご案内をご覧ください。',et:'求人を載せたい企業の方へ',el:'掲載のご案内',
+ hl:'航空の講座',ll:'仕事の流れに沿って選べます。いまはすべて無料で読めます。',
+ path:[['航空の基礎','航空機・気象・空のルール'],['職種の実務','旅客・貨物・運航管理・営業'],['現場の判断','事例と支店の運営'],['面接と次の仕事','面接対策と求人']],
+ groups:['職種の実務','支店の運営と現場の判断','基礎・空港・就職・暮らし'],arts:'レッスン',
+ hbz:'会社の実務',lbz:'会社の数字、人事・総務、管理職の引き継ぎ。航空に限らず、どの会社でも使う実務です。',mbz:'会社の実務をすべて見る',
+ ftool:['財務の練習ツール','財務諸表の連動・企業価値・財務比率・決算・投資検討報告書の下書き','{n}種類'],
+ hpr:'実習・ツール',lpr:'読んだ知識を、手を動かして確かめます。',sall:'すべてのツール（{n}種類）を見る',
+ hc:'つながる',lc:'学ぶだけで終わらないための場所です。',
+ cx:[['コミュニティ','仕事の質問、現場の事例、面接の準備を話し合う掲示板です。','掲示板を見る'],['1対1のコーチング','航空会社・空港・運航・貨物の経験者に、実務・面接・語学を相談できる仕組みを準備しています。',''],['会員','登録すると、読んだレッスンと学習の記録を残せます。有料の会員プランは準備中です。','会員ページ']],
+ trust:'レッスンごとに更新日を表示し、出典と利用条件を公開しています。',src:'出典と利用条件',about:'このサイトについて'},
+ko:{title:'항공 커리어 노트',proto:['새 홈페이지의 시안입니다. 지금 홈페이지는','여기'],
+ h1:['항공의 일을 배우고,','다음 걸음으로 잇습니다.'],hp:'공항·운항·화물 실무부터 회사의 숫자와 인사·총무까지. 현장 경험을 바탕으로 한 강좌와 연습 도구, 채용 정보를 한곳에 모았습니다.',
+ sq:'강좌·레슨·도구 검색 (예: NOTAM, 탑재, 결산)',sb:'검색',kinds:{c:'강좌',l:'레슨',t:'도구'},none:'찾지 못했습니다. 다른 말로 검색해 보세요.',more:'건 이상 있습니다. 검색어를 더해 좁혀 보세요.',
+ bh:'출발 안내',bt:'오늘의 편',cols:['편','행선지','상태'],ok:'탑승 중',wait:'준비 중',
+ dest:{learn:['항공 강좌','{c}개 강좌·{l}개 레슨'],biz:['회사 실무','{c}개 강좌·{l}개 레슨'],tools:['실습·도구','{n}종'],jobs:['채용','{n}건'],jobs0:['채용','게재 접수 중'],int:['면접과 이직','{l}개 레슨'],com:['커뮤니티','질문과 경험 게시판'],coach:['1:1 코칭','경험자에게 상담']},
+ hj:'모집 중인 채용',lj:'항공사·공항·조업사·화물 분야의 채용 정보입니다.',mj:'모든 채용 보기',sample:'예시',samp:'지금 보이는 공고는 예시입니다.',go:'자세히 보기',
+ e0b:'게재 중인 채용 공고가 아직 없습니다',e0p:'항공·공항 인재를 찾는 기업 담당자께서는 게재 안내를 확인해 주세요.',et:'채용 공고를 올리고 싶은 기업 담당자께',el:'게재 안내',
+ hl:'항공 강좌',ll:'일의 흐름에 따라 고를 수 있습니다. 지금은 모두 무료로 읽을 수 있습니다.',
+ path:[['항공 기초','항공기·기상·하늘의 규칙'],['직무 실무','여객·화물·운항관리·영업'],['현장 판단','사례와 지점 운영'],['면접과 다음 일','면접 대비와 채용']],
+ groups:['직무 실무','지점 운영과 현장 판단','기초·공항·취업·생활'],arts:'레슨',
+ hbz:'회사 실무',lbz:'회사의 숫자, 인사·총무, 관리자 인수인계. 항공에 한정되지 않고 어느 회사에서나 쓰는 실무입니다.',mbz:'회사 실무 전체 보기',
+ ftool:['재무 연습 도구','재무제표 연동·기업가치·재무 비율·결산·투자 검토 보고서 초안','{n}종'],
+ hpr:'실습·도구',lpr:'읽은 지식을 직접 손으로 확인합니다.',sall:'모든 도구({n}종) 보기',
+ hc:'연결',lc:'배우는 데서 끝나지 않도록 마련한 공간입니다.',
+ cx:[['커뮤니티','업무 질문, 현장 사례, 면접 준비를 함께 이야기하는 게시판입니다.','게시판 보기'],['1:1 코칭','항공사·공항·운항·화물 경험자에게 실무·면접·어학을 상담할 수 있는 구조를 준비하고 있습니다.',''],['회원','가입하면 읽은 레슨과 학습 기록을 남길 수 있습니다. 유료 회원 플랜은 준비 중입니다.','회원 페이지']],
+ trust:'레슨마다 업데이트 날짜를 표시하고, 출처와 이용 조건을 공개하고 있습니다.',src:'출처와 이용 조건',about:'사이트 소개'},
+en:{title:'Aviation Career Note',proto:['This is a prototype of the new home page. The current home page is','here'],
+ h1:['Learn the work of aviation,','and take the next step.'],hp:'From airport, flight operations and cargo work to company finance, HR and admin. Courses built on field experience, practice tools and jobs, all in one place.',
+ sq:'Search courses, lessons and tools (e.g. NOTAM, load control, closing)',sb:'Search',kinds:{c:'Course',l:'Lesson',t:'Tool'},none:'Nothing found. Try another word.',more:' or more results. Add a word to narrow them down.',
+ bh:'Departures',bt:'Today',cols:['Flight','Destination','Status'],ok:'Boarding',wait:'Coming soon',
+ dest:{learn:['Aviation courses','{c} courses · {l} lessons'],biz:['Business skills','{c} courses · {l} lessons'],tools:['Practice & tools','{n} tools'],jobs:['Jobs','{n} open'],jobs0:['Jobs','Accepting listings'],int:['Interviews & careers','{l} lessons'],com:['Community','Questions and experience'],coach:['1:1 coaching','Talk to experienced staff']},
+ hj:'Jobs open now',lj:'Openings at airlines, airports, handling companies and in cargo.',mj:'All jobs',sample:'Sample',samp:'The listings shown here are samples.',go:'View job',
+ e0b:'No jobs are listed yet',e0p:'If you are hiring for aviation or airport roles, see how to post a job.',et:'Hiring?',el:'How to post a job',
+ hl:'Aviation courses',ll:'Choose by the flow of the work. Everything is free to read for now.',
+ path:[['Aviation basics','Aircraft, weather, rules of the air'],['Job skills','Passenger, cargo, dispatch, sales'],['Field judgment','Cases and station management'],['Interviews and your next job','Interview prep and jobs']],
+ groups:['Job skills','Station management and field judgment','Basics, airports, careers and living in Japan'],arts:'lessons',
+ hbz:'Business skills',lbz:'Company numbers, HR and admin, and handing over as a manager. Skills used in any company, not only in aviation.',mbz:'All business skills',
+ ftool:['Finance practice tools','Linked statements, valuation, ratios, year-end closing and an investment review draft','{n} tools'],
+ hpr:'Practice and tools',lpr:'Check what you have read by working through it yourself.',sall:'See all {n} tools',
+ hc:'Connect',lc:'So that learning leads somewhere.',
+ cx:[['Community','A board for work questions, field cases and interview preparation.','Visit the board'],['1:1 coaching','We are preparing a way to consult people with airline, airport, dispatch and cargo experience about work, interviews and languages.',''],['Membership','Sign up to keep a record of the lessons you have read. Paid plans are in preparation.','My page']],
+ trust:'Every lesson shows when it was last updated, and our sources and terms of use are public.',src:'Sources and terms',about:'About this site'}};
+
+var AV=[['GND','CGO','DSP','MNT','SLS','CIQ'],['STN','OPN','IRR'],['BAS','APT','INT','EXP']],BZ=['FIN','ADM','HOV'],BZC={FIN:'#2F8FE0',ADM:'#2C8C8C',HOV:'#7A5CC7'};
+var FEAT=['搭載計算の練習','航空路図の練習','収益管理の練習','財務諸表の連動シミュレーター','学科試験_過去問','航空コード辞典'];
+var FINT=['取引と財務諸表の練習','財務諸表の連動シミュレーター','航空原価計算の練習','航空会社経営シミュレーション','財務比率の計算練習','企業価値の計算練習','投資検討報告書の下書き','決算の練習'];
+function $(i){return document.getElementById(i)}
+function E(s){return window.SITE_ESC?window.SITE_ESC(s):String(s)}
+function base(p){return decodeURIComponent(p).split('/').pop().replace(/\.html$/,'')}
+function by(){var o={};SERIES.forEach(function(s){o[s.code]=s});return o}
+function fill(t,o){return String(t).replace(/\{(\w)\}/g,function(m,k){return o[k]})}
+function li(lang){return {ja:0,ko:1,en:2}[lang]||0}
+function liveJobs(){var TODAY=new Date(Date.now()+9*36e5).toISOString().slice(0,10);return (window.JOBS||[]).filter(function(j){return !j.until||j.until>=TODAY}).sort(function(a,b){return (b.posted||'')<(a.posted||'')?-1:1})}
+
+window.render=function(lang){var t=T[lang]||T.ja,S=by();
+ SERIES.forEach(function(s){if(s.dirs&&window.CATALOG){var n=0;s.dirs.forEach(function(d){if(CATALOG[d])n+=CATALOG[d].n});if(n)s.n=n}});
+ document.title=t.title;
+ $('proto').innerHTML=E(t.proto[0])+' <a href="index.html">'+E(t.proto[1])+'</a>';
+ $('h1').innerHTML=t.h1.map(function(x){return '<span class="ln">'+E(x)+'</span>'}).join('');
+ $('hp').textContent=t.hp;$('sq').placeholder=t.sq;$('sq').setAttribute('aria-label',t.sq);$('sb').textContent=t.sb;
+
+ /* 出発案内の板 */
+ var avc=[].concat(AV[0],AV[1],AV[2]).filter(function(c){return S[c]&&c!=='INT'}),avl=avc.reduce(function(a,c){return a+S[c].n},0),
+  bzl=BZ.reduce(function(a,c){return a+(S[c]?S[c].n:0)},0),J=liveJobs(),real=J.filter(function(j){return !j.sample}).length;
+ var rows=[['ACN 101','learn','#learn',{c:avc.length,l:avl},1],['ACN 201','biz','business.html',{c:BZ.length,l:bzl},1],['ACN 301','tools','#practice',{n:TOOLS.length},1],
+  real?['ACN 401','jobs','jobs.html',{n:real},1]:['ACN 401','jobs0','jobs.html',{},1],['ACN 501','int',S.INT?S.INT.p:'#learn',{l:S.INT?S.INT.n:0},1],['ACN 601','com','../community/index.html',{},1],['ACN 701','coach','#connect',{},0]];
+ $('board').innerHTML='<div class="bh"><b>'+E(t.bh)+'</b><span>'+E(t.bt)+' '+new Date(Date.now()+9*36e5).toISOString().slice(0,10).replace(/-/g,'.')+'</span></div><div class="cols" aria-hidden="true"><span>'+t.cols[0]+'</span><span>'+t.cols[1]+'</span><span>'+t.cols[2]+'</span></div>'+
+  rows.map(function(r){var d=t.dest[r[1]];return '<a class="row" href="'+r[2]+'"><span class="fn">'+r[0]+'</span><span class="ds"><b>'+E(d[0])+'</b><small>'+E(fill(d[1],r[3]))+'</small></span><span class="st'+(r[4]?'':' w')+'">'+(r[4]?t.ok:t.wait)+'</span></a>'}).join('');
+
+ /* 求人 */
+ ['hj','lj','mj','et','el'].forEach(function(k){$(k).textContent=t[k]});
+ var show=J.slice(0,3),allSample=show.length&&show.every(function(j){return j.sample});
+ $('jobBox').innerHTML=show.length?'<div class="jobs2">'+show.map(function(j){var d=j[lang]||j.en||j.ja;return '<a class="jc" href="jobs.html#'+E(j.id)+'"><div class="pic" role="img" aria-label="'+E(j.imgAlt||d.title)+'" style="background-image:url(\''+E(j.img||'assets/jobs/counter.svg')+'\')"></div><div class="bd"><div class="co">'+E(d.company)+(j.sample?'<span class="tag">'+t.sample+'</span>':'')+'</div><h3>'+E(d.title)+'</h3><div class="meta">'+[d.place,d.emp].filter(Boolean).map(E).join(' / ')+'</div><span class="go">'+t.go+'</span></div></a>'}).join('')+'</div>'+(allSample?'<p class="lead" style="margin:10px 0 0;font-size:13px">'+E(t.samp)+'</p>':'')
+  :'<div class="empty"><div><b>'+E(t.e0b)+'</b><p>'+E(t.e0p)+'</p></div><a class="btn" href="../7_구인게재_기업용/求人掲載のご案内.html">'+E(t.el)+'</a></div>';
+
+ /* 航空の講座 */
+ $('hl').textContent=t.hl;$('ll').textContent=t.ll;
+ var pl=[S.BAS?S.BAS.p:'#learn','#g0',S.IRR?S.IRR.p:'#g1',S.INT?S.INT.p:'jobs.html'];
+ $('path').innerHTML=t.path.map(function(p,i){return '<li><a href="'+pl[i]+'"><b>'+E(p[0])+'</b><span>'+E(p[1])+'</span></a></li>'}).join('');
+ $('courses').innerHTML=AV.map(function(g,i){return '<h3 class="grp" id="g'+i+'">'+E(t.groups[i])+'</h3><div class="pgrid">'+g.filter(function(c){return S[c]}).map(function(c){return pass(S[c],lang,t)}).join('')+'</div>'}).join('');
+
+ /* 会社の実務 */
+ ['hbz','lbz','mbz'].forEach(function(k){$(k).textContent=t[k]});
+ var nf=TOOLS.filter(function(x){return FINT.indexOf(base(x.p))>=0}).length;
+ $('bizBox').innerHTML=BZ.filter(function(c){return S[c]}).map(function(c){var s=S[c],d=s[lang]||s.ja;return '<a class="bc" style="--c:'+BZC[c]+'" href="'+s.p+'"><span class="who">'+E(d[0])+'</span><b>'+E(d[1])+'</b><span class="d">'+E(d[2])+'</span><span class="n">'+(window.__updNew?window.__updNew(s.p,lang):'')+' '+s.n+' '+E(t.arts)+'</span></a>'}).join('')+
+  '<a class="bc" style="--c:#E08A2F" href="business.html#tools"><span class="who">'+E(t.hpr)+'</span><b>'+E(t.ftool[0])+'</b><span class="d">'+E(t.ftool[1])+'</span><span class="n">'+E(fill(t.ftool[2],{n:nf}))+'</span></a>';
+
+ /* 実習・ツール */
+ $('hpr').textContent=t.hpr;$('lpr').textContent=t.lpr;$('sall').textContent=fill(t.sall,{n:TOOLS.length});
+ $('toolTop').innerHTML=FEAT.map(function(n){var x=TOOLS.filter(function(y){return base(y.p)===n})[0];return x?tool(x,lang):''}).join('');
+ var ha='',op=false;TOOLS.forEach(function(x){if(x.g||!op){if(op)ha+='</div>';ha+=(x.g?'<h3>'+E(x.g[li(lang)])+'</h3>':'')+'<div class="tl2">';op=true}ha+=tool(x,lang)});$('toolAll').innerHTML=ha+(op?'</div>':'');
+
+ if(window.__renderUpdates)window.__renderUpdates(lang);
+
+ /* つながる */
+ $('hc').textContent=t.hc;$('lc').textContent=t.lc;
+ var mc=window.MEMBER_CONFIG||{},live=!!(mc.url&&mc.anonKey),hrefs=['../community/index.html','',  'account.html'];
+ $('cx').innerHTML=t.cx.map(function(c,i){var wait=i===1||(i===0&&!live);return '<div><h3>'+E(c[0])+(wait?'<span class="tag w">'+t.wait+'</span>':'')+'</h3><p>'+E(c[1])+'</p>'+(c[2]?'<a class="btn line" href="'+hrefs[i]+'">'+E(c[2])+'</a>':'')+'</div>'}).join('');
+ $('trust').innerHTML=E(t.trust)+' <a href="sources.html">'+E(t.src)+'</a><a href="about.html">'+E(t.about)+'</a>';
+ SR.reset(lang);
+};
+function pass(s,lang,t){var d=s[lang]||s.ja;return '<a class="pass2" href="'+s.p+'"><div class="m"><div class="who">'+E(d[0])+'</div><b>'+E(d[1])+'</b><div class="d">'+E(d[2])+'</div></div><div class="s">'+(window.__updNew?window.__updNew(s.p,lang):'')+'<span class="c">'+s.code+'</span><small>'+s.n+' '+E(t.arts)+'</small></div></a>'}
+function tool(x,lang){var d=x[lang]||x.ja;return '<a href="'+x.p+'"><b>'+E(String(d[0]).replace(/\n/g,' '))+'</b><span>'+E(d[1])+'</span></a>'}
+
+/* 検索：講座・ツール・（あれば）レッスンの題名を、入力した言葉がすべて含まれるものから探す */
+var SR=(function(){var lang='ja',loaded=false,items=null;
+ function N(s){return String(s||'').normalize('NFKC').toLowerCase()}
+ function load(){if(loaded)return;loaded=true;var s=document.createElement('script');s.src='../search_index.js';s.onload=function(){items=null;run()};document.head.appendChild(s)}
+ function build(){var L=li(lang),out=[],names={};
+  SERIES.forEach(function(s){var d=s[lang]||s.ja;names[String(s.code).toLowerCase()]=d[1];out.push({k:'c',t:d[1],s:d[2],u:s.p,q:N([s.code,d[0],d[1],d[2],s.ja[1],s.ko[1],s.en[1]].join(' '))})});
+  TOOLS.forEach(function(x){var d=x[lang]||x.ja;out.push({k:'t',t:String(d[0]).replace(/\n/g,' '),s:d[1],u:x.p,q:N([x.ja[0],x.ko[0],x.en[0],d[1]].join(' '))})});
+  var X=window.SEARCH_INDEX;if(X&&X.l)X.l.forEach(function(r){var tt=r[2+L]||r[2]||r[3];out.push({k:'l',t:tt,s:(names[r[0]]||r[0].toUpperCase())+' '+r[1],u:'../'+lang+'/'+r[0]+'/'+r[1]+'/',q:N([r[0],r[1],r[2],r[3],r[4]].join(' '))})});
+  return out}
+ function run(){var q=N($('sq').value).trim(),box=$('sres'),t=T[lang]||T.ja;if(!q){box.classList.remove('on');box.innerHTML='';return}
+  if(!items)items=build();var w=q.split(/\s+/),hit=items.filter(function(x){return w.every(function(k){return x.q.indexOf(k)>=0})});
+  hit.sort(function(a,b){var ra=N(a.t).indexOf(w[0])>=0?0:1,rb=N(b.t).indexOf(w[0])>=0?0:1;return ra-rb||({c:0,t:1,l:2}[a.k]-{c:0,t:1,l:2}[b.k])});
+  var top=hit.slice(0,12);
+  box.innerHTML=top.length?top.map(function(x){return '<a role="option" href="'+E(x.u)+'"><span class="k '+x.k+'">'+E(t.kinds[x.k])+'</span><span class="t">'+E(x.t)+'<span class="s">'+E(x.s)+'</span></span></a>'}).join('')+(hit.length>12?'<div class="hint">12'+E(t.more)+'</div>':''):'<div class="none">'+E(t.none)+'</div>';
+  box.classList.add('on')}
+ function init(){var q=$('sq'),box=$('sres');
+  q.addEventListener('focus',load);q.addEventListener('input',run);
+  q.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){var a=box.querySelector('a');if(a){e.preventDefault();a.focus()}}else if(e.key==='Escape'){box.classList.remove('on')}});
+  box.addEventListener('keydown',function(e){var as=[].slice.call(box.querySelectorAll('a')),i=as.indexOf(document.activeElement);if(e.key==='ArrowDown'&&i<as.length-1){e.preventDefault();as[i+1].focus()}else if(e.key==='ArrowUp'){e.preventDefault();(i>0?as[i-1]:q).focus()}else if(e.key==='Escape'){box.classList.remove('on');q.focus()}});
+  $('sf').addEventListener('submit',function(e){e.preventDefault();run();var a=box.querySelector('a');if(a)location.href=a.getAttribute('href')});
+  document.addEventListener('click',function(e){if(!$('srch').contains(e.target))box.classList.remove('on')})}
+ document.addEventListener('DOMContentLoaded',init);
+ return {reset:function(l){lang=l;items=null;if($('sq').value)run()}}})();
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

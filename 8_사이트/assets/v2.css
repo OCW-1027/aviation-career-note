@@ -1,0 +1,150 @@
+/* 新しいトップページ（index_v2.html）と「会社の実務」（business.html）のスタイル — 2026.10 試作
+   基本の色・文字は site.css（晴れた朝の空と搭乗券）をそのまま使い、ここでは出発案内の板と各セクションを足す */
+:root{--board:#0E2A47;--board2:#16395E;--amber:#FFD23F;--ok:#3FCB8E;--wait:#F2A93B;--rose:#D0506A;--soft:#F3F8FD}
+@media (prefers-color-scheme:dark){:root{--soft:#132233}}
+.v2 .wrap{padding-top:8px}
+.v2 section{scroll-margin-top:80px}
+.v2 h2{border:0;padding:0;margin:0 0 6px;font-size:clamp(22px,3vw,28px)}
+.v2 .sec{padding:44px 0 8px}
+.v2 .sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px 18px;justify-content:space-between;margin-bottom:16px}
+.v2 .sec-head .lead{margin:0}
+.v2 .more{font-weight:700;text-decoration:none;white-space:nowrap}
+.v2 .more:hover{text-decoration:underline}
+.v2 .band{background:var(--soft);margin:36px -18px 0;padding:8px 18px 36px;border-radius:24px}
+
+/* 1) ヒーロー：左に見出しと検索、右に出発案内の板 */
+.hero2{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px 40px;align-items:center;padding:34px 0 10px}
+.hero2 h1{font-size:clamp(30px,4.6vw,48px);line-height:1.22;margin:0 0 14px;letter-spacing:-.01em}
+.hero2 h1 .ln{display:block}
+.hero2 .lead{font-size:16px;margin:0 0 22px}
+.srch{position:relative;max-width:560px}
+.srch form{display:flex;gap:8px;background:var(--bg);border:1.5px solid var(--line);border-radius:16px;padding:6px 6px 6px 14px;box-shadow:0 6px 20px rgba(29,42,58,.06)}
+.srch form:focus-within{border-color:var(--sky)}
+.srch input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:15px;padding:8px 0}
+.srch button{border:0;border-radius:11px;background:var(--sky);color:#fff;font:inherit;font-weight:700;padding:8px 18px;cursor:pointer}
+.srch button:hover{background:#2477BD}
+.sres{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:20;background:var(--bg);border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 34px rgba(29,42,58,.16);padding:6px;max-height:min(60vh,460px);overflow:auto;display:none}
+.sres.on{display:block}
+.sres a{display:flex;gap:10px;align-items:baseline;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink)}
+.sres a:hover,.sres a:focus{background:var(--sky2);outline:0}
+.sres .k{flex:none;font-size:11px;font-weight:700;border-radius:999px;padding:0 8px;line-height:1.8;background:var(--sky2);color:#1d5fa0}
+.sres .k.l{background:#EAF7F0;color:#1E7A50}.sres .k.t{background:#FFF3D6;color:#7A5200}
+.sres .t{min-width:0;overflow-wrap:anywhere}.sres .s{display:block;font-size:12px;color:var(--sub)}
+.sres .none{padding:10px;color:var(--sub);font-size:14px}
+.sres .hint{padding:4px 10px 6px;color:var(--sub);font-size:12px}
+
+.dep{position:relative;padding-top:58px}
+.dep .plane{position:absolute;right:-10px;top:-6px;width:min(78%,420px);height:auto;z-index:2;filter:drop-shadow(0 14px 18px rgba(14,42,71,.18));pointer-events:none}
+.board{position:relative;background:var(--board);color:#fff;border-radius:20px;padding:16px 14px 10px;box-shadow:0 18px 40px rgba(14,42,71,.22)}
+.board .bh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:0 6px 10px;border-bottom:1px solid rgba(255,255,255,.14)}
+.board .bh b{font-size:18px;letter-spacing:.04em;color:var(--amber)}
+.board .bh span{font-size:12px;color:#B8CBE0;font-variant-numeric:tabular-nums}
+.board .cols,.board a.row{display:grid;grid-template-columns:4.6em minmax(0,1fr) auto;gap:10px;align-items:center}
+.board .cols{padding:8px 8px 4px;font-size:11px;color:#8FA9C6}
+.board a.row{padding:9px 8px;border-radius:10px;color:#fff;text-decoration:none;border-top:1px solid rgba(255,255,255,.07)}
+.board a.row:hover,.board a.row:focus-visible{background:var(--board2)}
+.board .fn{font-weight:700;color:var(--amber);font-variant-numeric:tabular-nums;letter-spacing:.03em;font-size:14px}
+.board .ds b{display:block;font-size:15px;line-height:1.35}
+.board .ds small{display:block;font-size:12px;color:#B8CBE0;line-height:1.4}
+.board .st{font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap;color:#0E2A47;background:var(--ok)}
+.board .st.w{background:var(--wait)}
+/* 読み込み時に1回だけ：板の行が上から順に表示される */
+@media (prefers-reduced-motion:no-preference){
+ .board a.row{animation:rowin .5s ease both}
+ .board a.row:nth-of-type(2){animation-delay:.08s}.board a.row:nth-of-type(3){animation-delay:.16s}.board a.row:nth-of-type(4){animation-delay:.24s}
+ .board a.row:nth-of-type(5){animation-delay:.32s}.board a.row:nth-of-type(6){animation-delay:.4s}.board a.row:nth-of-type(7){animation-delay:.48s}
+ .dep .plane{animation:planein 1.2s cubic-bezier(.2,.7,.2,1) both}
+}
+@keyframes rowin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes planein{from{opacity:0;transform:translate(-60px,24px)}to{opacity:1;transform:none}}
+
+/* 2) 求人 */
+.jobs2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.jc{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:var(--bg);color:inherit;text-decoration:none;overflow:hidden}
+.jc:hover{border-color:var(--sky)}
+.jc .pic{aspect-ratio:3/1.4;background:#EAF3FC center/cover no-repeat}
+.jc .bd{padding:12px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.jc .co{font-size:13px;color:var(--sub);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.jc h3{margin:0;font-size:17px;line-height:1.4;font-family:inherit}
+.jc .meta{font-size:13px;color:var(--sub)}
+.jc .go{margin-top:auto;padding-top:8px;font-weight:700;color:#1d5fa0;font-size:14px}
+.tag{font-size:11px;font-weight:700;border-radius:999px;padding:0 8px;line-height:1.8;background:#FFE08A;color:#3A2A00}
+.empty{border:1.5px dashed #b9d3ec;border-radius:18px;padding:22px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.empty b{display:block;font-size:17px}.empty p{margin:2px 0 0;color:var(--sub)}
+.btn{display:inline-block;border-radius:12px;padding:9px 18px;font-weight:700;text-decoration:none;background:var(--sky);color:#fff}
+.btn:hover{background:#2477BD}
+.btn.line{background:transparent;color:#1d5fa0;border:1.5px solid #9cc7ee}
+.emp{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px;color:var(--sub)}
+
+/* 3) 学ぶ順番（実際の順番なので番号を付ける） */
+.path{list-style:none;margin:0 0 18px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;counter-reset:st}
+.path li{position:relative}
+.path a{display:block;height:100%;border-radius:16px;padding:14px 14px 14px 52px;background:var(--soft);color:inherit;text-decoration:none;border:1px solid transparent}
+.path a:hover{border-color:#9cc7ee}
+.path li::before{counter-increment:st;content:counter(st);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--sky);color:#fff;font-weight:700;display:grid;place-items:center;font-size:14px}
+.path b{display:block;font-size:15px;line-height:1.4}.path span{display:block;font-size:13px;color:var(--sub);line-height:1.5;margin-top:2px}
+
+/* 講座のカード（搭乗券の形：本体と半券） */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pass2{display:grid;grid-template-columns:minmax(0,1fr) 84px;border:1px solid var(--line);border-radius:16px;background:var(--bg);color:inherit;text-decoration:none;overflow:hidden}
+.pass2:hover{border-color:var(--sky)}
+.pass2 .m{padding:12px 14px}
+.pass2 .who{font-size:12px;color:var(--sub);line-height:1.4}
+.pass2 b{display:block;font-size:16px;line-height:1.4;margin:2px 0}
+.pass2 .d{font-size:13px;color:var(--sub);line-height:1.55}
+.pass2 .s{border-left:2px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--card);padding:8px 4px;text-align:center}
+.pass2 .s .c{font-weight:700;letter-spacing:.06em;color:#1d5fa0;font-size:15px}
+.pass2 .s small{font-size:12px;color:var(--sub);line-height:1.3}
+.pass2 .nb{display:inline-block;font-size:11px;font-weight:700;padding:0 8px;line-height:1.7;border-radius:999px;background:var(--rose);color:#fff}
+.grp{font-size:14px;color:var(--sub);font-weight:700;margin:18px 0 8px}
+
+/* 4) 会社の実務 */
+.biz2{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.bc{display:flex;flex-direction:column;gap:4px;border-radius:18px;padding:16px;background:var(--bg);border:1px solid var(--line);color:inherit;text-decoration:none;border-top:5px solid var(--c,#2F8FE0)}
+.bc:hover{border-color:var(--c,#2F8FE0)}
+.bc .who{font-size:12px;color:var(--sub)}
+.bc b{font-size:17px;line-height:1.4}
+.bc .d{font-size:13px;color:var(--sub);line-height:1.55}
+.bc .n{margin-top:auto;padding-top:8px;font-size:13px;font-weight:700;color:#1d5fa0}
+
+/* 5) 実習・ツール */
+.tl2{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.tl2 a{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg);color:inherit;text-decoration:none}
+.tl2 a:hover{border-color:var(--sky)}
+.tl2 b{font-size:15px;line-height:1.4}.tl2 span{font-size:13px;color:var(--sub);line-height:1.5}
+details.all{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+details.all summary{cursor:pointer;font-weight:700;color:#1d5fa0;padding:6px 0;list-style-position:inside}
+details.all h3{font-size:14px;color:var(--sub);margin:16px 0 8px;font-family:inherit}
+
+/* 6) つながる（コミュニティ・コーチング・会員） */
+.cx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.cx > div{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--bg);display:flex;flex-direction:column;gap:6px}
+.cx h3{margin:0;font-size:18px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.cx p{margin:0;color:var(--sub);font-size:14px;flex:1}
+.cx .tag.w{background:#FDE7C2;color:#6B4300}
+.cx a.btn{align-self:flex-start;margin-top:6px}
+.trust{margin-top:28px;padding:14px 18px;border-radius:14px;background:var(--soft);font-size:14px;color:var(--sub);display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
+.trust a{font-weight:700}
+
+/* 試作の注意（公開前に外す） */
+.proto{margin:10px 0 0;font-size:13px;border:1px dashed #E5534B;background:#fdf1f0;color:#5c1f1b;border-radius:12px;padding:8px 12px}
+
+@media (max-width:900px){
+ .hero2{grid-template-columns:minmax(0,1fr);padding-top:20px}
+ .dep{padding-top:46px}
+ .path{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cx{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+ .path{grid-template-columns:minmax(0,1fr)}
+ .pgrid{grid-template-columns:minmax(0,1fr)}
+ .board .cols,.board a.row{grid-template-columns:3.9em minmax(0,1fr) auto;gap:8px}
+ .board .fn{font-size:13px}
+ .v2 .band{margin:28px -12px 0;padding:8px 12px 28px}
+ .srch button{padding:8px 12px}
+ .jc .pic{aspect-ratio:3/1}
+}
+@media (prefers-color-scheme:dark){
+ .srch form,.jc,.pass2,.bc,.tl2 a,.cx > div{background:transparent}
+ .tag{background:#5a4a14;color:#FFE9A8}
+}

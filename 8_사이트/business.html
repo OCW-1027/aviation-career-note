@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>会社の実務 | 航空キャリアノート</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/v2.css">
+<script>window.SITE_V2=1;</script>
+</head>
+<body data-page="business">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap v2">
+<p class="proto" id="proto"></p>
+<section class="hero2" style="grid-template-columns:minmax(0,1fr)" aria-labelledby="h1">
+ <div><h1 id="h1"></h1><p class="lead" id="hp" style="max-width:62ch"></p></div>
+</section>
+
+<section class="sec" id="start" aria-labelledby="hs">
+ <div class="sec-head"><div><h2 id="hs"></h2><p class="lead" id="ls"></p></div></div>
+ <div class="biz2" id="bizBox"></div>
+</section>
+
+<div class="band">
+<section class="sec" id="tools" aria-labelledby="ht">
+ <div class="sec-head"><div><h2 id="ht"></h2><p class="lead" id="lt"></p></div></div>
+ <div class="tl2" id="toolBox"></div>
+</section>
+</div>
+
+<section class="sec" id="more" aria-labelledby="hm">
+ <div class="sec-head"><div><h2 id="hm"></h2><p class="lead" id="lm"></p></div></div>
+ <div class="pgrid" id="rel"></div>
+</section>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+
+<script src="data/home_data.js"></script>
+<script src="../1_지상직여객운송입문/assets/updates.js"></script>
+<script src="assets/home_updates.js"></script>
+<script>
+/* 「会社の実務」のまとめページ（試作 2026.10）：講座は data/home_data.js の数字で読む会社（FIN）・人事総務財務（ADM）・引き継ぎ（HOV）を使う */
+var T={
+ja:{title:'会社の実務 | 航空キャリアノート',proto:['新しいトップページの試作と一緒に作ったページです。いまのトップページは','こちら'],
+ h1:'会社の実務',hp:'会社の数字を読む力、人事・総務・財務の仕事、管理職になったときの引き継ぎ。航空会社の支店の実務から生まれた内容ですが、どの業種の会社でも使えます。',
+ hs:'どこから読むか',ls:'いまの立場に近いものから始めてください。',
+ role:{FIN:'数字が苦手で、決算書を読めるようになりたい',ADM:'管理部門に配属された・新社会人',HOV:'管理職になる・交代する'},open:'講座を開く',arts:'レッスン',
+ ht:'財務の練習ツール',lt:'数字を入れて動かしながら、財務諸表のつながりと会社の価値を確かめます。',
+ hm:'あわせて読む',lm:'会社の実務と関係の深い航空の講座です。'},
+ko:{title:'회사 실무 | 항공 커리어 노트',proto:['새 홈페이지 시안과 함께 만든 페이지입니다. 지금 홈페이지는','여기'],
+ h1:'회사 실무',hp:'회사의 숫자를 읽는 힘, 인사·총무·재무 업무, 관리자가 되었을 때의 인수인계. 항공사 지점 실무에서 나온 내용이지만 어느 업종의 회사에서나 쓸 수 있습니다.',
+ hs:'어디서부터 읽을까',ls:'지금 입장에 가까운 것부터 시작해 보세요.',
+ role:{FIN:'숫자에 약해서 결산서를 읽을 수 있게 되고 싶은 사람',ADM:'관리 부서에 배치된 사람·사회 초년생',HOV:'관리자가 되거나 교체되는 사람'},open:'강좌 열기',arts:'레슨',
+ ht:'재무 연습 도구',lt:'숫자를 넣어 움직여 보면서 재무제표의 연결과 회사의 가치를 확인합니다.',
+ hm:'함께 읽기',lm:'회사 실무와 관계가 깊은 항공 강좌입니다.'},
+en:{title:'Business skills | Aviation Career Note',proto:['This page was built with the new home page prototype. The current home page is','here'],
+ h1:'Business skills',hp:'Reading a company’s numbers, HR, admin and finance work, and handing over when you become a manager. Written from airline station practice, but useful in any industry.',
+ hs:'Where to start',ls:'Start with whichever is closest to where you are now.',
+ role:{FIN:'You want to read financial statements, but numbers are not your strength',ADM:'You have joined an admin team or are new to working life',HOV:'You are becoming a manager or handing over to one'},open:'Open the course',arts:'lessons',
+ ht:'Finance practice tools',lt:'Enter numbers and watch how the statements connect and what a company is worth.',
+ hm:'Read alongside',lm:'Aviation courses closely tied to business skills.'}};
+var BZ=['FIN','ADM','HOV'],BZC={FIN:'#2F8FE0',ADM:'#2C8C8C',HOV:'#7A5CC7'},REL=['STN','SLS','OPN'];
+var FINT=['取引と財務諸表の練習','財務諸表の連動シミュレーター','財務比率の計算練習','企業価値の計算練習','航空原価計算の練習','航空会社経営シミュレーション','決算の練習','投資検討報告書の下書き'];
+function $(i){return document.getElementById(i)}
+function E(s){return window.SITE_ESC?window.SITE_ESC(s):String(s)}
+function base(p){return decodeURIComponent(p).split('/').pop().replace(/\.html$/,'')}
+window.render=function(lang){var t=T[lang]||T.ja,S={};SERIES.forEach(function(s){S[s.code]=s});
+ document.title=t.title;
+ $('proto').innerHTML=E(t.proto[0])+' <a href="index.html">'+E(t.proto[1])+'</a>';
+ ['h1','hp','hs','ls','ht','lt','hm','lm'].forEach(function(k){$(k).textContent=t[k]});
+ $('bizBox').innerHTML=BZ.filter(function(c){return S[c]}).map(function(c){var s=S[c],d=s[lang]||s.ja;return '<a class="bc" style="--c:'+BZC[c]+'" href="'+s.p+'"><span class="who">'+E(t.role[c])+'</span><b>'+E(d[1])+'</b><span class="d">'+E(d[2])+'</span><span class="n">'+(window.__updNew?window.__updNew(s.p,lang):'')+' '+s.n+' '+E(t.arts)+'　'+E(t.open)+'</span></a>'}).join('');
+ $('toolBox').innerHTML=FINT.map(function(n){var x=TOOLS.filter(function(y){return base(y.p)===n})[0];if(!x)return '';var d=x[lang]||x.ja;return '<a href="'+x.p+'"><b>'+E(String(d[0]).replace(/\n/g,' '))+'</b><span>'+E(d[1])+'</span></a>'}).join('');
+ $('rel').innerHTML=REL.filter(function(c){return S[c]}).map(function(c){var s=S[c],d=s[lang]||s.ja;return '<a class="pass2" href="'+s.p+'"><div class="m"><div class="who">'+E(d[0])+'</div><b>'+E(d[1])+'</b><div class="d">'+E(d[2])+'</div></div><div class="s"><span class="c">'+s.code+'</span><small>'+s.n+' '+E(t.arts)+'</small></div></a>'}).join('');
+};
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

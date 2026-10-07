@@ -87,6 +87,7 @@ async function prerender(html, fileUrl) {
 const sitemap = [];
 const soloPages = [];
 const catalog = {};
+const SEARCH = [];   // 検索用：レッスンの題名（講座コード, 番号, ja, ko, en）2026.10
 let pages = 0;
 
 for (const dir of Object.keys(HUBS)) {
@@ -113,6 +114,7 @@ for (const dir of Object.keys(HUBS)) {
   const code = String(HUBS[dir].code).toLowerCase();
   const index = {};
   keys.forEach(k => { index[k] = {}; LANGS.forEach(l => { const L = A[k][l]; if (L && L.title) index[k][l] = L.title; }); });
+  keys.forEach(k => SEARCH.push([code, k, index[k].ja || '', index[k].ko || '', index[k].en || '']));
 
   // 原稿の <script src="data/…"> を外した「ひな形」
   const tpl = tpl0.replace(/<script src="data\/(?!common\.js)[^"]+"><\/script>\n?/g, '');
@@ -168,10 +170,12 @@ location.replace(K.indexOf(no)>=0?'../'+l+'/${code}/'+no+'/':${JSON.stringify(hu
 
 // 3) 講座ごとのレッスン数（トップページの数を自動で合わせるため）
 fs.writeFileSync(path.join(OUT, 'catalog.js'), '/* 自動生成：講座ごとのレッスン数 */\nwindow.CATALOG=' + JSON.stringify(catalog) + ';\n');
+// 新しいトップページの検索で使う、レッスンの題名の一覧（2026.10）
+fs.writeFileSync(path.join(OUT, 'search_index.js'), '/* 自動生成：レッスンの検索用（講座コード, 番号, ja, ko, en） */\nwindow.SEARCH_INDEX=' + JSON.stringify({ l: SEARCH }) + ';\n');
 
 // トップページ：講座ごとのレッスン数を自動の数に置きかえる
-{
-  const ip = path.join(OUT, '8_사이트/index.html');
+for (const page of ['8_사이트/index.html', '8_사이트/index_v2.html', '8_사이트/business.html']) {
+  const ip = path.join(OUT, page);
   if (fs.existsSync(ip)) fs.writeFileSync(ip, fs.readFileSync(ip, 'utf8').replace('<script src="assets/site.js"></script>',
     '<script src="../catalog.js"></script><script>(function(){if(!window.CATALOG||!window.SERIES)return;SERIES.forEach(function(s){var d=(s.p||"").split("/")[1];if(CATALOG[d])s.n=CATALOG[d].n})})();</script>\n<script src="assets/site.js"></script>'));
 }
