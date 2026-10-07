@@ -10,7 +10,8 @@ sections:[
 {t:"table",cols:["When","What happened"],rows:[
 ["October 2005","KS/RA system begins"],["December 2012","New KS/RA system (first for US-bound passenger flights)"],["April 2014","Extended to all international passenger flights"],["March 2025","Explosive screening widened"],["1 January 2026","X-ray screening becomes standard; MLIT issued separate guidance for cargo that is hard to screen"]]},
 {t:"note",x:"* The 2025–2026 tightening was confirmed through trade press and materials citing MLIT notices; check current national guidelines for detail. ★ KS status has a validity period (two years in internal material)."}]},
-{h:"Korea’s Aviation Security Act",blocks:[{t:"table",cols:["Article","Content"],rows:[
+{h:"Korea’s Aviation Security Act",blocks:[{t:"fig",id:"cgo_ksra",cap:"Animated figure: Japan’s KS/RA and Korea’s regular shippers compared in four rows: approved shipper, who screens, when the record breaks, and the legal basis."},
+{t:"table",cols:["Article","Content"],rows:[
 ["Art. 15(2)–(3)","Air carriers must screen cargo, directly or through a state-designated contractor"],
 ["Art. 17-4(1)–(2)","The state may designate shippers or packers, storers and carriers of cargo that meet equipment and screener standards as known consignors to screen cargo; the state publishes air cargo security standards"],
 ["Art. 17-4(3)","Carriers need not re-screen known-consignor cargo, except in eight cases such as handling by a non-consignor, loss of control, signs of tampering, unauthorised contact, transfer from a freighter to a passenger aircraft, or random sampling"],
@@ -42,7 +43,8 @@ sections:[
 {h:"EU ICS2",blocks:[{t:"table",cols:["Release","Date","Scope"],rows:[
 ["Release 1","15 March 2021","Express carriers and postal operators"],["Release 2","1 March 2023","All air cargo (airlines and forwarders)"],["Release 3","From 2024","Sea and land transport"]]},
 {t:"p",x:"EU-bound air cargo requires pre-loading data (PLACI) before loading and the full entry summary declaration (ENS) before arrival. Missing or wrong data can stop loading at origin."}]},
-{h:"What stations and handlers check",blocks:[{t:"check",items:[
+{h:"What stations and handlers check",blocks:[{t:"fig",id:"cgo_adv",cap:"Animated figure: data sent ahead to the US (ACAS) and EU (ICS2); six steps from booking to before arrival light up in turn."},
+{t:"check",items:[
 {name:"Data transmission",x:"Confirm FWB and FHL were sent and accepted by the destination system (e.g. check the US status screen and resend if needed)."},
 {name:"Corrections",x:"Origin fixes data errors by CCA (6-2); errors cause customs holds."},
 {name:"Security-status code",x:"For the EU, show the code for cargo secure for passenger aircraft (SPX) on the AWB and FWB."},
@@ -56,7 +58,8 @@ next:"7-3 Accepting dangerous goods and NOTOC in practice"});
 set("7-3",{title:"Accepting Dangerous Goods and NOTOC in Practice: The Courage to Stop and Three Copies",hl:"DG acceptance",subtitle:"Prior approval, checklist-based acceptance and stopping on any breach; limits on consolidations and transfers; NOTOC copies, signatures, transmission and one-year retention; perishables, live animals, lithium batteries and magnetized material",
 lead:["Dangerous goods travel safely when correctly declared, packed and marked. Miss a missing document or wrong label and the result can be a fire or leak in flight. Acceptance staff must be ready to stop anything that is not compliant.","Based on a company SOP example, this lesson covers the acceptance flow, preparing and handling the NOTOC, and points for perishables, animals, lithium batteries and magnetized material (continuing 3-1 and 4-1)."],
 sections:[
-{h:"Acceptance flow",blocks:[{t:"rows",items:[
+{h:"Acceptance flow",blocks:[{t:"fig",id:"cgo_dgacc",cap:"Animated figure: prior approval, acceptance by qualified staff, the checklist, the decision to stop, three NOTOC copies, and sending and keeping them light up in turn."},
+{t:"rows",items:[
 {name:"1 Prior approval",x:"Obtain head office or GSA approval before booking; refuse unapproved DG."},
 {name:"2 Qualified staff",x:"Accepted only by trained, qualified staff."},
 {name:"3 Checklist",x:"Check documents, packaging and marking item by item on checklists based on the latest IATA DGR (non-radioactive, radioactive, dry ice)."},
@@ -94,7 +97,8 @@ lead:["When cargo is damaged or lost, shippers and forwarders claim compensation
 sections:[
 {h:"Time limits",blocks:[{t:"table",cols:["Event","Written complaint by","Basis"],rows:[
 ["Damage","14 days from receipt","Montreal Convention Art. 31"],["Delay","21 days from the cargo being placed at disposal","Art. 31"],["Non-delivery (loss)","120 days from AWB issue (example)","Conditions of contract (company example)"],["Legal action","2 years from arrival (or scheduled arrival)","Art. 35"]]}]},
-{h:"Liability limits",blocks:[{t:"table",cols:["Period","Limit for destruction, loss, damage or delay (per kg)"],rows:[
+{h:"Liability limits",blocks:[{t:"fig",id:"cgo_liab",cap:"Animated figure: bars show the per-kg liability limit rising from 17 to 22 to 26 SDR, with a worked example for 100 kg."},
+{t:"table",cols:["Period","Limit for destruction, loss, damage or delay (per kg)"],rows:[
 ["Original (in force 2003)","17 SDR"],["From 28 December 2019","22 SDR"],["From 28 December 2024","26 SDR (1 SDR ≈ US$1.3)"]]},
 {t:"note",x:"* Limits are reviewed for inflation every five years (Art. 24). A shipper who declares a value and pays the charge is covered up to that value. The convention is in force for both Korea (2007) and Japan (2003)."}]},
 {h:"Claim flow (example)",blocks:[{t:"rows",items:[
@@ -117,7 +121,8 @@ next:"7-5 SGHA, SLA and KPIs: agreeing terms with handlers"});
 set("7-5",{title:"SGHA, SLA and KPIs: Agreeing Terms with Handlers",hl:"SLAs and KPIs",subtitle:"The standard agreement (SGHA) sets scope and charges, the service level agreement (SLA) sets times and quality, and KPIs and KRIs measure them for monthly review",
 lead:["Stations hand the physical cargo work to handling companies, but the airline stays responsible. So what is done, by when and to what standard must be written down and measured.","Generalising from a real contract, this lesson covers the structure of IATA’s SGHA and the SLA, and how to build KPIs and KRIs (continuing 5-2)."],
 sections:[
-{h:"The two documents",blocks:[{t:"table",cols:["Document","What it sets"],rows:[
+{h:"The two documents",blocks:[{t:"fig",id:"cgo_sgha",cap:"Animated figure: the SGHA main agreement, Annex A and Annex B appear in turn, with the SLA alongside setting the quality."},
+{t:"table",cols:["Document","What it sets"],rows:[
 ["SGHA","IATA main agreement (liability, insurance, payment, termination) + Annex A (service definitions) + Annex B (location, services and charges). Published in the IATA Airport Handling Manual (AHM 810) and revised every five years; latest 2023 (previously 2018)"],
 ["SLA","Time standards, document and data tasks, indicators, targets and penalties, and review at regular meetings. IATA’s template is AHM 803"]]}]},
 {h:"Time standards in the SLA (example)",blocks:[{t:"table",cols:["Area","Item","Standard (example)"],rows:[
@@ -141,7 +146,8 @@ next:"7-6 Quality audits and monthly meetings"});
 set("7-6",{title:"Quality Audits and Monthly Meetings: Check with a List, Fix in the Meeting",hl:"quality audits",subtitle:"The six areas head office audits at stations and handlers (safety, documents, warehouse, security, ULDs, dangerous goods) and what to cover each month, keeping records that carry forward",
 lead:["Rules alone do not keep quality. You must check regularly that work follows them and fix what has drifted. That is the role of head-office quality audits and the monthly meeting between station and handler.","Based on a real audit checklist, this lesson sets out the six areas, example questions and how to plan monthly meeting agendas (see also Course 16 on quality audits and 5-2)."],
 sections:[
-{h:"Six audit areas (example)",blocks:[{t:"table",cols:["Area","Example questions"],rows:[
+{h:"Six audit areas (example)",blocks:[{t:"fig",id:"cgo_audit",cap:"Animated figure: audit scores for six areas (fictional); areas below the 80 standard are red and get a corrective plan."},
+{t:"table",cols:["Area","Example questions"],rows:[
 ["1 Safety general","Is a cargo person in charge of the handler? Are regular inspections and meetings held? Does the handler run its own quality and safety management and are its training records checked yearly? Are monthly safety patrols recorded and kept for a year?"],
 ["2 Documents and manuals","Are current rules and manuals (cargo handling manual, SOP, DG manual) held and updated? Are AWBs, manifests and DG documents kept at least a year? Are pouches loaded on time?"],
 ["3 Warehouse","Are cut-offs kept? Are actual and volume weights checked against AWBs? Is unbooked cargo checked with sales? Is packaging checked and recorded? Is special cargo prepared from pre-alerts? Are scales checked and calibrated and dollies weighed at least yearly?"],

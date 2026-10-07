@@ -421,6 +421,69 @@ cgo_trans:function(l){
   c[3].forEach(function(j,i){s+='<circle cx="'+xs[i]+'" cy="'+by+'" r="8" fill="#fff" stroke="'+c[2]+'" stroke-width="3"/>'+WR(xs[i],by+14+FS(9)*1.2,W.st[j],9,D,800,104)});
   s+='<rect x="-9" y="-9" width="18" height="18" rx="3" fill="'+c[2]+'"><animateMotion dur="'+dur+'" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;'+c[4]+';1" calcMode="linear" path="M60 '+by+' L560 '+by+'"/></rect>';
   y+=hh+10});
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 7-1 日本のKS/RAと韓国の常用貨主：同じ考え方を2つの国で並べる。行が順に光る */
+cgo_ksra:function(l){
+ var W=({ja:{t:'日本と韓国の貨物の保安を並べる',h:['','日本','韓国'],r:[['確認済みの荷主','特定荷主（KS）','常用貨主（保安検索の基準を満たし国が指定）'],['検査をする者','RA（国の認定）・航空会社','航空会社、または国が指定した業者'],['記録が途切れたら','航空会社が検査してから積む','航空会社が検索する（8つの場合）'],['根拠','国のガイドライン・認定の制度','航空保安法 第15条・第17条の4']],n:['考え方は同じ：確かめられた人から搭載まで記録が続けば、空港での検査を省ける','韓国の常用貨主の条文は2026年2月の改正で第17条の4に移った★']},
+  ko:{t:'일본과 한국의 화물 보안 비교',h:['','일본','한국'],r:[['확인된 화주','특정화주(KS)','상용화주(보안검색 기준 충족, 국가 지정)'],['검색하는 자','RA(국가 인정)·항공사','항공사 또는 국가 지정 업체'],['기록이 끊기면','항공사가 검사 후 탑재','항공사가 검색(8가지 경우)'],['근거','국가 가이드라인·인정 제도','항공보안법 제15조·제17조의4']],n:['원리는 같다: 확인된 사람부터 탑재까지 기록이 이어지면 공항 검색을 생략할 수 있다','한국 상용화주 조문은 2026년 2월 개정으로 제17조의4로 옮겨졌다★']},
+  en:{t:'Cargo security in Japan and Korea side by side',h:['','Japan','Korea'],r:[['Approved shipper','Known consignor (KS)','Regular shipper (meets screening standards, designated by the state)'],['Who screens','Regulated agent (RA, approved) and airline','Airline, or a state-designated contractor'],['If the record breaks','Airline screens before loading','Airline screens (eight listed cases)'],['Basis','National guidelines and approval scheme','Aviation Security Act Art. 15 and 17-4']],n:['Same principle: if the record is unbroken from an approved party to loading, airport screening can be skipped','Korea’s regular-shipper article moved to Art. 17-4 in the February 2026 amendment ★']}})[l];
+ if(!W)return F.cgo_ksra('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=58,lh=FS(10)*1.3,cw=[150,225,225],cx=[20,170,395],n=W.r.length;
+ var hh=FS(11)*1.3+14;W.h.forEach(function(h,i){s+=R(cx[i],y,cw[i],hh,i?(i===1?'#2F6FD6':'#D64545'):'#0f3558',0)+WR(cx[i]+cw[i]/2,y+hh/2+FS(11)*0.35,h,11,'#fff',900,cw[i]-10)});y+=hh;
+ W.r.forEach(function(r,k){var rh=0;r.forEach(function(c,i){rh=Math.max(rh,LI(c,10,cw[i]-14).length*lh)});rh+=14;
+  s+='<g>';r.forEach(function(c,i){s+=R(cx[i],y,cw[i],rh,i?'#fff':'#F4F7FB',0,' stroke="#C8D3DE"')+WR(cx[i]+cw[i]/2,y+rh/2+FS(10)*0.35,c,10,i?D:'#0f3558',i?800:900,cw[i]-14)});
+  s+='<rect x="20" y="'+y+'" width="600" height="'+rh+'" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(k,n,0,.35)+' dur="12s" repeatCount="indefinite"/></rect></g>';y+=rh});
+ var L=LIST(W.n,y+12,600,11);return SVG(L.y+8,s+L.s)},
+/* 7-2 行き先の国へ先に送るデータ：米国（ACAS）とEU（ICS2） */
+cgo_adv:function(l){
+ var W=({ja:{t:'行き先の国へ先に送るデータ（米国・EU）',st:['予約とAWBのデータ（FWB・FHL）を作る','米国向け：ACASのデータを、できるだけ早く、遅くとも搭載の前に送る','EU向け：一部のデータ（PLACI）を搭載の前に送る','危険が高いと照会や「積むな（DNL）」が来る。解消するまで積まない','出発。EU向けは保安の状態のコード（SPXなど）をAWBとFWBに書く','EU向け：入境の要約申告（ENS）の全データを到着の前に送る'],who:['出発地','米国（CBP）','EU','航空会社','出発地','EU']},
+  ko:{t:'목적국에 미리 보내는 데이터(미국·EU)',st:['예약과 AWB 데이터(FWB·FHL)를 만든다','미국행: ACAS 데이터를 가능한 한 빨리, 늦어도 탑재 전에 보낸다','EU행: 일부 데이터(PLACI)를 탑재 전에 보낸다','위험이 높으면 조회나 「싣지 마라(DNL)」가 온다. 해소될 때까지 싣지 않는다','출발. EU행은 보안 상태 코드(SPX 등)를 AWB와 FWB에 적는다','EU행: 입경 요약 신고(ENS) 전체 데이터를 도착 전에 보낸다'],who:['출발지','미국(CBP)','EU','항공사','출발지','EU']},
+  en:{t:'Data sent ahead to the destination (US and EU)',st:['Create the booking and AWB data (FWB, FHL)','US: send ACAS data as early as possible, at the latest before loading','EU: send the PLACI subset before loading','High-risk results bring a referral or Do Not Load (DNL); do not load until resolved','Departure; for the EU, show the security status code (e.g. SPX) on the AWB and FWB','EU: send the full entry summary declaration (ENS) before arrival'],who:['Origin','US (CBP)','EU','Airline','Origin','EU']}})[l];
+ if(!W)return F.cgo_adv('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2C7A7B','#2F6FD6','#6B4FA0','#D64545','#E08A2E','#6B4FA0'],'13s')},
+/* 7-3 危険物の受付：止める勇気と3枚のNOTOC */
+cgo_dgacc:function(l){
+ var W=({ja:{t:'危険物の受付からNOTOCまで（例）',st:['予約の前に、本社・GSAの承認を得る','危険物の訓練を修了した担当が受け付ける','最新のDGRの点検表で、書類・包装・表示を1項目ずつ確かめる','承認のないもの・不備のあるものは止める','NOTOCを3部作る：出発地・機長・到着地','作成後と出発前の2回、運航統制と本社に送る。1年保存★'],who:['本社・GSA','資格者','点検表','止める','3部','送信・保存']},
+  ko:{t:'위험물 접수에서 NOTOC까지(예)',st:['예약 전에 본사·GSA의 승인을 받는다','위험물 교육을 수료한 담당이 접수한다','최신 DGR 점검표로 서류·포장·표시를 한 항목씩 확인한다','승인 없는 것·미비한 것은 멈춘다','NOTOC를 3부 만든다: 출발지·기장·도착지','작성 후와 출발 전 두 번, 운항통제와 본사에 보낸다. 1년 보존★'],who:['본사·GSA','자격자','점검표','멈춤','3부','송신·보존']},
+  en:{t:'From dangerous goods acceptance to the NOTOC (example)',st:['Obtain head office or GSA approval before booking','A trained, qualified agent accepts the shipment','Check documents, packing and marking item by item on the current DGR checklist','Stop anything unapproved or deficient','Make three NOTOC copies: origin, captain, destination','Send to operations control and head office after completion and before departure; keep for one year ★'],who:['Head office/GSA','Qualified staff','Checklist','Stop','3 copies','Send & keep']}})[l];
+ if(!W)return F.cgo_dgacc('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#2C7A7B','#D64545','#E08A2E','#2E9B5F'],'13s')},
+/* 7-4 責任の限度の推移と計算の例（モントリオール条約） */
+cgo_liab:function(l){
+ var W=({ja:{t:'貨物の責任の限度（1kgあたり、モントリオール条約）',r:[['2003年の発効時',17],['2019年12月28日から',22],['2024年12月28日から',26]],u:'SDR',ex:'例：100kgの貨物が壊れた → 26SDR × 100kg ＝ 2,600SDR（約3,400米ドル）★',n:['限度は5年ごとに物価に合わせて見直される（第24条）','価額を申告して料金を払えば、その額まで賠償される。高額の貨物は申告か保険を','SDRと米ドルの換算は日によって変わる★']},
+  ko:{t:'화물 책임 한도(1kg당, 몬트리올 협약)',r:[['2003년 발효 시',17],['2019년 12월 28일부터',22],['2024년 12월 28일부터',26]],u:'SDR',ex:'예: 100kg 화물 파손 → 26SDR × 100kg = 2,600SDR(약 3,400달러)★',n:['한도는 5년마다 물가에 맞춰 재검토된다(제24조)','가액을 신고하고 요금을 내면 그 금액까지 배상된다. 고액 화물은 신고나 보험을','SDR과 달러 환산은 날마다 바뀐다★']},
+  en:{t:'Cargo liability limit per kg (Montreal Convention)',r:[['At entry into force, 2003',17],['From 28 Dec 2019',22],['From 28 Dec 2024',26]],u:'SDR',ex:'Example: 100 kg damaged → 26 SDR × 100 kg = 2,600 SDR (about US$3,400) ★',n:['Limits are reviewed every five years for inflation (Art. 24)','A declared value, with the charge paid, raises compensation to that amount; declare or insure high-value cargo','The SDR–dollar rate changes daily ★']}})[l];
+ if(!W)return F.cgo_liab('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(10)*1.3,dur='6s',sc=(440-FS(11)*4)/30;
+ W.r.forEach(function(r,i){var nl=LI(r[0],10,140).length,h=Math.max(nl*lh,22)+14,bw=r[1]*sc;
+  s+=WR(30,y+h/2+FS(10)*0.35,r[0],10,D,800,140,'start')+'<rect x="175" y="'+(y+h/2-11)+'" width="0" height="22" rx="6" fill="'+['#9FB0C2','#2F6FD6','#E08A2E'][i]+'"><animate attributeName="width" values="0;'+bw.toFixed(1)+';'+bw.toFixed(1)+'" keyTimes="0;.4;1" dur="'+dur+'" begin="'+(i*0.4)+'s" fill="freeze"/></rect>'+tx(175+bw+10,y+h/2+FS(11)*0.35,r[1]+' '+W.u,11,'#0f3558',900,'start');y+=h+6});
+ var ne=LI(W.ex,11,560).length,he=ne*FS(11)*1.3+18;s+=R(20,y+6,600,he,'#FFF7EC',10,' stroke="#E08A2E"')+WR(36,y+6+he/2+FS(11)*0.35,W.ex,11,'#B4580F',900,560,'start');y+=he+16;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 7-5 SGHAとSLA：契約の本文・附属書A・附属書B、そしてSLA */
+cgo_sgha:function(l){
+ var W=({ja:{t:'ハンドリング会社との約束：SGHAとSLA',b:[['SGHAの本文','責任・保険・支払い・解約（IATAの標準）'],['附属書A','業務の定義の一覧'],['附属書B','空港・実際に頼む業務・料金']],sla:['SLA','時間の基準・データの作業・KPIと目標・罰則・定例の会議'],x:'IATA AHM 810（SGHA、2023年版）／AHM 803（SLAのひな形）★',n:['SGHAは「何を・いくらで」、SLAは「どれだけの品質で」を決める','SLAの数字（締め切り・引き渡しの時刻など）が、現場の時間表（6-1・6-3）のもとになる']},
+  ko:{t:'조업사와의 약속: SGHA와 SLA',b:[['SGHA 본문','책임·보험·지급·해지(IATA 표준)'],['부속서 A','업무 정의 목록'],['부속서 B','공항·실제 맡기는 업무·요금']],sla:['SLA','시간 기준·데이터 작업·KPI와 목표·벌칙·정례 회의'],x:'IATA AHM 810(SGHA, 2023년판) / AHM 803(SLA 양식)★',n:['SGHA는 「무엇을·얼마에」, SLA는 「어느 품질로」를 정한다','SLA의 숫자(마감·인도 시각 등)가 현장 시간표(6-1·6-3)의 바탕이 된다']},
+  en:{t:'Agreements with the handler: SGHA and SLA',b:[['SGHA main agreement','Liability, insurance, payment, termination (IATA standard)'],['Annex A','Definitions of services'],['Annex B','Airport, services actually ordered and charges']],sla:['SLA','Time standards, data tasks, KPIs and targets, penalties, regular meetings'],x:'IATA AHM 810 (SGHA, 2023 edition) / AHM 803 (SLA template) ★',n:['The SGHA sets what is done and at what price; the SLA sets to what quality','The SLA’s numbers (cut-offs, release times) underpin the station timelines (6-1, 6-3)']}})[l];
+ if(!W)return F.cgo_sgha('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(10)*1.3,dur='8s',col=['#2F6FD6','#6B4FA0','#2C7A7B'];
+ var y0=y;W.b.forEach(function(b,i){var nl=LI(b[1],10,250).length,h=FS(11)*1.3+nl*lh+22,a=(i*0.15).toFixed(2),c=(i*0.15+0.1).toFixed(2);
+  s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+a+';'+c+';1" dur="'+dur+'" fill="freeze"/>'+R(20,y,290,h,'#fff',10,' stroke="'+col[i]+'" stroke-width="2"')+'<rect x="20" y="'+y+'" width="8" height="'+h+'" rx="3" fill="'+col[i]+'"/>'+WR(165,y+10+FS(11)*0.9,b[0],11,col[i],900,260)+WR(165,y+14+FS(11)*1.3+nl*lh/2+FS(10)*0.3,b[1],10,D,800,250)+'</g>';y+=h+8});
+ var sh=y-y0-8,ns=LI(W.sla[1],10,250).length;
+ s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.5;.6;1" dur="'+dur+'" fill="freeze"/>'+R(330,y0,290,sh,'#FFF7EC',10,' stroke="#E08A2E" stroke-width="2"')+WR(475,y0+sh/2-ns*lh/2-6,W.sla[0],14,'#E08A2E',900,260)+WR(475,y0+sh/2+FS(14)*0.4+ns*lh/2,W.sla[1],10,D,800,250)+'</g>';
+ s+=ARW(312,y0+sh/2,328,y0+sh/2,'#E08A2E',3);
+ var nx=LI(W.x,9,580).length;s+=WR(320,y+nx*FS(9)*1.3/2+4,W.x,9,'#5B6B7D',700,580);y+=nx*FS(9)*1.3+16;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 7-6 品質の審査：6つの分野の点数（架空）。基準に届かない分野は是正 */
+cgo_audit:function(l){
+ var W=({ja:{t:'品質の審査の結果（6つの分野・架空の例）',a:['安全の全般','書類とマニュアル','倉庫の作業','保安','ULD','危険物'],v:[92,85,74,95,68,90],th:'基準 80点',fx:'是正の計画と期限',n:['基準に届かない分野（倉庫の作業・ULD）は、是正の計画と期限を決めて次の月例の会議で確かめる','点数だけでなく、指摘の写真・記録を残して、次の審査で同じ点を確かめる','数字は架空の例']},
+  ko:{t:'품질 심사 결과(6개 분야·가상의 예)',a:['안전 일반','서류와 매뉴얼','창고 작업','보안','ULD','위험물'],v:[92,85,74,95,68,90],th:'기준 80점',fx:'시정 계획과 기한',n:['기준에 못 미친 분야(창고 작업·ULD)는 시정 계획과 기한을 정해 다음 월간 회의에서 확인한다','점수만이 아니라 지적 사진·기록을 남겨 다음 심사에서 같은 점을 확인한다','숫자는 가상의 예']},
+  en:{t:'Quality audit results (six areas, fictional)',a:['Safety general','Documents and manuals','Warehouse','Security','ULDs','Dangerous goods'],v:[92,85,74,95,68,90],th:'Standard: 80',fx:'Corrective plan and deadline',n:['Areas below standard (warehouse, ULDs) get a corrective plan and deadline, checked at the next monthly meeting','Keep photos and records of findings, not just scores, and re-check the same points next audit','Figures are fictional']}})[l];
+ if(!W)return F.cgo_audit('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=66,lh=FS(10)*1.3,dur='6s',x0=200,sc=380/100;
+ var top=y;W.a.forEach(function(a,i){var nl=LI(a,10,170).length,h=Math.max(nl*lh,20)+12,bw=W.v[i]*sc,low=W.v[i]<80;
+  s+=WR(x0-10,y+h/2+FS(10)*0.35,a,10,D,800,170,'end')+'<rect x="'+x0+'" y="'+(y+h/2-10)+'" width="0" height="20" rx="5" fill="'+(low?'#D64545':'#2F6FD6')+'"><animate attributeName="width" values="0;'+bw.toFixed(1)+';'+bw.toFixed(1)+'" keyTimes="0;.4;1" dur="'+dur+'" begin="'+(i*0.2)+'s" fill="freeze"/></rect>'+tx(x0+bw+8,y+h/2+FS(10)*0.35,String(W.v[i]),10,low?'#D64545':'#0f3558',900,'start');y+=h+4});
+ var gx=x0+80*sc;s+='<line x1="'+gx+'" y1="'+(top-6)+'" x2="'+gx+'" y2="'+y+'" stroke="#E08A2E" stroke-width="2" stroke-dasharray="6 4"/>'+tx(gx,top-12,W.th,9,'#E08A2E',800);
+ y+=8;s+=LB(320,y+FS(11)*0.6,W.fx,11,'#fff','middle','#D64545');y+=FS(11)*1.3+18;
  var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
