@@ -1,4 +1,4 @@
-/* 新しいトップページ（index_v2.html）と business.html で使う、講座と資料・ツールの一覧（2026.10 試作）
+/* 新しいトップページ（index_v3.html）と business.html で使う、講座と資料・ツールの一覧（2026.10 試作）
    中身は index.html の中の一覧と同じ。新しいトップページに切り替えるときは、こちらだけを直せばよいようにする */
 var SERIES=[
 {p:'../18_항공기초지식/00_シリーズ全体_航空の基礎知識.html',code:'BAS',n:14,ja:['航空の仕事に関わるすべての人','航空の基礎知識','航空機・航空気象（TAF）・スロット・空のルール・航空の歩み'],ko:['항공 업무에 관계된 모든 사람','항공 기초 지식','항공기·항공 기상(TAF)·슬롯·하늘의 규칙·항공의 역사'],en:['Everyone working in aviation','Aviation Fundamentals','Aircraft, weather (TAF), slots and the rules of the air']},

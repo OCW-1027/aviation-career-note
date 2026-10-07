@@ -6,266 +6,9 @@
 <meta name="robots" content="noindex">
 <title>Aviation Career Note</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
-<style>
-/* GPT の設計案（Hybrid v2）の見た目をそのまま使い、中身を ACN の実際の講座・ツール・求人と 日本語・韓国語・英語 にした試作（2026.10）
-   直したところ：スマートフォンのメニュー、韓国語の改行、架空の数字（評価・コメント数・閲覧数）を出さない、訪問者向けの文に書き換え */
-:root{
-  --navy:#091c2f;
-  --navy2:#102a43;
-  --blue:#1769e0;
-  --cyan:#1ea7b8;
-  --ink:#182431;
-  --muted:#65717e;
-  --bg:#f6f7f8;
-  --surface:#ffffff;
-  --line:#dfe4e8;
-  --soft:#eef3f7;
-  --green:#147d64;
-  --gold:#b89048;
-  --max:1200px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
-  margin:0;
-  font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-  line-height:1.6;
-}
-body.ko{font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans-serif;word-break:keep-all;overflow-wrap:break-word}
-a{text-decoration:none;color:inherit}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #8fb8f5;outline-offset:2px}
-button,input{font:inherit}
-.topbar{
-  background:var(--navy);
-  color:#dce7f1;
-  font-size:12px;
-  letter-spacing:.02em;
-  text-align:center;
-  padding:8px 18px;
-}
-.proto{background:#fdf1f0;color:#5c1f1b;font-size:13px;text-align:center;padding:7px 16px;border-bottom:1px dashed #E5534B}
-.proto a{text-decoration:underline;font-weight:700}
-header{
-  position:sticky;top:0;z-index:30;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.nav{
-  max-width:var(--max);margin:auto;
-  height:72px;padding:0 24px;
-  display:flex;align-items:center;gap:28px;
-}
-.brand{font-weight:900;letter-spacing:-.03em;white-space:nowrap}
-.brand b{color:var(--blue)}
-.navlinks{display:flex;gap:22px;flex:1;font-size:14px;color:#4e5966}
-.navlinks a:hover{color:var(--blue)}
-.navright{display:flex;align-items:center;gap:10px}
-.pill{border:1px solid var(--line);border-radius:999px;padding:4px 6px;font-size:12px;color:#4f5e69;display:inline-flex;align-items:center;gap:2px}
-.pill button{border:0;background:transparent;color:#4f5e69;font-size:12px;padding:3px 5px;border-radius:999px;cursor:pointer}
-.pill button.on{color:var(--blue);font-weight:800}
-.pill i{font-style:normal;opacity:.5}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  border-radius:10px;padding:12px 17px;font-weight:800;font-size:14px;border:1px solid transparent;
-}
-.btn.primary{background:var(--blue);color:#fff}
-.btn.dark{background:var(--navy);color:#fff}
-.btn.ghost{background:#fff;border-color:var(--line)}
-.btn:hover{transform:translateY(-1px)}
-.hero{
-  max-width:var(--max);margin:auto;
-  padding:84px 24px 46px;
-}
-.hero-grid{
-  display:grid;grid-template-columns:1.12fr .88fr;gap:60px;align-items:center;
-}
-.eyebrow{
-  color:var(--blue);font-size:12px;letter-spacing:.13em;font-weight:900;text-transform:uppercase;
-}
-h1{
-  font-size:clamp(48px,6.2vw,78px);line-height:1.03;letter-spacing:-.052em;margin:14px 0 22px;
-}
-body.ja h1,body.ko h1{line-height:1.12;letter-spacing:-.04em}
-.hero p{font-size:18px;color:var(--muted);max-width:690px;margin:0}
-.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:28px}
-.search-wrap{position:relative;max-width:780px}
-.search{
-  display:flex;gap:10px;margin-top:28px;background:#fff;border:1px solid var(--line);
-  border-radius:14px;padding:9px;max-width:780px;box-shadow:0 16px 45px rgba(9,28,47,.07);
-}
-.search input{flex:1;border:0;outline:0;padding:11px;background:transparent;min-width:0}
-.search button{border:0;border-radius:9px;background:var(--navy);color:#fff;padding:0 18px;font-weight:800;cursor:pointer}
-.sres{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:20;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 45px rgba(9,28,47,.14);padding:6px;max-height:min(60vh,460px);overflow:auto;display:none}
-.sres.on{display:block}
-.sres a{display:flex;gap:10px;align-items:baseline;padding:9px 10px;border-radius:9px}
-.sres a:hover,.sres a:focus{background:var(--soft);outline:0}
-.sres .k{flex:none;font-size:10px;letter-spacing:.06em;font-weight:900;color:var(--blue);min-width:4.5em}
-.sres .k.l{color:var(--green)}.sres .k.t{color:#9a793f}
-.sres .s{display:block;font-size:12px;color:var(--muted)}
-.sres .none,.sres .hint{padding:10px;color:var(--muted);font-size:13px}
-.route-card{
-  background:linear-gradient(145deg,#0a1b2e,#12314f);
-  color:#fff;border-radius:28px;padding:30px;
-  min-height:400px;box-shadow:0 35px 80px rgba(9,28,47,.22);
-  display:flex;flex-direction:column;justify-content:space-between;
-}
-.route-head{display:flex;justify-content:space-between;gap:20px}
-.route-head small{opacity:.55}
-.route-title{font-size:26px;line-height:1.2;letter-spacing:-.03em;margin-top:8px}
-.route-flow{position:relative;margin:42px 2px 18px;display:flex;justify-content:space-between}
-.route-flow:before{
-  content:"";position:absolute;left:3%;right:3%;top:11px;height:1px;background:rgba(255,255,255,.25)
-}
-.node{position:relative;z-index:1;text-align:center;width:24%}
-.dot{width:22px;height:22px;border-radius:50%;background:#fff;border:6px solid rgba(255,255,255,.18);margin:auto}
-.node.active .dot{background:#4dd0df}
-.node b{display:block;font-size:12px;margin-top:11px}
-.node span{font-size:10px;opacity:.58}
-.route-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:22px}
-.route-stats b{display:block;font-size:24px}
-.route-stats span{font-size:11px;opacity:.55}
-.quick{
-  max-width:var(--max);margin:auto;padding:8px 24px 54px;
-  display:grid;grid-template-columns:repeat(5,1fr);gap:10px;
-}
-.quick a{
-  background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 17px;
-}
-.quick a:hover{border-color:#9bbbf0}
-.quick strong{display:block;font-size:14px}
-.quick span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
-.section{max-width:var(--max);margin:auto;padding:72px 24px}
-.section.alt{max-width:none;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.section.alt>.inner{max-width:var(--max);margin:auto}
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:28px}
-.section-head h2{font-size:clamp(30px,4vw,46px);line-height:1.15;letter-spacing:-.04em;margin:7px 0 9px}
-.section-head p{color:var(--muted);max-width:700px;margin:0}
-.link{font-weight:800;color:var(--blue);white-space:nowrap;background:none;border:0;padding:0;cursor:pointer;font-size:16px}
-.link.off{color:var(--muted);cursor:default}
-.job-grid,.course-grid,.business-grid,.coach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.job-card,.course-card,.business-card,.coach-card{
-  background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;transition:.2s;display:block;
-}
-.job-card:hover,.course-card:hover,.business-card:hover,.coach-card:hover{
-  transform:translateY(-3px);box-shadow:0 18px 50px rgba(9,28,47,.08)
-}
-.job-card.featured{border-color:#9bbbf0;box-shadow:inset 0 3px 0 var(--blue)}
-.kicker{font-size:10px;letter-spacing:.1em;font-weight:900;color:var(--blue);text-transform:uppercase}
-.job-card h3,.course-card h3,.business-card h3{font-size:21px;line-height:1.25;letter-spacing:-.025em}
-.muted{color:var(--muted)}
-.meta-row{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-top:28px;font-size:12px}
-.meta-row a,.meta-row .go{color:var(--blue);font-weight:800}
-.tag{display:inline-block;background:#FFF1C9;color:#6B4E00;border-radius:5px;padding:1px 6px;font-size:10px;font-weight:900;margin-left:6px;letter-spacing:.04em;vertical-align:2px}
-.job-empty{grid-column:1/-1;background:#fff;border:1px dashed #9bbbf0;border-radius:16px;padding:26px;display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between}
-.job-empty b{display:block;font-size:19px}
-.course-card{min-height:250px;display:flex;flex-direction:column}
-.course-card .meta-row{margin-top:auto}
-.more-grid{margin-top:18px}
-.more-grid[hidden]{display:none}
-.path-band{
-  background:var(--navy);color:#fff;border-radius:24px;padding:38px;
-  display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center
-}
-.path-band p{color:#b8c5d1}
-.path-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.step{border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:18px;display:block}
-.step:hover{border-color:rgba(255,255,255,.4)}
-.step small{opacity:.5}
-.step b{display:block;margin-top:16px}
-.step span{display:block;font-size:12px;color:#b8c5d1;margin-top:4px}
-.business-intro{
-  display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;margin-bottom:28px
-}
-.business-note{
-  background:#f2eee6;border-left:4px solid var(--gold);padding:20px 22px;border-radius:8px;color:#5f5548
-}
-.business-card .sector{
-  display:inline-block;background:#f4f1ea;color:#80683d;padding:5px 8px;border-radius:5px;font-size:10px;font-weight:900
-}
-.business-card.finance{border-top:4px solid #8167b1}
-.business-card.hr{border-top:4px solid #3e8c83}
-.business-card.company{border-top:4px solid #b89048}
-.business-card.admin{border-top:4px solid #55799d}
-.business-grid{grid-template-columns:repeat(4,1fr)}
-.practice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.lab{
-  min-height:170px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px;
-  display:flex;flex-direction:column;justify-content:space-between;gap:10px
-}
-.lab:hover{border-color:#9bbbf0}
-.lab b{font-size:18px;line-height:1.3}
-.lab span{font-size:12px;color:var(--muted)}
-.practice-grid.all .lab{min-height:120px}
-.practice-grid.all .lab b{font-size:16px}
-.membership{
-  background:linear-gradient(135deg,#102a43,#0a1d30);
-  color:#fff;border-radius:24px;padding:42px;display:grid;grid-template-columns:1.35fr .65fr;gap:35px;align-items:center
-}
-.membership h2{margin:7px 0 12px;font-size:39px;line-height:1.2;letter-spacing:-.03em}
-.membership p{color:#c5d0da}
-.pricebox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px}
-.pricebox b{display:block;font-size:24px}
-.pricebox span{font-size:11px;opacity:.6}
-.coach-grid .coach-card{display:flex;gap:16px}
-.avatar{
-  width:58px;height:58px;border-radius:50%;background:#eaf1fb;color:var(--blue);
-  display:grid;place-items:center;font-weight:900;font-size:11px;flex:0 0 auto
-}
-.coach-card h3{margin:0;font-size:17px}
-.coach-card p{margin:4px 0;font-size:13px;color:var(--muted)}
-.rating{font-size:12px;font-weight:800}
-.community-box{
-  background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px;
-  display:grid;grid-template-columns:.82fr 1.18fr;gap:44px
-}
-.topic{display:grid;grid-template-columns:68px 1fr auto;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
-.topic span{font-size:10px;color:var(--blue);font-weight:900}
-.topic small{color:var(--muted)}
-.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.trust-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:block}
-.trust-item b{display:block;font-size:14px}.trust-item span{font-size:12px;color:var(--muted)}
-footer{background:#081828;color:#fff;padding:58px 24px}
-.foot{max-width:var(--max);margin:auto;display:grid;grid-template-columns:2fr repeat(4,1fr);gap:28px}
-.foot p,.foot a{display:block;font-size:12px;color:#9fb0bf;margin:6px 0}
-.foot a:hover{color:#fff}
-.foot b{display:block;margin-bottom:12px}
-.copy{max-width:var(--max);margin:30px auto 0;font-size:11px;color:#6f8394}
-@media(max-width:980px){
-  /* GPT 案ではメニューが消えていたので、2行目に並べて全部見えるようにした */
-  .nav{flex-wrap:wrap;height:auto;padding:12px 18px;gap:10px 14px}
-  .navlinks{order:3;flex:1 1 100%;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:13px}
-  .navlinks a{border:1px solid var(--line);border-radius:9px;padding:7px 4px;text-align:center;background:#fff}
-  .navright{margin-left:auto}
-  .hero-grid,.business-intro,.path-band,.membership,.community-box{grid-template-columns:1fr}
-  .quick{grid-template-columns:repeat(2,1fr)}
-  .job-grid,.course-grid,.coach-grid{grid-template-columns:1fr}
-  .business-grid,.practice-grid,.trust-grid{grid-template-columns:repeat(2,1fr)}
-  .path-steps{grid-template-columns:repeat(2,1fr)}
-  .foot{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .topbar{font-size:10px}
-  .brand{font-size:15px}
-  .navright .btn{padding:9px 12px;font-size:13px}
-  h1{font-size:44px}
-  .hero{padding-top:52px}
-  .search{flex-direction:column}
-  .search button{padding:12px}
-  .quick,.business-grid,.practice-grid,.trust-grid,.path-steps,.foot{grid-template-columns:1fr}
-  .route-card{min-height:340px}
-  .section-head{flex-direction:column;align-items:start}
-  .path-band,.membership,.community-box{padding:26px}
-  .membership h2{font-size:30px}
-  .topic{grid-template-columns:58px 1fr}
-  .topic small{grid-column:2}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.job-card:hover,.course-card:hover,.business-card:hover,.coach-card:hover{transform:none}}
-</style>
+<link rel="stylesheet" href="assets/v3.css">
 </head>
-<body>
+<body data-page="home">
 <div class="topbar">Aviation Career Note · Learn · Jobs · Business Skills · Coaching · Community</div>
 <div class="proto" id="proto"></div>
 
@@ -437,11 +180,10 @@ footer{background:#081828;color:#fff;padding:58px 24px}
 <script src="data/home_data.js"></script>
 <script src="../catalog.js" onerror="this.remove()"></script>
 <script>
-/* 文言（日本語・韓国語・英語）。見出しの改行は GPT 案と同じ位置に <br> を入れる */
+/* トップページの文言（日本語・韓国語・英語）。メニュー・フッター・言語の切り替えは assets/v3.js。見出しの改行は GPT 案と同じ位置に <br> を入れる */
 var T={
-ja:{title:'航空キャリアノート',proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら','・','別の試作（出発案内）'],
- nav:['学ぶ','Business Skills','Practice','求人','Coaching','Community'],mem:'メンバーシップ',
- h1:'学んで、<br>働いて、<br>業界とつながる。',hp:'航空の実務の講座、航空業界の求人、会社の経営・財務・人事の実務、経験者との1対1のコーチングとコミュニティを、一つの場所でつなぎます。',
+ja:{title:'航空キャリアノート',
+  h1:'学んで、<br>働いて、<br>業界とつながる。',hp:'航空の実務の講座、航空業界の求人、会社の経営・財務・人事の実務、経験者との1対1のコーチングとコミュニティを、一つの場所でつなぎます。',
  c1:'自分に合う入口を探す',c2:'航空の求人を見る',sq:'職種・講座・会社の実務・空港・求人を検索',sb:'検索',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'見つかりませんでした。別の言葉で試してください。',more:'件以上あります。言葉を足して絞り込んでください。',
  flow:['知識','実習','コーチング','求人'],stats:['Aviation Series','Business Tracks','Practice Tools'],
  quick:[['✈ 航空を学びたい','基礎・旅客・運航・貨物・空港'],['💼 求人を探している','航空会社・空港・地上業務・貨物'],['📊 会社の実務を学びたい','財務・人事・総務・経営'],['🤝 経験者に相談したい','1対1の実務・面接・語学・キャリア'],['💬 業界の情報を共有したい','Q&A・事例・就職・つながり']],
@@ -458,12 +200,9 @@ ja:{title:'航空キャリアノート',proto:['GPTの設計案をもとにし�
  coach:[['Passenger Service Coach','空港の旅客・支店の経験者を募集中','実務 / 面接'],['Flight Ops Mentor','運航管理・Dispatchの経験者を募集中','試験 / 実務'],['Station Manager Mentor','支店の運営・管理職の経験者を募集中','管理職のキャリア']],
  hcm:'情報が集まるほど、<br>この場所の価値が高まります。',lcm:'仕事のQ&A、現場の事例、面接の体験、国ごとの就職の情報、OBの経験が集まる航空のコミュニティ。',bcm:'コミュニティを見る',
  topics:[['HOT','日本の空港の地上職に転職するには、何から？'],['CASE','イレギュラーで最初に判断すべきこと'],['CAREER','運航管理者の面接の準備の資料'],['BUSINESS','管理職が必ず見る会社の数字5つ']],tex:'話題の例',
- htr:'専門のサイトは、<br>内容の根拠を示します。',trust:[['Reviewed Content','更新日と更新の記録を表示'],['Primary Sources','IATA・ICAO・政府・公式の資料'],['Field Experience','現場の経験と公式の規定を区別'],['KO · JA · EN','日本語・韓国語を中心に多言語へ']],
- foot:[['Aviation Career Note',['航空の専門知識から、求人・コーチング・コミュニティまで。','Professional Knowledge beyond Aviation.']],['Learn',[['#learn','Courses'],['#learn','Learning Paths'],['#practice','Practice Lab']]],['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['#coaching','Coaching']]],['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]],
- copy:'© 2026 Aviation Career Note　無断転載・複製禁止　<a href="terms.html">利用規約</a>　<a href="privacy.html">プライバシーポリシー</a>'},
-ko:{title:'항공 커리어 노트',proto:['GPT 디자인안을 바탕으로 만든 시안입니다. 지금 홈페이지는','여기','·','다른 시안(출발 안내)'],
- nav:['학습','Business Skills','Practice','채용','Coaching','Community'],mem:'멤버십',
- h1:'배우고,<br>일하고,<br>업계와 연결됩니다.',hp:'항공 실무 교육, 항공업계 채용, 회사 경영·재무·인사 실무, 전문가 1:1 코칭과 커뮤니티를 하나의 전문 플랫폼으로 연결합니다.',
+ htr:'専門のサイトは、<br>内容の根拠を示します。',trust:[['Reviewed Content','更新日と更新の記録を表示'],['Primary Sources','IATA・ICAO・政府・公式の資料'],['Field Experience','現場の経験と公式の規定を区別'],['KO · JA · EN','日本語・韓国語を中心に多言語へ']]},
+ko:{title:'항공 커리어 노트',
+  h1:'배우고,<br>일하고,<br>업계와 연결됩니다.',hp:'항공 실무 교육, 항공업계 채용, 회사 경영·재무·인사 실무, 전문가 1:1 코칭과 커뮤니티를 하나의 전문 플랫폼으로 연결합니다.',
  c1:'나에게 맞는 시작점 찾기',c2:'항공 채용공고 보기',sq:'직무, 강좌, 회사 실무, 공항, 채용공고를 검색하세요',sb:'검색',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'찾지 못했습니다. 다른 말로 검색해 보세요.',more:'건 이상 있습니다. 검색어를 더해 좁혀 보세요.',
  flow:['지식','실습','코칭','채용'],stats:['Aviation Series','Business Tracks','Practice Tools'],
  quick:[['✈ 항공을 배우고 싶어요','기초 · 여객 · 운항 · 화물 · 공항'],['💼 채용공고를 찾고 있어요','항공사 · 공항 · 지상조업 · 화물'],['📊 회사 실무를 배우고 싶어요','재무 · 인사 · 총무 · 경영'],['🤝 현업 코치가 필요해요','1:1 실무 · 면접 · 언어 · 커리어'],['💬 업계 정보를 나누고 싶어요','Q&A · 사례 · 취업 · 네트워킹']],
@@ -480,12 +219,9 @@ ko:{title:'항공 커리어 노트',proto:['GPT 디자인안을 바탕으로 만
  coach:[['Passenger Service Coach','공항 여객·지점 경험자 모집 중','실무 / 면접'],['Flight Ops Mentor','운항관리·Dispatch 경험자 모집 중','시험 / 실무'],['Station Manager Mentor','지점 운영·관리자 경험자 모집 중','관리자 커리어']],
  hcm:'정보가 쌓일수록<br>플랫폼의 가치가 커집니다.',lcm:'직무 Q&A, 현장 사례, 면접 후기, 국가별 취업 정보, OB 경험이 축적되는 항공 전문 커뮤니티.',bcm:'커뮤니티 둘러보기',
  topics:[['HOT','일본 공항 지상직 이직 준비, 무엇부터?'],['CASE','IRROPS에서 가장 먼저 판단해야 할 것'],['CAREER','운항관리사 면접 준비 자료 공유'],['BUSINESS','관리자가 꼭 봐야 할 회사 숫자 5가지']],tex:'주제 예시',
- htr:'전문 사이트는<br>콘텐츠의 근거를 보여줍니다.',trust:[['Reviewed Content','검토일과 업데이트 이력 표시'],['Primary Sources','IATA · ICAO · 정부 · 공식자료'],['Field Experience','현업 경험과 공식 규정 구분'],['KO · JA · EN','한·일 중심의 다국어 확장']],
- foot:[['Aviation Career Note',['항공 전문 지식에서 채용, 코칭, 커뮤니티까지.','Professional Knowledge beyond Aviation.']],['Learn',[['#learn','Courses'],['#learn','Learning Paths'],['#practice','Practice Lab']]],['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['#coaching','Coaching']]],['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]],
- copy:'© 2026 Aviation Career Note　무단 전재·복제 금지　<a href="terms.html">이용약관</a>　<a href="privacy.html">개인정보 처리방침</a>'},
-en:{title:'Aviation Career Note',proto:['A prototype based on the GPT design. The current home page is','here','·','the other prototype (departure board)'],
- nav:['Learn','Business Skills','Practice','Jobs','Coaching','Community'],mem:'Membership',
- h1:'Learn.<br>Work.<br>Connect with the industry.',hp:'Aviation courses, aviation jobs, business skills in finance and HR, 1:1 coaching with experienced professionals and a community, connected in one professional platform.',
+ htr:'전문 사이트는<br>콘텐츠의 근거를 보여줍니다.',trust:[['Reviewed Content','검토일과 업데이트 이력 표시'],['Primary Sources','IATA · ICAO · 정부 · 공식자료'],['Field Experience','현업 경험과 공식 규정 구분'],['KO · JA · EN','한·일 중심의 다국어 확장']]},
+en:{title:'Aviation Career Note',
+  h1:'Learn.<br>Work.<br>Connect.',hp:'Aviation courses, aviation jobs, business skills in finance and HR, 1:1 coaching with experienced professionals and a community, connected in one professional platform.',
  c1:'Find your starting point',c2:'Browse aviation jobs',sq:'Search roles, courses, business skills, airports and jobs',sb:'Search',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'Nothing found. Try another word.',more:' or more results. Add a word to narrow them down.',
  flow:['Knowledge','Practice','Coaching','Jobs'],stats:['Aviation Series','Business Tracks','Practice Tools'],
  quick:[['✈ I want to learn aviation','Basics · Passenger · Ops · Cargo · Airports'],['💼 I’m looking for a job','Airlines · Airports · Ground handling · Cargo'],['📊 I want business skills','Finance · HR · Admin · Management'],['🤝 I need a coach','1:1 work · Interviews · Languages · Career'],['💬 I want to share industry info','Q&A · Cases · Careers · Networking']],
@@ -502,9 +238,7 @@ en:{title:'Aviation Career Note',proto:['A prototype based on the GPT design. Th
  coach:[['Passenger Service Coach','Recruiting coaches with airport passenger experience','Work / Interviews'],['Flight Ops Mentor','Recruiting coaches with dispatch experience','Exams / Work'],['Station Manager Mentor','Recruiting coaches with station management experience','Management careers']],
  hcm:'The more we share,<br>the more valuable it becomes.',lcm:'An aviation community for work Q&A, field cases, interview experiences, country-by-country job information and alumni experience.',bcm:'Visit the community',
  topics:[['HOT','Moving to an airport ground job in Japan: where to start?'],['CASE','The first decision to make in a disruption'],['CAREER','Sharing dispatcher interview preparation'],['BUSINESS','Five company numbers every manager should watch']],tex:'Example topic',
- htr:'A professional site<br>shows where its content comes from.',trust:[['Reviewed Content','Review dates and update history shown'],['Primary Sources','IATA · ICAO · governments · official sources'],['Field Experience','Field experience kept separate from official rules'],['KO · JA · EN','Japanese and Korean first, growing in more languages']],
- foot:[['Aviation Career Note',['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.']],['Learn',[['#learn','Courses'],['#learn','Learning Paths'],['#practice','Practice Lab']]],['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['#coaching','Coaching']]],['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]],
- copy:'© 2026 Aviation Career Note. All rights reserved.　<a href="terms.html">Terms of use</a>　<a href="privacy.html">Privacy policy</a>'}};
+ htr:'A professional site<br>shows where its content comes from.',trust:[['Reviewed Content','Review dates and update history shown'],['Primary Sources','IATA · ICAO · governments · official sources'],['Field Experience','Field experience kept separate from official rules'],['KO · JA · EN','Japanese and Korean first, growing in more languages']]}};
 
 var KICK={GND:'Passenger Operations',DSP:'Flight Operations',STN:'Station Management',CGO:'Air Cargo',MNT:'Aircraft & Maintenance',SLS:'Airline Sales',CIQ:'CIQ',OPN:'Station Launch',IRR:'Field Cases',BAS:'Fundamentals',APT:'Airports',INT:'Career & Interview',EXP:'Living in Japan'},
  LEVEL={GND:'Beginner',DSP:'Intermediate',STN:'Advanced',CGO:'Intermediate',MNT:'Intermediate',SLS:'Intermediate',CIQ:'Beginner',OPN:'Advanced',IRR:'Advanced',BAS:'Beginner',APT:'Beginner',INT:'Beginner',EXP:'Beginner'},
@@ -512,10 +246,9 @@ var KICK={GND:'Passenger Operations',DSP:'Flight Operations',STN:'Station Manage
  LABS=[['航空路図の練習','Flight Dispatch Practice'],['搭載計算の練習','Load Control'],['収益管理の練習','Revenue Management'],['財務諸表の連動シミュレーター','Financial Simulator']],
  FINT=['取引と財務諸表の練習','財務諸表の連動シミュレーター','航空原価計算の練習','航空会社経営シミュレーション','財務比率の計算練習','企業価値の計算練習','投資検討報告書の下書き','決算の練習'],
  STEPS=[['Aviation Fundamentals','BAS'],['Passenger / Operations','GND'],['Practice & Cases','IRR'],['Career & Interview','INT']];
-var LANGS=['ja','ko','en'],lang='ja';
-try{var q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],sv=localStorage.getItem('art-lang');lang=q||(LANGS.indexOf(sv)>=0?sv:((navigator.language||'').slice(0,2)==='ko'?'ko':(navigator.language||'').slice(0,2)==='en'?'en':'ja'));localStorage.setItem('art-lang',lang)}catch(e){}
+var lang='ja';
 function $(i){return document.getElementById(i)}
-function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function E(s){return window.ACN?ACN.E(s):String(s)}
 function base(p){return decodeURIComponent(p).split('/').pop().replace(/\.html$/,'')}
 function li(l){return {ja:0,ko:1,en:2}[l]||0}
 function S(){var o={};SERIES.forEach(function(s){o[s.code]=s});return o}
@@ -524,13 +257,7 @@ function tool(n){return TOOLS.filter(function(x){return base(x.p)===n})[0]}
 /* 講座のレッスン数：公開サイトではビルドが作る catalog.js の数を使う */
 (function(){if(!window.CATALOG)return;SERIES.forEach(function(s){var d=(s.p||'').split('/')[1];if(s.dirs){var n=0;s.dirs.forEach(function(x){if(CATALOG[x])n+=CATALOG[x].n});if(n)s.n=n}else if(CATALOG[d])s.n=CATALOG[d].n})})();
 
-function render(){var t=T[lang],s=S();document.documentElement.lang=lang;document.body.className=lang;document.title=t.title;
- $('proto').innerHTML=E(t.proto[0])+' <a href="index.html">'+E(t.proto[1])+'</a> '+E(t.proto[2])+' <a href="index_v2.html">'+E(t.proto[3])+'</a>';
- var nh=['#learn','#business','#practice','jobs.html','#coaching','../community/index.html'];
- $('navlinks').innerHTML=t.nav.map(function(n,i){return '<a href="'+nh[i]+'">'+E(n)+'</a>'}).join('');
- $('langs').innerHTML=[['ko','KO'],['ja','JA'],['en','EN']].map(function(x,i){return (i?'<i>/</i>':'')+'<button type="button" data-l="'+x[0]+'" class="'+(x[0]===lang?'on':'')+'" aria-pressed="'+(x[0]===lang)+'">'+x[1]+'</button>'}).join('');
- Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render()}});
- $('mem').textContent=t.mem;
+window.PAGE_RENDER=function(l){lang=l;var t=T[lang],s=S();document.title=t.title;
  $('h1').innerHTML=t.h1;$('hp').textContent=t.hp;$('c1').textContent=t.c1;$('c2').textContent=t.c2;$('sq').placeholder=t.sq;$('sq').setAttribute('aria-label',t.sq);$('sb').textContent=t.sb;
 
  /* 経路のカード */
@@ -577,10 +304,8 @@ function render(){var t=T[lang],s=S();document.documentElement.lang=lang;documen
  $('htr').innerHTML=t.htr;
  var th=['sources.html','sources.html','about.html','about.html'];
  $('trustGrid').innerHTML=t.trust.map(function(x,i){return '<a class="trust-item" href="'+th[i]+'"><b>'+E(x[0])+'</b><span>'+E(x[1])+'</span></a>'}).join('');
- $('foot').innerHTML=t.foot.map(function(c,i){return '<div><b>'+E(c[0])+'</b>'+(i===0?c[1].map(function(p){return '<p>'+E(p)+'</p>'}).join(''):c[1].map(function(a){return '<a href="'+a[0]+'">'+E(a[1])+'</a>'}).join(''))+'</div>'}).join('');
- $('copy').innerHTML=t.copy;
  SR.reset();
-}
+};
 /* 「すべて見る」：同じページの中で残りを開く（GPT 案のリンク先がまだ無いので） */
 function toggle(btn,box,lbl){var b=$(btn),x=$(box);function set(){var open=!x.hidden;b.textContent=open?lbl[1]:lbl[0];b.setAttribute('aria-expanded',open)}set();b.onclick=function(){x.hidden=!x.hidden;set()}}
 
@@ -605,7 +330,7 @@ var SR=(function(){var loaded=false,items=null;
   $('sf').addEventListener('submit',function(e){e.preventDefault();run();var a=box.querySelector('a');if(a)location.href=a.getAttribute('href')});
   document.addEventListener('click',function(e){if(!$('srch').contains(e.target))box.classList.remove('on')})});
  return {reset:function(){items=null;if($('sq')&&$('sq').value)run()}}})();
-document.addEventListener('DOMContentLoaded',render);
 </script>
+<script src="assets/v3.js"></script>
 </body>
 </html>
