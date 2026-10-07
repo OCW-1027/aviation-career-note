@@ -284,7 +284,22 @@ mnt_path:function(l){
   ko:{t:'지점·운송 직원이 정비에 강해지는 길(예)',st:['용어를 익힌다: 이 강좌 Part 0~1에서 기체 부위와 정비 용어','MEL과 CDL을 읽는다: 자사 기종 MEL 한 쪽을 정비사와 함께 읽어 본다','AOG에 함께한다: 부품·통관·승객 준비를 기록하며 경험한다','정비 체제를 맡는다: 위탁처 계약·일람표·감사에 참여한다','다음 길을 고른다: MCC·정비 계획·품질로 이동, 기종 개요 강습, 자격 공부'],who:['1개월','3개월','1년','2~3년','그다음']},
   en:{t:'How station and ground staff get stronger in maintenance (example)',st:['Learn the words: aircraft parts and maintenance terms in Parts 0–1 of this course','Read the MEL and CDL: go through one page of your type’s MEL with an engineer','Be there for AOGs: handle parts, customs and passengers while keeping a log','Own the maintenance arrangements: join contracts, the arrangement list and audits','Choose the next step: move to MCC, planning or quality, take a type familiarisation course, study for a licence'],who:['1 month','3 months','1 year','2–3 years','Beyond']}})[l];
  if(!W)return F.mnt_path('ja');setK(1);
- return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#D64545','#E08A2E','#2E9B5F'],'12s')}
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#D64545','#E08A2E','#2E9B5F'],'12s')},
+/* 6-3 ATAの章の場所：B737の横の図に、章ごとのおおよその場所が順に光る */
+mnt_ata:function(l){
+ var W=({ja:{t:'ATAの章と、機体のおおよその場所（B737の例）',p:[['21','空調・与圧','胴体の下の空調装置（パック）'],['24','電源','操縦室の下の電気・電子機器室'],['29','油圧','主脚の格納部のまわり'],['32','脚・ブレーキ','前脚・主脚とタイヤ・ブレーキ'],['49','APU','尾部の補助動力装置'],['52','ドア','客室・貨物室のドア']],n:['場所はおおよそ。機種によって違う（B787の電気・電子機器室は前と後ろに分かれている）★','整備士が「21の不具合」と言えば空調、「32」なら脚やブレーキの話。章の番号を覚えると、話の行き先がすぐ分かる']},
+  ko:{t:'ATA 장과 기체의 대략적인 위치(B737 예)',p:[['21','공조·여압','동체 아래 공조 장치(팩)'],['24','전원','조종실 아래 전기·전자 장비실'],['29','유압','주 착륙장치 격납부 주변'],['32','착륙장치·브레이크','앞·주 착륙장치와 타이어·브레이크'],['49','APU','꼬리의 보조동력장치'],['52','도어','객실·화물칸 도어']],n:['위치는 대략. 기종마다 다르다(B787의 전기·전자 장비실은 앞뒤로 나뉘어 있다)★','정비사가 ‘21번 결함’이라고 하면 공조, ‘32번’이면 착륙장치나 브레이크 이야기. 장 번호를 익히면 이야기의 방향을 바로 알 수 있다']},
+  en:{t:'ATA chapters and roughly where they are (B737 example)',p:[['21','Air conditioning','Packs under the fuselage'],['24','Electrical power','Electronics bay under the flight deck'],['29','Hydraulics','Around the main wheel wells'],['32','Landing gear','Nose and main gear, tyres and brakes'],['49','APU','Auxiliary power unit in the tail'],['52','Doors','Cabin and cargo doors']],n:['Locations are approximate and vary by type (the B787 has forward and aft electronics bays) ★','When an engineer says “a chapter 21 defect”, it is air conditioning; “32” is gear or brakes. Knowing the numbers tells you at once where the conversation is going']}})[l];
+ if(!W)return F.mnt_ata('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#EAF2F9',14),sc=13.2,ox=330,oy=182,dur='12s',cc=['#2F6FD6','#E08A2E','#2E9B5F','#6B4FA0','#D64545','#2C7A7B'];
+ s+='<g transform="translate('+ox+' '+oy+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet('737',{tint:'alu'}):planeS('#fff'))+'</g>';
+ var pts=[[-5.6,1.6],[11.2,0.6],[0.6,1.9],[15.6,3.4],[-19.4,-0.6],[17.4,-1.4]],n=pts.length;
+ pts.forEach(function(p,i){var x=ox+p[0]*sc,y=oy+p[1]*sc;
+  var rr=FS(10)*0.95+3;s+='<g><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(rr+4).toFixed(1)+'" fill="'+cc[i]+'" opacity=".25"><animate attributeName="opacity" '+SEG(i,n,.25,.9)+' dur="'+dur+'" repeatCount="indefinite"/></circle><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+rr.toFixed(1)+'" fill="'+cc[i]+'"/>'+tx(x,y+FS(10)*0.36,W.p[i][0],10,'#fff',900)+'</g>'});
+ var y=268,lh=FS(11)*1.3;
+ W.p.forEach(function(r,i){var rc=FS(11)*0.95+4,tx0=40+rc*2,t=r[1]+(l==='ja'?'：':': ')+r[2],nl=LI(t,11,600-tx0).length,h=Math.max(nl*lh,rc*2)+14;
+  s+='<g>'+R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.45)+' dur="'+dur+'" repeatCount="indefinite"/></rect><circle cx="'+(30+rc)+'" cy="'+(y+h/2)+'" r="'+rc.toFixed(1)+'" fill="'+cc[i]+'"/>'+tx(30+rc,y+h/2+FS(11)*0.36,r[0],11,'#fff',900)+WR(tx0,y+h/2+FS(11)*0.35,t,11,D,800,600-tx0,'start')+'</g>';y+=h+4});
+ var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

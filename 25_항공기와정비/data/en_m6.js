@@ -48,7 +48,8 @@ set("6-3",{title:"How Station Staff Get Stronger in Maintenance: From Vocabulary
 lead:["Station and ground staff do not need to become engineers. But people who know the vocabulary, can read the MEL and can be trusted to run the arrangements for an AOG are relied on at every airport.","This final lesson sets out stages for getting stronger in maintenance, tools you can use straight away, and a summary of the course."],
 sections:[
 {h:"Learning in stages",blocks:[{t:"fig",id:"mnt_path",cap:"Animated figure: learn the words, read the MEL and CDL, be there for AOGs, own the maintenance arrangements, choose the next step. Timings are a guide."}]},
-{h:"Reading by ATA chapter",blocks:[{t:"table",cols:["Chapter","System","Where the station meets it"],rows:[
+{h:"Reading by ATA chapter",blocks:[{t:"fig",id:"mnt_ata",cap:"Animated figure: on a side view of the B737, the rough location of each ATA chapter lights up in turn, along with the list below. Locations are approximate."},
+{t:"table",cols:["Chapter","System","Where the station meets it"],rows:[
 ["21","Air conditioning and pressurisation","Cabin too hot or cold; APU or ground air (1-2)"],
 ["24","Electrical power","Ground power failures, departure delays"],
 ["29","Hydraulics","Hydraulic leaks, MEL items (1-3)"],
@@ -56,6 +57,14 @@ sections:[
 ["49","APU","Ground power and air when the APU is unavailable (3-1)"],
 ["52","Doors","Cabin and cargo door defects"]]},
 {t:"point",x:"Maintenance manuals, the MEL and defect records are all organised by these chapter numbers. Learn them and you will know at once where an engineer’s explanation is heading."}]},
+{h:"Same chapter, different preparation on the B737 and B787",blocks:[{t:"table",cols:["Chapter","B737","B787"],rows:[
+["21 Air conditioning","Bleed air from the engines or APU; on the ground, APU air, an air unit or PCA","No bleed air; electric compressors. On the ground, APU electricity or ground power, or PCA ★"],
+["24 Electrical power","One generator per engine","Two generators per engine; several ground power receptacles and much higher electrical demand ★"],
+["29 Hydraulics","A, B and standby (about 3,000 psi)","Left, centre and right (about 5,000 psi)"],
+["32 Landing gear","Hydraulic brakes, six tyres","Electric brakes (units easier to change), ten tyres"],
+["49 APU","Supplies air and electricity","Supplies electricity only"],
+["52 Doors","Door warnings and slide defects are often found just before departure","Same as the B737"]]},
+{t:"point",warn:true,x:"Without its APU, a B787 relies on electricity for both air conditioning and engine starting. Check in advance with the airport and handler that there are enough ground power units of the right capacity, and PCA ★."}]},
 {h:"Places to learn",blocks:[{t:"rows",items:[
 {name:"Type familiarisation",x:"Courses by manufacturers or the company that explain the type to non-engineers"},
 {name:"In-house courses",x:"MEL, dangerous goods, weight and balance and other station-related topics"},
