@@ -33,7 +33,7 @@ dz_nospray:function(l){
  var cx=320,cy=196,k=7.6,s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,282,'#EAF2F9',14);
  /* かける面：機体を緑で描く（主翼・尾翼・胴体の上） */
  s+='<g transform="translate('+cx+' '+cy+') scale('+k+')">'+(window.ACFT?window.ACFT.top({c:'#E3F5E7',w:'#A8E0B4'}):plane('#fff'))+'</g>';
- var pts=[[cx+19.2*k,cy],[cx+16*k,cy-2.6*k],[cx+5.4*k,cy-7.4*k],[cx+1*k,cy+4.6*k],[cx+5*k,cy+1*k]];
+ var pts=[[cx+19.2*k,cy],[cx+16*k,cy-2.6*k],[cx+10.6*k,cy-5.3*k],[cx+1*k,cy+4.6*k],[cx+5*k,cy+1*k]];
  pts.forEach(function(p,i){s+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="15" fill="#D64545" opacity=".25"><animate attributeName="r" values="11;17;11" keyTimes="0;.5;1" dur="2.4s" repeatCount="indefinite"/></circle>'+BADGE(p[0],p[1],i+1,11,'#fff')});
  s+='<g transform="translate('+(cx-20.6*k)+' '+cy+')">'+BADGE(0,0,3,11,'#fff')+'</g>';
  /* 作業車：左の主翼のまわりを動く */
