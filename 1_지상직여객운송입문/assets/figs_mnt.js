@@ -119,7 +119,38 @@ mnt_eng:function(l){
  W.p.forEach(function(t,i){var x=zones[i][0];s+=LB(x,cy+122+(i%2)*30,t,11,'#fff','middle',zones[i][1])});
  s+=LBW(330,cy-66,W.by,11,'#2F6FD6','middle','#fff',260);
  var y=cy+170,nl=LI(W.co,11,560).length;s+=WR(320,y+FS(11),W.co,11,'#5B6B7D',800,560);y+=nl*FS(11)*1.3+12;
- var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-1 点検の段階：間隔（どれくらいごと）と、かかる時間（棒の長さ）。上から順に光る */
+mnt_chk:function(l){
+ var W=({ja:{t:'点検の段階：間隔と、かかる時間（例）',r:[['飛行前点検','毎回の飛行の前','30分ほど'],['デイリー点検','24〜48時間ごと','1時間ほど'],['Aチェック','数百〜1,000飛行時間ごと','一晩（8〜10時間）'],['Cチェック','1.5〜3年ごと','1〜4週間（格納庫）'],['重整備','6〜12年ごと','1〜2か月']],n:['間隔は飛行時間・飛行回数・日数のうち先に来たもので決まる。数字は機種と会社の整備プログラムで違う★','737は飛行回数が多いので回数で決まる点検が、787は飛行時間で決まる点検と、日数で決まる点検が目立つ','Aチェック以上は機体を一定時間止めるので、運航の計画（どの機体をいつ抜くか）と一緒に決める']},
+  ko:{t:'점검 단계: 간격과 걸리는 시간(예)',r:[['비행 전 점검','매 비행 전','30분 정도'],['데일리 점검','24~48시간마다','1시간 정도'],['A 체크','수백~1,000 비행시간마다','하룻밤(8~10시간)'],['C 체크','1.5~3년마다','1~4주(격납고)'],['중정비','6~12년마다','1~2개월']],n:['간격은 비행시간·비행 횟수·날짜 중 먼저 오는 것으로 정해진다. 숫자는 기종과 회사의 정비 프로그램마다 다르다★','737은 비행 횟수가 많아 횟수로 정해지는 점검이, 787은 비행시간과 날짜로 정해지는 점검이 두드러진다','A 체크 이상은 기체를 일정 시간 세우므로 운항 계획(어느 기체를 언제 빼는가)과 함께 정한다']},
+  en:{t:'Check levels: interval and time taken (example)',r:[['Pre-flight check','Before every flight','About 30 minutes'],['Daily check','Every 24–48 hours','About 1 hour'],['A check','Every few hundred to 1,000 flight hours','Overnight (8–10 hours)'],['C check','Every 1.5–3 years','1–4 weeks (hangar)'],['Heavy check','Every 6–12 years','1–2 months']],n:['Intervals are set by flight hours, cycles or calendar days, whichever comes first; figures vary by type and airline programme ★','With many cycles, 737 checks are often cycle-driven; 787 checks are more often driven by flight hours and calendar time','A checks and above take the aircraft out of service, so they are planned together with the flying programme (which aircraft comes out when)']}})[l];
+ if(!W)return F.mnt_chk('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,lh=FS(11)*1.3,n=W.r.length,dur='10s',wd=[40,70,130,210,280],cc=['#9AA8B8','#2F6FD6','#2E9B5F','#E08A2E','#D64545'];
+ W.r.forEach(function(r,i){var n1=LI(r[0],12,140).length,n2=LI(r[1],11,150).length,h=Math.max(n1*FS(12)*1.3,n2*lh,lh*2)+18;
+  s+='<g>'+R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.45)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+WR(32,y+h/2+FS(12)*0.35,r[0],12,'#0f3558',900,140,'start')+WR(180,y+h/2+FS(11)*0.35,r[1],11,D,800,150,'start');
+  s+=R(320,y+h/2-14,wd[i],12,cc[i],5)+WR(320,y+h/2+FS(11)*0.35+12,r[2],11,'#5B6B7D',700,290,'start')+'</g>';y+=h+6});
+ var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-2 改善の指示（AD）と技術通報（SB）が、作業になって記録に残るまで */
+mnt_ad:function(l){
+ var W=({ja:{t:'ADとSBが作業になるまで',st:['メーカーが技術通報（SB）を出す（推奨）。当局は耐空性改善通報（AD）を出す（義務）','技術の部門が、自社の機体に当てはまるか、期限はいつかを調べる','作業の指示書（ワークカード）にして、点検の日程に組み込む','ライン整備や格納庫で作業し、部品を替える','記録と期限を管理する。ADの期限を過ぎた機体は飛べない'],who:['メーカー・当局','整備の計画・技術','整備の計画','整備士','品質・記録']},
+  ko:{t:'AD와 SB가 작업이 되기까지',st:['제작사가 기술통보(SB)를 낸다(권고). 당국은 감항성개선지시(AD)를 낸다(의무)','기술 부문이 자사 기체에 해당하는지, 기한이 언제인지 조사한다','작업지시서(워크카드)로 만들어 점검 일정에 넣는다','라인 정비나 격납고에서 작업하고 부품을 교환한다','기록과 기한을 관리한다. AD 기한을 넘긴 기체는 날 수 없다'],who:['제작사·당국','정비 계획·기술','정비 계획','정비사','품질·기록']},
+  en:{t:'How ADs and SBs become work',st:['The manufacturer issues a service bulletin (SB, recommended); the authority issues an airworthiness directive (AD, mandatory)','Engineering checks whether it applies to the fleet and by when','It becomes a task card and is scheduled into a check','The work is done on the line or in the hangar, and parts are replaced','Records and deadlines are tracked; an aircraft past an AD deadline cannot fly'],who:['Manufacturer & authority','Planning & engineering','Maintenance planning','Engineers','Quality & records']}})[l];
+ if(!W)return F.mnt_ad('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#2F6FD6','#2E9B5F','#E08A2E'],'12s')},
+/* 2-3 信頼性のループ：不具合の報告 → データ → 分析 → 整備プログラムの見直し → 次の不具合が減る */
+mnt_rel:function(l){
+ var W=({ja:{t:'信頼性のループ',nd:['不具合の報告（テクニカルログ）','データを集める（787は飛行中も送信）','分析（くり返す不具合・遅れの率）','整備プログラムの見直し'],c:'同じ不具合を減らす',n:['同じ部品の不具合がくり返すと、点検の間隔や部品を見直す','整備による遅れ・欠航の率は、整備の質を表す数字として毎月見られる','787は飛行中のデータを地上に送れるので、到着前に部品と人を準備できることがある']},
+  ko:{t:'신뢰성 루프',nd:['결함 보고(테크니컬 로그)','데이터 수집(787은 비행 중에도 전송)','분석(반복 결함·지연율)','정비 프로그램 개정'],c:'같은 결함을 줄인다',n:['같은 부품 결함이 반복되면 점검 간격이나 부품을 다시 검토한다','정비로 인한 지연·결항률은 정비 품질을 나타내는 숫자로 매달 본다','787은 비행 중 데이터를 지상으로 보낼 수 있어 도착 전에 부품과 사람을 준비하기도 한다']},
+  en:{t:'The reliability loop',nd:['Defect reports (technical log)','Data collection (the 787 also sends it in flight)','Analysis (repeat defects, delay rates)','Maintenance programme revision'],c:'Fewer repeat defects',n:['If the same part keeps failing, check intervals or the part itself are reconsidered','The technical delay and cancellation rate is reviewed monthly as a measure of maintenance quality','The 787 can send in-flight data to the ground, so parts and people can sometimes be ready before arrival']}})[l];
+ if(!W)return F.mnt_rel('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),cx=320,cy=250,r=200,ry=135,dur='8s',cc=['#D64545','#2F6FD6','#6B4FA0','#2E9B5F'];
+ s+='<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+r+'" ry="'+ry+'" fill="none" stroke="#C8D3DE" stroke-width="10"/>';
+ s+='<circle r="9" fill="#FFD23F" stroke="#0f3558" stroke-width="1.5"><animateMotion dur="'+dur+'" repeatCount="indefinite" path="M'+cx+' '+(cy-ry)+' A '+r+' '+ry+' 0 1 1 '+(cx-0.1)+' '+(cy-ry)+'"/></circle>';
+ s+=R(cx-80,cy-22,160,44,'#fff',22,' stroke="#2C7A7B" stroke-width="2"')+WR(cx,cy+FS(11)*0.35,W.c,11,'#2C7A7B',900,150);
+ var pos=[[cx,cy-ry],[cx+r,cy],[cx,cy+ry],[cx-r,cy]];
+ W.nd.forEach(function(t,i){var p=pos[i],w=170,nl=LI(t,11,w-16).length,h=nl*FS(11)*1.3+16,x=Math.max(20,Math.min(620-w,p[0]-w/2));s+='<g>'+R(x,p[1]-h/2,w,h,cc[i],10)+WR(x+w/2,p[1]+FS(11)*0.35-(nl-1)*FS(11)*1.3/2+(nl-1)*FS(11)*1.3/2,t,11,'#fff',900,w-16)+'<animate attributeName="opacity" '+SEG(i,4,.55,1)+' dur="'+dur+'" repeatCount="indefinite"/></g>'});
+ var L=LIST(W.n,cy+ry+64,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
