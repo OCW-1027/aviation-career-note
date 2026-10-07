@@ -6,6 +6,8 @@
 if(window.__NAV_LOADED)return;window.__NAV_LOADED=1;
 var me=document.currentScript&&document.currentScript.src||'';
 var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me).href:'#';
+/* 新しいデザインの共通の頭とフッター（2026.10）：8_사이트/assets/acn_shell.js を読み込む。ホームのボタンは新しいトップページへ */
+if(me){var acs=document.createElement('script');acs.src=new URL('../../8_\uc0ac\uc774\ud2b8/assets/acn_shell.js',me).href;document.head.appendChild(acs)}
 var TX={ja:{top:'\u4e0a\u3078',back:'\u623b\u308b',home:'\u30db\u30fc\u30e0',prev:'\u524d\u306e\u56de',next:'\u6b21\u306e\u56de',toc:'\u76ee\u6b21',swipe:'\u2190 \u6a2a\u306b\u30b9\u30af\u30ed\u30fc\u30eb\u3067\u304d\u307e\u3059 \u2192'},
 ko:{top:'\ub9e8 \uc704\ub85c',back:'\ub4a4\ub85c',home:'\ud648',prev:'\uc774\uc804 \ud3b8',next:'\ub2e4\uc74c \ud3b8',toc:'\ubaa9\ucc28',swipe:'\u2190 \uc606\uc73c\ub85c \ubc00\uc5b4\uc11c \ubcf4\uae30 \u2192'},
 en:{top:'Top',back:'Back',home:'Home',prev:'Previous',next:'Next',toc:'Contents',swipe:'\u2190 Scroll sideways \u2192'}};
@@ -31,7 +33,7 @@ function hints(){var t=TX[lang()];Array.prototype.forEach.call(document.querySel
 function init(){document.body.appendChild(fab);
  fab.querySelector('.nv-top').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
  fab.querySelector('.nv-back').onclick=function(){var r=document.referrer,same=false;try{same=!!r&&(new URL(r).origin===location.origin)&&new URL(r).href!==location.href}catch(e){}if(history.length>1&&same)history.back();else location.href=tocUrl()||(window.__SHELL?HOME+'#tools':HOME)};
- fab.querySelector('.nv-home').onclick=function(){location.href=HOME};
+ fab.querySelector('.nv-home').onclick=function(){location.href=window.ACN_HOME||HOME};
  window.addEventListener('scroll',function(){fab.classList.toggle('show',window.scrollY>300)},{passive:true});
  label();
  new MutationObserver(function(){label();setTimeout(hints,300)}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
