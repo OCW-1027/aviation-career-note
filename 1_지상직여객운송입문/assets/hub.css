@@ -52,3 +52,9 @@ footer a{color:var(--muted)}
 /* 1つの講座の中の地域タブ（主要空港ガイド）2026.10 */
 .grp{display:flex;gap:8px;margin:16px 0 0}.grp a{flex:1;text-align:center;padding:11px 8px;border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);font:700 16px var(--disp);text-decoration:none}.grp a:hover{border-color:#9bbbf0}.grp a.on{background:var(--navy);border-color:var(--navy);color:#fff}.grp a:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 @media (max-width:640px){.hero{padding:28px 22px 24px;border-radius:18px}.wrap{padding:20px 16px 30px}}
+/* 日本語は文節（語のまとまり）で改行する。見出しは行の長さをそろえ、最後の行に1文字だけ残らないようにする（2026.10） */
+html[lang="ja"] body{word-break:auto-phrase}
+h1,h2,.card b{text-wrap:balance}
+.hero p,.card .d,.desc{text-wrap:pretty}
+/* 文節が長くて収まらないときだけ、文節の中でも改行する（はみ出し防止） */
+html[lang="ja"] body{overflow-wrap:anywhere}

@@ -297,3 +297,10 @@ details.jl .until{font-size:12px;color:var(--muted);padding:10px 24px}
 /* 右下のボタン（nav.js の上へ・戻る・ホーム）を新しいデザインに合わせる */
 .nv-fab button{background:#fff!important;color:#182431!important;border:1px solid #dfe4e8!important;border-radius:10px!important;font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif!important;font-weight:700!important;box-shadow:0 8px 22px rgba(9,28,47,.10)!important}
 .nv-fab button:hover{border-color:#9bbbf0!important;color:#1769e0!important}
+/* 日本語は文節（語のまとまり）で改行する。見出しは行の長さをそろえ、最後の行に1文字だけ残らないようにする（2026.10） */
+html[lang="ja"] body{word-break:auto-phrase}
+h1,h2,h3,.route-title,.lab b,.quick strong,.step b{text-wrap:balance}
+p,.muted,.lab span,.quick span,.business-note,.sector-sub{text-wrap:pretty}
+/* 文節が長くて画面に収まらないときだけ、文節の中でも改行する（はみ出し防止）。2段組みの中身は縮められるように */
+html[lang="ja"] body{overflow-wrap:anywhere}
+.membership>*,.hero-grid>*,.business-intro>*,.community-box>*,.path-band>*,.jobs-wrap>*{min-width:0}

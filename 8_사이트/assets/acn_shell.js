@@ -13,6 +13,8 @@ function U(p){return new URL(p,SITE).href}
 var path=decodeURIComponent(location.pathname);
 if(/8_사이트\/(index\.html)?$/.test(path)||/\/community\//.test(path))return;
 var HOME=U('index_v3.html');window.ACN_HOME=HOME;
+/* 日本語の改行（語の途中で切らない）：ja_wrap.js */
+(function(){var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
 var C={
 ja:{nav:['学ぶ','Business Skills','Practice','求人','Coaching','Community'],mem:'メンバーシップ',foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー'},
 ko:{nav:['학습','Business Skills','Practice','채용','Coaching','Community'],mem:'멤버십',foot:['항공 전문 지식에서 채용, 코칭, 커뮤니티까지.','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　무단 전재·복제 금지',terms:'이용약관',privacy:'개인정보 처리방침'},

@@ -172,3 +172,9 @@ html:not([data-region="kr"]) .rg-jp,html[data-region="kr"] .rg-kr{display:block}
 main p,main li,.note{overflow-wrap:anywhere}
 /* かっこ書きはひとまとまりで折り返す（2026.10） */
 x-pw{display:inline}x-pp{display:inline-block}
+/* 日本語は文節（語のまとまり）で改行する。見出しは行の長さをそろえ、最後の行に1文字だけ残らないようにする（2026.10） */
+html[lang="ja"] body{word-break:auto-phrase}
+h2,h3,.card b,.row b,.step b{text-wrap:balance}
+p,.subtitle{text-wrap:pretty}
+/* 文節が長くて収まらないときだけ、文節の中でも改行する（はみ出し防止） */
+html[lang="ja"] body{overflow-wrap:anywhere}
