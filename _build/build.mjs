@@ -7,6 +7,7 @@ import path from 'path';
 import vm from 'vm';
 import { pathToFileURL } from 'url';
 import { JSDOM, ResourceLoader, VirtualConsole } from 'jsdom';
+import { englishUrls } from './english_urls.mjs';
 
 const SRC = path.resolve(process.argv[2] || '.');
 
@@ -219,5 +220,7 @@ try {
   })(rc.window.RATES, 'RATES');
   console.log(late.length ? `⚠ 料率の確認の月を過ぎた項目 ${late.length}件（公式の資料で確かめて rates_jp.js を直す）:\n  ` + late.join('\n  ') : `rates: 確認の月を過ぎた項目なし（${now}）`);
 } catch (e) { console.log('rates check skipped: ' + e.message); }
+// 公開サイトの住所を英語にする（2026.10）：元のフォルダはそのまま、出力の中だけ名前を変え、古い住所には移動のページを置く（_build/english_urls.mjs）
+if (!process.env.KEEP_OLD_URLS) { const r = englishUrls(OUT); console.log(`english urls: ${r.renamedDirs} folders, ${r.renamedFiles} files renamed, ${r.rewritten} files rewritten, ${r.redirects} redirects`); }
 console.log(`pages: ${pages}, sitemap urls: ${urls.length}, errors: ${errors.length}`);
 if (errors.length) { console.log(errors.slice(0, 20).join('\n')); process.exitCode = 1; }
