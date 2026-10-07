@@ -258,7 +258,33 @@ mnt_aogday:function(l){
   ko:{t:'밤의 AOG — 시각별 움직임(예)',st:['18:30 출발 전 점검에서 결함. MEL로는 출발할 수 없다','19:00 부품이 이 공항에 없음을 확인. 부품 수배와 도착 전망','19:30 야간 제한과 승무원 근무 상한으로 오늘 밤 출발은 어렵다고 판단','20:00 결항을 정하고 승객 안내·호텔·다음 날 편 예약을 시작','다음 날 아침 부품 도착, 통관·반입·교환·확인 서명','다음 날 임시편으로 출발. 경위를 본사에 보고하고 재발 방지를 논의'],who:['정비사·MCC','MCC·지점','운항관리·지점','지점·본사','지점·정비사','지점·품질']},
   en:{t:'A night-time AOG, hour by hour (example)',st:['18:30 A defect found on the pre-departure check; no MEL relief','19:00 The part is not at this airport; ordering and arrival estimate','19:30 Night restrictions and crew duty limits rule out departing tonight','20:00 Cancellation decided; passenger information, hotels and next-day bookings begin','Next morning The part arrives: customs, airside delivery, fitting, certification','Next day Departure as a special flight; report to head office and discuss prevention'],who:['Engineers & MCC','MCC & station','Dispatch & station','Station & head office','Station & engineers','Station & quality']}})[l];
  if(!W)return F.mnt_aogday('ja');setK(1);
- return STEPS(W.t,W.st,W.who,['#D64545','#E08A2E','#6B4FA0','#2F6FD6','#2E9B5F','#2C7A7B'],'14s')}
+ return STEPS(W.t,W.st,W.who,['#D64545','#E08A2E','#6B4FA0','#2F6FD6','#2E9B5F','#2C7A7B'],'14s')},
+/* 6-1 確認の署名ができるまで：学ぶ → 経験 → 国の資格 → 機種の限定 → 会社の認可 */
+mnt_lic:function(l){
+ var W=({ja:{t:'機体に確認の署名ができるまで（例）',st:['学ぶ：養成の学校や会社の訓練で、機体・エンジン・電気・法規の基礎','経験を積む：整備の現場で、決められた期間の実務の経験','国の資格：学科と実地の試験に合格し、整備士の資格を受ける','機種の限定：737・787など、扱う機種ごとの訓練と試験','会社の認可：会社の手順を学び、確認の署名ができる人として認められる'],who:['本人・学校','会社','国（当局）','国・会社','会社']},
+  ko:{t:'기체에 확인 서명을 할 수 있기까지(예)',st:['배운다: 양성 학교나 회사 훈련에서 기체·엔진·전기·법규 기초','경험을 쌓는다: 정비 현장에서 정해진 기간의 실무 경험','국가 자격: 학과와 실기 시험에 합격해 정비사 자격을 받는다','기종 한정: 737·787 등 다루는 기종별 훈련과 시험','회사 인가: 회사 절차를 배우고 확인 서명을 할 수 있는 사람으로 인정받는다'],who:['본인·학교','회사','국가(당국)','국가·회사','회사']},
+  en:{t:'Becoming able to certify an aircraft (example)',st:['Learn: basics of airframes, engines, electrics and law at a training school or in company training','Gain experience: the required period of practical work in maintenance','National licence: pass written and practical exams and receive the engineer licence','Type rating: training and exams for each type handled, such as the 737 or 787','Company authorisation: learn company procedures and be authorised to certify'],who:['Individual & school','Company','State (authority)','State & company','Company']}})[l];
+ if(!W)return F.mnt_lic('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#6B4FA0','#E08A2E','#2E9B5F'],'12s')},
+/* 6-2 整備の仕事の地図：現場の仕事と事務所の仕事が順に光る */
+mnt_jobs:function(l){
+ var W=({ja:{t:'整備の仕事の地図',a:'現場',b:'事務所',j:[['ライン整備','出発前の点検・不具合の処置',0],['機体の重整備','格納庫での大きな点検（2-1）',0],['部品の工場','エンジン・部品の分解と修理',0],['MCC','24時間、全機の状態を見て判断',1],['整備の技術','AD・SB・信頼性・改修の判断',1],['整備の計画','点検の時期・格納庫・部品の計画',1],['品質','監査・記録・認定の維持',1],['部品と調達','在庫・購入・修理の手配',1]],n:['多くの人は現場から始め、経験を積んで事務所の仕事にも広がる','支店の経験（AOGの調整・委託先の管理）は、MCCや計画の仕事で役に立つ']},
+  ko:{t:'정비 직무 지도',a:'현장',b:'사무실',j:[['라인 정비','출발 전 점검·결함 처치',0],['기체 중정비','격납고에서 큰 점검(2-1)',0],['부품 공장','엔진·부품 분해와 수리',0],['MCC','24시간 전 기체 상태를 보고 판단',1],['정비 기술','AD·SB·신뢰성·개조 판단',1],['정비 계획','점검 시기·격납고·부품 계획',1],['품질','감사·기록·인증 유지',1],['부품과 구매','재고·구매·수리 수배',1]],n:['많은 사람이 현장에서 시작해 경험을 쌓으며 사무실 업무로도 넓혀 간다','지점 경험(AOG 조정·위탁처 관리)은 MCC나 계획 업무에서 도움이 된다']},
+  en:{t:'Map of maintenance jobs',a:'Hands-on',b:'Office',j:[['Line maintenance','Pre-departure checks, defect rectification',0],['Base maintenance','Heavy checks in the hangar (2-1)',0],['Component shop','Overhaul and repair of engines and parts',0],['MCC','Watching the whole fleet 24 hours and deciding',1],['Engineering','ADs, SBs, reliability and modifications',1],['Planning','Check timing, hangar slots and parts',1],['Quality','Audits, records and keeping approvals',1],['Parts and purchasing','Stock, buying and repair orders',1]],n:['Many start hands-on and broaden into office roles with experience','Station experience (coordinating AOGs, managing contractors) is useful in MCC and planning']}})[l];
+ if(!W)return F.mnt_jobs('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),lh=FS(11)*1.3,dur='16s',n=W.j.length,cc=['#2E9B5F','#2F6FD6'],y=60;
+ s+=R(20,y,290,30,cc[0],8)+tx(165,y+20,W.a,12,'#fff',900)+R(330,y,290,30,cc[1],8)+tx(475,y+20,W.b,12,'#fff',900);y+=40;
+ var col=[W.j.filter(function(j){return !j[2]}),W.j.filter(function(j){return j[2]})],yy=[y,y],idx=0;
+ W.j.forEach(function(j,i){var c=j[2],x=c?330:20,t1=LI(j[0],12,262).length,t2=LI(j[1],11,262).length,h=t1*FS(12)*1.3+t2*lh+30,y0=yy[c];
+  s+='<g>'+R(x,y0,290,h,'#fff',10,' stroke="'+cc[c]+'" stroke-width="2"')+'<rect x="'+x+'" y="'+y0+'" width="290" height="'+h+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.5)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+WR(x+14,y0+10+t1*FS(12)*1.3/2+FS(12)*0.35,j[0],12,cc[c],900,262,'start')+WR(x+14,y0+18+t1*FS(12)*1.3+t2*lh/2+FS(11)*0.35,j[1],11,D,700,262,'start')+'</g>';yy[c]+=h+8});
+ var L=LIST(W.n,Math.max(yy[0],yy[1])+6,600,11);return SVG(L.y+8,s+L.s)},
+/* 6-3 支店の人が整備に強くなる道 */
+mnt_path:function(l){
+ var W=({ja:{t:'支店・運送の人が整備に強くなる道（例）',st:['ことばを覚える：この講座のPart 0〜1で、機体の部分と整備の用語','MELとCDLを読む：自社の機種のMELの1ページを、整備士と一緒に読んでみる','AOGに立ち会う：部品・通関・お客様の段取りを、記録を付けながら経験する','整備の体制を受け持つ：委託先との契約・一覧表・監査に加わる','次の道を選ぶ：MCC・整備の計画・品質への異動、機種の概要の講習、資格の勉強'],who:['1か月','3か月','1年','2〜3年','その先']},
+  ko:{t:'지점·운송 직원이 정비에 강해지는 길(예)',st:['용어를 익힌다: 이 강좌 Part 0~1에서 기체 부위와 정비 용어','MEL과 CDL을 읽는다: 자사 기종 MEL 한 쪽을 정비사와 함께 읽어 본다','AOG에 함께한다: 부품·통관·승객 준비를 기록하며 경험한다','정비 체제를 맡는다: 위탁처 계약·일람표·감사에 참여한다','다음 길을 고른다: MCC·정비 계획·품질로 이동, 기종 개요 강습, 자격 공부'],who:['1개월','3개월','1년','2~3년','그다음']},
+  en:{t:'How station and ground staff get stronger in maintenance (example)',st:['Learn the words: aircraft parts and maintenance terms in Parts 0–1 of this course','Read the MEL and CDL: go through one page of your type’s MEL with an engineer','Be there for AOGs: handle parts, customs and passengers while keeping a log','Own the maintenance arrangements: join contracts, the arrangement list and audits','Choose the next step: move to MCC, planning or quality, take a type familiarisation course, study for a licence'],who:['1 month','3 months','1 year','2–3 years','Beyond']}})[l];
+ if(!W)return F.mnt_path('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#D64545','#E08A2E','#2E9B5F'],'12s')}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

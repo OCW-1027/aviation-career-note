@@ -69,5 +69,5 @@ terms:[["Cancellation","欠航","결항"],["Rebooking","振り替え","대체 �
 quiz:[{q:"When is it better to cancel early?",opts:["When the next day’s aircraft plan would fall apart","When the weather is good","When there are few passengers","When fares are high"],a:0,exp:"If the next day’s plan would collapse too, deciding early and rebuilding the plan limits the impact."},
 {q:"What should you not tell passengers?",opts:["That the delay is for maintenance","The next update time","Guesses about the fault","Their choices"],a:2,exp:"Give the reason and the next update, but do not speculate about the fault."},
 {q:"Who should be rebooked first?",opts:["Passengers with connections","Whoever queued last","Passengers with most bags","Only families with children"],a:0,exp:"Passengers whose connections are badly affected are rebooked first."}],
-next:""});
+next:"Part 6 Licences and Careers: 6-1 Engineer Licences"});
 })(window.ARTS);
