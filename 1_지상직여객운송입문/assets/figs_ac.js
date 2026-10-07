@@ -311,7 +311,80 @@ ac_mel:function(l){
  W.steps.forEach(function(t,i){var nn=LI(t,11,500).length,h=nn*lh+14;s+='<g>'+R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.55)+' dur="12s" repeatCount="indefinite"/></rect>'+BADGE(44,y+h/2,i+1,11)+WR(70,y+h/2+FS(11)*0.35,t,11,D,800,500,'start')+'</g>';y+=h;if(i<n-1){s+=ARW(320,y+2,320,y+14,'#9FB0C2',3);y+=16}});
  y+=14;var rh=FS(12)*1.6,nh=LI(W.dy,11,400).length,hh=Math.max(rh,nh*lh+12);s+=R(20,y,600,hh,'#243447',8)+tx(90,y+hh/2+FS(11.5)*0.35,W.ch,11.5,'#fff',900)+WR(390,y+hh/2+FS(11)*0.3,W.dy,11,'#fff',900,400);y+=hh+4;
  W.cat.forEach(function(r,i){s+=R(20,y,600,rh,i%2?'#fff':'#F4F7FB',6)+tx(90,y+rh*0.7,r[0],13,'#2F6FD6',900)+tx(390,y+rh*0.7,r[1],11.5,D,800);y+=rh+4});
- y+=10;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'}
+ y+=10;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+y.toFixed(0)+'" role="img">'+R(0,0,640,y,'#F7FAFD')+s+'</svg>'},
+/* 14-5 ① 重量の区分：ZFW・TOW・LW の3本の柱が、それぞれの上限（MZFW・その日の最大離陸重量・MLW）と比べて伸びる */
+ac_wtstack:function(l){
+ var W=({ja:{t:'重さは3つの時点で、それぞれの上限と比べる',cols:['無燃料重量（ZFW）','離陸重量（TOW）','着陸重量（LW）'],lim:['MZFW 62.7t','最大離陸 79.0t','MLW 66.3t'],val:['62.7t','71.7t','65.7t'],blk:['運航自重','ペイロード','燃料'],brk:'30t より下は省略',n:['ZFW＝運航自重（DOW）＋ペイロード。MZFW（最大無燃料重量）を超えてはいけない','TOW＝ZFW＋離陸時の燃料。その日の最大離陸重量（14-2：いちばん小さい制限）以下','LW＝TOW−消費燃料（トリップ）。MLW（最大着陸重量）以下','積めるペイロードは3つの上限から逆算した中でいちばん小さい値。この例では MZFW で決まり 19.7t']},
+  ko:{t:'무게는 세 시점에서 각각의 상한과 비교한다',cols:['무연료 중량(ZFW)','이륙 중량(TOW)','착륙 중량(LW)'],lim:['MZFW 62.7t','최대 이륙 79.0t','MLW 66.3t'],val:['62.7t','71.7t','65.7t'],blk:['운항 자중','페이로드','연료'],brk:'30t 아래는 생략',n:['ZFW = 운항 자중(DOW) + 페이로드. MZFW(최대 무연료 중량)를 넘으면 안 된다','TOW = ZFW + 이륙 시 연료. 그날의 최대 이륙 중량(14-2: 가장 작은 제한) 이하','LW = TOW − 소모 연료(트립). MLW(최대 착륙 중량) 이하','실을 수 있는 페이로드는 세 상한에서 역산한 값 중 가장 작은 값. 이 예에서는 MZFW로 정해져 19.7t']},
+  en:{t:'Weight is checked against a limit at three points',cols:['Zero-fuel weight (ZFW)','Take-off weight (TOW)','Landing weight (LW)'],lim:['MZFW 62.7t','Max T/O 79.0t','MLW 66.3t'],val:['62.7t','71.7t','65.7t'],blk:['DOW','Payload','Fuel'],brk:'Below 30t not shown',n:['ZFW = dry operating weight (DOW) + payload. It must not exceed the MZFW (maximum zero-fuel weight)','TOW = ZFW + take-off fuel. It must not exceed the day’s maximum take-off weight (14-2: the smallest limit)','LW = TOW − trip fuel burned. It must not exceed the MLW (maximum landing weight)','The payload you can carry is the smallest of the values worked back from the three limits. Here the MZFW decides it: 19.7t']}})[l];
+ if(!W)return F.ac_wtstack('ja');
+ setK(1);
+ var base=420,sc=5,y0=function(t){return base-(t-30)*sc},cx=[115,320,525],cw=150,dur='10s';
+ var comp=[[[30,43,'#9AA8B8'],[43,62.7,'#2F6FD6']],[[30,43,'#9AA8B8'],[43,62.7,'#2F6FD6'],[62.7,71.7,'#E08A2E']],[[30,43,'#9AA8B8'],[43,62.7,'#2F6FD6'],[62.7,65.7,'#E08A2E']]];
+ var lims=[62.7,79.0,66.3],win=[[0.04,0.24],[0.3,0.5],[0.56,0.76]];
+ var s=TTL(320,30,W.t,15,'#0f3558',600);
+ cx.forEach(function(x,i){
+  var nh=LI(W.cols[i],12,cw).length,lh=FS(12)*1.3;
+  s+=WR(x,92-(nh-1)*lh/2+(nh-1)*lh/2,W.cols[i],12,'#0f3558',900,cw);
+  s+=R(x-cw/2,y0(80),cw,base-y0(80),'#EEF3F8',8);
+  comp[i].forEach(function(b,j){var ya=y0(b[0]),yb=y0(b[1]),h=ya-yb,t0=win[i][0]+(win[i][1]-win[i][0])*j/comp[i].length,t1=win[i][0]+(win[i][1]-win[i][0])*(j+1)/comp[i].length;
+   s+='<rect x="'+(x-cw/2+14)+'" y="'+ya+'" width="'+(cw-28)+'" height="0" fill="'+b[2]+'"><animate attributeName="y" values="'+ya+';'+ya+';'+yb+';'+yb+'" keyTimes="0;'+t0.toFixed(3)+';'+t1.toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="height" values="0;0;'+h+';'+h+'" keyTimes="0;'+t0.toFixed(3)+';'+t1.toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/></rect>';
+   if(h>=40)s+='<g opacity="0">'+tx(x,(ya+yb)/2+FS(11)*0.35,W.blk[j],11,'#fff',900)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+t1.toFixed(3)+';'+(t1+0.02).toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/></g>'});
+  var yl=y0(lims[i]);
+  s+='<line x1="'+(x-cw/2)+'" y1="'+yl+'" x2="'+(x+cw/2)+'" y2="'+yl+'" stroke="#D64545" stroke-width="2.5" stroke-dasharray="7 4"/>';
+  s+=LB(x,yl-10,W.lim[i],11,'#D64545','middle','#fff');
+  s+='<g opacity="0">'+tx(x,base+22,W.val[i],13,'#0f3558',900)+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+win[i][1].toFixed(3)+';'+(win[i][1]+0.02).toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/></g>'});
+ s+='<line x1="30" y1="'+base+'" x2="610" y2="'+base+'" stroke="#5B6B7D" stroke-width="2"/>';
+ s+=tx(610,base+44,W.brk,11,'#5B6B7D',700,'end');
+ var L=LIST(W.n,base+58,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+/* 14-5 ② 重心と %MAC：機体に重さが加わるたびに重心（CG）が動き、平均空力翼弦（MAC）の何％の位置かで表す */
+ac_cg:function(l){
+ var W=({ja:{t:'重心は「重さ×距離」の合計から決まり、MACの何％かで表す',datum:'基準線',st:['① 空の機体（運航自重）','② 後ろの客席に乗客','③ 前の貨物室に貨物','④ 主翼のタンクに燃料'],w:['乗客','貨物','燃料'],mac:'MAC',le:'0％',te:'100％',cg:'CG',pct:['24％','31％','27％','25％'],f:['MAC（平均空力翼弦）：主翼の平均の幅。重心はこの前縁から何％の位置かで表す','モーメント＝重さ×基準線からの距離','重心の位置＝モーメントの合計÷重さの合計','%MAC＝（重心−MACの前縁）÷MACの長さ×100']},
+  ko:{t:'무게중심은 ‘무게×거리’의 합계로 정해지고, MAC의 몇 %인지로 나타낸다',datum:'기준선',st:['① 빈 기체(운항 자중)','② 뒤쪽 객석에 승객','③ 앞쪽 화물칸에 화물','④ 주날개 탱크에 연료'],w:['승객','화물','연료'],mac:'MAC',le:'0%',te:'100%',cg:'CG',pct:['24%','31%','27%','25%'],f:['MAC(평균 공력 시위): 주날개의 평균 폭. 무게중심은 그 앞전에서 몇 % 위치인지로 나타낸다','모멘트 = 무게 × 기준선에서의 거리','무게중심 위치 = 모멘트 합계 ÷ 무게 합계','%MAC = (무게중심 − MAC 앞전) ÷ MAC 길이 × 100']},
+  en:{t:'The CG comes from the sum of weight × distance and is shown as a % of the MAC',datum:'Datum',st:['① Empty aircraft (DOW)','② Passengers in the rear cabin','③ Cargo in the forward hold','④ Fuel in the wing tanks'],w:['Pax','Cargo','Fuel'],mac:'MAC',le:'0%',te:'100%',cg:'CG',pct:['24%','31%','27%','25%'],f:['MAC (mean aerodynamic chord): the average width of the wing. The CG is given as a % of it from its leading edge','Moment = weight × distance from the datum','CG position = total moment ÷ total weight','%MAC = (CG − leading edge of the MAC) ÷ MAC length × 100']}})[l];
+ if(!W)return F.ac_cg('ja');
+ setK(1);
+ var dur='12s',n=4,s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,170,'#DCEEFB',14);
+ s+='<g transform="translate(330 152) scale(-8.2 8.2)">'+planeS('#fff')+'</g>';
+ s+='<line x1="150" y1="84" x2="150" y2="214" stroke="#0f3558" stroke-width="2" stroke-dasharray="5 4"/>'+LB(150,80,W.datum,11,'#0f3558','middle','#fff');
+ /* 重さの矢印：② 後ろの客席、③ 前の貨物室、④ 主翼 */
+ var wp=[[420,1],[230,2],[318,3]],wc=['#2F6FD6','#6B4FA0','#E08A2E'];
+ wp.forEach(function(p,i){var a=(p[1]/n).toFixed(3);s+='<g opacity="0">'+ARW(p[0],100,p[0],136,wc[i],4)+LB(p[0],92,W.w[i],11,wc[i],'middle','#fff')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+a+';'+(+a+0.01).toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/></g>'});
+ /* MAC の物差し */
+ var mx0=170,mx1=490,my=268;
+ s+=R(mx0,my-8,mx1-mx0,16,'#fff',4,' stroke="#0f3558" stroke-width="1.5"');
+ for(var k=0;k<=4;k++)s+='<line x1="'+(mx0+(mx1-mx0)*k/4)+'" y1="'+(my-8)+'" x2="'+(mx0+(mx1-mx0)*k/4)+'" y2="'+(my+8)+'" stroke="#0f3558" stroke-width="1"/>';
+ s+=tx(mx0,my+30,W.le,11,'#0f3558',800)+tx(mx1,my+30,W.te,11,'#0f3558',800)+tx(330,my+30,W.mac,11,'#0f3558',900);
+ var xs=W.pct.map(function(p){return mx0+(mx1-mx0)*parseFloat(p)/100}),vx=xs.map(function(x){return (x-xs[0]).toFixed(1)+' 0'});
+ var kt=[],vv=[];for(var i=0;i<n;i++){var a=i/n,b=(i+1)/n;kt.push(a.toFixed(3));vv.push(vx[i]);if(i<n-1){kt.push((b-0.04).toFixed(3));vv.push(vx[i])}}kt.push('1');vv.push(vx[n-1]);
+ s+='<g><path d="M'+xs[0]+' '+(my-26)+' l-9 -14 l18 0 z" fill="#D64545"/><animateTransform attributeName="transform" type="translate" values="'+vv.join(';')+'" keyTimes="'+kt.join(';')+'" dur="'+dur+'" repeatCount="indefinite"/></g>';
+ W.pct.forEach(function(p,i){s+='<g opacity="0">'+LB(xs[i],my-46,W.cg+' '+p,11,'#fff','middle','#D64545')+'<animate attributeName="opacity" '+SEG(i,n,0,1)+' dur="'+dur+'" repeatCount="indefinite"/></g>'});
+ W.st.forEach(function(t,i){s+='<g opacity="0">'+LBW(320,my+64,t,12,'#0f3558','middle','#fff',540)+'<animate attributeName="opacity" '+SEG(i,n,0,1)+' dur="'+dur+'" repeatCount="indefinite"/></g>'});
+ var L=LIST(W.f,my+96,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
+/* 14-5 ③ 重心の許容範囲（エンベロープ）：ZFW・TOW・LW の3点がすべて枠の中にあること */
+ac_env:function(l){
+ var W=({ja:{t:'重さと重心の点が、許容範囲の枠の中にあるか',xa:'重心の位置（%MAC）',ya:'重さ（t）',fw:'前方の限界',af:'後方の限界',pt:['ZFW 62.7t・27％','TOW 71.7t・24％','LW 65.7t・25.5％'],n:['前すぎる：機首が重く、離陸で機首を上げにくい。昇降舵が足りず、燃料も多く使う','後ろすぎる：機体が不安定になり、操縦が難しい。地上では尾部が下がって機体が傾くおそれ','重い重量では前方の限界が後ろへ寄り、枠がせまくなる。3つの点がすべて枠の中にあることを確かめる']},
+  ko:{t:'무게와 무게중심의 점이 허용 범위 안에 있는가',xa:'무게중심 위치(%MAC)',ya:'무게(t)',fw:'전방 한계',af:'후방 한계',pt:['ZFW 62.7t·27%','TOW 71.7t·24%','LW 65.7t·25.5%'],n:['너무 앞: 기수가 무거워 이륙 때 기수를 들기 어렵다. 승강타가 모자라고 연료도 많이 쓴다','너무 뒤: 기체가 불안정해 조종이 어렵다. 지상에서는 꼬리가 내려가 기체가 기울 수 있다','무거운 중량에서는 전방 한계가 뒤로 와서 범위가 좁아진다. 세 점이 모두 범위 안에 있는지 확인한다']},
+  en:{t:'Are the weight and CG points inside the envelope?',xa:'CG position (%MAC)',ya:'Weight (t)',fw:'Forward limit',af:'Aft limit',pt:['ZFW 62.7t · 27%','TOW 71.7t · 24%','LW 65.7t · 25.5%'],n:['Too far forward: the nose is heavy and hard to raise on take-off, elevator authority runs short and more fuel is burned','Too far aft: the aircraft becomes unstable and hard to control; on the ground the tail can drop and the aircraft tip','At high weights the forward limit moves aft and the envelope narrows. Check that all three points are inside']}})[l];
+ if(!W)return F.ac_env('ja');
+ setK(1);
+ var X=function(p){return 100+(p-5)/35*500},Y=function(t){return 330-(t-40)/40*240},dur='9s';
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(100,90,500,240,'#fff',0,' stroke="#C9D3DE"');
+ [10,20,30,40].forEach(function(p){s+='<line x1="'+X(p)+'" y1="90" x2="'+X(p)+'" y2="330" stroke="#E3E9EF"/>'+tx(X(p),350,p+'%',11,'#5B6B7D',700)});
+ [40,50,60,70,80].forEach(function(t){s+='<line x1="100" y1="'+Y(t)+'" x2="600" y2="'+Y(t)+'" stroke="#E3E9EF"/>'+tx(92,Y(t)+4,String(t),11,'#5B6B7D',700,'end')});
+ var env=[[10,40],[10,60],[15,79],[35,79],[38,60],[36,40]];
+ s+='<polygon points="'+env.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'" fill="#2F8FE0" fill-opacity=".14" stroke="#2F6FD6" stroke-width="2.5"/>';
+ s+=LBW(X(12.5),Y(52),W.fw,11,'#D64545','middle','#fff',110)+LBW(X(32.5),Y(52),W.af,11,'#6B4FA0','middle','#fff',110);
+ s+=tx(350,374,W.xa,11.5,'#0f3558',800)+tx(40,Y(84),W.ya,11.5,'#0f3558',800,'start');
+ var pts=[[27,62.7,'#2F6FD6'],[24,71.7,'#E08A2E'],[25.5,65.7,'#2E9B5F']];
+ pts.forEach(function(p){s+='<circle cx="'+X(p[0])+'" cy="'+Y(p[1])+'" r="6" fill="'+p[2]+'" stroke="#fff" stroke-width="2"/>'});
+ var mv=pts.map(function(p){return (X(p[0])-X(pts[0][0])).toFixed(1)+' '+(Y(p[1])-Y(pts[0][1])).toFixed(1)});
+ s+='<g><circle cx="'+X(pts[0][0])+'" cy="'+Y(pts[0][1])+'" r="10" fill="none" stroke="#D64545" stroke-width="3"/><animateTransform attributeName="transform" type="translate" values="'+mv[0]+';'+mv[0]+';'+mv[1]+';'+mv[1]+';'+mv[2]+';'+mv[2]+'" keyTimes="0;.25;.33;.58;.66;1" dur="'+dur+'" repeatCount="indefinite"/></g>';
+ W.pt.forEach(function(t,i){s+='<g opacity="0">'+LB(480,112,t,12,'#fff','middle',pts[i][2])+'<animate attributeName="opacity" '+SEG(i,3,0,1)+' dur="'+dur+'" repeatCount="indefinite"/></g>'});
+ var L=LIST(W.n,392,600,11);
+ var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
