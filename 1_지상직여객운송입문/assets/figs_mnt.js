@@ -84,7 +84,42 @@ mnt_bleed:function(l){
    for(var k=0;k<3;k++)g+='<circle r="'+(src?4:5)+'" fill="'+dot+'"><animateMotion dur="'+dur+'" begin="'+(k*1)+'s" repeatCount="indefinite" path="'+path+'"/></circle>'});
   return g}
  s+=panel(58,W.a,'#E08A2E','',"#E08A2E")+panel(242,W.b,'#2F6FD6','gen','#2F6FD6');
- var L=LIST(W.n,428,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,428,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-3 油圧：737（A・B・スタンバイ、約3,000psi）と787（左・中央・右、約5,000psi）。787のブレーキは電気 */
+mnt_hyd:function(l){
+ var W=({ja:{t:'油圧の系統と、ブレーキの力のもと',a:'737：油圧3系統（約3,000psi）',b:'787：油圧3系統（約5,000psi）＋電気ブレーキ',sa:['A系統','B系統','スタンバイ'],sb:['左系統','中央系統',''],tg:['操縦翼面','脚の上げ下げ','ブレーキ'],el:'電気（発電機）',n:['どちらも3つの系統があり、1つが壊れても残りで操縦できるように分けてある（図はつながりを単純にしている）','737のブレーキは油圧で動く。787のブレーキは電気で動き、ブレーキの部品ごとに交換しやすい（787の油圧は左・中央・右の3系統）','着陸のあとのブレーキは熱い。次の出発までに冷えないと出発が遅れることがある（ブレーキの温度は整備が確認する）']},
+  ko:{t:'유압 계통과 브레이크의 힘의 원천',a:'737: 유압 3계통(약 3,000psi)',b:'787: 유압 3계통(약 5,000psi)+전기 브레이크',sa:['A 계통','B 계통','스탠바이'],sb:['왼쪽 계통','가운데 계통',''],tg:['조종면','착륙장치 올리고 내리기','브레이크'],el:'전기(발전기)',n:['둘 다 계통이 3개라서 하나가 고장 나도 나머지로 조종할 수 있게 나뉘어 있다(그림은 연결을 단순화했다)','737 브레이크는 유압으로 움직인다. 787 브레이크는 전기로 움직이고 부품별로 교환하기 쉽다(787 유압은 왼쪽·가운데·오른쪽 3계통)','착륙 뒤 브레이크는 뜨겁다. 다음 출발까지 식지 않으면 출발이 늦어질 수 있다(브레이크 온도는 정비가 확인한다)']},
+  en:{t:'Hydraulic systems and what powers the brakes',a:'737: three hydraulic systems (about 3,000 psi)',b:'787: three hydraulic systems (about 5,000 psi) + electric brakes',sa:['System A','System B','Standby'],sb:['Left','Centre',''],tg:['Flight controls','Landing gear','Brakes'],el:'Electric',n:['Both have three systems, split so the aircraft can still be controlled if one fails (the figure simplifies the connections)','The 737’s brakes are hydraulic. The 787’s are electric, and individual brake units are easier to change (the 787 has left, centre and right hydraulic systems)','Brakes are hot after landing. If they do not cool before the next departure, it can be delayed (maintenance checks brake temperatures)']}})[l];
+ if(!W)return F.mnt_hyd('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),dur='2.6s',cs=['#2F6FD6','#2E9B5F','#E08A2E'];
+ function panel(y,title,sys,elec){var g=R(20,y,600,190,'#F4F7FB',12)+LBW(32,y+22,title,11.5,'#fff','start','#0f3558',560);
+  sys.forEach(function(t,i){var yy=y+56+i*44;if(elec&&i===2){g+=R(40,yy,140,32,'#FFB000',8)+WR(110,yy+20,W.el,11,'#5A3A00',900,130);return}g+=R(40,yy,140,32,cs[i],8)+tx(110,yy+21,t,11,'#fff',900)});
+  W.tg.forEach(function(t,i){var yy=y+56+i*44;g+=R(440,yy,170,32,'#fff',8,' stroke="#C8D3DE"')+tx(525,yy+21,t,11,D,800);
+   var isE=elec&&i===2,col=isE?'#FFB000':cs[i],path='M180 '+(yy+16)+' L440 '+(yy+16);
+   g+='<path d="'+path+'" stroke="'+col+'" stroke-width="'+(isE?3:6)+'" opacity=".5"'+(isE?' stroke-dasharray="7 5"':'')+'/>';
+   for(var k=0;k<3;k++)g+='<circle r="4.5" fill="'+col+'"><animateMotion dur="'+dur+'" begin="'+(k*0.86).toFixed(2)+'s" repeatCount="indefinite" path="'+path+'"/></circle>'});
+  return g}
+ s+=panel(58,W.a,W.sa,false)+panel(262,W.b,W.sb,true);
+ var L=LIST(W.n,468,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-4 ターボファン・エンジン：空気が入り（ファン）、圧縮され、燃え、タービンを回して出ていく。大半はファンの外を流れる（バイパス） */
+mnt_eng:function(l){
+ var W=({ja:{t:'ターボファン・エンジンのしくみ',p:['ファン','圧縮機','燃焼室','タービン','排気'],by:'バイパスの空気（推力の大部分）',co:'中心の空気（燃料を燃やす）',n:['前のファンが空気を吸い込み、大部分は外側を流れて推力になる（バイパス）。中心の空気は圧縮され、燃料と燃えてタービンを回す','タービンはファンと圧縮機を回す。バイパス比（外側と中心の空気の比）が大きいほど燃料の効率がよく、音も小さい','鳥や小石を吸い込むとファンの羽根が傷つく。エンジンの点検（ボアスコープ）で中を見ることがある']},
+  ko:{t:'터보팬 엔진의 구조',p:['팬','압축기','연소실','터빈','배기'],by:'바이패스 공기(추력의 대부분)',co:'중심 공기(연료를 태운다)',n:['앞의 팬이 공기를 빨아들이고, 대부분은 바깥쪽을 흘러 추력이 된다(바이패스). 중심 공기는 압축되어 연료와 타며 터빈을 돌린다','터빈은 팬과 압축기를 돌린다. 바이패스비(바깥과 중심 공기의 비)가 클수록 연료 효율이 좋고 소음도 작다','새나 작은 돌을 빨아들이면 팬 블레이드가 다친다. 엔진 점검(보어스코프)으로 안을 들여다보기도 한다']},
+  en:{t:'How a turbofan engine works',p:['Fan','Compressor','Combustor','Turbine','Exhaust'],by:'Bypass air (most of the thrust)',co:'Core air (burns the fuel)',n:['The fan draws air in; most flows around the outside as thrust (bypass). Core air is compressed, burned with fuel and drives the turbines','The turbines drive the fan and compressor. The higher the bypass ratio (outer to core air), the better the fuel efficiency and the lower the noise','Birds or stones swallowed by the engine can damage fan blades; engineers may inspect inside with a borescope']}})[l];
+ if(!W)return F.mnt_eng('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),dur='2.4s',cy=170;
+ s+='<path d="M60 '+(cy-90)+' Q 330 '+(cy-104)+' 560 '+(cy-60)+' L 560 '+(cy+60)+' Q 330 '+(cy+104)+' 60 '+(cy+90)+' Z" fill="#E3E8EE" stroke="#5B6B7D" stroke-width="2"/>';
+ s+='<path d="M150 '+(cy-44)+' L 470 '+(cy-30)+' L 540 '+(cy-16)+' L 540 '+(cy+16)+' L 470 '+(cy+30)+' L 150 '+(cy+44)+' Z" fill="#CBD5E1" stroke="#5B6B7D" stroke-width="1.5"/>';
+ s+='<g><rect x="96" y="'+(cy-86)+'" width="16" height="172" rx="6" fill="#2F6FD6"/><animate attributeName="opacity" values="1;.55;1" keyTimes="0;.5;1" dur="0.6s" repeatCount="indefinite"/></g>';
+ var zones=[[104,'#2F6FD6'],[210,'#2E9B5F'],[330,'#D64545'],[420,'#E08A2E'],[520,'#6B4FA0']];
+ s+=R(170,cy-30,100,60,'#2E9B5F',6,' opacity=".75"')+R(290,cy-24,80,48,'#D64545',6,' opacity=".8"')+R(380,cy-26,80,52,'#E08A2E',6,' opacity=".8"');
+ s+='<g opacity=".9"><circle cx="330" cy="'+cy+'" r="10" fill="#FFD23F"><animate attributeName="r" values="7;13;7" keyTimes="0;.5;1" dur="0.8s" repeatCount="indefinite"/></circle></g>';
+ [-62,62].forEach(function(dy){for(var k=0;k<4;k++)s+='<circle r="4" fill="#2F6FD6"><animateMotion dur="'+dur+'" begin="'+(k*0.6).toFixed(1)+'s" repeatCount="indefinite" path="M30 '+(cy+dy)+' L 600 '+(cy+dy*0.85)+'"/></circle>'});
+ for(var k=0;k<3;k++)s+='<circle r="4" fill="#5B6B7D"><animateMotion dur="'+dur+'" begin="'+(k*0.8).toFixed(1)+'s" repeatCount="indefinite" path="M30 '+cy+' L 610 '+cy+'"/></circle>';
+ W.p.forEach(function(t,i){var x=zones[i][0];s+=LB(x,cy+122+(i%2)*30,t,11,'#fff','middle',zones[i][1])});
+ s+=LBW(330,cy-66,W.by,11,'#2F6FD6','middle','#fff',260);
+ var y=cy+170,nl=LI(W.co,11,560).length;s+=WR(320,y+FS(11),W.co,11,'#5B6B7D',800,560);y+=nl*FS(11)*1.3+12;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
