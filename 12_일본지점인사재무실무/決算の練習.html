@@ -187,7 +187,9 @@ function xb(a,i){return '<button type="button" class="xb" data-act="'+a+'" data-
 function sw(){return '<p class="note">'+t('swipe')+'</p>'}
 function langBar(){var gEl=$('lang');gEl.innerHTML=LS.map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===L?'on':'')+'" aria-pressed="'+(l===L)+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
  Array.prototype.forEach.call(gEl.querySelectorAll('button'),function(b){b.onclick=function(){L=b.getAttribute('data-l');LI=LS.indexOf(L);try{localStorage.setItem('art-lang',L)}catch(e){}render()}})}
-function render(){document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('privacy').textContent=t('privacy');$('note').textContent=t('note');langBar();
+/* 例の摘要は、保存したときの言語のまま残らないよう、いま選んでいる言語に合わせて言いかえる（自分で書いた摘要はそのまま）（2026.10） */
+function relabel(){var map={};for(var k in M)M[k].forEach(function(x){map[x]=k});(D.je||[]).forEach(function(r){var k=map[r.m];if(k)r.m=M[k][LI]})}
+function render(){relabel();document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('privacy').textContent=t('privacy');$('note').textContent=t('note');langBar();
  $('bar').innerHTML='<button class="btn" id="bEx" type="button">'+esc(t('ex'))+'</button><button class="btn" id="bExp" type="button">'+esc(t('exp'))+'</button><label class="btn" for="fImp">'+esc(t('imp'))+'</label><input type="file" id="fImp" accept=".json,application/json" style="display:none"><button class="btn del" id="bCl" type="button">'+esc(t('clr'))+'</button><span class="saved" id="sv"></span>';
  $('bEx').onclick=function(){if(confirm(t('exC'))){D=EX();save();render()}};
  $('bCl').onclick=function(){if(confirm(t('clrC'))){D=BLANK();save();render()}};

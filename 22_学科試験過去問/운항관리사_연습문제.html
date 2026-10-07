@@ -223,6 +223,11 @@ if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)
 (function(){var m=/[?&]lesson=([0-9]+-[0-9]+)/.exec(location.search);if(m){var no=m[1],p=[];K.sets.forEach(function(s){(K.q[s.id]||[]).forEach(function(q){if(q.r===no)p.push({s:s.id,q:q})})});if(p.length){sel.mode='all';start(p);run.lesson=no;show();return}}home()})();
 })();
 </script>
+<script>/* 他の言語の説明（lang の付いた span・small）は、選んでいる言語のものだけを見せる。問題そのものは1つの言語のまま（2026.10） */
+(function(){var m=location.search.match(/lang=(ja|ko|en)/),u=m?m[1]:null;try{u=u||localStorage.getItem('art-lang')}catch(e){}if(!u)return;var a=document.getElementById('app')||document.body;
+function f(){Array.prototype.forEach.call(a.querySelectorAll('span[lang],small[lang]'),function(e){if(e.getAttribute('lang')!==u){var p=e.previousSibling;if(p&&p.nodeName==='BR')p.parentNode.removeChild(p);e.parentNode.removeChild(e)}})}
+f();new MutationObserver(f).observe(a,{childList:true,subtree:true})})();
+</script>
 <script src="../1_지상직여객운송입문/assets/nav.js"></script>
 </body>
 </html>
