@@ -1,7 +1,7 @@
-/* 資料室（ツール）ページの共通の頭の行（2026.09）
+/* 資料・ツール（ツール）ページの共通の頭の行（2026.09）
    使い方：各ページの </head> の直前に <script src="…/assets/shell.js" data-page="glossary"></script>
    ・?lang=ja|ko|en を、ページのスクリプトより先に art-lang に保存
-   ・講座と同じ頭の行：［ロゴ・サイト名 → トップ］［資料室 › このページ］［言語ボタン（ページのものを移す）］
+   ・講座と同じ頭の行：［ロゴ・サイト名 → トップ］［資料・ツール › このページ］［言語ボタン（ページのものを移す）］
    ・青いカードを講座と同じ淡いカードにそろえる／スマートフォンの配置 */
 (function(){
 if(window.__SHELL)return;window.__SHELL=1;
@@ -9,7 +9,7 @@ var me=document.currentScript,page=(me&&me.getAttribute('data-page'))||'';
 var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me.src).href:'#';
 try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'||q==='en')localStorage.setItem('art-lang',q);else if(['ja','ko','en'].indexOf(localStorage.getItem('art-lang'))<0)localStorage.setItem('art-lang',(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})())}catch(e){} /* 言語を選んだことのない人は端末の言語（2026.10） */
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
-var LIB={ja:'\u8cc7\u6599\u5ba4',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
+var LIB={ja:'\u8cc7\u6599\u30fb\u30c4\u30fc\u30eb',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
 var NAME={load:{ja:'\u642d\u8f09\u7ba1\u7406\uff08W&B\uff09\u306e\u7df4\u7fd2',ko:'\ud0d1\uc7ac\uad00\ub9ac(W&B) \uc5f0\uc2b5',en:'Load Control (W&B) Practice'},
 codes:{ja:'\u822a\u7a7a\u30b3\u30fc\u30c9\u8f9e\u5178',ko:'\ud56d\uacf5 \ucf54\ub4dc \uc0ac\uc804',en:'Aviation Code Dictionary'},
 delay:{ja:'IATA\u9045\u5ef6\u30b3\u30fc\u30c9\u4e00\u89a7',ko:'IATA \uc9c0\uc5f0 \ucf54\ub4dc \ubaa9\ub85d',en:'IATA Delay Codes'},
@@ -32,7 +32,7 @@ finval:{ja:'企業価値の計算練習',ko:'기업가치 계산 연습',en:'Com
 finmemo:{ja:'投資検討報告書の下書き',ko:'투자 검토 보고서 초안',en:'Investment Memo Draft'},
 fsc:{ja:'日本発 燃油サーチャージの計算',ko:'일본발 유류할증료 계산',en:'Japan-Origin Fuel Surcharge Calculator'},
 finclose:{ja:'1年の決算の練習',ko:'1년 결산 연습',en:'Year-End Closing Practice'}};
-/* 下の共通ボタン（2026.10）：ツールが属する講座の目次へ・資料室へ。講座のないツールは資料室のボタンだけ */
+/* 下の共通ボタン（2026.10）：ツールが属する講座の目次へ・資料・ツールへ。講座のないツールは資料・ツールのボタンだけ */
 var CR={p1:['1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html','旅客ハンドリングの実務','항공 여객운송 실무','Airline Passenger Operations'],
 p2:['2_일본취항지점개설가이드/00_シリーズ全体_日本就航支店開設ガイド.html','外国航空会社の日本就航・支店開設ガイド','외국 항공사 일본 취항·지점 개설 가이드','Launching Flights to Japan: A Station Setup Guide for Foreign Airlines'],
 p5:['5_면접대비가이드/00_シリーズ全体_面接対策.html','航空業界の面接対策','항공업계 면접 대비','Aviation Industry Interview Prep'],
@@ -42,7 +42,7 @@ p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','�
 p23:['23_재무3표실무/00_シリーズ全体_財務3表.html','数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],
 p12:['12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','会社の人事・総務・財務の実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice']};
 var CMAP={load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p19',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23',finmemo:'p23',finclose:'p12'};
-var FT={ja:['← 講座の目次','資料室','ほかのツールを見る →'],ko:['← 강좌 목차','자료실','다른 도구 보기 →'],en:['\u2190 Course contents','Resources','See other tools \u2192']};
+var FT={ja:['← 講座の目次','資料・ツール','ほかのツールを見る →'],ko:['← 강좌 목차','자료실','다른 도구 보기 →'],en:['\u2190 Course contents','Resources','See other tools \u2192']};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=
 '.shbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:2px 0 14px}'+
