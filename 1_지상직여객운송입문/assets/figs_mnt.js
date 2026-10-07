@@ -153,7 +153,47 @@ mnt_rel:function(l){
  s+=R(cx-80,cy-22,160,44,'#fff',22,' stroke="#2C7A7B" stroke-width="2"')+WR(cx,cy+FS(11)*0.35,W.c,11,'#2C7A7B',900,150);
  var pos=[[cx,cy-ry],[cx+r,cy],[cx,cy+ry],[cx-r,cy]];
  W.nd.forEach(function(t,i){var p=pos[i],w=170,nl=LI(t,11,w-16).length,h=nl*FS(11)*1.3+16,x=Math.max(20,Math.min(620-w,p[0]-w/2));s+='<g>'+R(x,p[1]-h/2,w,h,cc[i],10)+WR(x+w/2,p[1]+FS(11)*0.35-(nl-1)*FS(11)*1.3/2+(nl-1)*FS(11)*1.3/2,t,11,'#fff',900,w-16)+'<animate attributeName="opacity" '+SEG(i,4,.55,1)+' dur="'+dur+'" repeatCount="indefinite"/></g>'});
- var L=LIST(W.n,cy+ry+64,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,cy+ry+64,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-1 MELの1行を読む：項目・修理の期限・装備数・必要数・備考の順に光り、下の説明と対応する（例は一般的な形） */
+mnt_mel:function(l){
+ var W=({ja:{t:'MELの1行を読む（例）',h:['項目','期限','装備数','必要数','備考'],v:['21 空調パック','C','2','1','(M)(O)'],n:['項目：ATAの章（21＝空調）ごとに並ぶ。どの装置かを示す','修理の期限の区分：A〜D。Cなら発見の翌日から10日以内に直す','装備数：機体に付いている数','出発に必要な数：この数以上動いていれば出発できる（ここでは1つ止まっていてもよい）','備考：(M)は整備の作業、(O)は乗員の手順が必要。高度などの制限が付くことがある']},
+  ko:{t:'MEL 한 줄 읽기(예)',h:['항목','기한','장착 수','필요 수','비고'],v:['21 공조 팩','C','2','1','(M)(O)'],n:['항목: ATA 장(21=공조)별로 나열된다. 어느 장치인지 나타낸다','수리 기한 범주: A~D. C라면 발견 다음 날부터 10일 이내에 고친다','장착 수: 기체에 달린 수','출발 필요 수: 이 수 이상 작동하면 출발할 수 있다(여기서는 하나가 멈춰도 된다)','비고: (M)은 정비 작업, (O)는 승무원 절차가 필요. 고도 등 제한이 붙기도 한다']},
+  en:{t:'Reading one MEL line (example)',h:['Item','Cat.','Installed','Required','Remarks'],v:['21 A/C pack','C','2','1','(M)(O)'],n:['Item: listed by ATA chapter (21 = air conditioning), identifying the system','Repair category: A to D. Category C must be fixed within 10 days, not counting the day of discovery','Installed: how many the aircraft has','Required for dispatch: the aircraft may depart if at least this many work (here, one may be inoperative)','Remarks: (M) means a maintenance procedure and (O) an operations procedure for the crew; limits such as altitude may apply']}})[l];
+ if(!W)return F.mnt_mel('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),dur='12s',ws=[200,80,95,95,130],x=20,y0=62,cs=['#2F6FD6','#D64545','#2E9B5F','#2E9B5F','#6B4FA0'];
+ s+=R(20,y0,600,96,'#fff',10,' stroke="#9FB0C2"');
+ ws.forEach(function(w,i){s+=R(x,y0,w,34,'#0f3558',0)+tx(x+w/2,y0+22,W.h[i],11,'#fff',900);
+  s+='<g>'+R(x+3,y0+38,w-6,54,'#fff',6)+'<rect x="'+(x+3)+'" y="'+(y0+38)+'" width="'+(w-6)+'" height="54" rx="6" fill="'+cs[i]+'" opacity="0"><animate attributeName="opacity" '+SEG(i,5,.08,.35)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+WR(x+w/2,y0+70,W.v[i],12,'#0f3558',900,w-30)+BADGE(x+w-14,y0+44,i+1,11)+'</g>';
+  if(i<4)s+='<line x1="'+(x+w)+'" y1="'+y0+'" x2="'+(x+w)+'" y2="'+(y0+96)+'" stroke="#C8D3DE"/>';x+=w});
+ var L=LIST(W.n,y0+112,600,11);
+ return SVG(L.y+8,s+L.s)},
+/* 3-2 修理の期限：見つけた日（0日目）は数えず、Bは3日、Cは10日、Dは120日。Aは項目ごとに決まる */
+mnt_cat:function(l){
+ var W=({ja:{t:'修理の期限の区分と数え方',r:[['A','項目ごとに決まる（例：飛行回数・時間）'],['B','3日'],['C','10日'],['D','120日']],d0:'発見',ax:'発見の翌日からの日数',d:'→ 120日',n:['発見した日は数えない（0日目）。日付の切り替えの時刻は会社の規定で決める★','期限の中で直せないと、その機体は出発できない（AOG）。延長は当局が認めた仕組みの範囲だけ★','期限の近い不具合は、部品のある基地に機体を回すように運航の計画に入れる']},
+  ko:{t:'수리 기한 범주와 세는 법',r:[['A','항목마다 정해진다(예: 비행 횟수·시간)'],['B','3일'],['C','10일'],['D','120일']],d0:'발견',ax:'발견 다음 날부터의 일수',d:'→ 120일',n:['발견한 날은 세지 않는다(0일째). 날짜가 바뀌는 시각은 회사 규정으로 정한다★','기한 안에 고치지 못하면 그 기체는 출발할 수 없다(AOG). 연장은 당국이 인정한 제도 범위에서만★','기한이 가까운 결함은 부품이 있는 기지로 기체를 보내도록 운항 계획에 넣는다']},
+  en:{t:'Repair categories and how days are counted',r:[['A','Set per item (e.g. flights or hours)'],['B','3 days'],['C','10 days'],['D','120 days']],d0:'Found',ax:'Days from the day after discovery',d:'→ 120 days',n:['The day of discovery is not counted (day 0). When the date rolls over is set by company rules ★','If it cannot be fixed within the limit, the aircraft cannot depart (AOG). Extensions only under an authority-approved scheme ★','Defects close to their limit are planned into the flying programme so the aircraft reaches a base with the part']}})[l];
+ if(!W)return F.mnt_cat('ja');setK(1);
+ var X=function(dd){return 150+dd/12*450},s=TTL(320,30,W.t,15,'#0f3558',600),cc=['#6B4FA0','#D64545','#E08A2E','#2E9B5F'],dur='12s',yb=100;
+ for(var dd=0;dd<=12;dd+=2)s+='<line x1="'+X(dd)+'" y1="'+yb+'" x2="'+X(dd)+'" y2="'+(yb+4*46)+'" stroke="#E3E9EF"/>'+tx(X(dd),yb+4*46+18,String(dd),11,'#5B6B7D',700);
+ s+=tx(375,yb+4*46+40,W.ax,11,'#0f3558',800);
+ W.r.forEach(function(r,i){var y=yb+i*46;s+=BADGE(40,y+20,r[0],12,cc[i]);
+  if(i===0)s+=LBW(X(0)+8,y+20,r[1],11,'#fff','start',cc[i],420);
+  else{var e=[0,3,10,12][i];s+=R(X(0),y+10,X(e)-X(0),20,cc[i],6);if(i<3)s+=LB(X(e)+6,y+20,r[1],11,cc[i],'start','#fff');else s+=LB(X(12)-6,y+20,W.d,11,'#fff','end',cc[i])}});
+ s+='<line x1="'+X(0)+'" y1="'+(yb-20)+'" x2="'+X(0)+'" y2="'+(yb+4*46)+'" stroke="#0f3558" stroke-width="2.5"/>'+LB(X(0),yb-30,W.d0,11,'#fff','middle','#0f3558');
+ s+='<line x1="0" y1="'+yb+'" x2="0" y2="'+(yb+4*46)+'" stroke="#D64545" stroke-width="2.5" stroke-dasharray="5 3"><animateTransform attributeName="transform" type="translate" values="'+X(0)+' 0;'+X(12)+' 0" keyTimes="0;1" dur="'+dur+'" repeatCount="indefinite"/></line>';
+ var L=LIST(W.n,yb+4*46+60,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-3 CDL：外の部品がない状態で飛べる場合。機体の上の赤い印が順に光る */
+mnt_cdl:function(l){
+ var W=({ja:{t:'CDL：外の部品がない状態で飛ぶ（例）',p:['フラップのレールのカバー','翼の先の静電気放出棒','APUの点検口のふた','エンジンを支える柱のパネル'],n:['CDL（外形変更リスト）は、メーカーが認めた外の部品について、ない状態で飛べる条件を決める','条件の多くは「離陸重量を何kg減らす」「燃料を何%足す」といった性能の割増し。運航管理の計画に入る','ない部品は記録し、機体の近くと操縦室に表示する。同じ場所の部品が2つ以上ないと飛べないこともある']},
+  ko:{t:'CDL: 외부 부품이 없는 상태로 난다(예)',p:['플랩 레일 덮개','날개 끝 정전기 방출봉','APU 점검구 덮개','엔진 지지대 패널'],n:['CDL(외형 변경 목록)은 제작사가 인정한 외부 부품에 대해, 없는 상태로 날 수 있는 조건을 정한다','조건의 대부분은 ‘이륙 중량을 몇 kg 줄인다’, ‘연료를 몇 % 더한다’ 같은 성능 할증. 운항관리 계획에 들어간다','없는 부품은 기록하고 조종실에 표시한다. 같은 곳 부품이 두 개 이상 없으면 날 수 없기도 하다']},
+  en:{t:'CDL: flying without some external parts (example)',p:['Flap track fairing','Wingtip static discharger','APU access door','Engine pylon panel'],n:['The CDL (configuration deviation list) sets conditions for flying without certain external parts approved by the manufacturer','Most conditions are performance penalties such as reducing take-off weight by a set amount or adding fuel; they go into the dispatch plan','Missing parts are recorded and placarded in the flight deck; some cannot be missing in more than one place at once']}})[l];
+ if(!W)return F.mnt_cdl('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#EAF2F9',14),sc=13.2,ox=330,oy=182,dur='8s';
+ s+='<g transform="translate('+ox+' '+oy+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet('737',{tint:'alu'}):planeS('#fff'))+'</g>';
+ var pts=[[-3.2,1.6],[-8.5,0.5],[-18.9,-0.7],[5.6,1.25]];
+ pts.forEach(function(p,i){var x=ox+p[0]*sc,y=oy+p[1]*sc;s+='<g><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="12" fill="#D64545" opacity="0"><animate attributeName="opacity" '+SEG(i,4,.15,.6)+' dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="r" values="9;16;9" keyTimes="0;.5;1" dur="1.6s" repeatCount="indefinite"/></circle>'+BADGE(x,y,i+1,11,'#fff')+'</g>'});
+ var L=LIST(W.p.concat(W.n),272,600,11);
+ return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

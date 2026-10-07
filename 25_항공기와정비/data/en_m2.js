@@ -72,5 +72,5 @@ terms:[["Reliability programme","信頼性管理","신뢰성 관리"],["Technica
 quiz:[{q:"When does maintenance work count as done?",opts:["When the work finishes","When it is recorded and signed","When the captain is told","When the next flight departs"],a:1,exp:"Maintenance only counts once records and signatures are complete."},
 {q:"Which station action distorts reliability analysis?",opts:["Coding delays accurately","Checking with maintenance when unsure","Coding delays without checking the reason","Reporting cabin defects"],a:2,exp:"Incorrect delay codes distort the figures for technical causes."},
 {q:"Which is true of the 787?",opts:["It keeps no data","It can send in-flight defect data to the ground","Its records are paper only","It does not report defects"],a:1,exp:"The 787 can send in-flight data to the ground, so preparation can sometimes start before arrival."}],
-next:""});
+next:"Part 3 MEL and CDL: 3-1 What the MEL Is"});
 })(window.ARTS);
