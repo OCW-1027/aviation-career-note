@@ -1,20 +1,20 @@
 /* 航空機と整備 Part 0 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("0-1",{title:"What Maintenance Protects: Airworthiness and How Aircraft Are Kept Fit to Fly",hl:"Airworthiness",subtitle:"Type certificate, certificate of airworthiness, continuing airworthiness and release for each flight: four linked stages behind every safe departure",
-lead:["An airliner passes through layer after layer of checks, from its design to each day’s departure. The word that ties them together is airworthiness: being in a condition to fly safely.","This course explains what people who are not engineers (airport stations, passenger services, dispatch and sales) need to know about maintenance, comparing the narrow-body 737 with the wide-body 787. The first lesson is the big picture of how airworthiness is protected."],
+lead:["An airliner passes through layer after layer of checks, from its design to each day’s departure. The word that ties them together is airworthiness: being in a condition to fly safely.","This course explains what people who are not engineers (airport stations, passenger services, dispatch and sales) need to know about maintenance, comparing the narrow-body B737 with the wide-body B787. The first lesson is the big picture of how airworthiness is protected."],
 sections:[
 {h:"Four stages",blocks:[{t:"fig",id:"mnt_air",cap:"Animated figure: certification of the design (type certificate), certification of each aircraft (certificate of airworthiness), keeping it airworthy through maintenance, and the check before every departure, linked in sequence."},
 {t:"table",cols:["Stage","What it is","Who"],rows:[
-["Type certificate (TC)","Certifies that the type’s design meets the safety standards","Authority of the state of design (the US FAA for the 737 and 787)"],
+["Type certificate (TC)","Certifies that the type’s design meets the safety standards","Authority of the state of design (the US FAA for the B737 and B787)"],
 ["Certificate of airworthiness (C of A)","Certifies that each aircraft is fit to fly; one of the documents carried on board","Authority of the state of registry (Korea’s transport ministry for a Korean aircraft)"],
 ["Continuing airworthiness","Inspections and repairs under the maintenance programme, compliance with airworthiness directives (ADs) and records","The airline (maintenance department)"],
 ["Release for each flight","Checks before every flight and the certifying engineer’s signature (release to service)","Certifying engineer; finally accepted by the captain"]]}]},
-{h:"Where the 737 and 787 fit",blocks:[{t:"table",cols:["","737 (737-800 etc.)","787 (787-9 etc.)"],rows:[
+{h:"Where the B737 and B787 fit",blocks:[{t:"table",cols:["","B737 (B737-800 etc.)","B787 (B787-9 etc.)"],rows:[
 ["Size","Narrow-body (about 180–190 seats)","Wide-body (about 250–300 seats)"],
 ["Typical use","Short and medium routes, many sectors a day","Long routes, one or two sectors a day"],
 ["Structure","Mainly aluminium alloy","About half the structural weight (fuselage, wings and more) is carbon-fibre composite"],
 ["Systems","Bleed air from the engines for air conditioning, pressurisation and anti-icing","Almost no bleed air; air conditioning, pressurisation and anti-icing are electric"]]},
-{t:"point",x:"Even among airliners, different uses and designs shift the focus of maintenance. With many take-offs and landings, the 737’s checks are tied closely to cycles; with long flights, the 787’s are tied to flight hours, and electrical and software management matter more (Part 2)."}]},
+{t:"point",x:"Even among airliners, different uses and designs shift the focus of maintenance. With many take-offs and landings, the B737’s checks are tied closely to cycles; with long flights, the B787’s are tied to flight hours, and electrical and software management matter more (Part 2)."}]},
 {h:"What non-engineers should know",blocks:[{t:"check",items:[
 {name:"Maintenance decides",x:"Whether an aircraft with a defect may depart is decided by maintenance (and the captain). Stations and passenger services should not rush that decision"},
 {name:"Documents must be on board",x:"The certificate of airworthiness, registration certificate, radio licence and others are carried on board; without them the aircraft cannot depart"},
@@ -23,7 +23,7 @@ sections:[
 voice:"Maintenance decisions come before departure times. What the station can do is not hurry the decision, but be ready to act the moment it is made.",
 terms:[["Airworthiness","耐空性","감항성"],["Type certificate","型式証明","형식증명"],["Certificate of airworthiness","耐空証明","감항증명"],["Airworthiness directive (AD)","耐空性改善通報","감항성개선지시"],["Maintenance control manual","整備規程","정비규정"],["Certifying engineer","確認整備士","확인정비사"]],
 quiz:[{q:"What certifies that each individual aircraft is fit to fly?",opts:["Type certificate","Certificate of airworthiness","Maintenance control manual","Operations manual"],a:1,exp:"The type certificate covers the design of the type; the certificate of airworthiness covers each aircraft."},
-{q:"Which describes the 787?",opts:["An all-aluminium fuselage","Bleed air for air conditioning","Extensive composites, with electric air conditioning and pressurisation","Four engines"],a:2,exp:"The 787 uses a lot of carbon-fibre composite and is a ‘more electric’ design that uses almost no bleed air."},
+{q:"Which describes the B787?",opts:["An all-aluminium fuselage","Bleed air for air conditioning","Extensive composites, with electric air conditioning and pressurisation","Four engines"],a:2,exp:"The B787 uses a lot of carbon-fibre composite and is a ‘more electric’ design that uses almost no bleed air."},
 {q:"With a defect, who finally decides whether the aircraft may depart?",opts:["The station manager","Passenger services","Maintenance (and the captain)","Sales"],a:2,exp:"Airworthiness decisions belong to maintenance, and the captain finally accepts the aircraft. The station prepares rather than rushing them."}],
 next:"0-2 The Maintenance Organisation"});
 set("0-2",{title:"The Maintenance Organisation: Head Office, Line Maintenance and Contractors",hl:"Maintenance Organisation",subtitle:"Four roles (planning, quality, parts and control), the airline’s own line maintenance, resident engineers and contractors at overseas airports, and heavy maintenance",
@@ -40,7 +40,7 @@ sections:[
 {name:"Overseas airports",x:"Often a resident engineer signs the release and part of the work is contracted to a local company. At airports with few flights, everything may be contracted (the airline still checks the contractor’s approvals and training)"},
 {name:"Travelling engineers",x:"An engineer may fly with the aircraft to an airport that has no engineer"},
 {name:"Heavy maintenance",x:"Major checks every few years (such as C checks), in the airline’s own hangar or at a maintenance shop (MRO) at home or abroad"}]},
-{t:"point",x:"Airlines flying the 737 often have large fleets and a wide network of line stations. Many 787 operators have smaller fleets, so at overseas airports a mix of contractors and manufacturer support is common."}]},
+{t:"point",x:"Airlines flying the B737 often have large fleets and a wide network of line stations. Many B787 operators have smaller fleets, so at overseas airports a mix of contractors and manufacturer support is common."}]},
 {h:"Where the station comes in",blocks:[{t:"check",items:[
 {name:"Maintenance contracts",x:"Checking contracts and invoices with the local maintenance company (rates, vehicles, office space and so on)"},
 {name:"Resident engineers",x:"Visas, housing, commuting and airport passes (see also the expatriate guide)"},

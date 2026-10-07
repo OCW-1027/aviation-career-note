@@ -12,7 +12,7 @@ sections:[
 {h:"From MMEL to MEL",blocks:[{t:"rows",items:[
 {name:"MMEL",x:"The master list written by the manufacturer for each type and approved by the state of design (the US FAA publishes them)"},
 {name:"MEL",x:"Written by the airline from the MMEL to match its fleet’s equipment and operation, and approved by its own authority; it may be stricter than the MMEL but never more lenient"},
-{name:"Procedures",x:"Detailed (M) and (O) procedures are in the manufacturer’s guide (the dispatch deviation guide for the 737 and 787) and company manuals"},
+{name:"Procedures",x:"Detailed (M) and (O) procedures are in the manufacturer’s guide (the dispatch deviation guide for the B737 and B787) and company manuals"},
 {name:"Items not on the MEL",x:"As a rule, if an item not on the MEL fails, the aircraft cannot depart. Some airlines handle cabin items unrelated to airworthiness under separate rules ★"}]},
 {t:"point",x:"The MEL is used before departure, on the ground. Failures in flight are handled with non-normal procedures and checklists, and the MEL decision is made after landing. The captain makes the final decision to accept the aircraft."}]},
 {h:"Where the station comes in",blocks:[{t:"check",items:[
@@ -55,7 +55,7 @@ next:"3-3 The CDL and Effects on Passenger Services and Loading"});
 set("3-3",{title:"The CDL and Effects on Passenger Services and Loading: How MEL Restrictions Change the Station’s Work",hl:"CDL and Effects",subtitle:"Flying without external parts under the CDL and its performance penalties, and how MEL items affect seats, cargo, ground equipment and passenger information",
 lead:["If the MEL covers equipment inside, the CDL (configuration deviation list) covers parts outside. For panels, fairings and similar parts the aircraft can safely fly without, it sets conditions such as weight or fuel penalties.","On flights departing under the MEL or CDL, restrictions show up directly in the station’s work: seats that cannot be sold, holds that cannot be loaded, ground equipment that is needed. Knowing which item affects what speeds up preparation."],
 sections:[
-{h:"The CDL",blocks:[{t:"fig",id:"mnt_cdl",cap:"Animated figure: on a 737, a flap track fairing, a wingtip static discharger, the APU access door and an engine pylon panel light up in turn. Parts and conditions are examples."},
+{h:"The CDL",blocks:[{t:"fig",id:"mnt_cdl",cap:"Animated figure: on a B737, a flap track fairing, a wingtip static discharger, the APU access door and an engine pylon panel light up in turn. Parts and conditions are examples."},
 {t:"table",cols:["","MEL","CDL"],rows:[
 ["Covers","Equipment inside (instruments, systems, cabin equipment and so on)","External parts (panels, fairings, dischargers and so on)"],
 ["Main conditions","Time limits, maintenance and crew procedures, operating restrictions","Reduced take-off and landing weights, extra fuel"],

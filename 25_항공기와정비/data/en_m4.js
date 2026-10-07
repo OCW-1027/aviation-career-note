@@ -11,7 +11,7 @@ sections:[
 ["Engineers flown in when needed","Suits rare tasks","Arrival takes time, so AOGs last longer"]]}]},
 {h:"What to require of contractors",blocks:[{t:"rows",items:[
 {name:"Authority approval",x:"An approved maintenance organisation in that country; the state of registry may also require its own approval ★"},
-{name:"Type experience",x:"Enough engineers trained on the type (737, 787 and so on)"},
+{name:"Type experience",x:"Enough engineers trained on the type (B737, B787 and so on)"},
 {name:"Tools and ground equipment",x:"Type-specific tow bars, jacks, nitrogen, oil and so on, with calibration records"},
 {name:"Parts storage",x:"Consignment stock stored within temperature, humidity and shelf-life limits"},
 {name:"Records",x:"Work recorded on company forms and sent promptly to head office"}]},

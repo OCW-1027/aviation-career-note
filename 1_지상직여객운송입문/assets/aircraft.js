@@ -39,9 +39,9 @@ function front(o){o=at(o);var s=st(o.sw),g='';
  if(o.gear)g='<path d="M0 3 L0 6 M-3.4 2.4 L-3.4 6.2 M3.4 2.4 L3.4 6.2" stroke="'+K.dark+'" stroke-width="'+(CUR.vs?o.sw:0.45)+'"'+(CUR.vs?' vector-effect="non-scaling-stroke"':'')+'/><rect x="-0.8" y="5.7" width="1.6" height="1.5" rx="0.4" fill="'+K.dark+'"/><rect x="-4.4" y="5.9" width="2" height="1.7" rx="0.4" fill="'+K.dark+'"/><rect x="2.4" y="5.9" width="2" height="1.7" rx="0.4" fill="'+K.dark+'"/>';
  return '<path d="'+fin+'" fill="'+o.w+'"'+s+'/><path d="'+stab+'" fill="'+o.w+'"'+s+'/><path d="'+wing+'" fill="'+o.w+'"'+s+'/>'+g+'<path d="'+py+'" fill="'+K.eng+'"'+s+'/><circle cx="-7.9" cy="3.4" r="1.9" fill="'+K.eng+'"'+s+'/><circle cx="7.9" cy="3.4" r="1.9" fill="'+K.eng+'"'+s+'/><circle cx="-7.9" cy="3.4" r="1.15" fill="'+K.dark+'"/><circle cx="7.9" cy="3.4" r="1.15" fill="'+K.dark+'"/><circle cx="-7.9" cy="3.4" r="'+(o.rear?0.7:0.35)+'" fill="'+(o.rear?'#6B7785':K.eng)+'"/><circle cx="7.9" cy="3.4" r="'+(o.rear?0.7:0.35)+'" fill="'+(o.rear?'#6B7785':K.eng)+'"/><circle cx="0" cy="0" r="3.1" fill="'+o.c+'"'+s+'/>'+(o.rear?'<circle cx="0" cy="0.4" r="0.8" fill="'+K.eng+'"/>':'<path d="M-1.7 -1.2 L-0.25 -1.45 L-0.25 -0.55 L-1.8 -0.4 Z M1.7 -1.2 L0.25 -1.45 L0.25 -0.55 L1.8 -0.4 Z" fill="'+K.glass+'"/>')}
 /* ===== 写真風の絵（2026.10）=====
-   上・正面・後ろ・横は img/ の絵（top_・front_・rear_・side_ の737と787）を使う。横は jet() が返す。
+   上・正面・後ろ・横は img/ の絵（top_・front_・rear_・side_ のB737とB787）を使う。横は jet() が返す。
    どれも今までと同じ座標（原点が機体の中心、長さ約40、機首は右）に合わせるので、図の側は変えなくてよい。
-   o.type:'787' で787の絵。o.eng:4 と o.vec:true は今までの線の絵。色（o.c）が鮮やかなときは、絵のまわりにその色の光をつけて区別できるようにする */
+   o.type:'787' でB787の絵。o.eng:4 と o.vec:true は今までの線の絵。色（o.c）が鮮やかなときは、絵のまわりにその色の光をつけて区別できるようにする */
 var IB=((document.currentScript&&document.currentScript.src)||'').split('?')[0].replace(/[^\/]*$/,'')+'img/';
 var PIX={top737:[800,655,335],top787:[800,659,334],front737:[800,257,183],front787:[800,256,178],rear737:[800,313,227],rear787:[800,268,179]};
 var JN=0;
@@ -57,7 +57,7 @@ front=function(o){o=o||{};if(o.vec)return frontV(o);var t=o.type==='787'?'787':'
  return halo(g+pic('front'+t,46),o.c,0.9)};
 side=function(o){o=o||{};if(o.vec)return sideV(o);var big=o.type==='787';return halo('<g transform="scale('+(big?0.637:1.013)+')">'+jet(big?'787':'737',{gear:!!o.gear,shadow:false,win:o.win})+'</g>',o.c,0.9)};
 /* 横から見た形：jet('737') と jet('787')。img/side_737・side_787 の絵（利用者が作った絵、機首は右、脚は出た状態）を使う。
-   単位はメートル（実物の大きさ）。機首は右、胴体の中心線が y=0、地面（タイヤの下）は y>0。737-800：全長約39.5m、787-9：全長約62.8m。
+   単位はメートル（実物の大きさ）。機首は右、胴体の中心線が y=0、地面（タイヤの下）は y>0。B737-800：全長約39.5m、B787-9：全長約62.8m。
    同じ縮尺で描くと大きさの違いも分かる。o.tint・o.gear・o.win は互換のために受け取るだけ（絵は1種類） */
 var SIDE={'737':{f:'side_737',w:41,nose:19.75,iw:1000,ih:311,nx:997,cy:213},'787':{f:'side_787',w:64,nose:31.4,iw:1000,ih:265,nx:998,cy:174}};
 function jet(kind,o){var d=SIDE[kind==='787'?'787':'737'],u=d.w/d.iw,x0=d.nose-d.nx*u;

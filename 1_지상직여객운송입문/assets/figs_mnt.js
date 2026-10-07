@@ -1,5 +1,5 @@
 /* 航空機と整備（MNT）の図（2026.10）— figs_met.js の後に読み込み、window.FIGH の部品を使う
-   737（小型機）と787（中大型機）を比べる図が中心。数字は一般的な例。作成ルール：00_그림작성규칙.md */
+   B737（小型機）とB787（中大型機）を比べる図が中心。数字は一般的な例。作成ルール：00_그림작성규칙.md */
 (function(){
 var H=window.FIGH;if(!H)return;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,LBW=H.LBW,TTL=H.TTL,ARW=H.ARW,plane=H.plane,planeS=H.planeS,setK=H.setK,FS=H.FS,LI=H.LINES;
@@ -54,11 +54,11 @@ mnt_turn:function(l){
  s+='<line x1="0" y1="'+top+'" x2="0" y2="'+y+'" stroke="#0f3558" stroke-width="2.5"><animateTransform attributeName="transform" type="translate" values="'+X(0)+' 0;'+X(60)+' 0" keyTimes="0;1" dur="'+dur+'" repeatCount="indefinite"/></line>';
  y+=56;var nk=LI(W.key,11,560).length,hk=nk*lh+14;s+=R(20,y,600,hk,'#FFF4D6',8)+WR(320,y+hk/2+FS(11)*0.35,W.key,11,'#7A4B00',800,560);
  return SVG(y+hk+10,s)},
-/* 1-1 機体の材料：737（アルミ）と787（複合材）を横から並べ、材料の色が順に光る */
+/* 1-1 機体の材料：B737（アルミ）とB787（複合材）を横から並べ、材料の色が順に光る */
 mnt_struct:function(l){
- var W=({ja:{t:'機体の材料：737と787',a:'737：主にアルミニウム合金',b:'787：重さの約半分が炭素繊維の複合材',lg:['アルミニウム合金','炭素繊維の複合材','チタン・鋼（脚・エンジンまわり）'],n:['アルミは「疲れ（金属疲労）」と「さび（腐食）」に気をつけ、離着陸の回数に合わせて点検する','複合材はさびず疲れにも強いが、ぶつけた傷が表から見えにくい。地上の車両が当たったら、小さくても必ず整備に知らせる','複合材の胴体には、雷の電気を逃がす金属の網が入っている。雷に打たれたら決められた点検をする']},
-  ko:{t:'기체 재료: 737과 787',a:'737: 주로 알루미늄 합금',b:'787: 무게의 약 절반이 탄소섬유 복합재',lg:['알루미늄 합금','탄소섬유 복합재','티타늄·강철(착륙장치·엔진 주변)'],n:['알루미늄은 ‘피로(금속 피로)’와 ‘부식’에 주의하고, 이착륙 횟수에 맞춰 점검한다','복합재는 녹슬지 않고 피로에도 강하지만, 부딪친 손상이 겉에서 잘 보이지 않는다. 지상 장비가 닿으면 작아도 반드시 정비에 알린다','복합재 동체에는 낙뢰 전기를 흘려보내는 금속 망이 들어 있다. 낙뢰를 맞으면 정해진 점검을 한다']},
-  en:{t:'Airframe materials: 737 and 787',a:'737: mainly aluminium alloy',b:'787: about half the weight is carbon-fibre composite',lg:['Aluminium alloy','Carbon-fibre composite','Titanium and steel (gear, engine areas)'],n:['Aluminium needs watching for fatigue and corrosion, and checks follow the number of take-offs and landings','Composite does not corrode and resists fatigue, but impact damage can be hard to see from outside. If ground equipment touches the aircraft, however lightly, always tell maintenance','The composite fuselage contains a metal mesh to carry lightning current away; after a strike, set inspections are done']}})[l];
+ var W=({ja:{t:'機体の材料：B737とB787',a:'B737：主にアルミニウム合金',b:'B787：重さの約半分が炭素繊維の複合材',lg:['アルミニウム合金','炭素繊維の複合材','チタン・鋼（脚・エンジンまわり）'],n:['アルミは「疲れ（金属疲労）」と「さび（腐食）」に気をつけ、離着陸の回数に合わせて点検する','複合材はさびず疲れにも強いが、ぶつけた傷が表から見えにくい。地上の車両が当たったら、小さくても必ず整備に知らせる','複合材の胴体には、雷の電気を逃がす金属の網が入っている。雷に打たれたら決められた点検をする']},
+  ko:{t:'기체 재료: B737과 B787',a:'B737: 주로 알루미늄 합금',b:'B787: 무게의 약 절반이 탄소섬유 복합재',lg:['알루미늄 합금','탄소섬유 복합재','티타늄·강철(착륙장치·엔진 주변)'],n:['알루미늄은 ‘피로(금속 피로)’와 ‘부식’에 주의하고, 이착륙 횟수에 맞춰 점검한다','복합재는 녹슬지 않고 피로에도 강하지만, 부딪친 손상이 겉에서 잘 보이지 않는다. 지상 장비가 닿으면 작아도 반드시 정비에 알린다','복합재 동체에는 낙뢰 전기를 흘려보내는 금속 망이 들어 있다. 낙뢰를 맞으면 정해진 점검을 한다']},
+  en:{t:'Airframe materials: B737 and B787',a:'B737: mainly aluminium alloy',b:'B787: about half the weight is carbon-fibre composite',lg:['Aluminium alloy','Carbon-fibre composite','Titanium and steel (gear, engine areas)'],n:['Aluminium needs watching for fatigue and corrosion, and checks follow the number of take-offs and landings','Composite does not corrode and resists fatigue, but impact damage can be hard to see from outside. If ground equipment touches the aircraft, however lightly, always tell maintenance','The composite fuselage contains a metal mesh to carry lightning current away; after a strike, set inspections are done']}})[l];
  if(!W)return F.mnt_struct('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),dur='9s',cA='#9AA8B8',cC='#2C7A7B',cT='#B5651D';
  var sc=8.2;function body(y,k,tint){return '<g transform="translate(330 '+y+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet(k,{tint:tint}):planeS('#fff'))+'</g>'}
@@ -68,11 +68,11 @@ mnt_struct:function(l){
  /* 両機に共通の材料（色分けはしない） */
  var cm=({ja:'両機とも：',ko:'두 기체 모두: ',en:'Both aircraft: '})[l]+W.lg[2],cn=LI(cm,11,560).length,ch=cn*FS(11)*1.3+16,y=472;s+=R(20,y,600,ch,'#FFF4E5',10)+WR(320,y+8+cn*FS(11)*1.3/2+FS(11)*0.3,cm,11,cT,900,560);y+=ch+6;
  var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
-/* 1-2 空気と電気：737はエンジンの空気（ブリード）で冷暖房・与圧・防氷、787は電気で動かす。粒が流れる */
+/* 1-2 空気と電気：B737はエンジンの空気（ブリード）で冷暖房・与圧・防氷、B787は電気で動かす。粒が流れる */
 mnt_bleed:function(l){
- var W=({ja:{t:'冷暖房・与圧・防氷の「力のもと」',a:'737：エンジンの空気（ブリード）',b:'787：電気（発電機）',eng:'エンジン',gen:'発電機',ac:'空調・与圧',wai:'翼の防氷',st:'エンジンの始動',n:['737：エンジンの圧縮機から熱い空気を取り出し、管で空調・与圧・翼の防氷・エンジンの始動に使う','787：エンジンの発電機で電気をつくり、電動の圧縮機で空調・与圧、電熱で翼の防氷、エンジンの始動も電気で行う（エンジンの取り入れ口の防氷だけは空気を使う）','787は管が少なく燃料の効率がよい一方、電気の系統とソフトウェアの管理が大事になる']},
-  ko:{t:'냉난방·여압·방빙의 ‘힘의 원천’',a:'737: 엔진의 공기(블리드)',b:'787: 전기(발전기)',eng:'엔진',gen:'발전기',ac:'공조·여압',wai:'날개 방빙',st:'엔진 시동',n:['737: 엔진 압축기에서 뜨거운 공기를 뽑아 관으로 공조·여압·날개 방빙·엔진 시동에 쓴다','787: 엔진 발전기로 전기를 만들고 전동 압축기로 공조·여압, 전열로 날개 방빙, 엔진 시동도 전기로 한다(엔진 흡입구 방빙만은 공기를 쓴다)','787은 관이 적어 연료 효율이 좋지만, 전기 계통과 소프트웨어 관리가 중요해진다']},
-  en:{t:'What powers air conditioning, pressurisation and anti-icing',a:'737: engine air (bleed)',b:'787: electricity (generators)',eng:'Engine',gen:'Generator',ac:'Cabin air & press.',wai:'Wing anti-ice',st:'Engine start',n:['737: hot air is tapped from the engine compressor and piped to air conditioning, pressurisation, wing anti-icing and engine starting','787: engine generators make electricity; electric compressors run air conditioning and pressurisation, electric heaters de-ice the wings, and engines are started electrically (only the engine inlet anti-ice still uses air)','The 787 has fewer ducts and burns less fuel, but its electrical systems and software need careful management']}})[l];
+ var W=({ja:{t:'冷暖房・与圧・防氷の「力のもと」',a:'B737：エンジンの空気（ブリード）',b:'B787：電気（発電機）',eng:'エンジン',gen:'発電機',ac:'空調・与圧',wai:'翼の防氷',st:'エンジンの始動',n:['B737：エンジンの圧縮機から熱い空気を取り出し、管で空調・与圧・翼の防氷・エンジンの始動に使う','B787：エンジンの発電機で電気をつくり、電動の圧縮機で空調・与圧、電熱で翼の防氷、エンジンの始動も電気で行う（エンジンの取り入れ口の防氷だけは空気を使う）','B787は管が少なく燃料の効率がよい一方、電気の系統とソフトウェアの管理が大事になる']},
+  ko:{t:'냉난방·여압·방빙의 ‘힘의 원천’',a:'B737: 엔진의 공기(블리드)',b:'B787: 전기(발전기)',eng:'엔진',gen:'발전기',ac:'공조·여압',wai:'날개 방빙',st:'엔진 시동',n:['B737: 엔진 압축기에서 뜨거운 공기를 뽑아 관으로 공조·여압·날개 방빙·엔진 시동에 쓴다','B787: 엔진 발전기로 전기를 만들고 전동 압축기로 공조·여압, 전열로 날개 방빙, 엔진 시동도 전기로 한다(엔진 흡입구 방빙만은 공기를 쓴다)','B787은 관이 적어 연료 효율이 좋지만, 전기 계통과 소프트웨어 관리가 중요해진다']},
+  en:{t:'What powers air conditioning, pressurisation and anti-icing',a:'B737: engine air (bleed)',b:'B787: electricity (generators)',eng:'Engine',gen:'Generator',ac:'Cabin air & press.',wai:'Wing anti-ice',st:'Engine start',n:['B737: hot air is tapped from the engine compressor and piped to air conditioning, pressurisation, wing anti-icing and engine starting','B787: engine generators make electricity; electric compressors run air conditioning and pressurisation, electric heaters de-ice the wings, and engines are started electrically (only the engine inlet anti-ice still uses air)','The B787 has fewer ducts and burns less fuel, but its electrical systems and software need careful management']}})[l];
  if(!W)return F.mnt_bleed('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),dur='3s';
  function panel(y,title,col,src,dot){var g=R(20,y,600,170,'#F4F7FB',12)+LB(40,y+22,title,11.5,'#fff','start',col);
@@ -85,22 +85,22 @@ mnt_bleed:function(l){
   return g}
  s+=panel(58,W.a,'#E08A2E','',"#E08A2E")+panel(242,W.b,'#2F6FD6','gen','#2F6FD6');
  var L=LIST(W.n,428,600,11);return SVG(L.y+8,s+L.s)},
-/* 1-3 油圧：737（A・B・スタンバイ、約3,000psi）と787（左・中央・右、約5,000psi）。787のブレーキは電気 */
+/* 1-3 油圧：B737（A・B・スタンバイ、約3,000psi）とB787（左・中央・右、約5,000psi）。B787のブレーキは電気 */
 mnt_hyd:function(l){
- var W=({ja:{t:'油圧の系統と、ブレーキの力のもと',a:'737：油圧3系統（約3,000psi）',b:'787：油圧3系統（約5,000psi）＋電気ブレーキ',sa:['A系統','B系統','スタンバイ'],sb:['左系統','中央系統',''],tg:['操縦翼面','脚の上げ下げ','ブレーキ'],el:'電気（発電機）',n:['どちらも3つの系統があり、1つが壊れても残りで操縦できるように分けてある（図はつながりを単純にしている）','737のブレーキは油圧で動く。787のブレーキは電気で動き、ブレーキの部品ごとに交換しやすい（787の油圧は左・中央・右の3系統）','着陸のあとのブレーキは熱い。次の出発までに冷えないと出発が遅れることがある（ブレーキの温度は整備が確認する）']},
-  ko:{t:'유압 계통과 브레이크의 힘의 원천',a:'737: 유압 3계통(약 3,000psi)',b:'787: 유압 3계통(약 5,000psi)+전기 브레이크',sa:['A 계통','B 계통','스탠바이'],sb:['왼쪽 계통','가운데 계통',''],tg:['조종면','착륙장치 올리고 내리기','브레이크'],el:'전기(발전기)',n:['둘 다 계통이 3개라서 하나가 고장 나도 나머지로 조종할 수 있게 나뉘어 있다(그림은 연결을 단순화했다)','737 브레이크는 유압으로 움직인다. 787 브레이크는 전기로 움직이고 부품별로 교환하기 쉽다(787 유압은 왼쪽·가운데·오른쪽 3계통)','착륙 뒤 브레이크는 뜨겁다. 다음 출발까지 식지 않으면 출발이 늦어질 수 있다(브레이크 온도는 정비가 확인한다)']},
-  en:{t:'Hydraulic systems and what powers the brakes',a:'737: three hydraulic systems (about 3,000 psi)',b:'787: three hydraulic systems (about 5,000 psi) + electric brakes',sa:['System A','System B','Standby'],sb:['Left','Centre',''],tg:['Flight controls','Landing gear','Brakes'],el:'Electric',n:['Both have three systems, split so the aircraft can still be controlled if one fails (the figure simplifies the connections)','The 737’s brakes are hydraulic. The 787’s are electric, and individual brake units are easier to change (the 787 has left, centre and right hydraulic systems)','Brakes are hot after landing. If they do not cool before the next departure, it can be delayed (maintenance checks brake temperatures)']}})[l];
+ var W=({ja:{t:'油圧の系統と、ブレーキの力のもと',a:'B737：油圧3系統（約3,000psi）',b:'B787：油圧3系統（約5,000psi）＋電気ブレーキ',sa:['A系統','B系統','スタンバイ'],sb:['左系統','中央系統',''],tg:['操縦翼面','脚の上げ下げ','ブレーキ'],el:'電気（発電機）',n:['どちらも3つの系統があり、1つが壊れても残りで操縦できるように分けてある（図はつながりを単純にしている）','B737のブレーキは油圧で動く。B787のブレーキは電気で動き、ブレーキの部品ごとに交換しやすい（B787の油圧は左・中央・右の3系統）','着陸のあとのブレーキは熱い。次の出発までに冷えないと出発が遅れることがある（ブレーキの温度は整備が確認する）']},
+  ko:{t:'유압 계통과 브레이크의 힘의 원천',a:'B737: 유압 3계통(약 3,000psi)',b:'B787: 유압 3계통(약 5,000psi)+전기 브레이크',sa:['A 계통','B 계통','스탠바이'],sb:['왼쪽 계통','가운데 계통',''],tg:['조종면','착륙장치 올리고 내리기','브레이크'],el:'전기(발전기)',n:['둘 다 계통이 3개라서 하나가 고장 나도 나머지로 조종할 수 있게 나뉘어 있다(그림은 연결을 단순화했다)','B737 브레이크는 유압으로 움직인다. B787 브레이크는 전기로 움직이고 부품별로 교환하기 쉽다(B787 유압은 왼쪽·가운데·오른쪽 3계통)','착륙 뒤 브레이크는 뜨겁다. 다음 출발까지 식지 않으면 출발이 늦어질 수 있다(브레이크 온도는 정비가 확인한다)']},
+  en:{t:'Hydraulic systems and what powers the brakes',a:'B737: three hydraulic systems (about 3,000 psi)',b:'B787: three hydraulic systems (about 5,000 psi) + electric brakes',sa:['System A','System B','Standby'],sb:['Left','Centre',''],tg:['Flight controls','Landing gear','Brakes'],el:'Electric',n:['Both have three systems, split so the aircraft can still be controlled if one fails (the figure simplifies the connections)','The B737’s brakes are hydraulic. The B787’s are electric, and individual brake units are easier to change (the B787 has left, centre and right hydraulic systems)','Brakes are hot after landing. If they do not cool before the next departure, it can be delayed (maintenance checks brake temperatures)']}})[l];
  if(!W)return F.mnt_hyd('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),dur='2.6s',cs=['#2F6FD6','#2E9B5F','#E08A2E'];
- function panel(y,title,sys,elec){var g=R(20,y,600,190,'#F4F7FB',12)+LBW(32,y+22,title,11.5,'#fff','start','#0f3558',560);
-  sys.forEach(function(t,i){var yy=y+56+i*44;if(elec&&i===2){g+=R(40,yy,140,32,'#FFB000',8)+WR(110,yy+20,W.el,11,'#5A3A00',900,130);return}g+=R(40,yy,140,32,cs[i],8)+tx(110,yy+21,t,11,'#fff',900)});
-  W.tg.forEach(function(t,i){var yy=y+56+i*44;g+=R(440,yy,170,32,'#fff',8,' stroke="#C8D3DE"')+tx(525,yy+21,t,11,D,800);
-   var isE=elec&&i===2,col=isE?'#FFB000':cs[i],path='M180 '+(yy+16)+' L440 '+(yy+16);
+ function panel(y,title,sys,elec){var g=R(20,y,600,206,'#F4F7FB',12)+LBW(32,y+22,title,11.5,'#fff','start','#0f3558',560);
+  sys.forEach(function(t,i){var yy=y+56+i*52;if(elec&&i===2){g+=R(40,yy-6,140,44,'#FFB000',8)+WR(110,yy+16+FS(11)*0.35,W.el,11,'#5A3A00',900,130);return}g+=R(40,yy-6,140,44,cs[i],8)+WR(110,yy+16+FS(11)*0.35,t,11,'#fff',900,130)});
+  W.tg.forEach(function(t,i){var yy=y+56+i*52;g+=R(390,yy-6,220,44,'#fff',8,' stroke="#C8D3DE"')+WR(500,yy+16+FS(11)*0.35,t,11,D,800,206);
+   var isE=elec&&i===2,col=isE?'#FFB000':cs[i],path='M180 '+(yy+16)+' L390 '+(yy+16);
    g+='<path d="'+path+'" stroke="'+col+'" stroke-width="'+(isE?3:6)+'" opacity=".5"'+(isE?' stroke-dasharray="7 5"':'')+'/>';
    for(var k=0;k<3;k++)g+='<circle r="4.5" fill="'+col+'"><animateMotion dur="'+dur+'" begin="'+(k*0.86).toFixed(2)+'s" repeatCount="indefinite" path="'+path+'"/></circle>'});
   return g}
- s+=panel(58,W.a,W.sa,false)+panel(262,W.b,W.sb,true);
- var L=LIST(W.n,468,600,11);return SVG(L.y+8,s+L.s)},
+ s+=panel(58,W.a,W.sa,false)+panel(274,W.b,W.sb,true);
+ var L=LIST(W.n,494,600,11);return SVG(L.y+8,s+L.s)},
 /* 1-4 ターボファン・エンジン：空気が入り（ファン）、圧縮され、燃え、タービンを回して出ていく。大半はファンの外を流れる（バイパス） */
 mnt_eng:function(l){
  var W=({ja:{t:'ターボファン・エンジンのしくみ',p:['ファン','圧縮機','燃焼室','タービン','排気'],by:'バイパスの空気（推力の大部分）',co:'中心の空気（燃料を燃やす）',n:['前のファンが空気を吸い込み、大部分は外側を流れて推力になる（バイパス）。中心の空気は圧縮され、燃料と燃えてタービンを回す','タービンはファンと圧縮機を回す。バイパス比（外側と中心の空気の比）が大きいほど燃料の効率がよく、音も小さい','鳥や小石を吸い込むとファンの羽根が傷つく。エンジンの点検（ボアスコープ）で中を見ることがある']},
@@ -126,9 +126,9 @@ mnt_eng:function(l){
  var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
 /* 2-1 点検の段階：間隔（どれくらいごと）と、かかる時間（棒の長さ）。上から順に光る */
 mnt_chk:function(l){
- var W=({ja:{t:'点検の段階：間隔と、かかる時間（例）',r:[['飛行前点検','毎回の飛行の前','30分ほど'],['デイリー点検','24〜48時間ごと','1時間ほど'],['Aチェック','数百〜1,000飛行時間ごと','一晩（8〜10時間）'],['Cチェック','1.5〜3年ごと','1〜4週間（格納庫）'],['重整備','6〜12年ごと','1〜2か月']],n:['間隔は飛行時間・飛行回数・日数のうち先に来たもので決まる。数字は機種と会社の整備プログラムで違う★','737は飛行回数が多いので回数で決まる点検が、787は飛行時間で決まる点検と、日数で決まる点検が目立つ','Aチェック以上は機体を一定時間止めるので、運航の計画（どの機体をいつ抜くか）と一緒に決める']},
-  ko:{t:'점검 단계: 간격과 걸리는 시간(예)',r:[['비행 전 점검','매 비행 전','30분 정도'],['데일리 점검','24~48시간마다','1시간 정도'],['A 체크','수백~1,000 비행시간마다','하룻밤(8~10시간)'],['C 체크','1.5~3년마다','1~4주(격납고)'],['중정비','6~12년마다','1~2개월']],n:['간격은 비행시간·비행 횟수·날짜 중 먼저 오는 것으로 정해진다. 숫자는 기종과 회사의 정비 프로그램마다 다르다★','737은 비행 횟수가 많아 횟수로 정해지는 점검이, 787은 비행시간과 날짜로 정해지는 점검이 두드러진다','A 체크 이상은 기체를 일정 시간 세우므로 운항 계획(어느 기체를 언제 빼는가)과 함께 정한다']},
-  en:{t:'Check levels: interval and time taken (example)',r:[['Pre-flight check','Before every flight','About 30 minutes'],['Daily check','Every 24–48 hours','About 1 hour'],['A check','Every few hundred to 1,000 flight hours','Overnight (8–10 hours)'],['C check','Every 1.5–3 years','1–4 weeks (hangar)'],['Heavy check','Every 6–12 years','1–2 months']],n:['Intervals are set by flight hours, cycles or calendar days, whichever comes first; figures vary by type and airline programme ★','With many cycles, 737 checks are often cycle-driven; 787 checks are more often driven by flight hours and calendar time','A checks and above take the aircraft out of service, so they are planned together with the flying programme (which aircraft comes out when)']}})[l];
+ var W=({ja:{t:'点検の段階：間隔と、かかる時間（例）',r:[['飛行前点検','毎回の飛行の前','30分ほど'],['デイリー点検','24〜48時間ごと','1時間ほど'],['Aチェック','数百〜1,000飛行時間ごと','一晩（8〜10時間）'],['Cチェック','1.5〜3年ごと','1〜4週間（格納庫）'],['重整備','6〜12年ごと','1〜2か月']],n:['間隔は飛行時間・飛行回数・日数のうち先に来たもので決まる。数字は機種と会社の整備プログラムで違う★','B737は飛行回数が多いので回数で決まる点検が、B787は飛行時間で決まる点検と、日数で決まる点検が目立つ','Aチェック以上は機体を一定時間止めるので、運航の計画（どの機体をいつ抜くか）と一緒に決める']},
+  ko:{t:'점검 단계: 간격과 걸리는 시간(예)',r:[['비행 전 점검','매 비행 전','30분 정도'],['데일리 점검','24~48시간마다','1시간 정도'],['A 체크','수백~1,000 비행시간마다','하룻밤(8~10시간)'],['C 체크','1.5~3년마다','1~4주(격납고)'],['중정비','6~12년마다','1~2개월']],n:['간격은 비행시간·비행 횟수·날짜 중 먼저 오는 것으로 정해진다. 숫자는 기종과 회사의 정비 프로그램마다 다르다★','B737은 비행 횟수가 많아 횟수로 정해지는 점검이, B787은 비행시간과 날짜로 정해지는 점검이 두드러진다','A 체크 이상은 기체를 일정 시간 세우므로 운항 계획(어느 기체를 언제 빼는가)과 함께 정한다']},
+  en:{t:'Check levels: interval and time taken (example)',r:[['Pre-flight check','Before every flight','About 30 minutes'],['Daily check','Every 24–48 hours','About 1 hour'],['A check','Every few hundred to 1,000 flight hours','Overnight (8–10 hours)'],['C check','Every 1.5–3 years','1–4 weeks (hangar)'],['Heavy check','Every 6–12 years','1–2 months']],n:['Intervals are set by flight hours, cycles or calendar days, whichever comes first; figures vary by type and airline programme ★','With many cycles, B737 checks are often cycle-driven; B787 checks are more often driven by flight hours and calendar time','A checks and above take the aircraft out of service, so they are planned together with the flying programme (which aircraft comes out when)']}})[l];
  if(!W)return F.mnt_chk('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,lh=FS(11)*1.3,n=W.r.length,dur='10s',wd=[40,70,130,210,280],cc=['#9AA8B8','#2F6FD6','#2E9B5F','#E08A2E','#D64545'];
  W.r.forEach(function(r,i){var n1=LI(r[0],12,140).length,n2=LI(r[1],11,150).length,h=Math.max(n1*FS(12)*1.3,n2*lh,lh*2)+18;
@@ -144,9 +144,9 @@ mnt_ad:function(l){
  return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#2F6FD6','#2E9B5F','#E08A2E'],'12s')},
 /* 2-3 信頼性のループ：不具合の報告 → データ → 分析 → 整備プログラムの見直し → 次の不具合が減る */
 mnt_rel:function(l){
- var W=({ja:{t:'信頼性のループ',nd:['不具合の報告（テクニカルログ）','データを集める（787は飛行中も送信）','分析（くり返す不具合・遅れの率）','整備プログラムの見直し'],c:'同じ不具合を減らす',n:['同じ部品の不具合がくり返すと、点検の間隔や部品を見直す','整備による遅れ・欠航の率は、整備の質を表す数字として毎月見られる','787は飛行中のデータを地上に送れるので、到着前に部品と人を準備できることがある']},
-  ko:{t:'신뢰성 루프',nd:['결함 보고(테크니컬 로그)','데이터 수집(787은 비행 중에도 전송)','분석(반복 결함·지연율)','정비 프로그램 개정'],c:'같은 결함을 줄인다',n:['같은 부품 결함이 반복되면 점검 간격이나 부품을 다시 검토한다','정비로 인한 지연·결항률은 정비 품질을 나타내는 숫자로 매달 본다','787은 비행 중 데이터를 지상으로 보낼 수 있어 도착 전에 부품과 사람을 준비하기도 한다']},
-  en:{t:'The reliability loop',nd:['Defect reports (technical log)','Data collection (the 787 also sends it in flight)','Analysis (repeat defects, delay rates)','Maintenance programme revision'],c:'Fewer repeat defects',n:['If the same part keeps failing, check intervals or the part itself are reconsidered','The technical delay and cancellation rate is reviewed monthly as a measure of maintenance quality','The 787 can send in-flight data to the ground, so parts and people can sometimes be ready before arrival']}})[l];
+ var W=({ja:{t:'信頼性のループ',nd:['不具合の報告（テクニカルログ）','データを集める（B787は飛行中も送信）','分析（くり返す不具合・遅れの率）','整備プログラムの見直し'],c:'同じ不具合を減らす',n:['同じ部品の不具合がくり返すと、点検の間隔や部品を見直す','整備による遅れ・欠航の率は、整備の質を表す数字として毎月見られる','B787は飛行中のデータを地上に送れるので、到着前に部品と人を準備できることがある']},
+  ko:{t:'신뢰성 루프',nd:['결함 보고(테크니컬 로그)','데이터 수집(B787은 비행 중에도 전송)','분석(반복 결함·지연율)','정비 프로그램 개정'],c:'같은 결함을 줄인다',n:['같은 부품 결함이 반복되면 점검 간격이나 부품을 다시 검토한다','정비로 인한 지연·결항률은 정비 품질을 나타내는 숫자로 매달 본다','B787은 비행 중 데이터를 지상으로 보낼 수 있어 도착 전에 부품과 사람을 준비하기도 한다']},
+  en:{t:'The reliability loop',nd:['Defect reports (technical log)','Data collection (the B787 also sends it in flight)','Analysis (repeat defects, delay rates)','Maintenance programme revision'],c:'Fewer repeat defects',n:['If the same part keeps failing, check intervals or the part itself are reconsidered','The technical delay and cancellation rate is reviewed monthly as a measure of maintenance quality','The B787 can send in-flight data to the ground, so parts and people can sometimes be ready before arrival']}})[l];
  if(!W)return F.mnt_rel('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),cx=320,cy=250,r=200,ry=135,dur='8s',cc=['#D64545','#2F6FD6','#6B4FA0','#2E9B5F'];
  s+='<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+r+'" ry="'+ry+'" fill="none" stroke="#C8D3DE" stroke-width="10"/>';
@@ -261,9 +261,9 @@ mnt_aogday:function(l){
  return STEPS(W.t,W.st,W.who,['#D64545','#E08A2E','#6B4FA0','#2F6FD6','#2E9B5F','#2C7A7B'],'14s')},
 /* 6-1 確認の署名ができるまで：学ぶ → 経験 → 国の資格 → 機種の限定 → 会社の認可 */
 mnt_lic:function(l){
- var W=({ja:{t:'機体に確認の署名ができるまで（例）',st:['学ぶ：養成の学校や会社の訓練で、機体・エンジン・電気・法規の基礎','経験を積む：整備の現場で、決められた期間の実務の経験','国の資格：学科と実地の試験に合格し、整備士の資格を受ける','機種の限定：737・787など、扱う機種ごとの訓練と試験','会社の認可：会社の手順を学び、確認の署名ができる人として認められる'],who:['本人・学校','会社','国（当局）','国・会社','会社']},
-  ko:{t:'기체에 확인 서명을 할 수 있기까지(예)',st:['배운다: 양성 학교나 회사 훈련에서 기체·엔진·전기·법규 기초','경험을 쌓는다: 정비 현장에서 정해진 기간의 실무 경험','국가 자격: 학과와 실기 시험에 합격해 정비사 자격을 받는다','기종 한정: 737·787 등 다루는 기종별 훈련과 시험','회사 인가: 회사 절차를 배우고 확인 서명을 할 수 있는 사람으로 인정받는다'],who:['본인·학교','회사','국가(당국)','국가·회사','회사']},
-  en:{t:'Becoming able to certify an aircraft (example)',st:['Learn: basics of airframes, engines, electrics and law at a training school or in company training','Gain experience: the required period of practical work in maintenance','National licence: pass written and practical exams and receive the engineer licence','Type rating: training and exams for each type handled, such as the 737 or 787','Company authorisation: learn company procedures and be authorised to certify'],who:['Individual & school','Company','State (authority)','State & company','Company']}})[l];
+ var W=({ja:{t:'機体に確認の署名ができるまで（例）',st:['学ぶ：養成の学校や会社の訓練で、機体・エンジン・電気・法規の基礎','経験を積む：整備の現場で、決められた期間の実務の経験','国の資格：学科と実地の試験に合格し、整備士の資格を受ける','機種の限定：B737・B787など、扱う機種ごとの訓練と試験','会社の認可：会社の手順を学び、確認の署名ができる人として認められる'],who:['本人・学校','会社','国（当局）','国・会社','会社']},
+  ko:{t:'기체에 확인 서명을 할 수 있기까지(예)',st:['배운다: 양성 학교나 회사 훈련에서 기체·엔진·전기·법규 기초','경험을 쌓는다: 정비 현장에서 정해진 기간의 실무 경험','국가 자격: 학과와 실기 시험에 합격해 정비사 자격을 받는다','기종 한정: B737·B787 등 다루는 기종별 훈련과 시험','회사 인가: 회사 절차를 배우고 확인 서명을 할 수 있는 사람으로 인정받는다'],who:['본인·학교','회사','국가(당국)','국가·회사','회사']},
+  en:{t:'Becoming able to certify an aircraft (example)',st:['Learn: basics of airframes, engines, electrics and law at a training school or in company training','Gain experience: the required period of practical work in maintenance','National licence: pass written and practical exams and receive the engineer licence','Type rating: training and exams for each type handled, such as the B737 or B787','Company authorisation: learn company procedures and be authorised to certify'],who:['Individual & school','Company','State (authority)','State & company','Company']}})[l];
  if(!W)return F.mnt_lic('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#6B4FA0','#E08A2E','#2E9B5F'],'12s')},
 /* 6-2 整備の仕事の地図：現場の仕事と事務所の仕事が順に光る */
