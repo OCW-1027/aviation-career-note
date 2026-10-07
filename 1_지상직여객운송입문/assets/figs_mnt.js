@@ -61,12 +61,11 @@ mnt_struct:function(l){
   en:{t:'Airframe materials: 737 and 787',a:'737: mainly aluminium alloy',b:'787: about half the weight is carbon-fibre composite',lg:['Aluminium alloy','Carbon-fibre composite','Titanium and steel (gear, engine areas)'],n:['Aluminium needs watching for fatigue and corrosion, and checks follow the number of take-offs and landings','Composite does not corrode and resists fatigue, but impact damage can be hard to see from outside. If ground equipment touches the aircraft, however lightly, always tell maintenance','The composite fuselage contains a metal mesh to carry lightning current away; after a strike, set inspections are done']}})[l];
  if(!W)return F.mnt_struct('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),dur='9s',cA='#9AA8B8',cC='#2C7A7B',cT='#B5651D';
- function body(y,comp){var g='<g transform="translate(360 '+y+') scale(7.5 7.5)">'+planeS(comp?'#BFE3E3':'#E3E8EE')+'</g>';return g}
- s+=R(20,58,600,140,'#F0F4F8',12)+body(136,false)+LBW(30,82,W.a,11,'#fff','start','#5B6B7D',200);
- s+=R(20,210,600,140,'#EAF6F6',12)+body(288,true)+LBW(30,234,W.b,11,'#fff','start',cC,200);
- /* 光る帯：胴体と主翼が複合材であることを示す */
- s+='<g opacity=".0"><rect x="20" y="210" width="600" height="140" rx="12" fill="none" stroke="'+cC+'" stroke-width="4"/><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.25;.5;1" dur="'+dur+'" repeatCount="indefinite"/></g><g opacity="0"><rect x="20" y="58" width="600" height="140" rx="12" fill="none" stroke="#5B6B7D" stroke-width="4"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.5;.75;1" dur="'+dur+'" repeatCount="indefinite"/></g>';
- var y=366,lh=FS(11)*1.3;[cA,cC,cT].forEach(function(c,i){var n=LI(W.lg[i],11,560).length;s+=R(20,y,18,18,c,4)+WR(46,y+9+FS(11)*0.35+(n-1)*lh/2,W.lg[i],11,D,800,560,'start');y+=Math.max(24,n*lh+8)});
+ var sc=8.2;function body(y,k,tint){return '<g transform="translate(330 '+y+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet(k,{tint:tint}):planeS('#fff'))+'</g>'}
+ s+=R(20,58,600,150,'#F0F4F8',12)+body(154,'737','alu')+LBW(610,82,W.a,11,'#fff','end','#5B6B7D',230);
+ s+=R(20,218,600,180,'#EAF6F6',12)+body(338,'787','comp')+LBW(610,242,W.b,11,'#fff','end',cC,230);
+ s+='<g opacity="0"><rect x="20" y="218" width="600" height="180" rx="12" fill="none" stroke="'+cC+'" stroke-width="4"/><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.25;.5;1" dur="'+dur+'" repeatCount="indefinite"/></g><g opacity="0"><rect x="20" y="58" width="600" height="150" rx="12" fill="none" stroke="#5B6B7D" stroke-width="4"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.5;.75;1" dur="'+dur+'" repeatCount="indefinite"/></g>';
+ var y=414,lh=FS(11)*1.3;[cA,cC,cT].forEach(function(c,i){var n=LI(W.lg[i],11,560).length;s+=R(20,y,18,18,c,4)+WR(46,y+9+FS(11)*0.35+(n-1)*lh/2,W.lg[i],11,D,800,560,'start');y+=Math.max(24,n*lh+8)});
  var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
 /* 1-2 空気と電気：737はエンジンの空気（ブリード）で冷暖房・与圧・防氷、787は電気で動かす。粒が流れる */
 mnt_bleed:function(l){
@@ -108,9 +107,13 @@ mnt_eng:function(l){
   en:{t:'How a turbofan engine works',p:['Fan','Compressor','Combustor','Turbine','Exhaust'],by:'Bypass air (most of the thrust)',co:'Core air (burns the fuel)',n:['The fan draws air in; most flows around the outside as thrust (bypass). Core air is compressed, burned with fuel and drives the turbines','The turbines drive the fan and compressor. The higher the bypass ratio (outer to core air), the better the fuel efficiency and the lower the noise','Birds or stones swallowed by the engine can damage fan blades; engineers may inspect inside with a borescope']}})[l];
  if(!W)return F.mnt_eng('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),dur='2.4s',cy=170;
- s+='<path d="M60 '+(cy-90)+' Q 330 '+(cy-104)+' 560 '+(cy-60)+' L 560 '+(cy+60)+' Q 330 '+(cy+104)+' 60 '+(cy+90)+' Z" fill="#E3E8EE" stroke="#5B6B7D" stroke-width="2"/>';
- s+='<path d="M150 '+(cy-44)+' L 470 '+(cy-30)+' L 540 '+(cy-16)+' L 540 '+(cy+16)+' L 470 '+(cy+30)+' L 150 '+(cy+44)+' Z" fill="#CBD5E1" stroke="#5B6B7D" stroke-width="1.5"/>';
- s+='<g><rect x="96" y="'+(cy-86)+'" width="16" height="172" rx="6" fill="#2F6FD6"/><animate attributeName="opacity" values="1;.55;1" keyTimes="0;.5;1" dur="0.6s" repeatCount="indefinite"/></g>';
+ s+='<defs><linearGradient id="mnN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F7FA"/><stop offset=".5" stop-color="#D5DDE6"/><stop offset="1" stop-color="#A9B5C2"/></linearGradient><linearGradient id="mnC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D2DC"/><stop offset=".5" stop-color="#9EABB9"/><stop offset="1" stop-color="#7C8999"/></linearGradient></defs>';
+ s+='<path d="M60 '+(cy-90)+' Q 330 '+(cy-106)+' 540 '+(cy-66)+' L 560 '+(cy-58)+' L 560 '+(cy+58)+' L 540 '+(cy+66)+' Q 330 '+(cy+106)+' 60 '+(cy+90)+' Q 44 '+cy+' 60 '+(cy-90)+' Z" fill="url(#mnN)" stroke="#2C3A4A" stroke-width="2"/>';
+ s+='<path d="M70 '+(cy-76)+' Q 330 '+(cy-90)+' 540 '+(cy-56)+' L 540 '+(cy+56)+' Q 330 '+(cy+90)+' 70 '+(cy+76)+' Z" fill="#EEF2F6" stroke="#9AA8B8" stroke-width="1"/>';
+ s+='<path d="M150 '+(cy-44)+' C 300 '+(cy-46)+' 420 '+(cy-36)+' 470 '+(cy-30)+' L 540 '+(cy-16)+' L 600 '+cy+' L 540 '+(cy+16)+' L 470 '+(cy+30)+' C 420 '+(cy+36)+' 300 '+(cy+46)+' 150 '+(cy+44)+' Q 136 '+cy+' 150 '+(cy-44)+' Z" fill="url(#mnC)" stroke="#2C3A4A" stroke-width="1.5"/>';
+ s+='<ellipse cx="104" cy="'+cy+'" rx="14" ry="84" fill="#2B3642"/>';
+ var bl='';for(var k=-6;k<=6;k++){var yy=cy+k*13;bl+='<path d="M98 '+yy+' Q 106 '+(yy-5)+' 112 '+(yy+3)+'" stroke="#9AA8B8" stroke-width="2.4" fill="none"/>'}
+ s+='<g>'+bl+'<animate attributeName="opacity" values="1;.55;1" keyTimes="0;.5;1" dur="0.5s" repeatCount="indefinite"/></g><circle cx="104" cy="'+cy+'" r="12" fill="#C3CCD6" stroke="#2C3A4A" stroke-width="1.2"/>';
  var zones=[[104,'#2F6FD6'],[210,'#2E9B5F'],[330,'#D64545'],[420,'#E08A2E'],[520,'#6B4FA0']];
  s+=R(170,cy-30,100,60,'#2E9B5F',6,' opacity=".75"')+R(290,cy-24,80,48,'#D64545',6,' opacity=".8"')+R(380,cy-26,80,52,'#E08A2E',6,' opacity=".8"');
  s+='<g opacity=".9"><circle cx="330" cy="'+cy+'" r="10" fill="#FFD23F"><animate attributeName="r" values="7;13;7" keyTimes="0;.5;1" dur="0.8s" repeatCount="indefinite"/></circle></g>';

@@ -346,13 +346,13 @@ ac_cg:function(l){
  if(!W)return F.ac_cg('ja');
  setK(1);
  var dur='12s',n=4,s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,170,'#DCEEFB',14);
- s+='<g transform="translate(330 152) scale(-8.2 8.2)">'+planeS('#fff')+'</g>';
- s+='<line x1="150" y1="84" x2="150" y2="214" stroke="#0f3558" stroke-width="2" stroke-dasharray="5 4"/>'+LB(150,80,W.datum,11,'#0f3558','middle','#fff');
+ s+='<g transform="translate(330 176) scale(-13 13)">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet('737',{tint:'alu'}):planeS('#fff'))+'</g>';
+ s+='<line x1="60" y1="84" x2="60" y2="214" stroke="#0f3558" stroke-width="2" stroke-dasharray="5 4"/>'+LB(60,80,W.datum,11,'#0f3558','middle','#fff');
  /* 重さの矢印：② 後ろの客席、③ 前の貨物室、④ 主翼 */
- var wp=[[420,1],[230,2],[318,3]],wc=['#2F6FD6','#6B4FA0','#E08A2E'];
- wp.forEach(function(p,i){var a=(p[1]/n).toFixed(3);s+='<g opacity="0">'+ARW(p[0],100,p[0],136,wc[i],4)+LB(p[0],92,W.w[i],11,wc[i],'middle','#fff')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+a+';'+(+a+0.01).toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/></g>'});
+ var wp=[[447,1],[200,2],[343,3]],wc=['#2F6FD6','#6B4FA0','#E08A2E'];
+ wp.forEach(function(p,i){var a=(p[1]/n).toFixed(3);s+='<g opacity="0">'+ARW(p[0],104,p[0],144,wc[i],4)+LB(p[0],94,W.w[i],11,wc[i],'middle','#fff')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+a+';'+(+a+0.01).toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/></g>'});
  /* MAC の物差し */
- var mx0=170,mx1=490,my=268;
+ var mx0=170,mx1=490,my=290;
  s+=R(mx0,my-8,mx1-mx0,16,'#fff',4,' stroke="#0f3558" stroke-width="1.5"');
  for(var k=0;k<=4;k++)s+='<line x1="'+(mx0+(mx1-mx0)*k/4)+'" y1="'+(my-8)+'" x2="'+(mx0+(mx1-mx0)*k/4)+'" y2="'+(my+8)+'" stroke="#0f3558" stroke-width="1"/>';
  s+=tx(mx0,my+30,W.le,11,'#0f3558',800)+tx(mx1,my+30,W.te,11,'#0f3558',800)+tx(330,my+30,W.mac,11,'#0f3558',900);

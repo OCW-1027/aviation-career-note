@@ -38,5 +38,51 @@ function front(o){o=at(o);var s=st(o.sw),g='';
  var py='M-8.3 0.75 L-8.3 2 L-7.5 2 L-7.5 0.65 Z M8.3 0.75 L8.3 2 L7.5 2 L7.5 0.65 Z';
  if(o.gear)g='<path d="M0 3 L0 6 M-3.4 2.4 L-3.4 6.2 M3.4 2.4 L3.4 6.2" stroke="'+K.dark+'" stroke-width="'+(CUR.vs?o.sw:0.45)+'"'+(CUR.vs?' vector-effect="non-scaling-stroke"':'')+'/><rect x="-0.8" y="5.7" width="1.6" height="1.5" rx="0.4" fill="'+K.dark+'"/><rect x="-4.4" y="5.9" width="2" height="1.7" rx="0.4" fill="'+K.dark+'"/><rect x="2.4" y="5.9" width="2" height="1.7" rx="0.4" fill="'+K.dark+'"/>';
  return '<path d="'+fin+'" fill="'+o.w+'"'+s+'/><path d="'+stab+'" fill="'+o.w+'"'+s+'/><path d="'+wing+'" fill="'+o.w+'"'+s+'/>'+g+'<path d="'+py+'" fill="'+K.eng+'"'+s+'/><circle cx="-7.9" cy="3.4" r="1.9" fill="'+K.eng+'"'+s+'/><circle cx="7.9" cy="3.4" r="1.9" fill="'+K.eng+'"'+s+'/><circle cx="-7.9" cy="3.4" r="1.15" fill="'+K.dark+'"/><circle cx="7.9" cy="3.4" r="1.15" fill="'+K.dark+'"/><circle cx="-7.9" cy="3.4" r="'+(o.rear?0.7:0.35)+'" fill="'+(o.rear?'#6B7785':K.eng)+'"/><circle cx="7.9" cy="3.4" r="'+(o.rear?0.7:0.35)+'" fill="'+(o.rear?'#6B7785':K.eng)+'"/><circle cx="0" cy="0" r="3.1" fill="'+o.c+'"'+s+'/>'+(o.rear?'<circle cx="0" cy="0.4" r="0.8" fill="'+K.eng+'"/>':'<path d="M-1.7 -1.2 L-0.25 -1.45 L-0.25 -0.55 L-1.8 -0.4 Z M1.7 -1.2 L0.25 -1.45 L0.25 -0.55 L1.8 -0.4 Z" fill="'+K.glass+'"/>')}
-window.ACFT={top:top,side:side,front:front,colors:K};
+/* 詳しい横から見た形（2026.10）：jet('737') と jet('787')。単位はメートル（実物の大きさ）。機首は右、胴体の中心線が y=0、地面は y>0。
+   737-800：全長約39.5m・高さ約12.5m・胴体の直径約3.8m／787-9：全長約62.8m・高さ約17m・胴体の直径約5.8m。両方を同じ縮尺で描くと大きさの違いも分かる。
+   o.tint：'alu'（銀色）・'comp'（複合材の緑がかった色）・既定は白。o.win:false で窓なし。o.gear:false で脚なし。o.stripe：胴体の線の色 */
+var JN=0;
+function jet(kind,o){o=o||{};var n='jt'+(++JN),L=CUR.line,ns=' vector-effect="non-scaling-stroke"';
+ var tints={alu:['#FFFFFF','#E4E9EF','#B8C3CE'],comp:['#F2FAFA','#CFE8E8','#93C2C4'],def:['#FFFFFF','#EEF2F6','#C9D2DC']},t=tints[o.tint]||tints.def;
+ var d='<defs><linearGradient id="'+n+'f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+t[0]+'"/><stop offset=".55" stop-color="'+t[1]+'"/><stop offset="1" stop-color="'+t[2]+'"/></linearGradient>'+
+  '<linearGradient id="'+n+'e" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6EBF0"/><stop offset=".5" stop-color="#C3CCD6"/><stop offset="1" stop-color="#8E9AA8"/></linearGradient>'+
+  '<linearGradient id="'+n+'w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9EEF3"/><stop offset="1" stop-color="#B9C4CF"/></linearGradient></defs>';
+ function P(dd,fill,sw){return '<path d="'+dd+'" fill="'+fill+'" stroke="'+L+'" stroke-width="'+(sw||1)+'" stroke-linejoin="round"'+ns+'/>'}
+ function LN(dd,c,w){return '<path d="'+dd+'" fill="none" stroke="'+(c||L)+'" stroke-width="'+(w||0.8)+'" stroke-linecap="round"'+ns+'/>'}
+ var g='';
+ if(kind==='787'){
+  var fus='M31.4 0.4 C31.2 -1.7 29.4 -2.95 25.4 -2.95 L-18 -2.95 C-24 -2.9 -29 -1.6 -31.4 -0.55 L-31.4 -0.15 C-28 0.7 -24 2.3 -18 2.9 L23 2.9 C28.6 2.9 31.2 2 31.4 0.4 Z';
+  var fin='M-14.6 -2.95 C-17.2 -3.2 -18.9 -4.4 -20.4 -6 L-26.4 -11.8 L-30.2 -11.8 L-29.7 -2.3 Z';
+  var stab='M-23.6 -1.5 L-33.4 -2.6 L-33.5 -1.95 L-25.2 -0.55 Z';
+  var wing='M9 2.45 L-12.8 0.35 L-17.4 0.2 L-5.4 2.75 Z';
+  var pyl='M11.8 1.7 L9.2 1.05 L5.2 1.7 L7.6 2.1 Z';
+  var nac='M14.3 3.1 C14.4 1.95 13.7 1.5 12.6 1.5 L7.3 1.62';for(var k=0;k<6;k++){var y0=1.62+k*0.49;nac+=' L6.8 '+(y0+0.245).toFixed(2)+' L7.3 '+(y0+0.49).toFixed(2)}nac+=' L12.6 4.62 C13.7 4.62 14.4 4.25 14.3 3.1 Z';
+  var core='M6.85 2.35 L4.5 3.06 L6.85 3.8 Z';
+  g+=P(fin,'url(#'+n+'f)')+LN('M-28.6 -11.4 L-28.2 -3.2',L,0.7)+P(fus,'url(#'+n+'f)');
+  if(o.stripe)g+='<path d="M30.2 0.9 L-26 0.9 L-28.5 0.35" fill="none" stroke="'+o.stripe+'" stroke-width="3"'+ns+'/>';
+  if(o.win!==false){for(var x=-19;x<=24;x+=1.05)g+='<rect x="'+(x-0.18).toFixed(2)+'" y="-1.25" width="0.36" height="0.7" rx="0.17" fill="#2F4F73" opacity=".85"/>'}
+  [[24.2,1.05],[14.6,1.05],[-4.8,1.05],[-16.2,1.05]].forEach(function(dr){g+='<rect x="'+(dr[0]-dr[1]/2)+'" y="-2.05" width="'+dr[1]+'" height="2.9" rx="0.28" fill="none" stroke="'+L+'" stroke-width="0.7"'+ns+' opacity=".7"/>'});
+  g+='<path d="M28.2 -1.65 L30.25 -1.05 L30.6 -0.5 L28.1 -0.72 Z" fill="#2F4F73"/>'+LN('M29.15 -1.38 L29.1 -0.62',t[0],0.9);
+  g+=P(stab,'url(#'+n+'w)')+P(wing,'url(#'+n+'w)')+P(pyl,'url(#'+n+'e)')+P(nac,'url(#'+n+'e)')+P(core,'#8E9AA8')+'<ellipse cx="14.2" cy="3.06" rx="0.38" ry="1.42" fill="#2B3642"/>'+LN('M12.6 1.75 L12.6 4.4',L,0.6);
+  if(o.gear!==false){g+=LN('M26 2.9 L26 4.3','#2B3642',2)+'<circle cx="26" cy="4.62" r="0.58" fill="#2B3642"/><circle cx="26" cy="4.62" r="0.24" fill="#9AA8B8"/>'+LN('M-1 2.9 L-1 4.0','#2B3642',2.4)+LN('M-2.2 4.05 L0.2 4.05','#2B3642',2)+'<circle cx="-2" cy="4.5" r="0.72" fill="#2B3642"/><circle cx="0" cy="4.5" r="0.72" fill="#2B3642"/><circle cx="-2" cy="4.5" r="0.3" fill="#9AA8B8"/><circle cx="0" cy="4.5" r="0.3" fill="#9AA8B8"/>'}
+ }else{
+  var fus='M19.75 0.2 C19.6 -1.2 18.1 -1.95 15.6 -1.95 L-11 -1.95 C-14.5 -1.95 -17.6 -1.5 -19.2 -1.05 L-19.75 -0.95 L-19.75 -0.6 C-17.5 0.2 -14 1.4 -9.5 1.9 L14 1.9 C17.4 1.9 19.5 1.3 19.75 0.2 Z';
+  var fin='M-9.2 -1.95 C-10.6 -2.1 -11.6 -2.6 -12.3 -3.2 L-17.2 -8.9 L-19.6 -8.9 L-19.2 -1.55 Z';
+  var stab='M-15.4 -0.95 L-21 -1.85 L-21.1 -1.4 L-16.4 -0.35 Z';
+  var wing='M5.8 1.75 L-6.8 0.45 L-8.7 0.45 L-3.1 1.9 Z';
+  var wl='M-6.8 0.45 L-8.1 -1.45 L-8.8 -1.45 L-8.7 0.45 Z';
+  var pyl='M7.3 1.35 L5.4 1.15 L3.1 1.5 L4.6 1.7 Z';
+  var nac='M9.25 2.05 C9.35 1.5 8.95 1.28 8.4 1.28 L5.05 1.33 L4.35 1.8 L4.35 2.95 L5.05 3.28 L8.4 3.32 C9.0 3.32 9.35 3.05 9.25 2.6 Z';
+  var core='M4.4 2.0 L3.55 2.35 L4.4 2.75 Z';
+  g+=P(fin,'url(#'+n+'f)')+LN('M-18.75 -8.6 L-18.4 -2.1',L,0.7)+P(fus,'url(#'+n+'f)');
+  if(o.stripe)g+='<path d="M18.9 0.55 L-15.5 0.55 L-18 0.05" fill="none" stroke="'+o.stripe+'" stroke-width="3"'+ns+'/>';
+  if(o.win!==false){for(var x=-12.6;x<=13.2;x+=0.53)if(x<-0.7||x>1.1)g+='<rect x="'+(x-0.13).toFixed(2)+'" y="-0.95" width="0.26" height="0.48" rx="0.12" fill="#2F4F73" opacity=".85"/>'}
+  [[14.45,0.85],[-11.1,0.8]].forEach(function(dr){g+='<rect x="'+(dr[0]-dr[1]/2)+'" y="-1.5" width="'+dr[1]+'" height="1.95" rx="0.2" fill="none" stroke="'+L+'" stroke-width="0.7"'+ns+' opacity=".7"/>'});
+  [-0.3,0.65].forEach(function(x){g+='<rect x="'+(x-0.25)+'" y="-1.0" width="0.5" height="0.85" rx="0.12" fill="none" stroke="'+L+'" stroke-width="0.6"'+ns+' opacity=".6"/>'});
+  g+='<path d="M17.1 -1.28 L18.65 -0.95 L18.85 -0.55 L17.0 -0.66 Z" fill="#2F4F73"/>'+LN('M17.85 -1.1 L17.8 -0.62',t[0],0.9);
+  g+=P(stab,'url(#'+n+'w)')+P(wing,'url(#'+n+'w)')+P(wl,'url(#'+n+'w)')+P(pyl,'url(#'+n+'e)')+P(nac,'url(#'+n+'e)')+P(core,'#8E9AA8')+'<ellipse cx="9.17" cy="2.3" rx="0.24" ry="0.92" fill="#2B3642"/>';
+  if(o.gear!==false){g+=LN('M16.4 1.9 L16.4 2.95','#2B3642',2)+'<circle cx="16.4" cy="3.22" r="0.4" fill="#2B3642"/><circle cx="16.4" cy="3.22" r="0.16" fill="#9AA8B8"/>'+LN('M-0.6 1.9 L-0.6 2.75','#2B3642',2.4)+'<circle cx="-0.6" cy="3.05" r="0.56" fill="#2B3642"/><circle cx="-0.6" cy="3.05" r="0.22" fill="#9AA8B8"/>'}
+ }
+ return d+g}
+window.ACFT={top:top,side:side,front:front,jet:jet,colors:K};
 })();
