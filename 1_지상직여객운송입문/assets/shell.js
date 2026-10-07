@@ -6,7 +6,8 @@
 (function(){
 if(window.__SHELL)return;window.__SHELL=1;
 var me=document.currentScript,page=(me&&me.getAttribute('data-page'))||'';
-var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me.src).href:'#';
+/* 2026.10 新しいトップページ（index_v3.html）へ。ツールの一覧は #practice */
+var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index_v3.html',me.src).href:'#';
 try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'||q==='en')localStorage.setItem('art-lang',q);else if(['ja','ko','en'].indexOf(localStorage.getItem('art-lang'))<0)localStorage.setItem('art-lang',(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})())}catch(e){} /* 言語を選んだことのない人は端末の言語（2026.10） */
 /* 問題が1つの言語だけのページ（韓国・日本の試験問題）でも、上の行と下のボタンは選んだ言語で出す（2026.10） */
 if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)document.documentElement.setAttribute('data-ui',ul)}catch(e){}}
@@ -82,16 +83,16 @@ function lg(){var l=(document.documentElement.getAttribute('data-ui')||document.
 function init(){var wrap=document.querySelector('.wrap')||document.body;if(document.querySelector('.shbar'))return;
  var bar=document.createElement('div');bar.className='shbar';
  bar.innerHTML='<a class="shbrand" href="'+HOME+'"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></i><span class="shsite"></span></a>'+
-  '<div class="shcrumb" role="navigation" aria-label="breadcrumb"><a class="shlib" href="'+HOME+'#tools"></a><span aria-hidden="true">\u203a</span><b class="shcur"></b></div><span class="shlang"></span>';
+  '<div class="shcrumb" role="navigation" aria-label="breadcrumb"><a class="shlib" href="'+HOME+'#practice"></a><span aria-hidden="true">\u203a</span><b class="shcur"></b></div><span class="shlang"></span>';
  wrap.insertBefore(bar,wrap.firstChild);
  var ck=CMAP[page],ft=document.createElement('nav');ft.className='shfoot';
- ft.innerHTML=(ck&&me?'<a class="shc" href="'+new URL('../../'+CR[ck][0],me.src).href+'"><small></small><b></b></a>':'')+'<a class="shl" href="'+HOME+'#tools"><small></small><b></b></a>';
+ ft.innerHTML=(ck&&me?'<a class="shc" href="'+new URL('../../'+CR[ck][0],me.src).href+'"><small></small><b></b></a>':'')+'<a class="shl" href="'+HOME+'#practice"><small></small><b></b></a>';
  wrap.appendChild(ft);
  var L=document.getElementById('lang')||document.getElementById('langs');if(L)bar.querySelector('.shlang').appendChild(L);
  if(page==='load'||page==='rm'){var t=document.getElementById('ttl'),d=document.getElementById('lead');if(t){var h=document.createElement('div');h.className='shhero';t.parentNode.insertBefore(h,t);h.appendChild(t);if(d)h.appendChild(d)}}
  label();new MutationObserver(label).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})}
-function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.querySelector('.shsite').textContent=SITE[l];b.querySelector('.shlib').textContent=LIB[l];b.querySelector('.shcur').textContent=(NAME[page]||{})[l]||document.title;b.querySelector('.shbrand').href=HOME+'?lang='+l;b.querySelector('.shlib').href=HOME+'?lang='+l+'#tools';
- var f=document.querySelector('.shfoot');if(f){var x=FT[l],c=f.querySelector('.shc'),s=f.querySelector('.shl');if(c){c.querySelector('small').textContent=x[0];c.querySelector('b').textContent=CR[CMAP[page]][{ja:1,ko:2,en:3}[l]]}s.querySelector('small').textContent=x[1];s.querySelector('b').textContent=x[2];s.href=HOME+'?lang='+l+'#tools'}}
+function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.querySelector('.shsite').textContent=SITE[l];b.querySelector('.shlib').textContent=LIB[l];b.querySelector('.shcur').textContent=(NAME[page]||{})[l]||document.title;b.querySelector('.shbrand').href=HOME+'?lang='+l;b.querySelector('.shlib').href=HOME+'?lang='+l+'#practice';
+ var f=document.querySelector('.shfoot');if(f){var x=FT[l],c=f.querySelector('.shc'),s=f.querySelector('.shl');if(c){c.querySelector('small').textContent=x[0];c.querySelector('b').textContent=CR[CMAP[page]][{ja:1,ko:2,en:3}[l]]}s.querySelector('small').textContent=x[1];s.querySelector('b').textContent=x[2];s.href=HOME+'?lang='+l+'#practice'}}
 /* 表の見出しと中身の位置をそろえる：中身が短い列・入力欄の列は、見出しと中身を中央ぞろえにする（表が描き直されるたびに適用） */
 function alignTables(){Array.prototype.forEach.call(document.querySelectorAll('table'),function(tb){if(tb.closest&&tb.closest('[data-noalign]'))return;var rows=Array.prototype.slice.call(tb.rows);if(rows.length<2)return;var hr=null;for(var i=0;i<rows.length;i++){if(rows[i].querySelector('th')&&!rows[i].querySelector('td')){hr=rows[i];break}}if(!hr)return;var n=hr.cells.length;for(var c=0;c<n;c++){var ok=true,cnt=0;for(var r=0;r<rows.length;r++){var row=rows[r];if(row===hr||row.cells.length!==n)continue;var td=row.cells[c];if(!td||td.tagName!=='TD')continue;cnt++;if(td.querySelector('input,select,button'))continue;var s=(td.textContent||'').trim(),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>18){ok=false;break}}if(ok&&cnt){hr.cells[c].style.textAlign='center';for(var r2=0;r2<rows.length;r2++){var rw=rows[r2];if(rw!==hr&&rw.cells.length===n&&rw.cells[c].tagName==='TD')rw.cells[c].style.textAlign='center'}}}})}
 /* 휴대폰（幅600px以下）では、横にはみ出す表・図を画面の幅に合わせて縮める（2026.10）。まず最小幅を外して折り返し、それでも広ければ全体を縮小（zoom）。

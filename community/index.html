@@ -35,6 +35,14 @@ textarea{min-height:180px}
 .rules li{margin:6px 0}
 .muted{color:var(--sub);font-size:13px}
 .pager{display:flex;justify-content:center;gap:8px;margin:14px 0}
+/* 2026.10 新しいデザイン（v3）に合わせる：紺の見出し・Inter と Noto */
+:root{--ink:#182431;--sub:#65717e;--line:#dfe4e8;--bg:#f6f7f8;--card:#fff;--acc:#1769e0}
+body{font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif}
+html[lang="ja"] body{word-break:auto-phrase;overflow-wrap:anywhere}
+header.hero{background:linear-gradient(145deg,#0a1b2e,#12314f);border-radius:24px;padding:40px 38px;margin:28px 0 18px;box-shadow:0 24px 55px rgba(9,28,47,.15)}
+header.hero h1{font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.04em;line-height:1.15;margin:0 0 10px}
+header.hero p{color:#c5d0da;opacity:1}
+@media (max-width:600px){header.hero{padding:28px 22px;border-radius:18px}}
 </style>
 </head>
 <body>

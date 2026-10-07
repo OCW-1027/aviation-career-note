@@ -11,7 +11,7 @@ var me=document.currentScript&&document.currentScript.src||'';if(!me)return;
 var SITE=new URL('../',me).href; /* 8_사이트/ */
 function U(p){return new URL(p,SITE).href}
 var path=decodeURIComponent(location.pathname);
-if(/8_사이트\/(index\.html)?$/.test(path)||/\/community\//.test(path))return;
+if(/8_사이트\/(index\.html)?$/.test(path))return;
 var HOME=U('index_v3.html');window.ACN_HOME=HOME;
 /* 日本語の改行（語の途中で切らない）：ja_wrap.js */
 (function(){var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
@@ -27,7 +27,7 @@ var FOOT=[['Learn',[['index_v3.html#learn','Courses'],['index_v3.html#learn','Le
 /* いまのページがどの項目か（メニューの色を変える） */
 var cur=/8_사이트\/jobs\.html$/.test(path)?'jobs':(/\/(ja|ko|en)\/[a-z]+\/[\d-]+\/?$/.test(path)||/view\.html$/.test(path)||/00_シリーズ全体_/.test(path))?'learn':'';
 function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function L(){var l=(document.documentElement.lang||'ja').slice(0,2);return C[l]?l:'ja'}
+function L(){var l=(document.documentElement.getAttribute('data-ui')||document.documentElement.lang||'ja').slice(0,2);return C[l]?l:'ja'}
 
 var CSS='@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap");'+
 /* 古い頭の行とフッターを隠す（中身の仕組みは残す） */
@@ -54,6 +54,8 @@ var CSS='@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;60
 '.nv-fab button:hover{border-color:#9bbbf0!important;color:#1769e0!important}'+
 '@media(max-width:980px){.acn-in{flex-wrap:wrap;padding:12px 18px;gap:10px 14px}.acn-menu{order:3;flex:1 1 100%;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:13px}.acn-menu a{border:1px solid #dfe4e8;border-radius:9px;padding:7px 4px;text-align:center;background:#fff}.acn-act{margin-left:auto}.acn-ft-in{grid-template-columns:1fr 1fr}}'+
 '@media(max-width:600px){.acn-brand{font-size:15px}.acn-cta{padding:9px 12px}.acn-ft-in{grid-template-columns:1fr}.acn-crumb{padding:10px 16px 0}}'+
+/* 資料・ツールのページ（shell.js）：ロゴと言語ボタンは新しい頭にまとめ、「資料・ツール › このページ」だけ残す */
+'.shbar .shbrand,.shbar .shlang{display:none!important}.shbar{margin:14px 0 10px!important}.shcrumb{font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif!important;font-size:13px!important}.shcrumb a{color:#1769e0!important}'+
 '@media print{.acn-hd,.acn-ft,.acn-crumb{display:none!important}}';
 
 var hd,ft,crumb,last='';
@@ -62,10 +64,11 @@ function draw(){var l=L();if(l===last&&hd)return;last=l;var c=C[l];
  Array.prototype.forEach.call(hd.querySelectorAll('button[data-al]'),function(b){b.onclick=function(){setLang(b.getAttribute('data-al'))}});
  ft.innerHTML='<div class="acn-ft-in"><div><b>Aviation Career Note</b>'+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+f[0]+'</b>'+f[1].map(function(a){return '<a href="'+U(a[0])+'">'+E(a[1])+'</a>'}).join('')+'</div>'}).join('')+'</div><div class="acn-copy">'+E(c.copy)+'<a href="'+U('terms.html')+'">'+E(c.terms)+'</a><a href="'+U('privacy.html')+'">'+E(c.privacy)+'</a></div>';}
 /* ページにもともとある言語ボタンを押す（無ければ ?lang= を付けて読み直す） */
-function setLang(l){var b=document.querySelector('#siteLang button[data-l="'+l+'"],#langs button[data-l="'+l+'"],#langGroup button[data-l="'+l+'"]');
+function setLang(l){var b=document.querySelector('#siteLang button[data-l="'+l+'"],#langs button[data-l="'+l+'"],#langGroup button[data-l="'+l+'"],#lang button[data-l="'+l+'"],.shlang button[data-l="'+l+'"]');
  if(b){b.click();setTimeout(draw,0);return}
  try{localStorage.setItem('art-lang',l)}catch(e){}var u=new URL(location.href);u.searchParams.set('lang',l);location.href=u.href}
-function init(){if(window.__SHELL||document.querySelector('.acn-hd')||document.getElementById('navlinks'))return;
+function init(){if(document.querySelector('.acn-hd')||document.getElementById('navlinks'))return;
+ if(window.__SHELL||/\/community\//.test(path))cur=window.__SHELL?'practice':'community';
  var st=document.createElement('style');st.id='acn-shell-css';st.textContent=CSS;document.head.appendChild(st);
  hd=document.createElement('header');hd.className='acn-hd';document.body.insertBefore(hd,document.body.firstChild);
  /* レッスン：講座の目次へ戻るリンク（もとの頭の行にあったもの）を、新しい頭の下に移す */
