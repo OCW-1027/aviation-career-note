@@ -116,7 +116,55 @@ cgo_imp:function(l){
   ko:{t:'수입 흐름(일본의 예)',st:['도착 전에 마스터·하우스 운송장 정보와 적하목록을 세관에 보고★','도착 후 하기해 보세 화물터미널로 옮긴다','관세사가 수입 신고(관세·소비세)','납세 후 수입 허가. 보세 관리에서 벗어난다','포워더가 인수해 수하인에게 인도'],who:['항공사·포워더','화물터미널','관세사','세관','포워더']},
   en:{t:'Import flow (Japan example)',st:['Before arrival, master and house AWB data and the manifest are reported to customs ★','After arrival, cargo is offloaded and taken to the bonded terminal','The customs broker files the import declaration (duty and consumption tax)','After payment, import permission: the cargo leaves bonded control','The forwarder collects and delivers to the consignee'],who:['Airline & forwarder','Terminal','Customs broker','Customs','Forwarder']}})[l];
  if(!W)return F.cgo_imp('ja');setK(1);
- return STEPS(W.t,W.st,W.who,['#E08A2E','#2F6FD6','#6B4FA0','#2E9B5F','#2C7A7B'],'12s')}
+ return STEPS(W.t,W.st,W.who,['#E08A2E','#2F6FD6','#6B4FA0','#2E9B5F','#2C7A7B'],'12s')},
+/* 2-1 受け付けの確認：1件の貨物を順に確かめる。右は確かめた結果（架空の例） */
+cgo_accept:function(l){
+ var W=({ja:{t:'受け付けで1件の貨物を確かめる（架空の例）',st:['書類と貨物：AWB 180-12345675、2個、品名が一致するか','計量：申告120kgに対して、量ると126kg','寸法：120×100×110cm。容積重量は約220kg','ラベル：AWBの番号、天地無用・上積み禁止','保安：確認済みの荷主（KS）の貨物か、検査が要るか','保管：区分を決めて、決められた区画へ置く'],who:['一致','126kgに訂正','220kgで計算','貼り直し不要','検査を省略★','一般の区画']},
+  ko:{t:'접수에서 화물 한 건을 확인한다(가상의 예)',st:['서류와 화물: AWB 180-12345675, 2개, 품명이 일치하는가','계량: 신고 120kg인데 재 보니 126kg','치수: 120×100×110cm. 용적 중량은 약 220kg','라벨: AWB 번호, 천지무용·적재 금지','보안: 확인된 화주(KS)의 화물인가, 검사가 필요한가','보관: 구분을 정해 지정된 구역에 둔다'],who:['일치','126kg로 정정','220kg로 계산','다시 붙일 필요 없음','검사 생략★','일반 구역']},
+  en:{t:'Checking one shipment at acceptance (fictional example)',st:['Documents vs cargo: AWB 180-12345675, 2 pieces, description matches?','Weighing: declared 120 kg, scale shows 126 kg','Dimensions: 120×100×110 cm; volume weight about 220 kg','Labels: AWB number, this way up, do not stack','Security: from a known consignor (KS), or screening needed?','Storage: decide the category and place it in the right area'],who:['Matches','Corrected to 126 kg','Charged on 220 kg','No relabelling','No screening ★','General area']}})[l];
+ if(!W)return F.cgo_accept('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2E9B5F','#D64545','#E08A2E','#2E9B5F','#2F6FD6','#2C7A7B'],'13s')},
+/* 2-2 ULD：コンテナ（AKE）とパレット（PMC）。パレットに重い物から順に積み、輪郭の中に収める */
+cgo_uld:function(l){
+ var W=({ja:{t:'ULDの2つの形とビルドアップ',a:'コンテナ AKE（LD3）',as:'約153×156×163cm・最大約1,588kg。旅客機の床下で手荷物や小口の貨物に',b:'パレット PMC',bs:'板は244×318cm。床下は高さ約163cmまで、主甲板はもっと高く積める★',c:'輪郭',n:['重い物・丈夫な物を下に、軽い物・壊れやすい物を上に積む（図の順）','機体の胴体の丸みに合わせた輪郭の中に収める。はみ出すと載せられない','積み終えたらネットで固定し、ULDの番号・行き先・重さのタグを付ける']},
+  ko:{t:'ULD의 두 가지 형태와 빌드업',a:'컨테이너 AKE(LD3)',as:'약 153×156×163cm·최대 약 1,588kg. 여객기 하부에서 수하물과 소량 화물에',b:'팔레트 PMC',bs:'판은 244×318cm. 하부는 높이 약 163cm까지, 메인 데크는 더 높이 쌓을 수 있다★',c:'윤곽',n:['무겁고 튼튼한 물건을 아래, 가볍고 깨지기 쉬운 물건을 위에(그림의 순서)','기체 동체의 곡선에 맞춘 윤곽 안에 넣는다. 벗어나면 실을 수 없다','다 쌓으면 네트로 고정하고 ULD 번호·목적지·무게 태그를 단다']},
+  en:{t:'Two kinds of ULD and how build-up works',a:'Container AKE (LD3)',as:'About 153×156×163 cm, up to about 1,588 kg; used in passenger lower decks for baggage and small shipments',b:'Pallet PMC',bs:'Base 244×318 cm; up to about 163 cm high for the lower deck, higher on the main deck ★',c:'Contour',n:['Heavy, sturdy items at the bottom, light or fragile items on top (the order in the figure)','Keep within the contour that follows the curve of the fuselage; anything outside it cannot be loaded','When finished, secure with a net and attach the tag with ULD number, destination and weight']}})[l];
+ if(!W)return F.cgo_uld('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),lh=FS(11)*1.3,y0=58,dur='9s';
+ /* AKE */
+ s+=R(20,y0,280,230,'#F4F7FB',12)+'<path d="M80 250 L80 110 L200 110 L240 150 L240 250 Z" fill="#DDE6EF" stroke="#2F6FD6" stroke-width="3"/><path d="M80 250 L80 110 L200 110 L240 150 L240 250 Z" fill="none" stroke="#2F6FD6" stroke-width="1" stroke-dasharray="4 4" transform="translate(8 -8)" opacity=".5"/>'+tx(160,190,'AKE',14,'#2F6FD6',900);
+ /* PMC with contour and stacking boxes */
+ s+=R(320,y0,300,230,'#F4F7FB',12)+'<rect x="345" y="244" width="250" height="10" rx="2" fill="#5B6B7D"/>';
+ s+='<path d="M350 244 L350 150 Q350 104 400 98 L540 98 Q590 104 590 150 L590 244" fill="none" stroke="#E08A2E" stroke-width="2.5" stroke-dasharray="7 5"/>'+tx(470,92,W.c,10,'#E08A2E',800);
+ var bx=[[352,206,118,38,'#5B6B7D'],[472,206,116,38,'#5B6B7D'],[356,170,90,36,'#7E8FA3'],[448,170,138,36,'#7E8FA3'],[372,138,96,32,'#A9B8C8'],[470,138,104,32,'#A9B8C8'],[410,110,90,28,'#CBD6E2']];
+ bx.forEach(function(b,i){var a=(0.05+i*0.1).toFixed(2),c=(0.1+i*0.1).toFixed(2);s+='<rect x="'+b[0]+'" y="'+b[1]+'" width="'+b[2]+'" height="'+b[3]+'" rx="3" fill="'+b[4]+'" stroke="#fff" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+a+';'+c+';.92;1" dur="'+dur+'" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 -60;0 -60;0 0;0 0;0 0" keyTimes="0;'+a+';'+c+';.92;1" dur="'+dur+'" repeatCount="indefinite"/></rect>'});
+ s+='<path d="M345 244 L470 100 L595 244" fill="none" stroke="#2E9B5F" stroke-width="2" opacity="0"><animate attributeName="opacity" values="0;0;.9;.9;0" keyTimes="0;.78;.82;.92;1" dur="'+dur+'" repeatCount="indefinite"/></path>';
+ var y=y0+240,na=LI(W.a+'：'+W.as,11,280).length,nb=LI(W.b+'：'+W.bs,11,280).length,hh=Math.max(na,nb)*lh+16,sep=l==='ja'?'：':': ';
+ s+=R(20,y,290,hh,'#fff',8,' stroke="#2F6FD6"')+WR(30,y+hh/2+FS(11)*0.35,W.a+sep+W.as,11,D,800,272,'start')+R(330,y,290,hh,'#fff',8,' stroke="#E08A2E"')+WR(340,y+hh/2+FS(11)*0.35,W.b+sep+W.bs,11,D,800,272,'start');
+ var L=LIST(W.n,y+hh+10,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-3 保安の途切れない流れ：確認済みの荷主から搭載まで続けば検査を省略。途切れれば上屋で検査 */
+cgo_sec:function(l){
+ var W=({ja:{t:'保安が途切れない流れと、途切れた流れ',a:'途切れない流れ',b:'途切れた流れ',na:['確認済みの荷主（KS）','確認済みの事業者（RA）','上屋','搭載'],nb:['確認されていない荷主','事業者','上屋で検査（X線など）','搭載'],n:['確認済みの荷主から搭載まで、保安が確保された状態が続けば、空港での検査を省略・簡略化できる★','途中で途切れた貨物（確認されていない荷主など）は、上屋などでX線や爆発物の痕跡の検査を行う','封印やラベルが破られていないか、受け付けで必ず確かめる']},
+  ko:{t:'보안이 끊기지 않는 흐름과 끊긴 흐름',a:'끊기지 않는 흐름',b:'끊긴 흐름',na:['확인된 화주(KS)','확인된 사업자(RA)','화물터미널','탑재'],nb:['확인되지 않은 화주','사업자','화물터미널에서 검사(X선 등)','탑재'],n:['확인된 화주부터 탑재까지 보안이 확보된 상태가 이어지면 공항 검사를 생략·간소화할 수 있다★','중간에 끊긴 화물(확인되지 않은 화주 등)은 화물터미널 등에서 X선이나 폭발물 흔적 검사를 한다','봉인이나 라벨이 뜯기지 않았는지 접수에서 반드시 확인한다']},
+  en:{t:'An unbroken secure chain, and a broken one',a:'Unbroken chain',b:'Broken chain',na:['Known consignor (KS)','Regulated agent (RA)','Terminal','Loading'],nb:['Unknown shipper','Agent','Screened at terminal (X-ray etc.)','Loading'],n:['If security is maintained without a break from a known consignor to loading, airport screening can be skipped or simplified ★','Cargo whose chain is broken (an unknown shipper, for example) is X-rayed or tested for explosive traces at the terminal','Always check at acceptance that seals and labels are intact']}})[l];
+ if(!W)return F.cgo_sec('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),lh=FS(11)*1.3,dur='8s',xs=[95,245,395,545],y=58;
+ [[W.a,W.na,'#2E9B5F',false],[W.b,W.nb,'#D64545',true]].forEach(function(L0,k){var nmax=0;L0[1].forEach(function(t){nmax=Math.max(nmax,LI(t,10,135).length)});var r0=FS(11)*0.85+5,hh=FS(12)*1.3+40+r0*2+nmax*FS(10)*1.3+12,cy=y+FS(12)*1.3+22+r0;
+  s+=R(20,y,600,hh,k?'#FFF6F6':'#F2FAF5',12)+LB(36,y+18,L0[0],11.5,'#fff','start',L0[2]);
+  s+='<line x1="'+xs[0]+'" y1="'+cy+'" x2="'+xs[3]+'" y2="'+cy+'" stroke="'+L0[2]+'" stroke-width="5" opacity=".35"/>';
+  L0[1].forEach(function(t,i){var insp=L0[3]&&i===2,nl=LI(t,10,135).length;s+='<circle cx="'+xs[i]+'" cy="'+cy+'" r="'+r0.toFixed(1)+'" fill="#fff" stroke="'+(insp?'#D64545':L0[2])+'" stroke-width="3"/>'+(insp?'<rect x="'+(xs[i]-r0*0.55).toFixed(1)+'" y="'+(cy-r0*0.42).toFixed(1)+'" width="'+(r0*1.1).toFixed(1)+'" height="'+(r0*0.84).toFixed(1)+'" rx="2" fill="#D64545"/>':tx(xs[i],cy+FS(11)*0.36,String(i+1),11,L0[2],900))+WR(xs[i],cy+r0+8+nl*FS(10)*1.3/2,t,10,D,800,135)});
+  var path='M'+xs[0]+' '+cy+' L'+xs[3]+' '+cy;
+  if(!L0[3])s+='<rect x="-9" y="-9" width="18" height="18" rx="3" fill="#E08A2E" stroke="#fff" stroke-width="1.5"><animateMotion dur="'+dur+'" repeatCount="indefinite" path="'+path+'"/></rect>';
+  else s+='<rect x="-9" y="-9" width="18" height="18" rx="3" fill="#E08A2E" stroke="#fff" stroke-width="1.5"><animateMotion dur="'+dur+'" repeatCount="indefinite" keyPoints="0;0.66;0.66;1" keyTimes="0;0.4;0.75;1" calcMode="linear" path="'+path+'"/></rect>';
+  y+=hh+10});
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-4 保税の上屋：到着から引き渡しまでの確かめ方（引き渡しの前に2重の確認） */
+cgo_bond:function(l){
+ var W=({ja:{t:'保税の上屋：到着から引き渡しまで',st:['到着：積荷目録と実際の貨物を照合する','過不足・破損を記録し、決められた期限までに報告する','輸入の許可が出るまで、未許可の区画に保管する','NACCSで輸入の許可を確かめる','引き取りの人と書類を、2人で確かめる','引き渡し、搬出の時刻と相手を記録する'],who:['上屋','上屋→税関','上屋','上屋','上屋（2人）','上屋']},
+  ko:{t:'보세 화물터미널: 도착에서 인도까지',st:['도착: 적하목록과 실제 화물을 대조한다','과부족·파손을 기록하고 정해진 기한까지 보고한다','수입 허가가 나올 때까지 미허가 구역에 보관한다','NACCS로 수입 허가를 확인한다','인수하는 사람과 서류를 두 사람이 확인한다','인도하고 반출 시각과 상대를 기록한다'],who:['화물터미널','화물터미널→세관','화물터미널','화물터미널','화물터미널(2인)','화물터미널']},
+  en:{t:'Bonded terminal: from arrival to release',st:['Arrival: check the actual cargo against the manifest','Record shortages, overages and damage, and report them by the deadline','Store in the uncleared area until import permission','Confirm import permission on NACCS','Two staff check the collector and the documents','Release, and record the time and the recipient'],who:['Terminal','Terminal → customs','Terminal','Terminal','Terminal (two people)','Terminal']}})[l];
+ if(!W)return F.cgo_bond('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#E08A2E','#6B4FA0','#2E9B5F','#D64545','#2C7A7B'],'13s')}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

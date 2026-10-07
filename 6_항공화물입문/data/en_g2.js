@@ -4,7 +4,8 @@ set("2-1",{title:"Acceptance, Weighing and Storage",hl:"acceptance",subtitle:"At
 lead:["When cargo reaches the airport warehouse, the first step is acceptance: checking that the documents and the freight agree, the pieces, weight and dimensions, the condition of the packing and the labels, and querying anything wrong on the spot.",
 "This article covers what acceptance checks, how weight and dimensions are taken, the storage categories, and the problems that come up most."],
 sections:[
-{h:"What acceptance checks",blocks:[{t:"check",items:[
+{h:"What acceptance checks",blocks:[{t:"fig",id:"cgo_accept",cap:"Animated figure: one shipment (AWB 180-12345675) is checked for documents, weight, dimensions, labels, security and storage in turn, with the result on the right. Figures are fictional."},
+{t:"check",items:[
 {name:"Documents against freight",x:"The waybill number, the number of pieces and the commodity."},
 {name:"Weight and dimensions",x:"Measure them. If they differ from what was declared, correct it — it affects the rate."},
 {name:"Packing",x:"Whether it is intact and fit for air transport. Leaks and odours."},
@@ -39,7 +40,8 @@ sections:[
 ["Temperature-controlled container","With cooling or heating, for pharmaceuticals and similar"],
 ["Special ULDs","For live animals, vehicles, long items and so on"]]},
 {t:"note",x:"* ULD types are standardised by IATA, and which types fit depends on the aircraft."}]},
-{h:"The basics of build-up",blocks:[{t:"check",items:[
+{h:"The basics of build-up",blocks:[{t:"fig",id:"cgo_uld",cap:"Animated figure: a container (AKE) and a pallet (PMC). The pallet is built heaviest first and kept within the contour (dotted line). Dimensions are typical examples ★."},
+{t:"check",items:[
 {name:"Heavy at the bottom",x:"Heavy and sturdy items low, light and fragile items on top."},
 {name:"Follow the contour",x:"Stay within the profile that matches the curve of the fuselage. Anything proud of it cannot be loaded."},
 {name:"Weight limits",x:"Respect the maximum weight per ULD and the floor loading limits."},
@@ -61,7 +63,7 @@ set("2-3",{title:"Cargo Security",hl:"cargo security",subtitle:"Known consignors
 lead:["Cargo, like passenger baggage, has to be secured against explosives reaching an aircraft. Screening every shipment at the airport is not practical, so most countries rely on a chain: shippers and transport companies whose security arrangements have been approved keep the cargo secure without a break.",
 "This article covers the thinking behind cargo security, an outline of the scheme in Japan, and what to watch on the warehouse floor. It does not describe the security procedures themselves."],
 sections:[
-{h:"The thinking",blocks:[{t:"ladder",rise:10,steps:[{name:"Shipper",sub:"A shipper whose security is approved"},{name:"Transport",sub:"An approved company stores and carries it"},{name:"Warehouse",sub:"Screening where the chain breaks"},{name:"Loading",sub:"Only secure cargo is loaded"}]},
+{h:"The thinking",blocks:[{t:"fig",id:"cgo_sec",cap:"Animated figure: top, an unbroken secure chain from a known consignor to loading (the cargo moves straight through); bottom, a broken chain where the cargo is screened at the terminal before moving on."},
 {t:"p",x:"If the cargo stays secure from shipper to loading without a break, screening at the airport can be reduced or omitted. Where the chain breaks, as with cargo from an unapproved shipper, it is screened at the airport or elsewhere."}]},
 {h:"The scheme in Japan",blocks:[{t:"rows",items:[
 {name:"Known shippers and regulated agents",x:"Under the national standards, approved shippers and approved transport companies keep the cargo secure. ★"},
@@ -90,7 +92,8 @@ sections:[
 ["Segregation","Separating export, import, transfer, cleared and uncleared"],
 ["Long-stay cargo","Checking and reporting anything held beyond a set period"],
 ["Access","Controlling who may enter"]]}]},
-{h:"The daily work",blocks:[{t:"check",items:[
+{h:"The daily work",blocks:[{t:"fig",id:"cgo_bond",cap:"Animated figure: six steps at a bonded terminal light up in turn, from checking and recording arriving cargo to confirming import permission and a two-person release."},
+{t:"check",items:[
 {name:"Checking arrivals",x:"Reconcile the manifest against the actual cargo and record any overage, shortage or damage."},
 {name:"Release",x:"Confirm import permission before releasing to the consignee or the customs broker."},
 {name:"Transfer cargo",x:"Move it to the next flight while it stays bonded."},
