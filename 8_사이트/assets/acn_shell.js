@@ -63,7 +63,7 @@ function draw(){var l=L();if(l===last&&hd)return;last=l;var c=C[l];
 function setLang(l){var b=document.querySelector('#siteLang button[data-l="'+l+'"],#langs button[data-l="'+l+'"],#langGroup button[data-l="'+l+'"]');
  if(b){b.click();setTimeout(draw,0);return}
  try{localStorage.setItem('art-lang',l)}catch(e){}var u=new URL(location.href);u.searchParams.set('lang',l);location.href=u.href}
-function init(){if(window.__SHELL||document.querySelector('.acn-hd'))return;
+function init(){if(window.__SHELL||document.querySelector('.acn-hd')||document.getElementById('navlinks'))return;
  var st=document.createElement('style');st.id='acn-shell-css';st.textContent=CSS;document.head.appendChild(st);
  hd=document.createElement('header');hd.className='acn-hd';document.body.insertBefore(hd,document.body.firstChild);
  /* レッスン：講座の目次へ戻るリンク（もとの頭の行にあったもの）を、新しい頭の下に移す */
