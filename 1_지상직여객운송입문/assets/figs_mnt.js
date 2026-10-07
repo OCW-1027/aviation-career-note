@@ -221,7 +221,44 @@ mnt_audit:function(l){
   ko:{t:'위탁처 감사의 흐름',st:['계획: 연 1회 등 감사 날짜와 볼 항목을 정해 위탁처에 알린다','현장 확인: 기록·공구 교정·부품 보관·교육 기록·작업 모습을 본다','지적: 기준에 맞지 않는 점을 경중을 나눠 서면으로 전한다','시정: 위탁처가 원인과 대책을 내고 기한까지 고친다','확인·종결: 고쳐진 것을 확인하고 기록을 닫는다. 반복 지적은 계약 재검토로 이어진다'],who:['품질','품질·지점','품질','위탁처','품질']},
   en:{t:'How contractor audits work',st:['Plan: fix the audit date and scope (for example yearly) and notify the contractor','On-site check: records, tool calibration, parts storage, training records and work practices','Findings: non-conformities are reported in writing, graded by severity','Corrective action: the contractor gives causes and fixes, completed by a deadline','Verify and close: confirm the fixes and close the record; repeat findings lead to a contract review'],who:['Quality','Quality & station','Quality','Contractor','Quality']}})[l];
  if(!W)return F.mnt_audit('ja');setK(1);
- return STEPS(W.t,W.st,W.who,['#2F6FD6','#E08A2E','#D64545','#2E9B5F','#2C7A7B'],'12s')}
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#E08A2E','#D64545','#2E9B5F','#2C7A7B'],'12s')},
+/* 5-1 AOGの判断の流れ：問いが順に光り、「はい」なら右の結果へ、「いいえ」なら下の問いへ */
+mnt_aog:function(l){
+ var W=({ja:{t:'不具合が見つかったときの判断の流れ（例）',q:['MELで出発できるか','その空港で、数時間のうちに直せるか','代わりの機体や他社の便が使えるか'],r:['制限を反映して出発（3-3）','遅れとして新しい出発の時刻を案内','機材の交換・ほかの便への振り替え'],last:'欠航。ホテル・翌日の便・部品と人の手配',y:'はい',no:'いいえ',n:['判断するのは整備（MCC）と運航管理。支店は、それぞれの道に必要な準備を同時に始める','乗員の勤務時間の上限と空港の運用時間（夜間の制限）が、待てる時間の上限になる']},
+  ko:{t:'결함이 발견됐을 때의 판단 흐름(예)',q:['MEL로 출발할 수 있는가','그 공항에서 몇 시간 안에 고칠 수 있는가','대체 기체나 타사 편을 쓸 수 있는가'],r:['제한을 반영해 출발(3-3)','지연으로 새 출발 시각 안내','기재 교체·다른 편으로 대체 수송'],last:'결항. 호텔·다음 날 편·부품과 사람 수배',y:'예',no:'아니오',n:['판단은 정비(MCC)와 운항관리가 한다. 지점은 각 길에 필요한 준비를 동시에 시작한다','승무원 근무시간 상한과 공항 운용 시간(야간 제한)이 기다릴 수 있는 시간의 상한이 된다']},
+  en:{t:'Decision flow when a defect is found (example)',q:['Can it depart under the MEL?','Can it be fixed at this airport within a few hours?','Is a replacement aircraft or another carrier’s flight available?'],r:['Depart with restrictions applied (3-3)','Delay: announce a new departure time','Swap aircraft or rebook on other flights'],last:'Cancel: hotels, next-day flight, parts and people',y:'Yes',no:'No',n:['Maintenance (MCC) and dispatch decide; the station starts preparing for every path at once','Crew duty limits and airport operating hours (night restrictions) cap how long you can wait']}})[l];
+ if(!W)return F.mnt_aog('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=64,lh=FS(11)*1.3,dur='12s',n=4,cc=['#2E9B5F','#E08A2E','#2F6FD6'];
+ W.q.forEach(function(q,i){var nq=LI(q,11,230).length,nr=LI(W.r[i],11,210).length,h=Math.max(nq,nr)*lh+20;
+  s+='<g>'+R(20,y,270,h,'#fff',12,' stroke="#0f3558" stroke-width="2"')+'<rect x="20" y="'+y+'" width="270" height="'+h+'" rx="12" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.5)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+WR(155,y+h/2+FS(11)*0.35-(nq-1)*lh/2+(nq-1)*lh/2,q,11,'#0f3558',900,230)+'</g>';
+  s+=ARW(296,y+h/2,380,y+h/2,cc[i],3)+LB(338,y+h/2-12,W.y,11,cc[i],'middle','#fff');
+  s+=R(390,y,230,h,cc[i],12)+WR(505,y+h/2+FS(11)*0.35,W.r[i],11,'#fff',900,210);
+  y+=h;s+=ARW(155,y+4,155,y+34,'#D64545',3)+LB(196,y+20,W.no,11,'#D64545','start','#fff');y+=40});
+ var nl=LI(W.last,11,560).length,h=nl*lh+20;
+ s+='<g>'+R(20,y,600,h,'#D64545',12)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="12" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(3,n,0,.45)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+WR(320,y+h/2+FS(11)*0.35,W.last,11,'#fff',900,560)+'</g>';y+=h;
+ var L=LIST(W.n,y+14,600,11);return SVG(L.y+8,s+L.s)},
+/* 5-2 部品を届けるまでの時間（例）：棒が伸びる */
+mnt_parts:function(l){
+ var W=({ja:{t:'部品が届くまでの時間の目安（例）',r:['空港の委託在庫にある','近くの空港の自社の在庫','その空港の他社から借りる','本拠地から次の自社の便で','メーカーの部品センターから国際の急ぎ便'],h:['1時間','4〜6時間','3〜8時間','8〜24時間','24〜72時間'],ax:'時間',n:['時間は例。通関・夜間の制限・便の有無で大きく変わる★','大きな部品（エンジン・脚など）は貨物機や専用の便が必要で、さらに時間がかかる']},
+  ko:{t:'부품이 도착하기까지의 시간 기준(예)',r:['공항 위탁 재고에 있다','가까운 공항의 자사 재고','그 공항의 타사에서 빌린다','본거지에서 다음 자사 편으로','제작사 부품 센터에서 국제 특송'],h:['1시간','4~6시간','3~8시간','8~24시간','24~72시간'],ax:'시간',n:['시간은 예. 통관·야간 제한·편 유무로 크게 달라진다★','큰 부품(엔진·착륙장치 등)은 화물기나 전용 편이 필요해 시간이 더 걸린다']},
+  en:{t:'How long parts take to arrive (example)',r:['In consignment stock at the airport','Own stock at a nearby airport','Borrowed from another airline there','On the next own flight from base','Express from the manufacturer’s parts centre'],h:['1 hour','4–6 hours','3–8 hours','8–24 hours','24–72 hours'],ax:'Hours',n:['Times are examples; customs, night restrictions and flight availability change them a lot ★','Large parts (engines, landing gear) need freighters or dedicated flights and take longer still']}})[l];
+ if(!W)return F.mnt_parts('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(11)*1.3,cc=['#2E9B5F','#2C7A7B','#2F6FD6','#6B4FA0','#D64545'],v=[[0,1],[4,6],[3,8],[8,24],[24,72]];
+ function X(hh){return 40+Math.log(hh+1)/Math.log(73)*560}
+ var y0=y;W.r.forEach(function(r,i){var t=r+(l==='ja'?'：':': ')+W.h[i],nl=LI(t,11,580).length,h=nl*lh+36;
+  s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+WR(30,y+8+FS(11)*0.9,t,11,D,800,580,'start');
+  var x0=X(v[i][0]),x1=X(v[i][1]),by=y+nl*lh+12;
+  s+='<rect x="'+x0.toFixed(1)+'" y="'+by+'" width="0" height="14" rx="5" fill="'+cc[i]+'"><animate attributeName="width" values="0;'+(x1-x0).toFixed(1)+';'+(x1-x0).toFixed(1)+'" keyTimes="0;.3;1" dur="6s" begin="'+(i*0.4)+'s" fill="freeze"/></rect>';y+=h+4});
+ [0,1,6,24,72].forEach(function(t){s+='<line x1="'+X(t)+'" y1="'+y0+'" x2="'+X(t)+'" y2="'+y+'" stroke="#9FB0C2" stroke-dasharray="3 4" opacity=".6"/>'+tx(X(t),y+16,String(t),11,'#5B6B7D',700)});
+ s+=tx(320,y+38,W.ax,11,'#0f3558',800);y+=46;
+ var L=LIST(W.n,y+6,600,11);return SVG(L.y+8,s+L.s)},
+/* 5-3 夜のAOGの1日（例）：時刻ごとに整備と支店の動きが光る */
+mnt_aogday:function(l){
+ var W=({ja:{t:'夜のAOG ― 時刻ごとの動き（例）',st:['18:30 出発前の点検で不具合。MELでは出発できない','19:00 部品がこの空港にないと分かる。部品の手配と到着の見込み','19:30 夜間の制限と乗員の勤務の上限から、今夜の出発は難しいと判断','20:00 欠航を決め、お客様の案内・ホテル・翌日の便の予約を始める','翌朝 部品が着き、通関・持ち込み・交換・確認の署名','翌日 臨時の便で出発。経緯を本社に報告し、再発防止を話し合う'],who:['整備士・MCC','MCC・支店','運航管理・支店','支店・本社','支店・整備士','支店・品質']},
+  ko:{t:'밤의 AOG — 시각별 움직임(예)',st:['18:30 출발 전 점검에서 결함. MEL로는 출발할 수 없다','19:00 부품이 이 공항에 없음을 확인. 부품 수배와 도착 전망','19:30 야간 제한과 승무원 근무 상한으로 오늘 밤 출발은 어렵다고 판단','20:00 결항을 정하고 승객 안내·호텔·다음 날 편 예약을 시작','다음 날 아침 부품 도착, 통관·반입·교환·확인 서명','다음 날 임시편으로 출발. 경위를 본사에 보고하고 재발 방지를 논의'],who:['정비사·MCC','MCC·지점','운항관리·지점','지점·본사','지점·정비사','지점·품질']},
+  en:{t:'A night-time AOG, hour by hour (example)',st:['18:30 A defect found on the pre-departure check; no MEL relief','19:00 The part is not at this airport; ordering and arrival estimate','19:30 Night restrictions and crew duty limits rule out departing tonight','20:00 Cancellation decided; passenger information, hotels and next-day bookings begin','Next morning The part arrives: customs, airside delivery, fitting, certification','Next day Departure as a special flight; report to head office and discuss prevention'],who:['Engineers & MCC','MCC & station','Dispatch & station','Station & head office','Station & engineers','Station & quality']}})[l];
+ if(!W)return F.mnt_aogday('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#D64545','#E08A2E','#6B4FA0','#2F6FD6','#2E9B5F','#2C7A7B'],'14s')}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

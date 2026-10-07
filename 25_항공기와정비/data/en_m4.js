@@ -77,5 +77,5 @@ terms:[["Audit","監査","감사"],["Finding","指摘","지적"],["Corrective ac
 quiz:[{q:"What triggers a special audit?",opts:["New uniforms","A serious error or a jump in delays","A fare change","Seasonal holidays"],a:1,exp:"Special audits follow serious errors, repeat defects or a jump in delays."},
 {q:"What does a ramp inspection not check?",opts:["The aircraft exterior","Documents on board","Crew licences","Fare revenue"],a:3,exp:"Inspectors check the aircraft, cabin, documents and crew licences, not revenue."},
 {q:"After a finding, what does the contractor provide?",opts:["Causes and corrective actions","New fares","Passenger lists","Weather forecasts"],a:0,exp:"The contractor gives causes and fixes and completes them by the deadline."}],
-next:""});
+next:"Part 5 AOG and Disruptions: 5-1 When an AOG Happens"});
 })(window.ARTS);
