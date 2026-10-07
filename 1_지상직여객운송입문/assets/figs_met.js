@@ -29,6 +29,8 @@ var KIN_BEG='（「『【〈《‘“(';
 function SPLITU(s){var u=[],cur='',i,c,code;
  function flush(){if(cur){u.push(cur);cur=''}}
  for(i=0;i<s.length;i++){c=s.charAt(i);code=c.charCodeAt(0);
+  /* 短いかっこ書き（20字まで）は1つのまとまりにし、折り返すときはかっこの前で改行する（2026.10） */
+  if(c==='('||c==='（'){var j=s.indexOf(c==='('?')':'）',i+1);if(j>i&&j-i<=20&&s.slice(i+1,j).search(/[(（]/)<0){flush();u.push(s.slice(i,j+1));i=j;continue}}
   if(c===' '){flush();u.push(' ');continue}
   var cjk=(code>=0x3000&&code<=0x30FF)||(code>=0x3400&&code<=0x9FFF)||(code>=0xFF00&&code<=0xFFEF)||code===0x2192||code===0x2014||code===0x2015||code===0x301C||code===0x2026;
   if(cjk){flush();u.push(c);continue}

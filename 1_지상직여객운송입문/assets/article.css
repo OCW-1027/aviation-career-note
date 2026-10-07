@@ -170,3 +170,5 @@ html:not([data-region="kr"]) .rg-jp,html[data-region="kr"] .rg-kr{display:block}
 .figscroll{overflow-x:visible!important}.figscroll>div{min-width:0!important}}
 /* 띄어쓰기 없는 긴 일본어（文書名など）が韓国語ページ（keep-all）で1行に続いて画面の外に出ないよう、入りきらないときだけ折り返す（2026.10） */
 main p,main li,.note{overflow-wrap:anywhere}
+/* かっこ書きはひとまとまりで折り返す（2026.10） */
+x-pw{display:inline}x-pp{display:inline-block}

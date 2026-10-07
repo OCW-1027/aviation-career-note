@@ -50,6 +50,8 @@ if(ST&&LANGS.indexOf(ST.lang)>=0)lang=ST.lang;
 try{localStorage.setItem('art-lang',lang)}catch(e){}
 function $(s){return document.querySelector(s)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* 項目名・表の中の短いかっこ書き（20字まで）はひとまとまりにし、折り返すときはかっこの前で改行する（2026.10） */
+function pp(s){var h=esc(s),r=h.replace(/[(（][^()（）<>]{1,20}[)）]/g,function(m){return '<x-pp>'+m+'</x-pp>'});return r===h?h:'<x-pw>'+r+'</x-pw>'}
 var PLANE='<svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>';
 var BULB='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V17h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>';
 var WARN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
@@ -78,13 +80,13 @@ function block(b,L){
   case 'fig': var fg=window.FIGS&&window.FIGS[b.id]; if(!fg)return ''; return '<figure class="fig">'+(window.FIGFIX?window.FIGFIX(fg(lang)):fg(lang))+(b.cap?'<figcaption>'+esc(b.cap)+'</figcaption>':'')+'</figure>';
   case 'point': return '<div class="point'+(b.warn?' warn':'')+'">'+(b.warn?WARN:BULB)+'<div>'+esc(b.x)+'</div></div>';
   case 'cards': return '<div class="cards" style="--n:'+(b.n||2)+'">'+b.items.map(function(i){return '<div class="card">'+(i.ic?'<span class="ic">'+i.ic+'</span>':'')+'<b>'+esc(i.name)+'</b>'+(i.tag?'<span class="tag">'+esc(i.tag)+'</span>':'')+'<span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
-  case 'rows': return '<div class="rows">'+b.items.map(function(i){return '<div class="row"><b>'+esc(i.name)+'</b><span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
+  case 'rows': return '<div class="rows">'+b.items.map(function(i){return '<div class="row"><b>'+pp(i.name)+'</b><span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
   case 'table':
     /* 列の中身が短い（どの行も1行ほど）列は中央ぞろえにして、中央ぞろえの見出しと位置を合わせる */
     var shortCol=b.cols.map(function(_,ci){var m=0;b.rows.forEach(function(r){var s=String(r[ci]==null?'':r[ci]),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>m)m=w});return m<=18});
-    return '<div class="scroll tbl"><table><thead><tr>'+b.cols.map(function(c){var s=String(c),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}return '<th'+(w>8?' class="w"':'')+'>'+esc(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(i===0&&b.label!==false?(shortCol[0]?'lb':'lb lw'):((b.center||shortCol[i])?'c':''))+'">'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
+    return '<div class="scroll tbl"><table><thead><tr>'+b.cols.map(function(c){var s=String(c),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}return '<th'+(w>8?' class="w"':'')+'>'+pp(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(i===0&&b.label!==false?(shortCol[0]?'lb':'lb lw'):((b.center||shortCol[i])?'c':''))+'">'+pp(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
   case 'ladder':
-    return '<div class="ladder">'+b.steps.map(function(s,i){var h=120+i*(b.rise||28);return '<div class="step'+(s.alt?' alt':'')+'" style="min-height:'+h+'px"><span class="n">'+(i+1)+'</span><b>'+esc(s.name)+'</b><small>'+esc(s.sub||'')+'</small></div>'}).join('')+'</div>';
+    return '<div class="ladder">'+b.steps.map(function(s,i){var h=120+i*(b.rise||28);return '<div class="step'+(s.alt?' alt':'')+'" style="min-height:'+h+'px"><span class="n">'+(i+1)+'</span><b>'+pp(s.name)+'</b><small>'+pp(s.sub||'')+'</small></div>'}).join('')+'</div>';
   case 'timeline':
     return '<div class="tl"><div class="tl-head"><span>'+esc(b.lanes[0])+'</span><span></span><span>'+esc(b.lanes[1])+'</span></div>'+b.marks.map(function(m){return '<div class="tl-row"><div class="tl-c a">'+esc(m.a||'')+'</div><div class="tl-t">'+esc(m.time)+'</div><div class="tl-c b">'+esc(m.b||'')+'</div></div>'}).join('')+'</div>';
   case 'rates': return ratesTable(b.keys||[]);
@@ -97,7 +99,7 @@ function block(b,L){
   case 'bonuscalc': return bonusCalc(b);
   case 'otpcalc': return otpCalc(b);
   case 'krtaxcalc': return krtaxCalc(b);
-  case 'check': return '<ul class="check">'+b.items.map(function(i){return '<li><div><b>'+esc(i.name)+'</b>'+esc(i.x||'')+'</div></li>'}).join('')+'</ul>';
+  case 'check': return '<ul class="check">'+b.items.map(function(i){return '<li><div><b>'+pp(i.name)+'</b>'+esc(i.x||'')+'</div></li>'}).join('')+'</ul>';
   case 'video': if(!b.url||/確認中|확인 중|to be confirmed|being confirmed|unconfirmed/i.test(b.ch||''))return ''; /* 公式チャンネルを確認できない動画は表示しない。埋め込みはせず、外部リンクのみ */ return '<a class="video" href="'+esc(b.url)+'" target="_blank" rel="noopener"><span class="th"><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></span></span><span class="bd"><small>'+esc(UI[lang].video)+'｜'+esc(b.ch||'')+'</small><b>'+esc(b.title)+'</b><span>'+esc(UI[lang].watch)+'</span></span></a>';
   }
   return '';
