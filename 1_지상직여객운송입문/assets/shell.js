@@ -6,8 +6,8 @@
 (function(){
 if(window.__SHELL)return;window.__SHELL=1;
 var me=document.currentScript,page=(me&&me.getAttribute('data-page'))||'';
-/* 2026.10 新しいトップページ（index_v3.html）へ。ツールの一覧は #practice */
-var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index_v3.html',me.src).href:'#';
+/* 2026.10 新しいトップページ（index.html）へ。ツールの一覧は #practice */
+var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me.src).href:'#';
 try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'||q==='en')localStorage.setItem('art-lang',q);else if(['ja','ko','en'].indexOf(localStorage.getItem('art-lang'))<0)localStorage.setItem('art-lang',(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})())}catch(e){} /* 言語を選んだことのない人は端末の言語（2026.10） */
 /* 問題が1つの言語だけのページ（韓国・日本の試験問題）でも、上の行と下のボタンは選んだ言語で出す（2026.10） */
 if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)document.documentElement.setAttribute('data-ui',ul)}catch(e){}}
@@ -60,23 +60,29 @@ var css=
 'html.sh .shbar .langs button{appearance:none;border:0!important;border-radius:0!important;background:transparent!important;color:#3A4A5C!important;font-weight:600!important;font-size:13px!important;padding:6px 12px!important;min-width:44px;min-height:34px;cursor:pointer;box-shadow:none!important}'+
 'html.sh .shbar .langs button+button{border-left:1px solid #E3E9EF!important}'+
 'html.sh .shbar .langs button.on{background:#2F8FE0!important;color:#fff!important}'+
-'html.sh .wrap>header,html.sh .shhero{background:linear-gradient(170deg,#EAF5FF,#fff)!important;color:#22303F!important;border:1px solid #E3E9EF!important;border-radius:26px!important;padding:26px 28px 22px!important;box-shadow:none!important;position:relative;overflow:hidden}'+
+/* 2026.10 新しいデザイン（v3）：紺の見出し・Inter と Noto・v3 の色。計算の部分の配置はそのまま */
+'html.sh{--sky:#1769e0;--acc:#1769e0;--ink:#182431;--line:#dfe4e8;--muted:#65717e;--sub:#65717e}'+
+'html.sh body{font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:#f6f7f8}html.sh:lang(ko) body{font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans-serif}html.sh:lang(ja) body{word-break:auto-phrase}'+
+'html.sh h1,html.sh h2,html.sh h3{font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:-.025em}'+
+'html.sh .wrap>header,html.sh .shhero{background:linear-gradient(145deg,#0a1b2e,#12314f)!important;color:#fff!important;border:0!important;border-radius:24px!important;padding:36px 38px 30px!important;box-shadow:0 24px 55px rgba(9,28,47,.15)!important;position:relative;overflow:hidden}'+
 'html.sh .wrap>header #kick,html.sh .wrap>header .wave{display:none!important}'+
-'html.sh .wrap>header h1,html.sh .shhero h1{color:#22303F!important;font-size:clamp(23px,4vw,34px)!important;line-height:1.3!important;margin:0 0 10px!important}'+
-'html.sh .wrap>header p,html.sh .shhero p{color:#4A5A6C!important;margin:0!important}'+
+'html.sh .wrap>header h1,html.sh .shhero h1{color:#fff!important;font-weight:800!important;font-size:clamp(26px,4vw,40px)!important;line-height:1.2!important;letter-spacing:-.035em!important;margin:0 0 12px!important}'+
+'html.sh .wrap>header p,html.sh .shhero p{color:#c5d0da!important;margin:0!important}html.sh .wrap>header a,html.sh .shhero a{color:#87dce5!important}'+
+/* 試験問題のページ（header.top）も同じ紺の見出しに */
+'html.sh header.top{background:linear-gradient(145deg,#0a1b2e,#12314f)!important;color:#fff!important;border-radius:24px!important;padding:32px 34px 26px!important;box-shadow:0 24px 55px rgba(9,28,47,.15)!important}html.sh header.top h1{font-weight:800!important;letter-spacing:-.035em}html.sh header.top p,html.sh header.top small,html.sh header.top .sub{color:#c5d0da!important}'+
 'html.sh-load .wrap>header,html.sh-rm .wrap>header{display:none!important}html.sh-load .shhero,html.sh-rm .shhero{margin-bottom:12px}'+
 'html.sh select,html.sh input{max-width:100%;min-width:0;box-sizing:border-box}html.sh select{text-overflow:ellipsis}html.sh label:has(>select){max-width:100%;min-width:0}'+
 '.shfoot{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 8px}'+
-'.shfoot a{flex:1 1 260px;display:block;border:1px solid #D6DEE8;border-radius:14px;padding:12px 18px;background:#fff;color:#22303F;text-decoration:none;box-shadow:0 1px 3px rgba(20,40,70,.06);transition:background .15s,border-color .15s}'+
-'.shfoot a:hover{background:#EEF5FD;border-color:#9CC3EA}.shfoot a:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}'+
-'.shfoot small{display:block;font-size:12.5px;font-weight:600;color:#1C6FBF;margin-bottom:3px}.shfoot b{display:block;font-size:15px;font-weight:700;line-height:1.45}'+
+'.shfoot a{flex:1 1 260px;display:block;border:1px solid #dfe4e8;border-radius:14px;padding:14px 18px;background:#fff;color:#182431;text-decoration:none;box-shadow:none;transition:border-color .15s,box-shadow .15s}'+
+'.shfoot a:hover{border-color:#9bbbf0;box-shadow:0 12px 30px rgba(9,28,47,.07)}.shfoot a:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}'+
+'.shfoot small{display:block;font-size:12.5px;font-weight:700;color:#1769e0;margin-bottom:3px}.shfoot b{display:block;font-size:15px;font-weight:700;line-height:1.45}'+
 '.shfoot .shl{text-align:right}.shfoot .shl:only-child{flex:0 1 340px;text-align:left}'+
 'html.sh:lang(ko) .wrap>header h1,html.sh:lang(ko) .wrap>header p,html.sh:lang(ko) .shhero h1,html.sh:lang(ko) .shhero p,html.sh:lang(ko) .shfoot b{word-break:keep-all;overflow-wrap:break-word}'+
 'html.sh:lang(en) .wrap>header h1,html.sh:lang(en) .shhero h1{font-size:clamp(22px,3.6vw,31px)!important}'+
 '@media print{.shfoot{display:none!important}}@media (min-width:601px){.shfoot{margin-bottom:130px}}'+
 '@media (max-width:600px){html.sh .wrap>header h1,html.sh .shhero h1{font-size:21px!important}html.sh:lang(en) .wrap>header h1,html.sh:lang(en) .shhero h1{font-size:19px!important;letter-spacing:-.01em}.shfoot .shl{text-align:left}.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+
 'html.sh .shbar .langs button{padding:6px 9px!important;font-size:12.5px!important;min-width:0}'+
-'html.sh .wrap>header,html.sh .shhero{padding:20px 18px 18px!important;border-radius:20px!important}'+
+'html.sh .wrap>header,html.sh .shhero{padding:26px 22px 22px!important;border-radius:18px!important}'+
 'html.sh input,html.sh select{min-height:40px}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
 function lg(){var l=(document.documentElement.getAttribute('data-ui')||document.documentElement.lang||'ja').slice(0,2);return SITE[l]?l:'ja'}

@@ -12,10 +12,10 @@ ko:{proto:['GPT 디자인안을 바탕으로 만든 시안입니다. 지금 홈�
 en:{proto:['A prototype based on the GPT design. The current home page is','here'],nav:['Learn','Business Skills','Practice','Jobs','Coaching','Community'],mem:'Membership',
  foot:['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.'],
  copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy'}};
-var NAV=[['index_v3.html#learn','learn'],['business.html','business'],['index_v3.html#practice','practice'],['jobs.html','jobs'],['index_v3.html#coaching','coaching'],['../community/index.html','community']];
-var FOOT=[['Learn',[['index_v3.html#learn','Courses'],['index_v3.html#learn','Learning Paths'],['index_v3.html#practice','Practice Lab']]],
+var NAV=[['index.html#learn','learn'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
+var FOOT=[['Learn',[['index.html#learn','Courses'],['index.html#learn','Learning Paths'],['index.html#practice','Practice Lab']]],
  ['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],
- ['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['index_v3.html#coaching','Coaching']]],
+ ['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['index.html#coaching','Coaching']]],
  ['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]];
 var LANGS=['ja','ko','en'],lang='ja';
 try{var q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],sv=localStorage.getItem('art-lang'),nl=String(navigator.language||'').slice(0,2);
@@ -33,6 +33,6 @@ function draw(){var c=C[lang],page=document.body.getAttribute('data-page');
  if(typeof window.PAGE_RENDER==='function')window.PAGE_RENDER(lang);}
 window.ACN={E:E,lang:function(){return lang}};
 /* 右下のボタン（上へ・戻る・ホーム）：ほかのページと同じ nav.js を使う。ホームは新しいトップページ（2026.10） */
-(function(){var me=document.currentScript&&document.currentScript.src;if(!me)return;window.ACN_HOME=new URL('../index_v3.html',me).href;var n=document.createElement('script');n.src=new URL('../../1_\uc9c0\uc0c1\uc9c1\uc5ec\uac1d\uc6b4\uc1a1\uc785\ubb38/assets/nav.js',me).href;document.head.appendChild(n);var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
+(function(){var me=document.currentScript&&document.currentScript.src;if(!me)return;window.ACN_HOME=new URL('../index.html',me).href;var n=document.createElement('script');n.src=new URL('../../1_\uc9c0\uc0c1\uc9c1\uc5ec\uac1d\uc6b4\uc1a1\uc785\ubb38/assets/nav.js',me).href;document.head.appendChild(n);var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
 document.addEventListener('DOMContentLoaded',draw);
 })();

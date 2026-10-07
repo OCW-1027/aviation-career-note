@@ -1,5 +1,5 @@
 /* 新しいサイトの共通スタイル（GPT の設計案 Hybrid v2 の見た目。2026.10 試作）
-   index_v3.html・business.html で使う。直したところ：スマートフォンのメニュー、韓国語の改行 */
+   index.html・business.html で使う。直したところ：スマートフォンのメニュー、韓国語の改行 */
 :root{
   --navy:#091c2f;
   --navy2:#102a43;

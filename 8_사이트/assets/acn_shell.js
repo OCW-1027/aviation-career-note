@@ -1,28 +1,27 @@
 /* サイト共通の頭とフッター（新しいデザイン v3・2026.10 第1段階）
    nav.js が読み込む。一般のページ（site.js）・講座の目次（hub.js）・レッスン（article.js）に、
-   index_v3.html と同じメニュー・言語の切り替え・フッターを付け、古い頭の行とフッターを隠す。
+   index.html と同じメニュー・言語の切り替え・フッターを付け、古い頭の行とフッターを隠す。
    ・言語のボタンは、ページにもともとある言語ボタン（data-l）を押す。ページの描き直しの仕組みはそのまま使う
    ・表示中の言語は <html lang> を見て合わせる
-   ・対象外：index_v3.html・business.html（自分で同じ頭を持つ）、いまのトップページ index.html（比較のため残す）、
-     資料・ツール（shell.js のページ。あとの段階で）、コミュニティ（独自の頭。あとの段階で） */
+   ・対象外：トップページ index.html・business.html・jobs.html（自分で同じ頭を持つ）、
+     資料・ツール（shell.js のページ）とコミュニティにも付ける（2026.10） */
 (function(){
 if(window.__ACN_SHELL)return;window.__ACN_SHELL=1;
 var me=document.currentScript&&document.currentScript.src||'';if(!me)return;
 var SITE=new URL('../',me).href; /* 8_사이트/ */
 function U(p){return new URL(p,SITE).href}
 var path=decodeURIComponent(location.pathname);
-if(/8_사이트\/(index\.html)?$/.test(path))return;
-var HOME=U('index_v3.html');window.ACN_HOME=HOME;
+var HOME=U('index.html');window.ACN_HOME=HOME;
 /* 日本語の改行（語の途中で切らない）：ja_wrap.js */
 (function(){var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
 var C={
 ja:{nav:['学ぶ','Business Skills','Practice','求人','Coaching','Community'],mem:'メンバーシップ',foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー'},
 ko:{nav:['학습','Business Skills','Practice','채용','Coaching','Community'],mem:'멤버십',foot:['항공 전문 지식에서 채용, 코칭, 커뮤니티까지.','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　무단 전재·복제 금지',terms:'이용약관',privacy:'개인정보 처리방침'},
 en:{nav:['Learn','Business Skills','Practice','Jobs','Coaching','Community'],mem:'Membership',foot:['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy'}};
-var NAV=[['index_v3.html#learn','learn'],['business.html','business'],['index_v3.html#practice','practice'],['jobs.html','jobs'],['index_v3.html#coaching','coaching'],['../community/index.html','community']];
-var FOOT=[['Learn',[['index_v3.html#learn','Courses'],['index_v3.html#learn','Learning Paths'],['index_v3.html#practice','Practice Lab']]],
+var NAV=[['index.html#learn','learn'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
+var FOOT=[['Learn',[['index.html#learn','Courses'],['index.html#learn','Learning Paths'],['index.html#practice','Practice Lab']]],
  ['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],
- ['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['index_v3.html#coaching','Coaching']]],
+ ['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['index.html#coaching','Coaching']]],
  ['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]];
 /* いまのページがどの項目か（メニューの色を変える） */
 var cur=/8_사이트\/jobs\.html$/.test(path)?'jobs':(/\/(ja|ko|en)\/[a-z]+\/[\d-]+\/?$/.test(path)||/view\.html$/.test(path)||/00_シリーズ全体_/.test(path))?'learn':'';
