@@ -85,6 +85,18 @@ footer{margin-top:40px;color:var(--sub);font-size:13px;text-align:center}
 #nav{top:57px}
 @media (max-width:640px){.topbar .brand span{display:none}}
 @media (max-width:420px){.topbar .langs button{padding:6px 8px;font-size:12px;min-width:0}}
+/* 2026.10 新しいデザイン（v3）に合わせる：紺の見出し・Inter と Noto・見出しの印 */
+:root{--sky:#1769e0;--sky2:#eaf1fb;--ink:#182431;--sub:#65717e;--line:#dfe4e8}
+body{font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:#f6f7f8;color:#182431}
+html[lang="ko"] body{font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans-serif}
+.wrap>header{background:linear-gradient(145deg,#0a1b2e,#12314f);border-radius:24px;padding:44px 42px;box-shadow:0 25px 60px rgba(9,28,47,.15)}
+.wrap>header h1{font-family:inherit;font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.045em;line-height:1.12;color:#fff}
+.wrap>header p{color:#c5d0da;opacity:1}
+#kick{color:#78d6df}
+h2{font-family:inherit;font-weight:800;letter-spacing:-.035em;font-size:clamp(24px,3vw,32px);border-bottom:0;padding-bottom:0;margin:56px 0 14px;display:flex;gap:12px;align-items:flex-start}
+h2::before{content:"";flex:none;width:8px;height:8px;margin-top:.62em;border-radius:50%;background:#1769e0}
+#nav{top:0;background:#f6f7f8}
+@media (max-width:600px){.wrap>header{padding:30px 24px;border-radius:18px}}
 </style>
 </head>
 <body data-page="biz">

@@ -52,3 +52,23 @@ html body .topbar nav.menu a,html body .menu a{display:flex!important;align-item
 html body .topbar nav.menu a.on,html body .menu a.on{border-color:#9cc7ee!important}
 }
 
+
+/* ===== 2026.10 新しいデザイン（v3）：文書のページ（このサイトについて・学び方・出典・利用規約・プライバシー・会員・求人掲載のご案内）
+   いまのトップページ（data-page="home"）は比較のため元のまま。色と文字は v3 と同じ。暗い画面（ダークモード）の切り替えはしない */
+body[data-page]:not([data-page="home"]){--sky:#1769e0;--sky2:#eaf1fb;--ink:#182431;--sub:#65717e;--line:#dfe4e8;--bg:#f6f7f8;--card:#fff;--hl:#FFE08A;
+ background:#f6f7f8;color:#182431;font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;line-height:1.75}
+html[lang="ko"] body[data-page]:not([data-page="home"]){font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans-serif}
+body[data-page]:not([data-page="home"]) a{color:#1769e0}
+body[data-page]:not([data-page="home"]) h1,body[data-page]:not([data-page="home"]) h2,body[data-page]:not([data-page="home"]) h3{font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;letter-spacing:-.025em}
+body[data-page]:not([data-page="home"]) .wrap{max-width:1100px;padding:40px 24px 60px}
+body[data-page]:not([data-page="home"]) .page-hero{background:linear-gradient(145deg,#0a1b2e,#12314f);color:#fff;border-radius:24px;padding:44px 42px;box-shadow:0 25px 60px rgba(9,28,47,.15)}
+body[data-page]:not([data-page="home"]) .page-hero h1{font-size:clamp(32px,4.6vw,52px);line-height:1.12;letter-spacing:-.045em;margin:0 0 12px;color:#fff}
+body[data-page]:not([data-page="home"]) .page-hero p{color:#c5d0da;font-size:17px}
+body[data-page]:not([data-page="home"]) h2{border:0;padding:0;margin:56px 0 14px;font-size:clamp(24px,3vw,32px);font-weight:800;letter-spacing:-.035em;display:flex;gap:12px;align-items:flex-start}
+body[data-page]:not([data-page="home"]) h2::before{content:"";flex:none;width:8px;height:8px;margin-top:.62em;border-radius:50%;background:#1769e0}
+body[data-page]:not([data-page="home"]) .doc h3{font-size:19px;font-weight:700}
+body[data-page]:not([data-page="home"]) .lead{color:#65717e}
+body[data-page]:not([data-page="home"]) .draft{border:1px solid #eadca9;background:#fffaf0;color:#5f5548;border-radius:14px}
+body[data-page]:not([data-page="home"]) table{background:#fff}
+@media (max-width:600px){body[data-page]:not([data-page="home"]) .page-hero{padding:30px 24px;border-radius:18px}body[data-page]:not([data-page="home"]) .wrap{padding:24px 16px 40px}}
+
