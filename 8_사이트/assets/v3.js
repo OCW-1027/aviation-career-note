@@ -24,7 +24,6 @@ function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'
 function $(i){return document.getElementById(i)}
 function draw(){var c=C[lang],page=document.body.getAttribute('data-page');
  document.documentElement.lang=lang;document.body.className=lang;
- if($('proto'))$('proto').innerHTML=E(c.proto[0])+' <a href="index.html">'+E(c.proto[1])+'</a>';
  if($('navlinks'))$('navlinks').innerHTML=NAV.map(function(n,i){return '<a href="'+n[0]+'"'+(n[1]===page?' aria-current="page" class="on"':'')+'>'+E(c.nav[i])+'</a>'}).join('');
  if($('langs')){$('langs').innerHTML=[['ko','KO'],['ja','JA'],['en','EN']].map(function(x,i){return (i?'<i>/</i>':'')+'<button type="button" data-l="'+x[0]+'" class="'+(x[0]===lang?'on':'')+'" aria-pressed="'+(x[0]===lang)+'">'+x[1]+'</button>'}).join('');
   Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}draw()}})}
