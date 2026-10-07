@@ -5,6 +5,10 @@
 var H=window.FIGH;if(!H)return;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,LBW=H.LBW,TTL=H.TTL,ARW=H.ARW,plane=H.plane,planeS=H.planeS,NARROW=H.NARROW,setK=H.setK,FS=H.FS,LI=H.LINES;
 var D=H.C.D,G=H.C.G;
+/* 機体の写真風の絵（img/b737.webp・b787.webp、機首は右、斜め前から見た形）。このファイルの場所から img/ の場所を求める */
+var IB=((document.currentScript&&document.currentScript.src)||'').split('?')[0].replace(/[^\/]*$/,'')+'img/';
+var PICR={b737:339/1100,b787:333/1100};
+function PIC(k,x,y,w){return '<image href="'+IB+k+'.webp" x="'+x+'" y="'+y+'" width="'+w+'" height="'+(w*PICR[k]).toFixed(1)+'" preserveAspectRatio="xMidYMid meet"/>'}
 function BADGE(x,y,n,sz){var r=Math.max(11,FS(sz)*0.72);return '<circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'" fill="#FFD23F" stroke="#0f3558" stroke-width="1.5"/>'+tx(x,y+FS(sz)*0.35,String(n),sz,'#0f3558',900)}
 function SEG(i,n,lo,hi){var a=i/n,b=(i+1)/n;if(i===n-1)return 'values="'+lo+';'+lo+';'+hi+';'+hi+'" keyTimes="0;'+a.toFixed(3)+';'+(a+0.005).toFixed(3)+';1"';if(i===0)return 'values="'+hi+';'+hi+';'+lo+';'+lo+'" keyTimes="0;'+b.toFixed(3)+';'+(b+0.005).toFixed(3)+';1"';return 'values="'+lo+';'+lo+';'+hi+';'+hi+';'+lo+';'+lo+'" keyTimes="0;'+a.toFixed(3)+';'+(a+0.005).toFixed(3)+';'+b.toFixed(3)+';'+(b+0.005).toFixed(3)+';1"'}
 function LIST(items,y,w,sz){var g='';items.forEach(function(v,i){var n=LI(v,sz,w-80).length,lh=FS(sz)*1.3,h=n*lh+12;g+=R(20,y,w,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,sz)+WR(64,y+6+n*lh/2+FS(sz)*0.3,v,sz,D,800,w-80,'start');y+=h+4});return {s:g,y:y}}
@@ -346,17 +350,17 @@ ac_cg:function(l){
  if(!W)return F.ac_cg('ja');
  setK(1);
  var dur='12s',n=4,s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,170,'#DCEEFB',14);
- s+='<g transform="translate(330 176) scale(-13 13)">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet('737',{tint:'alu'}):planeS('#fff'))+'</g>';
- s+='<line x1="60" y1="84" x2="60" y2="214" stroke="#0f3558" stroke-width="2" stroke-dasharray="5 4"/>'+LB(60,80,W.datum,11,'#0f3558','middle','#fff');
+ s+=PIC('b737',50,64,520);
+ s+='<line x1="598" y1="84" x2="598" y2="214" stroke="#0f3558" stroke-width="2" stroke-dasharray="5 4"/>'+LB(598,80,W.datum,11,'#0f3558','middle','#fff');
  /* 重さの矢印：② 後ろの客席、③ 前の貨物室、④ 主翼 */
- var wp=[[447,1],[200,2],[343,3]],wc=['#2F6FD6','#6B4FA0','#E08A2E'];
+ var wp=[[250,1],[470,2],[330,3]],wc=['#2F6FD6','#6B4FA0','#E08A2E'];
  wp.forEach(function(p,i){var a=(p[1]/n).toFixed(3);s+='<g opacity="0">'+ARW(p[0],104,p[0],144,wc[i],4)+LB(p[0],94,W.w[i],11,wc[i],'middle','#fff')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+a+';'+(+a+0.01).toFixed(3)+';1" dur="'+dur+'" repeatCount="indefinite"/></g>'});
  /* MAC の物差し */
  var mx0=170,mx1=490,my=290;
  s+=R(mx0,my-8,mx1-mx0,16,'#fff',4,' stroke="#0f3558" stroke-width="1.5"');
  for(var k=0;k<=4;k++)s+='<line x1="'+(mx0+(mx1-mx0)*k/4)+'" y1="'+(my-8)+'" x2="'+(mx0+(mx1-mx0)*k/4)+'" y2="'+(my+8)+'" stroke="#0f3558" stroke-width="1"/>';
- s+=tx(mx0,my+30,W.le,11,'#0f3558',800)+tx(mx1,my+30,W.te,11,'#0f3558',800)+tx(330,my+30,W.mac,11,'#0f3558',900);
- var xs=W.pct.map(function(p){return mx0+(mx1-mx0)*parseFloat(p)/100}),vx=xs.map(function(x){return (x-xs[0]).toFixed(1)+' 0'});
+ s+=tx(mx1,my+30,W.le,11,'#0f3558',800)+tx(mx0,my+30,W.te,11,'#0f3558',800)+tx(330,my+30,W.mac,11,'#0f3558',900);
+ var xs=W.pct.map(function(p){return mx1-(mx1-mx0)*parseFloat(p)/100}),vx=xs.map(function(x){return (x-xs[0]).toFixed(1)+' 0'});
  var kt=[],vv=[];for(var i=0;i<n;i++){var a=i/n,b=(i+1)/n;kt.push(a.toFixed(3));vv.push(vx[i]);if(i<n-1){kt.push((b-0.04).toFixed(3));vv.push(vx[i])}}kt.push('1');vv.push(vx[n-1]);
  s+='<g><path d="M'+xs[0]+' '+(my-26)+' l-9 -14 l18 0 z" fill="#D64545"/><animateTransform attributeName="transform" type="translate" values="'+vv.join(';')+'" keyTimes="'+kt.join(';')+'" dur="'+dur+'" repeatCount="indefinite"/></g>';
  W.pct.forEach(function(p,i){s+='<g opacity="0">'+LB(xs[i],my-46,W.cg+' '+p,11,'#fff','middle','#D64545')+'<animate attributeName="opacity" '+SEG(i,n,0,1)+' dur="'+dur+'" repeatCount="indefinite"/></g>'});

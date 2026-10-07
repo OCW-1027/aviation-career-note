@@ -4,6 +4,10 @@
 var H=window.FIGH;if(!H)return;
 var R=H.R,tx=H.tx,WR=H.WR,LB=H.LB,LBW=H.LBW,TTL=H.TTL,ARW=H.ARW,plane=H.plane,planeS=H.planeS,setK=H.setK,FS=H.FS,LI=H.LINES;
 var D=H.C.D;
+/* 機体の写真風の絵（img/b737.webp・b787.webp、機首は右、斜め前から見た形）。このファイルの場所から img/ の場所を求める */
+var IB=((document.currentScript&&document.currentScript.src)||'').split('?')[0].replace(/[^\/]*$/,'')+'img/';
+var PICR={b737:339/1100,b787:333/1100};
+function PIC(k,x,y,w){return '<image href="'+IB+k+'.webp" x="'+x+'" y="'+y+'" width="'+w+'" height="'+(w*PICR[k]).toFixed(1)+'" preserveAspectRatio="xMidYMid meet"/>'}
 function BADGE(x,y,n,sz,bg){var r=Math.max(11,FS(sz)*0.72);return '<circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'" fill="'+(bg||'#FFD23F')+'" stroke="#0f3558" stroke-width="1.5"/>'+tx(x,y+FS(sz)*0.35,String(n),sz,'#0f3558',900)}
 function SEG(i,n,lo,hi){var a=i/n,b=(i+1)/n;if(i===n-1)return 'values="'+lo+';'+lo+';'+hi+';'+hi+'" keyTimes="0;'+a.toFixed(3)+';'+(a+0.005).toFixed(3)+';1"';if(i===0)return 'values="'+hi+';'+hi+';'+lo+';'+lo+'" keyTimes="0;'+b.toFixed(3)+';'+(b+0.005).toFixed(3)+';1"';return 'values="'+lo+';'+lo+';'+hi+';'+hi+';'+lo+';'+lo+'" keyTimes="0;'+a.toFixed(3)+';'+(a+0.005).toFixed(3)+';'+b.toFixed(3)+';'+(b+0.005).toFixed(3)+';1"'}
 function LIST(items,y,w,sz){var g='';items.forEach(function(v,i){var n=LI(v,sz,w-80).length,lh=FS(sz)*1.3,h=n*lh+12;g+=R(20,y,w,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,sz)+WR(64,y+6+n*lh/2+FS(sz)*0.3,v,sz,D,800,w-80,'start');y+=h+4});return {s:g,y:y}}
@@ -61,9 +65,8 @@ mnt_struct:function(l){
   en:{t:'Airframe materials: 737 and 787',a:'737: mainly aluminium alloy',b:'787: about half the weight is carbon-fibre composite',lg:['Aluminium alloy','Carbon-fibre composite','Titanium and steel (gear, engine areas)'],n:['Aluminium needs watching for fatigue and corrosion, and checks follow the number of take-offs and landings','Composite does not corrode and resists fatigue, but impact damage can be hard to see from outside. If ground equipment touches the aircraft, however lightly, always tell maintenance','The composite fuselage contains a metal mesh to carry lightning current away; after a strike, set inspections are done']}})[l];
  if(!W)return F.mnt_struct('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),dur='9s',cA='#9AA8B8',cC='#2C7A7B',cT='#B5651D';
- var sc=8.2;function body(y,k,tint){return '<g transform="translate(330 '+y+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet(k,{tint:tint}):planeS('#fff'))+'</g>'}
- s+=R(20,58,600,150,'#F0F4F8',12)+body(154,'737','alu')+LBW(610,82,W.a,11,'#fff','end','#5B6B7D',230);
- s+=R(20,218,600,180,'#EAF6F6',12)+body(338,'787','comp')+LBW(610,242,W.b,11,'#fff','end',cC,230);
+ s+=R(20,58,600,150,'#F0F4F8',12)+PIC('b737',120,80,380)+LBW(610,82,W.a,11,'#fff','end','#5B6B7D',230);
+ s+=R(20,218,600,180,'#EAF6F6',12)+PIC('b787',40,224,560)+LBW(610,242,W.b,11,'#fff','end',cC,230);
  s+='<g opacity="0"><rect x="20" y="218" width="600" height="180" rx="12" fill="none" stroke="'+cC+'" stroke-width="4"/><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.25;.5;1" dur="'+dur+'" repeatCount="indefinite"/></g><g opacity="0"><rect x="20" y="58" width="600" height="150" rx="12" fill="none" stroke="#5B6B7D" stroke-width="4"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.5;.75;1" dur="'+dur+'" repeatCount="indefinite"/></g>';
  var y=414,lh=FS(11)*1.3;[cA,cC,cT].forEach(function(c,i){var n=LI(W.lg[i],11,560).length;s+=R(20,y,18,18,c,4)+WR(46,y+9+FS(11)*0.35+(n-1)*lh/2,W.lg[i],11,D,800,560,'start');y+=Math.max(24,n*lh+8)});
  var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
@@ -188,10 +191,10 @@ mnt_cdl:function(l){
   ko:{t:'CDL: 외부 부품이 없는 상태로 난다(예)',p:['플랩 레일 덮개','날개 끝 정전기 방출봉','APU 점검구 덮개','엔진 지지대 패널'],n:['CDL(외형 변경 목록)은 제작사가 인정한 외부 부품에 대해, 없는 상태로 날 수 있는 조건을 정한다','조건의 대부분은 ‘이륙 중량을 몇 kg 줄인다’, ‘연료를 몇 % 더한다’ 같은 성능 할증. 운항관리 계획에 들어간다','없는 부품은 기록하고 조종실에 표시한다. 같은 곳 부품이 두 개 이상 없으면 날 수 없기도 하다']},
   en:{t:'CDL: flying without some external parts (example)',p:['Flap track fairing','Wingtip static discharger','APU access door','Engine pylon panel'],n:['The CDL (configuration deviation list) sets conditions for flying without certain external parts approved by the manufacturer','Most conditions are performance penalties such as reducing take-off weight by a set amount or adding fuel; they go into the dispatch plan','Missing parts are recorded and placarded in the flight deck; some cannot be missing in more than one place at once']}})[l];
  if(!W)return F.mnt_cdl('ja');setK(1);
- var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#EAF2F9',14),sc=13.2,ox=330,oy=182,dur='8s';
- s+='<g transform="translate('+ox+' '+oy+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet('737',{tint:'alu'}):planeS('#fff'))+'</g>';
- var pts=[[-3.2,1.6],[-8.5,0.5],[-18.9,-0.7],[5.6,1.25]];
- pts.forEach(function(p,i){var x=ox+p[0]*sc,y=oy+p[1]*sc;s+='<g><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="12" fill="#D64545" opacity="0"><animate attributeName="opacity" '+SEG(i,4,.15,.6)+' dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="r" values="9;16;9" keyTimes="0;.5;1" dur="1.6s" repeatCount="indefinite"/></circle>'+BADGE(x,y,i+1,11,'#fff')+'</g>'});
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#EAF2F9',14),pw=560,px=40,py=66,dur='8s',k=pw/1100;
+ s+=PIC('b737',px,py,pw);
+ var pts=[[400,268],[78,208],[300,214],[610,250]];
+ pts.forEach(function(p,i){var x=px+p[0]*k,y=py+p[1]*k;s+='<g><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="12" fill="#D64545" opacity="0"><animate attributeName="opacity" '+SEG(i,4,.15,.6)+' dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="r" values="9;16;9" keyTimes="0;.5;1" dur="1.6s" repeatCount="indefinite"/></circle>'+BADGE(x,y,i+1,11,'#fff')+'</g>'});
  var L=LIST(W.p.concat(W.n),272,600,11);
  return SVG(L.y+8,s+L.s)}
 };
