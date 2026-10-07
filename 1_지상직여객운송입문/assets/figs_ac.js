@@ -82,13 +82,13 @@ ac_coffin:function(l){
  setK(1);
  var gx0=90,gy0=270,gw=500,gh=200;
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,250,'#EEF5FB',14);
- s+='<line x1="'+gx0+'" y1="'+gy0+'" x2="'+(gx0+gw)+'" y2="'+gy0+'" stroke="#40566B" stroke-width="2"/><line x1="'+gx0+'" y1="'+gy0+'" x2="'+gx0+'" y2="'+(gy0-gh)+'" stroke="#40566B" stroke-width="2"/>'+tx(gx0+gw-10,gy0+22,W.x+' →',10.5,G,800,'end')+tx(gx0-10,gy0-gh-6,W.y+' ↑',10.5,G,800,'start');
+ s+='<line x1="'+gx0+'" y1="'+gy0+'" x2="'+(gx0+gw)+'" y2="'+gy0+'" stroke="#40566B" stroke-width="2"/><line x1="'+gx0+'" y1="'+gy0+'" x2="'+gx0+'" y2="'+(gy0-gh)+'" stroke="#40566B" stroke-width="2"/>'+tx(gx0+gw-10,gy0+24,W.x+' →',11,G,800,'end')+tx(gx0-10,gy0-gh-6,W.y+' ↑',11,G,800,'start');
  var lo='M'+(gx0+40)+' '+gy0+' C'+(gx0+60)+' '+(gy0-100)+' '+(gx0+140)+' '+(gy0-170)+' '+(gx0+250)+' '+(gy0-190);
  var hi='M'+(gx0+460)+' '+gy0+' C'+(gx0+440)+' '+(gy0-100)+' '+(gx0+360)+' '+(gy0-170)+' '+(gx0+250)+' '+(gy0-190);
  s+='<path d="'+lo+'" fill="none" stroke="#D64545" stroke-width="3"/><path d="'+hi+'" fill="none" stroke="#6B4FA0" stroke-width="3"/>';
  var hlo='M'+(gx0+50)+' '+gy0+' C'+(gx0+75)+' '+(gy0-80)+' '+(gx0+160)+' '+(gy0-140)+' '+(gx0+250)+' '+(gy0-155),hhi='M'+(gx0+450)+' '+gy0+' C'+(gx0+425)+' '+(gy0-80)+' '+(gx0+340)+' '+(gy0-140)+' '+(gx0+250)+' '+(gy0-155);
  s+='<g opacity="0"><path d="'+hlo+'" fill="none" stroke="#D64545" stroke-width="2.5" stroke-dasharray="6 5"/><path d="'+hhi+'" fill="none" stroke="#6B4FA0" stroke-width="2.5" stroke-dasharray="6 5"/>'+LB(gx0+250,gy0-128,W.hv,10.5,'#fff','middle','#40566B')+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.5;.55;1" dur="8s" repeatCount="indefinite"/></g>';
- s+=LB(gx0+250,gy0-204,W.cc,11,'#fff','middle','#243447')+LBW(gx0+95,gy0-40,W.lo,10.5,'#D64545','middle','#fff',150)+LBW(gx0+405,gy0-40,W.hi,10.5,'#6B4FA0','middle','#fff',150);
+ s+=LB(gx0+250,gy0-204,W.cc,11,'#fff','middle','#243447')+LBW(gx0+95,gy0-62,W.lo,11,'#D64545','middle','#fff',160)+LBW(gx0+405,gy0-62,W.hi,11,'#6B4FA0','middle','#fff',160);
  s+='<g>'+planeS('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" path="M'+(gx0+250)+' '+(gy0-20)+' L'+(gx0+250)+' '+(gy0-160)+' L'+(gx0+250)+' '+(gy0-160)+'" keyPoints="0;1;1" keyTimes="0;.45;1" calcMode="linear"/></g>';
  var L=LIST(W.n,318,600,11);
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
@@ -138,10 +138,10 @@ ac_go_stop:function(l){
  if(!W)return F.ac_go_stop('ja');
  setK(1);
  function lane(y0,go){var g=R(20,y0,600,120,go?'#DCEEFB':'#EEF5FB',12)+R(20,y0+92,600,28,'#9CC98B',0)+R(40,y0+88,500,8,'#5B6770',3)+(go?'<rect x="540" y="'+(y0+80)+'" width="70" height="20" fill="none" stroke="#1F7A6E" stroke-dasharray="5 4"/>':'<rect x="540" y="'+(y0+88)+'" width="40" height="8" fill="#8C9BAA"/>');
-  g+='<line x1="260" y1="'+(y0+30)+'" x2="260" y2="'+(y0+100)+'" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(260,y0+26,'V1 ✕ '+W.fail,10.5,'#fff','middle','#D64545');
+  g+='<line x1="260" y1="'+(y0+30)+'" x2="260" y2="'+(y0+100)+'" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(252,y0+22,'V1 ✕ '+W.fail,11,'#fff','end','#D64545');
   var p=go?'M60 '+(y0+80)+' L260 '+(y0+80)+' L440 '+(y0+80)+' L600 '+(y0+56):'M60 '+(y0+80)+' L260 '+(y0+80)+' L560 '+(y0+80);
   g+='<g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="'+(go?'0;.38;1;1':'0;.4;1;1')+'" keyTimes="0;.4;.85;1" calcMode="'+(go?'linear':'spline')+'"'+(go?'':' keySplines="0 0 1 1;0 0 .3 1;0 0 1 1"')+' path="'+p+'"/></g>';
-  var t=go?W.go:W.stop;g+=LBW(320,y0+56,t,11.5,go?'#1F7A6E':'#8a3b00','middle','#fff',540);
+  var t=go?W.go:W.stop;g+=LBW(445,y0+44,t,11.5,go?'#1F7A6E':'#8a3b00','middle','#fff',300);
   return g}
  var s=TTL(320,30,W.t,15,'#0f3558',600)+lane(56,true)+lane(188,false),y=320;
  var n2=LI(W.note,11,580).length;s+=R(20,y,600,n2*FS(11)*1.3+16,'#FFF1E3',10)+WR(320,y+8+n2*FS(11)*1.3/2+FS(11)*0.3,W.note,11,'#8a3b00',900,580);y+=n2*FS(11)*1.3+28;

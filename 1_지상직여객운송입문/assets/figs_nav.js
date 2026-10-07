@@ -54,7 +54,8 @@ nav_ias_tas:function(l){
    g+='<text x="'+cx+'" y="'+(cy+10)+'" font-size="'+fs+'" font-weight="900" fill="'+col+'" text-anchor="middle" font-family="Arial,sans-serif" opacity="'+(i===0?1:0)+'">'+v+'<animate attributeName="opacity" values="'+vs+'" keyTimes="'+kt+'" dur="8s" repeatCount="indefinite"/></text>'});
   return g+tx(cx,cy+34,'kt',12,G,800)}
  s+=gauge(500,150,W.ias,'#6B7785',['250'])+gauge(500,360,W.tas,'#E08A2F',['265','295','325','355','385','400']);
- s+=LB(320,540,W.rule,11,'#0f3558','middle','#FFF1E3');
+ var rl=H.LINES(W.rule,11,560).length,rh=rl*H.FS(11)*1.3+14;s+=R(20,522,600,rh,'#FFF1E3',10)+WR(320,522+7+rl*H.FS(11)*1.3/2+H.FS(11)*0.3,W.rule,11,'#0f3558',900,560);
+ s=s.replace(/viewBox="0 0 640 560"/,'viewBox="0 0 640 '+(530+rh).toFixed(0)+'"').replace(R(0,0,640,560,'#F7FAFD'),R(0,0,640,530+rh,'#F7FAFD'));
  setK(1);return s+'</svg>'},
 
 /* 3 音の速さとマック数：気温が下がると音は遅くなる。同じM0.80でも高い所では実際の速さが小さい */

@@ -79,5 +79,5 @@ terms:[["Configuration deviation list (CDL)","外形変更リスト","외형 변
 quiz:[{q:"What does the CDL cover?",opts:["Cabin seats","External parts (panels, fairings and so on)","Crew duty hours","Fuel prices"],a:1,exp:"The CDL sets conditions for flying without external parts; equipment inside is covered by the MEL."},
 {q:"If cabin oxygen is unusable for one row, what does the station do?",opts:["Nothing","Block the seats in that row","Reduce cargo","Always cancel the flight"],a:1,exp:"The seats in that row are blocked so they are not sold or used."},
 {q:"What happens if a hold’s fire suppression is inoperative?",opts:["That hold cannot be loaded, or what can be loaded is limited","More seats become available","Fuel burn falls","No effect"],a:0,exp:"A hold without working fire suppression cannot be loaded, or what can be loaded is restricted."}],
-next:""});
+next:"Part 4 Outsourced Line Maintenance: 4-1 Outsourcing Line Maintenance"});
 })(window.ARTS);

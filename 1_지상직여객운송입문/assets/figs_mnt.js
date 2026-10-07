@@ -62,10 +62,11 @@ mnt_struct:function(l){
  if(!W)return F.mnt_struct('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),dur='9s',cA='#9AA8B8',cC='#2C7A7B',cT='#B5651D';
  var sc=8.2;function body(y,k,tint){return '<g transform="translate(330 '+y+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet(k,{tint:tint}):planeS('#fff'))+'</g>'}
- s+=R(20,58,600,150,'#F0F4F8',12)+body(154,'737','alu')+LBW(610,82,W.a,11,'#fff','end','#5B6B7D',230);
- s+=R(20,218,600,180,'#EAF6F6',12)+body(338,'787','comp')+LBW(610,242,W.b,11,'#fff','end',cC,230);
- s+='<g opacity="0"><rect x="20" y="218" width="600" height="180" rx="12" fill="none" stroke="'+cC+'" stroke-width="4"/><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.25;.5;1" dur="'+dur+'" repeatCount="indefinite"/></g><g opacity="0"><rect x="20" y="58" width="600" height="150" rx="12" fill="none" stroke="#5B6B7D" stroke-width="4"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.5;.75;1" dur="'+dur+'" repeatCount="indefinite"/></g>';
- var y=414,lh=FS(11)*1.3;[cA,cC,cT].forEach(function(c,i){var n=LI(W.lg[i],11,560).length;s+=R(20,y,18,18,c,4)+WR(46,y+9+FS(11)*0.35+(n-1)*lh/2,W.lg[i],11,D,800,560,'start');y+=Math.max(24,n*lh+8)});
+ s+=R(20,58,600,170,'#F0F4F8',12)+body(176,'737','alu')+LBW(320,80,W.a,11,'#fff','middle','#5B6B7D',420);
+ s+=R(20,238,600,222,'#EAF6F6',12)+body(390,'787','comp')+LBW(320,270,W.b,11,'#fff','middle',cC,420);
+ s+='<g opacity="0"><rect x="20" y="238" width="600" height="222" rx="12" fill="none" stroke="'+cC+'" stroke-width="4"/><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;.25;.5;1" dur="'+dur+'" repeatCount="indefinite"/></g><g opacity="0"><rect x="20" y="58" width="600" height="170" rx="12" fill="none" stroke="#5B6B7D" stroke-width="4"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.5;.75;1" dur="'+dur+'" repeatCount="indefinite"/></g>';
+ /* 両機に共通の材料（色分けはしない） */
+ var cm=({ja:'両機とも：',ko:'두 기체 모두: ',en:'Both aircraft: '})[l]+W.lg[2],cn=LI(cm,11,560).length,ch=cn*FS(11)*1.3+16,y=472;s+=R(20,y,600,ch,'#FFF4E5',10)+WR(320,y+8+cn*FS(11)*1.3/2+FS(11)*0.3,cm,11,cT,900,560);y+=ch+6;
  var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
 /* 1-2 空気と電気：737はエンジンの空気（ブリード）で冷暖房・与圧・防氷、787は電気で動かす。粒が流れる */
 mnt_bleed:function(l){
@@ -193,7 +194,34 @@ mnt_cdl:function(l){
  var pts=[[-3.2,1.6],[-7.2,-4.2],[-18.9,-0.7],[5.6,1.25]];
  pts.forEach(function(p,i){var x=ox+p[0]*sc,y=oy+p[1]*sc;s+='<g><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="12" fill="#D64545" opacity="0"><animate attributeName="opacity" '+SEG(i,4,.15,.6)+' dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="r" values="9;16;9" keyTimes="0;.5;1" dur="1.6s" repeatCount="indefinite"/></circle>'+BADGE(x,y,i+1,11,'#fff')+'</g>'});
  var L=LIST(W.p.concat(W.n),272,600,11);
- return SVG(L.y+8,s+L.s)}
+ return SVG(L.y+8,s+L.s)},
+/* 4-1 ライン整備を委託するまでの流れ */
+mnt_outsrc:function(l){
+ var W=({ja:{t:'ライン整備を委託するまで',st:['候補を調べる：当局の認定（整備の事業場）、その機種の経験、夜間や繁忙期の人数','品質の部門が監査する：設備・工具・部品の保管・記録・教育のしくみを現地で確かめる','契約を結ぶ：作業の範囲（出発前の点検・不具合の処置）、料金、責任、連絡の方法','教育と認可：機種の教育と会社の手順を教え、確認の署名ができる人を会社が認める','運用を始め、定期的に監査する：遅れの率・作業の誤り・記録を見て改善する'],who:['整備の計画・支店','品質','整備・調達・法務','品質・訓練','品質・支店']},
+  ko:{t:'라인 정비를 위탁하기까지',st:['후보를 조사한다: 당국 인증(정비 조직), 그 기종 경험, 야간·성수기 인원','품질 부문이 감사한다: 설비·공구·부품 보관·기록·교육 체계를 현장에서 확인한다','계약을 맺는다: 작업 범위(출발 전 점검·결함 처치), 요금, 책임, 연락 방법','교육과 인가: 기종 교육과 회사 절차를 가르치고, 확인 서명을 할 수 있는 사람을 회사가 인가한다','운영을 시작하고 정기적으로 감사한다: 지연율·작업 오류·기록을 보고 개선한다'],who:['정비 계획·지점','품질','정비·구매·법무','품질·훈련','품질·지점']},
+  en:{t:'Setting up outsourced line maintenance',st:['Survey candidates: authority approval as a maintenance organisation, experience on the type, staffing at night and in peak seasons','Quality audits them on site: facilities, tools, parts storage, records and training','Sign the contract: scope (pre-departure checks, defect rectification), fees, liabilities and communication','Training and authorisation: type and company-procedure training; the airline authorises who may certify','Start operations and audit regularly: review delay rates, errors and records to improve'],who:['Planning & station','Quality','Maintenance, purchasing & legal','Quality & training','Quality & station']}})[l];
+ if(!W)return F.mnt_outsrc('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#6B4FA0','#E08A2E','#2E9B5F','#2C7A7B'],'12s')},
+/* 4-2 誰が何をするか：本社の整備・委託先の整備士・支店。行ごとに光る */
+mnt_roles:function(l){
+ var W=({ja:{t:'ライン整備で、誰が何をするか（例）',c:['本社の整備（MCC）','委託先の整備士','支店'],r:['出発前の点検と確認の署名','不具合の判断・MELの適用','部品の手配と輸送','部品の通関・空港への持ち込み','作業の場所・電源・車両の用意','遅れの連絡とお客様の案内'],m:[[0,1,0],[1,1,0],[1,0,1],[0,0,1],[0,1,1],[1,0,1]],n:['●が主に担当。会社や空港によって分け方は違う★','支店は整備の判断はしないが、部品・場所・連絡の段取りで遅れを短くできる']},
+  ko:{t:'라인 정비에서 누가 무엇을 하는가(예)',c:['본사 정비(MCC)','위탁처 정비사','지점'],r:['출발 전 점검과 확인 서명','결함 판단·MEL 적용','부품 수배와 운송','부품 통관·공항 반입','작업 장소·전원·차량 준비','지연 연락과 승객 안내'],m:[[0,1,0],[1,1,0],[1,0,1],[0,0,1],[0,1,1],[1,0,1]],n:['●가 주로 담당. 회사나 공항에 따라 나누는 법은 다르다★','지점은 정비 판단은 하지 않지만, 부품·장소·연락 준비로 지연을 줄일 수 있다']},
+  en:{t:'Who does what in line maintenance (example)',c:['Head-office maintenance (MCC)','Contract engineers','Station'],r:['Pre-departure check and certification','Defect assessment and MEL use','Ordering and shipping parts','Customs clearance and airside delivery of parts','Work area, power and vehicles','Delay messages and passenger information'],m:[[0,1,0],[1,1,0],[1,0,1],[0,0,1],[0,1,1],[1,0,1]],n:['● marks the main party; the split varies by airline and airport ★','The station makes no maintenance decisions, but arranging parts, space and communication shortens delays']}})[l];
+ if(!W)return F.mnt_roles('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),x0=260,cw=120,y=62,lh=FS(11)*1.3,dur='12s',n=W.r.length,cc=['#2F6FD6','#2E9B5F','#E08A2E'];
+ var hh=Math.max.apply(null,W.c.map(function(c){return LI(c,11,cw-12).length}))*lh+16;
+ W.c.forEach(function(c,j){s+=R(x0+j*cw+4,y,cw-8,hh,cc[j],8)+WR(x0+j*cw+cw/2,y+hh/2+FS(11)*0.35,c,11,'#fff',900,cw-16)});y+=hh+6;
+ W.r.forEach(function(r,i){var nl=LI(r,11,220).length,h=nl*lh+16;
+  s+='<g>'+R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="8" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.45)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+WR(32,y+h/2+FS(11)*0.35-(nl-1)*lh/2+(nl-1)*lh/2,r,11,D,800,220,'start');
+  W.m[i].forEach(function(v,j){if(v)s+='<circle cx="'+(x0+j*cw+cw/2)+'" cy="'+(y+h/2)+'" r="9" fill="'+cc[j]+'"/>'});s+='</g>';y+=h+4});
+ var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-3 監査と当局の確認：計画 → 現地の確認 → 指摘 → 是正 → 確認・終了 */
+mnt_audit:function(l){
+ var W=({ja:{t:'委託先の監査の流れ',st:['計画：年に1回など、監査の日と見る項目を決めて委託先に知らせる','現地の確認：記録・工具の校正・部品の保管・教育の記録・作業のようすを見る','指摘：基準に合わない点を、重さの区分を付けて書面で伝える','是正：委託先が原因と対策を出し、期限までに直す','確認・終了：直ったことを確かめて記録を閉じる。くり返す指摘は契約の見直しにつなげる'],who:['品質','品質・支店','品質','委託先','品質']},
+  ko:{t:'위탁처 감사의 흐름',st:['계획: 연 1회 등 감사 날짜와 볼 항목을 정해 위탁처에 알린다','현장 확인: 기록·공구 교정·부품 보관·교육 기록·작업 모습을 본다','지적: 기준에 맞지 않는 점을 경중을 나눠 서면으로 전한다','시정: 위탁처가 원인과 대책을 내고 기한까지 고친다','확인·종결: 고쳐진 것을 확인하고 기록을 닫는다. 반복 지적은 계약 재검토로 이어진다'],who:['품질','품질·지점','품질','위탁처','품질']},
+  en:{t:'How contractor audits work',st:['Plan: fix the audit date and scope (for example yearly) and notify the contractor','On-site check: records, tool calibration, parts storage, training records and work practices','Findings: non-conformities are reported in writing, graded by severity','Corrective action: the contractor gives causes and fixes, completed by a deadline','Verify and close: confirm the fixes and close the record; repeat findings lead to a contract review'],who:['Quality','Quality & station','Quality','Contractor','Quality']}})[l];
+ if(!W)return F.mnt_audit('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#E08A2E','#D64545','#2E9B5F','#2C7A7B'],'12s')}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
