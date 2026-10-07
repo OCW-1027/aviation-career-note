@@ -190,7 +190,7 @@ mnt_cdl:function(l){
  if(!W)return F.mnt_cdl('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#EAF2F9',14),sc=13.2,ox=330,oy=182,dur='8s';
  s+='<g transform="translate('+ox+' '+oy+') scale('+sc+')">'+(window.ACFT&&window.ACFT.jet?window.ACFT.jet('737',{tint:'alu'}):planeS('#fff'))+'</g>';
- var pts=[[-3.2,1.6],[-8.5,0.5],[-18.9,-0.7],[5.6,1.25]];
+ var pts=[[-3.2,1.6],[-7.2,-4.2],[-18.9,-0.7],[5.6,1.25]];
  pts.forEach(function(p,i){var x=ox+p[0]*sc,y=oy+p[1]*sc;s+='<g><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="12" fill="#D64545" opacity="0"><animate attributeName="opacity" '+SEG(i,4,.15,.6)+' dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="r" values="9;16;9" keyTimes="0;.5;1" dur="1.6s" repeatCount="indefinite"/></circle>'+BADGE(x,y,i+1,11,'#fff')+'</g>'});
  var L=LIST(W.p.concat(W.n),272,600,11);
  return SVG(L.y+8,s+L.s)}

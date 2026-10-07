@@ -39,7 +39,7 @@ function front(o){o=at(o);var s=st(o.sw),g='';
  if(o.gear)g='<path d="M0 3 L0 6 M-3.4 2.4 L-3.4 6.2 M3.4 2.4 L3.4 6.2" stroke="'+K.dark+'" stroke-width="'+(CUR.vs?o.sw:0.45)+'"'+(CUR.vs?' vector-effect="non-scaling-stroke"':'')+'/><rect x="-0.8" y="5.7" width="1.6" height="1.5" rx="0.4" fill="'+K.dark+'"/><rect x="-4.4" y="5.9" width="2" height="1.7" rx="0.4" fill="'+K.dark+'"/><rect x="2.4" y="5.9" width="2" height="1.7" rx="0.4" fill="'+K.dark+'"/>';
  return '<path d="'+fin+'" fill="'+o.w+'"'+s+'/><path d="'+stab+'" fill="'+o.w+'"'+s+'/><path d="'+wing+'" fill="'+o.w+'"'+s+'/>'+g+'<path d="'+py+'" fill="'+K.eng+'"'+s+'/><circle cx="-7.9" cy="3.4" r="1.9" fill="'+K.eng+'"'+s+'/><circle cx="7.9" cy="3.4" r="1.9" fill="'+K.eng+'"'+s+'/><circle cx="-7.9" cy="3.4" r="1.15" fill="'+K.dark+'"/><circle cx="7.9" cy="3.4" r="1.15" fill="'+K.dark+'"/><circle cx="-7.9" cy="3.4" r="'+(o.rear?0.7:0.35)+'" fill="'+(o.rear?'#6B7785':K.eng)+'"/><circle cx="7.9" cy="3.4" r="'+(o.rear?0.7:0.35)+'" fill="'+(o.rear?'#6B7785':K.eng)+'"/><circle cx="0" cy="0" r="3.1" fill="'+o.c+'"'+s+'/>'+(o.rear?'<circle cx="0" cy="0.4" r="0.8" fill="'+K.eng+'"/>':'<path d="M-1.7 -1.2 L-0.25 -1.45 L-0.25 -0.55 L-1.8 -0.4 Z M1.7 -1.2 L0.25 -1.45 L0.25 -0.55 L1.8 -0.4 Z" fill="'+K.glass+'"/>')}
 /* ===== 写真風の絵（2026.10）=====
-   上・正面・後ろは img/ の絵（top_737・front_737・rear_737 と 787）を使う。横は同じ塗装（白い胴体・青い腹・青い尾翼の帯）で jet() が描く。
+   上・正面・後ろ・横は img/ の絵（top_・front_・rear_・side_ の737と787）を使う。横は jet() が返す。
    どれも今までと同じ座標（原点が機体の中心、長さ約40、機首は右）に合わせるので、図の側は変えなくてよい。
    o.type:'787' で787の絵。o.eng:4 と o.vec:true は今までの線の絵。色（o.c）が鮮やかなときは、絵のまわりにその色の光をつけて区別できるようにする */
 var IB=((document.currentScript&&document.currentScript.src)||'').split('?')[0].replace(/[^\/]*$/,'')+'img/';
@@ -56,56 +56,11 @@ front=function(o){o=o||{};if(o.vec)return frontV(o);var t=o.type==='787'?'787':'
   g='<path d="M0 '+gy+' L0 '+(wy+0.5)+' M'+(-mx)+' '+(gy-0.5)+' L'+(-mx)+' '+(wy+0.5)+' M'+mx+' '+(gy-0.5)+' L'+mx+' '+(wy+0.5)+'" stroke="#5B6B7D" stroke-width="0.32" fill="none"/><rect x="-0.5" y="'+(wy+0.15)+'" width="0.42" height="0.8" rx="0.18" fill="#1E2730"/><rect x="0.08" y="'+(wy+0.15)+'" width="0.42" height="0.8" rx="0.18" fill="#1E2730"/>'+tw(-mx)+tw(mx)}
  return halo(g+pic('front'+t,46),o.c,0.9)};
 side=function(o){o=o||{};if(o.vec)return sideV(o);var big=o.type==='787';return halo('<g transform="scale('+(big?0.637:1.013)+')">'+jet(big?'787':'737',{gear:!!o.gear,shadow:false,win:o.win})+'</g>',o.c,0.9)};
-/* 詳しい横から見た形：jet('737') と jet('787')。単位はメートル（実物の大きさ）。機首は右、胴体の中心線が y=0、地面は y>0。
-   737-800：全長約39.5m・高さ約12.5m／787-9：全長約62.8m・高さ約17m。塗装は img/ の絵と同じ（白い胴体、青い腹と波の帯、青い尾翼に水色と白の帯）。
-   o.gear:false で脚なし、o.shadow:false で地面の影なし、o.win:false で窓なし */
-function jet(kind,o){o=o||{};var n='jt'+(++JN),L='#2C3A4A',ns=' vector-effect="non-scaling-stroke"',big=kind==='787';
- var B1='#1B5CC0',B2='#3F8BE0',B3='#A9C9EC';
- function LG(id,st,x2,y2){return '<linearGradient id="'+n+id+'" x1="0" y1="0" x2="'+(x2||0)+'" y2="'+(y2==null?1:y2)+'">'+st.map(function(a){return '<stop offset="'+a[0]+'" stop-color="'+a[1]+'"'+(a[2]!=null?' stop-opacity="'+a[2]+'"':'')+'/>'}).join('')+'</linearGradient>'}
- var G=big?{len:31.4,top:-2.95,bot:2.9,gr:5.2}:{len:19.75,top:-1.95,bot:1.9,gr:3.62};
- var fus,fin,stab,wing,pyl,nac,core,inl;
- if(big){
-  fus='M31.4 0.4 C31.3 -1.5 29.9 -2.95 26.2 -2.95 L-18 -2.95 C-24 -2.9 -29 -1.6 -31.4 -0.55 L-31.4 -0.15 C-28 0.7 -24 2.3 -18 2.9 L23 2.9 C28.8 2.9 31.3 2 31.4 0.4 Z';
-  fin='M-14.6 -2.95 C-17.2 -3.2 -18.9 -4.4 -20.4 -6 L-26.4 -11.8 L-30.2 -11.8 L-29.7 -2.3 Z';
-  stab='M-23.6 -1.5 L-33.4 -2.6 L-33.5 -1.95 L-25.2 -0.55 Z';wing='M9 2.45 L-12.8 0.35 L-17.4 0.2 L-5.4 2.75 Z';pyl='M11.8 1.7 L9.2 1.05 L5.2 1.7 L7.6 2.1 Z';
-  nac='M14.3 3.1 C14.4 1.95 13.7 1.5 12.6 1.5 L7.3 1.62';for(var k=0;k<6;k++){var y0=1.62+k*0.49;nac+=' L6.8 '+(y0+0.245).toFixed(2)+' L7.3 '+(y0+0.49).toFixed(2)}nac+=' L12.6 4.62 C13.7 4.62 14.4 4.25 14.3 3.1 Z';
-  core='M6.85 2.35 L4.4 3.06 L6.85 3.8 Z';inl={x:14.25,y:3.06,rx:0.42,ry:1.5};
- }else{
-  fus='M19.75 0.2 C19.65 -1.1 18.4 -1.95 16 -1.95 L-11 -1.95 C-14.5 -1.95 -17.6 -1.5 -19.2 -1.05 L-19.75 -0.95 L-19.75 -0.6 C-17.5 0.2 -14 1.4 -9.5 1.9 L14 1.9 C17.5 1.9 19.6 1.3 19.75 0.2 Z';
-  fin='M-9.2 -1.95 C-10.6 -2.1 -11.6 -2.6 -12.3 -3.2 L-17.2 -8.9 L-19.6 -8.9 L-19.2 -1.55 Z';
-  stab='M-15.4 -0.95 L-21 -1.85 L-21.1 -1.4 L-16.4 -0.35 Z';wing='M5.8 1.75 L-6.8 0.45 L-8.7 0.45 L-3.1 1.9 Z';pyl='M7.3 1.35 L5.4 1.15 L3.1 1.5 L4.6 1.7 Z';
-  nac='M9.25 2.05 C9.35 1.5 8.95 1.28 8.4 1.28 L5.05 1.33 L4.35 1.8 L4.35 2.95 L5.05 3.28 L8.4 3.32 C9.0 3.32 9.35 3.05 9.25 2.6 Z';
-  core='M4.4 2.0 L3.45 2.35 L4.4 2.75 Z';inl={x:9.2,y:2.3,rx:0.27,ry:0.98};
- }
- var d='<defs>'+LG('f',[[0,'#FFFFFF'],[.5,'#F2F5F8'],[.85,'#C9D2DC'],[1,'#98A4B1']])+LG('h',[[0,'#fff',0],[.14,'#fff',0],[.26,'#fff',.9],[.4,'#fff',0],[1,'#fff',0]])+
-  LG('b',[[0,B2],[.5,B1],[1,'#123F8A']])+LG('e',[[0,'#FFFFFF'],[.35,'#E6EBF0'],[.75,'#AEB9C5'],[1,'#7C8999']])+LG('w',[[0,'#F4F6F9'],[.6,'#CDD5DE'],[1,'#9DA9B6']])+LG('g',[[0,'#3A4654'],[.5,'#141B22'],[1,'#3A4654']])+
-  '<radialGradient id="'+n+'s" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0f3558" stop-opacity=".22"/><stop offset="1" stop-color="#0f3558" stop-opacity="0"/></radialGradient>'+
-  '<clipPath id="'+n+'c"><path d="'+fus+'"/></clipPath><clipPath id="'+n+'t"><path d="'+fin+'"/></clipPath></defs>';
- function P(dd,fill,sw){return '<path d="'+dd+'" fill="'+fill+'" stroke="'+L+'" stroke-width="'+(sw||1)+'" stroke-linejoin="round"'+ns+'/>'}
- function F(dd,fill,op){return '<path d="'+dd+'" fill="'+fill+'"'+(op!=null?' opacity="'+op+'"':'')+'/>'}
- function LN(dd,c,w,op){return '<path d="'+dd+'" fill="none" stroke="'+(c||L)+'" stroke-width="'+(w||0.8)+'" stroke-linecap="round"'+(op!=null?' opacity="'+op+'"':'')+ns+'/>'}
- var g='',e=G.len,hh=G.bot;
- if(o.shadow!==false)g+='<ellipse cx="0" cy="'+(G.gr+0.15)+'" rx="'+(e*0.95)+'" ry="'+(big?0.9:0.6)+'" fill="url(#'+n+'s)"/>';
- /* 尾翼：青に水色と白の斜めの帯 */
- var fx=big?[-14.6,-30.2,-11.8,-2.3]:[-9.2,-19.6,-8.9,-1.55],fw=fx[0]-fx[1],fh=fx[3]-fx[2];
- function band(a,b,col){return '<path d="M'+(fx[1]-fw*0.2)+' '+(fx[3]-fh*a)+' L'+(fx[0]+fw*0.2)+' '+(fx[3]-fh*a-fh*0.75)+' L'+(fx[0]+fw*0.2)+' '+(fx[3]-fh*b-fh*0.75)+' L'+(fx[1]-fw*0.2)+' '+(fx[3]-fh*b)+' Z" fill="'+col+'"/>'}
- g+='<path d="'+fin+'" fill="url(#'+n+'b)"/><g clip-path="url(#'+n+'t)">'+band(-0.05,0.13,B3)+band(0.13,0.27,'#FFFFFF')+band(-0.5,-0.05,B2)+'</g>'+P(fin,'none')+LN(big?'M-28.6 -11.4 L-28.2 -3.2':'M-18.75 -8.6 L-18.4 -2.1',L,0.7,.45);
- /* 胴体：白＋腹の青い波 */
- g+='<path d="'+fus+'" fill="url(#'+n+'f)"/><g clip-path="url(#'+n+'c)">'+
-  '<path d="M'+e+' '+(hh*0.62)+' C'+(e*0.55)+' '+(hh*0.95)+' '+(e*0.25)+' '+(hh*0.05)+' '+(-e*0.1)+' '+(hh*0.12)+' S'+(-e*0.7)+' '+(hh*0.05)+' '+(-e)+' '+(-hh*0.75)+' L'+(-e)+' '+(hh+1)+' L'+e+' '+(hh+1)+' Z" fill="'+B3+'"/>'+
-  '<path d="M'+e+' '+(hh*0.74)+' C'+(e*0.55)+' '+(hh*1.05)+' '+(e*0.25)+' '+(hh*0.2)+' '+(-e*0.1)+' '+(hh*0.26)+' S'+(-e*0.7)+' '+(hh*0.2)+' '+(-e)+' '+(-hh*0.55)+' L'+(-e)+' '+(hh+1)+' L'+e+' '+(hh+1)+' Z" fill="#FFFFFF"/>'+
-  '<path d="M'+e+' '+(hh*0.82)+' C'+(e*0.55)+' '+(hh*1.12)+' '+(e*0.25)+' '+(hh*0.3)+' '+(-e*0.1)+' '+(hh*0.36)+' S'+(-e*0.7)+' '+(hh*0.3)+' '+(-e)+' '+(-hh*0.4)+' L'+(-e)+' '+(hh+1)+' L'+e+' '+(hh+1)+' Z" fill="url(#'+n+'b)"/></g>'+
-  F(fus,'url(#'+n+'h)')+P(fus,'none');
- if(o.win!==false){var wy=big?-1.3:-1.0,ww=big?0.38:0.28,wh=big?0.74:0.5;for(var x=(big?-19:-12.6);x<=(big?24:13.2);x+=(big?1.05:0.53)){if(big?(x>-5.6&&x<-4):(x>-0.75&&x<1.15))continue;g+='<rect x="'+(x-ww/2).toFixed(2)+'" y="'+wy+'" width="'+ww+'" height="'+wh+'" rx="'+(ww/2)+'" fill="#20344D"/>'}}
- (big?[[25,1.0],[14.6,1.05],[-4.8,1.05],[-16.2,1.05]]:[[14.45,0.85],[-11.1,0.8]]).forEach(function(dr){g+='<rect x="'+(dr[0]-dr[1]/2)+'" y="'+(big?-2.1:-1.55)+'" width="'+dr[1]+'" height="'+(big?3:2.05)+'" rx="0.25" fill="none" stroke="#7C8999" stroke-width="0.9"'+ns+'/>'});
- if(!big)[-0.3,0.65].forEach(function(x){g+='<rect x="'+(x-0.25)+'" y="-1.05" width="0.5" height="0.9" rx="0.12" fill="none" stroke="#7C8999" stroke-width="0.7"'+ns+'/>'});
- g+=big?F('M28.1 -1.7 L30.25 -1.08 L30.62 -0.48 L28 -0.7 Z','#14263C')+LN('M29.1 -1.42 L29.05 -0.62','#C9D2DC',1)+LN('M29.75 -1.2 L29.8 -0.56','#C9D2DC',1):F('M17 -1.32 L18.7 -0.98 L18.92 -0.55 L16.9 -0.66 Z','#14263C')+LN('M17.65 -1.2 L17.6 -0.64','#C9D2DC',1)+LN('M18.25 -1.08 L18.25 -0.6','#C9D2DC',1);
- g+=P(stab,'url(#'+n+'w)')+P(wing,'url(#'+n+'w)')+(big?LN('M-4.5 2.55 L-15.5 0.35','#7C8999',0.8,.8):LN('M-2.6 1.75 L-8.2 0.55','#7C8999',0.8,.8));
- g+=P(pyl,'url(#'+n+'e)')+P(nac,'url(#'+n+'e)')+P(core,'#6F7C8A');
- g+='<ellipse cx="'+inl.x+'" cy="'+inl.y+'" rx="'+inl.rx+'" ry="'+inl.ry+'" fill="#D5DDE6" stroke="'+L+'" stroke-width="0.8"'+ns+'/><ellipse cx="'+(inl.x-0.05)+'" cy="'+inl.y+'" rx="'+(inl.rx*0.7)+'" ry="'+(inl.ry*0.82)+'" fill="url(#'+n+'g)"/><ellipse cx="'+(inl.x-0.04)+'" cy="'+inl.y+'" rx="'+(inl.rx*0.25)+'" ry="'+(inl.ry*0.18)+'" fill="#C9D2DC"/>';
- if(o.gear!==false){var tyre=function(x,y,r){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#1E2730"/><circle cx="'+x+'" cy="'+y+'" r="'+(r*0.48)+'" fill="#9AA8B8"/><circle cx="'+x+'" cy="'+y+'" r="'+(r*0.2)+'" fill="#5B6B7D"/>'};
-  if(big)g+=LN('M26 2.9 L26 4.15','#5B6B7D',2.2)+tyre(26,4.62,0.58)+LN('M-1 2.9 L-1 4.0','#5B6B7D',2.6)+LN('M-2.2 4.05 L0.2 4.05','#5B6B7D',2)+tyre(-2,4.5,0.72)+tyre(0,4.5,0.72);
-  else g+=LN('M16.4 1.9 L16.4 2.85','#5B6B7D',2.2)+tyre(16.4,3.22,0.4)+LN('M-0.6 1.9 L-0.6 2.6','#5B6B7D',2.6)+tyre(-0.6,3.05,0.56)}
- return d+g}
+/* 横から見た形：jet('737') と jet('787')。img/side_737・side_787 の絵（利用者が作った絵、機首は右、脚は出た状態）を使う。
+   単位はメートル（実物の大きさ）。機首は右、胴体の中心線が y=0、地面（タイヤの下）は y>0。737-800：全長約39.5m、787-9：全長約62.8m。
+   同じ縮尺で描くと大きさの違いも分かる。o.tint・o.gear・o.win は互換のために受け取るだけ（絵は1種類） */
+var SIDE={'737':{f:'side_737',w:41,nose:19.75,iw:1000,ih:311,nx:997,cy:213},'787':{f:'side_787',w:64,nose:31.4,iw:1000,ih:265,nx:998,cy:174}};
+function jet(kind,o){var d=SIDE[kind==='787'?'787':'737'],u=d.w/d.iw,x0=d.nose-d.nx*u;
+ return '<image href="'+IB+d.f+'.webp" x="'+x0.toFixed(2)+'" y="'+(-d.cy*u).toFixed(2)+'" width="'+d.w+'" height="'+(d.ih*u).toFixed(2)+'" preserveAspectRatio="none"/>'}
 window.ACFT={top:top,side:side,front:front,jet:jet,colors:K};
 })();

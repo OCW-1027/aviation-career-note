@@ -84,7 +84,7 @@ dsp_rwycc:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
  var lx=80,ly=14;lg.forEach(function(l,i){if(i===4){lx=150;ly=48}s+='<rect x="'+lx+'" y="'+ly+'" width="24" height="24" rx="5" fill="'+col[l[0]]+'"/>'+tx(lx+12,ly+17,l[0],14,'#fff',900)+tx(lx+30,ly+17,l[1],10,D,700,'start');lx+=56+l[1].length*9});
  s+=tx(450,316,'Code for each third of the runway (6 = dry … 0 = nil braking, runway closure considered)',12,G,700);
  return s+'</svg>'},
-/* 運航飛行計画書（OFP）をブロックごとに読む（練習用）。韓国版：金浦→済州、日本版：羽田→福岡（Y20の地点・距離は日本AIP ENR 3.3、2024年3月版） */
+/* 運航飛行計画書（OFP）をブロックごとに読む（練習用）。韓国版：金浦→済州、日本版：羽田→福岡（Y20の地点・距離は日本AIP ENR 3.3、2026年10月版） */
 dsp_ofp:function(){return ofpFig([
  [40,['ACN123  RKSS-RKPC  27SEP26  A20N HL8XXX','STD 0100Z  STA 0205Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
  [100,['RKSS MONSI Y711 KIDOS RKPC','FL240   GND DIST 251NM   AIR DIST 262NM'],'ROUTE, CRUISING LEVEL, DISTANCE'],
@@ -95,7 +95,7 @@ dsp_ofp:function(){return ofpFig([
  [400,['DISPATCHER ________','CAPTAIN ________'],'SIGNATURES: DISPATCHER, THEN CAPTAIN']],'KOREA · PRACTICE OFP')},
 dsp_ofp_jp:function(){return ofpFig([
  [40,['ACN801  RJTT-RJFF  27SEP26  A20N JA00XX','STD 0000Z  STA 0130Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
- [100,['RJTT TIARA GUSRO Y20 KIRIN RJFF','FL380   Y20 GUSRO-KIRIN 420.5NM (AIP)'],'ROUTE, CRUISING LEVEL, DISTANCE'],
+ [100,['RJTT TIARA GUSRO Y20 KIRIN RJFF','FL380   Y20 GUSRO-KIRIN 420.6NM (AIP)'],'ROUTE, CRUISING LEVEL, DISTANCE'],
  [160,['TRIP  3600   CONT  190 (5%/5MIN)   ALTN RJFR  900','HOLD 30MIN 1140   TAXI  150   BLOCK 5980'],'FUEL (kg): ART. 153 + NOTICE 319'],
  [220,['ZFW 60500/64300   TOW 66330/79000','LW  62730/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
  [280,['WPT    AWY   FL   W/V     DIST  ETE  FUEL','SUGAL  Y20   380  270/80  13.0  0:02  4900'],'NAV LOG: TOKYO ACC → FUKUOKA ACC (FL335+)'],

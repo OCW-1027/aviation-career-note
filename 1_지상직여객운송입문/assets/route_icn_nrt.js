@@ -1,5 +1,5 @@
 /* 航空の基礎知識 2-6 仁川⇄成田 の航空路図と高度の断面（2026.09 改訂）
-   経路と地点：韓国AIP ENR 3.3（2026年9月版、Y697・Y685）、日本AIP ENR 3.3（2024年3月版）と AIC 003/24 の標準経路
+   経路と地点：韓国AIP ENR 3.3（2026年9月版、Y697・Y685）、日本AIP ENR 3.3（2026年10月1日版）と AIC 017/26 の標準経路（2026年10月1日発効。地点の座標と経路は2024年版から変わっていないことを確認）
    （仁川→成田 LANAT Y51 SAMON Y517 ESKAS Y303 ENTAK Y30 SWAMP、成田→仁川 ENPAR Y16 SAPRA）。
    FIR境界：韓国AIP ENR 2.1 の仁川FIRの座標（北側の NLL・軍事境界線の部分は Natural Earth で近似）。海岸線：Natural Earth（パブリックドメイン）。
    教育用の略図で、航法には使えない。 */
@@ -47,7 +47,7 @@ icn_nrt_chart:function(){var Q=window.RMAP2;if(!Q)return '';var M=Q.map,b=M.box,
  s+='<g transform="translate(40,410)">'+inset(D,'inra','A  INCHEON \u2014 DEPARTURE / ARRIVAL',dd)+'</g>';
  s+='<g transform="translate(460,410)">'+inset(A,'inrb','B  NARITA \u2014 ARRIVAL / DEPARTURE',ad)+'</g>';
  var y0=H-58;s+='<g font-size="11" fill="'+INK+'"><line x1="40" y1="'+y0+'" x2="80" y2="'+y0+'" stroke="'+INK+'" stroke-width="2.4"/><text x="86" y="'+(y0+4)+'">ICN \u2192 NRT (EASTBOUND)</text><line x1="250" y1="'+y0+'" x2="290" y2="'+y0+'" stroke="'+TL+'" stroke-width="2.4" stroke-dasharray="7 5"/><text x="296" y="'+(y0+4)+'">NRT \u2192 ICN (WESTBOUND)</text><line x1="470" y1="'+y0+'" x2="510" y2="'+y0+'" stroke="'+MAG+'" stroke-width="2" stroke-dasharray="10 4 2 4"/><text x="516" y="'+(y0+4)+'">INCHEON FIR BOUNDARY</text><circle cx="690" cy="'+y0+'" r="8" fill="none" stroke="'+MAG+'" stroke-width="2"/><text x="704" y="'+(y0+4)+'">HAND-OFF POINT</text>'+
-  '<text x="40" y="'+(y0+22)+'">ROUTES AND POINTS: KOREA AIP ENR 3.3 (SEP 2026), JAPAN AIP ENR 3.3 AND AIC 003/24 (2024). FIR: KOREA AIP ENR 2.1 (NORTHERN PART APPROX.).</text><text x="40" y="'+(y0+38)+'">BOXES: AIRWAY + DISTANCE (NM). EDUCATIONAL SKETCH \u2014 NOT FOR NAVIGATION. ALWAYS USE THE CURRENT AIP.</text></g>';
+  '<text x="40" y="'+(y0+22)+'">ROUTES AND POINTS: KOREA AIP ENR 3.3 (SEP 2026), JAPAN AIP ENR 3.3 (OCT 2026) AND AIC 017/26. FIR: KOREA AIP ENR 2.1 (NORTHERN PART APPROX.).</text><text x="40" y="'+(y0+38)+'">BOXES: AIRWAY + DISTANCE (NM). EDUCATIONAL SKETCH \u2014 NOT FOR NAVIGATION. ALWAYS USE THE CURRENT AIP.</text></g>';
  return s+'</svg>'},
 icn_nrt_profile:function(){var Q=window.RMAP2;if(!Q)return '';var PR=Q.prof,INK='#1B2B4B',MAG='#8E3B8A',DUR=20,X0=70,X1=860,G=250,TOP=70,N=PR.N,FB=PR.fb,TOC=140,TOD=N-110,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img" font-family="Arial, Helvetica, sans-serif"><rect width="900" height="330" fill="#fff"/>';
  function X(nm){return X0+(X1-X0)*nm/N}
