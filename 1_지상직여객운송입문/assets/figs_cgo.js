@@ -13,6 +13,18 @@ function STEPS(t,st,who,pc,dur){var s=TTL(320,30,t,15,'#0f3558',600),y=62,lh=FS(
   s+='<g>'+R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="10" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.5)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'+BADGE(44,y+h/2,i+1,11)+WR(66,y+h/2+FS(11)*0.35,x,11,D,800,380,'start')+R(462,y+6,150,h-12,pc[i],8)+WR(537,y+h/2+FS(11)*0.35,who[i],11,'#fff',900,130)+'</g>';
   y+=h;if(i<n-1){s+=ARW(240,y+2,240,y+12,'#9FB0C2',3);y+=14}});
  return SVG(y+10,s)}
+/* 時間の軸：番号の印を軸に置き、説明は下の一覧に。rev=trueなら左が早い（出発前の逆算） */
+function TLINE(t,mx,unit,marks,rev,n,dur){var s=TTL(320,30,t,15,'#0f3558',600),x0=50,x1=600,X=function(v){return rev?x0+(mx-v)/mx*(x1-x0):x0+v/mx*(x1-x0)},r0=FS(9)*0.75+3,y=24+LI(t,15,600).length*FS(15)*1.3+r0*4+40;
+ s+='<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" stroke="#9FB0C2" stroke-width="5" stroke-linecap="round"/>';
+ for(var v=0;v<=mx;v+=60){s+='<line x1="'+X(v)+'" y1="'+(y-6)+'" x2="'+X(v)+'" y2="'+(y+6)+'" stroke="#5B6B7D" stroke-width="2"/>'+tx(X(v),y+FS(9)+14,String(v),9,'#5B6B7D',700)}
+ s+=tx(rev?x0:x1,y+FS(9)*2.4+18,unit,9,'#5B6B7D',700,rev?'start':'end');
+ marks.forEach(function(m,i){var cx=X(m[0]),cy=y-28-(i%2)*(r0*2+6);s+='<line x1="'+cx+'" y1="'+(cy+r0)+'" x2="'+cx+'" y2="'+y+'" stroke="'+m[2]+'" stroke-width="2"/><circle cx="'+cx+'" cy="'+cy+'" r="'+r0.toFixed(1)+'" fill="'+m[2]+'"/>'+tx(cx,cy+FS(9)*0.36,String(i+1),9,'#fff',900)});
+ s+='<circle cx="0" cy="'+y+'" r="7" fill="#0f3558"><animateMotion dur="'+(dur||'8s')+'" repeatCount="indefinite" path="M'+x0+' 0 L'+x1+' 0"/></circle>';
+ var yy=y+FS(9)*2.4+30,lh=FS(10)*1.3;
+ marks.forEach(function(m,i){var nl=LI(m[1],10,250).length,h=Math.max(nl*lh,r0*2)+12,x=20+(i%2)*306;if(i%2===0&&i>0){}
+  s+=R(x,yy,294,h,'#fff',8,' stroke="#D5DEE8"')+'<circle cx="'+(x+8+r0)+'" cy="'+(yy+h/2)+'" r="'+r0.toFixed(1)+'" fill="'+m[2]+'"/>'+tx(x+8+r0,yy+h/2+FS(9)*0.36,String(i+1),9,'#fff',900)+WR(x+16+r0*2,yy+h/2+FS(10)*0.35,m[1],10,D,800,294-24-r0*2,'start');
+  if(i%2===1||i===marks.length-1){var h2=h;if(i%2===1){var nl0=LI(marks[i-1][1],10,250).length;h2=Math.max(h,Math.max(nl0*lh,r0*2)+12)}yy+=h2+6}});
+ var L=LIST(n,yy+6,600,11);return SVG(L.y+8,s+L.s)}
 var F={
 /* 0-1 1件の貨物の流れ：荷主から届け先まで。右は出発を基準にした時刻の目安 */
 cgo_flow:function(l){
@@ -336,7 +348,80 @@ cgo_career:function(l){
   ko:{t:'화물 업무의 커리어(예)',st:['화물터미널 작업: 접수·계량·빌드업·보관','로드 컨트롤·위험물 접수','품질·안전 관리, 또는 포워더·GSA 영업','공항 지점 화물 책임자','본사 화물 부문: 노선 계획·운임·제휴'],who:['지게차 등 기능','위험물 교육(정기)','무역 실무·관세사★','어학(영어·일본어)','수입 관리·계약']},
   en:{t:'A career in cargo (example)',st:['Terminal work: acceptance, weighing, build-up, storage','Load control and dangerous goods acceptance','Quality and safety management, or forwarder/GSA sales','Head of cargo at an airport station','Head-office cargo: route planning, rates and partnerships'],who:['Forklift and other skills','Dangerous goods training (recurrent)','Trade practice, customs broker ★','Languages (English, Japanese, Korean)','Revenue management, contracts']}})[l];
  if(!W)return F.cgo_career('ja');setK(1);
- return STEPS(W.t,W.st,W.who,['#2C7A7B','#2F6FD6','#6B4FA0','#E08A2E','#D64545'],'12s')}
+ return STEPS(W.t,W.st,W.who,['#2C7A7B','#2F6FD6','#6B4FA0','#E08A2E','#D64545'],'12s')},
+/* 6-1 出発から逆算する時間表（分前、旅客便の例） */
+cgo_tl1:function(l){
+ var W=({ja:{t:'出発から逆算する時間表（旅客便の例）',u:'出発までの分',m:[[240,'搬入の締め切り（一般の貨物）'],[180,'搬入の締め切り（急送）'],[100,'ULDの計量（100〜70分前）'],[90,'書類の締め切り・ドーリーで待機'],[40,'機側へ搬出'],[20,'書類袋を機内へ']],n:['数字は1つの会社の例。空港・機材・SLAで変わる★','どこか1つが遅れると、その後ろがすべて詰まる。遅れそうなら早めにロードコントロールへ']},
+  ko:{t:'출발에서 역산하는 시간표(여객편 예)',u:'출발까지 분',m:[[240,'반입 마감(일반 화물)'],[180,'반입 마감(급송)'],[100,'ULD 계량(100~70분 전)'],[90,'서류 마감·돌리에 실어 대기'],[40,'기측으로 반출'],[20,'서류 봉투를 기내로']],n:['숫자는 한 회사의 예. 공항·기재·SLA에 따라 다르다★','어느 하나가 늦으면 그 뒤가 모두 밀린다. 늦을 것 같으면 일찍 로드 컨트롤에 알린다']},
+  en:{t:'Timeline counted back from departure (passenger flight example)',u:'minutes before departure',m:[[240,'Acceptance cut-off (general cargo)'],[180,'Acceptance cut-off (express)'],[100,'ULD weighing (100–70 min before)'],[90,'Document cut-off; ready on dollies'],[40,'Out to the aircraft'],[20,'Document pouch on board']],n:['Figures are one airline’s example and vary by airport, aircraft and SLA ★','If one step slips, everything behind it is squeezed; warn load control early']}})[l];
+ if(!W)return F.cgo_tl1('ja');setK(1);
+ var C=['#2F6FD6','#6B4FA0','#2C7A7B','#E08A2E','#D64545','#2E9B5F'];
+ return TLINE(W.t,240,W.u,W.m.map(function(m,i){return [m[0],m[1],C[i]]}),true,W.n,'10s')},
+/* 6-1 許容搭載量（ACL）の内訳：旅客・手荷物・貨物 */
+cgo_acl:function(l){
+ var W=({ja:{t:'貨物に使える重さ（中型機の例・架空）',a:'許容搭載量（ACL）38,000kg',p:[['旅客','290人×80kg＝23,200kg',23200,'#2F6FD6'],['手荷物','290人×16kg＝4,640kg',4640,'#6B4FA0'],['貨物','残り10,160kg',10160,'#E08A2E']],n:['貨物の枠は、ACLから旅客と手荷物を引いた残り','手荷物は個数でもコンテナの数が決まる（319個÷40個＝8台）。場所も貨物の枠を減らす','前日に予想の旅客数・手荷物を旅客の担当と確かめる']},
+  ko:{t:'화물에 쓸 수 있는 무게(중형기 예·가상)',a:'허용 탑재량(ACL) 38,000kg',p:[['여객','290명×80kg=23,200kg',23200,'#2F6FD6'],['수하물','290명×16kg=4,640kg',4640,'#6B4FA0'],['화물','나머지 10,160kg',10160,'#E08A2E']],n:['화물 몫은 ACL에서 여객과 수하물을 뺀 나머지','수하물은 개수로도 컨테이너 수가 정해진다(319개÷40개=8대). 자리도 화물 몫을 줄인다','전날 예상 여객 수·수하물을 여객 담당과 확인한다']},
+  en:{t:'Weight available for cargo (wide-body example, fictional)',a:'Allowed traffic load (ACL) 38,000 kg',p:[['Passengers','290 × 80 kg = 23,200 kg',23200,'#2F6FD6'],['Baggage','290 × 16 kg = 4,640 kg',4640,'#6B4FA0'],['Cargo','Remaining 10,160 kg',10160,'#E08A2E']],n:['Cargo gets what is left of the ACL after passengers and baggage','Baggage also takes positions: 319 bags ÷ 40 per container = 8 containers, which reduces cargo space','Check expected passenger and bag numbers with the passenger team the day before']}})[l];
+ if(!W)return F.cgo_acl('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,dur='7s',x=30,tot=38000;
+ s+=WR(320,y+FS(11)*0.9,W.a,11,'#0f3558',900,580);y+=FS(11)*1.3+12;
+ s+=R(30,y,580,34,'#EEF2F7',6);
+ W.p.forEach(function(p,i){var w=p[2]/tot*580,a=(i*0.25).toFixed(2),b=(i*0.25+0.2).toFixed(2);s+='<rect x="'+x.toFixed(1)+'" y="'+y+'" width="0" height="34" fill="'+p[3]+'"><animate attributeName="width" values="0;0;'+w.toFixed(1)+';'+w.toFixed(1)+'" keyTimes="0;'+a+';'+b+';1" dur="'+dur+'" repeatCount="indefinite"/></rect>';x+=w});
+ y+=46;var lh=FS(11)*1.3;
+ W.p.forEach(function(p,i){var t=p[0]+(l==='ja'?'：':': ')+p[1],nl=LI(t,11,540).length,h=nl*lh+12;s+=R(20,y,600,h,i===2?'#FFF7EC':'#fff',8,' stroke="#D5DEE8"')+'<rect x="30" y="'+(y+h/2-7)+'" width="14" height="14" rx="3" fill="'+p[3]+'"/>'+WR(54,y+h/2+FS(11)*0.35,t,11,i===2?'#B4580F':D,900,550,'start');y+=h+5});
+ var L=LIST(W.n,y+6,600,11);return SVG(L.y+8,s+L.s)},
+/* 6-2 床の強さ：底の小さい重い貨物は板で面積を広げる */
+cgo_floor:function(l){
+ var W=({ja:{t:'床の強さと重さの分散（例）',a:'そのまま',b:'板を敷いて広げる',am:'2,400kg ÷ 1.2㎡ ＝ 2,000kg/㎡',bm:'2,400kg ÷ 3.0㎡ ＝ 800kg/㎡',lim:'床の強さの上限（例）800kg/㎡',ng:'上限を超える',ok:'上限の中',n:['底が1.2m×1.0mのままだと、床に1㎡あたり2,000kgかかり、上限の2.5倍','必要な面積は 2,400 ÷ 800 ＝ 3.0㎡。板で2.0m×1.5mに広げる','上限は機材・位置・ULDで違う。会社の基準を超える重量物は担当者が確かめて指示する']},
+  ko:{t:'바닥 강도와 무게 분산(예)',a:'그대로',b:'판을 깔아 넓힌다',am:'2,400kg ÷ 1.2㎡ = 2,000kg/㎡',bm:'2,400kg ÷ 3.0㎡ = 800kg/㎡',lim:'바닥 강도 상한(예) 800kg/㎡',ng:'상한 초과',ok:'상한 이내',n:['바닥이 1.2m×1.0m 그대로면 1㎡당 2,000kg이 걸려 상한의 2.5배','필요 면적은 2,400 ÷ 800 = 3.0㎡. 판으로 2.0m×1.5m로 넓힌다','상한은 기재·위치·ULD에 따라 다르다. 회사 기준을 넘는 중량물은 담당자가 확인하고 지시한다']},
+  en:{t:'Floor strength and spreading the load (example)',a:'As it is',b:'Spread on shoring',am:'2,400 kg ÷ 1.2 m² = 2,000 kg/m²',bm:'2,400 kg ÷ 3.0 m² = 800 kg/m²',lim:'Floor limit (example) 800 kg/m²',ng:'Over the limit',ok:'Within the limit',n:['On its own 1.2 m × 1.0 m base, the item puts 2,000 kg on each square metre: 2.5 times the limit','Area needed: 2,400 ÷ 800 = 3.0 m², so spread it on shoring of 2.0 m × 1.5 m','Limits vary by aircraft, position and ULD; heavy items above company thresholds are checked and instructed by a supervisor']}})[l];
+ if(!W)return F.cgo_floor('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),sc=70,y0=70,dur='8s',lh=FS(10)*1.3;
+ s+=WR(320,y0+FS(10)*0.6,W.lim,10,'#0f3558',800,580);var top=y0+FS(10)*1.3+12,fl=Math.max(LI(W.am,10,270).length,LI(W.bm,10,270).length),bh=170+fl*lh+FS(11)*1.3+30;
+ [[W.a,W.am,1.2,1.0,'#D64545',W.ng],[W.b,W.bm,2.0,1.5,'#2E9B5F',W.ok]].forEach(function(c,i){var ox=20+i*310,cx=ox+145,cy=top+FS(11)*1.3+80;
+  s+=R(ox,top,290,bh,'#F4F7FB',12)+WR(cx,top+16,c[0],11,'#0f3558',900,270);
+  var w=c[2]*sc,h=c[3]*sc;s+='<rect x="'+(cx-w/2)+'" y="'+(cy-h/2)+'" width="'+w+'" height="'+h+'" fill="'+c[4]+'" opacity=".25" stroke="'+c[4]+'" stroke-width="2"'+(i?'><animate attributeName="width" values="'+(1.2*sc)+';'+(1.2*sc)+';'+w+';'+w+'" keyTimes="0;.2;.5;1" dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="x" values="'+(cx-0.6*sc)+';'+(cx-0.6*sc)+';'+(cx-w/2)+';'+(cx-w/2)+'" keyTimes="0;.2;.5;1" dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="height" values="'+(1.0*sc)+';'+(1.0*sc)+';'+h+';'+h+'" keyTimes="0;.2;.5;1" dur="'+dur+'" repeatCount="indefinite"/><animate attributeName="y" values="'+(cy-0.5*sc)+';'+(cy-0.5*sc)+';'+(cy-h/2)+';'+(cy-h/2)+'" keyTimes="0;.2;.5;1" dur="'+dur+'" repeatCount="indefinite"/></rect>':'/>');
+  s+='<rect x="'+(cx-0.6*sc+8)+'" y="'+(cy-0.5*sc+8)+'" width="'+(1.2*sc-16)+'" height="'+(1.0*sc-16)+'" rx="4" fill="#5B6B7D"/>'+tx(cx,cy+4,'2,400kg',9,'#fff',900);
+  var fy=cy+66;s+=WR(cx,fy+fl*lh/2,c[1],10,c[4],900,270)+LB(cx,fy+fl*lh+16+FS(11)*0.4,c[5],11,'#fff','middle',c[4])});
+ var L=LIST(W.n,top+bh+10,600,11);return SVG(L.y+8,s+L.s)},
+/* 6-2 ULD重量表（UWS）の差：1%を超えたら原因がわかるまで積まない */
+cgo_uws:function(l){
+ var W=({ja:{t:'ULDの重さの差を確かめる（UWS・例）',a:'マニフェストの重さ（部材を含む）',b:'計量した重さ',d:'差 70kg（約2.3%）',th:'判断の線（例）1%',st:'原因がわかるまで積まない',n:['部材（ULD・板・シート・ロープ）の重さの書き漏れが多い原因','重さの誤り・書いていない貨物がないかを確かめてから、ロードシートに反映する']},
+  ko:{t:'ULD 무게 차이 확인(UWS·예)',a:'매니페스트 무게(부자재 포함)',b:'계량한 무게',d:'차이 70kg(약 2.3%)',th:'판단선(예) 1%',st:'원인을 알 때까지 싣지 않는다',n:['부자재(ULD·판·시트·로프) 무게를 빠뜨린 것이 흔한 원인','무게 오류·기재되지 않은 화물이 없는지 확인한 뒤 로드시트에 반영한다']},
+  en:{t:'Checking ULD weight differences (UWS, example)',a:'Manifest weight (incl. ULD and materials)',b:'Scale weight',d:'Difference 70 kg (about 2.3%)',th:'Decision line (example) 1%',st:'Do not load until the cause is found',n:['Leaving out the weight of the ULD, boards, sheets and ropes is a common cause','Check for wrong weights or undeclared pieces, then reflect it on the loadsheet']}})[l];
+ if(!W)return F.cgo_uws('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(10)*1.3,dur='7s',sc=520/3200;
+ [[W.a,3050,'#2F6FD6'],[W.b,3120,'#D64545']].forEach(function(b,i){var t=b[0]+'　'+b[1].toLocaleString()+'kg',nl=LI(t,10,560).length;s+=WR(30,y+nl*lh/2+FS(10)*0.35,t,10,D,800,560,'start');y+=nl*lh+4;
+  s+='<rect x="30" y="'+y+'" width="0" height="18" rx="5" fill="'+b[2]+'"><animate attributeName="width" values="0;'+(b[1]*sc).toFixed(1)+';'+(b[1]*sc).toFixed(1)+'" keyTimes="0;.4;1" dur="'+dur+'" begin="'+(i*0.3)+'s" fill="freeze"/></rect>';y+=30});
+ var gx=30,gw=560;s+=R(gx,y+6,gw,16,'#EEF2F7',8);var X=function(p){return gx+p/3*gw};
+ s+='<rect x="'+gx+'" y="'+(y+6)+'" width="'+(X(1)-gx)+'" height="16" rx="8" fill="#2E9B5F" opacity=".35"/><line x1="'+X(1)+'" y1="'+y+'" x2="'+X(1)+'" y2="'+(y+28)+'" stroke="#0f3558" stroke-width="2" stroke-dasharray="4 3"/>';
+ s+='<circle cx="'+X(2.3).toFixed(1)+'" cy="'+(y+14)+'" r="9" fill="#D64545" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.45;.5;1" dur="'+dur+'" fill="freeze"/></circle>';
+ y+=36;s+=WR(30,y+FS(10)*0.8,W.th,10,'#0f3558',800,280,'start')+WR(330,y+FS(10)*0.8,W.d,10,'#D64545',900,280,'start');y+=FS(10)*1.3*2+8;
+ s+=LB(320,y+FS(12)*0.6,W.st,12,'#fff','middle','#D64545');y+=FS(12)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 6-3 到着から引き渡しまでの時間（SLAの例） */
+cgo_tl2:function(l){
+ var W=({ja:{t:'到着から引き渡しまで（SLAの例）',u:'到着からの分',m:[[60,'荷受人へ到着の通知'],[120,'急送・生鮮品・ULDのままの引き渡し、乗り継ぎへの引き継ぎ'],[180,'便の締め（システム）'],[240,'一般の貨物（ばら）の引き渡し']],n:['時間はハンドリング会社とのSLAの例★。守れなかった件数は月例の会議で確かめる（5-2）','急ぐ貨物ほど、ULDのまま扱える位置に積んでもらうと早い']},
+  ko:{t:'도착에서 인도까지(SLA 예)',u:'도착부터 분',m:[[60,'수하인에게 도착 통지'],[120,'급송·신선품·ULD 그대로 인도, 환적으로 인계'],[180,'편 마감(시스템)'],[240,'일반 화물(벌크) 인도']],n:['시간은 조업사와의 SLA 예★. 지키지 못한 건수는 월간 회의에서 확인한다(5-2)','급한 화물일수록 ULD 그대로 다룰 수 있는 위치에 실어 두면 빠르다']},
+  en:{t:'From arrival to delivery (SLA example)',u:'minutes after arrival',m:[[60,'Consignee notified of arrival'],[120,'Express, perishables and intact ULDs released; transfers handed over'],[180,'Flight closed in the system'],[240,'General (loose) cargo released']],n:['Times are an example SLA with the handler ★; review missed targets at the monthly meeting (5-2)','Urgent cargo moves fastest if loaded where it can be handled as an intact ULD']}})[l];
+ if(!W)return F.cgo_tl2('ja');setK(1);
+ var C=['#2F6FD6','#2E9B5F','#6B4FA0','#E08A2E'];
+ return TLINE(W.t,240,W.u,W.m.map(function(m,i){return [m[0],m[1],C[i]]}),false,W.n,'8s')},
+/* 6-4 乗り継ぎの2つの形：ULDのまま（90分前まで）と組み直し（180〜240分前まで） */
+cgo_trans:function(l){
+ var W=({ja:{t:'乗り継ぎの貨物：ULDのままか、組み直しか',a:'ULDのまま（スルー）',b:'組み直し',am:'接続便の90分前まで',bm:'接続便の180〜240分前まで',st:['到着','取り降ろし','（組み直し）','計量・書類','接続便へ'],n:['ULDのままなら組み直しがないので短い。到着便でULDごと乗り継ぎ用に積んでもらう','組み直しはULDをばらして積み直すので時間がかかる。保安の記録が途切れたら再検査','時間は例。接続の時間が短いときは、出発地と事前に段取りを決める']},
+  ko:{t:'환적 화물: ULD 그대로인가, 재작업인가',a:'ULD 그대로(스루)',b:'재작업',am:'연결편 90분 전까지',bm:'연결편 180~240분 전까지',st:['도착','하기','(재작업)','계량·서류','연결편으로'],n:['ULD 그대로면 재작업이 없어 짧다. 도착편에서 ULD째 환적용으로 실어 달라고 한다','재작업은 ULD를 풀어 다시 쌓으므로 시간이 걸린다. 보안 기록이 끊기면 재검색','시간은 예. 연결 시간이 짧으면 출발지와 미리 절차를 정한다']},
+  en:{t:'Transfer cargo: through ULD or rebuild',a:'Through ULD',b:'Rebuild',am:'By 90 min before the connecting flight',bm:'By 180–240 min before the connecting flight',st:['Arrival','Offload','(rebuild)','Weigh & documents','To connecting flight'],n:['A through ULD is quick because nothing is rebuilt; ask the origin to build it for the transfer','A rebuild breaks the ULD down and builds it again, so it takes longer; if the security record breaks, re-screen','Times are examples; with short connections agree the arrangements with the origin in advance']}})[l];
+ if(!W)return F.cgo_trans('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,dur='9s',lh=FS(10)*1.3;
+ [[W.a,W.am,'#2E9B5F',[0,1,3,4],0.45],[W.b,W.bm,'#E08A2E',[0,1,2,3,4],0.95]].forEach(function(c,k){var nh=LI(c[0]+'：'+c[1],11,560).length*FS(11)*1.3,hh=nh+FS(9)*3.4+64;
+  s+=R(20,y,600,hh,k?'#FFF7EC':'#F2FAF5',12)+WR(36,y+12+nh/2+FS(11)*0.35,c[0]+(l==='ja'?'：':': ')+c[1],11,'#0f3558',900,560,'start');
+  var by=y+nh+30,xs=[];c[3].forEach(function(j,i){xs.push(60+i*(500/(c[3].length-1)))});
+  s+='<line x1="60" y1="'+by+'" x2="560" y2="'+by+'" stroke="'+c[2]+'" stroke-width="4" opacity=".4"/>';
+  c[3].forEach(function(j,i){s+='<circle cx="'+xs[i]+'" cy="'+by+'" r="8" fill="#fff" stroke="'+c[2]+'" stroke-width="3"/>'+WR(xs[i],by+14+FS(9)*1.2,W.st[j],9,D,800,104)});
+  s+='<rect x="-9" y="-9" width="18" height="18" rx="3" fill="'+c[2]+'"><animateMotion dur="'+dur+'" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;'+c[4]+';1" calcMode="linear" path="M60 '+by+' L560 '+by+'"/></rect>';
+  y+=hh+10});
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

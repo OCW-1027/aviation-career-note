@@ -3,7 +3,8 @@
 set("6-1",{title:"The Export Timeline and How Much Cargo Fits: Working Back from Departure",hl:"export timeline",subtitle:"Booking confirmation, acceptance, documents, weighing, delivery to the aircraft and the document pouch; a timeline counted back from departure, and the cargo capacity of a passenger flight (ACL − passengers − baggage)",
 lead:["Cargo on a passenger flight moves in a fixed order towards departure: confirm the booking, receive it at the warehouse, accept the documents, build and weigh the ULDs, take them to the aircraft and finally hand the document pouch on board. If any step slips, cargo is offloaded or the flight is delayed.","Just as important is how much cargo the flight can take. On passenger flights, passengers and baggage come first and cargo gets what is left. This lesson checks the timeline and the capacity calculation with example figures."],
 sections:[
-{h:"A timeline counted back from departure (example)",blocks:[{t:"table",cols:["Task","Deadline (before departure)","Purpose"],rows:[
+{h:"A timeline counted back from departure (example)",blocks:[{t:"fig",id:"cgo_tl1",cap:"Animated figure: cut-off markers on an axis from 240 minutes before departure to zero; a dot moves left to right and the list below explains each number."},
+{t:"table",cols:["Task","Deadline (before departure)","Purpose"],rows:[
 ["Booking confirmation","24 hours","Fix the load and start warehouse and ramp preparation"],
 ["Acceptance cut-off (general cargo)","240 minutes","Time for acceptance, screening and build-up"],
 ["Acceptance cut-off (express)","180 minutes","Shorter only for urgent cargo"],
@@ -15,7 +16,8 @@ sections:[
 ["Transfer (intact ULD)","90 minutes before the connection","No rebuild needed"],
 ["Transfer (rebuild)","180–240 minutes before the connection","Time to break down and rebuild"]]},
 {t:"note",x:"* Figures are one airline’s passenger-flight example; they vary by airport, aircraft and handling contract (SLA, 7-5). Always check your own SOP."}]},
-{h:"Cargo capacity",blocks:[{t:"p",x:"On a passenger flight, cargo capacity is the allowable cabin load (ACL) minus passenger and baggage weights. The ACL is set by operations for each route and adjusted with actual data (dispatch course Part 5; load control 3-7)."},
+{h:"Cargo capacity",blocks:[{t:"fig",id:"cgo_acl",cap:"Animated figure: a 38,000 kg ACL bar fills with passengers, baggage and then cargo; what remains is the cargo allowance. Figures are fictional."},
+{t:"p",x:"On a passenger flight, cargo capacity is the allowable cabin load (ACL) minus passenger and baggage weights. The ACL is set by operations for each route and adjusted with actual data (dispatch course Part 5; load control 3-7)."},
 {t:"table",cols:["Item","Calculation (example)","Result"],rows:[
 ["ACL","From route analysis","38,000 kg"],
 ["Passengers","290 × standard weight 80 kg","23,200 kg"],
@@ -50,7 +52,8 @@ sections:[
 {name:"Hidden dangerous goods",x:"Check anything suspicious from its description, labels or weight (7-3)."},
 {name:"Safety data sheets (SDS/MSDS)",x:"Confirm chemicals are not dangerous goods with a valid sheet (e.g. within 3 years); open and check if in doubt."},
 {name:"Magnetized material",x:"Check the gauss report against the rules (7-3)."}]}]},
-{h:"Floor strength and spreading weight",blocks:[{t:"p",x:"Hold floors have a maximum load per square metre. Heavy items with small bases are placed on boards (shoring) to spread the load."},
+{h:"Floor strength and spreading weight",blocks:[{t:"fig",id:"cgo_floor",cap:"Animated figure: a 2,400 kg item on a small base exceeds the floor limit; spread on shoring to 2.0 m × 1.5 m, it falls within it."},
+{t:"p",x:"Hold floors have a maximum load per square metre. Heavy items with small bases are placed on boards (shoring) to spread the load."},
 {t:"table",cols:["Step","Calculation (example)"],rows:[
 ["Item","2,400 kg, base 1.2 m × 1.0 m = 1.2 m²"],
 ["Load on the base","2,400 ÷ 1.2 = 2,000 kg/m²"],
@@ -65,7 +68,8 @@ sections:[
 {name:"4 Light and small items",x:"Light items on top; small items in gaps or the centre to avoid loss."},
 {name:"5 Secure",x:"Spread heavy items on boards and tie down with ropes and straps."},
 {name:"6 Cover",x:"Fold up and tape the base sheet and cover the top; add another sheet in rain or snow."}]}]},
-{h:"Checking weight differences (UWS)",blocks:[{t:"p",x:"Weigh each built ULD and compare manifest and actual weights on the ULD weight statement (UWS). Record the weight of every material: ULD, boards, sheets and ropes."},
+{h:"Checking weight differences (UWS)",blocks:[{t:"fig",id:"cgo_uws",cap:"Animated figure: manifest and scale weights compared as bars; the 2.3% difference is over the 1% decision line."},
+{t:"p",x:"Weigh each built ULD and compare manifest and actual weights on the ULD weight statement (UWS). Record the weight of every material: ULD, boards, sheets and ropes."},
 {t:"table",cols:["Item","Example"],rows:[
 ["Manifest cargo weight (including materials)","3,050 kg"],
 ["Weighed","3,120 kg"],
@@ -96,7 +100,8 @@ sections:[
 {name:"ULD condition",x:"Check ULDs on the ramp for damage, wetness and loose nets."},
 {name:"Irregularity reports (IRR)",x:"Record damage, shortages, overages and label errors found during breakdown and report to the airline (4-3)."},
 {name:"Storage",x:"Store in the designated bonded area, with special cargo kept appropriately against damage or theft; report damaged cargo to customs and hold it."}]}]},
-{h:"Time to delivery (example)",blocks:[{t:"table",cols:["Task","Time after arrival (example)"],rows:[
+{h:"Time to delivery (example)",blocks:[{t:"fig",id:"cgo_tl2",cap:"Animated figure: notification, release and flight close-out markers on an axis from arrival to 240 minutes. SLA example."},
+{t:"table",cols:["Task","Time after arrival (example)"],rows:[
 ["Arrival notice to the consignee","Within 60 minutes"],
 ["Available for release (express, perishables, intact ULDs)","120 minutes"],
 ["Available for release (general, loose)","240 minutes"],
@@ -120,7 +125,8 @@ next:"6-4 Transfer cargo"});
 set("6-4",{title:"Transfer Cargo: Intact ULD or Rebuild?",hl:"transfer cargo",subtitle:"To or from other airlines’ flights: connecting times, checks on receipt, unbooked cargo and dangerous goods, security records and re-screening",
 lead:["Transfer cargo links two flights in a short time. Delays miss connections; skipped checks carry security or dangerous-goods problems straight onto the next flight.","This lesson covers the two forms, intact ULD or rebuild, checks when receiving from other airlines, and security records and re-screening under Korean and Japanese rules."],
 sections:[
-{h:"Two forms",blocks:[{t:"table",cols:["Form","What happens","Time (example)"],rows:[
+{h:"Two forms",blocks:[{t:"fig",id:"cgo_trans",cap:"Animated figure: a through ULD (top) moves quickly with no rebuild; a rebuild (bottom) passes an extra step. Times are examples."},
+{t:"table",cols:["Form","What happens","Time (example)"],rows:[
 ["Intact ULD (thru)","The ULD built at origin goes straight to the connection","90 minutes before the connection"],
 ["Rebuild","The ULD is broken down and rebuilt for the connection","180–240 minutes before the connection"],
 ["Loose handover","Pieces handed individually to another airline","As agreed with the other airline"]]},
