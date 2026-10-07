@@ -31,19 +31,22 @@ input[type=radio],input[type=checkbox]{width:auto;min-height:0}
 table{border-collapse:collapse;width:100%;font-size:14px}
 th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:middle}
 th{background:#f2f6fa;text-align:center;font-weight:600;font-size:13px}
-td.n{text-align:right;white-space:nowrap}td.c{text-align:center}
+td{text-align:center}td.n{text-align:center;white-space:nowrap}td.c{text-align:center}
+/* 表の文字はまん中に。路線などの名前は途中で折り返さない（2026.10） */
+table input,table select{text-align:center;text-align-last:center}
+td.rt{white-space:nowrap}.paper .tw td{white-space:nowrap}.paper .tw th{white-space:nowrap}.paper .tw th,.paper .tw td{padding:5px 5px}.paper .tw table{font-size:12.5px}
 table.ed input,table.ed select,html.sh table.ed input,html.sh table.ed select{min-width:86px;padding:5px 7px;min-height:34px}
 html[lang=ko] .card,html[lang=ko] .privacy,html[lang=ko] .note{word-break:keep-all;overflow-wrap:break-word}
 table.ed td.x,table.ed th.x{width:44px;text-align:center}
 tr.hit td{background:#fff6e5}tr.hit td:first-child{box-shadow:inset 4px 0 0 var(--cf)}
 .xb{border:0;background:none;color:var(--ng);font-size:18px;cursor:pointer;padding:2px 8px;min-height:32px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin:12px 0 4px}
-.kpi{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fbfdff}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fbfdff;text-align:center}
 .kpi span{display:block;font-size:12.5px;color:var(--muted)}.kpi b{font-size:21px}.kpi em{font-style:normal;font-size:12px;color:var(--muted);margin-left:6px}
 .res{border-left:5px solid var(--acc);background:#f2f8ff;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:15px}
 .res b{font-size:19px}.res.ng{border-color:var(--ng);background:#fdf1f3}.res.ok{border-color:var(--ok);background:#f0f8f6}
 .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:10px 0}
-.flow div{flex:1 1 150px;border:2px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}
+.flow div{flex:1 1 150px;border:2px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff;text-align:center;display:flex;flex-direction:column;justify-content:center}
 .flow div.k{border-color:var(--cf);background:#fff8f0}
 .flow span{display:block;font-size:12px;color:var(--muted)}.flow b{font-size:17px}
 .flow i{flex:none;align-self:center;font-style:normal;color:var(--muted);font-size:18px}
@@ -62,6 +65,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 @media print{.paper .tw{overflow:visible}.paper .tw table{font-size:10px}.paper .tw th,.paper .tw td{padding:3px 4px}}
 @media(max-width:700px){.paper{padding:18px 14px}}
 @media print{body{background:#fff}.tabs,#app>.note,.shbar,header,.bar,.privacy,#note,.shfoot,.nv-fab,#nv-copy,#app>.card:not(#docsec),#docsec>*:not(.paper){display:none!important}.paper hr{border:0;margin:0;break-after:page;page-break-after:always}.wrap{padding:0;max-width:none}#docsec{border:0;padding:0;margin:0}.paper{border:0;padding:0;margin:0}}
+/* 入力の表：路線グループの名前は折り返さない、選択欄は中身が見える幅に（2026.10） */
+table.ed tbody tr>:first-child{white-space:nowrap}
+table.ed select,html.sh table.ed select{min-width:132px}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="fsc"></script>
 <script src="../8_사이트/assets/member_config.js"></script>
@@ -149,6 +155,8 @@ smn:['原本の総括計算書と同じ形で、路線グループごとに日�
 tonn:['貨物の申請資料は、日本発の便の追加燃油コストに対して、日本発の旅客の負担分と貨物の負担分を合わせた補填率を出します。旅客数は「旅客の申請」の表に入れた日本発の旅客数を使います。','화물 신청 자료는 일본발 편의 추가 연료비에 대해, 일본발 여객 부담분과 화물 부담분을 합친 보전율을 냅니다. 여객 수는 「여객 신청」 표에 넣은 일본발 여객 수를 씁니다.','The cargo calculation sets the extra fuel cost of flights from Japan against the passenger share and the cargo share from Japan combined. Passenger numbers come from the “from Japan” column in the passenger filing.']};
 var FL={name:['会社名（申請書の表記）','회사명(신청서 표기)','Company name (as filed)'],addr:['本社の住所','본사 주소','Head office address'],jp:['日本の事務所の住所','일본 사무소 주소','Office address in Japan'],tel:['電話','전화','Telephone'],rep:['代表者（日本における代表者）','대표자(일본 내 대표자)','Representative (in Japan)'],min:['国土交通大臣の氏名','국토교통대신 이름','Name of the Minister (MLIT)'],docP:['文書番号（旅客）','문서 번호(여객)','Document no. (passenger)'],docC:['文書番号（貨物）','문서 번호(화물)','Document no. (cargo)'],date:['申請日','신청일','Filing date']};
 var T1=[['4月1日','2月','12月から1月'],['6月1日','4月','2月から3月'],['8月1日','6月','4月から5月'],['10月1日','8月','6月から7月'],['12月1日','10月','8月から9月'],['2月1日','12月','10月から11月']];
+function CL(){return LI?': ':'：'}
+function UC(x){return x.charAt(0).toUpperCase()+x.slice(1)}
 function t(k){return X[k][LI]}
 function $(i){return document.getElementById(i)}
 function each(q,f){Array.prototype.forEach.call(document.querySelectorAll(q),f)}
@@ -246,9 +254,9 @@ function sumtxt(R,cg){var b=cg?num(D.cg.base):num(D.base),cu=cg?R.costUc:R.costU
  if(num(D.ton)>0)s+='<tr><td>貨物：'+esc(D.cg.route)+'</td><td>'+fy(num(D.ton))+' トン × 1キログラム当り '+fy(R.ca)+' 円</td><td class="n">'+fy(R.incC/1000)+'</td></tr>';
  return s+'<tr><th colspan="2">合計</th><td class="n">'+fy(R.incJ/1000)+'</td></tr></table><p>追加燃油コスト補填率　② ÷ ① ＝ '+fy(R.incJ/1000)+' 千円 ÷ '+fy(cj/1000)+' 千円 ＝ '+pct(ra)+'</p>'}
 /* 旅客の総括計算書：原本の形（費用｜収入、路線グループ × 日本発・相手国発、合計と補填率） */
-function sumP(R){var b=num(D.base),s='<div class="tw"><table><tr><th rowspan="2">路線</th><th colspan="5">費用</th><th colspan="3">収入</th><th rowspan="2">補填率</th></tr><tr><th>方向</th><th>年間運航便数</th><th>年間総燃料消費量（バレル）</th><th>計算時燃料価格<br>（直近 − 基準）</th><th>追加コスト計（USD）</th><th>燃油サーチャージ設定額</th><th>年間設定旅客数</th><th>サーチャージ収入（USD）</th></tr>';
+function sumP(R){var b=num(D.base),s='<div class="tw"><table><tr><th rowspan="2">路線</th><th colspan="5">費用</th><th colspan="3">収入</th><th rowspan="2">補填率</th></tr><tr><th>方向</th><th>年間<br>運航便数</th><th>年間総燃料<br>消費量（バレル）</th><th>計算時燃料価格<br>（直近 − 基準）</th><th>追加コスト計<br>（USD）</th><th>燃油サーチャージ<br>設定額</th><th>年間設定<br>旅客数</th><th>サーチャージ収入<br>（USD）</th></tr>';
  D.pax.groups.forEach(function(g,i){var q=R.sp[i];['j','o'].forEach(function(d,k){
-  s+='<tr>'+(k?'':'<td rowspan="2">'+esc(g.name)+'</td>')+'<td class="c">'+(k?'相手国発':'日本発')+'</td><td class="n">'+fy(q.n[d])+'</td><td class="n">'+fy(q.b[d])+'</td>'+(k?'':'<td class="c" rowspan="2">USD '+f2(R.diff)+'<br>＝ '+f2(R.usd)+' − '+f2(b)+'</td>')+'<td class="n">'+fy(q.c[d])+'</td><td class="n">'+(k?(q.oc==='JPY'?fy(q.oa)+' 円':'USD '+f2(q.oa)):fy(R.pa[i])+' 円')+'</td><td class="n">'+fy(q.p[d])+' 人</td><td class="n">'+fy(q.i[d])+'</td>'+(k?'':'<td class="n" rowspan="2">'+pct(q.r)+'</td>')+'</tr>'})});
+  s+='<tr>'+(k?'':'<td class="rt" rowspan="2">'+esc(g.name)+'</td>')+'<td class="c">'+(k?'相手国発':'日本発')+'</td><td class="n">'+fy(q.n[d])+'</td><td class="n">'+fy(q.b[d])+'</td>'+(k?'':'<td class="c" rowspan="2">USD '+f2(R.diff)+'<br>（'+f2(R.usd)+' − '+f2(b)+'）</td>')+'<td class="n">'+fy(q.c[d])+'</td><td class="n">'+(k?(q.oc==='JPY'?fy(q.oa)+' 円':'USD '+f2(q.oa)):fy(R.pa[i])+' 円')+'</td><td class="n">'+fy(q.p[d])+' 人</td><td class="n">'+fy(q.i[d])+'</td>'+(k?'':'<td class="n" rowspan="2">'+pct(q.r)+'</td>')+'</tr>'})});
  s+='<tr><th colspan="5">合計</th><td class="n">'+fy(R.pCost)+'</td><th colspan="2"></th><td class="n">'+fy(R.pInc)+'</td><td class="n">'+pct(R.pCost>0?R.pInc/R.pCost:NaN)+'</td></tr></table></div>';
  return s+'<p>年間総燃料消費量 ＝ 年間運航便数 × 1便の燃油消費量'+(D.unit==='gal'?'（ガロン）÷ 42':'')+'<br>追加コスト計 ＝ 年間総燃料消費量 ×（直近燃油価格 USD '+f2(R.usd)+' − 基準燃油価格 USD '+f2(b)+'）<br>日本発のサーチャージ収入は、円の額に旅客数を掛け、為替平均（1.00USD＝'+f2(R.fx)+' 円）で米ドルに換算</p><p>燃油高騰による年間追加燃油コスト ……①　USD '+fy(R.pCost)+'（'+fy(R.pCost*R.fx/1000)+' 千円）<br>燃油サーチャージによる増収効果 ……②　USD '+fy(R.pInc)+'（'+fy(R.pInc*R.fx/1000)+' 千円）<br>追加燃油コスト補填率　② ÷ ① ＝ '+pct(R.pCost>0?R.pInc/R.pCost:NaN)+'</p>'}
 function docP(R){var p=D.pax,T=p.table,chg=p.kind==='chg',kw=chg?'変更':'設定',ti='国際旅客運賃の'+kw+'認可申請書',no=D.co.docP,h=head(no,ti),zero=null,top=0;
@@ -315,7 +323,7 @@ function render(){document.documentElement.lang=L;document.title=t('ttl');$('ttl
  s=sw()+'<div class="tw"><table class="ed"><thead><tr><th>'+esc(t('grp'))+'</th><th>'+esc(t('smPj'))+'</th><th>'+esc(t('smAj'))+'</th><th>'+esc(t('smPo'))+'</th><th>'+esc(t('smAo'))+'</th><th>'+esc(t('iCur'))+'</th><th>'+esc(t('rat'))+'</th></tr></thead><tbody>';
  P.groups.forEach(function(g,i){var m=D.sm[i]||{};s+='<tr><th>'+esc(g.name||(i+1))+'</th><td>'+inp('sm.'+i+'.pj',{n:1})+'</td><td class="n" id="sa'+i+'"></td><td>'+inp('sm.'+i+'.po',{n:1})+'</td><td>'+inp('sm.'+i+'.oa',{n:1})+'</td><td><select data-p="sm.'+i+'.oc"><option'+(m.oc!=='JPY'?' selected':'')+'>USD</option><option'+(m.oc==='JPY'?' selected':'')+'>JPY</option></select></td><td class="n" id="sr'+i+'"></td></tr>'});
  var s0=s;s='<table><thead><tr><th>'+esc(t('iLb'))+'</th><th>'+esc(t('iN'))+'</th><th>'+esc(t('iSrc'))+'</th><th>'+esc(t('iAmt'))+'</th><th>'+esc(t('iCur'))+'</th><th>'+esc(t('iSum'))+'</th><th class="x"></th></tr></thead><tbody>';
- [].forEach(function(x,i){var m=x.src==='m';s+='<tr><td>'+inp('inc.'+i+'.lb')+'</td><td>'+inp('inc.'+i+'.n',{n:1})+'</td><td><select data-p="inc.'+i+'.src" data-r="1">'+P.groups.map(function(g,k){return '<option value="g'+k+'"'+(x.src==='g'+k?' selected':'')+'>'+esc(t('iAuto')+'：'+(g.name||(k+1)))+'</option>'}).join('')+'<option value="m"'+(m?' selected':'')+'>'+esc(t('iMan'))+'</option></select></td>'+(m?'<td>'+inp('inc.'+i+'.amt',{n:1})+'</td><td><select data-p="inc.'+i+'.cur"><option'+(x.cur!=='USD'?' selected':'')+'>JPY</option><option'+(x.cur==='USD'?' selected':'')+'>USD</option></select></td>':'<td class="n" id="ia'+i+'"></td><td class="c">JPY</td>')+'<td class="n" id="ii'+i+'"></td><td class="x">'+xb('delI',i)+'</td></tr>'});
+ [].forEach(function(x,i){var m=x.src==='m';s+='<tr><td>'+inp('inc.'+i+'.lb')+'</td><td>'+inp('inc.'+i+'.n',{n:1})+'</td><td><select data-p="inc.'+i+'.src" data-r="1">'+P.groups.map(function(g,k){return '<option value="g'+k+'"'+(x.src==='g'+k?' selected':'')+'>'+esc(t('iAuto')+CL()+(g.name||(k+1)))+'</option>'}).join('')+'<option value="m"'+(m?' selected':'')+'>'+esc(t('iMan'))+'</option></select></td>'+(m?'<td>'+inp('inc.'+i+'.amt',{n:1})+'</td><td><select data-p="inc.'+i+'.cur"><option'+(x.cur!=='USD'?' selected':'')+'>JPY</option><option'+(x.cur==='USD'?' selected':'')+'>USD</option></select></td>':'<td class="n" id="ia'+i+'"></td><td class="c">JPY</td>')+'<td class="n" id="ii'+i+'"></td><td class="x">'+xb('delI',i)+'</td></tr>'});
  var hs=card(5,(doc==='p'?s0+'</tbody></table></div><p class="note">'+t('smn')+'</p>':'<div class="g3">'+lab(t('ton'),inp('ton',{n:1}))+'</div><p class="note">'+t('tonn')+'</p>')+'<div id="o_sum"></div>','',doc==='p'?'s5p':'s5c');
  /* ①〜③は共通。その下は、選んだタブ（旅客・貨物）だけを出す */
  h+=hf+'<div class="tabs" role="tablist">'+[['p','tabP'],['c','tabC']].map(function(q){return '<button type="button" role="tab" aria-selected="'+(doc===q[0])+'" class="'+(doc===q[0]?'on':'')+'" data-act="doc" data-v="'+q[0]+'">'+esc(t(q[1]))+'</button>'}).join('')+'</div><p class="note">'+t('tabn')+'</p>'+(doc==='p'?hp:hc)+hs;
@@ -326,21 +334,21 @@ function render(){document.documentElement.lang=L;document.title=t('ttl');$('ttl
 function kpi(a,b,c){return '<div class="kpi"><span>'+esc(a)+'</span><b>'+b+'</b>'+(c?'<em>'+esc(c)+'</em>':'')+'</div>'}
 function out(){var R=calc(),y=t('yen'),has=R.jpy>0,dl=D.ref.mode==='avg',P=D.pax,h='';
  $('o_ref').innerHTML=kpi(t('avU'),R.usd?'$'+f2(R.usd):'—',dl?'':R.nU+' '+t('days'))+kpi(t('avF'),R.fx?f2(R.fx)+' '+y:'—',dl?'':R.nF+' '+t('days'))+kpi(t('kJ'),has?fy(R.jpy)+' '+y:'—')+kpi(t('kR'),R.pj>=0&&!R.pover?fy(num(P.table[R.pj].th))+' '+y:'—');
- P.groups.forEach(function(g,i){var a=R.pa[i],c=num(g.cur);h+='<div class="res">'+esc(g.name||t('grp'))+'： '+fy(c)+' '+y+' → <b>'+(has?(a>0?fy(a)+' '+y:t('abo')):'—')+'</b>'+(has?'　（'+t('dif')+' '+(a-c>=0?'+':'−')+fy(Math.abs(a-c))+' '+y+'）':'')+'</div>'});
+ P.groups.forEach(function(g,i){var a=R.pa[i],c=num(g.cur);h+='<div class="res">'+esc(g.name||t('grp'))+CL()+fy(c)+' '+y+' → <b>'+(has?(a>0?fy(a)+' '+y:t('abo')):'—')+'</b>'+(has?'　（'+t('dif')+' '+(a-c>=0?'+':'−')+fy(Math.abs(a-c))+' '+y+'）':'')+'</div>'});
  if(R.pover)h+='<div class="res ng">'+t('over')+'</div>';if($('o_pax'))$('o_pax').innerHTML=h;
  each('#tp tbody tr',function(tr){tr.classList.toggle('hit',+tr.getAttribute('data-j')===R.pj)});
  var cc=num(D.cg.cur);
- if($('o_cg'))$('o_cg').innerHTML='<div class="res">'+esc(D.cg.route||t('cRoute'))+'： '+fy(cc)+' '+t('ykg')+' → <b>'+(R.usd>0?(R.ca>0?fy(R.ca)+' '+t('ykg'):t('abo')):'—')+'</b>'+(R.usd>0?'　（'+t('dif')+' '+(R.ca-cc>=0?'+':'−')+fy(Math.abs(R.ca-cc))+' '+t('ykg')+'）':'')+'</div>';
+ if($('o_cg'))$('o_cg').innerHTML='<div class="res">'+esc(D.cg.route||t('cRoute'))+CL()+fy(cc)+' '+t('ykg')+' → <b>'+(R.usd>0?(R.ca>0?fy(R.ca)+' '+t('ykg'):t('abo')):'—')+'</b>'+(R.usd>0?'　（'+t('dif')+' '+(R.ca-cc>=0?'+':'−')+fy(Math.abs(R.ca-cc))+' '+t('ykg')+'）':'')+'</div>';
  each('#tc tbody tr',function(tr){tr.classList.toggle('hit',+tr.getAttribute('data-j')===R.cj)});
  D.fl.forEach(function(x,i){if($('fa'+i))$('fa'+i).textContent=fy(R.fa[i])});$('ftot').textContent=fy(R.bblA);
  R.sp.forEach(function(q,i){if($('sa'+i))$('sa'+i).textContent=fy(R.pa[i]);if($('sr'+i))$('sr'+i).textContent=pct(q.r)});
  D.inc.forEach(function(x,i){if($('ia'+i))$('ia'+i).textContent=fy(R.il[i].amt);if($('ii'+i))$('ii'+i).textContent=fy(R.il[i].jpy/1000)});
  var mx=Math.max(R.costJ,R.incJ,1);
- $('o_sum').innerHTML='<div class="bars"><div><span>'+t('cost')+'： <b>'+fy(R.costJ/1000)+'</b> '+t('k')+'（$'+fy(R.costU)+'）</span><i style="width:'+(R.costJ/mx*100)+'%;background:var(--ng)"></i></div><div><span>'+t('inc')+'： <b>'+fy(R.incJ/1000)+'</b> '+t('k')+'（'+t('pc')+' '+fy(R.incP/1000)+' ＋ '+t('cc')+' '+fy(R.incC/1000)+'）</span><i style="width:'+(R.incJ/mx*100)+'%;background:var(--ok)"></i></div></div>'+(isFinite(R.ratio)?'<div class="res '+(R.ratio<=1?'ok':'ng')+'">'+t('rat')+'： <b>'+pct(R)+'</b>　'+t(R.ratio<=1?'ok':'ng')+'</div>':'')+(false?'<div class="res '+(R.ratioC<=1?'ok':'ng')+'">'+t('ratC')+'： <b>'+pct(R.ratioC)+'</b>　'+t(R.ratioC<=1?'ok':'ng')+'</div>':'');
+ $('o_sum').innerHTML='<div class="bars"><div><span>'+t('cost')+CL()+'<b>'+fy(R.costJ/1000)+'</b> '+t('k')+'（$'+fy(R.costU)+'）</span><i style="width:'+(R.costJ/mx*100)+'%;background:var(--ng)"></i></div><div><span>'+t('inc')+CL()+'<b>'+fy(R.incJ/1000)+'</b> '+t('k')+'（'+t('pc')+' '+fy(R.incP/1000)+' ＋ '+t('cc')+' '+fy(R.incC/1000)+'）</span><i style="width:'+(R.incJ/mx*100)+'%;background:var(--ok)"></i></div></div>'+(isFinite(R.ratio)?'<div class="res '+(R.ratio<=1?'ok':'ng')+'">'+t('rat')+CL()+'<b>'+pct(R)+'</b>　'+t(R.ratio<=1?'ok':'ng')+'</div>':'')+(false?'<div class="res '+(R.ratioC<=1?'ok':'ng')+'">'+t('ratC')+CL()+'<b>'+pct(R.ratioC)+'</b>　'+t(R.ratioC<=1?'ok':'ng')+'</div>':'');
  $('o_why').innerHTML=why(R);
  $('paper').innerHTML=doc==='p'?docP(R):docC(R)}
 function why(R){var y=t('yen'),has=R.jpy>0,g0=D.pax.groups[0]||{},th=R.pj>=0?fy(num(D.pax.table[R.pj].th)):'—',lo=R.cj>=0?fy(num(D.cg.table[R.cj].lo)):'—',W=[];
- var fl='<div class="flow"><div><span>'+t('avU')+'</span><b>'+(R.usd?'$'+f2(R.usd):'—')+'</b></div><i>×</i><div><span>'+t('avF')+'</span><b>'+(R.fx?f2(R.fx):'—')+'</b></div><i>＝</i><div class="k"><span>'+t('kJ')+'</span><b>'+(has?fy(R.jpy)+' '+y:'—')+'</b></div><i>→</i><div'+(doc==='c'?' style="display:none"':'')+'><span>'+t('pc')+'：'+esc(g0.name||'')+'</span><b>'+(has?(R.pa[0]>0?fy(R.pa[0])+' '+y:t('abo')):'—')+'</b></div><div'+(doc==='p'?' style="display:none"':'')+'><span>'+t('cc')+'：'+esc(D.cg.route||'')+'</span><b>'+(R.usd>0?(R.ca>0?fy(R.ca)+' '+t('ykg'):t('abo')):'—')+'</b></div></div>';
+ var fl='<div class="flow"><div><span>'+t('avU')+'</span><b>'+(R.usd?'$'+f2(R.usd):'—')+'</b></div><i>×</i><div><span>'+t('avF')+'</span><b>'+(R.fx?f2(R.fx):'—')+'</b></div><i>＝</i><div class="k"><span>'+t('kJ')+'</span><b>'+(has?fy(R.jpy)+' '+y:'—')+'</b></div><i>→</i><div'+(doc==='c'?' style="display:none"':'')+'><span>'+UC(t('pc'))+CL()+esc(g0.name||'')+'</span><b>'+(has?(R.pa[0]>0?fy(R.pa[0])+' '+y:t('abo')):'—')+'</b></div><div'+(doc==='p'?' style="display:none"':'')+'><span>'+UC(t('cc'))+CL()+esc(D.cg.route||'')+'</span><b>'+(R.usd>0?(R.ca>0?fy(R.ca)+' '+t('ykg'):t('abo')):'—')+'</b></div></div>';
  if(!has)return fl;
  var B0=D.base;if(doc==='c')D.base=D.cg.base;
  if(D.ref.mode!=='avg'){
