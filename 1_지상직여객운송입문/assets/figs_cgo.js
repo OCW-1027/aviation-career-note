@@ -233,7 +233,71 @@ cgo_semi:function(l){
   ko:{t:'반도체 장비를 운송하는 흐름(예)',st:['수출 관리: 해당·비해당을 판정하고 필요하면 허가를 받는다','포장: 방진·방습, 충격·기울기 센서를 붙인다','국내 운송: 에어 서스펜션 트럭으로 화물터미널에','화물터미널·탑재: 지게차 삽입 위치를 지키고 기체에 고정','도착: 센서와 포장을 확인하고 사진으로 기록','설치 장소로: 일정에 맞춰 국내 배송'],who:['제조사·화주','포장 회사','운송 회사','화물터미널·항공사','포워더','운송 회사']},
   en:{t:'Moving semiconductor equipment (example)',st:['Export control: classify the item and obtain a licence if required','Packing: anti-vibration and moisture protection, shock and tilt indicators','Road leg: air-suspension truck to the terminal','Terminal and loading: forklift points respected, secured to the aircraft','Arrival: check indicators and packing, record with photos','To the installation site: domestic delivery on schedule'],who:['Maker & shipper','Packing company','Haulier','Terminal & airline','Forwarder','Haulier']}})[l];
  if(!W)return F.cgo_semi('ja');setK(1);
- return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#2C7A7B','#E08A2E','#D64545','#2E9B5F'],'13s')}
+ return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#2C7A7B','#E08A2E','#D64545','#2E9B5F'],'13s')},
+/* 4-1 床下の搭載位置（中型機の例）：特別な貨物を位置に置き、重心の針が範囲に収まる */
+cgo_lplan:function(l){
+ var W=({ja:{t:'搭載の計画：床下の位置と重心（中型機の例・簡略化）',f:'前方の貨物室',a:'後方の貨物室',b:'ばら積み',cg:'重心',ok:'範囲の中',u:[['DG','危険物（9）'],['AVI','動物'],['PER','生鮮品'],['HEA','重量物']],n:['危険物と動物は離す。動物とドライアイスも離す','生鮮品と乗り継ぎの貨物は、到着後すぐに取り降ろせる扉の近くへ','重い物は床の強さと重心を見て置く。最後に重心が範囲に入るか確かめる']},
+  ko:{t:'탑재 계획: 하부 위치와 무게중심(중형기 예·단순화)',f:'전방 화물칸',a:'후방 화물칸',b:'벌크',cg:'무게중심',ok:'범위 안',u:[['DG','위험물(9)'],['AVI','동물'],['PER','신선품'],['HEA','중량물']],n:['위험물과 동물은 떨어뜨린다. 동물과 드라이아이스도 떨어뜨린다','신선품과 환적 화물은 도착 후 바로 내릴 수 있는 문 근처에','무거운 물건은 바닥 강도와 무게중심을 보고 둔다. 마지막에 무게중심이 범위 안인지 확인한다']},
+  en:{t:'Load plan: lower-deck positions and balance (wide-body example, simplified)',f:'Forward hold',a:'Aft hold',b:'Bulk',cg:'Centre of gravity',ok:'Within limits',u:[['DG','Dangerous goods (9)'],['AVI','Live animal'],['PER','Perishables'],['HEA','Heavy cargo']],n:['Keep dangerous goods away from animals, and animals away from dry ice','Put perishables and transfer cargo near the door so they come off first','Place heavy items with floor strength and balance in mind, then confirm the CG is within limits']}})[l];
+ if(!W)return F.cgo_lplan('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),dur='10s',y0=74;
+ s+='<path d="M30 '+(y0+50)+' Q30 '+y0+' 90 '+y0+' L560 '+y0+' Q610 '+y0+' 615 '+(y0+50)+' Q610 '+(y0+100)+' 560 '+(y0+100)+' L90 '+(y0+100)+' Q30 '+(y0+100)+' 30 '+(y0+50)+' Z" fill="#F4F7FB" stroke="#0f3558" stroke-width="2.5"/>';
+ s+=tx(205,y0-6,W.f,10,'#0f3558',800)+tx(445,y0-6,W.a,10,'#0f3558',800)+tx(570,y0+120,W.b,9,'#5B6B7D',700);
+ var pos=[100,150,200,250,300,380,430,480,530],tag={0:2,3:3,5:0,7:1,8:-1,2:-1},col=['#D64545','#2F6FD6','#2E9B5F','#6B4FA0'];
+ /* 番号 0-3 は特別な貨物、それ以外は一般 */
+ var place=[[1,2],[4,3],[5,0],[7,1]];
+ pos.forEach(function(x,i){s+='<rect x="'+(x-20)+'" y="'+(y0+22)+'" width="40" height="56" rx="4" fill="#fff" stroke="#9FB0C2" stroke-dasharray="4 3"/>'});
+ [0,2,3,6,8].forEach(function(i,k){var x=pos[i],a=(0.02+k*0.03).toFixed(2);s+='<rect x="'+(x-18)+'" y="'+(y0+24)+'" width="36" height="52" rx="4" fill="#CBD6E2" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+a+';'+(+a+0.03).toFixed(2)+';.93;1" dur="'+dur+'" repeatCount="indefinite"/></rect>'});
+ place.forEach(function(p,k){var x=pos[p[0]],c=col[p[1]],a=(0.2+k*0.12).toFixed(2),b=(0.24+k*0.12).toFixed(2);
+  s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+a+';'+b+';.93;1" dur="'+dur+'" repeatCount="indefinite"/><rect x="'+(x-18)+'" y="'+(y0+24)+'" width="36" height="52" rx="4" fill="'+c+'"/></g>'});
+ /* 重心のゲージ */
+ var gy=y0+150;s+=R(60,gy,520,18,'#E8EEF5',9)+'<rect x="230" y="'+gy+'" width="200" height="18" rx="4" fill="#2E9B5F" opacity=".35"/>'+tx(330,gy+40,W.ok,10,'#2E9B5F',800)+tx(60,gy-8,W.cg,10,'#0f3558',800,'start');
+ s+='<polygon points="0,-12 9,4 -9,4" fill="#0f3558"><animateTransform attributeName="transform" type="translate" values="120 '+(gy+16)+';120 '+(gy+16)+';500 '+(gy+16)+';300 '+(gy+16)+';350 '+(gy+16)+';350 '+(gy+16)+'" keyTimes="0;.2;.45;.65;.78;1" dur="'+dur+'" repeatCount="indefinite"/></polygon>';
+ var y=gy+56,lh=FS(11)*1.3;
+ W.u.forEach(function(u,i){var x=20+(i%2)*306,yy=y+Math.floor(i/2)*(lh+18);s+=R(x,yy,294,lh+12,'#fff',8,' stroke="#D5DEE8"')+'<rect x="'+(x+10)+'" y="'+(yy+6)+'" width="'+(FS(9)*3.4).toFixed(1)+'" height="'+lh+'" rx="4" fill="'+col[i]+'"/>'+tx(x+10+FS(9)*1.7,yy+6+lh/2+FS(9)*0.35,u[0],9,'#fff',900)+WR(x+20+FS(9)*3.4,yy+6+lh/2+FS(11)*0.35,u[1],11,D,800,200,'start')});
+ y+=2*(lh+18)+4;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-1 機長への通知（NOTOC）の主な欄（架空の例） */
+cgo_notoc:function(l){
+ var W=({ja:{t:'機長への通知（NOTOC）の例（架空・簡略化）',h:['品名・国連番号','分類','個数・重さ','位置'],r:[['LITHIUM ION BATTERIES PACKED WITH EQUIPMENT・UN3481','9','1・25kg','32P'],['DRY ICE・UN1845','9','2・20kg','42L'],['LIVE ANIMAL（犬）','—','1・45kg','11P']],n:['危険物は品名・国連番号・分類・量・位置を書き、機長が確かめて署名する','動物（11P）とドライアイス（42L）は離れた位置にある','搭載が変われば通知を作り直す。控えは出発地で保管する']},
+  ko:{t:'기장 통지(NOTOC) 예(가상·단순화)',h:['품명·UN 번호','분류','개수·무게','위치'],r:[['LITHIUM ION BATTERIES PACKED WITH EQUIPMENT·UN3481','9','1·25kg','32P'],['DRY ICE·UN1845','9','2·20kg','42L'],['LIVE ANIMAL(개)','—','1·45kg','11P']],n:['위험물은 품명·UN 번호·분류·양·위치를 적고 기장이 확인해 서명한다','동물(11P)과 드라이아이스(42L)는 떨어진 위치에 있다','탑재가 바뀌면 통지를 다시 만든다. 사본은 출발지에서 보관한다']},
+  en:{t:'NOTOC example (fictional, simplified)',h:['Name and UN number','Class','Pieces and weight','Position'],r:[['LITHIUM ION BATTERIES PACKED WITH EQUIPMENT, UN3481','9','1, 25 kg','32P'],['DRY ICE, UN1845','9','2, 20 kg','42L'],['LIVE ANIMAL (dog)','—','1, 45 kg','11P']],n:['For dangerous goods, list name, UN number, class, quantity and position; the captain checks and signs','The animal (11P) and the dry ice (42L) are in separate positions','If the load changes, reissue the notification; the origin station keeps a copy']}})[l];
+ if(!W)return F.cgo_notoc('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=58,lh=FS(10)*1.3,cw=[300,70,130,100],cx=[20,320,390,520];
+ var hh=0;W.h.forEach(function(h,i){hh=Math.max(hh,LI(h,9,cw[i]-10).length*FS(9)*1.3)});hh+=10;
+ W.h.forEach(function(h,i){s+=R(cx[i],y,cw[i],hh,'#0f3558',0)+WR(cx[i]+cw[i]/2,y+hh/2+FS(9)*0.35,h,9,'#fff',800,cw[i]-10)});y+=hh;
+ W.r.forEach(function(r,k){var rh=0;r.forEach(function(c,i){rh=Math.max(rh,LI(c,10,cw[i]-12).length*lh)});rh+=12;
+  s+='<g>';r.forEach(function(c,i){s+=R(cx[i],y,cw[i],rh,'#fff',0,' stroke="#9FB0C2"')+WR(i?cx[i]+cw[i]/2:cx[i]+8,y+rh/2+FS(10)*0.35,c,10,'#0f3558',800,cw[i]-14,i?'middle':'start')});
+  s+='<rect x="20" y="'+y+'" width="600" height="'+rh+'" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(k,3,0,.4)+' dur="9s" repeatCount="indefinite"/></rect></g>';y+=rh});
+ var L=LIST(W.n,y+14,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-2 搭載の電報（例）：行ごとに意味を示す（形式は簡略化） */
+cgo_cpm:function(l){
+ var W=({ja:{t:'ULDの配置の電報（例・形式は簡略化）',m:['CPM','KE704/07.HL8082.ICN','-11P/PMC12345KE/NRT/C/2450','-21L/AKE23456KE/NRT/B/620','-32P/PMC34567KE/NRT/C/1980','-42L/AKE45678KE/NRT/C/510'],x:['電報の種類：ULDの配置','便名・日付・機体の番号・出発地','位置11P：パレット、成田行き、貨物、2,450kg','位置21L：コンテナ、成田行き、手荷物、620kg','位置32P：パレット、成田行き、貨物、1,980kg','位置42L：コンテナ、成田行き、貨物、510kg'],n:['C＝貨物、B＝手荷物など、中身の区分が1文字で入る','到着地はこの電報を見て、取り降ろしの順番と人・機材を準備する','実際の書き方は会社と業界の標準で決まっている★']},
+  ko:{t:'ULD 배치 전문(예·형식은 단순화)',m:['CPM','KE704/07.HL8082.ICN','-11P/PMC12345KE/NRT/C/2450','-21L/AKE23456KE/NRT/B/620','-32P/PMC34567KE/NRT/C/1980','-42L/AKE45678KE/NRT/C/510'],x:['전문 종류: ULD 배치','편명·날짜·기체 번호·출발지','위치 11P: 팔레트, 나리타행, 화물, 2,450kg','위치 21L: 컨테이너, 나리타행, 수하물, 620kg','위치 32P: 팔레트, 나리타행, 화물, 1,980kg','위치 42L: 컨테이너, 나리타행, 화물, 510kg'],n:['C=화물, B=수하물 등 내용 구분이 한 글자로 들어간다','도착지는 이 전문을 보고 하기 순서와 인원·장비를 준비한다','실제 작성법은 회사와 업계 표준으로 정해져 있다★']},
+  en:{t:'Container/pallet message (example, simplified format)',m:['CPM','KE704/07.HL8082.ICN','-11P/PMC12345KE/NRT/C/2450','-21L/AKE23456KE/NRT/B/620','-32P/PMC34567KE/NRT/C/1980','-42L/AKE45678KE/NRT/C/510'],x:['Message type: ULD positions','Flight, date, registration, origin','Position 11P: pallet, to Narita, cargo, 2,450 kg','Position 21L: container, to Narita, baggage, 620 kg','Position 32P: pallet, to Narita, cargo, 1,980 kg','Position 42L: container, to Narita, cargo, 510 kg'],n:['One letter shows the contents: C for cargo, B for baggage and so on','The destination uses this message to plan the offload order, staff and equipment','Exact formats follow company and industry standards ★']}})[l];
+ if(!W)return F.cgo_cpm('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,lh=FS(10)*1.3,n=W.m.length;
+ W.m.forEach(function(m,i){var nx=LI(W.x[i],10,560).length,h=FS(11)*1.4+nx*lh+16;
+  s+='<g>'+R(20,y,600,h,i%2?'#fff':'#F4F7FB',6)+'<rect x="20" y="'+y+'" width="600" height="'+h+'" rx="6" fill="#FFD23F" opacity="0"><animate attributeName="opacity" '+SEG(i,n,0,.45)+' dur="12s" repeatCount="indefinite"/></rect>'+'<text x="34" y="'+(y+8+FS(11)).toFixed(1)+'" font-size="'+FS(11).toFixed(1)+'" font-weight="800" fill="#0f3558" font-family="ui-monospace,Consolas,monospace">'+m+'</text>'+WR(34,y+12+FS(11)*1.4+nx*lh/2,W.x[i],10,'#5B6B7D',700,560,'start')+'</g>';y+=h+3});
+ var L=LIST(W.n,y+10,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-3 事故の申し出の期限：受け取り（引き渡し）からの日数（国際の条約の例） */
+cgo_claim:function(l){
+ var W=({ja:{t:'事故の申し出の期限（国際の条約の例★）',d:'日',a:'受け取り',b:'破損：14日以内に書面で',c:'遅れ：21日以内に書面で',st:['発見したその場で写真','受取書に破損・不足を書く','書面で申し出る'],n:['破損は受け取りから14日以内、遅れは貨物を受け取れる状態になってから21日以内に申し出る（モントリオール条約）★','補償の限度は重さあたりで決まっている（1kgあたり約26SDR）★。高額の貨物は価格の申告や保険を','期限を過ぎると請求が難しくなる。まず記録、すぐに連絡']},
+  ko:{t:'사고 이의 제기 기한(국제 조약의 예★)',d:'일',a:'인수',b:'파손: 14일 이내에 서면으로',c:'지연: 21일 이내에 서면으로',st:['발견한 그 자리에서 사진','인수증에 파손·부족을 적는다','서면으로 이의를 제기한다'],n:['파손은 인수 후 14일 이내, 지연은 화물을 인수할 수 있게 된 날부터 21일 이내에 이의를 제기한다(몬트리올 협약)★','보상 한도는 무게당으로 정해져 있다(1kg당 약 26SDR)★. 고액 화물은 가격 신고나 보험을','기한이 지나면 청구가 어려워진다. 먼저 기록, 바로 연락']},
+  en:{t:'Time limits for complaints (international convention example ★)',d:'days',a:'Receipt',b:'Damage: in writing within 14 days',c:'Delay: in writing within 21 days',st:['Photos on the spot','Note damage or shortage on the receipt','Complain in writing'],n:['Damage within 14 days of receipt; delay within 21 days of the cargo being placed at the consignee’s disposal (Montreal Convention) ★','Liability is limited by weight (about 26 SDR per kg) ★; declare a value or insure high-value cargo','Miss the deadline and a claim becomes hard: record first, then report at once']}})[l];
+ if(!W)return F.cgo_claim('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),x0=60,x1=600,X=function(d){return x0+d/24*(x1-x0)},y=110,dur='8s';
+ s+='<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" stroke="#9FB0C2" stroke-width="4"/>';
+ [0,7,14,21].forEach(function(d){s+='<line x1="'+X(d)+'" y1="'+(y-8)+'" x2="'+X(d)+'" y2="'+(y+8)+'" stroke="#0f3558" stroke-width="2"/>'+tx(X(d),y+28,d+(l==='en'?' ':'')+W.d,10,'#0f3558',800)});
+ s+='<rect x="'+x0+'" y="'+(y-26)+'" width="0" height="12" rx="4" fill="#E08A2E"><animate attributeName="width" values="0;'+(X(14)-x0).toFixed(1)+';'+(X(14)-x0).toFixed(1)+'" keyTimes="0;.4;1" dur="'+dur+'" repeatCount="indefinite"/></rect>';
+ s+='<rect x="'+x0+'" y="'+(y-44)+'" width="0" height="12" rx="4" fill="#2F6FD6"><animate attributeName="width" values="0;0;'+(X(21)-x0).toFixed(1)+';'+(X(21)-x0).toFixed(1)+'" keyTimes="0;.3;.7;1" dur="'+dur+'" repeatCount="indefinite"/></rect>';
+ s+=tx(x0,y-54,W.a,10,'#0f3558',900,'start');
+ var ly=y+28+FS(10)+12,lh=FS(11)*1.3;
+ [[W.b,'#E08A2E'],[W.c,'#2F6FD6']].forEach(function(b,i){s+='<rect x="'+(20+i*306)+'" y="'+ly+'" width="14" height="14" rx="3" fill="'+b[1]+'"/>'+WR(40+i*306,ly+7+FS(11)*0.35,b[0],11,D,800,260,'start')});
+ var by=ly+Math.max(LI(W.b,11,260).length,LI(W.c,11,260).length)*lh+14;
+ W.st.forEach(function(t,i){var x=20+i*203,nl=LI(t,10,180).length,h=nl*FS(10)*1.3+20;s+=R(x,by,194,h,'#fff',10,' stroke="#D5DEE8"')+BADGE(x+16,by+h/2,i+1,9)+WR(x+34,by+h/2+FS(10)*0.35,t,10,D,800,152,'start')});
+ var maxh=0;W.st.forEach(function(t){maxh=Math.max(maxh,LI(t,10,180).length*FS(10)*1.3+20)});
+ var L=LIST(W.n,by+maxh+12,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

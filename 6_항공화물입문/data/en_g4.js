@@ -4,14 +4,15 @@ set("4-1",{title:"The Load Plan and Notification to the Captain",hl:"the load pl
 lead:["Where cargo is placed bears directly on the aircraft’s weight and balance. The load controller decides the positions from the combined weight of passengers, baggage, cargo and fuel, and tells the captain about any dangerous goods, animals or other special cargo.",
 "This article covers how the load plan is built, how positions are decided for special cargo, and what the notification to the captain (NOTOC) does (for passenger load control, see Ground Staff 3-4)."],
 sections:[
-{h:"How the load plan is built",blocks:[{t:"ladder",rise:10,steps:[{name:"Booking data",sub:"Weights and ULDs"},{name:"Load plan",sub:"Positions and centre of gravity"},{name:"Loading instruction",sub:"To the ramp"},{name:"Actual loading",sub:"Checked against the instruction"},{name:"Final calculation",sub:"The loadsheet"}]}]},
+{h:"How the load plan is built",blocks:[{t:"fig",id:"cgo_lplan",cap:"Animated figure: general and special cargo (dangerous goods, live animal, perishables, heavy) are placed in lower-deck positions, then the CG pointer settles within limits. Positions simplified."}]},
 {h:"Positions for special cargo",blocks:[{t:"table",cols:["Cargo","What decides the position"],rows:[
 ["Dangerous goods","Segregation by class, and a record the captain can read easily"],
 ["Live animals","A compartment with controlled temperature and ventilation, away from dry ice"],
 ["Perishables and pharmaceuticals","Temperature control, and a position that comes off quickly"],
 ["Heavy items","Floor strength and the effect on balance"],
 ["Transfer cargo","A position that can be unloaded first on arrival"]]}]},
-{h:"Notification to the captain (NOTOC)",blocks:[{t:"rows",items:[
+{h:"Notification to the captain (NOTOC)",blocks:[{t:"fig",id:"cgo_notoc",cap:"Animated figure: three lines of a fictional NOTOC (lithium ion batteries, dry ice, live animal) light up in turn; the animal and dry ice are in separate positions."},
+{t:"rows",items:[
 {name:"What it contains",x:"The type, quantity, position and UN number of dangerous goods and other special cargo."},
 {name:"Acceptance",x:"The captain checks it and signs."},
 {name:"Retention",x:"A copy is kept at the departure station for the required period."},
@@ -29,7 +30,8 @@ lead:["Once loading is done, the departure station sends the arrival station the
 "This article covers recording ULD weights, the main messages, the documents carried on board, and what is checked on arrival."],
 sections:[
 {h:"Recording ULD weights",blocks:[{t:"p",x:"For each ULD built up, record the number, destination, weight and the category of contents. That record — the ULD weight statement — feeds both the load plan and the manifest."}]},
-{h:"The main messages (examples)",blocks:[{t:"table",cols:["Type","What it carries"],rows:[
+{h:"The main messages (examples)",blocks:[{t:"fig",id:"cgo_cpm",cap:"Animated figure: a container/pallet message (example) read line by line, with the meaning of each line in grey. Format simplified."},
+{t:"table",cols:["Type","What it carries"],rows:[
 ["Load message","Weights and pieces by compartment: passengers, baggage, cargo and mail"],
 ["ULD positions","Which ULD is in which position"],
 ["Container pallet message","ULD numbers and destinations"],
@@ -61,7 +63,8 @@ sections:[
 {name:"Paperwork",x:"The irregularity report, the waybill number, and when, where and by whom it was found."},
 {name:"Noted at delivery",x:"Have the consignee write the damage or shortage on the delivery receipt."},
 {name:"Telling people",x:"Advise the departure station, the shipper’s side and the forwarder promptly."}]}]},
-{h:"Claims and prevention",blocks:[{t:"rows",items:[
+{h:"Claims and prevention",blocks:[{t:"fig",id:"cgo_claim",cap:"Animated figure: bars grow to the 14-day (damage) and 21-day (delay) complaint limits from receipt. International convention example ★."},
+{t:"rows",items:[
 {name:"Time limits",x:"International conventions set deadlines for complaints about damage and delay, for example 14 days from receipt for damage. Check the convention and the conditions on the waybill. ★"},
 {name:"Limits of liability",x:"The conventions cap liability by weight. For high-value cargo, a declared value or insurance matters."},
 {name:"Prevention",x:"Analyse where irregularities cluster — location, process, commodity — and feed it back into procedures, training and packing."}]},
