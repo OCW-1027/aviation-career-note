@@ -8,6 +8,8 @@ if(window.__SHELL)return;window.__SHELL=1;
 var me=document.currentScript,page=(me&&me.getAttribute('data-page'))||'';
 var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me.src).href:'#';
 try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'||q==='en')localStorage.setItem('art-lang',q);else if(['ja','ko','en'].indexOf(localStorage.getItem('art-lang'))<0)localStorage.setItem('art-lang',(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})())}catch(e){} /* 言語を選んだことのない人は端末の言語（2026.10） */
+/* 問題が1つの言語だけのページ（韓国・日本の試験問題）でも、上の行と下のボタンは選んだ言語で出す（2026.10） */
+if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)document.documentElement.setAttribute('data-ui',ul)}catch(e){}}
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
 var LIB={ja:'\u8cc7\u6599\u30fb\u30c4\u30fc\u30eb',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
 var NAME={load:{ja:'\u642d\u8f09\u7ba1\u7406\uff08W&B\uff09\u306e\u7df4\u7fd2',ko:'\ud0d1\uc7ac\uad00\ub9ac(W&B) \uc5f0\uc2b5',en:'Load Control (W&B) Practice'},
@@ -76,7 +78,7 @@ var css=
 'html.sh .wrap>header,html.sh .shhero{padding:20px 18px 18px!important;border-radius:20px!important}'+
 'html.sh input,html.sh select{min-height:40px}}';
 var st=document.createElement('style');st.textContent=css;(document.head||document.documentElement).appendChild(st);
-function lg(){var l=(document.documentElement.lang||'ja').slice(0,2);return SITE[l]?l:'ja'}
+function lg(){var l=(document.documentElement.getAttribute('data-ui')||document.documentElement.lang||'ja').slice(0,2);return SITE[l]?l:'ja'}
 function init(){var wrap=document.querySelector('.wrap')||document.body;if(document.querySelector('.shbar'))return;
  var bar=document.createElement('div');bar.className='shbar';
  bar.innerHTML='<a class="shbrand" href="'+HOME+'"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></i><span class="shsite"></span></a>'+

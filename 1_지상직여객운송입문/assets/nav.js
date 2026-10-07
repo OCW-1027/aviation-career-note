@@ -9,7 +9,7 @@ var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me).href:'#';
 var TX={ja:{top:'\u4e0a\u3078',back:'\u623b\u308b',home:'\u30db\u30fc\u30e0',prev:'\u524d\u306e\u56de',next:'\u6b21\u306e\u56de',toc:'\u76ee\u6b21',swipe:'\u2190 \u6a2a\u306b\u30b9\u30af\u30ed\u30fc\u30eb\u3067\u304d\u307e\u3059 \u2192'},
 ko:{top:'\ub9e8 \uc704\ub85c',back:'\ub4a4\ub85c',home:'\ud648',prev:'\uc774\uc804 \ud3b8',next:'\ub2e4\uc74c \ud3b8',toc:'\ubaa9\ucc28',swipe:'\u2190 \uc606\uc73c\ub85c \ubc00\uc5b4\uc11c \ubcf4\uae30 \u2192'},
 en:{top:'Top',back:'Back',home:'Home',prev:'Previous',next:'Next',toc:'Contents',swipe:'\u2190 Scroll sideways \u2192'}};
-function lang(){var l=(document.documentElement.lang||'ja').slice(0,2);return TX[l]?l:'ja'}
+function lang(){var l=(document.documentElement.getAttribute('data-ui')||document.documentElement.lang||'ja').slice(0,2);return TX[l]?l:'ja'}
 var css='.nv-hint{display:none;font-size:12px;color:#5b6b7d;text-align:right;margin:8px 4px -4px}.nv-hint.on{display:block}.nv-fab{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;z-index:9999}'+
 '.nv-fab button{display:flex;align-items:center;gap:6px;border:1px solid #d6dee8;background:#fff;color:#1d2a3a;border-radius:999px;padding:9px 13px;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:pointer;font-family:inherit}'+
 '.nv-fab button:hover{background:#eef5fd}.nv-fab .nv-top{display:none}.nv-fab.show .nv-top{display:flex}'+
@@ -59,7 +59,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* 著作権の表示（2026.09）：© の表示がないページにだけ、ページの最後に1行を付ける。言語の切り替えにも合わせる */
 (function(){if(window.__NV_COPY)return;window.__NV_COPY=1;
 var CP={ja:'\u00a9 2026 \u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8\u3000\u7121\u65ad\u8ee2\u8f09\u30fb\u8907\u88fd\u7981\u6b62',ko:'\u00a9 2026 \ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8\u3000\ubb34\ub2e8 \uc804\uc7ac\u00b7\ubcf5\uc81c \uae08\uc9c0',en:'\u00a9 2026 Aviation Career Note. All rights reserved.'};
-function lg(){var l=(document.documentElement.lang||'ja').slice(0,2);return CP[l]?l:'ja'}
+function lg(){var l=(document.documentElement.getAttribute('data-ui')||document.documentElement.lang||'ja').slice(0,2);return CP[l]?l:'ja'}
 function put(){if(!document.body)return;var e=document.getElementById('nv-copy');
  var has=[].some.call(document.querySelectorAll('footer,#foot,#siteFoot,.foot'),function(f){return f!==e&&f.textContent.indexOf('\u00a9')>=0});
  if(has){if(e)e.parentNode.removeChild(e);return}
@@ -68,3 +68,16 @@ function put(){if(!document.body)return;var e=document.getElementById('nv-copy')
 function go(){setTimeout(put,400);setTimeout(put,1500)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
 try{new MutationObserver(put).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})}catch(err){}})();
+/* かっこ書きの折り返し（2026.10）：表のマス・見出し・ボタン・ラベルなど短い文字の中の短いかっこ書き（20字まで）を1つのまとまりにし、
+   折り返すときはかっこの前で改行する。講座・資料とツール・トップページ・講座の目次に共通（レッスンの本文は article.js の pp() も同じ方法） */
+(function(){if(window.__PPW)return;window.__PPW=1;
+var SEL='th,td,label,button,h1,h2,h3,h4,dt,summary,b,strong,.kpi,.flow',RE=/[(\uff08][^()\uff08\uff09]{1,20}[)\uff09]/g,SKIP='x-pp,x-pw,script,style,textarea,option,select,code,pre,svg,input';
+function css(){if(document.getElementById('ppw-css'))return;var s=document.createElement('style');s.id='ppw-css';s.textContent='x-pw{display:inline}x-pp{display:inline-block}';(document.head||document.documentElement).appendChild(s)}
+function fix(root){if(!root||!root.querySelectorAll)return;var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),list=[],t;
+ while((t=w.nextNode())){RE.lastIndex=0;if(!RE.test(t.data))continue;var p=t.parentNode;if(!p||!p.closest||p.closest(SKIP)||!p.closest(SEL))continue;list.push(t)}
+ list.forEach(function(t){var d=t.data,pw=document.createElement('x-pw'),last=0;RE.lastIndex=0;var m;
+  while((m=RE.exec(d))){if(m.index>last)pw.appendChild(document.createTextNode(d.slice(last,m.index)));var x=document.createElement('x-pp');x.textContent=m[0];pw.appendChild(x);last=m.index+m[0].length}
+  if(last<d.length)pw.appendChild(document.createTextNode(d.slice(last)));if(t.parentNode)t.parentNode.replaceChild(pw,t)})}
+var q=null;function later(){if(q)return;q=setTimeout(function(){q=null;fix(document.body)},60)}
+function go(){css();fix(document.body);try{new MutationObserver(later).observe(document.body,{childList:true,subtree:true,characterData:true})}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();})();
