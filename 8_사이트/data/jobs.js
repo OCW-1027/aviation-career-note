@@ -3,6 +3,7 @@
    項目：id, sample, posted(掲載日), until(掲載終了日), lang(ja/ko/en/both),
          img(注目の求人バナーの写真。企業から受け取った写真を assets/jobs/ に置き、パスを書く。横長 1200×800 程度、jpg/png/webp/svg。
               使用許諾を得た写真に限る。空欄なら職種のイラスト), imgAlt(写真の説明), logo(任意・会社ロゴ),
+         country(求人の国：kr=韓国 / jp=日本。新しいトップページでは韓国語は kr、日本語は jp、英語は切り替えで表示。無ければ jp),
          ja/ko/en: company, title, job, place, emp, wage, hours, langReq, desc, apply(応募の方法) */
 window.JOBS=[
 {id:"sample-1",sample:true,posted:"2026-09-22",until:"2026-10-21",lang:"all",img:"assets/jobs/counter.svg",

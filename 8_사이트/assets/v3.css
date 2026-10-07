@@ -262,3 +262,4 @@ footer{background:#081828;color:#fff;padding:58px 24px}
 .navlinks a.on{color:var(--blue);font-weight:800}
 .business-grid.three{grid-template-columns:repeat(3,1fr)}
 @media(max-width:980px){.business-grid.three{grid-template-columns:1fr}}
+.mkt{display:flex;gap:6px;margin-top:14px}.mkt:empty{display:none}.mkt button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink)}.mkt button.on{background:var(--navy);border-color:var(--navy);color:#fff}

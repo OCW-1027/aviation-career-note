@@ -40,7 +40,7 @@ var CSS='@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;60
 '.acn-pill button{border:0;background:transparent;color:#4f5e69;font:inherit;font-size:12px;padding:3px 5px;border-radius:999px;cursor:pointer;min-height:0;min-width:0}'+
 '.acn-pill button.on{color:#1769e0;font-weight:800}.acn-pill i{font-style:normal;opacity:.5}'+
 '.acn-cta{display:inline-flex;align-items:center;background:#1769e0;color:#fff!important;border-radius:10px;padding:10px 15px;text-decoration:none!important;font-weight:800;font-size:13px}'+
-'.acn-crumb{max-width:1200px;margin:0 auto;padding:12px 24px 0;font:600 13px Inter,"Noto Sans JP","Noto Sans KR",sans-serif}.acn-crumb a{color:#1769e0!important;text-decoration:none}.acn-crumb a::before{content:"\\2190  "}'+
+'.acn-crumb{max-width:1200px;margin:0 auto;padding:12px 24px 0;font:600 13px Inter,"Noto Sans JP","Noto Sans KR",sans-serif}.acn-crumb a{color:#1769e0!important;text-decoration:none}.acn-crumb a::before{content:"\\2190  "}.acn-crumb .pict{display:none}.acn-crumb .series{display:inline;font:inherit}'+
 '.acn-ft{background:#081828;color:#fff!important;max-width:none!important;margin:60px 0 0!important;padding:52px 24px 40px!important;font-size:14px!important;font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;line-height:1.6}'+
 /* ページの CSS の footer{max-width…}・header{…} に引きずられないように */
 '.acn-hd{max-width:none!important;margin:0!important;padding:0!important}'+
