@@ -297,7 +297,46 @@ cgo_claim:function(l){
  var by=ly+Math.max(LI(W.b,11,260).length,LI(W.c,11,260).length)*lh+14;
  W.st.forEach(function(t,i){var x=20+i*203,nl=LI(t,10,180).length,h=nl*FS(10)*1.3+20;s+=R(x,by,194,h,'#fff',10,' stroke="#D5DEE8"')+BADGE(x+16,by+h/2,i+1,9)+WR(x+34,by+h/2+FS(10)*0.35,t,10,D,800,152,'start')});
  var maxh=0;W.st.forEach(function(t){maxh=Math.max(maxh,LI(t,10,180).length*FS(10)*1.3+20)});
- var L=LIST(W.n,by+maxh+12,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,by+maxh+12,600,11);return SVG(L.y+8,s+L.s)},
+/* 5-1 GSAを通るお金と情報の流れ（例） */
+cgo_gsa:function(l){
+ var W=({ja:{t:'GSAを通る予約・書類・お金の流れ（例）',st:['フォワーダーがGSAに予約を申し込む','GSAが航空会社に搭載の見込みを確かめ、予約を確定する','運送状（AWB）を発行し、在庫を管理する','月ごとに売上と予約の実績を航空会社に報告する','運賃は精算のしくみ（CASSなど）を通じて回収する★','手数料を差し引き、航空会社へ送金する'],who:['フォワーダー→GSA','GSA⇄航空会社','GSA','GSA→航空会社','フォワーダー→GSA','GSA→航空会社']},
+  ko:{t:'GSA를 거치는 예약·서류·돈의 흐름(예)',st:['포워더가 GSA에 예약을 신청한다','GSA가 항공사에 탑재 전망을 확인하고 예약을 확정한다','운송장(AWB)을 발행하고 재고를 관리한다','매달 매출과 예약 실적을 항공사에 보고한다','운임은 정산 시스템(CASS 등)을 통해 회수한다★','수수료를 뺀 뒤 항공사에 송금한다'],who:['포워더→GSA','GSA⇄항공사','GSA','GSA→항공사','포워더→GSA','GSA→항공사']},
+  en:{t:'Bookings, documents and money through a GSA (example)',st:['The forwarder requests a booking from the GSA','The GSA checks capacity with the airline and confirms','The GSA issues the air waybill and manages the stock','Each month the GSA reports sales and bookings to the airline','Charges are collected through a settlement system such as CASS ★','The GSA deducts its commission and remits to the airline'],who:['Forwarder → GSA','GSA ⇄ airline','GSA','GSA → airline','Forwarder → GSA','GSA → airline']}})[l];
+ if(!W)return F.cgo_gsa('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2F6FD6','#6B4FA0','#2C7A7B','#E08A2E','#2E9B5F','#D64545'],'13s')},
+/* 5-2 ハンドリング会社の品質の指標（3か月、架空）：目標の線を超えた月が赤 */
+cgo_kpi:function(l){
+ var W=({ja:{t:'ハンドリング会社の品質の指標（3か月・架空）',m:['7月','8月','9月'],k:[['積み残しの率（%）',[0.4,0.9,0.5],0.6],['事故の件数（件）',[2,1,4],3],['電報の遅れ（件）',[1,0,1],2]],g:'目標',n:['赤い棒は目標を超えた月。8月は積み残し、9月は事故が目標を超えた','月例の会議で原因（繁忙期の人員・機材の変更など）を確かめ、改善の期限を決める','数字だけでなく、点検で見た現場の様子とあわせて話し合う']},
+  ko:{t:'조업사 품질 지표(3개월·가상)',m:['7월','8월','9월'],k:[['미탑재율(%)',[0.4,0.9,0.5],0.6],['사고 건수(건)',[2,1,4],3],['전문 지연(건)',[1,0,1],2]],g:'목표',n:['빨간 막대는 목표를 넘은 달. 8월은 미탑재, 9월은 사고가 목표를 넘었다','월간 회의에서 원인(성수기 인원·기재 변경 등)을 확인하고 개선 기한을 정한다','숫자만이 아니라 점검에서 본 현장 모습과 함께 이야기한다']},
+  en:{t:'Handler quality indicators (three months, fictional)',m:['Jul','Aug','Sep'],k:[['Offload rate (%)',[0.4,0.9,0.5],0.6],['Irregularities (count)',[2,1,4],3],['Late messages (count)',[1,0,1],2]],g:'Target',n:['Red bars are months over target: offloads in August, irregularities in September','At the monthly meeting, find the cause (peak staffing, equipment changes) and set a deadline for the fix','Discuss the numbers together with what the audit saw on the floor']}})[l];
+ if(!W)return F.cgo_kpi('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,dur='6s';
+ W.k.forEach(function(k,i){var x0=20+i*203,mx=Math.max.apply(null,k[1].concat([k[2]]))*1.25,H=130,base=y+FS(10)*2.8+H+10,nt=LI(k[0],10,180).length;
+  s+=R(x0,y,194,H+FS(10)*1.3*nt+FS(10)*1.4+40,'#fff',10,' stroke="#D5DEE8"')+WR(x0+97,y+10+nt*FS(10)*1.3/2,k[0],10,'#0f3558',800,180);
+  var gy=base-k[2]/mx*H;s+='<line x1="'+(x0+10)+'" y1="'+gy.toFixed(1)+'" x2="'+(x0+184)+'" y2="'+gy.toFixed(1)+'" stroke="#E08A2E" stroke-width="2" stroke-dasharray="6 4"/>'+tx(x0+12,gy-5,W.g,8.5,'#E08A2E',800,'start');
+  k[1].forEach(function(v,j){var bh=v/mx*H,bx=x0+28+j*52,over=v>k[2];s+='<rect x="'+bx+'" y="'+base+'" width="34" height="0" fill="'+(over?'#D64545':'#2F6FD6')+'" rx="3"><animate attributeName="height" values="0;'+bh.toFixed(1)+';'+bh.toFixed(1)+'" keyTimes="0;.4;1" dur="'+dur+'" begin="'+(j*0.3)+'s" fill="freeze"/><animate attributeName="y" values="'+base+';'+(base-bh).toFixed(1)+';'+(base-bh).toFixed(1)+'" keyTimes="0;.4;1" dur="'+dur+'" begin="'+(j*0.3)+'s" fill="freeze"/></rect>'+tx(bx+17,base+FS(9)*1.3,W.m[j],9,'#334155',800)});
+  if(i===2)y=y});
+ var L=LIST(W.n,y+130+FS(10)*1.3*2+FS(10)*1.4+56,600,11);return SVG(L.y+8,s+L.s)},
+/* 5-3 ベリーの収入（1便、架空）：使える重さと実際に積んだ重さ、単価から収入と搭載率 */
+cgo_rev:function(l){
+ var W=({ja:{t:'1便の貨物の収入（B787のベリー・架空の例）',a:'使える重さ（旅客・手荷物の残り）',b:'実際に積んだ重さ',c:'積み残し',v:['10,000kg','8,000kg','500kg'],f:[['収入','8,000kg × 300円 ＝ 240万円'],['搭載率','8,000 ÷ 10,000 ＝ 80%'],['積み残し500kgを載せていれば','＋15万円']],n:['旅客・手荷物が多い日は使える重さが減る。予約の前に見込みを早めに出す','単価（イールド）と搭載率の両方を見る。安く満載するより、高い品目を確実に載せる方が収入が多いこともある','数字はすべて架空の例']},
+  ko:{t:'한 편의 화물 수입(B787 벨리·가상의 예)',a:'사용 가능 무게(여객·수하물을 뺀 나머지)',b:'실제로 실은 무게',c:'미탑재',v:['10,000kg','8,000kg','500kg'],f:[['수입','8,000kg × 300엔 = 240만 엔'],['탑재율','8,000 ÷ 10,000 = 80%'],['미탑재 500kg을 실었다면','+15만 엔']],n:['여객·수하물이 많은 날은 쓸 수 있는 무게가 줄어든다. 예약 전에 전망을 일찍 낸다','단가(일드)와 탑재율을 함께 본다. 싸게 가득 싣기보다 비싼 품목을 확실히 싣는 쪽이 수입이 많을 때도 있다','숫자는 모두 가상의 예']},
+  en:{t:'Cargo revenue on one flight (B787 belly, fictional)',a:'Available weight (after passengers and baggage)',b:'Weight actually loaded',c:'Offloaded',v:['10,000 kg','8,000 kg','500 kg'],f:[['Revenue','8,000 kg × ¥300 = ¥2.4m'],['Load factor','8,000 ÷ 10,000 = 80%'],['Had the 500 kg offload flown','+¥150,000']],n:['Busy passenger days leave less weight for cargo; give the capacity forecast early, before bookings','Watch both yield and load factor: carrying high-value cargo reliably can earn more than filling up cheaply','All figures are fictional']}})[l];
+ if(!W)return F.cgo_rev('ja');setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(10)*1.3,dur='6s';
+ [[W.a,W.v[0],10000,'#CBD6E2'],[W.b,W.v[1],8000,'#2F6FD6'],[W.c,W.v[2],500,'#D64545']].forEach(function(b,i){var nl=LI(b[0]+' '+b[1],10,560).length,bw=b[2]/10000*560;
+  s+=WR(30,y+nl*lh/2+FS(10)*0.35,b[0]+'　'+b[1],10,D,800,560,'start');y+=nl*lh+4;
+  s+='<rect x="30" y="'+y+'" width="0" height="18" rx="5" fill="'+b[3]+'"><animate attributeName="width" values="0;'+bw.toFixed(1)+';'+bw.toFixed(1)+'" keyTimes="0;.4;1" dur="'+dur+'" begin="'+(i*0.3)+'s" fill="freeze"/></rect>';y+=30});
+ W.f.forEach(function(f,i){var t=f[0]+(l==='ja'?'：':': ')+f[1],nl=LI(t,11,560).length,h=nl*FS(11)*1.3+16;s+=R(20,y,600,h,i===2?'#FFF6F6':'#F2FAF5',8)+WR(34,y+h/2+FS(11)*0.35,t,11,i===2?'#D64545':'#0f3558',900,560,'start');y+=h+5});
+ var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
+/* 5-4 貨物の仕事のキャリア（例）：現場から管理・営業へ。右は役に立つ資格・教育 */
+cgo_career:function(l){
+ var W=({ja:{t:'貨物の仕事のキャリア（例）',st:['上屋の作業：受け付け・計量・ビルドアップ・保管','ロードコントロール・危険物の受け付け','品質・安全の管理、またはフォワーダー・GSAの営業','空港の支店の貨物の責任者','本社の貨物部門：路線の計画・運賃・提携'],who:['フォークリフトなどの技能','危険物の教育（定期）','貿易の実務・通関士★','語学（英語・韓国語）','収入管理・契約']},
+  ko:{t:'화물 업무의 커리어(예)',st:['화물터미널 작업: 접수·계량·빌드업·보관','로드 컨트롤·위험물 접수','품질·안전 관리, 또는 포워더·GSA 영업','공항 지점 화물 책임자','본사 화물 부문: 노선 계획·운임·제휴'],who:['지게차 등 기능','위험물 교육(정기)','무역 실무·관세사★','어학(영어·일본어)','수입 관리·계약']},
+  en:{t:'A career in cargo (example)',st:['Terminal work: acceptance, weighing, build-up, storage','Load control and dangerous goods acceptance','Quality and safety management, or forwarder/GSA sales','Head of cargo at an airport station','Head-office cargo: route planning, rates and partnerships'],who:['Forklift and other skills','Dangerous goods training (recurrent)','Trade practice, customs broker ★','Languages (English, Japanese, Korean)','Revenue management, contracts']}})[l];
+ if(!W)return F.cgo_career('ja');setK(1);
+ return STEPS(W.t,W.st,W.who,['#2C7A7B','#2F6FD6','#6B4FA0','#E08A2E','#D64545'],'12s')}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

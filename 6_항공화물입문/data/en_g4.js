@@ -85,7 +85,8 @@ sections:[
 {name:"Bookings",x:"Taking bookings, managing the loading outlook, advising offloads."},
 {name:"Documents",x:"Holding waybill stock, controlling issuance, reporting sales."},
 {name:"Settlement",x:"Invoicing and collecting the freight charges and remitting to the airline."}]}]},
-{h:"How the work splits (example)",blocks:[{t:"table",cols:["The airline","The GSA"],rows:[
+{h:"How the work splits (example)",blocks:[{t:"fig",id:"cgo_gsa",cap:"Animated figure: how bookings, documents and money flow between forwarder, GSA and airline, in six steps that light up in turn."},
+{t:"table",cols:["The airline","The GSA"],rows:[
 ["Sets the rate policy and the sales targets","Sells within that policy"],
 ["Makes the final loading decision","Adjusts bookings and advises"],
 ["Contracts with the handling company","Is the day-to-day contact on the ground"],
@@ -113,7 +114,8 @@ sections:[
 {name:"Build-up",x:"Weight limits, contour, securing and ULD damage inspections."},
 {name:"Storage",x:"Temperature control, bonded control and the valuables area."},
 {name:"Documents and messages",x:"The accuracy and timing of manifests and load messages."}]}]},
-{h:"The monthly meeting",blocks:[{t:"table",cols:["Agenda","Content"],rows:[
+{h:"The monthly meeting",blocks:[{t:"fig",id:"cgo_kpi",cap:"Animated figure: three handler quality indicators over three months; the dotted line is the target and bars over it are red. Figures are fictional."},
+{t:"table",cols:["Agenda","Content"],rows:[
 ["Performance","Tonnage handled, offloads, irregularity numbers"],
 ["Quality","Check results, findings and improvements"],
 ["Special cargo","How dangerous goods, pharmaceuticals and the rest are running"],
@@ -135,7 +137,8 @@ set("5-3",{title:"Cargo Revenue and How Rates Work",hl:"cargo revenue",subtitle:
 lead:["Passengers are the core of a passenger flight’s revenue, but belly cargo is not marginal. In weak seasons and on thin routes, cargo revenue can be what keeps a flight viable.",
 "This article covers what drives cargo revenue, the types of rate, and how to grow it. Actual amounts and contract terms are not covered."],
 sections:[
-{h:"What drives the revenue",blocks:[{t:"table",cols:["Driver","What it means"],rows:[
+{h:"What drives the revenue",blocks:[{t:"fig",id:"cgo_rev",cap:"Animated figure: bars compare available weight, weight loaded and offloads on one belly flight, then revenue and load factor are worked out. Figures are fictional."},
+{t:"table",cols:["Driver","What it means"],rows:[
 ["Volume carried","The chargeable weight actually loaded"],
 ["Rate level","Set by supply and demand, competition and commodity"],
 ["Special handling","Surcharges for dangerous goods, temperature control and outsized cargo"],
@@ -175,7 +178,8 @@ sections:[
 {name:"Trade knowledge",x:"Incoterms, invoices and the basics of insurance."},
 {name:"Languages",x:"English is essential for documents and messages, and a further language is a real advantage on the routes you serve."},
 {name:"Equipment skills",x:"Some warehouse work requires certified training, for example on forklifts."}]}]},
-{h:"Career paths and the course route",blocks:[{t:"rows",items:[
+{h:"Career paths and the course route",blocks:[{t:"fig",id:"cgo_career",cap:"Animated figure: a sample career from terminal work to head-office cargo lights up in turn, with useful qualifications and training on the right."},
+{t:"rows",items:[
 {name:"From the floor to management",x:"Warehouse work, then load control, then quality and safety, then management."},
 {name:"Moving between employers",x:"Handling company, then forwarder, then airline or GSA cargo sales."},
 {name:"How cargo differs",x:"Your customers are companies: shippers and forwarders. Accuracy in documents, data and rules counts for even more."},
