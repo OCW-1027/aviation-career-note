@@ -4,7 +4,7 @@ set("7-1",{title:"Travel Agencies, GDS and BSP: Starting Sales",hl:"starting sal
 lead:["However well the operation is prepared, a route does not survive unless the seats sell. In the Japanese market travel agencies carry a great deal of the selling, especially for packages and groups, and being in the GDS and the BSP is the precondition for that.",
 "This article covers the steps to start selling, building relationships with the trade, preparing the GDS and BSP, distributing fares and policing ticketing, direct sales, and the bodies worth knowing."],
 sections:[
-{h:"The steps (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Understand the market",sub:"Competitors’ schedules and fares, demand"},{name:"Set the sales policy",sub:"The group and individual mix, the main channels"},{name:"GDS and BSP",sub:"Contracts and participation"},{name:"Brief the trade",sub:"Announce the service, distribute fares"},{name:"Start selling",sub:"Share the booking position and support the channels"}]}]},
+{h:"The steps (example)",blocks:[{t:"fig",id:"opn_sales",cap:"Animated figure: launching sales (example)."},{t:"ladder",rise:10,steps:[{name:"Understand the market",sub:"Competitors’ schedules and fares, demand"},{name:"Set the sales policy",sub:"The group and individual mix, the main channels"},{name:"GDS and BSP",sub:"Contracts and participation"},{name:"Brief the trade",sub:"Announce the service, distribute fares"},{name:"Start selling",sub:"Share the booking position and support the channels"}]}]},
 {h:"Building relationships with the trade",blocks:[{t:"check",items:[
 {name:"Announcing the service",x:"Once the launch is decided, call on the air ticket buyers and product planners at the main agencies."},
 {name:"Sharing the policy",x:"Set the sales target from Japan and the group and individual mix, allowing for limited brand recognition, the timings and the frequency."},
@@ -36,7 +36,7 @@ set("7-2",{title:"The Airport Operators Committee and the Bodies Around It",hl:"
 lead:["The airport operators committee is the body of airlines serving an airport. Because using shared facilities, dealing with the airport company and cooperating in emergencies all run through it, joining before launch is essential (for an overview see Ground Staff 6-5).",
 "This article covers how to join, the fees and the meetings, the shared facilities accessed through it, the relationship with the terminal’s lead airline, and the other bodies to know."],
 sections:[
-{h:"Joining (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Contact the secretariat",sub:"Your intention to join and the launch date"},{name:"Application",sub:"Company details and contacts"},{name:"The constitution",sub:"Read the current version"},{name:"Fees",sub:"The annual fee, invoiced and paid"},{name:"Attend",sub:"Terminal and full committees"}]},
+{h:"Joining (example)",blocks:[{t:"fig",id:"opn_aoc",cap:"Animated figure: joining the AOC (example)."},{t:"ladder",rise:10,steps:[{name:"Contact the secretariat",sub:"Your intention to join and the launch date"},{name:"Application",sub:"Company details and contacts"},{name:"The constitution",sub:"Read the current version"},{name:"Fees",sub:"The annual fee, invoiced and paid"},{name:"Attend",sub:"Terminal and full committees"}]},
 {t:"note",x:"* Procedures, fees and meeting patterns differ by committee. ★"}]},
 {h:"Fees and budget",blocks:[{t:"rows",items:[
 {name:"Annual fee",x:"Usually invoiced once a year, for example at the start of the year with payment due some months later. The timing can move, so budget it in the right quarter."},
@@ -65,7 +65,7 @@ set("7-3",{title:"The First Year’s Operating Calendar",hl:"the operating calen
 lead:["The first year after launch is when you meet every annual procedure for the first time: the monthly close, the seasonal approvals, the yearly security, tax and employment filings, and the first audits. Get the records and procedures right here and year two is simply a repeat.",
 "This article sets out the milestones of the first year, the monthly rhythm and the main annual procedures, and how to make the station’s operation stick (for the monthly and annual detail see also Ground Staff 6-6)."],
 sections:[
-{h:"Milestones of the first year (example)",blocks:[{t:"table",cols:["When","Milestone"],rows:[
+{h:"Milestones of the first year (example)",blocks:[{t:"fig",id:"opn_year",cap:"Animated figure: milestones in the first year after launch (example)."},{t:"table",cols:["When","Milestone"],rows:[
 ["Launch to one month","The station manager and duty managers attend every flight, find problems early and correct the SOP"],
 ["To three months","Monthly meetings with the handling company settle in, quality checks start, invoice reconciliation is established"],
 ["The first season change","Filing the next season’s schedule, slots and fares for the first time on your own (Part 1)"],

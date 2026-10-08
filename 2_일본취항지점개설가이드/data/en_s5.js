@@ -4,7 +4,7 @@ set("5-1",{title:"The Security Programme and Training Plan: The Annual Revision"
 lead:["A foreign airline serving Japan must produce its own aviation security programme for its operations there and file it with the transport ministry, together with an annual plan for security training for its own staff and the handling company’s.",
 "This article covers what these documents are, the annual revision cycle, when a revision is needed immediately, and how to respond when the authorities change their standards. The content of a security programme is sensitive security information, so only the procedure and the thinking are described here."],
 sections:[
-{h:"The documents filed",blocks:[{t:"table",cols:["Document","What it is","Frequency (example)"],rows:[
+{h:"The documents filed",blocks:[{t:"fig",id:"opn_avsec",cap:"Animated figure: security documents filed with the authority (example)."},{t:"table",cols:["Document","What it is","Frequency (example)"],rows:[
 ["Your own aviation security programme","The security structure and measures for your operations in Japan, showing where they differ from the authorities’ model programme","Reviewed at least once a year (April to March)"],
 ["Security training plan","The annual training plan for your own staff and the handling company","Filed once a year"],
 ["Security training procedures","How the training is actually delivered","Reviewed annually; advise if unchanged"],
@@ -34,7 +34,7 @@ set("5-2",{title:"Security Instructors and Airport Passes",hl:"security instruct
 lead:["Japan requires airlines to appoint an aviation security instructor. A foreign carrier must have at least one in Japan, responsible for security training of its own staff and of the handling company.",
 "This article covers qualifying and renewing as an instructor, the role, the security course required for an airport pass, handling restricted areas, and keeping the training records."],
 sections:[
-{h:"Qualifying and renewing (example)",blocks:[{t:"table",cols:["Course","What it involves"],rows:[
+{h:"Qualifying and renewing (example)",blocks:[{t:"fig",id:"opn_instr",cap:"Animated figure: security instructors and airport ID (example)."},{t:"table",cols:["Course","What it involves"],rows:[
 ["Initial course","About two days. Dates are announced annually, so apply early to fit your launch plan"],
 ["Recurrent course","About a day a year, sometimes online. Without it the qualification lapses"],
 ["How many","At least one in Japan. Having a manager qualified as well as the station manager covers leave and transfers"]]},
@@ -65,7 +65,7 @@ set("5-3",{title:"Preparing for the Authorities’ Audits",hl:"audits",subtitle:
 lead:["A foreign airline serving Japan is audited by the transport ministry on security, dangerous goods, safety and cabin matters, alongside head office audits and inspections by its own authority. Preparation is not something done on the day; it is the daily records.",
 "This article covers the types of audit and when they come, what is looked at most closely, what to have ready, and how to respond to findings. It draws on several airlines’ experience, and methods change from year to year."],
 sections:[
-{h:"Types of audit (example)",blocks:[{t:"table",cols:["Audit","When and what"],rows:[
+{h:"Types of audit (example)",blocks:[{t:"fig",id:"opn_audit",cap:"Animated figure: audits and inspections a station faces (example)."},{t:"table",cols:["Audit","When and what"],rows:[
 ["Ministry audit (security, dangerous goods)","Once a year. Dates are announced early in the year and differ by airport; airlines are notified one to two months ahead"],
 ["Unannounced inspection","Added from around the second half of 2024. It looks at the operation as it really runs"],
 ["Dangerous goods audit","On the handling of dangerous goods, when the authorities make contact"],
@@ -96,7 +96,7 @@ set("5-4",{title:"Emergency Response Planning and Joint Airport Exercises",hl:"e
 lead:["Airlines hold an emergency response plan for an accident or serious incident. An overseas station is the first point of response, whether the accident happens at its own airport or on a flight heading there.",
 "This article covers what an emergency response plan contains, the station’s role and the idea of action cards, the team sent from head office, the airport’s own emergency plan and joint exercises, and what to keep ready in normal times. Contact lists and detailed procedures are internal, so only the thinking is described."],
 sections:[
-{h:"What the plan contains (example)",blocks:[{t:"table",cols:["Element","What it covers"],rows:[
+{h:"What the plan contains (example)",blocks:[{t:"fig",id:"opn_erp",cap:"Animated figure: how an emergency response plan is organised (example)."},{t:"table",cols:["Element","What it covers"],rows:[
 ["Emergency operations centre","Set up at head office; gathers information and decides"],
 ["Local response","The station at the airport concerned, or the intended arrival airport, responds first"],
 ["Go team","The team sent from head office to the site"],

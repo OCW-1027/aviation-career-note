@@ -1007,7 +1007,80 @@ opn_quar:function(l){
   ko:{t:'취항 전에 세관·검역과 확인할 것(예)',c:[['검역','기내 방송 문안·음성, 유행 시 협력, 기내 급환자 연락'],['입국의 전자화','도착 전 온라인 신고 등. 승객 안내에 넣는다'],['동물·식물','반입 제한. 육류 가공품·과일 등 안내']],n:['면세 제도는 재검토가 진행 중이다(리펀드 방식 등). 최신 제도를 확인한다(★)','담당 창구와 연락처를 지점 SOP에 적어 둔다']},
   en:{t:'What to confirm with customs and quarantine before launch (example)',c:[['Quarantine','In-flight announcement texts and audio, cooperation in outbreaks, reporting ill passengers'],['Digital entry','Online declarations before arrival; include them in passenger information'],['Animals and plants','Import restrictions; guidance on meat products, fruit and so on']],n:['Tax-free shopping rules are being revised (for example a refund model); check the current scheme (★)','Write the contact points into the station SOP']}})[l];
  if(!W)return F.opn_quar('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== OPN Part 5〜7 の図 2026.10 ===== */
+opn_avsec:function(l){
+ var W=({ja:{t:'当局に届け出る保安の書類（例）',r:[['自社の航空保安計画','日本での保安の体制と措置。当局の標準との違いを示す','#D64545'],['保安教育訓練の実施計画','自社とハンドリング会社の年間の教育計画','#1769e0'],['保安教育訓練の実施要領','教育訓練の具体的な進め方','#2C8C8C'],['自己監査の結果','保安の自己監査の報告','#7A5CC7']],n:['年1回の改訂に加え、体制・ハンドリング会社・基準が変わったらすぐ改訂する（★）']},
+  ko:{t:'당국에 신고하는 보안 서류(예)',r:[['자사 항공보안계획','일본에서의 보안 체제와 조치. 당국 표준과의 차이를 보인다','#D64545'],['보안교육훈련 실시계획','자사와 조업사의 연간 교육 계획','#1769e0'],['보안교육훈련 실시요령','교육훈련의 구체적인 진행 방법','#2C8C8C'],['자체 감사 결과','보안 자체 감사 보고','#7A5CC7']],n:['연 1회 개정에 더해, 체제·조업사·기준이 바뀌면 바로 개정한다(★)']},
+  en:{t:'Security documents filed with the authority (example)',r:[['Your aviation security programme','Security arrangements in Japan, showing differences from the standard programme','#D64545'],['Security training plan','The annual training plan for your staff and the handler','#1769e0'],['Security training procedures','How the training is delivered in practice','#2C8C8C'],['Self-audit results','The report of your security self-audit','#7A5CC7']],n:['Revise once a year, and at once when the set-up, the handler or the standards change (★)']}})[l];
+ if(!W)return F.opn_avsec('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'10s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+opn_instr:function(l){
+ var W=({ja:{t:'保安インストラクターと空港ID（例）',c:[['養成講習','2日間程度。開催時期は年ごとに発表。就航の予定に合わせて早めに申し込む'],['定期講習','年1回、1日程度。更新しないと資格を維持できない'],['人数','国内に少なくとも1人。支店長のほかにも取得しておくと休暇・異動に備えられる']],n:['空港IDは保安講習の受講が前提。期限と返却の管理を一覧にする','日程・時間は例（★）']},
+  ko:{t:'보안 강사와 공항 ID(예)',c:[['양성 강습','2일 정도. 개최 시기는 해마다 발표. 취항 예정에 맞춰 일찍 신청'],['정기 강습','연 1회, 1일 정도. 갱신하지 않으면 자격을 유지할 수 없다'],['인원','국내에 최소 1명. 지점장 외에도 취득해 두면 휴가·이동에 대비할 수 있다']],n:['공항 ID는 보안 강습 수강이 전제. 기한과 반납 관리를 목록으로','일정·시간은 예시(★)']},
+  en:{t:'Security instructors and airport ID (example)',c:[['Initial course','About two days; dates announced each year. Book early to fit the launch'],['Recurrent course','About one day a year; without it the qualification lapses'],['How many','At least one in Japan; a second holder covers leave and transfers']],n:['Airport IDs require security training; track expiry and return in one list','Dates and durations are examples (★)']}})[l];
+ if(!W)return F.opn_instr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#E08A2E','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+opn_audit:function(l){
+ var W=({ja:{t:'支店が受ける監査・点検（例）',r:[['国交省の監査（保安・危険物など）','年1回。1〜2か月前に通知','#D64545'],['予告なしの点検','現場の実際の運用を見る','#E08A2E'],['危険物の監査','当局から連絡があったら対応','#7A5CC7'],['本社の安全・保安の監査','2年に1回などの周期','#1769e0'],['自国の当局の点検','自国の基準で海外の支店を点検','#2C8C8C']],n:['重視される点：教育の記録、手順どおりの運用、前回の指摘の改善','周期・内容は例（★）']},
+  ko:{t:'지점이 받는 감사·점검(예)',r:[['국토교통성 감사(보안·위험물 등)','연 1회. 1~2개월 전에 통지','#D64545'],['예고 없는 점검','현장의 실제 운용을 본다','#E08A2E'],['위험물 감사','당국에서 연락이 오면 대응','#7A5CC7'],['본사 안전·보안 감사','2년에 1회 등의 주기','#1769e0'],['본국 당국 점검','본국 기준으로 해외 지점을 점검','#2C8C8C']],n:['중시되는 점: 교육 기록, 절차대로의 운용, 지난 지적의 개선','주기·내용은 예시(★)']},
+  en:{t:'Audits and inspections a station faces (example)',r:[['MLIT audit (security, dangerous goods)','Yearly; notified one to two months ahead','#D64545'],['Unannounced inspection','Looks at real practice on the ground','#E08A2E'],['Dangerous goods audit','When the authority contacts you','#7A5CC7'],['Head-office safety and security audit','For example every two years','#1769e0'],['Home authority inspection','Your own regulator checks overseas stations','#2C8C8C']],n:['Focus: training records, following procedures, fixing previous findings','Cycles and scope are examples (★)']}})[l];
+ if(!W)return F.opn_audit('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+opn_erp:function(l){
+ var W=({ja:{t:'緊急時対応計画の構成（例）',r:[['対策本部','本社に設置。情報の集約と判断','#D64545'],['現地の対応','事故の空港・到着予定の空港の支店が最初に動く','#E08A2E'],['支援チーム','本社から派遣（Go Teamなど）','#7A5CC7'],['家族への支援','連絡、移動・滞在の支援、問い合わせ窓口','#1769e0'],['情報の発信','報道対応・公式発表。窓口を一本化','#2C8C8C'],['当局との連携','両国の当局、事故調査機関、警察、空港','#0f3558']],n:['支店は任務カードで最初の1時間の動きを決めておき、空港の合同訓練に参加する']},
+  ko:{t:'비상 대응 계획의 구성(예)',r:[['대책본부','본사에 설치. 정보 집약과 판단','#D64545'],['현지 대응','사고 공항·도착 예정 공항의 지점이 먼저 움직인다','#E08A2E'],['지원팀','본사에서 파견(Go Team 등)','#7A5CC7'],['가족 지원','연락, 이동·체류 지원, 문의 창구','#1769e0'],['정보 발신','언론 대응·공식 발표. 창구를 하나로','#2C8C8C'],['당국과의 연계','양국 당국, 사고조사기관, 경찰, 공항','#0f3558']],n:['지점은 임무 카드로 첫 1시간의 움직임을 정해 두고, 공항 합동 훈련에 참가한다']},
+  en:{t:'How an emergency response plan is organised (example)',r:[['Crisis centre','At head office; gathers information and decides','#D64545'],['Local response','The station at the accident or destination airport acts first','#E08A2E'],['Support team','Sent from head office (a Go Team)','#7A5CC7'],['Family assistance','Contact, travel and accommodation, an enquiry line','#1769e0'],['Communications','Media and official statements through one channel','#2C8C8C'],['Working with authorities','Both regulators, investigators, police, the airport','#0f3558']],n:['Set the station’s first hour on task cards, and take part in the airport’s joint exercises']}})[l];
+ if(!W)return F.opn_erp('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+opn_sop:function(l){
+ var W=({ja:{t:'支店のSOPの作り方（例）',st:['本社のマニュアルを読む','日本の規則・空港の事情を洗い出す','目次を作る','ハンドリング会社と手順を合わせる','承認・配布・改訂の管理'],who:['約款・各マニュアル','法令・空港・CIQ','業務ごと・緊急時','カウンター・ゲート・W&B','本社の承認'],n:['SOPは本社のマニュアルの範囲内で書く。違うことを決めない','版と改訂日を表紙に。古い版は回収する']},
+  ko:{t:'지점 SOP 만드는 법(예)',st:['본사 매뉴얼을 읽는다','일본 규칙·공항 사정을 정리한다','목차를 만든다','조업사와 절차를 맞춘다','승인·배포·개정 관리'],who:['약관·각 매뉴얼','법령·공항·CIQ','업무별·비상시','카운터·게이트·W&B','본사 승인'],n:['SOP는 본사 매뉴얼 범위 안에서 쓴다. 다른 것을 정하지 않는다','판과 개정일을 표지에. 옛 판은 회수한다']},
+  en:{t:'Writing the station SOP (example)',st:['Read the head-office manuals','List Japan’s rules and airport specifics','Draft the contents','Align procedures with the handler','Approve, distribute, control revisions'],who:['Conditions, all manuals','Law, airport, CIQ','By task, emergencies','Counter, gate, W&B','Head-office approval'],n:['Write within the head-office manuals; never set something different','Put the version and date on the cover, and withdraw old copies']}})[l];
+ if(!W)return F.opn_sop('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+opn_train:function(l){
+ var W=({ja:{t:'委託先ごとの教育（例）',r:[['旅客','規定・システム・特別対応・手荷物・危険物・保安','#1769e0'],['W&B（搭載管理）','搭載指示書・ロードシート・LMC・電報','#7A5CC7'],['ランプ','機材の配置・ドア操作・搭載・安全のルール','#E08A2E'],['貨物','手順・危険物・特別な貨物','#2C8C8C'],['整備','自社の機材の手順・報告の方法','#0f3558'],['給油','手順・お客様が乗ったままの給油の条件','#D64545']],n:['就航前に終わらせ、修了の記録を残す。記録は監査で必ず見られる']},
+  ko:{t:'위탁처별 교육(예)',r:[['여객','규정·시스템·특별 대응·수하물·위험물·보안','#1769e0'],['W&B(탑재관리)','탑재지시서·로드시트·LMC·전문','#7A5CC7'],['램프','장비 배치·도어 조작·탑재·안전 규칙','#E08A2E'],['화물','절차·위험물·특수 화물','#2C8C8C'],['정비','자사 기재 절차·보고 방법','#0f3558'],['급유','절차·승객 탑승 중 급유 조건','#D64545']],n:['취항 전에 마치고 수료 기록을 남긴다. 기록은 감사에서 반드시 본다']},
+  en:{t:'Training by contractor (example)',r:[['Passenger','Rules, systems, special assistance, baggage, dangerous goods, security','#1769e0'],['W&B (load control)','Load instructions, loadsheet, LMC, messages','#7A5CC7'],['Ramp','Equipment positions, doors, loading, safety rules','#E08A2E'],['Cargo','Procedures, dangerous goods, special cargo','#2C8C8C'],['Maintenance','Your aircraft procedures and reporting','#0f3558'],['Fuelling','Procedures; fuelling with passengers on board','#D64545']],n:['Finish before launch and keep completion records; audits always check them']}})[l];
+ if(!W)return F.opn_train('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+opn_trial:function(l){
+ var W=({ja:{t:'テスト便と試験運用（トライアル）の流れ（例）',st:['テスト便を準備する','役割を割り当てる','本番どおりに行う','チェックリストで点検する','直して確かめる'],who:['システム上に便と予約','お客様役・点検役','カウンター→ゲート→ランプ→到着','YES・NO・該当なし','初便までに'],n:['NOが出た項目は担当と期限を決めて直し、もう一度確かめる']},
+  ko:{t:'테스트 편과 시험 운용(트라이얼)의 흐름(예)',st:['테스트 편을 준비한다','역할을 배정한다','실제처럼 한다','체크리스트로 점검한다','고치고 확인한다'],who:['시스템에 편과 예약','승객 역·점검 역','카운터→게이트→램프→도착','YES·NO·해당 없음','첫 편까지'],n:['NO가 나온 항목은 담당과 기한을 정해 고치고 다시 확인한다']},
+  en:{t:'The test flight and trial run (example)',st:['Set up a test flight','Assign roles','Run it as for real','Check against the list','Fix and re-check'],who:['Flight and bookings in the system','Passengers and checkers','Counter → gate → ramp → arrival','Yes, no, not applicable','Before the first flight'],n:['Give every “no” an owner and a deadline, then check it again']}})[l];
+ if(!W)return F.opn_trial('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+opn_irr:function(l){
+ var W=({ja:{t:'イレギュラーに備えて就航前に決めること（例）',r:[['ホテル','料金・受け入れ人数・予約と支払いの方法','#1769e0'],['バス','空港とホテルの間の送迎','#2C8C8C'],['食事券','使える店・様式・精算の方法','#E08A2E'],['他社便への振り替え','同じ路線の他社とエンドースの方法','#7A5CC7'],['代替空港','ハンドリング・給油の窓口、ダイバートの手順','#D64545'],['空港施設','ラウンジ・待合の場所','#0f3558']],n:['決めたことはイレギュラー・シートにまとめ、カウンターとハンドリング会社に配る']},
+  ko:{t:'비정상에 대비해 취항 전에 정할 것(예)',r:[['호텔','요금·수용 인원·예약과 지급 방법','#1769e0'],['버스','공항과 호텔 간 송영','#2C8C8C'],['식사권','쓸 수 있는 가게·양식·정산 방법','#E08A2E'],['타사 편 대체','같은 노선 타사와 엔도스 방법','#7A5CC7'],['교체 공항','조업·급유 창구, 다이버트 절차','#D64545'],['공항 시설','라운지·대기 장소','#0f3558']],n:['정한 것은 비정상 시트로 정리해 카운터와 조업사에 배포한다']},
+  en:{t:'Disruption arrangements to agree before launch (example)',r:[['Hotels','Rates, capacity, booking and payment','#1769e0'],['Buses','Transfers between airport and hotel','#2C8C8C'],['Meal vouchers','Outlets, format, settlement','#E08A2E'],['Rebooking on other airlines','Endorsement with carriers on the same route','#7A5CC7'],['Alternate airports','Handler and fuel contacts, diversion procedure','#D64545'],['Airport facilities','Lounges and waiting areas','#0f3558']],n:['Put the arrangements on a disruption sheet and give it to the counter and the handler']}})[l];
+ if(!W)return F.opn_irr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+opn_day1:function(l){
+ var W=({ja:{t:'初便の1日（例）',st:['前日までの最終確認','就航式の準備','当日の役割分担','出発・到着','振り返り'],who:['運航・空港・システム・人','空港会社・来賓・報道','カウンター・ゲート・ランプ','実績の記録','翌日までにSOPを直す'],n:['就航式があっても、主役は定時運航。式の担当と運航の担当を分ける']},
+  ko:{t:'첫 편의 하루(예)',st:['전날까지 최종 확인','취항식 준비','당일 역할 분담','출발·도착','되돌아보기'],who:['운항·공항·시스템·사람','공항 회사·내빈·언론','카운터·게이트·램프','실적 기록','다음 날까지 SOP 수정'],n:['취항식이 있어도 주인공은 정시 운항. 행사 담당과 운항 담당을 나눈다']},
+  en:{t:'The first flight’s day (example)',st:['Final checks the day before','Prepare the ceremony','Assign roles on the day','Departure and arrival','Review'],who:['Operations, airport, systems, people','Airport company, guests, media','Counter, gate, ramp','Record the results','Fix the SOP by the next day'],n:['Even with a ceremony, the priority is an on-time flight: keep ceremony and operation staff separate']}})[l];
+ if(!W)return F.opn_day1('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#E08A2E','#7A5CC7','#2C8C8C','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+opn_sales:function(l){
+ var W=({ja:{t:'販売の立ち上げの手順（例）',st:['市場を把握する','販売の方針を決める','GDS・BSPの手続き','旅行会社への説明','販売を始める'],who:['他社の運航・運賃・需要','団体・個人の比率、販売先','契約・参加','就航案内・運賃の配布','状況の共有と支援'],n:['運賃の認可（1-4）と配布が終わる前に販売は始められない。日程を逆算する']},
+  ko:{t:'판매 개시 절차(예)',st:['시장을 파악한다','판매 방침을 정한다','GDS·BSP 절차','여행사 설명','판매를 시작한다'],who:['타사 운항·운임·수요','단체·개인 비율, 판매처','계약·참가','취항 안내·운임 배포','상황 공유와 지원'],n:['운임 인가(1-4)와 배포가 끝나기 전에는 판매를 시작할 수 없다. 일정을 거꾸로 계산한다']},
+  en:{t:'Launching sales (example)',st:['Understand the market','Set the sales policy','GDS and BSP procedures','Brief travel agencies','Start selling'],who:['Competitors’ flights, fares, demand','Group and individual mix, channels','Contracts and participation','Launch notice, fare distribution','Share status and support'],n:['Sales cannot start before fares are approved (1-4) and distributed; plan backwards']}})[l];
+ if(!W)return F.opn_sales('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+opn_aoc:function(l){
+ var W=({ja:{t:'空港運営協議会（AOC）への加入（例）',st:['事務局に連絡する','申込書を出す','規約を確かめる','会費を払う','会議に参加する'],who:['加入の意向・就航予定','会社の情報・連絡先','最新の規約','年会費','ターミナル別・全体'],n:['会議では空港の計画・工事・共用施設の情報が早く入る。他社とのつながりもできる']},
+  ko:{t:'공항운영협의회(AOC) 가입(예)',st:['사무국에 연락한다','신청서를 낸다','규약을 확인한다','회비를 낸다','회의에 참가한다'],who:['가입 의향·취항 예정','회사 정보·연락처','최신 규약','연회비','터미널별·전체'],n:['회의에서는 공항 계획·공사·공용 시설 정보가 빨리 들어온다. 타사와의 관계도 생긴다']},
+  en:{t:'Joining the Airline Operators Committee (AOC) (example)',st:['Contact the secretariat','Submit the application','Check the constitution','Pay the fee','Attend meetings'],who:['Intention and launch date','Company details and contacts','Current rules','Annual fee','By terminal and plenary'],n:['Meetings bring early news of airport plans, works and shared facilities, and contacts with other airlines']}})[l];
+ if(!W)return F.opn_aoc('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+opn_year:function(l){
+ var W=({ja:{t:'就航後1年の節目（例）',r:[['就航〜1か月','毎便に立ち会い、問題を早く見つけてSOPを直す','#D64545'],['〜3か月','月例会議・品質監査・請求の照合を定着させる','#E08A2E'],['最初のシーズンの切り替え','期首申請・発着枠・運賃を初めて自力で','#7A5CC7'],['最初の監査','教育の記録と計画の整合を確かめる','#1769e0'],['最初の年末年始','年末調整・源泉所得税・翌年度の予算','#2C8C8C'],['1年後','実績を振り返り、手順書・カレンダー・予算を見直す','#0f3558']],n:['時期は例（★）。毎月のリズムと年間の手続きをカレンダーにして引き継ぐ']},
+  ko:{t:'취항 후 1년의 고비(예)',r:[['취항~1개월','매 편 입회해 문제를 빨리 찾아 SOP를 고친다','#D64545'],['~3개월','월간 회의·품질 감사·청구 대조를 정착시킨다','#E08A2E'],['첫 시즌 전환','기초 신청·슬롯·운임을 처음으로 스스로','#7A5CC7'],['첫 감사','교육 기록과 계획의 정합을 확인한다','#1769e0'],['첫 연말연시','연말정산·원천소득세·다음 연도 예산','#2C8C8C'],['1년 후','실적을 되돌아보고 절차서·달력·예산을 재검토','#0f3558']],n:['시기는 예시(★). 매달의 리듬과 연간 절차를 달력으로 만들어 인계한다']},
+  en:{t:'Milestones in the first year after launch (example)',r:[['Launch to one month','Attend every flight, catch problems early, fix the SOP','#D64545'],['Up to three months','Embed monthly meetings, quality audits and invoice checks','#E08A2E'],['First season change','File the season, slots and fares on your own for the first time','#7A5CC7'],['First audit','Check training records match the plan','#1769e0'],['First year end','Year-end adjustment, withholding tax, next year’s budget','#2C8C8C'],['After one year','Review results; update procedures, calendar and budget','#0f3558']],n:['Timings are examples (★). Hand over the monthly rhythm and annual steps as a calendar']}})[l];
+ if(!W)return F.opn_year('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

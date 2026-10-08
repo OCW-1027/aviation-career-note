@@ -4,7 +4,7 @@ set("6-1",{title:"Writing the Station SOP",hl:"the station SOP",subtitle:"The he
 lead:["A head office passenger handling manual is the rule for every station. But a Japanese airport brings its own law, its own airport company rules, the handling company’s structure and the CIQ procedures. Without a station SOP and emergency procedures reflecting all of that, the front line cannot work.",
 "This article covers where the SOP sits, an example contents list, how to write one, how to record the split with the handling company, and how to revise and control it."],
 sections:[
-{h:"Where the SOP sits",blocks:[{t:"table",cols:["Document","What it is"],rows:[
+{h:"Where the SOP sits",blocks:[{t:"fig",id:"opn_sop",cap:"Animated figure: writing the station SOP (example)."},{t:"table",cols:["Document","What it is"],rows:[
 ["Head office manuals","Conditions of carriage, passenger handling, loading and dangerous goods, flight operations. Common to every station"],
 ["Station SOP","The specific procedures at the Japanese airport, within the head office manual, reflecting local rules and the airport"],
 ["Emergency procedures","What the station does in a security threat, an accident or an irregular operation"],
@@ -39,7 +39,7 @@ set("6-2",{title:"Training the Handling Company",hl:"training",subtitle:"Before 
 lead:["Handling company staff work for many airlines at the same airport, and every airline has different rules, systems and procedures. Training them in your own way before launch is essential, and it covers not only passenger staff but weight and balance, ramp safety, cargo, maintenance and fuelling.",
 "This article covers what each contractor is taught, how the pre-launch training is organised, initial training for your own staff, and keeping the records."],
 sections:[
-{h:"What each contractor is taught (example)",blocks:[{t:"table",cols:["Contractor","Main content"],rows:[
+{h:"What each contractor is taught (example)",blocks:[{t:"fig",id:"opn_train",cap:"Animated figure: training by contractor (example)."},{t:"table",cols:["Contractor","Main content"],rows:[
 ["Passenger (counter and gate)","Carriage rules, system operation, passengers needing assistance, baggage, dangerous goods, security, announcements, irregular operations"],
 ["Weight and balance","Loading instructions and loadsheets, last minute changes, sending messages"],
 ["Ramp safety","Equipment positioning, door operation, loading, ramp safety rules. Certificates issued"],
@@ -69,7 +69,7 @@ set("6-3",{title:"The Test Flight and Trial Operation",hl:"the trial",subtitle:"
 lead:["Preparation can look complete and still leave gaps: printer settings, signage, handing over documents, where the ramp staff stand. So before the first flight you run a trial exactly as the real thing.",
 "This article covers how a trial runs and the checklist items for the office, the counter, the gate, load control and arrivals."],
 sections:[
-{h:"How the trial runs",blocks:[{t:"ladder",rise:10,steps:[{name:"Build the test flight",sub:"A flight and bookings in the system"},{name:"Assign roles",sub:"Passengers and observers"},{name:"Run it for real",sub:"Counter, gate, ramp, arrivals"},{name:"Work the checklist",sub:"Yes, no or not applicable"},{name:"Fix and re-check",sub:"Before the first flight"}]}]},
+{h:"How the trial runs",blocks:[{t:"fig",id:"opn_trial",cap:"Animated figure: the test flight and trial run (example)."},{t:"ladder",rise:10,steps:[{name:"Build the test flight",sub:"A flight and bookings in the system"},{name:"Assign roles",sub:"Passengers and observers"},{name:"Run it for real",sub:"Counter, gate, ramp, arrivals"},{name:"Work the checklist",sub:"Yes, no or not applicable"},{name:"Fix and re-check",sub:"Before the first flight"}]}]},
 {h:"Office and general items (example)",blocks:[{t:"check",items:[
 {name:"Notices",x:"The passenger redress notice, the security policy, the current threat level."},
 {name:"Call recording",x:"Whether staff know the procedure for recording and reporting a threatening call."},
@@ -94,7 +94,7 @@ set("6-4",{title:"Preparing for Irregular Operations",hl:"preparation",subtitle:
 lead:["Delays, cancellations and diversions happen in the first weeks too. Having no hotel to call, no meal voucher arrangement, no idea how to find seats on another airline and no contacts at the alternate airport lets down both passengers and head office.",
 "This article covers what to have in place before launch, in four parts: the arrangements, the structure, communications and the settlement afterwards. For handling the situation itself, see Part 5 of the Airport Ground Staff series."],
 sections:[
-{h:"Arrangements to make before launch",blocks:[{t:"table",cols:["Arrangement","What it covers"],rows:[
+{h:"Arrangements to make before launch",blocks:[{t:"fig",id:"opn_irr",cap:"Animated figure: disruption arrangements to agree before launch (example)."},{t:"table",cols:["Arrangement","What it covers"],rows:[
 ["Hotels","Rates, how many rooms, how to book and how to pay, with hotels near the airport"],
 ["Coaches","Transport between the airport and the hotels"],
 ["Meal vouchers","The voucher format, where it is valid and how it is settled, with airport restaurants"],
@@ -128,7 +128,7 @@ set("6-5",{title:"The Day of the First Flight",hl:"the first flight",subtitle:"A
 lead:["On the first day, head office executives, the airport company, the authorities, travel agencies and the press all turn up. There is a ceremony to run, and at the same time the flight itself has to operate safely and on time, exactly as always.",
 "This article covers the day from the final checks to the closing work, preparing the ceremony, who does what on the day, and what to review afterwards."],
 sections:[
-{h:"Final checks the day before",blocks:[{t:"check",items:[
+{h:"Final checks the day before",blocks:[{t:"fig",id:"opn_day1",cap:"Animated figure: the first flight’s day (example)."},{t:"check",items:[
 {name:"Operations",x:"That the business plan approval, the slots, the aircraft notification and the fare approvals are all complete (Part 1)."},
 {name:"The airport",x:"Counter and gate allocations, display registration, and the schedule circulated within the airport (3-3)."},
 {name:"Systems",x:"Printer and reader tests, and confirmation that advance passenger data transmits (Part 4)."},
