@@ -76,7 +76,7 @@ next:"3-1 Building relationships with agencies, and seat blocks"});
 set("4-3",{title:"Types of Fare: Normal, PEX and IT Fares, and Japan’s IT Fares (GV1)",hl:"fare types",subtitle:"Who may sell what, combined with what. Why IT fares in Japanese practice take the form of group fares, and why GV1 is used",
 lead:["The same flight and seat can be sold under many fares. Not knowing which fare can be sold by whom, and on what conditions, leads to rule breaches and ADMs (debit memos) in dealings with agencies.","This lesson covers the main categories of international fares, the difference between PEX and IT fares, and a feature of Japanese practice: IT fares set as group fares (GV), with GV1 applying from one passenger."],
 sections:[
-{h:"Main categories of fare",blocks:[{t:"table",cols:["Type","What it is","Main sellers"],rows:[
+{h:"Main categories of fare",blocks:[{t:"fig",id:"sls_pexit",cap:"Figure: PEX fares and IT fares."},{t:"table",cols:["Type","What it is","Main sellers"],rows:[
 ["Normal fare","Highly flexible for changes and refunds","Airlines and agencies"],
 ["PEX (special) fare","A discounted fare set by the airline, with booking and ticketing deadlines and change/refund conditions; can be sold to individuals as a ticket alone","Airline direct, agencies, OTAs"],
 ["IT (inclusive tour) fare","Sold by agencies as part of a travel product combined with hotels or other ground arrangements; cannot be sold as a ticket alone","Agencies (packages and dynamic packages)"],

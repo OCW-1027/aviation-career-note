@@ -43,7 +43,7 @@ next:"4-1 Fare structures and fare families"});
 set("6-3",{title:"Sales Preparation Before a New Route Launches: To-do List and Policy-setting",hl:"pre-launch preparation",subtitle:"Filings, GDS and BSP, when to visit agencies, staffing and the policies to settle before selling begins",
 lead:["Starting to sell only once the launch date is fixed is too late. Filings with the authorities, GDS contracts and BSP membership, confirming fares and rules, informing agencies and preparing staff all run in parallel from several months before launch.","This lesson covers the pre-launch sales to-do list, the policies to decide first, and how to time your first visits to agencies."],
 sections:[
-{h:"To-do list (example)",blocks:[{t:"table",cols:["Area","What to do"],rows:[
+{h:"To-do list (example)",blocks:[{t:"fig",id:"sls_prep",cap:"Figure: sales preparation before launch (example)."},{t:"table",cols:["Area","What to do"],rows:[
 ["Filings","Schedules, fares, baggage, fuel surcharges and more (in Japan via the e-Gov online system and others); agree the split with head office and any agent (Course 2)"],
 ["Sales systems","GDS contracts, BSP membership, meetings and training with the GDS offices in Japan"],
 ["Registering agencies","Collect major agencies’ PCCs (GDS office codes) and ticketing BSP numbers, and ask head office to register them"],
@@ -81,7 +81,7 @@ next:"6-4 Seasonal sales strategy"});
 set("6-4",{title:"Seasonal Sales Strategy: Waves from Japan and Korea, and the January Promotion Season",hl:"seasonal strategy",subtitle:"Peaks differ between the two countries. Pre-sell the low season with group and IT fares. Bring fares to the New Year sales battle",
 lead:["On two-country routes such as Japan–Korea, peaks and troughs differ between the two origins. Rely only on one side’s peaks and the other side’s low season leaves empty seats.","This lesson covers the seasonal pattern from each origin, how to fill the low season, the agencies’ big January promotion, and how to sell to different customer groups."],
 sections:[
-{h:"Seasonal pattern (Japan–Korea example)",blocks:[{t:"table",cols:["","Peak","Low"],rows:[
+{h:"Seasonal pattern (Japan–Korea example)",blocks:[{t:"fig",id:"sls_peak",cap:"Figure: peak periods on Japan–Korea routes (example)."},{t:"table",cols:["","Peak","Low"],rows:[
 ["From Korea","Late December to February, late July to mid-August, Lunar New Year, Chuseok and other holidays","—"],
 ["From Japan","Last week of March, Golden Week (late April, 3–6 May), Obon (mid-August), September holidays, late December (28–31)","Early to mid-April (new school year), two weeks after Golden Week, June to July before Marine Day, November to about 20 December"]]},
 {t:"note",x:"* Holiday patterns and events shift year to year; read alongside last year’s booking pace (1-2). ★"}]},

@@ -4,7 +4,7 @@ set("4-1",{title:"Fare Structures and Fare Families",hl:"fare structures",subtit
 lead:["Even within the same economy cabin, airlines divide fares finely by when you book, how freely you can change and what refund you get. These steps are booking classes. More and more airlines now bundle baggage, seat selection and change conditions into fare families, or branded fares, so passengers can choose easily.",
 "This article covers how fares are built, the thinking behind fare families, and what to watch when adapting fares to the Japanese market."],
 sections:[
-{h:"How fares are built (example)",blocks:[{t:"table",cols:["Element","What it is"],rows:[
+{h:"How fares are built (example)",blocks:[{t:"fig",id:"sls_fare",cap:"Figure: how fare families work (example)."},{t:"table",cols:["Element","What it is"],rows:[
 ["Booking class","A code for the fare step within a cabin. The cheapest steps sell out first"],
 ["Fare rules","Validity, change and refund conditions, minimum and maximum stay"],
 ["Taxes and charges","Airport charges, departure tax, fuel surcharge and so on, separate from the fare"],
@@ -31,7 +31,7 @@ set("4-2",{title:"Ancillaries and the Basics of Revenue Management",hl:"revenue 
 lead:["An airline seat loses all its value once the aircraft departs. So airlines practise revenue management: adjusting which booking classes to sell, until when, and how many seats, based on forecast demand. Revenue from ancillaries — baggage, seat selection, meals — has become another important pillar.",
 "This article covers the basic ideas of revenue management, the information the station’s sales team should pass to head office, and selling ancillaries."],
 sections:[
-{h:"The basics",blocks:[{t:"table",cols:["Idea","What it means"],rows:[
+{h:"The basics",blocks:[{t:"fig",id:"sls_rm0",cap:"Figure: four basics of revenue management."},{t:"table",cols:["Idea","What it means"],rows:[
 ["Load factor","The share of seats filled"],
 ["Yield","Revenue per passenger kilometre: the level of the fares"],
 ["Seat allocation","Adjusting the seats in the cheaper classes according to the forecast"],
@@ -59,7 +59,7 @@ set("5-1",{title:"Launch Publicity and Press Briefings",hl:"launch publicity",su
 lead:["A new route, extra frequencies or a terminal move are big chances to be covered by the media. Through press briefings and releases, explain clearly what is new for Japanese readers and what becomes easier.",
 "This article covers the publicity sequence for a launch, preparing a press briefing, writing a press release, and using social media."],
 sections:[
-{h:"The sequence (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Timing",sub:"Check where the approvals stand"},{name:"The message",sub:"What is new, in one line"},{name:"Material",sub:"Release and photographs"},{name:"Press briefing",sub:"Prepare for questions"},{name:"Launch day",sub:"Coverage of the ceremony"}]},
+{h:"The sequence (example)",blocks:[{t:"fig",id:"sls_pr",cap:"Figure: launch publicity in order (example)."},{t:"ladder",rise:10,steps:[{name:"Timing",sub:"Check where the approvals stand"},{name:"The message",sub:"What is new, in one line"},{name:"Material",sub:"Release and photographs"},{name:"Press briefing",sub:"Prepare for questions"},{name:"Launch day",sub:"Coverage of the ceremony"}]},
 {t:"point",warn:true,x:"Do not announce as settled anything the authorities have not yet approved. Use “planned” and “subject to approval” precisely (Launching Flights to Japan, Part 1)."}]},
 {h:"Preparing the briefing",blocks:[{t:"check",items:[
 {name:"Likely questions",x:"The fare level, the load factor target, how you differ from competitors, your approach to safety, local hiring."},
@@ -82,7 +82,7 @@ set("5-2",{title:"Working with Tourism Bodies, and Events",hl:"partnerships and 
 lead:["Growing demand on a new route means showing what makes the destination worth visiting and creating a reason to go. Campaigns and events with the tourism bodies of both countries, local governments, airport companies and travel agencies are what work.",
 "This article covers who to partner with and on what, planning events, and measuring the effect."],
 sections:[
-{h:"Partners and what you do together (examples)",blocks:[{t:"table",cols:["Partner","Examples"],rows:[
+{h:"Partners and what you do together (examples)",blocks:[{t:"fig",id:"sls_collab",cap:"Figure: partners and joint activities (example)."},{t:"table",cols:["Partner","Examples"],rows:[
 ["Tourism bodies","Joint stands at travel fairs, destination briefings, joint social media"],
 ["Local governments","Destination promotion, support schemes for agencies, sister city exchanges"],
 ["Airport companies","New route incentives and events at the airport (Launching Flights to Japan 3-4)"],
@@ -110,7 +110,7 @@ set("6-1",{title:"Building the Annual Business Plan",hl:"the business plan",subt
 lead:["The station’s annual sales plan brings together head office’s route and fleet plan and the outlook for the Japanese market. Beyond the revenue target, it has to make specific which segments, through which channels and with which initiatives you will sell.",
 "This article covers the structure of the plan, how to analyse the market, how to set targets and how to align with head office."],
 sections:[
-{h:"Structure of the plan (example)",blocks:[{t:"table",cols:["Chapter","Content"],rows:[
+{h:"Structure of the plan (example)",blocks:[{t:"fig",id:"sls_plan",cap:"Figure: six chapters of an annual business plan (example)."},{t:"table",cols:["Chapter","Content"],rows:[
 ["Review of last year","Results against target, what worked and what did not"],
 ["Market outlook","Demand, exchange rates, competitors, events"],
 ["Targets","Revenue, load factor, segment mix, share of direct sales"],
@@ -139,7 +139,7 @@ set("6-2",{title:"Tracking and Reporting Performance",hl:"tracking performance",
 lead:["Waiting for the results is too late. Watch the booking pace week by week and act as soon as a gap against target opens. Monthly reports explain not just the numbers but the causes of the gap and what comes next.",
 "This article covers the measures to watch, the shape of weekly and monthly reports, and a look back at Parts 1–6."],
 sections:[
-{h:"Measures to watch (examples)",blocks:[{t:"table",cols:["Measure","How to read it"],rows:[
+{h:"Measures to watch (examples)",blocks:[{t:"fig",id:"sls_kpi",cap:"Figure: sales indicators to watch every month (example)."},{t:"table",cols:["Measure","How to read it"],rows:[
 ["Booking pace","Bookings by departure month, against last year"],
 ["Load factor and yield","By flight and by month (4-2)"],
 ["Revenue by channel","Changes in the mix of agencies, OTAs and direct"],
