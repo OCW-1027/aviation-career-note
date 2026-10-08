@@ -304,3 +304,9 @@ p,.muted,.lab span,.quick span,.business-note,.sector-sub{text-wrap:pretty}
 /* 文節が長くて画面に収まらないときだけ、文節の中でも改行する（はみ出し防止）。2段組みの中身は縮められるように */
 html[lang="ja"] body{overflow-wrap:anywhere}
 .membership>*,.hero-grid>*,.business-intro>*,.community-box>*,.path-band>*,.jobs-wrap>*{min-width:0}
+
+/* Learning Path の「私の学習プラン」ボタン（2026.10） */
+.path-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+.path-cta .btn.pghost{border-color:rgba(255,255,255,.35);color:#fff}
+.path-cta .btn.pghost:hover{border-color:#fff}
+.path-cta small{flex-basis:100%;color:#9fb3c6;font-size:12px}

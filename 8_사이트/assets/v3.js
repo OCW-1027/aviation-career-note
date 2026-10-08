@@ -13,7 +13,7 @@ en:{proto:['A prototype based on the GPT design. The current home page is','here
  foot:['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.'],
  copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy'}};
 var NAV=[['index.html#learn','learn'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
-var FOOT=[['Learn',[['index.html#learn','Courses'],['index.html#learn','Learning Paths'],['index.html#practice','Practice Lab']]],
+var FOOT=[['Learn',[['index.html#learn','Courses'],['plan.html','My Learning Plan'],['guide.html','Study Guide'],['index.html#practice','Practice Lab']]],
  ['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],
  ['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['index.html#coaching','Coaching']]],
  ['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]];

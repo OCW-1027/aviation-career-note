@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Learning Plan | Aviation Career Note</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/v3.css">
+<style>
+/* 内 学習プラン（2026.10）：学び方の図解・目的の選択・ペース・講座の組み立て・進み具合 */
+.pl-hero{max-width:var(--max);margin:auto;padding:40px 24px 0}
+.pl-hero .in{background:linear-gradient(145deg,#0a1b2e,#12314f);color:#fff;border-radius:24px;padding:42px;box-shadow:0 25px 60px rgba(9,28,47,.15)}
+.pl-hero h1{font-size:clamp(34px,5vw,56px);margin:10px 0 14px}
+.pl-hero p{color:#c3d0dc;max-width:760px;margin:0}
+.pl-hero .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn.ghost{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}.btn.ghost:hover{border-color:#fff}
+.btn.line{border-color:var(--line);background:#fff;color:var(--ink)}
+.btn.sm{padding:8px 12px;font-size:13px}
+.pl-sec{max-width:var(--max);margin:auto;padding:56px 24px 8px}
+.pl-sec>h2{font-size:clamp(26px,3.4vw,38px);margin:6px 0 8px}
+.pl-sec>.lead{color:var(--muted);max-width:760px;margin:0 0 24px}
+/* 学び方：6つの手順の輪 */
+.cyc{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;counter-reset:c}
+.cyc .st{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 16px 16px;animation:cy 12s infinite}
+.cyc .st:nth-child(1){animation-delay:0s}.cyc .st:nth-child(2){animation-delay:2s}.cyc .st:nth-child(3){animation-delay:4s}
+.cyc .st:nth-child(4){animation-delay:6s}.cyc .st:nth-child(5){animation-delay:8s}.cyc .st:nth-child(6){animation-delay:10s}
+@keyframes cy{0%,14%{border-color:var(--blue);box-shadow:0 0 0 3px rgba(23,105,224,.15)}17%,100%{border-color:var(--line);box-shadow:none}}
+.cyc .st:not(:last-child):after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:#9fb0c2;font-weight:900}
+.cyc .no{display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;font-size:13px;align-items:center;justify-content:center}
+.cyc b{display:block;margin:10px 0 4px;font-size:15px}
+.cyc span{display:block;color:var(--muted);font-size:13px;line-height:1.5}
+.cyc em{display:block;margin-top:10px;font-style:normal;font-size:12px;color:#0f3558;background:var(--soft);border-radius:8px;padding:7px 8px;line-height:1.45}
+.loop{margin-top:10px;font-size:13px;color:var(--muted);text-align:right}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.box h3{margin:0 0 4px;font-size:18px}
+.box .sub{color:var(--muted);font-size:13px;margin:0 0 14px}
+/* 1回20分の流れ */
+.tbar{display:flex;border-radius:10px;overflow:hidden;height:38px}
+.tbar div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden}
+.tlist{margin:12px 0 0;padding:0;list-style:none;font-size:13px}
+.tlist li{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.tlist li i{font-style:normal;font-weight:900;color:#0f3558;min-width:64px}
+/* 1週間 */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.week div{border-radius:10px;padding:10px 4px;text-align:center;font-size:12px;border:1px solid var(--line);background:#fff;min-height:84px}
+.week b{display:block;font-size:13px;margin-bottom:6px}
+.week .les{background:#eaf2fd;border-color:#bcd5f7}.week .prc{background:#fff4d6;border-color:#f0d58a}.week .rev{background:#eaf7f0;border-color:#a9dcc0}.week .off{color:#9aa6b2}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+.tips{margin:18px 0 0;padding-left:20px;color:#34404c;font-size:14px}.tips li{margin:6px 0}
+/* 作る */
+.stp{display:flex;align-items:center;gap:10px;margin:28px 0 12px}
+.stp .no{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:900;align-items:center;justify-content:center}
+.stp h3{margin:0;font-size:19px}
+.goals{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.goal{background:#fff;border:2px solid var(--line);border-radius:14px;padding:16px;text-align:left;cursor:pointer;transition:.15s}
+.goal:hover{border-color:#9cc0f3}
+.goal.on{border-color:var(--blue);background:#f2f7ff}
+.goal b{display:block;font-size:15px;margin-bottom:4px}
+.goal span{display:block;font-size:12.5px;color:var(--muted);line-height:1.5}
+.goal small{display:block;margin-top:8px;font-weight:800;color:var(--blue);font-size:12px}
+.pace{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.pace label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:6px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:9px 14px;font-weight:800;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--navy);color:#fff}
+.pace input[type=date]{border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.est{margin-left:auto;text-align:right}
+.est b{display:block;font-size:22px;color:var(--navy)}
+.est span{font-size:12px;color:var(--muted)}
+.crs{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.crs .hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.crs .hd b{font-size:15px;flex:1;min-width:180px}
+.crs .cnt{font-size:12px;color:var(--muted)}
+.crs .tools button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 9px;cursor:pointer;font-weight:800}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;cursor:pointer;color:#5b6b7d}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.hint{font-size:12px;color:var(--muted);margin-top:8px}
+.addrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.addrow select{border:1px solid var(--line);border-radius:10px;padding:9px 10px;min-width:260px;background:#fff}
+/* 進み具合 */
+.prog{background:var(--navy);color:#fff;border-radius:22px;padding:28px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px}
+.prog .big{font-size:44px;font-weight:900;line-height:1}
+.bar{height:12px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;margin:12px 0 8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#1ea7b8,#5fd0a8);border-radius:99px;transition:width .4s}
+.prog .meta{color:#b8c5d1;font-size:13px}
+.next{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:16px}
+.next small{color:#9fd8e0;font-weight:800;font-size:12px;letter-spacing:.06em}
+.next b{display:block;margin:6px 0 12px;font-size:16px;line-height:1.4}
+.wk{margin-top:16px;font-size:13px}.wk ol{margin:6px 0 0;padding-left:18px;color:#dce7f1}.wk li{margin:3px 0}
+.wk a{color:#fff;text-decoration:underline}
+.acc{margin-top:18px}
+.acc details{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:10px}
+.acc summary{cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:12px;list-style:none}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary b{flex:1}
+.mini{width:120px;height:8px;background:var(--soft);border-radius:99px;overflow:hidden}.mini i{display:block;height:100%;background:var(--green)}
+.acc .pc{font-size:12px;color:var(--muted);min-width:64px;text-align:right}
+.lsn{list-style:none;margin:0;padding:0 16px 12px}
+.lsn li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--soft);font-size:14px}
+.lsn input{margin-top:4px;width:17px;height:17px;accent-color:var(--green)}
+.lsn a{flex:1;color:var(--ink)}.lsn a:hover{color:var(--blue)}
+.lsn .no{font-weight:800;color:#5b6b7d;min-width:38px}
+.lsn li.dn a{color:#7b8792;text-decoration:line-through}
+.empty{background:#fff;border:1px dashed #b8c5d1;border-radius:14px;padding:22px;color:var(--muted);text-align:center}
+.foot-note{color:var(--muted);font-size:13px;margin-top:14px}
+.danger{color:#b42318}
+@media (max-width:980px){.cyc{grid-template-columns:repeat(3,1fr)}.cyc .st:nth-child(3):after{display:none}.goals{grid-template-columns:repeat(2,1fr)}.two,.prog{grid-template-columns:1fr}}
+@media (max-width:560px){.cyc{grid-template-columns:1fr 1fr}.cyc .st:after{display:none}.goals{grid-template-columns:1fr}.pl-hero .in{padding:28px}.est{margin-left:0;text-align:left}.week{gap:3px}.week div{font-size:10.5px;padding:8px 2px}.addrow select{min-width:0;width:100%}}
+@media (prefers-reduced-motion:reduce){.cyc .st{animation:none}}
+</style>
+</head>
+<body data-page="plan">
+<div class="topbar">Aviation Career Note · Learn · Jobs · Business Skills · Coaching · Community</div>
+<header>
+  <nav class="nav" aria-label="menu">
+    <a href="index.html" class="brand"><b>A·</b> AVIATION CAREER NOTE</a>
+    <div class="navlinks" id="navlinks"></div>
+    <div class="navright">
+      <span class="pill" id="langs" role="group" aria-label="Language"></span>
+      <a href="account.html" class="btn primary" id="mem"></a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="pl-hero"><div class="in">
+  <div class="eyebrow" style="color:#78d6df">My Learning Plan</div>
+  <h1 id="h1"></h1>
+  <p id="hp"></p>
+  <div class="acts"><a class="btn primary" href="#make" id="go1"></a><a class="btn ghost" href="#how" id="go2"></a></div>
+</div></section>
+
+<section class="pl-sec" id="progress" hidden></section>
+
+<section class="pl-sec" id="how">
+  <div class="eyebrow">How to study</div>
+  <h2 id="hh"></h2>
+  <p class="lead" id="hl"></p>
+  <div class="cyc" id="cyc"></div>
+  <p class="loop" id="loop"></p>
+  <div class="two">
+    <div class="box"><h3 id="h20"></h3><p class="sub" id="s20"></p><div class="tbar" id="tbar"></div><ul class="tlist" id="tlist"></ul></div>
+    <div class="box"><h3 id="hwk"></h3><p class="sub" id="swk"></p><div class="week" id="week"></div><div class="legend" id="leg"></div></div>
+  </div>
+  <ul class="tips" id="tips"></ul>
+</section>
+
+<section class="pl-sec" id="make">
+  <div class="eyebrow">Build your plan</div>
+  <h2 id="hm"></h2>
+  <p class="lead" id="lm"></p>
+  <div class="stp"><span class="no">1</span><h3 id="s1"></h3></div>
+  <div class="goals" id="goals"></div>
+  <div class="stp"><span class="no">2</span><h3 id="s2"></h3></div>
+  <div class="pace" id="pace"></div>
+  <div class="stp"><span class="no">3</span><h3 id="s3"></h3></div>
+  <div id="crs"></div>
+  <div class="addrow" id="addrow"></div>
+  <p class="foot-note" id="fn"></p>
+</section>
+<div style="height:40px"></div>
+</main>
+
+<footer>
+  <div class="foot" id="foot"></div>
+  <div class="copy" id="copy"></div>
+</footer>
+
+<script src="data/home_data.js"></script>
+<script src="../catalog.js" onerror="this.remove()"></script>
+<script src="../search_index.js" onerror="this.remove()"></script>
+<script>
+/* 私の学習プラン（2026.10 新規）
+   ・目的別のルートは guide.html（学び方ガイド）と同じ7つ。Part の範囲をレッスン単位に直したもの
+   ・レッスンの一覧はビルドで作る search_index.js（講座コード・番号・3言語の題名）を使う。ローカルのファイルでは講座単位だけ表示
+   ・保存はこの端末のブラウザ（localStorage）。acn-plan-v1＝プラン、acn-done-v1＝完了したレッスン（レッスンの「完了」ボタンと共通）
+   ・メンバーシップのログインを入れたら、同じ形でアカウントに保存して端末の間で引き継ぐ予定 */
+var KP='acn-plan-v1',KD='acn-done-v1';
+var ROUTES=[
+ {id:'p1',st:[['BAS',{p:['0','1']}],['GND',{p:['1','2','3','4','5']}],['CIQ',{p:['0','1'],n:['6-1','6-2']}],['INT',null]]},
+ {id:'p2',st:[['GND',{p:['5','6','7','8','9']}],['STN',null],['CIQ',{p:['5','6']}],['IRR',null],['HOV',null]]},
+ {id:'p3',st:[['BAS',{p:['1','2']}],['DSP',null],['GND',{p:['3']}]]},
+ {id:'p4',st:[['BAS',{p:['0']}],['CGO',null],['GND',{n:['3-7','3-8']}],['OPN',{p:['4']}]]},
+ {id:'p5',st:[['BAS',{p:['2']}],['SLS',null],['APT',null]]},
+ {id:'p6',st:[['OPN',null],['ADM',null],['STN',null],['CIQ',{n:['5-2','5-3','5-5']}],['HOV',null]]},
+ {id:'p7',st:[['BAS',{p:['1','2']}],['DSP',{p:['10','11','12','13','14','15']}]]},
+ {id:'free',st:[]}];
+var T={
+ja:{h1:'私の学習プラン',hp:'目標とする仕事に合わせて講座を組み立て、自分のペースで進めましょう。どこまで読んだかはこのブラウザに保存され、レッスンの最後にある「完了」ボタンでも記録できます。',go1:'プランを作る',go2:'学び方を見る',
+ hh:'1回のレッスンは、6つの手順で',hl:'読むだけで終わらせず、確かめて、使って、自分の現場に当てはめる。この流れをくり返すと、知識が仕事で使える力になります。',
+ cyc:[['全体を見る','講座の目次で、Partの流れと今どこにいるかをつかむ','例：Part 1 カウンター → Part 2 ゲート の順だと確認'],['レッスンを読む','1回10〜15分。図と表、最後の「ポイント」を中心に','例：1-10 手荷物規定を読み、図で大きさと重さを確認'],['クイズで確かめる','レッスンの最後の確認クイズ。間違えたところは読み直す','例：3問のうち1問ミス → その節だけ読み直す'],['用語を覚える','用語の表で、日本語・韓国語・英語をあわせて確認','例：受託手荷物／위탁 수하물／Checked Baggage'],['手を動かす','搭載計算・運航管理などの練習ページで、実際にやってみる','例：Part 3 のあとに搭載計算の練習を1問'],['自分の現場で確かめる','会社のマニュアルや最新の規定と照らし合わせる（★は変わりやすい所）','例：自社の手荷物の許容量と比べてメモ']],
+ loop:'↻ 次のレッスンへ。週に1回はまとめて復習',
+ h20:'1回20分の流れ（例）',s20:'仕事の前後や移動中でも続けられる長さです。',tl:[['0〜2分','全体','目次で今日のレッスンの位置を見る'],['2〜12分','読む','本文・図・表を読む'],['12〜15分','クイズ','確認クイズを解く'],['15〜17分','用語','用語を3つ声に出す'],['17〜20分','記録','現場と比べてメモし、「完了」を押す']],
+ hwk:'1週間の組み方（あなたのペース）',swk:'下の「ペース」で選んだ日数に合わせて変わります。',leg:['レッスン','練習ページ','復習','お休み'],wd:['月','火','水','木','金','土','日'],cl:{les:'レッスン',prc:'練習',rev:'復習',off:'休み'},
+ tips:['韓国と日本を比べる表は、まず「同じところ」を見てから「違うところ」を読むと覚えやすくなります。','言語を切り替えて同じレッスンを読むと、3か国語の用語が自然に身につきます。','「★」の付いた項目は法令や空港の運用で変わりやすいところです。仕事で使う前に最新の情報を確かめてください。','現場で起きたこと（遅延・イレギュラー・監査など）のあとに関係するレッスンを読み直すと、次に迷わなくなります。'],
+ hm:'あなたのプランを作る',lm:'目標を選ぶと、必要な講座とPartがおすすめの順に並びます。そのあと、Partを外したり講座を足したりして自由に組み替えられます。',
+ s1:'目標を選ぶ',s2:'ペースを決める',s3:'講座とPartを組み立てる',
+ goals:{p1:['空港の地上職・入社1年目','チェックイン・ゲートの仕事を全体のしくみから'],p2:['REP（運送総括）・マネージャー','便全体を見て判断し、支店とハンドリング会社を動かす'],p3:['運航管理者（ディスパッチャー）','法規・気象・飛行計画・燃料を韓日の基準で'],p4:['航空貨物の仕事','貨物の流れ・書類・倉庫・搭載をつなげて'],p5:['航空会社の営業・旅行会社','市場・販売・運賃・旅行会社との関係'],p6:['日本支店の立ち上げ・支店長','許認可から運営・人事・財務・引き継ぎまで'],p7:['運航管理の学科試験','試験科目のPartを集中して'],free:['自分で選ぶ','空のプランから講座を1つずつ足す']},
+ nles:'{n}レッスン',days:'1週間の学習日数',per:'1日のレッスン数',start:'開始日',total:'合計',fin:'終わる目安',wks:'約{w}週間',
+ up:'上へ',down:'下へ',del:'外す',all:'すべて',hint:'Partを押すと、プランに入れる／外すを切り替えます。',add:'講座を追加',addph:'講座を選ぶ…',
+ fn:'※ プランと進み具合は、このブラウザに保存されます。別の端末とは共有されません（メンバーシップのログイン後に引き継げるようにする予定です）。',
+ reset:'プランを消す',rq:'プランと完了の記録をすべて消しますか？',
+ ph:'あなたの進み具合',done:'完了',of:'/ {n}レッスン',left:'残り{n}レッスン　・　終わる目安 {d}',next:'次のレッスン',open:'このレッスンへ →',allDone:'すべて完了しました。おつかれさまでした！',
+ thisWeek:'今週やること（{n}レッスン）',edit:'プランを直す',noIdx:'レッスンの一覧は公開サイトで表示されます（いまは講座単位の表示です）。',empty:'まだ講座がありません。下の「講座を追加」から選んでください。',course:'講座の目次 →'},
+ko:{h1:'내 학습 플랜',hp:'목표로 하는 직무에 맞춰 강좌를 구성하고 자기 페이스로 공부하세요. 어디까지 읽었는지는 이 브라우저에 저장되며, 레슨 마지막의 「완료」 버튼으로도 기록할 수 있습니다.',go1:'플랜 만들기',go2:'학습 방법 보기',
+ hh:'레슨 한 번은 여섯 단계로',hl:'읽기만 하고 끝내지 말고, 확인하고, 써 보고, 내 현장에 대입해 보세요. 이 흐름을 반복하면 지식이 실무에서 쓰는 힘이 됩니다.',
+ cyc:[['전체 보기','강좌 목차에서 Part의 흐름과 지금 위치를 파악','예: Part 1 카운터 → Part 2 게이트 순서임을 확인'],['레슨 읽기','1회 10~15분. 그림과 표, 마지막 「포인트」 중심으로','예: 1-10 수하물 규정을 읽고 그림으로 크기·무게 확인'],['퀴즈로 확인','레슨 끝의 확인 퀴즈. 틀린 곳은 다시 읽기','예: 3문제 중 1문제 오답 → 그 부분만 다시 읽기'],['용어 익히기','용어 표에서 일본어·한국어·영어를 함께 확인','예: 受託手荷物 / 위탁 수하물 / Checked Baggage'],['직접 해 보기','탑재관리·운항관리 등 연습 페이지에서 실제로 해 보기','예: Part 3 뒤에 탑재관리 연습 1문제'],['내 현장에서 확인','회사 매뉴얼이나 최신 규정과 대조(★는 바뀌기 쉬운 부분)','예: 자사 수하물 허용량과 비교해 메모']],
+ loop:'↻ 다음 레슨으로. 주 1회는 모아서 복습',
+ h20:'1회 20분의 흐름(예)',s20:'출근 전후나 이동 중에도 이어 갈 수 있는 길이입니다.',tl:[['0~2분','전체','목차에서 오늘 레슨의 위치 확인'],['2~12분','읽기','본문·그림·표 읽기'],['12~15분','퀴즈','확인 퀴즈 풀기'],['15~17분','용어','용어 3개 소리 내어 읽기'],['17~20분','기록','현장과 비교해 메모하고 「완료」 누르기']],
+ hwk:'1주일 구성(내 페이스)',swk:'아래 「페이스」에서 고른 일수에 맞춰 바뀝니다.',leg:['레슨','연습 페이지','복습','휴식'],wd:['월','화','수','목','금','토','일'],cl:{les:'레슨',prc:'연습',rev:'복습',off:'휴식'},
+ tips:['한국과 일본을 비교하는 표는 먼저 「같은 점」을 보고 「다른 점」을 읽으면 기억하기 쉽습니다.','언어를 바꿔 같은 레슨을 읽으면 3개 언어 용어가 자연스럽게 익혀집니다.','「★」 표시 항목은 법령이나 공항 운용으로 바뀌기 쉬운 부분입니다. 업무에 쓰기 전에 최신 정보를 확인하세요.','현장에서 겪은 일(지연·비정상·감사 등) 뒤에 관련 레슨을 다시 읽으면 다음에 헤매지 않게 됩니다.'],
+ hm:'내 플랜 만들기',lm:'목표를 고르면 필요한 강좌와 Part가 추천 순서대로 놓입니다. 그다음 Part를 빼거나 강좌를 더해 자유롭게 바꿀 수 있습니다.',
+ s1:'목표 고르기',s2:'페이스 정하기',s3:'강좌와 Part 구성하기',
+ goals:{p1:['공항 지상직·입사 1년 차','체크인·게이트 업무를 전체 구조부터'],p2:['운송 총괄·매니저','편 전체를 보고 판단하며 지점과 조업사를 움직이기'],p3:['운항관리사','법규·기상·비행계획·연료를 한일 기준으로'],p4:['항공화물 업무','화물 흐름·서류·창고·탑재를 이어서'],p5:['항공사 영업·여행사','시장·판매·운임·여행사와의 관계'],p6:['일본 지점 개설·지점장','인허가부터 운영·인사·재무·인계까지'],p7:['운항관리 학과시험','시험 과목 Part를 집중해서'],free:['직접 고르기','빈 플랜에서 강좌를 하나씩 추가']},
+ nles:'{n}개 레슨',days:'1주일 학습 일수',per:'하루 레슨 수',start:'시작일',total:'합계',fin:'완료 예정',wks:'약 {w}주',
+ up:'위로',down:'아래로',del:'빼기',all:'전체',hint:'Part를 누르면 플랜에 넣기/빼기가 바뀝니다.',add:'강좌 추가',addph:'강좌 선택…',
+ fn:'※ 플랜과 진도는 이 브라우저에 저장됩니다. 다른 기기와는 공유되지 않습니다(멤버십 로그인 후 이어서 쓸 수 있도록 할 예정입니다).',
+ reset:'플랜 지우기',rq:'플랜과 완료 기록을 모두 지울까요?',
+ ph:'내 진도',done:'완료',of:'/ {n}개 레슨',left:'남은 레슨 {n}개　·　완료 예정 {d}',next:'다음 레슨',open:'이 레슨으로 →',allDone:'모두 완료했습니다. 수고하셨습니다!',
+ thisWeek:'이번 주 할 일({n}개 레슨)',edit:'플랜 고치기',noIdx:'레슨 목록은 공개 사이트에서 표시됩니다(지금은 강좌 단위로 표시).',empty:'아직 강좌가 없습니다. 아래 「강좌 추가」에서 골라 주세요.',course:'강좌 목차 →'},
+en:{h1:'My Learning Plan',hp:'Build the courses around the job you are aiming for, and study at your own pace. Your progress is saved in this browser, and you can also mark lessons with the Done button at the end of each lesson.',go1:'Build my plan',go2:'How to study',
+ hh:'Each lesson in six steps',hl:'Do not stop at reading: check, use and apply it to your own workplace. Repeating this cycle turns knowledge into something you can use at work.',
+ cyc:[['See the whole','Use the course contents to see the flow of parts and where you are','e.g. Part 1 counter → Part 2 gate'],['Read the lesson','10–15 minutes; focus on figures, tables and the final point','e.g. read 1-10 baggage rules and check sizes in the figure'],['Check with the quiz','The quiz at the end; reread anything you got wrong','e.g. one of three wrong → reread that section'],['Learn the terms','Check Japanese, Korean and English together in the terms table','e.g. 受託手荷物 / 위탁 수하물 / Checked Baggage'],['Try it yourself','Use practice pages such as load control and dispatch','e.g. one load-control exercise after Part 3'],['Check at your workplace','Compare with your manuals and the latest rules (★ changes often)','e.g. note your airline’s own baggage allowance']],
+ loop:'↻ On to the next lesson. Review once a week',
+ h20:'A 20-minute session (example)',s20:'Short enough to keep going before or after work, or on the move.',tl:[['0–2 min','Overview','Find today’s lesson in the contents'],['2–12 min','Read','Text, figures and tables'],['12–15 min','Quiz','Answer the quiz'],['15–17 min','Terms','Say three terms aloud'],['17–20 min','Record','Note how it compares at work; press Done']],
+ hwk:'Your week (your pace)',swk:'Changes with the days per week you choose under Pace.',leg:['Lesson','Practice page','Review','Rest'],wd:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],cl:{les:'Lesson',prc:'Practice',rev:'Review',off:'Rest'},
+ tips:['In tables comparing Korea and Japan, read what is the same first, then what differs.','Switching language on the same lesson is an easy way to learn the terms in all three languages.','Items marked ★ change often; check the latest information before using them at work.','After something happens at work (a delay, a disruption, an audit), reread the related lesson.'],
+ hm:'Build your plan',lm:'Choose a goal and the courses and parts you need are laid out in the recommended order. Then remove parts or add courses as you like.',
+ s1:'Choose a goal',s2:'Set your pace',s3:'Arrange courses and parts',
+ goals:{p1:['Airport ground staff, first year','Check-in and gate work from how it all fits'],p2:['Duty and station managers','Run the whole flight and direct station and handler'],p3:['Flight dispatchers','Law, weather, flight plans and fuel, Korea and Japan'],p4:['Air cargo','Connect flow, documents, warehouse and loading'],p5:['Airline sales and travel agencies','Market, sales, fares and agency relations'],p6:['Opening a station in Japan','From licences to operations, HR, finance and handover'],p7:['Dispatcher written exams','Focus on the exam-subject parts'],free:['Choose my own','Start empty and add courses one by one']},
+ nles:'{n} lessons',days:'Study days a week',per:'Lessons a day',start:'Start date',total:'Total',fin:'Finish around',wks:'about {w} weeks',
+ up:'Up',down:'Down',del:'Remove',all:'All',hint:'Tap a part to include or exclude it.',add:'Add a course',addph:'Choose a course…',
+ fn:'* Your plan and progress are saved in this browser only, not across devices (we plan to carry them over once membership sign-in is available).',
+ reset:'Delete plan',rq:'Delete your plan and all completion records?',
+ ph:'Your progress',done:'done',of:'/ {n} lessons',left:'{n} lessons left · finish around {d}',next:'Next lesson',open:'Go to this lesson →',allDone:'All done. Well done!',
+ thisWeek:'This week ({n} lessons)',edit:'Edit plan',noIdx:'The lesson list appears on the published site (shown by course for now).',empty:'No courses yet. Add one below.',course:'Course contents →'}};
+
+/* ── データ ── */
+var IDX=[];try{IDX=(window.SEARCH_INDEX&&SEARCH_INDEX.l)||[]}catch(e){}
+var SER={};(window.SERIES||[]).forEach(function(s){SER[s.code]=s});
+function lessonsOf(code){var lc=code.toLowerCase();return IDX.filter(function(x){return x[0]===lc})}
+function partsOf(code){var p=[];lessonsOf(code).forEach(function(x){var k=x[1].split('-')[0];if(p.indexOf(k)<0)p.push(k)});return p}
+function sel(step){var L=lessonsOf(step.c);if(!step.p&&!step.n)return L;return L.filter(function(x){var k=x[1].split('-')[0];return (step.p&&step.p.indexOf(k)>=0)||(step.n&&step.n.indexOf(x[1])>=0)})}
+function countOf(step){if(IDX.length)return sel(step).length;var s=SER[step.c];return s?(s.n||0):0}
+function load(k,d){try{var v=JSON.parse(localStorage.getItem(k)||'null');return v||d}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var plan=load(KP,null),done=load(KD,{});
+function today(){var d=new Date();return d.toISOString().slice(0,10)}
+function newPlan(id){var r=ROUTES.filter(function(x){return x.id===id})[0];return {v:1,goal:id,days:(plan&&plan.days)||5,per:(plan&&plan.per)||1,start:(plan&&plan.start)||today(),steps:r.st.map(function(s){return {c:s[0],p:s[1]&&s[1].p?s[1].p.slice():null,n:s[1]&&s[1].n?s[1].n.slice():null}})}}
+function all(){var a=[];if(!plan)return a;plan.steps.forEach(function(s){sel(s).forEach(function(x){a.push(x)})});return a}
+function key(x){return x[0]+'/'+x[1]}
+function finishDate(n){if(!plan)return '';var days=plan.days,per=plan.per,need=Math.ceil(n/per),d=new Date(plan.start+'T00:00:00'),c=0,guard=0;
+ var wk=pattern(days);while(c<need&&guard<3000){var w=(d.getDay()+6)%7;if(wk[w]==='les')c++;if(c<need)d.setDate(d.getDate()+1);guard++}return d.toISOString().slice(0,10)}
+/* 1週間：学習日はレッスン、7日のうち空いた日に練習と復習（5日なら土=練習・日=復習） */
+function pattern(days){var p=['off','off','off','off','off','off','off'],map={2:[1,3],3:[0,2,4],4:[0,1,3,4],5:[0,1,2,3,4],6:[0,1,2,3,4,5],7:[0,1,2,3,4,5,6]};(map[days]||map[5]).forEach(function(i){p[i]='les'});
+ var free=[];for(var i=6;i>=0;i--)if(p[i]==='off')free.push(i);if(free.length){p[free[0]]='rev'}if(free.length>1){p[free[1]]='prc'}if(days===7){p[6]='les'}return p}
+function fmt(s,o){return s.replace(/\{(\w+)\}/g,function(m,k){return o[k]})}
+
+/* ── 描画 ── */
+var L='ja';
+function $(i){return document.getElementById(i)}
+function E(s){return window.ACN?ACN.E(s):String(s)}
+function title(code){var s=SER[code];return s?s[L][1]:code}
+function lurl(x){return '../'+L+'/'+x[0]+'/'+x[1]+'/'}
+window.PAGE_RENDER=function(l){L=l;var t=T[l];
+ ['h1','hp','go1','go2','hh','hl','loop','h20','s20','hwk','swk','hm','lm','s1','s2','s3','fn'].forEach(function(k){if($(k))$(k).textContent=t[k]});
+ $('cyc').innerHTML=t.cyc.map(function(c,i){return '<div class="st"><span class="no">'+(i+1)+'</span><b>'+E(c[0])+'</b><span>'+E(c[1])+'</span><em>'+E(c[2])+'</em></div>'}).join('');
+ var tc=['#5B6B7D','#1769e0','#E08A2E','#2C8C8C','#2E9B5F'],tw=[2,10,3,2,3];
+ $('tbar').innerHTML=t.tl.map(function(x,i){return '<div style="flex:'+tw[i]+';background:'+tc[i]+'">'+E(x[1])+'</div>'}).join('');
+ $('tlist').innerHTML=t.tl.map(function(x){return '<li><i>'+E(x[0])+'</i><span>'+E(x[2])+'</span></li>'}).join('');
+ $('tips').innerHTML=t.tips.map(function(x){return '<li>'+E(x)+'</li>'}).join('');
+ drawWeek();drawGoals();drawPace();drawCourses();drawProgress()};
+function drawWeek(){var t=T[L],p=pattern(plan?plan.days:5);
+ $('week').innerHTML=p.map(function(k,i){return '<div class="'+k+'"><b>'+E(t.wd[i])+'</b>'+E(t.cl[k])+(k==='les'&&plan?'<br>×'+plan.per:'')+'</div>'}).join('');
+ $('leg').innerHTML=[['#eaf2fd',0],['#fff4d6',1],['#eaf7f0',2],['#fff',3]].map(function(x){return '<span><i style="background:'+x[0]+';border:1px solid #c8d3de"></i>'+E(t.leg[x[1]])+'</span>'}).join('')}
+function drawGoals(){var t=T[L];$('goals').innerHTML=ROUTES.map(function(r){var g=t.goals[r.id],n=0;r.st.forEach(function(s){n+=countOf({c:s[0],p:s[1]&&s[1].p,n:s[1]&&s[1].n})});
+ return '<button type="button" class="goal'+(plan&&plan.goal===r.id?' on':'')+'" data-g="'+r.id+'"><b>'+E(g[0])+'</b><span>'+E(g[1])+'</span>'+(r.id!=='free'?'<small>'+E(fmt(t.nles,{n:n}))+'</small>':'')+'</button>'}).join('');
+ Array.prototype.forEach.call($('goals').querySelectorAll('.goal'),function(b){b.onclick=function(){plan=newPlan(b.getAttribute('data-g'));save(KP,plan);PAGE_RENDER(L);var m=$('s2');if(m)m.scrollIntoView({behavior:'smooth',block:'center'})}})}
+function drawPace(){var t=T[L],p=plan||{days:5,per:1,start:today()},n=all().length,left=all().filter(function(x){return !done[key(x)]}).length;
+ var w=n?Math.ceil(Math.ceil(n/p.per)/p.days):0;
+ $('pace').innerHTML='<div><label>'+E(t.days)+'</label><span class="seg" data-k="days">'+[2,3,5,7].map(function(v){return '<button type="button" data-v="'+v+'" class="'+(p.days===v?'on':'')+'">'+v+'</button>'}).join('')+'</span></div>'+
+ '<div><label>'+E(t.per)+'</label><span class="seg" data-k="per">'+[1,2,3].map(function(v){return '<button type="button" data-v="'+v+'" class="'+(p.per===v?'on':'')+'">'+v+'</button>'}).join('')+'</span></div>'+
+ '<div><label for="sd">'+E(t.start)+'</label><input type="date" id="sd" value="'+E(p.start)+'"></div>'+
+ '<div class="est">'+(plan&&n?'<span>'+E(t.total)+' '+E(fmt(t.nles,{n:n}))+' · '+E(fmt(t.wks,{w:w}))+'</span><b>'+E(t.fin)+' '+E(finishDate(left||1))+'</b>':'')+'</div>';
+ Array.prototype.forEach.call($('pace').querySelectorAll('.seg button'),function(b){b.onclick=function(){if(!plan)plan=newPlan('free');plan[b.parentNode.getAttribute('data-k')]=+b.getAttribute('data-v');save(KP,plan);PAGE_RENDER(L)}});
+ $('sd').onchange=function(){if(!plan)plan=newPlan('free');plan.start=this.value||today();save(KP,plan);PAGE_RENDER(L)}}
+function drawCourses(){var t=T[L];
+ if(!plan||!plan.steps.length){$('crs').innerHTML='<div class="empty">'+E(t.empty)+'</div>'}
+ else $('crs').innerHTML=plan.steps.map(function(s,i){var parts=partsOf(s.c),n=countOf(s);
+  var chips=parts.length?'<div class="chips"><button type="button" class="chip'+(!s.p&&!s.n?' on':'')+'" data-a="all" data-i="'+i+'">'+E(t.all)+'</button>'+parts.map(function(k){var on=!s.p&&!s.n||(s.p&&s.p.indexOf(k)>=0);return '<button type="button" class="chip'+(on?' on':'')+'" data-a="p" data-k="'+k+'" data-i="'+i+'">Part '+E(k)+'</button>'}).join('')+'</div>'+(s.n?'<div class="hint">+ '+E(s.n.join(', '))+'</div>':''):'';
+  return '<div class="crs"><div class="hd"><b>'+(i+1)+'. '+E(title(s.c))+'</b><span class="cnt">'+E(fmt(t.nles,{n:n}))+'</span><span class="tools"><button type="button" data-a="up" data-i="'+i+'" title="'+E(t.up)+'">↑</button> <button type="button" data-a="dn" data-i="'+i+'" title="'+E(t.down)+'">↓</button> <button type="button" data-a="rm" data-i="'+i+'">'+E(t.del)+'</button></span></div>'+chips+'</div>'}).join('')+(IDX.length?'<p class="hint">'+E(t.hint)+'</p>':'<p class="hint">'+E(t.noIdx)+'</p>');
+ Array.prototype.forEach.call($('crs').querySelectorAll('button[data-a]'),function(b){b.onclick=function(){var i=+b.getAttribute('data-i'),a=b.getAttribute('data-a'),s=plan.steps[i];
+  if(a==='up'&&i>0){plan.steps.splice(i-1,0,plan.steps.splice(i,1)[0])}
+  else if(a==='dn'&&i<plan.steps.length-1){plan.steps.splice(i+1,0,plan.steps.splice(i,1)[0])}
+  else if(a==='rm'){plan.steps.splice(i,1)}
+  else if(a==='all'){s.p=null;s.n=null}
+  else if(a==='p'){var k=b.getAttribute('data-k'),cur=(!s.p&&!s.n)?partsOf(s.c).slice():(s.p||[]).slice();var j=cur.indexOf(k);if(j>=0)cur.splice(j,1);else cur.push(k);s.p=cur;s.n=null;if(!cur.length){plan.steps.splice(i,1)}}
+  save(KP,plan);PAGE_RENDER(L)}});
+ var have=plan?plan.steps.map(function(s){return s.c}):[];
+ $('addrow').innerHTML='<select id="addsel" aria-label="'+E(t.add)+'"><option value="">'+E(t.addph)+'</option>'+(window.SERIES||[]).filter(function(s){return have.indexOf(s.code)<0&&(IDX.length?lessonsOf(s.code).length:1)}).map(function(s){return '<option value="'+s.code+'">'+E(s[L][1])+'</option>'}).join('')+'</select><button type="button" class="btn primary sm" id="addbtn">'+E(t.add)+'</button>'+(plan?'<button type="button" class="btn line sm danger" id="rst">'+E(t.reset)+'</button>':'');
+ $('addbtn').onclick=function(){var v=$('addsel').value;if(!v)return;if(!plan)plan=newPlan('free');plan.steps.push({c:v,p:null,n:null});save(KP,plan);PAGE_RENDER(L)};
+ if($('rst'))$('rst').onclick=function(){if(!confirm(T[L].rq))return;plan=null;done={};try{localStorage.removeItem(KP);localStorage.removeItem(KD)}catch(e){}PAGE_RENDER(L)}}
+function drawProgress(){var t=T[L],sec=$('progress'),A=all();
+ if(!plan||!A.length||!IDX.length){sec.hidden=true;sec.innerHTML='';return}
+ sec.hidden=false;var dn=A.filter(function(x){return done[key(x)]}).length,pct=Math.round(dn/A.length*100),rest=A.filter(function(x){return !done[key(x)]}),nx=rest[0];
+ var wkN=plan.days*plan.per,wk=rest.slice(0,wkN);
+ var h='<div class="eyebrow">Progress</div><h2 style="font-size:clamp(26px,3.4vw,38px);margin:6px 0 16px">'+E(t.ph)+'</h2><div class="prog"><div><div class="big">'+pct+'%</div><div class="bar"><i style="width:'+pct+'%"></i></div><div class="meta">'+dn+' '+E(t.done)+' '+E(fmt(t.of,{n:A.length}))+'<br>'+(rest.length?E(fmt(t.left,{n:rest.length,d:finishDate(rest.length)})):'')+'</div>'+
+  (wk.length?'<div class="wk"><b>'+E(fmt(t.thisWeek,{n:wk.length}))+'</b><ol>'+wk.map(function(x){return '<li><a href="'+lurl(x)+'">'+E(x[1]+' '+x[L==='ja'?2:L==='ko'?3:4])+'</a> <span style="color:#9fb0c2">· '+E(title(x[0].toUpperCase()))+'</span></li>'}).join('')+'</ol></div>':'')+'</div>'+
+  '<div class="next">'+(nx?'<small>'+E(t.next)+'</small><b>'+E(title(nx[0].toUpperCase()))+'<br>'+E(nx[1]+' '+nx[L==='ja'?2:L==='ko'?3:4])+'</b><a class="btn primary" href="'+lurl(nx)+'">'+E(t.open)+'</a>':'<b>'+E(t.allDone)+'</b>')+' <a class="btn ghost" href="#make">'+E(t.edit)+'</a></div></div>';
+ h+='<div class="acc">'+plan.steps.map(function(s,i){var ls=sel(s),d=ls.filter(function(x){return done[key(x)]}).length,p=ls.length?Math.round(d/ls.length*100):0;
+  return '<details'+(nx&&ls.indexOf(nx)>=0?' open':'')+'><summary><b>'+(i+1)+'. '+E(title(s.c))+'</b><span class="mini"><i style="width:'+p+'%"></i></span><span class="pc">'+d+' / '+ls.length+'</span></summary><ul class="lsn">'+ls.map(function(x){var k=key(x);return '<li class="'+(done[k]?'dn':'')+'"><input type="checkbox" data-k="'+k+'"'+(done[k]?' checked':'')+' aria-label="'+E(t.done)+'"><span class="no">'+E(x[1])+'</span><a href="'+lurl(x)+'">'+E(x[L==='ja'?2:L==='ko'?3:4])+'</a></li>'}).join('')+'</ul></details>'}).join('')+'</div>';
+ sec.innerHTML=h;
+ Array.prototype.forEach.call(sec.querySelectorAll('input[data-k]'),function(c){c.onchange=function(){var k=c.getAttribute('data-k');if(c.checked)done[k]=Date.now();else delete done[k];save(KD,done);var op=[];Array.prototype.forEach.call(sec.querySelectorAll('details'),function(d,i){if(d.open)op.push(i)});drawProgress();drawPace();Array.prototype.forEach.call($('progress').querySelectorAll('details'),function(d,i){d.open=op.indexOf(i)>=0})}})}
+/* 別のタブでレッスンを「完了」にしたら反映する */
+window.addEventListener('storage',function(e){if(e.key===KD||e.key===KP){plan=load(KP,null);done=load(KD,{});PAGE_RENDER(L)}});
+window.addEventListener('pageshow',function(e){if(e.persisted){plan=load(KP,null);done=load(KD,{});PAGE_RENDER(L)}});
+</script>
+<script src="assets/v3.js"></script>
+</body>
+</html>
