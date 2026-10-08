@@ -46,6 +46,12 @@ function PLANE(x0,x1,cy,fw){var o='',L=x1-x0,wx=x0+L*0.42;
  o+='<path d="M'+(x0+20)+' '+(cy-fw/2)+' L'+(x0-10)+' '+(cy-fw/2-46)+' L'+(x0+14)+' '+(cy-fw/2-46)+' L'+(x0+60)+' '+(cy-fw/2)+' Z M'+(x0+20)+' '+(cy+fw/2)+' L'+(x0-10)+' '+(cy+fw/2+46)+' L'+(x0+14)+' '+(cy+fw/2+46)+' L'+(x0+60)+' '+(cy+fw/2)+' Z" fill="#DCE6F0" stroke="#9FB0C2"/>';
  o+='<path d="M'+x0+' '+(cy-fw/2)+' L'+(x1-40)+' '+(cy-fw/2)+' Q'+(x1+10)+' '+(cy-fw/2)+' '+(x1+14)+' '+cy+' Q'+(x1+10)+' '+(cy+fw/2)+' '+(x1-40)+' '+(cy+fw/2)+' L'+x0+' '+(cy+fw/2)+' Q'+(x0-24)+' '+cy+' '+x0+' '+(cy-fw/2)+' Z" fill="#fff" stroke="#5B6B7D" stroke-width="2"/>';
  return {s:o,wx:wx,L:L}}
+/* 左の項目 → 右の扱い。行が順に光る */
+function ROWMAP(y,rows,dur){var s='',n=rows.length,lw=250,rx=330;
+ rows.forEach(function(r,i){var nl=Math.max(LI(r[0],11,lw-24).length,LI(r[1],10,270).length),h=nl*FS(11)*1.3+20;
+  s+=GLOW(20,y-3,600,h+6,i,n,dur,10)+R(20,y,lw,h,'#fff',10,' stroke="#C8D3DE"')+WR(20+lw/2,y+h/2+FS(11)*0.35-(LI(r[0],11,lw-24).length-1)*FS(11)*0.65,r[0],11,D,800,lw-24)+ARW(20+lw+8,y+h/2,rx-8,y+h/2,r[2],3)+R(rx,y,290,h,r[2],10)+WR(rx+145,y+h/2+FS(10)*0.35-(LI(r[1],10,270).length-1)*FS(10)*0.65,r[1],10,'#fff',900,270);
+  y+=h+10});
+ return {s:s,y:y}}
 var F={
 /* 1-2 案内に入れる3つのこと：なぜ・いつ・何を（文例は一つの例） */
 gnd_ann3:function(l){
@@ -378,7 +384,51 @@ gnd_ramp:function(l){
  s+=tx(ex+70,cy-fw/2-58+4,W.in,10,'#D64545',900,'start')+tx(ex-170,cy-fw/2-58-48,W.ex,10,'#E08A2E',900,'start');
  s+='<circle cx="'+(x0+(x1-x0)*0.55)+'" cy="'+cy+'" r="7" fill="#D64545"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></circle>'+tx(x0+(x1-x0)*0.55+12,cy+4,W.bc,9,'#D64545',900,'start');
  var wy=cy+fw/2+160;s+='<line x1="20" y1="'+wy+'" x2="620" y2="'+wy+'" stroke="#2E9B5F" stroke-width="5" stroke-dasharray="14 8"/>'+tx(24,wy-8,W.walk,10,'#2E9B5F',900,'start');
- var y=wy+22;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
+ var y=wy+22;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 4-2 未着手荷物：見つけた空港から後の便で転送し、到着地からお客様へ配達 */
+gnd_rush:function(l){
+ var W=({ja:{t:'未着手荷物：見つけた空港から転送し、到着地から配達',a:['出発地','乗り継ぎ地','到着地'],r:['積み残し・誤搭載がないか確認。見つかれば早い便で転送','積み替えられなかった手荷物を確認して転送','受付・お客様への連絡・配達・当面の必需品'],tag:'転送タグ',home:'お客様へ配達',ohd:'どこでも：持ち主のいない手荷物を追跡システムに登録（OHD）',n:['転送タグを付けた手荷物は、お客様が乗っていなくても後の便で運べる','お客様には「見つかった」より「いつ・どこへ届くか」を確定して伝える','残ったかばん（OHD）と届かない申し出（AHL）が同時にあれば、取り違えを疑う']},
+  ko:{t:'지연 수하물: 찾은 공항에서 전송하고 도착지에서 배송',a:['출발지','환승지','도착지'],r:['미탑재·오탑재가 없는지 확인. 찾으면 빠른 편으로 전송','환적되지 못한 수하물을 확인해 전송','접수·승객 연락·배송·당장 필요한 물품'],tag:'러시 태그',home:'승객에게 배송',ohd:'어디서나: 주인 없는 수하물을 추적 시스템에 등록(OHD)',n:['러시 태그를 단 수하물은 승객이 타지 않아도 다음 편으로 운송할 수 있다','승객에게는 「찾았다」보다 「언제·어디로 도착하는지」를 확정해 전한다','남은 가방(OHD)과 미도착 신고(AHL)가 동시에 있으면 크로스 픽업을 의심한다']},
+  en:{t:'Delayed bags: forwarded from where they are found, delivered from the destination',a:['Origin','Transfer','Destination'],r:['Check for bags left behind or misloaded; send any found on an earlier flight','Check bags that missed the transfer and forward them','Take the report, contact the passenger, deliver, cover interim needs'],tag:'Rush tag',home:'Delivered to the passenger',ohd:'Everywhere: register bags with no owner in the tracing system (OHD)',n:['A bag with a rush tag can travel on a later flight without its passenger','Passengers care more about when and where the bag will arrive than about “it has been found”','A bag left over (OHD) and a missing-bag report (AHL) at the same time suggest a cross pick-up']}})[l];
+ if(!W)return F.gnd_rush('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+78,xs=[110,320,530],cw=180;
+ s+='<line x1="'+xs[0]+'" y1="'+y+'" x2="'+xs[2]+'" y2="'+y+'" stroke="#9FB0C2" stroke-width="4" stroke-dasharray="10 6"/>';
+ xs.forEach(function(x,i){s+='<circle cx="'+x+'" cy="'+y+'" r="12" fill="'+(i===2?'#1769e0':'#0f3558')+'"/>'+tx(x,y-22,W.a[i],11,'#0f3558',900)});
+ s+='<g><rect x="-14" y="-12" width="28" height="22" rx="4" fill="#E08A2E" stroke="#0f3558" stroke-width="1.5"/><rect x="8" y="-18" width="16" height="10" rx="2" fill="#D64545"/><animateMotion dur="6s" repeatCount="indefinite" path="M'+xs[0]+' '+(y-34)+' L'+xs[2]+' '+(y-34)+'"/></g>';
+ s+=LB(xs[0]+120,y-60,W.tag,9,'#fff','middle','#D64545');
+ var ch=0;W.r.forEach(function(r){var h=LI(r,10,cw-20).length*FS(10)*1.3+30;if(h>ch)ch=h});
+ W.r.forEach(function(r,i){var x=xs[i]-cw/2;s+=R(x,y+24,cw,ch,'#fff',10,' stroke="'+(i===2?'#1769e0':'#C8D3DE')+'"'+(i===2?' stroke-width="2"':''))+WR(xs[i],y+24+ch/2+FS(10)*0.35-(LI(r,10,cw-20).length-1)*FS(10)*0.65,r,10,D,800,cw-20)});
+ y+=24+ch+14;s+=ARW(xs[2],y-8,xs[2],y+14,'#1769e0',3);y+=20;s+=LB(xs[2],y+FS(10)*0.6,W.home,10,'#fff','middle','#1769e0');
+ y+=FS(10)*1.3+18;s+=LB(320,y+FS(10)*0.6,W.ohd,10,'#fff','middle','#5B6B7D');y+=FS(10)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 4-3 照合：探している手荷物（AHL）と持ち主のいない手荷物（OHD）を、項目ごとに照らし合わせる */
+gnd_match:function(l){
+ var W=({ja:{t:'追跡システムの照合：2つの登録を項目ごとに照らし合わせる',L:['探している手荷物（AHL）','到着地で登録'],R:['持ち主のいない手荷物（OHD）','各空港で登録'],f:['タグ番号（10桁）','名前・便・乗り継ぎ地','色・形のコード','特徴（名札・リボン・傷）','中身（例：赤いセーター）'],res:'一致の可能性が高い → 担当者が確認 → 転送',n:['タグ番号がいちばん強い手がかり。10桁を正確に登録する','色・形は IATA の早見表のコードで。特徴と中身は具体的に','登録の質が、見つかるまでの時間を決める']},
+  ko:{t:'추적 시스템 대조: 두 등록을 항목별로 맞춰 본다',L:['찾는 수하물(AHL)','도착지에서 등록'],R:['주인 없는 수하물(OHD)','각 공항에서 등록'],f:['태그 번호(10자리)','이름·편·환승지','색·형태 코드','특징(이름표·리본·흠집)','내용물(예: 빨간 스웨터)'],res:'일치 가능성 높음 → 담당자 확인 → 전송',n:['태그 번호가 가장 강력한 단서. 10자리를 정확히 등록한다','색·형태는 IATA 조견표 코드로. 특징과 내용물은 구체적으로','등록의 질이 찾을 때까지의 시간을 정한다']},
+  en:{t:'Tracing system matching: two records compared field by field',L:['Missing bag (AHL)','Registered at destination'],R:['Bag with no owner (OHD)','Registered at any station'],f:['Tag number (10 digits)','Name, flight, transfer point','Colour and type code','Features (name tag, ribbon, damage)','Contents (e.g. a red sweater)'],res:'Likely match → staff check → forward',n:['The tag number is the strongest clue; register all 10 digits correctly','Use the IATA chart codes for colour and type; describe features and contents specifically','The quality of registration decides how quickly a bag is found']}})[l];
+ if(!W)return F.gnd_match('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y,cw=200,lx=20,rx=420,dur='10s',n=W.f.length;
+ s+=R(lx,y,cw,48,'#1769e0',10)+WR(lx+cw/2,y+20,W.L[0],11,'#fff',900,cw-16)+tx(lx+cw/2,y+40,W.L[1],9,'#DCE8FA',700);
+ s+=R(rx,y,cw,48,'#E08A2E',10)+WR(rx+cw/2,y+20,W.R[0],11,'#fff',900,cw-16)+tx(rx+cw/2,y+40,W.R[1],9,'#FFF1DE',700);
+ y+=58;
+ W.f.forEach(function(f,i){var h=Math.max(30,LI(f,10,cw-20).length*FS(10)*1.3+12);
+  var oy=y+h/2+FS(10)*0.35-(LI(f,10,cw-20).length-1)*FS(10)*0.65;s+=R(lx,y,cw,h,'#fff',8,' stroke="#C8D3DE"')+WR(lx+cw/2,oy,f,10,D,800,cw-20)+R(rx,y,cw,h,'#fff',8,' stroke="#C8D3DE"')+WR(rx+cw/2,oy,f,10,D,800,cw-20);
+  s+='<line x1="'+(lx+cw)+'" y1="'+(y+h/2)+'" x2="'+rx+'" y2="'+(y+h/2)+'" stroke="#2E9B5F" stroke-width="3" stroke-dasharray="6 4" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(i/n*0.8).toFixed(2)+';'+(i/n*0.8+0.02).toFixed(2)+';1" dur="'+dur+'" repeatCount="indefinite"/></line>';
+  y+=h+6});
+ s+='<circle cx="320" cy="'+(y-((y-T.y-58)/2))+'" r="22" fill="#2E9B5F" opacity=".15"><animate attributeName="r" values="18;26;18" dur="2s" repeatCount="indefinite"/></circle>';
+ y+=8;s+=LB(320,y+FS(11)*0.6,W.res,11,'#fff','middle','#2E9B5F');y+=FS(11)*1.3+18;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 4-4 忘れ物：特に注意が必要な物と扱い */
+gnd_lost:function(l){
+ var W=({ja:{t:'忘れ物：特に注意が必要な物と扱い',r:[['パスポート・身分証','すぐに持ち主を探し、関係機関と連携','#D64545'],['現金・貴重品','2人以上で確認・記録し、封をして保管','#E08A2E'],['スマートフォン・PC','中身は見ない。個人情報に配慮する','#1769e0'],['食品・液体','規定に沿って短期間で処分することが多い','#2E9B5F'],['危険物・不審物','触らず、保安の担当・警察に連絡','#0f3558']],n:['見つけたら日時・場所・便名・品目・特徴・発見者を記録し、鍵のかかる場所に','返すときは本人確認と受領の署名','期限を過ぎた物は法令に沿って警察などへ（日本は遺失物法）']},
+  ko:{t:'유실물: 특히 주의가 필요한 물건과 처리',r:[['여권·신분증','즉시 주인을 찾고 관계 기관과 연계','#D64545'],['현금·귀중품','2명 이상이 확인·기록하고 봉인해 보관','#E08A2E'],['스마트폰·PC','내용은 보지 않는다. 개인정보에 배려','#1769e0'],['식품·액체','규정에 따라 단기간에 폐기하는 경우가 많다','#2E9B5F'],['위험물·수상한 물건','만지지 말고 보안 담당·경찰에 연락','#0f3558']],n:['발견하면 일시·장소·편명·품목·특징·발견자를 기록하고 잠금 장소에','돌려줄 때는 본인 확인과 수령 서명','기한이 지난 물건은 법령에 따라 경찰 등에(일본은 유실물법)']},
+  en:{t:'Lost property: items needing particular care',r:[['Passports and ID','Find the owner at once; work with the authorities','#D64545'],['Cash and valuables','Check and record with two or more people; seal and store','#E08A2E'],['Phones and computers','Do not look at the contents; respect personal data','#1769e0'],['Food and liquids','Often disposed of quickly, following the rules','#2E9B5F'],['Dangerous or suspicious items','Do not touch; call security or the police','#0f3558']],n:['Record date, place, flight, item, description and finder; keep it locked away','On return, check identity and get a signed receipt','Items not claimed in time go to the police as the law requires (Japan’s Lost Property Act)']}})[l];
+ if(!W)return F.gnd_lost('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'10s');s+=A.s;
+ var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

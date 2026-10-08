@@ -54,7 +54,7 @@ sections:[
 {name:"How to check progress",x:"Online tracing and the contact point."},
 {name:"Interim necessities",x:"Toiletries and a change of clothes. Some airlines hand over a kit or cover purchases within set limits. Ask them to keep the receipts."},
 {name:"Customs",x:"On international arrivals, the passenger’s documents may be needed to clear the bag once it follows."}]}]},
-{h:"What each station does",blocks:[{t:"table",cols:["Station","Main role"],rows:[
+{h:"What each station does",blocks:[{t:"fig",id:"gnd_rush",cap:"Animated figure: a rush-tagged bag travels from the origin to the destination and is delivered to the passenger. Each station’s role is shown."},{t:"table",cols:["Station","Main role"],rows:[
 ["Arrival","Takes the report, contacts the passenger, arranges delivery and interim necessities"],
 ["Departure","Checks for bags left behind or misloaded, and forwards them on the earliest flight"],
 ["Transit","Checks bags that could not be transferred and forwards them"],
@@ -79,7 +79,7 @@ set("4-3",{title:"How the Baggage Tracing System Works",hl:"tracing system",subt
 lead:["Most airlines use a shared baggage tracing system, WorldTracer being the best known. It automatically matches the bags reported missing at arrival stations against the bags with no owner registered at airports around the world, using tag numbers, names and descriptions.",
 "This article covers how the matching works, the information used to register a bag, why the quality of that registration decides the outcome, and recent moves to improve tag reading and tracking."],
 sections:[
-{h:"How matching works",blocks:[{t:"cards",n:2,items:[
+{h:"How matching works",blocks:[{t:"fig",id:"gnd_match",cap:"Animated figure: the missing-bag record (AHL) and the no-owner record (OHD) are compared field by field."},{t:"cards",n:2,items:[
 {ic:"🔎",name:"Bags being looked for",tag:"Registered at arrival",x:"Raised as a property irregularity report from what the passenger tells you."},
 {ic:"🧳",name:"Bags with no owner",tag:"Registered at any airport",x:"Bags left behind, bags stranded in transit, bags left on the belt."}]},
 {t:"p",x:"The system compares both sides automatically and flags likely matches to staff, who check them and arrange forwarding."}]},
@@ -113,7 +113,7 @@ lead:["A phone in a seat pocket, a passport left at the counter, a charger at th
 "This article covers the path from finding an item to returning it, items that need particular care, how national law applies, and how to handle enquiries."],
 sections:[
 {h:"From finding to returning",blocks:[{t:"ladder",rise:10,steps:[{name:"Found and received",sub:"From the cabin, cleaning or the counter"},{name:"Record",sub:"Date, place, flight, item, features, finder"},{name:"Store",sub:"In a locked place"},{name:"Find the owner",sub:"From the seat number or a name"},{name:"Return",sub:"Verify identity and take a signature"},{name:"After the period",sub:"To the police or as the law requires"}]}]},
-{h:"Items needing particular care",blocks:[{t:"table",cols:["Item","Watch for"],rows:[
+{h:"Items needing particular care",blocks:[{t:"fig",id:"gnd_lost",cap:"Animated figure: lost items needing particular care, and how to handle them, light up in turn. Follow company and airport rules."},{t:"table",cols:["Item","Watch for"],rows:[
 ["Passports and ID","Find the owner immediately; it affects their departure or entry, so work with the agencies concerned"],
 ["Cash and valuables","Check with two people and record it. Note the amount, seal it and store it"],
 ["Phones and laptops","Do not look inside. Respect privacy; look for contact details only within your rules"],
