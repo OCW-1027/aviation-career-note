@@ -62,7 +62,7 @@ sections:[
 ["Stronger gateway","The recovery of international traffic and visa easing are consolidating Shanghai as China’s main gateway"]]},
 {t:"note",x:"* Check official announcements for the opening date of Terminal 3. ★"}]}],
 voice:"Shanghai splits roles between Pudong and Hongqiao, so tell passengers connecting to domestic flights in advance whether they need to change airports.",
-terms:[["Shanghai Pudong International Airport","浦東国際空港","푸둥국제공항"],["Shanghai Hongqiao International Airport","虹橋国際空港","훙차오국제공항"],["Satellite Concourse","衛星のコンコース","위성 탑승동"],["Cargo Hub","貨物の拠点","화물 거점"],["International Gateway","国際の玄関","국제 관문"]],
+terms:[["Shanghai Pudong International Airport","浦東国際空港","푸둥국제공항"],["Shanghai Hongqiao International Airport","虹橋国際空港","훙차오국제공항"],["Satellite Concourse","サテライト","위성 탑승동"],["Cargo Hub","貨物の拠点","화물 거점"],["International Gateway","国際の玄関","국제 관문"]],
 quiz:[{q:"Where did Pudong rank for passengers in 2025?",opts:["1st","5th","10th","20th"],a:1,exp:"Up from tenth the year before."},
 {q:"Which airport do business routes from Haneda and Gimpo to Shanghai mainly use?",opts:["Pudong","Hongqiao","Daxing","Hong Kong"],a:1,exp:"Hongqiao, close to the city."},
 {q:"Where did Pudong rank for cargo in 2025?",opts:["1st","2nd","7th","10th"],a:1,exp:"Hong Kong was first."}],

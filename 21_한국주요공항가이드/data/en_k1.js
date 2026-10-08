@@ -29,7 +29,7 @@ sections:[
 ["Around the airport","Industrial complexes for aircraft maintenance (MRO) and logistics"]]},
 {t:"point",x:"Incheon’s strengths are 24-hour operation, four runways and the connecting network of the merged major carriers. From a Japan station, capturing ‘Japanese regions → Incheon → the world’ transfer demand is the key to sales."}]}],
 voice:"Incheon has two terminals, so at check-in, first confirm whether connecting passengers will need to change terminals. More passengers than you would expect arrive late at the wrong terminal.",
-terms:[["Incheon International Airport Corporation (IIAC)","仁川国際空港公社","인천국제공항공사"],["Passenger Terminal","旅客ターミナル","여객터미널"],["Codeshare","共同運航","공동운항"],["Sea Fog","海霧","해무"],["Capacity","受け入れの能力","수용 능력"]],
+terms:[["Incheon International Airport Corporation (IIAC)","仁川国際空港公社","인천국제공항공사"],["Passenger Terminal","旅客ターミナル","여객터미널"],["Codeshare","共同運航","공동운항"],["Sea Fog","海霧","해무"],["Capacity","処理能力","수용 능력"]],
 quiz:[{q:"When did Asiana move to Incheon T2?",opts:["January 2018","June 2021","November 2024","14 January 2026"],a:3,exp:"Part of the merger with Korean Air."},
 {q:"What is Incheon’s annual passenger capacity after Phase 4?",opts:["77 million","80 million","106 million","150 million"],a:2,exp:"Cargo capacity is 6.3 million tonnes."},
 {q:"Which terminal does a codeshare flight use?",opts:["The marketing carrier’s","The operating carrier’s","Either","Always T1"],a:1,exp:"Check the operating carrier in the booking."}],

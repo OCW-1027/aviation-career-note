@@ -698,7 +698,7 @@ gnd_career:function(l){
  var L=LIST(W.n,base+16,600,11);return SVG(L.y+8,s+L.s)},
 /* 8-1 安全と保安の違い、SMSの4つの柱 */
 gnd_ss:function(l){
- var W=({ja:{t:'安全（Safety）と保安（Security）：防ぐものが違う',c:[['安全（Safety）','意図しない事故・故障・ミスを防ぐ。例：車両の接触、搭載の間違い。ICAO 第19附属書・SMS'],['保安（Security）','意図的な不法な妨害を防ぐ。例：不審な手荷物、身元を偽った搭乗。ICAO 第17附属書・保安計画']],ov:'重なる例：乗らないお客様の手荷物を降ろす（保安）→ 搭載の重さが変わる（安全）',n:['SMSの柱1 方針と目標：支店長が安全の責任者として方針と年間の目標を立てる','柱2 リスクの管理：新しい空港・機材・手順の前にハザードを洗い出す','柱3 安全の保証：接触・搭載の間違いなどの指標を毎月確かめる','柱4 安全の推進：安全会議・事例の共有・定期教育']},
+ var W=({ja:{t:'安全（Safety）と保安（Security）：防ぐものが違う',c:[['安全（Safety）','意図しない事故・故障・ミスを防ぐ。例：車両の接触、搭載の間違い。ICAO 第19附属書・SMS'],['保安（Security）','意図的な不法妨害行為を防ぐ。例：不審な手荷物、身元を偽った搭乗。ICAO 第17附属書・保安計画']],ov:'重なる例：乗らないお客様の手荷物を降ろす（保安）→ 搭載の重さが変わる（安全）',n:['SMSの柱1 方針と目標：支店長が安全の責任者として方針と年間の目標を立てる','柱2 リスクの管理：新しい空港・機材・手順の前にハザードを洗い出す','柱3 安全の保証：接触・搭載の間違いなどの指標を毎月確かめる','柱4 安全の推進：安全会議・事例の共有・定期教育']},
   ko:{t:'안전(Safety)과 보안(Security): 막는 대상이 다르다',c:[['안전(Safety)','의도하지 않은 사고·고장·실수를 막는다. 예: 차량 접촉, 탑재 착오. ICAO 부속서 19·SMS'],['보안(Security)','의도적인 불법 방해를 막는다. 예: 수상한 수하물, 신원을 속인 탑승. ICAO 부속서 17·보안 계획']],ov:'겹치는 예: 타지 않는 승객의 수하물을 내린다(보안) → 탑재 중량이 바뀐다(안전)',n:['SMS 축 1 방침과 목표: 지점장이 안전 책임자로 방침과 연간 목표를 세운다','축 2 위험 관리: 새 공항·기재·절차 전에 위해 요인을 찾아낸다','축 3 안전 보증: 접촉·탑재 착오 등 지표를 매월 확인한다','축 4 안전 증진: 안전 회의·사례 공유·정기 교육']},
   en:{t:'Safety and security: they protect against different things',c:[['Safety','Prevents unintended accidents, failures and errors. e.g. vehicle contact, loading errors. ICAO Annex 19, SMS'],['Security','Prevents deliberate unlawful interference. e.g. suspicious bags, boarding under a false identity. ICAO Annex 17, security programme']],ov:'Where they overlap: offloading a no-show’s bags (security) changes the load (safety)',n:['SMS pillar 1, policy and objectives: the station manager sets the safety policy and annual targets','Pillar 2, risk management: identify hazards before a new airport, aircraft or procedure','Pillar 3, assurance: check indicators such as contacts and loading errors every month','Pillar 4, promotion: safety meetings, shared cases, recurrent training']}})[l];
  if(!W)return F.gnd_ss('ja');setK(1);
@@ -716,7 +716,7 @@ gnd_secrole:function(l){
 
 /* 8-3 保安教育の種類と記録（例★） */
 gnd_sectr:function(l){
- var W=({ja:{t:'保安教育の4つの種類（例★）',r:[['初期教育','仕事を始める前。新人・他の部署から来た人','#1769e0'],['定期教育','決められた周期（例：年1回）。資格を保つ全員','#2E9B5F'],['改正時の教育','基準・手順が変わったとき。その業務の担当者全員','#E08A2E'],['臨時の教育','事案・指摘のあと、脅威の水準が変わったとき','#D64545']],n:['ハンドリング会社・委託先のスタッフも、保安の手順を行う人は対象','記録は最低3年以上さかのぼれるように（例★）。年度のフォルダ・個人の台帳・期限の一覧の3つを用意する']},
+ var W=({ja:{t:'保安教育の4つの種類（例★）',r:[['初期教育','仕事を始める前。新人・他の部署から来た人','#1769e0'],['定期教育','決められた周期（例：年1回）。資格を保つ全員','#2E9B5F'],['改正時の教育','基準・手順が変わったとき。その業務の担当者全員','#E08A2E'],['臨時の教育','事案・指摘のあと、脅威の水準が変わったとき','#D64545']],n:['ハンドリング会社・委託先のスタッフも、保安の手順を行う人は対象','記録は3年以上さかのぼれるように（例★）。年度のフォルダ・個人の台帳・期限の一覧の3つを用意する']},
   ko:{t:'보안 교육의 네 가지 종류(예★)',r:[['초기 교육','업무 시작 전. 신입·다른 부서에서 온 사람','#1769e0'],['정기 교육','정해진 주기(예: 연 1회). 자격을 유지하는 전원','#2E9B5F'],['개정 시 교육','기준·절차가 바뀌었을 때. 그 업무 담당자 전원','#E08A2E'],['임시 교육','사안·지적 후, 위협 수준이 바뀌었을 때','#D64545']],n:['조업사·위탁처 직원도 보안 절차를 수행하는 사람은 대상','기록은 최소 3년 이상 거슬러 확인할 수 있게(예★). 연도별 폴더·개인 대장·기한 목록 세 가지를 갖춘다']},
   en:{t:'Four kinds of security training (example ★)',r:[['Initial','Before starting work; new staff and transfers','#1769e0'],['Recurrent','At a set interval (e.g. yearly); everyone keeping the qualification','#2E9B5F'],['On change','When standards or procedures change; everyone doing that work','#E08A2E'],['Ad hoc','After an incident or finding, or when the threat level changes','#D64545']],n:['Handler and contractor staff who carry out security steps must be trained too','Keep records for at least three years (example ★): yearly folders, individual logs and an expiry list']}})[l];
  if(!W)return F.gnd_sectr('ja');setK(1);
@@ -778,7 +778,7 @@ gnd_unruly:function(l){
 /* ── 航空営業 Part 8（イレギュラーと営業）の図 2026.10 ── */
 /* 8-1 販売の約束と、空港で試される場面 */
 sls_promise:function(l){
- var W=({ja:{t:'売った約束は、空港で試される（例★）',r:[['出発時刻','チェックイン・搭乗口の締め切り','#1769e0'],['座席の指定','機材の変更で並びが変わることがある','#2C8C8C'],['手荷物の許容量','カウンターで重さ・個数を確認、超えると料金','#E08A2E'],['乗り継ぎ','最小乗り継ぎ時間（MCT）、別切りは保護されないことが多い','#7A5CC7'],['特別なサービス','車いす・一人旅の子ども・ペット・医療は事前の申し込み','#D64545'],['旅行の書類','パスポート・ビザ・電子渡航認証がないと乗れない','#0f3558']],n:['売るときに締め切り・許容量・申し込みの期限まで伝えると、当日のトラブルが減る','大きな団体・VIP・キャンペーンは前日までに空港の支店へ伝える']},
+ var W=({ja:{t:'売った約束は、空港で試される（例★）',r:[['出発時刻','チェックイン・搭乗口の締め切り','#1769e0'],['座席の指定','機材の変更で並びが変わることがある','#2C8C8C'],['手荷物の許容量','カウンターで重さ・個数を確認、超えると料金','#E08A2E'],['乗り継ぎ','最低乗り継ぎ時間（MCT）、別切りは保護されないことが多い','#7A5CC7'],['特別なサービス','車いす・一人旅の子ども・ペット・医療は事前の申し込み','#D64545'],['旅行の書類','パスポート・ビザ・電子渡航認証がないと乗れない','#0f3558']],n:['売るときに締め切り・許容量・申し込みの期限まで伝えると、当日のトラブルが減る','大きな団体・VIP・キャンペーンは前日までに空港の支店へ伝える']},
   ko:{t:'판매한 약속은 공항에서 시험받는다(예★)',r:[['출발 시각','체크인·탑승구 마감','#1769e0'],['좌석 지정','기재 변경으로 배열이 바뀔 수 있다','#2C8C8C'],['수하물 허용량','카운터에서 무게·개수 확인, 넘으면 요금','#E08A2E'],['연결','최소 연결 시간(MCT), 따로 산 항공권은 보호되지 않는 경우가 많다','#7A5CC7'],['특별 서비스','휠체어·비동반 소아·반려동물·의료는 사전 신청','#D64545'],['여행 서류','여권·비자·전자여행허가가 없으면 탑승 불가','#0f3558']],n:['판매할 때 마감·허용량·신청 기한까지 알리면 당일 문제가 줄어든다','큰 단체·VIP·캠페인은 전날까지 공항 지점에 알린다']},
   en:{t:'What you sell is tested at the airport (example ★)',r:[['Departure time','Check-in and gate deadlines','#1769e0'],['Seat assignment','An aircraft change can change the seat map','#2C8C8C'],['Baggage allowance','Weight and pieces checked at the counter; excess charged','#E08A2E'],['Connections','Minimum connecting time (MCT); separate tickets often not protected','#7A5CC7'],['Special services','Wheelchairs, unaccompanied minors, pets, medical: request in advance','#D64545'],['Travel documents','No passport, visa or travel authorisation means no boarding','#0f3558']],n:['Telling customers the deadlines, allowances and request deadlines when selling prevents trouble on the day','Tell the airport station about large groups, VIPs and campaigns by the day before']}})[l];
  if(!W)return F.sls_promise('ja');setK(1);
@@ -890,7 +890,7 @@ opn_slot:function(l){
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 /* 1-4 運賃の認可 */
 opn_fare:function(l){
- var W=({ja:{t:'運賃・料金の認可の流れ（例）',st:['本社が運賃と条件を決める','支店が申請書類を整える','国際航空課へ提出','認可','販売・GDSへの配布'],who:['本社の運賃部門','支店','実施の30日前まで（★）','当局','営業・本社'],n:['燃油特別付加運賃も同じように申請する（計算は1-4の道具で）','手数料はない。本社と支店の分担を先に決めておく']},
+ var W=({ja:{t:'運賃・料金の認可の流れ（例）',st:['本社が運賃と条件を決める','支店が申請書類を整える','国際航空課へ提出','認可','販売・GDSへの配布'],who:['本社の運賃部門','支店','実施の30日前まで（★）','当局','営業・本社'],n:['燃油特別付加運賃も同じように申請する（計算は1-4の道具で）','申請の手数料はない。本社と支店の分担を先に決めておく']},
   ko:{t:'운임·요금 인가의 흐름(예)',st:['본사가 운임과 조건을 정한다','지점이 신청 서류를 갖춘다','국제항공과에 제출','인가','판매·GDS에 배포'],who:['본사 운임 부서','지점','실시 30일 전까지(★)','당국','영업·본사'],n:['유류할증료도 같은 식으로 신청한다(계산은 1-4의 도구로)','수수료는 없다. 본사와 지점의 분담을 먼저 정해 둔다']},
   en:{t:'How fares and charges are approved (example)',st:['Head office sets the fares and conditions','The station prepares the filing','Submit to the International Air Transport Division','Approval','Sales and distribution to the GDS'],who:['Head-office pricing','Station','30 days before (★)','Authority','Sales and head office'],n:['Fuel surcharges are filed the same way (use the tool linked from 1-4)','There is no fee. Agree the split between head office and the station first']}})[l];
  if(!W)return F.opn_fare('ja');setK(1);
@@ -975,7 +975,7 @@ opn_fee:function(l){
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 /* 3-5 給油・機内食・警備などの契約 */
 opn_other:function(l){
- var W=({ja:{t:'そのほかの契約と注意点（例）',r:[['給油','就航の前提。代替空港での給油も別に手配','#D64545'],['機内食','往復分を積むか、日本発で契約するか。特別食','#E08A2E'],['機体の警備','駐機中の監視。空港会社の補助分の処理に注意','#7A5CC7'],['入国を認められなかった客の警備','送り返しまでの監視。翌月に請求','#1769e0'],['無線機・整備・貨物','会社を変えると解約が要る。機材ごとの資格','#2C8C8C']],n:['イレギュラーに備える取り決め（ホテル・バス・代替空港）も就航前に（6-4）']},
+ var W=({ja:{t:'そのほかの契約と注意点（例）',r:[['給油','就航の前提。代替空港での給油も別に手配','#D64545'],['機内食','往復分を積むか、日本発で契約するか。特別食','#E08A2E'],['機体の警備','駐機中の監視。空港会社の補助分の処理に注意','#7A5CC7'],['入国を拒否されたお客様の警備','送り返しまでの監視。翌月に請求','#1769e0'],['無線機・整備・貨物','会社を変えると解約が要る。機材ごとの資格','#2C8C8C']],n:['イレギュラーに備える取り決め（ホテル・バス・代替空港）も就航前に（6-4）']},
   ko:{t:'그 밖의 계약과 주의점(예)',r:[['급유','취항의 전제. 교체 공항 급유도 따로 준비','#D64545'],['기내식','왕복분을 싣는지, 일본 출발로 계약하는지. 특별식','#E08A2E'],['기체 경비','주기 중 감시. 공항 회사 보조분 처리에 주의','#7A5CC7'],['입국 거부 승객 경비','송환까지 감시. 다음 달에 청구','#1769e0'],['무전기·정비·화물','회사를 바꾸면 해지 필요. 기재별 자격','#2C8C8C']],n:['비정상에 대비한 약정(호텔·버스·교체 공항)도 취항 전에(6-4)']},
   en:{t:'Other contracts and what to watch (example)',r:[['Fuel','A precondition for launch; arrange fuel at alternates separately','#D64545'],['Catering','Load for the round trip or contract from Japan; special meals','#E08A2E'],['Aircraft security','Watch while parked; take care with airport-company subsidies','#7A5CC7'],['Guarding inadmissible passengers','Watch until removal; billed the following month','#1769e0'],['Radios, maintenance, cargo','Changing supplier means cancelling; type-specific licences','#2C8C8C']],n:['Agree disruption arrangements (hotels, buses, alternates) before launch too (6-4)']}})[l];
  if(!W)return F.opn_other('ja');setK(1);
@@ -1010,7 +1010,7 @@ opn_quar:function(l){
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 /* ===== OPN Part 5〜7 の図 2026.10 ===== */
 opn_avsec:function(l){
- var W=({ja:{t:'当局に届け出る保安の書類（例）',r:[['自社の航空保安計画','日本での保安の体制と措置。当局の標準との違いを示す','#D64545'],['保安教育訓練の実施計画','自社とハンドリング会社の年間の教育計画','#1769e0'],['保安教育訓練の実施要領','教育訓練の具体的な進め方','#2C8C8C'],['自己監査の結果','保安の自己監査の報告','#7A5CC7']],n:['年1回の改訂に加え、体制・ハンドリング会社・基準が変わったらすぐ改訂する（★）']},
+ var W=({ja:{t:'当局に届け出る保安の書類（例）',r:[['自社の航空保安計画','日本での保安の体制と措置。当局の標準との違いを示す','#D64545'],['航空保安教育訓練の実施計画','自社とハンドリング会社の年間の教育計画','#1769e0'],['航空保安教育訓練の実施要領','教育訓練の具体的な進め方','#2C8C8C'],['自己監査の結果','保安の自己監査の報告','#7A5CC7']],n:['年1回の改訂に加え、体制・ハンドリング会社・基準が変わったらすぐ改訂する（★）']},
   ko:{t:'당국에 신고하는 보안 서류(예)',r:[['자사 항공보안계획','일본에서의 보안 체제와 조치. 당국 표준과의 차이를 보인다','#D64545'],['보안교육훈련 실시계획','자사와 조업사의 연간 교육 계획','#1769e0'],['보안교육훈련 실시요령','교육훈련의 구체적인 진행 방법','#2C8C8C'],['자체 감사 결과','보안 자체 감사 보고','#7A5CC7']],n:['연 1회 개정에 더해, 체제·조업사·기준이 바뀌면 바로 개정한다(★)']},
   en:{t:'Security documents filed with the authority (example)',r:[['Your aviation security programme','Security arrangements in Japan, showing differences from the standard programme','#D64545'],['Security training plan','The annual training plan for your staff and the handler','#1769e0'],['Security training procedures','How the training is delivered in practice','#2C8C8C'],['Self-audit results','The report of your security self-audit','#7A5CC7']],n:['Revise once a year, and at once when the set-up, the handler or the standards change (★)']}})[l];
  if(!W)return F.opn_avsec('ja');setK(1);
@@ -1095,7 +1095,7 @@ apt_nrt:function(l){
  if(!W)return F.apt_nrt('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_hnd:function(l){
- var W=({ja:{t:'東京国際空港・羽田（HND）の要点（2026年9月時点）',c:[['運営','滑走路・管制は国。ターミナルはビル会社'],['滑走路','4本（A・B・C・D）'],['運用時間','24時間']],n:['国際線（第3）と国内線（第1・第2）でターミナルが分かれる。乗り継ぎの移動時間を確かめる','枠は特に貴重。定時性と使用の実績が将来の扱いに響くことがある','工事が多い。スポット・動線の変更通知を毎回確かめる']},
+ var W=({ja:{t:'東京国際空港・羽田（HND）の要点（2026年9月時点）',c:[['運営','滑走路・管制は国。ターミナルはビル会社'],['滑走路','4本（A・B・C・D）'],['運用時間','24時間']],n:['国際線は第3、国内線は第1・第2（第2には一部の国際線も）。乗り継ぎの移動時間を確かめる','枠は特に貴重。定時性と使用の実績が将来の扱いに響くことがある','工事が多い。スポット・動線の変更通知を毎回確かめる']},
   ko:{t:'도쿄국제공항·하네다(HND)의 요점(2026년 9월 기준)',c:[['운영','활주로·관제는 국가. 터미널은 빌딩 회사'],['활주로','4개(A·B·C·D)'],['운용 시간','24시간']],n:['국제선(제3)과 국내선(제1·제2) 터미널이 나뉜다. 환승 이동 시간을 확인한다','슬롯이 특히 귀하다. 정시성과 사용 실적이 장래 처리에 영향을 줄 수 있다','공사가 많다. 스폿·동선 변경 통지를 매번 확인한다']},
   en:{t:'Tokyo International, Haneda (HND) at a glance (September 2026)',c:[['Operator','The state runs runways and ATC; terminal companies run the terminals'],['Runways','Four (A, B, C, D)'],['Hours','24 hours']],n:['International (T3) and domestic (T1, T2) terminals are separate: check connection times','Slots are especially precious; punctuality and usage can affect future allocation','Frequent works: check every stand and route change notice']}})[l];
  if(!W)return F.apt_hnd('ja');setK(1);
@@ -1119,7 +1119,7 @@ apt_ngo:function(l){
  if(!W)return F.apt_ngo('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_fuk:function(l){
- var W=({ja:{t:'福岡空港（FUK）の要点（2026年9月時点）',c:[['運営','福岡国際空港株式会社（2019年に民営化）'],['滑走路','2本（2025年3月に増設滑走路）'],['運用時間','7:00〜22:00 ★']],n:['22時に間に合わない便は欠航・ダイバートの判断が要る。夕方以降の遅延は早めに','ピークは離陸の順番待ちが長い。ドアクローズと離陸の時刻を分けて考える','国内線と国際線のターミナルは離れていてバスで結ばれる']},
+ var W=({ja:{t:'福岡空港（FUK）の要点（2026年9月時点）',c:[['運営','福岡国際空港株式会社（2019年に民営化）'],['滑走路','2本（2025年3月に1本増設）'],['運用時間','7:00〜22:00 ★']],n:['22時に間に合わない便は欠航・ダイバートの判断が要る。夕方以降の遅延は早めに','ピークは離陸の順番待ちが長い。ドアクローズと離陸の時刻を分けて考える','国内線と国際線のターミナルは離れていてバスで結ばれる']},
   ko:{t:'후쿠오카공항(FUK)의 요점(2026년 9월 기준)',c:[['운영','후쿠오카국제공항주식회사(2019년 민영화)'],['활주로','2개(2025년 3월 증설 활주로)'],['운용 시간','7:00~22:00 ★']],n:['22시에 못 맞추는 편은 결항·다이버트 판단이 필요. 저녁 이후 지연은 일찍','피크에는 이륙 대기가 길다. 도어 클로즈와 이륙 시각을 나눠 생각한다','국내선과 국제선 터미널은 떨어져 있고 버스로 이어진다']},
   en:{t:'Fukuoka (FUK) at a glance (September 2026)',c:[['Operator','Fukuoka International Airport Co. (privatised 2019)'],['Runways','Two (extra runway from March 2025)'],['Hours','07:00–22:00 ★']],n:['Flights that cannot make 22:00 need a cancel or divert decision: act early on evening delays','Long take-off queues at peaks: treat door close and take-off as separate times','Domestic and international terminals are apart, linked by bus']}})[l];
  if(!W)return F.apt_fuk('ja');setK(1);
@@ -1144,7 +1144,7 @@ kor_org:function(l){
  if(!W)return F.kor_org('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 kor_keta:function(l){
- var W=({ja:{t:'K-ETA（電子渡航許可）の要点（2026年9月時点）',c:[['対象','無査証で入国できる国・地域の旅券を持つ人（年齢などの例外あり）'],['申請','公式サイトかアプリで。搭乗の72時間前までが勧められる。手数料1万ウォン'],['有効期間','許可から3年（旅券の期限が先ならその日まで）']],n:['日本など22か国・地域は一時免除。期間は2026年12月31日まで（★）','2027年以降は2026年9月28日時点で未発表。延長がなければ申請が必要になる（★）','カウンターでは免除の対象か、許可を持っているかを確かめる']},
+ var W=({ja:{t:'K-ETA（電子渡航許可）の要点（2026年9月時点）',c:[['対象','無査証で入国できる国・地域の旅券を持つ人（年齢などの例外あり）'],['申請','公式サイトかアプリで。搭乗の72時間前までが勧められる。手数料1万ウォン'],['有効期間','許可から3年（旅券の期限が先ならその日まで）']],n:['日本など22か国・地域は一時免除。期間は2026年12月31日まで（★）','2027年以降の扱いは未発表（2026年9月28日時点）。延長がなければ申請が必要になる（★）','カウンターでは免除の対象か、許可を持っているかを確かめる']},
   ko:{t:'K-ETA(전자여행허가)의 요점(2026년 9월 기준)',c:[['대상','무사증 입국이 가능한 국가·지역 여권 소지자(나이 등 예외 있음)'],['신청','공식 사이트나 앱으로. 탑승 72시간 전까지 권장. 수수료 1만 원'],['유효 기간','허가부터 3년(여권 기한이 먼저면 그날까지)']],n:['일본 등 22개 국가·지역은 한시 면제. 기간은 2026년 12월 31일까지(★)','2027년 이후는 2026년 9월 28일 기준 미발표. 연장이 없으면 신청이 필요해진다(★)','카운터에서는 면제 대상인지, 허가를 가지고 있는지 확인한다']},
   en:{t:'K-ETA (electronic travel authorisation) at a glance (September 2026)',c:[['Who','Holders of visa-free nationalities’ passports (with age and other exceptions)'],['How','Apply on the official site or app; 72 hours before boarding is advised. Fee KRW 10,000'],['Validity','Three years from approval, or to passport expiry if sooner']],n:['Japan and others (22 countries and territories) are temporarily exempt until 31 December 2026 (★)','Nothing announced for 2027 as of 28 September 2026; without an extension, applications will be needed (★)','At the counter, check whether the passenger is exempt or holds an authorisation']}})[l];
  if(!W)return F.kor_keta('ja');setK(1);
@@ -1156,7 +1156,7 @@ kor_icn:function(l){
  if(!W)return F.kor_icn('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 kor_gmp:function(l){
- var W=({ja:{t:'金浦国際空港（GMP）の要点（2026年9月時点）',c:[['運営','韓国空港公社'],['滑走路','2本（平行）★'],['運用時間','6:00〜23:00']],n:['23時までに着けない便は仁川などへの目的地の変更になる。夕方以降の遅れは早めに相談','済州便が非常に多い。済州の強風・大雪が金浦の国内線全体に波及する','国際線ターミナルの処理能力は仁川より小さい。大型機の到着が重なると待ちが長い']},
+ var W=({ja:{t:'金浦国際空港（GMP）の要点（2026年9月時点）',c:[['運営','韓国空港公社'],['滑走路','2本（平行）★'],['運用時間','6:00〜23:00']],n:['23時までに着けない便は仁川などへダイバートになる。夕方以降の遅れは早めに相談','済州便が非常に多い。済州の強風・大雪が金浦の国内線全体に波及する','国際線ターミナルの処理能力は仁川より小さい。大型機の到着が重なると待ちが長い']},
   ko:{t:'김포국제공항(GMP)의 요점(2026년 9월 기준)',c:[['운영','한국공항공사'],['활주로','2개(평행)★'],['운용 시간','6:00~23:00']],n:['23시까지 도착할 수 없는 편은 인천 등으로 목적지 변경. 저녁 이후 지연은 일찍 협의','제주편이 매우 많다. 제주의 강풍·폭설이 김포 국내선 전체에 파급된다','국제선 터미널 처리 능력은 인천보다 작다. 대형기 도착이 겹치면 대기가 길다']},
   en:{t:'Gimpo International (GMP) at a glance (September 2026)',c:[['Operator','Korea Airports Corporation'],['Runways','Two (parallel) ★'],['Hours','06:00–23:00']],n:['Flights unable to land by 23:00 divert to Incheon or elsewhere: raise evening delays early','Jeju flights are very frequent: wind or snow at Jeju ripples through Gimpo’s domestic schedule','The international terminal handles less than Incheon: queues grow when large aircraft arrive together']}})[l];
  if(!W)return F.kor_gmp('ja');setK(1);
@@ -1187,13 +1187,13 @@ wld_entry:function(l){
  if(!W)return F.wld_entry('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 wld_pek:function(l){
- var W=({ja:{t:'北京の2つのハブ：首都（PEK）と大興（PKX）（2026年9月時点）',c:[['首都（PEK）','市の北東 約25km。2025年は7,076万人。エアチャイナとスターアライアンスの会社'],['大興（PKX）','市の南 約46km。2025年に5,000万人を初めて超えた。中国東方・南方とスカイチームの会社']],n:['コードの取り違えに注意。2空港をまたぐ移動は2時間前後かかる','中国の民航当局の時刻の管理が厳しく、遅れの扱いにも独自の規則がある','冬の霧・煙霧と夏の雷雨で遅れが出やすい']},
+ var W=({ja:{t:'北京の2つのハブ：首都（PEK）と大興（PKX）（2026年9月時点）',c:[['首都（PEK）','市の北東 約25km。2025年は7,076万人。エアチャイナとスターアライアンスの会社'],['大興（PKX）','市の南 約46km。2025年に5,000万人を初めて超えた。中国東方・南方とスカイチームの会社']],n:['コードの取り違えに注意。2空港をまたぐ移動は2時間前後かかる','中国民用航空局（CAAC）の発着時刻の管理が厳しく、遅れの扱いにも独自の規則がある','冬の霧・煙霧と夏の雷雨で遅れが出やすい']},
   ko:{t:'베이징의 두 허브: 서우두(PEK)와 다싱(PKX)(2026년 9월 기준)',c:[['서우두(PEK)','시 북동쪽 약 25km. 2025년 7,076만 명. 에어차이나와 스타얼라이언스 항공사'],['다싱(PKX)','시 남쪽 약 46km. 2025년 처음으로 5,000만 명 돌파. 동방·남방항공과 스카이팀 항공사']],n:['코드 착각에 주의. 두 공항 사이 이동은 2시간 안팎 걸린다','중국 민항 당국의 시각 관리가 엄격하고 지연 처리에도 독자 규칙이 있다','겨울 안개·스모그와 여름 뇌우로 지연되기 쉽다']},
   en:{t:'Beijing’s two hubs: Capital (PEK) and Daxing (PKX) (September 2026)',c:[['Capital (PEK)','About 25 km north-east. 70.76 million in 2025. Air China and Star Alliance carriers'],['Daxing (PKX)','About 46 km south. Passed 50 million for the first time in 2025. China Eastern, China Southern and SkyTeam']],n:['Watch for code mix-ups: moving between the two airports takes around two hours','China’s regulator manages schedules strictly, with its own rules on delays','Winter fog and haze and summer thunderstorms cause delays']}})[l];
  if(!W)return F.wld_pek('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_pvg:function(l){
- var W=({ja:{t:'上海浦東（PVG）の要点（2026年9月時点）',c:[['運営','上海機場（集団）'],['滑走路・ターミナル','5本の滑走路、T1・T2と衛星のコンコース'],['2025年の実績','旅客8,499万人、貨物410万トン（世界2位）']],n:['長距離便と貨物便が集中。雷雨・台風の季節は大きな遅れが出やすい','国際線から国内線への乗り継ぎは、最初の空港で入国と税関を通る。荷物を案内する','国際線は浦東、国内線の多くは虹橋。2空港の間は1時間以上']},
+ var W=({ja:{t:'上海浦東（PVG）の要点（2026年9月時点）',c:[['運営','上海機場（集団）'],['滑走路・ターミナル','5本の滑走路、T1・T2とサテライト（S1・S2）'],['2025年の実績','旅客8,499万人、貨物410万トン（世界2位）']],n:['長距離便と貨物便が集中。雷雨・台風の季節は大きな遅れが出やすい','国際線から国内線への乗り継ぎは、最初の空港で入国と税関を通る。荷物を案内する','国際線は浦東、国内線の多くは虹橋。2空港の間は1時間以上']},
   ko:{t:'상하이 푸둥(PVG)의 요점(2026년 9월 기준)',c:[['운영','상하이 공항(그룹)'],['활주로·터미널','활주로 5개, T1·T2와 위성 콩코스'],['2025년 실적','여객 8,499만 명, 화물 410만 톤(세계 2위)']],n:['장거리편과 화물편이 몰린다. 뇌우·태풍 계절은 큰 지연이 나기 쉽다','국제선에서 국내선 환승은 첫 공항에서 입국과 세관을 거친다. 수하물을 안내한다','국제선은 푸둥, 국내선 다수는 훙차오. 두 공항 사이는 1시간 이상']},
   en:{t:'Shanghai Pudong (PVG) at a glance (September 2026)',c:[['Operator','Shanghai Airport Authority (Group)'],['Runways and terminals','Five runways; T1, T2 and satellite concourses'],['2025','84.99 million passengers; 4.10 million tonnes of cargo (2nd in the world)']],n:['Long-haul and cargo flights concentrate here; storm and typhoon seasons bring big delays','International-to-domestic transfers clear immigration and customs at the first airport: explain baggage handling','International flights use Pudong, most domestic Hongqiao: over an hour apart']}})[l];
  if(!W)return F.wld_pvg('ja');setK(1);
@@ -1211,32 +1211,32 @@ wld_tpe:function(l){
  if(!W)return F.wld_tpe('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_sin:function(l){
- var W=({ja:{t:'シンガポール・チャンギ（SIN）の要点（2026年9月時点）',c:[['運営','チャンギ空港グループ（CAG）'],['ターミナル','T1〜T4（年9,000万人）。T5は建設中'],['2025年の実績','旅客約7,000万人（過去最多）']],n:['24時間の運用で、深夜・早朝の長距離便が多い','午後の雷雨でランプの落雷の警報が出ると、地上の作業が一時止まる','ハンドリング会社はSATSとdnataの2社が主。空港のサービスの基準が厳しい']},
+ var W=({ja:{t:'シンガポール・チャンギ（SIN）の要点（2026年9月時点）',c:[['運営','チャンギ空港グループ（CAG）'],['ターミナル','T1〜T4（年9,000万人）。T5は建設中'],['2025年の実績','旅客約7,000万人（過去最多）']],n:['24時間の運用で、深夜・早朝の長距離便が多い','午後の雷雨で落雷の警報が出ると、ランプの作業が一時止まる','ハンドリング会社はSATSとdnataの2社が主。空港のサービスの基準が厳しい']},
   ko:{t:'싱가포르 창이(SIN)의 요점(2026년 9월 기준)',c:[['운영','창이공항그룹(CAG)'],['터미널','T1~T4(연 9,000만 명). T5는 건설 중'],['2025년 실적','여객 약 7,000만 명(역대 최다)']],n:['24시간 운용으로 심야·이른 아침 장거리편이 많다','오후 뇌우로 램프 낙뢰 경보가 나오면 지상 작업이 잠시 멈춘다','조업사는 SATS와 dnata 두 곳이 주. 공항의 서비스 기준이 엄격하다']},
   en:{t:'Singapore Changi (SIN) at a glance (September 2026)',c:[['Operator','Changi Airport Group (CAG)'],['Terminals','T1–T4 (90 million a year); T5 under construction'],['2025','About 70 million passengers (a record)']],n:['24-hour operation with many late-night and early-morning long-haul flights','Afternoon storms trigger ramp lightning alerts that pause ground work','SATS and dnata are the main handlers; the airport’s service standards are strict']}})[l];
  if(!W)return F.wld_sin('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_bkk:function(l){
- var W=({ja:{t:'バンコク・スワンナプーム（BKK）の要点（2026年9月時点）',c:[['運営','タイ空港公社（AOT）'],['滑走路・ターミナル','3本の滑走路、本館とSAT-1'],['受け入れの能力','年6,500万人（2025年はそれに近い見通し★）']],n:['能力に近い旅客数。ピークは出入国と保安検査の待ちが長い','5〜10月の雨季は雷雨で遅れが出やすい','タイの輸出入貨物の中心。果物・花など生鮮品が多い']},
+ var W=({ja:{t:'バンコク・スワンナプーム（BKK）の要点（2026年9月時点）',c:[['運営','タイ空港公社（AOT）'],['滑走路・ターミナル','3本の滑走路、本館とSAT-1'],['年間処理能力','6,500万人（2025年はそれに近い見通し★）']],n:['能力に近い旅客数。ピークは出入国と保安検査の待ちが長い','5〜10月の雨季は雷雨で遅れが出やすい','タイの輸出入貨物の中心。果物・花など生鮮品が多い']},
   ko:{t:'방콕 수완나품(BKK)의 요점(2026년 9월 기준)',c:[['운영','태국공항공사(AOT)'],['활주로·터미널','활주로 3개, 본관과 SAT-1'],['수용 능력','연 6,500만 명(2025년은 그에 가까운 전망★)']],n:['능력에 가까운 여객 수. 피크에는 출입국과 보안검색 대기가 길다','5~10월 우기에는 뇌우로 지연되기 쉽다','태국 수출입 화물의 중심. 과일·꽃 등 신선품이 많다']},
   en:{t:'Bangkok Suvarnabhumi (BKK) at a glance (September 2026)',c:[['Operator','Airports of Thailand (AOT)'],['Runways and terminals','Three runways; main terminal and SAT-1'],['Capacity','65 million a year (2025 expected near that ★)']],n:['Traffic close to capacity: long immigration and security queues at peaks','Thunderstorms in the May–October rainy season cause delays','Thailand’s main cargo gateway, with much fresh produce such as fruit and flowers']}})[l];
  if(!W)return F.wld_bkk('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_kul:function(l){
- var W=({ja:{t:'クアラルンプール（KUL）の要点（2026年9月時点）',c:[['運営','マレーシア空港'],['ターミナル','T1（本館とサテライトA）、T2（LCC）'],['2025年の実績','6,330万人（+10.8%、世界20位）']],n:['マレーシア航空とエアアジアでターミナルが違う。予約と案内に明記する','午後の雷雨と、乾季の煙霞（ヘイズ）で視程が落ちることがある','電子部品の輸出が多く、貨物も伸びている']},
+ var W=({ja:{t:'クアラルンプール（KUL）の要点（2026年9月時点）',c:[['運営','マレーシア・エアポーツ（MAHB）'],['ターミナル','T1（本館とサテライトA）、T2（LCC）'],['2025年の実績','6,330万人（+10.8%、世界20位）']],n:['マレーシア航空とエアアジアでターミナルが違う。予約と案内に明記する','午後の雷雨と、乾季の煙霞（ヘイズ）で視程が落ちることがある','電子部品の輸出が多く、貨物も伸びている']},
   ko:{t:'쿠알라룸푸르(KUL)의 요점(2026년 9월 기준)',c:[['운영','말레이시아 공항'],['터미널','T1(본관과 위성 A), T2(LCC)'],['2025년 실적','6,330만 명(+10.8%, 세계 20위)']],n:['말레이시아항공과 에어아시아는 터미널이 다르다. 예약과 안내에 명기한다','오후 뇌우와 건기의 연무(헤이즈)로 시정이 떨어질 수 있다','전자 부품 수출이 많아 화물도 늘고 있다']},
   en:{t:'Kuala Lumpur (KUL) at a glance (September 2026)',c:[['Operator','Malaysia Airports'],['Terminals','T1 (main building and Satellite A), T2 (LCCs)'],['2025','63.30 million (+10.8%, 20th in the world)']],n:['Malaysia Airlines and AirAsia use different terminals: state it in bookings and guidance','Afternoon storms and dry-season haze can reduce visibility','Strong electronics exports keep cargo growing']}})[l];
  if(!W)return F.wld_kul('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_del:function(l){
- var W=({ja:{t:'デリー・インディラ・ガンディー（DEL）の要点（2026年9月時点）',c:[['運営','デリー国際空港（DIAL、GMRグループ）'],['滑走路・ターミナル','4本の滑走路、T1・T2・T3'],['受け入れの能力','年約1億500万人']],n:['12〜1月の濃い霧で、CAT IIIでも大きな遅れと欠航が出る。冬は余裕のある計画を','5〜6月は45度に近い暑さで、離陸の重量の制限が出ることがある','保安検査が厳しく、独自の手順がある（変わることがある★）']},
+ var W=({ja:{t:'デリー・インディラ・ガンディー（DEL）の要点（2026年9月時点）',c:[['運営','デリー国際空港（DIAL、GMRグループ）'],['滑走路・ターミナル','4本の滑走路、T1・T2・T3'],['年間処理能力','約1億500万人']],n:['12〜1月の濃い霧で、CAT IIIでも大きな遅れと欠航が出る。冬は余裕のある計画を','5〜6月は45度に近い暑さで、離陸重量の制限が出ることがある','保安検査が厳しく、独自の手順がある（変わることがある★）']},
   ko:{t:'델리 인디라 간디(DEL)의 요점(2026년 9월 기준)',c:[['운영','델리국제공항(DIAL, GMR그룹)'],['활주로·터미널','활주로 4개, T1·T2·T3'],['수용 능력','연 약 1억 500만 명']],n:['12~1월 짙은 안개로 CAT III로도 큰 지연과 결항이 난다. 겨울은 여유 있게 계획','5~6월은 45도에 가까운 더위로 이륙 중량 제한이 생길 수 있다','보안검색이 엄격하고 독자 절차가 있다(바뀔 수 있음★)']},
   en:{t:'Delhi Indira Gandhi (DEL) at a glance (September 2026)',c:[['Operator','Delhi International Airport (DIAL, GMR Group)'],['Runways and terminals','Four runways; T1, T2 and T3'],['Capacity','About 105 million a year']],n:['Dense December–January fog causes major delays and cancellations even with CAT III: plan winter with margin','May–June heat near 45°C can limit take-off weights','Strict security with its own procedures (subject to change ★)']}})[l];
  if(!W)return F.wld_del('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 /* ===== WLD Part 3〜5 の図 2026.10 ===== */
 wld_dxb:function(l){
- var W=({ja:{'t': 'ドバイ（DXB）の要点（2026年9月時点）', 'c': [['運営', 'ドバイ空港会社（DXBとDWCを運営）'], ['滑走路・ターミナル', '滑走路2本、T1〜T3（T3はエミレーツ専用）'], ['2025年の実績', '9,520万人（国際線で世界1位）']], 'n': ['夜中から明け方にエミレーツの到着と出発の波が集中する', '6〜9月は45度を超える。ランプの熱中症対策と離陸の重量の制限に注意', '12〜2月の明け方に濃い霧が出て、到着の遅れや目的地の変更がある']},
+ var W=({ja:{'t': 'ドバイ（DXB）の要点（2026年9月時点）', 'c': [['運営', 'ドバイ空港会社（DXBとDWCを運営）'], ['滑走路・ターミナル', '滑走路2本、T1〜T3（T3はエミレーツ専用）'], ['2025年の実績', '9,520万人（国際線で世界1位）']], 'n': ['夜中から明け方にエミレーツの到着と出発の波が集中する', '6〜9月は45度を超える。ランプの熱中症対策と離陸重量の制限に注意', '12〜2月の明け方に濃い霧が出て、到着の遅れやダイバートがある']},
   ko:{'t': '두바이(DXB)의 요점(2026년 9월 기준)', 'c': [['운영', '두바이공항회사(DXB와 DWC 운영)'], ['활주로·터미널', '활주로 2개, T1~T3(T3는 에미레이트 전용)'], ['2025년 실적', '9,520만 명(국제선 세계 1위)']], 'n': ['한밤중부터 새벽에 에미레이트 도착·출발 웨이브가 몰린다', '6~9월은 45도를 넘는다. 램프 열사병 대책과 이륙 중량 제한에 주의', '12~2월 새벽에 짙은 안개로 도착 지연이나 목적지 변경이 생긴다']},
   en:{'t': 'Dubai (DXB) at a glance (September 2026)', 'c': [['Operator', 'Dubai Airports (runs DXB and DWC)'], ['Runways and terminals', 'Two runways; T1–T3 (T3 for Emirates only)'], ['2025', '95.2 million (1st for international traffic)']], 'n': ['Emirates arrival and departure waves concentrate from midnight to dawn', 'June–September tops 45°C: protect ramp staff from heat and watch take-off weight limits', 'Dense dawn fog in December–February delays or diverts arrivals']}})[l];
  if(!W)return F.wld_dxb('ja');setK(1);
@@ -1254,13 +1254,13 @@ wld_ist:function(l){
  if(!W)return F.wld_ist('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_lhr:function(l){
- var W=({ja:{'t': 'ロンドン・ヒースロー（LHR）の要点（2026年9月時点）', 'c': [['運営', 'ヒースロー空港会社（民間）'], ['滑走路・ターミナル', '滑走路2本、T2・T3・T4・T5'], ['2025年の実績', '8,450万人（欧州最大のハブ）']], 'n': ['スロットはレベル3で、航空会社の間で高額で売買される。新規の就航は極めて難しい', '騒音の対策で到着と出発の滑走路を時間で入れ替える', '夜間の発着は割当の数で厳しく制限される。遅れた到着は目的地の変更もある']},
+ var W=({ja:{'t': 'ロンドン・ヒースロー（LHR）の要点（2026年9月時点）', 'c': [['運営', 'ヒースロー空港会社（民間）'], ['滑走路・ターミナル', '滑走路2本、T2・T3・T4・T5'], ['2025年の実績', '8,450万人（欧州最大のハブ）']], 'n': ['スロットはレベル3で、航空会社の間で高額で売買される。新規の就航は極めて難しい', '騒音の対策で到着と出発の滑走路を時間で入れ替える', '夜間の発着は割当の数で厳しく制限される。遅れた到着はダイバートもある']},
   ko:{'t': '런던 히스로(LHR)의 요점(2026년 9월 기준)', 'c': [['운영', '히스로공항회사(민간)'], ['활주로·터미널', '활주로 2개, T2·T3·T4·T5'], ['2025년 실적', '8,450만 명(유럽 최대 허브)']], 'n': ['슬롯은 레벨 3으로 항공사 간에 고가로 거래된다. 신규 취항은 매우 어렵다', '소음 대책으로 도착·출발 활주로를 시간대별로 바꾼다', '야간 발착은 할당 수로 엄격히 제한된다. 늦은 도착은 목적지 변경도 있다']},
   en:{'t': 'London Heathrow (LHR) at a glance (September 2026)', 'c': [['Operator', 'Heathrow Airport Ltd (private)'], ['Runways and terminals', 'Two runways; T2, T3, T4 and T5'], ['2025', '84.5 million (Europe’s largest hub)']], 'n': ['A Level 3 airport where slots trade between airlines for large sums: new entry is very hard', 'Runway alternation swaps arrival and departure runways by time of day to share noise', 'Night movements are tightly quota-limited; late arrivals may divert']}})[l];
  if(!W)return F.wld_lhr('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_cdg:function(l){
- var W=({ja:{'t': 'パリ・シャルル・ド・ゴール（CDG）の要点（2026年9月時点）', 'c': [['運営', 'パリ空港（グループADP）'], ['滑走路・ターミナル', '平行の4本、T1・T2（2A〜2G）・T3'], ['2025年の実績', '7,203万人']], 'n': ['国際線の乗り継ぎはCDGで。オルリー（ORY）は国内線・欧州の近距離とLCCが中心', '2026年4月からEESが全面の運用。シェンゲン圏に初めて入る人は登録に時間がかかる', '航空管制・空港のストライキが多く、予告で減便されることがある']},
+ var W=({ja:{'t': 'パリ・シャルル・ド・ゴール（CDG）の要点（2026年9月時点）', 'c': [['運営', 'パリ空港（グループADP）'], ['滑走路・ターミナル', '平行の4本、T1・T2（2A〜2G）・T3'], ['2025年の実績', '7,203万人']], 'n': ['国際線の乗り継ぎはCDGで。オルリー（ORY）は国内線・欧州の近距離とLCCが中心', '2026年4月からEESが全面運用。シェンゲン圏に初めて入る人は登録に時間がかかる', '航空管制・空港のストライキが多く、予告で減便されることがある']},
   ko:{'t': '파리 샤를드골(CDG)의 요점(2026년 9월 기준)', 'c': [['운영', '파리공항(그룹 ADP)'], ['활주로·터미널', '평행 4개, T1·T2(2A~2G)·T3'], ['2025년 실적', '7,203만 명']], 'n': ['국제선 환승은 CDG에서. 오를리(ORY)는 국내선·유럽 근거리와 LCC 중심', '2026년 4월부터 EES 전면 운용. 솅겐 지역에 처음 들어가는 사람은 등록에 시간이 걸린다', '항공관제·공항 파업이 많아 예고 후 감편되기도 한다']},
   en:{'t': 'Paris Charles de Gaulle (CDG) at a glance (September 2026)', 'c': [['Operator', 'Paris Airports (Groupe ADP)'], ['Runways and terminals', 'Four parallel runways; T1, T2 (2A–2G), T3'], ['2025', '72.03 million']], 'n': ['International connections use CDG; Orly (ORY) mainly serves domestic, short-haul Europe and LCCs', 'EES has been fully in force since April 2026: first entries to Schengen take longer', 'Frequent ATC and airport strikes can mean pre-announced cancellations']}})[l];
  if(!W)return F.wld_cdg('ja');setK(1);
@@ -1272,7 +1272,7 @@ wld_fra:function(l){
  if(!W)return F.wld_fra('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_ams:function(l){
- var W=({ja:{'t': 'アムステルダム・スキポール（AMS）の要点（2026年9月時点）', 'c': [['運営', 'ロイヤル・スキポール・グループ'], ['滑走路・ターミナル', '6本の滑走路、1つのターミナル'], ['2025年の実績', '6,880万人、貨物143万トン']], 'n': ['すべての便が1つのターミナルから出る。乗り継ぎが分かりやすく最小乗り継ぎ時間が短い', 'シェンゲン圏外から圏内へ乗り継ぐ客は、ここで入国審査（EES）を受ける', '北海に近く強い風が多い。風で滑走路の使い方が変わり、遅れが出る']},
+ var W=({ja:{'t': 'アムステルダム・スキポール（AMS）の要点（2026年9月時点）', 'c': [['運営', 'ロイヤル・スキポール・グループ'], ['滑走路・ターミナル', '6本の滑走路、1つのターミナル'], ['2025年の実績', '6,880万人、貨物143万トン']], 'n': ['すべての便が1つのターミナルから出る。乗り継ぎが分かりやすく最低乗り継ぎ時間が短い', 'シェンゲン圏外から圏内へ乗り継ぐ客は、ここで入国審査（EES）を受ける', '北海に近く強い風が多い。風で滑走路の使い方が変わり、遅れが出る']},
   ko:{'t': '암스테르담 스히폴(AMS)의 요점(2026년 9월 기준)', 'c': [['운영', '로열 스히폴 그룹'], ['활주로·터미널', '활주로 6개, 터미널 1개'], ['2025년 실적', '6,880만 명, 화물 143만 톤']], 'n': ['모든 편이 터미널 하나에서 나간다. 환승이 알기 쉽고 최소 환승 시간이 짧다', '솅겐 지역 밖에서 안으로 환승하는 승객은 여기서 입국 심사(EES)를 받는다', '북해에 가까워 강풍이 잦다. 바람에 따라 활주로 사용이 바뀌어 지연이 생긴다']},
   en:{'t': 'Amsterdam Schiphol (AMS) at a glance (September 2026)', 'c': [['Operator', 'Royal Schiphol Group'], ['Runways and terminal', 'Six runways; one terminal'], ['2025', '68.8 million passengers; 1.43 million tonnes of cargo']], 'n': ['Every flight uses one terminal: connections are simple and minimum connecting times short', 'Passengers connecting from outside into Schengen clear immigration (EES) here', 'Close to the North Sea and often windy: runway use changes with the wind, causing delays']}})[l];
  if(!W)return F.wld_ams('ja');setK(1);
@@ -1284,7 +1284,7 @@ wld_atl:function(l){
  if(!W)return F.wld_atl('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_lax:function(l){
- var W=({ja:{'t': 'ロサンゼルス（LAX）の要点（2026年9月時点）', 'c': [['運営', 'ロサンゼルス空港局（LAWA）'], ['滑走路・ターミナル', '平行の4本。9つのターミナルとトム・ブラッドレー国際線ターミナル（TBIT）'], ['2025年の実績', '約7,371万人']], 'n': ['ターミナルを回る馬蹄形の道路が慢性的に渋滞。早めに空港に着くよう案内する', '春から夏の朝に海の霧（マリン・レイヤー）で視程が下がることがある', '国際線は主にTBIT。米国の入国・税関の後、国内線へは荷物を預け直す']},
+ var W=({ja:{'t': 'ロサンゼルス（LAX）の要点（2026年9月時点）', 'c': [['運営', 'ロサンゼルス空港局（LAWA）'], ['滑走路・ターミナル', '平行の4本。トム・ブラッドレー国際線ターミナル（TBIT）を含む9つのターミナル'], ['2025年の実績', '約7,371万人']], 'n': ['ターミナルを回る馬蹄形の道路が慢性的に渋滞。早めに空港に着くよう案内する', '春から夏の朝に海の霧（マリン・レイヤー）で視程が下がることがある', '国際線は主にTBIT。米国の入国・税関の後、国内線へは荷物を預け直す']},
   ko:{'t': '로스앤젤레스(LAX)의 요점(2026년 9월 기준)', 'c': [['운영', '로스앤젤레스공항국(LAWA)'], ['활주로·터미널', '평행 4개. 터미널 9개와 톰 브래들리 국제선 터미널(TBIT)'], ['2025년 실적', '약 7,371만 명']], 'n': ['터미널을 도는 말발굽 모양 도로가 만성 정체. 공항에 일찍 도착하도록 안내한다', '봄~여름 아침 바다 안개(마린 레이어)로 시정이 떨어질 수 있다', '국제선은 주로 TBIT. 미국 입국·세관 후 국내선으로는 수하물을 다시 맡긴다']},
   en:{'t': 'Los Angeles (LAX) at a glance (September 2026)', 'c': [['Operator', 'Los Angeles World Airports (LAWA)'], ['Runways and terminals', 'Four parallel runways; nine terminals and the Tom Bradley International Terminal (TBIT)'], ['2025', 'About 73.71 million']], 'n': ['The horseshoe road around the terminals is chronically congested: advise passengers to arrive early', 'Spring and summer morning marine layer can lower visibility', 'International flights mostly use TBIT; after US immigration and customs, bags are re-checked for domestic flights']}})[l];
  if(!W)return F.wld_lax('ja');setK(1);
@@ -1296,14 +1296,14 @@ wld_jfk:function(l){
  if(!W)return F.wld_jfk('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 wld_syd:function(l){
- var W=({ja:{'t': 'シドニーの2つの空港：SYDとWSI（2026年9月時点）', 'c': [['シドニー（SYD）', '市の南 約8km。23時〜6時は原則運航禁止。滑走路3本、2025年4,254万人★'], ['ウェスタン・シドニー（WSI）', '市の西 約44km。24時間の運用。滑走路1本。旅客便は2026年10月25日に開業']], 'n': ['SYDで23時に間に合わない便は、目的地の変更か欠航。出発の遅れの管理が重要', 'SYDは時間あたりの発着数にも法律の上限があり、スロットの管理が厳しい', '「シドニー」に2つの空港。予約・案内でSYDかWSIかを必ず確かめる']},
+ var W=({ja:{'t': 'シドニーの2つの空港：SYDとWSI（2026年9月時点）', 'c': [['シドニー（SYD）', '市の南 約8km。23時〜6時は原則運航禁止。滑走路3本、2025年4,254万人★'], ['ウェスタン・シドニー（WSI）', '市の西 約44km。24時間の運用。滑走路1本。旅客便は2026年10月25日に開業']], 'n': ['SYDで23時に間に合わない便は、ダイバートか欠航。出発の遅れの管理が重要', 'SYDは時間あたりの発着数にも法律の上限があり、スロットの管理が厳しい', '「シドニー」に2つの空港。予約・案内でSYDかWSIかを必ず確かめる']},
   ko:{'t': '시드니의 두 공항: SYD와 WSI(2026년 9월 기준)', 'c': [['시드니(SYD)', '시 남쪽 약 8km. 23시~6시는 원칙적으로 운항 금지. 활주로 3개, 2025년 4,254만 명★'], ['웨스턴 시드니(WSI)', '시 서쪽 약 44km. 24시간 운용. 활주로 1개. 여객편은 2026년 10월 25일 개항']], 'n': ['SYD에서 23시에 못 맞추는 편은 목적지 변경이나 결항. 출발 지연 관리가 중요', 'SYD는 시간당 발착 수에도 법적 상한이 있어 슬롯 관리가 엄격하다', '「시드니」에 공항이 두 개. 예약·안내에서 SYD인지 WSI인지 꼭 확인한다']},
   en:{'t': 'Sydney’s two airports: SYD and WSI (September 2026)', 'c': [['Sydney (SYD)', 'About 8 km south. Curfew 23:00–06:00. Three runways; 42.54 million in 2025 ★'], ['Western Sydney (WSI)', 'About 44 km west. 24-hour operation, one runway. Passenger flights from 25 October 2026']], 'n': ['At SYD, flights that cannot make 23:00 divert or cancel: managing departure delays is vital', 'SYD also has a legal cap on hourly movements, so slots are tightly managed', '“Sydney” now means two airports: always confirm SYD or WSI in bookings and guidance']}})[l];
  if(!W)return F.wld_syd('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 /* ===== 航空営業の実務（SLS）Part 1〜3 の図 2026.10 ===== */
 sls_mkt:function(l){
- var W=({ja:{t:'日本の海外旅行市場の4つの市場',r:[['パッケージツアー','旅行会社が航空券＋ホテルを販売','#1769e0'],['団体旅行','修学旅行・報奨旅行・視察','#2C8C8C'],['個人旅行','自社サイト・OTA・旅行会社の窓口','#E08A2E'],['出張（業務渡航）','企業と契約した旅行会社','#7A5CC7']],n:['自社の便の時間帯・機材・運賃の水準に合う市場を選ぶ','団体・パッケージ・個人の比率を決め、座席の配分と運賃の方針に反映する','市場ごとに旅行会社の窓口（仕入れ・企画・団体）が違う']},
+ var W=({ja:{t:'日本の海外旅行の4つの市場',r:[['パッケージツアー','旅行会社が航空券＋ホテルを販売','#1769e0'],['団体旅行','修学旅行・報奨旅行・視察','#2C8C8C'],['個人旅行','自社サイト・OTA・旅行会社の窓口','#E08A2E'],['出張（業務渡航）','企業と契約した旅行会社','#7A5CC7']],n:['自社の便の時間帯・機材・運賃の水準に合う市場を選ぶ','団体・パッケージ・個人の比率を決め、座席の配分と運賃の方針に反映する','市場ごとに旅行会社の窓口（仕入れ・企画・団体）が違う']},
   ko:{t:'일본 해외여행 시장의 4가지 시장',r:[['패키지 투어','여행사가 항공권＋호텔을 판매','#1769e0'],['단체 여행','수학여행·포상 여행·시찰','#2C8C8C'],['개인 여행','자사 사이트·OTA·여행사 창구','#E08A2E'],['출장(업무 도항)','기업과 계약한 여행사','#7A5CC7']],n:['자사 편의 시간대·기재·운임 수준에 맞는 시장을 고른다','단체·패키지·개인의 비율을 정해 좌석 배분과 운임 방침에 반영한다','시장마다 여행사 창구(매입·기획·단체)가 다르다']},
   en:{t:'Four segments of Japan’s outbound travel market',r:[['Package tours','Agencies sell air + hotel','#1769e0'],['Groups','School trips, incentives, study tours','#2C8C8C'],['Independent travel','Airline site, OTAs, agency counters','#E08A2E'],['Business travel','Agencies under corporate contract','#7A5CC7']],n:['Choose segments that fit your flight times, aircraft and fare level','Set the mix of group, package and independent sales and reflect it in seat allocation and fare policy','Each segment has a different agency contact (purchasing, product, groups)']}})[l];
  if(!W)return F.sls_mkt('ja');setK(1);
@@ -1321,7 +1321,7 @@ sls_shift:function(l){
  if(!W)return F.sls_shift('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 sls_chan:function(l){
- var W=({ja:{t:'インダイレクトと直販の違い',c:[['インダイレクト（旅行会社）','団体・パッケージ・出張。費用は手数料・インセンティブ。顧客の情報は旅行会社が持つ'],['直販（自社）','個人旅行。費用はサイトの運営・決済・広告。顧客の情報を自社で持てる']],n:['日本語の品質は信頼に直結。母語の人に確かめてもらう','日本のクレジットカード・コンビニ払い・電子決済に対応する','直販だけ明らかに安い運賃を続けると、旅行会社の協力を失う']},
+ var W=({ja:{t:'インダイレクトと直販の違い',c:[['インダイレクト（旅行会社）','団体・パッケージ・出張。費用は手数料・インセンティブ。顧客の情報は旅行会社が持つ'],['直販（自社）','個人旅行。費用はサイトの運営・決済・広告。顧客の情報を自社で持てる']],n:['日本語の品質は信頼に直結。日本語が母語の人に確かめてもらう','日本のクレジットカード・コンビニ払い・電子決済に対応する','直販だけ明らかに安い運賃を続けると、旅行会社の協力を失う']},
   ko:{t:'간접 판매와 직판의 차이',c:[['간접 판매(여행사)','단체·패키지·출장. 비용은 수수료·인센티브. 고객 정보는 여행사가 가진다'],['직판(자사)','개인 여행. 비용은 사이트 운영·결제·광고. 고객 정보를 자사가 가질 수 있다']],n:['일본어 품질은 신뢰와 직결된다. 원어민에게 확인을 받는다','일본의 신용카드·편의점 결제·전자 결제에 대응한다','직판만 눈에 띄게 싼 운임을 계속하면 여행사의 협력을 잃는다']},
   en:{t:'Indirect versus direct sales',c:[['Indirect (agencies)','Groups, packages, business travel. Costs: commission and incentives. The agency holds the customer data'],['Direct (own channels)','Independent travel. Costs: website, payment and advertising. The airline holds the customer data']],n:['Japanese-language quality drives trust: have a native speaker check it','Support Japanese credit cards, convenience-store payment and e-payments','Persistently undercutting agencies on direct channels loses their cooperation']}})[l];
  if(!W)return F.sls_chan('ja');setK(1);
@@ -1345,13 +1345,13 @@ sls_block:function(l){
  if(!W)return F.sls_block('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 sls_adm:function(l){
- var W=({ja:{t:'ボリュームインセンティブとADM：伸ばす仕組みと守る仕組み',c:[['インセンティブ','伸ばしたい路線・時期・市場を決め、段階の率・期間・対象・予算を設計する'],['ADM','対象のミスと手数料を事前に日本語で周知。根拠を具体的に示し、異議の手順も決める']],n:['予防が先。規則を単純にし、分かりやすい日本語で案内する','旅行会社によって扱いを変えない','同じミスが多いときは、担当者と直接話して原因を一緒に探る']},
+ var W=({ja:{t:'ボリュームインセンティブとADM：伸ばす仕組みと守る仕組み',c:[['インセンティブ','伸ばしたい路線・時期・市場を決め、段階の率・期間・対象・予算を設計する'],['ADM','対象となるミスと手数料を事前に日本語で周知。根拠を具体的に示し、異議の手順も決める']],n:['予防が先。規則を単純にし、分かりやすい日本語で案内する','旅行会社によって扱いを変えない','同じミスが多いときは、担当者と直接話して原因を一緒に探る']},
   ko:{t:'볼륨 인센티브와 ADM: 늘리는 구조와 지키는 구조',c:[['인센티브','늘리고 싶은 노선·시기·시장을 정하고 단계별 요율·기간·대상·예산을 설계한다'],['ADM','대상이 되는 실수와 수수료를 미리 일본어로 알린다. 근거를 구체적으로 보이고 이의 절차도 정한다']],n:['예방이 먼저. 규칙을 단순하게 하고 알기 쉬운 일본어로 안내한다','여행사에 따라 취급을 달리하지 않는다','같은 실수가 잦으면 담당자와 직접 이야기해 원인을 함께 찾는다']},
   en:{t:'Volume incentives and ADMs: tools to grow and tools to protect',c:[['Incentives','Decide which routes, periods and markets to grow, then design tiers, period, scope and budget'],['ADMs','Tell agencies in Japanese in advance which errors trigger an ADM and the fee; show the evidence and set a dispute procedure']],n:['Prevention first: simplify rules and explain them in clear Japanese','Treat every agency the same way','When the same error recurs, talk to the agent directly and find the cause together']}})[l];
  if(!W)return F.sls_adm('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 sls_guide:function(l){
- var W=({ja:{t:'旅行会社から必ず聞かれる質問（決めておくこと）',r:[['支払い方法（FOP）','現金（BSP）・クレジットカード','#1769e0'],['払い戻しの方法','自動の払い戻しかBSPLinkの申請','#2C8C8C'],['VOID','発券から何時間以内か','#E08A2E'],['名前の訂正','認める範囲と手数料','#7A5CC7'],['発券期限（TL）','出発までの日数ごと','#D64545'],['お客様の連絡先','電話・メールの入力を必須に','#0f3558']],n:['何がいつから変わったか（変更の履歴）を1ページ目に置く','主なGDSごとの入力例を並べ、配る前に実際に試す']},
+ var W=({ja:{t:'旅行会社から必ず聞かれる質問（決めておくこと）',r:[['支払い方法（FOP）','現金（BSP）・クレジットカード','#1769e0'],['払い戻しの方法','自動の払い戻しかBSPlinkでの申請','#2C8C8C'],['VOID','発券から何時間以内か','#E08A2E'],['名前の訂正','認める範囲と手数料','#7A5CC7'],['発券期限（TL）','出発までの日数ごと','#D64545'],['お客様の連絡先','電話・メールの入力を必須に','#0f3558']],n:['何がいつから変わったか（変更の履歴）を1ページ目に置く','主なGDSごとの入力例を並べ、配る前に実際に試す']},
   ko:{t:'여행사가 꼭 묻는 질문(미리 정해 둘 것)',r:[['지불 방법(FOP)','현금(BSP)·신용카드','#1769e0'],['환불 방법','자동 환불인가 BSPLink 신청인가','#2C8C8C'],['VOID','발권 후 몇 시간 이내인가','#E08A2E'],['이름 정정','인정 범위와 수수료','#7A5CC7'],['발권 기한(TL)','출발까지 남은 일수별','#D64545'],['승객 연락처','전화·메일 입력을 필수로','#0f3558']],n:['무엇이 언제부터 바뀌었는지(변경 이력)를 첫 페이지에 둔다','주요 GDS별 입력 예를 나란히 싣고, 배포 전에 실제로 시험한다']},
   en:{t:'Questions every agency asks (decide the answers first)',r:[['Form of payment (FOP)','Cash (BSP), credit card','#1769e0'],['Refund method','Auto-refund or BSPLink request','#2C8C8C'],['VOID','Within how many hours of issue','#E08A2E'],['Name corrections','Scope allowed and fee','#7A5CC7'],['Ticketing time limit (TL)','By days before departure','#D64545'],['Passenger contacts','Make phone and email mandatory','#0f3558']],n:['Put the change history (what changed and from when) on page one','Show input examples for each main GDS and test them before issuing the guide']}})[l];
  if(!W)return F.sls_guide('ja');setK(1);
@@ -1376,7 +1376,7 @@ sls_pexit:function(l){
  if(!W)return F.sls_pexit('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 sls_pr:function(l){
- var W=({ja:{t:'就航の広報：準備から決めた順に（例）',st:['日本語の会社紹介・写真・路線図・想定の質問を用意','プレスリリース：いつから・どことどこを・何が新しい','記者懇談会：本社の役員・支店長。通訳と事前の打ち合わせ','SNSで就航までのカウントダウン・機内の紹介','掲載と反応を記録し、次の企画に生かす'],who:['準備','発表','懇談会','SNS','振り返り'],n:['数字は確定したものだけ。問い合わせの窓口を明記する','空港会社・観光の公的機関と共同で発表すると記事にされやすい']},
+ var W=({ja:{t:'就航の広報：準備から振り返りまでの流れ（例）',st:['日本語の会社紹介・写真・路線図・想定の質問を用意','プレスリリース：いつから・どことどこを・何が新しい','記者懇談会：本社の役員・支店長。通訳と事前の打ち合わせ','SNSで就航までのカウントダウン・機内の紹介','掲載と反応を記録し、次の企画に生かす'],who:['準備','発表','懇談会','SNS','振り返り'],n:['数字は確定したものだけ。問い合わせの窓口を明記する','空港会社・観光の公的機関と共同で発表すると記事にされやすい']},
   ko:{t:'취항 홍보: 준비부터 정해진 순서로(예)',st:['일본어 회사 소개·사진·노선도·예상 질문을 준비','보도자료: 언제부터·어디와 어디를·무엇이 새로운가','기자 간담회: 본사 임원·지점장. 통역과 사전 협의','SNS에서 취항까지 카운트다운·기내 소개','게재와 반응을 기록해 다음 기획에 살린다'],who:['준비','발표','간담회','SNS','되돌아보기'],n:['숫자는 확정된 것만. 문의 창구를 명기한다','공항 회사·관광 공공기관과 공동으로 발표하면 기사화되기 쉽다']},
   en:{t:'Launch publicity: in a set order (example)',st:['Prepare a Japanese company profile, photos, route map and expected questions','Press release: from when, between where, what is new','Press briefing: head-office executives and station manager; interpreter and rehearsal','Social media countdown to launch and cabin introductions','Record coverage and reactions and use them next time'],who:['Prepare','Announce','Briefing','Social','Review'],n:['Only confirmed figures; give a contact point','Joint announcements with the airport company or tourism bodies are more likely to be covered']}})[l];
  if(!W)return F.sls_pr('ja');setK(1);
@@ -1406,7 +1406,7 @@ sls_prep:function(l){
  if(!W)return F.sls_prep('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 sls_peak:function(l){
- var W=({ja:{t:'日韓路線の繁忙期：韓国発と日本発（例）',c:[['韓国発','12月末〜2月、7月末〜8月中旬、旧正月、秋夕、そのほかの連休'],['日本発','3月の最終週、ゴールデンウィーク、お盆、9月の連休、12月末']],n:['閑散期は団体・IT運賃で早めに売る。予約の少ない日は「不振日」の特別運賃で','1月の大型プロモーションに向け、11月ごろ運賃の支援を決め、先の分まで出す']},
+ var W=({ja:{t:'日韓路線の繁忙期：韓国発と日本発（例）',c:[['韓国発','12月末〜2月、7月末〜8月中旬、旧正月、秋夕、そのほかの連休'],['日本発','3月の最終週、ゴールデンウィーク、お盆、9月の連休、12月末']],n:['閑散期は団体・IT運賃で早めに売る。予約の少ない日は特別運賃で','1月の大型プロモーションに向け、11月ごろ運賃の支援を決め、先の分まで出す']},
   ko:{t:'한일 노선의 성수기: 한국발과 일본발(예)',c:[['한국발','12월 말~2월, 7월 말~8월 중순, 설날, 추석, 그 밖의 연휴'],['일본발','3월 마지막 주, 골든위크, 오봉, 9월 연휴, 12월 말']],n:['비수기는 단체·IT 운임으로 일찍 판다. 예약이 적은 날은 「부진일」 특별 운임으로','1월 대형 프로모션을 위해 11월쯤 운임 지원을 정하고 앞으로의 물량까지 낸다']},
   en:{t:'Peak periods on Japan–Korea routes: from Korea and from Japan (example)',c:[['From Korea','Late Dec–Feb, late Jul–mid Aug, Lunar New Year, Chuseok and other holidays'],['From Japan','Last week of March, Golden Week, Obon, September holidays, end of December']],n:['Sell off-peak early through group and IT fares; offer special fares on weak days','For January’s big promotion, agree fare support around November and release later periods too']}})[l];
  if(!W)return F.sls_peak('ja');setK(1);
@@ -1443,7 +1443,7 @@ rm_od:function(l){
  if(!W)return F.rm_od('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#5B6B7D','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 rm_dyn:function(l){
- var W=({ja:{t:'価格の付け方の変化：これまで → これから',r:[['決まった段（クラス）から選ぶ','需要に合わせて細かく動く','#1769e0'],['GDSで運賃表と空席を別々に','NDCで商品を組み立てて出す','#2C8C8C'],['運賃＋あとで付帯サービス','運賃ファミリー・付帯・座席をまとめて','#E08A2E'],['お客様ごとにほぼ同じ','会員・目的で提案を変える（行き過ぎ注意）','#7A5CC7']],n:['団体は、押し出される個人の収入（入札価格）と比べて受けるか決める','総額の表示と誤認させない表示を守る（日本：景品表示法、韓国：航空事業法第62条第5項）']},
+ var W=({ja:{t:'価格の付け方の変化：これまで → これから',r:[['決まった段（クラス）から選ぶ','需要に合わせて細かく動く','#1769e0'],['GDSで運賃表と空席を別々に','NDCで商品を組み立てて出す','#2C8C8C'],['運賃＋あとで付帯サービス','フェアファミリー・付帯・座席をまとめて','#E08A2E'],['お客様ごとにほぼ同じ','会員・目的で提案を変える（行き過ぎ注意）','#7A5CC7']],n:['団体は、押し出される個人の収入（入札価格）と比べて受けるか決める','総額の表示と誤認させない表示を守る（日本：景品表示法、韓国：航空事業法第62条第5項）']},
   ko:{t:'가격 책정의 변화: 지금까지 → 앞으로',r:[['정해진 단계(클래스)에서 고른다','수요에 맞춰 세밀하게 움직인다','#1769e0'],['GDS에서 운임표와 빈자리를 따로','NDC로 상품을 조립해 낸다','#2C8C8C'],['운임＋나중에 부가 서비스','운임 패밀리·부가·좌석을 묶어서','#E08A2E'],['고객마다 거의 같다','회원·목적에 따라 제안을 바꾼다(지나침 주의)','#7A5CC7']],n:['단체는 밀려나는 개인 수입(입찰 가격)과 비교해 받을지 정한다','총액 표시와 오인하게 하지 않는 표시를 지킨다(일본: 경품표시법, 한국: 항공사업법 제62조 제5항)']},
   en:{t:'How pricing is changing: until now → from now',r:[['Choose from fixed steps (classes)','Prices move finely with demand','#1769e0'],['GDS shows fare tables and seats apart','NDC assembles a product offer','#2C8C8C'],['Fare first, extras later','Fare families, extras and seats together','#E08A2E'],['Almost the same for everyone','Offers vary by membership and purpose (with care)','#7A5CC7']],n:['Accept groups only after comparing with the individual revenue they displace (bid prices)','Show total prices and avoid misleading displays (Japan: Act against Unjustifiable Premiums and Misleading Representations; Korea: Aviation Business Act Art. 62(5))']}})[l];
  if(!W)return F.rm_dyn('ja');setK(1);
@@ -1536,7 +1536,7 @@ int_mgr:function(l){
  if(!W)return F.int_mgr('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#D64545','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 int_offer:function(l){
- var W=({ja:{t:'内定から入社まで',st:['内定の通知と条件の提示','雇用契約の内容を確かめる','外国籍の場合、会社が在留資格を申請','源泉徴収票・口座などを提出','初期教育と空港のIDパスの申請'],who:['内定','確認','在留資格','書類','入社'],n:['確かめる条件：雇用形態・勤務の形・給与・試用期間・勤務地・社会保険','韓国から入社：在留資格認定証明書→ビザ→入国時に在留カード★']},
+ var W=({ja:{t:'内定から入社まで',st:['内定の通知と条件の提示','雇用契約の内容を確かめる','外国籍の場合、在留資格の手続き（会社が支援）','源泉徴収票・口座などを提出','初期教育と空港のIDパスの申請'],who:['内定','確認','在留資格','書類','入社'],n:['確かめる条件：雇用形態・勤務の形・給与・試用期間・勤務地・社会保険','韓国から入社：在留資格認定証明書→ビザ→入国時に在留カード★']},
   ko:{t:'내정부터 입사까지',st:['내정 통지와 조건 제시','고용 계약 내용을 확인한다','외국 국적이면 회사가 재류 자격을 신청','원천징수표·계좌 등을 제출','초기 교육과 공항 ID 패스 신청'],who:['내정','확인','재류 자격','서류','입사'],n:['확인할 조건: 고용 형태·근무 형태·급여·수습 기간·근무지·사회보험','한국에서 입사: 재류 자격 인정 증명서→비자→입국 때 재류 카드★']},
   en:{t:'From job offer to first day',st:['Offer and conditions presented','Check the employment contract','For foreign nationals, the company applies for residence status','Submit tax slip, bank account and other papers','Initial training and airport ID pass application'],who:['Offer','Check','Status','Papers','Start'],n:['Check: employment type, shift pattern, pay, probation, workplace, social insurance','Joining from Korea: certificate of eligibility → visa → residence card on entry ★']}})[l];
  if(!W)return F.int_offer('ja');setK(1);
@@ -1634,19 +1634,19 @@ hov_30:function(l){
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 /* ===== CIQの役割（CIQ）Part 0〜2 の図 2026.10 ===== */
 ciq_resp:function(l){
- var W=({ja:{t:'運ぶ前に航空会社が確かめること',r:[['旅券','本人のものか・残りの期間・破損','#1769e0'],['査証・電子渡航認証','目的地と乗り継ぎ地の両方','#2C8C8C'],['入国の条件','帰りの航空券・滞在日数・再入国の許可','#E08A2E'],['調べる道具','TIMATIC（航空会社が使うデータベース）','#7A5CC7']],n:['入国を断られた人（INAD）は運んだ航空会社が送り返し、費用と過料も負う★','迷ったら搭乗を決める前に相談し、断るときは根拠を記録する']},
+ var W=({ja:{t:'運ぶ前に航空会社が確かめること',r:[['旅券','本人のものか・残りの期間・破損','#1769e0'],['査証・電子渡航認証','目的地と乗り継ぎ地の両方','#2C8C8C'],['入国の条件','帰りの航空券・滞在日数・再入国の許可','#E08A2E'],['調べる道具','TIMATIC（航空会社が使うデータベース）','#7A5CC7']],n:['入国を断られた人（INAD）は運んだ航空会社が送り返し、費用も負う。国により過料も★','迷ったら搭乗を決める前に相談し、断るときは根拠を記録する']},
   ko:{t:'수송 전에 항공사가 확인할 것',r:[['여권','본인 것인지·남은 기간·훼손','#1769e0'],['비자·전자여행허가','목적지와 환승지 둘 다','#2C8C8C'],['입국 조건','귀국 항공권·체류 일수·재입국 허가','#E08A2E'],['조사 도구','TIMATIC(항공사가 쓰는 데이터베이스)','#7A5CC7']],n:['입국을 거부당한 사람(INAD)은 실어 온 항공사가 송환하고 비용과 과징금도 부담한다★','망설여지면 탑승을 정하기 전에 상담하고, 거절할 때는 근거를 기록한다']},
   en:{t:'What the airline checks before carrying a passenger',r:[['Passport','Genuine holder, remaining validity, damage','#1769e0'],['Visa or travel authorisation','For both destination and transit points','#2C8C8C'],['Entry conditions','Return ticket, length of stay, re-entry permit','#E08A2E'],['Reference tool','TIMATIC, the airline database','#7A5CC7']],n:['Inadmissible passengers (INAD) are returned by the carrier, which bears costs and fines ★','When unsure, consult before accepting; when refusing, record the basis']}})[l];
  if(!W)return F.ciq_resp('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ciq_api:function(l){
- var W=({ja:{t:'先に送る旅客の情報',r:[['API（事前旅客情報）','旅券の情報と便。出発の前から直後','#1769e0'],['PNR（予約の記録）','旅程・連絡先・支払い。数日前から数回','#2C8C8C'],['iAPI（対話型）','当局が搭乗の可否をその場で返す','#E08A2E']],n:['電子渡航認証：ESTA・eTA・ETA・K-ETA・ETIAS（2026年第4四半期の予定）・JESTA（2028年度中の導入が目標）★','「搭乗できません」の応答は、自分で判断せず決められた連絡先に確かめる']},
+ var W=({ja:{t:'先に送る旅客の情報',r:[['API（事前旅客情報）','旅券の情報と便。出発前〜出発直後に送る','#1769e0'],['PNR（予約の記録）','旅程・連絡先・支払い。数日前から数回','#2C8C8C'],['iAPI（対話型）','当局が搭乗の可否をその場で返す','#E08A2E']],n:['電子渡航認証：ESTA・eTA・ETA・K-ETA・ETIAS（開始日未定）・JESTA（2028年度中の導入が目標）★','「搭乗できません」の応答は、自分で判断せず決められた連絡先に確かめる']},
   ko:{t:'미리 보내는 승객 정보',r:[['API(사전승객정보)','여권 정보와 편. 출발 전부터 직후까지','#1769e0'],['PNR(예약 기록)','여정·연락처·지불. 며칠 전부터 여러 번','#2C8C8C'],['iAPI(대화형)','당국이 탑승 가부를 그 자리에서 돌려준다','#E08A2E']],n:['전자여행허가: ESTA·eTA·ETA·K-ETA·ETIAS(2026년 4분기 예정)·JESTA(2028년도 중 도입 목표)★','「탑승 불가」 응답은 스스로 판단하지 말고 정해진 연락처에 확인한다']},
   en:{t:'Passenger data sent in advance',r:[['API (advance passenger information)','Passport details and flight, before to just after departure','#1769e0'],['PNR (booking record)','Itinerary, contacts, payment; several times from days before','#2C8C8C'],['iAPI (interactive)','The authority returns board / no-board at once','#E08A2E']],n:['Travel authorisations: ESTA, eTA, ETA, K-ETA, ETIAS (planned Q4 2026), JESTA (target FY2028) ★','Never decide on a “do not board” response yourself; check with the designated contact']}})[l];
  if(!W)return F.ciq_api('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ciq_timatic:function(l){
- var W=({ja:{t:'TIMATICで調べる順番',st:['国籍（旅券を出した国）と旅券の種類を入れる','出発地・乗り継ぎ地・目的地を入れる','滞在の日数と目的、持っている査証や在留の資格','答えを読む：旅券・査証・健康・追加の情報','結果を画面の保存や印刷で残す'],who:['国籍','経路','滞在','読む','保存'],n:['自動の確認が「OK」でも、別に買った航空券の乗り継ぎは自分で調べる','分かりにくいときは、上司・本社の当番に確かめてから搭乗を決める']},
+ var W=({ja:{t:'TIMATICで調べる順番',st:['国籍（旅券を出した国）と旅券の種類を入れる','出発地・乗り継ぎ地・目的地を入れる','滞在の日数と目的、持っている査証や在留資格','答えを読む：旅券・査証・健康・追加の情報','結果を画面の保存や印刷で残す'],who:['国籍','経路','滞在','読む','保存'],n:['自動の確認が「OK」でも、別に買った航空券の乗り継ぎは自分で調べる','分かりにくいときは、上司・本社の当番に確かめてから搭乗を決める']},
   ko:{t:'TIMATIC으로 조사하는 순서',st:['국적(여권 발급국)과 여권 종류를 넣는다','출발지·환승지·목적지를 넣는다','체류 일수와 목적, 가진 비자나 체류 자격','답을 읽는다: 여권·비자·건강·추가 정보','결과를 화면 저장이나 인쇄로 남긴다'],who:['국적','경로','체류','읽기','저장'],n:['자동 확인이 「OK」여도 따로 산 항공권의 환승은 직접 조사한다','알기 어려울 때는 상사·본사 당번에게 확인한 뒤 탑승을 정한다']},
   en:{t:'Checking entry rules in TIMATIC',st:['Enter nationality (issuing country) and passport type','Enter origin, transit points and destination','Enter length and purpose of stay, other visas or residence status','Read the result: passport, visa, health, additional information','Save the result as a screenshot or printout'],who:['Nationality','Route','Stay','Read','Save'],n:['Even if the automatic check says OK, check separate-ticket connections yourself','If the answer is unclear, ask a supervisor or head-office duty desk before accepting']}})[l];
  if(!W)return F.ciq_timatic('ja');setK(1);
@@ -1731,7 +1731,7 @@ ciq_ca:function(l){
  if(!W)return F.ciq_ca('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ciq_eu:function(l){
- var W=({ja:{t:'欧州（シェンゲン圏）と英国',c:[['シェンゲン圏','最初の空港で入国審査とEESの登録（2026年4月10日から全面）。滞在は180日のうち90日まで。ETIASは2026年第4四半期の予定★'],['英国','シェンゲン圏でもEUでもない。ETAは20ポンド（2026年4月8日から）。EUからの肉・乳製品も持ち込めない（2025年4月12日から）']],n:['EUの外から肉・乳製品は持ち込めない。乳児用の粉ミルク・医療用の食品は2kgまで','1万ユーロ以上の現金は申告（1人ごとに数える）']},
+ var W=({ja:{t:'欧州（シェンゲン圏）と英国',c:[['シェンゲン圏','最初の空港で入国審査とEESの登録（2026年4月10日から全面）。滞在は180日のうち90日まで。ETIASは開始日未定★'],['英国','シェンゲン圏でもEUでもない。ETAは20ポンド（2026年4月8日から）。EUからの肉・乳製品も持ち込めない（2025年4月12日から）']],n:['EUの外から肉・乳製品は持ち込めない。乳児用の粉ミルク・医療用の食品は2kgまで','1万ユーロ以上の現金は申告（1人ごとに数える）']},
   ko:{t:'유럽(솅겐 지역)과 영국',c:[['솅겐 지역','처음 도착한 공항에서 입국심사와 EES 등록(2026년 4월 10일부터 전면). 체류는 180일 중 90일까지. ETIAS는 2026년 4분기 예정★'],['영국','솅겐 지역도 EU도 아니다. ETA는 20파운드(2026년 4월 8일부터). EU에서 오는 고기·유제품도 반입 불가(2025년 4월 12일부터)']],n:['EU 밖에서 고기·유제품은 반입 불가. 유아용 분유·의료용 식품은 2kg까지','1만 유로 이상의 현금은 신고(1인당으로 센다)']},
   en:{t:'Europe (Schengen) and the UK',c:[['Schengen area','Immigration and EES registration at the first airport (fully live from 10 Apr 2026); 90 days in any 180; ETIAS planned Q4 2026 ★'],['United Kingdom','Neither Schengen nor EU. ETA costs £20 (from 8 Apr 2026). Meat and dairy from the EU also banned (from 12 Apr 2025)']],n:['No meat or dairy from outside the EU; infant formula and medical foods up to 2 kg','Declare cash of €10,000 or more (counted per person)']}})[l];
  if(!W)return F.ciq_eu('ja');setK(1);
@@ -1744,7 +1744,7 @@ ciq_cn:function(l){
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#2C8C8C','#7A5CC7']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 /* ===== CIQ Part 4〜6 の図（仕上げ）2026.10 ===== */
 ciq_sea:function(l){
- var W=({ja:{t:'東南アジアと中東：行き先で変わる3つのもの',c:[['薬','成分で決まる。市販薬にも規制の成分。元の容器と英語の処方の書類。事前の許可が要る国も'],['電子たばこ・加熱式たばこ','シンガポール（2025年9月から罰が重い）・タイ・ベトナムなどで禁止★'],['酒と豚肉','サウジ・カタールは持ち込めない。UAEは量の限りと首長国ごとの決まり★']],n:['タイ：2025年5月1日から、着く前の3日以内にデジタルの入国カード（TDAC）','薬の可否を航空会社は判断しない。行き先の当局・大使館の案内を示す']},
+ var W=({ja:{t:'東南アジアと中東：行き先で変わる3つのもの',c:[['薬','成分で決まる。市販薬にも規制の成分。元の容器と、英文で処方内容が分かる書類。事前の許可が要る国も'],['電子たばこ・加熱式たばこ','シンガポール（2025年9月から罰が重い）・タイ・ベトナムなどで禁止★'],['酒と豚肉','サウジ・カタールは持ち込めない。UAEは量の限りと首長国ごとの決まり★']],n:['タイ：2025年5月1日から、着く前の3日以内にデジタルの入国カード（TDAC）','薬の可否を航空会社は判断しない。行き先の当局・大使館の案内を示す']},
   ko:{t:'동남아시아와 중동: 목적지에 따라 달라지는 3가지',c:[['약','성분으로 정해진다. 시판약에도 규제 성분. 원래 용기와 영어 처방 서류. 사전 허가가 필요한 나라도'],['전자담배·가열식 담배','싱가포르(2025년 9월부터 벌이 무거움)·태국·베트남 등에서 금지★'],['술과 돼지고기','사우디·카타르는 반입 불가. UAE는 양 제한과 토후국별 규칙★']],n:['태국: 2025년 5월 1일부터 도착 전 3일 이내에 디지털 입국카드(TDAC)','약의 반입 가부는 항공사가 판단하지 않는다. 목적지 당국·대사관 안내를 보여 준다']},
   en:{t:'Southeast Asia and the Middle East: three things that change',c:[['Medicines','Judged by ingredient; even OTC drugs may contain controlled ones. Keep original packaging and an English prescription; some countries need prior permits'],['E-cigarettes and heated tobacco','Banned in Singapore (harsher penalties from Sep 2025), Thailand, Vietnam and others ★'],['Alcohol and pork','Not allowed into Saudi Arabia or Qatar; UAE has quantity limits and emirate rules ★']],n:['Thailand: from 1 May 2025, submit the digital arrival card (TDAC) within 3 days before arrival','The airline does not rule on medicines; point passengers to the destination authority or embassy']}})[l];
  if(!W)return F.ciq_sea('ja');setK(1);
@@ -1811,7 +1811,7 @@ adm_slip:function(l){
  if(!W)return F.adm_slip('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#D64545','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 adm_hire:function(l){
- var W=({ja:{t:'雇うときの順番',st:['雇用形態を決める（無期・有期・パート・派遣）','労働条件を書面で示す（期間・場所と仕事・時間と休み・賃金・退職）','外国籍なら、在留資格と仕事の範囲を確かめる','試用期間の評価の基準と面談の日を共有する','専門家に確かめてから契約する'],who:['形','条件','在留','試用','契約'],n:['「契約社員なら自由に切れる」「年俸制なら残業代は不要」は誤解','本社の契約書を訳すだけでは足りない。その国の法令に合わせる']},
+ var W=({ja:{t:'雇うときの順番',st:['雇用形態を決める（無期・有期・パート・派遣）','労働条件を書面で示す（期間・場所と仕事・時間と休み・賃金・退職）','外国籍なら、在留資格と仕事の範囲を確かめる','試用期間の評価の基準と面談の日を共有する','専門家に確かめてから契約する'],who:['形態','条件','在留','試用','契約'],n:['「契約社員なら自由に切れる」「年俸制なら残業代は不要」は誤解','本社の契約書を訳すだけでは足りない。その国の法令に合わせる']},
   ko:{t:'채용할 때의 순서',st:['고용 형태를 정한다(무기·유기·파트타임·파견)','근로조건을 서면으로 제시(기간·장소와 업무·시간과 휴일·임금·퇴직)','외국 국적이면 체류 자격과 업무 범위를 확인한다','수습 기간의 평가 기준과 면담 날짜를 공유한다','전문가에게 확인한 뒤 계약한다'],who:['형태','조건','체류','수습','계약'],n:['「계약직이면 마음대로 끊을 수 있다」「연봉제면 연장근로수당 불필요」는 오해','본사 계약서를 번역만 해서는 부족하다. 그 나라의 법령에 맞춘다']},
   en:{t:'Hiring: the order of steps',st:['Choose the employment type (permanent, fixed-term, part-time, agency)','Give working conditions in writing (term, place and duties, hours and leave, pay, leaving)','For foreign nationals, check residence status and permitted work','Share probation criteria and review dates','Check with a specialist, then sign'],who:['Type','Terms','Status','Probation','Sign'],n:['“Contract staff can be let go freely” and “annual salary means no overtime pay” are misconceptions','Translating the head-office contract is not enough; follow local law']}})[l];
  if(!W)return F.adm_hire('ja');setK(1);
@@ -1853,7 +1853,7 @@ adm_remit:function(l){
  if(!W)return F.adm_remit('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#5B6B7D','#E08A2E','#2C8C8C','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 adm_tax:function(l){
- var W=({ja:{t:'外国法人の支店の主な税金（日本）',r:[['法人税・地方法人税','支店に帰属する所得。決算後原則2か月以内★','#1769e0'],['法人住民税・事業税','赤字でも均等割がかかる','#2C8C8C'],['消費税','売上の税−仕入れの税（5-2）','#E08A2E'],['源泉所得税','給与・報酬から差し引き、毎月10日に納付','#7A5CC7'],['印紙税・償却資産','契約書・領収書、償却資産は1月末に申告','#5B6B7D']],n:['支店は本社と同じ会社の一部。子会社は日本の独立した会社で、利益の送金と源泉税が違う','年間の申告・納付の一覧を作り、税理士と毎年見直す']},
+ var W=({ja:{t:'外国法人の支店の主な税金（日本）',r:[['法人税・地方法人税','支店に帰属する所得。決算後原則2か月以内★','#1769e0'],['法人住民税・事業税','赤字でも均等割がかかる','#2C8C8C'],['消費税','売上の税−仕入れの税（5-2）','#E08A2E'],['源泉所得税','給与・報酬から差し引き、翌月10日までに納付','#7A5CC7'],['印紙税・償却資産','契約書・領収書、償却資産は1月末に申告','#5B6B7D']],n:['支店は本社と同じ会社の一部。子会社は日本の独立した会社で、利益の送金と源泉税が違う','年間の申告・納付の一覧を作り、税理士と毎年見直す']},
   ko:{t:'외국법인 지점의 주요 세금(일본)',r:[['법인세·지방법인세','지점에 귀속하는 소득. 결산 후 원칙 2개월 이내★','#1769e0'],['법인주민세·사업세','적자여도 균등할이 붙는다','#2C8C8C'],['소비세','매출의 세금−매입의 세금(5-2)','#E08A2E'],['원천소득세','급여·보수에서 떼어 매월 10일에 납부','#7A5CC7'],['인지세·상각자산','계약서·영수증, 상각자산은 1월 말에 신고','#5B6B7D']],n:['지점은 본사와 같은 회사의 일부. 자회사는 일본의 독립된 회사로, 이익 송금과 원천세가 다르다','연간 신고·납부 목록을 만들고 세무사와 매년 다시 본다']},
   en:{t:'Main taxes for a foreign company’s branch (Japan)',r:[['Corporate tax','On income attributable to the branch; file within 2 months of year end in principle ★','#1769e0'],['Local corporate taxes','Per-capita levy applies even at a loss','#2C8C8C'],['Consumption tax','Tax on sales minus tax on purchases (5-2)','#E08A2E'],['Withholding income tax','Deducted from pay and fees; paid by the 10th monthly','#7A5CC7'],['Stamp duty, depreciable assets','Contracts and receipts; asset return by end of January','#5B6B7D']],n:['A branch is part of the same company as head office; a subsidiary is a separate Japanese company, with different profit remittance and withholding','Keep an annual list of filings and payments and review it with your tax accountant each year']}})[l];
  if(!W)return F.adm_tax('ja');setK(1);
@@ -1865,7 +1865,7 @@ adm_vat:function(l){
  if(!W)return F.adm_vat('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#E08A2E','#7A5CC7','#5B6B7D','#2C8C8C'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 adm_close:function(l){
- var W=({ja:{t:'月次の締めの流れ（月初5日で閉じる）',st:['資金日計表と口座の残高を照合する','請求書を集め、伝票を作る','請求書の来ない費用を見積もって計上する','本社の会計へ渡して締める','予算との比較とコメントを報告する'],who:['月末','1〜3日','3〜5日','締め','報告'],n:['見積もりは前の実績などで。請求書が届いたら差額だけを調整する','予算との差が5%を超える科目にコメントを書くと、本社の質問が減る']},
+ var W=({ja:{t:'月次の締めの流れ（月初5日までに締める）',st:['資金日計表と口座の残高を照合する','請求書を集め、伝票を作る','請求書の来ない費用を見積もって計上する','本社の会計へ渡して締める','予算との比較とコメントを報告する'],who:['月末','1〜3日','3〜5日','締め','報告'],n:['見積もりは前の実績などで。請求書が届いたら差額だけを調整する','予算との差が5%を超える科目にコメントを書くと、本社の質問が減る']},
   ko:{t:'월차 마감의 흐름(월초 5일에 닫는다)',st:['자금 일계표와 계좌 잔액을 대조한다','청구서를 모으고 전표를 만든다','청구서가 오지 않은 비용을 추산해 계상한다','본사 회계에 넘겨 마감한다','예산 대비와 코멘트를 보고한다'],who:['월말','1~3일','3~5일','마감','보고'],n:['추산은 이전 실적 등으로. 청구서가 오면 차액만 조정한다','예산과의 차이가 5%를 넘는 과목에 코멘트를 쓰면 본사의 질문이 줄어든다']},
   en:{t:'The month-end close (closed by day 5)',st:['Reconcile the cash sheet with bank balances','Collect invoices and prepare vouchers','Accrue costs whose invoices have not arrived','Hand over to head-office accounting and close','Report against budget with comments'],who:['Month end','Days 1–3','Days 3–5','Close','Report'],n:['Estimate from past actuals; adjust only the difference when the invoice arrives','Comment on lines more than 5% off budget and head office will ask fewer questions']}})[l];
  if(!W)return F.adm_close('ja');setK(1);
@@ -1981,13 +1981,13 @@ fn_vela3:function(l){
  if(!W)return F.fn_vela3('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#D64545','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 fn_fuel:function(l){
- var W=({ja:{t:'燃油費を動かすものと、備え（Vela Airの感応度）',r:[['① ケロシンの価格','1バレル10ドルで燃油費 約80億円','#D64545'],['② 為替','1ドル10円の円安で 約45億円増','#E08A2E'],['③ 消費量','新型機は15〜20%少ない','#2C8C8C'],['燃油ヘッジ','先物・スワップで価格を固定（評価差はいったん純資産）','#1769e0'],['燃油サーチャージ','ケロシン×為替に連動。日本発は2か月ごと','#7A5CC7']],n:['燃油費の比率：JAL 21.6%・ANA 22.6%・ライアンエアー 42.1%★','決算説明資料の「燃油・為替の前提」と「感応度」を確かめる']},
+ var W=({ja:{t:'燃油費を動かすものと、備え（Vela Airの感応度）',r:[['① ケロシンの価格','1バレル10ドルの変化で燃油費 約80億円','#D64545'],['② 為替','1ドル10円の円安で 約45億円増','#E08A2E'],['③ 消費量','新型機は15〜20%少ない','#2C8C8C'],['燃油ヘッジ','先物・スワップで価格を固定（評価差はいったん純資産）','#1769e0'],['燃油サーチャージ','ケロシン×為替に連動。日本発は2か月ごと','#7A5CC7']],n:['燃油費の比率：JAL 21.6%・ANA 22.6%・ライアンエアー 42.1%★','決算説明資料の「燃油・為替の前提」と「感応度」を確かめる']},
   ko:{t:'연료비를 움직이는 것과 대비(Vela Air의 감응도)',r:[['① 케로신 가격','1배럴 10달러에 연료비 약 80억 엔','#D64545'],['② 환율','1달러 10엔의 엔저로 약 45억 엔 증가','#E08A2E'],['③ 소비량','신형기는 15~20% 적다','#2C8C8C'],['연료 헤지','선물·스왑으로 가격을 고정(평가차는 일단 자본에)','#1769e0'],['유류할증료','케로신×환율에 연동. 일본 출발은 2개월마다','#7A5CC7']],n:['연료비 비율: JAL 21.6%·ANA 22.6%·라이언에어 42.1%★','결산 설명 자료의 「연료·환율 전제」와 「감응도」를 확인한다']},
   en:{t:'What drives fuel cost, and the defences (Vela Air sensitivities)',r:[['① Kerosene price','$10 a barrel ≈ ¥8bn of fuel cost','#D64545'],['② Exchange rate','¥10 weaker per dollar ≈ ¥4.5bn more','#E08A2E'],['③ Consumption','New aircraft burn 15–20% less','#2C8C8C'],['Fuel hedging','Futures and swaps fix the price (gains/losses held in equity first)','#1769e0'],['Fuel surcharge','Linked to kerosene × FX; reset every 2 months from Japan','#7A5CC7']],n:['Fuel share of costs: JAL 21.6%, ANA 22.6%, Ryanair 42.1% ★','Check the fuel and FX assumptions and sensitivities in results presentations']}})[l];
  if(!W)return F.fn_fuel('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 fn_fleet:function(l){
- var W=({ja:{t:'機材投資のサイクル',st:['発注・前払金：納入の数年前（JAL 航空機建設仮勘定1,156億円★）','受領・資産計上：投資キャッシュフローのマイナス','運用・減価償却：15〜25年で定額償却','売却・リースバック・退役：簿価との差が売却損益'],who:['発注','受領','運用','売却'],n:['所有：長く使うほど安い。リース：初期の現金が小さく柔軟、長く使うと割高','日本基準はリースが載らず、自己資本比率が高く見える（新基準で変わる見込み★）']},
+ var W=({ja:{t:'機材投資のサイクル',st:['発注・前払金：納入の数年前（JAL 航空機建設仮勘定1,156億円★）','受領・資産計上：投資キャッシュフローのマイナス','運用・減価償却：15〜25年で定額償却','売却・リースバック・退役：簿価との差が売却損益'],who:['発注','受領','運用','売却'],n:['所有：長く使うほど安い。リース：初期の現金が小さく柔軟、長く使うと割高','日本基準（現行）はオペレーティング・リースが載らず、自己資本比率が高く見える（2027年4月以後に始まる年度から変わる★）']},
   ko:{t:'기재 투자의 사이클',st:['발주·선급금: 인도 몇 년 전(JAL 건설중인자산 1,156억 엔★)','인도·자산 계상: 투자활동 현금흐름의 마이너스','운용·감가상각: 15~25년 정액 상각','매각·리스백·퇴역: 장부가액과의 차이가 매각손익'],who:['발주','인도','운용','매각'],n:['소유: 오래 쓸수록 싸다. 리스: 초기 현금이 작고 유연, 오래 쓰면 비싸다','일본 기준은 리스가 실리지 않아 자기자본비율이 높게 보인다(새 기준으로 바뀔 전망★)']},
   en:{t:'The aircraft investment cycle',st:['Order and pre-delivery payments, years ahead (JAL construction in progress ¥115.6bn ★)','Delivery and capitalisation: an investing cash outflow','Operation and depreciation: straight-line over 15–25 years','Sale, leaseback or retirement: gain or loss against book value'],who:['Order','Delivery','Operate','Dispose'],n:['Owning is cheaper the longer you fly; leasing needs little cash upfront and is flexible, but costs more long-term','Under Japanese GAAP leases stay off balance sheet, flattering the equity ratio (expected to change with the new standard ★)']}})[l];
  if(!W)return F.fn_fleet('ja');setK(1);
@@ -2012,55 +2012,55 @@ fn_six:function(l){
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 /* ===== 日本の暮らしガイド（EXP）の図 2026.10 ===== */
 lf_family:function(l){
- var W=({ja:{t:'誰が家族を呼べるか（例）',r:[['技術・人文知識・国際業務など','配偶者・子（家族滞在）。資格外活動で週28時間まで','#1769e0'],['高度専門職','配偶者・子、条件つきで親。配偶者はフルタイム可','#2C8C8C'],['特定技能1号','原則として不可','#D64545'],['特定技能2号','配偶者・子','#E08A2E'],['日本人・永住者','配偶者は「配偶者等」。就労の制限なし','#7A5CC7']],n:['日本で子が生まれたら：14日以内に出生の届出、30日以内に在留資格の取得の申請','配偶者の資格で離婚・死別したら、14日以内に届出★']},
+ var W=({ja:{t:'誰が家族を呼べるか（例）',r:[['技術・人文知識・国際業務など','配偶者・子（家族滞在）。資格外活動で週28時間まで','#1769e0'],['高度専門職','配偶者・子、条件つきで親。配偶者はフルタイム可','#2C8C8C'],['特定技能1号','原則として不可','#D64545'],['特定技能2号','配偶者・子','#E08A2E'],['日本人・永住者','配偶者は「配偶者等」。就労の制限なし','#7A5CC7']],n:['日本で子が生まれたら：14日以内に出生の届出、30日以内に在留資格取得の申請','配偶者の在留資格の人は、離婚・死別から14日以内に届出★']},
   ko:{t:'누가 가족을 부를 수 있나(예)',r:[['기술·인문지식·국제업무 등','배우자·자녀(가족체재). 자격외활동으로 주 28시간까지','#1769e0'],['고도전문직','배우자·자녀, 조건부로 부모. 배우자는 풀타임 가능','#2C8C8C'],['특정기능 1호','원칙적으로 불가','#D64545'],['특정기능 2호','배우자·자녀','#E08A2E'],['일본인·영주자','배우자는 「배우자 등」. 취업 제한 없음','#7A5CC7']],n:['일본에서 아이가 태어나면: 14일 이내 출생 신고, 30일 이내 재류자격 취득 신청','배우자 자격으로 이혼·사별하면 14일 이내에 신고★']},
   en:{t:'Who can bring family (examples)',r:[['Engineer/Specialist in Humanities etc.','Spouse and children (Dependent); up to 28 hours a week with permission','#1769e0'],['Highly Skilled Professional','Spouse, children, parents under conditions; spouse may work full time','#2C8C8C'],['Specified Skilled Worker (i)','Not allowed in principle','#D64545'],['Specified Skilled Worker (ii)','Spouse and children','#E08A2E'],['Japanese nationals, permanent residents','Spouse gets Spouse status; no work limits','#7A5CC7']],n:['A child born in Japan: register the birth within 14 days, apply for status within 30 days','On a spouse visa, report divorce or bereavement within 14 days ★']}})[l];
  if(!W)return F.lf_family('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 lf_mynum:function(l){
- var W=({ja:{t:'マイナンバー・カード・保険証',c:[['マイナンバー（番号）','住民の登録の後に通知。会社・銀行・税金で使う。むやみに教えない'],['マイナンバーカード','申請して受け取る（無料・約1か月）。期限は在留期間の満了日まで'],['健康保険証','従来の保険証は2025年12月1日に期限満了。マイナ保険証か資格確認書で']],n:['在留期間を更新したら、市区町村でカードの期限の変更もする','特定在留カード（2026年6月〜）で在留カードと1枚にできる（任意）★']},
+ var W=({ja:{t:'マイナンバー（番号とカード）・保険証',c:[['マイナンバー（番号）','住民登録の後に通知。会社・銀行・税金で使う。むやみに教えない'],['マイナンバーカード','申請して受け取る（無料・約1か月）。期限は在留期間の満了日まで'],['健康保険証','従来の保険証は2025年12月1日に期限満了。マイナ保険証か資格確認書で']],n:['在留期間を更新したら、市区町村でカードの期限の変更もする','特定在留カード（2026年6月〜）で在留カードと1枚にできる（任意）★']},
   ko:{t:'마이넘버·카드·보험증',c:[['마이넘버(번호)','주민 등록 후에 통지. 회사·은행·세금에 쓴다. 함부로 알려주지 않는다'],['마이넘버 카드','신청해서 받는다(무료·약 1개월). 기한은 재류기간 만료일까지'],['건강보험증','기존 보험증은 2025년 12월 1일에 기한 만료. 마이나 보험증이나 자격확인서로']],n:['재류기간을 갱신하면 시구정촌에서 카드 기한 변경도 한다','특정재류카드(2026년 6월~)로 재류카드와 한 장으로 할 수 있다(임의)★']},
   en:{t:'My Number, the card and health insurance',c:[['My Number (the number)','Notified after resident registration; used by employers, banks and tax; keep it private'],['My Number Card','Apply to receive it (free, about a month); valid until your period of stay ends'],['Health insurance card','Old cards expired on 1 Dec 2025; use My Number Card or an eligibility certificate']],n:['When your stay is extended, update the card’s expiry at the municipal office','From June 2026 the residence card and My Number Card can be combined (optional) ★']}})[l];
  if(!W)return F.lf_mynum('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_ins:function(l){
- var W=({ja:{t:'健康保険と年金：誰がどこに入るか',c:[['会社員','会社の健康保険＋厚生年金。保険料は会社と半分ずつ。家族を被扶養者に'],['自営・学生・無職など','国民健康保険＋国民年金（20〜59歳）。転入の届出のときに窓口で']],n:['日韓社会保障協定：韓国から5年以内の派遣なら、証明書で韓国の年金だけに（健康保険は対象外）','会社を辞めたら14日以内に切り替え。脱退一時金と期間の通算は比べて判断']},
+ var W=({ja:{t:'健康保険と年金：誰がどこに入るか',c:[['会社員','会社の健康保険＋厚生年金。保険料は会社と半分ずつ。家族を被扶養者に'],['自営・学生・無職など','国民健康保険＋国民年金（20〜59歳）。転入の届出のときに窓口で']],n:['日韓社会保障協定：韓国から5年以内の派遣なら、証明書で韓国の年金だけに（健康保険は対象外）','会社を辞めたら14日以内に切り替え。日韓協定は期間の通算なし。脱退一時金は条件を確かめて判断']},
   ko:{t:'건강보험과 연금: 누가 어디에 가입하나',c:[['회사원','회사의 건강보험＋후생연금. 보험료는 회사와 반반. 가족을 피부양자로'],['자영업·학생·무직 등','국민건강보험＋국민연금(20~59세). 전입 신고 때 창구에서']],n:['한일 사회보장협정: 한국에서 5년 이내 파견이면 증명서로 한국 연금만(건강보험은 대상 외)','회사를 그만두면 14일 이내에 전환. 탈퇴일시금과 기간 통산은 비교해 판단']},
   en:{t:'Health insurance and pensions: who joins what',c:[['Employees','Company health insurance + Employees’ Pension; premiums split with the employer; add family as dependants'],['Self-employed, students, unemployed','National Health Insurance + National Pension (ages 20–59); enrol when registering your address']],n:['Japan–Korea social security agreement: staff seconded from Korea for up to 5 years can stay in Korea’s pension only (not health insurance)','After leaving a job, switch within 14 days; weigh the lump-sum withdrawal against totalising periods']}})[l];
  if(!W)return F.lf_ins('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_setup:function(l){
- var W=({ja:{t:'暮らしの契約と用意するもの',r:[['銀行の口座','在留カード・在職証明。会社の指定の銀行が早い','#1769e0'],['携帯電話','在留カード＋口座かクレジットカード','#2C8C8C'],['電気','引っ越しの日から使えるよう前もって申込み','#E08A2E'],['ガス','開栓の立ち会いの日を予約','#D64545'],['水道','市区町村の水道局に入居の日を連絡','#7A5CC7']],n:['引っ越したら：住民票・マイナンバーカード・在留カード・運転免許・銀行・会社の住所を変更','出国のときは口座と携帯を解約。口座を売る・貸すのは犯罪']},
+ var W=({ja:{t:'暮らしの契約と用意するもの',r:[['銀行の口座','在留カード・在職証明。会社指定の銀行が早い','#1769e0'],['携帯電話','在留カード＋口座かクレジットカード','#2C8C8C'],['電気','引っ越しの日から使えるよう前もって申込み','#E08A2E'],['ガス','開栓の立ち会い日を予約','#D64545'],['水道','市区町村の水道局に入居日を連絡','#7A5CC7']],n:['引っ越したら：住民票・マイナンバーカード・在留カード・運転免許・銀行・会社の住所を変更','出国のときは口座と携帯を解約。口座を売る・貸すのは犯罪']},
   ko:{t:'생활 계약과 준비물',r:[['은행 계좌','재류카드·재직증명. 회사 지정 은행이 빠르다','#1769e0'],['휴대폰','재류카드＋계좌나 신용카드','#2C8C8C'],['전기','이사하는 날부터 쓸 수 있게 미리 신청','#E08A2E'],['가스','개통 입회 날짜를 예약','#D64545'],['수도','시구정촌 수도국에 입주일을 연락','#7A5CC7']],n:['이사하면: 주민표·마이넘버 카드·재류카드·운전면허·은행·회사의 주소를 변경','출국할 때는 계좌와 휴대폰을 해지. 계좌를 팔거나 빌려주는 것은 범죄']},
   en:{t:'Setting up daily life: contracts and what to bring',r:[['Bank account','Residence card, proof of employment; your employer’s bank is fastest','#1769e0'],['Mobile phone','Residence card + bank account or credit card','#2C8C8C'],['Electricity','Apply ahead so it works from moving day','#E08A2E'],['Gas','Book a day for the opening visit','#D64545'],['Water','Tell the municipal water bureau your move-in date','#7A5CC7']],n:['After moving: update residence record, My Number Card, residence card, licence, bank and employer','On leaving Japan close accounts and phone plans; selling or lending an account is a crime']}})[l];
  if(!W)return F.lf_setup('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 lf_lease:function(l){
- var W=({ja:{t:'普通借家と定期借家',c:[['普通借家','ふつう2年で更新できる。貸主が出てほしいときは正当な理由が要る。更新料を確かめる'],['定期借家','決まった期間で終わる。再契約は協議。家賃が安いことも']],n:['内見：通勤の時間と夜に周りを歩く。日当たり・結露・水圧・電波・新耐震（1981年6月以降）','特約：クリーニング代・早期の解約の違約金・解約の通知（1〜2か月前）・禁止事項']},
+ var W=({ja:{t:'普通借家と定期借家',c:[['普通借家','ふつう2年で更新できる。貸主が出てほしいときは正当な理由が要る。更新料を確かめる'],['定期借家','決まった期間で終わる。再契約は協議。家賃が安いことも']],n:['内見：通勤時間を確かめ、夜に周りを歩く。日当たり・結露・水圧・電波・新耐震（1981年6月以降）','特約：クリーニング代・早期解約の違約金・解約予告（1〜2か月前）・禁止事項']},
   ko:{t:'보통 차가와 정기 차가',c:[['보통 차가','보통 2년으로 갱신 가능. 집주인이 나가라고 할 때는 정당한 이유가 필요. 갱신료를 확인'],['정기 차가','정해진 기간으로 끝난다. 재계약은 협의. 집세가 싼 경우도']],n:['내견: 출퇴근 시간과 밤에 주변을 걸어 본다. 햇빛·결로·수압·전파·신내진(1981년 6월 이후)','특약: 클리닝 비용·조기 해지 위약금·해지 통지(1~2개월 전)·금지 사항']},
   en:{t:'Ordinary and fixed-term leases',c:[['Ordinary lease','Usually two years, renewable; the landlord needs just cause to end it; check the renewal fee'],['Fixed-term lease','Ends at a set date; re-signing is by agreement; rent can be lower']],n:['Viewing: walk the area at commute time and at night; check light, condensation, water pressure, signal, post-1981 quake code','Special clauses: cleaning fee, early-exit penalty, notice period (1–2 months), prohibitions']}})[l];
  if(!W)return F.lf_lease('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_move:function(l){
- var W=({ja:{t:'引っ越しの準備の順番',st:['業者の見積もりを比べて予約、いまの部屋の解約の通知','粗大ごみの予約、電気・ガス・水道・ネットの申込み','転出の届出、郵便の転送、荷造り','退去の立ち会い、新しい部屋を写真に残す','転入の届出と住所の変更'],who:['1か月前','2週間前','1週間前','当日','14日以内'],n:['3〜4月と週末・月末を避けると大きく安い','ごみの分け方と曜日は地域で違う。両隣・下の階に簡単にあいさつ']},
+ var W=({ja:{t:'引っ越しの準備の順番',st:['業者の見積もりを比べて予約、いまの部屋の解約通知','粗大ごみの予約、電気・ガス・水道・ネットの申込み','転出の届出、郵便の転送、荷造り','退去の立ち会い、新しい部屋を写真に残す','転入の届出と住所の変更'],who:['1か月前','2週間前','1週間前','当日','14日以内'],n:['3〜4月と週末・月末を避けるとかなり安くなる','ごみの分け方と曜日は地域で違う。両隣・下の階に簡単にあいさつ']},
   ko:{t:'이사 준비의 순서',st:['업체 견적을 비교해 예약, 지금 방의 해지 통지','큰 쓰레기 수거 예약, 전기·가스·수도·인터넷 신청','전출 신고, 우편 전송, 짐 싸기','퇴거 입회, 새 방을 사진으로 남긴다','전입 신고와 주소 변경'],who:['1개월 전','2주 전','1주 전','당일','14일 이내'],n:['3~4월과 주말·월말을 피하면 크게 싸다','쓰레기 분류와 요일은 지역마다 다르다. 양옆·아래층에 간단히 인사']},
   en:{t:'Moving house: the order of preparation',st:['Compare quotes and book a mover; give notice on your current flat','Book bulky-waste collection; apply for power, gas, water, internet','File move-out notice, set up mail forwarding, pack','Attend the move-out inspection; photograph the new flat','Register move-in and update your address'],who:['1 month','2 weeks','1 week','Moving day','Within 14 days'],n:['Avoid March–April, weekends and month ends to save a lot','Rubbish rules vary by area; a quick hello to neighbours helps']}})[l];
  if(!W)return F.lf_move('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_airport:function(l){
- var W=({ja:{t:'空港で働く人が住まいでまず見る5つ',r:[['出退勤の時刻','勤務表の最も早い・遅い時刻と始発・終電','#1769e0'],['通勤の手段','車・自転車・シャトル、通勤手当と駐車場','#2C8C8C'],['騒音','離着陸の多い時間に部屋を見る','#E08A2E'],['災害','ハザードマップで浸水・津波を確かめる','#D64545'],['暮らしの便利さ','駅の周りを昼と夜に歩く','#7A5CC7']],n:['治安は警察の犯罪の地図と、実際の退勤の時刻の夜道で自分で確かめる','保証会社への加入、外国人の入居の実績のある不動産会社、会社の社宅の支援']},
+ var W=({ja:{t:'空港で働く人が住まいでまず見る5つ',r:[['出退勤の時刻','勤務表の最も早い・遅い時刻と始発・終電','#1769e0'],['通勤の手段','車・自転車・シャトル、通勤手当と駐車場','#2C8C8C'],['騒音','離着陸の多い時間に部屋を見る','#E08A2E'],['災害','ハザードマップで浸水・津波を確かめる','#D64545'],['暮らしの便利さ','駅の周りを昼と夜に歩く','#7A5CC7']],n:['治安は警察の犯罪マップと、実際の退勤時刻の夜道で自分で確かめる','保証会社への加入、外国人の入居実績がある不動産会社、会社の社宅の支援']},
   ko:{t:'공항에서 일하는 사람이 집을 고를 때 먼저 볼 5가지',r:[['출퇴근 시각','근무표의 가장 이른·늦은 시각과 첫차·막차','#1769e0'],['통근 수단','차·자전거·셔틀, 통근수당과 주차장','#2C8C8C'],['소음','이착륙이 많은 시간에 방을 본다','#E08A2E'],['재해','해저드맵으로 침수·쓰나미를 확인','#D64545'],['생활의 편리함','역 주변을 낮과 밤에 걸어 본다','#7A5CC7']],n:['치안은 경찰의 범죄 지도와 실제 퇴근 시각의 밤길로 직접 확인한다','보증회사 가입, 외국인 입주 실적이 있는 부동산, 회사의 사택 지원']},
   en:{t:'Five things airport workers check first when choosing a home',r:[['Shift times','Earliest and latest shifts against first and last trains','#1769e0'],['Getting to work','Car, bicycle or shuttle; commuting allowance and parking','#2C8C8C'],['Noise','Visit when take-offs and landings are busiest','#E08A2E'],['Disasters','Check flooding and tsunami on the hazard map','#D64545'],['Everyday convenience','Walk around the station by day and night','#7A5CC7']],n:['Check safety yourself with police crime maps and the walk home at your real finishing time','Guarantor company, agents experienced with foreign tenants, employer housing support']}})[l];
  if(!W)return F.lf_airport('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 lf_taxres:function(l){
- var W=({ja:{t:'税金の上の3つの区分',c:[['非居住者','日本に住所がなく1年未満の滞在など → 日本で生じた所得だけ'],['非永住者','過去10年で日本に住んだのが5年以下 → 日本の所得＋日本で受け取った・送金した海外の所得'],['一般の居住者','それ以外（日本に5年を超えて住むなど）→ 全世界の所得']],n:['二重課税は租税条約と外国税額控除で調整。税理士に相談','国外財産調書：12月31日時点で海外の財産が5,000万円超なら翌年6月末まで★']},
+ var W=({ja:{t:'税法上の3つの区分',c:[['非居住者','日本に住所がなく1年未満の滞在など → 日本で生じた所得だけ'],['非永住者','過去10年で日本に住んだのが5年以下 → 日本の所得＋日本で受け取った・日本に送金した海外の所得'],['一般の居住者','それ以外（日本に5年を超えて住むなど）→ 全世界の所得']],n:['二重課税は租税条約と外国税額控除で調整。税理士に相談','国外財産調書：12月31日時点で海外の財産が5,000万円超なら翌年6月末まで★']},
   ko:{t:'세금상 3가지 구분',c:[['비거주자','일본에 주소가 없고 1년 미만 체재 등 → 일본에서 생긴 소득만'],['비영주자','과거 10년 중 일본에 산 기간이 5년 이하 → 일본 소득＋일본에서 받은·송금한 해외 소득'],['일반 거주자','그 밖(일본에 5년 넘게 살기 등) → 전 세계 소득']],n:['이중과세는 조세조약과 외국세액공제로 조정. 세무사와 상담','국외재산조서: 12월 31일 기준 해외 재산이 5,000만 엔 초과면 다음 해 6월 말까지★']},
   en:{t:'Three tax residency categories',c:[['Non-resident','No address in Japan, stays under a year, etc. → Japan-source income only'],['Non-permanent resident','Lived in Japan 5 years or less in the past 10 → Japanese income + foreign income received in or remitted to Japan'],['Ordinary resident','Everyone else (over 5 years in Japan, etc.) → worldwide income']],n:['Avoid double tax with the tax treaty and foreign tax credits; consult a tax accountant','Foreign assets report: if overseas assets exceed ¥50m on 31 Dec, file by end of June ★']}})[l];
  if(!W)return F.lf_taxres('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#5B6B7D','#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_remit:function(l){
- var W=({ja:{t:'海外への送金と、知っておく決まり',r:[['銀行の送金','安全で大きな金額向き。手数料と為替の差は大きめ','#1769e0'],['送金の専門会社・アプリ','安く速い。金融庁の登録を確かめる','#2C8C8C'],['カード・海外での引き出し','少額向き。レート・手数料に注意','#E08A2E'],['1回100万円超の送金','銀行が税務署に報告（国外送金等調書）','#7A5CC7'],['100万円相当超の現金','出入国のときに税関に申告','#D64545']],n:['送金ではマイナンバーの提出を求められる。家族への大きな送金は贈与税に注意','SNSの投資の勧誘・なりすましの送金の依頼は止まる。消費者ホットライン188']},
+ var W=({ja:{t:'海外への送金と、知っておく決まり',r:[['銀行の送金','安全で大きな金額向き。手数料と為替の差は大きめ','#1769e0'],['送金の専門会社・アプリ','安く速い。金融庁の登録を確かめる','#2C8C8C'],['カード・海外での引き出し','少額向き。レート・手数料に注意','#E08A2E'],['1回100万円超の送金','銀行が税務署に報告（国外送金等調書）','#7A5CC7'],['100万円相当超の現金','出入国のときに税関に申告','#D64545']],n:['送金ではマイナンバーの提出を求められる。家族への大きな送金は贈与税に注意','SNSの投資勧誘・なりすましの送金依頼は送らずに確認。消費者ホットライン188']},
   ko:{t:'해외 송금과 알아 둘 규칙',r:[['은행 송금','안전하고 큰 금액에 맞다. 수수료와 환율 차이는 큰 편','#1769e0'],['송금 전문 회사·앱','싸고 빠르다. 금융청 등록을 확인','#2C8C8C'],['카드·해외 출금','소액에 맞다. 환율·수수료에 주의','#E08A2E'],['1회 100만 엔 초과 송금','은행이 세무서에 보고(국외송금 등 조서)','#7A5CC7'],['100만 엔 상당 초과 현금','출입국 때 세관에 신고','#D64545']],n:['송금에는 마이넘버 제출을 요구받는다. 가족에게 큰 송금은 증여세에 주의','SNS 투자 권유·사칭 송금 요청은 멈춘다. 소비자 핫라인 188']},
   en:{t:'Sending money abroad, and the rules to know',r:[['Bank transfer','Safe for large sums; higher fees and FX margins','#1769e0'],['Remittance firms and apps','Cheaper and faster; check FSA registration','#2C8C8C'],['Cards and overseas ATMs','Fine for small amounts; watch rates and fees','#E08A2E'],['Transfers over ¥1m','Banks report to the tax office','#7A5CC7'],['Cash over ¥1m equivalent','Declare to customs when entering or leaving','#D64545']],n:['Remittances require your My Number; large gifts to family can trigger gift tax','Stop at social-media investment pitches or impersonated money requests; consumer hotline 188']}})[l];
  if(!W)return F.lf_remit('ja');setK(1);
@@ -2072,7 +2072,7 @@ lf_trash:function(l){
  if(!W)return F.lf_trash('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 lf_kids:function(l){
- var W=({ja:{t:'子育てで受けられる支援（例）',r:[['出産育児一時金','子ども1人につき50万円（2023年4月から）','#D64545'],['児童手当','高校生年代まで・所得制限なし。第3子以降は月3万円','#1769e0'],['子どもの医療費の助成','自治体によって無料や少額','#2C8C8C'],['保育の無償化','3〜5歳の保育園・幼稚園の利用料が無料','#E08A2E']],n:['児童手当は出生・転入の翌日から15日以内に市区町村へ','保育園の4月の入園は前年の秋〜冬が締切のことが多い。公立の小・中学校は外国籍でも無料']},
+ var W=({ja:{t:'子育てで受けられる支援（例）',r:[['出産育児一時金','子ども1人につき50万円（2023年4月から）','#D64545'],['児童手当','高校生年代まで・所得制限なし。第3子以降は月3万円','#1769e0'],['子どもの医療費の助成','自治体によって無料や少額','#2C8C8C'],['保育の無償化','3〜5歳の保育園・幼稚園の利用料が無料','#E08A2E']],n:['児童手当は出生・転入の翌日から15日以内に市区町村へ','保育園の4月入園は前年の秋〜冬が締切のことが多い。公立の小・中学校は外国籍でも無料']},
   ko:{t:'아이 키우기에서 받을 수 있는 지원(예)',r:[['출산육아 일시금','아이 1명당 50만 엔(2023년 4월부터)','#D64545'],['아동수당','고등학생 나이까지·소득 제한 없음. 셋째 이후는 월 3만 엔','#1769e0'],['아이 의료비 지원','지자체에 따라 무료나 소액','#2C8C8C'],['보육 무상화','3~5세 보육원·유치원 이용료 무료','#E08A2E']],n:['아동수당은 출생·전입 다음 날부터 15일 이내에 시구정촌에','보육원 4월 입소는 전년 가을~겨울 마감이 많다. 공립 초·중학교는 외국 국적도 무료']},
   en:{t:'Support for raising children (examples)',r:[['Childbirth lump sum','¥500,000 per child (from April 2023)','#D64545'],['Child allowance','Up to high-school age, no income limit; ¥30,000 a month from the third child','#1769e0'],['Children’s medical subsidy','Free or low-cost, depending on the municipality','#2C8C8C'],['Free early education','Nursery and kindergarten fees free for ages 3–5','#E08A2E']],n:['Apply for child allowance within 15 days of a birth or moving in','April nursery places usually close the previous autumn–winter; public schools are free for foreign children too']}})[l];
  if(!W)return F.lf_kids('ja');setK(1);
@@ -2084,7 +2084,7 @@ lf_bike:function(l){
  if(!W)return F.lf_bike('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 lf_transfer:function(l){
- var W=({ja:{t:'転勤：家族で行くか、単身赴任か',c:[['家族で行く','子の転校（在学証明書・教科書給与証明書）、保育園の締切、配偶者の仕事と在留資格'],['単身赴任','受験の前の学年なら多い。単身赴任手当・帰省の旅費・二重の生活の費用']],n:['会社に確かめる：引っ越し代・社宅や家賃の補助・単身赴任手当','外国人の社員は住所の変更を14日以内に。勤務地の変更は会社が入管に届け出る場合も']},
+ var W=({ja:{t:'転勤：家族で行くか、単身赴任か',c:[['家族で行く','子の転校（在学証明書・教科書給与証明書）、保育園の締切、配偶者の仕事と在留資格'],['単身赴任','子の受験が近いと選ぶ人が多い。単身赴任手当・帰省の旅費・二重生活の費用']],n:['会社に確かめる：引っ越し代・社宅や家賃の補助・単身赴任手当','外国人の社員は住所の変更を14日以内に。勤務地の変更は会社が入管に届け出る場合も']},
   ko:{t:'전근: 가족이 함께 갈지, 단신 부임할지',c:[['가족이 함께','아이 전학(재학 증명서·교과서 급여 증명서), 보육원 마감, 배우자의 일과 재류자격'],['단신 부임','수험을 앞둔 학년이면 많다. 단신 부임 수당·귀성 여비·두 집 살림 비용']],n:['회사에 확인: 이사비·사택이나 월세 보조·단신 부임 수당','외국인 직원은 주소 변경을 14일 이내에. 근무지 변경은 회사가 입관에 신고하는 경우도']},
   en:{t:'A transfer: move as a family, or go alone?',c:[['Move as a family','School transfer (enrolment and textbook certificates), nursery deadlines, spouse’s job and residence status'],['Go alone','Common before exam years; allowance for living apart, trips home, cost of two households']],n:['Ask your employer: moving costs, company housing or rent subsidy, living-apart allowance','Foreign staff must update their address within 14 days; the employer may report a change of workplace to immigration']}})[l];
  if(!W)return F.lf_transfer('ja');setK(1);
@@ -2096,7 +2096,7 @@ lf_prep:function(l){
  if(!W)return F.lf_prep('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#2C8C8C','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_apdis:function(l){
- var W=({ja:{t:'大きな地震のときの空港の現場の順番',st:['揺れがおさまったら人数を把握。ランプは航空機・車両から離れる','空港の運営者の指示で避難の誘導。多言語の案内','滑走路・施設の点検の結果とNOTAM、運航管理の決定','水・毛布・情報を空港と航空会社で分担','交代要員が来られない。勤務時間と休む場所を確保'],who:['職員','旅客','運航','滞留','交代'],n:['帰宅困難：すぐに歩かず、会社にとどまるのが原則（東京都は従業員3日分の備蓄を努力義務に）','ふだんから：安否確認の方法・歩いて来られる職員の名簿・空港の合同訓練']},
+ var W=({ja:{t:'大きな地震のときの空港の現場の順番',st:['揺れがおさまったら人数を把握。ランプは航空機・車両から離れる','空港運営者の指示で避難誘導。多言語の案内','滑走路・施設の点検の結果とNOTAM、運航管理の決定','水・毛布・情報を空港と航空会社で分担','交代要員が来られない。勤務時間と休む場所を確保'],who:['職員','旅客','運航','滞留','交代'],n:['帰宅困難：すぐに歩かず、会社にとどまるのが原則（東京都は従業員3日分の備蓄を努力義務に）','ふだんから：安否確認の方法・歩いて来られる職員の名簿・空港の合同訓練']},
   ko:{t:'큰 지진 때 공항 현장의 순서',st:['흔들림이 멈추면 인원 파악. 램프는 항공기·차량에서 떨어지기','공항 운영자의 지시로 대피 유도. 다국어 안내','활주로·시설 점검 결과와 NOTAM, 운항통제의 결정','물·담요·정보를 공항과 항공사가 분담','교대 인원이 올 수 없다. 근무시간과 휴식 장소를 확보'],who:['직원','승객','운항','체류 승객','교대'],n:['귀가 곤란: 바로 걷지 말고 회사에 머무는 것이 원칙(도쿄도는 직원 3일분 비축을 노력 의무로)','평소에: 안부 확인 방법·걸어서 올 수 있는 직원 명단·공항 합동 훈련']},
   en:{t:'Airport operations after a major earthquake: the order',st:['When shaking stops, count staff; on the ramp move away from aircraft and vehicles','Guide evacuation as the airport operator directs; multilingual announcements','Runway and facility checks, NOTAMs and operations control decisions','Water, blankets and information shared between airport and airlines','Relief staff cannot arrive; manage duty hours and rest areas'],who:['Staff','Passengers','Operations','Stranded','Relief'],n:['Stranded at work: do not start walking; staying put is the rule (Tokyo asks employers to stock 3 days for staff)','In normal times: safety-check method, list of staff who can walk in, joint airport drills']}})[l];
  if(!W)return F.lf_apdis('ja');setK(1);

@@ -49,7 +49,7 @@ sections:[
 {name:"Clarity",x:"Finding out about a charge for the first time at the airport breeds resentment. Make it clear at booking."}]},
 {t:"point",x:"The value of a station’s sales team is local knowledge. Get the Japanese market movements behind the numbers to head office revenue management early."}]}],
 voice:"Head office sees the local market only as numbers. Sending short, regular notes on competitor fares, events and agency reactions makes it more likely to shape pricing.",
-terms:[["Revenue Management","収入管理","수익 관리"],["Load Factor","搭乗率","탑승률"],["Yield","イールド","일드(단위 수익)"],["Ancillary Services","付帯サービス","부가서비스"]],
+terms:[["Revenue Management","収益管理","수익 관리"],["Load Factor","搭乗率","탑승률"],["Yield","イールド","일드(단위 수익)"],["Ancillary Services","付帯サービス","부가서비스"]],
 quiz:[{q:"Which two measures must be watched together?",opts:["Load factor and yield","Flight number and aircraft","Weather and season","Staff numbers"],a:0,exp:"Load factor alone does not raise revenue."},
 {q:"What information is worth passing to head office?",opts:["Local demand, competitors and group enquiries","Staff hobbies","The office colour","Nothing"],a:0,exp:"The market behind the numbers."},
 {q:"How do you avoid resentment over ancillaries?",opts:["Make the charges clear at booking","Tell them first at the airport","Hide them","Make them free"],a:0,exp:"Clarity is what matters."}],
