@@ -943,7 +943,71 @@ opn_hire:function(l){
   ko:{t:'현지 직원 채용의 흐름(예)',st:['인원과 역할을 정한다','모집한다','면접한다','내정·입사 절차','취항 전 교육'],who:['편수·근무 형태로','구인·소개·인맥','현장 경험·어학·판단','고용계약·사회보험','본사·조업사·보안'],n:['취항 전 교육에 맞도록 취항 몇 달 전에는 입사하게 한다(★)','결원 보충이나 업무 증가는 담당 부서를 통해 본사 인사에 요청한다']},
   en:{t:'Hiring local staff (example)',st:['Decide headcount and roles','Advertise','Interview','Offer and onboarding','Pre-launch training'],who:['From flights and shift pattern','Ads, referrals, networks','Experience, languages, judgement','Contract, social insurance','Head office, handler, security'],n:['Have people start a few months before launch so training is complete (★)','For replacements or extra workload, request through the responsible department to head-office HR']}})[l];
  if(!W)return F.opn_hire('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== OPN Part 3〜4 の図 2026.10 ===== */
+/* 3-1 ハンドリング会社の選び方 */
+opn_gh:function(l){
+ var W=({ja:{t:'日本の空港のハンドリング業界（例）',c:[['人手不足','経験者の退職と採用難が続く。人員不足で他社の就航が延期された例も'],['給油の受け入れ','一部の空港で新規・増便の給油契約が難しい例。給油の確保は就航の前提'],['会社の種類','大手航空会社系・空港会社系・外資系など。空港ごとに選べる会社が違う']],n:['比べる点：実績、人員と教育、料金と追加料金、イレギュラーのときの力','人員とコストの増加から、条件を入札で決める会社も出ている（★）']},
+  ko:{t:'일본 공항의 조업 업계(예)',c:[['인력 부족','경력자 퇴직과 채용난이 이어진다. 인력 부족으로 다른 항공사의 취항이 연기된 예도'],['급유 수용','일부 공항에서 신규·증편 급유 계약이 어려운 예. 급유 확보는 취항의 전제'],['회사 종류','대형 항공사 계열·공항 회사 계열·외국계 등. 공항마다 고를 수 있는 회사가 다르다']],n:['비교할 점: 실적, 인원과 교육, 요금과 추가 요금, 비정상 때의 대응력','인원과 비용 증가로 조건을 입찰로 정하는 회사도 나오고 있다(★)']},
+  en:{t:'Ground handling at Japanese airports (example)',c:[['Staff shortages','Experienced staff leave and hiring is hard; other airlines’ launches have been delayed by it'],['Fuel acceptance','At some airports new or extra fuel contracts have been hard to get; fuel is a precondition for launch'],['Types of company','Major-airline groups, airport-affiliated firms and foreign-owned firms; the choice differs by airport']],n:['Compare track record, staffing and training, rates and extra charges, and strength in disruption','Some handlers now set terms by tender as staff and costs rise (★)']}})[l];
+ if(!W)return F.opn_gh('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#E08A2E','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-2 SGHA */
+opn_sgha:function(l){
+ var W=({ja:{t:'SGHA（地上業務委託契約）の3つの部分',c:[['本文','責任と補償、保険、支払い、期間と解約、紛争の解決など共通のルール'],['付属書A','ハンドリング業務の一覧と定義（旅客・手荷物・ランプ・搭載管理・貨物）'],['付属書B','空港ごとに実際に委託する業務、料金、追加料金、特記事項']],n:['交渉の中心は付属書B。料金・追加料金・サービス水準（SLA）を具体的に','契約の後も、月例会議と請求の照合で運用を確かめる']},
+  ko:{t:'SGHA(지상조업 위탁 계약)의 세 부분',c:[['본문','책임과 보상, 보험, 지급, 기간과 해지, 분쟁 해결 등 공통 규칙'],['부속서 A','조업 업무의 목록과 정의(여객·수하물·램프·탑재관리·화물)'],['부속서 B','공항별로 실제 위탁하는 업무, 요금, 추가 요금, 특기 사항']],n:['협상의 중심은 부속서 B. 요금·추가 요금·서비스 수준(SLA)을 구체적으로','계약 뒤에도 월간 회의와 청구 대조로 운영을 확인한다']},
+  en:{t:'The three parts of the SGHA',c:[['Main Agreement','Common rules: liability and indemnity, insurance, payment, term and termination, disputes'],['Annex A','The list and definitions of handling services (passenger, baggage, ramp, load control, cargo)'],['Annex B','For each airport: the services actually contracted, rates, extra charges and special terms']],n:['Negotiation centres on Annex B: be specific on rates, extra charges and service levels (SLA)','After signing, check delivery through monthly meetings and invoice reconciliation']}})[l];
+ if(!W)return F.opn_sgha('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#0f3558','#2C8C8C','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-3 空港施設の契約 */
+opn_fac:function(l){
+ var W=({ja:{t:'空港施設と契約の相手（例）',r:[['チェックインカウンター・ゲート','空港会社','#1769e0'],['手荷物の仕分け設備（BHS）・保税区域','ターミナルを運営する主な航空会社など','#7A5CC7'],['共用システムの回線・消耗品','システムの提供会社','#2C8C8C'],['保安検査','空港の仕組みによる','#D64545'],['空港の事務所','空港会社','#E08A2E']],n:['相手は空港・ターミナルで違う（★）。就航前に一覧にして漏れを確かめる']},
+  ko:{t:'공항 시설과 계약 상대(예)',r:[['체크인 카운터·게이트','공항 회사','#1769e0'],['수하물 분류 설비(BHS)·보세 구역','터미널을 운영하는 주요 항공사 등','#7A5CC7'],['공용 시스템 회선·소모품','시스템 제공 회사','#2C8C8C'],['보안 검색','공항의 구조에 따라','#D64545'],['공항 사무실','공항 회사','#E08A2E']],n:['상대는 공항·터미널마다 다르다(★). 취항 전에 목록으로 만들어 빠진 것을 확인한다']},
+  en:{t:'Airport facilities and who you contract with (example)',r:[['Check-in counters and gates','The airport company','#1769e0'],['Baggage handling system (BHS) and bonded areas','Often the main airline running the terminal','#7A5CC7'],['Shared-system lines and consumables','The system provider','#2C8C8C'],['Security screening','Depends on the airport’s arrangements','#D64545'],['Airport office','The airport company','#E08A2E']],n:['Counterparties differ by airport and terminal (★); list them before launch and check nothing is missing']}})[l];
+ if(!W)return F.opn_fac('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-4 空港使用料 */
+opn_fee:function(l){
+ var W=({ja:{t:'主な空港使用料と決まり方（例）',r:[['着陸料','機体の重さ（最大離陸重量）と騒音の区分','#1769e0'],['停留料','駐機した時間と機体の重さ','#2C8C8C'],['搭乗橋の使用料','使用の回数・時間','#7A5CC7'],['手荷物設備の使用料','便数・旅客数など','#E08A2E'],['PSFC・PSSC','出発する旅客1人ごと（大人・子どもで違う）','#D64545']],n:['料金・区分は空港ごとに違い、改定もある（★）。新規就航の支援制度も確かめる','請求は便の実績（重さ・時間・人数）と照合してから支払う']},
+  ko:{t:'주요 공항 사용료와 정해지는 방식(예)',r:[['착륙료','기체 무게(최대이륙중량)와 소음 구분','#1769e0'],['정류료','주기 시간과 기체 무게','#2C8C8C'],['탑승교 사용료','사용 횟수·시간','#7A5CC7'],['수하물 설비 사용료','편수·여객 수 등','#E08A2E'],['PSFC·PSSC','출발 여객 1명마다(성인·어린이 다름)','#D64545']],n:['요금·구분은 공항마다 다르고 개정도 있다(★). 신규 취항 지원 제도도 확인한다','청구는 편의 실적(무게·시간·인원)과 대조한 뒤 지급한다']},
+  en:{t:'Main airport charges and how they are set (example)',r:[['Landing fee','Aircraft weight (MTOW) and noise category','#1769e0'],['Parking fee','Time parked and aircraft weight','#2C8C8C'],['Boarding bridge fee','Number and length of uses','#7A5CC7'],['Baggage system fee','Flights or passengers','#E08A2E'],['PSFC and PSSC','Per departing passenger (adult and child rates differ)','#D64545']],n:['Rates and categories differ by airport and are revised (★); check new-route incentives too','Reconcile invoices with actual weights, times and passenger numbers before paying']}})[l];
+ if(!W)return F.opn_fee('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 3-5 給油・機内食・警備などの契約 */
+opn_other:function(l){
+ var W=({ja:{t:'そのほかの契約と注意点（例）',r:[['給油','就航の前提。代替空港での給油も別に手配','#D64545'],['機内食','往復分を積むか、日本発で契約するか。特別食','#E08A2E'],['機体の警備','駐機中の監視。空港会社の補助分の処理に注意','#7A5CC7'],['入国を認められなかった客の警備','送り返しまでの監視。翌月に請求','#1769e0'],['無線機・整備・貨物','会社を変えると解約が要る。機材ごとの資格','#2C8C8C']],n:['イレギュラーに備える取り決め（ホテル・バス・代替空港）も就航前に（6-4）']},
+  ko:{t:'그 밖의 계약과 주의점(예)',r:[['급유','취항의 전제. 교체 공항 급유도 따로 준비','#D64545'],['기내식','왕복분을 싣는지, 일본 출발로 계약하는지. 특별식','#E08A2E'],['기체 경비','주기 중 감시. 공항 회사 보조분 처리에 주의','#7A5CC7'],['입국 거부 승객 경비','송환까지 감시. 다음 달에 청구','#1769e0'],['무전기·정비·화물','회사를 바꾸면 해지 필요. 기재별 자격','#2C8C8C']],n:['비정상에 대비한 약정(호텔·버스·교체 공항)도 취항 전에(6-4)']},
+  en:{t:'Other contracts and what to watch (example)',r:[['Fuel','A precondition for launch; arrange fuel at alternates separately','#D64545'],['Catering','Load for the round trip or contract from Japan; special meals','#E08A2E'],['Aircraft security','Watch while parked; take care with airport-company subsidies','#7A5CC7'],['Guarding inadmissible passengers','Watch until removal; billed the following month','#1769e0'],['Radios, maintenance, cargo','Changing supplier means cancelling; type-specific licences','#2C8C8C']],n:['Agree disruption arrangements (hotels, buses, alternates) before launch too (6-4)']}})[l];
+ if(!W)return F.opn_other('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-1 共用システムとテスト */
+opn_cute:function(l){
+ var W=({ja:{t:'空港の共用システムの準備とテスト（例）',st:['回線を申し込む','共用端末を設定する','プリンターをテストする','読み取り機をテストする','電報の送受信をテストする'],who:['自社の旅客システムへ','CUTE・CUPPS','搭乗券・手荷物タグ','ゲートのBGR','出発・搭載の電報'],n:['テストは本番と同じ便名・書式で。うまくいかないときの手書きの手順も用意する']},
+  ko:{t:'공항 공용 시스템 준비와 테스트(예)',st:['회선을 신청한다','공용 단말기를 설정한다','프린터를 테스트한다','판독기를 테스트한다','전문 송수신을 테스트한다'],who:['자사 여객 시스템으로','CUTE·CUPPS','탑승권·수하물 태그','게이트 BGR','출발·탑재 전문'],n:['테스트는 실제와 같은 편명·양식으로. 안 될 때의 수기 절차도 준비한다']},
+  en:{t:'Preparing and testing the shared airport systems (example)',st:['Order the lines','Configure the shared terminals','Test the printers','Test the readers','Test sending and receiving messages'],who:['To your passenger system','CUTE or CUPPS','Boarding passes and bag tags','Gate BGRs','Departure and load messages'],n:['Test with the real flight numbers and formats, and prepare manual fallback procedures']}})[l];
+ if(!W)return F.opn_cute('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-2 NACCS */
+opn_naccs:function(l){
+ var W=({ja:{t:'NACCSで出す主な手続き（旅客便の例）',st:['利用の申請','入出港の届出','乗員・乗客の名簿','一般申告書（G/D）','積荷目録'],who:['就航の前に','便・機体・日時','便ごと','NACCSまたは書面','貨物の明細'],n:['就航前に税関と、送る時期・担当・代理の範囲を確かめる（★）','送り忘れ・誤りは入出港に影響する。便ごとに確認の印を残す']},
+  ko:{t:'NACCS로 내는 주요 절차(여객편 예)',st:['이용 신청','입출항 신고','승무원·승객 명부','일반신고서(G/D)','적하목록'],who:['취항 전에','편·기체·일시','편마다','NACCS 또는 서면','화물 명세'],n:['취항 전에 세관과 보내는 시기·담당·대리 범위를 확인한다(★)','누락·오류는 입출항에 영향을 준다. 편마다 확인 표시를 남긴다']},
+  en:{t:'Main NACCS procedures (passenger flight example)',st:['Apply to use NACCS','Arrival and departure notice','Crew and passenger lists','General declaration (G/D)','Cargo manifest'],who:['Before launch','Flight, aircraft, times','Every flight','NACCS or paper','Cargo details'],n:['Before launch, agree timings, responsibilities and agency scope with customs (★)','Missing or wrong filings affect arrival and departure; record a check for every flight']}})[l];
+ if(!W)return F.opn_naccs('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#0f3558','#1769e0','#2C8C8C','#7A5CC7','#E08A2E'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-3 API・iAPI */
+opn_api:function(l){
+ var W=({ja:{t:'事前旅客情報（API）と予約情報（PNR）',c:[['API','旅券の情報（氏名・生年月日・国籍・旅券番号など）と便の情報。チェックインから作られる'],['PNR','予約の記録（連絡先・支払い・旅程など）。当局の求めに応じて送る']],n:['iAPI：チェックインのときに当局が照合し、搭乗の可否が返ってくる','就航前に送信テストをする。「搭乗不可」が返ったときの手順を決めておく']},
+  ko:{t:'사전 승객 정보(API)와 예약 정보(PNR)',c:[['API','여권 정보(이름·생년월일·국적·여권 번호 등)와 편 정보. 체크인에서 만들어진다'],['PNR','예약 기록(연락처·결제·여정 등). 당국 요청에 따라 보낸다']],n:['iAPI: 체크인 때 당국이 대조해 탑승 가부가 돌아온다','취항 전에 송신 테스트를 한다. 「탑승 불가」가 돌아왔을 때의 절차를 정해 둔다']},
+  en:{t:'Advance passenger information (API) and booking data (PNR)',c:[['API','Passport details (name, date of birth, nationality, number) and flight details, built at check-in'],['PNR','The booking record (contacts, payment, itinerary), sent when the authority requests it']],n:['iAPI: the authority checks at check-in and returns a board or no-board answer','Run send tests before launch, and agree what to do when a no-board answer comes back']}})[l];
+ if(!W)return F.opn_api('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#7A5CC7']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* 4-4 税関・検疫 */
+opn_quar:function(l){
+ var W=({ja:{t:'就航前に税関・検疫と確かめること（例）',c:[['検疫','機内アナウンスの文例・音声、流行時の協力、機内の急病人の連絡'],['入国の電子化','到着前のオンライン申告など。お客様への案内に入れる'],['動物・植物','持ち込みの制限。肉製品・果物などの案内']],n:['免税制度は見直しが進んでいる（リファンド方式など）。最新の制度を確かめる（★）','担当の窓口と連絡先を、支店のSOPに書いておく']},
+  ko:{t:'취항 전에 세관·검역과 확인할 것(예)',c:[['검역','기내 방송 문안·음성, 유행 시 협력, 기내 급환자 연락'],['입국의 전자화','도착 전 온라인 신고 등. 승객 안내에 넣는다'],['동물·식물','반입 제한. 육류 가공품·과일 등 안내']],n:['면세 제도는 재검토가 진행 중이다(리펀드 방식 등). 최신 제도를 확인한다(★)','담당 창구와 연락처를 지점 SOP에 적어 둔다']},
+  en:{t:'What to confirm with customs and quarantine before launch (example)',c:[['Quarantine','In-flight announcement texts and audio, cooperation in outbreaks, reporting ill passengers'],['Digital entry','Online declarations before arrival; include them in passenger information'],['Animals and plants','Import restrictions; guidance on meat products, fruit and so on']],n:['Tax-free shopping rules are being revised (for example a refund model); check the current scheme (★)','Write the contact points into the station SOP']}})[l];
+ if(!W)return F.opn_quar('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

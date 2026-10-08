@@ -4,7 +4,7 @@ set("4-1",{title:"Shared Airport Systems and Printer Testing",hl:"shared systems
 lead:["At most airports the terminals at the counters and gates are shared between airlines. A foreign carrier has to connect its own passenger service and departure control system to those shared terminals and lines so that boarding passes and bag tags can be printed.",
 "This article covers how the shared systems work, the applications needed to connect, what to test before launch, preparing for operational messaging, and what to have ready when something fails."],
 sections:[
-{h:"How the shared systems work",blocks:[{t:"table",cols:["Element","What it is"],rows:[
+{h:"How the shared systems work",blocks:[{t:"fig",id:"opn_cute",cap:"Animated figure: preparing and testing the shared airport systems (example)."},{t:"table",cols:["Element","What it is"],rows:[
 ["Shared terminals","Counter and gate terminals shared between airlines (CUTE and CUPPS)"],
 ["Lines","The connection from the shared terminal to your own passenger system"],
 ["Printers","Boarding pass printers (BPP) and bag tag printers (BTP)"],
@@ -38,7 +38,7 @@ set("4-2",{title:"NACCS and Arrival and Departure Formalities",hl:"NACCS",subtit
 lead:["In Japan most of the formalities for an aircraft’s arrival and departure are filed electronically to customs and other agencies through NACCS, the customs and port information system. On passenger flights that covers crew and passenger lists, the arrival and departure report and the cargo manifest.",
 "This article covers the main filings, who inputs them, applying to use the system, and what to settle before launch. Confirm the detail with customs and the system operator."],
 sections:[
-{h:"The main filings (passenger flight example)",blocks:[{t:"table",cols:["Filing","What it is","Who inputs it (example)"],rows:[
+{h:"The main filings (passenger flight example)",blocks:[{t:"fig",id:"opn_naccs",cap:"Animated figure: main NACCS procedures (example)."},{t:"table",cols:["Filing","What it is","Who inputs it (example)"],rows:[
 ["Arrival and departure report","Flight, aircraft, arrival and departure times","The passenger handling company"],
 ["Crew and passenger lists","Crew and passenger details","The passenger handling company"],
 ["General declaration (G/D)","The declaration for arrival and departure, in NACCS or on paper","The passenger handling company"],
@@ -72,7 +72,7 @@ set("4-3",{title:"Advance Passenger Information and Interactive Systems",hl:"adv
 lead:["On international flights to and from Japan, airlines must send passport details (advance passenger information, API) and booking details (PNR) to immigration and customs. Beyond that, interactive systems that return a board or no-board answer to each transmission (iAPI) are spreading.",
 "This article covers the difference between API and PNR, how the interactive systems work, examples of national schemes, the pre-launch transmission tests, and what happens at check-in. Timing and scope change, so always check current guidance."],
 sections:[
-{h:"API and PNR",blocks:[{t:"cards",n:2,items:[
+{h:"API and PNR",blocks:[{t:"fig",id:"opn_api",cap:"Animated figure: API, PNR and iAPI checks."},{t:"cards",n:2,items:[
 {ic:"🛂",name:"Advance passenger information (API)",x:"Passport details — name, date of birth, nationality, passport number — and the flight, built from the check-in data."},
 {ic:"📇",name:"Booking data (PNR)",x:"The booking record: contacts, payment, itinerary. Sent when the authorities require it."}]},
 {t:"note",x:"* Flights to and from Japan are required to send both, according to airlines’ published information."}]},
@@ -102,7 +102,7 @@ set("4-4",{title:"Customs, Quarantine and the Changing Tax-free Scheme",hl:"cust
 lead:["Supporting the customs and quarantine process is part of an airline’s job: playing the quarantine announcement before arrival, explaining the entry procedure, checking what is subject to animal and plant quarantine. On top of that, Japan’s consumption tax exemption for visitors changes to a refund method from November 2026.",
 "This article covers cooperation with quarantine, digital entry procedures, animal and plant quarantine, the tax-free change and its effect at airports, and what to settle with customs and quarantine before launch."],
 sections:[
-{h:"Cooperation with quarantine",blocks:[{t:"check",items:[
+{h:"Cooperation with quarantine",blocks:[{t:"fig",id:"opn_quar",cap:"Animated figure: what to confirm with customs and quarantine before launch (example)."},{t:"check",items:[
 {name:"The in-flight announcement",x:"The quarantine service provides scripts and recordings for the announcement before arrival, in several languages and in full and short versions. Share them with the cabin crew."},
 {name:"During an outbreak",x:"You may be asked to distribute questionnaires, collect health declarations and report symptomatic passengers."},
 {name:"Illness on board",x:"Where an infectious disease is suspected, contact quarantine before arrival and follow their instructions (Ground Staff 5-3)."}]}]},

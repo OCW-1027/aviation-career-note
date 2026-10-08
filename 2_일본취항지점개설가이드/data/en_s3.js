@@ -4,7 +4,7 @@ set("3-1",{title:"Choosing a Ground Handling Company",hl:"handling companies",su
 lead:["A foreign airline contracts out almost all of its airport work. Which company you choose drives punctuality, baggage irregularities, passenger satisfaction and cost alike.",
 "This article covers the state of the handling industry at Japanese airports, how to compare offers, how to read the surcharges, how to start up after selection, and when to review the contract. The comparison example is generalised, without names or amounts."],
 sections:[
-{h:"The state of the industry at Japanese airports",blocks:[{t:"check",items:[
+{h:"The state of the industry at Japanese airports",blocks:[{t:"fig",id:"opn_gh",cap:"Animated figure: the ground handling market at Japanese airports (example)."},{t:"check",items:[
 {name:"A chronic shortage of staff",x:"Handling companies continue to lose experienced staff and struggle to recruit, partly over pay. Airlines have had launches postponed because no staff were available."},
 {name:"Fuelling capacity",x:"At some airports the fuel companies have no spare people or equipment, and new services and additional flights have been refused fuelling contracts (reported around 2023 to 2024). Securing fuel is a precondition for launching."},
 {name:"Types of company",x:"Group companies of the large Japanese airlines, affiliates of the airport company, and international handling companies. Which are available differs by airport."},
@@ -40,7 +40,7 @@ set("3-2",{title:"Reading the Ground Handling Agreement (SGHA)",hl:"the SGHA",su
 lead:["Contracts between airlines and handling companies commonly use IATA’s worldwide template, the Standard Ground Handling Agreement (SGHA). The main agreement is common to all, and the services and charges for each airport are set in the annexes.",
 "This article covers how the SGHA is structured, what the annexes fix, the clauses to look at in negotiation, and what to watch in running the contract. It describes the concepts rather than quoting IATA’s text."],
 sections:[
-{h:"How it is structured",blocks:[{t:"table",cols:["Part","Content"],rows:[
+{h:"How it is structured",blocks:[{t:"fig",id:"opn_sgha",cap:"Animated figure: the three parts of the SGHA."},{t:"table",cols:["Part","Content"],rows:[
 ["Main agreement","Liability and indemnity, insurance, payment, term and termination, dispute resolution"],
 ["Annex A","The list and definitions of ground handling services (passenger, baggage, ramp, load control, cargo and so on)"],
 ["Annex B","Per airport: the services actually contracted, the charges, the surcharges and any special conditions"]]},
@@ -75,7 +75,7 @@ set("3-3",{title:"Counters, Offices and Airport Facilities",hl:"airport faciliti
 lead:["At an airport you share a great deal with other carriers: check-in counters, gates, the baggage system, shared system lines. Each has its own counterparty and its own basis of charge, so work through them one by one before launch.",
 "This article covers the main facilities and who provides them, how charges are set, how counters are allocated, and a pre-launch checklist. The examples follow one Japanese airport; arrangements differ elsewhere."],
 sections:[
-{h:"Facilities and counterparties (example)",blocks:[{t:"table",cols:["Facility","Counterparty (example)","Basis of charge (example)"],rows:[
+{h:"Facilities and counterparties (example)",blocks:[{t:"fig",id:"opn_fac",cap:"Animated figure: airport facilities and who you contract with (example)."},{t:"table",cols:["Facility","Counterparty (example)","Basis of charge (example)"],rows:[
 ["Check-in counters","The airport company","By the hours used"],
 ["Gates","The airport company","A whole-gate contract shared by carriers in proportion to flights"],
 ["Baggage handling system (BHS)","The main airline operating the terminal, or similar","Monthly invoice, apportioned by flights"],
@@ -108,7 +108,7 @@ next:"3-4 Incentive schemes and how airport charges work"});
 set("3-4",{title:"Incentive Schemes and How Airport Charges Work",hl:"airport charges",subtitle:"Landing, parking, bridges and passenger charges — and incentives for new routes ★",
 lead:["What you pay the airport covers landing, parking, boarding bridges and the baggage system, and it is a large share of an airline’s costs. At the same time, airport companies often run incentives, such as landing fee discounts, to attract new routes.","This article covers the main charges and how they are set, the charges collected from passengers, how to find the incentive schemes, and how invoices are checked. Amounts and schemes change every year, so always work from current information."],
 sections:[
-{h:"The main charges",blocks:[{t:"table",cols:["Charge","How it is set (example)"],rows:[
+{h:"The main charges",blocks:[{t:"fig",id:"opn_fee",cap:"Animated figure: main airport charges and how they are set (example)."},{t:"table",cols:["Charge","How it is set (example)"],rows:[
 ["Landing fee","Aircraft weight (maximum take-off weight) and the noise category"],
 ["Parking fee","Time on stand and aircraft weight"],
 ["Boarding bridge charge","Number of uses or time"],
@@ -138,7 +138,7 @@ next:"3-5 Fuelling, catering, aircraft guarding and other contracts"});
 set("3-5",{title:"Fuelling, Catering, Aircraft Guarding and Other Contracts",hl:"the other contracts",subtitle:"A handler is not all you need. The contracts that are easiest to forget",
 lead:["Operating at an airport takes more than a handling company: fuelling, catering, guarding the aircraft on stand, escorting passengers refused entry, radios and lounges. Any one of them missing shows up in the operation or in an irregular situation.","This article covers the main contracts to settle before launch, what to watch in each, the arrangements that prepare you for irregular operations, and how to manage them all."],
 sections:[
-{h:"The main contracts",blocks:[{t:"table",cols:["Contract","What to watch"],rows:[
+{h:"The main contracts",blocks:[{t:"fig",id:"opn_other",cap:"Animated figure: other contracts and what to watch (example)."},{t:"table",cols:["Contract","What to watch"],rows:[
 ["Fuelling","At some airports the fuel companies have no spare capacity and new or added services struggle to get a contract. Fuelling at alternate airports is a separate arrangement"],
 ["Catering","Whether to carry both directions from the home station or contract locally for the Japan leg. Handling of special meals"],
 ["Aircraft guarding on stand","Ground watch while the aircraft is parked. Where the airport company subsidises it, account for the subsidy correctly"],
