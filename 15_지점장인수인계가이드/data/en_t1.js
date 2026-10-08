@@ -4,7 +4,7 @@ set("1-1",{title:"What Goes in a Handover Document",hl:"the handover document",s
 lead:["A change of manager is one of the biggest risks any operation faces. When information that exists only in the outgoing manager’s head is lost, deadlines with the authorities are missed and promises to partners are forgotten.",
 "The examples come from an airline station, but the same framework works wherever a manager changes: a ground handling company’s office, an airport-related business, a foreign company’s base in Japan, or a department inside any organisation. This article sets out the overall structure of a handover document, how to divide it by area, and the principles for writing it. It is based on the structure of a real handover the author prepared: four documents covering the authorities, HR and administration, finance and sales, plus a table of duties."],
 sections:[
-{h:"Structure of the handover (example)",blocks:[{t:"table",cols:["Document","Content"],rows:[
+{h:"Structure of the handover (example)",blocks:[{t:"fig",id:"hov_doc",cap:"Figure: what a handover document contains (example)."},{t:"table",cols:["Document","Content"],rows:[
 ["Overview","The station, its organisation, the annual cycle, important open issues"],
 ["The authorities","Operating approvals, periodic reporting, security and audits (2-1)"],
 ["HR and administration","Staff, employment, social insurance, housing, assets (2-3)"],
@@ -34,7 +34,7 @@ set("1-2",{title:"Building a Table of Duties",hl:"the table of duties",subtitle:
 lead:["A table of duties lists every piece of work at the station and shows who does it, how often and how long it takes. It helps not only at handover but in staffing plans, reviewing the work, and preparing cover for absences.",
 "This article covers the columns, how to build it and how to use it."],
 sections:[
-{h:"The columns (example)",blocks:[{t:"table",cols:["Column","Content"],rows:[
+{h:"The columns (example)",blocks:[{t:"fig",id:"hov_matrix",cap:"Figure: building a duty allocation table."},{t:"table",cols:["Column","Content"],rows:[
 ["Category","Authorities, operations, sales, HR and administration, finance, other"],
 ["Sub-category","For example, authorities: approvals, periodic reporting, security"],
 ["Task","The specific work, such as the monthly traffic report"],
@@ -60,7 +60,7 @@ set("1-3",{title:"Annual and Monthly Calendars",hl:"the calendar",subtitle:"So t
 lead:["A station’s work mixes the monthly close and reporting with applications, filings and renewals that come round once a year. The outgoing manager has often done the annual ones only once or twice, which makes them the most likely to be dropped at handover.",
 "This article covers how to build annual and monthly calendars and the main items they should contain."],
 sections:[
-{h:"The monthly calendar (example)",blocks:[{t:"table",cols:["When","Main work (example)"],rows:[
+{h:"The monthly calendar (example)",blocks:[{t:"fig",id:"hov_month",cap:"Figure: a station’s month (example)."},{t:"table",cols:["When","Main work (example)"],rows:[
 ["1st to 5th","Close last month’s costs, report to head office, file monthly traffic figures with the authorities"],
 ["Around the 10th","Pay withholding and inhabitant tax (where the special terms do not apply)"],
 ["Mid-month","Monthly meeting with the handling company, checking invoices"],
@@ -89,7 +89,7 @@ set("2-1",{title:"Handing Over Work with the Authorities",hl:"work with the auth
 lead:["For an airline station, work with the authorities — the transport ministry, the airport office and others — is the most important area, because a gap can affect operations themselves. The deadlines for periodic applications and reports, security and audit matters, and relationships with the responsible departments must all be handed over reliably.",
 "This article covers what to include in the handover of this work and how to introduce your successor (for the rules themselves, see Launching Flights to Japan, Parts 1 and 5). Outside airlines the counterparts change — the tax office, the labour standards office, the legal affairs bureau, or whichever ministry oversees the industry — but the framework of leaving deadlines, responsible departments, open issues and a proper introduction stays the same."],
 sections:[
-{h:"What to hand over (example)",blocks:[{t:"table",cols:["Area","What to hand over"],rows:[
+{h:"What to hand over (example)",blocks:[{t:"fig",id:"hov_auth",cap:"Figure: authority work to hand over (example)."},{t:"table",cols:["Area","What to hand over"],rows:[
 ["Approvals","What the foreign carrier licence covers, and the procedures and deadlines for business plan and schedule changes"],
 ["Schedules","Summer and winter filings, slots, extra flights and notifications of change"],
 ["Periodic reports","The forms, recipients and deadlines for monthly and annual traffic reports"],
@@ -116,7 +116,7 @@ set("2-2",{title:"Handing Over Finance",hl:"handing over finance",subtitle:"Bala
 lead:["The most important thing in handing over finance is to fix the numbers as at the handover date. The predecessor and the successor check together the account balances, the costs still to be paid, the money still to come in and anything prepaid, and put it in writing.",
 "This article covers what to hand over, the checks on the handover date, and switching authorities (for the practice in detail, see HR, Admin and Finance in Practice, Parts 4 to 7)."],
 sections:[
-{h:"What to hand over (example)",blocks:[{t:"table",cols:["Area","What to hand over"],rows:[
+{h:"What to hand over (example)",blocks:[{t:"fig",id:"hov_fin",cap:"Figure: what both people check on handover day."},{t:"table",cols:["Area","What to hand over"],rows:[
 ["Accounts","The list of accounts and what each is for, and who holds online banking authority"],
 ["Funds","Daily and monthly cash reports, the rules for remittances from head office"],
 ["Payments","The list of monthly payments (rent, salaries, advisers, communications), dates and methods"],
@@ -145,7 +145,7 @@ set("2-3",{title:"Handing Over HR and Administration",hl:"HR and administration"
 lead:["Handing over HR and administration means passing on the staff’s employment terms and the status of their procedures, social and labour insurance, the housing and office contracts, and assets such as equipment, keys and seals. Because much of it is personal information, how it is handed over matters too.",
 "This article covers what to hand over, how to treat personal information, and how to explain the change to staff (for the rules, see HR, Admin and Finance in Practice and the Expat Guide to Japan)."],
 sections:[
-{h:"What to hand over (example)",blocks:[{t:"table",cols:["Area","What to hand over"],rows:[
+{h:"What to hand over (example)",blocks:[{t:"fig",id:"hov_hr",cap:"Figure: HR and admin to hand over (example)."},{t:"table",cols:["Area","What to hand over"],rows:[
 ["Staff","Employment type, contract periods and renewal dates, status of residence expiry for foreign staff"],
 ["Attendance and leave","How attendance is managed, the annual leave register, anyone on leave"],
 ["Insurance and employment","The status of social and labour insurance procedures, the labour and social security attorney, the work rules"],
@@ -172,7 +172,7 @@ set("2-4",{title:"Handing Over Sales and Partners",hl:"sales and partners",subti
 lead:["Sales and partner relationships cannot be handed over by documents alone. For each — travel agencies, handling companies, the airport company, advisers, related bodies — pass on the history and the promises made, and wherever possible visit together to introduce your successor.",
 "This article covers how to build the partner list, how to write up the history, and how to plan the visits."],
 sections:[
-{h:"The partner list (example)",blocks:[{t:"table",cols:["Partner","What to write"],rows:[
+{h:"The partner list (example)",blocks:[{t:"fig",id:"hov_partner",cap:"Figure: what to record for each partner (example)."},{t:"table",cols:["Partner","What to write"],rows:[
 ["Travel agencies","The main companies and contact departments, when annual terms are set, the state of blocks and campaigns"],
 ["Handling companies","Scope and term of the contract, the monthly meeting, quality issues"],
 ["Airport company and related bodies","The AOC, airport meetings, incentive applications in progress"],
@@ -200,7 +200,7 @@ set("2-5",{title:"Cover for Absence, and Handing Over Accounts",hl:"absence and 
 lead:["Even when the manager is away — on leave, travelling, or between one manager and the next — the station must be able to handle disruption and calls from the authorities, so the decision steps and deputies need to be written down. System, bank and online filing accounts must also be switched over safely, without passwords ever being written in the handover.",
 "This article covers building an absence procedure and the steps for handing over accounts."],
 sections:[
-{h:"The absence procedure (example)",blocks:[{t:"table",cols:["Situation","What to decide in advance"],rows:[
+{h:"The absence procedure (example)",blocks:[{t:"fig",id:"hov_acct",cap:"Figure: handing over accounts."},{t:"table",cols:["Situation","What to decide in advance"],rows:[
 ["Delays and cancellations","Who decides, who they report to, which suppliers (hotels, coaches) to call"],
 ["Diversions","Contacts and procedures for each alternate airport (Case Studies 1-3)"],
 ["Calls from the authorities","Who takes them, reporting to head office, approval of the reply"],
@@ -226,7 +226,7 @@ set("3-1",{title:"The First Thirty Days for the Incoming Manager",hl:"the first 
 lead:["For a newly arrived manager, the first thirty days are for understanding the operation: reading the handover, meeting staff, partners and the authorities, and verifying the numbers and open issues. Understanding the whole before making big changes turns out to be the quickest route to results.",
 "This article sets out a thirty-day plan and the questions to ask your predecessor."],
 sections:[
-{h:"A thirty-day plan (example)",blocks:[{t:"table",cols:["When","What to do"],rows:[
+{h:"A thirty-day plan (example)",blocks:[{t:"fig",id:"hov_30",cap:"Figure: the first 30 days (example)."},{t:"table",cols:["When","What to do"],rows:[
 ["Week 1","Read the handover, the table of duties and the annual calendar. Meet each member of staff. Verify balances and payables"],
 ["Week 2","Courtesy calls on the authorities, the airport and the handling company. Spend a full day watching the counter, gate and ramp"],
 ["Week 3","Calls on the main travel agencies and partners. Confirm the owner and next action for each open issue"],

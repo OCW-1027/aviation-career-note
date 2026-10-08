@@ -1576,7 +1576,62 @@ int_plan:function(l){
   ko:{t:'입사 후 계획을 단계로 말하기(여객 지상직의 예)',st:['기본을 정확하게: 절차·규칙·사내 인정을 익힌다','맡겨진다: 편 책임자 보좌·비정상인 날의 안내·개선 제안','가르치고 이끈다: 신입 교육·배치의 중심·전문 분야'],who:['1년차','3년차','5년차~'],n:['「특별히 없습니다」「경험을 쌓고 다른 회사로」는 피한다','과거·현재와 같은 축의 말로 미래를 말한다']},
   en:{t:'Talking about your plans in stages (passenger services example)',st:['Get the basics right: procedures, rules, internal certifications','Be trusted: assist the flight lead, guide passengers on disrupted days, propose improvements','Teach and lead: train newcomers, run rostering, build a specialism'],who:['Year 1','Year 3','Year 5+'],n:['Avoid “nothing in particular” and “gain experience, then move on”','Describe the future in the same words as your core in the past and present']}})[l];
  if(!W)return F.int_plan('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 管理職の引き継ぎ（HOV）の図 2026.10 ===== */
+hov_doc:function(l){
+ var W=({ja:{t:'引き継ぎ書の構成（例）',r:[['総論','支店の概要・組織・進行中の案件','#5B6B7D'],['当局の業務','許認可・定期の報告・保安','#1769e0'],['人事・総務','社員・保険・社宅・資産','#2C8C8C'],['財務','口座・資金・支払い・税務','#E08A2E'],['営業','旅行会社・取引先・関係機関','#7A5CC7']],n:['手順だけでなく「なぜ」、根拠・期限・相手を書く','パスワード・個人の事情・感情的な評価は書かない']},
+  ko:{t:'인수인계서의 구성(예)',r:[['총론','지점 개요·조직·진행 중인 안건','#5B6B7D'],['당국 업무','인허가·정기 보고·보안','#1769e0'],['인사·총무','직원·보험·사택·자산','#2C8C8C'],['재무','계좌·자금·지급·세무','#E08A2E'],['영업','여행사·거래처·관계 기관','#7A5CC7']],n:['절차만이 아니라 「왜」, 근거·기한·상대를 쓴다','비밀번호·개인 사정·감정적인 평가는 쓰지 않는다']},
+  en:{t:'What a handover document contains (example)',r:[['Overview','Station profile, organisation, live matters','#5B6B7D'],['Authority work','Licences, regular reports, security','#1769e0'],['HR and admin','Staff, insurance, housing, assets','#2C8C8C'],['Finance','Accounts, cash, payments, tax','#E08A2E'],['Sales','Agencies, partners, public bodies','#7A5CC7']],n:['Write not only the steps but the why, the basis, the deadlines and who is involved','Never write passwords, personal circumstances or emotional judgements']}})[l];
+ if(!W)return F.hov_doc('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+hov_matrix:function(l){
+ var W=({ja:{t:'業務分掌表の作り方',st:['1か月の仕事を毎日メモする','大・中・小に分類する','年1回・四半期の手続きを足す','1回あたり・月あたりの時間を見積もる','主担当と代行を決める'],who:['書き出す','分類','年の業務','時間','担当'],n:['項目：分類・担当と代行・頻度・所要時間・根拠の資料','代行の決まっていない業務を見つけて準備する']},
+  ko:{t:'업무 분장표 만드는 법',st:['한 달의 일을 매일 메모한다','대·중·소로 분류한다','연 1회·분기 절차를 더한다','1회당·월당 시간을 어림잡는다','주담당과 대행자를 정한다'],who:['적기','분류','연간 업무','시간','담당'],n:['항목: 분류·담당과 대행·빈도·소요 시간·근거 자료','대행자가 정해지지 않은 업무를 찾아 준비한다']},
+  en:{t:'Building a duty allocation table',st:['Note every task daily for a month','Sort into main, middle and detailed categories','Add yearly and quarterly procedures','Estimate time per task and per month','Name an owner and a deputy'],who:['List','Sort','Yearly','Time','Owner'],n:['Columns: category, owner and deputy, frequency, time needed, reference documents','Find tasks with no deputy and prepare for them']}})[l];
+ if(!W)return F.hov_matrix('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+hov_month:function(l){
+ var W=({ja:{t:'支店の1か月（例）',st:['前月の費用の締め、本社と当局への報告','源泉所得税・住民税の納付','ハンドリング会社との月例会議、請求の確認','翌月の資金の見込み、本社への送金の依頼','給与の支払い、資金の照合'],who:['月初','10日前後','中旬','下旬','月末'],n:['期限だけでなく「準備を始める日」も書く','共有のカレンダーに繰り返しで入れ、毎年実績を書き足す★']},
+  ko:{t:'지점의 한 달(예)',st:['전월 비용 마감, 본사와 당국에 보고','원천소득세·주민세 납부','조업사와 월례 회의, 청구 확인','다음 달 자금 전망, 본사에 송금 의뢰','급여 지급, 자금 대조'],who:['월초','10일 전후','중순','하순','월말'],n:['기한만이 아니라 「준비를 시작하는 날」도 쓴다','공유 캘린더에 반복 일정으로 넣고 매년 실적을 덧붙인다★']},
+  en:{t:'A station’s month (example)',st:['Close last month’s costs; report to head office and the authority','Pay withheld income tax and resident tax','Monthly meeting with the handling company; check invoices','Forecast next month’s cash; request remittance from head office','Pay salaries; reconcile cash'],who:['Days 1–5','Around 10th','Mid-month','Late month','Month end'],n:['Write not only the deadline but the day preparation must start','Put recurring items in a shared calendar and add what actually happened each year ★']}})[l];
+ if(!W)return F.hov_month('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+hov_auth:function(l){
+ var W=({ja:{t:'当局の業務で引き継ぐこと（例）',r:[['許認可','許可の内容・変更の手続きと期限','#1769e0'],['スケジュール','夏・冬の申請・発着枠・臨時便','#2C8C8C'],['定期の報告','様式・提出先・期限','#E08A2E'],['保安','保安計画・教育計画・監査の記録','#7A5CC7'],['電子申請','アカウントの管理者と変更の手続き','#D64545']],n:['進行中の案件：現状・次の行動・過去のやり取り・本社の担当','主な担当部署へ後任と一緒にあいさつし、責任者の変更を届け出る']},
+  ko:{t:'당국 업무에서 인계할 것(예)',r:[['인허가','허가 내용·변경 절차와 기한','#1769e0'],['스케줄','하계·동계 신청·슬롯·임시편','#2C8C8C'],['정기 보고','양식·제출처·기한','#E08A2E'],['보안','보안 계획·교육 계획·감사 기록','#7A5CC7'],['전자 신청','계정 관리자와 변경 절차','#D64545']],n:['진행 중인 안건: 현상황·다음 행동·과거 교신·본사 담당','주요 담당 부서에 후임자와 함께 인사하고 책임자 변경을 신고한다']},
+  en:{t:'Authority work to hand over (example)',r:[['Licences','What is permitted; how and by when to change it','#1769e0'],['Schedules','Summer and winter filings, slots, extra flights','#2C8C8C'],['Regular reports','Forms, where to send, deadlines','#E08A2E'],['Security','Security and training plans, audit records','#7A5CC7'],['Online filing','Account administrators and how to change them','#D64545']],n:['For live matters: status, next action, past correspondence, head-office contact','Visit the main offices with your successor and file the change of responsible person']}})[l];
+ if(!W)return F.hov_auth('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+hov_fin:function(l){
+ var W=({ja:{t:'財務：引き継ぎの日に二人で確かめること',st:['すべての口座と手元の現金を確かめ、署名する','請求は来たがまだ払っていない費用','還付・返金などで受け取る予定のお金','家賃・保険などの前払いの状況','前任者が個人で立て替えている費用'],who:['残高','未払い','未収','前払い','立て替え'],n:['権限の切り替え：銀行の届け出・ネットバンキング・印鑑・決裁権限（銀行は時間がかかる）','請求書が来ない支払い（契約にもとづくもの）も一覧に']},
+  ko:{t:'재무: 인수인계 날 두 사람이 확인할 것',st:['모든 계좌와 현금을 확인하고 서명한다','청구는 왔지만 아직 지급하지 않은 비용','환급·반환 등으로 받을 예정인 돈','임대료·보험 등 선급 상황','전임자가 개인적으로 대신 낸 비용'],who:['잔액','미지급','미수','선급','대납'],n:['권한 전환: 은행 신고·인터넷뱅킹·인감·결재 권한(은행은 시간이 걸린다)','청구서가 오지 않는 지급(계약에 따른 것)도 목록에']},
+  en:{t:'Finance: what both people check on handover day',st:['Check every account and cash on hand, and sign','Invoices received but not yet paid','Money due back: refunds, returns, settlements','Prepayments such as rent and insurance','Costs the predecessor has paid personally'],who:['Balances','Payables','Receivables','Prepaid','Advances'],n:['Switch authority: bank mandates, online banking, seals, approval limits (banks take time)','List payments made without an invoice under contracts as well']}})[l];
+ if(!W)return F.hov_fin('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#D64545','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+hov_hr:function(l){
+ var W=({ja:{t:'人事・総務で引き継ぐこと（例）',r:[['社員','雇用の形・契約の更新・在留の期限','#1769e0'],['勤怠・休暇','年休の台帳・休業中の社員','#2C8C8C'],['保険・労務','手続きの状況・社労士・就業規則','#E08A2E'],['社宅・事務所','更新・解約の予告期限','#7A5CC7'],['資産','備品・鍵・印鑑・IDパスの台帳','#D64545']],n:['給与・評価・健康の情報は必要な範囲だけ。保管の場所だけを書く','前任者が社員と交わした約束は、後任に必ず伝える']},
+  ko:{t:'인사·총무에서 인계할 것(예)',r:[['직원','고용 형태·계약 갱신·재류 기한','#1769e0'],['근태·휴가','연차 대장·휴직 중인 직원','#2C8C8C'],['보험·노무','절차 상황·노무사·취업규칙','#E08A2E'],['사택·사무실','갱신·해지 예고 기한','#7A5CC7'],['자산','비품·열쇠·인감·ID 패스 대장','#D64545']],n:['급여·평가·건강 정보는 필요한 범위만. 보관 장소만 쓴다','전임자가 직원과 한 약속은 후임자에게 반드시 전한다']},
+  en:{t:'HR and admin to hand over (example)',r:[['Staff','Employment type, contract renewals, visa expiry','#1769e0'],['Time and leave','Leave register, staff on leave','#2C8C8C'],['Insurance and labour','Filing status, labour adviser, work rules','#E08A2E'],['Housing and office','Renewal and notice deadlines','#7A5CC7'],['Assets','Register of equipment, keys, seals, ID passes','#D64545']],n:['Pass pay, appraisal and health data only as far as needed; record only where it is kept','Always tell your successor about promises made to staff']}})[l];
+ if(!W)return F.hov_hr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+hov_partner:function(l){
+ var W=({ja:{t:'取引先の一覧に書くこと（例）',r:[['旅行会社','窓口・年間の条件・ブロック','#1769e0'],['ハンドリング会社','契約の範囲・月例会議・品質の課題','#2C8C8C'],['空港会社・関係機関','会議・支援制度の申請','#E08A2E'],['専門家','税理士・社労士・弁護士・通関業者','#7A5CC7'],['その他','GSA・システム・ホテル・バス','#5B6B7D']],n:['約束・課題・相手の関心・過去のトラブルを事実で書く','当局・空港・ハンドリング会社・主な旅行会社の順に、前任者と一緒に訪問']},
+  ko:{t:'거래처 목록에 쓸 것(예)',r:[['여행사','창구·연간 조건·블록','#1769e0'],['조업사','계약 범위·월례 회의·품질 과제','#2C8C8C'],['공항 회사·관계 기관','회의·지원 제도 신청','#E08A2E'],['전문가','세무사·노무사·변호사·통관업체','#7A5CC7'],['그 밖','GSA·시스템·호텔·버스','#5B6B7D']],n:['약속·과제·상대의 관심·과거 문제를 사실로 쓴다','당국·공항·조업사·주요 여행사 순으로 전임자와 함께 방문']},
+  en:{t:'What to record for each partner (example)',r:[['Travel agencies','Contacts, annual terms, blocks','#1769e0'],['Handling company','Contract scope, monthly meeting, quality issues','#2C8C8C'],['Airport and public bodies','Meetings, incentive applications','#E08A2E'],['Professional advisers','Tax, labour, legal, customs brokers','#7A5CC7'],['Others','GSA, systems, hotels, buses','#5B6B7D']],n:['Record promises, open issues, what they care about and past trouble, as facts','Visit with your predecessor: authority, airport, handler, then main agencies']}})[l];
+ if(!W)return F.hov_partner('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+hov_acct:function(l){
+ var W=({ja:{t:'アカウントの引き継ぎの手順',st:['システム名・用途・管理者の一覧（パスワードは書かない）','会社の手続きで後任を管理者に追加','後任が自分でパスワードを設定','前任者のアカウント・権限を削除','すべて切り替わったかを一覧で確かめる'],who:['一覧','追加','設定','削除','確認'],n:['対象：当局の電子申請・銀行と税務・業務のシステム・取引先のポータル・物理的な鍵','不在時に、遅延・ダイバート・当局・事故・支払いを誰が判断するか決めておく']},
+  ko:{t:'계정 인수인계 절차',st:['시스템명·용도·관리자 목록(비밀번호는 쓰지 않는다)','회사 절차로 후임자를 관리자에 추가','후임자가 직접 비밀번호를 설정','전임자의 계정·권한을 삭제','모두 전환됐는지 목록으로 확인'],who:['목록','추가','설정','삭제','확인'],n:['대상: 당국 전자 신청·은행과 세무·업무 시스템·거래처 포털·물리적 열쇠','부재 시 지연·회항·당국·사고·지급을 누가 판단할지 정해 둔다']},
+  en:{t:'Handing over accounts: the steps',st:['List systems, purposes and administrators (no passwords)','Add the successor as administrator through company procedure','Successor sets their own password','Remove the predecessor’s accounts and rights','Check against the list that everything has switched'],who:['List','Add','Set','Remove','Check'],n:['Covers: authority e-filing, banking and tax, operating systems, partner portals, physical keys','Decide who decides on delays, diversions, authority contact, accidents and payments when you are away']}})[l];
+ if(!W)return F.hov_acct('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#D64545','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+hov_30:function(l){
+ var W=({ja:{t:'受け取る側の最初の30日（例）',st:['引き継ぎ書を読む・社員と面談・残高と未払いを確認','当局・空港・ハンドリング会社へあいさつ。現場を一日見る','旅行会社・取引先へあいさつ。進行中の案件を確認','アカウント・権限・印鑑の切り替えを完了。気づきを本社と共有'],who:['1週目','2週目','3週目','4週目'],n:['前任者に聞く：いちばんの課題・3か月以内の期限・注意する相手・社員との約束・過去の失敗','聞く・確かめる・すぐに変えない']},
+  ko:{t:'인수하는 쪽의 첫 30일(예)',st:['인수인계서를 읽는다·직원 면담·잔액과 미지급 확인','당국·공항·조업사에 인사. 현장을 하루 본다','여행사·거래처에 인사. 진행 중인 안건 확인','계정·권한·인감 전환 완료. 알게 된 점을 본사와 공유'],who:['1주차','2주차','3주차','4주차'],n:['전임자에게 묻기: 가장 큰 과제·3개월 안의 기한·주의할 상대·직원과의 약속·과거의 실패','듣고, 확인하고, 바로 바꾸지 않는다']},
+  en:{t:'The first 30 days for the person taking over (example)',st:['Read the handover papers; meet staff; check balances and payables','Visit the authority, airport and handler; spend a day on the floor','Visit agencies and partners; confirm live matters','Finish switching accounts, rights and seals; share findings with head office'],who:['Week 1','Week 2','Week 3','Week 4'],n:['Ask your predecessor: biggest issue, deadlines in the next 3 months, sensitive contacts, promises to staff, past mistakes','Listen, check, and do not change things straight away']}})[l];
+ if(!W)return F.hov_30('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
