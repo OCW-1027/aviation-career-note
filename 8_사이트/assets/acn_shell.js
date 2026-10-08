@@ -17,7 +17,7 @@ var HOME=U('index.html');window.ACN_HOME=HOME;
 /* レッスンの「完了」ボタン（私の学習プランと共通の記録）：progress.js 2026.10 */
 if(/\/(ja|ko|en)\/[a-z]+\/\d+-\d+\/?(index\.html)?$/.test(path)&&!/jsdom/i.test(navigator.userAgent)){var pg=document.createElement('script');pg.src=new URL('progress.js',me).href;document.head.appendChild(pg)}
 var C={
-ja:{nav:['学ぶ','Business Skills','Practice','求人','Coaching','Community'],mem:'メンバーシップ',foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー'},
+ja:{nav:['学ぶ','ビジネス実務','実習・ツール','求人','1:1コーチング','コミュニティ'],mem:'メンバーシップ',foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー'},
 ko:{nav:['학습','Business Skills','Practice','채용','Coaching','Community'],mem:'멤버십',foot:['항공 전문 지식에서 채용, 코칭, 커뮤니티까지.','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　무단 전재·복제 금지',terms:'이용약관',privacy:'개인정보 처리방침'},
 en:{nav:['Learn','Business Skills','Practice','Jobs','Coaching','Community'],mem:'Membership',foot:['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy'}};
 var NAV=[['index.html#learn','learn'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
