@@ -1172,6 +1172,67 @@ kor_cju:function(l){
   ko:{t:'제주국제공항(CJU)의 요점(2026년 9월 기준)',c:[['운영','한국공항공사'],['활주로','교차 2개(실제로는 거의 07/25 1개)'],['운용 시간','보통 6시경~23시(법적 야간 제한은 없음)']],n:['바다에서 오는 강풍과 윈드시어 경보로 이착륙이 멈출 수 있다','겨울 폭설로 운항이 멈출 수 있다(2016년 1월은 약 2일). 제설과 체류에 대비','일제 결항 뒤에는 임시편·대형기·야간 연장으로 한꺼번에 수송. 상대 공항과도 조정을']},
   en:{t:'Jeju International (CJU) at a glance (September 2026)',c:[['Operator','Korea Airports Corporation'],['Runways','Two crossing (in practice mostly 07/25 alone)'],['Hours','Usually about 06:00–23:00 (no legal night curfew)']],n:['Strong sea winds and wind-shear alerts can stop take-offs and landings','Heavy winter snow can halt flights (about two days in January 2016): prepare for snow clearance and stranded passengers','After mass cancellations, extra flights, larger aircraft and late hours clear the backlog: coordinate with the other airports']}})[l];
  if(!W)return F.kor_cju('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 世界の主要空港ガイド（WLD）の図 2026.10 ===== */
+wld_top:function(l){
+ var W=({ja:{t:'国際線の旅客数の上位5空港（2025年）',r:[['1　ドバイ（DXB）','9,519万人','#D64545'],['2　ロンドン・ヒースロー（LHR）','7,987万人','#1769e0'],['3　仁川（ICN）','7,355万人','#2C8C8C'],['4　シンガポール・チャンギ（SIN）','6,940万人','#7A5CC7'],['5　アムステルダム・スキポール（AMS）','6,877万人','#E08A2E']],n:['国内線を含む旅客数では、アトランタ（ATL）が1位、羽田（HND）が3位','数字は発表のたびに変わる（★）。ACI・空港会社の最新の発表で確かめる']},
+  ko:{t:'국제선 여객 수 상위 5개 공항(2025년)',r:[['1　두바이(DXB)','9,519만 명','#D64545'],['2　런던 히스로(LHR)','7,987만 명','#1769e0'],['3　인천(ICN)','7,355만 명','#2C8C8C'],['4　싱가포르 창이(SIN)','6,940만 명','#7A5CC7'],['5　암스테르담 스히폴(AMS)','6,877만 명','#E08A2E']],n:['국내선을 포함한 여객 수로는 애틀랜타(ATL)가 1위, 하네다(HND)가 3위','숫자는 발표 때마다 바뀐다(★). ACI·공항 회사의 최신 발표로 확인한다']},
+  en:{t:'Top five airports by international passengers (2025)',r:[['1  Dubai (DXB)','95.19 million','#D64545'],['2  London Heathrow (LHR)','79.87 million','#1769e0'],['3  Incheon (ICN)','73.55 million','#2C8C8C'],['4  Singapore Changi (SIN)','69.40 million','#7A5CC7'],['5  Amsterdam Schiphol (AMS)','68.77 million','#E08A2E']],n:['Counting domestic traffic too, Atlanta (ATL) is first and Haneda (HND) third','Figures change with each release (★); check the latest ACI and airport data']}})[l];
+ if(!W)return F.wld_top('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+wld_entry:function(l){
+ var W=({ja:{t:'主な事前の渡航の許可・入国の記録',r:[['米国','ESTA（電子渡航認証）','#1769e0'],['英国','ETA（電子渡航認証）','#D64545'],['EU（シェンゲン圏）','EES（出入国の記録）','#2C8C8C'],['EU（シェンゲン圏）','ETIAS（渡航の許可）','#7A5CC7'],['韓国','K-ETA（電子渡航許可）','#E08A2E'],['日本','JESTA（電子渡航認証）','#0f3558']],n:['最終の目的地だけでなく、入国の審査を通る経由地の制度も確かめる','シェンゲン圏に初めて入るときはEESの登録に時間がかかる。乗り継ぎに余裕を','確認した記録を残す。開始時期・対象は変わる（★）']},
+  ko:{t:'주요 사전 여행 허가·출입국 기록',r:[['미국','ESTA(전자여행허가)','#1769e0'],['영국','ETA(전자여행허가)','#D64545'],['EU(솅겐 지역)','EES(출입국 기록)','#2C8C8C'],['EU(솅겐 지역)','ETIAS(여행 허가)','#7A5CC7'],['한국','K-ETA(전자여행허가)','#E08A2E'],['일본','JESTA(전자여행인증)','#0f3558']],n:['최종 목적지뿐 아니라 입국 심사를 거치는 경유지의 제도도 확인한다','솅겐 지역에 처음 들어갈 때는 EES 등록에 시간이 걸린다. 환승에 여유를','확인한 기록을 남긴다. 시작 시기·대상은 바뀐다(★)']},
+  en:{t:'Main pre-travel authorisations and entry records',r:[['United States','ESTA','#1769e0'],['United Kingdom','ETA','#D64545'],['EU (Schengen)','EES (entry/exit record)','#2C8C8C'],['EU (Schengen)','ETIAS (travel authorisation)','#7A5CC7'],['Korea','K-ETA','#E08A2E'],['Japan','JESTA','#0f3558']],n:['Check not only the final destination but any transit point where passengers clear immigration','First entry to Schengen under EES takes longer: allow time for connections','Record your checks. Start dates and scope change (★)']}})[l];
+ if(!W)return F.wld_entry('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+wld_pek:function(l){
+ var W=({ja:{t:'北京の2つのハブ：首都（PEK）と大興（PKX）（2026年9月時点）',c:[['首都（PEK）','市の北東 約25km。2025年は7,076万人。エアチャイナとスターアライアンスの会社'],['大興（PKX）','市の南 約46km。2025年に5,000万人を初めて超えた。中国東方・南方とスカイチームの会社']],n:['コードの取り違えに注意。2空港をまたぐ移動は2時間前後かかる','中国の民航当局の時刻の管理が厳しく、遅れの扱いにも独自の規則がある','冬の霧・煙霧と夏の雷雨で遅れが出やすい']},
+  ko:{t:'베이징의 두 허브: 서우두(PEK)와 다싱(PKX)(2026년 9월 기준)',c:[['서우두(PEK)','시 북동쪽 약 25km. 2025년 7,076만 명. 에어차이나와 스타얼라이언스 항공사'],['다싱(PKX)','시 남쪽 약 46km. 2025년 처음으로 5,000만 명 돌파. 동방·남방항공과 스카이팀 항공사']],n:['코드 착각에 주의. 두 공항 사이 이동은 2시간 안팎 걸린다','중국 민항 당국의 시각 관리가 엄격하고 지연 처리에도 독자 규칙이 있다','겨울 안개·스모그와 여름 뇌우로 지연되기 쉽다']},
+  en:{t:'Beijing’s two hubs: Capital (PEK) and Daxing (PKX) (September 2026)',c:[['Capital (PEK)','About 25 km north-east. 70.76 million in 2025. Air China and Star Alliance carriers'],['Daxing (PKX)','About 46 km south. Passed 50 million for the first time in 2025. China Eastern, China Southern and SkyTeam']],n:['Watch for code mix-ups: moving between the two airports takes around two hours','China’s regulator manages schedules strictly, with its own rules on delays','Winter fog and haze and summer thunderstorms cause delays']}})[l];
+ if(!W)return F.wld_pek('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_pvg:function(l){
+ var W=({ja:{t:'上海浦東（PVG）の要点（2026年9月時点）',c:[['運営','上海機場（集団）'],['滑走路・ターミナル','5本の滑走路、T1・T2と衛星のコンコース'],['2025年の実績','旅客8,499万人、貨物410万トン（世界2位）']],n:['長距離便と貨物便が集中。雷雨・台風の季節は大きな遅れが出やすい','国際線から国内線への乗り継ぎは、最初の空港で入国と税関を通る。荷物を案内する','国際線は浦東、国内線の多くは虹橋。2空港の間は1時間以上']},
+  ko:{t:'상하이 푸둥(PVG)의 요점(2026년 9월 기준)',c:[['운영','상하이 공항(그룹)'],['활주로·터미널','활주로 5개, T1·T2와 위성 콩코스'],['2025년 실적','여객 8,499만 명, 화물 410만 톤(세계 2위)']],n:['장거리편과 화물편이 몰린다. 뇌우·태풍 계절은 큰 지연이 나기 쉽다','국제선에서 국내선 환승은 첫 공항에서 입국과 세관을 거친다. 수하물을 안내한다','국제선은 푸둥, 국내선 다수는 훙차오. 두 공항 사이는 1시간 이상']},
+  en:{t:'Shanghai Pudong (PVG) at a glance (September 2026)',c:[['Operator','Shanghai Airport Authority (Group)'],['Runways and terminals','Five runways; T1, T2 and satellite concourses'],['2025','84.99 million passengers; 4.10 million tonnes of cargo (2nd in the world)']],n:['Long-haul and cargo flights concentrate here; storm and typhoon seasons bring big delays','International-to-domestic transfers clear immigration and customs at the first airport: explain baggage handling','International flights use Pudong, most domestic Hongqiao: over an hour apart']}})[l];
+ if(!W)return F.wld_pvg('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_hkg:function(l){
+ var W=({ja:{t:'香港（HKG）の要点（2026年9月時点）',c:[['運営','香港空港管理局（AAHK）'],['滑走路','3本（2024年11月28日から3本の体制）'],['2025年の実績','国際線6,082万人、貨物507万トン（世界1位）']],n:['夏から秋は台風の警報（シグナル）で運用が止まることがある。段階と運航の関係を知る','世界1位の貨物。大きな貨物施設が集まる','港珠澳大橋やフェリーで本土・マカオとの乗り継ぎができる']},
+  ko:{t:'홍콩(HKG)의 요점(2026년 9월 기준)',c:[['운영','홍콩공항관리국(AAHK)'],['활주로','3개(2024년 11월 28일부터 3개 체제)'],['2025년 실적','국제선 6,082만 명, 화물 507만 톤(세계 1위)']],n:['여름~가을은 태풍 경보(시그널)로 운용이 멈출 수 있다. 단계와 운항의 관계를 안다','세계 1위의 화물. 큰 화물 시설이 모여 있다','강주아오 대교나 페리로 본토·마카오와 환승할 수 있다']},
+  en:{t:'Hong Kong (HKG) at a glance (September 2026)',c:[['Operator','Airport Authority Hong Kong (AAHK)'],['Runways','Three (three-runway system from 28 Nov 2024)'],['2025','60.82 million international passengers; 5.07 million tonnes of cargo (1st)']],n:['Typhoon signals can halt operations in summer and autumn: know how each level affects flights','The world’s largest cargo airport, with major cargo facilities','Air-to-sea and bridge links connect with the mainland and Macau']}})[l];
+ if(!W)return F.wld_hkg('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_tpe:function(l){
+ var W=({ja:{t:'台北・桃園（TPE）の要点（2026年9月時点）',c:[['運営','桃園国際機場公司'],['ターミナル','第1・第2（年約3,700万人）。第3は建設中'],['2025年の実績','旅客1〜9月で3,522万人、貨物250万トン（世界9位）']],n:['夏から秋の台風で欠航が出やすい','第3ターミナルの搭乗口を使う便も、完成までは手続きは第2ターミナルで','北米⇔東南アジアの乗り継ぎが多く、夜の到着・深夜の出発の波がある']},
+  ko:{t:'타이베이 타오위안(TPE)의 요점(2026년 9월 기준)',c:[['운영','타오위안국제공항공사'],['터미널','제1·제2(연 약 3,700만 명). 제3은 건설 중'],['2025년 실적','여객 1~9월 3,522만 명, 화물 250만 톤(세계 9위)']],n:['여름~가을 태풍으로 결항이 나기 쉽다','제3터미널 탑승구를 쓰는 편도 완공 전까지 수속은 제2터미널에서','북미⇔동남아 환승이 많아 밤 도착·심야 출발의 웨이브가 있다']},
+  en:{t:'Taipei Taoyuan (TPE) at a glance (September 2026)',c:[['Operator','Taoyuan International Airport Corporation'],['Terminals','T1 and T2 (about 37 million a year); T3 under construction'],['2025','35.22 million passengers Jan–Sep; 2.50 million tonnes of cargo (9th)']],n:['Typhoons in summer and autumn often cause cancellations','Flights using T3 gates still check in at T2 until completion','Many North America–Southeast Asia connections create night arrival and late departure waves']}})[l];
+ if(!W)return F.wld_tpe('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_sin:function(l){
+ var W=({ja:{t:'シンガポール・チャンギ（SIN）の要点（2026年9月時点）',c:[['運営','チャンギ空港グループ（CAG）'],['ターミナル','T1〜T4（年9,000万人）。T5は建設中'],['2025年の実績','旅客約7,000万人（過去最多）']],n:['24時間の運用で、深夜・早朝の長距離便が多い','午後の雷雨でランプの落雷の警報が出ると、地上の作業が一時止まる','ハンドリング会社はSATSとdnataの2社が主。空港のサービスの基準が厳しい']},
+  ko:{t:'싱가포르 창이(SIN)의 요점(2026년 9월 기준)',c:[['운영','창이공항그룹(CAG)'],['터미널','T1~T4(연 9,000만 명). T5는 건설 중'],['2025년 실적','여객 약 7,000만 명(역대 최다)']],n:['24시간 운용으로 심야·이른 아침 장거리편이 많다','오후 뇌우로 램프 낙뢰 경보가 나오면 지상 작업이 잠시 멈춘다','조업사는 SATS와 dnata 두 곳이 주. 공항의 서비스 기준이 엄격하다']},
+  en:{t:'Singapore Changi (SIN) at a glance (September 2026)',c:[['Operator','Changi Airport Group (CAG)'],['Terminals','T1–T4 (90 million a year); T5 under construction'],['2025','About 70 million passengers (a record)']],n:['24-hour operation with many late-night and early-morning long-haul flights','Afternoon storms trigger ramp lightning alerts that pause ground work','SATS and dnata are the main handlers; the airport’s service standards are strict']}})[l];
+ if(!W)return F.wld_sin('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_bkk:function(l){
+ var W=({ja:{t:'バンコク・スワンナプーム（BKK）の要点（2026年9月時点）',c:[['運営','タイ空港公社（AOT）'],['滑走路・ターミナル','3本の滑走路、本館とSAT-1'],['受け入れの能力','年6,500万人（2025年はそれに近い見通し★）']],n:['能力に近い旅客数。ピークは出入国と保安検査の待ちが長い','5〜10月の雨季は雷雨で遅れが出やすい','タイの輸出入貨物の中心。果物・花など生鮮品が多い']},
+  ko:{t:'방콕 수완나품(BKK)의 요점(2026년 9월 기준)',c:[['운영','태국공항공사(AOT)'],['활주로·터미널','활주로 3개, 본관과 SAT-1'],['수용 능력','연 6,500만 명(2025년은 그에 가까운 전망★)']],n:['능력에 가까운 여객 수. 피크에는 출입국과 보안검색 대기가 길다','5~10월 우기에는 뇌우로 지연되기 쉽다','태국 수출입 화물의 중심. 과일·꽃 등 신선품이 많다']},
+  en:{t:'Bangkok Suvarnabhumi (BKK) at a glance (September 2026)',c:[['Operator','Airports of Thailand (AOT)'],['Runways and terminals','Three runways; main terminal and SAT-1'],['Capacity','65 million a year (2025 expected near that ★)']],n:['Traffic close to capacity: long immigration and security queues at peaks','Thunderstorms in the May–October rainy season cause delays','Thailand’s main cargo gateway, with much fresh produce such as fruit and flowers']}})[l];
+ if(!W)return F.wld_bkk('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_kul:function(l){
+ var W=({ja:{t:'クアラルンプール（KUL）の要点（2026年9月時点）',c:[['運営','マレーシア空港'],['ターミナル','T1（本館とサテライトA）、T2（LCC）'],['2025年の実績','6,330万人（+10.8%、世界20位）']],n:['マレーシア航空とエアアジアでターミナルが違う。予約と案内に明記する','午後の雷雨と、乾季の煙霞（ヘイズ）で視程が落ちることがある','電子部品の輸出が多く、貨物も伸びている']},
+  ko:{t:'쿠알라룸푸르(KUL)의 요점(2026년 9월 기준)',c:[['운영','말레이시아 공항'],['터미널','T1(본관과 위성 A), T2(LCC)'],['2025년 실적','6,330만 명(+10.8%, 세계 20위)']],n:['말레이시아항공과 에어아시아는 터미널이 다르다. 예약과 안내에 명기한다','오후 뇌우와 건기의 연무(헤이즈)로 시정이 떨어질 수 있다','전자 부품 수출이 많아 화물도 늘고 있다']},
+  en:{t:'Kuala Lumpur (KUL) at a glance (September 2026)',c:[['Operator','Malaysia Airports'],['Terminals','T1 (main building and Satellite A), T2 (LCCs)'],['2025','63.30 million (+10.8%, 20th in the world)']],n:['Malaysia Airlines and AirAsia use different terminals: state it in bookings and guidance','Afternoon storms and dry-season haze can reduce visibility','Strong electronics exports keep cargo growing']}})[l];
+ if(!W)return F.wld_kul('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_del:function(l){
+ var W=({ja:{t:'デリー・インディラ・ガンディー（DEL）の要点（2026年9月時点）',c:[['運営','デリー国際空港（DIAL、GMRグループ）'],['滑走路・ターミナル','4本の滑走路、T1・T2・T3'],['受け入れの能力','年約1億500万人']],n:['12〜1月の濃い霧で、CAT IIIでも大きな遅れと欠航が出る。冬は余裕のある計画を','5〜6月は45度に近い暑さで、離陸の重量の制限が出ることがある','保安検査が厳しく、独自の手順がある（変わることがある★）']},
+  ko:{t:'델리 인디라 간디(DEL)의 요점(2026년 9월 기준)',c:[['운영','델리국제공항(DIAL, GMR그룹)'],['활주로·터미널','활주로 4개, T1·T2·T3'],['수용 능력','연 약 1억 500만 명']],n:['12~1월 짙은 안개로 CAT III로도 큰 지연과 결항이 난다. 겨울은 여유 있게 계획','5~6월은 45도에 가까운 더위로 이륙 중량 제한이 생길 수 있다','보안검색이 엄격하고 독자 절차가 있다(바뀔 수 있음★)']},
+  en:{t:'Delhi Indira Gandhi (DEL) at a glance (September 2026)',c:[['Operator','Delhi International Airport (DIAL, GMR Group)'],['Runways and terminals','Four runways; T1, T2 and T3'],['Capacity','About 105 million a year']],n:['Dense December–January fog causes major delays and cancellations even with CAT III: plan winter with margin','May–June heat near 45°C can limit take-off weights','Strict security with its own procedures (subject to change ★)']}})[l];
+ if(!W)return F.wld_del('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
