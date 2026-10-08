@@ -37,7 +37,7 @@ next:"3-5 Aircraft and quarantine: catering waste and disinsection"});
 set("3-5",{title:"Aircraft and Quarantine: Catering Waste and Disinsection",hl:"Aircraft and Quarantine",subtitle:"Quarantine looks at more than people and bags. It also looks at what the aircraft brings in",
 lead:["An international aircraft can carry disease and pests: leftover meals, rubbish, a mosquito that got on board. These too are subject to quarantine.","Passengers never see it, but on every arrival the cleaning, catering and handling staff deal with them according to the rules. The station’s role is to see that the rules are followed."],
 sections:[
-{h:"What the aircraft brings in",blocks:[{t:"rows",items:[
+{h:"What the aircraft brings in",blocks:[{t:"fig",id:"ciq_cabin",cap:"Figure: what aircraft carry, and quarantine."},{t:"rows",items:[
 {name:"Leftover meals and rubbish",x:"They contain meat products and fruit and can carry livestock diseases and pests."},
 {name:"Insects",x:"Mosquitoes carry human infections and cross borders in cargo and cabins."},
 {name:"Passengers who fall ill on board",x:"Covered in lesson 3-1."},

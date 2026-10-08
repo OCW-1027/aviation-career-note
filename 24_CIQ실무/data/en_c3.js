@@ -3,7 +3,7 @@
 set("3-1",{title:"Human Quarantine: Keeping Infections Out",hl:"Human Quarantine",subtitle:"The first check on arrival. When someone falls ill on board, quarantine decides what the flight does next",
 lead:["Quarantine exists to keep disease out of the country. One part deals with human infections and another with animals and plants, and different agencies run them. This lesson covers human quarantine.","Normally, arriving passengers simply walk past a thermal camera. But when someone falls ill on board, or an infection is spreading abroad, quarantine’s decision governs disembarkation, connections and even the departure of the next flight."],
 sections:[
-{h:"What the quarantine station does",blocks:[{t:"rows",items:[
+{h:"What the quarantine station does",blocks:[{t:"fig",id:"ciq_ill",cap:"Figure: when someone falls ill on board."},{t:"rows",items:[
 {name:"Checks the health of arriving passengers",x:"With thermal cameras and health declarations."},
 {name:"Questions people arriving from affected areas",x:"Where they stayed, symptoms, contact with animals, and tests where needed."},
 {name:"Inspects aircraft and the airport",x:"For mosquitoes and rodents that carry disease."},
@@ -65,7 +65,7 @@ next:"3-3 Plant quarantine: fruit, vegetables, seeds and flowers"});
 set("3-3",{title:"Plant Quarantine: Fruit, Vegetables, Seeds and Flowers",hl:"Plant Quarantine",subtitle:"Even one mango needs a certificate from the exporting country’s government",
 lead:["The fruit was delicious on holiday, so why not take some home for the family? That wish becomes an offence on arrival.","Plant quarantine protects the country’s fields and orchards. A single small insect inside a fruit can wipe out a growing region."],
 sections:[
-{h:"Why it is so strict",blocks:[{t:"rows",items:[
+{h:"Why it is so strict",blocks:[{t:"fig",id:"ciq_plant",cap:"Figure: items subject to plant quarantine."},{t:"rows",items:[
 {name:"Pests",x:"Fruit flies lay their eggs inside fruit, where they cannot be seen."},
 {name:"Diseases",x:"Plant diseases travel on leaves, seeds and soil."},
 {name:"Soil",x:"Soil carries pests and disease. Soil itself, and plants with soil on them, cannot be brought in. ★"}]}]},

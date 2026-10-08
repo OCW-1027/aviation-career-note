@@ -96,7 +96,7 @@ next:"2-4 Airlines and customs: aircraft stores, in-flight sales and delayed bag
 set("2-4",{title:"Airlines and Customs: Aircraft Stores, In-Flight Sales and Delayed Baggage",hl:"Airlines and Customs",subtitle:"Customs deals with more than passengers. The airline itself is inside customs procedures on every flight",
 lead:["Customs does not look only at passengers’ bags. An international aircraft crosses the border carrying catering, drinks, duty-free goods for sale and fuel, and all of these are under customs control.","There is one more situation in which a station deals with customs almost every day: bags that did not arrive on the same flight as their owners."],
 sections:[
-{h:"What the aircraft carries",blocks:[{t:"table",cols:["Item","How customs treats it"],rows:[
+{h:"What the aircraft carries",blocks:[{t:"fig",id:"ciq_bag",cap:"Figure: delayed baggage and customs."},{t:"table",cols:["Item","How customs treats it"],rows:[
 ["Catering, drinks and equipment (aircraft stores)","Loaded untaxed, for use on an aircraft operating internationally. Loading and unloading involve customs formalities ★"],
 ["Duty-free goods for sale on board","Counted, and kept sealed after arrival ★"],
 ["Fuel","Fuel for international flights is treated differently for tax from domestic fuel ★"],

@@ -3,7 +3,7 @@
 set("4-1",{title:"United States 1: Entry. Every Transfer Passenger Clears Immigration",hl:"US Entry",subtitle:"One agency handles immigration, customs and agricultural inspection together",
 lead:["The United States is one of the busiest countries in the world for arrivals and departures, and many of its rules differ from other countries’. The next three lessons cover US entry, agricultural inspection, and customs and pets.","Two things to remember first: there is no such thing as transit without entering the United States, and food must always be declared."],
 sections:[
-{h:"US border control has one counter",blocks:[{t:"rows",items:[
+{h:"US border control has one counter",blocks:[{t:"fig",id:"ciq_us",cap:"Figure: entering the US."},{t:"rows",items:[
 {name:"Customs and Border Protection (CBP)",x:"One agency carries out immigration, customs and agricultural inspection."},
 {name:"The rules come from different bodies",x:"Agricultural rules come from the Department of Agriculture, the rules on dogs from the Centers for Disease Control and Prevention (CDC), and pre-departure security from the Transportation Security Administration (TSA)."},
 {name:"One counter, several sets of rules",x:"The passenger speaks to one officer, but that officer applies the rules of several agencies."}]}]},
@@ -69,7 +69,7 @@ next:"4-3 United States 3: customs, cash and pets"});
 set("4-3",{title:"United States 3: Customs, Cash and Pets",hl:"Customs and Pets",subtitle:"Allowances, the USD 10,000 declaration, and the rules for dogs that changed in 2024",
 lead:["What US customs asks about is much the same as elsewhere: goods above the allowance, large amounts of cash, items that cannot be brought in. This lesson gives only the main points.","What has changed greatly is the rule for bringing in dogs. Since August 2024, new conditions apply to every dog."],
 sections:[
-{h:"Allowances (as a guide)",blocks:[{t:"table",cols:["","Details"],rows:[
+{h:"Allowances (as a guide)",blocks:[{t:"fig",id:"ciq_usdog",cap:"Figure: US customs, cash and dogs."},{t:"table",cols:["","Details"],rows:[
 ["US residents returning","Up to USD 800"],
 ["Visitors","Gifts up to USD 100; personal effects are exempt"],
 ["Alcohol","One litre, aged 21 or over"],
