@@ -1887,7 +1887,68 @@ adm_file:function(l){
   ko:{t:'서류를 보존하는 구조(예)',st:['메일·웹으로 청구서를 받는다','전자 그대로 보존한다(인쇄만으로 끝내지 않는다)','「연/월/거래처」 폴더에 「날짜_거래처_금액」으로 저장','월별 목록표: 날짜·거래처·금액·소비세·등록번호','백업과, 정정·삭제하지 않는 규칙'],who:['수령','보존','이름','목록','지키기'],n:['보존 기간은 서류와 제도에 따라 다르다(일본의 장부는 원칙 7년 등★)','목록표는 월차 마감·소비세 환급·세무조사·인계에 도움이 된다']},
   en:{t:'A system for keeping records (example)',st:['Receive invoices by email or web','Keep them electronically (printing alone is not enough)','Save in Year/Month/Partner folders as Date_Partner_Amount','Monthly list: date, partner, amount, consumption tax, registration no.','Back up, and set a no-edit, no-delete rule'],who:['Receive','Keep','Name','List','Protect'],n:['Retention periods vary by document and system (in Japan, books are kept 7 years in principle ★)','The list helps with month-end, tax refunds, audits and handovers']}})[l];
  if(!W)return F.adm_file('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 数字で読む会社（FIN）Part 1〜3 の図 2026.10 ===== */
+fn_rev:function(l){
+ var W=({ja:{t:'売上になる日',r:[['たい焼きを現金で売った','その日','#2C8C8C'],['学校行事に納品（代金は翌月）','納品した日','#1769e0'],['航空券を1か月前に販売','搭乗した日（それまでは前受金）','#E08A2E'],['マイルを付与した','マイルが使われた日','#7A5CC7']],n:['「お金を払った＝費用」ではない。その期間の売上を作るのに使ったかで決まる','長く使う物（屋台・航空機）は資産にし、使う年数に分けて費用（減価償却）にする']},
+  ko:{t:'매출이 되는 날',r:[['붕어빵을 현금으로 팔았다','그날','#2C8C8C'],['학교 행사에 납품(대금은 다음 달)','납품한 날','#1769e0'],['항공권을 한 달 전에 판매','탑승한 날(그때까지는 선수금)','#E08A2E'],['마일을 적립해 줬다','마일을 쓴 날','#7A5CC7']],n:['「돈을 냈다＝비용」이 아니다. 그 기간의 매출을 만드는 데 썼는지로 정해진다','오래 쓰는 것(포장마차·항공기)은 자산으로 하고 쓰는 연수에 나눠 비용(감가상각)으로']},
+  en:{t:'When revenue is recognised',r:[['Taiyaki sold for cash','That day','#2C8C8C'],['Delivered to a school event (paid next month)','The delivery day','#1769e0'],['Air ticket sold a month ahead','The day of travel (until then, advance receipt)','#E08A2E'],['Miles awarded','When the miles are used','#7A5CC7']],n:['Paying is not the same as an expense; it depends on whether it produced this period’s revenue','Long-lived items (a stall, an aircraft) become assets and are expensed over their life (depreciation)']}})[l];
+ if(!W)return F.fn_rev('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+fn_layers:function(l){
+ var W=({ja:{t:'営業利益から税引前利益へ（Vela Air 1年目・億円）',st:['営業利益 180：本業の稼ぎ','営業外損益 −52：支払利息58・受取利息6','経常利益 128（IFRSにはこの段がない）','特別損益 なし：一時的で大きなもの','税引前利益 128'],who:['本業','本業の外','経常','一時的','税引前'],n:['燃油高騰や需要減の赤字は「本業」の結果。特別損失ではない','円安はドル建ての借入・リース債務を膨らませ、為替差損として営業外に出る']},
+  ko:{t:'영업이익에서 세전이익으로(Vela Air 1년차·억 엔)',st:['영업이익 180: 본업의 벌이','영업외손익 −52: 이자 비용 58·이자 수익 6','경상이익 128(IFRS에는 이 단계가 없다)','특별손익 없음: 일시적이고 큰 것','세전이익 128'],who:['본업','본업 밖','경상','일시적','세전'],n:['연료비 급등이나 수요 감소의 적자는 「본업」의 결과. 특별손실이 아니다','엔저는 달러 표시 차입금·리스 부채를 부풀려 환차손으로 영업외에 나타난다']},
+  en:{t:'From operating profit to pre-tax profit (Vela Air year 1, ¥100m)',st:['Operating profit 180: core business earnings','Non-operating −52: interest paid 58, received 6','Ordinary profit 128 (no such line under IFRS)','Extraordinary items: none (one-off, large items)','Profit before tax 128'],who:['Core','Non-core','Ordinary','One-off','Pre-tax'],n:['Losses from fuel spikes or weak demand are core results, not extraordinary losses','A weak yen inflates dollar debt and lease liabilities, showing as FX losses below operating profit']}})[l];
+ if(!W)return F.fn_layers('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#D64545','#2C8C8C','#5B6B7D','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+fn_ni:function(l){
+ var W=({ja:{t:'当期純利益とそのゆくえ（Vela Air 1年目・億円）',st:['税引前利益 128','法人税 38（税率30%）','当期純利益 90','配当 40：株主に払う','残り50が利益剰余金に積み上がる'],who:['税引前','法人税','純利益','配当','剰余金'],n:['赤字の年（2年目 −105）は税を払わず、繰越欠損金として翌年以降の税を減らす★','当期純利益は「手元に残った現金」ではない']},
+  ko:{t:'당기순이익과 그 행방(Vela Air 1년차·억 엔)',st:['세전이익 128','법인세 38(세율 30%)','당기순이익 90','배당 40: 주주에게 지급','남은 50이 이익잉여금에 쌓인다'],who:['세전','법인세','순이익','배당','잉여금'],n:['적자인 해(2년차 −105)는 세금을 내지 않고, 이월결손금으로 다음 해 이후의 세금을 줄인다★','당기순이익은 「손에 남은 현금」이 아니다']},
+  en:{t:'Net profit and where it goes (Vela Air year 1, ¥100m)',st:['Profit before tax 128','Corporate tax 38 (30%)','Net profit 90','Dividend 40, paid to shareholders','The remaining 50 adds to retained earnings'],who:['Pre-tax','Tax','Net profit','Dividend','Retained'],n:['In a loss year (year 2, −105) no tax is paid; the loss is carried forward to cut later tax ★','Net profit is not the cash left in hand']}})[l];
+ if(!W)return F.fn_ni('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#D64545','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+fn_jalana:function(l){
+ var W=({ja:{t:'JALとANAの損益計算書（2026年3月期・億円）',c:[['JAL（IFRS）','売上収益 20,125・営業利益 2,073・営業利益率 10.3%・当期利益 1,376'],['ANA HD（日本基準）','売上高 25,392・営業利益 2,174・営業利益率 8.6%・当期純利益 1,690']],n:['会計の基準が違うので、営業利益率の比較は目安にとどめる★','JALは費用を4項目、ANAは9項目で公表。構成比は定義をそろえて比べる']},
+  ko:{t:'JAL과 ANA의 손익계산서(2026년 3월기·억 엔)',c:[['JAL(IFRS)','매출수익 20,125·영업이익 2,073·영업이익률 10.3%·당기이익 1,376'],['ANA HD(일본 기준)','매출액 25,392·영업이익 2,174·영업이익률 8.6%·당기순이익 1,690']],n:['회계 기준이 다르므로 영업이익률 비교는 참고로만★','JAL은 비용을 4항목, ANA는 9항목으로 공표. 구성비는 정의를 맞춰 비교한다']},
+  en:{t:'JAL and ANA income statements (FY to March 2026, ¥100m)',c:[['JAL (IFRS)','Revenue 20,125; operating profit 2,073; margin 10.3%; profit 1,376'],['ANA HD (Japanese GAAP)','Sales 25,392; operating profit 2,174; margin 8.6%; net profit 1,690']],n:['Different accounting standards: treat margin comparisons as a guide only ★','JAL reports 4 cost lines, ANA 9; align definitions before comparing mix']}})[l];
+ if(!W)return F.fn_jalana('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+fn_curr:function(l){
+ var W=({ja:{t:'1年で線を引く：流動と固定',c:[['流動（1年以内）','資産：現金・売掛金・在庫／負債：買掛金・短期借入・航空券の前受金'],['固定（1年超）','資産：航空機・設備・投資／負債：長期借入・社債・リース債務']],n:['流動比率＝流動資産÷流動負債。Vela Air 期首 1,720÷1,370＝126%','航空会社の流動負債には「運べば消える」前受金が多い']},
+  ko:{t:'1년으로 선을 긋는다: 유동과 비유동',c:[['유동(1년 이내)','자산: 현금·매출채권·재고 / 부채: 매입채무·단기차입·항공권 선수금'],['비유동(1년 초과)','자산: 항공기·설비·투자 / 부채: 장기차입·사채·리스부채']],n:['유동비율＝유동자산÷유동부채. Vela Air 기초 1,720÷1,370＝126%','항공사의 유동부채에는 「실어 나르면 사라지는」 선수금이 많다']},
+  en:{t:'Drawing the line at one year: current and non-current',c:[['Current (within a year)','Assets: cash, receivables, inventory / Liabilities: payables, short-term loans, ticket advances'],['Non-current (beyond a year)','Assets: aircraft, facilities, investments / Liabilities: long-term loans, bonds, lease liabilities']],n:['Current ratio = current assets ÷ current liabilities; Vela Air opening 1,720 ÷ 1,370 = 126%','Airline current liabilities include large advances that disappear once passengers fly']}})[l];
+ if(!W)return F.fn_curr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+fn_wc:function(l){
+ var W=({ja:{t:'現金をしばる項目と、助ける項目',r:[['売掛金','増えると現金が減る（JAL 2,546億円★）','#D64545'],['在庫','増えると現金が減る（予備部品など）','#E08A2E'],['買掛金','増えると現金が残る（支払いを待つ）','#2C8C8C'],['前受金（航空会社）','先に現金が入る（JAL 4,845億円★）','#1769e0']],n:['運転資本＝売掛金＋在庫−買掛金。売上が伸びるとお金が寝る','航空会社は前受金で運転資本がマイナスになりやすい。需要が止まると逆回転（2020年）']},
+  ko:{t:'현금을 묶는 항목과 돕는 항목',r:[['매출채권','늘면 현금이 줄어든다(JAL 2,546억 엔★)','#D64545'],['재고','늘면 현금이 줄어든다(예비 부품 등)','#E08A2E'],['매입채무','늘면 현금이 남는다(지급을 기다린다)','#2C8C8C'],['선수금(항공사)','먼저 현금이 들어온다(JAL 4,845억 엔★)','#1769e0']],n:['운전자본＝매출채권＋재고−매입채무. 매출이 늘면 돈이 묶인다','항공사는 선수금 때문에 운전자본이 마이너스가 되기 쉽다. 수요가 멈추면 역회전(2020년)']},
+  en:{t:'Items that tie up cash, and items that help',r:[['Receivables','Cash falls as they rise (JAL ¥254.6bn ★)','#D64545'],['Inventory','Cash falls as it rises (spare parts and so on)','#E08A2E'],['Payables','Cash stays as they rise (paying later)','#2C8C8C'],['Advance receipts (airlines)','Cash arrives first (JAL ¥484.5bn ★)','#1769e0']],n:['Working capital = receivables + inventory − payables; growth ties up cash','Airline working capital tends to be negative thanks to advances, and reverses when demand stops (2020)']}})[l];
+ if(!W)return F.fn_wc('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+fn_eq:function(l){
+ var W=({ja:{t:'純資産の中身（Vela Air 期首）',r:[['資本金','500億円（株主が払い込んだ）','#1769e0'],['資本剰余金','400億円（資本金にしなかった分）','#2C8C8C'],['利益剰余金','1,020億円（稼いで残した）','#E08A2E'],['自己資本比率','1,920÷6,000＝32.0%','#7A5CC7']],n:['JAL 40.3%、ANA 37.7%（2026年3月末）★','純資産を増やすのは「利益を残す」か「増資」の2つだけ']},
+  ko:{t:'자본의 내용(Vela Air 기초)',r:[['자본금','500억 엔(주주가 납입)','#1769e0'],['자본잉여금','400억 엔(자본금으로 하지 않은 부분)','#2C8C8C'],['이익잉여금','1,020억 엔(벌어서 남긴 것)','#E08A2E'],['자기자본비율','1,920÷6,000＝32.0%','#7A5CC7']],n:['JAL 40.3%, ANA 37.7%(2026년 3월 말)★','자본을 늘리는 것은 「이익을 남기기」와 「증자」 두 가지뿐']},
+  en:{t:'What equity is made of (Vela Air opening)',r:[['Share capital','¥50bn paid in by shareholders','#1769e0'],['Capital surplus','¥40bn not booked as capital','#2C8C8C'],['Retained earnings','¥102bn earned and kept','#E08A2E'],['Equity ratio','1,920 ÷ 6,000 = 32.0%','#7A5CC7']],n:['JAL 40.3%, ANA 37.7% (end of March 2026) ★','Equity grows only by keeping profits or raising new capital']}})[l];
+ if(!W)return F.fn_eq('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+fn_jalbs:function(l){
+ var W=({ja:{t:'JALの貸借対照表（2026年3月末・億円）',r:[['総資産','31,988（前年比 ＋4,038）','#5B6B7D'],['現金及び現金同等物','10,102（総資産の31.6%）','#2C8C8C'],['航空機','10,417（総資産の32.6%）','#1769e0'],['契約負債','4,845（運べば消える負債）','#E08A2E'],['有利子負債','8,759（現金より少ない）','#D64545']],n:['現金と航空機で総資産の64%★','資本は3,180増加（利益1,376＋永久劣後債1,777）']},
+  ko:{t:'JAL의 재무상태표(2026년 3월 말·억 엔)',r:[['총자산','31,988(전년 대비 ＋4,038)','#5B6B7D'],['현금 및 현금성 자산','10,102(총자산의 31.6%)','#2C8C8C'],['항공기','10,417(총자산의 32.6%)','#1769e0'],['계약부채','4,845(실어 나르면 사라지는 부채)','#E08A2E'],['유이자부채','8,759(현금보다 적다)','#D64545']],n:['현금과 항공기로 총자산의 64%★','자본은 3,180 증가(이익 1,376＋영구후순위채 1,777)']},
+  en:{t:'JAL balance sheet (end of March 2026, ¥100m)',r:[['Total assets','31,988 (+4,038 on the year)','#5B6B7D'],['Cash and equivalents','10,102 (31.6% of assets)','#2C8C8C'],['Aircraft','10,417 (32.6% of assets)','#1769e0'],['Contract liabilities','4,845 (gone once passengers fly)','#E08A2E'],['Interest-bearing debt','8,759 (less than cash)','#D64545']],n:['Cash and aircraft make up 64% of total assets ★','Equity rose 3,180 (profit 1,376 + perpetual subordinated bonds 1,777)']}})[l];
+ if(!W)return F.fn_jalbs('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+fn_gap:function(l){
+ var W=({ja:{t:'利益と現金がずれる5つの理由',r:[['① 売掛金が増える','現金 −（売上だが未収）','#D64545'],['② 在庫が増える','現金 −（払ったが費用でない）','#E08A2E'],['③ 減価償却','現金 ＋（費用だが払っていない）','#2C8C8C'],['④ 前受金が増える','現金 ＋（売上の前に入る）','#1769e0'],['⑤ 損益の外のお金','投資・借入と返済・配当・増資','#7A5CC7']],n:['たい焼き屋：利益64,000円でも、商売で増えた現金は49,000円','Vela Air 2年目：赤字105億円でも、現金は212億円増えた']},
+  ko:{t:'이익과 현금이 어긋나는 5가지 이유',r:[['① 매출채권이 늘다','현금 −(매출이지만 미수)','#D64545'],['② 재고가 늘다','현금 −(냈지만 비용이 아님)','#E08A2E'],['③ 감가상각','현금 ＋(비용이지만 내지 않음)','#2C8C8C'],['④ 선수금이 늘다','현금 ＋(매출 전에 들어옴)','#1769e0'],['⑤ 손익 밖의 돈','투자·차입과 상환·배당·증자','#7A5CC7']],n:['붕어빵 가게: 이익 64,000엔이어도 장사로 늘어난 현금은 49,000엔','Vela Air 2년차: 적자 105억 엔이어도 현금은 212억 엔 늘었다']},
+  en:{t:'Five reasons profit and cash differ',r:[['① Receivables rise','Cash − (sold but not collected)','#D64545'],['② Inventory rises','Cash − (paid but not yet an expense)','#E08A2E'],['③ Depreciation','Cash + (an expense with no payment)','#2C8C8C'],['④ Advances rise','Cash + (received before revenue)','#1769e0'],['⑤ Money outside P&L','Investment, borrowing and repayment, dividends, new shares','#7A5CC7']],n:['Taiyaki stall: profit ¥64,000 but operating cash up only ¥49,000','Vela Air year 2: a ¥10.5bn loss, yet cash rose ¥21.2bn']}})[l];
+ if(!W)return F.fn_gap('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+fn_fcf:function(l){
+ var W=({ja:{t:'フリーキャッシュフロー：3つの例',c:[['たい焼き屋 初月','営業CF ＋49,000円 − 設備投資 240,000円 ＝ −191,000円'],['Vela Air 1年目','営業CF ＋394億円 − 設備投資 300億円 ＝ ＋94億円'],['JAL 2026年3月期★','営業CF ＋3,949 − 設備投資 2,024 ＋ 売却 185 ＝ ＋2,110億円']],n:['FCF＝営業CF−設備投資。定義は会社で違うので、比べるときはそろえる','使いみち：借入の返済 → 配当・自己株式 → 次の投資 → 手元に残す']},
+  ko:{t:'잉여현금흐름: 3가지 예',c:[['붕어빵 가게 첫 달','영업현금흐름 ＋49,000엔 − 설비투자 240,000엔 ＝ −191,000엔'],['Vela Air 1년차','영업현금흐름 ＋394억 엔 − 설비투자 300억 엔 ＝ ＋94억 엔'],['JAL 2026년 3월기★','영업현금흐름 ＋3,949 − 설비투자 2,024 ＋ 매각 185 ＝ ＋2,110억 엔']],n:['FCF＝영업현금흐름−설비투자. 정의는 회사마다 다르므로 비교할 때는 맞춘다','쓰임새: 차입 상환 → 배당·자기주식 → 다음 투자 → 손에 남긴다']},
+  en:{t:'Free cash flow: three examples',c:[['Taiyaki stall, month 1','Operating CF +¥49,000 − capex ¥240,000 = −¥191,000'],['Vela Air year 1','Operating CF +394 − capex 300 = +94 (¥100m)'],['JAL FY to Mar 2026 ★','Operating CF +3,949 − capex 2,024 + disposals 185 = +2,110 (¥100m)']],n:['FCF = operating cash flow − capex; definitions vary, so align them before comparing','Uses: repay debt → dividends and buybacks → next investment → keep in reserve']}})[l];
+ if(!W)return F.fn_fcf('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#E08A2E','#1769e0','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

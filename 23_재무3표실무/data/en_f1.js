@@ -3,7 +3,7 @@
 set("1-1",{title:"Revenue and Expenses: Money Earned and Money Used",hl:"Revenue and Expenses",subtitle:"When to count a sale and what counts as an expense: the two rules that build the income statement",
 lead:["Strip the income statement down and it has only two parts: money earned (revenue) and money used to earn it (expenses). The difference is profit. But there are rules about when to count each, and without them the numbers mislead.","At the taiyaki stall, the 20,000 yen supplied to the school event is this month’s sale even though payment comes next month. Conversely, a ticket an airline sells today for a flight next month is not yet revenue; it becomes revenue on the day the passenger flies. This rule is called the accrual basis."],
 sections:[
-{h:"When a sale is counted",blocks:[{t:"table",cols:["Event","Revenue date","Why"],rows:[
+{h:"When a sale is counted",blocks:[{t:"fig",id:"fn_rev",cap:"Figure: when revenue is recognised."},{t:"table",cols:["Event","Revenue date","Why"],rows:[
 ["Taiyaki sold for cash","That day","Goods handed over and cash received"],
 ["Supplied to a school event, paid next month","Delivery date","The obligation to deliver was fulfilled"],
 ["Ticket sold one month before travel","The day the passenger flies","The obligation to carry has not been met; until then it is unearned revenue (a liability)"],
@@ -83,7 +83,7 @@ quiz:[{q:"The stall’s rent of 50,000 yen is…",opts:["SG&A","Cost of sales","
 set("1-4",{title:"Non-operating and Extraordinary Items: What Happened Outside the Core Business",hl:"Outside the Core Business",subtitle:"Interest, FX, asset sales, disasters: kept apart from the core so that earning power stays readable",
 lead:["Below operating profit come items only loosely connected to the core business: interest on loans, FX gains and losses on foreign-currency assets and liabilities, dividends on shares held, the gain on selling an aircraft, losses from disasters or accidents. Mix these into the core and you can no longer see whether the business itself is working.","Airlines carry large dollar costs and liabilities, so a weaker or stronger yen produces large FX effects. Some years they book gains on aircraft sales; in others, disaster losses. The habit of reading these apart from operating profit matters."],
 sections:[
-{h:"Non-operating items: everyday events outside the core",blocks:[{t:"table",cols:["Item","Plus or minus","Airline example"],rows:[
+{h:"Non-operating items: everyday events outside the core",blocks:[{t:"fig",id:"fn_layers",cap:"Figure: from operating profit to pre-tax profit (Vela Air year 1)."},{t:"table",cols:["Item","Plus or minus","Airline example"],rows:[
 ["Interest and dividend income","+","Investing cash on hand, dividends on shares held"],["Interest expense","−","Interest on loans, bonds and lease liabilities; 5.8bn yen a year at Vela Air"],["FX gains and losses","±","Revaluing dollar loans and lease liabilities in yen. A weaker yen inflates liabilities (loss); a stronger yen shrinks them (gain)"],["Share of profit of associates","±","Share of profit in companies owned 20–50%"],["Subsidies and grants","+","Support for regional routes etc. (classification varies by company) ★"]]},
 {t:"note",x:"* Skymark’s year to March 2025 showed an FX loss from revaluing foreign-currency assets and liabilities, sharply reducing ordinary profit (Aviation Wire, 16 May 2025). ★"}]},
 {h:"Extraordinary items: large one-offs (J-GAAP)",blocks:[{t:"rows",items:[
@@ -105,7 +105,7 @@ quiz:[{q:"When a weaker yen raises the yen value of dollar lease liabilities, th
 set("1-5",{title:"Corporate Tax and Net Profit: The Number Left at the End",hl:"Corporate Tax and Net Profit",subtitle:"Roughly 30% of profit goes in tax. Loss years pay nothing and can be offset against future profits",
 lead:["Deduct corporate tax from profit before tax and you have net profit. The effective rate is around 30% for Japanese companies and around 24–27% in Korea including local taxes; the taiyaki stall uses a simple 20%. ★","Net profit belongs to shareholders: dividends are paid out of it and the rest accumulates as retained earnings in equity on the balance sheet (Parts 2 and 4). A loss year pays no tax, and the loss can be carried forward to offset future profits."],
 sections:[
-{h:"Calculating tax (simplified)",blocks:[{t:"table",cols:["","Taiyaki stall (yen)","Vela Air year 1 (100m yen)","Vela Air year 2 (100m yen)"],rows:[
+{h:"Calculating tax (simplified)",blocks:[{t:"fig",id:"fn_ni",cap:"Figure: net profit and where it goes (Vela Air year 1)."},{t:"table",cols:["","Taiyaki stall (yen)","Vela Air year 1 (100m yen)","Vela Air year 2 (100m yen)"],rows:[
 ["Profit before tax","80,000","128","−105 (loss from high fuel prices)"],["Corporate tax","16,000 (20%)","38 (30%)","0 (no tax on a loss)"],["Net profit","64,000","90","−105"],["Later years","—","—","The 105 loss is carried forward and offset against year 3’s profit"]]},
 {t:"note",x:"* Actual tax adjusts accounting profit to taxable income. Rates, carry-forward periods and limits vary by country and year. Japan: 10-year carry-forward, large companies may offset up to 50% of income. Korea: 15 years, up to 80% for large companies. ★"}]},
 {h:"Deferred tax in one breath",blocks:[{t:"rows",items:[
@@ -125,7 +125,7 @@ quiz:[{q:"Which is true of corporate tax in a loss year?",opts:["None is paid, a
 set("1-6",{title:"Reading a Real Income Statement: JAL and ANA, Year to March 2026",hl:"Real Income Statement",subtitle:"Size → margin → cost mix → year-on-year. Read in this order and every company follows the same procedure",
 lead:["With the tools so far, we read real airline income statements: JAL (IFRS) and ANA Holdings (Japanese GAAP) for the year to March 2026 (April 2025 to March 2026). All figures are from each company’s earnings release and results presentation. ★","Read in four steps: ① the size of revenue, ② operating margin (earning power), ③ the cost mix (where the money goes), ④ comparison with the previous year (what changed). The procedure is the same for the taiyaki stall and for Vela Air."],
 sections:[
-{h:"① Size and ② margin",blocks:[{t:"table",cols:["(100m yen)","JAL (IFRS)","ANA HD (J-GAAP)"],rows:[
+{h:"① Size and ② margin",blocks:[{t:"fig",id:"fn_jalana",cap:"Figure: JAL and ANA income statements (FY to March 2026)."},{t:"table",cols:["(100m yen)","JAL (IFRS)","ANA HD (J-GAAP)"],rows:[
 ["Revenue","20,125","25,392"],["Operating costs","18,340","23,217"],["Operating profit","2,073 (EBIT 2,180)","2,174"],["Operating margin","10.3% (EBIT margin 10.8%)","8.6%"],["Ordinary profit","(no such step)","2,196"],["Profit attributable to owners","1,376","1,690"],["Net margin","6.8%","6.7%"]]},
 {t:"note",x:"* JAL: earnings release for the year to March 2026 (IFRS), 30 April 2026. ANA: results presentation, 30 April 2026. JAL’s EBIT adds share of profit of associates and investment income to operating profit. ★"}]},
 {h:"③ Cost mix",blocks:[{t:"table",cols:["JAL operating costs (100m yen)","Amount","Share","ANA air transportation costs (100m yen)","Amount","Share"],rows:[

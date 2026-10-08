@@ -31,7 +31,7 @@ quiz:[{q:"What is equity?",opts:["Assets minus liabilities: what belongs to shar
 set("2-2",{title:"Current and Non-current: Will It Turn into Cash within a Year?",hl:"Current and Non-current",subtitle:"Draw the line at one year and the company’s ability to pay soon becomes visible. For airlines, unflown tickets pile up in current liabilities",
 lead:["Both assets and liabilities are split into current and non-current by whether they turn into cash (or fall due) within a year. Current assets: cash, receivables, inventory. Non-current: aircraft, buildings, long-term investments. Current liabilities: payables, short-term borrowings, loans due within a year. Non-current: long-term borrowings, lease liabilities.","The split shows whether obligations due within a year (current liabilities) can be met from what becomes cash within a year (current assets). Airlines are unusual in carrying large unflown ticket revenue among current liabilities."],
 sections:[
-{h:"Drawing the one-year line",blocks:[{t:"table",cols:["","Current (within one year)","Non-current (beyond one year)"],rows:[
+{h:"Drawing the one-year line",blocks:[{t:"fig",id:"fn_curr",cap:"Figure: current and non-current."},{t:"table",cols:["","Current (within one year)","Non-current (beyond one year)"],rows:[
 ["Assets","Cash, receivables, inventory (parts, materials), prepaid expenses","Aircraft, buildings and equipment, software, investments, deposits, deferred tax assets"],
 ["Liabilities","Payables, accrued expenses, short-term borrowings, current portion of long-term debt, unflown ticket revenue, tax payable","Long-term borrowings, bonds, lease liabilities, retirement provisions, long-term maintenance provisions"],
 ["Taiyaki stall","Cash 309,000, receivable 20,000, ingredients 15,000 / loan 200,000 (treated as short-term), tax payable 16,000","Cart 236,000 / none"]]},
@@ -85,7 +85,7 @@ quiz:[{q:"Which is true of depreciation?",opts:["A cost with no cash leaving","A
 set("2-4",{title:"Receivables, Inventory and Payables: Three Items That Tie Up Cash",hl:"Tie Up Cash",subtitle:"Money from sales not yet received, money for purchases not yet paid, money sleeping in the storeroom. Working capital",
 lead:["Profitable, yet short of cash. Much of the reason lies in three items: receivables (sold but not yet collected), inventory (bought but not yet used or sold) and payables (bought but not yet paid). The first two tie up cash; the third helps it.","For airlines the shape differs. Passengers pay before flying, so receivables are small and unearned ticket revenue helps cash instead. Inventory is spare parts: not for sale, yet large. This lesson brings the pieces together as working capital."],
 sections:[
-{h:"The three items and cash",blocks:[{t:"table",cols:["Item","What it is","Effect on cash","Taiyaki stall"],rows:[
+{h:"The three items and cash",blocks:[{t:"fig",id:"fn_wc",cap:"Figure: items that tie up cash, and items that help."},{t:"table",cols:["Item","What it is","Effect on cash","Taiyaki stall"],rows:[
 ["Receivables","Sold, not yet collected","A rise reduces cash (a sale with no cash yet)","School event 20,000"],
 ["Inventory","Bought, not yet used or sold","A rise reduces cash (paid for, not yet a cost)","Ingredients 15,000"],
 ["Payables","Bought, not yet paid","A rise increases cash (a cost with no cash out yet)","None (cash purchases)"]]},
@@ -112,7 +112,7 @@ quiz:[{q:"When receivables rise, cash…",opts:["Falls (a sale not yet collected
 set("2-5",{title:"Inside Equity: Money Invested and Money Earned and Kept",hl:"Inside Equity",subtitle:"Share capital, capital surplus, retained earnings, treasury shares, other comprehensive income. The equity ratio measures strength",
 lead:["Equity belongs to shareholders as a whole, but inside it is split by origin: money shareholders paid in (share capital and capital surplus), money the company earned and kept (retained earnings), shares bought back (treasury shares, negative), and valuation differences not yet taken through profit (accumulated other comprehensive income).","The most basic measure of an airline’s strength is the equity ratio: equity divided by total assets. JAL 40.3%, ANA 37.7% at 31 March 2026 ★, both recovering from the pandemic through accumulated profit and capital raising."],
 sections:[
-{h:"The parts of equity",blocks:[{t:"table",cols:["Part","Content","Taiyaki stall","Vela Air opening"],rows:[
+{h:"The parts of equity",blocks:[{t:"fig",id:"fn_eq",cap:"Figure: what equity is made of (Vela Air opening)."},{t:"table",cols:["Part","Content","Taiyaki stall","Vela Air opening"],rows:[
 ["Share capital","Shareholders’ payments designated as capital","300,000","50.0bn yen"],
 ["Capital surplus","Payments not designated as share capital","—","40.0bn"],
 ["Retained earnings","Accumulated profits less dividends","64,000","102.0bn"],
@@ -142,7 +142,7 @@ quiz:[{q:"What are retained earnings?",opts:["Accumulated profits less dividends
 set("2-6",{title:"Reading a Real Balance Sheet: JAL at 31 March 2026",hl:"Real Balance Sheet",subtitle:"Size → equity ratio → what the assets are → airline-specific liabilities. Read in this order",
 lead:["As with the income statement, decide a reading order for the balance sheet and you will not get lost: ① total assets, ② equity ratio (strength), ③ what the assets consist of, ④ airline-specific liabilities (unflown tickets, miles, leases, provisions). We practise on JAL’s consolidated balance sheet at 31 March 2026 (earnings release, 30 April 2026). ★","Figures are rounded to 100m yen. The source is in millions and uses finer line items; here we work with large blocks to practise reading."],
 sections:[
-{h:"① Size and ② strength",blocks:[{t:"table",cols:["(100m yen)","31 Mar 2025","31 Mar 2026","Change"],rows:[
+{h:"① Size and ② strength",blocks:[{t:"fig",id:"fn_jalbs",cap:"Figure: JAL balance sheet (end of March 2026)."},{t:"table",cols:["(100m yen)","31 Mar 2025","31 Mar 2026","Change"],rows:[
 ["Total assets","27,949","31,988","+4,038 (mainly cash)"],["Total liabilities","17,782","18,640","+857 (contract liabilities etc.)"],["Total equity","10,167","13,348","+3,180 (perpetual bonds + profit)"],["Equity ratio (owners of parent)","34.9%","40.3%","+5.4 points"]]},
 {t:"point",x:"Total assets rose by 400bn, mostly cash. Liabilities barely moved while equity grew by 318bn: profit of 137.6bn plus 177.7bn of perpetual subordinated bonds recorded as equity (2-5)."}]},
 {h:"③ What the assets are",blocks:[{t:"table",cols:["Assets (100m yen)","31 Mar 2026","% of total","Reading"],rows:[
