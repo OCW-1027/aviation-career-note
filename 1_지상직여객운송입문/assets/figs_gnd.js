@@ -774,6 +774,54 @@ gnd_unruly:function(l){
   en:{t:'Disruptive passengers: the handover on arrival',st:['The captain or cabin calls before arrival','Arrange airport police, security and a supervisor','Hand over; adjust the order in which others disembark','Collect statements from crew and witnesses, and documents','Report to head office and the authority (8-5)'],who:['Call from aircraft','Ground arrangements','Arrival and handover','Statements and records','Report'],n:['Record when, by whom and to whom the passenger was handed over, and receipt of the crew report','Prevent it before boarding: with the supervisor and captain, refuse intoxicated or abusive passengers under the conditions of carriage']}})[l];
  if(!W)return F.gnd_unruly('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#7A5CC7','#0f3558','#D64545','#E08A2E','#2E9B5F'],'10s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* ── 航空営業 Part 8（イレギュラーと営業）の図 2026.10 ── */
+/* 8-1 販売の約束と、空港で試される場面 */
+sls_promise:function(l){
+ var W=({ja:{t:'売った約束は、空港で試される（例★）',r:[['出発時刻','チェックイン・搭乗口の締め切り','#1769e0'],['座席の指定','機材の変更で並びが変わることがある','#2C8C8C'],['手荷物の許容量','カウンターで重さ・個数を確認、超えると料金','#E08A2E'],['乗り継ぎ','最小乗り継ぎ時間（MCT）、別切りは保護されないことが多い','#7A5CC7'],['特別なサービス','車いす・一人旅の子ども・ペット・医療は事前の申し込み','#D64545'],['旅行の書類','パスポート・ビザ・電子渡航認証がないと乗れない','#0f3558']],n:['売るときに締め切り・許容量・申し込みの期限まで伝えると、当日のトラブルが減る','大きな団体・VIP・キャンペーンは前日までに空港の支店へ伝える']},
+  ko:{t:'판매한 약속은 공항에서 시험받는다(예★)',r:[['출발 시각','체크인·탑승구 마감','#1769e0'],['좌석 지정','기재 변경으로 배열이 바뀔 수 있다','#2C8C8C'],['수하물 허용량','카운터에서 무게·개수 확인, 넘으면 요금','#E08A2E'],['연결','최소 연결 시간(MCT), 따로 산 항공권은 보호되지 않는 경우가 많다','#7A5CC7'],['특별 서비스','휠체어·비동반 소아·반려동물·의료는 사전 신청','#D64545'],['여행 서류','여권·비자·전자여행허가가 없으면 탑승 불가','#0f3558']],n:['판매할 때 마감·허용량·신청 기한까지 알리면 당일 문제가 줄어든다','큰 단체·VIP·캠페인은 전날까지 공항 지점에 알린다']},
+  en:{t:'What you sell is tested at the airport (example ★)',r:[['Departure time','Check-in and gate deadlines','#1769e0'],['Seat assignment','An aircraft change can change the seat map','#2C8C8C'],['Baggage allowance','Weight and pieces checked at the counter; excess charged','#E08A2E'],['Connections','Minimum connecting time (MCT); separate tickets often not protected','#7A5CC7'],['Special services','Wheelchairs, unaccompanied minors, pets, medical: request in advance','#D64545'],['Travel documents','No passport, visa or travel authorisation means no boarding','#0f3558']],n:['Telling customers the deadlines, allowances and request deadlines when selling prevents trouble on the day','Tell the airport station about large groups, VIPs and campaigns by the day before']}})[l];
+ if(!W)return F.sls_promise('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-2 イレギュラーの情報の流れ */
+sls_flow:function(l){
+ var W=({ja:{t:'イレギュラーの情報の流れ：同じ内容を、同じ時刻に（例★）',st:['遅延・欠航・代わりの便を判断する','案内の文と、振り替え・払い戻しの条件（ウェーバー）を決める','空港の支店・営業・コールセンターが同じ内容を受け取る','空港はその場のお客様へ、営業は旅行会社・法人へ、自社は直販のお客様へ','変われば同じ順で更新し、誰に・いつ・何を伝えたかを記録'],who:['運航管理・本社','本社の運送・営業','社内で共有','外へ案内','更新と記録'],n:['最初の1時間：窓口を1つに／事実の確認／空港と同じ文で／影響の大きいお客様から／次の案内の時刻／記録','韓国発着便は「知った時刻」と「伝えた時刻」の差が問われる（旅客5-8）']},
+  ko:{t:'비정상 운항 정보의 흐름: 같은 내용을 같은 시각에(예★)',st:['지연·결항·대체 편을 판단한다','안내 문안과 대체 수송·환불 조건(웨이버)을 정한다','공항 지점·영업·콜센터가 같은 내용을 받는다','공항은 현장 고객에게, 영업은 여행사·법인에게, 자사는 직판 고객에게','바뀌면 같은 순서로 갱신하고 누구에게·언제·무엇을 알렸는지 기록'],who:['운항통제·본사','본사 운송·영업','사내 공유','외부 안내','갱신과 기록'],n:['첫 1시간: 창구를 하나로 / 사실 확인 / 공항과 같은 문안 / 영향이 큰 고객부터 / 다음 안내 시각 / 기록','한국 출도착편은 「안 시각」과 「알린 시각」의 차이가 문제 된다(여객 5-8)']},
+  en:{t:'How disruption information flows: same content, same time (example ★)',st:['Decide on the delay, cancellation or replacement flight','Set the wording and the rebooking and refund conditions (waiver)','Airport station, sales and call centre receive the same content','Airport informs passengers there; sales informs agencies and corporates; the airline informs direct customers','Update in the same order when things change; record who was told what and when'],who:['OCC and head office','Head office teams','Shared internally','Informing outside','Updates and records'],n:['First hour: one source / check facts / same words as the airport / most affected first / next update time / record','For flights to and from Korea, the gap between the time known and the time told is scrutinised (Passenger 5-8)']}})[l];
+ if(!W)return F.sls_flow('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#0f3558','#7A5CC7','#1769e0','#E08A2E','#2E9B5F'],'10s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-3 旅行会社に届けるもの */
+sls_agent:function(l){
+ var W=({ja:{t:'イレギュラーのとき旅行会社に届けるもの（例★）',r:[['予約の変更（GDS）','スケジュール変更の通知 → 旅行会社のキューで処理','#1769e0'],['条件（ウェーバー）','対象・期間・変えられる便・払い戻し・航空券への記載','#D64545'],['一斉の案内','旅行会社への一斉メール・専用サイト。版と時刻を明記','#2C8C8C'],['問い合わせの窓口','旅行会社専用の電話・メール、受付時間の延長','#7A5CC7'],['団体・ブロック','担当者が個別に連絡し、代わりの座席を先に確保','#E08A2E'],['払い戻し','BSPの手続き。条件どおり手数料なし','#2E9B5F']],n:['条件があいまいだと旅行会社が動けず、条件と違う処理はADMの原因になる','お客様の連絡先がない予約は、旅行会社からお客様へ知らせてもらう']},
+  ko:{t:'비정상 운항 때 여행사에 전할 것(예★)',r:[['예약 변경(GDS)','스케줄 변경 통지 → 여행사 큐에서 처리','#1769e0'],['조건(웨이버)','대상·기간·바꿀 수 있는 편·환불·항공권 기재','#D64545'],['일괄 안내','여행사 일괄 메일·전용 사이트. 판과 시각 명기','#2C8C8C'],['문의 창구','여행사 전용 전화·메일, 접수 시간 연장','#7A5CC7'],['단체·블록','담당자가 개별 연락하고 대체 좌석을 먼저 확보','#E08A2E'],['환불','BSP 절차. 조건대로 수수료 없음','#2E9B5F']],n:['조건이 모호하면 여행사가 움직일 수 없고, 조건과 다른 처리는 ADM의 원인이 된다','고객 연락처가 없는 예약은 여행사가 고객에게 알리도록 한다']},
+  en:{t:'What to send travel agencies in a disruption (example ★)',r:[['Booking changes (GDS)','Schedule change notification → processed from the agency queue','#1769e0'],['Conditions (waiver)','Scope, dates, permitted flights, refunds, ticket entries','#D64545'],['Mass notification','One email to all agencies and the agency site, with version and time','#2C8C8C'],['Point of contact','Dedicated agency phone and email, extended hours','#7A5CC7'],['Groups and blocks','Account manager calls each agency and secures seats first','#E08A2E'],['Refunds','Through BSP; no fee where the conditions say so','#2E9B5F']],n:['Vague conditions stop agencies acting, and processing outside them leads to ADMs','Where the booking has no customer contact, ask the agency to inform the customer']}})[l];
+ if(!W)return F.sls_agent('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-4 インダイレクトと直販：誰が知らせ、誰が処理するか */
+sls_inddir:function(l){
+ var W=({ja:{t:'インダイレクトと直販：誰が知らせ、誰が処理するか',a:['インダイレクト（旅行会社）','直販（自社）'],n1:['航空会社','旅行会社','お客様'],n2:['航空会社','お客様'],e1:['GDS・ウェーバー','旅行会社が連絡・処理'],e2:'メール・SMS・アプリで直接。変更・払い戻しも自社で',n:['同じ便でも買った経路で知らせが違う。条件と内容をそろえ、不公平を出さない','直販は連絡先の誤り・未登録、旅行会社経由は連絡先のない予約に注意']},
+  ko:{t:'간접판매와 직판: 누가 알리고 누가 처리하나',a:['간접판매(여행사)','직판(자사)'],n1:['항공사','여행사','고객'],n2:['항공사','고객'],e1:['GDS·웨이버','여행사가 연락·처리'],e2:'메일·문자·앱으로 직접. 변경·환불도 자사가',n:['같은 편이라도 산 경로에 따라 통지가 다르다. 조건과 내용을 맞춰 불공평이 없게','직판은 연락처 오류·미등록, 여행사 경유는 연락처가 없는 예약에 주의']},
+  en:{t:'Indirect and direct: who informs, and who handles it',a:['Indirect (travel agency)','Direct (airline)'],n1:['Airline','Agency','Customer'],n2:['Airline','Customer'],e1:['GDS and waiver','Agency informs and processes'],e2:'Direct by email, SMS or app; changes and refunds handled by the airline',n:['Passengers on one flight get different notices depending on where they bought: align terms so no one is treated unfairly','Direct: watch for wrong or missing contacts. Indirect: watch for bookings without contacts']}})[l];
+ if(!W)return F.sls_inddir('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y,bw=140,bh=44;
+ function lane(y,lab,nodes,edges,col){var o=R(20,y,600,128,'#F4F7FB',12)+tx(36,y+24,lab,11,col,900,'start');var xs=nodes.length===3?[40,250,460]:[40,460];
+  nodes.forEach(function(n,i){o+=R(xs[i],y+44,bw,bh,i===nodes.length-1?'#2E9B5F':col,10)+WR(xs[i]+bw/2,y+44+bh/2+FS(11)*0.35,n,11,'#fff',900,bw-12)});
+  for(var i=0;i<xs.length-1;i++){var x1=xs[i]+bw+6,x2=xs[i+1]-6,e=typeof edges==='string'?edges:edges[i];o+=ARW(x1,y+66,x2,y+66,'#9FB0C2',3)+WR((x1+x2)/2,y+108,e,9,'#5B6B7D',800,x2-x1+20)}
+  o+='<circle r="8" fill="#FFD23F" stroke="#0f3558" stroke-width="2"><animateMotion dur="6s" repeatCount="indefinite" path="M'+(xs[0]+bw/2)+' '+(y+38)+' L'+(xs[xs.length-1]+bw/2)+' '+(y+38)+'"/></circle>';return o}
+ s+=lane(y,W.a[0],W.n1,W.e1,'#1769e0');y+=140;s+=lane(y,W.a[1],W.n2,W.e2,'#E08A2E');y+=144;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-4 直販のお客様への知らせ方 */
+sls_direct:function(l){
+ var W=({ja:{t:'直販のお客様への知らせ方（例）',st:['対象の便のお客様全員に、予約の言語で','お知らせの欄とSNSに同じ内容。更新の時刻も','条件に合う変更・払い戻しをサイト・アプリで自分でできるように','人数と受付時間を増やし、待ち時間・折り返しを案内','空港・旅行会社への案内と内容をそろえる','メールが戻った人・連絡先のない人を一覧にして電話・空港で'],who:['一斉の通知','サイト・SNS','オンラインで変更','コールセンター','内容をそろえる','届かない人'],n:['法人・上級会員・乗り継ぎ・特別なサービスのお客様には個別に','補償は原因で変わる。その場で約束せず、会社の基準と窓口を案内する']},
+  ko:{t:'직판 고객에게 알리는 법(예)',st:['대상 편 고객 전원에게, 예약한 언어로','공지란과 SNS에 같은 내용. 갱신 시각도','조건에 맞는 변경·환불을 사이트·앱에서 스스로 할 수 있게','인원과 접수 시간을 늘리고 대기 시간·콜백 안내','공항·여행사 안내와 내용을 맞춘다','메일이 반송된 사람·연락처가 없는 사람을 목록으로 만들어 전화·공항에서'],who:['일괄 통지','사이트·SNS','온라인 변경','콜센터','내용 맞추기','닿지 않는 사람'],n:['법인·상위 등급 회원·연결·특별 서비스 고객에게는 개별로','보상은 원인에 따라 다르다. 그 자리에서 약속하지 말고 회사 기준과 창구를 안내한다']},
+  en:{t:'How to inform direct customers (example)',st:['Everyone on affected flights, in the language they booked in','Same content in the news section and on social media, with update times','Open self-service changes and refunds that match the conditions','Add staff and hours; give waiting times and offer call-backs','Align with what the airport and agencies are told','List bounced emails and missing contacts; follow up by phone or at the airport'],who:['Mass notice','Website and social','Self-service','Call centre','Align content','Not reached'],n:['Contact corporate clients, elite members, connecting and special-service customers individually','Compensation depends on the cause: do not promise on the spot; explain the standards and where to apply']}})[l];
+ if(!W)return F.sls_direct('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#E08A2E','#2C8C8C','#1769e0','#7A5CC7','#0f3558','#D64545'],'12s');s+=A.s;
  var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)}
 
 };
