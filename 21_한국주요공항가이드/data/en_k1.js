@@ -3,7 +3,7 @@
 set("1-1",{title:"Incheon International Airport (ICN)",hl:"Incheon",subtitle:"The centre of Korea’s international flying: 24 hours, four runways and two terminals. Korean Air and Asiana now share T2 after their merger; next come a third terminal and a fifth runway",
 lead:["Incheon International Airport was built on reclaimed land between Yeongjong and Yongyu islands, about 50 km west of Seoul. Opened in 2001, it handled 73.55 million international passengers in 2025, third in the world after Dubai and Heathrow (ACI World), and ranked seventh for cargo.","It is also an important connecting airport linking Japanese regional cities with North America, Europe and Southeast Asia. This lesson covers the basics, what to watch in operations and handling, and future plans."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"kor_icn",cap:"Figure: Incheon at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: ICN / ICAO: RKSI"],
 ["Operator","Incheon International Airport Corporation (100% government-owned)"],
 ["Opened","29 March 2001 (Gimpo was previously the international gateway)"],
@@ -37,7 +37,7 @@ next:"1-2 Gimpo International Airport (GMP)"});
 set("1-2",{title:"Gimpo International Airport (GMP)",hl:"Gimpo",subtitle:"Close to central Seoul and the hub of domestic flying; Gimpo–Jeju is one of the world’s busiest routes. International flights are short-haul business routes such as Haneda and Kansai. Flights restricted 23:00–06:00",
 lead:["Gimpo International Airport lies in western Seoul. It was Korea’s international gateway until Incheon opened in 2001 and is now the centre of domestic flying. Flights to Haneda began in November 2003, and it also serves short-haul city-to-city international routes.","In 2025 it handled 4.42 million international passengers, 2.98 million of them on Japan routes (Korea Airports Corporation). This lesson covers the basics, what to watch in operations and handling, and the outlook."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"kor_gmp",cap:"Figure: Gimpo at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: GMP / ICAO: RKSS"],
 ["Operator","Korea Airports Corporation"],
 ["History","Most international flights moved to Incheon in 2001; Haneda flights began on 30 November 2003"],

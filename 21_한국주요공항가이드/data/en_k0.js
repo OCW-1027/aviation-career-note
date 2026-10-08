@@ -3,7 +3,7 @@
 set("0-1",{title:"The Basics of Korea’s Airports",hl:"Korea’s airports",subtitle:"Who runs the airports and who handles border control. Six ways to look at Korea’s airports, from the numbers to operating hours, weather and shared military use",
 lead:["Most of Korea’s international passengers go through Incheon, but international traffic at regional airports such as Gimpo, Gimhae and Jeju also grew to 21.31 million in 2025 (+14.9%, Korea Airports Corporation). Domestic flying, meanwhile, depends heavily on routes to Jeju.","Each airport differs in operator, operating hours and role. This lesson sets out who runs Korea’s airports, the border agencies, the 2025 numbers and six ways to look at an airport."],
 sections:[
-{h:"Who runs the airports",blocks:[{t:"table",cols:["Organisation","Role","Main airports"],rows:[
+{h:"Who runs the airports",blocks:[{t:"fig",id:"kor_org",cap:"Figure: who runs Korea’s airports."},{t:"table",cols:["Organisation","Role","Main airports"],rows:[
 ["Incheon International Airport Corporation","Builds and runs Incheon (100% government-owned)","Incheon (ICN)"],
 ["Korea Airports Corporation","Runs 14 airports other than Incheon","Gimpo, Gimhae, Jeju, Cheongju, Daegu, Muan, Yangyang, Gwangju, Ulsan, Yeosu, Pohang-Gyeongju, Sacheon, Gunsan, Wonju"],
 ["Ministry of Land, Infrastructure and Transport and regional aviation administrations","Aviation policy, airport planning, operating approvals and oversight (Seoul, Busan and Jeju regional offices)","Nationwide"],
@@ -41,7 +41,7 @@ next:"0-2 Entry to Korea: K-ETA"});
 set("0-2",{title:"Entry to Korea: K-ETA (Korea Electronic Travel Authorization)",hl:"K-ETA",subtitle:"Pre-departure authorisation for visa-exempt travellers. Japan and 21 other countries and territories are temporarily exempt until 31 December 2026. What stations and check-in counters should confirm",
 lead:["Korea admits nationals of many countries without a visa, but since 2021 it has required visa-exempt travellers to obtain online authorisation before departure (K-ETA). To support tourism, 22 countries and territories including Japan, the United States and Taiwan have been temporarily exempt since 1 April 2023, and the Ministry of Justice has extended the exemption to 31 December 2026.","This lesson covers how K-ETA works, the temporary exemption and what airline check-in staff should confirm."],
 sections:[
-{h:"K-ETA at a glance",blocks:[{t:"table",cols:["Item","Details (September 2026)"],rows:[
+{h:"K-ETA at a glance",blocks:[{t:"fig",id:"kor_keta",cap:"Figure: K-ETA and the temporary exemption (September 2026)."},{t:"table",cols:["Item","Details (September 2026)"],rows:[
 ["Scheme","Online travel authorisation, obtained before departure by nationals of countries and territories that can enter Korea without a visa (Ministry of Justice)"],
 ["Mandatory from","1 September 2021"],
 ["Who applies","Passport holders of the 112 visa-exempt countries and territories; those aged 17 or under or 65 or over, crew, transit passengers who do not enter Korea and diplomatic or official passport holders are excluded"],

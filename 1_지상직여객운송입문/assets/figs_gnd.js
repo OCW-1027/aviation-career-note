@@ -1135,6 +1135,43 @@ apt_oka:function(l){
   ko:{t:'나하공항(OKA)의 요점(2026년 9월 기준)',c:[['운영','국가(국토교통성). 터미널은 빌딩 회사'],['활주로','제1 3,000m·제2 2,700m(2020년 운용)'],['운용 시간','24시간']],n:['자위대와 공용. 이륙 대기가 생길 수 있으니 이유를 설명할 수 있게 한다','먼바다 쪽 제2활주로는 지상 활주가 길어질 수 있다','외딴섬 환승객이 많다. 지연·결항 때 보호와 수하물을 확인한다']},
   en:{t:'Naha (OKA) at a glance (September 2026)',c:[['Operator','The state (MLIT); terminals run by building companies'],['Runways','No. 1 3,000 m, No. 2 2,700 m (opened 2020)'],['Hours','24 hours']],n:['Shared with the Self-Defense Forces: take-off queues can occur, so be ready to explain','The offshore second runway can mean longer taxiing','Many passengers connect to outer islands: check protection and baggage in disruption']}})[l];
  if(!W)return F.apt_oka('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 韓国の主要空港ガイド（KOR）の図 2026.10 ===== */
+kor_org:function(l){
+ var W=({ja:{t:'韓国の空港を動かす組織',r:[['仁川国際空港公社','仁川国際空港の建設・運営（国が100%出資）','#1769e0'],['韓国空港公社','仁川以外の全国14空港の運営','#2C8C8C'],['国土交通部・地方航空庁','航空の政策、空港の計画、運航の許可と監督','#7A5CC7'],['空軍など','民間と軍が共用する空港の飛行場の運用','#0f3558'],['CIQ','出入国（法務部）・税関（関税庁）・検疫（疾病管理庁・農林畜産検疫本部）','#D64545']],n:['空港の会社が2つに分かれている。仁川と、それ以外の空港で窓口が違う']},
+  ko:{t:'한국 공항을 움직이는 조직',r:[['인천국제공항공사','인천국제공항 건설·운영(국가 100% 출자)','#1769e0'],['한국공항공사','인천 외 전국 14개 공항 운영','#2C8C8C'],['국토교통부·지방항공청','항공 정책, 공항 계획, 운항 허가와 감독','#7A5CC7'],['공군 등','민군 공용 공항의 비행장 운용','#0f3558'],['CIQ','출입국(법무부)·세관(관세청)·검역(질병관리청·농림축산검역본부)','#D64545']],n:['공항 회사가 둘로 나뉜다. 인천과 그 밖의 공항은 창구가 다르다']},
+  en:{t:'Who runs Korea’s airports',r:[['Incheon International Airport Corporation','Builds and runs Incheon (100% state-owned)','#1769e0'],['Korea Airports Corporation','Runs the 14 other airports nationwide','#2C8C8C'],['MOLIT and regional aviation offices','Policy, airport planning, operating approvals and oversight','#7A5CC7'],['Air Force and others','Run the airfield at joint civil-military airports','#0f3558'],['CIQ','Immigration (Justice), customs (Customs Service), quarantine (KDCA, plant and animal quarantine)','#D64545']],n:['Two airport companies: Incheon has its own counterparties, separate from the other airports']}})[l];
+ if(!W)return F.kor_org('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+kor_keta:function(l){
+ var W=({ja:{t:'K-ETA（電子渡航許可）の要点（2026年9月時点）',c:[['対象','無査証で入国できる国・地域の旅券を持つ人（年齢などの例外あり）'],['申請','公式サイトかアプリで。搭乗の72時間前までが勧められる。手数料1万ウォン'],['有効期間','許可から3年（旅券の期限が先ならその日まで）']],n:['日本など22か国・地域は一時免除。期間は2026年12月31日まで（★）','2027年以降は2026年9月28日時点で未発表。延長がなければ申請が必要になる（★）','カウンターでは免除の対象か、許可を持っているかを確かめる']},
+  ko:{t:'K-ETA(전자여행허가)의 요점(2026년 9월 기준)',c:[['대상','무사증 입국이 가능한 국가·지역 여권 소지자(나이 등 예외 있음)'],['신청','공식 사이트나 앱으로. 탑승 72시간 전까지 권장. 수수료 1만 원'],['유효 기간','허가부터 3년(여권 기한이 먼저면 그날까지)']],n:['일본 등 22개 국가·지역은 한시 면제. 기간은 2026년 12월 31일까지(★)','2027년 이후는 2026년 9월 28일 기준 미발표. 연장이 없으면 신청이 필요해진다(★)','카운터에서는 면제 대상인지, 허가를 가지고 있는지 확인한다']},
+  en:{t:'K-ETA (electronic travel authorisation) at a glance (September 2026)',c:[['Who','Holders of visa-free nationalities’ passports (with age and other exceptions)'],['How','Apply on the official site or app; 72 hours before boarding is advised. Fee KRW 10,000'],['Validity','Three years from approval, or to passport expiry if sooner']],n:['Japan and others (22 countries and territories) are temporarily exempt until 31 December 2026 (★)','Nothing announced for 2027 as of 28 September 2026; without an extension, applications will be needed (★)','At the counter, check whether the passenger is exempt or holds an authorisation']}})[l];
+ if(!W)return F.kor_keta('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#7A5CC7']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+kor_icn:function(l){
+ var W=({ja:{t:'仁川国際空港（ICN）の要点（2026年9月時点）',c:[['運営','仁川国際空港公社（国が100%出資）'],['滑走路','4本'],['運用時間','24時間']],n:['共同運航便は実際に運航する会社のターミナルを使う。案内を確かめる','T1とT2の間はシャトルバスや鉄道で移動。乗り継ぎは時間に余裕を','春〜夏は海霧で視程が下がり、冬は雪と強い風。低視程の運用と防除氷に備える']},
+  ko:{t:'인천국제공항(ICN)의 요점(2026년 9월 기준)',c:[['운영','인천국제공항공사(국가 100% 출자)'],['활주로','4개'],['운용 시간','24시간']],n:['공동운항편은 실제 운항사의 터미널을 쓴다. 안내를 확인한다','T1과 T2 사이는 셔틀버스나 철도로 이동. 환승은 시간에 여유를','봄~여름은 해무로 시정이 떨어지고 겨울은 눈과 강풍. 저시정 운용과 방제빙에 대비한다']},
+  en:{t:'Incheon International (ICN) at a glance (September 2026)',c:[['Operator','Incheon International Airport Corporation (state-owned)'],['Runways','Four'],['Hours','24 hours']],n:['Codeshares use the operating carrier’s terminal: check the information given','T1 and T2 are linked by shuttle bus and rail: allow time for connections','Sea fog lowers visibility in spring and summer; snow and strong winds in winter. Prepare low-visibility and de-icing operations']}})[l];
+ if(!W)return F.kor_icn('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+kor_gmp:function(l){
+ var W=({ja:{t:'金浦国際空港（GMP）の要点（2026年9月時点）',c:[['運営','韓国空港公社'],['滑走路','2本（平行）★'],['運用時間','6:00〜23:00']],n:['23時までに着けない便は仁川などへの目的地の変更になる。夕方以降の遅れは早めに相談','済州便が非常に多い。済州の強風・大雪が金浦の国内線全体に波及する','国際線ターミナルの処理能力は仁川より小さい。大型機の到着が重なると待ちが長い']},
+  ko:{t:'김포국제공항(GMP)의 요점(2026년 9월 기준)',c:[['운영','한국공항공사'],['활주로','2개(평행)★'],['운용 시간','6:00~23:00']],n:['23시까지 도착할 수 없는 편은 인천 등으로 목적지 변경. 저녁 이후 지연은 일찍 협의','제주편이 매우 많다. 제주의 강풍·폭설이 김포 국내선 전체에 파급된다','국제선 터미널 처리 능력은 인천보다 작다. 대형기 도착이 겹치면 대기가 길다']},
+  en:{t:'Gimpo International (GMP) at a glance (September 2026)',c:[['Operator','Korea Airports Corporation'],['Runways','Two (parallel) ★'],['Hours','06:00–23:00']],n:['Flights unable to land by 23:00 divert to Incheon or elsewhere: raise evening delays early','Jeju flights are very frequent: wind or snow at Jeju ripples through Gimpo’s domestic schedule','The international terminal handles less than Incheon: queues grow when large aircraft arrive together']}})[l];
+ if(!W)return F.kor_gmp('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+kor_pus:function(l){
+ var W=({ja:{t:'金海国際空港（PUS）の要点（2026年9月時点）',c:[['運営','韓国空港公社（飛行場は空軍と共用）'],['滑走路','平行の2本'],['運用時間','6:00〜23:00（夜間は離着陸できない）']],n:['1時間あたりの枠が90%台まで埋まる。少しの遅れが後ろの便に次々と波及する','北側に山があり、南風のときは旋回して着陸する進入になる','空軍の訓練や国の行事で時間帯の制限が出る。NOTAMを毎日確かめる']},
+  ko:{t:'김해국제공항(PUS)의 요점(2026년 9월 기준)',c:[['운영','한국공항공사(비행장은 공군과 공용)'],['활주로','평행 2개'],['운용 시간','6:00~23:00(야간 이착륙 불가)']],n:['시간당 슬롯이 90%대까지 찬다. 작은 지연이 뒤 편에 줄줄이 파급된다','북쪽에 산이 있어 남풍 때는 선회 착륙 접근이 된다','공군 훈련이나 국가 행사로 시간대 제한이 생긴다. NOTAM을 매일 확인한다']},
+  en:{t:'Gimhae International (PUS) at a glance (September 2026)',c:[['Operator','Korea Airports Corporation (airfield shared with the Air Force)'],['Runways','Two, parallel'],['Hours','06:00–23:00 (no movements at night)']],n:['Hourly slots are over 90% full: small delays cascade to later flights','Mountains to the north mean circling approaches in southerly winds','Air Force training or state events restrict times: check NOTAMs daily']}})[l];
+ if(!W)return F.kor_pus('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+kor_cju:function(l){
+ var W=({ja:{t:'済州国際空港（CJU）の要点（2026年9月時点）',c:[['運営','韓国空港公社'],['滑走路','交差する2本（実際はほぼ07/25の1本）'],['運用時間','通常6時ごろ〜23時（法律上の夜間制限はない）']],n:['海からの強い風とウインドシアの警報で、離着陸が止まることがある','冬の大雪で運航が止まることがある（2016年1月は約2日）。除雪と滞留に備える','一斉の欠航のあとは臨時便・大型機・夜間延長で一気に運ぶ。相手の空港とも調整を']},
+  ko:{t:'제주국제공항(CJU)의 요점(2026년 9월 기준)',c:[['운영','한국공항공사'],['활주로','교차 2개(실제로는 거의 07/25 1개)'],['운용 시간','보통 6시경~23시(법적 야간 제한은 없음)']],n:['바다에서 오는 강풍과 윈드시어 경보로 이착륙이 멈출 수 있다','겨울 폭설로 운항이 멈출 수 있다(2016년 1월은 약 2일). 제설과 체류에 대비','일제 결항 뒤에는 임시편·대형기·야간 연장으로 한꺼번에 수송. 상대 공항과도 조정을']},
+  en:{t:'Jeju International (CJU) at a glance (September 2026)',c:[['Operator','Korea Airports Corporation'],['Runways','Two crossing (in practice mostly 07/25 alone)'],['Hours','Usually about 06:00–23:00 (no legal night curfew)']],n:['Strong sea winds and wind-shear alerts can stop take-offs and landings','Heavy winter snow can halt flights (about two days in January 2016): prepare for snow clearance and stranded passengers','After mass cancellations, extra flights, larger aircraft and late hours clear the backlog: coordinate with the other airports']}})[l];
+ if(!W)return F.kor_cju('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };

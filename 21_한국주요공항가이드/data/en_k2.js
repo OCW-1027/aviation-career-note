@@ -3,7 +3,7 @@
 set("2-1",{title:"Gimhae International Airport (PUS)",hl:"Gimhae",subtitle:"Gateway to Busan and South Gyeongsang and the busiest regional airport for international flights. Shared with the Air Force and almost out of slots; next comes Gadeokdo New Airport (target opening 2035)",
 lead:["Gimhae International Airport, in western Busan, is a joint civil-military airport sharing its runways with an Air Force base (the 5th Air Mobility Wing). In 2025 it handled 10.44 million international passengers, first among regional airports, with routes to 16 countries and territories (Korea Airports Corporation).","Its slots are nearly full and delays are rising. This lesson covers the basics, what to watch in operations and handling, and the Gadeokdo New Airport plan."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"kor_pus",cap:"Figure: Gimhae at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: PUS / ICAO: RKPK"],
 ["Operator","Korea Airports Corporation (airfield shared with the Air Force’s 5th Air Mobility Wing)"],
 ["Runways","Two, parallel"],
@@ -37,7 +37,7 @@ next:"2-2 Jeju International Airport (CJU)"});
 set("2-2",{title:"Jeju International Airport (CJU)",hl:"Jeju",subtitle:"87.6% of Korea’s domestic passengers fly Jeju routes. There is no legal curfew, but it normally closes at 23:00, and strong winds and heavy snow cause mass cancellations. The second airport’s basic plan is published and its environmental assessment is under way",
 lead:["Jeju International Airport is the gateway to Jeju Island, Korea’s largest holiday destination. Of Korea’s 30.25 million domestic passengers in 2025, 26.51 million (87.6%) flew Jeju routes, 15.12 million on Gimpo–Jeju alone; international traffic was 3.01 million (Korea Airports Corporation).","As an island airport, weather-related mass cancellations leave large numbers of passengers stranded. This lesson covers the basics, what to watch in operations and handling, and the second-airport plan."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"kor_cju",cap:"Figure: Jeju at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: CJU / ICAO: RKPC"],
 ["Operator","Korea Airports Corporation"],
 ["Runways","Two, intersecting (07/25: 3,180 m; 13/31: 1,910 m). They cannot be used at the same time, so in practice almost everything uses 07/25"],
