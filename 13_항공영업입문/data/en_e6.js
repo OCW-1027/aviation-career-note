@@ -3,7 +3,7 @@
 set("7-1",{title:"What Is Revenue Management? Selling Products That Lose Their Value If Unsold",hl:"revenue management",subtitle:"The discipline of deciding who gets a fixed number of products, and at what price, before they expire: how it was born in aviation and spread to hotels, travel agencies and theme parks",
 lead:["The moment an aircraft departs, every empty seat is worth nothing. The same is true of tonight’s empty hotel room or restaurant table. Revenue management (RM) asks how to sell such perishable inventory, within a fixed capacity, to the right customers at the right time and price so that revenue is as large as possible.","RM is not a technique for raising prices. It protects seats for customers who will pay more while still selling, even cheaply, seats that would otherwise fly empty. This lesson covers when RM works, how it began and where it has spread."],
 sections:[
-{h:"Five conditions for RM",blocks:[{t:"table",cols:["Condition","Meaning","Airline example","Other examples"],rows:[
+{h:"Five conditions for RM",blocks:[{t:"fig",id:"rm_five",cap:"Figure: five conditions where RM works."},{t:"table",cols:["Condition","Meaning","Airline example","Other examples"],rows:[
 ["Fixed capacity","Cannot be expanded quickly","Seats on a flight","Hotel rooms, theatre seats"],
 ["Perishable inventory","Cannot be sold after a deadline","Empty seats on a departed flight","Tonight’s rooms, today’s parking spaces"],
 ["Variable demand","Peaks by day, season and time","Holiday peaks, Friday evenings","Weekend hotels, holiday theme parks"],
@@ -41,7 +41,7 @@ next:"7-2 Segmenting customers: willingness to pay and fare fences"});
 set("7-2",{title:"Segmenting Customers: Willingness to Pay and Fare Fences",hl:"fare fences",subtitle:"The same seat is worth different amounts to different people. Fences that stop high-paying customers trading down, booking classes, and the Korean and Japanese rules on fares",
 lead:["On the same flight in the same economy seat, a traveller heading to tomorrow’s meeting and one planning a holiday three months away will pay very different amounts. RM turns this difference in willingness to pay into different fares.","But if anyone can choose the cheapest fare, revenue simply falls. So cheaper fares carry conditions, or fences, that keep high-paying customers from trading down. This lesson covers segmentation, types of fence, how booking classes work and the legal framework for fares."],
 sections:[
-{h:"Two kinds of customer",blocks:[{t:"table",cols:["","Business","Leisure"],rows:[
+{h:"Two kinds of customer",blocks:[{t:"fig",id:"rm_fence",cap:"Figure: fare fences."},{t:"table",cols:["","Business","Leisure"],rows:[
 ["Booking time","Often late","Early"],
 ["Price sensitivity","Low (company pays)","High (pays personally)"],
 ["Changes and cancellations","Often needed","Rare"],
@@ -81,7 +81,7 @@ next:"7-3 Allocating seats: Littlewood’s rule and nesting"});
 set("7-3",{title:"Allocating Seats: Littlewood’s Rule and Nesting (EMSR)",hl:"seat allocation",subtitle:"Sell the last seat to today’s low-fare customer, or keep it for a high-fare customer who may come later? One formula gives the answer; here it is checked with numbers and extended to four classes",
 lead:["The core question of RM is simple. One seat is left and a ¥20,000 booking arrives. Sell it, or keep it for someone who would pay ¥50,000 just before departure?","Littlewood’s 1972 rule was the first numerical answer. This lesson works through the idea and calculation, its extension to several classes (EMSR) and nesting, where higher classes can use seats from lower ones, using practice figures."],
 sections:[
-{h:"Littlewood’s rule",blocks:[{t:"p",x:"Compare the expected value of holding a seat, the high fare times the probability that at least one more high-fare customer arrives, with the certain low fare. Protect the seat while high fare × probability > low fare; the point where they are equal gives the protection level."},
+{h:"Littlewood’s rule",blocks:[{t:"fig",id:"rm_little",cap:"Figure: Littlewood’s rule (exercise)."},{t:"p",x:"Compare the expected value of holding a seat, the high fare times the probability that at least one more high-fare customer arrives, with the certain low fare. Protect the seat while high fare × probability > low fare; the point where they are equal gives the protection level."},
 {t:"table",cols:["","Formula"],rows:[
 ["Decision","High fare × P(high-fare demand > y) = low fare"],
 ["Equivalently","P(high-fare demand > y) = low fare ÷ high fare"],
@@ -119,7 +119,7 @@ next:"7-4 Forecasting and overbooking"});
 set("7-4",{title:"Forecasting and Overbooking: Selling for Customers Who Won’t Show",hl:"overbooking",subtitle:"Booking curves, hidden demand and no-show forecasts; calculating the best number of extra bookings by expected value, with Korea’s compensation standards and Japanese practice",
 lead:["RM calculations start with a demand forecast: how many seats are sold how many days out, and is that above or below previous years? No-shows and late cancellations must also be anticipated.","If some passengers will not show, accepting a few more bookings than seats reduces empty seats: overbooking. But oversell and everyone turns up, and some passengers must be denied boarding. This lesson covers forecasting basics, the optimal overbooking level and the Korean and Japanese rules."],
 sections:[
-{h:"Demand forecasting",blocks:[{t:"rows",items:[
+{h:"Demand forecasting",blocks:[{t:"fig",id:"rm_fcst",cap:"Figure: five things to watch when forecasting demand."},{t:"rows",items:[
 {name:"Booking curve",x:"Seats sold by days before departure, compared with last year or similar flights."},
 {name:"Pickup",x:"How many more seats will sell from a given point to departure, based on past flights of the same day and season."},
 {name:"Hidden demand",x:"Once a class closes or the flight fills, turned-away demand is not recorded; forecasting from sales alone understates true demand (unconstraining)."},

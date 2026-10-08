@@ -3,7 +3,7 @@
 set("7-5",{title:"Networks and Bid Prices: Connecting Passengers and Multi-night Guests",hl:"bid prices",subtitle:"Some bookings look good on one leg but lose money across the network. Using each leg’s seat value, the bid price, to accept or reject",
 lead:["Lesson 7-3 looked at one flight. In reality, a passenger flying Fukuoka–Seoul–Bangkok competes for the same seat as one flying only Seoul–Bangkok. In a hotel, a one-night Saturday guest competes with a Friday-to-Sunday guest for the same Saturday room.","This lesson covers network-wide acceptance decisions, the bid price that expresses each leg’s seat value, and why a station’s market knowledge improves these decisions."],
 sections:[
-{h:"Leg-based versus origin–destination control",blocks:[{t:"table",cols:["","Leg-based","Origin–destination (O&D)"],rows:[
+{h:"Leg-based versus origin–destination control",blocks:[{t:"fig",id:"rm_od",cap:"Figure: leg-based versus O&D control."},{t:"table",cols:["","Leg-based","Origin–destination (O&D)"],rows:[
 ["Looks at","Fare classes on one flight","The fare for the whole itinerary"],
 ["Strength","Simple","Raises revenue for carriers with many connections"],
 ["Weakness","High-value long itineraries can be displaced by short local traffic","Harder forecasting and data management"],
@@ -36,7 +36,7 @@ next:"7-6 Dynamic pricing and new ways to sell"});
 set("7-6",{title:"Dynamic Pricing and New Ways to Sell: From Opening Classes to Moving Prices",hl:"dynamic pricing",subtitle:"From fixed fare ladders to prices that move continuously with demand: NDC offers, ancillary bundles, group quotes, and the rules and trust around price display",
 lead:["Traditional RM managed revenue by opening and closing steps on a fixed fare ladder (booking classes). With NDC (2-3), airlines can now build and present their own offers, and prices themselves are moving more finely.","But if customers feel moving prices are unfair, brands lose trust. This lesson covers new pricing approaches, group quotes and the Korean and Japanese rules on price display."],
 sections:[
-{h:"How pricing is changing",blocks:[{t:"table",cols:["","Traditional","Emerging"],rows:[
+{h:"How pricing is changing",blocks:[{t:"fig",id:"rm_dyn",cap:"Figure: how pricing is changing."},{t:"table",cols:["","Traditional","Emerging"],rows:[
 ["Fares","Choose from fixed steps (classes)","Fine-grained prices that move with demand (continuous pricing)"],
 ["Distribution","GDS shows fare tables and availability separately","Airlines build and present offers through NDC"],
 ["Content","Fare, then ancillaries","Fare families, ancillaries and seats bundled (4-1, 4-2)"],
@@ -68,7 +68,7 @@ next:"7-7 By the numbers: metrics and RM meetings"});
 set("7-7",{title:"By the Numbers: Airline and Hotel Metrics and the RM Meeting",hl:"RM metrics",subtitle:"Load factor, yield and RASK; hotel ADR, RevPAR and GOPPAR; and what a weekly RM meeting looks at and decides",
 lead:["RM results cannot be judged by load factor alone or by price alone. The key measure multiplies the two: revenue per unit of capacity offered, RASK for airlines and RevPAR for hotels.","This lesson calculates the main airline and hotel metrics with practice figures and sets out what RM and sales teams review and decide each week."],
 sections:[
-{h:"Airline metrics (practice: 180 seats, 1,000 km)",blocks:[{t:"table",cols:["Metric","Formula","Calculation","Result"],rows:[
+{h:"Airline metrics (practice: 180 seats, 1,000 km)",blocks:[{t:"fig",id:"rm_kpi",cap:"Figure: airline indicators (exercise)."},{t:"table",cols:["Metric","Formula","Calculation","Result"],rows:[
 ["Load factor (LF)","Passengers ÷ seats","153 ÷ 180","85%"],
 ["Yield","Passenger revenue ÷ RPK","¥4,590,000 ÷ (153 × 1,000 km)","¥30 per RPK"],
 ["RASK","Revenue ÷ ASK","¥4,590,000 ÷ (180 × 1,000 km)","¥25.5"],
@@ -101,7 +101,7 @@ next:"7-8 Applying RM to any business"});
 set("7-8",{title:"Applying RM to Any Business: Hotels, Travel Agencies, Others, and Investment Reviews",hl:"applying RM",subtitle:"Six questions for applying airline-born RM to hotels, travel agencies, restaurants, cargo and more, and the questions that reveal how much RM could add when reviewing a business or investment",
 lead:["RM is not an airline specialism but a way of thinking for any business with fixed capacity, perishable inventory and fluctuating demand. The first step is to put into words what your inventory is and how customers can be segmented.","This lesson gives six questions for applying RM anywhere, how hotels, travel agencies and other businesses use it, and what to check from an RM perspective when reviewing a business or investment."],
 sections:[
-{h:"Six questions for applying RM",blocks:[{t:"rows",items:[
+{h:"Six questions for applying RM",blocks:[{t:"fig",id:"rm_six",cap:"Figure: six questions for applying RM."},{t:"rows",items:[
 {name:"1 What is the inventory?",x:"Seats × flights, rooms × nights, tables × time slots, cars × days: what you sell and in what unit."},
 {name:"2 When does it perish?",x:"Departure, the day itself, the end of a booking window."},
 {name:"3 How can it be segmented?",x:"Booking time, flexibility, party size, channel, membership: conditions reflecting willingness to pay (7-2)."},
