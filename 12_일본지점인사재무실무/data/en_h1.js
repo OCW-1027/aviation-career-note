@@ -293,7 +293,7 @@ set("4-2",{title:"International Remittances and Foreign Exchange Reporting",hl:"
 lead:["A foreign company’s Japan branch moves money across borders routinely: receiving operating funds from head office, remitting sales to head office, paying suppliers abroad. Remittances take days and cost fees, and above a certain amount a report under foreign exchange law may be required.",
 "This article covers the practicalities of international remittances and how reporting works."],
 sections:[
-{h:"The practicalities",blocks:[{t:"check",items:[
+{h:"The practicalities",blocks:[{t:"fig",id:"adm_remit",cap:"Figure: how a remittance from head office flows."},{t:"check",items:[
 {name:"Days",x:"It takes several days from sending to arrival. Allow for holidays in both countries — long holidays at home, Japan’s Golden Week — and request about a week before the deadline."},
 {name:"Fees",x:"The sending, receiving and intermediary banks all charge. Decide who bears them, sender or recipient."},
 {name:"Exchange rates",x:"When the yen and head office’s currency are converted, and how foreign exchange gains and losses are booked."},
@@ -323,7 +323,7 @@ set("5-1",{title:"The Tax Picture for a Foreign Company’s Branch",hl:"branch t
 lead:["A foreign company’s Japan branch is a permanent establishment of a foreign corporation under Japanese tax law, and pays corporate tax on income earned in Japan. On top of that come consumption tax, withholding on payments to staff and advisers, local taxes, stamp duty on contracts and receipts, and depreciable assets tax on business assets.",
 "This article lists the main taxes a branch deals with, how to think about filing and payment timing, and the taxes most easily overlooked."],
 sections:[
-{h:"The main taxes",blocks:[{t:"table",cols:["Tax","Outline"],rows:[
+{h:"The main taxes",blocks:[{t:"fig",id:"adm_tax",cap:"Figure: main taxes for a foreign company’s branch (Japan)."},{t:"table",cols:["Tax","Outline"],rows:[
 ["Corporate tax and local corporate tax","On income attributable to the Japan branch. The fiscal year matches the head company’s. Filed in principle within two months of year end"],
 ["Corporate inhabitant tax and enterprise tax","Prefectural and municipal taxes. The per capita levy applies even with no income"],
 ["Consumption tax","The difference between tax on sales and tax on purchases is filed (5-2)"],
@@ -394,7 +394,7 @@ set("5-2",{title:"Consumption Tax Refunds and Invoices",hl:"consumption tax",sub
 lead:["Consumption tax is paid as the tax on sales less the tax paid on purchases and expenses. Where most sales are exempt — as for international airlines or heavy exporters — the tax paid on purchases can exceed the tax on sales, and the difference may be refunded.",
 "This article covers how refunds work, the key points of the qualified invoice system, and how to prepare to claim."],
 sections:[
-{h:"How refunds work",blocks:[{t:"ladder",rise:10,steps:[{name:"Tax on sales",sub:"Low where exempt sales dominate"},{name:"Tax on purchases",sub:"Rent, handling, communications"},{name:"The difference",sub:"If purchases exceed sales"},{name:"File",sub:"As a taxable enterprise"},{name:"Refund",sub:"After the tax office checks"}]},
+{h:"How refunds work",blocks:[{t:"fig",id:"adm_vat",cap:"Figure: how a consumption tax refund works."},{t:"ladder",rise:10,steps:[{name:"Tax on sales",sub:"Low where exempt sales dominate"},{name:"Tax on purchases",sub:"Rent, handling, communications"},{name:"The difference",sub:"If purchases exceed sales"},{name:"File",sub:"As a taxable enterprise"},{name:"Refund",sub:"After the tax office checks"}]},
 {t:"rows",items:[
 {name:"Being a taxable enterprise",x:"To claim a refund you must file as a taxable enterprise. Watch the timing of the notification. ★"},
 {name:"Exempt transactions",x:"International transport and exports are the classic exempt transactions."}]}]},
@@ -464,7 +464,7 @@ set("6-1",{title:"The Monthly Close and Reporting to Head Office",hl:"the monthl
 lead:["To fit head office’s monthly closing, the branch closes last month’s costs in the first few days of the month and reports to head office. Costs not yet invoiced are accrued on an estimate and adjusted the following month to the confirmed figure. The quality of this monthly close decides how fast and accurately head office can close.",
 "This article covers the flow of the monthly close, accruals, prepaid expenses, and what to report to head office."],
 sections:[
-{h:"The flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Month end",sub:"Daily cash report and balance reconciliation"},{name:"Days 1 to 3",sub:"Gather invoices, raise vouchers"},{name:"Days 3 to 5",sub:"Accrue estimates and check"},{name:"Close",sub:"To head office accounting"},{name:"Report",sub:"Against budget, with comments"}]}]},
+{h:"The flow",blocks:[{t:"fig",id:"adm_close",cap:"Figure: the month-end close."},{t:"ladder",rise:10,steps:[{name:"Month end",sub:"Daily cash report and balance reconciliation"},{name:"Days 1 to 3",sub:"Gather invoices, raise vouchers"},{name:"Days 3 to 5",sub:"Accrue estimates and check"},{name:"Close",sub:"To head office accounting"},{name:"Report",sub:"Against budget, with comments"}]}]},
 {h:"Accruals, an example",blocks:[{"t":"table","cols":["Item","Amount (example)","Basis"],"rows":[["September electricity (invoice arrives 20 October)","¥45,000","Average of the previous three months"],["September handling fees (billed at the end of next month)","¥1,200,000","Flights × contract rate"],["When the invoice arrives in October","Adjust only the difference in October","E.g. actual ¥48,000 → add ¥3,000"]]},
 {"t":"note","x":"* Recording the basis for each estimate the same way every month makes the later adjustment easy."}]},
 {h:"Points in booking",blocks:[{t:"table",cols:["Item","How to think about it"],rows:[
@@ -509,7 +509,7 @@ set("6-2",{title:"Budgeting and Cutting Costs",hl:"budgeting",subtitle:"List the
 lead:["A branch budget is usually built for the following year during head office’s budgeting season (autumn to winter, for example) and reviewed every six months. The secret to accuracy is listing the monthly fixed costs and placing once-a-year costs in the correct month or quarter.",
 "This article covers how to build the budget, costs that are easily missed, and what to consider when cutting costs."],
 sections:[
-{h:"Building the budget",blocks:[{t:"ladder",rise:10,steps:[{name:"Fixed costs",sub:"Rent, salaries, communications, advisers"},{name:"Variable costs",sub:"Linked to activity"},{name:"Annual costs",sub:"Memberships, insurance, renewal fees"},{name:"New plans",sub:"Hiring, moves, systems"},{name:"Agree with head office",sub:"Approval and review"}]}]},
+{h:"Building the budget",blocks:[{t:"fig",id:"adm_budget",cap:"Figure: building a budget."},{t:"ladder",rise:10,steps:[{name:"Fixed costs",sub:"Rent, salaries, communications, advisers"},{name:"Variable costs",sub:"Linked to activity"},{name:"Annual costs",sub:"Memberships, insurance, renewal fees"},{name:"New plans",sub:"Hiring, moves, systems"},{name:"Agree with head office",sub:"Approval and review"}]}]},
 {h:"An annual budget, example",blocks:[{"t":"table","cols":["Account","Annual budget","Basis"],"rows":[["Staff (four people)","¥28.8m","Salaries, bonuses and social insurance (incl. employer share)"],["Rent","¥5.4m","Lease (¥450,000 a month)"],["Handling fees","¥14.4m","Planned flights × contract rate"],["Communications and systems","¥2.16m","Annual contracts"],["Once-a-year costs","¥1.2m","Fees, insurance, renewals (placed in the month paid)"],["Contingency","¥1m","Irregular operations"]]},
 {"t":"note","x":"* Amounts are illustrative. Attach whatever is in the basis column as supporting material."}]},
 {h:"Easily missed",blocks:[{t:"check",items:[
@@ -536,7 +536,7 @@ set("7-1",{title:"The Rules a Small Branch Needs",hl:"internal rules",subtitle:"
 lead:["The smaller the branch, the more decisions rest on individual experience. So that the same decision is made whoever is in the post, put a minimum set of rules in writing. Even where head office has rules, supplements to fit Japanese law and practice are often needed.",
 "This article lists the rules a small branch needs and what each should contain."],
 sections:[
-{h:"The rules needed",blocks:[{t:"table",cols:["Rule","What it says"],rows:[
+{h:"The rules needed",blocks:[{t:"fig",id:"adm_auth",cap:"Figure: approval authority table (example)."},{t:"table",cols:["Rule","What it says"],rows:[
 ["Approval authority","Who approves — head office, the branch manager, the staff member — by amount and type"],
 ["Expenses","How out-of-pocket costs are claimed, whether receipts are needed, limits"],
 ["Travel","Transport and accommodation standards, per diems, the deadline for claims"],
@@ -566,7 +566,7 @@ set("7-2",{title:"Electronic Records and Document Retention",hl:"document retent
 lead:["Accounting, tax and employment documents have legally set retention periods. In addition, under the electronic books preservation rules, invoices and receipts received by email or online — electronic transaction data — must in principle be kept electronically, meeting certain requirements.",
 "This article covers how to think about retaining the main documents, the key points for electronic transaction data, and a system a small branch can run."],
 sections:[
-{h:"Main documents and retention",blocks:[{t:"region",jp:[{t:"table",cols:["Document","How to think about it"],rows:[
+{h:"Main documents and retention",blocks:[{t:"fig",id:"adm_file",cap:"Figure: a system for keeping records (example)."},{t:"region",jp:[{t:"table",cols:["Document","How to think about it"],rows:[
 ["Books and closing documents","A set period under corporate tax law and related law (in principle seven years, longer where there are tax losses)"],
 ["Invoices, receipts and contracts","Kept likewise as evidence of transactions"],
 ["Wage ledgers, attendance records","A set period under the Labour Standards Act"],
