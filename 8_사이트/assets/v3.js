@@ -3,7 +3,7 @@
    言語は ?lang= → 保存した言語（art-lang）→ 端末の言語 の順に決め、いまのサイトと同じ場所に保存する */
 (function(){
 var C={
-ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],nav:['学ぶ','Business Skills','Practice','求人','Coaching','Community'],mem:'メンバーシップ',
+ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],nav:['学ぶ','ビジネス実務','実習・ツール','求人','1:1コーチング','コミュニティ'],mem:'メンバーシップ',
  foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','Professional Knowledge beyond Aviation.'],
  copy:'© 2026 Aviation Career Note　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー'},
 ko:{proto:['GPT 디자인안을 바탕으로 만든 시안입니다. 지금 홈페이지는','여기'],nav:['학습','Business Skills','Practice','채용','Coaching','Community'],mem:'멤버십',
