@@ -10,7 +10,7 @@ sections:[
 ["Entry conditions not met","No return ticket, insufficient funds, no address for the stay"],
 ["Doubt about the purpose","Stated tourism but judged to be intending to work"],
 ["Past record","Previous overstay or removal"]]}]},
-{h:"At the arrival station (typical example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Notified",sub:"Immigration tells the airline"},{name:"Take charge",sub:"Receive the passenger and the documents"},{name:"Book the return",sub:"Arrange the earliest flight"},{name:"While they wait",sub:"Government facilities, meals"},{name:"Hand over",sub:"Passport to the senior cabin crew, then boarding"},{name:"Report",sub:"Advise the departure station and head office"}]},
+{h:"At the arrival station (typical example)",blocks:[{t:"fig",id:"gnd_inad",cap:"Animated figure: a passenger refused entry is returned from the destination to the origin, with what each station does."},{t:"ladder",rise:10,steps:[{name:"Notified",sub:"Immigration tells the airline"},{name:"Take charge",sub:"Receive the passenger and the documents"},{name:"Book the return",sub:"Arrange the earliest flight"},{name:"While they wait",sub:"Government facilities, meals"},{name:"Hand over",sub:"Passport to the senior cabin crew, then boarding"},{name:"Report",sub:"Advise the departure station and head office"}]},
 {t:"rows",items:[
 {name:"The passport",x:"It is usually handed by arrival staff to the senior cabin crew, and passed to the authorities or staff at the departure station."},
 {name:"Costs",x:"The return fare and the costs while waiting are normally borne by the carrying airline, which may be able to recover them from the passenger under its conditions of carriage."},
@@ -33,7 +33,7 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 "lead":["Checking a passenger in under someone else’s name, checking the same passenger in twice, printing a bag tag for the wrong destination: check-in mistakes affect numbers, weights, documents and security alike. Confusing passengers with the same name can even lead to fraudulent boarding.","This lesson covers the main types of mistake and their effects, the systems that catch them, what to do for each, and habits that prevent them."],
 "sections":[
 {"h":"The main mistakes and their effects","blocks":[{"t":"table","cols":["Mistake","What happens"],"rows":[["Checking in the wrong person (mis-check-in)","The passenger list, documents and security records do not match. The real passenger cannot check in"],["Duplicate check-in","The number is counted too high, causing errors in weight and seats"],["Duplicate tags","Two tags with the same number, so the bags cannot be traced"],["Wrong destination on the tag","The bag goes to another airport"],["Tag coming off (tag off)","A bag whose owner cannot be identified"],["Seat assigned twice","Two people for the same seat on board"]]}]},
-{"h":"Systems that catch mistakes","blocks":[{"t":"rows","items":[
+{"h":"Systems that catch mistakes","blocks":[{"t":"fig","id":"gnd_layers","cap":"Animated figure: mistakes (red dots) are stopped by one of the layered checks. No single check catches them all."},{"t":"rows","items":[
 {"name":"Extra identity questions","x":"Besides checking ID, ask about booking details (date of birth, phone number, booking reference and so on), in a way that makes the passenger give the specific answer rather than “yes” or “no”."},
 {"name":"Watch for passengers with the same name","x":"On flights with passengers of the same name, always tell them apart by booking reference and date of birth."},
 {"name":"Boarding pass reader warnings","x":"Warnings such as “already boarded” or “other flight” reveal duplicate or wrong boarding (lesson 2-4)."},
@@ -59,7 +59,7 @@ set("5-3",{title:"Medical Emergencies and Injuries on Board: What the Ground Doe
 lead:["A passenger collapses in flight, is scalded, or is injured in turbulence. It happens on board, but preparing for what comes after landing is ground work. From the moment the captain’s message arrives, the time to touchdown is what you have.",
 "This article covers what the ground does for each type of case, what to prepare at the arrival station, the principles when a passenger dies on board, and the records and reporting."],
 sections:[
-{h:"Types of case and the ground response",blocks:[{t:"table",cols:["Case","Main ground response"],rows:[
+{h:"Types of case and the ground response",blocks:[{t:"fig",id:"gnd_med",cap:"Animated figure: for each type of incident on board, the ground preparation at the arrival station lights up in turn."},{t:"table",cols:["Case","Main ground response"],rows:[
 ["Sudden illness","Confirm the symptoms and have the airport medical team or an ambulance standing by; contact quarantine if needed"],
 ["Scald from a hot drink","Confirm the extent in advance and decide on medical standby; hospital if serious"],
 ["Item falling from an overhead bin","The same. If overloading by a passenger caused it, offer to accompany them to hospital and mediate between the parties"],
@@ -105,7 +105,7 @@ sections:[
 ["At the airport, longer delays","Give the reason, the new boarding time and the options. If no time is fixed, update at a set interval (for example every 15–30 minutes)"],
 ["Long delays or likely cancellation","Identify passengers with onward bookings and make arrangements"],
 ["Regulators","In Korea, airlines must inform passengers as soon as they know of a delay; airlines that failed to, or did so late, have been fined ★"]]}]},
-{h:"Services by length of delay (example)",blocks:[{t:"table",cols:["Delay","Typical service"],rows:[
+{h:"Services by length of delay (example)",blocks:[{t:"fig",id:"gnd_delay",cap:"Animated figure: an arrow moves along the delay scale, showing which services apply at each length. An example; airlines differ."},{t:"table",cols:["Delay","Typical service"],rows:[
 ["2 to 4 hours","Drinks and a snack"],
 ["4 to 6 hours","Drinks, a meal or snack, transport, means of communication"],
 ["6 hours or more","Drinks, meals, a day-use room, overnight accommodation, means of communication"]]},

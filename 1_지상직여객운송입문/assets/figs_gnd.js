@@ -428,7 +428,60 @@ gnd_lost:function(l){
   en:{t:'Lost property: items needing particular care',r:[['Passports and ID','Find the owner at once; work with the authorities','#D64545'],['Cash and valuables','Check and record with two or more people; seal and store','#E08A2E'],['Phones and computers','Do not look at the contents; respect personal data','#1769e0'],['Food and liquids','Often disposed of quickly, following the rules','#2E9B5F'],['Dangerous or suspicious items','Do not touch; call security or the police','#0f3558']],n:['Record date, place, flight, item, description and finder; keep it locked away','On return, check identity and get a signed receipt','Items not claimed in time go to the police as the law requires (Japan’s Lost Property Act)']}})[l];
  if(!W)return F.gnd_lost('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'10s');s+=A.s;
- var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 5-1 入国拒否（INAD）：到着地で拒否 → 送り返し。出発地では違反通知を調べる */
+gnd_inad:function(l){
+ var W=({ja:{t:'入国拒否（INAD）：到着地で送り返し、出発地で原因を調べる',a:['出発地','到着地'],x:'入国拒否',arr:['到着地','引き取り → 最も早い便を手配 → 待機中の対応 → パスポートを乗務員に預けて搭乗 → 出発地・本社に報告'],dep:['出発地','違反通知を受ける → チェックインの記録と担当者の説明を調べる'],ok:'過失なし → 反論書で罰金の免除を求める',ng:'過失あり → 是正措置・再教育',n:['主な原因：ビザ・パスポートの不備、入国条件の不足（帰りの航空券・滞在費・滞在先）、入国目的の疑い、過去の記録','いちばんの予防は、出発地のチェックインでの書類確認（1-3）']},
+  ko:{t:'입국 거부(INAD): 도착지에서 송환하고, 출발지에서 원인을 조사한다',a:['출발지','도착지'],x:'입국 거부',arr:['도착지','인수 → 가장 빠른 편 수배 → 대기 중 대응 → 여권을 승무원에게 맡기고 탑승 → 출발지·본사에 보고'],dep:['출발지','위반 통지 접수 → 체크인 기록과 담당자 설명을 조사'],ok:'과실 없음 → 반론서로 벌금 면제 요청',ng:'과실 있음 → 시정 조치·재교육',n:['주요 원인: 비자·여권 미비, 입국 조건 부족(귀국 항공권·체재비·체류지), 입국 목적 의심, 과거 기록','가장 좋은 예방은 출발지 체크인의 서류 확인(1-3)']},
+  en:{t:'Refused entry (INAD): returned from the destination, investigated at the origin',a:['Origin','Destination'],x:'Entry refused',arr:['Destination','Take custody → book the earliest flight → care while waiting → passport handed to the crew → report to origin and head office'],dep:['Origin','Receive the infringement notice → review the check-in record and staff account'],ok:'No fault → appeal for the fine to be waived',ng:'Fault found → corrective action and retraining',n:['Main causes: visa or passport problems, missing entry conditions (return ticket, funds, address), doubts about purpose, past records','The best prevention is the document check at the origin check-in (1-3)']}})[l];
+ if(!W)return F.gnd_inad('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+40,x0=120,x1=520;
+ s+='<path d="M'+x0+' '+y+' Q320 '+(y-50)+' '+x1+' '+y+'" fill="none" stroke="#1769e0" stroke-width="3"/><path d="M'+x1+' '+(y+10)+' Q320 '+(y+60)+' '+x0+' '+(y+10)+'" fill="none" stroke="#D64545" stroke-width="3" stroke-dasharray="8 6"/>';
+ [x0,x1].forEach(function(x,i){s+='<circle cx="'+x+'" cy="'+(y+5)+'" r="13" fill="#0f3558"/>'+tx(x+(i?30:-30),y+9,W.a[i],11,'#0f3558',900,i?'start':'end')});
+ s+='<circle r="7" fill="#1769e0"><animateMotion dur="6s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.45;1" calcMode="linear" path="M'+x0+' '+y+' Q320 '+(y-50)+' '+x1+' '+y+'"/></circle>';
+ s+='<circle r="7" fill="#D64545" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.5;.52;.98;1" dur="6s" repeatCount="indefinite"/><animateMotion dur="6s" repeatCount="indefinite" keyPoints="0;0;1" keyTimes="0;.5;1" calcMode="linear" path="M'+x1+' '+(y+10)+' Q320 '+(y+60)+' '+x0+' '+(y+10)+'"/></circle>';
+ s+=LB(x1,y-30,W.x,10,'#fff','middle','#D64545');
+ y+=60;var cw=294,ha=LI(W.arr[1],10,cw-24).length*FS(10)*1.3+44,hd=LI(W.dep[1],10,cw-24).length*FS(10)*1.3+44+2*(FS(10)*1.3+14),h=Math.max(ha,hd);
+ s+=R(326,y,cw,h,'#fff',10,' stroke="#1769e0" stroke-width="2"')+tx(326+cw/2,y+22,W.arr[0],12,'#1769e0',900)+WR(326+cw/2,y+44,W.arr[1],10,D,800,cw-24);
+ s+=R(20,y,cw,h,'#fff',10,' stroke="#0f3558" stroke-width="2"')+tx(20+cw/2,y+22,W.dep[0],12,'#0f3558',900)+WR(20+cw/2,y+44,W.dep[1],10,D,800,cw-24);
+ var by=y+44+LI(W.dep[1],10,cw-24).length*FS(10)*1.3+8;s+=LB(20+cw/2,by,W.ok,9,'#fff','middle','#2E9B5F')+LB(20+cw/2,by+FS(9)*1.3+14,W.ng,9,'#fff','middle','#E08A2E');
+ y+=h+16;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 5-2 ミスを見つける仕組み：何枚も重ねて、どこかで止める */
+gnd_layers:function(l){
+ var W=({ja:{t:'ミスは1つの仕組みでは防げない：重ねて、どこかで止める',ly:['本人確認の追加質問','同姓同名の区別','搭乗券読み取り機の警告','人数の照合','手荷物の照合'],m:'ミス',n:['「はい・いいえ」ではなく、本人が具体的に答える聞き方で確かめる（生年月日・予約番号など）','気づいたらすぐ報告。責めるより、すぐ言える雰囲気が被害を小さくする']},
+  ko:{t:'실수는 하나의 장치로 막을 수 없다: 겹쳐서 어디선가 멈춘다',ly:['본인 확인 추가 질문','동명이인 구분','탑승권 리더기 경고','인원 대조','수하물 대조'],m:'실수',n:['「예·아니요」가 아니라 본인이 구체적으로 답하는 방식으로 확인한다(생년월일·예약번호 등)','알게 되면 즉시 보고. 탓하기보다 바로 말할 수 있는 분위기가 피해를 줄인다']},
+  en:{t:'No single check catches every mistake: layer them so one of them does',ly:['Extra identity questions','Telling same-name passengers apart','Boarding pass reader alerts','Head count reconciliation','Baggage reconciliation'],m:'Mistake',n:['Ask questions the passenger must answer specifically (date of birth, booking reference), not yes or no','Report at once; a culture where people speak up limits the damage more than blame does']}})[l];
+ if(!W)return F.gnd_layers('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+10,n=W.ly.length,sx=90,gap=105,lh=150;
+ var HO=[[60,100],[60,100],[100,30],[30,125],[78]];
+ W.ly.forEach(function(t,i){var x=sx+i*gap;s+='<rect x="'+(x-9)+'" y="'+y+'" width="18" height="'+lh+'" rx="6" fill="#DCE6F0" stroke="#9FB0C2"/>';
+  HO[i].forEach(function(h){s+='<rect x="'+(x-10)+'" y="'+(y+h-11)+'" width="20" height="22" fill="#F7FAFD"/>'});
+  s+=WR(x,y+lh+14,t,9,D,800,96)});
+ [[0,30],[2,60],[3,100]].forEach(function(d,k){var stop=sx+d[0]*gap-16,yy=y+d[1],d0=k*0.15,d1=d0+0.45;
+  s+='<g><circle r="7" fill="#D64545"/><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;'+d0.toFixed(2)+';'+d1.toFixed(2)+';1" calcMode="linear" path="M30 '+yy+' L'+stop+' '+yy+'"/></g>'});
+ s+=tx(24,y-6,W.m,9,'#D64545',900,'start');
+ y+=lh+14+FS(9)*1.3*3+10;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 5-3 機内の事故の種類と、到着地での地上の対応 */
+gnd_med:function(l){
+ var W=({ja:{t:'機内の事故：種類ごとに、到着前に地上の準備を決める',r:[['急病','空港の医療担当・救急車を待機。必要なら検疫に連絡','#D64545'],['熱い飲み物によるやけど','状態を事前に確かめて医療の待機を決める。重ければ病院へ','#E08A2E'],['収納棚からの落下物','医療を待機。当事者どうしの話し合いを仲介する','#7A5CC7'],['揺れ（タービュランス）によるけが','重いけがもあるため救急車を事前に待機させ、速やかに病院へ','#1769e0']],n:['機内から状態を早く聞き出し、到着前に準備を決める','時刻・状態・対応・関係者を記録し、本社と関係先に報告する']},
+  ko:{t:'기내 사고: 유형별로 도착 전에 지상 준비를 정한다',r:[['급환','공항 의료 담당·구급차 대기. 필요하면 검역에 연락','#D64545'],['뜨거운 음료로 인한 화상','상태를 미리 확인해 의료 대기를 정한다. 심하면 병원으로','#E08A2E'],['선반에서 떨어진 물건','의료 대기. 당사자 간 협의를 중재한다','#7A5CC7'],['흔들림(난기류)으로 인한 부상','중상도 있으므로 구급차를 미리 대기시켜 신속히 병원으로','#1769e0']],n:['기내에서 상태를 빨리 파악해 도착 전에 준비를 정한다','시각·상태·대응·관계자를 기록해 본사와 관계처에 보고한다']},
+  en:{t:'Incidents on board: decide ground preparations before arrival, by type',r:[['Sudden illness','Have the airport medical team and an ambulance standing by; contact quarantine if needed','#D64545'],['Burns from hot drinks','Check the condition in advance and arrange medical standby; hospital if serious','#E08A2E'],['Items falling from bins','Medical standby; help the parties talk it through','#7A5CC7'],['Injuries from turbulence','Injuries can be serious: have an ambulance ready and get to hospital quickly','#1769e0']],n:['Get details of the condition from the aircraft early and decide preparations before arrival','Record times, condition, actions and people involved; report to head office and others concerned']}})[l];
+ if(!W)return F.gnd_med('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;
+ var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 5-4 遅延の長さとサービス（例★） */
+gnd_delay:function(l){
+ var W=({ja:{t:'遅延の長さとサービス（例★）',u:'時間',z:[['〜2時間','理由と見込みをご案内'],['2〜4時間','飲み物・軽食'],['4〜6時間','食事・交通・連絡手段'],['6時間以上','ホテル（日中・宿泊）']],n:['天候・航空管制などの不可抗力は対象外になることが多い','宿泊は1人1室が原則。予想出発時刻と空港への出発時刻を必ず伝える','補償の例（韓国の基準、航空会社の責任による国際線の遅延）：2〜4時間 10%、4〜12時間 20%、12時間以上 30%']},
+  ko:{t:'지연 시간과 서비스(예★)',u:'시간',z:[['~2시간','이유와 예상 시각 안내'],['2~4시간','음료·간식'],['4~6시간','식사·교통·연락 수단'],['6시간 이상','호텔(낮 이용·숙박)']],n:['날씨·항공 관제 등 불가항력은 대상에서 빠지는 경우가 많다','숙박은 1인 1실이 원칙. 예상 출발 시각과 공항 출발 시각을 반드시 알린다','보상 예(한국 기준, 항공사 책임 국제선 지연): 2~4시간 10%, 4~12시간 20%, 12시간 이상 30%']},
+  en:{t:'Length of delay and services (example ★)',u:'hours',z:[['Up to 2 h','Explain the reason and the estimate'],['2–4 h','Drinks and snacks'],['4–6 h','Meals, transport, a way to call'],['6 h or more','Hotel (day use or overnight)']],n:['Force majeure such as weather or air traffic control is often excluded','One room per person for overnight stays; always give the expected departure and the time to leave for the airport','Example compensation (Korean standard, international delays the airline caused): 2–4 h 10%, 4–12 h 20%, 12 h+ 30%']}})[l];
+ if(!W)return F.gnd_delay('ja');setK(1);
+ var cols=['#5B6B7D','#2E9B5F','#E08A2E','#D64545'],T=TOP(W.t),s=T.s,y=T.y+34;
+ var S=SCALE(y,8,1,[[0,2,cols[0]],[2,4,cols[1]],[4,6,cols[2]],[6,8,cols[3]]],W.u,'10s');s+=S.s;
+ var C=ZCARDS(S.y,W.z,cols);s+=C.s;var L=LIST(W.n,C.y,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
