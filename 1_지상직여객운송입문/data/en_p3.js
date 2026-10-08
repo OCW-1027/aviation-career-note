@@ -4,7 +4,7 @@ set("3-1",{title:"Aircraft Doors: The Basics",hl:"aircraft doors",subtitle:"Neve
 lead:["Passenger aircraft doors carry an escape slide that inflates automatically when the door is opened, so that people can evacuate quickly. In flight and while taxiing the slide is armed, and opening the door from outside in that state sends the slide out with great force.",
 "This article covers the types and numbering of doors, who opens and closes them, the procedure for opening and closing, and how to keep a slide from deploying by mistake."],
 sections:[
-{h:"Types of door and how they are numbered",blocks:[{t:"rows",items:[
+{h:"Types of door and how they are numbered",blocks:[{t:"fig",id:"gnd_doors",cap:"Animated figure: door numbers seen from above (1L, 1R…). The jet bridge is at the highlighted 1L and the catering truck on the right. Layouts vary by aircraft."},{t:"rows",items:[
 {name:"Cabin doors",x:"Numbered from the front: 1L and 1R, 2L and 2R and so on. The L (left) side is normally used for passengers."},
 {name:"Cargo doors",x:"One for each hold: forward, aft and bulk. The number and position differ by aircraft type."},
 {name:"Service doors",x:"Catering and cleaning mainly use the doors on the right (R) side."}]},
@@ -42,7 +42,7 @@ sections:[
 ["Baggage","Baggage claim ready, any fault on the belt, how much baggage is loaded (from the CPM), requests to unload VIP bags first, passengers whose bags missed the connection, irregularity forms and rush tags ready"],
 ["Operations","Any defect on the inbound aircraft (APU failure, inflight entertainment and so on), special requests from passengers, connecting passengers"]]},
 {t:"point",x:"If you identify passengers whose bags missed the connection before the flight lands, you can meet them and explain on arrival. That causes far less frustration than letting them wait at the belt first."}]},
-{h:"What to confirm on a departure",blocks:[{t:"table",cols:["When","What to confirm"],rows:[
+{h:"What to confirm on a departure",blocks:[{t:"fig",id:"gnd_depchk",cap:"Animated figure: the checks before boarding, during boarding, before pushback and after departure light up in turn."},{t:"table",cols:["When","What to confirm"],rows:[
 ["Before boarding","Catering and cabin supplies loaded, cleaning finished, maintenance checks complete, cabin crew ready"],
 ["During boarding","That passengers, documents, baggage and cargo are correctly boarded and loaded; special loads (diplomatic mail, dangerous goods, valuables); fragile baggage; the manifest against the actual count"],
 ["Before pushback","Border documents on board, the exact boarded count, the door confirmed closed, ground equipment clear"],
@@ -91,7 +91,7 @@ sections:[
 ["International, long haul","90–120 minutes","35–45 minutes before departure"],
 ["Routes needing extra security measures, etc.","120 minutes or more","40–50 minutes before departure"]]},
 {t:"note",x:"* Guide figures drawn from several airlines; they vary with aircraft, airport and bridge or bus boarding. Ground time covers disembarking, ground work and boarding. Flights that change from domestic to international may use the international figure. ★"}]},
-{h:"Reading the chart (70-minute international short haul)",blocks:[{t:"table",cols:["Time to departure","Main activity"],rows:[
+{h:"Reading the chart (70-minute international short haul)",blocks:[{t:"fig",id:"gnd_turn",cap:"Animated figure: a 70-minute ground-time chart; a vertical line moves with the clock. Red tasks are the critical path (example)."},{t:"table",cols:["Time to departure","Main activity"],rows:[
 ["-70 to -68 min","Arrival, doors open, unloading starts"],
 ["-60 min","Disembarking complete; cleaning, catering and fuelling start"],
 ["Around -50 min","Crew board; check-in closes"],
@@ -121,7 +121,7 @@ sections:[
 {h:"Two purposes",blocks:[{t:"cards",n:2,items:[
 {ic:"🛡️",name:"Safe operation",x:"Weight: keep the aircraft from being overloaded. Balance: place passengers, baggage and cargo so the centre of gravity stays within limits."},
 {ic:"⛽",name:"Economic operation",x:"A well-placed centre of gravity saves fuel, and thoughtful distribution uses the available space fully."}]}]},
-{h:"The weights and how they relate",blocks:[{t:"ladder",rise:10,steps:[{name:"Empty weight",sub:"The aircraft itself (MEW / BEW)"},{name:"Dry operating weight (DOW)",sub:"Plus crew, catering and service items"},{name:"Zero fuel weight (ZFW)",sub:"Plus passengers, baggage and cargo"},{name:"Take-off weight (TOW)",sub:"Plus fuel at take-off"},{name:"Landing weight (LDW)",sub:"Minus the fuel burned in flight"}]},
+{h:"The weights and how they relate",blocks:[{t:"fig",id:"gnd_wts",cap:"Animated figure: payload and fuel stack on the operating weight to make the three weights, each compared with its limit (red dashed line). Figures are examples."},{t:"ladder",rise:10,steps:[{name:"Empty weight",sub:"The aircraft itself (MEW / BEW)"},{name:"Dry operating weight (DOW)",sub:"Plus crew, catering and service items"},{name:"Zero fuel weight (ZFW)",sub:"Plus passengers, baggage and cargo"},{name:"Take-off weight (TOW)",sub:"Plus fuel at take-off"},{name:"Landing weight (LDW)",sub:"Minus the fuel burned in flight"}]},
 {t:"table",cols:["Limit","What it means"],rows:[
 ["Maximum zero fuel weight (MZFW)","The limit excluding fuel, set by the loads on the wing root"],
 ["Maximum take-off weight (MTOW)","The limit at the start of the take-off roll"],
@@ -165,7 +165,7 @@ next:"3-5 Ramp safety basics"});
 set("3-5",{title:"Ramp Safety Basics",hl:"ramp safety",subtitle:"Engines, vehicles, noise, weather. The ramp is the most dangerous workplace at an airport",
 lead:["On the ramp, people work beside moving aircraft, a stream of ground vehicles, and engines and propellers that are turning. Ground staff go out there too, to operate doors, meet arrivals or check baggage.","This article covers the main hazards, the rules everyone follows, the systems that keep safety in place (safety reporting, inspections and management of change), and how to oversee a handling company’s safety."],
 sections:[
-{h:"The main hazards",blocks:[{t:"table",cols:["Hazard","What it means"],rows:[
+{h:"The main hazards",blocks:[{t:"fig",id:"gnd_ramp",cap:"Animated figure: the engine intake zone (red), jet blast zone (orange), the flashing anti-collision light and the walkway. Zone sizes vary by aircraft and power."},{t:"table",cols:["Hazard","What it means"],rows:[
 ["Engine ingestion and blast","In front of a running engine you can be drawn in; behind it, blown away"],
 ["Vehicle contact","Tugs, belt loaders, buses, fuel trucks"],
 ["Contact with the aircraft","Ground equipment striking the aircraft can affect operations even when the damage is invisible"],

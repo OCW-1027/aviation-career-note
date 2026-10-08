@@ -39,6 +39,13 @@ function TL(y,mx,step,marks,unit,dur){var x0=50,x1=600,X=function(v){return x0+(
   [i,i+1].forEach(function(k,j){var m=marks[k];if(!m)return;var x=20+j*306;o+=R(x,yy,294,h,'#fff',8,' stroke="#D5DEE8"')+'<circle cx="'+(x+8+r0)+'" cy="'+(yy+h/2)+'" r="'+r0.toFixed(1)+'" fill="'+m[2]+'"/>'+tx(x+8+r0,yy+h/2+FS(9)*0.36,String(k+1),9,'#fff',900)+WR(x+16+r0*2,yy+h/2+FS(10)*0.35-(LI(m[1],10,250).length-1)*lh/2,m[1],10,D,800,294-24-r0*2,'start')});
   yy+=h+6}
  return {s:o,y:yy+4}}
+/* 上から見た機体（機首は右）。x0..x1 が胴体、cy が中心線 */
+function PLANE(x0,x1,cy,fw){var o='',L=x1-x0,wx=x0+L*0.42;
+ o+='<path d="M'+wx+' '+(cy-fw/2)+' L'+(wx-L*0.12)+' '+(cy-fw/2-120)+' L'+(wx+L*0.02)+' '+(cy-fw/2-120)+' L'+(wx+L*0.2)+' '+(cy-fw/2)+' Z" fill="#DCE6F0" stroke="#9FB0C2"/>';
+ o+='<path d="M'+wx+' '+(cy+fw/2)+' L'+(wx-L*0.12)+' '+(cy+fw/2+120)+' L'+(wx+L*0.02)+' '+(cy+fw/2+120)+' L'+(wx+L*0.2)+' '+(cy+fw/2)+' Z" fill="#DCE6F0" stroke="#9FB0C2"/>';
+ o+='<path d="M'+(x0+20)+' '+(cy-fw/2)+' L'+(x0-10)+' '+(cy-fw/2-46)+' L'+(x0+14)+' '+(cy-fw/2-46)+' L'+(x0+60)+' '+(cy-fw/2)+' Z M'+(x0+20)+' '+(cy+fw/2)+' L'+(x0-10)+' '+(cy+fw/2+46)+' L'+(x0+14)+' '+(cy+fw/2+46)+' L'+(x0+60)+' '+(cy+fw/2)+' Z" fill="#DCE6F0" stroke="#9FB0C2"/>';
+ o+='<path d="M'+x0+' '+(cy-fw/2)+' L'+(x1-40)+' '+(cy-fw/2)+' Q'+(x1+10)+' '+(cy-fw/2)+' '+(x1+14)+' '+cy+' Q'+(x1+10)+' '+(cy+fw/2)+' '+(x1-40)+' '+(cy+fw/2)+' L'+x0+' '+(cy+fw/2)+' Q'+(x0-24)+' '+cy+' '+x0+' '+(cy-fw/2)+' Z" fill="#fff" stroke="#5B6B7D" stroke-width="2"/>';
+ return {s:o,wx:wx,L:L}}
 var F={
 /* 1-2 案内に入れる3つのこと：なぜ・いつ・何を（文例は一つの例） */
 gnd_ann3:function(l){
@@ -296,7 +303,82 @@ gnd_count:function(l){
   W.c.forEach(function(c,i){var x=20+i*(cw+12);s+=R(x,y,cw,70,'#fff',10,' stroke="#C8D3DE"')+tx(x+cw/2,y+22,c,10,'#5B6B7D',800)+tx(x+cw/2,y+56,String(r[i]),22,(ri&&i===1)?'#D64545':'#0f3558',900)});
   var bx=20+3*(cw+12),bw=600-3*(cw+12);s+=R(bx,y,bw,70,r[3],10)+tx(bx+bw/2,y+46,ri?'≠':'=',26,'#fff',900);
   y+=90;s+=LB(320,y+FS(10)*0.6,r[4],10,'#fff','middle',r[3])+'</g>';y+=FS(10)*1.3+26});
- var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 3-1 ドアの番号：前から1・2・3…、L（左）が乗り降り、R（右）はサービス */
+gnd_doors:function(l){
+ var W=({ja:{t:'ドアの番号：前から1・2・3…、左（L）と右（R）',bb:'搭乗橋',ct:'機内食の車',sig:'窓越しに客室乗務員と合図（スライドの解除を確認）→ 合図がなければ開けない',n:['L（左）が通常の乗り降り、R（右）は機内食の積み込み・清掃などに使う','貨物室のドアは主に右側。数と位置は機材で違う（1-9）','スライドが作動したまま開けると飛び出し、遅延・欠航やけがにつながる']},
+  ko:{t:'도어 번호: 앞에서부터 1·2·3…, 왼쪽(L)과 오른쪽(R)',bb:'탑승교',ct:'기내식 차량',sig:'창 너머로 객실 승무원과 신호(슬라이드 해제 확인) → 신호가 없으면 열지 않는다',n:['L(왼쪽)이 일반 승하기, R(오른쪽)은 기내식 탑재·청소 등에 쓴다','화물칸 도어는 주로 오른쪽. 수와 위치는 기종마다 다르다(1-9)','슬라이드가 작동 상태인 채 열면 튀어나와 지연·결항이나 부상으로 이어진다']},
+  en:{t:'Door numbers: 1, 2, 3… from the front, left (L) and right (R)',bb:'Jet bridge',ct:'Catering truck',sig:'Signal with the cabin crew through the window (slide disarmed) → no signal, no opening',n:['The left (L) doors are normally used for passengers; the right (R) doors for catering and cleaning','Cargo doors are mostly on the right; their number and position depend on the aircraft (1-9)','Opening a door with the slide armed deploys it, causing delays or cancellations and possible injury']}})[l];
+ if(!W)return F.gnd_doors('ja');setK(1);
+ var T=TOP(W.t),s=T.s,cy=T.y+150,x0=110,x1=560,fw=62,P=PLANE(x0,x1,cy,fw);s+=P.s;
+ var dx=[x1-50,x1-170,x0+150,x0+40];
+ dx.forEach(function(x,i){var n=i+1;
+  s+='<rect x="'+(x-9)+'" y="'+(cy-fw/2-4)+'" width="18" height="8" rx="2" fill="'+(n===1?'#1769e0':'#0f3558')+'"'+(n===1?'><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></rect>':'/>')+tx(x,cy-fw/2+20,n+'L',9,'#1769e0',900);
+  s+='<rect x="'+(x-9)+'" y="'+(cy+fw/2-4)+'" width="18" height="8" rx="2" fill="#E08A2E"/>'+tx(x,cy+fw/2-10,n+'R',9,'#E08A2E',900)});
+ s+='<rect x="'+(dx[0]-14)+'" y="'+(cy-fw/2-80)+'" width="28" height="74" rx="4" fill="#C9D6E4" stroke="#5B6B7D"/>'+tx(dx[0]+20,cy-fw/2-60,W.bb,9,'#0f3558',800,'start');
+ s+='<rect x="'+(dx[0]-18)+'" y="'+(cy+fw/2+8)+'" width="36" height="40" rx="4" fill="#FFF4D6" stroke="#E08A2E"/>'+tx(dx[0]+24,cy+fw/2+34,W.ct,9,'#E08A2E',800,'start');
+ var y=cy+fw/2+140;s+=LB(320,y,W.sig,10,'#fff','middle','#0f3558');y+=FS(10)*1.3+18;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 3-2 出発便：段階ごとに確かめること */
+gnd_depchk:function(l){
+ var W=({ja:{t:'出発便の確認：段階ごとに、決まった順番で',st:['機内食・機内用品の搭載、清掃、整備点検の完了、客室乗務員の準備','お客様・書類・手荷物・貨物、特別な搭載物（外交文書・危険物・貴重品）、名簿と人数','出入国の書類、正確な搭乗人数、ドアの閉鎖、地上機材が安全な場所に下がったか','運航の電報を送り、特記事項を到着地・経由地に伝える'],who:['搭乗前','搭乗中','プッシュバック前','出発後'],n:['どの段階で誰が何を確かめるかを、便ごとに同じ順番で','「出発後」の連絡まで終えて、その便の仕事が終わる']},
+  ko:{t:'출발편 확인: 단계별로, 정해진 순서대로',st:['기내식·기내용품 탑재, 청소, 정비 점검 완료, 객실 승무원 준비','승객·서류·수하물·화물, 특수 탑재물(외교 문서·위험물·귀중품), 명단과 인원','출입국 서류, 정확한 탑승 인원, 도어 닫힘, 지상 장비가 안전한 곳으로 물러났는지','운항 전문을 보내고 특기 사항을 도착지·경유지에 알린다'],who:['탑승 전','탑승 중','푸시백 전','출발 후'],n:['어느 단계에서 누가 무엇을 확인할지 편마다 같은 순서로','「출발 후」 연락까지 마쳐야 그 편의 일이 끝난다']},
+  en:{t:'Departure checks: stage by stage, in a fixed order',st:['Catering and supplies loaded, cleaning, maintenance checks done, cabin crew ready','Passengers, documents, bags and cargo; special loads (diplomatic mail, DG, valuables); manifest against head count','Border documents, exact passenger count, doors closed, ground equipment pulled back to a safe place','Send the movement message and pass special notes to the arrival and transit stations'],who:['Before boarding','During boarding','Before pushback','After departure'],n:['Check the same things, by the same people, in the same order on every flight','The flight’s work ends only when the after-departure messages are sent']}})[l];
+ if(!W)return F.gnd_depchk('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#D64545','#2E9B5F'],'10s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 3-3 ターンアラウンドの工程表（国際線・短距離70分の例★）。赤はクリティカルパス */
+gnd_turn:function(l){
+ var W=({ja:{t:'ターンアラウンドの工程表（70分の例★）：赤がクリティカルパス',u:'出発までの分',r:[['到着・ドアオープン',70,68,0],['降機',68,60,1],['手荷物・貨物の積み下ろし→積み込み',68,12,0],['清掃・保安点検',60,36,1],['機内食',60,36,0],['給油',60,40,0],['搭乗',35,12,1],['人数の照合・書類・ドアクローズ',10,5,1]],n:['同時にできる作業（清掃・機内食・給油）は、いちばん長い作業の時間で考える','降機 → 清掃・点検 → 搭乗のように順番が決まった作業が1つ遅れると、出発がそのまま遅れる']},
+  ko:{t:'턴어라운드 공정표(70분 예★): 빨간색이 크리티컬 패스',u:'출발까지 분',r:[['도착·도어 오픈',70,68,0],['하기',68,60,1],['수하물·화물 하기→탑재',68,12,0],['청소·보안 점검',60,36,1],['기내식',60,36,0],['급유',60,40,0],['탑승',35,12,1],['인원 대조·서류·도어 클로즈',10,5,1]],n:['동시에 할 수 있는 작업(청소·기내식·급유)은 가장 긴 작업 시간으로 생각한다','하기 → 청소·점검 → 탑승처럼 순서가 정해진 작업이 하나 늦으면 출발이 그대로 늦어진다']},
+  en:{t:'Turnaround chart (70-minute example ★): red is the critical path',u:'minutes to departure',r:[['Arrival, door open',70,68,0],['Deplaning',68,60,1],['Bags and cargo off, then on',68,12,0],['Cleaning and security check',60,36,1],['Catering',60,36,0],['Fuelling',60,40,0],['Boarding',35,12,1],['Head count, documents, door close',10,5,1]],n:['Tasks done at the same time (cleaning, catering, fuelling) take as long as the longest of them','In a fixed sequence such as deplaning → cleaning and checks → boarding, one delay delays the departure']}})[l];
+ if(!W)return F.gnd_turn('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+10,lw=200,x0=230,x1=610,X=function(v){return x0+(70-v)/70*(x1-x0)},rh=26,top=y;
+ W.r.forEach(function(r,i){var nl=LI(r[0],9,lw-10).length,h=Math.max(rh,nl*FS(9)*1.3+8);
+  s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',4)+WR(26,y+h/2+FS(9)*0.35-(nl-1)*FS(9)*0.65,r[0],9,D,800,lw-10,'start');
+  var bx=X(r[1]),bw=X(r[2])-X(r[1]);s+='<rect x="'+bx+'" y="'+(y+5)+'" width="'+Math.max(bw,4)+'" height="'+(h-10)+'" rx="4" fill="'+(r[3]?'#D64545':'#1769e0')+'" opacity="'+(r[3]?1:.55)+'"/>';y+=h+2});
+ for(var v=70;v>=0;v-=10){s+='<line x1="'+X(v)+'" y1="'+top+'" x2="'+X(v)+'" y2="'+y+'" stroke="#C8D3DE" stroke-dasharray="3 4"/>'+tx(X(v),y+FS(9)+6,'-'+v,9,'#5B6B7D',700)}
+ s+=tx(x1,y+FS(9)*2.4+10,W.u,9,'#5B6B7D',700,'end');
+ s+='<line x1="0" y1="'+(top-4)+'" x2="0" y2="'+(y+2)+'" stroke="#0f3558" stroke-width="2.5"><animateTransform attributeName="transform" type="translate" values="'+X(70)+' 0;'+X(0)+' 0" dur="10s" repeatCount="indefinite"/></line>';
+ y+=FS(9)*2.4+26;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 3-4 3つの重量と上限（数字は説明のための例★） */
+gnd_wts:function(l){
+ var W=({ja:{t:'3つの重量：それぞれの上限を超えない（数字は例★）',u:'トン',lab:{dow:'運航重量（DOW）',pl:'お客様・手荷物・貨物',fu:'離陸時の燃料',tr:'飛行で使う燃料'},r:[['無燃料重量（ZFW）','上限（MZFW）'],['離陸重量（TOW）','上限（MTOW）'],['着陸重量（LDW）','上限（MLW）']],n:['ZFW・TOW・LDW の3つが、それぞれの上限を超えないように積む','上限に近いときは、貨物・燃料・人数のどれで調整するかを早めに決める','数字は説明のための例。機材ごとの上限は会社の資料で確かめる']},
+  ko:{t:'세 가지 중량: 각각의 상한을 넘지 않는다(숫자는 예★)',u:'톤',lab:{dow:'운항 중량(DOW)',pl:'승객·수하물·화물',fu:'이륙 연료',tr:'비행 중 쓰는 연료'},r:[['무연료 중량(ZFW)','상한(MZFW)'],['이륙 중량(TOW)','상한(MTOW)'],['착륙 중량(LDW)','상한(MLW)']],n:['ZFW·TOW·LDW 세 가지가 각각 상한을 넘지 않도록 싣는다','상한에 가까우면 화물·연료·인원 중 무엇으로 조정할지 일찍 정한다','숫자는 설명을 위한 예. 기종별 상한은 회사 자료로 확인한다']},
+  en:{t:'Three weights, each within its limit (figures are examples ★)',u:'tonnes',lab:{dow:'Dry operating weight (DOW)',pl:'Passengers, bags, cargo',fu:'Take-off fuel',tr:'Fuel burned in flight'},r:[['Zero fuel weight (ZFW)','Limit (MZFW)'],['Take-off weight (TOW)','Limit (MTOW)'],['Landing weight (LDW)','Limit (MLW)']],n:['Load so that ZFW, TOW and LDW each stay within their limits','When close to a limit, decide early whether to adjust cargo, fuel or passengers','The figures are for explanation only; check each aircraft’s limits in company data']}})[l];
+ if(!W)return F.gnd_wts('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+4,lw=150,x0=180,x1=600,mx=80,X=function(v){return x0+v/mx*(x1-x0)},C={dow:'#5B6B7D',pl:'#1769e0',fu:'#E08A2E',tr:'#F2C48A'};
+ var TW=function(t,z){var w=0;for(var c=0;c<t.length;c++)w+=t.charCodeAt(c)>255?FS(z)*1.02:FS(z)*0.58;return w},lg=20;['dow','pl','fu','tr'].forEach(function(k){var w=TW(W.lab[k],9)+34;if(lg+w>620){lg=20;y+=22}s+='<rect x="'+lg+'" y="'+y+'" width="14" height="14" rx="3" fill="'+C[k]+'"/>'+tx(lg+20,y+11,W.lab[k],9,D,800,'start');lg+=w});y+=32;
+ var rows=[[[42,'dow'],[14,'pl']],[[42,'dow'],[14,'pl'],[13,'fu']],[[42,'dow'],[14,'pl'],[4,'fu'],[9,'tr']]],lim=[62.5,77,66],tot=[56,69,60];
+ rows.forEach(function(segs,i){var h=40,acc=0;s+=WR(20,y+h/2+FS(10)*0.35,W.r[i][0],10,'#0f3558',900,lw,'start');
+  segs.forEach(function(g,j){var bx=X(acc),bw=X(acc+g[0])-X(acc);acc+=g[0];var tr=g[1]==='tr';
+   s+='<rect x="'+bx+'" y="'+(y+6)+'" width="'+bw+'" height="'+(h-12)+'" fill="'+C[g[1]]+'"'+(tr?' opacity=".55" stroke="#E08A2E" stroke-dasharray="4 3"':'')+'/>'});
+  var tv=tot[i],lx=X(lim[i]);s+='<line x1="'+lx+'" y1="'+(y-2)+'" x2="'+lx+'" y2="'+(y+h+2)+'" stroke="#D64545" stroke-width="2.5" stroke-dasharray="6 4"><animate attributeName="opacity" values="1;.35;1" dur="2s" repeatCount="indefinite"/></line>'+tx(lx,y-6,W.r[i][1]+' '+lim[i],8,'#D64545',800)+'<line x1="'+X(tv)+'" y1="'+(y+2)+'" x2="'+X(tv)+'" y2="'+(y+h-2)+'" stroke="#0f3558" stroke-width="2.5"/>'+tx(X(tv),y+h+FS(9)+2,String(tv),9,'#0f3558',900);
+  y+=h+FS(9)+16});
+ for(var v=0;v<=mx;v+=10){s+=tx(X(v),y,String(v),8,'#5B6B7D',700)}s+=tx(x1,y+FS(8)*1.6+4,W.u,8,'#5B6B7D',700,'end');
+ y+=FS(8)*1.6+18;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 3-5 ランプの危険：エンジンの前は吸い込み、後ろは噴射。衝突防止灯が点いたら近づかない */
+gnd_ramp:function(l){
+ var W=({ja:{t:'ランプの危険：エンジンの前は吸い込み、後ろは噴射',in:'吸い込み',ex:'噴射',bc:'衝突防止灯',walk:'決められた歩行ルート',n:['衝突防止灯が点いている機体には近づかない（エンジンが動いている・動き出す合図）','決められた歩行ルートを歩き、機体の下や車両の間を近道しない','落ちている物（FOD）は拾う。エンジンに吸い込まれると重大な損傷になる']},
+  ko:{t:'램프의 위험: 엔진 앞은 흡입, 뒤는 분사',in:'흡입',ex:'분사',bc:'충돌 방지등',walk:'정해진 보행 경로',n:['충돌 방지등이 켜진 항공기에는 다가가지 않는다(엔진이 돌고 있거나 곧 시동한다는 신호)','정해진 보행 경로로 걷고, 기체 아래나 차량 사이로 지름길을 가지 않는다','떨어진 물건(FOD)은 줍는다. 엔진에 빨려 들어가면 큰 손상이 된다']},
+  en:{t:'Ramp hazards: intake in front of the engine, blast behind it',in:'Intake',ex:'Jet blast',bc:'Anti-collision light',walk:'Marked walkway',n:['Keep away from an aircraft whose anti-collision light is on (engines running or about to start)','Use the marked walkways; never cut under the aircraft or between vehicles','Pick up anything on the ramp (FOD); an engine that swallows it can be badly damaged']}})[l];
+ if(!W)return F.gnd_ramp('ja');setK(1);
+ var T=TOP(W.t),s=T.s,cy=T.y+150,x0=150,x1=560,fw=56,P=PLANE(x0,x1,cy,fw);
+ var ex=P.wx+(x1-x0)*0.06;
+ [-1,1].forEach(function(sg){var ey=cy+sg*(fw/2+58);
+  s+='<path d="M'+(ex+24)+' '+ey+' m0 -34 a34 34 0 0 1 0 68 Z" fill="#D64545" opacity=".25"><animate attributeName="opacity" values=".15;.4;.15" dur="2s" repeatCount="indefinite"/></path>';
+  s+='<path d="M'+(ex-24)+' '+(ey-12)+' L'+(ex-210)+' '+(ey-sg*0-44)+' L'+(ex-210)+' '+(ey+44)+' L'+(ex-24)+' '+(ey+12)+' Z" fill="#E08A2E" opacity=".22"><animate attributeName="opacity" values=".12;.35;.12" dur="2s" begin="1s" repeatCount="indefinite"/></path>'});
+ s+=P.s;
+ [-1,1].forEach(function(sg){var ey=cy+sg*(fw/2+58);s+='<rect x="'+(ex-24)+'" y="'+(ey-12)+'" width="48" height="24" rx="10" fill="#9FB0C2" stroke="#5B6B7D"/>'});
+ s+=tx(ex+70,cy-fw/2-58+4,W.in,10,'#D64545',900,'start')+tx(ex-170,cy-fw/2-58-48,W.ex,10,'#E08A2E',900,'start');
+ s+='<circle cx="'+(x0+(x1-x0)*0.55)+'" cy="'+cy+'" r="7" fill="#D64545"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></circle>'+tx(x0+(x1-x0)*0.55+12,cy+4,W.bc,9,'#D64545',900,'start');
+ var wy=cy+fw/2+160;s+='<line x1="20" y1="'+wy+'" x2="620" y2="'+wy+'" stroke="#2E9B5F" stroke-width="5" stroke-dasharray="14 8"/>'+tx(24,wy-8,W.walk,10,'#2E9B5F',900,'start');
+ var y=wy+22;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
