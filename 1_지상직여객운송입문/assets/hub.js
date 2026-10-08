@@ -33,6 +33,11 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  $('brandTxt').textContent=H.site?H.site[lang]:'';
  $('code').textContent=H.code;$('h1').textContent=H.name[lang];$('lead').textContent=H.lead[lang];
  $('stats').innerHTML='<div><b>'+keys.length+'</b>'+U.n+'</div><div><b>'+(H.parts[lang].filter(function(p){return p}).length)+'</b>Parts</div>';
+ /* 講座ごとの注意（★の付く内容と確かめる先）と「内容の扱いと免責」への案内 2026.10 */
+ (function(){var st=$('stats');if(!st||!st.parentNode)return;var bx=$('hubCaution');if(!bx){bx=document.createElement('div');bx.id='hubCaution';st.parentNode.insertBefore(bx,st.nextSibling)}
+  var CT={ja:['この講座を読むときの注意','★の付いた内容','確かめる先','講座の内容は、学習のための一般的な情報です。実際の業務・手続きの前に、最新の公式情報と自社の規程で確かめてください。','内容の扱いと免責 →'],ko:['이 강좌를 읽을 때 주의할 점','★가 붙은 내용','확인할 곳','강좌 내용은 학습을 위한 일반 정보입니다. 실제 업무·절차 전에 최신 공식 정보와 자사 규정으로 확인하세요.','콘텐츠 이용 안내·면책 →'],en:['Before you use this course','What ★ marks','Where to check','This course is general information for learning. Before real work or procedures, check the latest official information and your own company’s rules.','Content notice and disclaimer →']}[lang]||{},cu=H.caution,i=({ja:0,ko:1,en:2})[lang]||0;
+  bx.setAttribute('style','margin:14px 0 4px;padding:12px 14px;border:1px solid #F0D9A8;background:#FFF9EC;border-radius:12px;font-size:13.5px;line-height:1.65;color:#3b3b3b');
+  bx.innerHTML='<b style="display:block;margin-bottom:4px;color:#7a5200">★ '+esc(CT[0])+'</b>'+(cu?'<div><b>'+esc(CT[1])+(lang==='ja'?'：':': ')+'</b>'+esc(cu.s[i])+'</div><div><b>'+esc(CT[2])+(lang==='ja'?'：':': ')+'</b>'+esc(cu.c[i])+'</div>':'')+'<div style="margin-top:4px">'+esc(CT[3])+' <a href="../8_사이트/notice.html?lang='+lang+'" style="white-space:nowrap">'+esc(CT[4])+'</a></div>';})();
  /* 1つの講座の中の地域タブ（主要空港ガイド：日本・韓国・世界） */
  if(H.grp){var gn=document.getElementById('grp');if(!gn){gn=document.createElement('nav');gn.id='grp';gn.className='grp';var hero=document.querySelector('.hero');if(hero)hero.parentNode.insertBefore(gn,hero.nextSibling)}
   gn.setAttribute('aria-label',{ja:'地域',ko:'지역',en:'Region'}[lang]);gn.innerHTML=H.grp.map(function(x){var on=x[0]===window.HUB_ID;return '<a href="'+x[1]+'?lang='+lang+'"'+(on?' class="on" aria-current="page"':'')+'>'+x[2][lang]+'</a>'}).join('')}

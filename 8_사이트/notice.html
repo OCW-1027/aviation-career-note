@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>内容の扱いと免責</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.nt-star{margin:6px 0 18px;padding:12px 14px;border:1px solid #F0D9A8;background:#FFF9EC;border-radius:12px;line-height:1.7}
+.nt-star b{color:#7a5200}
+.doc ul.nt{margin:6px 0 14px 1.2em;padding:0;line-height:1.7}
+.doc ul.nt li{margin:3px 0}
+.nt-tbl{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.6;margin:8px 0 18px}
+.nt-tbl th,.nt-tbl td{border:1px solid #E3E8EF;padding:7px 9px;vertical-align:top;text-align:left}
+.nt-tbl th{background:#F4F7FB;text-align:center}
+.nt-tbl td:first-child{white-space:nowrap;font-weight:700}
+.nt-wrap{overflow-x:auto}
+@media (max-width:640px){.nt-tbl,.nt-tbl tbody,.nt-tbl tr,.nt-tbl td{display:block;width:100%}.nt-tbl thead{display:none}.nt-tbl tr{border:1px solid #E3E8EF;border-radius:10px;margin:0 0 10px;padding:6px 8px}.nt-tbl td{border:0;padding:3px 2px;white-space:normal}.nt-tbl td[data-h]::before{content:attr(data-h);display:block;font-size:11.5px;color:#6B7785;font-weight:700}}
+</style>
+</head>
+<body data-page="notice">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap doc">
+<section class="page-hero"><h1 id="h1"></h1><p id="hp"></p></section>
+<div class="draft" id="dr"></div>
+<div id="body"></div>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+<script src="../1_지상직여객운송입문/assets/hubs.js"></script>
+<script src="data/home_data.js"></script>
+<script>
+/* 内容の扱いと免責（2026.10 新規）— ★印の意味、内容の時点、使い方の注意、架空の例、誤りの連絡、免責、講座ごとの注意。
+   講座ごとの注意は hubs.js の caution（講座の目次と同じ文）を表にする */
+var T={ja:{h1:'内容の扱いと免責',hp:'このサイトの記事・図・練習ページを使う前にお読みください。★印の意味と、内容の正しい使い方をまとめています。',dr:'【案】公開前に専門家（弁護士など）の確認を受けてください。',
+star:'<b>★印の意味</b>　★は「会社・空港・国・運賃によって違う値」や「法令・料金・制度の改正で変わる内容」に付けています。★の付いた数字・条件・手続きは、そのまま使わず、実際の業務・手続きの前に最新の公式情報と自社の規程で必ず確かめてください。',
+body:[['1 このサイトの内容','このサイトの記事は、航空・空港の仕事を学ぶための一般的な情報です。特定の航空会社・空港・会社の規程ではなく、複数の現場の実務を、教育のために一般化してまとめています。'],
+['2 ★印が付くもの',['会社・空港・国・運賃によって違う値（締め切り時刻、手荷物の許容量、料金、指標の目標など）','法令・料金・税率・保険料率・制度の改正で変わる内容（毎年改定されるものを含む）','空港の施設・就航の状況・統計の数字・今後の計画など、時間とともに変わる情報','確かめが必要な一般的な例（「例★」と書いたもの）']],
+['3 内容の時点','各レッスンの「内容の基準」に示した時点（例：2026年9月）の情報にもとづいています。それより後に法令・料率・空港の情報が変わっている場合があります。気づいたものから順に直し、講座の目次に最終更新日を示します。'],
+['4 判断・業務に使う前に',['法律・税務・社会保険・労務・在留資格・医療・投資について、個別の判断には使わず、公式の情報と専門家（弁護士・税理士・社会保険労務士・行政書士など）で確かめてください。','航法・燃料・重量と重心・危険物の受託など、実際の運航には使えません。必ずその時点で有効なAIP・NOTAM・法令・自社の運航規程・マニュアルを使ってください。','図・地図・計算の例は、説明のための略図・概算です。']],
+['5 例に出てくる会社・人・数字','「Vela Air」などの会社、人名、便名、予約番号、金額は、出典を示したもの以外は説明のための架空・概算です。実在の会社・統計・報道を使うときは、出典と時点を示しています。'],
+['6 「現場のひと言」と事例','「現場のひと言」は、現場で役に立つ考え方を一般化した助言です。事例の講座は、公開の報道・事故調査報告書などにもとづき、出典を示しています。事実関係は出典で確かめてください。'],
+['7 誤りの連絡と更新','誤り・古い情報に気づいたら、お問い合わせ窓口（［公開時に設定］）にお知らせください。確かめたうえで直し、講座の目次の最終更新日を新しくします。'],
+['8 免責','当サイトは内容の正確さに努めていますが、完全性・最新性を保証するものではありません。本サイトの利用により生じた損害について、当社の故意または重大な過失による場合を除き、責任を負いません（利用規約 第6条）。']],
+th:'講座ごとの注意',tc:['講座','★の付いた内容','確かめる先']},
+ko:{h1:'콘텐츠 이용 안내·면책',hp:'이 사이트의 기사·그림·연습 페이지를 쓰기 전에 읽어 주세요. ★ 표시의 뜻과 내용을 바르게 쓰는 법을 정리했습니다.',dr:'【안】공개 전에 전문가(변호사 등)의 확인을 받으세요. 한국어는 참고 번역이며 일본어가 우선합니다.',
+star:'<b>★ 표시의 뜻</b>　★는 「회사·공항·나라·운임마다 다른 값」이나 「법령·요금·제도 개정으로 바뀌는 내용」에 붙였습니다. ★가 붙은 숫자·조건·절차는 그대로 쓰지 말고, 실제 업무·절차 전에 반드시 최신 공식 정보와 자사 규정으로 확인하세요.',
+body:[['1 이 사이트의 내용','이 사이트의 기사는 항공·공항 일을 배우기 위한 일반 정보입니다. 특정 항공사·공항·회사의 규정이 아니라 여러 현장의 실무를 교육을 위해 일반화해 정리했습니다.'],
+['2 ★가 붙는 것',['회사·공항·나라·운임마다 다른 값(마감 시각, 수하물 허용량, 요금, 지표 목표 등)','법령·요금·세율·보험료율·제도 개정으로 바뀌는 내용(매년 개정되는 것 포함)','공항 시설·취항 현황·통계 숫자·향후 계획 등 시간이 지나면 바뀌는 정보','확인이 필요한 일반적인 예(「예★」로 쓴 것)']],
+['3 내용의 시점','각 레슨의 「내용 기준」에 표시한 시점(예: 2026년 9월)의 정보를 바탕으로 합니다. 그 뒤 법령·요율·공항 정보가 바뀌었을 수 있습니다. 확인되는 대로 고치고, 강좌 목차에 최종 업데이트일을 표시합니다.'],
+['4 판단·업무에 쓰기 전에',['법률·세무·사회보험·노무·재류자격·의료·투자에 대해 개별 판단에 쓰지 말고, 공식 정보와 전문가(변호사·세무사·노무사·행정서사 등)로 확인하세요.','항법·연료·중량과 무게중심·위험물 접수 등 실제 운항에는 쓸 수 없습니다. 반드시 그 시점에 유효한 AIP·NOTAM·법령·자사 운항규정·매뉴얼을 쓰세요.','그림·지도·계산 예시는 설명을 위한 약도·어림값입니다.']],
+['5 예시에 나오는 회사·사람·숫자','「Vela Air」 등의 회사, 인명, 편명, 예약번호, 금액은 출처를 밝힌 것 외에는 설명을 위한 가상·어림값입니다. 실재하는 회사·통계·보도를 쓸 때는 출처와 시점을 밝힙니다.'],
+['6 「현장 한마디」와 사례','「현장 한마디」는 현장에서 도움이 되는 생각을 일반화한 조언입니다. 사례 강좌는 공개 보도·사고 조사 보고서 등에 바탕을 두고 출처를 밝힙니다. 사실관계는 출처에서 확인하세요.'],
+['7 오류 신고와 업데이트','오류나 오래된 정보를 발견하면 문의 창구(［공개 시 설정］)로 알려 주세요. 확인한 뒤 고치고, 강좌 목차의 최종 업데이트일을 새로 합니다.'],
+['8 면책','당 사이트는 내용의 정확성을 위해 노력하지만 완전성·최신성을 보증하지 않습니다. 본 사이트 이용으로 생긴 손해에 대해 당사의 고의 또는 중대한 과실에 의한 경우를 제외하고 책임지지 않습니다(이용약관 제6조).']],
+th:'강좌별 주의',tc:['강좌','★가 붙은 내용','확인할 곳']},
+en:{h1:'Content Notice and Disclaimer',hp:'Please read this before using the articles, figures and practice pages on this site. It explains what ★ means and how to use the content correctly.',dr:'[Draft] Have this reviewed by a qualified professional (such as a lawyer) before publication. The English text is a reference translation; the Japanese text prevails.',
+star:'<b>What ★ means</b>　★ marks values that differ by airline, airport, country or fare, and content that changes when laws, charges or schemes are revised. Do not use ★ figures, conditions or procedures as they are: always check the latest official information and your own company’s rules before real work or procedures.',
+body:[['1 About this content','The articles on this site are general information for learning about airline and airport work. They are not the rules of any particular airline, airport or company; practice from many workplaces has been generalised for teaching.'],
+['2 What ★ is attached to',['Values that differ by airline, airport, country or fare (deadlines, baggage allowances, charges, KPI targets and so on)','Content that changes when laws, charges, tax or insurance rates or schemes are revised (including annual revisions)','Information that changes over time: airport facilities, routes, statistics and future plans','General examples that need checking (marked “example ★”)']],
+['3 Content date','Each lesson is based on information as of the date shown as its “Content basis” (for example, September 2026). Laws, rates and airport information may have changed since. We correct items as we confirm them and show the last update on each course page.'],
+['4 Before using it for decisions or work',['Do not rely on it for individual legal, tax, social insurance, employment, immigration, medical or investment decisions; check official information and qualified advisers.','It cannot be used for actual flight operations such as navigation, fuel, weight and balance or accepting dangerous goods. Always use the AIP, NOTAMs, legislation and your own operations manuals in force at the time.','Figures, maps and worked calculations are simplified diagrams and approximate examples.']],
+['5 Companies, people and figures in examples','Companies such as “Vela Air”, people’s names, flight numbers, booking references and amounts are fictional or approximate unless a source is given. Where real companies, statistics or news are used, the source and date are shown.'],
+['6 “From the field” notes and case studies','“From the field” notes are generalised advice from practice. The case-study course is based on published news and accident investigation reports, with sources given; check the facts at the source.'],
+['7 Reporting errors and updates','If you find an error or out-of-date information, please tell us through the contact point ([to be set at publication]). We will check, correct it and update the course’s last-updated date.'],
+['8 Disclaimer','We strive for accuracy but do not guarantee that the content is complete or up to date. Except in cases of our wilful misconduct or gross negligence, we accept no liability for loss arising from use of this site (Terms of use, Article 6).']],
+th:'Notes by course',tc:['Course','What ★ marks','Where to check']}};
+window.render=function(l){var t=T[l],E=window.SITE_ESC,i=({ja:0,ko:1,en:2})[l]||0;document.getElementById('h1').textContent=t.h1;document.getElementById('hp').textContent=t.hp;document.getElementById('dr').textContent=t.dr;
+ var h='<div class="nt-star">'+t.star+'</div>'+t.body.map(function(a){return '<h3>'+E(a[0])+'</h3>'+(Array.isArray(a[1])?'<ul class="nt">'+a[1].map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul>':'<p>'+E(a[1])+'</p>')}).join('');
+ var H=window.HUBS||{},SP={};(window.SERIES||[]).forEach(function(x){SP[x.code]=x.p});['KOR','WLD'].forEach(function(c){if(!SP[c]&&SP.APT)SP[c]=SP.APT});var rows=Object.keys(H).filter(function(d){return H[d].caution}).map(function(d){var c=H[d].caution;return '<tr><td data-h="'+E(t.tc[0])+'">'+(SP[H[d].code]?'<a href="'+E(SP[H[d].code])+'?lang='+l+'">':'')+E(H[d].name[l]||H[d].name.ja)+(SP[H[d].code]?'</a>':'')+'</td><td data-h="'+E(t.tc[1])+'">'+E(c.s[i])+'</td><td data-h="'+E(t.tc[2])+'">'+E(c.c[i])+'</td></tr>'}).join('');
+ if(rows)h+='<h3 id="courses">9 '+E(t.th)+'</h3><div class="nt-wrap"><table class="nt-tbl"><thead><tr>'+t.tc.map(function(x){return '<th>'+E(x)+'</th>'}).join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>';
+ document.getElementById('body').innerHTML=h;document.title=t.h1+' | '+window.SITE_NAME()};
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>
