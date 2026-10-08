@@ -136,7 +136,7 @@ sections:[
 {h:"Diversion and return",blocks:[{t:"cards",n:2,items:[
 {ic:"🛬",name:"Diversion",tag:"Diversion",x:"Unable to land at the destination, the flight lands at an alternate or intermediate airport."},
 {ic:"↩️",name:"Return",tag:"Return",x:"Unable to land at the destination, the flight returns to its point of departure."}]}]},
-{h:"It depends where you land",blocks:[{t:"table",cols:["","An airport with your station","An airport without one"],rows:[
+{h:"It depends where you land",blocks:[{t:"fig",id:"gnd_divert",cap:"Animated figure: when the destination is unavailable, the aircraft lands at an alternate (diversion) or returns to the origin (return); who handles it depends on the airport."},{t:"table",cols:["","An airport with your station","An airport without one"],rows:[
 ["Who leads","That station","The nearest station, or the one the company designates"],
 ["People on the ground","Station staff","Ask the airport’s handling company; if that is not enough, the senior cabin crew may help"],
 ["What to share","Onward itineraries, medical cases, VIPs, wheelchair passengers","The same, plus contacting the local agencies"],
@@ -173,7 +173,7 @@ lead:["When a flight is cancelled, a crowd arrives at the counter at once. Every
 sections:[
 {h:"When a cancellation is confirmed",blocks:[{t:"ladder",rise:10,steps:[{name:"Confirm the facts",sub:"Cause, alternative flights, when operations resume"},{name:"Brief",sub:"So every member of staff says the same thing"},{name:"Inform",sub:"Announcements and individual contact"},{name:"Rebook",sub:"To an agreed priority"},{name:"Hotels and transport",sub:"For those who need them"},{name:"Baggage",sub:"Return the offloaded bags"}]},
 {t:"point",x:"Check first on passengers needing particular care: unaccompanied minors, those who are unwell, wheelchair users, elderly passengers and families with infants."}]},
-{h:"Rebooking options",blocks:[{t:"table",cols:["Option","What it means"],rows:[
+{h:"Rebooking options",blocks:[{t:"fig",id:"gnd_reacc",cap:"Animated figure: the four re-accommodation options light up in turn."},{t:"table",cols:["Option","What it means"],rows:[
 ["Your own next flight","The most common. Allocated by available seats and priority"],
 ["Endorsement to another airline","Putting the passenger on a carrier you have an agreement with"],
 ["Rerouting","Reaching the final destination through a different connecting point"],
@@ -218,7 +218,7 @@ sections:[
 ["EU","No specific tarmac limit, but compensation and assistance rules apply to delays overall"],
 ["Japan","No single statutory limit; airlines apply their own standards"]]},
 {t:"note",x:"* Exceptions apply, for example where the captain judges that staying out is necessary for safety or security, or where the authorities judge that returning to the gate would seriously disrupt airport operations. Check the current rules. ★"}]},
-{h:"When passengers are let off (example; differs by country and airline)",blocks:[{t:"table",cols:["Waiting time","What happens"],rows:[
+{h:"When passengers are let off (example; differs by country and airline)",blocks:[{t:"fig",id:"gnd_tarmac",cap:"Animated figure: an arrow moves along the time since door close, marking updates, food and drink, and limits. Examples of national rules."},{t:"table",cols:["Waiting time","What happens"],rows:[
 ["Up to the airline’s own limit (for example 2–3 hours)","Passengers normally stay on board; some airlines let them move between the aircraft and a waiting area"],
 ["Before the national limit","Passengers are normally disembarked before the legal limit is reached (some countries set 3 hours domestic and 4 hours international)"]]}]},
 {h:"What the ground provides",blocks:[{t:"check",items:[

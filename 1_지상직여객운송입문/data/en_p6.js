@@ -11,7 +11,7 @@ sections:[
 {name:"CIQ",x:"Dealing with customs, immigration and quarantine."},
 {name:"Passenger service",x:"Passengers needing assistance, complaints and service improvements."},
 {name:"Irregular operations",x:"Handling delays and cancellations, recording them and reporting the outcome."}]}]},
-{h:"How a day runs (one international rotation a day)",blocks:[{t:"table",cols:["Roughly","Main work"],rows:[
+{h:"How a day runs (one international rotation a day)",blocks:[{t:"fig",id:"gnd_day",cap:"Animated figure: from four hours before departure to after it, each period’s tasks light up in turn (example)."},{t:"table",cols:["Roughly","Main work"],rows:[
 ["3 to 4 hours before departure","Check the flight details and head office instructions; brief the handling company"],
 ["3 hours before","Confirm the counter is ready; check-in opens"],
 ["1 hour before","Check-in closes; move to the gate; check the loading"],
@@ -49,7 +49,7 @@ set("6-2",{title:"Managing the Handling Company: Meetings, Quality Checks and Tr
 lead:["At most overseas airports, check-in, loading and the rest are contracted to a ground handling company. The responsibility towards passengers and the authorities, however, stays with the airline. So the airline keeps checking that the contractor works safely and to its own procedures.",
 "This article covers the five pillars of managing a handling company — meetings, quality checks, training, safety audits and cost verification — and how to run each one."],
 sections:[
-{h:"The five pillars",blocks:[{t:"table",cols:["Pillar","What it covers"],rows:[
+{h:"The five pillars",blocks:[{t:"fig",id:"gnd_5p",cap:"Animated figure: the five pillars that support handling quality light up in turn."},{t:"table",cols:["Pillar","What it covers"],rows:[
 ["Monthly meeting","Sharing performance, problems and fixes, and what is coming next month"],
 ["Quality checks","Scoring the work at the counter, the gate and the ramp against a checklist"],
 ["Training","Your procedures, new staff training and developing their trainers"],
@@ -100,7 +100,7 @@ sections:[
 ["CIQ area pass","For entering customs and immigration areas; arranged with those agencies"],
 ["Vehicle permit","To drive on the ramp; requires a driving course"],
 ["Temporary pass","For short-term visitors or staff helping out, usually on condition of being escorted"]]}]},
-{h:"The life of a pass",blocks:[{t:"ladder",rise:10,steps:[{name:"Apply",sub:"Documents and identity check"},{name:"Security training",sub:"Take the airport’s security course"},{name:"Issued",sub:"Collected and recorded"},{name:"Use and renewal",sub:"Track the expiry"},{name:"Returned",sub:"Always collected on leaving or transferring"}]}]},
+{h:"The life of a pass",blocks:[{t:"fig",id:"gnd_pass",cap:"Animated figure: the life of an ID pass, from application to return, lights up around the circle."},{t:"ladder",rise:10,steps:[{name:"Apply",sub:"Documents and identity check"},{name:"Security training",sub:"Take the airport’s security course"},{name:"Issued",sub:"Collected and recorded"},{name:"Use and renewal",sub:"Track the expiry"},{name:"Returned",sub:"Always collected on leaving or transferring"}]}]},
 {h:"The pass controller’s role",blocks:[{t:"check",items:[
 {name:"Keep the list",x:"Who holds which pass and until when."},
 {name:"Track expiry",x:"Prompt renewals before they expire."},
@@ -120,7 +120,7 @@ set("6-4",{title:"Preparing for Audits",hl:"audits",subtitle:"An audit is decide
 lead:["An overseas station is audited by head office for safety and quality, inspected by its own country’s aviation authority, and audited by the authorities of the country it operates in for security, dangerous goods and safety.",
 "This article covers the main types of audit, what auditors look at, the records a station keeps and for how long, and the habits of a station that does well in audits."],
 sections:[
-{h:"The main audits",blocks:[{t:"table",cols:["Audit","What it covers"],rows:[
+{h:"The main audits",blocks:[{t:"fig",id:"gnd_audit",cap:"Animated figure: the main audits a station faces, and what they cover, light up in turn."},{t:"table",cols:["Audit","What it covers"],rows:[
 ["Head office safety and quality audit","Operating to the manual, training records, management of the handling company. Regular and special (after an incident)"],
 ["Home country authority inspection","Operational safety standards, security, dangerous goods and passenger handling"],
 ["Host country authority audit","The security programme, security training, dangerous goods, cabin safety (in Japan, the Ministry of Land, Infrastructure, Transport and Tourism)"],
@@ -159,7 +159,7 @@ next:"6-5 The airport operators committee (AOC)"});
 set("6-5",{title:"The Airline Operators Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport company and the agencies",
 lead:["The AOC, the Airline Operators Committee, is the body formed by the airlines serving an airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is the way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
 sections:[
-{h:"What the AOC deals with",blocks:[{t:"table",cols:["Topic","Examples"],rows:[
+{h:"What the AOC deals with",blocks:[{t:"fig",id:"gnd_aoc",cap:"Animated figure: the six themes handled by the Airline Operators Committee light up in turn."},{t:"table",cols:["Topic","Examples"],rows:[
 ["Facilities","Counter allocation, terminal works, baggage systems"],
 ["Operations","Handling peaks, improving punctuality (A-CDM), snow clearing and de-icing"],
 ["Charges","Revisions to airport charges, discounts and incentive schemes"],

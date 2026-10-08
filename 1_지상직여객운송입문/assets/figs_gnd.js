@@ -10,6 +10,8 @@ function GLOW(x,y,w,h,i,n,dur,rx){return '<rect x="'+x+'" y="'+y+'" width="'+w+'
 function LIST(items,y,w,sz){var g='';items.forEach(function(v,i){var n=LI(v,sz,w-80).length,lh=FS(sz)*1.3,h=n*lh+12;g+=R(20,y,w,h,i%2?'#fff':'#F4F7FB',8)+BADGE(42,y+h/2,i+1,sz)+WR(64,y+6+n*lh/2+FS(sz)*0.3,v,sz,D,800,w-80,'start');y+=h+4});return {s:g,y:y}}
 function SVG(h,s){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+h.toFixed(0)+'" role="img">'+R(0,0,640,h,'#F7FAFD')+s+'</svg>'}
 function TOP(t){return {s:TTL(320,30,t,15,'#0f3558',600),y:24+LI(t,15,600).length*FS(15)*1.3+16}}
+/* 上端をそろえて折り返す（WR は中央合わせなので、行数の半分だけ下げる） */
+function WT(x,y,t,sz,c,w,mw,a){return WR(x,y+(LI(t,sz,mw).length-1)*FS(sz)*1.3/2,t,sz,c,w,mw,a)}
 /* 横の目盛り：区間の色・目盛り・左から右へ動く印 */
 function SCALE(y,mx,step,zones,unit,dur){var x0=40,x1=600,X=function(v){return x0+v/mx*(x1-x0)},o='';
  zones.forEach(function(z,i){o+='<rect x="'+X(z[0])+'" y="'+y+'" width="'+(X(z[1])-X(z[0]))+'" height="26" fill="'+z[2]+'"/>'});
@@ -18,13 +20,13 @@ function SCALE(y,mx,step,zones,unit,dur){var x0=40,x1=600,X=function(v){return x
  o+='<path d="M0 0 L-9 -14 L9 -14 Z" fill="#0f3558"><animateMotion dur="'+(dur||'9s')+'" repeatCount="indefinite" path="M'+X(mx*0.02)+' '+(y-2)+' L'+X(mx*0.98)+' '+(y-2)+'"/></path>';
  return {s:o,y:y+34+FS(9)*2.4+22,X:X}}
 /* 色の枠のカードを横に並べる（高さはそろえる） */
-function ZCARDS(y,z,cols){var cw=(600-12*(z.length-1))/z.length,zh=0,o='';z.forEach(function(c){var h=36+LI(c[1],10,cw-20).length*FS(10)*1.3+16;if(h>zh)zh=h});
- z.forEach(function(c,i){var x=20+i*(cw+12);o+=R(x,y,cw,zh,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="6" rx="3" fill="'+cols[i]+'"/>'+tx(x+cw/2,y+24,c[0],12,cols[i],900)+WR(x+cw/2,y+44,c[1],10,D,800,cw-20)});
+function ZCARDS(y,z,cols){var cw=(600-12*(z.length-1))/z.length,zh=0,th=0,o='';z.forEach(function(c){var t=LI(c[0],12,cw-16).length*FS(12)*1.3;if(t>th)th=t});z.forEach(function(c){var h=14+th+8+LI(c[1],10,cw-20).length*FS(10)*1.3+14;if(h>zh)zh=h});
+ z.forEach(function(c,i){var x=20+i*(cw+12);o+=R(x,y,cw,zh,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="6" rx="3" fill="'+cols[i]+'"/>'+WT(x+cw/2,y+12+FS(12),c[0],12,cols[i],900,cw-16)+WT(x+cw/2,y+14+th+8+FS(10),c[1],10,D,800,cw-20)});
  return {s:o,y:y+zh+14}}
 /* 縦の手順：左に番号と内容、右に時刻や担当の札。順に光る */
 function STEPS2(y,st,who,pc,dur){var s='',lh=FS(11)*1.3,n=st.length;
  st.forEach(function(x,i){var nn=LI(x,11,380).length,nw=LI(who[i],10,130).length,h=Math.max(nn*lh,nw*FS(10)*1.3)+22;
-  s+=R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+GLOW(20,y,600,h,i,n,dur)+BADGE(44,y+h/2,i+1,11)+WR(66,y+h/2+FS(11)*0.35-(nn-1)*lh/2,x,11,D,800,380,'start')+R(462,y+6,150,h-12,pc[i%pc.length],8)+WR(537,y+h/2+FS(10)*0.35-(nw-1)*FS(10)*0.65,who[i],10,'#fff',900,130);
+  s+=R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+GLOW(20,y,600,h,i,n,dur)+BADGE(44,y+h/2,i+1,11)+WR(66,y+h/2+FS(11)*0.35,x,11,D,800,380,'start')+R(462,y+6,150,h-12,pc[i%pc.length],8)+WR(537,y+h/2+FS(10)*0.35,who[i],10,'#fff',900,130);
   y+=h;if(i<n-1){s+=ARW(240,y+2,240,y+12,'#9FB0C2',3);y+=14}});
  return {s:s,y:y}}
 /* 時間の軸（出発前の逆算）：番号の印を軸に置き、説明は下に2列で */
@@ -36,7 +38,7 @@ function TL(y,mx,step,marks,unit,dur){var x0=50,x1=600,X=function(v){return x0+(
  o+='<circle cx="0" cy="'+y+'" r="7" fill="#0f3558"><animateMotion dur="'+(dur||'8s')+'" repeatCount="indefinite" path="M'+x0+' 0 L'+x1+' 0"/></circle>';
  var yy=y+FS(9)*2.4+30,lh=FS(10)*1.3;
  for(var i=0;i<marks.length;i+=2){var h=0;[i,i+1].forEach(function(k){if(marks[k]){var hh=Math.max(LI(marks[k][1],10,250).length*lh,r0*2)+12;if(hh>h)h=hh}});
-  [i,i+1].forEach(function(k,j){var m=marks[k];if(!m)return;var x=20+j*306;o+=R(x,yy,294,h,'#fff',8,' stroke="#D5DEE8"')+'<circle cx="'+(x+8+r0)+'" cy="'+(yy+h/2)+'" r="'+r0.toFixed(1)+'" fill="'+m[2]+'"/>'+tx(x+8+r0,yy+h/2+FS(9)*0.36,String(k+1),9,'#fff',900)+WR(x+16+r0*2,yy+h/2+FS(10)*0.35-(LI(m[1],10,250).length-1)*lh/2,m[1],10,D,800,294-24-r0*2,'start')});
+  [i,i+1].forEach(function(k,j){var m=marks[k];if(!m)return;var x=20+j*306;o+=R(x,yy,294,h,'#fff',8,' stroke="#D5DEE8"')+'<circle cx="'+(x+8+r0)+'" cy="'+(yy+h/2)+'" r="'+r0.toFixed(1)+'" fill="'+m[2]+'"/>'+tx(x+8+r0,yy+h/2+FS(9)*0.36,String(k+1),9,'#fff',900)+WR(x+16+r0*2,yy+h/2+FS(10)*0.35,m[1],10,D,800,294-24-r0*2,'start')});
   yy+=h+6}
  return {s:o,y:yy+4}}
 /* 上から見た機体（機首は右）。x0..x1 が胴体、cy が中心線 */
@@ -49,7 +51,7 @@ function PLANE(x0,x1,cy,fw){var o='',L=x1-x0,wx=x0+L*0.42;
 /* 左の項目 → 右の扱い。行が順に光る */
 function ROWMAP(y,rows,dur){var s='',n=rows.length,lw=250,rx=330;
  rows.forEach(function(r,i){var nl=Math.max(LI(r[0],11,lw-24).length,LI(r[1],10,270).length),h=nl*FS(11)*1.3+20;
-  s+=GLOW(20,y-3,600,h+6,i,n,dur,10)+R(20,y,lw,h,'#fff',10,' stroke="#C8D3DE"')+WR(20+lw/2,y+h/2+FS(11)*0.35-(LI(r[0],11,lw-24).length-1)*FS(11)*0.65,r[0],11,D,800,lw-24)+ARW(20+lw+8,y+h/2,rx-8,y+h/2,r[2],3)+R(rx,y,290,h,r[2],10)+WR(rx+145,y+h/2+FS(10)*0.35-(LI(r[1],10,270).length-1)*FS(10)*0.65,r[1],10,'#fff',900,270);
+  s+=GLOW(20,y-3,600,h+6,i,n,dur,10)+R(20,y,lw,h,'#fff',10,' stroke="#C8D3DE"')+WR(20+lw/2,y+h/2+FS(11)*0.35,r[0],11,D,800,lw-24)+ARW(20+lw+8,y+h/2,rx-8,y+h/2,r[2],3)+R(rx,y,290,h,r[2],10)+WR(rx+145,y+h/2+FS(10)*0.35,r[1],10,'#fff',900,270);
   y+=h+10});
  return {s:s,y:y}}
 var F={
@@ -65,8 +67,8 @@ gnd_ann3:function(l){
  W.c.forEach(function(c,i){var x=20+i*(cw+12);
   s+=R(x,y,cw,ch,'#fff',12,' stroke="#C8D3DE"')+GLOW(x,y,cw,ch,i,3,dur,12)+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="34" rx="12" fill="'+cols[i]+'"/><rect x="'+x+'" y="'+(y+20)+'" width="'+cw+'" height="14" fill="'+cols[i]+'"/>';
   s+=BADGE(x+20,y+17,i+1,10,'#fff')+tx(x+cw/2+8,y+17+FS(13)*0.35,c[0],13,'#fff',900);
-  var yy=y+46;s+=WR(x+cw/2,yy+FS(10)*0.35,c[1],10,D,800,cw-24);yy+=LI(c[1],10,cw-24).length*FS(10)*1.3+10;
-  var qh=LI(c[2],10,cw-28).length*FS(10)*1.3+12;s+=R(x+10,yy,cw-20,qh,'#EEF3F7',8)+WR(x+cw/2,yy+qh/2+FS(10)*0.35-(LI(c[2],10,cw-28).length-1)*FS(10)*0.65,c[2],10,'#0f3558',700,cw-28)});
+  var yy=y+46;s+=WT(x+cw/2,yy+FS(10)*0.35,c[1],10,D,800,cw-24);yy+=LI(c[1],10,cw-24).length*FS(10)*1.3+10;
+  var qh=LI(c[2],10,cw-28).length*FS(10)*1.3+12;s+=R(x+10,yy,cw-20,qh,'#EEF3F7',8)+WR(x+cw/2,yy+qh/2+FS(10)*0.35,c[2],10,'#0f3558',700,cw-28)});
  y+=ch+14;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
 
 /* 1-3 カウンターで確かめる4項目。1つでも分からなければ責任者へ */
@@ -77,7 +79,7 @@ gnd_doc4:function(l){
  if(!W)return F.gnd_doc4('ja');setK(1);
  var T=TOP(W.t),s=T.s,y=T.y,dur='9s',lh=FS(11)*1.3,pc=['#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],n=W.st.length;
  W.st.forEach(function(x,i){var nn=LI(x,11,380).length,nw=LI(W.who[i],10,130).length,h=Math.max(nn*lh,nw*FS(10)*1.3)+24;
-  s+=R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+GLOW(20,y,600,h,i,n,dur)+BADGE(44,y+h/2,i+1,11)+WR(66,y+h/2+FS(11)*0.35-(nn-1)*lh/2,x,11,D,800,380,'start')+R(462,y+6,150,h-12,pc[i],8)+WR(537,y+h/2+FS(10)*0.35-(nw-1)*FS(10)*0.65,W.who[i],10,'#fff',900,130);
+  s+=R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+GLOW(20,y,600,h,i,n,dur)+BADGE(44,y+h/2,i+1,11)+WR(66,y+h/2+FS(11)*0.35,x,11,D,800,380,'start')+R(462,y+6,150,h-12,pc[i],8)+WR(537,y+h/2+FS(10)*0.35,W.who[i],10,'#fff',900,130);
   y+=h;if(i<n-1){s+=ARW(240,y+2,240,y+12,'#9FB0C2',3);y+=14}});
  y+=12;s+=LB(320,y+FS(11)*0.6,W.ok,11,'#fff','middle','#2E9B5F');y+=FS(11)*1.3+14;
  s+=LB(320,y+FS(11)*0.6,W.ng,11,'#fff','middle','#D64545');y+=FS(11)*1.3+18;
@@ -97,7 +99,7 @@ gnd_conx:function(l){
   xs.forEach(function(x,i){s+='<circle cx="'+x+'" cy="'+ly+'" r="9" fill="#0f3558"/>'+tx(x,ly+26,W.a[i],10,'#5B6B7D',800)});
   var to=p?xs[1]:xs[2];s+='<rect x="-9" y="-9" width="18" height="16" rx="3" fill="'+col+'" stroke="#0f3558" stroke-width="1.2"><animateMotion dur="'+dur+'" repeatCount="indefinite" path="M'+xs[0]+' '+(ly-22)+' L'+to+' '+(ly-22)+'"/></rect>';
   if(p)s+=tx(xs[1]+(xs[2]-xs[1])/2,ly-30,'?',16,col,900);
-  var yy=ly+46;s+=WR(40,yy,W.bp[p],10,D,800,560,'start');yy+=LI(W.bp[p],10,560).length*FS(10)*1.3+4;s+=WR(40,yy,W.bg[p],10,col,900,560,'start');
+  var yy=ly+46;s+=WT(40,yy,W.bp[p],10,D,800,560,'start');yy+=LI(W.bp[p],10,560).length*FS(10)*1.3+4;s+=WT(40,yy,W.bg[p],10,col,900,560,'start');
   y=top+h+12});
  var L=LIST(W.n,y+2,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -127,7 +129,7 @@ gnd_preg:function(l){
  s+='<path d="M0 0 L-9 -14 L9 -14 Z" fill="#0f3558"><animateMotion dur="9s" repeatCount="indefinite" path="M'+X(1)+' '+(y-2)+' L'+X(39.5)+' '+(y-2)+'"/></path>';
  y+=34+FS(9)*2.4+22;var cw=192;
  var zh=0;W.z.forEach(function(z){var h=36+LI(z[1],10,cw-20).length*FS(10)*1.3+16;if(h>zh)zh=h});
- W.z.forEach(function(z,i){var x=20+i*(cw+12),h=zh;s+=R(x,y,cw,h,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="6" rx="3" fill="'+cols[i]+'"/>'+tx(x+cw/2,y+24,z[0],12,cols[i],900)+WR(x+cw/2,y+44,z[1],10,D,800,cw-20)});
+ W.z.forEach(function(z,i){var x=20+i*(cw+12),h=zh;s+=R(x,y,cw,h,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="6" rx="3" fill="'+cols[i]+'"/>'+tx(x+cw/2,y+24,z[0],12,cols[i],900)+WT(x+cw/2,y+44,z[1],10,D,800,cw-20)});
  y+=zh+14;s+=LB(320,y+FS(10)*0.6,W.mt,10,'#fff','middle','#7A5CC7');y+=FS(10)*1.3+18;
  var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -140,12 +142,12 @@ gnd_wch:function(l){
  var T=TOP(W.t),s=T.s,y=T.y,dur='9s',lw=170,cw=(600-lw-20)/3,ok=[[0,1,1],[0,0,1],[0,0,0]],rh=Math.max(40,LI(W.r[0],10,lw-16).length*FS(10)*1.3+18);
  W.c.forEach(function(c,i){var x=20+lw+10+i*(cw+5);s+=R(x,y,cw,34,['#1769e0','#E08A2E','#D64545'][i],8)+tx(x+cw/2,y+22,c[0],13,'#fff',900)});
  var top=y;y+=40;
- W.r.forEach(function(r,j){s+=R(20,y,lw,rh,'#EEF3F7',8)+WR(20+lw/2,y+rh/2+FS(10)*0.35-(LI(r,10,lw-16).length-1)*FS(10)*0.65,r,10,'#0f3558',800,lw-16);
+ W.r.forEach(function(r,j){s+=R(20,y,lw,rh,'#EEF3F7',8)+WR(20+lw/2,y+rh/2+FS(10)*0.35,r,10,'#0f3558',800,lw-16);
   W.c.forEach(function(c,i){var x=20+lw+10+i*(cw+5),g=ok[i][j];s+=R(x,y,cw,rh,'#fff',8,' stroke="#D5DEE8"')+(g?'<circle cx="'+(x+cw/2)+'" cy="'+(y+rh/2)+'" r="12" fill="none" stroke="#2E9B5F" stroke-width="4"/>':'<path d="M'+(x+cw/2-10)+' '+(y+rh/2-10)+' L'+(x+cw/2+10)+' '+(y+rh/2+10)+' M'+(x+cw/2+10)+' '+(y+rh/2-10)+' L'+(x+cw/2-10)+' '+(y+rh/2+10)+'" stroke="#D64545" stroke-width="4" stroke-linecap="round"/>')});
   y+=rh+5});
  var ah=0;W.c.forEach(function(c){var h=LI(c[1],10,cw-14).length*FS(10)*1.3+26;if(h>ah)ah=h});
  s+=R(20,y,lw,ah,'#0f3558',8)+tx(20+lw/2,y+ah/2+FS(10)*0.35,W.ar,10,'#fff',900);
- W.c.forEach(function(c,i){var x=20+lw+10+i*(cw+5);s+=R(x,y,cw,ah,'#FFF4D6',8)+WR(x+cw/2,y+ah/2+FS(10)*0.35-(LI(c[1],10,cw-14).length-1)*FS(10)*0.65,c[1],10,'#3A2A00',800,cw-14)});
+ W.c.forEach(function(c,i){var x=20+lw+10+i*(cw+5);s+=R(x,y,cw,ah,'#FFF4D6',8)+WR(x+cw/2,y+ah/2+FS(10)*0.35,c[1],10,'#3A2A00',800,cw-14)});
  W.c.forEach(function(c,i){var x=20+lw+10+i*(cw+5);s+='<rect x="'+(x-2)+'" y="'+(top-2)+'" width="'+(cw+4)+'" height="'+(y+ah-top+4)+'" rx="10" fill="none" stroke="#F2A93B" stroke-width="5" opacity="0"><animate attributeName="opacity" '+SEG(i,3,0,1)+' dur="'+dur+'" repeatCount="indefinite"/></rect>'});
  y+=ah+16;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -164,7 +166,7 @@ gnd_pet:function(l){
  s+=LB(px+13,mid-54,'PETC',9,'#fff','middle','#1769e0')+LB(fx+460,mid+38,'AVIH',9,'#fff','middle','#E08A2E');
  y+=fh+16;var cw=294;
  [W.a,W.b].forEach(function(c,i){var x=20+i*(cw+12),col=i?'#E08A2E':'#1769e0',h=34+LI(c[1],10,cw-24).length*FS(10)*1.3+LI(c[2],11,cw-24).length*FS(11)*1.3+20;
-  s+=R(x,y,cw,h,'#fff',10,' stroke="'+col+'" stroke-width="2"')+tx(x+cw/2,y+24,c[0],13,col,900)+WR(x+cw/2,y+46,c[1],10,D,800,cw-24)+WR(x+cw/2,y+46+LI(c[1],10,cw-24).length*FS(10)*1.3+8,c[2],11,'#0f3558',900,cw-24)});
+  s+=R(x,y,cw,h,'#fff',10,' stroke="'+col+'" stroke-width="2"')+tx(x+cw/2,y+24,c[0],13,col,900)+WT(x+cw/2,y+46,c[1],10,D,800,cw-24)+WT(x+cw/2,y+46+LI(c[1],10,cw-24).length*FS(10)*1.3+8,c[2],11,'#0f3558',900,cw-24)});
  y+=34+FS(10)*1.3*2+FS(11)*1.3+20+16;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
 
 /* 1-9 座席番号の読み方：数字は列、アルファベットは横の位置（配置は機材で違う） */
@@ -219,7 +221,7 @@ gnd_dgbag:function(l){
  if(!W)return F.gnd_dgbag('ja');setK(1);
  var T=TOP(W.t),s=T.s,y=T.y,dur='12s',c1=420,cw=88,n=W.r.length,rh=34;
  s+=R(20,y,c1,30,'#0f3558',8)+tx(36,y+20,W.c[0],11,'#fff',900,'start');[1,2].forEach(function(j){s+=R(20+c1+6+(j-1)*(cw+6),y,cw,30,'#0f3558',8)+tx(20+c1+6+(j-1)*(cw+6)+cw/2,y+20,W.c[j],11,'#fff',900)});y+=36;
- W.r.forEach(function(r,i){var h=Math.max(rh,LI(r[0],10,c1-30).length*FS(10)*1.3+12);s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',6)+GLOW(20,y,600,h,i,n,dur,6)+WR(36,y+h/2+FS(10)*0.35-(LI(r[0],10,c1-30).length-1)*FS(10)*0.65,r[0],10,D,800,c1-30,'start');
+ W.r.forEach(function(r,i){var h=Math.max(rh,LI(r[0],10,c1-30).length*FS(10)*1.3+12);s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',6)+GLOW(20,y,600,h,i,n,dur,6)+WR(36,y+h/2+FS(10)*0.35,r[0],10,D,800,c1-30,'start');
   [1,2].forEach(function(j){var cx=20+c1+6+(j-1)*(cw+6)+cw/2,cy=y+h/2;s+=r[j]?'<circle cx="'+cx+'" cy="'+cy+'" r="10" fill="none" stroke="#2E9B5F" stroke-width="3.5"/>':'<path d="M'+(cx-8)+' '+(cy-8)+' L'+(cx+8)+' '+(cy+8)+' M'+(cx+8)+' '+(cy-8)+' L'+(cx-8)+' '+(cy+8)+'" stroke="#D64545" stroke-width="3.5" stroke-linecap="round"/>'});
   y+=h+3});
  y+=10;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
@@ -269,7 +271,7 @@ gnd_open:function(l){
  if(!W)return F.gnd_open('ja');setK(1);
  var T=TOP(W.t),s=T.s,y=T.y,dur='10s',n=W.r.length,lw=250,rx=330;
  W.r.forEach(function(r,i){var nl=Math.max(LI(r[0],11,lw-24).length,LI(r[1],10,270).length),h=nl*FS(11)*1.3+20;
-  s+=GLOW(20,y-3,600,h+6,i,n,dur,10)+R(20,y,lw,h,'#fff',10,' stroke="#C8D3DE"')+WR(20+lw/2,y+h/2+FS(11)*0.35-(LI(r[0],11,lw-24).length-1)*FS(11)*0.65,r[0],11,D,800,lw-24)+ARW(20+lw+8,y+h/2,rx-8,y+h/2,r[2],3)+R(rx,y,290,h,r[2],10)+WR(rx+145,y+h/2+FS(10)*0.35-(LI(r[1],10,270).length-1)*FS(10)*0.65,r[1],10,'#fff',900,270);
+  s+=GLOW(20,y-3,600,h+6,i,n,dur,10)+R(20,y,lw,h,'#fff',10,' stroke="#C8D3DE"')+WR(20+lw/2,y+h/2+FS(11)*0.35,r[0],11,D,800,lw-24)+ARW(20+lw+8,y+h/2,rx-8,y+h/2,r[2],3)+R(rx,y,290,h,r[2],10)+WR(rx+145,y+h/2+FS(10)*0.35,r[1],10,'#fff',900,270);
   y+=h+10});
  var L=LIST(W.n,y+4,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -293,7 +295,7 @@ gnd_cancel:function(l){
  s+='<line x1="'+mid+'" y1="'+y+'" x2="'+mid+'" y2="'+(y+h)+'" stroke="#0f3558" stroke-width="3" stroke-dasharray="8 6"/>';
  var P=[[100,y+130],[mid-70,y+110],[mid+90,y+150],[540,y+115]],cl=['#0f3558','#1769e0','#2C8C8C','#E08A2E'],up=[0,1,0,1];
  var d='M'+P.map(function(p){return p[0]+' '+p[1]}).join(' L');s+='<path d="'+d+'" fill="none" stroke="#9FB0C2" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/>';
- P.forEach(function(p,i){var w=150,nl=LI(W.p[i],9,140).length,bh=nl*FS(9)*1.3+12,by=up[i]?p[1]-16-bh:p[1]+16;s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="11" fill="'+cl[i]+'"/>'+tx(p[0],p[1]+FS(9)*0.36,String(i+1),9,'#fff',900)+R(p[0]-w/2,by,w,bh,'#fff',8,' stroke="'+cl[i]+'" stroke-width="1.5"')+WR(p[0],by+bh/2+FS(9)*0.35-(nl-1)*FS(9)*0.65,W.p[i],9,D,800,140)});
+ P.forEach(function(p,i){var w=150,nl=LI(W.p[i],9,140).length,bh=nl*FS(9)*1.3+12,by=up[i]?p[1]-16-bh:p[1]+16;s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="11" fill="'+cl[i]+'"/>'+tx(p[0],p[1]+FS(9)*0.36,String(i+1),9,'#fff',900)+R(p[0]-w/2,by,w,bh,'#fff',8,' stroke="'+cl[i]+'" stroke-width="1.5"')+WR(p[0],by+bh/2+FS(9)*0.35,W.p[i],9,D,800,140)});
  s+='<g><circle r="9" fill="#FFD23F" stroke="#0f3558" stroke-width="2"/><circle cx="14" r="7" fill="#fff" stroke="#0f3558" stroke-width="2"/><animateMotion dur="8s" repeatCount="indefinite" path="'+d+'"/></g>';
  y+=h+16;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -344,7 +346,7 @@ gnd_turn:function(l){
  if(!W)return F.gnd_turn('ja');setK(1);
  var T=TOP(W.t),s=T.s,y=T.y+10,lw=200,x0=230,x1=610,X=function(v){return x0+(70-v)/70*(x1-x0)},rh=26,top=y;
  W.r.forEach(function(r,i){var nl=LI(r[0],9,lw-10).length,h=Math.max(rh,nl*FS(9)*1.3+8);
-  s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',4)+WR(26,y+h/2+FS(9)*0.35-(nl-1)*FS(9)*0.65,r[0],9,D,800,lw-10,'start');
+  s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',4)+WR(26,y+h/2+FS(9)*0.35,r[0],9,D,800,lw-10,'start');
   var bx=X(r[1]),bw=X(r[2])-X(r[1]);s+='<rect x="'+bx+'" y="'+(y+5)+'" width="'+Math.max(bw,4)+'" height="'+(h-10)+'" rx="4" fill="'+(r[3]?'#D64545':'#1769e0')+'" opacity="'+(r[3]?1:.55)+'"/>';y+=h+2});
  for(var v=70;v>=0;v-=10){s+='<line x1="'+X(v)+'" y1="'+top+'" x2="'+X(v)+'" y2="'+y+'" stroke="#C8D3DE" stroke-dasharray="3 4"/>'+tx(X(v),y+FS(9)+6,'-'+v,9,'#5B6B7D',700)}
  s+=tx(x1,y+FS(9)*2.4+10,W.u,9,'#5B6B7D',700,'end');
@@ -398,7 +400,7 @@ gnd_rush:function(l){
  s+='<g><rect x="-14" y="-12" width="28" height="22" rx="4" fill="#E08A2E" stroke="#0f3558" stroke-width="1.5"/><rect x="8" y="-18" width="16" height="10" rx="2" fill="#D64545"/><animateMotion dur="6s" repeatCount="indefinite" path="M'+xs[0]+' '+(y-34)+' L'+xs[2]+' '+(y-34)+'"/></g>';
  s+=LB(xs[0]+120,y-60,W.tag,9,'#fff','middle','#D64545');
  var ch=0;W.r.forEach(function(r){var h=LI(r,10,cw-20).length*FS(10)*1.3+30;if(h>ch)ch=h});
- W.r.forEach(function(r,i){var x=xs[i]-cw/2;s+=R(x,y+24,cw,ch,'#fff',10,' stroke="'+(i===2?'#1769e0':'#C8D3DE')+'"'+(i===2?' stroke-width="2"':''))+WR(xs[i],y+24+ch/2+FS(10)*0.35-(LI(r,10,cw-20).length-1)*FS(10)*0.65,r,10,D,800,cw-20)});
+ W.r.forEach(function(r,i){var x=xs[i]-cw/2;s+=R(x,y+24,cw,ch,'#fff',10,' stroke="'+(i===2?'#1769e0':'#C8D3DE')+'"'+(i===2?' stroke-width="2"':''))+WR(xs[i],y+24+ch/2+FS(10)*0.35,r,10,D,800,cw-20)});
  y+=24+ch+14;s+=ARW(xs[2],y-8,xs[2],y+14,'#1769e0',3);y+=20;s+=LB(xs[2],y+FS(10)*0.6,W.home,10,'#fff','middle','#1769e0');
  y+=FS(10)*1.3+18;s+=LB(320,y+FS(10)*0.6,W.ohd,10,'#fff','middle','#5B6B7D');y+=FS(10)*1.3+20;
  var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
@@ -414,7 +416,7 @@ gnd_match:function(l){
  s+=R(rx,y,cw,48,'#E08A2E',10)+WR(rx+cw/2,y+20,W.R[0],11,'#fff',900,cw-16)+tx(rx+cw/2,y+40,W.R[1],9,'#FFF1DE',700);
  y+=58;
  W.f.forEach(function(f,i){var h=Math.max(30,LI(f,10,cw-20).length*FS(10)*1.3+12);
-  var oy=y+h/2+FS(10)*0.35-(LI(f,10,cw-20).length-1)*FS(10)*0.65;s+=R(lx,y,cw,h,'#fff',8,' stroke="#C8D3DE"')+WR(lx+cw/2,oy,f,10,D,800,cw-20)+R(rx,y,cw,h,'#fff',8,' stroke="#C8D3DE"')+WR(rx+cw/2,oy,f,10,D,800,cw-20);
+  var oy=y+h/2+FS(10)*0.35;s+=R(lx,y,cw,h,'#fff',8,' stroke="#C8D3DE"')+WR(lx+cw/2,oy,f,10,D,800,cw-20)+R(rx,y,cw,h,'#fff',8,' stroke="#C8D3DE"')+WR(rx+cw/2,oy,f,10,D,800,cw-20);
   s+='<line x1="'+(lx+cw)+'" y1="'+(y+h/2)+'" x2="'+rx+'" y2="'+(y+h/2)+'" stroke="#2E9B5F" stroke-width="3" stroke-dasharray="6 4" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;'+(i/n*0.8).toFixed(2)+';'+(i/n*0.8+0.02).toFixed(2)+';1" dur="'+dur+'" repeatCount="indefinite"/></line>';
   y+=h+6});
  s+='<circle cx="320" cy="'+(y-((y-T.y-58)/2))+'" r="22" fill="#2E9B5F" opacity=".15"><animate attributeName="r" values="18;26;18" dur="2s" repeatCount="indefinite"/></circle>';
@@ -443,8 +445,8 @@ gnd_inad:function(l){
  s+='<circle r="7" fill="#D64545" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.5;.52;.98;1" dur="6s" repeatCount="indefinite"/><animateMotion dur="6s" repeatCount="indefinite" keyPoints="0;0;1" keyTimes="0;.5;1" calcMode="linear" path="M'+x1+' '+(y+10)+' Q320 '+(y+60)+' '+x0+' '+(y+10)+'"/></circle>';
  s+=LB(x1,y-30,W.x,10,'#fff','middle','#D64545');
  y+=60;var cw=294,ha=LI(W.arr[1],10,cw-24).length*FS(10)*1.3+44,hd=LI(W.dep[1],10,cw-24).length*FS(10)*1.3+44+2*(FS(10)*1.3+14),h=Math.max(ha,hd);
- s+=R(326,y,cw,h,'#fff',10,' stroke="#1769e0" stroke-width="2"')+tx(326+cw/2,y+22,W.arr[0],12,'#1769e0',900)+WR(326+cw/2,y+44,W.arr[1],10,D,800,cw-24);
- s+=R(20,y,cw,h,'#fff',10,' stroke="#0f3558" stroke-width="2"')+tx(20+cw/2,y+22,W.dep[0],12,'#0f3558',900)+WR(20+cw/2,y+44,W.dep[1],10,D,800,cw-24);
+ s+=R(326,y,cw,h,'#fff',10,' stroke="#1769e0" stroke-width="2"')+tx(326+cw/2,y+22,W.arr[0],12,'#1769e0',900)+WT(326+cw/2,y+44,W.arr[1],10,D,800,cw-24);
+ s+=R(20,y,cw,h,'#fff',10,' stroke="#0f3558" stroke-width="2"')+tx(20+cw/2,y+22,W.dep[0],12,'#0f3558',900)+WT(20+cw/2,y+44,W.dep[1],10,D,800,cw-24);
  var by=y+44+LI(W.dep[1],10,cw-24).length*FS(10)*1.3+8;s+=LB(20+cw/2,by,W.ok,9,'#fff','middle','#2E9B5F')+LB(20+cw/2,by+FS(9)*1.3+14,W.ng,9,'#fff','middle','#E08A2E');
  y+=h+16;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -458,7 +460,7 @@ gnd_layers:function(l){
  var HO=[[60,100],[60,100],[100,30],[30,125],[78]];
  W.ly.forEach(function(t,i){var x=sx+i*gap;s+='<rect x="'+(x-9)+'" y="'+y+'" width="18" height="'+lh+'" rx="6" fill="#DCE6F0" stroke="#9FB0C2"/>';
   HO[i].forEach(function(h){s+='<rect x="'+(x-10)+'" y="'+(y+h-11)+'" width="20" height="22" fill="#F7FAFD"/>'});
-  s+=WR(x,y+lh+14,t,9,D,800,96)});
+  s+=WT(x,y+lh+14,t,9,D,800,96)});
  [[0,30],[2,60],[3,100]].forEach(function(d,k){var stop=sx+d[0]*gap-16,yy=y+d[1],d0=k*0.15,d1=d0+0.45;
   s+='<g><circle r="7" fill="#D64545"/><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;'+d0.toFixed(2)+';'+d1.toFixed(2)+';1" calcMode="linear" path="M30 '+yy+' L'+stop+' '+yy+'"/></g>'});
  s+=tx(24,y-6,W.m,9,'#D64545',900,'start');
@@ -481,7 +483,128 @@ gnd_delay:function(l){
  if(!W)return F.gnd_delay('ja');setK(1);
  var cols=['#5B6B7D','#2E9B5F','#E08A2E','#D64545'],T=TOP(W.t),s=T.s,y=T.y+34;
  var S=SCALE(y,8,1,[[0,2,cols[0]],[2,4,cols[1]],[4,6,cols[2]],[6,8,cols[3]]],W.u,'10s');s+=S.s;
- var C=ZCARDS(S.y,W.z,cols);s+=C.s;var L=LIST(W.n,C.y,600,11);return SVG(L.y+8,s+L.s)}
+ var C=ZCARDS(S.y,W.z,cols);s+=C.s;var L=LIST(W.n,C.y,600,11);return SVG(L.y+8,s+L.s)},
+/* 5-5 ダイバートとリターン */
+gnd_divert:function(l){
+ var W=({ja:{t:'ダイバートとリターン：降りる空港で担当が変わる',o:'出発地',d:'目的地',a:'代わりの空港',dv:'ダイバート',rt:'リターン',c:[['支店がある空港','その空港の支店が担当し、支店のスタッフで対応'],['支店がない空港','近くの支店か会社が指定した支店が担当。現地のハンドリング会社に依頼']],n:['以遠の旅程があるお客様・急病人・VIP・車いすのお客様の情報を共有する','代わりの空港ごとの手順書（連絡先・ハンドリング会社・ホテル）を事前に用意する']},
+  ko:{t:'다이버트와 리턴: 내리는 공항에 따라 담당이 바뀐다',o:'출발지',d:'목적지',a:'대체 공항',dv:'다이버트',rt:'리턴',c:[['지점이 있는 공항','그 공항 지점이 담당하고 지점 직원이 대응'],['지점이 없는 공항','가까운 지점이나 회사가 지정한 지점이 담당. 현지 조업사에 의뢰']],n:['이원 여정 승객·응급 환자·VIP·휠체어 승객 정보를 공유한다','대체 공항별 절차서(연락처·조업사·호텔)를 미리 준비한다']},
+  en:{t:'Diversions and returns: who handles it depends on where the aircraft lands',o:'Origin',d:'Destination',a:'Alternate',dv:'Diversion',rt:'Return',c:[['Airport with our station','That station handles it with its own staff'],['Airport without a station','The nearest or designated station takes charge and engages the local handler']],n:['Share details of passengers with onward journeys, medical cases, VIPs and wheelchair users','Prepare a procedure for each alternate in advance (contacts, handler, hotels)']}})[l];
+ if(!W)return F.gnd_divert('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+50,O=[80,y+30],Dd=[560,y+30],A=[430,y+110];
+ s+='<path d="M'+O[0]+' '+O[1]+' Q320 '+(y-40)+' '+Dd[0]+' '+Dd[1]+'" fill="none" stroke="#9FB0C2" stroke-width="3" stroke-dasharray="6 6"/>';
+ var pd='M'+O[0]+' '+O[1]+' Q300 '+(y-30)+' 470 '+(y+10)+' Q500 '+(y+60)+' '+A[0]+' '+A[1],pr='M'+O[0]+' '+O[1]+' Q300 '+(y-30)+' 470 '+(y+10)+' Q380 '+(y+90)+' '+O[0]+' '+(O[1]+8);
+ s+='<path d="'+pd+'" fill="none" stroke="#E08A2E" stroke-width="3"/><path d="'+pr+'" fill="none" stroke="#D64545" stroke-width="3" stroke-dasharray="8 5"/>';
+ [[O,W.o,'#0f3558'],[Dd,W.d,'#5B6B7D'],[A,W.a,'#E08A2E']].forEach(function(p){s+='<circle cx="'+p[0][0]+'" cy="'+p[0][1]+'" r="12" fill="'+p[2]+'"/>'+tx(p[0][0],p[0][1]+30,p[1],10,p[2],900)});
+ s+='<path d="M'+(Dd[0]-12)+' '+(Dd[1]-12)+' l24 24 m0 -24 l-24 24" stroke="#D64545" stroke-width="4"/>';
+ s+='<circle r="7" fill="#E08A2E"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.45;1" calcMode="linear" path="'+pd+'"/></circle><circle r="7" fill="#D64545" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.5;.52;1" dur="8s" repeatCount="indefinite"/><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.5;.95;1" calcMode="linear" path="'+pr+'"/></circle>';
+ s+=LB(560,y+100,W.dv,10,'#fff','middle','#E08A2E')+LB(180,y+110,W.rt,10,'#fff','middle','#D64545');
+ var C=ZCARDS(y+150,W.c,['#1769e0','#5B6B7D']);s+=C.s;var L=LIST(W.n,C.y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 5-6 振り替えの選択肢 */
+gnd_reacc:function(l){
+ var W=({ja:{t:'欠航のときの振り替え：4つの選択肢',r:[['自社の次の便','最も多い対応。空席と優先順位で割り当てる','#1769e0'],['他社便へのエンドース','取り決めのある他社の便に乗れるようにする','#2C8C8C'],['経路の変更（リルート）','別の経由地を使って最終目的地へ','#7A5CC7'],['払い戻し','旅行をやめるお客様に。航空会社都合なら手数料なしが一般的','#E08A2E']],n:['欠航が決まったら、お客様への連絡・振り替え・補償の案内を同時に進める','苦情は記録し、事実と対応を本社と共有する']},
+  ko:{t:'결항 시 대체 수송: 네 가지 선택지',r:[['자사 다음 편','가장 많은 대응. 빈 좌석과 우선순위로 배정','#1769e0'],['타사편 엔도스','협정이 있는 타사 편에 탈 수 있게 한다','#2C8C8C'],['경로 변경(리루트)','다른 경유지를 거쳐 최종 목적지로','#7A5CC7'],['환불','여행을 포기하는 승객에게. 항공사 사정이면 수수료 없음이 일반적','#E08A2E']],n:['결항이 정해지면 승객 연락·대체 수송·보상 안내를 동시에 진행한다','불만은 기록하고 사실과 대응을 본사와 공유한다']},
+  en:{t:'Re-accommodation after a cancellation: four options',r:[['Our next flight','The most common option; seats allocated by availability and priority','#1769e0'],['Endorse to another airline','Put passengers on a partner airline’s flight','#2C8C8C'],['Reroute','Reach the final destination via another point','#7A5CC7'],['Refund','For passengers who give up the trip; usually free of charge if the airline cancelled','#E08A2E']],n:['Once a cancellation is decided, contact passengers, rebook and explain compensation in parallel','Record complaints and share the facts and actions with head office']}})[l];
+ if(!W)return F.gnd_reacc('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 5-7 機内での長時間待機：時間と対応（国の規則の例★） */
+gnd_tarmac:function(l){
+ var W=({ja:{t:'機内での長時間待機：時間で対応が変わる（例★）',u:'ドアを閉めてからの時間',z:[['〜2時間','30分ごとに理由と状況を案内'],['2〜3時間','飲食物・トイレ（米国の例）、会社の基準で降機を検討'],['3時間','国内線の上限（韓国・米国の例）'],['4時間','国際線の上限（韓国・米国の例）']],n:['日本は法律上の一律の上限がなく、航空会社の基準による','機長の安全上の判断など例外がある。最新の規則を確かめる','超えたときの報告と記録（韓国は資料を2年間保管）']},
+  ko:{t:'기내 장시간 대기: 시간에 따라 대응이 달라진다(예★)',u:'도어 클로즈 후 시간',z:[['~2시간','30분마다 이유와 상황 안내'],['2~3시간','음식·화장실(미국 예), 회사 기준으로 하기 검토'],['3시간','국내선 상한(한국·미국 예)'],['4시간','국제선 상한(한국·미국 예)']],n:['일본은 법률상 일률 상한이 없고 항공사 기준에 따른다','기장의 안전상 판단 등 예외가 있다. 최신 규정을 확인한다','초과 시 보고와 기록(한국은 자료를 2년간 보관)']},
+  en:{t:'Long waits on board: what to do changes with time (example ★)',u:'hours after door close',z:[['Up to 2 h','Update every 30 minutes on the reason and situation'],['2–3 h','Food, drink and toilets (US example); consider deplaning under company rules'],['3 h','Domestic limit (Korea and US example)'],['4 h','International limit (Korea and US example)']],n:['Japan has no single legal limit; airlines set their own standards','Exceptions apply, such as the captain’s safety judgement; check the latest rules','Report and record any excess (Korea requires records to be kept for 2 years)']}})[l];
+ if(!W)return F.gnd_tarmac('ja');setK(1);
+ var cols=['#2E9B5F','#E08A2E','#D64545','#0f3558'],T=TOP(W.t),s=T.s,y=T.y+34;
+ var S=SCALE(y,5,1,[[0,2,cols[0]],[2,3,cols[1]],[3,4,cols[2]],[4,5,cols[3]]],W.u,'10s');s+=S.s;
+ [3,4].forEach(function(v,i){s+='<line x1="'+S.X(v)+'" y1="'+(y-6)+'" x2="'+S.X(v)+'" y2="'+(y+32)+'" stroke="#fff" stroke-width="3"/>'});
+ var C=ZCARDS(S.y,W.z,cols);s+=C.s;var L=LIST(W.n,C.y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 5-8 「知った時刻」と「伝えた時刻」の差：韓国で公表された処分の例★ */
+gnd_gap:function(l){
+ var W=({ja:{t:'記録するのは「知った時刻」と「伝えた時刻」：その差を短く',k:'知った時刻',g:'伝えた時刻',gp:'この差が問われる',c:[['遅延の案内の遅れ（2024年）','7便 × 200万ウォン ＝ 1,400万ウォン'],['遅延の未案内・遅れ（2025年）','9便 × 200万ウォン ＝ 1,800万ウォン'],['手荷物を積めないことを離陸後に通知（2025年）','合計 1,200万ウォン']],n:['日本の支店でも、韓国発着の便は韓国の基準の対象になる','金額・基準は改正される。最新の法令を確かめる（国土交通部の発表・報道による例）']},
+  ko:{t:'기록할 것은 「안 시각」과 「알린 시각」: 그 차이를 짧게',k:'안 시각',g:'알린 시각',gp:'이 차이가 문제가 된다',c:[['지연 안내 지연(2024년)','7편 × 200만 원 = 1,400만 원'],['지연 미안내·지연(2025년)','9편 × 200만 원 = 1,800만 원'],['수하물 미탑재를 이륙 후 통지(2025년)','합계 1,200만 원']],n:['일본 지점이라도 한국 출도착편은 한국 기준의 대상이 된다','금액·기준은 개정된다. 최신 법령을 확인한다(국토교통부 발표·보도에 따른 예)']},
+  en:{t:'Record when you knew and when you told: keep the gap short',k:'Time known',g:'Time told',gp:'This gap is what regulators look at',c:[['Late delay notices (2024)','7 flights × KRW 2m = KRW 14m'],['Delays not notified or notified late (2025)','9 flights × KRW 2m = KRW 18m'],['Bags left behind notified after take-off (2025)','KRW 12m in total']],n:['Flights to and from Korea fall under Korean rules even when handled by a Japan station','Amounts and rules change; check the latest law (examples from ministry releases and press reports)']}})[l];
+ if(!W)return F.gnd_gap('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+40,x0=120;
+ s+='<line x1="40" y1="'+y+'" x2="600" y2="'+y+'" stroke="#9FB0C2" stroke-width="4"/>';
+ s+='<circle cx="'+x0+'" cy="'+y+'" r="10" fill="#1769e0"/>'+tx(x0,y-18,W.k,10,'#1769e0',900);
+ s+='<rect x="'+x0+'" y="'+(y-6)+'" width="0" height="12" fill="#D64545" opacity=".5"><animate attributeName="width" values="0;380;380;0" keyTimes="0;.7;.9;1" dur="7s" repeatCount="indefinite"/></rect>';
+ s+='<g><circle r="10" fill="#D64545"/><animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1;1;0" keyTimes="0;.7;.9;1" calcMode="linear" path="M'+x0+' '+y+' L500 '+y+'"/></g>'+tx(500,y-18,W.g,10,'#D64545',900);
+ s+=LB(310,y+28,W.gp,10,'#fff','middle','#D64545');
+ var C=ZCARDS(y+52,W.c,['#E08A2E','#D64545','#7A5CC7']);s+=C.s;var L=LIST(W.n,C.y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-1 運送マネージャーの1日（1日1往復の国際線の例★） */
+gnd_day:function(l){
+ var W=({ja:{t:'運送マネージャーの1日（1日1往復の国際線の例★）',st:['便の情報と本社の指示を確認、ハンドリング会社と打ち合わせ','カウンターの準備を確認、チェックイン開始','チェックイン締め切り、ゲートへ。搭載の状況を確認','搭乗・人数の照合・書類・ドアクローズ、プッシュバックの見届け','出発の電報と特記事項の連絡','締め作業。空き時間に教育・書類・会議・次の日の準備'],who:['出発4〜3時間前','出発3時間前','出発1時間前','出発前後','出発後','出発後1〜2時間'],n:['便ごとの仕事を決まった時刻に終え、空き時間を育成と改善に使う']},
+  ko:{t:'운송 매니저의 하루(하루 1왕복 국제선 예★)',st:['편 정보와 본사 지시 확인, 조업사와 협의','카운터 준비 확인, 체크인 시작','체크인 마감, 게이트로. 탑재 상황 확인','탑승·인원 대조·서류·도어 클로즈, 푸시백 확인','출발 전문과 특기 사항 연락','마감 작업. 빈 시간에 교육·서류·회의·다음 날 준비'],who:['출발 4~3시간 전','출발 3시간 전','출발 1시간 전','출발 전후','출발 후','출발 후 1~2시간'],n:['편마다 할 일을 정해진 시각에 끝내고, 빈 시간을 육성과 개선에 쓴다']},
+  en:{t:'A day for a passenger services manager (one daily international rotation ★)',st:['Check flight information and head office instructions; brief the handler','Confirm counter readiness; open check-in','Close check-in, go to the gate; check loading status','Boarding, head count, documents, door close; watch the pushback','Send the departure message and special notes','Close the flight; use spare time for training, paperwork, meetings and tomorrow’s preparation'],who:['4–3 h before','3 h before','1 h before','Around departure','After departure','1–2 h after'],n:['Finish each flight’s tasks at set times, and spend the spare time on training and improvement']}})[l];
+ if(!W)return F.gnd_day('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#D64545','#E08A2E','#0f3558'],'12s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-2 ハンドリング会社の管理：5つの柱 */
+gnd_5p:function(l){
+ var W=({ja:{t:'ハンドリング会社の管理：5つの柱で品質を支える',roof:'ハンドリングの品質',p:[['月例会議','実績・問題点・改善策・次月の予定'],['品質監査','点検表で作業を評価'],['教育','手順・新人・指導者の育成'],['安全の審査','定期審査と是正の確認'],['費用の確認','請求と実際の作業を照合']],n:['どれか1本が欠けると、品質は保てない','会議・監査・教育の記録は、監査に備えて保管する（6-4）']},
+  ko:{t:'조업사 관리: 다섯 개의 기둥으로 품질을 지탱한다',roof:'조업 품질',p:[['월례 회의','실적·문제점·개선책·다음 달 일정'],['품질 감사','점검표로 작업 평가'],['교육','절차·신입·지도자 육성'],['안전 심사','정기 심사와 시정 확인'],['비용 확인','청구와 실제 작업 대조']],n:['하나라도 빠지면 품질을 유지할 수 없다','회의·감사·교육 기록은 감사에 대비해 보관한다(6-4)']},
+  en:{t:'Managing the handling company: five pillars hold up quality',roof:'Handling quality',p:[['Monthly meeting','Results, issues, fixes, next month'],['Quality audit','Score the work against checklists'],['Training','Procedures, new staff, trainers'],['Safety review','Regular reviews and follow-up'],['Cost check','Match invoices to work done']],n:['Take away any one pillar and quality cannot be kept','Keep records of meetings, audits and training for audits (6-4)']}})[l];
+ if(!W)return F.gnd_5p('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+4,cw=104,g=20,x0=30,cols=['#1769e0','#2C8C8C','#2E9B5F','#E08A2E','#7A5CC7'];
+ s+='<path d="M20 '+(y+50)+' L320 '+y+' L620 '+(y+50)+' Z" fill="#0f3558"/>'+tx(320,y+38,W.roof,12,'#fff',900);
+ y+=56;var ph=0;W.p.forEach(function(p){var h=36+LI(p[1],9,cw-12).length*FS(9)*1.3+16;if(h>ph)ph=h});ph=Math.max(ph,130);
+ W.p.forEach(function(p,i){var x=x0+i*(cw+g);s+=R(x,y,cw,ph,'#fff',6,' stroke="'+cols[i]+'" stroke-width="2"')+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="30" fill="'+cols[i]+'"/>'+WR(x+cw/2,y+19,p[0],10,'#fff',900,cw-8)+WT(x+cw/2,y+50,p[1],9,D,800,cw-12)+GLOW(x,y,cw,ph,i,5,'10s',6)});
+ y+=ph;s+=R(20,y,600,14,'#9FB0C2',4);y+=30;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-3 空港IDパスの一生：申請から返却まで */
+gnd_pass:function(l){
+ var W=({ja:{t:'空港IDパスの一生：申請から返却まで',st:['申請（書類・身元の確認）','保安教育を受講','発行（受け取りと記録）','使用・更新（期限の管理）','返却（退職・異動のとき必ず回収）'],c:'紛失したら\nすぐ報告',n:['期限の一覧を作り、更新の申請を早めに','退職・異動の日に回収できるよう、手続きを人事の流れに組み込む']},
+  ko:{t:'공항 ID 패스의 일생: 신청부터 반납까지',st:['신청(서류·신원 확인)','보안 교육 수강','발급(수령과 기록)','사용·갱신(기한 관리)','반납(퇴직·이동 시 반드시 회수)'],c:'분실하면\n즉시 보고',n:['기한 목록을 만들어 갱신 신청을 일찍','퇴직·이동 날 회수할 수 있도록 절차를 인사 흐름에 넣는다']},
+  en:{t:'The life of an airport ID pass: from application to return',st:['Apply (documents, identity check)','Attend security training','Issue (receipt and record)','Use and renew (track expiry)','Return (always collect on leaving or transfer)'],c:'If lost,\nreport at once',n:['Keep a list of expiry dates and apply for renewal early','Build collection into the HR process so passes come back on the leaving date']}})[l];
+ if(!W)return F.gnd_pass('ja');setK(1);
+ var T=TOP(W.t),s=T.s,cx=320,cy=T.y+150,r=120,n=W.st.length,cols=['#1769e0','#2C8C8C','#2E9B5F','#E08A2E','#7A5CC7'];
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#C8D3DE" stroke-width="4" stroke-dasharray="8 6"/>';
+ W.st.forEach(function(t,i){var a=-Math.PI/2+i*2*Math.PI/n,x=cx+r*Math.cos(a),y=cy+r*Math.sin(a),bw=150,nl=LI(t,9,bw-14).length,bh=nl*FS(9)*1.3+30;
+  s+=R(x-bw/2,y-bh/2,bw,bh,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+GLOW(x-bw/2,y-bh/2,bw,bh,i,n,'10s',10)+'<circle cx="'+(x-bw/2+14)+'" cy="'+(y-bh/2+14)+'" r="9" fill="'+cols[i]+'"/>'+tx(x-bw/2+14,y-bh/2+18,String(i+1),9,'#fff',900)+WR(x,y+FS(9)*0.35+6,t,9,D,800,bw-14)});
+ var c=W.c.split('\n');s+='<circle cx="'+cx+'" cy="'+cy+'" r="46" fill="#D64545"/>'+tx(cx,cy-2,c[0],10,'#fff',900)+tx(cx,cy+FS(10)+2,c[1],10,'#fff',900);
+ var y=cy+r+50;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-4 主な監査 */
+gnd_audit:function(l){
+ var W=({ja:{t:'支店が受ける主な監査',r:[['本社の安全・品質監査','マニュアルどおりの運用、教育の記録、ハンドリング会社の管理','#1769e0'],['自国の航空当局の点検','運航の安全基準、保安、危険物、旅客の手順','#D64545'],['駐在国の当局の監査','保安計画・保安教育・危険物など（日本は国土交通省）','#E08A2E'],['支店の自己評価','点検表で自ら評価し、改善につなげる','#2E9B5F']],n:['監査は「記録」で答える。教育・点検・是正の記録を決めた期間保管する','日ごろの自己評価が、外部の監査へのいちばんの備え']},
+  ko:{t:'지점이 받는 주요 감사',r:[['본사 안전·품질 감사','매뉴얼대로의 운용, 교육 기록, 조업사 관리','#1769e0'],['자국 항공 당국 점검','운항 안전 기준, 보안, 위험물, 여객 절차','#D64545'],['주재국 당국 감사','보안 계획·보안 교육·위험물 등(일본은 국토교통성)','#E08A2E'],['지점 자체 평가','점검표로 스스로 평가해 개선으로','#2E9B5F']],n:['감사는 「기록」으로 답한다. 교육·점검·시정 기록을 정한 기간 보관한다','평소의 자체 평가가 외부 감사에 대한 가장 좋은 대비']},
+  en:{t:'The main audits a station faces',r:[['Head office safety and quality audit','Working to the manual, training records, oversight of the handler','#1769e0'],['Home-country regulator inspection','Operational safety standards, security, DG, passenger procedures','#D64545'],['Host-country regulator audit','Security programme and training, DG and more (MLIT in Japan)','#E08A2E'],['Station self-assessment','Score yourself on checklists and improve','#2E9B5F']],n:['Audits are answered with records: keep training, inspection and corrective-action records for the set period','Regular self-assessment is the best preparation for outside audits']}})[l];
+ if(!W)return F.gnd_audit('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-5 空港協議会（AOC）で扱うテーマ */
+gnd_aoc:function(l){
+ var W=({ja:{t:'空港協議会（AOC）：航空会社が集まって空港の課題を話し合う',c:'AOC',r:[['施設','カウンター・改修・手荷物設備'],['運用','混雑・定時性・除雪'],['料金','使用料の改定・割引'],['保安','検査の変更・教育・パス'],['緊急時','緊急時計画・合同訓練'],['情報共有','新規就航・行政の変更']],n:['1社では言いにくい要望も、協議会を通せば空港に届きやすい','支店長が出席し、決まったことを本社と現場に伝える']},
+  ko:{t:'공항 운영위원회(AOC): 항공사들이 모여 공항 과제를 논의한다',c:'AOC',r:[['시설','카운터·개보수·수하물 설비'],['운용','혼잡·정시성·제설'],['요금','사용료 개정·할인'],['보안','검색 변경·교육·패스'],['비상시','비상 계획·합동 훈련'],['정보 공유','신규 취항·행정 변경']],n:['한 회사로는 말하기 어려운 요청도 위원회를 통하면 공항에 전달되기 쉽다','지점장이 참석해 결정 사항을 본사와 현장에 전한다']},
+  en:{t:'Airline Operators Committee (AOC): airlines tackle airport issues together',c:'AOC',r:[['Facilities','Counters, works, baggage systems'],['Operations','Congestion, punctuality, snow'],['Charges','Fee changes, discounts'],['Security','Screening, training, passes'],['Emergencies','Plans and joint exercises'],['Information','New routes, policy changes']],n:['Requests that are hard for one airline to make carry more weight through the committee','The station manager attends and passes decisions to head office and the front line']}})[l];
+ if(!W)return F.gnd_aoc('ja');setK(1);
+ var T=TOP(W.t),s=T.s,cx=320,cy=T.y+140,r=118,n=W.r.length,cols=['#1769e0','#2C8C8C','#E08A2E','#D64545','#7A5CC7','#2E9B5F'];
+ W.r.forEach(function(p,i){var a=-Math.PI/2+i*2*Math.PI/n,x=cx+r*1.5*Math.cos(a),y=cy+r*Math.sin(a),bw=170,bh=52;
+  s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="#C8D3DE" stroke-width="2"/>'});
+ s+='<circle cx="'+cx+'" cy="'+cy+'" r="40" fill="#0f3558"/>'+tx(cx,cy+6,W.c,16,'#fff',900);
+ W.r.forEach(function(p,i){var a=-Math.PI/2+i*2*Math.PI/n,x=cx+r*1.5*Math.cos(a),y=cy+r*Math.sin(a),bw=170,bh=40+LI(p[1],9,bw-12).length*FS(9)*1.3;
+  s+=R(x-bw/2,y-bh/2,bw,bh,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+GLOW(x-bw/2,y-bh/2,bw,bh,i,n,'12s',10)+tx(x,y-bh/2+20,p[0],11,cols[i],900)+WT(x,y-bh/2+34+FS(9)*0.4,p[1],9,D,800,bw-12)});
+ var y=cy+r+44;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-6 支店の1年（例★） */
+gnd_year:function(l){
+ var W=({ja:{t:'支店の1年（日本・3月決算の例★）',per:['1月','2〜3月','4〜5月','6〜8月','9〜10月','11〜12月'],tr:[['運航・季節','人事・経理'],[['夏ダイヤの準備','運賃申請・夏ダイヤ確定','夏ダイヤ開始・大型連休','冬ダイヤの準備・台風・夏休み','冬ダイヤ確定・除氷の準備','冬ダイヤ開始・年末年始'],['法定調書（1月末）','予算・決算の準備','法人税の申告（5月）','労働保険・算定基礎届','上半期の振り返り','年末調整・翌年度予算']]],n:['通年：当局の監査、IDパスの更新、ハンドリング会社との契約の見直し','就航先の国の祝日（旧正月など）は年初に確認して要員を計画する','税・社会保険の期限は毎年、専門家や当局の案内で確かめる']},
+  ko:{t:'지점의 1년(일본·3월 결산 예★)',per:['1월','2~3월','4~5월','6~8월','9~10월','11~12월'],tr:[['운항·계절','인사·경리'],[['하계 스케줄 준비','운임 신청·하계 확정','하계 시작·대형 연휴','동계 준비·태풍·여름휴가','동계 확정·제빙 준비','동계 시작·연말연시'],['법정 조서(1월 말)','예산·결산 준비','법인세 신고(5월)','노동보험·산정기초신고','상반기 돌아보기','연말정산·다음 연도 예산']]],n:['연중: 당국 감사, ID 패스 갱신, 조업사 계약 재검토','취항국 공휴일(설날 등)은 연초에 확인해 인원을 계획한다','세금·사회보험 기한은 매년 전문가나 당국 안내로 확인한다']},
+  en:{t:'A station’s year (Japan, March year-end example ★)',per:['Jan','Feb–Mar','Apr–May','Jun–Aug','Sep–Oct','Nov–Dec'],tr:[['Operations & season','HR & accounts'],[['Prepare summer schedule','Fares filed, summer schedule fixed','Summer starts, Golden Week','Prepare winter, typhoons, summer peak','Winter fixed, de-icing ready','Winter starts, year-end peak'],['Statutory returns (end Jan)','Budget and closing prep','Corporate tax return (May)','Labour insurance, social insurance filing','Half-year review','Year-end tax adjustment, budget']]],n:['All year: regulator audits, ID pass renewals, handler contract reviews','Check destination-country holidays (Lunar New Year etc.) early in the year and plan staffing','Confirm tax and social insurance deadlines each year with advisers or authorities']}})[l];
+ if(!W)return F.gnd_year('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y,lw=90,x0=20+lw+6,cw=(600-lw-6-5*4)/6,cols=['#1769e0','#E08A2E'];
+ W.per.forEach(function(p,i){var x=x0+i*(cw+4);s+=R(x,y,cw,28,'#0f3558',6)+tx(x+cw/2,y+19,p,10,'#fff',900)});
+ var top=y;y+=34;
+ [0,1].forEach(function(t){var h=0;W.tr[1][t].forEach(function(c){var hh=LI(c,9,cw-10).length*FS(9)*1.3+16;if(hh>h)h=hh});
+  s+=R(20,y,lw,h,cols[t],8)+WR(20+lw/2,y+h/2+FS(9)*0.35,W.tr[0][t],9,'#fff',900,lw-10);
+  W.tr[1][t].forEach(function(c,i){var x=x0+i*(cw+4),nl=LI(c,9,cw-10).length;s+=R(x,y,cw,h,'#fff',8,' stroke="'+cols[t]+'"')+WR(x+cw/2,y+h/2+FS(9)*0.35,c,9,D,800,cw-10)});
+  y+=h+6});
+ W.per.forEach(function(p,i){var x=x0+i*(cw+4);s+=GLOW(x-2,top-2,cw+4,y-top,i,6,'12s',8)});
+ y+=8;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
+
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

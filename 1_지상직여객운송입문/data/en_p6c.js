@@ -16,7 +16,7 @@ sections:[
 ["Second half","Monthly meeting with the handler, next month’s staffing and rosters, review the training expiry list"],
 ["End of month","Monthly report; confirm next month’s schedule, extra flights and aircraft changes"]]},
 {t:"note",x:"* Dates vary by company, contract, airport and local authority. Write in your own closing dates. ★"}]},
-{h:"A typical year",blocks:[{t:"table",cols:["When","Operations and approvals","Passengers, quality, seasons","Security and safety","HR and finance"],rows:[
+{h:"A typical year",blocks:[{t:"fig",id:"gnd_year",cap:"Animated figure: for each period of the year, key tasks in operations and in HR and accounts light up in turn (Japan, March year-end example)."},{t:"table",cols:["When","Operations and approvals","Passengers, quality, seasons","Security and safety","HR and finance"],rows:[
 ["January","Prepare and file the summer schedule; notice of the annual blanket application","Review the holiday peak; snow preparedness","Prepare the security programme revision","Payroll and statutory returns (end of January); withholding tax if on the semi-annual scheme"],
 ["February–March","Fare and charge filings; summer schedule confirmed","Spring holiday peak; schedule change notices","Revise and file security and training programmes","Next year’s budget; year-end closing (March year-end)"],
 ["April–May","Summer schedule begins (end of March); post-launch reports","Long holiday peak; initial training for new staff","New training year begins","Apply new social insurance rates; health checks; corporate tax return (May for a March year-end)"],
