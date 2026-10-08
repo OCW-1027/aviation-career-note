@@ -3,7 +3,7 @@
 set("0-1",{title:"Understanding Japanese Airports: The Basics",hl:"the basics",subtitle:"Operators, operating hours, slots and local rules — what to know before you write an SOP",
 lead:["Japanese airports are run in very different ways, even within one country. At some the state owns the runways and a private company runs the terminals; some are run entirely by an airport company; others have been handed to private concession holders. Night-time hours, slot rules and counter allocation all differ from airport to airport.","This series looks at eight airports — Narita, Haneda, Kansai, Itami, Chubu, Fukuoka, New Chitose and Naha — from the point of view of an airline’s passenger and handling operation. This first article sets out a common way of looking at any airport, and what belongs in a station’s standard operating procedures (SOP)."],
 sections:[
-{h:"Six ways to look at an airport",blocks:[{t:"table",cols:["Lens","What to check"],rows:[
+{h:"Six ways to look at an airport",blocks:[{t:"fig",id:"apt_view",cap:"Figure: six ways to look at an airport."},{t:"table",cols:["Lens","What to check"],rows:[
 ["Operator","Who runs the runways, the terminals and cargo: the state, an airport company, a private concession holder, a terminal building company"],
 ["Operating hours","When take-offs and landings are allowed; night curfews and how late running flights are treated"],
 ["Slots","Hourly and daily caps, slot allocation at congested airports, seasonal filings"],
@@ -50,7 +50,7 @@ next:"1-1 Narita International Airport (NRT)"});
 set("1-1",{title:"Narita International Airport (NRT)",hl:"Narita",subtitle:"Tokyo’s international gateway: the operating-hours wall and the runway expansion",
 lead:["Narita handles much of the Tokyo region’s international traffic, cargo and LCCs. It is an inland airport more than 60 km from central Tokyo, and its long history with the surrounding communities means strict commitments on operating hours and flight paths.","This article covers Narita’s basics, what to watch in passenger and handling work, and the ongoing capacity expansion."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_nrt",cap:"Figure: Narita at a glance: operator, runways, hours and handling notes."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Narita International Airport Corporation (NAA)"],
 ["Runways","Runway A 4,000 m, Runway B 2,500 m"],
 ["Hours","6:00–24:00, with night restrictions ★"],
@@ -82,7 +82,7 @@ next:"1-2 Tokyo International Airport, Haneda (HND)"});
 set("1-2",{title:"Tokyo International Airport, Haneda (HND)",hl:"Haneda",subtitle:"Japan’s biggest airport: 24 hours, four runways, and terminals being reshaped",
 lead:["Haneda is Japan’s largest domestic hub and an international airport close to central Tokyo. It has four runways and operates 24 hours, yet its slots are extremely valuable and its terminals are split in three.","This article covers Haneda’s basics, what to watch in passenger and handling work, and the terminal reshaping planned into the 2030s."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_hnd",cap:"Figure: Haneda at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","The state runs the runways and air traffic control; Japan Airport Terminal runs T1 and T2; Tokyo International Air Terminal runs T3"],
 ["Runways","Four (A, B, C, D)"],
 ["Hours","24 hours"],

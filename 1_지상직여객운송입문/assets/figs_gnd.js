@@ -1080,7 +1080,62 @@ opn_year:function(l){
   ko:{t:'취항 후 1년의 고비(예)',r:[['취항~1개월','매 편 입회해 문제를 빨리 찾아 SOP를 고친다','#D64545'],['~3개월','월간 회의·품질 감사·청구 대조를 정착시킨다','#E08A2E'],['첫 시즌 전환','기초 신청·슬롯·운임을 처음으로 스스로','#7A5CC7'],['첫 감사','교육 기록과 계획의 정합을 확인한다','#1769e0'],['첫 연말연시','연말정산·원천소득세·다음 연도 예산','#2C8C8C'],['1년 후','실적을 되돌아보고 절차서·달력·예산을 재검토','#0f3558']],n:['시기는 예시(★). 매달의 리듬과 연간 절차를 달력으로 만들어 인계한다']},
   en:{t:'Milestones in the first year after launch (example)',r:[['Launch to one month','Attend every flight, catch problems early, fix the SOP','#D64545'],['Up to three months','Embed monthly meetings, quality audits and invoice checks','#E08A2E'],['First season change','File the season, slots and fares on your own for the first time','#7A5CC7'],['First audit','Check training records match the plan','#1769e0'],['First year end','Year-end adjustment, withholding tax, next year’s budget','#2C8C8C'],['After one year','Review results; update procedures, calendar and budget','#0f3558']],n:['Timings are examples (★). Hand over the monthly rhythm and annual steps as a calendar']}})[l];
  if(!W)return F.opn_year('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 日本の主要空港ガイド（APT）の図 2026.10 — 空港ごとに「運営・滑走路・運用時間」と運送の注意 ===== */
+apt_view:function(l){
+ var W=({ja:{t:'空港を見る6つの視点',r:[['運営者','滑走路・ターミナル・貨物を誰が運営するか','#1769e0'],['運用時間','離着陸できる時間と夜間の制限','#D64545'],['発着枠','1時間・1日の上限と配分','#7A5CC7'],['施設','滑走路・ターミナルの分担・スポット','#2C8C8C'],['空港のルール','カウンター・BHS・ランプ・IDパス','#E08A2E'],['協議体','AOC・ターミナルの運用協議会','#0f3558']],n:['この6つを支店のSOPの「空港の概要」に書き、工事や規則の改定のたびに直す']},
+  ko:{t:'공항을 보는 여섯 가지 관점',r:[['운영자','활주로·터미널·화물을 누가 운영하는지','#1769e0'],['운용 시간','이착륙 가능 시간과 야간 제한','#D64545'],['슬롯','1시간·1일 상한과 배분','#7A5CC7'],['시설','활주로·터미널 분담·스폿','#2C8C8C'],['공항 규칙','카운터·BHS·램프·ID 패스','#E08A2E'],['협의체','AOC·터미널 운용 협의회','#0f3558']],n:['이 여섯 가지를 지점 SOP의 「공항 개요」에 적고, 공사나 규칙 개정 때마다 고친다']},
+  en:{t:'Six ways to look at an airport',r:[['Operator','Who runs the runways, terminals and cargo','#1769e0'],['Operating hours','When aircraft may move, and night limits','#D64545'],['Slots','Hourly and daily caps and allocation','#7A5CC7'],['Facilities','Runways, terminal roles, stands','#2C8C8C'],['Airport rules','Counters, BHS, ramp, ID passes','#E08A2E'],['Committees','The AOC and terminal operating committees','#0f3558']],n:['Write these six into the airport overview of your station SOP, and update them after every change']}})[l];
+ if(!W)return F.apt_view('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+apt_nrt:function(l){
+ var W=({ja:{t:'成田国際空港（NRT）の要点（2026年9月時点）',c:[['運営','成田国際空港株式会社（NAA）'],['滑走路','A 4,000m・B 2,500m'],['運用時間','6:00〜24:00（夜間は制限）★']],n:['運用時間の終わりが近い遅延は、欠航・出発の判断を早めに','地上走行が長い。ドアクローズからの時間を見込んで締め切りを決める','駐機中のAPUの使用に制限がある（★）']},
+  ko:{t:'나리타국제공항(NRT)의 요점(2026년 9월 기준)',c:[['운영','나리타국제공항주식회사(NAA)'],['활주로','A 4,000m·B 2,500m'],['운용 시간','6:00~24:00(야간 제한)★']],n:['운용 시간 종료가 가까운 지연은 결항·출발 판단을 일찍','지상 활주가 길다. 도어 클로즈 이후 시간을 감안해 마감을 정한다','주기 중 APU 사용에 제한이 있다(★)']},
+  en:{t:'Narita International (NRT) at a glance (September 2026)',c:[['Operator','Narita International Airport Corporation (NAA)'],['Runways','A 4,000 m, B 2,500 m'],['Hours','06:00–24:00 (night restrictions) ★']],n:['Decide early on delays that approach the end of operating hours','Taxiing is long: set deadlines allowing time after door close','APU use on stand is restricted (★)']}})[l];
+ if(!W)return F.apt_nrt('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+apt_hnd:function(l){
+ var W=({ja:{t:'東京国際空港・羽田（HND）の要点（2026年9月時点）',c:[['運営','滑走路・管制は国。ターミナルはビル会社'],['滑走路','4本（A・B・C・D）'],['運用時間','24時間']],n:['国際線（第3）と国内線（第1・第2）でターミナルが分かれる。乗り継ぎの移動時間を確かめる','枠は特に貴重。定時性と使用の実績が将来の扱いに響くことがある','工事が多い。スポット・動線の変更通知を毎回確かめる']},
+  ko:{t:'도쿄국제공항·하네다(HND)의 요점(2026년 9월 기준)',c:[['운영','활주로·관제는 국가. 터미널은 빌딩 회사'],['활주로','4개(A·B·C·D)'],['운용 시간','24시간']],n:['국제선(제3)과 국내선(제1·제2) 터미널이 나뉜다. 환승 이동 시간을 확인한다','슬롯이 특히 귀하다. 정시성과 사용 실적이 장래 처리에 영향을 줄 수 있다','공사가 많다. 스폿·동선 변경 통지를 매번 확인한다']},
+  en:{t:'Tokyo International, Haneda (HND) at a glance (September 2026)',c:[['Operator','The state runs runways and ATC; terminal companies run the terminals'],['Runways','Four (A, B, C, D)'],['Hours','24 hours']],n:['International (T3) and domestic (T1, T2) terminals are separate: check connection times','Slots are especially precious; punctuality and usage can affect future allocation','Frequent works: check every stand and route change notice']}})[l];
+ if(!W)return F.apt_hnd('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+apt_kix:function(l){
+ var W=({ja:{t:'関西国際空港（KIX）の要点（2026年9月時点）',c:[['運営','関西エアポート（伊丹・神戸と一体運営）'],['滑走路','A 3,500m・B 4,000m'],['運用時間','24時間']],n:['2018年の台風21号では冠水と連絡橋の事故で空港が閉鎖。台風は進路が見えた段階で判断を早く','島に人を残さないことを最優先に、お客様へ早めに案内する','第1ターミナルの全面改修が2026年6月に完了']},
+  ko:{t:'간사이국제공항(KIX)의 요점(2026년 9월 기준)',c:[['운영','간사이 에어포트(이타미·고베와 일체 운영)'],['활주로','A 3,500m·B 4,000m'],['운용 시간','24시간']],n:['2018년 태풍 21호 때 침수와 연결교 사고로 공항이 폐쇄됐다. 태풍은 진로가 보이는 단계에서 일찍 판단','섬에 사람을 남기지 않는 것을 최우선으로 승객에게 일찍 안내한다','제1터미널 전면 개수가 2026년 6월 완료']},
+  en:{t:'Kansai International (KIX) at a glance (September 2026)',c:[['Operator','Kansai Airports (runs Itami and Kobe together)'],['Runways','A 3,500 m, B 4,000 m'],['Hours','24 hours']],n:['In Typhoon Jebi (2018) flooding and a bridge collision closed the airport: decide early once a typhoon’s track is clear','Put not leaving people stranded on the island first, and inform passengers early','Terminal 1’s full renovation was completed in June 2026']}})[l];
+ if(!W)return F.apt_kix('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+apt_itm:function(l){
+ var W=({ja:{t:'大阪国際空港・伊丹（ITM）の要点（2026年9月時点）',c:[['運営','関西エアポート（関西・神戸と一体運営）'],['滑走路','A 1,828m・B 3,000m'],['運用時間','7:00〜21:00']],n:['発着は1日370回まで（うちジェット機200回）★','国内線のみ。国際線は関西空港、神戸は国内線が中心（★）','21時の運用終了に遅れそうな便は早めに判断する']},
+  ko:{t:'오사카국제공항·이타미(ITM)의 요점(2026년 9월 기준)',c:[['운영','간사이 에어포트(간사이·고베와 일체 운영)'],['활주로','A 1,828m·B 3,000m'],['운용 시간','7:00~21:00']],n:['발착은 1일 370회까지(그중 제트기 200회)★','국내선만. 국제선은 간사이공항, 고베는 국내선 중심(★)','21시 운용 종료에 늦을 것 같은 편은 일찍 판단한다']},
+  en:{t:'Osaka International, Itami (ITM) at a glance (September 2026)',c:[['Operator','Kansai Airports (runs Kansai and Kobe together)'],['Runways','A 1,828 m, B 3,000 m'],['Hours','07:00–21:00']],n:['Up to 370 movements a day, of which 200 jets ★','Domestic only; international goes to Kansai, and Kobe is mainly domestic (★)','Decide early on flights at risk of missing the 21:00 close']}})[l];
+ if(!W)return F.apt_itm('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+apt_ngo:function(l){
+ var W=({ja:{t:'中部国際空港・セントレア（NGO）の要点（2026年9月時点）',c:[['運営','中部国際空港株式会社'],['滑走路','3,500m×1本'],['運用時間','24時間（深夜に保守の閉鎖あり）★']],n:['滑走路が1本。点検・閉鎖や故障機で空港全体が止まる前提で計画する','第1と第2ターミナルの間は距離がある。乗り継ぎの移動手段と時間を確かめる','海上空港。強風・台風とアクセスの運行状況を合わせて見る']},
+  ko:{t:'주부국제공항·센트레아(NGO)의 요점(2026년 9월 기준)',c:[['운영','주부국제공항주식회사'],['활주로','3,500m×1개'],['운용 시간','24시간(심야 보수 폐쇄 있음)★']],n:['활주로가 1개. 점검·폐쇄나 고장기로 공항 전체가 멈춘다는 전제로 계획한다','제1과 제2터미널 사이는 거리가 있다. 환승 이동 수단과 시간을 확인한다','해상 공항. 강풍·태풍과 접근 교통 운행 상황을 함께 본다']},
+  en:{t:'Chubu Centrair (NGO) at a glance (September 2026)',c:[['Operator','Central Japan International Airport Company'],['Runways','One, 3,500 m'],['Hours','24 hours (closed at night for maintenance) ★']],n:['One runway: plan on the whole airport stopping for inspections, closures or a disabled aircraft','Terminals 1 and 2 are far apart: check transfer means and times','An offshore airport: watch strong winds, typhoons and access transport together']}})[l];
+ if(!W)return F.apt_ngo('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+apt_fuk:function(l){
+ var W=({ja:{t:'福岡空港（FUK）の要点（2026年9月時点）',c:[['運営','福岡国際空港株式会社（2019年に民営化）'],['滑走路','2本（2025年3月に増設滑走路）'],['運用時間','7:00〜22:00 ★']],n:['22時に間に合わない便は欠航・ダイバートの判断が要る。夕方以降の遅延は早めに','ピークは離陸の順番待ちが長い。ドアクローズと離陸の時刻を分けて考える','国内線と国際線のターミナルは離れていてバスで結ばれる']},
+  ko:{t:'후쿠오카공항(FUK)의 요점(2026년 9월 기준)',c:[['운영','후쿠오카국제공항주식회사(2019년 민영화)'],['활주로','2개(2025년 3월 증설 활주로)'],['운용 시간','7:00~22:00 ★']],n:['22시에 못 맞추는 편은 결항·다이버트 판단이 필요. 저녁 이후 지연은 일찍','피크에는 이륙 대기가 길다. 도어 클로즈와 이륙 시각을 나눠 생각한다','국내선과 국제선 터미널은 떨어져 있고 버스로 이어진다']},
+  en:{t:'Fukuoka (FUK) at a glance (September 2026)',c:[['Operator','Fukuoka International Airport Co. (privatised 2019)'],['Runways','Two (extra runway from March 2025)'],['Hours','07:00–22:00 ★']],n:['Flights that cannot make 22:00 need a cancel or divert decision: act early on evening delays','Long take-off queues at peaks: treat door close and take-off as separate times','Domestic and international terminals are apart, linked by bus']}})[l];
+ if(!W)return F.apt_fuk('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+apt_cts:function(l){
+ var W=({ja:{t:'新千歳空港（CTS）の要点（2026年9月時点）',c:[['運営','北海道エアポート（道内7空港を一括運営）'],['滑走路','2本（隣に航空自衛隊の千歳基地）'],['運用時間','24時間（深夜・早朝は枠の制限）★']],n:['冬は除雪で滑走路が一時閉鎖される。閉鎖の見込みを早く手に入れる','防除氷は専用エプロンで行う。待ち時間を出発の見込みに入れる','大雪で鉄道が止まると空港に多くの人が残る。滞留への備えを']},
+  ko:{t:'신치토세공항(CTS)의 요점(2026년 9월 기준)',c:[['운영','홋카이도 에어포트(도내 7개 공항 일괄 운영)'],['활주로','2개(옆에 항공자위대 치토세 기지)'],['운용 시간','24시간(심야·이른 아침은 슬롯 제한)★']],n:['겨울에는 제설로 활주로가 일시 폐쇄된다. 폐쇄 전망을 일찍 입수한다','방제빙은 전용 에이프런에서 한다. 대기 시간을 출발 전망에 넣는다','폭설로 철도가 멈추면 공항에 많은 사람이 남는다. 체류에 대비한다']},
+  en:{t:'New Chitose (CTS) at a glance (September 2026)',c:[['Operator','Hokkaido Airports (runs seven airports in Hokkaido)'],['Runways','Two (next to JASDF Chitose Air Base)'],['Hours','24 hours (slot limits late night and early morning) ★']],n:['In winter runways close for snow clearance: get the closure outlook early','De-icing is done on a dedicated apron: build the wait into departure estimates','When heavy snow stops the trains, many people are stranded: prepare for it']}})[l];
+ if(!W)return F.apt_cts('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+apt_oka:function(l){
+ var W=({ja:{t:'那覇空港（OKA）の要点（2026年9月時点）',c:[['運営','国（国土交通省）。ターミナルはビル会社'],['滑走路','第1 3,000m・第2 2,700m（2020年供用）'],['運用時間','24時間']],n:['自衛隊と共用。離陸の順番待ちが生じることがあり、理由を説明できるようにする','沖合の第2滑走路は地上走行が長くなることがある','離島への乗り継ぎ客が多い。遅延・欠航のときの保護と手荷物を確かめる']},
+  ko:{t:'나하공항(OKA)의 요점(2026년 9월 기준)',c:[['운영','국가(국토교통성). 터미널은 빌딩 회사'],['활주로','제1 3,000m·제2 2,700m(2020년 운용)'],['운용 시간','24시간']],n:['자위대와 공용. 이륙 대기가 생길 수 있으니 이유를 설명할 수 있게 한다','먼바다 쪽 제2활주로는 지상 활주가 길어질 수 있다','외딴섬 환승객이 많다. 지연·결항 때 보호와 수하물을 확인한다']},
+  en:{t:'Naha (OKA) at a glance (September 2026)',c:[['Operator','The state (MLIT); terminals run by building companies'],['Runways','No. 1 3,000 m, No. 2 2,700 m (opened 2020)'],['Hours','24 hours']],n:['Shared with the Self-Defense Forces: take-off queues can occur, so be ready to explain','The offshore second runway can mean longer taxiing','Many passengers connect to outer islands: check protection and baggage in disruption']}})[l];
+ if(!W)return F.apt_oka('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

@@ -3,7 +3,7 @@
 set("2-1",{title:"Kansai International Airport (KIX)",hl:"Kansai",subtitle:"A 24-hour offshore airport: lessons from the typhoon, and a fully renovated Terminal 1",
 lead:["Kansai is a 24-hour airport on an artificial island in Osaka Bay. With few noise restrictions it handles many late-night and early-morning international and cargo flights. Being out at sea, though, is also its weak point in typhoons and storm surges.","This article covers Kansai’s basics, the lessons of the 2018 typhoon, and what to watch in passenger and handling work."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_kix",cap:"Figure: Kansai at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Kansai Airports (private concession holder, also running Itami and Kobe as one group)"],
 ["Runways","Runway A 3,500 m, Runway B 4,000 m"],
 ["Hours","24 hours"],
@@ -30,7 +30,7 @@ next:"2-2 Osaka International Airport, Itami (ITM)"});
 set("2-2",{title:"Osaka International Airport, Itami (ITM)",hl:"Itami",subtitle:"A domestic-only city airport: 7:00–21:00 hours and a daily movement cap",
 lead:["Despite its name, Itami is today a domestic-only airport. It is close to central Osaka and popular with business travellers, but it is surrounded by housing, so its hours and daily movements are tightly capped.","This article covers Itami’s basics, its role among Kansai’s three airports, and what to watch in passenger and handling work."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_itm",cap:"Figure: Itami at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Kansai Airports (run together with Kansai and Kobe)"],
 ["Runways","Runway A 1,828 m, Runway B 3,000 m"],
 ["Hours","7:00–21:00"],
@@ -58,7 +58,7 @@ next:"2-3 Chubu Centrair International Airport (NGO)"});
 set("2-3",{title:"Chubu Centrair International Airport (NGO)",hl:"Chubu",subtitle:"A one-runway 24-hour airport heading for true round-the-clock operation",
 lead:["Chubu (Centrair) is a 24-hour airport on an artificial island in Ise Bay. It has a single runway, which brings its own constraints. Work is under way to convert a taxiway into an alternate runway.","This article covers Chubu’s basics, what a one-runway airport demands, and future plans."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_ngo",cap:"Figure: Chubu Centrair at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Central Japan International Airport Co."],
 ["Runway","One, 3,500 m"],
 ["Hours","24 hours, but the runway closes at night for maintenance ★"],
@@ -87,7 +87,7 @@ next:"Part 3 Kyushu, Hokkaido and Okinawa — 3-1 Fukuoka Airport (FUK)"});
 set("3-1",{title:"Fukuoka Airport (FUK)",hl:"Fukuoka",subtitle:"Minutes from downtown by subway: one of Japan’s most congested airports, now with a second runway",
 lead:["Fukuoka is unusually close to its city — a few minutes by subway from downtown. That convenience comes with fixed operating hours because of nearby housing, and it is known as one of Japan’s most congested airports. A second runway opened in March 2025.","This article covers Fukuoka’s basics, what a congested airport demands, and recent changes."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_fuk",cap:"Figure: Fukuoka at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Fukuoka International Airport Co. (privatised in 2019)"],
 ["Runways","Two: the existing runway, and a 2,500 m additional runway opened in March 2025"],
 ["Hours","7:00–22:00 ★"],
@@ -110,7 +110,7 @@ next:"3-2 New Chitose Airport (CTS)"});
 set("3-2",{title:"New Chitose Airport (CTS)",hl:"New Chitose",subtitle:"Hokkaido’s gateway: winter snow, and preparing for the day transport stops",
 lead:["New Chitose is Hokkaido’s air gateway, with domestic and international traffic at record levels. The key to understanding it is winter snow: runway clearance and de-icing delay flights, and when the railway stops, the terminals fill with people.","This article covers New Chitose’s basics, winter operations, and what to watch in passenger and handling work."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_cts",cap:"Figure: New Chitose at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Hokkaido Airports (running seven Hokkaido airports together)"],
 ["Runways","Two (next to the Japan Air Self-Defense Force’s Chitose Air Base)"],
 ["Hours","24 hours, with limits on late-night and early-morning slots ★"],
@@ -136,7 +136,7 @@ next:"3-3 Naha Airport (OKA)"});
 set("3-3",{title:"Naha Airport (OKA)",hl:"Naha",subtitle:"Okinawa’s gateway, shared with the Self-Defense Force: a second runway and typhoon preparedness",
 lead:["Naha is Okinawa’s air gateway, serving tourists, connections to the outlying islands and international routes to Asia. It shares its runways with the Japan Air Self-Defense Force, and US military approach paths run through the surrounding airspace — circumstances found at no other major airport.","This article covers Naha’s basics, what a joint-use airport demands, and typhoon preparedness."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_oka",cap:"Figure: Naha at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","The state (transport ministry); terminals are run by a building company"],
 ["Runways","Runway 1 3,000 m; Runway 2 2,700 m (opened March 2020 on reclaimed land offshore)"],
 ["Hours","24 hours"],
