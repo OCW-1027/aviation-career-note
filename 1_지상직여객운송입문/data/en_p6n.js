@@ -10,7 +10,7 @@ sections:[
 {name:"A buddy",x:"Choose an experienced colleague to work alongside for the first month and align rosters."},
 {name:"Uniform, locker, contacts",x:"Have personal items and the contact list ready so day one runs smoothly."}]},
 {t:"point",warn:true,x:"Without an ID pass and initial training, a new starter cannot work on the front line. These are the first two things to check once a start date is set."}]},
-{h:"The 30-day plan (example)",blocks:[{t:"table",cols:["When","What happens","Goal for the period"],rows:[
+{h:"The 30-day plan (example)",blocks:[{t:"fig",id:"gnd_30d",cap:"Animated figure: the goal for each stage of the first 30 days lights up in turn (example)."},{t:"table",cols:["When","What happens","Goal for the period"],rows:[
 ["Day 1","Tour of the airport, office and emergency exits; rules and confidentiality; meet the buddy; share the month’s plan","Can get to work without getting lost; knows the basic safety rules"],
 ["Week 1","Initial security, dangerous goods and safety training; escorted visits to counter, gate and ramp","Training done and recorded (8-3)"],
 ["Week 2","Working alongside the buddy (check-in, gate support); practising the systems","Can handle simple transactions under supervision"],

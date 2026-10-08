@@ -15,7 +15,7 @@ sections:[
 ["9 Next month","Extra flights, seasonal peaks, events and priorities"]]},
 {t:"point",x:"Put a three-line conclusion on the first page — what went well, the issues, next month’s actions — with tables and charts after it. Busy readers get the message."},
 {t:"link",href:"files/KPI_monthly_report_template.xlsx",x:"Download the monthly report Excel template (indicators calculate automatically; example figures included)"}]},
-{h:"How the main indicators are calculated (example)",blocks:[{t:"table",cols:["Indicator","Calculation","What to look at"],rows:[
+{h:"How the main indicators are calculated (example)",blocks:[{t:"fig",id:"gnd_kpi",cap:"Animated figure: the main station KPIs and their formulas light up in turn (example)."},{t:"table",cols:["Indicator","Calculation","What to look at"],rows:[
 ["Departure on-time rate (D15)","Flights departing within 15 minutes of schedule ÷ flights operated","Look at D0 (on the minute) as well (Station Management 1-2)"],
 ["Ground-caused delays","Delays caused by the station or handler","Delay codes 11–19, 31–39 and so on; the top three causes"],
 ["Load factor","Passengers ÷ seats offered","Differences by route and weekday"],

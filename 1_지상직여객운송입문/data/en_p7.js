@@ -9,7 +9,7 @@ sections:[
 ["Independent handling companies","Contracted work for foreign airlines","High demand for people with languages"],
 ["Foreign airline stations in Japan","Duty managers and station staff","Small teams; mostly supervision and coordination"],
 ["Airport companies and their affiliates","Information, security, facilities","Work on the airport operator’s side"]]}]},
-{h:"The main statuses of residence (typical examples)",blocks:[{t:"table",cols:["Status","Who it is for","Key points"],rows:[
+{h:"The main statuses of residence (typical examples)",blocks:[{t:"fig",id:"gnd_visa",cap:"Animated figure: the main residence statuses for airport work in Japan, and their key points, light up in turn (example)."},{t:"table",cols:["Status","Who it is for","Key points"],rows:[
 ["Specified Skilled Worker (aviation)","Airport ground handling and aircraft maintenance","A skills test and a Japanese language requirement; the employer must be approved to operate at the airport"],
 ["Engineer / Specialist in Humanities / International Services","Graduates using languages or specialist knowledge","Interpreting and translation, planning, management. The link between the work and your education or career is examined"],
 ["Intra-company Transferee","Staff transferred from head office to the Japan branch","Used for airline expatriates; requires a period of employment at head office"],
@@ -41,7 +41,7 @@ set("7-2",{title:"Preparing from Abroad for a Job at a Japanese Airport",hl:"pre
 lead:["For anyone with airport or service experience abroad who has studied Japanese, airports in Japan are an attractive place to work. With heavy international traffic and growing inbound tourism, demand for people who can work in Japanese, English and a third language stays high.",
 "This article covers the steps to prepare, the Japanese level usually expected, Japanese-style application documents and interviews, common questions, and the visa process up to joining."],
 sections:[
-{h:"The steps",blocks:[{t:"ladder",rise:10,steps:[{name:"Japanese",sub:"Aim for service-level fluency"},{name:"Research",sub:"Vacancies, employers, statuses of residence"},{name:"Documents",sub:"Rirekisho and career summary"},{name:"Interview",sub:"Online or in person"},{name:"Prepare to move",sub:"The visa process"}]}]},
+{h:"The steps",blocks:[{t:"fig",id:"gnd_jprep",cap:"Animated figure: the five steps to prepare from abroad for an airport job in Japan light up in turn."},{t:"ladder",rise:10,steps:[{name:"Japanese",sub:"Aim for service-level fluency"},{name:"Research",sub:"Vacancies, employers, statuses of residence"},{name:"Documents",sub:"Rirekisho and career summary"},{name:"Interview",sub:"Online or in person"},{name:"Prepare to move",sub:"The visa process"}]}]},
 {h:"Japanese level usually expected",blocks:[{t:"table",cols:["Job","Typical guide"],rows:[
 ["Passenger handling (counter and gate)","JLPT N2 or above, ideally N1. Polite service language and announcements"],
 ["Ramp and cargo","Enough to follow instructions and safety terms (Specified Skilled Worker has its own language test)"],
@@ -77,7 +77,7 @@ set("7-3",{title:"Qualifications Worth Having: Dangerous Goods, Security and Loa
 lead:["Working for an airline or a handling company means taking the training required by law and by company rules for your role, and passing the assessment. Most training has an expiry, and without recurrent training in time you cannot continue in that role.",
 "This article covers the main training and qualifications for ground staff, examples of statutory training, how initial and recurrent training work, the assessment standard, and the path to becoming an instructor."],
 sections:[
-{h:"Main training and qualifications",blocks:[{t:"table",cols:["Area","What it covers","Where it is used"],rows:[
+{h:"Main training and qualifications",blocks:[{t:"fig",id:"gnd_cert",cap:"Animated figure: useful training and qualifications, and where they count, light up in turn."},{t:"table",cols:["Area","What it covers","Where it is used"],rows:[
 ["Dangerous goods","Training under the dangerous goods regulations, by category, renewed regularly","Check-in, cargo, load control"],
 ["Aviation security","For check-in staff, for security managers; in Japan there is also a security instructor qualification","Station security management, training roles"],
 ["Load control","Weight and balance, loadsheets, loading instructions","The load control specialism"],
@@ -120,7 +120,7 @@ set("7-4",{title:"From Agent to Station Manager: The Career Ladder",hl:"the care
 lead:["An airport ground career can run from agent at a handling company through team leader, instructor, duty manager at an airline and on to station manager. Each step adds people, money, regulators and sales to the work on the ground.",
 "This article covers the ladder, what to build at each step, the full picture of a foreign airline station manager’s job, and how to prepare for the next step."],
 sections:[
-{h:"The ladder (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Agent",sub:"Passenger and ramp work"},{name:"Team leader",sub:"In charge of a flight"},{name:"Instructor / supervisor",sub:"Training and supervising"},{name:"Duty manager",sub:"Running the operation for an airline"},{name:"Station manager",sub:"Running the whole station"}]}]},
+{h:"The ladder (example)",blocks:[{t:"fig",id:"gnd_career",cap:"Animated figure: a marker climbs the ladder from agent to station manager (example)."},{t:"ladder",rise:10,steps:[{name:"Agent",sub:"Passenger and ramp work"},{name:"Team leader",sub:"In charge of a flight"},{name:"Instructor / supervisor",sub:"Training and supervising"},{name:"Duty manager",sub:"Running the operation for an airline"},{name:"Station manager",sub:"Running the whole station"}]}]},
 {h:"What to build at each step",blocks:[{t:"table",cols:["Step","What to build"],rows:[
 ["Agent","Exact knowledge of the rules, service skills, the habit of reporting"],
 ["Team leader / supervisor","Judgment, coaching, handling irregular operations"],

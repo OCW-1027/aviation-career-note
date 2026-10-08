@@ -3,7 +3,7 @@
 set("6-7",{title:"The Ground Handler’s Operations Department: Role and Training",hl:"operations department",subtitle:"The control room that moves people, vehicles and information from one place — how an airline station works with it, and the training to ask for",
 lead:["Besides the teams working at the counters and on the ramp, a ground handler has an operations department that runs the whole day: allocating staff and vehicles, monitoring each flight’s progress, adjusting when things run late, and often load control and operational messages. It is where all the information comes together.","This article covers the department’s roles and a typical organisation, its working day, the training each role needs, and what an airline station should check."],
 sections:[
-{h:"Roles in the operations department (example)",blocks:[{t:"table",cols:["Role","Main work"],rows:[
+{h:"Roles in the operations department (example)",blocks:[{t:"fig",id:"gnd_ops",cap:"Animated figure: the roles and work of the handler’s operations department light up in turn (example)."},{t:"table",cols:["Role","Main work"],rows:[
 ["Operations control (the desk)","Monitoring each flight, directing front-line teams, handling delays and irregularities, liaising with the airline station"],
 ["Resource allocation","Rosters, staff and GSE for each flight, reacting to stand changes"],
 ["Load control","Loading instructions (LIR), producing loadsheets where contracted, handling last minute changes (3-7, 3-8)"],

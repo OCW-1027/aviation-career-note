@@ -21,7 +21,7 @@ sections:[
 ["8 September 2026","The ministry publishes a revised customer harassment manual for companies"],
 ["1 October 2026","Measures against customer harassment become mandatory for every employer with at least one worker"]]},
 {t:"note",x:"* Non-compliance can bring advice, guidance and recommendations from the authorities, and the company’s name may be published if it does not comply (there is no criminal penalty). ★"}]},
-{h:"What employers must do (four pillars)",blocks:[{t:"table",cols:["Pillar","Examples"],rows:[
+{h:"What employers must do (four pillars)",blocks:[{t:"fig",id:"gnd_kh4",cap:"Animated figure: the four pillars an employer puts in place against customer harassment."},{t:"table",cols:["Pillar","Examples"],rows:[
 ["A clear policy, communicated","Decide that harassment will not be tolerated, tell staff, and show customers where appropriate"],
 ["Consultation system","Set up a contact point and make sure it can respond properly"],
 ["Response after an incident","Check the facts, look after the affected worker (relief, rest, care), deal with the perpetrator"],
@@ -51,7 +51,7 @@ next:"6-12 Handling customer harassment on the front line"});
 set("6-12",{title:"Handling Customer Harassment on the Front Line: Recognising It, Responding, Recording and Recovering",hl:"Handling Customer Harassment",subtitle:"Never alone: listen sincerely, explain limits with reasons, and draw the line as an organisation when it goes too far",
 lead:["Dealing with harassment should not depend on one person’s patience or eloquence. Deciding in advance, as an organisation, when to listen, when a supervisor takes over and when to refuse service or call the police protects both staff and other passengers.","This lesson covers how to recognise harassment at the airport, the response steps, useful phrases, how to keep records and how to look after staff."],
 sections:[
-{h:"Response steps",blocks:[{t:"ladder",rise:10,steps:[{name:"Listen and check",sub:"Hear the facts and the request calmly"},{name:"Explain",sub:"What you can and cannot do, citing the rules"},{name:"Hand over",sub:"Respond in pairs; bring in a supervisor"},{name:"Set limits",sub:"State limits on time and repetition"},{name:"Refuse or report",sub:"If it continues, refuse service; call police or airport security"}]},
+{h:"Response steps",blocks:[{t:"fig",id:"gnd_khstep",cap:"Animated figure: the response escalates from the agent to a supervisor, security and police, lighting up in turn."},{t:"ladder",rise:10,steps:[{name:"Listen and check",sub:"Hear the facts and the request calmly"},{name:"Explain",sub:"What you can and cannot do, citing the rules"},{name:"Hand over",sub:"Respond in pairs; bring in a supervisor"},{name:"Set limits",sub:"State limits on time and repetition"},{name:"Refuse or report",sub:"If it continues, refuse service; call police or airport security"}]},
 {t:"point",warn:true,x:"If there is violence, a threat or damage — any danger to you — skip the steps, move away immediately and contact your supervisor, airport security or the police."}]},
 {h:"Airport-specific points",blocks:[{t:"table",cols:["Situation","What to watch"],rows:[
 ["Many upset passengers during delays or cancellations","Early and repeated information is the best prevention (Course 1, lesson 5-8). If you do not know, say you will update them as soon as you do"],

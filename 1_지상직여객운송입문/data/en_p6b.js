@@ -13,7 +13,7 @@ sections:[
 {t:"note",x:"* Names, rates and tax treatment vary by airport, contract and country. Check your own contracts and tariffs. ★"}]},
 {h:"How to check an invoice",blocks:[{t:"ladder",rise:10,steps:[{name:"Keep records",sub:"Flights, aircraft, times, extra work"},{name:"Receive the invoice",sub:"Check due date and addressee"},{name:"Compare with records",sub:"Flights, times, rates"},{name:"Query differences",sub:"With supporting evidence"},{name:"Approve and pay",sub:"Under the approval rules"},{name:"Record and analyse",sub:"Monthly, by cost type"}]},
 {t:"point",x:"The starting point is the station’s own records. Without actual times, aircraft and records of what extra work you requested for each flight, you cannot tell whether an invoice is right."}]},
-{h:"What to compare",blocks:[{t:"table",cols:["Check","Common error","How to check"],rows:[
+{h:"What to compare",blocks:[{t:"fig",id:"gnd_bill",cap:"Animated figure: for each invoice item, what to check it against lights up in turn."},{t:"table",cols:["Check","Common error","How to check"],rows:[
 ["Flights and aircraft","Cancelled flights or aircraft changes not reflected","Compare with operational records (MVT, daily reports)"],
 ["Overtime and night surcharges","Calculated on scheduled rather than actual times","Check against actual block times"],
 ["Extra work for delays and cancellations","Charged for work caused by delays that were not your responsibility","Confirm responsibility from delay codes and cause records (see the IATA delay code list)"],

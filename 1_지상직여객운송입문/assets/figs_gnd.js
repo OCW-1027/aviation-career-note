@@ -603,7 +603,99 @@ gnd_year:function(l){
   W.tr[1][t].forEach(function(c,i){var x=x0+i*(cw+4),nl=LI(c,9,cw-10).length;s+=R(x,y,cw,h,'#fff',8,' stroke="'+cols[t]+'"')+WR(x+cw/2,y+h/2+FS(9)*0.35,c,9,D,800,cw-10)});
   y+=h+6});
  W.per.forEach(function(p,i){var x=x0+i*(cw+4);s+=GLOW(x-2,top-2,cw+4,y-top,i,6,'12s',8)});
- y+=8;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
+ y+=8;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* 6-7 ハンドリング会社のオペレーション部門：担当と仕事（例★） */
+gnd_ops:function(l){
+ var W=({ja:{t:'ハンドリング会社のオペレーション部門：担当と仕事（例★）',r:[['運営の統括（デスク）','便ごとの進み具合の監視・現場への指示・航空会社との連絡','#0f3558'],['資源の割り当て','勤務・要員・GSEの配置、スポット変更への対応','#1769e0'],['搭載管理','LIR・ロードシート・最後の変更の処理','#7A5CC7'],['運航の情報・電報','MVT・LDM・CPM・PTMの送信、遅延コードの記録','#2C8C8C'],['品質・教育','品質の点検、教育の記録、監査への対応','#2E9B5F']],n:['遅れの原因を最初に記録するのはオペレーション部門。遅延コードの付け方を支店と合わせておく','小さな会社では1人が複数の担当を兼ねる']},
+  ko:{t:'조업사의 오퍼레이션 부문: 담당과 업무(예★)',r:[['운영 총괄(데스크)','편별 진행 감시·현장 지시·항공사와 연락','#0f3558'],['자원 배정','근무·인원·GSE 배치, 스폿 변경 대응','#1769e0'],['탑재 관리','LIR·로드시트·막판 변경 처리','#7A5CC7'],['운항 정보·전문','MVT·LDM·CPM·PTM 송신, 지연 코드 기록','#2C8C8C'],['품질·교육','품질 점검, 교육 기록, 감사 대응','#2E9B5F']],n:['지연 원인을 맨 처음 기록하는 곳은 오퍼레이션 부문. 지연 코드 기준을 지점과 미리 맞춘다','작은 회사에서는 한 사람이 여러 담당을 겸한다']},
+  en:{t:'The handler’s operations department: roles and work (example ★)',r:[['Operations control (desk)','Monitor each flight, direct the front line, liaise with the airline','#0f3558'],['Resource allocation','Rosters, staff and GSE per flight, stand changes','#1769e0'],['Load control','LIR, load sheet, last-minute changes','#7A5CC7'],['Movement messages','Send MVT, LDM, CPM, PTM; record delay codes','#2C8C8C'],['Quality and training','Quality checks, training records, audits','#2E9B5F']],n:['Operations is the first to record the cause of a delay; agree delay-code rules with the station in advance','In small companies one person may cover several roles']}})[l];
+ if(!W)return F.gnd_ops('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'10s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-8 請求書の照合：確かめることと確かめ方 */
+gnd_bill:function(l){
+ var W=({ja:{t:'ハンドリング会社の請求書：何を、何と照らすか',r:[['便数・機材','運航の実績（MVT・日報）と照合','#1769e0'],['時間外・深夜の割増','予定ではなく実際のブロック時刻で確認','#E08A2E'],['遅延・欠航時の追加作業','遅延コードと原因の記録で責任を確認','#D64545'],['単価','契約（SGHAの付属書）と最新の料金表','#7A5CC7'],['重複','前月・同じ便の請求と並べて確認','#2C8C8C'],['特別な対応','依頼の記録（誰が・いつ・何を）','#2E9B5F']],n:['確認の出発点は支店自身の記録。便ごとの実際の時刻・機材・追加作業の依頼を残す','差があれば根拠を添えて問い合わせ、費目ごとに月次で分析する']},
+  ko:{t:'조업사 청구서: 무엇을 무엇과 대조하나',r:[['편수·기재','운항 실적(MVT·일보)과 대조','#1769e0'],['시간외·심야 할증','예정이 아닌 실제 블록 시각으로 확인','#E08A2E'],['지연·결항 시 추가 작업','지연 코드와 원인 기록으로 책임 확인','#D64545'],['단가','계약(SGHA 부속서)과 최신 요금표','#7A5CC7'],['중복','전월·같은 편 청구와 나란히 확인','#2C8C8C'],['특별 대응','의뢰 기록(누가·언제·무엇을)','#2E9B5F']],n:['확인의 출발점은 지점 자신의 기록. 편별 실제 시각·기재·추가 작업 의뢰를 남긴다','차이가 있으면 근거를 붙여 문의하고, 비목별로 월별 분석한다']},
+  en:{t:'Handler invoices: what to check, and against what',r:[['Flights and aircraft','Movement records (MVT, daily reports)','#1769e0'],['Overtime and night premiums','Actual block times, not scheduled ones','#E08A2E'],['Extra work for delays and cancellations','Delay codes and cause records to confirm responsibility','#D64545'],['Unit rates','The contract (SGHA annex) and the latest price list','#7A5CC7'],['Duplicates','Compare with last month and the same flight','#2C8C8C'],['Special requests','Request records (who, when, what)','#2E9B5F']],n:['Checking starts from the station’s own records: actual times, aircraft and requests for each flight','Query differences with evidence, and analyse costs by item every month']}})[l];
+ if(!W)return F.gnd_bill('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-9 KPI月報の主な指標と計算（例★） */
+gnd_kpi:function(l){
+ var W=({ja:{t:'支店のKPI：主な指標と計算（例★）',r:[['出発の定時率（D15）','定刻から15分以内に出発した便 ÷ 運航便数','#1769e0'],['地上起因の遅延','支店・ハンドリング会社が原因の遅延の件数','#D64545'],['搭乗率','旅客数 ÷ 提供座席数','#2C8C8C'],['手荷物事故率','事故の件数 ÷ 旅客数 × 1,000','#E08A2E'],['苦情率','苦情の件数 ÷ 旅客数 × 10,000','#7A5CC7'],['1便あたりの費用','費用の合計 ÷ 運航便数','#2E9B5F']],n:['数字だけでなく「理由」と「対策」を1枚にまとめる','指標の定義・分母・目標は本社の定義書に合わせる']},
+  ko:{t:'지점 KPI: 주요 지표와 계산(예★)',r:[['출발 정시율(D15)','정시 15분 이내 출발 편 ÷ 운항 편수','#1769e0'],['지상 원인 지연','지점·조업사 원인 지연 건수','#D64545'],['탑승률','여객 수 ÷ 제공 좌석 수','#2C8C8C'],['수하물 사고율','사고 건수 ÷ 여객 수 × 1,000','#E08A2E'],['불만율','불만 건수 ÷ 여객 수 × 10,000','#7A5CC7'],['편당 비용','비용 합계 ÷ 운항 편수','#2E9B5F']],n:['숫자만이 아니라 「이유」와 「대책」을 한 장에 정리한다','지표의 정의·분모·목표는 본사 정의서에 맞춘다']},
+  en:{t:'Station KPIs: key measures and formulas (example ★)',r:[['On-time departure (D15)','Flights leaving within 15 minutes ÷ flights operated','#1769e0'],['Ground-caused delays','Number of delays caused by station or handler','#D64545'],['Load factor','Passengers ÷ seats offered','#2C8C8C'],['Mishandled bag rate','Incidents ÷ passengers × 1,000','#E08A2E'],['Complaint rate','Complaints ÷ passengers × 10,000','#7A5CC7'],['Cost per flight','Total cost ÷ flights operated','#2E9B5F']],n:['Put the numbers, the reasons and the actions on one page','Use head office definitions for each measure, denominator and target']}})[l];
+ if(!W)return F.gnd_kpi('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-10 新しいスタッフの30日（例★） */
+gnd_30d:function(l){
+ var W=({ja:{t:'新しいスタッフの30日：着任から独り立ちまで（例★）',st:['迷わず出勤でき、安全の基本の決まりを知る','保安・危険物・安全の初期教育を受け、記録に残す','指導者が見ている中で簡単な手続きができる','一人でできる業務の一覧ができる','独り立ちの判定と記録、今後の教育の計画'],who:['1日目','1週目','2週目','3週目','4週目（30日）'],n:['指導者（バディ）を決め、毎週短い面談で進み具合を確かめる','経験者は短く、未経験者は長くなることがある']},
+  ko:{t:'신입 직원의 30일: 부임부터 독립까지(예★)',st:['헤매지 않고 출근하고, 안전의 기본 규칙을 안다','보안·위험물·안전 초기 교육을 받고 기록으로 남긴다','지도자가 보는 가운데 간단한 수속을 할 수 있다','혼자 할 수 있는 업무 목록이 생긴다','독립 판정과 기록, 앞으로의 교육 계획'],who:['1일째','1주차','2주차','3주차','4주차(30일)'],n:['지도자(버디)를 정하고 매주 짧은 면담으로 진행을 확인한다','경력자는 짧게, 미경험자는 길어질 수 있다']},
+  en:{t:'A new staff member’s first 30 days: from arrival to working solo (example ★)',st:['Can find the way in and knows the basic safety rules','Completes initial security, DG and safety training, recorded','Can do simple tasks while the trainer watches','Has a list of tasks they can do alone','Sign-off for solo work, recorded, with a training plan'],who:['Day 1','Week 1','Week 2','Week 3','Week 4 (day 30)'],n:['Assign a buddy and check progress in a short weekly talk','Experienced hires may need less time, newcomers more']}})[l];
+ if(!W)return F.gnd_30d('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#2E9B5F'],'10s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-11 カスハラ対策：事業主が講じる4つの柱 */
+gnd_kh4:function(l){
+ var W=({ja:{t:'カスタマーハラスメント対策：会社が講じる4つの柱',c:[['方針','許さない方針を決め、社員とお客様に示す'],['相談の体制','窓口を決め、受けた人が対応できるようにする'],['起きたあと','事実の確認、被害を受けた社員への配慮、行為者への対応'],['抑止','対応ルール・研修・録音や録画']],g:'あわせて：相談した人のプライバシーを守り、不利益な扱いをしない',n:['空港では支店とハンドリング会社で方針・窓口・記録の様式をそろえる','現場の具体的な対応の手順は次の回（6-12）']},
+  ko:{t:'고객 괴롭힘(카스하라) 대책: 회사가 갖출 네 가지 기둥',c:[['방침','용납하지 않는 방침을 정해 직원과 고객에게 알린다'],['상담 체계','창구를 정하고, 상담을 받은 사람이 대응할 수 있게 한다'],['발생 후','사실 확인, 피해 직원 배려, 행위자 대응'],['억지','대응 규칙·연수·녹음과 녹화']],g:'함께: 상담한 사람의 사생활을 지키고 불이익을 주지 않는다',n:['공항에서는 지점과 조업사의 방침·창구·기록 양식을 맞춘다','현장의 구체적인 대응 절차는 다음 편(6-12)']},
+  en:{t:'Customer harassment: the four pillars an employer puts in place',c:[['Policy','Set a no-tolerance policy and show it to staff and customers'],['Consultation','Name a contact point and prepare those who receive reports'],['After an incident','Confirm facts, care for the staff member, deal with the person'],['Prevention','Response rules, training, recording']],g:'Also: protect the privacy of those who report, and never penalise them',n:['At an airport, align policy, contact points and record forms between station and handler','The step-by-step response on the front line is in the next lesson (6-12)']}})[l];
+ if(!W)return F.gnd_kh4('ja');setK(1);
+ var T=TOP(W.t),s=T.s,C=ZCARDS(T.y,W.c,['#0f3558','#1769e0','#E08A2E','#2E9B5F']);s+=C.s;
+ var y=C.y;s+=LB(320,y+FS(10)*0.6,W.g,10,'#fff','middle','#7A5CC7');y+=FS(10)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 6-12 現場でのカスハラ対応：段階を上げて区切る */
+gnd_khstep:function(l){
+ var W=({ja:{t:'現場でのカスハラ対応：1人で抱えず、段階を上げて区切る',st:['事実と要望を落ち着いて聞く','できること・できないことを規程を根拠に説明する','複数で対応し、責任者に交代する','時間・回数の区切りを伝える','続くなら利用をお断りし、空港の保安・警察へ'],who:['担当者','担当者','2人以上・責任者','責任者','責任者・警備・警察'],dg:'暴力・脅迫・物を壊す → 手順を飛ばしてすぐ離れ、通報する',n:['日時・場所・言動・対応した人を、その場か直後に記録する','対応した社員の休息と心のケアまでが対応']},
+  ko:{t:'현장의 카스하라 대응: 혼자 떠안지 말고 단계를 올려 끊는다',st:['사실과 요청을 차분히 듣는다','할 수 있는 것·없는 것을 규정을 근거로 설명한다','여럿이 대응하고 책임자로 교대한다','시간·횟수의 한계를 알린다','계속되면 이용을 거절하고 공항 보안·경찰로'],who:['담당자','담당자','2인 이상·책임자','책임자','책임자·경비·경찰'],dg:'폭력·협박·기물 파손 → 절차를 건너뛰고 즉시 벗어나 신고',n:['일시·장소·언동·대응한 사람을 그 자리나 직후에 기록한다','대응한 직원의 휴식과 마음 돌봄까지가 대응']},
+  en:{t:'Handling harassment at the front line: do not handle it alone, escalate in steps',st:['Listen calmly to the facts and what is wanted','Explain what can and cannot be done, citing the rules','Respond as a team and hand over to a supervisor','Set limits on time and repetition','If it continues, refuse service and call airport security or police'],who:['Agent','Agent','Two or more, supervisor','Supervisor','Supervisor, security, police'],dg:'Violence, threats or damage → skip the steps, move away and call for help',n:['Record date, place, words and actions, and who responded, on the spot or straight after','Rest and support for the staff involved are part of the response']}})[l];
+ if(!W)return F.gnd_khstep('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#2E9B5F','#2C8C8C','#E08A2E','#D64545','#7A1F1F'],'10s');s+=A.s;
+ var y=A.y+16;s+=LB(320,y+FS(11)*0.6,W.dg,11,'#fff','middle','#D64545');y+=FS(11)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 7-1 日本の空港で働くための主な在留資格（例★） */
+gnd_visa:function(l){
+ var W=({ja:{t:'日本の空港で働くための主な在留資格（例★）',r:[['特定技能（航空分野）','空港グランドハンドリング・整備。技能試験と日本語の条件','#1769e0'],['技術・人文知識・国際業務','語学・専門知識を活かす業務。学歴・経歴との関連を審査','#2C8C8C'],['企業内転勤','本社から日本の支店へ異動する社員（駐在員など）','#7A5CC7'],['ワーキングホリデー','協定国の若者（韓国は18〜30歳）。原則1年','#E08A2E'],['永住者・日本人の配偶者等','身分にもとづく資格。仕事の内容の制限がない','#2E9B5F']],n:['主な採用先：日本の航空会社のグループ会社、独立系のハンドリング会社、外国航空会社の日本支店、空港会社','要件は改正されることがある。出入国在留管理庁の最新情報と専門家（行政書士など）で確かめる']},
+  ko:{t:'일본 공항에서 일하기 위한 주요 재류자격(예★)',r:[['특정기능(항공 분야)','공항 지상조업·정비. 기능시험과 일본어 조건','#1769e0'],['기술·인문지식·국제업무','어학·전문 지식을 살리는 업무. 학력·경력과의 관련성 심사','#2C8C8C'],['기업 내 전근','본사에서 일본 지점으로 이동하는 직원(주재원 등)','#7A5CC7'],['워킹홀리데이','협정국 청년(한국은 18~30세). 원칙 1년','#E08A2E'],['영주자·일본인 배우자 등','신분에 따른 자격. 업무 내용 제한 없음','#2E9B5F']],n:['주요 채용처: 일본 항공사 그룹사, 독립계 조업사, 외국 항공사 일본 지점, 공항 회사','요건은 개정될 수 있다. 출입국재류관리청 최신 정보와 전문가(행정서사 등)로 확인한다']},
+  en:{t:'Main residence statuses for working at Japanese airports (example ★)',r:[['Specified Skilled Worker (aviation)','Ground handling and maintenance; skills test and Japanese requirement','#1769e0'],['Engineer / Specialist in Humanities / International Services','Work using languages or expertise; link to education is checked','#2C8C8C'],['Intra-company Transferee','Staff moved from head office to the Japan station','#7A5CC7'],['Working Holiday','Young people from partner countries (Korea 18–30), usually one year','#E08A2E'],['Permanent resident, spouse of a Japanese national, etc.','Status-based; no limit on type of work','#2E9B5F']],n:['Main employers: Japanese airline group companies, independent handlers, foreign airlines’ Japan stations, airport companies','Requirements change; check the Immigration Services Agency and a qualified adviser']}})[l];
+ if(!W)return F.gnd_visa('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'10s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 7-2 韓国から日本の空港就職を準備する5つのステップ */
+gnd_jprep:function(l){
+ var W=({ja:{t:'韓国から日本の空港就職へ：準備の5つのステップ',st:['日本語力：カウンターならJLPT N2以上、できればN1。敬語での接客とアナウンス','情報収集：求人・採用先・在留資格を調べる','書類：日本式の履歴書・職務経歴書','面接：オンライン・現地。志望動機と韓国での経験','入国準備：在留資格の手続き'],who:['日本語','情報','書類','面接','入国'],n:['ランプ・貨物は業務の指示と安全の用語が分かるレベル。支店ではビジネスの読み書き','会社ごとに基準は違う。求人票の条件を必ず確かめる']},
+  ko:{t:'한국에서 일본 공항 취업으로: 준비 5단계',st:['일본어: 카운터라면 JLPT N2 이상, 가능하면 N1. 경어 접객과 안내방송','정보 수집: 채용 공고·채용처·재류자격 조사','서류: 일본식 이력서·직무경력서','면접: 온라인·현지. 지원 동기와 한국에서의 경험','입국 준비: 재류자격 절차'],who:['일본어','정보','서류','면접','입국'],n:['램프·화물은 업무 지시와 안전 용어를 이해하는 수준. 지점은 비즈니스 읽기·쓰기','회사마다 기준이 다르다. 채용 공고의 조건을 반드시 확인한다']},
+  en:{t:'From abroad to a job at a Japanese airport: five steps',st:['Japanese: N2 or above for counter work, ideally N1; polite service and announcements','Research: openings, employers and residence status','Documents: Japanese-style CV and career history','Interview: online or in Japan; motivation and your experience at home','Arrival: residence status procedures'],who:['Japanese','Research','Documents','Interview','Arrival'],n:['Ramp and cargo need enough to follow work instructions and safety terms; station roles need business reading and writing','Standards differ by company; always check the job listing']}})[l];
+ if(!W)return F.gnd_jprep('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#2E9B5F'],'10s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 7-3 キャリアに役立つ教育・資格と活かせる場面 */
+gnd_cert:function(l){
+ var W=({ja:{t:'キャリアに役立つ教育・資格と、活かせる場面',r:[['危険物','チェックイン・貨物・ロードコントロール','#D64545'],['航空保安','支店の保安管理・教育担当（保安インストラクター）','#0f3558'],['ロードコントロール','搭載管理の専門職','#7A5CC7'],['安全管理システム（SMS）','すべての職種','#2E9B5F'],['交通弱者へのサービス','旅客ハンドリング','#1769e0'],['車両・機材','ランプ業務','#E08A2E'],['品質監査','品質管理・支店運営','#2C8C8C']],n:['危険物・保安は職種ごとの区分があり、定期的な更新が必要','語学も立派な武器。日本語・韓国語・英語の3つは強みになる']},
+  ko:{t:'경력에 도움이 되는 교육·자격과 활용 장면',r:[['위험물','체크인·화물·로드컨트롤','#D64545'],['항공 보안','지점 보안 관리·교육 담당(보안 강사)','#0f3558'],['로드컨트롤','탑재 관리 전문직','#7A5CC7'],['안전관리시스템(SMS)','모든 직종','#2E9B5F'],['교통약자 서비스','여객 조업','#1769e0'],['차량·장비','램프 업무','#E08A2E'],['품질 감사','품질 관리·지점 운영','#2C8C8C']],n:['위험물·보안은 직종별 구분이 있고 정기 갱신이 필요하다','어학도 훌륭한 무기. 일본어·한국어·영어 세 가지는 강점이 된다']},
+  en:{t:'Training and qualifications that help a career, and where they count',r:[['Dangerous goods','Check-in, cargo, load control','#D64545'],['Aviation security','Station security management and training (security instructor)','#0f3558'],['Load control','Load control specialist','#7A5CC7'],['Safety management (SMS)','Every role','#2E9B5F'],['Service for passengers with reduced mobility','Passenger handling','#1769e0'],['Vehicles and equipment','Ramp work','#E08A2E'],['Quality audit','Quality management, station operations','#2C8C8C']],n:['DG and security training is graded by role and must be renewed regularly','Languages are a real asset: Japanese, Korean and English together set you apart']}})[l];
+ if(!W)return F.gnd_cert('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 7-4 キャリアの階段：ハンドリング会社から支店長まで（例） */
+gnd_career:function(l){
+ var W=({ja:{t:'キャリアの階段：ハンドリング会社から支店長まで（例）',s:[['エージェント','規定の正確な理解・接客・報告の習慣'],['リーダー・SV','判断力・後輩の指導・イレギュラー対応'],['インストラクター','教える力・評価・手順書の作成'],['運送マネージャー','ハンドリング会社との調整・品質・本社との連携'],['支店長','行政対応・営業・財務と人事・危機管理']],n:['次の段階の仕事を、今の段階のうちに一部引き受けて練習する','段階が上がるほど「現場の手順」から「人・数字・外部との交渉」に重心が移る']},
+  ko:{t:'경력의 계단: 조업사에서 지점장까지(예)',s:[['에이전트','규정의 정확한 이해·접객·보고 습관'],['리더·SV','판단력·후배 지도·비정상 대응'],['강사','가르치는 힘·평가·절차서 작성'],['운송 매니저','조업사와 조정·품질·본사와 연계'],['지점장','행정 대응·영업·재무와 인사·위기관리']],n:['다음 단계의 일을 지금 단계에서 일부 맡아 연습한다','단계가 오를수록 「현장 절차」에서 「사람·숫자·외부 교섭」으로 무게가 옮겨 간다']},
+  en:{t:'The career ladder: from handling agent to station manager (example)',s:[['Agent','Accurate rules, customer service, reporting habits'],['Leader / supervisor','Judgement, coaching juniors, disruptions'],['Instructor','Teaching, assessment, writing procedures'],['Duty manager','Coordinating the handler, quality, head office'],['Station manager','Authorities, sales, finance and HR, crisis management']],n:['Practise part of the next level’s work while still at your current level','The higher you go, the more the weight shifts from procedures to people, numbers and negotiation']}})[l];
+ if(!W)return F.gnd_career('ja');setK(1);
+ var T=TOP(W.t),s=T.s,n=W.s.length,cw=114,gap=7,base=T.y+330,cols=['#5B6B7D','#2C8C8C','#1769e0','#7A5CC7','#0f3558'];
+ W.s.forEach(function(st,i){var x=20+i*(cw+gap),h=110+i*50,y=base-h;
+  s+=R(x,y,cw,h,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+GLOW(x,y,cw,h,i,n,'10s',10)+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="8" rx="4" fill="'+cols[i]+'"/>';
+  s+=WT(x+cw/2,y+16+FS(10),st[0],10,cols[i],900,cw-12);var tl=LI(st[0],10,cw-12).length;s+=WT(x+cw/2,y+16+FS(10)+tl*FS(10)*1.3+6+FS(9),st[1],9,D,800,cw-14)});
+ var pts=W.s.map(function(st,i){return (20+i*(cw+gap)+cw/2)+' '+(base-110-i*50-14)}).join(' L');
+ s+='<path d="M'+pts+'" fill="none" stroke="#C8D3DE" stroke-width="2" stroke-dasharray="4 5"/><circle r="8" fill="#FFD23F" stroke="#0f3558" stroke-width="2"><animateMotion dur="10s" repeatCount="indefinite" path="M'+pts+'"/></circle>';
+ s+='<line x1="20" y1="'+base+'" x2="620" y2="'+base+'" stroke="#9FB0C2" stroke-width="3"/>';
+ var L=LIST(W.n,base+16,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
