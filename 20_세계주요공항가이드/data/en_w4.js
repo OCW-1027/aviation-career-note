@@ -3,7 +3,7 @@
 set("4-1",{title:"London Heathrow (LHR): 84.5 Million on Two Runways, and the Fate of a Third",hl:"Heathrow",subtitle:"Europe’s biggest hub, with a record 84.5 million passengers in 2025 and some of the world’s most valuable slots. The third runway faces a parliamentary vote in autumn 2026, consent by 2029 and first flights in about ten years",
 lead:["London Heathrow handles 84.5 million passengers a year on just two runways (2025, a record), making it Europe’s biggest hub (Heathrow Airport). It ranks second in the world for international passengers and was named Europe’s most punctual hub in 2025.","With only two runways, its slots are among the hardest to obtain anywhere. After decades of debate, the government backed a third runway in 2025 and Parliament is due to vote in 2026. This lesson covers Heathrow’s features and how the third runway is progressing."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_lhr",cap:"Figure: London Heathrow at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: LHR / ICAO: EGLL"],
 ["Operator","Heathrow Airport Ltd (private)"],
 ["Opened","1946"],
@@ -39,7 +39,7 @@ next:"4-2 Paris Charles de Gaulle (CDG)"});
 set("4-2",{title:"Paris Charles de Gaulle (CDG): Four Runways, Nine Terminals and Air France’s Home",hl:"Charles de Gaulle",subtitle:"Opened in 1974. About 72 million passengers in 2025 and 66.14 million international, seventh in the world. Four parallel runways operating 24 hours; a Terminal 4 plan cancelled in 2021; and the split with Orly",
 lead:["Paris Charles de Gaulle, at Roissy about 25 km northeast of Paris, is France’s largest airport. Opened in 1974, it is the central European hub for Air France and SkyTeam. In 2025 it handled 66.14 million international passengers, seventh in the world (ACI World).","It is divided into Terminal 1, Terminal 2 (2A to 2G) and Terminal 3, and going to the wrong one costs time. This lesson covers the terminal layout, the split with Orly and operational features."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_cdg",cap:"Figure: Paris Charles de Gaulle at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: CDG / ICAO: LFPG"],
 ["Operator","Groupe ADP (Paris Aéroport)"],
 ["Opened","1974"],
@@ -74,7 +74,7 @@ next:"4-3 Frankfurt (FRA)"});
 set("4-3",{title:"Frankfurt (FRA): Terminal 3 Opens in April 2026 at an Airport with a Night Ban",hl:"Frankfurt",subtitle:"Lufthansa’s home. 63.19 million passengers in 2025. Terminal 3 (19 million a year) opened on 22 April 2026, with 57 airlines including Korean Air moving in by June. Scheduled flights are banned between 23:00 and 05:00",
 lead:["Frankfurt is Germany’s largest airport and the central European hub for Lufthansa and Star Alliance. It handled 63.19 million passengers in 2025 (+2.6%) and 57.53 million international passengers, ninth in the world.","On 22 April 2026 a new Terminal 3 opened on the south side, a roughly €4 billion project and Europe’s largest privately funded airport facility; 57 airlines including Korean Air moved there from Terminal 2. This lesson covers the new terminal and operational features such as the night ban."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_fra",cap:"Figure: Frankfurt at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: FRA / ICAO: EDDF"],
 ["Operator","Fraport"],
 ["Runways","Four (the Northwest Runway opened in 2011)"],
@@ -108,7 +108,7 @@ next:"4-4 Amsterdam Schiphol (AMS)"});
 set("4-4",{title:"Amsterdam Schiphol (AMS): A Single-terminal Transfer Hub and Its Movement Cap",hl:"Schiphol",subtitle:"Opened in 1916. 68.8 million passengers and 477,552 movements in 2025. A 478,000-movement cap with 27,000 night movements, set to cut noise, is contested; the response is bigger aircraft",
 lead:["Amsterdam Schiphol is the hub for KLM and SkyTeam, known for connections within a single large terminal. It handled 68.8 million passengers in 2025 (+3%), still below 71.7 million in 2019 (Royal Schiphol Group).","To reduce noise, the Dutch government moved to cut annual movements from 500,000 to 478,000, including 27,000 at night, and legal challenges continue. This lesson covers Schiphol’s layout and how the cap affects operations."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_ams",cap:"Figure: Amsterdam Schiphol at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: AMS / ICAO: EHAM"],
 ["Operator","Royal Schiphol Group"],
 ["Opened","19 September 1916"],

@@ -1233,7 +1233,74 @@ wld_del:function(l){
   ko:{t:'델리 인디라 간디(DEL)의 요점(2026년 9월 기준)',c:[['운영','델리국제공항(DIAL, GMR그룹)'],['활주로·터미널','활주로 4개, T1·T2·T3'],['수용 능력','연 약 1억 500만 명']],n:['12~1월 짙은 안개로 CAT III로도 큰 지연과 결항이 난다. 겨울은 여유 있게 계획','5~6월은 45도에 가까운 더위로 이륙 중량 제한이 생길 수 있다','보안검색이 엄격하고 독자 절차가 있다(바뀔 수 있음★)']},
   en:{t:'Delhi Indira Gandhi (DEL) at a glance (September 2026)',c:[['Operator','Delhi International Airport (DIAL, GMR Group)'],['Runways and terminals','Four runways; T1, T2 and T3'],['Capacity','About 105 million a year']],n:['Dense December–January fog causes major delays and cancellations even with CAT III: plan winter with margin','May–June heat near 45°C can limit take-off weights','Strict security with its own procedures (subject to change ★)']}})[l];
  if(!W)return F.wld_del('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== WLD Part 3〜5 の図 2026.10 ===== */
+wld_dxb:function(l){
+ var W=({ja:{'t': 'ドバイ（DXB）の要点（2026年9月時点）', 'c': [['運営', 'ドバイ空港会社（DXBとDWCを運営）'], ['滑走路・ターミナル', '滑走路2本、T1〜T3（T3はエミレーツ専用）'], ['2025年の実績', '9,520万人（国際線で世界1位）']], 'n': ['夜中から明け方にエミレーツの到着と出発の波が集中する', '6〜9月は45度を超える。ランプの熱中症対策と離陸の重量の制限に注意', '12〜2月の明け方に濃い霧が出て、到着の遅れや目的地の変更がある']},
+  ko:{'t': '두바이(DXB)의 요점(2026년 9월 기준)', 'c': [['운영', '두바이공항회사(DXB와 DWC 운영)'], ['활주로·터미널', '활주로 2개, T1~T3(T3는 에미레이트 전용)'], ['2025년 실적', '9,520만 명(국제선 세계 1위)']], 'n': ['한밤중부터 새벽에 에미레이트 도착·출발 웨이브가 몰린다', '6~9월은 45도를 넘는다. 램프 열사병 대책과 이륙 중량 제한에 주의', '12~2월 새벽에 짙은 안개로 도착 지연이나 목적지 변경이 생긴다']},
+  en:{'t': 'Dubai (DXB) at a glance (September 2026)', 'c': [['Operator', 'Dubai Airports (runs DXB and DWC)'], ['Runways and terminals', 'Two runways; T1–T3 (T3 for Emirates only)'], ['2025', '95.2 million (1st for international traffic)']], 'n': ['Emirates arrival and departure waves concentrate from midnight to dawn', 'June–September tops 45°C: protect ramp staff from heat and watch take-off weight limits', 'Dense dawn fog in December–February delays or diverts arrivals']}})[l];
+ if(!W)return F.wld_dxb('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_doh:function(l){
+ var W=({ja:{'t': 'ドーハ・ハマド（DOH）の要点（2026年9月時点）', 'c': [['運営', 'カタール航空グループ'], ['ターミナル', '1つのターミナルと5つのコンコース（A〜E）'], ['2025年の実績', '5,430万人、貨物261万トン']], 'n': ['欧州・アジアの便が夜にまとまり、深夜に乗り継ぎのピークが来る', '2026年は東の滑走路の改修で運用の制限が出る場合がある。NOTAMを確かめる', '夏の高温と、ときどきの砂嵐で視程が落ちる']},
+  ko:{'t': '도하 하마드(DOH)의 요점(2026년 9월 기준)', 'c': [['운영', '카타르항공그룹'], ['터미널', '터미널 1개와 콩코스 5개(A~E)'], ['2025년 실적', '5,430만 명, 화물 261만 톤']], 'n': ['유럽·아시아 편이 밤에 몰려 심야에 환승 피크가 온다', '2026년은 동쪽 활주로 개수로 운용 제한이 생길 수 있다. NOTAM을 확인한다', '여름 고온과 가끔 오는 모래폭풍으로 시정이 떨어진다']},
+  en:{'t': 'Doha Hamad (DOH) at a glance (September 2026)', 'c': [['Operator', 'Qatar Airways Group'], ['Terminal', 'One terminal with five concourses (A–E)'], ['2025', '54.3 million passengers; 2.61 million tonnes of cargo']], 'n': ['European and Asian flights bunch at night, giving a late-night connection peak', 'East runway works in 2026 may restrict operations: check NOTAMs', 'Summer heat and occasional sandstorms reduce visibility']}})[l];
+ if(!W)return F.wld_doh('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_ist:function(l){
+ var W=({ja:{'t': 'イスタンブール（IST）の要点（2026年9月時点）', 'c': [['運営', 'IGA（イスタンブール・グランド・エアポート）'], ['開港', '2018年10月。2019年4月にすべての旅客便が移転'], ['2025年の実績', '8,450万人（乗り継ぎの客48%）']], 'n': ['ターミナルがとても広く、搭乗口まで歩く距離が長い。移動時間を案内する', '冬は雪と強い北風で遅れが出ることがある', '韓国・日本の旅券は短期の滞在で査証不要（日数は最新の案内で★）']},
+  ko:{'t': '이스탄불(IST)의 요점(2026년 9월 기준)', 'c': [['운영', 'IGA(이스탄불 그랜드 에어포트)'], ['개항', '2018년 10월. 2019년 4월 모든 여객편 이전'], ['2025년 실적', '8,450만 명(환승객 48%)']], 'n': ['터미널이 매우 넓어 탑승구까지 걷는 거리가 길다. 이동 시간을 안내한다', '겨울에는 눈과 강한 북풍으로 지연될 수 있다', '한국·일본 여권은 단기 체류 무비자(일수는 최신 안내로★)']},
+  en:{'t': 'Istanbul (IST) at a glance (September 2026)', 'c': [['Operator', 'IGA (Istanbul Grand Airport)'], ['Opened', 'October 2018; all passenger flights moved in April 2019'], ['2025', '84.5 million (48% transfer passengers)']], 'n': ['A very large terminal with long walks to gates: tell connecting passengers how long it takes', 'Snow and strong northerly winds can cause winter delays', 'Korean and Japanese passports need no visa for short stays (check the number of days ★)']}})[l];
+ if(!W)return F.wld_ist('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_lhr:function(l){
+ var W=({ja:{'t': 'ロンドン・ヒースロー（LHR）の要点（2026年9月時点）', 'c': [['運営', 'ヒースロー空港会社（民間）'], ['滑走路・ターミナル', '滑走路2本、T2・T3・T4・T5'], ['2025年の実績', '8,450万人（欧州最大のハブ）']], 'n': ['スロットはレベル3で、航空会社の間で高額で売買される。新規の就航は極めて難しい', '騒音の対策で到着と出発の滑走路を時間で入れ替える', '夜間の発着は割当の数で厳しく制限される。遅れた到着は目的地の変更もある']},
+  ko:{'t': '런던 히스로(LHR)의 요점(2026년 9월 기준)', 'c': [['운영', '히스로공항회사(민간)'], ['활주로·터미널', '활주로 2개, T2·T3·T4·T5'], ['2025년 실적', '8,450만 명(유럽 최대 허브)']], 'n': ['슬롯은 레벨 3으로 항공사 간에 고가로 거래된다. 신규 취항은 매우 어렵다', '소음 대책으로 도착·출발 활주로를 시간대별로 바꾼다', '야간 발착은 할당 수로 엄격히 제한된다. 늦은 도착은 목적지 변경도 있다']},
+  en:{'t': 'London Heathrow (LHR) at a glance (September 2026)', 'c': [['Operator', 'Heathrow Airport Ltd (private)'], ['Runways and terminals', 'Two runways; T2, T3, T4 and T5'], ['2025', '84.5 million (Europe’s largest hub)']], 'n': ['A Level 3 airport where slots trade between airlines for large sums: new entry is very hard', 'Runway alternation swaps arrival and departure runways by time of day to share noise', 'Night movements are tightly quota-limited; late arrivals may divert']}})[l];
+ if(!W)return F.wld_lhr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_cdg:function(l){
+ var W=({ja:{'t': 'パリ・シャルル・ド・ゴール（CDG）の要点（2026年9月時点）', 'c': [['運営', 'パリ空港（グループADP）'], ['滑走路・ターミナル', '平行の4本、T1・T2（2A〜2G）・T3'], ['2025年の実績', '7,203万人']], 'n': ['国際線の乗り継ぎはCDGで。オルリー（ORY）は国内線・欧州の近距離とLCCが中心', '2026年4月からEESが全面の運用。シェンゲン圏に初めて入る人は登録に時間がかかる', '航空管制・空港のストライキが多く、予告で減便されることがある']},
+  ko:{'t': '파리 샤를드골(CDG)의 요점(2026년 9월 기준)', 'c': [['운영', '파리공항(그룹 ADP)'], ['활주로·터미널', '평행 4개, T1·T2(2A~2G)·T3'], ['2025년 실적', '7,203만 명']], 'n': ['국제선 환승은 CDG에서. 오를리(ORY)는 국내선·유럽 근거리와 LCC 중심', '2026년 4월부터 EES 전면 운용. 솅겐 지역에 처음 들어가는 사람은 등록에 시간이 걸린다', '항공관제·공항 파업이 많아 예고 후 감편되기도 한다']},
+  en:{'t': 'Paris Charles de Gaulle (CDG) at a glance (September 2026)', 'c': [['Operator', 'Paris Airports (Groupe ADP)'], ['Runways and terminals', 'Four parallel runways; T1, T2 (2A–2G), T3'], ['2025', '72.03 million']], 'n': ['International connections use CDG; Orly (ORY) mainly serves domestic, short-haul Europe and LCCs', 'EES has been fully in force since April 2026: first entries to Schengen take longer', 'Frequent ATC and airport strikes can mean pre-announced cancellations']}})[l];
+ if(!W)return F.wld_cdg('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_fra:function(l){
+ var W=({ja:{'t': 'フランクフルト（FRA）の要点（2026年9月時点）', 'c': [['運営', 'フラポート'], ['滑走路・ターミナル', '4本の滑走路、T1・T3（2026年4月開業）'], ['2025年の実績', '6,319万人']], 'n': ['23時〜5時は原則として定期便の発着禁止。長距離便の出発の遅れに特に注意', 'T1とT3は離れている。案内と予約の記録のターミナルを必ず確かめる', '欧州有数の貨物の空港。ルフトハンザ・カーゴの本拠地']},
+  ko:{'t': '프랑크푸르트(FRA)의 요점(2026년 9월 기준)', 'c': [['운영', '프라포트'], ['활주로·터미널', '활주로 4개, T1·T3(2026년 4월 개장)'], ['2025년 실적', '6,319만 명']], 'n': ['23시~5시는 원칙적으로 정기편 발착 금지. 장거리편 출발 지연에 특히 주의', 'T1과 T3는 떨어져 있다. 안내와 예약 기록의 터미널을 꼭 확인한다', '유럽 굴지의 화물 공항. 루프트한자 카고의 본거지']},
+  en:{'t': 'Frankfurt (FRA) at a glance (September 2026)', 'c': [['Operator', 'Fraport'], ['Runways and terminals', 'Four runways; T1 and T3 (opened April 2026)'], ['2025', '63.19 million']], 'n': ['Scheduled flights are in principle banned 23:00–05:00: watch long-haul departure delays closely', 'T1 and T3 are far apart: always check the terminal in guidance and bookings', 'One of Europe’s leading cargo airports and home of Lufthansa Cargo']}})[l];
+ if(!W)return F.wld_fra('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_ams:function(l){
+ var W=({ja:{'t': 'アムステルダム・スキポール（AMS）の要点（2026年9月時点）', 'c': [['運営', 'ロイヤル・スキポール・グループ'], ['滑走路・ターミナル', '6本の滑走路、1つのターミナル'], ['2025年の実績', '6,880万人、貨物143万トン']], 'n': ['すべての便が1つのターミナルから出る。乗り継ぎが分かりやすく最小乗り継ぎ時間が短い', 'シェンゲン圏外から圏内へ乗り継ぐ客は、ここで入国の審査（EES）を受ける', '北海に近く強い風が多い。風で滑走路の使い方が変わり、遅れが出る']},
+  ko:{'t': '암스테르담 스히폴(AMS)의 요점(2026년 9월 기준)', 'c': [['운영', '로열 스히폴 그룹'], ['활주로·터미널', '활주로 6개, 터미널 1개'], ['2025년 실적', '6,880만 명, 화물 143만 톤']], 'n': ['모든 편이 터미널 하나에서 나간다. 환승이 알기 쉽고 최소 환승 시간이 짧다', '솅겐 지역 밖에서 안으로 환승하는 승객은 여기서 입국 심사(EES)를 받는다', '북해에 가까워 강풍이 잦다. 바람에 따라 활주로 사용이 바뀌어 지연이 생긴다']},
+  en:{'t': 'Amsterdam Schiphol (AMS) at a glance (September 2026)', 'c': [['Operator', 'Royal Schiphol Group'], ['Runways and terminal', 'Six runways; one terminal'], ['2025', '68.8 million passengers; 1.43 million tonnes of cargo']], 'n': ['Every flight uses one terminal: connections are simple and minimum connecting times short', 'Passengers connecting from outside into Schengen clear immigration (EES) here', 'Close to the North Sea and often windy: runway use changes with the wind, causing delays']}})[l];
+ if(!W)return F.wld_ams('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_atl:function(l){
+ var W=({ja:{'t': 'アトランタ（ATL）の要点（2026年9月時点）', 'c': [['運営', 'アトランタ市（航空局）'], ['滑走路・ターミナル', '平行の5本。国内線・国際線のターミナルとコンコースを地下の電車で結ぶ'], ['2025年の実績', '1億630万人（世界1位）']], 'n': ['夏は午後の雷雨で地上の作業の停止（ランプ・クロージャー）と流量の制限がよく出る', 'デルタの到着・出発の波が1日に何度も来る。波の時間帯は誘導路と保安検査が混む', 'まれな雪・氷でも大きな混乱になる']},
+  ko:{'t': '애틀랜타(ATL)의 요점(2026년 9월 기준)', 'c': [['운영', '애틀랜타시(항공국)'], ['활주로·터미널', '평행 5개. 국내선·국제선 터미널과 콩코스를 지하 열차로 연결'], ['2025년 실적', '1억 630만 명(세계 1위)']], 'n': ['여름 오후 뇌우로 지상 작업 중지(램프 클로저)와 흐름 제한이 자주 나온다', '델타의 도착·출발 웨이브가 하루에 여러 번 온다. 그 시간대는 유도로와 보안검색이 붐빈다', '드문 눈·얼음에도 큰 혼란이 생긴다']},
+  en:{'t': 'Atlanta (ATL) at a glance (September 2026)', 'c': [['Operator', 'City of Atlanta (Department of Aviation)'], ['Runways and terminals', 'Five parallel runways; domestic and international terminals and concourses linked by an underground train'], ['2025', '106.3 million (1st in the world)']], 'n': ['Summer afternoon storms often bring ramp closures and flow restrictions', 'Delta’s banks arrive and depart several times a day, crowding taxiways and security', 'Even rare snow and ice cause major disruption']}})[l];
+ if(!W)return F.wld_atl('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_lax:function(l){
+ var W=({ja:{'t': 'ロサンゼルス（LAX）の要点（2026年9月時点）', 'c': [['運営', 'ロサンゼルス空港局（LAWA）'], ['滑走路・ターミナル', '平行の4本。9つのターミナルとトム・ブラッドレー国際線ターミナル（TBIT）'], ['2025年の実績', '約7,371万人']], 'n': ['ターミナルを回る馬蹄形の道路が慢性的に渋滞。早めに空港に着くよう案内する', '春から夏の朝に海の霧（マリン・レイヤー）で視程が下がることがある', '国際線は主にTBIT。米国の入国・税関の後、国内線へは荷物を預け直す']},
+  ko:{'t': '로스앤젤레스(LAX)의 요점(2026년 9월 기준)', 'c': [['운영', '로스앤젤레스공항국(LAWA)'], ['활주로·터미널', '평행 4개. 터미널 9개와 톰 브래들리 국제선 터미널(TBIT)'], ['2025년 실적', '약 7,371만 명']], 'n': ['터미널을 도는 말발굽 모양 도로가 만성 정체. 공항에 일찍 도착하도록 안내한다', '봄~여름 아침 바다 안개(마린 레이어)로 시정이 떨어질 수 있다', '국제선은 주로 TBIT. 미국 입국·세관 후 국내선으로는 수하물을 다시 맡긴다']},
+  en:{'t': 'Los Angeles (LAX) at a glance (September 2026)', 'c': [['Operator', 'Los Angeles World Airports (LAWA)'], ['Runways and terminals', 'Four parallel runways; nine terminals and the Tom Bradley International Terminal (TBIT)'], ['2025', 'About 73.71 million']], 'n': ['The horseshoe road around the terminals is chronically congested: advise passengers to arrive early', 'Spring and summer morning marine layer can lower visibility', 'International flights mostly use TBIT; after US immigration and customs, bags are re-checked for domestic flights']}})[l];
+ if(!W)return F.wld_lax('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_jfk:function(l){
+ var W=({ja:{'t': 'ニューヨーク・JFK（JFK）の要点（2026年9月時点）', 'c': [['運営', 'ニューヨーク・ニュージャージー港湾公社（ターミナルは民間）'], ['滑走路・ターミナル', '4本。T1・T4・T5・T6（2026年開業）・T8'], ['再開発', '190億ドルで新しいターミナルを順に開業']], 'n': ['2026〜2027年は多くの会社がターミナルを移る。予約・案内・書類の表示に注意', 'JFK・ニューアーク・ラガーディアが近く、遅れが波及しやすい', '冬は大雪と強風（ノーイースター）で大規模な欠航が出る']},
+  ko:{'t': '뉴욕 JFK(JFK)의 요점(2026년 9월 기준)', 'c': [['운영', '뉴욕·뉴저지항만청(터미널은 민간)'], ['활주로·터미널', '4개. T1·T4·T5·T6(2026년 개장)·T8'], ['재개발', '190억 달러로 새 터미널을 차례로 개장']], 'n': ['2026~2027년에는 많은 항공사가 터미널을 옮긴다. 예약·안내·서류 표시에 주의', 'JFK·뉴어크·라과디아가 가까워 지연이 번지기 쉽다', '겨울에는 폭설과 강풍(노리스터)으로 대규모 결항이 난다']},
+  en:{'t': 'New York JFK (JFK) at a glance (September 2026)', 'c': [['Operator', 'Port Authority of New York and New Jersey (terminals privately run)'], ['Runways and terminals', 'Four; T1, T4, T5, T6 (opening 2026), T8'], ['Redevelopment', 'US$19 billion programme opening new terminals in turn']], 'n': ['Many airlines change terminals in 2026–2027: watch the terminal shown in bookings, guidance and documents', 'JFK, Newark and LaGuardia are close together, so delays spread easily', 'Winter nor’easters with heavy snow and wind cause mass cancellations']}})[l];
+ if(!W)return F.wld_jfk('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+wld_syd:function(l){
+ var W=({ja:{'t': 'シドニーの2つの空港：SYDとWSI（2026年9月時点）', 'c': [['シドニー（SYD）', '市の南 約8km。23時〜6時は原則運航禁止。滑走路3本、2025年4,254万人★'], ['ウェスタン・シドニー（WSI）', '市の西 約44km。24時間の運用。滑走路1本。旅客便は2026年10月25日に開業']], 'n': ['SYDで23時に間に合わない便は、目的地の変更か欠航。出発の遅れの管理が重要', 'SYDは時間あたりの発着数にも法律の上限があり、スロットの管理が厳しい', '「シドニー」に2つの空港。予約・案内でSYDかWSIかを必ず確かめる']},
+  ko:{'t': '시드니의 두 공항: SYD와 WSI(2026년 9월 기준)', 'c': [['시드니(SYD)', '시 남쪽 약 8km. 23시~6시는 원칙적으로 운항 금지. 활주로 3개, 2025년 4,254만 명★'], ['웨스턴 시드니(WSI)', '시 서쪽 약 44km. 24시간 운용. 활주로 1개. 여객편은 2026년 10월 25일 개항']], 'n': ['SYD에서 23시에 못 맞추는 편은 목적지 변경이나 결항. 출발 지연 관리가 중요', 'SYD는 시간당 발착 수에도 법적 상한이 있어 슬롯 관리가 엄격하다', '「시드니」에 공항이 두 개. 예약·안내에서 SYD인지 WSI인지 꼭 확인한다']},
+  en:{'t': 'Sydney’s two airports: SYD and WSI (September 2026)', 'c': [['Sydney (SYD)', 'About 8 km south. Curfew 23:00–06:00. Three runways; 42.54 million in 2025 ★'], ['Western Sydney (WSI)', 'About 44 km west. 24-hour operation, one runway. Passenger flights from 25 October 2026']], 'n': ['At SYD, flights that cannot make 23:00 divert or cancel: managing departure delays is vital', 'SYD also has a legal cap on hourly movements, so slots are tightly managed', '“Sydney” now means two airports: always confirm SYD or WSI in bookings and guidance']}})[l];
+ if(!W)return F.wld_syd('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

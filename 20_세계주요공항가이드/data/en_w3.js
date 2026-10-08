@@ -3,7 +3,7 @@
 set("3-1",{title:"Dubai (DXB): First in the World for International Traffic, Moving Next to Al Maktoum (DWC)",hl:"Dubai",subtitle:"95.2 million passengers in 2025, the most international passengers any airport has ever handled in a year. Home of Emirates. A US$35 billion DWC aims ultimately for 260 million, with all flights eventually moving there",
 lead:["Dubai International (DXB) has been the world’s busiest airport for international passengers since 2014. In 2025 it handled 95.2 million passengers (+3.1%), the highest annual international traffic ever recorded by any airport (Dubai Airports), and it forecasts 99.5 million for 2026.","As Emirates’ home, it is a giant transfer hub linking Europe, Africa, Asia and Oceania. But the city-centre site has no room to grow, so Dubai is investing US$35 billion in Al Maktoum International (DWC) to the south and plans eventually to move every flight there."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_dxb",cap:"Figure: Dubai at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: DXB / ICAO: OMDB"],
 ["Operator","Dubai Airports (operates both DXB and DWC)"],
 ["Opened","1960"],
@@ -41,7 +41,7 @@ next:"3-2 Doha Hamad (DOH)"});
 set("3-2",{title:"Doha Hamad (DOH): Qatar Airways’ Transfer Hub",hl:"Doha",subtitle:"Opened in 2014. 54.3 million passengers in 2025, more than 70% of them connecting. Concourses D and E in March 2025 lifted capacity above 65 million; the eastern runway is being rehabilitated in 2026",
 lead:["Doha’s Hamad International Airport opened in 2014 to replace the old Doha International and is the home of Qatar Airways. It handled 54.3 million passengers in 2025 (+3%) and passed 5 million in a month for the first time in August (Hamad International Airport).","Only 13.5 million passengers started or ended their journey in Doha; most of the rest were connecting. It is a classic transfer hub, handling far more connecting passengers than the country’s population. This lesson covers its layout and its expansion and rehabilitation plans."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_doh",cap:"Figure: Doha Hamad at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: DOH / ICAO: OTHH"],
 ["Operator","Qatar Airways Group (Hamad International Airport)"],
 ["Opened","30 April 2014 (Qatar Airways and others moved on 27 May)"],
@@ -75,7 +75,7 @@ next:"3-3 Istanbul (IST)"});
 set("3-3",{title:"Istanbul (IST): Europe’s Second-busiest Airport and Turkish Airlines’ Hub, with 48% Transfers",hl:"Istanbul",subtitle:"Opened in 2018, with all flights moved from Atatürk in April 2019. 84.5 million passengers in 2025, second in Europe. In April 2025 the first airport in Europe to run three independent parallel runways",
 lead:["Istanbul Airport, built at Arnavutköy near the Black Sea, opened on 29 October 2018. All passenger flights moved from Atatürk Airport on 6 April 2019, and it is now Turkish Airlines’ home. In 2025 it handled 84.5 million passengers (+5.07%), second in Europe after Heathrow and eighth in the world.","Forty-eight per cent of its passengers are long-haul connections, and it links more than 330 destinations. This lesson covers how Istanbul’s two airports divide their roles, runway operations and future targets."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_ist",cap:"Figure: Istanbul at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: IST / ICAO: LTFM"],
 ["Operator","IGA (Istanbul Grand Airport)"],
 ["Opened","29 October 2018 (ceremony); all passenger flights 6 April 2019; all cargo 5 February 2022"],

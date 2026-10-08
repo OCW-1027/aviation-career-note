@@ -3,7 +3,7 @@
 set("5-1",{title:"Atlanta (ATL): Delta’s Giant Hub, Still First in the World for Passengers",hl:"Atlanta",subtitle:"106.3 million passengers in 2025, first in the world, mostly domestic and connecting. It lost first place for aircraft movements to Chicago O’Hare. Plus how connections work in the United States",
 lead:["Atlanta’s Hartsfield-Jackson International Airport has long been the world’s busiest airport by passengers, and was again first in 2025 with 106.3 million (ACI World). As Delta Air Lines’ home, it anchors a domestic network centred on the southeastern United States.","For aircraft movements, however, Chicago O’Hare (860,000) overtook Atlanta (808,000) in 2025. This lesson covers Atlanta’s layout and the rules for connecting at US airports."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_atl",cap:"Figure: Atlanta at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: ATL / ICAO: KATL"],
 ["Operator","City of Atlanta (Department of Aviation)"],
 ["Runways","Five parallel runways"],
@@ -33,7 +33,7 @@ next:"5-2 Los Angeles (LAX)"});
 set("5-2",{title:"Los Angeles (LAX): The Pacific Gateway and a Major Rebuild for the 2028 Olympics",hl:"Los Angeles",subtitle:"America’s Pacific gateway and a rare airport where Delta, American and United all have hubs. The centrepiece of a roughly US$30 billion rebuild is the Automated People Mover (APM)",
 lead:["Los Angeles International is the Pacific gateway linking Asia and the United States. Unusually, all three big US airlines, Delta, American and United, operate hubs there, and many flights from Japan and Korea arrive.","About 73.71 million passengers used it in 2025, still below 88 million in 2019 (76.59 million in 2024). The airport is investing about US$30 billion ahead of the 2028 Olympics, centred on an Automated People Mover (APM) linking the terminals with rail and rental-car facilities."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_lax",cap:"Figure: Los Angeles at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: LAX / ICAO: KLAX"],
 ["Operator","Los Angeles World Airports (LAWA, a city department)"],
 ["Runways","Four parallel runways (two north, two south)"],
@@ -63,7 +63,7 @@ next:"5-3 New York JFK (JFK)"});
 set("5-3",{title:"New York JFK (JFK): New Terminals Arriving Under a US$19 Billion Redevelopment",hl:"JFK",subtitle:"One of America’s largest international gateways. Under the Port Authority’s US$19 billion programme, the north-side Terminal 6 opened its first gates in 2026, and the first phase of the south-side New Terminal One is expected in 2027",
 lead:["New York’s John F. Kennedy International is the largest international gateway on the US East Coast. The Port Authority of New York and New Jersey is carrying out a US$19 billion redevelopment including two new terminals, the renovation of two existing terminals and a new road network.","2026 is the year of greatest change: the north-side Terminal 6 opened its first gates and airlines are moving between terminals. On the south side, the first phase of New Terminal One (14 gates) is now expected in 2027."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_jfk",cap:"Figure: New York JFK at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: JFK / ICAO: KJFK"],
 ["Operator","Port Authority of New York and New Jersey (terminals run by private operators)"],
 ["Opened","1948 (as Idlewild Airport); renamed in 1963"],
@@ -93,7 +93,7 @@ next:"5-4 Sydney (SYD) and Western Sydney (WSI)"});
 set("5-4",{title:"Sydney (SYD) and Western Sydney (WSI): A Curfewed Airport and a 24-hour Newcomer Opening in October 2026",hl:"Sydney",subtitle:"Kingsford Smith handled 42.54 million passengers in 2025 under an 11pm–6am curfew and an hourly movement cap. Western Sydney International opens in the western suburbs on 25 October 2026",
 lead:["Sydney Kingsford Smith is Australia’s largest airport. A 1995 law bans most movements between 11pm and 6am and caps movements per hour. It handled a record 42.54 million passengers in 2025 (★).","To relieve these limits, the 24-hour Western Sydney International (Nancy-Bird Walton) Airport has been built about 44 km west of the city, starting cargo flights on 26 July 2026 and passenger flights on 25 October 2026 (Australian Government). This lesson compares the two."],
 sections:[
-{h:"The two airports (September 2026)",blocks:[{t:"table",cols:["Item","Sydney (SYD)","Western Sydney (WSI)"],rows:[
+{h:"The two airports (September 2026)",blocks:[{t:"fig",id:"wld_syd",cap:"Figure: Sydney’s two airports."},{t:"table",cols:["Item","Sydney (SYD)","Western Sydney (WSI)"],rows:[
 ["ICAO","YSSY","YSWS"],
 ["Location","About 8 km south of the city","About 44 km west (Badgerys Creek)"],
 ["Hours","Most movements banned 11pm–6am (1995 Act)","24 hours (no curfew)"],
