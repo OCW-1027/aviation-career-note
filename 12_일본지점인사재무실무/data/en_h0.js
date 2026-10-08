@@ -273,7 +273,7 @@ next:"0-6 General affairs: contracts, equipment, the office and documents"});
 set("0-6",{title:"General Affairs: Contracts, Equipment, the Office and Documents",hl:"general affairs",subtitle:"The groundwork that keeps a company running, done before problems arise",
 lead:["General affairs work goes unnoticed while nothing goes wrong. But a forgotten contract renewal or loose control of equipment can lead to large losses and trouble. General affairs looks after the foundations the company relies on every day.","This article covers what general affairs handles, how to manage contracts, Japanese document habits (seals, ringi approvals, revenue stamps), and disaster preparedness and office safety."],
 sections:[
-{h:"What general affairs handles",blocks:[{t:"table",cols:["Area","What it covers","When to check"],rows:[
+{h:"What general affairs handles",blocks:[{t:"fig",id:"adm_ga",cap:"Figure: general affairs: what to check, and when."},{t:"table",cols:["Area","What it covers","When to check"],rows:[
 ["Contracts","Office lease, leasing, maintenance, insurance","One to three months before renewal"],
 ["Equipment and assets","Computers, mobile phones, keys, company cars","Keep a register and check against the items once a year"],
 ["The office","Faults, cleaning, visitors, post","Daily"],
@@ -337,7 +337,7 @@ next:"0-8 Reporting, informing, consulting and work emails"});
 set("0-8",{title:"Reporting, Informing, Consulting and Work Emails",hl:"reporting and email",subtitle:"Lead with the conclusion, and share bad news early. Communication that speeds work up",
 lead:["No job in a company is finished alone. Work moves when you tell your manager, colleagues, head office and partners what they need, when they need it. Japanese companies call this hō-ren-sō: report, inform, consult. It is one of the first things a new employee is taught.","This article covers what each part means, how to report starting from the conclusion, how to structure a work email, and points to watch when working across countries, such as between a Korean head office and a Japanese branch."],
 sections:[
-{h:"Report, inform, consult",blocks:[{t:"rows",items:[
+{h:"Report, inform, consult",blocks:[{t:"fig",id:"adm_hrs",cap:"Figure: report the conclusion first."},{t:"rows",items:[
 {name:"Report",x:"Tell the person who gave you the task how it went or how it is progressing."},
 {name:"Inform",x:"Share decisions and facts with those concerned, without adding your own opinion."},
 {name:"Consult",x:"When unsure, ask for views before deciding. Do not carry it alone."}]}]},
@@ -401,7 +401,7 @@ next:"0-10 Rules of employment, payslips and paid leave from the employee’s si
 set("0-10",{title:"Rules of Employment, Payslips and Paid Leave from the Employee’s Side",hl:"the employee’s side",subtitle:"Read the agreement between you and the company once, when you join",
 lead:["So far we have looked at HR and money from the company’s side. This article looks from the other side, the employee’s: the documents you receive on joining, what to read first in the rules of employment, the rules on paid leave, and what to check on your monthly payslip.","Knowing your rights and duties is the foundation for working well with a company for a long time."],
 sections:[
-{h:"Documents you receive on joining",blocks:[{t:"region",jp:[{t:"rows",items:[
+{h:"Documents you receive on joining",blocks:[{t:"fig",id:"adm_slip",cap:"Figure: reading a payslip."},{t:"region",jp:[{t:"rows",items:[
 {name:"Statement of employment terms",x:"Your pay, working hours, days off and contract period (1-1)."},
 {name:"Rules of employment",x:"The company-wide rules. Companies with ten or more employees must draw them up and file them, and staff can see them at any time. ★"},
 {name:"Pay regulations",x:"How pay is calculated, allowances and the rules for pay rises."},

@@ -1790,7 +1790,62 @@ ciq_station:function(l){
   ko:{t:'예정대로 되지 않을 때: 지점이 먼저 할 일(예)',r:[['입국 거부 연락','기록을 확인하고 본사에 보고, 돌아오는 편을 맞이한다','#D64545'],['과징금 통지','사실을 모으고 이의를 검토, 대책을 하나','#E08A2E'],['CIQ 운영 시간을 넘길 듯','3개 기관과 공항에 바로 알린다','#1769e0'],['국내선 전용 공항에 착륙','기내에서 기다리고 지시까지 내리지 않는다','#7A5CC7'],['국제선 쓰레기가 국내 보관소에','분리해 기록하고 당국에 알린다★','#2C8C8C']],n:['같은 누락이 계속되면 담당자가 아니라 절차의 빈틈을 찾는다','면세품 수량 불일치·지연 수하물: 봉인을 뜯지 말고, 세관 검사 전에 넘기지 않는다']},
   en:{t:'When things go off plan: what the station does first (example)',r:[['Notice of a refused passenger','Check records, report to head office, meet the return flight','#D64545'],['A fine notice','Gather facts, consider appeal, choose one fix','#E08A2E'],['Delay may pass CIQ hours','Tell all three agencies and the airport at once','#1769e0'],['Landing at a domestic-only airport','Wait on board; offload nothing until told','#7A5CC7'],['International waste in domestic bins','Separate, record and notify the authority ★','#2C8C8C']],n:['If the same miss keeps happening, look for the gap in the process, not the person','Duty-free mismatches and delayed bags: never break seals or release before customs checks']}})[l];
  if(!W)return F.ciq_station('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 人事・総務・財務（ADM）の図 2026.10（日本・韓国のどちらの制度でも合う形） ===== */
+adm_ga:function(l){
+ var W=({ja:{t:'総務の仕事と確かめる時期',r:[['契約','更新の1〜3か月前（解約の通知の期限）','#1769e0'],['備品・資産','台帳で管理し、年1回は現物と照合','#2C8C8C'],['事務所','毎日（故障・清掃・来客・郵便）','#E08A2E'],['文書・印鑑','使うたびに記録','#7A5CC7'],['防災・安全','年1〜2回の訓練と備蓄','#D64545']],n:['契約は「期間・自動更新・解約の通知の期限・金額・原本の場所」を一覧に','解約の通知の期限を過ぎると、さらに1年続くことがある']},
+  ko:{t:'총무의 일과 확인 시기',r:[['계약','갱신 1~3개월 전(해지 통지 기한)','#1769e0'],['비품·자산','대장으로 관리하고 연 1회 실물과 대조','#2C8C8C'],['사무실','매일(고장·청소·내방객·우편)','#E08A2E'],['문서·인감','쓸 때마다 기록','#7A5CC7'],['방재·안전','연 1~2회 훈련과 비축','#D64545']],n:['계약은 「기간·자동 갱신·해지 통지 기한·금액·원본 위치」를 목록으로','해지 통지 기한을 넘기면 1년 더 이어지는 경우가 있다']},
+  en:{t:'General affairs: what to check, and when',r:[['Contracts','1–3 months before renewal (notice deadline)','#1769e0'],['Equipment and assets','Keep a register; check against items yearly','#2C8C8C'],['Office','Daily: faults, cleaning, visitors, post','#E08A2E'],['Documents and seals','Log every use','#7A5CC7'],['Safety','Drills and supplies 1–2 times a year','#D64545']],n:['List each contract’s term, auto-renewal, notice deadline, amount and where the original is','Miss the notice deadline and a contract may run another full year']}})[l];
+ if(!W)return F.adm_ga('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+adm_hrs:function(l){
+ var W=({ja:{t:'報告は結論から',st:['結論：何が起きたか・どうなったか','理由：なぜそうなったか','詳しい内容：数字と事実','次の行動：何をするか・何を決めてほしいか'],who:['結論','理由','詳細','次'],n:['件名に内容と期限。動いてほしい人はTo、知っておいてほしい人はCC','国をまたぐときは日付を年から、金額は通貨も。大事なことは両方の言葉で']},
+  ko:{t:'보고는 결론부터',st:['결론: 무엇이 일어났나·어떻게 됐나','이유: 왜 그렇게 됐나','자세한 내용: 숫자와 사실','다음 행동: 무엇을 할지·무엇을 정해 주길 바라나'],who:['결론','이유','상세','다음'],n:['제목에 내용과 기한. 움직여 주길 바라는 사람은 To, 알아 둬야 할 사람은 CC','나라를 넘나들 때는 날짜를 연도부터, 금액은 통화도. 중요한 것은 두 언어로']},
+  en:{t:'Report the conclusion first',st:['Conclusion: what happened, where it stands','Reason: why it happened','Details: numbers and facts','Next step: what you will do, what you need decided'],who:['Conclusion','Reason','Details','Next'],n:['Put the topic and deadline in the subject; To for those who must act, CC for those who should know','Across borders, write dates with the year and amounts with the currency; key points in both languages']}})[l];
+ if(!W)return F.adm_hrs('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+adm_slip:function(l){
+ var W=({ja:{t:'給与明細の読み方',c:[['支給','基本給・残業代・手当'],['控除','社会保険料・税金（所得税・住民税など）'],['手取り','支給 − 控除 ＝ 振り込まれる額']],n:['勤怠の数字と残業代が、自分の記録と合うかを確かめる','保険料や税が変わる月は、明細の数字も変わる']},
+  ko:{t:'급여 명세서 읽는 법',c:[['지급','기본급·연장근로수당·수당'],['공제','사회보험료·세금(소득세 등)'],['실수령액','지급 − 공제 ＝ 입금되는 금액']],n:['근태 숫자와 연장근로수당이 내 기록과 맞는지 확인한다','보험료나 세금이 바뀌는 달에는 명세서 숫자도 바뀐다']},
+  en:{t:'Reading a payslip',c:[['Pay','Base pay, overtime, allowances'],['Deductions','Social insurance, taxes (income tax, resident tax and so on)'],['Take-home','Pay − deductions = amount paid in']],n:['Check that attendance figures and overtime match your own record','When insurance or tax rates change, the payslip figures change too']}})[l];
+ if(!W)return F.adm_slip('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#D64545','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+adm_hire:function(l){
+ var W=({ja:{t:'雇うときの順番',st:['雇用の形を決める（無期・有期・パート・派遣）','労働条件を書面で示す（期間・場所と仕事・時間と休み・賃金・退職）','外国籍なら、在留資格と仕事の範囲を確かめる','試用期間の評価の基準と面談の日を共有する','専門家に確かめてから契約する'],who:['形','条件','在留','試用','契約'],n:['「契約社員なら自由に切れる」「年俸制なら残業代は不要」は誤解','本社の契約書を訳すだけでは足りない。その国の法令に合わせる']},
+  ko:{t:'채용할 때의 순서',st:['고용 형태를 정한다(무기·유기·파트타임·파견)','근로조건을 서면으로 제시(기간·장소와 업무·시간과 휴일·임금·퇴직)','외국 국적이면 체류 자격과 업무 범위를 확인한다','수습 기간의 평가 기준과 면담 날짜를 공유한다','전문가에게 확인한 뒤 계약한다'],who:['형태','조건','체류','수습','계약'],n:['「계약직이면 마음대로 끊을 수 있다」「연봉제면 연장근로수당 불필요」는 오해','본사 계약서를 번역만 해서는 부족하다. 그 나라의 법령에 맞춘다']},
+  en:{t:'Hiring: the order of steps',st:['Choose the employment type (permanent, fixed-term, part-time, agency)','Give working conditions in writing (term, place and duties, hours and leave, pay, leaving)','For foreign nationals, check residence status and permitted work','Share probation criteria and review dates','Check with a specialist, then sign'],who:['Type','Terms','Status','Probation','Sign'],n:['“Contract staff can be let go freely” and “annual salary means no overtime pay” are misconceptions','Translating the head-office contract is not enough; follow local law']}})[l];
+ if(!W)return F.adm_hire('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#5B6B7D'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+adm_pay:function(l){
+ var W=({ja:{t:'給与の毎月の流れ',st:['勤怠の締め：残業・休暇の確認','変動の反映：入退社・昇給・手当','計算：専門家またはシステム','確認：前月との差の理由','支払い：給与日・明細'],who:['締め','変動','計算','確認','支払い'],n:['料率が変わる月に、計算に反映されたか確かめる','支払いの承認の記録を残し、給与の帳簿を保存する']},
+  ko:{t:'급여의 매월 흐름',st:['근태 마감: 연장근로·휴가 확인','변동 반영: 입퇴사·승급·수당','계산: 전문가 또는 시스템','확인: 전월과의 차이의 이유','지급: 급여일·명세서'],who:['마감','변동','계산','확인','지급'],n:['요율이 바뀌는 달에 계산에 반영됐는지 확인한다','지급 승인 기록을 남기고 급여 장부를 보존한다']},
+  en:{t:'The monthly payroll cycle',st:['Close attendance: overtime and leave','Apply changes: joiners, leavers, raises, allowances','Calculate: specialist or system','Check: reasons for changes from last month','Pay: payday and payslips'],who:['Close','Changes','Calculate','Check','Pay'],n:['In months when rates change, confirm the calculation reflects them','Keep a record of payment approval and retain payroll registers']}})[l];
+ if(!W)return F.adm_pay('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+adm_parttime:function(l){
+ var W=({ja:{t:'パート・契約社員の保険を判定する順番',st:['契約の時間：週の所定の労働時間','雇用の見込み：期間','会社の条件：規模・適用の状況','実際に働いた時間で見直す','専門家と確かめて判定し、届け出る'],who:['時間','期間','会社','実績','判定'],n:['本人が望まなくても、条件を満たせば加入させる義務がある','加入の漏れはさかのぼって求められる。契約の変更のたびに判定し直す']},
+  ko:{t:'단시간·계약직의 보험 판정 순서',st:['계약 시간: 주 소정 근로시간','고용 전망: 기간','회사의 조건: 규모·적용 상황','실제로 일한 시간으로 다시 본다','전문가와 확인해 판정하고 신고한다'],who:['시간','기간','회사','실적','판정'],n:['본인이 원하지 않아도 조건을 충족하면 가입시킬 의무가 있다','가입 누락은 소급해 요구된다. 계약이 바뀔 때마다 다시 판정한다']},
+  en:{t:'Deciding insurance for part-time and contract staff',st:['Contract hours: scheduled weekly hours','Expected length of employment','Company conditions: size and coverage','Review against hours actually worked','Decide with a specialist and file'],who:['Hours','Term','Company','Actual','Decide'],n:['If the conditions are met, enrolment is required even if the employee does not want it','Missed enrolment is charged retroactively; re-check whenever a contract changes']}})[l];
+ if(!W)return F.adm_parttime('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#5B6B7D'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+adm_exit:function(l){
+ var W=({ja:{t:'解雇を考える前に',st:['問題を日付つきで具体的に記録する','面談で目標と期限を示し、改善の機会をつくる','ほかの手段：配置・役割・合意退職','決める前に専門家に相談する','書面で理由と時期を通知する'],who:['記録','面談','ほかの手段','相談','通知'],n:['流れ：採用 → 試用期間 → 評価と育成 → 契約の更新 → 退職','評価と育成の段階から記録を残すことが、のちの判断の土台']},
+  ko:{t:'해고를 생각하기 전에',st:['문제를 날짜와 함께 구체적으로 기록한다','면담에서 목표와 기한을 제시하고 개선 기회를 준다','다른 수단: 배치·역할·합의 퇴직','정하기 전에 전문가와 상담한다','서면으로 이유와 시기를 통지한다'],who:['기록','면담','다른 수단','상담','통지'],n:['흐름: 채용 → 수습 기간 → 평가와 육성 → 계약 갱신 → 퇴직','평가와 육성 단계부터 기록을 남기는 것이 나중 판단의 토대']},
+  en:{t:'Before considering dismissal',st:['Record problems specifically, with dates','Hold a meeting with goals and a deadline; give a chance to improve','Other options: placement, role, agreed departure','Consult a specialist before deciding','Notify the reason and timing in writing'],who:['Record','Meet','Options','Consult','Notify'],n:['The cycle: hiring → probation → appraisal and development → renewal → leaving','Records kept from the appraisal stage are the basis for any later decision']}})[l];
+ if(!W)return F.adm_exit('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+adm_direct:function(l){
+ var W=({ja:{t:'代理店から直営へ：移行の計画（例）',st:['方針の決定：範囲・時期・予算','法的な準備：登記・口座・税務','人の準備：採用・代理店の社員の受け入れ','業務の引き継ぎ：契約・顧客・書類','並行の運用：一定期間の重複','切り替え：代理店の契約の終了'],who:['方針','法的','人','引き継ぎ','並行','切替'],n:['費用は数年分で比べる（例：代理店は年3,000万円、直営は1年目4,000万円・2年目から3,000万円）','空港のIDパス・システムの権限・取引先への案内には時間がかかる']},
+  ko:{t:'대리점에서 직영으로: 전환 계획(예)',st:['방침 결정: 범위·시기·예산','법적 준비: 등기·계좌·세무','사람 준비: 채용·대리점 직원 수용','업무 인계: 계약·고객·서류','병행 운영: 일정 기간 중복','전환: 대리점 계약 종료'],who:['방침','법적','사람','인계','병행','전환'],n:['비용은 몇 년치로 비교한다(예: 대리점 연 3,000만 엔, 직영 1년차 4,000만 엔·2년차부터 3,000만 엔)','공항 ID 패스·시스템 권한·거래처 안내에는 시간이 걸린다']},
+  en:{t:'From agent to direct operation: a transition plan (example)',st:['Decide policy: scope, timing, budget','Legal set-up: registration, accounts, tax','People: hiring, taking on agent staff','Hand over work: contracts, customers, documents','Run in parallel for a set period','Switch over: end the agency contract'],who:['Policy','Legal','People','Handover','Parallel','Switch'],n:['Compare costs over several years (e.g. agent ¥30m a year; direct ¥40m in year 1, ¥30m from year 2)','Airport ID passes, system access and partner notices take time']}})[l];
+ if(!W)return F.adm_direct('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+adm_cash:function(l){
+ var W=({ja:{t:'支払いの手順と、仕事の分け方',st:['請求書を受け取り、内容と金額を確かめる','決裁の規程に沿って承認する','振込・電子納付で支払う','日計表に記録し、証拠を保存する','月末に本社へ精算する'],who:['受領','承認','支払い','記録','精算'],n:['作る人と承認する人を分ける（ネットバンキングの二重の承認・本社の承認）','日計表の残高を毎日通帳と合わせ、来月の不足は早めに送金を依頼']},
+  ko:{t:'지급 절차와 업무 분리',st:['청구서를 받고 내용과 금액을 확인한다','결재 규정에 따라 승인한다','이체·전자 납부로 지급한다','일계표에 기록하고 증빙을 보존한다','월말에 본사에 정산한다'],who:['수령','승인','지급','기록','정산'],n:['만드는 사람과 승인하는 사람을 나눈다(인터넷뱅킹 이중 승인·본사 승인)','일계표 잔액을 매일 통장과 맞추고, 다음 달 부족분은 일찍 송금을 의뢰']},
+  en:{t:'The payment process and segregation of duties',st:['Receive the invoice; check content and amount','Approve under the approval rules','Pay by transfer or e-payment','Record in the daily cash sheet; keep evidence','Settle with head office at month end'],who:['Receive','Approve','Pay','Record','Settle'],n:['Separate who prepares and who approves (dual approval in online banking, head-office approval)','Match the cash-sheet balance to the bank daily; request funds early for next month’s shortfall']}})[l];
+ if(!W)return F.adm_cash('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

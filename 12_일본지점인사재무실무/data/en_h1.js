@@ -4,7 +4,7 @@ set("1-1",{title:"Types of Employment and Stating the Terms",hl:"types of employ
 lead:["When a Japan branch hires, the first decision is the type of employment. Permanent employees with no fixed term, fixed-term contract employees, and part-timers with shorter hours each come with their own legal rules. And the employer is obliged to set out the working conditions in writing or equivalent.",
 "This article covers the differences between the types, the terms that must be stated in writing, and the points head office tends to misunderstand."],
 sections:[
-{h:"Types of employment",blocks:[{t:"region",jp:[{t:"table",cols:["Type","Character"],rows:[
+{h:"Types of employment",blocks:[{t:"fig",id:"adm_hire",cap:"Figure: hiring: the order of steps."},{t:"region",jp:[{t:"table",cols:["Type","Character"],rows:[
 ["Permanent (indefinite term)","No fixed term. Dismissal is tightly restricted (3-1)"],
 ["Contract (fixed term)","A set term. Once renewals take the total beyond five years, the employee can apply to convert to indefinite employment"],
 ["Part-time","Shorter scheduled hours. Subject to social insurance depending on conditions (2-2)"],
@@ -110,7 +110,7 @@ set("2-1",{title:"The Annual Cycle of Payroll and Insurance",hl:"payroll and ins
 lead:["Payroll is monthly work, but social insurance, labour insurance and tax each have annual procedures, and missing the timing brings late charges. In a small branch, the efficient approach is to put the monthly and annual procedures on one calendar and share them with your tax accountant and labour and social security attorney.",
 "This article sets out the monthly payroll flow and the annual procedures. See also Launching Flights to Japan 2-4."],
 sections:[
-{h:"The monthly flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Confirm overtime and leave"},{name:"Apply changes",sub:"Joiners, leavers, raises, allowances"},{name:"Calculate",sub:"Adviser or system"},{name:"Check",sub:"Against last month"},{name:"Pay",sub:"Pay day and payslips"}]}]},
+{h:"The monthly flow",blocks:[{t:"fig",id:"adm_pay",cap:"Figure: the monthly payroll cycle."},{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Confirm overtime and leave"},{name:"Apply changes",sub:"Joiners, leavers, raises, allowances"},{name:"Calculate",sub:"Adviser or system"},{name:"Check",sub:"Against last month"},{name:"Pay",sub:"Pay day and payslips"}]}]},
 {h:"Main annual procedures",blocks:[{t:"region",jp:[{t:"table",cols:["When","Procedure"],rows:[
 ["January","Withholding tax under the special terms, the depreciable assets return (5-1), salary payment reports"],
 ["March to April","Changes in health insurance, pension and employment insurance rates"],
@@ -163,7 +163,7 @@ set("2-2",{title:"Social Insurance for Part-time and Contract Staff",hl:"insuran
 lead:["Part-time and contract staff must also be enrolled in health insurance and the employees’ pension once they meet conditions on hours and company size. Coverage has been widened step by step, and people once outside it may now be inside. Employment insurance has its own conditions too.",
 "This article sets out how enrolment works, how to check it, and what is easily missed."],
 sections:[
-{h:"How enrolment works",blocks:[{t:"region",jp:[{t:"table",cols:["Insurance","How it works"],rows:[
+{h:"How enrolment works",blocks:[{t:"fig",id:"adm_parttime",cap:"Figure: deciding insurance for part-time and contract staff."},{t:"region",jp:[{t:"table",cols:["Insurance","How it works"],rows:[
 ["Health insurance and pension","Anyone working at least three quarters of a regular employee’s hours is enrolled. Below that, conditions such as 20 or more hours a week, together with company size, can bring people in"],
 ["Employment insurance","Enrolled on conditions such as 20 or more hours a week and an expected employment of 31 days or more"],
 ["Workers’ accident insurance","Covers every worker regardless of employment type"]]},
@@ -211,7 +211,7 @@ set("3-1",{title:"From Hiring to Leaving: How Hard Dismissal Is",hl:"hiring to l
 lead:["In Japan, a dismissal imposed by the employer is invalid unless it has objectively reasonable grounds and is socially appropriate. The bar is far higher than head offices abroad usually assume. That makes judgment at the hiring stage, and the systems for probation, evaluation and record-keeping, all the more important.",
 "This article covers the path from hiring to leaving and what to watch in resignations and dismissals."],
 sections:[
-{h:"The path",blocks:[{t:"ladder",rise:10,steps:[{name:"Hiring",sub:"Terms stated, contract"},{name:"Probation",sub:"Confirming suitability"},{name:"Evaluation and development",sub:"Keep records"},{name:"Contract renewal",sub:"For fixed terms"},{name:"Leaving",sub:"Resignation, agreement or dismissal"}]}]},
+{h:"The path",blocks:[{t:"fig",id:"adm_exit",cap:"Figure: before considering dismissal."},{t:"ladder",rise:10,steps:[{name:"Hiring",sub:"Terms stated, contract"},{name:"Probation",sub:"Confirming suitability"},{name:"Evaluation and development",sub:"Keep records"},{name:"Contract renewal",sub:"For fixed terms"},{name:"Leaving",sub:"Resignation, agreement or dismissal"}]}]},
 {h:"Ways of leaving, and what to watch",blocks:[{t:"region",jp:[{t:"table",cols:["Type","What to watch"],rows:[
 ["Resignation","Receive the notice, then final pay, loss of social insurance status and the documents to issue"],
 ["Leaving by agreement","Agree the terms — date, severance, treatment of paid leave — in writing, taking care it is not coerced"],
@@ -241,7 +241,7 @@ set("3-2",{title:"From Agent to Direct Operation: Changing How the Branch Is Run
 lead:["Foreign companies entering Japan often start by entrusting the business to a local agent, then switch to running it themselves through their own branch and staff as it grows. Airlines too sometimes move from an agent handling sales or airport work to a directly run station.",
 "This article covers what to weigh when considering the switch, planning the transition, and preparing HR and finance."],
 sections:[
-{h:"What to weigh",blocks:[{t:"table",cols:["Aspect","Agent","Direct"],rows:[
+{h:"What to weigh",blocks:[{t:"fig",id:"adm_direct",cap:"Figure: from agent to direct operation (example)."},{t:"table",cols:["Aspect","Agent","Direct"],rows:[
 ["Cost","Commission (variable)","Staff and office (fixed)"],
 ["Control","Indirect","Direct"],
 ["Quality and speed","Depend on the agent","Yours to decide"],
@@ -268,7 +268,7 @@ set("4-1",{title:"Accounts, the Daily Cash Report and Payments",hl:"cash managem
 lead:["In a small branch, cash is protected by the system. Split accounts by purpose, record each day’s (or week’s) receipts and payments in a daily cash report, and make payments through a set procedure with approval. That alone prevents most errors and fraud.",
 "This article covers how to split accounts, building daily and monthly cash reports, and the payment procedure (for an airline example, see Launching Flights to Japan 2-2)."],
 sections:[
-{h:"Splitting the accounts",blocks:[{t:"table",cols:["Account","Use"],rows:[
+{h:"Splitting the accounts",blocks:[{t:"fig",id:"adm_cash",cap:"Figure: the payment process and segregation of duties."},{t:"table",cols:["Account","Use"],rows:[
 ["Operating (imprest) account","Day-to-day payments: salaries, rent, communications, advisers"],
 ["Revenue account","Sales receipts. Not moved without head office approval"],
 ["Tax and insurance payments","From the operating account, by electronic payment and similar"]]}]},
