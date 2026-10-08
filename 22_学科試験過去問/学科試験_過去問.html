@@ -117,7 +117,7 @@ footer{margin-top:28px;font-size:12px;color:var(--sub)}
 <script src="data/exp_ORG1.js"></script>
 <script src="data/exp_ORG2.js"></script>
 <script>
-/* 航空従事者学科試験 過去問題（2026-09）
+/* 航空従事者技能証明等学科試験 過去問題（2026-09）
    ・問題と正答：国土交通省「航空従事者等学科試験解答及び過去問」を読み取り・整形したもの（data/ops_*.js）
    ・解説：このサイトのオリジナル（data/exp_*.js）。KAKO.e["試験期-科目-問"]
    ・解いた記録はこの端末（localStorage）にだけ保存する。会員登録ができたら会員の記録に移す予定 */
@@ -139,9 +139,9 @@ var run=null;
 /* ---------- ホーム ---------- */
 function home(){
  if(typeof run!=='undefined'&&run&&run.tick){clearInterval(run.tick);run.tick=null;run.exam=false}
- var h='<header class="top"><div class="kick">日本（国土交通省）の航空従事者学科試験</div><h1>過去問題と例題</h1><p>国土交通省が公開した問題を、1問ずつ解いて、正答と解説をすぐに確かめられます。</p></header>';
- h+='<p class="src jp">この問題集は、日本の国土交通省が行う航空従事者学科試験の過去問題です。いまは運航管理者の問題を載せていて、ほかの資格も順次追加します。<br><span lang="ko">일본 국토교통성이 시행하는 항공종사자 학과시험의 기출문제입니다. 현재는 운항관리자 문제를 싣고 있으며, 다른 자격도 차례로 추가합니다. 일본어로만 제공됩니다.</span><br><span lang="en">Past papers from Japan’s MLIT aviation licence exams. Aircraft dispatcher questions are available now, with other licences to follow. Japanese only.</span></p>';
- h+='<a class="guidelink" href="../8_사이트/guide.html#p7">科目ごとにレッスンで学ぶ：学び方ガイド「運航管理の学科試験を受ける人」→<br><small lang="ko">과목별로 레슨으로 배우기: 학습 가이드 ‘운항관리 학과시험 준비’ 경로</small></a>';
+ var h='<header class="top"><div class="kick">日本（国土交通省）の航空従事者技能証明等学科試験</div><h1>過去問題と例題</h1><p>国土交通省が公開した問題を、1問ずつ解いて、正答と解説をすぐに確かめられます。</p></header>';
+ h+='<p class="src jp">この問題集は、日本の国土交通省が行う航空従事者技能証明等学科試験の過去問題です。いまは運航管理者の問題を載せていて、ほかの資格も順次追加します。<br><span lang="ko">일본 국토교통성이 시행하는 항공종사자 학과시험의 기출문제입니다. 현재는 운항관리자 문제를 싣고 있으며, 다른 자격도 차례로 추가합니다. 일본어로만 제공됩니다.</span><br><span lang="en">Past papers from Japan’s MLIT aviation licence exams. Aircraft dispatcher questions are available now, with other licences to follow. Japanese only.</span></p>';
+ h+='<a class="guidelink" href="../8_사이트/guide.html#p7">科目ごとにレッスンで学ぶ：学び方ガイド「運航管理者の学科試験を受ける方」→<br><small lang="ko">과목별로 레슨으로 배우기: 학습 가이드 ‘운항관리 학과시험 준비’ 경로</small></a>';
  h+='<p class="src">問題と正答の出典：国土交通省「<a href="https://www.mlit.go.jp/koku/koku_fr10_000025.html" target="_blank" rel="noopener">航空従事者等学科試験解答及び過去問</a>」。このサイトが読み取り、改行や記号を整えて作成しています（原本の誤り・訂正もそのまま反映）。解説はこのサイトが作成したもので、国の見解ではありません（例題集と全10回の試験期、計1,210問すべてに解説あり）。「オリジナル練習」は、本番と同じ科目・題数でこのサイトが作った練習問題です（国の過去問題ではありません。「すべての試験期」には含めません）。法令は改正されるため、解説では2026年9月時点の内容も示します。</p>';
  h+='<h2>資格</h2><div class="lic">'+LIC.map(function(l,i){return '<span class="'+(i?'':'on')+'">'+esc(l)+(i?'（準備中）':'')+'</span>'}).join('')+'</div>';
  h+='<h2>問題の種類</h2><div class="sets">'+K.sets.map(function(s){var d=doneOf(s.id);return '<button data-set="'+s.id+'" class="'+(sel.set===s.id?'on':'')+'"><b>'+esc(s.name)+(s.id==='EX2606'?'<span class="new">最新</span>':'')+(s.org?'<span class="new" style="background:#1F7A6E">オリジナル</span>':'')+'</b><small>'+d.n+' / '+d.t+'問 解答済み'+(d.n?'・正答率 '+Math.round(d.ok/d.n*100)+'%':'')+'</small></button>'}).join('')+'<button data-set="ALL" class="'+(sel.set==='ALL'?'on':'')+'"><b>すべての試験期</b><small>'+allCount()+'問から</small></button></div>';
