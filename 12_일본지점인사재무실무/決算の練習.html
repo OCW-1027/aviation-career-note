@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>1年の決算の練習</title>
+<title>年次決算の練習</title>
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--pl:#2f8fe0;--bs:#1f7a6e;--cf:#e08a2f;--warn:#b7791f}
 *{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
@@ -54,7 +54,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 <script src="../1_지상직여객운송입문/assets/accounts.js"></script>
 <script src="../1_지상직여객운송입문/assets/rates_jp.js"></script>
 <script>
-/* 1年の決算の練習（2026.10）。決算書（#paper）は、科目を左・金額を右にそろえる日本の様式に合わせるため、shell.js の中央ぞろえから外す（data-noalign）
+/* 年次決算の練習（2026.10）。決算書（#paper）は、科目を左・金額を右にそろえる日本の様式に合わせるため、shell.js の中央ぞろえから外す（data-noalign）
    小さな会社の1年分の仕訳から、総勘定元帳・試算表・決算書（貸借対照表・損益計算書）・法人税等の見積もりまでを作り、決算書を日本語で出力する。
    勘定科目は accounts.js（window.ACCTS）、法人の税率は rates_jp.js（window.RATES.corp）から読む。入っている会社と数字はすべて架空。
    入力はこのブラウザに保存し、ログイン中は会員の記録（user_docs: close）にも保存する。 */
@@ -62,7 +62,7 @@ var KEY='acn-close-v1',LS=['ja','ko','en'];
 var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(LS.indexOf(s)>=0)return s}catch(e){}return 'ja'})();
 var LI=LS.indexOf(L),SEL=null;
 var X={
-ttl:['1年の決算の練習','1년 결산 연습','Year-End Closing Practice'],
+ttl:['年次決算の練習','1년 결산 연습','Year-End Closing Practice'],
 lead:['小さな会社の1年分の仕訳から、総勘定元帳・試算表・決算書を作り、法人税等を見積もって、決算書を日本語で出力します。入っているのは架空の会社「さくらグランドサービス」（東京23区、資本金1,000万円、3月決算）の例です。仕訳を直したり足したりすると、すべての表がその場で変わります。','작은 회사의 1년 치 분개에서 총계정원장·시산표·결산서를 만들고, 법인세 등을 추정해 결산서를 일본어로 출력합니다. 들어 있는 것은 가상의 회사 「사쿠라 그라운드 서비스」(도쿄 23구, 자본금 1,000만 엔, 3월 결산)의 예입니다. 분개를 고치거나 더하면 모든 표가 바로 바뀝니다.','Build the general ledger, trial balance and financial statements from a small company’s year of journal entries, estimate its income taxes, and output the statements in Japanese. The example is a fictional company, Sakura Ground Services (Tokyo 23 wards, capital 10 million yen, March year-end). Edit or add entries and every table updates at once.'],
 privacy:['入力した内容は、このブラウザ（この端末）に自動で保存されます。ログインしているときは会員の記録にも保存されます。共用のパソコンでは、使い終わったら「すべて消す」を押してください。','입력한 내용은 이 브라우저(이 기기)에 자동으로 저장됩니다. 로그인한 상태에서는 회원 기록에도 저장됩니다. 공용 컴퓨터에서는 다 쓴 뒤 「모두 지우기」를 눌러 주세요.','What you enter is saved automatically in this browser. When you are logged in it is also saved to your member record. On a shared computer, press “Clear all” when you finish.'],
 ex:['例に戻す','예시로 되돌리기','Reset to example'],exC:['今の内容を例で置き換えます。よろしいですか？','지금 내용을 예시로 바꿉니다. 괜찮습니까?','Replace everything with the example?'],
