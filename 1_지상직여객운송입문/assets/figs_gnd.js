@@ -452,9 +452,9 @@ gnd_inad:function(l){
 
 /* 5-2 ミスを見つける仕組み：何枚も重ねて、どこかで止める */
 gnd_layers:function(l){
- var W=({ja:{t:'ミスは1つの仕組みでは防げない：重ねて、どこかで止める',ly:['本人確認の追加質問','同姓同名の区別','搭乗券読み取り機の警告','人数の照合','手荷物の照合'],m:'ミス',n:['「はい・いいえ」ではなく、本人が具体的に答える聞き方で確かめる（生年月日・予約番号など）','気づいたらすぐ報告。責めるより、すぐ言える雰囲気が被害を小さくする']},
-  ko:{t:'실수는 하나의 장치로 막을 수 없다: 겹쳐서 어디선가 멈춘다',ly:['본인 확인 추가 질문','동명이인 구분','탑승권 리더기 경고','인원 대조','수하물 대조'],m:'실수',n:['「예·아니요」가 아니라 본인이 구체적으로 답하는 방식으로 확인한다(생년월일·예약번호 등)','알게 되면 즉시 보고. 탓하기보다 바로 말할 수 있는 분위기가 피해를 줄인다']},
-  en:{t:'No single check catches every mistake: layer them so one of them does',ly:['Extra identity questions','Telling same-name passengers apart','Boarding pass reader alerts','Head count reconciliation','Baggage reconciliation'],m:'Mistake',n:['Ask questions the passenger must answer specifically (date of birth, booking reference), not yes or no','Report at once; a culture where people speak up limits the damage more than blame does']}})[l];
+ var W=({ja:{t:'ミスは1つの仕組みでは防げない：重ねて、どこかで止める',ly:['予約番号（PNR）で検索','名前を言ってもらいパスポートと照合','搭乗券読み取り機の警告','人数の照合','手荷物の照合'],m:'ミス',n:['名前で検索しない。PNRが一致すればその人の予約。そのあと名前を本人に言ってもらい、パスポートと照合する','気づいたらすぐ報告。責めるより、すぐ言える雰囲気が被害を小さくする']},
+  ko:{t:'실수는 하나의 장치로 막을 수 없다: 겹쳐서 어디선가 멈춘다',ly:['예약번호(PNR)로 검색','이름을 말하게 하고 여권과 대조','탑승권 리더기 경고','인원 대조','수하물 대조'],m:'실수',n:['이름으로 검색하지 않는다. PNR이 일치하면 그 사람의 예약. 그다음 이름을 본인이 말하게 하고 여권과 대조한다','알게 되면 즉시 보고. 탓하기보다 바로 말할 수 있는 분위기가 피해를 줄인다']},
+  en:{t:'No single check catches every mistake: layer them so one of them does',ly:['Search by booking reference (PNR)','Passenger says their name; check passport','Boarding pass reader alerts','Head count reconciliation','Baggage reconciliation'],m:'Mistake',n:['Never search by name: a matching PNR means it is that person’s booking; then have them say their name and check the passport','Report at once; a culture where people speak up limits the damage more than blame does']}})[l];
  if(!W)return F.gnd_layers('ja');setK(1);
  var T=TOP(W.t),s=T.s,y=T.y+10,n=W.ly.length,sx=90,gap=105,lh=150;
  var HO=[[60,100],[60,100],[100,30],[30,125],[78]];
