@@ -7,6 +7,53 @@
 <title>Aviation Career Note</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/v3.css">
+<style>
+/* 2026.10 ホームの改良：ヒーローのローリングバナー、カードの実績表示、目的別カード（edX 風） */
+.hs{position:relative}
+.hs-track{display:grid}
+.hs-slide{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .45s ease,transform .45s ease,visibility .45s}
+.hs-slide.on{opacity:1;visibility:visible;transform:none}
+.hs-tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--blue);background:#eaf2fe;border-radius:999px;padding:5px 11px;margin-top:14px}
+.hs-slide h1,.hs-slide .hs-h{margin:14px 0 18px}
+.hs-h{font-size:clamp(40px,5.2vw,64px);line-height:1.08;letter-spacing:-.045em;font-weight:900;text-wrap:balance}
+body.ja .hs-h,body.ko .hs-h{line-height:1.16;letter-spacing:-.035em}
+.hs-slide p{font-size:18px;color:var(--muted);max-width:690px;margin:0;text-wrap:pretty}
+body.ko .hs-slide p,body.ko .hs-h{word-break:keep-all}
+.hs-cta{display:inline-block;margin-top:14px;font-weight:800;color:var(--blue);font-size:15px}
+.hs-cta:hover{text-decoration:underline}
+.hs-ctl{display:flex;align-items:center;gap:10px;margin-top:18px}
+.hs-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px;line-height:1;cursor:pointer;color:var(--ink);display:grid;place-items:center;padding:0 0 2px}
+.hs-arrow:hover{border-color:#9bbbf0}
+.hs-dots{display:flex;gap:7px}
+.hs-dots button{width:9px;height:9px;border-radius:999px;border:0;padding:0;background:#c9d3de;cursor:pointer;transition:width .25s}
+.hs-dots button.on{width:26px;background:var(--blue)}
+.route-stats b em{font-style:normal;font-size:13px;font-weight:700;opacity:.7;margin-left:3px}
+.qwrap{max-width:var(--max);margin:auto;padding:8px 24px 60px}
+.qhead{margin-bottom:16px}
+.qhead h2{font-size:clamp(24px,2.6vw,30px);margin:6px 0 0;letter-spacing:-.03em}
+body.ko .qhead h2{word-break:keep-all}
+.qgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.qc{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.qc:hover{border-color:#9bbbf0;box-shadow:0 14px 30px rgba(9,28,47,.08)}
+.qc-top{position:relative;padding:18px 18px 16px;background:var(--qb)}
+.qc-ic{width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--qi)}
+.qc-ic svg{width:24px;height:24px}
+.qc-st{position:absolute;top:14px;right:14px;font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;background:#fff;color:#1F7A6E}
+.qc-st.soon{color:#65717e}
+.qc-t{display:block;font-size:19px;font-weight:900;letter-spacing:-.02em;margin:12px 0 4px;line-height:1.25}
+.qc-d{display:block;font-size:13px;color:#3d4a57;line-height:1.5;min-height:3em}
+body.ko .qc-t,body.ko .qc-d,body.ko .qc-row{word-break:keep-all}
+.qc-body{display:flex;flex-direction:column;gap:9px;padding:16px 18px 18px;flex:1}
+.qc-row{display:flex;gap:8px;font-size:13px;line-height:1.45;color:var(--ink)}
+.qc-row svg{flex:0 0 15px;width:15px;height:15px;margin-top:2px;color:var(--qi)}
+.qc-cta{margin-top:auto;display:block;text-align:center;background:var(--navy);color:#fff;border-radius:999px;padding:11px 12px;font-weight:800;font-size:13px}
+.qc:hover .qc-cta{background:#163a5c}
+@media(max-width:1180px){.qgrid{grid-template-columns:repeat(6,minmax(0,1fr))}.qc{grid-column:span 2}.qc:nth-child(n+4){grid-column:span 3}}
+@media(max-width:760px){.qgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.qc,.qc:nth-child(n+4){grid-column:auto}.qc:last-child{grid-column:1/-1}.qc-d{min-height:0}.hs-slide p{font-size:16px}}
+@media(max-width:520px){.qgrid{grid-template-columns:1fr}.qc:last-child{grid-column:auto}.qc-top{padding:16px}.qc-body{padding:14px 16px 16px}}
+@media(max-width:600px){.route-head{flex-direction:column;gap:4px}.route-stats b em{display:block;font-size:12px;margin:3px 0 0}}
+@media(prefers-reduced-motion:reduce){.hs-slide{transition:none}}
+</style>
 </head>
 <body data-page="home">
 <div class="topbar">Aviation Career Note · Learn · Jobs · Business Skills · Coaching · Community</div>
@@ -27,10 +74,9 @@
   <div class="hero-grid">
     <div>
       <div class="eyebrow">Aviation · Career · Professional Learning</div>
-      <h1 id="h1"></h1>
-      <p id="hp"></p>
+      <div class="hs" id="hs" aria-roledescription="carousel"><div class="hs-track" id="hstrack" aria-live="polite"></div><div class="hs-ctl"><button type="button" class="hs-arrow" id="hsprev" aria-label="Previous">&#8249;</button><div class="hs-dots" id="hsdots" role="tablist"></div><button type="button" class="hs-arrow" id="hsnext" aria-label="Next">&#8250;</button></div></div>
       <div class="hero-actions">
-        <a href="#quick" class="btn primary" id="c1"></a>
+        <a href="plan.html#make" class="btn primary" id="c1"></a>
         <a href="jobs.html" class="btn ghost" id="c2"></a>
       </div>
       <div class="search-wrap" id="srch">
@@ -41,7 +87,7 @@
 
     <aside class="route-card">
       <div>
-        <div class="route-head"><b>YOUR PROFESSIONAL ROUTE</b><small>HND → NEXT CAREER</small></div>
+        <div class="route-head"><b>YOUR PROFESSIONAL ROUTE</b><small>TODAY → NEXT CAREER</small></div>
         <div class="route-title">Knowledge to Career.<br>Career back to Knowledge.</div>
       </div>
       <div class="route-flow" id="flow"></div>
@@ -50,7 +96,7 @@
   </div>
 </section>
 
-<section class="quick" id="quick"></section>
+<section class="qwrap" id="quick"><div class="qhead"><div class="eyebrow">Start here</div><h2 id="qh"></h2></div><div class="qgrid" id="qgrid"></div></section>
 
 <section class="section" id="jobs">
   <div class="section-head">
@@ -185,9 +231,9 @@
 var T={
 ja:{title:'航空キャリアノート',
   h1:'学んで、<br>働いて、<br>業界とつながる。',hp:'航空の実務の講座、航空業界の求人、会社の経営・財務・人事の実務、経験者との1対1のコーチングとコミュニティを、一つの場所でつなぎます。',
- c1:'自分に合う入口を探す',c2:'航空の求人を見る',sq:'職種・講座・会社の実務・空港・求人を検索',sb:'検索',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'見つかりませんでした。別の言葉で試してください。',more:'件以上あります。言葉を足して絞り込んでください。',
+ c1:'学習ルートを探す',lu:'レッスン',c2:'航空の求人を見る',sq:'職種・講座・会社の実務・空港・求人を検索',sb:'検索',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'見つかりませんでした。別の言葉で試してください。',more:'件以上あります。言葉を足して絞り込んでください。',
  flow:['知識','実習','コーチング','求人'],stats:['Aviation Series','Business Tracks','Practice Tools'],
- quick:[['✈ 航空を学びたい','航空の基礎・旅客運送・営業・運航・貨物'],['💼 求人を探している','航空会社・空港・地上業務・貨物'],['📊 会社の実務を学びたい','財務・人事・総務・経営'],['🤝 経験者に相談したい','1対1の実務・面接・語学・キャリア'],['💬 業界の情報を共有したい','Q&A・事例・就職・つながり']],
+ qh:'何をしたいですか？',qc:[['航空を学ぶ','職種ごとの実務の講座',['{av}講座・{al}レッスン','基礎から実務・管理職まで','日本語・韓国語・英語'],'講座を見る','ok'],['求人を探す','航空業界の求人をまとめて',['日本・韓国の求人','航空会社・空港・貨物','随時更新'],'求人を見る','ok'],['会社の実務','どの業界でも使える実務',['4トラック・{bl}レッスン','財務・人事・総務・経営','練習ツール付き'],'実務を見る','ok'],['現役のコーチ','経験者と1対1で',['実務・面接・語学','航空の現場の経験者','コーチを募集中'],'案内を見る','soon'],['コミュニティ','業界の人とつながる',['Q&A・事例','就職・転職の情報','ネットワーキング'],'のぞいてみる','soon']],st:['利用できます','準備中'],quick:[['✈ 航空を学びたい','航空の基礎・旅客運送・営業・運航・貨物'],['💼 求人を探している','航空会社・空港・地上業務・貨物'],['📊 会社の実務を学びたい','財務・人事・総務・経営'],['🤝 経験者に相談したい','1対1の実務・面接・語学・キャリア'],['💬 業界の情報を共有したい','Q&A・事例・就職・つながり']],
  hj:'毎日見に来たくなる<br>航空キャリアの拠点',lj:'航空会社・空港・グランドハンドリング・貨物まで、日本の航空業界全体の求人をまとめて確認できます。',mj:'すべての求人 →',featured:'Featured',isnew:'New',sample:'見本',view:'求人を見る →',daysAgo:'{n}日前',today:'今日',
  j0:['掲載中の求人はまだありません','航空・空港の人材を探している企業の方は、掲載のご案内をご覧ください。','掲載のご案内'],
  hl:'航空の実務を職種ごとに学ぶ<br>専門の講座',ll:'メンバーシップに登録すると、すべての講座を受講できます。講座ごとの体験レッスンも準備しています。',ml:['すべての講座を見る →','閉じる ↑'],lessons:'Lessons',view2:'講座を見る →',
@@ -204,9 +250,9 @@ ja:{title:'航空キャリアノート',
  htr:'専門のサイトは、<br>内容の根拠を示します。',trust:[['Reviewed Content','更新日と更新の記録を表示'],['Primary Sources','IATA・ICAO・政府・公式の資料'],['Field Experience','現場の経験と公式の規定を区別'],['KO · JA · EN','日本語・韓国語を中心に多言語へ']]},
 ko:{title:'항공 커리어 노트',
   h1:'배우고,<br>일하고,<br>업계와 연결됩니다.',hp:'항공 실무 교육, 항공업계 채용, 회사 경영·재무·인사 실무, 전문가 1:1 코칭과 커뮤니티를 하나의 전문 플랫폼으로 연결합니다.',
- c1:'나에게 맞는 시작점 찾기',c2:'항공 채용공고 보기',sq:'직무, 강좌, 회사 실무, 공항, 채용공고를 검색하세요',sb:'검색',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'찾지 못했습니다. 다른 말로 검색해 보세요.',more:'건 이상 있습니다. 검색어를 더해 좁혀 보세요.',
+ c1:'학습 경로 찾기',lu:'레슨',c2:'항공 채용공고 보기',sq:'직무, 강좌, 회사 실무, 공항, 채용공고를 검색하세요',sb:'검색',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'찾지 못했습니다. 다른 말로 검색해 보세요.',more:'건 이상 있습니다. 검색어를 더해 좁혀 보세요.',
  flow:['지식','실습','코칭','채용'],stats:['Aviation Series','Business Tracks','Practice Tools'],
- quick:[['✈ 항공을 배우고 싶어요','항공지식 · 여객운송 · 영업 · 운항 · 화물'],['💼 채용공고를 찾고 있어요','항공사 · 공항 · 지상조업 · 화물'],['📊 회사 실무를 배우고 싶어요','재무 · 인사 · 총무 · 경영'],['🤝 현업 코치가 필요해요','1:1 실무 · 면접 · 언어 · 커리어'],['💬 업계 정보를 나누고 싶어요','Q&A · 사례 · 취업 · 네트워킹']],
+ qh:'무엇을 하고 싶으세요?',qc:[['항공 배우기','직무별 실무 강좌',['{av}개 강좌 · {al}개 레슨','기초부터 실무·관리자까지','일본어·한국어·영어'],'강좌 보기','ok'],['채용 찾기','항공업계 채용을 한곳에',['한국·일본 채용공고','항공사·공항·지상조업·화물','수시 업데이트'],'공고 보기','ok'],['회사 실무','어느 업계에서나 쓰는 실무',['4개 트랙 · {bl}개 레슨','재무·인사·총무·경영','연습 도구 포함'],'실무 보기','ok'],['현업 코칭','경험자와 1:1로',['실무·면접·언어','항공 현장 경험자','코치 모집 중'],'안내 보기','soon'],['커뮤니티','업계 사람들과 연결',['Q&A·사례','취업·이직 정보','네트워킹'],'둘러보기','soon']],st:['이용 가능','준비 중'],quick:[['✈ 항공을 배우고 싶어요','항공지식 · 여객운송 · 영업 · 운항 · 화물'],['💼 채용공고를 찾고 있어요','항공사 · 공항 · 지상조업 · 화물'],['📊 회사 실무를 배우고 싶어요','재무 · 인사 · 총무 · 경영'],['🤝 현업 코치가 필요해요','1:1 실무 · 면접 · 언어 · 커리어'],['💬 업계 정보를 나누고 싶어요','Q&A · 사례 · 취업 · 네트워킹']],
  hj:'매일 다시 방문하게 만드는<br>항공 커리어 허브',lj:'항공사·공항·지상조업·화물까지, 국내 항공업계 전반의 채용공고를 한곳에서 확인할 수 있습니다.',mj:'전체 채용공고 →',featured:'Featured',isnew:'New',sample:'예시',view:'공고 보기 →',daysAgo:'{n}일 전',today:'오늘',
  j0:['게재 중인 채용공고가 아직 없습니다','항공·공항 인재를 찾는 기업 담당자께서는 게재 안내를 확인해 주세요.','게재 안내'],
  hl:'항공 실무를 직무별로 배우는<br>전문 학습 과정',ll:'멤버십에 가입하면 모든 강좌를 수강할 수 있습니다. 강좌별 체험 레슨도 준비하고 있습니다.',ml:['전체 과정 보기 →','닫기 ↑'],lessons:'Lessons',view2:'과정 보기 →',
@@ -223,9 +269,9 @@ ko:{title:'항공 커리어 노트',
  htr:'전문 사이트는<br>콘텐츠의 근거를 보여줍니다.',trust:[['Reviewed Content','검토일과 업데이트 이력 표시'],['Primary Sources','IATA · ICAO · 정부 · 공식자료'],['Field Experience','현업 경험과 공식 규정 구분'],['KO · JA · EN','한·일 중심의 다국어 확장']]},
 en:{title:'Aviation Career Note',
   h1:'Learn.<br>Work.<br>Connect.',hp:'Aviation courses, aviation jobs, business skills in finance and HR, 1:1 coaching with experienced professionals and a community, connected in one professional platform.',
- c1:'Find your starting point',c2:'Browse aviation jobs',sq:'Search roles, courses, business skills, airports and jobs',sb:'Search',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'Nothing found. Try another word.',more:' or more results. Add a word to narrow them down.',
+ c1:'Find your path',lu:'lessons',c2:'Browse aviation jobs',sq:'Search roles, courses, business skills, airports and jobs',sb:'Search',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'Nothing found. Try another word.',more:' or more results. Add a word to narrow them down.',
  flow:['Knowledge','Practice','Coaching','Jobs'],stats:['Aviation Series','Business Tracks','Practice Tools'],
- quick:[['✈ I want to learn aviation','Basics · Passenger · Sales · Operations · Cargo'],['💼 I’m looking for a job','Airlines · Airports · Ground handling · Cargo'],['📊 I want business skills','Finance · HR · Admin · Management'],['🤝 I need a coach','1:1 work · Interviews · Languages · Career'],['💬 I want to share industry info','Q&A · Cases · Careers · Networking']],
+ qh:'What would you like to do?',qc:[['Learn aviation','Practical courses by role',['{av} courses · {al} lessons','Basics to management','In three languages'],'View courses','ok'],['Find a job','Aviation jobs in one place',['Jobs in Japan and Korea','Airlines · airports · cargo','Updated regularly'],'View jobs','ok'],['Business skills','Useful in any industry',['4 tracks · {bl} lessons','Finance · HR · admin','Practice tools included'],'View tracks','ok'],['Get a coach','One-to-one with experts',['Interviews · language','Aviation professionals','Recruiting coaches'],'Learn more','soon'],['Community','Connect with the industry',['Q&A and cases','Job and career news','Networking'],'Take a look','soon']],st:['Available','Coming soon'],quick:[['✈ I want to learn aviation','Basics · Passenger · Sales · Operations · Cargo'],['💼 I’m looking for a job','Airlines · Airports · Ground handling · Cargo'],['📊 I want business skills','Finance · HR · Admin · Management'],['🤝 I need a coach','1:1 work · Interviews · Languages · Career'],['💬 I want to share industry info','Q&A · Cases · Careers · Networking']],
  hj:'An aviation career hub<br>worth checking every day',lj:'See openings across the aviation industry, from airlines and airports to ground handling and cargo. Switch between Korea and Japan.',mk:['Korea','Japan'],mj:'All jobs →',featured:'Featured',isnew:'New',sample:'Sample',view:'View job →',daysAgo:'{n} days ago',today:'Today',
  j0:['No jobs are listed yet','If you are hiring for aviation or airport roles, see how to post a job.','How to post a job'],
  hl:'Professional courses for<br>every aviation role',ll:'Membership gives you access to every course. Trial lessons for each course are on the way.',ml:['View all courses →','Close ↑'],lessons:'Lessons',view2:'View course →',
@@ -259,15 +305,45 @@ function tool(n){return TOOLS.filter(function(x){return base(x.p)===n})[0]}
 /* 講座のレッスン数：公開サイトではビルドが作る catalog.js の数を使う */
 (function(){if(!window.CATALOG)return;SERIES.forEach(function(s){var d=(s.p||'').split('/')[1];if(s.dirs){var n=0;s.dirs.forEach(function(x){if(CATALOG[x])n+=CATALOG[x].n});if(n)s.n=n}else if(CATALOG[d])s.n=CATALOG[d].n})})();
 
+/* ヒーローのローリングバナー（2026.10）：1枚目は今までの見出し、2枚目以降は data/home_data.js の HERO_SLIDES。
+   6.5秒ごとに次へ。マウスを乗せる・フォーカスする・動きを減らす設定のときは止まる。スマートフォンは横にスワイプ */
+var HS={i:0,timer:null,n:0};
+function heroSlides(t){
+ var sl=[{h:t.h1,p:t.hp,first:1}].concat((window.HERO_SLIDES||[]).map(function(x){return {tag:x.tag[lang],h:x.h[lang],p:x.p[lang],cta:x.cta&&x.cta[lang],href:x.href}}));
+ HS.n=sl.length;if(HS.i>=HS.n)HS.i=0;
+ $('hstrack').innerHTML=sl.map(function(x,i){return '<div class="hs-slide'+(i===HS.i?' on':'')+'" role="group" aria-roledescription="slide" aria-label="'+(i+1)+' / '+sl.length+'"'+(i===HS.i?'':' aria-hidden="true"')+'>'+(x.tag?'<span class="hs-tag">'+E(x.tag)+'</span>':'')+(x.first?'<h1>'+x.h+'</h1>':'<div class="hs-h">'+x.h+'</div>')+'<p>'+E(x.p)+'</p>'+(x.cta?'<a class="hs-cta" href="'+x.href+'">'+E(x.cta)+' →</a>':'')+'</div>'}).join('');
+ $('hsdots').innerHTML=sl.map(function(x,i){return '<button type="button" role="tab" aria-label="'+(i+1)+'" aria-selected="'+(i===HS.i)+'" class="'+(i===HS.i?'on':'')+'" data-i="'+i+'"></button>'}).join('');
+ Array.prototype.forEach.call($('hsdots').querySelectorAll('button'),function(b){b.onclick=function(){hsGo(+b.getAttribute('data-i'));hsStart()}});
+ $('hsprev').onclick=function(){hsGo(HS.i-1);hsStart()};$('hsnext').onclick=function(){hsGo(HS.i+1);hsStart()};
+ hsStart();
+}
+function hsGo(i){var n=HS.n;HS.i=(i+n)%n;var ss=$('hstrack').children,ds=$('hsdots').children;
+ for(var k=0;k<ss.length;k++){var on=k===HS.i;ss[k].className='hs-slide'+(on?' on':'');if(on)ss[k].removeAttribute('aria-hidden');else ss[k].setAttribute('aria-hidden','true');if(ds[k]){ds[k].className=on?'on':'';ds[k].setAttribute('aria-selected',on)}}}
+function hsStart(){clearInterval(HS.timer);if(HS.hold||HS.n<2)return;if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;HS.timer=setInterval(function(){hsGo(HS.i+1)},6500)}
+(function(){var h=document.getElementById('hs');if(!h)return;
+ h.addEventListener('mouseenter',function(){HS.hold=1;clearInterval(HS.timer)});h.addEventListener('mouseleave',function(){HS.hold=0;hsStart()});
+ h.addEventListener('focusin',function(){HS.hold=1;clearInterval(HS.timer)});h.addEventListener('focusout',function(){HS.hold=0;hsStart()});
+ var x0=null;h.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+ h.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40){hsGo(HS.i+(dx<0?1:-1));hsStart()}},{passive:true});
+ document.addEventListener('visibilitychange',function(){if(document.hidden)clearInterval(HS.timer);else hsStart()});
+})();
+
 window.PAGE_RENDER=function(l){lang=l;var t=T[lang],s=S();document.title=t.title;
- $('h1').innerHTML=t.h1;$('hp').textContent=t.hp;$('c1').textContent=t.c1;$('c2').textContent=t.c2;$('sq').placeholder=t.sq;$('sq').setAttribute('aria-label',t.sq);$('sb').textContent=t.sb;
+ heroSlides(t);$('c1').textContent=t.c1;$('c2').textContent=t.c2;$('sq').placeholder=t.sq;$('sq').setAttribute('aria-label',t.sq);$('sb').textContent=t.sb;
 
  /* 経路のカード */
  $('flow').innerHTML=['Learn','Practice','Connect','Career'].map(function(n,i){return '<div class="node'+(i===1?' active':'')+'"><div class="dot"></div><b>'+n+'</b><span>'+E(t.flow[i])+'</span></div>'}).join('');
- var av=TOPC.concat(MOREC).filter(function(c){return s[c]}).length;
- $('rstats').innerHTML=[av,4,TOOLS.length].map(function(n,i){return '<div><b>'+n+'</b><span>'+t.stats[i]+'</span></div>'}).join('');
- var qh=['#learn','jobs.html','#business','#coaching','../community/index.html'];
- $('quick').innerHTML=t.quick.map(function(x,i){return '<a href="'+qh[i]+'"><strong>'+E(x[0])+'</strong><span>'+E(x[1])+'</span></a>'}).join('');
+ var avs=TOPC.concat(MOREC).filter(function(c){return s[c]}),av=avs.length;
+ function sumN(a){return a.reduce(function(n,c){return n+((s[c]&&s[c].n)||0)},0)}
+ var al=sumN(avs),bl=sumN(['FIN','ADM','HOV']),nf=function(n){return Number(n).toLocaleString(lang==='en'?'en-US':'ja-JP')};
+ $('rstats').innerHTML=[[av,al],[4,bl],[TOOLS.length,0]].map(function(x,i){return '<div><b>'+x[0]+(x[1]?'<em>('+nf(x[1])+' '+E(t.lu)+')</em>':'')+'</b><span>'+t.stats[i]+'</span></div>'}).join('');
+ /* 目的別のカード（edX 風）：色の帯・アイコン・3行の情報・ボタン。数はレッスン数から自動 */
+ var qh=['#learn','jobs.html','#business','#coaching','../community/index.html'],QB=[['#E7F0FD','#1769e0'],['#E5F4F1','#1F7A6E'],['#F4EFE2','#9A6B12'],['#EFEAF8','#6A4FB8'],['#EEF1F5','#3D4A57']];
+ var QI=['<path d="M2 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/>','<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>','<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>','<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 4.5a3 3 0 0 1 0 6M18 20a6 6 0 0 0-3-5.2"/>','<path d="M4 5h16v10H9l-5 4z"/>'];
+ var CK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg>';
+ var fill=function(x){return x.replace('{av}',av).replace('{al}',nf(al)).replace('{bl}',nf(bl))};
+ $('qh').textContent=t.qh;
+ $('qgrid').innerHTML=t.qc.map(function(c,i){return '<a class="qc" href="'+qh[i]+'" style="--qb:'+QB[i][0]+';--qi:'+QB[i][1]+'"><div class="qc-top"><span class="qc-st'+(c[4]==='soon'?' soon':'')+'">'+E(c[4]==='soon'?t.st[1]:t.st[0])+'</span><span class="qc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+QI[i]+'</svg></span><strong class="qc-t">'+E(c[0])+'</strong><span class="qc-d">'+E(c[1])+'</span></div><div class="qc-body">'+c[2].map(function(r){return '<span class="qc-row">'+CK+'<span>'+E(fill(r))+'</span></span>'}).join('')+'<span class="qc-cta">'+E(c[3])+'</span></div></a>'}).join('');
 
  /* 求人 */
  $('hj').innerHTML=t.hj;$('lj').textContent=t.lj;$('mj').textContent=t.mj;

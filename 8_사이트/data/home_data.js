@@ -59,3 +59,24 @@ var TOOLS=[
  function base(p){return decodeURIComponent(p).split('/').pop().replace(/\.html$/,'')}
  G.forEach(function(g){g[1].forEach(function(n,i){TOOLS.forEach(function(x,k){if(!used[k]&&base(x.p)===n){used[k]=1;x.g=i===0?g[0]:null;out.push(x)}})})});
  TOOLS.forEach(function(x,k){if(!used[k]){x.g=null;out.push(x)}});TOOLS.length=0;out.forEach(function(x){TOOLS.push(x)})})();
+
+/* ホームのローリングバナー（2026.10）：1枚目はホームの見出し。ここに並べた順に2枚目から表示する。
+   tag＝小さなラベル、h＝見出し（<br>で改行）、p＝説明、cta＝リンクの文字、href＝リンク先。プロモーション・特別求人・イベント・メンバーシップの価格はここを書き換える */
+window.HERO_SLIDES=[
+{tag:{ja:'NEW · 講座の更新',ko:'NEW · 강좌 업데이트',en:'NEW · Course update'},
+ h:{ja:'航空機と整備が<br>24本に',ko:'항공기와 정비<br>24편으로 확장',en:'Aircraft and Maintenance<br>now 24 lessons'},
+ p:{ja:'防除雪氷と、落雷・鳥衝突・ハードランディングのあとの臨時の点検を加えました。航空営業の31本すべてに図も入りました。',ko:'제빙·방빙과 낙뢰·조류 충돌·하드 랜딩 뒤의 비정기 점검 레슨을 더했습니다. 항공영업 31편 전체에 그림도 넣었습니다.',en:'New lessons on de-icing and on inspections after lightning, bird strikes and hard landings. All 31 airline sales lessons now have figures.'},
+ cta:{ja:'講座を見る',ko:'강좌 보기',en:'View the course'},href:'../25_항공기와정비/00_シリーズ全体_航空機と整備.html'},
+{tag:{ja:'FEATURED JOB · 特別求人',ko:'FEATURED JOB · 특별 구인',en:'FEATURED JOB'},
+ h:{ja:'航空の人材を<br>探している企業の方へ',ko:'항공 인재를<br>찾고 있는 기업이라면',en:'Hiring<br>aviation talent?'},
+ p:{ja:'航空会社・空港・地上業務・貨物の求人を、この場所で目立つように紹介します。掲載の方法をご覧ください。',ko:'항공사·공항·지상조업·화물 채용을 이 자리에서 눈에 띄게 소개합니다. 게재 방법을 확인해 주세요.',en:'Airline, airport, ground handling and cargo vacancies can be featured right here. See how to post a job.'},
+ cta:{ja:'掲載のご案内',ko:'게재 안내',en:'How to post'},href:'../7_구인게재_기업용/求人掲載のご案内.html'},
+{tag:{ja:'NEW FEATURE · 新機能',ko:'NEW FEATURE · 새 기능',en:'NEW FEATURE'},
+ h:{ja:'私の学習ノートで<br>学びを記録する',ko:'내 학습 노트로<br>공부를 기록하세요',en:'Track your learning<br>in My Study Notebook'},
+ p:{ja:'レッスンごとのメモ、理解度と復習の日、学習時間を1つの画面で。自分のペースで続けられます。',ko:'레슨별 메모, 이해도와 복습일, 학습 시간을 한 화면에서. 내 속도로 계속할 수 있습니다.',en:'Notes for each lesson, understanding ratings, review dates and study time on one screen, at your own pace.'},
+ cta:{ja:'学習ノートを開く',ko:'학습 노트 열기',en:'Open the notebook'},href:'study.html'},
+{tag:{ja:'MEMBERSHIP',ko:'MEMBERSHIP',en:'MEMBERSHIP'},
+ h:{ja:'メンバーシップを<br>準備しています',ko:'멤버십을<br>준비하고 있습니다',en:'Membership<br>is on its way'},
+ p:{ja:'すべての講座・練習ツール・コーチングを一つで使えるメンバーシップを準備中です。価格と特典は決まり次第ここでお知らせします。',ko:'모든 강좌·연습 도구·코칭을 하나로 이용하는 멤버십을 준비 중입니다. 가격과 혜택은 정해지는 대로 이곳에서 안내합니다.',en:'One membership for every course, practice tool and coaching session. Prices and benefits will be announced here.'},
+ cta:{ja:'メンバーシップの案内',ko:'멤버십 안내',en:'About membership'},href:'#membership'}
+];
