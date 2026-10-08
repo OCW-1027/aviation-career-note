@@ -21,6 +21,24 @@ function SCALE(y,mx,step,zones,unit,dur){var x0=40,x1=600,X=function(v){return x
 function ZCARDS(y,z,cols){var cw=(600-12*(z.length-1))/z.length,zh=0,o='';z.forEach(function(c){var h=36+LI(c[1],10,cw-20).length*FS(10)*1.3+16;if(h>zh)zh=h});
  z.forEach(function(c,i){var x=20+i*(cw+12);o+=R(x,y,cw,zh,'#fff',10,' stroke="'+cols[i]+'" stroke-width="2"')+'<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="6" rx="3" fill="'+cols[i]+'"/>'+tx(x+cw/2,y+24,c[0],12,cols[i],900)+WR(x+cw/2,y+44,c[1],10,D,800,cw-20)});
  return {s:o,y:y+zh+14}}
+/* 縦の手順：左に番号と内容、右に時刻や担当の札。順に光る */
+function STEPS2(y,st,who,pc,dur){var s='',lh=FS(11)*1.3,n=st.length;
+ st.forEach(function(x,i){var nn=LI(x,11,380).length,nw=LI(who[i],10,130).length,h=Math.max(nn*lh,nw*FS(10)*1.3)+22;
+  s+=R(20,y,600,h,'#fff',10,' stroke="#C8D3DE"')+GLOW(20,y,600,h,i,n,dur)+BADGE(44,y+h/2,i+1,11)+WR(66,y+h/2+FS(11)*0.35-(nn-1)*lh/2,x,11,D,800,380,'start')+R(462,y+6,150,h-12,pc[i%pc.length],8)+WR(537,y+h/2+FS(10)*0.35-(nw-1)*FS(10)*0.65,who[i],10,'#fff',900,130);
+  y+=h;if(i<n-1){s+=ARW(240,y+2,240,y+12,'#9FB0C2',3);y+=14}});
+ return {s:s,y:y}}
+/* 時間の軸（出発前の逆算）：番号の印を軸に置き、説明は下に2列で */
+function TL(y,mx,step,marks,unit,dur){var x0=50,x1=600,X=function(v){return x0+(mx-v)/mx*(x1-x0)},r0=FS(9)*0.75+3,o='';y+=r0*4+30;
+ o+='<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" stroke="#9FB0C2" stroke-width="5" stroke-linecap="round"/>';
+ for(var v=0;v<=mx;v+=step){o+='<line x1="'+X(v)+'" y1="'+(y-6)+'" x2="'+X(v)+'" y2="'+(y+6)+'" stroke="#5B6B7D" stroke-width="2"/>'+tx(X(v),y+FS(9)+14,String(v),9,'#5B6B7D',700)}
+ o+=tx(x0,y+FS(9)*2.4+18,unit,9,'#5B6B7D',700,'start');
+ marks.forEach(function(m,i){var cx=X(m[0]),cy=y-28-(i%2)*(r0*2+6);o+='<line x1="'+cx+'" y1="'+(cy+r0)+'" x2="'+cx+'" y2="'+y+'" stroke="'+m[2]+'" stroke-width="2"/><circle cx="'+cx+'" cy="'+cy+'" r="'+r0.toFixed(1)+'" fill="'+m[2]+'"/>'+tx(cx,cy+FS(9)*0.36,String(i+1),9,'#fff',900)});
+ o+='<circle cx="0" cy="'+y+'" r="7" fill="#0f3558"><animateMotion dur="'+(dur||'8s')+'" repeatCount="indefinite" path="M'+x0+' 0 L'+x1+' 0"/></circle>';
+ var yy=y+FS(9)*2.4+30,lh=FS(10)*1.3;
+ for(var i=0;i<marks.length;i+=2){var h=0;[i,i+1].forEach(function(k){if(marks[k]){var hh=Math.max(LI(marks[k][1],10,250).length*lh,r0*2)+12;if(hh>h)h=hh}});
+  [i,i+1].forEach(function(k,j){var m=marks[k];if(!m)return;var x=20+j*306;o+=R(x,yy,294,h,'#fff',8,' stroke="#D5DEE8"')+'<circle cx="'+(x+8+r0)+'" cy="'+(yy+h/2)+'" r="'+r0.toFixed(1)+'" fill="'+m[2]+'"/>'+tx(x+8+r0,yy+h/2+FS(9)*0.36,String(k+1),9,'#fff',900)+WR(x+16+r0*2,yy+h/2+FS(10)*0.35-(LI(m[1],10,250).length-1)*lh/2,m[1],10,D,800,294-24-r0*2,'start')});
+  yy+=h+6}
+ return {s:o,y:yy+4}}
 var F={
 /* 1-2 案内に入れる3つのこと：なぜ・いつ・何を（文例は一つの例） */
 gnd_ann3:function(l){
@@ -203,6 +221,81 @@ gnd_wh:function(l){
  var S=SCALE(y,200,20,[[0,100,cols[0]],[100,160,cols[1]],[160,200,cols[2]]],W.u,'9s');s+=S.s;
  s+='<circle cx="'+S.X(37)+'" cy="'+(y+13)+'" r="7" fill="#fff" stroke="#0f3558" stroke-width="3"><animate attributeName="r" values="6;9;6" dur="2s" repeatCount="indefinite"/></circle>';
  var C=ZCARDS(S.y,W.z,cols);s+=C.s;y=C.y;s+=LB(320,y+FS(11)*0.6,W.calc,11,'#fff','middle','#0f3558');y+=FS(11)*1.3+18;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 2-1 ゲート業務の時間の目安（国際線の例・出発前の逆算★） */
+gnd_gatetime:function(l){
+ var W=({ja:{t:'ゲート業務の時間の目安：搭乗締め切りから逆算（国際線の例★）',u:'出発の何分前',m:[[70,'ゲートに着く（60〜75分前）'],[52,'搭乗前の案内放送（書類・順番）'],[40,'搭乗開始（30〜45分前・大型機は早め）'],[22,'最終案内・呼び出し'],[10,'搭乗締め切り（10分前前後）'],[6,'人数の照合・書類 → ドアクローズ']],n:['基準は「搭乗締め切り」。そこから逆算して案内を早めに始める','バス搭乗・大型機・乗り継ぎのお客様が多い便は早める']},
+  ko:{t:'게이트 업무 시간 기준: 탑승 마감에서 역산(국제선 예★)',u:'출발 몇 분 전',m:[[70,'게이트 도착(60~75분 전)'],[52,'탑승 전 안내 방송(서류·순서)'],[40,'탑승 시작(30~45분 전·대형기는 빠르게)'],[22,'최종 안내·호출'],[10,'탑승 마감(10분 전 전후)'],[6,'인원 대조·서류 → 도어 클로즈']],n:['기준은 「탑승 마감」. 거기서 역산해 안내를 일찍 시작한다','버스 탑승·대형기·환승 승객이 많은 편은 앞당긴다']},
+  en:{t:'Gate timings: count back from boarding close (international example ★)',u:'minutes before departure',m:[[70,'Arrive at the gate (60–75 min before)'],[52,'Pre-boarding announcement (documents, order)'],[40,'Start boarding (30–45 min before; earlier for large aircraft)'],[22,'Final call and paging'],[10,'Boarding closes (around 10 min before)'],[6,'Head count and documents → door closed']],n:['Boarding close is the anchor: count back from it and start announcements early','Start earlier for bus boarding, large aircraft and flights with many transfer passengers']}})[l];
+ if(!W)return F.gnd_gatetime('ja');setK(1);
+ var cols=['#5B6B7D','#2C8C8C','#1769e0','#E08A2E','#D64545','#0f3558'],T=TOP(W.t),s=T.s;
+ var A=TL(T.y,90,15,W.m.map(function(m,i){return [m[0],m[1],cols[i]]}),W.u,'9s');s+=A.s;
+ var L=LIST(W.n,A.y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 2-2 収納棚がいっぱいになる前に、ゲートで預かる */
+gnd_bins:function(l){
+ var W=({ja:{t:'収納棚がいっぱいになる前に、ゲートで預かる',bin:'収納棚',full:'満杯',gc:'ゲートで受託に切り替え（タグを発行し控えを渡す）',n:['準備が済んだら、搭乗の前から大きな手荷物・個数の多いお客様を見極める','通路をふさぐ手荷物は、非常時の脱出の妨げになる','預かる手荷物からモバイルバッテリーなどを必ず取り出してもらう（1-13）']},
+  ko:{t:'선반이 가득 차기 전에 게이트에서 맡긴다',bin:'선반',full:'만석',gc:'게이트에서 위탁으로 전환(태그 발행·영수증 전달)',n:['준비가 끝나면 탑승 전부터 큰 짐·개수가 많은 승객을 미리 파악한다','통로를 막는 짐은 비상시 탈출을 방해한다','맡기는 짐에서 보조배터리 등은 반드시 꺼내게 한다(1-13)']},
+  en:{t:'Check bags in at the gate before the overhead bins fill up',bin:'Bins',full:'Full',gc:'Gate check-in (issue a tag and hand over the receipt)',n:['Once preparations are done, spot large bags and passengers with many items before boarding starts','Bags blocking the aisle get in the way of an emergency evacuation','Make sure power banks and similar are taken out of bags checked at the gate (1-13)']}})[l];
+ if(!W)return F.gnd_bins('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y+6,bw=88,bh=50,n=6,dur='8s';
+ s+=tx(20,y+12,W.bin,11,'#0f3558',900,'start');y+=22;
+ for(var i=0;i<n;i++){var x=24+i*(bw+10);s+=R(x,y,bw,bh,'#EEF3F7',8,' stroke="#9FB0C2" stroke-width="2"');
+  for(var k=0;k<3;k++){var t0=(i*3+k)/(n*3)*0.7;s+='<rect x="'+(x+6+k*27)+'" y="'+(y+12)+'" width="22" height="32" rx="4" fill="#1769e0" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+t0.toFixed(3)+';'+(t0+0.01).toFixed(3)+';0.95;1" dur="'+dur+'" repeatCount="indefinite"/></rect>'}}
+ s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.72;0.74;0.95;1" dur="'+dur+'" repeatCount="indefinite"/>'+LB(600,y-14,W.full,10,'#fff','middle','#D64545')+'</g>';
+ y+=bh+26;var gx=320;s+=ARW(gx,y-14,gx,y+6,'#9FB0C2',3);
+ s+='<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.95;1" dur="'+dur+'" repeatCount="indefinite"/>'+LB(gx,y+FS(11)*0.6+14,W.gc,11,'#fff','middle','#E08A2E')+'</g>';
+ y+=FS(11)*1.3+34;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 2-3 開披検査で見つかる物と処理（例） */
+gnd_open:function(l){
+ var W=({ja:{t:'開披検査で見つかる物と処理（例）',r:[['モバイルバッテリー・予備の電池','取り出して機内へ','#1769e0'],['電子たばこ・ライター','取り出して機内へ（ライターは1個）','#1769e0'],['スプレー缶','量の範囲内なら可。引火性などは放棄','#E08A2E'],['刃物・工具','受託ならそのまま可が多い','#2E9B5F'],['規定外の危険物','放棄、または別の方法を案内','#D64545']],n:['開けるのは必ずお客様の立ち会いのもとで','処理の経緯を記録し、再検査してから搭載する']},
+  ko:{t:'개방 검사에서 발견되는 물건과 처리(예)',r:[['보조배터리·예비 배터리','꺼내서 기내로','#1769e0'],['전자담배·라이터','꺼내서 기내로(라이터는 1개)','#1769e0'],['스프레이 캔','허용량 이내면 가능. 인화성 등은 포기','#E08A2E'],['칼·공구','위탁이면 그대로 가능한 경우가 많다','#2E9B5F'],['규정 외 위험물','포기 또는 다른 방법 안내','#D64545']],n:['여는 것은 반드시 승객 입회하에','처리 경위를 기록하고 재검사한 뒤 탑재한다']},
+  en:{t:'Items found in an open-bag inspection and what to do (examples)',r:[['Power banks and spare batteries','Take out and carry in the cabin','#1769e0'],['E-cigarettes and lighters','Take out and carry in the cabin (one lighter)','#1769e0'],['Aerosol cans','Allowed within limits; flammable ones surrendered','#E08A2E'],['Knives and tools','Often fine in checked baggage','#2E9B5F'],['Other dangerous goods','Surrender, or advise another way to send','#D64545']],n:['Always open the bag in the passenger’s presence','Record what was done, and re-screen before loading']}})[l];
+ if(!W)return F.gnd_open('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y,dur='10s',n=W.r.length,lw=250,rx=330;
+ W.r.forEach(function(r,i){var nl=Math.max(LI(r[0],11,lw-24).length,LI(r[1],10,270).length),h=nl*FS(11)*1.3+20;
+  s+=GLOW(20,y-3,600,h+6,i,n,dur,10)+R(20,y,lw,h,'#fff',10,' stroke="#C8D3DE"')+WR(20+lw/2,y+h/2+FS(11)*0.35-(LI(r[0],11,lw-24).length-1)*FS(11)*0.65,r[0],11,D,800,lw-24)+ARW(20+lw+8,y+h/2,rx-8,y+h/2,r[2],3)+R(rx,y,290,h,r[2],10)+WR(rx+145,y+h/2+FS(10)*0.35-(LI(r[1],10,270).length-1)*FS(10)*0.65,r[1],10,'#fff',900,270);
+  y+=h+10});
+ var L=LIST(W.n,y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 2-5 搭乗遅れのお客様：時刻で動く手順（例★） */
+gnd_late:function(l){
+ var W=({ja:{t:'搭乗遅れのお客様：決めた時刻に、決めた人が動く（例★）',st:['未搭乗の一覧を出す（乗り継ぎ・団体・手荷物の有無）','名前で呼び出し。電話・同行者・ラウンジに連絡','降ろす可能性のある手荷物をハンドリング会社に予告','責任者がオフロードを決める（後から来ても原則乗せない）','手荷物を降ろし、人数・ロードシート・旅客情報を直す','タグ番号で降ろせたか照合 → 機長・客室に伝えドアクローズ'],who:['搭乗開始の直後','締め切りの15分前','締め切りの10分前','搭乗締め切り','決定の直後','降ろし終わり'],n:['1人を待つ数分が、後の便・乗り継ぎ・乗務員の勤務時間に響く','毎回の判断を記録し、遅れが多い時間帯や理由を振り返る']},
+  ko:{t:'탑승 지연 승객: 정한 시각에, 정한 사람이 움직인다(예★)',st:['미탑승 목록을 뽑는다(환승·단체·수하물 유무)','이름으로 호출. 전화·동행자·라운지에 연락','내릴 가능성이 있는 수하물을 조업사에 예고','책임자가 오프로드를 결정(늦게 와도 원칙적으로 태우지 않음)','수하물을 내리고 인원·로드시트·승객 정보를 수정','태그 번호로 하기 확인 → 기장·객실에 전하고 도어 클로즈'],who:['탑승 시작 직후','마감 15분 전','마감 10분 전','탑승 마감','결정 직후','하기 완료'],n:['한 명을 기다리는 몇 분이 다음 편·환승·승무원 근무시간에 영향을 준다','매번 판단을 기록하고 지연이 많은 시간대와 이유를 돌아본다']},
+  en:{t:'Late passengers: the agreed person acts at the agreed time (example ★)',st:['List passengers not yet boarded (transfers, groups, checked bags)','Page by name; call them, their companions and the lounge','Warn the handler which bags may need offloading','The supervisor decides to offload (late arrivals are not boarded as a rule)','Offload bags; correct the count, loadsheet and passenger data','Confirm by tag number, tell the captain and cabin, close the door'],who:['Just after boarding starts','15 min before close','10 min before close','Boarding closes','Right after the decision','Bags off'],n:['A few minutes waiting for one person affect later flights, connections and crew duty time','Record every decision and review which times and reasons cause the most delays']}})[l];
+ if(!W)return F.gnd_late('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#D64545','#E08A2E','#0f3558'],'12s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 2-6 出国取消：係員が同行して、決められた経路で一般区域へ戻る */
+gnd_cancel:function(l){
+ var W=({ja:{t:'出国取消：係員が同行し、決められた経路で戻る',air:'出国エリア（制限区域）',land:'一般区域',p:['ゲート','出入国管理：出国の記録を取り消す','税関：免税品・申告品','手荷物を返す'],n:['受託手荷物は必ず降ろして返す（2-5）','乗客名簿・ロードシート・事前旅客情報（API）を直す','細かな手順と連絡先は空港ごとに違う。支店の手順書に書いておく']},
+  ko:{t:'출국 취소: 직원이 동행해 정해진 경로로 돌아간다',air:'출국 구역(보호구역)',land:'일반 구역',p:['게이트','출입국: 출국 기록 취소','세관: 면세품·신고품','수하물 반환'],n:['위탁 수하물은 반드시 내려서 돌려준다(2-5)','승객 명단·로드시트·사전 승객 정보(API)를 수정한다','세부 절차와 연락처는 공항마다 다르다. 지점 절차서에 적어 둔다']},
+  en:{t:'Cancelling departure: staff escort the passenger back by a set route',air:'Airside (restricted area)',land:'Landside',p:['Gate','Immigration: cancel the departure record','Customs: duty-free and declared goods','Return checked bags'],n:['Always offload and return checked bags (2-5)','Correct the passenger list, loadsheet and advance passenger information (API)','Detailed steps and contacts differ by airport; write them in the station manual']}})[l];
+ if(!W)return F.gnd_cancel('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y,h=230,mid=380;
+ s+=R(20,y,mid-20,h,'#EAF1FB',12)+R(mid,y,620-mid,h,'#F1F3F5',12)+tx(30,y+22,W.air,11,'#1769e0',900,'start')+tx(mid+10,y+22,W.land,11,'#5B6B7D',900,'start');
+ s+='<line x1="'+mid+'" y1="'+y+'" x2="'+mid+'" y2="'+(y+h)+'" stroke="#0f3558" stroke-width="3" stroke-dasharray="8 6"/>';
+ var P=[[100,y+130],[mid-70,y+110],[mid+90,y+150],[540,y+115]],cl=['#0f3558','#1769e0','#2C8C8C','#E08A2E'],up=[0,1,0,1];
+ var d='M'+P.map(function(p){return p[0]+' '+p[1]}).join(' L');s+='<path d="'+d+'" fill="none" stroke="#9FB0C2" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/>';
+ P.forEach(function(p,i){var w=150,nl=LI(W.p[i],9,140).length,bh=nl*FS(9)*1.3+12,by=up[i]?p[1]-16-bh:p[1]+16;s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="11" fill="'+cl[i]+'"/>'+tx(p[0],p[1]+FS(9)*0.36,String(i+1),9,'#fff',900)+R(p[0]-w/2,by,w,bh,'#fff',8,' stroke="'+cl[i]+'" stroke-width="1.5"')+WR(p[0],by+bh/2+FS(9)*0.35-(nl-1)*FS(9)*0.65,W.p[i],9,D,800,140)});
+ s+='<g><circle r="9" fill="#FFD23F" stroke="#0f3558" stroke-width="2"/><circle cx="14" r="7" fill="#fff" stroke="#0f3558" stroke-width="2"/><animateMotion dur="8s" repeatCount="indefinite" path="'+d+'"/></g>';
+ y+=h+16;var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 2-7 ドアクローズ前の人数の照合：3つの数が一致してから合図 */
+gnd_count:function(l){
+ var W=({ja:{t:'ドアクローズの前に：3つの数が一致してから合図する',c:['チェックイン数','搭乗した人数','客室の確認'],ok:'一致 → 書類を渡し、ドアクローズの合図',ng:'不一致 → 客室に伝え、不正・二重の搭乗がないか確認',n:['人数の照合は、保安と重量・重心の両方に関わる','「たぶん合っている」でドアを閉めない']},
+  ko:{t:'도어 클로즈 전에: 세 숫자가 일치한 뒤 신호한다',c:['체크인 수','탑승 인원','객실 확인'],ok:'일치 → 서류 전달, 도어 클로즈 신호',ng:'불일치 → 객실에 알리고 부정·중복 탑승 여부 확인',n:['인원 대조는 보안과 중량·무게중심 모두에 관계된다','「아마 맞을 것」이라며 문을 닫지 않는다']},
+  en:{t:'Before closing the door: signal only when all three numbers match',c:['Checked in','Boarded','Cabin count'],ok:'Match → hand over documents, signal door close',ng:'Mismatch → tell the cabin crew and check for unauthorised or duplicate boarding',n:['The head count matters for both security and weight and balance','Never close the door on “probably right”']}})[l];
+ if(!W)return F.gnd_count('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y,dur='8s',cw=150;
+ [[152,152,152,'#2E9B5F',W.ok,0],[152,151,152,'#D64545',W.ng,1]].forEach(function(r,ri){var top=y;
+  s+='<g><animate attributeName="opacity" values="'+(ri?'.25;.25;1;1':'1;1;.25;.25')+'" keyTimes="0;.48;.5;1" dur="'+dur+'" repeatCount="indefinite"/>';
+  W.c.forEach(function(c,i){var x=20+i*(cw+12);s+=R(x,y,cw,70,'#fff',10,' stroke="#C8D3DE"')+tx(x+cw/2,y+22,c,10,'#5B6B7D',800)+tx(x+cw/2,y+56,String(r[i]),22,(ri&&i===1)?'#D64545':'#0f3558',900)});
+  var bx=20+3*(cw+12),bw=600-3*(cw+12);s+=R(bx,y,bw,70,r[3],10)+tx(bx+bw/2,y+46,ri?'≠':'=',26,'#fff',900);
+  y+=90;s+=LB(320,y+FS(10)*0.6,r[4],10,'#fff','middle',r[3])+'</g>';y+=FS(10)*1.3+26});
  var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
