@@ -15,13 +15,15 @@ var HOME=U('index.html');window.ACN_HOME=HOME;
 /* 日本語の改行（語の途中で切らない）：ja_wrap.js */
 (function(){var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
 /* レッスンの「完了」ボタン（私の学習プランと共通の記録）：progress.js 2026.10 */
-if(/\/(ja|ko|en)\/[a-z]+\/\d+-\d+\/?(index\.html)?$/.test(path)&&!/jsdom/i.test(navigator.userAgent)){var pg=document.createElement('script');pg.src=new URL('progress.js',me).href;document.head.appendChild(pg)}
+if(/\/(ja|ko|en)\/[a-z]+\/\d+-\d+\/?(index\.html)?$/.test(path)&&!/jsdom/i.test(navigator.userAgent)){var pg=document.createElement('script');pg.src=new URL('progress.js',me).href;document.head.appendChild(pg);
+ /* 私の学習ノート（メモ・理解度・復習・ブックマーク・学習時間）：notes.js 2026.10 */
+ var nt=document.createElement('script');nt.src=new URL('notes.js',me).href;document.head.appendChild(nt)}
 var C={
 ja:{nav:['学ぶ','Business Skills','Practice','求人','Coaching','Community'],mem:'メンバーシップ',foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー',notice:'内容の扱いと免責'},
 ko:{nav:['학습','Business Skills','Practice','채용','Coaching','Community'],mem:'멤버십',foot:['항공 전문 지식에서 채용, 코칭, 커뮤니티까지.','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note　무단 전재·복제 금지',terms:'이용약관',privacy:'개인정보 처리방침',notice:'콘텐츠 이용 안내·면책'},
 en:{nav:['Learn','Business Skills','Practice','Jobs','Coaching','Community'],mem:'Membership',foot:['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.'],copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy',notice:'Content notice'}};
 var NAV=[['index.html#learn','learn'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
-var FOOT=[['Learn',[['index.html#learn','Courses'],['plan.html','My Learning Plan'],['guide.html','Study Guide'],['index.html#practice','Practice Lab']]],
+var FOOT=[['Learn',[['index.html#learn','Courses'],['plan.html','My Learning Plan'],['study.html','My Study Notebook'],['guide.html','Study Guide'],['index.html#practice','Practice Lab']]],
  ['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],
  ['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['index.html#coaching','Coaching']]],
  ['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]];

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Study Notebook | Aviation Career Note</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/v3.css">
+
+<style>
+/* 私の学習ノート（2026.10）：個人の設定・ダッシュボード・復習・メモ・ブックマーク・バックアップ */
+.sn-hero{max-width:var(--max);margin:auto;padding:40px 24px 0}
+.sn-hero .in{background:linear-gradient(145deg,#0a1b2e,#12314f);color:#fff;border-radius:24px;padding:42px;box-shadow:0 25px 60px rgba(9,28,47,.15)}
+.sn-hero h1{font-size:clamp(32px,5vw,52px);margin:10px 0 14px}
+.sn-hero p{color:#c3d0dc;max-width:760px;margin:0}
+.sn-hero .dev{margin-top:12px;font-size:14px;color:#9fd8e0}
+.sn-hero .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn.ghost{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}.btn.ghost:hover{border-color:#fff}
+.btn.line{border-color:var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.btn.sm{padding:8px 12px;font-size:13px}.btn.danger{color:#A12C2C;border-color:#e8b4b4}
+.sn-tabs{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin-top:24px}
+.sn-tabs .in{max-width:var(--max);margin:auto;padding:0 24px;display:flex;gap:4px;flex-wrap:wrap}
+.sn-tabs a{padding:12px 12px;font-weight:700;font-size:14px;color:#5b6b7d;text-decoration:none;border-bottom:3px solid transparent}
+.sn-tabs a:hover{color:var(--ink);border-color:#9fb0c2}
+.sn-sec{max-width:var(--max);margin:auto;padding:48px 24px 8px;scroll-margin-top:56px}
+.sn-sec>h2{margin:6px 0 6px}
+.sn-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.box{border:1px solid var(--line);border-radius:18px;background:#fff;padding:20px}
+.box h3{margin:0 0 10px;font-size:17px}.sub{color:#5b6b7d;font-size:14px;margin:8px 0 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;font-weight:600;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer;color:var(--ink)}
+.chips button.on{background:#0f3558;border-color:#0f3558;color:#fff}
+.chips.wrap button{font-size:13px;padding:8px 12px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
+.kpi{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
+.kpi small{display:block;color:#5b6b7d;font-size:12px;font-weight:700;letter-spacing:.03em}
+.kpi b{display:block;font-size:28px;margin-top:4px;color:#0f3558}.kpi span{font-size:13px;color:#5b6b7d}
+.kpi .bar{height:6px;background:#e9eef3;border-radius:6px;margin-top:8px;overflow:hidden}.kpi .bar i{display:block;height:100%;background:#1F7A6E}
+.lst{list-style:none;margin:0;padding:0}.lst li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eef2f6}
+.lst li:last-child{border-bottom:0}.lst a{color:var(--ink);font-weight:600;text-decoration:none}.lst a:hover{color:#1769e0}
+.lst .meta{font-size:12px;color:#5b6b7d}
+.pr{margin:10px 0}.pr .h{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:700}.pr .h a{font-weight:600;font-size:13px;color:#1769e0;text-decoration:none}
+.pr .bar{height:10px;background:#e9eef3;border-radius:6px;margin-top:6px;overflow:hidden}.pr .bar i{display:block;height:100%;background:linear-gradient(90deg,#1769e0,#1F7A6E)}
+.pr .nx{font-size:13px;color:#5b6b7d;margin-top:4px}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.r1{background:#FDECEC;color:#A12C2C}.r2{background:#FFF4E0;color:#94560F}.r3{background:#E5F5EF;color:#155A51}.late{background:#0f3558;color:#fff}
+.rvrow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eef2f6}
+.rvrow .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.rvrow .acts button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 10px;font-weight:600;font-size:12px;font-family:inherit;cursor:pointer}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.tools input,.tools select{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px;font-family:inherit;background:#fff;color:var(--ink)}
+.tools input{flex:1;min-width:200px}
+.nc{border:1px solid var(--line);border-radius:16px;padding:16px;margin:10px 0;background:#fff}
+.nc .top{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.nc .top a{font-weight:700;color:var(--ink);text-decoration:none}.nc .top a:hover{color:#1769e0}
+.nc .meta{font-size:12px;color:#5b6b7d;margin-top:2px}
+.nc textarea{width:100%;box-sizing:border-box;min-height:110px;margin-top:10px;border:1.5px solid #e1e7ee;border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.7;font-family:inherit;color:var(--ink);resize:vertical;background:#fbfcfd}
+.nc textarea:focus{outline:none;border-color:#1769e0;background:#fff}
+.nc .ft{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:12px;color:#5b6b7d}
+.nc .del{border:0;background:none;color:#A12C2C;font-weight:600;font-size:12px;font-family:inherit;cursor:pointer}
+mark{background:#FFE58F;padding:0 1px}
+.empty{border:1.5px dashed var(--line);border-radius:16px;padding:22px;color:#5b6b7d;text-align:center}
+.ok{color:#1F7A6E}.er{color:#D64545}
+@media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}.sn-grid2{grid-template-columns:1fr}}
+@media(max-width:560px){.sn-hero .in{padding:28px 22px}.rvrow{grid-template-columns:1fr}.rvrow .acts{justify-content:flex-start}.sn-tabs .in{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0 10px}.sn-tabs a{padding:9px 4px;font-size:13px;text-align:center}}
+</style>
+</head>
+<body data-page="study">
+<div class="topbar">Aviation Career Note · Learn · Jobs · Business Skills · Coaching · Community</div>
+<header>
+  <nav class="nav" aria-label="menu">
+    <a href="index.html" class="brand"><b>A·</b> AVIATION CAREER NOTE</a>
+    <div class="navlinks" id="navlinks"></div>
+    <div class="navright">
+      <span class="pill" id="langs" role="group" aria-label="Language"></span>
+      <a href="account.html" class="btn primary" id="mem"></a>
+    </div>
+  </nav>
+</header>
+
+
+<main>
+<section class="sn-hero"><div class="in">
+  <div class="eyebrow" style="color:#78d6df">My Study Notebook</div>
+  <h1 id="h1"></h1>
+  <p id="hp"></p>
+  <p class="dev" id="dev"></p>
+  <div class="acts"><a class="btn primary" href="#review" id="go1"></a><a class="btn ghost" href="#notes" id="go2"></a><a class="btn ghost" href="plan.html" id="go3"></a></div>
+</div></section>
+
+<nav class="sn-tabs" id="tabs" aria-label="sections"></nav>
+
+<section class="sn-sec" id="me">
+  <div class="eyebrow">Profile</div>
+  <h2 id="hme"></h2><p class="lead" id="lme"></p>
+  <div class="sn-grid2">
+    <div class="box"><h3 id="hlv"></h3><div class="chips" id="lv"></div><p class="sub" id="lvd"></p></div>
+    <div class="box"><h3 id="hgl"></h3><div class="chips" id="gl"></div><p class="sub" id="gld"></p></div>
+  </div>
+  <div class="box" style="margin-top:14px"><h3 id="hfc"></h3><p class="sub" id="fcd"></p><div class="chips wrap" id="fc"></div></div>
+</section>
+
+<section class="sn-sec" id="dash">
+  <div class="eyebrow">Dashboard</div>
+  <h2 id="hdb"></h2>
+  <div class="kpis" id="kpis"></div>
+  <div class="sn-grid2">
+    <div class="box"><h3 id="hch"></h3><div id="chart"></div></div>
+    <div class="box"><h3 id="hcn"></h3><div id="cont"></div></div>
+  </div>
+  <div class="box" style="margin-top:14px"><h3 id="hpr"></h3><div id="prog"></div></div>
+</section>
+
+<section class="sn-sec" id="review">
+  <div class="eyebrow">Review</div>
+  <h2 id="hrv"></h2><p class="lead" id="lrv"></p>
+  <div id="rv"></div>
+</section>
+
+<section class="sn-sec" id="notes">
+  <div class="eyebrow">Notes</div>
+  <h2 id="hnt"></h2><p class="lead" id="lnt"></p>
+  <div class="tools"><input type="search" id="q"><select id="fcs"></select><select id="srt"></select><button type="button" class="btn line sm" id="exmd"></button></div>
+  <div id="nl"></div>
+</section>
+
+<section class="sn-sec" id="bms">
+  <div class="eyebrow">Bookmarks</div>
+  <h2 id="hbm"></h2>
+  <div id="bl"></div>
+</section>
+
+<section class="sn-sec" id="data">
+  <div class="eyebrow">Backup</div>
+  <h2 id="hdt"></h2><p class="lead" id="ldt"></p>
+  <div class="sn-grid2">
+    <div class="box"><h3 id="hex"></h3><p class="sub" id="dex"></p><button type="button" class="btn primary" id="bex"></button></div>
+    <div class="box"><h3 id="him"></h3><p class="sub" id="dim"></p><label class="btn line" for="fim" id="bim"></label><input type="file" id="fim" accept="application/json,.json" hidden><p class="sub" id="ims"></p></div>
+  </div>
+  <div class="box" style="margin-top:14px"><h3 id="hus"></h3><p class="sub" id="us"></p><button type="button" class="btn line sm danger" id="clr"></button></div>
+</section>
+<div style="height:40px"></div>
+</main>
+
+<footer>
+  <div class="foot" id="foot"></div>
+  <div class="copy" id="copy"></div>
+</footer>
+
+<script src="data/home_data.js"></script>
+<script src="../catalog.js" onerror="this.remove()"></script>
+<script src="../search_index.js" onerror="this.remove()"></script>
+<script>
+/* 私の学習ノート（2026.10 新規）
+   ・レッスンの「ノート」パネル（assets/notes.js）と同じ記録を読む。保存はこの端末のブラウザ（localStorage）だけ
+   ・学習の水準・目標・重点講座を人ごとに設定し、「次のレッスン」と復習の予定をその人に合わせて出す
+   ・バックアップ（JSON）で別の端末へ移せる。メンバーシップのログインを入れたら、同じ形でアカウントに保存する予定 */
+var KN='acn-notes-v1',KR='acn-rate-v1',KB='acn-bm-v1',KT='acn-time-v1',KH='acn-hist-v1',KP='acn-plan-v1',KD='acn-done-v1',KF='acn-prof-v1';
+var MINE=[KN,KR,KB,KT,KH,KF],ALL=[KN,KR,KB,KT,KH,KF,KP,KD];
+var IV={1:[1,1,1,1],2:[3,7,14,30],3:[7,21,60,120]};
+var L='ja',IDX=(window.SEARCH_INDEX&&window.SEARCH_INDEX.l)||[],ROW={};IDX.forEach(function(x){ROW[x[0]+'/'+x[1]]=x});
+var SER={},ORDER=[];(window.SERIES||[]).forEach(function(s){SER[s.code]=s;ORDER.push(s.code)});
+function $(i){return document.getElementById(i)}
+function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function ld(k,d){try{var v=JSON.parse(localStorage.getItem(k)||'null');return v==null?d:v}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function day(o){var d=o?new Date(o):new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function addDays(n,base){var d=base?new Date(base+'T12:00:00'):new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return day(d)}
+function diff(a,b){return Math.round((new Date(a+'T12:00:00')-new Date(b+'T12:00:00'))/864e5)}
+function ttl(x){return x?x[L==='ja'?2:L==='ko'?3:4]:''}
+function cname(code){var s=SER[code];return s?s[L][1]:code}
+function lurl(k){var p=k.split('/');return '../'+L+'/'+p[0]+'/'+p[1]+'/'}
+function lab(k){var x=ROW[k],p=k.split('/');return {code:p[0].toUpperCase(),no:p[1],t:x?ttl(x):'',c:cname(p[0].toUpperCase())}}
+var T={
+ja:{tabs:['設定','ダッシュボード','今日の復習','メモ','ブックマーク','バックアップ'],h1:'私の学習ノート',hp:'レッスンごとのメモ、理解度と復習の予定、学習時間、ブックマークをまとめて見る場所です。学ぶ速さと水準は人それぞれなので、設定に合わせて「次に読むレッスン」と「復習するレッスン」を出します。',dev:'🔒 記録はこの端末のブラウザにだけ保存され、サーバーには送られません。別の端末で続けるときは「バックアップ」を使ってください。',go1:'今日の復習',go2:'メモの一覧',go3:'学習プランへ',
+ hme:'私の学習の設定',lme:'ここで選んだ内容は、ダッシュボードの「次のレッスン」と学習時間の目標に使われます。',hlv:'学習の水準',lv:['入門','現場の実務','管理職・リーダー'],lvd:['基礎（Part 0）から順に読みます。','現場で働いている人向け。基礎（Part 0）は後回しにして実務の Part から勧めます。','運営・管理の視点で。基礎は後回しにし、管理・人事・財務の講座も勧めます。'],hgl:'1日の目標',gl:'分',gld:'ダッシュボードで今日の達成度を表示します。',hfc:'重点講座',fcd:'今いちばん力を入れる講座を選びます（いくつでも）。選ばないときは学習プランの講座、または読み始めた講座を使います。',
+ hdb:'ダッシュボード',k:['今日の学習','連続学習','完了したレッスン','今日の復習','メモ'],days:'日',min:'分',les:'件',hch:'最近14日の学習時間（分）',goal:'目標',hcn:'続きから',hpr:'重点講座の進み具合',nx:'次のレッスン',alldone:'すべて完了しました',nofc:'重点講座がまだありません。上の「重点講座」から選んでください。',cont0:'まだ読んだレッスンがありません。',
+ hrv:'今日の復習',lrv:'レッスンの「ノート」で理解度を付けると、忘れかけるころに復習の日が来ます（もう一度読む：翌日、だいたい理解：3→7→14→30日、よく理解：7→21→60→120日）。',rv0:'今日復習するレッスンはありません。',up:'この先7日の復習',due:'予定日',over:'日遅れ',r:['もう一度読む','だいたい理解','よく理解'],
+ hnt:'メモ',lnt:'すべてのレッスンのメモをまとめて検索・編集できます。ここで直した内容もこの端末に自動で保存されます。',q:'メモとレッスン名を検索',allc:'すべての講座',srt:['最近更新した順','講座・レッスン順'],exmd:'メモを書き出す（.md）',nt0:'まだメモがありません。レッスンのページ右下の「📝 ノート」から書けます。',del:'削除',delq:'このメモを削除しますか？',sv:'保存しました',upd:'更新',
+ hbm:'ブックマーク',bm0:'まだブックマークがありません。',rm:'外す',
+ hdt:'バックアップと端末の移動',ldt:'記録は端末ごとに保存されます。ファイルに書き出して、別の端末やブラウザで読み込むと続きから学べます。',hex:'書き出す',dex:'メモ・理解度・ブックマーク・学習時間・学習プラン・完了の記録を1つのファイルにします。',bex:'バックアップを保存',him:'読み込む',dim:'保存したファイルを選ぶと、今の記録に足し合わせます（同じレッスンのメモは新しいほうを残します）。',bim:'ファイルを選ぶ',imok:'読み込みました',imer:'このサイトのバックアップファイルではありません',hus:'この端末の記録',us:'使っている容量',clr:'この端末の学習ノートを消す',clrq:'この端末のメモ・理解度・ブックマーク・学習時間・設定を消します（学習プランと完了の記録は残ります）。よろしいですか？'},
+ko:{tabs:['설정','대시보드','오늘의 복습','메모','북마크','백업'],h1:'내 학습 노트',hp:'레슨별 메모, 이해도와 복습 일정, 학습 시간, 북마크를 한곳에서 보는 곳입니다. 공부하는 속도와 수준은 사람마다 다르므로, 설정에 맞춰 「다음에 읽을 레슨」과 「복습할 레슨」을 보여 줍니다.',dev:'🔒 기록은 이 기기의 브라우저에만 저장되며 서버로 보내지 않습니다. 다른 기기에서 이어서 하려면 「백업」을 사용하세요.',go1:'오늘의 복습',go2:'메모 목록',go3:'학습 플랜으로',
+ hme:'내 학습 설정',lme:'여기서 고른 내용은 대시보드의 「다음 레슨」과 학습 시간 목표에 쓰입니다.',hlv:'학습 수준',lv:['입문','현장 실무','관리자·리더'],lvd:['기초(Part 0)부터 차례대로 읽습니다.','현장에서 일하는 사람용. 기초(Part 0)는 뒤로 미루고 실무 Part부터 권합니다.','운영·관리의 관점으로. 기초는 뒤로 미루고 관리·인사·재무 강좌도 권합니다.'],hgl:'하루 목표',gl:'분',gld:'대시보드에 오늘의 달성도를 표시합니다.',hfc:'중점 강좌',fcd:'지금 가장 힘을 쏟을 강좌를 고릅니다(여러 개 가능). 고르지 않으면 학습 플랜의 강좌, 또는 읽기 시작한 강좌를 씁니다.',
+ hdb:'대시보드',k:['오늘의 학습','연속 학습','완료한 레슨','오늘의 복습','메모'],days:'일',min:'분',les:'개',hch:'최근 14일 학습 시간(분)',goal:'목표',hcn:'이어서 공부하기',hpr:'중점 강좌 진행 상황',nx:'다음 레슨',alldone:'모두 완료했습니다',nofc:'중점 강좌가 아직 없습니다. 위의 「중점 강좌」에서 골라 주세요.',cont0:'아직 읽은 레슨이 없습니다.',
+ hrv:'오늘의 복습',lrv:'레슨의 「노트」에서 이해도를 매기면, 잊을 즈음에 복습일이 돌아옵니다(다시 읽기: 다음 날, 대체로 이해: 3→7→14→30일, 완전히 이해: 7→21→60→120일).',rv0:'오늘 복습할 레슨이 없습니다.',up:'앞으로 7일의 복습',due:'예정일',over:'일 지남',r:['다시 읽기','대체로 이해','완전히 이해'],
+ hnt:'메모',lnt:'모든 레슨의 메모를 한꺼번에 검색하고 고칠 수 있습니다. 여기서 고친 내용도 이 기기에 자동으로 저장됩니다.',q:'메모와 레슨 이름 검색',allc:'모든 강좌',srt:['최근 수정 순','강좌·레슨 순'],exmd:'메모 내보내기(.md)',nt0:'아직 메모가 없습니다. 레슨 페이지 오른쪽 아래의 「📝 노트」에서 쓸 수 있습니다.',del:'삭제',delq:'이 메모를 삭제할까요?',sv:'저장했습니다',upd:'수정',
+ hbm:'북마크',bm0:'아직 북마크가 없습니다.',rm:'해제',
+ hdt:'백업과 기기 이동',ldt:'기록은 기기마다 저장됩니다. 파일로 내보낸 뒤 다른 기기나 브라우저에서 불러오면 이어서 공부할 수 있습니다.',hex:'내보내기',dex:'메모·이해도·북마크·학습 시간·학습 플랜·완료 기록을 하나의 파일로 만듭니다.',bex:'백업 저장',him:'불러오기',dim:'저장한 파일을 고르면 지금 기록에 합칩니다(같은 레슨의 메모는 더 새로운 쪽을 남깁니다).',bim:'파일 선택',imok:'불러왔습니다',imer:'이 사이트의 백업 파일이 아닙니다',hus:'이 기기의 기록',us:'사용 중인 용량',clr:'이 기기의 학습 노트 지우기',clrq:'이 기기의 메모·이해도·북마크·학습 시간·설정을 지웁니다(학습 플랜과 완료 기록은 남습니다). 계속할까요?'},
+en:{tabs:['Settings','Dashboard','Review today','Notes','Bookmarks','Backup'],h1:'My Study Notebook',hp:'Your lesson notes, understanding ratings and review dates, study time and bookmarks in one place. Everyone learns at a different pace and level, so the next lesson and the lessons to review follow your own settings.',dev:'🔒 Everything is stored only in this browser on this device and never sent to a server. To continue on another device, use Backup.',go1:'Review today',go2:'All notes',go3:'My learning plan',
+ hme:'My learning settings',lme:'These choices drive the dashboard’s “next lesson” and your daily time goal.',hlv:'Level',lv:['Beginner','Practitioner','Manager / lead'],lvd:['Read from the fundamentals (Part 0) in order.','For people already working: Part 0 is left for later and practical parts come first.','A management view: fundamentals later, with management, HR and finance courses suggested too.'],hgl:'Daily goal',gl:'min',gld:'The dashboard shows today’s progress against it.',hfc:'Focus courses',fcd:'Pick the courses you are concentrating on now (any number). If none, your learning plan’s courses or the ones you have started are used.',
+ hdb:'Dashboard',k:['Today','Streak','Lessons done','Due today','Notes'],days:'days',min:'min',les:'',hch:'Study time, last 14 days (min)',goal:'Goal',hcn:'Continue where you left off',hpr:'Progress in focus courses',nx:'Next lesson',alldone:'All done',nofc:'No focus courses yet. Choose some under Focus courses above.',cont0:'You have not opened any lessons yet.',
+ hrv:'Review today',lrv:'Rate your understanding in a lesson’s Notes panel and a review date comes round just as you start to forget (read again: next day; mostly clear: 3→7→14→30 days; fully clear: 7→21→60→120 days).',rv0:'Nothing to review today.',up:'Reviews in the next 7 days',due:'Due',over:'days late',r:['Read again','Mostly clear','Fully clear'],
+ hnt:'Notes',lnt:'Search and edit the notes from every lesson. Changes here are saved to this device automatically.',q:'Search notes and lesson titles',allc:'All courses',srt:['Recently edited','Course and lesson order'],exmd:'Export notes (.md)',nt0:'No notes yet. Write them from “📝 Notes” at the bottom right of any lesson.',del:'Delete',delq:'Delete this note?',sv:'Saved',upd:'Edited',
+ hbm:'Bookmarks',bm0:'No bookmarks yet.',rm:'Remove',
+ hdt:'Backup and moving devices',ldt:'Records are kept per device. Export a file and import it on another device or browser to carry on.',hex:'Export',dex:'Notes, ratings, bookmarks, study time, your learning plan and completed lessons in one file.',bex:'Save backup',him:'Import',dim:'Choose a saved file to merge it into your current records (for the same lesson, the newer note is kept).',bim:'Choose file',imok:'Imported',imer:'This is not a backup file from this site',hus:'Records on this device',us:'Storage used',clr:'Clear the study notebook on this device',clrq:'This clears notes, ratings, bookmarks, study time and settings on this device (your learning plan and completed lessons stay). Continue?'}};
+
+function prof(){var p=ld(KF,{});return {lv:p.lv||1,goal:p.goal||30,fc:Array.isArray(p.fc)?p.fc:[]}}
+function focus(){var p=prof();if(p.fc.length)return p.fc.slice();var pl=ld(KP,null);if(pl&&pl.steps&&pl.steps.length)return pl.steps.map(function(s){return s.c}).filter(function(c,i,a){return a.indexOf(c)===i});
+ var seen=[],done=ld(KD,{}),h=ld(KH,[]);Object.keys(done).concat((h||[]).map(function(x){return x.k})).forEach(function(k){var c=String(k).split('/')[0].toUpperCase();if(SER[c]&&seen.indexOf(c)<0)seen.push(c)});return seen.slice(0,4)}
+function lessonsOf(code){var lc=code.toLowerCase();return IDX.filter(function(x){return x[0]===lc})}
+function nextOf(code){var p=prof(),done=ld(KD,{}),ls=lessonsOf(code).filter(function(x){return !done[x[0]+'/'+x[1]]});if(!ls.length)return null;
+ if(p.lv>1){var nz=ls.filter(function(x){return x[1].split('-')[0]!=='0'});if(nz.length)return nz[0]}return ls[0]}
+function mins(s){return Math.round((s||0)/60)}
+function dayTotal(d){var t=ld(KT,{})[d]||{},s=0;for(var k in t)s+=t[k];return s}
+function streak(){var n=0,d=day();if(dayTotal(d)<60)d=addDays(-1);while(dayTotal(d)>=60){n++;d=addDays(-1,d)}return n}
+function rerate(k,i){var all=ld(KR,{}),o=all[k]||{s:0};var s=(i===1||o.r!==i)?0:Math.min(o.s+1,3);all[k]={r:i,s:s,d:day(),n:addDays(IV[i][Math.min(s,3)])};sv(KR,all)}
+
+window.PAGE_RENDER=function(l){L=l;var t=T[l];
+ ['h1','hp','dev','go1','go2','go3','hme','lme','hlv','hgl','gld','hfc','fcd','hdb','hch','hcn','hpr','hrv','lrv','hnt','lnt','hbm','hdt','ldt','hex','dex','bex','him','dim','bim','hus','clr','exmd'].forEach(function(k){if($(k))$(k).textContent=t[k]});
+ $('tabs').innerHTML='<div class="in">'+['me','dash','review','notes','bms','data'].map(function(id,i){return '<a href="#'+id+'">'+E(t.tabs[i])+'</a>'}).join('')+'</div>';
+ drawProf();drawDash();drawReview();drawNotes();drawBm();drawData()};
+
+function drawProf(){var t=T[L],p=prof();
+ $('lv').innerHTML=[1,2,3].map(function(i){return '<button type="button" data-v="'+i+'" class="'+(p.lv===i?'on':'')+'">'+E(t.lv[i-1])+'</button>'}).join('');$('lvd').textContent=t.lvd[p.lv-1];
+ $('gl').innerHTML=[15,30,45,60,90].map(function(v){return '<button type="button" data-v="'+v+'" class="'+(p.goal===v?'on':'')+'">'+v+' '+E(t.gl)+'</button>'}).join('');
+ $('fc').innerHTML=ORDER.map(function(c){return '<button type="button" data-v="'+c+'" class="'+(p.fc.indexOf(c)>=0?'on':'')+'">'+E(cname(c))+'</button>'}).join('');
+ function setP(f){var q=ld(KF,{});f(q);sv(KF,q);PAGE_RENDER(L)}
+ $('lv').querySelectorAll('button').forEach(function(b){b.onclick=function(){setP(function(q){q.lv=+b.getAttribute('data-v');
+  if(q.lv===3&&!(q.fc&&q.fc.length))q.fc=['STN','HOV','ADM','FIN'].filter(function(c){return SER[c]})})}});
+ $('gl').querySelectorAll('button').forEach(function(b){b.onclick=function(){setP(function(q){q.goal=+b.getAttribute('data-v')})}});
+ $('fc').querySelectorAll('button').forEach(function(b){b.onclick=function(){setP(function(q){var c=b.getAttribute('data-v'),a=Array.isArray(q.fc)?q.fc:[];var i=a.indexOf(c);if(i>=0)a.splice(i,1);else a.push(c);q.fc=a})}})}
+
+function drawDash(){var t=T[L],p=prof(),today=day(),tm=mins(dayTotal(today)),done=ld(KD,{}),nd=Object.keys(done).length,rates=ld(KR,{}),due=Object.keys(rates).filter(function(k){return rates[k].n<=today}).length,nn=Object.keys(ld(KN,{})).length,tot=0;if(window.CATALOG){for(var ck in window.CATALOG)tot+=window.CATALOG[ck].n||0}if(!tot)tot=IDX.length;
+ var pc=Math.min(100,Math.round(tm/p.goal*100));
+ $('kpis').innerHTML=[[t.k[0],tm+' '+t.min,t.goal+' '+p.goal+' '+t.min,pc],[t.k[1],streak()+' '+t.days,'',null],[t.k[2],nd+(t.les?' '+t.les:''),tot?'/ '+tot:'',tot?Math.round(nd/tot*100):null],[t.k[3],due+(t.les?' '+t.les:''),'',null],[t.k[4],nn+(t.les?' '+t.les:''),'',null]].map(function(k){
+  return '<div class="kpi"><small>'+E(k[0])+'</small><b>'+E(k[1])+'</b><span>'+E(k[2])+'</span>'+(k[3]!=null?'<div class="bar"><i style="width:'+k[3]+'%"></i></div>':'')+'</div>'}).join('');
+ /* 14日の棒グラフ（SVG） */
+ var ds=[];for(var i=13;i>=0;i--)ds.push(addDays(-i));var vs=ds.map(function(d){return mins(dayTotal(d))}),mx=Math.max(p.goal,Math.max.apply(null,vs),10)*1.18;
+ var W=560,H=180,pad=24,bw=(W-pad*2)/14,s='<svg viewBox="0 0 '+W+' '+(H+30)+'" style="width:100%;height:auto" role="img" aria-label="'+E(t.hch)+'">';
+ vs.forEach(function(v,i){var h=v/mx*H,x=pad+i*bw+4;s+='<rect x="'+x.toFixed(1)+'" y="'+(H-h+6).toFixed(1)+'" width="'+(bw-8).toFixed(1)+'" height="'+Math.max(h,v?2:0).toFixed(1)+'" rx="4" fill="'+(v>=p.goal?'#1F7A6E':'#1769e0')+'"><title>'+ds[i]+' '+v+' '+t.min+'</title></rect>'+
+  '<text x="'+(x+(bw-8)/2).toFixed(1)+'" y="'+(H+24)+'" font-size="11" text-anchor="middle" fill="'+(i===13?'#0f3558':'#5b6b7d')+'" font-weight="'+(i===13?700:400)+'">'+(+ds[i].slice(8))+'</text>'+(v?'<text x="'+(x+(bw-8)/2).toFixed(1)+'" y="'+(H-h+2).toFixed(1)+'" font-size="10" text-anchor="middle" fill="#5b6b7d">'+v+'</text>':'')});
+ var gy=(H-p.goal/mx*H+6).toFixed(1);s+='<line x1="'+pad+'" x2="'+(W-pad)+'" y1="'+gy+'" y2="'+gy+'" stroke="#E08A2E" stroke-dasharray="5 4" stroke-width="1.5"/><text x="'+(W-pad)+'" y="'+(gy-4)+'" font-size="11" text-anchor="end" fill="#94560F">'+E(t.goal)+' '+p.goal+'</text></svg>';
+ $('chart').innerHTML=s;
+ var h=(ld(KH,[])||[]).filter(function(x){return x&&ROW[x.k]}).slice(0,5);
+ $('cont').innerHTML=h.length?'<ul class="lst">'+h.map(function(x){var a=lab(x.k);return '<li><div><a href="'+lurl(x.k)+'">'+E(a.no+' '+a.t)+'</a><div class="meta">'+E(a.c)+' · '+E(day(x.t))+'</div></div></li>'}).join('')+'</ul>':'<div class="empty">'+E(t.cont0)+'</div>';
+ var fc=focus();
+ $('prog').innerHTML=fc.length?fc.map(function(c){var ls=lessonsOf(c),n=Math.max(ls.length,(SER[c]&&SER[c].n)||0),d=ls.filter(function(x){return done[x[0]+'/'+x[1]]}).length,nx=nextOf(c);
+  return '<div class="pr"><div class="h"><span>'+E(cname(c))+'</span><span>'+d+' / '+n+'</span></div><div class="bar"><i style="width:'+(n?Math.round(d/n*100):0)+'%"></i></div><div class="nx">'+(nx?E(t.nx)+'：<a href="'+lurl(nx[0]+'/'+nx[1])+'">'+E(nx[1]+' '+ttl(nx))+'</a>':E(t.alldone))+'</div></div>'}).join(''):'<div class="empty">'+E(t.nofc)+'</div>'}
+
+function drawReview(){var t=T[L],today=day(),r=ld(KR,{}),ks=Object.keys(r).filter(function(k){return r[k].n<=today&&ROW[k]}).sort(function(a,b){return r[a].n<r[b].n?-1:1});
+ var up=Object.keys(r).filter(function(k){return r[k].n>today&&r[k].n<=addDays(7)}).length;
+ $('rv').innerHTML=(ks.length?'<div class="box">'+ks.map(function(k){var a=lab(k),o=r[k],late=diff(today,o.n);
+  return '<div class="rvrow"><div><a href="'+lurl(k)+'" style="font-weight:700;color:var(--ink);text-decoration:none">'+E(a.no+' '+a.t)+'</a><div class="meta" style="font-size:12px;color:#5b6b7d;margin-top:2px">'+E(a.c)+' · <span class="badge r'+o.r+'">'+E(t.r[o.r-1])+'</span> '+E(t.due)+' '+E(o.n)+(late>0?' <span class="badge late">'+late+' '+E(t.over)+'</span>':'')+'</div></div><div class="acts" data-k="'+E(k)+'">'+[1,2,3].map(function(i){return '<button type="button" data-r="'+i+'" class="r'+i+'">'+E(t.r[i-1])+'</button>'}).join('')+'</div></div>'}).join('')+'</div>':'<div class="empty">'+E(t.rv0)+'</div>')+
+  '<p class="sub">'+E(t.up)+'：<b>'+up+'</b></p>';
+ $('rv').querySelectorAll('.acts button').forEach(function(b){b.onclick=function(){rerate(b.parentNode.getAttribute('data-k'),+b.getAttribute('data-r'));PAGE_RENDER(L)}})}
+
+var NQ='',NC='',NS=0;
+function drawNotes(){var t=T[L],all=ld(KN,{}),r=ld(KR,{}),bm=ld(KB,{});
+ $('q').placeholder=t.q;$('q').value=NQ;
+ var cs=[];Object.keys(all).forEach(function(k){var c=k.split('/')[0].toUpperCase();if(cs.indexOf(c)<0)cs.push(c)});cs.sort(function(a,b){return ORDER.indexOf(a)-ORDER.indexOf(b)});
+ $('fcs').innerHTML='<option value="">'+E(t.allc)+'</option>'+cs.map(function(c){return '<option value="'+c+'"'+(NC===c?' selected':'')+'>'+E(cname(c))+'</option>'}).join('');
+ $('srt').innerHTML=t.srt.map(function(s,i){return '<option value="'+i+'"'+(NS===i?' selected':'')+'>'+E(s)+'</option>'}).join('');
+ var q=NQ.trim().toLowerCase(),ks=Object.keys(all).filter(function(k){if(NC&&k.split('/')[0].toUpperCase()!==NC)return false;if(!q)return true;var a=lab(k);return (all[k].t+' '+a.t+' '+a.no).toLowerCase().indexOf(q)>=0});
+ if(NS===0)ks.sort(function(a,b){return (all[b].u||0)-(all[a].u||0)});else{var pos={};IDX.forEach(function(x,i){pos[x[0]+'/'+x[1]]=i});ks.sort(function(a,b){var ca=ORDER.indexOf(a.split('/')[0].toUpperCase()),cb=ORDER.indexOf(b.split('/')[0].toUpperCase());return ca-cb||(pos[a]||0)-(pos[b]||0)})}
+ function hl(s){var e=E(s);if(!q)return e;var i=s.toLowerCase().indexOf(q);return i<0?e:E(s.slice(0,i))+'<mark>'+E(s.slice(i,i+q.length))+'</mark>'+E(s.slice(i+q.length))}
+ $('nl').innerHTML=ks.length?ks.map(function(k){var a=lab(k),n=all[k],o=r[k];
+  return '<div class="nc" data-k="'+E(k)+'"><div class="top"><div><a href="'+lurl(k)+'">'+hl(a.no+' '+a.t)+'</a><div class="meta">'+E(a.c)+(bm[k]?' · ★':'')+'</div></div>'+(o?'<span class="badge r'+o.r+'">'+E(t.r[o.r-1])+'</span>':'')+'</div>'+
+  '<textarea aria-label="'+E(a.no)+'">'+E(n.t)+'</textarea><div class="ft"><span class="st">'+E(t.upd)+' '+E(n.u?day(n.u)+' '+new Date(n.u).toTimeString().slice(0,5):'')+'</span><button type="button" class="del">'+E(t.del)+'</button></div></div>'}).join(''):'<div class="empty">'+E(t.nt0)+'</div>';
+ $('nl').querySelectorAll('.nc').forEach(function(c){var k=c.getAttribute('data-k'),ta=c.querySelector('textarea'),st=c.querySelector('.st'),tm=null;
+  function save(){var al=ld(KN,{});if(ta.value.trim())al[k]={t:ta.value,u:Date.now()};else delete al[k];st.className='st ok';st.textContent=sv(KN,al)?'✓ '+t.sv:'!'}
+  function fit(){ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight+4,420)+'px'}fit();
+  ta.addEventListener('input',function(){fit();clearTimeout(tm);tm=setTimeout(save,600)});ta.addEventListener('blur',function(){clearTimeout(tm)});
+  c.querySelector('.del').onclick=function(){if(!confirm(t.delq))return;var al=ld(KN,{});delete al[k];sv(KN,al);PAGE_RENDER(L)}})}
+document.addEventListener('input',function(e){if(e.target&&e.target.id==='q'){NQ=e.target.value;var p=e.target.selectionStart;drawNotes();var x=$('q');x.focus();try{x.setSelectionRange(p,p)}catch(_){}}});
+document.addEventListener('change',function(e){if(!e.target)return;if(e.target.id==='fcs'){NC=e.target.value;drawNotes()}if(e.target.id==='srt'){NS=+e.target.value;drawNotes()}});
+
+function drawBm(){var t=T[L],bm=ld(KB,{}),ks=Object.keys(bm).filter(function(k){return ROW[k]}).sort(function(a,b){return bm[b]-bm[a]});
+ $('bl').innerHTML=ks.length?'<div class="box"><ul class="lst">'+ks.map(function(k){var a=lab(k);return '<li><div><a href="'+lurl(k)+'">★ '+E(a.no+' '+a.t)+'</a><div class="meta">'+E(a.c)+' · '+E(day(bm[k]))+'</div></div><button type="button" class="btn line sm" data-k="'+E(k)+'">'+E(t.rm)+'</button></li>'}).join('')+'</ul></div>':'<div class="empty">'+E(t.bm0)+'</div>';
+ $('bl').querySelectorAll('button[data-k]').forEach(function(b){b.onclick=function(){var al=ld(KB,{});delete al[b.getAttribute('data-k')];sv(KB,al);PAGE_RENDER(L)}})}
+
+function bytes(){var n=0;try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(/^acn-/.test(k))n+=(k.length+(localStorage.getItem(k)||'').length)*2}}catch(e){}return n}
+function drawData(){var t=T[L],b=bytes();$('us').textContent=t.us+'：'+(b<1024?b+' B':(b/1024).toFixed(1)+' KB')+' · '+t.k[4]+' '+Object.keys(ld(KN,{})).length+(t.les?' '+t.les:'')}
+function dl(name,text,type){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)}
+document.addEventListener('click',function(e){var el=e.target&&e.target.closest&&e.target.closest('#bex,#exmd,#clr');var id=el&&el.id;
+ if(id==='bex'){var d={};ALL.forEach(function(k){var v=ld(k,null);if(v!=null)d[k]=v});dl('acn-study-backup-'+day().replace(/-/g,'')+'.json',JSON.stringify({app:'aviation-career-note',kind:'study-backup',v:1,exported:new Date().toISOString(),data:d},null,1),'application/json')}
+ if(id==='exmd'){var t=T[L],all=ld(KN,{}),ks=Object.keys(all).sort(function(a,b){return ORDER.indexOf(a.split('/')[0].toUpperCase())-ORDER.indexOf(b.split('/')[0].toUpperCase())||(a<b?-1:1)}),cur='',out='# '+t.h1+' ('+day()+')\n';
+  ks.forEach(function(k){var a=lab(k);if(a.c!==cur){cur=a.c;out+='\n## '+cur+'\n'}out+='\n### '+a.no+' '+a.t+'\n\n'+all[k].t.trim()+'\n'});dl('acn-notes-'+day().replace(/-/g,'')+'.md',out,'text/markdown')}
+ if(id==='clr'){if(!confirm(T[L].clrq))return;MINE.forEach(function(k){try{localStorage.removeItem(k)}catch(_){}});PAGE_RENDER(L)}});
+document.addEventListener('change',function(e){if(!e.target||e.target.id!=='fim')return;var f=e.target.files&&e.target.files[0];if(!f)return;var rd=new FileReader();
+ rd.onload=function(){var t=T[L],msg=$('ims');try{var o=JSON.parse(rd.result);if(!o||o.app!=='aviation-career-note'||!o.data)throw 0;var d=o.data;
+  ALL.forEach(function(k){if(!(k in d))return;var cur=ld(k,null),nv=d[k];
+   if(k===KH){var m=(Array.isArray(cur)?cur:[]).concat(Array.isArray(nv)?nv:[]).sort(function(a,b){return b.t-a.t}),seen={};sv(k,m.filter(function(x){if(!x||seen[x.k])return false;seen[x.k]=1;return true}).slice(0,30))}
+   else if(k===KN){var c=cur||{};for(var q in nv){if(!c[q]||(nv[q].u||0)>(c[q].u||0))c[q]=nv[q]}sv(k,c)}
+   else if(k===KT){var c2=cur||{};for(var dd in nv){c2[dd]=c2[dd]||{};for(var q2 in nv[dd])c2[dd][q2]=Math.max(c2[dd][q2]||0,nv[dd][q2])}sv(k,c2)}
+   else if(k===KP||k===KF){if(!cur)sv(k,nv)}
+   else{var c3=cur||{};for(var q3 in nv)if(!(q3 in c3))c3[q3]=nv[q3];else if(k===KR&&nv[q3].d>(c3[q3].d||''))c3[q3]=nv[q3];sv(k,c3)}});
+  msg.className='sub ok';msg.textContent='✓ '+t.imok;PAGE_RENDER(L)}catch(err){msg.className='sub er';msg.textContent=t.imer}e.target.value=''};rd.readAsText(f)});
+window.addEventListener('storage',function(e){if(e.key&&/^acn-/.test(e.key)&&!(document.activeElement&&document.activeElement.tagName==='TEXTAREA'))PAGE_RENDER(L)});
+window.addEventListener('pageshow',function(e){if(e.persisted)PAGE_RENDER(L)});
+</script>
+
+<script src="assets/v3.js"></script>
+</body>
+</html>
