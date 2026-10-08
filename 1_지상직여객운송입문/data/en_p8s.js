@@ -3,7 +3,7 @@
 set("8-1",{title:"Safety and Security: The Basics of SMS",hl:"SMS",subtitle:"Safety prevents accidents; security prevents unlawful interference. Ground staff are on the front line of both",
 lead:["Ground work at an airport is more than looking after passengers. Loading bags, opening doors, checking documents: each task connects to safety, which prevents accidents, and to security, which prevents unlawful interference.","This article covers the difference between the two, the four pillars of an airline’s safety management system (SMS), reporting hazards, and the just culture that makes people willing to report."],
 sections:[
-{h:"Safety and security compared",blocks:[{t:"table",cols:["","Safety","Security"],rows:[
+{h:"Safety and security compared",blocks:[{t:"fig",id:"gnd_ss",cap:"Animated figure: how safety and security differ and where they overlap, with the four SMS pillars below."},{t:"table",cols:["","Safety","Security"],rows:[
 ["What it prevents","Unintended accidents, failures and errors","Deliberate unlawful interference: hijacking, sabotage, unauthorised access"],
 ["Ground examples","Vehicles touching aircraft, loading errors, missed dangerous goods","Suspicious bags, boarding under a false identity, unauthorised people airside"],
 ["International standards","ICAO Annex 19 (safety management) and others","ICAO Annex 17 (security) and others"],
@@ -35,7 +35,7 @@ next:"8-2 Passenger security duties: from counter to gate"});
 set("8-2",{title:"Passenger Security Duties: From Counter to Gate",hl:"security duties",subtitle:"Identity checks, bag reconciliation, suspicious items and the final gate check: security lives in everyday procedures",
 lead:["Screening is done by the airport or a security company, but passenger services have important security roles too: is the passenger who they claim to be, is there a bag on board whose owner is not, is anyone unauthorised near the aircraft?","This article covers who does what, checks at the counter and gate, passenger–baggage reconciliation, responding to suspicious items and people, and handling security information. Follow your own airline’s security programme for the detail."],
 sections:[
-{h:"Who does what (example)",blocks:[{t:"table",cols:["Party","Main roles"],rows:[
+{h:"Who does what (example)",blocks:[{t:"fig",id:"gnd_secrole",cap:"Animated figure: who does what in security lights up in turn (example)."},{t:"table",cols:["Party","Main roles"],rows:[
 ["Airline (including contractors)","Identity checks, security questions, passenger–baggage reconciliation, final gate check, arranging aircraft security checks"],
 ["Airport or screening company","Screening passengers and bags, controlling access to restricted areas"],
 ["Police, immigration, customs","Incidents, border control, customs inspection"],
@@ -72,7 +72,7 @@ next:"8-3 Security training and records: what audits look at most"});
 set("8-3",{title:"Security Training and Records: What Audits Look at Most",hl:"security training",subtitle:"Training without a record counts as training not done — for your own staff, your handler, and the instructions you pass on",
 lead:["Training is what security audits weigh most heavily, and training is proven by records. However well you teach, incomplete records can lead an auditor to conclude it never happened.","This article covers the types of security training and who needs them, what to record, how long to keep it, checking your handling company’s training, and the easily forgotten record of instructions and how they were passed on."],
 sections:[
-{h:"Types of security training",blocks:[{t:"table",cols:["Type","When","Who"],rows:[
+{h:"Types of security training",blocks:[{t:"fig",id:"gnd_sectr",cap:"Animated figure: the four kinds of security training, and when and for whom, light up in turn (example)."},{t:"table",cols:["Type","When","Who"],rows:[
 ["Initial","Before starting the role","New staff and transfers"],
 ["Recurrent","At a set interval (for example yearly)","Everyone keeping the qualification"],
 ["On amendment","When standards or procedures change","Everyone in the affected role"],
@@ -120,7 +120,7 @@ next:"8-4 Preparing for and handling an audit: the front-line view"});
 set("8-4",{title:"Preparing for and Handling an Audit: The Front-line View",hl:"audit",subtitle:"Auditors don’t just read files — they ask front-line staff directly. Be able to explain everyday procedures in your own words",
 lead:["In an authority audit the station manager explains the documents, but auditors may also go to the counter, gate or ramp and question staff directly. Unannounced inspections happen too (Launching Flights 5-3).","This article sets out the flow of an audit, preparation from a month or two ahead, questions often asked on the day, and a self-inspection checklist, from the front-line point of view."],
 sections:[
-{h:"How an audit runs (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Notice",sub:"Dates and scope (or unannounced)"},{name:"Documents in advance",sub:"Plans and records may be requested"},{name:"On the day",sub:"Documents, site checks, staff questions"},{name:"Debrief",sub:"Good points and findings"},{name:"Corrective report",sub:"Cause, action and deadline"}]}]},
+{h:"How an audit runs (example)",blocks:[{t:"fig",id:"gnd_audflow",cap:"Animated figure: the audit from notice to corrective-action report lights up in turn (example)."},{t:"ladder",rise:10,steps:[{name:"Notice",sub:"Dates and scope (or unannounced)"},{name:"Documents in advance",sub:"Plans and records may be requested"},{name:"On the day",sub:"Documents, site checks, staff questions"},{name:"Debrief",sub:"Good points and findings"},{name:"Corrective report",sub:"Cause, action and deadline"}]}]},
 {h:"Preparation from one to two months ahead",blocks:[{t:"check",items:[
 {name:"Last findings",x:"Have all previous findings been fixed, and is there a record?"},
 {name:"Records",x:"Training records (three years or more), handler training records, and records of instructions passed on (8-3)."},
@@ -161,7 +161,7 @@ sections:[
 ["Safety occurrence or hazard","Vehicle contact, loading error, dangerous goods found","Through the company safety reporting system"],
 ["Security event","Suspicious item, unauthorised access, unlawful act on board","Airport, police and head office security; the authorities where required"]]},
 {t:"note",x:"* Categories and deadlines differ by country and airline. List who to report to, and by when, for each type in the station procedures. ★"}]},
-{h:"The reporting flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Make it safe",sub:"Care for the injured, remove danger"},{name:"Initial report",sub:"Supervisor, operations control, head office"},{name:"Record",sub:"Time, place, people, situation, actions"},{name:"Report to the authorities",sub:"By the set deadline and form"},{name:"Investigate and prevent",sub:"Analyse causes and share actions"}]},
+{h:"The reporting flow",blocks:[{t:"fig",id:"gnd_rep",cap:"Animated figure: the reporting flow from making safe to preventing recurrence lights up in turn."},{t:"ladder",rise:10,steps:[{name:"Make it safe",sub:"Care for the injured, remove danger"},{name:"Initial report",sub:"Supervisor, operations control, head office"},{name:"Record",sub:"Time, place, people, situation, actions"},{name:"Report to the authorities",sub:"By the set deadline and form"},{name:"Investigate and prevent",sub:"Analyse causes and share actions"}]},
 {t:"point",x:"Send the initial report quickly with what you know, marking unknowns as “being confirmed”. A fast first report plus updates is worth more than a perfect report that arrives late."}]},
 {h:"What goes in the initial report",blocks:[{t:"check",items:[
 {name:"When and where",x:"Date and time, airport, stand or location, flight number."},

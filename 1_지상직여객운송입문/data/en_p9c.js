@@ -4,7 +4,7 @@ var P="Part 9 Cabin and Ground Working Together";
 set("9-1",{part:P,title:"The Role and Organisation of Cabin Crew: Safety Personnel First",hl:"cabin crew",subtitle:"Before service, they keep people safe. Crew numbers, training, and how their work connects with ground staff",
 lead:["Cabin crew are safety personnel before they are service staff: they protect passengers in fires, sudden decompression and emergency evacuations. Their numbers, training and duty rules are set in law.","This lesson covers what cabin crew do, how they are organised, minimum crew numbers, training, and where their work meets ground staff."],
 sections:[
-{h:"Main duties",blocks:[{t:"table",cols:["When","Main duties"],rows:[
+{h:"Main duties",blocks:[{t:"fig",id:"gnd_crew",cap:"Animated figure: cabin crew work at each stage of the flight lights up in turn."},{t:"table",cols:["When","Main duties"],rows:[
 ["Before departure","Briefing (flight information, special passengers, positions) and checks of emergency equipment and the cabin"],
 ["Boarding","Greeting passengers, stowing bags, checking exit-row seats"],
 ["Departure","Operating doors, safety demonstration, cabin secure check before take-off"],
@@ -51,7 +51,7 @@ sections:[
 {name:"Record it",x:"Reflect it in the special passenger list, hand it to the crew and keep a record."},
 {name:"Recheck on board",x:"Crew check again after seating and move anyone who does not meet the conditions."}]},
 {t:"note",x:"* Age and other conditions depend on country and airline rules. ★"}]},
-{h:"Handing over special passengers (examples)",blocks:[{t:"table",cols:["Passenger","What to hand over"],rows:[
+{h:"Handing over special passengers (examples)",blocks:[{t:"fig",id:"gnd_hand",cap:"Animated figure: what to hand over to the cabin for each type of special passenger lights up in turn (example)."},{t:"table",cols:["Passenger","What to hand over"],rows:[
 ["Unaccompanied minor (UM)","Travel documents and a copy of the guardian’s declaration to the senior crew member; at the destination, handed to staff and released only after checking the guardian"],
 ["Young passenger travelling alone (YPTA etc.)","Some airlines apply UM-like procedures"],
 ["Pregnant passenger","Weeks of pregnancy and a doctor’s certificate where required (conditions vary); priority boarding"],
@@ -86,7 +86,7 @@ sections:[
 ["Rest","The minimum time required before the next duty"],
 ["Extension","Limits may be extended within set bounds for unforeseen delays"]]},
 {t:"note",x:"* Specific limits depend on national rules, crew complement, time of day and aircraft. ★"}]},
-{h:"From delay to cancellation",blocks:[{t:"ladder",rise:10,steps:[{name:"Long delay",sub:"Weather, technical, previous flight"},{name:"Check remaining time",sub:"Operations control and crew scheduling"},{name:"Limit at risk",sub:"Look for replacement crew"},{name:"No replacement",sub:"Depart after rest, or cancel"},{name:"Ground response",sub:"Information, hotels, rebooking (Course 1, Part 5)"}]},
+{h:"From delay to cancellation",blocks:[{t:"fig",id:"gnd_ftl",cap:"Animated figure: how crew duty limits turn a delay into a cancellation, step by step."},{t:"ladder",rise:10,steps:[{name:"Long delay",sub:"Weather, technical, previous flight"},{name:"Check remaining time",sub:"Operations control and crew scheduling"},{name:"Limit at risk",sub:"Look for replacement crew"},{name:"No replacement",sub:"Depart after rest, or cancel"},{name:"Ground response",sub:"Information, hotels, rebooking (Course 1, Part 5)"}]},
 {t:"point",warn:true,x:"Crew limits exist for safety and cannot be stretched. Sharing crew remaining time with operations control early in a long delay speeds up the cancellation decision and passenger information."}]},
 {h:"Alcohol limits: Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Who","Pilots and cabin crew (with standards for engineers and dispatchers too)","Aviation personnel and cabin crew"],
@@ -124,7 +124,7 @@ sections:[
 {name:"Japan",x:"The Civil Aeronautics Act prohibits acts endangering safety on board (lavatory smoking, obstructing crew and so on), with penalties for disobeying the captain’s orders."},
 {name:"Korea",x:"The Aviation Security Act prohibits abuse, violence, smoking and other disruptive acts on board, with penalties."}]},
 {t:"note",x:"* Check current law for specific acts and penalties. ★"}]},
-{h:"Handover on arrival",blocks:[{t:"ladder",rise:10,steps:[{name:"Message from the aircraft",sub:"Captain or cabin, before arrival"},{name:"Ground arrangements",sub:"Airport police, security, supervisor"},{name:"Arrival and handover",sub:"Adjust disembarkation order for others"},{name:"Statements and records",sub:"Crew, witnesses, documents"},{name:"Reporting",sub:"To head office and authorities (Course 1, lesson 8-5)"}]},
+{h:"Handover on arrival",blocks:[{t:"fig",id:"gnd_unruly",cap:"Animated figure: the handover on arrival after disruptive behaviour on board lights up in turn."},{t:"ladder",rise:10,steps:[{name:"Message from the aircraft",sub:"Captain or cabin, before arrival"},{name:"Ground arrangements",sub:"Airport police, security, supervisor"},{name:"Arrival and handover",sub:"Adjust disembarkation order for others"},{name:"Statements and records",sub:"Crew, witnesses, documents"},{name:"Reporting",sub:"To head office and authorities (Course 1, lesson 8-5)"}]},
 {t:"point",x:"At handover, ground staff record when, by whom and to whom the passenger was handed over, and that the crew report was received. This record supports later proceedings, prevention and protection of crew."}]},
 {h:"Protecting crew and staff",blocks:[{t:"rows",items:[
 {name:"Emotional labour",x:"Consider the physical and mental strain on crew and ground staff who faced the behaviour, and use support and rest arrangements."},

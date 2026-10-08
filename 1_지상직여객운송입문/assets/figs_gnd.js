@@ -695,7 +695,86 @@ gnd_career:function(l){
  var pts=W.s.map(function(st,i){return (20+i*(cw+gap)+cw/2)+' '+(base-110-i*50-14)}).join(' L');
  s+='<path d="M'+pts+'" fill="none" stroke="#C8D3DE" stroke-width="2" stroke-dasharray="4 5"/><circle r="8" fill="#FFD23F" stroke="#0f3558" stroke-width="2"><animateMotion dur="10s" repeatCount="indefinite" path="M'+pts+'"/></circle>';
  s+='<line x1="20" y1="'+base+'" x2="620" y2="'+base+'" stroke="#9FB0C2" stroke-width="3"/>';
- var L=LIST(W.n,base+16,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,base+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 8-1 安全と保安の違い、SMSの4つの柱 */
+gnd_ss:function(l){
+ var W=({ja:{t:'安全（Safety）と保安（Security）：防ぐものが違う',c:[['安全（Safety）','意図しない事故・故障・ミスを防ぐ。例：車両の接触、搭載の間違い。ICAO 第19附属書・SMS'],['保安（Security）','意図的な不法な妨害を防ぐ。例：不審な手荷物、身元を偽った搭乗。ICAO 第17附属書・保安計画']],ov:'重なる例：乗らないお客様の手荷物を降ろす（保安）→ 搭載の重さが変わる（安全）',n:['SMSの柱1 方針と目標：支店長が安全の責任者として方針と年間の目標を立てる','柱2 リスクの管理：新しい空港・機材・手順の前にハザードを洗い出す','柱3 安全の保証：接触・搭載の間違いなどの指標を毎月確かめる','柱4 安全の推進：安全会議・事例の共有・定期教育']},
+  ko:{t:'안전(Safety)과 보안(Security): 막는 대상이 다르다',c:[['안전(Safety)','의도하지 않은 사고·고장·실수를 막는다. 예: 차량 접촉, 탑재 착오. ICAO 부속서 19·SMS'],['보안(Security)','의도적인 불법 방해를 막는다. 예: 수상한 수하물, 신원을 속인 탑승. ICAO 부속서 17·보안 계획']],ov:'겹치는 예: 타지 않는 승객의 수하물을 내린다(보안) → 탑재 중량이 바뀐다(안전)',n:['SMS 축 1 방침과 목표: 지점장이 안전 책임자로 방침과 연간 목표를 세운다','축 2 위험 관리: 새 공항·기재·절차 전에 위해 요인을 찾아낸다','축 3 안전 보증: 접촉·탑재 착오 등 지표를 매월 확인한다','축 4 안전 증진: 안전 회의·사례 공유·정기 교육']},
+  en:{t:'Safety and security: they protect against different things',c:[['Safety','Prevents unintended accidents, failures and errors. e.g. vehicle contact, loading errors. ICAO Annex 19, SMS'],['Security','Prevents deliberate unlawful interference. e.g. suspicious bags, boarding under a false identity. ICAO Annex 17, security programme']],ov:'Where they overlap: offloading a no-show’s bags (security) changes the load (safety)',n:['SMS pillar 1, policy and objectives: the station manager sets the safety policy and annual targets','Pillar 2, risk management: identify hazards before a new airport, aircraft or procedure','Pillar 3, assurance: check indicators such as contacts and loading errors every month','Pillar 4, promotion: safety meetings, shared cases, recurrent training']}})[l];
+ if(!W)return F.gnd_ss('ja');setK(1);
+ var T=TOP(W.t),s=T.s,C=ZCARDS(T.y,W.c,['#2E9B5F','#0f3558']);s+=C.s;var y=C.y;
+ s+=LB(320,y+FS(10)*0.6,W.ov,10,'#fff','middle','#7A5CC7');y+=FS(10)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-2 保安の分担（例★） */
+gnd_secrole:function(l){
+ var W=({ja:{t:'保安の分担：誰が何をするか（例★）',r:[['航空会社（委託先を含む）','本人確認・保安の質問・手荷物と旅客の照合・ゲートの最終確認','#1769e0'],['空港・保安検査会社','お客様と手荷物の保安検査、制限区域の出入りの管理','#0f3558'],['警察・入国管理・税関','事件の対応、出入国の審査、税関の検査','#7A5CC7'],['ハンドリング会社','委託された業務の中での保安の手順の実施','#2C8C8C']],n:['乗らないお客様の手荷物は積んだまま出発させない（手荷物と旅客の照合）','分担は国・空港・契約で違う。支店の保安計画で確かめる']},
+  ko:{t:'보안 분담: 누가 무엇을 하나(예★)',r:[['항공사(위탁처 포함)','신원 확인·보안 질문·수하물과 승객 대조·게이트 최종 확인','#1769e0'],['공항·보안검색 회사','승객과 수하물 보안검색, 보호구역 출입 관리','#0f3558'],['경찰·출입국·세관','사건 대응, 출입국 심사, 세관 검사','#7A5CC7'],['조업사','위탁받은 업무 안에서 보안 절차 실시','#2C8C8C']],n:['타지 않는 승객의 수하물은 실은 채로 출발시키지 않는다(수하물과 승객 대조)','분담은 나라·공항·계약마다 다르다. 지점 보안 계획에서 확인한다']},
+  en:{t:'Who does what in security (example ★)',r:[['Airline (including contractors)','ID checks, security questions, bag–passenger reconciliation, final gate check','#1769e0'],['Airport and screening company','Screening of passengers and bags, access to restricted areas','#0f3558'],['Police, immigration, customs','Incidents, border checks, customs inspection','#7A5CC7'],['Handling company','Security steps within the contracted work','#2C8C8C']],n:['Never let a bag fly without its passenger (bag–passenger reconciliation)','The split differs by country, airport and contract; check the station security programme']}})[l];
+ if(!W)return F.gnd_secrole('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-3 保安教育の種類と記録（例★） */
+gnd_sectr:function(l){
+ var W=({ja:{t:'保安教育の4つの種類（例★）',r:[['初期教育','仕事を始める前。新人・他の部署から来た人','#1769e0'],['定期教育','決められた周期（例：年1回）。資格を保つ全員','#2E9B5F'],['改正時の教育','基準・手順が変わったとき。その業務の担当者全員','#E08A2E'],['臨時の教育','事案・指摘のあと、脅威の水準が変わったとき','#D64545']],n:['ハンドリング会社・委託先のスタッフも、保安の手順を行う人は対象','記録は最低3年以上さかのぼれるように（例★）。年度のフォルダ・個人の台帳・期限の一覧の3つを用意する']},
+  ko:{t:'보안 교육의 네 가지 종류(예★)',r:[['초기 교육','업무 시작 전. 신입·다른 부서에서 온 사람','#1769e0'],['정기 교육','정해진 주기(예: 연 1회). 자격을 유지하는 전원','#2E9B5F'],['개정 시 교육','기준·절차가 바뀌었을 때. 그 업무 담당자 전원','#E08A2E'],['임시 교육','사안·지적 후, 위협 수준이 바뀌었을 때','#D64545']],n:['조업사·위탁처 직원도 보안 절차를 수행하는 사람은 대상','기록은 최소 3년 이상 거슬러 확인할 수 있게(예★). 연도별 폴더·개인 대장·기한 목록 세 가지를 갖춘다']},
+  en:{t:'Four kinds of security training (example ★)',r:[['Initial','Before starting work; new staff and transfers','#1769e0'],['Recurrent','At a set interval (e.g. yearly); everyone keeping the qualification','#2E9B5F'],['On change','When standards or procedures change; everyone doing that work','#E08A2E'],['Ad hoc','After an incident or finding, or when the threat level changes','#D64545']],n:['Handler and contractor staff who carry out security steps must be trained too','Keep records for at least three years (example ★): yearly folders, individual logs and an expiry list']}})[l];
+ if(!W)return F.gnd_sectr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-4 監査の流れ（例） */
+gnd_audflow:function(l){
+ var W=({ja:{t:'監査の流れ：通知から是正の報告まで（例）',st:['日程と対象の通知（予告なしの場合もある）','計画・記録の提出を求められることがある','書類の確認・現場の確認・スタッフへの質問','良い点と指摘を聞く','原因・対策・期限を決めて回答する'],who:['通知','事前の資料','当日','講評','是正の報告'],n:['1〜2か月前から教育の記録・点検表・指示の記録をそろえる','当日の質問には、知っていることを手順書に沿って答え、分からなければ確かめて答える']},
+  ko:{t:'감사의 흐름: 통지부터 시정 보고까지(예)',st:['일정과 대상 통지(예고 없는 경우도 있음)','계획·기록 제출을 요구받기도 한다','서류 확인·현장 확인·직원 질문','좋은 점과 지적을 듣는다','원인·대책·기한을 정해 회신한다'],who:['통지','사전 자료','당일','강평','시정 보고'],n:['1~2개월 전부터 교육 기록·점검표·지시 기록을 갖춘다','당일 질문에는 아는 것을 절차서에 따라 답하고, 모르면 확인해서 답한다']},
+  en:{t:'The audit: from notice to corrective-action report (example)',st:['Notice of dates and scope (sometimes unannounced)','You may be asked to submit plans and records','Document review, site checks, questions to staff','Hear the good points and the findings','Reply with causes, actions and deadlines'],who:['Notice','Advance documents','On the day','Debrief','Corrective action'],n:['Start gathering training records, checklists and instruction records one to two months ahead','On the day, answer from the procedures; if unsure, check and then answer']}})[l];
+ if(!W)return F.gnd_audflow('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#E08A2E','#2C8C8C','#2E9B5F'],'10s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 8-5 事故・インシデントの報告の流れ */
+gnd_rep:function(l){
+ var W=({ja:{t:'事故・インシデントの報告：まず安全、次に早い第一報',st:['けが人の救護、危険の除去','責任者・運航管理・本社へ（分かっていることだけで）','時刻・場所・人・状況・対応を記録','決められた期限・様式で当局へ','原因の分析と対策の共有'],who:['すぐに','早く','その場で','期限内','後日'],k:'第一報は完ぺきを待たない。分からないことは「確認中」と書く',n:['第一報に入れる5つ：いつ・どこで／何が／誰が関わったか／何をしたか／報告者','個人情報の扱いに注意し、追加の報告で情報を足していく']},
+  ko:{t:'사고·준사고 보고: 먼저 안전, 다음은 빠른 1차 보고',st:['부상자 구호, 위험 제거','책임자·운항관리·본사에(아는 것만으로)','시각·장소·사람·상황·대응을 기록','정해진 기한·양식으로 당국에','원인 분석과 대책 공유'],who:['즉시','빠르게','그 자리에서','기한 내','추후'],k:'1차 보고는 완벽을 기다리지 않는다. 모르는 것은 「확인 중」이라고 쓴다',n:['1차 보고에 넣을 다섯 가지: 언제·어디서 / 무엇이 / 누가 관련됐나 / 무엇을 했나 / 보고자','개인정보 취급에 주의하고, 추가 보고로 정보를 보탠다']},
+  en:{t:'Reporting accidents and incidents: safety first, then a fast initial report',st:['Care for the injured, remove the hazard','To the supervisor, operations control and head office, with what you know','Record times, place, people, situation and actions','To the authority by the set deadline and form','Analyse causes and share the fixes'],who:['At once','Quickly','On the spot','By the deadline','Later'],k:'Do not wait for a perfect initial report; mark unknowns as “being confirmed”',n:['Five items in an initial report: when and where / what happened / who was involved / what was done / who is reporting','Take care with personal data, and add detail in follow-up reports']}})[l];
+ if(!W)return F.gnd_rep('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#D64545','#E08A2E','#1769e0','#7A5CC7','#2E9B5F'],'10s');s+=A.s;
+ var y=A.y+16;s+=LB(320,y+FS(11)*0.6,W.k,11,'#fff','middle','#E08A2E');y+=FS(11)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 9-1 客室乗務員の主な仕事：場面ごと */
+gnd_crew:function(l){
+ var W=({ja:{t:'客室乗務員の仕事：保安要員としての役割が中心',r:[['出発前','ブリーフィング、非常用の装備と客室の点検','#5B6B7D'],['搭乗','お出迎え、手荷物の収納、非常口の座席の確認','#1769e0'],['出発','ドアの操作、安全の案内、離陸前の安全確認','#2C8C8C'],['飛行中','サービス、見回り、急病・トラブルへの対応','#2E9B5F'],['緊急時','消火、減圧への対応、緊急脱出の誘導','#D64545'],['到着','ドアの操作、特別なお客様の地上への引き継ぎ','#7A5CC7']],n:['人数は座席50席ごとに1名が基本（乗っている人数ではなく座席の数）★','乗務員が足りないと座席を減らすか運航できない。地上では座席のブロック・振り替えが必要']},
+  ko:{t:'객실승무원의 업무: 안전 요원으로서의 역할이 중심',r:[['출발 전','브리핑, 비상 장비와 객실 점검','#5B6B7D'],['탑승','영접, 수하물 수납, 비상구 좌석 확인','#1769e0'],['출발','도어 조작, 안전 안내, 이륙 전 안전 확인','#2C8C8C'],['비행 중','서비스, 순회, 급환·문제 대응','#2E9B5F'],['비상시','소화, 감압 대응, 비상 탈출 유도','#D64545'],['도착','도어 조작, 특별 승객의 지상 인계','#7A5CC7']],n:['인원은 좌석 50석마다 1명이 기본(탑승 인원이 아니라 좌석 수)★','승무원이 부족하면 좌석을 줄이거나 운항할 수 없다. 지상에서는 좌석 블록·대체 수송이 필요']},
+  en:{t:'Cabin crew work: centred on their role as safety and security staff',r:[['Before departure','Briefing; check emergency equipment and the cabin','#5B6B7D'],['Boarding','Welcome, stow bags, check exit-row seating','#1769e0'],['Departure','Doors, safety demonstration, pre-take-off checks','#2C8C8C'],['In flight','Service, cabin checks, illness and incidents','#2E9B5F'],['Emergency','Firefighting, decompression, evacuation','#D64545'],['Arrival','Doors; hand over special passengers to the ground','#7A5CC7']],n:['Crew numbers are based on one per 50 seats installed, not passengers on board ★','If short of crew, seats must be blocked or the flight cannot operate; the ground then blocks seats or rebooks']}})[l];
+ if(!W)return F.gnd_crew('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 9-2 特別なお客様の引き継ぎ（例） */
+gnd_hand:function(l){
+ var W=({ja:{t:'地上から客室へ：特別なお客様の引き継ぎ（例）',r:[['一人旅の子ども（UM）','書類と保護者の誓約書の写しを客室責任者へ。到着地で保護者を確認して引き渡す','#1769e0'],['妊娠中のお客様','週数と、必要なら診断書の確認。優先搭乗','#E08A2E'],['目の不自由なお客様と補助犬','補助犬の書類・検疫の確認、到着地の介助の手配','#2C8C8C'],['車いすのお客様','区分（WCHR・WCHS・WCHC）、機内用の車いす、到着地の手配','#7A5CC7'],['担架・酸素・医療の付き添い','MEDIFの承認、座席、到着地の救急の手配','#D64545'],['護送・強制退去（DEPU・DEPA）','当局・護送者の情報、座席、書類の受け渡し','#0f3558']],n:['非常口の座席の条件（1-5）は搭乗のときにも客室と一緒に確かめる','特別なお客様の一覧（PIL）と機内に積む書類を、ドアクローズ前に客室責任者へ渡す']},
+  ko:{t:'지상에서 객실로: 특별 승객 인계(예)',r:[['혼자 여행하는 어린이(UM)','서류와 보호자 서약서 사본을 객실 사무장에게. 도착지에서 보호자를 확인해 인도','#1769e0'],['임신 중인 승객','주수와 필요하면 진단서 확인. 우선 탑승','#E08A2E'],['시각장애 승객과 보조견','보조견 서류·검역 확인, 도착지 보조 준비','#2C8C8C'],['휠체어 승객','구분(WCHR·WCHS·WCHC), 기내용 휠체어, 도착지 준비','#7A5CC7'],['들것·산소·의료 동반','MEDIF 승인, 좌석, 도착지 구급 준비','#D64545'],['호송·강제퇴거(DEPU·DEPA)','당국·호송자 정보, 좌석, 서류 인계','#0f3558']],n:['비상구 좌석 조건(1-5)은 탑승 때도 객실과 함께 확인한다','특별 승객 목록(PIL)과 기내 탑재 서류를 도어 클로즈 전에 객실 사무장에게 건넨다']},
+  en:{t:'From ground to cabin: handing over special passengers (example)',r:[['Unaccompanied minors (UM)','Documents and a copy of the guardian’s form to the senior crew; release at arrival after checking the guardian','#1769e0'],['Pregnant passengers','Weeks and, if needed, a medical certificate; priority boarding','#E08A2E'],['Visually impaired passengers and guide dogs','Dog documents and quarantine; assistance at arrival','#2C8C8C'],['Wheelchair passengers','Code (WCHR, WCHS, WCHC), onboard wheelchair, arrival arrangements','#7A5CC7'],['Stretcher, oxygen, medical escort','MEDIF approval, seating, ambulance at arrival','#D64545'],['Escorted and deportees (DEPU, DEPA)','Authority and escort details, seats, documents','#0f3558']],n:['Check exit-row conditions (1-5) with the cabin again at boarding','Hand the special passenger list (PIL) and onboard documents to the senior crew before door close']}})[l];
+ if(!W)return F.gnd_hand('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 9-3 乗務員の勤務時間：遅れが欠航になるまで、飲酒の基準（★） */
+gnd_ftl:function(l){
+ var W=({ja:{t:'乗務員の勤務の上限：遅れが欠航になるまで',st:['天候・機材・前の便で大きく遅れる','乗務員の残り時間を運航管理と確かめる','上限を超えそうなら交代の乗務員を探す','交代できなければ、休息のあと出発するか欠航','案内・宿泊・振り替え（Part 5）'],who:['遅れ','残り時間','交代','判断','地上の対応'],k:'乗務員の時間の上限は安全の決まり。延ばすことはできない',n:['遅れが長くなりそうなら、早めに「乗務員の残り時間」を運航管理と共有する','飲酒の基準（★）：日本は血中0.2g/L・呼気0.09mg/L以上で乗務できず、乗務前8時間以内は飲酒禁止。韓国は血中0.02%以上で業務できない']},
+  ko:{t:'승무원 근무 상한: 지연이 결항이 되기까지',st:['기상·기재·앞 편 때문에 크게 지연','승무원 잔여 시간을 운항관리와 확인','상한을 넘을 것 같으면 교대 승무원을 찾는다','교대가 안 되면 휴식 후 출발하거나 결항','안내·숙박·대체 수송(Part 5)'],who:['지연','잔여 시간','교대','판단','지상 대응'],k:'승무원 시간 상한은 안전 규정. 늘릴 수 없다',n:['지연이 길어질 것 같으면 일찍 「승무원 잔여 시간」을 운항관리와 공유한다','음주 기준(★): 일본은 혈중 0.2g/L·호기 0.09mg/L 이상이면 승무 불가, 승무 전 8시간 이내 음주 금지. 한국은 혈중 0.02% 이상이면 업무 불가']},
+  en:{t:'Crew duty limits: how a delay becomes a cancellation',st:['A long delay from weather, the aircraft or the inbound','Check the crew’s remaining duty time with operations control','If the limit may be exceeded, look for replacement crew','If no replacement, depart after rest or cancel','Inform, accommodate and rebook passengers (Part 5)'],who:['Delay','Time left','Replace','Decide','Ground response'],k:'Crew duty limits are safety rules; they cannot be extended',n:['If a delay may run long, share the crew’s remaining time with operations control early','Alcohol limits (★): in Japan no duty at 0.2 g/L blood or 0.09 mg/L breath and above, no drinking within 8 hours of duty; in Korea 0.02% blood or above means unfit for duty']}})[l];
+ if(!W)return F.gnd_ftl('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#E08A2E','#1769e0','#2C8C8C','#D64545','#2E9B5F'],'10s');s+=A.s;
+ var y=A.y+16;s+=LB(320,y+FS(11)*0.6,W.k,11,'#fff','middle','#D64545');y+=FS(11)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 9-4 機内の迷惑行為：到着時の引き継ぎ */
+gnd_unruly:function(l){
+ var W=({ja:{t:'機内の迷惑行為：到着時の引き継ぎの流れ',st:['機長・客室から到着前に連絡が入る','空港の警察・保安・責任者を手配する','引き渡し。ほかのお客様の降機の順番も調整','乗務員・目撃者の証言と書類を集める','本社・当局へ報告（8-5）'],who:['機内から連絡','地上の手配','到着・引き渡し','証言と記録','報告'],n:['記録すること：いつ・誰が・誰に引き渡したか、乗務員の報告書の受け取り','搭乗前に防ぐ：酔ったお客様・暴言は、責任者・機長と相談して運送約款にもとづき搭乗をお断りする']},
+  ko:{t:'기내 난동: 도착 시 인계 흐름',st:['기장·객실에서 도착 전에 연락이 온다','공항 경찰·보안·책임자를 수배한다','인도. 다른 승객의 하기 순서도 조정','승무원·목격자 진술과 서류를 모은다','본사·당국에 보고(8-5)'],who:['기내 연락','지상 수배','도착·인도','진술과 기록','보고'],n:['기록할 것: 언제·누가·누구에게 인도했는지, 승무원 보고서 수령','탑승 전에 막는다: 만취·폭언 승객은 책임자·기장과 상의해 운송약관에 따라 탑승을 거절한다']},
+  en:{t:'Disruptive passengers: the handover on arrival',st:['The captain or cabin calls before arrival','Arrange airport police, security and a supervisor','Hand over; adjust the order in which others disembark','Collect statements from crew and witnesses, and documents','Report to head office and the authority (8-5)'],who:['Call from aircraft','Ground arrangements','Arrival and handover','Statements and records','Report'],n:['Record when, by whom and to whom the passenger was handed over, and receipt of the crew report','Prevent it before boarding: with the supervisor and captain, refuse intoxicated or abusive passengers under the conditions of carriage']}})[l];
+ if(!W)return F.gnd_unruly('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#7A5CC7','#0f3558','#D64545','#E08A2E','#2E9B5F'],'10s');s+=A.s;
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
