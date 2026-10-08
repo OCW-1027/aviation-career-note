@@ -3,7 +3,7 @@
 set("3-3",{title:"The Questions Agencies Always Ask, and How to Write a Booking and Ticketing Guideline",hl:"agency guideline",subtitle:"Forms of payment, reissue fees, refunds, voids, name corrections: prepare the answers first and put them in one guideline",
 lead:["When a new airline starts selling, agency ticketing staff always ask the same questions. If the answers are not ready, ticketing errors and refund problems follow, and relationships sour over ADMs (debit memos).","This lesson lists the questions agencies ask most, and the structure of a Japan-origin booking and ticketing guideline that answers them."],
 sections:[
-{h:"Questions agencies always ask",blocks:[{t:"table",cols:["Question","What to decide"],rows:[
+{h:"Questions agencies always ask",blocks:[{t:"fig",id:"sls_guide",cap:"Figure: questions every agency asks."},{t:"table",cols:["Question","What to decide"],rows:[
 ["Forms of payment (FOP)","Which are accepted: cash (BSP), credit cards and so on"],
 ["How reissue fees are collected","By EMD, or in the tax box"],
 ["Involuntary changes and refunds","Procedures and documents for schedule changes, illness, death"],

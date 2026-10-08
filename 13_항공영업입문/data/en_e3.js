@@ -3,7 +3,7 @@
 set("1-3",{title:"Redefining the Market: OTAs Take the Lead, and “Packages” Become Independent Travel",hl:"redefining the market",subtitle:"From agency counters to OTAs, metasearch and apps. Even when it is sold as a “package”, what customers buy is a trip they put together themselves",
 lead:["How people buy overseas travel has changed completely in ten years. Customers compare fares on their phones, book with online travel agencies (OTAs) or airline websites, and make changes themselves. In Japan much is still sold under the name “package”, but what is inside is mostly independent travel built from flights and hotels of the customer’s choosing.","This lesson looks at what has changed, the features of the Japanese market, the types of OTA, and how the airline sales role is being redefined."],
 sections:[
-{h:"What has changed",blocks:[{t:"table",cols:["","Before","Now"],rows:[
+{h:"What has changed",blocks:[{t:"fig",id:"sls_shift",cap:"Figure: how the market changed (then → now)."},{t:"table",cols:["","Before","Now"],rows:[
 ["Where people buy","Agency counters and phone","OTAs, airline websites and apps, agencies’ online stores"],
 ["Product","Escorted tours with fixed itineraries","Flights plus hotels chosen freely (free-plan and dynamic packages)"],
 ["Comparison","Brochures","Metasearch, reviews, social media"],
@@ -40,7 +40,7 @@ next:"2-1 Indirect and direct sales"});
 set("2-3",{title:"NDC and APIs: The Technology Changing How Tickets Are Sold",hl:"NDC",subtitle:"From filing fares for the GDS to calculate, to airlines building an offer on the spot and returning it — and what that means for agencies and stations",
 lead:["Lesson 2-2 introduced GDS, BSP and NDC as the infrastructure of sales. Here we look at NDC in more depth. NDC is IATA’s standard for connecting airline and seller systems through APIs, so that the airline can deliver not just a fare but seats, bags and bundles as a single offer.","This lesson explains what an API is, how NDC differs from the traditional model, where the industry stands, and the effect on agencies and stations."],
 sections:[
-{h:"First, the word API",blocks:[{t:"rows",items:[
+{h:"First, the word API",blocks:[{t:"fig",id:"sls_ndc",cap:"Figure: traditional GDS distribution versus NDC."},{t:"rows",items:[
 {name:"API (application programming interface)",x:"A defined doorway through which systems exchange information. NDC lets airlines connect directly with sellers through APIs."},
 {name:"Careful: the other API",x:"This is not the API (advance passenger information) used at borders (Course 18, lesson 4-2). In sales and distribution, API almost always means a system interface."}]}]},
 {h:"Traditional distribution versus NDC",blocks:[{t:"table",cols:["","Traditional (GDS, EDIFACT)","NDC"],rows:[

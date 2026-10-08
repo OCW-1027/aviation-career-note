@@ -4,7 +4,7 @@ set("1-1",{title:"How the Japanese Outbound Travel Market Works",hl:"the market"
 lead:["Japan’s outbound travel market divides into four: package tours put together by travel agencies, group travel for schools and companies, independent travel, and business travel. Online booking by individuals keeps growing, but for groups and packages travel agencies still carry great weight.",
 "This article covers how the market divides, what characterises each segment, and what an airline salesperson needs to hold on to."],
 sections:[
-{h:"How the market divides",blocks:[{t:"table",cols:["Segment","Character"],rows:[
+{h:"How the market divides",blocks:[{t:"fig",id:"sls_mkt",cap:"Figure: four segments of Japan’s outbound market."},{t:"table",cols:["Segment","Character"],rows:[
 ["Package tours","Agencies combine flights and hotels, buying seats in bulk"],
 ["Group travel","School trips, corporate incentive trips, study tours. Large numbers of seats secured early"],
 ["Independent travel","Airline websites, online travel agencies (OTAs) and agency counters"],
@@ -30,7 +30,7 @@ set("1-2",{title:"Demand and Seasonality on International Routes",hl:"demand",su
 lead:["A route to and from Japan carries demand in both directions: people from Japan travelling out, and people from the other country coming in. Public holidays, long weekends, school breaks, concerts and sports events in both countries, and exchange rate moves, all shift demand sharply.",
 "This article sets out what characterises the demand, the seasonal pattern, and the information you need to read it."],
 sections:[
-{h:"What characterises the demand",blocks:[{t:"check",items:[
+{h:"What characterises the demand",blocks:[{t:"fig",id:"sls_season",cap:"Figure: seasonal waves on Japan–Korea routes (example)."},{t:"check",items:[
 {name:"Two directions",x:"The strength of demand from each end differs by season, which affects seat allocation and fares."},
 {name:"Short trips",x:"Many weekend trips of two or three nights on short-haul routes."},
 {name:"Purposes",x:"Sightseeing, shopping, food, entertainment such as concerts and fan events, beauty treatments, business."},
@@ -59,7 +59,7 @@ set("2-1",{title:"Indirect and Direct Sales",hl:"indirect and direct",subtitle:"
 lead:["Ticket sales divide into indirect sales through travel agencies and direct sales through your own website, app and call centre. Direct sales carry no commission and give you the customer data; indirect sales bring demand you cannot reach alone, such as groups and packages.",
 "This article compares the two, looks at how they are used in Japan, and covers what to watch when growing direct sales."],
 sections:[
-{h:"Indirect and direct compared",blocks:[{t:"table",cols:["","Indirect (agencies)","Direct (your own)"],rows:[
+{h:"Indirect and direct compared",blocks:[{t:"fig",id:"sls_chan",cap:"Figure: indirect versus direct sales."},{t:"table",cols:["","Indirect (agencies)","Direct (your own)"],rows:[
 ["Demand reached","Groups, packages, business","Independent travellers"],
 ["Cost","Commission and incentives","Site operation, payment fees, advertising"],
 ["Customer data","Held by the agency","Held by you"],
@@ -87,7 +87,7 @@ set("2-2",{title:"GDS, BSP and NDC: The Sales Infrastructure",hl:"the sales infr
 lead:["To sell tickets, a travel agency needs a system to book in (the GDS) and a scheme to settle sales with the airline (the BSP). More recently a new standard for airlines to send their offers directly to agencies (NDC) has been spreading.",
 "This article covers what each does, and what a foreign airline prepares when it starts selling in Japan."],
 sections:[
-{h:"The three systems",blocks:[{t:"table",cols:["System","Role"],rows:[
+{h:"The three systems",blocks:[{t:"fig",id:"sls_infra",cap:"Figure: sales infrastructure: GDS, BSP and NDC."},{t:"table",cols:["System","Role"],rows:[
 ["GDS","The system agencies use to search availability and fares across many airlines and book. Load your flights and fares into the GDSs used in the market"],
 ["BSP","IATA’s settlement scheme between agencies and airlines. Agencies settle in one go and airlines receive in one go"],
 ["NDC","An IATA standard for airlines to distribute fares, seats and ancillaries together to agencies"]]}]},
@@ -112,7 +112,7 @@ set("3-1",{title:"Building Relationships with Agencies, and Seat Blocks",hl:"age
 lead:["Selling to travel agencies rests on trust with the people there. Who you need to meet depends on the purpose: air purchasing, tour planning, group sales. Running seat blocks — handing agencies seats in bulk for packages and groups — is one of the central jobs in airline sales.",
 "This article covers how to call on agencies, what material to leave, and how to think about blocks."],
 sections:[
-{h:"Who to meet",blocks:[{t:"table",cols:["Contact","What you discuss"],rows:[
+{h:"Who to meet",blocks:[{t:"fig",id:"sls_block",cap:"Figure: running group blocks."},{t:"table",cols:["Contact","What you discuss"],rows:[
 ["Air purchasing","Fares, seats and ticketing conditions"],
 ["Tour planning","New products and seasonal campaigns"],
 ["Group sales","Quotes and seats for school and incentive trips"],
@@ -140,7 +140,7 @@ set("3-2",{title:"Volume Incentives and ADMs",hl:"incentives and ADMs",subtitle:
 lead:["Airlines sometimes pay agencies that sell a lot over a period an incentive based on volume. On the other side, where an agency makes a ticketing error — the wrong fare, a rule breach — there is a mechanism to recover the difference: the agency debit memo (ADM).",
 "This article covers how to think about designing incentives, and what to watch in running ADMs. Specific terms and percentages are not covered."],
 sections:[
-{h:"Designing incentives",blocks:[{t:"check",items:[
+{h:"Designing incentives",blocks:[{t:"fig",id:"sls_adm",cap:"Figure: incentives and ADMs."},{t:"check",items:[
 {name:"Purpose",x:"Be clear whether you want to grow a particular route, season or segment, or overall revenue."},
 {name:"Tiers",x:"Set targets worth reaching, for example with rates that rise by tier."},
 {name:"Period",x:"Quarterly, half-yearly or annual, with the timing and method of settlement fixed."},
