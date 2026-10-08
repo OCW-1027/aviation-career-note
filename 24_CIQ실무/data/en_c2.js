@@ -3,7 +3,7 @@
 set("2-1",{title:"What Customs Does, and the Passenger Declaration",hl:"Customs",subtitle:"Customs looks at goods and money. A declaration is how a passenger tells the truth first",
 lead:["Customs is the agency that looks at goods and money crossing the border. At an airport, passengers’ bags, crew belongings, cargo and even the catering and duty-free goods on the aircraft all pass under its eye.","For passengers, customs is the last gate after reclaiming their bags. Fewer of them are held up there when they are told what to expect before departure and on board."],
 sections:[
-{h:"What airport customs does",blocks:[{t:"rows",items:[
+{h:"What airport customs does",blocks:[{t:"fig",id:"ciq_customs",cap:"Figure: customs on arrival."},{t:"rows",items:[
 {name:"Collects tax",x:"Duty and consumption tax on goods above the duty-free allowance."},
 {name:"Stops what may not be brought in",x:"Drugs, firearms, counterfeit goods and more, found with X-rays, detector dogs, declarations and passenger data received in advance."},
 {name:"Handles export and import formalities",x:"For cargo, goods loaded on the aircraft (aircraft stores) and unaccompanied baggage."},
@@ -66,7 +66,7 @@ next:"2-3 Declaring cash, and what cannot be brought in"});
 set("2-3",{title:"Declaring Cash, and What Cannot Be Brought In",hl:"What Cannot Be Brought In",subtitle:"Goods that are taxed, goods that need formalities, and goods that cannot come in at all",
 lead:["Tax is not the only reason passengers are stopped at customs. Some have not declared large amounts of cash. Some carry things that need a permit. Some carry things that cannot be brought in at all.","Most do so without knowing. A word at the counter or on board is the best prevention."],
 sections:[
-{h:"Declaring cash and the like",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
+{h:"Declaring cash and the like",blocks:[{t:"fig",id:"ciq_cash",cap:"Figure: declaring cash and prohibited items (Japan example)."},{t:"table",cols:["","Japan","Korea"],rows:[
 ["When a declaration is needed","When cash, cheques and similar exceed the equivalent of 1 million yen in total; gold bullion (90% purity or more) over 1 kg","When the total exceeds the equivalent of USD 10,000"],
 ["When","On both departure and arrival","On both departure and arrival"],
 ["If not declared","Liable to penalty or confiscation","Liable to penalty or confiscation"]]},

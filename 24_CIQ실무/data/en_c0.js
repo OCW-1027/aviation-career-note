@@ -65,7 +65,7 @@ next:"0-3 The airline’s responsibility: documents, returns and penalties"});
 set("0-3",{title:"The Airline’s Responsibility: Documents, Returns and Penalties",hl:"responsibility",subtitle:"The check-in counter is the first border. Carry a passenger without the right documents and the airline is responsible",
 lead:["If a passenger is refused entry on arrival, the airline that brought them must take them back to where they came from, normally at its own cost. Some countries also fine the airline for each improperly documented passenger.","That is why airlines check passports, visas and travel authorisations before boarding. It is not a courtesy; it is an obligation placed on the airline."],
 sections:[
-{h:"What to check before carrying",blocks:[{t:"table",cols:["What to check","What to look at"],rows:[
+{h:"What to check before carrying",blocks:[{t:"fig",id:"ciq_resp",cap:"Figure: what the airline checks before carrying a passenger."},{t:"table",cols:["What to check","What to look at"],rows:[
 ["Passport","That it belongs to the passenger, has enough validity (some countries require a minimum remaining period) and is not damaged"],
 ["Visa or travel authorisation","For the destination and every transit point. Requirements change with nationality and purpose"],
 ["Entry conditions","Return or onward ticket, permitted length of stay, re-entry permits and so on"],
@@ -96,7 +96,7 @@ next:"0-4 Passenger data sent in advance (API, PNR) and electronic travel author
 set("0-4",{title:"Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations",hl:"in advance",subtitle:"Border control starts before the passenger reaches the airport",
 lead:["Border checks now begin before the passenger arrives. Airlines send passport details and booking records to the destination’s authorities before departure, and the authorities assess who may enter while the flight is still to come.","More countries also require an online application before travel even from nationalities that need no visa. Japan has decided to do the same."],
 sections:[
-{h:"Data sent ahead",blocks:[{t:"table",cols:["Name","What it contains","When it is sent"],rows:[
+{h:"Data sent ahead",blocks:[{t:"fig",id:"ciq_api",cap:"Figure: passenger data sent in advance."},{t:"table",cols:["Name","What it contains","When it is sent"],rows:[
 ["API (Advance Passenger Information)","Passport details (name, nationality, passport number, date of birth) and the flight","From before departure to just after"],
 ["PNR (Passenger Name Record)","Itinerary, contact details, form of payment, travelling companions, seat and more","Several times at set points from days before departure"],
 ["iAPI (interactive API)","Data is sent at each check-in and the authorities answer “board” or “do not board” on the spot","At check-in"]]},

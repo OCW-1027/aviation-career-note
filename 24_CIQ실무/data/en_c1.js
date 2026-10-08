@@ -36,7 +36,7 @@ next:"1-2 TIMATIC: the tool for looking up entry requirements"});
 set("1-2",{title:"TIMATIC: The Tool for Looking Up Entry Requirements",hl:"TIMATIC",subtitle:"Enter nationality, destination, transit points and purpose, and read the answer to the end",
 lead:["Nobody can memorise the entry requirements of nearly two hundred countries and territories, and they change almost daily. So airlines use a shared database called TIMATIC.","A tool only helps when used correctly. Change one input and the answer changes."],
 sections:[
-{h:"What TIMATIC is",blocks:[{t:"rows",items:[
+{h:"What TIMATIC is",blocks:[{t:"fig",id:"ciq_timatic",cap:"Figure: checking entry rules in TIMATIC."},{t:"rows",items:[
 {name:"Who produces it",x:"The International Air Transport Association (IATA). It holds each country’s passport, visa and health requirements and is updated from information supplied by authorities and airlines."},
 {name:"Where it is used",x:"From the check-in system. Some systems check requirements automatically when the passport is scanned."},
 {name:"For passengers",x:"Airline websites offer a checking tool based on the same information. Use it when advising at booking."}]}]},
@@ -106,7 +106,7 @@ next:"1-4 Refusal of entry and removal in practice"});
 set("1-4",{title:"Refusal of Entry and Removal in Practice",hl:"Refusal of Entry",subtitle:"A passenger refused on arrival is taken back by the airline that brought them",
 lead:["However carefully you check, some passengers will still be refused entry. Even with complete documents, a passenger can be refused for answers given at immigration or for past records.","What does the airline do then? This lesson looks at both the station at the destination and the station that sent the passenger."],
 sections:[
-{h:"The main reasons for refusal",blocks:[{t:"table",cols:["Reason","Example"],rows:[
+{h:"The main reasons for refusal",blocks:[{t:"fig",id:"ciq_inad",cap:"Figure: when a passenger is refused entry."},{t:"table",cols:["Reason","Example"],rows:[
 ["Missing documents","No visa or travel authorisation, too little passport validity, no return ticket"],
 ["Purpose does not match","Entering as a visitor but intending to work; unable to explain where they will stay or their plans"],
 ["Insufficient funds","Cannot show money or a means of payment"],

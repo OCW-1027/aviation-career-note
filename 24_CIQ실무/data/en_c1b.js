@@ -3,7 +3,7 @@
 set("1-5",{title:"Transit Without a Visa: “I’m Not Entering” Is Not Enough",hl:"Transit",subtitle:"Transit points have requirements too. This is where most misses happen",
 lead:["“I’m only changing planes; I’m not entering the country.” Passengers say this, but it does not mean they need no visa or travel authorisation. Some countries make every transfer passenger enter, and some require a transit visa from certain nationalities.","Many of the cases where boarding has to be refused for missing documents come not from the final destination but from a missed requirement at the transit point."],
 sections:[
-{h:"Three kinds of transit",blocks:[{t:"table",cols:["Kind","What it means","What is needed"],rows:[
+{h:"Three kinds of transit",blocks:[{t:"fig",id:"ciq_transit",cap:"Figure: three kinds of transit."},{t:"table",cols:["Kind","What it means","What is needed"],rows:[
 ["Transit without entering","Staying in the transit area and boarding the next flight without passing immigration","In many countries no visa is needed. But some require a transit visa from certain nationalities ★"],
 ["Transit with entry","Changing airport or terminal, reclaiming and re-checking bags, or staying overnight","The country’s entry requirements apply in full"],
 ["Immigration for every transfer passenger","The United States, Canada and others","A visa or electronic travel authorisation"]]}]},
@@ -34,7 +34,7 @@ next:"1-6 Crew immigration"});
 set("1-6",{title:"Crew Immigration",hl:"Crew",subtitle:"Crew cross borders too. There are separate procedures for short stays",
 lead:["Pilots and cabin crew cross a border on every flight. Like passengers, they are subject to immigration, customs and quarantine.","But because they arrive and leave again on the next flight, many countries have a simpler procedure for crew. The station’s role is to support it."],
 sections:[
-{h:"How crew procedures work",blocks:[{t:"rows",items:[
+{h:"How crew procedures work",blocks:[{t:"fig",id:"ciq_crew",cap:"Figure: crew documents for entry and exit."},{t:"rows",items:[
 {name:"Crew are subject to the same controls",x:"They carry passports and pass immigration, customs and quarantine. Many airports have a dedicated lane."},
 {name:"A short stay is assumed",x:"On the assumption that they leave on their next duty flight, some countries grant a permit in place of a visa."},
 {name:"The list is what counts",x:"Crew are notified to the authorities in advance on a list for each flight. Anyone not on it is not treated as crew."}]}]},
@@ -64,7 +64,7 @@ next:"1-7 Immigration control in Japan and Korea"});
 set("1-7",{title:"Immigration Control in Japan and Korea",hl:"Immigration Control",subtitle:"Visitors and residents. Both are foreign nationals, but what is checked differs",
 lead:["Flights between Japan and Korea carry not only visitors but many people who live in the other country. Visitors are affected by visas and travel authorisations; residents by their status of residence and the rules on re-entry.","Putting the two countries side by side shows what to confirm at the counter."],
 sections:[
-{h:"When a visitor enters",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
+{h:"When a visitor enters",blocks:[{t:"fig",id:"ciq_jpkr",cap:"Figure: visitors entering Japan and Korea."},{t:"table",cols:["","Japan","Korea"],rows:[
 ["What is submitted","Passport and disembarkation card (paper or Visit Japan Web)","Passport and arrival card (the e-Arrival Card began on 24 February 2025; it can be submitted from three days before arrival and is free)"],
 ["Face and fingerprints","In principle a photograph and fingerprints are given (some people are exempt)","In principle face and fingerprints are given (some people are exempt) ★"],
 ["Electronic travel authorisation","JESTA (targeted for fiscal 2028)","K-ETA (22 countries and territories including Japan are exempt until 31 December 2026)"],
