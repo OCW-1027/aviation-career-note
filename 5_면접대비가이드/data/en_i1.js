@@ -4,7 +4,7 @@ set("1-1",{title:"What the Interviewer Is Looking For",hl:"the interviewer’s v
 lead:["In an airport ground staff interview, the interviewer is not judging how smoothly you talk. They are asking whether you can be put in front of passengers, whether you will stay calm on a disrupted day, and whether you will last as part of the team.",
 "Drawing on experience on the hiring side of the table, this article sets out the five things an interviewer wants to confirm, where candidates are separated, and the mistakes candidates make most often."],
 sections:[
-{h:"Five things the interviewer wants to confirm",blocks:[{t:"table",cols:["Aspect","What they want to know"],rows:[
+{h:"Five things the interviewer wants to confirm",blocks:[{t:"fig",id:"int_look",cap:"Figure: five things interviewers want to confirm."},{t:"table",cols:["Aspect","What they want to know"],rows:[
 ["Keeping the rules","When a rule and a passenger’s wish collide, can you hold the rule and still explain it kindly?"],
 ["Service attitude","Can you face a distressed or angry passenger calmly?"],
 ["Teamwork","In a small team, do you report, ask for advice and help others?"],
@@ -32,7 +32,7 @@ set("1-2",{title:"How the Jobs Differ: Airlines, Handling Companies and Foreign 
 lead:["The companies working at an airport include airlines themselves, airline group companies, independent handling companies and the Japan stations of foreign airlines. The scope of the work differs, and so do the points interviewers stress.",
 "This article compares, for each type of company, the character of the work, what the interview stresses and how to prepare (for the types of company, see also Ground Staff 0-2)."],
 sections:[
-{h:"Types of company and what the interview stresses",blocks:[{t:"table",cols:["Company","Character of the work","What the interview stresses"],rows:[
+{h:"Types of company and what the interview stresses",blocks:[{t:"fig",id:"int_types",cap:"Figure: types of employer and interview focus (example)."},{t:"table",cols:["Company","Character of the work","What the interview stresses"],rows:[
 ["Airline group companies","Passenger and ramp work for the parent airline and contracted airlines. Regular graduate intakes","Service basics, teamwork, intention to stay"],
 ["Independent handling companies","Contracted work for several foreign airlines, each with different procedures","Flexibility, ability to learn, languages"],
 ["Japan stations of foreign airlines","A small team managing and coordinating; the bridge between head office, the authorities and the handler","Head office language, judgment, writing, sense of responsibility"],
@@ -59,7 +59,7 @@ set("1-3",{title:"Writing a Japanese-style CV and Career Summary",hl:"applicatio
 lead:["Japanese employers usually ask for two documents: the rirekisho, a CV in a fixed format with your basic details, and the shokumu keirekisho, a free-form summary of your experience and achievements. The conventions differ from those in many other countries, so it matters to follow the Japanese style.",
 "This article covers the difference between the two, how to write them, how to present achievements for airport work, and the common mistakes."],
 sections:[
-{h:"The two documents",blocks:[{t:"table",cols:["Document","Content","Points"],rows:[
+{h:"The two documents",blocks:[{t:"fig",id:"int_cv",cap:"Figure: rirekisho versus career summary."},{t:"table",cols:["Document","Content","Points"],rows:[
 ["Rirekisho (CV)","Name, contact details, education, employment, qualifications, motivation. A fixed format","Use either the Japanese era or Western years consistently. Follow the photo rules. Typos are fatal"],
 ["Shokumu keirekisho (career summary)","What you did, what you achieved and what you learned. One or two A4 pages","Chronological or by function. Specific, with numbers"]]}]},
 {h:"Writing the career summary",blocks:[{t:"ladder",rise:10,steps:[{name:"Summary",sub:"Three or four lines on your whole career"},{name:"Employment",sub:"Company, dates, department, role"},{name:"Duties",sub:"What you did, specifically"},{name:"Achievements",sub:"Numbers and what you changed"},{name:"Qualifications and languages",sub:"Test scores and completed training"}]},
@@ -84,7 +84,7 @@ set("2-1",{title:"Self-introduction and Motivation",hl:"self-introduction and mo
 lead:["Every interview opens with a self-introduction and your reasons for applying. If these are well structured, you will answer the questions that follow more calmly too.",
 "This article covers how to build a one-minute self-introduction, the three elements of a good motivation, examples that suit airport work, and the common mistakes."],
 sections:[
-{h:"A one-minute self-introduction",blocks:[{t:"ladder",rise:10,steps:[{name:"Name and greeting",sub:"5 seconds"},{name:"Where you are now",sub:"Student, current job, years of experience"},{name:"One strength",sub:"With a specific situation"},{name:"The link to this job",sub:"How you would use it"},{name:"Close",sub:"Thank you, I look forward to this"}]},
+{h:"A one-minute self-introduction",blocks:[{t:"fig",id:"int_intro",cap:"Figure: a one-minute self-introduction."},{t:"ladder",rise:10,steps:[{name:"Name and greeting",sub:"5 seconds"},{name:"Where you are now",sub:"Student, current job, years of experience"},{name:"One strength",sub:"With a specific situation"},{name:"The link to this job",sub:"How you would use it"},{name:"Close",sub:"Thank you, I look forward to this"}]},
 {t:"point",x:"Pick one strength. One told through a situation stays with the interviewer longer than three in a list."}]},
 {h:"Three elements of motivation",blocks:[{t:"table",cols:["Element","The question","Example"],rows:[
 ["Why airport work","Why it has to be this job","I want to use my service experience supporting the start and end of people’s journeys"],

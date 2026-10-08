@@ -4,7 +4,7 @@ set("2-2",{title:"Thirty Common Questions",hl:"common questions",subtitle:"Under
 lead:["Here are the questions most often asked in airport ground staff interviews, thirty of them in six themes. What matters is not memorising model answers but understanding what the interviewer wants to find out with each question — its intent — and answering from your own experience.",
 "The basic shape of an answer is conclusion, then reason or situation, then result or lesson, in about a minute."],
 sections:[
-{h:"About you (5)",blocks:[{t:"table",cols:["Question","What the interviewer wants to know"],rows:[
+{h:"About you (5)",blocks:[{t:"fig",id:"int_q30",cap:"Figure: common question areas and intent."},{t:"table",cols:["Question","What the interviewer wants to know"],rows:[
 ["Please introduce yourself","How you structure what you say; first impression"],
 ["What are your strengths and weaknesses?","Whether you see yourself objectively, and how you manage the weakness"],
 ["How do others describe you?","Your role within a team"],
@@ -52,7 +52,7 @@ set("2-3",{title:"Situational Questions: What Would You Do If…",hl:"situationa
 lead:["Airport interviews often ask about specific situations: “A passenger says, just before departure, that they have forgotten their passport. What do you do?” These are designed so that you can answer without experience, and the interviewer is watching the order of your thinking and your priorities more than the content.",
 "This article gives a pattern for answering situational questions and the thinking behind eight typical situations."],
 sections:[
-{h:"The pattern: safety, rules, passenger, report",blocks:[{t:"ladder",rise:10,steps:[{name:"Safety",sub:"Is there any danger?"},{name:"Rules",sub:"What must be followed?"},{name:"The passenger",sub:"Acknowledge their feelings and look for what you can do"},{name:"Report and consult",sub:"Do not decide alone"},{name:"Record",sub:"Use it next time"}]},
+{h:"The pattern: safety, rules, passenger, report",blocks:[{t:"fig",id:"int_order",cap:"Figure: a shape for situational answers."},{t:"ladder",rise:10,steps:[{name:"Safety",sub:"Is there any danger?"},{name:"Rules",sub:"What must be followed?"},{name:"The passenger",sub:"Acknowledge their feelings and look for what you can do"},{name:"Report and consult",sub:"Do not decide alone"},{name:"Record",sub:"Use it next time"}]},
 {t:"point",x:"“I would report to my supervisor and confirm the rule first” scores far higher at an airport than “I would sort it out myself”."}]},
 {h:"Typical situations and how to think about them",blocks:[{t:"table",cols:["Situation","How to think about it"],rows:[
 ["A passenger arrives after the cut-off and insists on boarding","Explain the rule kindly, look together for the next flight or another option, and tell your supervisor"],
@@ -78,7 +78,7 @@ set("2-4",{title:"Language Interviews",hl:"language interviews",subtitle:"Not yo
 lead:["Airport interviews often test language in real situations: “Please say this announcement in English,” or “Explain this to a passenger in your other language.” Your test scores are already on your application; the interview asks whether you can use the language on the job.",
 "This article covers the formats, the situations that come up, and how to prepare. The Airport Announcements phrasebook is useful for practice."],
 sections:[
-{h:"Common formats",blocks:[{t:"table",cols:["Format","What it involves"],rows:[
+{h:"Common formats",blocks:[{t:"fig",id:"int_lang",cap:"Figure: common language interview formats."},{t:"table",cols:["Format","What it involves"],rows:[
 ["Role-play","The interviewer plays a passenger; you handle check-in or explain a delay in the other language"],
 ["Reading an announcement","Read a given text, or translate a Japanese text and read it"],
 ["Questions in another language","Self-introduction or motivation in English or another language"],
@@ -105,7 +105,7 @@ set("2-5",{title:"Preparing for an Online Interview",hl:"online interviews",subt
 lead:["When you apply for airport work in Japan from abroad, the first interview is often online. Even through a screen, your appearance, language and punctuality are judged just as they would be in person.",
 "This article covers preparing your equipment and setting, the flow on the day, how to come across well on screen, and what to do when something goes wrong."],
 sections:[
-{h:"Before the day",blocks:[{t:"check",items:[
+{h:"Before the day",blocks:[{t:"fig",id:"int_online",cap:"Figure: online interview day sequence."},{t:"check",items:[
 {name:"Time zone",x:"Confirm whether the time given is Japan time, and work out the difference from where you are."},
 {name:"Equipment",x:"A computer is best; if you use a phone, fix it in place. Test the camera, microphone and earphones."},
 {name:"Connection",x:"A stable line, wired if possible, with phone tethering as a backup."},

@@ -1472,7 +1472,56 @@ mnt_cond:function(l){
   ko:{t:'비정기 점검: 무엇이 일어나면 어디를 보나(예)',r:[['낙뢰','전류가 들어오고 나간 곳의 탄 자국·정전기 방전기','#7A5CC7'],['조류 충돌','부딪힌 곳·엔진 내부','#D64545'],['하드 랜딩','랜딩기어·기어 장착부·동체와 날개 구조','#E08A2E'],['최대 착륙 중량 초과 착륙','랜딩기어와 구조(착륙 강도도 확인)','#1769e0'],['심한 난기류','구조·장착부·객실','#2C8C8C']],n:['낙뢰는 여객기 1대에 연 1회 정도(약 1,000비행시간에 1회라는 추정)','일본의 조류 충돌은 2025년 1,729건(잠정치). 가장 많은 곳은 하네다★']},
   en:{t:'Unscheduled inspections: what happened, where to look (example)',r:[['Lightning strike','Entry and exit burn marks, static wicks','#7A5CC7'],['Bird strike','Impact area, engine internals','#D64545'],['Hard landing','Landing gear, gear attachments, fuselage and wing structure','#E08A2E'],['Overweight landing','Gear and structure (also check landing severity)','#1769e0'],['Severe turbulence','Structure, attachments, cabin','#2C8C8C']],n:['Each airliner is struck by lightning about once a year (estimated once per ~1,000 flight hours)','Japan recorded 1,729 bird strikes in 2025 (preliminary); Haneda had the most ★']}})[l];
  if(!W)return F.mnt_cond('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 面接対策（INT）Part 1〜2 の図 2026.10 ===== */
+int_look:function(l){
+ var W=({ja:{t:'面接官が確かめたい5つのこと',r:[['規則を守る力','規則を守りつつ丁寧に説明できるか','#1769e0'],['接客の姿勢','怒っているお客様に落ち着いて向き合えるか','#2C8C8C'],['チームワーク','報告・相談ができ、周りを助けられるか','#E08A2E'],['変化への強さ','早朝・深夜・急な変更に対応できるか','#7A5CC7'],['続ける意思','長く働く気持ちと条件があるか','#D64545']],n:['「得意です」ではなく、場面→考え→行動→結果の順に話す','「お客様のためなら規則を曲げます」は、空港では危険な答え']},
+  ko:{t:'면접관이 확인하려는 5가지',r:[['규칙을 지키는 힘','규칙을 지키면서 정중하게 설명할 수 있나','#1769e0'],['접객 자세','화난 승객을 마주해 침착할 수 있나','#2C8C8C'],['팀워크','보고·상담을 하고 주위를 도울 수 있나','#E08A2E'],['변화에 강한 힘','이른 아침·심야·급한 변경에 대응할 수 있나','#7A5CC7'],['계속할 의지','오래 일할 마음과 조건이 있나','#D64545']],n:['「잘합니다」가 아니라 장면→생각→행동→결과 순서로 말한다','「승객을 위해서라면 규칙을 굽히겠습니다」는 공항에서는 위험한 답']},
+  en:{t:'Five things interviewers want to confirm',r:[['Following rules','Can you keep the rules and still explain kindly?','#1769e0'],['Service attitude','Can you stay calm with an angry passenger?','#2C8C8C'],['Teamwork','Do you report, consult and help others?','#E08A2E'],['Coping with change','Early starts, nights, sudden changes','#7A5CC7'],['Commitment','Do you intend and are you able to stay?','#D64545']],n:['Not “I’m good at it”: tell the situation, your thinking, your action and the result','“I would bend the rules for a passenger” is a dangerous answer at an airport']}})[l];
+ if(!W)return F.int_look('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+int_types:function(l){
+ var W=({ja:{t:'会社の種類と面接で重視されること（例）',r:[['航空会社のグループ会社','基本の接客・チームワーク・長く働く意思','#1769e0'],['独立系のハンドリング会社','柔軟さ・覚える力・語学','#2C8C8C'],['外国航空会社の日本支店','本社の言葉・判断力・管理の視点','#E08A2E'],['空港会社・関連会社','公共性・正確さ','#7A5CC7']],n:['自分の経験を、その会社の仕事の言葉で説明し直す','支店の総括は「作業する」より「正しく行われたか確かめる」力']},
+  ko:{t:'회사 종류와 면접에서 중시하는 것(예)',r:[['항공사 그룹사','기본 접객·팀워크·오래 일할 의지','#1769e0'],['독립계 조업사','유연성·익히는 힘·어학','#2C8C8C'],['외국 항공사 일본 지점','본사의 언어·판단력·관리 관점','#E08A2E'],['공항 회사·관련 회사','공공성·정확성','#7A5CC7']],n:['자신의 경험을 그 회사의 업무 언어로 다시 설명한다','지점의 총괄은 「작업하는」 힘보다 「제대로 됐는지 확인하는」 힘']},
+  en:{t:'Types of employer and what interviews stress (example)',r:[['Airline group handling firms','Core service, teamwork, staying long','#1769e0'],['Independent handlers','Flexibility, learning fast, languages','#2C8C8C'],['Foreign airline stations in Japan','Head-office language, judgement, oversight','#E08A2E'],['Airport companies','Public service, accuracy','#7A5CC7']],n:['Re-describe your experience in the language of that employer’s work','Station leads need to check work is done right, more than to do it']}})[l];
+ if(!W)return F.int_types('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+int_cv:function(l){
+ var W=({ja:{t:'履歴書と職務経歴書の違い',c:[['履歴書','決まった様式。氏名・学歴・職歴・資格・志望動機。年月の書き方を統一'],['職務経歴書','A4で1〜2枚。仕事の内容・実績・身につけた力を数字で']],n:['職務経歴書の順番：要約→職歴→業務内容→実績→資格・語学','会社ごとに志望動機と強調点を変える。直訳の表現は見直す']},
+  ko:{t:'이력서(履歴書)와 경력기술서(職務経歴書)의 차이',c:[['이력서','정해진 양식. 이름·학력·경력·자격·지원 동기. 연월 표기를 통일'],['경력기술서','A4 1~2장. 업무 내용·실적·익힌 힘을 숫자로']],n:['경력기술서 순서: 요약→경력→업무 내용→실적→자격·어학','회사마다 지원 동기와 강조점을 바꾼다. 직역 표현은 다시 본다']},
+  en:{t:'Japanese résumé (rirekisho) versus career summary (shokumu keirekisho)',c:[['Rirekisho','A fixed form: name, education, jobs, qualifications, motivation. Keep date styles consistent'],['Shokumu keirekisho','One or two A4 pages on duties, results and skills, with numbers']],n:['Career summary order: summary, employers, duties, results, qualifications and languages','Tailor motivation and emphasis to each company; rewrite literal translations']}})[l];
+ if(!W)return F.int_cv('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_intro:function(l){
+ var W=({ja:{t:'1分の自己紹介の組み立て',st:['名前とあいさつ（5秒）','今の立場：学生・現職・経験年数','強みを1つ、具体的な場面とともに','その強みをこの仕事でどう生かすか','締め：よろしくお願いいたします'],who:['あいさつ','立場','強み','つながり','締め'],n:['志望動機の3つの要素：なぜ空港の仕事か・なぜこの会社か・入社後に何をしたいか','暗記の棒読みは伝わらない。要点だけ覚えて自分の言葉で']},
+  ko:{t:'1분 자기소개의 구성',st:['이름과 인사(5초)','지금의 입장: 학생·현직·경력 연수','강점 하나를 구체적인 장면과 함께','그 강점을 이 일에서 어떻게 살릴지','마무리: 잘 부탁드립니다'],who:['인사','입장','강점','연결','마무리'],n:['지원 동기의 3요소: 왜 공항 일인가·왜 이 회사인가·입사 후 무엇을 하고 싶은가','외운 문장을 읽듯이 말하면 전달되지 않는다. 요점만 외워 내 말로']},
+  en:{t:'A one-minute self-introduction',st:['Name and greeting (5 seconds)','Where you are now: student, employed, years of experience','One strength, with a concrete situation','How that strength fits this job','Close: thank you for your time'],who:['Greet','Now','Strength','Fit','Close'],n:['Three parts of a motivation: why airports, why this company, what you will do after joining','Reciting a memorised text does not land; remember the points, use your own words']}})[l];
+ if(!W)return F.int_intro('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_q30:function(l){
+ var W=({ja:{t:'よく聞かれる質問の分野と面接官の意図',r:[['自分について','自分を客観的に見られるか','#1769e0'],['志望について','仕事と会社を理解しているか','#2C8C8C'],['接客・クレーム','落ち着き・傾聴・解決の手順','#E08A2E'],['チーム・規則','報告の習慣・規則を守る勇気','#7A5CC7']],n:['1つの答えは1分程度。結論から話す','「他社も受けていますか」は正直に、志望の軸を一貫させる']},
+  ko:{t:'자주 나오는 질문의 분야와 면접관의 의도',r:[['자신에 대해','자신을 객관적으로 볼 수 있나','#1769e0'],['지원에 대해','일과 회사를 이해하고 있나','#2C8C8C'],['접객·클레임','침착함·경청·해결 절차','#E08A2E'],['팀·규칙','보고 습관·규칙을 지키는 용기','#7A5CC7']],n:['한 답변은 1분 정도. 결론부터 말한다','「다른 회사도 지원했나요」는 솔직하게, 지원의 축을 일관되게']},
+  en:{t:'Common question areas and what interviewers want',r:[['About you','Can you see yourself objectively?','#1769e0'],['Your motivation','Do you understand the job and company?','#2C8C8C'],['Service and complaints','Calm, listening, a way to resolve','#E08A2E'],['Team and rules','Reporting habits, courage to keep rules','#7A5CC7']],n:['Keep each answer to about a minute and lead with the conclusion','“Are you applying elsewhere?” Answer honestly and keep your motivation consistent']}})[l];
+ if(!W)return F.int_q30('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+int_order:function(l){
+ var W=({ja:{t:'場面の質問の答えの型',st:['危険はないかをまず確かめる','守るべき決まりは何か','気持ちに寄り添い、できることを探す','一人で判断しない。上席に報告・相談','記録を残し、次に生かす'],who:['安全','規則','お客様','報告・相談','記録'],n:['規則の細部は断定しない。「会社の規定を確認して」と答える','お客様を悪者にしない。気持ちを受け止めてから事実と選択肢を示す']},
+  ko:{t:'상황 질문의 답변 틀',st:['위험은 없는지 먼저 확인한다','지켜야 할 규칙은 무엇인가','마음에 공감하고 할 수 있는 것을 찾는다','혼자 판단하지 않는다. 상사에게 보고·상담','기록을 남겨 다음에 살린다'],who:['안전','규칙','승객','보고·상담','기록'],n:['규칙의 세부는 단정하지 않는다. 「회사 규정을 확인해서」라고 답한다','승객을 나쁜 사람으로 만들지 않는다. 마음을 받아들인 뒤 사실과 선택지를 보여 준다']},
+  en:{t:'A shape for situational answers',st:['First check whether anyone is in danger','Which rule applies?','Acknowledge feelings and look for what you can do','Do not decide alone: report to and consult your supervisor','Record it and learn for next time'],who:['Safety','Rules','Passenger','Report','Record'],n:['Do not state rule details as fact; say you would check the company rules','Never cast the passenger as the villain; acknowledge feelings, then give facts and options']}})[l];
+ if(!W)return F.int_order('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#D64545','#1769e0','#2C8C8C','#E08A2E','#5B6B7D'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_lang:function(l){
+ var W=({ja:{t:'語学の面接のよくある形式',r:[['ロールプレイ','面接官がお客様役。チェックイン・遅延の説明','#1769e0'],['アナウンス','渡された文を読む・訳して読む','#2C8C8C'],['外国語での質疑','自己紹介・志望動機を英語・韓国語で','#E08A2E'],['敬語の確認','接客の敬語が自然に使えるか','#7A5CC7']],n:['便名・時刻・ゲート・重量を、使う言葉ですぐに言えるように','聞き取れないときは、丁寧に聞き返す一言を用意する']},
+  ko:{t:'어학 면접의 흔한 형식',r:[['롤플레이','면접관이 승객 역. 체크인·지연 설명','#1769e0'],['안내 방송','받은 문장을 읽거나 번역해 읽는다','#2C8C8C'],['외국어 질의응답','자기소개·지원 동기를 영어·한국어로','#E08A2E'],['경어 확인','접객 경어를 자연스럽게 쓸 수 있나','#7A5CC7']],n:['편명·시각·게이트·중량을 쓰는 언어로 바로 말할 수 있게','알아듣지 못했을 때 정중하게 되묻는 한마디를 준비한다']},
+  en:{t:'Common formats for language interviews',r:[['Role play','Interviewer plays a passenger: check-in, delays','#1769e0'],['Announcements','Read a script, or translate and read','#2C8C8C'],['Q&A in a foreign language','Self-introduction and motivation','#E08A2E'],['Honorifics check','Natural polite Japanese for service','#7A5CC7']],n:['Be able to say flight numbers, times, gates and weights instantly in each language','Have a polite phrase ready for asking someone to repeat']}})[l];
+ if(!W)return F.int_lang('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+int_online:function(l){
+ var W=({ja:{t:'オンライン面接の当日の流れ',st:['接続テストと身だしなみ','入室して待つ','画面に向かって一礼','話すときはカメラを見る','お礼を言い、相手が切ってから退出'],who:['10分前','5分前','あいさつ','面接','退室'],n:['切れたらすぐに入り直す。入れなければ事前に聞いた連絡先へ','案内の時刻が日本時間かを必ず確かめる']},
+  ko:{t:'온라인 면접 당일의 흐름',st:['접속 테스트와 복장 정돈','입장해 기다린다','화면을 향해 인사','말할 때는 카메라를 본다','감사 인사를 하고 상대가 끊은 뒤 퇴장'],who:['10분 전','5분 전','인사','면접','퇴장'],n:['끊기면 바로 다시 들어간다. 안 되면 미리 받은 연락처로','안내 시각이 일본 시간인지 꼭 확인한다']},
+  en:{t:'Online interview day: the sequence',st:['Test the connection and check your appearance','Join and wait','Bow towards the screen','Look at the camera when you speak','Thank them and leave after they end the call'],who:['−10 min','−5 min','Greet','Interview','Leave'],n:['If disconnected, rejoin at once; if you cannot, use the contact you noted beforehand','Confirm whether the stated time is Japan time']}})[l];
+ if(!W)return F.int_online('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
