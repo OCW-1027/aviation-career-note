@@ -822,7 +822,128 @@ sls_direct:function(l){
   en:{t:'How to inform direct customers (example)',st:['Everyone on affected flights, in the language they booked in','Same content in the news section and on social media, with update times','Open self-service changes and refunds that match the conditions','Add staff and hours; give waiting times and offer call-backs','Align with what the airport and agencies are told','List bounced emails and missing contacts; follow up by phone or at the airport'],who:['Mass notice','Website and social','Self-service','Call centre','Align content','Not reached'],n:['Contact corporate clients, elite members, connecting and special-service customers individually','Compensation depends on the cause: do not promise on the spot; explain the standards and where to apply']}})[l];
  if(!W)return F.sls_direct('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#E08A2E','#2C8C8C','#1769e0','#7A5CC7','#0f3558','#D64545'],'12s');s+=A.s;
- var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)}
+ var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 0-1 空港を動かす3つの主体（元の単独ページのタップ式の図を、動く図に） 2026.10 */
+gnd_3p:function(l){
+ var W=({ja:{t:'1便の出発を動かす3つの主体',c:[['航空会社','運航の責任者。誰をどのルールで運ぶかを決める（本社＋空港支店）'],['グランドハンドリング会社','現場の実行者。カウンター・ゲート・ランプ・貨物を委託で担う'],['空港と行政機関','舞台とルール。空港運営会社・CIQ・航空当局']],g:'1便の出発',n:['航空会社 ⇄ ハンドリング会社：委託契約（SGHA）とサービス水準（SLA）','ハンドリング会社 ⇄ 空港・行政機関：現場での連携（施設・保安・CIQ）','航空会社 ⇄ 空港・行政機関：許可・届け出・施設の使用']},
+  ko:{t:'한 편의 출발을 움직이는 세 주체',c:[['항공사','운항의 책임자. 누구를 어떤 규칙으로 태울지 정한다(본사+공항 지점)'],['조업사','현장의 실행자. 카운터·게이트·램프·화물을 위탁받아 맡는다'],['공항과 행정기관','무대와 규칙. 공항 운영사·CIQ·항공 당국']],g:'한 편의 출발',n:['항공사 ⇄ 조업사: 위탁 계약(SGHA)과 서비스 수준(SLA)','조업사 ⇄ 공항·행정기관: 현장에서의 연계(시설·보안·CIQ)','항공사 ⇄ 공항·행정기관: 허가·신고·시설 사용']},
+  en:{t:'The three players behind one departure',c:[['Airline','Responsible for the flight: decides who flies and under which rules (head office and station)'],['Ground handling company','Does the work on the ground under contract: counters, gates, ramp and cargo'],['Airport and authorities','The stage and the rules: airport operator, CIQ and the aviation authority']],g:'One departure',n:['Airline ⇄ handler: the handling contract (SGHA) and service levels (SLA)','Handler ⇄ airport and authorities: day-to-day coordination (facilities, security, CIQ)','Airline ⇄ airport and authorities: permits, filings and use of facilities']}})[l];
+ if(!W)return F.gnd_3p('ja');setK(1);
+ var T=TOP(W.t),s=T.s,y=T.y;s+=LB(320,y+FS(12)*0.6,W.g,12,'#fff','middle','#0f3558');y+=FS(12)*1.3+22;
+ var C=ZCARDS(y,W.c,['#1769e0','#2C8C8C','#7A5CC7']);s+=C.s;
+ var L=LIST(W.n,C.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 0-2 航空会社の社員とハンドリング会社の社員 */
+gnd_staff:function(l){
+ var W=({ja:{t:'同じカウンターでも、所属が違えば仕事が違う',c:[['航空会社の支店社員','現場の管理・調整、行政対応、品質管理。自社便だけを担当し、1人の守備範囲が広い。採用は少なく欠員補充が中心'],['ハンドリング会社の社員','チェックイン・ゲート・ランプ・貨物の実務。契約する複数の航空会社を担当し、部門ごとに専門的。新卒・中途の定期採用が多い']],g:'求人では「どこに所属し、どの航空会社の業務か」を確かめる',n:['ハンドリング会社で実務を積み、航空会社の支店へ移る道もある（7-4）']},
+  ko:{t:'같은 카운터라도 소속이 다르면 일이 다르다',c:[['항공사 지점 직원','현장 관리·조정, 행정 대응, 품질 관리. 자사 편만 맡고 한 사람의 담당 범위가 넓다. 채용은 적고 결원 보충 중심'],['조업사 직원','체크인·게이트·램프·화물 실무. 계약한 여러 항공사를 맡고 부문별로 전문적. 신입·경력 정기 채용이 많다']],g:'채용 공고에서는 「어디 소속이고 어느 항공사 업무인지」를 확인한다',n:['조업사에서 실무를 쌓아 항공사 지점으로 옮기는 길도 있다(7-4)']},
+  en:{t:'Same counter, different employer, different job',c:[['Airline station staff','Supervision and coordination, dealing with authorities, quality. Only their own airline; each person covers a wide range. Few vacancies, mostly replacements'],['Ground handling staff','Hands-on check-in, gate, ramp and cargo work for several contracted airlines; specialised by department. Regular graduate and mid-career hiring']],g:'In job listings, check who employs you and which airlines you will work for',n:['Many build experience at a handler and later move to an airline station (7-4)']}})[l];
+ if(!W)return F.gnd_staff('ja');setK(1);
+ var T=TOP(W.t),s=T.s,C=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C']);s+=C.s;var y=C.y;
+ s+=LB(320,y+FS(10)*0.6,W.g,10,'#fff','middle','#7A5CC7');y+=FS(10)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+
+/* 0-4 日本の空港と韓国（海外）の空港 */
+gnd_jpkr:function(l){
+ var W=({ja:{t:'空港の運営のしかた：日本と韓国（例）',c:[['日本','国際拠点は羽田・成田・関西・中部など複数。運営主体は空港ごとに違い、民間への運営委託も広がる。成田などは運用時間に制限'],['韓国','国際線は仁川に大きく集中。仁川は仁川国際空港公社、金浦・金海・済州などは韓国空港公社。金浦は夜間（23時〜翌6時）制限']],g:'仕事の基本は同じ。違いは空港のしくみ・手続き・現場の空気',n:['両国をつなぐ仕事では、この違いを知っていることが強みになる','運用時間・制度は変わることがある（★）']},
+  ko:{t:'공항 운영 방식: 일본과 한국(예)',c:[['일본','국제 거점은 하네다·나리타·간사이·주부 등 여러 곳. 운영 주체는 공항마다 다르고 민간 운영 위탁도 늘고 있다. 나리타 등은 운용 시간 제한'],['한국','국제선은 인천에 크게 집중. 인천은 인천국제공항공사, 김포·김해·제주 등은 한국공항공사. 김포는 야간(23시~다음 날 6시) 제한']],g:'일의 기본은 같다. 다른 것은 공항 구조·절차·현장 분위기',n:['두 나라를 잇는 일에서는 이 차이를 아는 것이 강점이 된다','운용 시간·제도는 바뀔 수 있다(★)']},
+  en:{t:'How airports are run: Japan and many other countries (example)',c:[['Japan','Several international gateways (Haneda, Narita, Kansai, Chubu). Operators differ by airport and concessions are spreading; Narita and others have restricted hours'],['Many other countries','Often one dominant hub per country, frequently run by a single national airport authority; opening hours and restrictions vary']],g:'The basics of the job are the same; the system, procedures and culture differ',n:['Knowing these differences is a strength when your work links two countries','Hours and rules can change (★)']}})[l];
+ if(!W)return F.gnd_jpkr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,C=ZCARDS(T.y,W.c,['#D64545','#1769e0']);s+=C.s;var y=C.y;
+ s+=LB(320,y+FS(10)*0.6,W.g,10,'#fff','middle','#0f3558');y+=FS(10)*1.3+20;
+ var L=LIST(W.n,y,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 外国航空会社の日本就航・支店開設ガイド（OPN）Part 0〜2 の図 2026.10 ===== */
+/* 0-1 6つの分野を同時に進める */
+opn_six:function(l){
+ var W=({ja:{t:'就航の準備は6つの分野を同時に進める（例）',a:[['許認可','運送事業の許可、運航・運賃の申請、発着枠'],['拠点の設立','支店の登記、銀行口座、税務・社会保険、事務所'],['空港の契約','ハンドリング会社、カウンター・事務所、給油・機内食']],b:[['人','現地スタッフの採用、教育、保安インストラクター'],['システムとCIQ','空港の共用システム、NACCS、事前旅客情報のテスト'],['営業','旅行会社、GDS・BSP、販売の方針']],n:['約1年前から並行して進める。どれか1つが遅れると初便の日付が動く','分野ごとに担当と締め切りを決め、週1回は全体の進み具合を確かめる']},
+  ko:{t:'취항 준비는 여섯 분야를 동시에 진행한다(예)',a:[['인허가','운송사업 허가, 운항·운임 신청, 슬롯'],['거점 설립','지점 등기, 은행 계좌, 세무·사회보험, 사무실'],['공항 계약','조업사, 카운터·사무실, 급유·기내식']],b:[['사람','현지 직원 채용, 교육, 보안 강사'],['시스템과 CIQ','공항 공용 시스템, NACCS, 사전 승객 정보 테스트'],['영업','여행사, GDS·BSP, 판매 방침']],n:['약 1년 전부터 나란히 진행한다. 하나라도 늦으면 첫 편 날짜가 움직인다','분야마다 담당과 마감을 정하고, 주 1회는 전체 진행 상황을 확인한다']},
+  en:{t:'Launch preparation runs on six threads at once (example)',a:[['Approvals','Carrier permit, schedule and fare filings, slots'],['The entity','Branch registration, bank accounts, tax and social insurance, office'],['Airport contracts','Handling company, counters and office, fuel and catering']],b:[['People','Local hiring, training, security instructors'],['Systems and CIQ','Shared airport systems, NACCS, advance passenger data tests'],['Sales','Travel agencies, GDS and BSP, sales policy']],n:['Start about a year ahead and run them in parallel: if one slips, the first-flight date moves','Give each thread an owner and deadlines, and review overall progress weekly']}})[l];
+ if(!W)return F.opn_six('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.a,['#1769e0','#2C8C8C','#7A5CC7']);s+=A.s;var B=ZCARDS(A.y,W.b,['#E08A2E','#D64545','#0f3558']);s+=B.s;
+ var L=LIST(W.n,B.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* 0-2 誰が何をするか */
+opn_roles:function(l){
+ var W=({ja:{t:'就航の準備で誰が何をするか（例）',r:[['本社（戦略・運航・運送・営業・財務）','就航計画、運航・整備の資料、マニュアル、運賃、予算・送金','#1769e0'],['日本の支店（支店長）','日本側の窓口。当局・空港・代行業者との調整と現地の準備の総括','#D64545'],['申請の代理人','当局への申請書類の作成・提出の代行','#7A5CC7'],['代行業者（法律・会計事務所）','登記、税務の届出、社会保険、給与計算の支援','#2C8C8C'],['ハンドリング会社','空港での旅客・ランプ・貨物の作業、手順づくりへの協力','#E08A2E']],n:['支店長は「現地のすべてを知っている人」。本社に頼むことは早めに、文書で']},
+  ko:{t:'취항 준비에서 누가 무엇을 하나(예)',r:[['본사(전략·운항·운송·영업·재무)','취항 계획, 운항·정비 자료, 매뉴얼, 운임, 예산·송금','#1769e0'],['일본 지점(지점장)','일본 쪽 창구. 당국·공항·대행업체와의 조정과 현지 준비 총괄','#D64545'],['신청 대리인','당국 신청 서류 작성·제출 대행','#7A5CC7'],['대행업체(법률·회계 사무소)','등기, 세무 신고, 사회보험, 급여 계산 지원','#2C8C8C'],['조업사','공항에서의 여객·램프·화물 작업, 절차 만들기 협력','#E08A2E']],n:['지점장은 「현지의 모든 것을 아는 사람」. 본사에 부탁할 일은 일찍, 문서로']},
+  en:{t:'Who does what in launch preparation (example)',r:[['Head office (strategy, operations, services, sales, finance)','Launch plan, operations and maintenance papers, manuals, fares, budget and remittances','#1769e0'],['The Japan station (station manager)','The local point of contact: coordinates authorities, the airport and agents, and runs local preparation','#D64545'],['Filing agent','Prepares and submits applications to the authorities','#7A5CC7'],['Service firms (legal and accounting)','Registration, tax filings, social insurance, payroll support','#2C8C8C'],['Ground handling company','Passenger, ramp and cargo work at the airport; helps write procedures','#E08A2E']],n:['The station manager is the person who knows everything locally. Ask head office early, and in writing']}})[l];
+ if(!W)return F.opn_roles('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 0-3 日本の航空行政の地図 */
+opn_admin:function(l){
+ var W=({ja:{t:'日本の航空行政：どこに何を出すか（例）',r:[['国交省 航空局 国際航空課','事業の許可、事業計画（運航計画）の認可・届出、運賃の認可','#1769e0'],['国交省 航空局 安全部','運航の安全、航空保安（保安計画・教育）、危険物','#D64545'],['航空管制運航情報官（FAIB）','運航計画書、発着枠の月次・日次の調整、遅延の報告','#7A5CC7'],['国際線発着調整事務局（JSC）','混雑空港の国際線の発着枠（シーズン前の調整）','#2C8C8C'],['空港会社','施設の使用、空港使用料、IDパス、就航の支援制度','#E08A2E'],['税関・入管・検疫','入出港の手続き、事前旅客情報、NACCS','#0f3558']],n:['組織名・担当は変わることがある（★）。最新の窓口を当局の案内で確かめる']},
+  ko:{t:'일본의 항공 행정: 어디에 무엇을 내나(예)',r:[['국토교통성 항공국 국제항공과','사업 허가, 사업계획(운항계획) 인가·신고, 운임 인가','#1769e0'],['국토교통성 항공국 안전부','운항 안전, 항공보안(보안계획·교육), 위험물','#D64545'],['항공관제운항정보관(FAIB)','운항계획서, 슬롯 월간·일간 조정, 지연 보고','#7A5CC7'],['국제선 발착조정사무국(JSC)','혼잡 공항 국제선 슬롯(시즌 전 조정)','#2C8C8C'],['공항 회사','시설 사용, 공항 사용료, ID 패스, 취항 지원 제도','#E08A2E'],['세관·출입국·검역','입출항 절차, 사전 승객 정보, NACCS','#0f3558']],n:['조직명·담당은 바뀔 수 있다(★). 최신 창구를 당국 안내로 확인한다']},
+  en:{t:'Japan’s aviation administration: what goes where (example)',r:[['MLIT Civil Aviation Bureau, International Air Transport Division','Carrier permit, schedule approvals and notifications, fare approvals','#1769e0'],['MLIT Civil Aviation Bureau, Safety Department','Operational safety, aviation security (programmes and training), dangerous goods','#D64545'],['Flight Information Officers (FAIB)','Flight plans, monthly and daily slot coordination, delay reports','#7A5CC7'],['Japan Schedule Coordination (JSC)','International slots at congested airports (pre-season coordination)','#2C8C8C'],['Airport company','Use of facilities, airport charges, ID passes, new-route incentives','#E08A2E'],['Customs, immigration and quarantine','Entry and exit procedures, advance passenger data, NACCS','#0f3558']],n:['Organisation names and responsibilities can change (★); confirm the current contact with the authority']}})[l];
+ if(!W)return F.opn_admin('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-2 事業計画の変更の締め切り */
+opn_plan:function(l){
+ var W=({ja:{t:'運航計画を変えるときの締め切り（例）',st:['運航回数の変更、積載量が大きく違う型式への機材変更','使用空港の変更、発着日時の変更（臨時を除く）','その他の変更'],who:['実施の45日前まで','実施の30日前まで','実施の10日前まで'],n:['シーズンごとの申請（期首申請）とは別。日数は最新の規則で確かめる（★）','やむを得ない事由の当日の変更は、事後の届出になる']},
+  ko:{t:'운항계획을 바꿀 때의 마감(예)',st:['운항 횟수 변경, 적재량이 크게 다른 형식으로 기재 변경','사용 공항 변경, 발착 일시 변경(임시 제외)','그 밖의 변경'],who:['실시 45일 전까지','실시 30일 전까지','실시 10일 전까지'],n:['시즌별 신청(기초 신청)과는 별도. 일수는 최신 규칙으로 확인한다(★)','부득이한 사유의 당일 변경은 사후 신고가 된다']},
+  en:{t:'Deadlines for changing the schedule (example)',st:['Changing frequencies, or switching to a type with very different capacity','Changing the airport used, or departure and arrival times (not one-off changes)','Other changes'],who:['45 days before','30 days before','10 days before'],n:['Separate from the seasonal filing. Check the number of days in the current rules (★)','Same-day changes for unavoidable reasons are notified afterwards']}})[l];
+ if(!W)return F.opn_plan('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#D64545','#E08A2E','#2C8C8C'],'9s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-3 スロット */
+opn_slot:function(l){
+ var W=({ja:{t:'発着枠（スロット）の基本',c:[['スロットとは','決まった日時に空港で離陸・着陸できる権利。混雑空港では事前の調整が要る'],['シーズンごとの調整','世界共通のガイドライン（WASG）に沿って年2回調整する'],['使わないと失う','原則80%以上使わないと翌年の同じシーズンの優先権を失う（★）']],n:['シーズン前の国際線の調整はJSC、月次・日次の調整はFAIB','遅延は決められた方法で報告する。運用時間に制限がある空港は使える時間帯が限られる']},
+  ko:{t:'슬롯의 기본',c:[['슬롯이란','정해진 일시에 공항에서 이착륙할 수 있는 권리. 혼잡 공항은 사전 조정이 필요'],['시즌별 조정','세계 공통 가이드라인(WASG)에 따라 연 2회 조정'],['안 쓰면 잃는다','원칙적으로 80% 이상 쓰지 않으면 다음 해 같은 시즌의 우선권을 잃는다(★)']],n:['시즌 전 국제선 조정은 JSC, 월간·일간 조정은 FAIB','지연은 정해진 방법으로 보고한다. 운용 시간 제한이 있는 공항은 쓸 수 있는 시간대가 좁다']},
+  en:{t:'Slot basics',c:[['What a slot is','The right to take off or land at an airport at a set time; congested airports require coordination'],['Seasonal coordination','Coordinated twice a year under the Worldwide Airport Slot Guidelines (WASG)'],['Use it or lose it','Use less than 80% and the historic priority for the same season next year is usually lost (★)']],n:['Pre-season international coordination is by JSC; monthly and daily coordination by FAIB','Report delays in the set way. Airports with curfews have fewer usable hours']}})[l];
+ if(!W)return F.opn_slot('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-4 運賃の認可 */
+opn_fare:function(l){
+ var W=({ja:{t:'運賃・料金の認可の流れ（例）',st:['本社が運賃と条件を決める','支店が申請書類を整える','国際航空課へ提出','認可','販売・GDSへの配布'],who:['本社の運賃部門','支店','実施の30日前まで（★）','当局','営業・本社'],n:['燃油特別付加運賃も同じように申請する（計算は1-4の道具で）','手数料はない。本社と支店の分担を先に決めておく']},
+  ko:{t:'운임·요금 인가의 흐름(예)',st:['본사가 운임과 조건을 정한다','지점이 신청 서류를 갖춘다','국제항공과에 제출','인가','판매·GDS에 배포'],who:['본사 운임 부서','지점','실시 30일 전까지(★)','당국','영업·본사'],n:['유류할증료도 같은 식으로 신청한다(계산은 1-4의 도구로)','수수료는 없다. 본사와 지점의 분담을 먼저 정해 둔다']},
+  en:{t:'How fares and charges are approved (example)',st:['Head office sets the fares and conditions','The station prepares the filing','Submit to the International Air Transport Division','Approval','Sales and distribution to the GDS'],who:['Head-office pricing','Station','30 days before (★)','Authority','Sales and head office'],n:['Fuel surcharges are filed the same way (use the tool linked from 1-4)','There is no fee. Agree the split between head office and the station first']}})[l];
+ if(!W)return F.opn_fare('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#D64545','#7A5CC7','#E08A2E'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-5 第60条・第61条の年1回の包括申請 */
+opn_art60:function(l){
+ var W=({ja:{t:'航空法第60条・第61条の年1回の申請（例）',r:[['1月','当局から案内が届く。翌年度（4月〜翌3月）分の準備を始める','#1769e0'],['1月中旬〜2月中旬','本社の運航技術・整備管理部門に書類を依頼し、支店が取りまとめて申請','#D64545'],['許可の後','前年度（前年4月〜当年3月）の結果を取りまとめて報告','#2C8C8C']],n:['時期は例（★）。毎年の案内の内容と締め切りを必ず確かめる','本社への依頼は早めに。担当者が替わっても分かるよう記録を残す']},
+  ko:{t:'항공법 제60조·제61조의 연 1회 신청(예)',r:[['1월','당국에서 안내가 온다. 다음 연도(4월~이듬해 3월) 분의 준비를 시작','#1769e0'],['1월 중순~2월 중순','본사 운항기술·정비관리 부서에 서류를 의뢰하고 지점이 모아서 신청','#D64545'],['허가 후','전년도(전년 4월~당해 3월) 결과를 모아 보고','#2C8C8C']],n:['시기는 예시(★). 매년 안내 내용과 마감을 꼭 확인한다','본사 의뢰는 일찍. 담당자가 바뀌어도 알 수 있게 기록을 남긴다']},
+  en:{t:'The annual filing under Articles 60 and 61 of the Civil Aeronautics Act (example)',r:[['January','The authority sends a notice. Start preparing for the next fiscal year (April to March)','#1769e0'],['Mid-January to mid-February','Ask head-office flight engineering and maintenance control for documents; the station compiles and files','#D64545'],['After approval','Report the results for the previous fiscal year (April to March)','#2C8C8C']],n:['Timings are examples (★); check each year’s notice and deadlines','Ask head office early, and keep records so a successor can follow']}})[l];
+ if(!W)return F.opn_art60('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 1-6 当局への定期報告 */
+opn_report:function(l){
+ var W=({ja:{t:'当局への定期報告と届出（例）',r:[['旅客・貨物の運送実績','毎月初め（1〜5日頃）','#1769e0'],['遅延の照会への回答','照会が届いたとき（運航の翌日など）','#E08A2E'],['欠航・遅延の事後届出','当日の変更の後','#D64545'],['保安の自己監査の結果','年1回','#7A5CC7'],['新しい機材','導入の前に届出','#2C8C8C']],n:['時期は例（★）。オンラインのシステムの使い方と担当を引き継ぎ書に残す']},
+  ko:{t:'당국 정기 보고와 신고(예)',r:[['여객·화물 운송 실적','매달 초(1~5일경)','#1769e0'],['지연 조회에 대한 회신','조회가 왔을 때(운항 다음 날 등)','#E08A2E'],['결항·지연 사후 신고','당일 변경 후','#D64545'],['보안 자체 감사 결과','연 1회','#7A5CC7'],['새 기재','도입 전에 신고','#2C8C8C']],n:['시기는 예시(★). 온라인 시스템 사용법과 담당을 인계서에 남긴다']},
+  en:{t:'Regular reports and notifications to the authority (example)',r:[['Passenger and cargo traffic results','Early each month (around the 1st to 5th)','#1769e0'],['Answers to delay enquiries','When an enquiry arrives (often the day after)','#E08A2E'],['After-the-fact notice of cancellations and delays','After a same-day change','#D64545'],['Security self-audit results','Once a year','#7A5CC7'],['New aircraft','Notify before introduction','#2C8C8C']],n:['Timings are examples (★). Record how to use the online systems, and who does what, in the handover notes']}})[l];
+ if(!W)return F.opn_report('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-1 支店の登記 */
+opn_reg:function(l){
+ var W=({ja:{t:'日本支店の登記の流れ（例）',st:['日本における代表者を決める','本国の書類をそろえる','登記を申請する','登記の後の届出','変更があれば変更の登記'],who:['1人以上は日本に住所','登記事項の証明・翻訳など','代行業者・司法書士','税務署・年金事務所など','期限あり（★）'],n:['登記の前は日本で継続的な取引ができない。銀行口座・事務所の契約も登記の後になることが多い']},
+  ko:{t:'일본 지점 등기의 흐름(예)',st:['일본 대표자를 정한다','본국 서류를 갖춘다','등기를 신청한다','등기 후 신고','변경이 있으면 변경 등기'],who:['1명 이상은 일본 주소','등기사항 증명·번역 등','대행업체·사법서사','세무서·연금사무소 등','기한 있음(★)'],n:['등기 전에는 일본에서 계속적인 거래를 할 수 없다. 은행 계좌·사무실 계약도 등기 뒤가 되는 경우가 많다']},
+  en:{t:'Registering the Japan branch (example)',st:['Appoint a representative in Japan','Gather home-country documents','Apply for registration','Filings after registration','Register any changes'],who:['At least one resident in Japan','Certified extracts, translations','Agent or judicial scrivener','Tax office, pension office and others','Deadlines apply (★)'],n:['Before registration you cannot trade continuously in Japan; bank accounts and office leases often have to wait until after it']}})[l];
+ if(!W)return F.opn_reg('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-2 口座の分け方 */
+opn_bank:function(l){
+ var W=({ja:{t:'支店のお金は2つの口座に分ける（例）',c:[['前渡金の口座','給与・社会保険・家賃・通信費・顧問料など支店の運営の支払い。本社から毎月送金'],['収入金の口座','空港での収入や営業の売上。本社の財務部門と協議せずに動かさない']],n:['月の締め：支払い → 領収書などの証憑 → 前渡金の精算 → 本社へ報告','2つを混ぜない。航空会社に特有のお金（空港の収入金など）は扱いを本社と決めておく']},
+  ko:{t:'지점의 돈은 두 계좌로 나눈다(예)',c:[['선급금 계좌','급여·사회보험·임차료·통신비·고문료 등 지점 운영 지출. 본사에서 매달 송금'],['수입금 계좌','공항 수입과 영업 매출. 본사 재무 부서와 협의 없이 움직이지 않는다']],n:['월 마감: 지급 → 영수증 등 증빙 → 선급금 정산 → 본사 보고','둘을 섞지 않는다. 항공사 특유의 돈(공항 수입금 등)은 처리 방식을 본사와 정해 둔다']},
+  en:{t:'Keep the station’s money in two accounts (example)',c:[['Advance account','Running costs: payroll, social insurance, rent, telecoms, advisers. Funded monthly by head office'],['Revenue account','Airport takings and sales revenue. Not touched without head-office finance’s agreement']],n:['Month end: payments → receipts and vouchers → settle the advance → report to head office','Never mix the two. Agree with head office how airline-specific money such as airport takings is handled']}})[l];
+ if(!W)return F.opn_bank('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-3 事務所と社宅 */
+opn_office:function(l){
+ var W=({ja:{t:'支店に必要な3つの場所（例）',c:[['市内の事務所','登記の所在地、営業、郵便物・請求書の受け取り'],['空港の事務所','運送業務、書類・備品の保管、スタッフの待機'],['社宅','駐在員・支店長の住まい']],n:['空港の事務所は空港会社との契約。広さ・場所は便数と人数で決める','契約期間・更新・解約予告・原状回復の条件を一覧にして管理する']},
+  ko:{t:'지점에 필요한 세 장소(예)',c:[['시내 사무실','등기 소재지, 영업, 우편물·청구서 수령'],['공항 사무실','운송 업무, 서류·비품 보관, 직원 대기'],['사택','주재원·지점장의 집']],n:['공항 사무실은 공항 회사와의 계약. 넓이·위치는 편수와 인원으로 정한다','계약 기간·갱신·해지 예고·원상회복 조건을 목록으로 관리한다']},
+  en:{t:'Three places a station needs (example)',c:[['City office','Registered address, sales, receiving post and invoices'],['Airport office','Operations, storing documents and supplies, staff standby'],['Staff housing','For expatriates and the station manager']],n:['The airport office is leased from the airport company; size and location follow flights and headcount','Track terms, renewals, notice periods and reinstatement conditions in one list']}})[l];
+ if(!W)return F.opn_office('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#E08A2E','#7A5CC7']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-4 毎月の給与と年間の手続き */
+opn_pay:function(l){
+ var W=({ja:{t:'毎月の給与の流れ（例）',st:['今月の変更点を整理する','専門家に給与データを送る','明細・一覧・保険料の集計を受け取る','本社の人事と照合する','決められた日に支払う'],who:['月初','社会保険労務士など','専門家','本社','支給日'],n:['年間の手続き：労働保険の年度更新（6〜7月）、社会保険の算定基礎届（7月）、年末調整（12月）など（★）','住民税は毎年6月から新しい額になる']},
+  ko:{t:'매달 급여의 흐름(예)',st:['이번 달 변경 사항을 정리한다','전문가에게 급여 데이터를 보낸다','명세·목록·보험료 집계를 받는다','본사 인사와 대조한다','정해진 날에 지급한다'],who:['월초','노무사 등','전문가','본사','지급일'],n:['연간 절차: 노동보험 연도 갱신(6~7월), 사회보험 산정기초신고(7월), 연말정산(12월) 등(★)','주민세는 매년 6월부터 새 금액이 된다']},
+  en:{t:'The monthly payroll cycle (example)',st:['List this month’s changes','Send payroll data to the specialist','Receive payslips, the register and insurance totals','Check against head-office HR','Pay on the set day'],who:['Start of month','Labour and social security attorney','Specialist','Head office','Payday'],n:['Annual steps include the labour insurance renewal (June–July), the social insurance base filing (July) and year-end adjustment (December) (★)','Resident tax switches to the new amount each June']}})[l];
+ if(!W)return F.opn_pay('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
+/* 2-5 現地スタッフの採用 */
+opn_hire:function(l){
+ var W=({ja:{t:'現地スタッフの採用の流れ（例）',st:['人数と役割を決める','募集する','面接する','内定・入社の手続き','就航前の教育'],who:['便数・勤務の形から','求人・紹介・つながり','現場経験・語学・判断','雇用契約・社会保険','本社・ハンドリング会社・保安'],n:['就航前の教育に間に合うよう、就航の数か月前には入社してもらう（★）','欠員の補充や業務の増加は、担当部署を通じて本社の人事に依頼する']},
+  ko:{t:'현지 직원 채용의 흐름(예)',st:['인원과 역할을 정한다','모집한다','면접한다','내정·입사 절차','취항 전 교육'],who:['편수·근무 형태로','구인·소개·인맥','현장 경험·어학·판단','고용계약·사회보험','본사·조업사·보안'],n:['취항 전 교육에 맞도록 취항 몇 달 전에는 입사하게 한다(★)','결원 보충이나 업무 증가는 담당 부서를 통해 본사 인사에 요청한다']},
+  en:{t:'Hiring local staff (example)',st:['Decide headcount and roles','Advertise','Interview','Offer and onboarding','Pre-launch training'],who:['From flights and shift pattern','Ads, referrals, networks','Experience, languages, judgement','Contract, social insurance','Head office, handler, security'],n:['Have people start a few months before launch so training is complete (★)','For replacements or extra workload, request through the responsible department to head-office HR']}})[l];
+ if(!W)return F.opn_hire('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

@@ -4,7 +4,7 @@ set("0-1",{title:"The Whole Schedule: From a Year Out to the First Flight",hl:"t
 lead:["Starting service to Japan means obtaining the Japanese approvals, setting up a base in Japan, contracting with the airport, hiring staff, preparing systems and launching sales, almost all at the same time. If any one of them slips, the date of the first flight moves.",
 "This article sets out the flow from about a year before service to the first flight, in six areas. It is generalised from a real station-opening checklist of around 130 items used when an airline started service at a Japanese airport."],
 sections:[
-{h:"The six areas",blocks:[{t:"table",cols:["Area","Main work","Who usually leads"],rows:[
+{h:"The six areas",blocks:[{t:"fig",id:"opn_six",cap:"Animated figure: the six threads of launch preparation light up in turn (example)."},{t:"table",cols:["Area","Main work","Who usually leads"],rows:[
 ["Approvals","The foreign air carrier operating licence, schedule and fare filings, slots","Head office strategy and international, the filing agent in Japan, the station manager"],
 ["Setting up the entity","Registering the branch, bank accounts, tax and social insurance, office and housing","Station manager, legal and accounting providers"],
 ["Airport contracts","Handling company, counters and offices, fuel, catering, security","Head office, station manager"],
@@ -45,7 +45,7 @@ set("0-2",{title:"Who Does What: Head Office, the Station, Agents and the Handli
 lead:["Preparing to serve Japan involves many head office departments, the station in Japan, legal and accounting providers, a filing agent and the handling company. Where roles are vague, two departments write the same document, or nobody contacts the authorities at all.",
 "This article covers who is involved and what each does, what the station manager owns, what to ask head office for, and how to divide the work."],
 sections:[
-{h:"Who is involved",blocks:[{t:"table",cols:["Party","Main role"],rows:[
+{h:"Who is involved",blocks:[{t:"fig",id:"opn_roles",cap:"Animated figure: the roles of head office, station, filing agent, service firms and handler (example)."},{t:"table",cols:["Party","Main role"],rows:[
 ["Head office strategy and international","The launch plan, operating approvals, slots, the big negotiations with authorities"],
 ["Head office flight operations and maintenance","Material on the operational and maintenance set-up, aircraft used, filings on equipment"],
 ["Head office ground and service","Airport procedures, manuals, handling company contracts"],
@@ -83,7 +83,7 @@ set("0-3",{title:"The Map of Aviation Administration in Japan",hl:"the map",subt
 lead:["The Japanese bodies a foreign airline deals with run from the Civil Aviation Bureau at the ministry, through the regional bureaux and airport offices, the flight information officers (FAIB), the international slot coordinator, the airport companies, and CIQ — customs, immigration and quarantine.",
 "This article lays out who handles what, and how a foreign airline comes into contact with each. Organisations and responsibilities are reorganised from time to time, so check the current structure. ★"],
 sections:[
-{h:"The main bodies",blocks:[{t:"table",cols:["Body","Main dealings with foreign airlines"],rows:[
+{h:"The main bodies",blocks:[{t:"fig",id:"opn_admin",cap:"Animated figure: which part of Japan’s aviation administration handles what (example)."},{t:"table",cols:["Body","Main dealings with foreign airlines"],rows:[
 ["Civil Aviation Bureau, International Air Transport Division","The foreign air carrier operating licence, approval and notification of the business (schedule) plan, fare approvals"],
 ["Civil Aviation Bureau, Safety Department","Operational safety (approvals on equipment), aviation security (programme and training), dangerous goods, safety oversight"],
 ["Flight information officers (FAIB)","Filing the schedule at Haneda, Narita and elsewhere, monthly and daily slot coordination, delay reporting"],

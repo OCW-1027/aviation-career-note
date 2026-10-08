@@ -6,7 +6,7 @@ set("1-2",{title:"Filing the Schedule: Approval and Changes to the Business Plan
 lead:["Even with the licence in hand, the business plan — which routes, when, with what aircraft and how often — must be approved by the minister before you can fly it. Changing it also needs prior approval, apart from minor changes.",
 "This article covers the deadlines for change approvals, the seasonal filing and its attachments, when to apply and when to notify during the season, and how unavoidable circumstances such as weather are handled."],
 sections:[
-{h:"Approval of changes (Article 129-3)",blocks:[{t:"table",cols:["What is changing","Deadline"],rows:[
+{h:"Approval of changes (Article 129-3)",blocks:[{t:"fig",id:"opn_plan",cap:"Animated figure: deadlines for changing the schedule (example)."},{t:"table",cols:["What is changing","Deadline"],rows:[
 ["Frequency, or a change to an aircraft type with a materially different capacity","By 45 days before the intended date"],
 ["The airport used, or the timing of arrivals and departures (other than ad hoc changes)","By 30 days before"],
 ["Anything else","By 10 days before"]]},
@@ -40,7 +40,7 @@ set("1-3",{title:"Slots and Coordination with FAIB",hl:"slots",subtitle:"JSC bef
 lead:["At congested airports such as Narita and Haneda, the times at which an aircraft may take off or land — the slots — are limited. Airlines secure slots in advance under the worldwide slot rules and then operate to them.",
 "This article covers the basics of slots, coordination before the season by Japan Schedule Coordination (JSC), coordination during the season by the flight information officers (FAIB), delay reporting, and what the station needs to watch."],
 sections:[
-{h:"The basics",blocks:[{t:"rows",items:[
+{h:"The basics",blocks:[{t:"fig",id:"opn_slot",cap:"Animated figure: slot basics."},{t:"rows",items:[
 {name:"What a slot is",x:"The right to take off or land at a particular airport at a particular time. At congested airports it must be coordinated in advance."},
 {name:"Worldwide rules",x:"Coordination runs twice a year, season by season, under the Worldwide Airport Slot Guidelines (WASG)."},
 {name:"Use it or lose it",x:"Use a slot for less than the required proportion of the season (normally 80%) and you lose historic precedence for the same season next year."},
@@ -71,7 +71,7 @@ next:"1-4 Fare and fuel surcharge approvals"});
 set("1-4",{title:"Fare and Fuel Surcharge Approvals",hl:"Fuel Surcharge Approvals",subtitle:"Fares from Japan, fares from the other end, and the fuel surcharge — all by 30 days before ★",
 lead:["The fares and charges a foreign airline uses on services touching Japan need the minister’s approval. That covers ordinary fares, promotional fares, changes to rules such as baggage charges, and the fuel surcharge.","This article covers the legal basis and the deadline, what needs approval, how a fuel surcharge filing runs, and how the work splits between the station and head office."],
 sections:[
-{h:"Approval of fares and charges (Article 129-2)",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"Approval of fares and charges (Article 129-2)",blocks:[{t:"fig",id:"opn_fare",cap:"Animated figure: how fares and charges are approved (example)."},{t:"table",cols:["Item","Detail"],rows:[
 ["Legal basis","Article 129-2 of the Civil Aeronautics Act; Article 233 of the enforcement regulations"],
 ["Who","Foreign international air transport operators"],
 ["When to file","By 30 days before the intended date"],
@@ -106,7 +106,7 @@ next:"1-5 Articles 60 and 61, and other notifications"});
 set("1-5",{title:"Articles 60 and 61, and Other Notifications",hl:"equipment and notifications",subtitle:"One comprehensive application a year, plus the report on last year. Do not miss the deadline ★",
 lead:["Japanese aviation law sets out the equipment an aircraft must carry, and it applies to foreign aircraft too. Where an aircraft continues to operate with some equipment inoperative within the limits of the minimum equipment list (MEL), the practice in Japan is to make one comprehensive application a year.","This article covers how that annual application runs, what to ask head office for, and the other notifications a station is involved in. The detail changes, so always confirm with the current official guidance."],
 sections:[
-{h:"The annual application (example)",blocks:[{t:"table",cols:["When","Work"],rows:[
+{h:"The annual application (example)",blocks:[{t:"fig",id:"opn_art60",cap:"Animated figure: the annual filing under Articles 60 and 61 (example)."},{t:"table",cols:["When","Work"],rows:[
 ["January","The authorities email the notice; start preparing for the coming fiscal year (April to March)"],
 ["Mid-January to mid-February","Ask head office flight operations engineering for the application and maintenance control for the results report, then file as the station"],
 ["After approval","Compile and report the results for the previous year (April to March)"]]},
@@ -137,7 +137,7 @@ next:"1-6 Regular reporting and aircraft notifications after launch"});
 set("1-6",{title:"Regular Reporting and Aircraft Notifications After Launch",hl:"regular reporting",subtitle:"Monthly traffic reports, delay queries, aircraft notifications: the filings continue ★",
 lead:["Once service has started, the reports and notifications keep coming: monthly traffic statistics, queries about flights that fell outside their slot, new aircraft and changes to seat counts. Each is small, but missing one costs you standing with the authorities.","This article covers what the station reports regularly, how aircraft notifications work, and how to keep the records and hand them over."],
 sections:[
-{h:"Regular reporting (example)",blocks:[{t:"table",cols:["Report","When","How"],rows:[
+{h:"Regular reporting (example)",blocks:[{t:"fig",id:"opn_report",cap:"Animated figure: regular reports and notifications to the authority (example)."},{t:"table",cols:["Report","When","How"],rows:[
 ["Passenger and cargo traffic","Start of each month (1st to 5th)","Filed in J-MAT (about 30 minutes)"],
 ["Answers to delay queries","When a query arrives, often the day after the flight","By email, giving the reason"],
 ["Notification of cancellations and delays","After a same-day change","Notification of change in J-MAT (1-2)"],

@@ -4,7 +4,7 @@ set("2-1",{title:"Registering the Japan Branch, and Choosing Providers",hl:"bran
 lead:["To carry on business continuously in Japan, a foreign company must appoint a representative in Japan under the Companies Act and register as a foreign company. Until that registration is complete, it cannot trade continuously in Japan. The same applies to an airline’s branch.",
 "This article covers the basics of registration, the documents required, how to choose providers (judicial scrivener and tax accountant firms), the filings that follow, and what to do when the registered details change."],
 sections:[
-{h:"The basics",blocks:[{t:"table",cols:["Item","Detail"],rows:[
+{h:"The basics",blocks:[{t:"fig",id:"opn_reg",cap:"Animated figure: registering the Japan branch (example)."},{t:"table",cols:["Item","Detail"],rows:[
 ["Representative in Japan","At least one, of whom at least one must have an address in Japan"],
 ["Form of registration","Usually registering a branch office in Japan"],
 ["Before registration","Continuous trading in Japan is not permitted"],
@@ -44,7 +44,7 @@ set("2-2",{title:"Bank Accounts, Imprest Funds and Airport Revenue",hl:"station 
 lead:["An airline station pays salaries, rent and airport costs, and also handles income such as excess baggage charges at the airport. Station funds should be set up so that a small team can run them accurately, within head office’s financial rules.",
 "This article covers how the accounts are split, applying for and settling the imprest fund, the monthly close, which costs head office pays directly, and taxes specific to airlines such as the departure tax."],
 sections:[
-{h:"Splitting the accounts",blocks:[{t:"cards",n:2,items:[
+{h:"Splitting the accounts",blocks:[{t:"fig",id:"opn_bank",cap:"Animated figure: keeping the station’s money in two accounts (example)."},{t:"cards",n:2,items:[
 {ic:"💴",name:"Imprest account",tag:"Money out",x:"Used for salaries, social insurance, rent, communications and professional fees. Funded monthly from head office."},
 {ic:"🧾",name:"Revenue account",tag:"Money in",x:"Airport revenue and sales receipts. Not moved without agreement from head office finance."}]},
 {t:"rows",items:[
@@ -78,7 +78,7 @@ set("2-3",{title:"Offices and Staff Housing",hl:"offices and housing",subtitle:"
 lead:["An airline station needs a city office as its registered and commercial base, and an airport office for the operation. Where there are expatriates, there is housing as well. Each has a different counterparty and different terms.",
 "This article covers the types of office and how to choose, what to watch in the contracts, housing, what to prepare when setting up, and how to manage the contracts."],
 sections:[
-{h:"The types of office",blocks:[{t:"table",cols:["Type","Purpose","Counterparty (example)"],rows:[
+{h:"The types of office",blocks:[{t:"fig",id:"opn_office",cap:"Animated figure: three places a station needs (example)."},{t:"table",cols:["Type","Purpose","Counterparty (example)"],rows:[
 ["City office","The registered address, sales, receiving post and invoices","A serviced office or the building manager"],
 ["Airport office","Operations, storing documents and supplies, staff standby","The airport company (sometimes the terminal operator)"],
 ["Staff housing","Homes for expatriates and the station manager","A real estate agency, on a corporate lease"]]}]},
@@ -112,7 +112,7 @@ next:"2-4 Work rules, social insurance and labour insurance"});
 set("2-4",{title:"Work Rules, Social Insurance, Labour Insurance and Tax",hl:"employment and tax",subtitle:"Payroll monthly, insurance and tax annually. Combine professional advice with head office sign-off ★",
 lead:["Once the station employs staff, Japanese employment and tax obligations arrive every month and every year: payroll, social and labour insurance, withholding and inhabitant tax, the year-end adjustment, paid leave and health checks. A small station usually leaves the work to a tax accountant and a labour and social security attorney, with the station manager overseeing it all.","This article covers the monthly payroll cycle, the annual insurance procedures, withholding and inhabitant tax, the year-end adjustment, and the points on work rules, paid leave and health checks. Rates and deadlines change every year, so always work from current information."],
 sections:[
-{h:"The monthly payroll cycle (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Collect the changes",sub:"What is different this month"},{name:"Send to the adviser",sub:"Payroll data"},{name:"Receive the output",sub:"Payslips, summary, insurance totals"},{name:"Head office check",sub:"Reconciled with head office HR"},{name:"Payment",sub:"On the agreed pay day"}]}]},
+{h:"The monthly payroll cycle (example)",blocks:[{t:"fig",id:"opn_pay",cap:"Animated figure: the monthly payroll cycle and annual steps (example)."},{t:"ladder",rise:10,steps:[{name:"Collect the changes",sub:"What is different this month"},{name:"Send to the adviser",sub:"Payroll data"},{name:"Receive the output",sub:"Payslips, summary, insurance totals"},{name:"Head office check",sub:"Reconciled with head office HR"},{name:"Payment",sub:"On the agreed pay day"}]}]},
 {h:"Annual social and labour insurance procedures",blocks:[{t:"table",cols:["Procedure","When","What it is"],rows:[
 ["Health insurance and pension rate change","Around March","The rates are revised; health insurance rates differ by prefecture"],
 ["Employment insurance rate change","Around April","The rate is revised"],
@@ -148,7 +148,7 @@ next:"2-5 Hiring local staff"});
 set("2-5",{title:"Hiring Local Staff",hl:"hiring",subtitle:"A small station is made by its first few people. Plan the search, the interviews and the start ★",
 lead:["A foreign airline’s station in Japan often runs the airport operation with a handful of staff, and the first few hires shape its quality for years. What is needed is languages, airport experience, and the ability to judge calmly when things go wrong.","This article covers planning the hiring, where to advertise, what to look for at interview, the steps from offer to start, and what is needed immediately after joining. For statuses of residence see also Ground Staff 7-1."],
 sections:[
-{h:"Planning the hiring",blocks:[{t:"check",items:[
+{h:"Planning the hiring",blocks:[{t:"fig",id:"opn_hire",cap:"Animated figure: hiring local staff (example)."},{t:"check",items:[
 {name:"Numbers and roles",x:"Work out the headcount from the flights and the shift pattern, and assign roles such as coordination, baggage and training, documents and supplies (Ground Staff 6-1)."},
 {name:"Experience and pay",x:"Agree the level of experience sought and the salary with head office."},
 {name:"Timing",x:"Bring people in a few months before launch so they can complete head office initial training, the handling company training and security training."},
