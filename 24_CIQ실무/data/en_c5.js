@@ -3,7 +3,7 @@
 set("5-1",{title:"Reducing Document Errors: Building the Station’s System",hl:"Document Errors",subtitle:"Do not rely on one person’s attention. Build a flow in which misses are hard to make",
 lead:["Carrying a passenger without the right visa or travel authorisation is one of the failures a station most wants to avoid. The passenger is sent back from the destination, and the company bears the penalty and the costs.","These misses do not come only from an individual’s carelessness. Somewhere in the flow there is a gap: in the information given at booking, in the check-in procedure, or in how changes to requirements are passed on."],
 sections:[
-{h:"Why it happens",blocks:[{t:"table",cols:["Cause","Example"],rows:[
+{h:"Why it happens",blocks:[{t:"fig",id:"ciq_fine",cap:"Figure: when a fine notice arrives."},{t:"table",cols:["Cause","Example"],rows:[
 ["Transit point not checked","Only the final destination was looked up; there was a separately bought ticket"],
 ["A change in requirements was not known","A visa became necessary last month; a travel authorisation was introduced"],
 ["The passenger’s explanation was accepted","“I go there all the time”; “I checked with the embassy”"],
@@ -37,7 +37,7 @@ next:"5-2 Extra and charter flights and CIQ"});
 set("5-2",{title:"Extra and Charter Flights and CIQ",hl:"Extra Flights",subtitle:"CIQ staffs for the regular schedule. A flight outside it will not be handled unless they are told first",
 lead:["Scheduled flights arrive at the same time every day, and CIQ assigns officers to match. So what happens when an extra flight operates at an unusual time, or a charter flies to an airport with no international service?","The answer is simple: tell them first and confirm that they can handle it. Otherwise the aircraft arrives and nobody can get off."],
 sections:[
-{h:"How it differs from a scheduled flight",blocks:[{t:"rows",items:[
+{h:"How it differs from a scheduled flight",blocks:[{t:"fig",id:"ciq_extra",cap:"Figure: extra and charter flights: who to tell."},{t:"rows",items:[
 {name:"Staffing",x:"CIQ officers are assigned according to the airport’s flight times."},
 {name:"Regional airports",x:"At airports with few international flights there may normally be no officers. They come from a nearby office only when there is a flight."},
 {name:"Facilities",x:"Check that the inspection area, baggage screening equipment and quarantine facilities can be used at that time."}]}]},
@@ -68,7 +68,7 @@ next:"5-3 CIQ hours and delayed flights"});
 set("5-3",{title:"CIQ Hours and Delayed Flights",hl:"CIQ Hours",subtitle:"When a delay may run past CIQ hours: the earlier you tell them, the more options there are",
 lead:["CIQ at large airports stays open late. At regional airports the officers go home once the last flight has arrived. What happens when a delayed flight then turns up?","CIQ hours are separate from the airport’s operating hours and from the airline’s own shifts. When a delay appears, CIQ is among the first to check with."],
 sections:[
-{h:"CIQ has opening hours too",blocks:[{t:"rows",items:[
+{h:"CIQ has opening hours too",blocks:[{t:"fig",id:"ciq_late",cap:"Figure: when a delay may run past CIQ hours."},{t:"rows",items:[
 {name:"They differ by airport",x:"Busy airports are open for long hours. Airports with few flights open only around flight times."},
 {name:"They differ between the three agencies",x:"Customs, immigration and quarantine do not necessarily keep the same hours."},
 {name:"They are separate from airport operating hours",x:"Even while the runway is available, international passengers cannot disembark without CIQ."}]}]},
@@ -128,7 +128,7 @@ next:"5-5 Informing passengers: at booking, at the gate, on board"});
 set("5-5",{title:"Informing Passengers: At Booking, at the Gate, on Board",hl:"Informing Passengers",subtitle:"The cheapest and surest way to reduce the number of passengers stopped on arrival",
 lead:["As the earlier lessons showed, most passengers stopped at CIQ simply did not know. They had no travel authorisation. They were carrying food containing meat. They had an e-cigarette in their bag.","An airline cannot change the rules. But it can tell people. There are three chances: at booking, at the gate, and on board."],
 sections:[
-{h:"Three chances to inform",blocks:[{t:"table",cols:["When","What to say","Why then"],rows:[
+{h:"Three chances to inform",blocks:[{t:"fig",id:"ciq_guide",cap:"Figure: three chances to inform passengers."},{t:"table",cols:["When","What to say","Why then"],rows:[
 ["At booking and a few days before departure","Visas, travel authorisations, arrival cards, what cannot be brought in","Anything that takes days to prepare can only be dealt with here"],
 ["At the gate","Food, tobacco, and not taking items served on board off the aircraft","They can still leave things behind"],
 ["On board before arrival","How to declare, and what must not be taken off","The last chance. Those who declare are not penalised"]]}]},

@@ -3,7 +3,7 @@
 set("6-1",{title:"At the Departure Counter: Thinking in Situations",hl:"Departure Situations",subtitle:"Passports, connections, residents, animals travelling with passengers. Ten common situations",
 lead:["From here, what was learned in the earlier lessons is applied to real situations. With a passenger in front of you at the counter, what do you check and what do you say?","There is not always a single answer. But the order of thinking is the same: is the document theirs, is it valid, and does it meet the requirements of every country on the itinerary?"],
 sections:[
-{h:"Passports and visas",blocks:[{t:"rows",items:[
+{h:"Passports and visas",blocks:[{t:"fig",id:"ciq_counter",cap:"Figure: at the departure counter (example)."},{t:"rows",items:[
 {name:"The passport has five months left; the destination requires six months or more",x:"Refuse boarding. Explain why and give directions to the passport office and the next flight. The requirement is set by the destination country. (1-1)"},
 {name:"The name is spelled one letter differently in the booking and the passport",x:"Correct the booking to match the passport. The data sent to the authorities must be exactly as in the passport. (0-4, 4-1)"},
 {name:"The visa is in an old passport",x:"Check in TIMATIC whether both the old and the new passport must be carried. (1-1, 1-2)"}]}]},
@@ -31,7 +31,7 @@ next:"6-2 So that passengers are not stopped on arrival"});
 set("6-2",{title:"So That Passengers Are Not Stopped on Arrival: Situations with Belongings",hl:"Belongings",subtitle:"Food, tobacco, medicines, alcohol, cash, packages carried for others. Things passengers have not noticed",
 lead:["Some passengers are stopped on arrival even with every document in order. The cause is in their bag.","In none of these situations does the passenger mean any harm. They simply did not know. That is why telling them prevents it."],
 sections:[
-{h:"Food",blocks:[{t:"rows",items:[
+{h:"Food",blocks:[{t:"fig",id:"ciq_items",cap:"Figure: belongings that get stopped on arrival (example)."},{t:"rows",items:[
 {name:"Fruit from the in-flight service, put in a bag for later",x:"Ask passengers in the pre-arrival announcement not to take it off. In the United States that alone can bring a fine. (3-3, 4-2)"},
 {name:"Jerky or instant noodles containing meat, bought as presents",x:"They cannot be brought into Japan, Korea, Taiwan, the United States and many other countries. If declared and surrendered, there is no penalty. (3-2, 4-2, 4-7)"},
 {name:"Cheese bought in Paris, being taken to London",x:"Since April 2025 meat and dairy products cannot be taken from Europe into Britain. (4-5)"},
@@ -59,7 +59,7 @@ next:"6-3 When things do not go to plan"});
 set("6-3",{title:"When Things Do Not Go to Plan: Situations at the Station",hl:"Station Situations",subtitle:"Returns, delays, unplanned airports, illness on board, delayed bags",
 lead:["On a normal flight, CIQ flows quietly. The station comes face to face with CIQ when something has not gone to plan.","In every situation the first steps are the same: tell the authorities, wait for instructions, keep a record."],
 sections:[
-{h:"Returns and penalties",blocks:[{t:"rows",items:[
+{h:"Returns and penalties",blocks:[{t:"fig",id:"ciq_station",cap:"Figure: when things go off plan (example)."},{t:"rows",items:[
 {name:"The destination reports that a passenger has been refused entry",x:"Check the check-in record and report to head office. Meet the returning flight and explain costs and next steps. (1-4)"},
 {name:"A penalty notice arrives from the authorities",x:"Gather the facts and check whether an appeal is possible. Choose one measure that fits the cause. (5-1)"},
 {name:"The same miss keeps happening",x:"Do not reprimand the agent; look for the gap in the procedure. (5-1)"}]}]},

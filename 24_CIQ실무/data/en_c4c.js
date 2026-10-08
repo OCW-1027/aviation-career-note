@@ -39,7 +39,7 @@ next:"4-8 South-East Asia and the Middle East"});
 set("4-8",{title:"South-East Asia and the Middle East: Medicines, E-cigarettes, Alcohol and Pork",hl:"South-East Asia and the Middle East",subtitle:"Things that are ordinary at home can be illegal at the destination",
 lead:["In South-East Asia and the Middle East, what gets passengers into trouble is less often food. It is the medicine they always take, the e-cigarette they always use, the bottle bought as a present.","These are ordinary things in Japan or Korea. But at some destinations, merely having them can mean a fine, deportation or even detention."],
 sections:[
-{h:"Three things that change with the destination",blocks:[{t:"rows",items:[
+{h:"Three things that change with the destination",blocks:[{t:"fig",id:"ciq_sea",cap:"Figure: Southeast Asia and the Middle East: three things that change."},{t:"rows",items:[
 {name:"Medicines",x:"Painkillers, cough medicines, sleeping tablets and medicines for attention deficit can contain controlled ingredients."},
 {name:"E-cigarettes and heated tobacco",x:"Some countries ban both bringing them in and using them."},
 {name:"Alcohol and pork",x:"Some countries ban bringing them in for religious reasons."}]}]},
