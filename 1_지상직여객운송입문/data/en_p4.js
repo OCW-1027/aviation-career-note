@@ -17,7 +17,7 @@ sections:[
 ["Delay","In writing within 21 days of receiving the bag"],
 ["Loss","If it has not arrived after 21 days, it can be claimed as lost"]]},
 {t:"rows",items:[
-{name:"Liability cap",x:"For international carriage the limit is set by the convention in Special Drawing Rights (1,288 SDR per passenger since 2019). Domestic flights follow national rules and each airline’s conditions of carriage."},
+{name:"Liability cap",x:"For international carriage the limit is set by the convention in Special Drawing Rights (1,519 SDR per passenger since 28 December 2024). Domestic flights follow national rules and each airline’s conditions of carriage."},
 {name:"Declared value",x:"Passengers checking valuable items can declare a higher value and pay a charge to raise the limit, up to whatever maximum the airline allows."}]},
 {t:"note",x:"* Which rules apply depends on the convention’s ratification and the airline’s conditions of carriage. The figures are reviewed periodically, so check the current amounts. ★"}]},
 {h:"Where the airline is usually not liable",blocks:[{t:"check",items:[

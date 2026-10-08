@@ -142,7 +142,7 @@ sections:[
 ["Company add-on (example)","X-ray re-screening of all transfer cargo","Re-screen if records cannot be confirmed"]]},
 {t:"point",x:"Transfer security depends on an unbroken record of checks at the previous airport. If the record breaks, re-check before loading (7-1)."}]}],
 voice:"For transfer cargo with a short connection, share the position of the inbound ULDs with the handling agent in advance. Deciding beforehand whether a ULD goes through intact or is rebuilt means connections are rarely missed.",
-terms:[["Transfer Cargo","環積（乗り継ぎ）の貨物","환적 화물"],["Thru Unit (Intact BUP)","ULDのまま","스루(ULD 그대로)"],["Minimum Connecting Time (MCT)","最小の乗り継ぎ時間","최소 연결 시간"],["Aircraft on Ground (AOG)","緊急の部品","긴급 부품"],["Interline","他社との連帯の輸送","인터라인"]],
+terms:[["Transfer Cargo","積み替え（トランシップ）貨物","환적 화물"],["Thru Unit (Intact BUP)","ULDのまま","스루(ULD 그대로)"],["Minimum Connecting Time (MCT)","最小の乗り継ぎ時間","최소 연결 시간"],["Aircraft on Ground (AOG)","緊急の部品","긴급 부품"],["Interline","他社との連帯の輸送","인터라인"]],
 quiz:[{q:"Which needs more time before the connection?",opts:["Intact ULD","Rebuild","The same","Neither"],a:1,exp:"Breaking down and rebuilding takes time."},
 {q:"Under Korea’s Aviation Security Act, when must the carrier screen known-consignor cargo?",opts:["When moved from a freighter to a passenger aircraft","On rainy days","On night flights","For light cargo"],a:0,exp:"Art. 17-4(3)5."},
 {q:"Unbooked interline transfer cargo is…",opts:["Normally refused (urgent items excepted)","Always accepted","Always refused","Charged double"],a:0,exp:"The company defines exceptions."}],

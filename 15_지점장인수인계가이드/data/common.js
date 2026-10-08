@@ -1,6 +1,6 @@
 /* 共通設定（article.js より前に読み込む）— 日本語・한국어・English */
 (function(){
-var PARTS={ja:['','Part 1 引き継ぎの土台','Part 2 分野ごとの引き継ぎ','Part 3 受け取る側'],ko:['','Part 1 인계의 토대','Part 2 분야별 인계','Part 3 받는 쪽'],en:['','Part 1 The Foundation','Part 2 Handover by Area','Part 3 The Incoming Manager']};
+var PARTS={ja:['','Part 1 引き継ぎの土台','Part 2 分野ごとの引き継ぎ','Part 3 後任者の立場から'],ko:['','Part 1 인계의 토대','Part 2 분야별 인계','Part 3 받는 쪽'],en:['','Part 1 The Foundation','Part 2 Handover by Area','Part 3 The Incoming Manager']};
 var S={ja:'管理者の引き継ぎ・着任ガイド',ko:'관리자 인수인계·부임 가이드',en:'Handing Over and Taking Over: A Guide for Managers'};
 var DEF={ja:{voice:'引き継いだ人のひと言'},ko:{voice:'인계한 사람의 한마디'},en:{voice:'From Someone Who Handed Over'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];

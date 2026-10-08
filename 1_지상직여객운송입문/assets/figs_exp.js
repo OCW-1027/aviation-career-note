@@ -75,7 +75,7 @@ ex_reg:function(l){
  if(!W)return F.ex_reg('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ex_pension:function(l){
- var W=({ja:{t:'韓日の社会保障の協定：証明書があるか、ないか',c:[['証明書あり','一定期間（例：5年以内）の派遣なら韓国の年金に加入し続け、日本の年金は免除'],['証明書なし','韓国と日本の両方の年金の保険料を払うことになる']],n:['手続き：韓国の年金の機関で適用の証明書を受け取り、日本の会社に提出','協定は年金だけが対象。健康保険は日本の制度に入る（家族は扶養として加入できる）']},
+ var W=({ja:{t:'日韓社会保障協定：証明書があるか、ないか',c:[['証明書あり','一定期間（例：5年以内）の派遣なら韓国の年金に加入し続け、日本の年金は免除'],['証明書なし','韓国と日本の両方の年金の保険料を払うことになる']],n:['手続き：韓国の年金の機関で適用の証明書を受け取り、日本の会社に提出','協定は年金だけが対象。健康保険は日本の制度に入る（家族は扶養として加入できる）']},
   ko:{t:'한일 사회보장협정: 증명서가 있는가, 없는가',c:[['증명서 있음','일정 기간(예: 5년 이내) 파견이면 한국 국민연금에 계속 가입하고 일본 연금은 면제'],['증명서 없음','한국과 일본 양쪽 연금 보험료를 내게 된다']],n:['절차: 한국 국민연금공단에서 적용 증명서를 받아 일본 회사에 제출','협정은 연금만 대상. 건강보험은 일본 제도에 가입(가족은 피부양자로 가입 가능)']},
   en:{t:'Social security agreements: with or without the certificate',c:[['With a certificate','On a limited posting (e.g. up to 5 years) you stay in your home pension and are exempt from Japan’s'],['Without one','You pay pension contributions in both countries']],n:['Get the certificate from your home pension authority and give it to your Japanese employer','Coverage varies; the Japan–Korea agreement covers pensions only, so health insurance is Japanese']}})[l];
  if(!W)return F.ex_pension('ja');setK(1);
@@ -112,7 +112,7 @@ ex_report:function(l){
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ex_rtax:function(l){
  var W=({ja:{t:'住民税は「1年遅れ」でやってくる',st:['日本での前年の所得がないため、住民税はかからないことが多い','前年の所得にもとづく住民税が6月から天引きに。手取りが減ったように感じる','1月1日に日本に住んでいれば、その年の住民税がかかる。残りを一括で払うか納税管理人を決める'],who:['赴任した年','2年目から','帰任の年'],n:['所得税は毎月の給与から源泉徴収し、年末調整で精算。日本に1年以上住む見込みなら一般に居住者','韓国で受け取る給与も申告の対象になることがある。租税条約の扱いは赴任前に税理士・本社と決める★']},
-  ko:{t:'주민세는 「1년 늦게」 찾아온다',st:['일본에서의 전년 소득이 없어 주민세가 없는 경우가 많다','전년 소득에 따른 주민세가 6월부터 공제. 실수령액이 줄어든 것처럼 느낀다','1월 1일에 일본에 살고 있으면 그해 주민세가 부과. 잔액을 일괄 납부하거나 납세 관리인을 정한다'],who:['부임한 해','2년 차부터','귀임하는 해'],n:['소득세는 매월 급여에서 원천징수, 연말정산으로 정산. 일본에 1년 이상 살 전망이면 일반적으로 거주자','한국에서 받는 급여도 신고 대상이 되기도 한다. 조세조약 처리는 부임 전에 세리사·본사와 정한다★']},
+  ko:{t:'주민세는 「1년 늦게」 찾아온다',st:['일본에서의 전년 소득이 없어 주민세가 없는 경우가 많다','전년 소득에 따른 주민세가 6월부터 공제. 실수령액이 줄어든 것처럼 느낀다','1월 1일에 일본에 살고 있으면 그해 주민세가 부과. 잔액을 일괄 납부하거나 납세 관리인을 정한다'],who:['부임한 해','2년 차부터','귀임하는 해'],n:['소득세는 매월 급여에서 원천징수, 연말정산으로 정산. 일본에 1년 이상 살 전망이면 일반적으로 거주자','한국에서 받는 급여도 신고 대상이 되기도 한다. 조세조약 처리는 부임 전에 세무사·본사와 정한다★']},
   en:{t:'Resident tax arrives a year late',st:['No Japanese income in the previous year, so usually no resident tax','Tax on last year’s income is deducted from June; take-home pay seems to drop','If you live in Japan on 1 January, that year’s tax is due; pay the rest at once or appoint a tax agent'],who:['Year you arrive','From year 2','Year you leave'],n:['Income tax is withheld monthly and settled at year end; expecting to stay a year or more generally makes you a resident','Pay received at home may also be taxable in Japan; settle treaty treatment with a tax adviser and head office before you move ★']}})[l];
  if(!W)return F.ex_rtax('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#2C8C8C','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},

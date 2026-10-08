@@ -203,8 +203,8 @@ sections:[
 ["February","Prepare the consumption tax refund filing"],
 ["February to March","File fares for approval; revise and submit the security programme and the security training plan"],
 ["March to April","Check changes to social insurance and tax rates; health checks"],
-["June","Social insurance base report"],
 ["June to July","Withholding tax for the first half; annual labour insurance renewal"],
+["Early July","Social insurance base report"],
 ["August to September","File the winter schedule (the deadline is around early September)"],
 ["October to December","Security training, next year’s budget, year-end tax adjustment"],
 ["Once a year","Internal security audit and the various authority audits"]]},
@@ -220,6 +220,6 @@ voice:"[Interview to be added] The calendar rule you invented after being caught
 terms:[["Summer / Winter Schedule (IATA Season)","夏ダイヤ・冬ダイヤ","하계·동계 스케줄"],["Change of Business Plan","事業計画変更","사업계획 변경"],["Withholding Income Tax","源泉所得税","원천 소득세"],["Social Insurance Base Report","算定基礎届","산정 기초 신고"],["Year-end Tax Adjustment","年末調整","연말정산"],["International Tourist Tax","国際観光旅客税","국제관광여객세"]],
 quiz:[{q:"When does the IATA summer season run?",opts:["1 April to 30 September","Last Sunday of March to last Saturday of October","January to June","It is not fixed"],a:1,exp:"Winter runs from the last Sunday of October to the last Saturday of March."},
 {q:"What belongs on the calendar beside the deadline?",opts:["Nothing","The day preparation starts, and the owner","The weather","Revenue"],a:1,exp:"So you can work backwards."},
-{q:"When is the social insurance base report filed in Japan?",opts:["January","June","September","December"],a:1,exp:"It is based on the April to June payroll."}],
+{q:"When is the social insurance base report filed in Japan?",opts:["January","Early July","September","December"],a:1,exp:"It is based on the April to June payroll and filed in early July."}],
 next:"Part 7 Career Guide — 7-1 Working as ground staff in Japan"});
 })(window.ARTS);

@@ -6,7 +6,7 @@ function tx(x,y,s,sz,c,w,a){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||
 function badge(n,x,y,r,c){r=r||15;return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(c||T)+'"/>'+tx(x,y+5,n,r+1,'#fff',800)}
 window.FIGS=window.FIGS||{};
 var F={
-/* 運航管理の流れ：計画 → 書類 → 合意 → 出発の承認 → 監視 → 変更・回航の助言 → 終了 */
+/* 運航管理の流れ：計画 → 書類 → 合意 → 出発の承認 → 監視 → 変更・ダイバートの助言 → 終了 */
 dsp_flow:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+R(0,0,900,360,'#F7FAFD'),DUR=14,
  st=[['PLAN','OFP',B],['BRIEF','WX / NOTAM',B],['AGREE','PIC + DSP',P],['RELEASE','GO',P],['MONITOR','ACARS',T],['ADVISE','CHANGE / DIVERT',O],['CLOSE','ARRIVED',D]];
  s+='<line x1="70" y1="120" x2="830" y2="120" stroke="#C9D6E3" stroke-width="6" stroke-linecap="round"/>';

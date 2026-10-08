@@ -23,7 +23,7 @@ sections:[
 ["Late December","Strong at year-end","Strong on 28–31 December","Close cheap fares on near-full days"]]},
 {t:"note",x:"* The index and month boundaries are illustrative. In practice they vary with last year’s booking pace, events and exchange rates (1-2). ★"}]},
 {h:"Exercise: how the 2027 holidays fall",blocks:[{t:"table",cols:["Country","Holidays (2027)","Pattern","Outlook"],rows:[
-["Korea","Seollal 7–9 February plus substitute holiday 10 February","Five days, Saturday 6 to Wednesday 10 February: the longest break of 2027","Korea-origin demand concentrates in early February; target the weeks either side for Japan-origin"],
+["Korea","Seollal 6–8 February plus substitute holiday 9 February","Four days, Saturday 6 to Tuesday 9 February: one of the long breaks of 2027","Korea-origin demand concentrates in early February; target the weeks either side for Japan-origin"],
 ["Korea","Children’s Day 5 May (Wed), Buddha’s Birthday 13 May (Thu)","Mid-week holidays that become long weekends with leave","Short-trip demand"],
 ["Korea","Liberation Day 15 August (Sun), substitute 16 August (Mon)","Three-day weekend","End-of-summer demand"],
 ["Korea","Chuseok 14–16 September (Tue–Thu)","Taking 13 and 17 September off gives nine days, 11–19 September","The autumn Korea-origin peak; fix mid-September seats and fares early"],
@@ -59,7 +59,7 @@ sections:[
 voice:"If empty seats stand out in the Japan-origin low season, propose campaigns timed to Japanese holidays and school breaks to head office. Laying the Korea-origin and Japan-origin waves over each other on one calendar lets those discussions run on numbers.",
 terms:[["Annual Sales Calendar","年間販売カレンダー","연간 판매 캘린더"],["Low Season","閑散期","비수기"],["Peak Season","繁忙期","성수기"],["Minimum Selling Price","最低販売価格","최저 판매가"],["Group Fare","団体運賃","단체 운임"],["Incentive Travel","インセンティブ旅行","인센티브 여행"]],
 quiz:[{q:"In 2025, Koreans visiting Japan outnumbered Japanese visiting Korea by about how much?",opts:["About 1 to 1","About 1.5 to 1","About 2.6 to 1","About 5 to 1"],a:2,exp:"About 9.46 million against about 3.65 million."},
-{q:"What is Korea’s longest holiday break in 2027?",opts:["Seollal (6–10 February)","Children’s Day","Liberation Day","Christmas"],a:0,exp:"7 February is a Sunday, so 10 February becomes a substitute holiday."},
+{q:"What is Korea’s longest holiday break in 2027?",opts:["Seollal (6–9 February)","Children’s Day","Liberation Day","Christmas"],a:0,exp:"7 February is a Sunday, so 9 February becomes a substitute holiday."},
 {q:"Which is a good way to fill Japan-origin low seasons?",opts:["Only offer last-minute specials","Set low days early and sell ahead with group fares and exclusive agency products","Raise fares","Do nothing"],a:1,exp:"The earlier you decide and tell agencies, the better it works."}],
 next:"7-1 What is revenue management?"});
 })(window.ARTS);

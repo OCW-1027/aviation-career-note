@@ -344,7 +344,7 @@ cgo_rev:function(l){
  var L=LIST(W.n,y+8,600,11);return SVG(L.y+8,s+L.s)},
 /* 5-4 貨物の仕事のキャリア（例）：現場から管理・営業へ。右は役に立つ資格・教育 */
 cgo_career:function(l){
- var W=({ja:{t:'貨物の仕事のキャリア（例）',st:['上屋の作業：受け付け・計量・ビルドアップ・保管','ロードコントロール・危険物の受け付け','品質・安全の管理、またはフォワーダー・GSAの営業','空港の支店の貨物の責任者','本社の貨物部門：路線の計画・運賃・提携'],who:['フォークリフトなどの技能','危険物の教育（定期）','貿易の実務・通関士★','語学（英語・韓国語）','収入管理・契約']},
+ var W=({ja:{t:'貨物の仕事のキャリア（例）',st:['上屋の作業：受け付け・計量・ビルドアップ・保管','ロードコントロール・危険物の受け付け','品質・安全の管理、またはフォワーダー・GSAの営業','空港の支店の貨物の責任者','本社の貨物部門：路線の計画・運賃・提携'],who:['フォークリフトなどの技能','危険物の教育（定期）','貿易の実務・通関士★','語学（英語・韓国語）','収益管理・契約']},
   ko:{t:'화물 업무의 커리어(예)',st:['화물터미널 작업: 접수·계량·빌드업·보관','로드 컨트롤·위험물 접수','품질·안전 관리, 또는 포워더·GSA 영업','공항 지점 화물 책임자','본사 화물 부문: 노선 계획·운임·제휴'],who:['지게차 등 기능','위험물 교육(정기)','무역 실무·관세사★','어학(영어·일본어)','수입 관리·계약']},
   en:{t:'A career in cargo (example)',st:['Terminal work: acceptance, weighing, build-up, storage','Load control and dangerous goods acceptance','Quality and safety management, or forwarder/GSA sales','Head of cargo at an airport station','Head-office cargo: route planning, rates and partnerships'],who:['Forklift and other skills','Dangerous goods training (recurrent)','Trade practice, customs broker ★','Languages (English, Japanese, Korean)','Revenue management, contracts']}})[l];
  if(!W)return F.cgo_career('ja');setK(1);

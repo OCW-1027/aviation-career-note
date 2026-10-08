@@ -1,4 +1,4 @@
-/* 運航管理の実務練習 ⑤天気とNOTAM（2026.09）
+/* 運航管理の実務練習 ⑤気象とNOTAM（2026.09）
    TAF・NOTAMは練習用に作った例（実在の発出ではない）。代替空港の判断は教育用の簡略な方法：
    到着予定の前後1時間で、基本の予報・BECMG（変化の後）・TEMPO/PROB を含めていちばん悪い視程と雲底を使い、
    着陸の最低気象条件、代替空港の計画用の最低条件（着陸の最低条件に雲底+200ft・視程+800mを加えた値）と比べる。
@@ -82,5 +82,5 @@ function makeQuiz(){var out=[],o,n=NT[Math.floor(Math.random()*NT.length)];
  o=OPS_OPTS(tx(L3('終わる日時','끝나는 일시','When it ends')),[tx(L3('始まる日時','시작 일시','When it starts')),tx(L3('場所','장소','The location')),tx(L3('本文','본문','The text'))]);out.push({q:tx(TX.q4),o:o.o,a:o.a,x:tx(XW.q4)});
  o=OPS_OPTS(tx(L3('代替空港と追加燃料を見直し、出発時刻の調整も検討する','교체 공항과 추가 연료를 재검토하고 출발 시각 조정도 검토한다','Review the alternate and extra fuel, and consider adjusting departure')),[tx(L3('TEMPOは一時的なので無視する','TEMPO는 일시적이므로 무시한다','Ignore it because TEMPO is temporary')),tx(L3('燃料を減らして軽くする','연료를 줄여 가볍게 한다','Reduce fuel to save weight')),tx(L3('到着後に考える','도착 후에 생각한다','Think about it after arrival'))]);out.push({q:tx(TX.q5),o:o.o,a:o.a,x:tx(XW.q5)});
  return shuf(out)}
-OPS_MODS.wx={label:L3('⑤ 天気・NOTAM','⑤ 기상·NOTAM','⑤ Weather & NOTAM'),render:render};
+OPS_MODS.wx={label:L3('⑤ 気象・NOTAM','⑤ 기상·NOTAM','⑤ Weather & NOTAM'),render:render};
 })();
