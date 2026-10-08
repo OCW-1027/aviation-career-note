@@ -3,7 +3,7 @@
 set("1-1",{title:"Beijing Capital (PEK) and Beijing Daxing (PKX): Two Hubs in One City",hl:"Beijing",subtitle:"Capital serves Air China and Star Alliance; Daxing serves China Eastern, China Southern and SkyTeam. Together they handled over 124 million passengers in 2025",
 lead:["Beijing has two large international airports: Beijing Capital, long China’s front door, and Beijing Daxing, opened in 2019 in the southern district of Daxing. Together they handled more than 124 million passengers in 2025 (CAAC).","The airports divide their roles by airline and alliance. Getting the airport wrong in bookings, connections or cargo instructions causes serious problems. This lesson covers the differences and China’s entry rules."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Beijing Capital (PEK)","Beijing Daxing (PKX)"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_pek",cap:"Figure: Beijing’s two hubs."},{t:"table",cols:["Item","Beijing Capital (PEK)","Beijing Daxing (PKX)"],rows:[
 ["ICAO","ZBAA","ZBAD"],
 ["Opened","1958 (T3 in 2008)","September 2019"],
 ["Location","About 25 km northeast of the city","About 46 km south (on the Hebei border)"],
@@ -36,7 +36,7 @@ next:"1-2 Shanghai Pudong (PVG)"});
 set("1-2",{title:"Shanghai Pudong (PVG): China’s Largest International Gateway and Cargo Hub",hl:"Shanghai Pudong",subtitle:"84.99 million passengers in 2025, jumping to fifth in the world; second for cargo with 4.10 million tonnes. International flights use Pudong rather than Hongqiao",
 lead:["Shanghai has two airports: Pudong, focused on international and long-haul flights, and Hongqiao, focused on domestic and short international routes. Pudong handled 84.99 million passengers in 2025, rising from tenth to fifth in the world (ACI World).","Pudong is also second in the world for cargo after Hong Kong. This lesson covers the basics, the split with Hongqiao, and operational points."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_pvg",cap:"Figure: Shanghai Pudong at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: PVG / ICAO: ZSPD"],
 ["Operator","Shanghai Airport Authority (group)"],
 ["Opened","October 1999"],
@@ -70,7 +70,7 @@ next:"1-3 Hong Kong (HKG)"});
 set("1-3",{title:"Hong Kong (HKG): First for Cargo, Growing Again with a Third Runway",hl:"Hong Kong",subtitle:"Moved from Kai Tak in 1998. The three-runway system began on 28 November 2024, aiming for 120 million passengers and 10 million tonnes a year within about ten years",
 lead:["Hong Kong International Airport opened in 1998 on reclaimed land at Chek Lap Kok, north of Lantau Island, replacing Kai Tak in the heart of the city. In 2025 it handled 60.82 million international passengers (8th in the world) and 5.07 million tonnes of cargo, first in the world (ACI World).","The three-runway system began operating on 28 November 2024, and the Terminal 2 expansion is coming into use in phases. This lesson covers the airport’s features and what stations should watch."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_hkg",cap:"Figure: Hong Kong at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: HKG / ICAO: VHHH"],
 ["Operator","Airport Authority Hong Kong (AAHK)"],
 ["Opened","July 1998 (replacing Kai Tak)"],
@@ -100,7 +100,7 @@ next:"1-4 Taipei Taoyuan (TPE)"});
 set("1-4",{title:"Taipei Taoyuan (TPE): A Transfer Airport Linking North America and Southeast Asia",hl:"Taipei Taoyuan",subtitle:"Base for China Airlines, EVA Air and STARLUX. Terminal 3’s north concourse opened in December 2025, with the whole terminal due by the end of 2027",
 lead:["Taiwan Taoyuan International Airport, about 40 km west of Taipei, is the centre of Taiwan’s international flights. It opened in 1979 as Chiang Kai-shek International Airport and took its present name in 2006. Taiwan’s three major airlines are based here, and transfer traffic between North America and Southeast Asia is a defining feature.","In 2025 it handled 2.50 million tonnes of cargo, ninth in the world (ACI World). This lesson covers the basics, the Terminal 3 plan and how Taipei’s two airports divide their roles."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_tpe",cap:"Figure: Taipei Taoyuan at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: TPE / ICAO: RCTP"],
 ["Operator","Taoyuan International Airport Corporation"],
 ["Opened","1979 (as Chiang Kai-shek International Airport); renamed in 2006"],

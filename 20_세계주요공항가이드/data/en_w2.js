@@ -3,7 +3,7 @@
 set("2-1",{title:"Singapore Changi (SIN): The World’s Best Airport and Terminal 5 in the 2030s",hl:"Changi",subtitle:"A record of about 70 million passengers in 2025, fourth in the world for international traffic. Four terminals for 90 million a year, rising to 140 million with T5 in the mid-2030s",
 lead:["Singapore Changi is the busiest airport in Southeast Asia and has set the global benchmark for connections and passenger service. About 70 million passengers used it in 2025, beating the pre-pandemic record (Singapore Ministry of Transport); its 69.40 million international passengers ranked fourth in the world (ACI World).","Terminal 5 (T5) broke ground in May 2025, targeting the mid-2030s. This lesson covers the basics, how connections work, entry rules and future plans."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_sin",cap:"Figure: Singapore Changi at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: SIN / ICAO: WSSS"],
 ["Operator","Changi Airport Group (CAG)"],
 ["Opened","1981 (replacing Paya Lebar)"],
@@ -42,7 +42,7 @@ next:"2-2 Bangkok Suvarnabhumi (BKK)"});
 set("2-2",{title:"Bangkok Suvarnabhumi (BKK): 65 Million with SAT-1 and a Third Runway, 150 Million by 2033",hl:"Suvarnabhumi",subtitle:"Opened in 2006. The SAT-1 satellite terminal in 2023 and the third runway in November 2024 expanded capacity; the East Expansion and South Terminal aim for one of the world’s largest airports. Plus the split with Don Mueang",
 lead:["Bangkok has Suvarnabhumi, for international and long-haul flights, and Don Mueang, for low-cost and domestic services. Suvarnabhumi opened on 28 September 2006, handled about 60 million passengers in 2024 and was expected to approach 65 million in 2025 (Airports of Thailand).","The SAT-1 satellite terminal in 2023 and the third runway from 1 November 2024 raised capacity to 65 million a year and 94 movements an hour. This lesson covers the expansion plan and operational and entry points."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_bkk",cap:"Figure: Bangkok Suvarnabhumi at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: BKK / ICAO: VTBS"],
 ["Operator","Airports of Thailand (AOT)"],
 ["Opened","28 September 2006 (international flights moved from Don Mueang)"],
@@ -80,7 +80,7 @@ next:"2-3 Kuala Lumpur (KUL)"});
 set("2-3",{title:"Kuala Lumpur (KUL): Southeast Asia’s Growth Hub, Now in the World Top 20",hl:"Kuala Lumpur",subtitle:"63.3 million passengers in 2025 (+10.8%), rising from 26th to 20th in the world. Malaysia Airlines at Terminal 1, AirAsia at Terminal 2, and the Aerotrain back in service from July 2025",
 lead:["Kuala Lumpur International Airport (KLIA), at Sepang about 45 km south of the city, opened in 1998. It handled 63.3 million passengers in 2025 (+10.8%) and entered ACI World’s top 20 for the first time, climbing from 26th to 20th, the biggest rise in the top 20.","Terminal 1 is Malaysia Airlines’ base and Terminal 2 serves AirAsia and other low-cost carriers; in July 2025 the Aerotrain inside Terminal 1 returned with new trains. This lesson covers KLIA’s layout, the MDAC arrival card and future growth."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_kul",cap:"Figure: Kuala Lumpur at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: KUL / ICAO: WMKK"],
 ["Operator","Malaysia Airports Holdings"],
 ["Opened","1998 (international flights moved from Subang)"],
@@ -112,7 +112,7 @@ next:"2-4 Delhi (DEL)"});
 set("2-4",{title:"Delhi Indira Gandhi (DEL): Four Runways, 100 Million Capacity and a Second Airport",hl:"Delhi",subtitle:"India’s busiest airport. The 2025 Terminal 1 expansion and Terminal 2 refurbishment lifted capacity to 105 million; in March 2026 Noida International opened as the region’s second airport",
 lead:["Delhi’s Indira Gandhi International Airport is India’s busiest and South Asia’s largest gateway. Expanded repeatedly since privatisation in 2006, it reached a capacity of 105 million a year in 2025 with the enlarged Terminal 1 (full operation from 15 April) and the refurbished Terminal 2 (reopened 26 October).","On 28 March 2026 Noida International Airport (Jewar) opened about 72 km to the southeast, giving the Delhi region two airports. This lesson covers Delhi’s layout, expansion plans and entry rules."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_del",cap:"Figure: Delhi at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: DEL / ICAO: VIDP"],
 ["Operator","Delhi International Airport Ltd (DIAL, led by the GMR Group, since 2006)"],
 ["Runways","Four (India’s first four-runway system)"],
