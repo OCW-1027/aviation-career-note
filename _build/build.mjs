@@ -110,7 +110,8 @@ for (const dir of Object.keys(HUBS)) {
   // 単独の HTML で書いたレッスン（例：0-1_….html）も数える
   const soloFiles = fs.readdirSync(path.join(SRC, dir)).filter(n => /^\d+-\d+_.+\.html$/.test(n));
   soloFiles.forEach(n => soloPages.push(dir + '/' + n));
-  catalog[dir] = { n: keys.length + soloFiles.length };
+  // 講座の目次（hub.js）と同じ数え方：レッスン＋単独のページ＋目次に載せた練習ページ（HUBS の extra）。重なりは1つに 2026.10
+  catalog[dir] = { n: new Set(keys.concat(Object.keys(HUBS[dir].extra || {}), soloFiles.map(n => n.split('_')[0]))).size, code: HUBS[dir].code };
   if (LIMIT) keys = keys.slice(0, LIMIT);
   const code = String(HUBS[dir].code).toLowerCase();
   const index = {};
@@ -179,6 +180,16 @@ for (const page of ['8_사이트/index.html', '8_사이트/index_v2.html', '8_�
   const ip = path.join(OUT, page);
   if (fs.existsSync(ip)) fs.writeFileSync(ip, fs.readFileSync(ip, 'utf8').replace('<script src="assets/site.js"></script>',
     '<script src="../catalog.js"></script><script>(function(){if(!window.CATALOG||!window.SERIES)return;SERIES.forEach(function(s){var d=(s.p||"").split("/")[1];if(CATALOG[d])s.n=CATALOG[d].n})})();</script>\n<script src="assets/site.js"></script>'));
+}
+
+// 講座ごとのレッスン数を、元の数字が書かれたデータ（home_data.js・学習ガイド）にも自動で反映する（ずれを防ぐ）2026.10
+{
+  const byCode = {};
+  for (const d of Object.keys(catalog)) if (catalog[d].code) byCode[catalog[d].code] = catalog[d].n;
+  const hd = path.join(OUT, '8_사이트', 'data', 'home_data.js');
+  if (fs.existsSync(hd)) fs.writeFileSync(hd, fs.readFileSync(hd, 'utf8').replace(/code:'([A-Z]+)',n:\d+/g, (m, c) => byCode[c] != null ? `code:'${c}',n:${byCode[c]}` : m));
+  const gd = path.join(OUT, '8_사이트', 'guide.html');
+  if (fs.existsSync(gd)) fs.writeFileSync(gd, fs.readFileSync(gd, 'utf8').replace(/\b([A-Z]{3}):\['([^']+)',(\d+),/g, (m, c, h) => byCode[c] != null ? `${c}:['${h}',${byCode[c]},` : m));
 }
 
 // 4) サイトマップ（新しいレッスンのURL＋講座の目次・ツールなどの主なページ）
