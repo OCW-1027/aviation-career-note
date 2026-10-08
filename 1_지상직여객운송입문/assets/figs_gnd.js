@@ -1521,7 +1521,62 @@ int_online:function(l){
   ko:{t:'온라인 면접 당일의 흐름',st:['접속 테스트와 복장 정돈','입장해 기다린다','화면을 향해 인사','말할 때는 카메라를 본다','감사 인사를 하고 상대가 끊은 뒤 퇴장'],who:['10분 전','5분 전','인사','면접','퇴장'],n:['끊기면 바로 다시 들어간다. 안 되면 미리 받은 연락처로','안내 시각이 일본 시간인지 꼭 확인한다']},
   en:{t:'Online interview day: the sequence',st:['Test the connection and check your appearance','Join and wait','Bow towards the screen','Look at the camera when you speak','Thank them and leave after they end the call'],who:['−10 min','−5 min','Greet','Interview','Leave'],n:['If disconnected, rejoin at once; if you cannot, use the contact you noted beforehand','Confirm whether the stated time is Japan time']}})[l];
  if(!W)return F.int_online('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+/* ===== 面接対策（INT）Part 3〜4 の図 2026.10 ===== */
+int_exp:function(l){
+ var W=({ja:{t:'韓国の空港の経験を日本でどう生かすか（例）',r:[['チェックイン','韓国のお客様の要望を先回りして案内','#1769e0'],['韓国の出入国の制度','乗り継ぎのお客様の書類確認に強い','#2C8C8C'],['イレギュラー対応','手順を知ったうえで動ける','#E08A2E'],['教育・指導','ハンドリング会社のスタッフ教育に','#7A5CC7'],['韓国語','本社・韓国の空港との連絡','#D64545']],n:['「日本のやり方をまず学び、そのうえで経験を生かしたい」と伝える','比較は具体的に、評価は控えめに。前職の批判はしない']},
+  ko:{t:'한국 공항 경험을 일본에서 어떻게 살릴까(예)',r:[['체크인','한국 승객의 요청을 앞서서 안내','#1769e0'],['한국 출입국 제도','환승 승객의 서류 확인에 강하다','#2C8C8C'],['비정상 대응','절차를 알고 움직일 수 있다','#E08A2E'],['교육·지도','조업사 직원 교육에','#7A5CC7'],['한국어','본사·한국 공항과의 연락','#D64545']],n:['「일본의 방식을 먼저 배우고 그 위에 경험을 살리고 싶다」고 전한다','비교는 구체적으로, 평가는 절제해서. 전 직장을 비판하지 않는다']},
+  en:{t:'Using airport experience from Korea in Japan (example)',r:[['Check-in','Anticipate Korean passengers’ needs','#1769e0'],['Korean entry rules','Strong on documents for connecting passengers','#2C8C8C'],['Disruptions','Act knowing the procedures','#E08A2E'],['Training','Train handling company staff','#7A5CC7'],['Korean language','Liaise with head office and Korean airports','#D64545']],n:['Say you will learn the Japanese way first, then add your experience','Compare concretely, judge modestly, and never criticise a former employer']}})[l];
+ if(!W)return F.int_exp('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+int_mgr:function(l){
+ var W=({ja:{t:'管理職の実績の整理のしかた',st:['何が問題だったか','何を目指したか','自分とチームが何をしたか','どうなったかを数字で','続く形にしたか'],who:['課題','目標','行動','結果','仕組み'],n:['見られる点：現場の管理・人の育成・調整力・危機への対応・数字','「続く形にしたか」が、管理職の評価の分かれ目']},
+  ko:{t:'관리자의 실적을 정리하는 법',st:['무엇이 문제였나','무엇을 목표로 했나','나와 팀이 무엇을 했나','어떻게 됐는지 숫자로','계속되는 구조로 만들었나'],who:['과제','목표','행동','결과','구조'],n:['보는 점: 현장 관리·사람 육성·조율력·위기 대응·숫자','「계속되는 구조로 만들었나」가 관리자 평가의 갈림길']},
+  en:{t:'Structuring a manager’s achievements',st:['What was the problem?','What did you aim for?','What did you and your team do?','What happened, in numbers?','Did you make it last?'],who:['Problem','Goal','Action','Result','System'],n:['Interviewers look at operations, people development, coordination, crisis handling and numbers','Whether you built something that lasts separates strong managers']}})[l];
+ if(!W)return F.int_mgr('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#D64545','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_offer:function(l){
+ var W=({ja:{t:'内定から入社まで',st:['内定の通知と条件の提示','雇用契約の内容を確かめる','外国籍の場合、会社が在留資格を申請','源泉徴収票・口座などを提出','初期教育と空港のIDパスの申請'],who:['内定','確認','在留資格','書類','入社'],n:['確かめる条件：雇用の形・勤務の形・給与・試用期間・勤務地・社会保険','韓国から入社：在留資格認定証明書→ビザ→入国時に在留カード★']},
+  ko:{t:'내정부터 입사까지',st:['내정 통지와 조건 제시','고용 계약 내용을 확인한다','외국 국적이면 회사가 재류 자격을 신청','원천징수표·계좌 등을 제출','초기 교육과 공항 ID 패스 신청'],who:['내정','확인','재류 자격','서류','입사'],n:['확인할 조건: 고용 형태·근무 형태·급여·수습 기간·근무지·사회보험','한국에서 입사: 재류 자격 인정 증명서→비자→입국 때 재류 카드★']},
+  en:{t:'From job offer to first day',st:['Offer and conditions presented','Check the employment contract','For foreign nationals, the company applies for residence status','Submit tax slip, bank account and other papers','Initial training and airport ID pass application'],who:['Offer','Check','Status','Papers','Start'],n:['Check: employment type, shift pattern, pay, probation, workplace, social insurance','Joining from Korea: certificate of eligibility → visa → residence card on entry ★']}})[l];
+ if(!W)return F.int_offer('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_see:function(l){
+ var W=({ja:{t:'採用で見落とされがちな点と、応募者が見る点',c:[['会社が見落としがち','通勤の現実・教育にかかる時間・チームとの相性・在留の期限・語学の実際'],['応募者が見る点','教育の体制・勤務の組み方・少人数の負担・キャリアの道・職場の雰囲気']],n:['早朝の始発で間に合うかを、応募の前に確かめる','面接は会社を見る場でもある。面接官の態度も判断の材料']},
+  ko:{t:'채용에서 놓치기 쉬운 점과 지원자가 볼 점',c:[['회사가 놓치기 쉬운 점','출퇴근 현실·교육에 걸리는 시간·팀과의 궁합·재류 기한·어학의 실제'],['지원자가 볼 점','교육 체제·근무 짜는 법·소수 인원의 부담·커리어 길·직장 분위기']],n:['이른 아침 첫차로 제시간에 갈 수 있는지 지원 전에 확인한다','면접은 회사를 보는 자리이기도 하다. 면접관의 태도도 판단 자료']},
+  en:{t:'What hiring often overlooks, and what applicants should look at',c:[['Often overlooked by employers','Commuting reality, training time, team fit, visa expiry, real language ability'],['What applicants should check','Training, rostering, small-team workload, career path, atmosphere']],n:['Before applying, check you can reach work on the first train for early shifts','An interview is also your chance to judge the company, including how interviewers behave']}})[l];
+ if(!W)return F.int_see('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_role:function(l){
+ var W=({ja:{t:'ハンドリング会社のスタッフと航空会社の空港総括',c:[['ハンドリング会社のスタッフ','決められた手順で作業する。相手はお客様と自社のチーム'],['航空会社の空港総括','空港の業務全体に責任。委託先を監督し、本社・空港会社・CIQと調整して判断・報告']],n:['「速く正確に処理できます」→「手順を知っているので委託先の作業を確かめられます」','面接官が採りたいのは「作業」ではなく「役割」']},
+  ko:{t:'조업사 직원과 항공사 공항 총괄',c:[['조업사 직원','정해진 절차로 작업한다. 상대는 승객과 자사 팀'],['항공사 공항 총괄','공항 업무 전체에 책임. 위탁처를 감독하고 본사·공항 회사·CIQ와 조율해 판단·보고']],n:['「빠르고 정확하게 처리합니다」→「절차를 알기에 위탁처의 작업을 확인할 수 있습니다」','면접관이 뽑고 싶은 것은 「작업」이 아니라 「역할」']},
+  en:{t:'Handling company staff versus an airline’s airport lead',c:[['Handling company staff','Work to set procedures, facing passengers and their own team'],['Airline airport lead','Responsible for the whole operation: oversees contractors, coordinates with head office, the airport and CIQ, decides and reports']],n:['“I process quickly and accurately” → “I know the procedures, so I can check the contractor’s work”','Interviewers hire a role, not a task']}})[l];
+ if(!W)return F.int_role('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#5B6B7D','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_design:function(l){
+ var W=({ja:{t:'一本のストーリーの組み立て：5つの手順',st:['経験を10個以上書き出す（小さなことも）','3つを選び、状況・課題・行動・結果・学びで掘り下げる','3つに共通する考え方＝軸を見つける','軸×会社の特徴＝接点','1年目・3年目・5年目を描き、核の一文にする'],who:['書き出す','掘り下げる','軸','接点','未来'],n:['軸は「なぜそうしたのか」を3回重ねると見えてくる','書き出す段階では、評価や感想はまだ書かない']},
+  ko:{t:'한 줄의 스토리 설계: 5단계',st:['경험을 10개 이상 적어 본다(작은 것도)','3개를 골라 상황·과제·행동·결과·배움으로 파고든다','3개에 공통된 생각인 축을 찾는다','축×회사의 특징＝접점','1년차·3년차·5년차를 그려 핵심 한 문장으로'],who:['적기','파고들기','축','접점','미래'],n:['축은 「왜 그렇게 했나」를 3번 거듭하면 보인다','적어 보는 단계에서는 평가나 감상을 아직 쓰지 않는다']},
+  en:{t:'Designing one storyline: five steps',st:['List ten or more experiences, small ones too','Pick three and dig in: situation, task, action, result, lesson','Find the common way of thinking: your core','Core × company features = the link','Picture years one, three and five and write one core sentence'],who:['List','Dig','Core','Link','Future'],n:['Asking “why did I do that?” three times reveals your core','When listing, do not yet judge or add feelings']}})[l];
+ if(!W)return F.int_design('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+int_docs:function(l){
+ var W=({ja:{t:'韓国の自己紹介書（자기소개서）を日本の書類に直す',r:[['성장 과정（育った過程）','職務につながる経験だけに（過去）','#5B6B7D'],['성격의 장단점（長所・短所）','強みとして（現在）','#1769e0'],['지원 동기（志望動機）','会社との接点として','#2C8C8C'],['입사 후 포부（入社後の抱負）','1年目・3年目の計画に（未来）','#E08A2E']],n:['「最高の」「必ず」など強い言葉は控え、数字と事実で強さを示す','面接では同じ結論を、質問に合わせた切り口で話す']},
+  ko:{t:'한국 자기소개서를 일본 서류로 고치기',r:[['성장 과정','직무로 이어지는 경험만(과거)','#5B6B7D'],['성격의 장단점','강점으로(현재)','#1769e0'],['지원 동기','회사와의 접점으로','#2C8C8C'],['입사 후 포부','1년차·3년차 계획으로(미래)','#E08A2E']],n:['「최고의」「반드시」 같은 강한 말은 줄이고 숫자와 사실로 강점을 보여 준다','면접에서는 같은 결론을 질문에 맞는 각도로 말한다']},
+  en:{t:'Turning a Korean self-introduction letter into Japanese documents',r:[['Upbringing','Keep only experience tied to the job (past)','#5B6B7D'],['Strengths and weaknesses','Present as strengths (present)','#1769e0'],['Motivation','As the link with the company','#2C8C8C'],['Ambitions after joining','As a year-one and year-three plan (future)','#E08A2E']],n:['Tone down words like “the best” or “definitely”; show strength with numbers and facts','In interviews, tell the same conclusion from the angle each question asks for']}})[l];
+ if(!W)return F.int_docs('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+int_cases:function(l){
+ var W=({ja:{t:'3人のケース：経歴と軸',r:[['新卒→ハンドリング会社','軸「決まった時刻を守る」','#1769e0'],['韓国の空港→外国航空会社の支店','軸「規則と気持ちの橋渡し」','#2C8C8C'],['ホテル→航空会社の空港所','軸「見通しを先に伝える」','#E08A2E']],n:['中心の経験は1つを深く。ほかは深掘りや別の質問で使う','経験者・異業種ほど、学び直す段階を最初に置く']},
+  ko:{t:'3명의 사례: 경력과 축',r:[['신입→조업사','축 「정해진 시각을 지킨다」','#1769e0'],['한국 공항→외국 항공사 지점','축 「규칙과 마음을 잇는다」','#2C8C8C'],['호텔→항공사 공항소','축 「전망을 먼저 전한다」','#E08A2E']],n:['중심 경험은 하나를 깊게. 나머지는 파고들기나 다른 질문에 쓴다','경력자·이업종일수록 다시 배우는 단계를 먼저 둔다']},
+  en:{t:'Three cases: background and core',r:[['Graduate → handling company','Core: “keep to set times”','#1769e0'],['Korean airport → foreign airline station','Core: “bridge rules and feelings”','#2C8C8C'],['Hotel → airline airport office','Core: “give the outlook first”','#E08A2E']],n:['Go deep on one central experience; use others for follow-ups','The more experienced or cross-industry you are, the more you start by relearning']}})[l];
+ if(!W)return F.int_cases('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
+int_plan:function(l){
+ var W=({ja:{t:'入社後の計画を段階で話す（旅客の地上職の例）',st:['基本を正確に：手順・規則・社内の認定を身につける','任される：便の責任者の補佐・イレギュラーの日の案内・改善の提案','教える・まとめる：新人教育・配置の中心・専門の分野'],who:['1年目','3年目','5年目〜'],n:['「特にありません」「経験を積んで別の会社へ」は避ける','過去・現在と同じ軸の言葉で未来を語る']},
+  ko:{t:'입사 후 계획을 단계로 말하기(여객 지상직의 예)',st:['기본을 정확하게: 절차·규칙·사내 인정을 익힌다','맡겨진다: 편 책임자 보좌·비정상인 날의 안내·개선 제안','가르치고 이끈다: 신입 교육·배치의 중심·전문 분야'],who:['1년차','3년차','5년차~'],n:['「특별히 없습니다」「경험을 쌓고 다른 회사로」는 피한다','과거·현재와 같은 축의 말로 미래를 말한다']},
+  en:{t:'Talking about your plans in stages (passenger services example)',st:['Get the basics right: procedures, rules, internal certifications','Be trusted: assist the flight lead, guide passengers on disrupted days, propose improvements','Teach and lead: train newcomers, run rostering, build a specialism'],who:['Year 1','Year 3','Year 5+'],n:['Avoid “nothing in particular” and “gain experience, then move on”','Describe the future in the same words as your core in the past and present']}})[l];
+ if(!W)return F.int_plan('ja');setK(1);
+ var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)}
 
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);

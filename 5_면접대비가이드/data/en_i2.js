@@ -133,7 +133,7 @@ set("3-1",{title:"Changing Jobs with Experience: Presenting Airport Experience G
 lead:["Experience at an airport or airline in another country is a real strength at a Japanese airport: you know what passengers on routes to your country expect, you know that country’s systems and rules, and you can serve in its language. Presented the wrong way, though, it can make you look like someone who clings to how your last employer did things.",
 "This article covers how experienced candidates should present their experience, how to show you understand the differences between airports, and how to explain why you are changing jobs."],
 sections:[
-{h:"Turning experience into a strength",blocks:[{t:"table",cols:["Experience","How it can work in Japan (example)"],rows:[
+{h:"Turning experience into a strength",blocks:[{t:"fig",id:"int_exp",cap:"Figure: using airport experience from Korea (example)."},{t:"table",cols:["Experience","How it can work in Japan (example)"],rows:[
 ["Check-in at an airport abroad","You can anticipate the questions and needs of passengers from that country"],
 ["That country’s immigration rules","You are strong on document checks for passengers travelling beyond or connecting"],
 ["Disruption handling","You can act in cancellations and delays already knowing the procedures"],
@@ -160,7 +160,7 @@ set("3-2",{title:"Interviews for Manager and Station Manager Roles",hl:"manageme
 lead:["Interviews for duty manager and station manager roles test not only operational ability but developing people, coordinating with handling companies, the authorities and head office, and managing by numbers. The interviewers are more often head office executives or the head of HR.",
 "This article covers what is examined in management interviews, how to organise your achievements beforehand, and the questions that come up most."],
 sections:[
-{h:"What is examined",blocks:[{t:"table",cols:["Aspect","What they want to know"],rows:[
+{h:"What is examined",blocks:[{t:"fig",id:"int_mgr",cap:"Figure: structuring a manager’s achievements."},{t:"table",cols:["Aspect","What they want to know"],rows:[
 ["Running the operation","How you managed and improved punctuality, baggage irregularities and quality checks"],
 ["Developing people","Whether you built the training for staff and the handling company"],
 ["Coordination","Your experience negotiating with handlers, the airport company, the authorities and head office"],
@@ -185,7 +185,7 @@ set("3-3",{title:"After the Offer: Procedures and Status of Residence",hl:"after
 lead:["Once you have an offer, the employment contract, joining documents, status of residence procedures for foreign nationals, housing and preparation for training all begin. Status of residence in particular takes time, so agree the steps with the company early.",
 "This article covers the path from offer to start, the working conditions to confirm, the status of residence procedure and what to do before you join (for detail on statuses of residence, see Ground Staff 7-1 and 7-2)."],
 sections:[
-{h:"From offer to start",blocks:[{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Terms presented"},{name:"Confirm the terms",sub:"The employment contract"},{name:"Status of residence",sub:"For foreign nationals, filed by the company"},{name:"Joining documents",sub:"Withholding slip, bank details and so on"},{name:"Start",sub:"Initial training and ID pass application"}]}]},
+{h:"From offer to start",blocks:[{t:"fig",id:"int_offer",cap:"Figure: from job offer to first day."},{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Terms presented"},{name:"Confirm the terms",sub:"The employment contract"},{name:"Status of residence",sub:"For foreign nationals, filed by the company"},{name:"Joining documents",sub:"Withholding slip, bank details and so on"},{name:"Start",sub:"Initial training and ID pass application"}]}]},
 {h:"Working conditions to confirm",blocks:[{t:"table",cols:["Item","What to confirm"],rows:[
 ["Employment type","Permanent, fixed-term or part-time, the contract period and renewal"],
 ["Working pattern","Shifts, early and late work, how days off are set"],
@@ -213,7 +213,7 @@ next:"3-4 From the interviewer’s side: what hiring tends to overlook"});
 set("3-4",{title:"From the Interviewer’s Side: What Hiring Tends to Overlook",hl:"the interviewer’s side",subtitle:"The hiring side learns a lot too. The smaller the station, the heavier each hire",
 lead:["This article takes the employer’s side. In a small airport station, a single hire shapes the atmosphere and the quality of the whole team. From experience as an interviewer, this article sets out what hiring tends to overlook, and what candidates should look for in a company."],
 sections:[
-{h:"What hiring tends to overlook",blocks:[{t:"check",items:[
+{h:"What hiring tends to overlook",blocks:[{t:"fig",id:"int_see",cap:"Figure: what hiring overlooks and what applicants check."},{t:"check",items:[
 {name:"The reality of the commute",x:"Whether the first train gets them in on time for an early shift. Sometimes it only emerges after hiring that they cannot."},
 {name:"Time to train",x:"Whether the hiring date allows for how long it takes someone to become effective."},
 {name:"Fit with the team",x:"In a small team, a cooperative attitude often matters more than skills."},

@@ -41,7 +41,7 @@ next:"4-2 Understanding the job: interviewers hire a role, not a set of tasks"})
 set("4-3",{title:"Designing Your Story: List Your Experiences and Find Your Core Value",hl:"Designing Your Story",subtitle:"A good story is not thought up; it is assembled from materials laid out in front of you",
 lead:["Stories built only in your head tend to become strings of phrases heard elsewhere. List plenty of experiences first, find the idea they share (your core value), then lay it over the company’s features. Built in that order, the story is in your own words and holds up under probing.","This article sets out five steps with questions and tables for each. The site’s Story Design Sheet lets you fill them in step by step."],
 sections:[
-{h:"Five steps to build the story",blocks:[{t:"ladder",rise:10,steps:[{name:"1. List experiences",sub:"Ten or more, small ones too"},{name:"2. Dig into three",sub:"Situation, task, action, result, learning"},{name:"3. Find your core value",sub:"The idea the three share"},{name:"4. Lay it over the company",sub:"Core value × company feature = fit"},{name:"5. Draw the future, write the core sentence",sub:"Year 1, year 3, year 5"}]},
+{h:"Five steps to build the story",blocks:[{t:"fig",id:"int_design",cap:"Figure: designing one storyline."},{t:"ladder",rise:10,steps:[{name:"1. List experiences",sub:"Ten or more, small ones too"},{name:"2. Dig into three",sub:"Situation, task, action, result, learning"},{name:"3. Find your core value",sub:"The idea the three share"},{name:"4. Lay it over the company",sub:"Core value × company feature = fit"},{name:"5. Draw the future, write the core sentence",sub:"Year 1, year 3, year 5"}]},
 {t:"point",x:"Work through the steps in order. If you settle your motivation first and then hunt for experiences, you bend the experiences to fit, and they collapse under probing."}]},
 {h:"Step 1: list your experiences",blocks:[{t:"rows",items:[
 {name:"Scope",x:"Work, part-time jobs, study, clubs, volunteering, study abroad, helping your family. They do not have to be impressive."},
@@ -95,7 +95,7 @@ next:"4-4 The same story from papers to interview: Japanese and Korean documents
 set("4-4",{title:"The Same Story from Papers to Interview: Japanese and Korean Documents",hl:"from Papers to Interview",subtitle:"One conclusion, shown from a different angle in each document and each question",
 lead:["Once the story is built, you distribute it across the fields of your documents and the questions in the interview. The skill is not to repeat the same sentence everywhere but to show the same conclusion from the angle each field and question asks for.","Japanese and Korean application documents differ in form and in their items. This article also covers what to watch when you reuse a Korean self-introduction essay (자기소개서) for a Japanese application, or send Japanese documents to a Korean company."],
 sections:[
-{h:"Japanese documents and the four parts",blocks:[{t:"table",cols:["Document","Main fields","Part to put forward"],rows:[
+{h:"Japanese documents and the four parts",blocks:[{t:"fig",id:"int_docs",cap:"Figure: turning a Korean self-introduction letter into Japanese documents."},{t:"table",cols:["Document","Main fields","Part to put forward"],rows:[
 ["Rirekisho (CV)","Motivation, self-PR, special skills","Mainly the point of fit, with the present (strength) in brief"],
 ["Shokumu keirekisho (career history)","Career summary, work history, applicable experience and skills, self-PR","The past in concrete detail, summed up by the present"],
 ["Entry sheet (mainly new graduates)","What you worked hardest at as a student, self-PR, motivation, what you want to do after joining","One part per question, all leading to the core sentence"],
@@ -145,7 +145,7 @@ next:"4-5 Consistent stories by example: three cases"});
 set("4-5",{title:"Consistent Stories by Example: Three Cases",hl:"Three Cases",subtitle:"A new graduate, an experienced airport hire and a career changer, each built differently",
 lead:["Here three people in different positions are followed through the four parts, the core sentence and a one-minute self-introduction. The people and experiences are fictional, based on common examples.","Use the case closest to your own as a guide, but always put it in terms of your own experience. Copying the example wording will collapse under probing."],
 sections:[
-{h:"Case 1: a new graduate joining a ground handler",blocks:[{t:"table",cols:["Part","Content"],rows:[
+{h:"Case 1: a new graduate joining a ground handler",blocks:[{t:"fig",id:"int_cases",cap:"Figure: three cases: background and core."},{t:"table",cols:["Part","Content"],rows:[
 ["Past","Four years of part-time work in a hotel banquet hall. On wedding days, agreed with colleagues the order for serving food and drinks to the start time, and never ran late"],
 ["Present (strength, core value)","In work with fixed times, sees the whole flow, sets the order and gets colleagues moving. Core value: keeping a fixed time as a team"],
 ["Point of fit","Serving many airlines, connecting passenger, baggage and ramp work toward the departure time. Keeping each airline’s different procedures matches keeping each banquet’s different running order"],
@@ -190,7 +190,7 @@ next:"4-6 Talking about your plans after joining: five years on and your career 
 set("4-6",{title:"Talking About Your Plans After Joining: Five Years On and Your Career Outlook",hl:"Plans After Joining",subtitle:"Present the future not as a dream but as stages that follow on from your past and present",
 lead:["“What do you want to do after joining?” and “Where do you see yourself in five years?” check the last part of the story, the future. If it does not connect to your past and point of fit, the whole story weakens.","This article covers what interviewers want to confirm with these questions, how to talk in stages, examples of airport careers, wording to avoid, and how to link your last question to the future."],
 sections:[
-{h:"What the question is checking",blocks:[{t:"rows",items:[
+{h:"What the question is checking",blocks:[{t:"fig",id:"int_plan",cap:"Figure: talking about plans in stages."},{t:"rows",items:[
 {name:"Intention to stay",x:"Training takes time and money. Do you picture yourself growing rather than leaving soon?"},
 {name:"Understanding of the work",x:"Have you researched the roles and stages, and is your picture realistic?"},
 {name:"Fit with the company’s direction",x:"Do your goals match the people and direction the company wants?"},

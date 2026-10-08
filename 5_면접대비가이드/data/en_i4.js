@@ -3,7 +3,7 @@
 set("4-2",{title:"Understanding the Job: Interviewers Hire a Role, Not a Set of Tasks",hl:"Understanding the Job",subtitle:"Know why the job exists, and you can say why you are needed",
 lead:["A consistent story has to lead to the job you are applying for. Yet many candidates arrive without really understanding what that job is for. The most common case is ground handling staff applying to be an airline’s station representative (rep).","The station manager or head office is hiring someone to represent the airline and oversee the whole airport operation, not someone to do check-in or arrivals. This article shows how to read a role from the interviewer’s side, using the station rep as the example. The same approach works for most non-technical roles, and for new graduates too."],
 sections:[
-{h:"Interviewers hire a role, not a set of tasks",blocks:[{t:"cards",n:3,items:[
+{h:"Interviewers hire a role, not a set of tasks",blocks:[{t:"fig",id:"int_role",cap:"Figure: handling staff versus airline airport lead."},{t:"cards",n:3,items:[
 {name:"Why the position exists",tag:"Starting point",x:"What problem is the company solving, and what will it entrust to this person? The purpose behind the job description."},
 {name:"What the role needs",tag:"Desired profile",x:"Speed at tasks, or judgement and coordination, or supervision and reporting? Needs differ greatly by role."},
 {name:"Why you are needed",tag:"Heart of the answer",x:"How your experience and strength serve that role. This becomes the core of your motivation and self-PR."}]},
