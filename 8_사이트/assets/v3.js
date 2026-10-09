@@ -33,15 +33,48 @@ function draw(){var c=C[lang],page=document.body.getAttribute('data-page');
  if($('foot'))$('foot').innerHTML='<div>'+(window.ACN_LOGO?'<a class="acn-ftb" href="index.html" aria-label="Aviation Career Note">'+ACN_LOGO.lockup({dark:true})+'</a>'+(lang==='en'?'':'<p>'+E(c.brand)+'</p>'):'<b>'+E(c.brand)+'</b>')+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],lang))+'</b>'+f[1].map(function(a){return '<a href="'+a[0]+'">'+E(FL(a[1],lang))+'</a>'}).join('')+'</div>'}).join('');
  if($('copy'))$('copy').innerHTML=E(c.copy)+'　<a href="terms.html">'+E(c.terms)+'</a>　<a href="privacy.html">'+E(c.privacy)+'</a>';
  if(typeof window.PAGE_RENDER==='function')window.PAGE_RENDER(lang);
- localLabels();fitL2();}
-/* 名前を2行で見せるツールのカード（.lab <b> の中の <br> の後ろ＝.l2。例：搭載管理／（Weight & Balance）の練習）2026.10
-   2行目が1行に入らないときは、2行目だけ少し小さくして1行に収める（0.7倍まで）。それでも入らない狭い画面では、ふつうに折り返す */
-var RO2=window.ResizeObserver?new ResizeObserver(function(es){es.forEach(function(e){var b=e.target,w=Math.round(e.contentRect.width);if(b.__w2!==w){b.__w2=w;(window.requestAnimationFrame||setTimeout)(function(){fit2(b)})}})}):null; /* 調整は次の描画で（ResizeObserver の中で大きさを変えない） */
-function fit2(b){var s=b.querySelector('.l2');if(!s)return;var st=s.style;st.fontSize=st.whiteSpace=st.width='';var w=b.clientWidth;if(!w)return;
- st.whiteSpace='nowrap';st.width='max-content';var n=s.getBoundingClientRect().width;if(n<=w)return;var k=Math.floor(w/n*100)/100;
- for(var i=0;i<6&&k>=.7;i++){st.fontSize=k+'em';if(s.getBoundingClientRect().width<=w)return;k=Math.round((k-.02)*100)/100}st.fontSize=st.whiteSpace=st.width=''}
-function fitL2(){Array.prototype.forEach.call(document.querySelectorAll('.lab b'),function(b){if(!b.querySelector('.l2'))return;fit2(b);if(RO2&&!b.__ro2){b.__ro2=1;RO2.observe(b)}})}
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitL2()});
+ localLabels();fitAll();}
+/* カードの題名を1行に収める（2026.10 改訂。前の fitL2 の代わり）
+   対象：講座のカード（.course-card h3）・会社実務のカード（.business-card h3）・ツールのカード（.lab b：#labTop・#allTools・business の #toolGrid）
+   ・題名が折り返すときは、まず文字を小さくして1行に収める（もとの大きさの 0.78 倍まで）
+   ・それでも入らないときだけ、ふつうの大きさで2行に（v3.css の text-wrap:balance で行の長さをそろえる）。語の途中で切れないよう、いちばん長い語が入る大きさに（0.7 倍まで）
+   ・名前に \n があるツール（例：搭載管理／（Weight & Balance）の練習）は2行のまま。index.html・business.html の TT が .l1／.l2 に分け、行ごとに収める
+   ・「·」「・」「)」「）」で行が始まらない、「(」「（」で行が終わらないように、カードの文字に見えない WORD JOINER（U+2060）を入れる（説明の文も同じ）
+   ・ja_wrap.js（日本語の文節の切れ目に <wbr> を入れる）が動いた後で測る：WORD JOINER を入れた次の描画で測る。ja_wrap.js は U+2060 の前後では切らない
+   ・描画の後・画面の幅が変わったとき（ResizeObserver と resize。まとめて1回）・フォントの読み込み後に動く。公開用の組み立て（jsdom）では動かさない */
+var FIT_T='.course-card h3,.business-card h3,.lab b',FIT_C='.course-card,.business-card,.lab,.job-card,.qc,.step,.ft-c,.trust-item',FIT_MIN=.78,FIT_MIN2=.7,
+ NOJS=/jsdom/i.test(navigator.userAgent||'');
+/* 行頭・行末の禁則：文字は変えずに U+2060 を足すだけ（何度呼んでも同じ） */
+/* 題名（t＝true）では、韓国語・英語の「·」（U+00B7）の後ろでも切らない（例：인사·총무·재무 をひとまとまりに。日本語の「・」の後ろは切ってよい） */
+function nbText(root,t){var tw=document.createTreeWalker(root,4,null),n;
+ while((n=tw.nextNode())){var d=n.data,o=d.replace(/([^\u2060\s])(?=[\u00b7\u30fb\uff65)\uff09])/g,'$1\u2060').replace(/([(\uff08])(?=[^\u2060\s])/g,'$1\u2060');
+  if(t)o=o.replace(/\u00b7(?=[^\u2060\s])/g,'\u00b7\u2060');if(o!==d)n.data=o}}
+function lh(el){var c=getComputedStyle(el),v=parseFloat(c.lineHeight);return isFinite(v)?v:parseFloat(c.fontSize)*1.3}
+function lines(el){return Math.round(el.getBoundingClientRect().height/lh(el))}
+/* 1行に並べたときの幅（max-content）。<wbr> は white-space:nowrap でも改行してしまうので、nowrap では測らない */
+function natW(n,inl,min){var s=n.style,d=s.display,w0=s.width,ow=s.overflowWrap;if(inl)s.display='inline-block';s.width=min?'min-content':'max-content';if(min)s.overflowWrap='normal';var w=n.getBoundingClientRect().width;s.width=w0;s.display=d;s.overflowWrap=ow;return w}
+/* 1つの題名 */
+function fitOne(el){var st=el.style,ps=el.querySelectorAll('.l1,.l2'),i,j,k,w;
+ st.fontSize='';for(i=0;i<ps.length;i++)ps[i].style.fontSize='';
+ var W=el.clientWidth;if(!W||!el.isConnected)return;el.__fw=W;var base=parseFloat(getComputedStyle(el).fontSize);
+ if(ps.length){/* 決まった2行：行ごとに、入らなければその行だけ小さく（前と同じ 0.7 倍まで）。それでも入らない行があれば、ふつうに折り返す */
+  var bad=false;
+  for(i=0;i<ps.length&&!bad;i++){var p=ps[i];w=natW(p,1);if(w<=W)continue;k=(W-1)/w;if(k<FIT_MIN2){bad=true;break}
+   for(j=0;j<6;j++){p.style.fontSize=(base*k).toFixed(2)+'px';if(natW(p,1)<=W)break;k-=.01}
+   if(natW(p,1)>W)bad=true}
+  if(bad||lines(el)>ps.length)for(i=0;i<ps.length;i++)ps[i].style.fontSize='';return}
+ w=natW(el);if(w<=W&&lines(el)<=1)return;/* そのままで1行に入る */
+ k=Math.min(1,(W-1)/w);if(k>=FIT_MIN){for(i=0;i<8&&k>=FIT_MIN;i++){st.fontSize=(base*k).toFixed(2)+'px';if(lines(el)<=1)return;k-=.01}}
+ /* 1行に入らない：もとの大きさで2行に。ただし語（文節）の途中で切れないように、いちばん長い語が入る大きさにする（0.7 倍まで）。
+    3行以上なら 0.78 倍まで小さくして2行を目指す */
+ st.fontSize='';var m=natW(el,0,1),k0=m>W?Math.max(FIT_MIN2,(W-1)/m):1;if(k0<1)st.fontSize=(base*k0).toFixed(2)+'px';if(lines(el)<=2)return;
+ for(k=Math.min(k0,.95);k>=FIT_MIN-.001;k-=.05){st.fontSize=(base*k).toFixed(2)+'px';if(lines(el)<=2)return}}
+var FRO=window.ResizeObserver&&!NOJS?new ResizeObserver(function(es){var go=false;es.forEach(function(e){if(Math.round(e.contentRect.width)!==e.target.__fw)go=true});if(go)fitSoon()}):null,fitT=null;
+function fitAll(){if(NOJS)return;Array.prototype.forEach.call(document.querySelectorAll(FIT_C),function(c){nbText(c)});Array.prototype.forEach.call(document.querySelectorAll(FIT_T),function(t){nbText(t,1)});
+ /* ja_wrap.js（MutationObserver）が <wbr> を入れ直してから測る */
+ (window.requestAnimationFrame||setTimeout)(function(){Array.prototype.forEach.call(document.querySelectorAll(FIT_T),function(el){try{fitOne(el)}catch(e){}if(FRO&&!el.__fro){el.__fro=1;FRO.observe(el)}})})}
+function fitSoon(){clearTimeout(fitT);fitT=setTimeout(fitAll,120)}
+if(!NOJS){window.addEventListener('resize',fitSoon);if(document.fonts){if(document.fonts.ready)document.fonts.ready.then(fitAll);/* 後から読み込まれたフォント（Google Fonts）でも測り直す */if(document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',fitSoon)}}
 /* ページの中の小さな英語の見出し（.eyebrow など）を、日本語・韓国語の画面ではその言語にする（2026.10）
    HTML には英語のまま書いておき、ここに [英語, 日本語, 韓国語] を足す。英語の画面ではそのまま */
 var LB=[['Start here','はじめに','시작하기'],['Why ACN','航空キャリアノートの特徴','항공 커리어 노트의 특징'],['Aviation Jobs','航空求人','항공 채용'],
@@ -66,7 +99,7 @@ function localLabels(){var k=lang==='ja'?1:lang==='ko'?2:0,map={};LB.forEach(fun
   if(r){el.innerHTML=k?r[k]:en;return}
   var m=en.match(/^POINT (\d+)$/);if(m){el.textContent=k===1?'ポイント'+m[1]:k===2?'포인트 '+m[1]:en;return}
   m=en.match(/^(\d[\d,]*) Lessons(.*)$/);if(m){el.innerHTML=(k===1?m[1]+'レッスン':k===2?m[1]+'개 레슨':m[1]+' Lessons')+m[2];return}});}
-window.ACN={E:E,lang:function(){return lang},fitL2:fitL2};
+window.ACN={E:E,lang:function(){return lang},fitL2:fitAll,fitTitles:fitAll};
 /* 右下のボタン（上へ・戻る・ホーム）：ほかのページと同じ nav.js を使う。ホームは新しいトップページ（2026.10） */
 (function(){var me=document.currentScript&&document.currentScript.src;if(!me)return;window.ACN_HOME=new URL('../index.html',me).href;var n=document.createElement('script');n.src=new URL('../../1_\uc9c0\uc0c1\uc9c1\uc5ec\uac1d\uc6b4\uc1a1\uc785\ubb38/assets/nav.js',me).href;document.head.appendChild(n);var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
 document.addEventListener('DOMContentLoaded',draw);

@@ -20,6 +20,11 @@ var UI={ja:{all:'すべて',n:'レッスン',np:'パート',site:'サイトの�
 var lang='ja';try{var q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],s=localStorage.getItem('art-lang');lang=q||(LANGS.indexOf(s)>=0?s:(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})());localStorage.setItem('art-lang',lang)}catch(e){}
 /* 「K-ETA」「A-CDM」のようにハイフンを含む英数字の語は途中で改行しない（語の前で改行させる） */
 function nw(s){return String(s).replace(/[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+/g,function(m){return '<span class="nw">'+m+'</span>'})}
+/* レッスンのカードの題名・説明で、「·」「・」「)」「）」で行が始まらない・「(」「（」で行が終わらないように、見えない WORD JOINER（U+2060）を足す（2026.10。v3.js のカードと同じ）。
+   「·」は前の語につなげる（後ろでは改行してよい。長い並びの題名もあるので）。公開用の組み立て（jsdom）では動かさない */
+function nbList(root){if(!root||/jsdom/i.test(navigator.userAgent||''))return;var tw=document.createTreeWalker(root,4,null),n;
+ while((n=tw.nextNode())){var d=n.data,o=d.replace(/([^\u2060\s])(?=[\u00b7\u30fb\uff65)\uff09])/g,'$1\u2060').replace(/([(\uff08])(?=[^\u2060\s])/g,'$1\u2060');
+  if(o!==d)n.data=o}}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function $(i){return document.getElementById(i)}
 var keys=Object.keys(A).concat(Object.keys(H.extra||{})).filter(function(k,i,a){return a.indexOf(k)===i}).sort(function(a,b){var x=a.split('-'),y=b.split('-');return x[0]-y[0]||x[1]-y[1]});
@@ -46,7 +51,7 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  Array.prototype.forEach.call($('tabs').querySelectorAll('button'),function(b){b.onclick=function(){cur=+b.getAttribute('data-p');render()}});
  var h='';P.forEach(function(p,i){if(!p||(cur>=0&&cur!==i))return;var ks=keys.filter(function(k){return +k.split('-')[0]===i});if(!ks.length)return;
   h+='<h2>Part '+i+'　'+esc(p)+'</h2>'+(H.pdesc?'<p class="desc">'+esc(H.pdesc[lang][i]||'')+'</p>':'')+'<div class="grid">'+ks.map(function(k){var t=title(k,lang);return '<a class="card" data-k="'+esc(k)+'" href="'+esc(url(k))+'"><span class="m"><b>'+nw(esc(t[0]))+'</b><span class="d">'+esc(t[1])+'</span>'+(lang==='en'&&t[2]?'<span class="tag">'+U.jp+'</span>':'')+'</span><span class="s">'+esc(k)+'<small>'+H.code+'</small></span></a>'}).join('')+'</div>'});
- $('list').innerHTML=h;
+ $('list').innerHTML=h;nbList($('list'));
  if((window.UPDATES||window.LESSON_DATES)&&window.__applyUpdates)window.__applyUpdates();
  $('foot').innerHTML=U.copy+' — '+esc(H.name[lang])+'　<a href="../8_사이트/index.html">'+U.site+'</a>';}
 render();

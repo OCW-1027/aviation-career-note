@@ -318,8 +318,8 @@ var KICK={GND:['旅客ハンドリング','여객운송','Passenger Operations']
 var lang='ja',MKT='jp';
 function $(i){return document.getElementById(i)}
 function E(s){return window.ACN?ACN.E(s):String(s)}
-/* ツールの名前：\n の後ろは改行して2行目（.l2）に。2行目が入らないときの調整は v3.js（fitL2）2026.10 */
-function TT(s){var a=String(s).split('\n');return E(a[0])+(a.length>1?'<br><span class="l2">'+E(a.slice(1).join(' '))+'</span>':'')}
+/* ツールの名前：\n があれば1行目（.l1）と2行目（.l2）に分けて改行。それぞれの行を1行に収める調整は v3.js（fitAll）2026.10 */
+function TT(s){var a=String(s).split('\n');return a.length>1?'<span class="l1">'+E(a[0])+'</span><br><span class="l2">'+E(a.slice(1).join(' '))+'</span>':E(a[0])}
 function li(l){return {ja:0,ko:1,en:2}[l]||0}
 function S(){var o={};SERIES.forEach(function(s){o[s.code]=s});return o}
 function tool(n){return TOOLS.filter(function(x){return x.id===n})[0]}
@@ -405,7 +405,8 @@ window.PAGE_RENDER=function(l){lang=l;var t=T[lang],s=S();document.title=t.title
  /* 実習 */
  $('hpr').innerHTML=t.hpr;
  $('labTop').innerHTML=LABS.map(function(id){var x=tool(id);if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+TT(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
- $('allTools').innerHTML=TOOLS.filter(function(x){return LABS.indexOf(x.id)<0}).map(function(x){var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+TT(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
+ /* すべてのツール：data/home_data.js のグループ（航空実習・計算／財務実習／資料・その他）ごとに、グリッドの幅いっぱいの小見出しを入れる。最初の4つ（LABS）は除く（2026.10） */
+ var pg=null;$('allTools').innerHTML=TOOLS.filter(function(x){return LABS.indexOf(x.id)<0}).map(function(x){var d=x[lang]||x.ja,h='',gh=x.grp?x.grp[li(lang)]:'';if(gh&&gh!==pg){pg=gh;h='<h3 class="tool-gh">'+E(gh)+'</h3>'}return h+'<a class="lab" href="'+x.p+'"><b>'+TT(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
  toggle('mpBtn','allTools',t.mp);if(window.ACN&&ACN.fitL2)ACN.fitL2();
 
  /* メンバーシップ・コーチング・コミュニティ・信頼 */

@@ -17,7 +17,7 @@ var SERIES=[
 {p:'../5_면접대비가이드/00_シリーズ全体_面接対策.html',code:'INT',n:18,ja:['就職・転職を準備している方','航空業界の面接対策','面接官の視点、よく聞かれる質問、場面別の質問、語学'],ko:['취업·이직 준비 중인 사람','항공업계 면접 대비','면접관 관점, 자주 나오는 질문, 상황 질문, 어학'],en:['Job seekers and career changers','Aviation Industry Interview Prep','The interviewer’s view and common questions']},
 {p:'../11_주재원일본가이드/00_シリーズ全体_駐在員ガイド.html',code:'EXP',n:56,ja:['日本で暮らし始めるすべての方','日本の暮らしガイド','在留資格と最新の制度の変化・手続き・住まい・災害への備え'],ko:['일본에서 생활을 시작하는 모든 사람','일본 생활 가이드','재류자격과 최신 제도 변화·수속·집·재난 대비'],en:['Anyone starting life in Japan','Living in Japan','Residence status and the latest changes, procedures, housing and disaster preparedness']},
 {p:'../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',code:'ADM',n:26,ja:['管理部門の担当者・新社会人','会社の人事・総務・財務実務','会社の仕組み・会計・雇用・保険・資金・税務・予算'],ko:['회사 관리 부서·사회 초년생','회사의 인사·총무·재무 실무','회사의 구조·회계·고용·보험·자금·세무·예산'],en:['Company admin teams and new starters','HR, Admin and Finance in Practice','How a company works, accounting, employment, insurance, cash, tax and budgets']},
-{p:'../23_재무3표실무/00_シリーズ全体_財務3表.html',code:'FIN',n:49,ja:['数字が苦手な方・財務を初めて学ぶ方','数字で読む会社','3つの財務諸表・航空会社の財務・投資判断'],ko:['숫자에 약한 사람·재무 입문자','숫자로 읽는 회사','세 재무제표·항공사 재무·투자 판단'],en:['Finance beginners and practitioners','Reading a Company Through Its Numbers','The three statements, airline finances, investment decisions']},
+{p:'../23_재무3표실무/00_シリーズ全体_財務3表.html',code:'FIN',n:49,ja:['数字が苦手な方・財務を初めて学ぶ方','数字で読む会社','3つの財務諸表・航空会社の財務・投資判断'],ko:['숫자에 약한 사람·재무 입문자','숫자로 읽는 회사','재무제표·항공사 재무·투자 판단'],en:['Finance beginners and practitioners','Reading a Company Through Its Numbers','The three statements, airline finances, investment decisions']},
 {p:'../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',code:'HOV',n:9,ja:['管理職に就く方・引き継ぎを行う方','管理者の引き継ぎガイド','引き継ぎ書・業務分掌表・分野ごとの引き継ぎ・着任後30日'],ko:['관리직이 되는 사람·교체되는 사람','관리자 인수인계·부임 가이드','인계서·업무 분장표·분야별 인계·부임 후 30일'],en:['New and outgoing managers','Manager Handover Guide','Handover documents, duties and your first 30 days']}];
 /* 講座の並び（2026.10）：表示の順はこの O で決める。主要空港ガイドは日本・韓国・世界を1つのカードにまとめ、講座の中のタブで切り替える（レッスンのURLはそのまま） */
 (function(){var O=['BAS','GND','CGO','DSP','MNT','SLS','STN','ADM','FIN','OPN','CIQ','IRR','HOV','INT','APT','EXP'],by={};SERIES.forEach(function(s){by[s.code]=s});
@@ -25,14 +25,14 @@ var SERIES=[
   a.ja=['空港で働く方・赴任や出張をする方','主要空港ガイド','日本・韓国・世界の主要空港：運用・乗り継ぎ・入国・今後の計画'];a.ko=['공항에서 일하는 사람·부임이나 출장 가는 사람','주요 공항 가이드','일본·한국·세계의 주요 공항: 운영·환승·입국·향후 계획'];a.en=['Airport staff and people relocating or travelling','Guide to Major Airports','Japan, Korea and the world: operations, transfers, entry and future plans']}
  var out=O.map(function(c){return by[c]}).filter(Boolean);SERIES.length=0;out.forEach(function(s){SERIES.push(s)})})();
 var TOOLS=[
-{id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['収益管理の練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['수익관리 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and RevPAR']},
+{id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['レベニューマネジメントの練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['Revenue Management 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and RevPAR']},
 {id:'fsc',p:'../2_일본취항지점개설가이드/燃油サーチャージ計算.html',ja:['日本発 燃油サーチャージの計算','ケロシン価格の平均と為替から旅客・貨物の額を決め、回収率を確かめて申請書の下書きまで'],ko:['일본발 유류할증료 계산','케로신 평균과 환율로 여객·화물 금액을 정하고 회수율을 확인해 신청서 초안까지'],en:['Japan-Origin Fuel Surcharge Calculator','From kerosene and FX averages to passenger and cargo amounts, the recovery ratio and a filing draft']},
 {id:'dsp',p:'../18_항공기초지식/航空路図の練習.html',ja:['運航管理実務の練習','航空路・飛行計画・燃料・管制・スロットを練習'],ko:['운항관리 실무 연습','항공로·비행계획·연료·관제·슬롯 연습'],en:['Flight Dispatch Practice','Airways, flight plans, fuel, ATC and slots']},
 {id:'lc',p:'../1_지상직여객운송입문/搭載計算の練習.html',ja:['搭載管理\n（Weight & Balance）の練習','10機種で重量・重心・ロードシートを練習'],ko:['탑재관리\n(Weight & Balance) 연습','10개 기종으로 중량·무게중심·로드시트 연습'],en:['Load Control\n(Weight & Balance) Practice','Weights, balance and loadsheets on 10 types']},
 {id:'fin_tx',p:'../23_재무3표실무/取引と財務諸表の練習.html',ja:['取引と財務諸表の練習','取引のカードで「損益・現金・貸借対照表のどこが動くか」を当てる。入門・応用・航空の3レベル'],ko:['거래와 재무제표 연습','거래 카드로 「손익·현금·재무상태표의 어디가 움직이나」를 맞힌다. 입문·응용·항공 3단계'],en:['Transactions & Statements Practice','Which statement moves for each transaction? Beginner, Applied and Airline levels']},
-{id:'fin_link',p:'../23_재무3표실무/財務諸表の連動シミュレーター.html',ja:['財務諸表連動シミュレーター','売上・掛け売り・在庫・投資・借入・配当のつまみで、3つの表と「利益→現金の橋」が同時に動く'],ko:['재무제표 연동 시뮬레이터','매출·외상·재고·투자·차입·배당 손잡이로 세 가지 재무제표와 「이익→현금의 다리」가 동시에 움직인다'],en:['Linked Financial Statements Simulator','Move sales, credit, inventory, investment, loans and dividends and watch all three statements change']},
+{id:'fin_link',p:'../23_재무3표실무/財務諸表の連動シミュレーター.html',ja:['財務諸表連動シミュレーター','売上・掛け売り・在庫・投資・借入・配当のつまみで、3つの表と「利益→現金の橋」が同時に動く'],ko:['재무제표 연동 시뮬레이터','매출·외상·재고·투자·차입·배당 손잡이로 재무제표와 「이익→현금의 다리」가 동시에 움직인다'],en:['Linked Financial Statements Simulator','Move sales, credit, inventory, investment, loans and dividends and watch all three statements change']},
 {id:'fin_cost',p:'../23_재무3표실무/航空原価計算の練習.html',ja:['航空原価計算の練習','1便のコストと損益分岐点 ― 路線・機材・座席利用率で費用の内訳を計算し、項目ごとに解説'],ko:['항공 원가 계산 연습','한 편의 비용과 손익분기점 — 노선·기종·탑승률로 비용 내역을 계산하고 항목별로 해설'],en:['Airline Cost & Break-even Practice','Cost of one flight by route, aircraft and load factor, with item-by-item explanations']},
-{id:'fin_sim',p:'../23_재무3표실무/航空会社経営シミュレーション.html',ja:['航空会社経営シミュレーション','架空の航空会社 Vela Air の1年を4四半期で経営。状況と対応で3つの表が同時に動き、なぜ動いたかを解説'],ko:['항공사 경영 시뮬레이션','가상의 항공사 Vela Air의 1년을 4분기로 경영. 상황과 대응에 따라 세 가지 재무제표가 함께 움직이고 그 이유를 해설'],en:['Airline Management Simulation','Run Vela Air for a year: situations and responses move all three statements, with explanations']},
+{id:'fin_sim',p:'../23_재무3표실무/航空会社経営シミュレーション.html',ja:['航空会社経営シミュレーション','架空の航空会社 Vela Air の1年を4四半期で経営。状況と対応で3つの表が同時に動き、なぜ動いたかを解説'],ko:['항공사 경영 시뮬레이션','가상의 항공사 Vela Air의 1년을 4분기로 경영. 상황과 대응에 따라 재무제표가 함께 움직이고 그 이유를 해설'],en:['Airline Management Simulation','Run Vela Air for a year: situations and responses move all three statements, with explanations']},
 {id:'fin_ratio',p:'../23_재무3표실무/財務比率の計算練習.html',ja:['財務比率の計算練習','数字を入れると、自己資本利益率（ROE）の分解と収益性・安全性・効率性・成長性・キャッシュフローの比率を、式と読み方つきで計算'],ko:['재무 비율 계산 연습','숫자를 넣으면 자기자본이익률(ROE) 분해와 수익성·안전성·효율성·성장성·현금흐름 비율을 식과 읽는 법과 함께 계산'],en:['Financial Ratio Practice','Enter the figures to get the ROE breakdown and ratios for profitability, safety, efficiency, growth and cash flow, with formulas']},
 {id:'fin_val',p:'../23_재무3표실무/企業価値の計算練習.html',ja:['企業価値の計算練習','倍率法と、将来の現金から求める方法（DCF）で企業価値と株式価値を計算。感度分析、価値レンジの図、価格と利回りの確認まで、式つきで'],ko:['기업가치 계산 연습','배수법과 미래 현금으로 구하는 방법(DCF)으로 기업가치와 주식 가치를 계산. 민감도 분석, 가치 범위 그림, 가격과 수익률 확인까지 식과 함께'],en:['Company Valuation Practice','Value a company by multiples and DCF, with sensitivity, a value-range chart and price and return checks, formulas shown']},
 {id:'ye',p:'../12_일본지점인사재무실무/決算の練習.html',ja:['年次決算の練習','小さな会社の1年分の仕訳から、元帳・試算表・決算書を作り、法人税等を見積もって決算書を日本語で出力'],ko:['1년 결산 연습','작은 회사의 1년 치 분개에서 원장·시산표·결산서를 만들고, 법인세 등을 추정해 결산서를 일본어로 출력'],en:['Year-End Closing Practice','From a small company’s year of entries to the ledger, trial balance and statements, with an income tax estimate and Japanese output']},
@@ -48,17 +48,14 @@ var TOOLS=[
 {id:'ann',p:'../4_공항안내방송예문집/空港アナウンス文例集.html',ja:['空港アナウンス文例集','日本語・韓国語・英語の案内文例'],ko:['공항 안내방송 예문집','일본어·한국어·영어 안내 예문'],en:['Announcement Phrasebook','Sample announcements in English, Japanese and Korean']},
 {id:'forms',p:'../10_공항양식해설집/空港で使う書類と様式.html',ja:['空港で使う書類と様式','書類の解説と、印刷できる見本の様式'],ko:['공항에서 쓰는 서류와 양식','서류 해설과 인쇄 가능한 양식 예시'],en:['Airport Forms Explained','What each form is for, with printable blank samples']},
 {id:'faq',p:'../14_승객FAQ/よくある質問_空港と飛行機.html',ja:['よくある質問','手荷物・特別な対応・遅延・出入国・機内'],ko:['자주 묻는 질문','수하물·특별 대응·지연·출입국·기내'],en:['Passenger FAQ','Baggage, special assistance, delays, immigration and on board']}];
-/* 資料・ツールの並び（2026.10）：グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。搭載管理を先頭に、講座の順。会話練習は空港アナウンス文例集の次（2026.10）。名前の \n は、カードでは改行（検索の結果では空白）。各グループの最初に小見出し（講座の名前）を付ける。ここにないツールは最後の「共通の資料」の後ろに並ぶ */
-(function(){var G=[[['旅客ハンドリング実務','항공 여객운송 실무','Passenger Operations'],['lc','ann','talk','forms','faq']],
- [['運航管理実務','운항관리 실무','Flight Dispatch Operations'],['dsp','exam_jp','exam_kr']],
- [['航空営業実務','항공 영업 실무','Airline Sales Operations'],['rm']],
- [['会社の人事・総務・財務実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice'],['ye']],
- [['数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo']],
- [['日本就航・支店開設ガイド','일본 취항·지점 개설 가이드','Launching Flights to Japan'],['fsc']],
- [['航空業界の面接対策','항공업계 면접 대비','Aviation Interview Prep'],['story']],
- [['共通資料','공통 자료','General reference'],['codes','delay','gloss','quiz']]],out=[],used={};
- G.forEach(function(g){g[1].forEach(function(n,i){TOOLS.forEach(function(x,k){if(!used[k]&&x.id===n){used[k]=1;x.g=i===0?g[0]:null;out.push(x)}})})});
- TOOLS.forEach(function(x,k){if(!used[k]){x.g=null;out.push(x)}});TOOLS.length=0;out.forEach(function(x){TOOLS.push(x)})})();
+/* 資料・ツールの並び（2026.10 改訂）：3つのグループに分け、グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。
+   名前の \n は、カードでは改行（検索の結果では空白）。各ツールの grp＝グループの見出し [日本語, 韓国語, 英語]、g＝グループの最初のツールだけに見出し（ほかは null）。
+   ホーム（index.html）の「すべてのツール」は grp が変わるところに小見出しを入れる。ここにないツールは最後のグループの後ろに並ぶ */
+(function(){var G=[[['航空実習・計算','항공 실습·계산','Aviation practice and calculators'],['lc','dsp','rm','fsc','exam_jp','exam_kr']],
+ [['財務実習','재무 실습','Finance practice'],['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo','ye']],
+ [['資料・その他','기타 자료','Other resources'],['ann','talk','forms','faq','story','codes','delay','gloss','quiz']]],out=[],used={},last=G[G.length-1][0];
+ G.forEach(function(g){g[1].forEach(function(n,i){TOOLS.forEach(function(x,k){if(!used[k]&&x.id===n){used[k]=1;x.grp=g[0];x.g=i===0?g[0]:null;out.push(x)}})})});
+ TOOLS.forEach(function(x,k){if(!used[k]){x.grp=last;x.g=null;out.push(x)}});TOOLS.length=0;out.forEach(function(x){TOOLS.push(x)})})();
 
 /* ホームのローリングバナー（2026.10）：1枚目はホームの見出し。ここに並べた順に2枚目から表示する。
    tag＝小さなラベル、h＝見出し（<br>で改行）、p＝説明、cta＝リンクの文字、href＝リンク先。プロモーション・特別求人・イベント・メンバーシップの価格はここを書き換える */

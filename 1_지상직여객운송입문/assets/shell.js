@@ -23,7 +23,7 @@ ann:{ja:'\u7a7a\u6e2f\u30a2\u30ca\u30a6\u30f3\u30b9\u6587\u4f8b\u96c6',ko:'\uacf
 forms:{ja:'\u7a7a\u6e2f\u3067\u4f7f\u3046\u66f8\u985e\u3068\u69d8\u5f0f',ko:'\uacf5\ud56d \uc11c\ub958\uc640 \uc591\uc2dd',en:'Airport Forms'},
 faq:{ja:'\u3088\u304f\u3042\u308b\u8cea\u554f',ko:'\uc790\uc8fc \ubb3b\ub294 \uc9c8\ubb38',en:'FAQ'},
 route:{ja:'\u904b\u822a\u7ba1\u7406\u5b9f\u52d9\u306e\u7df4\u7fd2',ko:'\uc6b4\ud56d\uad00\ub9ac \uc2e4\ubb34 \uc5f0\uc2b5',en:'Flight Dispatch Practice'},
-rm:{ja:'収益管理の練習',ko:'수익관리 연습',en:'Revenue Management Practice'},
+rm:{ja:'レベニューマネジメントの練習',ko:'Revenue Management 연습',en:'Revenue Management Practice'},
 story:{ja:'\u30b9\u30c8\u30fc\u30ea\u30fc\u8a2d\u8a08\u30b7\u30fc\u30c8',ko:'\uc2a4\ud1a0\ub9ac \uc124\uacc4 \uc2dc\ud2b8',en:'Story Design Sheet'},
 kako:{ja:'航空従事者技能証明等学科試験 過去問',ko:'\uc77c\ubcf8\u0020\ud559\uacfc\uc2dc\ud5d8\u0020\uae30\ucd9c\ubb38\uc81c',en:'Japan Aviation Exam Past Papers'},
 krdsp:{ja:'\u97d3\u56fd\u0020\u904b\u822a\u7ba1\u7406\u58eb\u0020\u7df4\u7fd2\u554f\u984c',ko:'\ud55c\uad6d\u0020\uc6b4\ud56d\uad00\ub9ac\uc0ac\u0020\uc5f0\uc2b5\ubb38\uc81c',en:'Korea Dispatcher Practice Questions'},
