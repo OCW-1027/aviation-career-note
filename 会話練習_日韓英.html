@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>会話練習 ― 日本語・韓国語・英語</title>
+<meta name="description" content="空港・機内の仕事、旅行、毎日の暮らし、職場の会話を、日本語・韓国語・英語で聞いて、役になって話して練習します。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--acc:#1769e0;--ink:#182431;--sub:#65717e;--line:#dfe4e8;--bg:#fff;--card:#fff;--soft:#eef3f7;--blue1:#eaf2fe;--ok:#147d64;--okbg:#e4f4ee;--ng:#c2410c;--ngbg:#fdeee6;--gold:#b89048}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;line-height:1.65;-webkit-text-size-adjust:100%}
+body.ko{font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:22px 16px 90px}
+header{background:linear-gradient(145deg,#0a1b2e,#12314f);color:#fff;border-radius:22px;padding:26px 22px;position:relative}
+header h1{font-size:clamp(22px,4vw,34px);margin:4px 0 8px;line-height:1.25}
+header p{margin:0;opacity:.95;max-width:68ch}
+.langs{position:absolute;top:14px;right:14px;display:inline-flex;border-radius:999px;overflow:hidden;background:#fff}.langs button{border:0;background:transparent;color:#1d5fa0;font:700 13px inherit;font-family:inherit;padding:6px 12px;min-width:44px;min-height:34px;cursor:pointer}.langs button+button{border-left:1px solid #d6e6f6}.langs button.on{background:#FFE08A;color:#3A2A00}
+button{font-family:inherit}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:14px}
+.h2{font-size:17px;font-weight:800;margin:0 0 10px;letter-spacing:-.01em}
+/* 設定 */
+.set{display:grid;grid-template-columns:1fr;gap:12px}
+.set .lab{display:block;font-size:13px;font-weight:700;color:var(--sub);margin-bottom:6px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1 1 0;min-width:0;min-height:44px;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;padding:6px 8px}
+.seg button.on{border-color:var(--acc);background:var(--acc);color:#fff}
+.tg{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px}
+.tg label{display:inline-flex;align-items:center;gap:8px;min-height:40px;cursor:pointer}
+.tg input{width:20px;height:20px;accent-color:var(--acc);margin:0}
+.warn{font-size:13px;color:#7a4a00;background:#fff6e0;border-radius:10px;padding:8px 12px;margin:10px 0 0}
+@media (min-width:760px){.set{grid-template-columns:1fr 1fr}.set .tg{grid-column:1/-1}}
+/* 今日の会話と記録 */
+.top{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.today{background:linear-gradient(135deg,#eaf2fe,#f4f8ff);border:1px solid #cfe0fb;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.today small{font-size:12.5px;font-weight:800;color:var(--acc);letter-spacing:.02em}
+.today b{font-size:19px;line-height:1.35}
+.today span{font-size:14px;color:var(--sub)}
+.today .go{align-self:flex-start;margin-top:6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stats div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 8px;text-align:center}
+.stats b{display:block;font-size:24px;line-height:1.2;color:var(--ink)}
+.stats span{display:block;font-size:12px;color:var(--sub);line-height:1.35}
+.stats button{all:unset;cursor:pointer;display:block}
+@media (min-width:760px){.top{grid-template-columns:1.4fr 1fr;align-items:start}}
+/* ボタン */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:8px 18px;border-radius:12px;border:0;background:var(--acc);color:#fff;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none}
+.btn.sub{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}
+.btn.ghost{background:transparent;color:var(--acc);padding:8px 6px}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,.seg button:focus-visible,.chip:focus-visible,.ib:focus-visible,.card:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+/* 分類 */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+.chip{min-height:42px;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:6px 14px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.lv{font-weight:600}
+.chip em{font-style:normal;opacity:.7;font-weight:600;margin-left:4px}
+.cnt{font-size:13px;color:var(--sub);margin:4px 2px 10px}
+.grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media (min-width:940px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{display:flex;flex-direction:column;gap:4px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;color:var(--ink);font-size:14px;min-height:44px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#9bbbf0;box-shadow:0 10px 26px rgba(9,28,47,.07)}
+.card .k{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;color:var(--sub)}
+.card b{font-size:16px;line-height:1.4}
+.card .t2{font-size:13px;color:var(--sub)}
+.card .rec{font-size:12px;color:var(--ok);font-weight:700}
+.card .rec.no{color:var(--sub);font-weight:500}
+.stars{color:var(--gold);letter-spacing:1px;white-space:nowrap}
+/* 会話の画面 */
+.sc-h{display:flex;flex-direction:column;gap:6px}
+.sc-h .k{font-size:12.5px;font-weight:700;color:var(--sub);display:flex;flex-wrap:wrap;gap:4px 12px}
+.sc-h h2{margin:0;font-size:22px;line-height:1.35;letter-spacing:-.02em}
+.sc-h .t2{font-size:14px;color:var(--sub)}
+.sc-h p{margin:2px 0 0;font-size:15px}
+.roles{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--sub)}
+.rb{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:800;color:#fff;background:#5d6b7a;flex:none}
+.rb.B{background:var(--acc)}
+.modes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 4px;background:#fff;padding:6px 0}
+@media (min-width:601px){.modes{position:sticky;top:0;z-index:5}}
+.modes button{min-height:48px;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;padding:4px 4px;line-height:1.25}
+.modes button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.tool{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:10px 0;font-size:14px}
+.tool label{display:inline-flex;align-items:center;gap:8px}
+.tool select{min-height:40px;max-width:100%;border:1px solid var(--line);border-radius:10px;padding:4px 8px;font:inherit;background:#fff;color:var(--ink)}
+.tool input[type=range]{width:120px;accent-color:var(--acc)}
+.msg{font-size:13.5px;background:var(--soft);border-radius:12px;padding:10px 12px;margin:8px 0;color:#3a4a5c}
+.msg.w{background:#fff6e0;color:#6b4300}
+/* せりふ */
+.lines{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.ln{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:#fff;border-left:5px solid #9aa7b4}
+.ln.B{border-left-color:var(--acc);background:#f7faff}
+.ln.cur{box-shadow:0 0 0 3px #ffd56b}
+.ln .who{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--sub);margin-bottom:4px}
+.ln .who .me{background:#fff2c4;color:#6b4e00;border-radius:999px;padding:1px 8px;font-size:11.5px}
+.tx{font-size:19px;line-height:1.55;font-weight:500;word-break:normal;overflow-wrap:anywhere}
+body.ko .tx:lang(ko),.tx:lang(ko){word-break:keep-all}
+.jr{font-size:13.5px;color:#5c6b7b;margin-top:2px;letter-spacing:.02em}
+.hl{font-size:14.5px;color:#3d4c5c;margin-top:4px}
+.nt{font-size:13.5px;background:#fffaf0;border-radius:10px;padding:8px 10px;margin-top:8px;color:#5a4500}
+.nt b{margin-right:6px}
+.act{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ib{display:inline-flex;align-items:center;gap:5px;min-height:40px;min-width:44px;padding:4px 12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;font-size:13.5px;font-weight:700;cursor:pointer}
+.ib.on{border-color:var(--gold);color:#7a5a12;background:#fff8e6}
+.ib.mic{border-color:#c9d8ee}
+.ib.mic.rec{background:#fdeee6;border-color:var(--ng);color:var(--ng)}
+.hide{border:2px dashed #b9c6d4;background:#fbfcfd;border-radius:12px;padding:10px 12px;margin-top:4px}
+.hide .q{font-size:12.5px;color:var(--sub);font-weight:700}
+.hide .hl{font-size:16px;color:var(--ink);margin-top:2px}
+.reveal{width:100%;margin-top:8px}
+.heard{margin-top:8px;font-size:14px;background:var(--soft);border-radius:10px;padding:8px 10px}
+.heard .sc{font-weight:800}
+.heard .sc.g{color:var(--ok)}.heard .sc.m{color:#a16207}.heard .sc.b{color:var(--ng)}
+.bar2{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.bar2 .btn{flex:1 1 160px}
+.fin{background:var(--okbg);color:#0f5a47;border-radius:14px;padding:14px;font-weight:700;margin-top:12px}
+/* 言い換え */
+.alt{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:#fff}
+.alt .o{font-size:12.5px;font-weight:700;color:var(--sub)}
+.alt .ot{font-size:16px;margin:2px 0 8px}
+.alt .v{border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
+/* 確認 */
+.qz{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}
+.qz .qq{font-weight:700;font-size:16px;margin-bottom:8px}
+.opt{display:block;width:100%;text-align:left;margin:8px 0 0;padding:12px 14px;min-height:48px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-size:16px;cursor:pointer;line-height:1.5}
+.opt small{display:block;font-size:13px;color:var(--sub);margin-top:2px}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.ng{border-color:var(--ng);background:var(--ngbg)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.score{font-size:18px;font-weight:800;margin-top:12px}
+/* 私のフレーズ */
+.ph .from{font-size:12.5px;margin-top:6px}
+.ph .from a,.ph .from button{color:var(--acc);font-weight:700;background:none;border:0;padding:0;cursor:pointer;font-size:12.5px;text-decoration:underline}
+.empty{color:var(--sub);font-size:14px;padding:18px;text-align:center;border:1px dashed var(--line);border-radius:14px}
+.foot{font-size:12.5px;color:var(--sub);margin-top:22px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:600px){
+ header{padding:22px 18px}
+ .tx{font-size:18px}
+ .modes{grid-template-columns:repeat(2,1fr)}
+ .modes button{font-size:14px}
+ .sc-h h2{font-size:20px}
+ .tool input[type=range]{width:100px}
+}
+@media print{.modes,.act,.tool,.chips,.top,#setup{display:none!important}}
+</style>
+<script src="1_지상직여객운송입문/assets/shell.js" data-page="talk"></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="langs" id="lang" role="group" aria-label="Language"></span><div id="kick"></div><h1 id="ttl"></h1><p id="lead"></p></header>
+<section class="panel" id="setup" aria-labelledby="setupH"></section>
+<div id="app"></div>
+<p class="foot" id="foot"></p>
+</div>
+<!-- 会話のデータ。ファイルを増やすときは、この下に1行ずつ足す（例：<script src="talk_data2.js"></script>） -->
+<script src="talk_data.js"></script>
+<script>
+/* 会話練習（日本語・韓国語・英語）2026.10
+   ・会話のデータ：talk_data.js（window.TALK に積む。形はそのファイルの先頭）
+   ・1つのページの中で：一覧 → 会話（聞く／役になって話す／言い換え／確認）、私のフレーズ
+   ・読み上げ：ブラウザの speechSynthesis。聞き取り：SpeechRecognition（ある端末だけ。押したときだけ使い、音声も文字も保存しない）
+   ・記録（練習した回数・最後の日・続けた日数・私のフレーズ・設定）：localStorage の acn-talk。使えなくてもページは動く */
+(function(){
+var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'},BCP={ja:'ja-JP',ko:'ko-KR',en:'en-US'};
+var T={
+ja:{kick:'航空キャリアノート',ttl:'会話練習 ― 日本語・韓国語・英語',doc:'会話練習（日本語・韓国語・英語）',
+ lead:'空港や機内の仕事から、旅行・毎日の暮らし・職場まで。同じ会話を日本語・韓国語・英語で聞いて、役になって話して、言い換えと確認の問題で身につけます。',
+ setH:'練習の設定',tgt:'練習する言語',hlp:'ヒントの言語',furi:'ふりがなを出す',tr:'ヒントの言語の訳を出す',auto:'相手のせりふを自動で読み上げる',
+ same:'練習する言語とヒントの言語が同じです。ヒントには別の言語を選ぶと練習しやすくなります。',
+ today:'今日の会話',todayGo:'この会話を練習する',streak:'続けて練習した日',days:'日',done:'練習した会話',phr:'私のフレーズ',
+ all:'すべて',lvL:'難しさ',lvN:['','やさしい','ふつう','むずかしい'],n:'{n}件の会話',none:'この条件の会話はありません。',
+ times:'{n}回練習・最後は{d}',never:'まだ練習していません',
+ back:'← 会話の一覧へ',modes:['聞く','役になって話す','言い換え','確認'],sit:'場面',
+ playAll:'▶ 全部聞く',stop:'■ 止める',speed:'速さ',voice:'声',play:'▶ 聞く',save:'☆ 保存',saved:'★ 保存済み',point:'ポイント',
+ noTts:'このブラウザでは読み上げが使えません。文字を見て練習できます。',
+ noVoice:'この端末には{L}の声が見つかりません。文字を見て練習するか、端末の設定で{L}の音声を追加してください。',
+ ttsFail:'読み上げが始まりませんでした。端末の音量や音声の設定を確かめてください。',
+ role:'あなたの役',you:'あなた',next:'次へ ▶',start:'はじめる',reveal:'答えを見る',say:'{L}で言ってみましょう',
+ mic:'🎤 話して確かめる',micOn:'■ 聞き取り中（押して止める）',
+ micNote:'マイクは「話して確かめる」を押したときだけ使います。ブラウザによっては、声を文字にするために音声をブラウザの会社のサーバーへ送ります。このサイトは音声も聞き取った文字も保存しません。',
+ noMic:'このブラウザは声の聞き取りに対応していません。声に出して言ってから「答えを見る」で確かめてください。',
+ heard:'聞き取った文',near:'近さ',good:'よくできました',ok2:'もう少し',retry:'もう一度言ってみましょう',micErr:'聞き取れませんでした。もう一度どうぞ。',micDeny:'マイクが使えません。ブラウザの設定でマイクを許可してください。',
+ fin:'おつかれさまでした！最後まで練習しました。',again:'もう一度',swap:'役を交代する',toCheck:'確認の問題へ',
+ altLead:'大事なせりふの、ほかの言い方です。相手や場面に合わせて使い分けましょう。',altNone:'この会話には、言い換えの例がまだありません。',orig:'もとの文',
+ chkLead:'この場面では、何と言うのがよいでしょうか。',chkNone:'この会話には、確認の問題がまだありません。',right:'正解',wrong:'ちがいます',res:'{n}問中 {k}問 正解',
+ phrH:'私のフレーズ',phrLead:'保存した文です。このブラウザの中だけに残ります。',phrEmpty:'まだありません。会話の文の「☆ 保存」を押すと、ここに集まります。',remove:'外す',open:'この会話を開く',
+ foot:'会話の名前・会社・人物はすべて練習のための作り話です。読み上げと聞き取りは、お使いのブラウザの機能を使います。'},
+ko:{kick:'항공 커리어 노트',ttl:'회화 연습 — 일본어·한국어·영어',doc:'회화 연습 (일본어·한국어·영어)',
+ lead:'공항·기내 업무부터 여행, 일상생활, 직장까지. 같은 대화를 일본어·한국어·영어로 듣고, 역할을 맡아 말해 보고, 바꿔 말하기와 확인 문제로 익힙니다.',
+ setH:'연습 설정',tgt:'연습할 언어',hlp:'힌트 언어',furi:'후리가나 표시',tr:'힌트 언어 번역 표시',auto:'상대방 대사를 자동으로 읽기',
+ same:'연습할 언어와 힌트 언어가 같습니다. 힌트는 다른 언어로 고르면 연습하기 쉽습니다.',
+ today:'오늘의 대화',todayGo:'이 대화 연습하기',streak:'연속 연습한 날',days:'일',done:'연습한 대화',phr:'내 표현',
+ all:'전체',lvL:'난이도',lvN:['','쉬움','보통','어려움'],n:'대화 {n}개',none:'이 조건에 맞는 대화가 없습니다.',
+ times:'{n}회 연습 · 마지막 {d}',never:'아직 연습하지 않았습니다',
+ back:'← 대화 목록으로',modes:['듣기','역할 연습','바꿔 말하기','확인'],sit:'상황',
+ playAll:'▶ 전체 듣기',stop:'■ 멈추기',speed:'속도',voice:'목소리',play:'▶ 듣기',save:'☆ 저장',saved:'★ 저장됨',point:'포인트',
+ noTts:'이 브라우저에서는 읽어 주기 기능을 쓸 수 없습니다. 글을 보면서 연습할 수 있습니다.',
+ noVoice:'이 기기에서 {L} 음성을 찾을 수 없습니다. 글을 보며 연습하거나, 기기 설정에서 {L} 음성을 추가해 주세요.',
+ ttsFail:'읽어 주기가 시작되지 않았습니다. 기기의 음량과 음성 설정을 확인해 주세요.',
+ role:'내 역할',you:'나',next:'다음 ▶',start:'시작',reveal:'정답 보기',say:'{L}로 말해 보세요',
+ mic:'🎤 말해서 확인',micOn:'■ 듣는 중 (눌러서 멈춤)',
+ micNote:'마이크는 「말해서 확인」을 눌렀을 때만 사용합니다. 브라우저에 따라 음성을 글자로 바꾸기 위해 브라우저 회사의 서버로 음성을 보냅니다. 이 사이트는 음성도, 알아들은 글자도 저장하지 않습니다.',
+ noMic:'이 브라우저는 음성 인식을 지원하지 않습니다. 소리 내어 말한 뒤 「정답 보기」로 확인해 주세요.',
+ heard:'알아들은 문장',near:'일치도',good:'잘했어요',ok2:'조금만 더',retry:'한 번 더 말해 보세요',micErr:'알아듣지 못했습니다. 다시 해 보세요.',micDeny:'마이크를 쓸 수 없습니다. 브라우저 설정에서 마이크를 허용해 주세요.',
+ fin:'수고하셨습니다! 끝까지 연습했습니다.',again:'다시 하기',swap:'역할 바꾸기',toCheck:'확인 문제로',
+ altLead:'중요한 대사를 다르게 말하는 방법입니다. 상대와 상황에 맞게 골라 쓰세요.',altNone:'이 대화에는 아직 바꿔 말하기 예문이 없습니다.',orig:'원래 문장',
+ chkLead:'이 상황에서는 뭐라고 말하면 좋을까요?',chkNone:'이 대화에는 아직 확인 문제가 없습니다.',right:'정답',wrong:'오답',res:'{n}문제 중 {k}문제 정답',
+ phrH:'내 표현',phrLead:'저장한 문장입니다. 이 브라우저 안에만 남습니다.',phrEmpty:'아직 없습니다. 대화 문장의 「☆ 저장」을 누르면 여기에 모입니다.',remove:'빼기',open:'이 대화 열기',
+ foot:'대화 속 이름·회사·인물은 모두 연습을 위해 만든 것입니다. 읽어 주기와 음성 인식은 사용 중인 브라우저의 기능을 씁니다.'},
+en:{kick:'Aviation Career Note',ttl:'Conversation Practice: Japanese, Korean and English',doc:'Conversation Practice (Japanese, Korean, English)',
+ lead:'From airport and in-flight work to travel, daily life and the office. Listen to the same conversation in Japanese, Korean and English, speak one of the roles, then learn other ways to say it and check yourself.',
+ setH:'Practice settings',tgt:'Language to practise',hlp:'Hint language',furi:'Show hiragana reading',tr:'Show hint-language translation',auto:'Read the other role aloud automatically',
+ same:'The practice language and hint language are the same. Choose a different hint language to get more out of practice.',
+ today:'Today’s conversation',todayGo:'Practise this one',streak:'Day streak',days:'days',done:'Practised',phr:'My phrases',
+ all:'All',lvL:'Level',lvN:['','Easy','Medium','Hard'],n:'{n} conversations',none:'No conversations match.',
+ times:'Practised {n}× · last {d}',never:'Not practised yet',
+ back:'← All conversations',modes:['Listen','Role-play','Other ways to say it','Check'],sit:'Situation',
+ playAll:'▶ Play all',stop:'■ Stop',speed:'Speed',voice:'Voice',play:'▶ Play',save:'☆ Save',saved:'★ Saved',point:'Tip',
+ noTts:'Read-aloud is not available in this browser. You can still practise with the text.',
+ noVoice:'No {L} voice was found on this device. Practise with the text, or add a {L} voice in your device settings.',
+ ttsFail:'Read-aloud did not start. Check your device volume and speech settings.',
+ role:'Your role',you:'You',next:'Next ▶',start:'Start',reveal:'Show answer',say:'Try saying it in {L}',
+ mic:'🎤 Speak and check',micOn:'■ Listening (tap to stop)',
+ micNote:'The microphone is used only when you tap “Speak and check”. Some browsers send your voice to their own servers to turn it into text. This site stores neither your voice nor the recognised text.',
+ noMic:'This browser does not support speech recognition. Say the line out loud, then tap “Show answer” to check.',
+ heard:'What we heard',near:'Match',good:'Well done',ok2:'Almost',retry:'Try once more',micErr:'Nothing was recognised. Please try again.',micDeny:'The microphone is blocked. Allow it in your browser settings.',
+ fin:'Well done! You practised to the end.',again:'Again',swap:'Swap roles',toCheck:'Go to the check',
+ altLead:'Other ways to say the key lines. Choose the one that fits the person and the situation.',altNone:'There are no alternative phrasings for this conversation yet.',orig:'Original',
+ chkLead:'What is the best thing to say here?',chkNone:'There are no check questions for this conversation yet.',right:'Correct',wrong:'Not quite',res:'{k} of {n} correct',
+ phrH:'My phrases',phrLead:'Lines you saved. They stay only in this browser.',phrEmpty:'Nothing yet. Tap “☆ Save” on any line to collect it here.',remove:'Remove',open:'Open this conversation',
+ foot:'All names, companies and people in these conversations are made up for practice. Read-aloud and speech recognition use your browser’s own features.'}};
+var CATS=[['work',{ja:'空港・機内の仕事',ko:'공항·기내 업무',en:'Airport & in-flight work'}],['travel',{ja:'旅行',ko:'여행',en:'Travel'}],['life',{ja:'毎日の暮らし',ko:'일상생활',en:'Daily life'}],['office',{ja:'職場の会話',ko:'직장 대화',en:'At the office'}]];
+var LNAME={ja:{ja:'日本語',ko:'韓国語',en:'英語'},ko:{ja:'일본어',ko:'한국어',en:'영어'},en:{ja:'Japanese',ko:'Korean',en:'English'}};
+
+/* ── データ：形の崩れたものは飛ばし、同じ id は先のものを使う ── */
+var D=[],BY={};
+(Array.isArray(window.TALK)?window.TALK:[]).forEach(function(s){
+ if(!s||typeof s.id!=='string'||!s.id||!Array.isArray(s.lines)||!s.lines.length||BY[s.id])return;
+ s.lines=s.lines.filter(function(l){return l&&typeof l==='object'});if(!s.lines.length)return;
+ s.lv=Math.min(3,Math.max(1,+s.lv||1));if(!CATS.some(function(c){return c[0]===s.cat}))s.cat=s.cat||'other';
+ s.check=Array.isArray(s.check)?s.check.filter(function(q){return q&&q.q&&Array.isArray(q.opts)&&q.opts.length>1}):[];
+ BY[s.id]=s;D.push(s)});
+
+/* ── 記録（localStorage。読めない・書けないときは、このページを開いている間だけ覚える） ── */
+var KEY='acn-talk',S={};
+try{var _r=JSON.parse(localStorage.getItem(KEY)||'{}');if(_r&&typeof _r==='object')S=_r}catch(e){}
+if(!S.s||typeof S.s!=='object')S.s={};if(!Array.isArray(S.ph))S.ph=[];if(!S.set||typeof S.set!=='object')S.set={};if(!S.st||typeof S.st!=='object')S.st={};
+if(!S.set.voice||typeof S.set.voice!=='object')S.set.voice={};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function pad(n){return (n<10?'0':'')+n}
+function ymd(d){d=d||new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function dayNo(s){var p=String(s).split('-');return Math.round(Date.UTC(+p[0],+p[1]-1,+p[2])/864e5)}
+function record(id){var t=ymd(),r=S.s[id];if(!r||typeof r!=='object')r={n:0};r.n=(+r.n||0)+1;r.d=t;S.s[id]=r;
+ var st=S.st;if(st.last!==t){st.n=(st.last&&dayNo(t)-dayNo(st.last)===1)?(+st.n||0)+1:1;st.last=t;st.best=Math.max(+st.best||0,st.n)}save()}
+function streak(){var st=S.st;if(!st.last)return 0;var g=dayNo(ymd())-dayNo(st.last);return g<=1?(+st.n||0):0}
+
+/* ── 言語と状態 ── */
+var lang='ja';try{var _l=localStorage.getItem('art-lang');if(LANGS.indexOf(_l)>=0)lang=_l}catch(e){}
+function tgt(){return LANGS.indexOf(S.set.t)>=0?S.set.t:(lang==='ja'?'ko':'ja')}
+function hlp(){return LANGS.indexOf(S.set.h)>=0?S.set.h:lang}
+function on(k,d){return S.set[k]==null?d:!!S.set[k]}
+var st={view:'list',cat:'all',lv:0,id:null,mode:0,role:'B',step:0,rev:{},ans:{}};
+var t=T[lang];
+function tx(o,l){if(o==null)return '';if(typeof o!=='object')return String(o);return o[l]!=null&&o[l]!==''?o[l]:(o.ja||o.en||o.ko||'')}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fm(s,o){return String(s).replace(/\{(\w+)\}/g,function(m,k){return o[k]!=null?o[k]:m})}
+function $(i){return document.getElementById(i)}
+function catName(c){var x=CATS.filter(function(k){return k[0]===c})[0];return x?x[1][lang]:''}
+function stars(n){return '<span class="stars" aria-label="'+esc(t.lvL+' '+n)+'">'+'★★★'.slice(0,n)+'<span style="opacity:.3">'+'★★★'.slice(0,3-n)+'</span></span>'}
+function fmtDate(d){if(!d)return '';var p=d.split('-');return lang==='en'?(+p[1])+'/'+(+p[2]):lang==='ko'?(+p[1])+'월 '+(+p[2])+'일':(+p[1])+'月'+(+p[2])+'日'}
+function hashStr(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h}
+function todayScene(){if(!D.length)return null;var o=D.slice().sort(function(a,b){return hashStr(a.id)-hashStr(b.id)});return o[dayNo(ymd())%o.length]}
+
+/* ── 読み上げ（speechSynthesis） ── */
+var SY=('speechSynthesis' in window)&&window.SpeechSynthesisUtterance?window.speechSynthesis:null,VO=[],playTok=0,ttsMsg='';
+function loadVoices(){if(!SY)return;try{VO=SY.getVoices()||[]}catch(e){VO=[]}}
+function vlist(l){return VO.filter(function(v){return v&&v.lang&&String(v.lang).replace('_','-').toLowerCase().indexOf(l)===0})}
+if(SY){loadVoices();var _vc=function(){var n=VO.length;loadVoices();if(VO.length!==n&&st.view==='scene')paintTool()};try{SY.addEventListener('voiceschanged',_vc)}catch(e){SY.onvoiceschanged=_vc}}
+function rate(){var r=+S.set.rate;return r>=0.5&&r<=1.5?r:0.9}
+function stopTts(){playTok++;if(SY){try{SY.cancel()}catch(e){}}markCur(-1);var b=$('pa');if(b)b.textContent=t.playAll}
+function speak(text,l,done){if(!SY||!text){done&&done(false);return}
+ try{SY.cancel()}catch(e){}
+ var u=new SpeechSynthesisUtterance(text),vs=vlist(l),nm=S.set.voice[l],v=vs.filter(function(x){return x.name===nm})[0]||vs.filter(function(x){return x.localService})[0]||vs[0];
+ u.lang=BCP[l];if(v)u.voice=v;u.rate=rate();var fired=0,started=0,
+ end=function(ok){if(fired)return;fired=1;clearTimeout(tm);done&&done(ok)};
+ u.onstart=function(){started=1;if(ttsMsg){ttsMsg='';var m=$('ttsMsg');if(m)paintTool()}};u.onend=function(){end(true)};u.onerror=function(){end(started)};
+ var tm=setTimeout(function(){if(!started){try{SY.cancel()}catch(e){}ttsMsg=t.ttsFail;paintTool();end(false)}},4000);
+ try{SY.speak(u)}catch(e){end(false)}}
+function sayLine(i,alt){var s=BY[st.id],L=s.lines[i];if(!L)return;var o=alt!=null&&Array.isArray(L.alt)?L.alt[alt]:L;stopTts();markCur(i);var tok=playTok;speak(tx(o,tgt()),tgt(),function(){if(tok===playTok)markCur(-1)})}
+function playAll(){var s=BY[st.id];if(!s)return;if($('pa').getAttribute('data-on')==='1'){stopTts();return}
+ stopTts();var tok=playTok,i=0,b=$('pa');b.textContent=t.stop;b.setAttribute('data-on','1');
+ (function nx(){if(tok!==playTok)return;if(i>=s.lines.length){markCur(-1);b.textContent=t.playAll;b.removeAttribute('data-on');record(s.id);return}
+  markCur(i);var el=document.querySelector('.ln[data-i="'+i+'"]');if(el&&el.scrollIntoView)try{el.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(e){}
+  speak(tx(s.lines[i],tgt()),tgt(),function(ok){if(tok!==playTok)return;if(!ok){markCur(-1);b.textContent=t.playAll;b.removeAttribute('data-on');return}i++;setTimeout(nx,350)})})()}
+function markCur(i){Array.prototype.forEach.call(document.querySelectorAll('.ln.cur'),function(e){e.classList.remove('cur')});if(i>=0){var e=document.querySelector('.ln[data-i="'+i+'"]');if(e)e.classList.add('cur')}}
+
+/* ── 聞き取り（SpeechRecognition：押したときだけ） ── */
+var SRC=window.SpeechRecognition||window.webkitSpeechRecognition||null,rec=null;
+function norm(s,l){s=String(s||'').normalize?String(s).normalize('NFKC'):String(s);s=s.toLowerCase().replace(/[\s.,!?;:'"“”‘’「」『』（）()、。・…〜~!?！？\-—–]/g,'');
+ if(l==='ja')s=s.replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0x60)});return s}
+function lev(a,b){if(a===b)return 0;if(!a.length)return b.length;if(!b.length)return a.length;var p=[],i,j;for(j=0;j<=b.length;j++)p[j]=j;
+ for(i=1;i<=a.length;i++){var prev=p[0];p[0]=i;for(j=1;j<=b.length;j++){var tmp=p[j];p[j]=Math.min(p[j]+1,p[j-1]+1,prev+(a[i-1]===b[j-1]?0:1));prev=tmp}}return p[b.length]}
+function sim(a,b){var m=Math.max(a.length,b.length);return m?1-lev(a,b)/m:0}
+function scoreOf(heard,i){var s=BY[st.id],L=s.lines[i],l=tgt(),c=[tx(L,l)];if(l==='ja'&&L.jr)c.push(L.jr);(L.alt||[]).forEach(function(a){if(a){c.push(tx(a,l));if(l==='ja'&&a.jr)c.push(a.jr)}});
+ var best=0;heard.forEach(function(h){var x=norm(h,l);c.forEach(function(y){best=Math.max(best,sim(x,norm(y,l)))})});return Math.round(best*100)}
+function micStop(){if(rec){try{rec.abort()}catch(e){}rec=null}Array.prototype.forEach.call(document.querySelectorAll('.ib.mic.rec'),function(b){b.classList.remove('rec');b.textContent=t.mic})}
+function micStart(i,btn){if(!SRC)return;if(rec){micStop();return}stopTts();
+ var out=document.querySelector('.ln[data-i="'+i+'"] .heard');
+ try{rec=new SRC()}catch(e){rec=null;return}
+ var r=rec;r.lang=BCP[tgt()];r.interimResults=false;r.maxAlternatives=3;r.continuous=false;
+ btn.classList.add('rec');btn.textContent=t.micOn;
+ r.onresult=function(e){var h=[];try{var res=e.results[0];for(var k=0;k<res.length;k++)h.push(res[k].transcript)}catch(x){}
+  if(!h.length||!out)return;var sc=scoreOf(h,i),cl=sc>=80?'g':sc>=50?'m':'b';
+  out.hidden=false;out.innerHTML='<div>'+esc(t.heard)+'：<b lang="'+tgt()+'">'+esc(h[0])+'</b></div><div>'+esc(t.near)+'：<span class="sc '+cl+'">'+sc+'%</span>　'+esc(sc>=80?t.good:sc>=50?t.ok2:t.retry)+'</div>';
+  if(!st.rev[i]){st.rev[i]=1;var hd=document.querySelector('.ln[data-i="'+i+'"] .ans');if(hd)hd.hidden=false}};
+ r.onerror=function(e){if(out){out.hidden=false;out.textContent=(e&&(e.error==='not-allowed'||e.error==='service-not-allowed'))?t.micDeny:t.micErr}};
+ r.onend=function(){if(rec===r)rec=null;btn.classList.remove('rec');btn.textContent=t.mic};
+ try{r.start()}catch(e){rec=null;btn.classList.remove('rec');btn.textContent=t.mic}}
+
+/* ── 私のフレーズ ── */
+function pkey(id,i,a){return id+'|'+i+(a!=null?'|'+a:'')}
+function isSaved(k){return S.ph.indexOf(k)>=0}
+function togglePh(k,b){var i=S.ph.indexOf(k);if(i>=0)S.ph.splice(i,1);else S.ph.unshift(k);save();if(b){var o=isSaved(k);b.classList.toggle('on',o);b.textContent=o?t.saved:t.save;b.setAttribute('aria-pressed',o)}paintStats()}
+function phResolve(k){var p=String(k).split('|'),s=BY[p[0]];if(!s)return null;var L=s.lines[+p[1]];if(!L)return null;var o=L;if(p[2]!=null){if(!Array.isArray(L.alt)||!L.alt[+p[2]])return null;o=L.alt[+p[2]]}return {s:s,i:+p[1],o:o,k:k}}
+
+/* ── 画面：頭・設定 ── */
+function langBar(){var g=$('lang');g.innerHTML=LANGS.map(function(l){return '<button type="button" data-l="'+l+'" lang="'+l+'" class="'+(l===lang?'on':'')+'" aria-pressed="'+(l===lang)+'">'+LBL[l]+'</button>'}).join('');
+ Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}t=T[lang];render()}})}
+function head(){document.documentElement.lang=lang;document.body.className=lang;['kick','ttl','lead','foot'].forEach(function(i){$(i).textContent=t[i]});document.title=t.doc;langBar()}
+function seg(id,cur,cb){return '<div class="seg" role="group" id="'+id+'">'+LANGS.map(function(l){return '<button type="button" data-v="'+l+'" class="'+(l===cur?'on':'')+'" aria-pressed="'+(l===cur)+'"><span>'+esc(LNAME[lang][l])+'</span></button>'}).join('')+'</div>'}
+function paintSetup(){var T2=tgt(),H=hlp();
+ $('setup').innerHTML='<h2 class="h2" id="setupH">'+esc(t.setH)+'</h2><div class="set"><div><span class="lab">'+esc(t.tgt)+'</span>'+seg('sgT',T2)+'</div><div><span class="lab">'+esc(t.hlp)+'</span>'+seg('sgH',H)+'</div>'+
+  '<div class="tg">'+(T2==='ja'?'<label><input type="checkbox" id="cbF"'+(on('furi',true)?' checked':'')+'>'+esc(t.furi)+'</label>':'')+'<label><input type="checkbox" id="cbT"'+(on('tr',true)?' checked':'')+'>'+esc(t.tr)+'</label></div></div>'+
+  (T2===H?'<p class="warn">'+esc(t.same)+'</p>':'');
+ function bind(id,k){Array.prototype.forEach.call($(id).querySelectorAll('button'),function(b){b.onclick=function(){S.set[k]=b.getAttribute('data-v');save();stopTts();micStop();render()}})}
+ bind('sgT','t');bind('sgH','h');
+ if($('cbF'))$('cbF').onchange=function(){S.set.furi=this.checked;save();paintMain()};
+ $('cbT').onchange=function(){S.set.tr=this.checked;save();paintMain()}}
+
+/* ── 一覧 ── */
+function paintStats(){var b=$('stS');if(!b)return;var n=D.filter(function(s){return S.s[s.id]&&S.s[s.id].n>0}).length;$('stS').textContent=streak();$('stD').textContent=n+' / '+D.length;$('stP').textContent=S.ph.length}
+function paintList(){var ts=todayScene(),h='';
+ h+='<div class="top">';
+ if(ts)h+='<div class="today"><small>'+esc(t.today)+' · '+esc(fmtDate(ymd()))+'</small><b>'+esc(tx(ts.title,lang))+'</b><span lang="'+tgt()+'">'+esc(tx(ts.title,tgt()))+'</span><span>'+esc(catName(ts.cat))+' · '+stars(ts.lv)+'</span><button type="button" class="btn go" id="goT">'+esc(t.todayGo)+' →</button></div>';
+ h+='<div class="stats"><div><b id="stS"></b><span>'+esc(t.streak)+'</span></div><div><b id="stD"></b><span>'+esc(t.done)+'</span></div><div><button type="button" id="goP"><b id="stP"></b><span>'+esc(t.phr)+' →</span></button></div></div></div>';
+ var cnt={all:D.length};D.forEach(function(s){cnt[s.cat]=(cnt[s.cat]||0)+1});
+ h+='<div class="chips" role="group" aria-label="category"><button type="button" class="chip'+(st.cat==='all'?' on':'')+'" data-c="all">'+esc(t.all)+'<em>'+cnt.all+'</em></button>'+CATS.map(function(c){return '<button type="button" class="chip'+(st.cat===c[0]?' on':'')+'" data-c="'+c[0]+'">'+esc(c[1][lang])+'<em>'+(cnt[c[0]]||0)+'</em></button>'}).join('')+'</div>';
+ h+='<div class="chips" role="group" aria-label="'+esc(t.lvL)+'" style="margin-top:0"><button type="button" class="chip lv'+(st.lv===0?' on':'')+'" data-v="0">'+esc(t.lvL)+'：'+esc(t.all)+'</button>'+[1,2,3].map(function(n){return '<button type="button" class="chip lv'+(st.lv===n?' on':'')+'" data-v="'+n+'">'+'★★★'.slice(0,n)+' '+esc(t.lvN[n])+'</button>'}).join('')+'</div>';
+ var L=D.filter(function(s){return (st.cat==='all'||s.cat===st.cat)&&(!st.lv||s.lv===st.lv)});
+ h+='<p class="cnt">'+esc(fm(t.n,{n:L.length}))+'</p>';
+ h+=L.length?'<div class="grid">'+L.map(function(s){var r=S.s[s.id];return '<button type="button" class="card" data-id="'+esc(s.id)+'"><span class="k"><span>'+esc(catName(s.cat))+'</span>'+stars(s.lv)+'</span><b>'+esc(tx(s.title,lang))+'</b><span class="t2" lang="'+tgt()+'">'+esc(tx(s.title,tgt()))+'</span><span class="rec'+(r&&r.n?'':' no')+'">'+esc(r&&r.n?fm(t.times,{n:r.n,d:fmtDate(r.d)}):t.never)+'</span></button>'}).join('')+'</div>':'<p class="empty">'+esc(t.none)+'</p>';
+ $('app').innerHTML=h;paintStats();
+ if($('goT'))$('goT').onclick=function(){go({view:'scene',id:ts.id,mode:0})};
+ $('goP').onclick=function(){go({view:'phr'})};
+ Array.prototype.forEach.call(document.querySelectorAll('.chip[data-c]'),function(b){b.onclick=function(){st.cat=b.getAttribute('data-c');paintList()}});
+ Array.prototype.forEach.call(document.querySelectorAll('.chip[data-v]'),function(b){b.onclick=function(){st.lv=+b.getAttribute('data-v');paintList()}});
+ Array.prototype.forEach.call(document.querySelectorAll('.card[data-id]'),function(b){b.onclick=function(){go({view:'scene',id:b.getAttribute('data-id'),mode:0})}})}
+
+/* ── 1つのせりふ ── */
+function lineHtml(s,i,o){var L=s.lines[i],T2=tgt(),H=hlp(),a=o||{},who=s.roles&&s.roles[L.r]?tx(s.roles[L.r],lang):L.r,k=pkey(s.id,i),sv=isSaved(k);
+ var h='<div class="ln '+(L.r==='B'?'B':'A')+'" data-i="'+i+'"><div class="who"><span class="rb '+(L.r==='B'?'B':'A')+'">'+esc(L.r||'')+'</span>'+esc(who)+(a.me?'<span class="me">'+esc(t.you)+'</span>':'')+'</div>';
+ var body='<div class="tx" lang="'+T2+'">'+esc(tx(L,T2))+'</div>'+(T2==='ja'&&L.jr&&on('furi',true)?'<div class="jr" lang="ja">'+esc(L.jr)+'</div>':'');
+ var hint=(H!==T2&&on('tr',true)?'<div class="hl" lang="'+H+'">'+esc(tx(L,H))+'</div>':'');
+ if(a.hide){h+='<div class="hide"><div class="q">'+esc(fm(t.say,{L:LNAME[lang][T2]}))+'</div><div class="hl" lang="'+H+'">'+esc(tx(L,H))+'</div></div>'+
+   '<div class="ans"'+(st.rev[i]?'':' hidden')+'>'+body+'</div>'+
+   '<div class="act">'+(st.rev[i]?'':'<button type="button" class="ib rv" data-i="'+i+'">'+esc(t.reveal)+'</button>')+(SRC?'<button type="button" class="ib mic" data-i="'+i+'">'+esc(t.mic)+'</button>':'')+'<button type="button" class="ib pl" data-i="'+i+'">'+esc(t.play)+'</button><button type="button" class="ib sv'+(sv?' on':'')+'" data-k="'+esc(k)+'" aria-pressed="'+sv+'">'+esc(sv?t.saved:t.save)+'</button></div><div class="heard" hidden></div>'}
+ else{h+=body+hint+(a.note&&L.note?'<div class="nt"><b>'+esc(t.point)+'</b>'+esc(tx(L.note,H===T2?lang:H))+'</div>':'')+
+   '<div class="act"><button type="button" class="ib pl" data-i="'+i+'">'+esc(t.play)+'</button><button type="button" class="ib sv'+(sv?' on':'')+'" data-k="'+esc(k)+'" aria-pressed="'+sv+'">'+esc(sv?t.saved:t.save)+'</button></div>'}
+ return h+'</div>'}
+function bindLines(root){root=root||document;
+ Array.prototype.forEach.call(root.querySelectorAll('.ib.pl'),function(b){b.onclick=function(){sayLine(+b.getAttribute('data-i'),b.hasAttribute('data-a')?+b.getAttribute('data-a'):null)}});
+ Array.prototype.forEach.call(root.querySelectorAll('.ib.sv'),function(b){b.onclick=function(){togglePh(b.getAttribute('data-k'),b)}});
+ Array.prototype.forEach.call(root.querySelectorAll('.ib.rv'),function(b){b.onclick=function(){var i=+b.getAttribute('data-i');st.rev[i]=1;var a=document.querySelector('.ln[data-i="'+i+'"] .ans');if(a)a.hidden=false;b.remove()}});
+ Array.prototype.forEach.call(root.querySelectorAll('.ib.mic'),function(b){b.onclick=function(){micStart(+b.getAttribute('data-i'),b)}})}
+
+/* ── 会話の画面 ── */
+function paintTool(){var el=$('tool');if(!el)return;var T2=tgt(),vs=vlist(T2),nm=S.set.voice[T2],m='';
+ if(!SY)m='<p class="msg w" id="ttsMsg">'+esc(t.noTts)+'</p>';
+ else{if(!vs.length)m='<p class="msg w" id="ttsMsg">'+esc(fm(t.noVoice,{L:LNAME[lang][T2]}))+'</p>';else if(ttsMsg)m='<p class="msg w" id="ttsMsg">'+esc(ttsMsg)+'</p>'}
+ el.innerHTML=(st.mode===0?'<button type="button" class="btn" id="pa">'+esc(t.playAll)+'</button>':'')+
+  '<label>'+esc(t.speed)+' <input type="range" id="rt" min="0.5" max="1.3" step="0.1" value="'+rate()+'" aria-label="'+esc(t.speed)+'"><span id="rtv">'+rate().toFixed(1)+'×</span></label>'+
+  (vs.length>1?'<label>'+esc(t.voice)+' <select id="vc">'+vs.map(function(v){return '<option'+(v.name===nm?' selected':'')+'>'+esc(v.name)+'</option>'}).join('')+'</select></label>':'')+
+  (st.mode===1?'<label><input type="checkbox" id="cbA"'+(on('auto',true)?' checked':'')+'>'+esc(t.auto)+'</label>':'');
+ var mm=$('ttsBox');if(mm)mm.innerHTML=m;
+ if($('pa'))$('pa').onclick=playAll;
+ $('rt').oninput=function(){S.set.rate=+this.value;$('rtv').textContent=(+this.value).toFixed(1)+'×'};$('rt').onchange=save;
+ if($('vc'))$('vc').onchange=function(){S.set.voice[T2]=this.value;save()};
+ if($('cbA'))$('cbA').onchange=function(){S.set.auto=this.checked;save()}}
+function paintScene(){var s=BY[st.id];if(!s){go({view:'list'},true);return}
+ var T2=tgt(),H=hlp();
+ var h='<div class="panel"><button type="button" class="btn ghost" id="bk">'+esc(t.back)+'</button>'+
+  '<div class="sc-h"><span class="k"><span>'+esc(catName(s.cat))+'</span>'+stars(s.lv)+(S.s[s.id]&&S.s[s.id].n?'<span class="rec" style="color:var(--ok)">'+esc(fm(t.times,{n:S.s[s.id].n,d:fmtDate(S.s[s.id].d)}))+'</span>':'')+'</span>'+
+  '<h2>'+esc(tx(s.title,lang))+'</h2>'+(T2!==lang?'<span class="t2" lang="'+T2+'">'+esc(tx(s.title,T2))+'</span>':'')+
+  (s.scene?'<p><b>'+esc(t.sit)+'：</b>'+esc(tx(s.scene,lang))+'</p>':'')+
+  '<div class="roles">'+['A','B'].map(function(r){return s.roles&&s.roles[r]?'<span><span class="rb '+r+'">'+r+'</span> '+esc(tx(s.roles[r],lang))+'</span>':''}).join('')+'</div></div>'+
+  '<div class="modes" role="tablist">'+t.modes.map(function(m,i){return '<button type="button" role="tab" aria-selected="'+(st.mode===i)+'" class="'+(st.mode===i?'on':'')+'" data-m="'+i+'">'+esc(m)+'</button>'}).join('')+'</div>'+
+  '<div id="ttsBox"></div><div class="tool" id="tool"></div><div id="mode"></div></div>';
+ $('app').innerHTML=h;
+ $('bk').onclick=function(){go({view:'list'})};
+ Array.prototype.forEach.call(document.querySelectorAll('.modes button'),function(b){b.onclick=function(){go({view:'scene',id:s.id,mode:+b.getAttribute('data-m')},false,true)}});
+ paintTool();paintMode()}
+function paintMode(){var s=BY[st.id],el=$('mode'),T2=tgt(),H=hlp(),h='';stopTts();micStop();
+ if(st.mode===0){h='<div class="lines">'+s.lines.map(function(L,i){return lineHtml(s,i,{note:1})}).join('')+'</div>';el.innerHTML=h;bindLines(el);return}
+ if(st.mode===1){var R=st.role;
+  h='<div class="tool"><span>'+esc(t.role)+'：</span><div class="seg" style="flex:1 1 260px">'+['A','B'].map(function(r){return '<button type="button" data-r="'+r+'" class="'+(R===r?'on':'')+'" aria-pressed="'+(R===r)+'">'+r+'　'+esc(s.roles&&s.roles[r]?tx(s.roles[r],lang):r)+'</button>'}).join('')+'</div></div>'+
+   (SRC?'<p class="msg">'+esc(t.micNote)+'</p>':'<p class="msg">'+esc(t.noMic)+'</p>');
+  h+='<div class="lines">';for(var i=0;i<=Math.min(st.step,s.lines.length-1);i++){var me=s.lines[i].r===R;h+=lineHtml(s,i,{me:me,hide:me})}h+='</div>';
+  var end=st.step>=s.lines.length;
+  h+=end?'<div class="fin" id="fin">'+esc(t.fin)+'</div><div class="bar2"><button type="button" class="btn" id="ag">'+esc(t.again)+'</button><button type="button" class="btn sub" id="sw">'+esc(t.swap)+'</button>'+(s.check.length?'<button type="button" class="btn sub" id="tc">'+esc(t.toCheck)+'</button>':'')+'</div>'
+   :'<div class="bar2"><button type="button" class="btn" id="nx">'+esc(t.next)+'</button></div>';
+  el.innerHTML=h;bindLines(el);
+  Array.prototype.forEach.call(el.querySelectorAll('[data-r]'),function(b){b.onclick=function(){st.role=b.getAttribute('data-r');st.step=0;st.rev={};paintMode();autoRead()}});
+  if($('nx'))$('nx').onclick=function(){st.step++;if(st.step>=s.lines.length){st.step=s.lines.length;record(s.id)}paintMode();var tg=st.step>=s.lines.length?$('fin'):el.querySelector('.ln[data-i="'+st.step+'"]');if(tg&&tg.scrollIntoView)try{tg.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(e){}autoRead()};
+  if($('ag'))$('ag').onclick=function(){st.step=0;st.rev={};paintMode();autoRead()};
+  if($('sw'))$('sw').onclick=function(){st.role=st.role==='A'?'B':'A';st.step=0;st.rev={};paintMode();autoRead()};
+  if($('tc'))$('tc').onclick=function(){go({view:'scene',id:s.id,mode:3},false,true)};
+  return}
+ if(st.mode===2){var any=false;h='<p class="msg">'+esc(t.altLead)+'</p><div class="lines">';
+  s.lines.forEach(function(L,i){if(!Array.isArray(L.alt)||!L.alt.length)return;any=true;var who=s.roles&&s.roles[L.r]?tx(s.roles[L.r],lang):L.r;
+   h+='<div class="alt ln '+(L.r==='B'?'B':'A')+'" data-i="'+i+'"><div class="who"><span class="rb '+(L.r==='B'?'B':'A')+'">'+esc(L.r)+'</span>'+esc(who)+'</div><div class="o">'+esc(t.orig)+'</div><div class="ot" lang="'+T2+'">'+esc(tx(L,T2))+'</div>'+
+    (H!==T2&&on('tr',true)?'<div class="hl" lang="'+H+'" style="margin-top:-4px">'+esc(tx(L,H))+'</div>':'');
+   L.alt.forEach(function(a,j){if(!a)return;var k=pkey(s.id,i,j),sv=isSaved(k);h+='<div class="v"><div class="tx" lang="'+T2+'">'+esc(tx(a,T2))+'</div>'+(T2==='ja'&&a.jr&&on('furi',true)?'<div class="jr" lang="ja">'+esc(a.jr)+'</div>':'')+(H!==T2&&on('tr',true)?'<div class="hl" lang="'+H+'">'+esc(tx(a,H))+'</div>':'')+
+    '<div class="act"><button type="button" class="ib pl" data-i="'+i+'" data-a="'+j+'">'+esc(t.play)+'</button><button type="button" class="ib sv'+(sv?' on':'')+'" data-k="'+esc(k)+'" aria-pressed="'+sv+'">'+esc(sv?t.saved:t.save)+'</button></div></div>'});
+   h+='</div>'});
+  h+='</div>';el.innerHTML=any?h:'<p class="empty">'+esc(t.altNone)+'</p>';bindLines(el);return}
+ if(st.mode===3){if(!s.check.length){el.innerHTML='<p class="empty">'+esc(t.chkNone)+'</p>';return}
+  h='<p class="msg">'+esc(t.chkLead)+'</p><div class="lines">'+s.check.map(function(q,qi){var ord=q.opts.map(function(o,i){return i}).sort(function(a,b){return hashStr(s.id+qi+':'+a)-hashStr(s.id+qi+':'+b)}),A=st.ans[qi];
+   return '<div class="qz" data-q="'+qi+'"><div class="qq" lang="'+H+'">'+(qi+1)+'. '+esc(tx(q.q,H))+'</div>'+ord.map(function(i){var c=A==null?'':(i===q.a?' ok':(i===A?' ng':''));return '<button type="button" class="opt'+c+'" data-o="'+i+'"'+(A!=null?' disabled':'')+'><span lang="'+T2+'">'+esc(tx(q.opts[i],T2))+'</span>'+(A!=null&&H!==T2?'<small lang="'+H+'">'+esc(tx(q.opts[i],H))+'</small>':'')+(A!=null&&i===q.a?' <b style="color:var(--ok)">✓ '+esc(t.right)+'</b>':(A!=null&&i===A?' <b style="color:var(--ng)">✗ '+esc(t.wrong)+'</b>':''))+'</button>'}).join('')+'</div>'}).join('')+'</div>';
+  var na=Object.keys(st.ans).length;if(na>=s.check.length){var k=s.check.filter(function(q,qi){return st.ans[qi]===q.a}).length;h+='<p class="score" id="score">'+esc(fm(t.res,{n:s.check.length,k:k}))+'</p><div class="bar2"><button type="button" class="btn sub" id="rq">'+esc(t.again)+'</button></div>'}
+  el.innerHTML=h;
+  Array.prototype.forEach.call(el.querySelectorAll('.opt'),function(b){b.onclick=function(){var qi=+b.parentNode.getAttribute('data-q');if(st.ans[qi]!=null)return;st.ans[qi]=+b.getAttribute('data-o');if(Object.keys(st.ans).length>=s.check.length)record(s.id);paintMode()}});
+  if($('rq'))$('rq').onclick=function(){st.ans={};paintMode()}}}
+function autoRead(){if(st.mode!==1||!on('auto',true)||!SY||!vlist(tgt()).length)return;var s=BY[st.id];if(!s||st.step>=s.lines.length)return;var L=s.lines[st.step];if(L.r!==st.role)sayLine(st.step)}
+
+/* ── 私のフレーズの画面 ── */
+function paintPhr(){var T2=tgt(),H=hlp(),P=S.ph.map(phResolve).filter(Boolean);
+ var h='<div class="panel ph"><button type="button" class="btn ghost" id="bk">'+esc(t.back)+'</button><h2 class="h2" style="font-size:21px;margin-top:4px">'+esc(t.phrH)+'</h2><p class="msg">'+esc(t.phrLead)+'</p>'+
+  '<div id="ttsBox"></div><div class="tool" id="tool" hidden></div>';
+ h+=P.length?'<div class="lines">'+P.map(function(p){var L=p.s.lines[p.i];return '<div class="ln '+(L.r==='B'?'B':'A')+'"><div class="tx" lang="'+T2+'">'+esc(tx(p.o,T2))+'</div>'+(T2==='ja'&&p.o.jr&&on('furi',true)?'<div class="jr" lang="ja">'+esc(p.o.jr)+'</div>':'')+(H!==T2?'<div class="hl" lang="'+H+'">'+esc(tx(p.o,H))+'</div>':'')+
+  '<div class="act"><button type="button" class="ib pp" data-k="'+esc(p.k)+'">'+esc(t.play)+'</button><button type="button" class="ib rm" data-k="'+esc(p.k)+'">'+esc(t.remove)+'</button></div><div class="from">'+esc(tx(p.s.title,lang))+' · <button type="button" class="op" data-id="'+esc(p.s.id)+'">'+esc(t.open)+' →</button></div></div>'}).join('')+'</div>':'<p class="empty">'+esc(t.phrEmpty)+'</p>';
+ $('app').innerHTML=h+'</div>';
+ $('bk').onclick=function(){go({view:'list'})};
+ if(!SY)$('ttsBox').innerHTML='<p class="msg w">'+esc(t.noTts)+'</p>';else if(!vlist(T2).length)$('ttsBox').innerHTML='<p class="msg w">'+esc(fm(t.noVoice,{L:LNAME[lang][T2]}))+'</p>';
+ Array.prototype.forEach.call(document.querySelectorAll('.ib.pp'),function(b){b.onclick=function(){var p=phResolve(b.getAttribute('data-k'));if(p)speak(tx(p.o,T2),T2)}});
+ Array.prototype.forEach.call(document.querySelectorAll('.ib.rm'),function(b){b.onclick=function(){togglePh(b.getAttribute('data-k'));paintPhr()}});
+ Array.prototype.forEach.call(document.querySelectorAll('.op'),function(b){b.onclick=function(){go({view:'scene',id:b.getAttribute('data-id'),mode:0})}})}
+
+/* ── 住所（#s=会話のid&m=0〜3、#phr）と画面の切り替え ── */
+function parse(){var h=(location.hash||'').replace(/^#/,''),o={view:'list'};if(h==='phr')return {view:'phr'};
+ h.split('&').forEach(function(p){var kv=p.split('=');if(kv[0]==='s'&&BY[decodeURIComponent(kv[1]||'')]){o.view='scene';o.id=decodeURIComponent(kv[1])}if(kv[0]==='m')o.mode=Math.min(3,Math.max(0,+kv[1]||0))});if(o.view==='scene'&&o.mode==null)o.mode=0;return o}
+function hashOf(o){return o.view==='scene'?'#s='+encodeURIComponent(o.id)+(o.mode?'&m='+o.mode:''):o.view==='phr'?'#phr':''}
+function apply(o){var ch=o.view!==st.view||o.id!==st.id;st.view=o.view;if(o.view==='scene'){if(o.id!==st.id||ch){st.step=0;st.rev={};st.ans={}}st.id=o.id;if(o.mode!==st.mode){st.ans={}}st.mode=o.mode||0}return ch}
+function go(o,replace,keepScroll){var u=location.pathname+location.search+hashOf(o);try{if(replace)history.replaceState(null,'',u);else history.pushState(null,'',u)}catch(e){}
+ var ch=apply(o);stopTts();micStop();paintMain();if(ch&&!keepScroll){var a=$('app');if(a&&a.scrollIntoView)try{a.scrollIntoView({block:'start'})}catch(e){}}}
+window.addEventListener('popstate',function(){apply(parse());stopTts();micStop();paintMain()});
+function paintMain(){if(st.view==='scene'&&BY[st.id])paintScene();else if(st.view==='phr')paintPhr();else{st.view='list';paintList()}}
+function render(){t=T[lang];head();paintSetup();paintMain()}
+apply(parse());render();
+})();
+</script>
+<script src="1_지상직여객운송입문/assets/nav.js"></script>
+</body>
+</html>

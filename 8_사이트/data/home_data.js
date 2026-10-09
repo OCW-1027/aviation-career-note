@@ -37,6 +37,7 @@ var TOOLS=[
 {id:'fin_val',p:'../23_재무3표실무/企業価値の計算練習.html',ja:['企業価値の計算練習','倍率法と、将来の現金から求める方法（DCF）で企業価値と株式価値を計算。感度分析、価値レンジの図、価格と利回りの確認まで、式つきで'],ko:['기업가치 계산 연습','배수법과 미래 현금으로 구하는 방법(DCF)으로 기업가치와 주식 가치를 계산. 민감도 분석, 가치 범위 그림, 가격과 수익률 확인까지 식과 함께'],en:['Company Valuation Practice','Value a company by multiples and DCF, with sensitivity, a value-range chart and price and return checks, formulas shown']},
 {id:'ye',p:'../12_일본지점인사재무실무/決算の練習.html',ja:['年次決算の練習','小さな会社の1年分の仕訳から、元帳・試算表・決算書を作り、法人税等を見積もって決算書を日本語で出力'],ko:['1년 결산 연습','작은 회사의 1년 치 분개에서 원장·시산표·결산서를 만들고, 법인세 등을 추정해 결산서를 일본어로 출력'],en:['Year-End Closing Practice','From a small company’s year of entries to the ledger, trial balance and statements, with an income tax estimate and Japanese output']},
 {id:'fin_memo',p:'../23_재무3표실무/投資検討報告書の下書き.html',ja:['投資検討報告書の下書き','7つの箱に入れると、正常収益力・純有利子負債・倍率・利回りを計算して報告書の下書きに。足りないところを知らせ、印刷・Word形式での保存も'],ko:['투자 검토 보고서 초안','일곱 상자에 넣으면 정상 수익력·순차입금·배수·수익률을 계산해 보고서 초안으로. 빠진 곳을 알려 주고 인쇄·Word 저장도'],en:['Investment Memo Draft','Fill in seven boxes to get a draft memo with normalised earnings, net debt, multiples and return calculated; flags gaps; print or save as Word']},
+{id:'talk',p:'../会話練習_日韓英.html',ja:['会話練習 ― 日本語・韓国語・英語','空港・機内の仕事から旅行・暮らし・職場まで。聞いて、役になって話して、言い換えと確認の問題で身につける'],ko:['회화 연습 — 일본어·한국어·영어','공항·기내 업무부터 여행·일상·직장까지. 듣고, 역할을 맡아 말하고, 바꿔 말하기와 확인 문제로 익히기'],en:['Conversation Practice: JA · KO · EN','Airport work, travel, daily life and the office: listen, role-play, rephrase and check']},
 {id:'codes',p:'../航空コード辞典.html',ja:['航空コード辞典','空港（約4,000）・都市・航空会社・国別記号・航空券番号の頭3桁'],ko:['항공 코드 사전','공항(약 4,000곳)·도시·항공사·국가 기호·항공권 번호 앞 3자리'],en:['Aviation Code Dictionary','Airports, cities, airlines, country prefixes, ticket prefixes']},
 {id:'delay',p:'../遅延コード一覧_IATA.html',ja:['IATA遅延コード一覧','遅れの理由を表す世界共通の番号00〜99'],ko:['IATA 지연 코드 목록','지연 이유를 나타내는 세계 공통 번호 00~99'],en:['IATA Delay Codes','The worldwide standard codes 00–99 (AHM730)']},
 {id:'gloss',p:'../用語集_航空用語.html',ja:['航空用語集','日本語・韓国語・英語で引ける空港と航空の用語'],ko:['항공 용어집','일본어·한국어·영어로 찾는 공항과 항공 용어'],en:['Aviation Glossary','Airport and airline terms in English, Japanese and Korean']},
@@ -46,7 +47,7 @@ var TOOLS=[
 {id:'quiz',p:'../確認クイズ_航空の仕事.html',ja:['確認クイズ','レッスンの内容を問題で確かめる'],ko:['확인 퀴즈','레슨 내용을 문제로 확인'],en:['Quick Quiz','Check what you learned in the lessons']},
 {id:'ann',p:'../4_공항안내방송예문집/空港アナウンス文例集.html',ja:['空港アナウンス文例集','日本語・韓国語・英語の案内の文例'],ko:['공항 안내방송 예문집','일본어·한국어·영어 안내 예문'],en:['Announcement Phrasebook','Sample announcements in English, Japanese and Korean']},
 {id:'forms',p:'../10_공항양식해설집/空港で使う書類と様式.html',ja:['空港で使う書類と様式','書類の解説と、印刷できる見本の様式'],ko:['공항에서 쓰는 서류와 양식','서류 해설과 인쇄 가능한 양식 예시'],en:['Airport Forms Explained','What each form is for, with printable blank samples']},
-{id:'faq',p:'../14_승객FAQ/よくある質問_空港と飛行機.html',ja:['よくある質問','手荷物・特別な対応・遅延・出入国'],ko:['자주 묻는 질문','수하물·특별 대응·지연·출입국'],en:['Passenger FAQ','Baggage, special assistance, delays and immigration']}];
+{id:'faq',p:'../14_승객FAQ/よくある質問_空港と飛行機.html',ja:['よくある質問','手荷物・特別な対応・遅延・出入国・機内'],ko:['자주 묻는 질문','수하물·특별 대응·지연·출입국·기내'],en:['Passenger FAQ','Baggage, special assistance, delays, immigration and on board']}];
 /* 資料・ツールの並び（2026.10）：グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。搭載管理を先頭に、講座の順。各グループの最初に小見出し（講座の名前）を付ける。ここにないツールは最後の「共通の資料」の後ろに並ぶ */
 (function(){var G=[[['旅客ハンドリングの実務','항공 여객운송 실무','Passenger Operations'],['lc','ann','forms','faq']],
  [['運航管理の実務','운항관리 실무','Flight Dispatch Operations'],['dsp','exam_jp','exam_kr']],
@@ -55,7 +56,7 @@ var TOOLS=[
  [['数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo']],
  [['日本就航・支店開設ガイド','일본 취항·지점 개설 가이드','Launching Flights to Japan'],['fsc']],
  [['航空業界の面接対策','항공업계 면접 대비','Aviation Interview Prep'],['story']],
- [['共通の資料','공통 자료','General reference'],['codes','delay','gloss','quiz']]],out=[],used={};
+ [['共通の資料','공통 자료','General reference'],['talk','codes','delay','gloss','quiz']]],out=[],used={};
  G.forEach(function(g){g[1].forEach(function(n,i){TOOLS.forEach(function(x,k){if(!used[k]&&x.id===n){used[k]=1;x.g=i===0?g[0]:null;out.push(x)}})})});
  TOOLS.forEach(function(x,k){if(!used[k]){x.g=null;out.push(x)}});TOOLS.length=0;out.forEach(function(x){TOOLS.push(x)})})();
 

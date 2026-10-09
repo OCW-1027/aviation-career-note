@@ -56,6 +56,7 @@ export const FILES = {
   '14_승객FAQ/よくある質問_空港と飛行機.html': 'index.html',
   '7_구인게재_기업용/求人掲載のご案内.html': 'index.html',
   '航空コード辞典.html': 'codes.html',
+  '会話練習_日韓英.html': 'talk.html',
   '遅延コード一覧_IATA.html': 'delay-codes.html',
   '用語集_航空用語.html': 'glossary.html',
   '確認クイズ_航空の仕事.html': 'quiz.html',

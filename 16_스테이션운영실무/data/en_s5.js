@@ -324,5 +324,5 @@ terms:[["Monthly Performance Report","月の実績の報告","월간 실적 보�
 quiz:[{q:"What is the basic way to explain a budget variance?",opts:["Split it into frequencies, rates, disruptions and exchange rates","Give only the total","Do not explain","Leave it to next year"],a:0,exp:"Splitting by cause feeds into the next budget and actions."},
 {q:"You receive an audit finding. You…",opts:["Confirm the facts and correct it with a cause, action and deadline","Make excuses","Do nothing","Blame the auditor"],a:0,exp:"The record of correction protects the station next time."},
 {q:"What should you confirm about airport charges?",opts:["Whether head office or the station pays","Whether they can be skipped","Set the amount yourself","Nothing"],a:0,exp:"Who pays decides whether they sit in the station budget."}],
-next:""});
+next:"5-1 Where an Overseas Station Stands: Between Three Sets of Rules"});
 })(window.ARTS);
