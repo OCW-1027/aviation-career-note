@@ -25,7 +25,7 @@ var SERIES=[
   a.ja=['空港で働く方・赴任や出張をする方','主要空港ガイド','日本・韓国・世界の主要空港：運用・乗り継ぎ・入国・今後の計画'];a.ko=['공항에서 일하는 사람·부임이나 출장 가는 사람','주요 공항 가이드','일본·한국·세계의 주요 공항: 운영·환승·입국·향후 계획'];a.en=['Airport staff and people relocating or travelling','Guide to Major Airports','Japan, Korea and the world: operations, transfers, entry and future plans']}
  var out=O.map(function(c){return by[c]}).filter(Boolean);SERIES.length=0;out.forEach(function(s){SERIES.push(s)})})();
 var TOOLS=[
-{id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['レベニューマネジメントの練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['Revenue Management 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and RevPAR']},
+{id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['Revenue Managementの練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['Revenue Management 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and RevPAR']},
 {id:'fsc',p:'../2_일본취항지점개설가이드/燃油サーチャージ計算.html',ja:['日本発 燃油サーチャージの計算','ケロシン価格の平均と為替から旅客・貨物の額を決め、回収率を確かめて申請書の下書きまで'],ko:['일본발 유류할증료 계산','케로신 평균과 환율로 여객·화물 금액을 정하고 회수율을 확인해 신청서 초안까지'],en:['Japan-Origin Fuel Surcharge Calculator','From kerosene and FX averages to passenger and cargo amounts, the recovery ratio and a filing draft']},
 {id:'dsp',p:'../18_항공기초지식/航空路図の練習.html',ja:['運航管理実務の練習','航空路・飛行計画・燃料・管制・スロットを練習'],ko:['운항관리 실무 연습','항공로·비행계획·연료·관제·슬롯 연습'],en:['Flight Dispatch Practice','Airways, flight plans, fuel, ATC and slots']},
 {id:'lc',p:'../1_지상직여객운송입문/搭載計算の練習.html',ja:['搭載管理\n（Weight & Balance）の練習','10機種で重量・重心・ロードシートを練習'],ko:['탑재관리\n(Weight & Balance) 연습','10개 기종으로 중량·무게중심·로드시트 연습'],en:['Load Control\n(Weight & Balance) Practice','Weights, balance and loadsheets on 10 types']},
