@@ -61,8 +61,8 @@ quiz:[{q:"When should you join the committee?",opts:["A year after launch","Befo
 {q:"Who coordinates the resumption of operations after a major closure?",opts:["The committee","A travel agency","The shops","Passengers"],a:0,exp:"Order of resumption and flight allocation are coordinated there."}],
 next:"7-3 The first year’s operating calendar"});
 
-set("7-3",{title:"The First Year’s Operating Calendar",hl:"the operating calendar",subtitle:"In year one you do every annual procedure once. From year two it repeats",
-lead:["The first year after launch is when you meet every annual procedure for the first time: the monthly close, the seasonal approvals, the yearly security, tax and employment filings, and the first audits. Get the records and procedures right here and year two is simply a repeat.",
+set("7-3",{title:"The First Year’s Operating Calendar",hl:"the operating calendar",subtitle:"In year one you go through the main annual procedures once. From year two they become routine",
+lead:["The first year after launch is when you meet the main annual procedures for the first time: the monthly close, the seasonal approvals, the yearly security, tax and employment filings, and the first audits. Get the records and procedures right here and from year two they can be run as routine work.",
 "This article sets out the milestones of the first year, the monthly rhythm and the main annual procedures, and how to make the station’s operation stick (for the monthly and annual detail see also Ground Staff 6-6)."],
 sections:[
 {h:"Milestones of the first year (example)",blocks:[{t:"fig",id:"opn_year",cap:"Animated figure: milestones in the first year after launch (example)."},{t:"table",cols:["When","Milestone"],rows:[

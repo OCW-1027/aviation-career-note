@@ -15,9 +15,9 @@ sections:[
 {h:"Time limits and liability caps (international flights)",blocks:[{t:"table",cols:["Irregularity","Deadline under the Montreal Convention"],rows:[
 ["Damage or pilferage","In writing within 7 days of receiving the bag"],
 ["Delay","In writing within 21 days of receiving the bag"],
-["Loss","If it has not arrived after 21 days, it can be claimed as lost"]]},
+["Loss","If it has not arrived 21 days after the date on which it should have arrived, the passenger can claim it as lost under the convention"]]},
 {t:"rows",items:[
-{name:"Liability cap",x:"For international carriage the limit is set by the convention in Special Drawing Rights (1,519 SDR per passenger since 28 December 2024). Domestic flights follow national rules and each airline’s conditions of carriage."},
+{name:"Liability cap",x:"For international carriage under the Montreal Convention, the liability limit for lost, damaged or delayed baggage is 1,519 SDR per passenger from 28 December 2024. Actual compensation is decided on the damage, the proof provided, the applicable law, the conditions of carriage and so on."},
 {name:"Declared value",x:"Passengers checking valuable items can declare a higher value and pay a charge to raise the limit, up to whatever maximum the airline allows."}]},
 {t:"note",x:"* Which rules apply depends on the convention’s ratification and the airline’s conditions of carriage. The figures are reviewed periodically, so check the current amounts. ★"}]},
 {h:"Where the airline is usually not liable",blocks:[{t:"check",items:[
@@ -44,7 +44,7 @@ quiz:[{q:"Under the Montreal Convention, when must damage be reported?",opts:["W
 next:"4-2 Delayed bags and bags taken by mistake"});
 
 set("4-2",{title:"Delayed Bags and Bags Taken by Mistake",hl:"delayed bags",subtitle:"Find it, deliver it, keep the passenger’s trip moving",
-lead:["Most delayed bags turn up within a few days. What matters is that the passenger is not left stuck in the meantime, and that the bag reaches them once it is found.",
+lead:["Most delayed bags are traced and forwarded to the passenger later. What matters is that the passenger is not left stuck in the meantime, and that the bag reaches them once it is found.",
 "This article covers the path from report to delivery, interim necessities, the roles of the arrival, departure and transit stations, and what to do when two similar bags are swapped."],
 sections:[
 {h:"From report to delivery",blocks:[{t:"ladder",rise:10,steps:[{name:"Report",sub:"PIR raised in the tracing system"},{name:"Match",sub:"Automatically against on-hand bags"},{name:"Found",sub:"At the departure or transit station"},{name:"Forward",sub:"On a later flight with a rush tag"},{name:"Customs and delivery",sub:"Cleared at the destination and delivered"},{name:"Close",sub:"Delivery confirmed and recorded"}]}]},

@@ -135,7 +135,7 @@ quiz:[{q:"Which line shows profit from the core business?",opts:["Sales","Operat
 next:"0-4 Cash management: profit and cash are not the same"});
 
 set("0-4",{title:"Cash Management: Profit and Cash Are Not the Same",hl:"cash management",subtitle:"Using a cash flow forecast to avoid running out of money while making a profit",
-lead:["Companies do not only fail because they make losses. Even a profitable company cannot continue if it lacks cash on the day a payment is due. This is sometimes called going bankrupt in the black. Profit is a figure in the books; cash is money actually in the bank, and the two do not move together.","This article covers why profit and cash diverge, how to build a cash flow forecast, daily habits that protect cash, and points specific to the branch of a foreign company."],
+lead:["Companies do not only fail because they make losses. Even a profitable company may be unable to continue if it lacks cash on the day a payment is due. This is sometimes called going bankrupt in the black. Profit is a figure in the books; cash is money actually in the bank, and the two do not move together.","This article covers why profit and cash diverge, how to build a cash flow forecast, daily habits that protect cash, and points specific to the branch of a foreign company."],
 sections:[
 {h:"Why profit and cash diverge",blocks:[{t:"fig",id:"adm_cash",cap:"Profit (blue) keeps rising, but if customers pay late, cash (green) can briefly go negative."},
 {t:"rows",items:[

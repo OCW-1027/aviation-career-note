@@ -1,7 +1,7 @@
 /* 旅客運送の実務 5-8 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("5-8",{title:"Irregular Operations Casebook: Practising Judgment",hl:"casebook",subtitle:"What matters is the gap between when you knew and when you told passengers. Published penalty cases and six everyday situations",
-lead:["In irregular operations, passengers and regulators look at when the airline knew, when it told people and what it did. In Korea, fines on airlines that knew about a delay or bags left behind but told passengers late are published almost every year.","This article sets out published penalty cases (without airline names) and common front-line situations as cases, with what to do first, common mistakes and the lesson. Read it with 5-4 to 5-7."],
+lead:["In irregular operations, passengers and regulators look at when the airline knew, when it told people and what it did. In Korea, fines on airlines that knew about a delay or bags left behind but told passengers late have been made public.","This article sets out published penalty cases (without airline names) and common front-line situations as cases, with what to do first, common mistakes and the lesson. Read it with 5-4 to 5-7."],
 sections:[
 {h:"Published penalty cases (Korea)",blocks:[{t:"fig",id:"gnd_gap",cap:"Animated figure: the gap between the time known and the time told grows; with examples of published penalties in Korea."},{t:"table",cols:["Case","What was found","Penalty (as published)"],rows:[
 ["Korean airline: late delay notices (2024)","Seven flights in about three months where the airline knew of a delay but told passengers late","KRW 2 million per flight, KRW 14 million in total"],

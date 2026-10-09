@@ -10,7 +10,7 @@ sections:[
 {name:"Flying from Canada to the United States",x:"At Canada’s main airports US immigration is cleared before departure (4-1). Passengers need to arrive at the airport earlier."}]}]},
 {h:"Declare all food, plants and animals",blocks:[{t:"table",cols:["","Details"],rows:[
 ["What to declare","Meat (raw or cooked), milk, butter and cheese, eggs, fish, fruit, vegetables, seeds, nuts, wooden products, soil"],
-["If not declared","The items are confiscated. A penalty of up to CAD 1,300, or prosecution. The traveller may also be charged the cost of disposal"],
+["If not declared","The items may be confiscated. A penalty of up to CAD 1,300, or prosecution. The traveller may also be charged the cost of disposal"],
 ["If declared","No penalty, even if the items turn out not to be allowed"],
 ["How items are found","Detector dogs sniff out food in the baggage reclaim area"]]}]},
 {h:"Easily missed",blocks:[{t:"rows",items:[
@@ -30,11 +30,11 @@ quiz:[{q:"What is the maximum penalty in Canada for not declaring food?",opts:["
 {q:"What must be declared in Canada?",opts:["Everything to do with food, plants and animals","Only meat","Only fruit","Nothing"],a:0,exp:"Dairy products, wooden items and soil are included."},
 {q:"A declared item turns out not to be allowed. What happens?",opts:["No penalty","A penalty is paid","Entry is refused","Arrest"],a:0,exp:"The offence is failing to declare."}],
 next:"4-5 Europe and the United Kingdom"});
-set("4-5",{title:"Europe and the United Kingdom: Schengen, EES, and Meat and Dairy",hl:"Europe and the UK",subtitle:"In Europe you enter at the first country you reach. The UK is a separate border, and its rules tightened in 2025",
-lead:["Europe has many countries but one border check. You enter at the first Schengen country you arrive in and then travel on as if on domestic flights.","The United Kingdom is in neither Schengen nor the EU. Its immigration control and its food rules are separate, and since April 2025 meat and dairy products can no longer be taken from Europe into Britain."],
+set("4-5",{title:"Europe and the United Kingdom: Schengen, EES, and Meat and Dairy",hl:"Europe and the UK",subtitle:"In the Schengen Area you generally clear immigration at the first point of entry. The UK has a separate border system, and its rules tightened in 2025",
+lead:["In Europe’s Schengen Area there is, as a rule, only one border check even when travelling through several countries. You clear immigration at the first Schengen country you arrive in and then, as a rule, travel on without internal border checks.","The United Kingdom is in neither Schengen nor the EU. Its immigration control and its food rules are separate, and since April 2025 meat and dairy products can no longer be taken from Europe into Britain."],
 sections:[
 {h:"Entering Europe (the Schengen area)",blocks:[{t:"fig",id:"ciq_eu",cap:"Figure: Europe (Schengen) and the UK."},{t:"rows",items:[
-{name:"Entry is at the first country",x:"Immigration is cleared at the first Schengen airport. Onward flights within the area are boarded like domestic ones."},
+{name:"Entry is at the first country",x:"Immigration is cleared at the first Schengen airport. Onward flights within the Schengen Area are, as a rule, boarded like domestic ones."},
 {name:"Entry/Exit System (EES)",x:"Registers face and fingerprints and records entries and exits. It has operated at all external borders since 10 April 2026. First-time registration takes time (1-3)."},
 {name:"Authorisation before travel (ETIAS)",x:"Requires visa-exempt nationals to apply before travelling. It is due to start in the last quarter of 2026. Check the official guidance for the start date (1-3)."},
 {name:"Permitted stay",x:"Short stays without a visa are limited to 90 days in any 180, counted across all countries in the area."},
@@ -60,19 +60,19 @@ sections:[
 {t:"point",x:"Do not treat “Europe” as one thing. Think of Schengen, the EU and the United Kingdom separately."}]}],
 voice:{h:"A Reported Case",x:"On 11 April 2025 the UK government, citing rising foot-and-mouth cases in Europe, announced that from the next day travellers from EU countries could no longer bring cattle, sheep, goat or pig meat or dairy products into Great Britain for personal use. Sandwiches, cheese, cured meat and milk are included, whether packaged or bought duty-free. Items found must be surrendered or are seized and destroyed, and serious cases in England can bring fines of up to GBP 5,000 (Source: UK government, 11 April 2025). Defra explained that meat and dairy served on board for consumption during the flight are not personal imports (Source: Saga). A rule can change on a single day’s notice."},
 terms:[["Schengen Area","シェンゲン圏","솅겐 지역"],["Foot-and-Mouth Disease","口蹄疫","구제역"],["Personal Imports","個人の持ち込み","개인 반입"],["90/180-Day Rule","90日の決まり","90일 규칙"]],
-quiz:[{q:"Where is immigration cleared in Europe (the Schengen area)?",opts:["At the first Schengen country of arrival","At the final destination","Once in every country","Nowhere"],a:0,exp:"Onward flights within the area are boarded like domestic ones."},
+quiz:[{q:"Where is immigration cleared in Europe (the Schengen area)?",opts:["At the first Schengen country of arrival","At the final destination","Once in every country","Nowhere"],a:0,exp:"Onward flights within the Schengen Area are, as a rule, boarded like domestic ones."},
 {q:"What can no longer be brought from the EU into Britain since 12 April 2025?",opts:["Meat from cattle, sheep, goats and pigs, and dairy products","Bread and cakes","Chocolate","Pasta"],a:0,exp:"Sandwiches, cheese and cured meats are included."},
 {q:"Which statement about the United Kingdom is right?",opts:["It is in neither Schengen nor the EU","It is in Schengen","It is in the EU","It has no immigration control"],a:0,exp:"There is immigration control even when arriving from Europe."}],
 next:"4-6 Australia and New Zealand"});
-set("4-6",{title:"Australia and New Zealand: The Strictest Quarantine in the World",hl:"Australia and New Zealand",subtitle:"Fail to declare and Australia can fine up to AUD 6,600 and cancel the visa; New Zealand fines NZD 400 on the spot",
-lead:["Australia and New Zealand are island nations far from other continents. Many of their animals and plants are found nowhere else, and farming is a major industry. A disease or pest arriving from outside could do irreversible harm.","So these two countries have the strictest rules in the world on bringing in food, animals and plants. But the idea is the same: if you declare, there is no penalty."],
+set("4-6",{title:"Australia and New Zealand: Among the Strictest Quarantine in the World",hl:"Australia and New Zealand",subtitle:"Fail to declare and Australia can fine up to AUD 6,600 and cancel the visa; New Zealand fines NZD 400 on the spot",
+lead:["Australia and New Zealand are island nations far from other continents. Many of their animals and plants are found nowhere else, and farming is a major industry. A disease or pest arriving from outside could seriously harm farming and ecosystems.","So these two countries have some of the strictest biosecurity rules in the world on bringing in food, animals and plants. But the idea is the same: if you declare, there is no penalty."],
 sections:[
 {h:"Why so strict",blocks:[{t:"rows",items:[
 {name:"Protecting wildlife",x:"Many species exist nowhere else and are vulnerable to outside diseases and insects."},
-{name:"Protecting industry",x:"Exports of farm products support the economy. A single disease can stop exports."},
+{name:"Protecting industry",x:"Exports of farm products support the economy. An outbreak of livestock disease or pests can severely restrict exports."},
 {name:"Not only food",x:"Wooden items, seeds, straw decorations, shoes or tents with soil on them, and golf equipment are all examined."}]}]},
 {h:"The rules and penalties",blocks:[{t:"table",cols:["","Australia","New Zealand"],rows:[
-["Before entry","A visa or electronic travel authority is always required and cannot be obtained on arrival","An NZeTA and a visitor levy (1-3). The New Zealand Traveller Declaration (NZTD) is submitted on the website or app, free of charge"],
+["Before entry","Those who need a visa or electronic travel authority must obtain it in advance; it cannot be obtained on arrival","An NZeTA and a visitor levy (1-3). The New Zealand Traveller Declaration (NZTD) is submitted on the website or app, free of charge"],
 ["What to declare","Food, plants, animal products and other goods that could carry disease or pests","All food, animal products, plants and other specified items"],
 ["If declared","No penalty, even for items that are not allowed","An officer examines the items and decides"],
 ["If not declared","An infringement notice of up to AUD 6,600. The visa may be cancelled, entry refused and return barred for up to three years","An instant fine of NZD 400. Deliberate smuggling: a fine of up to NZD 100,000 and up to five years in prison"]]}]},

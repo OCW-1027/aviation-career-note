@@ -75,7 +75,7 @@ sections:[
 {name:"New staff",x:"Teach your procedures to the handling company’s new staff (typically about two days)."},
 {name:"Developing trainers",x:"Build up people inside the handling company who can teach."},
 {name:"Training flights",x:"Create a training flight and bookings in the system so staff can practise the real screens."},
-{name:"When something changes",x:"Brief everyone as soon as a procedure changes."},
+{name:"When something changes",x:"When a procedure changes, brief and train the staff concerned and check their understanding before it takes effect."},
 {name:"Records",x:"The handling company keeps training and assessment records to your standard too (for example, one year)."}]}]},
 {h:"Safety audits and cost verification",blocks:[{t:"rows",items:[
 {name:"Safety audits",x:"Audit regularly, raise findings and confirm both the corrective plan and its implementation."},
@@ -107,7 +107,7 @@ sections:[
 {name:"Leavers and transfers",x:"Collect the pass on the last working day and return it to the airport company."},
 {name:"Regular reporting",x:"File the pass returns to the airport company and the agencies on time."},
 {name:"Training",x:"Remind everyone how a pass is used: never lend it, wear it visibly, never take someone else through."}]}]},
-{h:"If a pass is lost",blocks:[{t:"ladder",rise:10,steps:[{name:"Report at once",sub:"Holder to the controller to the airport company"},{name:"Deactivate",sub:"Stop the pass working"},{name:"Notify",sub:"The police where required"},{name:"Reissue",sub:"Application and fee"},{name:"Prevent a repeat",sub:"Find out how it happened and tell everyone"}]},
+{h:"If a pass is lost",blocks:[{t:"ladder",rise:10,steps:[{name:"Report at once",sub:"Holder reports promptly to the controller and the designated contact"},{name:"Deactivate",sub:"Stop the pass working"},{name:"Notify",sub:"The police where required"},{name:"Reissue",sub:"Application and fee"},{name:"Prevent a repeat",sub:"Find out how it happened and tell everyone"}]},
 {t:"point",warn:true,x:"Repeated losses or passes not returned can affect the whole station’s applications. Tie collecting a leaver’s pass to the HR process."}]}],
 voice:"Airport passes are easily left uncollected when staff leave or move. Set a rule that HR changes are passed to the pass administrator straight away.",
 terms:[["Airport ID Pass","空港IDパス","공항 출입증"],["Restricted Area / Airside","制限区域","보호구역"],["Security Awareness Training","保安講習","보안 교육"],["Airside Driving Permit","車両運転許可","차량 운전 허가"],["Temporary Pass","一時パス","임시 출입증"],["Pass Controller","管理責任者","관리 책임자"]],

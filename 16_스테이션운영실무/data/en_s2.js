@@ -147,7 +147,7 @@ quiz:[{q:"What is checked first at the monthly meeting?",opts:["Progress on last
 next:"2-4 Becoming one team with your handler"});
 
 set("2-4",{title:"Becoming One Team with Your Handler",hl:"one team",subtitle:"Not a contractor but colleagues getting the same flight away. Build the relationship before you need it",
-lead:["A night of disruption, a sudden extra flight, a peak season short of hands. At times like these, what finally rescues the station is not the contract but trust with the handler’s people.","This article covers building relationships with the handler’s key people, spotting staffing problems early, and behaviour to avoid."],
+lead:["A night of disruption, a sudden extra flight, a peak season short of hands. At times like these, what keeps the station running is not just the contract but the trust built up with the handler’s people.","This article covers building relationships with the handler’s key people, spotting staffing problems early, and behaviour to avoid."],
 sections:[
 {h:"The basics of the relationship",blocks:[{t:"check",items:[
 {name:"Know the key people",x:"The duty manager, the supervisors, the sales and contract lead. Know who can decide what."},

@@ -48,7 +48,7 @@ next:"0-2 Comparing the main airliners: size, seats and range"});
 set("0-2",{title:"Comparing the Main Airliners: Size, Seats and Range",hl:"airliners",subtitle:"From turboprops to the largest jets: type codes, typical specifications and what they mean for ground work",
 lead:["Airliners vary widely in size and design. A different aircraft changes not just the seat count but which stands can be used, how the holds are loaded, how many doors there are and how long the turnaround takes.","This lesson covers aircraft categories, typical specifications of 15 types, how to read type codes, and how aircraft differences affect ground work."],
 sections:[
-{h:"Categories of airliner",blocks:[{t:"table",cols:["Category","Typical seats","Features","Examples"],rows:[
+{h:"Categories of airliner",blocks:[{t:"fig",id:"bas_types",cap:"Figure: four classes of airliner and typical seats."},{t:"table",cols:["Category","Typical seats","Features","Examples"],rows:[
 ["Turboprop","Up to about 80","Propellers; short routes and islands","ATR 72, DHC-8-400 (Q400)"],
 ["Regional jet","Up to about 130","Regional routes","E190-E2, A220"],
 ["Narrow-body","Up to about 240","One aisle; the workhorse of short and medium haul","A320neo, A321neo, B737-8"],

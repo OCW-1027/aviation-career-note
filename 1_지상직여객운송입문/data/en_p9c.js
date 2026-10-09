@@ -17,8 +17,8 @@ sections:[
 ["Cabin crew","Safety and service for their assigned door and zone"]]},
 {t:"note",x:"* Titles and ranks vary by airline. ★"}]},
 {h:"Minimum crew numbers",blocks:[{t:"rows",items:[
-{name:"Based on seats",x:"In many jurisdictions (Japan, the United States, Europe, Korea and others) the basis is one cabin crew member per 50 passenger seats — seats installed, not passengers on board."},
-{name:"When crew are short",x:"If crew fall ill, the airline must sell fewer seats or cannot operate. On the ground, seats must be blocked and passengers rebooked."}]},
+{name:"Based on aircraft type, seats and more",x:"In Japan, aircraft with more than 50 passenger seats must as a rule carry at least the number of seats divided by 50, rounded up. Aircraft configuration such as an upper deck can add conditions, and aircraft with 50 seats or fewer have a separate standard."},
+{name:"When crew are short",x:"If the crew required by law and the operations manual cannot be provided, the flight cannot operate normally: the airline sells fewer seats where the manual allows it, or holds the flight. On the ground, seats must be blocked and passengers rebooked."}]},
 {t:"note",x:"* Details and exceptions vary by country and aircraft. ★"}]},
 {h:"Training",blocks:[{t:"table",cols:["Training","Contents"],rows:[
 ["Initial training","On joining: emergency procedures, equipment, first aid, security, service"],
@@ -35,14 +35,14 @@ voice:"A short briefing with the purser needs only three things: special passeng
 terms:[["Cabin Crew","客室乗務員","객실승무원"],["Safety Personnel","保安要員","안전 요원"],["Senior Cabin Crew / Purser","客室責任者","객실 사무장"],["Recurrent Training","定期訓練","정기 훈련"],["Emergency Evacuation","緊急脱出","비상 탈출"],["Briefing","ブリーフィング","브리핑"]],
 quiz:[{q:"What is the basic rule for minimum cabin crew?",opts:["Number of passengers on board","Number of passenger seats (one per 50 as a basis)","Aircraft length","Flight time"],a:1,exp:"It is based on seats."},
 {q:"What is cabin crew’s most important role?",opts:["In-flight sales","Keeping passengers safe as safety personnel","Loading bags","Explaining fares"],a:1,exp:"Safety comes before service."},
-{q:"What happens when crew are short?",opts:["Nothing changes","Fewer seats can be sold, or the flight cannot operate","Fares fall","A bigger aircraft is used"],a:1,exp:"Ground staff must block seats or rebook passengers."}],
+{q:"What happens when crew are short?",opts:["Nothing changes","Check what the law and operations manual allow; if the requirement cannot be met, the flight is held","Fares fall","A bigger aircraft is used"],a:1,exp:"Ground staff must block seats or rebook passengers."}],
 next:"9-2 Handover from ground to cabin"});
 set("9-2",{part:P,title:"Handover from Ground to Cabin: Exit Rows, Special Passengers and Flight Documents",hl:"handover",subtitle:"Does what was decided at the counter reach the cabin correctly? Check it with consent, documents and records",
 lead:["Decisions made at check-in or the gate — exit-row seats, wheelchairs, unaccompanied children — only matter if they reach the cabin crew correctly. If not, passengers are moved on board or left waiting at the destination.","This lesson covers exit-row conditions and procedures, handing over special passengers, the documents carried on board, and how ground and cabin work together at boarding."],
 sections:[
 {h:"Exit-row seats",blocks:[{t:"table",cols:["Who cannot be seated there (examples)","Why"],rows:[
 ["Children under a set age (e.g. under 15)","Cannot assist crew in an emergency"],
-["Pregnant passengers, passengers with infants","Affects evacuation movement and time"],
+["Pregnant passengers, passengers with infants and others (depending on the applicable rules)","Affects evacuation movement and time"],
 ["Passengers with reduced mobility or recent surgery","Difficulty operating doors or helping others"],
 ["Passengers who cannot understand instructions","Cannot follow or relay emergency commands"]]},
 {t:"check",items:[
@@ -55,7 +55,7 @@ sections:[
 ["Unaccompanied minor (UM)","Travel documents and a copy of the guardian’s declaration to the senior crew member; at the destination, handed to staff and released only after checking the guardian"],
 ["Young passenger travelling alone (YPTA etc.)","Some airlines apply UM-like procedures"],
 ["Pregnant passenger","Weeks of pregnancy and a doctor’s certificate where required (conditions vary); priority boarding"],
-["Visually impaired passenger with service dog","Dog’s documents and quarantine checks; the dog lies at their feet; assistance arranged at destination"],
+["Visually impaired passenger with service dog","Dog’s documents and quarantine checks; placement on board and assistance at the destination arranged according to the applicable rules, airline procedures and the passenger’s wishes"],
 ["Wheelchair passenger","WCHR, WCHS or WCHC category; on-board wheelchair if needed; arrangements at destination"],
 ["Stretcher, oxygen, medical escort","Approved medical form (MEDIF), seating, ambulance at destination"],
 ["Escorted or deportee passenger (DEPU, DEPA)","Authority and escort details, seating, document handover"]]}]},
@@ -77,7 +77,7 @@ quiz:[{q:"What must you do when seating someone in an exit row?",opts:["Say noth
 {q:"Who looks after a UM’s documents on board?",opts:["A nearby passenger","The senior cabin crew member","The captain’s family","Anyone"],a:1,exp:"They are handed to staff at the destination."},
 {q:"What if the boarding count does not match?",opts:["Close the door anyway","Do not close the door until it matches","Count later","Ignore it"],a:1,exp:"A basic rule of safety and security."}],
 next:"9-3 Crew duty, rest and alcohol rules"});
-set("9-3",{part:P,title:"Crew Duty, Rest and Alcohol Rules: Why a Delay Can Become a Cancellation",hl:"duty and alcohol",subtitle:"Crew have duty limits and minimum rest. Alcohol limits in Japan and Korea sit at almost the same line",
+set("9-3",{part:P,title:"Crew Duty, Rest and Alcohol Rules: Why a Delay Can Become a Cancellation",hl:"duty and alcohol",subtitle:"Understanding crew duty and rest limits and the standards for alcohol control",
 lead:["After a long delay, flights are sometimes cancelled “due to crew hours”. Crew have a maximum duty length and a minimum rest before the next duty, set in law and company rules. Alcohol rules are strict too, with tests before and after flights.","This lesson covers the ideas behind duty and rest, compares alcohol limits in Japan and Korea, and looks at the effect on ground work."],
 sections:[
 {h:"Duty and rest",blocks:[{t:"table",cols:["Term","Meaning"],rows:[
@@ -89,12 +89,12 @@ sections:[
 {h:"From delay to cancellation",blocks:[{t:"fig",id:"gnd_ftl",cap:"Animated figure: how crew duty limits turn a delay into a cancellation, step by step."},{t:"ladder",rise:10,steps:[{name:"Long delay",sub:"Weather, technical, previous flight"},{name:"Check remaining time",sub:"Operations control and crew scheduling"},{name:"Limit at risk",sub:"Look for replacement crew"},{name:"No replacement",sub:"Depart after rest, or cancel"},{name:"Ground response",sub:"Information, hotels, rebooking (Course 1, Part 5)"}]},
 {t:"point",warn:true,x:"Crew limits are safety rules against fatigue. They can be extended only for unforeseen events such as weather or technical faults, and only within set bounds (Japan: pilots only, up to 2 h before take-off at the captain’s discretion, among other rules; Korea: flight duty up to 2 h and flight time up to 1 h ★). Ground or commercial reasons alone never justify it. Sharing crew remaining time with operations control early in a long delay speeds up the cancellation decision and passenger information."}]},
 {h:"Alcohol limits: Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
-["Who","Pilots and cabin crew (with standards for engineers and dispatchers too)","Aviation personnel and cabin crew"],
-["Limit","Unfit to fly at 0.2 g/L or more in blood, or 0.09 mg/L or more in breath","0.02% blood alcohol or more counts as unfit for duty"],
+["Who","Pilots and cabin crew (with standards too for engineers doing pre-flight maintenance and for dispatchers)","Aviation personnel and cabin crew"],
+["Limit","Unfit to fly if any alcohol is detected (for pilots the legal threshold is 0.2 g/L in blood or 0.09 mg/L in breath)","0.02% blood alcohol or more counts as unfit for duty"],
 ["Before duty","No drinking within 8 hours of duty (many airlines apply stricter rules, e.g. 12 hours)","Set by law and company rules"],
 ["Testing","Mandatory tests before and after duty","Must submit to official tests; airlines must test and keep records"],
 ["Penalties","Administrative action and others","Up to 3 years in prison or KRW 30 million fine; the airline’s AOC may be revoked or operations suspended for up to 6 months"]]},
-{t:"note",x:"* Japan: MLIT standards (in 2019 cabin crew were brought under the same standard as pilots). Korea: Aviation Safety Act. Check current law and company rules for details. ★"}]},
+{t:"note",x:"* Japan: in 2019 pre-duty alcohol testing became mandatory for cabin crew, engineers doing pre-flight maintenance and dispatchers, and duty is prohibited if any alcohol is detected (MLIT). Korea: Aviation Safety Act. Check current law and company rules for details. ★"}]},
 {h:"Effects on ground work",blocks:[{t:"check",items:[
 {name:"Replacement crew",x:"Crew who fail a test cannot fly; the flight may be delayed while replacements are found."},
 {name:"Hotels and transport",x:"When delays or cancellations mean crew need rest, the station may arrange hotels and transport."},
@@ -103,7 +103,7 @@ sections:[
 voice:"As crew duty limits approach, a delay can turn into a cancellation. Sharing the limit time with operations in advance speeds up the decision.",
 terms:[["Flight Duty Period (FDP)","飛行勤務時間","비행 근무 시간"],["Rest Period","休息","휴식"],["Flight Time","乗務時間","비행 시간"],["Alcohol Limit","飲酒の基準","음주 기준"],["Alcohol Test","アルコール検査","알코올 검사"],["Air Operator Certificate (AOC)","運航証明","운항 증명"]],
 quiz:[{q:"One reason a long delay can end in cancellation?",opts:["Crew duty limits and rest rules","Fares are low","Few passengers","Good weather"],a:0,exp:"They are safety rules: extensions are allowed only for unforeseen events within set bounds, never for ground reasons."},
-{q:"Which is Japan’s alcohol limit for cabin crew?",opts:["No limit","Unfit at 0.2 g/L blood or 0.09 mg/L breath","One beer allowed","Tested only after flight"],a:1,exp:"The same as pilots, tested before and after duty."},
+{q:"Which is correct about alcohol control for cabin crew at Japanese airlines?",opts:["No limit","Unfit if any alcohol is detected; tests and records before and after duty are required","One beer allowed","Tested only after flight"],a:1,exp:"Cabin crew too are barred from duty under the influence, with tests and records before and after duty."},
 {q:"What counts as unfit for duty under Korean law?",opts:["0.02% blood alcohol or more","0.5% or more","1% or more","No limit"],a:0,exp:"Under the Aviation Safety Act."}],
 next:"9-4 Unruly passengers and handover on arrival"});
 set("9-4",{part:P,title:"Unruly Passengers and Handover on Arrival: Prevent Before Boarding, Connect After Landing",hl:"unruly passengers",subtitle:"Accepting intoxicated passengers, the captain’s authority, and handing over to police at the destination: the roles of ground and cabin",

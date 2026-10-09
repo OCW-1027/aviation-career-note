@@ -1,14 +1,14 @@
 /* CIQの役割 — English version (Part 1, lessons 1-5 to 1-7) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("1-5",{title:"Transit Without a Visa: “I’m Not Entering” Is Not Enough",hl:"Transit",subtitle:"Transit points have requirements too. This is where most misses happen",
-lead:["“I’m only changing planes; I’m not entering the country.” Passengers say this, but it does not mean they need no visa or travel authorisation. Some countries make every transfer passenger enter, and some require a transit visa from certain nationalities.","Many of the cases where boarding has to be refused for missing documents come not from the final destination but from a missed requirement at the transit point."],
+set("1-5",{title:"Transit Without a Visa: “I’m Not Entering” Is Not Enough",hl:"Transit",subtitle:"Transit points have requirements too. They are easily missed",
+lead:["“I’m only changing planes; I’m not entering the country.” Passengers say this, but it does not mean they need no visa or travel authorisation. Some countries make every transfer passenger enter, and some require a transit visa from certain nationalities.","Some cases where boarding has to be refused for missing documents come not from the final destination but from a missed requirement at the transit point."],
 sections:[
 {h:"Three kinds of transit",blocks:[{t:"fig",id:"ciq_transit",cap:"Figure: three kinds of transit."},{t:"table",cols:["Kind","What it means","What is needed"],rows:[
 ["Transit without entering","Staying in the transit area and boarding the next flight without passing immigration","In many countries no visa is needed. But some require a transit visa from certain nationalities ★"],
 ["Transit with entry","Changing airport or terminal, reclaiming and re-checking bags, or staying overnight","The country’s entry requirements apply in full"],
 ["Immigration for every transfer passenger","The United States, Canada and others","A visa or electronic travel authorisation"]]}]},
 {h:"Examples by country",blocks:[{t:"table",cols:["Country or region","How transit is treated"],rows:[
-["United States","Even international-to-international passengers all clear immigration and customs. A visa or ESTA is required, and checked bags are normally reclaimed"],
+["United States","Even international-to-international passengers, in principle, all clear immigration and customs. A visa or ESTA is required, and checked bags are normally reclaimed"],
 ["Canada","Visa-exempt nationals also need an eTA to transit by air"],
 ["United Kingdom and Europe (Schengen)","An airport transit visa is required from certain nationalities. Check the official list ★"],
 ["China","A visa-free transit scheme of up to 240 hours. It covers ordinary passports of 57 countries, entry through 65 ports and stays within designated areas. The route must be “country A to China to a different third country or region”, with a ticket for a fixed date"],
@@ -16,10 +16,10 @@ sections:[
 ["Japan and Korea","Schemes allow a short landing during transit. Check the authorities’ guidance for the conditions ★"]]},
 {t:"note",x:"* Eligible nationalities and ports are added and changed often. Always check the authority’s latest list."}]},
 {h:"What to confirm at the counter",blocks:[{t:"check",items:[
-{name:"One booking or separate tickets?",x:"With separately bought tickets the passenger usually has to enter at the transit point to reclaim bags."},
-{name:"Are the bags checked through to the final destination?",x:"If not, entry at the transit point is needed."},
+{name:"One booking or separate tickets?",x:"With separately bought tickets the passenger may have to enter at the transit point to reclaim and re-check bags."},
+{name:"Are the bags checked through to the final destination?",x:"If not, entry at the transit point may be needed."},
 {name:"Does the airport or terminal change at the transit point?",x:"If so, entry is often required."},
-{name:"Transit time and route",x:"China’s 240-hour scheme cannot be used for a return trip to the country of origin. The onward destination must be a different third country or region."}]}]},
+{name:"Transit time and route",x:"China’s 240-hour scheme cannot, in principle, be used for a return trip to the country of origin. The onward destination must be a different third country or region."}]}]},
 {h:"Common mistakes",blocks:[{t:"rows",items:[
 {name:"“Same airline, so I don’t enter”",x:"Whether a passenger enters is decided by the country’s rules, not by the airline."},
 {name:"Looking up only the final destination",x:"Always enter the transit point in TIMATIC (1-2)."},
@@ -73,7 +73,7 @@ sections:[
 {h:"When a resident returns",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Proof of status","Residence card (special permanent residents: special permanent resident certificate)","Residence card (permanent resident card, domestic residence report card)"],
 ["Re-entry rule","Special re-entry permit: no re-entry permit is needed if returning within one year of leaving (two years for special permanent residents), or by the expiry of the period of stay if that comes first","Registered foreign residents need no re-entry permit if returning within one year of departure, or within their remaining period of stay if shorter (two years for permanent residents, F-5)"],
-["On leaving","Indicate the intention to re-enter (tick the box on the departure record) and carry the residence card","Carry the residence card"]]},
+["On leaving","Indicate the intention to re-enter in the prescribed way and carry the residence card","Carry the residence card"]]},
 {t:"point",x:"Overstaying the special re-entry period by even one day means losing the status of residence itself. Advise anyone leaving for a long time to obtain a re-entry permit from the immigration office before departure."}]},
 {h:"Automated gates",blocks:[{t:"rows",items:[
 {name:"Japan",x:"There are facial recognition gates and automated gates that require prior registration. Check the authority’s guidance on who may use them. ★"},
@@ -81,7 +81,7 @@ sections:[
 {name:"Passengers who need a stamp",x:"Automated gates do not stamp the passport. Anyone who needs a stamp as proof should ask an officer."}]}]},
 {h:"What happens at the counter",blocks:[{t:"check",items:[
 {name:"No residence card",x:"If a resident has left it behind, check whether they meet the requirements as a visitor (visa or travel authorisation)."},
-{name:"Period of stay close to expiry, or expired",x:"If it has expired, they cannot enter as a resident."},
+{name:"Period of stay close to expiry, or expired",x:"If it has expired, they may not meet the conditions to re-enter as a resident."},
 {name:"More than a year since leaving",x:"Count from the date of departure to see whether the special re-entry period has passed."},
 {name:"Electronic submission of the arrival card",x:"Tell foreign passengers bound for Korea that it can be submitted from three days before arrival."},
 {name:"How the name is written",x:"The passport and the residence card may show the name differently. The booking should follow the passport."}]},

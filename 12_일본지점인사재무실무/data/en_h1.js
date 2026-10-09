@@ -88,7 +88,7 @@ kr:[{"t":"fig","id":"adm_lvkr","cap":"Maternity leave leads into childcare leave
 {"t":"table","cols":["Leave","Outline"],"rows":[["Annual paid leave","15 days after a year with 80% attendance, up to 25 (0-10)"],["Maternity leave","90 days (120 for multiple births), at least 45 after the birth"],["Paternity leave","20 days within 120 days of the birth, in up to four blocks"],["Childcare leave","One year for a child aged 8 or under; 18 months if each parent takes three months or more"],["Reduced hours for childcare","For a child aged 12 or under, hours can be cut to 15–35 a week"],["Family care leave","Up to 90 days a year, including up to 10 days of short-notice leave"]]},
 {"t":"note","x":"* The February 2025 reforms extended childcare leave and paternity leave. Part of the pay during leave comes from employment insurance. ★"}]}]},
 {h:"Leave set by the company (examples)",blocks:[{t:"check",items:[
-{name:"Summer and New Year",x:"A Japanese workplace custom. At airports these coincide with peaks, so they are taken in turns."},
+{name:"Summer and New Year",x:"A company-specific leave scheme. At airports these can coincide with peaks, so timing may be adjusted around operations."},
 {name:"Bereavement and celebration leave",x:"Weddings, funerals and so on, with days set in the rules."},
 {name:"Sick leave",x:"Not required by law. The rules decide whether it is paid and whether a certificate is needed."},
 {name:"Unpaid leave",x:"Long absences at the employee’s request, with the conditions for granting them set out."}]}]},

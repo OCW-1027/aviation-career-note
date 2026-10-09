@@ -1,7 +1,7 @@
 /* 地上職・旅客運送 入門 — English version (Part 5: イレギュラー対応) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("5-1",{title:"Inadmissible Passengers (INAD)",hl:"inadmissible",subtitle:"When a passenger is refused entry, the airline that carried them normally takes them back",
-lead:["A passenger refused entry by immigration at the destination is called an INAD, an inadmissible passenger. Under the international framework (Annex 9 to the Chicago Convention), the airline that carried them is responsible for taking them back to the point of departure.",
+lead:["A passenger refused entry by immigration at the destination is called an INAD, an inadmissible passenger. Under international standards such as Annex 9 to the Chicago Convention, the airline that carried them handles their removal as the authorities direct. The actual procedure follows the arrival country’s law, the authorities’ instructions and company rules.",
 "This article covers what the arrival station does, the investigation at the departure station, arranging the return, responding to fines, and how to stop it happening again."],
 sections:[
 {h:"Common reasons",blocks:[{t:"table",cols:["Reason","Example"],rows:[
@@ -34,7 +34,7 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 "sections":[
 {"h":"The main mistakes and their effects","blocks":[{"t":"table","cols":["Mistake","What happens"],"rows":[["Checking in the wrong person (mis-check-in)","The passenger list, documents and security records do not match. The real passenger cannot check in"],["Duplicate check-in","The number is counted too high, causing errors in weight and seats"],["Duplicate tags","Two tags with the same number, so the bags cannot be traced"],["Wrong destination on the tag","The bag goes to another airport"],["Tag coming off (tag off)","A bag whose owner cannot be identified"],["Seat assigned twice","Two people for the same seat on board"]]}]},
 {"h":"Systems that catch mistakes","blocks":[{"t":"fig","id":"gnd_layers","cap":"Animated figure: mistakes (red dots) are stopped by one of the layered checks. No single check catches them all."},{"t":"rows","items":[
-{"name":"Search by booking reference (PNR)","x":"Do not search by name. Always ask the passenger for the booking reference (PNR) and retrieve the booking with it. If the PNR matches, it is that passenger’s booking."},
+{"name":"Search by booking reference (PNR)","x":"Do not search by name. Always ask the passenger for the booking reference (PNR) and retrieve the booking with it. Once the PNR identifies the booking, move on to the identity check."},
 {"name":"Let the passenger say their name","x":"After retrieving the PNR, ask the passenger to say their name and check it against the passport and the booking. Do not read the name out and wait for a “yes”."},
 {"name":"Watch for passengers with the same name","x":"The more passengers with the same or similar names on a flight, the more a name search leads to mix-ups. Retrieving by PNR tells them apart."},
 {"name":"Boarding pass reader warnings","x":"Warnings such as “already boarded” or “other flight” reveal duplicate or wrong boarding (lesson 2-4)."},
@@ -52,7 +52,7 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 {"t":"point","x":"Building a culture where people can report at once, rather than blaming mistakes, is the best way to keep incidents small. It is the same principle as safety reporting (lesson 3-5)."}]}],
 "voice":"Searching by name causes mix-ups between passengers with the same or similar names. Always retrieve the booking by PNR; once it matches, have the passenger say their name and check it against the passport. That order is the most reliable.",
 "terms":[["Mis-check-in","ミスチェックイン","잘못된 체크인"],["Duplicate Check-in","二重チェックイン","중복 체크인"],["Duplicate Tag","タグの重複","중복 태그"],["Tag Off","タグオフ","태그 탈락"],["Same Name Passengers","同姓同名","동명이인"],["Baggage Reconciliation","手荷物照合","수하물 대조"]],
-"quiz":[{"q":"What is the most reliable way to link a passenger to the right booking at check-in?","opts":["Search by name and ask “You are Mr/Ms X, aren’t you?”","Retrieve by booking reference (PNR); if it matches, have them say their name and check the passport","Ask only the surname","Just look at the boarding pass"],"a":1,"exp":"A matching PNR means it is that person’s booking. Then have them say their name and check it against the passport."},
+"quiz":[{"q":"What is the most reliable way to link a passenger to the right booking at check-in?","opts":["Search by name and ask “You are Mr/Ms X, aren’t you?”","Retrieve by booking reference (PNR); if it matches, have them say their name and check the passport","Ask only the surname","Just look at the boarding pass"],"a":1,"exp":"The PNR identifies the booking; then have them say their name and check it against the passport."},
 {"q":"A wrong destination on a tag is found after departure. What do you do?","opts":["Nothing","Contact the destination and transfer points and ask them to forward it","Leave it to the passenger","Think about it the next day"],"a":1,"exp":"The sooner you contact them, the sooner the bag arrives."},
 {"q":"Which is not a habit that prevents mistakes?","opts":["Confirming out loud","Spreading several passengers’ documents out at once","Checking the destination before attaching the tag","Reporting at once"],"a":1,"exp":"Finish one passenger at a time."}],
 "next":"5-3 Medical emergencies and injuries on board: what the ground does"});
@@ -69,8 +69,8 @@ sections:[
 {h:"What to prepare at the arrival station",blocks:[{t:"check",items:[
 {name:"Gather the facts",x:"Flight, arrival time, the passenger’s name, nationality, age and seat, the symptoms, who is travelling with them, and what was done on board."},
 {name:"Medical standby",x:"Airport clinic, ambulance, paramedics. Arrange with the airport whether they can come to the aircraft."},
-{name:"Border formalities",x:"Coordinate with immigration, customs and quarantine so that clearance can be done first, to speed the transfer."},
-{name:"Family and companions",x:"Look after companions and contact the family. For foreign nationals, consider contacting the embassy or consulate."},
+{name:"Border formalities",x:"If an emergency transfer is needed, contact immigration, customs, quarantine and the other agencies concerned, and coordinate the necessary formalities under the airport’s emergency procedures."},
+{name:"Family and companions",x:"Look after companions. Contact the family with regard to the passenger’s condition, privacy and the company’s emergency procedures. Where needed, consider working with the consulate."},
 {name:"Baggage",x:"Prioritise unloading their checked bags and hand them to the passenger or their companion."},
 {name:"Order of disembarkation",x:"Agree with the cabin whether the patient leaves first or after the other passengers."}]}]},
 {h:"If a passenger dies on board",blocks:[{t:"rows",items:[
@@ -114,7 +114,7 @@ sections:[
 {t:"rows",items:[
 {name:"Often excluded",x:"Force majeure such as weather, air traffic control or airport conditions; staff travel tickets; onward sectors that are not confirmed."},
 {name:"Arranging hotels",x:"One room per passenger as a rule. Contract with hotels at good rates in normal times. Always tell them the expected departure and the pick-up time for the airport."},
-{name:"Explaining the cost",x:"Make clear that the hotel or meal voucher is at the airline’s expense, and exactly what it covers."}]}]},
+{name:"Explaining the cost",x:"Make clear, based on the rules, whether costs such as hotels or meal vouchers are covered by the airline, and exactly what is covered."}]}]},
 {h:"An example of statutory compensation",blocks:[{t:"table",cols:["Delay caused by the airline","Guideline compensation (international)"],rows:[
 ["2 to 4 hours","10% of the fare for the delayed sector"],
 ["4 to 12 hours","20% of the fare for the delayed sector"],
@@ -190,7 +190,7 @@ sections:[
 {name:"Example storage times",x:"Refrigerated before loading, hot meals up to 72 hours from production and cold meals up to 48. Once loaded, consumption within about four hours is recommended. Catering that has been offloaded is not reused."}]}]},
 {h:"Taking complaints and redress claims",blocks:[{t:"check",items:[
 {name:"How to listen",x:"Listen to the end, carefully, and never look indifferent. If you cannot answer now, agree to come back to them promptly."},
-{name:"Clear fault on our side",x:"Do not dodge the facts; acknowledge them."},
+{name:"Clear fault on our side",x:"Establish the facts, explain what has been confirmed honestly, and refer questions of liability to the department responsible."},
 {name:"How claims are received",x:"In writing or online as a rule. If taken verbally, write it up and have the passenger check and sign it."},
 {name:"What you need",x:"Name, address and contacts, the booked and actual itinerary, when and where what happened, the ticket, and evidence of the loss."},
 {name:"Processing",x:"Where the airline is liable, calculate the loss, obtain a settlement and receipt and pay. Where it is not, decline in writing with reasons the passenger can follow. Amounts above the station’s authority go to head office."}]},
@@ -212,11 +212,11 @@ quiz:[{q:"Whose situation do you check first when a flight is cancelled?",opts:[
 next:"5-7 Tarmac delays"});
 
 set("5-7",{title:"Tarmac Delays",hl:"tarmac delays",subtitle:"Time spent on the ground with the door closed has legal limits and reporting duties in some countries",
-lead:["When the door has closed with passengers on board but the aircraft cannot take off, the wait on the ground is called a tarmac delay. Passengers cannot leave, and anxiety and frustration build quickly. Several countries therefore set limits on the waiting time and duties to keep passengers informed.","This article covers examples of those rules, the criteria for letting passengers off, what the ground provides, and the reporting and records."],
+lead:["When passengers are kept on board on the ground for a long time, before departure or after arrival, it is called a tarmac delay. Passengers cannot leave, and anxiety and frustration build quickly. Several countries therefore set limits on the waiting time and duties to keep passengers informed.","This article covers examples of those rules, the criteria for letting passengers off, what the ground provides, and the reporting and records."],
 sections:[
 {h:"Examples of national rules",blocks:[{t:"table",cols:["Country","Main rule (example)"],rows:[
 ["Korea","No tarmac delay beyond 3 hours domestic or 4 hours international after the door closes. Update passengers every 30 minutes on the reason and the situation. Report exceedances to the regional aviation office and keep the records for two years"],
-["United States","No more than 3 hours domestic or 4 hours international (with safety exceptions). Food and water within 2 hours, working lavatories, and medical attention if needed"],
+["United States","As a rule, an opportunity to deplane by 3 hours domestic or 4 hours international (with safety, security and ATC exceptions). Food and water by the 2-hour point, working lavatories, and medical attention if needed"],
 ["EU","No specific tarmac limit, but compensation and assistance rules apply to delays overall"],
 ["Japan","No single statutory limit; airlines apply their own standards"]]},
 {t:"note",x:"* Exceptions apply, for example where the captain judges that staying out is necessary for safety or security, or where the authorities judge that returning to the gate would seriously disrupt airport operations. Check the current rules. ★"}]},
@@ -232,7 +232,7 @@ sections:[
 {name:"Passengers who get off",x:"Where they wait, how they reboard, and what happens to their bags."}]},
 {t:"point",warn:true,x:"Handling a long tarmac delay needs people and equipment. The rules also require you to have the resources to carry out your contingency plan. Decide in advance how you will staff a night or a day of bad weather."}]},
 {h:"Reporting and records",blocks:[{t:"rows",items:[
-{name:"What to record",x:"Time the door closed, the length of the wait, the cause, what was done for passengers (times of announcements, what was provided, whether they were disembarked), and the outcome."},
+{name:"What to record",x:"The reference start and end times of the wait, its length, the cause, and what was done for passengers (announcements, food and drink, chances to deplane), recorded as the applicable rules require."},
 {name:"Reporting",x:"Where a limit is exceeded, report to the authority (in Korea the regional aviation office, in the United States the Department of Transportation)."},
 {name:"Retention",x:"Keep the records for the required period, for example two years."}]}]}],
 voice:"During a long tarmac delay, the ground supports water, snacks, toilets and information. Agree first with the captain how often you will share updates.",

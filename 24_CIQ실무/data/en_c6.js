@@ -64,7 +64,7 @@ sections:[
 {name:"A penalty notice arrives from the authorities",x:"Gather the facts and check whether an appeal is possible. Choose one measure that fits the cause. (5-1)"},
 {name:"The same miss keeps happening",x:"Do not reprimand the agent; look for the gap in the procedure. (5-1)"}]}]},
 {h:"Delays and unscheduled flights",blocks:[{t:"rows",items:[
-{name:"A delay may run past CIQ hours at a regional airport",x:"Tell the three agencies and the airport the new arrival time at once. If they cannot handle it, decide whether to divert or hold the departure. (5-3)"},
+{name:"A delay may run past CIQ hours at a regional airport",x:"Tell the CIQ agencies and the airport the new arrival time at once. If they cannot handle it, decide whether to divert or hold the departure. (5-3)"},
 {name:"An extra flight is wanted next month",x:"At the planning stage, consult customs, immigration, quarantine, animal and plant quarantine and the airport operator. (5-2)"},
 {name:"A ferry flight with no passengers",x:"The aircraft, crew and stores are subject to CIQ. Notify in the same way. (5-2)"}]}]},
 {h:"Unplanned airports and illness on board",blocks:[{t:"rows",items:[

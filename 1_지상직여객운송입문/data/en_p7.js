@@ -1,7 +1,7 @@
 /* 地上職・旅客運送 入門 — English version (Part 7: キャリアガイド) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("7-1",{title:"Working as Ground Staff in Japan: Ways In and Visas",hl:"visas",subtitle:"Which company, and which job, decides which status of residence you need",
-lead:["To work at a Japanese airport as a foreign national you need a status of residence that matches the work. Even within “airport work”, what you can hold differs depending on whether you join an airline station or a handling company, and whether you work at the counter or on the ramp.",
+lead:["To work at a Japanese airport as a foreign national you need a status of residence that matches the work (some statuses, such as permanent resident, carry no restriction on the work). Even within “airport work”, what you can hold differs depending on whether you join an airline station or a handling company, and whether you work at the counter or on the ramp.",
 "This article covers the main employers at Japanese airports, the main statuses of residence, how the Specified Skilled Worker route in aviation works, and what to watch for."],
 sections:[
 {h:"Main employers at a Japanese airport",blocks:[{t:"table",cols:["Employer","Main work","Notes"],rows:[
@@ -13,14 +13,14 @@ sections:[
 ["Specified Skilled Worker (aviation)","Airport ground handling and aircraft maintenance","A skills test and a Japanese language requirement; the employer must be approved to operate at the airport"],
 ["Engineer / Specialist in Humanities / International Services","Graduates using languages or specialist knowledge","Interpreting and translation, planning, management. The link between the work and your education or career is examined"],
 ["Intra-company Transferee","Staff transferred from head office to the Japan branch","Used for airline expatriates; requires a period of employment at head office"],
-["Working Holiday","Young people from partner countries","Normally one year, with relatively few job restrictions; a way in to gain experience"],
+["Working Holiday","Young people from partner countries","Mainly for a holiday, with work allowed as an incidental activity; check the age limits and length of stay for each country or region"],
 ["Permanent resident, spouse of a Japanese national and so on","Status based on personal circumstances","No restriction on the type of work"]]},
 {t:"note",x:"* Requirements change. Always check the current information from the Immigration Services Agency and the transport ministry, and confirm with a professional such as an immigration lawyer. ★"}]},
 {h:"How Specified Skilled Worker (aviation) works",blocks:[{t:"rows",items:[
 {name:"Two fields",x:"Airport ground handling and aircraft maintenance. Each has its own test and its own permitted duties."},
-{name:"Ground handling duties",x:"Mainly ground movement support (marshalling and towing), baggage and cargo handling, loading and unloading, and cleaning. A 2026 revision is reported to have added passenger handling; check the current guidance. ★"},
+{name:"Ground handling duties",x:"Ground movement support, baggage and cargo handling, loading and unloading, and aircraft cleaning; under the current operating policy, passenger handling, transporting and loading catering, and aviation fuel handling are also covered. Check the current policy and test guidelines for the exact scope. ★"},
 {name:"The tests",x:"The aviation skills evaluation test run by the Japan Aeronautical Engineers’ Association (written and practical, in Japanese with readings over the kanji), plus a Japanese language test."},
-{name:"Type 1 and Type 2",x:"Type 2 requires advanced skills and experience. There is no limit on renewals, and family can accompany the worker."},
+{name:"Type 1 and Type 2",x:"Type 2 requires a higher skill level than Type 1 and set practical experience. There is no limit on renewals, and if the requirements are met, a spouse and children can accompany the worker as dependants."},
 {name:"Accepting employers",x:"Limited to businesses approved to operate at the airport, which must join the sector council. In national strategic special zones there are exceptions extending to cargo work at bonded warehouses off the airport."},
 {name:"Numbers",x:"The government has set out how many people it expects to accept in the aviation field to address the labour shortage."}]},
 {t:"point",x:"Under Specified Skilled Worker status, your work is limited to the approved field. If you want to work at the counter, or on the ramp, check first whether that work is inside the field."}]},
@@ -34,7 +34,7 @@ voice:"When hiring foreign nationals, first check that their residence status ma
 terms:[["Status of Residence","在留資格","재류자격"],["Specified Skilled Worker (SSW)","特定技能","특정기능"],["Engineer / Specialist in Humanities / International Services","技術・人文知識・国際業務","기술·인문지식·국제업무"],["Intra-company Transferee","企業内転勤","기업내전근"],["Working Holiday","ワーキングホリデー","워킹홀리데이"],["Accepting Organization","受入れ機関","수용 기관"]],
 quiz:[{q:"What are the two fields of Specified Skilled Worker (aviation)?",opts:["Cabin crew and pilots","Airport ground handling and aircraft maintenance","Sales and accounting","Reservations and ticketing"],a:1,exp:"Each field has its own test and permitted duties."},
 {q:"What happens if you work outside your status?",opts:["Nothing","It can amount to illegal employment","Your pay rises","The status changes automatically"],a:1,exp:"Always check that the work matches the status."},
-{q:"What does Type 2 status allow?",opts:["Nothing different","Unlimited renewals and family accompanying you","Immediate permanent residence","Any job at all"],a:1,exp:"It widens the options for a long career."}],
+{q:"What does Type 2 status allow?",opts:["Nothing different","No cap on total stay, and a spouse and children can join you if the requirements are met","Immediate permanent residence","Any job at all"],a:1,exp:"It widens the options for a long career."}],
 next:"7-2 Preparing from abroad for a job at a Japanese airport"});
 
 set("7-2",{title:"Preparing from Abroad for a Job at a Japanese Airport",hl:"preparation",subtitle:"Language, documents, interview and visa — prepare all four in parallel",
@@ -64,12 +64,12 @@ sections:[
 {name:"Languages",x:"Being able to work in Japanese, English and your own language is a real strength on international routes."},
 {name:"Knowing another market",x:"Understanding how airports in your own country work, and what passengers from there expect."},
 {name:"Service experience",x:"Service work elsewhere is valued in Japan too. Explain concretely how it transfers to the work here."}]}]},
-{h:"From offer to starting work",blocks:[{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Employment contract"},{name:"Certificate of Eligibility",sub:"The company applies in Japan"},{name:"Visa",sub:"At the Japanese embassy or consulate"},{name:"Arrival",sub:"Receive the residence card"},{name:"Registration",sub:"Address, insurance and pension"}]},
+{h:"From offer to starting work",blocks:[{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Employment contract"},{name:"Certificate of Eligibility",sub:"You or a proxy (such as a staff member of the employer) applies in Japan"},{name:"Visa",sub:"At the Japanese embassy or consulate"},{name:"Arrival",sub:"Receive the residence card"},{name:"Registration",sub:"Address, insurance and pension"}]},
 {t:"note",x:"* Timings and documents vary by status and by season. Check with your employer early."}]}],
 voice:"Japanese airport interviews value, alongside language ability, a willingness to relearn Japanese airport rules. Show that you do not overrate your experience.",
 terms:[["JLPT","日本語能力試験","일본어능력시험"],["Resume (Rirekisho)","履歴書","이력서"],["Career Summary (Shokumu Keirekisho)","職務経歴書","경력기술서"],["Motivation","志望動機","지원 동기"],["Certificate of Eligibility (COE)","在留資格認定証明書","재류자격인정증명서"],["Residence Card","在留カード","재류카드"]],
 quiz:[{q:"How do you make a career summary land?",opts:["Keep it abstract","Use concrete numbers","One line is enough","Do not write one"],a:1,exp:"Flights, passengers, percentages."},
-{q:"Who normally applies for the Certificate of Eligibility?",opts:["You, from abroad","The employer, in Japan","The embassy","A travel agency"],a:1,exp:"The accepting employer files it with immigration in Japan."},
+{q:"Who normally applies for the Certificate of Eligibility?",opts:["You, from abroad","You, or a proxy in Japan such as a staff member of the employer","The embassy","No application is needed"],a:1,exp:"A proxy, such as a staff member of the accepting employer, usually files it in Japan on behalf of the applicant abroad. Check the required documents in the Immigration Services Agency’s latest guidance."},
 {q:"What weighs heavily in a Japanese interview?",opts:["Striking clothes","Language, appearance and punctuality","Content despite arriving late","How long you talk"],a:1,exp:"The basics are what is being watched."}],
 next:"7-3 Qualifications worth having"});
 

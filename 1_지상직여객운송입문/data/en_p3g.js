@@ -34,7 +34,7 @@ sections:[
 {name:"Chock and park",x:"Chock and apply the parking brake whenever equipment stops. Park only in designated places."},
 {name:"Daily checks",x:"Before the shift, check brakes, tyres, lights and leaks, and record it."},
 {name:"Licences",x:"Driving airside needs the airport’s own permit, and many companies add qualifications for each type of equipment. ★"}]},
-{t:"point",warn:true,x:"Many ground incidents are GSE hitting an aircraft. Repairs can take days and cause a string of cancellations. Make “stop, check, slowly” everyone’s habit."}]}],
+{t:"point",warn:true,x:"Much of the damage to aircraft on the ground comes from contact with GSE. Repairs take time and can lead to delays or cancellations. Make “stop, check, slowly” everyone’s habit."}]}],
 voice:"Simply having GSE waiting in set positions before arrival shortens the turnaround. Draw up a diagram of where each piece of equipment waits.",
 terms:[["Ground Support Equipment (GSE)","地上支援器材","지상조업 장비"],["Belt Loader","ベルトローダー","벨트 로더"],["High Loader / ULD Loader","ハイリフトローダー","하이리프트 로더"],["Ground Power Unit (GPU)","地上電源車","지상 전원 공급 장치"],["Pre-conditioned Air (PCA)","空調車","공조 장치"],["Tow Tractor / Pushback Tug","トーイングトラクター","토잉 트랙터"]],
 quiz:[{q:"Which GSE loads and unloads containers (ULDs)?",opts:["High loader","Belt loader","Water truck","GPU"],a:0,exp:"Belt loaders are for loose bags and cargo."},

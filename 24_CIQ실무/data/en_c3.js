@@ -15,7 +15,7 @@ sections:[
 ["Designated areas","Change with outbreaks","Change with outbreaks"]]},
 {t:"note",x:"* The diseases and areas covered change. Keep the pre-arrival announcement in line with the authority’s latest guidance."}]},
 {h:"When someone falls ill on board",blocks:[{t:"ladder",steps:[
-{name:"Cabin crew assess the symptoms",sub:"Fever, rash, cough, diarrhoea. Seat the passenger apart"},
+{name:"Cabin crew assess the symptoms",sub:"Fever, rash, cough, diarrhoea. Seat the passenger apart if necessary"},
 {name:"The captain informs the ground",sub:"Before arrival: symptoms, numbers, seats"},
 {name:"The station or handler informs the quarantine station",sub:"Through the agreed contact"},
 {name:"Arrival",sub:"Quarantine officers board, or check at a designated place"},
@@ -63,14 +63,14 @@ quiz:[{q:"What is the penalty for illegally bringing meat products into Japan?",
 {q:"In Korea, what happens when a passenger declares animal products voluntarily?",opts:["No fine","A fine of KRW 5 million","Re-entry is barred","Arrest"],a:0,exp:"Without a declaration the fine is KRW 5 million for a first case and up to KRW 10 million."}],
 next:"3-3 Plant quarantine: fruit, vegetables, seeds and flowers"});
 set("3-3",{title:"Plant Quarantine: Fruit, Vegetables, Seeds and Flowers",hl:"Plant Quarantine",subtitle:"Even one mango needs a certificate from the exporting country’s government",
-lead:["The fruit was delicious on holiday, so why not take some home for the family? That wish becomes an offence on arrival.","Plant quarantine protects the country’s fields and orchards. A single small insect inside a fruit can wipe out a growing region."],
+lead:["The fruit was delicious on holiday, so why not take some home for the family? Even with good intentions, it may be restricted on arrival.","Plant quarantine protects the country’s fields and orchards. A pest carried on fruit can cause serious damage to the country’s farming."],
 sections:[
 {h:"Why it is so strict",blocks:[{t:"fig",id:"ciq_plant",cap:"Figure: items subject to plant quarantine."},{t:"rows",items:[
 {name:"Pests",x:"Fruit flies lay their eggs inside fruit, where they cannot be seen."},
 {name:"Diseases",x:"Plant diseases travel on leaves, seeds and soil."},
 {name:"Soil",x:"Soil carries pests and disease. Soil itself, and plants with soil on them, cannot be brought in. ★"}]}]},
 {h:"The rules and penalties in Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
-["The principle","Fresh fruit, vegetables, grains and beans need an inspection certificate issued by the exporting country’s government, even where import is not prohibited","Most agricultural products cannot be brought in even in small amounts. Permitted items still need the exporting country’s certificate"],
+["The principle","Fresh fruit, vegetables, grains and beans need an inspection certificate issued by the exporting country’s government, even where import is not prohibited","Many agricultural products cannot be brought in even in small amounts. Permitted items still need the exporting country’s certificate"],
 ["Examples that cannot be brought in","Depends on the combination of country and item. Fresh fruit such as mangoes from many countries ★","Fresh fruit such as mangoes and apples; unprocessed grains; raw peanuts; some dried fruit containing seeds"],
 ["Penalty","Bringing plants in without inspection: imprisonment for up to three years or a fine of up to 3 million yen (up to 50 million yen for companies)","An administrative fine if not declared (up to KRW 10 million)"],
 ["Where","The plant quarantine counter, before customs","The quarantine counter of the Animal and Plant Quarantine Agency"]]},

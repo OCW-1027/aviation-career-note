@@ -1,7 +1,7 @@
 /* 航空機と整備 Part 3 — English version (3-1〜3-3) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-1",{title:"What the MEL Is: the List of What May Stay Unfixed for Departure",hl:"MEL",subtitle:"From MMEL to MEL, how to read one MEL line, maintenance (M) and operations (O) procedures, and what happens when an item is not on the MEL",
-lead:["Airliners carry many systems in duplicate or triplicate, and some can be out of action while the aircraft still flies safely. The MEL (minimum equipment list) sets out which items may be inoperative, how many, and under what conditions.","The MEL is not permission to fly broken aircraft. It is a way to keep safety margins while fixing defects within set time limits. For stations it also directly affects aircraft restrictions, seats and cargo loading."],
+lead:["Airliners carry many systems in duplicate or triplicate, and some can be out of action while the aircraft still flies safely. The MEL (minimum equipment list) sets out which items may be inoperative, how many, and under what conditions.","The MEL is not unconditional permission to fly with inoperative equipment. It is a way to keep safety margins while fixing defects within set time limits. For stations it also directly affects aircraft restrictions, seats and cargo loading."],
 sections:[
 {h:"Reading one MEL line",blocks:[{t:"fig",id:"mnt_mel",cap:"Animated figure: the item, repair category, number installed, number required for dispatch and remarks columns light up in turn, matched to the explanations below. A generic example."},
 {t:"table",cols:["Column","Meaning"],rows:[

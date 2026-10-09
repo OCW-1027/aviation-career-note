@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 3 Quarantine, lessons 3-4 and 3-5) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-4",{title:"Travelling with Pets: Dogs and Cats Across Borders",hl:"Pets",subtitle:"A pet is not baggage; it is an animal being imported. Preparation can take more than seven months",
-lead:["Taking a dog or cat abroad, or bringing one home: for the passenger it is a family member moving, but for the country it is the export and import of an animal. If the quarantine conditions are not met, the animal is held for a long time on arrival or sent back.","At the airline counter, the first thing to check is not the size of the cage or the charge, but whether the quarantine documents are complete."],
+lead:["Taking a dog or cat abroad, or bringing one home: for the passenger it is a family member moving, but for the country it is the export and import of an animal. If the quarantine conditions are not met, the animal may be held for a long time on arrival or sent back.","At the airline counter, the first thing to check is not the size of the cage or the charge, but whether the quarantine documents are complete."],
 sections:[
 {h:"Two sets of rules, checked separately",blocks:[{t:"rows",items:[
 {name:"The country’s rules (quarantine)",x:"The destination’s import conditions and the export inspection of the country being left. This lesson covers these."},
@@ -9,10 +9,10 @@ sections:[
 {name:"Both must be met",x:"Even if the airline can carry the animal, it cannot enter without meeting quarantine conditions, and the reverse is also true."}]}]},
 {h:"Bringing a dog or cat into Japan",blocks:[{t:"fig",id:"ciq_pet",cap:"The order of steps for bringing a dog or cat into Japan from a non-designated region. Count back from the arrival date."},{t:"rows",items:[
 {name:"The order matters",x:"Microchip (ISO standard), then at least two rabies vaccinations, then an antibody test (0.5 IU/ml or more), then a 180-day wait, advance notification at least 40 days before arrival, and a certificate from the exporting country’s government."},
-{name:"If the conditions are met",x:"Inspection on arrival is completed within 12 hours."},
-{name:"If they are not",x:"The animal is held at a quarantine facility for up to 180 days after arrival."},
+{name:"If the conditions are met",x:"Inspection on arrival is usually completed within 12 hours."},
+{name:"If they are not",x:"The animal may be held at a quarantine facility for up to 180 days after arrival."},
 {name:"From designated regions",x:"From Iceland, Australia, New Zealand, Fiji, Hawaii and Guam, the antibody test and the 180-day wait are not required (other conditions apply)."},
-{name:"Leaving Japan and returning after a short stay",x:"If the microchip, vaccinations and antibody test are done in Japan before departure, the animal can return without waiting 180 days abroad."},
+{name:"Leaving Japan and returning after a short stay",x:"If the microchip, vaccinations and antibody test are done in Japan before departure, and the other conditions are met, the animal may be able to return without waiting 180 days abroad."},
 {name:"Penalties",x:"Bringing an animal in without quarantine: for dogs, imprisonment for up to three years or a fine of up to 3 million yen; for cats, a fine of up to 300,000 yen."}]}]},
 {h:"Bringing a dog or cat into Korea",blocks:[{t:"table",cols:["Condition","Details"],rows:[
 ["Microchip","Implanted to identify the animal"],
@@ -27,12 +27,12 @@ sections:[
 {name:"Has it passed the export inspection of the country being left?",x:"An export certificate from the quarantine office before departure."},
 {name:"Was the airline told at booking?",x:"Some flights cannot accept an animal declared only on the day."},
 {name:"Assistance dogs",x:"Guide dogs and similar are carried under different rules. Quarantine conditions are in principle the same. ★"}]},
-{t:"point",x:"When asked “Can I take my pet?”, first ask back, “Have you checked the destination’s quarantine conditions?” Preparation has to start months ahead."}]}],
+{t:"point",x:"When asked “Can I take my pet?”, first ask back, “Have you checked the destination’s quarantine conditions?” Preparation may have to start months ahead."}]}],
 voice:{h:"A Reported Case",x:"From 1 August 2024 the US Centers for Disease Control and Prevention (CDC) applied new requirements to dogs entering the United States, including a minimum age of six months, a microchip and an import form. Some airlines stopped taking new bookings for dogs to the US, saying they were not set up to meet the requirements, and animal welfare groups called it a de facto ban. Just before the rule took effect, the CDC eased the paperwork for dogs coming from countries with no or low risk of rabies (Sources: Military Times, July 2024; statements by animal welfare groups). A dog that does not meet the requirements is sent back to where it came from at the owner’s expense. Pet rules need to be checked at the time of booking."},
 terms:[["Quarantine Detention","係留の検査","계류 검사"],["Microchip","マイクロチップ","마이크로칩"],["Rabies Antibody Titre","狂犬病の抗体価","광견병 항체가"],["Export Health Certificate","輸出の検疫証明書","수출 검역증명서"]],
 quiz:[{q:"Bringing a dog into Japan from a non-designated region: how long is the wait after the blood sample?",opts:["180 days","30 days","40 days","No wait"],a:0,exp:"Advance notification is made at least 40 days before arrival."},
 {q:"For which dogs and cats entering Korea is a rabies antibody test required?",opts:["Those aged 90 days or more from anywhere other than a rabies-free region","All of them","Only those under 90 days","None"],a:0,exp:"A neutralising antibody titre of 0.5 IU/ml or more is required."},
-{q:"A passenger asks “Can I take my pet?” What do you check first?",opts:["The destination’s quarantine conditions","The colour of the cage","The dog’s name","The seat number"],a:0,exp:"Preparation has to start months ahead."}],
+{q:"A passenger asks “Can I take my pet?” What do you check first?",opts:["The destination’s quarantine conditions","The colour of the cage","The dog’s name","The seat number"],a:0,exp:"Preparation may need to start months ahead."}],
 next:"3-5 Aircraft and quarantine: catering waste and disinsection"});
 set("3-5",{title:"Aircraft and Quarantine: Catering Waste and Disinsection",hl:"Aircraft and Quarantine",subtitle:"Quarantine looks at more than people and bags. It also looks at what the aircraft brings in",
 lead:["An international aircraft can carry disease and pests: leftover meals, rubbish, a mosquito that got on board. These too are subject to quarantine.","Passengers never see it, but on every arrival the cleaning, catering and handling staff deal with them according to the rules. The station’s role is to see that the rules are followed."],

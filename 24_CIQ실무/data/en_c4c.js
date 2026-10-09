@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 4: China, Taiwan and Hong Kong; South-East Asia and the Middle East; lessons 4-7 and 4-8) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("4-7",{title:"China, Taiwan and Hong Kong: The Closer the Country, the Easier the Mistake",hl:"China, Taiwan and Hong Kong",subtitle:"Taiwan fines TWD 200,000 for pork products, and heated tobacco cannot be brought in either",
-lead:["These are the nearest destinations from Japan and Korea, but their rules differ greatly. Mainland China, Taiwan, Hong Kong and Macao each have their own immigration control and customs.","Taiwan in particular has some of the strictest rules in Asia on meat products and on e-cigarettes and heated tobacco. Things passengers from Japan commonly carry are violations there."],
+lead:["These are relatively close to Japan and Korea, but their rules differ greatly. Mainland China, Taiwan, Hong Kong and Macao each have their own immigration control and customs.","Taiwan in particular has some of the strictest rules in Asia on meat products and on e-cigarettes and heated tobacco. Things passengers from Japan use every day can be restricted there."],
 sections:[
 {h:"Mainland China",blocks:[{t:"fig",id:"ciq_cn",cap:"Figure: mainland China, Taiwan and Hong Kong."},{t:"table",cols:["","Details"],rows:[
 ["Visa","Ordinary passport holders of 50 countries, including Japan, need no visa for stays of up to 30 days (until 31 December 2026 for Japan)"],
@@ -44,7 +44,7 @@ sections:[
 {name:"E-cigarettes and heated tobacco",x:"Some countries ban both bringing them in and using them."},
 {name:"Alcohol and pork",x:"Some countries ban bringing them in for religious reasons."}]}]},
 {h:"South-East Asia",blocks:[{t:"table",cols:["Country","Rules"],rows:[
-["Thailand","Since 1 May 2025 all non-Thai nationals must submit the Thailand Digital Arrival Card (TDAC) online within three days before arrival. E-cigarettes and heated tobacco are illegal, and bringing them in can lead to a fine or imprisonment"],
+["Thailand","Since 1 May 2025 non-Thai nationals entering Thailand must, as a rule, submit the Thailand Digital Arrival Card (TDAC) online within three days before arrival. E-cigarettes and heated tobacco are illegal, and bringing them in can lead to a fine or imprisonment"],
 ["Singapore","E-cigarettes are illegal. Penalties were increased on 1 September 2025, and foreign nationals can face fines, deportation and a ban on re-entry. An online arrival card is submitted before arrival ★"],
 ["Vietnam","E-cigarettes are banned ★"],
 ["Malaysia, Indonesia, the Philippines","An online arrival card or declaration is submitted before arrival ★"]]},
@@ -53,7 +53,7 @@ sections:[
 ["Saudi Arabia","Alcohol and pork products cannot be brought in ★"],
 ["Qatar","Individuals cannot bring in alcohol or pork products ★"],
 ["United Arab Emirates","Alcohol is limited in quantity. Check the rules of the destination emirate on pork products ★"],
-["All three","Medicines containing narcotic or psychotropic ingredients need prior approval and a prescription ★"]]},
+["All three","Medicines containing narcotic, psychotropic or other controlled ingredients may need prior approval, a prescription or similar ★"]]},
 {t:"note",x:"* The Middle East details were not checked against official sources. Always check the website of the destination’s authorities or embassy. ★"}]},
 {h:"Medicines: what to watch most, in any country",blocks:[{t:"check",items:[
 {name:"The ingredient decides",x:"It is the ingredient, not the brand name, that matters. Over-the-counter cold and cough medicines can contain controlled ingredients."},
@@ -62,7 +62,7 @@ sections:[
 {name:"The same applies entering Japan",x:"Japan too has ingredients that cannot be brought in and medicines that need prior formalities. ★"},
 {name:"The airline does not decide whether a medicine is allowed",x:"If asked, point to the guidance of the destination’s authorities or embassy."}]},
 {t:"point",x:"Food usually ends with confiscation. Medicines and e-cigarettes can end with a person being detained. They are worth including in the information given at booking."}]}],
-voice:{h:"A Reported Case",x:"Thailand bans the import, sale and possession of e-cigarettes. According to the Bangkok Post, the Excise Department issued a warning to visitors after some embassies in Bangkok complained that their tourists had been fined for arriving with e-cigarettes; at that point it had seized 80 cases in three months, with fines totalling THB 5 million (Source: Bangkok Post). More recently a tourist caught vaping on a beach was reported to have been released after paying a THB 40,000 fine, about USD 1,200 (Source: Fox News). Even items allowed in Japan or Korea are subject to the rules of the destination and of every country passed through on the way."},
+voice:{h:"A Reported Case",x:"Thailand bans the import, sale and possession of e-cigarettes. According to the Bangkok Post, the Excise Department issued a warning to visitors after some embassies in Bangkok complained that their tourists had been fined for arriving with e-cigarettes; at that point it had seized 80 cases in three months, with fines totalling THB 5 million (Source: Bangkok Post). More recently a tourist caught vaping on a beach was reported to have been released after paying a THB 40,000 fine, about USD 1,200 (Source: Fox News). Even items allowed in Japan or Korea may be subject to the rules not only of the destination but also of countries and regions passed through on the way."},
 terms:[["Digital Arrival Card","デジタルの入国カード","디지털 입국 카드"],["Controlled Medicines","規制される薬","규제 의약품"],["Deportation","国外への退去","강제 출국"],["Prescription","処方箋","처방전"]],
 quiz:[{q:"What has Thailand required of non-Thai nationals since 1 May 2025?",opts:["A digital arrival card submitted within three days before arrival","Only a paper arrival card","Nothing","Always a visa"],a:0,exp:"It is submitted online."},
 {q:"What is illegal in both Thailand and Singapore?",opts:["E-cigarettes","Paper books","Water","Umbrellas"],a:0,exp:"Both bringing them in and using them are illegal."},

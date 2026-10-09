@@ -17,7 +17,7 @@ sections:[
 {h:"Reporting hazards",blocks:[{t:"check",items:[
 {name:"What",x:"Include near misses that did not become accidents: a vehicle too close to the aircraft, dangerous goods almost missed, a check nearly skipped through fatigue."},
 {name:"When",x:"As soon as possible, while memories are fresh."},
-{name:"How",x:"The company form, app or email; many airlines allow anonymous reports."},
+{name:"How",x:"Use the company’s safety reporting system or form; some companies have anonymous or confidential reporting."},
 {name:"Afterwards",x:"Tell the reporter what happened. Without feedback, the next report never comes."}]}]},
 {h:"Just culture",blocks:[{t:"p",x:"Reports flow where people who report honestly are not unfairly blamed. That does not mean anything goes: a just culture separates responses by type of behaviour."},
 {t:"table",cols:["Behaviour","Example","Response"],rows:[
@@ -33,7 +33,7 @@ quiz:[{q:"What does security prevent?",opts:["Unintended accidents","Deliberate 
 next:"8-2 Passenger security duties: from counter to gate"});
 
 set("8-2",{title:"Passenger Security Duties: From Counter to Gate",hl:"security duties",subtitle:"Identity checks, bag reconciliation, suspicious items and the final gate check: security lives in everyday procedures",
-lead:["Screening is done by the airport or a security company, but passenger services have important security roles too: is the passenger who they claim to be, is there a bag on board whose owner is not, is anyone unauthorised near the aircraft?","This article covers who does what, checks at the counter and gate, passenger–baggage reconciliation, responding to suspicious items and people, and handling security information. Follow your own airline’s security programme for the detail."],
+lead:["Passenger and baggage screening is carried out under each airport’s own arrangements, but passenger services have important security roles too: is the passenger who they claim to be, is there a bag on board whose owner is not, is anyone unauthorised near the aircraft?","This article covers who does what, checks at the counter and gate, passenger–baggage reconciliation, responding to suspicious items and people, and handling security information. Follow your own airline’s security programme for the detail."],
 sections:[
 {h:"Who does what (example)",blocks:[{t:"fig",id:"gnd_secrole",cap:"Animated figure: who does what in security lights up in turn (example)."},{t:"table",cols:["Party","Main roles"],rows:[
 ["Airline (including contractors)","Identity checks, security questions, passenger–baggage reconciliation, final gate check, arranging aircraft security checks"],
@@ -42,15 +42,15 @@ sections:[
 ["Handling company","Carrying out security procedures within the passenger and ramp work contracted to it"]]},
 {t:"note",x:"* The split differs by country, airport and contract. Check your station’s security programme. ★"}]},
 {h:"Security at the counter",blocks:[{t:"check",items:[
-{name:"Identity",x:"Always compare the photo in the passport or ID with the passenger’s face, and the name with the boarding pass."},
+{name:"Identity",x:"Where ID checks are required, as on international flights, compare the photo in the passport or ID with the passenger’s face, and the name with the booking and boarding details, following company procedure."},
 {name:"Security questions",x:"“Did you pack your bags yourself?” “Are you carrying anything for someone else?” Whether and how to ask differs by country and airline (1-1)."},
 {name:"Behaviour",x:"Hesitant answers, inconsistent stories, luggage that does not fit the trip: pass concerns to the supervisor."},
 {name:"Jokes",x:"Remarks such as “there’s a bomb in my bag” are reported under the set procedure, even as a joke."}]}]},
 {h:"Passenger–baggage reconciliation",blocks:[{t:"p",x:"As a rule, a checked bag does not fly unless its owner is on board (2-5). Many airports and airlines match boarding records with bag tags so that bags of passengers who do not board can be found quickly."},
 {t:"table",cols:["Situation","Action"],rows:[
 ["The passenger does not board","Offload the bag, matched by tag number"],
-["Exceptions carrying the bag alone","Only where company rules allow (for example the passenger could not board through no fault of their own); extra security measures may apply"],
-["A bag without a tag","Not loaded until its owner is confirmed"]]}]},
+["Exceptions carrying the bag alone","Only where the law and security rules allow it and the required additional security measures are met"],
+["A bag whose owner or routing cannot be confirmed","Not loaded until the required security checks are complete"]]}]},
 {h:"Suspicious items and people",blocks:[{t:"ladder",rise:10,steps:[{name:"Do not touch",sub:"Do not move or open it"},{name:"Move away",sub:"Keep people back"},{name:"Report",sub:"Supervisor, airport security, police"},{name:"Record",sub:"Time, place, description, actions"}]},
 {t:"rows",items:[
 {name:"Unattended bags",x:"Contact airport security under the airport’s procedure before paging for the owner."},
@@ -90,8 +90,8 @@ sections:[
 {name:"Leavers and transfers",x:"Do not delete their records during the retention period."},
 {name:"How to file",x:"Folders by year, an individual record for each person, and a list of expiry dates: with these three, anything can be produced on the spot."}]}]},
 {h:"Your handling company’s training records",blocks:[{t:"check",items:[
-{name:"Complete records",x:"Initial and recurrent training records exist for every contracted staff member, kept for the same period as your own."},
-{name:"Regular checks",x:"Sample-check the handler’s records at least once a year, and record that you did."},
+{name:"Complete records",x:"Required initial and recurrent training records exist for contracted staff, kept for the period set in the contract and security programme."},
+{name:"Regular checks",x:"Sample-check the contractor’s training and qualification records at the frequency set in the contract or audit plan (for example at least once a year), and record that you did."},
 {name:"Joint training",x:"Where your instructor trains handler staff, keep it as your own record."},
 {name:"In the contract",x:"Write training and the provision of records into the contract or the service procedures."}]},
 {t:"point",warn:true,x:"“The handler must be doing it” is not good enough. Auditors want evidence that the airline has checked its contractors’ training."}]},
@@ -102,10 +102,10 @@ sections:[
 ["Who it went to, and how","Own staff and handler, by briefing, email or notice"],
 ["Proof of receipt","Signatures, read receipts, briefing attendance"],
 ["Procedures updated","Date the procedure or form was revised"]]},
-{t:"point",x:"A dissemination record only counts with proof that recipients acknowledged it. Use sign-off sheets, read receipts or replies."}]},
+{t:"point",x:"A dissemination record only counts with proof that recipients acknowledged it. Record acknowledgement by the set method, such as sign-off sheets or email replies."}]},
 {h:"Common findings and how to prevent them",blocks:[{t:"table",cols:["Common finding","Prevention"],rows:[
-["Three years of training records not complete","File by year and close off the previous year at the start of each year"],
-["No handler training records, or no evidence of checking","Sample checks at least yearly, and a record of them"],
+["Three years of training records not complete","Set clear retention rules and keep records searchable by year, person and course"],
+["No handler training records, or no evidence of checking","Sample checks at the frequency set in the contract or audit plan (e.g. at least yearly), and a record of them"],
 ["Staff working past their expiry","Check the individual expiry list monthly"],
 ["No record of instructions passed on","For each instruction, keep a dissemination record with acknowledgements"],
 ["Plan and delivery do not match","Compare the plan with actual training every quarter"],
@@ -143,7 +143,7 @@ sections:[
 {h:"If you receive findings",blocks:[{t:"rows",items:[
 {name:"On the spot",x:"No excuses; write the finding down accurately. Where facts differ, explain politely with evidence."},
 {name:"Corrective plan",x:"Cause, action, deadline and owner. If staff need training, record that too."},
-{name:"For next time",x:"Keep findings and corrections in one file to show at the start of the next audit."}]},
+{name:"For next time",x:"Keep findings and corrections in one file so they can be presented at an audit when needed."}]},
 {t:"point",warn:true,x:"An audit is a map of your station’s weak points. Showing through everyday records that you fix problems earns far more trust than hiding them."}]}],
 voice:"If an auditor questions you on the floor, answer factually within what you know, and say you will check if you do not. Never answer on guesswork.",
 terms:[["Being Audited","受検（監査を受けること）","수검"],["Unannounced Inspection","予告なしの点検","불시 점검"],["Debrief","講評","강평"],["Corrective Action","是正の措置","시정 조치"],["Self-inspection","自己点検","자체 점검"],["Restricted Area Pass","制限区域のパス","보호구역 출입증"]],
@@ -153,12 +153,12 @@ quiz:[{q:"On audit day you are asked something you don’t know. You…",opts:["
 next:"8-5 Reporting accidents and incidents, and emergency response"});
 
 set("8-5",{title:"Reporting Accidents and Incidents, and Emergency Response",hl:"emergency response",subtitle:"Safety first, then the initial report, then the authorities within the deadline — and practise in peacetime",
-lead:["When an accident, serious incident or security event happens, what the station does in the first hours is set: protect people, give the initial report to the right people, keep records, and meet the deadline for reporting to the authorities.","This article covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
+lead:["When an accident, serious incident or security event happens, what the station does in the first hours is set: protect people, give the initial report to the right people under the company’s emergency procedures, and keep a timed record. Whether, when and how to report to the authorities depends on the event and the country.","This article covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
 sections:[
 {h:"What is reported (examples)",blocks:[{t:"table",cols:["Category","Example","Reporting"],rows:[
-["Accident","Death or injury, major aircraft damage","Immediately to head office and the authorities, as the law requires"],
+["Accident","Death or injury, major aircraft damage","Emergency notification, then report to the authorities by the method and deadline set in law and company procedures"],
 ["Serious incident","An event that could have led to an accident","To the authorities within the set deadline"],
-["Safety occurrence or hazard","Vehicle contact, loading error, dangerous goods found","Through the company safety reporting system"],
+["Safety occurrence or hazard","Vehicle contact, loading error, dangerous goods found","Check whether a statutory report is needed, and also report through the company safety reporting system"],
 ["Security event","Suspicious item, unauthorised access, unlawful act on board","Airport, police and head office security; the authorities where required"]]},
 {t:"note",x:"* Categories and deadlines differ by country and airline. List who to report to, and by when, for each type in the station procedures. ★"}]},
 {h:"The reporting flow",blocks:[{t:"fig",id:"gnd_rep",cap:"Animated figure: the reporting flow from making safe to preventing recurrence lights up in turn."},{t:"ladder",rise:10,steps:[{name:"Make it safe",sub:"Care for the injured, remove danger"},{name:"Initial report",sub:"Supervisor, operations control, head office"},{name:"Record",sub:"Time, place, people, situation, actions"},{name:"Report to the authorities",sub:"By the set deadline and form"},{name:"Investigate and prevent",sub:"Analyse causes and share actions"}]},

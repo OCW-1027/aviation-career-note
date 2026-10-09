@@ -156,7 +156,7 @@ sections:[
 {name:"Consistency",x:"Treat every agency the same way."},
 {name:"Talk",x:"For large amounts or repeated errors, speak to the contact directly and work out the cause together."}]},
 {t:"point",x:"Incentives and ADMs are not carrot and stick; they are how you and the agencies sell correctly together. Making the rules easy to understand is what makes both work."}]}],
-voice:"ADMs often come from rules that are hard to follow rather than agency mistakes. Compile the most common cases and share them with agencies in advance.",
+voice:"ADMs come not only from agency ticketing errors but sometimes from fare rules that are hard to follow. Compile the most common cases and share them with agencies in advance.",
 terms:[["Volume Incentive","ボリュームインセンティブ","볼륨 인센티브"],["Agency Debit Memo (ADM)","ADM","ADM(여행사 청구서)"],["Agency Credit Memo (ACM)","ACM","ACM(여행사 반환서)"],["Dispute","異議申し立て","이의 제기"]],
 quiz:[{q:"What recovers the difference from an agency ticketing error?",opts:["An ADM","The BSP","NDC","The GDS"],a:0,exp:"An agency debit memo."},
 {q:"What should you suspect when the same error keeps producing ADMs?",opts:["That the rule or notice is unclear","Only bad faith by the agency","Only a system fault","Nothing"],a:0,exp:"Prevention comes first."},

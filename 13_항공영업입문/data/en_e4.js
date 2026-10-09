@@ -91,7 +91,7 @@ sections:[
 {name:"Spot fares",x:"Bold fares for short windows create buzz and awareness."},
 {name:"Price leadership",x:"On routes like Japan–Korea, airlines that publish fares early and lead the market tend to win on load factor and average fare."}]}]},
 {h:"The January promotion season",blocks:[{t:"rows",items:[
-{name:"Once a year",x:"Agencies run their biggest promotion of the year in early January; pre-sales now start from late November or early December."},
+{name:"Once a year",x:"Agencies often run large promotions at the start of the year; pre-sales now start from late November or early December."},
 {name:"What sells",x:"Last-minute demand for January–February and early demand for March; use the talks to agree low-season products for April onwards too."},
 {name:"Timing",x:"Decide fare support around November and issue it in two batches (January–March and April–June) so agencies can build products early."},
 {name:"What to bring",x:"Launch or new-frequency fares, New Year fares and low-season fare proposals, showing you understand the market."}]}]},

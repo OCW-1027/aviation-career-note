@@ -27,7 +27,7 @@ sections:[
 {name:"Delay code rules",x:"Agree which code applies in which situation, and review it at the monthly meeting."},
 {name:"Contract and SLA",x:"How the department’s work is described in the SGHA and the service level agreement (Station Management 2-1)."}]}]},
 {h:"Building a good working relationship",blocks:[{t:"rows",items:[
-{name:"One point of contact",x:"Send the station’s changes and requests to the desk, not directly to individuals on the ramp."},
+{name:"One point of contact",x:"Send the station’s changes and requests to the desk and, as a rule, not directly to individuals on the ramp."},
 {name:"Share early",x:"Tell the desk about extra flights, aircraft changes and special passengers as soon as you know."},
 {name:"Review together",x:"After a major delay or disruption, put the desk’s log and the station’s log side by side and review them."}]},
 {t:"note",x:"* Working with the operations department from the airline duty manager’s side is covered in Airport Station Management in Practice 2-4."}]}],

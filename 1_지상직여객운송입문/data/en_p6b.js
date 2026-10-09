@@ -16,7 +16,7 @@ sections:[
 {h:"What to compare",blocks:[{t:"fig",id:"gnd_bill",cap:"Animated figure: for each invoice item, what to check it against lights up in turn."},{t:"table",cols:["Check","Common error","How to check"],rows:[
 ["Flights and aircraft","Cancelled flights or aircraft changes not reflected","Compare with operational records (MVT, daily reports)"],
 ["Overtime and night surcharges","Calculated on scheduled rather than actual times","Check against actual block times"],
-["Extra work for delays and cancellations","Charged for work caused by delays that were not your responsibility","Confirm responsibility from delay codes and cause records (see the IATA delay code list)"],
+["Extra work for delays and cancellations","Charged for work caused by delays that were not your responsibility","Check the contract’s cost-allocation clauses and the work records, referring to delay causes and codes where needed"],
 ["Rates","Old or non-contract rates","The contract (SGHA annexes) and the latest tariff"],
 ["Duplicates","The same work charged twice under another item or in another month","Compare with last month and with other invoices for the same flight"],
 ["Special services","Work you did not request","Request records: who asked, when, for what"]]}]},
@@ -29,7 +29,7 @@ sections:[
 {t:"point",warn:true,x:"Some invoice errors cannot be corrected once the deadline has passed. Put the checking and query deadlines on the station calendar (6-6)."}]},
 {h:"Agreements with your handler",blocks:[{t:"check",items:[
 {name:"How extra work is requested",x:"Agree who can request chargeable extra work and by what means (verbal requests lead to disputes)."},
-{name:"Recording causes",x:"For work during delays or disruption, agree the cause and delay code before invoicing."},
+{name:"Recording causes",x:"For extra work during delays or disruption, confirm together what was requested, what was done and who bears the cost before invoicing."},
 {name:"Invoice format",x:"Ask for detail by flight and by day; checking becomes much faster."},
 {name:"Monthly meeting",x:"Put open queries on the monthly meeting agenda and close them by a set date (6-2)."}]},
 {t:"note",x:"* SLA scorecards and explaining budget variances are covered in Airport Station Management in Practice 2-1 and 4-8."}]}],

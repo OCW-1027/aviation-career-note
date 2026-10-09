@@ -80,7 +80,7 @@ sections:[
 {name:"Dedicated equipment",x:"Temperature-controlled containers, temperature-controlled warehouses, refrigerated vehicles."},
 {name:"Priority handling",x:"Bring it out of the warehouse just before loading so it waits on the ramp as little as possible."}]},
 {t:"point",x:"In the cold chain, the record of what temperature was held is the proof of quality. Keep the temperature records and the times of each handover."}]}],
-voice:"A summer ramp is the most dangerous place for pharmaceuticals. Bring them out just before loading to cut waiting time, and have shade and cool-chain equipment ready.",
+voice:"A summer ramp is a place where pharmaceuticals need particular care. Bring them out just before loading to cut waiting time, and have shade and cool-chain equipment ready.",
 terms:[["Cold Chain","コールドチェーン","콜드체인"],["Temperature Logger","温度ロガー","온도 기록계"],["Controlled Room Temperature","定温","정온"],["Pharmaceutical Logistics","医薬品輸送","의약품 운송"]],
 quiz:[{q:"What is the cold chain?",opts:["Unbroken temperature control","Cheap transport","Cargo insurance","Passenger baggage"],a:0,exp:"The point is that it never breaks."},
 {q:"Where does temperature control break most easily?",opts:["Waiting on the ramp or for clearance","In the warehouse’s cold room","Inside a temperature-controlled container","Inside a refrigerated truck"],a:0,exp:"Watch the waiting time."},

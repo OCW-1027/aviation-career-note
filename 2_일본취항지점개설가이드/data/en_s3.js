@@ -116,7 +116,7 @@ sections:[
 ["Passenger service facility charge (PSFC) and passenger security service charge (PSSC)","Per departing passenger, with different rates for adults and children"]]},
 {t:"note",x:"* The structure and the names differ by airport. ★"}]},
 {h:"Charges collected from passengers",blocks:[{t:"rows",items:[
-{name:"Collected by the airline",x:"The airport company cannot collect facility charges from passengers directly, so the airline collects them with the ticket and passes them on."},
+{name:"Collected by the airline",x:"The airline collects facility charges from passengers when it sells the ticket and pays them to the airport company."},
 {name:"Collection fee",x:"At some airports the settlement is net of a fee for collecting on the airport’s behalf. That fee is treated as airline revenue (2-2)."},
 {name:"When rates change",x:"Revisions come with an effective date and sometimes a transitional period. Because tickets already sold are affected, coordinate early with head office pricing and sales."},
 {name:"International tourist tax",x:"A national tax, separate from airport charges, also collected and remitted by the airline (2-2)."}]}]},

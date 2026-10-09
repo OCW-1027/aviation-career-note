@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 4 CIQ Around the World: United States, lessons 4-1 to 4-3) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("4-1",{title:"United States 1: Entry. Every Transfer Passenger Clears Immigration",hl:"US Entry",subtitle:"One agency handles immigration, customs and agricultural inspection together",
-lead:["The United States is one of the busiest countries in the world for arrivals and departures, and many of its rules differ from other countries’. The next three lessons cover US entry, agricultural inspection, and customs and pets.","Two things to remember first: there is no such thing as transit without entering the United States, and food must always be declared."],
+set("4-1",{title:"United States 1: Entry. As a Rule, Every Transfer Passenger Clears Immigration",hl:"US Entry",subtitle:"One agency handles immigration, customs and agricultural inspection together",
+lead:["The United States is one of the busiest countries in the world for arrivals and departures, and many of its rules differ from other countries’. The next three lessons cover US entry, agricultural inspection, and customs and pets.","Two things to remember first: in the United States even international-to-international transfers, as a rule, go through entry formalities, and food must always be declared."],
 sections:[
 {h:"US border control has one counter",blocks:[{t:"fig",id:"ciq_us",cap:"Figure: entering the US."},{t:"rows",items:[
 {name:"Customs and Border Protection (CBP)",x:"One agency carries out immigration, customs and agricultural inspection."},
@@ -16,7 +16,7 @@ sections:[
 {h:"How the United States differs",blocks:[{t:"table",cols:["Difference","Details"],rows:[
 ["Transfer passengers enter","Even international-to-international passengers all clear immigration and customs. A visa or ESTA is required"],
 ["Electronic travel authorisation (ESTA)","For nationals of Visa Waiver Program countries. The fee is USD 40 (since 30 September 2025). Stays of up to 90 days"],
-["No departure control","Passengers do not pass an officer when leaving. Departure is recorded from data sent by the airline ★"],
+["No departure control","As a rule, passengers do not face an officer on departure as they do on arrival. Departure is recorded from data sent by the airline ★"],
 ["Immigration at the departure airport","At some airports in Canada, Ireland, Abu Dhabi, the Bahamas, Bermuda and Aruba, US immigration is cleared before departure and the flight arrives like a domestic one"]]},
 {t:"note",x:"* At airports with US immigration before departure, passengers need to arrive at the airport earlier than usual."}]},
 {h:"What the airline does",blocks:[{t:"check",items:[
@@ -45,7 +45,7 @@ sections:[
 ["Foods made with meat","Bouillon, soup mixes and the like are usually not allowed if they contain meat"],
 ["Instant noodles, curry roux and similar","May not be allowed if they contain meat extract ★"],
 ["Fruit and vegetables","Depends on where they came from and where the passenger is going. Apples and bananas handed out on board are covered"],
-["Rice","Often harbours insects; best not brought in"],
+["Rice","Pest risk; may be subject to restrictions"],
 ["Plants, seeds and soil","Inspection or a permit is required. Soil cannot be brought in ★"],
 ["Bakery items and certain cheeses","Allowed, but they must still be declared"]]},
 {t:"note",x:"* The rules on meat change often with disease outbreaks around the world. Check the US authorities’ websites for the latest."}]},
@@ -71,7 +71,7 @@ lead:["What US customs asks about is much the same as elsewhere: goods above the
 sections:[
 {h:"Allowances (as a guide)",blocks:[{t:"fig",id:"ciq_usdog",cap:"Figure: US customs, cash and dogs."},{t:"table",cols:["","Details"],rows:[
 ["US residents returning","Up to USD 800"],
-["Visitors","Gifts up to USD 100; personal effects are exempt"],
+["Visitors","Gifts up to USD 100; personal effects for own use are generally exempt"],
 ["Alcohol","One litre, aged 21 or over"],
 ["Tobacco","200 cigarettes and 100 cigars"],
 ["State rules","Individual states have their own rules on bringing in alcohol"]]},
@@ -85,7 +85,7 @@ sections:[
 ["Dogs that have been only in dog rabies-free or low-risk countries for six months","The receipt for the form is enough, and it can be used for multiple entries for six months"],
 ["Dogs that have been in a high-risk country within six months","Additional conditions: proof of vaccination, an antibody test, a reservation at a designated facility, entry through designated airports and more"]]},
 {t:"rows",items:[
-{name:"The microchip comes first",x:"A rabies vaccination given before the microchip was implanted is not accepted."},
+{name:"The microchip comes first",x:"A rabies vaccination given before the microchip was implanted may not be accepted."},
 {name:"Which countries are high-risk",x:"Check the list on the CDC website. Look not only at the destination but at every country visited in the six months."},
 {name:"Cats",x:"The dog form is not required. The cat must appear healthy on arrival. ★"}]}]},
 {h:"Situations that come up",blocks:[{t:"check",items:[

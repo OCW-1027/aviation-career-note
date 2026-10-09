@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 0) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("0-1",{title:"What CIQ Is: Three Agencies at the Border",hl:"CIQ",subtitle:"Customs looks at goods, immigration at people, quarantine at disease and pests. Every international airport has all three",
-lead:["At any airport with international flights there are government desks that belong to neither the airline nor the airport company: Customs, Immigration and Quarantine. Together they are known as CIQ.","Every passenger passes all three, and so do crew, catering and cargo. Where or when CIQ is not open, international flights cannot operate. This course looks at what the three agencies check and how that connects to airline work, in Japan, Korea and countries around the world."],
+lead:["At any airport with international flights there are government desks that belong to neither the airline nor the airport company: Customs, Immigration and Quarantine. Together they are known as CIQ.","International passengers go through these procedures according to the rules and their route, and crew, catering and cargo are also subject to CIQ. Where or when CIQ is not open, international flights cannot operate. This course looks at what the three agencies check and how that connects to airline work, in Japan, Korea and countries around the world."],
 sections:[
 {h:"The three jobs",blocks:[{t:"fig",id:"ciq_three",cap:"What customs, immigration and quarantine each look at, and why."},{t:"table",cols:["","What it looks at","Purpose","Where in the airport"],rows:[
 ["Customs (C)","Goods and money","Stop smuggling; collect duty and tax","Arrival: after baggage reclaim. Departure: only for those who need it"],
@@ -108,7 +108,7 @@ sections:[
 {name:"What has been decided",x:"On 10 March 2026 the cabinet approved a bill amending the Immigration Control and Refugee Recognition Act and related law to create an electronic travel authorisation."},
 {name:"Who it covers",x:"Short-stay visitors from the 74 visa-exempt countries and regions."},
 {name:"What they do",x:"Before travel they submit their name, purpose and place of stay online and receive an authorisation."},
-{name:"The airline’s duty",x:"An airline must not carry to Japan a foreign national for whom it has not received notice from the authorities that boarding is permitted."},
+{name:"The airline’s duty",x:"An airline must not carry to Japan a foreign national covered by the rule for whom it has not received notice from the authorities that boarding is permitted."},
 {name:"When",x:"The target is fiscal 2028 (by the end of March 2029). Check the latest official material for the bill’s passage and the detailed rules."}]}]},
 {h:"How counter work changes",blocks:[{t:"check",items:[
 {name:"Scan the passport correctly",x:"What you scan goes straight to the authorities. A scanning or typing error becomes an error in their records."},
@@ -119,7 +119,7 @@ sections:[
 voice:{h:"A Reported Case",x:"The UK government announced that from 25 February 2026 airlines would stop passengers boarding without an Electronic Travel Authorisation (ETA), an eVisa or other valid permission. Until then, travel had been allowed while passengers were encouraged to apply. Transfer passengers who pass through passport control need an ETA too (Sources: UK government, 24 February 2026, and others). Checking the authorisation is moving from the passenger’s own responsibility to the airline’s check before boarding."},
 terms:[["Advance Passenger Information (API)","事前旅客情報","사전 승객 정보"],["Passenger Name Record (PNR)","予約の記録","예약 기록"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"],["Interactive API (iAPI)","対話型API","대화형 API"]],
 quiz:[{q:"What does API contain?",opts:["Passport details and the flight","Form of payment and seat","Baggage weight","Meal requests"],a:0,exp:"API is passport details and the flight; PNR is the booking record."},
-{q:"What new duty does Japan’s JESTA place on airlines?",opts:["Not to carry to Japan a foreign national without notice that boarding is permitted","To issue visas","To carry out immigration checks","To collect the fee"],a:0,exp:"Only passengers cleared by the authorities may be carried."},
+{q:"What new duty does Japan’s JESTA place on airlines?",opts:["Not to carry to Japan a covered foreign national without notice that boarding is permitted","To issue visas","To carry out immigration checks","To collect the fee"],a:0,exp:"Only passengers cleared by the authorities may be carried."},
 {q:"The system says “do not board”. What do you do?",opts:["Confirm with the set contact","Board the passenger on your own judgment","Guess the reason and tell the passenger","Nothing"],a:0,exp:"The authorities decide. Do not guess."}],
 next:"1-1 Passports and visas: what to check at the counter"});
 })(window.ARTS);

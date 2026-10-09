@@ -3,7 +3,7 @@
 set("2-3",{title:"Alliances and the LCC Model: How Airlines Connect, and Why Low-cost Carriers Are Cheap",hl:"alliances",subtitle:"The three alliances, the Korean Air–Asiana integration, and why LCCs are cheaper — plus how ground work changes with each",
 lead:["No airline can cover the whole world alone. Alliances and codeshares link networks so passengers can connect on a single booking. Low-cost carriers (LCCs) took a different road, stripping back services to cut fares.","This lesson covers the three alliances, the Korean Air–Asiana integration taking place in 2026, the LCC business model, and how ground work differs in each case."],
 sections:[
-{h:"The three alliances",blocks:[{t:"table",cols:["Alliance","Founded","Main members (examples)","Japan and Korea"],rows:[
+{h:"The three alliances",blocks:[{t:"fig",id:"bas_alli",cap:"Figure: the three alliances and Japanese and Korean airlines (2026)."},{t:"table",cols:["Alliance","Founded","Main members (examples)","Japan and Korea"],rows:[
 ["Star Alliance","1997","United, Lufthansa, Air Canada, Singapore Airlines and others","ANA. Asiana leaves on 16 December 2026"],
 ["oneworld","1999","American, British Airways, Cathay Pacific, Qantas and others","JAL"],
 ["SkyTeam","2000","Delta, Air France, KLM, SAS (moved from Star in 2024) and others","Korean Air (founding member)"]]},

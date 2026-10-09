@@ -3,7 +3,7 @@
 set("2-1",{title:"How Airport Slots Work: From JSC and Global Rules to Station Practice",hl:"slots",subtitle:"At congested airports a take-off or landing time is a right you hold — lose it if you use less than 80%, and returning it late causes problems too",
 lead:["At congested airports, runway, stand and terminal capacity is limited, so operating a flight needs permission to use the airport at a set date and time: a slot. Slots are allocated under common worldwide rules, and their use is monitored.","This lesson covers the basics, airport levels, Japan’s coordinator JSC and bodies elsewhere, the annual cycle, the 80/20 rule and what a station needs to watch."],
 sections:[
-{h:"What a slot is",blocks:[{t:"rows",items:[
+{h:"What a slot is",blocks:[{t:"fig",id:"bas_slot",cap:"Animated figure: a year of slots, step by step."},{t:"rows",items:[
 {name:"Definition",x:"Permission to use a coordinated airport to arrive or depart on a specific date and time."},
 {name:"Why it exists",x:"To allocate times fairly, neutrally and transparently when demand exceeds capacity."},
 {name:"The global rules",x:"The Worldwide Airport Slot Guidelines (WASG), published jointly by IATA, ACI and the Worldwide Airport Coordinators Group (WWACG). The current edition is Edition 4, effective 1 August 2025."}]}]},
