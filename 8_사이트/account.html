@@ -14,7 +14,7 @@
 .f label{display:block;font-size:13px;font-weight:700;margin:8px 0 4px}
 .f input,.f select{font:inherit;font-size:15px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;min-width:220px;background:var(--bg);color:inherit}
 .b{font:700 14px inherit;font-family:inherit;border-radius:12px;padding:10px 16px;cursor:pointer;border:1.5px solid var(--line);background:var(--bg);color:inherit}
-.b.pri{background:#1d5fa0;border-color:#1d5fa0;color:#fff}.b.dan{color:#a33;border-color:#e7b3b0}
+.b.pri{background:#1d5fa0;border-color:#1d5fa0;color:#fff}a.b{display:inline-block;text-decoration:none;color:inherit}a.b.pri{color:#fff}.b.dan{color:#a33;border-color:#e7b3b0}
 .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
 .stats div{border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:13px}.stats b{font-size:18px}
 .bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:#1F8A5B}
@@ -37,27 +37,28 @@ ja:{h1:'会員ページ',hp:'ニックネームや言語の変更、学習記録
  prof:'プロフィール',nick:'ニックネーム',lang:'言語',mail:'メールアドレス',save:'保存する',saved:'保存しました',err:'保存できませんでした。',
  rec:'学習記録（過去問）',none:'まだ記録がありません。',total:'解答済み',rate:'正答率',recent:'最近解いた問題',kako:'過去問を解く',
  imp:'この端末の記録を取り込む',impd:'この端末（ブラウザ）にのみ保存されている過去問の記録とストーリー設計シートを、会員アカウントの記録として取り込みます。',impgo:'取り込む',impn:'取り込む記録がこの端末にはありません。',impok:'取り込み完了：過去問 {n} 問、設計シート {s}',
- out:'ログアウト',del:'退会',deld:'退会すると、プロフィール・学習記録・コミュニティへの投稿がすべて削除され、元に戻せません。',delc:'本当に退会しますか？この操作は取り消せません。',delok:'退会しました。',sub:{P42:'空中航法',P43:'航空法規等',P44:'航空気象',P45:'航空工学',P46:'航空通信',P47:'施設'},yes:'○',no:'×'},
+ out:'ログアウト',del:'退会',deld:'退会すると、プロフィール・学習記録・コミュニティへの投稿がすべて削除され、元に戻せません。',delc:'本当に退会しますか？この操作は取り消せません。',delok:'退会しました。',sub:{P42:'空中航法',P43:'航空法規等',P44:'航空気象',P45:'航空工学',P46:'航空通信',P47:'施設'},yes:'○',no:'×',dev:'この端末の学習',devd:'ログインしなくても使えます。記録はこの端末に保存されます。',nt:'私の学習ノート',ntd:'メモ・引用・ブックマーク・理解度と復習の予定・学習時間',pl:'私の学習プラン',pld:'目的と期間から、学ぶ順番と1日の量を決める'},
 ko:{h1:'회원 페이지',hp:'닉네임·언어 변경, 학습 기록, 이 기기의 기록 가져오기, 탈퇴.',off:'회원 기능은 준비 중입니다. 지금은 기록을 이 기기에만 저장합니다.',need:'로그인하면 학습 기록을 기기에 상관없이 이어서 쓸 수 있습니다.',login:'로그인·회원가입',
  prof:'프로필',nick:'닉네임',lang:'언어',mail:'이메일 주소',save:'저장',saved:'저장했습니다',err:'저장하지 못했습니다.',
  rec:'학습 기록(기출문제)',none:'아직 기록이 없습니다.',total:'해답 완료',rate:'정답률',recent:'최근 푼 문제',kako:'기출문제 풀기',
  imp:'이 기기의 기록 가져오기',impd:'이 기기(브라우저)에만 저장된 기출문제 기록과 스토리 설계 시트를 회원 기록에 합쳐 저장합니다.',impgo:'가져오기',impn:'가져올 기록이 이 기기에 없습니다.',impok:'가져왔습니다: 기출문제 {n}문, 설계 시트 {s}',
- out:'로그아웃',del:'탈퇴',deld:'탈퇴하면 프로필·학습 기록·게시판 글이 모두 지워지며 되돌릴 수 없습니다.',delc:'정말 탈퇴하시겠습니까? 되돌릴 수 없습니다.',delok:'탈퇴했습니다.',sub:{P42:'공중항법',P43:'항공법규',P44:'항공기상',P45:'항공공학',P46:'항공통신',P47:'시설'},yes:'○',no:'×'},
+ out:'로그아웃',del:'탈퇴',deld:'탈퇴하면 프로필·학습 기록·게시판 글이 모두 지워지며 되돌릴 수 없습니다.',delc:'정말 탈퇴하시겠습니까? 되돌릴 수 없습니다.',delok:'탈퇴했습니다.',sub:{P42:'공중항법',P43:'항공법규',P44:'항공기상',P45:'항공공학',P46:'항공통신',P47:'시설'},yes:'○',no:'×',dev:'이 기기의 학습',devd:'로그인하지 않아도 쓸 수 있습니다. 기록은 이 기기에 저장됩니다.',nt:'나의 학습 노트',ntd:'메모·인용·북마크·이해도와 복습 일정·학습 시간',pl:'나의 학습 플랜',pld:'목적과 기간에 맞춰 배울 순서와 하루 분량을 정한다'},
 en:{h1:'My page',hp:'Change your nickname and language, see your study records, import records from this device, or delete your account.',off:'Member features are being prepared. Records are stored on this device only for now.',need:'Log in to keep your study records across devices.',login:'Log in or sign up',
  prof:'Profile',nick:'Nickname',lang:'Language',mail:'Email',save:'Save',saved:'Saved',err:'Could not save.',
  rec:'Study records (past papers)',none:'No records yet.',total:'Answered',rate:'Correct',recent:'Recently answered',kako:'Practice past papers',
  imp:'Import records from this device',impd:'Merges the past-paper records and the story design sheet stored only in this browser into your member records.',impgo:'Import',impn:'There are no records on this device to import.',impok:'Imported: {n} past-paper answers, story sheet {s}',
- out:'Log out',del:'Delete account',deld:'Deleting your account removes your profile, study records and community posts. This cannot be undone.',delc:'Delete your account? This cannot be undone.',delok:'Your account has been deleted.',sub:{P42:'Navigation',P43:'Law',P44:'Meteorology',P45:'Engineering',P46:'Communications',P47:'Facilities'},yes:'✓',no:'✗'}};
+ out:'Log out',del:'Delete account',deld:'Deleting your account removes your profile, study records and community posts. This cannot be undone.',delc:'Delete your account? This cannot be undone.',delok:'Your account has been deleted.',sub:{P42:'Navigation',P43:'Law',P44:'Meteorology',P45:'Engineering',P46:'Communications',P47:'Facilities'},yes:'✓',no:'✗',dev:'Study on this device',devd:'No login needed. Records are kept on this device.',nt:'My Study Notebook',ntd:'Notes, quotes, bookmarks, understanding and review dates, study time',pl:'My Learning Plan',pld:'Set the order and daily amount from your goal and time'}};
 var L='ja',REC=null;
 function $(i){return document.getElementById(i)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 window.render=function(l){L=l;var t=T[l];$('h1').textContent=t.h1;$('hp').textContent=t.hp;document.title=t.h1+' | '+window.SITE_NAME();draw()};
+function DV(t){return '<div class="card"><h2>'+esc(t.dev)+'</h2><p class="muted">'+esc(t.devd)+'</p><p><a class="b pri" href="study.html" style="color:#fff">'+esc(t.nt)+' →</a></p><p class="muted">'+esc(t.ntd)+'</p><p><a class="b" href="plan.html">'+esc(t.pl)+' →</a></p><p class="muted">'+esc(t.pld)+'</p></div>'}
 function draw(){var t=T[L],M=window.Member,b=$('body');
- if(!M||!M.enabled()){b.innerHTML='<div class="card"><p class="muted">'+esc(t.off)+'</p></div>';return}
+ if(!M||!M.enabled()){b.innerHTML=DV(t)+'<div class="card"><p class="muted">'+esc(t.off)+'</p></div>';return}
  if(!M.ready()){return}
  var u=M.user(),p=M.profile();
- if(!u){b.innerHTML='<div class="card"><p>'+esc(t.need)+'</p><button class="b pri" id="lg">'+esc(t.login)+'</button></div>';$('lg').onclick=M.login;return}
- var h='<div class="card f"><h2>'+esc(t.prof)+'</h2><label>'+esc(t.mail)+'</label><div class="muted">'+esc(u.email||'')+'</div><label>'+esc(t.nick)+'</label><input id="nk" maxlength="20" value="'+esc(p?p.nickname:'')+'"><label>'+esc(t.lang)+'</label><select id="lgs"><option value="ja">日本語</option><option value="ko">한국어</option><option value="en">English</option></select><div class="row" style="margin-top:12px"><button class="b pri" id="sv">'+esc(t.save)+'</button><span class="msg" id="pm"></span></div></div>';
+ if(!u){b.innerHTML=DV(t)+'<div class="card"><p>'+esc(t.need)+'</p><button class="b pri" id="lg">'+esc(t.login)+'</button></div>';$('lg').onclick=M.login;return}
+ var h=DV(t)+'<div class="card f"><h2>'+esc(t.prof)+'</h2><label>'+esc(t.mail)+'</label><div class="muted">'+esc(u.email||'')+'</div><label>'+esc(t.nick)+'</label><input id="nk" maxlength="20" value="'+esc(p?p.nickname:'')+'"><label>'+esc(t.lang)+'</label><select id="lgs"><option value="ja">日本語</option><option value="ko">한국어</option><option value="en">English</option></select><div class="row" style="margin-top:12px"><button class="b pri" id="sv">'+esc(t.save)+'</button><span class="msg" id="pm"></span></div></div>';
  h+='<div class="card"><h2>'+esc(t.rec)+'</h2><div id="recs"><p class="muted">…</p></div><p><a class="b" href="../22_学科試験過去問/学科試験_過去問.html">'+esc(t.kako)+' →</a></p></div>';
  h+='<div class="card"><h2>'+esc(t.imp)+'</h2><p class="muted">'+esc(t.impd)+'</p><div class="row"><button class="b" id="im">'+esc(t.impgo)+'</button><span class="msg" id="imm"></span></div></div>';
  h+='<div class="card"><div class="row"><button class="b" id="out">'+esc(t.out)+'</button></div></div>';

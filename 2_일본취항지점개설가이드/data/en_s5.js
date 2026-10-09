@@ -73,7 +73,7 @@ sections:[
 ["Home authority inspection","An inspection of overseas stations under your own country’s operating standards"]]},
 {t:"note",x:"* Based on several airlines’ experience. ★"}]},
 {h:"What is looked at most closely",blocks:[{t:"rows",items:[
-{name:"Training records",x:"Training is what ministry audits look at most. Records for the airline and the handling company are kept for at least three years, in this example."},
+{name:"Training records",x:"Training is what ministry audits look at most. For the airline and the handling company, keeping training records for three years or more is generally recommended (check company and authority rules)★."},
 {name:"Plan versus practice",x:"Whether what the security and training plans say is actually being done (5-1)."},
 {name:"Amendments applied",x:"Whether amended standards have reached the procedures, and whether staff know them."},
 {name:"The year’s focus areas",x:"The authorities usually signal what they will focus on. Find out and prepare."}]}]},
@@ -87,7 +87,7 @@ sections:[
 {t:"point",x:"Findings are material for improving the station. Analyse the cause honestly and share the fix with the handling company too (Ground Staff 6-4)."}]}],
 voice:"In an unannounced inspection, inspectors may check the counter’s baggage questioning procedure and training records on the spot. Keeping records in one place day to day lets you show them without scrambling.",
 terms:[["Audit / Inspection","監査","감사"],["Unannounced Inspection","予告なしの点検","불시 점검"],["Training Records","教育記録","교육 기록"],["Corrective Action Plan","是正計画","시정 계획"],["Focus Areas","重点事項","중점 사항"],["NOTOC","機長への通知","기장 통보서"]],
-quiz:[{q:"What do ministry audits look at most closely, in this example?",opts:["The size of the office","Training records","Revenue","Uniforms"],a:1,exp:"Airline and handling company records, kept at least three years in this example."},
+quiz:[{q:"What do ministry audits look at most closely, in this example?",opts:["The size of the office","Training records","Revenue","Uniforms"],a:1,exp:"Airline and handling company training records; keeping them for three years or more is generally recommended."},
 {q:"What was added from around the second half of 2024?",opts:["Unannounced inspections","Document-only checks","Online inspections","Travel agency inspections"],a:0,exp:"Inspections that look at the operation as it runs."},
 {q:"What do you do with a finding?",opts:["Hide it","Write a corrective plan with cause, measures and a deadline","Nothing","Blame the handling company"],a:1,exp:"Share the prevention measures."}],
 next:"5-4 Emergency response planning and joint airport exercises"});

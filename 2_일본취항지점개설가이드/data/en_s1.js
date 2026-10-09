@@ -28,7 +28,7 @@ sections:[
 {name:"Adding an aircraft",x:"Update the aircraft information in J-MAT and notify the introduction of the new aircraft (1-6)."},
 {name:"When asked",x:"The authorities may also ask for a notification; follow their instruction."}]}]},
 {h:"Unavoidable circumstances",blocks:[{t:"p",x:"The authorities publish how changes caused by weather and other unavoidable circumstances are interpreted and what procedure suffices. Check the notices and write the answer into your station SOP."},
-{t:"point",x:"Four parties are involved: head office strategy, the station, FAIB and the division. Tabulate who files what and when for each pattern of cancellation and delay, and no one hesitates on a bad day (see also Ground Staff 5-6)."}]}],
+{t:"point",x:"Four parties are involved: head office network planning, the station, FAIB and the division. Tabulate who files what and when for each pattern of cancellation and delay, and no one hesitates on a bad day (see also Ground Staff 5-6)."}]}],
 voice:"Two months before the seasonal filing deadline, draw up a list of required materials together with head office operations, sales and fleet staff. Using the previous season’s filing as the draft cuts the back-and-forth considerably.",
 terms:[["Business Plan (Operating Schedule)","事業計画","사업계획"],["Seasonal Initial Filing","期首申請","기수 신청"],["Application for Change","変更申請","변경 신청"],["Notification of Change","変更届出","변경 신고"],["Accessibility Plan","移動支援措置計画","이동 지원 조치 계획"],["IATA Summer / Winter Season","夏ダイヤ・冬ダイヤ","하계·동계 스케줄"]],
 quiz:[{q:"What is the deadline for changing frequency?",opts:["10 days before","30 days before","45 days before","The day before"],a:2,exp:"Frequency changes go in by 45 days before."},
@@ -108,13 +108,13 @@ lead:["Japanese aviation law sets out the equipment an aircraft must carry, and 
 sections:[
 {h:"The annual application (example)",blocks:[{t:"fig",id:"opn_art60",cap:"Animated figure: the annual filing under Articles 60 and 61 (example)."},{t:"table",cols:["When","Work"],rows:[
 ["January","The authorities email the notice; start preparing for the coming fiscal year (April to March)"],
-["Mid-January to mid-February","Ask head office flight operations engineering for the application and maintenance control for the results report, then file as the station"],
+["Mid-January to mid-February","Ask head office flight operations (technical) for the application and maintenance control for the results report, then file as the station"],
 ["After approval","Compile and report the results for the previous year (April to March)"]]},
 {t:"note",x:"* An example based on several airlines’ practice. Confirm the equipment covered, the forms and the deadlines with the authorities. ★"}]},
 {h:"What to ask head office for",blocks:[{t:"check",items:[
-{name:"Flight operations engineering",x:"The application itself: the aircraft covered and the standards applied."},
+{name:"Flight operations (technical)",x:"The application itself: the aircraft covered and the standards applied. Names differ by airline (e.g. flight operations engineering, flight standards, technical services)."},
 {name:"Maintenance control",x:"The report on how it was applied over the past year."},
-{name:"Strategy and international",x:"The fleet plan, and consistency with the other filings."},
+{name:"Network planning",x:"The fleet plan, and consistency with the other filings."},
 {name:"How to ask",x:"Attach last year’s filing and the authorities’ notice, and state the deadline. Allow one to two weeks from request to filing."}]}]},
 {h:"Other notifications and procedures",blocks:[{t:"table",cols:["Procedure","What it covers"],rows:[
 ["Adding an aircraft or changing seat counts","Update the aircraft information in J-MAT and notify the change to the business plan (1-6)"],
@@ -128,7 +128,7 @@ sections:[
 {name:"Check who is who",x:"Confirm each year whether the head office contacts have changed."}]},
 {t:"point",warn:true,x:"Without the approval, operating with equipment inoperative can be affected. Keep the deadline."}]}],
 voice:"Blanket applications use much the same material every year, so send head office last year’s file with only the changes highlighted. Even when the head-office contact changes, it is immediately clear what needs editing.",
-terms:[["Minimum Equipment List (MEL)","最低装備品目録","최소장비목록"],["Comprehensive Application","包括申請","포괄 신청"],["Results Report","結果報告","결과 보고"],["Flight Operations Engineering","運航技術部門","운항기술 부문"],["Maintenance Control","整備管理部門","정비통제 부문"],["Aircraft Registration (with Airport)","機材の登録","기재 등록"]],
+terms:[["Minimum Equipment List (MEL)","最低装備品目録","최소장비목록"],["Comprehensive Application","包括申請","포괄 신청"],["Results Report","結果報告","결과 보고"],["Flight Operations (Technical)","運航の技術担当","운항 기술 담당"],["Maintenance Control","整備の管理担当","정비 관리 담당"],["Aircraft Registration (with Airport)","機材の登録","기재 등록"]],
 quiz:[{q:"When does preparation for the annual application usually start?",opts:["January","June","September","December"],a:0,exp:"The notice arrives in January and the filing goes in by around mid-February."},
 {q:"Which department drafts the results report?",opts:["Sales","Maintenance control","HR","Communications"],a:1,exp:"How it was applied is maintenance control’s material."},
 {q:"What helps you hit the deadline?",opts:["Starting from scratch each time","Using last year’s filing as the template","Not checking the contacts","Not stating a deadline"],a:1,exp:"Changing only what changed is faster and more accurate."}],
@@ -142,7 +142,7 @@ sections:[
 ["Answers to delay queries","When a query arrives, often the day after the flight","By email, giving the reason"],
 ["Notification of cancellations and delays","After a same-day change","Notification of change in J-MAT (1-2)"],
 ["Security self-audit results","Once a year","As the authorities request"]]}]},
-{h:"Introducing a new aircraft",blocks:[{t:"ladder",rise:10,steps:[{name:"Request the material",sub:"Ask head office strategy, attaching last time’s"},{name:"Update the fleet data",sub:"Add the row in J-MAT"},{name:"Notify the change",sub:"Notification for the new aircraft"},{name:"Attachments",sub:"Match the format of the last notification"},{name:"Confirm acceptance",sub:"Check the status screen"},{name:"Register with the airport",sub:"Landing fees and noise category"}]},
+{h:"Introducing a new aircraft",blocks:[{t:"ladder",rise:10,steps:[{name:"Request the material",sub:"Ask head office network planning, attaching last time’s"},{name:"Update the fleet data",sub:"Add the row in J-MAT"},{name:"Notify the change",sub:"Notification for the new aircraft"},{name:"Attachments",sub:"Match the format of the last notification"},{name:"Confirm acceptance",sub:"Check the status screen"},{name:"Register with the airport",sub:"Landing fees and noise category"}]},
 {t:"rows",items:[
 {name:"By when",x:"The notification must be accepted before that aircraft operates on a Japanese route."},
 {name:"Airport registration",x:"At Narita, for example, aircraft are registered separately with the airport company for landing fee calculation and the noise category, which affects whether night operations are possible. It is separate from the national notification."},

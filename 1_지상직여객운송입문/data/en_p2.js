@@ -9,7 +9,7 @@ set("2-1",{"title":"Preparing for Gate Duty","hl":"Gate","subtitle":"Be at the g
 {"t":"point","x":"The reference point is when boarding closes. Count back from it and start calling early; otherwise the last passengers board late and an on-time departure becomes difficult. Handling passengers who miss the close is covered in detail in lesson 2-5."}]},
 {"h":"Preparation checklist","blocks":[{"t":"check","items":[
 {"name":"Flight information","x":"Booking status, expected number boarding, VIPs, special passengers, connecting passengers."},
-{"name":"Gate comments","x":"What has been passed on from the counter: wheelchairs, UMs, groups with a lot of cabin baggage, passengers likely to be late and so on."},
+{"name":"Handover notes (the name differs by airline and airport)","x":"What has been passed on from the counter: wheelchairs, UMs, groups with a lot of cabin baggage, passengers likely to be late and so on."},
 {"name":"Documents and items to hand over","x":"Documents for the crew (immigration documents, the passenger manifest, the special handling report and so on) and items to hand over on board."},
 {"name":"Equipment","x":"Boarding pass readers, the PA system, terminals, printers."},
 {"name":"Signs","x":"Flight number, destination and time display; boarding order signs."}]}]},
@@ -26,7 +26,7 @@ set("2-1",{"title":"Preparing for Gate Duty","hl":"Gate","subtitle":"Be at the g
 {"name":"Doubts about documents","x":"Suspected forged or altered passports or visas; checking visas again."}]},
 {"t":"point","x":"Problems that must be resolved before departure, such as security or travel-document issues, are reported to the person in charge for a decision. Matters the destination can handle are passed on as needed. Gate filtering is also a chance to check that the handler’s staff are following procedures."}]}],
 "voice":"Gate checks are the last chance to match name, flight and date on the boarding pass and passport. The busier it is, the more important it is not to skip these three.",
-"terms":[["Gate Comment","ゲートコメント","게이트 코멘트"],["Gate Filtering","ゲートフィルタリング","게이트 필터링"],["Purser / Cabin Manager","客室責任者","객실사무장"],["Boarding Sign","搭乗開始の合図","탑승 사인"],["Passenger Manifest","乗客名簿","승객 명단"],["General Declaration (GD)","出入国の書類","출입국 서류"]],
+"terms":[["Handover notes","申し送り事項","인계 사항"],["Gate Filtering","ゲートフィルタリング","게이트 필터링"],["Purser / Cabin Manager","客室責任者","객실사무장"],["Boarding Sign","搭乗開始の合図","탑승 사인"],["Passenger Manifest","乗客名簿","승객 명단"],["General Declaration (GD)","出入国の書類","출입국 서류"]],
 "quiz":[{"q":"When does boarding usually close (boarding complete)?","opts":["Just before departure","Around 10 minutes before departure","One hour before departure","There is no set time"],"a":1,"exp":"Often around 10 minutes before departure; 15–20 minutes at some airlines. ★"},
 {"q":"What is gate filtering for?","opts":["Hurrying passengers","Catching missed problems before boarding","Directing passengers to duty-free","Changing seats"],"a":1,"exp":"It is the system of last checks."},
 {"q":"What happens to unresolved matters that the destination can handle?","opts":["It is forgotten","It is passed on to the destination","It is left to the passenger","It is dealt with the next day"],"a":1,"exp":"Report matters that must be resolved before departure to the person in charge; pass on to the destination those it can handle."}],

@@ -5,7 +5,7 @@ lead:["Starting service to Japan means obtaining the Japanese approvals, setting
 "This article sets out the flow from about a year before service to the first flight, in six areas. It is generalised from a real station-opening checklist of around 130 items used when an airline started service at a Japanese airport."],
 sections:[
 {h:"The six areas",blocks:[{t:"fig",id:"opn_six",cap:"Animated figure: the six threads of launch preparation light up in turn (example)."},{t:"table",cols:["Area","Main work","Who usually leads"],rows:[
-["Approvals","The foreign air carrier operating licence, schedule and fare filings, slots","Head office strategy and international, the filing agent in Japan, the station manager"],
+["Approvals","The foreign air carrier operating licence, schedule and fare filings, slots","Head office network planning, the filing agent in Japan, the station manager"],
 ["Setting up the entity","Registering the branch, bank accounts, tax and social insurance, office and housing","Station manager, legal and accounting providers"],
 ["Airport contracts","Handling company, counters and offices, fuel, catering, security","Head office, station manager"],
 ["People","Hiring local staff, training, the security instructor","Station manager, head office HR"],
@@ -43,12 +43,12 @@ next:"0-2 Who does what: head office, the station, agents and the handling compa
 
 set("0-2",{title:"Who Does What: Head Office, the Station, Agents and the Handling Company",hl:"roles",subtitle:"The station manager is the point of contact in Japan, linking head office specialists to local professionals",
 lead:["Preparing to serve Japan involves many head office departments, the station in Japan, legal and accounting providers, a filing agent and the handling company. Where roles are vague, two departments write the same document, or nobody contacts the authorities at all.",
-"This article covers who is involved and what each does, what the station manager owns, what to ask head office for, and how to divide the work."],
+"This article covers who is involved and what each does, what the station manager owns, what to ask head office for (department names differ by airline), and how to divide the work."],
 sections:[
 {h:"Who is involved",blocks:[{t:"fig",id:"opn_roles",cap:"Animated figure: the roles of head office, station, filing agent, service firms and handler (example)."},{t:"table",cols:["Party","Main role"],rows:[
-["Head office strategy and international","The launch plan, operating approvals, slots, the big negotiations with authorities"],
+["Head office network planning","The launch plan, operating approvals, slots, the big negotiations with authorities"],
 ["Head office flight operations and maintenance","Material on the operational and maintenance set-up, aircraft used, filings on equipment"],
-["Head office ground and service","Airport procedures, manuals, handling company contracts"],
+["Head office airport operations","Airport procedures, manuals, handling company contracts"],
 ["Head office sales and pricing","Fares, sales policy, GDS and BSP"],
 ["Head office finance, HR and administration","Accounts, budget, remittances, employment terms, equipment"],
 ["The Japan station (station manager)","The point of contact in Japan: authorities, airport, providers, and overall local preparation"],

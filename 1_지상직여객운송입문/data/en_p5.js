@@ -140,9 +140,9 @@ sections:[
 {ic:"↩️",name:"Return",tag:"Return",x:"Unable to land at the destination, the flight returns to its point of departure."}]}]},
 {h:"It depends where you land",blocks:[{t:"fig",id:"gnd_divert",cap:"Animated figure: when the destination is unavailable, the aircraft lands at an alternate (diversion) or returns to the origin (return); who handles it depends on the airport."},{t:"table",cols:["","An airport with your station","An airport without one"],rows:[
 ["Who leads","That station","The nearest station, or the one the company designates"],
-["People on the ground","Station staff","Ask the airport’s handling company; if that is not enough, the senior cabin crew may help"],
+["People on the ground","Station staff","Ask the local handling company, working with the senior cabin crew as needed"],
 ["What to share","Onward itineraries, medical cases, VIPs, wheelchair passengers","The same, plus contacting the local agencies"],
-["Authorities","The station notifies them and completes the formalities","Arranged through the handling company"]]}]},
+["Authorities","The station coordinates with the departments and authorities concerned and confirms the formalities needed","Head office or the designated station works with the local handling company and the authorities"]]}]},
 {h:"What happens to passengers on board (example)",blocks:[{t:"rows",items:[
 {name:"If the wait on the ground will be long (e.g. 1–2 hours or more)",x:"If airport facilities allow, disembark passengers and have them wait in a designated area."},
 {name:"Waiting outside",x:"Where local conditions allow, the station manager may let passengers clear immigration and wait outside the airport."},
@@ -155,7 +155,7 @@ sections:[
 {name:"Procedures",x:"How passengers, baggage and other items are handled."},
 {name:"Equipment",x:"Where to get steps, buses, wheelchairs and tugs."},
 {name:"Passenger services",x:"Where to get transport, hotels, drinks and meals."}]},
-{t:"note",x:"* Stations are often required to write a plan for each alternate airport and file it with head office."}]},
+{t:"note",x:"* Based on the airline’s emergency and diversion plans, it is important to organise in advance the contacts, handling, fuelling, CIQ and passenger arrangements for each expected alternate airport."}]},
 {h:"Practical wisdom: operating limits and airports without a station",blocks:[{t:"check",items:[
 {name:"Operating hour limits (curfew)",x:"At airports with night-time restrictions such as Narita, an emergency landing is possible, but handlers may not be available at night. Staff are often only in place from early morning, between scheduled flights."},
 {name:"Crew duty hours",x:"A long-haul flight that diverts may be unable to leave because of crew duty limits. Check the rest limits first; if they cannot be met, coordinate a replacement crew with head office."},

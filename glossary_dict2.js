@@ -39,7 +39,7 @@ window.DICT=(window.DICT||[]).concat([
 ["OPS","Delay Code","遅延コード","지연 코드","遅延の原因を示すIATAの2桁の数字","지연 원인을 나타내는 IATA 두 자리 숫자","IATA’s two-digit codes for delay causes"],
 ["OPS","Turnaround","ターンアラウンド","턴어라운드","到着から次の出発までの地上での作業","도착부터 다음 출발까지의 지상 작업","All ground activity between arrival and the next departure"],
 ["OPS","Minimum Ground Time (MGT)","最小地上時間","최소 지상 시간","ターンアラウンドに必要な最短の時間","턴어라운드에 필요한 최소 시간","The shortest time needed to turn an aircraft round"],
-["OPS","Operations Control Centre (OCC)","運航管理センター（OCC）","종합통제센터(OCC)","運航の状況を一元的に管理する部署","운항 상황을 일원적으로 관리하는 부서","The centre that runs the airline’s daily operation"],
+["OPS","Operations Control Centre (OCC)","運航管理センター（OCC）","운항통제센터(OCC)","運航の状況を一元的に管理する部署","운항 상황을 일원적으로 관리하는 부서","The centre that runs the airline’s daily operation"],
 ["OPS","Flight Dispatcher","運航管理者（ディスパッチャー）","운항관리사","飛行計画・燃料・気象などを検討して出発を判断する担当","비행계획·연료·기상 등을 검토해 출발을 판단하는 담당","The person who plans flights and shares release decisions with the captain"],
 ["OPS","Flight Plan","飛行計画","비행계획","経路・高度・燃料などを定めた計画。管制へ提出する","경로·고도·연료 등을 정한 계획. 관제에 제출","The plan of route, levels and fuel, filed with ATC"],
 ["OPS","Pilot in Command (PIC)","機長","기장","便の安全に最終的な責任を持つ操縦士","편의 안전에 최종 책임을 지는 조종사","The pilot with final responsibility for the flight"],
