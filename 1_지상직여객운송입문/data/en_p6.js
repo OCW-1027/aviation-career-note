@@ -185,41 +185,4 @@ quiz:[{q:"What is an AOC?",opts:["Airport police","The committee of airlines ser
 {q:"What does the station manager do after a meeting?",opts:["Nothing","Share it with head office and the team","Leave it to other airlines","Forget it"],a:1,exp:"Bring it back and decide what action is needed."}],
 next:"6-6 The station’s monthly and annual calendar"});
 
-set("6-6",{title:"The Station’s Monthly and Annual Calendar",hl:"the calendar",subtitle:"The more deadlines a task has, the earlier it belongs on the calendar",
-lead:["Besides the work of each flight, a station has closing work that arrives at the same point every month, and major procedures that come once a year: operating approvals, fare filings, revising the security programme, tax and social insurance. Miss any of these deadlines and the problem is serious.","Taking a station in Japan as the example, this article covers the shape of a month, the shape of a year, and how to keep the calendar working."],
-sections:[
-{h:"A month (example)",blocks:[{t:"table",cols:["When","Main work"],rows:[
-["1st to 5th","Close last month’s expenses, settle the company card, file traffic and cargo statistics with the authorities"],
-["Around the 5th to 10th","Check and file passenger facility charges and the departure tax, check airport charges, prepare payroll"],
-["Around the 7th to 12th","Check the handling company’s invoice, including extra work during delays and cancellations"],
-["First week","Monthly meeting with the cargo handling company"],
-["Around the 15th","Second payment run, process the airport company’s invoice"],
-["Around the 15th to 20th","File the fuel surcharge where required that month"],
-["Around the 20th to 28th","Monthly meetings with the passenger and ramp handling companies, pay communications and other bills"],
-["Weekly and month end","Weekly and monthly reports"]]}]},
-{h:"A year (example)",blocks:[{t:"table",cols:["When","Main work"],rows:[
-["January","File the summer schedule (last Sunday of March to last Saturday of October; the deadline is around early February); pay withholding tax for the second half of last year"],
-["January to February","Apply for the general operating approvals under the aviation law"],
-["February","Prepare the consumption tax refund filing"],
-["February to March","File fares for approval; revise and submit the security programme and the security training plan"],
-["March to April","Check changes to social insurance and tax rates; health checks"],
-["June to July","Withholding tax for the first half; annual labour insurance renewal"],
-["Early July","Social insurance base report"],
-["August to September","File the winter schedule (the deadline is around early September)"],
-["October to December","Security training, next year’s budget, year-end tax adjustment"],
-["Once a year","Internal security audit and the various authority audits"]]},
-{t:"note",x:"* Japanese requirements and one airline’s practice. Dates shift from year to year, so confirm each year with the authorities or your advisers. ★"}]},
-{h:"Keeping the calendar working",blocks:[{t:"check",items:[
-{name:"Work backwards",x:"Enter not only the deadline but the day preparation starts (say, two weeks before)."},
-{name:"Name the owner",x:"Write who does it, and who covers when they are away."},
-{name:"Record the basis",x:"Note what the procedure is for, where it is filed, and where last year’s papers are."},
-{name:"Share it",x:"Use a calendar the whole station can see, and share it with the relevant departments at head office."},
-{name:"Review it yearly",x:"Update it each year as the rules change."}]},
-{t:"point",x:"Procedures that need material from other head office departments (operations, maintenance, sales) should have the request date on the calendar too, so nothing is rushed at the deadline."}]}],
-voice:"[Interview to be added] The calendar rule you invented after being caught out by a deadline.",
-terms:[["Summer / Winter Schedule (IATA Season)","夏ダイヤ・冬ダイヤ","하계·동계 스케줄"],["Change of Business Plan","事業計画変更","사업계획 변경"],["Withholding Income Tax","源泉所得税","원천 소득세"],["Social Insurance Base Report","算定基礎届","산정 기초 신고"],["Year-end Tax Adjustment","年末調整","연말정산"],["International Tourist Tax","国際観光旅客税","국제관광여객세"]],
-quiz:[{q:"When does the IATA summer season run?",opts:["1 April to 30 September","Last Sunday of March to last Saturday of October","January to June","It is not fixed"],a:1,exp:"Winter runs from the last Sunday of October to the last Saturday of March."},
-{q:"What belongs on the calendar beside the deadline?",opts:["Nothing","The day preparation starts, and the owner","The weather","Revenue"],a:1,exp:"So you can work backwards."},
-{q:"When is the social insurance base report filed in Japan?",opts:["January","Early July","September","December"],a:1,exp:"It is based on the April to June payroll and filed in early July."}],
-next:"Part 7 Career Guide — 7-1 Working as ground staff in Japan"});
 })(window.ARTS);

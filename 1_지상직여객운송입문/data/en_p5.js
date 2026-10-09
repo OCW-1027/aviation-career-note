@@ -88,7 +88,7 @@ voice:"When told of a medical emergency on board, you need ambulance, gate, whee
 terms:[["Medical Emergency","急病人","응급 환자"],["Turbulence","タービュランス","난기류"],["Ambulance","救急車","구급차"],["Quarantine","検疫","검역"],["Captain’s Report","機長報告書","기장 보고서"],["Human Remains (HUM)","ご遺体の輸送","유해 운송"]],
 quiz:[{q:"You are told of injuries from turbulence. What do you do?",opts:["Deal with it after arrival","Have an ambulance standing by in advance","Ask the passenger to walk","Handle it tomorrow"],a:1,exp:"Injuries can be serious, so arrange standby before landing."},
 {q:"How is information handled when a passenger dies on board?",opts:["Explain to anyone","Only to the defined recipients and the press officer","Publish it on social media","Tell the other passengers"],a:1,exp:"Information is tightly restricted."},
-{q:"What about border formalities for a passenger being taken to hospital?",opts:["They can wait","Coordinate so they can be completed first","They are not needed","The passenger does it alone"],a:1,exp:"Arranged in advance so the transfer is not delayed."}],
+{q:"What about border formalities for a passenger being taken to hospital?",opts:["They can wait","Coordinate the necessary formalities with the agencies concerned","They are not needed","The passenger does it alone"],a:1,exp:"In an emergency transfer, work with the agencies concerned and coordinate the necessary formalities under the airport’s emergency procedures."}],
 next:"5-4 Delays: information, meal vouchers and certificates"});
 
 set("5-4",{title:"Delays: Information, Meal Vouchers and Certificates",hl:"delays",subtitle:"Match the information, the service and the compensation to the length of the delay",
