@@ -1,5 +1,8 @@
 # 公開しないもの（作業メモ・旧版・Office の一時ファイル）
 *.md
+# ただし、GPT と共有する作業の決まり（公開サイトには出ない _build の中）は GitHub に上げる
+!_build/docs/
+!_build/docs/*.md
 _이전판_목록페이지/
 9_다운로드_Word_PDF/
 ~$*
