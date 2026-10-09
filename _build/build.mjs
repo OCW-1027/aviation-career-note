@@ -37,6 +37,7 @@ try {
   }
 } catch (e) { console.error('lesson_map:', e.message); }
 const OUT = path.resolve(process.argv[3] || '_site');
+const OUT_URL = pathToFileURL(OUT).href.replace(/\/?$/, '/');   // 書き出し先の file:/// の形（図の画像パスを直すのに使う）
 const SITE = (process.env.SITE_URL || 'https://ocw-1027.github.io/aviation-career-note/').replace(/\/?$/, '/');
 const ONLY = process.env.ONLY || '';          // 例 "18_항공기초지식" 試験用
 const LIMIT = +(process.env.LIMIT || 0);      // 講座ごとのレッスン数の上限（試験用）
@@ -82,6 +83,9 @@ async function prerender(html, fileUrl) {
   const d = dom.window.document, g = id => (d.getElementById(id) || {}).innerHTML || '';
   const out = { title: d.title, lang: d.documentElement.lang, main: g('main'), info: g('info'), h1: g('title'), sub: g('subtitle'), series: g('series'), foot: g('foot') };
   dom.window.close();
+  // 図の中の画像（飛行機の絵など）は、組み立てたPCの場所（file:///…）で書き出されるので、
+  // サイト内の相対パスに直す。レッスンのページは <base href="../../../講座/"> なので、サイトの一番上は「../」（2026.10）
+  for (const k in out) if (typeof out[k] === 'string') out[k] = out[k].split(OUT_URL).join('../');
   return out;
 }
 
