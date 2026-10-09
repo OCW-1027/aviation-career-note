@@ -3,7 +3,7 @@
    言語は ?lang= → 保存した言語（art-lang）→ 端末の言語 の順に決め、いまのサイトと同じ場所に保存する */
 (function(){
 var C={
-ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],brand:'航空キャリアノート',nav:['学ぶ','会社の実務','練習ツール','求人','コーチング','コミュニティ'],mem:'メンバーシップ',
+ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],brand:'航空キャリアノート',nav:['学ぶ','会社実務','練習ツール','求人','コーチング','コミュニティ'],mem:'メンバーシップ',
  foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','航空の外でも役立つ、仕事の知識を。'],
  copy:'© 2026 航空キャリアノート　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー'},
 ko:{proto:['GPT 디자인안을 바탕으로 만든 시안입니다. 지금 홈페이지는','여기'],brand:'항공 커리어 노트',nav:['학습','회사 실무','연습 도구','채용','코칭','커뮤니티'],mem:'멤버십',
@@ -15,7 +15,7 @@ en:{proto:['A prototype based on the GPT design. The current home page is','here
 var NAV=[['index.html#learn','learn'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
 /* フッターの項目：[日本語, 韓国語, 英語]（2026.10 日本語・韓国語の画面に英語が多すぎたので、言語ごとの名前に） */
 var FOOT=[[['学ぶ','학습','Learn'],[['index.html#learn',['講座','강좌','Courses']],['plan.html',['私の学習プラン','내 학습 플랜','My Learning Plan']],['study.html',['私の学習ノート','내 학습 노트','My Study Notebook']],['guide.html',['学び方ガイド','학습 가이드','Study Guide']],['index.html#practice',['練習ツール','연습 도구','Practice Lab']]]],
- [['会社の実務','회사 실무','Business'],[['../23_재무3표실무/00_シリーズ全体_財務3表.html',['財務','재무','Finance']],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',['人事・総務','인사·총무','HR & Admin']],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',['管理職','관리자','Management']]]],
+ [['会社実務','회사 실무','Business'],[['../23_재무3표실무/00_シリーズ全体_財務3表.html',['財務','재무','Finance']],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',['人事・総務','인사·총무','HR & Admin']],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',['管理職','관리자','Management']]]],
  [['キャリア','커리어','Career'],[['jobs.html',['求人','채용','Jobs']],['../5_면접대비가이드/00_シリーズ全体_面接対策.html',['面接対策','면접 대비','Interview']],['index.html#coaching',['コーチング','코칭','Coaching']]]],
  [['つながる','소통','Connect'],[['../community/index.html',['コミュニティ','커뮤니티','Community']],['about.html',['このサイトについて','사이트 소개','About ACN']],['sources.html',['内容の扱い','콘텐츠 정책','Content Policy']]]]];
 function FL(x,l){return typeof x==='string'?x:x[{ja:0,ko:1,en:2}[l]||0]}
@@ -44,22 +44,22 @@ function fitL2(){Array.prototype.forEach.call(document.querySelectorAll('.lab b'
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitL2()});
 /* ページの中の小さな英語の見出し（.eyebrow など）を、日本語・韓国語の画面ではその言語にする（2026.10）
    HTML には英語のまま書いておき、ここに [英語, 日本語, 韓国語] を足す。英語の画面ではそのまま */
-var LB=[['Start here','はじめに','시작하기'],['Why ACN','航空キャリアノートの特徴','항공 커리어 노트의 특징'],['Aviation Jobs','航空の求人','항공 채용'],
- ['Aviation Learning','航空の講座','항공 강좌'],['Learning Path','学びの順序','학습 순서'],['Professional Business Skills','会社の実務','회사 실무'],
+var LB=[['Start here','はじめに','시작하기'],['Why ACN','航空キャリアノートの特徴','항공 커리어 노트의 특징'],['Aviation Jobs','航空求人','항공 채용'],
+ ['Aviation Learning','航空講座','항공 강좌'],['Learning Path','学びの順序','학습 순서'],['Professional Business Skills','会社実務','회사 실무'],
  ['Practice Lab','練習ツール','연습 도구'],['Practice Lab · Finance','練習ツール・財務','연습 도구 · 재무'],['ACN Membership','メンバーシップ','멤버십'],
- ['1:1 Aviation Coaching','1対1のコーチング','1:1 코칭'],['Aviation Community','コミュニティ','커뮤니티'],['Trust & Quality','信頼できる内容のために','믿을 수 있는 내용을 위해'],
+ ['1:1 Aviation Coaching','1対1コーチング','1:1 코칭'],['Aviation Community','コミュニティ','커뮤니티'],['Trust & Quality','信頼できる内容のために','믿을 수 있는 내용을 위해'],
  ['Aviation · Career · Professional Learning','航空・キャリア・仕事の学び','항공 · 커리어 · 실무 학습'],['Where to start','どこから始めるか','어디서 시작할까'],['Read alongside','あわせて読む','함께 읽기'],
  ['Career & Interview','就職と面接','취업과 면접'],['My Learning Plan','私の学習プラン','내 학습 플랜'],['My Study Notebook','私の学習ノート','내 학습 노트'],
- ['How to study','学び方','학습 방법'],['Build your plan','プランを作る','플랜 만들기'],['Profile','プロフィール','프로필'],['Dashboard','学習の記録','학습 기록'],['Progress','進み具合','진도'],
+ ['How to study','学び方','학습 방법'],['Build your plan','プランを作る','플랜 만들기'],['Profile','プロフィール','프로필'],['Dashboard','学習記録','학습 기록'],['Progress','進み具合','진도'],
  ['Review','復習','복습'],['Notes','メモ','메모'],['Bookmarks','ブックマーク','북마크'],['Backup','バックアップ','백업'],
  ['Your professional route','あなたの仕事の道筋','나의 커리어 경로'],['Today → Next career','いま → 次のキャリア','지금 → 다음 커리어'],
  ['Knowledge to Career.<br>Career back to Knowledge.','知識をキャリアに。<br>キャリアをまた知識に。','지식을 커리어로.<br>커리어를 다시 지식으로.'],
  ['All industries','業種を問わず','업종 무관'],['HR / Admin','人事・総務','인사·총무'],['Management','管理職','관리자'],
- ['Station Management','支店の運営','지점 운영'],['Airline Sales','航空営業','항공 영업'],['Station Launch','支店の開設','지점 개설'],
+ ['Station Management','支店運営','지점 운영'],['Airline Sales','航空営業','항공 영업'],['Station Launch','支店開設','지점 개설'],
  ['Passenger Operations','旅客ハンドリング','여객운송'],['Air Cargo','航空貨物','항공화물'],['Flight Operations','運航管理','운항관리'],
  ['Practice · Interview','練習ツール・面接','연습 도구 · 면접'],['Tool','ツール','도구'],['JA · KO · EN','日本語・韓国語・英語','일본어·한국어·영어'],['Membership','メンバーシップ','멤버십'],
  ['Learn','学ぶ','배우기'],['Practice','練習','연습'],['Connect','つながる','연결'],['Career','キャリア','커리어'],
- ['Aviation Career Note · Learn · Jobs · Business Skills · Coaching · Community','航空キャリアノート ・ 学ぶ ・ 求人 ・ 会社の実務 ・ コーチング ・ コミュニティ','항공 커리어 노트 · 학습 · 채용 · 회사 실무 · 코칭 · 커뮤니티']];
+ ['Aviation Career Note · Learn · Jobs · Business Skills · Coaching · Community','航空キャリアノート ・ 学ぶ ・ 求人 ・ 会社実務 ・ コーチング ・ コミュニティ','항공 커리어 노트 · 학습 · 채용 · 회사 실무 · 코칭 · 커뮤니티']];
 function localLabels(){var k=lang==='ja'?1:lang==='ko'?2:0,map={};LB.forEach(function(r){map[r[0].toLowerCase()]=r});
  Array.prototype.forEach.call(document.querySelectorAll('.topbar,.pricebox>b,.eyebrow,.kicker,.sector,.route-head b,.route-head small,.route-title,.ft-n,.meta-row span,.route-flow b,.route-flow span'),function(el){
   if(!el.hasAttribute('data-en'))el.setAttribute('data-en',el.innerHTML);var en=el.getAttribute('data-en'),key=en.replace(/&amp;/g,'&').trim().toLowerCase(),r=map[key];

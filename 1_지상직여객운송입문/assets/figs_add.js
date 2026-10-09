@@ -110,7 +110,7 @@ gnd_4team:function(l){
 
 /* 現場事例 8-1 判断の記録の型 */
 irr_log:function(l){
- var W=({ja:{t:'イレギュラーの判断の記録：1行の書き方',st:['確かめた事実を、誰から聞いたかまで書く','分からないことは「未確認」へ。誰がいつ確かめるか','決定と理由を1行で。決める人・承認も','次に見直す時刻を書く。過ぎたら必ず見直す'],who:['事実','未確認','決定と理由','次の時刻'],k:'交代のときは、この記録を一緒に見ながら渡す'},
+ var W=({ja:{t:'イレギュラー時の判断記録：1行の書き方',st:['確かめた事実を、誰から聞いたかまで書く','分からないことは「未確認」へ。誰がいつ確かめるか','決定と理由を1行で。決める人・承認も','次に見直す時刻を書く。過ぎたら必ず見直す'],who:['事実','未確認','決定と理由','次の時刻'],k:'交代のときは、この記録を一緒に見ながら渡す'},
   ko:{t:'비정상 판단 기록: 한 줄 쓰는 법',st:['확인한 사실을 누구에게 들었는지까지 쓴다','모르는 것은 「미확인」으로. 누가 언제 확인할지','결정과 이유를 한 줄로. 결정한 사람·승인도','다음에 다시 볼 시각을 쓴다. 지나면 반드시 다시 본다'],who:['사실','미확인','결정과 이유','다음 시각'],k:'교대 시에는 이 기록을 함께 보며 인계한다'},
   en:{t:'Recording irregularity decisions: how to write one line',st:['Write the confirmed fact, including who told you','Put unknowns under “unconfirmed”, with who checks and when','Write the decision and its reason in one line, with who decided and approved','Set the next review time, and always review once it passes'],who:['Fact','Unconfirmed','Decision and reason','Next time'],k:'At handover, go through this record together'}})[l];
  if(!W)return F.irr_log('ja');setK(1);

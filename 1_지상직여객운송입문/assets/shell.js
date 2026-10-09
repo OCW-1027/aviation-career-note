@@ -22,13 +22,13 @@ quiz:{ja:'\u78ba\u8a8d\u30af\u30a4\u30ba',ko:'\ud655\uc778 \ud034\uc988',en:'Qui
 ann:{ja:'\u7a7a\u6e2f\u30a2\u30ca\u30a6\u30f3\u30b9\u6587\u4f8b\u96c6',ko:'\uacf5\ud56d \uc548\ub0b4\ubc29\uc1a1 \uc608\ubb38\uc9d1',en:'Airport Announcements'},
 forms:{ja:'\u7a7a\u6e2f\u3067\u4f7f\u3046\u66f8\u985e\u3068\u69d8\u5f0f',ko:'\uacf5\ud56d \uc11c\ub958\uc640 \uc591\uc2dd',en:'Airport Forms'},
 faq:{ja:'\u3088\u304f\u3042\u308b\u8cea\u554f',ko:'\uc790\uc8fc \ubb3b\ub294 \uc9c8\ubb38',en:'FAQ'},
-route:{ja:'\u904b\u822a\u7ba1\u7406\u306e\u5b9f\u52d9\u7df4\u7fd2',ko:'\uc6b4\ud56d\uad00\ub9ac \uc2e4\ubb34 \uc5f0\uc2b5',en:'Flight Dispatch Practice'},
+route:{ja:'\u904b\u822a\u7ba1\u7406\u5b9f\u52d9\u306e\u7df4\u7fd2',ko:'\uc6b4\ud56d\uad00\ub9ac \uc2e4\ubb34 \uc5f0\uc2b5',en:'Flight Dispatch Practice'},
 rm:{ja:'収益管理の練習',ko:'수익관리 연습',en:'Revenue Management Practice'},
 story:{ja:'\u30b9\u30c8\u30fc\u30ea\u30fc\u8a2d\u8a08\u30b7\u30fc\u30c8',ko:'\uc2a4\ud1a0\ub9ac \uc124\uacc4 \uc2dc\ud2b8',en:'Story Design Sheet'},
 kako:{ja:'航空従事者技能証明等学科試験 過去問',ko:'\uc77c\ubcf8\u0020\ud559\uacfc\uc2dc\ud5d8\u0020\uae30\ucd9c\ubb38\uc81c',en:'Japan Aviation Exam Past Papers'},
 krdsp:{ja:'\u97d3\u56fd\u0020\u904b\u822a\u7ba1\u7406\u58eb\u0020\u7df4\u7fd2\u554f\u984c',ko:'\ud55c\uad6d\u0020\uc6b4\ud56d\uad00\ub9ac\uc0ac\u0020\uc5f0\uc2b5\ubb38\uc81c',en:'Korea Dispatcher Practice Questions'},
 fincard:{ja:'取引と財務諸表の練習',ko:'거래와 재무제표 연습',en:'Transactions & Statements Practice'},
-finlink:{ja:'財務諸表の連動シミュレーター',ko:'재무제표 연동 시뮬레이터',en:'Linked Financial Statements Simulator'},
+finlink:{ja:'財務諸表連動シミュレーター',ko:'재무제표 연동 시뮬레이터',en:'Linked Financial Statements Simulator'},
 fincost:{ja:'航空原価計算の練習',ko:'항공 원가 계산 연습',en:'Airline Cost & Break-even Practice'},
 finsim:{ja:'航空会社経営シミュレーション',ko:'항공사 경영 시뮬레이션',en:'Airline Management Simulation'},
 finratio:{ja:'財務比率の計算練習',ko:'재무 비율 계산 연습',en:'Financial Ratio Practice'},
@@ -37,14 +37,14 @@ finmemo:{ja:'投資検討報告書の下書き',ko:'투자 검토 보고서 초�
 fsc:{ja:'日本発 燃油サーチャージの計算',ko:'일본발 유류할증료 계산',en:'Japan-Origin Fuel Surcharge Calculator'},
 finclose:{ja:'年次決算の練習',ko:'1년 결산 연습',en:'Year-End Closing Practice'}};
 /* 下の共通ボタン（2026.10）：ツールが属する講座の目次へ・資料・ツールへ。講座のないツールは資料・ツールのボタンだけ */
-var CR={p1:['1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html','旅客ハンドリングの実務','항공 여객운송 실무','Airline Passenger Operations'],
+var CR={p1:['1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html','旅客ハンドリング実務','항공 여객운송 실무','Airline Passenger Operations'],
 p2:['2_일본취항지점개설가이드/00_シリーズ全体_日本就航支店開設ガイド.html','外国航空会社の日本就航・支店開設ガイド','외국 항공사 일본 취항·지점 개설 가이드','Launching Flights to Japan: A Station Setup Guide for Foreign Airlines'],
 p5:['5_면접대비가이드/00_シリーズ全体_面接対策.html','航空業界の面接対策','항공업계 면접 대비','Aviation Industry Interview Prep'],
-p13:['13_항공영업입문/00_シリーズ全体_航空営業入門.html','航空営業の実務','항공 영업 실무','Airline Sales Operations'],
-p18:['18_항공기초지식/00_シリーズ全体_航空の基礎知識.html','航空の基礎知識','항공 기초 지식','Aviation Fundamentals'],
-p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','運航管理の実務','운항관리 실무','Flight Dispatch Operations'],
+p13:['13_항공영업입문/00_シリーズ全体_航空営業入門.html','航空営業実務','항공 영업 실무','Airline Sales Operations'],
+p18:['18_항공기초지식/00_シリーズ全体_航空の基礎知識.html','航空基礎知識','항공 기초 지식','Aviation Fundamentals'],
+p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','運航管理実務','운항관리 실무','Flight Dispatch Operations'],
 p23:['23_재무3표실무/00_シリーズ全体_財務3表.html','数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],
-p12:['12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','会社の人事・総務・財務の実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice']};
+p12:['12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','会社の人事・総務・財務実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice']};
 var CMAP={load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p19',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23',finmemo:'p23',finclose:'p12'};
 var FT={ja:['← 講座の目次','資料・ツール','ほかのツールを見る →'],ko:['← 강좌 목차','자료실','다른 도구 보기 →'],en:['\u2190 Course contents','Resources','See other tools \u2192']};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);

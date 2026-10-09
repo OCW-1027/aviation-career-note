@@ -60,7 +60,7 @@ les:['レッスン','레슨','Lesson'],sw:['← 横にスクロールできま�
 need:['次の数字を入れると計算します：','다음 숫자를 넣으면 계산합니다: ','Enter these to calculate: '],
 x:['倍','배','×'],yr:['年目','년 차',''],yrp:['','','Year '],
 fcf:['フリーキャッシュフロー','잉여현금흐름','Free cash flow'],df:['割引係数','할인계수','Discount factor'],pv:['現在価値','현재가치','Present value'],
-eqv:['株式の価値','주식 가치','Equity value'],dr:['割引率','할인율','Discount rate'],gr:['成長率','성장률','Growth'],
+eqv:['株式価値','주식 가치','Equity value'],dr:['割引率','할인율','Discount rate'],gr:['成長率','성장률','Growth'],
 wg:['割引率は成長率より大きくしてください','할인율은 성장률보다 크게 넣어 주세요','The discount rate must be higher than the growth rate'],
 ff1:['倍率法','배수법','Multiples'],ff2:['DCF（幅）','DCF(범위)','DCF (range)'],ff3:['純資産','순자산','Net assets'],ffp:['価格','가격','Price'],
 note:['※ 例の数字は架空です。計算の考え方を学ぶためのもので、投資の助言ではありません。倍率・割引率・成長率は置いた前提で、答えは前提しだいで大きく変わります。入れた数字はこの端末のブラウザーにだけ保存されます。','※ 예시 숫자는 가상입니다. 계산 방식을 익히기 위한 것이며 투자 조언이 아닙니다. 배수·할인율·성장률은 둔 전제이고, 답은 전제에 따라 크게 달라집니다. 넣은 숫자는 이 기기의 브라우저에만 저장됩니다.','* The example figures are fictional. The tool is for learning how valuation works and is not investment advice. The multiple, discount rate and growth rate are assumptions, and the answer depends heavily on them. Your figures are saved only in this browser.']};
@@ -77,7 +77,7 @@ w:['割引率（%）','할인율(%)','Discount rate (%)'],g:['6年目からの�
 e5:['5年後のEBITDA','5년 뒤 EBITDA','EBITDA in five years'],xm:['売るときの倍率','팔 때의 배수','Exit multiple'],xnd:['5年後の純有利子負債','5년 뒤 순차입금','Net debt in five years']};
 /* 結果の行：[名前, 式（言葉）, 読み方] */
 var RT={evm:[['企業価値','기업가치','Enterprise value'],['EBITDA × 倍率','EBITDA × 배수','EBITDA × multiple'],['似た会社が取引されている倍率を、この会社の稼ぎに掛ける','비슷한 회사가 거래되는 배수를 이 회사의 벌이에 곱한다','Apply the multiple at which similar companies trade to this company’s earnings']],
-eqm:[['株式の価値','주식 가치','Equity value'],['企業価値 − 純有利子負債','기업가치 − 순차입금','Enterprise value − net debt'],['借入を引いた残りが、株主の取り分','차입을 빼고 남는 것이 주주의 몫','What is left after debt belongs to the shareholders']],
+eqm:[['株式価値','주식 가치','Equity value'],['企業価値 − 純有利子負債','기업가치 − 순차입금','Enterprise value − net debt'],['借入を引いた残りが、株主の取り分','차입을 빼고 남는 것이 주주의 몫','What is left after debt belongs to the shareholders']],
 sum:[['5年分の現在価値','5년 치 현재가치','Present value of five years'],['各年のFCF ÷（1 ＋ 割引率）の年数乗 の合計','각 해의 FCF ÷ (1 + 할인율)의 연수 제곱의 합계','Sum of each year’s FCF ÷ (1 + rate) to the power of the year'],['先の年ほど、今日の価値は小さくなる','먼 해일수록 오늘의 가치는 작아진다','The further out, the smaller the value today']],
 tv:[['継続価値','영구가치','Terminal value'],['5年目のFCF ×（1 ＋ 成長率）÷（割引率 − 成長率）','5년 차 FCF × (1 + 성장률) ÷ (할인율 − 성장률)','Year-5 FCF × (1 + growth) ÷ (rate − growth)'],['6年目から先ずっと続く現金の、5年目時点での価値','6년 차부터 계속 이어지는 현금의 5년 차 시점 가치','The value, at year 5, of all the cash from year 6 onwards']],
 ptv:[['継続価値の現在価値','영구가치의 현재가치','Present value of the terminal value'],['継続価値 ÷（1 ＋ 割引率）の5乗','영구가치 ÷ (1 + 할인율)의 5제곱','Terminal value ÷ (1 + rate) to the power 5'],['5年目時点の価値を、さらに今日に直す','5년 차 시점의 가치를 다시 오늘로 고친다','Bring the year-5 value back to today']],
