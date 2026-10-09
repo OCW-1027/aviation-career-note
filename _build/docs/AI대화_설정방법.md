@@ -109,7 +109,8 @@
 Worker 코드에 다음 제한이 들어 있습니다.
 
 - 한 번에 메시지 **16개까지**, 메시지 1개 **1,200자까지** (처음의 설정 프롬프트는 3,000자까지)
-- AI 대답 길이 **max_tokens 400**
+- AI 대답 길이 **max_tokens 400** (gpt-oss-120b는 ‘생각하는 부분’도 같은 한도를 쓰므로 **1000**. 400이면 대답(JSON)이 중간에 잘렸습니다 — 2026.10)
+- gpt-oss는 **생각하는 양을 ‘low’(적게)** 로 요청합니다(Cloudflare 문서의 `reasoning: { effort: "low" }` 형식). 이 형식이 거절되면 Worker가 자동으로 예전 형식으로 한 번 다시 보냅니다.
 - 모델은 위 표의 3개만
 - 같은 IP에서 **1분에 20번까지** (Worker 안의 간단한 계산. 정확한 제한은 아래 고급 설정)
 - 우리 사이트 주소(`ALLOWED_ORIGINS`)에서 온 요청만
@@ -132,9 +133,22 @@ simple = { limit = 20, period = 60 }
 | 바로 “다른 AI 앱” 화면으로 바뀌며 “오늘 무료로 쓸 수 있는 양이 끝났습니다” | 하루 무료 사용량 소진. 다음 날 오전 9시에 복구 |
 | “다른 AI 앱” 화면으로 바뀜(사용량 문구 없음) | AI 연결 이름이 `AI` 가 아님(4단계), 또는 사이트 주소 미허용(5단계) |
 | “너무 빨리 보냈어요” | 1분 20번 제한. 잠시 뒤 다시 |
+| 채팅에 `{"reply":"…` 같은 글자가 보임 | 옛 페이지·옛 Worker 코드. 페이지는 2026.10 수정판부터 이런 글자를 절대 보여 주지 않음. Worker도 12단계대로 새 코드로 바꿔 주세요 |
+| “AI의 대답이 늦어지고 있어요” | 30초 안에 대답이 오지 않음. **다시 보내기** 를 누르면 됨 |
 
 Worker가 돌려주는 오류 이름: `origin`(허용 안 된 사이트) · `bad_request`(형식 오류) · `too_large`(너무 김) · `rate`(횟수 제한) · `quota`(오늘 무료분 소진) · `config`(AI 연결 없음) · `ai`/`empty`/`busy`(AI 쪽 일시 오류)
 
-## 12. 코드를 고친 뒤
+## 12. Worker 코드 업데이트 방법 (코드를 고친 뒤 · 2026.10 업데이트 포함)
 
-`_build/worker/talk-worker.js` 를 고쳤다면 3단계(전부 지우고 붙여 넣기 → Deploy)만 다시 하면 됩니다. 4·5단계 설정은 그대로 남습니다.
+`_build/worker/talk-worker.js` 가 바뀌면 Cloudflare에 있는 코드도 **직접 바꿔 넣어야** 합니다. (GitHub에 올리는 것만으로는 바뀌지 않습니다.) 4·5단계 설정(AI 연결, 허용 주소)은 그대로 남습니다.
+
+1. PC의 `콘텐츠\_build\worker\talk-worker.js` 를 메모장으로 엽니다 → **Ctrl+A → Ctrl+C** (전부 복사).
+2. <https://dash.cloudflare.com> → 왼쪽 **Compute (Workers)** → **Workers & Pages** → **`talk-ai`** 를 누릅니다.
+3. 오른쪽 위 **Edit code**(코드 편집, `</>` 모양)를 누릅니다.
+4. 왼쪽 편집기(`worker.js`)를 클릭 → **Ctrl+A → Delete** 로 전부 지우고 → **Ctrl+V** 로 붙여 넣습니다.
+5. 오른쪽 위 **Deploy**(배포)를 누릅니다. “Deployed” 같은 표시가 나오면 끝입니다.
+6. 확인: 브라우저로 Worker 주소(`https://talk-ai.kumamongmong.workers.dev`)를 열어 `{"ok":true, … "ai":true …}` 가 보이면 정상입니다. 그 뒤 `talk.html` 의 「AI와 대화」에서 2~3번 주고받아 봅니다.
+
+- 붙여 넣은 첫 줄이 `// 航空キャリアノート：会話練習の「AIと話す」の中継` 로 시작하고, 마지막 줄이 `};` 인지 확인하면 빠진 곳 없이 복사된 것입니다.
+- **(선택)** 생각하는 양을 바꾸고 싶으면: **Settings → Variables and Secrets → Add** → Type **Text**, 이름 `REASONING_EFFORT`, 값 `low`(기본) / `medium` / `high` / `off`(예전 방식만 사용). 보통은 만들지 않아도 됩니다.
+- 혹시 업데이트 뒤 AI가 대답하지 않으면: 같은 화면 위쪽 **Deployments**(배포) 탭에서 바로 전 버전을 골라 **Rollback**(되돌리기)할 수 있습니다. 페이지는 옛 Worker로도 동작합니다.

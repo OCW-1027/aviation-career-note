@@ -1,10 +1,17 @@
 // 航空キャリアノート：会話練習の「AIと話す」の中継（Cloudflare Worker + Workers AI）2026.10
-// ・置き方（韓国語・開発の知識なしで）：リポジトリの一番上の 00_AI대화_설정방법.md
+// ・置き方・更新のしかた（韓国語・開発の知識なしで）：_build/docs/AI대화_설정방법.md
 // ・ページ（会話練習_日韓英.html / talk.html）から {messages:[{role,content}], model?} を POST で受け取り、
 //   Workers AI に渡して {text:'…'} を返す。API キーはいらない（Worker に「AI」という名前で Workers AI をつなぐ）
 // ・使ってよいサイト（Origin）だけに答える：変数 ALLOWED_ORIGINS（カンマ区切り）。なければ https://ocw-1027.github.io
 //   試験用に http://localhost と http://127.0.0.1 も通す（変数 ALLOW_LOCALHOST を 'false' にすると止める）
-// ・上限：メッセージ 16件まで、1件 1,200字まで（最初の system は 3,000字まで）、返事は max_tokens 400、モデルは ALLOWED_MODELS だけ
+// ・上限：メッセージ 16件まで、1件 1,200字まで（最初の system は 3,000字まで）、モデルは ALLOWED_MODELS だけ
+//   返事の長さ：qwen・gemma は max_tokens 400。gpt-oss は「考える」部分も同じ枠を使うので 1000（400 だと JSON が途中で切れた。2026.10）
+// ・gpt-oss の考える量（2026.10 Cloudflare の文書）：
+//     モデルの説明 developers.cloudflare.com/workers-ai/models/gpt-oss-120b/ … 入力は messages（Chat Completions の形）。考える量は low / medium（ふつう）/ high
+//     2025-08-05 の更新のお知らせ … Workers の env.AI.run は Responses API の形も受け取る。考える量は {input:[…], reasoning:{effort:'…'}}
+//   そこで gpt-oss は、まず Responses の形（input ＋ reasoning.effort 'low'）で送り、受け付けられない・空のときは
+//   messages の形（2026.10 に動くことを確かめた形）で1回だけ送り直す。変数 REASONING_EFFORT（low / medium / high / off）で変えられる。off＝いつも messages
+//   返事からは最後の答え（output の message、choices の content）だけを取り、考えた中身（reasoning）は使わない
 // ・同じ IP からの回数の上限：Rate Limiting のつなぎ（名前 RL）があればそれを使い、なければこの Worker の中の簡単な数え方（1分に20回）
 // ・失敗のときは {error:'…'} とわかりやすい番号を返す（ページはそれを見て「ほかのAIアプリで練習する」に切り替える）
 //     400 bad_request / 403 origin / 405 method / 413 too_large / 429 rate（回数の上限）/ 429 quota（今日の無料の分の終わり）
@@ -18,7 +25,11 @@ const MAX_MESSAGES = 16;
 const MAX_CHARS = 1200;          // user / assistant の1件
 const MAX_SYSTEM_CHARS = 3000;   // 最初の system（ページの作るプロンプト）
 const MAX_BODY = 64 * 1024;      // 受け取る大きさの上限（バイト）
-const MAX_TOKENS = 400;
+const MAX_TOKENS = 400;          // qwen・gemma
+const MAX_TOKENS_GPT_OSS = 1000; // gpt-oss（考える部分＋答え）
+const EFFORTS = ['low', 'medium', 'high'];
+const RESPONSES_PAUSE = 10 * 60000; // Responses の形が通らなかったら、この間は messages の形だけを使う
+let responsesNg = 0;             // 最後に Responses の形が通らなかった時刻
 const PER_MINUTE = 20;           // RL のつなぎがないときの、1つの IP の1分あたりの回数
 
 const hits = new Map();          // RL がないときの数え方（この Worker の1つの実行の中だけ。目安）
@@ -79,35 +90,95 @@ function validate(body, env) {
   return { messages: out, model };
 }
 
+function isGptOss(model) { return /gpt-oss/i.test(String(model || '')); }
+function maxTokensFor(model) { return isGptOss(model) ? MAX_TOKENS_GPT_OSS : MAX_TOKENS; }
+function effortOf(env) {
+  const v = String((env && env.REASONING_EFFORT) || 'low').trim().toLowerCase();
+  return v === 'off' ? '' : (EFFORTS.includes(v) ? v : 'low');
+}
+
 // Qwen3 は「考える」部分を出すことがあるので、/no_think で止める（費用と時間の節約）
-function prepare(messages, model) {
+// gpt-oss は system の頭に「Reasoning: low」（OpenAI のモデルの説明にある書き方）も入れておく（messages の形で送るときの助け）
+function prepare(messages, model, effort) {
   const m = messages.map(x => ({ role: x.role, content: x.content }));
   if (/qwen3/i.test(model)) {
     if (m[0].role === 'system') m[0].content += '\n/no_think';
     else m.unshift({ role: 'system', content: '/no_think' });
   }
+  if (isGptOss(model) && effort && !/^Reasoning:/i.test(m[0].content)) {
+    if (m[0].role === 'system') m[0].content = 'Reasoning: ' + effort + '\n' + m[0].content;
+    else m.unshift({ role: 'system', content: 'Reasoning: ' + effort });
+  }
   return m;
 }
 
-// Workers AI の答えの形はモデルでちがうので、文だけを取り出す
+// Workers AI に渡す中身。shape 'responses'＝Responses API の形、'chat'＝messages の形
+function aiInput(messages, model, shape, effort) {
+  const msgs = prepare(messages, model, effort);
+  if (shape === 'responses') return { input: msgs, reasoning: { effort: effort || 'low' }, max_output_tokens: maxTokensFor(model), temperature: 0.7 };
+  return { messages: msgs, max_tokens: maxTokensFor(model), temperature: 0.7 };
+}
+
+// AI を呼んで、文だけを返す。gpt-oss は Responses の形 → だめなら messages の形（1回だけ）
+async function runAI(env, model, messages) {
+  const effort = isGptOss(model) ? effortOf(env) : '';
+  if (effort && Date.now() - responsesNg > RESPONSES_PAUSE) {
+    let text = '';
+    try { text = cleanText(await env.AI.run(model, aiInput(messages, model, 'responses', effort))); }
+    catch (e) {
+      const c = classify(e);
+      if (c.error !== 'ai') throw e;          // quota・busy はそのまま知らせる（送り直さない）
+      responsesNg = Date.now();
+      console.log('talk-ai: responses_shape');
+    }
+    if (text) return text;
+  }
+  return cleanText(await env.AI.run(model, aiInput(messages, model, 'chat', effort)));
+}
+
+// Workers AI の答えの形はモデルでちがうので、最後の答えの文だけを取り出す
+// （gpt-oss の考えた中身：choices[0].message.reasoning_content / reasoning、output の type:'reasoning'、summary は使わない）
+function partsText(content) {
+  if (typeof content === 'string') return content;
+  if (!Array.isArray(content)) return '';
+  const out = [];
+  for (const p of content) {
+    if (typeof p === 'string') out.push(p);
+    else if (p && typeof p.text === 'string' && !/reasoning|summary/i.test(String(p.type || ''))) out.push(p.text);
+  }
+  return out.join('');
+}
 function textOf(r) {
   if (r == null) return '';
   if (typeof r === 'string') return r;
   if (typeof r.response === 'string') return r.response;
   if (r.response && typeof r.response === 'object') return textOf(r.response);
+  if (r.result && typeof r.result === 'object') return textOf(r.result);
   const c = Array.isArray(r.choices) && r.choices[0];
   if (c) {
-    if (c.message && typeof c.message.content === 'string') return c.message.content;
+    if (c.message) { const t = partsText(c.message.content); if (t) return t; }
     if (typeof c.text === 'string') return c.text;
+    return '';
   }
-  if (typeof r.output_text === 'string') return r.output_text;
   if (Array.isArray(r.output)) {
     const parts = [];
-    for (const o of r.output) if (o && o.type === 'message' && Array.isArray(o.content)) for (const p of o.content) if (p && typeof p.text === 'string') parts.push(p.text);
+    for (const o of r.output) if (o && o.type === 'message' && (!o.role || o.role === 'assistant')) { const t = partsText(o.content); if (t) parts.push(t); }
     if (parts.length) return parts.join('\n');
   }
+  if (typeof r.output_text === 'string') return r.output_text;
   return '';
 }
+
+// gpt-oss の生の書式（<|channel|>final<|message|> など）が混ざったときは、final の部分だけにする
+function stripHarmony(s) {
+  s = String(s || '');
+  if (!/<\|(channel|message|start|end|return)\|>/.test(s)) return s;
+  const i = s.lastIndexOf('<|channel|>final<|message|>');
+  if (i >= 0) s = s.slice(i + '<|channel|>final<|message|>'.length);
+  else if (/<\|channel\|>analysis/.test(s)) return '';
+  return s.replace(/<\|[a-z_]+\|>/g, '').trim();
+}
+function cleanText(r) { return stripThink(stripHarmony(textOf(r))); }
 
 function stripThink(s) {
   s = String(s || '').replace(/<think>[\s\S]*?<\/think>/gi, '');
@@ -162,8 +233,7 @@ export default {
     if (!(await rateOk(request, env))) return json({ error: 'rate' }, 429, allow);
     if (!env || !env.AI || typeof env.AI.run !== 'function') { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
     try {
-      const r = await env.AI.run(v.model, { messages: prepare(v.messages, v.model), max_tokens: MAX_TOKENS, temperature: 0.7 });
-      const text = stripThink(textOf(r));
+      const text = await runAI(env, v.model, v.messages);
       if (!text) return json({ error: 'empty' }, 502, allow);
       return json({ text, model: v.model }, 200, allow);
     } catch (e) {

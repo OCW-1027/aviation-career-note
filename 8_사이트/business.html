@@ -98,11 +98,11 @@ en:{hp:'Reading a company’s numbers, HR, admin and finance work, and handing o
 var BZ=[['FIN','company','All industries'],['ADM','hr','HR / Admin'],['HOV','admin','Management']],
  KICK={STN:'Station Management',SLS:'Airline Sales',OPN:'Station Launch'},REL=['STN','SLS','OPN'],
  /* ツールは data/home_data.js の id で指す（ファイル名は公開時に英語に変わるので、名前で探さない） */
- FINT=['fin_tx','fin_link','fin_ratio','fin_val','fin_cost','fin_sim','ye','fin_memo'];
+ FINT=['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo','ye']; /* ホームの「財務実習」と同じ順（2026.10） */
 function $(i){return document.getElementById(i)}
 function E(s){return window.ACN?ACN.E(s):String(s)}
-/* ツールの名前：\n の後ろは改行して2行目（.l2）に。2行目が入らないときの調整は v3.js（fitL2）2026.10 */
-function TT(s){var a=String(s).split('\n');return E(a[0])+(a.length>1?'<br><span class="l2">'+E(a.slice(1).join(' '))+'</span>':'')}
+/* ツールの名前：\n があれば1行目（.l1）と2行目（.l2）に分けて改行。それぞれの行を1行に収める調整は v3.js（fitAll）2026.10 */
+function TT(s){var a=String(s).split('\n');return a.length>1?'<span class="l1">'+E(a[0])+'</span><br><span class="l2">'+E(a.slice(1).join(' '))+'</span>':E(a[0])}
 (function(){if(!window.CATALOG)return;SERIES.forEach(function(s){var d=(s.p||'').split('/')[1];if(!s.dirs&&CATALOG[d])s.n=CATALOG[d].n})})();
 window.PAGE_RENDER=function(lang){var t=T[lang]||T.ja,S={};SERIES.forEach(function(s){S[s.code]=s});
  var h1=t.h1||'Business Skills';$('h1').textContent=h1;document.title=h1+' | '+(lang==='ja'?'航空キャリアノート':lang==='ko'?'항공 커리어 노트':'Aviation Career Note');

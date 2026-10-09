@@ -21,7 +21,7 @@ var M={"UW3":{"。":6699,"に":3897,"、":4784,"の":3706,"が":4162,"を":5769,
 var H=Object.prototype.hasOwnProperty,B=0,g,k;for(g in M)for(k in M[g])B-=M[g][k]/2;
 function v(t,s){var m=M[t];return m&&H.call(m,s)?m[s]:0}
 var KJ=/[一-鿿々〆]/,KT=/[ァ-ヺー]/,HG=/[가-힣ᄀ-ᇿ㄰-㆏]/,AN=/[A-Za-z0-9]/,SP=/\s/,
- NOHEAD=/[、。，．）」』】〕）\]・ー：；！？!?,.:;)、。]/,NOTAIL=/[（「『【〔（\[(]/;
+ NOHEAD=/[、。，．）」』】〕）\]・ー：；！？!?,.:;)、。\u2060]/,NOTAIL=/[（「『【〔（\[(\u2060]/;
 /* 文節の切れ目（文字の位置）の一覧 */
 function cut(s){var r={},i,j,x,p,n=s.length,no={};
  for(i=1;i<n;i++){x=B+v('UW1',s.substring(i-3,i-2))+v('UW2',s.substring(i-2,i-1))+v('UW3',s.substring(i-1,i))+v('UW4',s.substring(i,i+1))+v('UW5',s.substring(i+1,i+2))+v('UW6',s.substring(i+2,i+3))+
