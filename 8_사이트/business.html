@@ -24,7 +24,7 @@
 <main>
 <section class="page-hero">
   <div class="eyebrow" style="color:#9a793f">Professional Business Skills</div>
-  <h1>Business Skills</h1>
+  <h1 id="h1">Business Skills</h1>
   <p id="hp"></p>
 </section>
 
@@ -76,18 +76,18 @@
 /* Business Skills のまとめページ（v3 の見た目・試作 2026.10）
    講座は data/home_data.js の 数字で読む会社（FIN）・人事総務財務（ADM）・引き継ぎ（HOV）、ツールは財務の練習ツール */
 var T={
-ja:{hp:'会社の数字を読む力、人事・総務・財務の仕事、管理職としての引き継ぎ。航空会社の支店実務から生まれた内容ですが、業種を問わず活かせます。',
+ja:{h1:'会社の実務',hp:'会社の数字を読む力、人事・総務・財務の仕事、管理職としての引き継ぎ。航空会社の支店実務から生まれた内容ですが、業種を問わず活かせます。',
  hs:'今の課題に合うところから<br>始めましょう。',ls:'数字・人・管理。3つの講座から、必要なものを選んで始められます。',
  bnote:'<b>こんな方におすすめ</b><br>数字に苦手意識のある管理職、管理部門に初めて配属された方、支店長など新たに管理職に就く方。',
- role:{FIN:'数字が苦手で、決算書を読めるようになりたい方へ',ADM:'管理部門に配属された方・新社会人へ',HOV:'管理職に就く方・引き継ぎを行う方へ'},lessons:'Lessons',view:'講座を見る →',
+ role:{FIN:'数字が苦手で、決算書を読めるようになりたい方へ',ADM:'管理部門に配属された方・新社会人へ',HOV:'管理職に就く方・引き継ぎを行う方へ'},lessons:'レッスン',view:'講座を見る →',
  ht:'数字を動かして、<br>仕組みを確かめる。',lt:'財務諸表のつながり、会社の価値、決算の流れを、数字を入れながら確かめる練習ツールです。',
- hm:'あわせて学びたい<br>航空講座',lm:'Business Skills と関係の深い、支店の運営・営業・支店の開設の講座です。'},
-ko:{hp:'회사의 숫자를 읽는 힘, 인사·총무·재무 업무, 관리자가 되었을 때의 인수인계. 항공사 지점 실무에서 나온 내용이지만 어느 업종의 회사에서나 쓸 수 있습니다.',
+ hm:'あわせて学びたい<br>航空講座',lm:'会社の実務と関係の深い、支店の運営・営業・支店の開設の講座です。'},
+ko:{h1:'회사 실무',hp:'회사의 숫자를 읽는 힘, 인사·총무·재무 업무, 관리자가 되었을 때의 인수인계. 항공사 지점 실무에서 나온 내용이지만 어느 업종의 회사에서나 쓸 수 있습니다.',
  hs:'지금 입장에서<br>시작하세요.',ls:'숫자·사람·관리. 세 강좌 중 어디서부터 읽어도 됩니다.',
  bnote:'<b>이런 분께 권합니다</b><br>숫자에 약한 관리자, 관리 부서에 처음 배치된 분, 지점장·관리직으로 부임하는 분.',
- role:{FIN:'숫자에 약해서 결산서를 읽을 수 있게 되고 싶은 분께',ADM:'관리 부서에 배치된 분·사회 초년생께',HOV:'관리자가 되거나 교체되는 분께'},lessons:'Lessons',view:'과정 보기 →',
+ role:{FIN:'숫자에 약해서 결산서를 읽을 수 있게 되고 싶은 분께',ADM:'관리 부서에 배치된 분·사회 초년생께',HOV:'관리자가 되거나 교체되는 분께'},lessons:'레슨',view:'과정 보기 →',
  ht:'숫자를 움직이며<br>확인합니다.',lt:'재무제표의 연결, 회사의 가치, 결산의 흐름을 숫자를 넣어 보며 확인하는 연습 도구입니다.',
- hm:'함께 읽는<br>항공 강좌',lm:'Business Skills와 관계가 깊은 지점 운영·영업·지점 개설 강좌입니다.'},
+ hm:'함께 읽는<br>항공 강좌',lm:'회사 실무와 관계가 깊은 지점 운영·영업·지점 개설 강좌입니다.'},
 en:{hp:'Reading a company’s numbers, HR, admin and finance work, and handing over when you become a manager. Written from airline station practice, but useful in any industry.',
  hs:'Start from<br>where you are.',ls:'Numbers, people and management: begin with whichever of the three courses fits you.',
  bnote:'<b>Recommended for</b><br>Managers who find numbers difficult, people new to an admin team, and anyone taking up a station or management post.',
@@ -96,16 +96,16 @@ en:{hp:'Reading a company’s numbers, HR, admin and finance work, and handing o
  hm:'Aviation courses<br>to read alongside',lm:'Station management, airline sales and station launch courses closely tied to business skills.'}};
 var BZ=[['FIN','company','All industries'],['ADM','hr','HR / Admin'],['HOV','admin','Management']],
  KICK={STN:'Station Management',SLS:'Airline Sales',OPN:'Station Launch'},REL=['STN','SLS','OPN'],
- FINT=['取引と財務諸表の練習','財務諸表の連動シミュレーター','財務比率の計算練習','企業価値の計算練習','航空原価計算の練習','航空会社経営シミュレーション','決算の練習','投資検討報告書の下書き'];
+ /* ツールは data/home_data.js の id で指す（ファイル名は公開時に英語に変わるので、名前で探さない） */
+ FINT=['fin_tx','fin_link','fin_ratio','fin_val','fin_cost','fin_sim','ye','fin_memo'];
 function $(i){return document.getElementById(i)}
 function E(s){return window.ACN?ACN.E(s):String(s)}
-function base(p){return decodeURIComponent(p).split('/').pop().replace(/\.html$/,'')}
 (function(){if(!window.CATALOG)return;SERIES.forEach(function(s){var d=(s.p||'').split('/')[1];if(!s.dirs&&CATALOG[d])s.n=CATALOG[d].n})})();
 window.PAGE_RENDER=function(lang){var t=T[lang]||T.ja,S={};SERIES.forEach(function(s){S[s.code]=s});
- document.title='Business Skills | Aviation Career Note';
+ var h1=t.h1||'Business Skills';$('h1').textContent=h1;document.title=h1+' | '+(lang==='ja'?'航空キャリアノート':lang==='ko'?'항공 커리어 노트':'Aviation Career Note');
  $('hp').textContent=t.hp;$('hs').innerHTML=t.hs;$('ls').textContent=t.ls;$('bnote').innerHTML=t.bnote;$('ht').innerHTML=t.ht;$('lt').textContent=t.lt;$('hm').innerHTML=t.hm;$('lm').textContent=t.lm;
  $('bizGrid').innerHTML=BZ.filter(function(b){return S[b[0]]}).map(function(b){var s=S[b[0]],d=s[lang]||s.ja;return '<a class="business-card '+b[1]+'" href="'+s.p+'"><span class="sector">'+E(b[2]).toUpperCase()+'</span><h3>'+E(d[1])+'</h3><p class="muted">'+E(d[2])+'<span class="sector-sub">'+E(t.role[b[0]])+'</span></p><div class="meta-row"><span>'+s.n+' '+t.lessons+'</span><span class="go">'+E(t.view)+'</span></div></a>'}).join('');
- $('toolGrid').innerHTML=FINT.map(function(n){var x=TOOLS.filter(function(y){return base(y.p)===n})[0];if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+E(String(d[0]).replace(/\n/g,' '))+'</b><span>'+E(d[1])+'</span></a>'}).join('');
+ $('toolGrid').innerHTML=FINT.map(function(n){var x=TOOLS.filter(function(y){return y.id===n})[0];if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+E(String(d[0]).replace(/\n/g,' '))+'</b><span>'+E(d[1])+'</span></a>'}).join('');
  $('rel').innerHTML=REL.filter(function(c){return S[c]}).map(function(c){var s=S[c],d=s[lang]||s.ja;return '<a class="course-card" href="'+s.p+'"><div class="kicker">'+E(KICK[c])+'</div><h3>'+E(d[1])+'</h3><p class="muted">'+E(d[2])+'</p><div class="meta-row"><span>'+s.n+' '+t.lessons+'</span><span class="go">'+E(t.view)+'</span></div></a>'}).join('');
 };
 </script>

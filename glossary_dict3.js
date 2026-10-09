@@ -90,7 +90,7 @@ window.DICT=(window.DICT||[]).concat([
 ["BIZ","Yield","イールド（単位収入）","일드(단위 수익)","旅客キロあたりの収入","여객킬로당 수익","Revenue per passenger kilometre"],
 ["BIZ","RASK / CASK","座席キロあたり収入・費用","좌석킬로당 수익·비용","有効座席キロあたりの収入と費用","유효좌석킬로당 수익과 비용","Revenue and cost per available seat kilometre"],
 ["BIZ","Break-even Load Factor","損益分岐搭乗率","손익분기 탑승률","費用をちょうど回収できる搭乗率","비용을 딱 회수할 수 있는 탑승률","The load factor at which revenue equals cost"],
-["BIZ","Revenue Management","Revenue Management（収益管理）","Revenue Management(수익관리)","需要に応じて運賃と座席の配分を調整し収入を最大にすること","수요에 따라 운임과 좌석 배분을 조정해 수익을 극대화하는 것","Adjusting prices and seat availability to maximise revenue"],
+["BIZ","Revenue Management","収益管理（Revenue Management）","Revenue Management(수익관리)","需要に応じて運賃と座席の配分を調整し収入を最大にすること","수요에 따라 운임과 좌석 배분을 조정해 수익을 극대화하는 것","Adjusting prices and seat availability to maximise revenue"],
 ["BIZ","Point of Sale (POS)","販売地","판매지","航空券を販売した国・地域","항공권을 판매한 나라·지역","The country or market where a ticket is sold"],
 ["BIZ","Online Travel Agency (OTA)","オンライン旅行会社（OTA）","온라인 여행사(OTA)","インターネットで航空券などを販売する旅行会社","인터넷으로 항공권 등을 판매하는 여행사","A travel agency selling online"]
 ]);

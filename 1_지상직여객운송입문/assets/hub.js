@@ -15,7 +15,7 @@ window.__applyUpdates=apply;
 ['updates.js','lesson_dates.js'].forEach(function(f){if((f==='updates.js'&&window.UPDATES)||(f==='lesson_dates.js'&&window.LESSON_DATES))return;var s=document.createElement('script');s.src=base+f;s.onload=apply;document.head.appendChild(s)});})();
 (function(){
 var H=window.HUBS[window.HUB_ID];H.site=window.HUB_SITE;var A=window.ARTS||{},LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
-var UI={ja:{all:'すべて',n:'レッスン',site:'サイトのトップへ',jp:'',copy:'© 2026 航空キャリアノート　無断転載・複製禁止'},ko:{all:'전체',n:'레슨',site:'사이트 홈으로',jp:'',copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© 2026 Aviation Career Note. All rights reserved.'}};
+var UI={ja:{all:'すべて',n:'レッスン',np:'パート',site:'サイトのトップへ',jp:'',copy:'© 2026 航空キャリアノート　無断転載・複製禁止'},ko:{all:'전체',n:'레슨',np:'파트',site:'사이트 홈으로',jp:'',copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지'},en:{all:'All',n:'Lessons',site:'Site home',jp:'Japanese only for now',copy:'© 2026 Aviation Career Note. All rights reserved.'}};
 /* 言語：?lang= → 保存した言語 → 端末の言語の順。決まった言語は保存する（2026.10） */
 var lang='ja';try{var q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],s=localStorage.getItem('art-lang');lang=q||(LANGS.indexOf(s)>=0?s:(function(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==='ko'||c==='ja'||c==='en')return c}return a.length&&a[0]?'en':'ja'})());localStorage.setItem('art-lang',lang)}catch(e){}
 /* 「K-ETA」「A-CDM」のようにハイフンを含む英数字の語は途中で改行しない（語の前で改行させる） */
@@ -32,7 +32,7 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render()}});
  $('brandTxt').textContent=H.site?H.site[lang]:'';
  $('code').textContent=H.code;$('h1').textContent=H.name[lang];$('lead').textContent=H.lead[lang];
- $('stats').innerHTML='<div><b>'+keys.length+'</b>'+U.n+'</div><div><b>'+(H.parts[lang].filter(function(p){return p}).length)+'</b>Parts</div>';
+ $('stats').innerHTML='<div><b>'+keys.length+'</b>'+U.n+'</div><div><b>'+(H.parts[lang].filter(function(p){return p}).length)+'</b>'+(U.np||'Parts')+'</div>';
  /* 講座ごとの注意（★の付く内容と確かめる先）と「内容の扱いと免責」への案内 2026.10 */
  (function(){var st=$('stats');if(!st||!st.parentNode)return;var bx=$('hubCaution');if(!bx){bx=document.createElement('div');bx.id='hubCaution';st.parentNode.insertBefore(bx,st.nextSibling)}
   var CT={ja:['この講座を読むときの注意','★の付いた内容','確かめる先','講座の内容は、学習のための一般的な情報です。実際の業務・手続きの前に、最新の公式情報と自社の規程で確かめてください。','内容の扱いと免責 →'],ko:['이 강좌를 읽을 때 주의할 점','★가 붙은 내용','확인할 곳','강좌 내용은 학습을 위한 일반 정보입니다. 실제 업무·절차 전에 최신 공식 정보와 자사 규정으로 확인하세요.','콘텐츠 이용 안내·면책 →'],en:['Before you use this course','What ★ marks','Where to check','This course is general information for learning. Before real work or procedures, check the latest official information and your own company’s rules.','Content notice and disclaimer →']}[lang]||{},cu=H.caution,i=({ja:0,ko:1,en:2})[lang]||0;
