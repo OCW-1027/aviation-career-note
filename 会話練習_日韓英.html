@@ -602,7 +602,7 @@ ja:{b:'・',head:'あなたは{T}の会話練習の相手です。次の設定�
  startX:'では、あなたから話しはじめてください。',
  json:'返事はかならず次のJSONだけにしてください（ほかの文字は書かない）：\n{"reply":"あなたのせりふ（{T}）","reading":"{RD}","fix":"{FX}","hints":["私が次に言える短い文（{T}）","もう1つ"]}',
  rd:'replyのひらがなの読み',fx:'私の前の発言の直し（{H}で1つ・短く。なければ空）',none:'',
- recap:'まとめのときは {"recap":{"phrases":["表現 — 意味（5つ）"],"good":"よかった点","fix":"直すとよい点"}} だけ（説明は{H}）。'},
+ recap:'まとめのときは {"recap":{"phrases":["表現 — 意味（5つ）"],"good":"私（学ぶ人）がよくできた点","fix":"直すとよい点"}} だけ（説明は{H}）。'},
 ko:{b:'- ',head:'당신은 {T} 회화 연습 상대입니다. 아래 설정으로 역할을 맡아 주세요.',
  sit:'상황: {v}',ai:'당신의 역할: {v}',me:'나의 역할: {v}',goal:'목표: {v}',twist:'중간에 생기는 일: {v} (대화 중간에 자연스럽게 넣어 주세요)',keys:'내가 써 보고 싶은 표현: {v}',
  rules:'규칙',r:['{T}로만 말하고, 역할에서 벗어나지 마세요.','한 번에 1~2문장. {LV}','매번 내가 대답하기 쉬운 질문이나 말로 끝내 주세요.'],
@@ -615,7 +615,7 @@ ko:{b:'- ',head:'당신은 {T} 회화 연습 상대입니다. 아래 설정으�
  startX:'그럼 당신이 먼저 말을 걸어 주세요.',
  json:'대답은 반드시 아래 JSON만 보내 주세요(다른 글은 쓰지 않기):\n{"reply":"당신의 대사({T})","reading":"{RD}","fix":"{FX}","hints":["내가 다음에 말할 수 있는 짧은 문장({T})","하나 더"]}',
  rd:'reply의 히라가나 읽기',fx:'내 직전 말의 교정({H}로 하나, 짧게. 없으면 빈칸)',none:'',
- recap:'정리할 때는 {"recap":{"phrases":["표현 — 뜻 (5개)"],"good":"잘한 점","fix":"고치면 좋은 점"}}만 보내 주세요(설명은 {H}로).'},
+ recap:'정리할 때는 {"recap":{"phrases":["표현 — 뜻 (5개)"],"good":"내(학습자)가 잘한 점","fix":"고치면 좋은 점"}}만 보내 주세요(설명은 {H}로).'},
 en:{b:'- ',head:'You are my {T} conversation partner. Play a role using the setup below.',
  sit:'Situation: {v}',ai:'Your role: {v}',me:'My role: {v}',goal:'Goal: {v}',twist:'Twist: {v} (bring it in naturally partway through)',keys:'Expressions I want to try: {v}',
  rules:'Rules',r:['Speak only {T} and stay in character.','1–2 sentences per turn. {LV}','End each turn with a question or prompt that is easy for me to answer.'],
@@ -628,7 +628,7 @@ en:{b:'- ',head:'You are my {T} conversation partner. Play a role using the setu
  startX:'Please start the conversation.',
  json:'Always reply with this JSON only (no other text):\n{"reply":"your line ({T})","reading":"{RD}","fix":"{FX}","hints":["a short line I could say next ({T})","another one"]}',
  rd:'hiragana reading of reply',fx:'one short correction of my last message in {H}, or empty',none:'',
- recap:'For the recap, send only {"recap":{"phrases":["expression — meaning (5)"],"good":"what went well","fix":"what to work on"}} (explanations in {H}).'}};
+ recap:'For the recap, send only {"recap":{"phrases":["expression — meaning (5)"],"good":"what I (the learner) did well","fix":"what to work on"}} (explanations in {H}).'}};
 var PERS=['friend','neighbor','colleague','exchange','staff','interviewer'];
 var TP=[],TPBY={};
 (Array.isArray(window.TALK_TOPICS)?window.TALK_TOPICS:[]).forEach(function(p){
@@ -668,6 +668,9 @@ function parseAI(raw){var s=String(raw==null?'':raw).replace(/<think>[\s\S]*?<\/
  function str(x){return typeof x==='string'?x.trim().slice(0,800):(x==null?'':typeof x==='object'?Object.keys(x).map(function(k){return str(x[k])}).filter(Boolean).join(' — ').slice(0,800):String(x).slice(0,800))}
  var a=s.indexOf('{'),b=s.lastIndexOf('}'),o=null;
  if(a>=0&&b>a){try{o=JSON.parse(s.slice(a,b+1))}catch(e){o=null}}
+ /* JSON が2つ以上続いて来たときは、最初の1つだけ使う（2026.10 実際の返事で確認） */
+ if(!o&&a>=0){var d=0,q=false,es=false,i;for(i=a;i<s.length;i++){var c=s.charAt(i);if(q){if(es)es=false;else if(c==='\\')es=true;else if(c==='"')q=false;continue}
+  if(c==='"')q=true;else if(c==='{')d++;else if(c==='}'){d--;if(d===0){try{o=JSON.parse(s.slice(a,i+1))}catch(e){o=null}break}}}}
  if(o&&typeof o==='object'){
   if(o.recap&&typeof o.recap==='object'){var r=o.recap;return {recap:{phrases:(Array.isArray(r.phrases)?r.phrases:[]).map(str).filter(Boolean).slice(0,8),good:str(r.good),fix:str(r.fix)}}}
   if(typeof o.reply==='string'&&o.reply.trim())return {reply:str(o.reply),reading:str(o.reading),fix:str(o.fix),hints:(Array.isArray(o.hints)?o.hints:[]).map(str).filter(Boolean).slice(0,3)}}
