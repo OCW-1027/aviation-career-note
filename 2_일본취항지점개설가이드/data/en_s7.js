@@ -32,7 +32,7 @@ quiz:[{q:"Which is true of the Japanese market?",opts:["Travel agencies carry mu
 {q:"What reduces agency errors fastest?",opts:["More complex rules","Simple booking classes and rules, with a clear local-language notice","No notice at all","Notices in English only"],a:1,exp:"Clarity in the local language matters."}],
 next:"7-2 The airport operators committee and the bodies around it"});
 
-set("7-2",{title:"The Airport Operators Committee and the Bodies Around It",hl:"the AOC",subtitle:"Join before launch. Meetings, fees and shared facilities all run through it ★",
+set("7-2",{title:"The Airline Operator’s Committee and the Bodies Around It",hl:"the AOC",subtitle:"Join before launch. Meetings, fees and shared facilities all run through it ★",
 lead:["The airport operators committee is the body of airlines serving an airport. Because using shared facilities, dealing with the airport company and cooperating in emergencies all run through it, joining before launch is essential (for an overview see Ground Staff 6-5).",
 "This article covers how to join, the fees and the meetings, the shared facilities accessed through it, the relationship with the terminal’s lead airline, and the other bodies to know."],
 sections:[
@@ -55,7 +55,7 @@ sections:[
 ["Stations of airlines from your own country","Information, help during disruption, rebooking"],
 ["Tourism and trade bodies","Launch publicity and events"]]}]}],
 voice:"AOC meetings let you learn early about changes such as new airport counter allocations. That gives you time to prepare signage and procedure changes.",
-terms:[["Airline Operators Committee (AOC)","空港運営委員会","공항운영협의회"],["Constitution","規約","규약"],["Annual Fee","年会費","연회비"],["Terminal Lead Airline","ターミナル運営航空会社","터미널 운영 항공사"],["Common-use Facilities","共用施設","공용 시설"],["Resumption of Operations","運用再開","운영 재개"]],
+terms:[["Airline Operator’s Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Annual Fee","年会費","연회비"],["Terminal Lead Airline","ターミナル運営航空会社","터미널 운영 항공사"],["Common-use Facilities","共用施設","공용 시설"],["Resumption of Operations","運用再開","운영 재개"]],
 quiz:[{q:"When should you join the committee?",opts:["A year after launch","Before launch","Never","After the audit"],a:1,exp:"You need it for shared facilities and more."},
 {q:"What should you watch in budgeting the annual fee?",opts:["No budget needed","Put it in the right quarter for when it is invoiced","Pay monthly","The airport company pays it"],a:1,exp:"The invoicing timing can move."},
 {q:"Who coordinates the resumption of operations after a major closure?",opts:["The committee","A travel agency","The shops","Passengers"],a:0,exp:"Order of resumption and flight allocation are coordinated there."}],

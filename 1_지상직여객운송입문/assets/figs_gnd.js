@@ -575,11 +575,11 @@ gnd_audit:function(l){
  if(!W)return F.gnd_audit('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 
-/* 6-5 空港運営委員会（AOC）で扱うテーマ */
+/* 6-5 航空会社運営委員会（AOC）で扱うテーマ */
 gnd_aoc:function(l){
- var W=({ja:{t:'空港運営委員会（AOC）：航空会社が集まって空港の課題を話し合う',c:'AOC',r:[['施設','カウンター・改修・手荷物設備'],['運用','混雑・定時性・除雪'],['料金','使用料の改定・割引'],['保安','検査の変更・教育・パス'],['緊急時','緊急時計画・合同訓練'],['情報共有','新規就航・行政の変更']],n:['1社では言いにくい要望も、協議会を通せば空港に届きやすい','支店長が出席し、決まったことを本社と現場に伝える']},
-  ko:{t:'공항 운영위원회(AOC): 항공사들이 모여 공항 과제를 논의한다',c:'AOC',r:[['시설','카운터·개보수·수하물 설비'],['운용','혼잡·정시성·제설'],['요금','사용료 개정·할인'],['보안','검색 변경·교육·패스'],['비상시','비상 계획·합동 훈련'],['정보 공유','신규 취항·행정 변경']],n:['한 회사로는 말하기 어려운 요청도 위원회를 통하면 공항에 전달되기 쉽다','지점장이 참석해 결정 사항을 본사와 현장에 전한다']},
-  en:{t:'Airline Operators Committee (AOC): airlines tackle airport issues together',c:'AOC',r:[['Facilities','Counters, works, baggage systems'],['Operations','Congestion, punctuality, snow'],['Charges','Fee changes, discounts'],['Security','Screening, training, passes'],['Emergencies','Plans and joint exercises'],['Information','New routes, policy changes']],n:['Requests that are hard for one airline to make carry more weight through the committee','The station manager attends and passes decisions to head office and the front line']}})[l];
+ var W=({ja:{t:'航空会社運営委員会（AOC）：航空会社が集まって空港の課題を話し合う',c:'AOC',r:[['施設','カウンター・改修・手荷物設備'],['運用','混雑・定時性・除雪'],['料金','使用料の改定・割引'],['保安','検査の変更・教育・パス'],['緊急時','緊急時計画・合同訓練'],['情報共有','新規就航・行政の変更']],n:['1社では言いにくい要望も、協議会を通せば空港に届きやすい','支店長が出席し、決まったことを本社と現場に伝える']},
+  ko:{t:'항공사운영위원회(AOC): 항공사들이 모여 공항 과제를 논의한다',c:'AOC',r:[['시설','카운터·개보수·수하물 설비'],['운용','혼잡·정시성·제설'],['요금','사용료 개정·할인'],['보안','검색 변경·교육·패스'],['비상시','비상 계획·합동 훈련'],['정보 공유','신규 취항·행정 변경']],n:['한 회사로는 말하기 어려운 요청도 위원회를 통하면 공항에 전달되기 쉽다','지점장이 참석해 결정 사항을 본사와 현장에 전한다']},
+  en:{t:'Airline Operator’s Committee (AOC): airlines tackle airport issues together',c:'AOC',r:[['Facilities','Counters, works, baggage systems'],['Operations','Congestion, punctuality, snow'],['Charges','Fee changes, discounts'],['Security','Screening, training, passes'],['Emergencies','Plans and joint exercises'],['Information','New routes, policy changes']],n:['Requests that are hard for one airline to make carry more weight through the committee','The station manager attends and passes decisions to head office and the front line']}})[l];
  if(!W)return F.gnd_aoc('ja');setK(1);
  var T=TOP(W.t),s=T.s,cx=320,cy=T.y+140,r=118,n=W.r.length,cols=['#1769e0','#2C8C8C','#E08A2E','#D64545','#7A5CC7','#2E9B5F'];
  W.r.forEach(function(p,i){var a=-Math.PI/2+i*2*Math.PI/n,x=cx+r*1.5*Math.cos(a),y=cy+r*Math.sin(a),bw=170,bh=52;
@@ -1070,9 +1070,9 @@ opn_sales:function(l){
  if(!W)return F.opn_sales('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
 opn_aoc:function(l){
- var W=({ja:{t:'空港運営委員会（AOC）への加入（例）',st:['事務局に連絡する','申込書を出す','規約を確かめる','会費を払う','会議に参加する'],who:['加入の意向・就航予定','会社の情報・連絡先','最新の規約','年会費','ターミナル別・全体'],n:['会議では空港の計画・工事・共用施設の情報が早く入る。他社とのつながりもできる']},
-  ko:{t:'공항운영협의회(AOC) 가입(예)',st:['사무국에 연락한다','신청서를 낸다','규약을 확인한다','회비를 낸다','회의에 참가한다'],who:['가입 의향·취항 예정','회사 정보·연락처','최신 규약','연회비','터미널별·전체'],n:['회의에서는 공항 계획·공사·공용 시설 정보가 빨리 들어온다. 타사와의 관계도 생긴다']},
-  en:{t:'Joining the Airline Operators Committee (AOC) (example)',st:['Contact the secretariat','Submit the application','Check the constitution','Pay the fee','Attend meetings'],who:['Intention and launch date','Company details and contacts','Current rules','Annual fee','By terminal and plenary'],n:['Meetings bring early news of airport plans, works and shared facilities, and contacts with other airlines']}})[l];
+ var W=({ja:{t:'航空会社運営委員会（AOC）への加入（例）',st:['事務局に連絡する','申込書を出す','規約を確かめる','会費を払う','会議に参加する'],who:['加入の意向・就航予定','会社の情報・連絡先','最新の規約','年会費','ターミナル別・全体'],n:['会議では空港の計画・工事・共用施設の情報が早く入る。他社とのつながりもできる']},
+  ko:{t:'항공사운영위원회(AOC) 가입(예)',st:['사무국에 연락한다','신청서를 낸다','규약을 확인한다','회비를 낸다','회의에 참가한다'],who:['가입 의향·취항 예정','회사 정보·연락처','최신 규약','연회비','터미널별·전체'],n:['회의에서는 공항 계획·공사·공용 시설 정보가 빨리 들어온다. 타사와의 관계도 생긴다']},
+  en:{t:'Joining the Airline Operator’s Committee (AOC) (example)',st:['Contact the secretariat','Submit the application','Check the constitution','Pay the fee','Attend meetings'],who:['Intention and launch date','Company details and contacts','Current rules','Annual fee','By terminal and plenary'],n:['Meetings bring early news of airport plans, works and shared facilities, and contacts with other airlines']}})[l];
  if(!W)return F.opn_aoc('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
 opn_year:function(l){

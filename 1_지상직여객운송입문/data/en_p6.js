@@ -156,10 +156,10 @@ quiz:[{q:"What is always checked about previous findings?",opts:["Nothing","Whet
 {q:"Example retention for financial and tax records in Japan?",opts:["1 year","3 years","7 years","Not required"],a:2,exp:"Seven years is the usual requirement in Japan."}],
 next:"6-5 The airport operators committee (AOC)"});
 
-set("6-5",{title:"The Airline Operators Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport company and the agencies",
-lead:["The AOC, the Airline Operators Committee, is the body formed by the airlines serving an airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is the way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
+set("6-5",{title:"The Airline Operator’s Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport company and the agencies",
+lead:["The AOC, the Airline Operator’s Committee, is the body formed by the airlines serving an airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is the way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
 sections:[
-{h:"What the AOC deals with",blocks:[{t:"fig",id:"gnd_aoc",cap:"Animated figure: the six themes handled by the Airline Operators Committee light up in turn."},{t:"table",cols:["Topic","Examples"],rows:[
+{h:"What the AOC deals with",blocks:[{t:"fig",id:"gnd_aoc",cap:"Animated figure: the six themes handled by the Airline Operator’s Committee light up in turn."},{t:"table",cols:["Topic","Examples"],rows:[
 ["Facilities","Counter allocation, terminal works, baggage systems"],
 ["Operations","Handling peaks, improving punctuality (A-CDM), snow clearing and de-icing"],
 ["Charges","Revisions to airport charges, discounts and incentive schemes"],
@@ -179,8 +179,8 @@ sections:[
 {name:"Talk to peers",x:"Exchanging information with station managers from your own country’s airlines is often just as useful in practice."}]},
 {t:"point",x:"You will often hear about a change at the AOC before head office or your own authority does. Sharing it quickly raises the standing of the station."}]}],
 voice:"The AOC is where you learn in advance about plans from the airport company, authorities and other airlines. Feed schedule changes you hear there into the station plan at once.",
-terms:[["Airline Operators Committee (AOC)","空港運営委員会","항공사 운영위원회"],["Constitution","規約","규약"],["Working Group","作業部会","실무 그룹"],["A-CDM","空港の協調的意思決定","공항 협력적 의사결정"],["Airport Authority / Operator","空港会社","공항공사"],["Joint Exercise","合同訓練","합동 훈련"]],
-quiz:[{q:"What is an AOC?",opts:["Airport police","The committee of airlines serving an airport","A travel agency body","A government department"],a:1,exp:"The Airline Operators Committee."},
+terms:[["Airline Operator’s Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Working Group","作業部会","실무 그룹"],["A-CDM","空港の協調的意思決定","공항 협력적 의사결정"],["Airport Authority / Operator","空港会社","공항공사"],["Joint Exercise","合同訓練","합동 훈련"]],
+quiz:[{q:"What is an AOC?",opts:["Airport police","The committee of airlines serving an airport","A travel agency body","A government department"],a:1,exp:"The Airline Operator’s Committee."},
 {q:"Which is NOT a benefit of the AOC?",opts:["Early information","A collective voice","Setting fares together","Cooperation in emergencies"],a:2,exp:"Fares are each airline’s own decision and are never discussed, for competition law reasons too."},
 {q:"What does the station manager do after a meeting?",opts:["Nothing","Share it with head office and the team","Leave it to other airlines","Forget it"],a:1,exp:"Bring it back and decide what action is needed."}],
 next:"6-6 The station’s monthly and annual calendar"});

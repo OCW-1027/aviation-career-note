@@ -14,7 +14,7 @@ window.DICT=(window.DICT||[]).concat([
 ["APT","Landside","ランドサイド（一般区域側）","랜드사이드(일반구역 쪽)","誰でも入れる保安検査前の区域","누구나 들어갈 수 있는 보안검색 전 구역","The public area before security"],
 ["APT","Slot","発着枠（スロット）","슬롯(출도착 시각)","混雑空港で離陸・着陸できる時刻の枠","혼잡 공항에서 이착륙할 수 있는 시각의 틀","A permission to land or take off at a congested airport at a given time"],
 ["APT","Curfew","運用時間の制限（カーフュー）","운용 시간 제한(커퓨)","騒音対策などで夜間に離着陸できない時間","소음 대책 등으로 야간에 이착륙할 수 없는 시간","Hours when flights are banned, usually at night for noise"],
-["APT","Airport Operations Committee (AOC)","空港運営委員会（AOC）","공항운영위원회(AOC)","空港の航空会社がつくる協議体","공항의 항공사들이 만드는 협의체","The committee of airlines operating at an airport"],
+["APT","Airline Operator’s Committee (AOC)","航空会社運営委員会（AOC）","항공사운영위원회(AOC)","空港の航空会社がつくる協議体","공항의 항공사들이 만드는 협의체","The committee of airlines operating at an airport"],
 ["APT","Ground Handling Agent (GHA)","ハンドリング会社","지상조업사","航空会社から委託されて地上の業務を行う会社","항공사 위탁을 받아 지상 업무를 하는 회사","A company providing ground services under contract to airlines"],
 ["APT","Standard Ground Handling Agreement (SGHA)","標準地上業務委託契約（SGHA）","표준 지상조업 계약(SGHA)","IATAのひな形にもとづく地上業務の委託契約","IATA 서식에 따른 지상조업 위탁 계약","The IATA-model contract for ground handling"],
 ["APT","Service Level Agreement (SLA)","サービス水準の合意（SLA）","서비스 수준 합의(SLA)","品質の基準と測り方を決めた合意","품질 기준과 측정법을 정한 합의","The agreed quality standards and how they are measured"],
