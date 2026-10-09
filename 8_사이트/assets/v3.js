@@ -33,7 +33,15 @@ function draw(){var c=C[lang],page=document.body.getAttribute('data-page');
  if($('foot'))$('foot').innerHTML='<div><b>'+E(c.brand)+'</b>'+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],lang))+'</b>'+f[1].map(function(a){return '<a href="'+a[0]+'">'+E(FL(a[1],lang))+'</a>'}).join('')+'</div>'}).join('');
  if($('copy'))$('copy').innerHTML=E(c.copy)+'　<a href="terms.html">'+E(c.terms)+'</a>　<a href="privacy.html">'+E(c.privacy)+'</a>';
  if(typeof window.PAGE_RENDER==='function')window.PAGE_RENDER(lang);
- localLabels();}
+ localLabels();fitL2();}
+/* 名前を2行で見せるツールのカード（.lab <b> の中の <br> の後ろ＝.l2。例：搭載管理／（Weight & Balance）の練習）2026.10
+   2行目が1行に入らないときは、2行目だけ少し小さくして1行に収める（0.7倍まで）。それでも入らない狭い画面では、ふつうに折り返す */
+var RO2=window.ResizeObserver?new ResizeObserver(function(es){es.forEach(function(e){var b=e.target,w=Math.round(e.contentRect.width);if(b.__w2!==w){b.__w2=w;(window.requestAnimationFrame||setTimeout)(function(){fit2(b)})}})}):null; /* 調整は次の描画で（ResizeObserver の中で大きさを変えない） */
+function fit2(b){var s=b.querySelector('.l2');if(!s)return;var st=s.style;st.fontSize=st.whiteSpace=st.width='';var w=b.clientWidth;if(!w)return;
+ st.whiteSpace='nowrap';st.width='max-content';var n=s.getBoundingClientRect().width;if(n<=w)return;var k=Math.floor(w/n*100)/100;
+ for(var i=0;i<6&&k>=.7;i++){st.fontSize=k+'em';if(s.getBoundingClientRect().width<=w)return;k=Math.round((k-.02)*100)/100}st.fontSize=st.whiteSpace=st.width=''}
+function fitL2(){Array.prototype.forEach.call(document.querySelectorAll('.lab b'),function(b){if(!b.querySelector('.l2'))return;fit2(b);if(RO2&&!b.__ro2){b.__ro2=1;RO2.observe(b)}})}
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitL2()});
 /* ページの中の小さな英語の見出し（.eyebrow など）を、日本語・韓国語の画面ではその言語にする（2026.10）
    HTML には英語のまま書いておき、ここに [英語, 日本語, 韓国語] を足す。英語の画面ではそのまま */
 var LB=[['Start here','はじめに','시작하기'],['Why ACN','航空キャリアノートの特徴','항공 커리어 노트의 특징'],['Aviation Jobs','航空の求人','항공 채용'],
@@ -58,7 +66,7 @@ function localLabels(){var k=lang==='ja'?1:lang==='ko'?2:0,map={};LB.forEach(fun
   if(r){el.innerHTML=k?r[k]:en;return}
   var m=en.match(/^POINT (\d+)$/);if(m){el.textContent=k===1?'ポイント'+m[1]:k===2?'포인트 '+m[1]:en;return}
   m=en.match(/^(\d[\d,]*) Lessons(.*)$/);if(m){el.innerHTML=(k===1?m[1]+'レッスン':k===2?m[1]+'개 레슨':m[1]+' Lessons')+m[2];return}});}
-window.ACN={E:E,lang:function(){return lang}};
+window.ACN={E:E,lang:function(){return lang},fitL2:fitL2};
 /* 右下のボタン（上へ・戻る・ホーム）：ほかのページと同じ nav.js を使う。ホームは新しいトップページ（2026.10） */
 (function(){var me=document.currentScript&&document.currentScript.src;if(!me)return;window.ACN_HOME=new URL('../index.html',me).href;var n=document.createElement('script');n.src=new URL('../../1_\uc9c0\uc0c1\uc9c1\uc5ec\uac1d\uc6b4\uc1a1\uc785\ubb38/assets/nav.js',me).href;document.head.appendChild(n);var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
 document.addEventListener('DOMContentLoaded',draw);

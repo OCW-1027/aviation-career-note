@@ -100,12 +100,14 @@ var BZ=[['FIN','company','All industries'],['ADM','hr','HR / Admin'],['HOV','adm
  FINT=['fin_tx','fin_link','fin_ratio','fin_val','fin_cost','fin_sim','ye','fin_memo'];
 function $(i){return document.getElementById(i)}
 function E(s){return window.ACN?ACN.E(s):String(s)}
+/* ツールの名前：\n の後ろは改行して2行目（.l2）に。2行目が入らないときの調整は v3.js（fitL2）2026.10 */
+function TT(s){var a=String(s).split('\n');return E(a[0])+(a.length>1?'<br><span class="l2">'+E(a.slice(1).join(' '))+'</span>':'')}
 (function(){if(!window.CATALOG)return;SERIES.forEach(function(s){var d=(s.p||'').split('/')[1];if(!s.dirs&&CATALOG[d])s.n=CATALOG[d].n})})();
 window.PAGE_RENDER=function(lang){var t=T[lang]||T.ja,S={};SERIES.forEach(function(s){S[s.code]=s});
  var h1=t.h1||'Business Skills';$('h1').textContent=h1;document.title=h1+' | '+(lang==='ja'?'航空キャリアノート':lang==='ko'?'항공 커리어 노트':'Aviation Career Note');
  $('hp').textContent=t.hp;$('hs').innerHTML=t.hs;$('ls').textContent=t.ls;$('bnote').innerHTML=t.bnote;$('ht').innerHTML=t.ht;$('lt').textContent=t.lt;$('hm').innerHTML=t.hm;$('lm').textContent=t.lm;
  $('bizGrid').innerHTML=BZ.filter(function(b){return S[b[0]]}).map(function(b){var s=S[b[0]],d=s[lang]||s.ja;return '<a class="business-card '+b[1]+'" href="'+s.p+'"><span class="sector">'+E(b[2]).toUpperCase()+'</span><h3>'+E(d[1])+'</h3><p class="muted">'+E(d[2])+'<span class="sector-sub">'+E(t.role[b[0]])+'</span></p><div class="meta-row"><span>'+s.n+' '+t.lessons+'</span><span class="go">'+E(t.view)+'</span></div></a>'}).join('');
- $('toolGrid').innerHTML=FINT.map(function(n){var x=TOOLS.filter(function(y){return y.id===n})[0];if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+E(String(d[0]).replace(/\n/g,' '))+'</b><span>'+E(d[1])+'</span></a>'}).join('');
+ $('toolGrid').innerHTML=FINT.map(function(n){var x=TOOLS.filter(function(y){return y.id===n})[0];if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+TT(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');if(window.ACN&&ACN.fitL2)ACN.fitL2();
  $('rel').innerHTML=REL.filter(function(c){return S[c]}).map(function(c){var s=S[c],d=s[lang]||s.ja;return '<a class="course-card" href="'+s.p+'"><div class="kicker">'+E(KICK[c])+'</div><h3>'+E(d[1])+'</h3><p class="muted">'+E(d[2])+'</p><div class="meta-row"><span>'+s.n+' '+t.lessons+'</span><span class="go">'+E(t.view)+'</span></div></a>'}).join('');
 };
 </script>

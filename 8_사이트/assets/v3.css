@@ -191,6 +191,8 @@ body.ja h1,body.ko h1{line-height:1.12;letter-spacing:-.04em}
 .lab span{font-size:12px;color:var(--muted)}
 .practice-grid.all .lab{min-height:120px}
 .practice-grid.all .lab b{font-size:16px}
+/* ツールの名前の2行目（名前の \n の後ろ。index.html・business.html の TT が .l2 にする）。説明用の .lab span の小さな灰色の文字にしない。1行に収める調整は v3.js の fitL2（2026.10） */
+.lab b .l2{font-size:inherit;color:inherit;font-weight:inherit;display:inline-block}
 .membership{
   background:linear-gradient(135deg,#102a43,#0a1d30);
   color:#fff;border-radius:24px;padding:42px;display:grid;grid-template-columns:1.35fr .65fr;gap:35px;align-items:center

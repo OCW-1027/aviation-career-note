@@ -26,7 +26,7 @@ sections:[
 ["Allowed take-off weight","The lowest of: 1) max ZFW + TOF = 75300, 2) max TOW = 79000, 3) max LAW + trip = 76600","75300 (zero fuel weight limits it, hence the L on the ZFW line)"],
 ["Underload","Allowed TOW − actual TOW","75300 − 73290 = 2010"]]},
 {t:"point",x:"You do not need to redo every calculation. Check that the additions and subtractions agree, that none of the three maximums is exceeded, and that the underload is not negative — that catches most errors."},
-{t:"link",href:"搭載計算の練習.html?lang=en",x:"Try the Load Control (W&B) Practice page: change passengers and fuel, or solve practice questions"}]},
+{t:"link",href:"搭載計算の練習.html?lang=en",x:"Try the Load Control (Weight & Balance) Practice page: change passengers and fuel, or solve practice questions"}]},
 {h:"Checks before handing it to the captain",blocks:[{t:"check",items:[
 {name:"Passengers",x:"The final gate count, the adult/child/infant split and the numbers by zone match the loadsheet."},
 {name:"Bags and cargo",x:"Weights and holds match the loading instruction (LIR) and the loading report."},

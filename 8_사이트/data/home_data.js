@@ -28,7 +28,7 @@ var TOOLS=[
 {id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['収益管理の練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['수익관리 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and RevPAR']},
 {id:'fsc',p:'../2_일본취항지점개설가이드/燃油サーチャージ計算.html',ja:['日本発 燃油サーチャージの計算','ケロシン価格の平均と為替から旅客・貨物の額を決め、回収率を確かめて申請書の下書きまで'],ko:['일본발 유류할증료 계산','케로신 평균과 환율로 여객·화물 금액을 정하고 회수율을 확인해 신청서 초안까지'],en:['Japan-Origin Fuel Surcharge Calculator','From kerosene and FX averages to passenger and cargo amounts, the recovery ratio and a filing draft']},
 {id:'dsp',p:'../18_항공기초지식/航空路図の練習.html',ja:['運航管理の実務練習','航空路・飛行計画・燃料・管制・スロットを練習'],ko:['운항관리 실무 연습','항공로·비행계획·연료·관제·슬롯 연습'],en:['Flight Dispatch Practice','Airways, flight plans, fuel, ATC and slots']},
-{id:'lc',p:'../1_지상직여객운송입문/搭載計算の練習.html',ja:['搭載管理（重量と重心）の練習','10機種で重量・重心・ロードシートを練習'],ko:['탑재관리(중량과 무게중심) 연습','10개 기종으로 중량·무게중심·로드시트 연습'],en:['Load Control (W&B) Practice','Weights, balance and loadsheets on 10 types']},
+{id:'lc',p:'../1_지상직여객운송입문/搭載計算の練習.html',ja:['搭載管理\n（Weight & Balance）の練習','10機種で重量・重心・ロードシートを練習'],ko:['탑재관리\n(Weight & Balance) 연습','10개 기종으로 중량·무게중심·로드시트 연습'],en:['Load Control\n(Weight & Balance) Practice','Weights, balance and loadsheets on 10 types']},
 {id:'fin_tx',p:'../23_재무3표실무/取引と財務諸表の練習.html',ja:['取引と財務諸表の練習','取引のカードで「損益・現金・貸借対照表のどこが動くか」を当てる。入門・応用・航空の3レベル'],ko:['거래와 재무제표 연습','거래 카드로 「손익·현금·재무상태표의 어디가 움직이나」를 맞힌다. 입문·응용·항공 3단계'],en:['Transactions & Statements Practice','Which statement moves for each transaction? Beginner, Applied and Airline levels']},
 {id:'fin_link',p:'../23_재무3표실무/財務諸表の連動シミュレーター.html',ja:['財務諸表の連動シミュレーター','売上・掛け売り・在庫・投資・借入・配当のつまみで、3つの表と「利益→現金の橋」が同時に動く'],ko:['재무제표 연동 시뮬레이터','매출·외상·재고·투자·차입·배당 손잡이로 세 가지 재무제표와 「이익→현금의 다리」가 동시에 움직인다'],en:['Linked Financial Statements Simulator','Move sales, credit, inventory, investment, loans and dividends and watch all three statements change']},
 {id:'fin_cost',p:'../23_재무3표실무/航空原価計算の練習.html',ja:['航空原価計算の練習','1便のコストと損益分岐点 ― 路線・機材・座席利用率で費用の内訳を計算し、項目ごとに解説'],ko:['항공 원가 계산 연습','한 편의 비용과 손익분기점 — 노선·기종·탑승률로 비용 내역을 계산하고 항목별로 해설'],en:['Airline Cost & Break-even Practice','Cost of one flight by route, aircraft and load factor, with item-by-item explanations']},
@@ -48,15 +48,15 @@ var TOOLS=[
 {id:'ann',p:'../4_공항안내방송예문집/空港アナウンス文例集.html',ja:['空港アナウンス文例集','日本語・韓国語・英語の案内の文例'],ko:['공항 안내방송 예문집','일본어·한국어·영어 안내 예문'],en:['Announcement Phrasebook','Sample announcements in English, Japanese and Korean']},
 {id:'forms',p:'../10_공항양식해설집/空港で使う書類と様式.html',ja:['空港で使う書類と様式','書類の解説と、印刷できる見本の様式'],ko:['공항에서 쓰는 서류와 양식','서류 해설과 인쇄 가능한 양식 예시'],en:['Airport Forms Explained','What each form is for, with printable blank samples']},
 {id:'faq',p:'../14_승객FAQ/よくある質問_空港と飛行機.html',ja:['よくある質問','手荷物・特別な対応・遅延・出入国・機内'],ko:['자주 묻는 질문','수하물·특별 대응·지연·출입국·기내'],en:['Passenger FAQ','Baggage, special assistance, delays, immigration and on board']}];
-/* 資料・ツールの並び（2026.10）：グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。搭載管理を先頭に、講座の順。各グループの最初に小見出し（講座の名前）を付ける。ここにないツールは最後の「共通の資料」の後ろに並ぶ */
-(function(){var G=[[['旅客ハンドリングの実務','항공 여객운송 실무','Passenger Operations'],['lc','ann','forms','faq']],
+/* 資料・ツールの並び（2026.10）：グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。搭載管理を先頭に、講座の順。会話練習は空港アナウンス文例集の次（2026.10）。名前の \n は、カードでは改行（検索の結果では空白）。各グループの最初に小見出し（講座の名前）を付ける。ここにないツールは最後の「共通の資料」の後ろに並ぶ */
+(function(){var G=[[['旅客ハンドリングの実務','항공 여객운송 실무','Passenger Operations'],['lc','ann','talk','forms','faq']],
  [['運航管理の実務','운항관리 실무','Flight Dispatch Operations'],['dsp','exam_jp','exam_kr']],
  [['航空営業の実務','항공 영업 실무','Airline Sales Operations'],['rm']],
  [['会社の人事・総務・財務の実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice'],['ye']],
  [['数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo']],
  [['日本就航・支店開設ガイド','일본 취항·지점 개설 가이드','Launching Flights to Japan'],['fsc']],
  [['航空業界の面接対策','항공업계 면접 대비','Aviation Interview Prep'],['story']],
- [['共通の資料','공통 자료','General reference'],['talk','codes','delay','gloss','quiz']]],out=[],used={};
+ [['共通の資料','공통 자료','General reference'],['codes','delay','gloss','quiz']]],out=[],used={};
  G.forEach(function(g){g[1].forEach(function(n,i){TOOLS.forEach(function(x,k){if(!used[k]&&x.id===n){used[k]=1;x.g=i===0?g[0]:null;out.push(x)}})})});
  TOOLS.forEach(function(x,k){if(!used[k]){x.g=null;out.push(x)}});TOOLS.length=0;out.forEach(function(x){TOOLS.push(x)})})();
 

@@ -35,7 +35,7 @@ sections:[
 {name:"Animals",x:"In a hold with ventilation and temperature control; last on, first off."},
 {name:"Transfer and priority",x:"Bags needed quickly on arrival go near the door."},
 {name:"Report",x:"If loading differs from the instruction, write it on the LIR and tell load control; the loadsheet must be corrected (last minute change or reissue)."}]},
-{t:"link",href:"搭載計算の練習.html?lang=en",x:"On the Load Control (W&B) Practice page, change hold weights and watch how the balance index moves"}]}],
+{t:"link",href:"搭載計算の練習.html?lang=en",x:"On the Load Control (Weight & Balance) Practice page, change hold weights and watch how the balance index moves"}]}],
 voice:"If actual loading differs from the LIR, the centre of gravity changes. After loading, check each hold against the LIR and correct any difference before departure.",
 terms:[["Loading Instruction/Report (LIR)","搭載指示書","탑재 지시서"],["Compartment / Hold","貨物室","화물칸"],["Bulk Loading","バルク搭載","벌크 탑재"],["Floor Loading Limit","床の強度の上限","바닥 강도 한계"],["Segregation","隔離（離して積むこと）","격리 적재"],["Tail Tipping","尻もち","꼬리 내려앉음"]],
 quiz:[{q:"What is written to the right of the planned load on the LIR?",opts:["The weather","What was actually loaded","The fare","Crew names"],a:1,exp:"The loading supervisor writes back the result."},
