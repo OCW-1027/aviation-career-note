@@ -79,15 +79,15 @@ sections:[
 ["Fee","None"]]},
 {t:"note",x:"* Summarised from the ministry’s one-stop guide. ★"}]},
 {h:"What needs approval (examples)",blocks:[{t:"check",items:[
-{name:"Fares sold from Japan",x:"Ordinary and discounted fares. Some airlines file these once a year."},
-{name:"Fares sold at the other end",x:"Fares sold in the other country for flights touching Japan also need approval. Some airlines file them for several years and file changes as they arise."},
+{name:"Fares sold from Japan",x:"Ordinary and discounted fares. How they are filed (yearly, or for a set period) depends on the airline."},
+{name:"Fares sold at the other end",x:"Fares sold in the other country for flights touching Japan also need approval. Whether they are filed for one year or several, and how changes are filed, depends on the airline."},
 {name:"Promotional fares",x:"Time-limited promotions."},
 {name:"Rule changes",x:"Changes to fare-related rules such as baggage allowances, sizes and charges."},
 {name:"Fuel surcharge",x:"The amount added to the fare in line with fuel prices."}]}]},
 {h:"Filing a fuel surcharge",blocks:[{t:"ladder",rise:10,steps:[{name:"Check fuel prices",sub:"The average of the reference index"},{name:"Set the amount",sub:"Head office pricing"},{name:"Draft the filing",sub:"Station or pricing staff"},{name:"File online",sub:"J-MAT and similar"},{name:"Approval and publication",sub:"Advise travel agencies and the GDS"}]},
 {t:"rows",items:[
-{name:"Review interval (example)",x:"Some airlines review the Japan-origin surcharge every two months and the other origin monthly, in line with the reference price periods."},
-{name:"When the work falls (example)",x:"Prepared and filed in the middle to end of each month, on head office’s instruction."},
+{name:"Review interval (example)",x:"The review cycle depends on the airline and the fuel-price reference period (Japan-origin often every one to two months; the other origin often monthly)."},
+{name:"When the work falls (example)",x:"Work back from the review cycle and the 30-day filing deadline to agree a schedule with head office (for example, preparing it in the middle to end of the filing month)."},
 {name:"What competitors do",x:"Watch when and how other airlines on the route change theirs."}]},
 {t:"link",href:"燃油サーチャージ計算.html",x:"[Practice page] Japan-Origin Fuel Surcharge Calculator: set the amount from kerosene and exchange-rate averages, check the recovery ratio and draft the filing"}]},
 {h:"Who does what",blocks:[{t:"table",cols:["Task","Usually"],rows:[
@@ -115,7 +115,7 @@ sections:[
 {name:"Flight operations engineering",x:"The application itself: the aircraft covered and the standards applied."},
 {name:"Maintenance control",x:"The report on how it was applied over the past year."},
 {name:"Strategy and international",x:"The fleet plan, and consistency with the other filings."},
-{name:"How to ask",x:"Attach last year’s filing and the authorities’ notice, and state the deadline. Assume a week or more from request to filing."}]}]},
+{name:"How to ask",x:"Attach last year’s filing and the authorities’ notice, and state the deadline. Allow one to two weeks from request to filing."}]}]},
 {h:"Other notifications and procedures",blocks:[{t:"table",cols:["Procedure","What it covers"],rows:[
 ["Adding an aircraft or changing seat counts","Update the aircraft information in J-MAT and notify the change to the business plan (1-6)"],
 ["Registering the aircraft with the airport company","For landing fee calculation and noise categories, register the aircraft with the airport company"],

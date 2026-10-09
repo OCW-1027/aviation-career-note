@@ -99,12 +99,12 @@ sections:[
 {name:"Recurrent training",x:"Keeps the qualification alive. Without passing the assessment you cannot hold the role."},
 {name:"Reviewing the content",x:"Training material is reviewed at set intervals, for example once or twice a year, as the law and company policy change."}]}]},
 {h:"Assessment and records",blocks:[{t:"check",items:[
-{name:"Pass mark (example)",x:"80% or above in each subject; the qualification is granted when every subject is passed."},
+{name:"Pass mark (example)",x:"A set score in each subject (many airlines use 80%); the qualification is granted when every subject is passed."},
 {name:"Reassessment",x:"A failure is reassessed using different questions."},
 {name:"Records",x:"Name, company, course, date, result and the expiry of the qualification, kept while the person is employed."},
 {name:"Check your own",x:"You are also responsible for checking that your own training record is correct and current."}]}]},
 {h:"Becoming an instructor",blocks:[{t:"rows",items:[
-{name:"Typical requirement",x:"Completing the in-house instructor course, or two or more years of experience and specialist knowledge in the field."},
+{name:"Typical requirement",x:"Completing the in-house instructor course, or a set amount of experience in the field (e.g. two to three years or more, depending on the airline) plus specialist knowledge."},
 {name:"The role",x:"Teaching fairly from the approved material, assessing, and spotting training needs by watching the front line."},
 {name:"Station managers",x:"They often act as the station’s instructor and carry responsibility for training there."}]},
 {t:"point",x:"Instructor experience is a real advantage on the way to manager and station manager. Teaching deepens your own understanding."}]},
@@ -112,7 +112,7 @@ sections:[
 voice:"A dangerous-goods qualification is useful straight away at the counter, in cargo and in load control. Qualifications need renewing, so track the expiry dates too.",
 terms:[["Initial Training","初期教育","초기 교육"],["Recurrent Training","定期教育","정기(보수) 교육"],["On-the-job Training (OJT)","現場研修","현장 교육"],["DG Training","危険物教育","위험물 교육"],["CBTA","能力にもとづく教育","역량 기반 교육"],["In-house Instructor","社内講師","사내 강사"]],
 quiz:[{q:"What happens if you fail recurrent assessment?",opts:["Nothing","You cannot hold that role","Your pay rises","You pass automatically"],a:1,exp:"Passing is what keeps the qualification alive."},
-{q:"In the example, what is the pass mark?",opts:["50%","60%","80%","100%"],a:2,exp:"80% or above in each subject."},
+{q:"In the example, what is the pass mark?",opts:["50%","60%","80%","100%"],a:2,exp:"Many airlines require 80% or above in each subject."},
 {q:"What questions are used for a reassessment?",opts:["The same ones","Different ones","None","Oral only"],a:1,exp:"Different questions keep the assessment fair."}],
 next:"7-4 From agent to station manager: the career ladder"});
 
@@ -127,7 +127,7 @@ sections:[
 ["Instructor","Teaching, assessing, writing procedures"],
 ["Duty manager","Working with the handling company, quality management, dealing with head office, reporting"],
 ["Station manager","Regulators, sales, finance and HR, external negotiation, crisis management"]]}]},
-{h:"A foreign airline station manager’s job (Japan example)",blocks:[{t:"table",cols:["Area","Main work"],rows:[
+{h:"A foreign airline station manager’s job (Japan example; the scope varies by airline and station size)",blocks:[{t:"table",cols:["Area","Main work"],rows:[
 ["Operations and regulators","Running the station, irregular operations, airport ID passes, checking handling costs, safety and security (annual revision of the security programme, internal audits), approvals (summer and winter schedules, fares, the general operating approvals), AOC attendance, all audits"],
 ["Sales","Travel agencies, GDS and sales policy, promotions, press, checking the Japanese on the website"],
 ["Cargo","Managing the cargo handler and the GSA, cargo procedures"],

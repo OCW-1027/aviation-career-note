@@ -86,7 +86,7 @@ bas_alli:function(l){
 /* 基礎 4-2 国内線の本人確認：国による違い */
 bas_id:function(l){
  var W=({ja:{t:'国内線の本人確認：国によってこんなに違う（2026年9月時点★）',r:[['日本','法令の義務はない。多くは搭乗券だけ（保安検査は全員）','#5B6B7D'],['韓国','義務。身分証の原本・モバイル身分証・生体情報','#1769e0'],['アメリカ','義務（18歳以上）。REAL ID対応の身分証','#D64545'],['中国','義務（実名制）。保安検査で顔と照合','#E08A2E'],['シェンゲン圏の中','国・航空会社による。旅券・身分証を求めるのが一般的','#2C8C8C']],n:['日本から韓国の国内線に乗り継ぐお客様には、身分証（外国人は旅券）が要ると案内する','義務でない場面でも、会社の規則で求める確認は省かない']},
-  ko:{t:'국내선 본인 확인: 나라마다 이렇게 다르다(2026년 9월 기준★)',r:[['일본','법령상 의무는 없음. 대부분 탑승권만(보안검색은 모두)','#5B6B7D'],['한국','의무. 신분증 원본·모바일 신분증·생체정보','#1769e0'],['미국','의무(18세 이상). REAL ID 대응 신분증','#D64545'],['중국','의무(실명제). 보안검색에서 얼굴과 대조','#E08A2E'],['솅겐 지역 안','나라·항공사에 따라. 여권·신분증을 요구하는 것이 일반적','#2C8C8C']],n:['일본에서 한국 국내선으로 환승하는 승객에게는 신분증(외국인은 여권)이 필요하다고 안내한다','의무가 아닌 경우에도 회사 규정이 요구하는 확인은 생략하지 않는다']},
+  ko:{t:'국내선 본인 확인: 나라마다 이렇게 다르다(2026년 9월 기준★)',r:[['일본','법령상 의무는 없음. 대부분 탑승권만(보안검색은 전원)','#5B6B7D'],['한국','의무. 신분증 원본·모바일 신분증·생체정보','#1769e0'],['미국','의무(18세 이상). REAL ID 규격 신분증','#D64545'],['중국','의무(실명제). 보안검색에서 얼굴과 대조','#E08A2E'],['솅겐 지역 안','나라·항공사마다 다름. 여권·신분증 요구가 일반적','#2C8C8C']],n:['일본에서 한국 국내선으로 환승하는 승객에게는 신분증(외국인은 여권)이 필요하다고 안내한다','의무가 아닌 경우에도 회사 규정이 요구하는 확인은 생략하지 않는다']},
   en:{t:'Domestic ID checks: how much countries differ (as of September 2026 ★)',r:[['Japan','No legal requirement; usually the boarding pass alone (everyone is screened)','#5B6B7D'],['Korea','Required: original ID, mobile ID or registered biometrics','#1769e0'],['United States','Required (18 and over): REAL ID-compliant ID','#D64545'],['China','Required (real-name system): face matched at screening','#E08A2E'],['Within Schengen','Depends on country and airline; passport or ID usually asked','#2C8C8C']],n:['Tell passengers connecting from Japan to a Korean domestic flight that they need ID (a passport for foreigners)','Even where checks are not required by law, never skip those your company requires']}})[l];
  if(!W)return F.bas_id('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
@@ -94,7 +94,7 @@ bas_id:function(l){
 /* 運航管理 8-1 引き返し・ダイバート・緊急着陸 */
 dsp_turn:function(l){
  var W=({ja:{t:'予定どおり着けないとき：3つの形',r:[['引き返し（ターンバック）','出発地へ戻る。機材の不具合・急病人・保安の事案など','#1769e0'],['ダイバート','別の空港に着陸。目的地の気象・滑走路の閉鎖・燃料など','#E08A2E'],['緊急着陸','いちばん近い適切な空港へ急いで。火災・急減圧など','#D64545']],n:['決めるのは機長。運航管理者は候補の空港の気象・NOTAM・燃料・受け入れ体制をそろえる','支店は降りた先でお客様と機体を支える（CIQ・宿泊・再出発の準備）']},
-  ko:{t:'예정대로 도착할 수 없을 때: 3가지 형태',r:[['회항(턴백)','출발지로 돌아간다. 기재 결함·응급 환자·보안 사안 등','#1769e0'],['다이버트','다른 공항에 착륙. 목적지 기상·활주로 폐쇄·연료 등','#E08A2E'],['비상착륙','가장 가까운 적절한 공항으로 서둘러. 화재·급감압 등','#D64545']],n:['결정은 기장. 운항관리사는 후보 공항의 기상·NOTAM·연료·수용 체제를 갖춘다','지점은 내린 곳에서 승객과 기체를 지원한다(CIQ·숙박·재출발 준비)']},
+  ko:{t:'예정대로 도착할 수 없을 때: 3가지 형태',r:[['회항(턴백)','출발지로 돌아간다. 기재 결함·응급 환자·보안 사안 등','#1769e0'],['다이버트','다른 공항에 착륙. 목적지 기상·활주로 폐쇄·연료 등','#E08A2E'],['비상착륙','가장 가까운 적절한 공항으로 서둘러. 화재·급감압 등','#D64545']],n:['결정은 기장. 운항관리사는 후보 공항의 기상·NOTAM·연료·수용 여건을 챙긴다','지점은 착륙지에서 승객과 기체를 지원한다(CIQ·숙박·재출발 준비)']},
   en:{t:'When the flight cannot arrive as planned: three forms',r:[['Turnback','Return to the departure airport: technical faults, medical cases, security incidents','#1769e0'],['Diversion','Land at another airport: destination weather, runway closure, fuel','#E08A2E'],['Emergency landing','Land quickly at the nearest suitable airport: fire, rapid decompression','#D64545']],n:['The captain decides; the dispatcher gathers weather, NOTAMs, fuel and handling for the candidate airports','The station supports passengers and aircraft where they land (CIQ, hotels, preparing the restart)']}})[l];
  if(!W)return F.dsp_turn('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
@@ -102,7 +102,7 @@ dsp_turn:function(l){
 /* 旅客 0-3 定時出発を支える4つのチーム */
 gnd_4team:function(l){
  var W=({ja:{t:'定時出発を支える4つのチーム',c:[['カウンター','受付の締め切りを守り、手荷物の個数と重さを機体側へ'],['ゲート','搭乗の順番と人数を管理し、最後の1人まで確認'],['ランプ','決められた順序と時間で、安全に搭載・取り降ろし'],['ロードコントロール','重量と重心を計算し、安全に飛べる搭載か確かめる']],k:'お客様の流れと機体の準備、2つの流れが合ったとき定時に出発できる'},
-  ko:{t:'정시 출발을 받치는 4개 팀',c:[['카운터','접수 마감을 지키고 수하물 개수와 무게를 기체 쪽에 전달'],['게이트','탑승 순서와 인원을 관리하고 마지막 1명까지 확인'],['램프','정해진 순서와 시간으로 안전하게 탑재·하기'],['로드 컨트롤','중량과 무게중심을 계산해 안전하게 비행할 수 있는 탑재인지 확인']],k:'승객의 흐름과 기체 준비, 두 흐름이 맞을 때 정시에 출발할 수 있다'},
+  ko:{t:'정시 출발을 받치는 4개 팀',c:[['카운터','수속 마감을 지키고 수하물 개수와 무게를 기체 쪽에 전달'],['게이트','탑승 순서와 인원을 관리하고 마지막 1명까지 확인'],['램프','정해진 순서와 시간으로 안전하게 탑재·하기'],['로드 컨트롤','중량과 무게중심을 계산해 안전하게 비행할 수 있는 탑재인지 확인']],k:'승객의 흐름과 기체 준비, 두 흐름이 맞을 때 정시에 출발할 수 있다'},
   en:{t:'Four teams behind an on-time departure',c:[['Counter','Keeps the cut-off; passes bag count and weight on'],['Gate','Boarding order and numbers, to the last passenger'],['Ramp','Safe loading in the set order and time'],['Load control','Weight and balance: is the load safe?']],k:'A flight leaves on time when the passenger flow and the aircraft flow meet'}})[l];
  if(!W)return F.gnd_4team('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7']);s+=A.s;
@@ -111,7 +111,7 @@ gnd_4team:function(l){
 /* 現場事例 8-1 判断の記録の型 */
 irr_log:function(l){
  var W=({ja:{t:'イレギュラーの判断の記録：1行の書き方',st:['確かめた事実を、誰から聞いたかまで書く','分からないことは「未確認」へ。誰がいつ確かめるか','決定と理由を1行で。決める人・承認も','次に見直す時刻を書く。過ぎたら必ず見直す'],who:['事実','未確認','決定と理由','次の時刻'],k:'交代のときは、この記録を一緒に見ながら渡す'},
-  ko:{t:'비정상 판단 기록: 한 줄 쓰는 법',st:['확인한 사실을 누구에게 들었는지까지 쓴다','모르는 것은 「미확인」으로. 누가 언제 확인할지','결정과 이유를 한 줄로. 결정한 사람·승인도','다음에 다시 볼 시각을 쓴다. 지나면 반드시 다시 본다'],who:['사실','미확인','결정과 이유','다음 시각'],k:'교대할 때는 이 기록을 함께 보면서 넘긴다'},
+  ko:{t:'비정상 판단 기록: 한 줄 쓰는 법',st:['확인한 사실을 누구에게 들었는지까지 쓴다','모르는 것은 「미확인」으로. 누가 언제 확인할지','결정과 이유를 한 줄로. 결정한 사람·승인도','다음에 다시 볼 시각을 쓴다. 지나면 반드시 다시 본다'],who:['사실','미확인','결정과 이유','다음 시각'],k:'교대 시에는 이 기록을 함께 보며 인계한다'},
   en:{t:'Recording irregularity decisions: how to write one line',st:['Write the confirmed fact, including who told you','Put unknowns under “unconfirmed”, with who checks and when','Write the decision and its reason in one line, with who decided and approved','Set the next review time, and always review once it passes'],who:['Fact','Unconfirmed','Decision and reason','Next time'],k:'At handover, go through this record together'}})[l];
  if(!W)return F.irr_log('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#E08A2E','#2C8C8C','#D64545'],'9s');s+=A.s;
@@ -120,7 +120,7 @@ irr_log:function(l){
 /* 現場事例 8-2 同じ欠航を3つの相手に */
 irr_3way:function(l){
  var W=({ja:{t:'同じ欠航でも、相手ごとに伝えることが違う',r:[['旅客','欠航の事実・代わりの便・いますること・次の案内の時刻','#1769e0'],['本社','決定の時刻と理由・人数・手配の状況・お願いしたい判断','#7A5CC7'],['ハンドリング会社','すること・人数・時刻・担当者・完了報告の時刻','#E08A2E']],n:['外すもの：旅客には決まっていない補償の約束、本社には確かめていない数字、ハンドリング会社には社内の事情']},
-  ko:{t:'같은 결항이라도 상대마다 전할 내용이 다르다',r:[['승객','결항 사실·대체편·지금 할 일·다음 안내 시각','#1769e0'],['본사','결정 시각과 이유·인원·수배 상황·요청할 판단','#7A5CC7'],['조업사','할 일·인원·시각·담당자·완료 보고 시각','#E08A2E']],n:['뺄 것: 승객에게는 정해지지 않은 보상 약속, 본사에는 확인하지 않은 숫자, 조업사에는 회사 내부 사정']},
+  ko:{t:'같은 결항이라도 상대마다 전할 내용이 다르다',r:[['승객','결항 사실·대체편·지금 할 일·다음 안내 시각','#1769e0'],['본사','결정 시각과 이유·인원·수배 상황·요청할 판단','#7A5CC7'],['조업사','할 일·인원·시각·담당자·완료 보고 시각','#E08A2E']],n:['뺄 것: 승객에게는 정해지지 않은 보상 약속, 본사에는 확인되지 않은 숫자, 조업사에는 회사 내부 사정']},
   en:{t:'One cancellation, three audiences, three messages',r:[['Passengers','The cancellation, the replacement flight, what to do now, the next update time','#1769e0'],['Head office','Decision time and reason, numbers, arrangements so far, decisions needed','#7A5CC7'],['Handling company','Tasks, numbers, times, the person in charge, when to report completion','#E08A2E']],n:['Leave out: unconfirmed compensation promises for passengers, unchecked numbers for head office, internal matters for the handling company']}})[l];
  if(!W)return F.irr_3way('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
@@ -128,7 +128,7 @@ irr_3way:function(l){
 /* 現場事例 8-3 月例会議の進め方 */
 irr_meet:function(l){
  var W=({ja:{t:'月例のステーション運営会議：数字から来月の課題へ',st:['実績を目標・前月と並べて見る','安全の報告を先に扱う','平均・合計ではなく内訳を確かめる','足りない資料を相手を決めて頼む','来月の課題と、効果を見る指標を1つずつ決める'],who:['実績','優先順位','原因','依頼','課題と指標'],k:'安全の報告は「減らす数字」ではなく「隠さない」ことが目標'},
-  ko:{t:'월례 스테이션 운영 회의: 숫자에서 다음 달 과제로',st:['실적을 목표·전월과 나란히 본다','안전 보고를 먼저 다룬다','평균·합계가 아니라 내역을 확인한다','부족한 자료를 상대를 정해 요청한다','다음 달 과제와 효과를 볼 지표를 하나씩 정한다'],who:['실적','우선순위','원인','요청','과제와 지표'],k:'안전 보고는 「줄일 숫자」가 아니라 「숨기지 않는 것」이 목표'},
+  ko:{t:'월례 스테이션 운영 회의: 숫자에서 다음 달 과제로',st:['실적을 목표·전월과 비교한다','안전 보고를 먼저 다룬다','평균·합계가 아니라 내역을 확인한다','부족한 자료를 상대를 정해 요청한다','다음 달 과제와 효과를 볼 지표를 하나씩 정한다'],who:['실적','우선순위','원인','요청','과제와 지표'],k:'안전 보고는 「줄일 숫자」가 아니라 「숨기지 않는 것」이 목표'},
   en:{t:'The monthly station meeting: from numbers to next month’s tasks',st:['Read results against target and last month','Take safety reports first','Check the breakdown, not just averages and totals','Ask a named party for the missing data','Set next month’s tasks, each with one indicator'],who:['Results','Priority','Cause','Request','Task and indicator'],k:'The aim for safety reports is not to reduce them but to keep them open'}})[l];
  if(!W)return F.irr_meet('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#D64545','#E08A2E','#7A5CC7','#2E9B5F'],'10s');s+=A.s;

@@ -23,7 +23,7 @@ sections:[
 ["Messages","Sending and receiving movement and load messages"],
 ["Test flight","Create a test flight and bookings in the system and run check-in through to boarding"]]}]},
 {h:"Being ready for failures",blocks:[{t:"rows",items:[
-{name:"Manual fallback",x:"Keep what manual working needs — a passenger list, a seat map, handwritten boarding passes and tags — and practise at least once a year (Ground Staff 2-7)."},
+{name:"Manual fallback",x:"Keep what manual working needs — a passenger list, a seat map, handwritten boarding passes and tags — and practise regularly (many airlines do so at least once a year; Ground Staff 2-7)."},
 {name:"Contacts",x:"Keep a list for the shared system provider, head office IT and the handling company’s contact."},
 {name:"Account management",x:"Tidy the accounts whenever staff change. Never write passwords in a shared document."}]},
 {t:"point",warn:true,x:"System connections take far longer from application to service than people expect. Once a launch is decided, apply alongside the airport formalities, as a priority."}]}],

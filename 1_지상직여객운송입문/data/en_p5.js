@@ -75,7 +75,7 @@ sections:[
 {name:"Order of disembarkation",x:"Agree with the cabin whether the patient leaves first or after the other passengers."}]}]},
 {h:"If a passenger dies on board",blocks:[{t:"rows",items:[
 {name:"Restrict information",x:"Give information only to the defined recipients and the press officer."},
-{name:"The reporting line",x:"Senior cabin crew, captain, operations and the arrival station, the responsible department at head office, then executives and the authorities."},
+{name:"The reporting line",x:"An example reporting chain: senior cabin crew, captain, operations and the arrival station, the responsible department at head office, then executives and the authorities (the order and recipients follow each airline’s emergency procedures)."},
 {name:"On board",x:"Preserve the scene and, if necessary, move other passengers away. After landing, disembarkation may be held until the station manager gives instructions."},
 {name:"At the arrival station",x:"Notify the police, quarantine, medical services and customs so the scene can be examined, then arrange transfer to hospital. Speak with the family carefully about arrangements."},
 {name:"Documents",x:"Check what is needed for transporting the remains and for the funeral: confirmation of death, the death certificate, embalming documents and so on."}]},
@@ -107,10 +107,10 @@ sections:[
 ["At the airport, longer delays","Give the reason, the new boarding time and the options. If no time is fixed, update at a set interval (for example every 15–30 minutes)"],
 ["Long delays or likely cancellation","Identify passengers with onward bookings and make arrangements"],
 ["Regulators","In Korea, airlines must inform passengers as soon as they know of a delay; airlines that failed to, or did so late, have been fined ★"]]}]},
-{h:"Services by length of delay (example)",blocks:[{t:"fig",id:"gnd_delay",cap:"Animated figure: an arrow moves along the delay scale, showing which services apply at each length. An example; airlines differ."},{t:"table",cols:["Delay","Typical service"],rows:[
-["2 to 4 hours","Drinks and a snack"],
-["4 to 6 hours","Drinks, a meal or snack, transport, means of communication"],
-["6 hours or more","Drinks, meals, a day-use room, overnight accommodation, means of communication"]]},
+{h:"Services by length of delay (example; the thresholds differ by airline)",blocks:[{t:"fig",id:"gnd_delay",cap:"Animated figure: an arrow moves along the delay scale, showing which services apply at each length. An example; airlines differ."},{t:"table",cols:["Delay","Typical service"],rows:[
+["Beyond roughly 2–3 hours","Drinks and a snack"],
+["Beyond roughly 4–5 hours","Drinks, a meal or snack, transport, means of communication"],
+["Roughly 6 hours or more, or overnight","Drinks, meals, a day-use room, overnight accommodation, means of communication"]]},
 {t:"rows",items:[
 {name:"Often excluded",x:"Force majeure such as weather, air traffic control or airport conditions; staff travel tickets; onward sectors that are not confirmed."},
 {name:"Arranging hotels",x:"One room per passenger as a rule. Contract with hotels at good rates in normal times. Always tell them the expected departure and the pick-up time for the airport."},
@@ -128,7 +128,7 @@ sections:[
 voice:"What calms the counter on a long-delay day is regular updates. Even with no news, give the current situation and the time of the next update at set intervals.",
 terms:[["Delay","遅延","지연"],["Meal Voucher","食事券","식사 쿠폰"],["Delay Certificate","遅延証明書","지연 증명서"],["Hotel Accommodation","宿泊","숙박"],["Force Majeure","不可抗力","불가항력"],["Air Traffic Control (ATC)","航空管制","항공교통관제"]],
 quiz:[{q:"What makes passengers angriest during a delay?",opts:["The delay itself","Being told nothing","The weather","The aircraft type"],a:1,exp:"Lack of information is what drives frustration."},
-{q:"What do you do when no departure time can be fixed?",opts:["Nothing","Keep updating at a set interval, such as every 20 minutes","Announce once an hour only","Wait until it is fixed"],a:1,exp:"Keep the updates coming at the promised interval."},
+{q:"What do you do when no departure time can be fixed?",opts:["Nothing","Keep updating at a set interval, such as every 15–30 minutes","Announce once an hour only","Wait until it is fixed"],a:1,exp:"Keep the updates coming at the promised interval."},
 {q:"How do you explain a maintenance delay?",opts:["Describe the fault in detail","Say it is an unavoidable measure for safety","Give no reason","Blame the passengers"],a:1,exp:"Accurate, and without alarming people."}],
 next:"5-5 Diversions"});
 
@@ -144,7 +144,7 @@ sections:[
 ["What to share","Onward itineraries, medical cases, VIPs, wheelchair passengers","The same, plus contacting the local agencies"],
 ["Authorities","The station notifies them and completes the formalities","Arranged through the handling company"]]}]},
 {h:"What happens to passengers on board (example)",blocks:[{t:"rows",items:[
-{name:"If the wait will exceed two hours",x:"If airport facilities allow, disembark passengers and have them wait in a designated area."},
+{name:"If the wait on the ground will be long (e.g. 1–2 hours or more)",x:"If airport facilities allow, disembark passengers and have them wait in a designated area."},
 {name:"Waiting outside",x:"Where local conditions allow, the station manager may let passengers clear immigration and wait outside the airport."},
 {name:"Passengers who want to enter here",x:"They may be allowed to clear immigration locally, on condition that their checked bags are delivered at the original destination."},
 {name:"Resuming the flight",x:"Crew duty limits may mean the flight cannot continue that day, in which case switch to accommodation and rebooking."}]},
@@ -187,7 +187,7 @@ sections:[
 {h:"What happens to the catering",blocks:[{t:"rows",items:[
 {name:"Before it is loaded",x:"The station manager decides with the caterer whether to load it."},
 {name:"After it is loaded",x:"The senior cabin crew makes the final decision on whether it can be served."},
-{name:"Example storage times",x:"Refrigerated before loading, hot meals up to 72 hours from production and cold meals up to 48. Once loaded, consumption within about four hours is recommended. Catering that has been offloaded is not reused."}]}]},
+{name:"How long catering keeps",x:"Shelf life is set by the caterer’s and the airline’s hygiene standards. Refrigerated before loading, it is typically two to three days from production (hot and cold meals differ); once loaded, many standards call for consumption within a few hours. Catering that has been offloaded is not reused."}]}]},
 {h:"Taking complaints and redress claims",blocks:[{t:"check",items:[
 {name:"How to listen",x:"Listen to the end, carefully, and never look indifferent. If you cannot answer now, agree to come back to them promptly."},
 {name:"Clear fault on our side",x:"Establish the facts, explain what has been confirmed honestly, and refer questions of liability to the department responsible."},

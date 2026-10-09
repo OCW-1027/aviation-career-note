@@ -69,7 +69,7 @@ sections:[
 ["Ministry audit (security, dangerous goods)","Once a year. Dates are announced early in the year and differ by airport; airlines are notified one to two months ahead"],
 ["Unannounced inspection","Added from around the second half of 2024. It looks at the operation as it really runs"],
 ["Dangerous goods audit","On the handling of dangerous goods, when the authorities make contact"],
-["Head office safety and security audit","Stations inspected on a cycle, such as every two years"],
+["Head office safety and security audit","Stations inspected on a cycle the company sets, e.g. every one to three years"],
 ["Home authority inspection","An inspection of overseas stations under your own country’s operating standards"]]},
 {t:"note",x:"* Based on several airlines’ experience. ★"}]},
 {h:"What is looked at most closely",blocks:[{t:"rows",items:[

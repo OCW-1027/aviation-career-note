@@ -35,7 +35,7 @@ sections:[
 ["Bypass ratio","About 5 (CFM56) to about 9 (LEAP) ★","About 9–10 ★"],
 ["Thrust (per engine)","About 26,000 lb ★","About 70,000 lb or more ★"],
 ["Fuel capacity (max)","About 26,000 litres ★","About 126,000 litres ★"]]}]},
-{h:"APU and fuel",blocks:[{t:"rows",items:[
+{h:"APU and fuel",blocks:[{t:"fig",id:"mnt_zones",cap:"Figure: where the engines, APU and fuel tanks are (B737 example)."},{t:"rows",items:[
 {name:"APU (auxiliary power unit)",x:"A small gas turbine in the tail. The B737’s supplies air and electricity, the B787’s electricity only. Some airports limit APU running time and require ground power and PCA instead ★"},
 {name:"Fuelling",x:"Plans are in weight (kg), uplift in volume (litres); convert with the specific gravity and compare the fuel receipt with the aircraft gauges"},
 {name:"Fuel quality",x:"The fuel company tests daily for water and contamination; if in doubt, fuelling stops"},

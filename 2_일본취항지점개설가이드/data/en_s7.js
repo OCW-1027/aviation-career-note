@@ -72,7 +72,7 @@ sections:[
 ["The first audit","Authority and head office audits. Training records checked against the plans (5-3)"],
 ["The first year end","Year-end tax adjustment, withholding tax, next year’s budget (2-4)"],
 ["After a year","Review the year and revise the procedures, the calendar and the budget"]]}]},
-{h:"The monthly rhythm (example)",blocks:[{t:"check",items:[
+{h:"The monthly rhythm (example; dates depend on the airline and its contracts)",blocks:[{t:"check",items:[
 {name:"Start of the month",x:"Close last month’s costs, file traffic statistics, check and file the passenger facility charges and the departure tax."},
 {name:"Early in the month",x:"Prepare payroll, check the handling company’s invoice, meet the cargo handler."},
 {name:"Mid-month",x:"The airport company’s invoice, and the fuel surcharge filing in the months it applies."},
