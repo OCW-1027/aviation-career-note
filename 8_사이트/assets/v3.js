@@ -17,7 +17,7 @@ var FOOT=[['Learn',[['index.html#learn','Courses'],['plan.html','My Learning Pla
  ['Business',[['../23_재무3표실무/00_シリーズ全体_財務3表.html','Finance'],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','HR & Admin'],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html','Management']]],
  ['Career',[['jobs.html','Jobs'],['../5_면접대비가이드/00_シリーズ全体_面接対策.html','Interview'],['index.html#coaching','Coaching']]],
  ['Connect',[['../community/index.html','Community'],['about.html','About ACN'],['sources.html','Content Policy']]]];
-var LANGS=['ja','ko','en'],lang='ja';
+var LANGS=['ja','ko','en'],lang='ja';window.SITE_LANGS=LANGS;
 try{var q=(location.search.match(/[?&]lang=(ja|ko|en)/)||[])[1],sv=localStorage.getItem('art-lang'),nl=String(navigator.language||'').slice(0,2);
  lang=q||(LANGS.indexOf(sv)>=0?sv:(nl==='ko'?'ko':nl==='en'?'en':'ja'));localStorage.setItem('art-lang',lang)}catch(e){}
 function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
