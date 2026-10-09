@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Revenue Management（収益管理）の練習</title>
+<title>収益管理の練習</title>
 <meta name="description" content="リトルウッドの法則、EMSR-b、オーバーブッキング、RASK・RevPARの計算を、数字を変えながら練習するページ。">
 <style>
 :root{--ink:#1d2a38;--muted:#5b6b7d;--line:#dbe3ec;--bg:#f7fafd;--paper:#fff;--ok:#1f7a6e;--ng:#c2344f;--acc:#C2417A}
@@ -45,7 +45,7 @@ svg{width:100%;height:auto;display:block}
 <script>
 var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(s)>=0)return s}catch(e){}return 'ja'})(),tab=0;
 var T={
-ja:{t:'Revenue Management（収益管理）の練習',back:'← 講座の目次',lead:'レッスン7-3・7-4・7-7の計算を、数字を変えながら確かめるページです。⑤〜⑦では、客室ごとの26クラス、予約の積み上がりのシミュレーション、問題と解説に進めます。数値はすべて練習用で、需要は正規分布、来る確率は1人ずつ独立と仮定しています。',
+ja:{t:'収益管理の練習',back:'← 講座の目次',lead:'レッスン7-3・7-4・7-7の計算を、数字を変えながら確かめるページです。⑤〜⑦では、客室ごとの26クラス、予約の積み上がりのシミュレーション、問題と解説に進めます。数値はすべて練習用で、需要は正規分布、来る確率は1人ずつ独立と仮定しています。',
 tabs:['2つの運賃（リトルウッド）','複数のクラス（EMSR-b）','オーバーブッキング','指標（航空・ホテル）'],
 in:'入力',out:'結果',seats:'座席数',hf:'高い運賃（円）',lf:'安い運賃（円）',mu:'高い運賃の需要の平均（人）',sd:'需要の標準偏差（人）',
 prot:'保護する席数',bl:'安い運賃の上限',ratio:'運賃の比（安い÷高い）',curve:'保護する席数と収入の見込み（安い運賃の需要は十分にあると仮定）',exprev:'収入の見込み',

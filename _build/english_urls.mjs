@@ -2,7 +2,7 @@
 // 元のフォルダ・ファイル（PC の「콘텐츠」）の名前はそのまま。ビルドの最後に、出力（_site）の中だけで
 //   ① フォルダとファイルの名前を英語に変える
 //   ② すべての .html .js .css .xml .json の中の古い名前を新しい名前に書き換える
-//      （そのままの文字・%エンコード・JS の \uXXXX の3通り。ツールの名前は '…' "…" で囲まれた拡張子なしの形も）
+//      （そのままの文字・%エンコード・JS の \uXXXX の3通り。拡張子 .html の付いた形だけ。名前だけの '…' は画面の見出しなので変えない）
 //   ③ 古い住所には、新しい住所へ自動で移るページを残す（共有済みのリンクが切れないように）
 // フォルダは1段のまま（相対リンク ../ がそのまま使える）。新しいフォルダを足したら DIRS に1行加える
 import fs from 'fs';
@@ -79,8 +79,8 @@ export function englishUrls(OUT) {
   for (const [k, v] of Object.entries(files)) {
     const old = k.split('/').pop(), nu = v;
     add(old, nu); add(enc(old), nu); add(uesc(old, false), nu); add(uesc(old, true), nu);
-    const ob = old.replace(/\.html$/, ''), nb = nu.replace(/\.html$/, '');
-    for (const q of ["'", '"']) add(q + ob + q, q + nb + q);
+    // 拡張子なしの '名前' は書き換えない（2026.10）：ツールの名前（画面の見出し）と同じ文字なので、
+    // 書き換えると見出しが transactions・index などの英語の住所になってしまう。ツールを探すときは id を使う（8_사이트/data/home_data.js）
   }
   for (const [k, v] of Object.entries(DIRS)) { add(k, v); add(enc(k), v); add(uesc(k, false), v); add(uesc(k, true), v); }
   // 同じ置き換え元が重ならないように（目次のファイル名はフォルダごとに違う）
