@@ -14,6 +14,8 @@ var path=decodeURIComponent(location.pathname);
 var HOME=U('index.html');window.ACN_HOME=HOME;
 /* 日本語の改行（語の途中で切らない）：ja_wrap.js */
 (function(){var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
+/* ロゴ（マーク＋Aviation Career Note）：acn_logo.js。読み込めたら頭とフッターを描き直す 2026.10 */
+(function(){if(window.ACN_LOGO)return;var g=document.createElement('script');g.src=new URL('acn_logo.js',me).href;g.onload=function(){if(hd){last='';draw()}};document.head.appendChild(g)})();
 /* レッスンの「完了」ボタン（私の学習プランと共通の記録）：progress.js 2026.10 */
 if(/\/(ja|ko|en)\/[a-z]+\/\d+-\d+\/?(index\.html)?$/.test(path)&&!/jsdom/i.test(navigator.userAgent)){var pg=document.createElement('script');pg.src=new URL('progress.js',me).href;document.head.appendChild(pg);
  /* 私の学習ノート（メモ・理解度・復習・ブックマーク・学習時間）：notes.js 2026.10 */
@@ -40,7 +42,7 @@ var CSS='@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;60
 '.acn-hd{position:relative;z-index:50;background:#fff;border-bottom:1px solid #dfe4e8;font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;line-height:1.5}'+
 '.acn-hd *{box-sizing:border-box}'+
 '.acn-in{max-width:1200px;margin:auto;min-height:72px;padding:10px 24px;display:flex;align-items:center;gap:26px}'+
-'.acn-brand{font-weight:900;letter-spacing:-.03em;white-space:nowrap;color:#182431!important;text-decoration:none!important;font-size:16px}.acn-brand b{color:#1769e0}'+
+'.acn-brand{display:inline-flex;align-items:center;flex:none;white-space:nowrap;color:#091c2f!important;text-decoration:none!important;font-weight:800;font-size:18px;letter-spacing:-.02em}'+
 '.acn-menu{display:flex;gap:22px;flex:1;font-size:14px}.acn-menu a{color:#4e5966!important;text-decoration:none!important}.acn-menu a:hover,.acn-menu a.on{color:#1769e0!important}.acn-menu a.on{font-weight:800}'+
 '.acn-act{display:flex;align-items:center;gap:10px}'+
 '.acn-pill{border:1px solid #dfe4e8;border-radius:999px;padding:4px 6px;font-size:12px;color:#4f5e69;display:inline-flex;align-items:center;gap:2px}'+
@@ -58,16 +60,16 @@ var CSS='@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;60
 '.nv-fab button{background:#fff!important;color:#182431!important;border:1px solid #dfe4e8!important;border-radius:10px!important;font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif!important;font-weight:700!important;box-shadow:0 8px 22px rgba(9,28,47,.10)!important}'+
 '.nv-fab button:hover{border-color:#9bbbf0!important;color:#1769e0!important}'+
 '@media(max-width:980px){.acn-in{flex-wrap:wrap;padding:12px 18px;gap:10px 14px}.acn-menu{order:3;flex:1 1 100%;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:13px}.acn-menu a{border:1px solid #dfe4e8;border-radius:9px;padding:7px 4px;text-align:center;background:#fff}.acn-act{margin-left:auto}.acn-ft-in{grid-template-columns:1fr 1fr}}'+
-'@media(max-width:600px){.acn-brand{font-size:15px}.acn-cta{padding:9px 12px}.acn-ft-in{grid-template-columns:1fr}.acn-crumb{padding:10px 16px 0}}'+
+'@media(max-width:600px){.acn-brand{font-size:16px}.acn-cta{padding:9px 12px}.acn-ft-in{grid-template-columns:1fr}.acn-crumb{padding:10px 16px 0}}'+
 /* 資料・ツールのページ（shell.js）：ロゴと言語ボタンは新しい頭にまとめ、「資料・ツール › このページ」だけ残す */
 '.shbar .shbrand,.shbar .shlang{display:none!important}.shbar{margin:14px 0 10px!important}.shcrumb{font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif!important;font-size:13px!important}.shcrumb a{color:#1769e0!important}'+
 '@media print{.acn-hd,.acn-ft,.acn-crumb{display:none!important}}';
 
 var hd,ft,crumb,last='';
 function draw(){var l=L();if(l===last&&hd)return;last=l;var c=C[l];
- hd.innerHTML='<div class="acn-in" role="navigation" aria-label="menu"><a class="acn-brand" href="'+HOME+'"><b>A·</b> AVIATION CAREER NOTE</a><div class="acn-menu">'+NAV.map(function(n,i){return '<a href="'+U(n[0])+'"'+(n[1]===cur?' class="on" aria-current="page"':'')+'>'+E(c.nav[i])+'</a>'}).join('')+'</div><div class="acn-act"><span class="acn-pill" role="group" aria-label="Language">'+[['ko','KO'],['ja','JA'],['en','EN']].map(function(x,i){return (i?'<i>/</i>':'')+'<button type="button" data-al="'+x[0]+'" class="'+(x[0]===l?'on':'')+'" aria-pressed="'+(x[0]===l)+'">'+x[1]+'</button>'}).join('')+'</span><a class="acn-cta" href="'+U('account.html')+'">'+E(c.mem)+'</a></div></div>';
+ hd.innerHTML='<div class="acn-in" role="navigation" aria-label="menu"><a class="acn-brand" href="'+HOME+'" aria-label="Aviation Career Note">'+(window.ACN_LOGO?ACN_LOGO.lockup():'Aviation Career Note')+'</a><div class="acn-menu">'+NAV.map(function(n,i){return '<a href="'+U(n[0])+'"'+(n[1]===cur?' class="on" aria-current="page"':'')+'>'+E(c.nav[i])+'</a>'}).join('')+'</div><div class="acn-act"><span class="acn-pill" role="group" aria-label="Language">'+[['ko','KO'],['ja','JA'],['en','EN']].map(function(x,i){return (i?'<i>/</i>':'')+'<button type="button" data-al="'+x[0]+'" class="'+(x[0]===l?'on':'')+'" aria-pressed="'+(x[0]===l)+'">'+x[1]+'</button>'}).join('')+'</span><a class="acn-cta" href="'+U('account.html')+'">'+E(c.mem)+'</a></div></div>';
  Array.prototype.forEach.call(hd.querySelectorAll('button[data-al]'),function(b){b.onclick=function(){setLang(b.getAttribute('data-al'))}});
- ft.innerHTML='<div class="acn-ft-in"><div><b>'+E(c.brand)+'</b>'+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],l))+'</b>'+f[1].map(function(a){return '<a href="'+U(a[0])+'">'+E(FL(a[1],l))+'</a>'}).join('')+'</div>'}).join('')+'</div><div class="acn-copy">'+E(c.copy)+'<a href="'+U('terms.html')+'">'+E(c.terms)+'</a><a href="'+U('privacy.html')+'">'+E(c.privacy)+'</a><a href="'+U('notice.html')+'">'+E(c.notice)+'</a></div>';}
+ ft.innerHTML='<div class="acn-ft-in"><div>'+(window.ACN_LOGO?'<a class="acn-ftb" href="'+HOME+'" aria-label="Aviation Career Note">'+ACN_LOGO.lockup({dark:true})+'</a>'+(l==='en'?'':'<p>'+E(c.brand)+'</p>'):'<b>'+E(c.brand)+'</b>')+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],l))+'</b>'+f[1].map(function(a){return '<a href="'+U(a[0])+'">'+E(FL(a[1],l))+'</a>'}).join('')+'</div>'}).join('')+'</div><div class="acn-copy">'+E(c.copy)+'<a href="'+U('terms.html')+'">'+E(c.terms)+'</a><a href="'+U('privacy.html')+'">'+E(c.privacy)+'</a><a href="'+U('notice.html')+'">'+E(c.notice)+'</a></div>';}
 /* ページにもともとある言語ボタンを押す（無ければ ?lang= を付けて読み直す） */
 function setLang(l){var b=document.querySelector('#siteLang button[data-l="'+l+'"],#langs button[data-l="'+l+'"],#langGroup button[data-l="'+l+'"],#lang button[data-l="'+l+'"],.shlang button[data-l="'+l+'"]');
  if(b){b.click();setTimeout(draw,0);return}

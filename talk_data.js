@@ -20,7 +20,11 @@
       {q:{ja:'',ko:'',en:''},      // 問い（画面ではヒントの言語で出す）
        opts:[{ja:'',ko:'',en:''},{…},{…}],   // 選択肢 3つ（画面では練習する言語で出す。並びは画面で入れ替える）
        a:0}                        // 正しい選択肢の番号（0から数える）
-    ]}
+    ],
+    ai:{goal:{ja:'',ko:'',en:''},  // （なくてもよい）「AIと話す」で使う。会話の目標（どちらの役にも通じる書き方で1文）
+        twist:{ja:'',ko:'',en:''}} // （なくてもよい）途中で起きること（ひとひねり）。AI が会話の途中で起こす。1文
+   }
+   ※ ai は id・cat・lv のすぐ下の行に書いてもよい（いまの20の会話はそうしている）
 
    ■ 増やし方
    ・このファイルの最後の ); の前に { … }, を足す。
@@ -28,13 +32,15 @@
        window.TALK=window.TALK||[];window.TALK.push({…},{…});
      の形にして、会話練習_日韓英.html の <script src="talk_data.js"></script> の次の行に読み込みを1行足す。
    ・同じ id が2つあるときは、先に読んだ方を使う。
-   ・なくてもよいもの：alt・note・check・scene。足りない言語があるときは、日本語→英語→韓国語の順に代わりを出す。
+   ・なくてもよいもの：alt・note・check・scene・ai。足りない言語があるときは、日本語→英語→韓国語の順に代わりを出す。
 */
 window.TALK=window.TALK||[];
 window.TALK.push(
 
 /* ───────── 空港・機内の仕事（work） ───────── */
 {id:'air-checkin-1',cat:'work',lv:2,
+ ai:{goal:{ja:'名前のちがいを確かめて直し、チェックインを最後まで終える。',ko:'이름 차이를 확인해서 고치고 체크인을 끝까지 마친다.',en:'Confirm and correct the name, then finish check-in.'},
+    twist:{ja:'スーツケースが、重さの上限を3キロこえている。',ko:'캐리어가 무게 제한을 3킬로 넘는다.',en:'The suitcase is 3 kg over the weight limit.'}},
  title:{ja:'チェックイン：名前のつづりがちがう',ko:'체크인: 이름 철자가 다를 때',en:'Check-in: a name that doesn’t match'},
  scene:{ja:'カウンターで、予約の名前とパスポートの名前のつづりが1文字ちがうことに気づきます。',ko:'카운터에서 예약 이름과 여권 이름의 철자가 한 글자 다른 것을 알게 됩니다.',en:'At the counter, you notice the booking name is one letter different from the passport.'},
  roles:{A:{ja:'カウンターの係員',ko:'카운터 직원',en:'Check-in agent'},B:{ja:'乗客',ko:'승객',en:'Passenger'}},
@@ -65,6 +71,8 @@ window.TALK.push(
  ]},
 
 {id:'air-gate-delay-1',cat:'work',lv:2,
+ ai:{goal:{ja:'遅れの理由と、出発の見通しを伝えて、乗客の心配に答える。',ko:'지연 이유와 출발 예정을 알리고 승객의 걱정에 답한다.',en:'Explain the reason for the delay and the expected departure, and answer the passenger’s worries.'},
+    twist:{ja:'乗客は到着地で乗り継ぎがあり、間に合うかをとても心配している。',ko:'승객은 도착지에서 환승이 있어서 늦지 않을지 매우 걱정한다.',en:'The passenger has a connection at the destination and is very worried about missing it.'}},
  title:{ja:'搭乗口：出発が遅れる説明',ko:'탑승구: 출발 지연 안내',en:'At the gate: explaining a delay'},
  scene:{ja:'機体の点検で出発が遅れます。搭乗口で乗客に聞かれます。',ko:'기체 점검으로 출발이 늦어집니다. 탑승구에서 승객이 물어봅니다.',en:'The flight is delayed for an aircraft check. A passenger asks you at the gate.'},
  roles:{A:{ja:'乗客',ko:'승객',en:'Passenger'},B:{ja:'搭乗口の係員',ko:'탑승구 직원',en:'Gate agent'}},
@@ -94,6 +102,8 @@ window.TALK.push(
  ]},
 
 {id:'air-baggage-1',cat:'work',lv:2,
+ ai:{goal:{ja:'荷物の形や色、連絡先を聞いて、届けを作る。',ko:'짐의 모양과 색, 연락처를 묻고 분실 신고를 접수한다.',en:'Find out what the bag looks like and how to contact the passenger, and file a report.'},
+    twist:{ja:'乗客は、荷物を預けたときにもらった控えをなくしてしまった。',ko:'승객은 짐을 맡길 때 받은 수하물표를 잃어버렸다.',en:'The passenger has lost the baggage claim tag they were given at check-in.'}},
  title:{ja:'手荷物が出てこない',ko:'수하물이 나오지 않을 때',en:'A bag that didn’t arrive'},
  scene:{ja:'到着した乗客の荷物が出てきません。手荷物のカウンターで話を聞きます。',ko:'도착한 승객의 짐이 나오지 않았습니다. 수하물 카운터에서 이야기를 듣습니다.',en:'An arriving passenger’s bag hasn’t come out. You talk to them at the baggage service counter.'},
  roles:{A:{ja:'手荷物カウンターの係員',ko:'수하물 카운터 직원',en:'Baggage service agent'},B:{ja:'乗客',ko:'승객',en:'Passenger'}},
@@ -123,6 +133,8 @@ window.TALK.push(
  ]},
 
 {id:'air-wheelchair-1',cat:'work',lv:1,
+ ai:{goal:{ja:'どんな手伝いが必要かを聞いて、搭乗口までの手配を決める。',ko:'어떤 도움이 필요한지 묻고 탑승구까지의 안내를 정한다.',en:'Find out what help is needed and arrange assistance to the gate.'},
+    twist:{ja:'乗客は自分の車いすを持っていて、預けるか機内の入口まで使うか迷っている。',ko:'승객은 자기 휠체어를 가지고 있고, 맡길지 기내 입구까지 쓸지 고민한다.',en:'The passenger has their own wheelchair and can’t decide whether to check it in or use it up to the aircraft door.'}},
  title:{ja:'車いすの手伝いを頼まれる',ko:'휠체어 도움 요청',en:'Helping with a wheelchair request'},
  scene:{ja:'チェックインのとき、長く歩くのがむずかしい乗客から手伝いを頼まれます。',ko:'체크인할 때 오래 걷기 힘든 승객이 도움을 요청합니다.',en:'At check-in, a passenger who finds it hard to walk far asks for help.'},
  roles:{A:{ja:'係員',ko:'직원',en:'Agent'},B:{ja:'乗客',ko:'승객',en:'Passenger'}},
@@ -151,6 +163,8 @@ window.TALK.push(
  ]},
 
 {id:'air-transfer-1',cat:'work',lv:2,
+ ai:{goal:{ja:'次の便の乗り場と時間、手続きの順番をわかりやすく伝える。',ko:'다음 편 탑승 장소와 시간, 절차 순서를 알기 쉽게 알려 준다.',en:'Explain clearly where and when the next flight leaves and what to do, in order.'},
+    twist:{ja:'次の便の出発まで50分しかなく、乗客は急いでいる。',ko:'다음 편 출발까지 50분밖에 없어서 승객이 서두른다.',en:'There are only 50 minutes until the next flight, and the passenger is in a hurry.'}},
  title:{ja:'乗り継ぎの案内',ko:'환승 안내',en:'Guiding a transfer passenger'},
  scene:{ja:'到着したばかりの乗客が、次の便への乗り継ぎ方を聞いてきます。',ko:'막 도착한 승객이 다음 비행기로 환승하는 방법을 묻습니다.',en:'A passenger who just landed asks how to make their connection.'},
  roles:{A:{ja:'乗り継ぎ案内の係員',ko:'환승 안내 직원',en:'Transfer desk agent'},B:{ja:'乗客',ko:'승객',en:'Passenger'}},
@@ -178,6 +192,8 @@ window.TALK.push(
  ]},
 
 {id:'air-complaint-1',cat:'work',lv:3,
+ ai:{goal:{ja:'乗客の気持ちを受け止めて、席の解決の案を出し、落ち着いてもらう。',ko:'승객의 마음을 받아 주고 좌석 해결 방안을 제시해 진정시킨다.',en:'Acknowledge the passenger’s feelings, offer a seating solution and calm things down.'},
+    twist:{ja:'便は満席で、家族全員をすぐに並べるのはむずかしい。',ko:'항공편이 만석이라 가족 모두를 바로 나란히 앉히기 어렵다.',en:'The flight is full, so seating the whole family together right away is difficult.'}},
  title:{ja:'苦情にていねいに対応する',ko:'불만에 정중하게 대응하기',en:'Handling a complaint politely'},
  scene:{ja:'家族の席が離れてしまい、乗客が怒ってカウンターに来ました。',ko:'가족 좌석이 떨어져 배정되어 승객이 화가 나서 카운터에 왔습니다.',en:'A passenger comes to the counter, upset that their family has been seated apart.'},
  roles:{A:{ja:'乗客',ko:'승객',en:'Passenger'},B:{ja:'カウンターの係員',ko:'카운터 직원',en:'Counter agent'}},
@@ -211,6 +227,8 @@ window.TALK.push(
 
 /* ───────── 旅行（travel） ───────── */
 {id:'trv-immigration-1',cat:'travel',lv:1,
+ ai:{goal:{ja:'旅行の目的・日数・泊まる所を答えて、入国する。',ko:'여행 목적, 기간, 숙소를 대답하고 입국한다.',en:'Answer questions about the purpose of your trip, how long you are staying and where, and get through.'},
+    twist:{ja:'友達の家に泊まるので、住所をすぐに言えない。',ko:'친구 집에 묵어서 주소를 바로 말하지 못한다.',en:'You are staying at a friend’s place and can’t give the address straight away.'}},
  title:{ja:'入国審査で答える',ko:'입국 심사에서 대답하기',en:'Answering at immigration'},
  scene:{ja:'旅行先の空港に着きました。入国審査でいくつか質問されます。',ko:'여행지 공항에 도착했습니다. 입국 심사에서 몇 가지 질문을 받습니다.',en:'You’ve landed abroad. The immigration officer asks you a few questions.'},
  roles:{A:{ja:'入国審査官',ko:'입국 심사관',en:'Immigration officer'},B:{ja:'旅行者',ko:'여행자',en:'Traveller'}},
@@ -236,6 +254,8 @@ window.TALK.push(
  ]},
 
 {id:'trv-hotel-1',cat:'travel',lv:1,
+ ai:{goal:{ja:'手続きを終えて、朝食の時間と、出る日の時間を確かめる。',ko:'체크인을 마치고 조식 시간과 체크아웃 시간을 확인한다.',en:'Finish checking in and confirm breakfast times and check-out time.'},
+    twist:{ja:'予約が1泊少なく入っている。',ko:'예약이 1박 적게 되어 있다.',en:'The booking is one night shorter than you planned.'}},
  title:{ja:'ホテルのチェックイン',ko:'호텔 체크인',en:'Checking in at a hotel'},
  scene:{ja:'予約したホテルに着き、フロントで手続きをします。',ko:'예약한 호텔에 도착해 프런트에서 수속을 합니다.',en:'You arrive at the hotel you booked and check in at the front desk.'},
  roles:{A:{ja:'フロントの係',ko:'프런트 직원',en:'Front desk clerk'},B:{ja:'宿泊客',ko:'투숙객',en:'Guest'}},
@@ -261,6 +281,8 @@ window.TALK.push(
  ]},
 
 {id:'trv-taxi-1',cat:'travel',lv:1,
+ ai:{goal:{ja:'行き先を伝え、降りる場所を指示して、料金を払う。',ko:'목적지를 말하고 내릴 곳을 알려 준 뒤 요금을 낸다.',en:'Tell the driver where to go, say where to stop and pay the fare.'},
+    twist:{ja:'この車ではカードが使えず、現金が少ししかない。',ko:'이 차에서는 카드를 쓸 수 없고 현금이 조금밖에 없다.',en:'The taxi doesn’t take cards, and you only have a little cash.'}},
  title:{ja:'タクシーに乗る',ko:'택시 타기',en:'Taking a taxi'},
  scene:{ja:'タクシーで行き先を伝え、降りる場所を指示して、料金を払います。',ko:'택시에서 목적지를 말하고, 내릴 곳을 알려 주고, 요금을 냅니다.',en:'You tell the taxi driver where to go, say where to stop, and pay.'},
  roles:{A:{ja:'運転手',ko:'택시 기사',en:'Driver'},B:{ja:'乗客',ko:'승객',en:'Passenger'}},
@@ -286,6 +308,8 @@ window.TALK.push(
  ]},
 
 {id:'trv-way-1',cat:'travel',lv:1,
+ ai:{goal:{ja:'駅までの道順を聞いて、わかったことを確かめる。',ko:'역까지 가는 길을 묻고 들은 내용을 확인한다.',en:'Ask the way to the station and check that you have understood.'},
+    twist:{ja:'近くに名前の似た駅が2つあり、どちらの駅かを確かめる必要がある。',ko:'근처에 이름이 비슷한 역이 두 개 있어서 어느 역인지 확인해야 한다.',en:'There are two stations with similar names nearby, so you need to check which one.'}},
  title:{ja:'道をたずねる',ko:'길 묻기',en:'Asking the way'},
  scene:{ja:'駅へ行く道がわからなくなり、通りがかりの人にたずねます。',ko:'역으로 가는 길을 잃어서 지나가는 사람에게 묻습니다.',en:'You’re not sure how to get to the station, so you ask someone passing by.'},
  roles:{A:{ja:'旅行者',ko:'여행자',en:'Traveller'},B:{ja:'通りがかりの人',ko:'지나가던 사람',en:'Passer-by'}},
@@ -311,6 +335,8 @@ window.TALK.push(
 
 /* ───────── 毎日の暮らし（life） ───────── */
 {id:'life-konbini-1',cat:'life',lv:1,
+ ai:{goal:{ja:'ほしい物を伝えて、支払いを済ませる。',ko:'원하는 것을 말하고 계산을 마친다.',en:'Ask for what you need and pay.'},
+    twist:{ja:'支払いのときに、ポイントカードを作るかと聞かれる。',ko:'계산할 때 포인트 카드를 만들겠냐는 질문을 받는다.',en:'At the till, you are asked if you want to sign up for a points card.'}},
  title:{ja:'コンビニで買い物',ko:'편의점에서 장보기',en:'At the convenience store'},
  scene:{ja:'コンビニのレジで、お弁当と飲み物を買います。',ko:'편의점 계산대에서 도시락과 음료를 삽니다.',en:'You buy a boxed lunch and a drink at a convenience store checkout.'},
  roles:{A:{ja:'店員',ko:'점원',en:'Clerk'},B:{ja:'お客',ko:'손님',en:'Customer'}},
@@ -340,6 +366,8 @@ window.TALK.push(
  ]},
 
 {id:'life-restaurant-1',cat:'life',lv:1,
+ ai:{goal:{ja:'おすすめを聞いて、卵の入っていない料理を選んで注文する。',ko:'추천 메뉴를 묻고 달걀이 들어가지 않은 요리를 골라 주문한다.',en:'Ask for recommendations and order a dish without egg.'},
+    twist:{ja:'おすすめの料理にも、卵が少し入っている。',ko:'추천 요리에도 달걀이 조금 들어간다.',en:'The recommended dish also contains a little egg.'}},
  title:{ja:'食堂で注文する',ko:'식당에서 주문하기',en:'Ordering at a restaurant'},
  scene:{ja:'友達と食堂に入り、おすすめを聞いて注文します。友達は卵が食べられません。',ko:'친구와 식당에 들어가 추천 메뉴를 묻고 주문합니다. 친구는 달걀을 못 먹습니다.',en:'You go into a restaurant with a friend, ask for a recommendation and order. Your friend can’t eat eggs.'},
  roles:{A:{ja:'店員',ko:'점원',en:'Server'},B:{ja:'お客',ko:'손님',en:'Customer'}},
@@ -366,6 +394,8 @@ window.TALK.push(
  ]},
 
 {id:'life-clinic-1',cat:'life',lv:2,
+ ai:{goal:{ja:'具合と、いつからかを伝えて、受付を済ませる。',ko:'증상과 언제부터인지 말하고 접수를 마친다.',en:'Describe your symptoms and when they started, and finish registering.'},
+    twist:{ja:'保険証を家に忘れてきた。',ko:'건강보험증을 집에 두고 왔다.',en:'You have left your health insurance card at home.'}},
  title:{ja:'医院の受付',ko:'병원 접수',en:'At the clinic reception'},
  scene:{ja:'熱が出たので、近くの医院に初めて行きます。受付で具合を伝えます。',ko:'열이 나서 근처 병원에 처음 갑니다. 접수처에서 증상을 말합니다.',en:'You have a fever and visit a local clinic for the first time. You explain your symptoms at reception.'},
  roles:{A:{ja:'受付の係',ko:'접수 직원',en:'Receptionist'},B:{ja:'患者',ko:'환자',en:'Patient'}},
@@ -392,6 +422,8 @@ window.TALK.push(
  ]},
 
 {id:'life-phone-booking-1',cat:'life',lv:2,
+ ai:{goal:{ja:'日時・人数・名前を伝えて、予約を取る。',ko:'날짜와 시간, 인원, 이름을 말하고 예약한다.',en:'Give the date, time, number of people and your name, and make the booking.'},
+    twist:{ja:'7時は満席で、6時か8時半なら空いている。',ko:'7시는 만석이고, 6시나 8시 반이면 자리가 있다.',en:'7 o’clock is fully booked, but 6 or 8:30 is free.'}},
  title:{ja:'電話で店を予約する',ko:'전화로 가게 예약하기',en:'Booking a table by phone'},
  scene:{ja:'土曜日の夜、4人で食事をするために、電話で店を予約します。',ko:'토요일 저녁 네 명이 식사하려고 전화로 가게를 예약합니다.',en:'You phone a restaurant to book dinner for four on Saturday.'},
  roles:{A:{ja:'店の人',ko:'가게 직원',en:'Restaurant staff'},B:{ja:'電話をかける人',ko:'전화 거는 사람',en:'Caller'}},
@@ -417,6 +449,8 @@ window.TALK.push(
  ]},
 
 {id:'life-ward-office-1',cat:'life',lv:2,
+ ai:{goal:{ja:'必要な書類を出して、住所の届けを済ませる。',ko:'필요한 서류를 내고 전입 신고를 마친다.',en:'Hand in the right documents and complete your change of address.'},
+    twist:{ja:'前に住んでいた町の役所でもらう書類を、持ってきていない。',ko:'전에 살던 곳의 관공서에서 받아야 하는 서류를 가져오지 않았다.',en:'You haven’t brought the document you were supposed to get from your previous town office.'}},
  title:{ja:'区役所で住所の届けを出す',ko:'구청에서 전입 신고하기',en:'Registering your address at the ward office'},
  scene:{ja:'引っ越してきたので、区役所の窓口で新しい住所の届けを出します。',ko:'이사를 와서 구청 창구에서 새 주소를 신고합니다.',en:'You’ve just moved, so you register your new address at the ward office counter.'},
  roles:{A:{ja:'区役所の窓口の係',ko:'구청 창구 직원',en:'Ward office clerk'},B:{ja:'住民',ko:'주민',en:'Resident'}},
@@ -440,6 +474,8 @@ window.TALK.push(
  ]},
 
 {id:'life-neighbor-1',cat:'life',lv:1,
+ ai:{goal:{ja:'あいさつをして、ごみの日など暮らしのことを1つ聞く。',ko:'인사를 하고 쓰레기 버리는 날 같은 생활 정보를 하나 묻는다.',en:'Say hello and ask one thing about daily life, such as rubbish days.'},
+    twist:{ja:'となりの人が、夜の物音を少し気にしていると話す。',ko:'옆집 사람이 밤에 나는 소리가 조금 신경 쓰인다고 말한다.',en:'Your neighbour mentions that noise at night bothers them a little.'}},
  title:{ja:'となりの人にあいさつ',ko:'옆집에 이사 인사하기',en:'Saying hello to a new neighbour'},
  scene:{ja:'引っ越した次の日、となりの部屋の人にあいさつに行きます。',ko:'이사한 다음 날, 옆집 사람에게 인사하러 갑니다.',en:'The day after moving in, you go next door to say hello.'},
  roles:{A:{ja:'引っ越してきた人',ko:'이사 온 사람',en:'New resident'},B:{ja:'となりの人',ko:'옆집 사람',en:'Next-door neighbour'}},
@@ -465,6 +501,8 @@ window.TALK.push(
 
 /* ───────── 職場の会話（office） ───────── */
 {id:'off-intro-1',cat:'office',lv:1,
+ ai:{goal:{ja:'名前・前の仕事・ひとことを伝えて、よい印象を残す。',ko:'이름, 전에 하던 일, 한마디 인사를 하고 좋은 인상을 남긴다.',en:'Give your name, your previous job and a short greeting, and make a good impression.'},
+    twist:{ja:'課長が、みんなの前で「趣味は何ですか」と聞く。',ko:'과장이 모두 앞에서 “취미가 뭐예요?”라고 묻는다.',en:'Your manager asks “What are your hobbies?” in front of everyone.'}},
  title:{ja:'初日の自己紹介',ko:'첫 출근 자기소개',en:'Introducing yourself on day one'},
  scene:{ja:'新しい職場の初日。課長が部署のみんなに紹介してくれます。',ko:'새 직장 첫날. 과장님이 부서 사람들에게 소개해 줍니다.',en:'Your first day at a new job. The manager introduces you to the team.'},
  roles:{A:{ja:'新しく入った人',ko:'새로 온 직원',en:'New employee'},B:{ja:'課長',ko:'과장',en:'Manager'}},
@@ -487,6 +525,8 @@ window.TALK.push(
  ]},
 
 {id:'off-meeting-phone-1',cat:'office',lv:2,
+ ai:{goal:{ja:'打ち合わせの日時と場所を決めて、確かめてから電話を終える。',ko:'회의 날짜와 장소를 정하고 확인한 뒤 전화를 끊는다.',en:'Agree on the date, time and place for the meeting, confirm them and end the call.'},
+    twist:{ja:'相手が言った日には、こちらに別の予定がある。',ko:'상대가 말한 날에는 나에게 다른 일정이 있다.',en:'You already have something else on the day they suggest.'}},
  title:{ja:'電話で打ち合わせの日を決める',ko:'전화로 미팅 날짜 정하기',en:'Setting up a meeting by phone'},
  scene:{ja:'取引先に電話をかけて、来週の打ち合わせの日時と場所を決めます。',ko:'거래처에 전화해서 다음 주 미팅 일시와 장소를 정합니다.',en:'You call a business partner to set the date, time and place for next week’s meeting.'},
  roles:{A:{ja:'電話をかける人（青空商事）',ko:'전화 거는 사람(아오조라상사)',en:'Caller (Aozora Trading)'},B:{ja:'取引先の人（みどり物流）',ko:'거래처 직원(미도리물류)',en:'Partner (Midori Logistics)'}},
@@ -515,6 +555,8 @@ window.TALK.push(
  ]},
 
 {id:'off-help-1',cat:'office',lv:2,
+ ai:{goal:{ja:'経費の精算のやり方を教えてもらい、お礼を言う。',ko:'경비 정산 방법을 배우고 고맙다고 말한다.',en:'Learn how to submit an expense claim and thank your colleague.'},
+    twist:{ja:'領収書を1枚なくしてしまっている。',ko:'영수증을 한 장 잃어버렸다.',en:'You have lost one of the receipts.'}},
  title:{ja:'同僚に手伝いを頼む',ko:'동료에게 도움 부탁하기',en:'Asking a colleague for help'},
  scene:{ja:'経費の精算のやり方がわからず、先輩の同僚に聞きます。',ko:'경비 정산 방법을 몰라서 선배 동료에게 물어봅니다.',en:'You don’t know how to file an expense claim, so you ask a more experienced colleague.'},
  roles:{A:{ja:'自分',ko:'나',en:'You'},B:{ja:'先輩の同僚',ko:'선배 동료',en:'Senior colleague'}},
@@ -540,6 +582,8 @@ window.TALK.push(
  ]},
 
 {id:'off-smalltalk-1',cat:'office',lv:1,
+ ai:{goal:{ja:'週末の話をして、相手にも質問を返す。',ko:'주말 이야기를 하고 상대에게도 질문을 돌려준다.',en:'Talk about your weekend and ask about theirs.'},
+    twist:{ja:'同僚が、今度いっしょに行こうと誘ってくる。',ko:'동료가 다음에 같이 가자고 한다.',en:'Your colleague suggests going together next time.'}},
  title:{ja:'月曜の朝の雑談',ko:'월요일 아침 잡담',en:'Monday-morning small talk'},
  scene:{ja:'月曜の朝、同僚と週末の話をします。',ko:'월요일 아침, 동료와 주말 이야기를 합니다.',en:'On Monday morning, you chat with a colleague about the weekend.'},
  roles:{A:{ja:'同僚',ko:'동료',en:'Colleague'},B:{ja:'自分',ko:'나',en:'You'}},

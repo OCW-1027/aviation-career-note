@@ -7,6 +7,7 @@
 <title>Aviation Career Note</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/v3.css">
+<script src="assets/acn_logo.js"></script>
 <style>
 /* 2026.10 ホームの改良：ヒーローのローリングバナー、カードの実績表示、目的別カード（edX 風） */
 .hs{position:relative}
@@ -72,7 +73,7 @@ body.ko .ft-c h3,body.ko .ft-c p,body.ko .ft h2,body.ko .ft-lead{word-break:keep
 
 <header>
   <nav class="nav" aria-label="menu">
-    <a href="index.html" class="brand"><b>A·</b> AVIATION CAREER NOTE</a>
+    <a href="index.html" class="brand" data-acn-logo aria-label="Aviation Career Note">Aviation Career Note</a>
     <div class="navlinks" id="navlinks"></div>
     <div class="navright">
       <span class="pill" id="langs" role="group" aria-label="Language"></span>
@@ -309,14 +310,16 @@ var KICK={GND:['旅客ハンドリング','여객운송','Passenger Operations']
  LVN={Beginner:['入門','입문','Beginner'],Intermediate:['中級','중급','Intermediate'],Advanced:['上級','고급','Advanced']},
  LEVEL={GND:'Beginner',DSP:'Intermediate',STN:'Advanced',CGO:'Intermediate',MNT:'Intermediate',SLS:'Intermediate',CIQ:'Beginner',OPN:'Advanced',IRR:'Advanced',BAS:'Beginner',APT:'Beginner',INT:'Beginner',EXP:'Beginner'},
  TOPC=['GND','DSP','STN'],MOREC=['CGO','MNT','SLS','CIQ','OPN','IRR','BAS','APT','INT','EXP'],
- /* ツールは data/home_data.js の id で指す（ファイル名は公開時に英語に変わるので、名前で探さない）。LABS＝最初に見せる4つ。名前は TOOLS の各言語の名前を使う */
- LABS=['talk','dsp','lc','rm'],
+ /* ツールは data/home_data.js の id で指す（ファイル名は公開時に英語に変わるので、名前で探さない）。LABS＝最初に見せる4つ。名前は TOOLS の各言語の名前を使う（名前の中の \n はカードでは改行、検索の結果では空白）*/
+ LABS=['dsp','lc','rm','fin_link'],
  FINT=['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo','ye'],
  STEPS=[[['基礎を固める','기초 다지기','Aviation Fundamentals'],'BAS'],[['実務を学ぶ','실무 배우기','Passenger / Operations'],'GND'],[['事例で考える','사례로 생각하기','Practice & Cases'],'IRR'],[['就職に備える','취업 준비','Career & Interview'],'INT']];
 /* 求人の国：韓国語のページは韓国、日本語のページは日本、英語のページは切り替え（求人データの country：kr / jp、無ければ jp）2026.10 */
 var lang='ja',MKT='jp';
 function $(i){return document.getElementById(i)}
 function E(s){return window.ACN?ACN.E(s):String(s)}
+/* ツールの名前：\n の後ろは改行して2行目（.l2）に。2行目が入らないときの調整は v3.js（fitL2）2026.10 */
+function TT(s){var a=String(s).split('\n');return E(a[0])+(a.length>1?'<br><span class="l2">'+E(a.slice(1).join(' '))+'</span>':'')}
 function li(l){return {ja:0,ko:1,en:2}[l]||0}
 function S(){var o={};SERIES.forEach(function(s){o[s.code]=s});return o}
 function tool(n){return TOOLS.filter(function(x){return x.id===n})[0]}
@@ -401,9 +404,9 @@ window.PAGE_RENDER=function(l){lang=l;var t=T[lang],s=S();document.title=t.title
 
  /* 実習 */
  $('hpr').innerHTML=t.hpr;
- $('labTop').innerHTML=LABS.map(function(id){var x=tool(id);if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+E(String(d[0]).replace(/\n/g,' '))+'</b><span>'+E(d[1])+'</span></a>'}).join('');
- $('allTools').innerHTML=TOOLS.filter(function(x){return LABS.indexOf(x.id)<0}).map(function(x){var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+E(String(d[0]).replace(/\n/g,' '))+'</b><span>'+E(d[1])+'</span></a>'}).join('');
- toggle('mpBtn','allTools',t.mp);
+ $('labTop').innerHTML=LABS.map(function(id){var x=tool(id);if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+TT(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
+ $('allTools').innerHTML=TOOLS.filter(function(x){return LABS.indexOf(x.id)<0}).map(function(x){var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+TT(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
+ toggle('mpBtn','allTools',t.mp);if(window.ACN&&ACN.fitL2)ACN.fitL2();
 
  /* メンバーシップ・コーチング・コミュニティ・信頼 */
  $('hm').innerHTML=t.hm;$('lm').textContent=t.lm;$('pm').textContent=t.pm;$('bm').textContent=t.bm;

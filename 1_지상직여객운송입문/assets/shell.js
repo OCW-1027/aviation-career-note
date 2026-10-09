@@ -14,7 +14,7 @@ if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)doc
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
 var LIB={ja:'\u8cc7\u6599\u30fb\u30c4\u30fc\u30eb',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
 var NAME={talk:{ja:'会話練習 ― 日本語・韓国語・英語',ko:'회화 연습 — 일본어·한국어·영어',en:'Conversation Practice: Japanese, Korean, English'},
-load:{ja:'搭載管理（重量と重心）の練習',ko:'탑재관리(중량과 무게중심) 연습',en:'Load Control (W&B) Practice'},
+load:{ja:'搭載管理（Weight & Balance）の練習',ko:'탑재관리(Weight & Balance) 연습',en:'Load Control (Weight & Balance) Practice'},
 codes:{ja:'\u822a\u7a7a\u30b3\u30fc\u30c9\u8f9e\u5178',ko:'\ud56d\uacf5 \ucf54\ub4dc \uc0ac\uc804',en:'Aviation Code Dictionary'},
 delay:{ja:'IATA\u9045\u5ef6\u30b3\u30fc\u30c9\u4e00\u89a7',ko:'IATA \uc9c0\uc5f0 \ucf54\ub4dc \ubaa9\ub85d',en:'IATA Delay Codes'},
 glossary:{ja:'\u822a\u7a7a\u7528\u8a9e\u96c6',ko:'\ud56d\uacf5 \uc6a9\uc5b4\uc9d1',en:'Aviation Glossary'},
@@ -78,7 +78,9 @@ var css=
 '.shfoot a:hover{border-color:#9bbbf0;box-shadow:0 12px 30px rgba(9,28,47,.07)}.shfoot a:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}'+
 '.shfoot small{display:block;font-size:12.5px;font-weight:700;color:#1769e0;margin-bottom:3px}.shfoot b{display:block;font-size:15px;font-weight:700;line-height:1.45}'+
 '.shfoot .shl{text-align:right}.shfoot .shl:only-child{flex:0 1 340px;text-align:left}'+
-'html.sh:lang(ko) .wrap>header h1,html.sh:lang(ko) .wrap>header p,html.sh:lang(ko) .shhero h1,html.sh:lang(ko) .shhero p,html.sh:lang(ko) .shfoot b{word-break:keep-all;overflow-wrap:break-word}'+
+'html.sh:lang(ko) .wrap>header h1,html.sh:lang(ko) .wrap>header p,html.sh:lang(ko) .shhero h1,html.sh:lang(ko) .shhero p,html.sh:lang(ko) header.top h1,html.sh:lang(ko) header.top p,html.sh:lang(ko) .lead,html.sh:lang(ko) .shfoot b{word-break:keep-all;overflow-wrap:break-word}'+
+/* 2026.10 韓国語の見出しは語の途中で改行しない。見出しは行の長さをそろえ、説明は最後の行に1語だけ残らないように。日本語の文節の改行は ja_wrap.js（acn_shell.js が読み込む） */
+'html.sh:lang(ko) h2,html.sh:lang(ko) h3,html.sh:lang(ko) h4{word-break:keep-all;overflow-wrap:anywhere}html.sh h1{text-wrap:balance}html.sh .wrap>header p,html.sh .shhero p,html.sh header.top p,html.sh .lead,html.sh .shfoot b{text-wrap:pretty}'+
 'html.sh:lang(en) .wrap>header h1,html.sh:lang(en) .shhero h1{font-size:clamp(22px,3.6vw,31px)!important}'+
 '@media print{.shfoot{display:none!important}}@media (min-width:601px){.shfoot{margin-bottom:130px}}'+
 '@media (max-width:600px){html.sh .wrap>header h1,html.sh .shhero h1{font-size:21px!important}html.sh:lang(en) .wrap>header h1,html.sh:lang(en) .shhero h1{font-size:19px!important;letter-spacing:-.01em}.shfoot .shl{text-align:left}.shbar{gap:8px 10px}.shcrumb{order:3;width:100%}.shbrand span{font-size:14px}'+

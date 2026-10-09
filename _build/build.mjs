@@ -210,6 +210,9 @@ fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="U
 const VER = (process.env.GITHUB_SHA || Date.now().toString(36)).slice(0, 8);
 // 韓国語の画面で「」を引用符にする小さなスクリプト（_build/koq.js）を、すべてのページの <meta charset> のすぐ後に入れる（2026.10）
 const KOQ = '\n<script>/*KOQ*/' + fs.readFileSync(path.join(SRC, '_build', 'koq.js'), 'utf8').replace(/^\/\*[\s\S]*?\*\/\s*/, '').trim() + '</script>';
+// ファビコン（ブラウザのタブの小さな絵）：8_사이트/assets/acn_logo.js で選んだマークを、すべてのページに入れる（2026.10）
+let ICON = '';
+try { const lc = { window: {}, location: { search: '' } }; vm.runInNewContext(fs.readFileSync(path.join(SRC, '8_사이트/assets/acn_logo.js'), 'utf8'), lc); ICON = '\n<link rel="icon" type="image/svg+xml" href="' + lc.window.ACN_LOGO.faviconHref() + '">'; } catch (e) { console.log('favicon skipped: ' + e.message); }
 (function addVer(dir) {
   for (const n of fs.readdirSync(dir, { withFileTypes: true })) {
     const p = path.join(dir, n.name);
@@ -218,6 +221,7 @@ const KOQ = '\n<script>/*KOQ*/' + fs.readFileSync(path.join(SRC, '_build', 'koq.
       const s = fs.readFileSync(p, 'utf8');
       let t = s.replace(/(\s(?:src|href)=")(?!https?:|\/\/|data:|#|mailto:)([^"?#]+\.(?:js|css))(")/g, `$1$2?v=${VER}$3`);
       if (!t.includes('/*KOQ*/')) t = t.replace(/<meta charset="utf-8">/i, m => m + KOQ);
+      if (ICON && !/<link rel="(?:shortcut )?icon"/i.test(t)) t = t.replace(/<meta charset="utf-8">/i, m => m + ICON);
       if (t !== s) fs.writeFileSync(p, t);
     }
   }
