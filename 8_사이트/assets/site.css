@@ -76,4 +76,4 @@ html[lang="ja"] body[data-page]:not([data-page="home"]){word-break:auto-phrase}
 body[data-page]:not([data-page="home"]) h1,body[data-page]:not([data-page="home"]) h2,body[data-page]:not([data-page="home"]) h3{text-wrap:balance}
 /* 文節が長くて収まらないときだけ、文節の中でも改行する（はみ出し防止） */
 html[lang="ja"] body[data-page]:not([data-page="home"]){overflow-wrap:anywhere}
-
+.draft:empty{display:none}

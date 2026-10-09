@@ -105,9 +105,9 @@ sections:[
 ["Operator","Taoyuan International Airport Corporation"],
 ["Opened","1979 (as Chiang Kai-shek International Airport); renamed in 2006"],
 ["Terminals","Terminals 1 and 2 (capacity about 37 million a year); Terminal 3 under construction"],
-["2025 results","35.22 million passengers in January–September (+5.24%, about 97% of pre-pandemic); 2.50 million tonnes of cargo (9th)"],
+["2025 results","47.8 million passengers (+6%, about 98% of pre-pandemic); 2.50 million tonnes of cargo (9th)"],
 ["Main airlines","China Airlines (SkyTeam), EVA Air (Star Alliance), STARLUX Airlines"]]},
-{t:"note",x:"* January–September figure from the Taoyuan International Airport Corporation. About 40% of transfer passengers travel between North America and Southeast Asia."}]},
+{t:"note",x:"* Passenger figure from the Taoyuan International Airport Corporation; cargo rank from ACI World 2025 preliminary data. About 40% of transfer passengers travel between North America and Southeast Asia."}]},
 {h:"The Terminal 3 plan",blocks:[{t:"table",cols:["When","Details"],rows:[
 ["1 December 2025","Trial operation of the north concourse (eight gates, D11–D18)"],
 ["25 December 2025","North concourse in full operation, adding about 5.8 million a year"],

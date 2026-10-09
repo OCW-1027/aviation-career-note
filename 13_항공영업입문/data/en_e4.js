@@ -44,7 +44,7 @@ set("6-3",{title:"Sales Preparation Before a New Route Launches: To-do List and 
 lead:["Starting to sell only once the launch date is fixed is too late. Filings with the authorities, GDS contracts and BSP membership, confirming fares and rules, informing agencies and preparing staff all run in parallel from several months before launch.","This lesson covers the pre-launch sales to-do list, the policies to decide first, and how to time your first visits to agencies."],
 sections:[
 {h:"To-do list (example)",blocks:[{t:"fig",id:"sls_prep",cap:"Figure: sales preparation before launch (example)."},{t:"table",cols:["Area","What to do"],rows:[
-["Filings","Schedules, fares, baggage, fuel surcharges and more (in Japan via the e-Gov online system and others); agree the split with head office and any agent (Course 2)"],
+["Filings","Schedule filings; approval of Japan-origin fares and fuel surcharges (Korea-origin: filing); baggage rules and more (in Japan via the e-Gov online system and others); agree the split with head office and any agent (Course 2)"],
 ["Sales systems","GDS contracts, BSP membership, meetings and training with the GDS offices in Japan"],
 ["Registering agencies","Collect major agencies’ PCCs (GDS office codes) and ticketing BSP numbers, and ask head office to register them"],
 ["Fares and rules","Confirm Japan-origin fares, rules and fuel surcharges, and write the Japanese guideline (3-3)"],

@@ -12,8 +12,8 @@ sections:[
 {name:"Changing at the transit point on a separately bought ticket",x:"The passenger will enter at the transit point to reclaim bags. Look up the transit point’s entry requirements. (1-2, 1-5)"},
 {name:"A 240-hour transit in China, then back to the country of origin",x:"The transit scheme cannot be used for a return trip. Check separately whether the 30-day visa exemption applies. (1-5, 4-7)"}]}]},
 {h:"Residents, and animals",blocks:[{t:"rows",items:[
-{name:"A foreign resident of Japan has left the residence card behind",x:"There is no way to confirm that they can return as a resident. Either they meet the requirements as a visitor, or the card is brought to them. (1-7)"},
-{name:"More than a year has passed since leaving",x:"If the special re-entry period has passed, the status of residence has been lost. Check the requirements again as a visitor. (1-7)"},
+{name:"A foreign resident of Japan has left the residence card behind",x:"Without the card there is no way to confirm they can re-enter Japan as a resident (special re-entry). Either they meet the conditions for a short-term visit (e.g. visa exemption), or the card is brought to them. (1-7)"},
+{name:"More than a year has passed since leaving",x:"If the special re-entry period has passed, the status of residence has been lost. Check again whether they can enter, e.g. for a short-term visit. (1-7)"},
 {name:"A four-month-old dog bound for the United States",x:"Dogs under six months cannot enter the United States. It cannot be accepted. (4-3)"},
 {name:"A cat bound for Japan, with no advance notification made",x:"If the conditions are not met, the animal is held at a quarantine facility for up to 180 days after arrival. Explain before departure and let the passenger decide. (3-4)"}]}]},
 {h:"The order to follow when unsure",blocks:[{t:"check",items:[

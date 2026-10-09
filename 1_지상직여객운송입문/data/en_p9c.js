@@ -87,7 +87,7 @@ sections:[
 ["Extension","Limits may be extended within set bounds for unforeseen delays"]]},
 {t:"note",x:"* Specific limits depend on national rules, crew complement, time of day and aircraft. ★"}]},
 {h:"From delay to cancellation",blocks:[{t:"fig",id:"gnd_ftl",cap:"Animated figure: how crew duty limits turn a delay into a cancellation, step by step."},{t:"ladder",rise:10,steps:[{name:"Long delay",sub:"Weather, technical, previous flight"},{name:"Check remaining time",sub:"Operations control and crew scheduling"},{name:"Limit at risk",sub:"Look for replacement crew"},{name:"No replacement",sub:"Depart after rest, or cancel"},{name:"Ground response",sub:"Information, hotels, rebooking (Course 1, Part 5)"}]},
-{t:"point",warn:true,x:"Crew limits exist for safety and cannot be stretched. Sharing crew remaining time with operations control early in a long delay speeds up the cancellation decision and passenger information."}]},
+{t:"point",warn:true,x:"Crew limits are safety rules against fatigue. They can be extended only for unforeseen events such as weather or technical faults, and only within set bounds (Japan: pilots only, up to 2 h before take-off at the captain’s discretion, among other rules; Korea: flight duty up to 2 h and flight time up to 1 h ★). Ground or commercial reasons alone never justify it. Sharing crew remaining time with operations control early in a long delay speeds up the cancellation decision and passenger information."}]},
 {h:"Alcohol limits: Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Who","Pilots and cabin crew (with standards for engineers and dispatchers too)","Aviation personnel and cabin crew"],
 ["Limit","Unfit to fly at 0.2 g/L or more in blood, or 0.09 mg/L or more in breath","0.02% blood alcohol or more counts as unfit for duty"],
@@ -102,7 +102,7 @@ sections:[
 {name:"Passenger information",x:"Announce delays and cancellations “for crew reasons” as soon as they are known (Course 1, lesson 5-8)."}]}]}],
 voice:"As crew duty limits approach, a delay can turn into a cancellation. Sharing the limit time with operations in advance speeds up the decision.",
 terms:[["Flight Duty Period (FDP)","飛行勤務時間","비행 근무 시간"],["Rest Period","休息","휴식"],["Flight Time","乗務時間","비행 시간"],["Alcohol Limit","飲酒の基準","음주 기준"],["Alcohol Test","アルコール検査","알코올 검사"],["Air Operator Certificate (AOC)","運航証明","운항 증명"]],
-quiz:[{q:"One reason a long delay can end in cancellation?",opts:["Crew duty limits and rest rules","Fares are low","Few passengers","Good weather"],a:0,exp:"They are safety rules and cannot be stretched."},
+quiz:[{q:"One reason a long delay can end in cancellation?",opts:["Crew duty limits and rest rules","Fares are low","Few passengers","Good weather"],a:0,exp:"They are safety rules: extensions are allowed only for unforeseen events within set bounds, never for ground reasons."},
 {q:"Which is Japan’s alcohol limit for cabin crew?",opts:["No limit","Unfit at 0.2 g/L blood or 0.09 mg/L breath","One beer allowed","Tested only after flight"],a:1,exp:"The same as pilots, tested before and after duty."},
 {q:"What counts as unfit for duty under Korean law?",opts:["0.02% blood alcohol or more","0.5% or more","1% or more","No limit"],a:0,exp:"Under the Aviation Safety Act."}],
 next:"9-4 Unruly passengers and handover on arrival"});

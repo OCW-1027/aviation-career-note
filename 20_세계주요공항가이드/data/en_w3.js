@@ -72,14 +72,14 @@ quiz:[{q:"When did Concourses D and E open at Hamad International?",opts:["2014"
 {q:"How many passengers started or ended their journey in Doha in 2025?",opts:["13.5 million","30 million","54.3 million","90 million"],a:0,exp:"Most of the rest were connecting."},
 {q:"What work is planned at Hamad International in 2026?",opts:["Eastern runway rehabilitation","A move to a new airport","Terminal closure","Suspending cargo"],a:0,exp:"Done in phases while operations continue."}],
 next:"3-3 Istanbul (IST)"});
-set("3-3",{title:"Istanbul (IST): Europe’s Second-busiest Airport and Turkish Airlines’ Hub, with 48% Transfers",hl:"Istanbul",subtitle:"Opened in 2018, with all flights moved from Atatürk in April 2019. 84.5 million passengers in 2025, second in Europe. In April 2025 the first airport in Europe to run three independent parallel runways",
-lead:["Istanbul Airport, built at Arnavutköy near the Black Sea, opened on 29 October 2018. All passenger flights moved from Atatürk Airport on 6 April 2019, and it is now Turkish Airlines’ home. In 2025 it handled 84.5 million passengers (+5.07%), second in Europe after Heathrow and eighth in the world.","Forty-eight per cent of its passengers are long-haul connections, and it links more than 330 destinations. This lesson covers how Istanbul’s two airports divide their roles, runway operations and future targets."],
+set("3-3",{title:"Istanbul (IST): Europe’s Second-busiest Airport and Turkish Airlines’ Hub, with 48% Transfers",hl:"Istanbul",subtitle:"Opened in 2018, with all flights moved from Atatürk in April 2019. 84.4 million passengers in 2025, second in Europe. In April 2025 the first airport in Europe to run three independent parallel runways",
+lead:["Istanbul Airport, built at Arnavutköy near the Black Sea, opened on 29 October 2018. All passenger flights moved from Atatürk Airport on 6 April 2019, and it is now Turkish Airlines’ home. In 2025 it handled 84.4 million passengers (+5.07%), second in Europe after Heathrow and eighth in the world.","Forty-eight per cent of its passengers are long-haul connections, and it links more than 330 destinations. This lesson covers how Istanbul’s two airports divide their roles, runway operations and future targets."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_ist",cap:"Figure: Istanbul at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: IST / ICAO: LTFM"],
 ["Operator","IGA (Istanbul Grand Airport)"],
 ["Opened","29 October 2018 (ceremony); all passenger flights 6 April 2019; all cargo 5 February 2022"],
-["2025 results","84.5 million (+5.07%, 66.6 million international), about 547,000 movements; 48% transfer passengers"],
+["2025 results","84.4 million (+5.07%, 66.6 million international), about 547,000 movements; 48% transfer passengers"],
 ["Network","More than 330 destinations, 116 scheduled airlines"],
 ["2026 target","90 million a year"],
 ["Main airline","Turkish Airlines (Star Alliance)"]]}]},
@@ -90,7 +90,7 @@ sections:[
 {t:"point",x:"Using three runways independently at the same time allows bigger arrival and departure waves and more connections, supporting Turkish Airlines as one of the airlines flying to the most countries in the world."}]},
 {h:"Istanbul’s two airports",blocks:[{t:"table",cols:["","Istanbul (IST)","Sabiha Gökçen (SAW)"],rows:[
 ["Location","European side (northwest)","Asian side (east)"],
-["2025","84.5 million","Over 48 million (a record)"],
+["2025","84.4 million","Over 48 million (a record)"],
 ["Airlines","Turkish Airlines and many foreign carriers","Pegasus Airlines, AJet (a Turkish Airlines subsidiary)"],
 ["Caution","More than an hour apart; not usable for connections","—"]]}]},
 {h:"Operations, entry and routes to Korea and Japan",blocks:[{t:"check",items:[

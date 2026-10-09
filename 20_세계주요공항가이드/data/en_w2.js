@@ -40,7 +40,7 @@ quiz:[{q:"When is Changi’s T5 due to open?",opts:["2027","The mid-2030s","2040
 {q:"Which is true of Singapore’s arrival card?",opts:["Paper cards are handed out on board","The electronic SG Arrival Card is submitted before arrival","There is no arrival card","It is filled in at a counter on arrival"],a:1,exp:"Paper cards were abolished in 2022."}],
 next:"2-2 Bangkok Suvarnabhumi (BKK)"});
 set("2-2",{title:"Bangkok Suvarnabhumi (BKK): 65 Million with SAT-1 and a Third Runway, 150 Million by 2033",hl:"Suvarnabhumi",subtitle:"Opened in 2006. The SAT-1 satellite terminal in 2023 and the third runway in November 2024 expanded capacity; the East Expansion and South Terminal aim for one of the world’s largest airports. Plus the split with Don Mueang",
-lead:["Bangkok has Suvarnabhumi, for international and long-haul flights, and Don Mueang, for low-cost and domestic services. Suvarnabhumi opened on 28 September 2006, handled about 60 million passengers in 2024 and was expected to approach 65 million in 2025 (Airports of Thailand).","The SAT-1 satellite terminal in 2023 and the third runway from 1 November 2024 raised capacity to 65 million a year and 94 movements an hour. This lesson covers the expansion plan and operational and entry points."],
+lead:["Bangkok has Suvarnabhumi, for international and long-haul flights, and Don Mueang, for low-cost and domestic services. Suvarnabhumi opened on 28 September 2006, handled 62.23 million passengers in 2024 and 62.90 million in 2025 (+1.1%) (Airports of Thailand).","The SAT-1 satellite terminal in 2023 and the third runway from 1 November 2024 raised capacity to 65 million a year and 94 movements an hour. This lesson covers the expansion plan and operational and entry points."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_bkk",cap:"Figure: Bangkok Suvarnabhumi at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: BKK / ICAO: VTBS"],
@@ -48,7 +48,7 @@ sections:[
 ["Opened","28 September 2006 (international flights moved from Don Mueang)"],
 ["Runways","Three (the third in full operation from 1 November 2024; 68 to 94 movements an hour)"],
 ["Terminals","Main terminal and SAT-1 (28 gates, eight for the A380); capacity 65 million a year"],
-["Passengers","About 60 million in 2024; close to 65 million expected in 2025"],
+["Passengers","62.23 million in 2024; 62.90 million in 2025 (+1.1%)"],
 ["Main airlines","Thai Airways (Star Alliance), Bangkok Airways, Thai Vietjet and others"]]}]},
 {h:"Expansion plan",blocks:[{t:"table",cols:["When","Details"],rows:[
 ["September 2023","SAT-1 opens (three minutes from the main terminal by people mover); +15 million"],

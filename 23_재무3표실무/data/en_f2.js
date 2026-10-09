@@ -124,7 +124,7 @@ sections:[
 {name:"Equity ratio = equity attributable to owners ÷ total assets",x:"Taiyaki stall 364,000 ÷ 580,000 = 62.8%. Vela Air 1,920 ÷ 6,000 = 32.0%. JAL 40.3%, ANA 37.7% (31 March 2026) ★."},
 {name:"Higher is safer, but",x:"Less borrowing means more resilience to losses. Yet borrowing lifts the shareholders’ return (ROE) on the same profit (Part 6). Airlines at 30–40% are usually regarded as sound. ★"},
 {name:"The pandemic lesson",x:"ANA’s equity ratio fell to 25.6% at the end of FY2022 and recovered to 37.7% at the end of FY2025 (ANA results presentation). Airline equity shrinks fast when demand stops, so it is built up in good times. ★"},
-{name:"Equity-like funding",x:"In 2026 JAL issued perpetual subordinated bonds (other equity instruments, 177.7bn) recorded in equity, and resolved to issue 200bn of bond-type preferred shares: funding counted as equity rather than debt, preserving the equity ratio while raising money for aircraft. ★"}]},
+{name:"Equity-like funding",x:"In April 2025 JAL issued perpetual subordinated bonds (other equity instruments, 177.7bn) recorded in equity, and resolved to issue 200bn of bond-type preferred shares: funding counted as equity rather than debt, preserving the equity ratio while raising money for aircraft. ★"}]},
 {t:"point",x:"There are only two ways to raise equity: earn and keep profit (retained earnings) or raise new money from shareholders. If equity has risen by neither route, look for valuation differences or hybrid capital."}]},
 {h:"Dividends and treasury shares",blocks:[{t:"table",cols:["Item","What happens","Balance sheet","Cash flow"],rows:[
 ["Dividend","Part of profit paid to shareholders","Retained earnings −, cash −","Financing − (JAL, year to March 2026: 40.1bn) ★"],

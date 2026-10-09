@@ -4,7 +4,7 @@ set("4-7",{title:"China, Taiwan and Hong Kong: The Closer the Country, the Easie
 lead:["These are the nearest destinations from Japan and Korea, but their rules differ greatly. Mainland China, Taiwan, Hong Kong and Macao each have their own immigration control and customs.","Taiwan in particular has some of the strictest rules in Asia on meat products and on e-cigarettes and heated tobacco. Things passengers from Japan commonly carry are violations there."],
 sections:[
 {h:"Mainland China",blocks:[{t:"fig",id:"ciq_cn",cap:"Figure: mainland China, Taiwan and Hong Kong."},{t:"table",cols:["","Details"],rows:[
-["Visa","Nationals of 45 countries and regions, including Japan, need no visa for stays of up to 30 days (until 31 December 2026)"],
+["Visa","Ordinary passport holders of 50 countries, including Japan, need no visa for stays of up to 30 days (until 31 December 2026 for Japan)"],
 ["Transit","A visa-free transit scheme of up to 240 hours. The onward destination must be a third country or region different from the origin (1-5)"],
 ["Arrival card","Can be submitted online ★"],
 ["What cannot be brought in","Meat, fruit, vegetables and so on, subject to quarantine ★"],
