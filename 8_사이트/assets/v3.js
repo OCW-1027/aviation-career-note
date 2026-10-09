@@ -30,7 +30,7 @@ function draw(){var c=C[lang],page=document.body.getAttribute('data-page');
  if($('langs')){$('langs').innerHTML=[['ko','KO'],['ja','JA'],['en','EN']].map(function(x,i){return (i?'<i>/</i>':'')+'<button type="button" data-l="'+x[0]+'" class="'+(x[0]===lang?'on':'')+'" aria-pressed="'+(x[0]===lang)+'">'+x[1]+'</button>'}).join('');
   Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}draw()}})}
  if($('mem'))$('mem').textContent=c.mem;
- if($('foot'))$('foot').innerHTML='<div><b>'+E(c.brand)+'</b>'+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],lang))+'</b>'+f[1].map(function(a){return '<a href="'+a[0]+'">'+E(FL(a[1],lang))+'</a>'}).join('')+'</div>'}).join('');
+ if($('foot'))$('foot').innerHTML='<div>'+(window.ACN_LOGO?'<a class="acn-ftb" href="index.html" aria-label="Aviation Career Note">'+ACN_LOGO.lockup({dark:true})+'</a>'+(lang==='en'?'':'<p>'+E(c.brand)+'</p>'):'<b>'+E(c.brand)+'</b>')+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],lang))+'</b>'+f[1].map(function(a){return '<a href="'+a[0]+'">'+E(FL(a[1],lang))+'</a>'}).join('')+'</div>'}).join('');
  if($('copy'))$('copy').innerHTML=E(c.copy)+'　<a href="terms.html">'+E(c.terms)+'</a>　<a href="privacy.html">'+E(c.privacy)+'</a>';
  if(typeof window.PAGE_RENDER==='function')window.PAGE_RENDER(lang);
  localLabels();fitL2();}
