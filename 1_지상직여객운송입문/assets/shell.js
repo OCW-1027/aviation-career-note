@@ -13,7 +13,8 @@ try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'
 if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)document.documentElement.setAttribute('data-ui',ul)}catch(e){}}
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
 var LIB={ja:'\u8cc7\u6599\u30fb\u30c4\u30fc\u30eb',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
-var NAME={load:{ja:'\u642d\u8f09\u7ba1\u7406\uff08W&B\uff09\u306e\u7df4\u7fd2',ko:'\ud0d1\uc7ac\uad00\ub9ac(W&B) \uc5f0\uc2b5',en:'Load Control (W&B) Practice'},
+var NAME={talk:{ja:'会話練習 ― 日本語・韓国語・英語',ko:'회화 연습 — 일본어·한국어·영어',en:'Conversation Practice: Japanese, Korean, English'},
+load:{ja:'搭載管理（重量と重心）の練習',ko:'탑재관리(중량과 무게중심) 연습',en:'Load Control (W&B) Practice'},
 codes:{ja:'\u822a\u7a7a\u30b3\u30fc\u30c9\u8f9e\u5178',ko:'\ud56d\uacf5 \ucf54\ub4dc \uc0ac\uc804',en:'Aviation Code Dictionary'},
 delay:{ja:'IATA\u9045\u5ef6\u30b3\u30fc\u30c9\u4e00\u89a7',ko:'IATA \uc9c0\uc5f0 \ucf54\ub4dc \ubaa9\ub85d',en:'IATA Delay Codes'},
 glossary:{ja:'\u822a\u7a7a\u7528\u8a9e\u96c6',ko:'\ud56d\uacf5 \uc6a9\uc5b4\uc9d1',en:'Aviation Glossary'},
@@ -22,7 +23,7 @@ ann:{ja:'\u7a7a\u6e2f\u30a2\u30ca\u30a6\u30f3\u30b9\u6587\u4f8b\u96c6',ko:'\uacf
 forms:{ja:'\u7a7a\u6e2f\u3067\u4f7f\u3046\u66f8\u985e\u3068\u69d8\u5f0f',ko:'\uacf5\ud56d \uc11c\ub958\uc640 \uc591\uc2dd',en:'Airport Forms'},
 faq:{ja:'\u3088\u304f\u3042\u308b\u8cea\u554f',ko:'\uc790\uc8fc \ubb3b\ub294 \uc9c8\ubb38',en:'FAQ'},
 route:{ja:'\u904b\u822a\u7ba1\u7406\u306e\u5b9f\u52d9\u7df4\u7fd2',ko:'\uc6b4\ud56d\uad00\ub9ac \uc2e4\ubb34 \uc5f0\uc2b5',en:'Flight Dispatch Practice'},
-rm:{ja:'Revenue Management\uff08\u53ce\u76ca\u7ba1\u7406\uff09\u306e\u7df4\u7fd2',ko:'Revenue Management(\uc218\uc775\uad00\ub9ac) \uc5f0\uc2b5',en:'Revenue Management Practice'},
+rm:{ja:'収益管理の練習',ko:'수익관리 연습',en:'Revenue Management Practice'},
 story:{ja:'\u30b9\u30c8\u30fc\u30ea\u30fc\u8a2d\u8a08\u30b7\u30fc\u30c8',ko:'\uc2a4\ud1a0\ub9ac \uc124\uacc4 \uc2dc\ud2b8',en:'Story Design Sheet'},
 kako:{ja:'航空従事者技能証明等学科試験 過去問',ko:'\uc77c\ubcf8\u0020\ud559\uacfc\uc2dc\ud5d8\u0020\uae30\ucd9c\ubb38\uc81c',en:'Japan Aviation Exam Past Papers'},
 krdsp:{ja:'\u97d3\u56fd\u0020\u904b\u822a\u7ba1\u7406\u58eb\u0020\u7df4\u7fd2\u554f\u984c',ko:'\ud55c\uad6d\u0020\uc6b4\ud56d\uad00\ub9ac\uc0ac\u0020\uc5f0\uc2b5\ubb38\uc81c',en:'Korea Dispatcher Practice Questions'},

@@ -47,7 +47,7 @@ var TOOLS=[
 {id:'quiz',p:'../確認クイズ_航空の仕事.html',ja:['確認クイズ','レッスンの内容を問題で確かめる'],ko:['확인 퀴즈','레슨 내용을 문제로 확인'],en:['Quick Quiz','Check what you learned in the lessons']},
 {id:'ann',p:'../4_공항안내방송예문집/空港アナウンス文例集.html',ja:['空港アナウンス文例集','日本語・韓国語・英語の案内の文例'],ko:['공항 안내방송 예문집','일본어·한국어·영어 안내 예문'],en:['Announcement Phrasebook','Sample announcements in English, Japanese and Korean']},
 {id:'forms',p:'../10_공항양식해설집/空港で使う書類と様式.html',ja:['空港で使う書類と様式','書類の解説と、印刷できる見本の様式'],ko:['공항에서 쓰는 서류와 양식','서류 해설과 인쇄 가능한 양식 예시'],en:['Airport Forms Explained','What each form is for, with printable blank samples']},
-{id:'faq',p:'../14_승객FAQ/よくある質問_空港と飛行機.html',ja:['よくある質問','手荷物・特別な対応・遅延・出入国'],ko:['자주 묻는 질문','수하물·특별 대응·지연·출입국'],en:['Passenger FAQ','Baggage, special assistance, delays and immigration']}];
+{id:'faq',p:'../14_승객FAQ/よくある質問_空港と飛行機.html',ja:['よくある質問','手荷物・特別な対応・遅延・出入国・機内'],ko:['자주 묻는 질문','수하물·특별 대응·지연·출입국·기내'],en:['Passenger FAQ','Baggage, special assistance, delays, immigration and on board']}];
 /* 資料・ツールの並び（2026.10）：グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。搭載管理を先頭に、講座の順。各グループの最初に小見出し（講座の名前）を付ける。ここにないツールは最後の「共通の資料」の後ろに並ぶ */
 (function(){var G=[[['旅客ハンドリングの実務','항공 여객운송 실무','Passenger Operations'],['lc','ann','forms','faq']],
  [['運航管理の実務','운항관리 실무','Flight Dispatch Operations'],['dsp','exam_jp','exam_kr']],
