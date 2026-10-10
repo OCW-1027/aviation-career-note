@@ -387,16 +387,21 @@ function scoreOf(heard,i){var s=BY[st.id],L=s.lines[i],l=tgt(),c=[tx(L,l)];if(l=
 /* 長く話せる聞き取り（2026.10）：押してから「■ 終了」を押すまで聞き続ける（最長60秒）。
    ブラウザが無音で止めても、自動で聞き直してつなぐ。確定した文はためておく */
 var MICMAX=60000;
-function longRec(o){/* o:{lang,onText(text,final),onEnd(text),onErr(code)} → {stop(soft)} */
- var S={on:true,dead:false,fin:'',t0:Date.now(),r:null};
- function one(){var r;try{r=new SRC()}catch(e){S.on=false;if(!S.ended){S.ended=true;o.onEnd(S.fin)}return}S.r=r;r._f='';
+/* 重なり防止（2026.10）：スマホのChrome などは、確定した文を「前の文＋続き」の形で何度も返すことがある。
+   前の文で始まる文は置き換え、前の文にすでに含まれる文は捨ててからつなぐ */
+function rkey(x){return String(x||'').toLowerCase().replace(/[\s。、．，.,!?！？]/g,'')}
+function mergeParts(a,sep){var out=[];a.forEach(function(p){p=String(p||'').trim();var k=rkey(p);if(!k)return;var n=out.length,lk=n?rkey(out[n-1]):'';
+  if(n&&k.indexOf(lk)===0)out[n-1]=p;else if(n&&lk.indexOf(k)>=0){}else out.push(p)});return out.join(sep)}
+function longRec(o){/* o:{lang,sep,onText(text,final),onEnd(text),onErr(code)} → {stop(soft)} */
+ var sep=o.sep||'',S={on:true,dead:false,parts:[],t0:Date.now(),r:null};
+ function one(){var r;try{r=new SRC()}catch(e){S.on=false;if(!S.ended){S.ended=true;o.onEnd(mergeParts(S.parts,sep))}return}S.r=r;r._f=[];
   r.lang=o.lang;r.interimResults=true;r.continuous=true;r.maxAlternatives=3;
-  r.onresult=function(e){if(S.dead||S.ended)return;var f='',it='',alts=[];try{for(var k=0;k<e.results.length;k++){var res=e.results[k];if(res.isFinal){f+=res[0].transcript;if(k===e.results.length-1)for(var a=0;a<res.length;a++)alts.push(res[a].transcript)}else it+=res[0].transcript}}catch(x){}
-   r._f=f;o.onText(S.fin+f+it,!it,alts)};
-  r.onerror=function(e){var c=e&&e.error;if(c==='not-allowed'||c==='service-not-allowed'||c==='audio-capture'){S.on=false;o.onErr(c)}};
-  r.onend=function(){if(S.dead)return;if(r._f){S.fin+=r._f+(o.sep||'');r._f=''}
-   if(S.on&&Date.now()-S.t0<MICMAX){one()}else if(!S.ended){S.on=false;S.ended=true;o.onEnd(S.fin.replace(/\s+$/,''))}};
-  try{r.start()}catch(e){S.on=false;if(!S.ended){S.ended=true;o.onEnd(S.fin)}}}
+  r.onresult=function(e){if(S.dead||S.ended||S.r!==r)return;var f=[],it='',alts=[];try{for(var k=0;k<e.results.length;k++){var res=e.results[k];if(res.isFinal){f.push(res[0].transcript);if(k===e.results.length-1)for(var a=0;a<res.length;a++)alts.push(res[a].transcript)}else it+=res[0].transcript}}catch(x){}
+   r._f=f;o.onText(mergeParts(S.parts.concat(f,[it]),sep),!it,alts)};
+  r.onerror=function(e){if(S.r!==r)return;var c=e&&e.error;if(c==='not-allowed'||c==='service-not-allowed'||c==='audio-capture'){S.on=false;o.onErr(c)}};
+  r.onend=function(){if(S.dead||S.r!==r)return;if(r._f.length){S.parts=S.parts.concat(r._f);r._f=[]}
+   if(S.on&&Date.now()-S.t0<MICMAX){one()}else if(!S.ended){S.on=false;S.ended=true;o.onEnd(mergeParts(S.parts,sep))}};
+  try{r.start()}catch(e){S.on=false;if(!S.ended){S.ended=true;o.onEnd(mergeParts(S.parts,sep))}}}
  one();
  return {S:S,stop:function(soft){S.on=false;if(!soft)S.dead=true;try{if(S.r)soft?S.r.stop():S.r.abort()}catch(e){}if(!soft&&!S.ended){S.ended=true;o.onEnd(null)}},el:function(){return Date.now()-S.t0}}}
 function micStop(){var x=rec;rec=null;if(x)x.stop(false);Array.prototype.forEach.call(document.querySelectorAll('.ln .ib.mic.rec'),function(b){b.classList.remove('rec');b.textContent=t.mic})}
@@ -889,11 +894,15 @@ function aiFail(code){var c=C;if(!c)return;c.busy=false;c.req=null;var last=c.hi
  c.retry=last||null;c.log.push({w:'err',tx:code==='rate'?t.eRate:code==='empty'?t.eEmpty:code==='slow'?t.eSlow:t.eNet,retry:!!last});paintLog()}
 function aiMicStop(soft){var x=crec;crec=null;if(x)x.stop(!!soft);var b=$('aiMic');if(b){b.classList.remove('rec');b.setAttribute('aria-pressed','false');b.textContent='🎤'}}
 function aiMic(btn){if(!SRC||!C)return;if(crec){var x=crec;x.stop(true);return}if(C.busy)return;stopTts();
- var ta=$('aiTx'),sep=C.T==='ja'?'':' ',base=ta.value?ta.value.replace(/\s*$/,sep):'',tm=null,c0=C;
- function fin(){if(tm){clearInterval(tm);tm=null}btn.classList.remove('rec');btn.setAttribute('aria-pressed','false');btn.textContent='🎤';var s3=$('aiSt');if(s3&&s3.getAttribute('data-m')){s3.textContent='';s3.removeAttribute('data-m')}}
+ var ta=$('aiTx'),sep=C.T==='ja'?'':' ',base=ta.value?ta.value.replace(/\s*$/,sep):'',tm=null,c0=C,lastW=ta.value;
+ /* 聞き取り中に入力欄を直したら（消す・打つ）、聞き取りを止めて、直した内容をそのまま残す（2026.10） */
+ function put(v){if(C!==c0||ta.value!==lastW)return false;ta.value=v.slice(0,1100);lastW=ta.value;grow(ta);return true}
+ function edited(){if(crec===me)aiMicStop(false)}
+ ta.addEventListener('input',edited);
+ function fin(){ta.removeEventListener('input',edited);if(tm){clearInterval(tm);tm=null}btn.classList.remove('rec');btn.setAttribute('aria-pressed','false');btn.textContent='🎤';var s3=$('aiSt');if(s3&&s3.getAttribute('data-m')){s3.textContent='';s3.removeAttribute('data-m')}}
  var me=longRec({lang:BCP[C.T],sep:sep,
-  onText:function(txt){if(C!==c0)return;ta.value=(base+txt).slice(0,1100);grow(ta)},
-  onEnd:function(txt){if(crec===me)crec=null;fin();if(txt&&C===c0){ta.value=(base+txt).slice(0,1100);grow(ta)}},
+  onText:function(txt){if(!put(base+txt))me.stop(false)},
+  onEnd:function(txt){if(crec===me)crec=null;fin();if(txt)put(base+txt)},
   onErr:function(c){var s3=$('aiSt');if(s3){s3.removeAttribute('data-m');s3.textContent=(c==='not-allowed'||c==='service-not-allowed')?t.micDeny:t.micErr}}});
  crec=me;btn.classList.add('rec');btn.setAttribute('aria-pressed','true');
  function tick(){if(crec!==me)return;var n=Math.round(me.el()/1000);btn.textContent=fm(t.micEnd,{n:n});var s3=$('aiSt');if(s3){s3.setAttribute('data-m','1');s3.textContent=fm(t.micLong,{n:n})}if(me.el()>MICMAX)me.stop(true)}
