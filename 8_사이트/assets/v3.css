@@ -233,7 +233,8 @@ footer{background:#081828;color:#fff;padding:58px 24px}
   /* GPT 案ではメニューが消えていたので、2行目に並べて全部見えるようにした */
   .nav{flex-wrap:wrap;height:auto;padding:12px 18px;gap:10px 14px}
   .navlinks{order:3;flex:1 1 100%;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12.5px}
-  .navlinks a{border:1px solid var(--line);border-radius:9px;padding:7px 4px;text-align:center;background:#fff}
+  .navlinks a{border:1px solid var(--line);border-radius:9px;padding:7px 2px;letter-spacing:-.02em;text-align:center;background:#fff}
+  .navlinks a{white-space:nowrap}
   .navright{margin-left:auto}
   .hero-grid,.business-intro,.path-band,.membership,.community-box{grid-template-columns:1fr}
   .quick{grid-template-columns:repeat(2,1fr)}
