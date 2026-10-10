@@ -17,6 +17,9 @@
 //     400 bad_request / 403 origin / 405 method / 413 too_large / 429 rate（回数の上限）/ 429 quota（今日の無料の分の終わり）
 //     500 config（AI のつなぎがない）/ 502 ai（AI の失敗）/ 503 busy（AI が混んでいる）
 // ・会話の中身はログに書かない（console に出すのは失敗の種類だけ）
+// ・聞き取り（2026.10 追加）：POST /stt?lang=ja|ko|en、中身は WAV（16kHz・モノラル）の音声そのもの（最長60秒・2.5MB まで）
+//   Workers AI の Whisper（@cf/openai/whisper-large-v3-turbo）で文字にして {text:'…'} を返す。音声は保存しない
+//   ブラウザの聞き取りより正確（とくに日本語・韓国語・専門用語）。無料の分は会話と共通（1分の音声で約 0.0005 ドル相当）
 
 const DEFAULT_ORIGINS = ['https://ocw-1027.github.io'];
 const DEFAULT_MODEL = '@cf/qwen/qwen3-30b-a3b-fp8';
@@ -31,6 +34,12 @@ const EFFORTS = ['low', 'medium', 'high'];
 const RESPONSES_PAUSE = 10 * 60000; // Responses の形が通らなかったら、この間は messages の形だけを使う
 let responsesNg = 0;             // 最後に Responses の形が通らなかった時刻
 const PER_MINUTE = 20;           // RL のつなぎがないときの、1つの IP の1分あたりの回数
+
+const STT_MODEL = '@cf/openai/whisper-large-v3-turbo';
+const STT_LANGS = ['ja', 'ko', 'en'];
+const MAX_AUDIO = 2600 * 1024;   // 60秒の 16kHz・16bit・モノラル WAV ≒ 1.9MB
+// 無音のときに Whisper がよく作る決まり文句（これだけのときは「聞き取れなかった」にする）
+const STT_JUNK = /^(ご視聴(いただき)?ありがとうございました|チャンネル登録(よろしくお願いします|をお願いします)?|시청해\s*주셔서\s*감사합니다|구독과\s*좋아요(\s*부탁드립니다)?|thanks for watching!?|thank you for watching\.?)[。.!！\s]*$/i;
 
 const hits = new Map();          // RL がないときの数え方（この Worker の1つの実行の中だけ。目安）
 
@@ -207,6 +216,41 @@ async function rateOk(request, env) {
   return true;
 }
 
+function b64(buf) {
+  const u = new Uint8Array(buf); let s = '';
+  for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+
+// 聞き取り：WAV を受け取り Whisper で文字にする
+async function stt(request, env, url, allow) {
+  const lang = String(url.searchParams.get('lang') || '').toLowerCase();
+  if (!STT_LANGS.includes(lang)) return json({ error: 'bad_request', detail: 'lang must be ja, ko or en' }, 400, allow);
+  const len = +(request.headers.get('Content-Length') || 0);
+  if (len > MAX_AUDIO) return json({ error: 'too_large' }, 413, allow);
+  let buf;
+  try { buf = await request.arrayBuffer(); } catch (e) { return json({ error: 'bad_request' }, 400, allow); }
+  if (buf.byteLength > MAX_AUDIO) return json({ error: 'too_large' }, 413, allow);
+  const h = new Uint8Array(buf, 0, Math.min(12, buf.byteLength));
+  if (buf.byteLength < 1000 || String.fromCharCode(h[0], h[1], h[2], h[3]) !== 'RIFF' || String.fromCharCode(h[8], h[9], h[10], h[11]) !== 'WAVE') return json({ error: 'bad_request', detail: 'audio must be WAV' }, 400, allow);
+  if (!(await rateOk(request, env))) return json({ error: 'rate' }, 429, allow);
+  if (!env || !env.AI || typeof env.AI.run !== 'function') { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
+  const audio = b64(buf);
+  const full = { audio, task: 'transcribe', language: lang, vad_filter: true, condition_on_previous_text: false };
+  let r;
+  try {
+    try { r = await env.AI.run(STT_MODEL, full); }
+    catch (e) { if (classify(e).error !== 'ai') throw e; console.log('talk-ai: stt_retry'); r = await env.AI.run(STT_MODEL, { audio, language: lang }); }
+  } catch (e) {
+    const c = classify(e); console.log('talk-ai: stt_' + c.error);
+    return json({ error: c.error }, c.status, allow);
+  }
+  let text = String((r && (r.text || (r.transcription_info && r.transcription_info.text))) || '').replace(/\s+/g, ' ').trim();
+  if (lang === 'ja') text = text.replace(/([^\x00-\x7F])\s+(?=[^\x00-\x7F])/g, '$1');   // 日本語の文字の間の空白を取る
+  if (STT_JUNK.test(text)) text = '';
+  return json({ text }, 200, allow);
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -217,10 +261,12 @@ export default {
     }
     if (request.method === 'GET') {
       // 動いているかの確かめ用（ブラウザでこの Worker の住所を開くと見える）。会話はしない
-      return json({ ok: true, service: 'talk-ai', ai: !!(env && env.AI), model: (env && env.MODEL) || DEFAULT_MODEL, origins: allowedOrigins(env) }, 200, allow);
+      return json({ ok: true, service: 'talk-ai', stt: true, ai: !!(env && env.AI), model: (env && env.MODEL) || DEFAULT_MODEL, origins: allowedOrigins(env) }, 200, allow);
     }
     if (request.method !== 'POST') return json({ error: 'method' }, 405, allow);
     if (!ok) return json({ error: 'origin' }, 403, '');
+    const url = new URL(request.url);
+    if (url.pathname.replace(/\/+$/, '') === '/stt') return stt(request, env, url, allow);
     const len = +(request.headers.get('Content-Length') || 0);
     if (len > MAX_BODY) return json({ error: 'too_large' }, 413, allow);
     let raw;
