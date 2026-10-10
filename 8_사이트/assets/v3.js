@@ -79,7 +79,7 @@ if(!NOJS){window.addEventListener('resize',fitSoon);if(document.fonts){if(docume
    HTML には英語のまま書いておき、ここに [英語, 日本語, 韓国語] を足す。英語の画面ではそのまま */
 var LB=[['Start here','はじめに','시작하기'],['Why ACN','航空キャリアノートの特徴','항공 커리어 노트의 특징'],['Aviation Jobs','航空求人','항공 채용'],
  ['Aviation Learning','航空講座','항공 강좌'],['Learning Path','学びの順序','학습 순서'],['Professional Business Skills','会社実務','회사 실무'],
- ['Practice Lab','実務練習','실무 연습'],['Practice Lab · Finance','練習ツール・財務','연습 도구 · 재무'],['ACN Membership','メンバーシップ','멤버십'],
+ ['Practice Lab','実務練習','실무 연습'],['Speaking Practice','会話練習（日・韓・英）','회화 연습(일·한·영)'],['Practice Lab · Finance','練習ツール・財務','연습 도구 · 재무'],['ACN Membership','メンバーシップ','멤버십'],
  ['1:1 Aviation Coaching','1対1コーチング','1:1 코칭'],['Aviation Community','コミュニティ','커뮤니티'],['Trust & Quality','信頼できる内容のために','믿을 수 있는 내용을 위해'],
  ['Aviation · Career · Professional Learning','航空・キャリア・仕事の学び','항공 · 커리어 · 실무 학습'],['Where to start','どこから始めるか','어디서 시작할까'],['Read alongside','あわせて読む','함께 읽기'],
  ['Career & Interview','就職と面接','취업과 면접'],['My Learning Plan','私の学習プラン','내 학습 플랜'],['My Study Notebook','私の学習ノート','내 학습 노트'],
