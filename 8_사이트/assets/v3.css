@@ -245,6 +245,10 @@ footer{background:#081828;color:#fff;padding:58px 24px}
 }
 @media(max-width:600px){
   .topbar{font-size:10px}
+}
+/* スマホでは上の細い帯は出さない（すぐ下のメニューと同じ内容で、2行になるため。2026.10） */
+@media(max-width:600px){
+  .topbar{display:none}
   .brand{font-size:15px}
   .navright .btn{padding:9px 12px;font-size:13px}
   h1{font-size:44px}
