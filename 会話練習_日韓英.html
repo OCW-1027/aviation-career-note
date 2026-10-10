@@ -630,7 +630,7 @@ ja:{aiBtn:'AIと話す',aiH:'自由に話す（AI）',aiBan:'AIが相手にな�
  perN:{friend:'友達',neighbor:'近所の人',colleague:'職場の人',exchange:'言葉を教え合う相手',staff:'店の人',interviewer:'面接官'},
  sitL:'場面',aiRole:'AIの役',youRole:'あなたの役',goalL:'目標',
  pers:'AIの人柄',persN:{kind:'やさしい',normal:'ふつう',busy:'いそがしい'},lvl:'レベル',
- twistL:'ひとひねり（途中で起きること）を入れる',twN:'ひとひねり',keysL:'この場面の表現を使ってみる',readL:'読み（ひらがな）を出す',fixL:'直しとお手本をもらう',mdL:'お手本',mdPlay:'▶',autoL:'読み上げ',
+ twistL:'ひとひねり（途中で起きること）を入れる',twN:'ひとひねり',keysL:'この場面の表現を使ってみる',readL:'読み（ひらがな）を出す',readS:'ひらがな',fixL:'直しとお手本をもらう',mdL:'お手本',mdPlay:'▶',autoL:'読み上げ',
  start:'はじめる',toHand:'ほかのAIアプリで練習する',send:'送る',ph:'{L}で書いてください',end:'おわり',endWord:'おわり',hintWord:'ヒント',
  copyConv:'会話をコピー',copied:'コピーしました',copyNg:'コピーできませんでした。箱の中を長押しして選んでください。',hint:'💡 ヒント',thinking:'…',
  micA:'声で入力',close:'閉じる',closeQ:'会話を閉じますか。会話は保存されないので、消えます。',back2:'← 設定にもどる',again2:'もう一度はじめる',resend:'もう一度送る',
@@ -651,7 +651,7 @@ ko:{aiBtn:'AI와 대화',aiH:'자유 대화(AI)',aiBan:'AI가 상대가 되어 �
  perN:{friend:'친구',neighbor:'이웃',colleague:'직장 동료',exchange:'언어 교환 상대',staff:'가게 직원',interviewer:'면접관'},
  sitL:'상황',aiRole:'AI의 역할',youRole:'나의 역할',goalL:'목표',
  pers:'AI의 성격',persN:{kind:'친절함',normal:'보통',busy:'바쁨'},lvl:'레벨',
- twistL:'돌발 상황(중간에 생기는 일) 넣기',twN:'돌발 상황',keysL:'이 장면의 표현 써 보기',readL:'읽기(히라가나) 표시',fixL:'교정과 모범 답안 받기',mdL:'모범 답안',mdPlay:'▶',autoL:'읽어 주기',
+ twistL:'돌발 상황(중간에 생기는 일) 넣기',twN:'돌발 상황',keysL:'이 장면의 표현 써 보기',readL:'읽기(히라가나) 표시',readS:'히라가나',fixL:'교정과 모범 답안 받기',mdL:'모범 답안',mdPlay:'▶',autoL:'읽어 주기',
  start:'시작',toHand:'다른 AI 앱에서 연습하기',send:'보내기',ph:'{L}로 써 보세요',end:'끝',endWord:'끝',hintWord:'힌트',
  copyConv:'대화 복사',copied:'복사했어요',copyNg:'복사하지 못했어요. 상자 안을 길게 눌러 선택해 주세요.',hint:'💡 힌트',thinking:'…',
  micA:'음성으로 입력',close:'닫기',closeQ:'대화를 닫을까요? 대화는 저장되지 않아서 사라집니다.',back2:'← 설정으로',again2:'다시 시작',resend:'다시 보내기',
@@ -672,7 +672,7 @@ en:{aiBtn:'Talk with AI',aiH:'Free conversation (AI)',aiBan:'Chat freely with an
  perN:{friend:'Friend',neighbor:'Neighbour',colleague:'Colleague',exchange:'Language-exchange partner',staff:'Shop staff',interviewer:'Interviewer'},
  sitL:'Situation',aiRole:'AI’s role',youRole:'Your role',goalL:'Goal',
  pers:'AI’s personality',persN:{kind:'Kind',normal:'Normal',busy:'Busy'},lvl:'Level',
- twistL:'Add a twist (something that happens)',twN:'Twist',keysL:'Try the key expressions from this scene',readL:'Show hiragana reading',fixL:'Get corrections and model answers',mdL:'Model answer',mdPlay:'▶',autoL:'Read aloud',
+ twistL:'Add a twist (something that happens)',twN:'Twist',keysL:'Try the key expressions from this scene',readL:'Show hiragana reading',readS:'Hiragana',fixL:'Get corrections and model answers',mdL:'Model answer',mdPlay:'▶',autoL:'Read aloud',
  start:'Start',toHand:'Practise in another AI app',send:'Send',ph:'Write in {L}',end:'End',endWord:'end',hintWord:'hint',
  copyConv:'Copy conversation',copied:'Copied',copyNg:'Could not copy. Press and hold inside the box to select the text.',hint:'💡 Hints',thinking:'…',
  micA:'Speak to type',close:'Close',closeQ:'Close the conversation? It isn’t saved, so it will be gone.',back2:'← Back to settings',again2:'Start again',resend:'Send again',
@@ -830,7 +830,8 @@ function aimEl(){var m=$('aim');if(m)return m;m=document.createElement('div');m.
 function rpFind(id){var B=window.LESSON_RP_BRIDGE;return B&&B.find?B.find(id):null}
 function openAI(src){st.rpMiss=false;if(C){aiMicStop();aiAbort()}stopTts();micStop();var s=src.kind==='scene'?BY[src.id]:src.kind==='topic'?TPBY[src.id]:src.kind==='lesson'?rpFind(src.id):null;if(src.kind!=='own'&&!s)return;
  C={kind:src.kind,id:src.id,src:s,T:tgt(),H:hlp(),lv:s?s.lv:Math.min(3,Math.max(1,+aiSet('lv',2)||2)),role:st.role==='A'?'A':'B',pers:'normal',twist:true,keys:true,
-  read:on('furi',true),fix:!!aiSet('fix',true),step:'setup',hist:[],log:[],busy:false,why:'',retry:null,ended:false,req:null,gen:0,last:document.activeElement};
+  /* AI の返事のひらがな読み：AI が読みを間違えることがあるので、初めは出さない。選んだ状態は保存して次回も使う（2026.10.10）。場面データの読み（jr）の表示は別の設定のまま */
+  read:!!aiSet('read',false),fix:!!aiSet('fix',true),step:'setup',hist:[],log:[],busy:false,why:'',retry:null,ended:false,req:null,gen:0,last:document.activeElement};
  /* 講座から開いたとき：URL の practice・help は、この会話だけに使う（保存した設定は変えない） */
  if(src.T&&LANGS.indexOf(src.T)>=0)C.T=src.T;if(src.H&&LANGS.indexOf(src.H)>=0)C.H=src.H;
  var m=aimEl();m.hidden=false;document.documentElement.style.overflow='hidden';aiPaint();try{$('aimX').focus()}catch(e){}}
@@ -870,7 +871,7 @@ function paintAiSet(){var c=C,s=c.src,o=aiParts(),h='';
  function sg(id,k,num,after){var g=$(id);if(!g)return;Array.prototype.forEach.call(g.querySelectorAll('button'),function(b){b.onclick=function(){var v=b.getAttribute('data-v');C[k]=num?+v:v;if(after)after();paintAiSet();var nb=$(id)&&$(id).querySelector('[data-v="'+v+'"]');if(nb)try{nb.focus()}catch(e){}}})}
  sg('aRole','role');sg('aPers','pers');sg('aLv','lv',1,function(){if(C.kind==='own'){S.set.ai_lv=C.lv;save()}});sg('aT','T');sg('aH','H');
  function cb(id,k,store){var e=$(id);if(e)e.onchange=function(){C[k]=this.checked;if(store){S.set['ai_'+k]=this.checked;save()}paintAiSet();var n=$(id);if(n)try{n.focus()}catch(x){}}}
- cb('aTw','twist');cb('aKy','keys');cb('aRd','read');cb('aFx','fix',1);
+ cb('aTw','twist');cb('aKy','keys');cb('aRd','read',1);cb('aFx','fix',1);
  [['oSit','sit'],['oAi','ai'],['oMe','me'],['oGoal','goal']].forEach(function(p){var e=$(p[0]);if(e)e.oninput=function(){OWN[p[1]]=this.value;if(p[1]==='ai')aiHead()}});
  function ready(){if(C.kind==='own'&&(!OWN.sit.trim()||!OWN.ai.trim())){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;try{$(OWN.sit.trim()?'oAi':'oSit').focus()}catch(x){}return false}if(C.kind==='own'){var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id}return true}
  if($('oSave'))$('oSave').onclick=function(){var m=$('oMsg');if(!OWN.sit.trim()||!OWN.ai.trim()){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;return}var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id;if(m)m.textContent=t.osSaved};
@@ -928,6 +929,7 @@ function paintChat(){var c=C,f=$('aimF');
  f.innerHTML='<div class="aim-in">'+(micOk()?'<button type="button" class="ib mic" id="aiMic" aria-pressed="false" aria-label="'+esc(t.micA)+'" title="'+esc(t.micA)+'">🎤</button>':'')+
   '<textarea id="aiTx" rows="1" maxlength="400" lang="'+c.T+'" aria-label="'+esc(fm(t.ph,{L:LNAME[lang][c.T]}))+'" placeholder="'+esc(fm(t.ph,{L:LNAME[lang][c.T]}))+'"></textarea><button type="button" class="btn" id="aiSend">'+esc(t.send)+'</button></div>'+
   '<div class="aim-tl">'+(SY?'<label><input type="checkbox" id="aiAuto"'+(aiSet('auto',true)?' checked':'')+'>'+esc(t.autoL)+'</label>':'')+
+  (c.T==='ja'?'<label title="'+esc(t.readL)+'"><input type="checkbox" id="aiRd"'+(c.read?' checked':'')+'>'+esc(t.readS)+'</label>':'')+
   '<button type="button" class="ib" id="aiCopy">'+esc(t.copyConv)+'</button><button type="button" class="ib" id="aiExt">'+esc(t.toHand2)+'</button><button type="button" class="ib end" id="aiEnd">'+esc(t.end)+'</button><span class="aim-st" id="aiSt" role="status" aria-live="polite"></span></div>';
  f.hidden=false;var ta=$('aiTx');
  ta.oninput=function(){grow(ta)};
@@ -935,6 +937,8 @@ function paintChat(){var c=C,f=$('aimF');
  $('aiSend').onclick=aiSendText;
  if($('aiMic'))$('aiMic').onclick=function(){aiMic(this)};
  if($('aiAuto'))$('aiAuto').onchange=function(){S.set.ai_auto=this.checked;save();if(!this.checked)stopTts()};
+ /* 会話の途中でもひらがな読みを切り替えられる。次の返事から AI に読みを頼む／頼まない（保存して次回も使う） */
+ if($('aiRd'))$('aiRd').onchange=function(){C.read=this.checked;S.set.ai_read=this.checked;save();paintLog()};
  $('aiCopy').onclick=copyConv;
  $('aiExt').onclick=function(){if(!C)return;aiMicStop();stopTts();C.why='';C.step='hand';aiPaint()};
  $('aiEnd').onclick=function(){if(!C||C.busy||C.ended||!C.log.some(function(x){return x.w==='me'}))return;aiMicStop();C.log.push({w:'me',tx:t.endWord});C.hist.push({role:'user',content:t.endWord});C.ending=true;aiCall()};
