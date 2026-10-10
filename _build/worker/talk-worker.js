@@ -20,6 +20,8 @@
 // ・聞き取り（2026.10 追加）：POST /stt?lang=ja|ko|en、中身は WAV（16kHz・モノラル）の音声そのもの（最長60秒・2.5MB まで）
 //   Workers AI の Whisper（@cf/openai/whisper-large-v3-turbo）で文字にして {text:'…'} を返す。音声は保存しない
 //   ブラウザの聞き取りより正確（とくに日本語・韓国語・専門用語）。無料の分は会話と共通（1分の音声で約 0.0005 ドル相当）
+//   ?p=…（任意・300字まで）：直前の相手のせりふなど、話の流れ。Whisper の initial_prompt に渡すと、続きの言葉を正しく聞き取りやすくなる
+//   （流れの文そのものしか返らなかったときは、聞き取れなかったとみなして空にする）
 
 const DEFAULT_ORIGINS = ['https://ocw-1027.github.io'];
 const DEFAULT_MODEL = '@cf/qwen/qwen3-30b-a3b-fp8';
@@ -236,7 +238,9 @@ async function stt(request, env, url, allow) {
   if (!(await rateOk(request, env))) return json({ error: 'rate' }, 429, allow);
   if (!env || !env.AI || typeof env.AI.run !== 'function') { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
   const audio = b64(buf);
+  const prompt = String(url.searchParams.get('p') || '').replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 300);
   const full = { audio, task: 'transcribe', language: lang, vad_filter: true, condition_on_previous_text: false };
+  if (prompt) full.initial_prompt = prompt;
   let r;
   try {
     try { r = await env.AI.run(STT_MODEL, full); }
@@ -248,6 +252,8 @@ async function stt(request, env, url, allow) {
   let text = String((r && (r.text || (r.transcription_info && r.transcription_info.text))) || '').replace(/\s+/g, ' ').trim();
   if (lang === 'ja') text = text.replace(/([^\x00-\x7F])\s+(?=[^\x00-\x7F])/g, '$1');   // 日本語の文字の間の空白を取る
   if (STT_JUNK.test(text)) text = '';
+  const key = x => String(x).toLowerCase().replace(/[\s。、．，.,!?！？「」『』"'’]/g, '');
+  if (prompt && text) { const kp = key(prompt), kt = key(text); if (kt.length > 3 && kp.indexOf(kt) >= 0 && kt.length >= kp.length * 0.8) text = ''; }   // 流れの文をほぼそのまま返しただけ（短い返事の一部一致は残す）
   return json({ text }, 200, allow);
 }
 
