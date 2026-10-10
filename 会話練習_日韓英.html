@@ -184,6 +184,9 @@ body.ko .tx:lang(ko),.tx:lang(ko){word-break:keep-all}
 .bub .rd{font-size:13.5px;color:#5c6b7b;margin-top:2px;letter-spacing:.02em}
 .bub .who2{display:block;font-size:11.5px;font-weight:700;color:var(--sub);margin-bottom:2px}
 .fx{max-width:88%;width:fit-content;margin:4px 0 0 auto;font-size:13.5px;background:#fff6e0;color:#6b4300;border-radius:10px;padding:6px 10px;overflow-wrap:anywhere}
+.fx.md{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;background:#eaf6ef;color:#14532d;font-size:14px}
+.fx.md .mdl{font-size:12px;font-weight:800;color:#166534}
+.fx.md .mdp{border:1px solid #b7dfc6;background:#fff;color:#166534;border-radius:999px;font-size:11px;padding:2px 8px;cursor:pointer}
 .bub-act{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .bub-act .ib{min-height:36px;padding:2px 10px;font-size:12.5px}
 .bub .trn{font-size:13.5px;color:#5c6b7b;margin-top:4px;border-top:1px dashed #d5dde6;padding-top:4px}
@@ -194,6 +197,7 @@ body.ko .tx:lang(ko),.tx:lang(ko){word-break:keep-all}
 .aim-in textarea{flex:1;min-width:0;height:46px;min-height:46px;max-height:120px;resize:none;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;line-height:1.4;color:var(--ink);background:#fff}
 .aim-in .btn{flex:none;padding:8px 14px}
 .aim-in .ib.mic{flex:none;min-height:46px;width:46px;padding:0;justify-content:center;font-size:18px}
+.aim-in .ib.mic.rec{width:auto;min-width:46px;padding:0 10px;font-size:13px;white-space:nowrap}
 .aim-tl{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:6px;font-size:13px}
 .aim-tl label{display:inline-flex;align-items:center;gap:6px;min-height:36px;cursor:pointer}
 .aim-tl input{width:18px;height:18px;accent-color:var(--acc);margin:0}
@@ -251,7 +255,7 @@ ja:{kick:'航空キャリアノート',ttl:'会話練習 ― 日本語・韓国�
  noVoice:'この端末には{L}の声が見つかりません。文字を見て練習するか、端末の設定で{L}の音声を追加してください。',
  ttsFail:'読み上げが始まりませんでした。端末の音量や音声の設定を確かめてください。',
  role:'あなたの役',you:'あなた',next:'次へ ▶',start:'はじめる',reveal:'答えを見る',say:'{L}で言ってみましょう',
- mic:'🎤 話して確かめる',micOn:'■ 聞き取り中（押して止める）',micEnd:'■ 終了 {n}秒',micLong:'聞き取り中です。話し終えたら「■ 終了」を押してください（最長60秒）',micProc:'文字にしています…',hqErr:'高精度の聞き取りが使えませんでした。もう一度押すと、ブラウザの聞き取りで聞きます。',
+ mic:'🎤 話して確かめる',micOn:'■ 聞き取り中（押して止める）',micEnd:'■ 終了 {n}秒',micEndS:'■ {n}秒',micLong:'聞き取り中です。話し終えたら「■」を押してください（最長60秒）',micProc:'文字にしています…',hqErr:'高精度の聞き取りが使えませんでした。もう一度押すと、ブラウザの聞き取りで聞きます。',
  micNoteHQ:'マイクは「話して確かめる」を押したときだけ使います。話し終えたあと、声を文字にするために、このサイトの変換サーバー（Cloudflare）へ音声を送ります。音声も聞き取った文字も保存しません。マイクに近づいて、ひと続きの文ではっきり話すと、より正しく聞き取れます。',
  micNote:'マイクは「話して確かめる」を押したときだけ使います。ブラウザによっては、声を文字にするために音声をブラウザの会社のサーバーへ送ります。このサイトは音声も聞き取った文字も保存しません。',
  noMic:'このブラウザは声の聞き取りに対応していません。声に出して言ってから「答えを見る」で確かめてください。',
@@ -274,7 +278,7 @@ ko:{kick:'항공 커리어 노트',ttl:'회화 연습 — 일본어·한국어·
  noVoice:'이 기기에서 {L} 음성을 찾을 수 없습니다. 글을 보며 연습하거나, 기기 설정에서 {L} 음성을 추가해 주세요.',
  ttsFail:'읽어 주기가 시작되지 않았습니다. 기기의 음량과 음성 설정을 확인해 주세요.',
  role:'내 역할',you:'나',next:'다음 ▶',start:'시작',reveal:'정답 보기',say:'{L}로 말해 보세요',
- mic:'🎤 말해서 확인',micOn:'■ 듣는 중 (눌러서 멈춤)',micEnd:'■ 종료 {n}초',micLong:'듣는 중입니다. 다 말했으면 「■ 종료」를 눌러 주세요(최대 60초)',micProc:'글자로 바꾸는 중…',hqErr:'고정밀 인식을 사용할 수 없었습니다. 다시 누르면 브라우저 인식으로 듣습니다.',
+ mic:'🎤 말해서 확인',micOn:'■ 듣는 중 (눌러서 멈춤)',micEnd:'■ 종료 {n}초',micEndS:'■ {n}초',micLong:'듣는 중입니다. 다 말했으면 「■」 버튼을 눌러 주세요(최대 60초)',micProc:'글자로 바꾸는 중…',hqErr:'고정밀 인식을 사용할 수 없었습니다. 다시 누르면 브라우저 인식으로 듣습니다.',
  micNoteHQ:'마이크는 「말해서 확인」을 눌렀을 때만 사용합니다. 다 말한 뒤 음성을 글자로 바꾸기 위해 이 사이트의 변환 서버(Cloudflare)로 음성을 보냅니다. 음성도, 알아들은 글자도 저장하지 않습니다. 마이크에 가까이 대고 한 문장으로 또박또박 말하면 더 정확하게 알아듣습니다.',
  micNote:'마이크는 「말해서 확인」을 눌렀을 때만 사용합니다. 브라우저에 따라 음성을 글자로 바꾸기 위해 브라우저 회사의 서버로 음성을 보냅니다. 이 사이트는 음성도, 알아들은 글자도 저장하지 않습니다.',
  noMic:'이 브라우저는 음성 인식을 지원하지 않습니다. 소리 내어 말한 뒤 「정답 보기」로 확인해 주세요.',
@@ -297,7 +301,7 @@ en:{kick:'Aviation Career Note',ttl:'Conversation Practice: Japanese, Korean and
  noVoice:'No {L} voice was found on this device. Practise with the text, or add a {L} voice in your device settings.',
  ttsFail:'Read-aloud did not start. Check your device volume and speech settings.',
  role:'Your role',you:'You',next:'Next ▶',start:'Start',reveal:'Show answer',say:'Try saying it in {L}',
- mic:'🎤 Speak and check',micOn:'■ Listening (tap to stop)',micEnd:'■ Stop {n}s',micLong:'Listening. Tap “■ Stop” when you have finished (up to 60 s)',micProc:'Turning your speech into text…',hqErr:'High-accuracy recognition was not available. Tap again to use your browser’s recognition.',
+ mic:'🎤 Speak and check',micOn:'■ Listening (tap to stop)',micEnd:'■ Stop {n}s',micEndS:'■ {n}s',micLong:'Listening. Tap “■” when you have finished (up to 60 s)',micProc:'Turning your speech into text…',hqErr:'High-accuracy recognition was not available. Tap again to use your browser’s recognition.',
  micNoteHQ:'The microphone is used only when you tap “Speak and check”. When you finish, your voice is sent to this site’s transcription server (Cloudflare) to turn it into text. Neither your voice nor the text is stored. Speak close to the microphone, clearly and in full sentences, for the best results.',
  micNote:'The microphone is used only when you tap “Speak and check”. Some browsers send your voice to their own servers to turn it into text. This site stores neither your voice nor the recognised text.',
  noMic:'This browser does not support speech recognition. Say the line out loud, then tap “Show answer” to check.',
@@ -605,7 +609,7 @@ ja:{aiBtn:'AIと話す',aiH:'自由に話す（AI）',aiBan:'AIが相手にな�
  perN:{friend:'友達',neighbor:'近所の人',colleague:'職場の人',exchange:'言葉を教え合う相手',staff:'店の人',interviewer:'面接官'},
  sitL:'場面',aiRole:'AIの役',youRole:'あなたの役',goalL:'目標',
  pers:'AIの人柄',persN:{kind:'やさしい',normal:'ふつう',busy:'いそがしい'},lvl:'レベル',
- twistL:'ひとひねり（途中で起きること）を入れる',twN:'ひとひねり',keysL:'この場面の表現を使ってみる',readL:'読み（ひらがな）を出す',fixL:'短い直しをもらう',autoL:'読み上げ',
+ twistL:'ひとひねり（途中で起きること）を入れる',twN:'ひとひねり',keysL:'この場面の表現を使ってみる',readL:'読み（ひらがな）を出す',fixL:'直しとお手本をもらう',mdL:'お手本',mdPlay:'▶',autoL:'読み上げ',
  start:'はじめる',toHand:'ほかのAIアプリで練習する',send:'送る',ph:'{L}で書いてください',end:'おわり',endWord:'おわり',hintWord:'ヒント',
  copyConv:'会話をコピー',copied:'コピーしました',copyNg:'コピーできませんでした。箱の中を長押しして選んでください。',hint:'💡 ヒント',thinking:'…',
  micA:'声で入力',close:'閉じる',closeQ:'会話を閉じますか。会話は保存されないので、消えます。',back2:'← 設定にもどる',again2:'もう一度はじめる',resend:'もう一度送る',
@@ -626,7 +630,7 @@ ko:{aiBtn:'AI와 대화',aiH:'자유 대화(AI)',aiBan:'AI가 상대가 되어 �
  perN:{friend:'친구',neighbor:'이웃',colleague:'직장 동료',exchange:'언어 교환 상대',staff:'가게 직원',interviewer:'면접관'},
  sitL:'상황',aiRole:'AI의 역할',youRole:'나의 역할',goalL:'목표',
  pers:'AI의 성격',persN:{kind:'친절함',normal:'보통',busy:'바쁨'},lvl:'레벨',
- twistL:'돌발 상황(중간에 생기는 일) 넣기',twN:'돌발 상황',keysL:'이 장면의 표현 써 보기',readL:'읽기(히라가나) 표시',fixL:'짧게 고쳐 받기',autoL:'읽어 주기',
+ twistL:'돌발 상황(중간에 생기는 일) 넣기',twN:'돌발 상황',keysL:'이 장면의 표현 써 보기',readL:'읽기(히라가나) 표시',fixL:'교정과 모범 답안 받기',mdL:'모범 답안',mdPlay:'▶',autoL:'읽어 주기',
  start:'시작',toHand:'다른 AI 앱에서 연습하기',send:'보내기',ph:'{L}로 써 보세요',end:'끝',endWord:'끝',hintWord:'힌트',
  copyConv:'대화 복사',copied:'복사했어요',copyNg:'복사하지 못했어요. 상자 안을 길게 눌러 선택해 주세요.',hint:'💡 힌트',thinking:'…',
  micA:'음성으로 입력',close:'닫기',closeQ:'대화를 닫을까요? 대화는 저장되지 않아서 사라집니다.',back2:'← 설정으로',again2:'다시 시작',resend:'다시 보내기',
@@ -647,7 +651,7 @@ en:{aiBtn:'Talk with AI',aiH:'Free conversation (AI)',aiBan:'Chat freely with an
  perN:{friend:'Friend',neighbor:'Neighbour',colleague:'Colleague',exchange:'Language-exchange partner',staff:'Shop staff',interviewer:'Interviewer'},
  sitL:'Situation',aiRole:'AI’s role',youRole:'Your role',goalL:'Goal',
  pers:'AI’s personality',persN:{kind:'Kind',normal:'Normal',busy:'Busy'},lvl:'Level',
- twistL:'Add a twist (something that happens)',twN:'Twist',keysL:'Try the key expressions from this scene',readL:'Show hiragana reading',fixL:'Get short corrections',autoL:'Read aloud',
+ twistL:'Add a twist (something that happens)',twN:'Twist',keysL:'Try the key expressions from this scene',readL:'Show hiragana reading',fixL:'Get corrections and model answers',mdL:'Model answer',mdPlay:'▶',autoL:'Read aloud',
  start:'Start',toHand:'Practise in another AI app',send:'Send',ph:'Write in {L}',end:'End',endWord:'end',hintWord:'hint',
  copyConv:'Copy conversation',copied:'Copied',copyNg:'Could not copy. Press and hold inside the box to select the text.',hint:'💡 Hints',thinking:'…',
  micA:'Speak to type',close:'Close',closeQ:'Close the conversation? It isn’t saved, so it will be gone.',back2:'← Back to settings',again2:'Start again',resend:'Send again',
@@ -670,12 +674,12 @@ ja:{b:'・',head:'あなたは{T}の会話練習の相手です。次の設定�
  lv:['とてもやさしい言葉と短い文で。','ふだんの会話の言葉で。','自然な言い回しで。場面に合ったていねいさ（敬語など）で。'],
  pers:{kind:'やさしく、私の答えをゆっくり待ってくれる人',busy:'少しいそがしく、話を早く進めたい人'},
  readX:'{T}の文のあとに、（ ）でひらがなの読みを付けてください。',
- fixX:'私の{T}にまちがいや不自然なところがあれば、返事の前に「✎」を付けて{H}で1つだけ短く直してください。なければ何も書かないでください。',
+ fixX:'私の{T}にまちがいや不自然なところがあれば、返事の前に「✎」を付けて{H}で1つだけ短く直してください。私の発言が場面に合わない・意味が通じないときは、私が言うとよかったお手本の文も{T}で1つ添えてください。問題がなければ何も書かないでください。',
  hintX:'私が「ヒント」と書いたら、私が次に言える短い文を{T}で2つ出してください。',
  end:'私が「おわり」「끝」「end」と書いたら、役をやめて{H}でまとめてください：使える表現5つ（意味つき）、よかった点、直すとよい点。',
  startX:'では、あなたから話しはじめてください。',
- json:'返事はかならず次のJSONだけにしてください（ほかの文字は書かない）：\n{"reply":"あなたのせりふ（{T}）","tr":"{TR}","reading":"{RD}","fix":"{FX}","hints":["{HN}","もう1つ"]}',
- rd:'replyのひらがなの読み',trx:'replyを{H}に訳した文',hn1:'私が次に言える短い文（{T}）',hn2:'私が次に言える短い文（{T}） ／ その意味（{H}）',hm:'それぞれに「 ／ 」で区切って{H}の意味を付けてください。',fx:'私の前の発言の直し（{H}で1つ・短く。なければ空）',none:'',
+ json:'返事はかならず次のJSONだけにしてください（ほかの文字は書かない）：\n{"reply":"あなたのせりふ（{T}）","tr":"{TR}","reading":"{RD}","fix":"{FX}","model":"{MD}","hints":["{HN}","もう1つ"]}',
+ rd:'replyのひらがなの読み',trx:'replyを{H}に訳した文',hn1:'私が次に言える短い文（{T}）',hn2:'私が次に言える短い文（{T}） ／ その意味（{H}）',hm:'それぞれに「 ／ 」で区切って{H}の意味を付けてください。',fx:'私の前の発言の直し（かならず{H}で書く。1つ・短く。なければ空）',fxLang:'「fix」はかならず{H}で、「model」は{T}で書いてください。',md:'私の前の発言が不自然・場面に合わない・意味が通じないときだけ、私が言うとよかったお手本の文（{T}で1つ）。問題がなければ空',none:'',
  trH:'ここまでの会話（この続きから練習します）',meL:'私',aiL:'あなた',
  contMe:'上の会話の続きです。私の最後の発言に役のまま返事をして、会話を続けてください。',contAi:'上の会話の続きです。あなたの最後のせりふをもう一度言ってから、私の返事を待ってください。',
  recap:'まとめのときは {"recap":{"phrases":["表現 — 意味（5つ）"],"good":"私（学ぶ人）がよくできた点","fix":"直すとよい点"}} だけ（説明は{H}）。'},
@@ -685,12 +689,12 @@ ko:{b:'- ',head:'당신은 {T} 회화 연습 상대입니다. 아래 설정으�
  lv:['아주 쉬운 단어와 짧은 문장으로.','평소 대화 수준의 말로.','자연스러운 표현으로, 상황에 맞는 존댓말과 말투로.'],
  pers:{kind:'친절하고 내 대답을 천천히 기다려 주는 사람',busy:'조금 바빠서 이야기를 빨리 진행하고 싶은 사람'},
  readX:'{T} 문장 뒤에 ( ) 안에 히라가나 읽기를 붙여 주세요.',
- fixX:'내 {T}에 틀리거나 어색한 곳이 있으면, 대답 앞에 “✎”를 붙여 {H}로 하나만 짧게 고쳐 주세요. 없으면 아무것도 쓰지 마세요.',
+ fixX:'내 {T}에 틀리거나 어색한 곳이 있으면, 대답 앞에 “✎”를 붙여 {H}로 하나만 짧게 고쳐 주세요. 내 말이 상황에 맞지 않거나 뜻이 통하지 않으면, 내가 하면 좋았을 모범 문장도 {T}로 하나 붙여 주세요. 문제가 없으면 아무것도 쓰지 마세요.',
  hintX:'내가 “힌트”라고 쓰면, 내가 다음에 말할 수 있는 짧은 문장을 {T}로 2개 알려 주세요.',
  end:'내가 “끝”, “おわり”, “end”라고 쓰면 역할을 멈추고 {H}로 정리해 주세요: 쓸 만한 표현 5개(뜻 포함), 잘한 점, 고치면 좋은 점.',
  startX:'그럼 당신이 먼저 말을 걸어 주세요.',
- json:'대답은 반드시 아래 JSON만 보내 주세요(다른 글은 쓰지 않기):\n{"reply":"당신의 대사({T})","tr":"{TR}","reading":"{RD}","fix":"{FX}","hints":["{HN}","하나 더"]}',
- rd:'reply의 히라가나 읽기',trx:'reply를 {H}로 옮긴 문장',hn1:'내가 다음에 말할 수 있는 짧은 문장({T})',hn2:'내가 다음에 말할 수 있는 짧은 문장({T}) ／ 그 뜻({H})',hm:'각 문장 뒤에 「 ／ 」로 나누어 {H} 뜻을 붙여 주세요.',fx:'내 직전 말의 교정({H}로 하나, 짧게. 없으면 빈칸)',none:'',
+ json:'대답은 반드시 아래 JSON만 보내 주세요(다른 글은 쓰지 않기):\n{"reply":"당신의 대사({T})","tr":"{TR}","reading":"{RD}","fix":"{FX}","model":"{MD}","hints":["{HN}","하나 더"]}',
+ rd:'reply의 히라가나 읽기',trx:'reply를 {H}로 옮긴 문장',hn1:'내가 다음에 말할 수 있는 짧은 문장({T})',hn2:'내가 다음에 말할 수 있는 짧은 문장({T}) ／ 그 뜻({H})',hm:'각 문장 뒤에 「 ／ 」로 나누어 {H} 뜻을 붙여 주세요.',fx:'내 직전 말의 교정(반드시 {H}로 쓰기. 하나, 짧게. 없으면 빈칸)',fxLang:'“fix”는 반드시 {H}로, “model”은 {T}로 써 주세요.',md:'내 직전 말이 어색하거나 상황에 맞지 않거나 뜻이 통하지 않을 때만, 내가 하면 좋았을 모범 문장({T}로 하나). 문제가 없으면 빈칸',none:'',
  trH:'지금까지의 대화 (이어서 연습합니다)',meL:'나',aiL:'당신',
  contMe:'위 대화의 이어지는 부분입니다. 내 마지막 말에 역할을 유지한 채 대답하고 대화를 이어 가 주세요.',contAi:'위 대화의 이어지는 부분입니다. 당신의 마지막 대사를 한 번 더 말한 뒤 내 대답을 기다려 주세요.',
  recap:'정리할 때는 {"recap":{"phrases":["표현 — 뜻 (5개)"],"good":"내(학습자)가 잘한 점","fix":"고치면 좋은 점"}}만 보내 주세요(설명은 {H}로).'},
@@ -700,12 +704,12 @@ en:{b:'- ',head:'You are my {T} conversation partner. Play a role using the setu
  lv:['Use very simple words and short sentences.','Use everyday conversational language.','Use natural expressions and the politeness the situation calls for.'],
  pers:{kind:'kind and patient, giving me time to answer',busy:'a little busy and keen to move things along'},
  readX:'After each {T} sentence, add its hiragana reading in brackets.',
- fixX:'If my {T} has a mistake or sounds unnatural, start your reply with “✎” and one short correction in {H}. If not, say nothing about it.',
+ fixX:'If my {T} has a mistake or sounds unnatural, start your reply with “✎” and one short correction in {H}. If what I said does not fit the situation or does not make sense, also give one model sentence in {T} that I could have said. If there is no problem, say nothing about it.',
  hintX:'If I type “hint”, give me two short sentences in {T} that I could say next.',
  end:'When I type “end” (or おわり / 끝), step out of the role and recap in {H}: 5 useful expressions with meanings, what I did well, and what to work on.',
  startX:'Please start the conversation.',
- json:'Always reply with this JSON only (no other text):\n{"reply":"your line ({T})","tr":"{TR}","reading":"{RD}","fix":"{FX}","hints":["{HN}","another one"]}',
- rd:'hiragana reading of reply',trx:'reply translated into {H}',hn1:'a short line I could say next ({T})',hn2:'a short line I could say next ({T}) ／ its meaning ({H})',hm:'Add the meaning in {H} after each one, separated by “ ／ ”.',fx:'one short correction of my last message in {H}, or empty',none:'',
+ json:'Always reply with this JSON only (no other text):\n{"reply":"your line ({T})","tr":"{TR}","reading":"{RD}","fix":"{FX}","model":"{MD}","hints":["{HN}","another one"]}',
+ rd:'hiragana reading of reply',trx:'reply translated into {H}',hn1:'a short line I could say next ({T})',hn2:'a short line I could say next ({T}) ／ its meaning ({H})',hm:'Add the meaning in {H} after each one, separated by “ ／ ”.',fx:'one short correction of my last message, always written in {H}, or empty',fxLang:'Write “fix” in {H} and “model” in {T}.',md:'only if my last message was unnatural, off-topic or unclear: one model sentence in {T} that I could have said; otherwise empty',none:'',
  trH:'Our conversation so far (let’s carry on from here)',meL:'Me',aiL:'You',
  contMe:'This continues the conversation above. Reply to my last message in character and keep the conversation going.',contAi:'This continues the conversation above. Say your last line again, then wait for my reply.',
  recap:'For the recap, send only {"recap":{"phrases":["expression — meaning (5)"],"good":"what I (the learner) did well","fix":"what to work on"}} (explanations in {H}).'}};
@@ -739,7 +743,7 @@ function buildPrompt(mode){var c=C,p=PR[lang]||PR.ja,o=aiParts(),Tn=LNAME[lang][
  R.push(p.end);
  L.push(p.rules);R.forEach(function(r,i){L.push((i+1)+'. '+f(r))});
  if(mode==='ext'){var base=L.join('\n'),tr=aiTranscript(p,3000-base.length-40);L.push(tr||f(p.startX))}
- else{L.push(fm(f(p.json),{RD:rd?p.rd:p.none,FX:c.fix?f(p.fx):p.none,TR:dif?f(p.trx):p.none,HN:dif?f(p.hn2):f(p.hn1)}));L.push(f(p.recap));
+ else{L.push(fm(f(p.json),{RD:rd?p.rd:p.none,FX:c.fix?f(p.fx):p.none,MD:c.fix?f(p.md):p.none,TR:dif?f(p.trx):p.none,HN:dif?f(p.hn2):f(p.hn1)}));if(c.fix&&dif)L.push(f(p.fxLang));L.push(f(p.recap));
   /* gpt-oss：考える量を少なく（OpenAI のモデルの説明の書き方）。考える部分も返事の長さの枠を使うので、JSON が切れにくくなる */
   if(/gpt-oss/i.test(String(aiCfg().model||'')))L.unshift('Reasoning: low')}
  return L.join('\n')}
@@ -764,12 +768,12 @@ function aiSalvage(s){
  if(/"recap"\s*:/.test(s)){var g=jKey(s,'good'),f=jKey(s,'fix'),ph=jArr(s,'phrases').map(aiStr).filter(Boolean).slice(0,8);
   if(ph.length||(g&&g.v.trim())||(f&&f.v.trim()))return {recap:{phrases:ph,good:g?aiStr(g.v)+(g.done?'':'…'):'',fix:f?aiStr(f.v)+(f.done?'':'…'):''}}}
  var r=jKey(s,'reply');if(!r||!r.v.trim())return null;
- var rd=jKey(s,'reading'),fx=jKey(s,'fix');
- var tq=jKey(s,'tr');return {reply:aiStr(r.v)+(r.done?'':'…'),tr:tq&&tq.done?aiStr(tq.v):'',reading:rd&&rd.done?aiStr(rd.v):'',fix:fx&&fx.done?aiStr(fx.v):'',hints:jArr(s,'hints').map(aiStr).filter(Boolean).slice(0,3)}}
+ var rd=jKey(s,'reading'),fx=jKey(s,'fix'),mdk=jKey(s,'model');
+ var tq=jKey(s,'tr');return {reply:aiStr(r.v)+(r.done?'':'…'),tr:tq&&tq.done?aiStr(tq.v):'',reading:rd&&rd.done?aiStr(rd.v):'',fix:fx&&fx.done?aiStr(fx.v):'',model:mdk&&mdk.done?aiStr(mdk.v):'',hints:jArr(s,'hints').map(aiStr).filter(Boolean).slice(0,3)}}
 function aiObj(o){if(!o||typeof o!=='object'||Array.isArray(o))return null;
  if(o.recap!=null){var r=o.recap;if(typeof r==='string')r={good:r};if(typeof r==='object')return {recap:{phrases:(Array.isArray(r.phrases)?r.phrases:[]).map(aiStr).filter(Boolean).slice(0,8),good:aiStr(r.good),fix:aiStr(r.fix)}}}
  var rp=o.reply!=null?o.reply:o.text!=null?o.text:o.message!=null?o.message:o.response;rp=aiStr(rp);
- if(rp)return {reply:rp,tr:aiStr(o.tr),reading:aiStr(o.reading),fix:aiStr(o.fix),hints:(Array.isArray(o.hints)?o.hints:[]).map(aiStr).filter(Boolean).slice(0,3)};return null}
+ if(rp)return {reply:rp,tr:aiStr(o.tr),reading:aiStr(o.reading),fix:aiStr(o.fix),model:aiStr(o.model),hints:(Array.isArray(o.hints)?o.hints:[]).map(aiStr).filter(Boolean).slice(0,3)};return null}
 function parseAI(raw){var s=String(raw==null?'':raw).replace(/<think>[\s\S]*?<\/think>/gi,'');
  if(/<\/think>/i.test(s))s=s.replace(/^[\s\S]*<\/think>/i,'');s=s.replace(/<think>[\s\S]*$/i,'').trim();
  s=s.replace(/^```[a-z]*\s*/i,'').replace(/\s*```\s*$/,'').trim();
@@ -864,7 +868,8 @@ function paintHand(){var c=C,p=buildPrompt('ext'),u=extUrls(p),h='',inChat=!!(ai
  $('aBack').onclick=function(){if(inChat){C.step='chat';C.why=''}else{aiAbort();C.step='setup';C.why=''}aiPaint()}}
 /* 会話の画面 */
 function bubH(x,i){var c=C;
- if(x.w==='me')return '<div class="bub me" lang="'+c.T+'">'+esc(x.tx)+'</div>'+(x.fx?'<div class="fx" lang="'+c.H+'">✎ '+esc(x.fx)+'</div>':'');
+ if(x.w==='me')return '<div class="bub me" lang="'+c.T+'">'+esc(x.tx)+'</div>'+(x.fx?'<div class="fx" lang="'+c.H+'">✎ '+esc(x.fx)+'</div>':'')+
+  (x.md?'<div class="fx md"><span class="mdl">💡 '+esc(t.mdL)+'</span><span lang="'+c.T+'">'+esc(x.md)+'</span>'+(SY?'<button type="button" class="mdp" data-mp="'+i+'" aria-label="'+esc(t.play)+'">'+t.mdPlay+'</button>':'')+'</div>':'');
  if(x.w==='wait')return '<div class="bub ai wait" aria-label="…">'+esc(t.thinking)+'</div>';
  if(x.w==='err')return '<div class="bub err" role="alert">'+esc(x.tx)+'<div class="bub-act">'+(x.retry?'<button type="button" class="ib" data-rt="1">'+esc(t.resend)+'</button>':'')+'<button type="button" class="ib" data-hd="1">'+esc(t.toHand)+'</button></div></div>';
  if(x.w==='recap'){var r=x.rc;return '<div class="rcp" lang="'+c.H+'"><h3>'+esc(t.recapH)+'</h3>'+(r.phrases.length?'<h4>'+esc(t.rcP)+'</h4><ul>'+r.phrases.map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ul>':'')+(r.good?'<h4>'+esc(t.rcG)+'</h4><p>'+esc(r.good)+'</p>':'')+(r.fix?'<h4>'+esc(t.rcF)+'</h4><p>'+esc(r.fix)+'</p>':'')+
@@ -876,6 +881,7 @@ function bubH(x,i){var c=C;
 function paintLog(){var b=$('aimB');if(!b||!C||C.step!=='chat')return;var L=C.log.slice();if(C.busy)L.push({w:'wait'});
  b.innerHTML='<div id="aiLog" aria-live="polite">'+L.map(bubH).join('')+'</div>';
  Array.prototype.forEach.call(b.querySelectorAll('[data-pl]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-pl')];if(x)speak(x.tx,C.T)}});
+ Array.prototype.forEach.call(b.querySelectorAll('[data-mp]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-mp')];if(x&&x.md)speak(x.md,C.T)}});
  Array.prototype.forEach.call(b.querySelectorAll('[data-hn]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-hn')];if(x){x.open=!x.open;paintLog();var n=b.querySelector('[data-hn="'+e.getAttribute('data-hn')+'"]');if(n)try{n.focus()}catch(z){}}}});
  Array.prototype.forEach.call(b.querySelectorAll('[data-hi]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-hi')],ta=$('aiTx');if(x&&ta){ta.value=hintSplit(x.hints[+e.getAttribute('data-j')]||'')[0];grow(ta);try{ta.focus()}catch(z){}}}});
  Array.prototype.forEach.call(b.querySelectorAll('[data-rt]'),function(e){e.onclick=function(){var r=C&&C.retry;if(!r||C.busy)return;C.retry=null;C.log=C.log.filter(function(x){return x.w!=='err'});C.hist.push(r);aiCall()}});
@@ -902,7 +908,7 @@ function paintChat(){var c=C,f=$('aimF');
  paintLog()}
 function copyConv(){if(!C)return;var o=aiParts(),s=(o.title?o.title+'\n':'')+C.log.filter(function(x){return x.w==='me'||x.w==='ai'||x.w==='recap'}).map(function(x){
   if(x.w==='recap')return '['+t.recapH+']\n'+x.rc.phrases.map(function(p){return '- '+p}).join('\n')+(x.rc.good?'\n'+t.rcG+': '+x.rc.good:'')+(x.rc.fix?'\n'+t.rcF+': '+x.rc.fix:'');
-  return (x.w==='me'?t.me2:(o.ai||'AI'))+': '+x.tx+(x.rd&&C.read&&C.T==='ja'?'\n  ('+x.rd+')':'')+(x.fx?'\n  ✎ '+x.fx:'')}).join('\n');
+  return (x.w==='me'?t.me2:(o.ai||'AI'))+': '+x.tx+(x.rd&&C.read&&C.T==='ja'?'\n  ('+x.rd+')':'')+(x.fx?'\n  ✎ '+x.fx:'')+(x.md?'\n  💡 '+x.md:'')}).join('\n');
  copyText(s,function(ok){var e=$('aiSt');if(e)e.textContent=ok?t.copied:t.copyNg})}
 function aiSendText(){var ta=$('aiTx');if(!ta||!C||C.busy||C.step!=='chat')return;var v=ta.value.replace(/\s+$/,'').replace(/^\s+/,'').slice(0,400);if(!v)return;
  aiMicStop();ta.value='';grow(ta);C.log.push({w:'me',tx:v});C.hist.push({role:'user',content:v});C.ending=/^(おわり|終わり|끝|end)[。.!！]?$/i.test(v);aiCall()}
@@ -926,7 +932,9 @@ function aiGot(raw){var c=C;if(!c)return;var o=parseAI(raw);c.busy=false;
  if(c.ending&&o.raw){c.log.push({w:'recap',rc:{phrases:[],good:o.reply,fix:''}});c.hist.push({role:'assistant',content:o.reply.slice(0,1200)});c.ended=true;c.ending=false;paintLog();return}
  var j=o.raw?o.reply:JSON.stringify({reply:o.reply,reading:o.reading,fix:o.fix,hints:o.hints});if(j.length>1150)j=o.raw?o.reply.slice(0,1150):JSON.stringify({reply:o.reply.slice(0,600)});
  c.hist.push({role:'assistant',content:j});
- if(o.fix&&c.fix){for(var i=c.log.length-1;i>=0;i--)if(c.log[i].w==='me'){c.log[i].fx=o.fix;break}}
+ if(c.fix&&(o.fix||o.model)){for(var i=c.log.length-1;i>=0;i--)if(c.log[i].w==='me'){if(o.fix)c.log[i].fx=o.fix;
+  /* お手本（2026.10）：AI が「不自然・場面に合わない」と見たときだけ。自分の発言と同じなら出さない */
+  if(o.model&&norm(o.model,c.T)!==norm(c.log[i].tx,c.T))c.log[i].md=o.model;break}}
  c.log.push({w:'ai',tx:o.reply,tr:o.tr,rd:o.reading,hints:o.hints,raw:!!o.raw});c.ending=false;paintLog();
  if(c.step==='chat'&&!o.raw&&SY&&aiSet('auto',true)&&vlist(c.T).length)speak(o.reply,c.T)}
 function aiFail(code){var c=C;if(!c)return;c.busy=false;c.req=null;var last=c.hist.pop();if(last&&last.role!=='user'){c.hist.push(last);last=null}c.ending=false;
@@ -948,7 +956,7 @@ function aiMic(btn){if(!micOk()||!C)return;if(crec){var x=crec;x.stop(true);retu
   onEnd:function(txt){if(crec===me)crec=null;fin();if(txt)put(base+txt);else if(txt===''){var s3=$('aiSt');if(s3&&!s3.textContent)s3.textContent=t.micErr}},
   onErr:function(c){var s3=$('aiSt');if(s3){s3.removeAttribute('data-m');s3.textContent=(c==='not-allowed'||c==='service-not-allowed')?t.micDeny:c==='hq'?t.hqErr:t.micErr}}});
  crec=me;btn.classList.add('rec');btn.setAttribute('aria-pressed','true');
- function tick(){if(crec!==me)return;var n=Math.round(me.el()/1000);btn.textContent=fm(t.micEnd,{n:n});var s3=$('aiSt');if(s3){s3.setAttribute('data-m','1');s3.textContent=fm(t.micLong,{n:n})}if(me.el()>MICMAX)me.stop(true)}
+ function tick(){if(crec!==me)return;var n=Math.round(me.el()/1000);btn.textContent=fm(t.micEndS,{n:n});btn.setAttribute('aria-label',fm(t.micEnd,{n:n}));var s3=$('aiSt');if(s3){s3.setAttribute('data-m','1');s3.textContent=fm(t.micLong,{n:n})}if(me.el()>MICMAX)me.stop(true)}
  tm=setInterval(tick,500);tick()}
 /* 自由に話す（#ai） */
 function paintAI(){var h='<div class="panel"><button type="button" class="btn ghost" id="bk">'+esc(t.back)+'</button><h2 class="h2" style="font-size:21px;margin-top:4px">'+esc(t.aiH)+'</h2><p class="msg">'+esc(t.aiLead)+'</p>';
