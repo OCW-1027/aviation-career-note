@@ -33,25 +33,28 @@ body.ko .hs-slide p,body.ko .hs-h{word-break:keep-all}
 .qhead{margin-bottom:16px}
 .qhead h2{font-size:clamp(24px,2.6vw,30px);margin:6px 0 0;letter-spacing:-.03em}
 body.ko .qhead h2{word-break:keep-all}
-.qgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.qgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
 .qc-t .nw{white-space:nowrap}
-.qc{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.qc{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:box-shadow .2s,border-color .2s}
 .qc:hover{border-color:#9bbbf0;box-shadow:0 14px 30px rgba(9,28,47,.08)}
-.qc-top{position:relative;padding:18px 18px 16px;background:var(--qb)}
-.qc-ic{width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--qi)}
-.qc-ic svg{width:24px;height:24px}
-.qc-st{position:absolute;top:14px;right:14px;font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;background:#fff;color:#1F7A6E}
+.qc-top{position:relative;padding:14px 14px 12px;background:var(--qb);flex:1}
+.qc-ic{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--qi)}
+.qc-ic svg{width:19px;height:19px}
+.qc-st{position:absolute;top:11px;right:11px;font-size:10.5px;font-weight:800;border-radius:999px;padding:3px 9px;background:#fff;color:#1F7A6E}
 .qc-st.soon{color:#65717e}
-.qc-t{display:block;font-size:19px;font-weight:900;letter-spacing:-.02em;margin:12px 0 4px;line-height:1.25}
-.qc-d{display:block;font-size:13px;color:#3d4a57;line-height:1.5;min-height:3em}
+.qc-t .nw{font-feature-settings:"halt"}
+.qc-t{display:block;font-size:16.5px;font-weight:900;letter-spacing:-.02em;margin:10px 0 3px;line-height:1.3}
+.qc-d{display:block;font-size:12.5px;color:#3d4a57;line-height:1.45}
 body.ko .qc-t,body.ko .qc-d,body.ko .qc-row{word-break:keep-all}
-.qc-body{display:flex;flex-direction:column;gap:9px;padding:16px 18px 18px;flex:1}
-.qc-row{display:flex;gap:8px;font-size:13px;line-height:1.45;color:var(--ink)}
+.qc-body{display:flex;flex-direction:column;gap:7px;padding:10px 14px 14px}
+.qc-row{display:none;gap:7px;font-size:12.5px;line-height:1.45;color:var(--ink)}
 .qc-row svg{flex:0 0 15px;width:15px;height:15px;margin-top:2px;color:var(--qi)}
-.qc-cta{margin-top:auto;display:block;text-align:center;background:var(--navy);color:#fff;border-radius:999px;padding:11px 12px;font-weight:800;font-size:13px}
+.qc-cta{margin-top:auto;display:block;text-align:center;background:var(--navy);color:#fff;border-radius:999px;padding:8px 10px;font-weight:800;font-size:12.5px}
 .qc:hover .qc-cta{background:#163a5c}
-@media(max-width:760px){.qgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.qc-d{min-height:0}.hs-slide p{font-size:16px}}
-@media(max-width:520px){.qgrid{grid-template-columns:1fr}.qc-top{padding:16px}.qc-body{padding:14px 16px 16px}}
+/* 6枚：PCは1列に6枚（説明の3行は省く）、タブレットは3枚×2段（3行を表示）、スマホは2枚×3段（省く）（2026.10） */
+@media(max-width:1100px){.qgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.qc-row{display:flex}.qc-top{flex:none}.qc-body{flex:1}}
+@media(max-width:760px){.hs-slide p{font-size:16px}}
+@media(max-width:600px){.qgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.qc-row{display:none}.qc-top{flex:1;padding:12px 12px 10px}.qc-body{flex:none;padding:8px 12px 12px}.qc-st{top:9px;right:9px}.qc-d{font-size:12px}}
 @media(max-width:600px){.route-head{flex-direction:column;gap:4px}.route-stats b em{display:block;font-size:12px;margin:3px 0 0}}
 @media(prefers-reduced-motion:reduce){.hs-slide{transition:none}}
 .ft{max-width:var(--max);margin:auto;padding:56px 24px 40px}
@@ -248,7 +251,7 @@ ja:{title:'航空キャリアノート',
   h1:'学んで、<br>働いて、<br>業界とつながる。',hp:'航空実務講座、航空業界の求人、経営・財務・人事実務、経験者による1対1コーチング、そしてコミュニティを一つのプラットフォームでつなぎます。',
  c1:'学習ルートを探す',lu:'レッスン',c2:'航空求人を見る',sq:'職種・講座・会社実務・空港・求人を検索',sb:'検索',kinds:{c:'講座',l:'レッスン',t:'ツール'},none:'見つかりませんでした。別の言葉で試してください。',more:'件以上あります。言葉を足して絞り込んでください。',
  flow:['知識','実習','コーチング','求人'],stats:['航空講座','会社実務講座','練習ツール'],
- qh:'カテゴリーから探す',qc:[['航空を学ぶ','職種別の実務講座',['{av}講座・{al}レッスン','基礎から実務・管理職まで','日本語・韓国語・英語'],'講座を見る','ok'],['会話練習（日・韓・英）','空港から日常会話まで',['空港・旅行・日常・職場の場面','AIと自由に会話','音声入力・読み上げ付き'],'練習する','ok'],['求人を探す','航空業界の求人をまとめて',['日本・韓国の求人','航空会社・空港・貨物','随時更新'],'求人を見る','ok'],['会社実務','どの業界でも使える実務',['4トラック・{bl}レッスン','財務・人事・総務・経営','練習ツール付き'],'実務を見る','ok'],['1対1コーチング','経験者と1対1で',['実務・面接・語学','航空現場の経験者','コーチを募集中'],'案内を見る','soon'],['コミュニティ','業界の人とつながる',['Q&A・事例','就職・転職の情報','ネットワーキング'],'見てみる','soon']],st:['利用できます','準備中'],quick:[['✈ 航空実務を学びたい','航空基礎・旅客ハンドリング・航空営業・運航管理・航空貨物'],['💼 求人を探している','航空会社・空港・グランドハンドリング・航空貨物'],['📊 会社実務を学びたい','財務・人事・総務・経営'],['🤝 航空業界の経験者に相談したい','1対1の実務・面接・語学・キャリア'],['💬 業界情報を共有したい','Q&A・現場事例・就職情報・ネットワーキング']],
+ qh:'カテゴリーから探す',qc:[['航空を学ぶ','職種別の実務講座',['{av}講座・{al}レッスン','基礎から実務・管理職まで','日本語・韓国語・英語'],'講座を見る','ok'],['会話練習（日・韓・英）','空港から日常会話まで',['空港・旅行・日常・職場の場面','AIと自由に会話','音声入力・読み上げ付き'],'練習する','ok'],['求人を探す','航空業界の求人を一覧で',['日本・韓国の求人','航空会社・空港・貨物','随時更新'],'求人を見る','ok'],['会社実務','どの業界でも使える実務',['4トラック・{bl}レッスン','財務・人事・総務・経営','練習ツール付き'],'実務を見る','ok'],['1対1コーチング','経験者と1対1で',['実務・面接・語学','航空現場の経験者','コーチを募集中'],'案内を見る','soon'],['コミュニティ','業界の人とつながる',['Q&A・事例','就職・転職の情報','ネットワーキング'],'見てみる','soon']],st:['利用できます','準備中'],quick:[['✈ 航空実務を学びたい','航空基礎・旅客ハンドリング・航空営業・運航管理・航空貨物'],['💼 求人を探している','航空会社・空港・グランドハンドリング・航空貨物'],['📊 会社実務を学びたい','財務・人事・総務・経営'],['🤝 航空業界の経験者に相談したい','1対1の実務・面接・語学・キャリア'],['💬 業界情報を共有したい','Q&A・現場事例・就職情報・ネットワーキング']],
  fth:'航空キャリアノートの特徴',ftl:'航空の現場で受け継がれてきた知識を、学びやすい形にまとめました。',ft:[['現場の実務を、具体的に','航空会社・空港の現場で使われる手順・書類・判断の考え方を、教科書や求人情報では分からないところまで。業界の外ではなかなか手に入らない知識を、{av}講座・{al}レッスンにまとめています。'],['日本と韓国を並べて、{nl}つの言語で','日韓の制度・用語・手続きを並べて比べられます。同じ内容を{ll}で読めるので、外国の会社で働く人にも役立ちます。'],['図と練習で、身につく','動く図・計算ツール・確認クイズ・学科試験の過去問で、読んだことをすぐ試せます。メモと復習の予定は自分の学習ノートに残せます。'],['手頃な価格で、ずっと','専門学校やスクールに通うより手頃に。メンバーシップで、すべての講座を内容が新しくなっても読み続けられます（料金は準備中）。']],
  hj:'毎日チェックしたくなる<br>航空キャリアの拠点',lj:'航空会社・空港・グランドハンドリング・航空貨物まで、日本・韓国の航空業界の求人をまとめて確認できます。',mj:'すべての求人 →',featured:'注目',isnew:'新着',sample:'見本',view:'求人を見る →',daysAgo:'{n}日前',today:'今日',
  j0:['掲載中の求人はまだありません','航空・空港分野の人材を採用したい企業の方は、掲載のご案内をご覧ください。','掲載のご案内'],
@@ -366,7 +369,8 @@ window.PAGE_RENDER=function(l){lang=l;var t=T[lang],s=S();document.title=t.title
  var CK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg>';
  var fill=function(x){return x.replace('{av}',av).replace('{al}',nf(al)).replace('{bl}',nf(bl))};
  $('qh').textContent=t.qh;
- $('qgrid').innerHTML=t.qc.map(function(c,i){return '<a class="qc" href="'+qh[i]+'" style="--qb:'+QB[i][0]+';--qi:'+QB[i][1]+'"><div class="qc-top"><span class="qc-st'+(c[4]==='soon'?' soon':'')+'">'+E(c[4]==='soon'?t.st[1]:t.st[0])+'</span><span class="qc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+QI[i]+'</svg></span><strong class="qc-t">'+QT(c[0])+'</strong><span class="qc-d">'+E(c[1])+'</span></div><div class="qc-body">'+c[2].map(function(r){return '<span class="qc-row">'+CK+'<span>'+E(fill(r))+'</span></span>'}).join('')+'<span class="qc-cta">'+E(c[3])+'</span></div></a>'}).join('');
+ /* 並び順：航空・会社実務・会話練習・求人・コーチング・コミュニティ（配列の番号で指定） */
+ $('qgrid').innerHTML=[0,3,1,2,4,5].map(function(i){var c=t.qc[i];return '<a class="qc" href="'+qh[i]+'" style="--qb:'+QB[i][0]+';--qi:'+QB[i][1]+'"><div class="qc-top"><span class="qc-st'+(c[4]==='soon'?' soon':'')+'">'+E(c[4]==='soon'?t.st[1]:t.st[0])+'</span><span class="qc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+QI[i]+'</svg></span><strong class="qc-t">'+QT(c[0])+'</strong><span class="qc-d">'+E(c[1])+'</span></div><div class="qc-body">'+c[2].map(function(r){return '<span class="qc-row">'+CK+'<span>'+E(fill(r))+'</span></span>'}).join('')+'<span class="qc-cta">'+E(c[3])+'</span></div></a>'}).join('');
 
  /* 特徴（2026.10）：4つの点・絵・短い説明。数はレッスン数から自動 */
  var FTC=['#1769e0','#1F7A6E','#E08A2F','#6A4FB8'],FTA=['<rect x="38" y="14" width="74" height="92" rx="8" fill="#fff" stroke="#1d2a3a" stroke-width="2.4"/><rect x="58" y="8" width="34" height="14" rx="4" fill="#E08A2F" stroke="#1d2a3a" stroke-width="2.4"/><path d="M50 40h10M50 58h10M50 76h10" stroke="#E08A2F" stroke-width="3" stroke-linecap="round"/><path d="M66 40h32M66 58h32M66 76h22" stroke="#9fb0c2" stroke-width="3" stroke-linecap="round"/><path d="M104 88l26-12-6 0-8-10-4 2 4 9-8 3-4-4-3 1 3 6-6 3z" fill="#2F8FE0" stroke="#1d2a3a" stroke-width="1.6" stroke-linejoin="round"/>', '<rect x="10" y="18" width="56" height="46" rx="10" fill="#fff" stroke="#1d2a3a" stroke-width="2.4"/><path d="M24 64l-4 12 14-12" fill="#fff" stroke="#1d2a3a" stroke-width="2.4" stroke-linejoin="round"/><text x="38" y="48" text-anchor="middle" font-size="20" font-weight="900" fill="#D64545" font-family="Arial,sans-serif">JP</text><rect x="84" y="18" width="56" height="46" rx="10" fill="#fff" stroke="#1d2a3a" stroke-width="2.4"/><path d="M126 64l4 12-14-12" fill="#fff" stroke="#1d2a3a" stroke-width="2.4" stroke-linejoin="round"/><text x="112" y="48" text-anchor="middle" font-size="20" font-weight="900" fill="#2F6FD6" font-family="Arial,sans-serif">KR</text><path d="M68 34h14M82 34l-5-4M68 48h14M68 48l5 4" stroke="#E08A2F" stroke-width="3" stroke-linecap="round" fill="none"/><rect x="34" y="82" width="82" height="24" rx="12" fill="#E7F1FC" stroke="#1d2a3a" stroke-width="2"/><text x="75" y="99" text-anchor="middle" font-size="12" font-weight="900" fill="#1d2a3a" font-family="Arial,sans-serif">%LG%</text>', '<rect x="14" y="12" width="96" height="66" rx="8" fill="#fff" stroke="#1d2a3a" stroke-width="2.4"/><path d="M26 64l18-20 14 10 22-26 18 12" fill="none" stroke="#2F8FE0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="44" r="3.5" fill="#E08A2F"/><circle cx="58" cy="54" r="3.5" fill="#E08A2F"/><circle cx="80" cy="28" r="3.5" fill="#E08A2F"/><path d="M50 78v14M74 78v14M40 94h44" stroke="#1d2a3a" stroke-width="2.4" stroke-linecap="round"/><rect x="96" y="50" width="42" height="52" rx="7" fill="#fff" stroke="#1d2a3a" stroke-width="2.4"/><path d="M104 64l4 4 8-8M104 82l4 4 8-8" stroke="#1F7A6E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M120 66h10M120 84h10" stroke="#9fb0c2" stroke-width="3" stroke-linecap="round"/>', '<path d="M30 30h60l30 30-40 40-50-50z" fill="#fff" stroke="#1d2a3a" stroke-width="2.4" stroke-linejoin="round" transform="rotate(-8 75 60)"/><circle cx="46" cy="42" r="6" fill="#E08A2F" stroke="#1d2a3a" stroke-width="2"/><path d="M58 64c4-8 18-8 22 0c4 8 18 8 22 0c-4-8-18-8-22 0c-4 8-18 8-22 0z" fill="none" stroke="#2F8FE0" stroke-width="3.2" stroke-linejoin="round"/><path d="M118 20l4-8M128 28l8-4M124 12l2-2" stroke="#E08A2F" stroke-width="3" stroke-linecap="round"/>'];
