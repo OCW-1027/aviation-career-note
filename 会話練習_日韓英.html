@@ -248,7 +248,7 @@ ja:{kick:'航空キャリアノート',ttl:'会話練習 ― 日本語・韓国�
  noVoice:'この端末には{L}の声が見つかりません。文字を見て練習するか、端末の設定で{L}の音声を追加してください。',
  ttsFail:'読み上げが始まりませんでした。端末の音量や音声の設定を確かめてください。',
  role:'あなたの役',you:'あなた',next:'次へ ▶',start:'はじめる',reveal:'答えを見る',say:'{L}で言ってみましょう',
- mic:'🎤 話して確かめる',micOn:'■ 聞き取り中（押して止める）',
+ mic:'🎤 話して確かめる',micOn:'■ 聞き取り中（押して止める）',micEnd:'■ 終了 {n}秒',micLong:'聞き取り中です。話し終えたら「■ 終了」を押してください（最長60秒）',
  micNote:'マイクは「話して確かめる」を押したときだけ使います。ブラウザによっては、声を文字にするために音声をブラウザの会社のサーバーへ送ります。このサイトは音声も聞き取った文字も保存しません。',
  noMic:'このブラウザは声の聞き取りに対応していません。声に出して言ってから「答えを見る」で確かめてください。',
  heard:'聞き取った文',near:'近さ',good:'よくできました',ok2:'もう少し',retry:'もう一度言ってみましょう',micErr:'聞き取れませんでした。もう一度どうぞ。',micDeny:'マイクが使えません。ブラウザの設定でマイクを許可してください。',
@@ -270,7 +270,7 @@ ko:{kick:'항공 커리어 노트',ttl:'회화 연습 — 일본어·한국어·
  noVoice:'이 기기에서 {L} 음성을 찾을 수 없습니다. 글을 보며 연습하거나, 기기 설정에서 {L} 음성을 추가해 주세요.',
  ttsFail:'읽어 주기가 시작되지 않았습니다. 기기의 음량과 음성 설정을 확인해 주세요.',
  role:'내 역할',you:'나',next:'다음 ▶',start:'시작',reveal:'정답 보기',say:'{L}로 말해 보세요',
- mic:'🎤 말해서 확인',micOn:'■ 듣는 중 (눌러서 멈춤)',
+ mic:'🎤 말해서 확인',micOn:'■ 듣는 중 (눌러서 멈춤)',micEnd:'■ 종료 {n}초',micLong:'듣는 중입니다. 다 말했으면 「■ 종료」를 눌러 주세요(최대 60초)',
  micNote:'마이크는 「말해서 확인」을 눌렀을 때만 사용합니다. 브라우저에 따라 음성을 글자로 바꾸기 위해 브라우저 회사의 서버로 음성을 보냅니다. 이 사이트는 음성도, 알아들은 글자도 저장하지 않습니다.',
  noMic:'이 브라우저는 음성 인식을 지원하지 않습니다. 소리 내어 말한 뒤 「정답 보기」로 확인해 주세요.',
  heard:'알아들은 문장',near:'일치도',good:'잘했어요',ok2:'조금만 더',retry:'한 번 더 말해 보세요',micErr:'알아듣지 못했습니다. 다시 해 보세요.',micDeny:'마이크를 쓸 수 없습니다. 브라우저 설정에서 마이크를 허용해 주세요.',
@@ -292,7 +292,7 @@ en:{kick:'Aviation Career Note',ttl:'Conversation Practice: Japanese, Korean and
  noVoice:'No {L} voice was found on this device. Practise with the text, or add a {L} voice in your device settings.',
  ttsFail:'Read-aloud did not start. Check your device volume and speech settings.',
  role:'Your role',you:'You',next:'Next ▶',start:'Start',reveal:'Show answer',say:'Try saying it in {L}',
- mic:'🎤 Speak and check',micOn:'■ Listening (tap to stop)',
+ mic:'🎤 Speak and check',micOn:'■ Listening (tap to stop)',micEnd:'■ Stop {n}s',micLong:'Listening. Tap “■ Stop” when you have finished (up to 60 s)',
  micNote:'The microphone is used only when you tap “Speak and check”. Some browsers send your voice to their own servers to turn it into text. This site stores neither your voice nor the recognised text.',
  noMic:'This browser does not support speech recognition. Say the line out loud, then tap “Show answer” to check.',
  heard:'What we heard',near:'Match',good:'Well done',ok2:'Almost',retry:'Try once more',micErr:'Nothing was recognised. Please try again.',micDeny:'The microphone is blocked. Allow it in your browser settings.',
@@ -376,19 +376,35 @@ function lev(a,b){if(a===b)return 0;if(!a.length)return b.length;if(!b.length)re
 function sim(a,b){var m=Math.max(a.length,b.length);return m?1-lev(a,b)/m:0}
 function scoreOf(heard,i){var s=BY[st.id],L=s.lines[i],l=tgt(),c=[tx(L,l)];if(l==='ja'&&L.jr)c.push(L.jr);(L.alt||[]).forEach(function(a){if(a){c.push(tx(a,l));if(l==='ja'&&a.jr)c.push(a.jr)}});
  var best=0;heard.forEach(function(h){var x=norm(h,l);c.forEach(function(y){best=Math.max(best,sim(x,norm(y,l)))})});return Math.round(best*100)}
-function micStop(){if(rec){try{rec.abort()}catch(e){}rec=null}Array.prototype.forEach.call(document.querySelectorAll('.ln .ib.mic.rec'),function(b){b.classList.remove('rec');b.textContent=t.mic})}
-function micStart(i,btn){if(!SRC)return;if(rec){micStop();return}stopTts();
- var out=document.querySelector('.ln[data-i="'+i+'"] .heard');
- try{rec=new SRC()}catch(e){rec=null;return}
- var r=rec;r.lang=BCP[tgt()];r.interimResults=false;r.maxAlternatives=3;r.continuous=false;
- btn.classList.add('rec');btn.textContent=t.micOn;
- r.onresult=function(e){var h=[];try{var res=e.results[0];for(var k=0;k<res.length;k++)h.push(res[k].transcript)}catch(x){}
-  if(!h.length||!out)return;var sc=scoreOf(h,i),cl=sc>=80?'g':sc>=50?'m':'b';
-  out.hidden=false;out.innerHTML='<div>'+esc(t.heard)+'：<b lang="'+tgt()+'">'+esc(h[0])+'</b></div><div>'+esc(t.near)+'：<span class="sc '+cl+'">'+sc+'%</span>　'+esc(sc>=80?t.good:sc>=50?t.ok2:t.retry)+'</div>';
-  if(!st.rev[i]){st.rev[i]=1;var hd=document.querySelector('.ln[data-i="'+i+'"] .ans');if(hd)hd.hidden=false}};
- r.onerror=function(e){if(out){out.hidden=false;out.textContent=(e&&(e.error==='not-allowed'||e.error==='service-not-allowed'))?t.micDeny:t.micErr}};
- r.onend=function(){if(rec===r)rec=null;btn.classList.remove('rec');btn.textContent=t.mic};
- try{r.start()}catch(e){rec=null;btn.classList.remove('rec');btn.textContent=t.mic}}
+/* 長く話せる聞き取り（2026.10）：押してから「■ 終了」を押すまで聞き続ける（最長60秒）。
+   ブラウザが無音で止めても、自動で聞き直してつなぐ。確定した文はためておく */
+var MICMAX=60000;
+function longRec(o){/* o:{lang,onText(text,final),onEnd(text),onErr(code)} → {stop(soft)} */
+ var S={on:true,dead:false,fin:'',t0:Date.now(),r:null};
+ function one(){var r;try{r=new SRC()}catch(e){S.on=false;if(!S.ended){S.ended=true;o.onEnd(S.fin)}return}S.r=r;r._f='';
+  r.lang=o.lang;r.interimResults=true;r.continuous=true;r.maxAlternatives=3;
+  r.onresult=function(e){if(S.dead||S.ended)return;var f='',it='',alts=[];try{for(var k=0;k<e.results.length;k++){var res=e.results[k];if(res.isFinal){f+=res[0].transcript;if(k===e.results.length-1)for(var a=0;a<res.length;a++)alts.push(res[a].transcript)}else it+=res[0].transcript}}catch(x){}
+   r._f=f;o.onText(S.fin+f+it,!it,alts)};
+  r.onerror=function(e){var c=e&&e.error;if(c==='not-allowed'||c==='service-not-allowed'||c==='audio-capture'){S.on=false;o.onErr(c)}};
+  r.onend=function(){if(S.dead)return;if(r._f){S.fin+=r._f+(o.sep||'');r._f=''}
+   if(S.on&&Date.now()-S.t0<MICMAX){one()}else if(!S.ended){S.on=false;S.ended=true;o.onEnd(S.fin.replace(/\s+$/,''))}};
+  try{r.start()}catch(e){S.on=false;if(!S.ended){S.ended=true;o.onEnd(S.fin)}}}
+ one();
+ return {S:S,stop:function(soft){S.on=false;if(!soft)S.dead=true;try{if(S.r)soft?S.r.stop():S.r.abort()}catch(e){}if(!soft&&!S.ended){S.ended=true;o.onEnd(null)}},el:function(){return Date.now()-S.t0}}}
+function micStop(){var x=rec;rec=null;if(x)x.stop(false);Array.prototype.forEach.call(document.querySelectorAll('.ln .ib.mic.rec'),function(b){b.classList.remove('rec');b.textContent=t.mic})}
+function micStart(i,btn){if(!SRC)return;if(rec){var x=rec;x.stop(true);return}stopTts();
+ var out=document.querySelector('.ln[data-i="'+i+'"] .heard'),l=tgt(),tm=null;
+ function show(txt,alts,done){if(!out)return;var h=[txt].concat(alts||[]).filter(Boolean);if(!h.length)return;var sc=scoreOf(h,i),cl=sc>=80?'g':sc>=50?'m':'b';
+  out.hidden=false;out.innerHTML='<div>'+esc(t.heard)+'：<b lang="'+l+'">'+esc(txt)+'</b></div>'+(done?'<div>'+esc(t.near)+'：<span class="sc '+cl+'">'+sc+'%</span>　'+esc(sc>=80?t.good:sc>=50?t.ok2:t.retry)+'</div>':'');
+  if(done&&!st.rev[i]){st.rev[i]=1;var hd=document.querySelector('.ln[data-i="'+i+'"] .ans');if(hd)hd.hidden=false}}
+ function fin(){if(tm){clearInterval(tm);tm=null}btn.classList.remove('rec');btn.textContent=t.mic}
+ var me=longRec({lang:BCP[l],sep:l==='ja'?'':' ',
+  onText:function(txt,isFin,alts){show(txt,alts,false)},
+  onEnd:function(txt){if(rec===me)rec=null;fin();if(txt)show(txt,[],true)},
+  onErr:function(c){if(out){out.hidden=false;out.textContent=(c==='not-allowed'||c==='service-not-allowed')?t.micDeny:t.micErr}}});
+ rec=me;btn.classList.add('rec');
+ function tick(){if(rec!==me)return;btn.textContent=fm(t.micEnd,{n:Math.round(me.el()/1000)});if(me.el()>MICMAX)me.stop(true)}
+ tm=setInterval(tick,500);tick()}
 
 /* ── 私のフレーズ ── */
 function pkey(id,i,a){return id+'|'+i+(a!=null?'|'+a:'')}
@@ -539,7 +555,7 @@ ja:{aiBtn:'AIと話す',aiH:'自由に話す（AI）',aiBan:'AIが相手にな�
  twistL:'ひとひねり（途中で起きること）を入れる',twN:'ひとひねり',keysL:'この場面の表現を使ってみる',readL:'読み（ひらがな）を出す',fixL:'短い直しをもらう',autoL:'読み上げ',
  start:'はじめる',toHand:'ほかのAIアプリで練習する',send:'送る',ph:'{L}で書いてください',end:'おわり',endWord:'おわり',hintWord:'ヒント',
  copyConv:'会話をコピー',copied:'コピーしました',copyNg:'コピーできませんでした。箱の中を長押しして選んでください。',hint:'💡 ヒント',thinking:'…',
- micA:'声で入力',close:'閉じる',closeQ:'会話を閉じますか。会話は保存されないので、消えます。',back2:'← 設定にもどる',again2:'もう一度はじめる',retry:'もう一度送る',
+ micA:'声で入力',close:'閉じる',closeQ:'会話を閉じますか。会話は保存されないので、消えます。',back2:'← 設定にもどる',again2:'もう一度はじめる',resend:'もう一度送る',
  recapH:'まとめ',rcP:'使える表現',rcG:'よかった点',rcF:'直すとよい点',me2:'あなた',
  noEp:'このサイトのAI会話は、まだ準備中です。下のプロンプトをコピーして ChatGPT・Claude・Gemini などのアプリに貼ると、同じ練習ができます。',
  eQuota:'今日このサイトで無料で使える分が終わりました（毎日 午前9時〈日本時間〉にもどります）。下のプロンプトで、ほかのAIアプリを使って続けられます。',
@@ -560,7 +576,7 @@ ko:{aiBtn:'AI와 대화',aiH:'자유 대화(AI)',aiBan:'AI가 상대가 되어 �
  twistL:'돌발 상황(중간에 생기는 일) 넣기',twN:'돌발 상황',keysL:'이 장면의 표현 써 보기',readL:'읽기(히라가나) 표시',fixL:'짧게 고쳐 받기',autoL:'읽어 주기',
  start:'시작',toHand:'다른 AI 앱에서 연습하기',send:'보내기',ph:'{L}로 써 보세요',end:'끝',endWord:'끝',hintWord:'힌트',
  copyConv:'대화 복사',copied:'복사했어요',copyNg:'복사하지 못했어요. 상자 안을 길게 눌러 선택해 주세요.',hint:'💡 힌트',thinking:'…',
- micA:'음성으로 입력',close:'닫기',closeQ:'대화를 닫을까요? 대화는 저장되지 않아서 사라집니다.',back2:'← 설정으로',again2:'다시 시작',retry:'다시 보내기',
+ micA:'음성으로 입력',close:'닫기',closeQ:'대화를 닫을까요? 대화는 저장되지 않아서 사라집니다.',back2:'← 설정으로',again2:'다시 시작',resend:'다시 보내기',
  recapH:'정리',rcP:'쓸 만한 표현',rcG:'잘한 점',rcF:'고치면 좋은 점',me2:'나',
  noEp:'이 사이트의 AI 대화는 아직 준비 중입니다. 아래 프롬프트를 복사해 ChatGPT·Claude·Gemini 같은 앱에 붙여 넣으면 같은 연습을 할 수 있어요.',
  eQuota:'오늘 이 사이트에서 무료로 쓸 수 있는 양이 끝났습니다(매일 오전 9시〈한국·일본 시간〉에 다시 채워집니다). 아래 프롬프트로 다른 AI 앱에서 이어서 할 수 있어요.',
@@ -581,7 +597,7 @@ en:{aiBtn:'Talk with AI',aiH:'Free conversation (AI)',aiBan:'Chat freely with an
  twistL:'Add a twist (something that happens)',twN:'Twist',keysL:'Try the key expressions from this scene',readL:'Show hiragana reading',fixL:'Get short corrections',autoL:'Read aloud',
  start:'Start',toHand:'Practise in another AI app',send:'Send',ph:'Write in {L}',end:'End',endWord:'end',hintWord:'hint',
  copyConv:'Copy conversation',copied:'Copied',copyNg:'Could not copy. Press and hold inside the box to select the text.',hint:'💡 Hints',thinking:'…',
- micA:'Speak to type',close:'Close',closeQ:'Close the conversation? It isn’t saved, so it will be gone.',back2:'← Back to settings',again2:'Start again',retry:'Send again',
+ micA:'Speak to type',close:'Close',closeQ:'Close the conversation? It isn’t saved, so it will be gone.',back2:'← Back to settings',again2:'Start again',resend:'Send again',
  recapH:'Recap',rcP:'Useful expressions',rcG:'What went well',rcF:'What to work on',me2:'You',
  noEp:'The in-page AI chat isn’t set up yet. Copy the prompt below and paste it into an app such as ChatGPT, Claude or Gemini to practise the same way.',
  eQuota:'Today’s free allowance on this site is used up (it resets daily at 00:00 UTC). You can carry on in another AI app with the prompt below.',
@@ -795,7 +811,7 @@ function paintHand(){var c=C,p=buildPrompt('ext'),u=extUrls(p),h='',inChat=!!(ai
 function bubH(x,i){var c=C;
  if(x.w==='me')return '<div class="bub me" lang="'+c.T+'">'+esc(x.tx)+'</div>'+(x.fx?'<div class="fx" lang="'+c.H+'">✎ '+esc(x.fx)+'</div>':'');
  if(x.w==='wait')return '<div class="bub ai wait" aria-label="…">'+esc(t.thinking)+'</div>';
- if(x.w==='err')return '<div class="bub err" role="alert">'+esc(x.tx)+'<div class="bub-act">'+(x.retry?'<button type="button" class="ib" data-rt="1">'+esc(t.retry)+'</button>':'')+'<button type="button" class="ib" data-hd="1">'+esc(t.toHand)+'</button></div></div>';
+ if(x.w==='err')return '<div class="bub err" role="alert">'+esc(x.tx)+'<div class="bub-act">'+(x.retry?'<button type="button" class="ib" data-rt="1">'+esc(t.resend)+'</button>':'')+'<button type="button" class="ib" data-hd="1">'+esc(t.toHand)+'</button></div></div>';
  if(x.w==='recap'){var r=x.rc;return '<div class="rcp" lang="'+c.H+'"><h3>'+esc(t.recapH)+'</h3>'+(r.phrases.length?'<h4>'+esc(t.rcP)+'</h4><ul>'+r.phrases.map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ul>':'')+(r.good?'<h4>'+esc(t.rcG)+'</h4><p>'+esc(r.good)+'</p>':'')+(r.fix?'<h4>'+esc(t.rcF)+'</h4><p>'+esc(r.fix)+'</p>':'')+
   '<div class="bub-act"><button type="button" class="ib" data-cp="1">'+esc(t.copyConv)+'</button><button type="button" class="ib" data-ag="1">'+esc(t.again2)+'</button></div></div>'}
  var o=aiParts();
@@ -861,14 +877,17 @@ function aiGot(raw){var c=C;if(!c)return;var o=parseAI(raw);c.busy=false;
 function aiFail(code){var c=C;if(!c)return;c.busy=false;c.req=null;var last=c.hist.pop();if(last&&last.role!=='user'){c.hist.push(last);last=null}c.ending=false;
  if(code==='quota'||code==='origin'||code==='config'){c.retry=null;c.why=code==='quota'?'quota':'err';if(c.step==='chat'){aiMicStop();c.step='hand';aiPaint()}else c.log.push({w:'err',tx:code==='quota'?t.eQuota:t.eNet,retry:false});return}
  c.retry=last||null;c.log.push({w:'err',tx:code==='rate'?t.eRate:code==='empty'?t.eEmpty:code==='slow'?t.eSlow:t.eNet,retry:!!last});paintLog()}
-function aiMicStop(){if(crec){try{crec.abort()}catch(e){}crec=null}var b=$('aiMic');if(b){b.classList.remove('rec');b.setAttribute('aria-pressed','false')}}
-function aiMic(btn){if(!SRC||!C)return;if(crec){aiMicStop();return}if(C.busy)return;stopTts();var r;try{r=new SRC()}catch(e){return}crec=r;
- var ta=$('aiTx'),base=ta.value?ta.value.replace(/\s*$/,C.T==='ja'?'':' '):'';
- r.lang=BCP[C.T];r.interimResults=true;r.continuous=false;r.maxAlternatives=1;btn.classList.add('rec');btn.setAttribute('aria-pressed','true');
- r.onresult=function(e){var s='';try{for(var i=0;i<e.results.length;i++)s+=e.results[i][0].transcript}catch(x){}ta.value=(base+s).slice(0,400);grow(ta)};
- r.onerror=function(e){var st3=$('aiSt');if(st3)st3.textContent=(e&&(e.error==='not-allowed'||e.error==='service-not-allowed'))?t.micDeny:t.micErr};
- r.onend=function(){if(crec===r)crec=null;btn.classList.remove('rec');btn.setAttribute('aria-pressed','false')};
- try{r.start()}catch(e){crec=null;btn.classList.remove('rec');btn.setAttribute('aria-pressed','false')}}
+function aiMicStop(soft){var x=crec;crec=null;if(x)x.stop(!!soft);var b=$('aiMic');if(b){b.classList.remove('rec');b.setAttribute('aria-pressed','false');b.textContent='🎤'}}
+function aiMic(btn){if(!SRC||!C)return;if(crec){var x=crec;x.stop(true);return}if(C.busy)return;stopTts();
+ var ta=$('aiTx'),sep=C.T==='ja'?'':' ',base=ta.value?ta.value.replace(/\s*$/,sep):'',tm=null,c0=C;
+ function fin(){if(tm){clearInterval(tm);tm=null}btn.classList.remove('rec');btn.setAttribute('aria-pressed','false');btn.textContent='🎤';var s3=$('aiSt');if(s3&&s3.getAttribute('data-m')){s3.textContent='';s3.removeAttribute('data-m')}}
+ var me=longRec({lang:BCP[C.T],sep:sep,
+  onText:function(txt){if(C!==c0)return;ta.value=(base+txt).slice(0,1100);grow(ta)},
+  onEnd:function(txt){if(crec===me)crec=null;fin();if(txt&&C===c0){ta.value=(base+txt).slice(0,1100);grow(ta)}},
+  onErr:function(c){var s3=$('aiSt');if(s3){s3.removeAttribute('data-m');s3.textContent=(c==='not-allowed'||c==='service-not-allowed')?t.micDeny:t.micErr}}});
+ crec=me;btn.classList.add('rec');btn.setAttribute('aria-pressed','true');
+ function tick(){if(crec!==me)return;var n=Math.round(me.el()/1000);btn.textContent=fm(t.micEnd,{n:n});var s3=$('aiSt');if(s3){s3.setAttribute('data-m','1');s3.textContent=fm(t.micLong,{n:n})}if(me.el()>MICMAX)me.stop(true)}
+ tm=setInterval(tick,500);tick()}
 /* 自由に話す（#ai） */
 function paintAI(){var h='<div class="panel"><button type="button" class="btn ghost" id="bk">'+esc(t.back)+'</button><h2 class="h2" style="font-size:21px;margin-top:4px">'+esc(t.aiH)+'</h2><p class="msg">'+esc(t.aiLead)+'</p>';
  var lv=st.tlv||0,L=TP.filter(function(p){return !lv||p.lv===lv});
