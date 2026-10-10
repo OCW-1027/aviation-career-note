@@ -14,7 +14,7 @@ en:{proto:['A prototype based on the GPT design. The current home page is','here
  copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy'}};
 var NAV=[['index.html#learn','learn'],['business.html','business'],['../会話練習_日韓英.html','talk'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
 /* フッターの項目：[日本語, 韓国語, 英語]（2026.10 日本語・韓国語の画面に英語が多すぎたので、言語ごとの名前に） */
-var FOOT=[[['学ぶ','학습','Learn'],[['index.html#learn',['講座','강좌','Courses']],['plan.html',['私の学習プラン','내 학습 플랜','My Learning Plan']],['study.html',['私の学習ノート','내 학습 노트','My Study Notebook']],['guide.html',['学び方ガイド','학습 가이드','Study Guide']],['index.html#practice',['練習ツール','연습 도구','Practice Lab']]]],
+var FOOT=[[['学ぶ','학습','Learn'],[['index.html#learn',['航空講座','항공 강좌','Aviation courses']],['../会話練習_日韓英.html',['会話練習','회화 연습','Speaking']],['plan.html',['私の学習プラン','내 학습 플랜','My Learning Plan']],['study.html',['私の学習ノート','내 학습 노트','My Study Notebook']],['guide.html',['学び方ガイド','학습 가이드','Study Guide']],['index.html#practice',['実務練習','실무 연습','Practice']]]],
  [['会社実務','회사 실무','Business'],[['../23_재무3표실무/00_シリーズ全体_財務3表.html',['財務','재무','Finance']],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',['人事・総務','인사·총무','HR & Admin']],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',['管理職','관리자','Management']]]],
  [['キャリア','커리어','Career'],[['jobs.html',['求人','채용','Jobs']],['../5_면접대비가이드/00_シリーズ全体_面接対策.html',['面接対策','면접 대비','Interview']],['index.html#coaching',['コーチング','코칭','Coaching']]]],
  [['つながる','소통','Connect'],[['../community/index.html',['コミュニティ','커뮤니티','Community']],['about.html',['このサイトについて','사이트 소개','About ACN']],['sources.html',['内容の扱い','콘텐츠 정책','Content Policy']]]]];
@@ -79,7 +79,7 @@ if(!NOJS){window.addEventListener('resize',fitSoon);if(document.fonts){if(docume
    HTML には英語のまま書いておき、ここに [英語, 日本語, 韓国語] を足す。英語の画面ではそのまま */
 var LB=[['Start here','はじめに','시작하기'],['Why ACN','航空キャリアノートの特徴','항공 커리어 노트의 특징'],['Aviation Jobs','航空求人','항공 채용'],
  ['Aviation Learning','航空講座','항공 강좌'],['Learning Path','学びの順序','학습 순서'],['Professional Business Skills','会社実務','회사 실무'],
- ['Practice Lab','練習ツール','연습 도구'],['Practice Lab · Finance','練習ツール・財務','연습 도구 · 재무'],['ACN Membership','メンバーシップ','멤버십'],
+ ['Practice Lab','実務練習','실무 연습'],['Practice Lab · Finance','練習ツール・財務','연습 도구 · 재무'],['ACN Membership','メンバーシップ','멤버십'],
  ['1:1 Aviation Coaching','1対1コーチング','1:1 코칭'],['Aviation Community','コミュニティ','커뮤니티'],['Trust & Quality','信頼できる内容のために','믿을 수 있는 내용을 위해'],
  ['Aviation · Career · Professional Learning','航空・キャリア・仕事の学び','항공 · 커리어 · 실무 학습'],['Where to start','どこから始めるか','어디서 시작할까'],['Read alongside','あわせて読む','함께 읽기'],
  ['Career & Interview','就職と面接','취업과 면접'],['My Learning Plan','私の学習プラン','내 학습 플랜'],['My Study Notebook','私の学習ノート','내 학습 노트'],
