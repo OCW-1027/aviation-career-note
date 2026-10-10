@@ -227,8 +227,22 @@ body.ko .tx:lang(ko),.tx:lang(ko){word-break:keep-all}
 </div>
 <!-- 会話のデータ。ファイルを増やすときは、この下に1行ずつ足す（例：<script src="talk_data2.js"></script>） -->
 <script src="talk_data.js"></script>
+<!-- 追加：空港・イレギュラー対応 25場面（GPT 作成・Claude 検収 2026.10.10） -->
+<script src="talk_data_g01.js"></script>
+<script src="talk_data_g02.js"></script>
+<script src="talk_data_g03.js"></script>
+<script src="talk_data_g04.js"></script>
+<script src="talk_data_g05.js"></script>
 <!-- AIと話す：話題の一覧（talk_topics.js）と、AIの置き場所の設定（talk_config.js） -->
 <script src="talk_topics.js"></script>
+<!-- 講座と連動した AI ロールプレイ 30（GPT 作成・Claude 検収 2026.10.10）。講座のレッスンから ?lessonRp=ID で開く -->
+<script src="lesson_rp_g01.js"></script>
+<script src="lesson_rp_g02.js"></script>
+<script src="lesson_rp_g03.js"></script>
+<script src="lesson_rp_g04.js"></script>
+<script src="lesson_rp_g05.js"></script>
+<script src="lesson_rp_g06.js"></script>
+<script src="lesson_rp_bridge.js"></script>
 <script src="talk_config.js"></script>
 <script>
 /* 会話練習（日本語・韓国語・英語）2026.10
@@ -344,6 +358,8 @@ function streak(){var st=S.st;if(!st.last)return 0;var g=dayNo(ymd())-dayNo(st.l
 
 /* ── 言語と状態 ── */
 var lang='ja';try{var _l=localStorage.getItem('art-lang');if(LANGS.indexOf(_l)>=0)lang=_l}catch(e){}
+/* ?lang=ja|ko|en があれば、それを使って保存する（講座のレッスンから来たとき 2026.10） */
+(function(){var q=(location.search.match(/[?&]lang=(ja|ko|en)\b/)||[])[1];if(q){lang=q;try{localStorage.setItem('art-lang',q)}catch(e){}}})();
 function tgt(){return LANGS.indexOf(S.set.t)>=0?S.set.t:(lang==='ja'?'ko':'ja')}
 function hlp(){return LANGS.indexOf(S.set.h)>=0?S.set.h:lang}
 function on(k,d){return S.set[k]==null?d:!!S.set[k]}
@@ -604,7 +620,7 @@ function paintPhr(){var T2=tgt(),H=hlp(),P=S.ph.map(phResolve).filter(Boolean);
 var TA={
 ja:{aiBtn:'AIと話す',aiH:'自由に話す（AI）',aiBan:'AIが相手になって、自由に会話できます。話題を選ぶか、自分で場面を作ります。',aiGo:'話題を選ぶ',
  aiLead:'AIが会話の相手になります。話題を選ぶか、「自分で作る」で場面とAIの役を決めてください。いまは無料で使えます。',
- own:'自分で作る',osSave:'この場面を保存',osSaved:'保存しました。「自由に話す」の一覧に出ます',osList:'保存した場面',osNote:'このブラウザの中だけに保存されます（最大30件）。',osDel:'削除',osDelQ:'この場面を削除しますか？',ownLead:'場面とAIの役を書くと、その設定で話せます。',fSit:'場面',fAi:'AIの役（人柄も書けます）',fMe:'あなたの役（なくてもよい）',fGoal:'目標（なくてもよい）',
+ own:'自分で作る',osSave:'この場面を保存',osSaved:'保存しました。「自由に話す」の一覧に出ます',osList:'保存した場面',osNote:'このブラウザの中だけに保存されます（最大30件）。',osDel:'削除',osDelQ:'この場面を削除しますか？',rpMiss:'お探しの練習が見つかりませんでした。下の一覧から選んでください。',rpFrom:'講座のレッスン',ownLead:'場面とAIの役を書くと、その設定で話せます。',fSit:'場面',fAi:'AIの役（人柄も書けます）',fMe:'あなたの役（なくてもよい）',fGoal:'目標（なくてもよい）',
  phSit:'例：駅の窓口で、電車に忘れたかさのことを聞く',phAi:'例：駅員。ていねいだけど少しいそがしい',phMe:'例：旅行者',phGoal:'例：かさがどこにあるか確かめる',needSit:'場面とAIの役を書いてください。',
  perN:{friend:'友達',neighbor:'近所の人',colleague:'職場の人',exchange:'言葉を教え合う相手',staff:'店の人',interviewer:'面接官'},
  sitL:'場面',aiRole:'AIの役',youRole:'あなたの役',goalL:'目標',
@@ -625,7 +641,7 @@ ja:{aiBtn:'AIと話す',aiH:'自由に話す（AI）',aiBan:'AIが相手にな�
  startMsg:'（会話をはじめてください）'},
 ko:{aiBtn:'AI와 대화',aiH:'자유 대화(AI)',aiBan:'AI가 상대가 되어 자유롭게 대화할 수 있어요. 주제를 고르거나 직접 상황을 만들어 보세요.',aiGo:'주제 고르기',
  aiLead:'AI가 대화 상대가 됩니다. 주제를 고르거나 “직접 만들기”에서 상황과 AI의 역할을 정해 주세요. 지금은 무료로 쓸 수 있습니다.',
- own:'직접 만들기',osSave:'이 상황 저장',osSaved:'저장했어요. 「자유 대화」 목록에 나옵니다',osList:'저장한 상황',osNote:'이 브라우저 안에만 저장됩니다(최대 30개).',osDel:'삭제',osDelQ:'이 상황을 삭제할까요?',ownLead:'상황과 AI의 역할을 쓰면 그 설정으로 대화할 수 있어요.',fSit:'상황',fAi:'AI의 역할 (성격도 쓸 수 있어요)',fMe:'나의 역할 (없어도 돼요)',fGoal:'목표 (없어도 돼요)',
+ own:'직접 만들기',osSave:'이 상황 저장',osSaved:'저장했어요. 「자유 대화」 목록에 나옵니다',osList:'저장한 상황',osNote:'이 브라우저 안에만 저장됩니다(최대 30개).',osDel:'삭제',osDelQ:'이 상황을 삭제할까요?',rpMiss:'찾으시는 연습을 찾지 못했습니다. 아래 목록에서 골라 주세요.',rpFrom:'강좌 레슨',ownLead:'상황과 AI의 역할을 쓰면 그 설정으로 대화할 수 있어요.',fSit:'상황',fAi:'AI의 역할 (성격도 쓸 수 있어요)',fMe:'나의 역할 (없어도 돼요)',fGoal:'목표 (없어도 돼요)',
  phSit:'예: 역 창구에서 전철에 두고 내린 우산에 대해 묻기',phAi:'예: 역무원. 친절하지만 조금 바쁨',phMe:'예: 여행자',phGoal:'예: 우산이 어디 있는지 확인하기',needSit:'상황과 AI의 역할을 써 주세요.',
  perN:{friend:'친구',neighbor:'이웃',colleague:'직장 동료',exchange:'언어 교환 상대',staff:'가게 직원',interviewer:'면접관'},
  sitL:'상황',aiRole:'AI의 역할',youRole:'나의 역할',goalL:'목표',
@@ -646,7 +662,7 @@ ko:{aiBtn:'AI와 대화',aiH:'자유 대화(AI)',aiBan:'AI가 상대가 되어 �
  startMsg:'(대화를 시작해 주세요)'},
 en:{aiBtn:'Talk with AI',aiH:'Free conversation (AI)',aiBan:'Chat freely with an AI partner. Pick a topic or set up your own situation.',aiGo:'Choose a topic',
  aiLead:'An AI plays your conversation partner. Pick a topic, or use “Create your own” to set the situation and the AI’s role. It’s free for now.',
- own:'Create your own',osSave:'Save this situation',osSaved:'Saved. It appears in the Free conversation list',osList:'Saved situations',osNote:'Saved in this browser only (up to 30).',osDel:'Delete',osDelQ:'Delete this situation?',ownLead:'Describe a situation and the AI’s role, and talk in that setting.',fSit:'Situation',fAi:'AI’s role (you can add a personality)',fMe:'Your role (optional)',fGoal:'Goal (optional)',
+ own:'Create your own',osSave:'Save this situation',osSaved:'Saved. It appears in the Free conversation list',osList:'Saved situations',osNote:'Saved in this browser only (up to 30).',osDel:'Delete',osDelQ:'Delete this situation?',rpMiss:'We couldn’t find that practice. Please choose one from the list below.',rpFrom:'Course lesson',ownLead:'Describe a situation and the AI’s role, and talk in that setting.',fSit:'Situation',fAi:'AI’s role (you can add a personality)',fMe:'Your role (optional)',fGoal:'Goal (optional)',
  phSit:'e.g. At a station office, asking about an umbrella I left on the train',phAi:'e.g. Station staff, polite but a bit busy',phMe:'e.g. Traveller',phGoal:'e.g. Find out where the umbrella is',needSit:'Please write the situation and the AI’s role.',
  perN:{friend:'Friend',neighbor:'Neighbour',colleague:'Colleague',exchange:'Language-exchange partner',staff:'Shop staff',interviewer:'Interviewer'},
  sitL:'Situation',aiRole:'AI’s role',youRole:'Your role',goalL:'Goal',
@@ -670,7 +686,7 @@ LANGS.forEach(function(l){for(var k in TA[l])T[l][k]=TA[l][k]});
 var PR={
 ja:{b:'・',head:'あなたは{T}の会話練習の相手です。次の設定で役を演じてください。',
  sit:'場面：{v}',ai:'あなたの役：{v}',me:'私の役：{v}',goal:'目標：{v}',twist:'途中で起きること：{v}（会話の途中で自然に起こしてください）',keys:'私に使ってほしい表現：{v}',
- rules:'ルール',r:['話すのは{T}だけ。役から出ないでください。','1回に1〜2文。{LV}','毎回、私が答えやすい質問や問いかけで終えてください。'],
+ lock:'あなたは最後まで「{A}」として話してください。私（{M}）のせりふや質問を、あなたが代わりに言わないでください。',rules:'ルール',r:['話すのは{T}だけ。役から出ないでください。','1回に1〜2文。{LV}','毎回、私が答えやすい質問や問いかけで終えてください。'],
  lv:['とてもやさしい言葉と短い文で。','ふだんの会話の言葉で。','自然な言い回しで。場面に合ったていねいさ（敬語など）で。'],
  pers:{kind:'やさしく、私の答えをゆっくり待ってくれる人',busy:'少しいそがしく、話を早く進めたい人'},
  readX:'{T}の文のあとに、（ ）でひらがなの読みを付けてください。',
@@ -685,7 +701,7 @@ ja:{b:'・',head:'あなたは{T}の会話練習の相手です。次の設定�
  recap:'まとめのときは {"recap":{"phrases":["表現 — 意味（5つ）"],"good":"私（学ぶ人）がよくできた点","fix":"直すとよい点"}} だけ（説明は{H}）。'},
 ko:{b:'- ',head:'당신은 {T} 회화 연습 상대입니다. 아래 설정으로 역할을 맡아 주세요.',
  sit:'상황: {v}',ai:'당신의 역할: {v}',me:'나의 역할: {v}',goal:'목표: {v}',twist:'중간에 생기는 일: {v} (대화 중간에 자연스럽게 넣어 주세요)',keys:'내가 써 보고 싶은 표현: {v}',
- rules:'규칙',r:['{T}로만 말하고, 역할에서 벗어나지 마세요.','한 번에 1~2문장. {LV}','매번 내가 대답하기 쉬운 질문이나 말로 끝내 주세요.'],
+ lock:'당신은 끝까지 「{A}」로서 말해 주세요. 나({M})의 대사나 질문을 당신이 대신 하지 마세요.',rules:'규칙',r:['{T}로만 말하고, 역할에서 벗어나지 마세요.','한 번에 1~2문장. {LV}','매번 내가 대답하기 쉬운 질문이나 말로 끝내 주세요.'],
  lv:['아주 쉬운 단어와 짧은 문장으로.','평소 대화 수준의 말로.','자연스러운 표현으로, 상황에 맞는 존댓말과 말투로.'],
  pers:{kind:'친절하고 내 대답을 천천히 기다려 주는 사람',busy:'조금 바빠서 이야기를 빨리 진행하고 싶은 사람'},
  readX:'{T} 문장 뒤에 ( ) 안에 히라가나 읽기를 붙여 주세요.',
@@ -700,7 +716,7 @@ ko:{b:'- ',head:'당신은 {T} 회화 연습 상대입니다. 아래 설정으�
  recap:'정리할 때는 {"recap":{"phrases":["표현 — 뜻 (5개)"],"good":"내(학습자)가 잘한 점","fix":"고치면 좋은 점"}}만 보내 주세요(설명은 {H}로).'},
 en:{b:'- ',head:'You are my {T} conversation partner. Play a role using the setup below.',
  sit:'Situation: {v}',ai:'Your role: {v}',me:'My role: {v}',goal:'Goal: {v}',twist:'Twist: {v} (bring it in naturally partway through)',keys:'Expressions I want to try: {v}',
- rules:'Rules',r:['Speak only {T} and stay in character.','1–2 sentences per turn. {LV}','End each turn with a question or prompt that is easy for me to answer.'],
+ lock:'Stay in the role of “{A}” until the end. Never say lines or ask questions that belong to me ({M}).',rules:'Rules',r:['Speak only {T} and stay in character.','1–2 sentences per turn. {LV}','End each turn with a question or prompt that is easy for me to answer.'],
  lv:['Use very simple words and short sentences.','Use everyday conversational language.','Use natural expressions and the politeness the situation calls for.'],
  pers:{kind:'kind and patient, giving me time to answer',busy:'a little busy and keen to move things along'},
  readX:'After each {T} sentence, add its hiragana reading in brackets.',
@@ -730,16 +746,22 @@ function aiParts(){var c=C,s=c.src,o={};
  if(c.kind==='scene'){var me=c.role,other=me==='A'?'B':'A';o.title=tx(s.title,lang);o.sit=tx(s.scene,lang)||o.title;
   o.ai=tx(s.roles&&s.roles[other],lang)||other;o.me=tx(s.roles&&s.roles[me],lang)||me;o.goal=tx(s.ai.goal,lang);o.twist=tx(s.ai.twist,lang);o.keys=c.keys?sceneKeys(s,me,c.T):[]}
  else if(c.kind==='topic'){o.title=tx(s.title,lang);o.sit=tx(s.sit,lang);o.ai=tx(s.ai,lang);o.me=tx(s.me,lang);o.goal=tx(s.goal,lang);o.twist=tx(s.twist,lang);o.keys=[]}
+ /* 講座連動のロールプレイ（lesson_rp_g*.js）：AI の役と性格、学ぶ人の役は決まっている（A/B の入れ替えなし） */
+ else if(c.kind==='lesson'){o.title=tx(s.title,lang);o.sit=tx(s.scene,lang);o.ai=tx(s.ai.role,lang);o.persona=tx(s.ai.persona,lang);o.me=tx(s.me.role,lang);o.goal=tx(s.goal,lang);o.twist=tx(s.twist,lang);o.keys=[];
+  var B=window.LESSON_RP_BRIDGE;o.policy=B&&B.policy?(B.policy[lang]||B.policy.ja):''}
  else{o.title=t.own;o.sit=OWN.sit.trim();o.ai=OWN.ai.trim();o.me=OWN.me.trim();o.goal=OWN.goal.trim();o.twist='';o.keys=[]}
  return o}
 function buildPrompt(mode){var c=C,p=PR[lang]||PR.ja,o=aiParts(),Tn=LNAME[lang][c.T],Hn=LNAME[lang][c.H],L=[];
  function f(x,v){return fm(x,{T:Tn,H:Hn,v:v,LV:p.lv[c.lv-1]})}
  var aiv=o.ai;if(c.kind==='scene'&&p.pers[c.pers])aiv+=(lang==='en'?' — ':'（')+p.pers[c.pers]+(lang==='en'?'':'）');
+ if(c.kind==='lesson'&&o.persona)aiv+=(lang==='en'?' — ':'（')+o.persona+(lang==='en'?'':'）');
  L.push(f(p.head));L.push(p.b+f(p.sit,o.sit));L.push(p.b+f(p.ai,aiv));if(o.me)L.push(p.b+f(p.me,o.me));if(o.goal)L.push(p.b+f(p.goal,o.goal));
  if(o.twist&&c.twist)L.push(p.b+f(p.twist,o.twist));
  if(o.keys.length)L.push(p.b+f(p.keys,o.keys.map(function(k){return lang==='ja'?'「'+k+'」':'“'+k+'”'}).join(lang==='ja'?'':', ')));
  var R=p.r.slice(),rd=c.T==='ja'&&c.read;
  var dif=c.H!==c.T;if(mode==='ext'){if(rd)R.push(p.readX);if(c.fix)R.push(p.fixX);R.push(dif?p.hintX+' '+p.hm:p.hintX)}
+ if(c.kind==='lesson'&&o.ai&&o.me)R.push(fm(p.lock,{A:o.ai,M:o.me}));
+ if(o.policy)R.push(o.policy);
  R.push(p.end);
  L.push(p.rules);R.forEach(function(r,i){L.push((i+1)+'. '+f(r))});
  if(mode==='ext'){var base=L.join('\n'),tr=aiTranscript(p,3000-base.length-40);L.push(tr||f(p.startX))}
@@ -800,9 +822,12 @@ function aimEl(){var m=$('aim');if(m)return m;m=document.createElement('div');m.
  document.body.appendChild(m);
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&C&&!m.hidden){e.preventDefault();aiClose()}});
  $('aimX').onclick=aiClose;return m}
-function openAI(src){if(C){aiMicStop();aiAbort()}stopTts();micStop();var s=src.kind==='scene'?BY[src.id]:src.kind==='topic'?TPBY[src.id]:null;if(src.kind!=='own'&&!s)return;
+function rpFind(id){var B=window.LESSON_RP_BRIDGE;return B&&B.find?B.find(id):null}
+function openAI(src){st.rpMiss=false;if(C){aiMicStop();aiAbort()}stopTts();micStop();var s=src.kind==='scene'?BY[src.id]:src.kind==='topic'?TPBY[src.id]:src.kind==='lesson'?rpFind(src.id):null;if(src.kind!=='own'&&!s)return;
  C={kind:src.kind,id:src.id,src:s,T:tgt(),H:hlp(),lv:s?s.lv:Math.min(3,Math.max(1,+aiSet('lv',2)||2)),role:st.role==='A'?'A':'B',pers:'normal',twist:true,keys:true,
   read:on('furi',true),fix:!!aiSet('fix',true),step:'setup',hist:[],log:[],busy:false,why:'',retry:null,ended:false,req:null,gen:0,last:document.activeElement};
+ /* 講座から開いたとき：URL の practice・help は、この会話だけに使う（保存した設定は変えない） */
+ if(src.T&&LANGS.indexOf(src.T)>=0)C.T=src.T;if(src.H&&LANGS.indexOf(src.H)>=0)C.H=src.H;
  var m=aimEl();m.hidden=false;document.documentElement.style.overflow='hidden';aiPaint();try{$('aimX').focus()}catch(e){}}
 /* 待っている返事を止める（閉じる・はじめから・設定にもどる） */
 function aiAbort(){var c=C;if(!c)return;var q=c.req;c.req=null;c.busy=false;if(q){clearTimeout(q.tm);q.dead=true;if(q.ac)try{q.ac.abort()}catch(e){}}}
@@ -844,7 +869,10 @@ function paintAiSet(){var c=C,s=c.src,o=aiParts(),h='';
  [['oSit','sit'],['oAi','ai'],['oMe','me'],['oGoal','goal']].forEach(function(p){var e=$(p[0]);if(e)e.oninput=function(){OWN[p[1]]=this.value;if(p[1]==='ai')aiHead()}});
  function ready(){if(C.kind==='own'&&(!OWN.sit.trim()||!OWN.ai.trim())){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;try{$(OWN.sit.trim()?'oAi':'oSit').focus()}catch(x){}return false}if(C.kind==='own'){var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id}return true}
  if($('oSave'))$('oSave').onclick=function(){var m=$('oMsg');if(!OWN.sit.trim()||!OWN.ai.trim()){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;return}var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id;if(m)m.textContent=t.osSaved};
- if($('aStart'))$('aStart').onclick=function(){if(!ready())return;aiAbort();C.retry=null;C.step='chat';C.hist=[{role:'user',content:t.startMsg}];C.log=[];C.ended=false;aiPaint();aiCall()};
+ if($('aStart'))$('aStart').onclick=function(){if(!ready())return;aiAbort();C.retry=null;C.step='chat';C.hist=[{role:'user',content:t.startMsg}];C.log=[];C.ended=false;
+  /* 講座のロールプレイは、決まった第一声（opener）から始める。AI の返事として記録し、学ぶ人の答えを待つ */
+  if(C.kind==='lesson'&&C.src.opener&&C.src.opener[C.T]){var op=C.src.opener[C.T];C.hist.push({role:'assistant',content:JSON.stringify({reply:op})});C.log.push({w:'ai',tx:op,tr:C.H!==C.T?(C.src.opener[C.H]||''):'',rd:'',hints:[]});aiPaint();if(SY&&aiSet('auto',true)&&vlist(C.T).length)speak(op,C.T);return}
+  aiPaint();aiCall()};
  $('aHand').onclick=function(){if(!ready())return;C.why=aiEp()?'':'noEp';C.step='hand';aiPaint()}}
 /* プロンプトを渡す形 */
 /* 長すぎる住所は開けないことがあるので、約6,000字をこえたらコピーだけにして、アプリのトップを開く */
@@ -959,7 +987,7 @@ function aiMic(btn){if(!micOk()||!C)return;if(crec){var x=crec;x.stop(true);retu
  function tick(){if(crec!==me)return;var n=Math.round(me.el()/1000);btn.textContent=fm(t.micEndS,{n:n});btn.setAttribute('aria-label',fm(t.micEnd,{n:n}));var s3=$('aiSt');if(s3){s3.setAttribute('data-m','1');s3.textContent=fm(t.micLong,{n:n})}if(me.el()>MICMAX)me.stop(true)}
  tm=setInterval(tick,500);tick()}
 /* 自由に話す（#ai） */
-function paintAI(){var h='<div class="panel"><button type="button" class="btn ghost" id="bk">'+esc(t.back)+'</button><h2 class="h2" style="font-size:21px;margin-top:4px">'+esc(t.aiH)+'</h2><p class="msg">'+esc(t.aiLead)+'</p>';
+function paintAI(){var h='<div class="panel"><button type="button" class="btn ghost" id="bk">'+esc(t.back)+'</button><h2 class="h2" style="font-size:21px;margin-top:4px">'+esc(t.aiH)+'</h2><p class="msg">'+esc(t.aiLead)+'</p>'+(st.rpMiss?'<p class="warn" role="alert">'+esc(t.rpMiss)+'</p>':'');
  var lv=st.tlv||0,L=TP.filter(function(p){return !lv||p.lv===lv});
  h+='<div class="chips" role="group" aria-label="'+esc(t.lvL)+'" style="margin-top:12px"><button type="button" class="chip lv'+(!lv?' on':'')+'" data-tv="0">'+esc(t.lvL)+'：'+esc(t.all)+'</button>'+[1,2,3].map(function(n){return '<button type="button" class="chip lv'+(lv===n?' on':'')+'" data-tv="'+n+'">'+'★★★'.slice(0,n)+' '+esc(t.lvN[n])+'</button>'}).join('')+'</div>';
  if(S.own.length)h+='<h3 class="h3os">'+esc(t.osList)+'</h3><p class="msg" style="margin:0 0 8px">'+esc(t.osNote)+'</p><div class="grid">'+S.own.map(function(o){return '<div class="card own sv"><button type="button" class="svgo" data-ow="'+esc(o.id)+'"><span class="k"><span>✎ '+esc(t.own)+'</span></span><b>'+esc(o.sit.length>40?o.sit.slice(0,39)+'…':o.sit)+'</b><span class="t2">'+esc(t.aiRole)+'：'+esc(o.ai)+'</span></button><button type="button" class="svdel" data-od="'+esc(o.id)+'" aria-label="'+esc(t.osDel)+'">'+esc(t.osDel)+'</button></div>'}).join('')+'</div>';
@@ -984,6 +1012,13 @@ window.addEventListener('popstate',function(){apply(parse());stopTts();micStop()
 function paintMain(){if(st.view==='scene'&&BY[st.id])paintScene();else if(st.view==='phr')paintPhr();else if(st.view==='ai')paintAI();else{st.view='list';paintList()}}
 function render(){t=T[lang];head();paintSetup();paintMain()}
 apply(parse());render();hqProbe();
+/* 講座のレッスンから：?lessonRp=ID（&practice=ja&help=ko&lang=ko も可）。見つからない ID・言語なら会話は始めず、案内だけ出す */
+(function(){var q=location.search,m=q.match(/[?&]lessonRp=([^&#]+)/);if(!m)return;var id=decodeURIComponent(m[1]),pT=(q.match(/[?&]practice=([^&#]+)/)||[])[1],pH=(q.match(/[?&]help=([^&#]+)/)||[])[1];
+ var bad=(pT&&LANGS.indexOf(pT)<0)||(pH&&LANGS.indexOf(pH)<0);
+ try{history.replaceState(null,'',location.pathname+'#ai')}catch(e){}
+ if(st.view!=='ai'){apply({view:'ai'});paintMain()}
+ if(bad||!rpFind(id)){st.rpMiss=true;paintAI();return}
+ openAI({kind:'lesson',id:id,T:pT,H:pH})})();
 })();
 </script>
 <script src="1_지상직여객운송입문/assets/nav.js"></script>
