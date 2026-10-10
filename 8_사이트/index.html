@@ -29,6 +29,24 @@ body.ko .hs-slide p,body.ko .hs-h{word-break:keep-all}
 .hs-dots button{width:9px;height:9px;border-radius:999px;border:0;padding:0;background:#c9d3de;cursor:pointer;transition:width .25s}
 .hs-dots button.on{width:26px;background:var(--blue)}
 .route-stats b em{font-style:normal;font-size:13px;font-weight:700;opacity:.7;margin-left:3px}
+/* 会話練習の紹介（2026.10）：会社実務と実務練習のあいだ。場面4つは会話練習_日韓英.html の talk_data.js から選んだもの（名前を変えたらここも直す） */
+.spk{background:linear-gradient(135deg,#FFF6F1,#FDEDE4);border:1px solid #F2D8C8;border-radius:24px;padding:38px;display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center}
+.spk h2{font-size:clamp(28px,3.4vw,40px);line-height:1.2;letter-spacing:-.04em;margin:7px 0 12px}
+body.ko .spk h2,body.ko .spk-lead{word-break:keep-all}
+.spk-lead{color:#3d4a57;margin:0 0 16px;line-height:1.75;font-size:15px}
+.spk-pts{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:8px}
+.spk-pts li{display:flex;gap:8px;font-size:14px;line-height:1.5}
+.spk-pts svg{flex:0 0 16px;width:16px;height:16px;margin-top:3px;color:#C2531B}
+.spk-cta{display:flex;flex-wrap:wrap;gap:10px}
+.spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.spk-s{display:flex;flex-direction:column;background:#fff;border:1px solid #F0DCCF;border-radius:16px;padding:16px;transition:box-shadow .2s,border-color .2s}
+.spk-s:hover{border-color:#e9b79c;box-shadow:0 12px 26px rgba(120,50,10,.08)}
+.spk-s small{align-self:flex-start;font-size:11px;font-weight:800;color:#B24A16;background:#FDEEE7;border-radius:999px;padding:3px 9px}
+.spk-s b{display:block;margin:10px 0 8px;font-size:15px;line-height:1.45;flex:1}
+.spk-s span{font-size:12px;color:#65717e}
+.spk-s span i{font-style:normal;color:#E0A100;letter-spacing:1px;margin-right:4px}
+@media(max-width:900px){.spk{grid-template-columns:1fr;padding:26px;gap:24px}}
+@media(max-width:420px){.spk-grid{gap:9px}.spk-s{padding:13px}.spk-s b{font-size:14px}}
 .qwrap{max-width:var(--max);margin:auto;padding:8px 24px 60px}
 .qhead{margin-bottom:16px}
 .qhead h2{font-size:clamp(24px,2.6vw,30px);margin:6px 0 0;letter-spacing:-.03em}
@@ -172,6 +190,19 @@ body.ko .ft-c h3,body.ko .ft-c p,body.ko .ft h2,body.ko .ft-lead{word-break:keep
   <div class="business-grid" id="bizGrid"></div>
 </section>
 
+<section class="section" id="speaking">
+  <div class="spk">
+    <div>
+      <div class="eyebrow" style="color:#B24A16">Speaking Practice</div>
+      <h2 id="hsp"></h2>
+      <p class="spk-lead" id="lsp"></p>
+      <ul class="spk-pts" id="spp"></ul>
+      <div class="spk-cta"><a class="btn dark" href="../会話練習_日韓英.html" id="spb1"></a><a class="btn ghost" href="../会話練習_日韓英.html#ai" id="spb2"></a></div>
+    </div>
+    <div class="spk-grid" id="spg"></div>
+  </div>
+</section>
+
 <section class="section alt" id="practice">
   <div class="inner">
     <div class="section-head">
@@ -253,63 +284,66 @@ body.ko .ft-c h3,body.ko .ft-c p,body.ko .ft h2,body.ko .ft-lead{word-break:keep
 /* トップページの文言（日本語・韓国語・英語）。メニュー・フッター・言語の切り替えは assets/v3.js。見出しの改行は GPT 案と同じ位置に <br> を入れる */
 var T={
 ja:{title:'航空キャリアノート',
-  h1:'学んで、<br>働いて、<br>業界とつながる。',hp:'航空実務講座、航空業界の求人、経営・財務・人事実務、経験者による1対1コーチング、そしてコミュニティを一つのプラットフォームでつなぎます。',
+  h1:'学んで、<br>働いて、<br>業界とつながる。',hp:'航空講座、会社実務（経営・財務・人事）、日本語・韓国語・英語の会話練習、航空業界の求人、経験者による1対1コーチング、そしてコミュニティを一つのプラットフォームでつなぎます。',
  c1:'学習ルートを探す',lu:'レッスン',c2:'航空求人を見る',sq:'職種・講座・会社実務・空港・求人を検索',sb:'検索',kinds:{c:'講座',l:'レッスン',t:'ツール'},none:'見つかりませんでした。別の言葉で試してください。',more:'件以上あります。言葉を足して絞り込んでください。',
  flow:['知識','実習','コーチング','求人'],stats:['航空講座','会社実務講座','練習ツール'],
  qh:'カテゴリーから探す',qc:[['航空講座','職種別の実務講座',['{av}講座・{al}レッスン','基礎から管理職まで','日本語・韓国語・英語'],'講座を見る','ok'],['会話練習（日・韓・英）','空港から日常会話まで',['空港・旅行・日常・職場','AIと自由に会話','音声入力・読み上げ付き'],'練習する','ok'],['求人を探す','航空業界の求人を一覧で',['日本・韓国の求人','航空会社・空港・貨物','随時更新'],'求人を見る','ok'],['会社実務','どの業界でも使える実務',['4トラック・{bl}レッスン','財務・人事・総務・経営','練習ツール付き'],'実務を見る','ok'],['1対1コーチング','経験者と1対1で',['実務・面接・語学','航空現場の経験者','コーチを募集中'],'案内を見る','soon'],['コミュニティ','業界の人とつながる',['Q&A・事例','就職・転職の情報','ネットワーキング'],'見てみる','soon']],st:['利用できます','準備中'],quick:[['✈ 航空実務を学びたい','航空基礎・旅客ハンドリング・航空営業・運航管理・航空貨物'],['💼 求人を探している','航空会社・空港・グランドハンドリング・航空貨物'],['📊 会社実務を学びたい','財務・人事・総務・経営'],['🤝 航空業界の経験者に相談したい','1対1の実務・面接・語学・キャリア'],['💬 業界情報を共有したい','Q&A・現場事例・就職情報・ネットワーキング']],
  fth:'航空キャリアノートの特徴',ftl:'航空の現場で受け継がれてきた知識を、学びやすい形にまとめました。',ft:[['現場の実務を、具体的に','航空会社・空港の現場で使われる手順・書類・判断の考え方を、教科書や求人情報では分からないところまで。業界の外ではなかなか手に入らない知識を、{av}講座・{al}レッスンにまとめています。'],['日本と韓国を並べて、{nl}つの言語で','日韓の制度・用語・手続きを並べて比べられます。同じ内容を{ll}で読めるので、外国の会社で働く人にも役立ちます。'],['図と練習で、身につく','動く図・計算ツール・確認クイズ・学科試験の過去問で、読んだことをすぐ試せます。メモと復習の予定は自分の学習ノートに残せます。'],['手頃な価格で、ずっと','専門学校やスクールに通うより手頃に。メンバーシップで、すべての講座を内容が新しくなっても読み続けられます（料金は準備中）。']],
- hj:'毎日チェックしたくなる<br>航空キャリアの拠点',lj:'航空会社・空港・グランドハンドリング・航空貨物まで、日本・韓国の航空業界の求人をまとめて確認できます。',mj:'すべての求人 →',featured:'注目',isnew:'新着',sample:'見本',view:'求人を見る →',daysAgo:'{n}日前',today:'今日',
+ hj:'航空業界の求人を、<br>まとめてチェック',lj:'航空会社・空港・グランドハンドリング・航空貨物まで、日本・韓国の航空業界の求人をまとめて確認できます。',mj:'すべての求人 →',featured:'注目',isnew:'新着',sample:'見本',view:'求人を見る →',daysAgo:'{n}日前',today:'今日',
  j0:['掲載中の求人はまだありません','航空・空港分野の人材を採用したい企業の方は、掲載のご案内をご覧ください。','掲載のご案内'],
  hl:'航空実務を職種ごとに学ぶ<br>専門講座',ll:'メンバーシップに登録すると、すべての講座を受講できます。講座ごとの体験レッスンも準備しています。',ml:['すべての講座を見る →','閉じる ↑'],lessons:'レッスン',view2:'講座を見る →',
  hpath:'目指す職種に合わせて学びましょう。',lpath:'講座をただ並べるのではなく、実際の仕事で必要になる順序に沿って学べるようにつなぎます。',stepSub:['航空基礎知識','旅客・貨物・運航管理','現場事例','面接対策'],pcta:['私の学習プランを作る →','学び方を見る','目標を選び、必要な講座を組み合わせて、自分のペースで進められます。'],
  hbz:'どの会社でも役立つ<br>ビジネス実務',lbz:'「数字で読む会社」と「人事・総務・財務実務」は、航空業界に限りません。会社員、管理職、中小企業の実務担当者など、業種を問わず役立つ内容です。',
  bnote:'<b>こんな方におすすめ</b><br>数字に苦手意識のある管理職、管理部門に初めて配属された方、支店長など新たに管理職に就く方。',
  biz:{FIN:'業種を問わず',TOOLS:'財務',ADM:'人事・総務',HOV:'管理職'},bzt:['財務の練習ツール','財務諸表の連動・企業価値・財務比率・決算・投資検討報告書の下書き。'],tools:'ツール',view3:'見る →',
+ hsp:'空港の仕事も日常会話も、<br>声に出して身につける',lsp:'空港・機内の業務、旅行、日本での暮らし、職場の会話を、日本語・韓国語・英語で練習できます。場面ごとの役割練習に加えて、AIを相手に自由に話すこともできます。',spp:['練習する言語とヒントの言語を自由に選べる','声に出して話し、高精度の聞き取りで確認','AIが相手役になって、自由に会話'],spb:['場面を選んで練習する →','AIと自由に話す'],spc:{work:'空港・機内の仕事',travel:'旅行',life:'毎日の暮らし',office:'職場の会話'},lvN:['','やさしい','ふつう','むずかしい'],
  hpr:'学んだ知識を、<br>実務で使える力に変えます。',mp:['ほかの練習ツールも見る →','閉じる ↑'],
  hm:'体験から始めて、<br>メンバーシップですべての講座を。',lm:'体験レッスンと求人はどなたでもご覧いただけます。メンバーシップに登録すると、すべての講座、シミュレーション、専門資料、学習プラン、コーチング特典を利用できます。',pm:'準備中',bm:'会員ページを見る',
  hco:'航空業界の経験者が、<br>次の世代のメンターに。',lco:'航空会社・空港・運航・貨物・管理の経験者がコーチとして登録し、実務・面接・語学・キャリアの相談を予約できる仕組みを準備しています。',mco:'準備中',
  coach:[['旅客業務のコーチ','空港旅客業務・支店運営の経験者を募集中','実務 / 面接'],['運航管理のメンター','運航管理（ディスパッチ）の経験者を募集中','試験 / 実務'],['支店運営のメンター','支店運営・管理職経験者を募集中','管理職のキャリア']],
- hcm:'知識や経験が集まるほど、<br>このコミュニティの価値は高まります。',lcm:'仕事のQ&A、現場事例、面接体験談、国・地域別の就職情報、OB・OGの経験が集まる航空専門コミュニティです。',bcm:'コミュニティを見る',
+ hcm:'現場の知識と経験を、<br>みんなで共有する場所',lcm:'仕事のQ&A、現場事例、面接体験談、国・地域別の就職情報、OB・OGの経験が集まる航空専門コミュニティです。',bcm:'コミュニティを見る',
  topics:[['話題','日本の空港の地上職に転職するには、何から？'],['事例','イレギュラー時に最初に判断すべきこと'],['キャリア','運航管理者の面接対策資料'],['会社実務','管理職が必ず見る会社の数字5つ']],tex:'話題の例',
  htr:'専門サイトは、<br>内容の根拠を示します。',trust:[['確認した内容','最終更新日と更新履歴を表示'],['一次資料','IATA・ICAO・政府機関・公式資料'],['現場の経験','実務経験に基づく解説と公式規定を明確に区別'],['3つの言語','日本語・韓国語・英語に対応']]},
 ko:{title:'항공 커리어 노트',
-  h1:'배우고,<br>일하고,<br>업계와 연결됩니다.',hp:'항공 실무 교육, 항공업계 채용, 회사 경영·재무·인사 실무, 전문가 1:1 코칭과 커뮤니티를 하나의 전문 플랫폼으로 연결합니다.',
+  h1:'배우고,<br>일하고,<br>업계와 연결됩니다.',hp:'항공 강좌, 회사 실무(경영·재무·인사), 일본어·한국어·영어 회화 연습, 항공업계 채용, 현업 경험자의 1:1 코칭과 커뮤니티를 하나의 플랫폼으로 연결합니다.',
  c1:'학습 경로 찾기',lu:'레슨',c2:'항공 채용공고 보기',sq:'직무, 강좌, 회사 실무, 공항, 채용공고를 검색하세요',sb:'검색',kinds:{c:'강좌',l:'레슨',t:'도구'},none:'찾지 못했습니다. 다른 말로 검색해 보세요.',more:'건 이상 있습니다. 검색어를 더해 좁혀 보세요.',
  flow:['지식','실습','코칭','채용'],stats:['항공 강좌','회사 실무 강좌','연습 도구'],
  qh:'카테고리별로 찾기',qc:[['항공 강좌','직무별 실무 강좌',['{av}개 강좌 · {al}개 레슨','기초부터 관리자까지','일본어·한국어·영어'],'강좌 보기','ok'],['회화 연습(일·한·영)','공항부터 일상 회화까지',['공항·여행·일상·직장 상황','AI와 자유 대화','음성 입력·읽어 주기 지원'],'연습하기','ok'],['채용 찾기','항공업계 채용을 한곳에',['한국·일본 채용공고','항공사·공항·화물','수시 업데이트'],'공고 보기','ok'],['회사 실무','어느 업계에서나 쓰는 실무',['4개 트랙 · {bl}개 레슨','재무·인사·총무·경영','연습 도구 포함'],'실무 보기','ok'],['현업 코칭','경험자와 1:1로',['실무·면접·언어','항공 현장 경험자','코치 모집 중'],'안내 보기','soon'],['커뮤니티','업계 사람들과 연결',['Q&A·사례','취업·이직 정보','네트워킹'],'둘러보기','soon']],st:['이용 가능','준비 중'],quick:[['✈ 항공을 배우고 싶어요','항공지식 · 여객운송 · 영업 · 운항 · 화물'],['💼 채용공고를 찾고 있어요','항공사 · 공항 · 지상조업 · 화물'],['📊 회사 실무를 배우고 싶어요','재무 · 인사 · 총무 · 경영'],['🤝 현업 코치가 필요해요','1:1 실무 · 면접 · 언어 · 커리어'],['💬 업계 정보를 나누고 싶어요','Q&A · 사례 · 취업 · 네트워킹']],
  fth:'항공 커리어 노트의 특징',ftl:'항공 현장에서 이어져 온 지식을 배우기 쉬운 형태로 정리했습니다.',ft:[['현장의 실무를 구체적으로','항공사·공항 현장에서 쓰는 절차·서류·판단 방법을 교과서나 채용 정보로는 알 수 없는 부분까지. 업계 밖에서는 좀처럼 접하기 어려운 지식을 {av}개 강좌·{al}개 레슨에 담았습니다.'],['한국과 일본을 나란히, {nl}개 언어로','한일의 제도·용어·절차를 나란히 비교할 수 있습니다. 같은 내용을 {ll}로 읽을 수 있어 외국 회사에서 일하는 사람에게도 도움이 됩니다.'],['그림과 연습으로 익힌다','움직이는 그림·계산 도구·확인 퀴즈·학과시험 기출문제로 읽은 내용을 바로 확인할 수 있습니다. 메모와 복습 일정은 나의 학습 노트에 남길 수 있습니다.'],['부담 없는 가격으로 계속','전문학교나 학원에 다니는 것보다 부담 없이. 멤버십으로 모든 강좌를 내용이 업데이트되어도 계속 볼 수 있습니다(요금은 준비 중).']],
- hj:'매일 다시 방문하게 만드는<br>항공 커리어 허브',lj:'항공사·공항·지상조업·화물까지, 국내 항공업계 전반의 채용공고를 한곳에서 확인할 수 있습니다.',mj:'전체 채용공고 →',featured:'추천',isnew:'신규',sample:'예시',view:'공고 보기 →',daysAgo:'{n}일 전',today:'오늘',
+ hj:'항공업계 채용을<br>한곳에서 확인하세요',lj:'항공사·공항·지상조업·화물까지, 한국과 일본의 항공업계 채용공고를 한곳에서 확인할 수 있습니다.',mj:'전체 채용공고 →',featured:'추천',isnew:'신규',sample:'예시',view:'공고 보기 →',daysAgo:'{n}일 전',today:'오늘',
  j0:['게재 중인 채용공고가 아직 없습니다','항공·공항 인재를 찾는 기업 담당자께서는 게재 안내를 확인해 주세요.','게재 안내'],
- hl:'항공 실무를 직무별로 배우는<br>전문 학습 과정',ll:'멤버십에 가입하면 모든 강좌를 수강할 수 있습니다. 강좌별 체험 레슨도 준비하고 있습니다.',ml:['전체 과정 보기 →','닫기 ↑'],lessons:'레슨',view2:'과정 보기 →',
+ hl:'항공 실무를 직무별로 배우는<br>전문 강좌',ll:'멤버십에 가입하면 모든 강좌를 수강할 수 있습니다. 강좌별 체험 레슨도 준비하고 있습니다.',ml:['전체 강좌 보기 →','닫기 ↑'],lessons:'레슨',view2:'강좌 보기 →',
  hpath:'직무를 목표로 배우세요.',lpath:'개별 강좌를 나열하지 않고 실제 직무에 필요한 순서대로 연결합니다.',stepSub:['항공 기초 지식','여객·화물·운항관리','현장 사례','면접 대비'],pcta:['내 학습 플랜 만들기 →','학습 방법 보기','목표를 고르고 강좌를 구성해 내 페이스로 진행합니다.'],
  hbz:'어느 회사에서나 필요한<br>비즈니스 실무',lbz:'「숫자로 읽는 회사」와 「인사·총무·재무 실무」는 항공업계에 한정되지 않습니다. 직장인·관리자·중소기업 실무자 누구에게나 필요한 내용입니다.',
  bnote:'<b>이런 분께 권합니다</b><br>숫자에 약한 관리자, 관리 부서에 처음 배치된 분, 지점장·관리직으로 부임하는 분.',
  biz:{FIN:'업종 무관',TOOLS:'재무',ADM:'인사·총무',HOV:'관리자'},bzt:['재무 연습 도구','재무제표 연동·기업가치·재무 비율·결산·투자 검토 보고서 초안.'],tools:'도구',view3:'보기 →',
+ hsp:'공항 업무부터 일상 회화까지,<br>소리 내어 익히세요',lsp:'공항·기내 업무, 여행, 일본 생활, 직장 대화를 일본어·한국어·영어로 연습할 수 있습니다. 장면별 역할 연습에 더해 AI를 상대로 자유롭게 대화할 수도 있습니다.',spp:['연습할 언어와 힌트 언어를 자유롭게 선택','소리 내어 말하고, 정확한 음성 인식으로 확인','AI가 상대 역할을 맡아 자유롭게 대화'],spb:['장면 골라 연습하기 →','AI와 자유롭게 대화하기'],spc:{work:'공항·기내 업무',travel:'여행',life:'일상생활',office:'직장 대화'},lvN:['','쉬움','보통','어려움'],
  hpr:'읽는 지식을<br>실무 능력으로 바꿉니다.',mp:['다른 연습 도구 더 보기 →','닫기 ↑'],
  hm:'체험으로 시작하고,<br>멤버십으로 모든 강좌를.',lm:'체험 레슨과 채용 정보는 누구나 볼 수 있습니다. 멤버십에 가입하면 모든 강좌와 시뮬레이션·전문 자료·학습 경로, 코칭 우대를 이용할 수 있습니다.',pm:'준비 중',bm:'회원 페이지 보기',
  hco:'현업 경험자가<br>다음 세대의 멘토가 됩니다.',lco:'항공사·공항·운항·화물·관리 경험자가 코치로 등록하고, 실무·면접·언어·커리어 코칭을 예약할 수 있도록 준비하고 있습니다.',mco:'준비 중',
  coach:[['여객 업무 코치','공항 여객·지점 경험자 모집 중','실무 / 면접'],['운항관리 멘토','운항관리 경험자 모집 중','시험 / 실무'],['지점 운영 멘토','지점 운영·관리자 경험자 모집 중','관리자 커리어']],
- hcm:'정보가 쌓일수록<br>플랫폼의 가치가 커집니다.',lcm:'직무 Q&A, 현장 사례, 면접 후기, 국가별 취업 정보, OB 경험이 축적되는 항공 전문 커뮤니티.',bcm:'커뮤니티 둘러보기',
+ hcm:'현장의 경험을<br>함께 나누는 곳',lcm:'직무 Q&A, 현장 사례, 면접 후기, 국가별 취업 정보, OB 경험이 축적되는 항공 전문 커뮤니티.',bcm:'커뮤니티 둘러보기',
  topics:[['화제','일본 공항 지상직 이직 준비, 무엇부터?'],['사례','비정상 운항 때 가장 먼저 판단해야 할 것'],['커리어','운항관리사 면접 준비 자료 공유'],['회사 실무','관리자가 꼭 봐야 할 회사 숫자 5가지']],tex:'주제 예시',
  htr:'전문 사이트는<br>콘텐츠의 근거를 보여줍니다.',trust:[['검토한 내용','검토일과 업데이트 이력 표시'],['1차 자료','IATA · ICAO · 정부 · 공식자료'],['현장 경험','현업 경험과 공식 규정 구분'],['3개 언어','한·일 중심의 다국어 확장']]},
 en:{title:'Aviation Career Note',
-  h1:'Learn.<br>Work.<br>Connect.',hp:'Aviation courses, aviation jobs, business skills in finance and HR, 1:1 coaching with experienced professionals and a community, connected in one professional platform.',
+  h1:'Learn.<br>Work.<br>Connect.',hp:'Aviation courses, business skills in finance and HR, speaking practice in Japanese, Korean and English, aviation jobs, 1:1 coaching with experienced professionals and a community, connected in one platform.',
  c1:'Find your path',lu:'lessons',c2:'Browse aviation jobs',sq:'Search roles, courses, business skills, airports and jobs',sb:'Search',kinds:{c:'COURSE',l:'LESSON',t:'TOOL'},none:'Nothing found. Try another word.',more:' or more results. Add a word to narrow them down.',
- flow:['Knowledge','Practice','Coaching','Jobs'],stats:['Aviation Series','Business Tracks','Practice Tools'],
+ flow:['Knowledge','Practice','Coaching','Jobs'],stats:['Aviation Courses','Business Tracks','Practice Tools'],
  qh:'Browse by category',qc:[['Aviation courses','Practical courses by role',['{av} courses · {al} lessons','Basics to management','In three languages'],'View courses','ok'],['Speaking (JA · KO · EN)','From the airport to daily life',['Airport, travel, daily life, work','Open chat with AI','Listen and speak'],'Start practicing','ok'],['Find a job','Aviation jobs in one place',['Jobs in Japan and Korea','Airlines · airports · cargo','Updated regularly'],'View jobs','ok'],['Business skills','Useful in any industry',['4 tracks · {bl} lessons','Finance · HR · admin','Practice tools included'],'View tracks','ok'],['Get a coach','One-to-one with experts',['Interviews · language','Aviation professionals','Recruiting coaches'],'Learn more','soon'],['Community','Connect with the industry',['Q&A and cases','Job and career news','Networking'],'Take a look','soon']],st:['Available','Coming soon'],quick:[['✈ I want to learn aviation','Basics · Passenger · Sales · Operations · Cargo'],['💼 I’m looking for a job','Airlines · Airports · Ground handling · Cargo'],['📊 I want business skills','Finance · HR · Admin · Management'],['🤝 I need a coach','1:1 work · Interviews · Languages · Career'],['💬 I want to share industry info','Q&A · Cases · Careers · Networking']],
  fth:'Why Aviation Career Note',ftl:'Knowledge passed down on airline and airport floors, put into a form that is easy to learn.',ft:[['Real practice, in detail','The procedures, documents and judgement used at airlines and airports, in more detail than textbooks or job ads give. Knowledge that is hard to find outside the industry, in {av} courses and {al} lessons.'],['Japan and Korea side by side, in {nl} languages','Compare Japanese and Korean rules, terms and procedures side by side. Read the same content in {ll}, which also helps people working for foreign airlines.'],['Learn by seeing and doing','Animated figures, calculators, quizzes and past exam papers let you try what you have read straight away. Keep notes and review dates in your own study notebook.'],['Affordable, for good','Costs less than a vocational school or course. With membership, read every course, and keep reading as the content is updated (pricing coming soon).']],
- hj:'An aviation career hub<br>worth checking every day',lj:'See openings across the aviation industry, from airlines and airports to ground handling and cargo. Switch between Korea and Japan.',mk:['Korea','Japan'],mj:'All jobs →',featured:'Featured',isnew:'New',sample:'Sample',view:'View job →',daysAgo:'{n} days ago',today:'Today',
+ hj:'Aviation jobs,<br>all in one place',lj:'See openings across the aviation industry, from airlines and airports to ground handling and cargo. Switch between Korea and Japan.',mk:['Korea','Japan'],mj:'All jobs →',featured:'Featured',isnew:'New',sample:'Sample',view:'View job →',daysAgo:'{n} days ago',today:'Today',
  j0:['No jobs are listed yet','If you are hiring for aviation or airport roles, see how to post a job.','How to post a job'],
  hl:'Professional courses for<br>every aviation role',ll:'Membership gives you access to every course. Trial lessons for each course are on the way.',ml:['View all courses →','Close ↑'],lessons:'Lessons',view2:'View course →',
  hpath:'Learn with a role in mind.',lpath:'Not a list of courses, but the order a real job needs them in.',stepSub:['Aviation basics','Passenger, cargo, dispatch','Field cases','Interview prep'],pcta:['Build my learning plan →','How to study','Pick a goal, arrange the courses, study at your own pace.'],
  hbz:'Beyond aviation:<br>skills every company needs',lbz:'Reading a company through its numbers and HR, admin and finance work are not limited to aviation. They help anyone working in a company, managing a team or running a small business.',
  bnote:'<b>Recommended for</b><br>Managers who find numbers difficult, people new to an admin team, and anyone taking up a station or management post.',
  biz:{FIN:'All industries',TOOLS:'Finance',ADM:'HR / Admin',HOV:'Management'},bzt:['Finance practice tools','Linked statements, valuation, ratios, year-end closing and an investment review draft.'],tools:'Tools',view3:'View →',
+ hsp:'From airport work to everyday life,<br>learn by speaking',lsp:'Practise airport and in-flight work, travel, daily life in Japan and office conversations in Japanese, Korean and English. Role-play set scenes, or talk freely with AI.',spp:['Choose the language to practise and the language for hints','Speak aloud and check with accurate speech recognition','AI plays the other person in open conversation'],spb:['Choose a scene →','Talk freely with AI'],spc:{work:'Airport & in-flight work',travel:'Travel',life:'Daily life',office:'At the office'},lvN:['','Easy','Medium','Hard'],
  hpr:'Turn what you read<br>into working skill.',mp:['More practice tools →','Close ↑'],
  hm:'Start with a trial,<br>unlock every course with membership.',lm:'Trial lessons and job listings are open to everyone. Membership unlocks every course, simulations, professional resources, learning paths and coaching benefits.',pm:'Coming soon',bm:'Go to my page',
  hco:'Experienced professionals<br>mentor the next generation.',lco:'We are preparing a way for people with airline, airport, operations, cargo and management experience to register as coaches, and for learners to book sessions on work, interviews, languages and careers.',mco:'Coming soon',
  coach:[['Passenger Service Coach','Recruiting coaches with airport passenger experience','Work / Interviews'],['Flight Ops Mentor','Recruiting coaches with dispatch experience','Exams / Work'],['Station Manager Mentor','Recruiting coaches with station management experience','Management careers']],
- hcm:'The more we share,<br>the more valuable it becomes.',lcm:'An aviation community for work Q&A, field cases, interview experiences, country-by-country job information and alumni experience.',bcm:'Visit the community',
+ hcm:'A place to share<br>what you learn on the job',lcm:'An aviation community for work Q&A, field cases, interview experiences, country-by-country job information and alumni experience.',bcm:'Visit the community',
  topics:[['HOT','Moving to an airport ground job in Japan: where to start?'],['CASE','The first decision to make in a disruption'],['CAREER','Sharing dispatcher interview preparation'],['BUSINESS','Five company numbers every manager should watch']],tex:'Example topic',
  htr:'A professional site<br>shows where its content comes from.',trust:[['Reviewed Content','Review dates and update history shown'],['Primary Sources','IATA · ICAO · governments · official sources'],['Field Experience','Field experience kept separate from official rules'],['KO · JA · EN','Japanese and Korean first, growing in more languages']]}};
 
@@ -413,6 +447,10 @@ window.PAGE_RENDER=function(l){lang=l;var t=T[lang],s=S();document.title=t.title
  $('bizGrid').innerHTML=(F?bc('company',t.biz.FIN,fd[1],fd[2],F.n+' '+t.lessons,F.p):'')+bc('finance',t.biz.TOOLS,t.bzt[0],t.bzt[1],nf+' '+t.tools,'business.html#tools')+(A?bc('hr',t.biz.ADM,ad[1],ad[2],A.n+' '+t.lessons,A.p):'')+(H?bc('admin',t.biz.HOV,hd[1],hd[2],H.n+' '+t.lessons,H.p):'');
 
  /* 実習 */
+ /* 会話練習の紹介：おすすめの場面4つ（id は talk_data.js と同じ） */
+ var SPK=[['air-checkin-1','work',2,{ja:'チェックイン：名前のつづりがちがう',ko:'체크인: 이름 철자가 다를 때',en:'Check-in: a name that doesn’t match'}],['trv-immigration-1','travel',1,{ja:'入国審査で答える',ko:'입국 심사에서 대답하기',en:'Answering at immigration'}],['life-restaurant-1','life',1,{ja:'食堂で注文する',ko:'식당에서 주문하기',en:'Ordering at a restaurant'}],['off-intro-1','office',1,{ja:'初日の自己紹介',ko:'첫 출근 자기소개',en:'Introducing yourself on day one'}]];
+ $('hsp').innerHTML=t.hsp;$('lsp').textContent=t.lsp;$('spp').innerHTML=t.spp.map(function(x){return '<li>'+CK+'<span>'+E(x)+'</span></li>'}).join('');$('spb1').textContent=t.spb[0];$('spb2').textContent=t.spb[1];
+ $('spg').innerHTML=SPK.map(function(x){return '<a class="spk-s" href="../会話練習_日韓英.html#s='+x[0]+'"><small>'+E(t.spc[x[1]])+'</small><b>'+E(x[3][lang]||x[3].ja)+'</b><span><i>'+'★★★'.slice(0,x[2])+'</i>'+E(t.lvN[x[2]])+'</span></a>'}).join('');
  $('hpr').innerHTML=t.hpr;
  $('labTop').innerHTML=LABS.map(function(id){var x=tool(id);if(!x)return '';var d=x[lang]||x.ja;return '<a class="lab" href="'+x.p+'"><b>'+TT(d[0])+'</b><span>'+E(d[1])+'</span></a>'}).join('');
  /* すべてのツール：data/home_data.js のグループ（航空実習・計算／財務実習／資料・その他）ごとに、グリッドの幅いっぱいの小見出しを入れる。最初の4つ（LABS）は除く（2026.10） */
