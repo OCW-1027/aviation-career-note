@@ -3,16 +3,16 @@
    言語は ?lang= → 保存した言語（art-lang）→ 端末の言語 の順に決め、いまのサイトと同じ場所に保存する */
 (function(){
 var C={
-ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],brand:'航空キャリアノート',nav:['学ぶ','会社実務','練習ツール','求人','コーチング','コミュニティ'],mem:'メンバーシップ',
+ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],brand:'航空キャリアノート',nav:['学ぶ','会話練習','会社実務','練習ツール','求人','コーチング','コミュニティ'],mem:'メンバーシップ',
  foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','航空の外でも役立つ、仕事の知識を。'],
  copy:'© 2026 航空キャリアノート　無断転載・複製禁止',terms:'利用規約',privacy:'プライバシーポリシー'},
-ko:{proto:['GPT 디자인안을 바탕으로 만든 시안입니다. 지금 홈페이지는','여기'],brand:'항공 커리어 노트',nav:['학습','회사 실무','연습 도구','채용','코칭','커뮤니티'],mem:'멤버십',
+ko:{proto:['GPT 디자인안을 바탕으로 만든 시안입니다. 지금 홈페이지는','여기'],brand:'항공 커리어 노트',nav:['학습','회화 연습','회사 실무','연습 도구','채용','코칭','커뮤니티'],mem:'멤버십',
  foot:['항공 전문 지식에서 채용, 코칭, 커뮤니티까지.','항공 밖에서도 쓰이는 실무 지식을.'],
  copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지',terms:'이용약관',privacy:'개인정보 처리방침'},
-en:{proto:['A prototype based on the GPT design. The current home page is','here'],brand:'Aviation Career Note',nav:['Learn','Business Skills','Practice','Jobs','Coaching','Community'],mem:'Membership',
+en:{proto:['A prototype based on the GPT design. The current home page is','here'],brand:'Aviation Career Note',nav:['Learn','Speaking','Business Skills','Practice','Jobs','Coaching','Community'],mem:'Membership',
  foot:['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.'],
  copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy'}};
-var NAV=[['index.html#learn','learn'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
+var NAV=[['index.html#learn','learn'],['../会話練習_日韓英.html','talk'],['business.html','business'],['index.html#practice','practice'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
 /* フッターの項目：[日本語, 韓国語, 英語]（2026.10 日本語・韓国語の画面に英語が多すぎたので、言語ごとの名前に） */
 var FOOT=[[['学ぶ','학습','Learn'],[['index.html#learn',['講座','강좌','Courses']],['plan.html',['私の学習プラン','내 학습 플랜','My Learning Plan']],['study.html',['私の学習ノート','내 학습 노트','My Study Notebook']],['guide.html',['学び方ガイド','학습 가이드','Study Guide']],['index.html#practice',['練習ツール','연습 도구','Practice Lab']]]],
  [['会社実務','회사 실무','Business'],[['../23_재무3표실무/00_シリーズ全体_財務3表.html',['財務','재무','Finance']],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',['人事・総務','인사·총무','HR & Admin']],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',['管理職','관리자','Management']]]],
