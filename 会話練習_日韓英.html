@@ -183,6 +183,8 @@ body.ko .tx:lang(ko),.tx:lang(ko){word-break:keep-all}
 .fx{max-width:88%;width:fit-content;margin:4px 0 0 auto;font-size:13.5px;background:#fff6e0;color:#6b4300;border-radius:10px;padding:6px 10px;overflow-wrap:anywhere}
 .bub-act{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .bub-act .ib{min-height:36px;padding:2px 10px;font-size:12.5px}
+.bub .trn{font-size:13.5px;color:#5c6b7b;margin-top:4px;border-top:1px dashed #d5dde6;padding-top:4px}
+.hints .hmean{display:block;font-size:12.5px;color:#5c6b7b;margin-top:2px}
 .hints{display:flex;flex-direction:column;gap:6px;margin-top:6px}
 .hints button{border:1.5px dashed #9bbbf0;background:#fff;border-radius:12px;padding:6px 10px;font-size:14.5px;text-align:left;cursor:pointer;color:var(--ink);min-height:40px;overflow-wrap:anywhere}
 .aim-in{display:flex;gap:6px;align-items:flex-end}
@@ -603,8 +605,8 @@ ja:{b:'・',head:'あなたは{T}の会話練習の相手です。次の設定�
  hintX:'私が「ヒント」と書いたら、私が次に言える短い文を{T}で2つ出してください。',
  end:'私が「おわり」「끝」「end」と書いたら、役をやめて{H}でまとめてください：使える表現5つ（意味つき）、よかった点、直すとよい点。',
  startX:'では、あなたから話しはじめてください。',
- json:'返事はかならず次のJSONだけにしてください（ほかの文字は書かない）：\n{"reply":"あなたのせりふ（{T}）","reading":"{RD}","fix":"{FX}","hints":["私が次に言える短い文（{T}）","もう1つ"]}',
- rd:'replyのひらがなの読み',fx:'私の前の発言の直し（{H}で1つ・短く。なければ空）',none:'',
+ json:'返事はかならず次のJSONだけにしてください（ほかの文字は書かない）：\n{"reply":"あなたのせりふ（{T}）","tr":"{TR}","reading":"{RD}","fix":"{FX}","hints":["{HN}","もう1つ"]}',
+ rd:'replyのひらがなの読み',trx:'replyを{H}に訳した文',hn1:'私が次に言える短い文（{T}）',hn2:'私が次に言える短い文（{T}） ／ その意味（{H}）',hm:'それぞれに「 ／ 」で区切って{H}の意味を付けてください。',fx:'私の前の発言の直し（{H}で1つ・短く。なければ空）',none:'',
  trH:'ここまでの会話（この続きから練習します）',meL:'私',aiL:'あなた',
  contMe:'上の会話の続きです。私の最後の発言に役のまま返事をして、会話を続けてください。',contAi:'上の会話の続きです。あなたの最後のせりふをもう一度言ってから、私の返事を待ってください。',
  recap:'まとめのときは {"recap":{"phrases":["表現 — 意味（5つ）"],"good":"私（学ぶ人）がよくできた点","fix":"直すとよい点"}} だけ（説明は{H}）。'},
@@ -618,8 +620,8 @@ ko:{b:'- ',head:'당신은 {T} 회화 연습 상대입니다. 아래 설정으�
  hintX:'내가 “힌트”라고 쓰면, 내가 다음에 말할 수 있는 짧은 문장을 {T}로 2개 알려 주세요.',
  end:'내가 “끝”, “おわり”, “end”라고 쓰면 역할을 멈추고 {H}로 정리해 주세요: 쓸 만한 표현 5개(뜻 포함), 잘한 점, 고치면 좋은 점.',
  startX:'그럼 당신이 먼저 말을 걸어 주세요.',
- json:'대답은 반드시 아래 JSON만 보내 주세요(다른 글은 쓰지 않기):\n{"reply":"당신의 대사({T})","reading":"{RD}","fix":"{FX}","hints":["내가 다음에 말할 수 있는 짧은 문장({T})","하나 더"]}',
- rd:'reply의 히라가나 읽기',fx:'내 직전 말의 교정({H}로 하나, 짧게. 없으면 빈칸)',none:'',
+ json:'대답은 반드시 아래 JSON만 보내 주세요(다른 글은 쓰지 않기):\n{"reply":"당신의 대사({T})","tr":"{TR}","reading":"{RD}","fix":"{FX}","hints":["{HN}","하나 더"]}',
+ rd:'reply의 히라가나 읽기',trx:'reply를 {H}로 옮긴 문장',hn1:'내가 다음에 말할 수 있는 짧은 문장({T})',hn2:'내가 다음에 말할 수 있는 짧은 문장({T}) ／ 그 뜻({H})',hm:'각 문장 뒤에 「 ／ 」로 나누어 {H} 뜻을 붙여 주세요.',fx:'내 직전 말의 교정({H}로 하나, 짧게. 없으면 빈칸)',none:'',
  trH:'지금까지의 대화 (이어서 연습합니다)',meL:'나',aiL:'당신',
  contMe:'위 대화의 이어지는 부분입니다. 내 마지막 말에 역할을 유지한 채 대답하고 대화를 이어 가 주세요.',contAi:'위 대화의 이어지는 부분입니다. 당신의 마지막 대사를 한 번 더 말한 뒤 내 대답을 기다려 주세요.',
  recap:'정리할 때는 {"recap":{"phrases":["표현 — 뜻 (5개)"],"good":"내(학습자)가 잘한 점","fix":"고치면 좋은 점"}}만 보내 주세요(설명은 {H}로).'},
@@ -633,8 +635,8 @@ en:{b:'- ',head:'You are my {T} conversation partner. Play a role using the setu
  hintX:'If I type “hint”, give me two short sentences in {T} that I could say next.',
  end:'When I type “end” (or おわり / 끝), step out of the role and recap in {H}: 5 useful expressions with meanings, what I did well, and what to work on.',
  startX:'Please start the conversation.',
- json:'Always reply with this JSON only (no other text):\n{"reply":"your line ({T})","reading":"{RD}","fix":"{FX}","hints":["a short line I could say next ({T})","another one"]}',
- rd:'hiragana reading of reply',fx:'one short correction of my last message in {H}, or empty',none:'',
+ json:'Always reply with this JSON only (no other text):\n{"reply":"your line ({T})","tr":"{TR}","reading":"{RD}","fix":"{FX}","hints":["{HN}","another one"]}',
+ rd:'hiragana reading of reply',trx:'reply translated into {H}',hn1:'a short line I could say next ({T})',hn2:'a short line I could say next ({T}) ／ its meaning ({H})',hm:'Add the meaning in {H} after each one, separated by “ ／ ”.',fx:'one short correction of my last message in {H}, or empty',none:'',
  trH:'Our conversation so far (let’s carry on from here)',meL:'Me',aiL:'You',
  contMe:'This continues the conversation above. Reply to my last message in character and keep the conversation going.',contAi:'This continues the conversation above. Say your last line again, then wait for my reply.',
  recap:'For the recap, send only {"recap":{"phrases":["expression — meaning (5)"],"good":"what I (the learner) did well","fix":"what to work on"}} (explanations in {H}).'}};
@@ -664,11 +666,11 @@ function buildPrompt(mode){var c=C,p=PR[lang]||PR.ja,o=aiParts(),Tn=LNAME[lang][
  if(o.twist&&c.twist)L.push(p.b+f(p.twist,o.twist));
  if(o.keys.length)L.push(p.b+f(p.keys,o.keys.map(function(k){return lang==='ja'?'「'+k+'」':'“'+k+'”'}).join(lang==='ja'?'':', ')));
  var R=p.r.slice(),rd=c.T==='ja'&&c.read;
- if(mode==='ext'){if(rd)R.push(p.readX);if(c.fix)R.push(p.fixX);R.push(p.hintX)}
+ var dif=c.H!==c.T;if(mode==='ext'){if(rd)R.push(p.readX);if(c.fix)R.push(p.fixX);R.push(dif?p.hintX+' '+p.hm:p.hintX)}
  R.push(p.end);
  L.push(p.rules);R.forEach(function(r,i){L.push((i+1)+'. '+f(r))});
  if(mode==='ext'){var base=L.join('\n'),tr=aiTranscript(p,3000-base.length-40);L.push(tr||f(p.startX))}
- else{L.push(fm(f(p.json),{RD:rd?p.rd:p.none,FX:c.fix?f(p.fx):p.none}));L.push(f(p.recap));
+ else{L.push(fm(f(p.json),{RD:rd?p.rd:p.none,FX:c.fix?f(p.fx):p.none,TR:dif?f(p.trx):p.none,HN:dif?f(p.hn2):f(p.hn1)}));L.push(f(p.recap));
   /* gpt-oss：考える量を少なく（OpenAI のモデルの説明の書き方）。考える部分も返事の長さの枠を使うので、JSON が切れにくくなる */
   if(/gpt-oss/i.test(String(aiCfg().model||'')))L.unshift('Reasoning: low')}
  return L.join('\n')}
@@ -679,6 +681,8 @@ function aiTranscript(p,budget){var c=C;if(!c||!c.log)return '';var X=c.log.filt
  if(!out.length)return '';return p.trH+'\n'+out.join('\n')+'\n'+tail}
 /* AIの返事を読む：<think>を消し、JSON なら中身。JSON が途中で切れていても reply などを取り出す（2026.10）。
    かっこ { } やキーの名前は決して画面に出さない。何も取り出せないときは {}（→「もう一度送る」） */
+/* ヒント「言える文 ／ 意味」を分ける（2026.10：ヒントの言語の意味を付ける） */
+function hintSplit(h){h=String(h||'');var m=h.split(/\s*／\s*/);if(m.length<2)m=h.split(/\s+\/\s+/);return [m[0].trim(),m.slice(1).join(' ').trim()]}
 function aiStr(x){return typeof x==='string'?x.trim().slice(0,800):(x==null?'':typeof x==='object'?Object.keys(x).map(function(k){return aiStr(x[k])}).filter(Boolean).join(' — ').slice(0,800):String(x).slice(0,800))}
 function jUnesc(v,open){if(open)v=v.replace(/\\u[0-9a-fA-F]{0,3}$/,'').replace(/(^|[^\\])\\$/,'$1');
  return v.replace(/\\(u[0-9a-fA-F]{4}|[\s\S])/g,function(m,c){if(c.length===5)return String.fromCharCode(parseInt(c.slice(1),16));return c==='n'?'\n':c==='t'?' ':(c==='r'||c==='b'||c==='f')?'':c})}
@@ -692,11 +696,11 @@ function aiSalvage(s){
   if(ph.length||(g&&g.v.trim())||(f&&f.v.trim()))return {recap:{phrases:ph,good:g?aiStr(g.v)+(g.done?'':'…'):'',fix:f?aiStr(f.v)+(f.done?'':'…'):''}}}
  var r=jKey(s,'reply');if(!r||!r.v.trim())return null;
  var rd=jKey(s,'reading'),fx=jKey(s,'fix');
- return {reply:aiStr(r.v)+(r.done?'':'…'),reading:rd&&rd.done?aiStr(rd.v):'',fix:fx&&fx.done?aiStr(fx.v):'',hints:jArr(s,'hints').map(aiStr).filter(Boolean).slice(0,3)}}
+ var tq=jKey(s,'tr');return {reply:aiStr(r.v)+(r.done?'':'…'),tr:tq&&tq.done?aiStr(tq.v):'',reading:rd&&rd.done?aiStr(rd.v):'',fix:fx&&fx.done?aiStr(fx.v):'',hints:jArr(s,'hints').map(aiStr).filter(Boolean).slice(0,3)}}
 function aiObj(o){if(!o||typeof o!=='object'||Array.isArray(o))return null;
  if(o.recap!=null){var r=o.recap;if(typeof r==='string')r={good:r};if(typeof r==='object')return {recap:{phrases:(Array.isArray(r.phrases)?r.phrases:[]).map(aiStr).filter(Boolean).slice(0,8),good:aiStr(r.good),fix:aiStr(r.fix)}}}
  var rp=o.reply!=null?o.reply:o.text!=null?o.text:o.message!=null?o.message:o.response;rp=aiStr(rp);
- if(rp)return {reply:rp,reading:aiStr(o.reading),fix:aiStr(o.fix),hints:(Array.isArray(o.hints)?o.hints:[]).map(aiStr).filter(Boolean).slice(0,3)};return null}
+ if(rp)return {reply:rp,tr:aiStr(o.tr),reading:aiStr(o.reading),fix:aiStr(o.fix),hints:(Array.isArray(o.hints)?o.hints:[]).map(aiStr).filter(Boolean).slice(0,3)};return null}
 function parseAI(raw){var s=String(raw==null?'':raw).replace(/<think>[\s\S]*?<\/think>/gi,'');
  if(/<\/think>/i.test(s))s=s.replace(/^[\s\S]*<\/think>/i,'');s=s.replace(/<think>[\s\S]*$/i,'').trim();
  s=s.replace(/^```[a-z]*\s*/i,'').replace(/\s*```\s*$/,'').trim();
@@ -795,14 +799,14 @@ function bubH(x,i){var c=C;
  if(x.w==='recap'){var r=x.rc;return '<div class="rcp" lang="'+c.H+'"><h3>'+esc(t.recapH)+'</h3>'+(r.phrases.length?'<h4>'+esc(t.rcP)+'</h4><ul>'+r.phrases.map(function(p){return '<li>'+esc(p)+'</li>'}).join('')+'</ul>':'')+(r.good?'<h4>'+esc(t.rcG)+'</h4><p>'+esc(r.good)+'</p>':'')+(r.fix?'<h4>'+esc(t.rcF)+'</h4><p>'+esc(r.fix)+'</p>':'')+
   '<div class="bub-act"><button type="button" class="ib" data-cp="1">'+esc(t.copyConv)+'</button><button type="button" class="ib" data-ag="1">'+esc(t.again2)+'</button></div></div>'}
  var o=aiParts();
- return '<div class="bub ai" data-k="'+i+'"><span class="who2">'+esc(o.ai||'AI')+'</span><div lang="'+(x.raw?'':c.T)+'">'+esc(x.tx)+'</div>'+(x.rd&&c.T==='ja'&&c.read?'<div class="rd" lang="ja">'+esc(x.rd)+'</div>':'')+
+ return '<div class="bub ai" data-k="'+i+'"><span class="who2">'+esc(o.ai||'AI')+'</span><div lang="'+(x.raw?'':c.T)+'">'+esc(x.tx)+'</div>'+(x.rd&&c.T==='ja'&&c.read?'<div class="rd" lang="ja">'+esc(x.rd)+'</div>':'')+(x.tr&&c.H!==c.T?'<div class="trn" lang="'+c.H+'">'+esc(x.tr)+'</div>':'')+
   '<div class="bub-act">'+(SY&&!x.raw?'<button type="button" class="ib" data-pl="'+i+'">'+esc(t.play)+'</button>':'')+(x.hints&&x.hints.length?'<button type="button" class="ib" data-hn="'+i+'" aria-expanded="'+(!!x.open)+'">'+esc(t.hint)+'</button>':'')+'</div>'+
-  (x.open&&x.hints?'<div class="hints">'+x.hints.map(function(hh,j){return '<button type="button" lang="'+c.T+'" data-hi="'+i+'" data-j="'+j+'">'+esc(hh)+'</button>'}).join('')+'</div>':'')+'</div>'}
+  (x.open&&x.hints?'<div class="hints">'+x.hints.map(function(hh,j){var sp=hintSplit(hh);return '<button type="button" lang="'+c.T+'" data-hi="'+i+'" data-j="'+j+'">'+esc(sp[0])+(sp[1]?'<span class="hmean" lang="'+c.H+'">'+esc(sp[1])+'</span>':'')+'</button>'}).join('')+'</div>':'')+'</div>'}
 function paintLog(){var b=$('aimB');if(!b||!C||C.step!=='chat')return;var L=C.log.slice();if(C.busy)L.push({w:'wait'});
  b.innerHTML='<div id="aiLog" aria-live="polite">'+L.map(bubH).join('')+'</div>';
  Array.prototype.forEach.call(b.querySelectorAll('[data-pl]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-pl')];if(x)speak(x.tx,C.T)}});
  Array.prototype.forEach.call(b.querySelectorAll('[data-hn]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-hn')];if(x){x.open=!x.open;paintLog();var n=b.querySelector('[data-hn="'+e.getAttribute('data-hn')+'"]');if(n)try{n.focus()}catch(z){}}}});
- Array.prototype.forEach.call(b.querySelectorAll('[data-hi]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-hi')],ta=$('aiTx');if(x&&ta){ta.value=x.hints[+e.getAttribute('data-j')]||'';grow(ta);try{ta.focus()}catch(z){}}}});
+ Array.prototype.forEach.call(b.querySelectorAll('[data-hi]'),function(e){e.onclick=function(){var x=C.log[+e.getAttribute('data-hi')],ta=$('aiTx');if(x&&ta){ta.value=hintSplit(x.hints[+e.getAttribute('data-j')]||'')[0];grow(ta);try{ta.focus()}catch(z){}}}});
  Array.prototype.forEach.call(b.querySelectorAll('[data-rt]'),function(e){e.onclick=function(){var r=C&&C.retry;if(!r||C.busy)return;C.retry=null;C.log=C.log.filter(function(x){return x.w!=='err'});C.hist.push(r);aiCall()}});
  Array.prototype.forEach.call(b.querySelectorAll('[data-hd]'),function(e){e.onclick=function(){aiMicStop();C.why='err';C.step='hand';aiPaint()}});
  Array.prototype.forEach.call(b.querySelectorAll('[data-cp]'),function(e){e.onclick=copyConv});
@@ -852,7 +856,7 @@ function aiGot(raw){var c=C;if(!c)return;var o=parseAI(raw);c.busy=false;
  var j=o.raw?o.reply:JSON.stringify({reply:o.reply,reading:o.reading,fix:o.fix,hints:o.hints});if(j.length>1150)j=o.raw?o.reply.slice(0,1150):JSON.stringify({reply:o.reply.slice(0,600)});
  c.hist.push({role:'assistant',content:j});
  if(o.fix&&c.fix){for(var i=c.log.length-1;i>=0;i--)if(c.log[i].w==='me'){c.log[i].fx=o.fix;break}}
- c.log.push({w:'ai',tx:o.reply,rd:o.reading,hints:o.hints,raw:!!o.raw});c.ending=false;paintLog();
+ c.log.push({w:'ai',tx:o.reply,tr:o.tr,rd:o.reading,hints:o.hints,raw:!!o.raw});c.ending=false;paintLog();
  if(c.step==='chat'&&!o.raw&&SY&&aiSet('auto',true)&&vlist(c.T).length)speak(o.reply,c.T)}
 function aiFail(code){var c=C;if(!c)return;c.busy=false;c.req=null;var last=c.hist.pop();if(last&&last.role!=='user'){c.hist.push(last);last=null}c.ending=false;
  if(code==='quota'||code==='origin'||code==='config'){c.retry=null;c.why=code==='quota'?'quota':'err';if(c.step==='chat'){aiMicStop();c.step='hand';aiPaint()}else c.log.push({w:'err',tx:code==='quota'?t.eQuota:t.eNet,retry:false});return}
