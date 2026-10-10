@@ -57,6 +57,9 @@ button{font-family:inherit}
 .chip em{font-style:normal;opacity:.7;font-weight:600;margin-left:4px}
 .cnt{font-size:13px;color:var(--sub);margin:4px 2px 10px}
 .grid{display:grid;grid-template-columns:1fr;gap:10px}
+.card.sv{display:flex;flex-direction:column;padding:0;overflow:hidden}.card.sv .svgo{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:14px 16px;flex:1}.card.sv .svgo:focus-visible{outline:2px solid var(--blue,#1769e0)}
+.card.sv .svdel{align-self:flex-end;margin:0 10px 10px;border:1px solid #d5dde6;background:#fff;border-radius:999px;padding:4px 12px;font-size:12.5px;color:#5c6b7b;cursor:pointer}
+.h3os{font-size:16px;margin:18px 0 4px}.osrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}.osmsg{font-size:13px;color:#1F7A6E}
 @media (min-width:640px){.grid{grid-template-columns:1fr 1fr}}
 @media (min-width:940px){.grid{grid-template-columns:1fr 1fr 1fr}}
 .card{display:flex;flex-direction:column;gap:4px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;color:var(--ink);font-size:14px;min-height:44px;transition:border-color .15s,box-shadow .15s}
@@ -318,7 +321,12 @@ var D=[],BY={};
 var KEY='acn-talk',S={};
 try{var _r=JSON.parse(localStorage.getItem(KEY)||'{}');if(_r&&typeof _r==='object')S=_r}catch(e){}
 if(!S.s||typeof S.s!=='object')S.s={};if(!Array.isArray(S.ph))S.ph=[];if(!S.set||typeof S.set!=='object')S.set={};if(!S.st||typeof S.st!=='object')S.st={};
-if(!S.set.voice||typeof S.set.voice!=='object')S.set.voice={};
+if(!S.set.voice||typeof S.set.voice!=='object')S.set.voice={};if(!Array.isArray(S.own))S.own=[];
+/* 自分で作った場面（2026.10）：このブラウザの中だけに最大30件。同じ内容は1件にまとめ、新しいものを上に */
+function ownKey(o){return [o.sit,o.ai,o.me,o.goal].map(function(v){return String(v||'').trim()}).join('\u0001')}
+function ownStore(o,id){var it={id:id||('o'+Date.now().toString(36)),sit:String(o.sit||'').trim().slice(0,300),ai:String(o.ai||'').trim().slice(0,120),me:String(o.me||'').trim().slice(0,80),goal:String(o.goal||'').trim().slice(0,120),t:Date.now()};
+ if(!it.sit||!it.ai)return null;var k=ownKey(it);S.own=S.own.filter(function(x){return x&&x.id!==it.id&&ownKey(x)!==k});S.own.unshift(it);S.own=S.own.slice(0,30);save();return it}
+function ownDel(id){S.own=S.own.filter(function(x){return x&&x.id!==id});save()}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function pad(n){return (n<10?'0':'')+n}
 function ymd(d){d=d||new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
@@ -547,7 +555,7 @@ function paintPhr(){var T2=tgt(),H=hlp(),P=S.ph.map(phResolve).filter(Boolean);
 var TA={
 ja:{aiBtn:'AIと話す',aiH:'自由に話す（AI）',aiBan:'AIが相手になって、自由に会話できます。話題を選ぶか、自分で場面を作ります。',aiGo:'話題を選ぶ',
  aiLead:'AIが会話の相手になります。話題を選ぶか、「自分で作る」で場面とAIの役を決めてください。いまは無料で使えます。',
- own:'自分で作る',ownLead:'場面とAIの役を書くと、その設定で話せます。',fSit:'場面',fAi:'AIの役（人柄も書けます）',fMe:'あなたの役（なくてもよい）',fGoal:'目標（なくてもよい）',
+ own:'自分で作る',osSave:'この場面を保存',osSaved:'保存しました。「自由に話す」の一覧に出ます',osList:'保存した場面',osNote:'このブラウザの中だけに保存されます（最大30件）。',osDel:'削除',osDelQ:'この場面を削除しますか？',ownLead:'場面とAIの役を書くと、その設定で話せます。',fSit:'場面',fAi:'AIの役（人柄も書けます）',fMe:'あなたの役（なくてもよい）',fGoal:'目標（なくてもよい）',
  phSit:'例：駅の窓口で、電車に忘れたかさのことを聞く',phAi:'例：駅員。ていねいだけど少しいそがしい',phMe:'例：旅行者',phGoal:'例：かさがどこにあるか確かめる',needSit:'場面とAIの役を書いてください。',
  perN:{friend:'友達',neighbor:'近所の人',colleague:'職場の人',exchange:'言葉を教え合う相手',staff:'店の人',interviewer:'面接官'},
  sitL:'場面',aiRole:'AIの役',youRole:'あなたの役',goalL:'目標',
@@ -568,7 +576,7 @@ ja:{aiBtn:'AIと話す',aiH:'自由に話す（AI）',aiBan:'AIが相手にな�
  startMsg:'（会話をはじめてください）'},
 ko:{aiBtn:'AI와 대화',aiH:'자유 대화(AI)',aiBan:'AI가 상대가 되어 자유롭게 대화할 수 있어요. 주제를 고르거나 직접 상황을 만들어 보세요.',aiGo:'주제 고르기',
  aiLead:'AI가 대화 상대가 됩니다. 주제를 고르거나 “직접 만들기”에서 상황과 AI의 역할을 정해 주세요. 지금은 무료로 쓸 수 있습니다.',
- own:'직접 만들기',ownLead:'상황과 AI의 역할을 쓰면 그 설정으로 대화할 수 있어요.',fSit:'상황',fAi:'AI의 역할 (성격도 쓸 수 있어요)',fMe:'나의 역할 (없어도 돼요)',fGoal:'목표 (없어도 돼요)',
+ own:'직접 만들기',osSave:'이 상황 저장',osSaved:'저장했어요. 「자유 대화」 목록에 나옵니다',osList:'저장한 상황',osNote:'이 브라우저 안에만 저장됩니다(최대 30개).',osDel:'삭제',osDelQ:'이 상황을 삭제할까요?',ownLead:'상황과 AI의 역할을 쓰면 그 설정으로 대화할 수 있어요.',fSit:'상황',fAi:'AI의 역할 (성격도 쓸 수 있어요)',fMe:'나의 역할 (없어도 돼요)',fGoal:'목표 (없어도 돼요)',
  phSit:'예: 역 창구에서 전철에 두고 내린 우산에 대해 묻기',phAi:'예: 역무원. 친절하지만 조금 바쁨',phMe:'예: 여행자',phGoal:'예: 우산이 어디 있는지 확인하기',needSit:'상황과 AI의 역할을 써 주세요.',
  perN:{friend:'친구',neighbor:'이웃',colleague:'직장 동료',exchange:'언어 교환 상대',staff:'가게 직원',interviewer:'면접관'},
  sitL:'상황',aiRole:'AI의 역할',youRole:'나의 역할',goalL:'목표',
@@ -589,7 +597,7 @@ ko:{aiBtn:'AI와 대화',aiH:'자유 대화(AI)',aiBan:'AI가 상대가 되어 �
  startMsg:'(대화를 시작해 주세요)'},
 en:{aiBtn:'Talk with AI',aiH:'Free conversation (AI)',aiBan:'Chat freely with an AI partner. Pick a topic or set up your own situation.',aiGo:'Choose a topic',
  aiLead:'An AI plays your conversation partner. Pick a topic, or use “Create your own” to set the situation and the AI’s role. It’s free for now.',
- own:'Create your own',ownLead:'Describe a situation and the AI’s role, and talk in that setting.',fSit:'Situation',fAi:'AI’s role (you can add a personality)',fMe:'Your role (optional)',fGoal:'Goal (optional)',
+ own:'Create your own',osSave:'Save this situation',osSaved:'Saved. It appears in the Free conversation list',osList:'Saved situations',osNote:'Saved in this browser only (up to 30).',osDel:'Delete',osDelQ:'Delete this situation?',ownLead:'Describe a situation and the AI’s role, and talk in that setting.',fSit:'Situation',fAi:'AI’s role (you can add a personality)',fMe:'Your role (optional)',fGoal:'Goal (optional)',
  phSit:'e.g. At a station office, asking about an umbrella I left on the train',phAi:'e.g. Station staff, polite but a bit busy',phMe:'e.g. Traveller',phGoal:'e.g. Find out where the umbrella is',needSit:'Please write the situation and the AI’s role.',
  perN:{friend:'Friend',neighbor:'Neighbour',colleague:'Colleague',exchange:'Language-exchange partner',staff:'Shop staff',interviewer:'Interviewer'},
  sitL:'Situation',aiRole:'AI’s role',youRole:'Your role',goalL:'Goal',
@@ -750,7 +758,7 @@ function openAI(src){if(C){aiMicStop();aiAbort()}stopTts();micStop();var s=src.k
 /* 待っている返事を止める（閉じる・はじめから・設定にもどる） */
 function aiAbort(){var c=C;if(!c)return;var q=c.req;c.req=null;c.busy=false;if(q){clearTimeout(q.tm);q.dead=true;if(q.ac)try{q.ac.abort()}catch(e){}}}
 function aiClose(){if(!C)return;var ask=false;try{ask=C.log.some(function(x){return x.w==='me'})&&!window.confirm(t.closeQ)}catch(e){ask=false}if(ask||!C)return;
- aiMicStop();stopTts();aiAbort();var last=C.last;C=null;var m=$('aim');if(m){m.hidden=true;$('aimB').innerHTML='';$('aimF').innerHTML=''}document.documentElement.style.overflow='';try{if(last&&last.focus)last.focus()}catch(e){}}
+ aiMicStop();stopTts();aiAbort();var last=C.last;C=null;var m=$('aim');if(m){m.hidden=true;$('aimB').innerHTML='';$('aimF').innerHTML=''}document.documentElement.style.overflow='';if(st.view==='ai'){var y=window.scrollY;paintAI();try{window.scrollTo(0,y)}catch(e){}last=null}try{if(last&&last.focus)last.focus()}catch(e){}}
 function colon(){return lang==='ja'?'：':': '}
 function aiHead(){var o=aiParts();$('aimT').textContent=o.title||t.aiH;$('aimS').textContent=o.ai?t.aiRole+colon()+o.ai+(o.me?(lang==='ja'?'　':' · ')+t.youRole+colon()+o.me:''):'';$('aimX').setAttribute('aria-label',t.close);$('aimX').title=t.close}
 function aiPaint(){if(!C)return;aiHead();if(C.step==='chat')paintChat();else if(C.step==='hand')paintHand();else paintAiSet();
@@ -762,7 +770,8 @@ function paintAiSet(){var c=C,s=c.src,o=aiParts(),h='';
   '<label class="fld"><span>'+esc(t.fSit)+'</span><textarea id="oSit" maxlength="300" placeholder="'+esc(t.phSit)+'">'+esc(OWN.sit)+'</textarea></label>'+
   '<label class="fld"><span>'+esc(t.fAi)+'</span><input id="oAi" maxlength="120" placeholder="'+esc(t.phAi)+'" value="'+esc(OWN.ai)+'"></label>'+
   '<label class="fld"><span>'+esc(t.fMe)+'</span><input id="oMe" maxlength="80" placeholder="'+esc(t.phMe)+'" value="'+esc(OWN.me)+'"></label>'+
-  '<label class="fld"><span>'+esc(t.fGoal)+'</span><input id="oGoal" maxlength="120" placeholder="'+esc(t.phGoal)+'" value="'+esc(OWN.goal)+'"></label>'}
+  '<label class="fld"><span>'+esc(t.fGoal)+'</span><input id="oGoal" maxlength="120" placeholder="'+esc(t.phGoal)+'" value="'+esc(OWN.goal)+'"></label>'+
+  '<div class="osrow"><button type="button" class="btn ghost" id="oSave">'+esc(t.osSave)+'</button><span class="osmsg" id="oMsg" role="status" aria-live="polite"></span></div>'}
  else{h+='<div class="aim-sum"><div><b>'+esc(t.sitL)+'</b>'+esc(o.sit)+'</div><div><b>'+esc(t.aiRole)+'</b>'+esc(o.ai)+'</div>'+(o.me?'<div><b>'+esc(t.youRole)+'</b>'+esc(o.me)+'</div>':'')+(o.goal?'<div><b>'+esc(t.goalL)+'</b>'+esc(o.goal)+'</div>':'')+'</div>'}
  h+='<div class="set">';
  if(c.kind==='scene')h+='<div><span class="lab">'+esc(t.youRole)+'</span>'+segH('aRole',['A','B'],c.role,function(r){return r+'　'+tx(s.roles&&s.roles[r],lang)})+'</div>'+
@@ -784,7 +793,8 @@ function paintAiSet(){var c=C,s=c.src,o=aiParts(),h='';
  function cb(id,k,store){var e=$(id);if(e)e.onchange=function(){C[k]=this.checked;if(store){S.set['ai_'+k]=this.checked;save()}paintAiSet();var n=$(id);if(n)try{n.focus()}catch(x){}}}
  cb('aTw','twist');cb('aKy','keys');cb('aRd','read');cb('aFx','fix',1);
  [['oSit','sit'],['oAi','ai'],['oMe','me'],['oGoal','goal']].forEach(function(p){var e=$(p[0]);if(e)e.oninput=function(){OWN[p[1]]=this.value;if(p[1]==='ai')aiHead()}});
- function ready(){if(C.kind==='own'&&(!OWN.sit.trim()||!OWN.ai.trim())){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;try{$(OWN.sit.trim()?'oAi':'oSit').focus()}catch(x){}return false}return true}
+ function ready(){if(C.kind==='own'&&(!OWN.sit.trim()||!OWN.ai.trim())){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;try{$(OWN.sit.trim()?'oAi':'oSit').focus()}catch(x){}return false}if(C.kind==='own'){var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id}return true}
+ if($('oSave'))$('oSave').onclick=function(){var m=$('oMsg');if(!OWN.sit.trim()||!OWN.ai.trim()){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;return}var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id;if(m)m.textContent=t.osSaved};
  if($('aStart'))$('aStart').onclick=function(){if(!ready())return;aiAbort();C.retry=null;C.step='chat';C.hist=[{role:'user',content:t.startMsg}];C.log=[];C.ended=false;aiPaint();aiCall()};
  $('aHand').onclick=function(){if(!ready())return;C.why=aiEp()?'':'noEp';C.step='hand';aiPaint()}}
 /* プロンプトを渡す形 */
@@ -892,11 +902,14 @@ function aiMic(btn){if(!SRC||!C)return;if(crec){var x=crec;x.stop(true);return}i
 function paintAI(){var h='<div class="panel"><button type="button" class="btn ghost" id="bk">'+esc(t.back)+'</button><h2 class="h2" style="font-size:21px;margin-top:4px">'+esc(t.aiH)+'</h2><p class="msg">'+esc(t.aiLead)+'</p>';
  var lv=st.tlv||0,L=TP.filter(function(p){return !lv||p.lv===lv});
  h+='<div class="chips" role="group" aria-label="'+esc(t.lvL)+'" style="margin-top:12px"><button type="button" class="chip lv'+(!lv?' on':'')+'" data-tv="0">'+esc(t.lvL)+'：'+esc(t.all)+'</button>'+[1,2,3].map(function(n){return '<button type="button" class="chip lv'+(lv===n?' on':'')+'" data-tv="'+n+'">'+'★★★'.slice(0,n)+' '+esc(t.lvN[n])+'</button>'}).join('')+'</div>';
+ if(S.own.length)h+='<h3 class="h3os">'+esc(t.osList)+'</h3><p class="msg" style="margin:0 0 8px">'+esc(t.osNote)+'</p><div class="grid">'+S.own.map(function(o){return '<div class="card own sv"><button type="button" class="svgo" data-ow="'+esc(o.id)+'"><span class="k"><span>✎ '+esc(t.own)+'</span></span><b>'+esc(o.sit.length>40?o.sit.slice(0,39)+'…':o.sit)+'</b><span class="t2">'+esc(t.aiRole)+'：'+esc(o.ai)+'</span></button><button type="button" class="svdel" data-od="'+esc(o.id)+'" aria-label="'+esc(t.osDel)+'">'+esc(t.osDel)+'</button></div>'}).join('')+'</div>';
  h+='<div class="grid"><button type="button" class="card own" id="aiOwn"><span class="k"><span>✎</span></span><b>'+esc(t.own)+'</b><span class="t2">'+esc(t.ownLead)+'</span></button>'+
   L.map(function(p){return '<button type="button" class="card" data-tp="'+esc(p.id)+'"><span class="k"><span>'+esc(t.perN[p.persona])+'</span>'+stars(p.lv)+'</span><b>'+esc(tx(p.title,lang))+'</b><span class="t2">'+esc(tx(p.sit,lang))+'</span></button>'}).join('')+'</div>'+notesH()+'</div>';
  $('app').innerHTML=h;
  $('bk').onclick=function(){go({view:'list'})};
- $('aiOwn').onclick=function(){openAI({kind:'own'})};
+ $('aiOwn').onclick=function(){OWN={sit:'',ai:'',me:'',goal:''};openAI({kind:'own'})};
+ Array.prototype.forEach.call(document.querySelectorAll('[data-ow]'),function(b){b.onclick=function(){var id=b.getAttribute('data-ow'),o=S.own.filter(function(x){return x.id===id})[0];if(!o)return;OWN={sit:o.sit,ai:o.ai,me:o.me||'',goal:o.goal||''};openAI({kind:'own',sid:id})}});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-od]'),function(b){b.onclick=function(){if(!window.confirm||window.confirm(t.osDelQ)){ownDel(b.getAttribute('data-od'));paintAI()}}});
  Array.prototype.forEach.call(document.querySelectorAll('.chip[data-tv]'),function(b){b.onclick=function(){st.tlv=+b.getAttribute('data-tv');paintAI()}});
  Array.prototype.forEach.call(document.querySelectorAll('.card[data-tp]'),function(b){b.onclick=function(){openAI({kind:'topic',id:b.getAttribute('data-tp')})}})}
 
