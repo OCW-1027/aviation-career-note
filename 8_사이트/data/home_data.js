@@ -25,6 +25,7 @@ var SERIES=[
   a.ja=['空港で働く方・赴任や出張をする方','主要空港ガイド','日本・韓国・世界の主要空港：運用・乗り継ぎ・入国・今後の計画'];a.ko=['공항에서 일하는 사람·부임이나 출장 가는 사람','주요 공항 가이드','일본·한국·세계의 주요 공항: 운영·환승·입국·향후 계획'];a.en=['Airport staff and people relocating or travelling','Guide to Major Airports','Japan, Korea and the world: operations, transfers, entry and future plans']}
  var out=O.map(function(c){return by[c]}).filter(Boolean);SERIES.length=0;out.forEach(function(s){SERIES.push(s)})})();
 var TOOLS=[
+{id:'saga',p:'../1_지상직여객운송입문/AIRLINE_SAGA.html',ja:['AIRLINE SAGA\n空港の仕事体験ゲーム','グランドスタッフになって成田・仁川のチェックインを体験。旅券・座席・手荷物・モバイルバッテリーを判断し、接客の日本語は音声つき'],ko:['AIRLINE SAGA\n공항 업무 체험 게임','그라운드 스태프가 되어 나리타·인천 체크인을 체험. 여권·좌석·수하물·보조배터리를 판단하고 접객 일본어는 음성으로'],en:['AIRLINE SAGA\nAirport Job Game','Work the check-in counter at Narita or Incheon as ground staff: passports, seats, bags and power banks, with spoken Japanese']},
 {id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['Revenue Managementの練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['Revenue Management 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and RevPAR']},
 {id:'fsc',p:'../2_일본취항지점개설가이드/燃油サーチャージ計算.html',ja:['日本発 燃油サーチャージの計算','ケロシン価格の平均と為替から旅客・貨物の額を決め、回収率を確かめて申請書の下書きまで'],ko:['일본발 유류할증료 계산','케로신 평균과 환율로 여객·화물 금액을 정하고 회수율을 확인해 신청서 초안까지'],en:['Japan-Origin Fuel Surcharge Calculator','From kerosene and FX averages to passenger and cargo amounts, the recovery ratio and a filing draft']},
 {id:'dsp',p:'../18_항공기초지식/航空路図の練習.html',ja:['運航管理実務の練習','航空路・飛行計画・燃料・管制・スロットを練習'],ko:['운항관리 실무 연습','항공로·비행계획·연료·관제·슬롯 연습'],en:['Flight Dispatch Practice','Airways, flight plans, fuel, ATC and slots']},
@@ -51,7 +52,7 @@ var TOOLS=[
 /* 資料・ツールの並び（2026.10 改訂）：3つのグループに分け、グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。
    名前の \n は、カードでは改行（検索の結果では空白）。各ツールの grp＝グループの見出し [日本語, 韓国語, 英語]、g＝グループの最初のツールだけに見出し（ほかは null）。
    ホーム（index.html）の「すべてのツール」は grp が変わるところに小見出しを入れる。ここにないツールは最後のグループの後ろに並ぶ */
-(function(){var G=[[['航空実習・計算','항공 실습·계산','Aviation practice and calculators'],['lc','dsp','rm','fsc','exam_jp','exam_kr']],
+(function(){var G=[[['航空実習・計算','항공 실습·계산','Aviation practice and calculators'],['saga','lc','dsp','rm','fsc','exam_jp','exam_kr']],
  [['財務実習','재무 실습','Finance practice'],['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo','ye']],
  [['資料・その他','기타 자료','Other resources'],['ann','talk','forms','faq','story','codes','delay','gloss','quiz']]],out=[],used={},last=G[G.length-1][0];
  G.forEach(function(g){g[1].forEach(function(n,i){TOOLS.forEach(function(x,k){if(!used[k]&&x.id===n){used[k]=1;x.grp=g[0];x.g=i===0?g[0]:null;out.push(x)}})})});
