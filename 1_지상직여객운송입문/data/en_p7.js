@@ -64,8 +64,8 @@ sections:[
 {name:"Languages",x:"Being able to work in Japanese, English and your own language is a real strength on international routes."},
 {name:"Knowing another market",x:"Understanding how airports in your own country work, and what passengers from there expect."},
 {name:"Service experience",x:"Service work elsewhere is valued in Japan too. Explain concretely how it transfers to the work here."}]}]},
-{h:"From offer to starting work",blocks:[{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Employment contract"},{name:"Certificate of Eligibility",sub:"You or a proxy (such as a staff member of the employer) applies in Japan"},{name:"Visa",sub:"At the Japanese embassy or consulate"},{name:"Arrival",sub:"Receive the residence card"},{name:"Registration",sub:"Address, insurance and pension"}]},
-{t:"note",x:"* Timings and documents vary by status and by season. Check with your employer early."}]}],
+{h:"From offer to starting work",blocks:[{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Employment contract"},{name:"Certificate of Eligibility",sub:"You or a proxy (such as a staff member of the employer) applies in Japan (usually 1–3 months)"},{name:"Visa",sub:"At the Japanese embassy or consulate"},{name:"Arrival",sub:"Receive the residence card"},{name:"Registration",sub:"Address, insurance and pension"}]},
+{t:"note",x:"* This is the route for a work visa (Certificate of Eligibility). Specified Skilled Worker (aviation: airport ground handling), the working holiday scheme (for Korean nationals 18–25, up to 30 where approved, twice in a lifetime from October 2025) and other routes differ; check the Immigration Services Agency and MOFA (checked October 2026). Timings and documents vary by status and by season. Check with your employer early."}]}],
 voice:"Japanese airport interviews value, alongside language ability, a willingness to relearn Japanese airport rules. Show that you do not overrate your experience.",
 terms:[["JLPT","日本語能力試験","일본어능력시험"],["Resume (Rirekisho)","履歴書","이력서"],["Career Summary (Shokumu Keirekisho)","職務経歴書","경력기술서"],["Motivation","志望動機","지원 동기"],["Certificate of Eligibility (COE)","在留資格認定証明書","재류자격인정증명서"],["Residence Card","在留カード","재류카드"]],
 quiz:[{q:"How do you make a career summary land?",opts:["Keep it abstract","Use concrete numbers","One line is enough","Do not write one"],a:1,exp:"Flights, passengers, percentages."},
@@ -92,7 +92,7 @@ sections:[
 ["Dangerous goods (passenger category)","Passenger staff","About half a day","Within every 24 months (international standard)"],
 ["Dangerous goods (in-house instructor)","Instructors","A course of several days","Regular renewal"],
 ["Assisting passengers with reduced mobility","Everyone","A few hours","About once a year"]]},
-{t:"note",x:"* Guide figures drawn from several airlines. Hours and intervals are set by the authority’s requirements (security programmes, dangerous goods rules) and company rules. Dangerous goods training is moving internationally towards competency-based training and assessment (CBTA). ★"}]},
+{t:"note",x:"* Guide figures drawn from several airlines. Hours and intervals are set by the authority’s requirements (security programmes, dangerous goods rules) and company rules. Since 1 January 2023, competency-based training and assessment (CBTA) has been mandatory internationally for dangerous goods training, with recurrent training within every 24 months. ★"}]},
 {h:"Initial and recurrent training",blocks:[{t:"rows",items:[
 {name:"Initial training",x:"Taken before starting the role. Typically the head office course is followed by a period of on-the-job training at the station, with a check before the person works alone."},
 {name:"Typical initial syllabus",x:"Aviation basics, border rules and documents, reservations and check-in systems, passenger handling, load control, ground handling, irregular operations including tarmac delays, announcements, forms and supplies."},
@@ -101,7 +101,7 @@ sections:[
 {h:"Assessment and records",blocks:[{t:"check",items:[
 {name:"Pass mark (example)",x:"A set score in each subject (many airlines use 80%); the qualification is granted when every subject is passed."},
 {name:"Reassessment",x:"A failure is reassessed using different questions."},
-{name:"Records",x:"Name, company, course, date, result and the expiry of the qualification, kept while the person is employed."},
+{name:"Records",x:"Name, company, course, date, result and the expiry of the qualification, managed while the person is employed and kept after they leave until the retention period for that type of training ends (8-3)."},
 {name:"Check your own",x:"You are also responsible for checking that your own training record is correct and current."}]}]},
 {h:"Becoming an instructor",blocks:[{t:"rows",items:[
 {name:"Typical requirement",x:"Completing the in-house instructor course, or a set amount of experience in the field (e.g. two to three years or more, depending on the airline) plus specialist knowledge."},
@@ -128,7 +128,7 @@ sections:[
 ["Duty manager","Working with the handling company, quality management, dealing with head office, reporting"],
 ["Station manager","Regulators, sales, finance and HR, external negotiation, crisis management"]]}]},
 {h:"A foreign airline station manager’s job (Japan example; the scope varies by airline and station size)",blocks:[{t:"table",cols:["Area","Main work"],rows:[
-["Operations and regulators","Running the station, irregular operations, airport ID passes, checking handling costs, safety and security (annual revision of the security programme, internal audits), approvals (summer and winter schedules, fares, the general operating approvals), AOC attendance, all audits"],
+["Operations and regulators","Running the station, irregular operations, airport ID passes, checking handling costs, safety and security (annual revision of the security programme, internal audits), approvals (summer and winter schedules, fares, approvals for foreign carriers under the Civil Aeronautics Act, Arts. 129, 129-2 and 129-3), AOC attendance, all audits"],
 ["Sales","Travel agencies, GDS and sales policy, promotions, press, checking the Japanese on the website"],
 ["Cargo","Managing the cargo handler and the GSA, cargo procedures"],
 ["Finance","Imprest funds, airport and sales revenue, expenses, budgets, consumption tax refunds, departure tax filings, tax audits"],

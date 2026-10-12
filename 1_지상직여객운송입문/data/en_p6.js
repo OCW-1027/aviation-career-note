@@ -76,7 +76,7 @@ sections:[
 {name:"Developing trainers",x:"Build up people inside the handling company who can teach."},
 {name:"Training flights",x:"Create a training flight and bookings in the system so staff can practise the real screens."},
 {name:"When something changes",x:"When a procedure changes, brief and train the staff concerned and check their understanding before it takes effect."},
-{name:"Records",x:"The handling company keeps training and assessment records to your standard too (for example, one year)."}]}]},
+{name:"Records",x:"The handling company keeps training and assessment records to your standard too (check the retention period for each type of training; for example, dangerous goods training records must be kept for at least 36 months under international rules; 8-3)."}]}]},
 {h:"Safety audits and cost verification",blocks:[{t:"rows",items:[
 {name:"Safety audits",x:"Audit regularly, raise findings and confirm both the corrective plan and its implementation."},
 {name:"A safety owner on their side",x:"Ask the handling company to name someone responsible for safety."},

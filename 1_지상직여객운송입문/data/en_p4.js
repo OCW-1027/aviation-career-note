@@ -20,10 +20,10 @@ sections:[
 {name:"Liability cap",x:"For international carriage under the Montreal Convention, the liability limit for lost, damaged or delayed baggage is 1,519 SDR per passenger from 28 December 2024. Actual compensation is decided on the damage, the proof provided, the applicable law, the conditions of carriage and so on."},
 {name:"Declared value",x:"Passengers checking valuable items can declare a higher value and pay a charge to raise the limit, up to whatever maximum the airline allows."}]},
 {t:"note",x:"* Which rules apply depends on the convention’s ratification and the airline’s conditions of carriage. The figures are reviewed periodically, so check the current amounts. ★"}]},
-{h:"Where the airline is usually not liable",blocks:[{t:"check",items:[
-{name:"Items that should not be checked",x:"Cash, jewellery, laptops, cameras, important documents and anything else passengers are told to carry in the cabin (1-10)."},
-{name:"Normal wear",x:"Minor scratches, dents, soiling, and damage to protruding parts such as handles, wheels and straps."},
-{name:"Inadequate packing",x:"Fragile or poorly packed items accepted under a limited release (1-11)."},
+{h:"Where compensation may be limited or excluded (check the cause)",blocks:[{t:"check",items:[
+{name:"Items that should not be checked",x:"Cash, jewellery, laptops, cameras, important documents and anything else passengers are told to carry in the cabin (1-10). Even where the conditions of carriage limit this, the applicable convention or law may lead to a different result."},
+{name:"Normal wear",x:"Minor scratches, dents and soiling from normal use. Damage to protruding parts such as handles, wheels and straps is not excluded automatically if it happened in carriage; check the applicable law and the cause."},
+{name:"Inadequate packing",x:"Poorly packed items (1-11). A signed record does not exclude them automatically; check whether the damage was caused by the packing."},
 {name:"The passenger’s own fault",x:"Damage caused by packing something that was not permitted."}]},
 {t:"point",warn:true,x:"Leading with what the airline is not liable for makes passengers feel unheard. Take the report properly first, then explain the compensation decision under the rules."}]},
 {h:"Report and record types (baggage tracing)",blocks:[{t:"table",cols:["Term","Meaning","When it is used"],rows:[

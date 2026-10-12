@@ -13,7 +13,7 @@ sections:[
 {h:"A typical day",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before",sub:"Allocate next day’s flights, staff and equipment"},{name:"Start of shift",sub:"Briefing, confirm the day’s changes"},{name:"Each flight",sub:"Monitor progress, update the target off-block time (TOBT)"},{name:"Delays and changes",sub:"Reallocate staff and equipment, inform the airline"},{name:"End of shift",sub:"Daily report of performance, delay codes and events"}]},
 {t:"point",x:"The operations department is usually first to record why a flight was late. Agreeing in advance with the airline station how delay codes are assigned reduces disputes at the monthly meeting (6-2)."}]},
 {h:"Training each role needs (example)",blocks:[{t:"table",cols:["Role","Training","Point"],rows:[
-["Everyone","Security, safety (SMS and ramp safety), dangerous goods awareness","Initial and recurrent; keep records for three years or more (8-3)"],
+["Everyone","Security, safety (SMS and ramp safety), dangerous goods awareness","Initial and recurrent; check the retention period for each type (dangerous goods: at least 36 months under international rules; 8-3)"],
 ["Operations control","Each airline’s procedures, radio use, delay codes, irregular operations","List the procedures that differ by airline"],
 ["Load control","Load control authorisation by airline and aircraft type, system use","Keep a list of who may issue loadsheets; recurrent training and expiry dates"],
 ["Resource allocation","Allocation system, working-time rules, types of GSE (3-6)","Match people’s qualifications (driving, load control) with allocations"],

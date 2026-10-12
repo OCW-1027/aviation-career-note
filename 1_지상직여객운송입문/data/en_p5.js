@@ -102,24 +102,24 @@ sections:[
 {name:"Announce",x:"The cause, the expected departure and what is being done."},
 {name:"The rest",x:"Passengers needing assistance, baggage, duty-free, catering and connections."}]}]},
 {h:"How passengers are informed (example; differs by airline)",blocks:[{t:"table",cols:["When","How"],rows:[
-["Before they reach the airport","Delays over a set length (for example 1–2 hours), cancellations and reroutes are advised by email, SMS or app"],
+["Before they reach the airport","Under company rules, delays (for example over 1–2 hours), cancellations and reroutes are advised by email, SMS or app (for flights from Korea the legal rule below comes first)"],
 ["At the airport, short delays","The duty manager decides whether and how to announce it"],
 ["At the airport, longer delays","Give the reason, the new boarding time and the options. If no time is fixed, update at a set interval (for example every 15–30 minutes)"],
 ["Long delays or likely cancellation","Identify passengers with onward bookings and make arrangements"],
-["Regulators","In Korea, airlines must inform passengers as soon as they know of a delay; airlines that failed to, or did so late, have been fined ★"]]}]},
+["Regulators","For flights departing Korea, once the airline knows of a delay of 30 minutes or more or a cancellation, it must tell passengers without delay by text, email, phone or similar (Air Transport User Protection Standards, Art. 8; where contact details are known; within 30 minutes (domestic) or 1 hour (international) of departure an airport announcement may replace it). Airlines that failed to, or did so late, have been fined (5-8)"]]}]},
 {h:"Services by length of delay (example; the thresholds differ by airline)",blocks:[{t:"fig",id:"gnd_delay",cap:"Animated figure: an arrow moves along the delay scale, showing which services apply at each length. An example; airlines differ."},{t:"table",cols:["Delay","Typical service"],rows:[
 ["Beyond roughly 2–3 hours","Drinks and a snack"],
 ["Beyond roughly 4–5 hours","Drinks, a meal or snack, transport, means of communication"],
 ["Roughly 6 hours or more, or overnight","Drinks, meals, a day-use room, overnight accommodation, means of communication"]]},
 {t:"rows",items:[
-{name:"Often excluded",x:"Force majeure such as weather, air traffic control or airport conditions; staff travel tickets; onward sectors that are not confirmed."},
+{name:"Often excluded",x:"For company-discretion services: force majeure such as weather, air traffic control or airport conditions; staff travel tickets; onward sectors that are not confirmed. Under EU261, however, extraordinary circumstances remove only the fixed compensation, not the duty of care (meals, hotels); separate compensation and care according to the applicable law."},
 {name:"Arranging hotels",x:"One room per passenger as a rule. Contract with hotels at good rates in normal times. Always tell them the expected departure and the pick-up time for the airport."},
 {name:"Explaining the cost",x:"Make clear, based on the rules, whether costs such as hotels or meal vouchers are covered by the airline, and exactly what is covered."}]}]},
-{h:"An example of statutory compensation",blocks:[{t:"table",cols:["Delay caused by the airline","Guideline compensation (international)"],rows:[
+{h:"Compensation guidelines under Korea’s Consumer Dispute Resolution Standards",blocks:[{t:"table",cols:["Delay caused by the airline","Guideline compensation (international)"],rows:[
 ["2 to 4 hours","10% of the fare for the delayed sector"],
 ["4 to 12 hours","20% of the fare for the delayed sector"],
-["12 hours or more","30% of the fare for the delayed sector"]]},
-{t:"note",x:"* Guide figures from Korea’s consumer dispute resolution standard. The EU and other jurisdictions have their own compensation regimes, and Japan has no single statutory scheme. What applies depends on the country, the airline and the cause. ★"}]},
+["Over 12 hours","30% of the fare for the delayed sector"]]},
+{t:"note",x:"* Figures from Korea’s Consumer Dispute Resolution Standards (FTC Notice 2025-14, effective 18 December 2025), Annex II, air transport (international passengers), checked October 2026. These are criteria for settlement or recommendation in consumer disputes, not automatic payment in every case. Cases the airline proves were caused by unforeseeable events such as weather or airport conditions are excluded. Check how the fare is calculated (e.g. fuel surcharges) and the reference point for the delay under the applicable standard and conditions of carriage. The EU and other jurisdictions have their own compensation regimes, and Japan has no single statutory scheme. What applies depends on the country, the airline and the cause. ★"}]},
 {h:"Explaining the reason",blocks:[{t:"rows",items:[
 {name:"Air traffic control",x:"Explain that it is a necessary measure taken by the airport or the authorities for safe operations."},
 {name:"Maintenance",x:"Explain that it is an unavoidable measure taken for safe operations."},
@@ -194,7 +194,7 @@ sections:[
 {name:"How claims are received",x:"In writing or online as a rule. If taken verbally, write it up and have the passenger check and sign it."},
 {name:"What you need",x:"Name, address and contacts, the booked and actual itinerary, when and where what happened, the ticket, and evidence of the loss."},
 {name:"Processing",x:"Where the airline is liable, calculate the loss, obtain a settlement and receipt and pay. Where it is not, decline in writing with reasons the passenger can follow. Amounts above the station’s authority go to head office."}]},
-{t:"point",x:"Some countries require airlines to run a passenger redress desk at the airport for cancellations and delays, lost or damaged baggage, denied boarding and late refunds, with a set processing period and a link to the national consumer agency. Know what applies on your routes. ★"}]},
+{t:"point",x:"Some countries require airlines to run a passenger redress desk at the airport for cancellations and delays, lost or damaged baggage, denied boarding and late refunds, with a set processing period and a link to the national consumer agency (Korea: Aviation Business Act Art. 61, result within 14 days of receipt, or within 60 days for special reasons such as translation; otherwise, or at the passenger’s request, the claim goes to the Korea Consumer Agency). Know what applies on your routes. ★"}]},
 {h:"Practical wisdom: cancellations known in advance and on the day",blocks:[{t:"table",cols:["","Cancellation known in advance","Cancellation on the day (before departure, ramp return, diversion)"],rows:[
 ["Airport","Contact passengers (SMS, email, messaging apps); notices to the handler and CIQ","Often caused by maintenance, so also check things such as customs clearance for parts. Split staff to handle alternative seats, hotels, duty-free refunds and so on at the same time"],
 ["Sales","Notices to key travel agencies and on GDS message boards, together with compensation information and documents","If it cannot be done on the day, notify later (refunds, changes, other airlines)"],
@@ -215,8 +215,8 @@ set("5-7",{title:"Tarmac Delays",hl:"tarmac delays",subtitle:"Time spent on the 
 lead:["When passengers are kept on board on the ground for a long time, before departure or after arrival, it is called a tarmac delay. Passengers cannot leave, and anxiety and frustration build quickly. Several countries therefore set limits on the waiting time and duties to keep passengers informed.","This article covers examples of those rules, the criteria for letting passengers off, what the ground provides, and the reporting and records."],
 sections:[
 {h:"Examples of national rules",blocks:[{t:"table",cols:["Country","Main rule (example)"],rows:[
-["Korea","No tarmac delay beyond 3 hours domestic or 4 hours international after the door closes. Update passengers every 30 minutes on the reason and the situation. Report exceedances to the regional aviation office and keep the records for two years"],
-["United States","As a rule, an opportunity to deplane by 3 hours domestic or 4 hours international (with safety, security and ATC exceptions). Food and water by the 2-hour point, working lavatories, and medical attention if needed"],
+["Korea","No tarmac delay beyond 3 hours domestic or 4 hours international (with safety, security and airport-operation exceptions). Update passengers every 30 minutes on the reason and the situation. Beyond 2 hours, provide food and drink and report without delay to the ministry (regional aviation office) (Aviation Business Act Art. 61-2, checked October 2026)"],
+["United States","Departing flights must begin moving to a place where passengers can deplane before 3 hours domestic or 4 hours international; arriving flights must offer the chance to deplane within those times (with safety, security and ATC exceptions). Food and water by the 2-hour point, working lavatories, and medical attention if needed"],
 ["EU","No specific tarmac limit, but compensation and assistance rules apply to delays overall"],
 ["Japan","No single statutory limit; airlines apply their own standards"]]},
 {t:"note",x:"* Exceptions apply, for example where the captain judges that staying out is necessary for safety or security, or where the authorities judge that returning to the gate would seriously disrupt airport operations. Check the current rules. ★"}]},
@@ -233,8 +233,8 @@ sections:[
 {t:"point",warn:true,x:"Handling a long tarmac delay needs people and equipment. The rules also require you to have the resources to carry out your contingency plan. Decide in advance how you will staff a night or a day of bad weather."}]},
 {h:"Reporting and records",blocks:[{t:"rows",items:[
 {name:"What to record",x:"The reference start and end times of the wait, its length, the cause, and what was done for passengers (announcements, food and drink, chances to deplane), recorded as the applicable rules require."},
-{name:"Reporting",x:"Where a limit is exceeded, report to the authority (in Korea the regional aviation office, in the United States the Department of Transportation)."},
-{name:"Retention",x:"Keep the records for the required period, for example two years."}]}]}],
+{name:"Reporting",x:"Report to the authority as the rules require (in Korea after 2 hours, to the ministry via the regional aviation office; in the United States, the Department of Transportation)."},
+{name:"Retention",x:"Keep the records for the period the applicable rules and company rules require. ★"}]}]}],
 voice:"During a long tarmac delay, the ground supports water, snacks, toilets and information. Agree first with the captain how often you will share updates.",
 terms:[["Tarmac Delay","ターマックディレイ","기내 장시간 대기"],["Movement Area","移動地域","이동지역"],["Ground Power Unit (GPU)","地上電源","지상 전원"],["Pre-conditioned Air (PCA)","空調車","냉난방 차량"],["Contingency Plan","非常計画","비상 계획"],["Regional Office of Aviation","地方航空庁","지방항공청"]],
 quiz:[{q:"In Korea, what is the limit for an international tarmac delay (exceptions aside)?",opts:["2 hours","3 hours","4 hours","6 hours"],a:2,exp:"Three hours domestic, four hours international."},

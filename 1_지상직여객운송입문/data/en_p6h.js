@@ -1,7 +1,7 @@
 /* 旅客運送の実務 6-11・6-12 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-11",{title:"Customer Harassment: Japan’s October 2026 Obligation and What Employers Must Do",hl:"Customer Harassment",subtitle:"Complaints versus harassment, laws and ordinances, Korea’s rules, airline policies, and what stations and handlers should prepare",
-lead:["Airport counters and gates attract frustration over delays, cancellations and baggage problems. Most is legitimate feedback, but some behaviour — abuse, threats, demands to kneel and apologise, keeping staff for hours — harms workers physically and mentally. In Japan this is called customer harassment (kasuhara).","From 1 October 2026, every employer in Japan is legally required to take measures against customer harassment. This lesson covers the definition, the rules in Japan and Korea, airline policies, and what stations and ground handlers should prepare."],
+lead:["Airport counters and gates attract frustration over delays, cancellations and baggage problems. Most is legitimate feedback, but some behaviour — abuse, threats, demands to kneel and apologise, keeping staff for hours — harms workers physically and mentally. In Japan this is called customer harassment (kasuhara).","Since 1 October 2026, every employer in Japan has been legally required to take measures against customer harassment. This lesson covers the definition, the rules in Japan and Korea, airline policies, and what stations and ground handlers should prepare."],
 sections:[
 {h:"What customer harassment is (official guideline)",blocks:[{t:"rows",items:[
 {name:"① Conduct by customers and others",x:"By customers, business partners, facility users and similar."},
@@ -18,7 +18,7 @@ sections:[
 ["April 2025","Tokyo’s customer harassment prevention ordinance takes effect (Hokkaido, Gunma and others too)"],
 ["11 June 2025","The amended Act on the Comprehensive Promotion of Labor Policies is promulgated"],
 ["26 February 2026","The Ministry of Health, Labour and Welfare issues its guideline on employer measures"],
-["8 September 2026","The ministry publishes a revised customer harassment manual for companies"],
+["September 2026","The ministry publishes a revised customer harassment manual for companies (2026 edition) ★"],
 ["1 October 2026","Measures against customer harassment become mandatory for every employer with at least one worker"]]},
 {t:"note",x:"* Non-compliance can bring advice, guidance and recommendations from the authorities, and the company’s name may be published if it does not comply (there is no criminal penalty). ★"}]},
 {h:"What employers must do (four pillars)",blocks:[{t:"fig",id:"gnd_kh4",cap:"Animated figure: the four pillars an employer puts in place against customer harassment."},{t:"table",cols:["Pillar","Examples"],rows:[

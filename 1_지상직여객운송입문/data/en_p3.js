@@ -1,7 +1,7 @@
 /* 地上職・旅客運送 入門 — English version (Part 3: シップサイド・ランプ) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-1",{title:"Aircraft Doors: The Basics",hl:"aircraft doors",subtitle:"Never open without the signal. An inadvertent slide deployment means damage and delay",
-lead:["Passenger aircraft doors carry an escape slide that inflates automatically when the door is opened, so that people can evacuate quickly. In flight and while taxiing the slide is armed, and opening the door from outside in that state sends the slide out with great force.",
+lead:["Passenger aircraft doors carry an escape slide that inflates automatically when the door is opened, so that people can evacuate quickly. In flight and while taxiing the slide is armed. What happens if the door is opened in that state depends on the aircraft type, the door and the direction of opening: on some types opening from outside disarms it automatically, but in other cases the slide can deploy with great force. So door operation always follows the procedure (SOP) for that type, with a cross-check.",
 "This article covers the types and numbering of doors, who opens and closes them, the procedure for opening and closing, and how to keep a slide from deploying by mistake."],
 sections:[
 {h:"Types of door and how they are numbered",blocks:[{t:"fig",id:"gnd_doors",cap:"Animated figure: door numbers seen from above (1L, 1R…). The jet bridge is at the highlighted 1L and the catering truck on the right. Layouts vary by aircraft."},{t:"rows",items:[
@@ -30,7 +30,7 @@ voice:"Before opening a door, always confirm the slide-disarmed signal and the p
 terms:[["Escape Slide","脱出用スライド","탈출 슬라이드"],["Armed","作動状態","작동 상태"],["Disarmed","解除状態","해제 상태"],["Cabin Door","客室のドア","객실 도어"],["Cargo Door","貨物室のドア","화물칸 도어"],["Passenger Boarding Bridge (PBB)","搭乗橋","탑승교"]],
 quiz:[{q:"What is needed before opening a door from outside?",opts:["A knock","The signal from the cabin crew","Only the captain’s permission","Nothing"],a:1,exp:"The signal confirms the slide has been disarmed."},
 {q:"Who closes the door before departure in this example?",opts:["Ground staff","Cabin crew","A passenger","Only an engineer"],a:1,exp:"Cabin crew close it from inside; ground staff confirm from outside."},
-{q:"What happens if a door is opened while the slide is armed?",opts:["Nothing","The slide deploys","The door will not move","Only an alarm sounds"],a:1,exp:"It leads to delays, cancellations and possible injury."}],
+{q:"What happens if a door is opened from inside while the slide is armed?",opts:["Nothing","The slide deploys","The door will not move","Only an alarm sounds"],a:1,exp:"It leads to delays, cancellations and possible injury. What happens when opening from outside differs by type and door, so follow the SOP and cross-check."}],
 next:"3-2 Arrival and departure duties"});
 
 set("3-2",{title:"Arrival and Departure Duties",hl:"arrival and departure",subtitle:"Arrival is preparing to receive; departure is confirming before you send them off. Both run on checklists",
@@ -138,8 +138,8 @@ sections:[
 {h:"Standard passenger weights (one regulator’s example)",blocks:[{t:"table",cols:["","Winter","Summer"],rows:[
 ["Adult","77 kg","75 kg"],
 ["Child","37 kg","36 kg"],
-["Infant","Not counted","Not counted"]]},
-{t:"note",x:"* These are the seasonal figures in Korea’s weight and balance standard. Elsewhere, airlines may use survey-based figures approved by their regulator, split adults by sex, or include hand baggage (some standards use figures in the 80s of kilograms per adult). Infants are usually not counted, and checked baggage uses actual weights. Crew also have standard weights including their baggage, set by each company. ★"}]},
+["Infant (no seat)","See note","See note"]]},
+{t:"note",x:"* These are the seasonal figures in Korea’s weight and balance standard. Elsewhere, airlines may use survey-based figures approved by their regulator, split adults by sex, or include hand baggage (some standards use figures in the 80s of kilograms per adult). Infants without a seat are handled under the approved standard, for example by treating them as included in the adult standard weight (their weight is not simply ignored); an infant with its own seat is usually counted as a child. Checked baggage uses actual weights. Crew also have standard weights including their baggage, set by each company. ★"}]},
 {h:"The loading instruction and the loadsheet",blocks:[{t:"rows",items:[
 {name:"Loading instruction report (LIR)",x:"The load controller’s instruction to the handling company’s load supervisor on what goes where. The supervisor signs it back once loading is done. Retention is set by company rules — typically a few months to about a year, longer where dangerous goods are involved. ★"},
 {name:"Loading order",x:"Cargo, then mail, then baggage, so that baggage comes off first at the destination."},

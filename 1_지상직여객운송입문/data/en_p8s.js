@@ -86,7 +86,7 @@ sections:[
 ["Assessment result","Including reassessment of anyone who failed"],
 ["Next due date","Track in a list so nobody works past their expiry"]]}]},
 {h:"How long to keep records",blocks:[{t:"rows",items:[
-{name:"At least three years (example)",x:"Keep training records so that at least three years back can be checked; audits ask for previous years. Confirm the period against the authority’s requirements and company rules. ★"},
+{name:"Check by type of training (example: three years)",x:"The period depends on the type of training: dangerous goods training records at least 36 months under international rules (ICAO, IATA); security training records for the period in the approved security programme and company rules. Follow the company rule if it is longer; audits ask for previous years. Confirm the period against the authority’s requirements and company rules. ★"},
 {name:"Leavers and transfers",x:"Do not delete their records during the retention period."},
 {name:"How to file",x:"Folders by year, an individual record for each person, and a list of expiry dates: with these three, anything can be produced on the spot."}]}]},
 {h:"Your handling company’s training records",blocks:[{t:"check",items:[
@@ -112,7 +112,7 @@ sections:[
 ["Instructor qualification cannot be shown","Keep certificates and renewal records"]]}]}],
 voice:"Training records compiled in a rush before an audit end up with gaps. Record each session as soon as it ends and manage them in a table by employee.",
 terms:[["Security Training","保安教育","보안 교육"],["Security Training Programme","教育訓練の実施計画","교육훈련 실시계획"],["Training Records","教育の記録","교육 기록"],["Record of Instructions and Dissemination","指示・伝達の記録","지시·전파 기록"],["Contractor / Service Provider","委託先","위탁처"],["Instructor","講師","강사"]],
-quiz:[{q:"Which is right about keeping training records?",opts:["This year only","Keep at least three years available","Delete leavers at once","A verbal explanation is enough"],a:1,exp:"Audits ask for previous years too."},
+quiz:[{q:"Which is right about keeping training records?",opts:["This year only","Keep them for the period set for each type of training","Delete leavers at once","A verbal explanation is enough"],a:1,exp:"The period depends on the type of training and the authority’s and company rules; audits ask for previous years too."},
 {q:"Which is right about the handling company’s security training?",opts:["Not the airline’s concern","The airline checks the records and keeps evidence of checking","Leaving it to the handler is enough","Audits don’t look at it"],a:1,exp:"Evidence of checking contractors is required."},
 {q:"What should be recorded when a security instruction arrives?",opts:["Nothing","Who it went to, how, and proof of receipt","Just the original","Telling people verbally is enough"],a:1,exp:"Record who, when, how and acknowledgement."}],
 next:"8-4 Preparing for and handling an audit: the front-line view"});
