@@ -1,7 +1,7 @@
 {
- "version": "62c80481ca65",
- "count": 649,
- "totalBytes": 11211669,
+ "version": "44e13569741e",
+ "count": 650,
+ "totalBytes": 11233026,
  "source": "voices/voices.json (단일 HTML에 내장된 승인 음성)",
  "voices": {
   "00200d58": {
@@ -1255,6 +1255,10 @@
   "73f26e71": {
    "bytes": 5997,
    "sha256": "565b2e96ce21eacbb93429d6ec85fc89dcd5454a6fe84e09ceed9cd8d65138a8"
+  },
+  "749e2919": {
+   "bytes": 21357,
+   "sha256": "48d3c91b7d7c0d68dae56d2b7a6fee5e9581f18552f80a5094d7f78d4afc07dd"
   },
   "74bff1e3": {
    "bytes": 10797,

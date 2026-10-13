@@ -96,6 +96,8 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .seat.exit{box-shadow:inset 0 -4px 0 var(--termwarn)}
 .seat.inop{background:repeating-linear-gradient(45deg,#4a1e1c 0 4px,#33434a 4px 8px);cursor:not-allowed}
 .seat.inf{outline:2px solid #a78bfa}
+.seat.um{box-shadow:inset 0 0 0 2px #7dd3fc}
+.legend em.umk{background:#2b5f6b;box-shadow:inset 0 0 0 2px #7dd3fc}
 .seat.sel{background:var(--vela2);color:#2b1d00}
 .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;color:var(--termdim);margin-top:8px}
 .legend span{display:flex;align-items:center;gap:4px}
@@ -338,3 +340,7 @@ html.sh-saga .bar{top:calc(env(safe-area-inset-top,0px) + 4px)}
 .cx{border-collapse:collapse;font-size:12.5px;margin-top:4px;width:100%}
 .cx td{padding:3px 6px;border-bottom:1px dashed #3b5964;vertical-align:top}
 .cx td:first-child{white-space:nowrap;opacity:.85;width:1%}
+
+/* 22차(GPT 실주소 SITE-F01): 사이트 안에서 근무 중이고 화면이 작으면 사이트 공통의 떠 있는 버튼(위로·뒤로·홈)을 숨김 — 가로 화면에서 직원 대사를 가렸음. 머리말 메뉴와 게임의 × 종료는 그대로 */
+@media (max-width:960px),(max-height:520px){body.saga-playing .nv-fab{display:none!important}}
+a.lessonref{color:inherit;text-decoration:underline;text-underline-offset:2px}

@@ -734,6 +734,10 @@ en:{b:'- ',head:'You are my {T} conversation partner. Play a role using the setu
  trH:'Our conversation so far (let’s carry on from here)',meL:'Me',aiL:'You',
  contMe:'This continues the conversation above. Reply to my last message in character and keep the conversation going.',contAi:'This continues the conversation above. Say your last line again, then wait for my reply.',
  recap:'For the recap, send only {"recap":{"phrases":["expression — meaning (5)"],"good":"what I (the learner) did well","fix":"what to work on"}} (explanations in {H}).'}};
+/* 2026.10 사용자 제보(회화 역할 오류): 목표·돌발의 주인 표시, 항목별 주인(reply·tr·fix·model·hints), 질문 강제 완화, 힌트 구분자 ／ */
+(function(){var X={"ja": {"r3": "質問は、あなたの役として自然なときだけにしてください。毎回むりに質問を作らず、私の返事を待ってください。", "goalMe": "私（{M}）の目標：{v}（これは私が達成する目標です。あなたは代わりに言ったり達成したりせず、「{A}」として反応してください）", "goalAi": "あなた（{A}）の目標：{v}", "goalBoth": "この会話の目標（2人で）：{v}", "twAi": "途中であなた（{A}）が自然に起こすこと：{v}", "twMe": "途中で私（{M}）が言い出すかもしれないこと：{v}（あなたが代わりに言わず、私が言ったら自然に反応してください）", "twEv": "途中で起きること：{v}（あなたの役の立場から、会話の途中で自然に起こしてください）", "contract": "返事の項目ごとに持ち主を分けてください。reply＝あなた（{A}）のせりふだけ／tr＝そのreplyの訳／fix・model＝私（{M}）の直前の発言の直しとお手本／hints＝私（{M}）が次に言える文（あなたの次のせりふではありません）。私の練習表現や目標の文を、あなたがreplyで言わないでください。", "hn1": "私（{M}）が次に言える短い文（{T}）", "hn2": "私（{M}）が次に言える短い文（{T}） ／ その意味（{H}）", "hm": "それぞれに全角の「 ／ 」で区切って{H}の意味を付けてください（— や - では区切らない）。", "hmJ": "hintsの各文のあとに、全角の「 ／ 」で区切って{H}の意味を付けてください（— や - では区切らない）。", "meX": "学ぶ人", "turn": "（あなたは「{A}」です。replyには「{A}」の次のせりふだけ、hintsには私（{M}）が言える文を入れ、JSONだけで返してください）"}, "ko": {"r3": "질문은 당신 역할에서 자연스러울 때만 해 주세요. 매번 억지로 질문을 만들지 말고 내 대답을 기다려 주세요.", "goalMe": "나({M})의 목표: {v} (내가 이룰 목표입니다. 당신이 대신 말하거나 이루지 말고 「{A}」 역할로 반응해 주세요)", "goalAi": "당신({A})의 목표: {v}", "goalBoth": "이 대화의 목표(둘이 함께): {v}", "twAi": "중간에 당신({A})이 자연스럽게 하는 일: {v}", "twMe": "중간에 내({M})가 꺼낼 수도 있는 일: {v} (당신이 대신 말하지 말고, 내가 말하면 자연스럽게 반응해 주세요)", "twEv": "중간에 생기는 일: {v} (당신 역할의 입장에서 대화 중간에 자연스럽게 넣어 주세요)", "contract": "대답의 항목마다 주인을 구분해 주세요. reply=당신({A})의 대사만 / tr=그 reply의 번역 / fix·model=내({M}) 직전 말의 교정과 모범 문장 / hints=내({M})가 다음에 말할 수 있는 문장(당신의 다음 대사가 아님). 나의 연습 표현이나 목표 문장을 당신이 reply에서 말하지 마세요.", "hn1": "내({M})가 다음에 말할 수 있는 짧은 문장({T})", "hn2": "내({M})가 다음에 말할 수 있는 짧은 문장({T}) ／ 그 뜻({H})", "hm": "각 문장 뒤에 전각 「 ／ 」로 나누어 {H} 뜻을 붙여 주세요(— 나 - 로 나누지 않기).", "hmJ": "hints의 각 문장 뒤에 전각 「 ／ 」로 나누어 {H} 뜻을 붙여 주세요(— 나 - 로 나누지 않기).", "meX": "학습자", "turn": "(당신은 「{A}」입니다. reply에는 「{A}」의 다음 대사만, hints에는 내({M})가 말할 수 있는 문장을 넣어 JSON으로만 답해 주세요)", "lock": "당신은 끝까지 「{A}」 역할로 말해 주세요. 나({M})의 대사나 질문을 당신이 대신 하지 마세요."}, "en": {"r3": "Ask a question only when it is natural for your role. Do not invent one every turn; wait for my reply.", "goalMe": "My goal (as {M}): {v} (this is mine to achieve — do not say it or achieve it for me; react as “{A}”)", "goalAi": "Your goal (as {A}): {v}", "goalBoth": "Our shared goal: {v}", "twAi": "Partway through, you ({A}) naturally bring in: {v}", "twMe": "Partway through, I ({M}) may bring up: {v} (do not say it for me; react naturally if I do)", "twEv": "Twist: {v} (bring it in naturally from your role’s side partway through)", "contract": "Keep each field’s owner separate. reply = only your ({A}) line / tr = translation of that reply / fix·model = correction and model sentence for my ({M}) last message / hints = lines I ({M}) could say next (not your next line). Never say my practice expressions or goal lines yourself in reply.", "hn1": "a short line I ({M}) could say next ({T})", "hn2": "a short line I ({M}) could say next ({T}) ／ its meaning ({H})", "hm": "Add the meaning in {H} after each one, separated by a full-width “ ／ ” (not — or -).", "hmJ": "In hints, add the meaning in {H} after each line, separated by a full-width “ ／ ” (not — or -).", "meX": "the learner", "turn": "(You are “{A}”. Put only your next line as “{A}” in reply, put lines I ({M}) could say in hints, and answer in JSON only.)"}};for(var l in X){for(var k in X[l])PR[l][k]=X[l][k];PR[l].r=PR[l].r.slice(0,2).concat([X[l].r3])}var E={"ja": {"eRole": "AIの返事が役から外れていたため、表示しませんでした。もう一度送ってください。"}, "ko": {"eRole": "AI의 대답이 역할에서 벗어나서 표시하지 않았어요. 다시 보내 주세요."}, "en": {"eRole": "The AI’s reply slipped out of its role, so it was not shown. Please send again."}};for(var m in E)for(var n in E[m])T[m][n]=E[m][n]})();
+/* 장면별 목표(g)·돌발(t)의 주인：A/B＝그 역할, C＝둘의 공동 목표, E＝사건·사실(어느 쪽 대사도 아님). 회화 데이터는 바꾸지 않고 여기서만 정함 */
+var GOAL_ROLE={'air-checkin-1':'AE','air-gate-delay-1':'BA','air-baggage-1':'AB','air-wheelchair-1':'AB','air-transfer-1':'AB','air-complaint-1':'BE','trv-immigration-1':'BB','trv-hotel-1':'BE','trv-taxi-1':'BE','trv-way-1':'AE','life-konbini-1':'BA','life-restaurant-1':'BA','life-clinic-1':'BB','life-phone-booking-1':'BA','life-ward-office-1':'BB','life-neighbor-1':'AB','off-intro-1':'AB','off-meeting-phone-1':'AA','off-help-1':'AA','off-smalltalk-1':'BA','air-irregular-cancel-2':'AB','air-irrops-longdelay-1':'AE','air-irrops-diversion-1':'AB','air-irrops-overbooking-1':'AB','air-irrops-aircraft-change-1':'AB','air-irrops-missed-connection-1':'AB','air-irrops-weather-hold-1':'AB','air-irrops-crew-timeout-1':'AB','air-irrops-baggage-offload-1':'AB','air-irrops-medical-diversion-1':'AB','air-irrops-airport-closure-1':'AB','air-irrops-deicing-1':'AB','air-irrops-crew-replacement-1':'AB','air-irrops-terminal-change-1':'AB','air-irrops-baggage-misconnect-1':'AB','air-irrops-atc-slot-1':'AB','air-irrops-security-rescreen-1':'AB','air-irrops-maintenance-check-1':'AB','air-irrops-curfew-1':'AB','air-irrops-fuel-stop-1':'AB','air-irrops-baggage-offload-2':'AB','air-irrops-crew-connection-1':'AB','air-irrops-passport-damage-1':'AB','air-irrops-gate-system-1':'AB','air-irrops-misconnect-hotel-1':'AB','travel-rail-lasttrain-1':'AB','travel-hotel-latecheckin-1':'AB','travel-lost-phone-1':'AB','travel-restaurant-allergy-1':'AB','travel-rentalcar-insurance-1':'AB','travel-pharmacy-medicine-1':'AB','life-neighbor-noise-1':'AB','life-clinic-appointment-1':'AB','life-parcel-redelivery-1':'AB','life-bank-card-freeze-1':'AB','life-school-absence-1':'AB','life-utility-bill-1':'AB','life-apartment-repair-1':'AB','life-train-delay-certificate-1':'AB','life-mobile-plan-change-1':'AB','office-meeting-reschedule-1':'AE','office-expense-report-1':'AB','office-client-complaint-1':'AB','office-handover-1':'AB','office-recruitment-interview-1':'AB'};
 var PERS=['friend','neighbor','colleague','exchange','staff','interviewer'];
 var TP=[],TPBY={};
 (Array.isArray(window.TALK_TOPICS)?window.TALK_TOPICS:[]).forEach(function(p){
@@ -749,28 +753,31 @@ function sceneKeys(s,me,T2){var c=[];s.lines.forEach(function(L,i){if(L.r!==me)r
 /* 設定から、いまの言語でプロンプトの材料を作る */
 function aiParts(){var c=C,s=c.src,o={};
  if(c.kind==='scene'){var me=c.role,other=me==='A'?'B':'A';o.title=tx(s.title,lang);o.sit=tx(s.scene,lang)||o.title;
-  o.ai=tx(s.roles&&s.roles[other],lang)||other;o.me=tx(s.roles&&s.roles[me],lang)||me;o.goal=tx(s.ai.goal,lang);o.twist=tx(s.ai.twist,lang);o.keys=c.keys?sceneKeys(s,me,c.T):[]}
+  o.ai=tx(s.roles&&s.roles[other],lang)||other;o.me=tx(s.roles&&s.roles[me],lang)||me;o.goal=tx(s.ai.goal,lang);o.twist=tx(s.ai.twist,lang);o.keys=c.keys?sceneKeys(s,me,c.T):[];var gr=GOAL_ROLE[s.id]||'';o.goalWho=!gr?'':gr[0]==='C'?'both':gr[0]===me?'me':'ai';o.twWho=!gr?'':gr[1]==='E'?'ev':gr[1]===me?'me':'ai'}
  else if(c.kind==='topic'){o.title=tx(s.title,lang);o.sit=tx(s.sit,lang);o.ai=tx(s.ai,lang);o.me=tx(s.me,lang);o.goal=tx(s.goal,lang);o.twist=tx(s.twist,lang);o.keys=[]}
  /* 講座連動のロールプレイ（lesson_rp_g*.js）：AI の役と性格、学ぶ人の役は決まっている（A/B の入れ替えなし） */
  else if(c.kind==='lesson'){o.title=tx(s.title,lang);o.sit=tx(s.scene,lang);o.ai=tx(s.ai.role,lang);o.persona=tx(s.ai.persona,lang);o.me=tx(s.me.role,lang);o.goal=tx(s.goal,lang);o.twist=tx(s.twist,lang);o.keys=[];
   var B=window.LESSON_RP_BRIDGE;o.policy=B&&B.policy?(B.policy[lang]||B.policy.ja):''}
  else{o.title=t.own;o.sit=OWN.sit.trim();o.ai=OWN.ai.trim();o.me=OWN.me.trim();o.goal=OWN.goal.trim();o.twist='';o.keys=[]}
+ if(c.kind!=='scene'){o.goalWho='me';o.twWho='ev'}
  return o}
 function buildPrompt(mode){var c=C,p=PR[lang]||PR.ja,o=aiParts(),Tn=LNAME[lang][c.T],Hn=LNAME[lang][c.H],L=[];
- function f(x,v){return fm(x,{T:Tn,H:Hn,v:v,LV:p.lv[c.lv-1]})}
+ var An=o.ai||'AI',Mn=o.me||p.meX;
+ function f(x,v){return fm(x,{T:Tn,H:Hn,v:v,LV:p.lv[c.lv-1],A:An,M:Mn})}
  var aiv=o.ai;if(c.kind==='scene'&&p.pers[c.pers])aiv+=(lang==='en'?' — ':'（')+p.pers[c.pers]+(lang==='en'?'':'）');
  if(c.kind==='lesson'&&o.persona)aiv+=(lang==='en'?' — ':'（')+o.persona+(lang==='en'?'':'）');
- L.push(f(p.head));L.push(p.b+f(p.sit,o.sit));L.push(p.b+f(p.ai,aiv));if(o.me)L.push(p.b+f(p.me,o.me));if(o.goal)L.push(p.b+f(p.goal,o.goal));
- if(o.twist&&c.twist)L.push(p.b+f(p.twist,o.twist));
+ L.push(f(p.head));L.push(p.b+f(p.sit,o.sit));L.push(p.b+f(p.ai,aiv));if(o.me)L.push(p.b+f(p.me,o.me));if(o.goal)L.push(p.b+f(o.goalWho==='me'?p.goalMe:o.goalWho==='ai'?p.goalAi:o.goalWho==='both'?p.goalBoth:p.goal,o.goal));
+ if(o.twist&&c.twist)L.push(p.b+f(o.twWho==='ai'?p.twAi:o.twWho==='me'?p.twMe:o.twWho==='ev'?p.twEv:p.twist,o.twist));
  if(o.keys.length)L.push(p.b+f(p.keys,o.keys.map(function(k){return lang==='ja'?'「'+k+'」':'“'+k+'”'}).join(lang==='ja'?'':', ')));
  var R=p.r.slice(),rd=c.T==='ja'&&c.read;
  var dif=c.H!==c.T;if(mode==='ext'){if(rd)R.push(p.readX);if(c.fix)R.push(p.fixX);R.push(dif?p.hintX+' '+p.hm:p.hintX)}
- if(c.kind==='lesson'&&o.ai&&o.me)R.push(fm(p.lock,{A:o.ai,M:o.me}));
+ if(o.ai)R.push(fm(p.lock,{A:An,M:Mn}));
+ if(mode!=='ext')R.push(p.contract);
  if(o.policy)R.push(o.policy);
  R.push(p.end);
  L.push(p.rules);R.forEach(function(r,i){L.push((i+1)+'. '+f(r))});
  if(mode==='ext'){var base=L.join('\n'),tr=aiTranscript(p,3000-base.length-40);L.push(tr||f(p.startX))}
- else{L.push(fm(f(p.json),{RD:rd?p.rd:p.none,FX:c.fix?f(p.fx):p.none,MD:c.fix?f(p.md):p.none,TR:dif?f(p.trx):p.none,HN:dif?f(p.hn2):f(p.hn1)}));if(c.fix&&dif)L.push(f(p.fxLang));L.push(f(p.recap));
+ else{L.push(fm(f(p.json),{RD:rd?p.rd:p.none,FX:c.fix?f(p.fx):p.none,MD:c.fix?f(p.md):p.none,TR:dif?f(p.trx):p.none,HN:dif?f(p.hn2):f(p.hn1)}));if(c.fix&&dif)L.push(f(p.fxLang));if(dif)L.push(f(p.hmJ));L.push(f(p.recap));
   /* gpt-oss：考える量を少なく（OpenAI のモデルの説明の書き方）。考える部分も返事の長さの枠を使うので、JSON が切れにくくなる */
   if(/gpt-oss/i.test(String(aiCfg().model||'')))L.unshift('Reasoning: low')}
  return L.join('\n')}
@@ -782,7 +789,11 @@ function aiTranscript(p,budget){var c=C;if(!c||!c.log)return '';var X=c.log.filt
 /* AIの返事を読む：<think>を消し、JSON なら中身。JSON が途中で切れていても reply などを取り出す（2026.10）。
    かっこ { } やキーの名前は決して画面に出さない。何も取り出せないときは {}（→「もう一度送る」） */
 /* ヒント「言える文 ／ 意味」を分ける（2026.10：ヒントの言語の意味を付ける） */
-function hintSplit(h){h=String(h||'');var m=h.split(/\s*／\s*/);if(m.length<2)m=h.split(/\s+\/\s+/);return [m[0].trim(),m.slice(1).join(' ').trim()]}
+function hintSplit(h){h=String(h||'');var m=h.split(/\s*／\s*/);if(m.length<2)m=h.split(/\s+\/\s+/);
+ /* 2026.10：모델이 「 — 」로 나눠 보낸 경우. 뒤쪽이 도움 언어 글자이고 앞쪽은 연습 언어일 때만 나눔(문장 안의 대시는 그대로) */
+ if(m.length<2&&C&&C.H!==C.T){var d=/\s+[—–-]\s+(?=[^—–-]*$)/.exec(h);if(d){var a=h.slice(0,d.index),b=h.slice(d.index+d[0].length);if(scriptOf(b,C.H)&&!scriptOf(b,C.T)&&scriptOf(a,C.T))m=[a,b]}}
+ return [m[0].trim(),m.slice(1).join(' ').trim()]}
+function scriptOf(x,l){x=String(x||'');return l==='ko'?/[\uac00-\ud7a3]/.test(x):l==='ja'?/[\u3040-\u30ff\u4e00-\u9fff]/.test(x):/[A-Za-z]/.test(x)&&!/[\uac00-\ud7a3\u3040-\u30ff]/.test(x)}
 function aiStr(x){return typeof x==='string'?x.trim().slice(0,800):(x==null?'':typeof x==='object'?Object.keys(x).map(function(k){return aiStr(x[k])}).filter(Boolean).join(' — ').slice(0,800):String(x).slice(0,800))}
 function jUnesc(v,open){if(open)v=v.replace(/\\u[0-9a-fA-F]{0,3}$/,'').replace(/(^|[^\\])\\$/,'$1');
  return v.replace(/\\(u[0-9a-fA-F]{4}|[\s\S])/g,function(m,c){if(c.length===5)return String.fromCharCode(parseInt(c.slice(1),16));return c==='n'?'\n':c==='t'?' ':(c==='r'||c==='b'||c==='f')?'':c})}
@@ -875,7 +886,7 @@ function paintAiSet(){var c=C,s=c.src,o=aiParts(),h='';
  [['oSit','sit'],['oAi','ai'],['oMe','me'],['oGoal','goal']].forEach(function(p){var e=$(p[0]);if(e)e.oninput=function(){OWN[p[1]]=this.value;if(p[1]==='ai')aiHead()}});
  function ready(){if(C.kind==='own'&&(!OWN.sit.trim()||!OWN.ai.trim())){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;try{$(OWN.sit.trim()?'oAi':'oSit').focus()}catch(x){}return false}if(C.kind==='own'){var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id}return true}
  if($('oSave'))$('oSave').onclick=function(){var m=$('oMsg');if(!OWN.sit.trim()||!OWN.ai.trim()){var e=$('aErr');e.textContent=t.needSit;e.hidden=false;return}var it=ownStore(OWN,C.src&&C.src.sid);if(it&&C.src)C.src.sid=it.id;if(m)m.textContent=t.osSaved};
- if($('aStart'))$('aStart').onclick=function(){if(!ready())return;aiAbort();C.retry=null;C.step='chat';C.hist=[{role:'user',content:t.startMsg}];C.log=[];C.ended=false;
+ if($('aStart'))$('aStart').onclick=function(){if(!ready())return;aiAbort();C.retry=null;C.step='chat';C.hist=[{role:'user',content:t.startMsg}];C.log=[];C.ended=false;C.autoTried=false;
   /* 講座のロールプレイは、決まった第一声（opener）から始める。AI の返事として記録し、学ぶ人の答えを待つ */
   if(C.kind==='lesson'&&C.src.opener&&C.src.opener[C.T]){var op=C.src.opener[C.T];C.hist.push({role:'assistant',content:JSON.stringify({reply:op})});C.log.push({w:'ai',tx:op,tr:C.H!==C.T?(C.src.opener[C.H]||''):'',rd:'',hints:[]});aiPaint();if(SY&&aiSet('auto',true)&&vlist(C.T).length)speak(op,C.T);return}
   aiPaint();aiCall()};
@@ -948,9 +959,13 @@ function copyConv(){if(!C)return;var o=aiParts(),s=(o.title?o.title+'\n':'')+C.l
   return (x.w==='me'?t.me2:(o.ai||'AI'))+': '+x.tx+(x.rd&&C.read&&C.T==='ja'?'\n  ('+x.rd+')':'')+(x.fx?'\n  ✎ '+x.fx:'')+(x.md?'\n  💡 '+x.md:'')}).join('\n');
  copyText(s,function(ok){var e=$('aiSt');if(e)e.textContent=ok?t.copied:t.copyNg})}
 function aiSendText(){var ta=$('aiTx');if(!ta||!C||C.busy||C.step!=='chat')return;var v=ta.value.replace(/\s+$/,'').replace(/^\s+/,'').slice(0,400);if(!v)return;
- aiMicStop();ta.value='';grow(ta);C.log.push({w:'me',tx:v});C.hist.push({role:'user',content:v});C.ending=/^(おわり|終わり|끝|end)[。.!！]?$/i.test(v);aiCall()}
+ aiMicStop();ta.value='';grow(ta);C.log.push({w:'me',tx:v});C.hist.push({role:'user',content:v});C.autoTried=false;C.ending=/^(おわり|終わり|끝|end)[。.!！]?$/i.test(v);aiCall()}
 /* 送る：システム＋最後の14件まで（ユーザーの発言から始める）。Worker も 16件・1件1200字で止める */
-function aiMsgs(){var h=C.hist.slice(-14);while(h.length&&h[0].role!=='user')h.shift();return [{role:'system',content:buildPrompt('chat')}].concat(h.map(function(m){return {role:m.role,content:String(m.content).slice(0,1200)}}))}
+function histOut(m){var s=String(m.content);if(m.role!=='assistant'||s.charAt(0)!=='{')return s;try{var j=JSON.parse(s);if(j&&j.reply!=null)return JSON.stringify(j.tr?{reply:j.reply,tr:j.tr}:{reply:j.reply})}catch(e){}return s}
+function aiMsgs(){var h=C.hist.slice(-14);while(h.length&&h[0].role!=='user')h.shift();var M=h.map(function(m){return {role:m.role,content:histOut(m).slice(0,1200)}});
+ /* 2026.10：마지막 학습자 말 뒤에 짧은 역할 알림(요청에만 붙음. 화면·이력·종료 정리에는 없음) */
+ if(!C.ending&&M.length&&M[M.length-1].role==='user'){var p=PR[lang]||PR.ja,o=aiParts();M[M.length-1].content=(M[M.length-1].content+'\n\n'+fm(p.turn,{A:o.ai||'AI',M:o.me||p.meX})).slice(0,1200)}
+ return [{role:'system',content:buildPrompt('chat')}].concat(M)}
 /* 1回に1つだけ送る。閉じた・はじめからにした・新しく送ったあとに来た古い返事は使わない。30秒で止めて「もう一度送る」 */
 function aiCall(){var ep=aiEp();if(!C)return;if(!ep){C.why='noEp';C.step='hand';aiPaint();return}
  if(C.busy)return;
@@ -963,11 +978,26 @@ function aiCall(){var ep=aiEp();if(!C)return;if(!ep){C.why='noEp';C.step='hand';
  .then(function(r){if(!live())return;clearTimeout(q.tm);my.req=null;if(!r.ok||typeof r.j.text!=='string')return aiFail(r.j.error||(r.s===429?'rate':'http'));aiGot(r.j.text)})
  ['catch'](function(){if(!live())return;clearTimeout(q.tm);my.req=null;aiFail(q.slow?'slow':'net')})
  ['catch'](function(){})}
+/* 2026.10 받은 대답 검사：raw(형식 아님)·copy(학습자의 연습 표현·직전 힌트·모범 문장을 AI가 말함)·fmt(번역·힌트 빠짐)·empty.
+   한 학습자 차례에 자동 다시 요청은 모두 합쳐 1회. 버린 대답은 화면·음성·이력에 넣지 않음 */
+function nrm(x){x=String(x||'').toLowerCase().replace(/[’']re\b/g,' are').replace(/[’']ll\b/g,' will').replace(/n[’']t\b/g,' not').replace(/[’']m\b/g,' am').replace(/[’']ve\b/g,' have');return x.replace(/[\s\u3000.,!?;:'"“”‘’「」『』（）()\[\]、。！？・…~〜\-—–]/g,'')}
+function longEnough(n){return /[\u3040-\u30ff\u4e00-\u9fff\uac00-\ud7a3]/.test(n)?n.length>=12:n.length>=24}
+function copyHit(reply){var c=C,cand=[],o=null;try{o=aiParts()}catch(e){}
+ if(c.kind==='scene'&&c.src&&c.src.lines)c.src.lines.forEach(function(L){if(L.r!==c.role)return;cand.push(tx(L,c.T));(L.alt||[]).forEach(function(a){cand.push(tx(a,c.T))})});
+ if(o&&o.keys)cand=cand.concat(o.keys);
+ for(var i=c.log.length-1;i>=0;i--){var x=c.log[i];if(x.w==='ai'){(x.hints||[]).forEach(function(h){cand.push(hintSplit(h)[0])});break}}
+ var me=null;for(var k=c.log.length-1;k>=0;k--)if(c.log[k].w==='me'){me=c.log[k];break}
+ if(me&&me.md)cand.push(me.md);var mine=me?nrm(me.tx):'',r=nrm(reply),hit=[];
+ cand.forEach(function(x){var n=nrm(x);if(!n||!longEnough(n)||mine.indexOf(n)>=0||hit.indexOf(n)>=0)return;if(r.indexOf(n)>=0)hit.push(n)});return hit.length?hit:null}
+function aiCheck(o){var c=C;if(!o.reply)return 'empty';if(o.raw)return 'raw';if(copyHit(o.reply))return 'copy';if((c.H!==c.T&&!o.tr)||!(o.hints&&o.hints.length))return 'fmt';return ''}
 function aiGot(raw){var c=C;if(!c)return;var o=parseAI(raw);c.busy=false;
+ c.qa=c.qa||{auto:0,raw:0,copy:0,fmt:0,empty:0,shownBad:0};
+ if(!o.recap&&!c.ending){var bad=aiCheck(o);if(bad){c.qa[bad]++;if(!c.autoTried){c.autoTried=true;c.qa.auto++;aiCall();return}
+  if(bad==='raw'||bad==='copy'){var lu=c.hist.pop();c.retry=lu&&lu.role==='user'?lu:null;if(!c.retry&&lu)c.hist.push(lu);c.log.push({w:'err',tx:bad==='copy'?t.eRole:t.eEmpty,retry:!!c.retry});c.qa.shownBad++;paintLog();return}}}
  if(o.recap){c.hist.push({role:'assistant',content:JSON.stringify({recap:o.recap}).slice(0,1200)});c.log.push({w:'recap',rc:o.recap});c.ended=true;c.ending=false;paintLog();return}
  if(!o.reply){var last=c.hist.pop();c.retry=last&&last.role==='user'?last:null;c.ending=false;c.log.push({w:'err',tx:t.eEmpty,retry:!!c.retry});paintLog();return}
  if(c.ending&&o.raw){c.log.push({w:'recap',rc:{phrases:[],good:o.reply,fix:''}});c.hist.push({role:'assistant',content:o.reply.slice(0,1200)});c.ended=true;c.ending=false;paintLog();return}
- var j=o.raw?o.reply:JSON.stringify({reply:o.reply,reading:o.reading,fix:o.fix,hints:o.hints});if(j.length>1150)j=o.raw?o.reply.slice(0,1150):JSON.stringify({reply:o.reply.slice(0,600)});
+ var j=o.raw?o.reply:JSON.stringify(o.tr?{reply:o.reply,tr:o.tr}:{reply:o.reply});if(j.length>1150)j=o.raw?o.reply.slice(0,1150):JSON.stringify({reply:o.reply.slice(0,600)});
  c.hist.push({role:'assistant',content:j});
  if(c.fix&&(o.fix||o.model)){for(var i=c.log.length-1;i>=0;i--)if(c.log[i].w==='me'){if(o.fix)c.log[i].fx=o.fix;
   /* お手本（2026.10）：AI が「不自然・場面に合わない」と見たときだけ。自分の発言と同じなら出さない */

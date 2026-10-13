@@ -156,6 +156,16 @@ body.ja h1,body.ko h1{line-height:1.12;letter-spacing:-.04em}
 .course-card .meta-row{margin-top:auto}
 .more-grid{margin-top:18px}
 .more-grid[hidden]{display:none}
+/* 2026.10 사용자 제보: 강좌 카드 압축(#learn 안에서만 — 다른 페이지의 .course-card는 그대로). PC 4열·좁은 PC 3열·태블릿 2열·휴대폰 1열 */
+#learn .course-grid{grid-template-columns:repeat(4,1fr);gap:14px}
+#learn .course-card{min-height:0;padding:16px 18px;border-radius:14px}
+#learn .course-card h3{font-size:18px;line-height:1.3;margin:6px 0 4px}
+#learn .course-card p.muted{font-size:13px;line-height:1.55;margin:0}
+#learn .course-card .meta-row{margin-top:12px}
+#learn .more-grid{margin-top:14px}
+@media(max-width:1100px){#learn .course-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:980px){#learn .course-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){#learn .course-grid{grid-template-columns:1fr}}
 .path-band{
   background:var(--navy);color:#fff;border-radius:24px;padding:38px;
   display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center

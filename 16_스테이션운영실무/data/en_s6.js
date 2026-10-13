@@ -183,7 +183,7 @@ sections:[
 {name:"Record of decisions",x:"Exceptions agreed with head office and local agreements. Collect the documents showing who decided what, and when."},
 {name:"Open items",x:"A list of unfinished consultations, requests and corrective actions, with the next deadlines."},
 {name:"People",x:"Introduce your successor in person to head-office counterparts and local partners. Trust cannot be handed over on paper alone."}]},
-{t:"note",x:"* For handovers as a whole, see also “Handing Over and Taking Over: A Guide for Managers”."}]},
+{t:"note",x:"* For handovers as a whole, see also the “Management Handover” course."}]},
 {h:"Questions for looking back on the year",blocks:[{t:"ladder",rise:10,steps:[
 {name:"Reports",sub:"How many reports missed their deadline?"},
 {name:"Requests",sub:"What separated the requests that got through from those that didn’t?"},
