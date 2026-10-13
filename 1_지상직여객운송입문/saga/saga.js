@@ -1396,7 +1396,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       '<div class="panel"><h2>' + esc(tx(T.days)) + '</h2><div class="days" id="days">' + days + '</div>' +
       '<div class="seg" style="margin-top:10px"><button id="tg-p" class="' + (G.practice ? 'on' : '') + '">' + esc(tx(L('練習モード（全部の日・記録は別）', '연습 모드(모든 날·기록 따로)', 'Practice mode (all days, separate records)'))) + '</button></div>' +
       (G.hints && !G.practice ? '<p class="small" style="margin:6px 0 0">' + esc(tx(L('ヒントON：DAY 2以降の最高ランクはAになります。', '힌트 켬: DAY 2부터 최고 등급은 A입니다.', 'Tips on: from DAY 2 the best possible rank is A.'))) + '</p>' : '') + '</div>' +
-      '<button class="start" id="go">' + esc(tx(T.start)) + ' · DAY ' + dd.n + ' ' + esc(tx(dd.nm)) + ' · ' + dd.mission.variants[G.country].flight + ' ' + dd.mission.variants[G.country].from + '→' + dd.mission.variants[G.country].to + '</button>' +
+      hashNoteHtml() + '<button class="start" id="go">' + esc(tx(T.start)) + ' · DAY ' + dd.n + ' ' + esc(tx(dd.nm)) + ' · ' + dd.mission.variants[G.country].flight + ' ' + dd.mission.variants[G.country].from + '→' + dd.mission.variants[G.country].to + '</button>' +
       '<div class="panel"><h2>' + esc(tx(T.stages)) + '</h2><div class="stages">' + st + '</div></div>' +
       '<p style="font-size:12px;color:var(--sub)">' + esc(tx(T.edu)) + '</p><p style="font-size:11px;color:var(--sub);margin-top:-6px">' + esc(tx(T.credit)) + '</p></div>';
     $('#seglang').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; setLang(b.dataset.l); };
@@ -1549,7 +1549,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       'Surname<br><b>' + p.pp.sur + '</b><br>Given names<br><b>' + p.pp.given + '</b><br>Nationality ' + p.pp.nat + ' · Sex ' + p.pp.sex + '<br>Date of birth ' + p.pp.dob + (S.adv ? '<br>Date of issue ' + issuedOf(p) : '') + '<br>Date of expiry <b>' + p.pp.exp + '</b><br>No. ' + p.pp.no + '</div>' +
       '<div class="mrz">P&lt;' + p.pp.nat + p.pp.sur + '&lt;&lt;' + p.pp.given + '&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>' + p.pp.no + '&lt;' + p.pp.nat + p.pp.dob.replace(/-/g, '').slice(2) + '</div></div>';
     if (p.visa) html += '<div class="pp" style="margin-top:8px;grid-template-columns:1fr"><div class="t">VISA · ' + (p.visa.dest === 'KR' ? 'REPUBLIC OF KOREA' : 'JAPAN') + ' <span style="font-weight:400">(' + esc(tx(L('教育用', '교육용', 'training'))) + ')</span></div><div>Type ' + p.visa.type + ' · Single entry<br>Valid until <b>' + p.visa.until + '</b><br>Name ' + p.pp.sur + ' ' + p.pp.given + '</div></div>';
-    if (p.inf) html += '<div class="small" style="margin-top:6px;display:flex;gap:8px;align-items:center">' + (p.inf.photo && STG.has('passport_' + p.inf.photo + '_front_01') ? '<span style="width:46px;display:inline-block">' + STG.portrait({ photo: p.inf.photo }) + '</span>' : '') + '<span>INF: ' + p.inf.sur + ' ' + p.inf.given + ' · ' + p.inf.dob + ' · exp ' + p.inf.exp + '</span></div>';
+    if (p.inf) html += '<div class="small" style="margin-top:6px;display:flex;gap:8px;align-items:center">' + (p.inf.photo && STG.has('passport_' + p.inf.photo + '_front_01') ? '<span style="flex:0 0 auto">' + STG.portrait({ photo: p.inf.photo }, 'small') + '</span>' : '') + '<span style="min-width:0">INF: ' + p.inf.sur + ' ' + p.inf.given + ' · ' + p.inf.dob + ' · exp ' + p.inf.exp + '</span></div>';
     if (p.party) html += '<p class="small" style="margin-top:6px">' + esc(tx(L('同行者2名の旅券は「サポート」タブで確認します。', '동행자 2명의 여권은 「지원」 탭에서 확인합니다.', 'Check the two companions\' passports on the Assistance tab.'))) + '</p>';
     var items = [['validity', L('有効期限・残存期間', '유효기간·잔여기간', 'Validity and remaining time')], ['photo', L('写真と本人の一致', '사진과 본인 일치', 'Photo matches the person')], ['ticketName', L('航空券（予約）の名前', '항공권(예약) 이름', 'Name on the ticket (booking)')]];
     html += '<div class="chk">' + items.map(function (it) {
@@ -2666,7 +2666,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     h += supRow(s.w ? s.w.toFixed(1) + ' kg' : false, L('ケージごと重さを量る', '케이지째 무게를 잰다', 'Weigh the pet with the carrier'), 'pw', L('量る', '계량', 'Weigh'));
     if (!s.docsOpen) h += supRow(false, L('健康・検疫の書類を確認する（行き先の国の条件）', '건강·검역 서류 확인(행선지 나라 조건)', 'Check the health and quarantine papers (destination rules)'), 'pd', L('書類を見る', '서류 보기', 'Open the papers'));
     else {
-      h += '<p class="small" style="margin:6px 0 0">' + esc(tx(L('主な項目（ほかの要件は事前の検疫確認で済んでいるという教育用の前提）', '주요 항목(그 밖의 요건은 사전 검역 확인으로 끝났다는 교육용 전제)', 'Main items (training assumption: the other requirements were cleared in advance)'))) + '</p><table class="cx" style="margin:6px 0">' + petDocs(u).map(function (d) { return '<tr><td>' + esc(tx(d[0])) + '</td><td>' + (d[1] ? '✓' : '<b>—</b>') + '</td></tr>'; }).join('') + '</table>';
+      h += '<p class="small" style="margin:6px 0 0">' + esc(tx(L('主な項目（ほかの要件は事前の検疫確認で済んでいるという教育用の前提）', '주요 항목(그 밖의 요건은 사전 검역 확인으로 끝났다는 교육용 전제)', 'Main items (training assumption: the other requirements were cleared in advance)'))) + '</p><table class="cx docs" style="margin:6px 0">' + petDocs(u).map(function (d) { return '<tr><td>' + esc(tx(d[0])) + '</td><td>' + (d[1] ? '✓' : '<b>—</b>') + '</td></tr>'; }).join('') + '</table>';
       if (!s.docs) h += '<div class="btns"><button class="btn" id="pdok">' + esc(tx(L('書類はそろっている', '서류가 다 있음', 'All papers are there'))) + '</button><button class="btn warnb" id="pdng">' + esc(tx(L('不足がある', '부족한 것이 있음', 'Something is missing'))) + '</button></div>';
       else h += '<span class="pill ' + (s.docsBad ? 'ng' : 'ok') + '">' + esc(tx(s.docsBad ? L('不足のまま受付', '부족한 채 접수', 'Accepted with papers missing') : L('確認済み', '확인 완료', 'Checked'))) + '</span>' + (s.docsBad && !c.bp ? ' <button class="btn ghost rebtn" id="pdre">' + esc(tx(L('もう一度確認', '다시 확인', 'Check again'))) + '</button>' : '');
     }
@@ -2988,6 +2988,25 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     else if (G.screen === 'play' && S && !S.cur && S.modalRedraw) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); S.modalRedraw(); }
     else if (G.screen === 'result') finish();
   }
+  /* 23차: 게임 홈의 Day 카드 → 게임주소#dayN. 그 날이 열려 있을 때만 고르고(잠긴 날은 안내만, 해금·연습 모드를 바꾸지 않음),
+     바로 시작하지는 않음(음성은 사용자가 누른 뒤에만 켤 수 있음). 처리한 뒤 주소의 #dayN은 지워 새로고침 때 다시 적용되지 않게 함 */
+  function applyHash() {
+    var m = /^#day([1-9])$/i.exec(location.hash || ''); if (!m) return false;
+    var n = +m[1], d = DY.list[n - 1];
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (!d) return false;
+    var stt = DY.status(G.hist, n, G.country, G.practice);
+    if (stt === 'open') { G.day = n; G.hintsByDay = G.hintsByDay || {}; save(); G.hashNote = { ok: true, n: n }; }
+    else G.hashNote = { ok: false, n: n, soon: stt === 'soon' };
+    return true;
+  }
+  function hashNoteHtml() {
+    var h = G.hashNote; if (!h) return ''; G.hashNote = null;
+    var t = h.ok ? L('DAY ' + h.n + ' を選びました。下の「出勤する」で始めます。', 'DAY ' + h.n + ' 선택 완료. 아래 「출근하기」로 시작합니다.', 'DAY ' + h.n + ' selected. Press Clock in below to begin.')
+      : h.soon ? L('DAY ' + h.n + ' は準備中です。', 'DAY ' + h.n + ' — 준비 중입니다.', 'DAY ' + h.n + ' is coming soon.')
+      : L('DAY ' + h.n + ' はまだ開いていません（前の日をB以上・安全合格で）。開いている日から始めます。', 'DAY ' + h.n + ' — 아직 열리지 않았습니다(앞의 날을 B 이상·안전 합격으로). 열린 날부터 시작합니다.', 'DAY ' + h.n + ' is still locked (clear the day before with B or better and a safety pass). You will start from an open day.');
+    return '<p class="hashnote' + (h.ok ? '' : ' lock') + '" role="status">' + esc(tx(t)) + '</p>';
+  }
   function boot() {
     STG.preload();
     var had = false; try { had = !!localStorage.getItem('acn-saga-v1'); } catch (e) {}
@@ -2997,8 +3016,12 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var lb = document.getElementById('lang');
     if (lb) { lb.addEventListener('click', function (e) { var b = e.target.closest('button[data-l]'); if (b) setLang(b.dataset.l); }); lb.querySelectorAll('button[data-l]').forEach(function (b) { b.classList.toggle('on', b.dataset.l === G.lang); }); }
     document.documentElement.lang = G.lang;
+    var hashed = applyHash();
     renderTitle();
+    if (hashed) { var go = $('#go'); if (go && go.scrollIntoView) setTimeout(function () { go.scrollIntoView({ block: 'center' }); }, 60); }
+    window.addEventListener('hashchange', function () { if (G.screen !== 'title') { if (/^#day/i.test(location.hash)) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} return; } try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); if (d.country) G.country = d.country; G.practice = !!d.practice; } catch (e) {} G.store = DY.loadStore(); G.hist = G.store.days; if (applyHash()) { renderTitle(); var go = $('#go'); if (go && go.scrollIntoView) go.scrollIntoView({ block: 'center' }); } });
   }
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
+  if (window.SAGA_TEST) AS._t = { nextPax: nextPax, showTab: showTab, renderTabs: renderTabs };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();
 })();

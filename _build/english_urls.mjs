@@ -38,6 +38,7 @@ export const DIRS = {
 export const FILES = {
   '1_지상직여객운송입문/搭載計算の練習.html': 'load-control.html',
   '1_지상직여객운송입문/AIRLINE_SAGA.html': 'airline-saga.html',
+  '1_지상직여객운송입문/AIRLINE_SAGA_HOME.html': 'airline-saga-home.html',
   '13_항공영업입문/収益管理の練習.html': 'revenue-management.html',
   '18_항공기초지식/航空路図の練習.html': 'dispatch-practice.html',
   '2_일본취항지점개설가이드/燃油サーチャージ計算.html': 'fuel-surcharge.html',

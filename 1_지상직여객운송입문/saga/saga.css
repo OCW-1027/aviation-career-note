@@ -171,6 +171,8 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .day.soon,.day.lock{opacity:.7;cursor:default}
 .day.lock .st::before{content:'🔒 '}
 .tmiss{margin:0;padding-left:18px;font-size:14px}
+.hashnote{margin:0 0 8px;padding:8px 12px;border-radius:10px;background:#e6f4ea;color:#1d5c34;font-size:14px;font-weight:700}
+.hashnote.lock{background:#fff4dc;color:#7a4b00}
 .start{font-family:var(--f-disp);font-size:18px;font-weight:800;border:0;border-radius:16px;padding:14px 18px;background:var(--vela);color:#fff;width:100%}
 
 /* 결과 */
@@ -290,6 +292,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 /* 정면 여권사진 (GPT passport_photo.css 규격: 80×104 / 160×208 / 240×320, contain) */
 img.as-passport-photo{display:block;box-sizing:border-box;width:80px;height:104px;max-width:none;max-height:none;object-fit:contain;object-position:center;margin:0;padding:0;transform:none;background:#fff9ef;border-radius:4px;flex:0 0 auto}
 img.as-passport-photo.as-passport-photo--medium{width:160px;height:208px}
+img.as-passport-photo.as-passport-photo--small{width:40px;height:52px}  /* 23차: 여권 탭 유아(INF) 줄의 작은 사진 — 80px 사진이 46px 칸을 넘어 글자를 덮던 문제 */
 img.as-passport-photo.as-passport-photo--large{width:240px;height:320px}
 .pp .ph{align-items:center}
 .face.mface.pt{background-size:150% auto;background-position:50% 22%}
@@ -340,7 +343,10 @@ html.sh-saga .bar{top:calc(env(safe-area-inset-top,0px) + 4px)}
 .cx{border-collapse:collapse;font-size:12.5px;margin-top:4px;width:100%}
 .cx td{padding:3px 6px;border-bottom:1px dashed #3b5964;vertical-align:top}
 .cx td:first-child{white-space:nowrap;opacity:.85;width:1%}
+.cx.docs td:first-child{white-space:normal;width:auto}.cx.docs td:last-child{width:1%;white-space:nowrap;text-align:center}  /* 23차: 반려동물 서류 표 — 첫 칸(긴 항목)이 줄바꿈되지 않아 360px 영어 화면 밖으로 나가던 문제 */
 
 /* 22차(GPT 실주소 SITE-F01): 사이트 안에서 근무 중이고 화면이 작으면 사이트 공통의 떠 있는 버튼(위로·뒤로·홈)을 숨김 — 가로 화면에서 직원 대사를 가렸음. 머리말 메뉴와 게임의 × 종료는 그대로 */
 @media (max-width:960px),(max-height:520px){body.saga-playing .nv-fab{display:none!important}}
 a.lessonref{color:inherit;text-decoration:underline;text-underline-offset:2px}
+/* 23차: PC 2단 화면에서 오른쪽 단이 좁을 때(가로 900~1100px) 탑승권 내용이 상자보다 6px 넓어 잘리던 문제 → 휴대폰과 같은 세로 배치 */
+@media (min-width:900px) and (max-width:1100px){.bp{grid-template-columns:1fr}.bp .s{flex-direction:row;flex-wrap:wrap;gap:2px 12px}.bp .grid{grid-template-columns:repeat(4,minmax(0,1fr))}}

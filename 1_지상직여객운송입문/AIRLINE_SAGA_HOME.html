@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIRLINE SAGA ― 空港の仕事を体験するゲーム</title>
+<meta name="description" content="AIRLINE SAGA のホーム：架空の航空会社 Vela Air のグランドスタッフとして、チェックインカウンターの5日間を体験する教育用ゲーム。日本語・韓国語・英語。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<script src="assets/shell.js" data-page="sagahome"></script>
+<style>
+/* AIRLINE SAGA ゲームホーム（23차）。サイトの頭・フッター（acn_shell.js）と同じ白い画面。ゲームの記録（acn-saga-hist-v2）を読んで日ごとの状態を出す */
+:root{
+  --bg:#f6f7f8; --paper:#ffffff; --ink:#182431; --sub:#5b6676; --line:#dfe4e8;
+  --navy:#24346b; --amber:#f0a030; --amber-ink:#8a5200;
+  --ok:#1f7a4f; --okbg:#e6f4ec; --lock:#6f7888; --lockbg:#eef0f4; --soon:#9a6b12; --soonbg:#f7efdc;
+  --board:#0f1830; --board-line:#26335a; --board-txt:#ffd26a; --board-dim:#8f9bc0;
+  --shadow:0 10px 30px rgba(27,36,64,.10);
+}
+body{margin:0}
+.sg *{box-sizing:border-box}
+.sg [hidden]{display:none!important}
+.sg{color:var(--ink);font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+html:lang(ko) .sg{font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans-serif;word-break:keep-all}
+.sg a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:6px 10px}
+.langs.sgl{display:none}
+
+/* ヒーロー */
+.hero{position:relative;border-radius:22px;overflow:hidden;background:#cfe3f2;box-shadow:var(--shadow);aspect-ratio:16/8;min-height:300px;max-width:100%}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,24,48,.86) 0%,rgba(16,24,48,.62) 38%,rgba(16,24,48,0) 66%)}
+.hero .cast{position:absolute;bottom:0;height:88%;max-width:none;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+.hero .copy{position:absolute;left:0;top:0;bottom:0;width:min(540px,46%);padding:clamp(18px,4vw,44px);display:flex;flex-direction:column;justify-content:center;color:#fff}
+.eyebrow{font:700 12px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-ink)}
+.hero .eyebrow{color:#ffcf73}
+.hero h1{white-space:nowrap;font:900 clamp(30px,4.2vw,56px)/1 Inter,sans-serif;letter-spacing:-.02em;margin:10px 0 12px;color:#fff}
+.hero h1 span{color:#ffcf73}
+.hero .tag{color:#fff;font-weight:800;font-size:clamp(17px,2.3vw,24px);line-height:1.35;margin:0 0 10px;text-wrap:balance}
+.hero p.lead{margin:0 0 18px;font-size:clamp(13px,1.5vw,15.5px);color:#dfe5f7;max-width:44ch}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:11px 18px;font-weight:800;font-size:15px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn.pri{background:var(--amber);color:#2a1a00}
+.btn.pri:hover{filter:brightness(1.06)}
+.btn.ghost{border-color:rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.10)}
+.pillrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.pillrow span{font-size:12px;font-weight:700;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px 10px}
+
+/* 見出し */
+.sg section{padding-block:clamp(26px,5vw,44px)}
+.sgh{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.sgh h2{font-size:clamp(22px,3vw,30px);line-height:1.25;margin:6px 0 0;text-wrap:balance}
+.sgh p{margin:0;color:var(--sub);max-width:62ch}
+
+/* 勤務地 */
+.stn{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper)}
+.stn button{border:0;background:none;color:var(--sub);font:700 13px Inter,"Noto Sans JP","Noto Sans KR",sans-serif;padding:7px 14px;cursor:pointer;min-height:36px}
+.stn button.on{background:var(--navy);color:#fff}
+.stnrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.stnrow small{color:var(--sub);font-size:13px}
+.pmode{font-size:12px;font-weight:800;color:var(--soon);background:var(--soonbg);border-radius:999px;padding:3px 10px}
+
+/* 5日のカード */
+.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.day{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 14px 16px;text-decoration:none;min-width:0;transition:transform .15s,box-shadow .15s}
+a.day:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#9bbbf0}
+a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+.day .n{font:800 12px "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--sub)}
+.day b{font-size:17px;line-height:1.3}
+.day .lr{font-size:13px;color:var(--sub);flex:1}
+.chip{align-self:flex-start;font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px;line-height:1.5}
+.chip.open{background:var(--okbg);color:var(--ok)}
+.chip.lock{background:var(--lockbg);color:var(--lock)}
+.chip.rank{background:var(--navy);color:#fff}
+.day .go{font-size:13px;font-weight:800;color:#1769e0}
+.day.locked{background:#fbfbfc}
+.day .stripe{position:absolute;left:14px;right:14px;top:0;height:4px;border-radius:0 0 4px 4px;background:var(--amber)}
+.day.locked .stripe{background:var(--line)}
+.note{font-size:13px;color:var(--sub);margin:12px 0 0}
+
+/* 進め方 */
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:center}
+.step img{width:72px;height:72px;object-fit:contain}
+.step small{font:800 12px "JetBrains Mono",monospace;color:var(--amber-ink)}
+.step h3{margin:2px 0 4px;font-size:16px}
+.step p{margin:0;font-size:13.5px;color:var(--sub)}
+
+/* 出発案内板（全18ステージ） */
+.board{background:var(--board);border-radius:18px;padding:14px clamp(10px,2vw,20px) 18px;color:var(--board-txt);box-shadow:var(--shadow);overflow-x:auto}
+.board .bh{display:flex;justify-content:space-between;align-items:center;gap:10px;font:700 13px "JetBrains Mono",monospace;color:var(--board-dim);padding:4px 4px 10px;border-bottom:1px solid var(--board-line);flex-wrap:wrap}
+.board .bh b{color:#fff;letter-spacing:.12em}
+.board table{width:100%;border-collapse:collapse;font-family:"JetBrains Mono",monospace;font-size:13.5px;min-width:560px}
+.board th{font-size:11px;letter-spacing:.14em;color:var(--board-dim);text-align:left;padding:10px 8px 6px;font-weight:700}
+.board td{color:var(--board-txt);padding:8px;border-bottom:1px dashed var(--board-line);vertical-align:middle;word-break:normal}
+.board td.nm{font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif;font-weight:700;color:#f3f5ff}
+.board tr.play td{background:rgba(240,160,48,.12)}
+.st{display:inline-block;font-weight:700;font-size:11.5px;letter-spacing:.06em;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.st.go{background:#1f7a4f;color:#eafff3}
+.st.calc{background:#3b2f0b;color:#ffd26a;border:1px solid #6b5418}
+.st.soon{color:var(--board-dim);border:1px solid var(--board-line)}
+.board a{color:inherit}
+
+/* 講座とのつながり */
+.lessons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.les{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-decoration:none;min-width:0}
+.les:hover{border-color:#9bbbf0}
+.les code{font:700 12px "JetBrains Mono",monospace;color:var(--navy);background:var(--bg);border-radius:6px;padding:2px 6px;white-space:nowrap;flex:none}
+.les span{font-size:14px;min-width:0}
+.les em{display:block;font-style:normal;font-size:12px;color:var(--sub)}
+
+/* 案内役 */
+.twins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mas{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:14px 18px}
+.mas img{width:110px;height:150px;object-fit:contain}
+.mas h3{margin:0 0 4px;font-size:20px}
+.mas .role{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.mas.y .role{color:#946c00}.mas.g .role{color:#1f7a5c}
+.mas p{margin:0;font-size:14px;color:var(--sub)}
+.fine{color:var(--sub);font-size:12.5px;margin:6px 0 0}
+
+@media (max-width:900px){.days{grid-template-columns:repeat(2,minmax(0,1fr))}.how{grid-template-columns:minmax(0,1fr)}.lessons,.twins{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){
+  .hero{aspect-ratio:auto;min-height:0;display:flex;flex-direction:column}
+  .hero .bg{position:absolute;height:100%}
+  .hero .shade{background:linear-gradient(180deg,rgba(16,24,48,.15) 0%,rgba(16,24,48,.55) 38%,rgba(16,24,48,.92) 62%)}
+  .hero .castbox{position:relative;height:clamp(220px,40vw,330px)}
+  .hero .cast{height:100%}
+  .hero .copy{position:relative;width:100%;padding:4px clamp(18px,4vw,36px) 24px}
+  .hero h1{font-size:clamp(34px,8vw,56px)}
+}
+@media (max-width:640px){
+  .wrap{padding-inline:16px}
+  .days{grid-template-columns:minmax(0,1fr)}
+  .day{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:10px}
+  .day .lr{flex-basis:100%}
+  .board table{min-width:0}
+  .board th:nth-child(3),.board td:nth-child(3){display:none}
+  .mas{grid-template-columns:80px minmax(0,1fr);padding:12px 14px}.mas img{width:80px;height:110px}
+}
+@media (prefers-reduced-motion:reduce){a.day{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap sg">
+  <span class="langs sgl" id="langs" role="group" aria-label="Language"><button type="button" data-l="ja">日本語</button><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button></span>
+
+  <div class="hero">
+    <img class="bg" src="saga/img/checkin_bg_01.webp" alt="">
+    <div class="shade"></div>
+    <div class="castbox">
+      <img class="cast" src="saga/img/staff_checkin_greet_01.webp" alt="" style="left:58%;height:86%">
+      <img class="cast" src="saga/img/passenger_male_02.webp" alt="" style="left:76%;height:80%">
+      <img class="cast" src="saga/img/passenger_female_01_happy_01.webp" alt="" style="left:86%;height:72%">
+      <img class="cast" src="saga/img/koradon_greet_01.webp" alt="" style="left:48%;height:34%">
+    </div>
+    <div class="copy">
+      <div class="eyebrow">Vela Air · Ground Staff Simulation</div>
+      <h1>AIRLINE <span>SAGA</span></h1>
+      <p class="tag" id="tag"></p>
+      <p class="lead" id="lead"></p>
+      <div class="ctas"><a class="btn pri" id="play" href="AIRLINE_SAGA.html"></a><a class="btn ghost" id="cont" href="AIRLINE_SAGA.html" hidden></a></div>
+      <div class="pillrow" id="pills"></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sgh"><div><div class="eyebrow">Stage 01 · Check-in</div><h2 id="hDays"></h2></div><p id="pDays"></p></div>
+    <div class="stnrow"><span class="stn" id="stn" role="group"></span><small id="stnNote"></small><span class="pmode" id="pmode" hidden></span></div>
+    <div class="days" id="days"></div>
+    <p class="note" id="nDays"></p>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sgh"><div><div class="eyebrow">How it works</div><h2 id="hHow"></h2></div></div>
+    <div class="how" id="how"></div>
+  </section>
+
+  <section style="padding-top:0" id="lessons">
+    <div class="sgh"><div><div class="eyebrow">Learn more</div><h2 id="hLes"></h2></div><p id="pLes"></p></div>
+    <div class="lessons" id="les"></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sgh"><div><div class="eyebrow">Departures · All stages</div><h2 id="hBoard"></h2></div><p id="pBoard"></p></div>
+    <div class="board" data-noalign><div class="bh"><b>VELA AIR · AIRLINE SAGA</b><span id="clock">--:--</span></div>
+      <table><thead><tr><th>STAGE</th><th id="thName"></th><th id="thCourse"></th><th>STATUS</th></tr></thead><tbody id="stages"></tbody></table>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sgh"><div><div class="eyebrow">Your guides</div><h2 id="hTw"></h2></div></div>
+    <div class="twins">
+      <div class="mas y"><img src="saga/img/koradon_idle_01.webp" alt=""><div><div class="role" id="r1"></div><h3 id="n1"></h3><p id="d1"></p></div></div>
+      <div class="mas g"><img src="saga/img/korarin_idle_01.webp" alt=""><div><div class="role" id="r2"></div><h3 id="n2"></h3><p id="d2"></p></div></div>
+    </div>
+    <p class="fine" id="foot"></p>
+  </section>
+</div>
+
+<script>
+(function(){
+'use strict';
+var GAME='AIRLINE_SAGA.html';
+var DAYS=[{"n":1,"nm":{"ja":"初出勤","ko":"첫 근무","en":"First shift"},"learn":{"ja":"チェックインの基本手順","ko":"체크인 기본 절차","en":"The basic check-in steps"}},{"n":2,"nm":{"ja":"忙しい朝","ko":"바쁜 아침","en":"Busy morning"},"learn":{"ja":"旅券の深掘り・乗り継ぎ・特殊な手荷物","ko":"여권 심화·환승·특수 수하물","en":"Passports in depth, connections, special bags"}},{"n":3,"nm":{"ja":"サポートが必要なお客様","ko":"도움이 필요한 승객","en":"Passengers who need help"},"learn":{"ja":"車いす・お一人で旅するお子様・ペット・妊娠中の方","ko":"휠체어·혼자 여행하는 어린이·반려동물·임산부","en":"Wheelchairs, children travelling alone, pets, pregnancy"}},{"n":4,"nm":{"ja":"イレギュラー①","ko":"비정상 ①","en":"Irregular ops 1"},"learn":{"ja":"機材変更・システム障害（手作業チェックイン）","ko":"기재 변경·시스템 장애(수기 체크인)","en":"Aircraft change, system outage (manual check-in)"}},{"n":5,"nm":{"ja":"イレギュラー②","ko":"비정상 ②","en":"Irregular ops 2"},"learn":{"ja":"遅延・乗り継ぎ不可・オーバーブッキング","ko":"지연·환승 불가·오버부킹","en":"Delays, missed connections, overbooking"}}];          /* src/days.js から（名前・学ぶこと） */
+var LESSONS={"passenger/1-1":{"ja":"カウンターオープン前の準備とレイアウト","ko":"카운터 오픈 전 준비와 레이아웃","en":"Getting the Counter Ready, and How to Lay It Out"},"passenger/1-3":{"ja":"チェックインの流れとパスポート・ビザ確認","ko":"체크인 흐름과 여권·비자 확인","en":"The Check-in Flow and Checking Passports and Visas"},"passenger/1-4":{"ja":"以遠区間・乗り継ぎのお客様の手続き","ko":"이원 구간·환승 승객 수속","en":"Passengers with Onward and Connecting Flights"},"passenger/1-5":{"ja":"座席指定・アップグレードと非常口座席","ko":"좌석 배정·업그레이드와 비상구 열 좌석","en":"Seat Assignment, Upgrades and Exit Row Seats"},"passenger/1-6":{"ja":"特別対応① 幼児・小児、妊娠中・医療の配慮が必要なお客様","ko":"특별 승객 ① 유아·소아, 임산부·의료 배려 승객","en":"Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs"},"passenger/1-7":{"ja":"特別対応② 車いす・お身体の不自由なお客様、お一人で旅行するお子様","ko":"특별 승객 ② 휠체어·장애인 승객, 비동반 소아","en":"Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors"},"passenger/1-8":{"ja":"特別対応③ ペットの輸送","ko":"특별 승객 ③ 반려동물 운송","en":"Special Assistance 3: Carrying Pets"},"passenger/1-10":{"ja":"手荷物規定① 受託・機内持ち込み・超過","ko":"수하물 규정 ① 위탁·기내·초과","en":"Baggage Rules 1: Checked, Carry-on and Excess"},"passenger/1-13":{"ja":"リチウム電池とモバイルバッテリー ― 日韓の最新ルール","ko":"리튬 배터리와 보조배터리 — 한일 최신 규정","en":"Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea"},"passenger/5-4":{"ja":"遅延対応 ― ご案内・食事券・遅延証明","ko":"지연 처리 — 안내·식사 쿠폰·지연 증명","en":"Delays: Information, Meal Vouchers and Certificates"},"passenger/5-6":{"ja":"欠航対応 ― 振替・エンドース・補償案内・苦情対応","ko":"결항 처리 — 대체편·엔도스·보상 안내·클레임 접수","en":"Cancellations: Rebooking, Endorsement, Compensation and Claims"},"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）と電子渡航認証","ko":"미리 보내는 승객 정보(API·PNR)와 전자여행허가","en":"Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations"},"ciq/1-1":{"ja":"旅券と査証 ― カウンターで何を確認するか","ko":"여권과 비자 — 카운터에서 무엇을 확인하나","en":"Passports and Visas: What to Check at the Counter"},"ciq/1-2":{"ja":"TIMATIC ― 渡航条件を確認するためのデータベース","ko":"TIMATIC — 입국 조건을 찾는 도구","en":"TIMATIC: The Tool for Looking Up Entry Requirements"},"ciq/1-4":{"ja":"入国拒否と送還の実際","ko":"입국 거부와 송환의 실제","en":"Refusal of Entry and Removal in Practice"}};    /* src/lessons.js の題名 */
+var LLINK={"base":"../","links":{"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"}}};        /* tools/lesson_links.json（公開サイトで確認した住所） */
+var LDAYS={"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],"passenger/1-4":[2,5],"passenger/1-5":[1,2,3,4,5],"passenger/1-6":[3],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/1-10":[1,2,4,5],"passenger/1-13":[1,2,4,5],"passenger/5-4":[5],"passenger/5-6":[5],"ciq/0-4":[1,2],"ciq/1-1":[1],"ciq/1-2":[1,2],"ciq/1-4":[1]};        /* tools/lesson_days.json（レッスン → 出てくる DAY） */
+function L(ja,ko,en){return {ja:ja,ko:ko,en:en}}
+var T={
+ tag:L('空港の1日を、あなたが動かす。','공항의 하루를, 당신이 움직인다.','Run the airport, one shift at a time.'),
+ lead:L('架空の航空会社 Vela Air のグランドスタッフになって、旅券・座席・手荷物・イレギュラーを判断します。講座で学んだことが、そのままカウンターでの判断になります。','가상 항공사 Vela Air의 그라운드 스태프가 되어 여권·좌석·수하물·비정상 상황을 판단합니다. 강좌에서 배운 것이 그대로 카운터에서의 판단이 됩니다.','Become ground staff at the fictional Vela Air and make the calls on passports, seats, bags and disruptions. What you learn in the courses becomes your decisions at the counter.'),
+ play:L('DAY 1 から始める','DAY 1부터 시작','Start from DAY 1'),
+ cont:L('続きから','이어서 하기','Continue'),
+ pills:[L('日本語・韓国語・英語','일본어·한국어·영어','Japanese · Korean · English'),L('接客の日本語は音声つき','접객 일본어 음성','Spoken Japanese service lines'),L('スマホ・PC','휴대폰·PC','Phone & PC'),L('成田・仁川の業務ルール','나리타·인천 업무 규칙','Narita & Incheon rules')],
+ hDays:L('チェックイン編 ― カウンターの5日間','체크인편 — 카운터의 5일','Check-in: five days at the counter'),
+ pDays:L('1日ずつ難しくなります。前の日をB以上・安全合格でクリアすると、次の日が開きます。','하루씩 어려워집니다. 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.','Each day gets harder. Clear a day with B or better and a safety pass to unlock the next.'),
+ stn:[L('成田','나리타','Narita'),L('仁川','인천','Incheon')],
+ stnNote:L('勤務地ごとに記録と解放が別です。','근무지마다 기록과 해금이 따로입니다.','Records and unlocks are kept per station.'),
+ pmode:L('練習モード：全部の日を選べます（記録は別）','연습 모드: 모든 날을 고를 수 있음(기록은 따로)','Practice mode: every day is open (separate records)'),
+ nDays:L('記録はこの端末のブラウザに保存されます。練習モードはゲームのタイトル画面で切り替えます。','기록은 이 기기의 브라우저에 저장됩니다. 연습 모드는 게임 타이틀 화면에서 바꿉니다.','Records are saved in this browser on this device. Practice mode is switched on the game’s title screen.'),
+ st:{open:L('プレイできます','플레이 가능','Playable'),lock:L('前の日をB以上・安全合格で解放','앞의 날을 B 이상·안전 합격으로 열림','Unlocks after the day before (B or better, safety pass)'),best:L('最高 ','최고 ','Best '),earlier:L('以前の記録 ','이전 기록 ','Earlier '),go:L('この日を選ぶ →','이 날 고르기 →','Choose this day →')},
+ hHow:L('1人のお客様を、最後まで','한 명의 승객을, 끝까지','One passenger, start to finish'),
+ how:[[L('確かめる','확인한다','Check'),L('予約・旅券・渡航条件を照合。写真の人物は本人か、期限は足りるか。','예약·여권·입국 조건을 대조. 사진 속 인물이 본인인지, 기간은 충분한지.','Match the booking, passport and entry rules. Is it really them? Is it still valid?'),'prop_passport_01'],
+      [L('判断する','판단한다','Decide'),L('座席・手荷物・モバイルバッテリー・遅延や機材変更。迷ったら責任者に確認するのも正解。','좌석·수하물·보조배터리·지연이나 기재 변경. 헷갈리면 책임자 확인도 정답.','Seats, bags, power banks, delays and aircraft changes. Asking the supervisor is a right answer too.'),'prop_scale_01'],
+      [L('ふりかえる','되돌아본다','Review'),L('安全・正確さ・お客様の満足・時間で採点。見落としは関連するレッスンにつながります。','안전·정확성·승객 만족·시간으로 채점. 놓친 점은 관련 레슨으로 이어집니다.','Scored on safety, accuracy, passenger mood and time. Every miss links to the lesson behind it.'),'prop_boarding_pass_01']],
+ hBoard:L('これから出発するステージ','앞으로 출발하는 스테이지','Stages on the departure board'),
+ pBoard:L('チェックインから支店経営まで、1便を動かす仕事をステージにしていきます。いまプレイできるのはチェックイン編です。★は計算の実習ステージ（準備中）です。','체크인부터 지점 경영까지, 한 편을 움직이는 업무를 스테이지로 만들어 갑니다. 지금 플레이할 수 있는 것은 체크인편입니다. ★는 계산 실습 스테이지(준비 중)입니다.','From check-in to running the station, the jobs behind one flight become stages. Check-in is playable now. ★ marks hands-on calculation stages (coming).'),
+ thName:L('ステージ','스테이지','Stage'),thCourse:L('関連する講座','관련 강좌','Related course'),
+ sGo:'NOW BOARDING',sCalc:'★ CALC · SOON',sSoon:'COMING SOON',
+ hLes:L('ゲームの判断は、講座の内容そのまま','게임의 판단은 강좌 내용 그대로','The game runs on the course content'),
+ pLes:L('それぞれのレッスンが出てくる日を示しています。結果画面の 📘 からも同じレッスンに行けます。','각 레슨이 나오는 날을 표시했습니다. 결과 화면의 📘에서도 같은 레슨으로 갈 수 있습니다.','Each lesson shows the days it appears in. The 📘 links on the results screen lead to the same lessons.'),
+ hTw:L('案内役は、双子のコラドンとコラリン','안내 역할은 쌍둥이 코라돈과 코라린','Your guides: the twins Koradon and Korarin'),
+ r1:L('ヒント担当','힌트 담당','Tips'),n1:L('コラドン','코라돈','Koradon'),d1:L('迷ったときに声をかけてくれる、明るいお兄さん。ヒントは DAY 1 では最初から ON、DAY 2 からは自分で選べます。','헷갈릴 때 말을 걸어 주는 밝은 형. 힌트는 DAY 1에서는 처음부터 켜져 있고, DAY 2부터는 직접 고를 수 있습니다.','The cheerful elder twin who chimes in when you are stuck. Tips are on for DAY 1; from DAY 2 you choose.'),
+ r2:L('ルール担当','규칙 담당','Rules'),n2:L('コラリン','코라린','Korarin'),d2:L('判断の場面で「コラリンのルール」を教えてくれる、しっかり者の妹。安全に関わることには厳しめ。','판단 장면에서 「코라린의 규칙」을 알려 주는 야무진 동생. 안전에 관한 것에는 엄격한 편.','The no-nonsense younger twin who explains "Korarin\'s rule" at each decision. Strict about anything safety-related.'),
+ foot:L('登場する航空会社・便・お客様・規定の数値は教育用の架空のものです。実際の規定は自社マニュアルと公的情報で確認してください。','등장하는 항공사·항공편·승객·규정 수치는 교육용 가상 데이터입니다. 실제 규정은 자사 매뉴얼과 공적 정보로 확인하세요.','The airline, flights, passengers and rule values are fictional, for training. Always check real rules in your company manual and official sources.')
+};
+/* 18ステージ：ゲーム本体の STAGES と同じ順番・名前（src/game.js）。play＝プレイできる、key＝計算の実習 */
+var STAGES=[{"n":"01","nm":{"ja":"チェックイン","ko":"체크인","en":"Check-in"},"st":"play","key":0,"course":{"ja":"旅客ハンドリング実務","ko":"항공 여객운송 실무","en":"Passenger Operations"}},{"n":"02","nm":{"ja":"ゲート・搭乗","ko":"게이트·탑승","en":"Gate & boarding"},"st":"","key":0,"course":{"ja":"旅客ハンドリング実務","ko":"항공 여객운송 실무","en":"Passenger Operations"}},{"n":"03","nm":{"ja":"ロードコントロール（W&B）","ko":"탑재관리(W&B)","en":"Load control (W&B)"},"st":"","key":1,"course":{"ja":"旅客ハンドリング実務","ko":"항공 여객운송 실무","en":"Passenger Operations"}},{"n":"04","nm":{"ja":"ランプ・ターンアラウンド","ko":"램프·턴어라운드","en":"Ramp & turnaround"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"05","nm":{"ja":"運航管理（ディスパッチ）","ko":"운항관리(디스패치)","en":"Flight dispatch"},"st":"","key":1,"course":{"ja":"運航管理実務","ko":"운항관리 실무","en":"Flight Dispatch Operations"}},{"n":"06","nm":{"ja":"イレギュラー対応","ko":"비정상 운항 대응","en":"Irregular operations"},"st":"","key":0,"course":{"ja":"現場事例から学ぶ","ko":"현장 사례로 배우기","en":"Lessons from the Field"}},{"n":"07","nm":{"ja":"CIQ・出入国","ko":"CIQ·출입국","en":"CIQ & borders"},"st":"","key":0,"course":{"ja":"CIQの役割","ko":"CIQ의 역할","en":"What CIQ Does"}},{"n":"08","nm":{"ja":"航空貨物","ko":"항공화물","en":"Air cargo"},"st":"","key":0,"course":{"ja":"航空貨物実務","ko":"항공화물 실무","en":"Air Cargo Operations"}},{"n":"09","nm":{"ja":"整備・MEL・AOG","ko":"정비·MEL·AOG","en":"Maintenance, MEL, AOG"},"st":"","key":0,"course":{"ja":"航空機と整備","ko":"항공기와 정비","en":"Aircraft and Maintenance"}},{"n":"10","nm":{"ja":"営業・販売","ko":"영업·판매","en":"Sales"},"st":"","key":0,"course":{"ja":"航空営業実務","ko":"항공 영업 실무","en":"Airline Sales Operations"}},{"n":"11","nm":{"ja":"収益管理・運賃","ko":"수익관리·운임","en":"Revenue & fares"},"st":"","key":0,"course":{"ja":"航空営業実務","ko":"항공 영업 실무","en":"Airline Sales Operations"}},{"n":"12","nm":{"ja":"精算・財務","ko":"정산·재무","en":"Settlement & finance"},"st":"","key":0,"course":{"ja":"数字で読む会社","ko":"숫자로 읽는 회사","en":"Reading a Company Through Its Numbers"}},{"n":"13","nm":{"ja":"人事・総務","ko":"인사·총무","en":"HR & admin"},"st":"","key":0,"course":{"ja":"会社の人事・総務・財務実務","ko":"회사의 인사·총무·재무 실무","en":"HR, Admin and Finance in Practice"}},{"n":"14","nm":{"ja":"契約・ハンドリング会社管理","ko":"계약·조업사 관리","en":"Contracts & handling agents"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"15","nm":{"ja":"安全・保安・監査","ko":"안전·보안·감사","en":"Safety, security, audits"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"16","nm":{"ja":"当局対応・許認可","ko":"당국 대응·인허가","en":"Authorities & permits"},"st":"","key":0,"course":{"ja":"日本就航・支店開設ガイド","ko":"일본 취항·지점 개설 가이드","en":"Launching Flights to Japan"}},{"n":"17","nm":{"ja":"支店経営（月次・年次）","ko":"지점 경영(월간·연간)","en":"Running the station"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"18","nm":{"ja":"新規就航プロジェクト","ko":"신규 취항 프로젝트","en":"Launching a new route"},"st":"","key":0,"course":{"ja":"日本就航・支店開設ガイド","ko":"일본 취항·지점 개설 가이드","en":"Launching Flights to Japan"}}];
+var lang='ja';
+try{var al=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(al)>=0)lang=al;else{var s0=JSON.parse(localStorage.getItem('acn-saga-v1')||'{}');if(s0.lang)lang=s0.lang}}catch(e){}
+if(!/^(ja|ko|en)$/.test(lang))lang='ja';
+function tx(o){return o[lang]||o.ja}
+function E(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function $(i){return document.getElementById(i)}
+/* ゲームの設定と記録（同じサイトの中でだけ読める） */
+function cfg(){try{return JSON.parse(localStorage.getItem('acn-saga-v1')||'{}')||{}}catch(e){return {}}}
+/* 23차b(GPT 23-F02)：記録の読み込みと最高成績の表示は、ゲーム本体のコードをそのまま使う（ビルドで src/days.js の loadStore、src/game.js の legacyText・bestText を入れる）。読むだけで保存しない */
+/* src/days.js */
+  var HKEY = 'acn-saga-hist-v2';
+  function loadStore() {
+    var st = null;
+    try { st = JSON.parse(localStorage.getItem(HKEY) || 'null'); } catch (e) {}
+    if (!st || st.schemaVersion !== 2) {
+      st = { schemaVersion: 2, days: {}, attempts: [] };
+      try { var old = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); ['JP', 'KR'].forEach(function (c) { var b = old.best && old.best['pax.ci.01.' + c]; if (b) st.days['ci.d1.' + c] = { plays: 0, best: 0, bestRank: null, bestSafeRank: null, bestClear: null, safeEver: false, miss: {}, legacyBest: b, legacySafety: 'unknown' }; }); } catch (e) {}
+    }
+    /* 최고 성적 회차가 없는 예전 집계: 최근 시도(최대 20회) 중 등급·점수가 모두 같은 회차가 있을 때만 그 회차로 복원. 없으면 legacy로 둠 */
+    Object.keys(st.days || {}).forEach(function (k) {
+      var r = st.days[k], m = /^ci\.d(\d)\.(JP|KR)(\.practice)?$/.exec(k);
+      if (!r || r.top || !r.plays || !m) return;
+      var a = (st.attempts || []).filter(function (x) { return x.day === +m[1] && x.workplace === m[2] && (x.mode === 'practice') === !!m[3] && x.rank === r.bestRank && x.score === r.best; })[0];
+      if (a) { r.top = { rank: a.rank, tot: a.score, safe: !!a.safetyPassed, ops: a.opsPassed !== false, hints: !!a.hintsUsed, complete: a.complete !== false, at: (a.completedAt || '').slice(0, 10) }; r.topFrom = 'attempt'; }
+    });
+    /* 이전 schemaVersion 2 기록의 오답에 이유·행동·심각도가 없으면 unknown으로 읽음(지우지 않음) */
+    (st.attempts || []).forEach(function (a) { (a.mistakes || []).forEach(function (m) { if (!m.reasonKey) m.reasonKey = 'unknown'; if (!m.action) m.action = 'unknown'; if (!m.severity) m.severity = 'unknown'; }); });
+    /* 예전 기록에 같은 승객·같은 코드의 critical과 self-corrected가 함께 있으면 critical 우선으로 읽음(원본은 그대로 두고 표시만) */
+    (st.attempts || []).forEach(function (a) { var crit = {}; (a.mistakes || []).forEach(function (m) { if (m.severity === 'critical') crit[(m.paxId || '') + '|' + m.caseCode] = true; }); (a.mistakes || []).forEach(function (m) { if (m.severity === 'self-corrected' && crit[(m.paxId || '') + '|' + m.caseCode]) m.readAs = 'superseded-by-critical'; }); });
+    return st;
+  }
+/* src/game.js */
+  function legacyText(a) { return tx(L('以前の集計 ', '이전 집계 ', 'Earlier totals ')) + tx(L('最高ランク ', '최고 등급 ', 'best rank ')) + (a.bestRank || '—') + ' / ' + tx(L('最高点 ', '최고 점수 ', 'best score ')) + a.best; }
+  function bestText(r) {
+    if (!r) return '';
+    if (!r.top) return r.plays ? legacyText(r) : '';
+    var t = r.top, s = t.rank + ' · ' + t.tot + (t.safe ? ' · ✔' : '') + (t.hints ? ' · ' + tx(L('ヒント', '힌트', 'tips')) : '') + (t.complete === false ? ' · ' + tx(L('未完了', '미완료', 'unfinished')) : '');
+    var a = r.legacyAgg;
+    if (a && (RANKV0[a.bestRank] || 0) * 1000 + a.best > (RANKV0[t.rank] || 0) * 1000 + t.tot) s += ' (' + legacyText(a) + ')';
+    return s;
+  }
+  var RANKV0 = { S: 4, A: 3, B: 2, C: 1 };
+
+function hist(){try{return loadStore().days||{}}catch(e){return {}}}
+/* ゲームと同じ規則（src/days.js の cleared・status）：前の日を同じ勤務地で B 以上・安全合格・全員処理（bestClear）で終えると開く。練習モードは全部開く */
+var RV={S:4,A:3,B:2,C:1};
+function cleared(H,n,C){var r=H['ci.d'+n+'.'+C];return !!(r&&r.bestClear&&RV[r.bestClear]>=RV.B)}
+function status(H,n,C,pr){if(n===1||pr)return 'open';return cleared(H,n-1,C)?'open':'lock'}
+/* 最高成績（ゲームの bestText と同じ順）：同じ回の等級・点数、✔＝安全合格。回の分からない以前の記録は「以前の記録」 */
+function render(){
+  document.documentElement.lang=lang;
+  $('tag').textContent=tx(T.tag);$('lead').textContent=tx(T.lead);
+  $('pills').innerHTML=T.pills.map(function(p){return '<span>'+E(tx(p))+'</span>'}).join('');
+  ['hDays','pDays','nDays','stnNote','hHow','hBoard','pBoard','thName','thCourse','hLes','pLes','hTw','r1','n1','d1','r2','n2','d2','foot'].forEach(function(k){$(k).textContent=tx(T[k])});
+  Array.prototype.forEach.call(document.querySelectorAll('#langs button'),function(b){b.classList.toggle('on',b.getAttribute('data-l')===lang)});
+  var G=cfg(),H=hist(),C=G.country==='KR'?'KR':'JP',PR=!!G.practice,next=null;
+  $('stn').innerHTML=[['JP',T.stn[0]],['KR',T.stn[1]]].map(function(x){return '<button type="button" data-c="'+x[0]+'" class="'+(x[0]===C?'on':'')+'" aria-pressed="'+(x[0]===C)+'">'+E(tx(x[1]))+'</button>'}).join('');
+  $('pmode').hidden=!PR;$('pmode').textContent=tx(T.pmode);
+  $('days').innerHTML=DAYS.map(function(d){
+    var st=status(H,d.n,C,PR),r=H['ci.d'+d.n+'.'+C];
+    if(st==='open'&&!cleared(H,d.n,C)&&!next)next=d.n;
+    /* ゲームのタイトル画面の DAY ボタンと同じ文字（src/game.js renderTitle）：最高成績・以前の記録・ヒント・未完了 */
+    var lab=r?L('最高 ','최고 ','Best '):T.st.open,best=r&&st==='open'?(r.plays?bestText(r):(r.legacyBest?tx(L('以前の記録 ','이전 기록 ','Earlier '))+r.legacyBest:'')):'';
+    if(r&&!r.plays&&st==='open')lab=L('プレイできます · ','플레이 가능 · ','Playable · ');
+    if(r&&r.plays&&!r.top&&st==='open')lab=L('','','');
+    var txt=tx(lab)+best;
+    var chip=st==='lock'?'<span class="chip lock">'+E(tx(T.st.lock))+'</span>':r&&(best||r.plays)?'<span class="chip rank">'+E(txt)+'</span>':'<span class="chip open">'+E(txt)+'</span>';
+    var inner='<span class="stripe"></span><span class="n">DAY '+d.n+'</span><b>'+E(tx(d.nm))+'</b><span class="lr">'+E(tx(d.learn))+'</span>'+chip+(st==='open'?'<span class="go">'+E(tx(T.st.go))+'</span>':'');
+    return st==='open'?'<a class="day" href="'+GAME+'#day'+d.n+'">'+inner+'</a>':'<div class="day locked" aria-disabled="true">'+inner+'</div>';
+  }).join('');
+  $('play').textContent=tx(T.play)+' →';$('play').href=GAME+'#day1';
+  if(next&&next>1){$('cont').hidden=false;$('cont').textContent=tx(T.cont)+' · DAY '+next;$('cont').href=GAME+'#day'+next}else $('cont').hidden=true;
+  $('how').innerHTML=T.how.map(function(h,i){return '<div class="step"><img src="saga/img/'+h[2]+'.webp" alt=""><div><small>STEP 0'+(i+1)+'</small><h3>'+E(tx(h[0]))+'</h3><p>'+E(tx(h[1]))+'</p></div></div>'}).join('');
+  $('stages').innerHTML=STAGES.map(function(s){var p=s.st==='play';var stt=p?'<span class="st go">'+T.sGo+'</span>':s.key?'<span class="st calc">'+T.sCalc+'</span>':'<span class="st soon">'+T.sSoon+'</span>';
+    return '<tr class="'+(p?'play':'')+'"><td>'+s.n+'</td><td class="nm">'+(p?'<a href="'+GAME+'">'+E(tx(s.nm))+'</a>':E(tx(s.nm)))+'</td><td>'+E(tx(s.course))+'</td><td>'+stt+'</td></tr>'}).join('');
+  $('les').innerHTML=Object.keys(LDAYS).map(function(id){var t=LESSONS[id],u=LLINK.links[id];if(!t||!u)return '';var no=id.split('/')[1];
+    return '<a class="les" href="'+LLINK.base+u[lang]+'"><code>'+(id.indexOf('ciq/')===0?'CIQ ':'')+no+'</code><span>'+E(tx(t))+'<em>DAY '+LDAYS[id].join(' · ')+'</em></span></a>'}).join('');
+  Array.prototype.forEach.call($('stn').querySelectorAll('button'),function(b){b.onclick=function(){var g=cfg();g.country=b.getAttribute('data-c');try{localStorage.setItem('acn-saga-v1',JSON.stringify(g))}catch(e){}render()}});
+}
+$('langs').onclick=function(e){var b=e.target.closest('button[data-l]');if(!b)return;lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(er){}render()};
+function tick(){var t;try{t=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit'})+' NRT'}catch(e){t=''}$('clock').textContent=t}
+tick();setInterval(tick,30000);
+/* ゲームで遊んでから「戻る」で来たとき、記録を読み直す */
+window.addEventListener('pageshow',function(e){if(e.persisted)render()});
+render();
+})();
+</script>
+<script src="assets/nav.js"></script>
+</body>
+</html>

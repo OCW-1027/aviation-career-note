@@ -239,6 +239,19 @@ footer{background:#081828;color:#fff;padding:58px 24px}
 .foot a:hover{color:#fff}
 .foot b{display:block;margin-bottom:12px}
 .copy{max-width:var(--max);margin:30px auto 0;font-size:11px;color:#6f8394}
+/* 23차b（GPT 23-F03）：メニューが8つになり、981〜1200px では1行に入らずページが横にはみ出した。この幅ではメニューだけを2行目に（PCの見た目のまま） */
+@media(min-width:981px) and (max-width:1200px){
+  .nav{flex-wrap:wrap;height:auto;min-height:72px;padding:10px 24px;gap:6px 26px}
+  .navlinks{order:3;flex:1 1 100%;flex-wrap:wrap;gap:6px 22px;padding-bottom:4px}
+  .navlinks a{white-space:nowrap}
+  .navright{margin-left:auto}
+}
+/* 23차b（GPT 提案）：スマートフォンでは実務練習のカードを低く（最初の8つと順番はそのまま、題名は省かない） */
+@media(max-width:600px){
+  .practice-grid .lab,.practice-grid.all .lab{min-height:0;padding:14px;gap:8px}
+  .practice-grid .lab b,.practice-grid.all .lab b{font-size:16px;line-height:1.4}
+  .practice-grid .lab span{font-size:12px;line-height:1.5}
+}
 @media(max-width:980px){
   /* GPT 案ではメニューが消えていたので、2行目に並べて全部見えるようにした */
   .nav{flex-wrap:wrap;height:auto;padding:12px 18px;gap:10px 14px}

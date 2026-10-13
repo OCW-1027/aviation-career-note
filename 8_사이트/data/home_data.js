@@ -25,7 +25,7 @@ var SERIES=[
   a.ja=['空港で働く方・赴任や出張をする方','主要空港ガイド','日本・韓国・世界の主要空港：運用・乗り継ぎ・入国・今後の計画'];a.ko=['공항에서 일하는 사람·부임이나 출장 가는 사람','주요 공항 가이드','일본·한국·세계의 주요 공항: 운영·환승·입국·향후 계획'];a.en=['Airport staff and people relocating or travelling','Guide to Major Airports','Japan, Korea and the world: operations, transfers, entry and future plans']}
  var out=O.map(function(c){return by[c]}).filter(Boolean);SERIES.length=0;out.forEach(function(s){SERIES.push(s)})})();
 var TOOLS=[
-{id:'saga',p:'../1_지상직여객운송입문/AIRLINE_SAGA.html',ja:['AIRLINE SAGA\n空港の仕事体験ゲーム','グランドスタッフになって成田・仁川のチェックインを体験。旅券・座席・手荷物・モバイルバッテリーを判断し、接客の日本語は音声つき'],ko:['AIRLINE SAGA\n공항 업무 체험 게임','그라운드 스태프가 되어 나리타·인천 체크인을 체험. 여권·좌석·수하물·보조배터리를 판단하고 접객 일본어는 음성으로'],en:['AIRLINE SAGA\nAirport Job Game','Work the check-in counter at Narita or Incheon as ground staff: passports, seats, bags and power banks, with spoken Japanese']},
+{id:'saga',p:'../1_지상직여객운송입문/AIRLINE_SAGA_HOME.html',ja:['AIRLINE SAGA\n空港の仕事体験ゲーム','グランドスタッフになって成田・仁川のチェックインを体験。旅券・座席・手荷物・モバイルバッテリーを判断し、接客の日本語は音声つき'],ko:['AIRLINE SAGA\n공항 업무 체험 게임','그라운드 스태프가 되어 나리타·인천 체크인을 체험. 여권·좌석·수하물·보조배터리를 판단하고 접객 일본어는 음성으로'],en:['AIRLINE SAGA\nAirport Job Game','Work the check-in counter at Narita or Incheon as ground staff: passports, seats, bags and power banks, with spoken Japanese']},
 {id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['Revenue Managementの練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['Revenue Management 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and RevPAR']},
 {id:'fsc',p:'../2_일본취항지점개설가이드/燃油サーチャージ計算.html',ja:['日本発 燃油サーチャージの計算','ケロシン価格の平均と為替から旅客・貨物の額を決め、回収率を確かめて申請書の下書きまで'],ko:['일본발 유류할증료 계산','케로신 평균과 환율로 여객·화물 금액을 정하고 회수율을 확인해 신청서 초안까지'],en:['Japan-Origin Fuel Surcharge Calculator','From kerosene and FX averages to passenger and cargo amounts, the recovery ratio and a filing draft']},
 {id:'dsp',p:'../18_항공기초지식/航空路図の練習.html',ja:['運航管理実務の練習','航空路・飛行計画・燃料・管制・スロットを練習'],ko:['운항관리 실무 연습','항공로·비행계획·연료·관제·슬롯 연습'],en:['Flight Dispatch Practice','Airways, flight plans, fuel, ATC and slots']},
@@ -61,6 +61,11 @@ var TOOLS=[
 /* ホームのローリングバナー（2026.10）：1枚目はホームの見出し。ここに並べた順に2枚目から表示する。
    tag＝小さなラベル、h＝見出し（<br>で改行）、p＝説明、cta＝リンクの文字、href＝リンク先。プロモーション・特別求人・イベント・メンバーシップの価格はここを書き換える */
 window.HERO_SLIDES=[
+/* 23차：AIRLINE SAGA（ゲーム）。2枚目に出る（1枚目はいつもの見出し） */
+{tag:{ja:'ゲーム',ko:'게임',en:'GAME'},
+ h:{ja:'AIRLINE SAGA<br>カウンターの5日間',ko:'AIRLINE SAGA<br>카운터의 5일',en:'AIRLINE SAGA<br>Five days at the counter'},
+ p:{ja:'架空の航空会社 Vela Air のグランドスタッフになって、旅券・座席・手荷物・遅延を判断する教育用ゲーム。DAY 1 から DAY 5 まで遊べます。',ko:'가상 항공사 Vela Air의 그라운드 스태프가 되어 여권·좌석·수하물·지연을 판단하는 교육용 게임. DAY 1부터 DAY 5까지 플레이할 수 있습니다.',en:'An educational game: work as ground staff at the fictional Vela Air and make the calls on passports, seats, bags and delays. DAY 1 to DAY 5 are playable.'},
+ cta:{ja:'ゲームのホームへ',ko:'게임 홈으로',en:'Go to the game'},href:'../1_지상직여객운송입문/AIRLINE_SAGA_HOME.html'},
 {tag:{ja:'新着・講座更新',ko:'새 소식 · 강좌 업데이트',en:'NEW · Course update'},
  h:{ja:'航空機と整備が<br>24本に',ko:'항공기와 정비<br>24편으로 확장',en:'Aircraft and Maintenance<br>now 24 lessons'},
  p:{ja:'防除雪氷と、落雷・鳥衝突・ハードランディングのあとの臨時点検を加えました。航空営業の31本すべてに図も入りました。',ko:'제빙·방빙과 낙뢰·조류 충돌·하드 랜딩 뒤의 비정기 점검 레슨을 더했습니다. 항공영업 31편 전체에 그림도 넣었습니다.',en:'New lessons on de-icing and on inspections after lightning, bird strikes and hard landings. All 31 airline sales lessons now have figures.'},
