@@ -52,9 +52,12 @@ var TOOLS=[
 /* 資料・ツールの並び（2026.10 改訂）：3つのグループに分け、グループの中はツールの id で並べる（ファイル名は公開時に英語に変わるので、名前で探さない）。
    名前の \n は、カードでは改行（検索の結果では空白）。各ツールの grp＝グループの見出し [日本語, 韓国語, 英語]、g＝グループの最初のツールだけに見出し（ほかは null）。
    ホーム（index.html）の「すべてのツール」は grp が変わるところに小見出しを入れる。ここにないツールは最後のグループの後ろに並ぶ */
-(function(){var G=[[['航空実習・計算','항공 실습·계산','Aviation practice and calculators'],['saga','lc','dsp','rm','fsc','exam_jp','exam_kr']],
- [['財務実習','재무 실습','Finance practice'],['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo','ye']],
- [['資料・その他','기타 자료','Other resources'],['ann','talk','forms','faq','story','codes','delay','gloss','quiz']]],out=[],used={},last=G[G.length-1][0];
+/* 24차（사용자 결정 B안）：직무 흐름 순 — 공항·여객 → 운항 → 영업·수입 → 재무 → 학습 도구（강좌 목록과 같은 순서） */
+(function(){var G=[[['空港・旅客','공항·여객','Airport & passengers'],['saga','lc','ann','forms','faq','delay']],
+ [['運航','운항','Flight operations'],['dsp','exam_jp','exam_kr']],
+ [['営業・収入','영업·수입','Sales & revenue'],['rm','fsc']],
+ [['財務','재무','Finance'],['fin_link','fin_sim','fin_tx','fin_cost','fin_ratio','fin_val','fin_memo','ye']],
+ [['学習ツール','학습 도구','Study tools'],['gloss','codes','quiz','talk','story']]],out=[],used={},last=G[G.length-1][0];
  G.forEach(function(g){g[1].forEach(function(n,i){TOOLS.forEach(function(x,k){if(!used[k]&&x.id===n){used[k]=1;x.grp=g[0];x.g=i===0?g[0]:null;out.push(x)}})})});
  TOOLS.forEach(function(x,k){if(!used[k]){x.grp=last;x.g=null;out.push(x)}});TOOLS.length=0;out.forEach(function(x){TOOLS.push(x)})})();
 

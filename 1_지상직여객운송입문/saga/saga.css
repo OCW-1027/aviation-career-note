@@ -118,6 +118,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .bp .big{font-family:var(--f-mono);font-size:22px;font-weight:700}
 .bp .lab{font-size:10.5px;color:#5d7480;letter-spacing:.08em;text-transform:uppercase}
 .bp .grid{display:grid;grid-template-columns:repeat(4,auto);gap:4px 14px;margin-top:8px}
+.bp .bpnote{font-size:11px;color:#5d7480;margin-top:8px;line-height:1.4}   /* 24차b: 출발 10분 전 안내(작게) */
 .bars{height:30px;margin-top:8px;background:repeating-linear-gradient(90deg,#18323d 0 2px,transparent 2px 4px,#18323d 4px 5px,transparent 5px 8px,#18323d 8px 11px,transparent 11px 12px)}
 
 /* 판단 모달 */
@@ -149,6 +150,16 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .seg{display:flex;gap:6px;flex-wrap:wrap}
 .seg button{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:8px 12px;font-weight:700}
 .seg button.on{border-color:var(--vela);background:#e6f3f2;color:var(--vela)}
+/* 24차 추가: 정식 근무 | 연습 */
+.seg.mode{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 6px}
+.seg.mode button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:10px 12px;min-height:56px;color:inherit;font:inherit;font-weight:700;cursor:pointer}
+.seg.mode button b{font-size:15px}
+.seg.mode button span{font-size:12px;font-weight:600;color:var(--sub)}
+.seg.mode button.on{border-width:2px;padding:9px 11px}
+.seg.mode button.on b::before{content:'✓ '}
+.seg.mode button.on span{color:var(--vela)}
+.modenote{font-size:13px;color:var(--sub);margin:0 0 10px;line-height:1.5}
+.pill.prac{background:#5a3d8a;color:#f1e9ff}
 .stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
 .stg{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px;text-align:left;display:flex;flex-direction:column;gap:3px;min-height:86px}
 .stg .n{font-family:var(--f-mono);font-size:11px;color:var(--sub)}
@@ -350,3 +361,8 @@ html.sh-saga .bar{top:calc(env(safe-area-inset-top,0px) + 4px)}
 a.lessonref{color:inherit;text-decoration:underline;text-underline-offset:2px}
 /* 23차: PC 2단 화면에서 오른쪽 단이 좁을 때(가로 900~1100px) 탑승권 내용이 상자보다 6px 넓어 잘리던 문제 → 휴대폰과 같은 세로 배치 */
 @media (min-width:900px) and (max-width:1100px){.bp{grid-template-columns:1fr}.bp .s{flex-direction:row;flex-wrap:wrap;gap:2px 12px}.bp .grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* 24차: 비상구 좌석 안내문·서명 */
+.exitcard{background:#fffdf6;color:#18323d;border:1px solid #e3d6b0;border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13px}
+.exitcard ul{margin:6px 0 8px;padding-left:18px}.exitcard li{margin:2px 0}
+.exitcard .sigline{display:flex;align-items:flex-end;gap:10px;border-top:1px dashed #c9b98a;padding-top:6px;flex-wrap:wrap}
+.exitcard .sig{font-family:'Segoe Script','Brush Script MT',cursive;font-size:18px;color:#1d3f8f;transform:rotate(-3deg);min-width:0;overflow-wrap:anywhere}

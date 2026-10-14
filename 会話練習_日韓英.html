@@ -961,7 +961,16 @@ function copyConv(){if(!C)return;var o=aiParts(),s=(o.title?o.title+'\n':'')+C.l
 function aiSendText(){var ta=$('aiTx');if(!ta||!C||C.busy||C.step!=='chat')return;var v=ta.value.replace(/\s+$/,'').replace(/^\s+/,'').slice(0,400);if(!v)return;
  aiMicStop();ta.value='';grow(ta);C.log.push({w:'me',tx:v});C.hist.push({role:'user',content:v});C.autoTried=false;C.ending=/^(おわり|終わり|끝|end)[。.!！]?$/i.test(v);aiCall()}
 /* 送る：システム＋最後の14件まで（ユーザーの発言から始める）。Worker も 16件・1件1200字で止める */
-function histOut(m){var s=String(m.content);if(m.role!=='assistant'||s.charAt(0)!=='{')return s;try{var j=JSON.parse(s);if(j&&j.reply!=null)return JSON.stringify(j.tr?{reply:j.reply,tr:j.tr}:{reply:j.reply})}catch(e){}return s}
+/* 24차b（GPT C-R02・24-F01）：長い返答は、JSON を後から切ると後ろの tr（訳）が消え、AI が「訳なし」をまねるようになる。
+   reply と tr をそれぞれ短くしてから JSON にし、必ず limit 字以内・JSON として読める形にする（GPT 参考案 budgetDialogue と同じ考え方）。
+   保存（aiGot）と送信（histOut）の両方でこれを使う。文字は Array.from で数える（絵文字を途中で切らない） */
+function histPack(reply,tr,limit){limit=Math.max(64,Math.floor(+limit||1150));var r=String(reply==null?'':reply),x=String(tr==null?'':tr);
+ function cut(s,n){var a=Array.from(s);return a.length>n?a.slice(0,Math.max(1,n-1)).join('')+'…':s}
+ r=cut(r,limit);x=cut(x,limit);function pk(){return JSON.stringify(x?{reply:r,tr:x}:{reply:r})}var out=pk();
+ var k=0;while(out.length>limit&&k++<400){var rn=JSON.stringify(r).length,xn=x?JSON.stringify(x).length:0;
+  if(x&&xn>rn)x=cut(x,Math.max(1,Math.floor(Array.from(x).length*.8)));else r=cut(r,Math.max(1,Math.floor(Array.from(r).length*.8)));out=pk()}
+ return out.length>limit?JSON.stringify({reply:cut(r,40)}):out}
+function histOut(m){var s=String(m.content);if(m.role!=='assistant'||s.charAt(0)!=='{')return s;try{var j=JSON.parse(s);if(j&&j.reply!=null)return histPack(j.reply,j.tr,1150)}catch(e){}return s}
 function aiMsgs(){var h=C.hist.slice(-14);while(h.length&&h[0].role!=='user')h.shift();var M=h.map(function(m){return {role:m.role,content:histOut(m).slice(0,1200)}});
  /* 2026.10：마지막 학습자 말 뒤에 짧은 역할 알림(요청에만 붙음. 화면·이력·종료 정리에는 없음) */
  if(!C.ending&&M.length&&M[M.length-1].role==='user'){var p=PR[lang]||PR.ja,o=aiParts();M[M.length-1].content=(M[M.length-1].content+'\n\n'+fm(p.turn,{A:o.ai||'AI',M:o.me||p.meX})).slice(0,1200)}
@@ -997,7 +1006,7 @@ function aiGot(raw){var c=C;if(!c)return;var o=parseAI(raw);c.busy=false;
  if(o.recap){c.hist.push({role:'assistant',content:JSON.stringify({recap:o.recap}).slice(0,1200)});c.log.push({w:'recap',rc:o.recap});c.ended=true;c.ending=false;paintLog();return}
  if(!o.reply){var last=c.hist.pop();c.retry=last&&last.role==='user'?last:null;c.ending=false;c.log.push({w:'err',tx:t.eEmpty,retry:!!c.retry});paintLog();return}
  if(c.ending&&o.raw){c.log.push({w:'recap',rc:{phrases:[],good:o.reply,fix:''}});c.hist.push({role:'assistant',content:o.reply.slice(0,1200)});c.ended=true;c.ending=false;paintLog();return}
- var j=o.raw?o.reply:JSON.stringify(o.tr?{reply:o.reply,tr:o.tr}:{reply:o.reply});if(j.length>1150)j=o.raw?o.reply.slice(0,1150):JSON.stringify({reply:o.reply.slice(0,600)});
+ var j=o.raw?o.reply.slice(0,1150):histPack(o.reply,o.tr,1150);   /* 24차b（GPT 24-F01）：保存も送信と同じ histPack で。訳（tr）を消して reply だけ残す古い分岐はなくした */
  c.hist.push({role:'assistant',content:j});
  if(c.fix&&(o.fix||o.model)){for(var i=c.log.length-1;i>=0;i--)if(c.log[i].w==='me'){if(o.fix)c.log[i].fx=o.fix;
   /* お手本（2026.10）：AI が「不自然・場面に合わない」と見たときだけ。自分の発言と同じなら出さない */

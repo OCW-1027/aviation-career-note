@@ -58,7 +58,6 @@ html:lang(ko) .sg{font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans
 .stn button.on{background:var(--navy);color:#fff}
 .stnrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px}
 .stnrow small{color:var(--sub);font-size:13px}
-.pmode{font-size:12px;font-weight:800;color:var(--soon);background:var(--soonbg);border-radius:999px;padding:3px 10px}
 
 /* 5日のカード */
 .days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
@@ -166,7 +165,8 @@ a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 
   <section>
     <div class="sgh"><div><div class="eyebrow">Stage 01 · Check-in</div><h2 id="hDays"></h2></div><p id="pDays"></p></div>
-    <div class="stnrow"><span class="stn" id="stn" role="group"></span><small id="stnNote"></small><span class="pmode" id="pmode" hidden></span></div>
+    <div class="stnrow"><span class="stn" id="stn" role="group"></span><small id="stnNote"></small><span class="stn" id="mode" role="group"></span></div>
+    <p class="note" id="modeNote" style="margin:-4px 0 12px"></p>
     <div class="days" id="days"></div>
     <p class="note" id="nDays"></p>
   </section>
@@ -214,12 +214,14 @@ var T={
  cont:L('続きから','이어서 하기','Continue'),
  pills:[L('日本語・韓国語・英語','일본어·한국어·영어','Japanese · Korean · English'),L('接客の日本語は音声つき','접객 일본어 음성','Spoken Japanese service lines'),L('スマホ・PC','휴대폰·PC','Phone & PC'),L('成田・仁川の業務ルール','나리타·인천 업무 규칙','Narita & Incheon rules')],
  hDays:L('チェックイン編 ― カウンターの5日間','체크인편 — 카운터의 5일','Check-in: five days at the counter'),
- pDays:L('1日ずつ難しくなります。前の日をB以上・安全合格でクリアすると、次の日が開きます。','하루씩 어려워집니다. 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.','Each day gets harder. Clear a day with B or better and a safety pass to unlock the next.'),
+ pDays:L('1日ずつ難しくなります。前の日をB以上・安全合格で終えると、次の日が開きます。','하루씩 어려워집니다. 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.','Each day gets harder. Clear a day with B or better and a safety pass to open the next.'),
  stn:[L('成田','나리타','Narita'),L('仁川','인천','Incheon')],
- stnNote:L('勤務地ごとに記録と解放が別です。','근무지마다 기록과 해금이 따로입니다.','Records and unlocks are kept per station.'),
- pmode:L('練習モード：全部の日を選べます（記録は別）','연습 모드: 모든 날을 고를 수 있음(기록은 따로)','Practice mode: every day is open (separate records)'),
- nDays:L('記録はこの端末のブラウザに保存されます。練習モードはゲームのタイトル画面で切り替えます。','기록은 이 기기의 브라우저에 저장됩니다. 연습 모드는 게임 타이틀 화면에서 바꿉니다.','Records are saved in this browser on this device. Practice mode is switched on the game’s title screen.'),
- st:{open:L('プレイできます','플레이 가능','Playable'),lock:L('前の日をB以上・安全合格で解放','앞의 날을 B 이상·안전 합격으로 열림','Unlocks after the day before (B or better, safety pass)'),best:L('最高 ','최고 ','Best '),earlier:L('以前の記録 ','이전 기록 ','Earlier '),go:L('この日を選ぶ →','이 날 고르기 →','Choose this day →')},
+ stnNote:L('勤務地ごとに記録と進み具合が別です。','근무지마다 기록과 진행 상황이 따로입니다.','Records and progress are kept per station.'),
+ mode:[L('本番','실전','Shift'),L('練習','연습','Practice')],
+ modeNote:[L('本番：DAY 1から順番に進みます。結果は学習の記録に残ります。','실전: DAY 1부터 차례대로 진행합니다. 결과는 학습 기록에 남습니다.','Shift mode: go in order from DAY 1. Results go into your record.'),
+   L('練習：どの日もすぐ選べます。記録は練習用に別に残り、本番の進み具合は変わりません。','연습: 어느 날이든 바로 고를 수 있습니다. 기록은 연습용으로 따로 남고, 실전 진행에는 영향이 없습니다.','Practice: pick any day right away. Results are kept separately and do not change your shift-mode progress.')],
+ nDays:L('記録はこの端末のブラウザに保存されます。スマホとPCでは記録も「本番／練習」の設定も別です。','기록은 이 기기의 브라우저에 저장됩니다. 휴대폰과 PC는 기록도 「실전/연습」 설정도 따로입니다.','Records are saved in this browser on this device. Phone and PC keep separate records and separate shift/practice settings.'),
+ st:{open:L('勤務できます','근무 가능','Open'),lock:L('前の日をB以上・安全合格で終えると開きます','앞의 날을 B 이상·안전 합격으로 마치면 열립니다','Opens after the day before (B or better, safety pass)'),best:L('最高 ','최고 ','Best '),earlier:L('以前の記録 ','이전 기록 ','Earlier '),go:L('この日の勤務へ →','이 날 근무하기 →','Start this shift →')},
  hHow:L('1人のお客様を、最後まで','한 명의 승객을, 끝까지','One passenger, start to finish'),
  how:[[L('確かめる','확인한다','Check'),L('予約・旅券・渡航条件を照合。写真の人物は本人か、期限は足りるか。','예약·여권·입국 조건을 대조. 사진 속 인물이 본인인지, 기간은 충분한지.','Match the booking, passport and entry rules. Is it really them? Is it still valid?'),'prop_passport_01'],
       [L('判断する','판단한다','Decide'),L('座席・手荷物・モバイルバッテリー・遅延や機材変更。迷ったら責任者に確認するのも正解。','좌석·수하물·보조배터리·지연이나 기재 변경. 헷갈리면 책임자 확인도 정답.','Seats, bags, power banks, delays and aircraft changes. Asking the supervisor is a right answer too.'),'prop_scale_01'],
@@ -294,14 +296,17 @@ function render(){
   Array.prototype.forEach.call(document.querySelectorAll('#langs button'),function(b){b.classList.toggle('on',b.getAttribute('data-l')===lang)});
   var G=cfg(),H=hist(),C=G.country==='KR'?'KR':'JP',PR=!!G.practice,next=null;
   $('stn').innerHTML=[['JP',T.stn[0]],['KR',T.stn[1]]].map(function(x){return '<button type="button" data-c="'+x[0]+'" class="'+(x[0]===C?'on':'')+'" aria-pressed="'+(x[0]===C)+'">'+E(tx(x[1]))+'</button>'}).join('');
-  $('pmode').hidden=!PR;$('pmode').textContent=tx(T.pmode);
+  /* 24차 추가：ゲームのタイトル画面と同じ「本番｜練習」。どちらなのかを常に見せる */
+  $('mode').innerHTML=[false,true].map(function(v,i){return '<button type="button" data-p="'+(v?1:0)+'" class="'+(v===PR?'on':'')+'" aria-pressed="'+(v===PR)+'">'+E(tx(T.mode[i]))+'</button>'}).join('');
+  $('modeNote').textContent=tx(T.modeNote[PR?1:0]);
   $('days').innerHTML=DAYS.map(function(d){
     var st=status(H,d.n,C,PR),r=H['ci.d'+d.n+'.'+C];
     if(st==='open'&&!cleared(H,d.n,C)&&!next)next=d.n;
     /* ゲームのタイトル画面の DAY ボタンと同じ文字（src/game.js renderTitle）：最高成績・以前の記録・ヒント・未完了 */
     var lab=r?L('最高 ','최고 ','Best '):T.st.open,best=r&&st==='open'?(r.plays?bestText(r):(r.legacyBest?tx(L('以前の記録 ','이전 기록 ','Earlier '))+r.legacyBest:'')):'';
-    if(r&&!r.plays&&st==='open')lab=L('プレイできます · ','플레이 가능 · ','Playable · ');
+    if(r&&!r.plays&&st==='open')lab=L('勤務できます · ','근무 가능 · ','Open · ');
     if(r&&r.plays&&!r.top&&st==='open')lab=L('','','');
+    if(PR&&r&&st==='open'&&(r.plays||r.legacyBest))lab={ja:'本番 '+lab.ja,ko:'실전 '+lab.ko,en:'Shift '+lab.en};   /* 24차b：練習モードでも表示は本番の記録 */
     var txt=tx(lab)+best;
     var chip=st==='lock'?'<span class="chip lock">'+E(tx(T.st.lock))+'</span>':r&&(best||r.plays)?'<span class="chip rank">'+E(txt)+'</span>':'<span class="chip open">'+E(txt)+'</span>';
     var inner='<span class="stripe"></span><span class="n">DAY '+d.n+'</span><b>'+E(tx(d.nm))+'</b><span class="lr">'+E(tx(d.learn))+'</span>'+chip+(st==='open'?'<span class="go">'+E(tx(T.st.go))+'</span>':'');
@@ -314,6 +319,7 @@ function render(){
     return '<tr class="'+(p?'play':'')+'"><td>'+s.n+'</td><td class="nm">'+(p?'<a href="'+GAME+'">'+E(tx(s.nm))+'</a>':E(tx(s.nm)))+'</td><td>'+E(tx(s.course))+'</td><td>'+stt+'</td></tr>'}).join('');
   $('les').innerHTML=Object.keys(LDAYS).map(function(id){var t=LESSONS[id],u=LLINK.links[id];if(!t||!u)return '';var no=id.split('/')[1];
     return '<a class="les" href="'+LLINK.base+u[lang]+'"><code>'+(id.indexOf('ciq/')===0?'CIQ ':'')+no+'</code><span>'+E(tx(t))+'<em>DAY '+LDAYS[id].join(' · ')+'</em></span></a>'}).join('');
+  Array.prototype.forEach.call($('mode').querySelectorAll('button'),function(b){b.onclick=function(){var g=cfg();g.practice=b.getAttribute('data-p')==='1';try{localStorage.setItem('acn-saga-v1',JSON.stringify(g))}catch(e){}render()}});
   Array.prototype.forEach.call($('stn').querySelectorAll('button'),function(b){b.onclick=function(){var g=cfg();g.country=b.getAttribute('data-c');try{localStorage.setItem('acn-saga-v1',JSON.stringify(g))}catch(e){}render()}});
 }
 $('langs').onclick=function(e){var b=e.target.closest('button[data-l]');if(!b)return;lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(er){}render()};
