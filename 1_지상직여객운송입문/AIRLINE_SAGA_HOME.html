@@ -31,6 +31,12 @@ html:lang(ko) .sg{font-family:Inter,"Noto Sans KR","Noto Sans JP",system-ui,sans
 .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,24,48,.86) 0%,rgba(16,24,48,.62) 38%,rgba(16,24,48,0) 66%)}
 .hero .cast{position:absolute;bottom:0;height:88%;max-width:none;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+/* 26차 사용자 요청(10-14)：카운터 장면처럼 — 직원과 줄 선 손님(뒤일수록 조금 작게)、그 앞에 코라돈·코라린 둘이 나란히. 모두 화면 안에 들어오게 오른쪽 기준으로 배치 */
+.hero .c-st{right:27%;height:70%;bottom:2%;z-index:2}
+.hero .c-pm{right:13%;height:63%;bottom:5%;z-index:1}
+.hero .c-pf{right:2%;height:58%;bottom:7%;z-index:1}
+.hero .c-kr{right:38%;height:25%;bottom:2%;z-index:3}
+.hero .c-kd{right:45%;height:24%;bottom:2%;z-index:3}
 .hero .copy{position:absolute;left:0;top:0;bottom:0;width:min(540px,46%);padding:clamp(18px,4vw,44px);display:flex;flex-direction:column;justify-content:center;color:#fff}
 .eyebrow{font:700 12px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-ink)}
 .hero .eyebrow{color:#ffcf73}
@@ -123,8 +129,12 @@ a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
   .hero{aspect-ratio:auto;min-height:0;display:flex;flex-direction:column}
   .hero .bg{position:absolute;height:100%}
   .hero .shade{background:linear-gradient(180deg,rgba(16,24,48,.15) 0%,rgba(16,24,48,.55) 38%,rgba(16,24,48,.92) 62%)}
-  .hero .castbox{position:relative;height:clamp(220px,40vw,330px)}
-  .hero .cast{height:100%}
+  .hero .castbox{position:relative;height:clamp(200px,36vw,280px);margin-bottom:8px}
+  .hero .c-st{right:40%;height:86%;bottom:0}
+  .hero .c-pm{right:21%;height:78%;bottom:3%}
+  .hero .c-pf{right:3%;height:72%;bottom:5%}
+  .hero .c-kr{right:57%;height:34%;bottom:0}
+  .hero .c-kd{right:68%;height:32%;bottom:0}
   .hero .copy{position:relative;width:100%;padding:4px clamp(18px,4vw,36px) 24px}
   .hero h1{font-size:clamp(34px,8vw,56px)}
 }
@@ -148,10 +158,11 @@ a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
     <img class="bg" src="saga/img/checkin_bg_01.webp" alt="">
     <div class="shade"></div>
     <div class="castbox">
-      <img class="cast" src="saga/img/staff_checkin_greet_01.webp" alt="" style="left:58%;height:86%">
-      <img class="cast" src="saga/img/passenger_male_02.webp" alt="" style="left:76%;height:80%">
-      <img class="cast" src="saga/img/passenger_female_01_happy_01.webp" alt="" style="left:86%;height:72%">
-      <img class="cast" src="saga/img/koradon_greet_01.webp" alt="" style="left:48%;height:34%">
+      <img class="cast c-st" src="saga/img/staff_checkin_greet_01.webp" alt="">
+      <img class="cast c-pm" src="saga/img/passenger_male_02.webp" alt="">
+      <img class="cast c-pf" src="saga/img/passenger_female_01_happy_01.webp" alt="">
+      <img class="cast c-kd" src="saga/img/koradon_greet_01.webp" alt="">
+      <img class="cast c-kr" src="saga/img/korarin_greet_01.webp" alt="">
     </div>
     <div class="copy">
       <div class="eyebrow">Vela Air · Ground Staff Simulation</div>
@@ -272,12 +283,17 @@ function cfg(){try{return JSON.parse(localStorage.getItem('acn-saga-v1')||'{}')|
   }
 /* src/game.js */
   function legacyText(a) { return tx(L('以前の集計 ', '이전 집계 ', 'Earlier totals ')) + tx(L('最高ランク ', '최고 등급 ', 'best rank ')) + (a.bestRank || '—') + ' / ' + tx(L('最高点 ', '최고 점수 ', 'best score ')) + a.best; }
-  function bestText(r) {
+  function bestText(r, dn) {
     if (!r) return '';
     if (!r.top) return r.plays ? legacyText(r) : '';
     var t = r.top, s = t.rank + ' · ' + t.tot + (t.safe ? ' · ✔' : '') + (t.hints ? ' · ' + tx(L('ヒント', '힌트', 'tips')) : '') + (t.complete === false ? ' · ' + tx(L('未完了', '미완료', 'unfinished')) : '');
+    /* 25차b(GPT 25-R01): 새 판으로 아직 하지 않은 Day 1 기록(채점 버전 표시 없음)은 예전 3항목 채점 — 처음 화면에서도 구분 */
+    if (dn === 1 && !t.scoreVer) s += ' (' + tx(L('以前の採点', '이전 채점', 'earlier scoring')) + ')';
     var a = r.legacyAgg;
     if (a && (RANKV0[a.bestRank] || 0) * 1000 + a.best > (RANKV0[t.rank] || 0) * 1000 + t.tot) s += ' (' + legacyText(a) + ')';
+    /* 25차: 예전 채점(Day 1의 3항목)으로 받은 최고 기록은 따로 표시 — 새 채점과 섞어 비교하지 않음 */
+    var pt = r.prevTop && r.prevTop.basic3;
+    if (pt) s += ' (' + tx(L('以前の採点 ', '이전 채점 ', 'earlier scoring ')) + pt.rank + ' · ' + pt.tot + (pt.safe ? ' · ✔' : '') + ')';
     return s;
   }
   var RANKV0 = { S: 4, A: 3, B: 2, C: 1 };
@@ -303,7 +319,7 @@ function render(){
     var st=status(H,d.n,C,PR),r=H['ci.d'+d.n+'.'+C];
     if(st==='open'&&!cleared(H,d.n,C)&&!next)next=d.n;
     /* ゲームのタイトル画面の DAY ボタンと同じ文字（src/game.js renderTitle）：最高成績・以前の記録・ヒント・未完了 */
-    var lab=r?L('最高 ','최고 ','Best '):T.st.open,best=r&&st==='open'?(r.plays?bestText(r):(r.legacyBest?tx(L('以前の記録 ','이전 기록 ','Earlier '))+r.legacyBest:'')):'';
+    var lab=r?L('最高 ','최고 ','Best '):T.st.open,best=r&&st==='open'?(r.plays?bestText(r,d.n):(r.legacyBest?tx(L('以前の記録 ','이전 기록 ','Earlier '))+r.legacyBest:'')):'';
     if(r&&!r.plays&&st==='open')lab=L('勤務できます · ','근무 가능 · ','Open · ');
     if(r&&r.plays&&!r.top&&st==='open')lab=L('','','');
     if(PR&&r&&st==='open'&&(r.plays||r.legacyBest))lab={ja:'本番 '+lab.ja,ko:'실전 '+lab.ko,en:'Shift '+lab.en};   /* 24차b：練習モードでも表示は本番の記録 */

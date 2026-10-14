@@ -100,9 +100,10 @@ window.RULES = {
                seat: L('どこでも大丈夫です。', '아무 데나 괜찮아요.', 'Anywhere is fine.'), dg: common.dgNone, thanks: common.thanks,
                fix: L('え、名前が違っていましたか？ 直してもらえて助かります。', '어, 이름이 틀렸었나요? 고쳐 주셔서 다행이에요.', 'Oh, was my name wrong? Thanks for fixing it.'),
                rebook: L('えっ、予約を取り直すんですか…。わかりました。', '네? 예약을 다시 해야 하나요…. 알겠습니다.', 'What, I have to book again…? All right.') } },
-      { id: 'p3', art: 'passenger_female_03', issue: 'infantExit', look: { skin: '#f7dcc6', hair: '#5a3a28', style: 'long', outfit: '#8cc5a8', g: 'f', baby: true },
+      { id: 'p3', art: 'passenger_female_03_infant_01', photo: 'female_03', voice: 'passenger_female_03', issue: 'infantExit',   /* 25차b(GPT 25-R02 후속): 아기를 안은 그림(Day 3과 같은 그림) — 여권 사진·목소리는 본인(예전 그림의 음성 그대로) */
+        look: { skin: '#f7dcc6', hair: '#5a3a28', style: 'long', outfit: '#8cc5a8', g: 'f', baby: true },
         pp: { sur: 'TANAKA', given: 'HARUKA', nat: 'JPN', no: 'XT1093384', dob: '1961-07-30', sex: 'F', exp: '2029-09-01' },
-        inf: { sur: 'TANAKA', given: 'SORA', dob: '2025-12-04', no: 'XT5520918', exp: '2030-12-01' },
+        inf: { sur: 'TANAKA', given: 'SORA', dob: '2025-12-04', no: 'XT5520918', exp: '2030-12-01', photo: 'infant_01', rel: L('祖母と孫', '할머니와 손주', 'grandmother and grandchild') },   /* 25차(GPT 업무 정확성): Day 1 유아도 여권 사진·동반 관계 표시 */
         pnr: { rloc: 'H9NB4C', sur: 'TANAKA', given: 'HARUKA', title: 'MRS', cls: 'Y', ssr: ['INFT TANAKA/SORA 04DEC25'], req: 'exit' },
         bags: [{ kg: 22.0 }, { kg: 6.5, stroller: true }], carry: 5.0, dg: 'none',
         say: { hello: L('まだ赤ちゃんの孫と一緒です。足元の広い非常口の席にしてもらえますか？', '아기 손주와 함께 왔어요. 다리 공간이 넓은 비상구 좌석으로 해 주실 수 있나요?', "I'm travelling with my baby grandchild. Could I have an exit row seat for the legroom?"),
@@ -760,7 +761,11 @@ window.RULES = {
     var k = key(day, country) + (run.practice ? '.practice' : ''), r = hist[k] || { plays: 0, best: 0, bestRank: null, bestSafeRank: null, bestClear: null, safeEver: false, miss: {} };
     /* 회차를 알 수 없는 예전 집계는 따로 보관(지우지 않음, 같은 회차로 추정하지 않음) */
     if (!r.top && r.plays > 0 && !r.legacyAgg) r.legacyAgg = { bestRank: r.bestRank, best: r.best, safeEver: !!r.safeEver };
-    var cur = { rank: run.rank, tot: run.tot, safe: !!run.safe, ops: run.ops !== false, hints: !!run.hints, complete: !!run.complete, at: run.at };
+    /* 25차(GPT 의견): 채점 방식 버전. Day 1은 25차부터 Day 2 이후와 같은 7항목(full7), 그 전 Day 1은 3항목(basic3).
+       다른 버전의 최고 기록은 지우지 않고 prevTop[버전]으로 옮겨 보관·표시(새 버전끼리만 비교). 해금 근거(bestClear)는 그대로 둠 */
+    var ver = run.scoreVer || 'full7', oldVer = day.n === 1 ? 'basic3' : 'full7';
+    if (r.top && (r.top.scoreVer || oldVer) !== ver) { var pv = r.top.scoreVer || oldVer; r.prevTop = r.prevTop || {}; if (!r.prevTop[pv] || better(r.top, r.prevTop[pv])) r.prevTop[pv] = Object.assign({}, r.top, { scoreVer: pv }); r.top = null; }
+    var cur = { rank: run.rank, tot: run.tot, safe: !!run.safe, ops: run.ops !== false, hints: !!run.hints, complete: !!run.complete, at: run.at, scoreVer: ver };
     if (better(cur, r.top)) r.top = cur;
     r.plays++;
     if (run.tot > r.best) r.best = run.tot;
@@ -768,7 +773,7 @@ window.RULES = {
     if (run.safe) { r.safeEver = true; if (!r.bestSafeRank || RANKV[run.rank] > RANKV[r.bestSafeRank]) r.bestSafeRank = run.rank; }
     if (run.safe && run.complete && (!r.bestClear || RANKV[run.rank] > RANKV[r.bestClear])) r.bestClear = run.rank;
     (run.miss || []).forEach(function (c) { r.miss[c] = (r.miss[c] || 0) + 1; });
-    r.last = { rank: run.rank, tot: run.tot, safe: run.safe, at: run.at };
+    r.last = { rank: run.rank, tot: run.tot, safe: run.safe, at: run.at, scoreVer: ver };
     hist[k] = r;
     return r;
   }
@@ -1120,6 +1125,8 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
         try { var pk = STG.photoKey(o); if (A[pk]) out[pk] = 1; } catch (e) {}
         var own = 'passport_' + base.replace('passenger_', '') + '_front_01'; if (A[own]) out[own] = 1;   // 사진을 바꿔 쓰는 동행도 본인 여권 사진이 나올 수 있음
       }
+      /* 25차b(GPT 25-R02): 그림(art) 없이 사진 키만 있는 중첩 인물(Day 1 유아 inf.photo 등)의 여권 사진도 미리 받기 */
+      else if (o.photo && typeof o.photo === 'string') { var ph = 'passport_' + o.photo + '_front_01'; if (A[ph]) out[ph] = 1; }
       Object.keys(o).forEach(function (n) { if (n !== 'say') walk(o[n], d + 1); });
     })(p, 0);
     return Object.keys(out);
@@ -1188,7 +1195,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     if (pre) ST.prefetchQueued++; else ST.onDemand++;
     next();
   }
-  function cast(p) { return String(p.art || '').replace(/_wheelchair$/, '_cane'); }
+  function cast(p) { return String(p.voice || p.art || '').replace(/_wheelchair$/, '_cane'); }
   function paxKeys(p) { var out = []; if (p && p.say) Object.keys(p.say).forEach(function (n) { var v = p.say[n]; if (v && v.ja) out.push(VO.key(cast(p), v.ja)); }); return out; }
   /* 이번 근무의 승객 대사를 지금 승객부터 → 다음 승객 순으로(이미 받은 것은 건너뜀) */
   function prefetchShift() {
@@ -1345,7 +1352,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var dd = curDay(); G.day = dd.n; M = dd.mission; applyDayHints(dd.n);
     V = M.variants[G.country];
     var seed = M.generated ? (window.SAGA_SEED || (Date.now() % 2147483647)) : 0;
-    S = { clock: pm(V.start), close: pm(V.close), bgQueue: 9, list: M.generated ? V.pax(seed) : V.pax(), seed: seed, adv: dd.n >= 2, idx: -1, cur: null, results: [], revenue: [], seats: M.aircraft.taken.slice(), infantSeats: M.aircraft.infantSeats.slice(), strikes: 0, seq: 41, day: dd, ac: M.aircraft, evChecks: [], evRep: { need: 0, done: 0 } };
+    S = { clock: pm(V.start), close: pm(V.close), bgQueue: 9, list: M.generated ? V.pax(seed) : V.pax(), seed: seed, adv: true,   /* 25차(사용자 10-14): Day 1도 Day 2 이후와 같은 기능(사진 대조·다시 확인·SV·발급일·기내 반입 계량·7항목 채점). 힌트 상한만 Day 2부터 */ idx: -1, cur: null, results: [], revenue: [], seats: M.aircraft.taken.slice(), infantSeats: M.aircraft.infantSeats.slice(), strikes: 0, seq: 41, day: dd, ac: M.aircraft, evChecks: [], evRep: { need: 0, done: 0 } };
   }
   function addTime(m) {
     S.clock += m; S.bgQueue = Math.max(2, S.bgQueue + (Math.random() < m / 4 ? 1 : 0) - (Math.random() < m / 5 ? 1 : 0));
@@ -1360,12 +1367,17 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
 
   /* 최고 성적(INT-F03): 같은 회차의 등급·점수, ✔ = 그 회차가 안전 합격. 회차를 알 수 없는 예전 집계는 따로 표시 */
   function legacyText(a) { return tx(L('以前の集計 ', '이전 집계 ', 'Earlier totals ')) + tx(L('最高ランク ', '최고 등급 ', 'best rank ')) + (a.bestRank || '—') + ' / ' + tx(L('最高点 ', '최고 점수 ', 'best score ')) + a.best; }
-  function bestText(r) {
+  function bestText(r, dn) {
     if (!r) return '';
     if (!r.top) return r.plays ? legacyText(r) : '';
     var t = r.top, s = t.rank + ' · ' + t.tot + (t.safe ? ' · ✔' : '') + (t.hints ? ' · ' + tx(L('ヒント', '힌트', 'tips')) : '') + (t.complete === false ? ' · ' + tx(L('未完了', '미완료', 'unfinished')) : '');
+    /* 25차b(GPT 25-R01): 새 판으로 아직 하지 않은 Day 1 기록(채점 버전 표시 없음)은 예전 3항목 채점 — 처음 화면에서도 구분 */
+    if (dn === 1 && !t.scoreVer) s += ' (' + tx(L('以前の採点', '이전 채점', 'earlier scoring')) + ')';
     var a = r.legacyAgg;
     if (a && (RANKV0[a.bestRank] || 0) * 1000 + a.best > (RANKV0[t.rank] || 0) * 1000 + t.tot) s += ' (' + legacyText(a) + ')';
+    /* 25차: 예전 채점(Day 1의 3항목)으로 받은 최고 기록은 따로 표시 — 새 채점과 섞어 비교하지 않음 */
+    var pt = r.prevTop && r.prevTop.basic3;
+    if (pt) s += ' (' + tx(L('以前の採点 ', '이전 채점 ', 'earlier scoring ')) + pt.rank + ' · ' + pt.tot + (pt.safe ? ' · ✔' : '') + ')';
     return s;
   }
   var RANKV0 = { S: 4, A: 3, B: 2, C: 1 };
@@ -1384,7 +1396,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var days = DY.list.map(function (d) {
       var stt = DY.status(G.hist, d.n, G.country, G.practice), r = DY.rec(G.hist, d, G.country);
       var lab = stt === 'soon' ? L('準備中', '준비 중', 'Coming') : stt === 'lock' ? L('前の日をB以上・安全合格で', '앞의 날을 B 이상·안전 합격으로', 'Clear the day before: B or better, safety pass') : r ? L('最高 ', '최고 ', 'Best ') : L('勤務できます', '근무 가능', 'Open');
-      var best = r && stt === 'open' ? (r.plays ? bestText(r) : (r.legacyBest ? tx(L('以前の記録 ', '이전 기록 ', 'Earlier ')) + r.legacyBest : '')) : '';
+      var best = r && stt === 'open' ? (r.plays ? bestText(r, d.n) : (r.legacyBest ? tx(L('以前の記録 ', '이전 기록 ', 'Earlier ')) + r.legacyBest : '')) : '';
       if (r && !r.plays && stt === 'open') lab = L('勤務できます · ', '근무 가능 · ', 'Open · ');
       if (r && r.plays && !r.top && stt === 'open') lab = L('', '', '');
       /* 24차b(GPT 의견): 연습 모드에서도 첫 화면의 최고 기록은 실전 기록 — 「실전」이라고 밝힘 */
@@ -1403,7 +1415,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       '<button id="tg-p" aria-pressed="' + !!G.practice + '" class="' + (G.practice ? 'on' : '') + '"><b>' + esc(tx(T.modeP)) + '</b><span>' + esc(tx(L('全部の日・記録は別', '모든 날·기록 따로', 'All days · separate records'))) + '</span></button></div>' +
       '<p class="modenote">' + esc(tx(G.practice ? L('練習：どの日もすぐ選べます。記録は練習用に別に残り、本番の進み具合は変わりません。', '연습: 어느 날이든 바로 고를 수 있습니다. 기록은 연습용으로 따로 남고, 실전 진행에는 영향이 없습니다.', 'Practice: pick any day right away. Results are kept separately and do not change your shift-mode progress.') : L('本番：前の日をB以上・安全合格で終えると次の日が開きます。結果は学習の記録に残ります。', '실전: 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다. 결과는 학습 기록에 남습니다.', 'Shift mode: clear a day with B or better and a safety pass to open the next. Results go into your record.'))) + '</p>' +
       '<div class="days" id="days">' + days + '</div>' +
-      (G.hints && !G.practice ? '<p class="small" style="margin:6px 0 0">' + esc(tx(L('ヒントON：DAY 2以降の最高ランクはAになります。', '힌트 켬: DAY 2부터 최고 등급은 A입니다.', 'Tips on: from DAY 2 the best possible rank is A.'))) + '</p>' : '') + '</div>' +
+      (G.hints && !G.practice ? '<p class="small" style="margin:6px 0 0">' + esc(tx(L('ヒントON：DAY 1（はじめての勤務）はヒントを使ってもSまで。DAY 2以降は最高ランクがAになります。', '힌트 켬: DAY 1(첫 근무)은 힌트를 써도 S까지 받을 수 있고, DAY 2부터는 최고 등급이 A입니다.', 'Tips on: DAY 1 (first shift) can still reach S with tips; from DAY 2 the best possible rank is A.'))) + '</p>' : '') + '</div>' +
       hashNoteHtml() + '<button class="start" id="go">' + esc(tx(T.start)) + (G.practice ? ' · ' + esc(tx(T.modeP)) : '') + ' · DAY ' + dd.n + ' ' + esc(tx(dd.nm)) + ' · ' + dd.mission.variants[G.country].flight + ' ' + dd.mission.variants[G.country].from + '→' + dd.mission.variants[G.country].to + '</button>' +
       '<div class="panel"><h2>' + esc(tx(T.stages)) + '</h2><div class="stages">' + st + '</div></div>' +
       '<p style="font-size:12px;color:var(--sub)">' + esc(tx(T.edu)) + '</p><p style="font-size:11px;color:var(--sub);margin-top:-6px">' + esc(tx(T.credit)) + '</p></div>';
@@ -1456,7 +1468,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
   function exprOf(m) { return m >= 75 ? 'happy' : m >= 50 ? 'neutral' : m >= 30 ? 'worried' : 'upset'; }
   function drawPax() { STG.pax(S.cur ? S.cur.p : null, S.cur ? S.cur.mood : 0); }
   /* 음성 배역: 그림이 바뀌어도(지팡이→공항 휠체어) 같은 사람은 같은 목소리·같은 음성 키 */
-  function voiceCast(p) { return String(p.art || '').replace(/_wheelchair$/, '_cane'); }
+  function voiceCast(p) { return String(p.voice || p.art || '').replace(/_wheelchair$/, '_cane'); }
   function say(who, text, silent) {
     var el = who === 'me' ? $('#bme') : $('#bpx');
     if (!el || !S || !S.cur) return;
@@ -1490,9 +1502,9 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     say('me', D.greet);
     var me0 = S.cur; setTimeout(function () { if (S.cur === me0 && G.screen === 'play') say('pax', p.say.hello); }, 650);
     addTime(M.cost.greet); updateBar();
-    if (has(p, 'tutorial')) guide(L('まずは<b>「予約」</b>でお客様の予約を呼び出しましょう。次に<b>「旅券」</b>の4項目、<b>「渡航条件」</b>、<b>「座席」</b>、<b>「手荷物」</b>（保安質問も）、最後に<b>「搭乗券」</b>です。順番は自由ですが、確認を飛ばすと後で問題が起きます。',
-      '먼저 <b>「예약」</b>에서 승객의 예약을 불러오세요. 다음은 <b>「여권」</b> 4항목, <b>「입국 조건」</b>, <b>「좌석」</b>, <b>「수하물」</b>(보안 질문 포함), 마지막으로 <b>「탑승권」</b>입니다. 순서는 자유지만 확인을 건너뛰면 나중에 문제가 생깁니다.',
-      'Start with <b>Booking</b> to pull up the reservation. Then the four <b>Passport</b> checks, <b>Entry</b>, <b>Seat</b>, <b>Bags</b> (with the security questions), and finally the <b>Boarding pass</b>. Any order works, but skipped checks come back to bite you.'));
+    if (has(p, 'tutorial')) guide(L('まずは<b>「予約」</b>でお客様の予約を呼び出しましょう。次に<b>「旅券」</b>の3項目（有効期限・写真とご本人・予約の名前。幼児連れなら幼児の旅券も）、<b>「渡航条件」</b>、<b>「座席」</b>、<b>「手荷物」</b>（保安質問も）、最後に<b>「搭乗券」</b>です。順番は自由ですが、確認を飛ばすと後で問題が起きます。',
+      '먼저 <b>「예약」</b>에서 승객의 예약을 불러오세요. 다음은 <b>「여권」</b> 3항목(유효기간·사진과 본인·예약 이름, 유아 동반이면 유아 여권도), <b>「입국 조건」</b>, <b>「좌석」</b>, <b>「수하물」</b>(보안 질문 포함), 마지막으로 <b>「탑승권」</b>입니다. 순서는 자유지만 확인을 건너뛰면 나중에 문제가 생깁니다.',
+      'Start with <b>Booking</b> to pull up the reservation. Then the three <b>Passport</b> checks (validity, photo vs. face, booking name — plus the infant\'s passport if there is one), <b>Entry</b>, <b>Seat</b>, <b>Bags</b> (with the security questions), and finally the <b>Boarding pass</b>. Any order works, but skipped checks come back to bite you.'));
     else guide(S.adv ? d2Hint(p) : '');
     renderTabs(); showTab('pnr'); STG.pose('greet', 2200);
     if (S.delay && p.complain && !S.cur.flags.cmpDone) { var me2 = S.cur; setTimeout(function () { if (S.cur === me2 && G.screen === 'play' && !me2.flags.cmpDone) runComplaint(); }, 1500); }
@@ -1514,7 +1526,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     $('#tabs').classList.toggle('many', !!S.cur.p.sup); $('#tabs').innerHTML = (S.cur.p.sup ? ['pnr', 'pp', 'sup', 'entry', 'seat', 'bag', 'bp'] : ['pnr', 'pp', 'entry', 'seat', 'bag', 'bp']).map(function (k) { return '<button class="tab' + (S.cur.tab === k ? ' on' : '') + '" data-k="' + k + '"><i class="' + (tabState(k) || '') + '"></i>' + esc(tx(T.tabs[k])) + '</button>'; }).join('');
     $('#tabs').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; sfx.tap(); showTab(b.dataset.k); };
   }
-  function showTab(k) { S.cur.tab = k; renderTabs(); STG.pose({ pnr: 'check', pp: 'check', entry: 'check', seat: 'explain', bag: 'explain', bp: 'idle', sup: 'explain' }[k] || 'idle'); ({ pnr: tabPNR, pp: tabPP, entry: tabEntry, seat: tabSeat, bag: tabBag, bp: tabBP, sup: tabSup })[k](); }
+  function showTab(k) { S.cur.tab = k; renderTabs(); STG.pose({ pnr: 'check', pp: 'check', entry: 'check', seat: 'explain', bag: 'explain', bp: 'idle', sup: 'explain' }[k] || 'idle'); ({ pnr: tabPNR, pp: tabPP, entry: tabEntry, seat: tabSeat, bag: tabBag, bp: tabBP, sup: tabSup })[k](); if (S.leaving && S.leaveGo && !$('#nextpax') && $('#scr')) { $('#scr').insertAdjacentHTML('beforeend', '<div class="btns"><button class="btn pri nextpax" id="nextpax">' + esc(tx(L('次のお客様へ ▶', '다음 승객 ▶', 'Next passenger ▶'))) + '</button></div>'); bindNextPax(); } }
   function ACFT() { return (S && S.ac) || M.aircraft; }
   function scr(h) { $('#scr').innerHTML = (S && S.manual ? '<div class="manbanner">' + esc(tx(L('手作業チェックイン中（DCS障害）― 紙の座席表・手書きの搭乗券とタグ・手荷物リスト', '수기 체크인 중(DCS 장애) — 종이 좌석표·손으로 쓴 탑승권과 태그·수하물 목록', 'Manual check-in (DCS outage) — paper seat chart, handwritten boarding passes and tags, bag list'))) + '</div>' : '') + (S && S.delay && S.cur ? delayBanner(S.cur) : '') + h; var db = $('#dlb'); if (db) db.onclick = tellDelay; }
 
@@ -1560,7 +1572,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       'Surname<br><b>' + p.pp.sur + '</b><br>Given names<br><b>' + p.pp.given + '</b><br>Nationality ' + p.pp.nat + ' · Sex ' + p.pp.sex + '<br>Date of birth ' + p.pp.dob + (S.adv ? '<br>Date of issue ' + issuedOf(p) : '') + '<br>Date of expiry <b>' + p.pp.exp + '</b><br>No. ' + p.pp.no + '</div>' +
       '<div class="mrz">P&lt;' + p.pp.nat + p.pp.sur + '&lt;&lt;' + p.pp.given + '&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>' + p.pp.no + '&lt;' + p.pp.nat + p.pp.dob.replace(/-/g, '').slice(2) + '</div></div>';
     if (p.visa) html += '<div class="pp" style="margin-top:8px;grid-template-columns:1fr"><div class="t">VISA · ' + (p.visa.dest === 'KR' ? 'REPUBLIC OF KOREA' : 'JAPAN') + ' <span style="font-weight:400">(' + esc(tx(L('教育用', '교육용', 'training'))) + ')</span></div><div>Type ' + p.visa.type + ' · Single entry<br>Valid until <b>' + p.visa.until + '</b><br>Name ' + p.pp.sur + ' ' + p.pp.given + '</div></div>';
-    if (p.inf) html += '<div class="small" style="margin-top:6px;display:flex;gap:8px;align-items:center">' + (p.inf.photo && STG.has('passport_' + p.inf.photo + '_front_01') ? '<span style="flex:0 0 auto">' + STG.portrait({ photo: p.inf.photo }, 'small') + '</span>' : '') + '<span style="min-width:0">INF: ' + p.inf.sur + ' ' + p.inf.given + ' · ' + p.inf.dob + ' · exp ' + p.inf.exp + '</span></div>';
+    if (p.inf) html += '<div class="small" style="margin-top:6px;display:flex;gap:8px;align-items:center">' + (p.inf.photo && STG.has('passport_' + p.inf.photo + '_front_01') ? '<span style="flex:0 0 auto">' + STG.portrait({ photo: p.inf.photo }, 'small') + '</span>' : '') + '<span style="min-width:0">INF: ' + p.inf.sur + ' ' + p.inf.given + ' · ' + p.inf.dob + ' · exp ' + p.inf.exp + (p.inf.rel ? ' · ' + esc(tx(L('同伴：', '동반: ', 'With: '))) + esc(tx(p.inf.rel)) : '') + '</span></div>';
     if (p.party) html += '<p class="small" style="margin-top:6px">' + esc(tx(L('同行者2名の旅券は「サポート」タブで確認します。', '동행자 2명의 여권은 「지원」 탭에서 확인합니다.', 'Check the two companions\' passports on the Assistance tab.'))) + '</p>';
     var items = [['validity', L('有効期限・残存期間', '유효기간·잔여기간', 'Validity and remaining time')], ['photo', L('写真と本人の一致', '사진과 본인 일치', 'Photo matches the person')], ['ticketName', L('航空券（予約）の名前', '항공권(예약) 이름', 'Name on the ticket (booking)')]];
     /* 24차(사용자 지적): 유아(INF) 동반이면 유아 여권도 대조 — 유효기간·이름(예약의 INFT와)·만 2세 미만 */
@@ -1648,7 +1660,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     } else {
       if (p.conn) return tabEntryThru(c, p, dest, html);
       var r = R.entryDB[dest][p.pp.nat];
-      var lab = { free: L('査証免除（短期滞在）', '비자 면제(단기 체류)', 'Visa-free (short stay)'), citizen: L('自国民（入国条件なし）', '자국민(입국 조건 없음)', 'Citizen (no entry requirement)'), visa: L('査証（ビザ）が必要 ― 有効な査証を確認すること', '비자 필요 — 유효한 비자를 확인할 것', 'Visa required — check for a valid visa') }[r];
+      var lab = { free: L('査証免除（短期滞在）', '비자 면제(단기 체류)', 'Visa-free (short stay)'), citizen: L('自国民（査証の確認は不要・旅券は確認）', '자국민(비자 확인 불필요·여권은 확인)', 'Citizen (no visa check; passport still checked)'), visa: L('査証（ビザ）が必要 ― 有効な査証を確認すること', '비자 필요 — 유효한 비자를 확인할 것', 'Visa required — check for a valid visa') }[r];
       html += '<div style="margin-top:10px"><span class="pill ' + (r === 'visa' ? 'warn' : 'ok') + '">' + esc(tx(lab)) + '</span></div>';
       if (p.visa) html += '<p class="small" style="margin-top:8px">' + esc(tx(L('旅券の査証欄を「旅券」タブで確認できます。今日の日付は', '여권의 비자 면은 「여권」 탭에서 볼 수 있습니다. 오늘 날짜는', 'You can see the visa page on the Passport tab. Today is'))) + ' <b class="mono">' + M.date + '</b></p>';
       var v = c.chk.entry;
@@ -1694,6 +1706,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
 
   /* 좌석 */
   function tabSeat() {
+    if (!S || !S.cur || G.screen !== 'play' || !$('#scr')) return;   /* 25차(24b-R02): 근무 화면이 아니면 그리지 않음 */
     var c = S.cur, p = c.p, ac = ACFT();
     if (c.vol) { scr('<div class="h3">' + esc(tx(L('座席', '좌석', 'Seat'))) + '</div><p>' + esc(tx(L('代替便 ', '대체편 ', 'Alternative flight '))) + '<b class="mono">' + V.alt.flight + ' ' + V.alt.dep + '</b> · ' + esc(tx(L('座席はSVが確保済み：', '좌석은 SV가 확보함: ', 'Seat held by the SV: '))) + '<b class="mono">' + c.seat + '</b></p>'); return; }
     var html = '<div class="h3">' + esc(tx(L('座席を選ぶ', '좌석 선택', 'Choose a seat'))) + ' <span class="small">' + esc(tx(ACFT().nm || L('Vela 教育用 A配置（30列・180席）', 'Vela 교육용 A 배치(30열·180석)', 'Vela training layout A (30 rows, 180 seats)'))) + ' · Y</span></div>' + (p.sup && p.sup.type === 'um' ? velaRule(umRuleText()) : '') + '<div class="seatwrap"><div class="seatmap">';
@@ -1817,7 +1830,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
         (b.tag ? '<div class="tag"><span>VELA<br>' + dst + '</span><b>' + dst + '</b><span>' + b.tag + (bag.stroller ? '<br>INF·FREE' : bag.mob ? '<br>WCH·FREE' : '') + (b.fragile ? '<br>FRAGILE' : '') + '</span></div>' :
           (b.w == null ? '<button class="btn pri" data-w="' + i + '">' + esc(tx(L('はかりに載せる', '저울에 올리기', 'Put on the scale'))) + '</button>' :
             thru ? '<span class="btns" style="margin:0"><button class="btn" data-tg="' + i + '" data-dst="' + V.to + '">' + esc(tx(L('タグ：', '태그: ', 'Tag: '))) + V.to + '</button><button class="btn pri" data-tg="' + i + '" data-dst="' + p.conn.to + '">' + esc(tx(L('タグ：', '태그: ', 'Tag: '))) + p.conn.to + '</button></span>' :
-            '<button class="btn pri" data-tg="' + i + '">' + esc(tx(L('タグを発行する', '태그 발행', 'Print the bag tag'))) + '</button>')) + '</div>';
+            '<button class="btn pri" data-tg="' + i + '">' + esc(tx(L('タグを付けてベルトへ', '태그 달고 벨트로', 'Tag it and send it down the belt'))) + '</button>')) + '</div>';
     });
     if (S.adv) html += '<div class="scale" style="margin-bottom:10px"><img class="bagthumb" src="' + STG.src(c.flags.carryDone ? 'prop_cabin_bag_01' : p.carryProp || 'prop_cabin_bag_01') + '" alt=""><div><div class="small">' + esc(tx(L('機内持ち込み（Vela：1個＋身の回り品1個・合計10kg・55×40×25cm）', '기내 반입(Vela: 1개+개인 소지품 1개·합계 10kg·55×40×25cm)', 'Carry-on (Vela: 1 bag + 1 personal item, 10kg total, 55×40×25cm)'))) + '</div><div class="lcd">' + (c.carryW != null ? c.carryW.toFixed(1) : '--.-') + ' kg</div></div>' + (c.carryW == null ? '<button class="btn" id="cw">' + esc(tx(L('機内持ち込みを計る', '기내 가방 계량', 'Weigh the carry-on'))) + '</button>' : '') + '</div>';
     else html += '<p class="small">' + esc(tx(L('機内持ち込み', '기내 반입', 'Carry-on'))) + ': ' + p.carry.toFixed(1) + ' kg / ' + ap.cabinMaxKg + ' kg</p>';
@@ -1940,7 +1953,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       say('pax', how === 'discard' ? p.say.pbDiscard : p.say.pbShip);
       note('good', function () { return tx(L('保安質問でモバイルバッテリーを見つけ、受託から取り出して容量と個数を確認しました。', '보안 질문으로 보조배터리를 찾아 위탁에서 꺼내고 용량과 개수를 확인했습니다.', 'Your security questions found the power banks; you took them out of the checked bag and checked capacity and count.')); }, 'passenger/1-13');
       note('info', function () { return tx(cr.pb.note); }, 'passenger/1-13');
-      if (c.flags.pbTaggedFirst) { addTime(4); note('bad', function () { return tx(L('タグを付けた後で質問したため、荷物をBHSから戻す手間がかかりました。質問はタグの前に。', '태그를 단 뒤에 질문해서 짐을 BHS에서 되돌리는 수고가 들었습니다. 질문은 태그 전에.', 'You asked after tagging, so the bag had to come back from the BHS. Ask before tagging.')); }, 'passenger/1-1'); }
+      if (c.flags.pbTaggedFirst) { addTime(4); note('bad', function () { return tx(L('タグを付けて荷物をベルトに流した後で質問したため、荷物をBHS（手荷物搬送システム）から戻す手間がかかりました。質問はタグを付ける前に。', '태그를 달아 짐을 벨트로 보낸 뒤에 질문해서, 짐을 BHS(수하물 처리 시스템)에서 되찾아 오는 수고가 들었습니다. 질문은 태그를 달기 전에.', 'You tagged the bag and sent it down the belt before asking, so it had to be pulled back from the BHS (baggage handling system). Ask before tagging.')); }, 'passenger/1-1'); }
       c.flags.pbHandled = true;
     }
   }
@@ -1954,6 +1967,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     if (!c.seat || (p.party && (c.famSeats || []).length < 3)) need.push(L('座席', '좌석', 'Seat'));
     if (c.bags.some(function (b) { return !b.tag; })) need.push(L('手荷物タグ', '수하물 태그', 'Bag tags'));
     if (c.bp) {
+      if (S.leaving && S.leaveGo) { scr(bpHTML() + '<div class="btns"><button class="btn pri nextpax" id="nextpax">' + esc(tx(L('次のお客様へ ▶', '다음 승객 ▶', 'Next passenger ▶'))) + '</button></div>'); bindNextPax(); return; }
       scr(bpHTML() + '<div class="btns"><button class="btn pri" id="bye">' + esc(tx(L('ゲートと時刻を案内してお見送り', '게이트와 시각을 안내하고 배웅', 'Give gate and time, and see them off'))) + '</button></div>');
       $('#bye').onclick = function () { endPax(false); };
       return;
@@ -2088,6 +2102,8 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       (p.inf ? '<div class="lab" style="margin-top:6px">+INF ' + p.inf.sur + '/' + p.inf.given + '</div>' : '') + (p.party ? '<div class="lab" style="margin-top:6px">' + p.party.map(function (m, i) { return '+ ' + m.sur + '/' + m.given + ' SEAT ' + ((c.famSeats || [])[i + 1] || '—'); }).join(' · ') + '</div>' : '') + (p.sup && p.sup.type === 'um' ? '<div class="lab" style="margin-top:6px">UMNR · ' + tx(L('引き渡し書あり', '인계서 있음', 'handover form attached')) + '</div>' : '') + (p.sup && p.sup.type === 'wch' && c.sup.code ? '<div class="lab" style="margin-top:6px">SSR ' + c.sup.code + '</div>' : '') + (p.sup && p.sup.type === 'pet' ? '<div class="lab" style="margin-top:6px">' + (c.sup.avih ? 'AVIH' : 'PETC') + ' DOG ' + (c.sup.w || '').toString() + 'KG</div>' : '') + (p.conn ? '<div class="lab" style="margin-top:6px">+ ' + p.conn.flight + ' ' + p.conn.from + '→' + p.conn.to + ' ' + p.conn.dep + ' · ' + tx(L('乗り継ぎ便の搭乗券（2枚目）', '연결편 탑승권(2장째)', 'Connecting boarding pass (2nd)')) + '</div>' : '') + '<div class="bars"></div></div>' +
       '<div class="s"><span>' + fl + '</span><span>' + V.from + '→' + V.to + '</span><span>SEAT ' + c.seat + '</span><span>GATE ' + ap.gate + '</span><span>BRD ' + brd + '</span><span>DEP ' + dep + '</span></div></div>';
   }
+  /* 25차: 「다음 승객 ▶」 연결(언어 전환으로 탑승권 화면을 다시 그려도 같은 버튼) */
+  function bindNextPax() { var b = $('#nextpax'); if (b) b.onclick = function () { sfx.tap(); if (S && S.leaveGo) S.leaveGo(true); }; }
   function endPax(denied) {
     var c = S.cur, p = c.p;
     if (S.leaving) return;
@@ -2096,7 +2112,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var sfx0 = (c.selfFix || []).filter(function (k) { return !c.notes.some(function (n) { return n.t === 'bad' && n.c === k; }); });
     var sfxU = (c.selfFix || []).filter(function (k) { return sfx0.indexOf(k) < 0; });
     if (sfxU.length && !c.selfUndoneNoted) { c.selfUndoneNoted = true; note('info', function () { return tx(L('一度は発券前に直しましたが、その後また誤った状態に戻って終わりました：', '발권 전에 한 번 바로잡았지만, 그 뒤 다시 잘못된 상태로 끝났습니다: ', 'You corrected this once before issuing, but it ended in the wrong state again: ')) + sfxU.map(function (k) { return missLabel(k); }).join(' / '); }, { conn: 'passenger/1-4', um: 'passenger/1-7', wch: 'passenger/1-7', pet: 'passenger/1-8', preg: 'passenger/1-6' }[sfxU[0].split('-')[0]] || 'passenger/1-3', 'self-fix-undone'); }
-    if (sfx0.length && !c.selfNoted) { c.selfNoted = true; var sfl = { conn: 'passenger/1-4', um: 'passenger/1-7', wch: 'passenger/1-7', pet: 'passenger/1-8', preg: 'passenger/1-6' }[sfx0[0].split('-')[0]] || 'passenger/1-3'; note('info', function () { return tx(L('最初の判断を、発券・受託の前に自分で見直して訂正しました：', '처음 판단을 발권·위탁 전에 스스로 다시 확인해 바로잡았습니다: ', 'You re-checked and corrected your first call before issuing or accepting: ')) + sfx0.map(function (k) { return missLabel(k); }).join(' / '); }, sfl, 'self-fix'); }
+    if (sfx0.length && !c.selfNoted) { c.selfNoted = true; var sfl = { conn: 'passenger/1-4', um: 'passenger/1-7', wch: 'passenger/1-7', pet: 'passenger/1-8', preg: 'passenger/1-6', exit: 'passenger/1-5' }[sfx0[0].split('-')[0]] || 'passenger/1-3'; note('info', function () { return tx(L('最初の判断を、発券・受託の前に自分で見直して訂正しました：', '처음 판단을 발권·위탁 전에 스스로 다시 확인해 바로잡았습니다: ', 'You re-checked and corrected your first call before issuing or accepting: ')) + sfx0.map(function (k) { return missLabel(k); }).join(' / '); }, sfl, 'self-fix'); }
     say('me', denied ? D.deny : D.bye(R.airport[V.from].gate, brdOf(c)));
     if (S.delay && !denied && !c.delayTold && !c.dlNoted) { c.dlNoted = true; note('bad', function () { return tx(L('遅延（新しい出発予定・搭乗開始時刻）のご案内と、規定の食事券のお渡しをしませんでした。遅延中は、手続きするすべてのお客様に伝えます。', '지연(새 출발 예정·탑승 시작 시각) 안내와 규정 식사 쿠폰 전달을 하지 않았습니다. 지연 중에는 수속하는 모든 승객에게 알립니다.', 'You did not tell the passenger about the delay (new departure and boarding times) or hand over the meal voucher. During a delay, tell every passenger you check in.')); }, 'passenger/5-4', 'delay-notice'); }
     if (!denied && p.pair && p.pair.role === 'b' && !c.seatGood) note('bad', function () { return tx(L('お連れ様と離れた席になりました。別予約の同行者は、隣が空いている席を先に考えます。', '일행과 떨어진 자리가 되었습니다. 따로 예약한 동행자는 옆자리가 빈 좌석을 먼저 생각합니다.', 'The companions ended up apart. For companions on separate bookings, plan a seat with a free neighbour.')); }, 'passenger/1-5', 'pair-apart');
@@ -2105,13 +2121,22 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     c.denied = denied; STG.pose(denied ? 'explain' : 'greet');
     /* 대사가 끝날 때까지 기다린 뒤 승객이 떠나고 다음 승객으로 (음성 끔: 1.6초 읽을 시간) */
     S.leaving = true; document.body.classList.add('busy');
-    var mine = S.cur;
+    var mine = S.cur, gone = false;
+    /* 25차(사용자 10-14): 배웅 뒤 다음 승객까지 음성을 끝까지 기다려 약 10초(음성 끔 2.5초) 걸림 → 「다음 승객 ▶」으로 바로 넘길 수 있게.
+       누르지 않으면 지금처럼 자동으로 넘어감. 근무 시각(가상 시계)과 점수에는 영향 없음 */
+    function proceed(fast) {
+      if (gone || S.cur !== mine || G.screen !== 'play') return; gone = true;
+      var nb = $('#nextpax'); if (nb) nb.disabled = true;
+      if (fast) VO.stop();
+      var pw = $('#paxwrap'); if (pw) { pw.style.transform = 'translateX(-40%)'; pw.style.opacity = 0; }
+      setTimeout(function () { if (S.cur !== mine || G.screen !== 'play') return; S.leaving = false; S.leaveGo = null; document.body.classList.remove('busy'); guide(''); say('me', ''); say('pax', ''); nextPax(); }, fast ? 250 : 900);
+    }
+    S.leaveGo = proceed;
+    var by = $('#bye'), nxt = '<button class="btn pri nextpax" id="nextpax">' + esc(tx(L('次のお客様へ ▶', '다음 승객 ▶', 'Next passenger ▶'))) + '</button>';
+    if (by) by.outerHTML = nxt; else if ($('#scr')) $('#scr').insertAdjacentHTML('beforeend', '<div class="btns">' + nxt + '</div>');
+    bindNextPax();
     setTimeout(function () {
-      VO.whenIdle(function () {
-        if (S.cur !== mine || G.screen !== 'play' || !$('#paxwrap')) return;
-        $('#paxwrap').style.transform = 'translateX(-40%)'; $('#paxwrap').style.opacity = 0;
-        setTimeout(function () { if (S.cur !== mine || G.screen !== 'play') return; S.leaving = false; document.body.classList.remove('busy'); guide(''); say('me', ''); say('pax', ''); nextPax(); }, 900);
-      }, 12000);
+      VO.whenIdle(function () { if (!$('#paxwrap')) return; proceed(false); }, 12000);
     }, G.voice ? 300 : 1600);
   }
 
@@ -2130,10 +2155,11 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       { t: L('判断できない ― 手続きを保留して責任者に確認する', '판단할 수 없음 — 수속을 보류하고 책임자에게 확인', 'Cannot tell — hold and check with the supervisor'), s: L('約3分', '약 3분', '~3 min'), id: 'sv' }];
     var card = openModalShell(L('写真とご本人の照合', '사진과 본인 대조', 'Matching the photo to the person'), body + opts.map(function (o, i) { return '<button class="opt" data-i="' + i + '">' + esc(tx(o.t)) + (o.s ? '<small>' + esc(tx(o.s)) + '</small>' : '') + '</button>'; }).join(''));
     S.modalRedraw = comparePhoto; STG.pose('check');
-    card.querySelectorAll('.opt').forEach(function (b) { b.onclick = function () { var o = opts[+b.dataset.i]; closeModal(); sfx.tap(); photoResult(o.id); }; });
+    card.querySelectorAll('.opt').forEach(function (b) { b.onclick = function () { var o = opts[+b.dataset.i]; closeModal(); if (!canEdit(c)) return; sfx.tap(); photoResult(o.id); }; });
   }
   function photoResult(how) {
-    var c = S.cur, p = c.p, same = p.idMatch !== false;
+    var c = S.cur; if (!canEdit(c)) return;   /* 25차(GPT 중점 확인): 발권 뒤·다른 승객으로 넘어간 뒤에는 사진 대조 결과를 바꾸지 않음 */
+    var p = c.p, same = p.idMatch !== false;
     if (how === 'same') {
       c.chk.photo = 'ok'; addTime(.3);
       if (!same) { c.flags.idWrong = true; act(c, 'id-mismatch', c.fixTry['id-mismatch'] ? 'confirmed-again' : 'confirmed-wrong-person'); }
@@ -2245,6 +2271,12 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     if (has(p, 'carry')) return L('大きな機内用バッグ…<b>機内持ち込みを計って</b>みましょう。預ける前に電池を出すのを忘れずに。', '큰 기내 가방… <b>기내 가방을 계량</b>해 봅시다. 맡기기 전에 배터리 꺼내는 것을 잊지 말고.', 'That is a big cabin bag… <b>weigh the carry-on</b>. Take the batteries out before checking it.');
     if (has(p, 'infant')) return L('幼児連れのお客様：非常口は不可、同じ列（左右ブロック）に幼児連れを重ねない。', '유아 동반 승객: 비상구 불가, 같은 열(좌우 블록)에 유아 동반을 겹치지 않게.', 'Passenger with an infant: no exit row, and never two infants in the same row block.');
     if (p.pair) return p.pair.role === 'a' ? L('後ろのお連れ様と並べるよう、<b>隣が空いている席</b>を選びましょう。', '뒤의 일행과 나란히 앉도록 <b>옆자리가 비어 있는 좌석</b>을 고르세요.', 'Choose a seat <b>with a free seat next to it</b> for the companion behind.') : L('前のお連れ様の<b>すぐ隣</b>（同じ列・同じ側）に。', '앞 일행의 <b>바로 옆</b>(같은 열·같은 쪽)으로.', 'Put them <b>right next to</b> their companion (same row, same side).');
+    /* 25차b(GPT 25-F01): Day 1 유형 + Day 2~5에도 나오는 이름·배터리·초과 수하물 힌트 */
+    if (has(p, 'name')) return L('旅券と予約の<b>ローマ字の名前</b>を1文字ずつ照合。違っていたら、発券の前に規定にそって<b>予約の名前を旅券に合わせて訂正</b>します（APIは旅券の情報で送ります）。', '여권과 예약의 <b>로마자 이름</b>을 한 글자씩 대조. 다르면 발권 전에 규정에 따라 <b>예약 이름을 여권에 맞게 정정</b>합니다(API는 여권 정보로 송신).', 'Compare the <b>Romanized names</b> on the passport and the booking letter by letter. If they differ, <b>correct the booking to match the passport</b> under the rules before issuing (API data is sent from the passport).');
+    if (has(p, 'infantExit')) return L('幼児にも<b>自分の旅券</b>が必要：有効期限・予約のINFTの名前・2歳未満かを確認。幼児連れは<b>非常口不可</b>、同じ列（左右ブロック）に幼児連れを重ねない。', '유아도 <b>자기 여권</b>이 필요: 유효기간·예약 INFT 이름·만 2세 미만인지 확인. 유아 동반은 <b>비상구 불가</b>, 같은 열(좌우 블록)에 유아 동반을 겹치지 않게.', 'Infants need <b>their own passport</b>: check its validity, the INFT name in the booking and that the child is under 2. With an infant: <b>no exit row</b>, and never two infants in the same row block.');
+    if (has(p, 'battery')) return L('タグを付ける前に<b>保安質問</b>。モバイルバッテリーは受託できないので取り出してもらい、1個ずつ<b>Wh＝mAh×V÷1000</b>で区分します。Vela Air（教育用）は100Wh超をカウンターで承認しません。', '태그를 달기 전에 <b>보안 질문</b>. 보조배터리는 위탁할 수 없으므로 꺼내게 하고, 1개씩 <b>Wh = mAh × V ÷ 1000</b>으로 구분합니다. Vela Air(교육용)는 100Wh 초과를 카운터에서 승인하지 않습니다.', 'Ask the <b>security questions</b> before tagging. Power banks cannot go in checked bags: have them taken out and band each one by <b>Wh = mAh × V ÷ 1000</b>. Vela Air (training) does not approve anything over 100Wh at the counter.');
+    if (has(p, 'overweight')) return L('無料は<b>1個23kg</b>（1個の上限32kg）。超えたら超過分と料金を示し、<b>支払う</b>か<b>機内に移す</b>かをお客様に選んでいただいてから、タグを付けます。', '무료는 <b>1개 23kg</b>(1개 상한 32kg). 넘으면 초과분과 요금을 보여 주고, <b>지불</b>할지 <b>기내로 옮길지</b> 승객이 고르게 한 뒤 태그를 답니다.', 'The free allowance is <b>one piece of 23kg</b> (32kg max per piece). If over, show the excess and the fee, let the passenger choose to <b>pay</b> or <b>move items to the cabin</b>, then tag.');
+    if (has(p, 'visa')) return L('「渡航条件」で国籍ごとの条件を確認。査証が必要なら、「旅券」タブの査証欄の<b>有効期限</b>を今日の日付と比べます。切れていたら発券せず、理由をご説明してSVに引き継ぎます。', '「입국 조건」에서 국적별 조건을 확인. 비자가 필요하면 「여권」 탭 비자 면의 <b>유효기간</b>을 오늘 날짜와 비교합니다. 지났으면 발권하지 않고 이유를 설명한 뒤 SV에 인계합니다.', 'Check the rules for the nationality under <b>Entry</b>. If a visa is needed, compare its <b>expiry</b> on the Passport tab with today. If it has expired, do not issue: explain why and hand over to the SV.');
     if (S.delay) return L('遅延中も旅券・渡航条件・保安質問の確認はいつもどおり。画面上の帯から、<b>遅延の案内と食事券</b>を。', '지연 중에도 여권·입국 조건·보안 질문 확인은 평소대로. 화면 위 띠에서 <b>지연 안내와 식사 쿠폰</b>을.', 'Passport, entry and security checks stay the same during a delay. Use the strip at the top for <b>delay information and the voucher</b>.');
     return '';
   }
@@ -2925,8 +2957,9 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     card.querySelectorAll('.opt').forEach(function (b) {
       b.onclick = function () {
         var o = opts[+b.dataset.i];
+        if (own && (S.cur !== own || G.screen !== 'play')) { closeModal(); return; }   /* 25차(24b-R02): 잠긴 선택지도 승객·화면을 먼저 확인 */
         if (o.lock) { sfx.ng(); $('#whybox').innerHTML = '<div class="why bad">' + esc(tx(o.lock)) + '</div>'; if (S.cur) note('info', function () { return tx(L('できない選択を試みました：', '할 수 없는 선택을 시도했습니다: ', 'Tried a choice that is not allowed: ')) + tx(o.t); }, lesson); return; }
-        if (own && S.cur !== own) { closeModal(); return; }   /* 24차b(GPT 24-F03): 창을 연 승객이 이미 바뀌었으면 아무것도 하지 않음 */
+        if (own && (S.cur !== own || G.screen !== 'play')) { closeModal(); return; }   /* 24차b(GPT 24-F03)·25차(24b-R02): 창을 연 승객이 바뀌었거나 근무 화면을 떠났으면 아무것도 하지 않음(뒤처리 after도 하지 않음) */
         sfx.ok(); closeModal(); if (o.run) o.run(); if (after) after();
       };
     });
@@ -2968,7 +3001,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var OPS = ['conn-miss', 'ob-noconsent', 'pet-docs', 'fam-apart', 'wch-under'], opMiss = [];
     allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && OPS.indexOf(n.c) >= 0 && opMiss.indexOf(n.c) < 0) opMiss.push(n.c); }); });
     var opsPass = !opMiss.length, opCapped = safe && !opsPass && rank === 'S'; if (opCapped) rank = 'A';
-    var capped = S.adv && G.hints && !G.practice && rank === 'S'; if (capped) rank = 'A';
+    var capped = S.day.n >= 2 && G.hints && !G.practice && rank === 'S'; if (capped) rank = 'A';
     G.best = G.best || {}; var key = 'pax.ci.01.' + G.country; if (S.day.n === 1 && (!G.best[key] || G.best[key] < tot)) G.best[key] = tot;
     /* 학습 이력: 한 판에 한 번만 기록(언어 전환으로 결과를 다시 그려도 중복되지 않게) */
     if (!S.hrec) {
@@ -2985,8 +3018,8 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       S.mistakes = mistakes;
       var miss = []; mistakes.forEach(function (m) { if (m.severity !== 'self-corrected' && miss.indexOf(m.caseCode) < 0) miss.push(m.caseCode); });
       var at = new Date().toISOString();
-      S.hrec = DY.record(G.hist, S.day, G.country, { tot: tot, rank: rank, safe: safe, ops: opsPass, hints: !!G.hints, complete: unserved === 0, practice: !!G.practice, miss: miss, at: at.slice(0, 10) });
-      DY.addAttempt(G.store, { attemptId: at + '-' + Math.floor(Math.random() * 1e6), day: S.day.n, workplace: G.country, mode: G.practice ? 'practice' : 'campaign', seed: S.seed, score: tot, rank: rank, safetyPassed: safe, complete: unserved === 0, hintsUsed: !!G.hints, opsPassed: opsPass, ruleVersion: '2026-10-11', aircraftLayoutVersion: 'A', mistakes: mistakes, completedAt: at });
+      S.hrec = DY.record(G.hist, S.day, G.country, { scoreVer: 'full7', tot: tot, rank: rank, safe: safe, ops: opsPass, hints: !!G.hints, complete: unserved === 0, practice: !!G.practice, miss: miss, at: at.slice(0, 10) });
+      DY.addAttempt(G.store, { attemptId: at + '-' + Math.floor(Math.random() * 1e6), day: S.day.n, workplace: G.country, mode: G.practice ? 'practice' : 'campaign', seed: S.seed, score: tot, rank: rank, safetyPassed: safe, complete: unserved === 0, hintsUsed: !!G.hints, opsPassed: opsPass, ruleVersion: '2026-10-11', scoreVersion: 'full7', aircraftLayoutVersion: 'A', mistakes: mistakes, completedAt: at });
       S.saveOk = saveHist(); }
     save(); var hr = S.hrec, tm = DY.topMiss(hr, 3);
     var histP = '<div class="panel"><h2>' + esc(tx(L('学習の記録', '학습 기록', 'Your record'))) + ' · DAY ' + S.day.n + ' ' + esc(tx(S.day.nm)) + (G.practice ? ' · ' + esc(tx(L('練習', '연습', 'Practice'))) : '') + '</h2>' +
@@ -2994,9 +3027,10 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       (S.lateAt ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('締め切り後に到着したお客様への対応（' + hm(S.lateAt) + '）は、時間の点数とは別の状況練習です（上の時刻は最後のお客様の手続きが終わった時刻）。', '마감 후 도착한 승객 응대(' + hm(S.lateAt) + ')는 시간 점수와 별개인 상황 연습입니다(위 시각은 마지막 승객 수속이 끝난 시각).', 'Handling the passenger who arrived after the close (' + hm(S.lateAt) + ') is a separate scenario, not part of the time score (the time above is when the last check-in finished).'))) + '</p>' : '') +
       (opCapped ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('業務上の大きな見落としが残ったため、ランクはAまでです。', '중대한 업무 오류가 남아 등급은 A까지입니다.', 'A serious operational error remained, so the rank is capped at A.'))) + '</p>' : '') +
       (capped ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('ヒントONのため、ランクはAまでです。', '힌트를 켜서 등급은 A까지입니다.', 'Tips were on, so the rank is capped at A.'))) + '</p>' : '') +
+      (S.day.n === 1 && G.hints && !G.practice ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('DAY 1ははじめての勤務のため、ヒントONでもSまで認められます（DAY 2以降はAまで）。', 'DAY 1은 첫 근무라 힌트를 켜도 S까지 인정됩니다(DAY 2부터는 A까지).', 'DAY 1 is your first shift, so S is allowed even with tips on (from DAY 2, A at most).'))) + '</p>' : '') +
       (S.saveOk === false ? '<p class="small" style="margin:0 0 6px;color:var(--ng,#c33)">' + esc(tx(L('この端末に記録を保存できませんでした（プレイは続けられます）。', '이 기기에 기록을 저장하지 못했습니다(플레이는 계속할 수 있습니다).', 'Could not save your record on this device (you can keep playing).'))) + '</p>' : '') +
       (S.adv ? '<p class="small mono" style="margin:0 0 6px">SEED ' + S.seed + '</p>' : '') + '<p style="margin:0;font-size:14px">' +
-      esc(tx(L('プレイ', '플레이', 'Plays'))) + ' ' + hr.plays + ' · ' + esc(tx(L('最高の回', '최고 회차', 'Best run'))) + ' ' + esc(bestText(hr) || '—') + '</p>' +
+      esc(tx(L('プレイ', '플레이', 'Plays'))) + ' ' + hr.plays + ' · ' + esc(tx(L('最高の回', '최고 회차', 'Best run'))) + ' ' + esc(bestText(hr, S.day.n) || '—') + '</p>' +
       '<p class="small" style="margin:2px 0 0">' + esc(tx(L('✔＝その回が安全合格 · 安全合格したことがある：', '✔ = 그 회차가 안전 합격 · 안전 합격 경험: ', '✔ = that run passed safety · Ever passed safety: '))) + (hr.safeEver ? '✔' : '—') + '</p>' +
       (tm.length ? '<p class="small" style="margin:8px 0 2px">' + esc(tx(L('見落としが多い項目', '자주 놓치는 항목', 'What you miss most'))) + '</p><ul class="tmiss">' + tm.map(function (m) { return '<li>' + esc(missLabel(m.code)) + ' <span class="small">×' + m.count + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
     var rev = S.revenue.map(function (r) { return r.pax + ' ' + r.what + ' ' + (r.cur === 'JPY' ? '¥' : '₩') + r.amt.toLocaleString(); });
@@ -3088,6 +3122,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     window.addEventListener('hashchange', function () { if (G.screen !== 'title') { if (/^#day/i.test(location.hash)) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} return; } try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); if (d.country) G.country = d.country; G.practice = !!d.practice; } catch (e) {} G.store = DY.loadStore(); G.hist = G.store.days; if (applyHash()) { renderTitle(); var go = $('#go'); if (go && go.scrollIntoView) go.scrollIntoView({ block: 'center' }); } });
   }
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
-  if (window.SAGA_TEST) AS._t = { nextPax: nextPax, showTab: showTab, renderTabs: renderTabs, issueBP: issueBP, setSeat: setSeat };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
+  if (window.SAGA_TEST) AS._t = { nextPax: nextPax, showTab: showTab, renderTabs: renderTabs, issueBP: issueBP, setSeat: setSeat, endPax: endPax };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();
 })();

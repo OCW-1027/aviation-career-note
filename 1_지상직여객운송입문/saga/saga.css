@@ -48,8 +48,8 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .bubble.me:after{left:28%;background:#eef8f6;border-color:var(--vela)}
 .bubble .who{display:block;font-size:11px;color:var(--sub);font-weight:700;margin-bottom:2px}
 .guide{background:var(--vela);align-items:center;color:#fff;border-radius:12px;padding:8px 12px;font-size:13.5px;display:flex;gap:10px;align-items:flex-start}
-.guide b{color:var(--vela2);white-space:nowrap}
-.left{display:grid;gap:10px;align-content:start;min-width:0}
+.guide b{color:var(--vela2)}   /* 25차b: 긴 강조 구절이 줄바꿈되지 않아 좁은 화면에서 왼쪽 칸이 넓어지던 문제(360px) — 줄바꿈 허용 */
+.left{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-content:start;min-width:0}
 
 /* ---------- 단말(DCS) ---------- */
 .term{background:var(--term);color:var(--termtx);border-radius:18px;padding:10px;min-width:0;border:1px solid #0a1c24}
@@ -315,6 +315,8 @@ img.as-passport-photo.as-passport-photo--large{width:240px;height:320px}
 @media (max-width:899px){.bar #vo{order:1}.bar #quit{order:1}}
 
 body.busy .term,body.busy #tabs{pointer-events:none;opacity:.75}
+body.busy .term .nextpax{pointer-events:auto}   /* 25차: 배웅 중에도 「다음 승객 ▶」은 누를 수 있게 */
+body.busy .term:has(.nextpax){opacity:1}
 
 .stah{margin-top:14px}
 /* ===== 항공커리어노트 사이트 안 (shell.js data-page="saga") ===== */
