@@ -26,18 +26,18 @@ quiz:[{q:"When line maintenance is outsourced, who holds airworthiness responsib
 {q:"What should you watch for when another airline does your maintenance?",opts:["It always costs more","Their flights may come first","Parts cannot be used","No training is needed"],a:1,exp:"They may have type experience and parts, but their own flights can take priority."},
 {q:"What should the station keep from the contractor?",opts:["The list of staff authorised to certify","Passenger lists","Fare tables","In-flight menus"],a:0,exp:"Keep the list of authorised staff and update it when it changes."}],
 next:"4-2 Daily Work Between the Station and the Contractor"});
-set("4-2",{title:"Daily Work Between the Station and the Contractor: Building the Maintenance Arrangement List",hl:"Maintenance Arrangements",subtitle:"Who does what, the maintenance arrangement list, customs clearance and airside delivery of parts, night work areas, and checking invoices",
-lead:["Whether outsourced maintenance runs smoothly depends not only on the engineers’ skill but also on the station’s preparation. A part stuck in customs, no power at the night work stand, an out-of-date phone number: any of these delays a departure.","This lesson sets out how work is shared between station, contractor and head office, and what goes into the station’s maintenance arrangement list."],
+set("4-2",{title:"Daily Work Between the Station and the Contractor: Aligning Roles with a Readiness Sheet",hl:"Readiness Sheet",subtitle:"Who does what, the station maintenance readiness sheet, customs clearance and airside delivery of parts, night work areas, and checking fees",
+lead:["Whether outsourced maintenance runs smoothly depends not only on the engineers’ skill but also on the station’s preparation. A part stuck in customs, no power at the night work stand, an out-of-date phone number: any of these delays a departure.","This lesson looks at the usual way work is shared between station, contractor and head office, and at an example of a one-page “maintenance readiness sheet” for the station. Its name and format differ from company to company."],
 sections:[
 {h:"Who does what",blocks:[{t:"fig",id:"mnt_roles",cap:"Animated figure: a dot marks whether head-office maintenance (MCC), contract engineers or the station mainly handles each task; rows light up in turn. The split shown is an example."}]},
-{h:"The maintenance arrangement list",blocks:[{t:"table",cols:["Item","What to record"],rows:[
-["Contractor","Company name, duty phone, hours of cover"],
-["People","Engineers authorised to certify and their type qualifications"],
-["Tools and equipment","Tow bars, jacks, nitrogen, oil, ground power and air: where they are and who issues them"],
-["Parts","Location and contents of consignment stock, bonded warehouse, how urgent parts are received"],
-["Order of contacts","When a defect is found: contractor → MCC → station duty officer → dispatch"],
-["AOG","Parts ordering contact, customs broker, who decides on hotels and replacement flights (Part 5)"]]},
-{t:"point",x:"Review the list at each change of season and whenever contractor staff change. An old phone number can cause a delay in the middle of the night."}]},
+{h:"The station maintenance readiness sheet (example)",blocks:[{t:"table",cols:["Area","What to record","When to review"],rows:[
+["Contacts","24-hour contact routes for the contractor and head-office maintenance, and hours of cover","Contract renewal, change of staff"],
+["Certifying staff","Engineers authorised to certify and their type qualifications (the latest list from the contractor)","When the list changes"],
+["Tools and equipment","Tow bars, jacks, ground power and air: what is where and who issues it","When aircraft types change or are added"],
+["Parts","Where parts kept at the airport are, and how urgent parts reach you (including customs)","At set intervals"],
+["Contact flow","Who tells whom when a defect is found. Copy the order set in the company’s maintenance rules","When the rules change"],
+["AOG roles","Who handles parts ordering, customs and passengers (Part 5)","After drills or a real AOG"]]},
+{t:"point",x:"The point is that at night, one look at this sheet tells you whom to call. A single old phone number can cause a delay. Each company decides the sheet’s name and format."}]},
 {h:"Customs clearance and delivering parts",blocks:[{t:"rows",items:[
 {name:"Urgent parts",x:"AOG parts arrive on freighters or in passenger aircraft holds; warn the customs broker so they can be released on arrival"},
 {name:"Duties",x:"Many countries exempt aircraft parts from duty or reduce it; agree with the broker how to complete the paperwork ★"},
@@ -48,9 +48,9 @@ sections:[
 {name:"Invoices",x:"Check the base fee per flight, extra labour hours and night surcharges against the work records"},
 {name:"Consumables",x:"Oil, nitrogen, cleaning fluids: who supplies and who pays, as the contract says"}]}]}],
 voice:"Simply telling the customs broker and the contractor the part’s arrival time at the same moment noticeably shortens an AOG. Pulling the three parties’ communication into one thread is the station’s skill.",
-terms:[["Maintenance arrangement list","整備の体制の一覧表","정비 체제 일람표"],["Bonded warehouse","保税の倉庫","보세 창고"],["Customs broker","通関業者","통관업자"],["Night stop","夜間駐機","야간 주기"],["Surcharge","割増し","할증"]],
+terms:[["Station maintenance readiness sheet","整備の準備表","정비 준비표"],["Bonded warehouse","保税の倉庫","보세 창고"],["Customs broker","通関業者","통관업자"],["Night stop","夜間駐機","야간 주기"],["Surcharge","割増し","할증"]],
 quiz:[{q:"What does the station mainly handle?",opts:["Certifying the pre-departure check","Deciding whether to use the MEL","Customs clearance and airside delivery of parts","Engine changes"],a:2,exp:"Engineers and MCC make maintenance decisions and certify; the station arranges parts, space and communication."},
-{q:"When should the maintenance arrangement list be reviewed?",opts:["Never","At each change of season and when contractor staff change","Once every ten years","Only after an accident"],a:1,exp:"Changed contacts or people can delay communication at night."},
+{q:"When should the readiness sheet be reviewed?",opts:["Never","When contracts, staff, lists or rules change","Once every ten years","Only after an accident"],a:1,exp:"Leaving changed contacts or people unrecorded delays night-time communication."},
 {q:"What should contractor invoices be checked against?",opts:["Work records","Fare tables","Crew rosters","Weather charts"],a:0,exp:"Extra labour hours and night surcharges are checked against the work records."}],
 next:"4-3 Contractor Audits and Authority Inspections"});
 set("4-3",{title:"Contractor Audits and Authority Inspections: Checking After You Entrust",hl:"Audits and Inspections",subtitle:"Types and steps of audits, findings and corrective action, authority spot checks of aircraft and documents (ramp inspections), and station preparation",
@@ -70,7 +70,7 @@ sections:[
 {t:"point",warn:true,x:"Inspections can start just before departure. A designated person at the station escorts the inspectors, informs the captain and engineers, and gives an outlook for the departure time."}]},
 {h:"Station preparation",blocks:[{t:"check",items:[
 {name:"Decide who escorts",x:"Decide in advance who meets inspectors and takes them to the aircraft"},
-{name:"Documents ready to hand",x:"The maintenance arrangement list, a copy of the maintenance contract and the list of authorised staff"},
+{name:"Documents ready to hand",x:"The maintenance readiness sheet, a copy of the maintenance contract and the list of authorised staff"},
 {name:"Records",x:"Keep the station’s own record of audit and inspection dates, findings and corrective actions"}]}]}],
 voice:"Audit findings are not about blaming the contractor; they are for the safety of the next flight. Thanking the contractor once corrective action is complete makes the next audit go positively too.",
 terms:[["Audit","監査","감사"],["Finding","指摘","지적"],["Corrective action","是正の処置","시정 조치"],["Ramp inspection","ランプ・インスペクション","램프 점검"],["Inspector","検査官","검사관"]],

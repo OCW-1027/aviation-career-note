@@ -280,8 +280,8 @@ mnt_jobs:function(l){
  var L=LIST(W.n,Math.max(yy[0],yy[1])+6,600,11);return SVG(L.y+8,s+L.s)},
 /* 6-3 支店の人が整備に強くなる道 */
 mnt_path:function(l){
- var W=({ja:{t:'支店・運送の人が整備に強くなる道（例）',st:['ことばを覚える：この講座のPart 0〜1で、機体の部分と整備の用語','MELとCDLを読む：自社の機種のMELの1ページを、整備士と一緒に読んでみる','AOGに立ち会う：部品・通関・お客様の段取りを、記録を付けながら経験する','整備の体制を受け持つ：委託先との契約・一覧表・監査に加わる','次の道を選ぶ：MCC・整備の計画・品質への異動、機種の概要の講習、資格の勉強'],who:['1か月','3か月','1年','2〜3年','その先']},
-  ko:{t:'지점·운송 직원이 정비에 강해지는 길(예)',st:['용어를 익힌다: 이 강좌 Part 0~1에서 기체 부위와 정비 용어','MEL과 CDL을 읽는다: 자사 기종 MEL 한 쪽을 정비사와 함께 읽어 본다','AOG에 함께한다: 부품·통관·승객 준비를 기록하며 경험한다','정비 체제를 맡는다: 위탁처 계약·일람표·감사에 참여한다','다음 길을 고른다: MCC·정비 계획·품질로 이동, 기종 개요 강습, 자격 공부'],who:['1개월','3개월','1년','2~3년','그다음']},
+ var W=({ja:{t:'支店・運送の人が整備に強くなる道（例）',st:['ことばを覚える：この講座のPart 0〜1で、機体の部分と整備の用語','MELとCDLを読む：自社の機種のMELの1ページを、整備士と一緒に読んでみる','AOGに立ち会う：部品・通関・お客様の段取りを、記録を付けながら経験する','整備の体制を受け持つ：委託先との契約・準備表・監査に加わる','次の道を選ぶ：MCC・整備の計画・品質への異動、機種の概要の講習、資格の勉強'],who:['1か月','3か月','1年','2〜3年','その先']},
+  ko:{t:'지점·운송 직원이 정비에 강해지는 길(예)',st:['용어를 익힌다: 이 강좌 Part 0~1에서 기체 부위와 정비 용어','MEL과 CDL을 읽는다: 자사 기종 MEL 한 쪽을 정비사와 함께 읽어 본다','AOG에 함께한다: 부품·통관·승객 준비를 기록하며 경험한다','정비 체제를 맡는다: 위탁처 계약·준비표·감사에 참여한다','다음 길을 고른다: MCC·정비 계획·품질로 이동, 기종 개요 강습, 자격 공부'],who:['1개월','3개월','1년','2~3년','그다음']},
   en:{t:'How station and ground staff get stronger in maintenance (example)',st:['Learn the words: aircraft parts and maintenance terms in Parts 0–1 of this course','Read the MEL and CDL: go through one page of your type’s MEL with an engineer','Be there for AOGs: handle parts, customs and passengers while keeping a log','Own the maintenance arrangements: join contracts, the arrangement list and audits','Choose the next step: move to MCC, planning or quality, take a type familiarisation course, study for a licence'],who:['1 month','3 months','1 year','2–3 years','Beyond']}})[l];
  if(!W)return F.mnt_path('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#D64545','#E08A2E','#2E9B5F'],'12s')},
