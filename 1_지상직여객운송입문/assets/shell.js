@@ -13,7 +13,7 @@ try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'
 if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)document.documentElement.setAttribute('data-ui',ul)}catch(e){}}
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
 var LIB={ja:'\u8cc7\u6599\u30fb\u30c4\u30fc\u30eb',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
-var NAME={saga:{ja:'AIRLINE SAGA ― 空港の仕事体験ゲーム',ko:'AIRLINE SAGA — 공항 업무 체험 게임',en:'AIRLINE SAGA: Airport Job Game'},
+var NAME={saga:{ja:'AIRLINE SAGA ― 航空会社の仕事体験ゲーム',ko:'AIRLINE SAGA — 항공사 체험 게임',en:'AIRLINE SAGA: Airline Experience Game'},
 sagahome:{ja:'AIRLINE SAGA',ko:'AIRLINE SAGA',en:'AIRLINE SAGA'},
 talk:{ja:'会話練習 ― 日本語・韓国語・英語',ko:'회화 연습 — 일본어·한국어·영어',en:'Conversation Practice: Japanese, Korean, English'},
 load:{ja:'搭載管理（Weight & Balance）の練習',ko:'탑재관리(Weight & Balance) 연습',en:'Load Control (Weight & Balance) Practice'},

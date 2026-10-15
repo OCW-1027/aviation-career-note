@@ -368,3 +368,19 @@ a.lessonref{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .exitcard ul{margin:6px 0 8px;padding-left:18px}.exitcard li{margin:2px 0}
 .exitcard .sigline{display:flex;align-items:flex-end;gap:10px;border-top:1px dashed #c9b98a;padding-top:6px;flex-wrap:wrap}
 .exitcard .sig{font-family:'Segoe Script','Brush Script MT',cursive;font-size:18px;color:#1d3f8f;transform:rotate(-3deg);min-width:0;overflow-wrap:anywhere}
+
+/* 26차: 근무 이어하기 */
+.runp{border:2px solid var(--vela);background:#f4f7ff}
+.runp h2{margin:0 0 6px}
+.runp .rl{margin:2px 0;font-size:14px}
+.runp .small{margin:6px 0 8px}
+.runp.bad{border-color:#e0b04a;background:#fff8e6}
+.runp.bad p{margin:0 0 8px;font-size:14px}
+.runp .btns{display:flex;flex-wrap:wrap;gap:8px}
+.runp .btn.ghost,.rconf .btn.ghost{background:#fff;color:#3a4566;border:1px solid #c9d1e6}
+.runnote{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:#eef3ff;color:#24346b;font-size:13.5px;font-weight:600}
+.rconf{z-index:60}
+.rconf .card p{margin:4px 0 12px;font-size:14px;line-height:1.55}
+/* 30차: 이어하기를 준비하는 동안 타이틀 조작을 잠시 막음 */
+.runp.busy{opacity:.75}
+.runp.busy .btn{cursor:progress}

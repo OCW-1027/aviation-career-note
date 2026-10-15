@@ -331,7 +331,7 @@ function render(){
   $('play').textContent=tx(T.play)+' →';$('play').href=GAME+'#day1';
   if(next&&next>1){$('cont').hidden=false;$('cont').textContent=tx(T.cont)+' · DAY '+next;$('cont').href=GAME+'#day'+next}else $('cont').hidden=true;
   $('how').innerHTML=T.how.map(function(h,i){return '<div class="step"><img src="saga/img/'+h[2]+'.webp" alt=""><div><small>STEP 0'+(i+1)+'</small><h3>'+E(tx(h[0]))+'</h3><p>'+E(tx(h[1]))+'</p></div></div>'}).join('');
-  $('stages').innerHTML=STAGES.map(function(s){var p=s.st==='play';var stt=p?'<span class="st go">'+T.sGo+'</span>':s.key?'<span class="st calc">'+T.sCalc+'</span>':'<span class="st soon">'+T.sSoon+'</span>';
+  $('stages').innerHTML=STAGES.map(function(s){var p=s.st==='play';var stt=p?'<span class="st go">'+T.sGo+'</span>':(s.n==='02'&&!cleared(hist(),5,C))?'<span class="st soon">'+E(tx(L('チェックイン編 本番DAY 5クリア後','체크인편 실전 DAY 5 통과 후','After Check-in DAY 5 (Shift)')))+'</span>':(s.n==='02')?'<span class="st soon">'+E(tx(L('準備中（チェックイン編クリア済み）','준비 중(체크인편 클리어)','Coming (Check-in cleared)')))+'</span>':s.key?'<span class="st calc">'+T.sCalc+'</span>':'<span class="st soon">'+T.sSoon+'</span>';
     return '<tr class="'+(p?'play':'')+'"><td>'+s.n+'</td><td class="nm">'+(p?'<a href="'+GAME+'">'+E(tx(s.nm))+'</a>':E(tx(s.nm)))+'</td><td>'+E(tx(s.course))+'</td><td>'+stt+'</td></tr>'}).join('');
   $('les').innerHTML=Object.keys(LDAYS).map(function(id){var t=LESSONS[id],u=LLINK.links[id];if(!t||!u)return '';var no=id.split('/')[1];
     return '<a class="les" href="'+LLINK.base+u[lang]+'"><code>'+(id.indexOf('ciq/')===0?'CIQ ':'')+no+'</code><span>'+E(tx(t))+'<em>DAY '+LDAYS[id].join(' · ')+'</em></span></a>'}).join('');
