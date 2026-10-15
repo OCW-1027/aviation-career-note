@@ -132,7 +132,55 @@ irr_meet:function(l){
   en:{t:'The monthly station meeting: from numbers to next month’s tasks',st:['Read results against target and last month','Take safety reports first','Check the breakdown, not just averages and totals','Ask a named party for the missing data','Set next month’s tasks, each with one indicator'],who:['Results','Priority','Cause','Request','Task and indicator'],k:'The aim for safety reports is not to reduce them but to keep them open'}})[l];
  if(!W)return F.irr_meet('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#D64545','#E08A2E','#7A5CC7','#2E9B5F'],'10s');s+=A.s;
- var K=KEY(A.y+16,W.k,'#0f3558');return SVG(K.y,s+K.s)}
+ var K=KEY(A.y+16,W.k,'#0f3558');return SVG(K.y,s+K.s)},
+/* 基礎 0-1 旅客機の各部の名前（2026.10.15 描き直し）：サイト共通の飛行機の絵（aircraft.js の ACFT.top・ACFT.jet、B737）に番号を付ける。
+   機首は右（絵は左右反転しない）。番号はレッスンの表（1〜18）と同じ。動く翼面などは色の線・面で示す。
+   位置は絵の画素（上：800×655、横：1000×311）で書き、TP・SP で図の座標に直す */
+aircraft_parts:function(l){
+ var W=({ja:{t:'上から見た図',s:'横から見た図',f:'機首',a:'機尾'},ko:{t:'위에서 본 그림',s:'옆에서 본 그림',f:'기수',a:'꼬리'},en:{t:'Top view',s:'Side view',f:'Nose',a:'Tail'}})[l];
+ if(!W)return F.aircraft_parts('ja');setK(1);
+ var A=window.ACFT,BL='#2F8FE0',OR='#E08A2F',PU='#7A5CC7',TE='#1F7A6E',RE='#D0506A',GY='#5b6b7d',DK='#1D2A3A';
+ var s='',VW=640;
+ /* 上から見た図：絵の中心 (CX,CY)、1単位 SC（絵の幅40単位） */
+ var SC=10,CX=322,y0=12,TH=FS(13)*1.3+8,CY=y0+TH+19*SC;
+ function TP(px,py){return [CX+(px-400)*0.05*SC,CY+(py-335)*0.05*SC]}
+ var top1=y0,top2=CY+16.6*SC;
+ s+=R(14,top1,VW-28,top2-top1,'#EAF1F8',14);
+ s+=tx(30,top1+FS(13)*1.05+4,W.t,13,'#0f3558',800,'start');
+ s+='<g transform="translate('+CX+' '+CY+') scale('+SC+')">'+(A&&A.top?A.top({type:'737'}):'')+'</g>';
+ /* 色の線（翼面）。mir は下側の翼（絵の上下対称） */
+ function LN(pts,c,w,mir){var q=pts.map(function(p){return TP(p[0],mir?670-p[1]:p[1])});return '<path d="M'+q.map(function(v){return v[0].toFixed(1)+' '+v[1].toFixed(1)}).join(' L')+'" fill="none" stroke="'+c+'" stroke-width="'+w+'" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>'}
+ function PG(pts,c,op,mir,sp){var q=pts.map(function(p){return (sp||TP)(p[0],mir?670-p[1]:p[1])});return '<path d="M'+q.map(function(v){return v[0].toFixed(1)+' '+v[1].toFixed(1)}).join(' L')+' Z" fill="'+c+'" opacity="'+op+'" stroke="'+c+'" stroke-width="1.5"/>'}
+ [false,true].forEach(function(m){
+  s+=LN([[372,42],[414,122],[446,186]],BL,5,m);                 /* 3 スラット（前縁） */
+  s+=LN([[339,40],[352,82],[366,124]],OR,5,m);                  /* 4 補助翼 */
+  s+=LN([[370,138],[383,184],[395,226],[395,282]],TE,5,m);      /* 6 フラップ */
+  s+=LN([[46,180],[63,240],[81,302]],RE,4.5,m)});               /* 9 昇降舵 */
+ s+=PG([[384,152],[396,150],[416,228],[416,272],[404,272],[403,232]],PU,.55,true);  /* 5 スポイラー（下側の翼に表示） */
+ /* 番号：[番号, 指す所(px,py), 番号の位置(図の座標), 色] */
+ function BD(x,y,n,c){var r=Math.max(12,FS(13)*0.82);return '<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+r.toFixed(1)+'" fill="'+c+'" stroke="#fff" stroke-width="2.5"/>'+tx(x,y+FS(13)*0.36,String(n),13,'#fff',900)}
+ function LK(t,b,c){return '<line x1="'+b[0].toFixed(1)+'" y1="'+b[1].toFixed(1)+'" x2="'+t[0].toFixed(1)+'" y2="'+t[1].toFixed(1)+'" stroke="'+c+'" stroke-width="1.6" stroke-dasharray="4 3"/><circle cx="'+t[0].toFixed(1)+'" cy="'+t[1].toFixed(1)+'" r="3" fill="'+c+'"/>'}
+ var TB=[[1,[782,335],[890,250],GY],[2,[522,222],[640,150],GY],[3,[414,122],[520,40],BL],[4,[352,82],[230,64],OR],
+  [5,[406,212],[262,560],PU],[6,[383,184],[226,170],TE],[7,[372,10],[470,-16],GY],[8,[100,262],[180,128],GY],[9,[63,240],[-50,196],RE]];
+ TB.forEach(function(t){var p=TP(t[1][0],t[0]===5?670-t[1][1]:t[1][1]);s+=LK(p,TP(t[2][0],t[2][1]),t[3])});
+ TB.forEach(function(t){var b=TP(t[2][0],t[2][1]);s+=BD(b[0],b[1],t[0],t[3])});
+ /* 横から見た図：jet('737') は単位メートル（機首は右）。絵の画素 → 単位：x=19.75−(997−px)×0.041、y=(py−213)×0.041 */
+ var S2=13.3,y1=top2+12,TH2=FS(13)*1.3+8,OX=VW/2+0.627*S2,OY=y1+TH2+50+8.733*S2;
+ function SP(px,py){return [OX+(19.75-(997-px)*0.041)*S2,OY+(py-213)*0.041*S2]}
+ var bot=OY+4.02*S2+70;
+ s+=R(14,y1,VW-28,bot-y1,'#EAF1F8',14);
+ s+=tx(30,y1+FS(13)*1.05+4,W.s,13,'#0f3558',800,'start');
+ s+='<g transform="translate('+OX.toFixed(1)+' '+OY.toFixed(1)+') scale('+S2+')">'+(A&&A.jet?A.jet('737'):'')+'</g>';
+ s+=PG([[42,12],[59,12],[106,150],[73,152]],RE,.55,false,SP);                  /* 16 方向舵 */
+ s+=PG([[768,236],[804,236],[804,262],[768,262]],OR,.6,false,SP)+PG([[318,226],[350,228],[350,252],[318,250]],OR,.6,false,SP); /* 12 貨物室ドア */
+ var SB=[[10,[938,201],[SP(938,0)[0]+34,y1+TH2+20],GY],[11,[876,206],[SP(876,0)[0]-40,y1+TH2+20],DK],[12,[786,249],[SP(786,0)[0]-70,bot-24],OR],
+  [13,[897,292],[SP(897,0)[0]-6,bot-24],GY],[14,[506,292],[SP(506,0)[0]+8,bot-24],GY],[15,[118,80],[SP(118,0)[0]+82,y1+TH2+26],GY],
+  [16,[70,90],[SP(70,0)[0]-34,y1+TH2+56],RE],[17,[47,190],[SP(50,0)[0]-2,bot-24],GY],[18,[958,231],[SP(958,0)[0]+40,bot-30],OR]];
+ SB.forEach(function(t){s+=LK(SP(t[1][0],t[1][1]),t[2],t[3])});
+ s+=LK(SP(334,239),SB[2][2],OR);  /* 12 は後ろの貨物室ドアも指す */
+ SB.forEach(function(t){s+=BD(t[2][0],t[2][1],t[0],t[3])});
+ s+=tx(VW-30,y1+FS(13)*1.05+4,'← '+W.a+'　'+W.f+' →',11,GY,700,'end');
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+VW+' '+(bot+10).toFixed(0)+'" role="img">'+R(0,0,VW,bot+10,'#ffffff')+s+'</svg>'}
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

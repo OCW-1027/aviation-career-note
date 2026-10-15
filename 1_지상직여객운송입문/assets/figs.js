@@ -132,37 +132,7 @@ taf_timeline:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="
   if(r[4]==='prob'){s+=R(X(12),y,X(15)-X(12),28,r[1],6,' opacity=".25"')+R(X(12.8),y,X(13.5)-X(12.8),28,r[1],4,' opacity=".6"')}
   if(r[4]==='fm')s+=R(X(21),y,X(30)-X(21),28,r[1],6,' opacity=".55"')+'<line x1="'+X(21)+'" y1="'+(y-6)+'" x2="'+X(21)+'" y2="'+(y+34)+'" stroke="'+r[1]+'" stroke-width="4"/>'});
  return s+'</svg>'},
-aircraft_parts:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img"><rect width="900" height="640" fill="#F7FAFD"/>',F='#ffffff',Sd=D;
- /* top view (nose to the left) */
- s+='<path d="M60 170 Q60 150 100 146 L700 146 L780 158 L800 170 L780 182 L700 194 L100 194 Q60 190 60 170 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
- s+='<path d="M350 92 L410 93 L410 107 L350 108 Q344 100 350 92 Z M350 232 L410 233 L410 247 L350 248 Q344 240 350 232 Z" fill="#C3CCD6" stroke="'+Sd+'" stroke-width="2.5"/><ellipse cx="349" cy="100" rx="3" ry="7" fill="#2B3642"/><ellipse cx="349" cy="240" rx="3" ry="7" fill="#2B3642"/>';
- s+='<path d="M330 146 L460 40 L500 40 L470 146 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/><path d="M330 194 L460 300 L500 300 L470 194 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
- s+='<path d="M700 146 L760 96 L785 96 L770 150 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/><path d="M700 194 L760 244 L785 244 L770 190 Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
- s+='<path d="M352 128 L462 38" stroke="#2F8FE0" stroke-width="6" opacity=".7"/><path d="M352 212 L462 302" stroke="#2F8FE0" stroke-width="6" opacity=".7"/>';
- s+='<path d="M478 120 L497 44" stroke="#E08A2F" stroke-width="6" opacity=".8"/><path d="M478 220 L497 296" stroke="#E08A2F" stroke-width="6" opacity=".8"/>';
- s+='<path d="M472 140 L478 120" stroke="#1F7A6E" stroke-width="6"/><path d="M472 200 L478 220" stroke="#1F7A6E" stroke-width="6"/>';
- s+=R(430,96,34,14,'#7A5CC7',3,' opacity=".8"')+R(430,230,34,14,'#7A5CC7',3,' opacity=".8"');
- s+='<path d="M500 40 L512 26" stroke="'+Sd+'" stroke-width="5"/><path d="M500 300 L512 314" stroke="'+Sd+'" stroke-width="5"/>';
-  s+='<path d="M772 102 L783 150" stroke="#D0506A" stroke-width="5" opacity=".8"/><path d="M772 238 L783 190" stroke="#D0506A" stroke-width="5" opacity=".8"/>';
- var tb=[[1,70,170,'#5b6b7d'],[2,362,100,'#5b6b7d'],[3,420,72,'#2F8FE0'],[4,490,72,'#E08A2F'],[5,447,237,'#7A5CC7'],[6,475,130,'#1F7A6E'],[7,507,31,'#5b6b7d'],[8,745,112,'#5b6b7d'],[9,778,126,'#D0506A']];
- var pos={1:[40,110],2:[330,60],3:[400,20],4:[560,60],5:[420,330],6:[560,140],7:[570,20],8:[700,60],9:[850,110]};
- tb.forEach(function(t){var p=pos[t[0]];s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+t[1]+'" y2="'+t[2]+'" stroke="'+t[3]+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+badge(t[0],p[0],p[1],14,t[3])});
- /* side view */
- var y=470;
- s+='<path d="M70 '+y+' Q70 430 130 426 L700 426 L760 400 L800 330 L840 330 L830 426 L840 470 L760 486 L130 490 Q70 490 70 '+y+' Z" fill="'+F+'" stroke="'+Sd+'" stroke-width="3"/>';
- s+='<path d="M90 450 L120 438 L140 442 L120 454 Z" fill="#9fd3fa"/>';
- for(var wx=170;wx<700;wx+=24)s+='<rect x="'+wx+'" y="442" width="10" height="12" rx="4" fill="#9fd3fa"/>';
- s+=R(150,436,16,42,'#1D2A3A',3,' opacity=".75"')+R(650,436,16,42,'#1D2A3A',3,' opacity=".75"');
- s+=R(230,468,60,20,'#E08A2F',3,' opacity=".65"')+R(560,468,50,20,'#E08A2F',3,' opacity=".65"');
- s+='<path d="M812 336 L840 336 L832 424 L806 424 Z" fill="#D0506A" opacity=".5"/>';
- s+='<circle cx="838" cy="448" r="6" fill="'+Sd+'"/>';
- s+='<path d="M330 484 L520 506 L556 506 L470 488 Z" fill="#DCE3EA" stroke="'+Sd+'" stroke-width="2.5" stroke-linejoin="round"/><path d="M372 488 L392 497 L410 497 L398 488 Z" fill="#C3CCD6" stroke="'+Sd+'" stroke-width="2"/><path d="M318 508 Q318 497 330 496 L404 496 L414 503 L414 517 L404 524 L330 524 Q318 523 318 508 Z" fill="#C3CCD6" stroke="'+Sd+'" stroke-width="2.5"/><ellipse cx="321" cy="510" rx="3" ry="10" fill="#2B3642"/>';
- s+='<line x1="160" y1="490" x2="160" y2="525" stroke="'+Sd+'" stroke-width="4"/><circle cx="160" cy="532" r="9" fill="'+Sd+'"/><line x1="470" y1="490" x2="470" y2="525" stroke="'+Sd+'" stroke-width="5"/><circle cx="462" cy="534" r="11" fill="'+Sd+'"/><circle cx="482" cy="534" r="11" fill="'+Sd+'"/>';
- s+='<circle cx="84" cy="470" r="4" fill="#E08A2F"/>';
- var sb=[[10,110,446,70,400,'#5b6b7d'],[11,158,450,180,390,'#1D2A3A'],[12,260,478,260,590,'#E08A2F'],[13,160,528,110,590,'#5b6b7d'],[14,472,525,520,600,'#5b6b7d'],[15,795,370,720,330,'#5b6b7d'],[16,822,380,880,340,'#D0506A'],[17,838,448,880,510,'#5b6b7d'],[18,84,470,40,520,'#E08A2F']];
- sb.forEach(function(t){s+='<line x1="'+t[3]+'" y1="'+t[4]+'" x2="'+t[1]+'" y2="'+t[2]+'" stroke="'+t[5]+'" stroke-width="1.5" stroke-dasharray="4 3"/>'+badge(t[0],t[3],t[4],14,t[5])});
- s+='<text x="20" y="630" font-size="14" fill="'+Sd+'" font-family="Arial,sans-serif">← FWD</text><text x="880" y="630" font-size="14" text-anchor="end" fill="'+Sd+'" font-family="Arial,sans-serif">AFT →</text>';
- return s+'</svg>'},
+/* aircraft_parts（基礎 0-1 各部の名前）は 2026.10.15 に figs_add.js へ移し、サイト共通の飛行機の絵で描き直した */
 forces_anim:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img"><defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><rect width="900" height="460" fill="#EAF4FD"/>';
  [[120,80,1],[520,60,1.3],[760,120,.9],[300,380,1.1]].forEach(function(c,i){s+='<g opacity=".9"><ellipse cx="'+c[0]+'" cy="'+c[1]+'" rx="'+(46*c[2])+'" ry="'+(16*c[2])+'" fill="#fff"/><ellipse cx="'+(c[0]+30*c[2])+'" cy="'+(c[1]-10*c[2])+'" rx="'+(30*c[2])+'" ry="'+(16*c[2])+'" fill="#fff"/><animateTransform attributeName="transform" type="translate" values="0 0;260 0" dur="'+(7+i*2)+'s" repeatCount="indefinite"/></g>'});
  if(window.ACFT)s+='<g transform="translate(450 230) scale(-9.5,9.5)">'+window.ACFT.side({c:'#fff',sw:2.5})+'</g>';else{s+='<g transform="translate(450 230)"><path d="M-170 0 Q-170 -22 -140 -24 L130 -24 L160 -40 L185 -95 L205 -95 L200 -24 L210 0 L160 12 L-140 14 Q-170 14 -170 0 Z" fill="#fff" stroke="'+D+'" stroke-width="3"/><path d="M-40 -2 L40 -2 L70 10 L-20 10 Z" fill="#cfd8e2" stroke="'+D+'" stroke-width="2"/>';

@@ -82,9 +82,13 @@ function block(b,L){
   case 'cards': return '<div class="cards" style="--n:'+(b.n||2)+'">'+b.items.map(function(i){return '<div class="card">'+(i.ic?'<span class="ic">'+i.ic+'</span>':'')+'<b>'+esc(i.name)+'</b>'+(i.tag?'<span class="tag">'+esc(i.tag)+'</span>':'')+'<span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
   case 'rows': return '<div class="rows">'+b.items.map(function(i){return '<div class="row"><b>'+pp(i.name)+'</b><span>'+esc(i.x)+'</span></div>'}).join('')+'</div>';
   case 'table':
+    /* 短い中身（英数字の記号・数値＋単位など、目安9文字分まで。かな・漢字・ハングルを含むものは除く）のセルは途中で折り返さない（「DH8D」が「DH8／D」、「27.2 m」が「27.2／m」にならないように）（2026.10） */
+    /* b.nobreak：スマートフォンでも短いセル・英数字の1列目を語の途中で切らない（列の多い仕様の表など。収まらなければ表全体が縮む）*/
+    var CJK=/[\u1100-\u11ff\u3040-\u30ff\u3130-\u318f\u3400-\u9fff\uac00-\ud7af\uf900-\ufaff]/;
+    var cw=function(v){var s=String(v==null?'':v),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}return w};
     /* 列の中身が短い（どの行も1行ほど）列は中央ぞろえにして、中央ぞろえの見出しと位置を合わせる */
     var shortCol=b.cols.map(function(_,ci){var m=0;b.rows.forEach(function(r){var s=String(r[ci]==null?'':r[ci]),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>m)m=w});return m<=18});
-    return '<div class="scroll tbl"><table><thead><tr>'+b.cols.map(function(c){var s=String(c),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}return '<th'+(w>8?' class="w"':'')+'>'+pp(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){return '<td class="'+(i===0&&b.label!==false?(shortCol[0]?'lb':'lb lw'):((b.center||shortCol[i])?'c':''))+'">'+pp(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
+    return '<div class="scroll tbl'+(b.nobreak?' nbk':'')+'"><table><thead><tr>'+b.cols.map(function(c){var s=String(c),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}return '<th'+(w>5?' class="w"':'')+'>'+pp(c)+'</th>'}).join('')+'</tr></thead><tbody>'+b.rows.map(function(r){return '<tr>'+r.map(function(c,i){var k=(i===0&&b.label!==false?(shortCol[0]?'lb':'lb lw'):((b.center||shortCol[i])?'c':''));if(!(i===0&&b.label!==false)&&cw(c)<=9&&!CJK.test(String(c==null?'':c)))k+=(k?' ':'')+'nw';else if(i===0&&b.label!==false&&!/[^\x00-\x7f]/.test(String(c==null?'':c)))k+=' la';return '<td class="'+k+'">'+pp(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
   case 'ladder':
     return '<div class="ladder">'+b.steps.map(function(s,i){var h=120+i*(b.rise||28);return '<div class="step'+(s.alt?' alt':'')+'" style="min-height:'+h+'px"><span class="n">'+(i+1)+'</span><b>'+pp(s.name)+'</b><small>'+pp(s.sub||'')+'</small></div>'}).join('')+'</div>';
   case 'timeline':

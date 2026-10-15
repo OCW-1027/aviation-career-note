@@ -80,7 +80,15 @@ td.lb{font-weight:700;font-family:var(--disp);text-align:center;vertical-align:m
    はみ出さない表はこれまでどおり1行のまま。韓国語・英語は語の途中で切らない */
 .tbl.fit td.lb.lw{white-space:normal;min-width:8em;max-width:18em;overflow-wrap:anywhere}
 .tbl.fit thead th.w{white-space:normal;min-width:4.5em;word-break:keep-all;overflow-wrap:anywhere}
+/* はみ出す表は左右の余白を少し詰め、折り返す見出しは4文字分の幅を保つ（PC、2026.10） */
+@media (min-width:601px){.tbl.fit th,.tbl.fit td{padding-left:8px;padding-right:8px}.tbl.fit thead th.w{min-width:calc(4em + 16px)}}
 td.c{text-align:center}
+/* 短いセル（article.js が .nw を付ける：記号・数値＋単位など）はPCでは1行のまま。はみ出す表は見出し・余白で調整する（2026.10） */
+@media (min-width:601px){.tbl td.nw{white-space:nowrap}}
+/* 1列目が英数字だけ（機種名など）のときは、語の途中で切らない（「A320neo」が「A320ne／o」にならないように）。PCのみ（スマートフォンは表を画面の幅に収めることを優先） */
+@media (min-width:601px){.tbl td.la{overflow-wrap:normal}}
+/* 表の指定（nobreak）があるときは、スマートフォンでも語の途中で切らない（画面に入らない分は article.js の FZ が表全体を縮める） */
+@media (max-width:600px){.tbl.nbk td.nw{white-space:nowrap}.tbl.nbk td.lb,.tbl.nbk thead th,.tbl.nbk.fit thead th.w{overflow-wrap:normal}}
 /* ladder */
 .ladder{display:flex;align-items:flex-end;gap:8px;margin:14px 0 6px;overflow-x:auto;padding-bottom:6px}
 .step{flex:1 0 110px;border-radius:14px 14px 6px 6px;background:var(--sky-t);display:flex;flex-direction:column;justify-content:flex-start;align-items:center;text-align:center;padding:10px 8px 12px;gap:4px}
