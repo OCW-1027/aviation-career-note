@@ -26,7 +26,7 @@ sections:[
 ["5","Head-count differences at boarding are recorded","Records","Pass"],
 ["6","Late transfer passengers are handled and recorded","Records","N/A"]]},
 {t:"point",x:"Write each item as a statement that can be answered yes or no, and fix how it is checked (look, ask, read the records). Then the result is the same whoever does the audit."}]},
-{h:"Recording the results",blocks:[{t:"check",items:[
+{h:"Recording the results",blocks:[{t:"fig",id:"opn_selfaudit",cap:"Moving diagram: how one checklist item becomes a record, through a set check method and one of three results."},{t:"check",items:[
 {name:"Basic details",x:"Date, auditor, flights or time band covered, and who was present."},
 {name:"Three results",x:"Record Pass, Fail or N/A. If in doubt, record Fail and say why."},
 {name:"Evidence",x:"Attach a photo or a copy of the document to every Fail, with the corrective action request number (8-2)."},
@@ -52,7 +52,7 @@ sections:[
 ["December","Mock audit ahead of the authority’s audit (5-3)"],
 ["January to March","The authority’s audit (dates as notified); year-end review and next year’s plan"]]},
 {t:"note",x:"* Example only. The authority often announces audit dates early in the year, and there are also unannounced inspections (5-3). ★"}]},
-{h:"The corrective action flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Finding",sub:"Check, audit or incident report"},{name:"Immediate action",sub:"Stop or patch it the same day"},{name:"Root cause",sub:"Keep asking why"},{name:"Corrective action",sub:"Change procedure, training or tools"},{name:"Effectiveness",sub:"Look again at the next check"},{name:"Closure",sub:"The station manager closes it"}]},
+{h:"The corrective action flow",blocks:[{t:"fig",id:"opn_capa",cap:"Moving diagram: immediate action (the bucket) and corrective action (fixing the pipe). Close only after checking that it worked."},{t:"ladder",rise:10,steps:[{name:"Finding",sub:"Check, audit or incident report"},{name:"Immediate action",sub:"Stop or patch it the same day"},{name:"Root cause",sub:"Keep asking why"},{name:"Corrective action",sub:"Change procedure, training or tools"},{name:"Effectiveness",sub:"Look again at the next check"},{name:"Closure",sub:"The station manager closes it"}]},
 {t:"point",x:"Immediate action (stopping what is happening now) and corrective action (making sure it cannot happen again) are different things. Close a finding on immediate action alone and the same finding comes back."}]},
 {h:"Filling in a corrective action request (fictional example)",blocks:[{t:"table",cols:["Field","Example"],rows:[
 ["Number","CAR-2026-07"],
@@ -96,7 +96,7 @@ sections:[
 ["Through an agent","Chinese nationals living in China; Filipino and Vietnamese nationals in their own country joining a tour by a designated travel agency"],
 ["Through an agent","Residents of the UAE, India, Indonesia, South Korea (except the Jeju consulate’s area), Singapore, Hong Kong, Macau and Mongolia"]]},
 {t:"note",x:"* Korean nationals are visa-exempt for short stays, so they normally do not need it. In Korea it applies to residents whose nationality does need a visa (students, workers and so on). The list keeps growing: always check the Ministry’s latest notice. ★"}]},
-{h:"What to check at check-in",blocks:[{t:"check",items:[
+{h:"What to check at check-in",blocks:[{t:"fig",id:"opn_evisa",cap:"Diagram: deciding which document a passenger to Japan needs. The dashed box is a scheme that has not started yet (★)."},{t:"check",items:[
 {name:"How it is shown",x:"The passenger logs in on their own device there and then. Do not accept photos of the screen or printouts."},
 {name:"Match with the passport",x:"Name, passport number and nationality match the passport presented."},
 {name:"Type and validity",x:"A single-entry short-stay visa, entry within its validity, and not already used ★."},

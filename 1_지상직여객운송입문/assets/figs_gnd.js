@@ -2111,3 +2111,97 @@ lf_help:function(l){
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();
+
+/* 日本就航・支店開設ガイド（OPN）Part 8 の図（2026.10.15）— 8-1 点検の1項目が記録になるまで、8-2 応急処置と是正処置、8-3 日本行きの旅客の書類（判断の流れ）
+   figs_met.js の後に読み込み、window.FIGH の部品を使う。作成ルール：00_그림작성규칙.md。例は架空 */
+(function(){
+var H=window.FIGH;if(!H)return;
+var R=H.R,tx=H.tx,WR=H.WR,TTL=H.TTL,FS=H.FS,LI=H.LINES,setK=H.setK,ARW=H.ARW;
+var D=H.C.D,G=H.C.G,BL='#2F8FE0',TE='#1F7A6E',OR='#E08A2F',RD='#D0453E',GN='#1F8A5B',NV='#0f3558',GY='#9AA9B8',PU='#7A5CC7';
+function svg(h,body){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+Math.ceil(h)+'" role="img">'+R(0,0,640,Math.ceil(h),'#F7FAFD')+body+'</svg>'}
+function hgt(s,sz,w){return LI(s,sz,w).length*FS(sz)*1.3}
+function TW2(x,top,s,sz,c,w,maxw,a){var n=LI(s,sz,maxw).length,lh=FS(sz)*1.3;return WR(x,top+FS(sz)*0.95+(n-1)*lh/2,s,sz,c,w,maxw,a)}
+function ttlH(s){return Math.max(58,30+hgt(s,15,600)+14)}
+function BOX(y,s,bg,c,sz){sz=sz||12;var h=hgt(s,sz,560)+18;return [R(20,y,600,h,bg,10)+TW2(320,y+9,s,sz,c,900,560),h]}
+/* 横並びの札（n 枚、同じ高さ）。items=[[見出し,説明,色]] 戻り値 [図, 高さ] */
+function ROW(y,items,sz){var n=items.length,gap=10,w=(600-gap*(n-1))/n,h=0;
+ items.forEach(function(t){h=Math.max(h,hgt(t[0],12.5,w-20)+(t[1]?hgt(t[1],11,w-20)+6:0)+20)});
+ var g='';items.forEach(function(t,i){var x=20+i*(w+gap),h1=hgt(t[0],12.5,w-20);
+  g+=R(x,y,w,h,'#fff',10,' stroke="'+t[2]+'" stroke-width="2"')+R(x,y,w,6,t[2],3)+TW2(x+w/2,y+10,t[0],12.5,t[2],900,w-20)+(t[1]?TW2(x+w/2,y+14+h1,t[1],11,D,700,w-20):'')});
+ return [g,h]}
+function LBL(y,s,c){var h=hgt(s,12,560);return [TW2(320,y,s,12,c||NV,900,560),h]}
+function DOWN(y){return ARW(320,y+2,320,y+20,GY,3.5)}
+
+/* 1. 8-1 点検の1項目が記録になるまで */
+var AUD={
+ ja:['点検の1項目が記録になるまで','① 項目は「はい・いいえ」で答えられる文にする','例：「保安質問をすべての旅客にしている」','② 確かめ方を決めておく',[['見る','現場で実際の動きを見る',BL],['聞く','担当者に手順を説明してもらう',PU],['記録を見る','タグ数・搭乗照合などの記録',TE]],'③ 結果は3つのうち1つ',[['適合','',GN],['不適合','写真・書類を添え、是正票の番号を書く（8-2）',RD],['該当なし','その日に対象がなかった',G]],'④ 支店長が確認・署名し、決めた期間保管する ★','迷ったら「不適合」にして理由を書く。だれが点検しても同じ結果になる点検票が、よい点検票。'],
+ ko:['점검 한 항목이 기록이 되기까지','① 항목은 ‘예·아니요’로 답할 수 있는 문장으로','예: ‘보안 질문을 모든 승객에게 한다’','② 확인 방법을 정해 둔다',[['보기','현장에서 실제 움직임을 본다',BL],['묻기','담당자에게 절차를 설명하게 한다',PU],['기록 보기','태그 수·탑승 대조 등의 기록',TE]],'③ 결과는 세 가지 중 하나',[['적합','',GN],['부적합','사진·서류를 붙이고 시정 조치서 번호를 적는다(8-2편)',RD],['해당 없음','그날 대상이 없었다',G]],'④ 지점장이 확인·서명하고 정한 기간 보관한다 ★','애매하면 ‘부적합’으로 하고 이유를 적는다. 누가 점검해도 결과가 같은 점검표가 좋은 점검표다.'],
+ en:['How one checklist item becomes a record','① Write each item as a yes-or-no statement','Example: “Every passenger is asked the security questions”','② Decide how it will be checked',[['Observe','Watch the work as it happens',BL],['Ask','Have the staff member explain the procedure',PU],['Check records','Tag counts, boarding reconciliation and so on',TE]],'③ One of three results',[['Conforming','',GN],['Non-conforming','Attach photos or documents and the corrective action number (8-2)',RD],['Not applicable','Nothing to check that day',G]],'④ The station manager reviews, signs and keeps it for the set period ★','If in doubt, mark it non-conforming and give the reason. A good checklist gives the same result whoever uses it.']};
+function audFig(l){setK(1);var d=AUD[l]||AUD.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),r;
+ r=LBL(y,d[1]);s+=r[0];y+=r[1]+6;
+ var he=hgt(d[2],12,520)+18;s+=R(60,y,520,he,'#fff',8,' stroke="'+NV+'" stroke-width="1.6"')+'<rect x="72" y="'+(y+he/2-8)+'" width="16" height="16" rx="3" fill="none" stroke="'+NV+'" stroke-width="2"/>'+TW2(100,y+9,d[2],12,D,800,470,'start');y+=he+6;
+ s+=DOWN(y);y+=26;r=LBL(y,d[3]);s+=r[0];y+=r[1]+8;r=ROW(y,d[4]);s+=r[0];y+=r[1]+8;
+ s+=DOWN(y);y+=26;r=LBL(y,d[5]);s+=r[0];y+=r[1]+8;
+ r=ROW(y,d[6]);s+='<g>'+r[0]+'</g>';
+ /* 不適合の札を点滅させる */
+ var w3=(600-20)/3;s+='<rect x="'+(20+w3+10)+'" y="'+y+'" width="'+w3+'" height="'+r[1]+'" rx="10" fill="none" stroke="'+RD+'" stroke-width="4" opacity="0"><animate attributeName="opacity" values="0;0.9;0" keyTimes="0;0.5;1" dur="2.4s" repeatCount="indefinite"/></rect>';
+ y+=r[1]+8;s+=DOWN(y);y+=26;r=LBL(y,d[7],TE);s+=r[0];y+=r[1]+14;
+ var b=BOX(y,d[8],'#EAF7EF','#166534',11.5);s+=b[0];y+=b[1]+16;return svg(y,s)}
+
+/* 2. 8-2 応急処置と是正処置 ― 水もれのたとえ */
+var CAP={
+ ja:['応急処置と是正処置はちがう',['応急処置','その日のうちに、いま起きていることを止める','例：抜けていた記録を担当者に確かめて補う',OR,'バケツで水を受ける'],['是正処置','同じことが二度と起きないしくみに変える','例：引継ぎ表に記録係の欄を作り、手順書を改訂する',TE,'もれている管を直す'],'効果を確かめる','次の点検でも同じ項目を見る。3か月続けて適合なら閉じる','また不適合 → 原因の分析から是正処置をやり直す','応急処置だけで閉じると、同じ指摘がくり返される。'],
+ ko:['응급 조치와 시정 조치는 다르다',['응급 조치','그날 안에 지금 일어나는 일을 멈춘다','예: 빠진 기록을 담당자에게 확인해 보완',OR,'양동이로 물을 받는다'],['시정 조치','같은 일이 다시 생기지 않는 구조로 바꾼다','예: 인계표에 기록 담당 칸을 만들고 절차서 개정',TE,'새는 관을 고친다'],'효과를 확인한다','다음 점검에서도 같은 항목을 본다. 3개월 연속 적합이면 종결','다시 부적합 → 원인 분석부터 시정 조치를 다시','응급 조치만으로 닫으면 같은 지적이 되풀이된다.'],
+ en:['Immediate action and corrective action are different',['Immediate action','Stops what is happening now, the same day','Example: confirm the missing record with the staff member and fill it in',OR,'Catch the water in a bucket'],['Corrective action','Changes the system so it does not happen again','Example: add a “recorder” box to the handover sheet and revise the procedure',TE,'Fix the leaking pipe'],'Check that it worked','Look at the same item at the next audits. Close it after three months in a row of conformity','Non-conforming again → find the cause and redo the corrective action','Close it with only the immediate action and the same finding comes back.']};
+function capFig(l){setK(1);var d=CAP[l]||CAP.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ var w=290,ys=y,hs=0;[d[1],d[2]].forEach(function(c){var h=14+hgt(c[0],13,w-24)+4+hgt(c[1],11.5,w-24)+8+64+hgt('（'+c[4]+'）',11,w-24)+6+hgt(c[2],11,w-24)+14;hs=Math.max(hs,h)});
+ [d[1],d[2]].forEach(function(c,i){var x=20+i*(w+20),yy=y,col=c[3];
+  s+=R(x,yy,w,hs,'#fff',12,' stroke="'+col+'" stroke-width="2"')+R(x,yy,w,8,col,4);yy+=14;
+  s+=TW2(x+w/2,yy,c[0],13,col,900,w-24);yy+=hgt(c[0],13,w-24)+4;
+  s+=TW2(x+w/2,yy,c[1],11.5,D,800,w-24);yy+=hgt(c[1],11.5,w-24)+8;
+  /* 絵：管と水滴 */
+  var cx=x+w/2,py=yy+14;
+  s+='<rect x="'+(cx-70)+'" y="'+(py-6)+'" width="140" height="12" rx="6" fill="#9AA9B8"/>';
+  if(i===0){s+='<circle cx="'+cx+'" cy="'+(py+8)+'" r="3" fill="'+BL+'"><animate attributeName="cy" values="'+(py+8)+';'+(py+30)+'" dur="1s" repeatCount="indefinite"/></circle>'
+   +'<path d="M'+(cx-14)+' '+(py+26)+' L'+(cx-11)+' '+(py+44)+' L'+(cx+11)+' '+(py+44)+' L'+(cx+14)+' '+(py+26)+' Z" fill="none" stroke="'+OR+'" stroke-width="2.5"/>'}
+  else{s+='<rect x="'+(cx-14)+'" y="'+(py-9)+'" width="28" height="18" rx="4" fill="'+TE+'"/><path d="M'+(cx-6)+' '+(py+20)+' l5 5 l10 -11" fill="none" stroke="'+GN+'" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>'}
+  yy=py+50;s+=TW2(x+w/2,yy,'（'+c[4]+'）',11,G,800,w-24);yy+=hgt('（'+c[4]+'）',11,w-24)+6;
+  s+=TW2(x+w/2,yy,c[2],11,D,700,w-24)});
+ y+=hs+8;
+ /* 右の札から下へ：効果の確認 */
+ s+=ARW(475,y,475,y+22,GY,3.5);y+=28;
+ var h1=hgt(d[3],12.5,560),h2=hgt(d[4],11.5,560),hb=h1+h2+22;
+ s+=R(20,y,600,hb,'#EAF4FD',10)+TW2(320,y+8,d[3],12.5,BL,900,560)+TW2(320,y+12+h1,d[4],11.5,D,700,560);
+ /* ループの矢印：左に戻る */
+ var hl=hgt(d[5],11,520);
+ s+='<path d="M620 '+(y+hb/2)+' L631 '+(y+hb/2)+' L631 '+(ys+hs/2)+' L620 '+(ys+hs/2)+'" fill="none" stroke="'+RD+'" stroke-width="2.5" stroke-dasharray="5 4"/>';
+ y+=hb+8;s+=TW2(610,y,d[5],11,RD,800,520,'end');y+=hl+12;
+ var b=BOX(y,d[6],'#FDECEC','#B42318',11.5);s+=b[0];y+=b[1]+16;return svg(y,s)}
+
+/* 3. 8-3 日本行きの旅客の書類 ― 判断の流れ */
+var VIS={
+ ja:['日本行きの旅客 ― どの書類を確かめるか（2026年10月時点）','短期滞在で、査証（ビザ）免除の国籍か',['はい','いいえ'],[['いま','パスポートで渡航（ビザ不要）',TE],['JESTA開始後 ★','出発前の電子渡航認証（JESTA）が必要になる。2028年度中の開始が目標',PU]],'JAPAN eVISA の対象の国・地域に住み、短期滞在の一次査証か',[['はい','JAPAN eVISA。旅客本人の端末でその場で画面を出してもらう（写真・印刷は不可）',BL],['いいえ','パスポートに貼られた査証',OR]],'迷ったら搭乗させる前に本社と確認する。入国できなかった旅客の送還費用は航空会社が負うことがある。★'],
+ ko:['일본행 승객 — 어떤 서류를 확인하나(2026년 10월 기준)','단기체류이고, 비자 면제 국적인가',['예','아니요'],[['지금','여권으로 입국(비자 불필요)',TE],['JESTA 시작 후 ★','출발 전 전자여행인증(JESTA)이 필요해진다. 2028년도 중 시작 목표',PU]],'JAPAN eVISA 대상 국가·지역에 살고, 단기체류 단수 비자인가',[['예','JAPAN eVISA. 승객 본인 단말기로 그 자리에서 화면을 띄우게 한다(사진·인쇄물 불가)',BL],['아니요','여권에 붙인 비자',OR]],'애매하면 탑승시키기 전에 본사와 확인한다. 입국하지 못한 승객의 송환 비용은 항공사가 떠안을 수 있다. ★'],
+ en:['Passengers to Japan — which document to check (as of October 2026)','Short stay, and a visa-exempt nationality?',['Yes','No'],[['Now','Passport only (no visa needed)',TE],['Once JESTA starts ★','Online travel authorisation (JESTA) before departure. Target: during fiscal 2028',PU]],'Lives in a JAPAN eVISA country or region, with a single-entry short-stay visa?',[['Yes','JAPAN eVISA. The passenger opens it on their own device there and then (no screenshots or printouts)',BL],['No','Visa label in the passport',OR]],'If in doubt, check with head office before boarding. The airline may bear the cost of returning a passenger who is refused entry. ★']};
+function visFig(l){setK(1);var d=VIS[l]||VIS.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
+ function Q(y,t){var h=hgt(t,12.5,520)+20;return [R(60,y,520,h,NV,12)+TW2(320,y+10,t,12.5,'#fff',900,520),h]}
+ var q=Q(y,d[1]);s+=q[0];y+=q[1];
+ /* 2本に分かれる */
+ var lx=170,rx=470;s+='<path d="M320 '+y+' L320 '+(y+10)+' L'+lx+' '+(y+10)+' L'+lx+' '+(y+26)+' M320 '+(y+10)+' L'+rx+' '+(y+10)+' L'+rx+' '+(y+26)+'" fill="none" stroke="'+GY+'" stroke-width="3"/>';
+ s+=tx(lx-10,y+24,d[2][0],11.5,TE,900,'end')+tx(rx+10,y+24,d[2][1],11.5,OR,900,'start');y+=30;
+ /* 左：はい → いま / JESTA後（縦に2枚） */
+ var lw=280,ly=y,lyy=y;d[3].forEach(function(c,i){var h1=hgt(c[0],12,lw-24),h2=hgt(c[1],11,lw-24),h=h1+h2+20;
+  s+='<g>'+R(20,lyy,lw,h,'#fff',10,' stroke="'+c[2]+'" stroke-width="2"'+(i===1?' stroke-dasharray="6 4"':''))+TW2(20+lw/2,lyy+8,c[0],12,c[2],900,lw-24)+TW2(20+lw/2,lyy+12+h1,c[1],11,D,700,lw-24)
+   +(i===1?'<animate attributeName="opacity" values="0.45;1;0.45" keyTimes="0;0.5;1" dur="3s" repeatCount="indefinite"/>':'')+'</g>';
+  lyy+=h;if(i===0){s+=ARW(160,lyy+2,160,lyy+16,GY,3);lyy+=20}});
+ /* 右：いいえ → 次の問い → 2つ */
+ var rw=300,rx0=320,ryy=y,h0=hgt(d[4],11.5,rw-24)+18;
+ s+=R(rx0,ryy,rw,h0,'#EAF0F7',10,' stroke="'+NV+'" stroke-width="1.5"')+TW2(rx0+rw/2,ryy+9,d[4],11.5,NV,900,rw-24);ryy+=h0+6;
+ var hw=(rw-10)/2,hh=0;d[5].forEach(function(c){hh=Math.max(hh,hgt(c[0],12,hw-16)+hgt(c[1],10.5,hw-16)+20)});
+ d[5].forEach(function(c,i){var x=rx0+i*(hw+10),h1=hgt(c[0],12,hw-16);s+=R(x,ryy,hw,hh,'#fff',10,' stroke="'+c[2]+'" stroke-width="2"')+TW2(x+hw/2,ryy+8,c[0],12,c[2],900,hw-16)+TW2(x+hw/2,ryy+12+h1,c[1],10.5,D,700,hw-16)});
+ ryy+=hh;y=Math.max(lyy,ryy)+14;
+ var b=BOX(y,d[6],'#FFF3E0','#B45309',11.5);s+=b[0];y+=b[1]+16;return svg(y,s)}
+
+window.FIGS=window.FIGS||{};
+window.FIGS.opn_selfaudit=H.FIX2(audFig);window.FIGS.opn_capa=H.FIX2(capFig);window.FIGS.opn_evisa=H.FIX2(visFig);
+})();

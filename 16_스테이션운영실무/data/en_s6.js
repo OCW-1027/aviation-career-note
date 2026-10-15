@@ -38,7 +38,7 @@ sections:[
 {name:"Request",tag:"Ask",x:"Say what you need head office to do. Cover what, by when and why."},
 {name:"Consult",tag:"Think together",x:"Bring a problem that has no answer yet. Bring at least one proposal of your own."}]},
 {t:"point",x:"State in the first line of your email whether it is a report, a request or a consultation. That alone tells your counterpart how to read it and how urgently to reply."}]},
-{h:"Writing a request that gets through",blocks:[{t:"check",items:[
+{h:"Writing a request that gets through",blocks:[{t:"fig",id:"stn2_mail",cap:"Diagram: the shape of a request email. The subject and first line say what kind of message it is; the five parts follow in order (fictional example)."},{t:"check",items:[
 {name:"What",x:"One sentence on what you need. Write an action: not “please consider” but “please approve”."},
 {name:"By when",x:"The deadline for a reply and the reason (“the filing to the Japanese authorities is due on the …th”)."},
 {name:"Why",x:"Local facts and figures. Attach photos, the original text of the rule, quotes."},
@@ -95,7 +95,7 @@ next:"5-4 Reports and Emails Across Time Zones and Languages"});
 set("5-4",{title:"Reports and Emails Across Time Zones and Languages",hl:"Time Zones and Languages",subtitle:"Write knowing it will be read on someone else’s clock and in someone else’s language. The first three lines should say what happened and what you need",
 lead:["The station’s reports are read in another country, in another language, sometimes in the middle of the night. Japan and Korea run on the same clock, but their holidays differ. If head office is in Europe or the Americas, the station’s evening is head office’s morning or middle of the night.","This lesson looks at how to plan ahead for time differences and holidays, and how to write reports and emails that are hard to misread across languages."],
 sections:[
-{h:"Time differences and holidays",blocks:[{t:"table",cols:["Head office in","Difference from Japan","Watch out for"],rows:[
+{h:"Time differences and holidays",blocks:[{t:"fig",id:"stn2_tz",cap:"Diagram: head-office hours (local 09:00–18:00) converted to Japan time. The dashed frame is the Tokyo station’s working day."},{t:"table",cols:["Head office in","Difference from Japan","Watch out for"],rows:[
 ["Korea","None (both are 9 hours ahead of UTC, with no daylight saving)","Public holidays differ. Seollal (Lunar New Year) and Chuseok follow the lunar calendar, so the dates change every year"],
 ["Europe","Japan is 7–8 hours ahead (changes with daylight saving)","The station’s evening is head office’s morning. In the week clocks change, meeting times shift"],
 ["Mainland US","Japan is 13–17 hours ahead (varies by region and daylight saving)","The station’s morning is head office’s previous evening. Dates are easy to mix up"]]},
@@ -130,7 +130,7 @@ next:"5-5 Deciding Through Cases: Comparing Safe and Lawful Options"});
 set("5-5",{title:"Deciding Through Cases: Comparing Safe and Lawful Options",hl:"Comparing Options",subtitle:"Options that break the rules are never on the list. Compare what remains on time, cost, customer satisfaction and staff workload",
 lead:["Decisions on the floor rarely have a single right answer. There are usually several options that are safe and fit the law and company rules, and the one you choose changes the balance between time, cost, customer satisfaction and staff workload.","This lesson uses three fictional cases to practise setting options side by side. Every option is within the rules. Options that break the rules are removed before any comparison."],
 sections:[
-{h:"The basics of comparing",blocks:[{t:"ladder",rise:10,steps:[
+{h:"The basics of comparing",blocks:[{t:"fig",id:"stn2_funnel",cap:"Moving diagram: options that break the rules (×) are removed before comparing; the rest are compared on four measures (Case 1)."},{t:"ladder",rise:10,steps:[
 {name:"Remove",sub:"Nothing that breaks safety, law or company rules"},
 {name:"List",sub:"Two or more options within the rules"},
 {name:"Compare",sub:"Time, cost, satisfaction, workload"},
@@ -166,7 +166,7 @@ next:"5-6 Building Trust as a Station"});
 set("5-6",{title:"Building Trust as a Station",hl:"Trust",subtitle:"Trust builds less from big successes than from keeping small promises, again and again, with head office and locally",
 lead:["How much head office leaves to a station is not set by the rules alone. Whether people think “that station’s reports are accurate” and “if that station says so, there is a reason” changes how easily your proposals get through and how fast decisions come in a disruption.","This lesson looks at the habits that earn a station trust from both head office and the local side, and how to hand that trust on to the next person. It closes Part 5."],
 sections:[
-{h:"Small promises that build trust",blocks:[{t:"check",items:[
+{h:"Small promises that build trust",blocks:[{t:"fig",id:"stn2_trust",cap:"Moving diagram: five small promises stack up from the bottom and hold up trust from both head office and the local side."},{t:"check",items:[
 {name:"Meet deadlines",x:"If you can’t, say before the deadline when you can deliver."},
 {name:"Bad news first",x:"Report your own mistakes early, without hiding them. Nothing loses trust like head office hearing it from someone else."},
 {name:"Get the numbers right",x:"Match report figures to the source records. Get them wrong once and everything will be checked from then on."},
