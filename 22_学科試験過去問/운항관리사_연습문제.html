@@ -124,7 +124,7 @@ function setName(s){for(var i=0;i<K.sets.length;i++)if(K.sets[i].id===s)return K
 function has(c){for(var s in K.q)for(var i=0;i<K.q[s].length;i++)if(K.q[s][i].c===c)return true;return false}
 var sel={set:K.sets[0].id,subs:{},mode:'all'};SUB.forEach(function(s){sel.subs[s[0]]=has(s[0])});
 var run=null;
-function home(){
+function home(keep){/* keep：選び直しのときは画面の位置をそのまま保つ（2026.10 携帯電話で上に戻る不具合の修正） */var sy=window.pageYOffset||0;
  if(typeof run!=='undefined'&&run&&run.tick){clearInterval(run.tick);run.tick=null;run.exam=false}
  var h='<header class="top"><div class="kick">한국교통안전공단 운항관리사 학과시험 대비</div><h1>한국 운항관리사 연습문제</h1><p>시험 5과목에 맞춰 만든 연습문제를 한 문제씩 풀고, 정답과 해설, 관련 레슨을 바로 확인할 수 있습니다.</p></header>';
  h+='<p class="src jp">이 문제는 <b>항공 커리어 노트가 직접 만든 연습문제</b>입니다. 한국교통안전공단의 실제 시험 문제(기출)는 공개되지 않으며, 이 문제는 기출이 아닙니다. 공개된 기준(ICAO, 기상청, 미국 FAA 안내 등)과 사이트의 레슨을 바탕으로 만들었습니다.<br><span lang="ja">韓国の運航管理士（学科試験）に向けた、このサイトのオリジナル練習問題です（韓国語のみ）。</span><br><span lang="en">Original practice questions for Korea’s flight dispatcher written exam (Korean only). These are not past exam questions.</span></p>';
@@ -139,12 +139,12 @@ function home(){
  h+='<h2>과목별 정답률(전체 기록)</h2><div class="stats">'+SUB.map(function(s){var a=0,ok=0;for(var k in ST.r){if(k.split('-')[1]===s[0]){a++;if(ST.r[k][0])ok++}}var p=a?Math.round(ok/a*100):0;return '<div>'+esc(s[1])+'<br><b>'+(a?p+'%':'—')+'</b> <small>'+a+'문</small><div class="bar"><i style="width:'+p+'%"></i></div></div>'}).join('')+'</div>';
  h+='<p class="note">관련 강좌: <a href="../19_운항관리실무/00_シリーズ全体_運航管理の実務.html">운항관리 실무</a>(Part 10 항공기상 기초 등). 일본 시험 대비는 <a href="学科試験_過去問.html">일본 항공종사자 학과시험 기출문제</a>(1,210문, 일본어).</p>';
  h+='<footer>© 2026 항공 커리어 노트　문제·해설: 항공 커리어 노트(자체 제작)　<a href="../8_사이트/index.html">사이트 홈으로</a>　<button class="mark" id="reset">기록 지우기</button></footer>';
- app.innerHTML=h;window.scrollTo(0,0);
- Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home()}});
- Array.prototype.forEach.call(app.querySelectorAll('[data-sub]'),function(b){b.onclick=function(){if(b.disabled)return;sel.subs[b.dataset.sub]=!sel.subs[b.dataset.sub];if(!Object.keys(sel.subs).some(function(k){return sel.subs[k]}))sel.subs[b.dataset.sub]=true;home()}});
- Array.prototype.forEach.call(app.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){sel.mode=b.dataset.mode;home()}});
+ app.innerHTML=h;window.scrollTo(0,keep?sy:0);
+ Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home(true)}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-sub]'),function(b){b.onclick=function(){if(b.disabled)return;sel.subs[b.dataset.sub]=!sel.subs[b.dataset.sub];if(!Object.keys(sel.subs).some(function(k){return sel.subs[k]}))sel.subs[b.dataset.sub]=true;home(true)}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){sel.mode=b.dataset.mode;home(true)}});
  $('#go').onclick=function(){if(gate){M.login();return}start(buildPool())};
- $('#reset').onclick=function(){if(confirm('이 기기에 저장한 풀이 기록과 표시를 모두 지웁니다. 괜찮습니까?')){ST={v:1,r:{},mark:{}};save();home()}};
+ $('#reset').onclick=function(){if(confirm('이 기기에 저장한 풀이 기록과 표시를 모두 지웁니다. 괜찮습니까?')){ST={v:1,r:{},mark:{}};save();home(true)}};
 }
 function doneOf(s){var t=K.q[s].length,n=0,ok=0;K.q[s].forEach(function(q){var r=ST.r[id(s,q)];if(r){n++;if(r[0])ok++}});return {t:t,n:n,ok:ok}}
 function buildPool(){
@@ -217,8 +217,8 @@ function syncAll(){var M=window.Member;if(!M||!M.user())return;
   rows.forEach(function(x){var kk=x.item_id.slice(3),t=Date.parse(x.answered_at)||0,loc=ST.r[kk];if(!loc||loc[1]<t){ST.r[kk]=[x.ok?1:0,t];if(x.marked)ST.mark[kk]=1;else delete ST.mark[kk]}});
   var have={};rows.forEach(function(x){have[x.item_id.slice(3)]=Date.parse(x.answered_at)||0});
   for(var kk in ST.r){if(!(kk in have)||have[kk]<ST.r[kk][1])up.push({item_id:'KR:'+kk,ok:!!ST.r[kk][0],marked:!!ST.mark[kk],answered_at:new Date(ST.r[kk][1]).toISOString()})}
-  save();SYNCED=true;if(!run)home();return M.saveRecords(up)}).catch(function(){})}
-if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home()});
+  save();SYNCED=true;if(!run)home(true);return M.saveRecords(up)}).catch(function(){})}
+if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home(true)});
 /* ?lesson=11-1 처럼 열면 그 레슨과 관련된 문제만 모아 시작한다（2026.09） */
 (function(){var m=/[?&]lesson=([0-9]+-[0-9]+)/.exec(location.search);if(m){var no=m[1],p=[];K.sets.forEach(function(s){(K.q[s.id]||[]).forEach(function(q){if(q.r===no)p.push({s:s.id,q:q})})});if(p.length){sel.mode='all';start(p);run.lesson=no;show();return}}home()})();
 })();

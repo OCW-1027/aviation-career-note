@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>日本の航空従事者技能証明等学科試験 過去問（運航管理者・航空通信士・事業用操縦士ほか）</title>
-<meta name="description" content="国土交通省が公開した航空従事者技能証明等学科試験の過去問題と例題を、スマートフォンで1問ずつ解ける問題集。いまは運航管理者の6科目・1,210問、航空通信士の5科目・990問、事業用操縦士（飛行機）の5科目・1,100問（例題集は2026年6月）で、ほかの資格も順次追加。解説はこのサイトのオリジナル。">
+<title>日本の航空従事者技能証明等学科試験 過去問（運航管理者・航空通信士・事業用操縦士・一等航空整備士ほか）</title>
+<meta name="description" content="国土交通省が公開した航空従事者技能証明等学科試験の過去問題と例題を、スマートフォンで1問ずつ解ける問題集。いまは運航管理者の6科目・1,210問、航空通信士の5科目・990問、事業用操縦士（飛行機）の5科目・1,100問、一等航空整備士（飛行機）の4科目・1,045問（例題集は2026年6月）で、ほかの資格も順次追加。解説はこのサイトのオリジナル。">
 <style>
 :root{--ink:#1d2a3a;--sub:#5b6b7d;--line:#e3ebf3;--bg:#fff;--card:#f7fbff;--acc:#2F8FE0;--acc-d:#1d5fa0;--ok:#1F8A5B;--ng:#D0453E;--hl:#FFE08A}
 @media (prefers-color-scheme:dark){:root{--ink:#e8eef5;--sub:#a9b6c4;--line:#2a3a4c;--bg:#0f1720;--card:#16212d}}
@@ -125,11 +125,11 @@ footer{margin-top:28px;font-size:12px;color:var(--sub)}
 var K=window.KAKO,KEY='acn-kako-v1';
 var SUB=[['P42','空中航法',20],['P43','航空法規等',20],['P44','航空気象',20],['P45','航空工学',20],['P46','航空通信',20],['P47','施設',10]];
 /* 資格ごとの科目（2026.10 航空通信士を追加）。科目記号は問題用紙右上の記号で、資格をまたいで重ならない（P18 航空通信は操縦士などと共通の問題用紙） */
-var LICS={ops:{name:'運航管理者',sub:SUB,ex:'EX2606'},com:{name:'航空通信士',sub:[['P31','航空気象',20],['P33','航空機構造',10],['P35','航空法規等',20],['P18','航空通信',20],['P37','空中航法',20]],ex:'CEX2606',files:['com_EX2606','com_R0507','com_R0503','com_R0407','com_R0403','com_R0307','com_R0303','com_R0207','com_R0203','com_R0107','com_H3103','com_exp_EX2606','com_exp_R0507','com_exp_R0503','com_exp_R0407','com_exp_R0403','com_exp_R0307','com_exp_R0303','com_exp_R0207','com_exp_R0203','com_exp_R0107','com_exp_H3103']},cpl:{name:'事業用操縦士（飛行機）',sub:[['P10','航空気象',20],['P12','航空工学',20],['P16','航空法規等',20],['P18','航空通信',20],['P19','空中航法',20]],ex:'PEX2606',files:['cpl_EX2606','cpl_R0509','cpl_R0507','cpl_R0505','cpl_R0503','cpl_R0501','cpl_R0411','cpl_R0409','cpl_R0407','cpl_R0405','cpl_R0403','cpl_exp_EX2606','cpl_exp_R0509','cpl_exp_R0507','cpl_exp_R0505','cpl_exp_R0503','cpl_exp_R0501','cpl_exp_R0411','cpl_exp_R0409','cpl_exp_R0407','cpl_exp_R0405','cpl_exp_R0403']}};
-var LICK={'運航管理者':'ops','航空通信士':'com','事業用操縦士（飛行機）':'cpl'};
+var LICS={ops:{name:'運航管理者',sub:SUB,ex:'EX2606'},com:{name:'航空通信士',sub:[['P31','航空気象',20],['P33','航空機構造',10],['P35','航空法規等',20],['P18','航空通信',20],['P37','空中航法',20]],ex:'CEX2606',files:['com_EX2606','com_R0507','com_R0503','com_R0407','com_R0403','com_R0307','com_R0303','com_R0207','com_R0203','com_R0107','com_H3103','com_exp_EX2606','com_exp_R0507','com_exp_R0503','com_exp_R0407','com_exp_R0403','com_exp_R0307','com_exp_R0303','com_exp_R0207','com_exp_R0203','com_exp_R0107','com_exp_H3103']},cpl:{name:'事業用操縦士（飛行機）',sub:[['P10','航空気象',20],['P12','航空工学',20],['P16','航空法規等',20],['P18','航空通信',20],['P19','空中航法',20]],ex:'PEX2606',files:['cpl_EX2606','cpl_R0509','cpl_R0507','cpl_R0505','cpl_R0503','cpl_R0501','cpl_R0411','cpl_R0409','cpl_R0407','cpl_R0405','cpl_R0403','cpl_exp_EX2606','cpl_exp_R0509','cpl_exp_R0507','cpl_exp_R0505','cpl_exp_R0503','cpl_exp_R0501','cpl_exp_R0411','cpl_exp_R0409','cpl_exp_R0407','cpl_exp_R0405','cpl_exp_R0403']},amt:{name:'一等航空整備士（飛行機）',sub:[['M1','航空法規等',20],['M3','機体',25],['M16','タービン発動機',25],['M30','電子装備品等',25]],ex:'AEX2606',files:['amt_EX2606','amt_EXLAW','amt_R0509','amt_R0507','amt_R0503','amt_R0411','amt_R0409','amt_R0407','amt_R0403','amt_R0311','amt_R0307','amt_R0303','amt_exp_EX2606','amt_exp_EXLAW','amt_exp_R0509','amt_exp_R0507','amt_exp_R0503','amt_exp_R0411','amt_exp_R0409','amt_exp_R0407','amt_exp_R0403','amt_exp_R0311','amt_exp_R0307','amt_exp_R0303']}};
+var LICK={'運航管理者':'ops','航空通信士':'com','事業用操縦士（飛行機）':'cpl','一等航空整備士（飛行機）':'amt'};
 var SUBN={};for(var lk in LICS)LICS[lk].sub.forEach(function(s){SUBN[s[0]]=s[1]});
 var MB={ja:{need:'過去問題を解くには、無料の会員登録（ログイン）が必要です。記録は会員ごとに保存され、スマートフォンとPCのどちらからでも続きから解けます。',btn:'ログインして始める',sync:'会員の記録と同期しました',local:'記録はこの端末に保存されます。会員登録の準備ができたら、会員の記録に引き継げるようにする予定です。'},ko:{need:'기출문제를 풀려면 무료 회원가입(로그인)이 필요합니다. 기록은 회원별로 저장되어 휴대폰과 PC 어디서든 이어서 풀 수 있습니다.',btn:'로그인하고 시작하기',sync:'회원 기록과 동기화했습니다',local:'기록은 이 기기에 저장됩니다. 회원 기능이 준비되면 회원 기록으로 옮길 수 있게 할 예정입니다.'},en:{need:'A free account (log in) is needed to practise the past papers. Your records are kept per member, so you can continue on your phone or PC.',btn:'Log in to start',sync:'Synced with your member records',local:'Records are saved on this device. Once member accounts are ready, you will be able to move them to your account.'}};
-var LIC=['運航管理者','航空通信士','事業用操縦士（飛行機）','自家用操縦士','定期運送用操縦士','計器飛行証明','一等航空整備士','二等航空整備士'];
+var LIC=['運航管理者','航空通信士','事業用操縦士（飛行機）','自家用操縦士','定期運送用操縦士','計器飛行証明','一等航空整備士（飛行機）','二等航空整備士'];
 var ST={v:1,r:{},mark:{}};try{var o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.v===1)ST=o}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
 var $=function(s){return document.querySelector(s)},app=$('#app');
@@ -144,10 +144,10 @@ function licSets(){return K.sets.filter(function(s){return (s.lic||'ops')===sel.
 var LOADED={ops:1};function ensureLic(l,cb){if(LOADED[l])return cb();var fs=LICS[l].files.slice(),n=0;app.innerHTML='<p class="note" style="padding:40px 0;text-align:center">問題を読み込んでいます…</p>';(function nx(){if(!fs.length){LOADED[l]=1;return cb()}var sc=document.createElement('script');sc.src='data/'+fs.shift()+'.js';sc.onload=nx;sc.onerror=function(){app.innerHTML='<p class="src jp">問題を読み込めませんでした。ページを再読み込みしてください。</p>'};document.body.appendChild(sc)})()}
 var run=null;
 /* ---------- ホーム ---------- */
-function home(){
+function home(keep){/* keep：選び直しのときは画面の位置をそのまま保つ（2026.10 携帯電話で上に戻る不具合の修正） */var sy=window.pageYOffset||0;
  if(typeof run!=='undefined'&&run&&run.tick){clearInterval(run.tick);run.tick=null;run.exam=false}
  var h='<header class="top"><div class="kick">日本（国土交通省）の航空従事者技能証明等学科試験</div><h1>過去問題と例題</h1><p>国土交通省が公開した問題を、1問ずつ解いて、正答と解説をすぐに確かめられます。</p></header>';
- h+='<p class="src jp">この問題集は、日本の国土交通省が行う航空従事者技能証明等学科試験の過去問題です。いまは運航管理者・航空通信士・事業用操縦士（飛行機）の問題を載せていて、ほかの資格も順次追加します。<br><span lang="ko">일본 국토교통성이 시행하는 항공종사자 학과시험의 기출문제입니다. 현재는 운항관리자·항공통신사·사업용 조종사(비행기) 문제를 싣고 있으며, 다른 자격도 차례로 추가합니다. 일본어로만 제공됩니다.</span><br><span lang="en">Past papers from Japan’s MLIT aviation licence exams. Aircraft dispatcher, flight radio operator and commercial pilot (aeroplane) questions are available now, with other licences to follow. Japanese only.</span></p>';
+ h+='<p class="src jp">この問題集は、日本の国土交通省が行う航空従事者技能証明等学科試験の過去問題です。いまは運航管理者・航空通信士・事業用操縦士（飛行機）・一等航空整備士（飛行機）の問題を載せていて、ほかの資格も順次追加します。<br><span lang="ko">일본 국토교통성이 시행하는 항공종사자 학과시험의 기출문제입니다. 현재는 운항관리자·항공통신사·사업용 조종사(비행기)·1등 항공정비사(비행기) 문제를 싣고 있으며, 다른 자격도 차례로 추가합니다. 일본어로만 제공됩니다.</span><br><span lang="en">Past papers from Japan’s MLIT aviation licence exams. Aircraft dispatcher, flight radio operator, commercial pilot (aeroplane) and first-class aircraft maintenance technician (aeroplane) questions are available now, with other licences to follow. Japanese only.</span></p>';
  if(sel.lic==='ops')h+='<a class="guidelink" href="../8_사이트/guide.html#p7">科目ごとにレッスンで学ぶ：学び方ガイド「運航管理者の学科試験を受ける方」→<br><small lang="ko">과목별로 레슨으로 배우기: 학습 가이드 ‘운항관리 학과시험 준비’ 경로</small></a>';
  h+='<p class="src">問題と正答の出典：国土交通省「<a href="https://www.mlit.go.jp/koku/koku_fr10_000025.html" target="_blank" rel="noopener">航空従事者等学科試験解答及び過去問</a>」。このサイトが読み取り、改行や記号を整えて作成しています（原本の誤り・訂正もそのまま反映）。解説はこのサイトが作成したもので、国の見解ではありません（'+esc(LICS[sel.lic].name)+'は例題集と全10回の試験期、計'+licTotal().toLocaleString()+'問すべてに解説あり）。'+(sel.lic==='ops'?'「オリジナル練習」は、本番と同じ科目・題数でこのサイトが作った練習問題です（国の過去問題ではありません。「すべての試験期」には含めません）。':'')+'法令は改正されるため、解説では'+(sel.lic==='ops'?'2026年9月':'2026年10月')+'時点の内容も示します。</p>';
  h+='<h2>資格</h2><div class="lic">'+LIC.map(function(l){var k=LICK[l];return k?'<span role="button" tabindex="0" data-lic="'+k+'" style="cursor:pointer" class="'+(sel.lic===k?'on':'')+'">'+esc(l)+'</span>':'<span>'+esc(l)+'（準備中）</span>'}).join('')+'</div>';
@@ -160,15 +160,16 @@ function home(){
  else h+='<button class="start" id="go"'+(pool.length?'':' disabled')+'>'+(pool.length?pool.length+'問をはじめる':'該当する問題がありません')+'</button><p class="note">'+esc(M&&M.enabled()?(SYNCED?mb.sync:''):mb.local)+'</p>';
  h+='<h2>科目別の正答率（すべての記録）</h2><div class="stats">'+SUB.map(function(s){var a=0,ok=0;for(var k in ST.r){if(k.split('-')[1]===s[0]){a++;if(ST.r[k][0])ok++}}var p=a?Math.round(ok/a*100):0;return '<div>'+esc(s[1])+'<br><b>'+(a?p+'%':'—')+'</b> <small>'+a+'問</small><div class="bar"><i style="width:'+p+'%"></i></div></div>'}).join('')+'</div>';
  h+='<footer>© 2026 航空キャリアノート　問題・正答：国土交通省（加工して作成）／解説：航空キャリアノート　<a href="../8_사이트/index.html">サイトのトップへ</a>　<button class="mark" id="reset">記録を消す</button></footer>';
- app.innerHTML=h;window.scrollTo(0,0);
- Array.prototype.forEach.call(app.querySelectorAll('[data-lic]'),function(b){b.onclick=b.onkeydown=function(ev){if(ev.type==='keydown'&&ev.key!=='Enter')return;var l=b.dataset.lic;if(l===sel.lic)return;ensureLic(l,function(){setLic(l);home()})}});
- Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home()}});
- Array.prototype.forEach.call(app.querySelectorAll('[data-sub]'),function(b){b.onclick=function(){sel.subs[b.dataset.sub]=!sel.subs[b.dataset.sub];if(!Object.keys(sel.subs).some(function(k){return sel.subs[k]}))sel.subs[b.dataset.sub]=true;home()}});
- Array.prototype.forEach.call(app.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){sel.mode=b.dataset.mode;home()}});
+ app.innerHTML=h;window.scrollTo(0,keep?sy:0);
+ Array.prototype.forEach.call(app.querySelectorAll('[data-lic]'),function(b){b.onclick=b.onkeydown=function(ev){if(ev.type==='keydown'&&ev.key!=='Enter')return;var l=b.dataset.lic;if(l===sel.lic)return;var sy0=window.pageYOffset||0;ensureLic(l,function(){setLic(l);home();window.scrollTo(0,sy0)})}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-set]'),function(b){b.onclick=function(){sel.set=b.dataset.set;home(true)}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-sub]'),function(b){b.onclick=function(){sel.subs[b.dataset.sub]=!sel.subs[b.dataset.sub];if(!Object.keys(sel.subs).some(function(k){return sel.subs[k]}))sel.subs[b.dataset.sub]=true;home(true)}});
+ Array.prototype.forEach.call(app.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){sel.mode=b.dataset.mode;home(true)}});
  $('#go').onclick=function(){if(gate){M.login();return}start(buildPool())};
- $('#reset').onclick=function(){if(confirm('この端末に保存した解答の記録と印をすべて消します。よろしいですか？')){ST={v:1,r:{},mark:{}};save();home()}};
+ $('#reset').onclick=function(){if(confirm('この端末に保存した解答の記録と印をすべて消します。よろしいですか？')){ST={v:1,r:{},mark:{}};save();home(true)}};
 }
 function allCount(){var n=0;licSets().forEach(function(s){if(!s.org&&K.q[s.id])n+=K.q[s.id].length});return n}
+function subFull(c){for(var lk in LICS){var ss=LICS[lk].sub;for(var i=0;i<ss.length;i++)if(ss[i][0]===c)return ss[i][2]}return 20}
 function licTotal(){var n=0;licSets().forEach(function(s){if(!s.org&&K.q[s.id])n+=K.q[s.id].length});return n}
 function doneOf(s){var t=K.q[s].length,n=0,ok=0;K.q[s].forEach(function(q){var r=ST.r[id(s,q)];if(r){n++;if(r[0])ok++}});return {t:t,n:n,ok:ok}}
 function buildPool(){
@@ -182,7 +183,7 @@ function buildPool(){
 function start(pool){stopTimer();run={pool:pool,i:0,ans:[]};if(sel.mode==='exam'&&pool.length){run.exam=true;run.pick=[];run.t0=Date.now();run.limit=examLimit(pool);run.tick=setInterval(tickTimer,1000)}show()}
 /* 試験モード（2026.09 追加）：本番の題数と時間（運航管理者、令和5年3月期の問題用紙の表記）から、解く問題数に比例して制限時間を決める。
    空中航法 20題2時間・航空気象 20題1時間・航空工学 20題1時間・航空法規等 20題40分・航空通信 20題40分・施設 10題40分 */
-var EXAM={P42:[20,120],P44:[20,60],P45:[20,60],P43:[20,40],P46:[20,40],P47:[10,40],P31:[20,40],P33:[10,40],P35:[20,40],P18:[20,40],P37:[20,40],P10:[20,40],P12:[20,40],P16:[20,40],P19:[20,60]};/* 事業用操縦士は空中航法だけ1時間（令和5年7月期の問題用紙） *//* 航空通信士は5科目とも40分（令和5年7月期の問題用紙） */
+var EXAM={P42:[20,120],P44:[20,60],P45:[20,60],P43:[20,40],P46:[20,40],P47:[10,40],P31:[20,40],P33:[10,40],P35:[20,40],P18:[20,40],P37:[20,40],P10:[20,40],P12:[20,40],P16:[20,40],P19:[20,60],M1:[20,40],M3:[25,90],M16:[25,90],M30:[25,90]};/* 一等航空整備士：法規20題40分、ほかは25題1時間30分 *//* 事業用操縦士は空中航法だけ1時間（令和5年7月期の問題用紙） *//* 航空通信士は5科目とも40分（令和5年7月期の問題用紙） */
 function examLimit(pool){var c={},ms=0;pool.forEach(function(x){c[x.q.c]=(c[x.q.c]||0)+1});for(var k in c){var e=EXAM[k]||[20,40];ms+=c[k]/e[0]*e[1]*60000}return Math.round(ms/1000)*1000}
 function stopTimer(){if(run&&run.tick){clearInterval(run.tick);run.tick=null}}
 function fmtT(ms){ms=Math.max(0,ms);var s=Math.ceil(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);s=s%60;return (h?h+':'+(m<10?'0':''):'')+m+':'+(s<10?'0':'')+s}
@@ -242,8 +243,8 @@ function result(){
  /* 科目ごとの得点（「順番に全問」で1科目を通して解いたときは、配点で合否を判定：P47は1問10点、ほかは1問5点、70点以上で合格） */
  var by={};run.pool.forEach(function(x,i){var c=x.q.c;by[c]=by[c]||{n:0,ok:0};by[c].n++;if(run.ans[i]&&run.ans[i].ok)by[c].ok++});
  h+='<div class="score"><div class="big">'+ok+' / '+n+'</div><div>正答率 '+Math.round(ok/n*100)+'%</div>'+(run.used!=null?'<div>試験モード・かかった時間 '+fmtT(Math.min(run.used,run.limit))+' ／ 制限 '+fmtT(run.limit)+(run.timeup?'（時間切れで自動提出）':'')+'</div>':'')+'</div>';
- h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],full=((c==='P47'||c==='P33')?10:20),pt=Math.round(b.ok/b.n*100),judge=(sel.mode==='all'||sel.mode==='exam')&&b.n===full;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'点</b> <small>'+b.ok+'/'+b.n+'</small>'+(judge?'<br><span class="pass '+(pt>=70?'y':'n')+'" style="display:inline-block;border-radius:999px;padding:0 10px;color:#fff;font-size:12px;background:'+(pt>=70?'var(--ok)':'var(--ng)')+'">'+(pt>=70?'合格ライン':'不合格ライン')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
- h+='<p class="note">合否の目安：各科目100点満点の70点以上（10題の科目＝施設・航空機構造は1問10点、ほかの科目は1問5点）。科目の全問を「順番に全問」か「試験モード」で解いたときだけ表示します。</p>';
+ h+='<div class="stats">'+Object.keys(by).map(function(c){var b=by[c],full=subFull(c),pt=Math.round(b.ok/b.n*100),judge=(sel.mode==='all'||sel.mode==='exam')&&b.n===full;return '<div>'+esc(SUBN[c])+'<br><b>'+pt+'点</b> <small>'+b.ok+'/'+b.n+'</small>'+(judge?'<br><span class="pass '+(pt>=70?'y':'n')+'" style="display:inline-block;border-radius:999px;padding:0 10px;color:#fff;font-size:12px;background:'+(pt>=70?'var(--ok)':'var(--ng)')+'">'+(pt>=70?'合格ライン':'不合格ライン')+'</span>':'')+'<div class="bar"><i style="width:'+pt+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<p class="note">合否の目安：各科目100点満点の70点以上（10題の科目＝施設・航空機構造は1問10点、25題の科目は1問4点、ほかの科目は1問5点）。科目の全問を「順番に全問」か「試験モード」で解いたときだけ表示します。</p>';
  h+='<h2>ふり返り</h2><div class="rlist">'+run.pool.map(function(x,i){var a=run.ans[i];return '<button data-i="'+i+'"><span class="m '+(a?(a.ok?'ok':'ng'):'')+'">'+(a?(a.ok?'○':'×'):'－')+'</span><span class="t">'+esc(SUBN[x.q.c])+' 問'+x.q.n+'　'+esc(x.q.q.split('\n')[0])+'</span></button>'}).join('')+'</div>';
  h+='<button class="start" id="again">間違えた問題だけもう一度</button>';
  app.innerHTML=h;window.scrollTo(0,0);
@@ -260,11 +261,11 @@ function syncAll(){var M=window.Member;if(!M||!M.user())return;
   rows.forEach(function(x){var t=Date.parse(x.answered_at)||0,loc=ST.r[x.item_id];if(!loc||loc[1]<t){ST.r[x.item_id]=[x.ok?1:0,t];if(x.marked)ST.mark[x.item_id]=1;else delete ST.mark[x.item_id]}});
   var have={};rows.forEach(function(x){have[x.item_id]=Date.parse(x.answered_at)||0});
   for(var k in ST.r){if(k.indexOf('KR:')===0)continue;if(!(k in have)||have[k]<ST.r[k][1])up.push({item_id:k,ok:!!ST.r[k][0],marked:!!ST.mark[k],answered_at:new Date(ST.r[k][1]).toISOString()})}
-  save();SYNCED=true;if(!run)home();return M.saveRecords(up)}).catch(function(){})}
-if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home()});
+  save();SYNCED=true;if(!run)home(true);return M.saveRecords(up)}).catch(function(){})}
+if(window.Member)window.Member.onChange(function(u){if(u)syncAll();else if(!run)home(true)});
 /* ?lesson=11-1 のように開くと、そのレッスンに関係する国の過去問題だけを集めて始める（2026.09） */
 (function(){var m=/[?&]lesson=([0-9]+-[0-9]+)/.exec(location.search);if(m){var no=m[1],p=[];K.sets.forEach(function(s){if(s.org||s.lic)return;(K.q[s.id]||[]).forEach(function(q){if(relLessons(q).indexOf(no)>=0)p.push({s:s.id,q:q})})});if(p.length){sel.mode='all';start(p);run.lesson=no;show();return}}
- var lm=/[?&]lic=(ops|com|cpl)/.exec(location.search),lc=lm?lm[1]:null;if(!lc){try{lc=localStorage.getItem('acn-kako-lic')}catch(e){}}
+ var lm=/[?&]lic=(ops|com|cpl|amt)/.exec(location.search),lc=lm?lm[1]:null;if(!lc){try{lc=localStorage.getItem('acn-kako-lic')}catch(e){}}
  if(lc&&lc!=='ops'&&LICS[lc]){ensureLic(lc,function(){setLic(lc);home()});return}home()})();
 })();
 </script>
