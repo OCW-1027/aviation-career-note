@@ -62,7 +62,7 @@ sections:[
 ["Payment deadlines","For costs paid by head office, request payment about a week before the deadline, allowing for holidays in both countries and transfer times"],
 ["Annual costs","Committee membership fees, radio contracts and the like. Check the imprest fund covers them that month"]]}]},
 {h:"Money specific to airlines",blocks:[{t:"rows",items:[
-{name:"International tourist tax",x:"A tax the airline collects from departing passengers and pays to the state, declared and paid monthly. It is self-assessed, so keep the supporting records. ★"},
+{name:"International tourist tax",x:"A tax the airline collects from departing passengers and pays to the state (¥3,000 per person from July 2026), declared and paid by the end of the second month after the month of departure. It is self-assessed, so keep the supporting records. ★"},
 {name:"Passenger service facility charges",x:"Charges the airline collects from passengers on behalf of the airport company. At some airports a collection fee is deducted from the settlement, and that fee is treated as revenue."},
 {name:"Handling fees",x:"Extra charges vary with how early a delay or cancellation was advised. Match the invoice detail against the work records (Ground Staff 6-2)."},
 {name:"Subsidised costs",x:"Where the airport company subsidises a cost, account for the invoice and the subsidy correctly."}]},

@@ -36,7 +36,7 @@ quiz:[{q:"What is the deadline for changing frequency?",opts:["10 days before","
 {q:"What must you check in the seasonal filing?",opts:["That the filing matches the slots you hold","The weather","Revenue","Seat colours"],a:0,exp:"A mismatch affects your operation."}],
 next:"1-3 Slots and coordination with FAIB"});
 
-set("1-3",{title:"Slots and Coordination with FAIB",hl:"slots",subtitle:"JSC before the season, FAIB during it: the counter changes with the calendar ★",
+set("1-3",{title:"Slots and Coordination with FAIB",hl:"slots",subtitle:"JSC up to the monthly schedule confirmation, FAIB for last-minute and same-day changes: the counter changes with the calendar ★",
 lead:["At congested airports such as Narita and Haneda, the times at which an aircraft may take off or land — the slots — are limited. Airlines secure slots in advance under the worldwide slot rules and then operate to them.",
 "This article covers the basics of slots, coordination before the season by Japan Schedule Coordination (JSC), coordination during the season by the flight information officers (FAIB), delay reporting, and what the station needs to watch."],
 sections:[
@@ -50,7 +50,7 @@ sections:[
 ["Early coordination","Extra sections and charters planned within the base schedule period"],
 ["Monthly coordination","Changes to scheduled services after JSC coordination, extra sections and charters, filed month by month"],
 ["Daily coordination","Changes after the monthly filing, submitted as they arise (a 24-hour desk)"]]},
-{t:"note",x:"* Submissions are made, for example, by emailing an Excel file. Channels and standards change from year to year, so keep FAIB’s notices organised by year. ★"}]},
+{t:"note",x:"* The submission method, address and standards are set out in FAIB’s notices and can change from year to year, so keep the notices organised by year. ★"}]},
 {h:"Delay reporting",blocks:[{t:"p",x:"If an aircraft operates well outside its slot, for example by an hour or more, FAIB may ask for a delay report. The query usually arrives by email the next day and is answered with the reason."},
 {t:"check",items:[
 {name:"Record the reason",x:"Recording delays with the delay code (Ground Staff 3-3) makes answering quick."},

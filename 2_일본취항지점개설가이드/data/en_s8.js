@@ -87,7 +87,7 @@ lead:["Japanese visas are gradually moving from the paper sticker in the passpor
 sections:[
 {h:"What JAPAN eVISA is",blocks:[{t:"rows",items:[
 {name:"An electronic visa",x:"A visa issued by Japan’s Ministry of Foreign Affairs in electronic form. Nothing is stuck in the passport. It is a visa, not a travel authorisation."},
-{name:"Which visa",x:"Mainly a single-entry short-stay visa for tourism, up to 90 days ★. Stays are shorter for some groups, such as tour groups from China, Vietnam and the Philippines ★."},
+{name:"Which visa",x:"Mainly a single-entry short-stay visa for tourism, up to 90 days ★. Stays are shorter for some nationalities, such as China, Vietnam and the Philippines (for Vietnam and the Philippines, only designated-agency tour groups) ★."},
 {name:"Applying",x:"Residents of eligible countries and regions apply online themselves or through a designated agent."},
 {name:"How to enter",x:"Entry by air (by sea only on certain ferry routes) ★."},
 {name:"Showing it",x:"On their own phone or tablet, connected to the internet, the traveller logs in to the official site and displays the Visa Issuance Notice. Screenshots, saved files and printouts are not accepted."}]}]},
@@ -102,14 +102,14 @@ sections:[
 {name:"Type and validity",x:"A single-entry short-stay visa, entry within its validity, and not already used ★."},
 {name:"Means of entry",x:"The visa covers entry by air."},
 {name:"No connection",x:"Point the passenger to the airport Wi-Fi. If it still cannot be displayed, follow head office’s procedure for an enquiry."},
-{name:"Airline enquiry",x:"The Ministry gives airlines ways to verify a passenger’s eVISA. Confirm with head office and the passenger systems team which method you use ★."},
+{name:"Airline enquiry",x:"Check how the airline verifies a passenger’s eVISA against the Ministry’s and embassies’ guidance, and with head office and the passenger systems team ★."},
 {name:"Record",x:"Record how you checked and the result, and check IATA’s travel document information (Timatic) as well."}]},
 {t:"point",x:"On flights to Japan, the eVISA is mainly checked at the departure airport. The Japan station’s role is to pass the authorities’ notices accurately to head office and the other airports, and to be ready to return passengers who are refused entry."}]},
 {h:"JESTA: what has been announced",blocks:[{t:"rows",items:[
 {name:"The law",x:"An amendment to the Immigration Control Act and a related law was passed on 29 May 2026 and promulgated on 5 June 2026. It creates JESTA."},
 {name:"Who",x:"Foreign nationals entering visa-free for a short stay. Before travelling they submit identity and travel purpose online and are screened in advance."},
-{name:"When",x:"Reported as aiming to start operating during fiscal 2028; the start date will be set by cabinet order ★."},
-{name:"Airline duties",x:"At bill stage these included not boarding passengers without authorisation and reporting passenger data by a set time, with administrative fines for breaches ★."},
+{name:"When",x:"The amended law takes effect on a date set by cabinet order no later than 31 March 2029; operation is targeted to start during fiscal 2028 ★."},
+{name:"Airline duties",x:"The amendment passed in May 2026 requires airlines not to board passengers without authorisation and to report passenger data by a set time, with administrative fines for breaches ★."},
 {name:"Fee",x:"To be set by cabinet order; the amount is not yet decided ★."}]},
 {t:"note",x:"* As of October 2026 the application process and the airline verification arrangements have not been published. Check the Immigration Services Agency’s notices regularly. ★"}]},
 {h:"Side by side with Korea’s K-ETA",blocks:[{t:"table",cols:["Item","JAPAN eVISA","JESTA (planned)","K-ETA"],rows:[

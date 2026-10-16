@@ -17,7 +17,7 @@ sections:[
 {name:"One way in and out",x:"The island is linked to land by one bridge. If it closes for wind or an accident, neither passengers nor staff can move; plan for relief staff too."},
 {name:"Moving between terminals",x:"T1 and T2 are connected by bus, so transfers and terminal changes take time."},
 {name:"Late-night and early-morning flights",x:"As a 24-hour airport, Kansai has many night flights. Prepare night-time CIQ and handling cover, and information for passengers with no onward transport."},
-{name:"Gate announcements",x:"From 2026, the timing of gate-number announcements is being managed. Check how gate information and boarding cut-offs work. ★"},
+{name:"Gate announcements",x:"The timing of gate-number announcements and boarding cut-offs can change with airport and handling-company practice. Check the current arrangements. ★"},
 {name:"De-icing",x:"Snow is rare, but cold snaps and frost sometimes require de-icing, normally on stand before departure. Because it is infrequent, confirm your contractor and equipment before winter. Dyed fluids since the 2023 winter schedule. ★"}]},
 {t:"point",x:"Kansai is a convenient airport with few restrictions in normal times — and one that can be cut off from land transport in an emergency. Your eye on the weather forecast is your station’s crisis management."}]}],
 voice:"Kansai sits on an island, and typhoons can close the bridge. When one is forecast, the first decision is who stays at the airport and who goes home.",
@@ -39,7 +39,7 @@ sections:[
 {h:"The division of roles among Kansai’s three airports",blocks:[{t:"table",cols:["Airport","Main role"],rows:[
 ["Kansai","International, LCC and cargo hub, 24 hours"],
 ["Itami","Domestic city airport"],
-["Kobe","Mainly domestic; it has begun accepting international charter flights (check the latest) ★"]]},
+["Kobe","Domestic only (no international flights). In the Kansai area, Kobe Airport has accepted international charters since 2025 ★"]]},
 {t:"note",x:"* When Kansai closed after the 2018 typhoon, Itami and Kobe temporarily took replacement flights, including international ones. Mutual support among the three airports is part of disaster preparedness."}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
 {name:"Closing at 21:00",x:"Arrivals that cannot make 21:00 may divert to Kansai or elsewhere. Decide early on any evening delay."},
@@ -118,9 +118,9 @@ sections:[
 ["Scale","FY2026 forecast: about 21.5 million domestic and 4.8 million international passengers, about 26.4 million in total"]]}]},
 {h:"Winter operations",blocks:[{t:"check",items:[
 {name:"Snow clearance",x:"Runways close temporarily for snow clearance. Get clearance schedules and expected closures as early as possible."},
-{name:"De-icing",x:"New Chitose has Japan’s first dedicated de-icing apron (2010), near the runway. Because aircraft taxi several kilometres from the terminal to the runway end, it lets them take off before holdover time runs out, and re-treatment does not mean returning to the terminal. The number of aircraft that can be treated at once is limited, so queues can form. A further de-icing apron at the south end is planned, targeted for completion in FY2027. Dyed fluids since the 2023 winter schedule. ★"},
+{name:"De-icing",x:"New Chitose has Japan’s first dedicated de-icing apron (2010), near the runway. Because aircraft taxi several kilometres from the terminal to the runway end, it lets them take off before holdover time runs out, and re-treatment does not mean returning to the terminal. The number of aircraft that can be treated at once is limited, so queues can form. A further de-icing apron is planned (check the published timing). Dyed fluids since the 2023 winter schedule. ★"},
 {name:"Ramp safety",x:"Working and driving on icy surfaces, protecting bags and equipment from snow. Keeping staff warm and rested is part of safety."},
-{name:"When transport stops",x:"When heavy snow stops the railway, many people are left at the airport. In January 2026 about 7,000 were stranded; afterwards the conditions were relaxed so emergency buses can run as soon as rail services are partly suspended. ★"}]}]},
+{name:"When transport stops",x:"When heavy snow stops the railway, many people are left at the airport. In January 2026 about 7,000 were stranded; in June 2026 the conditions were relaxed so emergency buses can also run when JR services are partly suspended or cancelled in advance. ★"}]}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"rows",items:[
 {name:"Decisions on heavy-snow days",x:"If you are going to cancel, decide early. Arrange information and accommodation before the last evening flight’s passengers find they cannot leave the airport."},
 {name:"Growth in international flights",x:"More international flights and passengers mean congestion at the terminal and CIQ. Adjust counter opening times and staffing by season."},

@@ -109,7 +109,7 @@ sections:[
 {h:"Digital entry procedures",blocks:[{t:"rows",items:[
 {name:"Online pre-registration",x:"Immigration and customs declaration details can be registered online in advance (Visit Japan Web and similar). Agree how it is explained on board and at the counter."},
 {name:"Paper forms",x:"How paper arrival cards and customs declarations are held and handed out when needed."},
-{name:"Electronic travel authorization (JESTA)",x:"A 2026 amendment to the immigration law provides for it. Visa-exempt short-term visitors will need authorization online before departure, and airlines will be required not to board anyone without it. Introduction is targeted for fiscal 2028. Check-in procedures and systems will have to be prepared. ★"}]}]},
+{name:"Electronic travel authorization (JESTA)",x:"An amendment to the immigration law passed in May 2026 (promulgated 5 June) provides for it. Visa-exempt short-term visitors will need authorization online before departure, and airlines will be required not to board anyone without it. Introduction is targeted for fiscal 2028 (the law takes effect on a date set by cabinet order no later than 31 March 2029). Check-in procedures and systems will have to be prepared. ★"}]}]},
 {h:"Animal and plant quarantine",blocks:[{t:"check",items:[
 {name:"Pets",x:"The import conditions for dogs and cats: microchip, rabies vaccination, antibody test, waiting period and advance notification (Ground Staff 1-8)."},
 {name:"Plants and food",x:"Explaining which meat products and fruit cannot be brought in. Breaches carry penalties."},
