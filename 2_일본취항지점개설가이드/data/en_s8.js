@@ -74,7 +74,7 @@ sections:[
 {name:"Authority findings",x:"Report the corrective action on the authority’s findings by the deadline it sets ★."},
 {name:"Year-end review",x:"At year end, analyse which areas produced the most findings and feed that into next year’s plan and training."}]},
 {t:"point",warn:true,x:"Repeated findings make the authority and head office question the management system itself. For any overdue action, always record the reason and the new due date."}]}],
-voice:"Don’t keep the corrective action log for the station manager’s eyes only. Once we started putting it on screen at every monthly meeting, the handling company began coming to us to say an item was ready to close.",
+voice:"Don’t keep the corrective action log for the station manager’s eyes only. Put it on screen at every monthly meeting, and the handling company will start telling you when an item is ready to close.",
 terms:[["Annual Plan","年間計画","연간 계획"],["Corrective Action","是正処置","시정 조치"],["Immediate Action (Correction)","応急の処置","응급 조치"],["Root Cause Analysis","原因の分析","원인 분석"],["Effectiveness Check","効果の確認","효과 확인"],["Corrective Action Log","是正の一覧表","시정 조치 목록"]],
 quiz:[{q:"What is the difference between immediate and corrective action?",opts:["None","Immediate action stops what is happening; corrective action stops it happening again","Corrective action is unnecessary","Immediate action is enough to close"],a:1,exp:"Close on immediate action alone and the same finding returns."},
 {q:"Which conclusion should a root cause analysis avoid?",opts:["No box on the handover sheet","Individual carelessness, so be careful","The manual is out of date","Training comes too late"],a:1,exp:"Look for the system gap, not someone to blame."},

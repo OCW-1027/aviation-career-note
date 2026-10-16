@@ -4,7 +4,7 @@ var PARTS={ja:['Part 0 お金の流れと3つの表','Part 1 損益計算書','P
  ko:['Part 0 돈의 흐름과 재무제표','Part 1 손익계산서','Part 2 재무상태표','Part 3 현금흐름표','Part 4 재무제표의 연결','Part 5 항공사의 재무','Part 6 재무 분석','Part 7 투자 검토 실무','Part 8 한국과 일본의 회계'],
  en:['Part 0 Where the Money Flows: the Three Statements','Part 1 The Income Statement','Part 2 The Balance Sheet','Part 3 The Cash Flow Statement','Part 4 How the Three Connect','Part 5 Airline Finances','Part 6 Financial Analysis','Part 7 Investment Appraisal in Practice','Part 8 Accounting in Japan and Korea']};
 var S={ja:'数字で読む会社 ― 財務諸表の基礎から投資判断まで',ko:'숫자로 읽는 회사 — 재무제표 기초부터 투자 판단까지',en:'Reading a Company Through Its Numbers: From the Basics of Financial Statements to Investment Decisions'};
-var DEF={ja:{voice:'財務担当のひとこと'},ko:{voice:'재무 담당의 한마디'},en:{voice:'From the Finance Desk'}};
+var DEF={ja:{voice:'実務のポイント'},ko:{voice:'실무 포인트'},en:{voice:'Practical Point'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];
  a.meta.home=a.meta.home||'00_シリーズ全体_財務3表.html';a.meta.from=a.meta.from||'HND';
  a.meta.en={series:S.en,part:PARTS.en[pn]};

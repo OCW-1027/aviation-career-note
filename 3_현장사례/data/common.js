@@ -5,10 +5,12 @@ ko:['','Part 1 공항의 대규모 비정상','Part 2 프로젝트를 움직이�
 en:['','Part 1 Large-scale Airport Disruptions','Part 2 Running Projects','Part 3 Partners and Resources','Part 4 Authorities and Borders','Part 5 Disruptions at the Station','Part 6 Disruptions at Major Airlines and Networks','Part 7 When Nature and Society Stop Airports','Part 8 Practice: Turning Reading into Work','Part 9 Public Cases: Earthquakes, Eruptions and System Failures']};
 var S={ja:'現場事例から学ぶ',ko:'현장 사례로 배우기',en:'Lessons from the Field: Case Studies'};
 var DEF={ja:{voice:'当事者のひと言'},ko:{voice:'당사자 한마디'},en:{voice:'In Their Own Words'}};
+/* 公開事例・実習の回は「当事者」の言葉ではないので、見出しを「この事例から学ぶこと」にする（2026.10.16 C7-3） */
+var PUB=/^(5-7|6-[4-9]|7-[0-9]+|8-[0-9]+|9-[0-9]+)$/,ALT={ja:'この事例から学ぶこと',ko:'이 사례에서 배울 점',en:'What This Case Teaches'};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];
  a.meta.home=a.meta.home||'00_シリーズ全体_現場の事例.html';a.meta.from=a.meta.from||'KIX';
  a.meta.en={series:S.en,part:PARTS.en[pn]};
  ['ja','ko','en'].forEach(function(l){if(!a[l])return;a[l].series=a[l].series||S[l];a[l].part=a[l].part||PARTS[l][pn];
-  if(DEF[l]&&typeof a[l].voice==='string')a[l].voice={h:DEF[l].voice,x:a[l].voice};});
- if(DEF.en)a.meta.en.voice=DEF.en.voice;}
+  if(DEF[l]&&typeof a[l].voice==='string')a[l].voice={h:(PUB.test(k)?ALT[l]:DEF[l].voice),x:a[l].voice};});
+ if(DEF.en)a.meta.en.voice=PUB.test(k)?ALT.en:DEF.en.voice;}
 })();
