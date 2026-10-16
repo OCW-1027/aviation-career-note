@@ -38,7 +38,7 @@ sections:[
 ["A European airport example","TOBT may be changed at most three times after TSAT is issued; if start-up is not requested within the TSAT window, TOBT is deleted and the flight suspended (Munich)"],
 ["Japan","Narita began TSAT operations in October 2023; A-CDM is being considered and prepared at other major airports"],
 ["Asia and elsewhere","Adoption is spreading at major international airports"]]},
-{t:"note",x:"* An assessment of fully implemented European airports found taxi-out times fell by about three minutes per flight on average (as reported from a EUROCONTROL assessment). ★"}]},
+{t:"note",x:"* An assessment of fully implemented European airports found taxi-out times fell by between about 0.25 and 3 minutes per departure (as reported from a EUROCONTROL assessment). ★"}]},
 {h:"Before and after",blocks:[{t:"fig",id:"acdm_queue",cap:"Moving diagram: left (before), flights leave as soon as ready and queue at the runway with engines running; right (TSAT), flights wait on stand with engines off, move in sequence and take off with little waiting."},
 {t:"check",items:[
 {name:"Fuel and CO2",x:"Less time waiting with engines running."},

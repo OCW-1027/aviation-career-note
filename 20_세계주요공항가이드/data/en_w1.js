@@ -121,7 +121,7 @@ sections:[
 {h:"Taipei’s two airports and routes to Korea and Japan",blocks:[{t:"table",cols:["","Taoyuan (TPE)","Songshan (TSA)"],rows:[
 ["Location","About 40 km west of Taipei","In central Taipei"],
 ["Korea and Japan routes","Many, including Narita, Kansai and Incheon","City-centre routes such as Haneda and Gimpo"]]},
-{t:"note",x:"* Korean and Japanese passports need no visa for short stays in Taiwan. Advance online arrival cards have also been promoted since 2025 ★."}]}],
+{t:"note",x:"* Korean and Japanese passports need no visa for short stays in Taiwan. Since 1 October 2025 paper arrival cards have been abolished and an online arrival card is required ★."}]}],
 voice:"Taipei uses two airports, Taoyuan and Songshan, so print the airport name prominently in passenger notices to avoid mix-ups. Many Haneda and Gimpo flights use Songshan.",
 terms:[["Taiwan Taoyuan International Airport","桃園国際空港","타오위안국제공항"],["Taipei Songshan Airport","松山空港","쑹산공항"],["Concourse","搭乗コンコース","탑승동"],["One-stop Security","ワンストップの保安","원스톱 보안"],["Transfer Passengers","乗り継ぎの客","환승객"]],
 quiz:[{q:"When did Taoyuan’s Terminal 3 north concourse enter full operation?",opts:["2023","25 December 2025","End of 2027","2030"],a:1,exp:"Trial operation began on 1 December."},

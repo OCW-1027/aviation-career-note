@@ -38,7 +38,7 @@ sections:[
 {name:"Lights and markings",x:"Never cross a red stop bar or red runway status lights, even with a clearance. If something feels wrong, stop and check."},
 {name:"Pushback communication",x:"Headset exchanges between the tug crew and the flight deck (“brakes set”, “cleared to disconnect”) should also be read back."},
 {name:"The handler’s role",x:"The national guidelines (November 2025) note that handling vehicles enter runways often and that ramp incidents are rising, and call on ground handlers to take the initiative in preventing incursions and to join each airport’s cooperation framework."},
-{name:"Equipment for vehicles at major airports",x:"The same guidelines set out, among other things, that vehicles entering runways at eight major airports (New Chitose, Narita, Haneda, Chubu, Itami, Kansai, Fukuoka and Naha) carry equipment that automatically transmits position and identity (Mode S). ★"}]}]},
+{name:"Equipment for vehicles at major airports",x:"The same guidelines set out, among other things, that vehicles entering runways at eight major airports (New Chitose, Narita, Haneda, Chubu, Itami, Kansai, Fukuoka and Naha) be considered for equipment that automatically transmits position and other data. ★"}]}]},
 {h:"Main measures since the Haneda accident",blocks:[{t:"table",cols:["When","Measures (main ones)"],rows:[
 ["January 2024","Instructions to ATC units and airlines to reinforce basic procedures; staff assigned at major airports to monitor runway incursions on radar at all times"],
 ["June 2024","Interim report of the accident countermeasures committee, recommending a revised handbook and more"],

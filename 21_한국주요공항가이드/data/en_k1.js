@@ -25,7 +25,7 @@ sections:[
 {name:"Transfer security",x:"International connections need no immigration check but include transfer security screening; mind liquid restrictions."}]}]},
 {h:"Future plans",blocks:[{t:"table",cols:["Plan","Details"],rows:[
 ["Phase 5","A third passenger terminal and a fifth runway; the key question is inclusion in the national airport development plan ★"],
-["Saturation","National forecasts suggest international traffic will exceed capacity (106 million) around 2033 ★"],
+["Saturation","An Incheon Airport Corporation study expects annual passengers to reach about 111 million around 2033, above capacity (106 million) ★"],
 ["Around the airport","Industrial complexes for aircraft maintenance (MRO) and logistics"]]},
 {t:"point",x:"Incheon’s strengths are 24-hour operation, four runways and the connecting network of the merged major carriers. From a Japan station, capturing ‘Japanese regions → Incheon → the world’ transfer demand is the key to sales."}]}],
 voice:"Incheon has two terminals, so at check-in, first confirm whether connecting passengers will need to change terminals. More passengers than you would expect arrive late at the wrong terminal.",

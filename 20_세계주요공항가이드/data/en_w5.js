@@ -91,7 +91,7 @@ quiz:[{q:"How much is the JFK redevelopment worth in total?",opts:["US$4 billion
 {q:"How many gates will New Terminal One have at completion?",opts:["10","14","23","50"],a:2,exp:"The first phase has 14."}],
 next:"5-4 Sydney (SYD) and Western Sydney (WSI)"});
 set("5-4",{title:"Sydney (SYD) and Western Sydney (WSI): A Curfewed Airport and a 24-hour Newcomer Opening in October 2026",hl:"Sydney",subtitle:"Kingsford Smith handled 42.54 million passengers in 2025 under an 11pm–6am curfew and an hourly movement cap. Western Sydney International opens in the western suburbs on 25 October 2026",
-lead:["Sydney Kingsford Smith is Australia’s largest airport. A 1995 law bans most movements between 11pm and 6am and caps movements per hour. It handled a record 42.54 million passengers in 2025 (★).","To relieve these limits, the 24-hour Western Sydney International (Nancy-Bird Walton) Airport has been built about 44 km west of the city, starting cargo flights on 26 July 2026 and passenger flights on 25 October 2026 (Australian Government). This lesson compares the two."],
+lead:["Sydney Kingsford Smith is Australia’s largest airport. A 1995 law bans most movements between 11pm and 6am and caps movements per hour. It handled 42.54 million passengers in 2025, with a record 17.17 million international passengers (★).","To relieve these limits, the 24-hour Western Sydney International (Nancy-Bird Walton) Airport has been built about 44 km west of the city, starting cargo flights on 26 July 2026 and passenger flights on 25 October 2026 (Australian Government). This lesson compares the two."],
 sections:[
 {h:"The two airports (September 2026)",blocks:[{t:"fig",id:"wld_syd",cap:"Figure: Sydney’s two airports."},{t:"table",cols:["Item","Sydney (SYD)","Western Sydney (WSI)"],rows:[
 ["ICAO","YSSY","YSWS"],
@@ -107,7 +107,7 @@ sections:[
 ["26 October 2026","Air New Zealand to Auckland"],
 ["1 November 2026","Night movements begin; the night freighter exemption at Sydney Airport ends at the same time"],
 ["23 November 2026","Singapore Airlines daily to Singapore"],
-["2027","Sydney Metro link to the airport due to open ★"]]},
+["2027","Metro line between St Marys and Bradfield (target December 2027; not open when the airport opens) ★"]]},
 {t:"point",x:"Night flying allows late-night departures from Sydney and early-morning arrivals from Asia. But international capacity is set by bilateral air services agreements that treat Sydney as one market, so flights will not necessarily jump straight away."}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Curfew",x:"At SYD a delayed flight that misses 11pm must divert or cancel; managing departure delays is critical."},

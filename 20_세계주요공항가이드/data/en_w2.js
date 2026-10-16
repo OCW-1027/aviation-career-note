@@ -62,7 +62,7 @@ sections:[
 ["Caution","Always confirm which airport is booked; transferring between them takes over an hour","—"]]}]},
 {h:"Entry and transfers",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["TDAC (digital arrival card)","Since 1 May 2025 foreigners submit the Thailand Digital Arrival Card up to 72 hours before arrival (Thai Immigration Bureau)"],
-["Korean and Japanese passports","No visa for short tourist stays (check current guidance for the number of days) ★"],
+["Korean and Japanese passports","No visa for short tourist stays; the general visa-free stay was cut from 60 to 30 days from 15 September 2026 (countries with bilateral agreements follow those; check current guidance) ★"],
 ["International to international","Connect without immigration; the main terminal and SAT-1 are linked by an automated people mover"]]}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Congestion",x:"Operating close to capacity means long queues at immigration and security at peak times."},

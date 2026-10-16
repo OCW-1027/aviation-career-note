@@ -18,7 +18,7 @@ sections:[
 ["April 2025","Tokyo’s customer harassment prevention ordinance takes effect (Hokkaido, Gunma and others too)"],
 ["11 June 2025","The amended Act on the Comprehensive Promotion of Labor Policies is promulgated"],
 ["26 February 2026","The Ministry of Health, Labour and Welfare issues its guideline on employer measures"],
-["September 2026","The ministry publishes a revised customer harassment manual for companies (2026 edition) ★"],
+["September 2026","The ministry publishes a revised customer harassment manual for companies (September 2026) ★"],
 ["1 October 2026","Measures against customer harassment become mandatory for every employer with at least one worker"]]},
 {t:"note",x:"* Non-compliance can bring advice, guidance and recommendations from the authorities, and the company’s name may be published if it does not comply (there is no criminal penalty). ★"}]},
 {h:"What employers must do (four pillars)",blocks:[{t:"fig",id:"gnd_kh4",cap:"Animated figure: the four pillars an employer puts in place against customer harassment."},{t:"table",cols:["Pillar","Examples"],rows:[

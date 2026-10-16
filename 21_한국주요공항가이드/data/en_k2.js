@@ -56,7 +56,7 @@ sections:[
 ["Phase 1 facilities","One 3,200 m runway, an apron for 28 aircraft, passenger and cargo terminals, a transport centre"],
 ["March 2025","Basic design (18 months) and environmental impact assessment (24 months) begin"],
 ["Environmental assessment","Requires Jeju’s review and the provincial council’s consent (Jeju Special Act); key issues include bird strikes, protected species, noise, ‘sumgol’ (holes where rainwater drains underground) and lava tubes"],
-["Opening","About five years after construction starts; timing undecided ★"]]},
+["Opening","Construction and opening dates not yet set (environmental assessment under way) ★"]]},
 {t:"point",x:"At Jeju, decisions turn on how quickly passengers can be moved once the weather clears. Settle extra-flight, reprotection and accommodation procedures for mass-cancellation days before each season."}]}],
 voice:"Jeju is an airport where wind and snow easily cause cancellations all at once. In peak season seats on alternative flights fill quickly, so when a weather warning comes out, work out alternative transport in advance.",
 terms:[["Wind Shear","ウインドシア","윈드시어"],["Mass Cancellation","一斉の欠航","대규모 결항"],["Extra Section","臨時便","임시편"],["Jeju Second Airport","済州第2空港","제주 제2공항"],["Environmental Impact Assessment","環境影響評価","환경영향평가"]],
