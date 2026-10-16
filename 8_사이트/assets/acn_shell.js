@@ -51,22 +51,20 @@ var CSS='@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;60
 '.acn-pill button.on{color:#1769e0;font-weight:800}.acn-pill i{font-style:normal;opacity:.5}'+
 '.acn-cta{display:inline-flex;align-items:center;background:#1769e0;color:#fff!important;border-radius:10px;padding:10px 15px;text-decoration:none!important;font-weight:800;font-size:13px}'+
 '.acn-crumb{max-width:1200px;margin:0 auto;padding:12px 24px 0;font:600 13px Inter,"Noto Sans JP","Noto Sans KR",sans-serif}.acn-crumb a{color:#1769e0!important;text-decoration:none}.acn-crumb a::before{content:"\\2190  "}.acn-crumb .pict{display:none}.acn-crumb .series{display:inline;font:inherit}'+
-'.acn-ft{background:#081828;color:#fff!important;max-width:none!important;margin:60px 0 0!important;padding:52px 24px 40px!important;font-size:14px!important;font-family:Inter,"Noto Sans JP","Noto Sans KR",system-ui,sans-serif;line-height:1.6}'+
 /* ページの CSS の footer{max-width…}・header{…} に引きずられないように */
 '.acn-hd{max-width:none!important;margin:0!important;padding:0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important;color:#182431!important}'+
-'.acn-ft-in{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr repeat(4,1fr);gap:26px}'+
-'.acn-ft b{display:block;margin-bottom:10px;color:#fff}.acn-ft p,.acn-ft a{display:block;color:#9fb0bf!important;font-size:12px;margin:6px 0;text-decoration:none!important}.acn-ft a:hover{color:#fff!important}'+
-'.acn-copy{max-width:1200px;margin:28px auto 0;font-size:11px;color:#6f8394}.acn-copy a{display:inline!important;margin:0 0 0 10px!important}'+
 /* 右下のボタン（nav.js）を新しいデザインに合わせる */
 '.nv-fab button{background:#fff!important;color:#182431!important;border:1px solid #dfe4e8!important;border-radius:10px!important;font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif!important;font-weight:700!important;box-shadow:0 8px 22px rgba(9,28,47,.10)!important}'+
 '.nv-fab button:hover{border-color:#9bbbf0!important;color:#1769e0!important}'+
 /* 23차b（GPT 23-F03）：981〜1200px はメニューだけ2行目に（8つになって1行に入らず、ページが横にはみ出した） */
 '@media(min-width:981px) and (max-width:1200px){.acn-in{flex-wrap:wrap;padding:10px 24px;gap:6px 26px}.acn-menu{order:3;flex:1 1 100%;flex-wrap:wrap;gap:6px 22px;padding-bottom:4px}.acn-menu a{white-space:nowrap}.acn-act{margin-left:auto}}'+
-'@media(max-width:980px){.acn-in{flex-wrap:wrap;padding:12px 18px;gap:10px 14px}.acn-menu{order:3;flex:1 1 100%;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12.5px}.acn-menu a{border:1px solid #dfe4e8;border-radius:9px;padding:7px 2px;letter-spacing:-.02em;text-align:center;background:#fff}.acn-menu a{white-space:nowrap}.acn-act{margin-left:auto}.acn-ft-in{grid-template-columns:1fr 1fr}}'+
-'@media(max-width:600px){.acn-brand{font-size:16px}.acn-cta{padding:9px 12px}.acn-crumb{padding:10px 16px 0}.acn-ft{margin:32px 0 0!important;padding:26px 16px 88px!important}.acn-ft-in{grid-template-columns:1fr 1fr;gap:16px 18px}.acn-ft-in>div:first-child{grid-column:1/-1}.acn-ft-in>div:first-child p+p{display:none}.acn-ft b{margin-bottom:4px;font-size:13px}.acn-ft-in>div:not(:first-child) a{display:inline-block;margin:2px 12px 2px 0;min-height:24px;line-height:24px}.acn-copy{margin-top:18px;line-height:1.9}}'+
+'@media(max-width:980px){.acn-in{flex-wrap:wrap;padding:12px 18px;gap:10px 14px}.acn-menu{order:3;flex:1 1 100%;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12.5px}.acn-menu a{border:1px solid #dfe4e8;border-radius:9px;padding:7px 2px;letter-spacing:-.02em;text-align:center;background:#fff}.acn-menu a{white-space:nowrap}.acn-act{margin-left:auto}}'+
+'@media(max-width:600px){.acn-brand{font-size:16px}.acn-cta{padding:9px 12px}.acn-crumb{padding:10px 16px 0}}'+
 /* 資料・ツールのページ（shell.js）：ロゴと言語ボタンは新しい頭にまとめ、「資料・ツール › このページ」だけ残す */
 '.shbar .shbrand,.shbar .shlang{display:none!important}.shbar{margin:14px 0 10px!important}.shcrumb{font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif!important;font-size:13px!important}.shcrumb a{color:#1769e0!important}'+
 '@media print{.acn-hd,.acn-ft,.acn-crumb{display:none!important}}';
+/* フッターの見た目はすべてのページで共通のファイル acn_foot.css（v3 のトップ系ページも同じものを読む）2026.10.16 */
+(function(){if(document.getElementById('acn-foot-css'))return;var k=document.createElement('link');k.id='acn-foot-css';k.rel='stylesheet';k.href=new URL('acn_foot.css',me).href;document.head.appendChild(k)})();
 
 var hd,ft,crumb,last='';
 function draw(){var l=L();if(l===last&&hd)return;last=l;var c=C[l];
