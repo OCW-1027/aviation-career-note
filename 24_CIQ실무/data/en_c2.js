@@ -53,7 +53,7 @@ sections:[
 {name:"If you are caught without declaring",x:"A penalty of 40% of the tax due is added, or 60% for a second case within two years."}]}]},
 {h:"Questions you will hear",blocks:[{t:"check",items:[
 {name:"“Are things bought duty-free on departure separate?”",x:"No. They count towards the allowance of the country of arrival."},
-{name:"“Can a family combine allowances?”",x:"Allowances are, in principle, per person (in Japan, a single item over 200,000 yen is taxed on its full value). Whether family members can pool allowances for one expensive item depends on each customs authority’s rules. ★"},
+{name:"“Can a family combine allowances?”",x:"Allowances are, in principle, per person (in Japan, a single item over 200,000 yen is taxed on its full value). Korea Customs Service states that family members cannot combine their allowances; for other countries, check each customs authority’s rules. ★"},
 {name:"“Do gifts count?”",x:"Yes. So do things received or carried for someone else."},
 {name:"“How much tax will I pay?”",x:"The airline does not calculate it. Point to the customs authority’s guidance (Korea Customs has a page for estimating tax in advance)."}]},
 {t:"point",x:"A duty-free shop is not a shop where no tax ever applies; it sells to people leaving the country without charging tax. The rules of the country they return to are separate."}]}],
