@@ -1,7 +1,7 @@
 /* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
 window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}};
 window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e1f97":11661,"01ff8447":27693,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"04170656":22701,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05382ef2":8877,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"07801492":13773,"0804812d":12813,"08911573":24429,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b0fc6ff":23181,"0b15794c":18093,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0f321d57":11949,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10e5aae7":26061,"114530e3":18189,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"1550e722":20589,"15ad3d3e":15789,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1ec7ed77":10893,"1eceacdd":14445,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"22babe7c":22125,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"241220dd":30189,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"277a2505":10509,"277be539":16941,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cc2a6c8":10893,"2ce3e287":23949,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"30062188":25101,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"32832759":20205,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"334df891":13101,"336f3476":12237,"347b7fc6":8877,"34b319f3":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38623a3d":4077,"3875fba6":22317,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3c20ea46":16077,"3cf3a519":18669,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3f53f59b":15309,"3fab192f":13581,"401848f6":9837,"405c08a3":25005,"40d1fc1a":21933,"4127a234":16461,"41581a26":32493,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"428c73ac":14733,"429ee352":14637,"42ff6b45":15597,"430ac058":11469,"4383e84b":24813,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"4a0d5067":13389,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4ddc25ef":26061,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"559a719c":6381,"55ff9e0a":8397,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"56aeecf7":14925,"56c28fec":22893,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58f2107a":4557,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5bc30b0c":6189,"5c10b6a5":15405,"5c188a15":10893,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61d2ee03":20397,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"672ba710":17421,"6755401f":3693,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6aa5e2a6":24525,"6ac63d3c":7053,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c9bb35d":8445,"6cc2b68b":18381,"6d79cf39":5901,"6e346345":13965,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f265640":7053,"6f35b02d":17229,"6f916efb":24717,"6fe3f2f3":9165,"7087f307":21837,"70ace839":5613,"71029f0e":24141,"7224d333":24333,"7244acbc":17997,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"74282aec":11949,"749e2919":21357,"74bff1e3":10797,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"772b8880":14253,"77704f09":7053,"78ada3f2":9357,"79684e06":24141,"79cdfe1a":15213,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a851f8b":7149,"7a878fff":22221,"7b663459":22317,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7ce43c38":72813,"7d42f834":11469,"7dd7941a":11277,"7e2eb525":13869,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7f5d4783":24237,"7fafb60d":25293,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"829a2da9":15885,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"85aba023":14541,"85b0ca94":31629,"86c6118e":16461,"86e30629":18573,"86f1d327":13581,"88968b3e":22701,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"900c3369":20685,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9452465d":26253,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"96936059":10029,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99cadd07":7245,"9abff8c0":18093,"9afd6a23":28941,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d7aba60":24429,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9f32d3da":5613,"9f51d948":12717,"a0374dcf":21741,"a0572083":6861,"a0869e8d":9453,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"ae98d056":21549,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b2764e19":17133,"b2f0c22c":24717,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b7a981f3":21645,"b7d63f21":8205,"b94b3f9a":9165,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"be9f4413":25581,"befa6ee1":6573,"bf96bcc6":21837,"bfe76df4":6861,"c0d326e8":29757,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c35e1c20":13773,"c46ac345":22029,"c5ba55fe":20877,"c68cb3de":11469,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c9b7a6d3":15021,"ca69c6c0":24525,"cabb5ead":11469,"cac77566":17517,"cb73f3d3":8685,"cbebd934":19245,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"cf0342c2":41325,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d40d98b3":22029,"d4a9b5d6":41133,"d4df3b82":24909,"d5b39d86":4077,"d62b35bf":14157,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d8b5d724":6573,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"deb54a25":7917,"dec33802":12717,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2b6ec19":22029,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e5b55442":20301,"e5eb1dba":31917,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e8246b13":6573,"e833eb1a":21357,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"eb2c67cb":15597,"ec035359":23565,"ec0681c4":6765,"ece1e617":23565,"ed0b9fc4":10797,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"f067aa86":12237,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f35649a3":12525,"f3dcf5f3":23853,"f41df8eb":25197,"f4be769e":17613,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f9453009":21741,"f98ca4d6":25869,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb7c792a":24909,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
-window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"}}};
+window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"passenger/2-1":{"ja":"ja/gnd/2-1/","ko":"ko/gnd/2-1/","en":"en/gnd/2-1/"},"passenger/2-4":{"ja":"ja/gnd/2-4/","ko":"ko/gnd/2-4/","en":"en/gnd/2-4/"},"passenger/2-5":{"ja":"ja/gnd/2-5/","ko":"ko/gnd/2-5/","en":"en/gnd/2-5/"},"passenger/2-7":{"ja":"ja/gnd/2-7/","ko":"ko/gnd/2-7/","en":"en/gnd/2-7/"}}};
 /* rules.js */
 /* 규칙 모듈 — core(공통 원리) / country(JP·KR) / airline(Vela Air, 교육용) / airport
    각 항목: basis = lesson(강좌 근거) | edu(교육용 가상값). 화면 언어와 업무 국가는 별개 */
@@ -759,11 +759,15 @@ window.RULES = {
   function rec(hist, day, country) { return (hist || {})[key(day, country)] || null; }
   /* 해금 근거: 같은 회차 안에서 B 이상 + 안전 합격 + 모든 승객 처리(bestClear). 예전 점수(legacyBest)는 근거가 아님 */
   function cleared(r) { return !!(r && r.bestClear && RANKV[r.bestClear] >= RANKV.B); }
-  function status(hist, n, country, practice) {
-    var d = DAYS[n - 1];
-    if (!d.mission) return 'soon';
-    if (n === 1 || practice) return 'open';
-    return cleared(rec(hist, DAYS[n - 2], country)) ? 'open' : 'lock';
+  /* 2a: 근무일 목록마다 같은 함수 묶음을 돌려줌(체크인편 = SAGA_DAYS 자체, 게이트편은 SAGA_DAYS.make(목록)) */
+  function make(DAYS) {
+    function status(hist, n, country, practice) {
+      var d = DAYS[n - 1];
+      if (!d.mission) return 'soon';
+      if (n === 1 || practice) return 'open';
+      return cleared(rec(hist, DAYS[n - 2], country)) ? 'open' : 'lock';
+    }
+    return { better: better, loadStore: loadStore, saveStore: saveStore, addAttempt: addAttempt, cleared: cleared, list: DAYS, status: status, record: record, rec: rec, topMiss: topMiss, key: key, rng: rng, make: make };
   }
 
   /* 결과 기록: 한 판에 한 번. miss = 이번 판에서 놓친 항목 코드 목록 */
@@ -825,7 +829,7 @@ window.RULES = {
   function saveStore(st) { try { localStorage.setItem(HKEY, JSON.stringify(st)); return true; } catch (e) { return false; } }
   function addAttempt(st, a) { st.attempts.unshift(a); if (st.attempts.length > 20) st.attempts.length = 20; }
 
-  window.SAGA_DAYS = { better: better, loadStore: loadStore, saveStore: saveStore, addAttempt: addAttempt, cleared: cleared, list: DAYS, status: status, record: record, rec: rec, topMiss: topMiss, key: key, rng: rng };
+  window.SAGA_DAYS = make(DAYS);
 })();
 
 /* dialog.js */
@@ -870,7 +874,7 @@ window.RULES = {
 })();
 
 /* lessons.js */
-window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）と電子渡航認証","ko":"미리 보내는 승객 정보(API·PNR)와 전자여행허가","en":"Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations"},"ciq/1-1":{"ja":"旅券と査証 ― カウンターで何を確認するか","ko":"여권과 비자 — 카운터에서 무엇을 확인하나","en":"Passports and Visas: What to Check at the Counter"},"ciq/1-2":{"ja":"TIMATIC ― 渡航条件を確認するためのデータベース","ko":"TIMATIC — 입국 조건을 찾는 도구","en":"TIMATIC: The Tool for Looking Up Entry Requirements"},"ciq/1-4":{"ja":"入国拒否と送還の実際","ko":"입국 거부와 송환의 실제","en":"Refusal of Entry and Removal in Practice"},"passenger/1-1":{"ja":"カウンターオープン前の準備とレイアウト","ko":"카운터 오픈 전 준비와 레이아웃","en":"Getting the Counter Ready, and How to Lay It Out"},"passenger/1-3":{"ja":"チェックインの流れとパスポート・ビザ確認","ko":"체크인 흐름과 여권·비자 확인","en":"The Check-in Flow and Checking Passports and Visas"},"passenger/1-4":{"ja":"以遠区間・乗り継ぎのお客様の手続き","ko":"이원 구간·환승 승객 수속","en":"Passengers with Onward and Connecting Flights"},"passenger/1-5":{"ja":"座席指定・アップグレードと非常口座席","ko":"좌석 배정·업그레이드와 비상구 열 좌석","en":"Seat Assignment, Upgrades and Exit Row Seats"},"passenger/1-6":{"ja":"特別対応① 幼児・小児、妊娠中・医療の配慮が必要なお客様","ko":"특별 승객 ① 유아·소아, 임산부·의료 배려 승객","en":"Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs"},"passenger/1-7":{"ja":"特別対応② 車いす・お身体の不自由なお客様、お一人で旅行するお子様","ko":"특별 승객 ② 휠체어·장애인 승객, 비동반 소아","en":"Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors"},"passenger/1-8":{"ja":"特別対応③ ペットの輸送","ko":"특별 승객 ③ 반려동물 운송","en":"Special Assistance 3: Carrying Pets"},"passenger/1-10":{"ja":"手荷物規定① 受託・機内持ち込み・超過","ko":"수하물 규정 ① 위탁·기내·초과","en":"Baggage Rules 1: Checked, Carry-on and Excess"},"passenger/1-12":{"ja":"危険物の基礎 ― お客様の手荷物で気をつけるもの","ko":"위험물 기초 — 승객 수하물에서 주의할 것","en":"Dangerous Goods Basics: What to Watch in Passenger Baggage"},"passenger/1-13":{"ja":"リチウム電池とモバイルバッテリー ― 日韓の最新ルール","ko":"리튬 배터리와 보조배터리 — 한일 최신 규정","en":"Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea"},"passenger/2-2":{"ja":"ゲートバッグと車いすの取り扱い","ko":"게이트 백과 휠체어 처리","en":"Gate-Checked Bags and Wheelchairs"},"passenger/2-3":{"ja":"開披検査への対応","ko":"개방 검사 대응","en":"Handling a Bag Search with the Passenger"},"passenger/5-4":{"ja":"遅延対応 ― ご案内・食事券・遅延証明","ko":"지연 처리 — 안내·식사 쿠폰·지연 증명","en":"Delays: Information, Meal Vouchers and Certificates"},"passenger/5-6":{"ja":"欠航対応 ― 振替・エンドース・補償案内・苦情対応","ko":"결항 처리 — 대체편·엔도스·보상 안내·클레임 접수","en":"Cancellations: Rebooking, Endorsement, Compensation and Claims"}};
+window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）と電子渡航認証", "ko": "미리 보내는 승객 정보(API·PNR)와 전자여행허가", "en": "Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations"}, "ciq/1-1": {"ja": "旅券と査証 ― カウンターで何を確認するか", "ko": "여권과 비자 — 카운터에서 무엇을 확인하나", "en": "Passports and Visas: What to Check at the Counter"}, "ciq/1-2": {"ja": "TIMATIC ― 渡航条件を確認するためのデータベース", "ko": "TIMATIC — 입국 조건을 찾는 도구", "en": "TIMATIC: The Tool for Looking Up Entry Requirements"}, "ciq/1-4": {"ja": "入国拒否と送還の実際", "ko": "입국 거부와 송환의 실제", "en": "Refusal of Entry and Removal in Practice"}, "passenger/1-1": {"ja": "カウンターオープン前の準備とレイアウト", "ko": "카운터 오픈 전 준비와 레이아웃", "en": "Getting the Counter Ready, and How to Lay It Out"}, "passenger/1-3": {"ja": "チェックインの流れとパスポート・ビザ確認", "ko": "체크인 흐름과 여권·비자 확인", "en": "The Check-in Flow and Checking Passports and Visas"}, "passenger/1-4": {"ja": "以遠区間・乗り継ぎのお客様の手続き", "ko": "이원 구간·환승 승객 수속", "en": "Passengers with Onward and Connecting Flights"}, "passenger/1-5": {"ja": "座席指定・アップグレードと非常口座席", "ko": "좌석 배정·업그레이드와 비상구 열 좌석", "en": "Seat Assignment, Upgrades and Exit Row Seats"}, "passenger/1-6": {"ja": "特別対応① 幼児・小児、妊娠中・医療の配慮が必要なお客様", "ko": "특별 승객 ① 유아·소아, 임산부·의료 배려 승객", "en": "Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs"}, "passenger/1-7": {"ja": "特別対応② 車いす・お身体の不自由なお客様、お一人で旅行するお子様", "ko": "특별 승객 ② 휠체어·장애인 승객, 비동반 소아", "en": "Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors"}, "passenger/1-8": {"ja": "特別対応③ ペットの輸送", "ko": "특별 승객 ③ 반려동물 운송", "en": "Special Assistance 3: Carrying Pets"}, "passenger/1-10": {"ja": "手荷物規定① 受託・機内持ち込み・超過", "ko": "수하물 규정 ① 위탁·기내·초과", "en": "Baggage Rules 1: Checked, Carry-on and Excess"}, "passenger/1-12": {"ja": "危険物の基礎 ― お客様の手荷物で気をつけるもの", "ko": "위험물 기초 — 승객 수하물에서 주의할 것", "en": "Dangerous Goods Basics: What to Watch in Passenger Baggage"}, "passenger/1-13": {"ja": "リチウム電池とモバイルバッテリー ― 日韓の最新ルール", "ko": "리튬 배터리와 보조배터리 — 한일 최신 규정", "en": "Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea"}, "passenger/2-2": {"ja": "ゲートバッグと車いすの取り扱い", "ko": "게이트 백과 휠체어 처리", "en": "Gate-Checked Bags and Wheelchairs"}, "passenger/2-3": {"ja": "開披検査への対応", "ko": "개방 검사 대응", "en": "Handling a Bag Search with the Passenger"}, "passenger/5-4": {"ja": "遅延対応 ― ご案内・食事券・遅延証明", "ko": "지연 처리 — 안내·식사 쿠폰·지연 증명", "en": "Delays: Information, Meal Vouchers and Certificates"}, "passenger/5-6": {"ja": "欠航対応 ― 振替・エンドース・補償案内・苦情対応", "ko": "결항 처리 — 대체편·엔도스·보상 안내·클레임 접수", "en": "Cancellations: Rebooking, Endorsement, Compensation and Claims"}, "passenger/2-1": {"ja": "ゲート業務の準備", "ko": "게이트 업무 준비", "en": "Preparing for Gate Duty"}, "passenger/2-4": {"ja": "搭乗の流れとご案内の順番", "ko": "탑승 절차와 안내 순서", "en": "The Boarding Procedure and Boarding Order"}, "passenger/2-5": {"ja": "搭乗遅れのお客様の捜索とオフロード", "ko": "늦은 승객 수색과 오프로드", "en": "Searching for Late Passengers, and Offloading"}, "passenger/2-7": {"ja": "搭載書類と締め作業、マニュアル搭乗", "ko": "탑재 서류와 마감, 수동 탑승 절차", "en": "Flight Documents, Closing the Flight and Manual Boarding"}};
 
 /* scene.js */
 /* 2.5D 카운터 장면 + SD(2.5등신) 인물 — 캐릭터는 교체 가능한 레이어(SPEC: 영상과 공용 규격으로 확장 예정)
@@ -1292,47 +1296,34 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
 })();
 
 /* game.js */
-/* AIRLINE SAGA — 게임 본체 (Stage 01 체크인) (상태·화면·판정·리플레이)
+/* AIRLINE SAGA — 공통 엔진(상태·저장·이어하기·화면 틀·채점 틀). 스테이지별 내용은 stages/*.js가 STAGE_DEF로 넘김(2a)
    저장 키: acn-saga-v1 (사이트의 다른 기록과 분리) */
 (function () {
   'use strict';
-  var R = window.RULES, M = window.MISSION_CI01, DY = window.SAGA_DAYS, SP = window.SPRITES, LS = window.LESSONS, STG = window.STG, D = window.DIALOG.staff, VO = window.VO;
+  var ST, R, M, DY, T, SP = window.SPRITES, LS = window.LESSONS, STG = window.STG, D = window.DIALOG.staff, VO = window.VO;
   var $ = function (s) { return document.querySelector(s); };
   var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
   var G = { lang: 'ja', country: 'JP', sound: true, hints: true, voice: true, screen: 'title', day: 1, hist: {} };
-  function tx(o) { if (o == null) return ''; if (typeof o === 'string') return o; return o[G.lang] || o.ja || ''; }
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-  function save() { try { localStorage.setItem('acn-saga-v1', JSON.stringify({ lang: G.lang, country: G.country, sound: G.sound, hints: G.hints, voice: G.voice, best: G.best || {}, day: G.day, practice: !!G.practice, hintsByDay: G.hintsByDay || {} })); } catch (e) {} }
-  function load() { try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); ['lang', 'country', 'sound', 'hints', 'voice', 'best', 'day', 'practice', 'hintsByDay'].forEach(function (k) { if (d[k] != null) G[k] = d[k]; });
-      if (!G.hintsByDay) G.hintsByDay = { 1: d.hints != null ? !!d.hints : true }; } catch (e) {} }
-  /* 힌트는 날마다 따로: Day 1 기본 켬, Day 2부터 처음 선택 때 기본 끔(합의본 v3). 이용자가 그날 직접 바꾼 값은 유지 */
-  function applyDayHints(n) { G.hintsByDay = G.hintsByDay || { 1: true }; G.hints = G.hintsByDay[n] != null ? !!G.hintsByDay[n] : n === 1; }
-  function saveHist() { if (!G.store) return true; var ok = DY.saveStore(G.store); if (!ok && !G.saveWarned) { G.saveWarned = true; } return ok; }
   /* ---------- 소리 ---------- */
   var AC = null;
-  function beep(f, d, type) { if (!G.sound) return; try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); var o = AC.createOscillator(), g = AC.createGain(); o.type = type || 'sine'; o.frequency.value = f; g.gain.value = .06; o.connect(g); g.connect(AC.destination); o.start(); g.gain.exponentialRampToValueAtTime(.0001, AC.currentTime + (d || .12)); o.stop(AC.currentTime + (d || .12)); } catch (e) {} }
   var sfx = { ok: function () { beep(880, .09); setTimeout(function () { beep(1320, .1); }, 90); }, ng: function () { beep(220, .25, 'square'); }, tap: function () { beep(660, .05); }, print: function () { for (var i = 0; i < 5; i++) setTimeout(function () { beep(300 + Math.random() * 80, .03, 'square'); }, i * 60); } };
 
   /* ---------- 공통 문구 ---------- */
-  var T = {
+  var T0 = {   /* 공통 문구. 스테이지 문구(ST.text)와 합쳐 T가 됨 */
     brandSub: L('Vela Air グランドスタッフ ― 教育用シミュレーション', 'Vela Air 그라운드 스태프 — 교육용 시뮬레이션', 'Vela Air ground staff — a training simulation'),
     lang: L('表示言語', '표시 언어', 'Language'), station: L('勤務地（業務ルール）', '근무지(업무 규칙)', 'Station (rules applied)'),
     jp: L('日本・成田（NRT）', '일본·나리타(NRT)', 'Japan · Narita (NRT)'), kr: L('韓国・仁川（ICN）', '한국·인천(ICN)', 'Korea · Incheon (ICN)'),
     stationNote: L('画面の言語と、適用する国の業務ルールは別々に選べます。', '화면 언어와 적용할 나라의 업무 규칙은 따로 고를 수 있습니다.', 'The screen language and the country whose rules apply are chosen separately.'),
     stages: L('ステージ ― 1便を動かす全部の仕事', '스테이지 — 한 편을 움직이는 모든 업무', 'Stages — every job behind one flight'),
     start: L('出勤する', '출근하기', 'Clock in'),
-    days: L('チェックイン編 ― カウンターの5日間', '체크인편 — 카운터의 5일', 'Check-in — five days at the counter'),
     modeC: L('本番', '실전', 'Shift'), modeP: L('練習', '연습', 'Practice'),
     hints: L('コラドンのヒントを表示', '코라돈 힌트 표시', 'Show Koradon\'s tips'),
-    sound: L('効果音', '효과음', 'Sound'),
+    sound: L('効果音', '효과음', 'Sound'), min: L('分', '분', 'min'),
     voice: L('音声（日本語）', '음성(일본어)', 'Voice (Japanese)'),
     credit: L('音声：Style-Bert-VITS2 ― 小春音アミ・あみたろ（あみたろの声素材工房 https://amitaro.net/）、つくよみちゃん（つくよみちゃんコーパス CV.夢前黎）、Lux（CC BY 4.0）、zonoko（CC0）、JVNV F1・F2・M1・M2（JVNVコーパス CC BY-SA 4.0）', '음성: Style-Bert-VITS2 — 小春音アミ·あみたろ(あみたろの声素材工房 https://amitaro.net/), つくよみちゃん(つくよみちゃんコーパス CV.夢前黎), Lux(CC BY 4.0), zonoko(CC0), JVNV F1·F2·M1·M2(JVNV 코퍼스 CC BY-SA 4.0)', 'Voices: Style-Bert-VITS2 — Koharune Ami and Amitaro (Amitaro voice materials, https://amitaro.net/), Tsukuyomi-chan (Tsukuyomi-chan corpus, CV. Rei Yumesaki), Lux (CC BY 4.0), zonoko (CC0), JVNV F1/F2/M1/M2 (JVNV corpus, CC BY-SA 4.0)'),
     edu: L('登場する航空会社・便・お客様・規定の数値は教育用の架空のものです。実際の規定は自社マニュアルと公的情報で確認してください。', '등장하는 항공사·항공편·승객·규정 수치는 교육용 가상 데이터입니다. 실제 규정은 자사 매뉴얼과 공적 정보로 확인하세요.', 'The airline, flights, passengers and rule values are fictional, for training. Always check real rules in your company manual and official sources.'),
     flight: L('便', '편', 'Flight'), now: L('現在', '현재', 'Now'), close: L('締切まで', '마감까지', 'To close'), queue: L('待ち', '대기', 'Queue'), served: L('完了', '완료', 'Done'),
-    min: L('分', '분', 'min'), next: L('次のお客様どうぞ', '다음 손님 오세요', 'Next, please'),
-    tabs: { pnr: L('予約', '예약', 'Booking'), pp: L('旅券', '여권', 'Passport'), entry: L('渡航条件', '입국 조건', 'Entry'), seat: L('座席', '좌석', 'Seat'), bag: L('手荷物', '수하물', 'Bags'), bp: L('搭乗券', '탑승권', 'Boarding pass'), sup: L('サポート', '지원', 'Assistance') },
     you: L('あなた', '나', 'You'), mentor: L('コラドン', '코라돈', 'Koradon'), rule: L('コラリンのルール', '코라린의 규칙', 'Korarin\'s rule'),
-    eduData: L('教育用データ ― 実務では Timatic や公的情報で照合します', '교육용 데이터 — 실무에서는 Timatic과 공적 정보로 확인합니다', 'Training data — in real work, check Timatic and official sources'),
     ok: L('OK', '이상 없음', 'OK'), ng: L('問題あり', '문제 있음', 'Problem')
   };
 
@@ -1360,25 +1351,114 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
 
   /* ---------- 미션 상태 ---------- */
   var V, S;
+  var RANKV0 = { S: 4, A: 3, B: 2, C: 1 };
+  /* ================= 26차: 근무 도중 이어하기(승객 단위 저장) — 설계 v2(GPT R25-01~07) =================
+     저장 시점(R25-01): nextPax()에서 「끝난 승객을 결과에 넣고 S.cur를 비운 직후」, 이벤트 판단·다음 승객 호출 전.
+       → 결과 확정 → 완료 인원(results.length)·다음 순서(idx+1) 확정 → 저장 → 이벤트/다음 승객. 이벤트를 마치면 다시 nextPax()를 부르므로 이벤트 완료 상태도 저장됨.
+       → 복원하면 같은 nextPax()를 다시 부름. S.cur가 비어 있으므로 같은 결과를 두 번 넣지 않음.
+     저장 키: acn-saga-run-v1(한 개). 학습 기록(acn-saga-hist-v2)·설정(acn-saga-v1)과 따로. 자동 삭제 없음(사용자 결정 10-14). */
+  var RKEY = 'acn-saga-run-v1';
+  var RUNVER = { schema: 2 };   /* 2a: 판정 규칙 판(rules)은 스테이지가 넘김(ST.rulesVer) */   /* rules: 판정 코드(game.js의 판단·채점 함수)가 바뀌면 올림. 판정 데이터(승객·미션·RULES)는 지문으로 자동 감지(27차 GPT 26-F02) */
+  /* 저장하는 S 필드(R25-05: 전체 S를 그대로 쓰지 않음). 함수·DOM·음성·열린 창 콜백은 넣지 않음 */
+  /* 저장하지 않는 S 필드: 판 정보(따로 저장)·화면 상태·결과 화면 전용 */
+  /* 시나리오 지문(R25-04): 승객 순서·문제 유형·짐 무게·여권 기한·예약번호·사전 배정 좌석. 대사 글자는 넣지 않음(문구만 고쳐도 이어하기 유지) */
+  /* 27차(GPT 26-F02): 판정에 쓰이는 데이터 전체의 지문. 표시용(대사 say·3언어 글자 {ja,ko,en}·그림 art/look·목소리)은 빼고
+     승객(원본 생성값 전체)·미션 조건(편·시각·마감·배치·이벤트·요금 등)·업무 규칙(RULES)을 넣음 → 문구·음성·CSS만 바뀐 판은 호환, 판단 데이터가 바뀌면 차단 */
+  var FP_SKIP = ['say', 'look', 'art', 'voice', 'prop', 'carryProp', 'variants', 'build', 'lessons', 'pax', 'nm', 'learn', 'module', 'level'];
+  /* 28차(GPT 27-F01): 진행본·학습 기록을 바꾸는 모든 쓰기(저장·이어받기·완료 기록·삭제·새 판)를 같은 이름의 배타 잠금(Web Locks) 안에서 한다.
+     같은 저장 영역의 다른 탭도 같은 잠금을 쓰므로 「다시 읽기 → 확인 → 쓰기」 사이에 다른 탭의 쓰기가 끼어들 수 없다.
+     잠금 안의 작업은 동기 함수 하나(중간에 await 없음). 같은 탭의 요청은 요청 순서대로 실행된다.
+     Web Locks가 없는 브라우저는 바로 실행(예전 방식: 소유 표시·다시 읽기) — 탭 사이의 완전한 보장은 없으므로 충돌 안내에 그 제한을 함께 적는다. */
+  var LOCKN = 'acn-saga-store', storeQ = Promise.resolve();
+  /* 오답 코드 → 실제로 한 행동(기록용 키) */
+  /* ================= 27차(사용자 10-14): 클레임 — 먼저 사과, 확인된 사실, 할 수 있는 것과 다음 행동. 확인하지 않은 약속·권한 없는 보상·언쟁은 감점 ================= */
+
+  /* D3-01 휠체어: 본인에게 물어 지원 수준을 정하고(WCHR/WCHS/WCHC) 수배 */
+
+  /* ---------- 시작 ---------- */
+  /* 사이트(항공커리어노트) 안에서: 사이트 공통 언어 설정(art-lang)과 맞춤. 상단 언어 버튼(#lang)으로 바꾸면 화면을 다시 그림 */
+  var SITE = !!window.__SHELL;
+  function tx(o) { if (o == null) return ''; if (typeof o === 'string') return o; return o[G.lang] || o.ja || ''; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function save() { try { localStorage.setItem('acn-saga-v1', JSON.stringify({ lang: G.lang, country: G.country, sound: G.sound, hints: G.hints, voice: G.voice, best: G.best || {}, day: dayOf('ci'), practice: !!G.practice, hintsByDay: G.hintsByDay || {}, stage: G.stage || 'ci', dayBy: dayByNow() })); } catch (e) {} }
+  /* 2b: 근무일은 스테이지마다 따로(dayBy). 30차 설정의 day는 체크인 값 그대로 유지 */
+  function dayByNow() { var m = Object.assign({}, G.dayBy || {}); if (G.stage) m[G.stage] = G.day; return m; }
+  function dayOf(id) { return id === G.stage ? G.day : ((G.dayBy || {})[id] || 1); }
+  function load() { try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); ['lang', 'country', 'sound', 'hints', 'voice', 'best', 'day', 'practice', 'hintsByDay', 'stage', 'dayBy'].forEach(function (k) { if (d[k] != null) G[k] = d[k]; });
+      G.dayBy = Object.assign({ ci: 1 }, G.dayBy || {}, d.day != null ? { ci: d.day } : {}); if (!window.SAGA_STAGES[G.stage]) G.stage = 'ci';   /* 설정의 day(체크인 근무일)가 우선 — 예전 판·시험 도구가 day만 바꿔도 그대로 통함 */
+      if (!G.hintsByDay) G.hintsByDay = { 1: d.hints != null ? !!d.hints : true }; } catch (e) {} }
+  function beep(f, d, type) { if (!G.sound) return; try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); var o = AC.createOscillator(), g = AC.createGain(); o.type = type || 'sine'; o.frequency.value = f; g.gain.value = .06; o.connect(g); g.connect(AC.destination); o.start(); g.gain.exponentialRampToValueAtTime(.0001, AC.currentTime + (d || .12)); o.stop(AC.currentTime + (d || .12)); } catch (e) {} }
   function hm(t) { var h = Math.floor(t / 60), m = Math.floor(t % 60); return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m; }
   function pm(s) { var p = s.split(':'); return +p[0] * 60 + +p[1]; }
-  function curDay() { var d = DY.list[(G.day || 1) - 1]; return d && d.mission && DY.status(G.hist, d.n, G.country, G.practice) === 'open' ? d : DY.list[0]; }
-  function newMission() {
-    var dd = curDay(); G.day = dd.n; M = dd.mission; applyDayHints(dd.n);
-    V = M.variants[G.country];
-    var seed = M.generated ? (window.SAGA_SEED || (Date.now() % 2147483647)) : 0;
-    S = { clock: pm(V.start), close: pm(V.close), bgQueue: 9, list: M.generated ? V.pax(seed) : V.pax(), seed: seed, adv: true,   /* 25차(사용자 10-14): Day 1도 Day 2 이후와 같은 기능(사진 대조·다시 확인·SV·발급일·기내 반입 계량·7항목 채점). 힌트 상한만 Day 2부터 */ idx: -1, cur: null, results: [], revenue: [], seats: M.aircraft.taken.slice(), infantSeats: M.aircraft.infantSeats.slice(), strikes: 0, seq: 41, day: dd, ac: M.aircraft, evChecks: [], evRep: { need: 0, done: 0 } };
-  }
-  function addTime(m) {
-    S.clock += m; S.bgQueue = Math.max(2, S.bgQueue + (Math.random() < m / 4 ? 1 : 0) - (Math.random() < m / 5 ? 1 : 0));
-    if (S.cur) S.cur.mins += m;
-    updateBar();
-  }
-  function note(type, text, lesson, code) { S.cur.notes.push({ t: type, x: text, l: lesson, c: code }); }
   /* 승객의 문제: p.issues(여러 개) 또는 p.issue(하나) */
   function has(p, k) { return p.issues ? p.issues.indexOf(k) >= 0 : p.issue === k; }
-  function noteText(n) { return typeof n.x === 'function' ? n.x() : n.x && typeof n.x === 'object' ? tx(n.x) : n.x; }   /* 26차: 이어하기로 되살린 노트는 {ja,ko,en} */
-  function mood(d) { S.cur.mood = Math.max(0, Math.min(100, S.cur.mood + d)); drawPax(); }
+  function fnv(s) { var h = 0x811c9dc5; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return ('0000000' + h.toString(16)).slice(-8); }
+  /* 22차(SITE-R01): 레슨 참조를 실제 레슨 주소로. 주소 표는 사이트 빌드만 넣음(공개 사이트 sitemap에서 3개 언어가 모두 있는 레슨만). 새 탭으로 열어 게임 화면은 그대로 */
+  function lessonA(id, label, cls) {
+    var U = window.LESSON_URLS, u = U && U.links && U.links[id] && U.links[id][G.lang];
+    if (!u) return cls ? '<span class="' + cls + '">' + esc(label) + '</span>' : esc(label);
+    return '<a' + (cls ? ' class="' + cls + '"' : '') + ' href="' + esc(U.base + u) + '" target="_blank" rel="noopener">' + esc(label) + ' ↗</a>';
+  }
+  function velaRule(t) { return '<div class="edu" style="margin-top:6px">' + esc(tx(L('Vela Air 教育用規定：', 'Vela Air 교육용 규정: ', 'Vela Air training rule: '))) + esc(tx(t)) + '</div>'; }
+  function setLang(l) {
+    if (['ja', 'ko', 'en'].indexOf(l) < 0) return;
+    G.lang = l; document.documentElement.lang = l; save();
+    try { localStorage.setItem('art-lang', l); } catch (e) {}
+    var lb = document.getElementById('lang'); if (lb) lb.querySelectorAll('button[data-l]').forEach(function (b) { b.classList.toggle('on', b.dataset.l === l); });
+    if (G.screen === 'title') renderTitle();
+    else if (G.screen === 'play' && S && S.cur) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); var mr = S.modalRedraw; renderTabs(); showTab(S.cur.tab); var b = S.bub || {}; if (b.me) say('me', b.me, true); if (b.pax) say('pax', b.pax, true); var gv = $('#guide'); if (S.guideL && gv && !gv.classList.contains('hide')) guide(S.guideL); if (mr) mr(); }
+    else if (G.screen === 'play' && S && !S.cur && S.modalRedraw) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); S.modalRedraw(); }
+    else if (G.screen === 'result') finish();
+  }
+  /* 23차: 게임 홈의 Day 카드 → 게임주소#dayN. 그 날이 열려 있을 때만 고르고(잠긴 날은 안내만, 해금·연습 모드를 바꾸지 않음),
+     바로 시작하지는 않음(음성은 사용자가 누른 뒤에만 켤 수 있음). 처리한 뒤 주소의 #dayN은 지워 새로고침 때 다시 적용되지 않게 함 */
+  function applyHash() {
+    var m = /^#day([1-9])$/i.exec(location.hash || ''); if (!m) return false;
+    var n = +m[1], d = DY.list[n - 1];
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (!d) return false;
+    var stt = DY.status(G.hist, n, G.country, G.practice);
+    if (stt === 'open') { G.day = n; G.hintsByDay = G.hintsByDay || {}; save(); G.hashNote = { ok: true, n: n }; }
+    else G.hashNote = { ok: false, n: n, soon: stt === 'soon' };
+    return true;
+  }
+  function hashNoteHtml() {
+    var h = G.hashNote; if (!h) return ''; G.hashNote = null;
+    var t = h.ok ? L('DAY ' + h.n + ' を選びました。下の「出勤する」で始めます。', 'DAY ' + h.n + ' 선택 완료. 아래 「출근하기」로 시작합니다.', 'DAY ' + h.n + ' selected. Press Clock in below to begin.')
+      : h.soon ? L('DAY ' + h.n + ' は準備中です。', 'DAY ' + h.n + ' — 준비 중입니다.', 'DAY ' + h.n + ' is coming soon.')
+      : L('DAY ' + h.n + ' はまだ開いていません（前の日をB以上・安全合格で）。開いている日から始めます。', 'DAY ' + h.n + ' — 아직 열리지 않았습니다(앞의 날을 B 이상·안전 합격으로). 열린 날부터 시작합니다.', 'DAY ' + h.n + ' is still locked (clear the day before with B or better and a safety pass). You will start from an open day.');
+    return '<p class="hashnote' + (h.ok ? '' : ' lock') + '" role="status">' + esc(tx(t)) + '</p>';
+  }
+  /* 2a: 현재 스테이지 정하기 — 근무일·규칙·기본 미션·문구표가 스테이지 정의를 따름 */
+  function setStage(id) {
+    if (G.stage && ST) { G.dayBy = G.dayBy || {}; G.dayBy[G.stage] = G.day; }
+    ST = window.SAGA_STAGES[id]; G.stage = id; DY = ST.days; R = ST.rules; M = DY.list[0].mission; T = Object.assign({}, T0, ST.text || {});
+    G.day = (G.dayBy || {})[id] || G.day || 1; if (G.store) { var dd = curDay(); G.day = dd.n; }
+  }
+  /* 2b: 다른 스테이지의 진행본을 검사·복원할 때 잠깐 그 스테이지로(끝나면 원래대로) */
+  function withStage(id, fn) { if (!id || id === ST.id || !window.SAGA_STAGES[id]) return fn(); var keep = ST.id, keepDay = G.day; setStage(id); try { return fn(); } finally { setStage(keep); G.day = keepDay; } }
+  function boot() {
+    STG.preload();
+    var had = false; try { had = !!localStorage.getItem('acn-saga-v1'); } catch (e) {}
+    load(); G.store = window.SAGA_DAYS.loadStore(); G.hist = G.store.days; setStage(G.stage || 'ci'); ensureStageAllowed();   /* 2b: 기록을 읽은 뒤 스테이지(열린 날 계산에 기록이 필요). 35차: 저장된 스테이지에 자격이 없으면 체크인편 */
+    if (!had) { var nl = (navigator.language || 'ja').slice(0, 2); G.lang = nl === 'ko' ? 'ko' : nl === 'en' ? 'en' : 'ja'; }
+    if (SITE) { try { var al = localStorage.getItem('art-lang'); if (['ja', 'ko', 'en'].indexOf(al) >= 0) G.lang = al; } catch (e) {} }
+    var lb = document.getElementById('lang');
+    if (lb) { lb.addEventListener('click', function (e) { var b = e.target.closest('button[data-l]'); if (b) setLang(b.dataset.l); }); lb.querySelectorAll('button[data-l]').forEach(function (b) { b.classList.toggle('on', b.dataset.l === G.lang); }); }
+    document.documentElement.lang = G.lang;
+    var hashed = applyHash();
+    renderTitle();
+    if (hashed) { var go = $('#go'); if (go && go.scrollIntoView) setTimeout(function () { go.scrollIntoView({ block: 'center' }); }, 60); }
+    /* 27차(GPT 26-F01): 다른 탭이 같은 판을 이어받거나 지우거나 새 판을 시작하면 바로 알아차림 */
+    window.addEventListener('storage', function (e) {
+      if (e.key !== RKEY || !S || !S.runId || G.screen !== 'play' || S.noSave === 'conflict') return;
+      var o = null; try { o = e.newValue ? JSON.parse(e.newValue) : null; } catch (x) {}
+      if (o && o.runId === S.runId && (o.rev || 0) <= (S.rev || 0)) return;   /* 29차: 이 탭이 넘겨받기·저장하기 전에 쓰인 예전 알림(늦게 도착)은 무시 */
+      if (!o || o.runId !== S.runId || o.owner !== S.tabTok) { S.noSave = 'conflict'; runWarn('conflict'); }
+    });
+    window.addEventListener('hashchange', function () { if (G.screen !== 'title') { if (/^#day/i.test(location.hash)) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} return; } try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); if (d.country) G.country = d.country; G.practice = !!d.practice; } catch (e) {} G.store = DY.loadStore(); G.hist = G.store.days; ensureStageAllowed(); if (applyHash()) { renderTitle(); var go = $('#go'); if (go && go.scrollIntoView) go.scrollIntoView({ block: 'center' }); } });
+  }
+  function saveHist() { if (!G.store) return true; var ok = DY.saveStore(G.store); if (!ok && !G.saveWarned) { G.saveWarned = true; } return ok; }
 
   /* 최고 성적(INT-F03): 같은 회차의 등급·점수, ✔ = 그 회차가 안전 합격. 회차를 알 수 없는 예전 집계는 따로 표시 */
   function legacyText(a) { return tx(L('以前の集計 ', '이전 집계 ', 'Earlier totals ')) + tx(L('最高ランク ', '최고 등급 ', 'best rank ')) + (a.bestRank || '—') + ' / ' + tx(L('最高点 ', '최고 점수 ', 'best score ')) + a.best; }
@@ -1395,27 +1475,14 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     if (pt) s += ' (' + tx(L('以前の採点 ', '이전 채점 ', 'earlier scoring ')) + pt.rank + ' · ' + pt.tot + (pt.safe ? ' · ✔' : '') + ')';
     return s;
   }
-  var RANKV0 = { S: 4, A: 3, B: 2, C: 1 };
   /* 27차: 체크인편 클리어 = 실전(연습 기록 아님) DAY 5를 B 이상·안전 합격·전원 처리로 마침(DAY 4→5 해금과 같은 기준). 근무지별 */
-  function ciCleared(country) { var d5 = DY.list[4]; return !!(d5 && DY.cleared(DY.rec(G.hist, d5, country || G.country))); }
-  function stageOpen(n) { if (n === '01') return true; if (n === '02') return ciCleared(); return false; }
-  /* ================= 26차: 근무 도중 이어하기(승객 단위 저장) — 설계 v2(GPT R25-01~07) =================
-     저장 시점(R25-01): nextPax()에서 「끝난 승객을 결과에 넣고 S.cur를 비운 직후」, 이벤트 판단·다음 승객 호출 전.
-       → 결과 확정 → 완료 인원(results.length)·다음 순서(idx+1) 확정 → 저장 → 이벤트/다음 승객. 이벤트를 마치면 다시 nextPax()를 부르므로 이벤트 완료 상태도 저장됨.
-       → 복원하면 같은 nextPax()를 다시 부름. S.cur가 비어 있으므로 같은 결과를 두 번 넣지 않음.
-     저장 키: acn-saga-run-v1(한 개). 학습 기록(acn-saga-hist-v2)·설정(acn-saga-v1)과 따로. 자동 삭제 없음(사용자 결정 10-14). */
-  var RKEY = 'acn-saga-run-v1';
-  var RUNVER = { schema: 2, rules: '28.0' };   /* rules: 판정 코드(game.js의 판단·채점 함수)가 바뀌면 올림. 판정 데이터(승객·미션·RULES)는 지문으로 자동 감지(27차 GPT 26-F02) */
-  /* 저장하는 S 필드(R25-05: 전체 S를 그대로 쓰지 않음). 함수·DOM·음성·열린 창 콜백은 넣지 않음 */
-  var RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'seats', 'infantSeats', 'strikes', 'seq', 'evChecks', 'evRep', 'manual', 'manList', 'manTag', 'recovered', 'ob', 'lateDone', 'lateAt', 'safety', 'evRec', 'e1', 'e2', 'e3', 'delay', 'delayVague'];
-  /* 저장하지 않는 S 필드: 판 정보(따로 저장)·화면 상태·결과 화면 전용 */
-  var RUNSKIP = ['list', 'cur', 'seed', 'adv', 'day', 'ac', 'runId', 'rev', 'fp', 'startedAt', 'modalRedraw', 'bub', 'guideL', 'leaving', 'leaveGo', 'hrec', 'saveOk', 'mistakes', '_t', 'dlChecked', 'noSave', 'runWarn', 'resumed', 'dupRun', 'lastSave', 'testStopped', 'resumeAt', 'tabTok', 'takeover', 'writeFail', 'blocked', 'ownerLost', 'badState'];
-  function fnv(s) { var h = 0x811c9dc5; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return ('0000000' + h.toString(16)).slice(-8); }
-  function freshList(mi, va, seed) { return mi.generated ? va.pax(seed) : va.pax(); }
-  /* 시나리오 지문(R25-04): 승객 순서·문제 유형·짐 무게·여권 기한·예약번호·사전 배정 좌석. 대사 글자는 넣지 않음(문구만 고쳐도 이어하기 유지) */
-  /* 27차(GPT 26-F02): 판정에 쓰이는 데이터 전체의 지문. 표시용(대사 say·3언어 글자 {ja,ko,en}·그림 art/look·목소리)은 빼고
-     승객(원본 생성값 전체)·미션 조건(편·시각·마감·배치·이벤트·요금 등)·업무 규칙(RULES)을 넣음 → 문구·음성·CSS만 바뀐 판은 호환, 판단 데이터가 바뀌면 차단 */
-  var FP_SKIP = ['say', 'look', 'art', 'voice', 'prop', 'carryProp', 'variants', 'build', 'lessons', 'pax', 'nm', 'learn', 'module', 'level'];
+  function ciCleared(country) { var cd = window.SAGA_STAGES.ci.days, d5 = cd.list[4]; return !!(d5 && cd.cleared(cd.rec(G.hist, d5, country || G.country))); }
+  /* 35차 A-F01: 스테이지 자격은 근무지별(체크인편 DAY 5 클리어는 근무지마다 따로 셈). 카드 표시·스테이지 전환·출근 시작이 모두 같은 함수를 봄 */
+  function stageAllowed(id, country) { if (!window.SAGA_STAGES[id]) return false; if (id === 'ci') return true; if (id === 'gt') return ciCleared(country || G.country); return false; }
+  function stageOpen(n) { var id = stageIdOf(n); return !!id && stageAllowed(id); }
+  /* 근무지·설정 복원으로 지금 스테이지의 자격이 사라지면 체크인편으로 돌림(진행본은 지우지 않음 — 이어하기는 저장본의 스테이지·근무지로 복원하는 정책 그대로). 돌렸으면 true */
+  function ensureStageAllowed() { if (stageAllowed(ST.id)) return false; setStage('ci'); save(); return true; }
+  function stageIdOf(n) { var ks = Object.keys(window.SAGA_STAGES); for (var i = 0; i < ks.length; i++) if (window.SAGA_STAGES[ks[i]].stageNo === n) return ks[i]; return null; }
   function isText(o) { var k = Object.keys(o); return k.length > 0 && k.every(function (x) { return (x === 'ja' || x === 'ko' || x === 'en') && typeof o[x] === 'string'; }); }
   function canon(v, d) {
     if ((d || 0) > 12) return null;
@@ -1426,7 +1493,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var o = {}; Object.keys(v).sort().forEach(function (k) { if (FP_SKIP.indexOf(k) >= 0) return; var c = canon(v[k], (d || 0) + 1); if (c !== undefined) o[k] = c; }); return o;
   }
   function scenFp(mi, list, va) {
-    var ps = allPax(list).map(function (p) { return canon(p); });
+    var ps = ST.allUnits(list).map(function (p) { return canon(p); });
     return fnv(JSON.stringify({ m: canon(mi), v: canon(va || V), late: list.late ? list.late.id : null, pax: ps }));
   }
   function rulesFp() { return fnv(JSON.stringify(canon(R))); }
@@ -1440,11 +1507,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
   }
   function clearRunNow(runId, owner) { try { var o = readRun(); if (!o || o.err || !runId || (o.runId === runId && (!owner || o.owner === owner))) localStorage.removeItem(RKEY); } catch (e) {} }   /* 27차: owner가 있으면 그 탭의 저장본일 때만. 잠금 안에서 부름 */
   function clearRun(runId, owner) { return storeOp(function () { clearRunNow(runId, owner); }); }
-  /* 28차(GPT 27-F01): 진행본·학습 기록을 바꾸는 모든 쓰기(저장·이어받기·완료 기록·삭제·새 판)를 같은 이름의 배타 잠금(Web Locks) 안에서 한다.
-     같은 저장 영역의 다른 탭도 같은 잠금을 쓰므로 「다시 읽기 → 확인 → 쓰기」 사이에 다른 탭의 쓰기가 끼어들 수 없다.
-     잠금 안의 작업은 동기 함수 하나(중간에 await 없음). 같은 탭의 요청은 요청 순서대로 실행된다.
-     Web Locks가 없는 브라우저는 바로 실행(예전 방식: 소유 표시·다시 읽기) — 탭 사이의 완전한 보장은 없으므로 충돌 안내에 그 제한을 함께 적는다. */
-  var LOCKN = 'acn-saga-store', storeQ = Promise.resolve();
   function hasLocks() { try { return !(window.SAGA_TEST && window.__sagaNoLocks) && !!(navigator.locks && typeof navigator.locks.request === 'function'); } catch (e) { return false; } }
   function storeOp(fn) {
     var p;
@@ -1484,19 +1546,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     if ('__t' in v) return { ja: String(v.__t.ja || ''), ko: String(v.__t.ko || ''), en: String(v.__t.en || '') };
     var o = {}; Object.keys(v).forEach(function (k) { o[k] = decRun(v[k], ctx); }); return o;
   }
-  function allPax(list) { return list.concat(list.late ? [list.late] : []); }
-  /* 다음에 할 일(cursor.nextPhase): nextPax()와 같은 조건 */
-  function runPhase() {
-    if (S.adv && M.events && S.clock < S.close) {
-      if (S.results.length === M.events.swapAfter && !S.e1) return 'swap';
-      if (S.results.length === M.events.recoverAfter && S.manual && !S.recovered) return 'recovery';
-      if (M.events.delayAtStart && !S.delay) return 'delay';
-      if (S.results.length === M.events.overbookAfter && !S.ob) return 'overbook';
-    }
-    if (M.events && M.events.lateAtEnd && !S.lateDone && (S.idx + 1 >= S.list.length || S.clock >= S.close)) return 'late';
-    if (S.idx + 1 >= S.list.length || S.clock >= S.close) return 'finish';
-    return 'pax';
-  }
   /* 체크포인트 저장 — 쓰기 실패·다른 창 충돌이면 게임은 계속하고 한 번만 안내(R25-07) */
   /* 28차: 저장 = ① 지금 상태를 바로 직렬화(그 순간의 체크포인트) → ② 잠금 안에서 소유권 확인·쓰기 */
   function saveRun() {
@@ -1504,7 +1553,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var me = S, o2;
     try { o2 = runSnap(); } catch (e) { S.writeFail = true; runWarn('write'); return Promise.resolve(false); }
     /* 28차(GPT 27-F02): 범위 밖 값이 생긴 상태는 진행본으로 쓰지 않음(마지막 정상 체크포인트를 남김) */
-    var why = null; try { why = stateWhy(JSON.parse(JSON.stringify(o2.s)), M, o2.paxIds) || patchWhy(o2.passengerPatches); } catch (e) { why = 'format'; }
+    var why = null; try { why = ST.stateWhy(JSON.parse(JSON.stringify(o2.s)), M, o2.paxIds) || ST.patchWhy(o2.passengerPatches); } catch (e) { why = 'format'; }
     if (why) { S.writeFail = true; S.badState = why; runWarn('write'); return Promise.resolve(false); }
     return storeOp(function () { return writeRun(me, o2); });
   }
@@ -1527,20 +1576,20 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
   function runSnap() {
     /* 지금 상태(승객 patch·결과·이벤트 상태)를 저장 형식으로 — 실패하면 예외(saveRun에서 쓰기 실패로 처리) */
     {
-      var fresh = freshList(M, V, S.seed), fb = {}; allPax(fresh).forEach(function (p) { fb[p.id] = p; });
+      var fresh = ST.freshList(M, V, S.seed), fb = {}; ST.allUnits(fresh).forEach(function (p) { fb[p.id] = p; });
       var patches = {};
-      allPax(S.list).forEach(function (p) { var f = fb[p.id], d = {}; if (!f) return; Object.keys(p).concat(Object.keys(f)).forEach(function (k) { if (k in d) return; var a = JSON.stringify(p[k]), b = JSON.stringify(f[k]); if (a !== b) d[k] = p[k] === undefined ? { __del: 1 } : JSON.parse(a === undefined ? 'null' : a); }); if (Object.keys(d).length) patches[p.id] = d; });
-      var ctx = { pax: allPax(S.list), res: S.results.slice(), drop: [], self: null }, st = {};
-      RUNF.forEach(function (k) {
+      ST.allUnits(S.list).forEach(function (p) { var f = fb[p.id], d = {}; if (!f) return; Object.keys(p).concat(Object.keys(f)).forEach(function (k) { if (k in d) return; var a = JSON.stringify(p[k]), b = JSON.stringify(f[k]); if (a !== b) d[k] = p[k] === undefined ? { __del: 1 } : JSON.parse(a === undefined ? 'null' : a); }); if (Object.keys(d).length) patches[p.id] = d; });
+      var ctx = { pax: ST.allUnits(S.list), res: S.results.slice(), drop: [], self: null }, st = {};
+      ST.runFields.forEach(function (k) {
         if (!(k in S)) return;
         if (k === 'results') { st.results = S.results.map(function (r, i) { ctx.self = r; var e = encRun(r, ctx, 'results[' + i + ']', 0); ctx.self = null; return e; }); return; }
         var e = encRun(S[k], ctx, k, 0); if (e !== undefined) st[k] = e;
       });
-      var unknown = Object.keys(S).filter(function (k) { return RUNF.indexOf(k) < 0 && RUNSKIP.indexOf(k) < 0; });
-      var o2 = { schema: RUNVER.schema, runId: S.runId, rev: 0, savedAt: '', startedAt: S.startedAt,
-        versions: { schema: RUNVER.schema, rules: RUNVER.rules, rulesData: rulesFp(), scenario: S.fp, mission: M.id }, owner: S.tabTok,
-        day: S.day.n, country: G.country, practice: !!G.practice, hints: !!G.hints, seed: S.seed, ac: S.ac === M.layoutB ? 'B' : 'A',
-        cursor: { completedPaxCount: S.results.length, nextPaxIndex: S.idx + 1, total: S.list.length, nextPhase: runPhase() },
+      var unknown = Object.keys(S).filter(function (k) { return ST.runFields.indexOf(k) < 0 && ST.runSkip.indexOf(k) < 0; });
+      var o2 = { schema: RUNVER.schema, stage: ST.id, runId: S.runId, rev: 0, savedAt: '', startedAt: S.startedAt,
+        versions: { schema: RUNVER.schema, rules: ST.rulesVer, rulesData: rulesFp(), scenario: S.fp, mission: M.id }, owner: S.tabTok,
+        day: S.day.n, country: G.country, practice: !!G.practice, hints: !!G.hints, seed: S.seed, ac: ST.acCode(S, M),
+        cursor: { completedPaxCount: S.results.length, nextPaxIndex: S.idx + 1, total: S.list.length, nextPhase: ST.phase() },
         paxIds: S.list.map(function (p) { return p.id; }), lateId: S.list.late ? S.list.late.id : null, passengerPatches: patches, s: st,
         meta: { dropped: ctx.drop.slice(0, 20), unknownKeys: unknown } };
       return JSON.parse(JSON.stringify(o2));   /* 이 순간의 내용으로 고정 */
@@ -1554,27 +1603,22 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var el = $('#runnote'); if (el) { el.textContent = tx(t); el.hidden = false; }
   }
   /* 저장본 점검(R25-04·05): 형식·범위·승객 대조. 실패 이유를 돌려줌(null = 이어하기 가능) */
-  function checkRun(o) {
-    if (!o) return 'none'; if (o.err) return o.err;
+  function checkRun(o) { if (!o) return 'none'; if (o.err) return o.err; var sid = o.stage || 'ci'; if (!window.SAGA_STAGES[sid]) return 'schema'; return withStage(sid, function () { return checkRunIn(o); }); }   /* 2b: 진행본의 스테이지 기준으로 검사 */
+  function checkRunIn(o) {
     function num(x, lo, hi) { return typeof x === 'number' && isFinite(x) && x >= lo && x <= hi; }
     if (o.schema !== RUNVER.schema || !o.versions || o.versions.schema !== RUNVER.schema) return 'schema';
-    if (o.versions.rules !== RUNVER.rules || o.versions.rulesData !== rulesFp()) return 'rules';
+    if (o.versions.rules !== ST.rulesVer || o.versions.rulesData !== rulesFp()) return 'rules';
     if (typeof o.runId !== 'string' || !num(o.rev, 1, 1e9)) return 'format';
     var d = DY.list[o.day - 1]; if (!num(o.day, 1, DY.list.length) || !d || !d.mission) return 'format';
     if (['JP', 'KR'].indexOf(o.country) < 0 || !num(o.seed, 0, 2147483647) || ['A', 'B'].indexOf(o.ac) < 0) return 'format';
-    var mi = d.mission, va = mi.variants[o.country], fresh; try { fresh = freshList(mi, va, o.seed); } catch (e) { return 'scenario'; }
+    var mi = d.mission, va = mi.variants[o.country], fresh; try { fresh = ST.freshList(mi, va, o.seed); } catch (e) { return 'scenario'; }
     if (o.versions.mission !== mi.id || o.versions.scenario !== scenFp(mi, fresh, va)) return 'scenario';
     if (!Array.isArray(o.paxIds) || o.paxIds.join('|') !== fresh.map(function (p) { return p.id; }).join('|')) return 'scenario';
     if ((o.lateId || null) !== (fresh.late ? fresh.late.id : null)) return 'scenario';
     var s = o.s, c = o.cursor; if (!s || !c || !Array.isArray(s.results)) return 'format';
-    var sw; try { sw = stateWhy(JSON.parse(JSON.stringify(s)), mi, o.paxIds) || patchWhy(o.passengerPatches); } catch (e) { sw = 'format'; } if (sw) return 'state';
+    var sw; try { sw = ST.stateWhy(JSON.parse(JSON.stringify(s)), mi, o.paxIds) || ST.patchWhy(o.passengerPatches); } catch (e) { sw = 'format'; } if (sw) return 'state';
     if (!num(c.completedPaxCount, 0, fresh.length) || c.completedPaxCount !== s.results.length || !num(s.idx, -1, fresh.length - 1) || c.nextPaxIndex !== s.idx + 1 || s.results.length !== s.idx + 1) return 'range';
-    if (!num(s.clock, pm(va.start), pm(va.start) + 600) || !num(s.seq, 0, 9999) || !num(s.strikes, 0, 999)) return 'range';
-    if (!Array.isArray(s.seats) || s.seats.some(function (x) { return typeof x !== 'string' || !/^\d{1,2}[A-K]$/.test(x); })) return 'range';
-    /* 결과의 승객은 순서대로 승객 목록과 같아야 함, 좌석은 처리된 승객끼리 겹치지 않음(복구 전 수기 충돌 사례 제외) */
-    var seen = {}, bad = false;
-    s.results.forEach(function (r, i) { if (!r || !r.p || r.p.__pax !== o.paxIds[i]) bad = true; if (r && r.seat && !r.denied && !r.vol) { if (seen[r.seat] && !(s.e3 && s.e3.conflict)) bad = true; seen[r.seat] = 1; } });
-    if (bad) return 'pax';
+    var rw = ST.rangeWhy(s, o, va, fresh); if (rw) return rw;   /* 2a: 스테이지별 범위·결과 검사(시계·좌석 등) */
     return null;
   }
   /* 27차(GPT 26-F03): 저장본 상태 점검 — 필수 필드·타입·중첩 구조·조건부 필드(그 날의 이벤트를 지났으면 그 상태가 있어야 함). 실패하면 이어하기를 막고 기록·저장본은 건드리지 않음 */
@@ -1586,66 +1630,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     var ks = Object.keys(v); for (var i = 0; i < ks.length; i++) { var w = numWalk(v[ks[i]], path + '.' + ks[i], d + 1); if (w) return w; }
     return null;
   }
-  /* 승객 patch(이름 정정·짐 추가 등)의 숫자 범위: 짐 무게·기내 반입 0~100kg, 그 밖의 숫자도 numWalk */
-  function patchWhy(pp) {
-    if (pp == null) return null; if (typeof pp !== 'object' || Array.isArray(pp)) return 'patch';
-    var w = numWalk(pp, 'patch'); if (w) return w;
-    var bad = null;
-    Object.keys(pp).forEach(function (id) { var d = pp[id]; if (!d || typeof d !== 'object') { bad = 'patch'; return; }
-      if (d.carry != null && !(typeof d.carry === 'number' && d.carry >= 0 && d.carry <= 100)) bad = 'patch:carry';
-      if (d.bags != null && !(Array.isArray(d.bags) && d.bags.length <= 20 && d.bags.every(function (b) { return b && typeof b === 'object' && (b.kg == null || (typeof b.kg === 'number' && b.kg >= 0 && b.kg <= 100)); }))) bad = 'patch:bags'; });
-    return bad;
-  }
-  function stateWhy(st, mi, paxIds) {
-    function num(x) { return typeof x === 'number' && isFinite(x); }
-    function int(x, lo) { return num(x) && Math.floor(x) === x && x >= (lo == null ? 0 : lo); }
-    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
-    function str(x) { return typeof x === 'string'; }
-    function ref(x, kind) { return obj(x) && (kind in x); }
-    function txt(x) { return str(x) || (obj(x) && obj(x.__t) && str(x.__t.ja) && str(x.__t.ko) && str(x.__t.en)) || (obj(x) && str(x.ja) && str(x.ko) && str(x.en)); }
-    function seatOk(x) { return str(x) && /^\d{1,2}[A-K]$/.test(x) && +x.slice(0, -1) >= 1 && +x.slice(0, -1) <= 60; }
-    function rng(x, lo, hi) { return num(x) && x >= lo && x <= hi; }   /* 28차(GPT 27-F02): 숫자는 타입만이 아니라 업무상 유효 범위까지 */
-    function noteOk(n) { return obj(n) && ['good', 'bad', 'info'].indexOf(n.t) >= 0 && txt(n.x) && (n.l == null || str(n.l)) && (n.c == null || str(n.c)); }
-    function resOk(r, ev) {
-      if (!obj(r) || !obj(r.p) || !Array.isArray(r.notes) || r.notes.length > 200 || !r.notes.every(noteOk) || !rng(r.mood, 0, 100) || !rng(r.mins, 0, 240)) return false;
-      if (!Array.isArray(r.selfFix) || !obj(r.acts)) return false;
-      if (ev) return true;
-      if (!ref(r.p, '__pax') && !str(r.p.id)) return false;
-      if (!obj(r.chk) || !obj(r.flags) || !obj(r.fixTry) || !obj(r.sup) || !Array.isArray(r.bags)) return false;
-      if (r.bags.length > 20 || !r.bags.every(function (b) { return obj(b) && (b.w === null || rng(b.w, 0, 100)) && (b.tag === null || b.tag === undefined || str(b.tag)); })) return false;
-      if (r.carryW != null && !rng(r.carryW, 0, 100)) return false;
-      if (r.seat != null && !seatOk(r.seat) && !r.vol) return false;
-      return true;
-    }
-    if (!obj(st)) return 'format';
-    var need = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'seats', 'infantSeats', 'strikes', 'seq', 'evChecks', 'evRep'];
-    for (var i = 0; i < need.length; i++) if (!(need[i] in st) || st[need[i]] == null) return 'missing:' + need[i];
-    if (!num(st.clock) || !num(st.close) || !num(st.bgQueue) || !int(st.idx, -1) || !int(st.strikes) || !int(st.seq)) return 'type';
-    if (!rng(st.clock, 0, 2880) || !rng(st.close, 0, 2880) || !rng(st.bgQueue, 0, 500) || st.strikes > 200 || st.seq > 9999) return 'range';
-    var wild = numWalk(st); if (wild) return 'range:' + wild;
-    if (!Array.isArray(st.results) || !st.results.every(function (r, k) { return resOk(r) && (!paxIds || !r.p.__pax || r.p.__pax === paxIds[k]); })) return 'results';
-    if (!Array.isArray(st.revenue) || st.revenue.length > 200 || !st.revenue.every(function (x) { return obj(x) && str(x.pax) && str(x.what) && int(x.amt) && x.amt <= 5000000 && (x.cur === 'JPY' || x.cur === 'KRW'); })) return 'revenue';
-    if (!Array.isArray(st.seats) || st.seats.length > 400 || !st.seats.every(seatOk) || !Array.isArray(st.infantSeats) || !st.infantSeats.every(seatOk)) return 'seats';
-    if (!Array.isArray(st.evChecks) || !st.evChecks.every(function (x) { return obj(x) && str(x.id) && typeof x.ok === 'boolean'; })) return 'evChecks';
-    if (!obj(st.evRep) || !int(st.evRep.need) || !int(st.evRep.done) || st.evRep.done > st.evRep.need || st.evRep.need > 200) return 'evRep';
-    if (st.safety != null && (!Array.isArray(st.safety) || !st.safety.every(function (x) { return obj(x) && str(x.who); }))) return 'safety';
-    if (st.evRec != null && !resOk(st.evRec, true)) return 'evRec';
-    if (st.manList != null && (!Array.isArray(st.manList) || !st.manList.every(function (x) { return ref(x, '__res') || obj(x); }))) return 'manList';
-    if (st.delay != null && !(obj(st.delay) && str(st.delay.etd))) return 'delay';
-    if (st.ob != null && !(obj(st.ob) && obj(st.ob.asked) && obj(st.ob.resp))) return 'ob';
-    if (st.e1 != null && !(obj(st.e1) && Array.isArray(st.e1.rows) && st.e1.rows.every(function (x) { return obj(x) && (ref(x.r, '__res') || obj(x.r)) && seatOk(x.cur) && seatOk(x.old); }))) return 'e1';
-    if (st.e3 != null && !(obj(st.e3) && Array.isArray(st.e3.list))) return 'e3';
-    ['manual', 'recovered', 'lateDone', 'delayVague'].forEach(function (k) { if (st[k] != null && typeof st[k] !== 'boolean') st.__bad = k; }); if (st.__bad) return 'type';
-    if (st.lateAt != null && !rng(st.lateAt, 0, 2880)) return 'type';
-    /* 조건부: 이벤트 시점을 지났으면 그 이벤트의 상태가 있어야 함 */
-    var ev = mi.events || {}, n = st.results.length;
-    if (ev.swapAfter && n > ev.swapAfter && !(st.e1 && st.e1.done)) return 'event:swap';
-    if (ev.delayAtStart && n >= 1 && !st.delay) return 'event:delay';
-    if (ev.overbookAfter && n > ev.overbookAfter && !st.ob) return 'event:overbook';
-    if (ev.recoverAfter && n > ev.recoverAfter && st.manual && !st.recovered) return 'event:recovery';
-    return null;
-  }
-  function stateBad(ns, mi) { try { return !!stateWhy(ns, mi, null); } catch (e) { return true; } }
+  function stateBad(ns, mi) { try { return !!ST.stateWhy(ns, mi, null); } catch (e) { return true; } }
   /* 29차(GPT 28-F01): 이어하기 = 잠금을 받은 뒤 최신 저장본을 다시 읽어 검사 → 그 저장본으로 상태를 되살리고 → 같은 잠금 안에서 소유권 넘겨받기를 확정 → 성공한 뒤에만 근무 화면 시작.
      타이틀에 보이던 저장본보다 다른 탭이 더 진행해 두었으면 그 최신 체크포인트에서 시작한다(과거 상태로 열지 않음). 이미 끝났거나 지워진 판은 되살리지 않는다. */
   /* 30차(GPT 29-F01): 이어하기 요청에 번호(G.resumeReq)를 붙임. 기다리는 동안은 상충 조작(출근하기·새로 시작·저장 지우기·이어하기 다시 누르기)을
@@ -1671,24 +1656,28 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       G.resumeReq = null; titleBusy(false);
       if (!r || !r.ns) { if (G.screen === 'title') { G.runBad = r && r.bad === 'state' ? 'state' : G.runBad; renderTitle(); } return false; }
       S = r.ns;
-      playScreen(L('前回の続き：' + r.done + '人目まで終わったところから再開しました。お客様の手続きの途中の内容は保存されないため、次のお客様から始まります。', '이어하기: ' + r.done + '번째 승객까지 마친 곳에서 다시 시작했습니다. 승객 수속 도중의 내용은 저장되지 않으므로 다음 승객부터 시작합니다.', 'Resumed after passenger ' + r.done + '. Anything done partway through a passenger is not saved, so you continue with the next passenger.'));
+      playScreen(T.resumeMsg ? T.resumeMsg(r.done) : L('前回の続き：' + r.done + '人目まで終わったところから再開しました。お客様の手続きの途中の内容は保存されないため、次のお客様から始まります。', '이어하기: ' + r.done + '번째 승객까지 마친 곳에서 다시 시작했습니다. 승객 수속 도중의 내용은 저장되지 않으므로 다음 승객부터 시작합니다.', 'Resumed after passenger ' + r.done + '. Anything done partway through a passenger is not saved, so you continue with the next passenger.'));
       return true;
     }, function () { clearTimeout(guard); if (!mine()) return false; G.resumeReq = null; titleBusy(false); if (G.screen === 'title') renderTitle(); return false; });
   }
   /* 잠금 안(동기): 최신 저장본 → 검사 → 복원 → 소유권 확정. 실패하면 아무것도 바꾸지 않음(끝난 판의 진행본 정리만) */
   function prepResume(tok) {
     var o = readRun(), why = checkRun(o); if (why) return { bad: why };
+    var sid = o.stage || 'ci', keepStage = ST.id, keepDay = G.day; if (sid !== ST.id) setStage(sid);   /* 2b: 진행본의 스테이지로 복귀. 실패하면 원래 스테이지로 */
+    var r = prepResumeIn(o, tok); if (r.bad && sid !== keepStage) { setStage(keepStage); G.day = keepDay; } else if (!r.bad) save(); return r;
+  }
+  function prepResumeIn(o, tok) {
     try { if ((DY.loadStore().doneRuns || []).indexOf(o.runId) >= 0) { clearRunNow(o.runId); return { bad: 'done' }; } } catch (e) {}
     var dd = DY.list[o.day - 1], mi = dd.mission, va = mi.variants[o.country];
-    var list = freshList(mi, va, o.seed), byId = {};
-    allPax(list).forEach(function (p) { byId[p.id] = p; var d = (o.passengerPatches || {})[p.id]; if (d) Object.keys(d).forEach(function (k) { if (d[k] && d[k].__del) delete p[k]; else p[k] = d[k]; }); });
-    var ns = { list: list, seed: o.seed, adv: true, day: dd, ac: o.ac === 'B' ? mi.layoutB : mi.aircraft, cur: null, runId: o.runId, rev: o.rev, fp: o.versions.scenario, startedAt: o.startedAt, resumed: true, resumeAt: o.cursor.completedPaxCount, tabTok: tok, takeover: false };
+    var list = ST.freshList(mi, va, o.seed), byId = {};
+    ST.allUnits(list).forEach(function (p) { byId[p.id] = p; var d = (o.passengerPatches || {})[p.id]; if (d) Object.keys(d).forEach(function (k) { if (d[k] && d[k].__del) delete p[k]; else p[k] = d[k]; }); });
+    var ns = { list: list, seed: o.seed, adv: true, day: dd, ac: ST.acOf(o.ac, mi), cur: null, runId: o.runId, rev: o.rev, fp: o.versions.scenario, startedAt: o.startedAt, resumed: true, resumeAt: o.cursor.completedPaxCount, tabTok: tok, takeover: false };
     var keepM = M, keepV = V;
     try {
       M = mi; V = va;   /* 복원·점검이 그 판의 미션을 씀 */
       var ctx = { byId: byId, res: o.s.results.map(function () { return {}; }) };
       o.s.results.forEach(function (r, i) { var d = decRun(r, ctx); Object.keys(d).forEach(function (k) { ctx.res[i][k] = d[k]; }); });
-      RUNF.forEach(function (k) { if (k === 'results') ns.results = ctx.res; else if (k in o.s) ns[k] = decRun(o.s[k], ctx); });
+      ST.runFields.forEach(function (k) { if (k === 'results') ns.results = ctx.res; else if (k in o.s) ns[k] = decRun(o.s[k], ctx); });
       if (stateBad(ns, mi)) throw new Error('state');   /* 27차(GPT 26-F03): 되살린 상태도 완전한지 확인한 뒤에만 채택 */
     } catch (e) { M = keepM; V = keepV; return { bad: 'state' }; }
     /* 소유권 넘겨받기(나중 탭 우선): 방금 읽은 같은 rev의 저장본에 owner·rev+1을 씀 */
@@ -1722,18 +1711,27 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
         : L('保存された勤務を読み取れないため、続けられません。学習の記録はそのまま残っています。', '저장된 근무를 읽을 수 없어 이어할 수 없습니다. 학습 기록은 그대로 남아 있습니다.', 'The saved shift could not be read, so it cannot be continued. Your record is unchanged.');
       return '<div class="panel runp bad" id="runp"><p>' + esc(tx(msg)) + '</p><div class="btns"><button class="btn ghost" id="rp-del">' + esc(tx(L('保存された勤務を消す', '저장된 근무 지우기', 'Delete the saved shift'))) + '</button></div></div>';
     }
-    var o = ri.o, d = DY.list[o.day - 1], va = d.mission.variants[o.country], c = o.cursor;
-    var head = L('勤務の続き', '근무 이어하기', 'Continue your shift');
-    var line = 'DAY ' + o.day + ' ' + tx(d.nm) + ' · ' + tx(o.practice ? T.modeP : T.modeC) + ' · ' + va.flight + ' ' + va.from + '→' + va.to;
-    var prog = tx(L(c.completedPaxCount + '/' + c.total + '人 完了 · ' + (c.completedPaxCount + 1) + '人目から続ける', c.completedPaxCount + '/' + c.total + '명 완료 · ' + (c.completedPaxCount + 1) + '번째 승객부터 이어하기', c.completedPaxCount + '/' + c.total + ' done · continue from passenger ' + (c.completedPaxCount + 1)));
+    var o = ri.o, sd = window.SAGA_STAGES[o.stage || 'ci'].days, d = sd.list[o.day - 1], va = d.mission.variants[o.country], c = o.cursor;
+    var head = L('勤務の続き', '근무 이어하기', 'Continue your shift'), sn = window.SAGA_STAGES[o.stage || 'ci'], stg = sn.id !== ST.id ? 'STAGE ' + sn.stageNo + ' ' + tx(sn.name) + ' · ' : '';
+    var line = stg + 'DAY ' + o.day + ' ' + tx(d.nm) + ' · ' + tx(o.practice ? T.modeP : T.modeC) + ' · ' + va.flight + ' ' + va.from + '→' + va.to;
+    var prog = sn.text && sn.text.resumeProg ? sn.text.resumeProg(c) : tx(L(c.completedPaxCount + '/' + c.total + '人 完了 · ' + (c.completedPaxCount + 1) + '人目から続ける', c.completedPaxCount + '/' + c.total + '명 완료 · ' + (c.completedPaxCount + 1) + '번째 승객부터 이어하기', c.completedPaxCount + '/' + c.total + ' done · continue from passenger ' + (c.completedPaxCount + 1)));
     if (c.nextPhase === 'finish' || c.nextPhase === 'late') prog = tx(L(c.completedPaxCount + '/' + c.total + '人 完了 · 締め切り後の対応・結果から続ける', c.completedPaxCount + '/' + c.total + '명 완료 · 마감 후 처리·결과부터 이어하기', c.completedPaxCount + '/' + c.total + ' done · continue to the close and results'));
     return '<div class="panel runp" id="runp"><h2>' + esc(tx(head)) + '</h2><p class="rl"><b>' + esc(line) + '</b></p><p class="rl">' + esc(prog) + '</p>' +
-      '<p class="small">' + esc(tx(L('保存 ', '저장 ', 'Saved '))) + esc(agoText(o.savedAt)) + ' · ' + esc(tx(L('手続きの途中の内容は保存されません（最後に終えたお客様の次から）', '수속 도중의 내용은 저장되지 않습니다(마지막으로 마친 승객 다음부터)', 'Work partway through a passenger is not saved (you restart at the next passenger)'))) + '</p>' +
+      '<p class="small">' + esc(tx(L('保存 ', '저장 ', 'Saved '))) + esc(agoText(o.savedAt)) + ' · ' + esc(tx(T.resumeNote || L('手続きの途中の内容は保存されません（最後に終えたお客様の次から）', '수속 도중의 내용은 저장되지 않습니다(마지막으로 마친 승객 다음부터)', 'Work partway through a passenger is not saved (you restart at the next passenger)'))) + '</p>' +
       '<div class="btns"><button class="btn pri" id="rp-go">' + esc(prog.split(' · ').pop()) + ' →</button><button class="btn ghost" id="rp-del">' + esc(tx(L('この勤務をやめる（保存を消す）', '이 근무 그만두기(저장 지우기)', 'Abandon this shift (delete the save)'))) + '</button></div></div>';
   }
   function bindRunPanel() {
     if ($('#rp-go')) $('#rp-go').onclick = function () { sfx.tap(); resumeRun(); };
     if ($('#rp-del')) $('#rp-del').onclick = function () { if (G.resuming) return; askConfirm(L('保存された勤務を消しますか？', '저장된 근무를 지울까요?', 'Delete the saved shift?'), L('消した勤務は元に戻せません。学習の記録（最高成績など）はそのまま残ります。', '지운 근무는 되돌릴 수 없습니다. 학습 기록(최고 성적 등)은 그대로 남습니다.', 'This cannot be undone. Your record (best results etc.) stays.'), L('消す', '지우기', 'Delete'), function () { if (G.resuming) return; storeOp(function () { try { localStorage.removeItem(RKEY); } catch (e) {} }).then(renderTitle, renderTitle); }); };
+  }
+  /* 27차(GPT 26-F01): 이 탭이 지금 이 판의 주인인지(최종 기록·진행본 삭제 직전 다시 확인). 주인 표시를 써서 다시 읽어 확인(창 사이의 틈을 줄임) */
+  function finalOwner() {
+    if (!S.runId) return true;
+    if (S.noSave === 'conflict') return false;
+    var o = readRun();
+    if (!o) return !(S.rev > 0);   /* 한 번도 저장 못 한 판(저장소 오류)만 주인으로 봄 */
+    if (o.err || o.runId !== S.runId || o.owner !== S.tabTok || (o.rev || 0) !== (S.rev || 0)) return false;
+    try { o.fin = S.tabTok; localStorage.setItem(RKEY, JSON.stringify(o)); var o2 = readRun(); return !!(o2 && o2.runId === S.runId && o2.owner === S.tabTok && o2.fin === S.tabTok); } catch (e) { return true; }
   }
   /* 화면 안의 확인 창(alert/confirm은 쓰지 않음) */
   function askConfirm(title, body, okLabel, onOk, alt) {
@@ -1747,18 +1745,260 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     if (alt) w.querySelector('#rc-alt').onclick = function () { close(); alt.run(); };
     try { w.querySelector('.card').focus({ preventScroll: true }); } catch (e) {}
   }
+
+  /* ---------- 화면: 근무 ---------- */
+  function barInner() {
+    return '<div class="brand">' + '<svg viewBox="-16 -16 32 32">' + SP.logo(0, 0, 15, '#24346b', '#f0a030') + '</svg>AIRLINE SAGA</div>' +
+      '<div class="fl"><b>' + V.flight + '</b> ' + V.from + '→' + V.to + ' STD ' + V.std + (S && S.delay ? ' <span class="pill warn">ETD ' + V.etd + '</span>' : '') + (G.practice ? ' <span class="pill prac">' + esc(tx(T.modeP)) + '</span>' : '') + '</div>' +
+      '<div class="stats"><span class="stat">' + esc(tx(T.now)) + ' <b id="clk"></b></span><span class="stat" id="stclose">' + esc(tx(T.close)) + ' <b id="cls"></b></span><span class="stat">' + esc(tx(T.queue)) + ' <b id="que"></b></span><span class="stat">' + esc(tx(T.served)) + ' <b id="done"></b></span>' +
+      '</div><button class="iconbtn' + (G.voice ? ' von' : '') + '" id="vo" aria-label="voice">' + esc(tx(L('音声', '음성', 'Voice'))) + '</button><button class="iconbtn" id="quit" aria-label="quit">✕</button>';
+  }
+  function bindBar() {
+    $('#quit').onclick = function () { VO.stop(); renderTitle(); };
+    $('#vo').onclick = function () { G.voice = !G.voice; VO.on = G.voice; if (!G.voice) VO.stop(); this.classList.toggle('von', G.voice); save(); };
+  }
+  function playScreen(resumeMsg) {
+    document.body.classList.remove('busy'); G.screen = 'play'; playCls(); sfx.tap(); VO.on = G.voice; VO.unlock(); VO.stop();
+    var ap = R.airport[V.from];
+    $('#app').innerHTML =
+      '<div class="bar" id="gbar">' + barInner() + '</div><p class="runnote" id="runnote" role="status"' + (resumeMsg ? '' : ' hidden') + '>' + (resumeMsg ? esc(tx(resumeMsg)) : '') + '</p>' +
+      '<div class="main"><div class="left"><div class="scenebox" id="scenebox">' + ST.scene(V, ap) +
+      '<div class="bubbles"><div class="bubble me hide" id="bme"></div><div class="bubble pax hide" id="bpx"></div></div></div><div class="guide hide" id="guide"></div></div>' +
+      '<div class="term' + (S.manual ? ' manual' : '') + '"><div class="tabs" id="tabs"></div>' + ST.toolsHtml() + '<div class="screen" id="scr"></div></div></div>' +
+      '<div id="modal"></div>';
+    bindBar(); ST.bindTools();
+    try { if (window.MutationObserver) new MutationObserver(modalInert).observe($('#modal'), { childList: true }); } catch (e) {}
+    if (S.manual) { var mon = document.querySelector('#stage .monitor'); if (mon) mon.style.filter = 'brightness(.25)'; }   /* 26차: DCS 장애 중에 이어하면 화면도 수기 상태 */
+    updateBar(); drawQueue(); nextUnit();
+    topOfGame(); /* 타이틀·결과 화면 아래쪽 버튼으로 시작해도 장면부터 보이게(결과 화면과 같은 처리) */
+  }
+  function updateBar() {
+    if (!$('#clk')) return;
+    $('#clk').textContent = hm(S.lateAt || S.clock);
+    var left = S.close - S.clock; $('#cls').textContent = (left >= 0 ? left.toFixed(0) : 0) + tx(T.min);
+    $('#stclose').classList.toggle('alert', left < 10);
+    $('#que').textContent = ST.barQueue ? ST.barQueue() : S.bgQueue + Math.max(0, S.list.length - S.idx - 1);
+    $('#done').textContent = ST.barDone ? ST.barDone() : S.results.length + '/' + S.list.length;   /* 2b: 스테이지가 표시를 바꿀 수 있음 */
+  }
+  function drawQueue() { STG.queue(S.list.slice(S.idx + 1)); }
+  function exprOf(m) { return m >= 75 ? 'happy' : m >= 50 ? 'neutral' : m >= 30 ? 'worried' : 'upset'; }
+  function drawPax() { STG.pax(S.cur ? S.cur.p : null, S.cur ? S.cur.mood : 0); }
+  /* 음성 배역: 그림이 바뀌어도(지팡이→공항 휠체어) 같은 사람은 같은 목소리·같은 음성 키 */
+  function say(who, text, silent, vtext) {   /* 27차: vtext = 음성 키로 쓸 대사(좌석 번호처럼 바뀌는 부분을 뺀 고정 문장) */
+    var el = who === 'me' ? $('#bme') : $('#bpx');
+    if (!el || !S || !S.cur) return;
+    S.bub = S.bub || {}; S.bub[who] = text || null;
+    if (!text) { el.classList.add('hide'); return; }
+    el.innerHTML = '<span class="who">' + esc(who === 'me' ? tx(T.you) : (S.cur.p.pp.sur + ' ' + S.cur.p.pp.given)) + '</span>' + esc(tx(text)) + (G.lang !== 'ja' && G.voice && text.ja ? '<span class="jsub">' + esc(text.ja) + '</span>' : '');
+    if (!silent && G.voice && text.ja) VO.say(who === 'me' ? 'staff' : ST.voiceCast(S.cur.p), (vtext || text).ja);
+    el.classList.remove('hide');
+  }
+  function guide(text) { var g = $('#guide'); if (!g) return; if (S) S.guideL = text || null; if (typeof text === 'object' && text) text = tx(text); if (!G.hints || !text) { g.classList.add('hide'); return; } g.innerHTML = STG.mascot('koradon', 'idle', 'gm') + '<div><b>' + esc(tx(T.mentor)) + '</b><span>' + text + '</span></div><button class="gx" aria-label="close">✕</button>'; g.classList.remove('open'); g.onclick = function (e) { if (e.target.closest('.gx')) { g.classList.add('hide'); return; } g.classList.toggle('open'); }; g.classList.remove('hide'); }
+  /* 2a: 다음 처리 단위(옛 nextPax의 공통 부분). 결과 확정 → 저장 → 이벤트 → 다음 단위 시작(ST.startUnit) 순서는 그대로 */
+  function nextUnit() {
+    if (S.cur) S.results.push(S.cur);
+    S.cur = null;
+    saveRun();   /* 26차 체크포인트(R25-01): 결과 확정 → 완료 인원·다음 순서 확정 → 저장 → 이벤트/다음 승객 */
+    var ph = ST.phase();
+    if (ph !== 'pax' && ph !== 'finish') return ST.runEvent(ph);
+    S.idx++; VO.stop();
+    if (ph === 'finish') { finish(); return; }
+    ST.startUnit(S.list[S.idx]);
+  }
+  function renderTabs() {
+    var tl = ST.tabs(S.cur); $('#tabs').classList.toggle('many', tl.length > 6); $('#tabs').innerHTML = tl.map(function (k) { return '<button class="tab' + (S.cur.tab === k ? ' on' : '') + '" data-k="' + k + '"><i class="' + (ST.tabState(k) || '') + '"></i>' + esc(tx(T.tabs[k])) + '</button>'; }).join('');
+    $('#tabs').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; sfx.tap(); showTab(b.dataset.k); };
+  }
+  function showTab(k) { S.cur.tab = k; renderTabs(); STG.pose(ST.tabPose[k] || 'idle'); ST.tab[k](); if (S.leaving && S.leaveGo && !$('#nextpax') && $('#scr')) { $('#scr').insertAdjacentHTML('beforeend', '<div class="btns"><button class="btn pri nextpax" id="nextpax">' + esc(tx(L('次のお客様へ ▶', '다음 승객 ▶', 'Next passenger ▶'))) + '</button></div>'); bindNextPax(); } }
+  function scr(h) { $('#scr').innerHTML = ST.banners() + h; ST.afterScr(); }   /* 2a: 화면 위 띠(수기·지연 등)는 스테이지가 넘김 */
+  /* 22차(GPT 실주소 SITE-F01): 사이트의 떠 있는 위로·뒤로·홈 버튼이 근무 중 대사를 가리지 않게 — 근무 화면일 때만 body에 표시(CSS가 작은 화면에서 숨김) */
+  /* 22차(GPT 실주소 권장): 사이트에서는 근무를 시작하면 사이트 머리말 아래의 게임 맨 위(업무 바)로 — 낮은 가로 화면에서 머리말 때문에 장면이 화면 밖에서 시작하던 문제. 사이트 밖(단일·분할판)은 예전처럼 페이지 맨 위 */
+  function topOfGame() { var a = document.getElementById('app'); if (SITE && a) { var y = a.getBoundingClientRect().top + window.pageYOffset - 6; window.scrollTo(0, Math.max(0, y)); } else window.scrollTo(0, 0); }
+  function playCls() { try { document.body.classList.toggle('saga-playing', G.screen === 'play'); } catch (e) {} }
+
+  /* ---------- 판단 모달 ---------- */
+  function openModalShell(title, html) {
+    $('#modal').innerHTML = '<div class="modal"><div class="card" role="dialog" aria-modal="true" tabindex="-1"><h2>' + esc(tx(title)) + '</h2><div class="cbody">' + html + '</div></div></div>';
+    var cd = $('#modal .card'); modalInert(); try { if (cd && (!document.activeElement || !cd.contains(document.activeElement))) cd.focus({ preventScroll: true }); } catch (e) {}
+    return cd;
+  }
+  function closeModal() { if (S) S.modalRedraw = null; var md = $('#modal'); if (md) md.innerHTML = ''; modalInert(); if (G.screen === 'play') STG.pose('idle'); }
+  /* 24차b(GPT 24-F03): 대화창이 열려 있는 동안 뒤쪽 근무 화면(장면·단말)은 inert. 위 막대(음성·✕ 그만두기)는 원래 창 위에서도 누를 수 있으므로 그대로 둠 — Tab·Enter로 뒤쪽 탭·발행을 누를 수 없음. 창이 닫히면 되돌림.
+     창을 지우는 곳이 여러 군데라, #modal 안이 바뀔 때마다 다시 계산(MutationObserver) */
+  function modalInert() { var md = $('#modal'), on = !!(md && md.children.length); ['#app > .main'].forEach(function (q) { var el = document.querySelector(q); if (el) { el.inert = on; if (on) el.setAttribute('inert', ''); else el.removeAttribute('inert'); } }); }
+  /* 28차(GPT 27차 의견): Day 4·5(평가 단계)의 응대 선택지는 정답 위치를 외우지 않도록 seed·승객·질문별로 섞음. 같은 판·같은 질문은 늘 같은 순서(언어를 바꿔도 그대로, 이어하기 뒤에도 같음). Day 1–3은 고정 */
+  function shufOpts(opts, key) {
+    if (!S || !S.day || S.day.n < 4) return opts;
+    var r = DY.rng(((S.seed | 0) ^ parseInt(fnv(key + '|' + (S.cur ? S.cur.p.id : '')), 16)) | 0), a = opts.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  function modal(title, fact, must, opts, lesson, after) {
+    var h = '<div class="mhead">' + (S && S.cur && STG.has(S.cur.p.art) ? STG.mini(S.cur.p) : '') + '<p class="mono" style="font-size:13px;color:var(--sub);margin:0">' + esc(fact) + '</p></div><div class="must">' + STG.mascot('korarin', 'idle', 'km') + '<div><b>' + esc(tx(T.rule)) + '</b> ' + esc(tx(must)) + '</div></div>';
+    h += opts.map(function (o, i) {
+      var lock = o.lock;
+      return '<button class="opt' + (lock ? ' lock' : '') + '" data-i="' + i + '"' + (o.good ? ' data-a="ok"' : o.code ? ' data-a="' + esc(o.code) + '"' : '') + '>' + (lock ? '🔒 ' : '') + esc(tx(o.t)) + (o.s ? '<small>' + esc(tx(o.s)) + '</small>' : '') + '</button>';
+    }).join('');
+    h += '<div id="whybox"></div>';
+    if (lesson && LS[lesson]) h += '<p class="lessonref">' + lessonA(lesson, '📘 ' + lesson + ' ' + (tx(LS[lesson]) || LS[lesson].ja)) + '</p>';
+    var card = openModalShell(title, h); STG.pose('explain'); var own = S && S.cur;
+    var args = arguments; S.modalRedraw = function () { modal.apply(null, args); };
+    card.querySelectorAll('.opt').forEach(function (b) {
+      b.onclick = function () {
+        var o = opts[+b.dataset.i];
+        if (own && (S.cur !== own || G.screen !== 'play')) { closeModal(); return; }   /* 25차(24b-R02): 잠긴 선택지도 승객·화면을 먼저 확인 */
+        if (o.lock) { sfx.ng(); $('#whybox').innerHTML = '<div class="why bad">' + esc(tx(o.lock)) + '</div>'; if (S.cur) note('info', function () { return tx(L('できない選択を試みました：', '할 수 없는 선택을 시도했습니다: ', 'Tried a choice that is not allowed: ')) + tx(o.t); }, lesson); return; }
+        if (own && (S.cur !== own || G.screen !== 'play')) { closeModal(); return; }   /* 24차b(GPT 24-F03)·25차(24b-R02): 창을 연 승객이 바뀌었거나 근무 화면을 떠났으면 아무것도 하지 않음(뒤처리 after도 하지 않음) */
+        sfx.ok(); closeModal(); if (o.run) o.run(); if (after) after();
+      };
+    });
+    return card;
+  }
+  function addTime(m) {
+    S.clock += m; S.bgQueue = Math.max(2, S.bgQueue + (Math.random() < m / 4 ? 1 : 0) - (Math.random() < m / 5 ? 1 : 0));
+    if (S.cur) S.cur.mins += m;
+    updateBar();
+  }
+  function note(type, text, lesson, code) { S.cur.notes.push({ t: type, x: text, l: lesson, c: code }); }
+  function noteText(n) { return typeof n.x === 'function' ? n.x() : n.x && typeof n.x === 'object' ? tx(n.x) : n.x; }   /* 26차: 이어하기로 되살린 노트는 {ja,ko,en} */
+  function mood(d) { S.cur.mood = Math.max(0, Math.min(100, S.cur.mood + d)); drawPax(); }
+  function selfFix(c, code) { if (c.selfFix.indexOf(code) < 0) c.selfFix.push(code); }
+  /* 행동 이력(기록용): 처음 오판 → 다시 확인 → 바로잡음 / 다시 오판 → 미해결 발권 */
+  function act(c, code, ev) { (c.acts[code] = c.acts[code] || []).push(ev); }
+  /* 24차b(GPT 24-F03): 열린 대화창의 선택지가 실행될 때, 그 창을 연 승객이 아직 지금 승객이고 근무 중이며 발권 전인지 확인 */
+  function canEdit(c) { return !!(S && c && S.cur === c && G.screen === 'play' && !c.bp); }
+  function missLabel(c) { if (ST.missLabels[c]) return tx(ST.missLabels[c]); if (LS[c]) return c + ' ' + tx(LS[c]); return c; }
+  function safetyMiss(c, what, code) { S.strikes++; (S.safety = S.safety || []).push({ who: c.p.pp.sur + ' ' + c.p.pp.given, what: what, code: code }); }
+  function evCheck(id, ok) { S.evChecks.push({ id: id, ok: !!ok }); }
+  /* 승객이 아닌 운항 이벤트(지연 시작·예약 초과)의 기록: 결과의 「운항 이벤트」 칸 */
+  function evRec() { return S.evRec || (S.evRec = { p: { id: 'event', pp: { sur: '', given: '' } }, ev: true, notes: [], acts: {}, selfFix: [], mood: 0, mins: 0 }); }
+  function evNote(type, fn, lesson, code) { evRec().notes.push({ t: type, x: fn, l: lesson, c: code }); }
+  /* ---------- 결과 ---------- */
+  /* 27차(GPT 26-F03): 결과를 만들다 오류가 나면 기록·진행본은 건드리지 않고 안내(손상본의 마지막 방어선) */
+  function finish() {
+    var pr; try { pr = finishInner(); } catch (e) { return finishErr(e); }
+    if (pr && pr.then) pr.then(null, finishErr);
+  }
+  function finishErr(e) {
+    {
+      try { console.error(e); } catch (x) {}
+      G.screen = 'result'; playCls();
+      $('#app').innerHTML = '<div class="res"><div class="panel"><h2>' + esc(tx(L('結果を作れませんでした', '결과를 만들 수 없습니다', 'Could not build the results'))) + '</h2><p>' + esc(tx(S && S.hrec && !S.blocked && S.saveOk !== false && !S.testStopped ? L('結果の画面を表示できませんでした。学習の記録は保存されています。', '결과 화면을 표시하지 못했습니다. 학습 기록은 저장되었습니다.', 'The results screen could not be shown. Your record was saved.') : L('勤務のデータに問題があるため、結果を表示できません。学習の記録と保存された勤務は変更していません。', '근무 데이터에 문제가 있어 결과를 표시할 수 없습니다. 학습 기록과 저장된 근무는 바꾸지 않았습니다.', 'The shift data has a problem, so the results cannot be shown. Your record and the saved shift were not changed.'))) + '</p><div class="btns"><button class="start" id="home" style="width:auto">' + esc(tx(L('勤務日の選択へ', '근무일 선택으로', 'Back to shift select'))) + '</button></div></div></div>';
+      $('#home').onclick = renderTitle;
+    }
+  }
+  function finishInner() {
+    if (S.cur && S.results.indexOf(S.cur) < 0) S.results.push(S.cur);
+    var sc = ST.score();   /* 2a: 채점은 스테이지가(내용은 옛 finishInner 앞부분 그대로) */
+    var unserved = sc.unserved, allR = sc.allR, acc = sc.acc, svc = sc.svc, tim = sc.tim, tot = sc.tot, safe = sc.safe, smiss = sc.smiss, parts = sc.parts, rank = sc.rank, opMiss = sc.opMiss, opsPass = sc.opsPass, opCapped = sc.opCapped, capped = sc.capped;
+    /* 28차(GPT 27-F02): 기록 직전 점수 범위 확인 — 구성 점수·총점·승객 만족·시간이 0~100(시간은 0~240분)이 아니면 기록·진행본을 바꾸지 않고 오류 안내(finish의 catch) */
+    function in100(x) { return typeof x === 'number' && isFinite(x) && x >= 0 && x <= 100; }
+    if (![tot, acc, svc, tim].every(in100) || (parts && !parts.every(function (x) { return in100(x.v); })) || !allR.every(function (r) { return (r.ev || r.denied || in100(r.mood)) && typeof r.mins === 'number' && r.mins >= 0 && r.mins <= 240; })) throw new Error('score-range');
+    ST.legacyBest(tot);
+    /* 27차(GPT 26-F03): 결과 표시에 필요한 계산을 기록보다 먼저 — 여기서 오류가 나면 기록·진행본을 바꾸지 않음 */
+    var rev = ST.revenueLines();
+    var rp = allR.map(function (r) {
+      if (r.ev) return '<div class="rp"><h3>' + esc(tx(L('運航イベント（SV・運航情報）', '운항 이벤트(SV·운항 정보)', 'Operational events (SV, ops information)'))) + '</h3><ul>' + r.notes.map(function (n) { return '<li class="' + (n.t === 'bad' ? 'bad' : n.t === 'good' ? 'good' : '') + '">' + esc(noteText(n)) + (n.l && LS[n.l] ? ' ' + lessonA(n.l, '📘 ' + n.l, 'lessonref') : '') + '</li>'; }).join('') + '</ul></div>';
+      return '<div class="rp"><h3>' + ST.replayHead(r) + '</h3><ul>' +
+        (r.notes.length ? r.notes.map(function (n) { return '<li class="' + (n.t === 'bad' ? 'bad' : n.t === 'good' ? 'good' : '') + '">' + esc(noteText(n)) + (n.l && LS[n.l] ? ' ' + lessonA(n.l, '📘 ' + n.l, 'lessonref') : '') + '</li>'; }).join('') : '<li>' + esc(tx(L('記録なし', '기록 없음', 'No notes'))) + '</li>') + '</ul></div>';
+    }).join('');
+    /* 28차(GPT 27-F01): 기록은 잠금 안의 commitRec 하나로 — 최신 진행본·학습 기록 다시 읽기 → runId·소유권 확인 → 기록 저장 → 진행본 삭제. 화면은 그 뒤에 그림 */
+    var me = S;
+    function commitRec() {
+    /* 학습 이력: 한 판에 한 번만 기록(언어 전환으로 결과를 다시 그려도 중복되지 않게) */
+    /* 26차(R25-03): 같은 판(runId)은 한 번만 기록. 다른 창이 쓴 기록을 덮지 않도록 기록 직전에 저장소를 다시 읽음 */
+    if (!S.hrec && S.runId) { G.store = DY.loadStore(); G.hist = G.store.days; if ((G.store.doneRuns || []).indexOf(S.runId) >= 0) { S.dupRun = true; S.blocked = true;   /* 다른 탭이 이미 이 판을 끝냄 */ S.hrec = G.hist[DY.key(S.day, G.country) + (G.practice ? '.practice' : '')] || { plays: 0, miss: {} }; clearRunNow(S.runId, S.tabTok); } }
+    if (!S.hrec && S.runId && !finalOwner()) { S.blocked = true; S.hrec = G.hist[DY.key(S.day, G.country) + (G.practice ? '.practice' : '')] || { plays: 0, miss: {} }; }   /* 다른 탭이 이어받은 판: 기록·진행본 그대로 */
+    if (window.SAGA_TEST && window.__sagaStop === 'beforeHist' && !S.hrec) { S.hrec = { plays: 0, miss: {} }; S.testStopped = true; }
+    if (!S.hrec) {
+      /* 기록용 오답 구조: 승객·사례 코드·이유 키·행동·심각도(critical / minor / report / self-corrected). 같은 승객의 같은 코드는 1번만 */
+      var crit = {}; (S.safety || []).forEach(function (x) { if (x.code) crit[x.who + '|' + x.code] = true; });
+      var mistakes = [], seen = {};
+      allR.forEach(function (r) {
+        var who = ST.unitName(r);
+        r.notes.forEach(function (n) { if (n.t !== 'bad') return; var code = n.c || n.l; if (!code || seen[r.p.id + '|' + code]) return; seen[r.p.id + '|' + code] = true;
+          var m = { paxId: r.p.id, caseCode: code, reasonKey: 'reason.' + code, action: ST.actions[code] || 'see-note', severity: crit[who + '|' + code] ? 'critical' : ST.reportCodes.indexOf(code) >= 0 ? 'report' : 'minor' };
+          if (sc.opsCodes.indexOf(code) >= 0) m.opsMajor = true; if (r.acts && r.acts[code]) m.actionHistory = r.acts[code].slice(); mistakes.push(m); });
+        (r.selfFix || []).forEach(function (code) { if (seen[r.p.id + '|' + code]) return; seen[r.p.id + '|' + code] = true; var m = { paxId: r.p.id, caseCode: code, reasonKey: 'reason.' + code, action: 'corrected-before-issue', severity: 'self-corrected' }; if (r.acts && r.acts[code]) m.actionHistory = r.acts[code].slice(); mistakes.push(m); });
+      });
+      S.mistakes = mistakes;
+      var miss = []; mistakes.forEach(function (m) { if (m.severity !== 'self-corrected' && miss.indexOf(m.caseCode) < 0) miss.push(m.caseCode); });
+      var at = new Date().toISOString();
+      S.hrec = DY.record(G.hist, S.day, G.country, { scoreVer: ST.scoreVer, tot: tot, rank: rank, safe: safe, ops: opsPass, hints: !!G.hints, complete: unserved === 0, practice: !!G.practice, miss: miss, at: at.slice(0, 10) });
+      DY.addAttempt(G.store, { attemptId: at + '-' + Math.floor(Math.random() * 1e6), runId: S.runId || null, day: S.day.n, workplace: G.country, mode: G.practice ? 'practice' : 'campaign', seed: S.seed, score: tot, rank: rank, safetyPassed: safe, complete: unserved === 0, hintsUsed: !!G.hints, opsPassed: opsPass, ruleVersion: ST.ruleDate, scoreVersion: ST.scoreVer, aircraftLayoutVersion: ST.layoutVer, mistakes: mistakes, completedAt: at, stage: ST.id });
+      if (S.runId) G.store.doneRuns = [S.runId].concat((G.store.doneRuns || []).filter(function (x) { return x !== S.runId; })).slice(0, 50);
+      S.saveOk = saveHist();
+      /* 기록이 저장된 뒤에만 진행본을 지움(실패하면 남겨 두어 다시 이어서 끝낼 수 있음) */
+      if (S.saveOk !== false && !(window.SAGA_TEST && window.__sagaStop === 'afterHist')) clearRunNow(S.runId, S.tabTok); }
+    }
+    return storeOp(function () { if (S === me && !S.hrec) commitRec(); }).then(function () { if (S === me) renderRes(); });
+    function renderRes() {
+    save(); var hr = S.hrec, tm = DY.topMiss(hr, 3);
+    var histP = '<div class="panel"><h2>' + esc(tx(L('学習の記録', '학습 기록', 'Your record'))) + ' · DAY ' + S.day.n + ' ' + esc(tx(S.day.nm)) + (G.practice ? ' · ' + esc(tx(L('練習', '연습', 'Practice'))) : '') + '</h2>' +
+      (S.clock > S.close && !unserved && !('afterClose' in T && !T.afterClose) ? '<p class="small" style="margin:0 0 6px">' + esc(tx(T.afterClose || L('締切前に受け付けたお客様は、締切後も手続きを完了しました（締切後は新しく受け付けません）。', '마감 전에 접수한 승객은 마감 후에도 수속을 끝까지 했습니다(마감 후에는 새로 접수하지 않음).', 'Passengers accepted before the close were completed after it (no new passengers after the close).'))) + '</p>' : '') +
+      (S.lateAt ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('締め切り後に到着したお客様への対応（' + hm(S.lateAt) + '）は、時間の点数とは別の状況練習です（上の時刻は最後のお客様の手続きが終わった時刻）。', '마감 후 도착한 승객 응대(' + hm(S.lateAt) + ')는 시간 점수와 별개인 상황 연습입니다(위 시각은 마지막 승객 수속이 끝난 시각).', 'Handling the passenger who arrived after the close (' + hm(S.lateAt) + ') is a separate scenario, not part of the time score (the time above is when the last check-in finished).'))) + '</p>' : '') +
+      (opCapped ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('業務上の大きな見落としが残ったため、ランクはAまでです。', '중대한 업무 오류가 남아 등급은 A까지입니다.', 'A serious operational error remained, so the rank is capped at A.'))) + '</p>' : '') +
+      (capped ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('ヒントONのため、ランクはAまでです。', '힌트를 켜서 등급은 A까지입니다.', 'Tips were on, so the rank is capped at A.'))) + '</p>' : '') +
+      (S.day.n === 1 && G.hints && !G.practice ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('DAY 1ははじめての勤務のため、ヒントONでもSまで認められます（DAY 2以降はAまで）。', 'DAY 1은 첫 근무라 힌트를 켜도 S까지 인정됩니다(DAY 2부터는 A까지).', 'DAY 1 is your first shift, so S is allowed even with tips on (from DAY 2, A at most).'))) + '</p>' : '') +
+      (S.blocked ? '<p class="small" style="margin:0 0 6px;color:var(--ng,#c33)">' + esc(tx(L('この勤務は別の画面（タブ）で続けられているため、この画面の結果は学習の記録に残していません。', '이 근무는 다른 화면(탭)에서 이어서 진행되고 있어, 이 화면의 결과는 학습 기록에 남기지 않았습니다.', 'This shift is being continued in another window or tab, so these results were not added to your record.'))) + '</p>' : '') +
+      (S.saveOk === false ? '<p class="small" style="margin:0 0 6px;color:var(--ng,#c33)">' + esc(tx(L('この端末に記録を保存できませんでした（プレイは続けられます）。', '이 기기에 기록을 저장하지 못했습니다(플레이는 계속할 수 있습니다).', 'Could not save your record on this device (you can keep playing).'))) + '</p>' : '') +
+      (S.adv ? '<p class="small mono" style="margin:0 0 6px">SEED ' + S.seed + '</p>' : '') + '<p style="margin:0;font-size:14px">' +
+      esc(tx(L('プレイ', '플레이', 'Plays'))) + ' ' + hr.plays + ' · ' + esc(tx(L('最高の回', '최고 회차', 'Best run'))) + ' ' + esc(bestText(hr, S.day.n) || '—') + '</p>' +
+      '<p class="small" style="margin:2px 0 0">' + esc(tx(L('✔＝その回が安全合格 · 安全合格したことがある：', '✔ = 그 회차가 안전 합격 · 안전 합격 경험: ', '✔ = that run passed safety · Ever passed safety: '))) + (hr.safeEver ? '✔' : '—') + '</p>' +
+      (tm.length ? '<p class="small" style="margin:8px 0 2px">' + esc(tx(L('見落としが多い項目', '자주 놓치는 항목', 'What you miss most'))) + '</p><ul class="tmiss">' + tm.map(function (m) { return '<li>' + esc(missLabel(m.code)) + ' <span class="small">×' + m.count + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
+    G.screen = 'result'; playCls();
+    $('#app').innerHTML = '<div class="res"><div class="panel reshead"><div class="twins">' + STG.mascot('koradon', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + STG.mascot('korarin', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + '</div><div class="rank">' + rank + '</div><div><h2 style="margin:0">' + ST.resultTitle() + '</h2><div style="color:var(--sub);font-size:13px">' + hm(S.clock) + ' / ' + tx(L('締切', '마감', 'close')) + ' ' + V.close + ' · ' + tx(L('総合', '종합', 'Total')) + ' ' + tot + '</div></div></div>' +
+      '<div class="gate ' + (safe ? 'ok' : 'ng') + '">' + esc(tx(safe ? L('安全・保安：合格 ― 安全に関わる見落としはありません。', '안전·보안: 합격 — 안전 관련 누락이 없습니다.', 'Safety & security: pass — no safety-related misses.') : L('安全・保安：要再訓練 ― 安全に関わる見落としは、ほかの点数で埋め合わせできません。', '안전·보안: 재훈련 필요 — 안전 관련 누락은 다른 점수로 메울 수 없습니다.', 'Safety & security: retraining needed — safety misses cannot be offset by other scores.'))) + (smiss.length ? '<ul class="smiss">' + smiss.map(function (x) { return '<li>' + esc(typeof x === 'string' ? x : x.who + ' — ' + tx(x.what)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' +
+      ST.resultGates(sc) +   /* 2a: 업무 합격 띠는 스테이지가(안전 띠는 공통) */
+      (parts ? '<div class="score">' + parts.map(function (x) { return '<div class="sc"><div class="v">' + x.v + '</div><div class="l">' + esc(tx(Object.assign({ acc: L('正確さ', '정확성', 'Accuracy'), safe: L('安全', '안전', 'Safety'), svc: L('お客様の満足', '승객 만족', 'Passenger mood'), tim: L('時間', '시간', 'Time'), fee: L('料金の処理', '요금 처리', 'Fees'), rep: L('報告・連絡', '보고·연락', 'Reporting'), evt: L('イベント対応', '이벤트 대응', 'Event handling') }, ST.partLabels)[x.k])) + ' <span class="small">×' + x.w + '</span></div></div>'; }).join('') + '</div>' :
+      '<div class="score"><div class="sc"><div class="v">' + acc + '</div><div class="l">' + esc(tx(L('正確さ', '정확성', 'Accuracy'))) + '</div></div><div class="sc"><div class="v">' + svc + '</div><div class="l">' + esc(tx(L('お客様の満足', '승객 만족', 'Passenger mood'))) + '</div></div><div class="sc"><div class="v">' + tim + '</div><div class="l">' + esc(tx(L('時間', '시간', 'Time'))) + '</div></div><div class="sc"><div class="v">' + (rev.length ? rev.length : 0) + '</div><div class="l">' + esc(tx(L('空港での収入（件）', '공항 수입(건)', 'Airport sales (items)'))) + '</div></div></div>') +
+      (rev.length ? '<div class="panel"><h2>' + esc(tx(L('空港売上 ― 便の締めで精算します（次のステージへ）', '공항 매출 — 편 마감 때 정산합니다(다음 스테이지로)', 'Airport sales — settled when the flight closes (next stages)'))) + '</h2><p class="mono" style="margin:0">' + rev.join('<br>') + '</p></div>' : '') +
+      (SITE ? '' : '<div class="seg" id="reslang" style="margin:0 0 4px">' + ['ja', 'ko', 'en'].map(function (l) { return '<button data-l="' + l + '" class="' + (G.lang === l ? 'on' : '') + '">' + { ja: '日本語', ko: '한국어', en: 'English' }[l] + '</button>'; }).join('') + '</div>') +
+      resultNav(rank, safe, unserved, true) + histP + '<div class="panel"><h2>' + esc(tx(L('ふりかえり', '되돌아보기', 'Replay'))) + '</h2><div class="replay">' + rp + '</div></div>' +
+      ST.resultExtra(sc) +   /* 2a: 다음 스테이지로 넘기는 데이터 패널은 스테이지가 */
+      resultNav(rank, safe, unserved, false) + '</div>';
+    document.querySelectorAll('[data-nav]').forEach(function (b) { b.onclick = { again: startMission, home: renderTitle, next: function () { G.day = S.day.n + 1; save(); startMission(); } }[b.dataset.nav]; });
+    if ($('#reslang')) $('#reslang').onclick = function (e) { var b = e.target.closest('button[data-l]'); if (b) setLang(b.dataset.l); };
+    topOfGame();
+    }
+  }
+
+  /* INT-F02: 결과 뒤 「다음 날 근무」(주 버튼)·「오늘 복습」(별도). 다음 날은 같은 근무지의 캠페인 해금 상태로 판단(연습은 연습 안에서만 이동) */
+  function resultNav(rank, safe, unserved, top) {
+    var n = S.day.n, nx = DY.list[n], clearedNow = safe && unserved === 0 && ({ S: 4, A: 3, B: 2, C: 1 }[rank] || 0) >= 2;
+    var nextOpen = nx && nx.mission && DY.status(G.hist, nx.n, G.country, G.practice) === 'open';
+    var pr = G.practice ? ' · ' + tx(L('練習', '연습', 'practice')) : '';
+    var bNext = nextOpen ? '<button class="start"' + (top ? ' id="nextday"' : '') + ' data-nav="next" style="width:auto">' + esc(tx(L('次の日の勤務へ', '다음 날 근무', "Next day's shift")) + pr + ' · DAY ' + nx.n + ' ' + tx(nx.nm)) + '</button>' : '';
+    var bAgain = function (main) { return '<button class="start"' + (top ? ' id="again"' : '') + ' data-nav="again" style="width:auto' + (main ? '' : ';background:#3f7d8c') + '">' + esc(tx(L('今日の復習（もう一度）', '오늘 복습(다시 하기)', 'Review today (play again)')) + pr + ' · DAY ' + n) + '</button>'; };
+    var bHome = '<button class="start"' + (top ? ' id="home"' : '') + ' data-nav="home" style="width:auto;background:#5d7480">' + esc(tx(L('勤務日の選択へ', '근무일 선택으로', 'Back to shift select'))) + '</button>';
+    var msg = '', btns;
+    if (!nx) { msg = clearedNow || G.practice ? T.allDone : T.lastDayHow; btns = bAgain(true) + bHome; }
+    else if (G.practice) btns = bNext + bAgain(false) + bHome;
+    else if (clearedNow) btns = bNext + bAgain(false) + bHome;
+    else { msg = nextOpen ? L('今回の勤務は、B以上・安全合格・すべてのお客様の手続き完了に届きませんでした。まず今日を復習しましょう（次の日はすでに開いています）。', '이번 근무는 B 이상·안전 합격·모든 승객 처리에 미치지 못했습니다. 먼저 오늘을 복습해 보세요(다음 날은 이미 열려 있습니다).', 'This shift did not reach B or better, a safety pass and every passenger handled. Review today first (the next day is already open).') : L('次の日は、同じ回でB以上・安全合格・すべてのお客様の手続き完了で開きます。まず今日を復習しましょう。', '다음 날은 한 번의 근무에서 B 이상·안전 합격·모든 승객 처리를 하면 열립니다. 먼저 오늘을 복습해 보세요.', 'The next day opens when one shift gets B or better, a safety pass and every passenger handled. Review today first.'); btns = bAgain(true) + bNext.replace('style="width:auto"', 'style="width:auto;background:#3f7d8c"') + bHome; }
+    var inner = (msg ? '<p class="small"' + (top ? ' id="navmsg"' : '') + ' style="margin:0 0 6px">' + esc(tx(msg)) + '</p>' : '') + '<div class="btns"' + (top ? ' id="resnav"' : '') + ' style="margin-top:0">' + btns + '</div>';
+    return top ? '<div class="panel resnavtop">' + inner + '</div>' : inner;
+  }
+  /* 힌트는 날마다 따로: Day 1 기본 켬, Day 2부터 처음 선택 때 기본 끔(합의본 v3). 이용자가 그날 직접 바꾼 값은 유지 */
+  function applyDayHints(n) { G.hintsByDay = G.hintsByDay || { 1: true }; G.hints = G.hintsByDay[n] != null ? !!G.hintsByDay[n] : n === 1; }
+  function curDay() { var d = DY.list[(G.day || 1) - 1]; return d && d.mission && DY.status(G.hist, d.n, G.country, G.practice) === 'open' ? d : DY.list[0]; }
+  function newMission() {
+    var dd = curDay(); G.day = dd.n; M = dd.mission; applyDayHints(dd.n);
+    V = M.variants[G.country];
+    var seed = M.generated ? (window.SAGA_SEED || (Date.now() % 2147483647)) : 0;
+    S = ST.initState(dd, M, V, seed);   /* 2a: 근무 상태의 내용은 스테이지가 정함 */
+  }
   /* ---------- 화면: 타이틀 ---------- */
   function renderTitle() {
     G.screen = 'title'; document.body.classList.remove('busy'); playCls();
-    var hero = '<div class="herostage"><img class="bg" src="' + STG.src('checkin_bg_01') + '" alt="">' +
-      STG.img('staff_checkin_greet_01', '', 50, 2, 86) + STG.img('passenger_female_01', '', 76, 2, 66) + STG.img('passenger_male_02', '', 88, 4, 62) +
-      STG.img('koradon_greet_01', 'mas', 15, 3, 44) + STG.img('korarin_greet_01', 'mas', 30, 3, 42) + '</div>';
+    var hero = ST.hero();   /* 2a: 타이틀 장면은 스테이지가 그림 */
     var st = STAGES.map(function (s) {
-      var cls = s.st === 'play' ? 'play' : 'lock' + (s.key ? ' key' : '');
-      var lab = s.st === 'play' ? L('勤務できます', '근무 가능', 'Open') : (s.key ? L('★ 計算の実習ステージ・準備中', '★ 계산 실습 스테이지·준비 중', '★ Hands-on calculation stage · coming') : L('準備中', '준비 중', 'Coming'));
+      var sid = stageIdOf(s.n), open = !!sid && stageOpen(s.n), cur = sid === ST.id, many = STAGES.filter(function (x) { var i = stageIdOf(x.n); return i && stageOpen(x.n); }).length > 1;   /* 2b: 정의가 있고 조건을 채운 스테이지만 열림. 「근무 중」 표시는 열린 스테이지가 둘 이상일 때만(하나뿐이면 30차와 같은 표시) */
+      var cls = open ? 'play' + (cur && many ? ' on' : '') : 'lock' + (s.key ? ' key' : '');
+      var lab = open ? (cur && many ? L('勤務中', '근무 중', 'Current') : L('勤務できます', '근무 가능', 'Open')) : (s.key ? L('★ 計算の実習ステージ・準備中', '★ 계산 실습 스테이지·준비 중', '★ Hands-on calculation stage · coming') : L('準備中', '준비 중', 'Coming'));
       /* 27차(사용자 10-14): 연습 모드도 체크인편 DAY 1~5는 바로 열리지만, STAGE 02는 체크인편을 실전으로 끝낸 뒤(DAY 5 B 이상·안전 합격·전원 처리) 열림 */
-      if (s.n === '02' && s.st !== 'play') { var ok5 = ciCleared(); lab = ok5 ? L('準備中（チェックイン編クリア済み）', '준비 중(체크인편 클리어)', 'Coming (Check-in cleared)') : L('チェックイン編の本番DAY 5をクリアすると開きます・準備中', '체크인편 실전 DAY 5를 통과하면 열립니다 · 준비 중', 'Opens after you clear Check-in DAY 5 in Shift mode · coming'); }
-      return '<button class="stg ' + cls + '" ' + (s.st === 'play' ? 'data-go="1"' : 'disabled') + '><span class="n">STAGE ' + s.n + '</span><span class="nm">' + esc(tx(s.nm)) + '</span><span class="st">' + esc(tx(lab)) + '</span></button>';
+      if (s.n === '02' && !open) { var ok5 = ciCleared(); lab = ok5 ? L('準備中（チェックイン編クリア済み）', '준비 중(체크인편 클리어)', 'Coming (Check-in cleared)') : L('チェックイン編の本番DAY 5をクリアすると開きます・準備中', '체크인편 실전 DAY 5를 통과하면 열립니다 · 준비 중', 'Opens after you clear Check-in DAY 5 in Shift mode · coming'); }
+      return '<button class="stg ' + cls + '" ' + (open ? (cur ? 'data-go="1"' : 'data-stage="' + sid + '"') : 'disabled') + '><span class="n">STAGE ' + s.n + '</span><span class="nm">' + esc(tx(s.nm)) + '</span><span class="st">' + esc(tx(lab)) + '</span></button>';
     }).join('');
     var dd = curDay(); G.day = dd.n; applyDayHints(dd.n);
     var days = DY.list.map(function (d) {
@@ -1788,7 +2028,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       '<div class="panel"><h2>' + esc(tx(T.stages)) + '</h2><div class="stages">' + st + '</div></div>' +
       '<p style="font-size:12px;color:var(--sub)">' + esc(tx(T.edu)) + '</p><p style="font-size:11px;color:var(--sub);margin-top:-6px">' + esc(tx(T.credit)) + '</p></div>';
     $('#seglang').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; setLang(b.dataset.l); };
-    $('#segc').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; G.country = b.dataset.c; save(); renderTitle(); };
+    $('#segc').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; G.country = b.dataset.c; save(); ensureStageAllowed(); renderTitle(); };   /* 35차 A-F01: 근무지를 바꾸면 그 근무지의 자격으로 다시 판단 */
     $('#tg-h').onclick = function () { G.hints = !G.hints; G.hintsByDay[G.day] = G.hints; save(); renderTitle(); };
     $('#tg-s').onclick = function () { G.sound = !G.sound; save(); renderTitle(); };
     $('#tg-v').onclick = function () { G.voice = !G.voice; VO.on = G.voice; save(); renderTitle(); };
@@ -1797,26 +2037,16 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     $('#tg-c').onclick = function () { if (!G.practice) return; G.practice = false; save(); renderTitle(); };
     $('#days').onclick = function (e) { var b = e.target.closest('button[data-day]'); if (!b || b.disabled) return; G.day = +b.dataset.day; save(); renderTitle(); };
     document.querySelectorAll('[data-go]').forEach(function (b) { b.onclick = startMission; });
+    document.querySelectorAll('[data-stage]').forEach(function (b) { b.onclick = function () { if (G.resuming || !stageAllowed(b.dataset.stage)) return; sfx.tap(); setStage(b.dataset.stage); save(); renderTitle(); topOfGame(); }; });   /* 2b: 스테이지 전환(35차: 자격 다시 확인) */
     if (G.resuming) titleBusy(true);   /* 30차: 언어·날 바꾸기로 다시 그려도 기다리는 동안은 그대로 막음 */
-  }
-
-  /* ---------- 화면: 근무 ---------- */
-  function barInner() {
-    return '<div class="brand">' + '<svg viewBox="-16 -16 32 32">' + SP.logo(0, 0, 15, '#24346b', '#f0a030') + '</svg>AIRLINE SAGA</div>' +
-      '<div class="fl"><b>' + V.flight + '</b> ' + V.from + '→' + V.to + ' STD ' + V.std + (S && S.delay ? ' <span class="pill warn">ETD ' + V.etd + '</span>' : '') + (G.practice ? ' <span class="pill prac">' + esc(tx(T.modeP)) + '</span>' : '') + '</div>' +
-      '<div class="stats"><span class="stat">' + esc(tx(T.now)) + ' <b id="clk"></b></span><span class="stat" id="stclose">' + esc(tx(T.close)) + ' <b id="cls"></b></span><span class="stat">' + esc(tx(T.queue)) + ' <b id="que"></b></span><span class="stat">' + esc(tx(T.served)) + ' <b id="done"></b></span>' +
-      '</div><button class="iconbtn' + (G.voice ? ' von' : '') + '" id="vo" aria-label="voice">' + esc(tx(L('音声', '음성', 'Voice'))) + '</button><button class="iconbtn" id="quit" aria-label="quit">✕</button>';
-  }
-  function bindBar() {
-    $('#quit').onclick = function () { VO.stop(); renderTitle(); };
-    $('#vo').onclick = function () { G.voice = !G.voice; VO.on = G.voice; if (!G.voice) VO.stop(); this.classList.toggle('von', G.voice); save(); };
   }
   /* 26차: 새 판 시작 — 이어할 수 있는 근무가 저장되어 있으면 먼저 확인(R25-07: 날·근무지를 고르기만 해서는 지우지 않음, 실제로 새로 시작할 때만) */
   function startMission() {
     if (G.resuming) return;   /* 30차: 이어하기를 기다리는 동안은 새 근무를 시작하지 않음 */
+    if (ensureStageAllowed()) { renderTitle(); topOfGame(); return; }   /* 35차 A-F01: 잠긴 스테이지로는 출근하지 않음 — 체크인편 타이틀로(카드에 잠긴 이유가 보임) */
     var ri = runInfo();
     if (ri && !ri.bad && G.screen === 'title') {
-      var o = ri.o, od = DY.list[o.day - 1], ov = od.mission.variants[o.country], what = 'DAY ' + o.day + ' ' + tx(od.nm) + ' · ' + tx(o.practice ? T.modeP : T.modeC) + ' · ' + ov.flight + ' ' + ov.from + '→' + ov.to;
+      var o = ri.o, osd = window.SAGA_STAGES[o.stage || 'ci'].days, od = osd.list[o.day - 1], ov = od.mission.variants[o.country], what = 'DAY ' + o.day + ' ' + tx(od.nm) + ' · ' + tx(o.practice ? T.modeP : T.modeC) + ' · ' + ov.flight + ' ' + ov.from + '→' + ov.to;
       return askConfirm(L('保存された勤務があります', '저장된 근무가 있습니다', 'You have a saved shift'),
         L(what + '（' + o.cursor.completedPaxCount + '/' + o.cursor.total + '人 完了）。新しく始めると、保存された勤務は消えます。', what + '(' + o.cursor.completedPaxCount + '/' + o.cursor.total + '명 완료). 새로 시작하면 저장된 근무는 지워집니다.', what + ' (' + o.cursor.completedPaxCount + '/' + o.cursor.total + ' done). Starting a new shift deletes the saved one.'),
         L('新しく始める', '새로 시작', 'Start new'), beginMission, { label: L('続きから', '이어하기', 'Continue'), run: resumeRun });
@@ -1825,62 +2055,28 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
   }
   function beginMission() {
     if (G.resuming) return;
-    newMission(); S.runId = newRunId(); S.rev = 0; S.startedAt = new Date().toISOString(); S.fp = scenFp(M, freshList(M, V, S.seed), V); S.tabTok = newRunId();
+    if (ensureStageAllowed()) { renderTitle(); topOfGame(); return; }   /* 35차 A-F01: 시작 함수에서도 검사(확인창 사이에 자격이 바뀐 경우) */
+    newMission(); S.runId = newRunId(); S.rev = 0; S.startedAt = new Date().toISOString(); S.fp = scenFp(M, ST.freshList(M, V, S.seed), V); S.tabTok = newRunId();
     clearRun(); playScreen();
   }
-  function playScreen(resumeMsg) {
-    document.body.classList.remove('busy'); G.screen = 'play'; playCls(); sfx.tap(); VO.on = G.voice; VO.unlock(); VO.stop();
-    var ap = R.airport[V.from];
-    $('#app').innerHTML =
-      '<div class="bar" id="gbar">' + barInner() + '</div><p class="runnote" id="runnote" role="status"' + (resumeMsg ? '' : ' hidden') + '>' + (resumeMsg ? esc(tx(resumeMsg)) : '') + '</p>' +
-      '<div class="main"><div class="left"><div class="scenebox" id="scenebox">' + STG.html({ flight: V.flight, to: V.to, std: V.std, counter: ap.counter }) +
-      '<div class="bubbles"><div class="bubble me hide" id="bme"></div><div class="bubble pax hide" id="bpx"></div></div></div><div class="guide hide" id="guide"></div></div>' +
-      '<div class="term' + (S.manual ? ' manual' : '') + '"><div class="tabs" id="tabs"></div>' + (S.adv ? '<div class="svrow"><button class="btn svb" id="svb">' + esc(tx(L('責任者（SV）に確認・報告', '책임자(SV)에게 확인·보고', 'Check with / report to the supervisor (SV)'))) + '</button></div>' : '') + '<div class="screen" id="scr"></div></div></div>' +
-      '<div id="modal"></div>';
-    bindBar(); if ($('#svb')) $('#svb').onclick = askSV;
-    try { if (window.MutationObserver) new MutationObserver(modalInert).observe($('#modal'), { childList: true }); } catch (e) {}
-    if (S.manual) { var mon = document.querySelector('#stage .monitor'); if (mon) mon.style.filter = 'brightness(.25)'; }   /* 26차: DCS 장애 중에 이어하면 화면도 수기 상태 */
-    updateBar(); drawQueue(); nextPax();
-    topOfGame(); /* 타이틀·결과 화면 아래쪽 버튼으로 시작해도 장면부터 보이게(결과 화면과 같은 처리) */
-  }
-  function updateBar() {
-    if (!$('#clk')) return;
-    $('#clk').textContent = hm(S.lateAt || S.clock);
-    var left = S.close - S.clock; $('#cls').textContent = (left >= 0 ? left.toFixed(0) : 0) + tx(T.min);
-    $('#stclose').classList.toggle('alert', left < 10);
-    $('#que').textContent = S.bgQueue + Math.max(0, S.list.length - S.idx - 1);
-    $('#done').textContent = S.results.length + '/' + S.list.length;
-  }
-  function drawQueue() { STG.queue(S.list.slice(S.idx + 1)); }
-  function exprOf(m) { return m >= 75 ? 'happy' : m >= 50 ? 'neutral' : m >= 30 ? 'worried' : 'upset'; }
-  function drawPax() { STG.pax(S.cur ? S.cur.p : null, S.cur ? S.cur.mood : 0); }
-  /* 음성 배역: 그림이 바뀌어도(지팡이→공항 휠체어) 같은 사람은 같은 목소리·같은 음성 키 */
-  function voiceCast(p) { return String(p.voice || p.art || '').replace(/_wheelchair$/, '_cane'); }
-  function say(who, text, silent, vtext) {   /* 27차: vtext = 음성 키로 쓸 대사(좌석 번호처럼 바뀌는 부분을 뺀 고정 문장) */
-    var el = who === 'me' ? $('#bme') : $('#bpx');
-    if (!el || !S || !S.cur) return;
-    S.bub = S.bub || {}; S.bub[who] = text || null;
-    if (!text) { el.classList.add('hide'); return; }
-    el.innerHTML = '<span class="who">' + esc(who === 'me' ? tx(T.you) : (S.cur.p.pp.sur + ' ' + S.cur.p.pp.given)) + '</span>' + esc(tx(text)) + (G.lang !== 'ja' && G.voice && text.ja ? '<span class="jsub">' + esc(text.ja) + '</span>' : '');
-    if (!silent && G.voice && text.ja) VO.say(who === 'me' ? 'staff' : voiceCast(S.cur.p), (vtext || text).ja);
-    el.classList.remove('hide');
-  }
-  function guide(text) { var g = $('#guide'); if (!g) return; if (S) S.guideL = text || null; if (typeof text === 'object' && text) text = tx(text); if (!G.hints || !text) { g.classList.add('hide'); return; } g.innerHTML = STG.mascot('koradon', 'idle', 'gm') + '<div><b>' + esc(tx(T.mentor)) + '</b><span>' + text + '</span></div><button class="gx" aria-label="close">✕</button>'; g.classList.remove('open'); g.onclick = function (e) { if (e.target.closest('.gx')) { g.classList.add('hide'); return; } g.classList.toggle('open'); }; g.classList.remove('hide'); }
-
-  function nextPax() {
-    if (S.cur) S.results.push(S.cur);
-    S.cur = null;
-    saveRun();   /* 26차 체크포인트(R25-01): 결과 확정 → 완료 인원·다음 순서 확정 → 저장 → 이벤트/다음 승객 */
+  function freshList(mi, va, seed) { return mi.generated ? va.pax(seed) : va.pax(); }
+  function allPax(list) { return list.concat(list.late ? [list.late] : []); }
+  /* 다음에 할 일(cursor.nextPhase): nextPax()와 같은 조건 */
+  function runPhase() {
     if (S.adv && M.events && S.clock < S.close) {
-      if (S.results.length === M.events.swapAfter && !S.e1) return runSwap();
-      if (S.results.length === M.events.recoverAfter && S.manual && !S.recovered) return runRecovery();
-      if (M.events.delayAtStart && !S.delay) return runDelay();
-      if (S.results.length === M.events.overbookAfter && !S.ob) return runOverbook();
+      if (S.results.length === M.events.swapAfter && !S.e1) return 'swap';
+      if (S.results.length === M.events.recoverAfter && S.manual && !S.recovered) return 'recovery';
+      if (M.events.delayAtStart && !S.delay) return 'delay';
+      if (S.results.length === M.events.overbookAfter && !S.ob) return 'overbook';
     }
-    if (M.events && M.events.lateAtEnd && !S.lateDone && (S.idx + 1 >= S.list.length || S.clock >= S.close)) return runLate();
-    S.idx++; VO.stop();
-    if (S.idx >= S.list.length || S.clock >= S.close) { finish(); return; }
-    var p = S.list[S.idx];
+    if (M.events && M.events.lateAtEnd && !S.lateDone && (S.idx + 1 >= S.list.length || S.clock >= S.close)) return 'late';
+    if (S.idx + 1 >= S.list.length || S.clock >= S.close) return 'finish';
+    return 'pax';
+  }
+
+  /* 2a: 옛 nextPax의 공통 부분은 엔진 nextUnit()로. 여기는 「승객 한 명 시작」만(본문 동일) */
+  function nextPax() { nextUnit(); }
+  function startPax(p) {
     var wait = S.idx * 3 + Math.max(0, S.clock - pm(V.start) - S.idx * 6);
     S.cur = { p: p, mood: Math.max(50, 90 - wait * .4), mins: 0, tab: 'pnr', notes: [], chk: {}, seat: null, bags: p.bags.map(function () { return { w: null, tag: null }; }), dg: false, pnr: false, pp: false, entryQ: false, bp: false, flags: {}, needSV: has(p, 'expired') || has(p, 'brother') || has(p, 'noEsta') || !!(p.sup && ((p.sup.type === 'pet' && p.sup.kind !== 'ok') || (p.sup.type === 'preg' && ['stale', 'over', 'multi'].indexOf(p.sup.kind) >= 0))), sup: {}, svDone: false, svAsks: 0, selfFix: [], fixTry: {}, acts: {} };
     if (S.delay) d5Arrive(S.cur);
@@ -1911,13 +2107,7 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     if (k === 'bp') return c.bp ? 'ok' : '';
     if (k === 'sup') return supState(c);
   }
-  function renderTabs() {
-    $('#tabs').classList.toggle('many', !!S.cur.p.sup); $('#tabs').innerHTML = (S.cur.p.sup ? ['pnr', 'pp', 'sup', 'entry', 'seat', 'bag', 'bp'] : ['pnr', 'pp', 'entry', 'seat', 'bag', 'bp']).map(function (k) { return '<button class="tab' + (S.cur.tab === k ? ' on' : '') + '" data-k="' + k + '"><i class="' + (tabState(k) || '') + '"></i>' + esc(tx(T.tabs[k])) + '</button>'; }).join('');
-    $('#tabs').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; sfx.tap(); showTab(b.dataset.k); };
-  }
-  function showTab(k) { S.cur.tab = k; renderTabs(); STG.pose({ pnr: 'check', pp: 'check', entry: 'check', seat: 'explain', bag: 'explain', bp: 'idle', sup: 'explain' }[k] || 'idle'); ({ pnr: tabPNR, pp: tabPP, entry: tabEntry, seat: tabSeat, bag: tabBag, bp: tabBP, sup: tabSup })[k](); if (S.leaving && S.leaveGo && !$('#nextpax') && $('#scr')) { $('#scr').insertAdjacentHTML('beforeend', '<div class="btns"><button class="btn pri nextpax" id="nextpax">' + esc(tx(L('次のお客様へ ▶', '다음 승객 ▶', 'Next passenger ▶'))) + '</button></div>'); bindNextPax(); } }
   function ACFT() { return (S && S.ac) || M.aircraft; }
-  function scr(h) { $('#scr').innerHTML = (S && S.manual ? '<div class="manbanner">' + esc(tx(L('手作業チェックイン中（DCS障害）― 紙の座席表・手書きの搭乗券とタグ・手荷物リスト', '수기 체크인 중(DCS 장애) — 종이 좌석표·손으로 쓴 탑승권과 태그·수하물 목록', 'Manual check-in (DCS outage) — paper seat chart, handwritten boarding passes and tags, bag list'))) + '</div>' : '') + (S && S.delay && S.cur ? delayBanner(S.cur) : '') + h; var db = $('#dlb'); if (db) db.onclick = tellDelay; }
 
   /* 예약 */
   function tabPNR() {
@@ -1987,11 +2177,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
   /* 발권 전이라면 판정을 다시 할 수 있음(Day 2~). 처음 판단이 틀렸다가 발권 전에 바로잡으면 안전 누락이 아니라 「자가 수정」으로 기록 */
   function reBtn(k) { var c = S.cur; return S.adv && !c.bp && !c.flags.denied && !(k === 'ticketName' && c.flags.nameFixed) ? ' <button class="btn ghost rebtn" data-re="' + k + '">' + esc(tx(L('もう一度確認', '다시 확인', 'Check again'))) + '</button>' : ''; }
   function bindRe() { $('#scr').querySelectorAll('[data-re]').forEach(function (b) { b.onclick = function () { reCheck(b.dataset.re); }; }); }
-  function selfFix(c, code) { if (c.selfFix.indexOf(code) < 0) c.selfFix.push(code); }
-  /* 행동 이력(기록용): 처음 오판 → 다시 확인 → 바로잡음 / 다시 오판 → 미해결 발권 */
-  function act(c, code, ev) { (c.acts[code] = c.acts[code] || []).push(ev); }
-  /* 24차b(GPT 24-F03): 열린 대화창의 선택지가 실행될 때, 그 창을 연 승객이 아직 지금 승객이고 근무 중이며 발권 전인지 확인 */
-  function canEdit(c) { return !!(S && c && S.cur === c && G.screen === 'play' && !c.bp); }
   /* 「다시 확인」은 정정 시도의 시작일 뿐 — 올바른 처리(보류·SV·서류 확인)가 끝났을 때만 자가 수정 성공으로 확정 */
   function tryFix(c, code) { c.fixTry[code] = true; act(c, code, 'recheck'); }
   function fixDone(c, code) { if (c.fixTry[code]) { delete c.fixTry[code]; selfFix(c, code); act(c, code, 'corrected'); } }
@@ -2445,67 +2630,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     c.bp = true; if (c.seqPicked) { S.seq = Math.max(S.seq, c.seqNo); } else { S.seq++; c.seqNo = S.seq; } addTime(M.cost.bp); sfx.print(); mood(+3); say('me', D.bpIssue);
     tabBP(); renderTabs();
   }
-  var MISSL = {
-    'visa-inad': L('査証の見落とし（入国拒否）', '비자 누락(입국 거부)', 'Missed visa (refused entry)'),
-    'pb-hold': L('受託手荷物にモバイルバッテリー', '위탁 수하물에 보조배터리', 'Power bank left in a checked bag'),
-    'dg-skip': L('保安質問の省略', '보안 질문 생략', 'Skipped security questions'),
-    'pp-check': L('旅券確認の省略', '여권 확인 생략', 'Skipped passport checks'),
-    'entry-check': L('渡航条件確認の省略', '입국 조건 확인 생략', 'Skipped entry check'),
-    'pp-expired': L('期限切れ旅券の見落とし', '만료 여권 놓침', 'Missed an expired passport'),
-    'id-mismatch': L('別人の旅券を見落とし', '다른 사람 여권 놓침', 'Missed someone else\'s passport'),
-    'esta-missing': L('ESTAなしで米国行き発券', 'ESTA 없이 미국행 발권', 'Issued to the US with no ESTA'),
-    'esta-check': L('ESTA確認の省略', 'ESTA 확인 생략', 'Skipped the ESTA check'),
-    'tag-short': L('乗り継ぎ地までのタグ', '환승지까지만 태그', 'Tagged only to the transit point'),
-    'promise-time': L('確認していない復旧時刻を約束', '확인하지 않은 복구 시각 약속', 'Promised an unconfirmed restore time'),
-    'us-notice': L('米国行き手荷物の案内（税関・TSA）', '미국행 수하물 안내(세관·TSA)', 'US bag rules (customs, TSA)'),
-    'over-reject': L('有効な旅券を「問題あり」に', '유효한 여권을 「문제 있음」으로', 'Flagged a valid passport'),
-    'fee-golf': L('ゴルフバッグの料金', '골프백 요금', 'Golf bag fee'),
-    'carry-over': L('機内持ち込み超過を通した', '기내 반입 초과를 통과', 'Let an overweight carry-on through'),
-    'carry-unchecked': L('機内持ち込みを計らなかった', '기내 가방 계량 안 함', 'Did not weigh the carry-on'),
-    'pb-carry': L('預けに変えた荷物に電池が残った', '위탁으로 바꾼 짐에 배터리가 남음', 'Batteries left in a bag switched to checked'),
-    'pair-apart': L('お連れ様と離れた席', '일행과 떨어진 좌석', 'Companions seated apart'),
-    'sv-miss': L('責任者への報告なし', '책임자 보고 없음', 'No report to the supervisor'),
-    'accuse': L('お客様を問い詰めた', '승객을 추궁함', 'Confronted the passenger'),
-    'inf-block': L('幼児連れの座席条件（機材変更後）', '유아 동반 좌석 조건(기재 변경 후)', 'Infant seat rules after the aircraft change'),
-    'inf-pp-check': L('幼児の旅券確認なし', '유아 여권 확인 없음', 'Infant passport not checked'),
-    'exit-noexplain': L('非常口の希望に理由を説明しなかった', '비상구 희망에 이유를 설명하지 않음', 'Did not explain why the exit row was not possible'),
-    'exit-nosign': L('非常口座席の署名なし', '비상구 좌석 서명 없음', 'Exit row card not signed'),
-    'exit-unbriefed': L('新しい非常口座席の説明・同意なし', '새 비상구 좌석 설명·동의 없음', 'New exit seat without briefing'),
-    'bp-old': L('旧搭乗券を無効にしなかった', '이전 탑승권 무효화 안 함', 'Old boarding passes not voided'),
-    'gate-notify': L('ゲートへの通知なし', '게이트 통보 없음', 'Gate not told'),
-    'seq-dup': L('手書きSEQの重複', '수기 SEQ 중복', 'Duplicate manual SEQ'),
-    'seat-dup': L('復旧後の座席重複', '복구 후 좌석 중복', 'Duplicate seat after the restore'),
-    'recon-skip': L('復旧後の照合なし', '복구 후 대조 없음', 'No reconciliation after the restore'),
-    'dcs-nosync': L('控えを確認せず手作業', '사본 확인 없이 수기', 'Manual work without checking the copies'),
-    'dcs-wait': L('障害中に受付を止めた', '장애 중 접수 중단', 'Stopped check-in during the outage'),
-    'delay-vague': L('遅延の事実を確認せずに案内', '지연 사실 확인 없이 안내', 'Announced the delay without confirming it'),
-    'delay-stop': L('遅延で受付を止めた', '지연으로 접수 중단', 'Stopped check-in for the delay'),
-    'delay-notice': L('遅延の案内・食事券なし', '지연 안내·식사 쿠폰 없음', 'No delay information or voucher'),
-    'conn-miss': L('間に合わない乗り継ぎのまま発券', '맞출 수 없는 연결편 그대로 발권', 'Issued through on a missed connection'),
-    'conn-over': L('間に合う乗り継ぎを「間に合わない」に', '맞출 수 있는 연결을 「맞출 수 없음」으로', 'Treated a workable connection as missed'),
-    'conn-recheck': L('遅延後の乗り継ぎを再確認しなかった', '지연 후 연결 재확인 안 함', 'Did not recheck the connection'),
-    'promise-hotel': L('承認のない宿泊の約束', '승인 없는 숙박 약속', 'Promised an unapproved hotel'),
-    'promise': L('確認していない乗り継ぎの約束', '확인하지 않은 연결 약속', 'Promised an unchecked connection'),
-    'argue': L('お詫びせず言い争いかけた', '사과 없이 언쟁할 뻔함', 'Argued instead of apologising'),
-    'promise-comp': L('権限外の補償の約束', '권한 밖 보상 약속', 'Promised compensation without authority'),
-    'comp-deny': L('規定の食事券を案内しなかった', '규정 식사 쿠폰 안내 안 함', 'Withheld the meal voucher'),
-    'ob-involuntary': L('カウンターで搭乗をお断りしようとした', '카운터에서 탑승 거절하려 함', 'Tried to deny boarding at the counter'),
-    'ob-ignore': L('予約超過に対応しなかった', '예약 초과에 대응하지 않음', 'Ignored the overbooking'),
-    'ob-noconsent': L('同意なしで協力者に登録', '동의 없이 협력자로 등록', 'Listed a volunteer without consent'),
-    'ob-protect': L('対象外の方に協力をお願いした', '대상 밖의 분에게 협력을 부탁함', 'Asked an excluded passenger to volunteer'),
-    'ob-novol': L('協力者を募れなかった', '협력자를 찾지 못함', 'Found no volunteer'),
-    'wch-assist': L('車いすの介助を手配しなかった', '휠체어 보조 수배 안 함', 'No wheelchair help arranged'), 'wch-code': L('車いすの区分の誤り（過剰）', '휠체어 구분 오류(과잉)', 'Wrong wheelchair code (more than needed)'), 'wch-under': L('車いすの区分の誤り（階段のない搭乗の漏れ）', '휠체어 구분 오류(계단 없는 탑승 누락)', 'Wrong wheelchair code (step-free boarding missed)'), 'wch-guess': L('ご本人に伺わずに区分を決めた', '본인에게 묻지 않고 구분 결정', 'Set the code without asking'),
-    'um-handover': L('UMの引き渡し情報が不十分', 'UM 인계 정보 불충분', 'Incomplete UM handover'), 'um-stay': L('UMの保護者に残っていただくお願いなし', 'UM 보호자에게 남아 달라는 부탁 없음', 'UM guardian not asked to stay'), 'um-seat': L('UMの指定外の座席', 'UM 지정 밖 좌석', 'UM outside the designated seats'),
-    'petc-over': L('PETCの重さ超過を機内に通した', 'PETC 무게 초과를 기내로 통과', 'Let an overweight PETC into the cabin'), 'avih-auto': L('条件を確かめずにAVIHへ', '조건 확인 없이 AVIH로', 'Switched to AVIH without the conditions'), 'pet-docs': L('ペットの検疫書類不足のまま受付', '반려동물 검역 서류 부족한 채 접수', 'Accepted a pet without quarantine papers'), 'pet-check': L('ペットの確認の省略', '반려동물 확인 생략', 'Skipped the pet checks'), 'pet-over-reject': L('そろっている書類を「不足」に', '갖춰진 서류를 「부족」으로', 'Flagged complete pet papers'), 'petc-seat': L('PETCの座席条件', 'PETC 좌석 조건', 'PETC seat rule'), 'fee-pet': L('PETC料金', 'PETC 요금', 'PETC fee'), 'fee-mob': L('車いすに手荷物料金', '휠체어에 수하물 요금', 'Charged for a wheelchair'),
-    'preg-limit': L('妊娠週数・診断書の条件の見落とし', '임신 주수·소견서 조건 누락', 'Missed the pregnancy rule'), 'preg-over': L('搭乗できる妊娠中の方を保留', '탑승 가능한 임산부를 보류', 'Held a pregnant passenger who could fly'), 'preg-wrong': L('保留の理由の誤り', '보류 이유 오류', 'Held for the wrong reason'), 'preg-check': L('妊娠中の方の確認の省略', '임산부 확인 생략', 'Skipped the pregnancy check'),
-    'fam-apart': L('お子様が保護者の隣でない', '어린이가 보호자 옆이 아님', 'Child not next to a parent'),
-    'late-accept': L('締め切り後に自分の判断で受付', '마감 후 자기 판단으로 접수', 'Accepted after the close on your own'), 'late-etd': L('ETDを見て締め切りを延ばした', 'ETD를 보고 마감 연장', 'Extended the close because of the ETD'), 'late-noalt': L('次の便を案内しなかった', '다음 편을 안내하지 않음', 'No next flight offered'), 'promise-fee': L('権限外の手数料の約束', '권한 밖 수수료 약속', 'Promised a fee waiver without authority'),
-    'entry-miss': L('渡航条件の判断', '입국 조건 판단', 'Entry decision'), 'ticketName-miss': L('予約の名前の判断', '예약 이름 판단', 'Booking-name decision'), 'photo-miss': L('写真の判断', '사진 판단', 'Photo decision')
-  };
-  /* 오답 코드 → 실제로 한 행동(기록용 키) */
-  var ACT = { 'pp-expired': 'judged-valid-then-issued', 'id-mismatch': 'confirmed-identity-then-issued', 'esta-check': 'issued-without-esta-check', 'esta-missing': 'issued-without-esta', 'pb-carry': 'checked-carryon-without-removing-batteries', 'pb-hold': 'tagged-without-security-questions', 'dg-skip': 'tagged-without-security-questions', 'pp-check': 'issued-without-passport-checks', 'entry-check': 'issued-without-entry-check', 'visa-inad': 'issued-on-expired-visa', 'over-reject': 'flagged-valid-passport', 'fee-golf': 'waived-golf-fee', 'tag-short': 'tagged-to-transit-point', 'us-notice': 'did-not-explain-us-bag-rules', 'promise-time': 'promised-unconfirmed-restore-time', 'carry-over': 'let-overweight-carryon-through', 'carry-unchecked': 'did-not-weigh-carryon', 'pair-apart': 'seated-companions-apart', 'sv-miss': 'decided-without-supervisor', 'accuse': 'confronted-passenger', 'inf-block': 'left-infant-in-invalid-seat', 'exit-unbriefed': 'confirmed-exit-seat-without-briefing', 'bp-old': 'did-not-void-old-boarding-pass', 'gate-notify': 'did-not-notify-gate', 'seq-dup': 'reused-seq-number', 'seat-dup': 'left-duplicate-seat', 'recon-skip': 'skipped-reconciliation', 'dcs-nosync': 'manual-without-checking-copies', 'dcs-wait': 'stopped-check-in-during-outage', 'delay-vague': 'announced-delay-without-confirming', 'delay-stop': 'stopped-check-in-for-delay', 'delay-notice': 'did-not-inform-delay', 'conn-miss': 'issued-through-on-missed-connection', 'conn-over': 'flagged-workable-connection', 'conn-recheck': 'did-not-recheck-connection', 'promise-hotel': 'promised-unapproved-hotel', 'promise': 'promised-unchecked-connection', 'argue': 'argued-with-passenger', 'promise-comp': 'promised-unauthorised-compensation', 'comp-deny': 'withheld-meal-voucher', 'ob-involuntary': 'tried-denial-stopped-by-sv', 'ob-ignore': 'ignored-overbooking', 'ob-noconsent': 'listed-volunteer-without-consent', 'ob-protect': 'asked-excluded-passenger', 'ob-novol': 'no-volunteer-found', 'wch-assist': 'issued-without-wheelchair-help', 'wch-code': 'set-wrong-wheelchair-code', 'wch-under': 'arranged-less-support-than-needed', 'wch-guess': 'set-code-without-asking', 'um-handover': 'issued-incomplete-handover', 'um-stay': 'did-not-ask-guardian-to-stay', 'um-seat': 'seated-um-outside-list', 'petc-over': 'let-overweight-petc-in-cabin', 'avih-auto': 'switched-to-avih-automatically', 'pet-docs': 'accepted-without-quarantine-papers', 'pet-check': 'skipped-pet-checks', 'pet-over-reject': 'flagged-complete-pet-papers', 'petc-seat': 'petc-seat-rule', 'fee-pet': 'did-not-collect-petc-fee', 'fee-mob': 'charged-for-mobility-aid', 'preg-limit': 'issued-outside-pregnancy-rule', 'preg-over': 'held-eligible-pregnant-passenger', 'preg-wrong': 'held-for-wrong-reason', 'preg-check': 'skipped-pregnancy-check', 'fam-apart': 'seated-child-away-from-parent', 'late-accept': 'tried-to-accept-after-close', 'late-etd': 'extended-close-for-etd', 'late-noalt': 'offered-no-next-flight', 'promise-fee': 'promised-fee-waiver' };
-  function missLabel(c) { if (MISSL[c]) return tx(MISSL[c]); if (LS[c]) return c + ' ' + tx(LS[c]); return c; }
-  function safetyMiss(c, what, code) { S.strikes++; (S.safety = S.safety || []).push({ who: c.p.pp.sur + ' ' + c.p.pp.given, what: what, code: code }); }
   function bpHTML() {
     var c = S.cur, p = c.p, ap = R.airport[V.from], fl = c.vol ? V.alt.flight : V.flight, brd = brdOf(c), dep = c.vol ? V.alt.dep : S.delay ? V.etd : V.std;   /* 24차b(사용자 08:30): 출발 시각도 기재(지연이면 새 출발 예정) */
     return '<div class="bp' + (c.manual || S.manual ? ' manual' : '') + '"><div class="m"><div class="lab">Vela Air · Boarding pass' + (c.manual || S.manual ? ' · MANUAL' : '') + (S.delay ? ' · ETD ' + (c.vol ? V.alt.dep : V.etd) : '') + '</div><div class="big">' + p.pp.sur + '/' + p.pp.given + '</div>' +
@@ -2697,7 +2821,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
 
   /* ================= Day 4 : 기재 변경(E4-01) · DCS 장애와 수기 체크인(E4-02) · 복구 대조 ================= */
   function noteTo(r, type, fn, lesson, code) { r.notes.push({ t: type, x: fn, l: lesson, c: code }); }
-  function evCheck(id, ok) { S.evChecks.push({ id: id, ok: !!ok }); }
   function blockOf(id) { return parseInt(id, 10) + ('ABC'.indexOf(id.slice(-1)) >= 0 ? 'L' : 'R'); }
   function infClash(id) { var b = blockOf(id), n = 0; S.infantSeats.forEach(function (s) { if (s !== id && blockOf(s) === b) n++; }); return n > 0; }
   /* E4-01: 4번째 승객 뒤 — DCS가 자동으로 새 좌석을 정함. 직원은 예외(비상구·유아 블록·일행)를 찾아 고치고, SV 승인·탑승권 재발행·게이트 통보 */
@@ -2870,9 +2993,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
   /* 지연 후 연결 시간(분) = 연결편 출발 − 지연 후 도착 예정. 일본·한국은 시차 없음 */
   function connLeft(p) { return pm(p.conn.dep) - pm(V.eta); }
   function brdOf(c) { return c && c.vol ? V.alt.board : S && S.delay ? V.boardNew : V.board; }
-  /* 승객이 아닌 운항 이벤트(지연 시작·예약 초과)의 기록: 결과의 「운항 이벤트」 칸 */
-  function evRec() { return S.evRec || (S.evRec = { p: { id: 'event', pp: { sur: '', given: '' } }, ev: true, notes: [], acts: {}, selfFix: [], mood: 0, mins: 0 }); }
-  function evNote(type, fn, lesson, code) { evRec().notes.push({ t: type, x: fn, l: lesson, c: code }); }
   function setDelay(vague) { S.delay = { etd: V.etd }; S.delayVague = !!vague; if ($('#gbar')) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); } }
   /* E5-01 시작: SV 전화 — 확인된 사실을 받고 표시를 갱신한 뒤 안내 */
   function runDelay() {
@@ -2963,43 +3083,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
         run: function () { addTime(.5); mood(-16); evCheck('cmp-comp', false); S.evRep.need++; note('bad', function () { return tx(L('120分以上の遅延なので、規定の食事券の対象でした。お客様が受けられるものを案内せずに断りました。', '120분 이상 지연이라 규정 식사 쿠폰 대상이었습니다. 승객이 받을 수 있는 것을 안내하지 않고 거절했습니다.', 'A 120-minute delay qualifies for the meal voucher. You refused without telling the passenger what they were entitled to.')); }, 'passenger/5-6', 'comp-deny'); } }],
       'passenger/5-6', function () { showTab(c.tab); });
   }
-  /* ================= 27차(사용자 10-14): 클레임 — 먼저 사과, 확인된 사실, 할 수 있는 것과 다음 행동. 확인하지 않은 약속·권한 없는 보상·언쟁은 감점 ================= */
-  var CLAIMS = {
-    dcsWait: { title: L('お客様が待ち時間と手書きの搭乗券に不満を示しています', '승객이 대기 시간과 수기 탑승권에 불만을 나타내고 있습니다', 'The passenger is unhappy about the wait and the handwritten boarding pass'),
-      fact: function () { return tx(L('DCS障害・手作業チェックイン中 · 復旧見込み未定', 'DCS 장애·수기 체크인 중 · 복구 예정 미정', 'DCS down · manual check-in · no restore time yet')); },
-      must: L('まずお詫びし、確認できている事実（システム障害で手作業で手続き中）を伝えます。手書きの搭乗券も正式なもので、搭乗口に連絡されることを伝えて安心していただきます。復旧の時刻など、確認していないことは約束しません。', '먼저 사과하고 확인된 사실(시스템 장애로 수기 수속 중)을 전합니다. 수기 탑승권도 정식이고 탑승구에 통보된다는 것을 알려 안심시킵니다. 복구 시각 등 확인하지 않은 것은 약속하지 않습니다.', 'Apologise first and share the confirmed facts (the system is down and check-in is by hand). Reassure them that a handwritten boarding pass is valid and the gate is informed. Do not promise anything unconfirmed, such as a restore time.'),
-      evId: 'claim-dcs', lesson: 'passenger/1-1',
-      ok: L('お待たせしたことをお詫びし、システム障害で手作業で手続きしていること、手書きの搭乗券も正式で搭乗口に連絡が入ることを伝える', '기다리게 한 것을 사과하고, 시스템 장애로 수기 수속 중이며 수기 탑승권도 정식이고 탑승구에 연락이 간다고 전한다', 'Apologise for the wait, explain the system outage and manual check-in, and that a handwritten boarding pass is valid and the gate is informed'),
-      okSay: L('お待たせして申し訳ございません。ただいまシステムの障害で、手作業で手続きをしております。手書きの搭乗券も正式なもので、搭乗口にも連絡が入りますので、ご安心ください。', '오래 기다리시게 해서 죄송합니다. 지금 시스템 장애로 수기로 수속하고 있습니다. 손으로 쓴 탑승권도 정식 탑승권이고 탑승구에도 연락이 가니 안심하세요.', 'I am sorry to have kept you waiting. The system is down, so we are checking in by hand. A handwritten boarding pass is a proper boarding pass, and the gate is informed, so please do not worry.'),
-      okNote: L('お詫び・事実・手書き搭乗券の有効性を伝え、確認していない復旧時刻は約束しませんでした。', '사과·사실·수기 탑승권의 유효성을 전하고, 확인하지 않은 복구 시각은 약속하지 않았습니다.', 'You apologised, gave the facts and explained the handwritten pass is valid, without promising an unconfirmed restore time.'),
-      bad: [{ t: L('「あと5分ほどでシステムは直ります」と伝えて安心してもらう', '「5분 정도면 시스템이 고쳐집니다」라고 안심시킨다', 'Reassure them that "the system will be back in about five minutes"'), code: 'promise-time', m: 4,
-              n: L('復旧の見込みが出ていないのに、時刻を約束しました。確認できていないことは約束せず、分かっている事実を伝えます。', '복구 예정이 나오지 않았는데 시각을 약속했습니다. 확인되지 않은 것은 약속하지 않고 알고 있는 사실을 전합니다.', 'You promised a restore time that nobody had given. Do not promise what is unconfirmed; share what you know.') },
-            { t: L('「システムの問題なので、私たちにもどうしようもありません」と説明する', '「시스템 문제라 저희도 어쩔 수 없습니다」라고 설명한다', 'Explain that "it is a system problem, there is nothing we can do"'), code: 'argue', m: -14,
-              n: L('お詫びをせず、システムのせいにしました。まずお詫びし、手作業でも手続きできることと搭乗券が有効なことを伝えます。', '사과하지 않고 시스템 탓을 했습니다. 먼저 사과하고 수기로도 수속할 수 있고 탑승권이 유효하다는 것을 전합니다.', 'You blamed the system instead of apologising. Apologise, then explain check-in continues by hand and the pass is valid.') }] },
-    seatChanged: { title: L('事前に選んだ座席が変わったことに不満を示しています', '미리 고른 좌석이 바뀐 것에 불만을 나타내고 있습니다', 'The passenger is unhappy that the seat they chose has changed'),
-      fact: function () { return tx(L('機材変更（A配置→B配置）· オンラインで指定した窓側席が自動で変更', '기재 변경(A 배치→B 배치) · 온라인으로 지정한 창가석이 자동 변경', 'Aircraft change (layout A → B) · the window seat chosen online was moved automatically')); },
-      must: L('まずお詫びし、機材変更で座席の配置が変わった事実を伝えます。いま空いている席の中から、ご希望（窓側）にできるだけ近い席を探します。権限のないアップグレードや補償は約束せず、「変えられない」と突き放しもしません。', '먼저 사과하고 기재 변경으로 좌석 배치가 바뀐 사실을 전합니다. 지금 비어 있는 자리 중에서 희망(창가)에 최대한 가까운 자리를 찾습니다. 권한 없는 업그레이드·보상은 약속하지 않고, 「바꿀 수 없다」고 잘라 말하지도 않습니다.', 'Apologise first and explain the aircraft change altered the seat layout. Look for the free seat closest to the request (window). Do not promise upgrades or compensation you cannot give, and do not just say it cannot be changed.'),
-      evId: 'claim-seat', lesson: 'passenger/1-5',
-      ok: L('ご不便をお詫びし、機材変更で配置が変わったことを説明して、空いている窓側の席を探すと伝える', '불편을 사과하고 기재 변경으로 배치가 바뀐 것을 설명한 뒤, 비어 있는 창가 자리를 찾아 드리겠다고 전한다', 'Apologise, explain the aircraft change altered the layout, and offer to find a free window seat'),
-      okSay: L('ご不便をおかけして申し訳ございません。機材が変わり、座席の配置が変わったため、お席が変更になりました。いま空いている窓側のお席をお探しします。', '불편을 드려 죄송합니다. 기재가 바뀌어 좌석 배치가 달라지는 바람에 좌석이 변경되었습니다. 지금 비어 있는 창가 자리를 찾아 드리겠습니다.', 'I am sorry for the inconvenience. The aircraft was changed and the seat layout is different, so your seat moved. Let me find you a free window seat.'),
-      okNote: L('お詫びと機材変更の事実を伝え、空いている窓側の席を探すと案内しました。', '사과와 기재 변경 사실을 전하고 비어 있는 창가 자리를 찾겠다고 안내했습니다.', 'You apologised, explained the aircraft change and offered to find a free window seat.'),
-      bad: [{ t: L('お詫びとして、無料で上のクラスにアップグレードすると約束する', '사과의 뜻으로 무료로 상위 클래스로 업그레이드해 주겠다고 약속한다', 'Promise a free upgrade to a higher class as an apology'), code: 'promise-comp', m: 8,
-              n: L('権限のない無料アップグレードを約束しました。補償やアップグレードは規定とSVの判断によります。まず空いている希望に近い席を探します。', '권한 없는 무료 업그레이드를 약속했습니다. 보상·업그레이드는 규정과 SV 판단에 따릅니다. 먼저 비어 있는 희망에 가까운 자리를 찾습니다.', 'You promised a free upgrade you had no authority for. Compensation and upgrades follow the rules and the SV\'s decision; first look for a free seat close to the request.') },
-            { t: L('「システムが自動で決めたので変えられません」と伝える', '「시스템이 자동으로 정해서 바꿀 수 없습니다」라고 전한다', 'Say "the system set it automatically, so it cannot be changed"'), code: 'argue', m: -16,
-              n: L('事実と違う説明で突き放しました。自動の割り当ては変更できます。お詫びして、空いている窓側の席を探します。', '사실과 다른 설명으로 잘라 말했습니다. 자동 배정은 바꿀 수 있습니다. 사과하고 비어 있는 창가 자리를 찾습니다.', 'You brushed them off with something untrue: automatic assignments can be changed. Apologise and look for a free window seat.') }] },
-    lounge: { title: L('遅延を理由にラウンジの利用を求められました', '지연을 이유로 라운지 이용을 요구받았습니다', 'The passenger asks for lounge access because of the delay'),
-      fact: function () { return 'ETD ' + V.etd + ' (+' + M.delayMin + tx(T.min) + ') · Vela: ' + tx(L('120分以上で食事券', '120분 이상 식사 쿠폰', 'meal voucher from 120 min')); },
-      must: L('まずお詫びします。規定にない補償（ラウンジなど）はカウンターで約束しません。受けられるもの（120分以上の遅延の食事券）を案内し、それ以上のご要望は責任者（SV）につなぎます。', '먼저 사과합니다. 규정에 없는 보상(라운지 등)은 카운터에서 약속하지 않습니다. 받을 수 있는 것(120분 이상 지연의 식사 쿠폰)을 안내하고, 그 이상의 요청은 책임자(SV)에게 연결합니다.', 'Apologise first. Do not promise compensation outside the rules (such as the lounge) at the counter. Offer what applies (a meal voucher for 120+ minutes) and pass further requests to the SV.'),
-      evId: 'claim-lounge', lesson: 'passenger/5-6',
-      ok: L('お詫びし、ラウンジは案内できないが規定の食事券をお渡しすること、それ以上のご要望は責任者につなぐことを伝える', '사과하고, 라운지는 안내할 수 없지만 규정 식사 쿠폰을 드리며 그 이상의 요청은 책임자에게 연결하겠다고 전한다', 'Apologise, explain the lounge is not available but give the meal voucher, and pass further requests to the SV'),
-      okSay: L('お待たせして申し訳ございません。ラウンジはご案内できませんが、規定によりお食事券をお渡しします。ほかにご要望があれば、責任者におつなぎします。', '기다리시게 해서 죄송합니다. 라운지는 안내해 드릴 수 없지만 규정에 따라 식사 쿠폰을 드리겠습니다. 다른 요청이 있으시면 책임자에게 연결해 드리겠습니다.', 'I am sorry for the wait. I cannot offer the lounge, but under our rules I will give you a meal voucher. If there is anything else, I will connect you to my supervisor.'),
-      okNote: L('お詫びし、規定の食事券を案内して、規定にないラウンジは約束せず責任者につなぎました。', '사과하고 규정 식사 쿠폰을 안내했으며, 규정에 없는 라운지는 약속하지 않고 책임자에게 연결했습니다.', 'You apologised, gave the meal voucher and did not promise the lounge, passing further requests to the SV.'),
-      after: function (c) { c.delayTold = true; },
-      bad: [{ t: L('ラウンジを使えるように手配すると約束する', '라운지를 쓸 수 있게 해 드리겠다고 약속한다', 'Promise to arrange lounge access'), code: 'promise-comp', m: 10,
-              n: L('規定にないラウンジの利用を約束しました。規定外の補償はSVが判断します。', '규정에 없는 라운지 이용을 약속했습니다. 규정 밖의 보상은 SV가 판단합니다.', 'You promised lounge access outside the rules. Compensation beyond the rules is the SV\'s decision.') },
-            { t: L('「遅延は当社のせいではありません」と説明する', '「지연은 당사 탓이 아닙니다」라고 설명한다', 'Explain that "the delay is not our fault"'), code: 'argue', m: -16,
-              n: L('事実と違う説明で言い争いになりかけました。到着機材の遅れは当社の都合です。まずお詫びし、受けられるもの（食事券）を案内します。', '사실과 다른 설명으로 언쟁이 될 뻔했습니다. 도착 기재 지연은 당사 사정입니다. 먼저 사과하고 받을 수 있는 것(식사 쿠폰)을 안내합니다.', 'You argued with something untrue: a late inbound aircraft is the airline\'s cause. Apologise and offer what applies (the meal voucher).') }] }
-  };
   function runClaim() {
     var c = S.cur, p = c && c.p, K = p && CLAIMS[p.claim]; if (!K || c.flags.claimDone) return;
     c.flags.claimDone = true; sfx.ng(); say('pax', p.say.claim);
@@ -3065,16 +3148,6 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
 
   /* ================= Day 3 : 도움이 필요한 승객 — 휠체어(D3-01)·UM(D3-02)·반려동물(D3-03)·임산부(D3-04)·가족(D3-05)·마감 후 도착(D3-06) ================= */
   function R3() { return M.rules || {}; }
-  /* 22차(GPT 실주소 SITE-F01): 사이트의 떠 있는 위로·뒤로·홈 버튼이 근무 중 대사를 가리지 않게 — 근무 화면일 때만 body에 표시(CSS가 작은 화면에서 숨김) */
-  /* 22차(GPT 실주소 권장): 사이트에서는 근무를 시작하면 사이트 머리말 아래의 게임 맨 위(업무 바)로 — 낮은 가로 화면에서 머리말 때문에 장면이 화면 밖에서 시작하던 문제. 사이트 밖(단일·분할판)은 예전처럼 페이지 맨 위 */
-  function topOfGame() { var a = document.getElementById('app'); if (SITE && a) { var y = a.getBoundingClientRect().top + window.pageYOffset - 6; window.scrollTo(0, Math.max(0, y)); } else window.scrollTo(0, 0); }
-  function playCls() { try { document.body.classList.toggle('saga-playing', G.screen === 'play'); } catch (e) {} }
-  /* 22차(SITE-R01): 레슨 참조를 실제 레슨 주소로. 주소 표는 사이트 빌드만 넣음(공개 사이트 sitemap에서 3개 언어가 모두 있는 레슨만). 새 탭으로 열어 게임 화면은 그대로 */
-  function lessonA(id, label, cls) {
-    var U = window.LESSON_URLS, u = U && U.links && U.links[id] && U.links[id][G.lang];
-    if (!u) return cls ? '<span class="' + cls + '">' + esc(label) + '</span>' : esc(label);
-    return '<a' + (cls ? ' class="' + cls + '"' : '') + ' href="' + esc(U.base + u) + '" target="_blank" rel="noopener">' + esc(label) + ' ↗</a>';
-  }
   /* 22차: UM 지정석 문구는 정답 집합(R3().umSeats)에서 만든다 — 문구·강조·판정이 같은 집합을 봄 */
   function umRange() { var u = (R3().umSeats || []), rows = u.map(function (x) { return parseInt(x, 10); }), cols = []; u.forEach(function (x) { var c = x.slice(-1); if (cols.indexOf(c) < 0) cols.push(c); });
     var a = Math.min.apply(null, rows), b = Math.max.apply(null, rows), cs = cols.sort().join('・'), ck = cols.sort().join('·'), ce = cols.sort().join('/');
@@ -3092,19 +3165,11 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
   function supRow(done, label, btnId, btnLabel, extra) {
     return '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0"><span style="flex:1;min-width:150px">' + esc(tx(label)) + '</span>' + (done ? '<span class="pill ok">' + esc(tx(done === true ? L('済', '완료', 'Done') : done)) + '</span>' : '<button class="btn" id="' + btnId + '">' + esc(tx(btnLabel)) + '</button>') + (extra || '') + '</div>';
   }
-  function velaRule(t) { return '<div class="edu" style="margin-top:6px">' + esc(tx(L('Vela Air 教育用規定：', 'Vela Air 교육용 규정: ', 'Vela Air training rule: '))) + esc(tx(t)) + '</div>'; }
   function tabSup() {
     var c = S.cur, p = c.p; ({ wch: supWch, um: supUm, pet: supPet, preg: supPreg, fam: supFam })[p.sup.type](c, p);
     /* D3-RR01: 발권 후에는 지원 내용(수배·서류·판단)을 바꾸지 않는다. 바꾸려면 탑승권 무효화·재수배·재발행 절차(이번 범위 밖). 출발까지 공항에 남아 달라는 UM 부탁만 발권 뒤에도 가능 */
     if (c.bp) { $('#scr').querySelectorAll('button').forEach(function (b) { if (b.id === 'us') return; b.disabled = true; b.onclick = null; }); $('#scr').insertAdjacentHTML('beforeend', '<p class="small" style="color:var(--termwarn)">' + esc(tx(L('発券後は、サポートの手配・書類・判断を変えられません（変更は搭乗券の無効化と手配・発券のやり直しが必要）。', '발권 후에는 지원 수배·서류·판단을 바꿀 수 없습니다(변경하려면 탑승권 무효화와 수배·발권을 다시 해야 합니다).', 'After issue, the assistance, papers and decisions are locked (a change would need the boarding pass cancelled, re-arranged and reissued).'))) + '</p>'); }
   }
-
-  /* D3-01 휠체어: 본인에게 물어 지원 수준을 정하고(WCHR/WCHS/WCHC) 수배 */
-  var WCODE = {
-    WCHR: L('WCHR：長い距離は歩けないが、階段・機内の席までは移動できる → ゲートまで車いす', 'WCHR: 먼 거리는 못 걷지만 계단·기내 자리까지는 이동 가능 → 게이트까지 휠체어', 'WCHR: cannot walk long distances, but manages stairs and the walk to the seat → wheelchair to the gate'),
-    WCHS: L('WCHS：階段は無理だが、機内の席までは移動できる → 車いす＋階段のない搭乗（搭乗橋・リフト車）', 'WCHS: 계단은 못 오르내리지만 기내 자리까지는 이동 가능 → 휠체어 + 계단 없는 탑승(탑승교·리프트카)', 'WCHS: cannot do stairs, but can walk to the seat → wheelchair + step-free boarding (jet bridge or lift)'),
-    WCHC: L('WCHC：席まで自分では移動できない → 機内用車いす・介助', 'WCHC: 자리까지 스스로 이동 불가 → 기내용 휠체어·보조', 'WCHC: cannot move to the seat unaided → aisle chair and carry assistance')
-  };
   /* 과소 지원(실제 WCHS인데 WCHR) = 업무 확인 필요(최고 A, 2026-10-12 사용자 확정) / 그 밖의 코드 오류(과잉 지원) = 일반 */
   function wchKey(p, code) { return p.sup.need === 'WCHS' && code === 'WCHR' ? 'wch-under' : 'wch-code'; }
   function supWch(c, p) {
@@ -3419,70 +3484,201 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
       'passenger/1-1', function () { if (S.evRec && S.evRec.notes.some(function (n) { return n.c === 'late-noalt'; }) && S.evChecks.some(function (x) { return x.id === 'late-close'; })) { STG.pax(null); return nextPax(); } step2(); });
   }
 
-  /* ---------- 판단 모달 ---------- */
-  function openModalShell(title, html) {
-    $('#modal').innerHTML = '<div class="modal"><div class="card" role="dialog" aria-modal="true" tabindex="-1"><h2>' + esc(tx(title)) + '</h2><div class="cbody">' + html + '</div></div></div>';
-    var cd = $('#modal .card'); modalInert(); try { if (cd && (!document.activeElement || !cd.contains(document.activeElement))) cd.focus({ preventScroll: true }); } catch (e) {}
-    return cd;
+  /* ---------- 2a: 체크인편 문구(공통 T에 합쳐짐) ---------- */
+  var CI_TEXT = {
+    days: L('チェックイン編 ― カウンターの5日間', '체크인편 — 카운터의 5일', 'Check-in — five days at the counter'),
+    next: L('次のお客様どうぞ', '다음 손님 오세요', 'Next, please'),
+    tabs: { pnr: L('予約', '예약', 'Booking'), pp: L('旅券', '여권', 'Passport'), entry: L('渡航条件', '입국 조건', 'Entry'), seat: L('座席', '좌석', 'Seat'), bag: L('手荷物', '수하물', 'Bags'), bp: L('搭乗券', '탑승권', 'Boarding pass'), sup: L('サポート', '지원', 'Assistance') },
+    eduData: L('教育用データ ― 実務では Timatic や公的情報で照合します', '교육용 데이터 — 실무에서는 Timatic과 공적 정보로 확인합니다', 'Training data — in real work, check Timatic and official sources'),
+    allDone: L('チェックイン編の5日間をすべて終えました。気になる日を選んで復習できます。', '체크인편 5일을 모두 마쳤습니다. 원하는 날을 골라 복습할 수 있습니다.', 'You have finished all five days of the check-in chapter. Pick any day to review.'),
+    lastDayHow: L('DAY 5は、B以上・安全合格・すべてのお客様の手続き完了でクリアです。まず今日を復習しましょう。', 'DAY 5는 B 이상·안전 합격·모든 승객 처리로 클리어됩니다. 먼저 오늘을 복습해 보세요.', 'DAY 5 is cleared with B or better, a safety pass and every passenger handled. Review today first.')
+  };
+  /* 2a: 저장하는·저장하지 않는 S 필드(엔진 ST.runFields·ST.runSkip) */
+  var RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'seats', 'infantSeats', 'strikes', 'seq', 'evChecks', 'evRep', 'manual', 'manList', 'manTag', 'recovered', 'ob', 'lateDone', 'lateAt', 'safety', 'evRec', 'e1', 'e2', 'e3', 'delay', 'delayVague'];
+  var RUNSKIP = ['list', 'cur', 'seed', 'adv', 'day', 'ac', 'runId', 'rev', 'fp', 'startedAt', 'modalRedraw', 'bub', 'guideL', 'leaving', 'leaveGo', 'hrec', 'saveOk', 'mistakes', '_t', 'dlChecked', 'noSave', 'runWarn', 'resumed', 'dupRun', 'lastSave', 'testStopped', 'resumeAt', 'tabTok', 'takeover', 'writeFail', 'blocked', 'ownerLost', 'badState'];
+  var MISSL = {
+    'visa-inad': L('査証の見落とし（入国拒否）', '비자 누락(입국 거부)', 'Missed visa (refused entry)'),
+    'pb-hold': L('受託手荷物にモバイルバッテリー', '위탁 수하물에 보조배터리', 'Power bank left in a checked bag'),
+    'dg-skip': L('保安質問の省略', '보안 질문 생략', 'Skipped security questions'),
+    'pp-check': L('旅券確認の省略', '여권 확인 생략', 'Skipped passport checks'),
+    'entry-check': L('渡航条件確認の省略', '입국 조건 확인 생략', 'Skipped entry check'),
+    'pp-expired': L('期限切れ旅券の見落とし', '만료 여권 놓침', 'Missed an expired passport'),
+    'id-mismatch': L('別人の旅券を見落とし', '다른 사람 여권 놓침', 'Missed someone else\'s passport'),
+    'esta-missing': L('ESTAなしで米国行き発券', 'ESTA 없이 미국행 발권', 'Issued to the US with no ESTA'),
+    'esta-check': L('ESTA確認の省略', 'ESTA 확인 생략', 'Skipped the ESTA check'),
+    'tag-short': L('乗り継ぎ地までのタグ', '환승지까지만 태그', 'Tagged only to the transit point'),
+    'promise-time': L('確認していない復旧時刻を約束', '확인하지 않은 복구 시각 약속', 'Promised an unconfirmed restore time'),
+    'us-notice': L('米国行き手荷物の案内（税関・TSA）', '미국행 수하물 안내(세관·TSA)', 'US bag rules (customs, TSA)'),
+    'over-reject': L('有効な旅券を「問題あり」に', '유효한 여권을 「문제 있음」으로', 'Flagged a valid passport'),
+    'fee-golf': L('ゴルフバッグの料金', '골프백 요금', 'Golf bag fee'),
+    'carry-over': L('機内持ち込み超過を通した', '기내 반입 초과를 통과', 'Let an overweight carry-on through'),
+    'carry-unchecked': L('機内持ち込みを計らなかった', '기내 가방 계량 안 함', 'Did not weigh the carry-on'),
+    'pb-carry': L('預けに変えた荷物に電池が残った', '위탁으로 바꾼 짐에 배터리가 남음', 'Batteries left in a bag switched to checked'),
+    'pair-apart': L('お連れ様と離れた席', '일행과 떨어진 좌석', 'Companions seated apart'),
+    'sv-miss': L('責任者への報告なし', '책임자 보고 없음', 'No report to the supervisor'),
+    'accuse': L('お客様を問い詰めた', '승객을 추궁함', 'Confronted the passenger'),
+    'inf-block': L('幼児連れの座席条件（機材変更後）', '유아 동반 좌석 조건(기재 변경 후)', 'Infant seat rules after the aircraft change'),
+    'inf-pp-check': L('幼児の旅券確認なし', '유아 여권 확인 없음', 'Infant passport not checked'),
+    'exit-noexplain': L('非常口の希望に理由を説明しなかった', '비상구 희망에 이유를 설명하지 않음', 'Did not explain why the exit row was not possible'),
+    'exit-nosign': L('非常口座席の署名なし', '비상구 좌석 서명 없음', 'Exit row card not signed'),
+    'exit-unbriefed': L('新しい非常口座席の説明・同意なし', '새 비상구 좌석 설명·동의 없음', 'New exit seat without briefing'),
+    'bp-old': L('旧搭乗券を無効にしなかった', '이전 탑승권 무효화 안 함', 'Old boarding passes not voided'),
+    'gate-notify': L('ゲートへの通知なし', '게이트 통보 없음', 'Gate not told'),
+    'seq-dup': L('手書きSEQの重複', '수기 SEQ 중복', 'Duplicate manual SEQ'),
+    'seat-dup': L('復旧後の座席重複', '복구 후 좌석 중복', 'Duplicate seat after the restore'),
+    'recon-skip': L('復旧後の照合なし', '복구 후 대조 없음', 'No reconciliation after the restore'),
+    'dcs-nosync': L('控えを確認せず手作業', '사본 확인 없이 수기', 'Manual work without checking the copies'),
+    'dcs-wait': L('障害中に受付を止めた', '장애 중 접수 중단', 'Stopped check-in during the outage'),
+    'delay-vague': L('遅延の事実を確認せずに案内', '지연 사실 확인 없이 안내', 'Announced the delay without confirming it'),
+    'delay-stop': L('遅延で受付を止めた', '지연으로 접수 중단', 'Stopped check-in for the delay'),
+    'delay-notice': L('遅延の案内・食事券なし', '지연 안내·식사 쿠폰 없음', 'No delay information or voucher'),
+    'conn-miss': L('間に合わない乗り継ぎのまま発券', '맞출 수 없는 연결편 그대로 발권', 'Issued through on a missed connection'),
+    'conn-over': L('間に合う乗り継ぎを「間に合わない」に', '맞출 수 있는 연결을 「맞출 수 없음」으로', 'Treated a workable connection as missed'),
+    'conn-recheck': L('遅延後の乗り継ぎを再確認しなかった', '지연 후 연결 재확인 안 함', 'Did not recheck the connection'),
+    'promise-hotel': L('承認のない宿泊の約束', '승인 없는 숙박 약속', 'Promised an unapproved hotel'),
+    'promise': L('確認していない乗り継ぎの約束', '확인하지 않은 연결 약속', 'Promised an unchecked connection'),
+    'argue': L('お詫びせず言い争いかけた', '사과 없이 언쟁할 뻔함', 'Argued instead of apologising'),
+    'promise-comp': L('権限外の補償の約束', '권한 밖 보상 약속', 'Promised compensation without authority'),
+    'comp-deny': L('規定の食事券を案内しなかった', '규정 식사 쿠폰 안내 안 함', 'Withheld the meal voucher'),
+    'ob-involuntary': L('カウンターで搭乗をお断りしようとした', '카운터에서 탑승 거절하려 함', 'Tried to deny boarding at the counter'),
+    'ob-ignore': L('予約超過に対応しなかった', '예약 초과에 대응하지 않음', 'Ignored the overbooking'),
+    'ob-noconsent': L('同意なしで協力者に登録', '동의 없이 협력자로 등록', 'Listed a volunteer without consent'),
+    'ob-protect': L('対象外の方に協力をお願いした', '대상 밖의 분에게 협력을 부탁함', 'Asked an excluded passenger to volunteer'),
+    'ob-novol': L('協力者を募れなかった', '협력자를 찾지 못함', 'Found no volunteer'),
+    'wch-assist': L('車いすの介助を手配しなかった', '휠체어 보조 수배 안 함', 'No wheelchair help arranged'), 'wch-code': L('車いすの区分の誤り（過剰）', '휠체어 구분 오류(과잉)', 'Wrong wheelchair code (more than needed)'), 'wch-under': L('車いすの区分の誤り（階段のない搭乗の漏れ）', '휠체어 구분 오류(계단 없는 탑승 누락)', 'Wrong wheelchair code (step-free boarding missed)'), 'wch-guess': L('ご本人に伺わずに区分を決めた', '본인에게 묻지 않고 구분 결정', 'Set the code without asking'),
+    'um-handover': L('UMの引き渡し情報が不十分', 'UM 인계 정보 불충분', 'Incomplete UM handover'), 'um-stay': L('UMの保護者に残っていただくお願いなし', 'UM 보호자에게 남아 달라는 부탁 없음', 'UM guardian not asked to stay'), 'um-seat': L('UMの指定外の座席', 'UM 지정 밖 좌석', 'UM outside the designated seats'),
+    'petc-over': L('PETCの重さ超過を機内に通した', 'PETC 무게 초과를 기내로 통과', 'Let an overweight PETC into the cabin'), 'avih-auto': L('条件を確かめずにAVIHへ', '조건 확인 없이 AVIH로', 'Switched to AVIH without the conditions'), 'pet-docs': L('ペットの検疫書類不足のまま受付', '반려동물 검역 서류 부족한 채 접수', 'Accepted a pet without quarantine papers'), 'pet-check': L('ペットの確認の省略', '반려동물 확인 생략', 'Skipped the pet checks'), 'pet-over-reject': L('そろっている書類を「不足」に', '갖춰진 서류를 「부족」으로', 'Flagged complete pet papers'), 'petc-seat': L('PETCの座席条件', 'PETC 좌석 조건', 'PETC seat rule'), 'fee-pet': L('PETC料金', 'PETC 요금', 'PETC fee'), 'fee-mob': L('車いすに手荷物料金', '휠체어에 수하물 요금', 'Charged for a wheelchair'),
+    'preg-limit': L('妊娠週数・診断書の条件の見落とし', '임신 주수·소견서 조건 누락', 'Missed the pregnancy rule'), 'preg-over': L('搭乗できる妊娠中の方を保留', '탑승 가능한 임산부를 보류', 'Held a pregnant passenger who could fly'), 'preg-wrong': L('保留の理由の誤り', '보류 이유 오류', 'Held for the wrong reason'), 'preg-check': L('妊娠中の方の確認の省略', '임산부 확인 생략', 'Skipped the pregnancy check'),
+    'fam-apart': L('お子様が保護者の隣でない', '어린이가 보호자 옆이 아님', 'Child not next to a parent'),
+    'late-accept': L('締め切り後に自分の判断で受付', '마감 후 자기 판단으로 접수', 'Accepted after the close on your own'), 'late-etd': L('ETDを見て締め切りを延ばした', 'ETD를 보고 마감 연장', 'Extended the close because of the ETD'), 'late-noalt': L('次の便を案内しなかった', '다음 편을 안내하지 않음', 'No next flight offered'), 'promise-fee': L('権限外の手数料の約束', '권한 밖 수수료 약속', 'Promised a fee waiver without authority'),
+    'entry-miss': L('渡航条件の判断', '입국 조건 판단', 'Entry decision'), 'ticketName-miss': L('予約の名前の判断', '예약 이름 판단', 'Booking-name decision'), 'photo-miss': L('写真の判断', '사진 판단', 'Photo decision')
+  };
+  var CLAIMS = {
+    dcsWait: { title: L('お客様が待ち時間と手書きの搭乗券に不満を示しています', '승객이 대기 시간과 수기 탑승권에 불만을 나타내고 있습니다', 'The passenger is unhappy about the wait and the handwritten boarding pass'),
+      fact: function () { return tx(L('DCS障害・手作業チェックイン中 · 復旧見込み未定', 'DCS 장애·수기 체크인 중 · 복구 예정 미정', 'DCS down · manual check-in · no restore time yet')); },
+      must: L('まずお詫びし、確認できている事実（システム障害で手作業で手続き中）を伝えます。手書きの搭乗券も正式なもので、搭乗口に連絡されることを伝えて安心していただきます。復旧の時刻など、確認していないことは約束しません。', '먼저 사과하고 확인된 사실(시스템 장애로 수기 수속 중)을 전합니다. 수기 탑승권도 정식이고 탑승구에 통보된다는 것을 알려 안심시킵니다. 복구 시각 등 확인하지 않은 것은 약속하지 않습니다.', 'Apologise first and share the confirmed facts (the system is down and check-in is by hand). Reassure them that a handwritten boarding pass is valid and the gate is informed. Do not promise anything unconfirmed, such as a restore time.'),
+      evId: 'claim-dcs', lesson: 'passenger/1-1',
+      ok: L('お待たせしたことをお詫びし、システム障害で手作業で手続きしていること、手書きの搭乗券も正式で搭乗口に連絡が入ることを伝える', '기다리게 한 것을 사과하고, 시스템 장애로 수기 수속 중이며 수기 탑승권도 정식이고 탑승구에 연락이 간다고 전한다', 'Apologise for the wait, explain the system outage and manual check-in, and that a handwritten boarding pass is valid and the gate is informed'),
+      okSay: L('お待たせして申し訳ございません。ただいまシステムの障害で、手作業で手続きをしております。手書きの搭乗券も正式なもので、搭乗口にも連絡が入りますので、ご安心ください。', '오래 기다리시게 해서 죄송합니다. 지금 시스템 장애로 수기로 수속하고 있습니다. 손으로 쓴 탑승권도 정식 탑승권이고 탑승구에도 연락이 가니 안심하세요.', 'I am sorry to have kept you waiting. The system is down, so we are checking in by hand. A handwritten boarding pass is a proper boarding pass, and the gate is informed, so please do not worry.'),
+      okNote: L('お詫び・事実・手書き搭乗券の有効性を伝え、確認していない復旧時刻は約束しませんでした。', '사과·사실·수기 탑승권의 유효성을 전하고, 확인하지 않은 복구 시각은 약속하지 않았습니다.', 'You apologised, gave the facts and explained the handwritten pass is valid, without promising an unconfirmed restore time.'),
+      bad: [{ t: L('「あと5分ほどでシステムは直ります」と伝えて安心してもらう', '「5분 정도면 시스템이 고쳐집니다」라고 안심시킨다', 'Reassure them that "the system will be back in about five minutes"'), code: 'promise-time', m: 4,
+              n: L('復旧の見込みが出ていないのに、時刻を約束しました。確認できていないことは約束せず、分かっている事実を伝えます。', '복구 예정이 나오지 않았는데 시각을 약속했습니다. 확인되지 않은 것은 약속하지 않고 알고 있는 사실을 전합니다.', 'You promised a restore time that nobody had given. Do not promise what is unconfirmed; share what you know.') },
+            { t: L('「システムの問題なので、私たちにもどうしようもありません」と説明する', '「시스템 문제라 저희도 어쩔 수 없습니다」라고 설명한다', 'Explain that "it is a system problem, there is nothing we can do"'), code: 'argue', m: -14,
+              n: L('お詫びをせず、システムのせいにしました。まずお詫びし、手作業でも手続きできることと搭乗券が有効なことを伝えます。', '사과하지 않고 시스템 탓을 했습니다. 먼저 사과하고 수기로도 수속할 수 있고 탑승권이 유효하다는 것을 전합니다.', 'You blamed the system instead of apologising. Apologise, then explain check-in continues by hand and the pass is valid.') }] },
+    seatChanged: { title: L('事前に選んだ座席が変わったことに不満を示しています', '미리 고른 좌석이 바뀐 것에 불만을 나타내고 있습니다', 'The passenger is unhappy that the seat they chose has changed'),
+      fact: function () { return tx(L('機材変更（A配置→B配置）· オンラインで指定した窓側席が自動で変更', '기재 변경(A 배치→B 배치) · 온라인으로 지정한 창가석이 자동 변경', 'Aircraft change (layout A → B) · the window seat chosen online was moved automatically')); },
+      must: L('まずお詫びし、機材変更で座席の配置が変わった事実を伝えます。いま空いている席の中から、ご希望（窓側）にできるだけ近い席を探します。権限のないアップグレードや補償は約束せず、「変えられない」と突き放しもしません。', '먼저 사과하고 기재 변경으로 좌석 배치가 바뀐 사실을 전합니다. 지금 비어 있는 자리 중에서 희망(창가)에 최대한 가까운 자리를 찾습니다. 권한 없는 업그레이드·보상은 약속하지 않고, 「바꿀 수 없다」고 잘라 말하지도 않습니다.', 'Apologise first and explain the aircraft change altered the seat layout. Look for the free seat closest to the request (window). Do not promise upgrades or compensation you cannot give, and do not just say it cannot be changed.'),
+      evId: 'claim-seat', lesson: 'passenger/1-5',
+      ok: L('ご不便をお詫びし、機材変更で配置が変わったことを説明して、空いている窓側の席を探すと伝える', '불편을 사과하고 기재 변경으로 배치가 바뀐 것을 설명한 뒤, 비어 있는 창가 자리를 찾아 드리겠다고 전한다', 'Apologise, explain the aircraft change altered the layout, and offer to find a free window seat'),
+      okSay: L('ご不便をおかけして申し訳ございません。機材が変わり、座席の配置が変わったため、お席が変更になりました。いま空いている窓側のお席をお探しします。', '불편을 드려 죄송합니다. 기재가 바뀌어 좌석 배치가 달라지는 바람에 좌석이 변경되었습니다. 지금 비어 있는 창가 자리를 찾아 드리겠습니다.', 'I am sorry for the inconvenience. The aircraft was changed and the seat layout is different, so your seat moved. Let me find you a free window seat.'),
+      okNote: L('お詫びと機材変更の事実を伝え、空いている窓側の席を探すと案内しました。', '사과와 기재 변경 사실을 전하고 비어 있는 창가 자리를 찾겠다고 안내했습니다.', 'You apologised, explained the aircraft change and offered to find a free window seat.'),
+      bad: [{ t: L('お詫びとして、無料で上のクラスにアップグレードすると約束する', '사과의 뜻으로 무료로 상위 클래스로 업그레이드해 주겠다고 약속한다', 'Promise a free upgrade to a higher class as an apology'), code: 'promise-comp', m: 8,
+              n: L('権限のない無料アップグレードを約束しました。補償やアップグレードは規定とSVの判断によります。まず空いている希望に近い席を探します。', '권한 없는 무료 업그레이드를 약속했습니다. 보상·업그레이드는 규정과 SV 판단에 따릅니다. 먼저 비어 있는 희망에 가까운 자리를 찾습니다.', 'You promised a free upgrade you had no authority for. Compensation and upgrades follow the rules and the SV\'s decision; first look for a free seat close to the request.') },
+            { t: L('「システムが自動で決めたので変えられません」と伝える', '「시스템이 자동으로 정해서 바꿀 수 없습니다」라고 전한다', 'Say "the system set it automatically, so it cannot be changed"'), code: 'argue', m: -16,
+              n: L('事実と違う説明で突き放しました。自動の割り当ては変更できます。お詫びして、空いている窓側の席を探します。', '사실과 다른 설명으로 잘라 말했습니다. 자동 배정은 바꿀 수 있습니다. 사과하고 비어 있는 창가 자리를 찾습니다.', 'You brushed them off with something untrue: automatic assignments can be changed. Apologise and look for a free window seat.') }] },
+    lounge: { title: L('遅延を理由にラウンジの利用を求められました', '지연을 이유로 라운지 이용을 요구받았습니다', 'The passenger asks for lounge access because of the delay'),
+      fact: function () { return 'ETD ' + V.etd + ' (+' + M.delayMin + tx(T.min) + ') · Vela: ' + tx(L('120分以上で食事券', '120분 이상 식사 쿠폰', 'meal voucher from 120 min')); },
+      must: L('まずお詫びします。規定にない補償（ラウンジなど）はカウンターで約束しません。受けられるもの（120分以上の遅延の食事券）を案内し、それ以上のご要望は責任者（SV）につなぎます。', '먼저 사과합니다. 규정에 없는 보상(라운지 등)은 카운터에서 약속하지 않습니다. 받을 수 있는 것(120분 이상 지연의 식사 쿠폰)을 안내하고, 그 이상의 요청은 책임자(SV)에게 연결합니다.', 'Apologise first. Do not promise compensation outside the rules (such as the lounge) at the counter. Offer what applies (a meal voucher for 120+ minutes) and pass further requests to the SV.'),
+      evId: 'claim-lounge', lesson: 'passenger/5-6',
+      ok: L('お詫びし、ラウンジは案内できないが規定の食事券をお渡しすること、それ以上のご要望は責任者につなぐことを伝える', '사과하고, 라운지는 안내할 수 없지만 규정 식사 쿠폰을 드리며 그 이상의 요청은 책임자에게 연결하겠다고 전한다', 'Apologise, explain the lounge is not available but give the meal voucher, and pass further requests to the SV'),
+      okSay: L('お待たせして申し訳ございません。ラウンジはご案内できませんが、規定によりお食事券をお渡しします。ほかにご要望があれば、責任者におつなぎします。', '기다리시게 해서 죄송합니다. 라운지는 안내해 드릴 수 없지만 규정에 따라 식사 쿠폰을 드리겠습니다. 다른 요청이 있으시면 책임자에게 연결해 드리겠습니다.', 'I am sorry for the wait. I cannot offer the lounge, but under our rules I will give you a meal voucher. If there is anything else, I will connect you to my supervisor.'),
+      okNote: L('お詫びし、規定の食事券を案内して、規定にないラウンジは約束せず責任者につなぎました。', '사과하고 규정 식사 쿠폰을 안내했으며, 규정에 없는 라운지는 약속하지 않고 책임자에게 연결했습니다.', 'You apologised, gave the meal voucher and did not promise the lounge, passing further requests to the SV.'),
+      after: function (c) { c.delayTold = true; },
+      bad: [{ t: L('ラウンジを使えるように手配すると約束する', '라운지를 쓸 수 있게 해 드리겠다고 약속한다', 'Promise to arrange lounge access'), code: 'promise-comp', m: 10,
+              n: L('規定にないラウンジの利用を約束しました。規定外の補償はSVが判断します。', '규정에 없는 라운지 이용을 약속했습니다. 규정 밖의 보상은 SV가 판단합니다.', 'You promised lounge access outside the rules. Compensation beyond the rules is the SV\'s decision.') },
+            { t: L('「遅延は当社のせいではありません」と説明する', '「지연은 당사 탓이 아닙니다」라고 설명한다', 'Explain that "the delay is not our fault"'), code: 'argue', m: -16,
+              n: L('事実と違う説明で言い争いになりかけました。到着機材の遅れは当社の都合です。まずお詫びし、受けられるもの（食事券）を案内します。', '사실과 다른 설명으로 언쟁이 될 뻔했습니다. 도착 기재 지연은 당사 사정입니다. 먼저 사과하고 받을 수 있는 것(식사 쿠폰)을 안내합니다.', 'You argued with something untrue: a late inbound aircraft is the airline\'s cause. Apologise and offer what applies (the meal voucher).') }] }
+  };
+  var WCODE = {
+    WCHR: L('WCHR：長い距離は歩けないが、階段・機内の席までは移動できる → ゲートまで車いす', 'WCHR: 먼 거리는 못 걷지만 계단·기내 자리까지는 이동 가능 → 게이트까지 휠체어', 'WCHR: cannot walk long distances, but manages stairs and the walk to the seat → wheelchair to the gate'),
+    WCHS: L('WCHS：階段は無理だが、機内の席までは移動できる → 車いす＋階段のない搭乗（搭乗橋・リフト車）', 'WCHS: 계단은 못 오르내리지만 기내 자리까지는 이동 가능 → 휠체어 + 계단 없는 탑승(탑승교·리프트카)', 'WCHS: cannot do stairs, but can walk to the seat → wheelchair + step-free boarding (jet bridge or lift)'),
+    WCHC: L('WCHC：席まで自分では移動できない → 機内用車いす・介助', 'WCHC: 자리까지 스스로 이동 불가 → 기내용 휠체어·보조', 'WCHC: cannot move to the seat unaided → aisle chair and carry assistance')
+  };
+  var ACT = { 'pp-expired': 'judged-valid-then-issued', 'id-mismatch': 'confirmed-identity-then-issued', 'esta-check': 'issued-without-esta-check', 'esta-missing': 'issued-without-esta', 'pb-carry': 'checked-carryon-without-removing-batteries', 'pb-hold': 'tagged-without-security-questions', 'dg-skip': 'tagged-without-security-questions', 'pp-check': 'issued-without-passport-checks', 'entry-check': 'issued-without-entry-check', 'visa-inad': 'issued-on-expired-visa', 'over-reject': 'flagged-valid-passport', 'fee-golf': 'waived-golf-fee', 'tag-short': 'tagged-to-transit-point', 'us-notice': 'did-not-explain-us-bag-rules', 'promise-time': 'promised-unconfirmed-restore-time', 'carry-over': 'let-overweight-carryon-through', 'carry-unchecked': 'did-not-weigh-carryon', 'pair-apart': 'seated-companions-apart', 'sv-miss': 'decided-without-supervisor', 'accuse': 'confronted-passenger', 'inf-block': 'left-infant-in-invalid-seat', 'exit-unbriefed': 'confirmed-exit-seat-without-briefing', 'bp-old': 'did-not-void-old-boarding-pass', 'gate-notify': 'did-not-notify-gate', 'seq-dup': 'reused-seq-number', 'seat-dup': 'left-duplicate-seat', 'recon-skip': 'skipped-reconciliation', 'dcs-nosync': 'manual-without-checking-copies', 'dcs-wait': 'stopped-check-in-during-outage', 'delay-vague': 'announced-delay-without-confirming', 'delay-stop': 'stopped-check-in-for-delay', 'delay-notice': 'did-not-inform-delay', 'conn-miss': 'issued-through-on-missed-connection', 'conn-over': 'flagged-workable-connection', 'conn-recheck': 'did-not-recheck-connection', 'promise-hotel': 'promised-unapproved-hotel', 'promise': 'promised-unchecked-connection', 'argue': 'argued-with-passenger', 'promise-comp': 'promised-unauthorised-compensation', 'comp-deny': 'withheld-meal-voucher', 'ob-involuntary': 'tried-denial-stopped-by-sv', 'ob-ignore': 'ignored-overbooking', 'ob-noconsent': 'listed-volunteer-without-consent', 'ob-protect': 'asked-excluded-passenger', 'ob-novol': 'no-volunteer-found', 'wch-assist': 'issued-without-wheelchair-help', 'wch-code': 'set-wrong-wheelchair-code', 'wch-under': 'arranged-less-support-than-needed', 'wch-guess': 'set-code-without-asking', 'um-handover': 'issued-incomplete-handover', 'um-stay': 'did-not-ask-guardian-to-stay', 'um-seat': 'seated-um-outside-list', 'petc-over': 'let-overweight-petc-in-cabin', 'avih-auto': 'switched-to-avih-automatically', 'pet-docs': 'accepted-without-quarantine-papers', 'pet-check': 'skipped-pet-checks', 'pet-over-reject': 'flagged-complete-pet-papers', 'petc-seat': 'petc-seat-rule', 'fee-pet': 'did-not-collect-petc-fee', 'fee-mob': 'charged-for-mobility-aid', 'preg-limit': 'issued-outside-pregnancy-rule', 'preg-over': 'held-eligible-pregnant-passenger', 'preg-wrong': 'held-for-wrong-reason', 'preg-check': 'skipped-pregnancy-check', 'fam-apart': 'seated-child-away-from-parent', 'late-accept': 'tried-to-accept-after-close', 'late-etd': 'extended-close-for-etd', 'late-noalt': 'offered-no-next-flight', 'promise-fee': 'promised-fee-waiver' };
+  /* 2a: checkRun의 체크인 범위 검사(옮김). 'range' | 'pax' | null */
+  function ciRangeWhy(s, o, va, fresh) {
+    function num(x, lo, hi) { return typeof x === 'number' && isFinite(x) && x >= lo && x <= hi; }
+    if (!num(s.clock, pm(va.start), pm(va.start) + 600) || !num(s.seq, 0, 9999) || !num(s.strikes, 0, 999)) return 'range';
+    if (!Array.isArray(s.seats) || s.seats.some(function (x) { return typeof x !== 'string' || !/^\d{1,2}[A-K]$/.test(x); })) return 'range';
+    /* 결과의 승객은 순서대로 승객 목록과 같아야 함, 좌석은 처리된 승객끼리 겹치지 않음(복구 전 수기 충돌 사례 제외) */
+    var seen = {}, bad = false;
+    s.results.forEach(function (r, i) { if (!r || !r.p || r.p.__pax !== o.paxIds[i]) bad = true; if (r && r.seat && !r.denied && !r.vol) { if (seen[r.seat] && !(s.e3 && s.e3.conflict)) bad = true; seen[r.seat] = 1; } });
+    if (bad) return 'pax';
+    return null;
   }
-  function closeModal() { if (S) S.modalRedraw = null; var md = $('#modal'); if (md) md.innerHTML = ''; modalInert(); if (G.screen === 'play') STG.pose('idle'); }
-  /* 24차b(GPT 24-F03): 대화창이 열려 있는 동안 뒤쪽 근무 화면(장면·단말)은 inert. 위 막대(음성·✕ 그만두기)는 원래 창 위에서도 누를 수 있으므로 그대로 둠 — Tab·Enter로 뒤쪽 탭·발행을 누를 수 없음. 창이 닫히면 되돌림.
-     창을 지우는 곳이 여러 군데라, #modal 안이 바뀔 때마다 다시 계산(MutationObserver) */
-  function modalInert() { var md = $('#modal'), on = !!(md && md.children.length); ['#app > .main'].forEach(function (q) { var el = document.querySelector(q); if (el) { el.inert = on; if (on) el.setAttribute('inert', ''); else el.removeAttribute('inert'); } }); }
-  /* 28차(GPT 27차 의견): Day 4·5(평가 단계)의 응대 선택지는 정답 위치를 외우지 않도록 seed·승객·질문별로 섞음. 같은 판·같은 질문은 늘 같은 순서(언어를 바꿔도 그대로, 이어하기 뒤에도 같음). Day 1–3은 고정 */
-  function shufOpts(opts, key) {
-    if (!S || !S.day || S.day.n < 4) return opts;
-    var r = DY.rng(((S.seed | 0) ^ parseInt(fnv(key + '|' + (S.cur ? S.cur.p.id : '')), 16)) | 0), a = opts.slice();
-    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
-    return a;
+  /* 승객 patch(이름 정정·짐 추가 등)의 숫자 범위: 짐 무게·기내 반입 0~100kg, 그 밖의 숫자도 numWalk */
+  function patchWhy(pp) {
+    if (pp == null) return null; if (typeof pp !== 'object' || Array.isArray(pp)) return 'patch';
+    var w = numWalk(pp, 'patch'); if (w) return w;
+    var bad = null;
+    Object.keys(pp).forEach(function (id) { var d = pp[id]; if (!d || typeof d !== 'object') { bad = 'patch'; return; }
+      if (d.carry != null && !(typeof d.carry === 'number' && d.carry >= 0 && d.carry <= 100)) bad = 'patch:carry';
+      if (d.bags != null && !(Array.isArray(d.bags) && d.bags.length <= 20 && d.bags.every(function (b) { return b && typeof b === 'object' && (b.kg == null || (typeof b.kg === 'number' && b.kg >= 0 && b.kg <= 100)); }))) bad = 'patch:bags'; });
+    return bad;
   }
-  function modal(title, fact, must, opts, lesson, after) {
-    var h = '<div class="mhead">' + (S && S.cur && STG.has(S.cur.p.art) ? STG.mini(S.cur.p) : '') + '<p class="mono" style="font-size:13px;color:var(--sub);margin:0">' + esc(fact) + '</p></div><div class="must">' + STG.mascot('korarin', 'idle', 'km') + '<div><b>' + esc(tx(T.rule)) + '</b> ' + esc(tx(must)) + '</div></div>';
-    h += opts.map(function (o, i) {
-      var lock = o.lock;
-      return '<button class="opt' + (lock ? ' lock' : '') + '" data-i="' + i + '"' + (o.good ? ' data-a="ok"' : o.code ? ' data-a="' + esc(o.code) + '"' : '') + '>' + (lock ? '🔒 ' : '') + esc(tx(o.t)) + (o.s ? '<small>' + esc(tx(o.s)) + '</small>' : '') + '</button>';
-    }).join('');
-    h += '<div id="whybox"></div>';
-    if (lesson && LS[lesson]) h += '<p class="lessonref">' + lessonA(lesson, '📘 ' + lesson + ' ' + (tx(LS[lesson]) || LS[lesson].ja)) + '</p>';
-    var card = openModalShell(title, h); STG.pose('explain'); var own = S && S.cur;
-    var args = arguments; S.modalRedraw = function () { modal.apply(null, args); };
-    card.querySelectorAll('.opt').forEach(function (b) {
-      b.onclick = function () {
-        var o = opts[+b.dataset.i];
-        if (own && (S.cur !== own || G.screen !== 'play')) { closeModal(); return; }   /* 25차(24b-R02): 잠긴 선택지도 승객·화면을 먼저 확인 */
-        if (o.lock) { sfx.ng(); $('#whybox').innerHTML = '<div class="why bad">' + esc(tx(o.lock)) + '</div>'; if (S.cur) note('info', function () { return tx(L('できない選択を試みました：', '할 수 없는 선택을 시도했습니다: ', 'Tried a choice that is not allowed: ')) + tx(o.t); }, lesson); return; }
-        if (own && (S.cur !== own || G.screen !== 'play')) { closeModal(); return; }   /* 24차b(GPT 24-F03)·25차(24b-R02): 창을 연 승객이 바뀌었거나 근무 화면을 떠났으면 아무것도 하지 않음(뒤처리 after도 하지 않음) */
-        sfx.ok(); closeModal(); if (o.run) o.run(); if (after) after();
-      };
-    });
-    return card;
-  }
-
-  /* ---------- 결과 ---------- */
-  /* 27차(GPT 26-F03): 결과를 만들다 오류가 나면 기록·진행본은 건드리지 않고 안내(손상본의 마지막 방어선) */
-  function finish() {
-    var pr; try { pr = finishInner(); } catch (e) { return finishErr(e); }
-    if (pr && pr.then) pr.then(null, finishErr);
-  }
-  function finishErr(e) {
-    {
-      try { console.error(e); } catch (x) {}
-      G.screen = 'result'; playCls();
-      $('#app').innerHTML = '<div class="res"><div class="panel"><h2>' + esc(tx(L('結果を作れませんでした', '결과를 만들 수 없습니다', 'Could not build the results'))) + '</h2><p>' + esc(tx(S && S.hrec && !S.blocked && S.saveOk !== false && !S.testStopped ? L('結果の画面を表示できませんでした。学習の記録は保存されています。', '결과 화면을 표시하지 못했습니다. 학습 기록은 저장되었습니다.', 'The results screen could not be shown. Your record was saved.') : L('勤務のデータに問題があるため、結果を表示できません。学習の記録と保存された勤務は変更していません。', '근무 데이터에 문제가 있어 결과를 표시할 수 없습니다. 학습 기록과 저장된 근무는 바꾸지 않았습니다.', 'The shift data has a problem, so the results cannot be shown. Your record and the saved shift were not changed.'))) + '</p><div class="btns"><button class="start" id="home" style="width:auto">' + esc(tx(L('勤務日の選択へ', '근무일 선택으로', 'Back to shift select'))) + '</button></div></div></div>';
-      $('#home').onclick = renderTitle;
+  function stateWhy(st, mi, paxIds) {
+    function num(x) { return typeof x === 'number' && isFinite(x); }
+    function int(x, lo) { return num(x) && Math.floor(x) === x && x >= (lo == null ? 0 : lo); }
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function str(x) { return typeof x === 'string'; }
+    function ref(x, kind) { return obj(x) && (kind in x); }
+    function txt(x) { return str(x) || (obj(x) && obj(x.__t) && str(x.__t.ja) && str(x.__t.ko) && str(x.__t.en)) || (obj(x) && str(x.ja) && str(x.ko) && str(x.en)); }
+    function seatOk(x) { return str(x) && /^\d{1,2}[A-K]$/.test(x) && +x.slice(0, -1) >= 1 && +x.slice(0, -1) <= 60; }
+    function rng(x, lo, hi) { return num(x) && x >= lo && x <= hi; }   /* 28차(GPT 27-F02): 숫자는 타입만이 아니라 업무상 유효 범위까지 */
+    function noteOk(n) { return obj(n) && ['good', 'bad', 'info'].indexOf(n.t) >= 0 && txt(n.x) && (n.l == null || str(n.l)) && (n.c == null || str(n.c)); }
+    function resOk(r, ev) {
+      if (!obj(r) || !obj(r.p) || !Array.isArray(r.notes) || r.notes.length > 200 || !r.notes.every(noteOk) || !rng(r.mood, 0, 100) || !rng(r.mins, 0, 240)) return false;
+      if (!Array.isArray(r.selfFix) || !obj(r.acts)) return false;
+      if (ev) return true;
+      if (!ref(r.p, '__pax') && !str(r.p.id)) return false;
+      if (!obj(r.chk) || !obj(r.flags) || !obj(r.fixTry) || !obj(r.sup) || !Array.isArray(r.bags)) return false;
+      if (r.bags.length > 20 || !r.bags.every(function (b) { return obj(b) && (b.w === null || rng(b.w, 0, 100)) && (b.tag === null || b.tag === undefined || str(b.tag)); })) return false;
+      if (r.carryW != null && !rng(r.carryW, 0, 100)) return false;
+      if (r.seat != null && !seatOk(r.seat) && !r.vol) return false;
+      return true;
     }
+    if (!obj(st)) return 'format';
+    var need = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'seats', 'infantSeats', 'strikes', 'seq', 'evChecks', 'evRep'];
+    for (var i = 0; i < need.length; i++) if (!(need[i] in st) || st[need[i]] == null) return 'missing:' + need[i];
+    if (!num(st.clock) || !num(st.close) || !num(st.bgQueue) || !int(st.idx, -1) || !int(st.strikes) || !int(st.seq)) return 'type';
+    if (!rng(st.clock, 0, 2880) || !rng(st.close, 0, 2880) || !rng(st.bgQueue, 0, 500) || st.strikes > 200 || st.seq > 9999) return 'range';
+    var wild = numWalk(st); if (wild) return 'range:' + wild;
+    if (!Array.isArray(st.results) || !st.results.every(function (r, k) { return resOk(r) && (!paxIds || !r.p.__pax || r.p.__pax === paxIds[k]); })) return 'results';
+    if (!Array.isArray(st.revenue) || st.revenue.length > 200 || !st.revenue.every(function (x) { return obj(x) && str(x.pax) && str(x.what) && int(x.amt) && x.amt <= 5000000 && (x.cur === 'JPY' || x.cur === 'KRW'); })) return 'revenue';
+    if (!Array.isArray(st.seats) || st.seats.length > 400 || !st.seats.every(seatOk) || !Array.isArray(st.infantSeats) || !st.infantSeats.every(seatOk)) return 'seats';
+    if (!Array.isArray(st.evChecks) || !st.evChecks.every(function (x) { return obj(x) && str(x.id) && typeof x.ok === 'boolean'; })) return 'evChecks';
+    if (!obj(st.evRep) || !int(st.evRep.need) || !int(st.evRep.done) || st.evRep.done > st.evRep.need || st.evRep.need > 200) return 'evRep';
+    if (st.safety != null && (!Array.isArray(st.safety) || !st.safety.every(function (x) { return obj(x) && str(x.who); }))) return 'safety';
+    if (st.evRec != null && !resOk(st.evRec, true)) return 'evRec';
+    if (st.manList != null && (!Array.isArray(st.manList) || !st.manList.every(function (x) { return ref(x, '__res') || obj(x); }))) return 'manList';
+    if (st.delay != null && !(obj(st.delay) && str(st.delay.etd))) return 'delay';
+    if (st.ob != null && !(obj(st.ob) && obj(st.ob.asked) && obj(st.ob.resp))) return 'ob';
+    if (st.e1 != null && !(obj(st.e1) && Array.isArray(st.e1.rows) && st.e1.rows.every(function (x) { return obj(x) && (ref(x.r, '__res') || obj(x.r)) && seatOk(x.cur) && seatOk(x.old); }))) return 'e1';
+    if (st.e3 != null && !(obj(st.e3) && Array.isArray(st.e3.list))) return 'e3';
+    ['manual', 'recovered', 'lateDone', 'delayVague'].forEach(function (k) { if (st[k] != null && typeof st[k] !== 'boolean') st.__bad = k; }); if (st.__bad) return 'type';
+    if (st.lateAt != null && !rng(st.lateAt, 0, 2880)) return 'type';
+    /* 조건부: 이벤트 시점을 지났으면 그 이벤트의 상태가 있어야 함 */
+    var ev = mi.events || {}, n = st.results.length;
+    if (ev.swapAfter && n > ev.swapAfter && !(st.e1 && st.e1.done)) return 'event:swap';
+    if (ev.delayAtStart && n >= 1 && !st.delay) return 'event:delay';
+    if (ev.overbookAfter && n > ev.overbookAfter && !st.ob) return 'event:overbook';
+    if (ev.recoverAfter && n > ev.recoverAfter && st.manual && !st.recovered) return 'event:recovery';
+    return null;
   }
-  /* 27차(GPT 26-F01): 이 탭이 지금 이 판의 주인인지(최종 기록·진행본 삭제 직전 다시 확인). 주인 표시를 써서 다시 읽어 확인(창 사이의 틈을 줄임) */
-  function finalOwner() {
-    if (!S.runId) return true;
-    if (S.noSave === 'conflict') return false;
-    var o = readRun();
-    if (!o) return !(S.rev > 0);   /* 한 번도 저장 못 한 판(저장소 오류)만 주인으로 봄 */
-    if (o.err || o.runId !== S.runId || o.owner !== S.tabTok || (o.rev || 0) !== (S.rev || 0)) return false;
-    try { o.fin = S.tabTok; localStorage.setItem(RKEY, JSON.stringify(o)); var o2 = readRun(); return !!(o2 && o2.runId === S.runId && o2.owner === S.tabTok && o2.fin === S.tabTok); } catch (e) { return true; }
+  /* 2a: 새 근무의 상태(newMission에서 옮김, 내용 동일) */
+  function ciInitState(dd, M, V, seed) {
+    return { clock: pm(V.start), close: pm(V.close), bgQueue: 9, list: M.generated ? V.pax(seed) : V.pax(), seed: seed, adv: true,   /* 25차(사용자 10-14): Day 1도 Day 2 이후와 같은 기능(사진 대조·다시 확인·SV·발급일·기내 반입 계량·7항목 채점). 힌트 상한만 Day 2부터 */ idx: -1, cur: null, results: [], revenue: [], seats: M.aircraft.taken.slice(), infantSeats: M.aircraft.infantSeats.slice(), strikes: 0, seq: 41, day: dd, ac: M.aircraft, evChecks: [], evRep: { need: 0, done: 0 } };
   }
-  function finishInner() {
-    if (S.cur && S.results.indexOf(S.cur) < 0) S.results.push(S.cur);
+  function ciHero() {
+    return '<div class="herostage"><img class="bg" src="' + STG.src('checkin_bg_01') + '" alt="">' +
+      STG.img('staff_checkin_greet_01', '', 50, 2, 86) + STG.img('passenger_female_01', '', 76, 2, 66) + STG.img('passenger_male_02', '', 88, 4, 62) +
+      STG.img('koradon_greet_01', 'mas', 15, 3, 44) + STG.img('korarin_greet_01', 'mas', 30, 3, 42) + '</div>';
+  }
+  function voiceCast(p) { return String(p.voice || p.art || '').replace(/_wheelchair$/, '_cane'); }
+  /* 2a: 화면 위 띠(scr에서 옮김) */
+  function ciBanners() { return (S && S.manual ? '<div class="manbanner">' + esc(tx(L('手作業チェックイン中（DCS障害）― 紙の座席表・手書きの搭乗券とタグ・手荷物リスト', '수기 체크인 중(DCS 장애) — 종이 좌석표·손으로 쓴 탑승권과 태그·수하물 목록', 'Manual check-in (DCS outage) — paper seat chart, handwritten boarding passes and tags, bag list'))) + '</div>' : '') + (S && S.delay && S.cur ? delayBanner(S.cur) : ''); }
+  /* 2a: 체크인편 채점(finishInner에서 옮김, 계산 순서·값 동일) */
+  function ciScore() {
     if (S.delay && !S.dlChecked) { S.dlChecked = true; evCheck('delay-notice', S.results.filter(function (r) { return !r.denied; }).every(function (r) { return r.delayTold; })); }
     var unserved = S.list.length - S.results.length, allR = S.results.concat(S.evRec ? [S.evRec] : []);
     var bad = 0, good = 0, moods = [];
@@ -3516,152 +3712,49 @@ window.LESSONS={"ciq/0-4":{"ja":"事前に送る旅客の情報（API・PNR）�
     allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && OPS.indexOf(n.c) >= 0 && opMiss.indexOf(n.c) < 0) opMiss.push(n.c); }); });
     var opsPass = !opMiss.length, opCapped = safe && !opsPass && rank === 'S'; if (opCapped) rank = 'A';
     var capped = S.day.n >= 2 && G.hints && !G.practice && rank === 'S'; if (capped) rank = 'A';
-    /* 28차(GPT 27-F02): 기록 직전 점수 범위 확인 — 구성 점수·총점·승객 만족·시간이 0~100(시간은 0~240분)이 아니면 기록·진행본을 바꾸지 않고 오류 안내(finish의 catch) */
-    function in100(x) { return typeof x === 'number' && isFinite(x) && x >= 0 && x <= 100; }
-    if (![tot, acc, svc, tim].every(in100) || (parts && !parts.every(function (x) { return in100(x.v); })) || !allR.every(function (r) { return (r.ev || r.denied || in100(r.mood)) && typeof r.mins === 'number' && r.mins >= 0 && r.mins <= 240; })) throw new Error('score-range');
-    G.best = G.best || {}; var key = 'pax.ci.01.' + G.country; if (S.day.n === 1 && (!G.best[key] || G.best[key] < tot)) G.best[key] = tot;
-    /* 27차(GPT 26-F03): 결과 표시에 필요한 계산을 기록보다 먼저 — 여기서 오류가 나면 기록·진행본을 바꾸지 않음 */
-    var rev = S.revenue.map(function (r) { return r.pax + ' ' + r.what + ' ' + (r.cur === 'JPY' ? '¥' : '₩') + r.amt.toLocaleString(); });
-    var rp = allR.map(function (r) {
-      var p = r.p;
-      if (r.ev) return '<div class="rp"><h3>' + esc(tx(L('運航イベント（SV・運航情報）', '운항 이벤트(SV·운항 정보)', 'Operational events (SV, ops information)'))) + '</h3><ul>' + r.notes.map(function (n) { return '<li class="' + (n.t === 'bad' ? 'bad' : n.t === 'good' ? 'good' : '') + '">' + esc(noteText(n)) + (n.l && LS[n.l] ? ' ' + lessonA(n.l, '📘 ' + n.l, 'lessonref') : '') + '</li>'; }).join('') + '</ul></div>';
-      return '<div class="rp"><h3>' + p.pp.sur + ' ' + p.pp.given + ' <span style="font-weight:400;color:var(--sub);font-size:12px">' + (r.denied ? tx(L('搭乗お断り', '탑승 거절', 'Not accepted')) : (r.seat || '—')) + ' · ' + tx(L('満足', '만족', 'Mood')) + ' ' + Math.round(r.mood) + ' · ' + r.mins.toFixed(1) + tx(T.min) + '</span></h3><ul>' +
-        (r.notes.length ? r.notes.map(function (n) { return '<li class="' + (n.t === 'bad' ? 'bad' : n.t === 'good' ? 'good' : '') + '">' + esc(noteText(n)) + (n.l && LS[n.l] ? ' ' + lessonA(n.l, '📘 ' + n.l, 'lessonref') : '') + '</li>'; }).join('') : '<li>' + esc(tx(L('記録なし', '기록 없음', 'No notes'))) + '</li>') + '</ul></div>';
-    }).join('');
-    /* 28차(GPT 27-F01): 기록은 잠금 안의 commitRec 하나로 — 최신 진행본·학습 기록 다시 읽기 → runId·소유권 확인 → 기록 저장 → 진행본 삭제. 화면은 그 뒤에 그림 */
-    var me = S;
-    function commitRec() {
-    /* 학습 이력: 한 판에 한 번만 기록(언어 전환으로 결과를 다시 그려도 중복되지 않게) */
-    /* 26차(R25-03): 같은 판(runId)은 한 번만 기록. 다른 창이 쓴 기록을 덮지 않도록 기록 직전에 저장소를 다시 읽음 */
-    if (!S.hrec && S.runId) { G.store = DY.loadStore(); G.hist = G.store.days; if ((G.store.doneRuns || []).indexOf(S.runId) >= 0) { S.dupRun = true; S.blocked = true;   /* 다른 탭이 이미 이 판을 끝냄 */ S.hrec = G.hist[DY.key(S.day, G.country) + (G.practice ? '.practice' : '')] || { plays: 0, miss: {} }; clearRunNow(S.runId, S.tabTok); } }
-    if (!S.hrec && S.runId && !finalOwner()) { S.blocked = true; S.hrec = G.hist[DY.key(S.day, G.country) + (G.practice ? '.practice' : '')] || { plays: 0, miss: {} }; }   /* 다른 탭이 이어받은 판: 기록·진행본 그대로 */
-    if (window.SAGA_TEST && window.__sagaStop === 'beforeHist' && !S.hrec) { S.hrec = { plays: 0, miss: {} }; S.testStopped = true; }
-    if (!S.hrec) {
-      /* 기록용 오답 구조: 승객·사례 코드·이유 키·행동·심각도(critical / minor / report / self-corrected). 같은 승객의 같은 코드는 1번만 */
-      var crit = {}; (S.safety || []).forEach(function (x) { if (x.code) crit[x.who + '|' + x.code] = true; });
-      var mistakes = [], seen = {};
-      allR.forEach(function (r) {
-        var who = r.p.pp.sur + ' ' + r.p.pp.given;
-        r.notes.forEach(function (n) { if (n.t !== 'bad') return; var code = n.c || n.l; if (!code || seen[r.p.id + '|' + code]) return; seen[r.p.id + '|' + code] = true;
-          var m = { paxId: r.p.id, caseCode: code, reasonKey: 'reason.' + code, action: ACT[code] || 'see-note', severity: crit[who + '|' + code] ? 'critical' : (code === 'sv-miss' || code === 'gate-notify') ? 'report' : 'minor' };
-          if (OPS.indexOf(code) >= 0) m.opsMajor = true; if (r.acts && r.acts[code]) m.actionHistory = r.acts[code].slice(); mistakes.push(m); });
-        (r.selfFix || []).forEach(function (code) { if (seen[r.p.id + '|' + code]) return; seen[r.p.id + '|' + code] = true; var m = { paxId: r.p.id, caseCode: code, reasonKey: 'reason.' + code, action: 'corrected-before-issue', severity: 'self-corrected' }; if (r.acts && r.acts[code]) m.actionHistory = r.acts[code].slice(); mistakes.push(m); });
-      });
-      S.mistakes = mistakes;
-      var miss = []; mistakes.forEach(function (m) { if (m.severity !== 'self-corrected' && miss.indexOf(m.caseCode) < 0) miss.push(m.caseCode); });
-      var at = new Date().toISOString();
-      S.hrec = DY.record(G.hist, S.day, G.country, { scoreVer: 'full7', tot: tot, rank: rank, safe: safe, ops: opsPass, hints: !!G.hints, complete: unserved === 0, practice: !!G.practice, miss: miss, at: at.slice(0, 10) });
-      DY.addAttempt(G.store, { attemptId: at + '-' + Math.floor(Math.random() * 1e6), runId: S.runId || null, day: S.day.n, workplace: G.country, mode: G.practice ? 'practice' : 'campaign', seed: S.seed, score: tot, rank: rank, safetyPassed: safe, complete: unserved === 0, hintsUsed: !!G.hints, opsPassed: opsPass, ruleVersion: '2026-10-11', scoreVersion: 'full7', aircraftLayoutVersion: 'A', mistakes: mistakes, completedAt: at });
-      if (S.runId) G.store.doneRuns = [S.runId].concat((G.store.doneRuns || []).filter(function (x) { return x !== S.runId; })).slice(0, 50);
-      S.saveOk = saveHist();
-      /* 기록이 저장된 뒤에만 진행본을 지움(실패하면 남겨 두어 다시 이어서 끝낼 수 있음) */
-      if (S.saveOk !== false && !(window.SAGA_TEST && window.__sagaStop === 'afterHist')) clearRunNow(S.runId, S.tabTok); }
-    }
-    return storeOp(function () { if (S === me && !S.hrec) commitRec(); }).then(function () { if (S === me) renderRes(); });
-    function renderRes() {
-    save(); var hr = S.hrec, tm = DY.topMiss(hr, 3);
-    var histP = '<div class="panel"><h2>' + esc(tx(L('学習の記録', '학습 기록', 'Your record'))) + ' · DAY ' + S.day.n + ' ' + esc(tx(S.day.nm)) + (G.practice ? ' · ' + esc(tx(L('練習', '연습', 'Practice'))) : '') + '</h2>' +
-      (S.clock > S.close && !unserved ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('締切前に受け付けたお客様は、締切後も手続きを完了しました（締切後は新しく受け付けません）。', '마감 전에 접수한 승객은 마감 후에도 수속을 끝까지 했습니다(마감 후에는 새로 접수하지 않음).', 'Passengers accepted before the close were completed after it (no new passengers after the close).'))) + '</p>' : '') +
-      (S.lateAt ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('締め切り後に到着したお客様への対応（' + hm(S.lateAt) + '）は、時間の点数とは別の状況練習です（上の時刻は最後のお客様の手続きが終わった時刻）。', '마감 후 도착한 승객 응대(' + hm(S.lateAt) + ')는 시간 점수와 별개인 상황 연습입니다(위 시각은 마지막 승객 수속이 끝난 시각).', 'Handling the passenger who arrived after the close (' + hm(S.lateAt) + ') is a separate scenario, not part of the time score (the time above is when the last check-in finished).'))) + '</p>' : '') +
-      (opCapped ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('業務上の大きな見落としが残ったため、ランクはAまでです。', '중대한 업무 오류가 남아 등급은 A까지입니다.', 'A serious operational error remained, so the rank is capped at A.'))) + '</p>' : '') +
-      (capped ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('ヒントONのため、ランクはAまでです。', '힌트를 켜서 등급은 A까지입니다.', 'Tips were on, so the rank is capped at A.'))) + '</p>' : '') +
-      (S.day.n === 1 && G.hints && !G.practice ? '<p class="small" style="margin:0 0 6px">' + esc(tx(L('DAY 1ははじめての勤務のため、ヒントONでもSまで認められます（DAY 2以降はAまで）。', 'DAY 1은 첫 근무라 힌트를 켜도 S까지 인정됩니다(DAY 2부터는 A까지).', 'DAY 1 is your first shift, so S is allowed even with tips on (from DAY 2, A at most).'))) + '</p>' : '') +
-      (S.blocked ? '<p class="small" style="margin:0 0 6px;color:var(--ng,#c33)">' + esc(tx(L('この勤務は別の画面（タブ）で続けられているため、この画面の結果は学習の記録に残していません。', '이 근무는 다른 화면(탭)에서 이어서 진행되고 있어, 이 화면의 결과는 학습 기록에 남기지 않았습니다.', 'This shift is being continued in another window or tab, so these results were not added to your record.'))) + '</p>' : '') +
-      (S.saveOk === false ? '<p class="small" style="margin:0 0 6px;color:var(--ng,#c33)">' + esc(tx(L('この端末に記録を保存できませんでした（プレイは続けられます）。', '이 기기에 기록을 저장하지 못했습니다(플레이는 계속할 수 있습니다).', 'Could not save your record on this device (you can keep playing).'))) + '</p>' : '') +
-      (S.adv ? '<p class="small mono" style="margin:0 0 6px">SEED ' + S.seed + '</p>' : '') + '<p style="margin:0;font-size:14px">' +
-      esc(tx(L('プレイ', '플레이', 'Plays'))) + ' ' + hr.plays + ' · ' + esc(tx(L('最高の回', '최고 회차', 'Best run'))) + ' ' + esc(bestText(hr, S.day.n) || '—') + '</p>' +
-      '<p class="small" style="margin:2px 0 0">' + esc(tx(L('✔＝その回が安全合格 · 安全合格したことがある：', '✔ = 그 회차가 안전 합격 · 안전 합격 경험: ', '✔ = that run passed safety · Ever passed safety: '))) + (hr.safeEver ? '✔' : '—') + '</p>' +
-      (tm.length ? '<p class="small" style="margin:8px 0 2px">' + esc(tx(L('見落としが多い項目', '자주 놓치는 항목', 'What you miss most'))) + '</p><ul class="tmiss">' + tm.map(function (m) { return '<li>' + esc(missLabel(m.code)) + ' <span class="small">×' + m.count + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
-    G.screen = 'result'; playCls();
-    $('#app').innerHTML = '<div class="res"><div class="panel reshead"><div class="twins">' + STG.mascot('koradon', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + STG.mascot('korarin', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + '</div><div class="rank">' + rank + '</div><div><h2 style="margin:0">' + esc(tx(L('チェックイン締め切り', '체크인 마감', 'Check-in closed'))) + ' · ' + V.flight + '</h2><div style="color:var(--sub);font-size:13px">' + hm(S.clock) + ' / ' + tx(L('締切', '마감', 'close')) + ' ' + V.close + ' · ' + tx(L('総合', '종합', 'Total')) + ' ' + tot + '</div></div></div>' +
-      '<div class="gate ' + (safe ? 'ok' : 'ng') + '">' + esc(tx(safe ? L('安全・保安：合格 ― 安全に関わる見落としはありません。', '안전·보안: 합격 — 안전 관련 누락이 없습니다.', 'Safety & security: pass — no safety-related misses.') : L('安全・保安：要再訓練 ― 安全に関わる見落としは、ほかの点数で埋め合わせできません。', '안전·보안: 재훈련 필요 — 안전 관련 누락은 다른 점수로 메울 수 없습니다.', 'Safety & security: retraining needed — safety misses cannot be offset by other scores.'))) + (smiss.length ? '<ul class="smiss">' + smiss.map(function (x) { return '<li>' + esc(typeof x === 'string' ? x : x.who + ' — ' + tx(x.what)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' +
-      (S.day.n === 3 ? '<div class="gate ' + (opsPass ? 'ok' : 'ng') + '">' + esc(tx(opsPass ? L('業務：合格 ― 同伴・検疫・必要な介助など、お客様の旅程に関わる大きな見落としはありません。', '업무: 합격 — 동반·검역·필요한 보조 등 승객 여정에 관한 중대한 오류가 없습니다.', 'Operations: pass — no serious errors affecting companions, quarantine, assistance or the journey.') : L('業務：要確認 ― お客様の同伴・検疫・必要な介助など旅程に関わる大きな見落としが残りました（最高ランクはA）。', '업무: 확인 필요 — 동반·검역·필요한 보조 등 승객 여정에 관한 중대한 오류가 남았습니다(최고 등급 A).', 'Operations: needs work — a serious error affecting companions, quarantine, assistance or the journey remained (best rank A).'))) + (opMiss.length ? '<ul class="smiss">' + opMiss.map(function (c) { return '<li>' + esc(missLabel(c)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' : '') +
-      (S.day.n !== 3 && (S.delay || opMiss.length) ? '<div class="gate ' + (opsPass ? 'ok' : 'ng') + '">' + esc(tx(opsPass ? L('業務：合格 ― 乗り継ぎ・協力者の手続きに大きな見落としはありません。', '업무: 합격 — 연결편·협력자 처리에 중대한 오류가 없습니다.', 'Operations: pass — no serious errors in connections or volunteer handling.') : L('業務：要確認 ― お客様の旅程や同意に関わる大きな見落としが残りました（最高ランクはA）。', '업무: 확인 필요 — 승객의 여정이나 동의에 관한 중대한 오류가 남았습니다(최고 등급 A).', 'Operations: needs work — a serious error affecting the passenger\'s journey or consent remained (best rank A).'))) + (opMiss.length ? '<ul class="smiss">' + opMiss.map(function (c) { return '<li>' + esc(missLabel(c)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' : '') +
-      (parts ? '<div class="score">' + parts.map(function (x) { return '<div class="sc"><div class="v">' + x.v + '</div><div class="l">' + esc(tx({ acc: L('正確さ', '정확성', 'Accuracy'), safe: L('安全', '안전', 'Safety'), svc: L('お客様の満足', '승객 만족', 'Passenger mood'), tim: L('時間', '시간', 'Time'), fee: L('料金の処理', '요금 처리', 'Fees'), rep: L('報告・連絡', '보고·연락', 'Reporting'), evt: L('イベント対応', '이벤트 대응', 'Event handling') }[x.k])) + ' <span class="small">×' + x.w + '</span></div></div>'; }).join('') + '</div>' :
-      '<div class="score"><div class="sc"><div class="v">' + acc + '</div><div class="l">' + esc(tx(L('正確さ', '정확성', 'Accuracy'))) + '</div></div><div class="sc"><div class="v">' + svc + '</div><div class="l">' + esc(tx(L('お客様の満足', '승객 만족', 'Passenger mood'))) + '</div></div><div class="sc"><div class="v">' + tim + '</div><div class="l">' + esc(tx(L('時間', '시간', 'Time'))) + '</div></div><div class="sc"><div class="v">' + (rev.length ? rev.length : 0) + '</div><div class="l">' + esc(tx(L('空港での収入（件）', '공항 수입(건)', 'Airport sales (items)'))) + '</div></div></div>') +
-      (rev.length ? '<div class="panel"><h2>' + esc(tx(L('空港売上 ― 便の締めで精算します（次のステージへ）', '공항 매출 — 편 마감 때 정산합니다(다음 스테이지로)', 'Airport sales — settled when the flight closes (next stages)'))) + '</h2><p class="mono" style="margin:0">' + rev.join('<br>') + '</p></div>' : '') +
-      (SITE ? '' : '<div class="seg" id="reslang" style="margin:0 0 4px">' + ['ja', 'ko', 'en'].map(function (l) { return '<button data-l="' + l + '" class="' + (G.lang === l ? 'on' : '') + '">' + { ja: '日本語', ko: '한국어', en: 'English' }[l] + '</button>'; }).join('') + '</div>') +
-      resultNav(rank, safe, unserved, true) + histP + '<div class="panel"><h2>' + esc(tx(L('ふりかえり', '되돌아보기', 'Replay'))) + '</h2><div class="replay">' + rp + '</div></div>' +
-      '<div class="panel"><h2>' + esc(tx(L('この便のデータは次へつながります', '이 편의 데이터는 다음으로 이어집니다', 'This flight\'s data carries on'))) + '</h2><p style="margin:0;font-size:14px">' + esc(tx(L('チェックインした人数・座席・手荷物の個数と重さは、ゲート（STAGE 02）とロードコントロール W&B（STAGE 03）の入力になります。', '체크인한 인원·좌석·수하물 개수와 무게는 게이트(STAGE 02)와 탑재관리 W&B(STAGE 03)의 입력이 됩니다.', 'Checked-in passengers, seats and bag counts and weights feed the Gate (STAGE 02) and Load Control W&B (STAGE 03).'))) + '</p>' +
-      '<p class="mono" style="font-size:13px;margin:8px 0 0">PAX ' + S.results.reduce(function (a, r) { return a + (r.bp && !r.vol ? 1 + (r.p.party ? r.p.party.length : 0) : 0); }, 0) + (S.results.some(function (r) { return r.bp && r.p.inf; }) ? ' + INF ' + S.results.filter(function (r) { return r.bp && r.p.inf; }).length : '') + ' / BAGS ' + S.results.reduce(function (a, r) { return a + (r.vol ? 0 : r.bags.filter(function (b) { return b.tag; }).length); }, 0) + ' / ' + S.results.reduce(function (a, r) { return a + (r.vol ? 0 : r.bags.reduce(function (x, b) { return x + (b.tag ? b.w : 0); }, 0)); }, 0).toFixed(1) + ' KG' + (S.results.some(function (r) { return r.vol && r.bp; }) ? ' · ' + V.alt.flight + ' PAX ' + S.results.filter(function (r) { return r.vol && r.bp; }).length : '') + '</p></div>' +
-      resultNav(rank, safe, unserved, false) + '</div>';
-    document.querySelectorAll('[data-nav]').forEach(function (b) { b.onclick = { again: startMission, home: renderTitle, next: function () { G.day = S.day.n + 1; save(); startMission(); } }[b.dataset.nav]; });
-    if ($('#reslang')) $('#reslang').onclick = function (e) { var b = e.target.closest('button[data-l]'); if (b) setLang(b.dataset.l); };
-    topOfGame();
-    }
+    return { unserved: unserved, allR: allR, acc: acc, svc: svc, tim: tim, tot: tot, safe: safe, smiss: smiss, parts: parts, rank: rank, opMiss: opMiss, opsPass: opsPass, opCapped: opCapped, capped: capped, opsCodes: OPS };
+  }
+  function ciLegacyBest(tot) { G.best = G.best || {}; var key = 'pax.ci.01.' + G.country; if (S.day.n === 1 && (!G.best[key] || G.best[key] < tot)) G.best[key] = tot; }
+  function ciRevenueLines() { return S.revenue.map(function (r) { return r.pax + ' ' + r.what + ' ' + (r.cur === 'JPY' ? '¥' : '₩') + r.amt.toLocaleString(); }); }
+  function ciReplayHead(r) { var p = r.p; return p.pp.sur + ' ' + p.pp.given + ' <span style="font-weight:400;color:var(--sub);font-size:12px">' + (r.denied ? tx(L('搭乗お断り', '탑승 거절', 'Not accepted')) : (r.seat || '—')) + ' · ' + tx(L('満足', '만족', 'Mood')) + ' ' + Math.round(r.mood) + ' · ' + r.mins.toFixed(1) + tx(T.min) + '</span>'; }
+  function ciResultTitle() { return esc(tx(L('チェックイン締め切り', '체크인 마감', 'Check-in closed'))) + ' · ' + V.flight; }
+  function ciResultGates(sc) {
+    var opsPass = sc.opsPass, opMiss = sc.opMiss;
+    return (S.day.n === 3 ? '<div class="gate ' + (opsPass ? 'ok' : 'ng') + '">' + esc(tx(opsPass ? L('業務：合格 ― 同伴・検疫・必要な介助など、お客様の旅程に関わる大きな見落としはありません。', '업무: 합격 — 동반·검역·필요한 보조 등 승객 여정에 관한 중대한 오류가 없습니다.', 'Operations: pass — no serious errors affecting companions, quarantine, assistance or the journey.') : L('業務：要確認 ― お客様の同伴・検疫・必要な介助など旅程に関わる大きな見落としが残りました（最高ランクはA）。', '업무: 확인 필요 — 동반·검역·필요한 보조 등 승객 여정에 관한 중대한 오류가 남았습니다(최고 등급 A).', 'Operations: needs work — a serious error affecting companions, quarantine, assistance or the journey remained (best rank A).'))) + (opMiss.length ? '<ul class="smiss">' + opMiss.map(function (c) { return '<li>' + esc(missLabel(c)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' : '') +
+      (S.day.n !== 3 && (S.delay || opMiss.length) ? '<div class="gate ' + (opsPass ? 'ok' : 'ng') + '">' + esc(tx(opsPass ? L('業務：合格 ― 乗り継ぎ・協力者の手続きに大きな見落としはありません。', '업무: 합격 — 연결편·협력자 처리에 중대한 오류가 없습니다.', 'Operations: pass — no serious errors in connections or volunteer handling.') : L('業務：要確認 ― お客様の旅程や同意に関わる大きな見落としが残りました（最高ランクはA）。', '업무: 확인 필요 — 승객의 여정이나 동의에 관한 중대한 오류가 남았습니다(최고 등급 A).', 'Operations: needs work — a serious error affecting the passenger\'s journey or consent remained (best rank A).'))) + (opMiss.length ? '<ul class="smiss">' + opMiss.map(function (c) { return '<li>' + esc(missLabel(c)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' : '');
+  }
+  function ciResultExtra(sc) {
+    return '<div class="panel"><h2>' + esc(tx(L('この便のデータは次へつながります', '이 편의 데이터는 다음으로 이어집니다', 'This flight\'s data carries on'))) + '</h2><p style="margin:0;font-size:14px">' + esc(tx(L('チェックインした人数・座席・手荷物の個数と重さは、ゲート（STAGE 02）とロードコントロール W&B（STAGE 03）の入力になります。', '체크인한 인원·좌석·수하물 개수와 무게는 게이트(STAGE 02)와 탑재관리 W&B(STAGE 03)의 입력이 됩니다.', 'Checked-in passengers, seats and bag counts and weights feed the Gate (STAGE 02) and Load Control W&B (STAGE 03).'))) + '</p>' +
+      '<p class="mono" style="font-size:13px;margin:8px 0 0">PAX ' + S.results.reduce(function (a, r) { return a + (r.bp && !r.vol ? 1 + (r.p.party ? r.p.party.length : 0) : 0); }, 0) + (S.results.some(function (r) { return r.bp && r.p.inf; }) ? ' + INF ' + S.results.filter(function (r) { return r.bp && r.p.inf; }).length : '') + ' / BAGS ' + S.results.reduce(function (a, r) { return a + (r.vol ? 0 : r.bags.filter(function (b) { return b.tag; }).length); }, 0) + ' / ' + S.results.reduce(function (a, r) { return a + (r.vol ? 0 : r.bags.reduce(function (x, b) { return x + (b.tag ? b.w : 0); }, 0)); }, 0).toFixed(1) + ' KG' + (S.results.some(function (r) { return r.vol && r.bp; }) ? ' · ' + V.alt.flight + ' PAX ' + S.results.filter(function (r) { return r.vol && r.bp; }).length : '') + '</p></div>';
   }
 
-  /* INT-F02: 결과 뒤 「다음 날 근무」(주 버튼)·「오늘 복습」(별도). 다음 날은 같은 근무지의 캠페인 해금 상태로 판단(연습은 연습 안에서만 이동) */
-  function resultNav(rank, safe, unserved, top) {
-    var n = S.day.n, nx = DY.list[n], clearedNow = safe && unserved === 0 && ({ S: 4, A: 3, B: 2, C: 1 }[rank] || 0) >= 2;
-    var nextOpen = nx && nx.mission && DY.status(G.hist, nx.n, G.country, G.practice) === 'open';
-    var pr = G.practice ? ' · ' + tx(L('練習', '연습', 'practice')) : '';
-    var bNext = nextOpen ? '<button class="start"' + (top ? ' id="nextday"' : '') + ' data-nav="next" style="width:auto">' + esc(tx(L('次の日の勤務へ', '다음 날 근무', "Next day's shift")) + pr + ' · DAY ' + nx.n + ' ' + tx(nx.nm)) + '</button>' : '';
-    var bAgain = function (main) { return '<button class="start"' + (top ? ' id="again"' : '') + ' data-nav="again" style="width:auto' + (main ? '' : ';background:#3f7d8c') + '">' + esc(tx(L('今日の復習（もう一度）', '오늘 복습(다시 하기)', 'Review today (play again)')) + pr + ' · DAY ' + n) + '</button>'; };
-    var bHome = '<button class="start"' + (top ? ' id="home"' : '') + ' data-nav="home" style="width:auto;background:#5d7480">' + esc(tx(L('勤務日の選択へ', '근무일 선택으로', 'Back to shift select'))) + '</button>';
-    var msg = '', btns;
-    if (!nx) { msg = clearedNow || G.practice ? L('チェックイン編の5日間をすべて終えました。気になる日を選んで復習できます。', '체크인편 5일을 모두 마쳤습니다. 원하는 날을 골라 복습할 수 있습니다.', 'You have finished all five days of the check-in chapter. Pick any day to review.') : L('DAY 5は、B以上・安全合格・すべてのお客様の手続き完了でクリアです。まず今日を復習しましょう。', 'DAY 5는 B 이상·안전 합격·모든 승객 처리로 클리어됩니다. 먼저 오늘을 복습해 보세요.', 'DAY 5 is cleared with B or better, a safety pass and every passenger handled. Review today first.'); btns = bAgain(true) + bHome; }
-    else if (G.practice) btns = bNext + bAgain(false) + bHome;
-    else if (clearedNow) btns = bNext + bAgain(false) + bHome;
-    else { msg = nextOpen ? L('今回の勤務は、B以上・安全合格・すべてのお客様の手続き完了に届きませんでした。まず今日を復習しましょう（次の日はすでに開いています）。', '이번 근무는 B 이상·안전 합격·모든 승객 처리에 미치지 못했습니다. 먼저 오늘을 복습해 보세요(다음 날은 이미 열려 있습니다).', 'This shift did not reach B or better, a safety pass and every passenger handled. Review today first (the next day is already open).') : L('次の日は、同じ回でB以上・安全合格・すべてのお客様の手続き完了で開きます。まず今日を復習しましょう。', '다음 날은 한 번의 근무에서 B 이상·안전 합격·모든 승객 처리를 하면 열립니다. 먼저 오늘을 복습해 보세요.', 'The next day opens when one shift gets B or better, a safety pass and every passenger handled. Review today first.'); btns = bAgain(true) + bNext.replace('style="width:auto"', 'style="width:auto;background:#3f7d8c"') + bHome; }
-    var inner = (msg ? '<p class="small"' + (top ? ' id="navmsg"' : '') + ' style="margin:0 0 6px">' + esc(tx(msg)) + '</p>' : '') + '<div class="btns"' + (top ? ' id="resnav"' : '') + ' style="margin-top:0">' + btns + '</div>';
-    return top ? '<div class="panel resnavtop">' + inner + '</div>' : inner;
-  }
-
-  /* ---------- 시작 ---------- */
-  /* 사이트(항공커리어노트) 안에서: 사이트 공통 언어 설정(art-lang)과 맞춤. 상단 언어 버튼(#lang)으로 바꾸면 화면을 다시 그림 */
-  var SITE = !!window.__SHELL;
-  function setLang(l) {
-    if (['ja', 'ko', 'en'].indexOf(l) < 0) return;
-    G.lang = l; document.documentElement.lang = l; save();
-    try { localStorage.setItem('art-lang', l); } catch (e) {}
-    var lb = document.getElementById('lang'); if (lb) lb.querySelectorAll('button[data-l]').forEach(function (b) { b.classList.toggle('on', b.dataset.l === l); });
-    if (G.screen === 'title') renderTitle();
-    else if (G.screen === 'play' && S && S.cur) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); var mr = S.modalRedraw; renderTabs(); showTab(S.cur.tab); var b = S.bub || {}; if (b.me) say('me', b.me, true); if (b.pax) say('pax', b.pax, true); var gv = $('#guide'); if (S.guideL && gv && !gv.classList.contains('hide')) guide(S.guideL); if (mr) mr(); }
-    else if (G.screen === 'play' && S && !S.cur && S.modalRedraw) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); S.modalRedraw(); }
-    else if (G.screen === 'result') finish();
-  }
-  /* 23차: 게임 홈의 Day 카드 → 게임주소#dayN. 그 날이 열려 있을 때만 고르고(잠긴 날은 안내만, 해금·연습 모드를 바꾸지 않음),
-     바로 시작하지는 않음(음성은 사용자가 누른 뒤에만 켤 수 있음). 처리한 뒤 주소의 #dayN은 지워 새로고침 때 다시 적용되지 않게 함 */
-  function applyHash() {
-    var m = /^#day([1-9])$/i.exec(location.hash || ''); if (!m) return false;
-    var n = +m[1], d = DY.list[n - 1];
-    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-    if (!d) return false;
-    var stt = DY.status(G.hist, n, G.country, G.practice);
-    if (stt === 'open') { G.day = n; G.hintsByDay = G.hintsByDay || {}; save(); G.hashNote = { ok: true, n: n }; }
-    else G.hashNote = { ok: false, n: n, soon: stt === 'soon' };
-    return true;
-  }
-  function hashNoteHtml() {
-    var h = G.hashNote; if (!h) return ''; G.hashNote = null;
-    var t = h.ok ? L('DAY ' + h.n + ' を選びました。下の「出勤する」で始めます。', 'DAY ' + h.n + ' 선택 완료. 아래 「출근하기」로 시작합니다.', 'DAY ' + h.n + ' selected. Press Clock in below to begin.')
-      : h.soon ? L('DAY ' + h.n + ' は準備中です。', 'DAY ' + h.n + ' — 준비 중입니다.', 'DAY ' + h.n + ' is coming soon.')
-      : L('DAY ' + h.n + ' はまだ開いていません（前の日をB以上・安全合格で）。開いている日から始めます。', 'DAY ' + h.n + ' — 아직 열리지 않았습니다(앞의 날을 B 이상·안전 합격으로). 열린 날부터 시작합니다.', 'DAY ' + h.n + ' is still locked (clear the day before with B or better and a safety pass). You will start from an open day.');
-    return '<p class="hashnote' + (h.ok ? '' : ' lock') + '" role="status">' + esc(tx(t)) + '</p>';
-  }
-  function boot() {
-    STG.preload();
-    var had = false; try { had = !!localStorage.getItem('acn-saga-v1'); } catch (e) {}
-    load(); G.store = DY.loadStore(); G.hist = G.store.days;
-    if (!had) { var nl = (navigator.language || 'ja').slice(0, 2); G.lang = nl === 'ko' ? 'ko' : nl === 'en' ? 'en' : 'ja'; }
-    if (SITE) { try { var al = localStorage.getItem('art-lang'); if (['ja', 'ko', 'en'].indexOf(al) >= 0) G.lang = al; } catch (e) {} }
-    var lb = document.getElementById('lang');
-    if (lb) { lb.addEventListener('click', function (e) { var b = e.target.closest('button[data-l]'); if (b) setLang(b.dataset.l); }); lb.querySelectorAll('button[data-l]').forEach(function (b) { b.classList.toggle('on', b.dataset.l === G.lang); }); }
-    document.documentElement.lang = G.lang;
-    var hashed = applyHash();
-    renderTitle();
-    if (hashed) { var go = $('#go'); if (go && go.scrollIntoView) setTimeout(function () { go.scrollIntoView({ block: 'center' }); }, 60); }
-    /* 27차(GPT 26-F01): 다른 탭이 같은 판을 이어받거나 지우거나 새 판을 시작하면 바로 알아차림 */
-    window.addEventListener('storage', function (e) {
-      if (e.key !== RKEY || !S || !S.runId || G.screen !== 'play' || S.noSave === 'conflict') return;
-      var o = null; try { o = e.newValue ? JSON.parse(e.newValue) : null; } catch (x) {}
-      if (o && o.runId === S.runId && (o.rev || 0) <= (S.rev || 0)) return;   /* 29차: 이 탭이 넘겨받기·저장하기 전에 쓰인 예전 알림(늦게 도착)은 무시 */
-      if (!o || o.runId !== S.runId || o.owner !== S.tabTok) { S.noSave = 'conflict'; runWarn('conflict'); }
-    });
-    window.addEventListener('hashchange', function () { if (G.screen !== 'title') { if (/^#day/i.test(location.hash)) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} return; } try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); if (d.country) G.country = d.country; G.practice = !!d.practice; } catch (e) {} G.store = DY.loadStore(); G.hist = G.store.days; if (applyHash()) { renderTitle(); var go = $('#go'); if (go && go.scrollIntoView) go.scrollIntoView({ block: 'center' }); } });
-  }
+  /* ================= 2a: 체크인편 STAGE_DEF — 엔진이 부르는 훅(설계: plan/10_엔진분리_2단계_스테이지훅_설계.md) ================= */
+  window.SAGA_STAGES = window.SAGA_STAGES || {};
+  window.SAGA_STAGES.ci = {
+    id: 'ci', stageNo: '01', name: L('チェックイン', '체크인', 'Check-in'), days: window.SAGA_DAYS, rules: window.RULES, rulesVer: '28.0', text: CI_TEXT,
+    hero: ciHero,
+    scene: function (V, ap) { return STG.html({ flight: V.flight, to: V.to, std: V.std, counter: ap.counter }); },
+    toolsHtml: function () { return S.adv ? '<div class="svrow"><button class="btn svb" id="svb">' + esc(tx(L('責任者（SV）に確認・報告', '책임자(SV)에게 확인·보고', 'Check with / report to the supervisor (SV)'))) + '</button></div>' : ''; },
+    bindTools: function () { if ($('#svb')) $('#svb').onclick = askSV; },
+    initState: ciInitState, runFields: RUNF, runSkip: RUNSKIP, freshList: freshList, allUnits: allPax,
+    acCode: function (S, M) { return S.ac === M.layoutB ? 'B' : 'A'; }, acOf: function (c, mi) { return c === 'B' ? mi.layoutB : mi.aircraft; },
+    phase: runPhase, runEvent: function (n) { return ({ swap: runSwap, recovery: runRecovery, delay: runDelay, overbook: runOverbook, late: runLate })[n](); },
+    startUnit: startPax,
+    stateWhy: stateWhy, patchWhy: patchWhy, rangeWhy: ciRangeWhy,
+    tabs: function (c) { return c.p.sup ? ['pnr', 'pp', 'sup', 'entry', 'seat', 'bag', 'bp'] : ['pnr', 'pp', 'entry', 'seat', 'bag', 'bp']; },
+    tabState: tabState, tab: { pnr: tabPNR, pp: tabPP, entry: tabEntry, seat: tabSeat, bag: tabBag, bp: tabBP, sup: tabSup },
+    tabPose: { pnr: 'check', pp: 'check', entry: 'check', seat: 'explain', bag: 'explain', bp: 'idle', sup: 'explain' },
+    banners: ciBanners, afterScr: function () { var db = $('#dlb'); if (db) db.onclick = tellDelay; },
+    voiceCast: voiceCast,
+    score: ciScore, revenueLines: ciRevenueLines, legacyBest: ciLegacyBest,
+    actions: ACT, reportCodes: ['sv-miss', 'gate-notify'], missLabels: MISSL,
+    unitName: function (r) { return r.p.pp.sur + ' ' + r.p.pp.given; }, replayHead: ciReplayHead,
+    resultTitle: ciResultTitle, resultGates: ciResultGates, resultExtra: ciResultExtra, partLabels: {},
+    scoreVer: 'full7', ruleDate: '2026-10-11', layoutVer: 'A',
+    testHooks: function () { return { issueBP: issueBP, setSeat: setSeat, endPax: endPax, nextPax: nextPax }; }
+  };
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
-  if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextPax, showTab: showTab, renderTabs: renderTabs, issueBP: issueBP, setSeat: setSeat, endPax: endPax, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); } };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
+  if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextUnit, showTab: showTab, renderTabs: renderTabs, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); }, setStage: function (id) { setStage(id); save(); renderTitle(); }, stage: function () { return ST.id; }, stageAllowed: stageAllowed };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();
+  if (window.SAGA_TEST && ST.testHooks) Object.assign(AS._t, ST.testHooks());
 })();

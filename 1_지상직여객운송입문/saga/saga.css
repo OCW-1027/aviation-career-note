@@ -384,3 +384,10 @@ a.lessonref{color:inherit;text-decoration:underline;text-underline-offset:2px}
 /* 30차: 이어하기를 준비하는 동안 타이틀 조작을 잠시 막음 */
 .runp.busy{opacity:.75}
 .runp.busy .btn{cursor:progress}
+.stg.play.on{box-shadow:0 0 0 2px var(--vela) inset}   /* 2b: 지금 근무 중인 스테이지 */
+/* 게이트편: 탑승권 카드·여권 대조 */
+.bpcard{background:#0f2b36;border:1px solid #1d4b5c;border-radius:10px;padding:8px 10px;margin:6px 0;display:grid;gap:4px;font-size:13px}
+.bpcard .row{justify-content:space-between}.bpcard .ok{color:#8ef0b5;font-weight:700}
+.ppcmp{align-items:center;gap:12px;margin:6px 0}.ppcmp .as-passport-photo--sm{width:64px;height:auto;border-radius:6px}
+.screen .why{border-radius:8px;padding:8px 10px;margin:8px 0;background:#13303b;font-size:13px}.screen .why.bad{background:#4a1f1f;color:#ffd6d6}
+.screen .opt{background:#0f2b36;color:#e8f4f8;border-color:#1d4b5c}.screen .opt:hover{border-color:#8ef0b5}.screen .opt[disabled]{opacity:.45}.screen .lessonref{color:#9fd6e8}
