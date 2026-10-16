@@ -49,7 +49,7 @@ next:"6-3 How Station Staff Get Stronger in Maintenance"});
 set("6-3",{title:"How Station Staff Get Stronger in Maintenance: From Vocabulary to Running an AOG",hl:"Getting Stronger in Maintenance",subtitle:"Learning in stages, reading manuals by ATA chapter, type familiarisation courses, and a summary of this course",
 lead:["Station and ground staff do not need to become engineers. But people who know the vocabulary, can read the MEL and can be trusted to run the arrangements for an AOG are relied on at every airport.","This final lesson sets out stages for getting stronger in maintenance, tools you can use straight away, and a summary of the course."],
 sections:[
-{h:"Learning in stages",blocks:[{t:"fig",id:"mnt_path",cap:"Animated figure: learn the words, read the MEL and CDL, be there for AOGs, own the maintenance arrangements, choose the next step. Timings are a guide."}]},
+{h:"Learning in stages",blocks:[{t:"fig",id:"mnt_path",cap:"Animated figure: learn the words, read the MEL and CDL, be there for AOGs, help coordinate station maintenance, choose the next step. Timings are a guide."}]},
 {h:"Reading by ATA chapter",blocks:[{t:"fig",id:"mnt_ata",cap:"Animated figure: on a side view of the B737, the rough location of each ATA chapter lights up in turn, along with the list below. Locations are approximate."},
 {t:"table",cols:["Chapter","System","Where the station meets it"],rows:[
 ["21","Air conditioning and pressurisation","Cabin too hot or cold; APU or ground air (1-2)"],
