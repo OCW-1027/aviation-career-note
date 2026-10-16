@@ -60,7 +60,7 @@ sections:[
 {name:"Expiry of the disinsection certificate",x:"Residual treatment is valid for a set period. Flying after it expires means treatment will be required on arrival. ★"},
 {name:"Check with the cleaning and catering companies",x:"A new member of staff who does not know the rule may mix international waste with domestic rubbish."}]},
 {t:"point",x:"It is unglamorous work, but when it is not done properly a country’s farming suffers. This is one place where the airline carries out part of quarantine itself."}]}],
-voice:"[Interview to be added] What to watch for on the ground with catering waste and aircraft disinsection.",
+voice:"Catering waste and aircraft disinsection are largely handled by caterers and cleaning contractors. Even so, which flights are covered and what procedure is required change by country and over time, so the station must receive the latest instructions and pass them on reliably to its contractors.",
 terms:[["International Catering Waste","国際線のごみ","국제선 폐기물"],["Aircraft Disinsection","機内の消毒（虫の駆除）","기내 소독(살충)"],["Vector","病気を運ぶ虫","매개 곤충"],["Incineration","焼却","소각"]],
 quiz:[{q:"How is leftover food from an international flight handled?",opts:["Kept separate from domestic rubbish and disposed of in the prescribed way","Thrown away with domestic rubbish","Taken home by cleaning staff","Served on domestic flights"],a:0,exp:"It can carry livestock diseases and pests."},
 {q:"What is the purpose of disinsection?",opts:["To stop insects such as mosquitoes carrying disease or pests","To make the cabin look clean","To remove smells","To cool the aircraft"],a:0,exp:"Some countries require it of arriving aircraft."},

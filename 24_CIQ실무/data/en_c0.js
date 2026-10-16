@@ -24,7 +24,7 @@ sections:[
 {name:"Never say “it will be fine”",x:"Show the passenger the official information and explain that the authorities make the final decision."},
 {name:"Check before you answer",x:"Rules differ by country and change often. Use current material, not memory."}]},
 {t:"point",x:"CIQ is both the party that lets your flight through and a colleague you run flights with every day at the same airport."}]}],
-voice:"[Interview to be added] What working with the three CIQ agencies taught me.",
+voice:"Customs, immigration and quarantine each look at different things and have different contact points. A station list of the three agencies' contacts, and of which one to consult in which situation, lets you act without hesitation when an urgent question comes in.",
 terms:[["Customs","税関","세관"],["Immigration","出入国審査","출입국 심사"],["Quarantine","検疫","검역"],["Animal and Plant Quarantine","動植物検疫","동식물 검역"]],
 quiz:[{q:"Which part of CIQ confirms a person’s right to enter?",opts:["Immigration (I)","Customs (C)","Quarantine (Q)","The airport company"],a:0,exp:"Immigration looks at people; customs at goods and money; quarantine at disease and pests."},
 {q:"In Japan, who checks meat products and animals brought in?",opts:["The Animal Quarantine Service","Japan Customs","The Immigration Services Agency","The quarantine station for people"],a:0,exp:"Animals go to the Animal Quarantine Service and plants to the Plant Protection Station, both under the agriculture ministry."},

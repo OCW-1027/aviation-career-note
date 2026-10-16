@@ -106,7 +106,7 @@ sections:[
 {name:"Collect cases from your own station",x:"The situations in this course are examples written to fit the rules. What has happened at your own station is the best teaching material."},
 {name:"Related courses",x:"Counter work is covered in Passenger Operations, running a station in Airport Station Management, and practice in judgment in Learning from Field Cases."}]},
 {t:"point",x:"Countries make the rules at the border. The airline’s job is to check, to inform and to comply. Those three things protect the passenger."}]}],
-voice:"[Interview to be added] What I would tell a newcomer about working with CIQ.",
+voice:"CIQ rules change often, through amendments and changes in practice. Rather than relying too much on what you have memorized, make a habit of checking which official information applies, and from when; it is the surest way to protect passengers and your company.",
 terms:[["Authorities","当局","당국"],["Official Source","公式の情報","공식 정보"],["Principle","原則","원칙"],["Verification","確認","확인"]],
 quiz:[{q:"Which is not one of this course’s three principles?",opts:["Memorise every rule","Look up every country on the itinerary","If in doubt, declare","Move nothing before the authorities instruct"],a:0,exp:"Rules change. What does not change is the order of thinking."},
 {q:"A passenger says, “I’m only connecting, so I don’t need anything, do I?” What do you do?",opts:["Check the transit point’s requirements","Answer “no, nothing”","Just say “I don’t know”","Look up only the destination"],a:0,exp:"Some countries make transfer passengers enter."},

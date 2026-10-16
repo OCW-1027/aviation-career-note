@@ -61,7 +61,7 @@ sections:[
 {name:"If the answer is unclear, ask",x:"Confirm with your supervisor or head office’s duty officer before deciding to board."},
 {name:"Keep what you looked up",x:"Save the screen or a printout. It is your evidence if a penalty or complaint follows."}]},
 {t:"point",x:"TIMATIC is not a machine that gives the answer; it is a reference that tells you the requirements. Applying them is your job, because you are the one looking at the passenger."}]}],
-voice:"[Interview to be added] A case the TIMATIC check alone did not catch.",
+voice:"A TIMATIC result of 'OK' means nothing if the nationality, transit point or purpose of travel entered differs from the facts. When you hit an unclear exception, keep a record of the result screen and, if needed, check again against official embassy or government information.",
 terms:[["Travel Information Manual Automatic (TIMATIC)","TIMATIC","TIMATIC"],["Transit Visa","乗り継ぎ査証","환승 비자"],["Purpose of Stay","滞在の目的","체류 목적"],["Automated Document Check","書類の自動確認","서류 자동 확인"]],
 quiz:[{q:"Who produces TIMATIC?",opts:["The International Air Transport Association (IATA)","National customs services","Airport companies","Travel agencies"],a:0,exp:"It is updated from information supplied by authorities and airlines."},
 {q:"Which input must not be forgotten?",opts:["Transit points","The passenger’s occupation","The seat number","The number of bags"],a:0,exp:"Transit points have entry and transit requirements of their own."},

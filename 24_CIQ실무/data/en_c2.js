@@ -117,7 +117,7 @@ sections:[
 {name:"Arriving at an unplanned airport",x:"After a diversion or return, do not move passengers, bags or stores until customs gives instructions (Part 5)."},
 {name:"A passenger leaves a bag behind",x:"A bag left in the reclaim hall is still under customs control. Check with customs before taking it out."}]},
 {t:"point",x:"Customs rules come down to one idea: nothing untaxed enters the country without permission. If in doubt, ask before you move it."}]}],
-voice:"[Interview to be added] What to watch for when clearing aircraft stores and delayed baggage through customs.",
+voice:"Aircraft stores and delayed baggage go through customs on a different track from passengers. Agreeing in advance with the handling company who declares them and which documents are kept prevents missed or late deliveries.",
 terms:[["Aircraft Stores","機用品","기용품"],["Bonded (Under Customs Control)","保税","보세"],["Customs Seal","封印","봉인"],["Property Irregularity Report (PIR)","手荷物事故報告書","수하물 사고 보고서"]],
 quiz:[{q:"How does customs treat catering and drinks on an international flight?",opts:["They are loaded untaxed, with formalities for loading and unloading","They have nothing to do with customs","Tax is paid on every arrival","They count as passenger baggage"],a:0,exp:"What the aircraft carries is also under customs control."},
 {q:"What is needed before a delayed bag is delivered to the passenger?",opts:["Customs inspection","Nothing","Only the passenger’s signature","Only the airport company’s permission"],a:0,exp:"The airline presents the bag on the passenger’s behalf."},
