@@ -16,7 +16,7 @@ sections:[
 {h:"How the United States differs",blocks:[{t:"table",cols:["Difference","Details"],rows:[
 ["Transfer passengers enter","Even international-to-international passengers all clear immigration and customs. A visa or ESTA is required"],
 ["Electronic travel authorisation (ESTA)","For nationals of Visa Waiver Program countries. The fee is USD 40 (since 30 September 2025). Stays of up to 90 days"],
-["No departure control","As a rule, passengers do not face an officer on departure as they do on arrival. Departure is recorded from data sent by the airline ★"],
+["No departure control","As a rule, passengers do not face an officer on departure as they do on arrival. Departure is recorded from data sent by the airline, and some airports add checks such as facial photos ★"],
 ["Immigration at the departure airport","At some airports in Canada, Ireland, Abu Dhabi, the Bahamas, Bermuda and Aruba, US immigration is cleared before departure and the flight arrives like a domestic one"]]},
 {t:"note",x:"* At airports with US immigration before departure, passengers need to arrive at the airport earlier than usual."}]},
 {h:"What the airline does",blocks:[{t:"check",items:[
@@ -24,7 +24,7 @@ sections:[
 {name:"When no boarding pass is issued",x:"The system is waiting for a response from the authorities. Do not issue one on your own judgment; confirm with the set contact (0-4)."},
 {name:"Address in the United States",x:"Ask for the first address in the US before departure."},
 {name:"Connection time",x:"Allow for immigration, baggage re-check and security. When an arrival is late, check connections early."},
-{name:"Missing documents",x:"Carrying someone with neither a visa nor an ESTA brings a penalty on the airline for each passenger. ★"}]},
+{name:"Missing documents",x:"Carrying a passenger without the visa, ESTA or other document required for their nationality, status and purpose of travel can bring penalties, such as fines, on the airline. ★"}]},
 {t:"point",x:"A passenger who is “only passing through” the United States still needs a visa or ESTA. Telling them at booking is the best prevention."}]}],
 voice:"[Interview to be added] What to watch for with transfers in the United States.",
 terms:[["Customs and Border Protection (CBP)","税関・国境警備局","세관·국경보호청"],["Preclearance","出発地での入国審査","사전 입국 심사"],["Visa Waiver Program (VWP)","査証免除プログラム","비자 면제 프로그램"],["Secure Flight","出発前の照合","출발 전 대조"]],
@@ -46,7 +46,7 @@ sections:[
 ["Instant noodles, curry roux and similar","May not be allowed if they contain meat extract ★"],
 ["Fruit and vegetables","Depends on where they came from and where the passenger is going. Apples and bananas handed out on board are covered"],
 ["Rice","Pest risk; may be subject to restrictions"],
-["Plants, seeds and soil","Inspection or a permit is required. Soil cannot be brought in ★"],
+["Plants, seeds and soil","Inspection or a permit is required. Soil generally cannot be brought in (check the authorities for exceptions) ★"],
 ["Bakery items and certain cheeses","Allowed, but they must still be declared"]]},
 {t:"note",x:"* The rules on meat change often with disease outbreaks around the world. Check the US authorities’ websites for the latest."}]},
 {h:"How they are found",blocks:[{t:"rows",items:[
@@ -78,7 +78,7 @@ sections:[
 {t:"note",x:"* The USD 800 for US residents applies after at least 48 hours abroad (once every 30 days). Visitors’ USD 100 gift exemption applies to stays of at least 72 hours and cannot include alcohol. Check the US customs website before relying on these figures."}]},
 {h:"Declaring cash and the like",blocks:[{t:"rows",items:[
 {name:"Over USD 10,000",x:"When cash, cheques and the like total more than USD 10,000, they must be declared, both on entering and on leaving."},
-{name:"The total for people travelling together",x:"Family members and others travelling together are counted together. ★"},
+{name:"The total for people travelling together",x:"Cash carried jointly by a family or group is added together to decide whether it exceeds 10,000 dollars. ★"},
 {name:"If not declared",x:"The money can be seized and penalties applied. Carrying it is not itself prohibited."}]}]},
 {h:"Bringing in a dog (since August 2024)",blocks:[{t:"table",cols:["Applies to","Conditions"],rows:[
 ["Every dog","At least six months old; microchipped; appearing healthy on arrival; a CDC Dog Import Form submitted online (one per dog)"],

@@ -53,7 +53,7 @@ sections:[
 {name:"If you are caught without declaring",x:"A penalty of 40% of the tax due is added, or 60% for a second case within two years."}]}]},
 {h:"Questions you will hear",blocks:[{t:"check",items:[
 {name:"“Are things bought duty-free on departure separate?”",x:"No. They count towards the allowance of the country of arrival."},
-{name:"“Can a family combine allowances?”",x:"Allowances are, in principle, per person. One expensive item cannot be exempted by adding family members’ allowances together. ★"},
+{name:"“Can a family combine allowances?”",x:"Allowances are, in principle, per person. Whether family members can pool allowances for one expensive item depends on each customs authority’s rules. ★"},
 {name:"“Do gifts count?”",x:"Yes. So do things received or carried for someone else."},
 {name:"“How much tax will I pay?”",x:"The airline does not calculate it. Point to the customs authority’s guidance (Korea Customs has a page for estimating tax in advance)."}]},
 {t:"point",x:"A duty-free shop is not a shop where no tax ever applies; it sells to people leaving the country without charging tax. The rules of the country they return to are separate."}]}],
@@ -98,7 +98,7 @@ lead:["Customs does not look only at passengers’ bags. An international aircra
 sections:[
 {h:"What the aircraft carries",blocks:[{t:"fig",id:"ciq_bag",cap:"Figure: delayed baggage and customs."},{t:"table",cols:["Item","How customs treats it"],rows:[
 ["Catering, drinks and equipment (aircraft stores)","Loaded untaxed, for use on an aircraft operating internationally. Loading and unloading involve customs formalities ★"],
-["Duty-free goods for sale on board","Counted, and kept sealed after arrival ★"],
+["Duty-free goods for sale on board","Counted; sealing and storage after arrival follow local customs instructions and company procedure ★"],
 ["Fuel","Fuel for international flights is treated differently for tax from domestic fuel ★"],
 ["Using an international aircraft on a domestic flight","Remaining stores and duty-free goods need formalities before they can be used domestically ★"]]},
 {t:"note",x:"* The names and details of procedures differ by country and airport. Check your company’s rules and the customs authority’s guidance."}]},

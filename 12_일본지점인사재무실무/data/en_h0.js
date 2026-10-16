@@ -119,7 +119,7 @@ deep:[
 {t:"note",x:"* The first four are the “financial documents” under the Companies Act. Listed companies also file consolidated statements and a cash flow statement in their annual securities report under the Financial Instruments and Exchange Act. ★"}]},
 {h:"Financial statements in Korea",blocks:[
 {t:"table",cols:["","Japan (SMEs)","Korea"],rows:[["Core statements","Balance sheet, income statement, statement of changes in equity, notes","Statement of financial position, income statement (comprehensive income), statement of changes in equity, cash flow statement, notes"],["Cash flow statement","Not required","One of the core statements"],["Accounting standards","SME accounting guidelines and similar","K-IFRS for listed companies; general accounting standards for others"],["Publication","Public notice of results (e.g. in the official gazette)","Companies subject to external audit publish on DART"]]},
-{t:"note",x:"* Whether a Korean company is subject to external audit depends on its assets, sales and headcount. ★"}]},
+{t:"note",x:"* Whether a Korean company is subject to external audit depends on its type (stock or limited company) and thresholds for assets, liabilities, sales and headcount. ★"}]},
 {h:"Tips for reading Japanese accounts",blocks:[{t:"rows",items:[
 {name:"△ means minus",x:"Japanese accounts show negatives with “△”. “Net loss △500,000” is a loss of 500,000 yen."},
 {name:"Check the unit first",x:"Yen, thousands or millions: check the top right of the table. Reading a thousands table as yen puts you out by a factor of 1,000."},
@@ -177,10 +177,10 @@ sections:[
 {name:"Deductions",x:"Social insurance (health, long-term care, employees’ pension, employment insurance) and taxes (income tax and residence tax)."}]}],
 kr:[{t:"rows",items:[
 {name:"Attendance",x:"Days worked, overtime hours, holiday work and annual leave taken."},
-{name:"Earnings",x:"Base salary, allowances and overtime pay with a 50% premium on ordinary wages. Meal allowance is free of income tax up to ₩200,000 a month. ★"},
+{name:"Earnings",x:"Base salary, allowances and overtime pay (at workplaces with five or more regular employees, a premium of at least 50% on ordinary wages). For staff not provided with meals, a meal allowance is free of income tax up to ₩200,000 a month. ★"},
 {name:"Deductions",x:"The four social insurances (national pension, health, long-term care, employment) and taxes (income tax and local income tax)."}]}]}]},
 {h:"From gross to take-home",blocks:[{t:"region",jp:[{t:"fig",id:"adm_pay",cap:"Around a fifth of gross pay goes in social insurance and taxes."},
-{t:"note",x:"* Since April 2026, a child and childcare support levy is also collected with health insurance. The amount is small, but a new line appears on the payslip. ★"}],
+{t:"note",x:"* From the April 2026 premium (paid in May), a child and childcare support levy is collected with health insurance. The month it first comes off pay depends on whether the company deducts premiums in the same or the following month. The amount is small, but a new line appears on the payslip. ★"}],
 kr:[{t:"fig",id:"adm_paykr",cap:"Around 13% of gross pay goes in social insurance and taxes."},
 {t:"note",x:"* The national pension rate rises by 0.5 points a year from 2026, reaching 13% in 2033. ★"}]}]},
 {h:"How deductions are set",blocks:[{t:"region",jp:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
@@ -188,14 +188,14 @@ kr:[{t:"fig",id:"adm_paykr",cap:"Around 13% of gross pay goes in social insuranc
 ["Employment insurance","That month’s gross pay × the rate","Monthly; the rate is reviewed each April"],
 ["Income tax","That month’s pay after social insurance, and the number of dependants","Monthly; settled for the year in December’s year-end adjustment"],
 ["Residence tax","Last year’s income","Twelve instalments from June to the following May"]]},
-{t:"note",x:"* The employer also pays its own share of social insurance, so the cost of employing someone is usually about 15% more than their salary. ★"}],
+{t:"note",x:"* The employer also pays its own share of social insurance, so as a rough guide the cost of employing someone is about 15% more than their salary (it varies with premium rates, age and industry). ★"}],
 kr:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
 ["National pension","Standard monthly income (from last year’s income)","Reset every July"],
 ["Health and long-term care","Monthly remuneration","Monthly; last year is settled the following April"],
 ["Employment insurance","That month’s pay × the rate","Monthly"],
 ["Income tax","Simplified tax table (pay and dependants)","Monthly; settled in the year-end settlement in February’s pay"],
 ["Local income tax","10% of income tax","With income tax"]]},
-{t:"note",x:"* The employer also pays its share of the four insurances plus industrial accident insurance, so employment costs are usually around 10% more than salary. ★"}]}]},
+{t:"note",x:"* The employer also pays its share of the four insurances plus industrial accident insurance, so as a rough guide employment costs are a little over 10% more than salary (rates and industry vary). ★"}]}]},
 {h:"The monthly payroll cycle",blocks:[{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Overtime and leave fixed"},{name:"Calculate",sub:"Earnings and deductions"},{name:"Second check",sub:"Anyone very different from last month"},{name:"Pay",sub:"Bank transfer on payday"},{name:"Payslips",sub:"Paper or electronic"},{name:"Pay over",sub:"Withheld tax by the 10th of next month"}]},
 {t:"region",jp:[{t:"point",x:"Withheld income tax is normally paid over by the 10th of the month after payday. Companies with fewer than ten employees can apply to pay twice a year instead. Social insurance is debited from the bank at the end of the following month. ★"}],
 kr:[{t:"point",x:"Withheld income tax and local income tax are filed and paid by the 10th of the month after payday. Companies with 20 or fewer regular employees in the previous year can apply to pay half-yearly. Social insurance premiums are also due on the 10th of the following month. ★"}]}]}],
@@ -227,17 +227,17 @@ deep:[
 {name:"What the year-end adjustment reflects",x:"The spouse and dependant deductions, life insurance deduction, housing loan credit and so on. People paid over 20 million yen, or with side income over 200,000 yen, file their own return."}]}]},
 {h:"Residence tax: 10% of last year’s income",blocks:[
 {t:"rows",items:[
-{name:"Calculation",x:"An income-based part (last year’s taxable income × 10%) plus a flat part (5,000 yen a year). In Tokyo’s 23 wards the 10% is 4% metropolitan tax and 6% ward tax. The 5,000 yen includes a 1,000 yen forest environment tax. ★"},
+{name:"Calculation",x:"An income-based part (last year’s taxable income × 10%) plus a flat part (4,000 yen a year in Tokyo’s 23 wards). In the 23 wards the 10% is 4% metropolitan tax and 6% ward tax. The national forest environment tax of 1,000 yen is collected with the flat part, so the fixed amount comes to 5,000 yen in total. ★"},
 {name:"How it is deducted",x:"The company deducts it from monthly pay and pays it to the municipality where the employee lives (special collection): twelve instalments from June to the following May, exactly as stated in the tax notice the municipality sends around May."},
 {name:"First year and leaving",x:"With no income in the previous year there is no residence tax in the first year. On leaving, the balance is either deducted in full from the final pay or switched to payment by the individual."},
-{name:"Differences by area",x:"The 10% is almost the same nationwide. Some municipalities add a few hundred to a thousand yen to the flat part. ★"}]}]},
+{name:"Differences by area",x:"The 10% is almost the same nationwide. Some municipalities add their own amount to the flat part, so check the figure where the employee lives. ★"}]}]},
 {h:"When rates change and where to check",blocks:[
 {t:"table",cols:["Item","When it changes","Where to check"],rows:[
 ["Health and long-term care insurance","From the March portion (paid in April) each year","The Association’s premium table for each prefecture"],
 ["Child and childcare support levy","From the April portion (paid in May) each year ★","The Association; Children and Families Agency"],
 ["Employees’ pension","Fixed at 18.3% (since September 2017)","Japan Pension Service"],
 ["Employment insurance","1 April each year","Ministry of Health, Labour and Welfare"],
-["Workers’ accident insurance","Every three years as a rule (next expected April 2027 ★)","Ministry of Health, Labour and Welfare"],
+["Workers’ accident insurance","Every three years as a rule (last in April 2024; check MHLW announcements for the next ★)","Ministry of Health, Labour and Welfare"],
 ["Child and childcare contribution","April each year (0.36% in recent years)","Japan Pension Service"],
 ["Income tax","When the tax law changes (2026 is reflected at year-end; the tables change from January 2027 ★)","National Tax Agency"],
 ["Residence tax","A new annual amount from June each year","The municipality’s tax notice"]]},
@@ -323,10 +323,10 @@ kr:[{"t":"note","x":"* Insurance enrolment is normally due within 14 days for he
 {t:"point",x:"Sharing the appraisal criteria at the start of the year makes the year-end result much easier to accept."}]},
 {h:"When someone leaves",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Fix the leaving date",x:"Receive the resignation and confirm the last working day and remaining paid leave."},
-{name:"Insurance procedures",x:"Notify loss of health insurance and pension cover (within five days) and issue the employment insurance separation notice (within ten days). ★"},
+{name:"Insurance procedures",x:"Notify loss of health insurance and pension cover (within five days). File the employment insurance loss notice and separation certificate with Hello Work within ten days from the day after cover ends, then pass on the separation slip Hello Work issues. ★"},
 {name:"Tax documents",x:"Give the withholding tax slip within a month of leaving, and settle how the remaining residence tax is handled. ★"},
 {name:"Returns and handover",x:"Collect the ID card, building pass, computer and keys, and hand over the work."}]}],
-kr:[{"t":"check","items":[{"name":"Fix the leaving date","x":"Receive the resignation and confirm the last working day and remaining annual leave (and pay for unused leave)."},{"name":"Insurance procedures","x":"Notify loss of the four insurances (health within 14 days; pension, employment and accident insurance by the 15th of the following month) and issue the employment insurance separation certificate. ★"},{"name":"Severance and wages","x":"Pay severance and any outstanding wages within 14 days of leaving, and give the retirement income withholding slip. ★"},{"name":"Returns and handover","x":"Collect the ID card, building pass, computer and keys, and hand over the work."}]}]}]}],
+kr:[{"t":"check","items":[{"name":"Fix the leaving date","x":"Receive the resignation and confirm the last working day and remaining annual leave (and pay for unused leave)."},{"name":"Insurance procedures","x":"Notify loss of the four insurances (health within 14 days; pension, employment and accident insurance by the 15th of the following month), and submit the separation certificate within 10 days if the employment centre asks for it after the employee claims unemployment benefit. ★"},{"name":"Severance and wages","x":"Pay severance and any outstanding wages within 14 days of leaving, and give the retirement income withholding slip. ★"},{"name":"Returns and handover","x":"Collect the ID card, building pass, computer and keys, and hand over the work."}]}]}]}],
 voice:"The HR year brings the same tasks back in the same months. Leave a note of what you did this year against each month, and next year’s you, and your successor, will thank you.",
 terms:[["Year-end Tax Adjustment","年末調整","연말정산"],["Annual Social Insurance Base Report","算定基礎届","산정기초신고"],["Annual Labour Insurance Renewal","労働保険の年度更新","노동보험 연도 갱신"],["Insurance Enrolment Notification","資格取得届","자격취득신고"],["Separation Notice (for Unemployment Benefits)","離職票","이직표"]],
 quiz:[{q:"(Japan) In which month is year-end tax adjustment done?",opts:["April","July","December","Every month"],a:2,exp:"The year’s income tax is settled through December’s pay."},
@@ -403,10 +403,10 @@ lead:["So far we have looked at HR and money from the company’s side. This art
 sections:[
 {h:"Documents you receive on joining",blocks:[{t:"fig",id:"adm_slip",cap:"Figure: reading a payslip."},{t:"region",jp:[{t:"rows",items:[
 {name:"Statement of employment terms",x:"Your pay, working hours, days off and contract period (1-1)."},
-{name:"Rules of employment",x:"The company-wide rules. Companies with ten or more employees must draw them up and file them, and staff can see them at any time. ★"},
+{name:"Rules of employment",x:"The company’s basic rules. Every workplace with ten or more regular employees must draw them up and file them, and post or keep them where staff can see them at any time. ★"},
 {name:"Pay regulations",x:"How pay is calculated, allowances and the rules for pay rises."},
 {name:"Article 36 agreement",x:"The agreement between the company and staff representatives that allows overtime and holiday work, including the overtime limits."}]}],
-kr:[{"t":"rows","items":[{"name":"Employment contract","x":"Pay, hours, days off, annual leave and other terms must be set out in writing and given to the employee. ★"},{"name":"Rules of employment","x":"Companies with ten or more regular employees must draw them up and file them."},{"name":"Wage statement","x":"Each payday, a statement showing the items and how they were calculated must be given."},{"name":"Overtime limit","x":"Up to 12 hours a week by agreement (a 52-hour week)."}]}]}]},
+kr:[{"t":"rows","items":[{"name":"Employment contract","x":"Pay, hours, days off, annual leave and other terms must be set out in writing and given to the employee. ★"},{"name":"Rules of employment","x":"Workplaces with ten or more regular employees must draw them up and file them."},{"name":"Wage statement","x":"Each payday, a statement showing the items and how they were calculated must be given."},{"name":"Overtime limit","x":"Up to 12 hours a week by agreement (a 52-hour week)."}]}]}]},
 {h:"What to read first in the rules",blocks:[{t:"check",items:[
 {name:"Hours, breaks and days off",x:"Start and finish times, break times and company holidays."},
 {name:"Overtime and premiums",x:"How to apply for overtime and the premium rates."},

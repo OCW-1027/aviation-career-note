@@ -23,7 +23,7 @@ sections:[
 {h:"Hong Kong and Macao",blocks:[{t:"rows",items:[
 {name:"Separate from mainland China",x:"Immigration control and customs are separate, and visa requirements differ."},
 {name:"E-cigarettes and heated tobacco",x:"Hong Kong bans bringing them in. ★"},
-{name:"Meat and eggs",x:"They cannot be brought in without a health certificate. ★"}]}]},
+{name:"Meat and eggs",x:"They cannot be brought in unless legal requirements are met, such as a recognised health certificate or prior written permission from the Hong Kong authorities (Food and Environmental Hygiene Department). ★"}]}]},
 {h:"What to watch at the counter",blocks:[{t:"check",items:[
 {name:"Heated tobacco carried by passengers to Taiwan",x:"It is widely used in Japan and Korea. It cannot be brought in even in checked baggage."},
 {name:"Food carried by passengers to Taiwan",x:"Souvenirs containing meat, and fruit handed out on board. Say so in the pre-arrival announcement."},
@@ -51,8 +51,8 @@ sections:[
 {t:"note",x:"* Online arrival cards are free on the official websites. Warn passengers about third-party sites that charge a fee."}]},
 {h:"The Middle East",blocks:[{t:"table",cols:["Country","Rules"],rows:[
 ["Saudi Arabia","Alcohol and pork products cannot be brought in ★"],
-["Qatar","Individuals cannot bring in alcohol or pork products ★"],
-["United Arab Emirates","Alcohol is limited in quantity. Check the rules of the destination emirate on pork products ★"],
+["Qatar","Personal imports of alcohol and pork products have been described as prohibited; check current customs guidance ★"],
+["United Arab Emirates","Alcohol limits differ by emirate. Check the destination emirate’s rules on pork products too ★"],
 ["All three","Medicines containing narcotic, psychotropic or other controlled ingredients may need prior approval, a prescription or similar ★"]]},
 {t:"note",x:"* The Middle East details were not checked against official sources. Always check the website of the destination’s authorities or embassy. ★"}]},
 {h:"Medicines: what to watch most, in any country",blocks:[{t:"check",items:[

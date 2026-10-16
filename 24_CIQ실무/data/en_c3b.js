@@ -44,7 +44,7 @@ sections:[
 {name:"Animals in the hold",x:"Pets and animals carried as cargo. Quarantine is told of their arrival (3-4)."}]}]},
 {h:"Leftover meals and rubbish",blocks:[{t:"rows",items:[
 {name:"Keep it separate from ordinary rubbish",x:"Food waste and rubbish from an international cabin is kept apart from domestic rubbish and disposed of in the prescribed way, such as incineration. ★"},
-{name:"Handled by authorised contractors",x:"Unloading, transport and disposal are each done by contractors and procedures approved by the authorities. ★"},
+{name:"Handled by authorised contractors",x:"Unloading, transport and disposal are each done by contractors and procedures that meet the local authorities’ approval or registration requirements. ★"},
 {name:"Nothing is taken away",x:"Cleaning staff and employees must not take leftover meals home, and they cannot be used on domestic flights."},
 {name:"Passengers too",x:"Before arrival, ask passengers not to take meals or fruit off the aircraft (3-2, 3-3)."}]},
 {t:"note",x:"* Procedures and contractor rules differ by country and airport. Check your company’s rules and the authorities’ guidance."}]},

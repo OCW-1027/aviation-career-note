@@ -13,7 +13,7 @@ sections:[
 ["United Kingdom and Europe (Schengen)","An airport transit visa is required from certain nationalities. Check the official list ★"],
 ["China","A visa-free transit scheme of up to 240 hours. It covers ordinary passports of 57 countries, entry through 65 ports and stays within designated areas. The route must be “country A to China to a different third country or region”, with a ticket for a fixed date"],
 ["China (visa exemption)","Ordinary passport holders of 50 countries, including Japan, need no visa for stays of up to 30 days (until 31 December 2026 for Japan)"],
-["Japan and Korea","Schemes allow a short landing during transit. Check the authorities’ guidance for the conditions ★"]]},
+["Japan and Korea","Some countries allow a short landing during transit. Permit types, time allowed and who applies differ by country, so check the authorities’ guidance ★"]]},
 {t:"note",x:"* Eligible nationalities and ports are added and changed often. Always check the authority’s latest list."}]},
 {h:"What to confirm at the counter",blocks:[{t:"check",items:[
 {name:"One booking or separate tickets?",x:"With separately bought tickets the passenger may have to enter at the transit point to reclaim and re-check bags."},

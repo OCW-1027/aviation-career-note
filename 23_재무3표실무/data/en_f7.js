@@ -19,7 +19,7 @@ sections:[
 {t:"point",x:"PBR = PER × ROE. 11.8 × 6.5% (ROE on closing equity) = 0.77. A PBR below 1× is a sign that the market thinks ROE falls short of the return investors want."}]},
 {h:"When multiples fail or mislead",blocks:[{t:"rows",items:[
 {name:"No PER in a loss year",x:"Vela Air made a net loss in year 2, so PER cannot be calculated. EV/EBITDA on the same EV jumps to 2,232 ÷ 208 = 10.7×. Use a normal year’s profit, not a temporarily depressed one."},
-{name:"Aligning leases: EV/EBITDAR",x:"A company that rents its aircraft shows a smaller EBITDA and smaller debt. Adding rent back (EBITDAR 501 + 175 = 676) and adding seven times rent to debt (EV 2,232 + 1,225 = 3,457) gives 5.1×. This is a common way to compare airlines. ★"},
+{name:"Aligning leases: EV/EBITDAR",x:"A company that rents its aircraft shows a smaller EBITDA and smaller debt. Adding rent back (EBITDAR 501 + 175 = 676) and adding seven times rent (an assumption) to debt (EV 2,232 + 1,225 = 3,457) gives 5.1×. It is a shortcut long used to compare airlines; the multiple is an assumption, so try other values. ★"},
 {name:"Accounting standards and year-ends",x:"Net profit and EBITDA mean different things under IFRS and Japanese GAAP (5-6). Align the basis before lining multiples up."},
 {name:"The cycle",x:"Airline profits swing widely, so PER looks low in a good year and high in a bad one. Check against a multi-year average or next year’s forecast."}]}]},
 {h:"Comparing with similar companies (comparable company analysis)",blocks:[{t:"ladder",steps:[

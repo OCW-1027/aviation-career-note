@@ -44,7 +44,7 @@ sections:[
 {t:"point",x:"What counts as a normal current ratio differs by industry: lower in retail, higher in manufacturing. For airlines, read it knowing how unflown ticket revenue behaves."}]},
 {h:"What non-current assets contain (airlines)",blocks:[{t:"table",cols:["Item","Content","Reading point"],rows:[
 ["Aircraft","Owned aircraft at cost less depreciation","JAL 1,041.7bn yen, 32.6% of total assets (31 March 2026) ★. Leased aircraft appear differently depending on the standard (2-3, 5-3)"],
-["Prepayments for aircraft","Advance payments on aircraft not yet delivered","JAL 115.6bn. Shows the size of the order book ★"],
+["Prepayments for aircraft","Advance payments on aircraft not yet delivered","JAL 115.6bn. Prepayments already made on undelivered aircraft (the full order book is in the commitments note) ★"],
 ["Buildings and ground equipment","Hangars, maintenance shops, offices, airport equipment","Terminal buildings belong to airport companies; airlines mostly rent"],
 ["Software and goodwill","Reservation and operations systems; premium paid on acquisitions","Grows with heavy IT investment"],
 ["Investments and deposits","Shares in partners, deposits with airports and lessors","Hard to turn into cash; exclude when judging liquidity"]]}]},
@@ -64,15 +64,15 @@ sections:[
 ["Purchase day","−240,000","0","240,000"],["End of month 1","0","4,000","236,000"],["End of month 12","0","4,000 (cumulative 48,000)","192,000"],["End of month 60","0","4,000 (cumulative 240,000)","0 (or residual value)"]]},
 {t:"point",x:"Depreciation is a cost with no cash leaving. That is why the cash flow statement adds it back to profit to arrive at operating cash flow (3-3)."}]},
 {h:"Three choices that set the calculation",blocks:[{t:"rows",items:[
-{name:"① Useful life",x:"How many years of use. Five for the cart; airlines estimate for each fleet. Japanese airlines mostly use around 15–20 years for airframes. ★ Tax law has its own statutory lives (up to 10 years for aircraft in Japan)."},
-{name:"② Residual value",x:"Value at the end of use. Aircraft have a second-hand market, so 5–10% of cost is often retained. ★"},
+{name:"① Useful life",x:"How many years of use. Five for the cart; airlines estimate a life for each fleet and state it in their accounting-policy notes (check each company’s notes ★). Tax law has its own statutory lives (up to 10 years for aircraft in Japan)."},
+{name:"② Residual value",x:"Value at the end of use. Aircraft have a second-hand market, so part of the cost may be kept as residual value (check each company’s notes for the rate ★)."},
 {name:"③ Method",x:"Straight-line: the same amount each year (the cart). Declining balance: more at first, less later. Straight-line is standard for aircraft."},
 {name:"Example: one aircraft at 15.0bn, 20 years, 5% residual",x:"(15.0 − 0.75) ÷ 20 = 0.71bn a year. Vela Air (aircraft 210bn, most of the 25.4bn depreciation) implies an average write-off period of 8–9 years, consistent with a young fleet."}]},
 {t:"note",x:"* Useful lives, residual values and methods are stated under ‘significant accounting policies’ in each company’s annual securities report, and differ between companies even for the same type. ★"}]},
 {h:"How leased aircraft appear",blocks:[{t:"table",cols:["Standard","Treatment","Effect"],rows:[
 ["Japanese GAAP (current)","Operating leases appear neither as assets nor liabilities; lease rentals are expensed each period","Assets and liabilities look smaller and the equity ratio higher. ANA and Skymark expense aircraft rentals ★"],
 ["IFRS 16 / K-IFRS 1116","Leased aircraft are recognised as right-of-use assets, future rentals as lease liabilities, and the asset is depreciated","Assets and liabilities grow; the cost splits into depreciation plus interest. JAL, Korean Air, Jeju Air ★"],
-["Japan’s new lease standard","From fiscal years beginning on or after April 2027, lessees under Japanese GAAP are expected to bring essentially all leases on balance sheet ★","Balance sheets of J-GAAP airlines such as ANA are expected to change markedly"]]},
+["Japan’s new lease standard","From fiscal years beginning on or after 1 April 2027, lessees under Japanese GAAP bring leases on balance sheet in principle (with exemptions such as short-term and low-value leases) ★","Balance sheets of J-GAAP airlines such as ANA are expected to change markedly"]]},
 {t:"point",x:"Two airlines flying 100 aircraft each can show completely different balance sheets depending on how many are owned, how many leased, and which standard applies. Check how leases are treated before comparing."}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Calculate depreciation",x:"An aircraft costing 12.0bn depreciated straight-line over 18 years with 10% residual: how much a year? How does annual profit change if the life is 15 years instead?"},
@@ -81,7 +81,7 @@ voice:"When the front line calls an aircraft ‘old’ or ‘new’, remember th
 terms:[["Depreciation","減価償却","감가상각"],["Useful life","耐用年数","내용연수"],["Residual value","残存価額","잔존가치"],["Straight-line method","定額法","정액법"],["Declining-balance method","定率法","정률법"],["Right-of-use asset","使用権資産","사용권자산"]],
 quiz:[{q:"Which is true of depreciation?",opts:["A cost with no cash leaving","A cost paid in cash every month","A cost proportional to sales","A repayment of debt"],a:0,exp:"Cash leaves on purchase day; the cost follows in instalments."},
 {q:"Shortening the useful life…",opts:["Raises annual depreciation and lowers profit","Lowers annual depreciation and raises profit","Increases cash","Increases liabilities"],a:0,exp:"The same cost is divided by fewer years."},
-{q:"Under IFRS 16, a leased aircraft…",opts:["Appears as a right-of-use asset and a lease liability","Does not appear","Appears in revenue","Appears in equity"],a:0,exp:"Lessees bring leases on balance sheet; Japanese GAAP is moving the same way ★."}]});
+{q:"Under IFRS 16, a leased aircraft…",opts:["Appears as a right-of-use asset and a lease liability","Does not appear","Appears in revenue","Appears in equity"],a:0,exp:"Lessees bring leases on balance sheet; Japanese GAAP follows under its new standard for fiscal years beginning on or after 1 April 2027 ★."}]});
 set("2-4",{title:"Receivables, Inventory and Payables: Three Items That Tie Up Cash",hl:"Tie Up Cash",subtitle:"Money from sales not yet received, money for purchases not yet paid, money sleeping in the storeroom. Working capital",
 lead:["Profitable, yet short of cash. Much of the reason lies in three items: receivables (sold but not yet collected), inventory (bought but not yet used or sold) and payables (bought but not yet paid). The first two tie up cash; the third helps it.","For airlines the shape differs. Passengers pay before flying, so receivables are small and unearned ticket revenue helps cash instead. Inventory is spare parts: not for sale, yet large. This lesson brings the pieces together as working capital."],
 sections:[
@@ -122,7 +122,7 @@ sections:[
 {t:"note",x:"* JAL, 31 March 2026: share capital 273.2bn yen, capital surplus 270.5bn, retained earnings 508.3bn, treasury shares −21.2bn, accumulated other comprehensive income 81.2bn (including 31.7bn of cash flow hedges), other equity instruments 177.7bn, non-controlling interests 45.1bn → total equity 1,334.8bn. ★"}]},
 {h:"The equity ratio: a measure of strength",blocks:[{t:"rows",items:[
 {name:"Equity ratio = equity attributable to owners ÷ total assets",x:"Taiyaki stall 364,000 ÷ 580,000 = 62.8%. Vela Air 1,920 ÷ 6,000 = 32.0%. JAL 40.3%, ANA 37.7% (31 March 2026) ★."},
-{name:"Higher is safer, but",x:"Less borrowing means more resilience to losses. Yet borrowing lifts the shareholders’ return (ROE) on the same profit (Part 6). Airlines at 30–40% are usually regarded as sound. ★"},
+{name:"Higher is safer, but",x:"Less borrowing means more resilience to losses. Yet borrowing lifts the shareholders’ return (ROE) on the same profit (Part 6). There is no industry-wide level that counts as enough; read it with earnings power, cash on hand and loan terms (JAL 40.3%, ANA 37.7% at 31 March 2026). ★"},
 {name:"The pandemic lesson",x:"ANA’s equity ratio fell to 25.6% at the end of FY2022 and recovered to 37.7% at the end of FY2025 (ANA results presentation). Airline equity shrinks fast when demand stops, so it is built up in good times. ★"},
 {name:"Equity-like funding",x:"In April 2025 JAL issued perpetual subordinated bonds (other equity instruments, 177.7bn) recorded in equity, and resolved to issue 200bn of bond-type preferred shares: funding counted as equity rather than debt, preserving the equity ratio while raising money for aircraft. ★"}]},
 {t:"point",x:"There are only two ways to raise equity: earn and keep profit (retained earnings) or raise new money from shareholders. If equity has risen by neither route, look for valuation differences or hybrid capital."}]},
@@ -130,7 +130,7 @@ sections:[
 ["Dividend","Part of profit paid to shareholders","Retained earnings −, cash −","Financing − (JAL, year to March 2026: 40.1bn) ★"],
 ["Share buyback","Own shares bought on the market; fewer shares, higher value per share","Treasury shares (negative) rise, cash −","Financing − (JAL: 20.0bn) ★"],
 ["Share issue","New shares issued to raise money","Share capital and surplus +, cash +","Financing +"],
-["Payout ratio","Dividends ÷ net profit","—","JAL 31.3%, ANA about 20% (FY2025) ★"]]}]},
+["Payout ratio","Dividends ÷ net profit","—","JAL 31.3%, ANA 18.1% (FY2025) ★"]]}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Move the equity ratio",x:"If Vela Air raised 20.0bn in new shares, what is its equity ratio? If it borrowed 20.0bn? If it earned 20.0bn of profit?"},
 {name:"Think about a dividend",x:"If the stall, with retained earnings of 64,000, paid the owner a 30,000 dividend, what happens to equity and cash?"}]}]}],
@@ -149,7 +149,7 @@ sections:[
 ["Cash and equivalents","10,102","31.6%","About half a year’s revenue. Airlines hold deep cash against demand shocks"],
 ["Trade receivables","2,546","8.0%","Awaiting payment from agencies, card companies, cargo customers and mileage partners"],
 ["Inventories","606","1.9%","Spare parts etc."],
-["Aircraft","10,417","32.6%","Owned aircraft at book value; under IFRS 16 this includes right-of-use assets for leased aircraft ★"],
+["Aircraft","10,417","32.6%","Owned aircraft at book value; under IFRS 16 it may also include right-of-use assets for leased aircraft (breakdown in the annual report notes) ★"],
 ["Prepayments for aircraft","1,156","3.6%","Advance payments on ordered aircraft (A350 etc.)"],
 ["Other property and equipment","1,022","3.2%","Buildings and ground equipment"],
 ["Goodwill and intangibles","1,117","3.5%","Systems and acquisition premiums"],

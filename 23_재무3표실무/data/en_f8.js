@@ -94,7 +94,7 @@ sections:[
 ["EBITDA","Rises (rent becomes depreciation and interest)","No change"],
 ["Operating cash flow","Rises (repayments move to financing activities)","No change"]]},
 {t:"check",items:[
-{name:"Read ANA’s notes",x:"In ANA’s annual securities report (Japanese GAAP), find the note on future operating lease payments. Think about how the equity ratio changes if you add them to liabilities. ★"},
+{name:"Read ANA’s notes",x:"In ANA’s annual securities report (Japanese GAAP), find the note on future payments under non-cancellable operating leases. Think about how the equity ratio changes if you add them to liabilities. ★"},
 {name:"Predict the year to March 2028",x:"When the new lease standard starts, which way will EBITDA and interest-bearing debt move at a Japanese GAAP airline? Write the reason."}]}]}],
 voice:"A company that pays lease rent but shows little debt may simply be on a different standard. The offices and vehicles your branch rents will also come onto the balance sheet under the new standard. Keep a list of the contracts and you can answer head office at once.",
 terms:[["Right-of-use asset","使用権資産","사용권자산"],["Lease liability","リース負債","리스부채"],["Operating lease","オペレーティング・リース","운용리스"],["Goodwill","のれん","영업권"],["Statement of financial position","財政状態計算書","재무상태표"]],
