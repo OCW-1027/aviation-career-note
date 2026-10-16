@@ -14,8 +14,8 @@ sections:[
 {h:"What happens in a loss year",blocks:[{t:"rows",items:[
 {name:"Equity shrinks",x:"Year 2’s loss of 10.5bn cuts retained earnings by 10.5bn. Share capital is unchanged, so total equity falls and the equity ratio drops (33.3% → 31.7%)."},
 {name:"Dividends stop",x:"Dividends can only be paid out of retained earnings (the distributable amount). Repeated losses that exhaust retained earnings make dividends impossible. Vela Air paid none in year 2."},
-{name:"The road to negative equity",x:"If accumulated losses push retained earnings below zero and eat into capital and surplus, equity turns negative (2-1). Many airlines had to recapitalise during the pandemic. ★"}]},
-{t:"note",x:"* JAL, 31 March 2026: retained earnings 508.3bn yen. The year’s increase is profit of 137.6bn less dividends of 40.1bn and treasury-share and other adjustments. ★"}]},
+{name:"The road to negative equity",x:"If accumulated losses push retained earnings below zero and eat into capital and surplus, equity turns negative (2-1). Several airlines recapitalised during the pandemic (JAL and ANA both issued new shares). ★"}]},
+{t:"note",x:"* JAL, 31 March 2026: retained earnings 508.3bn yen. The year’s increase is profit of 137.6bn less dividends of 40.1bn, adjusted for distributions on equity instruments and transfers of defined-benefit remeasurements. ★"}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Write a roll-forward",x:"If the stall earns 30,000 yen in month 2 and pays the owner a 10,000 dividend, what are retained earnings at month end (starting from 64,000)?"},
 {name:"Check a join",x:"Vela Air aircraft: 2,146 at end of year 1 → 1,884 at end of year 2 → 1,914 at end of year 3. Explain each year with purchases and depreciation (1-1, 3-4)."}]}]}],

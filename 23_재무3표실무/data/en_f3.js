@@ -16,7 +16,7 @@ sections:[
 {name:"+ − − (mature)",x:"Earns cash from trading, invests within it, repays debt and pays dividends with the rest. Vela Air year 1; JAL in recent years."},
 {name:"+ − + (growth investment)",x:"Invests beyond earnings and covers the gap with borrowing or new shares. Airlines taking delivery of many aircraft. JAL’s year to March 2026 shows + in financing because of perpetual subordinated bonds."},
 {name:"+ + − (shrinking, selling)",x:"Selling assets to repay debt: companies in restructuring or fleet rationalisation."},
-{name:"− − + (start-up or crisis)",x:"Cash leaves the business and borrowing fills the gap. The stall’s first month is close to this (operating is positive, but the cash position rests on investing and financing). Many airlines looked like this in fiscal 2020. ★"}]}]},
+{name:"− − + (start-up or crisis)",x:"Cash leaves the business and borrowing fills the gap. The stall’s first month is close to this (operating is positive, but the cash position rests on investing and financing). Airlines such as JAL looked like this in fiscal 2020. ★"}]}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Sort the items",x:"‘Sold an aircraft’, ‘Issued bonds’, ‘Paid for fuel’, ‘Paid a dividend’, ‘Bought spare parts’, ‘Paid corporate tax’: which of the three groups?"},
 {name:"Find your company’s shape",x:"In the latest earnings release of your own or a nearby airline, read the signs of the three groups and decide which of the four patterns fits."}]}]}],
@@ -79,7 +79,7 @@ sections:[
 {t:"point",x:"A company with positive FCF and a settled balance between repayment, dividends, investment and reserves has stable finances. In a negative year, check in financing how the gap was filled: borrowing, new shares or cash on hand."}]},
 {h:"Why airline FCF swings",blocks:[{t:"rows",items:[
 {name:"Deliveries come in lumps",x:"Aircraft arrive years after ordering, so capex jumps in delivery years. JAL’s fixed asset purchases: 290.0bn in the year to March 2025, 202.4bn in the year to March 2026 ★."},
-{name:"Demand shocks",x:"In fiscal 2020 many airlines had negative operating cash flow and deeply negative FCF, filled by borrowing and share issues. ★"},
+{name:"Demand shocks",x:"In fiscal 2020 airlines such as JAL had negative operating cash flow and deeply negative FCF, filled by borrowing and share issues. ★"},
 {name:"The unearned-revenue wave",x:"In growth years, advance ticket sales swell operating cash flow and make FCF look better than underlying strength; the following year can see a reaction."},
 {name:"Lease or buy",x:"Growing the fleet through leases shows no investing outflow; the cost appears in operating expenses (or as depreciation plus lease payments). Not directly comparable with a purchase-heavy airline (2-3)."}]}]},
 {h:"Try it",blocks:[{t:"check",items:[

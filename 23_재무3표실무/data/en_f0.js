@@ -12,7 +12,7 @@ sections:[
 {t:"point",x:"The three statements are not separate documents. They are the same loop photographed from three angles, which is why their numbers connect (we check this in 0-3)."}]},
 {h:"Applied to an airline",blocks:[{t:"rows",items:[
 {name:"Raise",x:"Shareholders’ capital and borrowing from banks and bond markets. Aircraft are expensive, so many are leased rather than bought."},
-{name:"Spend",x:"Aircraft, spare engines, maintenance facilities, airport counters and systems. Aircraft alone can be around 30% of total assets (★ see the real examples in Part 1)."},
+{name:"Spend",x:"Aircraft, spare engines, maintenance facilities, airport counters and systems. At JAL, for example, aircraft were 32.6% of total assets at 31 March 2026 (see 2-6 ★)."},
 {name:"Earn",x:"Passenger fares, cargo, ancillaries such as excess baggage and seat selection, and partner revenue from mileage programmes."},
 {name:"Pay",x:"Fuel, staff, ground handling, maintenance, airport charges, aircraft leases and depreciation, distribution costs."},
 {name:"Keep",x:"Pay corporate tax out of profit, pay dividends, and keep the rest as the seed money for the next aircraft."}]}]},

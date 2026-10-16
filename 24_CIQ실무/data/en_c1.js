@@ -15,7 +15,7 @@ sections:[
 {name:"Visa exemption",x:"Under agreements between countries, short stays may need no visa. Purpose (tourism, business) and length of stay are limited."},
 {name:"What to look at",x:"Type (visitor, work, study, transit), validity, number of entries (single or multiple), name and passport number."},
 {name:"Electronic visas",x:"There is no sticker. Confirm with the printed notice or the authority’s system."},
-{name:"A visa in an old passport",x:"Many countries require the passenger to carry both the old and the new passport. ★"}]}]},
+{name:"A visa in an old passport",x:"Some countries, such as the United States, require the passenger to present both the old and the new passport. ★"}]}]},
 {h:"What may be required besides a visa",blocks:[{t:"table",cols:["Item","Example"],rows:[
 ["Return or onward ticket","Some countries refuse entry on a one-way ticket"],
 ["Permitted length of stay","The booked return date must not exceed the stay allowed"],

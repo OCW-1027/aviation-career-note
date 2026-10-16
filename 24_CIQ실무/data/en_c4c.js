@@ -51,8 +51,8 @@ sections:[
 {t:"note",x:"* Online arrival cards are free on the official websites. Warn passengers about third-party sites that charge a fee."}]},
 {h:"The Middle East",blocks:[{t:"table",cols:["Country","Rules"],rows:[
 ["Saudi Arabia","Alcohol and pork products cannot be brought in ★"],
-["Qatar","Personal imports of alcohol and pork products have been described as prohibited; check current customs guidance ★"],
-["United Arab Emirates","Alcohol limits differ by emirate. Check the destination emirate’s rules on pork products too ★"],
+["Qatar","Alcohol and pork products cannot be brought in and are confiscated if found (Hamad International Airport guidance) ★"],
+["United Arab Emirates","The duty-free alcohol allowance is 4 litres in Dubai, Abu Dhabi and Sharjah, but rules on possessing and drinking alcohol differ by emirate (Sharjah bans it). Check the destination emirate’s rules on pork products too ★"],
 ["All three","Medicines containing narcotic, psychotropic or other controlled ingredients may need prior approval, a prescription or similar ★"]]},
 {t:"note",x:"* The Middle East details were not checked against official sources. Always check the website of the destination’s authorities or embassy. ★"}]},
 {h:"Medicines: what to watch most, in any country",blocks:[{t:"check",items:[

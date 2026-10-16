@@ -43,12 +43,14 @@ details{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:
 .custom{margin-top:10px;padding:12px 14px;border:2px dashed var(--line);border-radius:12px}.custom h3{margin:0 0 8px;font-size:14px}
 button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 @media(prefers-reduced-motion:reduce){.bar div,.bsbars>div>div{transition:none}}
+.goals{margin:0;padding-left:22px;font-size:14px}.goals li{margin:3px 0}.goals small{color:var(--muted);margin-left:6px}.score{margin-top:12px}.score table{width:100%;border-collapse:collapse;font-size:13.5px}.score th,.score td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left}.score td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.score tr.tot td{font-weight:800;border-top:2px solid var(--line)}.rank{display:flex;align-items:center;gap:12px;margin-top:10px;padding:10px 14px;border-radius:12px;background:#eef3f8}.rank b{font-size:30px;line-height:1;color:var(--ink)}.rank span{font-size:14px}.summary td:not(:first-child){white-space:nowrap}.score th{white-space:nowrap}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="finsim"></script>
 </head>
 <body>
 <div class="wrap">
 <header><span class="langs" id="lang" role="group" aria-label="Language"><button type="button" data-l="ja">日本語</button><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button></span><h1 id="t_title"></h1><p id="t_lead"></p></header>
+<div class="card"><h2 id="t_goalT"></h2><ol class="goals" id="goals"></ol></div>
 
 <div class="card">
  <div class="qbar" id="qbar"></div>
@@ -58,7 +60,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
  <details id="ovrbox" style="margin-top:8px"><summary id="t_ovr"></summary><div class="dbody"><p class="note" id="t_ovrlead" style="margin-top:0"></p><div class="inp"><label><span id="t_oil"></span><input type="number" id="o_oil" step="5" placeholder="0"></label><label><span id="t_fx"></span><input type="number" id="o_fx" step="1" placeholder="150"></label><label><span id="t_lfd"></span><input type="number" id="o_lfd" step="1" placeholder="0"></label></div></div></details>
  <h2 id="t_dec" style="margin-top:14px"></h2>
  <div class="dec" id="dec"></div>
- <div id="custbox" class="custom" style="display:none"><h3 id="t_cust"></h3><div class="inp"><label><span id="t_cfare"></span><input type="number" id="c_fare" step="1" value="0"></label><label><span id="t_ccap"></span><input type="number" id="c_cap" step="1" value="0"></label><label><span id="t_ccut"></span><input type="number" id="c_cut" step="0.5" value="0" min="0" max="10"></label><label><span id="t_cbuy"></span><input type="number" id="c_buy" step="1" value="0" min="0" max="5"></label><label><span id="t_clease"></span><input type="number" id="c_lease" step="1" value="0" min="0" max="5"></label><label class="chk"><input type="checkbox" id="c_hedge"><span id="t_chedge"></span></label><label class="chk"><input type="checkbox" id="c_fsc"><span id="t_cfsc"></span></label></div></div>
+ <div id="custbox" class="custom" style="display:none"><h3 id="t_cust"></h3><div class="inp"><label><span id="t_cfare"></span><input type="number" id="c_fare" step="1" value="0" min="-10" max="10"></label><label><span id="t_ccap"></span><input type="number" id="c_cap" step="1" value="0" min="-10" max="10"></label><label><span id="t_ccut"></span><input type="number" id="c_cut" step="0.5" value="0" min="0" max="10"></label><label><span id="t_cbuy"></span><input type="number" id="c_buy" step="1" value="0" min="0" max="5"></label><label><span id="t_clease"></span><input type="number" id="c_lease" step="1" value="0" min="0" max="5"></label><label class="chk"><input type="checkbox" id="c_hedge"><span id="t_chedge"></span></label><label class="chk"><input type="checkbox" id="c_fsc"><span id="t_cfsc"></span></label></div></div>
  <div class="go"><button id="btn_go"></button><button class="sec" id="btn_reset"></button><span class="note" id="t_hint" style="margin:0"></span></div>
 </div>
 
@@ -73,7 +75,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 </div>
 
 <div class="card"><div class="why" id="why"></div></div>
-<div class="card summary" id="sumcard" style="display:none"><h2 id="t_sum"></h2><div id="summary"></div><div class="verdict" id="verdict"></div></div>
+<div class="card summary" id="sumcard" style="display:none"><h2 id="t_sum"></h2><div id="summary"></div><div class="verdict" id="verdict"></div><div class="score" id="score"></div></div>
 <div class="card"><h2 id="t_how"></h2><div id="how"></div><div class="note" id="t_note"></div></div>
 </div>
 <script>
@@ -88,7 +90,7 @@ ja:{title:'航空会社経営シミュレーション ― Vela Airの1年',lead:
  K:{lf:'座席利用率',rask:'座席キロあたり収入',cask:'座席キロあたり費用',be:'損益分岐の利用率',eqr:'自己資本比率',cash:'手元現金'},
  why:'なぜ、こう動いたか',sum:'1年の結果',col:['','第1','第2','第3','第4','年間','何もしなかった場合'],rows:['売上高','営業利益','当期純利益','営業キャッシュフロー','期末現金','自己資本比率'],
  verdict:{good:'何もしなかった場合より年間の純利益が {d}億円多くなりました。対応が効いています。',bad:'何もしなかった場合より年間の純利益が {d}億円少なくなりました。費用だけ増えて収入が追いつかなかった対応がどれか、解説を読み返してみましょう。',even:'何もしなかった場合とほぼ同じ結果でした。'},
- how:'このシミュレーションの仕組み',note:'※ 架空の数字です。実際の航空会社の公開資料の範囲を参考に Vela Air の設定として作りました。四半期ごとの季節変動や税金の計算は簡略化しています。',
+ goalT:'今年の目標（100点満点）',G:[['純利益を「何もしなかった場合」より増やす','最大50点（120億円の改善で満点）'],['年間の純利益を黒字にする','15点（−40億円までなら8点）'],['期末の現金を1,200億円以上に保つ','15点（1,150億円以上なら8点）'],['自己資本比率を32.0%以上に保つ','10点'],['営業赤字の四半期をなくす','10点（1回なら5点）']],scoreT:'目標の達成と得点',sc:['目標','結果','得点'],tot:'合計',rankL:'評価',R:{S:'S ― 経営判断が数字にしっかり表れています',A:'A ― よい1年です。届かなかった目標の理由を解説で確かめましょう',B:'B ― 効いた対応と効かなかった対応があります。四半期ごとの解説を見比べましょう',C:'C ― 費用と現金の動きを、もう一度3つの表で追ってみましょう'},times:'{n}回',ref:'※ 状況の変更や直接入力を使った年は、参考の点数です（比べる「何もしなかった場合」も同じ状況で計算しています）。',how:'このシミュレーションの仕組み',note:'※ 架空の数字です。実際の航空会社の公開資料の範囲を参考に Vela Air の設定として作りました。四半期ごとの季節変動や税金の計算は簡略化しています。',
  EV:{calm:['平常どおりの四半期','原油85ドル/バレル、為替150円、座席利用率82%。まず3つの表の形を見てください。'],
      oil:['原油価格が40%上昇','中東情勢で原油が85→119ドル/バレル。燃油費が一気に増えます。国際線は燃油サーチャージで一部を回収できますが、国内線は回収できません。'],
      boom:['訪日需要の増加と円安','円が150→160円。訪日客が増え座席利用率が上がりますが、ドル建ての燃油・整備・リース料も円で見ると増えます。'],
@@ -122,7 +124,7 @@ ko:{title:'항공사 경영 시뮬레이션 — Vela Air의 1년',lead:'가상 �
  K:{lf:'탑승률',rask:'좌석킬로당 수입',cask:'좌석킬로당 비용',be:'손익분기 탑승률',eqr:'자기자본비율',cash:'보유 현금'},
  why:'왜 이렇게 움직였나',sum:'1년의 결과',col:['','1분기','2분기','3분기','4분기','연간','아무것도 안 했을 때'],rows:['매출','영업이익','당기순이익','영업현금흐름','기말 현금','자기자본비율'],
  verdict:{good:'아무것도 하지 않았을 때보다 연간 순이익이 {d}억 엔 많습니다. 대응이 효과를 냈습니다.',bad:'아무것도 하지 않았을 때보다 연간 순이익이 {d}억 엔 적습니다. 비용만 늘고 수입이 따라오지 못한 대응이 무엇이었는지 해설을 다시 읽어 보세요.',even:'아무것도 하지 않았을 때와 거의 같은 결과입니다.'},
- how:'이 시뮬레이션의 구조',note:'※ 가상의 숫자입니다. 실제 항공사 공개 자료의 범위를 참고해 Vela Air 설정으로 만들었습니다. 분기별 계절 변동과 세금 계산은 단순화했습니다.',
+ goalT:'올해의 목표(100점 만점)',G:[['순이익을 「아무것도 안 했을 때」보다 늘린다','최대 50점(120억 엔 개선이면 만점)'],['연간 순이익을 흑자로 만든다','15점(−40억 엔까지는 8점)'],['기말 현금을 1,200억 엔 이상 유지한다','15점(1,150억 엔 이상이면 8점)'],['자기자본비율을 32.0% 이상 유지한다','10점'],['영업 적자 분기를 없앤다','10점(1번이면 5점)']],scoreT:'목표 달성과 점수',sc:['목표','결과','점수'],tot:'합계',rankL:'평가',R:{S:'S — 경영 판단이 숫자에 잘 드러났습니다',A:'A — 좋은 1년입니다. 놓친 목표의 이유를 해설로 확인해 보세요',B:'B — 효과가 있던 대응과 없던 대응이 섞여 있습니다. 분기별 해설을 비교해 보세요',C:'C — 비용과 현금의 움직임을 재무제표로 다시 따라가 보세요'},times:'{n}번',ref:'※ 상황 변경이나 직접 입력을 쓴 해는 참고 점수입니다(비교하는 「아무것도 안 했을 때」도 같은 상황으로 계산합니다).',how:'이 시뮬레이션의 구조',note:'※ 가상의 숫자입니다. 실제 항공사 공개 자료의 범위를 참고해 Vela Air 설정으로 만들었습니다. 분기별 계절 변동과 세금 계산은 단순화했습니다.',
  EV:{calm:['평상시의 분기','유가 85달러/배럴, 환율 150엔, 탑승률 82%. 먼저 재무제표의 모양을 보세요.'],
      oil:['유가 40% 상승','중동 정세로 유가가 85→119달러/배럴. 연료비가 단숨에 늘어납니다. 국제선은 유류할증료로 일부를 회수할 수 있지만 국내선은 회수할 수 없습니다.'],
      boom:['방일 수요 증가와 엔저','엔화가 150→160엔. 방일객이 늘어 탑승률이 오르지만, 달러로 내는 연료·정비·리스료도 엔으로 보면 늘어납니다.'],
@@ -156,7 +158,7 @@ en:{title:'Airline Management Simulation: Vela Air',lead:'Run the fictional airl
  K:{lf:'Load factor',rask:'Revenue per seat-km',cask:'Cost per seat-km',be:'Break-even load factor',eqr:'Equity ratio',cash:'Cash on hand'},
  why:'Why the numbers moved',sum:'Results for the year',col:['','Q1','Q2','Q3','Q4','Year','If you had done nothing'],rows:['Revenue','Operating profit','Net profit','Operating cash flow','Closing cash','Equity ratio'],
  verdict:{good:'Net profit for the year is {d} (100m yen) higher than doing nothing. Your responses paid off.',bad:'Net profit for the year is {d} (100m yen) lower than doing nothing. Re-read the explanations to find the response that added cost without enough revenue.',even:'About the same result as doing nothing.'},
- how:'How the simulation works',note:'* Fictional figures, built as Vela Air settings from the range seen in real airlines’ published data. Seasonality and tax are simplified.',
+ goalT:'Goals for the year (100 points)',G:[['Raise net profit above doing nothing','Up to 50 points (full marks for an improvement of 120)'],['End the year with a net profit','15 points (8 if the loss is 40 or less)'],['Keep closing cash at 1,200 or more','15 points (8 if 1,150 or more)'],['Keep the equity ratio at 32.0% or more','10 points'],['Avoid any quarter with an operating loss','10 points (5 if only one)']],scoreT:'Goals met and score',sc:['Goal','Result','Points'],tot:'Total',rankL:'Grade',R:{S:'S — your decisions show clearly in the numbers',A:'A — a good year. Check the explanations for the goals you missed',B:'B — some responses worked and some did not. Compare the quarterly explanations',C:'C — follow costs and cash through the three statements again'},times:'{n}',ref:'* Years that used scenario changes or direct input get a reference score (the “doing nothing” comparison uses the same scenario). Amounts in 100m yen.',how:'How the simulation works',note:'* Fictional figures, built as Vela Air settings from the range seen in real airlines’ published data. Seasonality and tax are simplified.',
  EV:{calm:['An ordinary quarter','Oil at $85/bbl, 150 yen to the dollar, load factor 82%. Start by looking at the shape of the three statements.'],
      oil:['Oil price up 40%','Middle East tension lifts oil from $85 to $119/bbl. Fuel cost jumps. International fuel surcharges recover part of it; domestic flights recover nothing.'],
      boom:['Inbound boom and a weaker yen','The yen falls from 150 to 160. More visitors lift the load factor, but dollar-priced fuel, maintenance and leases cost more in yen.'],
@@ -215,7 +217,7 @@ function runQuarter(S,ev,dec,o){var N=JSON.parse(JSON.stringify(S));o=o||{};var 
  N.hist.push(r);N.decs.push({dec:dec,o:o});N.q++;return N}
 function simulate(decs){var S=newState();for(var i=0;i<4;i++)S=runQuarter(S,EVENTS[i],decs[i]||'none');return S}
 function readCustom(){function n(id){var e=document.getElementById(id);var x=parseFloat(e.value);return isNaN(x)?null:x}var ov={oil:n('o_oil'),fx:n('o_fx'),lfd:n('o_lfd')};var has=ov.oil!=null||ov.fx!=null||ov.lfd!=null;
- return {fare:n('c_fare')||0,cap:n('c_cap')||0,cut:n('c_cut')||0,buy:n('c_buy')||0,lease:n('c_lease')||0,hedge:document.getElementById('c_hedge').checked,fsc:document.getElementById('c_fsc').checked,ovr:has?ov:null}}
+ function cl(x,a,b){return Math.max(a,Math.min(b,x||0))}return {fare:cl(n('c_fare'),-10,10),cap:cl(n('c_cap'),-10,10),cut:cl(n('c_cut'),0,10),buy:Math.round(cl(n('c_buy'),0,5)),lease:Math.round(cl(n('c_lease'),0,5)),hedge:document.getElementById('c_hedge').checked,fsc:document.getElementById('c_fsc').checked,ovr:has?ov:null}}
 /* ---- UI ---- */
 var lang=localStorage.getItem('art-lang')||(document.documentElement.lang||'ja');if(!L[lang])lang='ja';
 var S=newState(),picked=null;
@@ -229,6 +231,7 @@ function pct(x){return (x*100).toFixed(1)+'%'}
 function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k]!==undefined?o[k]:'{'+k+'}'})}
 function render(){var d=L[lang];document.documentElement.lang=lang;document.title=d.title;
  ['title','lead','situ','dec','stmts','pl','bs','cf','assets','liabeq','why','sum','how','note','ovr','ovrlead','oil','fx','lfd','cust','cfare','ccap','ccut','cbuy','clease','chedge','cfsc'].forEach(function(k){var e=document.getElementById('t_'+k);if(e)e.textContent=d[k]});
+ document.getElementById('t_goalT').textContent=d.goalT;document.getElementById('goals').innerHTML=d.G.map(function(g){return '<li>'+g[0]+'<small>'+g[1]+'</small></li>'}).join('');
  document.getElementById('custbox').style.display=picked==='custom'?'':'none';document.getElementById('ovrbox').style.display=S.q>=4?'none':'';
  document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
  var done=S.q>=4, qn=Math.min(S.q+1,4);
@@ -267,14 +270,20 @@ function render(){var d=L[lang];document.documentElement.lang=lang;document.titl
   W.innerHTML='<h3>'+d.why+'</h3><ul><li>'+fill(X['ev_'+r.ev],o)+'</li>'+ovl+'<li>'+fill(X['d_'+r.dec],od)+'</li><li>'+fill(X.link1,o)+'</li><li>'+fill(X.link2,o)+'</li><li>'+fill(X.link3,o)+'</li></ul>'}
  /* summary */
  var sc=document.getElementById('sumcard');
- if(done){sc.style.display='';var base=simulate([]);var H=S.hist,BH=base.hist;function sum(h,k){return h.reduce(function(a,x){return a+x[k]},0)}
+ if(done){sc.style.display='';var base=baseOf(S);var H=S.hist,BH=base.hist;function sum(h,k){return h.reduce(function(a,x){return a+x[k]},0)}
   var vals=[[function(x){return f1(x.rev)},sum(H,'rev'),sum(BH,'rev')],[function(x){return f1(x.op)},sum(H,'op'),sum(BH,'op')],[function(x){return f1(x.net)},sum(H,'net'),sum(BH,'net')],[function(x){return f1(x.cfo)},sum(H,'cfo'),sum(BH,'cfo')],[function(x){return f0(x.bs.cash)},H[3].bs.cash,BH[3].bs.cash],[function(x){return pct(x.eqr)},null,null]];
-  var html='<table><tr>'+d.col.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr>';
+  var html='<div style="overflow-x:auto"><table><tr>'+d.col.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr>';
   d.rows.forEach(function(rn,i){var v=vals[i];html+='<tr><td>'+rn+'</td>'+H.map(function(x){return '<td>'+v[0](x)+'</td>'}).join('')+'<td><b>'+(i===5?pct(H[3].eqr):i===4?f0(v[1]):f1(v[1]))+'</b></td><td>'+(i===5?pct(BH[3].eqr):i===4?f0(v[2]):f1(v[2]))+'</td></tr>'});
-  html+='</table>';document.getElementById('summary').innerHTML=html;
-  var dn=sum(H,'net')-sum(BH,'net');document.getElementById('verdict').textContent=fill(Math.abs(dn)<1?d.verdict.even:dn>0?d.verdict.good:d.verdict.bad,{d:f1(Math.abs(dn))})}
+  html+='</table></div>';document.getElementById('summary').innerHTML=html;
+  var dn=sum(H,'net')-sum(BH,'net');document.getElementById('verdict').textContent=fill(Math.abs(dn)<1?d.verdict.even:dn>0?d.verdict.good:d.verdict.bad,{d:f1(Math.abs(dn))});
+  var P=scoreOf(H,BH),tot=Math.round(P.reduce(function(a,x){return a+x},0)),rk=tot>=90?'S':tot>=75?'A':tot>=55?'B':'C',net=sum(H,'net'),neg=H.filter(function(x){return x.op<0}).length,un=lang==='en'?'':(lang==='ja'?'億円':'억 엔');
+  var res=[sg(dn)+un,sg(net)+un,f0(H[3].bs.cash)+un,pct(H[3].eqr),fill(d.times,{n:neg})];
+  var ref=S.decs.some(function(x){return x.dec==='custom'||(x.o&&x.o.ovr)});
+  document.getElementById('score').innerHTML='<h3>'+d.scoreT+'</h3><table><tr>'+d.sc.map(function(x,i){return '<th'+(i===2?' style="text-align:right"':'')+'>'+x+'</th>'}).join('')+'</tr>'+d.G.map(function(g,i){return '<tr><td>'+g[0]+'</td><td class="n">'+res[i]+'</td><td class="n">'+Math.round(P[i])+'</td></tr>'}).join('')+'<tr class="tot"><td>'+d.tot+'</td><td></td><td class="n">'+tot+'</td></tr></table><div class="rank"><b>'+rk+'</b><span>'+d.rankL+(lang==='ja'?'：':': ')+d.R[rk].replace(/^[SABC] [―—] /,'')+'</span></div>'+(ref?'<p class="note">'+d.ref+'</p>':'')}
  else sc.style.display='none';
  document.getElementById('how').innerHTML=d.HOW.map(function(h){return '<details><summary>'+h[0]+'</summary><div class="dbody"><p>'+h[1]+'</p></div></details>'}).join('');}
+function baseOf(S){var P=newState();for(var i=0;i<4;i++){var o=S.decs[i]&&S.decs[i].o;P=runQuarter(P,EVENTS[i],'none',{ovr:(o&&o.ovr)||null})}return P}
+function scoreOf(H,BH){function sm(h){return h.reduce(function(a,x){return a+x.net},0)}var net=sm(H),dn=net-sm(BH),c=H[3].bs.cash,n=H.filter(function(x){return x.op<0}).length;return [Math.max(0,Math.min(50,dn/120*50)),net>=0?15:net>=-40?8:0,c>=1200?15:c>=1150?8:0,H[3].eqr>=0.32?10:0,n===0?10:n===1?5:0]}
 function prevState(S){var P=newState();for(var i=0;i<S.q-1;i++)P=runQuarter(P,EVENTS[i],S.decs[i].dec,S.decs[i].o);return P}
 document.getElementById('btn_go').onclick=function(){if(!picked||S.q>=4)return;var o=readCustom();if(picked!=='custom')o={ovr:o.ovr};S=runQuarter(S,EVENTS[S.q],picked,o);picked=null;['o_oil','o_fx','o_lfd'].forEach(function(i){document.getElementById(i).value=''});render();var el=document.getElementById('t_stmts');if(el.scrollIntoView)el.scrollIntoView({behavior:'smooth',block:'start'})};
 document.getElementById('btn_reset').onclick=function(){S=newState();picked=null;render()};

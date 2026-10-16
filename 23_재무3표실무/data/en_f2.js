@@ -64,7 +64,7 @@ sections:[
 ["Purchase day","−240,000","0","240,000"],["End of month 1","0","4,000","236,000"],["End of month 12","0","4,000 (cumulative 48,000)","192,000"],["End of month 60","0","4,000 (cumulative 240,000)","0 (or residual value)"]]},
 {t:"point",x:"Depreciation is a cost with no cash leaving. That is why the cash flow statement adds it back to profit to arrive at operating cash flow (3-3)."}]},
 {h:"Three choices that set the calculation",blocks:[{t:"rows",items:[
-{name:"① Useful life",x:"How many years of use. Five for the cart; airlines estimate a life for each fleet and state it in their accounting-policy notes (check each company’s notes ★). Tax law has its own statutory lives (up to 10 years for aircraft in Japan)."},
+{name:"① Useful life",x:"How many years of use. Five for the cart; airlines estimate a life for each fleet and state it in their accounting-policy notes (check each company’s notes ★). Tax law has its own statutory lives (up to 10 years for aircraft in Japan, for aeroplanes over 130 tonnes maximum take-off weight)."},
 {name:"② Residual value",x:"Value at the end of use. Aircraft have a second-hand market, so part of the cost may be kept as residual value (check each company’s notes for the rate ★)."},
 {name:"③ Method",x:"Straight-line: the same amount each year (the cart). Declining balance: more at first, less later. Straight-line is standard for aircraft."},
 {name:"Example: one aircraft at 15.0bn, 20 years, 5% residual",x:"(15.0 − 0.75) ÷ 20 = 0.71bn a year. Vela Air (aircraft 210bn, most of the 25.4bn depreciation) implies an average write-off period of 8–9 years, consistent with a young fleet."}]},
@@ -91,7 +91,7 @@ sections:[
 ["Payables","Bought, not yet paid","A rise increases cash (a cost with no cash out yet)","None (cash purchases)"]]},
 {t:"point",x:"Working capital = receivables + inventory − payables: the cash tied up simply to keep trading. As sales grow, working capital grows too, which is how ‘selling well but short of cash’ happens."}]},
 {h:"Airline working capital runs the other way",blocks:[{t:"rows",items:[
-{name:"Receivables are small",x:"Fares arrive before the flight. Receivables arise from travel agency settlements (BSP), cargo, card companies and mileage partners. JAL: 254.6bn yen, 13% of revenue ★."},
+{name:"Receivables are small",x:"Fares arrive before the flight. Receivables arise from travel agency settlements (BSP), cargo, card companies and mileage partners. JAL: 254.6bn yen, about 13% of revenue ★."},
 {name:"Unearned revenue helps cash",x:"Tickets paid before travel and miles not yet used. JAL: 484.5bn ★. The more sales grow, the more unearned revenue grows and the earlier cash arrives. This is why airline working capital is often negative."},
 {name:"Inventory is spare parts",x:"Engine parts, consumables, cabin supplies: not for sale, but held so that maintenance never stops. JAL: 60.6bn ★. Changes appear in operating cash flow."},
 {name:"Payables are fuel, handling and airport charges",x:"Amounts owed to suppliers, typically settled the month after, so one to two months of costs."}]},
@@ -110,7 +110,7 @@ quiz:[{q:"When receivables rise, cash…",opts:["Falls (a sale not yet collected
 {q:"Why is airline working capital often negative?",opts:["Large unearned revenue received before travel","Large receivables","No inventory","Heavy borrowing"],a:0,exp:"Cash arrives before the revenue is earned."},
 {q:"Inventory days lengthened year on year. A likely cause?",opts:["Unsold goods or excess parts","Faster collection","Higher sales","More cash"],a:0,exp:"Cash is sleeping longer in inventory."}]});
 set("2-5",{title:"Inside Equity: Money Invested and Money Earned and Kept",hl:"Inside Equity",subtitle:"Share capital, capital surplus, retained earnings, treasury shares, other comprehensive income. The equity ratio measures strength",
-lead:["Equity belongs to shareholders as a whole, but inside it is split by origin: money shareholders paid in (share capital and capital surplus), money the company earned and kept (retained earnings), shares bought back (treasury shares, negative), and valuation differences not yet taken through profit (accumulated other comprehensive income).","The most basic measure of an airline’s strength is the equity ratio: equity divided by total assets. JAL 40.3%, ANA 37.7% at 31 March 2026 ★, both recovering from the pandemic through accumulated profit and capital raising."],
+lead:["Equity belongs to shareholders as a whole, but inside it is split by origin: money shareholders paid in (share capital and capital surplus), money the company earned and kept (retained earnings), shares bought back (treasury shares, negative), and valuation differences not yet taken through profit (accumulated other comprehensive income).","The most basic measure of an airline’s strength is the equity ratio: equity divided by total assets. JAL 40.3%, ANA 37.7% at 31 March 2026 (using each company’s disclosed definition of equity) ★, both recovering from the pandemic through accumulated profit and capital raising."],
 sections:[
 {h:"The parts of equity",blocks:[{t:"fig",id:"fn_eq",cap:"Figure: what equity is made of (Vela Air opening)."},{t:"table",cols:["Part","Content","Taiyaki stall","Vela Air opening"],rows:[
 ["Share capital","Shareholders’ payments designated as capital","300,000","50.0bn yen"],
@@ -121,7 +121,7 @@ sections:[
 ["Total equity","","364,000","192.0bn"]]},
 {t:"note",x:"* JAL, 31 March 2026: share capital 273.2bn yen, capital surplus 270.5bn, retained earnings 508.3bn, treasury shares −21.2bn, accumulated other comprehensive income 81.2bn (including 31.7bn of cash flow hedges), other equity instruments 177.7bn, non-controlling interests 45.1bn → total equity 1,334.8bn. ★"}]},
 {h:"The equity ratio: a measure of strength",blocks:[{t:"rows",items:[
-{name:"Equity ratio = equity attributable to owners ÷ total assets",x:"Taiyaki stall 364,000 ÷ 580,000 = 62.8%. Vela Air 1,920 ÷ 6,000 = 32.0%. JAL 40.3%, ANA 37.7% (31 March 2026) ★."},
+{name:"Equity ratio = equity attributable to owners ÷ total assets",x:"Taiyaki stall 364,000 ÷ 580,000 = 62.8%. Vela Air 1,920 ÷ 6,000 = 32.0%. JAL 40.3%, ANA 37.7% (31 March 2026, as disclosed; JAL excludes non-controlling interests) ★."},
 {name:"Higher is safer, but",x:"Less borrowing means more resilience to losses. Yet borrowing lifts the shareholders’ return (ROE) on the same profit (Part 6). There is no industry-wide level that counts as enough; read it with earnings power, cash on hand and loan terms (JAL 40.3%, ANA 37.7% at 31 March 2026). ★"},
 {name:"The pandemic lesson",x:"ANA’s equity ratio fell to 25.6% at the end of FY2022 and recovered to 37.7% at the end of FY2025 (ANA results presentation). Airline equity shrinks fast when demand stops, so it is built up in good times. ★"},
 {name:"Equity-like funding",x:"In April 2025 JAL issued perpetual subordinated bonds (other equity instruments, 177.7bn) recorded in equity, and resolved to issue 200bn of bond-type preferred shares: funding counted as equity rather than debt, preserving the equity ratio while raising money for aircraft. ★"}]},
@@ -149,7 +149,7 @@ sections:[
 ["Cash and equivalents","10,102","31.6%","About half a year’s revenue. Airlines hold deep cash against demand shocks"],
 ["Trade receivables","2,546","8.0%","Awaiting payment from agencies, card companies, cargo customers and mileage partners"],
 ["Inventories","606","1.9%","Spare parts etc."],
-["Aircraft","10,417","32.6%","Owned aircraft at book value; under IFRS 16 it may also include right-of-use assets for leased aircraft (breakdown in the annual report notes) ★"],
+["Aircraft","10,417","32.6%","Owned aircraft at book value; under IFRS 16 it also includes right-of-use assets for leased aircraft (43.7bn yen at 31 March 2026, per the annual report notes) ★"],
 ["Prepayments for aircraft","1,156","3.6%","Advance payments on ordered aircraft (A350 etc.)"],
 ["Other property and equipment","1,022","3.2%","Buildings and ground equipment"],
 ["Goodwill and intangibles","1,117","3.5%","Systems and acquisition premiums"],

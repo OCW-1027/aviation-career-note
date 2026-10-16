@@ -13,7 +13,7 @@ sections:[
 ["United Kingdom and Europe (Schengen)","An airport transit visa is required from certain nationalities. Check the official list ★"],
 ["China","A visa-free transit scheme of up to 240 hours. It covers ordinary passports of 57 countries, entry through 65 ports and stays within designated areas. The route must be “country A to China to a different third country or region”, with a ticket for a fixed date"],
 ["China (visa exemption)","Ordinary passport holders of 50 countries, including Japan, need no visa for stays of up to 30 days (until 31 December 2026 for Japan)"],
-["Japan and Korea","Some countries allow a short landing during transit. Permit types, time allowed and who applies differ by country, so check the authorities’ guidance ★"]]},
+["Japan and Korea","Some countries allow a short landing during transit. Permit types, time allowed and who applies differ by country, so check the authorities’ guidance (Japan’s shore pass, for example, is applied for by the carrier and lasts up to 72 hours) ★"]]},
 {t:"note",x:"* Eligible nationalities and ports are added and changed often. Always check the authority’s latest list."}]},
 {h:"What to confirm at the counter",blocks:[{t:"check",items:[
 {name:"One booking or separate tickets?",x:"With separately bought tickets the passenger may have to enter at the transit point to reclaim and re-check bags."},
@@ -68,7 +68,7 @@ sections:[
 ["What is submitted","Passport and disembarkation card (paper or Visit Japan Web)","Passport and arrival card (the e-Arrival Card began on 24 February 2025; it can be submitted from three days before arrival and is free)"],
 ["Face and fingerprints","In principle a photograph and fingerprints are given (some people are exempt)","In principle face and fingerprints are given (some people are exempt) ★"],
 ["Electronic travel authorisation","JESTA (targeted for fiscal 2028)","K-ETA (22 countries and territories including Japan are exempt until 31 December 2026)"],
-["Who needs no card","Re-entrants and others ★","K-ETA holders, registered foreign residents, crew and others"]]},
+["Who needs no card","Re-entrants (who use the re-entry record instead) and others ★","K-ETA holders, registered foreign residents, crew and others"]]},
 {t:"note",x:"* Check the authority’s guidance on how long Korea’s paper arrival card remains in use. ★"}]},
 {h:"When a resident returns",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Proof of status","Residence card (special permanent residents: special permanent resident certificate)","Residence card (permanent resident card, domestic residence report card)"],

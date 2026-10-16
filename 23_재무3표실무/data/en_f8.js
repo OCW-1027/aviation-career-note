@@ -87,14 +87,14 @@ sections:[
 ["Name of the statement","Balance sheet (貸借対照表)","Statement of financial position (재무상태표)"],
 ["Order","Usually current first, then non-current","The company chooses; some start with non-current items"],
 ["Equity section","Shareholders’ equity, accumulated other comprehensive income, non-controlling interests","Equity: share capital, surplus, other components of equity, non-controlling interests"],
-["Interest and dividends (cash flow statement)","Many companies show interest and dividends received and interest paid under operating activities","The company chooses; some show interest paid under financing activities ★"]]}]},
+["Interest and dividends (cash flow statement)","Many companies show interest and dividends received and interest paid under operating activities","The company chooses under current IAS 7; some, like JAL, show interest paid under financing. This changes once IFRS 18 applies ★"]]}]},
 {h:"Effect on ratios, and practice",blocks:[{t:"table",cols:["Ratio","When leases are on the balance sheet","When goodwill is not amortised"],rows:[
 ["Equity ratio","Falls (total assets grow)","Tends to look higher (goodwill stays in assets)"],
 ["Debt-to-equity","Rises (lease liabilities count as debt)","No change"],
 ["EBITDA","Rises (rent becomes depreciation and interest)","No change"],
 ["Operating cash flow","Rises (repayments move to financing activities)","No change"]]},
 {t:"check",items:[
-{name:"Read ANA’s notes",x:"In ANA’s annual securities report (Japanese GAAP), find the note on future payments under non-cancellable operating leases. Think about how the equity ratio changes if you add them to liabilities. ★"},
+{name:"Read ANA’s notes",x:"In ANA’s annual securities report (Japanese GAAP), find the note on future payments under non-cancellable operating leases (341.7bn yen at 31 March 2026). Think about how the equity ratio changes if you add them to liabilities. ★"},
 {name:"Predict the year to March 2028",x:"When the new lease standard starts, which way will EBITDA and interest-bearing debt move at a Japanese GAAP airline? Write the reason."}]}]}],
 voice:"A company that pays lease rent but shows little debt may simply be on a different standard. The offices and vehicles your branch rents will also come onto the balance sheet under the new standard. Keep a list of the contracts and you can answer head office at once.",
 terms:[["Right-of-use asset","使用権資産","사용권자산"],["Lease liability","リース負債","리스부채"],["Operating lease","オペレーティング・リース","운용리스"],["Goodwill","のれん","영업권"],["Statement of financial position","財政状態計算書","재무상태표"]],
@@ -149,7 +149,7 @@ sections:[
 ["Half-year report (반기보고서)","Within 45 days of the end of the first half","Half-year financial statements and state of the business"],
 ["Audit report (감사보고서)","Before the annual general meeting","The auditor’s opinion with the financial statements and notes"],
 ["Material event reports and ad hoc disclosure","As they occur","Share issues, mergers, large contracts, preliminary results (영업(잠정)실적) and so on"]]},
-{t:"note",x:"* For a December year-end company the deadlines fall at the end of March for the annual report, mid-May for Q1, mid-August for the half-year and mid-November for Q3. ★"}]},
+{t:"note",x:"* The annual report is due within 90 days of the year end and half-year and quarterly reports within 45 days. For a December year end that means the end of March, then mid-May, mid-August and mid-November (check holiday and other exceptions). ★"}]},
 {h:"How to use DART",blocks:[{t:"ladder",steps:[
 {name:"Open dart.fss.or.kr",sub:"The Financial Supervisory Service’s system: free, no registration"},
 {name:"Search by company name",sub:"The Korean name or the six-digit stock code"},

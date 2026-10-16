@@ -19,7 +19,7 @@ sections:[
 {name:"Receive the notice",sub:"From the destination authority or the destination station"},
 {name:"Gather the facts",sub:"The check-in record, the saved result of what was looked up, the agent’s account"},
 {name:"Report to head office",sub:"In the incident report format of lesson 3-4 (Airport Station Management)"},
-{name:"Decide whether to appeal",sub:"The documents were properly checked; a sophisticated forgery could not be detected by normal checks. Check the procedure and deadline for appeal or reduction under that country’s rules ★"},
+{name:"Decide whether to appeal",sub:"The documents were properly checked; a sophisticated forgery could not be detected by normal checks. Check the procedure and deadline for appeal or reduction under that country’s rules (in the US, a written defence within 30 days of the notice of intention to fine) ★"},
 {name:"Prevent a repeat",sub:"Choose one measure that fits the cause and tell everyone"}]},
 {t:"note",x:"* How to appeal and the deadline differ by country."}]},
 {h:"Look at the numbers",blocks:[{t:"check",items:[

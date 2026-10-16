@@ -16,7 +16,7 @@ sections:[
 {h:"How the United States differs",blocks:[{t:"table",cols:["Difference","Details"],rows:[
 ["Transfer passengers enter","Even international-to-international passengers all clear immigration and customs. A visa or ESTA is required"],
 ["Electronic travel authorisation (ESTA)","For nationals of Visa Waiver Program countries. The fee is USD 40 (since 30 September 2025). Stays of up to 90 days"],
-["No departure control","As a rule, passengers do not face an officer on departure as they do on arrival. Departure is recorded from data sent by the airline, and some airports add checks such as facial photos ★"],
+["No departure control","As a rule, passengers do not face an officer on departure as they do on arrival. Departure is recorded from data sent by the airline, and some airports add checks such as facial photos (under a rule in force from December 2025, non-citizens may be photographed on departure) ★"],
 ["Immigration at the departure airport","At some airports in Canada, Ireland, Abu Dhabi, the Bahamas, Bermuda and Aruba, US immigration is cleared before departure and the flight arrives like a domestic one"]]},
 {t:"note",x:"* At airports with US immigration before departure, passengers need to arrive at the airport earlier than usual."}]},
 {h:"What the airline does",blocks:[{t:"check",items:[
@@ -46,7 +46,7 @@ sections:[
 ["Instant noodles, curry roux and similar","May not be allowed if they contain meat extract ★"],
 ["Fruit and vegetables","Depends on where they came from and where the passenger is going. Apples and bananas handed out on board are covered"],
 ["Rice","Pest risk; may be subject to restrictions"],
-["Plants, seeds and soil","Inspection or a permit is required. Soil generally cannot be brought in (check the authorities for exceptions) ★"],
+["Plants, seeds and soil","Inspection or a permit is required. Soil cannot be brought in without a permit issued in advance ★"],
 ["Bakery items and certain cheeses","Allowed, but they must still be declared"]]},
 {t:"note",x:"* The rules on meat change often with disease outbreaks around the world. Check the US authorities’ websites for the latest."}]},
 {h:"How they are found",blocks:[{t:"rows",items:[
