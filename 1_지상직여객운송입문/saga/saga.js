@@ -1,6 +1,6 @@
-/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
-window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}};
-window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e1f97":11661,"01ff8447":27693,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"04170656":22701,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05382ef2":8877,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"07801492":13773,"0804812d":12813,"08911573":24429,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b0fc6ff":23181,"0b15794c":18093,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0f321d57":11949,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10e5aae7":26061,"114530e3":18189,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"1550e722":20589,"15ad3d3e":15789,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1ec7ed77":10893,"1eceacdd":14445,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"22babe7c":22125,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"241220dd":30189,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"277a2505":10509,"277be539":16941,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cc2a6c8":10893,"2ce3e287":23949,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"30062188":25101,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"32832759":20205,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"334df891":13101,"336f3476":12237,"347b7fc6":8877,"34b319f3":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38623a3d":4077,"3875fba6":22317,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3c20ea46":16077,"3cf3a519":18669,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3f53f59b":15309,"3fab192f":13581,"401848f6":9837,"405c08a3":25005,"40d1fc1a":21933,"4127a234":16461,"41581a26":32493,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"428c73ac":14733,"429ee352":14637,"42ff6b45":15597,"430ac058":11469,"4383e84b":24813,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"4a0d5067":13389,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4ddc25ef":26061,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"559a719c":6381,"55ff9e0a":8397,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"56aeecf7":14925,"56c28fec":22893,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58f2107a":4557,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5bc30b0c":6189,"5c10b6a5":15405,"5c188a15":10893,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61d2ee03":20397,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"672ba710":17421,"6755401f":3693,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6aa5e2a6":24525,"6ac63d3c":7053,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c9bb35d":8445,"6cc2b68b":18381,"6d79cf39":5901,"6e346345":13965,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f265640":7053,"6f35b02d":17229,"6f916efb":24717,"6fe3f2f3":9165,"7087f307":21837,"70ace839":5613,"71029f0e":24141,"7224d333":24333,"7244acbc":17997,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"74282aec":11949,"749e2919":21357,"74bff1e3":10797,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"772b8880":14253,"77704f09":7053,"78ada3f2":9357,"79684e06":24141,"79cdfe1a":15213,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a851f8b":7149,"7a878fff":22221,"7b663459":22317,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7ce43c38":72813,"7d42f834":11469,"7dd7941a":11277,"7e2eb525":13869,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7f5d4783":24237,"7fafb60d":25293,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"829a2da9":15885,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"85aba023":14541,"85b0ca94":31629,"86c6118e":16461,"86e30629":18573,"86f1d327":13581,"88968b3e":22701,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"900c3369":20685,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9452465d":26253,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"96936059":10029,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99cadd07":7245,"9abff8c0":18093,"9afd6a23":28941,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d7aba60":24429,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9f32d3da":5613,"9f51d948":12717,"a0374dcf":21741,"a0572083":6861,"a0869e8d":9453,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"ae98d056":21549,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b2764e19":17133,"b2f0c22c":24717,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b7a981f3":21645,"b7d63f21":8205,"b94b3f9a":9165,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"be9f4413":25581,"befa6ee1":6573,"bf96bcc6":21837,"bfe76df4":6861,"c0d326e8":29757,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c35e1c20":13773,"c46ac345":22029,"c5ba55fe":20877,"c68cb3de":11469,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c9b7a6d3":15021,"ca69c6c0":24525,"cabb5ead":11469,"cac77566":17517,"cb73f3d3":8685,"cbebd934":19245,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"cf0342c2":41325,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d40d98b3":22029,"d4a9b5d6":41133,"d4df3b82":24909,"d5b39d86":4077,"d62b35bf":14157,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d8b5d724":6573,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"deb54a25":7917,"dec33802":12717,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2b6ec19":22029,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e5b55442":20301,"e5eb1dba":31917,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e8246b13":6573,"e833eb1a":21357,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"eb2c67cb":15597,"ec035359":23565,"ec0681c4":6765,"ece1e617":23565,"ed0b9fc4":10797,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"f067aa86":12237,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f35649a3":12525,"f3dcf5f3":23853,"f41df8eb":25197,"f4be769e":17613,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f9453009":21741,"f98ca4d6":25869,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb7c792a":24909,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
+/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
+window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}, "staff_gate_idle_01": {"src": "saga/img/staff_gate_idle_01.webp", "w": 415, "h": 900, "px": 0.586, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_scan_01": {"src": "saga/img/staff_gate_scan_01.webp", "w": 439, "h": 900, "px": 0.5661, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_announce_01": {"src": "saga/img/staff_gate_announce_01.webp", "w": 487, "h": 900, "px": 0.495, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_explain_01": {"src": "saga/img/staff_gate_explain_01.webp", "w": 542, "h": 900, "px": 0.4482, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_trouble_01": {"src": "saga/img/staff_gate_trouble_01.webp", "w": 420, "h": 900, "px": 0.5856, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "gate_bg_01": {"src": "saga/img/gate_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "gate_bg_02": {"src": "saga/img/gate_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "passenger_male_01_bp_01": {"src": "saga/img/passenger_male_01_bp_01.webp", "w": 515, "h": 900, "px": 0.7226, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_male_01", "hr": 1.0}, "passenger_female_02_bp_01": {"src": "saga/img/passenger_female_02_bp_01.webp", "w": 570, "h": 899, "px": 0.7131, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_female_02", "hr": 0.999332}, "passenger_female_03_infant_bp_01": {"src": "saga/img/passenger_female_03_infant_bp_01.webp", "w": 493, "h": 900, "px": 0.5537, "py": 0.9959, "flip": false, "cat": "passengers", "sameAs": "passenger_female_03_infant_01", "hr": 1.0}, "prop_bgr_01": {"src": "saga/img/prop_bgr_01.webp", "w": 520, "h": 478, "px": 0.4311, "py": 0.9929, "flip": false, "cat": "props"}, "prop_gate_tag_01": {"src": "saga/img/prop_gate_tag_01.webp", "w": 430, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_aisle_chair_01": {"src": "saga/img/prop_aisle_chair_01.webp", "w": 358, "h": 520, "px": 0.5565, "py": 0.994, "flip": false, "cat": "props"}, "prop_stroller_gate_01": {"src": "saga/img/prop_stroller_gate_01.webp", "w": 437, "h": 520, "px": 0.5074, "py": 0.9938, "flip": false, "cat": "props", "sameAs": "prop_stroller_folded_01"}, "prop_um_form_01": {"src": "saga/img/prop_um_form_01.webp", "w": 432, "h": 520, "px": 0.5, "py": 0.9937, "flip": false, "cat": "props"}, "prop_radio_01": {"src": "saga/img/prop_radio_01.webp", "w": 264, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_mic_01": {"src": "saga/img/prop_mic_01.webp", "w": 420, "h": 520, "px": 0.509, "py": 0.9933, "flip": false, "cat": "props"}, "staff_sv_01": {"src": "saga/img/staff_sv_01.webp", "w": 393, "h": 900, "px": 0.6526, "py": 0.9961, "flip": false, "cat": "staff", "hr": 1.0}};
+window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e1f97":11661,"017c78d9":11949,"01ff8447":27693,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"0360a263":56013,"0372e30c":49869,"04170656":22701,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05382ef2":8877,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"07801492":13773,"0804812d":12813,"0815d609":61869,"08911573":24429,"089a08cd":19629,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b0fc6ff":23181,"0b15794c":18093,"0b253baa":13389,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0f321d57":11949,"0f3b27e2":14157,"0f6c45bb":21069,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10774ea4":6477,"108a2963":16653,"10b9b398":26925,"10e5aae7":26061,"11353347":46029,"114530e3":18189,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"11de62e7":5997,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12947755":27693,"12c66b14":23565,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"152ad0c6":50541,"1550e722":20589,"15ad3d3e":15789,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"19e314d7":55821,"1a352e30":28269,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1e2e03c0":61101,"1ec7ed77":10893,"1eceacdd":14445,"1ef8768a":13293,"1fc06217":13293,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"216ee28d":23853,"2193b357":4557,"22babe7c":22125,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"23b16202":20781,"241220dd":30189,"24302b9c":29997,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"258c0750":4845,"2627df20":12813,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"2733bb31":16365,"277016ca":9549,"277a2505":10509,"277be539":16941,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a50eb82":8589,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2b62b479":10797,"2b92c7bf":10701,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cb6c3e6":17229,"2cc2a6c8":10893,"2ce3e287":23949,"2e147517":7917,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"2fcb1fd8":19533,"30062188":25101,"304ce0e8":16365,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"320540c2":53805,"32485a1b":12333,"32832759":20205,"32d33712":61005,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"3317c179":4557,"334df891":13101,"336f3476":12237,"347b7fc6":8877,"34b319f3":20397,"34c79320":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38623a3d":4077,"3875fba6":22317,"387c3cc5":19149,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39a9d567":37293,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3b6226eb":20685,"3b8e820c":5133,"3c20ea46":16077,"3cf3a519":18669,"3d7f11fc":30957,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3ee775e9":21549,"3f53f59b":15309,"3fab192f":13581,"3fcbb6d4":9549,"3ffbde00":5709,"401848f6":9837,"405c08a3":25005,"407e7514":14925,"40d1fc1a":21933,"4127a234":16461,"41581a26":32493,"41b2ccac":27117,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"42534135":14829,"428c73ac":14733,"429ee352":14637,"42ade8df":64653,"42da0937":18381,"42eff33e":6669,"42ff6b45":15597,"430ac058":11469,"4339758f":3885,"4361efdc":18765,"4383e84b":24813,"43d9b5ea":11565,"43e49916":8685,"444fea75":14637,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"484480b8":39885,"4a0d5067":13389,"4a0e1563":16557,"4a5692fd":9741,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4be72248":11469,"4bf35055":26541,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4da692cc":34413,"4ddc25ef":26061,"4e2dcaf6":26541,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50647676":13101,"50713d3b":14733,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"525fe908":11469,"5282ac80":13485,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"559a719c":6381,"55ff9e0a":8397,"5606e70e":16173,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"569ce112":24525,"56aeecf7":14925,"56c28fec":22893,"57020ce7":23661,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58aad44e":6669,"58f2107a":4557,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"59fa9f5b":14157,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5b2817a2":19629,"5bc30b0c":6189,"5c05a05c":15597,"5c10b6a5":15405,"5c188a15":10893,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e1b02d4":38733,"5e6293a2":27021,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61d2ee03":20397,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"627a8337":19149,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"634abd0c":22701,"637f3778":65805,"6389c7ce":9933,"6436733d":17229,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64db816c":13965,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"672ba710":17421,"6755401f":3693,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"698bdab6":13101,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6aa5e2a6":24525,"6ac63d3c":7053,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c71b9a7":21453,"6c9bb35d":8445,"6cc2b68b":18381,"6d79cf39":5901,"6df88f98":34701,"6e346345":13965,"6e45b4aa":22701,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f265640":7053,"6f35b02d":17229,"6f67c145":18765,"6f916efb":24717,"6fe3f2f3":9165,"7009e6e3":18957,"7087f307":21837,"70ace839":5613,"70ceecd7":15789,"70ff76db":7821,"71029f0e":24141,"7166db61":13581,"7224d333":24333,"7244acbc":17997,"7281160f":25869,"72f6bc2d":43821,"7321492e":11373,"7338e543":29613,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"74282aec":11949,"749e2919":21357,"74bff1e3":10797,"75a2e533":11181,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"772b8880":14253,"77704f09":7053,"779d7c04":30573,"7814b9a5":8493,"78ada3f2":9357,"79684e06":24141,"79cdfe1a":15213,"79eb8cdb":37869,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a851f8b":7149,"7a878fff":22221,"7b663459":22317,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7c9443d0":8589,"7cb0657b":4941,"7ce43c38":72813,"7d42f834":11469,"7dd7941a":11277,"7de9831a":4365,"7e268f02":14733,"7e2eb525":13869,"7e39bf64":27501,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7eec5a27":30477,"7f5d4783":24237,"7fafb60d":25293,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"82997383":14061,"829a2da9":15885,"830226f3":7149,"83063c1c":11757,"83865889":7725,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"8585f5ef":12141,"85aba023":14541,"85b0ca94":31629,"86140811":51885,"86c6118e":16461,"86d3ce6a":9549,"86e30629":18573,"86f1d327":13581,"880eee58":21837,"88968b3e":22701,"88a1365d":50733,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"900b6db4":14349,"900c3369":20685,"90275d0e":3981,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"9364ec4b":10701,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9417f53a":22893,"9452465d":26253,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"95df5fc7":10125,"96040875":8685,"96936059":10029,"9702a48a":18189,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d68799":26349,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99cadd07":7245,"99d5d492":13101,"9abff8c0":18093,"9afd6a23":28941,"9b72a350":83085,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cc2e7b9":52845,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d660988":14925,"9d7aba60":24429,"9dbc39eb":11373,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9f32d3da":5613,"9f51d948":12717,"9f614f27":27789,"a0374dcf":21741,"a0572083":6861,"a05eaceb":30285,"a0869e8d":9453,"a183b100":11373,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a3e6f657":26637,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aab24f6e":23469,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"add7cd82":9933,"ae98d056":21549,"aee49ca1":4749,"aefc1a16":56781,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b20428ce":38445,"b2764e19":17133,"b2799c78":12045,"b2f0c22c":24717,"b3986566":39021,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b68884c1":58029,"b6bb30f5":56781,"b7a981f3":21645,"b7d63f21":8205,"b821d088":8973,"b9476dfc":50637,"b94b3f9a":9165,"b9ec6657":50829,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bc3da75a":8301,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"bdfe3c69":4653,"be9f4413":25581,"befa6ee1":6573,"bf919f0f":4845,"bf96bcc6":21837,"bfe76df4":6861,"c0aeef83":29229,"c0d326e8":29757,"c1b3ae41":8781,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c320d572":27405,"c35e1c20":13773,"c3ae063f":58317,"c46ac345":22029,"c58ccdc9":11277,"c5ba55fe":20877,"c67090d0":29037,"c68cb3de":11469,"c6ced84a":3405,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c947e6ce":38925,"c9b7a6d3":15021,"ca69c6c0":24525,"ca91beb1":13389,"cabb5ead":11469,"cac77566":17517,"cb4b5a61":40749,"cb73f3d3":8685,"cbebd934":19245,"cc2bb383":5997,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"ccc3e5f3":38637,"cdbbb68f":16077,"cf0342c2":41325,"cf4c76f9":29133,"cf903d8a":21933,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d39d8202":24237,"d40d98b3":22029,"d43e0514":4557,"d4a9b5d6":41133,"d4df3b82":24909,"d50c8f82":10221,"d5b39d86":4077,"d5ee6e18":11949,"d62b35bf":14157,"d63a0dcc":15693,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d8b5d724":6573,"d8c77303":34989,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d95fcec1":17901,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"deb54a25":7917,"dec33802":12717,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e2441148":10317,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2b6ec19":22029,"e2db78be":9453,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e3da97d8":21933,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e52b582d":12717,"e5b55442":20301,"e5eb1dba":31917,"e66f1b0e":25869,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e7c6d95e":15405,"e8246b13":6573,"e833eb1a":21357,"e834502d":4173,"e85a568a":28845,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"ea68d3d6":7725,"eb2077c5":16077,"eb2c67cb":15597,"ebf2d40d":41997,"ec035359":23565,"ec0681c4":6765,"ecc2babd":4845,"ece1e617":23565,"ed0b9fc4":10797,"ed79d956":4365,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"f067aa86":12237,"f069fe63":4365,"f09836cc":16365,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f35649a3":12525,"f3dcf5f3":23853,"f3dd5872":82989,"f41df8eb":25197,"f4be769e":17613,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f9070c9d":25389,"f9453009":21741,"f98ca4d6":25869,"f9e343fd":52749,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb45adfe":12333,"fb7c792a":24909,"fc6140c7":13581,"fc8dae10":26253,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe485f9f":22317,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
 window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"passenger/2-1":{"ja":"ja/gnd/2-1/","ko":"ko/gnd/2-1/","en":"en/gnd/2-1/"},"passenger/2-4":{"ja":"ja/gnd/2-4/","ko":"ko/gnd/2-4/","en":"en/gnd/2-4/"},"passenger/2-5":{"ja":"ja/gnd/2-5/","ko":"ko/gnd/2-5/","en":"en/gnd/2-5/"},"passenger/2-7":{"ja":"ja/gnd/2-7/","ko":"ko/gnd/2-7/","en":"en/gnd/2-7/"}}};
 /* rules.js */
 /* 규칙 모듈 — core(공통 원리) / country(JP·KR) / airline(Vela Air, 교육용) / airport
@@ -66,6 +66,548 @@ window.RULES = {
     JP: { KOR: 'free', JPN: 'citizen', LUM: 'visa' }
   }
 };
+
+/* ../src_gate/mission_gt01.js */
+/* 게이트편 Day 1 「はじめてのゲート」 미션 데이터 — 합의본 v2(12_게이트편_합의본_v2.md) 기준. 모든 승객·편은 교육용 가상 데이터
+   좌석·그룹은 V-G02(그룹 3 = 30열~, 4 = 20~29열, 5 = ~19열)와 일치(35차, GPT 34차 참고 1). 인원 17명+어린이 1(+INF 1)은 Day 1 축소 예외(승객 그림 17종 한도, 합의본 12절 기록)
+   JP: VELA 301 NRT→ICN STD 10:30 게이트 62 / KR: VELA 302 ICN→NRT STD 13:30 게이트 27
+   처리 단위(unit) 열(28개): 준비 → 탑승 전 방송 → 객실 사인·사전 탑승 방송 → 사전 탑승 승객 → 그룹 방송·승객 … → 전원 호출 → 기다리게 한 승객이 다시 옴 → … → 최종 호출 → 이름 호출 → 늦은 승객 → 마감 → 인원 대조
+   그림은 체크인편 승객 그림을 다시 씀(합의본 7절). 관련 레슨: passenger/2-1, 2-4, 2-7, 1-5 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  /* 시각은 「운항 기준 출발 시각」에서 거꾸로(4A). Day 1은 지연 없음 */
+  var TIMES = { JP: { std: '10:30', start: '09:30', pre: '09:45', board: '09:55', sign: '09:53', final: '10:10', final2: '10:15', close: '10:20', door: '10:25', gate: '62', gateAlt: '65' },
+                KR: { std: '13:30', start: '12:30', pre: '12:45', board: '12:55', sign: '12:53', final: '13:10', final2: '13:15', close: '13:20', door: '13:25', gate: '27', gateAlt: '31' } };
+  var HELLO = { ja: 'お願いします。', ko: '부탁드립니다.', en: 'Here you go.' };
+  function pax(id, art, sur, given, seat, grp, extra) {
+    var p = { id: id, kind: 'pax', art: art, pp: { sur: sur, given: given }, seat: seat, grp: grp, bags: [], say: { hello: L(HELLO.ja, HELLO.ko, HELLO.en) } };
+    if (extra) Object.keys(extra).forEach(function (k) { p[k] = extra[k]; });
+    return p;
+  }
+  function units(c) {
+    var T = TIMES[c], gate = T.gate;
+    var fam = pax('g08', 'passenger_male_07', 'NAKANO', 'KENJI', '32B', 3, { party: [{ sur: 'NAKANO', given: 'RIKO', seat: '32C', age: 8, art: 'passenger_child_02' }], with: [{ art: 'passenger_child_02' }],
+      say: { hello: L('娘と2人です。搭乗券は2枚まとめてどうぞ。', '딸과 둘입니다. 탑승권 두 장 같이 드릴게요.', 'My daughter and I. Here are both boarding passes together.') } });
+    var photo = pax('g13', 'passenger_male_03', 'LEE', 'JUNHO', '21D', 4, { photo: 'male_10', issue: 'photo', ppName: { sur: 'LEE', given: 'JUNSEO' },   /* 형의 여권: 사진도 이름도 다름 */
+      say: { hello: L('はい、これです。急いでるので早くお願いします。', '네, 여기요. 급해서 빨리 부탁해요.', 'Here. I am in a hurry, please be quick.'),
+             caught: L('あっ…すみません、兄のパスポートを持ってきてしまいました。自分のはこっちです。', '아… 죄송합니다, 형 여권을 가져왔네요. 제 건 이거예요.', 'Oh… sorry, I brought my brother\'s passport. Mine is this one.') } });
+    var early = pax('g06', 'passenger_female_05', 'HAN', 'JIWOO', '8C', 5, { issue: 'group',
+      say: { hello: L('もう乗れますよね？前の方の席なんですけど。', '이제 탈 수 있죠? 앞쪽 자리인데요.', 'I can board now, right? My seat is up front.'),
+             wait: L('あ、まだでしたか。わかりました、待ちます。', '아, 아직이었군요. 알겠어요, 기다릴게요.', 'Oh, not yet? All right, I will wait.') } });
+    /* 35차(GPT 34차 B-F01): 기다리게 한 HAN은 그룹 5 호출(B5) 뒤 다시 와서 보통대로 스캔·여권 대조. 먼저 통과시켰으면 이 단위는 「이미 탑승」 확인만 */
+    var earlyBack = pax('g06r', 'passenger_female_05', 'HAN', 'JIWOO', '8C', 5, { ref: 'g06', back: true,
+      say: { hello: L('グループ5が呼ばれたので戻ってきました。お願いします。', '그룹 5를 불러서 다시 왔어요. 부탁합니다.', 'Group 5 was called, so I came back. Here you go.') } });
+    var late = pax('g17', 'passenger_male_05', 'SUZUKI', 'TAKUYA', '30F', 3, { issue: 'late',
+      say: { hello: L('すみません！免税店で時間を…間に合いましたか？', '죄송합니다! 면세점에서 시간이… 늦지 않았나요?', 'Sorry! I lost track of time in duty-free… am I in time?') } });
+    return [
+      { id: 'u-prep', kind: 'prep', art: '', pp: { sur: 'GATE', given: 'PREP' }, bags: [], say: {} },
+      { id: 'u-b1', kind: 'bcast', bc: 'B1', at: T.pre, art: '', pp: { sur: 'PA', given: 'B1' }, bags: [], say: {} },
+      { id: 'u-sign', kind: 'sign', at: T.board, signAt: T.sign, art: '', pp: { sur: 'CABIN', given: 'SIGN' }, bags: [], say: {} },
+      pax('g01', 'passenger_male_06_wheelchair', 'MORI', 'TADASHI', '2A', 1, { pre: 'wch', say: { hello: L('お世話になります。先に乗せてもらえると助かります。', '신세 집니다. 먼저 태워 주시면 고맙겠습니다.', 'Thank you for your help. Boarding early would help me.') } }),
+      pax('g02', 'passenger_female_03_infant_01', 'TANAKA', 'HARUKA', '3C', 1, { pre: 'inf', photo: 'female_03', voice: 'passenger_female_03', inf: { sur: 'TANAKA', given: 'SORA' }, say: { hello: L('赤ちゃんと一緒です。先に乗ってもいいですか？', '아기와 함께예요. 먼저 타도 될까요?', 'I have a baby with me. May I board first?') } }),
+      { id: 'u-b3', kind: 'bcast', bc: 'B3', art: '', pp: { sur: 'PA', given: 'B3' }, bags: [], say: {} },
+      pax('g03', 'passenger_male_01', 'KATO', 'SHINJI', '1A', 2),
+      pax('g04', 'passenger_female_02', 'PARK', 'SOYEON', '1D', 2),
+      { id: 'u-b4', kind: 'bcast', bc: 'B4', art: '', pp: { sur: 'PA', given: 'B4' }, bags: [], say: {} },
+      pax('g05', 'passenger_male_04', 'YAMADA', 'KOJI', '31A', 3),
+      early,
+      pax('g07', 'passenger_female_07', 'ISHII', 'MAYU', '30C', 3),
+      fam,
+      pax('g09', 'passenger_female_04', 'KWON', 'NARI', '31F', 3),
+      { id: 'u-b5', kind: 'bcast', bc: 'B5', art: '', pp: { sur: 'PA', given: 'B5' }, bags: [], say: {} },
+      earlyBack,
+      pax('g10', 'passenger_male_08', 'FUJITA', 'RYO', '22B', 4),
+      pax('g11', 'passenger_female_06', 'SEO', 'YUNA', '20A', 4),
+      pax('g12', 'passenger_male_10', 'BAEK', 'HYUNWOO', '12C', 5),
+      photo,
+      pax('g14', 'passenger_female_08', 'OGAWA', 'RINA', '9D', 5),
+      pax('g15', 'passenger_male_02', 'KIM', 'MINJUN', '6F', 5),
+      pax('g16', 'passenger_female_01', 'SATO', 'MISAKI', '15A', 5),
+      { id: 'u-b6', kind: 'bcast', bc: 'B6', at: T.final, art: '', pp: { sur: 'PA', given: 'B6' }, bags: [], say: {} },
+      { id: 'u-b7', kind: 'bcast', bc: 'B7', at: T.final2, who: late, art: '', pp: { sur: 'PA', given: 'B7' }, bags: [], say: {} },
+      late,
+      { id: 'u-close', kind: 'close', at: T.close, art: '', pp: { sur: 'GATE', given: 'CLOSE' }, bags: [], say: {} },
+      { id: 'u-count', kind: 'count', at: T.door, art: '', pp: { sur: 'DOOR', given: 'CLOSE' }, bags: [], say: {} }
+    ];
+  }
+  window.MISSION_GT01 = {
+    id: 'pax.gt.01', generated: false,
+    aircraft: { seats: 32, taken: [], infantSeats: [], infantPerBlock: 1 },
+    cost: { greet: 0.2, scan: 0.3, pp: 0.4, talk: 1.0, bcast: 0.6, phone: 1.0, prep: 2.0 },
+    times: TIMES,
+    variants: {
+      JP: { flight: 'VELA 301', from: 'NRT', to: 'ICN', toName: L('仁川', '인천', 'Incheon'), std: TIMES.JP.std, start: TIMES.JP.start, close: TIMES.JP.close, board: TIMES.JP.board, gate: TIMES.JP.gate, t: TIMES.JP, pax: function () { return units('JP'); } },
+      KR: { flight: 'VELA 302', from: 'ICN', to: 'NRT', toName: L('成田', '나리타', 'Narita'), std: TIMES.KR.std, start: TIMES.KR.start, close: TIMES.KR.close, board: TIMES.KR.board, gate: TIMES.KR.gate, t: TIMES.KR, pax: function () { return units('KR'); } }
+    }
+  };
+})();
+
+/* ../src_gate/mission_gt02.js */
+/* 게이트편 Day 2 「混み合う搭乗」 미션 데이터 — 합의본 v2 3절 Day 2(만석, 이벤트: 기내 청소 지연)·4A·4B 기준. 모든 승객·편은 교육용 가상 데이터
+   JP: VELA 301 NRT→ICN STD 10:30 게이트 62 / KR: VELA 302 ICN→NRT STD 13:30 게이트 27. 만석 = 명단 18명(좌석 18) + INF 1
+   이벤트: 객실 청소 지연 — 09:55에 사인이 오지 않음 → B9(탑승 개시 지연 방송) → 10:05 사인 → B2. STD는 그대로(마감 10:20·도어 10:25 — 바쁜 탑승)
+   문제 승객(합의본 Day 2 코드): G2-bag(큰 짐·보조배터리) · G2-group(그룹 5 일찍) · G2-dup(좌석 중복 30C) · G2-again(이미 탑승한 탑승권 재스캔) · G2-name(탑승권·여권 이름 불일치) · G2-other(다른 편 탑승권, 명단 밖) · 늦은 도착
+   좌석·그룹은 V-G02(30열~ = 3, 20~29 = 4, ~19 = 5). 그림은 체크인편 승객 그림을 다시 씀(승객 그림 17종 한도 → 18명 + INF, Day 1과 같은 예외) */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var TIMES = { JP: { std: '10:30', start: '09:30', pre: '09:45', bag: '09:47', board: '09:55', sign: '09:55', cleanReady: '10:05', final: '10:10', final2: '10:15', close: '10:20', door: '10:25', gate: '62', gateAlt: '65', otherGate: '58' },
+                KR: { std: '13:30', start: '12:30', pre: '12:45', bag: '12:47', board: '12:55', sign: '12:55', cleanReady: '13:05', final: '13:10', final2: '13:15', close: '13:20', door: '13:25', gate: '27', gateAlt: '31', otherGate: '14' } };
+  var HELLO = { ja: 'お願いします。', ko: '부탁드립니다.', en: 'Here you go.' };
+  function pax(id, art, sur, given, seat, grp, extra) {
+    var p = { id: id, kind: 'pax', art: art, pp: { sur: sur, given: given }, seat: seat, grp: grp, bags: [], say: { hello: L(HELLO.ja, HELLO.ko, HELLO.en) } };
+    if (extra) Object.keys(extra).forEach(function (k) { p[k] = extra[k]; });
+    return p;
+  }
+  function units(c) {
+    var T = TIMES[c];
+    var bag = pax('g05', 'passenger_male_07', 'SHIN', 'DONGWOOK', '30C', 3, { issue: 'bag', bag: { size: '56×40×25', kg: 12, pb: { n: 1, mAh: 27000, v: 3.7, insulated: true, damaged: false } },   /* 38-F03: 고정 사례 — 99.9Wh 1개, 반입 조건 충족(V-G07) */
+      say: { hello: L('この鞄、棚に入りますよね？中に仕事の荷物が全部入ってるんです。', '이 가방, 선반에 들어가죠? 안에 일 짐이 다 들어 있어서요.', 'This bag fits in the bin, right? All my work stuff is in it.'),
+             pbYes: L('あ、はい。モバイルバッテリーが入ってます。出しますね。', '아, 네. 보조배터리가 들어 있어요. 꺼낼게요.', 'Oh, yes. There is a power bank inside. I will take it out.'),
+             handed: L('助かります。到着地で受け取ればいいんですね。', '고맙습니다. 도착지에서 받으면 되는 거죠?', 'Thanks. I pick it up at the destination, right?') } });
+    var early = pax('g06', 'passenger_female_05', 'MATSUMOTO', 'RIE', '8B', 5, { issue: 'group',
+      say: { hello: L('前の席なので先に乗ってもいいですか？混んでるみたいで。', '앞쪽 자리라 먼저 타도 될까요? 붐비는 것 같아서요.', 'My seat is up front; may I board first? It looks crowded.'),
+             wait: L('そうですか…わかりました、呼ばれるまで待ちます。', '그런가요… 알겠어요, 부를 때까지 기다릴게요.', 'I see… all right, I will wait until my group is called.') } });
+    var earlyBack = pax('g06r', 'passenger_female_05', 'MATSUMOTO', 'RIE', '8B', 5, { ref: 'g06', back: true,
+      say: { hello: L('今度は呼ばれましたよね。お願いします。', '이번엔 불렀죠? 부탁합니다.', 'That was my group this time, right? Here you go.') } });
+    var dup = pax('g07', 'passenger_female_07', 'JUNG', 'HAEIN', '30C', 3, { issue: 'dup', dupOf: 'g05', reseat: '30D',
+      say: { hello: L('30Cです。窓側じゃないけど、まあいいです。', '30C예요. 창가는 아니지만 뭐 괜찮아요.', 'Seat 30C. Not a window, but fine.'),
+             fixed: L('席が変わるんですか？30Dならすぐ隣ですね、大丈夫です。', '자리가 바뀌나요? 30D면 바로 옆이네요, 괜찮아요.', 'My seat changes? 30D is right next to it, that is fine.') } });
+    var again = pax('g11', 'passenger_male_02', 'KANG', 'HOJUN', '22C', 4, { issue: 'again', againOf: 'g09',
+      say: { hello: L('妻の分と一緒に持ってて…これです。', '아내 것과 같이 갖고 있어서… 이거예요.', 'I had it together with my wife\'s… here.'),
+             caught: L('あっ、これは妻の搭乗券でした。すみません、自分のはこっちです。', '아, 이건 아내 탑승권이네요. 죄송해요, 제 건 이거예요.', 'Oh, this is my wife\'s boarding pass. Sorry, mine is this one.') } });
+    var fam1 = pax('g12', 'passenger_female_06', 'ITO', 'NANA', '21D', 4, { party: [{ sur: 'ITO', given: 'SORA', seat: '21E', age: 7, art: 'passenger_child_01' }], with: [{ art: 'passenger_child_01' }],
+      say: { hello: L('息子と2人です。搭乗券は2枚あります。', '아들과 둘입니다. 탑승권은 두 장이에요.', 'My son and I. We have two boarding passes.') } });
+    var name = pax('g13', 'passenger_male_10', 'LIM', 'JAEHYUN', '20B', 4, { issue: 'name', ppName: { sur: 'IM', given: 'JAEHYUN' },
+      say: { hello: L('はい、どうぞ。', '네, 여기요.', 'Here you are.'),
+             explain: L('ああ、パスポートは「IM」で、予約は「LIM」で取ったんです。同じ名前なんですけど…。', '아, 여권은 「IM」이고 예약은 「LIM」으로 했어요. 같은 이름인데요….', 'Ah, my passport says "IM" but I booked as "LIM". It is the same name…') } });
+    var fam2 = pax('g14', 'passenger_female_01', 'SATO', 'YUI', '15C', 5, { party: [{ sur: 'SATO', given: 'RIKU', seat: '15D', age: 9, art: 'passenger_child_02' }], with: [{ art: 'passenger_child_02' }],
+      say: { hello: L('子どもと一緒です。2枚お願いします。', '아이와 함께예요. 두 장 부탁합니다.', 'I am with my child. Two passes, please.') } });
+    var other = pax('gx1', 'passenger_male_05', 'WATANABE', 'KEN', '14A', 5, { issue: 'other', nomani: true, other: { flight: c === 'JP' ? 'VELA 305' : 'VELA 306', to: L('釜山', '부산', 'Busan'), gate: T.otherGate },
+      say: { hello: L('ここで合ってますよね？', '여기가 맞죠?', 'This is the right gate, isn\'t it?'),
+             guided: L('えっ、違う便…！ありがとうございます、急ぎます。', '네? 다른 편…! 감사합니다, 서두를게요.', 'What, the wrong flight…! Thank you, I will hurry.') } });
+    var late = pax('g16', 'passenger_male_06_cane', 'OGAWA', 'HIDEO', '9C', 5, { issue: 'late', voice: 'passenger_male_06_cane',
+      say: { hello: L('呼び出しをすみません。足が遅くて。', '호출까지 하게 해서 미안합니다. 걸음이 느려서요.', 'Sorry you had to page me. I walk slowly.') } });
+    return [
+      { id: 'u-prep', kind: 'prep', art: '', pp: { sur: 'GATE', given: 'PREP' }, bags: [], say: {}, memo: L('本日は満席（18/18）。客室から「清掃が遅れ気味」との連絡あり。', '오늘은 만석(18/18). 객실에서 「청소가 늦어질 듯」 연락 있음.', 'Full flight today (18/18). Cabin reports cleaning may run late.') },
+      { id: 'u-b1', kind: 'bcast', bc: 'B1', at: T.pre, art: '', pp: { sur: 'PA', given: 'B1' }, bags: [], say: {} },
+      { id: 'u-b8', kind: 'bcast', bc: 'B8', at: T.bag, art: '', pp: { sur: 'PA', given: 'B8' }, bags: [], say: {} },
+      { id: 'u-sign', kind: 'sign', at: T.board, signAt: T.sign, clean: true, cleanReady: T.cleanReady, art: '', pp: { sur: 'CABIN', given: 'SIGN' }, bags: [], say: {} },
+      pax('g01', 'passenger_female_03_infant_01', 'YOSHIDA', 'AYA', '3A', 1, { pre: 'inf', photo: 'female_03', voice: 'passenger_female_03', inf: { sur: 'YOSHIDA', given: 'KOTA' }, say: { hello: L('赤ちゃんがいるので、先に乗らせてください。', '아기가 있어서 먼저 타게 해 주세요.', 'I have a baby, so please let me board first.') } }),
+      { id: 'u-b3', kind: 'bcast', bc: 'B3', art: '', pp: { sur: 'PA', given: 'B3' }, bags: [], say: {} },
+      pax('g02', 'passenger_male_01', 'HAYASHI', 'DAISUKE', '1C', 2),
+      pax('g03', 'passenger_female_02', 'CHOI', 'SUJIN', '2D', 2),
+      { id: 'u-b4', kind: 'bcast', bc: 'B4', art: '', pp: { sur: 'PA', given: 'B4' }, bags: [], say: {} },
+      pax('g04', 'passenger_male_04', 'OKADA', 'SHO', '31B', 3),
+      bag,
+      early,
+      dup,
+      pax('g08', 'passenger_male_08', 'KOBAYASHI', 'REN', '32A', 3),
+      { id: 'u-b10', kind: 'bcast', bc: 'B10', art: '', pp: { sur: 'PA', given: 'B10' }, bags: [], say: {} },
+      pax('g09', 'passenger_female_04', 'PARK', 'JIYEON', '31F', 3),
+      pax('g10', 'passenger_male_03', 'NAKAMURA', 'SOTA', '30A', 3),
+      { id: 'u-b5', kind: 'bcast', bc: 'B5', art: '', pp: { sur: 'PA', given: 'B5' }, bags: [], say: {} },
+      earlyBack,
+      again,
+      fam1,
+      name,
+      fam2,
+      other,
+      pax('g15', 'passenger_female_08', 'HAN', 'SOYOUNG', '12A', 5),
+      { id: 'u-b6', kind: 'bcast', bc: 'B6', at: T.final, art: '', pp: { sur: 'PA', given: 'B6' }, bags: [], say: {} },
+      { id: 'u-b7', kind: 'bcast', bc: 'B7', at: T.final2, who: late, art: '', pp: { sur: 'PA', given: 'B7' }, bags: [], say: {} },
+      late,
+      { id: 'u-close', kind: 'close', at: T.close, art: '', pp: { sur: 'GATE', given: 'CLOSE' }, bags: [], say: {} },
+      { id: 'u-count', kind: 'count', at: T.door, art: '', pp: { sur: 'DOOR', given: 'CLOSE' }, bags: [], say: {} }
+    ];
+  }
+  window.MISSION_GT02 = {
+    id: 'pax.gt.02', generated: false, full: true,
+    aircraft: { seats: 18, taken: [], infantSeats: [], infantPerBlock: 1 },
+    cost: { greet: 0.1, scan: 0.2, pp: 0.2, talk: 0.8, bcast: 0.5, phone: 0.8, prep: 2.0 },
+    times: TIMES,
+    variants: {
+      JP: { flight: 'VELA 301', from: 'NRT', to: 'ICN', toName: L('仁川', '인천', 'Incheon'), std: TIMES.JP.std, start: TIMES.JP.start, close: TIMES.JP.close, board: TIMES.JP.board, gate: TIMES.JP.gate, t: TIMES.JP, pax: function () { return units('JP'); } },
+      KR: { flight: 'VELA 302', from: 'ICN', to: 'NRT', toName: L('成田', '나리타', 'Narita'), std: TIMES.KR.std, start: TIMES.KR.start, close: TIMES.KR.close, board: TIMES.KR.board, gate: TIMES.KR.gate, t: TIMES.KR, pax: function () { return units('KR'); } }
+    }
+  };
+})();
+
+/* ../src_gate/mission_gt03.js */
+/* 게이트편 Day 3 「サポートが必要なお客様」 미션 데이터 — 합의본 v2 3절 Day 3(이벤트: 마감 직전·마감 후 도착)·2B UM 인계 동선·4A·4B 기준. 모든 승객·편은 교육용 가상 데이터
+   JP: VELA 301 NRT→ICN STD 10:30 게이트 62 / KR: VELA 302 ICN→NRT STD 13:30 게이트 27. 명단 19명(성인 17 + 어린이 UM 1 + 동반 어린이 1) + INF 1
+   문제 승객(합의본 Day 3 코드): G3-wch(WCHC) · G3-um(UM 인계표 ①②③) · G3-inf+G3-gtg+G3-exit(유아 동반·유모차·비상구 열 조건 변경) · G3-exit(비상구 열 확인) · G3-pet(PETC 최종 확인) · G3-late(마감 직전 도착 / 마감 후 도착 → SV 판단)
+   좌석·그룹은 V-G02. 비상구 열 = 16열(Vela 교육용). 그림은 체크인편 승객 그림 + v04(승객 그림 한도 → 18명 예외) */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var TIMES = { JP: { std: '10:30', start: '09:30', pre: '09:45', wch: '09:47', board: '09:55', sign: '09:53', final: '10:10', final2: '10:15', late1: '10:18', close: '10:20', late2: '10:22', door: '10:25', gate: '62', gateAlt: '65' },
+                KR: { std: '13:30', start: '12:30', pre: '12:45', wch: '12:47', board: '12:55', sign: '12:53', final: '13:10', final2: '13:15', late1: '13:18', close: '13:20', late2: '13:22', door: '13:25', gate: '27', gateAlt: '31' } };
+  var HELLO = { ja: 'お願いします。', ko: '부탁드립니다.', en: 'Here you go.' };
+  function pax(id, art, sur, given, seat, grp, extra) {
+    var p = { id: id, kind: 'pax', art: art, pp: { sur: sur, given: given }, seat: seat, grp: grp, bags: [], say: { hello: L(HELLO.ja, HELLO.ko, HELLO.en) } };
+    if (extra) Object.keys(extra).forEach(function (k) { p[k] = extra[k]; });
+    return p;
+  }
+  function units(c) {
+    var T = TIMES[c];
+    var wch = pax('g01', 'passenger_male_06_wheelchair', 'SASAKI', 'MASAO', '2C', 1, { pre: 'wch', issue: 'wch', wchCode: 'WCHC', voice: 'passenger_male_06_cane',
+      say: { hello: L('車いすをお願いしていた佐々木です。足はまったく動かせません。', '휠체어를 부탁해 둔 사사키입니다. 다리는 전혀 움직이지 못합니다.', 'I am Sasaki; I asked for a wheelchair. I cannot move my legs at all.'),
+             needs: L('座席までは機内用の車いすで。移るときは支えてもらえれば大丈夫です。', '좌석까지는 기내용 휠체어로요. 옮길 때 부축만 해 주시면 됩니다.', 'To my seat with the aisle chair, please. I just need support when transferring.') } });
+    var um = pax('g02', 'passenger_child_01', 'HONDA', 'YUI', '5A', 1, { pre: 'um', issue: 'um', age: 8, with: [{ art: 'staff_checkin_greet_01' }],
+      umDoc: { toName: 'HONDA KENJI', toTel: '+82-10-xxxx-1234', fromName: 'HONDA MIKA', fromTel: '090-xxxx-5678' },
+      say: { hello: L('ひとりで乗るの、はじめて…。', '혼자 타는 거 처음이에요….', 'It is my first time flying alone…'),
+             escort: L('カウンターから引き継ぎます。申請書・誓約書、到着地のお迎え・出発地の保護者の連絡先です。', '카운터에서 인계합니다. 신청서·서약서, 도착지 마중·출발지 보호자 연락처입니다.', 'Handing over from check-in: application, undertaking, and the contacts for the receiving adult and the departing guardian.'),
+             ok: L('うん、お姉さんといっしょに行く。', '네, 언니랑 같이 갈게요.', 'Okay, I will go with you.') } });
+    var exitInf = pax('g06', 'passenger_female_03_infant_01', 'KIMURA', 'SAKI', '16C', 4, { issue: 'exit-inf', photo: 'female_03', voice: 'passenger_female_03', inf: { sur: 'KIMURA', given: 'RIO' }, reseat: '18C', with: [{ prop: 'prop_stroller_gate_01' }],
+      say: { hello: L('16Cです。赤ちゃんと、ベビーカーもお願いします。', '16C예요. 아기랑, 유모차도 부탁해요.', 'Seat 16C. With my baby — and the stroller, please.'),
+             reseat: L('非常口の席はだめなんですね。わかりました、18Cで。', '비상구 자리는 안 되는군요. 알겠어요, 18C로요.', 'Oh, not the exit row with a baby. All right, 18C then.'),
+             stroller: L('ベビーカーは着いたらすぐ使いたいです。', '유모차는 도착하면 바로 쓰고 싶어요.', 'I would like the stroller back as soon as we land.') } });
+    var exitOk = pax('g07', 'passenger_male_08', 'NOGUCHI', 'TAKERU', '16D', 4, { issue: 'exit',
+      say: { hello: L('非常口の席ですよね。カウンターでサインしました。', '비상구 자리죠. 카운터에서 서명했어요.', 'Exit row, right? I signed at the counter.'),
+             ok: L('はい、英語も日本語も大丈夫です。手伝えます。', '네, 영어도 일본어도 괜찮습니다. 도울 수 있어요.', 'Yes, I can follow English and Japanese. I can help.') } });
+    var pet = pax('g08', 'passenger_female_04', 'YOON', 'SEOA', '20A', 4, { issue: 'pet', with: [{ prop: 'prop_pet_carrier_01' }],
+      say: { hello: L('この子も一緒です。カウンターで確認してもらいました。', '이 아이도 같이 가요. 카운터에서 확인받았어요.', 'My dog is with me. It was checked at the counter.'),
+             ok: L('窓側で、前の席の下に入れますね。はい。', '창가고, 앞 좌석 아래에 넣을게요. 네.', 'Window seat, and the carrier goes under the seat in front. Got it.') } });
+    var late1 = pax('g15', 'passenger_female_08', 'MIYAZAKI', 'HINA', '12D', 5, { issue: 'late1',
+      say: { hello: L('はあ、はあ…間に合いました？', '헉, 헉… 늦지 않았죠?', 'Phew… am I in time?') } });
+    var late2 = pax('g16', 'passenger_male_05', 'KUROKI', 'SHOTA', '11F', 5, { issue: 'late2', bagsChecked: 1,
+      say: { hello: L('すみません！締め切りました？乗れますか？', '죄송합니다! 마감됐나요? 탈 수 있나요?', 'Sorry! Is boarding closed? Can I still get on?'),
+             ok: L('ありがとうございます、本当に助かりました。', '감사합니다, 정말 살았어요.', 'Thank you so much, you saved me.'),
+             no: L('…そうですか。次の便でお願いします。', '…그렇군요. 다음 편으로 부탁합니다.', '…I see. The next flight, then.') } });
+    return [
+      { id: 'u-prep', kind: 'prep', art: '', pp: { sur: 'GATE', given: 'PREP' }, bags: [], say: {}, memo: L('特別なお客様：WCHC 1（機内用車いす・補助員2名手配済み）、UM 1（8歳、同行職員が連れてくる）、INF 1、PETC 1、非常口列 16C/16D。', '특별 승객: WCHC 1(기내용 휠체어·보조 인력 2명 수배됨), UM 1(8세, 동행 직원이 데려옴), INF 1, PETC 1, 비상구 열 16C/16D.', 'Special passengers: WCHC ×1 (aisle chair and two assistants arranged), UM ×1 (age 8, escorted by staff), INF ×1, PETC ×1, exit row 16C/16D.') },
+      { id: 'u-b1', kind: 'bcast', bc: 'B1', at: T.pre, art: '', pp: { sur: 'PA', given: 'B1' }, bags: [], say: {} },
+      { id: 'u-b11', kind: 'bcast', bc: 'B11', at: T.wch, art: '', pp: { sur: 'PA', given: 'B11' }, bags: [], say: {} },
+      { id: 'u-sign', kind: 'sign', at: T.board, signAt: T.sign, art: '', pp: { sur: 'CABIN', given: 'SIGN' }, bags: [], say: {} },
+      wch,
+      um,
+      { id: 'u-b12', kind: 'bcast', bc: 'B12', art: '', pp: { sur: 'PA', given: 'B12' }, bags: [], say: {} },
+      { id: 'u-b3', kind: 'bcast', bc: 'B3', art: '', pp: { sur: 'PA', given: 'B3' }, bags: [], say: {} },
+      pax('g03', 'passenger_male_01', 'TAKAHASHI', 'YUTO', '1A', 2),
+      pax('g04', 'passenger_female_02', 'SONG', 'HAYOON', '1D', 2),
+      { id: 'u-b4', kind: 'bcast', bc: 'B4', art: '', pp: { sur: 'PA', given: 'B4' }, bags: [], say: {} },
+      pax('g05', 'passenger_male_04', 'INOUE', 'HARUTO', '31A', 3),
+      pax('g09', 'passenger_female_07', 'OH', 'YERIN', '30D', 3),
+      pax('g10', 'passenger_male_07', 'SHIMIZU', 'KAITO', '32C', 3),
+      { id: 'u-b5', kind: 'bcast', bc: 'B5', art: '', pp: { sur: 'PA', given: 'B5' }, bags: [], say: {} },
+      exitInf,
+      exitOk,
+      pet,
+      pax('g11', 'passenger_male_02', 'JANG', 'WOOJIN', '22B', 4, { party: [{ sur: 'JANG', given: 'SEOJUN', seat: '22C', age: 10, art: 'passenger_child_02' }], with: [{ art: 'passenger_child_02' }], say: { hello: L('息子と一緒です。2枚どうぞ。', '아들이랑 같이예요. 두 장이요.', 'My son and I. Two passes.') } }),
+      pax('g12', 'passenger_female_06', 'NAKAJIMA', 'MEI', '19A', 5),
+      pax('g13', 'passenger_male_10', 'BAE', 'SUNGMIN', '14B', 5),
+      pax('g14', 'passenger_female_01', 'HARADA', 'RIN', '9F', 5),
+      pax('g17', 'passenger_male_03', 'KWAK', 'DOYUN', '7C', 5),
+      pax('g18', 'passenger_female_05', 'FUKUDA', 'AOI', '6A', 5),
+      { id: 'u-b6', kind: 'bcast', bc: 'B6', at: T.final, art: '', pp: { sur: 'PA', given: 'B6' }, bags: [], say: {} },
+      { id: 'u-b7', kind: 'bcast', bc: 'B7', at: T.final2, who: late1, art: '', pp: { sur: 'PA', given: 'B7' }, bags: [], say: {} },
+      late1,
+      { id: 'u-close', kind: 'close', at: T.close, art: '', pp: { sur: 'GATE', given: 'CLOSE' }, bags: [], say: {} },
+      late2,
+      { id: 'u-count', kind: 'count', at: T.door, art: '', pp: { sur: 'DOOR', given: 'CLOSE' }, bags: [], say: {} }
+    ];
+  }
+  window.MISSION_GT03 = {
+    id: 'pax.gt.03', generated: false, exitRows: [16],
+    aircraft: { seats: 32, taken: [], infantSeats: [], infantPerBlock: 1 },
+    cost: { greet: 0.1, scan: 0.2, pp: 0.2, talk: 0.8, bcast: 0.5, phone: 0.8, prep: 2.0 },
+    times: TIMES,
+    variants: {
+      JP: { flight: 'VELA 301', from: 'NRT', to: 'ICN', toName: L('仁川', '인천', 'Incheon'), std: TIMES.JP.std, start: TIMES.JP.start, close: TIMES.JP.close, board: TIMES.JP.board, gate: TIMES.JP.gate, t: TIMES.JP, pax: function () { return units('JP'); } },
+      KR: { flight: 'VELA 302', from: 'ICN', to: 'NRT', toName: L('成田', '나리타', 'Narita'), std: TIMES.KR.std, start: TIMES.KR.start, close: TIMES.KR.close, board: TIMES.KR.board, gate: TIMES.KR.gate, t: TIMES.KR, pax: function () { return units('KR'); } }
+    }
+  };
+})();
+
+/* ../src_gate/mission_gt04.js */
+/* 게이트편 Day 4 「ゲート変更・ノーショー」 미션 데이터 — 합의본 v2 3절 Day 4(G4-change·G4-search·G4-warn·G4-offload·G4-after)·2A 상태 계약(mani·bags[].work·maniVer)·4A 시각표 기준. 모든 승객·편은 교육용 가상 데이터
+   JP: VELA 301 NRT→ICN STD 10:30 게이트 62 → 65(09:45 변경) / KR: VELA 302 ICN→NRT STD 13:30 게이트 27 → 31. 명단 19명(성인 18 + 동반 어린이 1), 노쇼 2명(위탁 짐 2개 / 짐 없음)
+   흐름: 준비 → B1 → 09:45 게이트 변경(B13 즉시·표시·이전 게이트 담당·WCHR 이동) → 09:50 B13 ② → 09:55 사인·B2 → B13 ③ → 사전 탑승(WCHR) → B3·B4·B5 → 10:10 짐 하기 예고 → B6 → 10:15 최종 호출(이름·연락·기록 조회 요청) → 10:20 마감: SV 오프로드 결정 → 하기 지시(태그 2) → 태그별 완료 확인 → 명단 수정(maniVer+1) → 최종 통보 → 10:23·10:24 오프로드 뒤 도착 2명 → 10:25 도어 클로즈(세 조건 잠금)
+   그림은 체크인편 승객 그림 + v04(승객 그림 한도 → 19명, Day 1~3과 같은 예외). 좌석·그룹은 V-G02 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var TIMES = { JP: { std: '10:30', start: '09:30', pre: '09:40', change: '09:45', change2: '09:50', change3: '09:55', board: '09:55', sign: '09:53', warn: '10:10', final: '10:10', final2: '10:15', close: '10:20', after1: '10:23', after2: '10:24', door: '10:25', gate: '62', gateAlt: '65' },
+                KR: { std: '13:30', start: '12:30', pre: '12:40', change: '12:45', change2: '12:50', change3: '12:55', board: '12:55', sign: '12:53', warn: '13:10', final: '13:10', final2: '13:15', close: '13:20', after1: '13:23', after2: '13:24', door: '13:25', gate: '27', gateAlt: '31' } };
+  var HELLO = { ja: 'お願いします。', ko: '부탁드립니다.', en: 'Here you go.' };
+  function pax(id, art, sur, given, seat, grp, extra) {
+    var p = { id: id, kind: 'pax', art: art, pp: { sur: sur, given: given }, seat: seat, grp: grp, bags: [], say: { hello: L(HELLO.ja, HELLO.ko, HELLO.en) } };
+    if (extra) Object.keys(extra).forEach(function (k) { p[k] = extra[k]; });
+    return p;
+  }
+  function units(c) {
+    var T = TIMES[c], tagP = c === 'JP' ? 'VA' : 'VB';
+    var wchr = pax('g01', 'passenger_male_06_wheelchair', 'OKADA', 'TOSHIO', '2A', 1, { pre: 'wch', wchCode: 'WCHR', voice: 'passenger_male_06_cane',
+      say: { hello: L('車いすの岡田です。新しい搭乗口まで、係の方に連れてきてもらいました。', '휠체어 오카다입니다. 새 탑승구까지 직원분이 데려다 주셨어요.', 'Okada, with the wheelchair. Your colleague brought me to the new gate.') } });
+    /* 노쇼 2명 — 마감 때 명단에 남음. A: 위탁 짐 2개(탑재됨), B: 위탁 짐 없음. 오프로드 뒤 각각 도착(G4-after) */
+    var nsA = pax('g18', 'passenger_male_04', 'TANAKA', 'RYO', '21C', 4, { issue: 'after', at: T.after1, bagsChecked: 2, bagTags: [tagP + '301441', tagP + '301442'],
+      say: { hello: L('すみません、免税店で時計を見ていなくて…。まだ乗れますか？', '죄송합니다, 면세점에서 시계를 안 봤어요…. 아직 탈 수 있나요?', 'Sorry, I lost track of time in the duty-free shop… can I still board?'),
+             no: L('…そうですか。荷物はどうなりますか。', '…그렇군요. 짐은 어떻게 되나요?', '…I see. What happens to my bags?') } });
+    var nsB = pax('g19', 'passenger_female_07', 'MOON', 'SEOYEON', '27B', 5, { issue: 'after', at: T.after2, bagsChecked: 0, bagTags: [],
+      say: { hello: L('搭乗口が変わったんですか？ ずっと62番で待っていました…。', '탑승구가 바뀌었어요? 계속 62번에서 기다렸는데….', 'The gate changed? I was waiting at gate 62 the whole time…'),
+             no: L('…わかりました。次の便を教えてください。', '…알겠어요. 다음 편을 알려 주세요.', '…All right. Please tell me the next flight.') } });
+    if (c === 'KR') nsB.say.hello = L('搭乗口が変わったんですか？ ずっと27番で待っていました…。', '탑승구가 바뀌었어요? 계속 27번에서 기다렸는데….', 'The gate changed? I was waiting at gate 27 the whole time…');
+    return [
+      { id: 'u-prep', kind: 'prep', art: '', pp: { sur: 'GATE', given: 'PREP' }, bags: [], say: {}, memo: L('特別なお客様：WCHR 1（空港用車いす、歩行可）。お預け荷物のあるお客様 6名。運航管理より：本日は搭乗口変更の可能性あり。', '특별 승객: WCHR 1(공항용 휠체어, 보행 가능). 위탁 짐이 있는 승객 6명. 운항관리: 오늘 탑승구 변경 가능성 있음.', 'Special passengers: WCHR ×1 (airport wheelchair, can walk). 6 passengers with checked bags. OPS: a gate change is possible today.') },
+      { id: 'u-b1', kind: 'bcast', bc: 'B1', at: T.pre, art: '', pp: { sur: 'PA', given: 'B1' }, bags: [], say: {} },
+      { id: 'u-change', kind: 'change', at: T.change, art: '', pp: { sur: 'GATE', given: 'CHANGE' }, bags: [], say: {}, wchrOf: 'g01' },
+      { id: 'u-c2', kind: 'bcast', bc: 'B13', at: T.change2, nth: 2, art: '', pp: { sur: 'PA', given: 'B13' }, bags: [], say: {} },
+      { id: 'u-sign', kind: 'sign', at: T.board, signAt: T.sign, art: '', pp: { sur: 'CABIN', given: 'SIGN' }, bags: [], say: {} },
+      { id: 'u-c3', kind: 'bcast', bc: 'B13', at: T.change3, nth: 3, art: '', pp: { sur: 'PA', given: 'B13' }, bags: [], say: {} },
+      wchr,
+      pax('g02', 'passenger_female_03', 'KIM', 'JIWOO', '3C', 1, { pre: 'fam', party: [{ sur: 'KIM', given: 'HAEUN', seat: '3D', age: 6, art: 'passenger_child_01' }], with: [{ art: 'passenger_child_01' }],
+        say: { hello: L('子どもと一緒です。先に乗せてもらえますか。', '아이와 함께예요. 먼저 태워 주실 수 있나요?', 'I am with my child. May we board early?') } }),
+      { id: 'u-b3', kind: 'bcast', bc: 'B3', art: '', pp: { sur: 'PA', given: 'B3' }, bags: [], say: {} },
+      pax('g03', 'passenger_male_01', 'HAYASHI', 'DAIKI', '1A', 2),
+      pax('g04', 'passenger_female_02', 'YOON', 'SOMIN', '1D', 2),
+      { id: 'u-b4', kind: 'bcast', bc: 'B4', art: '', pp: { sur: 'PA', given: 'B4' }, bags: [], say: {} },
+      pax('g05', 'passenger_male_05', 'ISHIDA', 'SORA', '31A', 3, { bagsChecked: 1 }),
+      pax('g06', 'passenger_female_04', 'HAN', 'JIA', '30D', 3),
+      pax('g07', 'passenger_male_07', 'MORI', 'KENTA', '32C', 3, { bagsChecked: 1 }),
+      pax('g08', 'passenger_female_08', 'CHO', 'EUNJI', '29A', 3),
+      { id: 'u-b5', kind: 'bcast', bc: 'B5', art: '', pp: { sur: 'PA', given: 'B5' }, bags: [], say: {} },
+      pax('g09', 'passenger_male_02', 'SEO', 'JUNHO', '22B', 4, { bagsChecked: 1 }),
+      pax('g10', 'passenger_female_06', 'KOBAYASHI', 'YUNA', '19A', 4),
+      pax('g11', 'passenger_male_10', 'LIM', 'TAEYANG', '14B', 5),
+      pax('g12', 'passenger_female_01', 'SAITO', 'MIO', '9F', 5, { bagsChecked: 1 }),
+      pax('g13', 'passenger_male_03', 'JUNG', 'WOOJIN', '7C', 5),
+      pax('g14', 'passenger_female_05', 'ABE', 'HINATA', '6A', 5),
+      pax('g15', 'passenger_male_08', 'KWON', 'SIWOO', '11F', 5),
+      pax('g16', 'passenger_child_02', 'NAKAMURA', 'SOTA', '12D', 5, { age: 14, say: { hello: L('一人で乗ります。中学生です。', '혼자 타요. 중학생이에요.', 'I am traveling alone. I am in middle school.') } }),
+      { id: 'u-warn', kind: 'warn', at: T.warn, art: '', pp: { sur: 'LOAD', given: 'WARN' }, bags: [], say: {} },
+      { id: 'u-b6', kind: 'bcast', bc: 'B6', at: T.final, art: '', pp: { sur: 'PA', given: 'B6' }, bags: [], say: {} },
+      { id: 'u-search', kind: 'search', at: T.final2, art: '', pp: { sur: 'PAGE', given: 'SEARCH' }, bags: [], say: {} },
+      { id: 'u-close', kind: 'close', at: T.close, offload: true, art: '', pp: { sur: 'GATE', given: 'CLOSE' }, bags: [], say: {} },
+      nsA,
+      nsB,
+      { id: 'u-count', kind: 'count', at: T.door, lock: true, art: '', pp: { sur: 'DOOR', given: 'CLOSE' }, bags: [], say: {} }
+    ];
+  }
+  window.MISSION_GT04 = {
+    id: 'pax.gt.04', generated: false, exitRows: [16],
+    aircraft: { seats: 32, taken: [], infantSeats: [], infantPerBlock: 1 },
+    cost: { greet: 0.1, scan: 0.2, pp: 0.2, talk: 0.8, bcast: 0.5, phone: 0.8, prep: 2.0, radio: 1.0 },
+    times: TIMES,
+    variants: {
+      JP: { flight: 'VELA 301', from: 'NRT', to: 'ICN', toName: L('仁川', '인천', 'Incheon'), std: TIMES.JP.std, start: TIMES.JP.start, close: TIMES.JP.close, board: TIMES.JP.board, gate: TIMES.JP.gate, t: TIMES.JP, pax: function () { return units('JP'); } },
+      KR: { flight: 'VELA 302', from: 'ICN', to: 'NRT', toName: L('成田', '나리타', 'Narita'), std: TIMES.KR.std, start: TIMES.KR.start, close: TIMES.KR.close, board: TIMES.KR.board, gate: TIMES.KR.gate, t: TIMES.KR, pax: function () { return units('KR'); } }
+    }
+  };
+})();
+
+/* ../src_gate/mission_gt05.js */
+/* 게이트편 Day 5 「遅延・オーバーブッキング」 미션 데이터 — 합의본 v2 3절 Day 5(G5-delay·G5-ob·G5-withdraw·G5-sby·G5-final)·2A(mani: moved·sby·added)·4A 지연 시각표·V-G11·V-G13·V-G14. 모든 승객·편은 교육용 가상 데이터
+   JP: VELA 301 NRT→ICN STD 10:30 → 도착편 지연으로 ETD 12:30(확정 지연 120분 → 식사 쿠폰). KR: VELA 302 ICN→NRT STD 13:30 → ETD 15:30
+   좌석: 오늘 사용 가능 15석(기재 좌석 1열 정비 블록) ← 예약 명단 17명(성인 16 + 동반 어린이 1) = 2명 초과.
+   SV 확인: KIM SOYEON은 콜센터에서 이미 오후 편으로 변경(오지 않음 → moved) → 1명 초과 → 자원자 모집(B18)
+   자원자: ① ONO(동의 뒤 발행 전 철회 → 존중, 자기 그룹 때 보통 탑승) ② MATSUDA(동의 → 대체편 발행 → moved) → 15명 = 15석
+   대기 2명(sby): ① SHIN 유료 대기(V-G11 순위 ②, 접수 09:50) ② UEDA 일반 대기(순위 ③, 접수 09:20 — 더 빠르지만 등급이 낮음) → 11:50 정비 블록 해제로 1석 → 순위대로 SHIN 배정(added) → 16명 = 16석
+   흐름: 준비 → 09:40 지연 전망(B15) → 10:05 확정(B16·쿠폰 B17) → 11:30 예약 초과(SV 실제 인원 확인·B18) → 자원자 2명 → 11:50 좌석 1석 → 대기 배정 → 11:55 사인·B19 → B3·B4·B5 → 탑승 → 12:10 B6 → 12:20 마감 → 12:25 도어(최종 통보 = 최신 명단 버전)
+   그림은 체크인편 승객 그림 + v04(승객 그림 한도 → 19명, Day 1~4와 같은 예외) */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var TIMES = { JP: { std: '10:30', etd: '12:30', start: '09:30', delay1: '09:40', delay2: '10:05', ob: '11:30', vol: '11:35', release: '11:50', board: '11:55', sign: '11:53', final: '12:10', final2: '12:15', close: '12:20', door: '12:25', gate: '62', gateAlt: '65', alt: '15:30' },
+                KR: { std: '13:30', etd: '15:30', start: '12:30', delay1: '12:40', delay2: '13:05', ob: '14:30', vol: '14:35', release: '14:50', board: '14:55', sign: '14:53', final: '15:10', final2: '15:15', close: '15:20', door: '15:25', gate: '27', gateAlt: '31', alt: '18:30' } };
+  var HELLO = { ja: 'お願いします。', ko: '부탁드립니다.', en: 'Here you go.' };
+  function pax(id, art, sur, given, seat, grp, extra) {
+    var p = { id: id, kind: 'pax', art: art, pp: { sur: sur, given: given }, seat: seat, grp: grp, bags: [], say: { hello: L(HELLO.ja, HELLO.ko, HELLO.en) } };
+    if (extra) Object.keys(extra).forEach(function (k) { p[k] = extra[k]; });
+    return p;
+  }
+  function units(c) {
+    var T = TIMES[c];
+    var vol1 = pax('g05', 'passenger_male_05', 'ONO', 'KAZUKI', '30D', 3, { issue: 'vol', withdraw: true,
+      say: { hello: L('放送を聞きました。午後の便でもいいですよ、条件を教えてください。', '방송 들었어요. 오후 편이어도 괜찮아요, 조건을 알려 주세요.', 'I heard the announcement. The afternoon flight is fine — what are the terms?'),
+             agree: L('わかりました。それで協力します。', '알겠어요. 그 조건으로 협력할게요.', 'All right, I will take that.'),
+             withdraw: L('すみません、やっぱりやめます。会社から今日中に来るように言われて…。', '죄송해요, 역시 안 되겠어요. 회사에서 오늘 중으로 오라고 해서….', 'Sorry — I have to take it back. My office says I must arrive today…'),
+             ok: L('ありがとうございます。助かります。', '감사합니다. 다행이에요.', 'Thank you, that helps.') } });
+    var vol2 = pax('g06', 'passenger_female_04', 'MATSUDA', 'RIKA', '19A', 4, { issue: 'vol',
+      say: { hello: L('別の便に変わってもいいです。急いでいないので。', '다른 편으로 바꿔도 괜찮아요. 급하지 않아서요.', 'I can take another flight. I am not in a hurry.'),
+             agree: L('はい、その条件で大丈夫です。', '네, 그 조건이면 괜찮아요.', 'Yes, those terms are fine.'),
+             ok: L('新しい搭乗券、受け取りました。', '새 탑승권 받았어요.', 'Got the new boarding pass, thanks.') } });
+    var rebooked = pax('g14', 'passenger_female_03', 'KIM', 'SOYEON', '3C', 5, { issue: 'rebooked', say: {} });   /* 콜센터에서 변경 완료 — 오지 않음(SV 확인에서 moved) */
+    var sby1 = pax('g17', 'passenger_male_08', 'SHIN', 'DONGHA', '14D', 5, { sby: true, sbyRank: 2, sbyAt: c === 'JP' ? '09:50' : '12:50', sbyType: L('有料の空席待ち（V-G11 ②）', '유료 대기(V-G11 ②)', 'Paid standby (V-G11 ②)'),
+      say: { hello: L('空席待ちの申です。席、取れましたか？', '대기 신청한 신입니다. 자리 났나요?', 'Shin, on standby. Did I get a seat?'), ok: L('よかった！ ありがとうございます。', '다행이다! 감사합니다.', 'Great! Thank you.'), no: L('そうですか…次の便をお願いします。', '그렇군요… 다음 편으로 부탁드립니다.', 'I see… the next flight, then.') } });
+    var sby2 = pax('g18', 'passenger_female_07', 'UEDA', 'NANA', '14E', 5, { sby: true, sbyRank: 3, sbyAt: c === 'JP' ? '09:20' : '12:20', sbyType: L('一般の空席待ち（V-G11 ③）', '일반 대기(V-G11 ③)', 'General standby (V-G11 ③)'),
+      say: { hello: L('朝一番に空席待ちを出した上田です。', '아침 제일 먼저 대기 신청한 우에다예요.', 'Ueda — I was the first on the standby list this morning.'), ok: L('やった、ありがとうございます。', '됐다, 감사합니다.', 'Yes! Thank you.'), no: L('一番早く並んだのに…。わかりました。', '제일 먼저 신청했는데…. 알겠어요.', 'But I was first in line… All right.') } });
+    var vol1Back = { id: 'g05r', kind: 'pax', back: true, ref: 'g05', art: vol1.art, pp: vol1.pp, seat: vol1.seat, grp: vol1.grp, bags: [], say: { hello: L('さっきの小野です。やっぱりこの便で。', '아까 그 오노예요. 역시 이 편으로요.', 'Ono again — this flight after all.') } };
+    return [
+      { id: 'u-prep', kind: 'prep', art: '', pp: { sur: 'GATE', given: 'PREP' }, bags: [], say: {}, memo: L('本日の使用可能座席 15（1列は整備ブロック）。ご予約 17名 → 2名超過。空席待ち 2名（有料1・一般1）。運航管理より：使用機の到着が遅れるおそれ。', '오늘 사용 가능 좌석 15(1열 정비 블록). 예약 17명 → 2명 초과. 대기 2명(유료 1·일반 1). 운항관리: 사용 기재 도착 지연 우려.', 'Seats available today: 15 (one row blocked for maintenance). Booked 17 → 2 over. Standby 2 (1 paid, 1 general). OPS: the inbound aircraft may be late.') },
+      { id: 'u-delay1', kind: 'delay', step: 1, at: T.delay1, art: '', pp: { sur: 'OPS', given: 'DELAY1' }, bags: [], say: {} },
+      { id: 'u-delay2', kind: 'delay', step: 2, at: T.delay2, art: '', pp: { sur: 'OPS', given: 'DELAY2' }, bags: [], say: {} },
+      { id: 'u-ob', kind: 'ob', at: T.ob, art: '', pp: { sur: 'SV', given: 'OVERSOLD' }, bags: [], say: {}, rebookedId: 'g14' },
+      vol1,
+      vol2,
+      { id: 'u-sby', kind: 'sby', at: T.release, art: '', pp: { sur: 'SEAT', given: 'RELEASE' }, bags: [], say: {}, cands: ['g17', 'g18'] },
+      { id: 'u-sign', kind: 'sign', at: T.board, signAt: T.sign, bcId: 'B19', art: '', pp: { sur: 'CABIN', given: 'SIGN' }, bags: [], say: {} },
+      { id: 'u-b3', kind: 'bcast', bc: 'B3', art: '', pp: { sur: 'PA', given: 'B3' }, bags: [], say: {} },
+      pax('g01', 'passenger_male_01', 'FUJITA', 'REN', '1A', 2),
+      pax('g02', 'passenger_female_02', 'BAEK', 'SUA', '1D', 2),
+      { id: 'u-b4', kind: 'bcast', bc: 'B4', art: '', pp: { sur: 'PA', given: 'B4' }, bags: [], say: {} },
+      pax('g03', 'passenger_male_07', 'OGAWA', 'HARUKI', '32C', 3),
+      pax('g04', 'passenger_female_08', 'JEON', 'MINJI', '30A', 3),
+      vol1Back,
+      { id: 'u-b5', kind: 'bcast', bc: 'B5', art: '', pp: { sur: 'PA', given: 'B5' }, bags: [], say: {} },
+      pax('g07', 'passenger_male_02', 'HWANG', 'JIHO', '22B', 4, { party: [{ sur: 'HWANG', given: 'YUNA', seat: '22C', age: 9, art: 'passenger_child_01' }], with: [{ art: 'passenger_child_01' }],
+        say: { hello: L('娘と一緒です。長い待ち時間で疲れちゃって…。', '딸이랑 같이예요. 오래 기다려서 지쳤네요….', 'With my daughter. The long wait has worn us out…') } }),
+      pax('g08', 'passenger_female_06', 'TAKEDA', 'AOI', '19C', 4),
+      pax('g09', 'passenger_male_10', 'KANG', 'MINHO', '14B', 5),
+      pax('g10', 'passenger_female_01', 'ENDO', 'SAKI', '9F', 5),
+      pax('g11', 'passenger_male_03', 'YOO', 'JAEWON', '7C', 5),
+      pax('g12', 'passenger_female_05', 'KUDO', 'MIKA', '6A', 5),
+      pax('g13', 'passenger_male_06_cane', 'HIRANO', 'SHIGERU', '2C', 5),
+      rebooked,
+      pax('g15', 'passenger_child_02', 'SATO', 'RIKU', '12D', 5, { age: 15, say: { hello: L('一人で乗ります。遅れてびっくりしました。', '혼자 타요. 늦어져서 놀랐어요.', 'Traveling alone. The delay surprised me.') } }),
+      pax('g16', 'passenger_male_04', 'NAKANO', 'TAKUMI', '11F', 5),
+      sby1,
+      sby2,
+      { id: 'u-b6', kind: 'bcast', bc: 'B6', at: T.final, art: '', pp: { sur: 'PA', given: 'B6' }, bags: [], say: {} },
+      { id: 'u-close', kind: 'close', at: T.close, art: '', pp: { sur: 'GATE', given: 'CLOSE' }, bags: [], say: {} },
+      { id: 'u-count', kind: 'count', at: T.door, lock: true, art: '', pp: { sur: 'DOOR', given: 'CLOSE' }, bags: [], say: {} }
+    ];
+  }
+  window.MISSION_GT05 = {
+    id: 'pax.gt.05', generated: false, exitRows: [16], seatsToday: 15,
+    aircraft: { seats: 32, taken: [], infantSeats: [], infantPerBlock: 1 },
+    cost: { greet: 0.1, scan: 0.2, pp: 0.2, talk: 0.8, bcast: 0.5, phone: 0.8, prep: 2.0, radio: 1.0 },
+    times: TIMES,
+    variants: {
+      JP: { flight: 'VELA 301', from: 'NRT', to: 'ICN', toName: L('仁川', '인천', 'Incheon'), std: TIMES.JP.std, etd: TIMES.JP.etd, start: TIMES.JP.start, close: TIMES.JP.close, board: TIMES.JP.board, gate: TIMES.JP.gate, t: TIMES.JP, pax: function () { return units('JP'); } },
+      KR: { flight: 'VELA 302', from: 'ICN', to: 'NRT', toName: L('成田', '나리타', 'Narita'), std: TIMES.KR.std, etd: TIMES.KR.etd, start: TIMES.KR.start, close: TIMES.KR.close, board: TIMES.KR.board, gate: TIMES.KR.gate, t: TIMES.KR, pax: function () { return units('KR'); } }
+    }
+  };
+})();
+
+/* ../src_gate/gate_bcast.js */
+/* 게이트 방송 문안(07_게이트편_방송·대사 초안 → 합의본). 일본어 음성 + 3언어 자막. 【】 자리는 편마다 채움.
+   fill(c): JP(NRT, VELA 301 仁川行き, 62번) / KR(ICN, VELA 302 成田行き, 27번). 오답은 07 §6의 학습 포인트 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var V = { JP: { fl: '301', dst: L('仁川', '인천', 'Incheon'), gate: '62', gate2: '65', etd: L('午後0時30分', '오후 12시 30분', '12:30 p.m.'), brd: L('午前11時55分', '오전 11시 55분', '11:55 a.m.') },
+            KR: { fl: '302', dst: L('成田', '나리타', 'Narita'), gate: '27', gate2: '31', etd: L('午後3時30分', '오후 3시 30분', '3:30 p.m.'), brd: L('午後2時55分', '오후 2시 55분', '2:55 p.m.') } };   /* Day 5 지연 확정 시각(4A 표) */
+  function f(t, c, g, lang) { var v = V[c]; if (g && g !== v.gate) v = { fl: v.fl, dst: v.dst, gate: g, gate2: v.gate2, etd: v.etd, brd: v.brd };   /* Day 4: 탑승구 변경 뒤의 방송은 새 번호로(【口】). B13만 변경 전·후를 모두 말하므로 원래 값 */
+    t = t.replace(/【時E】/g, v.etd[lang || 'ja']).replace(/【時B】/g, v.brd[lang || 'ja']);
+    return t.replace(/【便】/g, v.fl).replace(/【地】/g, v.dst.ja).replace(/【地k】/g, v.dst.ko).replace(/【地e】/g, v.dst.en).replace(/【口】/g, v.gate).replace(/【口2】/g, v.gate2); }
+  function fl(o, c, g) { return L(f(o.ja, c, g, 'ja'), f(o.ko, c, g, 'ko'), f(o.en, c, g, 'en')); }
+  var B = {
+    B1: { nm: L('搭乗前の案内', '탑승 전 안내', 'Pre-boarding announcement'), lesson: 'passenger/2-1',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のお客様にご案内いたします。この便はまもなく、【口】番搭乗口よりご搭乗を開始いたします。パスポートと搭乗券をお手元にご用意ください。',
+            '베라 에어 【便】편 【地k】행을 이용하시는 손님께 안내 말씀 드립니다. 이 비행기는 잠시 후 【口】번 탑승구에서 탑승을 시작하겠습니다. 여권과 탑승권을 준비해 주시기 바랍니다.',
+            'Passengers on Vela Air flight 【便】 to 【地e】, boarding will begin shortly at gate 【口】. Please have your passport and boarding pass ready.'),
+      wrong: [{ t: L('ベラ・エア【便】便はまもなくご搭乗を開始いたします。', '베라 에어 【便】편은 잠시 후 탑승을 시작합니다.', 'Vela Air flight 【便】 will begin boarding shortly.'), why: L('行き先・搭乗口・用意する書類がありません。どこに行けばよいか分かりません。', '행선지·탑승구·준비할 서류가 없습니다. 어디로 가야 할지 알 수 없습니다.', 'No destination, gate or documents — passengers do not know where to go.') },
+              { t: L('【地】行きのお客様、【口】番搭乗口へお急ぎください。', '【地k】행 손님, 【口】번 탑승구로 서둘러 주세요.', 'Passengers to 【地e】, please hurry to gate 【口】.'), why: L('まだ搭乗前の案内の段階です。急がせる言い方は最終案内のものです。便名もありません。', '아직 탑승 전 안내 단계입니다. 서두르게 하는 말투는 최종 안내 것이고 편명도 없습니다.', 'This is only the pre-boarding stage. Urging passengers belongs to the final call, and the flight number is missing.') }] },
+    B2: { nm: L('事前搭乗', '사전 탑승', 'Pre-boarding'), lesson: 'passenger/2-4',
+      ok: L('お待たせいたしました。ただいまより、お手伝いが必要なお客様、小さなお子様連れのお客様、妊娠中のお客様から優先してご案内いたします。',
+            '오래 기다리셨습니다. 지금부터 도움이 필요하신 손님, 어린 자녀를 동반하신 손님, 임신 중이신 손님부터 먼저 탑승하시겠습니다.',
+            'Thank you for waiting. We now invite passengers requiring assistance, families with small children and expectant mothers to board first.'),
+      wrong: [{ t: L('お待たせいたしました。ただいまより、すべてのお客様のご搭乗を開始いたします。', '오래 기다리셨습니다. 지금부터 모든 손님의 탑승을 시작하겠습니다.', 'Thank you for waiting. All passengers may now board.'), why: L('事前搭乗を飛ばしています。お手伝いが必要な方を先に案内します（レッスン2-4）。', '사전 탑승을 건너뛰었습니다. 도움이 필요한 분을 먼저 안내합니다(레슨 2-4).', 'This skips pre-boarding. Passengers who need help board first (lesson 2-4).') },
+              { t: L('ビジネスクラスのお客様からご搭乗ください。', '비즈니스 클래스 손님부터 탑승해 주십시오.', 'Business Class passengers may board first.'), why: L('上級クラスより先に、お手伝いが必要なお客様の事前搭乗です。', '상위 클래스보다 먼저 도움이 필요한 손님의 사전 탑승입니다.', 'Pre-boarding for passengers who need help comes before premium cabins.') }] },
+    B3: { nm: L('上級クラス・上級会員', '상위 클래스·상위 회원', 'Premium cabin and elite members'), lesson: 'passenger/2-4',
+      ok: L('続きまして、ビジネスクラスのお客様、ベラ・エアの上級会員のお客様、ご搭乗ください。', '이어서 비즈니스 클래스 손님, 베라 에어 상위 회원 손님께서는 탑승해 주시기 바랍니다.', 'We now invite Business Class passengers and Vela Air elite members to board.'),
+      wrong: [{ t: L('続きまして、後方座席のお客様からご搭乗ください。', '이어서 뒤쪽 좌석 손님부터 탑승해 주십시오.', 'Passengers in the rear rows may now board.'), why: L('順序が違います。事前搭乗の次は上級クラス・上級会員、その後に後方座席です。', '순서가 다릅니다. 사전 탑승 다음은 상위 클래스·상위 회원, 그다음이 뒤쪽 좌석입니다.', 'Wrong order: premium cabin and elite members come before the rear rows.') },
+              { t: L('ベラ・エア【便】便、まもなく出発いたします。', '베라 에어 【便】편, 곧 출발합니다.', 'Vela Air flight 【便】 is about to depart.'), why: L('出発の案内ではなく、搭乗順の案内の段階です。', '출발 안내가 아니라 탑승 순서를 안내하는 단계입니다.', 'This is the boarding-order stage, not a departure notice.') }] },
+    B4: { nm: L('グループ番号ごとの搭乗', '그룹별 탑승', 'Boarding by group'), lesson: 'passenger/2-4',
+      ok: L('ただいまより、搭乗券にグループ3と書かれたお客様のご搭乗を開始いたします。グループ4・5のお客様は、番号をお呼びするまで、もうしばらくお待ちください。',
+            '지금부터 탑승권에 그룹 3이라고 적힌 손님의 탑승을 시작하겠습니다. 그룹 4, 5 손님께서는 번호를 불러 드릴 때까지 잠시만 기다려 주시기 바랍니다.',
+            'We now invite passengers with Group 3 on their boarding pass to board. Passengers in Groups 4 and 5, please wait until your group is called.'),
+      wrong: [{ t: L('ただいまより、グループ3のお客様のご搭乗を開始いたします。', '지금부터 그룹 3 손님의 탑승을 시작하겠습니다.', 'Group 3 may now board.'), why: L('ほかのグループに「お待ちください」がないと、列が混ざります。', '다른 그룹에 「기다려 주세요」가 없으면 줄이 섞입니다.', 'Without asking the other groups to wait, the line mixes.') },
+              { t: L('グループ3から5のお客様、ご搭乗ください。', '그룹 3부터 5 손님, 탑승해 주십시오.', 'Groups 3 to 5 may board.'), why: L('一度に全グループを呼ぶと通路が詰まります。後方座席のグループから順に呼びます。', '한 번에 모든 그룹을 부르면 통로가 막힙니다. 뒤쪽 좌석 그룹부터 차례로 부릅니다.', 'Calling every group at once blocks the aisle. Call the rear groups first.') }] },
+    B5: { nm: L('すべてのお客様', '모든 승객', 'All remaining passengers'), lesson: 'passenger/2-4',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のすべてのお客様、ご搭乗ください。', '베라 에어 【便】편 【地k】행을 이용하시는 모든 손님께서는 탑승해 주시기 바랍니다.', 'We now invite all remaining passengers on Vela Air flight 【便】 to 【地e】 to board.'),
+      wrong: [{ t: L('グループ4のお客様、ご搭乗ください。', '그룹 4 손님, 탑승해 주십시오.', 'Group 4 may now board.'), why: L('グループ4・5をまとめて案内する場面です。便名・行き先も入れます。', '그룹 4·5를 함께 안내하는 장면입니다. 편명·행선지도 넣습니다.', 'This call covers Groups 4 and 5 together, with the flight number and destination.') },
+              { t: L('まだご搭乗でないお客様は、至急【口】番搭乗口へお越しください。', '아직 탑승하지 않으신 손님께서는 지금 바로 【口】번 탑승구로 와 주시기 바랍니다.', 'Passengers who have not yet boarded, please proceed to gate 【口】 immediately.'), why: L('これは最終案内の文です。まだ通常の搭乗案内の段階です。', '이것은 최종 안내 문장입니다. 아직 일반 탑승 안내 단계입니다.', 'That is the final call wording; this is still regular boarding.') }] },
+    B6: { nm: L('最終搭乗案内', '최종 탑승 안내', 'Final boarding call'), lesson: 'passenger/2-5',
+      ok: L('ベラ・エア【便】便、【地】行きは、まもなく出発いたします。まだご搭乗でないお客様は、至急【口】番搭乗口へお越しください。',
+            '베라 에어 【便】편 【地k】행은 곧 출발합니다. 아직 탑승하지 않으신 손님께서는 지금 바로 【口】번 탑승구로 와 주시기 바랍니다.',
+            'This is the final boarding call for Vela Air flight 【便】 to 【地e】. Passengers who have not yet boarded, please proceed to gate 【口】 immediately.'),
+      wrong: [{ t: L('ベラ・エア【便】便は、まもなく搭乗を締め切ります。', '베라 에어 【便】편은 곧 탑승을 마감합니다.', 'Vela Air flight 【便】 will close boarding shortly.'), why: L('搭乗口番号がありません。遅れているお客様がどこへ行けばよいか分かりません（例文集の原則）。', '탑승구 번호가 없습니다. 늦은 손님이 어디로 가야 하는지 알 수 없습니다(예문집 원칙).', 'No gate number — a late passenger does not know where to go.') },
+              { t: L('【口】番搭乗口へお急ぎください。', '【口】번 탑승구로 서둘러 주십시오.', 'Please hurry to gate 【口】.'), why: L('便名・行き先がないと、ほかの便のお客様が動いてしまいます。', '편명·행선지가 없으면 다른 편 손님이 움직입니다.', 'Without the flight number and destination, passengers of other flights react.') }] },
+    B7: { nm: L('お名前の呼び出し', '이름 호출', 'Paging by name'), lesson: 'passenger/2-5',
+      ok: L('【地】行きベラ・エア【便】便にご搭乗予定の、【名】様。【名】様。お客様のご搭乗をお待ちしております。至急【口】番搭乗口へお越しください。',
+            '【地k】행 베라 에어 【便】편에 탑승 예정이신 【名】 님, 【名】 님. 손님의 탑승을 기다리고 있습니다. 지금 바로 【口】번 탑승구로 와 주시기 바랍니다.',
+            'Passenger 【名】, booked on Vela Air flight 【便】 to 【地e】, please proceed to gate 【口】 immediately. We are waiting for you to board.'),
+      wrong: [{ t: L('【名】様、【名】様、至急お越しください。', '【名】 님, 【名】 님, 지금 바로 와 주십시오.', 'Passenger 【名】, please come immediately.'), why: L('便名・搭乗口がないと、呼ばれた本人もどこへ行けばよいか分かりません。', '편명·탑승구가 없으면 불린 본인도 어디로 가야 할지 모릅니다.', 'Without the flight and gate, even the paged passenger does not know where to go.') },
+              { t: L('ベラ・エア【便】便にご搭乗予定の、まだお越しでないお客様、至急【口】番搭乗口へお越しください。', '베라 에어 【便】편에 탑승 예정이신, 아직 오시지 않은 손님께서는 지금 바로 【口】번 탑승구로 와 주십시오.', 'Passengers on Vela Air flight 【便】 who have not yet arrived, please proceed to gate 【口】 immediately.'), why: L('お名前が分かっているときは、お名前でお呼びします（例文集 c4）。', '이름을 알 때는 이름으로 부릅니다(예문집 c4).', 'When the name is known, page by name (phrasebook c4).') }] },
+    /* ── Day 2 바쁜 탑승(07 §2, 합의본 Day 2) ── */
+    B8: { nm: L('機内持ち込み手荷物の制限（満席）', '기내 반입 수하물 제한(만석)', 'Carry-on limits (full flight)'), lesson: 'passenger/2-2',
+      ok: L('本日の便は満席のため、機内の収納棚が大変混み合います。大きなお手荷物をお持ちのお客様は、搭乗口にてお預かりいたしますので、係員にお申し出ください。貴重品とモバイルバッテリーは必ずお手元にお持ちください。',
+            '오늘 이 비행기는 만석이어서 기내 선반이 매우 혼잡합니다. 큰 짐을 가지신 손님께서는 탑승구에서 맡아 드리오니 직원에게 말씀해 주시기 바랍니다. 귀중품과 보조배터리는 반드시 몸에 지니시기 바랍니다.',
+            "Today's flight is full and overhead bin space is limited. If you have a large bag, we can check it at the gate; please speak to our staff. Please keep valuables and power banks with you."),
+      wrong: [{ t: L('本日の便は満席のため、大きなお手荷物はすべて搭乗口でお預かりいたします。', '오늘 이 비행기는 만석이어서 큰 짐은 모두 탑승구에서 맡겠습니다.', "Today's flight is full, so all large bags will be checked at the gate."), why: L('貴重品とモバイルバッテリーを手元に残す案内がありません。預けた荷物にバッテリーが入ると安全上の問題になります。', '귀중품과 보조배터리를 몸에 지니라는 안내가 없습니다. 맡긴 짐에 배터리가 들어가면 안전 문제가 됩니다.', 'No reminder to keep valuables and power banks in hand. A power bank inside a checked bag is a safety problem.') },
+              { t: L('お手荷物は座席の下にお入れください。収納棚はご利用になれません。', '짐은 좌석 아래에 넣어 주십시오. 선반은 이용하실 수 없습니다.', 'Please put bags under your seat. The overhead bins are not available.'), why: L('棚が使えないわけではなく、混み合うので大きな荷物を預かる案内です。預かりの申し出先も必要です。', '선반을 못 쓰는 것이 아니라 혼잡하니 큰 짐을 맡는다는 안내입니다. 맡길 곳(직원)도 알려야 합니다.', 'The bins are not closed; the point is to gate-check large bags because they are crowded, and to say whom to ask.') }] },
+    B9: { nm: L('搭乗開始の遅れ（機内清掃）', '탑승 개시 지연(기내 청소)', 'Boarding delayed (cabin cleaning)'), lesson: 'passenger/2-4',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のお客様にご案内いたします。機内の準備に時間がかかっているため、ご搭乗の開始が遅れております。準備が整いしだい、あらためてご案内いたします。お急ぎのところ申し訳ございません。',
+            '베라 에어 【便】편 【地k】행을 이용하시는 손님께 안내 말씀 드립니다. 기내 준비에 시간이 걸려 탑승 개시가 늦어지고 있습니다. 준비가 되는 대로 다시 안내해 드리겠습니다. 바쁘신 중에 죄송합니다.',
+            'Passengers on Vela Air flight 【便】 to 【地e】: boarding is delayed while we complete preparations on board. We will make another announcement as soon as we are ready. We apologize for the inconvenience.'),
+      wrong: [{ t: L('ベラ・エア【便】便は、機内清掃のため5分ほどで搭乗を開始できると思います。', '베라 에어 【便】편은 기내 청소 때문에 5분 정도면 탑승을 시작할 수 있을 것 같습니다.', 'Vela Air flight 【便】 should start boarding in about five minutes after cleaning.'), why: L('確認されていない時刻を約束しています。分からないときは「整いしだい案内する」と言います。', '확인되지 않은 시각을 약속하고 있습니다. 모르면 「준비되는 대로 안내한다」고 말합니다.', 'This promises a time nobody confirmed. When unsure, say you will announce as soon as ready.') },
+              { t: L('ベラ・エア【便】便、【地】行きのお客様、ご搭乗の準備ができるまでお待ちください。', '베라 에어 【便】편 【地k】행 손님, 탑승 준비가 될 때까지 기다려 주십시오.', 'Passengers on Vela Air flight 【便】 to 【地e】, please wait until boarding is ready.'), why: L('遅れている事実と理由、次の案内の約束、おわびがありません。待たされる側が状況を理解できる案内にします。', '늦어지고 있다는 사실과 이유, 다음 안내 약속, 사과가 없습니다. 기다리는 쪽이 상황을 알 수 있게 합니다.', 'It does not say boarding is delayed, why, when the next announcement will come, or apologize.') }] },
+    B10: { nm: L('機内でのモバイルバッテリーの扱い', '기내 보조배터리 취급', 'Power banks on board'), lesson: 'passenger/1-13',
+      ok: L('ベラ・エア【便】便をご利用のお客様にお願いいたします。モバイルバッテリーは座席の上の収納棚には入れず、お手元か前の座席のポケットに置いてください。機内では、モバイルバッテリーの充電と、モバイルバッテリーからほかの機器への充電はできません。',
+            '베라 에어 【便】편을 이용하시는 손님께 부탁 말씀 드립니다. 보조배터리는 좌석 위 선반에 넣지 마시고 몸에 지니시거나 앞 좌석 주머니에 넣어 주시기 바랍니다. 기내에서는 보조배터리를 충전하거나 보조배터리로 다른 기기를 충전하실 수 없습니다.',
+            'Passengers on Vela Air flight 【便】: please do not put power banks in the overhead bins. Keep them with you or in the seat pocket in front of you. On board, you may not charge a power bank or use one to charge other devices.'),
+      wrong: [{ t: L('モバイルバッテリーは、お預けのお荷物にお入れください。', '보조배터리는 위탁 수하물에 넣어 주십시오.', 'Please put power banks in your checked baggage.'), why: L('モバイルバッテリーは受託禁止です（レッスン1-12・1-13）。機内に持ち込み、手元に置きます。', '보조배터리는 위탁 금지입니다(레슨 1-12·1-13). 기내에 가지고 타서 몸에 지닙니다.', 'Power banks are never allowed in checked baggage (lessons 1-12, 1-13). They go in the cabin, kept in hand.') },
+              { t: L('モバイルバッテリーは、座席の上の収納棚にお入れください。', '보조배터리는 좌석 위 선반에 넣어 주십시오.', 'Please put power banks in the overhead bins.'), why: L('棚に入れると発熱に気づけません。手元か前の座席のポケットに置くよう案内します。', '선반에 넣으면 발열을 알아차릴 수 없습니다. 몸에 지니거나 앞 좌석 주머니에 두게 안내합니다.', 'In the bin, overheating goes unnoticed. Ask passengers to keep them in hand or in the seat pocket.') }] },
+    /* ── Day 3 도움이 필요한 승객(07 §3) ── */
+    B11: { nm: L('車いすのお客様の事前搭乗', '휠체어 승객 사전 탑승', 'Pre-boarding for wheelchair users'), lesson: 'passenger/2-4',
+      ok: L('ベラ・エア【便】便をご利用で、車いすをお使いのお客様、ご搭乗にお手伝いが必要なお客様は、ほかのお客様より先にご案内いたします。搭乗口の係員にお声がけください。',
+            '베라 에어 【便】편을 이용하시는 손님 중 휠체어를 사용하시는 손님, 탑승에 도움이 필요하신 손님께서는 다른 손님보다 먼저 안내해 드립니다. 탑승구 직원에게 말씀해 주시기 바랍니다.',
+            'Passengers on Vela Air flight 【便】 who use a wheelchair or need assistance boarding will be invited to board first. Please speak to our gate staff.'),
+      wrong: [{ t: L('車いすのお客様は、ほかのお客様のご搭乗が終わってからご案内いたします。', '휠체어 손님은 다른 손님의 탑승이 끝난 뒤 안내해 드리겠습니다.', 'Wheelchair users will board after all other passengers.'), why: L('お手伝いが必要なお客様は先にご案内します（通路が空いているうちに安全に着席）。', '도움이 필요한 손님은 먼저 안내합니다(통로가 비어 있을 때 안전하게 착석).', 'Passengers needing assistance board first, while the aisle is clear.') },
+              { t: L('ベラ・エア【便】便、お手伝いが必要なお客様はお申し出ください。', '베라 에어 【便】편, 도움이 필요하신 손님은 말씀해 주십시오.', 'Vela Air flight 【便】: passengers needing help, please let us know.'), why: L('先にご案内することと、誰に声をかけるかが入っていません。', '먼저 안내한다는 것과 누구에게 말하면 되는지가 없습니다.', 'It does not say they board first, nor whom to approach.') }] },
+    B12: { nm: L('ベビーカーのお預かり', '유모차 맡기기', 'Strollers at the gate'), lesson: 'passenger/2-2',
+      ok: L('小さなお子様連れのお客様にご案内いたします。ベビーカーは搭乗口でお預かりし、到着地の飛行機の出口でお返しいたします。ご希望のお客様は、搭乗口の係員にお申し出のうえ、預かりの札をお受け取りください。',
+            '어린 자녀를 동반하신 손님께 안내 말씀 드립니다. 유모차는 탑승구에서 맡아 드리고, 도착지 비행기 출구에서 돌려 드립니다. 원하시는 손님께서는 탑승구 직원에게 말씀하시고 위탁표를 받아 주시기 바랍니다.',
+            'Passengers traveling with small children: we can take your stroller at the gate and return it to you at the aircraft door at your destination. Please speak to our gate staff and collect a tag.'),
+      wrong: [{ t: L('ベビーカーは搭乗口でお預かりし、到着地の手荷物受取所でお返しいたします。', '유모차는 탑승구에서 맡아 드리고 도착지 수하물 찾는 곳에서 돌려 드립니다.', 'Strollers are taken at the gate and returned at baggage claim.'), why: L('ベラ・エアの返却場所は到着地の飛行機の出口です（V-G16）。受取所と案内すると出口で待てません。', '베라 에어의 반환 장소는 도착지 비행기 출구입니다(V-G16). 수하물 찾는 곳이라고 하면 출구에서 받지 못합니다.', 'Vela Air returns strollers at the aircraft door (V-G16), not at baggage claim.') },
+              { t: L('ベビーカーは機内にお持ち込みいただけません。', '유모차는 기내에 반입하실 수 없습니다.', 'Strollers cannot be brought on board.'), why: L('禁止だけ伝えて、どうすればよいか（預かり・札・返却場所）がありません。', '금지만 말하고 어떻게 하면 되는지(맡김·표·반환 장소)가 없습니다.', 'It only forbids; it does not say what to do (gate check, tag, where it comes back).') }] },
+    /* Day 4(합의본 G4-change·V-G03): 탑승구 변경 — 즉시 + 5분 간격 2회. 이전 번호와 새 번호를 모두 말함(07 §6 오답표) */
+    B13: { nm: L('搭乗口の変更', '탑승구 변경', 'Gate change'), lesson: 'passenger/2-1',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のお客様にご案内いたします。この便の搭乗口は、【口】番から【口2】番に変更となりました。【口2】番搭乗口へお越しください。',
+            '베라 에어 【便】편 【地k】행을 이용하시는 손님께 안내 말씀 드립니다. 이 비행기의 탑승구가 【口】번에서 【口2】번으로 변경되었습니다. 【口2】번 탑승구로 와 주시기 바랍니다.',
+            'Attention passengers on Vela Air flight 【便】 to 【地e】: your departure gate has changed from gate 【口】 to gate 【口2】. Please proceed to gate 【口2】.'),
+      wrong: [{ t: L('ベラ・エア【便】便、【地】行きをご利用のお客様にご案内いたします。この便は【口2】番搭乗口よりご搭乗いただきます。【口2】番搭乗口へお越しください。', '베라 에어 【便】편 【地k】행을 이용하시는 손님께 안내 말씀 드립니다. 이 비행기는 【口2】번 탑승구에서 탑승하시게 됩니다. 【口2】번 탑승구로 와 주시기 바랍니다.', 'Passengers on Vela Air flight 【便】 to 【地e】 will board at gate 【口2】. Please proceed to gate 【口2】.'), why: L('新しい番号だけで、変更前の【口】番を言っていません。【口】番で待っているお客様が自分の便の変更だと気づけません（07 §6・V-G03）。', '새 번호만 말하고 변경 전 【口】번을 말하지 않았습니다. 【口】번에서 기다리는 손님이 자기 편의 변경임을 알 수 없습니다(07 §6·V-G03).', 'Only the new gate is given; the old gate 【口】 is not. Passengers waiting at gate 【口】 cannot tell this change is theirs.') },
+              { t: L('お客様にご案内いたします。搭乗口が【口】番から【口2】番に変更となりました。【口2】番搭乗口へお越しください。', '손님께 안내 말씀 드립니다. 탑승구가 【口】번에서 【口2】번으로 변경되었습니다. 【口2】번 탑승구로 와 주시기 바랍니다.', 'Attention please: the gate has changed from gate 【口】 to gate 【口2】. Please proceed to gate 【口2】.'), why: L('便名と行き先がありません。どの便の変更か分からず、他の便のお客様まで移動してしまいます。', '편명과 행선지가 없습니다. 어느 편의 변경인지 알 수 없어 다른 편 손님까지 이동하게 됩니다.', 'No flight number or destination: nobody can tell which flight changed, and passengers of other flights may move too.') }] },
+    /* ── Day 5 지연·예약 초과(07 §5, 합의본 G5-delay·G5-ob·V-G13·V-G14) ── */
+    B15: { nm: L('到着便の遅れによる遅延（見込み）', '도착편 지연에 따른 지연(전망)', 'Delay due to late inbound aircraft (estimate)'), lesson: 'passenger/5-4',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のお客様にお知らせいたします。この便に使用する飛行機の到着が遅れているため、出発は【時E】ごろになる見込みです。ご迷惑をおかけし申し訳ございません。',
+            '베라 에어 【便】편 【地k】행을 이용하시는 손님께 알려 드립니다. 이 비행기에 사용할 항공기의 도착이 늦어져 출발은 【時E】경이 될 전망입니다. 불편을 드려 죄송합니다.',
+            'Passengers on Vela Air flight 【便】 to 【地e】: the arrival of the aircraft for this flight has been delayed, and we expect to depart at around 【時E】. We apologize for the inconvenience.'),
+      wrong: [{ t: L('ベラ・エア【便】便、【地】行きをご利用のお客様にお知らせいたします。飛行機の到着が遅れておりますが、10分ほどで出発できると思います。', '베라 에어 【便】편 【地k】행을 이용하시는 손님께 알려 드립니다. 항공기 도착이 늦어지고 있지만 10분 정도면 출발할 수 있을 것 같습니다.', 'Passengers on Vela Air flight 【便】 to 【地e】: the aircraft is late, but I think we can depart in about ten minutes.'), why: L('根拠のない推測の時刻です。SV・運航の公式見込みだけを、見込みと明示して案内します（G5-delay）。', '근거 없는 추측 시각입니다. SV·운항의 공식 전망만, 전망임을 밝혀 안내합니다(G5-delay).', 'A guessed time with no basis. Announce only the official estimate from the SV or OPS, and say it is an estimate (G5-delay).') },
+              { t: L('ベラ・エア【便】便、【地】行きをご利用のお客様にお知らせいたします。この便の出発時刻は【時E】に変更となりました。', '베라 에어 【便】편 【地k】행을 이용하시는 손님께 알려 드립니다. 이 비행기의 출발 시각은 【時E】으로 변경되었습니다.', 'Passengers on Vela Air flight 【便】 to 【地e】: the departure time has been changed to 【時E】.'), why: L('まだ見込みの段階なのに、確定した新時刻のように案内しています。確定前は「〜ごろになる見込み」と言います。', '아직 전망 단계인데 확정된 새 시각처럼 안내했습니다. 확정 전에는 「〜쯤이 될 전망」이라고 말합니다.', 'Still only an estimate, but announced as a confirmed new time. Before confirmation say "expected at around …".') }] },
+    B16: { nm: L('新しい出発時刻の決定', '새 출발 시각 확정', 'New departure time confirmed'), lesson: 'passenger/5-4',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のお客様にお知らせいたします。この便の新しい出発時刻は【時E】、ご搭乗の開始は【時B】の予定です。搭乗口は【口】番です。',
+            '베라 에어 【便】편 【地k】행을 이용하시는 손님께 알려 드립니다. 이 비행기의 새 출발 시각은 【時E】, 탑승 시작은 【時B】 예정입니다. 탑승구는 【口】번입니다.',
+            'Passengers on Vela Air flight 【便】 to 【地e】: the new departure time is 【時E】, and boarding is expected to begin at 【時B】 at gate 【口】.'),
+      wrong: [{ t: L('ベラ・エア【便】便、【地】行きをご利用のお客様にお知らせいたします。この便の新しい出発時刻は【時E】です。', '베라 에어 【便】편 【地k】행을 이용하시는 손님께 알려 드립니다. 이 비행기의 새 출발 시각은 【時E】입니다.', 'Passengers on Vela Air flight 【便】 to 【地e】: the new departure time is 【時E】.'), why: L('出発時刻だけで、搭乗開始の予定と搭乗口がありません。お客様がいつ・どこへ戻ればよいか分かりません。', '출발 시각만 있고 탑승 시작 예정과 탑승구가 없습니다. 손님이 언제·어디로 돌아와야 하는지 알 수 없습니다.', 'Only the departure time: no boarding time or gate, so passengers do not know when or where to come back.') },
+              { t: L('ベラ・エア【便】便、【地】行きをご利用のお客様にお知らせいたします。出発は【時E】ごろになる見込みです。', '베라 에어 【便】편 【地k】행을 이용하시는 손님께 알려 드립니다. 출발은 【時E】경이 될 전망입니다.', 'Passengers on Vela Air flight 【便】 to 【地e】: we expect to depart at around 【時E】.'), why: L('もう確定した時刻なのに見込みのままです。確定したら新しい時刻として案内します（B16）。', '이미 확정된 시각인데 전망인 채입니다. 확정되면 새 시각으로 안내합니다(B16).', 'The time is confirmed now, but this still says "expected". Once confirmed, announce it as the new time (B16).') }] },
+    B17: { nm: L('お食事券のお渡し', '식사 쿠폰 안내', 'Meal vouchers'), lesson: 'passenger/5-4',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のお客様にご案内いたします。お待たせしているおわびとして、お食事券をご用意いたしました。【口】番搭乗口のカウンターにて、搭乗券をご提示のうえお受け取りください。',
+            '베라 에어 【便】편 【地k】행을 이용하시는 손님께 안내 말씀 드립니다. 기다리시게 한 사과의 뜻으로 식사 쿠폰을 준비했습니다. 【口】번 탑승구 카운터에서 탑승권을 보여 주시고 받아 가시기 바랍니다.',
+            'Passengers on Vela Air flight 【便】 to 【地e】: as an apology for the delay, we are offering meal vouchers. Please present your boarding pass at the gate 【口】 counter to receive one.'),
+      wrong: [{ t: L('ベラ・エア【便】便をご利用のお客様、お食事券をご用意いたしました。お受け取りください。', '베라 에어 【便】편을 이용하시는 손님, 식사 쿠폰을 준비했습니다. 받아 가시기 바랍니다.', 'Passengers on Vela Air flight 【便】, meal vouchers are available. Please collect one.'), why: L('どこで・何を見せて受け取るかがありません。搭乗口カウンター・搭乗券提示を入れます。', '어디서·무엇을 보여 주고 받는지가 없습니다. 탑승구 카운터·탑승권 제시를 넣습니다.', 'No place or procedure: say where (gate counter) and what to show (boarding pass).') },
+              { t: L('ベラ・エア【便】便をご利用のお客様にご案内いたします。遅延のおわびとして、ホテルをご用意いたします。', '베라 에어 【便】편을 이용하시는 손님께 안내 말씀 드립니다. 지연의 사과로 호텔을 준비해 드리겠습니다.', 'Passengers on Vela Air flight 【便】: as an apology for the delay we will provide a hotel.'), why: L('宿泊はSV承認が必要です（V-G13）。確定120分以上の遅延の案内はお食事券です。', '숙박은 SV 승인이 필요합니다(V-G13). 확정 120분 이상 지연의 안내는 식사 쿠폰입니다.', 'Hotels need SV approval (V-G13). For a confirmed delay of 120 minutes or more, the standard is meal vouchers.') }] },
+    B18: { nm: L('協力者（自発的に便を変更するお客様）の募集', '자원자(자발적 편 변경) 모집', 'Call for volunteers (oversold)'), lesson: 'passenger/1-5',
+      ok: L('ベラ・エア【便】便、【地】行きをご利用のお客様にお願いいたします。本日の便は、ご予約のお客様が座席数を上回っております。本日午後の別の便への変更にご協力いただけるお客様がいらっしゃいましたら、【口】番搭乗口の係員にお申し出ください。条件は係員からご説明いたします。',
+            '베라 에어 【便】편 【地k】행을 이용하시는 손님께 부탁 말씀 드립니다. 오늘 이 편은 예약하신 손님이 좌석 수보다 많습니다. 오늘 오후의 다른 편으로 변경에 협조해 주실 손님이 계시면 【口】번 탑승구 직원에게 말씀해 주시기 바랍니다. 조건은 직원이 설명해 드리겠습니다.',
+            'Passengers on Vela Air flight 【便】 to 【地e】: today\'s flight is overbooked. If you are willing to change to another flight this afternoon, please speak to our staff at gate 【口】. Our staff will explain the terms.'),
+      wrong: [{ t: L('ベラ・エア【便】便をご利用のお客様にお願いいたします。本日は座席が不足しております。別の便に変更いただけるお客様には、1万円をお渡しいたします。【口】番搭乗口の係員にお申し出ください。', '베라 에어 【便】편을 이용하시는 손님께 부탁 말씀 드립니다. 오늘은 좌석이 부족합니다. 다른 편으로 변경해 주시는 손님께는 1만 엔을 드립니다. 【口】번 탑승구 직원에게 말씀해 주십시오.', 'Passengers on Vela Air flight 【便】: we are short of seats today. Anyone willing to change flights will receive 10,000 yen. Please see our staff at gate 【口】.'), why: L('補償の金額はSV承認の範囲で、放送で約束しません（V-G14・07 §6）。条件は係員が個別に説明します。', '보상 금액은 SV 승인 범위이고 방송에서 약속하지 않습니다(V-G14·07 §6). 조건은 직원이 개별로 설명합니다.', 'Compensation amounts are within SV approval and never promised in an announcement (V-G14). Staff explain the terms individually.') },
+              { t: L('ベラ・エア【便】便をご利用のお客様、本日は満席のため、後からお越しのお客様はご搭乗いただけません。', '베라 에어 【便】편을 이용하시는 손님, 오늘은 만석이라 늦게 오신 손님은 탑승하실 수 없습니다.', 'Passengers on Vela Air flight 【便】: the flight is full, so late arrivals cannot board.'), why: L('協力者を募らずに一方的に降ろす案内です。予約超過は、まず自発的な変更をお願いします（G5-ob）。', '자원자를 모집하지 않고 일방적으로 내리는 안내입니다. 예약 초과는 먼저 자발적 변경을 부탁합니다(G5-ob).', 'This bumps passengers without asking for volunteers. For an oversale, ask for voluntary changes first (G5-ob).') }] },
+    B19: { nm: L('遅れての搭乗開始', '지연 뒤 탑승 시작', 'Boarding after a delay'), lesson: 'passenger/5-4',
+      ok: L('大変長らくお待たせいたしました。ベラ・エア【便】便、【地】行きは、ただいまより【口】番搭乗口からご搭乗を開始いたします。出発が遅れましたことを、心よりおわび申し上げます。',
+            '오랫동안 기다리시게 해서 대단히 죄송합니다. 베라 에어 【便】편 【地k】행은 지금부터 【口】번 탑승구에서 탑승을 시작하겠습니다. 출발이 늦어진 점 진심으로 사과드립니다.',
+            'Thank you very much for your patience. Vela Air flight 【便】 to 【地e】 is now boarding at gate 【口】. We sincerely apologize for the delay.'),
+      wrong: [{ t: L('ベラ・エア【便】便、ただいまより搭乗を開始いたします。', '베라 에어 【便】편, 지금부터 탑승을 시작하겠습니다.', 'Vela Air flight 【便】 is now boarding.'), why: L('長く待たせたお客様へのおわびと、行き先・搭乗口がありません。', '오래 기다린 손님께 사과와 행선지·탑승구가 없습니다.', 'No apology for the long wait, and no destination or gate.') },
+              { t: L('ベラ・エア【便】便、【地】行きをご利用のお客様にご案内いたします。この便はまもなく、【口】番搭乗口よりご搭乗を開始いたします。', '베라 에어 【便】편 【地k】행을 이용하시는 손님께 안내 말씀 드립니다. 이 비행기는 잠시 후 【口】번 탑승구에서 탑승을 시작하겠습니다.', 'Passengers on Vela Air flight 【便】 to 【地e】: boarding will begin shortly at gate 【口】.'), why: L('平常時の搭乗前案内（B1）です。遅延のあとは、お待たせしたおわびを入れて「ただいまより」開始を案内します（B19）。', '평시의 탑승 전 안내(B1)입니다. 지연 뒤에는 기다리시게 한 사과를 넣어 「지금부터」 시작을 안내합니다(B19).', 'This is the normal pre-boarding announcement (B1). After a delay, apologise for the wait and announce that boarding starts now (B19).') }] },
+  };
+  window.GATE_BCAST = {
+    get: function (id, c, name, gate) {   /* gate: 변경 뒤의 현재 탑승구(Day 4). B13은 무시 */
+      var b = B[id]; if (!b) return null; var g = id === 'B13' ? null : gate;
+      var ok = fl(b.ok, c, g), wrong = b.wrong.map(function (w) { return { t: fl(w.t, c, g), why: w.why }; });
+      if (name) { ['ja', 'ko', 'en'].forEach(function (l) { ok[l] = ok[l].replace(/【名】/g, name); wrong.forEach(function (w) { w.t[l] = w.t[l].replace(/【名】/g, name); }); }); }
+      /* 음성 키(이름 호출은 이름 앞·뒤 조각으로 나눠 녹음, 07 B7) */
+      var voice = id === 'B7' ? null : ok.ja;
+      return { id: id, nm: b.nm, lesson: b.lesson, ok: ok, wrong: wrong, voice: voice };
+    }
+  };
+})();
 
 /* mission_ci01.js */
 /* 미션 pax.ci.01 「はじめてのチェックイン」 — 모든 승객·편·서류는 교육용 가상 데이터
@@ -1413,20 +1955,25 @@ window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）
   /* 23차: 게임 홈의 Day 카드 → 게임주소#dayN. 그 날이 열려 있을 때만 고르고(잠긴 날은 안내만, 해금·연습 모드를 바꾸지 않음),
      바로 시작하지는 않음(음성은 사용자가 누른 뒤에만 켤 수 있음). 처리한 뒤 주소의 #dayN은 지워 새로고침 때 다시 적용되지 않게 함 */
   function applyHash() {
-    var m = /^#day([1-9])$/i.exec(location.hash || ''); if (!m) return false;
-    var n = +m[1], d = DY.list[n - 1];
+    var m = /^#(gt-)?day([1-9])$/i.exec(location.hash || ''); if (!m) return false;
+    var gt = !!m[1], n = +m[2];
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-    if (!d) return false;
+    /* 46차: 게임 홈의 STAGE 02 카드 → #gt-dayN(게이트편), 체크인편 카드 → #dayN. 자격 없는 스테이지는 안내만(스테이지·모드를 바꾸지 않음) */
+    if (gt && !window.SAGA_STAGES.gt) return false;
+    if (gt && !stageAllowed('gt')) { G.hashNote = { ok: false, n: n, gt: true, stage: true }; return true; }
+    var sid = gt ? 'gt' : 'ci'; if (ST.id !== sid) { setStage(sid); save(); }
+    var d = DY.list[n - 1]; if (!d) return false;
     var stt = DY.status(G.hist, n, G.country, G.practice);
-    if (stt === 'open') { G.day = n; G.hintsByDay = G.hintsByDay || {}; save(); G.hashNote = { ok: true, n: n }; }
-    else G.hashNote = { ok: false, n: n, soon: stt === 'soon' };
+    if (stt === 'open') { G.day = n; G.hintsByDay = G.hintsByDay || {}; save(); G.hashNote = { ok: true, n: n, gt: gt }; }
+    else G.hashNote = { ok: false, n: n, gt: gt, soon: stt === 'soon' };
     return true;
   }
   function hashNoteHtml() {
     var h = G.hashNote; if (!h) return ''; G.hashNote = null;
-    var t = h.ok ? L('DAY ' + h.n + ' を選びました。下の「出勤する」で始めます。', 'DAY ' + h.n + ' 선택 완료. 아래 「출근하기」로 시작합니다.', 'DAY ' + h.n + ' selected. Press Clock in below to begin.')
-      : h.soon ? L('DAY ' + h.n + ' は準備中です。', 'DAY ' + h.n + ' — 준비 중입니다.', 'DAY ' + h.n + ' is coming soon.')
-      : L('DAY ' + h.n + ' はまだ開いていません（前の日をB以上・安全合格で）。開いている日から始めます。', 'DAY ' + h.n + ' — 아직 열리지 않았습니다(앞의 날을 B 이상·안전 합격으로). 열린 날부터 시작합니다.', 'DAY ' + h.n + ' is still locked (clear the day before with B or better and a safety pass). You will start from an open day.');
+    if (h.stage) return '<p class="hashnote lock" role="status">' + esc(tx(GATE_PREVIEW ? L('STAGE 02 ゲート編は、チェックイン編の本番DAY 5をクリアすると開きます。練習モードなら先に体験できます。', 'STAGE 02 게이트편은 체크인편 실전 DAY 5를 통과하면 열립니다. 연습 모드에서는 미리 해 볼 수 있습니다.', 'STAGE 02 Gate opens after you clear Check-in DAY 5 in Shift mode. You can try it early in Practice mode.') : L('STAGE 02 ゲート編は、チェックイン編の本番DAY 5をクリアすると開きます。', 'STAGE 02 게이트편은 체크인편 실전 DAY 5를 통과하면 열립니다.', 'STAGE 02 Gate opens after you clear Check-in DAY 5 in Shift mode.'))) + '</p>';   /* 46차 */
+    var t = h.ok ? L((h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' を選びました。下の「出勤する」で始めます。', (h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' 선택 완료. 아래 「출근하기」로 시작합니다.', (h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' selected. Press Clock in below to begin.')
+      : h.soon ? L((h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' は準備中です。', (h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' — 준비 중입니다.', (h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' is coming soon.')
+      : L((h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' はまだ開いていません（前の日をB以上・安全合格で）。開いている日から始めます。', (h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' — 아직 열리지 않았습니다(앞의 날을 B 이상·안전 합격으로). 열린 날부터 시작합니다.', (h.gt ? 'STAGE 02 · ' : '') + 'DAY ' + h.n + ' is still locked (clear the day before with B or better and a safety pass). You will start from an open day.');
     return '<p class="hashnote' + (h.ok ? '' : ' lock') + '" role="status">' + esc(tx(t)) + '</p>';
   }
   /* 2a: 현재 스테이지 정하기 — 근무일·규칙·기본 미션·문구표가 스테이지 정의를 따름 */
@@ -1456,7 +2003,7 @@ window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）
       if (o && o.runId === S.runId && (o.rev || 0) <= (S.rev || 0)) return;   /* 29차: 이 탭이 넘겨받기·저장하기 전에 쓰인 예전 알림(늦게 도착)은 무시 */
       if (!o || o.runId !== S.runId || o.owner !== S.tabTok) { S.noSave = 'conflict'; runWarn('conflict'); }
     });
-    window.addEventListener('hashchange', function () { if (G.screen !== 'title') { if (/^#day/i.test(location.hash)) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} return; } try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); if (d.country) G.country = d.country; G.practice = !!d.practice; } catch (e) {} G.store = DY.loadStore(); G.hist = G.store.days; ensureStageAllowed(); if (applyHash()) { renderTitle(); var go = $('#go'); if (go && go.scrollIntoView) go.scrollIntoView({ block: 'center' }); } });
+    window.addEventListener('hashchange', function () { if (G.screen !== 'title') { if (/^#(gt-)?day/i.test(location.hash)) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} return; } try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); if (d.country) G.country = d.country; G.practice = !!d.practice; } catch (e) {} G.store = DY.loadStore(); G.hist = G.store.days; ensureStageAllowed(); if (applyHash()) { renderTitle(); var go = $('#go'); if (go && go.scrollIntoView) go.scrollIntoView({ block: 'center' }); } });
   }
   function saveHist() { if (!G.store) return true; var ok = DY.saveStore(G.store); if (!ok && !G.saveWarned) { G.saveWarned = true; } return ok; }
 
@@ -1478,7 +2025,10 @@ window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）
   /* 27차: 체크인편 클리어 = 실전(연습 기록 아님) DAY 5를 B 이상·안전 합격·전원 처리로 마침(DAY 4→5 해금과 같은 기준). 근무지별 */
   function ciCleared(country) { var cd = window.SAGA_STAGES.ci.days, d5 = cd.list[4]; return !!(d5 && cd.cleared(cd.rec(G.hist, d5, country || G.country))); }
   /* 35차 A-F01: 스테이지 자격은 근무지별(체크인편 DAY 5 클리어는 근무지마다 따로 셈). 카드 표시·스테이지 전환·출근 시작이 모두 같은 함수를 봄 */
-  function stageAllowed(id, country) { if (!window.SAGA_STAGES[id]) return false; if (id === 'ci') return true; if (id === 'gt') return ciCleared(country || G.country); return false; }
+  /* 46차(사용자 결정 10-16): 게이트편 공개 직후 미리보기 — 연습 모드에서는 체크인편 클리어 없이 STAGE 02를 엶(실전은 체크인편 실전 DAY 5 클리어 뒤 그대로). 닫을 때는 아래 한 줄을 false로. 게임 홈(hub)도 빌드 때 이 값을 읽음 */
+  var GATE_PREVIEW = true;
+  function stageAllowed(id, country, practice) { if (!window.SAGA_STAGES[id]) return false; if (id === 'ci') return true; if (id === 'gt') return ciCleared(country || G.country) || (GATE_PREVIEW && (practice == null ? !!G.practice : !!practice)); return false; }
+  function gatePreviewOnly(country) { return !!window.SAGA_STAGES.gt && !ciCleared(country || G.country) && GATE_PREVIEW && !!G.practice; }   /* 46차: 지금 STAGE 02가 미리보기로만 열려 있는가(카드 표시용) */
   function stageOpen(n) { var id = stageIdOf(n); return !!id && stageAllowed(id); }
   /* 근무지·설정 복원으로 지금 스테이지의 자격이 사라지면 체크인편으로 돌림(진행본은 지우지 않음 — 이어하기는 저장본의 스테이지·근무지로 복원하는 정책 그대로). 돌렸으면 true */
   function ensureStageAllowed() { if (stageAllowed(ST.id)) return false; setStage('ci'); save(); return true; }
@@ -1995,9 +2545,12 @@ window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）
     var st = STAGES.map(function (s) {
       var sid = stageIdOf(s.n), open = !!sid && stageOpen(s.n), cur = sid === ST.id, many = STAGES.filter(function (x) { var i = stageIdOf(x.n); return i && stageOpen(x.n); }).length > 1;   /* 2b: 정의가 있고 조건을 채운 스테이지만 열림. 「근무 중」 표시는 열린 스테이지가 둘 이상일 때만(하나뿐이면 30차와 같은 표시) */
       var cls = open ? 'play' + (cur && many ? ' on' : '') : 'lock' + (s.key ? ' key' : '');
-      var lab = open ? (cur && many ? L('勤務中', '근무 중', 'Current') : L('勤務できます', '근무 가능', 'Open')) : (s.key ? L('★ 計算の実習ステージ・準備中', '★ 계산 실습 스테이지·준비 중', '★ Hands-on calculation stage · coming') : L('準備中', '준비 중', 'Coming'));
+      var lab = open ? (cur && many ? L('選択中', '선택 중', 'Selected') : L('勤務できます', '근무 가능', 'Open')) : (s.key ? L('★ 計算の実習ステージ・準備中', '★ 계산 실습 스테이지·준비 중', '★ Hands-on calculation stage · coming') : L('準備中', '준비 중', 'Coming'));
       /* 27차(사용자 10-14): 연습 모드도 체크인편 DAY 1~5는 바로 열리지만, STAGE 02는 체크인편을 실전으로 끝낸 뒤(DAY 5 B 이상·안전 합격·전원 처리) 열림 */
-      if (s.n === '02' && !open) { var ok5 = ciCleared(); lab = ok5 ? L('準備中（チェックイン編クリア済み）', '준비 중(체크인편 클리어)', 'Coming (Check-in cleared)') : L('チェックイン編の本番DAY 5をクリアすると開きます・準備中', '체크인편 실전 DAY 5를 통과하면 열립니다 · 준비 중', 'Opens after you clear Check-in DAY 5 in Shift mode · coming'); }
+      if (s.n === '02' && !open) { var ok5 = ciCleared(); lab = !window.SAGA_STAGES.gt ? (ok5 ? L('準備中（チェックイン編クリア済み）', '준비 중(체크인편 클리어)', 'Coming (Check-in cleared)') : L('チェックイン編の本番DAY 5をクリアすると開きます・準備中', '체크인편 실전 DAY 5를 통과하면 열립니다 · 준비 중', 'Opens after you clear Check-in DAY 5 in Shift mode · coming'))
+        : GATE_PREVIEW ? L('チェックイン編の本番DAY 5をクリアすると開きます（練習モードなら先に体験できます）', '체크인편 실전 DAY 5를 통과하면 열립니다(연습 모드에서는 미리 해 볼 수 있습니다)', 'Opens after you clear Check-in DAY 5 in Shift mode (try it early in Practice)')
+        : L('チェックイン編の本番DAY 5をクリアすると開きます', '체크인편 실전 DAY 5를 통과하면 열립니다', 'Opens after you clear Check-in DAY 5 in Shift mode'); }   /* 46-R01(GPT 선택 권장): 출근 전 고른 카드는 「選択中/선택 중」. 46차: 게이트편이 들어간 빌드에서는 「준비 중」을 빼고, 미리보기 중이면 연습 모드 안내 */
+      if (s.n === '02' && open && gatePreviewOnly()) lab = cur && many ? L('選択中（練習・先行公開）', '선택 중(연습·미리 공개)', 'Selected (practice preview)') : L('練習モードで先行公開中', '연습 모드 미리 공개', 'Practice preview');
       return '<button class="stg ' + cls + '" ' + (open ? (cur ? 'data-go="1"' : 'data-stage="' + sid + '"') : 'disabled') + '><span class="n">STAGE ' + s.n + '</span><span class="nm">' + esc(tx(s.nm)) + '</span><span class="st">' + esc(tx(lab)) + '</span></button>';
     }).join('');
     var dd = curDay(); G.day = dd.n; applyDayHints(dd.n);
@@ -2034,7 +2587,7 @@ window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）
     $('#tg-v').onclick = function () { G.voice = !G.voice; VO.on = G.voice; save(); renderTitle(); };
     $('#go').onclick = startMission; bindRunPanel();
     $('#tg-p').onclick = function () { if (G.practice) return; G.practice = true; save(); renderTitle(); };
-    $('#tg-c').onclick = function () { if (!G.practice) return; G.practice = false; save(); renderTitle(); };
+    $('#tg-c').onclick = function () { if (!G.practice) return; G.practice = false; ensureStageAllowed(); save(); renderTitle(); };   /* 46차: 미리보기로 연 STAGE 02에서 실전으로 바꾸면 자격을 다시 봄(없으면 체크인편) */
     $('#days').onclick = function (e) { var b = e.target.closest('button[data-day]'); if (!b || b.disabled) return; G.day = +b.dataset.day; save(); renderTitle(); };
     document.querySelectorAll('[data-go]').forEach(function (b) { b.onclick = startMission; });
     document.querySelectorAll('[data-stage]').forEach(function (b) { b.onclick = function () { if (G.resuming || !stageAllowed(b.dataset.stage)) return; sfx.tap(); setStage(b.dataset.stage); save(); renderTitle(); topOfGame(); }; });   /* 2b: 스테이지 전환(35차: 자격 다시 확인) */
@@ -3753,6 +4306,1119 @@ window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）
     scoreVer: 'full7', ruleDate: '2026-10-11', layoutVer: 'A',
     testHooks: function () { return { issueBP: issueBP, setSeat: setSeat, endPax: endPax, nextPax: nextPax }; }
   };
+  /* ================= STAGE 02 게이트편 — stages/gate.js(Day 1, 합의본 v2 기준) =================
+     엔진 훅(STAGE_DEF)만 채웁니다. 저장·이어하기·채점 틀·화면 틀은 엔진(2a·2b) 그대로.
+     처리 단위(unit) 종류: prep(준비) · bcast(방송 고르기) · sign(객실 사인·사전 탑승 방송) · pax(승객 스캔·여권 대조) · close(마감) · count(인원 대조·도어 클로즈)
+     그림은 체크인편 그림을 임시로 씀(합의본 7절, 정식 그림은 GPT 의뢰 뒤 교체). rulesVer G3.1(Day 2·3 추가, 40차 마감 접수 시각)
+     35차(GPT 34차 B-F01~06): 탑승은 사람마다 한 번(S.brd: 사람 열쇠 → 스캔·여권 대조 상태), 가족·동반 유아도 한 명씩 여권 대조, 기다리게 한 승객은 자기 그룹 호출 뒤 다시 와서 스캔·대조,
+     여권 교정 직후의 옛 버튼 무효(확정 때 현재 상태 재검사), 방송은 음성이 끝나거나 「다음」을 누를 때까지 유지, 업무 오답도 정확 −10, 저장본 검사 강화 */
+  var GM = window.MISSION_GT01;
+  var GATE_DAYS = window.SAGA_DAYS.make([
+    { n: 1, id: 'gt.d1', mission: GM, hints: true, nm: L('はじめてのゲート', '첫 게이트', 'First gate'), learn: L('準備・放送・搭乗順・スキャンと旅券照合・人数確認', '준비·방송·탑승 순서·스캔과 여권 대조·인원 대조', 'Prep, announcements, boarding order, scan and passport check, headcount') },
+    { n: 2, id: 'gt.d2', mission: window.MISSION_GT02 || null, hints: true, nm: L('混み合う搭乗', '바쁜 탑승', 'Busy boarding'), learn: L('満席・機内清掃の遅れ・手荷物の制限', '만석·기내 청소 지연·수하물 제한', 'Full flight, cabin cleaning delay, bag limits') },
+    { n: 3, id: 'gt.d3', mission: window.MISSION_GT03 || null, hints: true, nm: L('サポートが必要なお客様', '도움이 필요한 승객', 'Passengers who need help'), learn: L('車いす・UM・幼児・ペット・非常口', '휠체어·UM·유아·반려동물·비상구', 'Wheelchairs, UM, infants, pets, exit rows') },
+    { n: 4, id: 'gt.d4', mission: window.MISSION_GT04 || null, hints: true, nm: L('イレギュラー①', '비정상 ①', 'Irregular ops 1'), learn: L('搭乗口変更・ノーショー・オフロード', '게이트 변경·노쇼·오프로드', 'Gate change, no-shows, offload') },
+    { n: 5, id: 'gt.d5', mission: window.MISSION_GT05 || null, hints: true, nm: L('イレギュラー②', '비정상 ②', 'Irregular ops 2'), learn: L('遅延・オーバーブッキング・最終人数', '지연·오버부킹·최종 인원', 'Delays, overbooking, final figures') }
+  ]);
+  var GATE_TEXT = {
+    days: L('ゲート編 ― 搭乗ゲートの5日間', '게이트편 — 탑승 게이트의 5일', 'Gate — five days at the gate'),
+    next: L('次のお客様どうぞ', '다음 손님 오세요', 'Next, please'),
+    tabs: { prep: L('準備', '준비', 'Prep'), bc: L('放送', '방송', 'PA'), sign: L('搭乗開始', '탑승 시작', 'Start boarding'), scan: L('スキャン', '스캔', 'Scan'), close: L('締め切り', '마감', 'Close'), count: L('人数確認', '인원 대조', 'Headcount') },
+    eduData: L('教育用データ ― 実務では自社のDCS・マニュアルで確認します', '교육용 데이터 — 실무에서는 자사 DCS·매뉴얼로 확인합니다', 'Training data — in real work, check your DCS and manuals'),
+    allDone: L('ゲート編の5日間をすべて終えました。', '게이트편 5일을 모두 마쳤습니다.', 'You have finished all five days of the gate chapter.'),
+    lastDayHow: L('DAY 5は、B以上・安全合格・全員処理でクリアです。まず今日を復習しましょう。', 'DAY 5는 B 이상·안전 합격·전원 처리로 클리어됩니다. 먼저 오늘을 복습해 보세요.', 'DAY 5 is cleared with B or better, a safety pass and everyone handled. Review today first.'),
+    resumeProg: function (c) { return tx(L(c.completedPaxCount + '/' + c.total + ' 件 完了 · ' + (c.completedPaxCount + 1) + '件目から続ける', c.completedPaxCount + '/' + c.total + '건 완료 · ' + (c.completedPaxCount + 1) + '번째부터 이어하기', c.completedPaxCount + '/' + c.total + ' steps done · continue from step ' + (c.completedPaxCount + 1))); },
+    /* 35차(GPT 34차 참고 4): 이어하기·결과의 체크인 문장을 게이트 표현으로 */
+    resumeMsg: function (done) { return L('前回の続き：' + done + '件目まで終わったところから再開しました。処理の途中の内容は保存されないため、次の処理から始まります。', '이어하기: ' + done + '번째 처리까지 마친 곳에서 다시 시작했습니다. 처리 도중의 내용은 저장되지 않으므로 다음 처리부터 시작합니다.', 'Resumed after step ' + done + '. Anything done partway through a step is not saved, so you continue with the next step.'); },
+    resumeNote: L('処理の途中の内容は保存されません（最後に終えた処理の次から）', '처리 도중의 내용은 저장되지 않습니다(마지막으로 마친 처리 다음부터)', 'Work partway through a step is not saved (you restart at the next step)'),
+    afterClose: null
+  };
+  var GATE_RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'strikes', 'seq', 'evChecks', 'evRep', 'safety', 'boarded', 'inf', 'scanned', 'grpCalled', 'bc', 'signOk', 'maniVer', 'deferred', 'doorAt', 'brd', 'seatFix', 'gateBags', 'waitMin', 'strollers'];
+  var GATE_RUNSKIP = ['list', 'cur', 'seed', 'adv', 'day', 'ac', 'runId', 'rev', 'fp', 'startedAt', 'modalRedraw', 'bub', 'guideL', 'leaving', 'leaveGo', 'hrec', 'saveOk', 'mistakes', '_t', 'noSave', 'runWarn', 'resumed', 'dupRun', 'lastSave', 'testStopped', 'resumeAt', 'tabTok', 'takeover', 'writeFail', 'blocked', 'ownerLost', 'badState', 'dlChecked'];
+  /* 오답 코드 → 문구·행동(기록용). 심각도는 합의본 3절: 안전 = strike, 업무 = OPS 목록, 그 밖은 감점 */
+  var GMISSL = {
+    'gt-prep': L('ゲート準備の項目を飛ばした', '게이트 준비 항목 누락', 'Skipped gate preparation items'),
+    'gt-early': L('予定より早く放送した', '예정보다 일찍 방송', 'Announced before the scheduled time'),
+    'gt-bcast': L('場面に合わない放送文を選んだ', '장면에 맞지 않는 방송 선택', 'Chose the wrong announcement'),
+    'gt-nosign': L('客室の準備サイン前に搭乗を開始', '객실 준비 사인 전 탑승 시작', 'Started boarding before the cabin was ready'),
+    'gt-order': L('まだ呼ばれていないグループを通した', '아직 호출하지 않은 그룹 통과', 'Let an uncalled group board'),
+    'gt-scan-one': L('搭乗券1枚で2人を通した', '탑승권 한 장으로 두 명 통과', 'Boarded two people on one scan'),
+    'gt-pp-skip': L('旅券を照合せずに搭乗させた', '여권 대조 없이 탑승', 'Boarded without checking the passport'),
+    'gt-pp-miss': L('別人の旅券を見落とした', '다른 사람 여권 놓침', 'Missed someone else\'s passport'),
+    'gt-count': L('人数が合わないままドアクローズ', '인원 불일치인 채 도어 클로즈', 'Closed the door with a headcount mismatch'),
+    /* Day 2(합의본 G2-*) */
+    'gt-bag': L('バッテリー類を入れたまま手荷物を預かった', '배터리류를 넣은 채 짐을 맡음', 'Gate-checked a bag with batteries still inside'),
+    'gt-bagin': L('規定を超える手荷物を機内に持ち込ませた', '규정을 넘는 짐을 기내에 반입시킴', 'Let an oversized bag into the cabin'),
+    'gt-dup': L('座席の重複を機内任せにした', '좌석 중복을 기내에 떠넘김', 'Left a duplicate seat for the cabin to sort out'),
+    'gt-again': L('搭乗済みの搭乗券で確認なしに通した', '이미 탑승한 탑승권으로 확인 없이 통과', 'Let someone through on an already-used boarding pass'),
+    'gt-again-rude': L('再スキャンのお客様を確認せず追い返した', '재스캔 손님을 확인 없이 돌려보냄', 'Turned away a re-scanned passenger without checking'),
+    'gt-other': L('別の便の搭乗券で通した', '다른 편 탑승권으로 통과', 'Let someone board with a boarding pass for another flight'),
+    'gt-other-noguide': L('別の便のお客様に搭乗口を案内しなかった', '다른 편 손님에게 탑승구를 안내하지 않음', 'Turned away a wrong-flight passenger without directions'),
+    'gt-name': L('搭乗券と旅券の名前違いを解消せず搭乗させた', '탑승권·여권 이름 불일치를 해소하지 않고 탑승', 'Boarded a passenger with an unresolved name mismatch'),
+    'gt-clean': L('搭乗開始の遅れを放送しなかった', '탑승 개시 지연을 방송하지 않음', 'Did not announce the boarding delay'),
+    /* Day 3(합의본 G3-*) */
+    'gt-wch': L('車いすのお客様の希望・補助の確認が不足', '휠체어 승객의 희망·보조 확인 부족', 'Did not confirm the wheelchair user\'s needs and assistance level'),
+    'gt-wch-unsafe': L('必要な補助なしに不安全な移動を実行', '필수 보조 없이 불안전한 이동 실행', 'Moved the passenger unsafely without the required assistance'),
+    'gt-um': L('書類・署名を解決せずにUMの引き継ぎを確定', '서류·서명을 해결하지 않고 UM 인계 확정', 'Confirmed the UM handover without documents or signatures'),
+    'gt-um-guard': L('出発地の保護者の待機確認を記録しなかった', '출발지 보호자 대기 확인을 기록하지 않음', 'Did not record that the departing guardian is waiting and reachable'),
+    'gt-exit': L('非常口列の条件確認を省いた', '비상구 열 조건 확인 생략', 'Skipped the exit-row suitability check'),
+    'gt-exit-unsafe': L('条件を満たさないまま非常口列に搭乗させた', '조건 미충족인 채 비상구 열 탑승', 'Boarded an ineligible passenger in the exit row'),
+    'gt-pet': L('機内持ち込みペットの最終確認を省いた', '기내 반려동물 최종 확인 생략', 'Skipped the final check for the in-cabin pet'),
+    'gt-gtg': L('ベビーカーをタグ・記録なしで預かった', '유모차를 태그·기록 없이 맡음', 'Took a stroller without a tag or record'),
+    'gt-late': L('締め切り後の搭乗を自分の判断で延長', '마감 후 탑승을 혼자 판단으로 연장', 'Extended boarding after the close on your own authority'),
+    'gt-late-refuse': L('SVに確認せず締め切り後のお客様を断った', 'SV 확인 없이 마감 후 손님을 거절', 'Refused a late passenger without asking the SV')
+  };
+  var GACT = { 'gt-prep': 'complete-prep-checklist', 'gt-early': 'wait-for-scheduled-time', 'gt-bcast': 'choose-correct-announcement', 'gt-nosign': 'wait-for-cabin-ready-sign', 'gt-order': 'ask-to-wait-for-group',
+               'gt-scan-one': 'scan-each-boarding-pass', 'gt-pp-skip': 'check-passport-every-time', 'gt-pp-miss': 'compare-photo-with-person', 'gt-count': 'reconcile-before-door-close',
+               'gt-bag': 'remove-batteries-before-gate-check', 'gt-bagin': 'gate-check-oversized-bag', 'gt-dup': 'reseat-and-notify-cabin', 'gt-again': 'hold-verify-report-sv', 'gt-again-rude': 'explain-and-verify-politely',
+               'gt-other': 'do-not-board-wrong-flight', 'gt-other-noguide': 'guide-to-correct-gate', 'gt-name': 'check-record-and-report-sv', 'gt-clean': 'announce-boarding-delay',
+               'gt-wch': 'confirm-needs-and-assistance', 'gt-wch-unsafe': 'never-lift-use-aisle-chair', 'gt-um': 'complete-um-handover-form', 'gt-um-guard': 'confirm-guardian-waiting', 'gt-exit': 'check-exit-row-eligibility', 'gt-exit-unsafe': 'reseat-ineligible-exit-row',
+               'gt-pet': 'final-check-petc-cage-and-seat', 'gt-gtg': 'tag-and-record-stroller', 'gt-late': 'ask-sv-after-close', 'gt-late-refuse': 'ask-sv-before-refusing' };
+  var GOPS = ['gt-nosign', 'gt-scan-one', 'gt-dup', 'gt-other-noguide', 'gt-wch', 'gt-um-guard', 'gt-exit', 'gt-late'];   /* 업무(최고 A) */
+  function gBad(code, text, lesson) { note('bad', text, lesson || null, code); }
+  function gSafe(code, text, lesson) { var c = S.cur; note('bad', text, lesson || null, code); S.strikes++; S.safety.push({ who: gUnitName(c), code: code, what: GMISSL[code] }); }
+  function gUnitName(c) { var p = c.p; return p.kind === 'pax' ? p.pp.sur + ' ' + p.pp.given : tx(({ prep: L('ゲート準備', '게이트 준비', 'Gate prep'), bcast: L('放送', '방송', 'PA'), sign: L('搭乗開始', '탑승 시작', 'Boarding start'), close: L('搭乗締め切り', '탑승 마감', 'Boarding close'), count: L('人数確認', '인원 대조', 'Headcount') })[p.kind] || L('処理', '처리', 'Step')) + (p.bc ? ' ' + p.bc : ''); }
+  function gT() { return V.t; }
+  function gAt(hhmm) { if (S.clock < pm(hhmm)) S.clock = pm(hhmm); updateBar(); }
+  /* 40차(GPT 39-F01): 승객 말풍선 자리에서 다른 사람(UM 동행 직원)이 말할 때 — 이름·음성 배역을 그 사람으로. 어린이의 인사·응답(say('pax'))은 그대로. 새로고침 뒤에는 다시 그리지 않음(일시 대사) */
+  /* 45차(44-F03): 승객 말풍선은 「마지막으로 요청한 대사」만 — 예약된 대사는 그 뒤에 다른 승객 대사가 요청되면(같은 단위 안의 다음 단계 포함) 버림 */
+  var gTalkN = 0;
+  function gPaxSay(text) { gTalkN++; say('pax', text); }
+  function gPaxLater(c, text, ms) { var k = ++gTalkN; setTimeout(function () { if (S.cur === c && gTalkN === k && G.screen === 'play') say('pax', text); }, ms); }
+  function gSayAs(name, cast, text) { gTalkN++; var el = $('#bpx'); if (!el || !S || !S.cur || !text) return; S.bub = S.bub || {}; S.bub.pax = null; el.innerHTML = '<span class="who">' + esc(name) + '</span>' + esc(tx(text)) + (G.lang !== 'ja' && G.voice && text.ja ? '<span class="jsub">' + esc(text.ja) + '</span>' : ''); if (G.voice && text.ja) VO.say(cast, text.ja); el.classList.remove('hide'); }
+  /* 40·41차(GPT 39-F02·40-F01): 마감 경계는 「최초 스캔 요청 시각」 c.recvAt(첫 스캔 버튼을 누른 때, 또는 마감 후라 SV 화면이 열린 때 — 한 번 기록하면 고정). 아직 스캔 요청 전이면 지금 시각으로 판단(화면이 마감 전에 열렸어도 인사 등으로 마감을 넘기면 마감 후 접수).
+     4A 부등호 clock >= close. 허용 오차는 부동소수점 잡음(1e-6분)뿐, 정책 여유 없음. 마감 전에 첫 스캔을 하고 확인 중 마감을 넘긴 승객은 recvAt < close라 해당 없음 */
+  function gRecvAt(c) { return c.recvAt != null ? c.recvAt : S.clock; }
+  function gLateRecv(c) { return !!c && gRecvAt(c) >= S.close - 1e-6; }
+  function gWaitBtn(at) {   /* 예정 시각 전이면 「〜まで待つ」 버튼. 일찍 진행하면 G1-prep 감점(gt-early) */
+    if (!at || S.clock >= pm(at) - 0.01) return '';
+    return '<p class="small">' + esc(tx(L('予定 ' + at + ' · 現在 ' + hm(S.clock), '예정 ' + at + ' · 현재 ' + hm(S.clock), 'Scheduled ' + at + ' · now ' + hm(S.clock)))) + '</p><div class="btns"><button class="btn" id="g-wait" data-a="wait">' + esc(tx(L(at + ' まで待つ', at + '까지 기다리기', 'Wait until ' + at))) + '</button></div>';
+  }
+  function gBindWait(at, redraw) { var b = $('#g-wait'); if (b) b.onclick = function () { if (!gLive(S.cur)) return; sfx.tap(); gAt(at); redraw(); }; }
+  /* ---------- 사람 단위(35차 B-F01·B-F03): 탑승·스캔·여권 대조는 「사람」마다 한 번. 열쇠 = 단위 id(동반자는 id.1, id.2…) ---------- */
+  function gPid(p) { return p.ref || p.id; }   /* 기다리게 한 승객이 다시 오는 단위(back)는 원래 승객과 같은 열쇠 */
+  function gPersons(p) {   /* 한 처리 단위의 사람들: 본인 → 동반자(좌석 있음) → 동반 유아(좌석 없음, 인원에는 INF로) */
+    var base = gPid(p), out = [{ pid: base, who: p.pp.sur + ' ' + p.pp.given, seat: p.seat, art: p._artGate || p.art, photo: p.photo || null, ppName: p.ppName || null, issue: p.issue, kind: 'main' }];
+    (p.party || []).forEach(function (q, i) { out.push({ pid: base + '.' + (i + 1), who: q.sur + ' ' + q.given + (q.age ? ' (' + q.age + ')' : ''), seat: q.seat, art: q.art, photo: q.photo || null, kind: 'party' }); });
+    if (p.inf) out.push({ pid: base + '.inf', who: p.inf.sur + ' ' + p.inf.given, seat: 'INF', art: 'passenger_infant_01', photo: 'infant_01', kind: 'inf' });
+    return out;
+  }
+  function gManifest() {   /* 이 편의 유효 명단(좌석 있는 사람). 다시 오는 단위(back)는 세지 않음 */
+    var out = []; S.list.forEach(function (q) { if (q.kind !== 'pax' || q.back || q.nomani || (S.off && S.off[gPid(q)]) || (S.moved && S.moved[gPid(q)]) || (q.sby && !(S.added && S.added[gPid(q)]))) return;   /* Day 5: moved 제외, 대기 승객은 added일 때만 */ gPersons(q).forEach(function (x) { if (x.kind !== 'inf') out.push(x); }); }); return out;   /* Day 4: SV 오프로드 결정(mani=off)된 사람은 유효 명단에서 뺌 */
+  }
+  function gSync() { S.brd = S.brd || {}; var ks = Object.keys(S.brd); S.boarded = ks.length; S.scanned = ks.filter(function (k) { return !!S.brd[k].scan; }).length; updateBar(); }
+  function gLive(c) { return !!c && S.cur === c && G.screen === 'play' && !S.leaving && !c.boarded && !c.flags.done; }   /* 이 단위의 버튼이 아직 유효한가(이중 확정·이전 단위의 늦은 클릭 거부) */
+  function gLock() { document.querySelectorAll('#scr button').forEach(function (b) { b.disabled = true; }); }   /* 확정 즉시 모든 버튼을 실제로 잠금(키보드 연타 포함) */
+  function gDone(c) { if (!gLive(c)) return false; c.flags.done = true; gLock(); return true; }   /* 단위를 한 번만 확정 */
+  /* ---------- 단위 시작·끝 ---------- */
+  function gateStart(u) {
+    S.cur = { p: u, mood: 85, mins: 0, tab: ({ prep: 'prep', bcast: 'bc', sign: 'sign', pax: 'scan', close: 'close', count: 'count', change: 'change', warn: 'warn', search: 'search', delay: 'delay', ob: 'ob', sby: 'sby' })[u.kind], notes: [], chk: {}, bags: [], flags: {}, acts: {}, selfFix: [], needSV: false, svDone: false, scans: 0, ppIdx: 0 };
+    var c = S.cur;
+    var bpArt = gArt(u.art + '_bp_01') || gArt(u.art.replace(/_01$/, '') + '_bp_01');
+    if (u.kind === 'pax' && !u._artGate && bpArt) { u.voice = u.voice || u.art; u.photo = u.photo || u.art.replace(/^passenger_/, '').replace(/_infant_01$/, ''); u._artGate = u.art; u.art = bpArt; }   /* v04: 탑승권을 내미는 자세. 음성·여권 사진 키는 원래 인물 */
+    if (u.kind === 'pax' && u.back && S.brd && S.brd[gPid(u)]) { c.flags.already = true; c.skipMood = true; }   /* 기다리게 하지 않고 통과시킨 승객은 다시 오지 않음 */
+    if (u.kind === 'pax' && u.issue === 'late1' && gT().late1) gAt(gT().late1); if (u.kind === 'pax' && u.issue === 'late2' && gT().late2) gAt(gT().late2); if (u.kind === 'pax' && u.at) gAt(u.at);   /* Day 4: 오프로드 뒤 도착 시각 */
+    if (u.kind === 'close' && u.offload) c.needSV = true;   /* Day 4: 오프로드 결정은 SV 보고 항목 */   /* Day 3: 마감 직전·마감 후 도착(최소 도착 시각 — 이미 더 늦으면 그대로) */
+    if (u.kind === 'pax' && (u.issue === 'again' || u.issue === 'name' || (u.issue !== 'after' && gLateRecv(c)))) c.needSV = true;   /* Day 4 'after'(오프로드 뒤 도착)는 자기 흐름에서 SV 처리 */   /* Day 2·3: SV 보고가 필요한 사건(4B-2 보고 항목) — 마감 후 접수는 유형과 무관 */
+    STG.queue(S.list.slice(S.idx + 1).filter(function (q) { return q.kind === 'pax' && !q.back; }));   /* 줄에는 승객만(방송·준비 단위는 그림 없음) */
+    if (u.kind === 'pax' && u.issue === 'rebooked') c.flags.noShow = true;
+    if (u.kind === 'pax' && u.back && S.moved && S.moved[gPid(u)]) { c.flags.noShow = true; c.flags.movedBack = true; }   /* 45차: 기다리게 한 승객이 그 사이 다른 편으로 변경됐으면 다시 오지 않음 */   /* Day 5: 오지 않는 승객(콜센터 변경) — 그림·인사 없음 */
+    if (u.kind === 'pax' && !c.flags.already && !c.flags.noShow) drawPax(); else STG.pax(null);
+    if (u.kind === 'pax' && !c.flags.already && !c.flags.noShow) {
+      say('me', u.issue === 'vol' ? L('ご協力のお申し出、ありがとうございます。', '협력 신청 감사합니다.', 'Thank you for volunteering.') : u.sby ? L('空席待ちのお客様ですね。確認いたします。', '대기 손님이시죠. 확인하겠습니다.', 'You are on standby — let me check.') : u.issue === 'after' ? L('お客様、ベラエア' + V.flight.replace(/\D/g, '') + '便ですね。', '손님, 베라에어 ' + V.flight.replace(/\D/g, '') + '편이시죠.', 'Vela Air ' + V.flight.replace(/\D/g, '') + ', sir or madam?') : (u.issue === 'late' || u.issue === 'late1') ? L('お待ちしておりました。搭乗券とパスポートをお願いします。', '기다리고 있었습니다. 탑승권과 여권 부탁드립니다.', 'We were waiting for you. Boarding pass and passport, please.') : u.issue === 'um' ? L('こんにちは。ここからはお姉さんと一緒に行きましょう。', '안녕. 여기서부터는 언니랑 같이 가자.', 'Hello! From here, you will come with me.') : L('搭乗券とパスポートをお願いします。', '탑승권과 여권 부탁드립니다.', 'Boarding pass and passport, please.'));
+      gPaxLater(c, u.say.hello, 650);
+      addTime(M.cost.greet);
+    } else { say('me', ''); gPaxSay(''); }
+    updateBar(); guide(gHint(u)); renderTabs(); showTab(S.cur.tab);
+  }
+  function gHint(u) {
+    if (!G.hints) return '';
+    return ({ prep: L('まず<b>準備</b>です。編・特別なお客様・引き継ぎ・機材・客室との打ち合わせを確認してから搭乗を始めます。', '먼저 <b>준비</b>입니다. 편·특별 승객·인계·장비·객실 협의를 확인한 뒤 탑승을 시작합니다.', 'First, <b>prep</b>: flight, special passengers, handover, equipment and the cabin briefing, before boarding starts.'),
+      bcast: L('場面に合う<b>放送文</b>を選びます。便名・行き先・搭乗口・お客様がすることが入っているかを見ます。', '장면에 맞는 <b>방송문</b>을 고릅니다. 편명·행선지·탑승구·승객이 할 일이 들어 있는지 봅니다.', 'Pick the <b>announcement</b> that fits: flight, destination, gate and what passengers should do.'),
+      sign: L('時刻になっても、<b>客室の準備サイン</b>を受けてから搭乗を始めます。', '시각이 됐어도 <b>객실 준비 사인</b>을 받은 뒤 탑승을 시작합니다.', 'Even at the scheduled time, wait for the <b>cabin ready sign</b> before boarding.'),
+      pax: L('搭乗券は<b>一人一枚ずつ</b>スキャンし、国際線は<b>一人ずつ旅券の写真と本人・名前</b>を照合します（ご家族・お子様・幼児も）。', '탑승권은 <b>한 명에 한 장씩</b> 스캔하고, 국제선은 <b>한 명씩 여권 사진과 본인·이름</b>을 대조합니다(가족·어린이·유아도).', 'Scan <b>one boarding pass per person</b> and, on international flights, compare <b>each person\'s passport photo and name</b> (families, children and infants too).'),
+      close: L('締め切り時刻です。未搭乗のお客様がいないか確認して締め切ります。', '마감 시각입니다. 미탑승 승객이 없는지 확인하고 마감합니다.', 'Closing time. Confirm no one is missing, then close.'),
+      count: L('地上の搭乗数と客室の人数が<b>一致</b>してからドアクローズです。合わなければ原因を確認します。', '지상 탑승 수와 객실 인원이 <b>일치</b>한 뒤 도어 클로즈입니다. 맞지 않으면 원인을 확인합니다.', 'Door close only when the ground count and cabin count <b>match</b>. If not, find the cause.'),
+      change: L('搭乗口変更は<b>即時放送＋5分間隔で2回</b>、表示変更、旧搭乗口の案内担当、お手伝いが必要なお客様の移動手配です。', '탑승구 변경은 <b>즉시 방송 + 5분 간격 2회</b>, 표시 변경, 이전 탑승구 안내 담당, 도움이 필요한 승객 이동 수배입니다.', 'A gate change means <b>announce now and twice more at 5-minute intervals</b>, update the display, station staff at the old gate and move passengers who need help.'),
+      warn: L('出発20分前に、未搭乗のお客様の<b>預け荷物（タグ・個数・位置）</b>と人数変更の可能性を地上係員・搭載管理へ先に伝えます。', '출발 20분 전에 미탑승 승객의 <b>위탁 짐(태그·개수·위치)</b>과 인원 변경 가능성을 조업사·탑재관리에 먼저 알립니다.', 'At STD −20, warn ramp and load control about the missing passengers\' <b>bags (tags, count, position)</b> and a possible count change.'),
+      delay: L('遅延は<b>公式の見込み</b>だけを「見込み」として案内し、確定したら<b>新しい時刻・搭乗開始・搭乗口</b>を案内します。確定120分以上はお食事券。', '지연은 <b>공식 전망</b>만 「전망」으로 안내하고, 확정되면 <b>새 시각·탑승 시작·탑승구</b>를 안내합니다. 확정 120분 이상은 식사 쿠폰.', 'Announce only the <b>official estimate</b> as an estimate; once confirmed, give the <b>new time, boarding time and gate</b>. From 120 minutes, meal vouchers.'),
+      ob: L('予約超過は<b>SVが実際の予想人数を確認</b>してから協力者を募ります。金額は放送に入れません。', '예약 초과는 <b>SV가 실제 예상 인원을 확인</b>한 뒤 자원자를 모집합니다. 금액은 방송에 넣지 않습니다.', 'For an oversale, the <b>SV confirms the real expected count</b> first, then call for volunteers. Never announce amounts.'),
+      sby: L('空席が出たら<b>V-G11 の順位</b>（非自発的 → 有料 → 一般、同じ等級は受付順）で配席します。', '빈 좌석이 나면 <b>V-G11 순위</b>(비자발적 → 유료 → 일반, 같은 등급은 접수순)로 배석합니다.', 'When a seat opens, assign it in <b>V-G11 order</b> (involuntary → paid → general; within a class by time).'),
+      search: L('最終呼び出しは名前を呼ぶだけでなく、<b>連絡先・同行者・ラウンジ</b>を確認し、出国・保安の記録は<b>権限のある担当者に照会</b>します。', '최종 호출은 이름만 부르지 않고 <b>연락처·동행자·라운지</b>를 확인하고, 출국·보안 기록은 <b>권한 있는 담당자에게 조회</b>합니다.', 'A final call is more than paging: check <b>contacts, companions and the lounge</b>, and ask the <b>authorised officer</b> for immigration and security records.') })[u.kind];
+  }
+  function gateEnd(delay) {
+    if (S.leaving) return; S.leaving = true; document.body.classList.add('busy'); gLock();
+    var mine = S.cur; S.leaveGo = function () { if (S.cur !== mine || G.screen !== 'play') return; S.leaving = false; S.leaveGo = null; document.body.classList.remove('busy'); say('me', ''); gPaxSay(''); nextUnit(); };
+    setTimeout(function () { if (S.leaveGo) S.leaveGo(); }, delay || 500);
+  }
+  /* ---------- ① 준비 ---------- */
+  var PREP = [['flt', L('便名・機材・搭乗口・出発時刻', '편명·기재·탑승구·출발 시각', 'Flight, aircraft, gate, STD')], ['spc', L('特別なお客様の一覧（車いす・幼児・UM）', '특별 승객 목록(휠체어·유아·UM)', 'Special passenger list (wheelchair, infant, UM)')],
+              ['hand', L('カウンターからの引き継ぎメモ', '카운터 인계 메모', 'Handover notes from check-in')], ['eq', L('機材（リーダー・放送・プリンター）', '장비(리더기·방송·프린터)', 'Equipment (reader, PA, printer)')], ['cab', L('客室乗務員と搭乗開始の打ち合わせ', '객실 승무원과 탑승 시작 협의', 'Boarding start briefing with cabin crew')]];
+  function gateTabPrep() {
+    var c = S.cur, t = gT(); c.chk.prep = c.chk.prep || {};
+    scr('<div class="h3">' + esc(tx(L('ゲート準備チェック', '게이트 준비 체크', 'Gate prep checklist'))) + '</div><dl class="kv"><dt>' + esc(tx(T.flight)) + '</dt><dd>' + esc(V.flight + ' ' + V.from + '→' + V.to + ' · STD ' + V.std) + '</dd><dt>GATE</dt><dd>' + esc(t.gate) + '</dd><dt>BRD / CLOSE</dt><dd>' + esc(t.board + ' / ' + t.close) + '</dd></dl>' +
+        (c.p.memo ? '<div class="why">📝 ' + esc(tx(L('引き継ぎメモ：', '인계 메모: ', 'Handover: '))) + esc(tx(c.p.memo)) + '</div>' : '') +
+        '<div class="chk">' + PREP.map(function (it) { return '<button data-k="' + it[0] + '" data-a="prep-' + it[0] + '"><span>' + esc(tx(it[1])) + '</span><span class="st">' + (c.chk.prep[it[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
+        '<div class="btns"><button class="btn pri" id="g-prepdone" data-a="ok">' + esc(tx(L('準備完了', '준비 완료', 'Prep done'))) + '</button></div>');
+    document.querySelectorAll('#scr .chk button').forEach(function (b) { b.onclick = function () { if (!gLive(c)) return; sfx.tap(); c.chk.prep[b.dataset.k] = true; addTime(0.4); gateTabPrep(); }; });
+    $('#g-prepdone').onclick = function () {
+      if (!gDone(c)) return;
+      var miss = PREP.filter(function (it) { return !c.chk.prep[it[0]]; });
+      if (miss.length) gBad('gt-prep', function () { return tx(L('準備の確認を飛ばしました：', '준비 확인을 건너뛰었습니다: ', 'Skipped prep checks: ')) + miss.map(function (it) { return tx(it[1]); }).join(' / '); }, 'passenger/2-1');
+      else note('good', L('ゲート準備を5項目すべて確認しました。', '게이트 준비 5항목을 모두 확인했습니다.', 'Completed all five gate prep checks.'), 'passenger/2-1');
+      addTime(M.cost.prep); sfx.ok(); gateEnd();
+    };
+  }
+  /* ---------- 방송 고르기(bcast·sign 공용) ---------- */
+  function gBcastHtml(b, picked) {
+    var opts = [{ t: b.ok, good: true }].concat(b.wrong.map(function (w) { return { t: w.t, why: w.why }; }));
+    opts = shufOpts(opts, 'bc-' + b.id);
+    return '<div class="h3">' + esc(tx(b.nm)) + '</div><p class="small">' + esc(tx(L('場面に合う放送文を選んでください（日本語で放送、字幕は表示言語）', '장면에 맞는 방송문을 고르세요(일본어로 방송, 자막은 표시 언어)', 'Choose the announcement for this moment (voice in Japanese, subtitles in your language)'))) + '</p>' +
+      opts.map(function (o, i) { return '<button class="opt" data-i="' + i + '" data-a="' + (o.good ? 'ok' : 'gt-bcast') + '"' + (picked && picked.indexOf(i) >= 0 ? ' disabled' : '') + '>' + esc(tx(o.t)) + '</button>'; }).join('') + '<div id="whybox"></div>' +
+      (LS[b.lesson] ? '<p class="lessonref">' + lessonA(b.lesson, '📘 ' + b.lesson + ' ' + tx(LS[b.lesson])) + '</p>' : '');
+  }
+  /* 35차(GPT 34차 B-F04): 올바른 방송을 고른 뒤 — 음성이 켜져 있으면 방송이 끝날 때까지(최대 25초) 화면·재생을 유지, 「次へ」를 누르면 그때 넘어감.
+     음성 끔·음성 없음(B7 이름 호출)·재생 실패는 1.5초 뒤 자동 진행(멈추지 않음). 한 단위를 두 번 시작하지 않음(went) */
+  function gBcastWait(c, b, after) {
+    var box = $('#whybox'), playing = !!(G.voice && VO.busy());
+    if (box) box.innerHTML = '<div class="why ok">' + esc(tx(playing ? L('🔊 放送中… 終わると次へ進みます', '🔊 방송 중… 끝나면 다음으로 넘어갑니다', '🔊 Announcing… continues when finished') : L('✔ 放送しました', '✔ 방송했습니다', '✔ Announced'))) + '</div>' +
+      '<div class="btns"><button class="btn pri" id="g-next" data-a="ok">' + esc(tx(L('次へ ▶', '다음 ▶', 'Next ▶'))) + '</button></div>';
+    var go = function () { if (S.cur !== c || G.screen !== 'play') return; if (after) { if (c.flags.wentIn) return; c.flags.wentIn = true; after(); return; } if (c.flags.went) return; c.flags.went = true; gateEnd(300); };
+    var nx = $('#g-next'); if (nx) nx.onclick = function () { sfx.tap(); VO.stop(); go(); };
+    if (playing) VO.whenIdle(function () { if (S.cur === c) setTimeout(go, 400); }, 25000); else setTimeout(go, 1500);
+  }
+  function gBindBcast(b, done, after) {   /* after가 있으면 단위를 끝내지 않고 after()로 다시 그림(사인 단위 안의 B9) */
+    var c = S.cur; c.flags.picked = c.flags.picked || [];
+    var opts = shufOpts([{ t: b.ok, good: true }].concat(b.wrong.map(function (w) { return { t: w.t, why: w.why }; })), 'bc-' + b.id);
+    document.querySelectorAll('#scr .opt').forEach(function (btn) {
+      btn.onclick = function () {
+        if (!gLive(c)) return;
+        var o = opts[+btn.dataset.i];
+        if (!o.good) { sfx.ng(); c.flags.picked.push(+btn.dataset.i); btn.disabled = true; $('#whybox').innerHTML = '<div class="why bad">' + esc(tx(o.why)) + '</div>';
+          if (!c.flags.bcBad) { c.flags.bcBad = true; gBad(b.badCode || 'gt-bcast', b.badNote || function () { return tx(L('場面に合わない放送を選びました：', '장면에 맞지 않는 방송을 골랐습니다: ', 'Chose an announcement that did not fit: ')) + tx(b.nm); }, b.lesson);   /* 45차(44-F02): 업무 위반 방송은 단위가 badCode·badNote를 줌 */ } return; }
+        if (after) { if (c.flags.wentIn || c.flags['bc' + b.id]) return; c.flags['bc' + b.id] = true; gLock(); } else if (!gDone(c)) return;
+        sfx.ok(); S.bc[b.id] = hm(S.clock); addTime(M.cost.bcast);
+        if (!c.flags.bcBad) note('good', function () { return tx(L('正しい放送を流しました：', '올바른 방송을 했습니다: ', 'Made the right announcement: ')) + tx(b.nm); }, b.lesson);
+        say('me', b.ok, !b.voice, b.voice ? { ja: b.voice } : undefined);   /* 음성이 없는 방송(이름 호출 B7)은 자막만 */
+        done(); gBcastWait(c, b, after);
+      };
+    });
+  }
+  function gateTabBc() {
+    var c = S.cur, u = c.p, b = GATE_BCAST.get(u.bc, G.country, u.who ? u.who.pp.sur + ' ' + u.who.pp.given : null, S.gate);   /* Day 4: 변경 뒤 방송은 현재 탑승구 */
+    var early = u.at && S.clock < pm(u.at) - 0.01;
+    scr(gWaitBtn(u.at) + (u.nth ? '<p class="small">' + esc(tx(L('搭乗口変更の放送 ' + u.nth + '回目（即時＋5分間隔で2回、V-G03）', '탑승구 변경 방송 ' + u.nth + '회차(즉시 + 5분 간격 2회, V-G03)', 'Gate-change announcement ' + u.nth + ' of 3 (now + twice at 5-minute intervals, V-G03)'))) + '</p>' : '') + gBcastHtml(b, c.flags.picked) + (u.nth ? '<div class="btns"><button class="btn ghost" id="g-bc-skip" data-a="gt-change-once">' + esc(tx(L('もう放送したので省略する', '이미 방송했으니 생략', 'Already announced — skip'))) + '</button></div>' : ''));
+    gBindWait(u.at, gateTabBc);
+    var sk = $('#g-bc-skip'); if (sk) sk.onclick = function () { if (!gDone(c)) return; sfx.ng(); S.evChecks.push({ id: 'change-bc' + u.nth, ok: false }); gBad('gt-change-once', L('搭乗口変更の' + u.nth + '回目の放送を省きました（即時＋5分間隔で2回）。', '탑승구 변경 ' + u.nth + '회차 방송을 생략했습니다(즉시 + 5분 간격 2회).', 'Skipped gate-change announcement ' + u.nth + ' (now + twice at 5-minute intervals).'), 'passenger/2-1'); gateEnd(); };
+    gBindBcast(b, function () {
+      if (u.nth) { S.changeN = Math.max(S.changeN || 0, u.nth); S.evChecks.push({ id: 'change-bc' + u.nth, ok: true }); }
+      if (early && !c.flags.early) { c.flags.early = true; gBad('gt-early', function () { return tx(L('予定（' + u.at + '）より早く放送しました。', '예정(' + u.at + ')보다 일찍 방송했습니다.', 'Announced before the scheduled time (' + u.at + ').')); }, 'passenger/2-1'); }
+      if (u.bc === 'B4') S.grpCalled = 3; if (u.bc === 'B5') S.grpCalled = 5; if (u.bc === 'B3') S.grpCalled = 2;   /* 기다리게 한 승객은 자기 그룹 호출 뒤 다시 와서(back 단위) 스캔·여권 대조를 받음 — 숫자만 올리지 않음(35차 B-F01) */
+    });
+  }
+  /* ---------- 객실 사인 → 사전 탑승 방송 B2 (Day 2: 청소 지연 이벤트 — 사인이 늦게 옴 → B9 → 기다림 → 재확인) ---------- */
+  function gateTabSign() {
+    var c = S.cur, u = c.p, t = gT();
+    var b = GATE_BCAST.get(u.bcId || 'B2', G.country, null, S.gate), b9 = u.clean ? GATE_BCAST.get('B9', G.country, null, S.gate) : null;   /* Day 5: 지연 뒤 탑승 시작은 B19 */
+    var waiting = u.clean && c.flags.cleanAsked && !S.signOk, readyAt = u.cleanReady;
+    var h = '<div class="h3">' + esc(tx(L('搭乗開始', '탑승 시작', 'Start boarding'))) + '</div><dl class="kv"><dt>BRD</dt><dd>' + esc(u.at) + '</dd><dt>' + esc(tx(L('客室の準備', '객실 준비', 'Cabin ready'))) + '</dt><dd class="' + (S.signOk ? '' : 'hl') + '">' + esc(tx(S.signOk ? L('準備完了のサインを受けました（' + S.signOk + '）', '준비 완료 사인을 받았습니다(' + S.signOk + ')', 'Ready sign received (' + S.signOk + ')') : waiting ? L('清掃中 ― ' + readyAt + ' ごろ完了見込み（客室より）', '청소 중 — ' + readyAt + '쯤 완료 예정(객실)', 'Cleaning in progress — expected ready around ' + readyAt + ' (cabin)') : L('未確認', '미확인', 'Not confirmed'))) + '</dd></dl>';
+    if (!S.signOk && !waiting) h += '<div class="btns"><button class="btn pri" id="g-ask" data-a="ok">' + esc(tx(L('客室に準備状況を確認する', '객실에 준비 상황 확인', 'Ask the cabin if they are ready'))) + '</button><button class="btn" id="g-nosign" data-a="gt-nosign">' + esc(tx(L('サインを待たずに搭乗を開始する', '사인을 기다리지 않고 탑승 시작', 'Start boarding without the sign'))) + '</button></div>';
+    else if (waiting) {
+      /* 이벤트: 사인이 오지 않음. 올바른 순서 = B9 방송 → 완료 예정 시각까지 대기 → 재확인. B9 없이 기다리면 gt-clean 감점 */
+      if (!c.flags.b9 && !c.flags.b9skip) h += gBcastHtml(b9, c.flags.picked9) + '<div class="btns"><button class="btn ghost" id="g-b9skip" data-a="gt-clean">' + esc(tx(L('放送せずに待つ', '방송 없이 기다리기', 'Wait without announcing'))) + '</button><button class="btn" id="g-nosign" data-a="gt-nosign">' + esc(tx(L('サインを待たずに搭乗を開始する', '사인을 기다리지 않고 탑승 시작', 'Start boarding without the sign'))) + '</button></div>';
+      else if (S.clock < pm(readyAt) - 0.01) h += '<p class="small">' + esc(tx(L('完了見込み ' + readyAt + ' · 現在 ' + hm(S.clock), '완료 예정 ' + readyAt + ' · 현재 ' + hm(S.clock), 'Expected ' + readyAt + ' · now ' + hm(S.clock)))) + '</p><div class="btns"><button class="btn" id="g-wait" data-a="wait">' + esc(tx(L(readyAt + ' まで待つ', readyAt + '까지 기다리기', 'Wait until ' + readyAt))) + '</button><button class="btn" id="g-nosign" data-a="gt-nosign">' + esc(tx(L('サインを待たずに搭乗を開始する', '사인을 기다리지 않고 탑승 시작', 'Start boarding without the sign'))) + '</button></div>';
+      else h += '<div class="btns"><button class="btn pri" id="g-ask" data-a="ok">' + esc(tx(L('客室に再確認する', '객실에 다시 확인', 'Check with the cabin again'))) + '</button><button class="btn" id="g-nosign" data-a="gt-nosign">' + esc(tx(L('サインを待たずに搭乗を開始する', '사인을 기다리지 않고 탑승 시작', 'Start boarding without the sign'))) + '</button></div>';
+    }
+    else h += gWaitBtn(u.at) + (S.clock >= pm(u.at) - 0.01 ? gBcastHtml(b, c.flags.picked) : '');
+    scr(h);
+    var a = $('#g-ask'); if (a) a.onclick = function () {
+      if (!gLive(c)) return; sfx.tap(); addTime(M.cost.phone);
+      if (u.clean && !c.flags.cleanAsked) {   /* 첫 확인: 아직 청소 중 */
+        gAt(u.signAt); c.flags.cleanAsked = true; c.flags.picked9 = [];
+        say('me', L('客室、ゲートです。搭乗開始の準備はいかがでしょうか。', '객실, 게이트입니다. 탑승 시작 준비는 어떻습니까?', 'Cabin, this is the gate. Are you ready to start boarding?'));
+        gPaxLater(c, L('ゲート、客室です。清掃がまだ終わっていません。' + readyAt + 'ごろには整う見込みです。', '게이트, 객실입니다. 청소가 아직 안 끝났습니다. ' + readyAt + '쯤 준비될 예정입니다.', 'Gate, this is the cabin. Cleaning is not finished yet. We expect to be ready around ' + readyAt + '.'), 700);
+        note('info', L('客室に確認：清掃が遅れており、' + readyAt + 'ごろ完了見込み。', '객실 확인: 청소가 늦어져 ' + readyAt + '쯤 완료 예정.', 'Cabin: cleaning is running late, expected ready around ' + readyAt + '.'));
+        gateTabSign(); return;
+      }
+      if (u.clean) { gAt(readyAt); S.evChecks.push({ id: 'clean-wait', ok: true }); S.waitMin = (S.waitMin || 0) + Math.max(0, pm(readyAt) - pm(u.signAt)); }   /* 4A: 조건(객실 사인) 때문에 기다린 시간은 시간 점수에서 뺌 */
+      else gAt(u.signAt);
+      S.signOk = hm(S.clock); note('good', L('客室の準備完了サインを受けてから搭乗を開始しました。', '객실 준비 완료 사인을 받은 뒤 탑승을 시작했습니다.', 'Waited for the cabin ready sign before boarding.'), 'passenger/2-4'); gateTabSign();
+    };
+    var n = $('#g-nosign'); if (n) n.onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-nosign', L('客室の準備サインを受けずに搭乗を開始しました。', '객실 준비 사인 없이 탑승을 시작했습니다.', 'Started boarding without the cabin ready sign.'), 'passenger/2-4'); if (u.clean) { S.evChecks.push({ id: 'clean-wait', ok: false }); if (!c.flags.b9) S.evChecks.push({ id: 'clean-b9', ok: false }); } S.signOk = hm(S.clock) + '?'; c.flags.nosign = true; gateTabSign(); };
+    var k9 = $('#g-b9skip'); if (k9) k9.onclick = function () { if (!gLive(c)) return; sfx.ng(); c.flags.b9skip = true; gBad('gt-clean', L('搭乗開始が遅れているのに、お客様への放送をしませんでした。', '탑승 개시가 늦어지는데 손님께 방송하지 않았습니다.', 'Boarding was delayed but passengers were not told.'), 'passenger/2-4'); S.evChecks.push({ id: 'clean-b9', ok: false }); gateTabSign(); };
+    var w = $('#g-wait'); if (w) w.onclick = function () { if (!gLive(c)) return; sfx.tap(); gAt(waiting ? readyAt : u.at); gateTabSign(); };
+    if (waiting && b9 && !c.flags.b9 && !c.flags.b9skip) {
+      /* B9 고르기(단위를 끝내지 않음). 오답 기록은 gBindBcast의 picked 대신 picked9 */
+      c.flags.picked = c.flags.picked9;
+      gBindBcast(b9, function () { c.flags.b9 = true; c.flags.picked9 = c.flags.picked; c.flags.picked = []; c.flags.wentIn = false; S.evChecks.push({ id: 'clean-b9', ok: true }); }, function () { gateTabSign(); });
+    }
+    if (S.signOk && S.clock >= pm(u.at) - 0.01) { c.flags.picked = c.flags.picked2 || (c.flags.picked2 = []); gBindBcast(b, function () { S.grpCalled = 1; }); }
+  }
+  /* ---------- 승객: 스캔 → 여권 대조(한 명씩) → 탑승 ---------- */
+  function gBpCard(p, who, seat, extra, flt) {
+    return '<div class="bpcard' + (flt ? ' other' : '') + '"><div class="row"><b>' + esc(flt ? flt.split(' → ')[0] : V.flight) + '</b><span>' + esc(flt ? V.from + '→' + flt.split(' → ')[1] : V.from + '→' + V.to) + '</span><span>' + esc(V.std) + '</span></div><div class="row"><span class="mono">' + esc(who) + '</span><span class="mono">SEAT ' + esc(seat) + '</span><span class="mono">GRP ' + p.grp + '</span>' + (extra || '') + '</div></div>';
+  }
+  function gBeep(text) { return '<div class="why bad">' + esc(tx(text)) + '</div>'; }
+  function gateTabScan() {
+    var c = S.cur, p = c.p, called = S.grpCalled || 0;
+    /* 0) 다시 온 승객(back)인데 이미(순서를 어기고) 탑승해 있음 → 처리할 사람이 없음 */
+    if (c.flags.already) {
+      scr('<div class="h3">' + esc(tx(L('グループ5の呼び出し', '그룹 5 호출', 'Group 5 called'))) + '</div><div class="why">' + esc(tx(L(p.pp.sur + ' ' + p.pp.given + ' 様（' + p.seat + '）は、順番を待たずに先ほど搭乗済みです。戻って来るお客様はいません。', p.pp.sur + ' ' + p.pp.given + ' 손님(' + p.seat + ')은 순서를 기다리지 않고 아까 이미 탑승했습니다. 다시 오는 손님은 없습니다.', p.pp.sur + ' ' + p.pp.given + ' (' + p.seat + ') already boarded earlier, out of order. Nobody is coming back.'))) + '</div>' +
+        '<div class="btns"><button class="btn pri" id="g-ack" data-a="ok">' + esc(tx(L('確認', '확인', 'OK'))) + '</button></div>');
+      $('#g-ack').onclick = function () { if (!gDone(c)) return; sfx.tap(); gateEnd(300); };
+      return;
+    }
+    if (p.issue === 'after' && !c.flags.noshow) return gateTabAfterD4(c, p);   /* Day 4: 오프로드 뒤 도착 */
+    if (c.flags.movedBack) return gateTabMovedBack(c, p);   /* 45차 */
+    if (p.issue === 'rebooked') return gateTabRebooked(c, p);   /* Day 5 */
+    if (p.issue === 'vol' && !c.flags.moved && !c.flags.volKeep) return gateTabVolD5(c, p);
+    if (p.sby && !(S.added && S.added[gPid(p)])) return gateTabSbyNoSeat(c, p);
+    var h = '<div class="h3">' + esc(tx(L('搭乗券スキャン', '탑승권 스캔', 'Scan boarding pass'))) + ' <span class="small">' + esc(tx(L('呼び出し中：', '호출 중: ', 'Now calling: '))) + (called >= 5 ? tx(L('全員', '전원', 'all')) : called >= 3 ? 'GRP ' + called : called === 2 ? tx(L('上級', '상위', 'premium')) : called === 1 ? tx(L('事前搭乗', '사전 탑승', 'pre-boarding')) : '—') + '</span></div>';
+    var party = p.party || [], allScanned = c.scans >= 1 + party.length;
+    /* 1) 순서 확인 */
+    if (p.grp > called && !c.flags.orderDone && !(p.pre && called >= 1)) {
+      h += gBpCard(p, p.pp.sur + ' ' + p.pp.given, p.seat) + gBeep(L('ピッ！ GROUP ' + p.grp + ' ― まだ呼ばれていないグループです。', '삑! GROUP ' + p.grp + ' — 아직 호출하지 않은 그룹입니다.', 'Beep! GROUP ' + p.grp + ' — this group has not been called yet.')) +
+        '<div class="btns"><button class="btn pri" id="g-wait-grp" data-a="ok">' + esc(tx(L('順番をご案内して、お待ちいただく', '순서를 안내하고 기다리시게 함', 'Explain the order and ask them to wait'))) + '</button><button class="btn" id="g-pass-grp" data-a="gt-order">' + esc(tx(L('そのまま通す', '그대로 통과', 'Let them through anyway'))) + '</button></div>';
+      scr(h);
+      $('#g-wait-grp').onclick = function () { if (!gDone(c)) return; sfx.ok(); addTime(M.cost.talk); say('me', L('恐れ入ります、ただいまグループ' + called + 'のお客様をご案内しております。番号をお呼びするまで、こちらでお待ちください。', '죄송합니다만 지금은 그룹 ' + called + ' 손님을 안내하고 있습니다. 번호를 불러 드릴 때까지 이쪽에서 기다려 주시기 바랍니다.', 'Sorry, we are boarding Group ' + called + ' now. Please wait here until your group is called.')); gPaxLater(c, p.say.wait || L('はい。', '네.', 'OK.'), 700);
+        note('good', L('まだ呼ばれていないグループのお客様に、順番を丁寧に案内して待ってもらいました（呼び出し後に改めてスキャン・旅券照合）。', '아직 호출하지 않은 그룹 손님에게 순서를 정중히 안내하고 기다리시게 했습니다(호출 뒤에 다시 스캔·여권 대조).', 'Politely explained the order to a passenger whose group was not yet called (scan and passport check after the call).'), 'passenger/2-4'); c.mood = 80; c.deferred = true; S.deferred = (S.deferred || []).concat([gPid(p)]); gateEnd(1600); };
+      $('#g-pass-grp').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-order', L('まだ呼ばれていないグループのお客様をそのまま通しました。', '아직 호출하지 않은 그룹 손님을 그대로 통과시켰습니다.', 'Let a passenger board before their group was called.'), 'passenger/2-4'); c.flags.orderDone = true; gateTabScan(); };
+      return;
+    }
+    /* 1a) Day 3 — 처리 전 확인 화면들(합의본 Day 3·2B). 한 단위에 여러 확인이 이어질 수 있음: wch → scan, um ①②③ → scan, pet → scan */
+    if (p.issue === 'wch' && !c.flags.wchDone) {
+      h += gBpCard(p, p.pp.sur + ' ' + p.pp.given, p.seat) + '<div class="why">' + esc(tx(L('車いす ' + p.wchCode + '：自力で歩けず、座席まで補助が必要なお客様。機内用車いすと補助員2名は手配済み（引き継ぎメモ）。', '휠체어 ' + p.wchCode + ': 스스로 걷지 못해 좌석까지 보조가 필요한 손님. 기내용 휠체어와 보조 인력 2명 수배됨(인계 메모).', 'Wheelchair ' + p.wchCode + ': cannot walk; needs assistance to the seat. Aisle chair and two assistants arranged (handover memo).'))) + '</div>' +
+        '<div class="btns"><button class="btn pri" id="g-wch-ask" data-a="ok">' + esc(tx(L('本人の希望と必要な補助を確認 → 機内用車いす・補助員で座席まで、ゲートの車いすにタグ', '본인 희망·필요한 보조 확인 → 기내용 휠체어·보조 인력으로 좌석까지, 게이트 휠체어에 태그', 'Ask what help they want → aisle chair and assistants to the seat, tag the gate wheelchair'))) + '</button><button class="btn" id="g-wch-code" data-a="gt-wch">' + esc(tx(L('コードだけ見て、そのまま手続きへ', '코드만 보고 그대로 수속', 'Just check the code and carry on'))) + '</button><button class="btn ghost" id="g-wch-lift" data-a="gt-wch-unsafe">' + esc(tx(L('職員が抱えて機内へ運ぶ', '직원이 안아서 기내로 옮김', 'Staff lift and carry the passenger on board'))) + '</button></div>';
+      scr(h);
+      $('#g-wch-ask').onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk); c.flags.wchDone = true; S.evChecks.push({ id: 'wch-assist', ok: true }); say('me', L('ご搭乗のお手伝いについて、ご希望をお聞かせください。機内用の車いすと補助の者が2名お待ちしています。', '탑승 도움에 대해 희망하시는 것을 말씀해 주세요. 기내용 휠체어와 보조 인력 2명이 대기하고 있습니다.', 'Please tell me how you would like us to assist. An aisle chair and two assistants are ready.')); gPaxLater(c, p.say.needs, 900); note('good', L('車いすのお客様の希望と必要な補助（機内用車いす・移乗の支え）を確認し、補助員と一緒に座席まで案内、ゲートの車いすにゲート・トゥ・ゲートのタグを付けました。', '휠체어 손님의 희망과 필요한 보조(기내용 휠체어·옮길 때 부축)를 확인하고 보조 인력과 함께 좌석까지 안내, 게이트 휠체어에 게이트 투 게이트 태그를 붙였습니다.', 'Confirmed the wheelchair user\'s wishes and needs (aisle chair, support when transferring), escorted with assistants to the seat and tagged the gate wheelchair gate-to-gate.'), 'passenger/1-7'); gateTabScan(); };
+      $('#g-wch-code').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-wch', L('車いすのお客様の希望・補助の程度を確認せず、コードだけで進めました。', '휠체어 손님의 희망·보조 수준을 확인하지 않고 코드만 보고 진행했습니다.', 'Proceeded on the code alone without confirming the passenger\'s wishes or assistance level.'), 'passenger/1-7'); c.flags.wchDone = true; S.evChecks.push({ id: 'wch-assist', ok: false }); c.mood = 60; gateTabScan(); };
+      $('#g-wch-lift').onclick = function () { if (!gLive(c)) return; sfx.ng(); gSafe('gt-wch-unsafe', L('機内用車いすを使わず、職員がお客様を抱えて運びました（不安全な移動）。', '기내용 휠체어를 쓰지 않고 직원이 손님을 안아 옮겼습니다(불안전한 이동).', 'Staff carried the passenger instead of using the aisle chair (unsafe transfer).'), 'passenger/1-7'); c.flags.wchDone = true; S.evChecks.push({ id: 'wch-assist', ok: false }); c.mood = 35; gateTabScan(); };
+      return;
+    }
+    if (p.issue === 'um' && !c.flags.umDone) {
+      var um = c.flags.um = c.flags.um || { doc: false, id: false, to: false, from: false, step: 1, guard: null }, d = p.umDoc;
+      var chk = function (k, label) { return '<button data-k="' + k + '" data-a="um-' + k + '"><span>' + esc(tx(label)) + '</span><span class="st">' + (um[k] ? '✔' : '') + '</span></button>'; };
+      h += '<div class="h3">' + esc(tx(L('UM 引き継ぎ表 ― ' + p.pp.sur + ' ' + p.pp.given + '（' + p.age + '歳）', 'UM 인계표 — ' + p.pp.sur + ' ' + p.pp.given + '(' + p.age + '세)', 'UM handover — ' + p.pp.sur + ' ' + p.pp.given + ' (age ' + p.age + ')'))) + '</div>';
+      if (um.step === 1) {
+        h += '<p class="small">' + esc(tx(L('① 同行職員から受け取り：書類と情報を一つずつ確認してから受取署名', '① 동행 직원에게서 인수: 서류와 정보를 하나씩 확인한 뒤 인수 서명', '① Receive from the escort: check each document and detail, then sign'))) + '</p><div class="chk">' + chk('doc', L('申請書・誓約書', '신청서·서약서', 'Application and undertaking')) + chk('id', L('お子様の氏名・年齢（' + p.pp.sur + ' ' + p.pp.given + '・' + p.age + '）', '어린이 이름·나이(' + p.pp.sur + ' ' + p.pp.given + '·' + p.age + ')', 'Child\'s name and age (' + p.pp.sur + ' ' + p.pp.given + ', ' + p.age + ')')) + chk('to', L('到着地のお迎え：' + d.toName + ' ' + d.toTel, '도착지 마중: ' + d.toName + ' ' + d.toTel, 'Receiving adult: ' + d.toName + ' ' + d.toTel)) + chk('from', L('出発地の保護者：' + d.fromName + ' ' + d.fromTel, '출발지 보호자: ' + d.fromName + ' ' + d.fromTel, 'Departing guardian: ' + d.fromName + ' ' + d.fromTel)) + '</div>' +
+          '<div class="btns"><button class="btn pri" id="g-um-sign1" data-a="ok"' + (um.doc && um.id && um.to && um.from ? '' : ' disabled') + '>' + esc(tx(L('受取署名（' + hm(S.clock) + '）', '인수 서명(' + hm(S.clock) + ')', 'Sign for receipt (' + hm(S.clock) + ')'))) + '</button><button class="btn ghost" id="g-um-skip" data-a="gt-um">' + esc(tx(L('確認を省いて受け取り、そのまま乗務員へ', '확인 없이 받아서 그대로 승무원에게', 'Take the child without checking and hand straight to the crew'))) + '</button></div>' + (um.doc && um.id && um.to && um.from ? '' : '<p class="small">' + esc(tx(L('空欄があるうちは確定できません（保留して埋める）', '빈 칸이 있는 동안은 확정할 수 없습니다(보류하고 채움)', 'Cannot confirm while anything is blank (hold and complete)'))) + '</p>');
+      } else if (um.step === 2) {
+        h += '<p class="small">' + esc(tx(L('② 出発地の保護者が、飛行機が出発するまで空港内で待機し連絡が取れることを確認', '② 출발지 보호자가 비행기가 출발할 때까지 공항 안에서 대기하고 연락이 되는지 확인', '② Confirm the departing guardian stays in the airport until departure and is reachable'))) + '</p>' +
+          '<div class="btns"><button class="btn pri" id="g-um-tel" data-a="ok">' + esc(tx(L('電話で確認する（' + d.fromName + ' ' + d.fromTel + '）', '전화로 확인(' + d.fromName + ' ' + d.fromTel + ')', 'Confirm by phone (' + d.fromName + ' ' + d.fromTel + ')'))) + '</button><button class="btn" id="g-um-memo" data-a="ok">' + esc(tx(L('カウンターの確認メモを確認する', '카운터 확인 메모로 확인', 'Check the counter\'s confirmation note'))) + '</button><button class="btn ghost" id="g-um-noguard" data-a="gt-um-guard">' + esc(tx(L('確認せずに次へ', '확인 없이 다음으로', 'Skip and continue'))) + '</button></div>';
+      } else {
+        h += '<p class="small">' + esc(tx(L('③ 担当乗務員へ引き継ぎ：書類を渡し、乗務員の署名・時刻を受ける', '③ 담당 승무원에게 인계: 서류를 전달하고 승무원 서명·시각을 받음', '③ Hand over to the crew: pass the documents and get the crew\'s signature and time'))) + '</p>' +
+          '<div class="btns"><button class="btn pri" id="g-um-sign3" data-a="ok">' + esc(tx(L('乗務員の署名・時刻を受けて引き継ぎ確定', '승무원 서명·시각을 받고 인계 확정', 'Get the crew signature and time, confirm handover'))) + '</button><button class="btn ghost" id="g-um-nosign" data-a="gt-um">' + esc(tx(L('署名を待たずに引き渡し確定', '서명을 기다리지 않고 인계 확정', 'Confirm the handover without waiting for the signature'))) + '</button></div>';
+      }
+      scr(h);
+      document.querySelectorAll('#scr .chk button').forEach(function (b) { b.onclick = function () { if (!gLive(c)) return; sfx.tap(); um[b.dataset.k] = true; addTime(0.3); gateTabScan(); }; });
+      var s1 = $('#g-um-sign1'); if (s1) s1.onclick = function () { if (!gLive(c) || !(um.doc && um.id && um.to && um.from)) return; sfx.ok(); addTime(M.cost.talk); um.sign1 = hm(S.clock); um.step = 2; say('me', L('書類とお迎えの方のご連絡先を確認しました。お預かりします。', '서류와 마중 나오시는 분의 연락처를 확인했습니다. 맡겠습니다.', 'Documents and the receiving adult\'s contact confirmed. I will take over.')); (function (k) { setTimeout(function () { if (S.cur === c && gTalkN === k) gSayAs(tx(L('同行職員（カウンター）', '동행 직원(카운터)', 'Escort staff (check-in)')), 'staff_escort', p.say.escort); }, 800); })(++gTalkN); note('good', L('UM 引き継ぎ①：申請書・誓約書、お子様の氏名・年齢、到着地のお迎えと出発地の保護者の連絡先を確認して受取署名しました。', 'UM 인계 ①: 신청서·서약서, 어린이 이름·나이, 도착지 마중·출발지 보호자 연락처를 확인하고 인수 서명했습니다.', 'UM handover 1: checked the application, undertaking, child\'s identity, receiving adult and departing guardian contacts, then signed.'), 'passenger/1-7'); gateTabScan(); };
+      var sk = $('#g-um-skip'); if (sk) sk.onclick = function () { if (!gLive(c)) return; sfx.ng(); gSafe('gt-um', L('書類・連絡先・署名を確認せずにUMを受け取り、そのまま引き渡しを確定しました。', '서류·연락처·서명을 확인하지 않고 UM을 받아 그대로 인계를 확정했습니다.', 'Took the UM and confirmed the handover without checking documents, contacts or signatures.'), 'passenger/1-7'); c.flags.umDone = true; c.mood = 50; gateTabScan(); };
+      var tel = $('#g-um-tel'), memo = $('#g-um-memo'); var okG = function (how) { return function () { if (!gLive(c)) return; sfx.ok(); addTime(how === 'tel' ? M.cost.phone : 0.3); um.guard = how; um.step = 3; if (how === 'tel') say('me', L('飛行機が出発するまで、空港内でお待ちいただき、連絡が取れる状態にしていただけますか。', '비행기가 출발할 때까지 공항 안에서 기다려 주시고 연락이 되는 상태로 계셔 주시겠습니까?', 'Could you stay in the airport until the aircraft departs and remain reachable?')); note('good', how === 'tel' ? L('UM 引き継ぎ②：出発地の保護者に電話し、出発まで空港内で待機・連絡可能なことを確認しました。', 'UM 인계 ②: 출발지 보호자에게 전화해 출발까지 공항 안 대기·연락 가능을 확인했습니다.', 'UM handover 2: phoned the departing guardian and confirmed they will wait in the airport, reachable, until departure.') : L('UM 引き継ぎ②：カウンターの確認メモで、保護者が出発まで空港内で待機することを確認しました。', 'UM 인계 ②: 카운터 확인 메모로 보호자가 출발까지 공항 안에서 대기함을 확인했습니다.', 'UM handover 2: confirmed via the counter\'s note that the guardian waits in the airport until departure.'), 'passenger/1-7'); gateTabScan(); }; };
+      if (tel) tel.onclick = okG('tel'); if (memo) memo.onclick = okG('memo');
+      var ng = $('#g-um-noguard'); if (ng) ng.onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-um-guard', L('出発地の保護者が空港内で待機しているかを確認・記録しませんでした。', '출발지 보호자가 공항 안에서 대기하는지 확인·기록하지 않았습니다.', 'Did not confirm or record that the departing guardian is waiting in the airport.'), 'passenger/1-7'); um.step = 3; gateTabScan(); };
+      var s3 = $('#g-um-sign3'); if (s3) s3.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk); um.sign3 = hm(S.clock); c.flags.umDone = true; say('me', L('乗務員にお子様と書類をお渡しします。署名をお願いします。', '승무원에게 아이와 서류를 전달합니다. 서명 부탁드립니다.', 'Handing the child and documents to the crew. Signature, please.')); gPaxLater(c, p.say.ok, 800); note('good', L('UM 引き継ぎ③：担当乗務員に書類を渡し、署名・時刻（' + um.sign3 + '）を受けて引き継ぎを確定しました。到着地のお迎え情報は書類に記載済み。', 'UM 인계 ③: 담당 승무원에게 서류를 전달하고 서명·시각(' + um.sign3 + ')을 받아 인계를 확정했습니다. 도착지 마중 정보는 서류에 있음.', 'UM handover 3: passed the documents to the crew and confirmed with their signature and time (' + um.sign3 + '). Arrival contact is on the form.'), 'passenger/1-7'); gateTabScan(); };
+      var ns = $('#g-um-nosign'); if (ns) ns.onclick = function () { if (!gLive(c)) return; sfx.ng(); gSafe('gt-um', L('乗務員の受取署名を受けずにUMの引き渡しを確定しました。', '승무원의 인수 서명 없이 UM 인계를 확정했습니다.', 'Confirmed the UM handover without the crew\'s receiving signature.'), 'passenger/1-7'); c.flags.umDone = true; gateTabScan(); };
+      return;
+    }
+    if (p.issue === 'pet' && !c.flags.petDone) {
+      h += gBpCard(p, p.pp.sur + ' ' + p.pp.given, p.seat) + '<div class="why">' + esc(tx(L('PETC（機内持ち込みペット）：小型犬・ソフトケージ。カウンターで受付済み。', 'PETC(기내 반려동물): 소형견·소프트 케이지. 카운터에서 접수됨.', 'PETC (pet in cabin): small dog, soft carrier. Accepted at check-in.'))) + '</div>' +
+        '<div class="btns"><button class="btn pri" id="g-pet-ok" data-a="ok">' + esc(tx(L('最終確認：ケージ3辺115cm以下・前の座席下に入る・ケージ込み8kg以下・窓側で非常口列でない', '최종 확인: 케이지 3변 115cm 이하·앞 좌석 아래 들어감·케이지 포함 8kg 이하·창가이고 비상구 열 아님', 'Final check: carrier ≤115 cm (L+W+H), fits under the seat, ≤8 kg with carrier, window seat not in an exit row'))) + '</button><button class="btn" id="g-pet-skip" data-a="gt-pet">' + esc(tx(L('カウンターで確認済みなので、そのまま', '카운터에서 확인했으니 그대로', 'Already checked at the counter, carry on'))) + '</button></div>';
+      scr(h);
+      $('#g-pet-ok').onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk); c.flags.petDone = true; say('me', L('ケージは前の座席の下に入れ、通路には出さないようお願いいたします。', '케이지는 앞 좌석 아래에 넣고 통로에 내놓지 말아 주시기 바랍니다.', 'Please keep the carrier under the seat in front and out of the aisle.')); gPaxLater(c, p.say.ok, 800); note('good', L('PETC の最終確認（ケージ寸法・座席条件・重量）を行い、機内での置き方を案内しました。', 'PETC 최종 확인(케이지 규격·좌석 조건·무게)을 하고 기내 보관 방법을 안내했습니다.', 'Did the final PETC check (carrier size, seat conditions, weight) and explained stowage on board.'), 'passenger/1-8'); gateTabScan(); };
+      $('#g-pet-skip').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-pet', L('機内持ち込みペットの最終確認（ケージ・座席条件）を省きました。', '기내 반려동물 최종 확인(케이지·좌석 조건)을 생략했습니다.', 'Skipped the final in-cabin pet check (carrier, seat conditions).'), 'passenger/1-8'); c.flags.petDone = true; gateTabScan(); };
+      return;
+    }
+    if (gLateRecv(c) && !c.flags.lateDone) {   /* 40차(39-F02): late2뿐 아니라 실제 접수 시각이 마감 이후인 모든 승객(late1이 늦게 접수된 경우 포함) */
+      if (c.recvAt == null) c.recvAt = S.clock; c.needSV = true;   /* 41차: 첫 스캔 요청이 마감 후 → 이 시각을 접수 시각으로 고정, SV 보고 항목 */
+      var nbg = p.bagsChecked || 0, bgJa = nbg ? '預け荷物' + nbg + '個は搭載済み・取り下ろし未着手' : '預け荷物なし', bgKo = nbg ? '위탁 짐 ' + nbg + '개는 탑재됨·하기 미착수' : '위탁 짐 없음', bgEn = nbg ? nbg + ' checked bag' + (nbg > 1 ? 's' : '') + ' loaded, no offload started' : 'no checked bags';
+      h += gBpCard(p, p.pp.sur + ' ' + p.pp.given, p.seat) + gBeep(L('締め切り後の受付（' + hm(gRecvAt(c)) + '、締め切り ' + gT().close + '）。' + bgJa + '、座席有効、書類正常。', '마감 후 접수(' + hm(gRecvAt(c)) + ', 마감 ' + gT().close + '). ' + bgKo + ', 좌석 유효, 서류 정상.', 'Received after the close (' + hm(gRecvAt(c)) + ', close ' + gT().close + '). ' + bgEn + ', seat valid, documents OK.')) +
+        '<div class="btns"><button class="btn pri" id="g-late-sv" data-a="ok">' + esc(tx(nbg ? L('SVに判断を仰ぐ（取り下ろし未着手・座席有効・書類正常を報告）', 'SV에 판단을 요청(하기 미착수·좌석 유효·서류 정상 보고)', 'Ask the SV (report: no offload started, seat valid, documents OK)') : L('SVに判断を仰ぐ（預け荷物なし・座席有効・書類正常を報告）', 'SV에 판단을 요청(위탁 짐 없음·좌석 유효·서류 정상 보고)', 'Ask the SV (report: no checked bags, seat valid, documents OK)'))) + '</button><button class="btn" id="g-late-self" data-a="gt-late">' + esc(tx(L('自分の判断で締め切りを延ばして乗せる', '내 판단으로 마감을 연장해 태움', 'Extend the close on my own and board them'))) + '</button><button class="btn ghost" id="g-late-no" data-a="gt-late-refuse">' + esc(tx(L('締め切ったので断る', '마감됐으니 거절', 'Refuse — boarding is closed'))) + '</button></div>';
+      scr(h);
+      $('#g-late-sv').onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.phone); c.flags.lateDone = true; c.svDone = true; S.evChecks.push({ id: 'late-sv', ok: true }); say('me', nbg ? L('SV、ゲートです。締め切り後のお客様1名、取り下ろし未着手・座席有効・書類正常です。…搭乗許可、了解しました。', 'SV, 게이트입니다. 마감 후 손님 1명, 하기 미착수·좌석 유효·서류 정상입니다. …탑승 허가, 알겠습니다.', 'SV, gate here. One passenger after the close: no offload started, seat valid, documents OK. …Boarding approved, understood.') : L('SV、ゲートです。締め切り後のお客様1名、預け荷物なし・座席有効・書類正常です。…搭乗許可、了解しました。', 'SV, 게이트입니다. 마감 후 손님 1명, 위탁 짐 없음·좌석 유효·서류 정상입니다. …탑승 허가, 알겠습니다.', 'SV, gate here. One passenger after the close: no checked bags, seat valid, documents OK. …Boarding approved, understood.')); gPaxLater(c, p.say.ok || p.say.hello, 900); note('good', nbg ? L('締め切り後の到着をSVに報告し、「取り下ろし未着手・座席有効・書類正常」で搭乗許可を得ました（自分で延長しない）。', '마감 후 도착을 SV에 보고하고 「하기 미착수·좌석 유효·서류 정상」으로 탑승 허가를 받았습니다(혼자 연장하지 않음).', 'Reported the late arrival to the SV and got approval (no offload started, seat valid, documents OK) instead of extending on your own.') : L('締め切り後の到着をSVに報告し、「預け荷物なし・座席有効・書類正常」で搭乗許可を得ました（自分で延長しない）。', '마감 후 도착을 SV에 보고하고 「위탁 짐 없음·좌석 유효·서류 정상」으로 탑승 허가를 받았습니다(혼자 연장하지 않음).', 'Reported the late arrival to the SV and got approval (no checked bags, seat valid, documents OK) instead of extending on your own.'), 'passenger/2-5');   /* 41-R01: 기록도 짐 유무로 */ gateTabScan(); };
+      $('#g-late-self').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-late', L('締め切り後の搭乗を、SVに確認せず自分の判断で延長しました。', '마감 후 탑승을 SV에 확인하지 않고 혼자 판단으로 연장했습니다.', 'Extended boarding after the close without asking the SV.'), 'passenger/2-5'); c.flags.lateDone = true; S.evChecks.push({ id: 'late-sv', ok: false }); gateTabScan(); };
+      $('#g-late-no').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-late-refuse', nbg ? L('SVに確認せず、締め切り後のお客様を断りました（取り下ろし未着手なら搭乗できた）。', 'SV 확인 없이 마감 후 손님을 거절했습니다(하기 미착수면 탑승 가능했음).', 'Refused the late passenger without asking the SV (they could have boarded since no offload had started).') : L('SVに確認せず、締め切り後のお客様を断りました（預け荷物なし・座席有効なら搭乗できた）。', 'SV 확인 없이 마감 후 손님을 거절했습니다(위탁 짐 없음·좌석 유효면 탑승 가능했음).', 'Refused the late passenger without asking the SV (they could have boarded: no checked bags, seat valid).'), 'passenger/2-5'); c.flags.lateDone = true; c.mood = 30; S.evChecks.push({ id: 'late-sv', ok: false }); gPaxSay(p.say.no || p.say.hello); setTimeout(function () { if (S.cur === c) { say('me', nbg ? L('…SVから連絡：取り下ろし未着手のため搭乗可。お客様をお呼び戻しします。', '…SV 연락: 하기 미착수라 탑승 가능. 손님을 다시 모셔 옵니다.', '…SV: no offload started, the passenger may board. Calling them back.') : L('…SVから連絡：預け荷物なし・座席有効のため搭乗可。お客様をお呼び戻しします。', '…SV 연락: 위탁 짐 없음·좌석 유효라 탑승 가능. 손님을 다시 모셔 옵니다.', '…SV: no checked bags and the seat is valid, the passenger may board. Calling them back.')); gateTabScan(); } }, 1500); return; };
+      return;
+    }
+    /* 1b) Day 2 G2-bag: 규정을 넘는 기내 반입 짐 → 게이트 위탁(배터리류를 꺼낸 뒤) */
+    if (p.issue === 'bag' && !c.flags.bagDone) {
+      h += gBpCard(p, p.pp.sur + ' ' + p.pp.given, p.seat) + '<div class="why">' + esc(tx(L('キャリーケース 56×40×25cm・12kg ― 機内持ち込みの上限（55×40×25cm・合計10kg）を超えています。本日は満席です。', '캐리어 56×40×25cm·12kg — 기내 반입 한도(55×40×25cm·합계 10kg)를 넘습니다. 오늘은 만석입니다.', 'Roller bag 56×40×25 cm, 12 kg — over the carry-on limit (55×40×25 cm, 10 kg total). The flight is full today.'))) + '</div>';
+      if (!c.flags.bagAsked) h += '<div class="btns"><button class="btn pri" id="g-bag-ask" data-a="ok">' + esc(tx(L('搭乗口で預かる ― まず中の電池類を確認する', '탑승구에서 맡음 — 먼저 안의 배터리류 확인', 'Gate-check it — first ask about batteries inside'))) + '</button><button class="btn" id="g-bag-in" data-a="gt-bagin">' + esc(tx(L('そのまま機内へ持ち込ませる', '그대로 기내로 반입시킴', 'Let them take it on board'))) + '</button></div>';
+      else { var pb = p.bag && p.bag.pb || { n: 1, mAh: 27000, v: 3.7 }, wh = R.core.wh(pb.mAh, pb.v), cr = R.country[G.country] || {}, maxN = (cr.pb && cr.pb.maxCarry) || 2;
+        h += '<div class="why">' + esc(tx(L('お客様：「モバイルバッテリーが入っています」', '손님: 「보조배터리가 들어 있어요」', 'Passenger: "There is a power bank inside."'))) + '</div>' +
+          '<div class="why"><b>' + esc(tx(L('取り出したバッテリーの確認（V-G07・レッスン1-13）', '꺼낸 배터리 확인(V-G07·레슨 1-13)', 'Removed power bank check (V-G07, lesson 1-13)'))) + '</b><br>' + esc(tx(L(pb.n + '個 · 表示 ' + pb.mAh.toLocaleString() + 'mAh / ' + pb.v + 'V → ' + pb.mAh.toLocaleString() + ' × ' + pb.v + ' ÷ 1000 = ' + wh + 'Wh', pb.n + '개 · 표기 ' + pb.mAh.toLocaleString() + 'mAh / ' + pb.v + 'V → ' + pb.mAh.toLocaleString() + ' × ' + pb.v + ' ÷ 1000 = ' + wh + 'Wh', pb.n + ' unit · rated ' + pb.mAh.toLocaleString() + ' mAh / ' + pb.v + ' V → ' + pb.mAh.toLocaleString() + ' × ' + pb.v + ' ÷ 1000 = ' + wh + ' Wh'))) + '<br>' +
+          esc(tx(L('→ ' + R.core.whNoApproval + 'Wh以下（承認不要）・1人' + maxN + '個以内・端子は絶縁済み・外装の損傷なし ⇒ 機内持ち込み可。お手元に持ち、棚には入れない', '→ ' + R.core.whNoApproval + 'Wh 이하(승인 불요)·1인 ' + maxN + '개 이내·단자 절연됨·외장 손상 없음 ⇒ 기내 반입 가능. 몸에 지니고 선반에 넣지 않음', '→ ≤ ' + R.core.whNoApproval + ' Wh (no approval needed), within ' + maxN + ' per person, terminals insulated, casing undamaged ⇒ allowed in the cabin, kept in hand, not in the bin'))) + '</div>' +
+          '<div class="btns"><button class="btn pri" id="g-bag-out" data-a="ok">' + esc(tx(L('確認済みのバッテリーを機内持ち込みにし、取り出した鞄を預かる（タグ発行・無料）', '확인한 배터리는 기내 반입, 꺼낸 가방은 맡음(태그 발행·무료)', 'Passenger keeps the checked power bank; gate-check the bag (tag, free)'))) + '</button><button class="btn" id="g-bag-asis" data-a="gt-bag">' + esc(tx(L('そのまま預かる', '그대로 맡음', 'Check it as it is'))) + '</button></div>';
+      }
+      scr(h);
+      var ba = $('#g-bag-ask'); if (ba) ba.onclick = function () { if (!gLive(c)) return; sfx.tap(); addTime(M.cost.talk); c.flags.bagAsked = true; say('me', L('こちらのお荷物は機内の棚に入らない大きさですので、ここでお預かりいたします。中にモバイルバッテリーや予備の電池、電子たばこは入っていませんか。', '이 짐은 기내 선반에 들어가지 않는 크기여서 여기서 맡아 드리겠습니다. 안에 보조배터리나 예비 전지, 전자담배가 들어 있지 않습니까?', 'This bag will not fit in the overhead bin, so we will check it here. Is there a power bank, spare battery or e-cigarette inside?')); gPaxLater(c, p.say.pbYes, 900); gateTabScan(); };
+      var bi = $('#g-bag-in'); if (bi) bi.onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-bagin', L('上限を超える手荷物を、満席の機内にそのまま持ち込ませました。', '한도를 넘는 짐을 만석인 기내에 그대로 반입시켰습니다.', 'Let an oversized bag into the cabin on a full flight.'), 'passenger/2-2'); c.flags.bagDone = true; gateTabScan(); };
+      var bo = $('#g-bag-out'); if (bo) bo.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk); S.gateBags = (S.gateBags || 0) + 1; c.flags.bagDone = true; c.flags.gateBag = true; note('good', function () { var pb = p.bag && p.bag.pb || { n: 1, mAh: 27000, v: 3.7 }; return tx(L('規定を超える手荷物を、モバイルバッテリー（' + pb.n + '個・' + R.core.wh(pb.mAh, pb.v) + 'Wh・' + R.core.whNoApproval + 'Wh以下・端子絶縁）を取り出して機内持ち込みとした上で、搭乗口で預かりました（1個まで無料）。', '규정을 넘는 짐을, 보조배터리(' + pb.n + '개·' + R.core.wh(pb.mAh, pb.v) + 'Wh·' + R.core.whNoApproval + 'Wh 이하·단자 절연)를 꺼내 기내 반입으로 확인한 뒤 탑승구에서 맡았습니다(1개까지 무료).', 'Gate-checked the oversized bag after confirming the removed power bank (' + pb.n + ' unit, ' + R.core.wh(pb.mAh, pb.v) + ' Wh, ≤ ' + R.core.whNoApproval + ' Wh, terminals insulated) stays in the cabin (first bag free).')); }, 'passenger/1-13'); say('me', L('ありがとうございます。お荷物は到着地の手荷物受取所でお受け取りください。', '감사합니다. 짐은 도착지 수하물 찾는 곳에서 받으시면 됩니다.', 'Thank you. You can collect the bag at baggage claim on arrival.')); gPaxLater(c, p.say.handed, 800); gateTabScan(); };
+      var bs = $('#g-bag-asis'); if (bs) bs.onclick = function () { if (!gLive(c)) return; sfx.ng(); gSafe('gt-bag', L('モバイルバッテリーが入ったままの手荷物を預かりました（受託禁止品）。', '보조배터리가 든 채로 짐을 맡았습니다(위탁 금지품).', 'Checked a bag with a power bank still inside (forbidden in the hold).'), 'passenger/1-12'); S.gateBags = (S.gateBags || 0) + 1; c.flags.bagDone = true; gateTabScan(); };
+      return;
+    }
+    /* 2) 스캔(가족은 한 장씩). Day 2: 스캔 결과 경고 — 다른 편(other)·좌석 중복(dup)·탑승 완료(again) */
+    var bpName = p.issue === 'again' && !c.flags.againFixed ? gAgainOf(p) : null;
+    h += gBpCard(p, bpName ? bpName.who : p.pp.sur + ' ' + p.pp.given, bpName ? bpName.seat : (p.issue === 'other' ? p.seat : p.seat), c.scans >= 1 ? '<span class="ok">✔ SCAN</span>' : '', p.issue === 'other' ? p.other.flight + ' → ' + tx(p.other.to) : null);
+    party.forEach(function (q, i) { h += gBpCard(p, q.sur + ' ' + q.given + ' (' + q.age + ')', q.seat, c.scans >= 2 + i ? '<span class="ok">✔ SCAN</span>' : ''); });
+    if (!allScanned) {
+      if (p.issue === 'other' && c.flags.otherSeen) {
+        h += gBeep(L('ピッ！ 別の便の搭乗券です ― ' + p.other.flight + ' ' + tx(p.other.to) + '行き、' + p.other.gate + '番搭乗口。', '삑! 다른 편 탑승권입니다 — ' + p.other.flight + ' ' + tx(p.other.to) + '행, ' + p.other.gate + '번 탑승구.', 'Beep! Boarding pass for another flight — ' + p.other.flight + ' to ' + tx(p.other.to) + ', gate ' + p.other.gate + '.')) +
+          '<div class="btns"><button class="btn pri" id="g-other-guide" data-a="ok">' + esc(tx(L('搭乗させず、正しい搭乗口（' + p.other.gate + '番）を案内する', '탑승시키지 않고 올바른 탑승구(' + p.other.gate + '번) 안내', 'Do not board; direct them to gate ' + p.other.gate))) + '</button><button class="btn" id="g-other-pass" data-a="gt-other">' + esc(tx(L('そのまま通す', '그대로 통과', 'Let them through anyway'))) + '</button><button class="btn ghost" id="g-other-no" data-a="gt-other-noguide">' + esc(tx(L('「この便ではありません」とだけ言って返す', '「이 편이 아닙니다」라고만 말하고 돌려보냄', 'Just say "not this flight" and send them away'))) + '</button></div>';
+        scr(h);
+        $('#g-other-guide').onclick = function () { if (!gDone(c)) return; sfx.ok(); addTime(M.cost.talk); c.flags.guided = true; say('me', L('恐れ入ります、こちらの搭乗券は別の便のものです。お客様の便の搭乗口をご案内いたします。', '죄송합니다만 이 탑승권은 다른 편의 것입니다. 손님 편의 탑승구를 안내해 드리겠습니다.', 'Excuse me, this boarding pass is for a different flight. Let me direct you to your gate.')); gPaxLater(c, p.say.guided, 800); note('good', L('別の便の搭乗券に気づき、搭乗させずに正しい搭乗口（' + p.other.gate + '番）を案内しました。', '다른 편 탑승권을 알아차리고 탑승시키지 않고 올바른 탑승구(' + p.other.gate + '번)를 안내했습니다.', 'Caught a boarding pass for another flight and directed the passenger to gate ' + p.other.gate + ' without boarding.'), 'passenger/2-4'); gateEnd(1600); };
+        $('#g-other-pass').onclick = function () { if (!gLive(c)) return; sfx.ng(); gSafe('gt-other', L('別の便の搭乗券のお客様を、この便に搭乗させました。', '다른 편 탑승권 손님을 이 비행기에 탑승시켰습니다.', 'Boarded a passenger holding a boarding pass for another flight.'), 'passenger/2-4'); c.scans = 1; c.flags.otherPassed = true; gateTabScan(); };
+        $('#g-other-no').onclick = function () { if (!gDone(c)) return; sfx.ng(); gBad('gt-other-noguide', L('別の便のお客様を、搭乗口を案内せずに返しました。', '다른 편 손님을 탑승구 안내 없이 돌려보냈습니다.', 'Turned away a wrong-flight passenger without telling them where to go.'), 'passenger/2-4'); c.mood = 45; gPaxSay(L('えっ、じゃあどこに行けば…。', '네? 그럼 어디로 가야…', 'What? Then where do I go…')); gateEnd(1400); };
+        return;
+      }
+      if (p.issue === 'again' && c.flags.againSeen && !c.flags.againFixed) {
+        var ao = gAgainOf(p);
+        h += gBeep(L('ピッ！ 搭乗済みの搭乗券です ― ' + ao.who + '（' + ao.seat + '）は先ほど搭乗しています。', '삑! 이미 탑승한 탑승권입니다 — ' + ao.who + '(' + ao.seat + ')은 아까 탑승했습니다.', 'Beep! This boarding pass has already been used — ' + ao.who + ' (' + ao.seat + ') boarded earlier.')) +
+          '<div class="btns"><button class="btn pri" id="g-again-hold" data-a="ok">' + esc(tx(L('別でお待ちいただき、本人確認・客室に座席確認 → SVに報告', '따로 기다리시게 하고 본인 확인·객실에 좌석 확인 → SV 보고', 'Ask them to wait aside, verify ID and check the seat with the cabin, report to SV'))) + '</button><button class="btn" id="g-again-pass" data-a="gt-again">' + esc(tx(L('そのまま通す', '그대로 통과', 'Let them through anyway'))) + '</button><button class="btn ghost" id="g-again-rude" data-a="gt-again-rude">' + esc(tx(L('「使えない券です」と突き返す', '「쓸 수 없는 표입니다」라고 돌려보냄', 'Say "this pass is no good" and push it back'))) + '</button></div>';
+        scr(h);
+        $('#g-again-hold').onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk + M.cost.phone); c.flags.againFixed = true; c.svDone = true; c.scans = 0; say('me', L('申し訳ございません、こちらの搭乗券を確認いたしますので、少々こちらでお待ちいただけますか。', '죄송합니다, 이 탑승권을 확인하겠으니 잠시 이쪽에서 기다려 주시겠습니까?', 'Sorry, let me check this boarding pass. Could you wait here a moment?')); gPaxLater(c, p.say.caught, 900); note('good', L('搭乗済みの搭乗券に気づき、別でお待ちいただいて本人確認と客室への座席確認を行い、SVに報告しました（ご本人の搭乗券で改めてスキャン）。', '이미 탑승한 탑승권을 알아차리고 따로 기다리시게 해 본인 확인·객실 좌석 확인을 하고 SV에 보고했습니다(본인 탑승권으로 다시 스캔).', 'Caught the already-used pass, held the passenger aside, verified identity and the seat with the cabin, and reported to the SV (then scanned their own pass).'), 'passenger/2-4'); setTimeout(function () { if (S.cur === c && !c.boarded) gateTabScan(); }, 1200); };
+        $('#g-again-pass').onclick = function () { if (!gLive(c)) return; sfx.ng(); gSafe('gt-again', L('搭乗済みの搭乗券のまま、確認せずに二人目を搭乗させました。', '이미 탑승한 탑승권인 채 확인 없이 두 번째 사람을 탑승시켰습니다.', 'Boarded a second person on an already-used boarding pass without checking.'), 'passenger/2-4'); c.flags.againFixed = true; c.flags.againPassed = true; c.scans = 1; gateTabScan(); };
+        $('#g-again-rude').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-again-rude', L('再スキャンのお客様を、確認せずに突き返しました。', '재스캔 손님을 확인 없이 돌려보냈습니다.', 'Pushed back a re-scanned passenger without checking.'), 'passenger/2-4'); c.mood = Math.max(30, c.mood - 30); c.flags.againFixed = true; c.scans = 0; gPaxSay(L('そんな言い方…。あ、これ妻の分でした。自分のはこっちです。', '그런 식으로 말씀하시면…. 아, 이거 아내 거였네요. 제 건 이거예요.', 'No need to be rude… oh, this is my wife\'s. Mine is this one.')); gateTabScan(); };
+        return;
+      }
+      if (p.issue === 'dup' && c.flags.dupSeen && !c.flags.dupDone) {
+        h += gBeep(L('ピッ！ 座席重複 ― ' + p.seat + ' はすでに別のお客様（' + gUnitNameOf(p.dupOf) + '）が搭乗しています。', '삑! 좌석 중복 — ' + p.seat + '에는 이미 다른 손님(' + gUnitNameOf(p.dupOf) + ')이 탑승했습니다.', 'Beep! Duplicate seat — ' + p.seat + ' is already taken by ' + gUnitNameOf(p.dupOf) + '.')) +
+          '<div class="btns"><button class="btn pri" id="g-dup-fix" data-a="ok">' + esc(tx(L('システムで確認し ' + p.reseat + ' に再配席・再発行、客室に最終座席を通知', '시스템 확인 후 ' + p.reseat + '로 재배정·재발행, 객실에 최종 좌석 통보', 'Check the system, reseat to ' + p.reseat + ', reissue and tell the cabin'))) + '</button><button class="btn" id="g-dup-cabin" data-a="gt-dup">' + esc(tx(L('「機内で調整してください」と通す', '「기내에서 조정해 주세요」라며 통과', 'Send them on: "sort it out on board"'))) + '</button></div>';
+        scr(h);
+        $('#g-dup-fix').onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk + M.cost.phone); S.seatFix = S.seatFix || {}; S.seatFix[gPid(p)] = p.reseat; S.maniVer++; c.flags.dupDone = true; c.flags.reseated = true; say('me', L('申し訳ございません、お座席を' + p.reseat + 'に変更させていただきます。すぐ隣のお席です。', '죄송합니다, 좌석을 ' + p.reseat + '로 변경해 드리겠습니다. 바로 옆자리입니다.', 'I am sorry, we will change your seat to ' + p.reseat + '. It is right next to it.')); gPaxLater(c, p.say.fixed, 900); note('good', L('座席の重複をシステムで確認し、' + p.reseat + ' に再配席・再発行して客室に最終座席を通知しました（名簿版 ' + S.maniVer + '）。', '좌석 중복을 시스템으로 확인하고 ' + p.reseat + '로 재배정·재발행한 뒤 객실에 최종 좌석을 통보했습니다(명단판 ' + S.maniVer + ').', 'Confirmed the duplicate in the system, reseated to ' + p.reseat + ', reissued and told the cabin (manifest v' + S.maniVer + ').'), 'passenger/2-4'); gateTabScan(); };
+        $('#g-dup-cabin').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-dup', L('座席の重複を解決せず、機内任せにしました。', '좌석 중복을 해결하지 않고 기내에 떠넘겼습니다.', 'Left the duplicate seat for the cabin crew to sort out.'), 'passenger/2-4'); c.flags.dupDone = true; gateTabScan(); };
+        return;
+      }
+      h += '<div class="btns"><button class="btn pri" id="g-scan" data-a="ok">' + esc(tx(party.length ? L('搭乗券を1枚スキャン（' + (c.scans + 1) + '/' + (1 + party.length) + '）', '탑승권 한 장 스캔(' + (c.scans + 1) + '/' + (1 + party.length) + ')', 'Scan one boarding pass (' + (c.scans + 1) + '/' + (1 + party.length) + ')') : L('搭乗券をスキャン', '탑승권 스캔', 'Scan the boarding pass'))) + '</button>' +
+        (party.length && c.scans === 1 ? '<button class="btn" id="g-scan-one" data-a="gt-scan-one">' + esc(tx(L('1枚目のスキャンで2人とも通す', '첫 장 스캔으로 두 명 다 통과', 'Board both on the first scan'))) + '</button>' : '') + '</div>';
+      scr(h);
+      $('#g-scan').onclick = function () {
+        if (!gLive(c)) return; if (c.recvAt == null) c.recvAt = S.clock;   /* 41차: 최초 스캔 요청 시각(마감 전이면 이후 확인 중 마감을 넘겨도 지각 아님) */
+        sfx.ok(); addTime(M.cost.scan);
+        if (p.issue === 'other' && !c.flags.otherSeen) { sfx.ng(); c.flags.otherSeen = true; gateTabScan(); return; }
+        if (p.issue === 'again' && !c.flags.againSeen && !c.flags.againFixed) { sfx.ng(); c.flags.againSeen = true; gateTabScan(); return; }
+        if (p.issue === 'dup' && !c.flags.dupSeen) { sfx.ng(); c.flags.dupSeen = true; gateTabScan(); return; }
+        c.scans++; if (c.scans === 1 + party.length && party.length) note('good', L('ご家族の搭乗券を一人一枚ずつスキャンしました。', '가족의 탑승권을 한 명에 한 장씩 스캔했습니다.', 'Scanned one boarding pass per family member.'), 'passenger/2-4'); gateTabScan();
+      };
+      var so = $('#g-scan-one'); if (so) so.onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-scan-one', L('搭乗券1枚のスキャンで2人を通しました（搭乗数が実際より少なくなります）。', '탑승권 한 장 스캔으로 두 명을 통과시켰습니다(탑승 수가 실제보다 적어집니다).', 'Boarded two people on one scan (the system count is now short by one).'), 'passenger/2-4'); c.flags.oneScan = true; c.scans = 1 + party.length; gateTabScan(); };
+      return;
+    }
+    /* 2b) Day 3 — 스캔 뒤 좌석 조건: 비상구 열(16열) 확인·유아 동반은 재배정, 유모차 게이트 투 게이트 */
+    if ((p.issue === 'exit-inf' || p.issue === 'exit') && !c.flags.exitDone) {
+      var isInf = p.issue === 'exit-inf';
+      h += '<div class="why">' + esc(tx(isInf ? L('ピッ！ 非常口列 ' + p.seat + ' ― 乳児同伴のお客様。チェックイン時の署名はありますが、条件が変わっています（V-G12：非常口列不可）。', '삑! 비상구 열 ' + p.seat + ' — 유아 동반 손님. 체크인 때 서명은 있지만 조건이 바뀌었습니다(V-G12: 비상구 열 불가).', 'Beep! Exit row ' + p.seat + ' — passenger with an infant. Signed at check-in, but the conditions have changed (V-G12: no infants in exit rows).') : L('非常口列 ' + p.seat + ' ― 署名が有効か、言語・介助の意思・体調に変わりがないかを確認します。', '비상구 열 ' + p.seat + ' — 서명이 유효한지, 언어·도울 의사·몸 상태에 변화가 없는지 확인합니다.', 'Exit row ' + p.seat + ' — confirm the signature is valid and that language, willingness to assist and condition are unchanged.'))) + '</div>' +
+        (isInf ? '<div class="btns"><button class="btn pri" id="g-exit-reseat" data-a="ok">' + esc(tx(L('非常口列は不可 → ' + p.reseat + ' に再配席・再発行、客室に通知', '비상구 열 불가 → ' + p.reseat + '로 재배정·재발행, 객실에 통보', 'Not allowed in the exit row → reseat to ' + p.reseat + ', reissue, tell the cabin'))) + '</button><button class="btn" id="g-exit-keep" data-a="gt-exit-unsafe">' + esc(tx(L('カウンターで署名済みなので、そのまま16Cへ', '카운터에서 서명했으니 그대로 16C로', 'Signed at the counter, so leave them in 16C'))) + '</button></div>'
+               : '<div class="btns"><button class="btn pri" id="g-exit-chk" data-a="ok">' + esc(tx(L('条件を確認する（署名・言語・介助・体調）', '조건 확인(서명·언어·도울 의사·몸 상태)', 'Check the conditions (signature, language, assistance, condition)'))) + '</button><button class="btn" id="g-exit-skip" data-a="gt-exit">' + esc(tx(L('署名済みとのことなので確認せず通す', '서명했다고 하니 확인 없이 통과', 'They say they signed — let them through without checking'))) + '</button></div>');
+      scr(h);
+      var er = $('#g-exit-reseat'); if (er) er.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk + M.cost.phone); S.seatFix = S.seatFix || {}; S.seatFix[gPid(p)] = p.reseat; S.maniVer++; c.flags.exitDone = true; say('me', L('恐れ入ります、お子様をお連れの場合は非常口列にお座りいただけません。' + p.reseat + 'にお席を変更いたします。', '죄송합니다, 아기를 동반하신 경우 비상구 열에 앉으실 수 없습니다. ' + p.reseat + '로 좌석을 바꿔 드리겠습니다.', 'I am sorry, passengers with an infant cannot sit in the exit row. We will move you to ' + p.reseat + '.')); gPaxLater(c, p.say.reseat, 900); note('good', L('非常口列の条件変更（乳児同伴）に気づき、' + p.reseat + ' に再配席・再発行して客室に通知しました（名簿版 ' + S.maniVer + '）。', '비상구 열 조건 변경(유아 동반)을 알아차리고 ' + p.reseat + '로 재배정·재발행, 객실에 통보했습니다(명단판 ' + S.maniVer + ').', 'Caught the changed exit-row condition (infant), reseated to ' + p.reseat + ', reissued and told the cabin (manifest v' + S.maniVer + ').'), 'passenger/1-5'); gateTabScan(); };
+      var ek = $('#g-exit-keep'); if (ek) ek.onclick = function () { if (!gLive(c)) return; sfx.ng(); gSafe('gt-exit-unsafe', L('乳児同伴のお客様を非常口列のまま搭乗させました。', '유아 동반 손님을 비상구 열인 채 탑승시켰습니다.', 'Boarded a passenger with an infant in the exit row.'), 'passenger/1-5'); c.flags.exitDone = true; gateTabScan(); };
+      var ec = $('#g-exit-chk'); if (ec) ec.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk); c.flags.exitDone = true; say('me', L('非常口列のお席です。非常時に乗務員のお手伝いをお願いすることがありますが、よろしいでしょうか。', '비상구 열 좌석입니다. 비상시 승무원을 도와주셔야 할 수 있는데 괜찮으시겠습니까?', 'This is an exit-row seat. In an emergency you may be asked to assist the crew — is that all right?')); gPaxLater(c, p.say.ok, 800); note('good', L('非常口列のお客様の署名・言語・介助の意思・体調を搭乗口で再確認しました。', '비상구 열 손님의 서명·언어·도울 의사·몸 상태를 탑승구에서 다시 확인했습니다.', 'Re-confirmed the exit-row passenger\'s signature, language, willingness and condition at the gate.'), 'passenger/1-5'); gateTabScan(); };
+      var es = $('#g-exit-skip'); if (es) es.onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-exit', L('非常口列の条件確認を省いて通しました（条件自体は満たしていた）。', '비상구 열 조건 확인을 생략하고 통과시켰습니다(조건 자체는 충족).', 'Skipped the exit-row check (the passenger did in fact qualify).'), 'passenger/1-5'); c.flags.exitDone = true; gateTabScan(); };
+      return;
+    }
+    if (p.issue === 'exit-inf' && !c.flags.gtgDone) {
+      h += '<div class="why">' + esc(tx(L('ベビーカー：搭乗口でお預かり（ゲート・トゥ・ゲート）。到着地では飛行機の出口でお返し（Vela）。', '유모차: 탑승구에서 맡음(게이트 투 게이트). 도착지에서는 비행기 출구에서 돌려 드림(Vela).', 'Stroller: taken at the gate (gate-to-gate), returned at the aircraft door on arrival (Vela).'))) + '</div>' +
+        '<div class="btns"><button class="btn pri" id="g-gtg-tag" data-a="ok">' + esc(tx(L('タグを付け、受け取った人・時刻・返却場所（到着地の飛行機の出口）を記録して預かる', '태그를 붙이고 받은 사람·시각·반환 장소(도착지 비행기 출구)를 기록해 맡음', 'Tag it, record who took it, the time and the return point (aircraft door on arrival)'))) + '</button><button class="btn" id="g-gtg-notag" data-a="gt-gtg">' + esc(tx(L('タグなしでそのまま預かる', '태그 없이 그대로 맡음', 'Take it without a tag'))) + '</button></div>';
+      scr(h);
+      $('#g-gtg-tag').onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk); c.flags.gtgDone = true; S.strollers = (S.strollers || 0) + 1; say('me', L('ベビーカーはこちらでお預かりし、到着地では飛行機の出口でお返しいたします。', '유모차는 여기서 맡아 드리고 도착지에서는 비행기 출구에서 돌려 드리겠습니다.', 'We will take the stroller here and return it at the aircraft door on arrival.')); gPaxLater(c, p.say.stroller, 800); note('good', L('ベビーカーにゲート・トゥ・ゲートのタグを付け、受け取った人・時刻・返却場所（到着地の飛行機の出口）を記録しました。', '유모차에 게이트 투 게이트 태그를 붙이고 받은 사람·시각·반환 장소(도착지 비행기 출구)를 기록했습니다.', 'Tagged the stroller gate-to-gate and recorded who took it, the time and the return point (aircraft door on arrival).'), 'passenger/2-2'); gateTabScan(); };
+      $('#g-gtg-notag').onclick = function () { if (!gLive(c)) return; sfx.ng(); gBad('gt-gtg', L('ベビーカーをタグも記録もなしで預かりました。', '유모차를 태그도 기록도 없이 맡았습니다.', 'Took the stroller without a tag or record.'), 'passenger/2-2'); c.flags.gtgDone = true; S.strollers = (S.strollers || 0) + 1; gateTabScan(); };
+      return;
+    }
+    /* 3) 여권 대조 — 사람마다 한 번씩(본인 → 동반자 → 유아). 확정 때 「지금」의 교정 상태를 다시 계산(35차 B-F02). Day 2: 이름 불일치(G2-name)는 기록 확인·SV 보고로 해소 */
+    var persons = gPersons(p); c.flags.pp = c.flags.pp || {};
+    if (c.ppIdx >= persons.length) { gBoard(c); return; }
+    var cur = persons[c.ppIdx], busy = !!c.flags.ppBusy;
+    function mismNow() { return (cur.issue === 'photo' || cur.issue === 'name') && !c.flags.ppFixed; }
+    var mism = mismNow(), isName = cur.issue === 'name', photo = cur.issue === 'photo' ? (mism ? cur.photo : null) : (cur.photo || null), ppName = mism && cur.ppName ? cur.ppName.sur + ' ' + cur.ppName.given : cur.who;   /* 38-F01: 정상 사례의 명시 사진 키(유아 동반 성인 등)는 보존, 형 여권만 교정 뒤 본인 그림에서 찾음 */
+    h += '<div class="h3" style="margin-top:10px">' + esc(tx(L('旅券の照合', '여권 대조', 'Passport check'))) + (persons.length > 1 ? ' <span class="small">' + (c.ppIdx + 1) + '/' + persons.length + '</span>' : '') + '</div>' +
+      (persons.length > 1 ? '<p class="small" style="margin:0 0 4px">' + persons.map(function (x, i) { return (c.flags.pp[x.pid] ? '✔ ' : i === c.ppIdx ? '▶ ' : '· ') + esc(x.who) + (x.kind === 'inf' ? ' (INF)' : ''); }).join(' &nbsp; ') + '</p>' : '') +
+      '<div class="row ppcmp">' + STG.portrait({ photo: photo, art: cur.art }, 'sm') + '<span class="small">⇄</span>' + STG.face(cur.art, 'mface') + '<div class="small">' + esc(tx(cur.kind === 'inf' ? L('抱っこの幼児：旅券と同伴者を確認', '안은 유아: 여권과 동반자 확인', 'Infant in arms: passport and accompanying adult') : L('写真と本人、券面の名前', '사진과 본인, 탑승권 이름', 'Photo vs person, name on pass'))) + '<br><span class="mono">' + esc(ppName) + '</span>' + (isName && mism ? ' <span class="mono hl">≠ BP ' + esc(cur.who) + '</span>' : '') + (cur.kind !== 'inf' ? ' <span class="mono">' + esc(gSeatOf(p, cur)) + '</span>' : '') + '</div></div>' +
+      '<div class="btns"><button class="btn pri" id="g-ppok" data-a="' + (mism ? (isName ? 'gt-name' : 'gt-pp-miss') : 'ok') + '"' + (busy ? ' disabled' : '') + '>' + esc(tx(c.ppIdx + 1 < persons.length ? L('本人と一致 → 次の人', '본인 일치 → 다음 사람', 'Matches → next person') : L('本人と一致 → 搭乗', '본인 일치 → 탑승', 'Matches → board'))) + '</button><button class="btn" id="g-ppno" data-a="' + (mism ? 'ok' : 'wrong') + '"' + (busy ? ' disabled' : '') + '>' + esc(tx(isName ? L('名前が違う → チェックイン記録を確認し、SVに報告', '이름이 다름 → 체크인 기록 확인·SV 보고', 'Name differs → check the check-in record, report to SV') : L('写真が本人と違うようだ → 確認する', '사진이 본인과 다른 것 같음 → 확인', 'Photo does not look like them → check'))) + '</button><button class="btn ghost" id="g-ppskip" data-a="gt-pp-skip"' + (busy ? ' disabled' : '') + '>' + esc(tx(L('照合せずに搭乗', '대조 없이 탑승', 'Board without checking'))) + '</button></div>' +
+      (busy ? '<div class="why">' + esc(tx(isName ? L('チェックイン記録を確認し、SVに報告しています…', '체크인 기록을 확인하고 SV에 보고하는 중…', 'Checking the check-in record and reporting to the SV…') : L('本人の旅券を確認しています…', '본인 여권을 확인하는 중…', 'Checking the passenger\'s own passport…'))) + '</div>' : '');
+    scr(h);
+    $('#g-ppok').onclick = function () {
+      if (!gLive(c) || c.flags.ppBusy || persons[c.ppIdx] !== cur) return;
+      var m = mismNow(); addTime(M.cost.pp);
+      if (m && isName) { sfx.ng(); c.flags.pp[cur.pid] = 'miss'; gSafe('gt-name', L('搭乗券と旅券の名前が違うまま、確認せずに搭乗させました。', '탑승권과 여권 이름이 다른데 확인 없이 탑승시켰습니다.', 'Boarded the passenger although the names on the pass and passport differ, without checking.'), 'passenger/2-1'); }
+      else if (m) { sfx.ng(); c.flags.pp[cur.pid] = 'miss'; gSafe('gt-pp-miss', L('別人（兄）の旅券のまま搭乗させました。', '다른 사람(형) 여권인 채 탑승시켰습니다.', 'Boarded the passenger on someone else\'s (his brother\'s) passport.'), 'passenger/2-4'); }
+      else { sfx.ok(); c.flags.pp[cur.pid] = 'ok'; if (c.ppIdx + 1 >= persons.length) note('good', persons.length > 1 ? L('ご家族・同伴の方も含め、一人ずつ旅券の写真・名前を本人と照合して搭乗させました。', '가족·동반자까지 한 명씩 여권 사진·이름을 본인과 대조하고 탑승시켰습니다.', 'Checked each person\'s passport photo and name, including family and companions, then boarded.') : L('旅券の写真・名前を本人と照合して搭乗させました。', '여권 사진·이름을 본인과 대조하고 탑승시켰습니다.', 'Checked the passport photo and name against the passenger, then boarded.'), 'passenger/2-4'); }
+      c.ppIdx++; if (c.ppIdx >= persons.length) gBoard(c); else gateTabScan();
+    };
+    $('#g-ppno').onclick = function () {
+      if (!gLive(c) || c.flags.ppBusy || persons[c.ppIdx] !== cur) return;
+      addTime(M.cost.talk);
+      if (mismNow() && isName) {   /* 이름 불일치: 체크인 기록 확인 → SV 보고 → 해소 */
+        sfx.ok(); c.flags.ppFixed = true; c.flags.ppBusy = true; c.svDone = true; addTime(M.cost.phone);
+        say('me', L('恐れ入ります、搭乗券とパスポートのお名前が異なりますので、チェックインの記録を確認いたします。', '죄송합니다, 탑승권과 여권의 이름이 달라 체크인 기록을 확인하겠습니다.', 'Excuse me, the names on your boarding pass and passport differ, so I will check the check-in record.'));
+        gPaxLater(c, p.say.explain, 800);
+        note('good', L('搭乗券と旅券の名前違い（LIM / IM）に気づき、チェックイン記録で同一人物と確認してSVに報告し、承認を得て搭乗させました。', '탑승권·여권 이름 불일치(LIM / IM)를 알아차리고 체크인 기록으로 동일인임을 확인해 SV에 보고, 승인을 받아 탑승시켰습니다.', 'Caught the name mismatch (LIM / IM), confirmed the same person in the check-in record, reported to the SV and boarded with approval.'), 'passenger/2-1');
+        gateTabScan(); setTimeout(function () { if (S.cur === c && G.screen === 'play') { c.flags.ppBusy = false; if (!c.boarded) gateTabScan(); } }, 1400);
+      } else if (mismNow()) {   /* 교정: 상태를 먼저 바꾸고 즉시 다시 그림(버튼 잠금) → 대사 뒤 버튼을 풂. 옛 버튼은 남지 않음 */
+        sfx.ok(); c.flags.ppFixed = true; c.flags.ppBusy = true;
+        say('me', L('恐れ入ります、旅券のお写真をもう一度確認させてください。', '죄송합니다, 여권 사진을 다시 확인하겠습니다.', 'Excuse me, let me check the passport photo once more.'));
+        gPaxLater(c, p.say.caught, 700);
+        note('good', L('写真が本人と違うことに気づき、本人の旅券で照合し直しました。', '사진이 본인과 다른 것을 알아차리고 본인 여권으로 다시 대조했습니다.', 'Noticed the photo mismatch and re-checked with the passenger\'s own passport.'), 'passenger/2-4');
+        gateTabScan(); setTimeout(function () { if (S.cur === c && G.screen === 'play') { c.flags.ppBusy = false; if (!c.boarded) gateTabScan(); } }, 1400);
+      } else { sfx.ng(); c.mood = Math.max(40, c.mood - 15); note('info', L('本人の旅券を疑って確認しました（問題なし）。', '본인 여권을 의심해 확인했습니다(문제 없음).', 'Questioned a genuine passport (no issue found).')); gPaxSay(cur.kind === 'main' ? L('えっ、私ですよ…。', '네? 저예요….', 'What? That is me…') : L('この子で間違いありません。', '이 아이가 맞습니다.', 'That is definitely this child.')); gateTabScan(); }
+    };
+    $('#g-ppskip').onclick = function () { if (!gLive(c) || c.flags.ppBusy) return; sfx.ng(); persons.slice(c.ppIdx).forEach(function (x) { c.flags.pp[x.pid] = 'skip'; }); gSafe('gt-pp-skip', L('旅券を照合せずに搭乗させました。', '여권을 대조하지 않고 탑승시켰습니다.', 'Boarded without checking the passport.'), 'passenger/2-4'); c.ppIdx = persons.length; gBoard(c); };
+  }
+  function gUnitNameOf(id) { var q = null; S.list.forEach(function (x) { if (x.id === id) q = x; }); return q ? q.pp.sur + ' ' + q.pp.given : id; }
+  function gAgainOf(p) { var q = null; S.list.forEach(function (x) { if (x.id === p.againOf) q = x; }); return q ? { who: q.pp.sur + ' ' + q.pp.given, seat: q.seat } : { who: '?', seat: '?' }; }
+  function gSeatOf(p, x) { var fx = (S.seatFix || {})[x.pid]; return fx || x.seat; }
+  /* 탑승 확정 — 한 단위에 한 번, 사람마다 한 번(이미 탑승한 열쇠는 다시 넣지 않음). 숫자(boarded·scanned)는 사람 목록에서 다시 셈 */
+  function gBoard(c) {
+    var p = c.p; if (!gDone(c)) return false; c.boarded = true; c.seat = (S.seatFix || {})[gPid(p)] || p.seat;
+    S.brd = S.brd || {}; var dup = false;
+    gPersons(p).forEach(function (x) {
+      if (x.kind === 'inf') { if (!c.flags.infDone) { c.flags.infDone = true; S.inf += 1; } return; }
+      if (S.brd[x.pid]) { dup = true; return; }
+      S.brd[x.pid] = { scan: x.kind === 'main' ? true : !c.flags.oneScan, pp: (c.flags.pp || {})[x.pid] || 'ok', u: p.id };
+    });
+    c.flags.dupPerson = dup; gSync();
+    var i = (S.deferred || []).indexOf(gPid(p)); if (i >= 0) S.deferred.splice(i, 1);
+    say('me', L('ありがとうございます。' + c.seat + 'でございます。どうぞ。', '감사합니다. ' + c.seat + '입니다. 들어가십시오.', 'Thank you. Seat ' + c.seat + '. Go ahead.'), false, L('ありがとうございます。どうぞ。', '', ''));
+    gateEnd(900); return true;
+  }
+  /* ---------- 마감 ---------- */
+  function gateTabClose() {
+    if (S.cur.p.offload) return gateTabCloseD4();   /* Day 4: 마감 + 오프로드 */
+    var c = S.cur, u = c.p, mani = gManifest(), missing = mani.filter(function (x) { return !(S.brd || {})[x.pid]; });
+    scr(gWaitBtn(u.at) + '<div class="h3">' + esc(tx(L('搭乗締め切り', '탑승 마감', 'Boarding close'))) + '</div><dl class="kv"><dt>' + esc(tx(L('名簿', '명단', 'Manifest'))) + '</dt><dd>' + mani.length + (S.inf ? ' + INF ' + S.inf : '') + '</dd><dt>' + esc(tx(L('搭乗済み', '탑승 완료', 'Boarded'))) + '</dt><dd>' + S.boarded + '</dd><dt>' + esc(tx(L('未搭乗', '미탑승', 'Not boarded'))) + '</dt><dd class="' + (missing.length ? 'hl' : '') + '">' + missing.length + (missing.length ? ' · ' + esc(missing.map(function (x) { return x.who + ' ' + x.seat; }).join(', ')) : '') + '</dd></dl>' +
+      '<div class="btns"><button class="btn pri" id="g-close" data-a="ok">' + esc(tx(L('搭乗を締め切る', '탑승 마감', 'Close boarding'))) + '</button></div>');
+    gBindWait(u.at, gateTabClose);
+    $('#g-close').onclick = function () { if (!gDone(c)) return; sfx.ok(); gAt(u.at); S.maniVer++; note('good', missing.length ? L('未搭乗のお客様を確認して締め切りました。', '미탑승 승객을 확인하고 마감했습니다.', 'Checked who was missing and closed boarding.') : L('全員の搭乗を確認して締め切りました。', '전원 탑승을 확인하고 마감했습니다.', 'Confirmed everyone boarded and closed.'), 'passenger/2-5'); addTime(0.5); gateEnd(); };
+  }
+  /* ---------- 인원 대조·도어 클로즈 ---------- */
+  /* 36차(GPT 35-F01): 도어 클로즈 조건 = 유효 명단의 사람 집합 == 실제 탑승 집합(양방향) + 전원 스캔(지상 = 객실) + 유아 수 = 명단의 유아 수. 화면과 클릭 처리가 같은 함수를 봄 */
+  function gDoorCheck() {
+    gSync(); var mani = gManifest(), brd = S.brd || {}, ks = Object.keys(brd);
+    var missing = mani.filter(function (x) { return !brd[x.pid]; }), extra = ks.filter(function (k) { return !mani.some(function (x) { return x.pid === k; }); });
+    var infExp = S.list.reduce(function (a, q) { return a + (q.kind === 'pax' && !q.back && q.inf ? 1 : 0); }, 0);
+    return { mani: mani, missing: missing, extra: extra, same: S.scanned === S.boarded, infOk: S.inf === infExp, infExp: infExp, ok: S.scanned === S.boarded && !missing.length && !extra.length && S.inf === infExp };
+  }
+  function gateTabCount() {
+    if (S.cur.p.lock) return gateTabCountD4();   /* Day 4: 세 조건 잠금 */
+    var c = S.cur, u = c.p, d = gDoorCheck(), mani = d.mani;
+    var ground = S.scanned, cabin = S.boarded, same = d.same, ok = d.ok;
+    var h = '<div class="h3">' + esc(tx(L('人数確認とドアクローズ', '인원 대조와 도어 클로즈', 'Headcount and door close'))) + '</div><dl class="kv"><dt>' + esc(tx(L('名簿（有効）', '명단(유효)', 'Manifest (valid)'))) + '</dt><dd>' + mani.length + '</dd><dt>' + esc(tx(L('地上（システム搭乗数）', '지상(시스템 탑승 수)', 'Ground (system count)'))) + '</dt><dd>' + ground + (S.inf ? ' + INF ' + S.inf : '') + '</dd><dt>' + esc(tx(L('客室（実際の人数）', '객실(실제 인원)', 'Cabin (actual count)'))) + '</dt><dd class="' + (ok ? '' : 'hl') + '">' + cabin + (S.inf ? ' + INF ' + S.inf : '') + '</dd></dl>';
+    if (!ok && !c.flags.found) h += '<div class="why bad">' + esc(tx(same ? L('名簿と搭乗者が一致しません（名簿 ' + mani.length + ' / 搭乗 ' + cabin + '）。', '명단과 탑승자가 일치하지 않습니다(명단 ' + mani.length + ' / 탑승 ' + cabin + ').', 'Manifest and boarded passengers do not match (manifest ' + mani.length + ' / boarded ' + cabin + ').') : L('人数が一致しません（差 ' + Math.abs(cabin - ground) + '）。', '인원이 일치하지 않습니다(차이 ' + Math.abs(cabin - ground) + ').', 'Counts do not match (difference ' + Math.abs(cabin - ground) + ').'))) + '</div>';
+    if (!ok && c.flags.found && d.extra.length) h += '<div class="why">' + esc(tx(L('原因：名簿にないお客様（別の便）が搭乗しています。客室と連携して降機していただき、正しい搭乗口へ案内します。', '원인: 명단에 없는 손님(다른 편)이 탑승해 있습니다. 객실과 연계해 하기시키고 올바른 탑승구로 안내합니다.', 'Cause: a passenger not on the manifest (another flight) is on board. Work with the cabin to deplane them and direct them to the right gate.'))) + '</div>';
+    if (!ok && c.flags.found && (d.missing.length || d.extra.length || !d.infOk)) h += '<div class="why bad">' + esc(tx(L('未搭乗：', '미탑승: ', 'Not boarded: '))) + esc(d.missing.map(function (x) { return x.who + ' ' + x.seat; }).join(', ') || '—') + (d.extra.length ? ' · ' + esc(tx(L('名簿にない搭乗者 ', '명단에 없는 탑승자 ', 'boarded but not on manifest '))) + d.extra.length : '') + (!d.infOk ? ' · INF ' + S.inf + '/' + d.infExp : '') + '</div>';
+    if (!ok && c.flags.found && !same) h += '<div class="why">' + esc(tx(L('原因：搭乗券1枚で2人が搭乗していました。未スキャンの搭乗券を再スキャンします（搭乗者が増えるわけではありません）。', '원인: 탑승권 한 장으로 두 명이 탑승했습니다. 미스캔 탑승권을 다시 스캔합니다(탑승자가 늘어나는 것은 아닙니다).', 'Cause: two people boarded on one scan. Re-scan the unscanned boarding pass (this adds no new passenger).'))) + '</div>';
+    h += '<div class="btns">' + (ok ? '<button class="btn pri" id="g-door" data-a="ok">' + esc(tx(L('一致を確認 → ドアクローズ', '일치 확인 → 도어 클로즈', 'Counts match → close the door'))) + '</button>'
+      : (!c.flags.found ? '<button class="btn pri" id="g-find" data-a="ok">' + esc(tx(L('差異の原因を確認する', '차이의 원인 확인', 'Find the cause of the difference'))) + '</button>' : d.extra.length ? '<button class="btn pri" id="g-offload" data-a="ok">' + esc(tx(L('名簿にないお客様を降機させ、正しい搭乗口へ案内', '명단에 없는 손님을 하기시키고 올바른 탑승구로 안내', 'Deplane the passenger not on the manifest and direct them to their gate'))) + '</button>' : !same ? '<button class="btn pri" id="g-fix" data-a="ok">' + esc(tx(L('再スキャンして修正', '다시 스캔해 수정', 'Re-scan and fix'))) + '</button>' : '') +
+        '<button class="btn ghost" id="g-force" data-a="gt-count">' + esc(tx(L('確認せずに閉める（SV確認なし）', '확인 없이 닫기(SV 확인 없음)', 'Close without checking (no SV)'))) + '</button>') + '</div>';
+    scr(h);
+    var dr = $('#g-door'); if (dr) dr.onclick = function () { if (!gDoorCheck().ok || !gDone(c)) return;   /* 클릭 직전에 같은 조건을 다시 검사 */ sfx.ok(); note('good', L('地上の搭乗数と客室の人数の一致を確認してドアクローズしました。', '지상 탑승 수와 객실 인원의 일치를 확인하고 도어 클로즈했습니다.', 'Confirmed the ground and cabin counts matched, then closed the door.'), 'passenger/2-7'); addTime(0.5); S.doorAt = S.clock; gateEnd(); };
+    var f = $('#g-find'); if (f) f.onclick = function () { if (!gLive(c)) return; sfx.tap(); addTime(1.5); c.flags.found = true; gateTabCount(); };
+    var x = $('#g-fix'); if (x) x.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(1.0); Object.keys(S.brd).forEach(function (k) { S.brd[k].scan = true; }); gSync(); note('good', L('人数の差異の原因（未スキャン）を見つけて修正し、一致させました。', '인원 차이의 원인(미스캔)을 찾아 수정해 일치시켰습니다.', 'Found the cause (an unscanned pass), fixed it and matched the counts.'), 'passenger/2-7'); gateTabCount(); };
+    var ofl = $('#g-offload'); if (ofl) ofl.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(2.0); var dd = gDoorCheck(); dd.extra.forEach(function (k) { var u = S.brd[k] && S.brd[k].u; delete S.brd[k]; S.results.forEach(function (r) { if (r.p && r.p.id === u) r.offloaded = true; }); }); S.maniVer++; gSync(); note('good', L('名簿にないお客様（別の便）に気づき、客室と連携して降機・正しい搭乗口へ案内し、人数を合わせました。', '명단에 없는 손님(다른 편)을 알아차리고 객실과 연계해 하기·올바른 탑승구 안내, 인원을 맞췄습니다.', 'Found a passenger from another flight on board, deplaned them with the cabin crew, directed them to their gate and corrected the count.'), 'passenger/2-7'); gateTabCount(); };
+    var fo = $('#g-force'); if (fo) fo.onclick = function () { if (!gDone(c)) return; sfx.ng(); gSafe('gt-count', L('人数が合わないまま、確認せずにドアクローズしました。', '인원이 맞지 않는데 확인 없이 도어 클로즈했습니다.', 'Closed the door with a headcount mismatch and no check.'), 'passenger/2-7'); S.doorAt = S.clock; gateEnd(); };
+  }
+  /* ---------- 채점(합의본 4B-2: 7항목 틀, 해당 없는 항목 제외) ---------- */
+  function gateScore() {
+    var people = gManifest().length;
+    var unserved = S.list.length - S.results.length, allR = S.results.slice();
+    var badAcc = 0, moods = [], need = 0, done = 0;
+    /* 정확: 업무·감점 오답 1건당 −10(35차 B-F05: 업무 오답도 포함), 안전 사건은 안전 항목에서만(중복 감점 없음), 미처리 단위 −15 */
+    allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && !(S.safety || []).some(function (x) { return x.code === n.c && x.who === gUnitName(r); })) badAcc++; }); if (r.p.kind === 'pax' && !r.deferred && !r.skipMood) moods.push(r.mood); if (r.needSV) { need++; if (r.svDone) done++; } });
+    var acc = Math.max(0, 100 - badAcc * 10 - unserved * 15);
+    var svc = Math.round(moods.reduce(function (a, b) { return a + b; }, 0) / Math.max(1, moods.length));
+    var doorAt = S.doorAt || S.clock, left = pm(gT().door) - doorAt + (S.waitMin || 0), tim = unserved ? Math.max(0, 40 - unserved * 10) : Math.round(Math.max(0, Math.min(100, 70 + left * 4)));
+    var safe = S.strikes === 0, smiss = S.safety || [];
+    var parts = [{ k: 'acc', v: acc, w: 25 }, { k: 'safe', v: safe ? 100 : 0, w: 25 }, { k: 'svc', v: svc, w: 15 }, { k: 'tim', v: tim, w: 10 }];
+    need += S.evRep.need; done += S.evRep.done; if (need) parts.push({ k: 'rep', v: Math.round(100 * done / need), w: 10 });
+    if (S.evChecks.length) parts.push({ k: 'evt', v: Math.round(100 * S.evChecks.filter(function (x) { return x.ok; }).length / S.evChecks.length), w: 10 });
+    var ws = parts.reduce(function (a, x) { return a + x.w; }, 0), tot = Math.round(parts.reduce(function (a, x) { return a + x.v * x.w; }, 0) / ws);
+    var rank = !safe ? 'C' : tot >= 90 ? 'S' : tot >= 80 ? 'A' : tot >= 65 ? 'B' : 'C';
+    var opMiss = []; allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && GOPS.indexOf(n.c) >= 0 && opMiss.indexOf(n.c) < 0) opMiss.push(n.c); }); });
+    var opsPass = !opMiss.length, opCapped = safe && !opsPass && rank === 'S'; if (opCapped) rank = 'A';
+    var capped = S.day.n >= 2 && G.hints && !G.practice && rank === 'S'; if (capped) rank = 'A';
+    return { unserved: unserved, allR: allR, acc: acc, svc: svc, tim: tim, tot: tot, safe: safe, smiss: smiss, parts: parts, rank: rank, opMiss: opMiss, opsPass: opsPass, opCapped: opCapped, capped: capped, opsCodes: GOPS, people: people };
+  }
+  /* ---------- 되살린 상태 검사(35차 B-F06: 체크인편과 같은 수준 — 필수 칸·타입·범위·결과 구조·사람 목록과 완료 이력의 관계) ---------- */
+  function gateStateWhy(st, mi, ids) {
+    function num(x) { return typeof x === 'number' && isFinite(x); }
+    function int(x, lo, hi) { return num(x) && Math.floor(x) === x && x >= (lo == null ? 0 : lo) && (hi == null || x <= hi); }
+    function rng(x, lo, hi) { return num(x) && x >= lo && x <= hi; }
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    function str(x) { return typeof x === 'string'; }
+    function hhmm(x) { return str(x) && /^\d{2}:\d{2}\??$/.test(x); }
+    function txt(x) { return str(x) || (obj(x) && obj(x.__t) && str(x.__t.ja) && str(x.__t.ko) && str(x.__t.en)) || (obj(x) && str(x.ja) && str(x.ko) && str(x.en)); }
+    function noteOk(n) { return obj(n) && ['good', 'bad', 'info'].indexOf(n.t) >= 0 && txt(n.x) && (n.l == null || str(n.l)) && (n.c == null || (str(n.c) && n.c in GMISSL)); }
+    function resOk(r) {
+      if (!obj(r) || !obj(r.p) || !Array.isArray(r.notes) || r.notes.length > 60 || !r.notes.every(noteOk) || !rng(r.mood, 0, 100) || !rng(r.mins, 0, 240)) return false;
+      if (!(('__pax' in r.p) || str(r.p.id))) return false;
+      if (!obj(r.flags) || !obj(r.acts) || !obj(r.chk) || !Array.isArray(r.selfFix) || !Array.isArray(r.bags)) return false;
+      if (!str(r.tab) || ['prep', 'bc', 'sign', 'scan', 'close', 'count', 'change', 'warn', 'search', 'delay', 'ob', 'sby'].indexOf(r.tab) < 0) return false;
+      if (!int(r.scans, 0, 10) || !int(r.ppIdx == null ? 0 : r.ppIdx, 0, 10)) return false;
+      ['boarded', 'deferred', 'skipMood', 'needSV', 'svDone', 'offloaded'].forEach(function (k) { if (r[k] != null && typeof r[k] !== 'boolean') r.__bad = k; }); if (r.__bad) return false;
+      if (r.seat != null && !(str(r.seat) && /^\d{1,2}[A-K]$/.test(r.seat))) return false;
+      if (r.recvAt != null && !rng(r.recvAt, 0, 2880)) return false;   /* 40차: 접수 시각 */
+      return true;
+    }
+    if (!obj(st)) return 'format';
+    var need = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'strikes', 'seq', 'evChecks', 'evRep', 'safety', 'boarded', 'inf', 'scanned', 'grpCalled', 'bc', 'maniVer', 'deferred', 'brd'];
+    for (var i = 0; i < need.length; i++) if (!(need[i] in st) || st[need[i]] == null) return 'missing:' + need[i];
+    if (!rng(st.clock, 0, 2880) || !rng(st.close, 0, 2880) || !int(st.bgQueue, 0, 500) || !int(st.idx, -1, 999) || !int(st.strikes, 0, 200) || !int(st.seq, 0, 9999)) return 'type';
+    var w = numWalk(st, 's'); if (w) return 'range:' + w;
+    if (!int(st.boarded, 0, 60) || !int(st.scanned, 0, 60) || st.scanned > st.boarded || !int(st.inf, 0, 10) || !int(st.grpCalled, 0, 5) || !int(st.maniVer, 1, 9)) return 'count';
+    if (!obj(st.bc) || !Object.keys(st.bc).every(function (k) { return /^B([1-9]|1[0-9])$/.test(k) && hhmm(st.bc[k]); })) return 'bc';
+    if (!(st.signOk === false || st.signOk == null || hhmm(st.signOk))) return 'signOk';
+    if (!Array.isArray(st.deferred) || st.deferred.length > 20 || !st.deferred.every(str)) return 'deferred';
+    if (!(st.doorAt == null || rng(st.doorAt, 0, 2880))) return 'doorAt';
+    if (st.seatFix != null && (!obj(st.seatFix) || !Object.keys(st.seatFix).every(function (k) { return str(st.seatFix[k]) && /^\d{1,2}[A-K]$/.test(st.seatFix[k]); }))) return 'seatFix';
+    if (st.gateBags != null && !int(st.gateBags, 0, 20)) return 'gateBags';
+    if (st.waitMin != null && !rng(st.waitMin, 0, 180)) return 'waitMin';
+    if (st.strollers != null && !int(st.strollers, 0, 20)) return 'strollers';
+    if (!Array.isArray(st.results) || st.results.length > 60 || !st.results.every(function (r, k) { return resOk(r) && (!ids || !('__pax' in r.p) || r.p.__pax === ids[k]); })) return 'results';
+    if (!Array.isArray(st.revenue) || st.revenue.length) return 'revenue';
+    if (!Array.isArray(st.evChecks) || st.evChecks.length > 20 || !st.evChecks.every(function (x) { return obj(x) && str(x.id) && /^[a-z0-9-]{1,24}$/.test(x.id) && typeof x.ok === 'boolean'; })) return 'evChecks';
+    if (!obj(st.evRep) || !int(st.evRep.need, 0, 200) || !int(st.evRep.done, 0, 200) || st.evRep.done > st.evRep.need) return 'evRep';
+    if (!Array.isArray(st.safety) || st.safety.length > 200 || !st.safety.every(function (x) { return obj(x) && str(x.who) && str(x.code) && x.code in GMISSL; }) || st.safety.length !== st.strikes) return 'safety';
+    /* 사람 목록(brd): 열쇠 = 단위 id 또는 id.n, 값 = {scan, pp, u}. 숫자는 목록에서 다시 센 값과 같아야 함 */
+    if (!obj(st.brd)) return 'brd';
+    var ks = Object.keys(st.brd), nScan = 0;
+    for (i = 0; i < ks.length; i++) { var b = st.brd[ks[i]]; if (!obj(b) || typeof b.scan !== 'boolean' || !str(b.u) || (b.pp != null && ['ok', 'skip', 'miss'].indexOf(b.pp) < 0) || !/^[a-z0-9-]+(\.\d{1,2})?$/.test(ks[i])) return 'brd'; if (b.scan) nScan++; }
+    if (ks.length !== st.boarded || nScan !== st.scanned) return 'brd:count';
+    /* 완료 이력과의 관계(36차, GPT 35-F01: 양방향): 끝난 승객 단위 가운데 「탑승 확정(boarded)」된 단위의 사람 집합을 다시 만들어 brd와 정확히 같아야 함.
+       — brd에만 있는 사람(근거 없는 탑승)도, 이력에는 탑승인데 brd에 없는 사람(지워진 탑승)도 거부. 열쇠는 실제 사람 열쇠(본인 = 단위 열쇠, 동반자 = 열쇠.1…)만.
+       기다리게 한 승객(deferred)은 미탑승, 다시 온 단위(g06r)는 ref로 같은 사람. 유아 수 = 탑승 확정된 유아 동반 단위 수(정확히 같아야 함) */
+    if (ids && mi && mi.variants) {
+      var fresh = mi.variants.JP.pax(), byId = {}; fresh.forEach(function (q) { byId[q.id] = q; });
+      var expect = {}, infExp = 0, defExp = {};
+      st.results.forEach(function (r) {
+        var uid = ('__pax' in r.p) ? r.p.__pax : r.p.id, q = byId[uid]; if (!q || q.kind !== 'pax') return;
+        if (r.boarded === true && r.offloaded !== true) { gPersons(q).forEach(function (x) { if (x.kind === 'inf') infExp++; else expect[x.pid] = uid; }); }
+        else if (r.deferred === true) defExp[gPid(q)] = true;
+      });
+      var ek = Object.keys(expect); if (ek.length !== ks.length) return 'brd:set';
+      for (i = 0; i < ek.length; i++) { var bb = st.brd[ek[i]]; if (!bb || bb.u !== expect[ek[i]]) return 'brd:set'; }
+      if (st.inf !== infExp) return 'inf';
+      for (i = 0; i < st.deferred.length; i++) { if (!defExp[st.deferred[i]] || st.brd[st.deferred[i]]) return 'deferred'; }
+    }
+    return null;
+  }
+  /* ---------- v04 게이트 그림(37차 납품): 있으면 게이트 배경·게이트 직원·탑승권 자세, 없으면 체크인 그림을 임시로 ---------- */
+  var GPOSE = { idle: 'idle', greet: 'idle', check: 'scan', scan: 'scan', explain: 'explain', announce: 'announce', trouble: 'trouble' };
+  function gArt(id) { return STG.has(id) ? id : null; }
+  function gStaffId(pose) { return gArt('staff_gate_' + (GPOSE[pose] || 'idle') + '_01') || ('staff_checkin_' + ({ scan: 'check', announce: 'explain', trouble: 'check' }[pose] || pose || 'idle') + '_01'); }
+  function gBgId() { return gArt(G.country === 'KR' ? 'gate_bg_02' : 'gate_bg_01') || (G.country === 'KR' ? 'checkin_bg_02' : 'checkin_bg_01'); }
+  function gateScene(V) {
+    var h = '<div class="stage gate" id="stage">';
+    h += '<img class="bg" src="' + STG.src(gBgId()) + '" alt="" draggable="false">';
+    h += '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.to + ' ' + V.std) + '</span></div>';
+    h += '<div class="sign s2"><b id="ctrno">GATE ' + esc((S && S.gate) || V.gate) + '</b></div>';   /* Day 4: 변경 뒤 현재 탑승구 */
+    h += '<div id="queue" class="lay" style="isolation:isolate"></div>';
+    h += '<div id="agentwrap" class="lay">' + STG.img(gStaffId('idle'), 'agent', 21, -14, 78, false, '') + '</div>';
+    h += '<div class="lay">' + STG.img('prop_counter_01', 'counter', 22, -2, 30) + STG.img('prop_monitor_01', 'monitor', 36, 23, 19) + (gArt('prop_bgr_01') ? STG.img('prop_bgr_01', 'bgr', 46, 24, 9) : '') + '</div>';
+    h += '<div id="paxwrap" class="lay"><div id="pax" class="lay"></div></div>';
+    return h + '</div>';
+  }
+  var _stgPose = STG.pose, _gatePose = 'idle';
+  STG.pose = function (pose, back) {   /* 게이트 근무 중에는 게이트 직원 그림으로 포즈 교체(체크인은 원래 함수) */
+    if (!ST || ST.id !== 'gt' || !gArt('staff_gate_idle_01')) return _stgPose(pose, back);
+    var el = document.querySelector('#agentwrap img'); if (!el) return;
+    var id = gStaffId(pose || 'idle'); if (id === el.getAttribute('data-asset')) return;
+    el.style.opacity = .35; setTimeout(function () { var n = document.createElement('div'); n.innerHTML = STG.img(id, 'agent', 21, -14, 78, false, ''); var ni = n.firstChild; if (ni && el.parentNode) el.parentNode.replaceChild(ni, el); }, 90);
+  };
+  function gateHero() {
+    var bg = gArt('gate_bg_01') || 'checkin_bg_02', st = gArt('staff_gate_announce_01') || 'staff_checkin_explain_01', p1 = gArt('passenger_male_01_bp_01') || 'passenger_male_07';
+    return '<div class="herostage"><img class="bg" src="' + STG.src(bg) + '" alt="">' + STG.img(st, '', 50, 2, 86) + STG.img(p1, '', 78, 2, 64) + STG.img('passenger_child_02', '', 90, 4, 40) + STG.img('koradon_greet_01', 'mas', 15, 3, 44) + STG.img('korarin_greet_01', 'mas', 30, 3, 42) + '</div>';
+  }
+  window.SAGA_STAGES = window.SAGA_STAGES || {};
+  window.SAGA_STAGES.gt = {
+    id: 'gt', stageNo: '02', name: L('ゲート・搭乗', '게이트·탑승', 'Gate & boarding'), days: GATE_DAYS, rules: window.RULES, rulesVer: 'G5.1', text: GATE_TEXT,
+    hero: gateHero,
+    scene: function (V, ap) { return gateScene(V); },
+    toolsHtml: function () { return ''; }, bindTools: function () {},
+    initState: function (dd, M, V, seed) { return { clock: pm(V.start), close: pm(V.close), bgQueue: 0, list: V.pax(), seed: seed, adv: true, idx: -1, cur: null, results: [], revenue: [], strikes: 0, seq: 1, day: dd, ac: M.aircraft, evChecks: [], evRep: { need: 0, done: 0 }, safety: [], boarded: 0, inf: 0, scanned: 0, grpCalled: 0, bc: {}, signOk: false, maniVer: 1, deferred: [], doorAt: null, brd: {}, seatFix: {}, gateBags: 0, waitMin: 0, strollers: 0 }; },
+    runFields: GATE_RUNF, runSkip: GATE_RUNSKIP, freshList: function (mi, va) { return va.pax(); }, allUnits: function (l) { return l; },
+    acCode: function () { return 'A'; }, acOf: function (c, mi) { return mi.aircraft; },
+    phase: function () { return (S.idx + 1 >= S.list.length) ? 'finish' : 'pax'; }, runEvent: function () {},
+    startUnit: gateStart,
+    stateWhy: gateStateWhy,
+    patchWhy: function (pp) { return pp == null ? null : (typeof pp === 'object' && !Array.isArray(pp) ? numWalk(pp, 'patch') : 'patch'); },
+    rangeWhy: function (s, o, va, fresh) { function num(x, lo, hi) { return typeof x === 'number' && isFinite(x) && x >= lo && x <= hi; } if (!num(s.clock, pm(va.start), pm(va.start) + 600) || !num(s.strikes, 0, 999)) return 'range'; var bad = false; s.results.forEach(function (r, i) { if (!r || !r.p || r.p.__pax !== o.paxIds[i]) bad = true; }); return bad ? 'pax' : null; },
+    tabs: function (c) { return [c.tab]; }, tabState: function (k) { var c = S.cur; return c.boarded || c.flags.done ? 'ok' : ''; },
+    tab: { prep: gateTabPrep, bc: gateTabBc, sign: gateTabSign, scan: gateTabScan, close: gateTabClose, count: gateTabCount },
+    tabPose: { prep: 'idle', bc: 'announce', sign: 'announce', scan: 'scan', close: 'trouble', count: 'explain' },
+    banners: function () { return ''; }, afterScr: function () {},
+    barQueue: function () { var c = S.cur, nb = gManifest().filter(function (x) { return !(S.brd || {})[x.pid]; }).length; if (c && c.p.kind === 'pax' && !c.boarded && !c.flags.already) nb -= gPersons(c.p).filter(function (x) { return x.kind !== 'inf'; }).length; return Math.max(0, nb); },   /* 대기 = 아직 탑승하지 않은 명단 인원(지금 창구의 사람 제외) */
+    barDone: function () { return (S.boarded || 0) + '/' + gManifest().length; },
+    voiceCast: function (p) { return String(p.voice || p.art || '').replace(/_wheelchair$/, '_cane'); },
+    score: gateScore, revenueLines: function () { return []; }, legacyBest: function () {},
+    actions: GACT, reportCodes: [], missLabels: GMISSL,
+    unitName: gUnitName,
+    replayHead: function (r) { var p = r.p; return esc(gUnitName(r)) + ' <span style="font-weight:400;color:var(--sub);font-size:12px">' + (p.kind === 'pax' ? ((r.flags && r.flags.moved ? tx(L('別便へ変更（協力者）', '다른 편으로 변경(자원자)', 'moved to another flight (volunteer)')) : r.flags && r.flags.volKeep ? tx(L('協力を撤回 → この便', '협력 철회 → 이 편', 'withdrew → flies today')) : r.flags && r.flags.sbyNo ? tx(L('空席待ち（席なし）', '대기(좌석 없음)', 'standby (no seat)')) : r.flags && r.flags.movedBack ? tx(L('別便へ変更済み（来場なし）', '다른 편으로 변경 완료(오지 않음)', 'moved to another flight (not present)')) : r.flags && r.flags.rebooked ? tx(L('コールセンターで変更済み（来場なし）', '콜센터 변경 완료(오지 않음)', 'rebooked by call centre (not present)')) : r.flags && r.flags.noshow ? tx(L('オフロード（ノーショー・締め切り後に到着）', '오프로드(노쇼·마감 후 도착)', 'offloaded (no-show, arrived after the close)')) : r.offloaded ? tx(L('降機（名簿外）', '하기(명단 외)', 'deplaned (not on manifest)')) : r.boarded ? tx(L('搭乗', '탑승', 'boarded')) + ' ' + ((r.seat || p.seat) || '') : r.deferred ? tx(L('順番待ち（呼び出し後に搭乗）', '순서 대기(호출 뒤 탑승)', 'waited (boarded after the call)')) : r.flags && r.flags.already ? tx(L('搭乗済み（先に通過）', '탑승 완료(먼저 통과)', 'already boarded (let through earlier)')) : r.flags && r.flags.guided ? tx(L('別の便 → 搭乗口を案内', '다른 편 → 탑승구 안내', 'other flight → directed to gate')) : tx(L('未搭乗', '미탑승', 'not boarded'))) + (r.skipMood ? '' : ' · ' + tx(L('満足', '만족', 'Mood')) + ' ' + Math.round(r.mood)) + ' · ') : '') + r.mins.toFixed(1) + tx(T.min) + '</span>'; },
+    resultTitle: function () { return esc(tx(L('搭乗締め切り', '탑승 마감', 'Boarding closed'))) + ' · ' + V.flight; },
+    resultGates: function (sc) { return sc.opMiss.length || !sc.opsPass ? '<div class="gate ' + (sc.opsPass ? 'ok' : 'ng') + '">' + esc(tx(sc.opsPass ? L('業務：合格', '업무: 합격', 'Operations: pass') : L('業務：要確認 ― 搭乗手順の大きな見落としが残りました（最高ランクはA）。', '업무: 확인 필요 — 탑승 절차의 중대한 오류가 남았습니다(최고 등급 A).', 'Operations: needs work — a serious boarding-procedure error remained (best rank A).'))) + (sc.opMiss.length ? '<ul class="smiss">' + sc.opMiss.map(function (c) { return '<li>' + esc(missLabel(c)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' : ''; },
+    resultExtra: function (sc) { return '<div class="panel"><h2>' + esc(tx(L('この便の最終人数', '이 편의 최종 인원', 'Final figures for this flight'))) + '</h2><p class="mono" style="margin:0;font-size:13px">PAX ' + S.boarded + (S.inf ? ' + INF ' + S.inf : '') + ' / ' + tx(L('名簿', '명단', 'manifest')) + ' ' + sc.people + (S.off && Object.keys(S.off).length ? ' · OFFLOAD ' + Object.keys(S.off).length : '') + (S.moved && Object.keys(S.moved).length ? ' · MOVED ' + Object.keys(S.moved).length : '') + (S.added && Object.keys(S.added).length ? ' · ADDED ' + Object.keys(S.added).length : '') + (S.seats ? ' · SEATS ' + S.seats : '') + ' · DOOR ' + hm(S.doorAt || S.clock) + ' (' + tx(L('目標', '목표', 'target')) + ' ' + gT().door + ')</p></div>'; },
+    partLabels: { rep: L('報告', '보고', 'Reports'), evt: L('イベント', '이벤트', 'Events') },
+    scoreVer: 'gate2', ruleDate: '2026-10-15', layoutVer: 'A',
+    testHooks: function () { return { gateScore: gateScore, gateStateWhy: gateStateWhy, persons: gPersons, manifest: gManifest, doorCheck: gDoorCheck }; }
+  };
+  /* ===================== 게이트편 Day 4 「ゲート変更・ノーショー」(42차) =====================
+     gate.js 뒤에 같은 클로저로 이어 붙음(assemble_split SAGA_WITH_GATE). 합의본 v2 3절 Day 4 · 2A 상태 계약 · 4A · 32-F04 도어 클로즈 잠금.
+     새 처리 단위: change(탑승구 변경 대응) · warn(짐 하기 예고 −20) · search(최종 호출·수색) / 확장: close(offload: SV 결정 → 하기 지시 → 태그별 완료 → 명단 수정 → 최종 통보) · pax issue 'after'(오프로드 뒤 도착, 짐 상태 3종) · count(lock: 세 조건 잠금)
+     상태 추가: S.gate(현재 탑승구) · S.off{pid:true}(mani=off) · S.pull{tag:'req'|'pulled'}(bags[].work) · S.finalOk(=maniVer면 최종 통보 유효) · S.changeN(변경 방송 횟수) */
+  var GT4 = window.SAGA_STAGES.gt;
+  GATE_TEXT.tabs.change = L('搭乗口変更', '탑승구 변경', 'Gate change'); GATE_TEXT.tabs.warn = L('取り下ろし予告', '하기 예고', 'Offload warning'); GATE_TEXT.tabs.search = L('最終呼び出し', '최종 호출', 'Final call');
+  ['gate', 'off', 'pull', 'finalOk', 'changeN'].forEach(function (k) { if (GATE_RUNF.indexOf(k) < 0) GATE_RUNF.push(k); });
+  (function () { var init = GT4.initState; GT4.initState = function (dd, M, V, seed) { var s = init(dd, M, V, seed); s.gate = V.gate; s.off = {}; s.pull = {}; s.finalOk = 0; s.changeN = 0; return s; }; })();
+  GT4.tab.change = gateTabChange; GT4.tab.warn = gateTabWarn; GT4.tab.search = gateTabSearch;
+  GT4.tabPose.change = 'announce'; GT4.tabPose.warn = 'explain'; GT4.tabPose.search = 'announce';
+  /* 오답 코드(합의본 Day 4 표): 업무 = gt-change(방송 없음·휠체어 이동 누락)·gt-offload-nosv(SV 없이 오프로드 결정)·gt-after(상태와 다른 설명)·gt-after-board(감정적으로 다시 태움) / 안전 = gt-offload(하기 미완료 닫기)·gt-final(통보 미반영 닫기) / 감점 = gt-change-sign·gt-change-guide·gt-warn·gt-search */
+  var GMISS4 = {
+    'gt-change': L('搭乗口変更の対応漏れ（放送なし・車いすのお客様の移動手配なし）', '탑승구 변경 대응 누락(방송 없음·휠체어 승객 이동 수배 없음)', 'Gate change not handled (no announcement / wheelchair passenger not moved)'),
+    'gt-change-once': L('搭乗口変更の放送を1回だけで省略', '탑승구 변경 방송을 1회만 하고 생략', 'Gate-change announcement made only once'),
+    'gt-change-sign': L('搭乗口変更の表示を変えなかった', '탑승구 변경 표시를 바꾸지 않음', 'Gate display not updated'),
+    'gt-change-guide': L('旧搭乗口に案内担当を置かなかった', '이전 탑승구에 안내 담당을 두지 않음', 'No staff left at the old gate'),
+    'gt-warn': L('取り下ろしの予告（タグ・個数・位置）なしで締め切り後に依頼', '하기 예고(태그·개수·위치) 없이 마감 후에 요청', 'No advance warning to ramp (tags, count, position)'),
+    'gt-search': L('最終呼び出しで名前を呼ぶだけで終えた（連絡先・同行者・記録照会なし）', '최종 호출에서 이름만 부르고 끝냄(연락처·동행자·기록 조회 없음)', 'Final call stopped at paging (no contact, companions, record request)'),
+    'gt-offload-nosv': L('SVに確認せず自分の判断でオフロードを決めた', 'SV 확인 없이 혼자 판단으로 오프로드 결정', 'Decided the offload without the SV'),
+    'gt-offload': L('取り下ろしが完了していないのに「確認せずに閉める」で確定', '하기가 끝나지 않았는데 「확인 없이 닫기」로 확정', 'Confirmed door close while offload was incomplete'),
+    'gt-final': L('最終人数・変更の通知が最新の名簿に反映されていないのに閉めた', '최종 인원·변경 통보가 최신 명단에 반영되지 않았는데 닫음', 'Closed without the final figures reflecting the latest manifest'),
+    'gt-after': L('オフロード後に到着したお客様に、荷物の実際の状態と違う説明をした', '오프로드 뒤 도착한 손님에게 짐의 실제 상태와 다른 설명', 'Told the late passenger something other than the actual bag status'),
+    'gt-after-board': L('オフロード後に到着したお客様を、感情的にそのまま乗せようとした', '오프로드 뒤 도착한 손님을 감정적으로 그대로 태우려 함', 'Tried to board the passenger after the offload out of sympathy') };
+  Object.keys(GMISS4).forEach(function (k) { GMISSL[k] = GMISS4[k]; });
+  (function () { var A = { 'gt-change': 'announce-3-times-and-move-special-pax', 'gt-change-once': 'announce-gate-change-3-times', 'gt-change-sign': 'update-gate-display', 'gt-change-guide': 'station-staff-at-old-gate', 'gt-warn': 'warn-ramp-at-minus-20', 'gt-search': 'page-then-check-contacts-and-request-records', 'gt-offload-nosv': 'ask-sv-before-offload', 'gt-offload': 'confirm-every-tag-pulled-before-door-close', 'gt-final': 'resend-final-figures-after-manifest-change', 'gt-after': 'explain-actual-bag-status', 'gt-after-board': 'do-not-reboard-after-offload' }; Object.keys(A).forEach(function (k) { GACT[k] = A[k]; }); })();
+  ['gt-change', 'gt-change-once', 'gt-offload-nosv', 'gt-after', 'gt-after-board'].forEach(function (k) { if (GOPS.indexOf(k) < 0) GOPS.push(k); });
+  (function () { var un = gUnitName; gUnitName = function (c) { var k = c.p.kind; if (k === 'change') return tx(L('搭乗口変更', '탑승구 변경', 'Gate change')); if (k === 'warn') return tx(L('取り下ろし予告', '하기 예고', 'Offload warning')); if (k === 'search') return tx(L('最終呼び出し', '최종 호출', 'Final call')); return un(c); }; })();
+  function g4Gate() { return (S && S.gate) || gT().gate; }
+  function g4NewGate() { return gT().gateAlt; }
+  function g4Missing() { return gManifest().filter(function (x) { return !(S.brd || {})[x.pid]; }); }
+  function g4UnitOf(pid) { var q = null; S.list.forEach(function (x) { if (x.kind === 'pax' && gPid(x) === pid) q = x; }); return q; }
+  function g4Tags(pid) { var q = g4UnitOf(pid); return q && q.bagTags ? q.bagTags : []; }
+  function g4PullState(tags) {   /* 'none'(짐 없음) / 'req'(하기 진행 중) / 'done'(전부 완료) / 'loaded'(아직 지시 전) */
+    if (!tags.length) return 'none'; var P = S.pull || {}; if (tags.every(function (t) { return P[t] === 'pulled'; })) return 'done'; if (tags.some(function (t) { return P[t] === 'req' || P[t] === 'pulled'; })) return 'req'; return 'loaded';
+  }
+  /* 43차(GPT 42-F01): 하기 대상 = SV가 오프로드로 정한 승객(S.off)의 미션 데이터 bagTags. 저장된 pull 키로 대상을 추정하지 않음(키가 빠지면 「완료」로 오인) */
+  function g4Targets() { var out = []; Object.keys(S.off || {}).forEach(function (pid) { out = out.concat(g4Tags(pid)); }); return out; }
+  function g4PendingTags() { var P = S.pull || {}; return g4Targets().filter(function (t) { return P[t] !== 'pulled'; }); }   /* 대상 중 명시적으로 pulled가 아닌 것(없음·loaded·req 모두 미완료) */
+  function g4ReqTags() { var P = S.pull || {}; return g4Targets().filter(function (t) { return P[t] === 'req'; }); }   /* 조업사 응답을 기다리는 태그 */
+  function g4AllPulled() { return !g4PendingTags().length; }
+  /* 43차(42-F04): 최종 통보 = 지금 상태 그대로 보내고 반영 확인까지(finalOk = 그때의 maniVer). 완료 전에는 「取り下ろし中」로 말하고, 이후 태그·명단이 바뀌면 다시 필요 */
+  function g4SendFinal(nOff) {
+    var T = g4Targets(), P = S.pull || {}, nP = T.filter(function (t) { return P[t] === 'pulled'; }).length, nR = T.length - nP, all = !nR;
+    var bJa = !T.length ? '取り下ろし荷物なし' : all ? '取り下ろし完了' + nP + '個' : '取り下ろし完了' + nP + '個・作業中' + nR + '個（完了後に再通知）',
+        bKo = !T.length ? '하기 짐 없음' : all ? '하기 완료 ' + nP + '개' : '하기 완료 ' + nP + '개·작업 중 ' + nR + '개(완료 뒤 다시 통보)',
+        bEn = !T.length ? 'no bags to pull' : all ? nP + ' bags pulled' : nP + ' bags pulled, ' + nR + ' still being pulled (will update when done)';
+    S.finalOk = S.maniVer;
+    say('me', L('客室・搭載管理、ゲートです。最終人数 ' + S.boarded + '名' + (S.inf ? '＋幼児' + S.inf : '') + '、オフロード' + nOff + '名、' + bJa + '。…受領、確認しました。', '객실·탑재관리, 게이트입니다. 최종 인원 ' + S.boarded + '명' + (S.inf ? '+유아 ' + S.inf : '') + ', 오프로드 ' + nOff + '명, ' + bKo + '. …수신 확인했습니다.', 'Cabin, load control — gate here. Final count ' + S.boarded + (S.inf ? ' + ' + S.inf + ' infant' : '') + ', ' + nOff + ' offloaded, ' + bEn + '. …Receipt confirmed.'), false, L('客室・搭載管理、ゲートです。最終人数をお送りします。', '', ''));
+    note('good', L('最終人数・座席・手荷物の状態（' + bJa + '）を客室と搭載管理へ通知し、反映を確認しました（名簿 v' + S.maniVer + ' に対して有効）。', '최종 인원·좌석·수하물 상태(' + bKo + ')를 객실과 탑재관리에 통보하고 반영을 확인했습니다(명단 v' + S.maniVer + '에 대해 유효).', 'Sent the final figures, seats and bag status (' + bEn + ') to cabin and load control and confirmed receipt (valid for manifest v' + S.maniVer + ').'), 'passenger/2-7');
+  }
+  function g4SetGateSign(g) { var el = $('#ctrno'); if (el) el.textContent = 'GATE ' + g; }
+  function g4Wait(min) { addTime(min); S.waitMin = (S.waitMin || 0) + min; }   /* 오프로드 절차(SV 결정·하기 지시·응답 대기·명단 수정·최종 통보)에 쓴 시간은 도어 클로즈 조건 때문에 생긴 시간 → 시간 점수에서 제외(4A·2A) */
+  /* ---------- ① 탑승구 변경 대응(09:45): B13 즉시 → 표시 변경 → 旧 게이트 안내 담당 → WCHR 이동 수배 ---------- */
+  function gateTabChange() {
+    var c = S.cur, u = c.p, t = gT(), old = t.gate, nw = g4NewGate(), b = GATE_BCAST.get('B13', G.country), f = c.flags;
+    var wq = g4UnitOf(u.wchrOf), wname = wq ? wq.pp.sur + ' ' + wq.pp.given + '（' + wq.wchCode + '）' : 'WCHR';
+    var h = gWaitBtn(u.at) + '<div class="h3">' + esc(tx(L('搭乗口変更 ' + old + ' → ' + nw, '탑승구 변경 ' + old + ' → ' + nw, 'Gate change ' + old + ' → ' + nw))) + '</div>' +
+      '<div class="why bad">' + esc(tx(L('運航管理より（' + u.at + '）：機材の駐機スポット変更のため、この便の搭乗口を ' + old + ' 番から ' + nw + ' 番に変更。搭乗開始時刻は変わりません。', '운항관리(' + u.at + '): 기재 주기장 변경으로 이 편의 탑승구를 ' + old + '번에서 ' + nw + '번으로 변경. 탑승 시작 시각은 그대로.', 'OPS (' + u.at + '): aircraft stand changed — this flight moves from gate ' + old + ' to gate ' + nw + '. Boarding time unchanged.'))) + '</div>';
+    if (S.clock >= pm(u.at) - 0.01) {
+      h += '<p class="small">' + esc(tx(L('V-G03：変更放送は即時 ＋ 5分間隔で2回。表示を変え、旧搭乗口に案内担当を置き、お手伝いが必要なお客様の移動を手配します。', 'V-G03: 변경 방송은 즉시 + 5분 간격 2회. 표시를 바꾸고, 이전 탑승구에 안내 담당을 두고, 도움이 필요한 승객의 이동을 수배합니다.', 'V-G03: announce now and twice more at 5-minute intervals; update the display, station staff at the old gate, arrange moves for passengers who need help.'))) + '</p>';
+      if (!f.bc13 && !f.bcWait) h += '<div class="chk"><button data-a="ok" id="g-ch-bc"><span>' + esc(tx(L('① 変更放送（1回目・即時）', '① 변경 방송(1회차·즉시)', '① Gate-change announcement (1st, now)'))) + '</span><span class="st"></span></button></div>';
+      else if (f.bc13) h += '<div class="chk"><button disabled><span>' + esc(tx(L('① 変更放送（1回目）', '① 변경 방송(1회차)', '① Announcement (1st)'))) + '</span><span class="st">✔ ' + esc(S.bc.B13 || '') + '</span></button>' +
+        '<button data-a="ok" id="g-ch-sign"' + (f.sign ? ' disabled' : '') + '><span>' + esc(tx(L('② 表示を変更（FIDS・搭乗口サイン）', '② 표시 변경(FIDS·탑승구 사인)', '② Update the display (FIDS, gate sign)'))) + '</span><span class="st">' + (f.sign ? '✔' : '') + '</span></button>' +
+        '<button data-a="ok" id="g-ch-guide"' + (f.guide ? ' disabled' : '') + '><span>' + esc(tx(L('③ 旧 ' + old + ' 番に案内担当（同僚）を配置', '③ 이전 ' + old + '번에 안내 담당(동료) 배치', '③ Station a colleague at old gate ' + old))) + '</span><span class="st">' + (f.guide ? '✔' : '') + '</span></button>' +
+        '<button data-a="ok" id="g-ch-move"' + (f.move ? ' disabled' : '') + '><span>' + esc(tx(L('④ ' + wname + ' の移動を手配（車いす係へ連絡）', '④ ' + wname + ' 이동 수배(휠체어 담당에 연락)', '④ Arrange the move for ' + wname + ' (call the wheelchair team)'))) + '</span><span class="st">' + (f.move ? '✔' : '') + '</span></button></div>';
+      h += '<div class="btns"><button class="btn pri" id="g-ch-done" data-a="ok">' + esc(tx(L('変更対応 完了', '변경 대응 완료', 'Gate change handled'))) + '</button></div>';
+    }
+    scr(h); gBindWait(u.at, gateTabChange);
+    var bb = $('#g-ch-bc'); if (bb) bb.onclick = function () { if (!gLive(c)) return; sfx.tap(); f.bcWait = true; gateTabChange(); };
+    if (f.bcWait && !f.bc13) {
+      /* 방송 고르기(사인 단위의 B9와 같은 방식: 단위를 끝내지 않고 다시 그림) */
+      $('#scr').insertAdjacentHTML('beforeend', gBcastHtml(b, c.flags.picked));
+      gBindBcast(b, function () { f.bc13 = true; S.changeN = 1; S.evChecks.push({ id: 'change-bc1', ok: true }); }, function () { f.bcWait = false; f.wentIn = false; gateTabChange(); });
+      var dn = $('#g-ch-done'); if (dn) dn.disabled = true; return;
+    }
+    var sg = $('#g-ch-sign'); if (sg) sg.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(0.5); f.sign = true; S.gate = nw; g4SetGateSign(nw); gateTabChange(); };
+    var gd = $('#g-ch-guide'); if (gd) gd.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.radio || 1); f.guide = true; say('me', L('ゲート、' + old + '番に一人お願いします。' + nw + '番への変更をご案内ください。', '게이트, ' + old + '번에 한 분 부탁합니다. ' + nw + '번 변경 안내해 주세요.', 'Gate here — one person to gate ' + old + ', please, to redirect passengers to ' + nw + '.')); gateTabChange(); };
+    var mv = $('#g-ch-move'); if (mv) mv.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.phone); f.move = true; S.evChecks.push({ id: 'change-move', ok: true }); say('me', L('車いす係です。ベラエア' + V.flight.replace(/\D/g, '') + '便のWCHRのお客様1名、' + old + '番から' + nw + '番へ移動をお願いします。', '휠체어 담당이죠. 베라에어 ' + V.flight.replace(/\D/g, '') + '편 WCHR 손님 1명, ' + old + '번에서 ' + nw + '번으로 이동 부탁합니다.', 'Wheelchair team? One WCHR passenger on Vela Air ' + V.flight.replace(/\D/g, '') + ' needs moving from gate ' + old + ' to ' + nw + '.')); gateTabChange(); };
+    var dn2 = $('#g-ch-done'); if (dn2) dn2.onclick = function () {
+      if (!gDone(c)) return;
+      var hard = [];
+      if (!f.bc13) { hard.push('bc'); S.evChecks.push({ id: 'change-bc1', ok: false }); }
+      if (!f.move) { hard.push('move'); S.evChecks.push({ id: 'change-move', ok: false }); }
+      if (hard.length) gBad('gt-change', function () { return tx(L('搭乗口変更の対応を省きました：', '탑승구 변경 대응을 생략했습니다: ', 'Skipped gate-change steps: ')) + hard.map(function (k) { return tx(k === 'bc' ? L('変更放送', '변경 방송', 'announcement') : L('車いすのお客様の移動手配', '휠체어 승객 이동 수배', 'wheelchair passenger move')); }).join(' / '); }, 'passenger/2-1');
+      if (!f.sign) { gBad('gt-change-sign', L('搭乗口の表示を変えませんでした。', '탑승구 표시를 바꾸지 않았습니다.', 'Did not update the gate display.'), 'passenger/2-1'); S.gate = nw; g4SetGateSign(nw); }
+      if (!f.guide) gBad('gt-change-guide', L('旧搭乗口に案内担当を置きませんでした。', '이전 탑승구에 안내 담당을 두지 않았습니다.', 'Left nobody at the old gate.'), 'passenger/2-1');
+      if (!hard.length && f.sign && f.guide) note('good', L('搭乗口変更：即時放送・表示変更・旧搭乗口の案内担当・車いすのお客様の移動手配を行いました（5分間隔の放送は続けます）。', '탑승구 변경: 즉시 방송·표시 변경·이전 탑승구 안내 담당·휠체어 승객 이동 수배를 했습니다(5분 간격 방송은 계속).', 'Gate change: announced at once, updated the display, stationed staff at the old gate and arranged the wheelchair move (follow-up announcements continue).'), 'passenger/2-1');
+      sfx.ok(); gateEnd();
+    };
+  }
+  /* ---------- ② 짐 하기 예고(−20, G4-warn): 미탑승 목록을 보고 조업사·탑재관리에 미리 알림 ---------- */
+  function gateTabWarn() {
+    var c = S.cur, u = c.p, f = c.flags, miss = g4Missing();
+    var rows = miss.map(function (x) { var tg = g4Tags(x.pid); return '<tr><td>' + esc(x.who) + '</td><td>' + esc(x.seat) + '</td><td>' + (tg.length ? tg.length + ' · ' + esc(tg.join(', ')) : tx(L('なし', '없음', 'none'))) + '</td><td>' + (tg.length ? 'AKE 3' : '—') + '</td></tr>'; }).join('');
+    var h = gWaitBtn(u.at) + '<div class="h3">' + esc(tx(L('取り下ろし予告（締め切り −10分・出発 −20分）', '하기 예고(마감 −10분·출발 −20분)', 'Offload warning (close −10, STD −20)'))) + '</div>' +
+      '<p class="small">' + esc(tx(L('未搭乗のお客様とお預け荷物（タグ・個数・搭載位置）を確認し、地上係員と搭載管理に「取り下ろしの可能性」を先に伝えます（V-G15）。', '미탑승 승객과 위탁 짐(태그·개수·탑재 위치)을 확인하고, 조업사와 탑재관리에 「하기 가능성」을 먼저 알립니다(V-G15).', 'Check who is missing and their checked bags (tags, count, position) and warn ramp and load control that an offload may follow (V-G15).'))) + '</p>' +
+      '<table class="tbl"><tr><th>' + esc(tx(L('氏名', '성명', 'Name'))) + '</th><th>' + esc(tx(L('座席', '좌석', 'Seat'))) + '</th><th>' + esc(tx(L('預け荷物', '위탁 짐', 'Bags'))) + '</th><th>' + esc(tx(L('搭載', '탑재', 'Loaded'))) + '</th></tr>' + rows + '</table>';
+    if (S.clock >= pm(u.at) - 0.01) h += '<div class="chk"><button data-a="ok" id="g-wn-ramp"' + (f.ramp ? ' disabled' : '') + '><span>' + esc(tx(L('地上係員：タグ番号・個数・位置を予告', '조업사: 태그 번호·개수·위치 예고', 'Ramp: give tag numbers, count, position'))) + '</span><span class="st">' + (f.ramp ? '✔' : '') + '</span></button>' +
+      '<button data-a="ok" id="g-wn-load"' + (f.load ? ' disabled' : '') + '><span>' + esc(tx(L('搭載管理：人数変更の可能性を予告', '탑재관리: 인원 변경 가능성 예고', 'Load control: possible passenger change'))) + '</span><span class="st">' + (f.load ? '✔' : '') + '</span></button></div>' +
+      '<div class="btns"><button class="btn pri" id="g-wn-done" data-a="ok">' + esc(tx(L('予告完了 → 最終案内へ', '예고 완료 → 최종 안내로', 'Warned → final call'))) + '</button><button class="btn ghost" id="g-wn-skip" data-a="gt-warn">' + esc(tx(L('予告なしで最終案内へ（締め切ってから頼む）', '예고 없이 최종 안내로(마감한 뒤 부탁)', 'Skip the warning (ask after the close)'))) + '</button></div>';
+    scr(h); gBindWait(u.at, gateTabWarn);
+    var tagsAll = []; miss.forEach(function (x) { tagsAll = tagsAll.concat(g4Tags(x.pid)); });
+    var r = $('#g-wn-ramp'); if (r) r.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.radio || 1); f.ramp = true; say('me', L('ランプ、ゲートです。ベラエア' + V.flight.replace(/\D/g, '') + '便、未搭乗' + miss.length + '名、うち預け荷物' + tagsAll.length + '個（' + tagsAll.join('・') + '、AKE 3）。締め切り後に取り下ろしをお願いする可能性があります。', '램프, 게이트입니다. 베라에어 ' + V.flight.replace(/\D/g, '') + '편 미탑승 ' + miss.length + '명, 그중 위탁 짐 ' + tagsAll.length + '개(' + tagsAll.join('·') + ', AKE 3). 마감 후 하기를 부탁할 수 있습니다.', 'Ramp, gate here. Vela Air ' + V.flight.replace(/\D/g, '') + ': ' + miss.length + ' not boarded, ' + tagsAll.length + ' checked bags (' + tagsAll.join(', ') + ', AKE 3). We may need an offload after the close.'), false, L('ランプ、ゲートです。締め切り後に取り下ろしをお願いする可能性があります。', '', '')); gateTabWarn(); };
+    var l = $('#g-wn-load'); if (l) l.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.phone); f.load = true; say('me', L('搭載管理、ゲートです。' + V.flight + '、未搭乗' + miss.length + '名。人数が減る可能性があります。確定したら最終人数を送ります。', '탑재관리, 게이트입니다. ' + V.flight + ' 미탑승 ' + miss.length + '명. 인원이 줄 수 있습니다. 확정되면 최종 인원 보내겠습니다.', 'Load control, gate here. ' + V.flight + ': ' + miss.length + ' not boarded, the count may drop. Final figures to follow.'), false, L('搭載管理、ゲートです。人数が減る可能性があります。確定したら最終人数を送ります。', '', '')); gateTabWarn(); };
+    var d = $('#g-wn-done'); if (d) d.onclick = function () { if (!gDone(c)) return; sfx.ok(); if (f.ramp && f.load) { S.evChecks.push({ id: 'warn-20', ok: true }); note('good', L('出発20分前に、未搭乗のお客様の預け荷物（タグ・個数・位置）と人数変更の可能性を地上係員・搭載管理へ予告しました。', '출발 20분 전에 미탑승 승객의 위탁 짐(태그·개수·위치)과 인원 변경 가능성을 조업사·탑재관리에 예고했습니다.', 'At STD −20 warned ramp and load control about the missing passengers\' bags (tags, count, position) and a possible count change.'), 'passenger/2-5'); } else { S.evChecks.push({ id: 'warn-20', ok: false }); gBad('gt-warn', L('取り下ろしの予告が不十分でした（' + (f.ramp ? '' : '地上係員 ') + (f.load ? '' : '搭載管理') + '）。', '하기 예고가 부족했습니다(' + (f.ramp ? '' : '조업사 ') + (f.load ? '' : '탑재관리') + ').', 'Offload warning incomplete (' + (f.ramp ? '' : 'ramp ') + (f.load ? '' : 'load control') + ').'), 'passenger/2-5'); } gateEnd(); };
+    var sk = $('#g-wn-skip'); if (sk) sk.onclick = function () { if (!gDone(c)) return; sfx.ng(); S.evChecks.push({ id: 'warn-20', ok: false }); gBad('gt-warn', L('取り下ろしの予告をせず、締め切ってから頼むことにしました。', '하기 예고를 하지 않고 마감한 뒤 부탁하기로 했습니다.', 'Skipped the advance warning; ramp will hear of it only after the close.'), 'passenger/2-5'); gateEnd(); };
+  }
+  /* ---------- ③ 최종 호출·수색(10:15, G4-search): 이름 호출(B7) → 연락처·동행자·라운지 → 출국·보안 기록은 권한 있는 담당에게 조회 요청 ---------- */
+  function gateTabSearch() {
+    var c = S.cur, u = c.p, f = c.flags, miss = g4Missing(), names = miss.map(function (x) { return x.who; }).join(tx(L('様、', ' 님, ', ', '))), b = GATE_BCAST.get('B7', G.country, names, g4Gate());
+    var h = gWaitBtn(u.at) + '<div class="h3">' + esc(tx(L('最終呼び出し ― 未搭乗 ' + miss.length + '名', '최종 호출 — 미탑승 ' + miss.length + '명', 'Final call — ' + miss.length + ' not boarded'))) + '</div>' +
+      '<div class="why">' + esc(miss.map(function (x) { var tg = g4Tags(x.pid); return x.who + ' ' + x.seat + (tg.length ? ' · ' + tx(L('預け荷物', '위탁 짐', 'bags')) + ' ' + tg.length : ''); }).join(' / ')) + '</div>';
+    if (S.clock >= pm(u.at) - 0.01) {
+      if (!f.paged && !f.pageWait) h += '<div class="chk"><button data-a="ok" id="g-sr-page"><span>' + esc(tx(L('① お名前で呼び出し放送（B7）', '① 이름 호출 방송(B7)', '① Page by name (B7)'))) + '</span><span class="st"></span></button></div>';
+      else if (f.paged) h += '<div class="chk"><button disabled><span>' + esc(tx(L('① お名前で呼び出し', '① 이름 호출', '① Paged by name'))) + '</span><span class="st">✔</span></button>' +
+        '<button data-a="ok" id="g-sr-contact"' + (f.contact ? ' disabled' : '') + '><span>' + esc(tx(L('② 予約の連絡先に電話・同行者・ラウンジに確認', '② 예약 연락처에 전화·동행자·라운지 확인', '② Call the booking contact; check companions and the lounge'))) + '</span><span class="st">' + (f.contact ? '✔' : '') + '</span></button>' +
+        '<button data-a="ok" id="g-sr-rec"' + (f.rec ? ' disabled' : '') + '><span>' + esc(tx(L('③ 出国・保安検査の通過記録を、権限のある担当者へ照会依頼', '③ 출국·보안검색 통과 기록을 권한 있는 담당자에게 조회 요청', '③ Ask the authorised officer to check immigration / security records'))) + '</span><span class="st">' + (f.rec ? '✔' : '') + '</span></button>' +
+        '<button data-a="gt-search" id="g-sr-self"><span>' + esc(tx(L('③\' 自分で出国記録の画面を開いて検索する', '③\' 내가 직접 출국 기록 화면을 열어 검색', '③\' Look up the immigration records myself'))) + '</span><span class="st"></span></button></div>' +
+        '<div class="btns"><button class="btn pri" id="g-sr-done" data-a="ok">' + esc(tx(L('確認完了 → 締め切りへ', '확인 완료 → 마감으로', 'Done → close'))) + '</button></div>';
+    }
+    scr(h); gBindWait(u.at, gateTabSearch);
+    var pg = $('#g-sr-page'); if (pg) pg.onclick = function () { if (!gLive(c)) return; sfx.tap(); f.pageWait = true; gateTabSearch(); };
+    if (f.pageWait && !f.paged) {
+      $('#scr').insertAdjacentHTML('beforeend', gBcastHtml(b, c.flags.picked));
+      gBindBcast(b, function () { f.paged = true; }, function () { f.pageWait = false; f.wentIn = false; gateTabSearch(); });
+      return;
+    }
+    var ct = $('#g-sr-contact'); if (ct) ct.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.phone * 2); f.contact = true; say('me', L('予約の電話番号は応答なし。同行者の登録なし。ラウンジにも該当のお客様はいらっしゃいません。', '예약 전화번호는 응답 없음. 동행자 등록 없음. 라운지에도 해당 손님 안 계십니다.', 'No answer on the booking number, no companions on the record, not in the lounge.')); gateTabSearch(); };
+    var rc = $('#g-sr-rec'); if (rc) rc.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.phone); f.rec = true; say('me', L('出国と保安検査の通過記録の照会を、権限のある担当者にお願いしました。結果待ちです。', '출국과 보안검색 통과 기록 조회를 권한 있는 담당자에게 부탁했습니다. 결과 대기 중.', 'Asked the authorised officer to check immigration and security records. Waiting for the result.')); gateTabSearch(); };
+    var sf = $('#g-sr-self'); if (sf) sf.onclick = function () { if (!gLive(c)) return; sfx.ng(); if (!f.selfBad) { f.selfBad = true; gBad('gt-search', L('権限のない出国記録を自分で検索しようとしました（照会は権限のある担当者へ）。', '권한이 없는 출국 기록을 직접 검색하려 했습니다(조회는 권한 있는 담당자에게).', 'Tried to search immigration records without authorisation (requests go through the authorised officer).'), 'passenger/2-5'); } gateTabSearch(); };
+    var dn = $('#g-sr-done'); if (dn) dn.onclick = function () { if (!gDone(c)) return; sfx.ok(); if (f.contact && f.rec) { S.evChecks.push({ id: 'search', ok: true }); if (!f.selfBad) note('good', L('最終呼び出し：お名前で呼び出し、連絡先・同行者・ラウンジを確認し、出国・保安の記録は権限のある担当者へ照会を依頼しました。', '최종 호출: 이름 호출, 연락처·동행자·라운지 확인, 출국·보안 기록은 권한 있는 담당자에게 조회 요청했습니다.', 'Final call: paged by name, checked contact, companions and the lounge, and requested the records through the authorised officer.'), 'passenger/2-5'); } else { S.evChecks.push({ id: 'search', ok: false }); gBad('gt-search', L('呼び出しだけで終え、連絡先・同行者・記録の照会をしませんでした。', '호출만 하고 연락처·동행자·기록 조회를 하지 않았습니다.', 'Stopped at paging — no contact, companions or record request.'), 'passenger/2-5'); } gateEnd(); };
+  }
+  /* ---------- ④ 마감 + 오프로드(G4-offload, 2A): SV 결정 → 하기 지시(태그) → 태그별 완료 확인 → 명단·좌석 수정(maniVer+1) → 최종 통보(finalOk) ---------- */
+  function gateTabCloseD4() {
+    var c = S.cur, u = c.p, f = c.flags, mani = gManifest(), miss = g4Missing();
+    var offPids = f.offPids || [], tags = []; offPids.forEach(function (pid) { tags = tags.concat(g4Tags(pid)); });
+    var st = g4PullState(tags), pend = g4ReqTags();
+    var h = gWaitBtn(u.at) + '<div class="h3">' + esc(tx(L('搭乗締め切り', '탑승 마감', 'Boarding close'))) + '</div><dl class="kv"><dt>' + esc(tx(L('名簿（有効）', '명단(유효)', 'Manifest (valid)'))) + '</dt><dd>' + mani.length + '</dd><dt>' + esc(tx(L('搭乗済み', '탑승 완료', 'Boarded'))) + '</dt><dd>' + S.boarded + '</dd><dt>' + esc(tx(L('未搭乗', '미탑승', 'Not boarded'))) + '</dt><dd class="' + (miss.length ? 'hl' : '') + '">' + miss.length + (miss.length ? ' · ' + esc(miss.map(function (x) { var tg = g4Tags(x.pid); return x.who + ' ' + x.seat + (tg.length ? '（' + tx(L('預け荷物', '위탁 짐', 'bags')) + ' ' + tg.length + '）' : ''); }).join(', ')) : '') + '</dd>' +
+      (offPids.length ? '<dt>' + esc(tx(L('オフロード', '오프로드', 'Offload'))) + '</dt><dd>' + offPids.length + ' · ' + esc(offPids.map(function (pid) { var q = g4UnitOf(pid); return q ? q.pp.sur + ' ' + q.pp.given : pid; }).join(', ')) + '</dd>' : '') + '</dl>';
+    if (S.clock >= pm(u.at) - 0.01) {
+      if (!f.svOff) {
+        h += '<p class="small">' + esc(tx(L('締め切り時刻です。未搭乗のお客様はSVに報告し、オフロードの決定を仰ぎます（決定・取り下ろし指示・完了確認は別の事柄）。', '마감 시각입니다. 미탑승 승객은 SV에 보고하고 오프로드 결정을 받습니다(결정·하기 지시·완료 확인은 서로 다른 사건).', 'Closing time. Report the missing passengers to the SV and get the offload decision (decision, pull request and completion are separate events).'))) + '</p>' +
+          '<div class="btns"><button class="btn pri" id="g-of-sv" data-a="ok">' + esc(tx(L('SVに報告 → オフロードの決定を仰ぐ', 'SV에 보고 → 오프로드 결정 요청', 'Report to the SV → get the offload decision'))) + '</button><button class="btn" id="g-of-self" data-a="gt-offload-nosv">' + esc(tx(L('自分の判断でオフロードを決める', '내 판단으로 오프로드 결정', 'Decide the offload myself'))) + '</button></div>';
+      } else {
+        h += '<div class="why ok">' + esc(tx(L('SV決定：未搭乗' + offPids.length + '名をオフロード（mani = off）。', 'SV 결정: 미탑승 ' + offPids.length + '명 오프로드(mani = off).', 'SV decision: offload the ' + offPids.length + ' missing passengers (mani = off).'))) + '</div>';
+        if (tags.length) h += '<div class="why"><b>' + esc(tx(L('お預け荷物の取り下ろし', '위탁 짐 하기', 'Checked-bag offload'))) + '</b><br>' + tags.map(function (t) { var w = (S.pull || {})[t]; return esc(t) + ' — ' + esc(tx(w === 'pulled' ? L('取り下ろし完了 ✔', '하기 완료 ✔', 'pulled ✔') : w === 'req' ? L('取り下ろし中（係員の応答待ち）', '하기 중(조업사 응답 대기)', 'pulling (waiting for ramp)') : L('搭載済み', '탑재됨', 'loaded'))); }).join('<br>') + '</div>';
+        else h += '<div class="why">' + esc(tx(L('お預け荷物なし → 取り下ろしの手順はありません。', '위탁 짐 없음 → 하기 절차 없음.', 'No checked bags → no offload step.'))) + '</div>';
+        h += '<div class="chk">';
+        if (tags.length && st === 'loaded') h += '<button data-a="ok" id="g-of-pull"><span>' + esc(tx(L('① 地上係員に取り下ろしを指示（タグ ' + tags.length + '件）', '① 조업사에 하기 지시(태그 ' + tags.length + '건)', '① Tell ramp to pull the bags (' + tags.length + ' tags)'))) + '</span><span class="st"></span></button>';
+        if (tags.length && st !== 'loaded') h += '<button disabled><span>' + esc(tx(L('① 取り下ろし指示', '① 하기 지시', '① Pull requested'))) + '</span><span class="st">✔</span></button>';
+        if (pend.length) h += '<button data-a="ok" id="g-of-ack"><span>' + esc(tx(L('② 係員の応答を待ち、タグごとに完了を確認（残り ' + pend.length + '）', '② 조업사 응답을 기다려 태그별 완료 확인(남은 ' + pend.length + ')', '② Wait for ramp and confirm each tag (' + pend.length + ' left)'))) + '</span><span class="st"></span></button>';
+        if (tags.length && st === 'done') h += '<button disabled><span>' + esc(tx(L('② タグごとの完了確認', '② 태그별 완료 확인', '② Every tag confirmed'))) + '</span><span class="st">✔</span></button>';
+        var canFix = !tags.length || st === 'done' || st === 'req';
+        h += '<button data-a="ok" id="g-of-fix"' + (!canFix || f.fixed ? ' disabled' : '') + '><span>' + esc(tx(L('③ 名簿・座席を修正（名簿バージョン +1）' + (st === 'req' ? '（完了確認は後で）' : ''), '③ 명단·좌석 수정(명단 버전 +1)' + (st === 'req' ? '(완료 확인은 나중에)' : ''), '③ Update manifest and seats (manifest version +1)' + (st === 'req' ? ' (confirm tags later)' : '')))) + '</span><span class="st">' + (f.fixed ? '✔' : '') + '</span></button>';
+        var fresh = f.finalDone && S.finalOk === S.maniVer;   /* 43차(42-F04): 통보 뒤 태그·명단이 바뀌면 다시 필요 */
+        h += '<button data-a="ok" id="g-of-final"' + (!f.fixed || fresh ? ' disabled' : '') + '><span>' + esc(tx(f.finalDone && !fresh ? L('④ 状態が変わりました → 最新の状態で最終通知を送り、反映を確認（名簿 v' + S.maniVer + '）', '④ 상태가 바뀌었습니다 → 최신 상태로 최종 통보를 보내고 반영 확인(명단 v' + S.maniVer + ')', '④ Status changed → send the latest final figures and confirm receipt (manifest v' + S.maniVer + ')') : L('④ 最終人数・座席・手荷物の状態を客室・搭載管理へ通知し、反映を確認', '④ 최종 인원·좌석·수하물 상태를 객실·탑재관리에 통보하고 반영 확인', '④ Send final figures, seats and bag status to cabin and load control and confirm receipt'))) + '</span><span class="st">' + (fresh ? '✔' : '') + '</span></button></div>';
+        h += '<div class="btns"><button class="btn pri" id="g-of-done" data-a="ok"' + (f.finalDone ? '' : ' disabled') + '>' + esc(tx(L('締め切り完了', '마감 완료', 'Close complete'))) + '</button></div>';
+      }
+    }
+    scr(h); gBindWait(u.at, gateTabCloseD4);
+    var sv = $('#g-of-sv'); if (sv) sv.onclick = function () { if (!gLive(c)) return; sfx.ok(); gAt(u.at); g4Wait(M.cost.phone); c.svDone = true; f.svOff = true; f.offPids = miss.map(function (x) { return x.pid; }); S.off = S.off || {}; f.offPids.forEach(function (pid) { S.off[pid] = true; }); gSync();
+      var tags = []; f.offPids.forEach(function (pid) { tags = tags.concat(g4Tags(pid)); });   /* 43차(42-F03): 보고 시점에 미탑승자 기준으로 다시 셈(클릭 전 빈 목록을 쓰지 않음) */
+      say('me', L('SV、ゲートです。締め切り時刻、未搭乗' + miss.length + '名、連絡つかず。預け荷物は' + (tags.length ? tags.length + '個搭載済み' : 'なし') + 'です。…オフロード、了解しました。', 'SV, 게이트입니다. 마감 시각, 미탑승 ' + miss.length + '명, 연락 안 됨. 위탁 짐은 ' + (tags.length ? tags.length + '개 탑재됨' : '없음') + '. …오프로드, 알겠습니다.', 'SV, gate here. Closing time, ' + miss.length + ' not boarded, unreachable. Checked bags: ' + (tags.length ? tags.length + ' loaded' : 'none') + '. …Offload, understood.'), false, L('SV、ゲートです。締め切り時刻、未搭乗のお客様、連絡つかず。…オフロード、了解しました。', '', '')); note('good', L('締め切り時刻に未搭乗のお客様' + miss.length + '名（預け荷物' + (tags.length ? tags.length + '個搭載済み' : 'なし') + '）をSVに報告し、オフロードの決定を受けました。', '마감 시각에 미탑승 승객 ' + miss.length + '명(위탁 짐 ' + (tags.length ? tags.length + '개 탑재됨' : '없음') + ')을 SV에 보고하고 오프로드 결정을 받았습니다.', 'Reported the ' + miss.length + ' missing passengers (' + (tags.length ? tags.length + ' checked bags loaded' : 'no checked bags') + ') to the SV at closing time and received the offload decision.'), 'passenger/2-5'); gateTabCloseD4(); };
+    var se = $('#g-of-self'); if (se) se.onclick = function () { if (!gLive(c)) return; sfx.ng(); gAt(u.at); gBad('gt-offload-nosv', L('SVに確認せず、自分の判断でオフロードを決めました。', 'SV에 확인하지 않고 혼자 판단으로 오프로드를 결정했습니다.', 'Decided the offload without asking the SV.'), 'passenger/2-5'); f.svOff = true; f.offPids = miss.map(function (x) { return x.pid; }); S.off = S.off || {}; f.offPids.forEach(function (pid) { S.off[pid] = true; }); gSync(); gateTabCloseD4(); };
+    var pl = $('#g-of-pull'); if (pl) pl.onclick = function () { if (!gLive(c)) return; sfx.ok(); g4Wait(M.cost.radio || 1); S.pull = S.pull || {}; tags.forEach(function (t) { S.pull[t] = 'req'; }); S.maniVer++;   /* 2A: 태그 상태 변경 → 명단 버전 +1 */
+      say('me', L('ランプ、ゲートです。オフロード決定。タグ ' + tags.join('・') + '、AKE 3、取り下ろしをお願いします。完了したらタグ番号で教えてください。', '램프, 게이트입니다. 오프로드 결정. 태그 ' + tags.join('·') + ', AKE 3, 하기 부탁합니다. 끝나면 태그 번호로 알려 주세요.', 'Ramp, gate here. Offload confirmed. Tags ' + tags.join(', ') + ', AKE 3 — please pull them and call back with each tag number.'), false, L('ランプ、ゲートです。オフロード決定。取り下ろしをお願いします。完了したらタグ番号で教えてください。', '', '')); gateTabCloseD4(); };
+    var ak = $('#g-of-ack'); if (ak) ak.onclick = function () { if (!gLive(c)) return; var t = g4ReqTags()[0]; if (!t) return; sfx.ok(); g4Wait(1.5); S.pull[t] = 'pulled'; S.maniVer++; say('me', L('…ランプより：タグ ' + t + ' 取り下ろし完了。確認しました。', '…램프: 태그 ' + t + ' 하기 완료. 확인했습니다.', '…Ramp: tag ' + t + ' pulled. Confirmed.'), false, L('ランプより、取り下ろし完了。確認しました。', '', '')); if (g4AllPulled()) note('good', L('取り下ろしをタグごとに完了確認しました（' + tags.join('・') + '）。応答を待った時間は安全のための待機です。', '하기를 태그별로 완료 확인했습니다(' + tags.join('·') + '). 응답을 기다린 시간은 안전을 위한 대기입니다.', 'Confirmed the offload tag by tag (' + tags.join(', ') + '). Waiting for ramp was a safety wait.'), 'passenger/2-5'); gateTabCloseD4(); };
+    var fx = $('#g-of-fix'); if (fx) fx.onclick = function () { if (!gLive(c)) return; sfx.ok(); g4Wait(0.8); f.fixed = true; S.maniVer++; note('good', L('名簿と座席を修正しました（名簿バージョン ' + S.maniVer + '）。', '명단과 좌석을 수정했습니다(명단 버전 ' + S.maniVer + ').', 'Updated the manifest and seats (manifest version ' + S.maniVer + ').'), 'passenger/2-5'); gateTabCloseD4(); };
+    var fn = $('#g-of-final'); if (fn) fn.onclick = function () { if (!gLive(c)) return; sfx.ok(); g4Wait(M.cost.phone); f.finalDone = true; g4SendFinal(offPids.length); gateTabCloseD4(); };
+    var dn = $('#g-of-done'); if (dn) dn.onclick = function () { if (!gDone(c)) return; sfx.ok(); addTime(0.3); gateEnd(); };
+  }
+  /* ---------- ⑤ 오프로드 뒤 도착(G4-after): 짐 상태(진행 중 / 완료 / 없음)에 맞게 설명, 원칙대로 태우지 않고 SV가 후속 편 안내 ---------- */
+  function gateTabAfterD4(c, p) {
+    var f = c.flags, tags = p.bagTags || [], st = g4PullState(tags), isOff = !!(S.off || {})[gPid(p)];
+    c.needSV = true; c.svDone = true; c.skipMood = true;   /* 후속 편 안내는 SV(보고 항목), 오프로드 결과는 만족도 평균에서 제외(정책 결과) */
+    var lines = { req: L('申し訳ございません。すでに搭乗の締め切りを過ぎ、お荷物を降ろしているところです。この後の便へのご案内を責任者からいたします。', '죄송합니다. 이미 탑승 마감이 지나 짐을 내리고 있는 중입니다. 다음 편 안내는 책임자가 해 드리겠습니다.', 'I am sorry — boarding has closed and your bags are being offloaded now. Our supervisor will arrange the next flight.'),
+                  done: L('申し訳ございません。すでに搭乗の締め切りを過ぎ、お荷物も降ろしております。この後の便へのご案内を責任者からいたします。', '죄송합니다. 이미 탑승 마감이 지나 짐도 내렸습니다. 다음 편 안내는 책임자가 해 드리겠습니다.', 'I am sorry — boarding has closed and your bags have already been offloaded. Our supervisor will arrange the next flight.'),
+                  none: L('申し訳ございません。すでに搭乗の締め切りを過ぎ、お客様の搭乗は取り消されております。お預けのお荷物はございませんので、この後の便へのご案内を責任者からいたします。', '죄송합니다. 이미 탑승 마감이 지나 손님의 탑승은 취소되었습니다. 맡기신 짐은 없으니 다음 편 안내는 책임자가 해 드리겠습니다.', 'I am sorry — boarding has closed and your boarding has been cancelled. You have no checked bags, so our supervisor will arrange the next flight.') };
+    var state = !tags.length ? 'none' : st === 'done' ? 'done' : st === 'req' ? 'req' : 'loaded';   /* 43차(42-F01): 하기 지시 전(loaded)은 정상 흐름에 없음 — 진행 중으로 바꿔 정답을 주지 않음(세 설명 모두 사실과 다름) */
+    var h = gBpCard(p, p.pp.sur + ' ' + p.pp.given, p.seat) + gBeep(L('締め切り後の到着（' + hm(S.clock) + '、締め切り ' + gT().close + '）。' + (isOff ? 'SV決定でオフロード済み。' : '') + (tags.length ? 'お預け荷物 ' + tags.length + '個：' + tx(st === 'done' ? L('取り下ろし完了', '', '') : st === 'req' ? L('取り下ろし中', '', '') : L('搭載済み', '', '')) : 'お預け荷物なし') + '。', '마감 후 도착(' + hm(S.clock) + ', 마감 ' + gT().close + '). ' + (isOff ? 'SV 결정으로 오프로드됨. ' : '') + (tags.length ? '위탁 짐 ' + tags.length + '개: ' + tx(st === 'done' ? L('', '하기 완료', '') : st === 'req' ? L('', '하기 중', '') : L('', '탑재됨', '')) : '위탁 짐 없음') + '.', 'Arrived after the close (' + hm(S.clock) + ', close ' + gT().close + '). ' + (isOff ? 'Offloaded by SV decision. ' : '') + (tags.length ? tags.length + ' checked bags: ' + tx(st === 'done' ? L('', '', 'pulled') : st === 'req' ? L('', '', 'being pulled') : L('', '', 'loaded')) : 'no checked bags') + '.'));
+    var opts = [{ k: 'done', t: lines.done }, { k: 'req', t: lines.req }, { k: 'none', t: lines.none }];
+    h += '<p class="small">' + esc(tx(L('お荷物の実際の状態に合う説明を選びます。原則どおり搭乗はせず、後続便の案内はSVが行います。', '짐의 실제 상태에 맞는 설명을 고릅니다. 원칙대로 태우지 않고, 후속 편 안내는 SV가 합니다.', 'Choose the explanation that matches the actual bag status. No boarding; the SV arranges the next flight.'))) + '</p><div class="btns">' +
+      opts.map(function (o) { return '<button class="btn' + (o.k === state ? ' pri' : '') + '" id="g-af-' + o.k + '" data-a="' + (o.k === state ? 'ok' : 'gt-after') + '">' + esc(tx(o.t)) + '</button>'; }).join('') +
+      '<button class="btn ghost" id="g-af-board" data-a="gt-after-board">' + esc(tx(L('申し訳ないので、そのまま乗っていただく', '미안하니까 그대로 탑승시킴', 'Feel sorry — let them board anyway'))) + '</button></div>';
+    scr(h);
+    opts.forEach(function (o) { var b = $('#g-af-' + o.k); if (b) b.onclick = function () { if (!gDone(c)) return; addTime(M.cost.talk);
+      if (o.k === state) { sfx.ok(); note('good', L('オフロード後に到着したお客様に、お荷物の実際の状態（' + tx(state === 'done' ? L('取り下ろし完了', '', '') : state === 'req' ? L('取り下ろし中', '', '') : L('預け荷物なし', '', '')) + '）に合わせて説明し、SVが後続便を案内しました。', '오프로드 뒤 도착한 손님에게 짐의 실제 상태(' + tx(state === 'done' ? L('', '하기 완료', '') : state === 'req' ? L('', '하기 중', '') : L('', '위탁 짐 없음', '')) + ')에 맞게 설명하고 SV가 후속 편을 안내했습니다.', 'Explained the actual bag status (' + tx(state === 'done' ? L('', '', 'pulled') : state === 'req' ? L('', '', 'being pulled') : L('', '', 'no checked bags')) + ') to the late passenger and the SV arranged the next flight.'), 'passenger/2-5'); }
+      else { sfx.ng(); gBad('gt-after', L('お荷物の実際の状態と違う説明をしました（実際：' + tx(state === 'done' ? L('取り下ろし完了', '', '') : state === 'req' ? L('取り下ろし中', '', '') : L('預け荷物なし', '', '')) + '）。', '짐의 실제 상태와 다른 설명을 했습니다(실제: ' + tx(state === 'done' ? L('', '하기 완료', '') : state === 'req' ? L('', '하기 중', '') : L('', '위탁 짐 없음', '')) + ').', 'Gave an explanation that did not match the actual bag status (actual: ' + tx(state === 'done' ? L('', '', 'pulled') : state === 'req' ? L('', '', 'being pulled') : L('', '', 'no checked bags')) + ').'), 'passenger/2-5'); }
+      c.mood = 35; f.noshow = true; say('me', o.t); gPaxLater(c, p.say.no || p.say.hello, 900); gateEnd(1800); }; });
+    var bd = $('#g-af-board'); if (bd) bd.onclick = function () { if (!gDone(c)) return; sfx.ng(); addTime(M.cost.talk + M.cost.phone); gBad('gt-after-board', L('オフロード後のお客様を感情的にそのまま乗せようとしました。SVより：オフロード済みのため搭乗不可、後続便を案内。', '오프로드 뒤 손님을 감정적으로 그대로 태우려 했습니다. SV: 오프로드됐으므로 탑승 불가, 후속 편 안내.', 'Tried to board the passenger after the offload. SV: already offloaded, cannot board — next flight.'), 'passenger/2-5'); c.mood = 30; f.noshow = true; say('me', L('…SVより：オフロード済みのため搭乗できません。この後の便をご案内します。', '…SV: 오프로드됐으므로 탑승하실 수 없습니다. 다음 편을 안내해 드리겠습니다.', '…SV: you have been offloaded and cannot board. We will arrange the next flight.')); gPaxLater(c, p.say.no || p.say.hello, 900); gateEnd(1800); };
+  }
+  /* ---------- ⑥ 도어 클로즈 잠금(2A·32-F04): 최신 maniVer에 대한 최종 통보 + 객실 대조 일치 + 하기 해당 태그 전부 pulled ---------- */
+  function gateTabCountD4() {
+    var c = S.cur, d = gDoorCheck(), mani = d.mani, pend = g4PendingTags(), reqT = g4ReqTags(), finalOk = S.finalOk === S.maniVer, allOk = d.ok && finalOk && !pend.length;
+    var row = function (ok, t) { return '<dt>' + (ok ? '✔' : '✖') + '</dt><dd class="' + (ok ? '' : 'hl') + '">' + esc(tx(t)) + '</dd>'; };
+    var h = '<div class="h3">' + esc(tx(L('人数確認とドアクローズ', '인원 대조와 도어 클로즈', 'Headcount and door close'))) + '</div><dl class="kv"><dt>' + esc(tx(L('名簿（有効）', '명단(유효)', 'Manifest (valid)'))) + '</dt><dd>' + mani.length + '</dd><dt>' + esc(tx(L('地上（システム搭乗数）', '지상(시스템 탑승 수)', 'Ground (system count)'))) + '</dt><dd>' + S.scanned + (S.inf ? ' + INF ' + S.inf : '') + '</dd><dt>' + esc(tx(L('客室（実際の人数）', '객실(실제 인원)', 'Cabin (actual count)'))) + '</dt><dd class="' + (d.ok ? '' : 'hl') + '">' + S.boarded + (S.inf ? ' + INF ' + S.inf : '') + '</dd></dl>' +
+      '<div class="why"><b>' + esc(tx(L('ドアクローズの条件（2A）', '도어 클로즈 조건(2A)', 'Door-close conditions (2A)'))) + '</b><dl class="kv">' +
+      row(d.ok, L('客室との人数・名簿の照合が一致', '객실과 인원·명단 대조 일치', 'Cabin count and manifest match')) +
+      row(finalOk, L('最終人数・変更の通知が最新の名簿（v' + S.maniVer + '）に反映', '최종 인원·변경 통보가 최신 명단(v' + S.maniVer + ')에 반영', 'Final figures sent for the latest manifest (v' + S.maniVer + ')')) +
+      row(!pend.length, L('取り下ろし対象のタグがすべて完了' + (pend.length ? '（残り ' + pend.join('・') + '）' : ''), '하기 대상 태그 전부 완료' + (pend.length ? '(남은 ' + pend.join('·') + ')' : ''), 'Every offload tag confirmed' + (pend.length ? ' (' + pend.join(', ') + ' pending)' : ''))) + '</dl></div>';
+    if (!d.ok && !c.flags.found) h += '<div class="why bad">' + esc(tx(L('名簿と搭乗者が一致しません（名簿 ' + mani.length + ' / 搭乗 ' + S.boarded + '）。', '명단과 탑승자가 일치하지 않습니다(명단 ' + mani.length + ' / 탑승 ' + S.boarded + ').', 'Manifest and boarded do not match (manifest ' + mani.length + ' / boarded ' + S.boarded + ').'))) + '</div>';
+    if (!d.ok && c.flags.found) h += '<div class="why bad">' + esc(tx(L('未搭乗：', '미탑승: ', 'Not boarded: '))) + esc(d.missing.map(function (x) { return x.who + ' ' + x.seat; }).join(', ') || '—') + (d.extra.length ? ' · ' + esc(tx(L('名簿にない搭乗者 ', '명단에 없는 탑승자 ', 'boarded but not on manifest '))) + d.extra.length : '') + (!d.same ? ' · ' + esc(tx(L('未スキャン', '미스캔', 'unscanned'))) : '') + '</div>';
+    h += '<div class="btns">' + (reqT.length ? '<button class="btn" id="g-dc-ack" data-a="ok">' + esc(tx(L('係員の応答を確認（タグ ' + reqT[0] + '）', '조업사 응답 확인(태그 ' + reqT[0] + ')', 'Confirm ramp reply (tag ' + reqT[0] + ')'))) + '</button>' : '') +
+      (!finalOk ? '<button class="btn" id="g-dc-final" data-a="ok">' + esc(tx(L('最新の状態で最終通知を送り、反映を確認（名簿 v' + S.maniVer + '）', '최신 상태로 최종 통보를 보내고 반영 확인(명단 v' + S.maniVer + ')', 'Send the latest final figures and confirm receipt (manifest v' + S.maniVer + ')'))) + '</button>' : '') +
+      (!d.ok ? (!c.flags.found ? '<button class="btn" id="g-find" data-a="ok">' + esc(tx(L('差異の原因を確認する', '차이의 원인 확인', 'Find the cause'))) + '</button>' : !d.same ? '<button class="btn" id="g-fix" data-a="ok">' + esc(tx(L('再スキャンして修正', '다시 스캔해 수정', 'Re-scan and fix'))) + '</button>' : '') : '') +
+      '<button class="btn pri" id="g-door" data-a="ok"' + (allOk ? '' : ' disabled') + '>' + esc(tx(L('条件を満たして閉める → ドアクローズ', '조건 충족 → 도어 클로즈', 'All conditions met → close the door'))) + '</button>' +
+      (allOk ? '' : '<button class="btn ghost" id="g-force" data-a="' + (pend.length ? 'gt-offload' : !finalOk ? 'gt-final' : 'gt-count') + '">' + esc(tx(L('確認せずに閉める（SV確認なし）', '확인 없이 닫기(SV 확인 없음)', 'Close without checking (no SV)'))) + '</button>') + '</div>';   /* 43차(42-F02): 세 조건이 모두 참이면 오답 버튼 없음 */
+    scr(h);
+    var ak = $('#g-dc-ack'); if (ak) ak.onclick = function () { if (!gLive(c)) return; var t = g4ReqTags()[0]; if (!t) return; sfx.ok(); g4Wait(1.5); S.pull[t] = 'pulled'; S.maniVer++; say('me', L('…ランプより：タグ ' + t + ' 取り下ろし完了。確認しました。', '…램프: 태그 ' + t + ' 하기 완료. 확인했습니다.', '…Ramp: tag ' + t + ' pulled. Confirmed.'), false, L('ランプより、取り下ろし完了。確認しました。', '', '')); gateTabCountD4(); };
+    var fn = $('#g-dc-final'); if (fn) fn.onclick = function () { if (!gLive(c)) return; sfx.ok(); g4Wait(M.cost.phone); g4SendFinal(Object.keys(S.off || {}).length); gateTabCountD4(); };
+    var f = $('#g-find'); if (f) f.onclick = function () { if (!gLive(c)) return; sfx.tap(); addTime(1.5); c.flags.found = true; gateTabCountD4(); };
+    var x = $('#g-fix'); if (x) x.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(1.0); Object.keys(S.brd).forEach(function (k) { S.brd[k].scan = true; }); gSync(); note('good', L('人数の差異の原因（未スキャン）を見つけて修正し、一致させました。', '인원 차이의 원인(미스캔)을 찾아 수정해 일치시켰습니다.', 'Found the cause (an unscanned pass), fixed it and matched the counts.'), 'passenger/2-7'); gateTabCountD4(); };
+    var dr = $('#g-door'); if (dr) dr.onclick = function () { var dd = gDoorCheck(); if (!(dd.ok && S.finalOk === S.maniVer && g4AllPulled()) || !gDone(c)) return; sfx.ok(); note('good', L('三つの条件（客室照合の一致・最新名簿への最終通知・取り下ろし完了）を確認してドアクローズしました。', '세 조건(객실 대조 일치·최신 명단에 대한 최종 통보·하기 완료)을 확인하고 도어 클로즈했습니다.', 'Closed the door with all three conditions met (cabin match, final figures for the latest manifest, offload complete).'), 'passenger/2-7'); addTime(0.5); S.doorAt = S.clock; gateEnd(); };
+    var fo = $('#g-force'); if (fo) fo.onclick = function () { var pp = g4PendingTags(); if (!pp.length && S.finalOk === S.maniVer && gDoorCheck().ok) { gateTabCountD4(); return; }   /* 43차(42-F02): 위반이 없으면 기록하지 않음(버튼도 숨김) */
+      if (!gDone(c)) return; sfx.ng();
+      if (pp.length) gSafe('gt-offload', L('取り下ろしが完了していない（' + pp.join('・') + '）のに、確認せずにドアクローズを確定しました。', '하기가 끝나지 않았는데(' + pp.join('·') + ') 확인 없이 도어 클로즈를 확정했습니다.', 'Confirmed door close with the offload incomplete (' + pp.join(', ') + ').'), 'passenger/2-5');
+      else if (S.finalOk !== S.maniVer) gSafe('gt-final', L('名簿の変更が最終通知に反映されていないのに、確認せずにドアクローズを確定しました。', '명단 변경이 최종 통보에 반영되지 않았는데 확인 없이 도어 클로즈를 확정했습니다.', 'Confirmed door close without the final figures reflecting the manifest change.'), 'passenger/2-7');
+      else if (!gDoorCheck().ok) gSafe('gt-count', L('人数が合わないまま、確認せずにドアクローズしました。', '인원이 맞지 않는데 확인 없이 도어 클로즈했습니다.', 'Closed the door with a headcount mismatch and no check.'), 'passenger/2-7');
+      S.doorAt = S.clock; gateEnd(); };
+  }
+  /* ---------- 저장본 검사 확장(Day 4 상태) ---------- */
+  (function () {
+    var why = GT4.stateWhy;
+    GT4.stateWhy = function (st, mi, ids) {
+      var w = why(st, mi, ids); if (w) return w;
+      function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+      if (st.gate != null && !(typeof st.gate === 'string' && /^\d{1,3}[A-Z]?$/.test(st.gate))) return 'gate';
+      if (st.off != null && (!obj(st.off) || !Object.keys(st.off).every(function (k) { return /^[a-z0-9-]+(\.\d{1,2})?$/.test(k) && st.off[k] === true; }))) return 'off';
+      if (st.pull != null && (!obj(st.pull) || !Object.keys(st.pull).every(function (k) { return /^[A-Z]{2}\d{6}$/.test(k) && (st.pull[k] === 'req' || st.pull[k] === 'pulled'); }))) return 'pull';
+      if (st.finalOk != null && !(typeof st.finalOk === 'number' && Math.floor(st.finalOk) === st.finalOk && st.finalOk >= 0 && st.finalOk <= 9)) return 'finalOk';
+      if (st.changeN != null && !(typeof st.changeN === 'number' && Math.floor(st.changeN) === st.changeN && st.changeN >= 0 && st.changeN <= 3)) return 'changeN';
+      /* off인 사람은 탑승 목록에 없어야 함 */
+      if (obj(st.off) && obj(st.brd) && Object.keys(st.off).some(function (k) { return !!st.brd[k]; })) return 'off:brd';
+      /* 43차(42-F01): off·pull 관계 — 미션 데이터의 bagTags가 기준. 저장은 단위 경계에서만 일어나므로
+         · 오프로드 마감 단위가 끝났으면 off가 있어야 하고, off 승객의 대상 태그는 전부 pull에 있어야 함(지시 없이 마감 완료 불가)
+         · pull 키는 대상 태그만(누락·추가·다른 태그 거부), 마감 전이면 off·pull 모두 비어 있어야 함 · finalOk ≤ maniVer */
+      if (mi && mi.variants && st.gate != null) {
+        var vk = Object.keys(mi.variants).filter(function (k) { var t = mi.variants[k].t || {}; return t.gate === st.gate || t.gateAlt === st.gate; })[0];
+        if (vk) {
+          var units = mi.variants[vk].pax(), byId = {}; units.forEach(function (q) { byId[q.id] = q; });
+          var closeU = units.filter(function (q) { return q.kind === 'close' && q.offload; })[0];
+          var closeDone = !!closeU && (st.results || []).some(function (r) { var id = r && r.p ? (('__pax' in r.p) ? r.p.__pax : r.p.id) : null; return id === closeU.id; });
+          var offK = obj(st.off) ? Object.keys(st.off) : [], pullK = obj(st.pull) ? Object.keys(st.pull) : [];
+          if (closeU && !closeDone && (offK.length || pullK.length)) return 'off:early';
+          if (closeDone && !offK.length) return 'off:missing';
+          var target = []; for (var i = 0; i < offK.length; i++) { var q = byId[offK[i]]; if (!q || q.kind !== 'pax') return 'off:unit'; target = target.concat(q.bagTags || []); }
+          if (pullK.some(function (t) { return target.indexOf(t) < 0; })) return 'pull:extra';
+          if (closeDone && target.some(function (t) { return pullK.indexOf(t) < 0; })) return 'pull:missing';
+        }
+      }
+      if (st.finalOk != null && typeof st.maniVer === 'number' && st.finalOk > st.maniVer) return 'finalOk:ver';
+      return null;
+    };
+  })();
+  /* ===================== 게이트편 Day 5 「遅延・オーバーブッキング」(44차) =====================
+     gate_d4.js 뒤에 같은 클로저로 이어 붙음. 합의본 v2 3절 Day 5 · 2A(mani: moved·sby·added) · 4A 지연 시각표·지연 안내 정책 · V-G11(대기 순위)·V-G13(쿠폰)·V-G14(자원자).
+     새 처리 단위: delay(①전망 B15 ②확정 B16+쿠폰 B17) · ob(SV 실제 인원 확인 → B18) · sby(좌석이 생기면 V-G11 순위대로 배정) / pax issue 'vol'(자원자: 조건 설명 → 동의 → 발행 | 발행 전 철회 존중) · 'rebooked'(콜센터 변경, 오지 않음) · p.sby(대기 승객: added면 보통 탑승, 아니면 다음 편 안내)
+     도어는 Day 4의 세 조건 잠금(count lock) 재사용 — 명단 버전이 바뀐 뒤 최종 통보(G5-final) 필요
+     상태 추가: S.moved{pid}(mani=moved) · S.added{pid}(sby→added) · S.seats(오늘 사용 가능 좌석) · S.delay·S.etd · S.coupon */
+  var GT5 = window.SAGA_STAGES.gt;
+  GATE_TEXT.tabs.delay = L('遅延', '지연', 'Delay'); GATE_TEXT.tabs.ob = L('予約超過', '예약 초과', 'Oversold'); GATE_TEXT.tabs.sby = L('空席待ち', '대기 승객', 'Standby');
+  ['moved', 'added', 'seats', 'delay', 'etd', 'coupon'].forEach(function (k) { if (GATE_RUNF.indexOf(k) < 0) GATE_RUNF.push(k); });
+  (function () { var init = GT5.initState; GT5.initState = function (dd, M, V, seed) { var s = init(dd, M, V, seed); s.moved = {}; s.added = {}; s.seats = M.seatsToday || M.aircraft.seats; s.delay = false; s.etd = null; s.coupon = false; return s; }; })();
+  GT5.tab.delay = gateTabDelay; GT5.tab.ob = gateTabOb; GT5.tab.sby = gateTabSby;
+  GT5.tabPose.delay = 'announce'; GT5.tabPose.ob = 'explain'; GT5.tabPose.sby = 'explain';
+  var GMISS5 = {
+    'gt-delay': L('遅延の案内が不適切（推測の時刻／見込みを確定のように／確定を見込みのまま）', '지연 안내 부적절(추측 시각 / 전망을 확정처럼 / 확정을 전망인 채)', 'Improper delay announcement (guessed time / estimate stated as confirmed / confirmed time still as estimate)'),
+    'gt-delay-silent': L('公式見込みがあるのに遅延を案内しなかった', '공식 전망이 있는데 지연을 안내하지 않음', 'Had an official estimate but made no delay announcement'),
+    'gt-coupon': L('確定120分以上の遅延にお食事券を案内しない／SV承認なしの宿泊', '확정 120분 이상 지연에 식사 쿠폰 안내 없음 / SV 승인 없는 숙박', 'No meal voucher for a confirmed delay of 120+ min / hotel without SV approval'),
+    'gt-ob-count': L('SVに実際の予想人数を確認せずに協力者を募った', 'SV에 실제 예상 인원을 확인하지 않고 자원자 모집', 'Called for volunteers without confirming the real expected count with the SV'),
+    'gt-ob': L('協力者対応の違反（条件説明・同意なしの変更／放送で補償額の約束・一方的な搭乗拒否）', '자원자 처리 위반(조건 설명·동의 없이 변경 / 방송에서 보상 금액 약속·일방적 탑승 거절)', 'Volunteer handling violation (moved without terms/consent, or promised an amount / bumped passengers in the announcement)'),
+    'gt-withdraw': L('代替便の搭乗券発行前の撤回を無視した', '대체편 탑승권 발행 전의 철회를 무시', 'Ignored a withdrawal made before the new boarding pass was issued'),
+    'gt-sby': L('空席待ちの順位（V-G11）を無視して配席した', '대기 순위(V-G11)를 무시하고 배석', 'Assigned the seat out of standby priority order (V-G11)') };
+  Object.keys(GMISS5).forEach(function (k) { GMISSL[k] = GMISS5[k]; });
+  (function () { var A = { 'gt-delay': 'announce-only-official-estimate-then-confirmed-time', 'gt-delay-silent': 'announce-delay-when-estimate-known', 'gt-coupon': 'meal-voucher-at-120-min-hotel-needs-sv', 'gt-ob-count': 'confirm-real-count-with-sv-first', 'gt-ob': 'explain-terms-and-get-consent', 'gt-withdraw': 'respect-withdrawal-before-issue', 'gt-sby': 'assign-standby-in-priority-order' }; Object.keys(A).forEach(function (k) { GACT[k] = A[k]; }); })();
+  ['gt-delay', 'gt-ob', 'gt-withdraw'].forEach(function (k) { if (GOPS.indexOf(k) < 0) GOPS.push(k); });
+  (function () { var un = gUnitName; gUnitName = function (c) { var k = c.p.kind; if (k === 'delay') return tx(L('出発遅延', '출발 지연', 'Delay')) + (c.p.step ? ' ' + c.p.step : ''); if (k === 'ob') return tx(L('予約超過', '예약 초과', 'Oversold')); if (k === 'sby') return tx(L('空席待ちの配席', '대기 승객 배석', 'Standby seating')); return un(c); }; })();
+  function g5UnitOf(pid) { var q = null; S.list.forEach(function (x) { if (x.kind === 'pax' && gPid(x) === pid && !x.back) q = x; }); return q; }
+  function g5Name(pid) { var q = g5UnitOf(pid); return q ? q.pp.sur + ' ' + q.pp.given : pid; }
+  function g5InList() { return gManifest().length; }   /* 지금 유효 명단(좌석 있는 사람) */
+  function g5EtdL() { var t = gT(); return { ja: t.etd, ko: t.etd, en: t.etd }; }
+  /* ---------- ① 출발 지연: step 1 공식 전망(B15) · step 2 확정(B16) + 식사 쿠폰(B17, V-G13) ---------- */
+  function gateTabDelay() {
+    var c = S.cur, u = c.p, f = c.flags, t = gT();
+    var h = gWaitBtn(u.at) + '<div class="h3">' + esc(tx(u.step === 1 ? L('出発遅延 ― 運航管理より（見込み）', '출발 지연 — 운항관리(전망)', 'Departure delay — OPS (estimate)') : L('出発遅延 ― 新しい出発時刻の確定', '출발 지연 — 새 출발 시각 확정', 'Departure delay — new time confirmed'))) + '</div>';
+    if (u.step === 1) h += '<div class="why bad">' + esc(tx(L('運航管理（' + u.at + '）：この便に使用する飛行機（到着便）が遅れています。公式見込み：出発は ' + t.etd + ' ごろ。まだ確定ではありません。', '운항관리(' + u.at + '): 이 편에 사용할 항공기(도착편)가 늦어지고 있습니다. 공식 전망: 출발 ' + t.etd + '쯤. 아직 확정은 아닙니다.', 'OPS (' + u.at + '): the inbound aircraft for this flight is late. Official estimate: departure at around ' + t.etd + '. Not confirmed yet.'))) + '</div>' +
+      '<p class="small">' + esc(tx(L('4A 遅延案内の方針：SV・運航の公式見込みは「見込み」と明示して案内できます。根拠のない推測の時刻は案内しません。', '4A 지연 안내 정책: SV·운항의 공식 전망은 「전망」임을 밝혀 안내할 수 있습니다. 근거 없는 추측 시각은 안내하지 않습니다.', '4A delay policy: an official estimate from the SV or OPS may be announced as an estimate. Never announce a guessed time.'))) + '</p>';
+    else h += '<div class="why bad">' + esc(tx(L('運航管理（' + u.at + '）：新しい出発時刻 ' + t.etd + ' に確定（STD ' + t.std + ' から 120分の遅延）。搭乗開始 ' + t.board + '、搭乗口 ' + g4Gate() + '。', '운항관리(' + u.at + '): 새 출발 시각 ' + t.etd + ' 확정(STD ' + t.std + '에서 120분 지연). 탑승 시작 ' + t.board + ', 탑승구 ' + g4Gate() + '.', 'OPS (' + u.at + '): new departure time confirmed ' + t.etd + ' (120 min after STD ' + t.std + '). Boarding ' + t.board + ', gate ' + g4Gate() + '.'))) + '</div>';
+    var ready = S.clock >= pm(u.at) - 0.01;
+    if (ready && u.step === 1) {
+      if (!f.bcWait && !f.bc15) h += '<div class="btns"><button class="btn pri" id="g-dl-bc" data-a="ok">' + esc(tx(L('遅延の見込みを放送する（B15）', '지연 전망을 방송(B15)', 'Announce the delay estimate (B15)'))) + '</button><button class="btn ghost" id="g-dl-skip" data-a="gt-delay-silent">' + esc(tx(L('確定するまで放送しない', '확정될 때까지 방송하지 않음', 'Say nothing until it is confirmed'))) + '</button></div>';
+    }
+    if (ready && u.step === 2) {
+      if (!f.bc16 && !f.bcWait) h += '<div class="btns"><button class="btn pri" id="g-dl-bc" data-a="ok">' + esc(tx(L('新しい出発時刻を放送する（B16）', '새 출발 시각을 방송(B16)', 'Announce the new departure time (B16)'))) + '</button></div>';
+      if (f.bc16 && !f.couponDone && !f.bcWait) h += '<div class="why"><b>' + esc(tx(L('遅延補償（V-G13）', '지연 보상(V-G13)', 'Delay compensation (V-G13)'))) + '</b><br>' + esc(tx(L('確定遅延 120分 → ？', '확정 지연 120분 → ?', 'Confirmed delay 120 min → ?'))) + '</div>' +
+        '<div class="btns"><button class="btn pri" id="g-dl-coupon" data-a="ok">' + esc(tx(L('120分以上 → お食事券を用意し、放送で案内（B17）', '120분 이상 → 식사 쿠폰 준비, 방송 안내(B17)', '120 min or more → prepare meal vouchers and announce (B17)'))) + '</button><button class="btn" id="g-dl-nocoupon" data-a="gt-coupon">' + esc(tx(L('2時間なら食事券は不要', '2시간이면 식사 쿠폰은 불필요', 'Two hours — no voucher needed'))) + '</button><button class="btn" id="g-dl-hotel" data-a="gt-coupon">' + esc(tx(L('ホテルを手配して案内する', '호텔을 수배해 안내', 'Arrange a hotel and announce it'))) + '</button></div>';
+    }
+    scr(h); gBindWait(u.at, gateTabDelay);
+    var bb = $('#g-dl-bc'); if (bb) bb.onclick = function () { if (!gLive(c)) return; sfx.tap(); f.bcWait = true; f.bcId = u.step === 1 ? 'B15' : 'B16'; gateTabDelay(); };
+    var sk = $('#g-dl-skip'); if (sk) sk.onclick = function () { if (!gDone(c)) return; sfx.ng(); S.evChecks.push({ id: 'delay-b15', ok: false }); gBad('gt-delay-silent', L('公式見込み（' + t.etd + 'ごろ）があるのに、確定まで遅延を案内しませんでした。', '공식 전망(' + t.etd + '쯤)이 있는데 확정될 때까지 지연을 안내하지 않았습니다.', 'Had an official estimate (around ' + t.etd + ') but announced nothing until confirmation.'), 'passenger/5-4'); gateEnd(); };
+    if (f.bcWait) {
+      var b = GATE_BCAST.get(f.bcId, G.country, null, g4Gate()); b.badCode = f.bcId === 'B17' ? 'gt-bcast' : 'gt-delay';
+      $('#scr').insertAdjacentHTML('beforeend', gBcastHtml(b, c.flags.picked));
+      gBindBcast(b, function () {
+        if (f.bcId === 'B15') { f.bc15 = true; S.evChecks.push({ id: 'delay-b15', ok: true }); }
+        if (f.bcId === 'B16') { f.bc16 = true; S.delay = true; S.etd = t.etd; S.evChecks.push({ id: 'delay-b16', ok: true }); var gb = $('#gbar'); if (gb) { gb.innerHTML = barInner(); bindBar(); } updateBar(); }   /* 업무 바에 ETD 표시(STD는 유지, 4A) */
+        if (f.bcId === 'B17') { f.couponDone = true; S.coupon = true; S.evChecks.push({ id: 'coupon', ok: true }); note('good', L('確定120分以上の遅延にお食事券を用意し、搭乗口カウンターでの受け取りを案内しました（V-G13）。', '확정 120분 이상 지연에 식사 쿠폰을 준비하고 탑승구 카운터 수령을 안내했습니다(V-G13).', 'Prepared meal vouchers for the confirmed 120-minute delay and announced collection at the gate counter (V-G13).'), 'passenger/5-4'); }
+      }, function () { f.bcWait = false; f.wentIn = false; c.flags.picked = []; c.flags['bc' + f.bcId] = true; if (f.bcId === 'B15' || f.bcId === 'B17') { gDone(c); gateEnd(300); } else gateTabDelay(); });
+      return;
+    }
+    var cp = $('#g-dl-coupon'); if (cp) cp.onclick = function () { if (!gLive(c)) return; sfx.tap(); f.bcWait = true; f.bcId = 'B17'; gateTabDelay(); };
+    var nc = $('#g-dl-nocoupon'); if (nc) nc.onclick = function () { if (!gDone(c)) return; sfx.ng(); S.evChecks.push({ id: 'coupon', ok: false }); gBad('gt-coupon', L('確定120分の遅延なのに、お食事券を案内しませんでした（V-G13：120分以上は食事券）。', '확정 120분 지연인데 식사 쿠폰을 안내하지 않았습니다(V-G13: 120분 이상은 식사 쿠폰).', 'A confirmed 120-minute delay, but no meal voucher (V-G13: vouchers from 120 minutes).'), 'passenger/5-4'); gateEnd(); };
+    var ht = $('#g-dl-hotel'); if (ht) ht.onclick = function () { if (!gDone(c)) return; sfx.ng(); S.evChecks.push({ id: 'coupon', ok: false }); gBad('gt-coupon', L('SVの承認なしに宿泊を手配しようとしました（V-G13：宿泊はSV承認、今回は食事券）。', 'SV 승인 없이 숙박을 수배하려 했습니다(V-G13: 숙박은 SV 승인, 이번은 식사 쿠폰).', 'Tried to arrange a hotel without SV approval (V-G13: hotels need the SV; this calls for meal vouchers).'), 'passenger/5-4'); gateEnd(); };
+  }
+  /* ---------- ② 예약 초과: SV에 실제 예상 인원 확인 → 자원자 모집 방송 B18 ---------- */
+  function gateTabOb() {
+    var c = S.cur, u = c.p, f = c.flags, t = gT(), inl = g5InList(), rb = u.rebookedId;
+    var h = gWaitBtn(u.at) + '<div class="h3">' + esc(tx(L('予約超過（オーバーブッキング）', '예약 초과(오버부킹)', 'Oversold flight'))) + '</div><dl class="kv"><dt>' + esc(tx(L('使用可能座席', '사용 가능 좌석', 'Seats available'))) + '</dt><dd>' + S.seats + '</dd><dt>' + esc(tx(L('有効名簿', '유효 명단', 'Valid manifest'))) + '</dt><dd class="' + (inl > S.seats ? 'hl' : '') + '">' + inl + (inl > S.seats ? ' (+' + (inl - S.seats) + ')' : '') + '</dd></dl>';
+    if (S.clock >= pm(u.at) - 0.01) {
+      if (!f.svc) h += '<p class="small">' + esc(tx(L('G5-ob：まずSVが実際の予想人数（変更済み・不搭乗見込み）を確認してから、協力者を募ります。', 'G5-ob: 먼저 SV가 실제 예상 인원(변경 완료·불탑승 예상)을 확인한 뒤 자원자를 모집합니다.', 'G5-ob: first the SV confirms the real expected count (already rebooked, likely no-shows), then call for volunteers.'))) + '</p>' +
+        '<div class="btns"><button class="btn pri" id="g-ob-sv" data-a="ok">' + esc(tx(L('SVに実際の予想人数を確認', 'SV에 실제 예상 인원 확인', 'Confirm the real expected count with the SV'))) + '</button><button class="btn" id="g-ob-skip" data-a="gt-ob-count">' + esc(tx(L('確認せず、すぐ協力者を募る放送をする', '확인 없이 바로 자원자 모집 방송', 'Skip the check and call for volunteers now'))) + '</button></div>';
+      else {
+        h += '<div class="why ok">' + esc(tx(L('SV確認：' + g5Name(rb) + ' はコールセンターで午後便（' + t.alt + '）に変更済み（来場なし）→ 実際 ' + inl + '名 / ' + S.seats + '席 → ' + Math.max(0, inl - S.seats) + '名超過。協力者を募ってください。', 'SV 확인: ' + g5Name(rb) + '은 콜센터에서 오후 편(' + t.alt + ')으로 변경 완료(오지 않음) → 실제 ' + inl + '명 / ' + S.seats + '석 → ' + Math.max(0, inl - S.seats) + '명 초과. 자원자를 모집하세요.', 'SV: ' + g5Name(rb) + ' was already rebooked by the call centre to the ' + t.alt + ' flight (not coming) → actual ' + inl + ' / ' + S.seats + ' seats → ' + Math.max(0, inl - S.seats) + ' over. Call for volunteers.'))) + '</div>';
+        if (!f.bcWait && !f.bc18) h += '<div class="btns"><button class="btn pri" id="g-ob-bc" data-a="ok">' + esc(tx(L('協力者を募る放送（B18）', '자원자 모집 방송(B18)', 'Call for volunteers (B18)'))) + '</button></div>';
+      }
+    }
+    scr(h); gBindWait(u.at, gateTabOb);
+    function svc(skipped) { c.needSV = true; if (!skipped) c.svDone = true; f.svc = true; if (rb && !(S.moved || {})[rb]) { S.moved = S.moved || {}; S.moved[rb] = true; S.maniVer++; f.mv = [rb]; gSync(); } }   /* 45차(44-F01): 이 단위가 바꾼 대상을 결과 기록에 남김(저장본 대조용) */
+    var sv = $('#g-ob-sv'); if (sv) sv.onclick = function () { if (!gLive(c)) return; sfx.ok(); gAt(u.at); addTime(M.cost.phone); svc(false); say('me', L('SV、ゲートです。予約17名、使用可能15席です。実際の予想人数を確認したいのですが。…コールセンターで1名変更済み、了解しました。協力者を募ります。', 'SV, 게이트입니다. 예약 17명, 사용 가능 15석입니다. 실제 예상 인원을 확인하고 싶은데요. …콜센터에서 1명 변경 완료, 알겠습니다. 자원자를 모집하겠습니다.', 'SV, gate here. 17 booked, 15 seats available. Could you confirm the real expected count? …One already rebooked by the call centre, understood. I will call for volunteers.'), false, L('SV、ゲートです。実際の予想人数を確認したいのですが。…了解しました。協力者を募ります。', '', '')); note('good', L('協力者を募る前に、SVと実際の予想人数（変更済み1名）を確認しました。', '자원자를 모집하기 전에 SV와 실제 예상 인원(변경 완료 1명)을 확인했습니다.', 'Confirmed the real expected count with the SV (one already rebooked) before calling for volunteers.'), 'passenger/1-5'); gateTabOb(); };
+    var sk = $('#g-ob-skip'); if (sk) sk.onclick = function () { if (!gLive(c)) return; sfx.ng(); gAt(u.at); gBad('gt-ob-count', L('SVに実際の予想人数を確認せずに協力者を募りました（変更済みのお客様を数えたまま）。', 'SV에 실제 예상 인원을 확인하지 않고 자원자를 모집했습니다(변경 완료된 손님을 센 채).', 'Called for volunteers without confirming the real count with the SV (still counting an already-rebooked passenger).'), 'passenger/1-5'); svc(true); f.bcWait = true; gateTabOb(); };
+    var bb = $('#g-ob-bc'); if (bb) bb.onclick = function () { if (!gLive(c)) return; sfx.tap(); f.bcWait = true; gateTabOb(); };
+    if (f.bcWait && !f.bc18) {
+      var b = GATE_BCAST.get('B18', G.country, null, g4Gate()); b.badCode = 'gt-ob';   /* 45차(44-F02): B18의 두 오답(금액 약속·일방 탑승 거절)은 업무 위반 */
+      b.badNote = L('協力者を募る放送で、補償の金額を約束する／一方的に搭乗をお断りする案内を選びました（G5-ob：補償はSV承認の範囲で係員が個別に説明、変更はお客様の同意で）。', '자원자 모집 방송에서 보상 금액을 약속하거나 일방적으로 탑승을 거절하는 안내를 골랐습니다(G5-ob: 보상은 SV 승인 범위에서 직원이 개별 설명, 변경은 손님의 동의로).', 'In the call for volunteers, chose an announcement that promised an amount or bumped passengers outright (G5-ob: compensation is explained individually within SV approval; changes need consent).');
+      $('#scr').insertAdjacentHTML('beforeend', gBcastHtml(b, c.flags.picked));
+      gBindBcast(b, function () { f.bc18 = true; S.evChecks.push({ id: 'ob-call', ok: true }); }, function () { f.bcWait = false; gDone(c); gateEnd(300); });
+    }
+  }
+  /* ---------- ③ 자원자(V-G14): 조건 설명 → 동의 → 대체편 발행(moved) / 발행 전 철회는 존중 ---------- */
+  function gateTabVolD5(c, p) {
+    var f = c.flags, t = gT();
+    var h = gBpCard(p, p.pp.sur + ' ' + p.pp.given, p.seat) + '<div class="why">' + esc(tx(L('協力のお申し出（予約超過）。V-G14：条件説明 → 同意 → 代替便の搭乗券発行で完了。発行前の撤回は尊重。補償はSV承認の範囲（放送では約束しない）。', '협력 신청(예약 초과). V-G14: 조건 설명 → 동의 → 대체편 탑승권 발행으로 완료. 발행 전 철회는 존중. 보상은 SV 승인 범위(방송에서 약속하지 않음).', 'A volunteer (oversold). V-G14: explain terms → consent → issue the new boarding pass = done. A withdrawal before issue is respected. Compensation within SV approval.'))) + '</div>';
+    if (!f.volTerms) h += '<div class="btns"><button class="btn pri" id="g-vl-terms" data-a="ok">' + esc(tx(L('条件を説明：午後 ' + t.alt + ' 便へ変更・補償はSV承認の範囲・お預け荷物は載せ替え', '조건 설명: 오후 ' + t.alt + '편으로 변경·보상은 SV 승인 범위·위탁 짐 옮겨 싣기', 'Explain: move to the ' + t.alt + ' flight, compensation within SV approval, bags transferred'))) + '</button><button class="btn" id="g-vl-force" data-a="gt-ob">' + esc(tx(L('説明と同意を省いて、そのまま別便に変更する', '설명과 동의를 생략하고 바로 다른 편으로 변경', 'Skip the terms and consent, just move them'))) + '</button></div>';
+    else if (!f.volAgreed) h += '<div class="why ok">' + esc(tx(L('お客様：同意', '손님: 동의', 'Passenger: agrees'))) + '</div><div class="btns"><button class="btn pri" id="g-vl-agree" data-a="ok">' + esc(tx(L('同意を記録 → 代替便の搭乗券を発行へ', '동의 기록 → 대체편 탑승권 발행으로', 'Record consent → issue the new boarding pass'))) + '</button></div>';
+    else if (p.withdraw && !f.volWd) h += '<div class="why bad">' + esc(tx(L('発行の直前、お客様：「やっぱりやめます」', '발행 직전, 손님: 「역시 안 되겠어요」', 'Just before issue, the passenger: "I have to take it back."'))) + '</div><div class="btns"><button class="btn pri" id="g-vl-respect" data-a="ok">' + esc(tx(L('発行前なので撤回を尊重 → この便にご搭乗、SVに別の協力者を依頼', '발행 전이므로 철회 존중 → 이 편에 탑승, SV에 다른 자원자 요청', 'Before issue → respect the withdrawal, they fly today; ask the SV for another volunteer'))) + '</button><button class="btn" id="g-vl-ignore" data-a="gt-withdraw">' + esc(tx(L('もう同意したので、そのまま変更する', '이미 동의했으니 그대로 변경', 'They already agreed — move them anyway'))) + '</button></div>';
+    else h += '<div class="btns"><button class="btn pri" id="g-vl-issue" data-a="ok">' + esc(tx(L('代替便（' + t.alt + '）の搭乗券を発行 → 名簿を変更（moved）', '대체편(' + t.alt + ') 탑승권 발행 → 명단 변경(moved)', 'Issue the ' + t.alt + ' boarding pass → manifest: moved'))) + '</button></div>';
+    scr(h);
+    var tm = $('#g-vl-terms'); if (tm) tm.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(M.cost.talk); f.volTerms = true; say('me', L('ご協力ありがとうございます。本日午後 ' + t.alt + ' 発の便に変更となり、補償はSVの承認の範囲でご用意します。お預けのお荷物は新しい便に載せ替えます。', '협력 감사합니다. 오늘 오후 ' + t.alt + ' 출발 편으로 변경되고, 보상은 SV 승인 범위에서 준비합니다. 위탁 짐은 새 편으로 옮겨 싣습니다.', 'Thank you for helping. You would move to the ' + t.alt + ' departure; compensation is arranged within SV approval, and your checked bags are transferred.'), false, L('ご協力ありがとうございます。補償はSVの承認の範囲でご用意します。お預けのお荷物は新しい便に載せ替えます。', '', '')); gPaxLater(c, p.say.agree, 900); gateTabScan(); };
+    var fc = $('#g-vl-force'); if (fc) fc.onclick = function () { if (!gDone(c)) return; sfx.ng(); addTime(M.cost.talk); gBad('gt-ob', L('条件の説明と同意を省いて、お客様を別便に変更しました（G5-ob：説明→同意→発行）。', '조건 설명과 동의를 생략하고 손님을 다른 편으로 변경했습니다(G5-ob: 설명→동의→발행).', 'Moved the passenger without explaining terms or getting consent (G5-ob: explain → consent → issue).'), 'passenger/1-5'); S.evChecks.push({ id: 'vol-consent', ok: false }); g5Move(c, p); gateEnd(900); };
+    var ag = $('#g-vl-agree'); if (ag) ag.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(0.3); f.volAgreed = true; if (p.withdraw) gPaxLater(c, p.say.withdraw, 300); gateTabScan(); };
+    var rs = $('#g-vl-respect'); if (rs) rs.onclick = function () { if (!gDone(c)) return; sfx.ok(); addTime(M.cost.phone); f.volWd = true; f.volKeep = true; S.evChecks.push({ id: 'withdraw-respect', ok: true }); say('me', L('かしこまりました。発行前ですので、この便にそのままご搭乗ください。…SV、ゲートです。協力者1名が撤回、別の協力者をお願いします。', '알겠습니다. 발행 전이니 이 편에 그대로 탑승하세요. …SV, 게이트입니다. 자원자 1명 철회, 다른 자원자 부탁합니다.', 'Of course — nothing has been issued, so please fly with us today. …SV, gate here: one volunteer withdrew, we need another.'), false, L('かしこまりました。発行前ですので、この便にそのままご搭乗ください。SV、ゲートです。協力者1名が撤回、別の協力者をお願いします。', '', '')); gPaxLater(c, p.say.ok, 900); note('good', L('代替便の搭乗券発行前の撤回を尊重し、SVに別の協力者を依頼しました（V-G14）。', '대체편 탑승권 발행 전의 철회를 존중하고 SV에 다른 자원자를 요청했습니다(V-G14).', 'Respected the withdrawal made before issue and asked the SV for another volunteer (V-G14).'), 'passenger/1-5'); gateEnd(1500); };
+    var ig = $('#g-vl-ignore'); if (ig) ig.onclick = function () { if (!gDone(c)) return; sfx.ng(); addTime(M.cost.talk); f.volWd = true; f.volKeep = true; S.evChecks.push({ id: 'withdraw-respect', ok: false }); gBad('gt-withdraw', L('発行前の撤回を無視して変更しようとしました。SVが止め、お客様はこの便にご搭乗（V-G14：発行完了＝処理完了、その前の撤回は尊重）。', '발행 전 철회를 무시하고 변경하려 했습니다. SV가 막고 손님은 이 편에 탑승(V-G14: 발행 완료 = 처리 완료, 그 전 철회는 존중).', 'Tried to move the passenger despite a withdrawal before issue. The SV stopped it; they fly today (V-G14: issue = done, withdrawals before that are respected).'), 'passenger/1-5'); say('me', L('…SVより：発行前の撤回は尊重します。お客様はこの便にご搭乗ください。', '…SV: 발행 전 철회는 존중합니다. 손님은 이 편에 탑승하세요.', '…SV: a withdrawal before issue is respected. Please fly with us today.')); gateEnd(1500); };
+    var iss = $('#g-vl-issue'); if (iss) iss.onclick = function () { if (!gDone(c)) return; sfx.ok(); addTime(M.cost.talk); S.evChecks.push({ id: 'vol-consent', ok: true }); g5Move(c, p); say('me', L('新しい搭乗券です。' + t.alt + ' 発、搭乗口は後ほどご案内します。ご協力ありがとうございました。', '새 탑승권입니다. ' + t.alt + ' 출발, 탑승구는 나중에 안내드리겠습니다. 협력 감사합니다.', 'Here is your new boarding pass for the ' + t.alt + ' departure; we will tell you the gate later. Thank you for helping.'), false, L('新しい搭乗券です。搭乗口は後ほどご案内します。ご協力ありがとうございました。', '', '')); gPaxLater(c, p.say.ok, 900); note('good', L('条件を説明し同意を得て、代替便の搭乗券を発行しました（名簿：moved、名簿バージョン ' + S.maniVer + '）。', '조건을 설명하고 동의를 받아 대체편 탑승권을 발행했습니다(명단: moved, 명단 버전 ' + S.maniVer + ').', 'Explained the terms, got consent and issued the new boarding pass (manifest: moved, version ' + S.maniVer + ').'), 'passenger/1-5'); gateEnd(1500); };
+  }
+  function g5Move(c, p) { S.moved = S.moved || {}; S.moved[gPid(p)] = true; S.maniVer++; c.flags.moved = true; c.flags.mv = [gPid(p)]; c.skipMood = true; gSync(); }
+  /* ---------- ④ 대기 승객 배석(V-G11): 좌석이 생기면 순위(① 비자발적 ② 유료 ③ 일반, 같은 등급은 접수순)대로 ---------- */
+  function gateTabSby() {
+    var c = S.cur, u = c.p, f = c.flags, inl = g5InList(), cands = (u.cands || []).map(function (pid) { return g5UnitOf(pid); }).filter(Boolean);
+    var free = Math.max(0, (f.released ? S.seats : S.seats + 1) - inl);
+    var h = gWaitBtn(u.at) + '<div class="h3">' + esc(tx(L('空席待ちの配席', '대기 승객 배석', 'Standby seating'))) + '</div>';
+    if (S.clock >= pm(u.at) - 0.01) {
+      if (!f.released) h += '<div class="why ok">' + esc(tx(L('整備（' + u.at + '）：ブロックしていた座席1席を解除。使用可能座席 ' + S.seats + ' → ' + (S.seats + 1) + '。', '정비(' + u.at + '): 블록했던 좌석 1석 해제. 사용 가능 좌석 ' + S.seats + ' → ' + (S.seats + 1) + '.', 'Maintenance (' + u.at + '): the blocked seat is released. Seats ' + S.seats + ' → ' + (S.seats + 1) + '.'))) + '</div><div class="btns"><button class="btn pri" id="g-sb-rel" data-a="ok">' + esc(tx(L('座席数を更新（' + (S.seats + 1) + '席）', '좌석 수 갱신(' + (S.seats + 1) + '석)', 'Update seats (' + (S.seats + 1) + ')'))) + '</button></div>';
+      else {
+        h += '<dl class="kv"><dt>' + esc(tx(L('使用可能座席', '사용 가능 좌석', 'Seats'))) + '</dt><dd>' + S.seats + '</dd><dt>' + esc(tx(L('有効名簿', '유효 명단', 'Manifest'))) + '</dt><dd>' + inl + '</dd><dt>' + esc(tx(L('空席', '빈 좌석', 'Free'))) + '</dt><dd class="hl">' + free + '</dd></dl>' +
+          '<p class="small">' + esc(tx(L('V-G11 順位：① 前便の欠航・遅延で回ってきた非自発的な空席待ち ② 有料の空席待ち（運賃の高い順） ③ 一般の空席待ち。同じ等級の中では受付時刻順。', 'V-G11 순위: ① 앞 편 결항·지연으로 넘어온 비자발적 대기 ② 유료 대기(운임 높은 순) ③ 일반 대기. 같은 등급 안에서는 접수 시각순.', 'V-G11 priority: ① involuntary standby from a cancelled/delayed earlier flight ② paid standby (highest fare first) ③ general standby. Within a class, by check-in time.'))) + '</p>' +
+          '<table class="tbl"><tr><th>' + esc(tx(L('氏名', '성명', 'Name'))) + '</th><th>' + esc(tx(L('種別', '종별', 'Type'))) + '</th><th>' + esc(tx(L('受付', '접수', 'Listed'))) + '</th><th></th></tr>' +
+          cands.map(function (q) { var pid = gPid(q), done = !!(S.added || {})[pid]; return '<tr><td>' + esc(q.pp.sur + ' ' + q.pp.given) + '</td><td>' + esc(tx(q.sbyType)) + '</td><td>' + esc(q.sbyAt) + '</td><td>' + (done ? '✔ ' + esc(q.seat) : (free ? '<button class="btn" data-sby="' + pid + '" data-a="' + (g5BestSby(g5Left(cands)) === pid ? 'ok' : 'gt-sby') + '">' + esc(tx(L('配席・発行', '배석·발행', 'Seat & issue'))) + '</button>' : '')) + '</td></tr>'; }).join('') + '</table>' +
+          '<div class="btns"><button class="btn pri" id="g-sb-done" data-a="ok"' + (free && !f.anyAdded ? ' disabled' : '') + '>' + esc(tx(L('配席完了', '배석 완료', 'Done'))) + '</button></div>';
+      }
+    }
+    scr(h); gBindWait(u.at, gateTabSby);
+    var rl = $('#g-sb-rel'); if (rl) rl.onclick = function () { if (!gLive(c)) return; sfx.ok(); addTime(0.3); f.released = true; S.seats = S.seats + 1; gateTabSby(); };
+    document.querySelectorAll('#scr button[data-sby]').forEach(function (b) { b.onclick = function () {
+      if (!gLive(c)) return; var pid = b.dataset.sby, best = g5BestSby(g5Left(cands)); if ((S.added || {})[pid]) return; sfx.ok(); addTime(M.cost.talk); S.added = S.added || {}; S.added[pid] = true; S.maniVer++; f.anyAdded = true; f.add = (f.add || []).concat(pid); gSync();   /* 45차(44-F01): 배정한 순서대로 결과 기록에 남김 · 순위는 아직 배정 안 된 후보 중에서 */
+      if (pid === best) { S.evChecks.push({ id: 'sby-order', ok: true }); var ty = g5UnitOf(pid).sbyType; note('good', L('空席1席を V-G11 の順位どおり ' + g5Name(pid) + '（' + ty.ja + '）に配席・発行しました（名簿：added、バージョン ' + S.maniVer + '）。', '빈 좌석 1석을 V-G11 순위대로 ' + g5Name(pid) + '(' + ty.ko + ')에게 배석·발행했습니다(명단: added, 버전 ' + S.maniVer + ').', 'Assigned a free seat to ' + g5Name(pid) + ' (' + ty.en + ') in V-G11 order (manifest: added, version ' + S.maniVer + ').'), 'passenger/1-5'); }
+      else { S.evChecks.push({ id: 'sby-order', ok: false }); gBad('gt-sby', L('空席待ちの順位を無視しました：受付が早いという理由で一般待ちの ' + g5Name(pid) + ' を、有料待ちの ' + g5Name(best) + ' より先に配席（V-G11：等級が先、同じ等級で受付順）。', '대기 순위를 무시했습니다: 접수가 빠르다는 이유로 일반 대기 ' + g5Name(pid) + '을 유료 대기 ' + g5Name(best) + '보다 먼저 배석(V-G11: 등급이 먼저, 같은 등급에서 접수순).', 'Ignored standby priority: seated general-standby ' + g5Name(pid) + ' before paid-standby ' + g5Name(best) + ' because they listed earlier (V-G11: class first, then time within a class).'), 'passenger/1-5'); }
+      gateTabSby(); }; });
+    var dn = $('#g-sb-done'); if (dn) dn.onclick = function () { if (!gDone(c)) return; sfx.ok(); gateEnd(); };
+  }
+  function g5Left(cands) { return cands.filter(function (q) { return !(S.added || {})[gPid(q)]; }); }
+  function g5BestSby(cands) { var s = cands.slice().sort(function (a, b) { return (a.sbyRank - b.sbyRank) || (pm(a.sbyAt) - pm(b.sbyAt)); }); return s.length ? gPid(s[0]) : null; }
+  /* ---------- 대기 승객 단위(좌석 없음) · 콜센터 변경 승객 단위(오지 않음) ---------- */
+  function gateTabSbyNoSeat(c, p) {
+    c.skipMood = true;
+    scr(gBpCard(p, p.pp.sur + ' ' + p.pp.given, '—') + '<div class="why">' + esc(tx(L('空席待ち（' + tx(p.sbyType) + '・受付 ' + p.sbyAt + '）。本日は空席がありません。', '대기(' + tx(p.sbyType) + '·접수 ' + p.sbyAt + '). 오늘은 빈 좌석이 없습니다.', 'Standby (' + tx(p.sbyType) + ', listed ' + p.sbyAt + '). No seat available today.'))) + '</div>' +
+      '<div class="btns"><button class="btn pri" id="g-sb-no" data-a="ok">' + esc(tx(L('本日は空席なしをお伝えし、次の便の空席待ちをご案内', '오늘은 빈 좌석 없음을 알리고 다음 편 대기를 안내', 'Explain there is no seat today and offer standby on the next flight'))) + '</button></div>');
+    $('#g-sb-no').onclick = function () { if (!gDone(c)) return; sfx.ok(); addTime(M.cost.talk); c.flags.sbyNo = true; say('me', L('申し訳ございません。本日は空席が出ませんでした。次の便の空席待ちをご案内します。', '죄송합니다. 오늘은 빈 좌석이 나지 않았습니다. 다음 편 대기를 안내해 드리겠습니다.', 'I am sorry — no seat opened up today. Let me put you on standby for the next flight.')); gPaxLater(c, p.say.no, 900); note('info', L('空席待ち（席なし）：次の便をご案内。', '대기(좌석 없음): 다음 편 안내.', 'Standby without a seat: offered the next flight.')); gateEnd(1500); };
+  }
+  function gateTabRebooked(c, p) {
+    c.skipMood = true; var t = gT();
+    scr('<div class="h3">' + esc(tx(L('名簿メモ', '명단 메모', 'Manifest note'))) + '</div><div class="why">' + esc(tx(L(p.pp.sur + ' ' + p.pp.given + '（' + p.seat + '）：コールセンターで ' + t.alt + ' 便に変更済み。来場なし（名簿：moved）。', p.pp.sur + ' ' + p.pp.given + '(' + p.seat + '): 콜센터에서 ' + t.alt + '편으로 변경 완료. 오지 않음(명단: moved).', p.pp.sur + ' ' + p.pp.given + ' (' + p.seat + '): rebooked by the call centre to the ' + t.alt + ' flight. Not coming (manifest: moved).'))) + '</div><div class="btns"><button class="btn pri" id="g-rb-ok" data-a="ok">' + esc(tx(L('確認', '확인', 'OK'))) + '</button></div>');
+    $('#g-rb-ok').onclick = function () { if (!gDone(c)) return; sfx.tap(); c.flags.rebooked = true; if (!(S.moved || {})[gPid(p)]) { S.moved = S.moved || {}; S.moved[gPid(p)] = true; S.maniVer++; c.flags.mv = [gPid(p)]; gSync(); } gateEnd(300); };
+  }
+  function gateTabMovedBack(c, p) {   /* 45차: 기다리게 했던 승객(back 단위)이 그 사이 다른 편으로 변경됨 */
+    c.skipMood = true;
+    scr('<div class="h3">' + esc(tx(L('名簿メモ', '명단 메모', 'Manifest note'))) + '</div><div class="why">' + esc(tx(L(p.pp.sur + ' ' + p.pp.given + '（' + p.seat + '）：先ほど別便に変更済み（名簿：moved）。この便には来ません。', p.pp.sur + ' ' + p.pp.given + '(' + p.seat + '): 앞서 다른 편으로 변경 완료(명단: moved). 이 편에는 오지 않습니다.', p.pp.sur + ' ' + p.pp.given + ' (' + p.seat + '): already moved to another flight (manifest: moved). Not coming to this flight.'))) + '</div><div class="btns"><button class="btn pri" id="g-mb-ok" data-a="ok">' + esc(tx(L('確認', '확인', 'OK'))) + '</button></div>');
+    $('#g-mb-ok').onclick = function () { if (!gDone(c)) return; sfx.tap(); gateEnd(300); };
+  }
+  /* ---------- 저장본 검사 확장(Day 5 상태) ---------- */
+  (function () {
+    var why = GT5.stateWhy;
+    GT5.stateWhy = function (st, mi, ids) {
+      var w = why(st, mi, ids); if (w) return w;
+      function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+      function pidOk(k) { return /^[a-z0-9-]+(\.\d{1,2})?$/.test(k); }
+      if (st.moved != null && (!obj(st.moved) || !Object.keys(st.moved).every(function (k) { return pidOk(k) && st.moved[k] === true; }))) return 'moved';
+      if (st.added != null && (!obj(st.added) || !Object.keys(st.added).every(function (k) { return pidOk(k) && st.added[k] === true; }))) return 'added';
+      if (st.seats != null && !(typeof st.seats === 'number' && Math.floor(st.seats) === st.seats && st.seats >= 0 && st.seats <= 60)) return 'seats';
+      if (st.delay != null && typeof st.delay !== 'boolean') return 'delay';
+      if (st.etd != null && !(typeof st.etd === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(st.etd))) return 'etd';   /* 45차: 실제 시각만 */
+      if (st.coupon != null && typeof st.coupon !== 'boolean') return 'coupon';
+      if (obj(st.moved) && obj(st.brd) && Object.keys(st.moved).some(function (k) { return !!st.brd[k]; })) return 'moved:brd';
+      if (mi && mi.variants && mi.seatsToday) {
+        /* 45차(44-F01): Day 5 상태는 「완료한 단위의 결과 기록(flags.mv·flags.add·delay 단계)」으로 다시 만든 값과 정확히 같아야 함.
+           저장은 단위 경계(nextUnit)에서만 일어나므로 진행 중인 단위의 반쯤 바뀐 상태는 없음. 안내 문장을 파싱하지 않음 */
+        var need5 = ['moved', 'added', 'seats', 'delay', 'coupon']; for (var n5 = 0; n5 < need5.length; n5++) if (st[need5[n5]] == null) return 'missing:' + need5[n5];
+        if (!('etd' in st)) return 'missing:etd';
+        var vk = Object.keys(mi.variants).filter(function (k) { var t = mi.variants[k].t || {}; return t.gate === st.gate || t.gateAlt === st.gate; })[0];
+        if (!vk) return 'gate:variant';
+        var T5 = mi.variants[vk].t, units = mi.variants[vk].pax(), byId = {}; units.forEach(function (q) { byId[q.id] = q; });
+        var done = {}, mvH = [], adH = [], mvAtSby = null, bad = null;
+        (st.results || []).forEach(function (r) {
+          if (bad) return; var id = r && r.p ? (('__pax' in r.p) ? r.p.__pax : r.p.id) : null, q = byId[id], fl = (r && r.flags) || {};
+          if (!q) { bad = 'results:unit'; return; } done[id] = r;
+          if (fl.mv != null) {
+            var allow = q.kind === 'ob' ? [q.rebookedId] : (q.kind === 'pax' && !q.back && (q.issue === 'vol' || q.issue === 'rebooked')) ? [q.id] : [];
+            if (!Array.isArray(fl.mv) || fl.mv.length !== 1 || allow.indexOf(fl.mv[0]) < 0 || mvH.indexOf(fl.mv[0]) >= 0) { bad = 'mv:history'; return; }
+            mvH.push(fl.mv[0]);
+          }
+          if (q.kind === 'pax' && q.issue === 'vol' && !!fl.moved !== !!fl.mv) { bad = 'mv:vol'; return; }
+          if (fl.add != null) {
+            if (q.kind !== 'sby' || !Array.isArray(fl.add) || !fl.add.length || fl.add.some(function (x, k) { return (q.cands || []).indexOf(x) < 0 || fl.add.indexOf(x) !== k; })) { bad = 'add:history'; return; }
+            adH = adH.concat(fl.add);
+          }
+          if (q.kind === 'sby') mvAtSby = mvH.slice();
+        });
+        if (bad) return bad;
+        function same(a, b) { return a.length === b.length && a.every(function (x) { return b.indexOf(x) >= 0; }); }
+        if (!same(Object.keys(st.moved), mvH)) return 'moved:history';
+        if (!same(Object.keys(st.added), adH)) return 'added:history';
+        var mk = Object.keys(st.moved), ak = Object.keys(st.added);
+        for (var i = 0; i < mk.length; i++) { var q = byId[mk[i]]; if (!q || q.kind !== 'pax' || q.sby) return 'moved:unit'; }
+        for (i = 0; i < ak.length; i++) { var q2 = byId[ak[i]]; if (!q2 || !q2.sby) return 'added:unit'; }
+        /* 좌석·대기 배정: 배정 단위를 끝냈으면 좌석 해제(+1)가 있었어야 함. 배정 수 ≤ 그때의 빈 좌석, 순서마다 V-G11 판정이 이벤트 기록과 같아야 함 */
+        var sbyU = units.filter(function (q) { return q.kind === 'sby'; })[0], sbyR = sbyU && done[sbyU.id];
+        if (sbyR) {
+          if (!(sbyR.flags && sbyR.flags.released) || st.seats !== mi.seatsToday + 1) return 'seats:history';
+          var base = 0; units.forEach(function (q) { if (q.kind !== 'pax' || q.back || q.nomani || q.sby || (mvAtSby || []).indexOf(gPid(q)) >= 0) return; gPersons(q).forEach(function (x) { if (x.kind !== 'inf') base++; }); });
+          if (adH.length > Math.max(0, st.seats - base)) return 'added:many';
+          var left = (sbyU.cands || []).map(function (pid) { return byId[pid]; }).filter(Boolean), exp = adH.map(function (pid) { var ok = g5BestSby(left) === pid; left = left.filter(function (q) { return q.id !== pid; }); return ok; });
+          var got = (st.evChecks || []).filter(function (x) { return x && x.id === 'sby-order'; }).map(function (x) { return x.ok; });
+          if (exp.length !== got.length || exp.some(function (x, k) { return x !== got[k]; })) return 'added:order';
+        } else if (st.seats !== mi.seatsToday) return 'seats:early';
+        /* 지연: 확정 단위(step 2)를 끝냈으면 delay=true·ETD = 이 시나리오의 확정 시각, 쿠폰 = 그 단위의 실제 처리. 끝내기 전이면 모두 초깃값 */
+        var d2 = units.filter(function (q) { return q.kind === 'delay' && q.step === 2; })[0], d2r = d2 && done[d2.id];
+        if (d2r) { if (st.delay !== true || st.etd !== T5.etd || !(d2r.flags && d2r.flags.bc16)) return 'delay:history'; if (st.coupon !== !!(d2r.flags && d2r.flags.couponDone)) return 'coupon:history'; }
+        else if (st.delay !== false || st.etd !== null || st.coupon !== false) return 'delay:early';
+      }
+      return null;
+    };
+  })();
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
   if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextUnit, showTab: showTab, renderTabs: renderTabs, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); }, setStage: function (id) { setStage(id); save(); renderTitle(); }, stage: function () { return ST.id; }, stageAllowed: stageAllowed };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();

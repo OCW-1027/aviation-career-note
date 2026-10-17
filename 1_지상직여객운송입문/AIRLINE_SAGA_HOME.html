@@ -182,6 +182,12 @@ a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
     <p class="note" id="nDays"></p>
   </section>
 
+  <section style="padding-top:0" id="gateSec">
+    <div class="sgh"><div><div class="eyebrow">Stage 02 · Gate &amp; boarding</div><h2 id="hGate"></h2></div><p id="pGate"></p></div>
+    <p class="note" id="gNote" style="margin:-4px 0 12px"></p>
+    <div class="days" id="gdays"></div>
+  </section>
+
   <section style="padding-top:0">
     <div class="sgh"><div><div class="eyebrow">How it works</div><h2 id="hHow"></h2></div></div>
     <div class="how" id="how"></div>
@@ -237,8 +243,14 @@ var T={
  how:[[L('確かめる','확인한다','Check'),L('予約・旅券・渡航条件を照合。写真の人物は本人か、期限は足りるか。','예약·여권·입국 조건을 대조. 사진 속 인물이 본인인지, 기간은 충분한지.','Match the booking, passport and entry rules. Is it really them? Is it still valid?'),'prop_passport_01'],
       [L('判断する','판단한다','Decide'),L('座席・手荷物・モバイルバッテリー・遅延や機材変更。迷ったら責任者に確認するのも正解。','좌석·수하물·보조배터리·지연이나 기재 변경. 헷갈리면 책임자 확인도 정답.','Seats, bags, power banks, delays and aircraft changes. Asking the supervisor is a right answer too.'),'prop_scale_01'],
       [L('ふりかえる','되돌아본다','Review'),L('安全・正確さ・お客様の満足・時間で採点。見落としは関連するレッスンにつながります。','안전·정확성·승객 만족·시간으로 채점. 놓친 점은 관련 레슨으로 이어집니다.','Scored on safety, accuracy, passenger mood and time. Every miss links to the lesson behind it.'),'prop_boarding_pass_01']],
+ hGate:L('ゲート編 ― 搭乗口の5日間','게이트편 — 탑승구의 5일','Gate: five days at the boarding gate'),
+ pGate:L('搭乗準備・放送・搭乗順・人数の照合から、遅延やオーバーブッキングまで。前の日をB以上・安全合格で終えると、次の日が開きます。','탑승 준비·방송·탑승 순서·인원 대조부터 지연·오버부킹까지. 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.','From boarding prep, announcements, boarding order and the head count to delays and overbooking. Clear a day with B or better and a safety pass to open the next.'),
+ gLock:L('本番：チェックイン編の本番DAY 5をクリアすると、ゲート編のDAY 1が開きます。','실전: 체크인편 실전 DAY 5를 통과하면 게이트편 DAY 1이 열립니다.','Shift mode: clear Check-in DAY 5 to open Gate DAY 1.'),
+ gLockP:L('練習モードなら、今すぐ体験できます（先行公開）。','연습 모드에서는 지금 바로 해 볼 수 있습니다(미리 공개).','In Practice mode you can try it now (early preview).'),
+ gPrev:L('練習モードで先行公開中です。練習の記録は別に残り、本番の進み具合は変わりません。','연습 모드로 미리 공개 중입니다. 연습 기록은 따로 남고, 실전 진행에는 영향이 없습니다.','Open early in Practice mode. Practice records are kept separately; your Shift progress does not change.'),
+ gChip:L('チェックイン編の本番DAY 5クリア後','체크인편 실전 DAY 5 통과 후','After Check-in DAY 5 (Shift)'),
  hBoard:L('これから出発するステージ','앞으로 출발하는 스테이지','Stages on the departure board'),
- pBoard:L('チェックインから支店経営まで、1便を動かす仕事をステージにしていきます。いまプレイできるのはチェックイン編です。★は計算の実習ステージ（準備中）です。','체크인부터 지점 경영까지, 한 편을 움직이는 업무를 스테이지로 만들어 갑니다. 지금 플레이할 수 있는 것은 체크인편입니다. ★는 계산 실습 스테이지(준비 중)입니다.','From check-in to running the station, the jobs behind one flight become stages. Check-in is playable now. ★ marks hands-on calculation stages (coming).'),
+ pBoard:L('チェックインから支店経営まで、1便を動かす仕事をステージにしていきます。いまプレイできるのはチェックイン編とゲート編です。★は計算の実習ステージ（準備中）です。','체크인부터 지점 경영까지, 한 편을 움직이는 업무를 스테이지로 만들어 갑니다. 지금 플레이할 수 있는 것은 체크인편과 게이트편입니다. ★는 계산 실습 스테이지(준비 중)입니다.','From check-in to running the station, the jobs behind one flight become stages. Check-in and Gate are playable now. ★ marks hands-on calculation stages (coming).'),
  thName:L('ステージ','스테이지','Stage'),thCourse:L('関連する講座','관련 강좌','Related course'),
  sGo:'NOW BOARDING',sCalc:'★ CALC · SOON',sSoon:'COMING SOON',
  hLes:L('ゲームの判断は、講座の内容そのまま','게임의 판단은 강좌 내용 그대로','The game runs on the course content'),
@@ -250,6 +262,8 @@ var T={
 };
 /* 18ステージ：ゲーム本体の STAGES と同じ順番・名前（src/game.js）。play＝プレイできる、key＝計算の実習 */
 var STAGES=[{"n":"01","nm":{"ja":"チェックイン","ko":"체크인","en":"Check-in"},"st":"play","key":0,"course":{"ja":"旅客ハンドリング実務","ko":"항공 여객운송 실무","en":"Passenger Operations"}},{"n":"02","nm":{"ja":"ゲート・搭乗","ko":"게이트·탑승","en":"Gate & boarding"},"st":"","key":0,"course":{"ja":"旅客ハンドリング実務","ko":"항공 여객운송 실무","en":"Passenger Operations"}},{"n":"03","nm":{"ja":"ロードコントロール（W&B）","ko":"탑재관리(W&B)","en":"Load control (W&B)"},"st":"","key":1,"course":{"ja":"旅客ハンドリング実務","ko":"항공 여객운송 실무","en":"Passenger Operations"}},{"n":"04","nm":{"ja":"ランプ・ターンアラウンド","ko":"램프·턴어라운드","en":"Ramp & turnaround"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"05","nm":{"ja":"運航管理（ディスパッチ）","ko":"운항관리(디스패치)","en":"Flight dispatch"},"st":"","key":1,"course":{"ja":"運航管理実務","ko":"운항관리 실무","en":"Flight Dispatch Operations"}},{"n":"06","nm":{"ja":"イレギュラー対応","ko":"비정상 운항 대응","en":"Irregular operations"},"st":"","key":0,"course":{"ja":"現場事例から学ぶ","ko":"현장 사례로 배우기","en":"Lessons from the Field"}},{"n":"07","nm":{"ja":"CIQ・出入国","ko":"CIQ·출입국","en":"CIQ & borders"},"st":"","key":0,"course":{"ja":"CIQの役割","ko":"CIQ의 역할","en":"What CIQ Does"}},{"n":"08","nm":{"ja":"航空貨物","ko":"항공화물","en":"Air cargo"},"st":"","key":0,"course":{"ja":"航空貨物実務","ko":"항공화물 실무","en":"Air Cargo Operations"}},{"n":"09","nm":{"ja":"整備・MEL・AOG","ko":"정비·MEL·AOG","en":"Maintenance, MEL, AOG"},"st":"","key":0,"course":{"ja":"航空機と整備","ko":"항공기와 정비","en":"Aircraft and Maintenance"}},{"n":"10","nm":{"ja":"営業・販売","ko":"영업·판매","en":"Sales"},"st":"","key":0,"course":{"ja":"航空営業実務","ko":"항공 영업 실무","en":"Airline Sales Operations"}},{"n":"11","nm":{"ja":"収益管理・運賃","ko":"수익관리·운임","en":"Revenue & fares"},"st":"","key":0,"course":{"ja":"航空営業実務","ko":"항공 영업 실무","en":"Airline Sales Operations"}},{"n":"12","nm":{"ja":"精算・財務","ko":"정산·재무","en":"Settlement & finance"},"st":"","key":0,"course":{"ja":"数字で読む会社","ko":"숫자로 읽는 회사","en":"Reading a Company Through Its Numbers"}},{"n":"13","nm":{"ja":"人事・総務","ko":"인사·총무","en":"HR & admin"},"st":"","key":0,"course":{"ja":"会社の人事・総務・財務実務","ko":"회사의 인사·총무·재무 실무","en":"HR, Admin and Finance in Practice"}},{"n":"14","nm":{"ja":"契約・ハンドリング会社管理","ko":"계약·조업사 관리","en":"Contracts & handling agents"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"15","nm":{"ja":"安全・保安・監査","ko":"안전·보안·감사","en":"Safety, security, audits"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"16","nm":{"ja":"当局対応・許認可","ko":"당국 대응·인허가","en":"Authorities & permits"},"st":"","key":0,"course":{"ja":"日本就航・支店開設ガイド","ko":"일본 취항·지점 개설 가이드","en":"Launching Flights to Japan"}},{"n":"17","nm":{"ja":"支店経営（月次・年次）","ko":"지점 경영(월간·연간)","en":"Running the station"},"st":"","key":0,"course":{"ja":"空港支店の運営実務","ko":"공항 지점 운영 실무","en":"Airport Station Management"}},{"n":"18","nm":{"ja":"新規就航プロジェクト","ko":"신규 취항 프로젝트","en":"Launching a new route"},"st":"","key":0,"course":{"ja":"日本就航・支店開設ガイド","ko":"일본 취항·지점 개설 가이드","en":"Launching Flights to Japan"}}];
+/* 46차：ゲート編（STAGE 02）の5日。名前・学ぶことは src_gate/gate.js から。GPREV＝練習モードの先行公開（ゲームの GATE_PREVIEW と同じ値） */
+var GDAYS=[{"n":1,"nm":{"ja":"はじめてのゲート","ko":"첫 게이트","en":"First gate"},"learn":{"ja":"準備・放送・搭乗順・スキャンと旅券照合・人数確認","ko":"준비·방송·탑승 순서·스캔과 여권 대조·인원 대조","en":"Prep, announcements, boarding order, scan and passport check, headcount"}},{"n":2,"nm":{"ja":"混み合う搭乗","ko":"바쁜 탑승","en":"Busy boarding"},"learn":{"ja":"満席・機内清掃の遅れ・手荷物の制限","ko":"만석·기내 청소 지연·수하물 제한","en":"Full flight, cabin cleaning delay, bag limits"}},{"n":3,"nm":{"ja":"サポートが必要なお客様","ko":"도움이 필요한 승객","en":"Passengers who need help"},"learn":{"ja":"車いす・UM・幼児・ペット・非常口","ko":"휠체어·UM·유아·반려동물·비상구","en":"Wheelchairs, UM, infants, pets, exit rows"}},{"n":4,"nm":{"ja":"イレギュラー①","ko":"비정상 ①","en":"Irregular ops 1"},"learn":{"ja":"搭乗口変更・ノーショー・オフロード","ko":"게이트 변경·노쇼·오프로드","en":"Gate change, no-shows, offload"}},{"n":5,"nm":{"ja":"イレギュラー②","ko":"비정상 ②","en":"Irregular ops 2"},"learn":{"ja":"遅延・オーバーブッキング・最終人数","ko":"지연·오버부킹·최종 인원","en":"Delays, overbooking, final figures"}}],GPREV=true;
 var lang='ja';
 try{var al=localStorage.getItem('art-lang');if(['ja','ko','en'].indexOf(al)>=0)lang=al;else{var s0=JSON.parse(localStorage.getItem('acn-saga-v1')||'{}');if(s0.lang)lang=s0.lang}}catch(e){}
 if(!/^(ja|ko|en)$/.test(lang))lang='ja';
@@ -303,6 +317,10 @@ function hist(){try{return loadStore().days||{}}catch(e){return {}}}
 var RV={S:4,A:3,B:2,C:1};
 function cleared(H,n,C){var r=H['ci.d'+n+'.'+C];return !!(r&&r.bestClear&&RV[r.bestClear]>=RV.B)}
 function status(H,n,C,pr){if(n===1||pr)return 'open';return cleared(H,n-1,C)?'open':'lock'}
+/* 46차：ゲート編はゲームの stageAllowed と同じ ― 本番はチェックイン編 本番DAY 5クリア（勤務地ごと）、練習は先行公開中なら開く。日の開き方はチェックイン編と同じ */
+function gcleared(H,n,C){var r=H['gt.d'+n+'.'+C];return !!(r&&r.bestClear&&RV[r.bestClear]>=RV.B)}
+function gateOK(H,C,pr){return cleared(H,5,C)||(GPREV&&pr)}
+function gstatus(H,n,C,pr){if(!gateOK(H,C,pr))return 'stage';if(n===1||pr)return 'open';return gcleared(H,n-1,C)?'open':'lock'}
 /* 最高成績（ゲームの bestText と同じ順）：同じ回の等級・点数、✔＝安全合格。回の分からない以前の記録は「以前の記録」 */
 function render(){
   document.documentElement.lang=lang;
@@ -328,11 +346,26 @@ function render(){
     var inner='<span class="stripe"></span><span class="n">DAY '+d.n+'</span><b>'+E(tx(d.nm))+'</b><span class="lr">'+E(tx(d.learn))+'</span>'+chip+(st==='open'?'<span class="go">'+E(tx(T.st.go))+'</span>':'');
     return st==='open'?'<a class="day" href="'+GAME+'#day'+d.n+'">'+inner+'</a>':'<div class="day locked" aria-disabled="true">'+inner+'</div>';
   }).join('');
+  /* 46차：ゲート編の日（カードの文字はチェックイン編と同じ作り。リンクは #gt-dayN） */
+  $('hGate').textContent=tx(T.hGate);$('pGate').textContent=tx(T.pGate);
+  var gok=gateOK(H,C,PR),gpv=gok&&!cleared(H,5,C);
+  $('gNote').textContent=gok?(gpv?tx(T.gPrev):''):tx(T.gLock)+(GPREV?' '+tx(T.gLockP):'');$('gNote').hidden=!$('gNote').textContent;
+  $('gdays').innerHTML=GDAYS.map(function(d){
+    var st=gstatus(H,d.n,C,PR),r=H['gt.d'+d.n+'.'+C];
+    var lab=r?L('最高 ','최고 ','Best '):T.st.open,best=r&&st==='open'?(r.plays?bestText(r,d.n):''):'';
+    if(r&&r.plays&&!r.top&&st==='open')lab=L('','','');
+    if(PR&&r&&st==='open'&&r.plays)lab={ja:'本番 '+lab.ja,ko:'실전 '+lab.ko,en:'Shift '+lab.en};
+    var txt=tx(lab)+best;
+    var chip=st==='stage'?(d.n===1?'<span class="chip lock">'+E(tx(T.gChip))+'</span>':''):st==='lock'?'<span class="chip lock">'+E(tx(T.st.lock))+'</span>':r&&(best||r.plays)?'<span class="chip rank">'+E(txt)+'</span>':'<span class="chip open">'+E(txt)+'</span>';
+    var inner='<span class="stripe"></span><span class="n">DAY '+d.n+'</span><b>'+E(tx(d.nm))+'</b><span class="lr">'+E(tx(d.learn))+'</span>'+chip+(st==='open'?'<span class="go">'+E(tx(T.st.go))+'</span>':'');
+    return st==='open'?'<a class="day" href="'+GAME+'#gt-day'+d.n+'">'+inner+'</a>':'<div class="day locked" aria-disabled="true">'+inner+'</div>';
+  }).join('');$('gateSec').hidden=!GDAYS.length;
   $('play').textContent=tx(T.play)+' →';$('play').href=GAME+'#day1';
   if(next&&next>1){$('cont').hidden=false;$('cont').textContent=tx(T.cont)+' · DAY '+next;$('cont').href=GAME+'#day'+next}else $('cont').hidden=true;
   $('how').innerHTML=T.how.map(function(h,i){return '<div class="step"><img src="saga/img/'+h[2]+'.webp" alt=""><div><small>STEP 0'+(i+1)+'</small><h3>'+E(tx(h[0]))+'</h3><p>'+E(tx(h[1]))+'</p></div></div>'}).join('');
-  $('stages').innerHTML=STAGES.map(function(s){var p=s.st==='play';var stt=p?'<span class="st go">'+T.sGo+'</span>':(s.n==='02'&&!cleared(hist(),5,C))?'<span class="st soon">'+E(tx(L('チェックイン編 本番DAY 5クリア後','체크인편 실전 DAY 5 통과 후','After Check-in DAY 5 (Shift)')))+'</span>':(s.n==='02')?'<span class="st soon">'+E(tx(L('準備中（チェックイン編クリア済み）','준비 중(체크인편 클리어)','Coming (Check-in cleared)')))+'</span>':s.key?'<span class="st calc">'+T.sCalc+'</span>':'<span class="st soon">'+T.sSoon+'</span>';
-    return '<tr class="'+(p?'play':'')+'"><td>'+s.n+'</td><td class="nm">'+(p?'<a href="'+GAME+'">'+E(tx(s.nm))+'</a>':E(tx(s.nm)))+'</td><td>'+E(tx(s.course))+'</td><td>'+stt+'</td></tr>'}).join('');
+  $('stages').innerHTML=STAGES.map(function(s){var p=s.st==='play';var stt=p?'<span class="st go">'+T.sGo+'</span>':(s.n==='02'&&GDAYS.length&&cleared(H,5,C))?'<span class="st go">'+T.sGo+'</span>':(s.n==='02'&&GDAYS.length&&GPREV)?'<span class="st soon">'+E(tx(L('本番：チェックイン編 DAY 5クリア後 · 練習で先行公開中','실전: 체크인편 DAY 5 통과 후 · 연습 모드 미리 공개','Shift: after Check-in DAY 5 · Practice preview open')))+'</span>':(s.n==='02'&&!cleared(hist(),5,C))?'<span class="st soon">'+E(tx(L('チェックイン編 本番DAY 5クリア後','체크인편 실전 DAY 5 통과 후','After Check-in DAY 5 (Shift)')))+'</span>':(s.n==='02')?'<span class="st soon">'+E(tx(L('準備中（チェックイン編クリア済み）','준비 중(체크인편 클리어)','Coming (Check-in cleared)')))+'</span>':s.key?'<span class="st calc">'+T.sCalc+'</span>':'<span class="st soon">'+T.sSoon+'</span>';
+    var g2=s.n==='02'&&GDAYS.length&&(cleared(H,5,C)||GPREV);   /* 46차：ゲート編の行は名前からゲート編 DAY 1へ */
+    return '<tr class="'+(p||g2?'play':'')+'"><td>'+s.n+'</td><td class="nm">'+(p?'<a href="'+GAME+'">'+E(tx(s.nm))+'</a>':g2?'<a href="'+GAME+'#gt-day1">'+E(tx(s.nm))+'</a>':E(tx(s.nm)))+'</td><td>'+E(tx(s.course))+'</td><td>'+stt+'</td></tr>'}).join('');
   $('les').innerHTML=Object.keys(LDAYS).map(function(id){var t=LESSONS[id],u=LLINK.links[id];if(!t||!u)return '';var no=id.split('/')[1];
     return '<a class="les" href="'+LLINK.base+u[lang]+'"><code>'+(id.indexOf('ciq/')===0?'CIQ ':'')+no+'</code><span>'+E(tx(t))+'<em>DAY '+LDAYS[id].join(' · ')+'</em></span></a>'}).join('');
   Array.prototype.forEach.call($('mode').querySelectorAll('button'),function(b){b.onclick=function(){var g=cfg();g.practice=b.getAttribute('data-p')==='1';try{localStorage.setItem('acn-saga-v1',JSON.stringify(g))}catch(e){}render()}});
