@@ -3,11 +3,11 @@
 (function(){
 var BASE=(document.currentScript&&document.currentScript.src)?new URL('../',document.currentScript.src).href:'';
 function U(p){try{return BASE?new URL(p,BASE).href:p}catch(e){return p}}
-var SITE={ja:{name:'航空キャリアノート',menu:[['index.html','home','ホーム'],['index.html#learn','learn','講座'],['guide.html','guide','学び方'],['index.html#tools','tools','資料・ツール'],['jobs.html','jobs','求人'],['../7_구인게재_기업용/求人掲載のご案内.html','biz','企業の方へ'],['about.html','about','このサイトについて']],
+var SITE={ja:{name:'航空キャリアノート',menu:[['index.html','home','ホーム'],['index.html#learn','learn','講座'],['guide.html','guide','学び方'],['index.html#tools','tools','実務練習'],['jobs.html','jobs','求人'],['../7_구인게재_기업용/求人掲載のご案内.html','biz','企業の方へ'],['about.html','about','このサイトについて']],
  foot:[['about.html','このサイトについて'],['account.html','会員ページ'],['terms.html','利用規約'],['sources.html','出典と利用条件'],['privacy.html','プライバシーポリシー'],['../7_구인게재_기업용/求人掲載のご案内.html','求人掲載のご案内']],copy:'© 2026 航空キャリアノート　無断転載・複製禁止'},
-ko:{name:'항공 커리어 노트',menu:[['index.html','home','홈'],['index.html#learn','learn','강좌'],['guide.html','guide','학습 가이드'],['index.html#tools','tools','자료실'],['jobs.html','jobs','구인'],['../7_구인게재_기업용/求人掲載のご案内.html','biz','기업 담당자께'],['about.html','about','사이트 소개']],
+ko:{name:'항공 커리어 노트',menu:[['index.html','home','홈'],['index.html#learn','learn','강좌'],['guide.html','guide','학습 가이드'],['index.html#tools','tools','실무 연습'],['jobs.html','jobs','구인'],['../7_구인게재_기업용/求人掲載のご案内.html','biz','기업 담당자께'],['about.html','about','사이트 소개']],
  foot:[['about.html','사이트 소개'],['account.html','회원 페이지'],['terms.html','이용약관'],['sources.html','출처와 이용 조건'],['privacy.html','개인정보 처리방침'],['../7_구인게재_기업용/求人掲載のご案内.html','구인 게재 안내']],copy:'© 2026 항공 커리어 노트　무단 전재·복제 금지'},
-en:{name:'Aviation Career Note',menu:[['index.html','home','Home'],['index.html#learn','learn','Courses'],['guide.html','guide','Study guide'],['index.html#tools','tools','Resources'],['jobs.html','jobs','Jobs'],['../7_구인게재_기업용/求人掲載のご案内.html','biz','For employers'],['about.html','about','About']],
+en:{name:'Aviation Career Note',menu:[['index.html','home','Home'],['index.html#learn','learn','Courses'],['guide.html','guide','Study guide'],['index.html#tools','tools','Practice'],['jobs.html','jobs','Jobs'],['../7_구인게재_기업용/求人掲載のご案内.html','biz','For employers'],['about.html','about','About']],
  foot:[['about.html','About this site'],['account.html','My page'],['terms.html','Terms of use'],['sources.html','Sources'],['privacy.html','Privacy policy'],['../7_구인게재_기업용/求人掲載のご案内.html','Post a job']],copy:'© 2026 Aviation Career Note. All rights reserved.'}};
 var LANGS=['ja','ko','en'],LBL={ja:'日本語',ko:'한국어',en:'English'};
 /* 言語：?lang= → 保存した言語 → 端末の言語の順。決まった言語は保存する（2026.10） */

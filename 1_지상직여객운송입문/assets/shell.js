@@ -12,7 +12,7 @@ try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'
 /* 問題が1つの言語だけのページ（韓国・日本の試験問題）でも、上の行と下のボタンは選んだ言語で出す（2026.10） */
 if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)document.documentElement.setAttribute('data-ui',ul)}catch(e){}}
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
-var LIB={ja:'\u8cc7\u6599\u30fb\u30c4\u30fc\u30eb',ko:'\uc790\ub8cc\uc2e4',en:'Resources'};
+var LIB={ja:'実務練習',ko:'실무 연습',en:'Practice'};/* 2026.10.17 上のメニュー「実務練習」と同じ名前に（旧：資料・ツール／자료실／Resources） */
 var NAME={saga:{ja:'AIRLINE SAGA ― 航空会社の仕事体験ゲーム',ko:'AIRLINE SAGA — 항공사 체험 게임',en:'AIRLINE SAGA: Airline Experience Game'},
 sagahome:{ja:'AIRLINE SAGA',ko:'AIRLINE SAGA',en:'AIRLINE SAGA'},
 talk:{ja:'会話練習 ― 日本語・韓国語・英語',ko:'회화 연습 — 일본어·한국어·영어',en:'Conversation Practice: Japanese, Korean, English'},
@@ -48,10 +48,10 @@ p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','�
 p23:['23_재무3표실무/00_シリーズ全体_財務3表.html','数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],
 p12:['12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','会社の人事・総務・財務実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice']};
 var CMAP={saga:'p1',sagahome:'p1',load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p19',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23',finmemo:'p23',finclose:'p12'};
-var FT={ja:['← 講座の目次','資料・ツール','ほかのツールを見る →'],ko:['← 강좌 목차','자료실','다른 도구 보기 →'],en:['\u2190 Course contents','Resources','See other tools \u2192']};
+var FT={ja:['← 講座の目次','実務練習','ほかのツールを見る →'],ko:['← 강좌 목차','실무 연습','다른 도구 보기 →'],en:['\u2190 Course contents','Practice','See other tools \u2192']};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=
-'.shbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:2px 0 14px}'+
+'.shbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:2px 0 14px}html.sh-saga body:not(.saga-playing) .shbar{max-width:1120px;margin-left:auto!important;margin-right:auto!important}'+
 '.shbrand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#22303F;font-weight:700;font-size:15px;flex:none}'+
 '.shbrand i{width:32px;height:32px;border-radius:50%;background:#2F8FE0;display:grid;place-items:center;flex:none}'+
 '.shbrand svg{width:18px;height:18px;fill:#fff;transform:rotate(45deg)}'+
