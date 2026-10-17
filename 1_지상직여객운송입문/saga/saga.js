@@ -1977,6 +1977,8 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     else G.hashNote = { ok: false, n: n, gt: gt, soon: stt === 'soon' };
     return true;
   }
+  function pushPlayState() { try { if (!(history.state && history.state.saga)) history.pushState({ saga: 'play' }, ''); } catch (e) {} }
+  function popPlayState() { try { if (history.state && history.state.saga) { G._popSelf = true; history.back(); } } catch (e) {} }
   function hashNoteHtml() {
     var h = G.hashNote; if (!h) return ''; G.hashNote = null;
     if (h.stage) return '<p class="hashnote lock" role="status">' + esc(tx(GATE_PREVIEW ? L('STAGE 02 ゲート編は、チェックイン編の本番DAY 5をクリアすると開きます。練習モードなら先に体験できます。', 'STAGE 02 게이트편은 체크인편 실전 DAY 5를 통과하면 열립니다. 연습 모드에서는 미리 해 볼 수 있습니다.', 'STAGE 02 Gate opens after you clear Check-in DAY 5 in Shift mode. You can try it early in Practice mode.') : L('STAGE 02 ゲート編は、チェックイン編の本番DAY 5をクリアすると開きます。', 'STAGE 02 게이트편은 체크인편 실전 DAY 5를 통과하면 열립니다.', 'STAGE 02 Gate opens after you clear Check-in DAY 5 in Shift mode.'))) + '</p>';   /* 46차 */
@@ -2012,6 +2014,8 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       if (o && o.runId === S.runId && (o.rev || 0) <= (S.rev || 0)) return;   /* 29차: 이 탭이 넘겨받기·저장하기 전에 쓰인 예전 알림(늦게 도착)은 무시 */
       if (!o || o.runId !== S.runId || o.owner !== S.tabTok) { S.noSave = 'conflict'; runWarn('conflict'); }
     });
+    /* 48차(사용자 10-17): 근무·결과 화면에서 브라우저 「뒤로」 → 사이트 첫 페이지가 아니라 게임 첫 화면(진행본은 이미 저장되어 이어하기로 돌아옴) */
+    window.addEventListener('popstate', function () { if (G._popSelf) { G._popSelf = false; return; } if (G.screen === 'play' || G.screen === 'result') { VO.stop(); G._fromPop = true; renderTitle(); topOfGame(); } });
     window.addEventListener('hashchange', function () { if (G.screen !== 'title') { if (/^#(gt-)?day/i.test(location.hash)) try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} return; } try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); if (d.country) G.country = d.country; G.practice = !!d.practice; } catch (e) {} G.store = DY.loadStore(); G.hist = G.store.days; ensureStageAllowed(); if (applyHash()) { renderTitle(); var go = $('#go'); if (go && go.scrollIntoView) go.scrollIntoView({ block: 'center' }); } });
   }
   function saveHist() { if (!G.store) return true; var ok = DY.saveStore(G.store); if (!ok && !G.saveWarned) { G.saveWarned = true; } return ok; }
@@ -2317,7 +2321,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     $('#vo').onclick = function () { G.voice = !G.voice; VO.on = G.voice; if (!G.voice) VO.stop(); this.classList.toggle('von', G.voice); save(); };
   }
   function playScreen(resumeMsg) {
-    document.body.classList.remove('busy'); G.screen = 'play'; playCls(); sfx.tap(); VO.on = G.voice; VO.unlock(); VO.stop();
+    document.body.classList.remove('busy'); pushPlayState(); G.screen = 'play'; playCls(); sfx.tap(); VO.on = G.voice; VO.unlock(); VO.stop();
     var ap = R.airport[V.from];
     $('#app').innerHTML =
       '<div class="bar" id="gbar">' + barInner() + '</div><p class="runnote" id="runnote" role="status"' + (resumeMsg ? '' : ' hidden') + '>' + (resumeMsg ? esc(tx(resumeMsg)) : '') + '</p>' +
@@ -2360,7 +2364,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     saveRun();   /* 26차 체크포인트(R25-01): 결과 확정 → 완료 인원·다음 순서 확정 → 저장 → 이벤트/다음 승객 */
     var ph = ST.phase();
     if (ph !== 'pax' && ph !== 'finish') return ST.runEvent(ph);
-    S.idx++; (VO.next || VO.stop)();
+    S.idx++; if (G.voice && VO.next) VO.next(); else VO.stop();
     if (ph === 'finish') { finish(); return; }
     ST.startUnit(S.list[S.idx]);
   }
@@ -2549,19 +2553,21 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   }
   /* ---------- 화면: 타이틀 ---------- */
   function renderTitle() {
-    G.screen = 'title'; document.body.classList.remove('busy'); playCls();
-    /* 47차(사용자 10-17): 게임 홈과 첫 화면을 하나로 — 작은 배너(코라돈·코라린 설명) → 설정 한 칸 → 스테이지 타일 → 고른 스테이지의 DAY → 출근 → 이 날 관련 레슨(접힘) */
-    var gtDef = !!window.SAGA_STAGES.gt;
-    var st = STAGES.map(function (s) {
+    var prevScr = G.screen; G.screen = 'title'; document.body.classList.remove('busy'); playCls();
+    /* 48차(사용자 10-17): 판매 게임 로비형 첫 화면 — 대표 그림(16:9, 로고·⚙) → 근무지·모드 한 줄 → 이어하기 → 코라돈·코라린 카드 → 열린 스테이지 카드(그림·진행 막대) + 준비 중 접기 → 탑승권형 DAY → 출근하기 → 관련 레슨. PC는 2단 */
+    if (prevScr && prevScr !== 'title' && !G._fromPop) popPlayState(); G._fromPop = false;   /* 근무·결과 화면에서 버튼으로 돌아오면 넣어 둔 기록 한 칸을 되돌림 */
+    var gtDef = !!window.SAGA_STAGES.gt, soon = [], cards = '';
+    var THUMB = { ci: 'checkin_bg_02', gt: 'gate_bg_01' };
+    STAGES.forEach(function (s) {
       var sid = stageIdOf(s.n), open = !!sid && stageOpen(s.n), cur = sid === ST.id, pv = s.n === '02' && open && gatePreviewOnly();
-      var lab = open ? (cur ? L('選択中', '선택 중', 'Selected') : pv ? L('練習で先行', '연습 미리', 'Preview') : L('勤務できます', '근무 가능', 'Open'))
-        : s.key ? L('★ 準備中', '★ 준비 중', '★ Coming') : (s.n === '02' && gtDef) ? L('🔒 条件あり', '🔒 조건 있음', '🔒 Locked') : L('準備中', '준비 중', 'Coming');
-      var prog = '';   /* 열린 스테이지는 실전 클리어 수(n/5) */
-      if (open) { var sd = window.SAGA_STAGES[sid].days, k = 0; sd.list.forEach(function (d) { if (d.mission && sd.cleared(sd.rec(G.hist, d, G.country))) k++; }); prog = ' · ' + k + '/' + sd.list.length; }
-      var cls = open ? 'play' + (cur ? ' on' : '') : 'lock' + (s.key ? ' key' : '');
-      return '<button class="stg ' + cls + '" ' + (open ? (cur ? 'data-go="1"' : 'data-stage="' + sid + '"') : 'disabled') + '><span class="n">' + s.n + '</span><span class="nm">' + esc(tx(s.nm)) + '</span><span class="st">' + esc(tx(lab)) + prog + '</span></button>';
-    }).join('');
-    /* STAGE 02 안내(잠김·미리 공개)는 타일 아래 한 줄로 */
+      if (!sid) { soon.push(s); return; }
+      var sd = window.SAGA_STAGES[sid].days, k = 0; sd.list.forEach(function (d) { if (d.mission && sd.cleared(sd.rec(G.hist, d, G.country))) k++; });
+      var lab = open ? (cur ? L('選択中', '선택 중', 'Selected') : pv ? L('練習で先行公開', '연습 미리 공개', 'Practice preview') : L('勤務できます', '근무 가능', 'Open')) : L('🔒 チェックイン編 DAY 5の後', '🔒 체크인편 DAY 5 후', '🔒 After Check-in DAY 5');
+      var th = STG.src(THUMB[sid] || '') || STG.src('checkin_bg_01');
+      cards += '<button class="stg sc ' + (open ? 'play' : 'lock') + (cur ? ' on' : '') + '" ' + (open ? (cur ? 'data-go="1"' : 'data-stage="' + sid + '"') : 'disabled') + '>' + (th ? '<img src="' + th + '" alt="">' : '') + '<span class="g"></span>' +
+        '<span class="t"><span class="n">STAGE ' + s.n + '</span><span class="nm">' + esc(tx(s.nm)) + '</span>' + (open ? '<span class="bar"><i style="width:' + Math.round(k / sd.list.length * 100) + '%"></i></span>' : '') + '<span class="st">' + esc(tx(lab)) + (open ? ' · ' + k + '/' + sd.list.length : '') + '</span></span></button>';
+    });
+    var soonH = soon.length ? '<details class="tsoon"><summary>' + esc(tx(L('準備中のステージ ' + soon.length, '준비 중인 스테이지 ' + soon.length + '개', soon.length + ' stages coming'))) + '</summary><ul>' + soon.map(function (s) { return '<li>' + s.n + ' ' + esc(tx(s.nm)) + (s.key ? ' ★' : '') + '</li>'; }).join('') + '</ul><p>' + esc(tx(L('★ は計算の実習ステージ', '★는 계산 실습 스테이지', '★ hands-on calculation stage'))) + '</p></details>' : '';
     var s2o = stageOpen('02'), s2note = !gtDef ? '' : !s2o ? (GATE_PREVIEW ? L('STAGE 02 ゲート編：チェックイン編の本番DAY 5をクリアすると開きます（練習モードなら先に体験できます）', 'STAGE 02 게이트편: 체크인편 실전 DAY 5를 통과하면 열립니다(연습 모드에서는 미리 해 볼 수 있습니다)', 'STAGE 02 Gate: opens after you clear Check-in DAY 5 in Shift mode (try it early in Practice)') : L('STAGE 02 ゲート編：チェックイン編の本番DAY 5をクリアすると開きます', 'STAGE 02 게이트편: 체크인편 실전 DAY 5를 통과하면 열립니다', 'STAGE 02 Gate: opens after you clear Check-in DAY 5 in Shift mode'))
       : gatePreviewOnly() ? L('STAGE 02 ゲート編：練習モードで先行公開中（本番はチェックイン編の本番DAY 5クリア後）', 'STAGE 02 게이트편: 연습 모드 미리 공개 중(실전은 체크인편 실전 DAY 5 통과 후)', 'STAGE 02 Gate: practice preview (Shift mode after Check-in DAY 5)') : '';
     var dd = curDay(); G.day = dd.n; applyDayHints(dd.n);
@@ -2573,34 +2579,38 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       if (r && r.plays && !r.top && stt === 'open') lab = L('', '', '');
       /* 24차b(GPT 의견): 연습 모드에서도 첫 화면의 최고 기록은 실전 기록 — 「실전」이라고 밝힘 */
       if (G.practice && r && stt === 'open' && (r.plays || r.legacyBest)) lab = { ja: '本番 ' + lab.ja, ko: '실전 ' + lab.ko, en: 'Shift ' + lab.en };
-      return '<button class="day ' + stt + (d.n === dd.n ? ' on' : '') + '" data-day="' + d.n + '"' + (stt === 'open' ? '' : ' disabled') + '><span class="n">DAY ' + d.n + '</span><span class="nm">' + esc(tx(d.nm)) + '</span><span class="lr">' + esc(tx(d.learn)) + '</span><span class="st">' + esc(tx(lab)) + esc(best) + '</span></button>';
+      var rk = r && r.top && stt === 'open' ? '<span class="rk">' + esc(r.top.rank) + '</span>' : '';   /* 48차: 등급 배지 */
+      return '<button class="day ' + stt + (d.n === dd.n ? ' on' : '') + '" data-day="' + d.n + '"' + (stt === 'open' ? '' : ' disabled') + '><span class="n">DAY <b>' + d.n + '</b></span>' + rk + '<span class="nm">' + esc(tx(d.nm)) + '</span><span class="lr">' + esc(tx(d.learn)) + '</span><span class="st">' + esc(tx(lab)) + esc(best) + '</span></button>';
     }).join('');
     var LD = (window.LESSON_DAYS || {})[ST.id] || {}, les = Object.keys(LD).filter(function (k) { return LD[k].indexOf(dd.n) >= 0 && LS && LS[k]; });
     var lesH = les.length ? '<details class="tles"><summary>📘 ' + esc(tx(L('この日に関係するレッスン', '이 날 관련 레슨', 'Lessons for this day'))) + ' (' + les.length + ')</summary><ul>' + les.map(function (k) { return '<li>' + lessonA(k, (k.indexOf('ciq/') === 0 ? 'CIQ ' : '') + k.split('/')[1] + ' ' + tx(LS[k])) + '</li>'; }).join('') + '</ul></details>' : '';
     var V0 = dd.mission.variants[G.country];
-    $('#app').innerHTML =
-      '<div class="title t47"><div class="tban">' + ST.hero() + '<div class="tt"><h1>AIRLINE SAGA</h1><div class="sub">' + esc(tx(T.brandSub)) + '</div></div></div>' +
-      '<div class="twinl"><p><b class="ky">' + esc(tx(L('コラドン', '코라돈', 'Koradon'))) + '</b> ' + esc(tx(L('ヒント担当。迷ったときに声をかけてくれる明るい兄（ヒントはDAY 1は最初からON）', '힌트 담당. 헷갈릴 때 말을 걸어 주는 밝은 형(힌트는 DAY 1에서 처음부터 켜짐)', 'Tips. The cheerful elder twin who chimes in when you are stuck (tips on for DAY 1)'))) + '</p>' +
-      '<p><b class="kg">' + esc(tx(L('コラリン', '코라린', 'Korarin'))) + '</b> ' + esc(tx(L('ルール担当。判断の場面でルールを教えてくれる、安全に厳しめのしっかり者の妹', '규칙 담당. 판단 장면에서 규칙을 알려 주는, 안전에 엄격한 야무진 동생', 'Rules. The sharp younger twin who explains the rules at each decision — strict about safety'))) + '</p></div>' +
-      runPanelHtml() +   /* 26차: 저장된 근무가 있으면 위에 */
-      '<div class="panel tset">' +
+    var setP = '<div class="tsetp" id="tsetp" hidden>' +
       '<div class="row langrow"><span class="lb">' + esc(tx(T.lang)) + '</span><div class="seg" id="seglang">' + ['ja', 'ko', 'en'].map(function (l) { return '<button data-l="' + l + '" class="' + (G.lang === l ? 'on' : '') + '">' + { ja: '日本語', ko: '한국어', en: 'English' }[l] + '</button>'; }).join('') + '</div></div>' +
-      '<div class="row"><span class="lb">' + esc(tx(T.station)) + '</span><div class="seg" id="segc"><button data-c="JP" class="' + (G.country === 'JP' ? 'on' : '') + '">' + esc(tx(T.jp)) + '</button><button data-c="KR" class="' + (G.country === 'KR' ? 'on' : '') + '">' + esc(tx(T.kr)) + '</button></div></div>' +
-      '<div class="row"><span class="lb">' + esc(tx(L('モード', '모드', 'Mode'))) + '</span><div class="seg mode" id="segmode" role="group"><button id="tg-c" aria-pressed="' + !G.practice + '" class="' + (G.practice ? '' : 'on') + '"><b>' + esc(tx(T.modeC)) + '</b></button><button id="tg-p" aria-pressed="' + !!G.practice + '" class="' + (G.practice ? 'on' : '') + '"><b>' + esc(tx(T.modeP)) + '</b></button></div></div>' +
-      '<div class="row"><span class="lb">' + esc(tx(L('設定', '설정', 'Options'))) + '</span><div class="seg"><button id="tg-h" class="' + (G.hints ? 'on' : '') + '">' + esc(tx(T.hints)) + '</button><button id="tg-s" class="' + (G.sound ? 'on' : '') + '">' + esc(tx(T.sound)) + '</button><button id="tg-v" class="' + (G.voice ? 'on' : '') + '">' + esc(tx(T.voice)) + '</button></div></div>' +
-      '<p class="modenote">' + esc(tx(G.practice ? L('練習：どの日もすぐ選べます。記録は練習用に別に残り、本番の進み具合は変わりません。', '연습: 어느 날이든 바로 고를 수 있습니다. 기록은 연습용으로 따로 남고, 실전 진행에는 영향이 없습니다.', 'Practice: pick any day right away. Results are kept separately and do not change your shift-mode progress.') : L('本番：前の日をB以上・安全合格で終えると次の日が開きます。結果は学習の記録に残ります。', '실전: 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다. 결과는 학습 기록에 남습니다.', 'Shift mode: clear a day with B or better and a safety pass to open the next. Results go into your record.'))) + ' ' + esc(tx(T.stationNote)) + '</p></div>' +
-      '<div class="panel"><h2 class="stgh">' + esc(tx(T.stages)) + '</h2><div class="stages">' + st + '</div>' + (s2note ? '<p class="stgnote" id="stgnote">' + esc(tx(s2note)) + '</p>' : '') + '</div>' +
-      '<div class="panel tday" id="tday"><h2>STAGE ' + ST.stageNo + ' · ' + esc(tx(T.days)) + '</h2>' +
+      '<div class="row"><div class="seg"><button id="tg-h" class="' + (G.hints ? 'on' : '') + '">' + esc(tx(T.hints)) + '</button><button id="tg-s" class="' + (G.sound ? 'on' : '') + '">' + esc(tx(T.sound)) + '</button><button id="tg-v" class="' + (G.voice ? 'on' : '') + '">' + esc(tx(T.voice)) + '</button></div></div>' +
+      '<p class="small">' + esc(tx(T.stationNote)) + '</p></div>';
+    $('#app').innerHTML =
+      '<div class="title t48"><div class="tl">' +
+      '<div class="tkv">' + ST.hero() + '<div class="logo"><b>AIRLINE <span>SAGA</span></b><small>' + esc(tx(T.brandSub)) + '</small></div><button class="kvset" id="kvset" aria-expanded="false">⚙ ' + esc(tx(L('設定', '설정', 'Settings'))) + '</button></div>' + setP +
+      '<div class="qbar"><div class="seg" id="segc"><button data-c="JP" class="' + (G.country === 'JP' ? 'on' : '') + '">' + esc(tx(L('日本', '일본', 'Japan'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button><button data-c="KR" class="' + (G.country === 'KR' ? 'on' : '') + '">' + esc(tx(L('韓国', '한국', 'Korea'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button></div>' +
+      '<div class="seg mode" id="segmode" role="group"><button id="tg-c" aria-pressed="' + !G.practice + '" class="' + (G.practice ? '' : 'on') + '">' + esc(tx(T.modeC)) + '<small>' + esc(tx(L('順番に', '차례대로', 'In order'))) + '</small></button><button id="tg-p" aria-pressed="' + !!G.practice + '" class="' + (G.practice ? 'on' : '') + '">' + esc(tx(T.modeP)) + '<small>' + esc(tx(L('どの日も', '모든 날', 'Any day'))) + '</small></button></div></div>' +
+      '<p class="modenote">' + esc(tx(G.practice ? L('練習：どの日もすぐ選べます。記録は別に残り、本番の進み具合は変わりません。', '연습: 어느 날이든 바로 고를 수 있습니다. 기록은 따로 남고, 실전 진행에는 영향이 없습니다.', 'Practice: pick any day. Results are kept separately and do not change your shift progress.') : L('本番：前の日をB以上・安全合格で終えると次の日が開きます。', '실전: 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.', 'Shift: clear a day with B or better and a safety pass to open the next.'))) + '</p>' +
+      runPanelHtml() +
+      '<div class="twins"><div class="tw y"><img src="' + STG.src('koradon_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラドン', '코라돈', 'Koradon'))) + '</b><p>' + esc(tx(L('ヒント担当。迷ったときに声をかけてくれる兄', '힌트 담당. 헷갈릴 때 말을 걸어 주는 형', 'Tips — the elder twin who helps when you are stuck'))) + '</p></div></div>' +
+      '<div class="tw g"><img src="' + STG.src('korarin_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラリン', '코라린', 'Korarin'))) + '</b><p>' + esc(tx(L('ルール担当。安全に厳しめの妹', '규칙 담당. 안전에 엄격한 동생', 'Rules — the younger twin, strict about safety'))) + '</p></div></div></div>' +
+      '<h2 class="stgh">' + esc(tx(L('ステージ', '스테이지', 'Stages'))) + '</h2><div class="stages">' + cards + '</div>' + (s2note ? '<p class="stgnote" id="stgnote">' + esc(tx(s2note)) + '</p>' : '') + soonH +
+      '</div><div class="tr"><div class="tday" id="tday"><h2>STAGE ' + ST.stageNo + ' · ' + esc(tx(T.days)) + '</h2>' +
       '<div class="days" id="days">' + days + '</div>' +
-      (G.hints && !G.practice ? '<p class="small" style="margin:6px 0 0">' + esc(tx(L('ヒントON：DAY 1（はじめての勤務）はヒントを使ってもSまで。DAY 2以降は最高ランクがAになります。', '힌트 켬: DAY 1(첫 근무)은 힌트를 써도 S까지 받을 수 있고, DAY 2부터는 최고 등급이 A입니다.', 'Tips on: DAY 1 (first shift) can still reach S with tips; from DAY 2 the best possible rank is A.'))) + '</p>' : '') +
-      hashNoteHtml() + '<button class="start" id="go">' + esc(tx(T.start)) + (G.practice ? ' · ' + esc(tx(T.modeP)) : '') + ' · DAY ' + dd.n + ' ' + esc(tx(dd.nm)) + ' · ' + V0.flight + ' ' + V0.from + '→' + V0.to + '</button>' + lesH + '</div>' +
-      '<p style="font-size:12px;color:var(--sub)">' + esc(tx(T.edu)) + '</p><p style="font-size:11px;color:var(--sub);margin-top:-6px">' + esc(tx(T.credit)) + '</p></div>';
+      (G.hints && !G.practice ? '<p class="small" style="margin:6px 0 0">' + esc(tx(L('ヒントON：DAY 1はSまで、DAY 2以降は最高Aになります。', '힌트 켬: DAY 1은 S까지, DAY 2부터는 최고 A입니다.', 'Tips on: DAY 1 can reach S; from DAY 2 the best is A.'))) + '</p>' : '') +
+      hashNoteHtml() + '<button class="start" id="go">' + esc(tx(T.start)) + ' ▶<small>' + (G.practice ? esc(tx(T.modeP)) + ' · ' : '') + 'DAY ' + dd.n + ' ' + esc(tx(dd.nm)) + ' · ' + V0.flight + ' ' + V0.from + '→' + V0.to + '</small></button>' + lesH + '</div>' +
+      '<p class="fine">' + esc(tx(T.edu)) + '</p><p class="fine">' + esc(tx(T.credit)) + '</p></div></div>';
     $('#seglang').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; setLang(b.dataset.l); };
     $('#segc').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; G.country = b.dataset.c; save(); ensureStageAllowed(); renderTitle(); };   /* 35차 A-F01: 근무지를 바꾸면 그 근무지의 자격으로 다시 판단 */
     $('#tg-h').onclick = function () { G.hints = !G.hints; G.hintsByDay[G.day] = G.hints; save(); renderTitle(); };
     $('#tg-s').onclick = function () { G.sound = !G.sound; save(); renderTitle(); };
     $('#tg-v').onclick = function () { G.voice = !G.voice; VO.on = G.voice; save(); renderTitle(); };
     $('#go').onclick = startMission; bindRunPanel();
+    $('#kvset').onclick = function () { var p = $('#tsetp'), op = p.hidden; p.hidden = !op; this.setAttribute('aria-expanded', String(op)); };   /* 48차: ⚙ 설정(힌트·효과음·음성) */
     $('#tg-p').onclick = function () { if (G.practice) return; G.practice = true; save(); renderTitle(); };
     $('#tg-c').onclick = function () { if (!G.practice) return; G.practice = false; ensureStageAllowed(); save(); renderTitle(); };   /* 46차: 미리보기로 연 STAGE 02에서 실전으로 바꾸면 자격을 다시 봄(없으면 체크인편) */
     $('#days').onclick = function (e) { var b = e.target.closest('button[data-day]'); if (!b || b.disabled) return; G.day = +b.dataset.day; save(); renderTitle(); };
@@ -4499,7 +4509,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     if (box) box.innerHTML = '<div class="why ok">' + esc(tx(playing ? L('🔊 放送中… 終わると次へ進みます', '🔊 방송 중… 끝나면 다음으로 넘어갑니다', '🔊 Announcing… continues when finished') : L('✔ 放送しました', '✔ 방송했습니다', '✔ Announced'))) + '</div>' +
       '<div class="btns"><button class="btn pri" id="g-next" data-a="ok">' + esc(tx(L('次へ ▶', '다음 ▶', 'Next ▶'))) + '</button></div>';
     var go = function () { if (S.cur !== c || G.screen !== 'play') return; if (after) { if (c.flags.wentIn) return; c.flags.wentIn = true; after(); return; } if (c.flags.went) return; c.flags.went = true; gateEnd(300); };
-    var nx = $('#g-next'); if (nx) nx.onclick = function () { sfx.tap(); (VO.next || VO.stop)(); go(); };
+    var nx = $('#g-next'); if (nx) nx.onclick = function () { sfx.tap(); if (G.voice && VO.next) VO.next(); else VO.stop(); go(); };
     if (playing) VO.whenIdle(function () { if (S.cur === c) setTimeout(go, 400); }, 25000); else setTimeout(go, 1500);
   }
   function gBindBcast(b, done, after) {   /* after가 있으면 단위를 끝내지 않고 after()로 다시 그림(사인 단위 안의 B9) */
