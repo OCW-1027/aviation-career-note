@@ -391,3 +391,44 @@ a.lessonref{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .ppcmp{align-items:center;gap:12px;margin:6px 0}.ppcmp .as-passport-photo--sm{width:64px;height:auto;border-radius:6px}
 .screen .why{border-radius:8px;padding:8px 10px;margin:8px 0;background:#13303b;font-size:13px}.screen .why.bad{background:#4a1f1f;color:#ffd6d6}
 .screen .opt{background:#0f2b36;color:#e8f4f8;border-color:#1d4b5c}.screen .opt:hover{border-color:#8ef0b5}.screen .opt[disabled]{opacity:.45}.screen .lessonref{color:#9fd6e8}
+
+/* 47차(사용자 10-17): 첫 화면 정리 — 작은 배너·코라돈/코라린 두 줄·설정 한 칸·스테이지 타일·DAY 한 줄 목록 */
+.t47 .tban{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--paper)}
+.t47 .tban .herostage{aspect-ratio:auto;height:clamp(150px,30vw,300px)}
+.t47 .tban .tt{position:absolute;left:0;right:0;bottom:0;top:auto;padding:22px 14px 10px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.94) 46%)}
+.t47 .tban h1{font-family:var(--f-disp);font-weight:800;font-size:clamp(22px,5vw,34px);margin:0;color:var(--vela);letter-spacing:.06em;line-height:1.1}
+.t47 .tban .sub{font-size:12px;color:var(--sub);margin-top:2px}
+.twinl{display:grid;gap:4px;margin:-6px 0 0;padding:0 4px}
+.twinl p{margin:0;font-size:12.5px;line-height:1.45;color:var(--sub)}
+.twinl b{font-weight:800;margin-right:2px}.twinl .ky{color:#946c00}.twinl .kg{color:#1f7a5c}
+.tset{display:grid;gap:8px}
+.tset .row{display:grid;grid-template-columns:5.2em minmax(0,1fr);align-items:center;gap:8px}
+.tset .lb{font-size:12px;font-weight:700;color:var(--sub)}
+.tset .seg{gap:6px}
+.tset .seg button{padding:6px 10px;font-size:13px;min-height:34px}
+.tset .seg.mode{margin:0;grid-template-columns:repeat(2,minmax(0,1fr))}
+.tset .seg.mode button{min-height:34px;padding:6px 10px;align-items:center;justify-content:center}
+.tset .seg.mode button.on{padding:5px 9px}
+.tset .seg.mode button b{font-size:13.5px}
+.tset .modenote{margin:0;font-size:12px}
+.t47 .panel h2{font-size:15px;margin:0 0 10px}
+.t47 .stages{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.t47 .stg{min-height:0;padding:7px 8px;border-radius:10px;gap:1px}
+.t47 .stg .n{font-size:10.5px}
+.t47 .stg .nm{font-size:12.5px;line-height:1.25;word-break:keep-all;overflow-wrap:anywhere}
+.t47 .stg .st{font-size:10.5px}
+.t47 .stg.on{box-shadow:0 0 0 2px var(--vela) inset}
+.stgnote{font-size:12px;color:var(--sub);margin:8px 0 0;line-height:1.45}
+.t47 .days{grid-template-columns:minmax(0,1fr);gap:6px}
+.t47 .day{min-height:0;flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:8px;row-gap:2px;padding:9px 12px;border-radius:12px}
+.t47 .day .nm{font-size:14.5px}
+.t47 .day .st{margin:0 0 0 auto;text-align:right}
+.t47 .day .lr{display:none;flex-basis:100%}
+.t47 .day.on .lr{display:block}
+.t47 .tday .start{margin-top:10px}
+.tles{margin-top:10px;font-size:13px}
+.tles summary{cursor:pointer;font-weight:700;color:var(--vela);padding:4px 0}
+.tles ul{margin:6px 0 0;padding-left:1.2em;display:grid;gap:4px}
+@media(min-width:860px){.t47 .stages{grid-template-columns:repeat(6,minmax(0,1fr))}.t47 .days{grid-template-columns:minmax(0,1fr)}.t47 .days .day:first-child{min-height:0}}
+html.sh-saga .tset .langrow{display:none}   /* 47차: 사이트에서는 머리말의 언어 버튼을 씀 */
+.tset .row{grid-template-columns:4.6em minmax(0,1fr)}.tset .lb{font-size:11.5px;line-height:1.3}
