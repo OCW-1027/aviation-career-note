@@ -44,7 +44,7 @@ try {
 } catch (e) { console.error('lesson_map:', e.message); }
 const OUT = path.resolve(process.argv[3] || '_site');
 const OUT_URL = pathToFileURL(OUT).href.replace(/\/?$/, '/');   // 書き出し先の file:/// の形（図の画像パスを直すのに使う）
-const SITE = (process.env.SITE_URL || 'https://ocw-1027.github.io/aviation-career-note/').replace(/\/?$/, '/');
+const SITE = (process.env.SITE_URL || 'https://www.ac-note.com/')   // 2026.10.17 公式ドメイン（DNS をつなぐ前でも canonical・sitemap はこの住所で作る）.replace(/\/?$/, '/');
 const ONLY = process.env.ONLY || '';          // 例 "18_항공기초지식" 試験用
 const LIMIT = +(process.env.LIMIT || 0);      // 講座ごとのレッスン数の上限（試験用）
 const LANGS = ['ja', 'ko', 'en'];

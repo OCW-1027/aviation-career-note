@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>お問い合わせ</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Gowun+Dodum&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.ct-tbl{width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;margin:10px 0 18px}
+.ct-tbl th,.ct-tbl td{border:1px solid #E3E8EF;padding:9px 11px;vertical-align:top;text-align:left}
+.ct-tbl th{background:#F4F7FB;text-align:center}
+.ct-tbl td:first-child{font-weight:700;white-space:nowrap}
+.ct-tbl a{font-weight:700;word-break:break-all}
+.doc ul.ct{margin:6px 0 14px 1.2em;padding:0;line-height:1.7}
+@media (max-width:640px){.ct-tbl,.ct-tbl tbody,.ct-tbl tr,.ct-tbl td{display:block;width:100%}.ct-tbl thead{display:none}.ct-tbl tr{border:1px solid #E3E8EF;border-radius:10px;margin:0 0 10px;padding:6px 8px}.ct-tbl td{border:0;padding:3px 2px;white-space:normal}.ct-tbl td[data-h]::before{content:attr(data-h);display:block;font-size:11.5px;color:#6B7785;font-weight:700}}
+</style>
+</head>
+<body data-page="contact">
+<header class="topbar" id="siteTop"></header>
+<div class="wrap doc">
+<section class="page-hero"><h1 id="h1"></h1><p id="hp"></p></section>
+<div id="body"></div>
+</div>
+<footer class="site-foot" id="siteFoot"></footer>
+<script>
+/* お問い合わせ（2026.10.17 新規）— 用途ごとの公式メールの窓口。押すとメールソフトが開く（サイトから自動で送ることはしない）。
+   admin@・noreply@・運営者個人のアドレスは載せない */
+var CT=[['info',['一般お問い合わせ','일반 문의','General Inquiries'],['サイトや運営についての一般的なお問い合わせ','사이트·운영에 관한 일반 문의','General questions about the site and its operation']],
+ ['support',['会員サポート','회원 지원','Member Support'],['アカウント・ログイン・使い方のサポート、内容の誤りのご連絡','계정·로그인·이용 방법 지원, 콘텐츠 오류 신고','Help with accounts, sign-in and using the site; reporting errors in the content']],
+ ['billing',['お支払い・ご契約','결제·구독 문의','Billing & Subscriptions'],['会員プランのお支払い・領収書・解約・返金','회원 플랜 결제·영수증·해지·환불','Payments, receipts, cancellation and refunds for membership plans']],
+ ['contact',['法人・学校提携','기업·학교 제휴','Business & School Partnerships'],['航空会社・グランドハンドリング会社・学校・企業との提携、団体でのご利用','항공사·조업사·학교·기업 제휴, 단체 이용','Partnerships with airlines, ground handling companies, schools and businesses; group use']],
+ ['recruit',['求人広告のお問い合わせ','구인광고 문의','Job Advertising Inquiries'],['求人の掲載・採用に関するお問い合わせ','구인 게재·채용 관련 문의','Posting job listings and hiring-related questions']]];
+var T={ja:{h1:'お問い合わせ',hp:'ご用件に合わせて、下の窓口へメールでお送りください。アドレスを押すと、お使いのメールソフトが開きます。',tc:['ご用件','メールアドレス','内容'],
+ notes:['内容の誤りは、各レッスンの下の「誤りを知らせる」からもお送りいただけます。','このページからメールが自動で送られることはありません。','返信までお時間をいただく場合があります。'],rep:'誤りを知らせる',site:'公式サイト'},
+ ko:{h1:'문의',hp:'용건에 맞는 창구로 메일을 보내 주세요. 주소를 누르면 사용 중인 메일 앱이 열립니다.',tc:['용건','메일 주소','내용'],
+ notes:['콘텐츠 오류는 각 레슨 아래의 「오류 신고」에서도 보낼 수 있습니다.','이 페이지에서 메일이 자동으로 발송되지는 않습니다.','답장까지 시간이 걸릴 수 있습니다.'],rep:'오류 신고',site:'공식 사이트'},
+ en:{h1:'Contact',hp:'Please email the address that matches your enquiry. Clicking an address opens your email app.',tc:['Enquiry','Email address','Details'],
+ notes:['You can also report errors in the content from “Report an error” at the bottom of each lesson.','This page does not send any email automatically.','It may take some time for us to reply.'],rep:'Report an error',site:'Official site'}};
+window.render=function(l){var t=T[l]||T.ja,E=window.SITE_ESC,i=({ja:0,ko:1,en:2})[l]||0;document.getElementById('h1').textContent=t.h1;document.getElementById('hp').textContent=t.hp;
+ var h='<table class="ct-tbl"><thead><tr>'+t.tc.map(function(x){return '<th>'+E(x)+'</th>'}).join('')+'</tr></thead><tbody>'+CT.map(function(r){var m=r[0]+'@ac-note.com';return '<tr><td data-h="'+E(t.tc[0])+'">'+E(r[1][i])+'</td><td data-h="'+E(t.tc[1])+'"><a href="mailto:'+m+'">'+m+'</a></td><td data-h="'+E(t.tc[2])+'">'+E(r[2][i])+'</td></tr>'}).join('')+'</tbody></table>';
+ h+='<ul class="ct">'+t.notes.map(function(x,j){return '<li>'+E(x)+(j===0?' <a href="report.html?lang='+l+'">'+E(t.rep)+' →</a>':'')+'</li>'}).join('')+'<li>'+E(t.site)+'：www.ac-note.com</li></ul>';
+ document.getElementById('body').innerHTML=h;document.title=t.h1+' | '+window.SITE_NAME()};
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -188,7 +188,7 @@ function render(l){if(l&&LANGS.indexOf(l)>=0)lang=l;var t=T[lang],saved={};FIELD
  $('f').innerHTML=h;FIELDS.forEach(function(x){var e=$('f_'+x[0]);if(saved[x[0]])e.value=saved[x[0]]});if(ag)$('f_agree').checked=true;
  $('bPv').onclick=function(){if(check())showPv()};
  $('bCp').onclick=function(){if(!check())return;var s=summary();function ok(){$('bCp').textContent=F.copied}if(navigator.clipboard)navigator.clipboard.writeText(s).then(ok,function(){});};
- $('bMl').onclick=function(){if(!check())return;location.href='mailto:?subject='+encodeURIComponent(T[lang].ttl+'：'+val('company'))+'&body='+encodeURIComponent(summary())};
+ $('bMl').onclick=function(){if(!check())return;location.href='mailto:recruit@ac-note.com?subject='+encodeURIComponent(T[lang].ttl+'：'+val('company'))+'&body='+encodeURIComponent(summary())};
  if($('pv').classList.contains('show'))showPv();}
 function opt(k){var e=$('f_'+k);return e.options[e.selectedIndex].text}
 function check(){var ok=FIELDS.every(function(x){return !x[2]||val(x[0])})&&$('f_agree').checked;$('err').textContent=ok?'':T[lang].f.errMsg;return ok}

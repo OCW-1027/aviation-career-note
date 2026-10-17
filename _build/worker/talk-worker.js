@@ -23,7 +23,7 @@
 //   ?p=…（任意・300字まで）：直前の相手のせりふなど、話の流れ。Whisper の initial_prompt に渡すと、続きの言葉を正しく聞き取りやすくなる
 //   （流れの文そのものしか返らなかったときは、聞き取れなかったとみなして空にする）
 
-const DEFAULT_ORIGINS = ['https://ocw-1027.github.io'];
+const DEFAULT_ORIGINS = ['https://ocw-1027.github.io', 'https://www.ac-note.com', 'https://ac-note.com'];
 const DEFAULT_MODEL = '@cf/qwen/qwen3-30b-a3b-fp8';
 const ALLOWED_MODELS = ['@cf/qwen/qwen3-30b-a3b-fp8', '@cf/google/gemma-3-12b-it', '@cf/openai/gpt-oss-120b'];
 const MAX_MESSAGES = 16;

@@ -56,12 +56,12 @@
 다른 사이트가 이 Worker를 몰래 쓰지 못하게, **우리 사이트에서 온 요청에만** 대답하게 합니다.
 
 1. **Settings** → **Variables and Secrets**(변수와 비밀) → **Add**(추가)
-2. Type: **Text**, Variable name: `ALLOWED_ORIGINS`, Value: `https://ocw-1027.github.io`
+2. Type: **Text**, Variable name: `ALLOWED_ORIGINS`, Value: `https://ocw-1027.github.io,https://www.ac-note.com,https://ac-note.com`
 3. **Deploy** 를 누릅니다.
 
 - 주소는 **`https://` + 도메인까지만** 씁니다. 뒤의 `/aviation-career-note/` 는 넣지 않습니다.
-- 여러 개면 쉼표로 구분: `https://ocw-1027.github.io,https://example.com`
-- 이 변수를 넣지 않아도 기본값이 `https://ocw-1027.github.io` 입니다.
+- 여러 개면 쉼표로 구분: `https://ocw-1027.github.io,https://www.ac-note.com`
+- 이 변수를 넣지 않아도 기본값이 `https://ocw-1027.github.io`·`https://www.ac-note.com`·`https://ac-note.com` 입니다(2026.10.17 공식 도메인 추가). 이미 배포한 Worker는 다시 배포하거나 변수를 고쳐야 반영됩니다.
 - PC에서 시험할 때 쓰는 `http://localhost` 도 기본으로 허용됩니다. 막고 싶으면 변수 `ALLOW_LOCALHOST` 를 만들어 값 `false` 를 넣습니다.
 
 ## 6. 잘 동작하는지 확인

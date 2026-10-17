@@ -29,3 +29,14 @@
  .acn-copy{margin-top:12px!important;padding-top:10px!important}
 }
 @media print{.acn-ft{display:none!important}}
+
+/* お問い合わせの行（2026.10.17 公式メール）：用途の名前とメールアドレスを並べる。押すとメールソフトが開く */
+.acn-ct{max-width:1200px;margin:16px auto 0!important;padding:12px 0 0!important;border-top:1px solid rgba(159,176,191,.18);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 22px;font-size:12px}
+.acn-ft .acn-ct b{display:inline-block!important;margin:0 4px 0 0!important}
+.acn-ct span{display:inline-flex;align-items:baseline;gap:6px;color:#9fb0bf;white-space:nowrap}
+.acn-ct em{font-style:normal}
+.acn-ft .acn-ct a{display:inline!important;margin:0!important;color:#dbe6f0!important;white-space:nowrap}
+.acn-ft .acn-ct a.acn-ctall{color:#9fb0bf!important}
+.acn-ft .acn-ct a:hover{color:#fff!important}
+.acn-copy .acn-url{white-space:nowrap}
+@media(max-width:600px){.acn-ct{display:grid;grid-template-columns:1fr;gap:5px}.acn-ct span{flex-wrap:wrap;gap:0 8px;white-space:normal}}

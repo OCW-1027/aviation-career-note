@@ -2,6 +2,10 @@
    各ページは <body data-page="home|business"> と、ページの中身を描く window.PAGE_RENDER(lang) を用意する。
    言語は ?lang= → 保存した言語（art-lang）→ 端末の言語 の順に決め、いまのサイトと同じ場所に保存する */
 (function(){
+/* フッターの「お問い合わせ」（2026.10.17 公式メール）。v3.js と acn_shell.js に同じものを置く（片方を直したらもう片方も） */
+function ACN_CT(l,U){var t={ja:['お問い合わせ','すべての窓口 →'],ko:['문의','모든 문의 창구 →'],en:['Contact','All contacts →']}[l]||['お問い合わせ','すべての窓口 →'],k={ja:0,ko:1,en:2}[l]||0,
+ I=[['info',['一般お問い合わせ','일반 문의','General Inquiries']],['support',['会員サポート','회원 지원','Member Support']],['contact',['法人・学校提携','기업·학교 제휴','Business & School Partnerships']],['recruit',['求人広告のお問い合わせ','구인광고 문의','Job Advertising Inquiries']]];
+ return '<b>'+t[0]+'</b>'+I.map(function(x){var m=x[0]+'@ac-note.com';return '<span><em>'+x[1][k]+'</em><a href="mailto:'+m+'">'+m+'</a></span>'}).join('')+'<a class="acn-ctall" href="'+U('contact.html')+'">'+t[1]+'</a>'}
 var C={
 ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],brand:'航空キャリアノート',nav:['航空講座','会社実務','会話練習','実務練習','ゲーム','求人','コーチング','コミュニティ'],mem:'メンバーシップ',
  foot:['航空の専門知識から、求人・コーチング・コミュニティまで。','航空の外でも役立つ、仕事の知識を。'],
@@ -31,7 +35,8 @@ function draw(){var c=C[lang],page=document.body.getAttribute('data-page');
   Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}draw()}})}
  if($('mem'))$('mem').textContent=c.mem;
  if($('foot'))$('foot').innerHTML='<div>'+(window.ACN_LOGO?'<a class="acn-ftb" href="index.html" aria-label="Aviation Career Note">'+ACN_LOGO.lockup({dark:true})+'</a>'+(lang==='en'?'':'<p>'+E(c.brand)+'</p>'):'<b>'+E(c.brand)+'</b>')+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],lang))+'</b>'+f[1].map(function(a){return '<a href="'+a[0]+'">'+E(FL(a[1],lang))+'</a>'}).join('')+'</div>'}).join('');
- if($('copy'))$('copy').innerHTML=E(c.copy)+'<a href="terms.html">'+E(c.terms)+'</a><a href="privacy.html">'+E(c.privacy)+'</a><a href="notice.html">'+E(c.notice||({ja:'内容の扱いと免責',ko:'콘텐츠 이용 안내·면책',en:'Content notice'})[lang])+'</a>';
+ if($('copy')){var cp=$('copy'),ct=document.getElementById('acnCt');if(!ct){ct=document.createElement('div');ct.id='acnCt';ct.className='acn-ct';cp.parentNode.insertBefore(ct,cp)}ct.innerHTML=ACN_CT(lang,function(u){return u})}
+ if($('copy'))$('copy').innerHTML=E(c.copy)+'<span class="acn-url">www.ac-note.com</span><a href="terms.html">'+E(c.terms)+'</a><a href="privacy.html">'+E(c.privacy)+'</a><a href="notice.html">'+E(c.notice||({ja:'内容の扱いと免責',ko:'콘텐츠 이용 안내·면책',en:'Content notice'})[lang])+'</a>';
  if(typeof window.PAGE_RENDER==='function')window.PAGE_RENDER(lang);
  localLabels();fitAll();}
 /* カードの題名を1行に収める（2026.10 改訂。前の fitL2 の代わり）
