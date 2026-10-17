@@ -40,3 +40,28 @@
 .acn-ft .acn-ct a:hover{color:#fff!important}
 .acn-copy .acn-url{white-space:nowrap}
 @media(max-width:600px){.acn-ct{display:grid;grid-template-columns:1fr;gap:5px}.acn-ct span{flex-wrap:wrap;gap:0 8px;white-space:normal}}
+
+/* 縦・横の線をそろえる（2026.10.17 ユーザー指示）
+   ・各グループのリンクは格子に並べ、2つ目のリンク（会話練習・私の学習ノート・実務練習…）の左端を縦にそろえる。幅が足りないときはセルの中で折り返す
+   ・PC：リンクの列を少し広く（ロゴの列を 2fr → 1.1fr、「学ぶ」を 1.3fr）。スマートフォン：グループを1行ずつ、リンクは3等分の格子で全グループの縦線をそろえる
+   ・お問い合わせ：PC は「用途（上）・アドレス（下）」を列でそろえる。狭い画面は「用途｜アドレス」の2列でアドレスの左端をそろえる */
+.acn-ft .acn-ft-in{grid-template-columns:minmax(0,1.1fr) minmax(0,1.3fr) repeat(3,minmax(0,1fr))}
+.acn-ft .acn-ft-in>div:not(:first-child){display:grid!important;grid-template-columns:repeat(2,minmax(0,max-content));column-gap:16px;row-gap:2px;align-content:start}
+.acn-ft .acn-ft-in>div:not(:first-child) b{grid-column:1/-1}
+.acn-ft .acn-ft-in>div:not(:first-child) a{display:block!important;margin:2px 0!important;white-space:normal!important}
+.acn-ct{display:grid!important;grid-template-columns:max-content repeat(4,minmax(0,max-content)) max-content;gap:2px 28px;align-items:start}
+.acn-ct span{display:flex;flex-direction:column;gap:1px;white-space:normal}
+.acn-ft .acn-ct a.acn-ctall{align-self:end}
+@media(max-width:980px){.acn-ft .acn-ft-in{grid-template-columns:repeat(2,minmax(0,1fr))}.acn-ft .acn-ft-in>div:not(:first-child){grid-template-columns:repeat(3,minmax(0,1fr));column-gap:12px}}
+@media(max-width:1100px){
+ .acn-ct{grid-template-columns:max-content minmax(0,1fr);gap:4px 14px}
+ .acn-ft .acn-ct b,.acn-ft .acn-ct a.acn-ctall{grid-column:1/-1;align-self:auto}
+ .acn-ct span{display:contents}
+ .acn-ft .acn-ct a{white-space:normal;word-break:break-all}
+}
+@media(max-width:600px){
+ .acn-ft .acn-ft-in{grid-template-columns:1fr;gap:10px}
+ .acn-ft .acn-ft-in>div:not(:first-child){grid-template-columns:repeat(3,minmax(0,1fr));column-gap:10px;row-gap:0}
+ .acn-ft .acn-ft-in>div:not(:first-child) a{min-height:24px;line-height:1.45!important;padding:2px 0!important}
+ .acn-ct{gap:3px 12px}
+}
