@@ -102,12 +102,12 @@ function init(){var wrap=document.querySelector('.wrap')||document.body;if(docum
  var L=document.getElementById('lang')||document.getElementById('langs');if(L)bar.querySelector('.shlang').appendChild(L);
  if(page==='load'||page==='rm'){var t=document.getElementById('ttl'),d=document.getElementById('lead');if(t){var h=document.createElement('div');h.className='shhero';t.parentNode.insertBefore(h,t);h.appendChild(t);if(d)h.appendChild(d)}}
  label();new MutationObserver(label).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})}
-/* 23차：ゲームの本編（saga）・ゲームのホーム（sagahome, 23차b GPT 提案）は「ゲーム › AIRLINE SAGA」。「ゲーム」と下の右のボタンはゲームのホーム（AIRLINE_SAGA_HOME.html）へ */
-var GL={ja:'ゲーム',ko:'게임',en:'Game'},GF={ja:['ゲーム','AIRLINE SAGA のホームへ →'],ko:['게임','AIRLINE SAGA 홈으로 →'],en:['Game','AIRLINE SAGA home \u2192']},GH=me?new URL('../AIRLINE_SAGA_HOME.html',me.src).href:'#';
+/* 23차：ゲームの本編（saga）・ゲームのホーム（sagahome）は「ゲーム › AIRLINE SAGA」。2026.10.17（A 47차でホームを本編に統合）：「ゲーム」はサイトのホームの資料・ツール（ゲームのカード）へ、下の右のボタン（ゲームのホームへ）は本編では出さない */
+var GL={ja:'ゲーム',ko:'게임',en:'Game'};
 function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.querySelector('.shsite').textContent=SITE[l];b.querySelector('.shlib').textContent=LIB[l];b.querySelector('.shcur').textContent=(NAME[page]||{})[l]||document.title;b.querySelector('.shbrand').href=HOME+'?lang='+l;b.querySelector('.shlib').href=HOME+'?lang='+l+'#practice';
  var f=document.querySelector('.shfoot');if(f){var x=FT[l],c=f.querySelector('.shc'),s=f.querySelector('.shl');if(c){c.querySelector('small').textContent=x[0];c.querySelector('b').textContent=CR[CMAP[page]][{ja:1,ko:2,en:3}[l]]}s.querySelector('small').textContent=x[1];s.querySelector('b').textContent=x[2];s.href=HOME+'?lang='+l+'#practice';
-  if(page==='saga'){s.querySelector('small').textContent=GF[l][0];s.querySelector('b').textContent=GF[l][1];s.href=GH}}
- if(page==='saga'||page==='sagahome'){var lb=b.querySelector('.shlib');lb.textContent=GL[l];lb.href=GH}}
+  if(page==='saga'){s.style.display='none'}}
+ if(page==='saga'||page==='sagahome'){var lb=b.querySelector('.shlib');lb.textContent=GL[l];lb.href=HOME+'?lang='+l+'#practice'}}
 /* 表の見出しと中身の位置をそろえる：中身が短い列・入力欄の列は、見出しと中身を中央ぞろえにする（表が描き直されるたびに適用） */
 function alignTables(){Array.prototype.forEach.call(document.querySelectorAll('table'),function(tb){if(tb.closest&&tb.closest('[data-noalign]'))return;var rows=Array.prototype.slice.call(tb.rows);if(rows.length<2)return;var hr=null;for(var i=0;i<rows.length;i++){if(rows[i].querySelector('th')&&!rows[i].querySelector('td')){hr=rows[i];break}}if(!hr)return;var n=hr.cells.length;for(var c=0;c<n;c++){var ok=true,cnt=0;for(var r=0;r<rows.length;r++){var row=rows[r];if(row===hr||row.cells.length!==n)continue;var td=row.cells[c];if(!td||td.tagName!=='TD')continue;cnt++;if(td.querySelector('input,select,button'))continue;var s=(td.textContent||'').trim(),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>18){ok=false;break}}if(ok&&cnt){hr.cells[c].style.textAlign='center';for(var r2=0;r2<rows.length;r2++){var rw=rows[r2];if(rw!==hr&&rw.cells.length===n&&rw.cells[c].tagName==='TD')rw.cells[c].style.textAlign='center'}}}})}
 /* 휴대폰（幅600px以下）では、横にはみ出す表・図を画面の幅に合わせて縮める（2026.10）。まず最小幅を外して折り返し、それでも広ければ全体を縮小（zoom）。

@@ -12,7 +12,7 @@ ko:{proto:['GPT 디자인안을 바탕으로 만든 시안입니다. 지금 홈�
 en:{proto:['A prototype based on the GPT design. The current home page is','here'],brand:'Aviation Career Note',nav:['Courses','Business','Speaking','Practice','Game','Jobs','Coaching','Community'],mem:'Membership',
  foot:['From aviation knowledge to jobs, coaching and community.','Professional Knowledge beyond Aviation.'],
  copy:'© 2026 Aviation Career Note. All rights reserved.',terms:'Terms of use',privacy:'Privacy policy'}};
-var NAV=[['index.html#learn','learn'],['business.html','business'],['../会話練習_日韓英.html','talk'],['index.html#practice','practice'],['../1_지상직여객운송입문/AIRLINE_SAGA_HOME.html','game'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
+var NAV=[['index.html#learn','learn'],['business.html','business'],['../会話練習_日韓英.html','talk'],['index.html#practice','practice'],['../1_지상직여객운송입문/AIRLINE_SAGA.html','game'],['jobs.html','jobs'],['index.html#coaching','coaching'],['../community/index.html','community']];
 /* フッターの項目：[日本語, 韓国語, 英語]（2026.10 日本語・韓国語の画面に英語が多すぎたので、言語ごとの名前に） */
 var FOOT=[[['学ぶ','학습','Learn'],[['index.html#learn',['航空講座','항공 강좌','Aviation courses']],['../会話練習_日韓英.html',['会話練習','회화 연습','Speaking']],['plan.html',['私の学習プラン','내 학습 플랜','My Learning Plan']],['study.html',['私の学習ノート','내 학습 노트','My Study Notebook']],['guide.html',['学び方ガイド','학습 가이드','Study Guide']],['index.html#practice',['実務練習','실무 연습','Practice']]]],
  [['会社実務','회사 실무','Business'],[['../23_재무3표실무/00_シリーズ全体_財務3表.html',['財務','재무','Finance']],['../12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html',['人事・総務','인사·총무','HR & Admin']],['../15_지점장인수인계가이드/00_シリーズ全体_引き継ぎガイド.html',['管理職','관리자','Management']]]],
