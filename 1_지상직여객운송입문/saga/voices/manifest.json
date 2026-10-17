@@ -1,7 +1,7 @@
 {
  "version": "234665bb93e7",
- "count": 858,
- "totalBytes": 16005042,
+ "count": 863,
+ "totalBytes": 16202259,
  "source": "voices/voices.json (단일 HTML에 내장된 승인 음성)",
  "voices": {
   "00200d58": {
@@ -2975,6 +2975,11 @@
    "sha256": "31ad0c1bfcb3aae276747066ff2fc0b85c271a7db4ca81a951e571d2384c571d",
    "gate": true
   },
+  "4bbf8b6f": {
+   "bytes": 42573,
+   "sha256": "ea73c0d3849b46739fc13fc8776721a507f4352874c9b6cda55050b6d4a1e404",
+   "gate": true
+  },
   "4be72248": {
    "bytes": 12813,
    "sha256": "83bfd529b57c6b39ff45fa96c0896119ece3f7cbf1f2020abcafe6e1c6b04104",
@@ -3035,6 +3040,11 @@
    "sha256": "29ff79f4afe0407cc5dde226f10f36abbf1feb4eeacc01898afee0bdc3983f4e",
    "gate": true
   },
+  "5905abe7": {
+   "bytes": 52269,
+   "sha256": "32523aaa42237a21b85d08518467621fbba7ae89a79d150719644030bb0828c1",
+   "gate": true
+  },
   "59fa9f5b": {
    "bytes": 14157,
    "sha256": "f31dbc82aa02ca5c35c12d548a9eb84ea2de921f37d55c7625af25fdbe7064c3",
@@ -3088,6 +3098,11 @@
   "64db816c": {
    "bytes": 13965,
    "sha256": "1d323d5cd7b1be732da35f3352faab1263161efe1498953da9dce91978ffa2c9",
+   "gate": true
+  },
+  "67f889d3": {
+   "bytes": 51213,
+   "sha256": "aefc41aac20b4c204133e77d39a5f2f819ef64b20673f7a535d9c0f2e802b270",
    "gate": true
   },
   "698bdab6": {
@@ -3175,6 +3190,11 @@
    "sha256": "2475bc2898f60909f3fee539bf69a463c0b94720814a3646dd11346ad0e3b4aa",
    "gate": true
   },
+  "7a40b598": {
+   "bytes": 10893,
+   "sha256": "4dbcef7e649ff6710c7c34c63625d8ed7185c80c0c9d8368821521d399a98f3b",
+   "gate": true
+  },
   "7c9443d0": {
    "bytes": 8589,
    "sha256": "1ad6929adc301f67da6faf97275c419830841e3c42d15f414f8e7dd896619138",
@@ -3198,6 +3218,11 @@
   "7e39bf64": {
    "bytes": 27501,
    "sha256": "d2282dd731433ce1fffeced9b115c4d56f746b9461ad8830aa7e9bc2ea3eeebb",
+   "gate": true
+  },
+  "7ececb77": {
+   "bytes": 40269,
+   "sha256": "dc11d07ec220aac6e44d4b513432da3794be882560845fa8a127556b0f9d5bd7",
    "gate": true
   },
   "7eec5a27": {
@@ -3631,5 +3656,5 @@
    "gate": true
   }
  },
- "gateVoices": 194
+ "gateVoices": 199
 }

@@ -504,3 +504,18 @@ html.sh-saga .t48 .langrow{display:none}
 
 .t48 .tsetp[hidden]{display:none}   /* 48차: ⚙ 누르기 전에는 숨김 */
 .t48 .sc .n,.t48 .sc .nm,.t48 .sc .st{margin:0;line-height:1.25}
+/* 49차(GPT 49차): 게이트편 승객 교대 — 목례 → 탑승교(배경 왼쪽) 쪽으로 흐려짐 / 대기 구역 쪽 / 옆으로, 다음 승객 등장, 대기줄 한 칸. 장면 밖은 .stage overflow:hidden으로 잘림 */
+.stage.gate #paxwrap{transition:transform .38s cubic-bezier(.3,.6,.3,1),opacity .32s}
+.stage.gate #paxwrap.g-in{transition:none;transform:translateX(9%);opacity:0}
+.stage.gate #paxwrap.g-out.g-board{transform:translateX(-30%) scale(.94);opacity:0;transition:transform .38s ease-in .18s,opacity .3s ease-in .26s}
+.stage.gate #paxwrap.g-out.g-board #pax{animation:gbow .3s ease-in-out}
+.stage.gate #paxwrap.g-out.g-wait{transform:translateX(16%);opacity:0;transition:transform .36s ease-in,opacity .3s ease-in .06s}
+.stage.gate #paxwrap.g-out.g-side{transform:translate(8%,3%) scale(.95);opacity:0;transition:transform .36s ease-in,opacity .3s ease-in .06s}
+.stage.gate #queue.g-qstep{animation:gq .42s ease-out}
+@keyframes gbow{50%{transform:translateY(1.6%)}}
+@keyframes gq{from{transform:translateX(6.5%)}}
+@media (prefers-reduced-motion:reduce){
+ .stage.gate #paxwrap.g-out,.stage.gate #paxwrap.g-in{transform:none!important}
+ .stage.gate #paxwrap.g-out{transition:opacity .2s!important}
+ .stage.gate #paxwrap.g-out #pax,.stage.gate #queue.g-qstep{animation:none}
+}
