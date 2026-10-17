@@ -91,8 +91,26 @@ a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
 .step h3{margin:2px 0 4px;font-size:16px}
 .step p{margin:0;font-size:13.5px;color:var(--sub)}
 
-/* 出発案内板（全18ステージ） */
-.board{background:var(--board);border-radius:18px;padding:14px clamp(10px,2vw,20px) 18px;color:var(--board-txt);box-shadow:var(--shadow);overflow-x:auto}
+/* 出発案内板（全18ステージ）— 47차：リスト型・小さく */
+.blist{font-family:"JetBrains Mono",monospace}
+.brow{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;align-items:center;gap:4px 10px;padding:7px 4px;border-bottom:1px dashed var(--board-line);font-size:13px}
+.brow.play{background:rgba(240,160,48,.12)}
+.brow .no{color:var(--amber)}
+.brow .nm{font-family:Inter,"Noto Sans JP","Noto Sans KR",sans-serif;font-weight:700;color:#f3f5ff;min-width:0}
+.brow .nm small{display:block;font-weight:500;font-size:11px;color:var(--board-dim)}
+.brow .st{white-space:normal;text-align:right}
+/* 47차：たたむ見出し・ステージタブ */
+details.fold>summary{list-style:none;cursor:pointer;margin-bottom:0;padding:6px 0;align-items:center;flex-wrap:nowrap}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";flex:none;font:700 18px Inter,sans-serif;color:var(--sub);border:1px solid var(--line);border-radius:999px;width:32px;height:32px;display:grid;place-items:center;background:var(--paper)}
+details.fold[open]>summary::after{content:"－"}
+details.fold[open]>summary{margin-bottom:14px}
+.stabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 12px}
+.stabs button{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:10px 12px;text-align:left;cursor:pointer;font:700 15px Inter,"Noto Sans JP","Noto Sans KR",sans-serif;color:var(--ink,#1a2340);min-height:44px}
+.stabs button small{display:block;font:800 11px "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--sub)}
+.stabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.stabs button.on small{color:#ffd26a}
+.board{background:var(--board);border-radius:18px;padding:12px clamp(10px,2vw,20px) 14px;color:var(--board-txt);box-shadow:var(--shadow)}
 .board .bh{display:flex;justify-content:space-between;align-items:center;gap:10px;font:700 13px "JetBrains Mono",monospace;color:var(--board-dim);padding:4px 4px 10px;border-bottom:1px solid var(--board-line);flex-wrap:wrap}
 .board .bh b{color:#fff;letter-spacing:.12em}
 .board table{width:100%;border-collapse:collapse;font-family:"JetBrains Mono",monospace;font-size:13.5px;min-width:560px}
@@ -143,8 +161,15 @@ a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
   .days{grid-template-columns:minmax(0,1fr)}
   .day{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:10px}
   .day .lr{flex-basis:100%}
-  .board table{min-width:0}
-  .board th:nth-child(3),.board td:nth-child(3){display:none}
+  .sg section{padding-block:18px}
+  .sgh h2{font-size:20px}
+  .sgh p{font-size:14px}
+  .day{padding:12px 12px 12px;gap:4px 10px}
+  .day b{font-size:16px}
+  .day .lr{font-size:12.5px}
+  .brow{font-size:12px;grid-template-columns:1.8em minmax(0,1fr) auto;padding:5px 2px;gap:2px 8px}
+  .brow .st{max-width:52vw;font-size:10px;padding:1px 6px;letter-spacing:.02em}
+  .brow .nm small{display:none}
   .mas{grid-template-columns:80px minmax(0,1fr);padding:12px 14px}.mas img{width:80px;height:110px}
 }
 @media (prefers-reduced-motion:reduce){a.day{transition:none}}
@@ -174,45 +199,51 @@ a.day:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
     </div>
   </div>
 
-  <section>
-    <div class="sgh"><div><div class="eyebrow">Stage 01 · Check-in</div><h2 id="hDays"></h2></div><p id="pDays"></p></div>
-    <div class="stnrow"><span class="stn" id="stn" role="group"></span><small id="stnNote"></small><span class="stn" id="mode" role="group"></span></div>
+  <section id="daySec">
+    <!-- 47차(사용자 10-17)：ステージをタブで切り替え（一度に1ステージの5日だけ見せる）。勤務地・本番/練習は共通 -->
+    <div class="stabs" id="stabs" role="tablist"></div>
+    <div class="stnrow"><span class="stn" id="stn" role="group"></span><span class="stn" id="mode" role="group"></span><small id="stnNote"></small></div>
     <p class="note" id="modeNote" style="margin:-4px 0 12px"></p>
-    <div class="days" id="days"></div>
+    <div id="ciPane">
+      <div class="sgh"><div><div class="eyebrow">Stage 01 · Check-in</div><h2 id="hDays"></h2></div><p id="pDays"></p></div>
+      <div class="days" id="days"></div>
+    </div>
+    <div id="gateSec" hidden>
+      <div class="sgh"><div><div class="eyebrow">Stage 02 · Gate &amp; boarding</div><h2 id="hGate"></h2></div><p id="pGate"></p></div>
+      <p class="note" id="gNote" style="margin:-4px 0 12px"></p>
+      <div class="days" id="gdays"></div>
+    </div>
     <p class="note" id="nDays"></p>
   </section>
 
-  <section style="padding-top:0" id="gateSec">
-    <div class="sgh"><div><div class="eyebrow">Stage 02 · Gate &amp; boarding</div><h2 id="hGate"></h2></div><p id="pGate"></p></div>
-    <p class="note" id="gNote" style="margin:-4px 0 12px"></p>
-    <div class="days" id="gdays"></div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="sgh"><div><div class="eyebrow">How it works</div><h2 id="hHow"></h2></div></div>
+  <section style="padding-top:0"><details class="fold">
+    <summary class="sgh"><div><div class="eyebrow">How it works</div><h2 id="hHow"></h2></div></summary>
     <div class="how" id="how"></div>
-  </section>
+  </details></section>
 
-  <section style="padding-top:0" id="lessons">
-    <div class="sgh"><div><div class="eyebrow">Learn more</div><h2 id="hLes"></h2></div><p id="pLes"></p></div>
+  <section style="padding-top:0" id="lessons"><details class="fold">
+    <summary class="sgh"><div><div class="eyebrow">Learn more</div><h2 id="hLes"></h2></div></summary>
+    <p class="note" id="pLes" style="margin:0 0 12px"></p>
     <div class="lessons" id="les"></div>
-  </section>
+  </details></section>
 
-  <section style="padding-top:0">
-    <div class="sgh"><div><div class="eyebrow">Departures · All stages</div><h2 id="hBoard"></h2></div><p id="pBoard"></p></div>
+  <section style="padding-top:0"><details class="fold">
+    <summary class="sgh"><div><div class="eyebrow">Departures · All stages</div><h2 id="hBoard"></h2></div></summary>
+    <p class="note" id="pBoard" style="margin:0 0 12px"></p>
+    <!-- 47차：表をやめ、1行＝1ステージの小さなリスト（横に押し出さない） -->
     <div class="board" data-noalign><div class="bh"><b>VELA AIR · AIRLINE SAGA</b><span id="clock">--:--</span></div>
-      <table><thead><tr><th>STAGE</th><th id="thName"></th><th id="thCourse"></th><th>STATUS</th></tr></thead><tbody id="stages"></tbody></table>
+      <div class="blist" id="stages"></div>
     </div>
-  </section>
+  </details></section>
 
-  <section style="padding-top:0">
-    <div class="sgh"><div><div class="eyebrow">Your guides</div><h2 id="hTw"></h2></div></div>
+  <section style="padding-top:0"><details class="fold">
+    <summary class="sgh"><div><div class="eyebrow">Your guides</div><h2 id="hTw"></h2></div></summary>
     <div class="twins">
       <div class="mas y"><img src="saga/img/koradon_idle_01.webp" alt=""><div><div class="role" id="r1"></div><h3 id="n1"></h3><p id="d1"></p></div></div>
       <div class="mas g"><img src="saga/img/korarin_idle_01.webp" alt=""><div><div class="role" id="r2"></div><h3 id="n2"></h3><p id="d2"></p></div></div>
     </div>
     <p class="fine" id="foot"></p>
-  </section>
+  </details></section>
 </div>
 
 <script>
@@ -322,11 +353,13 @@ function gcleared(H,n,C){var r=H['gt.d'+n+'.'+C];return !!(r&&r.bestClear&&RV[r.
 function gateOK(H,C,pr){return cleared(H,5,C)||(GPREV&&pr)}
 function gstatus(H,n,C,pr){if(!gateOK(H,C,pr))return 'stage';if(n===1||pr)return 'open';return gcleared(H,n-1,C)?'open':'lock'}
 /* 最高成績（ゲームの bestText と同じ順）：同じ回の等級・点数、✔＝安全合格。回の分からない以前の記録は「以前の記録」 */
+var HT=null;
+function curTab(){if(HT)return HT;try{return localStorage.getItem('acn-saga-hubtab')||'01'}catch(e){return '01'}}
 function render(){
   document.documentElement.lang=lang;
   $('tag').textContent=tx(T.tag);$('lead').textContent=tx(T.lead);
   $('pills').innerHTML=T.pills.map(function(p){return '<span>'+E(tx(p))+'</span>'}).join('');
-  ['hDays','pDays','nDays','stnNote','hHow','hBoard','pBoard','thName','thCourse','hLes','pLes','hTw','r1','n1','d1','r2','n2','d2','foot'].forEach(function(k){$(k).textContent=tx(T[k])});
+  ['hDays','pDays','nDays','stnNote','hHow','hBoard','pBoard','hLes','pLes','hTw','r1','n1','d1','r2','n2','d2','foot'].forEach(function(k){$(k).textContent=tx(T[k])});
   Array.prototype.forEach.call(document.querySelectorAll('#langs button'),function(b){b.classList.toggle('on',b.getAttribute('data-l')===lang)});
   var G=cfg(),H=hist(),C=G.country==='KR'?'KR':'JP',PR=!!G.practice,next=null;
   $('stn').innerHTML=[['JP',T.stn[0]],['KR',T.stn[1]]].map(function(x){return '<button type="button" data-c="'+x[0]+'" class="'+(x[0]===C?'on':'')+'" aria-pressed="'+(x[0]===C)+'">'+E(tx(x[1]))+'</button>'}).join('');
@@ -359,13 +392,20 @@ function render(){
     var chip=st==='stage'?(d.n===1?'<span class="chip lock">'+E(tx(T.gChip))+'</span>':''):st==='lock'?'<span class="chip lock">'+E(tx(T.st.lock))+'</span>':r&&(best||r.plays)?'<span class="chip rank">'+E(txt)+'</span>':'<span class="chip open">'+E(txt)+'</span>';
     var inner='<span class="stripe"></span><span class="n">DAY '+d.n+'</span><b>'+E(tx(d.nm))+'</b><span class="lr">'+E(tx(d.learn))+'</span>'+chip+(st==='open'?'<span class="go">'+E(tx(T.st.go))+'</span>':'');
     return st==='open'?'<a class="day" href="'+GAME+'#gt-day'+d.n+'">'+inner+'</a>':'<div class="day locked" aria-disabled="true">'+inner+'</div>';
-  }).join('');$('gateSec').hidden=!GDAYS.length;
+  }).join('');
+  /* 47차：ステージタブ（ゲート編がないビルドではタブなし） */
+  var tab=GDAYS.length&&curTab()==='02'?'02':'01';
+  $('stabs').hidden=!GDAYS.length;
+  $('stabs').innerHTML=GDAYS.length?[['01',L('チェックイン編','체크인편','Check-in')],['02',L('ゲート編','게이트편','Gate')]].map(function(x){return '<button type="button" role="tab" data-t="'+x[0]+'" aria-selected="'+(x[0]===tab)+'" class="'+(x[0]===tab?'on':'')+'"><small>STAGE '+x[0]+'</small>'+E(tx(x[1]))+'</button>'}).join(''):'';
+  $('ciPane').hidden=tab!=='01';$('gateSec').hidden=tab!=='02';
+  Array.prototype.forEach.call($('stabs').querySelectorAll('button'),function(b){b.onclick=function(){HT=b.getAttribute('data-t');try{localStorage.setItem('acn-saga-hubtab',HT)}catch(e){}render()}});
   $('play').textContent=tx(T.play)+' →';$('play').href=GAME+'#day1';
   if(next&&next>1){$('cont').hidden=false;$('cont').textContent=tx(T.cont)+' · DAY '+next;$('cont').href=GAME+'#day'+next}else $('cont').hidden=true;
   $('how').innerHTML=T.how.map(function(h,i){return '<div class="step"><img src="saga/img/'+h[2]+'.webp" alt=""><div><small>STEP 0'+(i+1)+'</small><h3>'+E(tx(h[0]))+'</h3><p>'+E(tx(h[1]))+'</p></div></div>'}).join('');
-  $('stages').innerHTML=STAGES.map(function(s){var p=s.st==='play';var stt=p?'<span class="st go">'+T.sGo+'</span>':(s.n==='02'&&GDAYS.length&&cleared(H,5,C))?'<span class="st go">'+T.sGo+'</span>':(s.n==='02'&&GDAYS.length&&GPREV)?'<span class="st soon">'+E(tx(L('本番：チェックイン編 DAY 5クリア後 · 練習で先行公開中','실전: 체크인편 DAY 5 통과 후 · 연습 모드 미리 공개','Shift: after Check-in DAY 5 · Practice preview open')))+'</span>':(s.n==='02'&&!cleared(hist(),5,C))?'<span class="st soon">'+E(tx(L('チェックイン編 本番DAY 5クリア後','체크인편 실전 DAY 5 통과 후','After Check-in DAY 5 (Shift)')))+'</span>':(s.n==='02')?'<span class="st soon">'+E(tx(L('準備中（チェックイン編クリア済み）','준비 중(체크인편 클리어)','Coming (Check-in cleared)')))+'</span>':s.key?'<span class="st calc">'+T.sCalc+'</span>':'<span class="st soon">'+T.sSoon+'</span>';
-    var g2=s.n==='02'&&GDAYS.length&&(cleared(H,5,C)||GPREV);   /* 46차：ゲート編の行は名前からゲート編 DAY 1へ */
-    return '<tr class="'+(p||g2?'play':'')+'"><td>'+s.n+'</td><td class="nm">'+(p?'<a href="'+GAME+'">'+E(tx(s.nm))+'</a>':g2?'<a href="'+GAME+'#gt-day1">'+E(tx(s.nm))+'</a>':E(tx(s.nm)))+'</td><td>'+E(tx(s.course))+'</td><td>'+stt+'</td></tr>'}).join('');
+  $('stages').innerHTML=STAGES.map(function(s){var p=s.st==='play';var g2=s.n==='02'&&GDAYS.length&&(cleared(H,5,C)||GPREV);   /* 47차：1行＝1ステージ */
+    var stt=p||(s.n==='02'&&GDAYS.length&&cleared(H,5,C))?'<span class="st go">'+T.sGo+'</span>':(s.n==='02'&&GDAYS.length&&GPREV)?'<span class="st soon">'+E(tx(L('本番：チェックイン編 DAY 5クリア後 · 練習で先行公開中','실전: 체크인편 DAY 5 통과 후 · 연습 모드 미리 공개','Shift: after Check-in DAY 5 · Practice preview open')))+'</span>':(s.n==='02')?'<span class="st soon">'+E(tx(L('チェックイン編 本番DAY 5クリア後','체크인편 실전 DAY 5 통과 후','After Check-in DAY 5 (Shift)')))+'</span>':s.key?'<span class="st calc">'+T.sCalc+'</span>':'<span class="st soon">'+T.sSoon+'</span>';
+    var nm=E(tx(s.nm)),href=p?GAME:g2?GAME+'#gt-day1':'';
+    return '<div class="brow'+(p||g2?' play':'')+'" data-n="'+s.n+'"><span class="no">'+s.n+'</span><span class="nm">'+(href?'<a href="'+href+'">'+nm+'</a>':nm)+'<small>'+E(tx(s.course))+'</small></span>'+stt+'</div>'}).join('');
   $('les').innerHTML=Object.keys(LDAYS).map(function(id){var t=LESSONS[id],u=LLINK.links[id];if(!t||!u)return '';var no=id.split('/')[1];
     return '<a class="les" href="'+LLINK.base+u[lang]+'"><code>'+(id.indexOf('ciq/')===0?'CIQ ':'')+no+'</code><span>'+E(tx(t))+'<em>DAY '+LDAYS[id].join(' · ')+'</em></span></a>'}).join('');
   Array.prototype.forEach.call($('mode').querySelectorAll('button'),function(b){b.onclick=function(){var g=cfg();g.practice=b.getAttribute('data-p')==='1';try{localStorage.setItem('acn-saga-v1',JSON.stringify(g))}catch(e){}render()}});
@@ -376,6 +416,9 @@ function tick(){var t;try{t=new Date().toLocaleTimeString('en-GB',{timeZone:'Asi
 tick();setInterval(tick,30000);
 /* ゲームで遊んでから「戻る」で来たとき、記録を読み直す */
 window.addEventListener('pageshow',function(e){if(e.persisted)render()});
+/* 47차：たたむ欄はPC（901px以上）だけ最初から開く。#gate・#stage02 で来たらゲート編タブ */
+if(window.matchMedia&&matchMedia('(min-width:901px)').matches)Array.prototype.forEach.call(document.querySelectorAll('details.fold'),function(d){d.open=true});
+if(/^#(gate|stage02)$/i.test(location.hash))HT='02';
 render();
 })();
 </script>
