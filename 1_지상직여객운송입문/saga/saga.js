@@ -397,6 +397,134 @@ window.RULES = {
   };
 })();
 
+/* ../src_wb/mission_wb04.js */
+/* 탑재관리편 Day 4 「イレギュラー①」 미션 데이터 — 합의본 v2 3절 Day 4(W4-lmc·W4-fuel·W4-reissue·W4-swap·W4-notify)
+   흐름: 준비 −90 → LIR −75(기한 −60) → 중간 보고 −25 → 예비판 −20(검산 −15) → 최종 −10(시계 정지) → 제출(전달 −10·승인 −8, EDNO 1)
+         → 사건 ① 기체 변경(−6, 같은 기종 다른 등록 기호 → 기존 승인 무효 → 새 기체 자료 → EDNO 2 재승인, 출발 예정 STD+35)
+         → 사건 ② 노쇼 오프로드(ETD −17, 승인판 기준 누적 판정 → LMC 허용 안 → LMC 기입·기장 통보)
+         → 사건 ③ 운항관리 연료 변경(ETD −13, Vela 규정상 LMC 대상 아님 → 재작성 EDNO 3)
+         → 사건 ④ 대기 승객·늦은 짐(ETD −9, 누적이 LMC 허용을 넘음 → 재작성 EDNO 4) → 기록(옛 판 「사용 금지」 보관)
+   LMC 허용(3C): 중량 |Δ| ≤ MLW × 0.5 %(737 331.8 kg·787 963.9 kg), MACTOW |Δ| < 0.5, 여유 ≥ 0, 세 점 엔벨로프 안. 연료 변경은 항상 재작성.
+   등록 기호 변경: 같은 기종이라도 DOW·DOI는 기체마다 다르므로 다시 불러옴(교육용 가정값). 모든 편·기체·탑재물은 교육용 가상 데이터 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = {
+    JP: { std: '10:30', start: '08:55', prep: '09:00', lir: '09:15', rep: '10:05', pre: '10:10', fin: '10:20', swap: '10:24', etd: '11:05', lmc: '10:48', fuel: '10:52', sby: '10:56', ldm: '11:10' },
+    KR: { std: '13:30', start: '11:55', prep: '12:00', lir: '12:15', rep: '13:05', pre: '13:10', fin: '13:20', swap: '13:24', etd: '14:05', lmc: '13:48', fuel: '13:52', sby: '13:56', ldm: '14:10' }
+  };
+  var BAG = L('受託手荷物', '위탁 수하물', 'Checked bags'), PRI = L('乗り継ぎ・優先手荷物', '환승·우선 수하물', 'Transfer / priority bags'), MAIL = L('郵便', '우편', 'Mail'), GEN = L('一般貨物', '일반 화물', 'General cargo');
+  var AC = {
+    '737': {
+      reg: 'VL-8A4',
+      swap: { reg: 'VL-8A5', dow: 42780, doi: 47.4, why: L('油圧系統の不具合', '유압 계통 결함', 'a hydraulic fault') },
+      book: { ad: 120, ch: 4, inf: 1, z: [11, 57, 56] },
+      fin: { ad: 118, ch: 4, inf: 1, z: [11, 56, 55] },
+      items: [
+        { id: 'B1', kind: 'B', kg: 650, nm: BAG }, { id: 'B2', kind: 'B', kg: 600, nm: BAG }, { id: 'B3', kind: 'B', kg: 180, pri: true, nm: PRI },
+        { id: 'M1', kind: 'M', kg: 250, nm: MAIL }, { id: 'C1', kind: 'C', kg: 1200, nm: GEN }, { id: 'C2', kind: 'C', kg: 800, nm: GEN }
+      ],
+      ev: {
+        lmc: { pax: { zone: 2, n: -2, kg: -150 }, bag: { kind: 'B', hold: 3, kg: -40, pcs: 2 } },
+        fuel: { tof: 11400, trip: 8500, why: L('経路上の待機が見込まれるため', '경로상 대기가 예상되어', 'expected holding en route') },
+        sby: { pax: { zone: 1, n: 5, kg: 375 }, bag: { kind: 'B', hold: 3, kg: 75, pcs: 5 } }
+      }
+    },
+    '789': {
+      reg: 'VL-9B4',
+      swap: { reg: 'VL-9B5', dow: 130600, doi: 58.4, why: L('客室与圧系統の不具合', '객실 여압 계통 결함', 'a cabin-pressurisation fault') },
+      book: { ad: 220, ch: 4, inf: 2, z: [20, 100, 104] },
+      fin: { ad: 217, ch: 4, inf: 2, z: [20, 99, 102] },
+      ulds: [
+        { id: 'AKE40101VL', type: 'AKE', kind: 'B', content: 600, nm: BAG }, { id: 'AKE40102VL', type: 'AKE', kind: 'B', content: 600, nm: BAG },
+        { id: 'AKE40103VL', type: 'AKE', kind: 'B', content: 600, nm: BAG }, { id: 'AKE40104VL', type: 'AKE', kind: 'B', content: 600, nm: BAG },
+        { id: 'AKE40105VL', type: 'AKE', kind: 'B', content: 600, nm: BAG }, { id: 'AKE40106VL', type: 'AKE', kind: 'B', content: 600, nm: BAG },
+        { id: 'AKE40107VL', type: 'AKE', kind: 'B', content: 600, nm: BAG }, { id: 'AKE40108VL', type: 'AKE', kind: 'B', content: 600, nm: BAG },
+        { id: 'AKE40109VL', type: 'AKE', kind: 'B', content: 300, pri: true, nm: PRI }, { id: 'AKE40110VL', type: 'AKE', kind: 'M', content: 500, nm: MAIL },
+        { id: 'PMC40301VL', type: 'PMC', kind: 'C', content: 3500, nm: GEN }, { id: 'PMC40302VL', type: 'PMC', kind: 'C', content: 3000, nm: GEN }
+      ],
+      bulk5: { kg: 400, nm: L('5番バルク：遅れた手荷物', '5번 벌크: 늦은 수하물', 'Bulk 5: late bags') },
+      ev: {
+        lmc: { pax: { zone: 2, n: -2, kg: -150 }, bag: { kind: 'B', hold: 4, kg: -40, pcs: 2 } },
+        fuel: { tof: 69000, trip: 58800, why: L('経路上の待機が見込まれるため', '경로상 대기가 예상되어', 'expected holding en route') },
+        sby: { pax: { zone: 1, n: 4, kg: 300 }, bag: { kind: 'C', hold: 4, kg: 700, pcs: 1 } }   /* 늦게 도착한 급송 화물 1건(벌크) — 대기 승객과 합쳐 LMC 허용을 넘음 */
+      }
+    }
+  };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.fin, t: t,
+      pax: function () {
+        var u = function (id, kind, at, nm) { return { id: id, kind: kind, at: at, art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('w-prep', 'prep', t.prep, 'PREP'), u('w-lir', 'lir', t.lir, 'LIR'), u('w-rep', 'rep', t.rep, 'REPORT'), u('w-pre', 'pre', t.pre, 'PRELIM'), u('w-fin', 'fin', t.fin, 'FINAL'), u('w-sub', 'sub', t.fin, 'SUBMIT'),
+          u('w-swap', 'swap', t.swap, 'SWAP'), u('w-lmc', 'lmc', t.lmc, 'LMC'), u('w-fuel', 'fuel', t.fuel, 'FUEL'), u('w-sby', 'sby', t.sby, 'STANDBY'), u('w-ldm', 'ldm', t.ldm, 'RECORD')];
+      } };
+  }
+  window.MISSION_WB04 = {
+    id: 'wb04', generated: false, day: 4, irreg: true,
+    data: AC,
+    deadlines: { lir: -60, pre: -15, hand: -10, sub: -8 },
+    cost: { prep: 4, check: 0.3, lir: 6, issue: 1, radio: 1.5, field: 0.6, submit: 1, ldm: 2, notice: 1, lmc: 1.2, reissue: 2.5, swap: 2 },
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
+/* ../src_wb/mission_wb05.js */
+/* 탑재관리편 Day 5 「イレギュラー②」 미션 데이터 — 합의본 v2 3절 Day 5(W5-sby·W5-zone·W5-delay·W5-final·W5-ldm)
+   빈 편(승객 적음·짐 적음): 예약 좌석이 뒤쪽 구역에 몰려 무게중심이 뒤쪽 한계 밖. 앞 칸에 실어도 부족 → 게이트에 좌석 이동(구역 재배치)을 요청해야 범위 안.
+   흐름: 준비 −90 → LIR −75(기한 −60, 좌석 이동 요청) → 중간 보고 −25 → 예비판 −20(검산 −15) → 최종 −10(시계 정지) → 제출(전달 −10·승인 −8, EDNO 1)
+         → 사건 ① 출발 지연(−6, ETD STD+25: 연료·인원·배치 변경 유무 확인 → 「변경 없음 재확인」 기록)
+         → 사건 ② 마감 직전 대기 승객(ETD −11: 게이트는 뒤쪽 구역 C 제안 → 누적 판정하면 MACTOW 변화 ≥ 0.5 → 재작성 또는 좌석 변경 요청(구역 B)으로 LMC)
+         → 사건 ③ 최종 대조(ETD −6: 조업사 최종 확인에 대기 승객의 늦은 수하물이 더 실림 → LMC 추가 기입 → 게이트 최종 인원·실탑재·통보서·최신 EDNO 대조)
+         → 기록(탑재 전문·옛 판 보관)
+   모든 편·기체·탑재물은 교육용 가상 데이터 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = {
+    JP: { std: '10:30', start: '08:55', prep: '09:00', lir: '09:15', rep: '10:05', pre: '10:10', fin: '10:20', delay: '10:24', etd: '10:55', sby: '10:44', chk: '10:49', ldm: '11:00' },
+    KR: { std: '13:30', start: '11:55', prep: '12:00', lir: '12:15', rep: '13:05', pre: '13:10', fin: '13:20', delay: '13:24', etd: '13:55', sby: '13:44', chk: '13:49', ldm: '14:00' }
+  };
+  var BAG = L('受託手荷物', '위탁 수하물', 'Checked bags'), PRI = L('乗り継ぎ・優先手荷物', '환승·우선 수하물', 'Transfer / priority bags'), MAIL = L('郵便', '우편', 'Mail');
+  var AC = {
+    '737': {
+      reg: 'VL-8A6',
+      book: { ad: 48, ch: 2, inf: 1, z: [0, 2, 48], note: L('団体予約のため後方区画にまとめて座席指定', '단체 예약으로 뒤쪽 구역에 몰아 좌석 지정', 'group booking seated together in the rear zone') },
+      items: [{ id: 'B1', kind: 'B', kg: 250, nm: BAG }, { id: 'B2', kind: 'B', kg: 120, pri: true, nm: PRI }, { id: 'M1', kind: 'M', kg: 100, nm: MAIL }],
+      ev: {
+        delay: { min: 25, why: L('管制のスロット待ち', '관제 슬롯 대기', 'an ATC slot') },
+        sby: { pax: { zone: 2, n: 3, kg: 225 }, alt: 1 },                       /* 게이트 제안 구역 C → 좌석 변경이면 구역 B */
+        late: { bag: { kind: 'B', hold: 3, kg: 45, pcs: 3 } }                   /* 대기 승객의 늦은 수하물(조업사 최종 확인에서 드러남) */
+      }
+    },
+    '789': {
+      reg: 'VL-9B6',
+      book: { ad: 120, ch: 3, inf: 1, z: [0, 2, 121], note: L('団体予約のため後方区画にまとめて座席指定', '단체 예약으로 뒤쪽 구역에 몰아 좌석 지정', 'group booking seated together in the rear zone') },
+      ulds: [{ id: 'AKE50101VL', type: 'AKE', kind: 'B', content: 400, nm: BAG }, { id: 'AKE50102VL', type: 'AKE', kind: 'M', content: 250, nm: MAIL }],
+      bulk5: { kg: 100, nm: L('5番バルク：優先手荷物', '5번 벌크: 우선 수하물', 'Bulk 5: priority bags') },
+      ev: {
+        delay: { min: 25, why: L('管制のスロット待ち', '관제 슬롯 대기', 'an ATC slot') },
+        sby: { pax: { zone: 2, n: 8, kg: 600 }, alt: 1 },
+        late: { bag: { kind: 'B', hold: 4, kg: 120, pcs: 8 } }
+      }
+    }
+  };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.fin, t: t,
+      pax: function () {
+        var u = function (id, kind, at, nm) { return { id: id, kind: kind, at: at, art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('w-prep', 'prep', t.prep, 'PREP'), u('w-lir', 'lir', t.lir, 'LIR'), u('w-rep', 'rep', t.rep, 'REPORT'), u('w-pre', 'pre', t.pre, 'PRELIM'), u('w-fin', 'fin', t.fin, 'FINAL'), u('w-sub', 'sub', t.fin, 'SUBMIT'),
+          u('w-delay', 'delay', t.delay, 'DELAY'), u('w-sby', 'sby', t.sby, 'STANDBY'), u('w-chk', 'chk', t.chk, 'FINAL CHECK'), u('w-ldm', 'ldm', t.ldm, 'RECORD')];
+      } };
+  }
+  window.MISSION_WB05 = {
+    id: 'wb05', generated: false, day: 5, irreg: true, light: true,
+    data: AC,
+    deadlines: { lir: -60, pre: -15, hand: -10, sub: -8 },
+    cost: { prep: 4, check: 0.3, lir: 6, issue: 1, radio: 1.5, field: 0.6, submit: 1, ldm: 2, notice: 1, lmc: 1.2, reissue: 2.5, zone: 1 },
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
 /* ../src_gate/mission_gt01.js */
 /* 게이트편 Day 1 「はじめてのゲート」 미션 데이터 — 합의본 v2(12_게이트편_합의본_v2.md) 기준. 모든 승객·편은 교육용 가상 데이터
    좌석·그룹은 V-G02(그룹 3 = 30열~, 4 = 20~29열, 5 = ~19열)와 일치(35차, GPT 34차 참고 1). 인원 17명+어린이 1(+INF 1)은 Day 1 축소 예외(승객 그림 17종 한도, 합의본 12절 기록)
@@ -2373,11 +2501,14 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   /* 35차 A-F01: 스테이지 자격은 근무지별(체크인편 DAY 5 클리어는 근무지마다 따로 셈). 카드 표시·스테이지 전환·출근 시작이 모두 같은 함수를 봄 */
   /* 46차(사용자 결정 10-16): 게이트편 공개 직후 미리보기 — 연습 모드에서는 체크인편 클리어 없이 STAGE 02를 엶(실전은 체크인편 실전 DAY 5 클리어 뒤 그대로). 닫을 때는 아래 한 줄을 false로. 게임 홈(hub)도 빌드 때 이 값을 읽음 */
   var GATE_PREVIEW = true;
-  function stageAllowed(id, country, practice) { if (!window.SAGA_STAGES[id]) return false; if (id === 'ci') return true; var pr = practice == null ? !!G.practice : !!practice; if (id === 'gt') return ciCleared(country || G.country) || (GATE_PREVIEW && pr); if (id === 'wb') return gtCleared(country || G.country) || (WB_PREVIEW && pr); return false; }
+  /* 58차(사용자 결정 10-18): 스테이지별 독립 진행 — 모든 스테이지를 실전·연습 모두 DAY 1부터 바로 열 수 있음(앞 스테이지 DAY 5 클리어 해금 없음). 스테이지 안에서 DAY 2~ 는 앞 날 클리어로 여는 규칙 그대로.
+     옛 해금 방식으로 되돌릴 때는 아래 한 줄을 false로(아래 ciCleared·gtCleared·미리보기 판정이 다시 살아남) */
+  var STAGE_INDEPENDENT = true;
+  function stageAllowed(id, country, practice) { if (!window.SAGA_STAGES[id]) return false; if (id === 'ci' || STAGE_INDEPENDENT) return true; var pr = practice == null ? !!G.practice : !!practice; if (id === 'gt') return ciCleared(country || G.country) || (GATE_PREVIEW && pr); if (id === 'wb') return gtCleared(country || G.country) || (WB_PREVIEW && pr); return false; }
   /* 51차~: 게이트편 클리어 = 실전 DAY 5(B 이상·안전 합격·전원 처리). STAGE 03 해금 조건(기재와 무관) */
   function gtCleared(country) { var g = window.SAGA_STAGES.gt; if (!g) return false; var d5 = g.days.list[4]; return !!(d5 && g.days.cleared(g.days.rec(G.hist, d5, country || G.country))); }
-  function stagePreviewOnly(id) { if (id === 'gt') return gatePreviewOnly(); if (id === 'wb') return !!window.SAGA_STAGES.wb && !gtCleared() && WB_PREVIEW && !!G.practice; return false; }
-  function gatePreviewOnly(country) { return !!window.SAGA_STAGES.gt && !ciCleared(country || G.country) && GATE_PREVIEW && !!G.practice; }   /* 46차: 지금 STAGE 02가 미리보기로만 열려 있는가(카드 표시용) */
+  function stagePreviewOnly(id) { if (STAGE_INDEPENDENT) return false; if (id === 'gt') return gatePreviewOnly(); if (id === 'wb') return !!window.SAGA_STAGES.wb && !gtCleared() && WB_PREVIEW && !!G.practice; return false; }
+  function gatePreviewOnly(country) { return !STAGE_INDEPENDENT && !!window.SAGA_STAGES.gt && !ciCleared(country || G.country) && GATE_PREVIEW && !!G.practice; }   /* 46차: 지금 STAGE 02가 미리보기로만 열려 있는가(카드 표시용) */
   function stageOpen(n) { var id = stageIdOf(n); return !!id && stageAllowed(id); }
   /* 근무지·설정 복원으로 지금 스테이지의 자격이 사라지면 체크인편으로 돌림(진행본은 지우지 않음 — 이어하기는 저장본의 스테이지·근무지로 복원하는 정책 그대로). 돌렸으면 true */
   function ensureStageAllowed() { if (stageAllowed(ST.id)) return false; setStage('ci'); save(); return true; }
@@ -5821,8 +5952,8 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     { n: 1, id: 'wb.d1', mission: window.MISSION_WB01 || null, hints: true, nm: L('はじめてのロードシート', '첫 로드시트', 'First load sheet'), learn: L('搭載計画・LIR・検算・最終人数・機長への提出', '탑재 계획·LIR·검산·최종 인원·기장 제출', 'Load plan, LIR, cross-check, final figures, captain sign-off') },
     { n: 2, id: 'wb.d2', mission: window.MISSION_WB02 || null, hints: true, nm: L('重い便', '무거운 편', 'A heavy flight'), learn: L('貨物室の上限・重心の限界（前寄り）・搭載量の超過', '화물칸 상한·무게중심 한계(앞쪽 치우침)·허용 초과', 'Hold limits, CG limits (forward), overload') },
     { n: 3, id: 'wb.d3', mission: window.MISSION_WB03 || null, hints: true, nm: L('特別な搭載物', '특수 탑재물', 'Special loads'), learn: L('ドライアイス・動物・電動車いす・生鮮・重量物', '드라이아이스·동물·전동 휠체어·신선식품·중량물', 'Dry ice, animals, powered wheelchairs, perishables, heavy items') },
-    { n: 4, id: 'wb.d4', mission: null, nm: L('イレギュラー①', '비정상 ①', 'Irregular ops 1'), learn: L('LMC・燃料変更・機体変更', 'LMC·연료 변경·기체 변경', 'LMC, fuel change, aircraft swap') },
-    { n: 5, id: 'wb.d5', mission: null, nm: L('イレギュラー②', '비정상 ②', 'Irregular ops 2'), learn: L('スタンバイ・空いた便の重心（後ろ寄り）・遅延', '대기 승객·빈 편 무게중심(뒤쪽 치우침)·지연', 'Standby, light-load CG (aft), delays') }
+    { n: 4, id: 'wb.d4', mission: window.MISSION_WB04 || null, hints: true, nm: L('イレギュラー①', '비정상 ①', 'Irregular ops 1'), learn: L('LMC・燃料変更・機体変更', 'LMC·연료 변경·기체 변경', 'LMC, fuel change, aircraft swap') },
+    { n: 5, id: 'wb.d5', mission: window.MISSION_WB05 || null, hints: true, nm: L('イレギュラー②', '비정상 ②', 'Irregular ops 2'), learn: L('スタンバイ・空いた便の重心（後ろ寄り）・遅延', '대기 승객·빈 편 무게중심(뒤쪽 치우침)·지연', 'Standby, light-load CG (aft), delays') }
   ];
   var WB_BASE = window.SAGA_DAYS.make(WB_LIST);
   var WB_DAYS = Object.assign({}, WB_BASE, {
@@ -5844,7 +5975,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     resumeNote: L('作業の途中の内容は保存されません（最後に終えた作業の次から）', '작업 도중의 내용은 저장되지 않습니다(마지막으로 마친 작업 다음부터)', 'Work partway through a step is not saved (you restart at the next step)'),
     afterClose: null
   };
-  var WB_RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'strikes', 'seq', 'evChecks', 'evRep', 'safety', 'acKey', 'plan', 'issued', 'repOk', 'entered', 'finConf', 'chkWrong', 'ed', 'subAt', 'subTries', 'frozenAt', 'struck', 'lirAt', 'preAt', 'handAt', 'spcChk', 'ex', 'exDone', 'exMove', 'notoc', 'lirC'];
+  var WB_RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'strikes', 'seq', 'evChecks', 'evRep', 'safety', 'acKey', 'plan', 'issued', 'repOk', 'entered', 'finConf', 'chkWrong', 'ed', 'subAt', 'subTries', 'frozenAt', 'struck', 'lirAt', 'preAt', 'handAt', 'spcChk', 'ex', 'exDone', 'exMove', 'notoc', 'lirC', 'swap', 'fuel', 'lmcC', 'apState', 'lmcLog', 'edLog', 'evt', 'etd', 'zoneReq', 'ldmArch'];
   var WB_RUNSKIP = GATE_RUNSKIP;
   var WMISSL = {
     'wb-prep': L('便の準備の確認を飛ばした', '편 준비 확인 누락', 'Skipped flight prep checks'),
@@ -5875,18 +6006,27 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   var WOPS = ['wb-report', 'wb-off-order'];   /* 업무(최고 A) */
   var WSAFE = ['wb-lir-limit', 'wb-pax', 'wb-final', 'wb-sheet', 'wb-seg', 'wb-ice', 'wb-wch', 'wb-hea', 'wb-notoc-miss'];
   function wbT() { return V.t; }
-  function wbA() { return WB.ac(S.acKey); }
+  /* Day 4 기체 변경(W4-swap): 같은 기종·다른 등록 기호 → DOW·DOI를 새 기체 값으로(칸 상한·좌석은 기종 공통 교육용 값). 새 자료를 불러오기 전에는 옛 기체 값 그대로 */
+  function wbA() { var a = WB.ac(S.acKey); if (S.swap && S.swap.loaded) { if (!S._swA || S._swA.__reg !== S.swap.reg) S._swA = Object.assign({}, a, { dow: S.swap.dow, doi: S.swap.doi, __reg: S.swap.reg }); return S._swA; } return a; }
+  function wbReg() { return S.swap && S.swap.loaded ? S.swap.reg : wbD().reg; }
+  function wbTof() { return S.fuel ? S.fuel.tof : WB.ac(S.acKey).d[5]; }   /* Day 4 연료 변경(W4-fuel) 뒤에는 운항관리의 새 값 */
+  function wbTif() { return S.fuel ? S.fuel.trip : WB.ac(S.acKey).d[6]; }
+  function wbBook() { var b = wbD().book; return S.zoneReq ? Object.assign({}, b, { z: S.zoneReq.slice() }) : b; }   /* Day 5 좌석 이동 요청(W5-zone) 뒤의 예약 구역 */
+  function wbFin() { var d = wbD(); if (!M.light) return d.fin; var b = wbBook(); return { ad: b.ad, ch: b.ch, inf: b.inf, z: b.z.slice() }; }   /* Day 5(빈 편): 노쇼 없음 → 게이트 최종 = 예약(요청한 구역대로) */
   function wbD() { return M.data[S.acKey]; }
   function wbNum(n) { return Math.round(n).toLocaleString('en-US'); }
   function wbOff(id) { return S.plan[id] === 'X'; }   /* Day 2~: 내림(오프로드)으로 정한 탑재물 */
   function wbUldsOn() { var d = wbD(); return d.ulds.filter(function (u) { return !wbOff(u.id); }).map(function (u) { return { id: u.id, type: u.type, content: u.content, pos: S.plan[u.id] || '', fixed: true }; }); }
   function wbLoadsC() {   /* 계획(=실탑재) → 칸별 kg. 내림(X)은 뺌 */
     var a = wbA(), d = wbD();
-    if (S.acKey === '789') { var c9 = WB.uldToCpt(a, wbUldsOn(), d.bulk5.kg); if (S.exMove) { c9[S.exMove.from] -= S.exMove.kg; c9[S.exMove.to] += S.exMove.kg; } return c9; }
-    var c = a.cpt.map(function () { return 0; }); d.items.forEach(function (it) { var j = S.plan[it.id]; if (j != null && j !== '' && j !== 'X') c[+j] += it.kg; }); return c;
+    var c = a.cpt.map(function () { return 0; });
+    if (S.acKey === '789') { c = WB.uldToCpt(a, wbUldsOn(), d.bulk5.kg); if (S.exMove) { c[S.exMove.from] -= S.exMove.kg; c[S.exMove.to] += S.exMove.kg; } }
+    else d.items.forEach(function (it) { var j = S.plan[it.id]; if (j != null && j !== '' && j !== 'X') c[+j] += it.kg; });
+    if (S.lmcC) S.lmcC.forEach(function (v, j) { c[j] += v || 0; });   /* Day 4~: 승인 뒤 LMC·재작성으로 바뀐 칸별 kg */
+    return c;
   }
   function wbUnits() { var d = wbD(); return S.acKey === '789' ? d.ulds.map(function (u) { return { id: u.id, kind: u.kind, kg: u.content + WB.ULD_TYPES[u.type].tare }; }) : d.items.map(function (it) { return { id: it.id, kind: it.kind, kg: it.kg }; }); }
-  function wbState(p) { var a = wbA(); return { ad: p.ad, ch: p.ch, inf: p.inf, z: p.z.slice(), c: wbLoadsC(), tof: a.d[5], trip: a.d[6] }; }
+  function wbState(p) { return { ad: p.ad, ch: p.ch, inf: p.inf, z: p.z.slice(), c: wbLoadsC(), tof: wbTof(), trip: wbTif() }; }
   function wbLive(c) { return !!c && S.cur === c && G.screen === 'play' && !S.leaving && !c.flags.done; }
   function wbDone(c) { if (!wbLive(c)) return false; c.flags.done = true; document.querySelectorAll('#scr button,#scr input,#scr select').forEach(function (b) { b.disabled = true; }); return true; }
   function wbEnd(ms) {
@@ -5928,8 +6068,9 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       H.rep = L('ハンドリングが貨物を動かしたら、そのまま受けないで。移した先に何があるか、隔離・上限・重心を再検査してから決めよう。', '조업사가 짐을 옮겼다면 그대로 받지 마. 옮긴 곳에 무엇이 있는지, 격리·상한·무게중심을 재검사한 뒤 정해.', 'If handling moved something, do not just accept it. Re-check what is in that hold — separation, limits and CG — before deciding.');
       H.notoc = L('ドライアイスは危険物（DG NOTOC）。生鮮に入っているドライアイスもDG、生鮮そのものは特別な搭載物。動物・電動車いす・重量物は「特別な搭載物・補助具」の欄。', '드라이아이스는 위험물(DG NOTOC). 신선식품 속 드라이아이스도 DG, 신선식품 자체는 특수 탑재물. 동물·전동 휠체어·중량물은 「특수 탑재물·보조기」 칸.', 'Dry ice is dangerous goods (DG NOTOC) — including the dry ice inside perishables; the perishable itself is a special load. Animal, wheelchair and heavy item go in the special-load / mobility-aid section.');
     }
+    if (M.irreg) wbHintIrreg(H);   /* Day 4·5 */
     if (M.day >= 2) {   /* Day 2 무거운 편 */
-      if (!M.special) H.lir = L('今日は満席で貨物も多い便。予約人数のまま全部積むと、許される離陸重量を超えるよ。超える分だけ、一般貨物 → 郵便 → 手荷物の順で降ろして、貨物・旅客部門に連絡。貨物室の上限と、チャートの重心も見てね。', '오늘은 만석에 화물도 많은 편. 예약 인원 그대로 다 실으면 허용 이륙 중량을 넘어. 넘는 만큼만 일반 화물 → 우편 → 수하물 순서로 내리고, 화물·여객 부서에 연락해. 화물칸 상한과 차트의 무게중심도 봐.', 'A full flight with lots of cargo. Loading everything with the booked passengers goes over the allowed take-off weight. Offload only the excess — cargo, then mail, then bags — and tell cargo and passenger services. Watch the hold limits and the CG on the chart.');
+      if (!M.special && !M.irreg) H.lir = L('今日は満席で貨物も多い便。予約人数のまま全部積むと、許される離陸重量を超えるよ。超える分だけ、一般貨物 → 郵便 → 手荷物の順で降ろして、貨物・旅客部門に連絡。貨物室の上限と、チャートの重心も見てね。', '오늘은 만석에 화물도 많은 편. 예약 인원 그대로 다 실으면 허용 이륙 중량을 넘어. 넘는 만큼만 일반 화물 → 우편 → 수하물 순서로 내리고, 화물·여객 부서에 연락해. 화물칸 상한과 차트의 무게중심도 봐.', 'A full flight with lots of cargo. Loading everything with the booked passengers goes over the allowed take-off weight. Offload only the excess — cargo, then mail, then bags — and tell cargo and passenger services. Watch the hold limits and the CG on the chart.');
       H.pre = L('今日から指数（INDEX）も検算。ZFWの指数＝DOI＋表の指数変化の合計、TOWの指数＝ZFWの指数＋離陸燃料の指数。重量は昨日と同じ式だよ。', '오늘부터 지수(INDEX)도 검산해. ZFW 지수 = DOI + 표의 지수 변화 합계, TOW 지수 = ZFW 지수 + 이륙 연료 지수. 중량은 어제와 같은 식이야.', 'From today, cross-check the index too: ZFW index = DOI + the index changes in the table; TOW index = ZFW index + take-off fuel index. Weights use the same formulas as yesterday.');
     }
     return G.hints ? H[kind] : null;
@@ -5951,9 +6092,9 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   function wbTabPrep() {
     var c = S.cur, a = wbA(), d = wbD(); c.chk.prep = c.chk.prep || {};
     scr('<div class="h3">' + esc(tx(L('便の準備チェック', '편 준비 체크', 'Flight prep checklist'))) + '</div>' +
-      wbKV([[T.flight, esc(V.flight + ' ' + V.from + '→' + V.to + ' · STD ' + V.std)], [L('機材', '기재', 'Aircraft'), esc(a.id + ' · ' + d.reg + ' · ' + a.ver)], ['DOW / DOI', wbNum(a.dow) + ' kg / ' + a.doi.toFixed(1)],
+      wbKV([[T.flight, esc(V.flight + ' ' + V.from + '→' + V.to + ' · STD ' + V.std)], [L('機材', '기재', 'Aircraft'), esc(a.id + ' · ' + wbReg() + ' · ' + a.ver)], ['DOW / DOI', wbNum(a.dow) + ' kg / ' + a.doi.toFixed(1)],
         ['MAX ZFW / TOW / LAW', wbNum(a.mzfw) + ' / ' + wbNum(a.mtow) + ' / ' + wbNum(a.mlw)], [L('貨物室の上限', '화물칸 상한', 'Hold limits'), a.cpt.map(function (x) { return x.id + ': ' + wbNum(x.max); }).join(' · ')],
-        [L('燃料（離陸／飛行）', '연료(이륙/비행)', 'Fuel (take-off / trip)'), wbNum(a.d[5]) + ' / ' + wbNum(a.d[6]) + ' kg'], [L('予約', '예약', 'Booked'), d.book.ad + ' / ' + d.book.ch + ' / ' + d.book.inf + ' (' + a.zl.map(function (z, i) { return 'ABC'.charAt(i) + ' ' + d.book.z[i]; }).join(' · ') + ')'],
+        [L('燃料（離陸／飛行）', '연료(이륙/비행)', 'Fuel (take-off / trip)'), wbNum(a.d[5]) + ' / ' + wbNum(a.d[6]) + ' kg'], [L('予約', '예약', 'Booked'), d.book.ad + ' / ' + d.book.ch + ' / ' + d.book.inf + ' (' + a.zl.map(function (z, i) { return 'ABC'.charAt(i) + ' ' + d.book.z[i]; }).join(' · ') + ')' + (d.book.note ? ' <span class="small">' + esc(tx(d.book.note)) + '</span>' : '')],
         [L('特別な搭載物', '특수 탑재물', 'Special loads'), M.special ? wbSpc().map(function (x) { return '<span class="pill spc">' + esc(tx(WSPN[x.spc.t])) + (x.spc.ice && x.spc.t !== 'ICE' ? '+' + esc(tx(WSPN.ICE)) : '') + '</span> ' + esc(x.id); }).join(' ') : esc(tx(L('今日はなし', '오늘은 없음', 'None today')))]]) +
       '<div class="chk">' + WPREP.map(function (it) { return '<button data-k="' + it[0] + '" data-a="prep-' + it[0] + '"><span>' + esc(tx(it[1])) + '</span><span class="st">' + (c.chk.prep[it[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
       '<div class="btns"><button class="btn pri" id="w-prepdone" data-a="ok">' + esc(tx(L('準備完了', '준비 완료', 'Prep done'))) + '</button></div>' + wbEdu());
@@ -6061,7 +6202,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   function wbSpcMissing() { var out = { safe: [], soft: [] }; wbSpcTypes().forEach(function (t) { var def = WSPCHK[t]; if (!def) return; var miss = def.k.filter(function (k) { return !S.spcChk[t + '.' + k[0]]; }); if (miss.length) (def.safe ? out.safe : out.soft).push({ t: t, code: def.code, miss: miss }); }); return out; }
   /* ---------- ② 탑재 계획·LIR ---------- */
   function wbTabLir() {
-    var c = S.cur, a = wbA(), d = wbD(), is9 = S.acKey === '789', h = '<div class="h3">' + esc(tx(L('搭載計画（LIR）', '탑재 계획(LIR)', 'Load plan (LIR)'))) + ' <span class="small">' + esc(a.id + ' · ' + d.reg) + '</span></div>';
+    var c = S.cur, a = wbA(), d = wbD(), is9 = S.acKey === '789', h = '<div class="h3">' + esc(tx(L('搭載計画（LIR）', '탑재 계획(LIR)', 'Load plan (LIR)'))) + ' <span class="small">' + esc(a.id + ' · ' + wbReg()) + '</span></div>';
     if (!is9) {
       h += '<table class="wbt"><tr><th>ID</th><th>' + esc(tx(L('中身', '내용', 'Contents'))) + '</th><th>kg</th><th>' + esc(tx(L('貨物室', '화물칸', 'Hold'))) + '</th></tr>' + d.items.map(function (it) {
         return '<tr><td class="mono">' + it.id + '</td><td>' + (it.spc ? '<span class="pill spc">' + esc(tx(WSPN[it.spc.t])) + '</span> ' : '') + esc(tx(it.nm)) + (it.pri ? ' <span class="pill">' + esc(tx(L('優先', '우선', 'Priority'))) + '</span>' : '') + '</td><td class="n">' + wbNum(it.kg) + '</td><td><select data-it="' + it.id + '"><option value="">—</option>' + a.cpt.map(function (x, j) { return '<option value="' + j + '"' + (S.plan[it.id] === String(j) ? ' selected' : '') + '>' + x.id + '</option>'; }).join('') + wbOffOpt(it.id) + '</select></td></tr>';
@@ -6076,8 +6217,8 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
           return '<tr><td class="mono">' + u.id + '<br>' + ic + '<span class="small">' + u.type + '</span></td><td>' + (u.spc ? '<span class="pill spc">' + esc(tx(WSPN[u.spc.t])) + '</span> ' : '') + esc(tx(u.nm)) + (u.pri ? ' <span class="pill">' + esc(tx(L('優先', '우선', 'Priority'))) + '</span>' : '') + '</td><td class="n">' + wbNum(t.tare + u.content) + '<br><span class="small">' + esc(tx(L('自重', '자체', 'tare'))) + ' ' + t.tare + '</span></td><td><select data-it="' + u.id + '"><option value="">—</option>' + opts.map(function (p) { return '<option value="' + p + '"' + (cur === p ? ' selected' : '') + '>' + p + '</option>'; }).join('') + wbOffOpt(u.id) + '</select></td></tr>';
         }).join('') + '<tr><td class="mono">BULK 5</td><td>' + esc(tx(d.bulk5.nm)) + '</td><td class="n">' + wbNum(d.bulk5.kg) + '</td><td>5</td></tr></table>';
     }
-    var cc = wbLoadsC(), sh = WB.sheetErrors(a, wbState(d.book));
-    h += (M.special ? wbSpcPanel() : '') + wbCptBars(cc) + (M.day >= 2 ? wbOverBox(sh.r) + wbChart(sh.r) : wbMacBar(sh.r)) + '<p class="small">' + esc(tx(L('重心は予約人数で試算しています。', '무게중심은 예약 인원으로 미리 계산합니다.', 'CG is estimated with the booked passengers.'))) + '</p>' +
+    var cc = wbLoadsC(), sh = WB.sheetErrors(a, wbState(wbBook()));
+    h += (M.light ? wbZoneBox(c, wbTabLir) : '') + (M.special ? wbSpcPanel() : '') + wbCptBars(cc) + (M.day >= 2 ? wbOverBox(sh.r) + wbChart(sh.r) : wbMacBar(sh.r)) + '<p class="small">' + esc(tx(L('重心は予約人数で試算しています。', '무게중심은 예약 인원으로 미리 계산합니다.', 'CG is estimated with the booked passengers.'))) + '</p>' +
       '<div class="btns"><button class="btn pri" id="w-issue" data-a="ok">' + esc(tx(L('ハンドリングにLIRを出す', '조업사에 LIR 발행', 'Issue LIR to handling'))) + '</button></div><div id="w-lirmsg"></div>' + wbEdu();
     scr(h);
     document.querySelectorAll('#scr select[data-it]').forEach(function (s) { s.onchange = function () { if (!wbLive(c)) return; S.plan[s.dataset.it] = s.value; if (c.flags.notified && wbOffIds().join() !== c.flags.notifiedIds) c.flags.notified = false; wbTime(0.2); wbTabLir(); }; });
@@ -6089,7 +6230,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       if (un) { sfx.ng(); msg.innerHTML = '<div class="why bad">' + esc(tx(L('まだ置き場所が決まっていないものがあります（' + un + '）。', '아직 자리를 정하지 않은 것이 있습니다(' + un + ').', un + ' item(s) still have no position.'))) + '</div>'; return; }
       var cc2 = wbLoadsC(), lim = a.cpt.some(function (x, j) { return cc2[j] > x.max; }) || (is9 && WB.uldErrors(wbUldsOn()).length > 0);
       if (lim) { sfx.ng(); wbStrike('wb-lir-limit', L('貨物室・ULDの上限を超えたまま実行用のLIRを出そうとしました（発行・搭載は保留）。', '화물칸·ULD 상한을 넘은 채 실행용 LIR을 발행하려 했습니다(발행·탑재 보류).', 'Tried to issue an executable LIR that exceeds hold/ULD limits (issue and loading held).'), 'passenger/3-8'); msg.innerHTML = '<div class="why bad">' + esc(tx(L('上限を超えています。直してから出してください。', '상한을 넘었습니다. 고친 뒤 발행하세요.', 'Over a limit. Fix it before issuing.'))) + '</div>'; return; }
-      var r = WB.sheetErrors(a, wbState(d.book)).r;
+      var r = WB.sheetErrors(a, wbState(wbBook())).r;
       if (r.ul < 0) { sfx.ng(); msg.innerHTML = '<div class="why bad">' + esc(tx(L('許される離陸重量を ' + wbNum(-r.ul) + ' kg 超えています。降ろすもの（一般貨物 → 郵便 → 手荷物の順）を決めてください。', '허용 이륙 중량을 ' + wbNum(-r.ul) + ' kg 넘습니다. 내릴 것을 정하세요(일반 화물 → 우편 → 수하물 순).', 'Over the allowed take-off weight by ' + wbNum(-r.ul) + ' kg. Choose what to offload (cargo → mail → bags).'))) + '</div>'; return; }
       if (!(r.okz && r.okt && r.okl)) { sfx.ng(); if (!c.flags.cgBad) { c.flags.cgBad = true; wbBad('wb-lir-cg', L('重心が範囲の外のままLIRを出そうとしました。前後の貨物室に分けて直しました。', '무게중심이 범위 밖인 채 LIR을 발행하려 했습니다. 앞뒤 칸으로 나눠 고쳤습니다.', 'Tried to issue the LIR with the CG out of limits; rebalanced fore/aft.'), 'passenger/3-8'); } msg.innerHTML = '<div class="why bad">' + esc(tx(L('重心（%MAC）が範囲の外です。前と後ろに分けてください。', '무게중심(%MAC)이 범위 밖입니다. 앞뒤로 나눠 주세요.', 'The CG (%MAC) is out of limits. Split the load fore and aft.'))) + '</div>'; return; }
       if (M.special) {   /* Day 3: 격리·DG 수락·배터리·중량물 확인 없이 탑재 확정(LIR 발행) 시도 = 안전 C, 발행 보류 */
@@ -6120,7 +6261,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   function wbExApply(mv) { if (!mv) return; if (S.acKey === '789') S.exMove = { id: mv.id, kg: mv.kg, from: mv.from, to: mv.to }; else S.plan[mv.id] = String(mv.to); }
   function wbExCheck(mv) {   /* 54차 보완 F54-01: 그 이동을 임시 반영해 격리·중량(칸 상한·MAX·여유)·무게중심(ZFW·TOW·LAW 엔벨로프)을 따로 검사(되돌림) */
     var keep = { plan: Object.assign({}, S.plan), ex: S.exMove }; if (mv) wbExApply(mv);
-    var a = wbA(), d = wbD(), seg = wbSegErr(), cc = wbLoadsC(), sh = WB.sheetErrors(a, wbState(d.book)), codes = sh.errors.map(function (e) { return e.code; });
+    var a = wbA(), d = wbD(), seg = wbSegErr(), cc = wbLoadsC(), sh = WB.sheetErrors(a, wbState(wbBook())), codes = sh.errors.map(function (e) { return e.code; });
     var w = cc.some(function (v, j) { return v > a.cpt[j].max; }) || codes.some(function (c) { return /^max-|underload|cpt-max/.test(c); }), cg = codes.some(function (c) { return /^env-/.test(c); });
     S.plan = keep.plan; S.exMove = keep.ex;
     return { seg: seg, w: w, cg: cg, r: sh.r, bad: seg.length > 0 || w || cg };
@@ -6185,9 +6326,9 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     var a = wbA(), n = function (k) { var v = ent[k]; if (v == null || String(v).trim() === '') return null; var x = +String(v).replace(/[,\s]/g, ''); return isFinite(x) ? x : null; };
     var up = function (k) { return ent[k + '_ok'] === false && n(k) != null ? n(k) : null; };   /* 앞 칸이 틀렸을 때만 그 값으로 이어 계산 */
     if (f === 'zfw' && up('tl') != null) return a.dow + up('tl');
-    if (f === 'tow' && (up('zfw') != null || ent.zfw_chain)) return (n('zfw') != null ? n('zfw') : r.zfw) + a.d[5];
-    if (f === 'law' && (up('tow') != null || ent.tow_chain)) return (n('tow') != null ? n('tow') : r.tow) - a.d[6];
-    if (f === 'it' && up('iz') != null) return up('iz') + a.d[5] * a.fuel / 1000;   /* TOW 지수 = ZFW 지수 + 이륙 연료 지수 */
+    if (f === 'tow' && (up('zfw') != null || ent.zfw_chain)) return (n('zfw') != null ? n('zfw') : r.zfw) + wbTof();
+    if (f === 'law' && (up('tow') != null || ent.tow_chain)) return (n('tow') != null ? n('tow') : r.tow) - wbTif();
+    if (f === 'it' && up('iz') != null) return up('iz') + wbTof() * a.fuel / 1000;   /* TOW 지수 = ZFW 지수 + 이륙 연료 지수 */
     if (f === 'ul' && (up('tow') != null || up('al') != null || ent.tow_chain || ent.al_chain)) return (n('al') != null && ent.al_ok === false ? n('al') : r.al) - (n('tow') != null && ent.tow_ok === false ? n('tow') : r.tow);
     return null;
   }
@@ -6230,19 +6371,19 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   function wbDataBlock(p) {
     var a = wbA(), cc = wbLoadsC();
     return wbKV([['DOW', wbNum(a.dow)], [L('お客様（大人/小児/幼児）', '승객(성인/소아/유아)', 'Passengers (adult/child/infant)'), p.ad + ' / ' + p.ch + ' / ' + p.inf + ' <span class="small">(' + esc(tx(L('標準 75/35/0 kg', '표준 75/35/0 kg', 'std 75/35/0 kg'))) + ')</span>'],
-      [L('貨物室', '화물칸', 'Holds'), a.cpt.map(function (x, j) { return x.id + ': ' + wbNum(cc[j]); }).join(' · ')], [L('燃料（離陸／飛行）', '연료(이륙/비행)', 'Fuel (take-off / trip)'), wbNum(a.d[5]) + ' / ' + wbNum(a.d[6])], ['MAX ZFW / TOW / LAW', wbNum(a.mzfw) + ' / ' + wbNum(a.mtow) + ' / ' + wbNum(a.mlw)]]) + (M.day >= 2 ? wbIdxTable(p, cc) : '');
+      [L('貨物室', '화물칸', 'Holds'), a.cpt.map(function (x, j) { return x.id + ': ' + wbNum(cc[j]); }).join(' · ')], [L('燃料（離陸／飛行）', '연료(이륙/비행)', 'Fuel (take-off / trip)'), wbNum(wbTof()) + ' / ' + wbNum(wbTif()) + (S.fuel ? ' <span class="pill">' + esc(tx(L('変更後', '변경 후', 'revised'))) + '</span>' : '')], ['MAX ZFW / TOW / LAW', wbNum(a.mzfw) + ' / ' + wbNum(a.mtow) + ' / ' + wbNum(a.mlw)]]) + (M.day >= 2 ? wbIdxTable(p, cc) : '');
   }
   /* Day 2~: 지수 변화표(사이트 도구와 같은 식 — 구역 = 인원 × 평균 승객 중량 × 구역 팔 / 1000, 칸 = kg × 칸 팔 / 1000, 연료 = TOF × 연료 계수 / 1000). 소수 둘째 자리 */
   function wbIdxTable(p, cc) {
     var a = wbA(), pw = p.ad * 75 + p.ch * 35, n = p.ad + p.ch, per = n ? pw / n : 0, f2 = function (x) { return (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(2); }, rows = [['DOI', a.doi.toFixed(2)]];
     a.zl.forEach(function (z, i) { rows.push([tx(L('区画 ', '구역 ', 'Zone ')) + z + ' (' + p.z[i] + ')', f2(p.z[i] * per * a.zf[i] / 1000)]); });
     a.cpt.forEach(function (x, j) { rows.push([tx(L('貨物室 ', '화물칸 ', 'Hold ')) + x.id, f2(cc[j] * x.f / 1000)]); });
-    rows.push([L('離陸燃料（TOF）', '이륙 연료(TOF)', 'Take-off fuel (TOF)'), f2(a.d[5] * a.fuel / 1000)]);
+    rows.push([L('離陸燃料（TOF）', '이륙 연료(TOF)', 'Take-off fuel (TOF)'), f2(wbTof() * a.fuel / 1000)]);
     return '<div class="wbidx"><b>' + esc(tx(L('指数の変化（INDEX）', '지수 변화(INDEX)', 'Index changes'))) + '</b><table class="wbt">' + rows.map(function (r) { return '<tr><td>' + esc(typeof r[0] === 'string' ? r[0] : tx(r[0])) + '</td><td class="n mono">' + r[1] + '</td></tr>'; }).join('') + '</table></div>';
   }
   /* ---------- ④ 예비판 로드시트 ---------- */
   function wbTabPre() {
-    var c = S.cur, a = wbA(), d = wbD(), r = WB.calc(a, wbState(d.book)), F = M.day >= 2 ? ['tl', 'zfw', 'tow', 'law', 'al', 'ul', 'iz', 'it'] : ['tl', 'zfw', 'tow', 'law', 'al', 'ul'];
+    var c = S.cur, a = wbA(), d = wbD(), r = WB.calc(a, wbState(wbBook())), F = M.day >= 2 ? ['tl', 'zfw', 'tow', 'law', 'al', 'ul', 'iz', 'it'] : ['tl', 'zfw', 'tow', 'law', 'al', 'ul'];
     var form = wbChkForm('pre', F, r, function () {
       if (!wbDone(c)) return; var w = F.reduce(function (n, f) { return n + Math.max(0, (S.chkWrong[f] || 0)); }, 0);
       S.preAt = S.clock; note('good', M.day >= 2 ? L('予備ロードシートの重量6項目と指数2項目を検算しました。', '예비 로드시트 중량 6항목과 지수 2항목을 검산했습니다.', 'Cross-checked six weights and two indices on the preliminary sheet.') : L('予備ロードシートの重量6項目を検算しました。', '예비 로드시트 중량 6항목을 검산했습니다.', 'Cross-checked the six weights on the preliminary sheet.'), 'passenger/3-7'); wbEnd();
@@ -6253,13 +6394,14 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   }
   /* ---------- ⑤ 최종 자료(시계 정지) ---------- */
   function wbTabFin() {
-    var c = S.cur, a = wbA(), d = wbD(), e = S.entered;
-    if (!c.flags.called) { c.flags.called = true; wbCall('gate', L('ゲートです。最終人数：大人' + d.fin.ad + '、小児' + d.fin.ch + '、幼児' + d.fin.inf + '。区画 A' + d.fin.z[0] + '・B' + d.fin.z[1] + '・C' + d.fin.z[2] + '。ノーショー' + ((d.book.ad + d.book.ch) - (d.fin.ad + d.fin.ch)) + '名で、手荷物はありません。', '게이트입니다. 최종 인원: 성인 ' + d.fin.ad + ', 소아 ' + d.fin.ch + ', 유아 ' + d.fin.inf + '. 구역 A' + d.fin.z[0] + '·B' + d.fin.z[1] + '·C' + d.fin.z[2] + '. 노쇼 ' + ((d.book.ad + d.book.ch) - (d.fin.ad + d.fin.ch)) + '명, 위탁 수하물 없음.', 'Gate here. Final: ' + d.fin.ad + ' adults, ' + d.fin.ch + ' children, ' + d.fin.inf + ' infants. Zones A' + d.fin.z[0] + ' B' + d.fin.z[1] + ' C' + d.fin.z[2] + '. ' + ((d.book.ad + d.book.ch) - (d.fin.ad + d.fin.ch)) + ' no-show(s), no checked bags.')); }
+    var c = S.cur, a = wbA(), d = wbD(), e = S.entered, fn = wbFin();
+    var nsN = (d.book.ad + d.book.ch) - (fn.ad + fn.ch);
+    if (!c.flags.called) { c.flags.called = true; wbCall('gate', L('ゲートです。最終人数：大人' + fn.ad + '、小児' + fn.ch + '、幼児' + fn.inf + '。区画 A' + fn.z[0] + '・B' + fn.z[1] + '・C' + fn.z[2] + '。' + (nsN ? 'ノーショー' + nsN + '名で、その方の手荷物はありません。' : 'ノーショーはありません。'), '게이트입니다. 최종 인원: 성인 ' + fn.ad + ', 소아 ' + fn.ch + ', 유아 ' + fn.inf + '. 구역 A' + fn.z[0] + '·B' + fn.z[1] + '·C' + fn.z[2] + '. ' + (nsN ? '노쇼 ' + nsN + '명, 그 승객의 위탁 수하물 없음.' : '노쇼 없음.'), 'Gate here. Final: ' + fn.ad + ' adults, ' + fn.ch + ' children, ' + fn.inf + ' infants. Zones A' + fn.z[0] + ' B' + fn.z[1] + ' C' + fn.z[2] + '. ' + (nsN ? nsN + ' no-show(s), with no checked bags.' : 'No no-shows.'))); }
     var inp = function (k, i, v) { return '<label><span>' + k + '</span><input inputmode="numeric" data-p="' + (i == null ? k : 'z' + i) + '" value="' + v + '"></label>'; };
     var h = '<div class="h3">' + esc(tx(L('最終データの受信と照合', '최종 자료 수신·대조', 'Final figures: receive and reconcile'))) + ' <span class="pill">⏸ ' + esc(tx(L('時計停止中', '시계 정지 중', 'Clock paused'))) + '</span></div>' +
       '<div class="wbpax">' + inp('ad', null, e.ad).replace('<span>ad</span>', '<span>' + esc(tx(L('大人', '성인', 'Adults'))) + '</span>') + inp('ch', null, e.ch).replace('<span>ch</span>', '<span>' + esc(tx(L('小児', '소아', 'Children'))) + '</span>') + inp('inf', null, e.inf).replace('<span>inf</span>', '<span>' + esc(tx(L('幼児', '유아', 'Infants'))) + '</span>') +
       a.zl.map(function (z, i) { return inp('ABC'.charAt(i), i, e.z[i]); }).join('') + '</div>' +
-      '<div class="btns"><button class="btn" id="w-paxset" data-a="ok">' + esc(tx(L('この人数でロードシートを直す', '이 인원으로 로드시트 수정', 'Update the sheet with these figures'))) + '</button><button class="btn" id="w-finconf" data-a="ok"' + (S.finConf ? ' disabled' : '') + '>' + (S.finConf ? '✔ ' : '') + esc(tx(L('最終の実搭載の確認を受ける', '최종 실탑재 확인 받기', 'Get final actual-load confirmation'))) + '</button></div><div id="w-finmsg"></div>';
+      (M.light ? wbZoneBox(c, wbTabFin) : '') + '<div class="btns"><button class="btn" id="w-paxset" data-a="ok">' + esc(tx(L('この人数でロードシートを直す', '이 인원으로 로드시트 수정', 'Update the sheet with these figures'))) + '</button><button class="btn" id="w-finconf" data-a="ok"' + (S.finConf ? ' disabled' : '') + '>' + (S.finConf ? '✔ ' : '') + esc(tx(L('最終の実搭載の確認を受ける', '최종 실탑재 확인 받기', 'Get final actual-load confirmation'))) + '</button></div><div id="w-finmsg"></div>';
     var r = WB.calc(a, wbState(e)), F = M.day >= 2 ? ['zfw', 'tow', 'ul', 'it'] : ['zfw', 'tow', 'ul'];
     var form = wbChkForm('fin', F, r, function () { if (!wbDone(c)) return; S.clock = S.frozenAt; updateBar(); note('good', L('最終人数でロードシートを直し、重量を検算しました。', '최종 인원으로 로드시트를 고치고 중량을 검산했습니다.', 'Updated the sheet with final figures and cross-checked the weights.'), 'passenger/3-7'); wbEnd(); });
     h += (c.flags.paxSet ? '<div class="h3" style="margin-top:8px">' + esc(tx(L('直したロードシートの検算', '고친 로드시트 검산', 'Cross-check the updated sheet'))) + '</div>' + wbDataBlock(e) + form.html + '<div id="w-chkmsg"></div>' + (M.day >= 2 ? wbChart(r) : wbMacBar(r)) : '') + wbEdu();
@@ -6298,10 +6440,10 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   /* ---------- ⑥ 기장 제출(3B) ---------- */
   function wbTabSub() {
     var c = S.cur, a = wbA(), d = wbD(), e = S.entered, r = WB.calc(a, wbState(e));
-    var ls = ['LOADSHEET   EDNO ' + S.ed + '   ' + V.flight + ' ' + V.from + '/' + V.to + '   ' + a.id + ' ' + d.reg,
+    var ls = ['LOADSHEET   EDNO ' + S.ed + '   ' + V.flight + ' ' + V.from + '/' + V.to + '   ' + a.id + ' ' + wbReg(),
       'PAX ' + e.ad + '/' + e.ch + '/' + e.inf + '   ZONES ' + e.z.join('/'), 'LOAD IN CPTS ' + a.cpt.map(function (x, j) { return x.id + '/' + Math.round(wbLoadsC()[j]); }).join(' '),
-      'TTL ' + Math.round(r.tl) + '  DOW ' + a.dow, 'ZFW ' + Math.round(r.zfw) + '  MAX ' + a.mzfw + (r.lim === 0 ? ' L' : ''), 'TOF ' + a.d[5] + '  TOW ' + Math.round(r.tow) + '  MAX ' + a.mtow + (r.lim === 1 ? ' L' : ''),
-      'TIF ' + a.d[6] + '  LAW ' + Math.round(r.law) + '  MAX ' + a.mlw + (r.lim === 2 ? ' L' : ''), 'UNDERLOAD ' + Math.round(r.ul), 'MACZFW ' + r.mz.toFixed(1) + '  MACTOW ' + r.mt.toFixed(1) + '  MACLAW ' + r.ml.toFixed(1), '— ' + tx(WB_TEXT.eduData) + ' —'];
+      'TTL ' + Math.round(r.tl) + '  DOW ' + a.dow, 'ZFW ' + Math.round(r.zfw) + '  MAX ' + a.mzfw + (r.lim === 0 ? ' L' : ''), 'TOF ' + wbTof() + '  TOW ' + Math.round(r.tow) + '  MAX ' + a.mtow + (r.lim === 1 ? ' L' : ''),
+      'TIF ' + wbTif() + '  LAW ' + Math.round(r.law) + '  MAX ' + a.mlw + (r.lim === 2 ? ' L' : ''), 'UNDERLOAD ' + Math.round(r.ul), 'MACZFW ' + r.mz.toFixed(1) + '  MACTOW ' + r.mt.toFixed(1) + '  MACLAW ' + r.ml.toFixed(1), '— ' + tx(WB_TEXT.eduData) + ' —'];
     var h = '<div class="h3">' + esc(tx(L('機長への提出', '기장 제출', 'Submit to the captain'))) + '</div><pre class="wbls">' + esc(ls.join('\n')) + '</pre>' +
       (M.special ? '<div class="h3" style="margin-top:6px">' + esc(tx(L('機長への通知書', '기장 통보서', 'Captain notification'))) + '</div>' + (function () { var keep = S.notocDraft; S.notocDraft = c.flags.fixNotoc ? S.notocDraft : JSON.parse(JSON.stringify(S.notoc || {})); var t = wbNotocRows(!!c.flags.fixNotoc); if (!c.flags.fixNotoc) S.notocDraft = keep; return t; })() : '') +
       '<div class="chk"><button data-k="notoc" data-a="ok"><span>' + esc(tx(M.special ? L('機長への通知書を一緒に渡すことを確認', '기장 통보서를 함께 전달함을 확인', 'Confirm the notification goes with the sheet') : L('機長への通知（NOTOC等）：今日は対象なしを確認', '기장 통보(NOTOC 등): 오늘 대상 없음 확인', 'Captain notification (NOTOC etc.): confirm none today'))) + '</span><span class="st">' + (c.flags.notoc ? '✔' : '') + '</span></button></div>' +
@@ -6310,7 +6452,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       h += '<div class="wbpax">' + ['ad', 'ch', 'inf'].map(function (k) { return '<label><span>' + k.toUpperCase() + '</span><input inputmode="numeric" data-p="' + k + '" value="' + e[k] + '"></label>'; }).join('') + a.zl.map(function (z, i) { return '<label><span>' + 'ABC'.charAt(i) + '</span><input inputmode="numeric" data-p="z' + i + '" value="' + e.z[i] + '"></label>'; }).join('') + '</div>' +
         (S.finConf ? '' : '<div class="btns"><button class="btn" id="w-finconf2" data-a="ok">' + esc(tx(L('最終の実搭載の確認を受ける', '최종 실탑재 확인 받기', 'Get final actual-load confirmation'))) + '</button></div>');
     }
-    scr(h + wbEdu());
+    scr(h + (M.light && c.flags.returned ? wbZoneBox(c, wbTabSub) : '') + wbEdu());
     document.querySelectorAll('#scr .chk button').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; sfx.tap(); c.flags.notoc = true; wbTime(M.cost.check); wbTabSub(); }; });
     document.querySelectorAll('.wbpax input').forEach(function (i) { i.oninput = function () { var k = i.dataset.p, v = Math.max(0, Math.floor(+i.value || 0)); if (k.charAt(0) === 'z') e.z[+k.slice(1)] = v; else e[k] = v; }; i.onchange = function () { wbTabSub(); }; });
     var fx = $('#w-fix'); if (fx) fx.onclick = function () { if (!wbLive(c)) return; c.flags.fixing = true; wbTabSub(); };
@@ -6320,7 +6462,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     var f2 = $('#w-finconf2'); if (f2) f2.onclick = function () { if (!wbLive(c)) return; S.finConf = true; wbTime(M.cost.radio); wbCall('lm', L('最終の実搭載、中間報告と同じです。全数固定済み。', '최종 실탑재, 중간 보고와 같습니다. 전부 고정 완료.', 'Final actual load same as interim. All secured.')); wbTabSub(); };
     $('#w-submit').onclick = function () {
       if (!wbLive(c)) return; S.subTries = (S.subTries || 0) + 1; var handNow = S.clock; wbTime(M.cost.submit);   /* 52차 재확인 B: 기장에게 건넨 시각(전달)과 승인 완료 시각을 따로 기록 */
-      var sheet = WB.sheetErrors(a, wbState(e)), paxBad = e.ad !== d.fin.ad || e.ch !== d.fin.ch || e.inf !== d.fin.inf || e.z.join() !== d.fin.z.join(), probs = [];
+      var fn = wbFin(), sheet = WB.sheetErrors(a, wbState(e)), paxBad = e.ad !== fn.ad || e.ch !== fn.ch || e.inf !== fn.inf || e.z.join() !== fn.z.join(), probs = [];
       if (paxBad) { wbStrike('wb-pax', L('ゲートの最終人数と違う人数のロードシートを提出しようとしました（機長は承認しません）。', '게이트 최종 인원과 다른 로드시트를 제출하려 했습니다(기장은 승인하지 않음).', 'Tried to submit a sheet whose figures differ from the gate’s final figures (not approved).'), 'passenger/2-7'); probs.push(L('人数', '인원', 'figures')); }
       if (!S.finConf) { wbStrike('wb-final', L('最終の実搭載の確認を受けずに提出しようとしました。', '최종 실탑재 확인 없이 제출하려 했습니다.', 'Tried to submit without the final actual-load confirmation.'), 'passenger/3-8'); probs.push(L('最終の実搭載', '최종 실탑재', 'final load')); }
       if (M.special) {
@@ -6339,7 +6481,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
         if (exW.length) wbBad('wb-notoc-extra', function () { return tx(L('この品目（' + exW.join(', ') + '）は、この画面では貨物のDG NOTOCではなく、補助具の通知欄で扱います。車いす用電池の危険物としての安全要件は引き続き適用されます。', '이 품목(' + exW.join(', ') + ')은 Vela의 이 화면에서 화물 DG NOTOC 대신 특수 탑재물·보조기 통보 칸으로 처리합니다. 휠체어 배터리의 위험물 안전요건은 그대로 적용됩니다.', 'This item (' + exW.join(', ') + ') is handled in the mobility-aid section here, not the cargo DG NOTOC. The dangerous-goods safety requirements for the wheelchair battery still apply.')); }, 'passenger/1-12');
         if (exO.length) wbBad('wb-notoc-extra', function () { return tx(L('ドライアイスを含まない品目をDG NOTOCに書きました：', '드라이아이스가 없는 품목을 DG NOTOC에 적었습니다: ', 'Listed items without dry ice on the DG NOTOC: ')) + exO.join(', '); }, 'cargo/7-3');
         if (!ne2.extra.length) note('good', L('危険物と特別な搭載物を区分した通知書を機長に渡しました。', '위험물과 특수 탑재물을 구분한 통보서를 기장에게 전달했습니다.', 'Handed the captain a notification with DG and special loads correctly separated.'), 'cargo/7-3'); }
-      S.handAt = handNow; S.subAt = S.clock; sfx.ok(); wbCall('cap', L('ロードシート受け取りました。承認します。', '로드시트 받았습니다. 승인합니다.', 'Load sheet received. Accepted.'));
+      S.handAt = handNow; S.subAt = S.clock; wbApprove(); sfx.ok(); wbCall('cap', L('ロードシート受け取りました。承認します。', '로드시트 받았습니다. 승인합니다.', 'Load sheet received. Accepted.'));
       note('good', c.flags.returned ? L('差し戻しのあと数字を直し、機長の承認を受けました。', '돌려받은 뒤 숫자를 고쳐 기장 승인을 받았습니다.', 'Fixed the figures after the return and got the captain’s acceptance.') : L('最終人数・実搭載と一致し、範囲内のロードシートで機長の承認を受けました。', '최종 인원·실탑재와 일치하고 범위 안인 로드시트로 기장 승인을 받았습니다.', 'Got the captain’s acceptance with a sheet that matches the final figures and is within limits.'), 'passenger/3-7');
       wbEnd(1100);
     };
@@ -6376,6 +6518,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       var ev = !S.ex || S.ex.none || !S.ex.bad ? 100 : S.exDone === 'reloc' ? 100 : S.exDone === 'reloc-late' ? 50 : 0;
       parts = [{ k: 'acc', v: acc, w: 30 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 10 }, { k: 'rep', v: rep, w: 15 }, { k: 'evt', v: ev, w: 15 }];
     }
+    if (M.irreg) parts = [{ k: 'acc', v: acc, w: 30 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 10 }, { k: 'rep', v: wbRepIrreg(rep), w: 15 }, { k: 'evt', v: wbEvtScore(), w: 15 }];   /* Day 4·5: 사건 = 기체 변경·LMC·연료·대기 승객·지연·최종 대조 처리 */
     var tot = Math.round(parts.reduce(function (a, x) { return a + x.v * x.w; }, 0) / 100);
     var rank = !safe ? 'C' : tot >= 90 ? 'S' : tot >= 80 ? 'A' : tot >= 65 ? 'B' : 'C';
     var opMiss = []; allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && WOPS.indexOf(n.c) >= 0 && opMiss.indexOf(n.c) < 0) opMiss.push(n.c); }); });
@@ -6394,11 +6537,12 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     var e = st.entered; if (!obj(e) || !int(e.ad, 0, 400) || !int(e.ch, 0, 400) || !int(e.inf, 0, 400) || !Array.isArray(e.z) || e.z.length !== 3 || !e.z.every(function (x) { return int(x, 0, 400); })) return 'entered';
     if (!obj(st.chkWrong) || Object.keys(st.chkWrong).some(function (k) { return !int(st.chkWrong[k], 0, 999); })) return 'chk';
     if (!int(st.ed, 1, 20) || !(st.subAt == null || num(st.subAt)) || !(st.lirAt == null || num(st.lirAt)) || !(st.preAt == null || num(st.preAt)) || !(st.handAt == null || num(st.handAt)) || !int(st.strikes, 0, 99) || !Array.isArray(st.results)) return 'core';
+    if (!(st.swap == null || obj(st.swap)) || !(st.fuel == null || obj(st.fuel)) || !(st.lmcC == null || Array.isArray(st.lmcC)) || !(st.apState == null || obj(st.apState)) || !(st.zoneReq == null || Array.isArray(st.zoneReq)) || !(st.etd == null || num(st.etd))) return 'd45';
     return null;
   }
   /* 52차: v05 그림 — 직원 자세 4종(input·radio·phone·trouble), 탭별 책상 소품. 그림이 없으면 게이트 직원 그림(gate.js STG.pose)으로 대체 */
   var WPOSE = { idle: 'input', explain: 'input', greet: 'input', check: 'input', scan: 'input', announce: 'radio', radio: 'radio', phone: 'phone', trouble: 'trouble' };
-  var WPROP = { lir: 'prop_lir_board_01', pre: 'prop_loadsheet_01', fin: 'prop_loadsheet_01', sub: 'prop_loadsheet_01', ldm: 'prop_loadsheet_01' };
+  var WPROP = { lir: 'prop_lir_board_01', pre: 'prop_loadsheet_01', fin: 'prop_loadsheet_01', sub: 'prop_loadsheet_01', ldm: 'prop_loadsheet_01', swap: 'prop_loadsheet_01', lmc: 'prop_loadsheet_01', fuel: 'prop_loadsheet_01', sby: 'prop_loadsheet_01', delay: 'prop_loadsheet_01', chk: 'prop_loadsheet_01' };
   function wbArt() { return STG.has('staff_wb_input_01'); }
   function wbStaffId(pose) { var id = 'staff_wb_' + (WPOSE[pose] || 'input') + '_01'; return STG.has(id) ? id : 'staff_wb_input_01'; }
   function wbPropHtml() { var k = S && S.cur && S.cur.tab, id = WPROP[k]; return id && STG.has(id) ? STG.img(id, 'wbprop', 37, 22.5, k === 'lir' ? 15 : 12) : ''; }
@@ -6434,10 +6578,10 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   }
   function wbScene() {
     var bg = wbBgId(), art = wbArt(), st = art ? 'staff_wb_input_01' : (STG.has('staff_gate_idle_01') ? 'staff_gate_idle_01' : 'staff_checkin_greet_01');
-    var k = S && S.acKey === '789' ? '789' : '737', reg = (M && M.data && M.data[k]) ? M.data[k].reg : '';
+    var k = S && S.acKey === '789' ? '789' : '737', reg = S && S.swap && S.swap.loaded ? S.swap.reg : (M && M.data && M.data[k]) ? M.data[k].reg : '';
     var h = '<div class="stage gate wb' + (art ? ' wbv05' : '') + (bg === 'wb_bg_02' ? ' wbk2' : '') + '" id="stage"><img class="bg" src="' + STG.src(bg) + '" alt="" draggable="false">';
     /* 배경 벽 모니터 2개(wb_bg_01·02 좌표가 조금 다름 → .wbk2) — 왼쪽: 편명·목적지·STD / 오른쪽: 기재·등록 기호 */
-    h += art ? wbMonitors(bg, [V.flight, V.from + ' → ' + V.to + '  STD ' + V.std], [k === '789' ? 'B787-9' : 'B737-800', reg + ' · LOAD CONTROL']) : '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.from + ' → ' + V.to + ' ' + V.std) + '</span></div><div class="sign s2"><b id="ctrno">' + esc(k === '789' ? 'B787-9' : 'B737-800') + '</b><span>' + esc(reg + ' · LOAD CONTROL') + '</span></div>';
+    h += art ? wbMonitors(bg, [V.flight, V.from + ' → ' + V.to + '  ' + (S && S.etd ? 'ETD ' + hm(S.etd) : 'STD ' + V.std)], [k === '789' ? 'B787-9' : 'B737-800', reg + ' · LOAD CONTROL']) : '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.from + ' → ' + V.to + ' ' + V.std) + '</span></div><div class="sign s2"><b id="ctrno">' + esc(k === '789' ? 'B787-9' : 'B737-800') + '</b><span>' + esc(reg + ' · LOAD CONTROL') + '</span></div>';
     h += '<div id="queue" class="lay"></div><div id="agentwrap" class="lay">' + STG.img(st, 'agent', 20, -14, 80, false, '') + '</div>';
     h += '<div class="lay">' + STG.img('prop_counter_01', 'counter', 22, -2, 30) + STG.img('prop_monitor_01', 'monitor', 36, 23, 19) + '</div><div class="lay" id="wbpropw"></div>';
     h += '<div id="paxwrap" class="lay"><div id="pax" class="lay"></div></div><div class="wbradio hide" id="wbradio"></div><div class="wbedutag">' + esc(tx(WB_TEXT.eduData)) + '</div>';
@@ -6450,7 +6594,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     hero: wbHero, scene: function (V0) { return wbScene(V0); },
     toolsHtml: function () { return ''; }, bindTools: function () {},
     initState: function (dd, M0, V0, seed) { var k = wbAcKey(), b = M0.data[k].book; return { clock: pm(V0.start), close: pm(V0.close), bgQueue: 0, list: V0.pax(), seed: seed, adv: true, idx: -1, cur: null, results: [], revenue: [], strikes: 0, seq: 1, day: dd, evChecks: [], evRep: { need: 0, done: 0 }, safety: [],
-      acKey: k, plan: {}, issued: false, repOk: false, entered: { ad: b.ad, ch: b.ch, inf: b.inf, z: b.z.slice() }, finConf: false, chkWrong: {}, ed: 1, subAt: null, subTries: 0, frozenAt: null, struck: {}, lirAt: null, preAt: null, handAt: null, spcChk: {}, ex: null, exDone: null, exMove: null, notoc: null, lirC: null }; },
+      acKey: k, plan: {}, issued: false, repOk: false, entered: { ad: b.ad, ch: b.ch, inf: b.inf, z: b.z.slice() }, finConf: false, chkWrong: {}, ed: 1, subAt: null, subTries: 0, frozenAt: null, struck: {}, lirAt: null, preAt: null, handAt: null, spcChk: {}, ex: null, exDone: null, exMove: null, notoc: null, lirC: null, swap: null, fuel: null, lmcC: null, apState: null, lmcLog: [], edLog: [], evt: {}, etd: null, zoneReq: null, ldmArch: false }; },
     runFields: WB_RUNF, runSkip: WB_RUNSKIP.concat(['ldmOk']), freshList: function (mi, va) { return va.pax(); }, allUnits: function (l) { return l; },
     acCode: function (s) { return (s || S).acKey === '789' ? 'B' : 'A'; }, acOf: function (c) { var k = c === 'B' ? '789' : '737'; G.wbAc = k; return k; },
     phase: function () { return (S.idx + 1 >= S.list.length) ? 'finish' : 'pax'; }, runEvent: function () {},
@@ -6476,6 +6620,318 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     scoreVer: 'wb1', ruleDate: '2026-10-18', layoutVer: 'A',
     testHooks: function () { return { wbScore: wbScore, wbStateWhy: wbStateWhy, loadsC: wbLoadsC, state: wbState }; }
   };
+  /* ================= STAGE 03 탑재관리편 — Day 4 「イレギュラー①」· Day 5 「イレギュラー②」 (합의본 v2 3절 Day 4·5, 3B·3C) =================
+     wb.js 와 같은 엔진 IIFE 안에 이어 붙임(assemble_split). wb.js 의 함수·변수(S·M·V·wbA·wbState·wbChkForm·wbCall·note…)를 그대로 씀.
+     승인된 최신 판(S.apState·S.ed) 기준으로 변경을 누적 판정(WB.lmc) → LMC 기입·기장 통보 / 재작성(EDNO+1·재승인) / 원천 위반(먼저 조정).
+     기체 변경(S.swap)·연료 변경(S.fuel)·칸 변경(S.lmcC)·구역 요청(S.zoneReq)·출발 예정(S.etd)은 wb.js 의 wbA·wbTof·wbLoadsC·wbBook 이 읽음. */
+  WB_TEXT.tabs.swap = L('機体変更', '기체 변경', 'Aircraft change'); WB_TEXT.tabs.lmc = L('LMC（ノーショー）', 'LMC(노쇼)', 'LMC (no-show)'); WB_TEXT.tabs.fuel = L('燃料変更', '연료 변경', 'Fuel change');
+  WB_TEXT.tabs.sby = L('スタンバイ客', '대기 승객', 'Standby passengers'); WB_TEXT.tabs.delay = L('出発遅延', '출발 지연', 'Departure delay'); WB_TEXT.tabs.chk = L('最終照合', '최종 대조', 'Final cross-check');
+  WMISSL['wb-swap-old'] = L('機体変更の後、古い登録記号・DOW・承認版を使おうとした', '기체 변경 뒤 옛 등록 기호·DOW·승인판을 쓰려 함', 'Used the old registration / DOW / approved sheet after the aircraft change');
+  WMISSL['wb-lmc-over'] = L('LMCの許容を超える変更をLMCの記入だけで処理しようとした', 'LMC 허용을 넘는 변경을 LMC 기입만으로 처리하려 함', 'Tried to handle a change beyond the LMC allowance with an LMC entry only');
+  WMISSL['wb-fuel-lmc'] = L('燃料変更をLMCとして記入しようとした（Velaでは再作成）', '연료 변경을 LMC로 기입하려 함(Vela는 재작성)', 'Tried to record a fuel change as an LMC (Vela requires a reissue)');
+  WMISSL['wb-lmc-cap'] = L('LMCを機長に通知しないまま次へ進もうとした', 'LMC를 기장에게 통보하지 않은 채 진행 시도', 'Tried to move on without notifying the captain of the LMC');
+  WMISSL['wb-final-mismatch'] = L('最終の実搭載・人数とロードシートが一致しないまま出発準備完了とした', '최종 실탑재·인원과 로드시트가 다른 채 출발 준비 완료 시도', 'Declared ready for departure with the sheet not matching the final load/figures');
+  WMISSL['wb-lmc-judge'] = L('承認版からの累積判定をせずにLMCを記入した', '승인판 기준 누적 판정 없이 LMC 기입', 'Recorded an LMC without the cumulative check against the approved sheet');
+  WMISSL['wb-lmc-reissue'] = L('LMCで処理できる変更を再作成にした（時間の損失）', 'LMC로 처리할 수 있는 변경을 재작성함(시간 손실)', 'Reissued for a change that an LMC could have covered (lost time)');
+  WMISSL['wb-swap-arch'] = L('機体変更で無効になった承認版を「使用禁止」として保管しなかった', '기체 변경으로 무효가 된 승인판을 「사용 금지」로 보관하지 않음', 'Did not archive the voided sheet as "not to be used"');
+  WMISSL['wb-swap-lir'] = L('新しい機体のLIRをハンドリングに出し直さなかった', '새 기체의 LIR을 조업사에 재발행하지 않음', 'Did not reissue the LIR to handling for the new aircraft');
+  WMISSL['wb-notify'] = L('LMC・再作成のあと関係部門（ゲート・ハンドリング）に連絡しなかった', 'LMC·재작성 뒤 관계 부서(게이트·조업사) 연락 누락', 'Did not inform gate/handling after the LMC or reissue');
+  WMISSL['wb-delay-nochk'] = L('遅延のとき燃料・人数・搭載の変更の有無を確認せずにそのままにした', '지연 때 연료·인원·배치 변경 유무를 확인하지 않고 유지', 'Kept the sheet during the delay without checking for fuel/figure/load changes');
+  WMISSL['wb-delay-reissue'] = L('変更がないのに根拠なく再作成した', '변경이 없는데 근거 없이 재작성', 'Reissued with no change and no basis');
+  WMISSL['wb-sby-nochk'] = L('スタンバイ客の追加を判定なしに記入した', '대기 승객 추가를 판정 없이 기입', 'Added standby passengers without the cumulative check');
+  WMISSL['wb-old-edno'] = L('最新ではない版を有効として扱った', '최신이 아닌 판을 유효한 것으로 다룸', 'Treated an outdated edition as the valid one');
+  WACT['wb-swap-old'] = 'reload-aircraft-data'; WACT['wb-lmc-over'] = 'reissue-beyond-lmc'; WACT['wb-fuel-lmc'] = 'fuel-change-is-reissue'; WACT['wb-lmc-cap'] = 'notify-captain-of-lmc'; WACT['wb-final-mismatch'] = 'match-sheet-to-final';
+  WACT['wb-lmc-judge'] = 'judge-cumulative-lmc'; WACT['wb-lmc-reissue'] = 'use-lmc-when-allowed'; WACT['wb-swap-arch'] = 'archive-void-sheet'; WACT['wb-swap-lir'] = 'reissue-lir-new-aircraft'; WACT['wb-notify'] = 'notify-departments';
+  WACT['wb-delay-nochk'] = 'confirm-no-change-on-delay'; WACT['wb-delay-reissue'] = 'reissue-only-with-basis'; WACT['wb-sby-nochk'] = 'judge-before-adding'; WACT['wb-old-edno'] = 'latest-edition-only';
+  ['wb-swap-old', 'wb-lmc-over', 'wb-fuel-lmc', 'wb-lmc-cap', 'wb-final-mismatch'].forEach(function (k) { WSAFE.push(k); });
+  ['wb-lmc-judge', 'wb-delay-nochk', 'wb-delay-reissue', 'wb-sby-nochk'].forEach(function (k) { WOPS.push(k); });
+  function wbHintIrreg(H) {
+    H.swap = L('機体が変わったら、前の承認は無効。新しい機体のDOW・DOIを読み込み直して、LIR・ロードシート・通知書への影響を見て、EDNOを1つ進めて再承認。古い版は「使用禁止」で保管。', '기체가 바뀌면 이전 승인은 무효. 새 기체의 DOW·DOI를 다시 불러오고 LIR·로드시트·통보서 영향을 본 뒤 EDNO를 하나 올려 재승인. 옛 판은 「사용 금지」로 보관.', 'After an aircraft change the old acceptance is void. Reload the new aircraft’s DOW/DOI, check the effect on LIR, sheet and notification, then reissue (EDNO+1) and get it re-accepted. Archive the old edition as “not to be used”.');
+    H.lmc = L('変更は分けて記録（お客様は区画ごと、荷物は貨物室ごと）。承認版からの累積で判定して、許容の中ならLMCに記入して機長に通知。ゲート・ハンドリングにも連絡。', '변경은 나눠 기록(승객은 구역별, 짐은 칸별). 승인판 기준 누적으로 판정해 허용 안이면 LMC 기입하고 기장에게 통보. 게이트·조업사에도 연락.', 'Record each change separately (passengers by zone, bags by hold). Judge the cumulative change against the accepted sheet; if within allowance, enter the LMC and notify the captain. Tell gate and handling too.');
+    H.fuel = L('燃料の変更はVelaの規定でLMCの対象外。再作成（EDNO+1）して再承認を受ける。', '연료 변경은 Vela 규정상 LMC 대상이 아님. 재작성(EDNO+1)하고 재승인.', 'Fuel changes are not LMC-eligible under Vela rules: reissue (EDNO+1) and get it re-accepted.');
+    H.sby = M.light ? L('スタンバイ客は、席数・余裕・重心を累積で判定してから。後ろの区画だと重心の変化が0.5を超えることがある。再作成するか、ゲートに前の区画への変更を頼めばLMCで済む。', '대기 승객은 좌석 수·여유·무게중심을 누적으로 판정한 뒤에. 뒤쪽 구역이면 무게중심 변화가 0.5를 넘을 수 있어. 재작성하거나 게이트에 앞 구역으로 바꿔 달라고 하면 LMC로 끝나.', 'Judge standby passengers cumulatively (seats, underload, CG) first. Seated aft, the CG shift can exceed 0.5. Either reissue, or ask the gate to seat them further forward and handle it as an LMC.') :
+      L('追加分を累積で判定。LMCの許容（重量・重心）を超えたら、LMCではなく再作成。', '추가분을 누적으로 판정. LMC 허용(중량·무게중심)을 넘으면 LMC가 아니라 재작성.', 'Judge the additions cumulatively. Beyond the LMC allowance (weight or CG), reissue rather than LMC.');
+    H.delay = L('遅れただけでは再作成しない。燃料・人数・搭載に変更がないか確認して、なければ「変更なしを再確認」と記録。', '지연만으로는 재작성하지 않아. 연료·인원·배치에 변경이 없는지 확인하고, 없으면 「변경 없음 재확인」을 기록.', 'A delay alone does not require a reissue. Check for fuel, figure or load changes; if none, record “no change re-confirmed”.');
+    H.chk = L('出発前の最終照合：ゲートの最終人数＝ロードシート、ハンドリングの最終実搭載＝貨物室の数字、通知書＝実際の位置、有効なのは最新のEDNOだけ。違いがあればLMCか再作成で直してから。', '출발 전 최종 대조: 게이트 최종 인원 = 로드시트, 조업사 최종 실탑재 = 칸 숫자, 통보서 = 실제 위치, 유효한 것은 최신 EDNO뿐. 차이가 있으면 LMC나 재작성으로 고친 뒤에.', 'Final cross-check before departure: gate final figures = sheet, handling’s final load = hold figures, notification = actual positions, only the latest EDNO is valid. Fix any difference by LMC or reissue first.');
+    if (M.light) H.lir = L('今日は空いた便。お客様が後ろの区画に集まると重心が後ろの限界を超える。荷物を前の貨物室に置いても足りなければ、ゲートに座席の移動（区画の人数変更）を頼もう。', '오늘은 빈 편. 승객이 뒤쪽 구역에 몰리면 무게중심이 뒤쪽 한계를 넘어. 짐을 앞 칸에 둬도 부족하면 게이트에 좌석 이동(구역 인원 변경)을 요청하자.', 'A light flight today. With passengers bunched in the rear zone the CG goes past the aft limit. If forward holds are not enough, ask the gate to move seats (change zone counts).');
+  }
+  /* ---------- 공통: 승인·EDNO 기록·출발 예정·부서 연락 ---------- */
+  function wbApprove() {   /* 기장 승인 때 승인판 상태를 저장(LMC 누적 판정 기준) */
+    S.apState = wbState(S.entered); S.edLog = S.edLog || []; S.edLog.forEach(function (x) { if (x.st === 'valid') x.st = 'superseded'; }); S.edLog.push({ ed: S.ed, reg: wbReg(), at: S.clock, st: 'valid' });
+  }
+  function wbSetEtd(min) { S.etd = pm(V.std) + min; S.close = S.etd; updateBar(); wbMonRefresh(); }
+  function wbMonRefresh() { var el = document.querySelector('#stage .wbmon'); if (!el) return; var k = S.acKey === '789' ? '789' : '737'; el.outerHTML = wbMonitors(wbBgId(), [V.flight, V.from + ' → ' + V.to + '  ' + (S.etd ? 'ETD ' + hm(S.etd) : 'STD ' + V.std)], [k === '789' ? 'B787-9' : 'B737-800', wbReg() + ' · LOAD CONTROL']); }
+  function wbNotifyBtn(c) { return '<div class="btns"><button class="btn" id="w-dept" data-a="ok"' + (c.flags.dept ? ' disabled' : '') + '>' + (c.flags.dept ? '✔ ' : '') + esc(tx(L('ゲート・ハンドリングに連絡', '게이트·조업사에 연락', 'Inform gate & handling'))) + '</button></div>'; }
+  function wbNotifyBind(c, redraw, what) { var b = $('#w-dept'); if (b) b.onclick = function () { if (!wbLive(c) || c.flags.dept) return; sfx.tap(); c.flags.dept = true; wbTime(M.cost.notice || 1); wbDeptDone(S.cur.p.kind); wbCall('gate', what || L('ゲート・ハンドリング、ロードコントロールです。変更を反映した最新の版を送ります。', '게이트·조업사, 탑재관리입니다. 변경을 반영한 최신 판을 보냅니다.', 'Gate and handling, load control: sending the latest edition with the change applied.')); redraw(); }; }
+  function wbDeptDone(kind) { S.evt = S.evt || {}; S.evt._deptK = S.evt._deptK || {}; S.evt._deptK[kind] = true; }   /* 57차 F57-02: 사건별 연락 완료(중복 집계 없음). 지연은 3곳 확인 완료로 인정 */
+  function wbEvtMark(kind, pen) { S.evt = S.evt || {}; if (S.evt[kind] == null) S.evt[kind] = 100; S.evt[kind] = Math.max(0, S.evt[kind] - (pen || 50)); }
+  function wbEvtKinds() { return M.day === 4 ? ['swap', 'lmc', 'fuel', 'sby'] : ['delay', 'sby', 'chk']; }
+  function wbEvtScore() { var ks = wbEvtKinds(), ev = S.evt || {}, n = 0; ks.forEach(function (k) { n += ev[k] == null ? (S.results.some(function (r) { return r.p && r.p.kind === k; }) ? 100 : 0) : ev[k]; }); return Math.round(n / ks.length); }
+  function wbRepIrreg(rep) { var ks = wbEvtKinds(), dk = (S.evt && S.evt._deptK) || {}, done = ks.filter(function (k) { return dk[k]; }).length; return Math.round((rep * 3 + 100 * done / ks.length) / 4); }   /* 보고·확인 = 중간 보고·최종 확인·기록 + 사건 뒤 부서 연락(W4-notify) */
+  function wbCapCheck(c, kind, needCap) {   /* 기장 통보 없이는 진행 불가(3A) */
+    if (needCap && !c.flags.cap) { sfx.ng(); wbStrike('wb-lmc-cap', L('LMCを機長に通知しないまま次へ進もうとしました。', 'LMC를 기장에게 통보하지 않은 채 진행하려 했습니다.', 'Tried to move on without notifying the captain of the LMC.'), 'passenger/3-7'); wbEvtMark(kind); var m = $('#w-evmsg'); if (m) m.innerHTML = '<div class="why bad">' + esc(tx(L('機長への通知が必要です。', '기장 통보가 필요합니다.', 'The captain must be notified first.'))) + '</div>'; return false; }
+    return true;
+  }
+  function wbDoneCheck(c, kind, needCap) {   /* 사건 완료 공통: 기장 통보(3A)·부서 연락 누락은 감점 */
+    if (!wbCapCheck(c, kind, needCap)) return false;
+    if (!wbDone(c)) return false;
+    if (!c.flags.dept) wbBad('wb-notify', L('変更のあと、ゲート・ハンドリングに連絡しませんでした。', '변경 뒤 게이트·조업사에 연락하지 않았습니다.', 'Did not inform gate and handling after the change.'), 'passenger/3-7');
+    return true;
+  }
+  /* ---------- LMC 줄 입력(변경을 나눠 기록) ---------- */
+  var WLT = { PAX: L('お客様', '승객', 'PAX'), BAG: L('手荷物', '수하물', 'BAG'), CGO: L('貨物', '화물', 'CGO'), MAIL: L('郵便', '우편', 'MAIL') };
+  var WLK = { B: 'BAG', C: 'CGO', M: 'MAIL' };
+  function wbHoldKey(h) { return 'h' + h; }
+  function wbLocName(loc) { var a = wbA(); if (loc.charAt(0) === 'z') return tx(L('区画 ', '구역 ', 'Zone ')) + 'ABC'.charAt(+loc.slice(1)); var j = +loc.slice(1); return S.acKey === '789' && j === 4 ? 'BULK 5' : 'CPT ' + a.cpt[j].id; }
+  function wbExpRows(ev, alt) {   /* 사건 데이터 → 기대하는 LMC 줄 */
+    var o = []; if (ev.pax) o.push({ t: 'PAX', loc: 'z' + (alt != null ? alt : ev.pax.zone), n: ev.pax.n, kg: ev.pax.kg });
+    if (ev.bag) o.push({ t: WLK[ev.bag.kind] || 'BAG', loc: wbHoldKey(ev.bag.hold), n: ev.bag.pcs * (ev.bag.kg < 0 ? -1 : 1), kg: ev.bag.kg });
+    return o;
+  }
+  function wbRowsHtml(c, rows, n) {   /* n줄의 입력 표 */
+    var a = wbA(), locs = a.zl.map(function (z, i) { return ['z' + i, tx(L('区画 ', '구역 ', 'Zone ')) + 'ABC'.charAt(i)]; }).concat(a.cpt.map(function (x, j) { return [wbHoldKey(j), S.acKey === '789' && j === 4 ? 'BULK 5' : 'CPT ' + x.id]; }));
+    var h = '<table class="wbt wblmc"><tr><th>' + esc(tx(L('種類', '종류', 'Type'))) + '</th><th>' + esc(tx(L('位置', '위치', 'Where'))) + '</th><th>' + esc(tx(L('数（±）', '수량(±)', 'Count (±)'))) + '</th><th>kg（±）</th></tr>';
+    for (var i = 0; i < n; i++) { var r = rows[i] = rows[i] || { t: '', loc: '', n: '', kg: '' };
+      h += '<tr><td><select data-lr="' + i + '" data-lk="t"><option value="">—</option>' + Object.keys(WLT).map(function (k) { return '<option value="' + k + '"' + (r.t === k ? ' selected' : '') + '>' + esc(tx(WLT[k])) + '</option>'; }).join('') + '</select></td>' +
+        '<td><select data-lr="' + i + '" data-lk="loc"><option value="">—</option>' + locs.map(function (l) { return '<option value="' + l[0] + '"' + (r.loc === l[0] ? ' selected' : '') + '>' + esc(l[1]) + '</option>'; }).join('') + '</select></td>' +
+        '<td><input inputmode="numeric" data-lr="' + i + '" data-lk="n" value="' + esc(r.n) + '" style="width:4.5em"></td><td><input inputmode="numeric" data-lr="' + i + '" data-lk="kg" value="' + esc(r.kg) + '" style="width:5.5em"></td></tr>'; }
+    return h + '</table><p class="small">' + esc(tx(L('お客様は区画ごと（大人1名＝75 kg）、荷物・貨物は貨物室ごとに1行ずつ。減るときはマイナス。', '승객은 구역별(성인 1명 = 75 kg), 짐·화물은 칸별로 한 줄씩. 줄어들면 마이너스.', 'One line per zone for passengers (1 adult = 75 kg) and per hold for bags/cargo. Negative when removed.'))) + '</p>';
+  }
+  function wbRowsBind(rows) { document.querySelectorAll('#scr [data-lr]').forEach(function (el) { el.onchange = el.oninput = function () { rows[+el.dataset.lr][el.dataset.lk] = el.value; }; }); }
+  function wbRowsNum(v) { var x = +String(v == null ? '' : v).replace(/[,\s]/g, ''); return isFinite(x) && String(v).trim() !== '' ? x : null; }
+  function wbRowsMatch(rows, exp) {   /* 기대 줄과 하나씩 대응(순서 무관), 남는 줄 없음 */
+    var used = {}, ok = exp.every(function (e) { for (var i = 0; i < rows.length; i++) { var r = rows[i]; if (used[i]) continue; if (r.t === e.t && r.loc === e.loc && wbRowsNum(r.n) === e.n && wbRowsNum(r.kg) === e.kg) { used[i] = 1; return true; } } return false; });
+    var extra = rows.some(function (r, i) { return !used[i] && (r.t || r.loc || String(r.n).trim() || String(r.kg).trim()); });
+    return ok && !extra;
+  }
+  function wbRowsState(exp) {   /* 기대 줄을 지금 상태에 반영한 상태(판정용 복사본) */
+    var e = S.entered, st = wbState(e); exp.forEach(function (r) { if (r.t === 'PAX') { st.ad += r.n; st.z[+r.loc.slice(1)] += r.n; } else st.c[+r.loc.slice(1)] += r.kg; }); return st;
+  }
+  function wbRowsApply(exp) { var e = S.entered; S.lmcC = S.lmcC || wbA().cpt.map(function () { return 0; }); exp.forEach(function (r) { if (r.t === 'PAX') { e.ad += r.n; e.z[+r.loc.slice(1)] += r.n; } else S.lmcC[+r.loc.slice(1)] += r.kg; }); }
+  function wbJudgeBox(j, exp) {   /* 누적 판정 결과 */
+    var a = wbA(), row = function (lab, ok, v) { return '<div class="' + (ok ? 'ok' : 'ng') + '">' + (ok ? '✔ ' : '✖ ') + esc(tx(lab)) + ' — ' + esc(v) + '</div>'; }, seats = j.errors.filter(function (x) { return x.code === 'zone-seats'; });
+    var vd = j.verdict === 'lmc' ? L('→ LMCの許容の中：LMCに記入して機長に通知', '→ LMC 허용 안: LMC 기입 후 기장 통보', '→ Within the LMC allowance: enter the LMC and notify the captain') : j.verdict === 'reissue' ? (j.fuel ? L('→ 燃料の変更：Velaの規定で再作成（EDNO+1・再承認）', '→ 연료 변경: Vela 규정상 재작성(EDNO+1·재승인)', '→ Fuel change: reissue under Vela rules (EDNO+1, re-acceptance)') : L('→ 許容を超える：再作成（EDNO+1・再承認）', '→ 허용 초과: 재작성(EDNO+1·재승인)', '→ Beyond the allowance: reissue (EDNO+1, re-acceptance)')) : L('→ 元の制限に違反：先に搭載・人数・座席を調整（再作成でも解消しない）', '→ 원천 제한 위반: 먼저 탑재·인원·좌석 조정(재작성으로 해소되지 않음)', '→ Breaks a base limit: adjust load/figures/seats first (a reissue does not fix this)');
+    return '<div class="wbover ' + (j.verdict === 'lmc' ? 'ok' : 'ng') + '"><b>' + esc(tx(L('承認版 EDNO ' + S.ed + ' からの累積判定', '승인판 EDNO ' + S.ed + ' 기준 누적 판정', 'Cumulative check against accepted EDNO ' + S.ed))) + '</b><div class="wbrck">' +
+      row(L('重量の変化 |Δ| ≤ MLW×0.5%', '중량 변화 |Δ| ≤ MLW×0.5%', 'Weight change |Δ| ≤ MLW×0.5%'), j.okw, (j.dw >= 0 ? '+' : '−') + wbNum(Math.abs(j.dw)) + ' kg / ' + j.tw.toFixed(1) + ' kg') +
+      row(L('MACTOWの変化 |Δ| < 0.5', 'MACTOW 변화 |Δ| < 0.5', 'MACTOW change |Δ| < 0.5'), j.okc, (j.dm >= 0 ? '+' : '−') + Math.abs(j.dm).toFixed(2) + ' (' + j.r0.mt.toFixed(2) + ' → ' + j.r1.mt.toFixed(2) + ')') +
+      row(L('余裕 ≥ 0', '여유 ≥ 0', 'Underload ≥ 0'), j.r1.ul >= 0, wbNum(j.r1.ul) + ' kg') + row(L('3点とも範囲内（ZFW・TOW・LAW）', '세 점 모두 범위 안(ZFW·TOW·LAW)', 'All three points within limits'), j.r1.okz && j.r1.okt && j.r1.okl, '%MAC ' + j.r1.mz.toFixed(1) + ' / ' + j.r1.mt.toFixed(1) + ' / ' + j.r1.ml.toFixed(1)) +
+      row(L('区画の席数・貨物室の上限', '구역 좌석 수·칸 상한', 'Zone seats and hold limits'), !seats.length && !j.errors.some(function (x) { return x.code === 'cpt-max'; }), seats.length ? tx(L('区画 ' + seats[0].zone + ' が席数を超えます', '구역 ' + seats[0].zone + '이(가) 좌석 수를 넘습니다', 'Zone ' + seats[0].zone + ' exceeds its seats')) : 'OK') +
+      (j.fuel ? '<div class="ng">✖ ' + esc(tx(L('燃料の変更あり（LMC対象外）', '연료 변경 있음(LMC 대상 아님)', 'Fuel changed (not LMC-eligible)'))) + '</div>' : '') + '</div><div><b>' + esc(tx(vd)) + '</b></div></div>';
+  }
+  function wbLmcText(exp, j) { return 'LMC  EDNO ' + S.ed + '  ' + V.flight + '  ' + wbReg() + '\n' + exp.map(function (r) { return (r.t === 'PAX' ? 'DEST ' + V.to + ' / PAX / ' + ('ABC'.charAt(+r.loc.slice(1))) + ' / ' + (r.n > 0 ? '+' : '') + r.n : r.t + ' / ' + wbLocName(r.loc).replace(/^CPT /, 'CPT')) + ' / ' + (r.kg > 0 ? '+' : '') + r.kg; }).join('\n') + '\nTOTAL ' + (function () { var t = exp.reduce(function (n, r) { return n + r.kg; }, 0); return (t >= 0 ? '+' : '') + t; })() + (Math.round(j.dw) !== exp.reduce(function (n, r) { return n + r.kg; }, 0) ? '  CUM SINCE EDNO ' + S.ed + ' ' + (j.dw >= 0 ? '+' : '') + Math.round(j.dw) : '') + '  IDX ZFW ' + j.r1.iz.toFixed(1) + '  TOW ' + j.r1.it.toFixed(1) + '  MACTOW ' + j.r1.mt.toFixed(1); }
+  /* ---------- 재작성(EDNO+1·재승인) 상자 ---------- */
+  function wbReissueBox(c, fields, redraw, onApproved) {
+    var a = wbA(), e = S.entered, r = WB.calc(a, wbState(e)), form = wbChkForm('re' + S.ed, fields, r, function () { if (!wbLive(c)) return; c.flags.reChk = true; wbTime(M.cost.field); redraw(); });
+    var h = '<div class="h3" style="margin-top:8px">' + esc(tx(L('再作成：ロードシート EDNO ' + (S.ed + 1), '재작성: 로드시트 EDNO ' + (S.ed + 1), 'Reissue: load sheet EDNO ' + (S.ed + 1)))) + ' <span class="pill">' + esc(tx(L('承認待ち', '승인 대기', 'awaiting acceptance'))) + '</span></div>' + wbDataBlock(e);
+    if (!c.flags.reChk) h += form.html + '<div id="w-chkmsg"></div>'; else h += '<div class="why">' + esc(tx(L('検算OK。機長に提出して再承認を受けます。', '검산 OK. 기장에게 제출해 재승인을 받습니다.', 'Cross-check OK. Submit to the captain for re-acceptance.'))) + '</div><div class="btns"><button class="btn pri" id="w-resub" data-a="ok">' + esc(tx(L('機長に提出（EDNO ' + (S.ed + 1) + '）', '기장에게 제출(EDNO ' + (S.ed + 1) + ')', 'Submit to captain (EDNO ' + (S.ed + 1) + ')'))) + '</button></div>';
+    return { html: h + (M.day >= 2 ? wbChart(r) : wbMacBar(r)), bind: function () {
+      if (!c.flags.reChk) form.bind();
+      var b = $('#w-resub'); if (b) b.onclick = function () {
+        if (!wbLive(c)) return; var sh = WB.sheetErrors(a, wbState(e));
+        if (!sh.ok) { sfx.ng(); wbStrike('wb-sheet', L('制限・重心の範囲外のロードシートを提出しようとしました。', '제한·무게중심 범위 밖 로드시트를 제출하려 했습니다.', 'Tried to submit a sheet outside limits.'), 'passenger/3-7'); wbCall('cap', L('数値を確認してください。承認できません。', '수치를 확인해 주세요. 승인할 수 없습니다.', 'Please check the figures. I cannot accept this.')); return; }
+        sfx.ok(); wbTime(M.cost.submit); S.ed += 1; wbApprove(); c.flags.reDone = true; wbCall('cap', L('EDNO ' + S.ed + '、受け取りました。再承認します。前の版は使用禁止です。', 'EDNO ' + S.ed + ' 받았습니다. 재승인합니다. 이전 판은 사용 금지입니다.', 'EDNO ' + S.ed + ' received. Re-accepted; the previous edition is not to be used.'));
+        if (onApproved) onApproved(); redraw();
+      };
+    } };
+  }
+  /* ---------- Day 4 ① 기체 변경(W4-swap) ---------- */
+  function wbTabSwap() {
+    var c = S.cur, d = wbD(), sw = d.swap, a0 = WB.ac(S.acKey), f = c.flags;
+    if (!S.swap) {   /* 57차 F57-01: 변경 접수 시점에 옛 기체의 승인판을 즉시 무효(새 판은 건드리지 않음). 이어하기로 다시 들어와도 한 번만 */
+      var vOld = (S.edLog || []).filter(function (x) { return x.st === 'valid'; })[0];
+      S.swap = { reg: sw.reg, dow: sw.dow, doi: sw.doi, loaded: false, oldReg: d.reg, oldEd: vOld ? vOld.ed : S.ed, archived: false };
+      (S.edLog || []).forEach(function (x) { if (x.reg === d.reg && x.st !== 'void') x.st = 'void'; });
+    }
+    if (!f.called) { f.called = true; wbSetEtd(35); wbCall('ops', L('運航管理です。' + d.reg + 'は' + tx(sw.why) + 'で使えません。同型の' + sw.reg + 'に変更、出発予定は' + hm(S.etd) + 'に変更です。ロードシートを作り直してください。', '운항관리입니다. ' + d.reg + '은(는) ' + tx(sw.why) + '(으)로 사용 불가. 같은 기종 ' + sw.reg + '(으)로 변경, 출발 예정은 ' + hm(S.etd) + '입니다. 로드시트를 다시 만들어 주세요.', 'Dispatch here. ' + d.reg + ' is out with ' + tx(sw.why) + '. Changing to ' + sw.reg + ', same type; new ETD ' + hm(S.etd) + '. Please redo the load sheet.')); }
+    var ld = S.swap.loaded, oe = S.swap.oldEd, items = [['void', L('無効になった承認版 EDNO ' + oe + '（' + d.reg + '）を「使用禁止」として保管', '무효가 된 승인판 EDNO ' + oe + '(' + d.reg + ')을 「사용 금지」로 보관', 'Archive the voided EDNO ' + oe + ' (' + d.reg + ') as “not to be used”')], ['load', L('新しい機体 ' + sw.reg + ' のDOW・DOI・制限・搭載条件を読み込む', '새 기체 ' + sw.reg + '의 DOW·DOI·제한·탑재 조건 불러오기', 'Load DOW, DOI, limits and loading conditions for ' + sw.reg)],
+      ['lir', L('LIRへの影響を確認し、新しい登録記号でハンドリングに出し直す', 'LIR 영향 확인·새 등록 기호로 조업사에 재발행', 'Check the LIR impact and reissue it to handling under the new registration')], ['notoc', L('機長への通知書への影響を確認（今日は対象なし）', '기장 통보서 영향 확인(오늘 대상 없음)', 'Check the captain-notification impact (nothing today)')]];
+    var h = '<div class="h3">' + esc(tx(L('機体変更：' + d.reg + ' → ' + sw.reg, '기체 변경: ' + d.reg + ' → ' + sw.reg, 'Aircraft change: ' + d.reg + ' → ' + sw.reg))) + ' <span class="pill">ETD ' + hm(S.etd) + '</span></div>' +
+      '<table class="wbt"><tr><th></th><th>' + esc(d.reg) + '</th><th>' + esc(sw.reg) + '</th></tr><tr><td>DOW</td><td class="n">' + wbNum(a0.dow) + '</td><td class="n">' + (ld ? wbNum(sw.dow) : '?') + '</td></tr><tr><td>DOI</td><td class="n">' + a0.doi.toFixed(1) + '</td><td class="n">' + (ld ? sw.doi.toFixed(1) : '?') + '</td></tr><tr><td>MAX ZFW / TOW / LAW</td><td class="n">' + wbNum(a0.mzfw) + ' / ' + wbNum(a0.mtow) + ' / ' + wbNum(a0.mlw) + '</td><td class="n">' + (ld ? tx(L('新しい機体の資料を確認した結果、この課題では同じ値（教育用）', '새 기체 자료 확인 결과, 이번 과제에서는 동일(교육용)', 'Checked in the new aircraft’s data: same in this exercise (educational)')) : '?') + '</td></tr><tr><td>' + esc(tx(L('貨物室の上限', '화물칸 상한', 'Hold limits'))) + '</td><td class="n">' + a0.cpt.map(function (x) { return wbNum(x.max); }).join(' / ') + '</td><td class="n">' + (ld ? tx(L('新しい機体の資料を確認した結果、この課題では同じ値（教育用）', '새 기체 자료 확인 결과, 이번 과제에서는 동일(교육용)', 'Checked in the new aircraft’s data: same in this exercise (educational)')) : '?') + '</td></tr></table>' +
+      '<p class="small">' + esc(tx(L('同型でもDOW・DOIは機体ごとに違います（教育用の仮定値）。承認済みの版は機体が変わった時点で無効です。', '같은 기종이라도 DOW·DOI는 기체마다 다릅니다(교육용 가정값). 승인된 판은 기체가 바뀐 시점에 무효입니다.', 'Even within a type, DOW and DOI differ per airframe (educational values). The accepted edition is void once the aircraft changes.'))) + ' ' + esc(tx(L('このシナリオでは代替機と作業体制を確保し、ETDを35分繰り下げます。', '이번 시나리오에서는 대체 기체·조업 준비가 확보되어 ETD를 35분 늦춥니다.', 'In this scenario a replacement aircraft and ground crew are available, so the ETD moves back 35 minutes.'))) + '</p>' +
+      '<div class="chk">' + items.map(function (it) { return '<button data-sw="' + it[0] + '" data-a="ok"' + (f['sw_' + it[0]] ? ' disabled' : '') + '><span>' + esc(tx(it[1])) + '</span><span class="st">' + (f['sw_' + it[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      (f.reDone ? '' : '<div class="btns"><button class="btn" id="w-swold" data-a="wb-swap-old">' + esc(tx(L('前の承認版をそのまま使う', '이전 승인판을 그대로 사용', 'Keep using the previous accepted sheet'))) + '</button></div>') + '<div id="w-evmsg"></div>';
+    var box = null;
+    if (ld && !f.reDone) { box = wbReissueBox(c, ['zfw', 'tow', 'ul', 'iz', 'it'], wbTabSwap, function () { S.evt = S.evt || {}; if (S.evt.swap == null) S.evt.swap = 100; }); h += box.html; }
+    if (f.reDone) h += '<div class="why">' + esc(tx(L('EDNO ' + S.ed + ' を ' + sw.reg + ' で再承認。', 'EDNO ' + S.ed + '을(를) ' + sw.reg + '(으)로 재승인.', 'EDNO ' + S.ed + ' re-accepted for ' + sw.reg + '.'))) + '</div>' + wbNotifyBtn(c) + '<div class="btns"><button class="btn pri" id="w-evdone" data-a="ok">' + esc(tx(WB_TEXT.next)) + '</button></div>';
+    scr(h + wbEdu());
+    document.querySelectorAll('#scr button[data-sw]').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; var k = b.dataset.sw; if (f['sw_' + k]) return; sfx.tap(); f['sw_' + k] = true; wbTime(k === 'load' ? M.cost.swap || 2 : M.cost.check);
+      if (k === 'load' && !S.swap.loaded) { S.swap.loaded = true; S._swA = null; S.lmcC = null; wbMonRefresh(); }
+      if (k === 'void') { S.swap.archived = true; S.edLog.forEach(function (x) { if (x.reg === S.swap.oldReg) x.arch = true; }); }   /* 보관 기록만 — 새 판의 상태는 바꾸지 않음 */
+      if (k === 'lir') { S.lirAt2 = S.clock; }
+      wbTabSwap(); }; });
+    var swo = $('#w-swold'); if (swo) swo.onclick = function () { if (!wbLive(c)) return; sfx.ng(); wbStrike('wb-swap-old', L('機体が変わったのに前の承認版をそのまま使おうとしました。', '기체가 바뀌었는데 이전 승인판을 그대로 쓰려 했습니다.', 'Tried to keep the previous accepted sheet after the aircraft change.'), 'passenger/3-4'); wbEvtMark('swap'); wbCall('cap', L('登録記号が違います。この機体の数値で作り直してください。', '등록 기호가 다릅니다. 이 기체 수치로 다시 만들어 주세요.', 'Wrong registration. Redo it with this aircraft’s figures.')); $('#w-evmsg').innerHTML = '<div class="why bad">' + esc(tx(L('前の承認は無効です。新しい機体の数値で再作成してください。', '이전 승인은 무효입니다. 새 기체 수치로 재작성하세요.', 'The previous acceptance is void. Reissue with the new aircraft’s figures.'))) + '</div>'; };
+    if (box) box.bind();
+    wbNotifyBind(c, wbTabSwap, L('ゲート・ハンドリング、機体は' + sw.reg + 'に変更、ロードシートはEDNO ' + S.ed + 'が有効です。', '게이트·조업사, 기체는 ' + sw.reg + '(으)로 변경, 로드시트는 EDNO ' + S.ed + '이(가) 유효합니다.', 'Gate and handling: aircraft is now ' + sw.reg + '; load sheet EDNO ' + S.ed + ' is the valid one.'));
+    var dn = $('#w-evdone'); if (dn) dn.onclick = function () {
+      var vl = (S.edLog || []).filter(function (x) { return x.st === 'valid'; });
+      if (vl.length !== 1 || vl[0].reg !== sw.reg || vl[0].ed !== S.ed) { sfx.ng(); $('#w-evmsg').innerHTML = '<div class="why bad">' + esc(tx(L('有効な版が' + sw.reg + 'の最新EDNO 1つになっていません。', '유효한 판이 ' + sw.reg + '의 최신 EDNO 하나가 아닙니다.', 'The valid edition is not exactly one latest EDNO for ' + sw.reg + '.'))) + '</div>'; return; }   /* 57차 F57-01: 진행 전 확인 */
+      if (!wbDoneCheck(c, 'swap', false)) return;
+      if (!f.sw_void) wbBad('wb-swap-arch', L('無効になった承認版を「使用禁止」として保管しませんでした。', '무효가 된 승인판을 「사용 금지」로 보관하지 않았습니다.', 'Did not archive the voided sheet as “not to be used”.'), 'passenger/3-7');
+      if (!f.sw_lir) wbBad('wb-swap-lir', L('新しい機体のLIRをハンドリングに出し直しませんでした。', '새 기체의 LIR을 조업사에 재발행하지 않았습니다.', 'Did not reissue the LIR to handling for the new aircraft.'), 'passenger/3-8');
+      if (f.sw_void && f.sw_lir && f.sw_notoc) note('good', L('機体変更：前の承認を無効にし、新しい機体の数値で再作成・再承認、関係部門にも連絡しました。', '기체 변경: 이전 승인을 무효로 하고 새 기체 수치로 재작성·재승인, 관계 부서에도 연락했습니다.', 'Aircraft change handled: old acceptance voided, reissued and re-accepted with the new aircraft’s figures, departments informed.'), 'passenger/3-4');
+      sfx.ok(); wbEnd(900);
+    };
+  }
+  /* ---------- LMC 사건 공통 화면(Day 4 노쇼·대기 승객, Day 5 대기 승객·최종 대조의 늦은 짐) ---------- */
+  function wbLmcScreen(c, kind, ev, opt) {
+    var f = c.flags, a = wbA(), exp = wbExpRows(ev, f.alt ? ev.alt : null), rows = f.rows = f.rows || [], n = exp.length, h = '', box = null, redraw = (opt && opt.redraw) || function () { wbLmcScreen(c, kind, ev, opt); };
+    if (f.judged && !f.reDone) { var st = f.entered ? wbState(S.entered) : wbRowsState(exp), j = WB.lmc(a, S.apState, st); f.verdict = j.verdict; h += wbJudgeBox(j, exp); }   /* 기입 뒤에는 이미 반영된 상태로 같은 판정을 보여 줌 */
+    if (!f.entered) {
+      h += '<div class="h3" style="margin-top:8px">' + esc(tx(L('変更の記録（LMC案）', '변경 기록(LMC 안)', 'Change record (LMC draft)'))) + '</div>' + wbRowsHtml(c, rows, n) + '<div id="w-evmsg"></div>' +
+        '<div class="btns"><button class="btn" id="w-judge" data-a="ok">' + esc(tx(L('承認版から累積で判定', '승인판 기준 누적 판정', 'Judge cumulatively vs accepted sheet'))) + '</button><button class="btn pri" id="w-lmcin" data-a="ok">' + esc(tx(L('LMCに記入', 'LMC 기입', 'Enter as LMC'))) + '</button><button class="btn" id="w-reiss" data-a="ok">' + esc(tx(L('再作成（EDNO+1）', '재작성(EDNO+1)', 'Reissue (EDNO+1)'))) + '</button>' + (opt && opt.altBtn && !f.alt ? '<button class="btn" id="w-alt" data-a="ok">' + esc(tx(opt.altBtn)) + '</button>' : '') + '</div>';
+    } else if (f.mode === 'lmc') {
+      h += '<pre class="wbls">' + esc(f.lmcText) + '</pre><p class="small">' + esc(tx(L('Velaの教育用の簡易様式です（実際の会社の標準電文とは限りません）。', 'Vela 교육용 간단 양식입니다(실제 회사의 표준 전문과 같지 않을 수 있음).', 'Vela educational short format (not necessarily any real company’s standard message).'))) + '</p><div class="btns"><button class="btn" id="w-cap" data-a="ok"' + (f.cap ? ' disabled' : '') + '>' + (f.cap ? '✔ ' : '') + esc(tx(L('機長にLMCを通知', '기장에게 LMC 통보', 'Notify the captain of the LMC'))) + '</button></div>' + wbNotifyBtn(c) + '<div id="w-evmsg"></div><div class="btns"><button class="btn pri" id="w-evdone" data-a="ok">' + esc(tx(opt && opt.doneLabel || WB_TEXT.next)) + '</button></div>';
+    } else {   /* 재작성 */
+      if (!f.reDone) { box = wbReissueBox(c, opt && opt.reFields || ['tl', 'zfw', 'tow', 'ul'], redraw, function () { S.evt = S.evt || {}; if (S.evt[kind] == null) S.evt[kind] = 100; }); h += box.html; }
+      else h += '<div class="why">' + esc(tx(L('EDNO ' + S.ed + ' を再承認。', 'EDNO ' + S.ed + ' 재승인.', 'EDNO ' + S.ed + ' re-accepted.'))) + '</div>' + wbNotifyBtn(c) + '<div id="w-evmsg"></div><div class="btns"><button class="btn pri" id="w-evdone" data-a="ok">' + esc(tx(opt && opt.doneLabel || WB_TEXT.next)) + '</button></div>';
+    }
+    scr((opt && opt.head || '') + h + wbEdu());
+    wbRowsBind(rows);
+    var judge = function (silent) { if (!wbRowsMatch(rows, exp)) { sfx.ng(); var m = $('#w-evmsg'); if (m) m.innerHTML = '<div class="why bad">' + esc(tx(L('記録が報告の内容と合いません（種類・位置・数・kg、行の数）。', '기록이 보고 내용과 맞지 않습니다(종류·위치·수량·kg, 줄 수).', 'The record does not match the report (type, place, count, kg, number of lines).'))) + '</div>'; return false; } f.judged = true; if (!silent) { wbTime(M.cost.check * 2); redraw(); } return true; };
+    var jb = $('#w-judge'); if (jb) jb.onclick = function () { if (!wbLive(c)) return; sfx.tap(); judge(false); };
+    var ab = $('#w-alt'); if (ab) ab.onclick = function () { if (!wbLive(c)) return; sfx.tap(); f.alt = true; f.judged = false; f.rows = []; wbTime(M.cost.zone || 1); if (opt.onAlt) opt.onAlt(); redraw(); };
+    var li = $('#w-lmcin'); if (li) li.onclick = function () {
+      if (!wbLive(c)) return; if (!f.judged) { wbBad(kind === 'sby' ? 'wb-sby-nochk' : 'wb-lmc-judge', kind === 'sby' ? L('スタンバイ客の追加を累積判定なしに記入しようとしました。', '대기 승객 추가를 누적 판정 없이 기입하려 했습니다.', 'Tried to enter the standby passengers without the cumulative check.') : L('承認版からの累積判定をせずにLMCを記入しようとしました。', '승인판 기준 누적 판정 없이 LMC를 기입하려 했습니다.', 'Tried to enter the LMC without the cumulative check.'), 'passenger/3-7'); wbEvtMark(kind, 25); if (!judge(true)) return; }
+      if (!wbRowsMatch(rows, exp)) { judge(false); return; }
+      var j = WB.lmc(a, S.apState, wbRowsState(exp));
+      if (j.verdict !== 'lmc') { sfx.ng(); wbStrike('wb-lmc-over', L('LMCの許容を超える変更（重量または重心）をLMCの記入だけで処理しようとしました。', 'LMC 허용을 넘는 변경(중량 또는 무게중심)을 LMC 기입만으로 처리하려 했습니다.', 'Tried to cover a change beyond the LMC allowance (weight or CG) with an LMC entry only.'), 'passenger/3-7'); wbEvtMark(kind); wbCall('cap', L('LMCの範囲を超えています。再作成してください。', 'LMC 범위를 넘습니다. 재작성해 주세요.', 'That exceeds the LMC range. Please reissue.')); f.judged = true; redraw(); $('#w-evmsg').innerHTML = '<div class="why bad">' + esc(tx(L('機長が差し戻しました：再作成（EDNO+1）が必要です。', '기장이 돌려보냈습니다: 재작성(EDNO+1)이 필요합니다.', 'Returned by the captain: a reissue (EDNO+1) is required.'))) + '</div>'; return; }
+      sfx.ok(); wbTime(M.cost.lmc || 1.2); wbRowsApply(exp); f.entered = true; f.mode = 'lmc'; f.lmcText = wbLmcText(exp, j); S.lmcLog = S.lmcLog || []; S.lmcLog.push({ ed: S.ed, at: S.clock, text: f.lmcText, dw: Math.round(j.dw) });
+      note('good', L('変更を分けて記録し、承認版からの累積で判定してLMCに記入しました。', '변경을 나눠 기록하고 승인판 기준 누적 판정으로 LMC에 기입했습니다.', 'Recorded the changes separately, judged them cumulatively and entered the LMC.'), 'passenger/3-7'); redraw();
+    };
+    var ri = $('#w-reiss'); if (ri) ri.onclick = function () {
+      if (!wbLive(c)) return; if (!wbRowsMatch(rows, exp)) { judge(false); return; }
+      var j = WB.lmc(a, S.apState, wbRowsState(exp));
+      if (j.verdict === 'lmc') wbBad('wb-lmc-reissue', L('LMCで処理できる変更を再作成にしました（時間がかかります）。', 'LMC로 처리할 수 있는 변경을 재작성했습니다(시간이 걸립니다).', 'Reissued for a change an LMC could have covered (costs time).'), 'passenger/3-7');
+      else note('good', L('許容を超える変更なので再作成（EDNO+1）にしました。', '허용을 넘는 변경이라 재작성(EDNO+1)으로 처리했습니다.', 'Chose a reissue (EDNO+1) because the change exceeds the allowance.'), 'passenger/3-7');
+      sfx.tap(); wbTime(M.cost.reissue || 2.5); wbRowsApply(exp); f.entered = true; f.mode = 're'; f.judged = true; redraw();
+    };
+    var cb = $('#w-cap'); if (cb) cb.onclick = function () { if (!wbLive(c) || f.cap) return; sfx.tap(); f.cap = true; wbTime(M.cost.radio); S.lmcLog[S.lmcLog.length - 1].cap = true; wbCall('cap', L('LMC、確認しました。了解です。', 'LMC 확인했습니다. 알겠습니다.', 'LMC noted. Copy.')); redraw(); };
+    if (box) box.bind();
+    wbNotifyBind(c, redraw, opt && opt.deptText);
+    var dn = $('#w-evdone'); if (dn) dn.onclick = function () {
+      if (opt && opt.stay) { if (!wbCapCheck(c, kind, f.mode === 'lmc')) return; if (!c.flags.dept) wbBad('wb-notify', L('変更のあと、ゲート・ハンドリングに連絡しませんでした。', '변경 뒤 게이트·조업사에 연락하지 않았습니다.', 'Did not inform gate and handling after the change.'), 'passenger/3-7'); sfx.tap(); opt.onDone(); return; }
+      if (!wbDoneCheck(c, kind, f.mode === 'lmc')) return; if (opt && opt.onDone) opt.onDone(); sfx.ok(); wbEnd(900); };
+  }
+  /* ---------- Day 4 ② 노쇼 오프로드(W4-lmc) ---------- */
+  function wbTabLmc() {
+    var c = S.cur, d = wbD(), ev = d.ev.lmc, hn = wbLocName(wbHoldKey(ev.bag.hold));
+    if (!c.flags.called) { c.flags.called = true; wbCall('gate', L('ゲートです。区画' + 'ABC'.charAt(ev.pax.zone) + 'の大人' + (-ev.pax.n) + '名がノーショーです。その方の手荷物' + ev.bag.pcs + '個、' + (-ev.bag.kg) + 'kgは' + hn + 'から降ろします。', '게이트입니다. 구역 ' + 'ABC'.charAt(ev.pax.zone) + '의 성인 ' + (-ev.pax.n) + '명이 노쇼입니다. 그 승객의 수하물 ' + ev.bag.pcs + '개, ' + (-ev.bag.kg) + 'kg은 ' + hn + '에서 내립니다.', 'Gate here. ' + (-ev.pax.n) + ' adults in zone ' + 'ABC'.charAt(ev.pax.zone) + ' are no-shows. Their ' + ev.bag.pcs + ' bags, ' + (-ev.bag.kg) + ' kg, are being offloaded from ' + hn + '.')); }
+    wbLmcScreen(c, 'lmc', ev, { head: '<div class="h3">' + esc(tx(L('承認後の変更：ノーショーのオフロード', '승인 뒤 변경: 노쇼 오프로드', 'Change after acceptance: no-show offload'))) + ' <span class="pill">EDNO ' + S.ed + '</span></div>', reFields: ['tl', 'zfw', 'tow', 'ul'] });
+  }
+  /* ---------- Day 4 ③ 연료 변경(W4-fuel) ---------- */
+  function wbTabFuel() {
+    var c = S.cur, d = wbD(), ev = d.ev.fuel, f = c.flags;
+    if (!f.called) { f.called = true; wbCall('ops', L('運航管理です。' + tx(ev.why) + '、燃料を変更します。離陸燃料 ' + wbNum(wbTof()) + ' → ' + wbNum(ev.tof) + '、飛行燃料 ' + wbNum(wbTif()) + ' → ' + wbNum(ev.trip) + ' kg。', '운항관리입니다. ' + tx(ev.why) + ' 연료를 변경합니다. 이륙 연료 ' + wbNum(wbTof()) + ' → ' + wbNum(ev.tof) + ', 비행 연료 ' + wbNum(wbTif()) + ' → ' + wbNum(ev.trip) + ' kg.', 'Dispatch here. Fuel change for ' + tx(ev.why) + ': take-off fuel ' + wbNum(wbTof()) + ' → ' + wbNum(ev.tof) + ', trip fuel ' + wbNum(wbTif()) + ' → ' + wbNum(ev.trip) + ' kg.')); }
+    var h = '<div class="h3">' + esc(tx(L('承認後の変更：燃料', '승인 뒤 변경: 연료', 'Change after acceptance: fuel'))) + ' <span class="pill">EDNO ' + S.ed + '</span></div>' + wbKV([[L('離陸燃料（TOF）', '이륙 연료(TOF)', 'Take-off fuel (TOF)'), wbNum(d.ev.fuel.tof === wbTof() ? wbTof() : WB.ac(S.acKey).d[5]) + ' → <b>' + wbNum(ev.tof) + '</b>'], [L('飛行燃料（TIF）', '비행 연료(TIF)', 'Trip fuel (TIF)'), wbNum(d.ev.fuel.trip === wbTif() ? wbTif() : WB.ac(S.acKey).d[6]) + ' → <b>' + wbNum(ev.trip) + '</b>']]);
+    if (!f.entered) h += '<p class="small">' + esc(tx(L('燃料が変わるとTOW・LAW・TOWの指数が変わります。Velaの規定では燃料変更はLMCの対象外です。', '연료가 바뀌면 TOW·LAW·TOW 지수가 바뀝니다. Vela 규정상 연료 변경은 LMC 대상이 아닙니다.', 'A fuel change alters TOW, LAW and the TOW index. Under Vela rules fuel changes are not LMC-eligible.'))) + '</p><div id="w-evmsg"></div><div class="btns"><button class="btn" id="w-flmc" data-a="wb-fuel-lmc">' + esc(tx(L('LMCとして記入', 'LMC로 기입', 'Record as an LMC'))) + '</button><button class="btn pri" id="w-freis" data-a="ok">' + esc(tx(L('再作成（EDNO+1）・再承認', '재작성(EDNO+1)·재승인', 'Reissue (EDNO+1) and re-accept'))) + '</button></div>';
+    var box = null;
+    if (f.entered && !f.reDone) { box = wbReissueBox(c, ['tow', 'law', 'ul', 'it'], wbTabFuel, function () { S.evt = S.evt || {}; if (S.evt.fuel == null) S.evt.fuel = 100; }); h += box.html; }
+    if (f.reDone) h += '<div class="why">' + esc(tx(L('EDNO ' + S.ed + ' を新しい燃料で再承認。', 'EDNO ' + S.ed + '을(를) 새 연료로 재승인.', 'EDNO ' + S.ed + ' re-accepted with the new fuel.'))) + '</div>' + wbNotifyBtn(c) + '<div id="w-evmsg"></div><div class="btns"><button class="btn pri" id="w-evdone" data-a="ok">' + esc(tx(WB_TEXT.next)) + '</button></div>';
+    scr(h + wbEdu());
+    var fl = $('#w-flmc'); if (fl) fl.onclick = function () { if (!wbLive(c)) return; sfx.ng(); wbStrike('wb-fuel-lmc', L('燃料の変更をLMCとして記入しようとしました（Velaでは再作成）。', '연료 변경을 LMC로 기입하려 했습니다(Vela는 재작성).', 'Tried to record the fuel change as an LMC (Vela requires a reissue).'), 'passenger/3-7'); wbEvtMark('fuel'); wbCall('cap', L('燃料の変更はLMCではなく再作成です。作り直してください。', '연료 변경은 LMC가 아니라 재작성입니다. 다시 만들어 주세요.', 'A fuel change is a reissue, not an LMC. Please redo it.')); $('#w-evmsg').innerHTML = '<div class="why bad">' + esc(tx(L('機長が差し戻しました：再作成（EDNO+1）が必要です。', '기장이 돌려보냈습니다: 재작성(EDNO+1)이 필요합니다.', 'Returned by the captain: a reissue (EDNO+1) is required.'))) + '</div>'; };
+    var fr = $('#w-freis'); if (fr) fr.onclick = function () { if (!wbLive(c)) return; sfx.tap(); wbTime(M.cost.reissue || 2.5); S.fuel = { tof: ev.tof, trip: ev.trip }; f.entered = true; note('good', L('燃料変更はLMCの対象外なので再作成（EDNO+1）にしました。', '연료 변경은 LMC 대상이 아니라 재작성(EDNO+1)으로 처리했습니다.', 'Handled the fuel change as a reissue (EDNO+1), as it is not LMC-eligible.'), 'passenger/3-7'); wbTabFuel(); };
+    if (box) box.bind();
+    wbNotifyBind(c, wbTabFuel);
+    var dn = $('#w-evdone'); if (dn) dn.onclick = function () { if (!wbDoneCheck(c, 'fuel', false)) return; sfx.ok(); wbEnd(900); };
+  }
+  /* ---------- Day 4 ④ · Day 5 ② 대기 승객(W4-reissue · W5-sby) ---------- */
+  function wbTabSby() {
+    var c = S.cur, d = wbD(), ev = d.ev.sby, zn = 'ABC'.charAt(ev.pax.zone);
+    if (!c.flags.called) { c.flags.called = true; wbCall('gate', ev.bag ? L('ゲートです。締め切り間際にスタンバイのお客様' + ev.pax.n + '名を区画' + zn + 'に受け付けました。' + (ev.bag.kind === 'C' ? '貨物からも急送の貨物' + ev.bag.kg + 'kgが' + wbLocName(wbHoldKey(ev.bag.hold)) + 'に追加です。' : '手荷物' + ev.bag.pcs + '個、' + ev.bag.kg + 'kgは' + wbLocName(wbHoldKey(ev.bag.hold)) + 'へ。'), '게이트입니다. 마감 직전에 대기 승객 ' + ev.pax.n + '명을 구역 ' + zn + '에 받았습니다. ' + (ev.bag.kind === 'C' ? '화물에서도 급송 화물 ' + ev.bag.kg + 'kg이 ' + wbLocName(wbHoldKey(ev.bag.hold)) + '에 추가됩니다.' : '수하물 ' + ev.bag.pcs + '개, ' + ev.bag.kg + 'kg은 ' + wbLocName(wbHoldKey(ev.bag.hold)) + '(으)로.'), 'Gate here. ' + ev.pax.n + ' standby passengers accepted at the deadline, zone ' + zn + '. ' + (ev.bag.kind === 'C' ? 'Cargo also adds an urgent shipment of ' + ev.bag.kg + ' kg to ' + wbLocName(wbHoldKey(ev.bag.hold)) + '.' : ev.bag.pcs + ' bags, ' + ev.bag.kg + ' kg, to ' + wbLocName(wbHoldKey(ev.bag.hold)) + '.')) :
+      L('ゲートです。締め切り間際にスタンバイのお客様' + ev.pax.n + '名を受け付けました。後ろの区画' + zn + 'に空きがあるので、そこに座っていただきます。現時点では追加の受託手荷物の報告はありません。', '게이트입니다. 마감 직전에 대기 승객 ' + ev.pax.n + '명을 받았습니다. 뒤쪽 구역 ' + zn + '에 빈자리가 있어 거기에 앉힙니다. 현재까지 위탁 수하물 추가 보고는 없습니다.', 'Gate here. ' + ev.pax.n + ' standby passengers accepted at the deadline. Rear zone ' + zn + ' has space, so they sit there. No additional checked bags reported so far.')); }
+    var head = '<div class="h3">' + esc(tx(L('承認後の変更：スタンバイのお客様', '승인 뒤 변경: 대기 승객', 'Change after acceptance: standby passengers'))) + ' <span class="pill">EDNO ' + S.ed + '</span></div>' + (c.flags.alt ? '<div class="why">' + esc(tx(L('ゲートに頼んで区画' + 'ABC'.charAt(ev.alt) + 'に変更。', '게이트에 요청해 구역 ' + 'ABC'.charAt(ev.alt) + '(으)로 변경.', 'Asked the gate to seat them in zone ' + 'ABC'.charAt(ev.alt) + '.'))) + '</div>' : '');
+    wbLmcScreen(c, 'sby', ev, { head: head, reFields: ['tl', 'zfw', 'tow', 'ul', 'iz'], altBtn: ev.alt != null ? L('ゲートに区画' + 'ABC'.charAt(ev.alt) + 'への座席変更を頼む', '게이트에 구역 ' + 'ABC'.charAt(ev.alt) + ' 좌석 변경 요청', 'Ask the gate to seat them in zone ' + 'ABC'.charAt(ev.alt)) : null,
+      onAlt: function () { wbCall('gate', L('了解、' + ev.pax.n + '名を区画' + 'ABC'.charAt(ev.alt) + 'に変更します。', '알겠습니다. ' + ev.pax.n + '명을 구역 ' + 'ABC'.charAt(ev.alt) + '(으)로 바꾸겠습니다.', 'Copy, moving the ' + ev.pax.n + ' to zone ' + 'ABC'.charAt(ev.alt) + '.')); note('good', L('重心の変化を見て、ゲートに前の区画への座席変更を頼みました。', '무게중심 변화를 보고 게이트에 앞 구역으로 좌석 변경을 요청했습니다.', 'Saw the CG shift and asked the gate to seat them further forward.'), 'passenger/3-4'); } });
+  }
+  /* ---------- Day 5 ① 출발 지연(W5-delay) ---------- */
+  function wbTabDelay() {
+    var c = S.cur, d = wbD(), ev = d.ev.delay, f = c.flags;
+    if (!f.called) { f.called = true; wbSetEtd(ev.min); wbCall('ops', L('運航管理です。' + tx(ev.why) + 'で出発が' + ev.min + '分遅れます。出発予定は' + hm(S.etd) + 'です。', '운항관리입니다. ' + tx(ev.why) + '(으)로 출발이 ' + ev.min + '분 늦어집니다. 출발 예정은 ' + hm(S.etd) + '입니다.', 'Dispatch here. Departure is delayed ' + ev.min + ' minutes for ' + tx(ev.why) + '. New ETD ' + hm(S.etd) + '.')); }
+    var items = [['ops', L('運航管理：燃料の変更はあるか', '운항관리: 연료 변경이 있는지', 'Dispatch: any fuel change?'), 'ops', L('運航管理です。燃料の変更はありません。', '운항관리입니다. 연료 변경은 없습니다.', 'Dispatch: no fuel change.')], ['gate', L('ゲート：人数・区画の変更はあるか', '게이트: 인원·구역 변경이 있는지', 'Gate: any change to figures or zones?'), 'gate', L('ゲートです。今のところ人数・区画の変更はありません。', '게이트입니다. 지금은 인원·구역 변경이 없습니다.', 'Gate: no change to figures or zones so far.')], ['lm', L('ハンドリング：搭載の変更はあるか', '조업사: 배치 변경이 있는지', 'Handling: any change to the load?'), 'lm', L('ハンドリングです。搭載の変更はありません。固定も確認済みです。', '조업사입니다. 배치 변경은 없습니다. 고정도 확인했습니다.', 'Handling: no change to the load; restraints checked.')]];
+    var h = '<div class="h3">' + esc(tx(L('出発遅延 ' + ev.min + '分', '출발 지연 ' + ev.min + '분', 'Departure delayed ' + ev.min + ' min'))) + ' <span class="pill">ETD ' + hm(S.etd) + '</span> <span class="pill">EDNO ' + S.ed + '</span></div><p class="small">' + esc(tx(L('今回のVelaの課題では、変更がなければ再作成せず、再確認を記録します。燃料・人数・搭載に変更がないかを確かめ、変更があればLMC・再作成の規則どおりに。', 'Vela의 이번 과제에서는 변경이 없으면 재작성 대신 재확인 기록을 남깁니다. 연료·인원·배치에 변경이 없는지 확인하고, 변경이 있으면 LMC·재작성 규칙대로.', 'In this Vela exercise, if nothing has changed you record a re-confirmation instead of reissuing. Check fuel, figures and load; if anything changed, apply the LMC / reissue rules.'))) + '</p>' +
+      '<div class="chk">' + items.map(function (it) { return '<button data-dl="' + it[0] + '" data-a="ok"><span>' + esc(tx(it[1])) + '</span><span class="st">' + (f['dl_' + it[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div><div id="w-evmsg"></div>' +
+      '<div class="btns"><button class="btn pri" id="w-nochg" data-a="ok">' + esc(tx(L('「変更なしを再確認」と記録', '「변경 없음 재확인」 기록', 'Record “no change re-confirmed”'))) + '</button><button class="btn" id="w-dreis" data-a="ok">' + esc(tx(L('再作成（EDNO+1）', '재작성(EDNO+1)', 'Reissue (EDNO+1)'))) + '</button></div>';
+    scr(h + wbEdu());
+    document.querySelectorAll('#scr button[data-dl]').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; sfx.tap(); var it = items.filter(function (x) { return x[0] === b.dataset.dl; })[0]; f['dl_' + it[0]] = true; wbTime(M.cost.radio * 0.6); wbCall(it[2], it[3]); wbTabDelay(); }; });
+    $('#w-nochg').onclick = function () {
+      if (!wbLive(c)) return; var all = items.every(function (it) { return f['dl_' + it[0]]; });
+      if (!all) { wbBad('wb-delay-nochk', L('燃料・人数・搭載の変更の有無を全部確認せずに「変更なし」としました。', '연료·인원·배치 변경 유무를 모두 확인하지 않고 「변경 없음」으로 했습니다.', 'Recorded “no change” without checking fuel, figures and load.'), 'passenger/5-4'); wbEvtMark('delay'); }
+      else { wbDeptDone('delay'); note('good', L('遅延のとき燃料・人数・搭載を確認し、変更なしを再確認して記録しました。', '지연 때 연료·인원·배치를 확인하고 변경 없음을 재확인해 기록했습니다.', 'Checked fuel, figures and load during the delay and recorded “no change re-confirmed”.'), 'passenger/5-4'); }
+      if (!wbDone(c)) return; sfx.ok(); wbTime(M.cost.check); S.lmcLog = S.lmcLog || []; S.lmcLog.push({ ed: S.ed, at: S.clock, text: 'NO CHANGE RECONFIRMED  EDNO ' + S.ed + '  ETD ' + hm(S.etd), dw: 0, cap: true }); wbEnd(900);
+    };
+    $('#w-dreis').onclick = function () { if (!wbLive(c)) return; sfx.ng(); wbBad('wb-delay-reissue', L('変更がないのに根拠なく再作成しようとしました。', '변경이 없는데 근거 없이 재작성하려 했습니다.', 'Tried to reissue with no change and no basis.'), 'passenger/3-7'); wbEvtMark('delay'); wbCall('cap', L('変更がないなら再作成は不要です。変更なしの再確認だけ記録してください。', '변경이 없으면 재작성은 필요 없습니다. 변경 없음 재확인만 기록해 주세요.', 'No change means no reissue. Just record the re-confirmation.')); $('#w-evmsg').innerHTML = '<div class="why bad">' + esc(tx(L('根拠のない再作成はしません。', '근거 없는 재작성은 하지 않습니다.', 'No reissue without a basis.'))) + '</div>'; };
+  }
+  /* ---------- Day 5 ③ 최종 대조(W5-final) ---------- */
+  function wbTabChk() {
+    var c = S.cur, d = wbD(), ev = d.ev.late, f = c.flags, a = wbA(), hn = wbLocName(wbHoldKey(ev.bag.hold));
+    if (!f.called) { f.called = true; wbCall('lm', L('ハンドリングです。最終の実搭載を確認しました。追加で受け付けた手荷物が遅れて到着し、' + ev.bag.pcs + '個、' + ev.bag.kg + 'kgを' + hn + 'に追加で積みました。ほかは変更なし、全数固定済みです。', '조업사입니다. 최종 실탑재 확인했습니다. 추가 접수된 수하물이 뒤늦게 도착해 ' + ev.bag.pcs + '개, ' + ev.bag.kg + 'kg을 ' + hn + '에 추가로 실었습니다. 나머지는 변경 없음, 전부 고정 완료.', 'Handling here. Final actual load confirmed. Bags accepted late have arrived: we added ' + ev.bag.pcs + ' pieces, ' + ev.bag.kg + ' kg, in ' + hn + '. Nothing else changed; all secured.')); }
+    var cc = wbLoadsC(), hand = cc.slice(); if (!f.lateFixed) hand[ev.bag.hold] += ev.bag.kg;   /* 조업사 최종 = 늦은 짐 포함. LMC로 반영하기 전에는 로드시트와 다름 */
+    var e = S.entered;   /* 인원은 LMC·재작성으로 이미 반영된 값(게이트 최종 = 지금 로드시트) */
+    var holdOk = hand.every(function (v, j) { return Math.round(v) === Math.round(cc[j]); }), edValid = (S.edLog || []).filter(function (x) { return x.st === 'valid'; })[0];
+    var head = '<div class="h3">' + esc(tx(L('出発前の最終照合', '출발 전 최종 대조', 'Final cross-check before departure'))) + ' <span class="pill">ETD ' + hm(S.etd || pm(V.std)) + '</span></div>';
+    if (!f.lateApplied) {
+      wbLmcScreen(c, 'chk', { bag: ev.bag }, { head: head + '<div class="why bad">' + esc(tx(L('ハンドリングの最終実搭載がロードシートと違います（' + hn + ' +' + ev.bag.kg + ' kg）。LMCで直してから照合します。', '조업사 최종 실탑재가 로드시트와 다릅니다(' + hn + ' +' + ev.bag.kg + ' kg). LMC로 고친 뒤 대조합니다.', 'Handling’s final load differs from the sheet (' + hn + ' +' + ev.bag.kg + ' kg). Fix it by LMC, then cross-check.'))) + '</div>', reFields: ['tl', 'zfw', 'tow', 'ul'], redraw: wbTabChk, stay: true, doneLabel: L('照合へ', '대조로', 'To the cross-check'),
+        deptText: L('ゲート・ハンドリング、遅れた手荷物を反映した最新の版を送ります。', '게이트·조업사, 늦은 수하물을 반영한 최신 판을 보냅니다.', 'Gate and handling: sending the latest edition with the late bags applied.'), onDone: function () { f.lateApplied = true; f.lateFixed = true; f.lateSkipped = false; f.rows = null; f.judged = f.entered = false; wbTabChk(); } });
+      if (!f.entered) { var sk = document.createElement('button'); sk.className = 'btn'; sk.id = 'w-skipfix'; sk.textContent = tx(L('直さずに照合へ', '고치지 않고 대조로', 'Cross-check without fixing')); sk.setAttribute('data-a', 'ok'); var bt = document.querySelector('#scr .btns'); if (bt) { bt.appendChild(sk); sk.onclick = function () { if (!wbLive(c)) return; sfx.tap(); f.lateSkipped = true; f.lateApplied = true; wbTabChk(); }; } }
+      return;
+    }
+    var rows = [[L('ゲートの最終人数 ＝ ロードシート', '게이트 최종 인원 = 로드시트', 'Gate final figures = sheet'), true, e.ad + '/' + e.ch + '/' + e.inf + ' · ' + e.z.join('/')], [L('ハンドリングの最終実搭載 ＝ 貨物室の数字', '조업사 최종 실탑재 = 칸 숫자', 'Handling’s final load = hold figures'), holdOk, a.cpt.map(function (x, j) { return x.id + ':' + wbNum(hand[j]) + (Math.round(hand[j]) !== Math.round(cc[j]) ? '≠' + wbNum(cc[j]) : ''); }).join(' ')],
+      [L('機長への通知書 ＝ 実際の位置（今日は対象なし）', '기장 통보서 = 실제 위치(오늘 대상 없음)', 'Captain notification = actual positions (none today)'), true, '—'], [L('有効なのは最新のEDNOだけ', '유효한 것은 최신 EDNO뿐', 'Only the latest EDNO is valid'), !!edValid, edValid ? 'EDNO ' + edValid.ed : '—']];
+    var h = head + '<div class="wbrck">' + rows.map(function (q) { return '<div class="' + (q[1] ? 'ok' : 'ng') + '">' + (q[1] ? '✔ ' : '✖ ') + esc(tx(q[0])) + ' — ' + esc(q[2]) + '</div>'; }).join('') + '</div>' +
+      '<div class="h3" style="margin-top:8px">' + esc(tx(L('どの版が有効か', '어느 판이 유효한가', 'Which edition is valid?'))) + '</div><div class="chk">' + (S.edLog || []).map(function (x) { return '<button data-ed="' + x.ed + '" data-a="ok"><span>EDNO ' + x.ed + ' · ' + esc(x.reg) + ' · ' + hm(x.at) + ' · ' + esc(tx(x.st === 'valid' ? L('最新', '최신', 'latest') : x.st === 'void' ? L('無効', '무효', 'void') : L('旧版', '옛 판', 'superseded'))) + '</span><span class="st">' + (f.pickEd === x.ed ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      (f.lateSkipped ? '<div class="btns"><button class="btn" id="w-fixlate" data-a="ok">' + esc(tx(L('LMCで直す', 'LMC로 고치기', 'Fix by LMC'))) + '</button></div>' : '') + '<div id="w-evmsg"></div><div class="btns"><button class="btn pri" id="w-ready" data-a="ok">' + esc(tx(L('出発準備完了', '출발 준비 완료', 'Ready for departure'))) + '</button></div>';
+    scr(h + wbEdu());
+    document.querySelectorAll('#scr button[data-ed]').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; sfx.tap(); f.pickEd = +b.dataset.ed; wbTabChk(); }; });
+    var fx = $('#w-fixlate'); if (fx) fx.onclick = function () { if (!wbLive(c)) return; f.lateSkipped = false; f.lateApplied = false; wbTabChk(); };
+    $('#w-ready').onclick = function () {
+      if (!wbLive(c)) return; var probs = [];
+      if (!holdOk) { wbStrike('wb-final-mismatch', L('最終の実搭載とロードシートが一致しないまま出発準備完了としようとしました。', '최종 실탑재와 로드시트가 다른 채 출발 준비 완료로 하려 했습니다.', 'Tried to declare ready with the sheet not matching the final load.'), 'passenger/3-8'); wbEvtMark('chk'); probs.push(L('実搭載', '실탑재', 'actual load')); }
+      if (f.pickEd == null) probs.push(L('有効な版の選択', '유효한 판 선택', 'valid edition'));
+      else if (!edValid || f.pickEd !== edValid.ed) { wbBad('wb-old-edno', L('最新ではない版を有効として選びました。', '최신이 아닌 판을 유효한 것으로 골랐습니다.', 'Picked an outdated edition as valid.'), 'passenger/3-7'); wbEvtMark('chk', 25); f.pickEd = null; probs.push(L('有効な版', '유효한 판', 'valid edition')); }
+      if (probs.length) { sfx.ng(); wbTabChk(); $('#w-evmsg').innerHTML = '<div class="why bad">' + esc(tx(L('出発できません：', '출발할 수 없습니다: ', 'Cannot depart: '))) + probs.map(tx).join(' / ') + '</div>'; return; }
+      if (!wbDone(c)) return; sfx.ok(); wbTime(M.cost.check); note('good', L('ゲートの最終人数・最終実搭載・通知書・最新EDNOを照合して出発準備完了。', '게이트 최종 인원·최종 실탑재·통보서·최신 EDNO를 대조하고 출발 준비 완료.', 'Cross-checked final figures, final load, notification and latest EDNO — ready for departure.'), 'passenger/2-7'); S.evt = S.evt || {}; if (S.evt.chk == null) S.evt.chk = 100; wbEnd(900);
+    };
+  }
+  /* ---------- Day 5 좌석 이동 요청(W5-zone): LIR·최종·제출 화면에 붙는 상자 ---------- */
+  function wbZoneBox(c, redraw) {
+    var a = wbA(), b = wbD().book, cur = S.zoneReq || b.z, f = c.flags, dr = f.zreq = f.zreq || cur.slice();
+    var h = '<div class="wbcard"><b>' + esc(tx(L('ゲートに座席の移動を頼む（区画の人数）', '게이트에 좌석 이동 요청(구역 인원)', 'Ask the gate to move seats (zone counts)'))) + '</b><div class="wbpax">' + a.zl.map(function (z, i) { return '<label><span>' + 'ABC'.charAt(i) + ' <small>(' + esc(tx(L('席', '좌석', 'seats'))) + ' ' + a.zs[i] + ')</small></span><input inputmode="numeric" data-zr="' + i + '" value="' + dr[i] + '"></label>'; }).join('') + '</div>' +
+      '<div class="btns"><button class="btn" id="w-zreq" data-a="ok">' + esc(tx(L('この配置をゲートに依頼', '이 배치를 게이트에 요청', 'Request this seating'))) + '</button></div><div id="w-zmsg"></div><p class="small">' + esc(tx(L('予約：', '예약: ', 'Booked: '))) + b.z.join(' / ') + (S.zoneReq ? ' → ' + esc(tx(L('依頼済み：', '요청함: ', 'requested: '))) + S.zoneReq.join(' / ') : '') + '</p></div>';
+    setTimeout(function () {
+      document.querySelectorAll('#scr input[data-zr]').forEach(function (i) { i.oninput = function () { dr[+i.dataset.zr] = Math.max(0, Math.floor(+i.value || 0)); }; });
+      var bt = $('#w-zreq'); if (bt) bt.onclick = function () {
+        if (!wbLive(c)) return; var sum = dr.reduce(function (n, v) { return n + v; }, 0), m = $('#w-zmsg');
+        if (sum !== b.ad + b.ch) { sfx.ng(); m.innerHTML = '<div class="why bad">' + esc(tx(L('区画の合計が大人＋小児（' + (b.ad + b.ch) + '）と合いません。', '구역 합계가 성인+소아(' + (b.ad + b.ch) + ')와 맞지 않습니다.', 'Zone total must equal adults + children (' + (b.ad + b.ch) + ').'))) + '</div>'; return; }
+        if (dr.some(function (v, i) { return v > a.zs[i]; })) { sfx.ng(); m.innerHTML = '<div class="why bad">' + esc(tx(L('席数を超えている区画があります。', '좌석 수를 넘는 구역이 있습니다.', 'A zone exceeds its seats.'))) + '</div>'; return; }
+        sfx.tap(); S.zoneReq = dr.slice(); if (S.entered) S.entered.z = dr.slice(); wbTime(M.cost.zone || 1); wbCall('gate', L('ゲートです。了解、区画A' + dr[0] + '・B' + dr[1] + '・C' + dr[2] + 'に座席を変更します。', '게이트입니다. 알겠습니다. 구역 A' + dr[0] + '·B' + dr[1] + '·C' + dr[2] + '(으)로 좌석을 바꾸겠습니다.', 'Gate here. Copy, reseating to zones A' + dr[0] + ', B' + dr[1] + ', C' + dr[2] + '.'));
+        if (!f.zoneNoted) { f.zoneNoted = true; note('good', L('空いた便の重心のため、ゲートに区画の座席移動を頼みました。', '빈 편의 무게중심 때문에 게이트에 구역 좌석 이동을 요청했습니다.', 'Asked the gate to move seats between zones for the light flight’s CG.'), 'passenger/3-4'); }
+        redraw();
+      };
+    }, 0);
+    return h;
+  }
+  /* ---------- Day 4·5 기록 화면 보강: 판 목록·옛 판 보관 ---------- */
+  function wbEdLogHtml() { return (S.edLog && S.edLog.length ? '<table class="wbt"><tr><th>EDNO</th><th>' + esc(tx(L('機体', '기체', 'Aircraft'))) + '</th><th>' + esc(tx(L('承認', '승인', 'Accepted'))) + '</th><th>' + esc(tx(L('状態', '상태', 'Status'))) + '</th></tr>' + S.edLog.map(function (x) { return '<tr' + (x.st === 'valid' ? '' : ' class="diff"') + '><td>' + x.ed + '</td><td class="mono">' + esc(x.reg) + '</td><td class="mono">' + hm(x.at) + '</td><td>' + esc(tx(x.st === 'valid' ? L('有効（最新）', '유효(최신)', 'valid (latest)') : x.st === 'void' ? L('無効・使用禁止', '무효·사용 금지', 'void — not to be used') : L('旧版・使用禁止', '옛 판·사용 금지', 'superseded — not to be used'))) + '</td></tr>'; }).join('') + '</table>' : '') + (S.lmcLog && S.lmcLog.length ? '<pre class="wbls">' + esc(S.lmcLog.map(function (x) { return x.text; }).join('\n---\n')) + '</pre>' : ''); }
+  var _wbTabLdm = wbTabLdm;
+  wbTabLdm = function () {
+    if (!M.irreg) return _wbTabLdm();
+    var c = S.cur;
+    scr('<div class="h3">' + esc(tx(L('出発後の記録', '출발 후 기록', 'After departure'))) + '</div><p>' + esc(tx(L(V.flight + 'は出発しました。搭載の電文（簡易版）とLMC・各版の記録を確認し、最新の版を有効、古い版を「使用禁止」として保管します。', V.flight + '이(가) 출발했습니다. 탑재 전문(간단판)과 LMC·판별 기록을 확인하고, 최신 판을 유효로, 옛 판을 「사용 금지」로 보관합니다.', V.flight + ' has departed. Check the load message (simplified) and the LMC / edition records; file the latest edition as valid and the old ones as “not to be used”.'))) + '</p>' + wbEdLogHtml() +
+      '<div class="chk"><button data-k="arch" data-a="ok"><span>' + esc(tx(L('古い版を「使用禁止」として保管', '옛 판을 「사용 금지」로 보관', 'Archive old editions as “not to be used”'))) + '</span><span class="st">' + (S.ldmArch ? '✔' : '') + '</span></button></div>' +
+      '<div class="btns"><button class="btn pri" id="w-ldm" data-a="ok">' + esc(tx(L('電文を確認・保管', '전문 확인·보관', 'Check and file'))) + '</button><button class="btn" id="w-ldmskip" data-a="wb-ldm">' + esc(tx(L('省略する', '생략', 'Skip'))) + '</button></div>' + wbEdu());
+    document.querySelectorAll('#scr .chk button').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; sfx.tap(); S.ldmArch = true; wbTime(M.cost.check); wbTabLdm(); }; });
+    $('#w-ldm').onclick = function () { if (!wbDone(c)) return; sfx.ok(); wbTime(M.cost.ldm); S.ldmOk = true; if (!S.ldmArch && (S.edLog || []).length > 1) wbBad('wb-old-edno', L('古い版を「使用禁止」として保管しませんでした。', '옛 판을 「사용 금지」로 보관하지 않았습니다.', 'Did not archive the old editions as “not to be used”.'), 'passenger/3-7'); note('good', L('搭載の電文と各版・LMCの記録を保管しました。', '탑재 전문과 판별·LMC 기록을 보관했습니다.', 'Filed the load message and the edition / LMC records.'), 'passenger/3-7'); wbEnd(); };
+    $('#w-ldmskip').onclick = function () { if (!wbDone(c)) return; sfx.ng(); wbBad('wb-ldm', L('出発後の記録を省きました。', '출발 후 기록을 생략했습니다.', 'Skipped the post-departure records.'), 'passenger/3-7'); wbEnd(); };
+  };
+  if (window.SAGA_STAGES && window.SAGA_STAGES.wb) {
+    var _ws = window.SAGA_STAGES.wb;
+    Object.assign(_ws.tab, { swap: wbTabSwap, lmc: wbTabLmc, fuel: wbTabFuel, sby: wbTabSby, delay: wbTabDelay, chk: wbTabChk, ldm: function () { return wbTabLdm(); } });
+    Object.assign(_ws.tabPose, { swap: 'phone', lmc: 'phone', fuel: 'phone', sby: 'phone', delay: 'phone', chk: 'radio' });
+    _ws.rulesVer = 'W1.1';
+    var _wsExtra = _ws.resultExtra;
+    _ws.resultExtra = function () { return _wsExtra() + (M.irreg ? '<div class="panel"><h2>' + esc(tx(L('版とLMCの記録', '판·LMC 기록', 'Editions and LMC records'))) + '</h2>' + wbEdLogHtml() + '<p class="small">' + esc(tx(L('採点：事件の対応＝事件ごとに100点から、誤った選択−50・判定の省略−25（平均）。報告・確認＝中間報告・最終確認・記録＋事件のあとの関係部門への連絡（遅延は3か所の確認）。固定の練習課題です。', '채점: 사건 처리 = 사건마다 100점에서 틀린 선택 −50·판정 생략 −25(평균). 보고·확인 = 중간 보고·최종 확인·기록 + 사건 뒤 관계 부서 연락(지연은 3곳 확인). 고정 연습 과제입니다.', 'Scoring: incident handling = 100 per incident, −50 per wrong choice, −25 for skipping the check (averaged). Reports = interim report, final confirmation, records + informing departments after each incident (for the delay, the three checks). Fixed practice exercise.'))) + '</p></div>' : ''); };
+    var _wsHooks = _ws.testHooks; _ws.testHooks = function () { var o = _wsHooks(); o.evt = function () { return S.evt; }; o.edLog = function () { return S.edLog; }; o.lmc = function () { return WB.lmc(wbA(), S.apState, wbState(S.entered)); }; o.ac = wbA; o.book = wbBook; o.fin = wbFin; return o; };
+  }
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
   if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextUnit, showTab: showTab, renderTabs: renderTabs, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); }, setStage: function (id) { setStage(id); save(); renderTitle(); }, stage: function () { return ST.id; }, stageAllowed: stageAllowed };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();

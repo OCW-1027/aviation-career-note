@@ -606,3 +606,6 @@ html.sh-saga .t48 .langrow{display:none}
 .stage.wb .wbmon text{text-anchor:middle;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:600}
 .stage.wb .wbmon text.m1{fill:#fff}
 .stage.wb .wbmon text.m2{fill:#ffd9a0}
+/* 탑재관리편 Day 4·5: LMC 줄 입력 표·판 목록 */
+.wbt.wblmc select{font-size:13px;max-width:8.5em}.wbt.wblmc input{font-size:13px}.wbt.wblmc td{padding:4px 3px}
+@media (max-width:480px){.wbt.wblmc select{max-width:6.2em;font-size:12px}.wbt.wblmc input{width:3.8em!important;font-size:12px}}
