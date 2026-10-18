@@ -601,3 +601,8 @@ html.sh-saga .t48 .langrow{display:none}
 .wbcard .wbt th,.wbcard .wbt td{color:#1d2b45;border-color:#d5dde8}
 .wbcard dl.kv dt{color:#5b6b7d}.wbcard dl.kv dd{color:#1d2b45}
 .wbrck div.ok{color:#1f7a4f}.wbrck div.ng{color:#c2344f;font-weight:700}
+/* 사용자 10-18: 탑재관리편 배경 벽 모니터 글자 — 화면 기울기대로(SVG, 배경과 같은 1600×900 좌표) */
+.stage.wb .wbmon{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.stage.wb .wbmon text{text-anchor:middle;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:600}
+.stage.wb .wbmon text.m1{fill:#fff}
+.stage.wb .wbmon text.m2{fill:#ffd9a0}

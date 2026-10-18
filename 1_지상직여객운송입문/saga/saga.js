@@ -6416,12 +6416,28 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     var bg = STG.has('wb_bg_01') ? 'wb_bg_01' : (STG.has('gate_bg_01') ? 'gate_bg_01' : 'checkin_bg_02'), st = wbArt() ? 'staff_wb_radio_01' : (STG.has('staff_gate_idle_01') ? 'staff_gate_idle_01' : 'staff_checkin_explain_01');
     return '<div class="herostage"><img class="bg" src="' + STG.src(bg) + '" alt="">' + STG.img(st, '', 50, 2, 86) + (STG.has('prop_uld_ake_01') ? STG.img('prop_uld_ake_01', '', 82, 4, 26) + STG.img('prop_uld_pmc_01', '', 92, 3, 18) : '') + STG.img('koradon_greet_01', 'mas', 15, 3, 44) + STG.img('korarin_greet_01', 'mas', 30, 3, 42) + '<div class="wbheroac">' + (wbAcKey() === '789' ? 'B787-9 · ULD' : 'B737-800 · BULK') + '</div></div>';
   }
+  /* 사용자 10-18: 배경 벽 모니터 2개의 화면 모서리(1600×900 배경 좌표, 이미지 측정) — 글자를 화면 기울기대로 비스듬히, 화면 안쪽으로만(클립) */
+  var WMON = { wb_bg_01: [[[86, 108], [301, 127], [301, 235], [86, 224]], [[333, 132], [655, 161], [655, 254], [333, 238]]],
+               wb_bg_02: [[[86, 110], [305, 131], [305, 240], [86, 229]], [[336, 134], [662, 165], [662, 261], [336, 244]]] };
+  function wbMonitors(bg, l1, l2) {
+    var Q = WMON[bg] || WMON.wb_bg_01, n = 0;
+    var mon = function (q, lines) {
+      var tl = q[0], tr = q[1], br = q[2], bl = q[3], W = Math.hypot(tr[0] - tl[0], tr[1] - tl[1]), H = Math.hypot(bl[0] - tl[0], bl[1] - tl[1]);
+      var m = [(tr[0] - tl[0]) / W, (tr[1] - tl[1]) / W, (bl[0] - tl[0]) / H, (bl[1] - tl[1]) / H, tl[0], tl[1]].map(function (v) { return +v.toFixed(5); });
+      var fit = function (txt, fs) { var w = txt.length * 0.62 * fs; return w > W * 0.86 ? fs * W * 0.86 / w : fs; };   /* 고정폭 글꼴 폭 0.62em 기준으로 화면 폭의 86% 안 */
+      var f1 = fit(lines[0], H * 0.32), f2 = fit(lines[1], H * 0.16), id = 'wbmc' + (n++);
+      return '<clipPath id="' + id + '"><polygon points="' + q.map(function (p) { return p.join(','); }).join(' ') + '"/></clipPath><g clip-path="url(#' + id + ')"><g transform="matrix(' + m.join(',') + ')">' +
+        '<text x="' + (W / 2).toFixed(1) + '" y="' + (H * 0.5).toFixed(1) + '" font-size="' + f1.toFixed(1) + '" class="m1">' + esc(lines[0]) + '</text>' +
+        '<text x="' + (W / 2).toFixed(1) + '" y="' + (H * 0.5 + f1 * 0.35 + f2 * 1.25).toFixed(1) + '" font-size="' + f2.toFixed(1) + '" class="m2">' + esc(lines[1]) + '</text></g></g>';
+    };
+    return '<svg class="wbmon" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + mon(Q[0], l1) + mon(Q[1], l2) + '</svg>';
+  }
   function wbScene() {
     var bg = wbBgId(), art = wbArt(), st = art ? 'staff_wb_input_01' : (STG.has('staff_gate_idle_01') ? 'staff_gate_idle_01' : 'staff_checkin_greet_01');
     var k = S && S.acKey === '789' ? '789' : '737', reg = (M && M.data && M.data[k]) ? M.data[k].reg : '';
     var h = '<div class="stage gate wb' + (art ? ' wbv05' : '') + (bg === 'wb_bg_02' ? ' wbk2' : '') + '" id="stage"><img class="bg" src="' + STG.src(bg) + '" alt="" draggable="false">';
     /* 배경 벽 모니터 2개(wb_bg_01·02 좌표가 조금 다름 → .wbk2) — 왼쪽: 편명·목적지·STD / 오른쪽: 기재·등록 기호 */
-    h += '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.from + ' → ' + V.to + ' ' + V.std) + '</span></div><div class="sign s2"><b id="ctrno">' + esc(k === '789' ? 'B787-9' : 'B737-800') + '</b><span>' + esc(reg + ' · LOAD CONTROL') + '</span></div>';
+    h += art ? wbMonitors(bg, [V.flight, V.from + ' → ' + V.to + '  STD ' + V.std], [k === '789' ? 'B787-9' : 'B737-800', reg + ' · LOAD CONTROL']) : '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.from + ' → ' + V.to + ' ' + V.std) + '</span></div><div class="sign s2"><b id="ctrno">' + esc(k === '789' ? 'B787-9' : 'B737-800') + '</b><span>' + esc(reg + ' · LOAD CONTROL') + '</span></div>';
     h += '<div id="queue" class="lay"></div><div id="agentwrap" class="lay">' + STG.img(st, 'agent', 20, -14, 80, false, '') + '</div>';
     h += '<div class="lay">' + STG.img('prop_counter_01', 'counter', 22, -2, 30) + STG.img('prop_monitor_01', 'monitor', 36, 23, 19) + '</div><div class="lay" id="wbpropw"></div>';
     h += '<div id="paxwrap" class="lay"><div id="pax" class="lay"></div></div><div class="wbradio hide" id="wbradio"></div><div class="wbedutag">' + esc(tx(WB_TEXT.eduData)) + '</div>';
