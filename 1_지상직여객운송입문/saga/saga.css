@@ -1,4 +1,4 @@
-/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
+/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편 Day 1–5·탑재관리편 Day 1–3(연습 미리 공개), 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
 /* AIRLINE SAGA — Stage 01 체크인 (Vela Air: 교육용 가상 항공사)
    layout: 위 = 공항 카운터 장면(2.5D) / 아래 = 업무 단말(DCS). 넓은 화면에서는 좌우 배치 */
 :root{
@@ -519,3 +519,85 @@ html.sh-saga .t48 .langrow{display:none}
  .stage.gate #paxwrap.g-out{transition:opacity .2s!important}
  .stage.gate #paxwrap.g-out #pax,.stage.gate #queue.g-qstep{animation:none}
 }
+/* 51차~: STAGE 03 탑재관리편(W&B) */
+.wbedu{margin:8px 0 0;font-size:11px;color:#a33;font-weight:700}
+.stage.wb .wbedutag{position:absolute;left:1%;bottom:1%;z-index:9;font-size:clamp(8px,1.4vw,11px);background:rgba(255,255,255,.85);color:#a33;font-weight:700;padding:1px 6px;border-radius:6px}
+.stage.wb .wbradio{position:absolute;right:2%;top:4%;z-index:8;width:28%;max-width:220px;display:flex;align-items:center;gap:6px;background:rgba(20,33,61,.86);color:#fff;border-radius:12px;padding:5px 8px;font-size:clamp(9px,1.5vw,12px)}
+.stage.wb .wbradio.hide{display:none}
+.stage.wb .wbradio img{width:34%;aspect-ratio:1;object-fit:cover;object-position:50% 10%;border-radius:10px;background:#dfe6f2}
+.stage.wb .wbradio span{margin-left:auto}
+.wbheroac{position:absolute;right:3%;top:19%;background:rgba(20,33,61,.85);color:#ffc04d;font:800 13px/1 "Inter",sans-serif;padding:6px 10px;border-radius:999px}
+.acseg{margin:0 0 10px}
+.wbt{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}
+.wbt th,.wbt td{border-bottom:1px solid var(--line,#e3e7ef);padding:4px 5px;text-align:left;vertical-align:middle}
+.wbt td.n{text-align:right;font-variant-numeric:tabular-nums}
+.wbt select{max-width:100%;font-size:13px;padding:2px}
+.wbcpt{display:grid;gap:3px;margin:8px 0}
+.wbc{display:grid;grid-template-columns:22px 1fr auto;gap:6px;align-items:center;font-size:12px}
+.wbc .tr{height:8px;border-radius:6px;background:#e9edf4;overflow:hidden}.wbc .tr i{display:block;height:100%;background:#3d7bd9}
+.wbc.over .tr i{background:#d33}.wbc.over .v{color:#d33;font-weight:700}
+.wbmacs{margin:6px 0}
+.wbmac{display:grid;grid-template-columns:36px 1fr 40px;gap:6px;align-items:center;font-size:12px}
+.wbmac .tr{position:relative;height:12px;background:#eef1f6;border-radius:6px}
+.wbmac .env{position:absolute;top:0;bottom:0;background:#bfe6c9;border-radius:6px}
+.wbmac .pt{position:absolute;top:-2px;width:4px;height:16px;margin-left:-2px;border-radius:2px;background:#1f7a4f}.wbmac .pt.ng{background:#d33}
+.wbmac .v.ng{color:#d33;font-weight:700}
+.wbchk{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;margin:8px 0}
+.wbchk label{display:grid;grid-template-columns:1fr 92px 22px;gap:4px;align-items:center;font-size:12px;background:#f6f8fb;color:#1d2b45;border-radius:8px;padding:4px 6px}
+.wbchk input,.wbpax input{width:100%;font:600 14px/1.2 ui-monospace,monospace;padding:4px;border:1px solid #c9d2e0;border-radius:6px;box-sizing:border-box}
+.wbchk label.ok{background:#e7f6ec}.wbchk label.ng{background:#fde9e9}.wbchk label.ng i{color:#d33}.wbchk label.ok i{color:#1f7a4f}
+.wbpax{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}
+.wbpax label{display:grid;gap:2px;font-size:12px}
+.wbls{font:12px/1.45 ui-monospace,monospace;background:#0f1a2e;color:#e8eef8;padding:8px;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0}
+/* 52차: 탑재관리편 v05 그림 — 배경 벽 모니터 2개에 편명·기재(배경별 좌표 .wbk2), 탭별 책상 소품, 787 ULD 아이콘 */
+.stage.wb.wbv05 .sign{color:#ffd9a0;gap:.25em}
+.stage.wb.wbv05 .sign.s1{left:5.4%;top:12.4%;width:13.4%;height:13.8%;font-size:clamp(6px,1.25vw,15px)}
+.stage.wb.wbv05 .sign.s2{left:20.8%;top:14.7%;width:20.1%;height:13.7%;font-size:clamp(6px,1.25vw,15px)}
+.stage.wb.wbv05.wbk2 .sign.s1{left:5.4%;top:12.7%;width:13.7%;height:14%}
+.stage.wb.wbv05.wbk2 .sign.s2{left:21.1%;top:15.1%;width:20.3%;height:13.8%}
+.stage.wb.wbv05 .sign b{font-size:1.25em}
+.stage.wb.wbv05 .sign span{font-size:.85em;opacity:.92}
+@media (min-width:900px){.stage.wb.wbv05 .sign.s1,.stage.wb.wbv05 .sign.s2{font-size:clamp(7px,.95vw,15px)}}
+.stage.wb .wbprop{filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));transform:rotate(-4deg)}
+.wbuldic{height:20px;width:auto;vertical-align:middle;margin-right:3px}
+/* 52차 보완: 계산식·계산 가정·연쇄 오류 표시 */
+.wbformula{margin:8px 0 4px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);font-size:12.5px;line-height:1.55}
+.wbformula b{display:block;margin-bottom:2px;color:#ffc04d}
+.wbformula div{overflow-wrap:anywhere}
+.wbformula span{font-weight:700;color:#fff}
+.wbassume{margin:4px 0 8px;font-size:12px;line-height:1.5}
+.wbassume summary{cursor:pointer;color:#ffc04d;font-weight:700}
+.wbassume ul{margin:4px 0 0;padding-left:18px}
+.wbchain{font-style:normal;font-size:11px;color:#b45309;font-weight:700;margin-left:4px}
+/* 53차: 탑재관리편 Day 2 — 허용 여유 상자·밸런스 차트·지수 변화표 */
+.wbover{margin:8px 0;padding:8px 10px;border-radius:10px;font-size:13px;line-height:1.6;background:#eef6f0;color:#1d2b45;border:1px solid #bfe0c9}
+.wbover.ng{background:#fdecec;border-color:#f2b8b8}
+.wbover.ng .v{color:#c2344f;font-weight:800}
+.wbover .btns{margin-top:6px}
+.wbchart{margin:8px 0;padding:6px;border-radius:10px;background:#fff;color:#1d2b45}
+.wbchart p{margin:4px 2px 0}
+.wbidx{margin:6px 0;font-size:12.5px}
+.wbidx table{max-width:340px}
+.wbmacv{display:flex;flex-wrap:wrap;gap:4px 10px;font:600 12.5px/1.4 ui-monospace,monospace;margin:4px 2px 0}
+.wbmacv .ok{color:#1f7a4f}.wbmacv .ng{color:#c2344f}.wbmacv small{font-weight:400;color:#5b6b7d}
+.wbchart{cursor:zoom-in}
+.wbzoom{position:fixed;inset:0;z-index:200;background:rgba(10,18,32,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px}
+.wbzoomin{width:100%;max-width:900px;max-height:80vh;overflow:auto;background:#fff;border-radius:10px;padding:6px}
+.wbzoomin svg{width:860px!important;max-width:none;height:auto}
+@media (min-width:900px){.wbzoomin svg{width:100%!important}}
+/* 54차: 탑재관리편 Day 3 — 특수 탑재물 확인·예외 보고·기장 통보서 */
+.wbspc{margin:8px 0;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);font-size:12.5px;line-height:1.5}
+.wbspc>b{display:block;color:#ffc04d;margin-bottom:4px}
+.wbspi{margin:6px 0;padding-top:6px;border-top:1px dashed rgba(255,255,255,.15)}
+.wbspi .chk{margin-top:4px}
+.pill.spc{background:#7a3ff2;color:#fff}
+.wbt tr.diff td{background:rgba(255,192,77,.18)}
+.wbnotoc td{vertical-align:top}
+.wbtg{min-width:44px;min-height:32px;border-radius:8px;border:1px solid #9fb3c6;background:#fff;color:#1d2b45;font-weight:800}
+.wbtg.on{background:#1f7a4f;color:#fff;border-color:#1f7a4f}
+/* 54차 보완: 확인 근거 카드·재검사 3항목 */
+.wbcard{margin:6px 0;padding:8px 10px;border-radius:10px;background:#f6f8fb;color:#1d2b45;font-size:12.5px}
+.wbcard>b{display:block;margin-bottom:4px;color:#7a3ff2}
+.wbcard .wbt th,.wbcard .wbt td{color:#1d2b45;border-color:#d5dde8}
+.wbcard dl.kv dt{color:#5b6b7d}.wbcard dl.kv dd{color:#1d2b45}
+.wbrck div.ok{color:#1f7a4f}.wbrck div.ng{color:#c2344f;font-weight:700}

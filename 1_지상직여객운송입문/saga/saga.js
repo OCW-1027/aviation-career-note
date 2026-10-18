@@ -1,5 +1,5 @@
-/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
-window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}, "staff_gate_idle_01": {"src": "saga/img/staff_gate_idle_01.webp", "w": 415, "h": 900, "px": 0.586, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_scan_01": {"src": "saga/img/staff_gate_scan_01.webp", "w": 439, "h": 900, "px": 0.5661, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_announce_01": {"src": "saga/img/staff_gate_announce_01.webp", "w": 487, "h": 900, "px": 0.495, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_explain_01": {"src": "saga/img/staff_gate_explain_01.webp", "w": 542, "h": 900, "px": 0.4482, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_trouble_01": {"src": "saga/img/staff_gate_trouble_01.webp", "w": 420, "h": 900, "px": 0.5856, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "gate_bg_01": {"src": "saga/img/gate_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "gate_bg_02": {"src": "saga/img/gate_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "passenger_male_01_bp_01": {"src": "saga/img/passenger_male_01_bp_01.webp", "w": 515, "h": 900, "px": 0.7226, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_male_01", "hr": 1.0}, "passenger_female_02_bp_01": {"src": "saga/img/passenger_female_02_bp_01.webp", "w": 570, "h": 899, "px": 0.7131, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_female_02", "hr": 0.999332}, "passenger_female_03_infant_bp_01": {"src": "saga/img/passenger_female_03_infant_bp_01.webp", "w": 493, "h": 900, "px": 0.5537, "py": 0.9959, "flip": false, "cat": "passengers", "sameAs": "passenger_female_03_infant_01", "hr": 1.0}, "prop_bgr_01": {"src": "saga/img/prop_bgr_01.webp", "w": 520, "h": 478, "px": 0.4311, "py": 0.9929, "flip": false, "cat": "props"}, "prop_gate_tag_01": {"src": "saga/img/prop_gate_tag_01.webp", "w": 430, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_aisle_chair_01": {"src": "saga/img/prop_aisle_chair_01.webp", "w": 358, "h": 520, "px": 0.5565, "py": 0.994, "flip": false, "cat": "props"}, "prop_stroller_gate_01": {"src": "saga/img/prop_stroller_gate_01.webp", "w": 437, "h": 520, "px": 0.5074, "py": 0.9938, "flip": false, "cat": "props", "sameAs": "prop_stroller_folded_01"}, "prop_um_form_01": {"src": "saga/img/prop_um_form_01.webp", "w": 432, "h": 520, "px": 0.5, "py": 0.9937, "flip": false, "cat": "props"}, "prop_radio_01": {"src": "saga/img/prop_radio_01.webp", "w": 264, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_mic_01": {"src": "saga/img/prop_mic_01.webp", "w": 420, "h": 520, "px": 0.509, "py": 0.9933, "flip": false, "cat": "props"}, "staff_sv_01": {"src": "saga/img/staff_sv_01.webp", "w": 393, "h": 900, "px": 0.6526, "py": 0.9961, "flip": false, "cat": "staff", "hr": 1.0}};
+/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편 Day 1–5·탑재관리편 Day 1–3(연습 미리 공개), 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
+window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}, "staff_gate_idle_01": {"src": "saga/img/staff_gate_idle_01.webp", "w": 415, "h": 900, "px": 0.586, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_scan_01": {"src": "saga/img/staff_gate_scan_01.webp", "w": 439, "h": 900, "px": 0.5661, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_announce_01": {"src": "saga/img/staff_gate_announce_01.webp", "w": 487, "h": 900, "px": 0.495, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_explain_01": {"src": "saga/img/staff_gate_explain_01.webp", "w": 542, "h": 900, "px": 0.4482, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_trouble_01": {"src": "saga/img/staff_gate_trouble_01.webp", "w": 420, "h": 900, "px": 0.5856, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "gate_bg_01": {"src": "saga/img/gate_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "gate_bg_02": {"src": "saga/img/gate_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "passenger_male_01_bp_01": {"src": "saga/img/passenger_male_01_bp_01.webp", "w": 515, "h": 900, "px": 0.7226, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_male_01", "hr": 1.0}, "passenger_female_02_bp_01": {"src": "saga/img/passenger_female_02_bp_01.webp", "w": 570, "h": 899, "px": 0.7131, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_female_02", "hr": 0.999332}, "passenger_female_03_infant_bp_01": {"src": "saga/img/passenger_female_03_infant_bp_01.webp", "w": 493, "h": 900, "px": 0.5537, "py": 0.9959, "flip": false, "cat": "passengers", "sameAs": "passenger_female_03_infant_01", "hr": 1.0}, "prop_bgr_01": {"src": "saga/img/prop_bgr_01.webp", "w": 520, "h": 478, "px": 0.4311, "py": 0.9929, "flip": false, "cat": "props"}, "prop_gate_tag_01": {"src": "saga/img/prop_gate_tag_01.webp", "w": 430, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_aisle_chair_01": {"src": "saga/img/prop_aisle_chair_01.webp", "w": 358, "h": 520, "px": 0.5565, "py": 0.994, "flip": false, "cat": "props"}, "prop_stroller_gate_01": {"src": "saga/img/prop_stroller_gate_01.webp", "w": 437, "h": 520, "px": 0.5074, "py": 0.9938, "flip": false, "cat": "props", "sameAs": "prop_stroller_folded_01"}, "prop_um_form_01": {"src": "saga/img/prop_um_form_01.webp", "w": 432, "h": 520, "px": 0.5, "py": 0.9937, "flip": false, "cat": "props"}, "prop_radio_01": {"src": "saga/img/prop_radio_01.webp", "w": 264, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props", "sameAs": "prop_radio_01@v04"}, "prop_mic_01": {"src": "saga/img/prop_mic_01.webp", "w": 420, "h": 520, "px": 0.509, "py": 0.9933, "flip": false, "cat": "props"}, "staff_sv_01": {"src": "saga/img/staff_sv_01.webp", "w": 393, "h": 900, "px": 0.6526, "py": 0.9961, "flip": false, "cat": "staff", "hr": 1.0}, "staff_wb_input_01": {"src": "saga/img/staff_wb_input_01.webp", "w": 442, "h": 900, "px": 0.5383, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_radio_01": {"src": "saga/img/staff_wb_radio_01.webp", "w": 409, "h": 900, "px": 0.5864, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_phone_01": {"src": "saga/img/staff_wb_phone_01.webp", "w": 443, "h": 900, "px": 0.5389, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_trouble_01": {"src": "saga/img/staff_wb_trouble_01.webp", "w": 485, "h": 900, "px": 0.5075, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_loadmaster_bust_01": {"src": "saga/img/people_loadmaster_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_dispatcher_bust_01": {"src": "saga/img/people_dispatcher_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_captain_bust_01": {"src": "saga/img/people_captain_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "wb_bg_01": {"src": "saga/img/wb_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "wb_bg_02": {"src": "saga/img/wb_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "prop_loadsheet_01": {"src": "saga/img/prop_loadsheet_01.webp", "w": 498, "h": 520, "px": 0.5, "py": 0.9924, "flip": true, "cat": "props"}, "prop_lir_board_01": {"src": "saga/img/prop_lir_board_01.webp", "w": 397, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props"}, "prop_notoc_01": {"src": "saga/img/prop_notoc_01.webp", "w": 520, "h": 348, "px": 0.5, "py": 0.9898, "flip": true, "cat": "props"}, "prop_uld_ake_01": {"src": "saga/img/prop_uld_ake_01.webp", "w": 520, "h": 421, "px": 0.5, "py": 0.9915, "flip": true, "cat": "props"}, "prop_uld_pmc_01": {"src": "saga/img/prop_uld_pmc_01.webp", "w": 520, "h": 315, "px": 0.5, "py": 0.9903, "flip": true, "cat": "props"}};
 window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e1f97":11661,"017c78d9":11949,"01ff8447":27693,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"0360a263":57933,"0372e30c":51213,"04170656":22701,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05382ef2":8877,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"07801492":13773,"0804812d":12813,"0815d609":63789,"08911573":24429,"089a08cd":19629,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b0fc6ff":23181,"0b15794c":18093,"0b253baa":13389,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0f321d57":11949,"0f3b27e2":14157,"0f6c45bb":21069,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10774ea4":6477,"108a2963":16653,"10b9b398":26925,"10e5aae7":26061,"11353347":46029,"114530e3":18189,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"11de62e7":5997,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12947755":27693,"12c66b14":23565,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"152ad0c6":51981,"1550e722":20589,"15ad3d3e":15789,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"19e314d7":57357,"1a352e30":28269,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1e2e03c0":62829,"1ec7ed77":10893,"1eceacdd":14445,"1ef8768a":13293,"1fc06217":13293,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"216ee28d":23853,"2193b357":4557,"22babe7c":22125,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"23b16202":20781,"241220dd":30189,"24302b9c":29997,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"258c0750":4845,"2627df20":12813,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"2733bb31":16365,"277016ca":9549,"277a2505":10509,"277be539":16941,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a50eb82":8589,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2b62b479":10797,"2b92c7bf":10701,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cb6c3e6":17229,"2cc2a6c8":10893,"2ce3e287":23949,"2e147517":7917,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"2fcb1fd8":19533,"30062188":25101,"304ce0e8":16365,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"320540c2":55629,"32485a1b":12333,"32832759":20205,"32d33712":61005,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"3317c179":4557,"334df891":13101,"336f3476":12237,"347b7fc6":8877,"34b319f3":20397,"34c79320":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38623a3d":4077,"3875fba6":22317,"387c3cc5":19149,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39a9d567":37293,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3b6226eb":20685,"3b8e820c":5133,"3c20ea46":16077,"3cf3a519":18669,"3d7f11fc":30957,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3ee775e9":21549,"3f53f59b":15309,"3fab192f":13581,"3fcbb6d4":9549,"3ffbde00":5709,"401848f6":9837,"405c08a3":25005,"407e7514":14925,"40d1fc1a":21933,"4127a234":16461,"41581a26":32493,"41b2ccac":27117,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"42534135":14829,"428c73ac":14733,"429ee352":14637,"42ade8df":65709,"42da0937":18381,"42eff33e":6669,"42ff6b45":15597,"430ac058":11469,"4339758f":3885,"4361efdc":18765,"4383e84b":24813,"43d9b5ea":11565,"43e49916":8685,"444fea75":14637,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"484480b8":39789,"4a0d5067":13389,"4a0e1563":16557,"4a5692fd":9741,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4bbf8b6f":42573,"4be72248":12813,"4bf35055":26541,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4da692cc":34413,"4ddc25ef":26061,"4e2dcaf6":26541,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50647676":13101,"50713d3b":14733,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"525fe908":11469,"5282ac80":13485,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"559a719c":6381,"55ff9e0a":8397,"5606e70e":16173,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"569ce112":24525,"56aeecf7":14925,"56c28fec":22893,"57020ce7":23661,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58aad44e":6669,"58f2107a":4557,"5905abe7":52269,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"59fa9f5b":14157,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5b2817a2":19629,"5bc30b0c":6189,"5c05a05c":15597,"5c10b6a5":15405,"5c188a15":10893,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e1b02d4":38733,"5e6293a2":27021,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61d2ee03":20397,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"627a8337":19149,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"634abd0c":22701,"637f3778":67245,"6389c7ce":9933,"6436733d":17229,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64db816c":13965,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"672ba710":17421,"6755401f":3693,"67f889d3":51213,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"698bdab6":13965,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6aa5e2a6":24525,"6ac63d3c":7053,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c71b9a7":21453,"6c9bb35d":8445,"6cc2b68b":18381,"6d79cf39":5901,"6df88f98":34701,"6e346345":13965,"6e45b4aa":22701,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f265640":7053,"6f35b02d":17229,"6f67c145":18765,"6f916efb":24717,"6fe3f2f3":9165,"7009e6e3":18957,"7087f307":21837,"70ace839":5613,"70ceecd7":15789,"70ff76db":7821,"71029f0e":24141,"7166db61":14925,"7224d333":24333,"7244acbc":17997,"7281160f":25869,"72f6bc2d":43821,"7321492e":11373,"7338e543":29613,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"74282aec":11949,"749e2919":21357,"74bff1e3":10797,"75a2e533":12333,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"772b8880":14253,"77704f09":7053,"779d7c04":30573,"7814b9a5":8493,"78ada3f2":9357,"79684e06":24141,"79cdfe1a":15213,"79eb8cdb":39885,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a40b598":10893,"7a851f8b":7149,"7a878fff":22221,"7b663459":22317,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7c9443d0":8589,"7cb0657b":4941,"7ce43c38":72813,"7d42f834":11469,"7dd7941a":11277,"7de9831a":4365,"7e268f02":14733,"7e2eb525":13869,"7e39bf64":27501,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7ececb77":40269,"7eec5a27":30477,"7f5d4783":24237,"7fafb60d":25293,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"82997383":14061,"829a2da9":15885,"830226f3":7149,"83063c1c":11757,"83865889":7725,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"8585f5ef":13197,"85aba023":14541,"85b0ca94":31629,"86140811":51981,"86c6118e":16461,"86d3ce6a":9549,"86e30629":18573,"86f1d327":13581,"880eee58":21837,"88968b3e":22701,"88a1365d":51597,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"900b6db4":14349,"900c3369":20685,"90275d0e":3981,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"9364ec4b":10701,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9417f53a":24141,"9452465d":26253,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"95df5fc7":10125,"96040875":8685,"96936059":10029,"9702a48a":18189,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d68799":26349,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99cadd07":7245,"99d5d492":14445,"9abff8c0":18093,"9afd6a23":28941,"9b72a350":83757,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cc2e7b9":53805,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d660988":14925,"9d7aba60":24429,"9dbc39eb":11373,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9f32d3da":5613,"9f51d948":12717,"9f614f27":27789,"a0374dcf":21741,"a0572083":6861,"a05eaceb":30285,"a0869e8d":9453,"a183b100":11373,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a3e6f657":26637,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aab24f6e":23469,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"add7cd82":9933,"ae98d056":21549,"aee49ca1":4749,"aefc1a16":57549,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b20428ce":38445,"b2764e19":17133,"b2799c78":12045,"b2f0c22c":24717,"b3986566":40557,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b68884c1":58029,"b6bb30f5":58029,"b7a981f3":21645,"b7d63f21":8205,"b821d088":8973,"b9476dfc":51597,"b94b3f9a":9165,"b9ec6657":52557,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bc3da75a":8301,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"bdfe3c69":4653,"be9f4413":25581,"befa6ee1":6573,"bf919f0f":4845,"bf96bcc6":21837,"bfe76df4":6861,"c0aeef83":29229,"c0d326e8":29757,"c1b3ae41":8781,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c320d572":27405,"c35e1c20":13773,"c3ae063f":59181,"c46ac345":22029,"c58ccdc9":11277,"c5ba55fe":20877,"c67090d0":29037,"c68cb3de":11469,"c6ced84a":3405,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c947e6ce":38925,"c9b7a6d3":15021,"ca69c6c0":24525,"ca91beb1":13389,"cabb5ead":11469,"cac77566":17517,"cb4b5a61":40749,"cb73f3d3":8685,"cbebd934":19245,"cc2bb383":5997,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"ccc3e5f3":40557,"cdbbb68f":16077,"cf0342c2":41325,"cf4c76f9":29133,"cf903d8a":21933,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d39d8202":24237,"d40d98b3":22029,"d43e0514":4557,"d4a9b5d6":41133,"d4df3b82":24909,"d50c8f82":10221,"d5b39d86":4077,"d5ee6e18":11949,"d62b35bf":14157,"d63a0dcc":15693,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d8b5d724":6573,"d8c77303":34989,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d95fcec1":17901,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"deb54a25":7917,"dec33802":12717,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e2441148":10317,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2b6ec19":22029,"e2db78be":9453,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e3da97d8":21933,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e52b582d":12717,"e5b55442":20301,"e5eb1dba":31917,"e66f1b0e":25869,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e7c6d95e":15405,"e8246b13":6573,"e833eb1a":21357,"e834502d":4173,"e85a568a":28845,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"ea68d3d6":7725,"eb2077c5":16077,"eb2c67cb":15597,"ebf2d40d":41997,"ec035359":23565,"ec0681c4":6765,"ecc2babd":4845,"ece1e617":23565,"ed0b9fc4":10797,"ed79d956":4365,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"f067aa86":12237,"f069fe63":4365,"f09836cc":16365,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f35649a3":12525,"f3dcf5f3":23853,"f3dd5872":82317,"f41df8eb":25197,"f4be769e":17613,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f9070c9d":25389,"f9453009":21741,"f98ca4d6":25869,"f9e343fd":53325,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb45adfe":12333,"fb7c792a":24909,"fc6140c7":13581,"fc8dae10":26253,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe485f9f":25293,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
 window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"passenger/2-1":{"ja":"ja/gnd/2-1/","ko":"ko/gnd/2-1/","en":"en/gnd/2-1/"},"passenger/2-4":{"ja":"ja/gnd/2-4/","ko":"ko/gnd/2-4/","en":"en/gnd/2-4/"},"passenger/2-5":{"ja":"ja/gnd/2-5/","ko":"ko/gnd/2-5/","en":"en/gnd/2-5/"},"passenger/2-7":{"ja":"ja/gnd/2-7/","ko":"ko/gnd/2-7/","en":"en/gnd/2-7/"}}};
 /* rules.js */
@@ -66,6 +66,336 @@ window.RULES = {
     JP: { KOR: 'free', JPN: 'citizen', LUM: 'visa' }
   }
 };
+
+/* ../src_wb/wb_calc.js */
+/* STAGE 03 탑재관리편 — 계산 엔진(합의본 v2 2A·2B·3C)
+   숫자 모델은 사이트 도구 「搭載計算の練習.html」의 RAW·BAL·base·calc·pct·idx·envZ·envT를 그대로 옮긴 것(바꾸지 않음).
+   최대 중량 3개만 제조사 공개 대표값, 나머지는 교육용 가상 값 — 실제 운항 사용 금지.
+   test/t51_wbcalc.js 가 도구 원본 함수와 같은 결과인지 대조함. */
+(function (root) {
+  'use strict';
+  /* 도구 RAW 중 게임에서 쓰는 2기종(행 그대로 복사) */
+  var RAW = [
+    ["B737-800","M","C12Y126","2/5",[12,63,63],[-4.2,-1.0,2.4],42500,46.0,62732,79016,66361,[[1,2600,-4.1],[2,3300,-2.2],[3,3800,0.9],[4,2200,2.3]],0.16,[0,0],[0,0],[114,3,2,[10,54,53],[900,1500,1600,600],11000,8200],["C","Y1","Y2"]],
+    ["B787-9","L","C24Y245","2/11",[24,122,123],[-4.7,-0.4,3.3],130000,57.0,181436,254011,192776,[[1,10800,-5.4],[2,10800,-2.8],[3,9400,1.5],[4,9400,3.2],[5,3500,4.3]],-0.06,[0,0],[0,0],[223,5,3,[20,104,104],[4600,4600,4000,4000,1500],68000,58000],["C","Y1","Y2"]]
+  ];
+  var BAL = { MAC: { S: 2.6, M: 4.2, L: 6.8 }, U: { S: 1.8, M: 1.0, L: 0.33 }, K: 50 };
+  var STD = { ad: 75, ch: 35, inf: 0 };   /* 2A: Vela 교육용 환산. 무릎 위 유아는 성인 가정에 포함 → 추가 0 */
+  function sum(a) { return a.reduce(function (x, y) { return x + y; }, 0); }
+  var AC = RAW.map(function (r) { return { id: r[0], cat: r[1], ver: r[2], crew: r[3], zs: r[4], zf: r[5], dow: r[6], doi: r[7], mzfw: r[8], mtow: r[9], mlw: r[10], cpt: r[11].map(function (c) { return { id: c[0], max: c[1], f: c[2] }; }), fuel: r[12], d: r[15], zl: r[16] || ['A', 'B', 'C'] }; });
+  /* ----- 도구와 같은 함수(본문 그대로) ----- */
+  function pct(a, I, W) { return (a.C * (I - BAL.K) / W - a.d0) / a.mac * 100; }
+  function idx(a, p, W) { return BAL.K + W * (a.d0 + p / 100 * a.mac) / a.C; }
+  function envZ(a, W) { var fr = Math.max(0, Math.min(1, (W - a.dow) / (a.mzfw - a.dow))); return [12 + 4 * fr, 36 - 4 * fr]; }
+  function envT(a, W) { var fr = Math.max(0, Math.min(1, (W - a.dow) / (a.mtow - a.dow))); return [10 + 6 * fr, 38 - 6 * fr]; }
+  function base(a, s) {
+    var pw = s.ad * STD.ad + s.ch * STD.ch + s.inf * STD.inf, cw = sum(s.c), n = s.ad + s.ch, per = n ? pw / n : 0, iz = a.doi, dli = a.doi;
+    for (var i = 0; i < a.zs.length; i++) iz += s.z[i] * per * a.zf[i] / 1000;
+    a.cpt.forEach(function (c, j) { iz += s.c[j] * c.f / 1000; dli += s.c[j] * c.f / 1000; });
+    return { pw: pw, cw: cw, zfw: a.dow + pw + cw, iz: iz, dli: dli };
+  }
+  function calc(a, s) {
+    var b = base(a, s), tl = b.pw + b.cw, zfw = b.zfw, tow = zfw + s.tof, law = tow - s.trip;
+    var lim = [a.mzfw + s.tof, a.mtow, a.mlw + s.trip], k = lim.indexOf(Math.min.apply(null, lim)), al = lim[k];
+    var it = b.iz + s.tof * a.fuel / 1000, il = it - s.trip * a.fuel / 1000, mz = pct(a, b.iz, zfw), mt = pct(a, it, tow), ml = pct(a, il, law), ez = envZ(a, zfw), et = envT(a, tow), el = envT(a, law);
+    return { pw: b.pw, cw: b.cw, tl: tl, zfw: zfw, tow: tow, law: law, al: al, lim: k, ul: al - tow, dli: b.dli, iz: b.iz, it: it, il: il, mz: mz, mt: mt, ml: ml, ez: ez, et: et, el: el,
+      okz: mz >= ez[0] && mz <= ez[1], okt: mt >= et[0] && mt <= et[1], okl: ml >= el[0] && ml <= el[1], stab: Math.max(1.5, Math.min(9, 9 - 0.2 * (mt - 10))) };
+  }
+  AC.forEach(function (a) { a.mac = BAL.MAC[a.cat]; a.C = a.mac * a.mzfw * BAL.U[a.cat] / 100; var d = a.d, s = { ad: d[0], ch: d[1], inf: d[2], z: d[3], c: d[4], tof: d[5], trip: d[6] }, r = base(a, s); a.d0 = a.C * (r.iz - BAL.K) / r.zfw - 0.25 * a.mac; });
+
+  /* ----- 게임 쪽 추가(합의본 v2) ----- */
+  var KEY = { 'B737-800': '737', 'B787-9': '789' };
+  /* 52차~ Day 2: 밸런스 차트(지수–중량) — 사이트 도구 「搭載計算の練習」의 chartSVG 본문 그대로(r2 = 비교용 두 번째 점, 생략 가능) */
+  function chartSVG(a,r,r2){var W=560,H=380,ml=58,mr=18,mt=14,mb=40,w0=a.dow*0.97,w1=a.mtow*1.02,pts=[];
+ function envPts(fn,wmax){var f=[],b=[],n=24;for(var i=0;i<=n;i++){var wt=w0+(wmax-w0)*i/n,l=fn(a,wt);f.push([idx(a,l[0],wt),wt]);b.unshift([idx(a,l[1],wt),wt])}return f.concat(b)}
+ var eT=envPts(envT,a.mtow),eZ=envPts(envZ,a.mzfw),all=eT.concat(eZ).concat([[r.iz,r.zfw],[r.it,r.tow],[r.il,r.law]]);if(r2)all=all.concat([[r2.iz,r2.zfw],[r2.it,r2.tow],[r2.il,r2.law]]);
+ var x0=Math.min.apply(null,all.map(function(p){return p[0]})),x1=Math.max.apply(null,all.map(function(p){return p[0]}));var pad=(x1-x0)*0.08;x0-=pad;x1+=pad;
+ function X(i){return ml+(i-x0)/(x1-x0)*(W-ml-mr)}function Y(wt){return H-mb-(wt-w0)/(w1-w0)*(H-mt-mb)}
+ function poly(p,fill,stroke){return '<polygon points="'+p.map(function(q){return X(q[0]).toFixed(1)+','+Y(q[1]).toFixed(1)}).join(' ')+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2"/>'}
+ var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="balance chart" style="width:100%;height:auto;display:block">';
+ /* 目盛り */
+ var st=Math.pow(10,Math.floor(Math.log10((x1-x0)/5)));if((x1-x0)/st>10)st*=2;for(var gi=Math.ceil(x0/st)*st;gi<=x1;gi+=st){s+='<line x1="'+X(gi)+'" y1="'+mt+'" x2="'+X(gi)+'" y2="'+(H-mb)+'" stroke="#e6ecf2"/><text x="'+X(gi)+'" y="'+(H-mb+16)+'" font-size="11" text-anchor="middle" fill="#5b6b7d">'+(Math.round(gi*10)/10)+'</text>'}
+ var ws=Math.pow(10,Math.floor(Math.log10((w1-w0)/5)));if((w1-w0)/ws>8)ws*=2;for(var gw=Math.ceil(w0/ws)*ws;gw<=w1;gw+=ws){s+='<line x1="'+ml+'" y1="'+Y(gw)+'" x2="'+(W-mr)+'" y2="'+Y(gw)+'" stroke="#e6ecf2"/><text x="'+(ml-6)+'" y="'+(Y(gw)+4)+'" font-size="11" text-anchor="end" fill="#5b6b7d">'+(gw/1000).toFixed(gw%1000?1:0)+'t</text>'}
+ s+=poly(eT,'rgba(47,143,224,.10)','#2f8fe0')+poly(eZ,'rgba(31,122,110,.12)','#1f7a6e');
+ [[a.mzfw,'MZFW'],[a.mlw,'MLW'],[a.mtow,'MTOW']].forEach(function(m){s+='<line x1="'+ml+'" y1="'+Y(m[0])+'" x2="'+(W-mr)+'" y2="'+Y(m[0])+'" stroke="#c2344f" stroke-dasharray="5 4"/><text x="'+(W-mr-4)+'" y="'+(Y(m[0])-4)+'" font-size="11" text-anchor="end" fill="#c2344f" font-weight="700">'+m[1]+'</text>'});
+ s+='<text x="'+((W+ml)/2)+'" y="'+(H-6)+'" font-size="12" text-anchor="middle" fill="#1d2a38" font-weight="700">INDEX</text>';
+ function pts3(rr,hollow){var P=[[rr.iz,rr.zfw,'ZFW',rr.okz&&rr.zfw<=a.mzfw],[rr.it,rr.tow,'TOW',rr.okt&&rr.tow<=a.mtow],[rr.il,rr.law,'LAW',rr.okl&&rr.law<=a.mlw]],o='<polyline points="'+P.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'" fill="none" stroke="#1d2a38" stroke-width="1.5" stroke-dasharray="'+(hollow?'3 3':'0')+'"/>';
+  P.forEach(function(p){var c=p[3]?'#1d2a38':'#c2344f';o+=hollow?'<rect x="'+(X(p[0])-6)+'" y="'+(Y(p[1])-6)+'" width="12" height="12" transform="rotate(45 '+X(p[0])+' '+Y(p[1])+')" fill="#fff" stroke="'+c+'" stroke-width="2"/>':'<circle cx="'+X(p[0])+'" cy="'+Y(p[1])+'" r="6" fill="'+c+'"/><text x="'+(X(p[0])+9)+'" y="'+(Y(p[1])+4)+'" font-size="12" font-weight="700" fill="'+c+'">'+p[2]+'</text>'});return o}
+ s+=pts3(r,false);if(r2)s+=pts3(r2,true);return s+'</svg>'}
+  function ac(id) { for (var i = 0; i < AC.length; i++) if (AC[i].id === id || KEY[AC[i].id] === id) return AC[i]; return null; }
+  function clone(s) { return { ad: s.ad, ch: s.ch, inf: s.inf, z: s.z.slice(), c: s.c.slice(), tof: s.tof, trip: s.trip }; }
+  /* 상태 범위 검사: 칸 상한·음수, 구역 좌석, 구역 합계 = 성인+소아, 유아 ≤ 성인 */
+  function stateErrors(a, s) {
+    var e = [];
+    a.cpt.forEach(function (c, j) { if (s.c[j] < 0) e.push({ code: 'cpt-neg', cpt: c.id }); if (s.c[j] > c.max) e.push({ code: 'cpt-max', cpt: c.id, kg: s.c[j], max: c.max }); });
+    s.z.forEach(function (z, i) { if (z < 0) e.push({ code: 'zone-neg', zone: a.zl[i] }); if (z > a.zs[i]) e.push({ code: 'zone-seats', zone: a.zl[i], n: z, max: a.zs[i] }); });
+    if (sum(s.z) !== s.ad + s.ch) e.push({ code: 'zone-sum', zones: sum(s.z), pax: s.ad + s.ch });
+    if (s.inf > s.ad) e.push({ code: 'inf-adult' });
+    return e;
+  }
+  /* 로드시트 판정: 3개 MAX·여유·세 점 엔벨로프(반올림 전 값) */
+  function sheetErrors(a, s) {
+    var r = calc(a, s), e = stateErrors(a, s);
+    if (r.zfw > a.mzfw) e.push({ code: 'max-zfw' }); if (r.tow > a.mtow) e.push({ code: 'max-tow' }); if (r.law > a.mlw) e.push({ code: 'max-law' });
+    if (r.ul < 0) e.push({ code: 'underload-neg', ul: r.ul });
+    if (!r.okz) e.push({ code: 'env-zfw', mac: r.mz }); if (!r.okt) e.push({ code: 'env-tow', mac: r.mt }); if (!r.okl) e.push({ code: 'env-law', mac: r.ml });
+    return { r: r, errors: e, ok: !e.length };
+  }
+  /* 3C LMC: 승인된 최신 판(sAp) 대비 지금 상태(sNow)의 누적 변경. 연료 변경은 Vela 규정상 재작성 */
+  function lmc(a, sAp, sNow) {
+    var r0 = calc(a, sAp), sh = sheetErrors(a, sNow), r1 = sh.r, dw = r1.tow - r0.tow, dm = r1.mt - r0.mt, tw = a.mlw * 0.005;
+    var fuel = sNow.tof !== sAp.tof || sNow.trip !== sAp.trip;
+    var okw = Math.abs(dw) <= tw, okc = Math.abs(dm) < 0.5;
+    var res = { dw: dw, tw: tw, dm: dm, okw: okw, okc: okc, fuel: fuel, sheetOk: sh.ok, errors: sh.errors, r0: r0, r1: r1 };
+    /* 원래 제한 위반은 재작성으로도 해소되지 않음(3C-6) → 'fix'(먼저 탑재·인원·연료 조정) */
+    res.verdict = !sh.ok ? 'fix' : (fuel || !okw || !okc) ? 'reissue' : 'lmc';
+    return res;
+  }
+  /* 검산(3D): kg 정수 일치, 지수 ±0.1, %MAC ±0.3 */
+  var TOL = { kg: 0, idx: 0.1, mac: 0.3 };
+  function checkInput(kind, input, truth) {
+    var v = Number(input); if (input === '' || input == null || !isFinite(v)) return false;
+    if (kind === 'kg') return Math.round(v) === Math.round(truth) && Math.abs(v - Math.round(v)) < 1e-9;
+    return Math.abs(v - truth) <= TOL[kind] + 1e-9;
+  }
+
+  /* ----- 787 ULD(2B, 교육용 배치도 — 실제 WBM 위치·허용 조합 아님) -----
+     칸 1·2·3·4 각 3열, 열마다 좌·우 자리. AKE = 한 자리, PMC = 한 열(좌·우 둘). 5번은 벌크(kg).
+     무게중심은 칸 단위 간이 계산: ULD 총중량(자체+내용물)을 칸 합계에 더함 */
+  var ULD_TYPES = { AKE: { tare: 80, maxGross: 1588, slots: 1 }, PMC: { tare: 120, maxGross: 5000, slots: 2 } };
+  var ROWS = { 1: 3, 2: 3, 3: 3, 4: 3 };
+  function posList() { var o = []; Object.keys(ROWS).forEach(function (c) { for (var r = 1; r <= ROWS[c]; r++) { o.push(c + r + 'L'); o.push(c + r + 'R'); } }); return o; }
+  /* ulds: [{id,type,content,pos:'11L'|'11'(PMC 열), fixed:true}] , bulk5: kg */
+  function uldErrors(ulds) {
+    var e = [], used = {}, ids = {};
+    ulds.forEach(function (u) {
+      var t = ULD_TYPES[u.type]; if (!t) { e.push({ code: 'uld-type', id: u.id }); return; }
+      if (ids[u.id]) e.push({ code: 'uld-dup', id: u.id }); ids[u.id] = 1;
+      var m = /^([1-4])([1-3])([LR]?)$/.exec(u.pos || ''); if (!m) { e.push({ code: 'uld-pos', id: u.id }); return; }
+      var slots = u.type === 'PMC' ? (m[3] ? null : [m[1] + m[2] + 'L', m[1] + m[2] + 'R']) : (m[3] ? [u.pos] : null);
+      if (!slots) { e.push({ code: 'uld-pos-kind', id: u.id }); return; }
+      slots.forEach(function (sl) { if (used[sl]) e.push({ code: 'uld-overlap', id: u.id, pos: sl }); used[sl] = u.id; });
+      var gross = t.tare + (u.content || 0); if (gross > t.maxGross) e.push({ code: 'uld-gross', id: u.id, gross: gross, max: t.maxGross });
+      if (!u.fixed) e.push({ code: 'uld-unfixed', id: u.id });
+    });
+    return e;
+  }
+  function uldToCpt(a, ulds, bulk5) {
+    var c = a.cpt.map(function () { return 0; });
+    ulds.forEach(function (u) { var t = ULD_TYPES[u.type]; if (!t) return; var ci = +String(u.pos).charAt(0) - 1; if (ci >= 0 && ci < 4) c[ci] += t.tare + (u.content || 0); });
+    if (a.cpt.length > 4) c[4] += bulk5 || 0;
+    return c;
+  }
+
+  var WB = { AC: AC, STD: STD, BAL: BAL, ac: ac, calc: calc, pct: pct, idx: idx, envZ: envZ, envT: envT, base: base, clone: clone,
+    stateErrors: stateErrors, sheetErrors: sheetErrors, lmc: lmc, checkInput: checkInput, TOL: TOL,
+    ULD_TYPES: ULD_TYPES, ROWS: ROWS, posList: posList, uldErrors: uldErrors, uldToCpt: uldToCpt,
+    chartSVG: chartSVG, defaults: function (a) { var d = a.d; return { ad: d[0], ch: d[1], inf: d[2], z: d[3].slice(), c: d[4].slice(), tof: d[5], trip: d[6] }; } };
+  root.WB = WB;
+  if (typeof module !== 'undefined' && module.exports) module.exports = WB;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* ../src_wb/mission_wb01.js */
+/* 탑재관리편 Day 1 「はじめてのロードシート」 미션 데이터 — 합의본 v2 3절 Day 1(사건 없음, 숫자가 모두 맞는 편)
+   모든 편·기체·탑재물은 교육용 가상 데이터. 등록 기호 VL-xxx는 가상(실제 국적 기호 아님).
+   시각은 STD 기준(2절): 준비 −90 · LIR −60 · 중간 보고 −25 · 예비판 −15 · 최종 수신·전달 −10 · 기록 출발 후 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = {
+    JP: { std: '10:30', start: '08:55', prep: '09:00', lir: '09:30', rep: '10:05', pre: '10:15', fin: '10:20', ldm: '10:35' },
+    KR: { std: '13:30', start: '11:55', prep: '12:00', lir: '12:30', rep: '13:05', pre: '13:15', fin: '13:20', ldm: '13:35' }
+  };
+  /* 기재별 Day 1 자료. 예약 인원 → 최종 인원(노쇼 2명, 구역 C). 탑재물은 중간 보고·최종 확인 모두 계획과 같음(Day 1) */
+  var AC = {
+    '737': {
+      reg: 'VL-8A1',
+      book: { ad: 116, ch: 3, inf: 2, z: [10, 54, 55] },
+      fin: { ad: 114, ch: 3, inf: 2, z: [10, 54, 53] },
+      items: [
+        { id: 'B1', kind: 'B', kg: 650, nm: L('受託手荷物（仁川・成田行き）', '위탁 수하물(행선지)', 'Checked bags (destination)') },
+        { id: 'B2', kind: 'B', kg: 650, nm: L('受託手荷物（仁川・成田行き）', '위탁 수하물(행선지)', 'Checked bags (destination)') },
+        { id: 'B3', kind: 'B', kg: 200, pri: true, nm: L('乗り継ぎ・優先手荷物', '환승·우선 수하물', 'Transfer / priority bags') },
+        { id: 'C1', kind: 'C', kg: 1500, nm: L('一般貨物', '일반 화물', 'General cargo') },
+        { id: 'C2', kind: 'C', kg: 1300, nm: L('一般貨物', '일반 화물', 'General cargo') },
+        { id: 'M1', kind: 'M', kg: 300, nm: L('郵便', '우편', 'Mail') }
+      ]
+    },
+    '789': {
+      reg: 'VL-9B1',
+      book: { ad: 214, ch: 5, inf: 3, z: [20, 100, 99] },
+      fin: { ad: 212, ch: 5, inf: 3, z: [20, 100, 97] },
+      ulds: [
+        { id: 'AKE10101VL', type: 'AKE', kind: 'B', content: 520, nm: L('受託手荷物', '위탁 수하물', 'Checked bags') },
+        { id: 'AKE10102VL', type: 'AKE', kind: 'B', content: 520, nm: L('受託手荷物', '위탁 수하물', 'Checked bags') },
+        { id: 'AKE10103VL', type: 'AKE', kind: 'B', content: 520, nm: L('受託手荷物', '위탁 수하물', 'Checked bags') },
+        { id: 'AKE10104VL', type: 'AKE', kind: 'B', content: 520, nm: L('受託手荷物', '위탁 수하물', 'Checked bags') },
+        { id: 'AKE10105VL', type: 'AKE', kind: 'B', content: 520, nm: L('受託手荷物', '위탁 수하물', 'Checked bags') },
+        { id: 'AKE10106VL', type: 'AKE', kind: 'B', content: 520, nm: L('受託手荷物', '위탁 수하물', 'Checked bags') },
+        { id: 'AKE10107VL', type: 'AKE', kind: 'B', content: 300, pri: true, nm: L('乗り継ぎ・優先手荷物', '환승·우선 수하물', 'Transfer / priority bags') },
+        { id: 'AKE10108VL', type: 'AKE', kind: 'M', content: 400, nm: L('郵便', '우편', 'Mail') },
+        { id: 'PMC20201VL', type: 'PMC', kind: 'C', content: 3200, nm: L('一般貨物', '일반 화물', 'General cargo') },
+        { id: 'PMC20202VL', type: 'PMC', kind: 'C', content: 2800, nm: L('一般貨物', '일반 화물', 'General cargo') }
+      ],
+      bulk5: { kg: 600, nm: L('遅れて届いた受託手荷物（5番バルク）', '늦게 온 위탁 수하물(5번 벌크)', 'Late checked bags (bulk 5)') }
+    }
+  };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.fin, t: t,
+      /* 처리 단위(7개). 기재는 스테이지가 넘김(wbAcKey) */
+      pax: function () {
+        var u = function (id, kind, at, nm) { return { id: id, kind: kind, at: at, art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('w-prep', 'prep', t.prep, 'PREP'), u('w-lir', 'lir', t.lir, 'LIR'), u('w-rep', 'rep', t.rep, 'REPORT'), u('w-pre', 'pre', t.pre, 'PRELIM'),
+          u('w-fin', 'fin', t.fin, 'FINAL'), u('w-sub', 'sub', t.fin, 'SUBMIT'), u('w-ldm', 'ldm', t.ldm, 'RECORD')];
+      } };
+  }
+  window.MISSION_WB01 = {
+    id: 'wb01', generated: false, day: 1,
+    data: AC,
+    deadlines: { lir: -50, pre: -10, hand: -10, sub: -8 },   /* 합의본 13절 DAY 1 완화 */
+    cost: { prep: 4, check: 0.3, lir: 6, issue: 1, radio: 1.5, field: 0.6, submit: 1, ldm: 2 },
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
+/* ../src_wb/mission_wb02.js */
+/* 탑재관리편 Day 2 「重い便」 미션 데이터 — 합의본 v2 3절 Day 2(W2-limit·W2-hold·W2-aft·W2-over·W2-notice)
+   만석에 가깝고 화물이 많은 편. 예약 인원 그대로 다 실으면 허용 이륙 중량(최대 ZFW가 정함, L)을 넘음 → 내리는 순서(일반 화물 → 우편 → 수하물)로 줄이고 화물·여객 부서에 연락.
+   시각(STD 기준): 준비 −90 · LIR 작업 시작 −75 → 발행 기한 −60 · 중간 보고 −25 · 예비판 시작 −20 → 검산 기한 −15 · 최종 −10(시계 정지) · 전달 −10 · 승인 −8 (합의본 2절 기한 그대로)
+   모든 편·기체·탑재물은 교육용 가상 데이터. 등록 기호 VL-xxx는 가상 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = {
+    JP: { std: '10:30', start: '08:55', prep: '09:00', lir: '09:15', rep: '10:05', pre: '10:10', fin: '10:20', ldm: '10:35' },
+    KR: { std: '13:30', start: '11:55', prep: '12:00', lir: '12:15', rep: '13:05', pre: '13:10', fin: '13:20', ldm: '13:35' }
+  };
+  var BAG = L('受託手荷物', '위탁 수하물', 'Checked bags'), PRI = L('乗り継ぎ・優先手荷物', '환승·우선 수하물', 'Transfer / priority bags'), MAIL = L('郵便', '우편', 'Mail'), GEN = L('一般貨物', '일반 화물', 'General cargo');
+  var AC = {
+    '737': {
+      reg: 'VL-8A2',
+      book: { ad: 132, ch: 4, inf: 3, z: [12, 63, 61] },
+      fin: { ad: 131, ch: 4, inf: 3, z: [12, 63, 60] },
+      items: [
+        { id: 'B1', kind: 'B', kg: 900, nm: BAG }, { id: 'B2', kind: 'B', kg: 900, nm: BAG }, { id: 'B3', kind: 'B', kg: 250, pri: true, nm: PRI },
+        { id: 'M1', kind: 'M', kg: 400, nm: MAIL },
+        { id: 'C1', kind: 'C', kg: 2400, nm: GEN }, { id: 'C2', kind: 'C', kg: 2200, nm: GEN }, { id: 'C3', kind: 'C', kg: 1800, nm: GEN }, { id: 'C4', kind: 'C', kg: 1000, nm: GEN }, { id: 'C5', kind: 'C', kg: 900, nm: GEN }
+      ]
+    },
+    '789': {
+      reg: 'VL-9B2',
+      book: { ad: 258, ch: 6, inf: 4, z: [24, 122, 118] },
+      fin: { ad: 256, ch: 6, inf: 4, z: [24, 122, 116] },
+      ulds: [
+        { id: 'AKE20101VL', type: 'AKE', kind: 'B', content: 700, nm: BAG }, { id: 'AKE20102VL', type: 'AKE', kind: 'B', content: 700, nm: BAG },
+        { id: 'AKE20103VL', type: 'AKE', kind: 'B', content: 700, nm: BAG }, { id: 'AKE20104VL', type: 'AKE', kind: 'B', content: 700, nm: BAG },
+        { id: 'AKE20105VL', type: 'AKE', kind: 'B', content: 700, nm: BAG }, { id: 'AKE20106VL', type: 'AKE', kind: 'B', content: 700, nm: BAG },
+        { id: 'AKE20107VL', type: 'AKE', kind: 'B', content: 700, nm: BAG }, { id: 'AKE20108VL', type: 'AKE', kind: 'B', content: 700, nm: BAG },
+        { id: 'AKE20109VL', type: 'AKE', kind: 'B', content: 400, pri: true, nm: PRI },
+        { id: 'AKE20110VL', type: 'AKE', kind: 'M', content: 600, nm: MAIL }, { id: 'AKE20111VL', type: 'AKE', kind: 'M', content: 600, nm: MAIL },
+        { id: 'PMC30201VL', type: 'PMC', kind: 'C', content: 4800, nm: GEN }, { id: 'PMC30202VL', type: 'PMC', kind: 'C', content: 4600, nm: GEN },
+        { id: 'PMC30203VL', type: 'PMC', kind: 'C', content: 4400, nm: GEN }, { id: 'PMC30204VL', type: 'PMC', kind: 'C', content: 4100, nm: GEN },
+        { id: 'PMC30205VL', type: 'PMC', kind: 'C', content: 4000, nm: GEN }, { id: 'PMC30206VL', type: 'PMC', kind: 'C', content: 2600, nm: GEN }
+      ],
+      bulk5: { kg: 700, nm: L('遅れて届いた受託手荷物（5番バルク）', '늦게 온 위탁 수하물(5번 벌크)', 'Late checked bags (bulk 5)') }
+    }
+  };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.fin, t: t,
+      pax: function () {
+        var u = function (id, kind, at, nm) { return { id: id, kind: kind, at: at, art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('w-prep', 'prep', t.prep, 'PREP'), u('w-lir', 'lir', t.lir, 'LIR'), u('w-rep', 'rep', t.rep, 'REPORT'), u('w-pre', 'pre', t.pre, 'PRELIM'),
+          u('w-fin', 'fin', t.fin, 'FINAL'), u('w-sub', 'sub', t.fin, 'SUBMIT'), u('w-ldm', 'ldm', t.ldm, 'RECORD')];
+      } };
+  }
+  window.MISSION_WB02 = {
+    id: 'wb02', generated: false, day: 2, heavy: true,
+    data: AC,
+    /* 시간 마감(STD 기준 분) — 합의본 2절 그대로. Day 1(MISSION_WB01)은 13절 완화 */
+    deadlines: { lir: -60, pre: -15, hand: -10, sub: -8 },
+    cost: { prep: 4, check: 0.3, lir: 6, issue: 1, radio: 1.5, field: 0.6, submit: 1, ldm: 2, notice: 1 },
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
+/* ../src_wb/mission_wb03.js */
+/* 탑재관리편 Day 3 「特別な搭載物」 미션 데이터 — 합의본 v2 3절 Day 3(W3-ice·W3-avih·W3-wch·W3-per·W3-hea·W3-except)
+   시험판은 기재별 고정 묶음(737 = 드라이아이스·동물·전동 휠체어·신선식품(+드라이아이스) 4가지, 787 = 5가지 모두). seed로 3~5가지 고르기는 다음 차수.
+   Vela 교육용 규칙(실제 규정 아님): 동물(AVIH)은 온도·환기가 맞는 칸만(737 = 4번, 787 = 5번 벌크), 드라이아이스(ICE 속성)와 같은 칸 금지,
+   드라이아이스 총량 교육용 허용(737 200 kg, 787 1,000 kg), 신선식품은 동물과 다른 칸(Vela 보수적 규칙), 전동 휠체어는 배터리 확인 5항목, 중량물(HEA)은 받침·분산·고정 확인.
+   예외 보고: 737 「3번이 가득 → 일부 4번」, 787 「4번이 가득 → 일부 5번 벌크」 — 옮긴 것이 드라이아이스 포함이면 동물과 같은 칸이 되어 격리 위반.
+   시각(STD 기준): 준비 −90 · LIR 시작 −75(발행 −60) · 중간 보고 −25 · 기장 통보서 −23 · 예비판 시작 −20(검산 −15) · 최종 −10 · 전달 −10 · 승인 −8
+   모든 편·기체·탑재물은 교육용 가상 데이터 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = {
+    JP: { std: '10:30', start: '08:55', prep: '09:00', lir: '09:15', rep: '10:05', notoc: '10:07', pre: '10:10', fin: '10:20', ldm: '10:35' },
+    KR: { std: '13:30', start: '11:55', prep: '12:00', lir: '12:15', rep: '13:05', notoc: '13:07', pre: '13:10', fin: '13:20', ldm: '13:35' }
+  };
+  var BAG = L('受託手荷物', '위탁 수하물', 'Checked bags'), PRI = L('乗り継ぎ・優先手荷物', '환승·우선 수하물', 'Transfer / priority bags'), MAIL = L('郵便', '우편', 'Mail'), GEN = L('一般貨物', '일반 화물', 'General cargo');
+  var SP = {
+    ICE: L('医薬品（ドライアイス入り・UN1845）', '의약품(드라이아이스 포함·UN1845)', 'Pharmaceuticals (with dry ice, UN1845)'),
+    AVIH: L('預かりの犬（ケージ）', '위탁 동물(개, 케이지)', 'Live animal: dog in kennel (AVIH)'),
+    WCH: L('お客様の電動車いす（リチウムイオン電池）', '승객 전동 휠체어(리튬이온 배터리)', 'Passenger powered wheelchair (lithium-ion battery)'),
+    PER: L('生鮮魚介（保冷にドライアイス使用）', '신선 수산물(보냉용 드라이아이스)', 'Fresh seafood (packed with dry ice)'),
+    HEA: L('工作機械（木の台つき）', '공작 기계(나무 받침 포함)', 'Machine tool on a wooden skid (HEA)')
+  };
+  var AC = {
+    '737': {
+      reg: 'VL-8A3', avihHold: [3], iceMax: 200,
+      iceHold: [50, 100, 100, 50],   /* 54차 보완 F54-03: 칸별 드라이아이스 교육용 허용량(kg) — Vela 교육용 승인값, 실제 기재 값 아님 */
+      book: { ad: 118, ch: 3, inf: 2, z: [10, 56, 55] },
+      fin: { ad: 117, ch: 3, inf: 2, z: [10, 56, 54] },
+      items: [
+        { id: 'B1', kind: 'B', kg: 700, nm: BAG }, { id: 'B2', kind: 'B', kg: 650, nm: BAG }, { id: 'B3', kind: 'B', kg: 200, pri: true, nm: PRI },
+        { id: 'M1', kind: 'M', kg: 300, nm: MAIL }, { id: 'C1', kind: 'C', kg: 1500, nm: GEN }, { id: 'C2', kind: 'C', kg: 900, nm: GEN },
+        { id: 'X1', kind: 'C', kg: 120, nm: SP.ICE, spc: { t: 'ICE', ice: 40, un: 'UN1845', pcs: 4 } },
+        { id: 'X2', kind: 'C', kg: 45, nm: SP.AVIH, spc: { t: 'AVIH', temp: L('15〜25℃・換気', '15~25℃·환기', '15–25 °C, ventilated') } },
+        { id: 'X3', kind: 'B', kg: 110, nm: SP.WCH, spc: { t: 'WCH', spare: 1 } },
+        { id: 'X4', kind: 'C', kg: 300, nm: SP.PER, spc: { t: 'PER', ice: 25, un: 'UN1845', temp: L('0〜4℃', '0~4℃', '0–4 °C') } }
+      ],
+      except: { from: 2, to: 3 }   /* 3번 칸(인덱스 2)이 가득 → 일부 4번(인덱스 3) */
+    },
+    '789': {
+      reg: 'VL-9B3', avihHold: [4], iceMax: 1000,
+      iceHold: [300, 300, 200, 200, 100],
+      /* 54차 보완 F54-03: 중량물 사전 기술 검토 카드(Vela 교육용 — 조업사 기술 검토 완료 조건으로 제공) */
+      hea: { id: 'PMC40205VL', piece: 3200, skid: 300, skidL: 2.4, skidW: 1.6, limit: 976, rows: ['11', '12', '13', '21', '22', '23', '31', '32', '33'], tie: 4 },
+      book: { ad: 230, ch: 5, inf: 3, z: [22, 110, 103] },
+      fin: { ad: 228, ch: 5, inf: 3, z: [22, 110, 101] },
+      ulds: [
+        { id: 'AKE30101VL', type: 'AKE', kind: 'B', content: 600, nm: BAG }, { id: 'AKE30102VL', type: 'AKE', kind: 'B', content: 600, nm: BAG },
+        { id: 'AKE30103VL', type: 'AKE', kind: 'B', content: 600, nm: BAG }, { id: 'AKE30104VL', type: 'AKE', kind: 'B', content: 600, nm: BAG },
+        { id: 'AKE30105VL', type: 'AKE', kind: 'B', content: 600, nm: BAG }, { id: 'AKE30106VL', type: 'AKE', kind: 'B', content: 600, nm: BAG },
+        { id: 'AKE30107VL', type: 'AKE', kind: 'B', content: 300, pri: true, nm: PRI }, { id: 'AKE30108VL', type: 'AKE', kind: 'M', content: 500, nm: MAIL },
+        { id: 'AKE30109VL', type: 'AKE', kind: 'C', content: 400, nm: SP.ICE, spc: { t: 'ICE', ice: 100, un: 'UN1845', pcs: 10 } },
+        { id: 'PMC40201VL', type: 'PMC', kind: 'C', content: 4000, nm: GEN }, { id: 'PMC40202VL', type: 'PMC', kind: 'C', content: 3500, nm: GEN },
+        { id: 'PMC40203VL', type: 'PMC', kind: 'C', content: 3000, nm: GEN },
+        { id: 'PMC40204VL', type: 'PMC', kind: 'C', content: 2000, nm: SP.PER, spc: { t: 'PER', ice: 80, un: 'UN1845', temp: L('0〜4℃', '0~4℃', '0–4 °C') } },
+        { id: 'PMC40205VL', type: 'PMC', kind: 'C', content: 3500, nm: SP.HEA, spc: { t: 'HEA', piece: 3200, skid: 300 } }
+      ],
+      bulk5: { kg: 590, nm: L('5番バルク：遅れた手荷物400・犬60・電動車いす130', '5번 벌크: 늦은 수하물 400·개 60·전동 휠체어 130', 'Bulk 5: late bags 400, dog 60, wheelchair 130'),
+        spc: [{ id: 'AVIH5', kg: 60, nm: SP.AVIH, spc: { t: 'AVIH', temp: L('15〜25℃・換気', '15~25℃·환기', '15–25 °C, ventilated') } }, { id: 'WCH5', kg: 130, nm: SP.WCH, spc: { t: 'WCH', spare: 1 } }] },
+      except: { from: 3, to: 4 }   /* 4번 칸(인덱스 3)이 가득 → 일부 5번 벌크(인덱스 4) */
+    }
+  };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.fin, t: t,
+      pax: function () {
+        var u = function (id, kind, at, nm) { return { id: id, kind: kind, at: at, art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('w-prep', 'prep', t.prep, 'PREP'), u('w-lir', 'lir', t.lir, 'LIR'), u('w-rep', 'rep', t.rep, 'REPORT'), u('w-notoc', 'notoc', t.notoc, 'NOTOC'), u('w-pre', 'pre', t.pre, 'PRELIM'),
+          u('w-fin', 'fin', t.fin, 'FINAL'), u('w-sub', 'sub', t.fin, 'SUBMIT'), u('w-ldm', 'ldm', t.ldm, 'RECORD')];
+      } };
+  }
+  window.MISSION_WB03 = {
+    id: 'wb03', generated: false, day: 3, special: true,
+    data: AC,
+    deadlines: { lir: -60, pre: -15, hand: -10, sub: -8 },
+    cost: { prep: 4, check: 0.3, lir: 6, issue: 1, radio: 1.5, field: 0.6, submit: 1, ldm: 2, notice: 1, spc: 0.4, notoc: 2 },
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
 
 /* ../src_gate/mission_gt01.js */
 /* 게이트편 Day 1 「はじめてのゲート」 미션 데이터 — 합의본 v2(12_게이트편_합의본_v2.md) 기준. 모든 승객·편은 교육용 가상 데이터
@@ -1934,11 +2264,11 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   var SITE = !!window.__SHELL;
   function tx(o) { if (o == null) return ''; if (typeof o === 'string') return o; return o[G.lang] || o.ja || ''; }
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-  function save() { try { localStorage.setItem('acn-saga-v1', JSON.stringify({ lang: G.lang, country: G.country, sound: G.sound, hints: G.hints, voice: G.voice, best: G.best || {}, day: dayOf('ci'), practice: !!G.practice, hintsByDay: G.hintsByDay || {}, stage: G.stage || 'ci', dayBy: dayByNow() })); } catch (e) {} }
+  function save() { try { localStorage.setItem('acn-saga-v1', JSON.stringify({ lang: G.lang, country: G.country, sound: G.sound, hints: G.hints, voice: G.voice, best: G.best || {}, day: dayOf('ci'), practice: !!G.practice, hintsByDay: G.hintsByDay || {}, stage: G.stage || 'ci', dayBy: dayByNow(), wbAc: G.wbAc || '737' })); } catch (e) {} }
   /* 2b: 근무일은 스테이지마다 따로(dayBy). 30차 설정의 day는 체크인 값 그대로 유지 */
   function dayByNow() { var m = Object.assign({}, G.dayBy || {}); if (G.stage) m[G.stage] = G.day; return m; }
   function dayOf(id) { return id === G.stage ? G.day : ((G.dayBy || {})[id] || 1); }
-  function load() { try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); ['lang', 'country', 'sound', 'hints', 'voice', 'best', 'day', 'practice', 'hintsByDay', 'stage', 'dayBy'].forEach(function (k) { if (d[k] != null) G[k] = d[k]; });
+  function load() { try { var d = JSON.parse(localStorage.getItem('acn-saga-v1') || '{}'); ['lang', 'country', 'sound', 'hints', 'voice', 'best', 'day', 'practice', 'hintsByDay', 'stage', 'dayBy', 'wbAc'].forEach(function (k) { if (d[k] != null) G[k] = d[k]; });
       G.dayBy = Object.assign({ ci: 1 }, G.dayBy || {}, d.day != null ? { ci: d.day } : {}); if (!window.SAGA_STAGES[G.stage]) G.stage = 'ci';   /* 설정의 day(체크인 근무일)가 우선 — 예전 판·시험 도구가 day만 바꿔도 그대로 통함 */
       if (!G.hintsByDay) G.hintsByDay = { 1: d.hints != null ? !!d.hints : true }; } catch (e) {} }
   function beep(f, d, type) { if (!G.sound) return; try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); var o = AC.createOscillator(), g = AC.createGain(); o.type = type || 'sine'; o.frequency.value = f; g.gain.value = .06; o.connect(g); g.connect(AC.destination); o.start(); g.gain.exponentialRampToValueAtTime(.0001, AC.currentTime + (d || .12)); o.stop(AC.currentTime + (d || .12)); } catch (e) {} }
@@ -2043,7 +2373,10 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   /* 35차 A-F01: 스테이지 자격은 근무지별(체크인편 DAY 5 클리어는 근무지마다 따로 셈). 카드 표시·스테이지 전환·출근 시작이 모두 같은 함수를 봄 */
   /* 46차(사용자 결정 10-16): 게이트편 공개 직후 미리보기 — 연습 모드에서는 체크인편 클리어 없이 STAGE 02를 엶(실전은 체크인편 실전 DAY 5 클리어 뒤 그대로). 닫을 때는 아래 한 줄을 false로. 게임 홈(hub)도 빌드 때 이 값을 읽음 */
   var GATE_PREVIEW = true;
-  function stageAllowed(id, country, practice) { if (!window.SAGA_STAGES[id]) return false; if (id === 'ci') return true; if (id === 'gt') return ciCleared(country || G.country) || (GATE_PREVIEW && (practice == null ? !!G.practice : !!practice)); return false; }
+  function stageAllowed(id, country, practice) { if (!window.SAGA_STAGES[id]) return false; if (id === 'ci') return true; var pr = practice == null ? !!G.practice : !!practice; if (id === 'gt') return ciCleared(country || G.country) || (GATE_PREVIEW && pr); if (id === 'wb') return gtCleared(country || G.country) || (WB_PREVIEW && pr); return false; }
+  /* 51차~: 게이트편 클리어 = 실전 DAY 5(B 이상·안전 합격·전원 처리). STAGE 03 해금 조건(기재와 무관) */
+  function gtCleared(country) { var g = window.SAGA_STAGES.gt; if (!g) return false; var d5 = g.days.list[4]; return !!(d5 && g.days.cleared(g.days.rec(G.hist, d5, country || G.country))); }
+  function stagePreviewOnly(id) { if (id === 'gt') return gatePreviewOnly(); if (id === 'wb') return !!window.SAGA_STAGES.wb && !gtCleared() && WB_PREVIEW && !!G.practice; return false; }
   function gatePreviewOnly(country) { return !!window.SAGA_STAGES.gt && !ciCleared(country || G.country) && GATE_PREVIEW && !!G.practice; }   /* 46차: 지금 STAGE 02가 미리보기로만 열려 있는가(카드 표시용) */
   function stageOpen(n) { var id = stageIdOf(n); return !!id && stageAllowed(id); }
   /* 근무지·설정 복원으로 지금 스테이지의 자격이 사라지면 체크인편으로 돌림(진행본은 지우지 않음 — 이어하기는 저장본의 스테이지·근무지로 복원하는 정책 그대로). 돌렸으면 true */
@@ -2561,12 +2894,12 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     /* 48차(사용자 10-17): 판매 게임 로비형 첫 화면 — 대표 그림(16:9, 로고·⚙) → 근무지·모드 한 줄 → 이어하기 → 코라돈·코라린 카드 → 열린 스테이지 카드(그림·진행 막대) + 준비 중 접기 → 탑승권형 DAY → 출근하기 → 관련 레슨. PC는 2단 */
     if (prevScr && prevScr !== 'title' && !G._fromPop) popPlayState(); G._fromPop = false;   /* 근무·결과 화면에서 버튼으로 돌아오면 넣어 둔 기록 한 칸을 되돌림 */
     var gtDef = !!window.SAGA_STAGES.gt, soon = [], cards = '';
-    var THUMB = { ci: 'checkin_bg_02', gt: 'gate_bg_01' };
+    var THUMB = { ci: 'checkin_bg_02', gt: 'gate_bg_01', wb: STG.has('wb_bg_01') ? 'wb_bg_01' : 'gate_bg_02' };
     STAGES.forEach(function (s) {
-      var sid = stageIdOf(s.n), open = !!sid && stageOpen(s.n), cur = sid === ST.id, pv = s.n === '02' && open && gatePreviewOnly();
+      var sid = stageIdOf(s.n), open = !!sid && stageOpen(s.n), cur = sid === ST.id, pv = open && stagePreviewOnly(sid);
       if (!sid) { soon.push(s); return; }
       var sd = window.SAGA_STAGES[sid].days, k = 0; sd.list.forEach(function (d) { if (d.mission && sd.cleared(sd.rec(G.hist, d, G.country))) k++; });
-      var lab = open ? (cur ? L('選択中', '선택 중', 'Selected') : pv ? L('練習で先行公開', '연습 미리 공개', 'Practice preview') : L('勤務できます', '근무 가능', 'Open')) : L('🔒 チェックイン編 DAY 5の後', '🔒 체크인편 DAY 5 후', '🔒 After Check-in DAY 5');
+      var lab = open ? (cur ? L('選択中', '선택 중', 'Selected') : pv ? L('練習で先行公開', '연습 미리 공개', 'Practice preview') : L('勤務できます', '근무 가능', 'Open')) : (window.SAGA_STAGES[sid].lockLabel || L('🔒 チェックイン編 DAY 5の後', '🔒 체크인편 DAY 5 후', '🔒 After Check-in DAY 5'));
       var th = STG.src(THUMB[sid] || '') || STG.src('checkin_bg_01');
       cards += '<button class="stg sc ' + (open ? 'play' : 'lock') + (cur ? ' on' : '') + '" ' + (open ? (cur ? 'data-go="1"' : 'data-stage="' + sid + '"') : 'disabled') + '>' + (th ? '<img src="' + th + '" alt="">' : '') + '<span class="g"></span>' +
         '<span class="t"><span class="n">STAGE ' + s.n + '</span><span class="nm">' + esc(tx(s.nm)) + '</span>' + (open ? '<span class="bar"><i style="width:' + Math.round(k / sd.list.length * 100) + '%"></i></span>' : '') + '<span class="st">' + esc(tx(lab)) + (open ? ' · ' + k + '/' + sd.list.length : '') + '</span></span></button>';
@@ -2574,6 +2907,10 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     var soonH = soon.length ? '<details class="tsoon"><summary>' + esc(tx(L('準備中のステージ ' + soon.length, '준비 중인 스테이지 ' + soon.length + '개', soon.length + ' stages coming'))) + '</summary><ul>' + soon.map(function (s) { return '<li>' + s.n + ' ' + esc(tx(s.nm)) + (s.key ? ' ★' : '') + '</li>'; }).join('') + '</ul><p>' + esc(tx(L('★ は計算の実習ステージ', '★는 계산 실습 스테이지', '★ hands-on calculation stage'))) + '</p></details>' : '';
     var s2o = stageOpen('02'), s2note = !gtDef ? '' : !s2o ? (GATE_PREVIEW ? L('STAGE 02 ゲート編：チェックイン編の本番DAY 5をクリアすると開きます（練習モードなら先に体験できます）', 'STAGE 02 게이트편: 체크인편 실전 DAY 5를 통과하면 열립니다(연습 모드에서는 미리 해 볼 수 있습니다)', 'STAGE 02 Gate: opens after you clear Check-in DAY 5 in Shift mode (try it early in Practice)') : L('STAGE 02 ゲート編：チェックイン編の本番DAY 5をクリアすると開きます', 'STAGE 02 게이트편: 체크인편 실전 DAY 5를 통과하면 열립니다', 'STAGE 02 Gate: opens after you clear Check-in DAY 5 in Shift mode'))
       : gatePreviewOnly() ? L('STAGE 02 ゲート編：練習モードで先行公開中（本番はチェックイン編の本番DAY 5クリア後）', 'STAGE 02 게이트편: 연습 모드 미리 공개 중(실전은 체크인편 실전 DAY 5 통과 후)', 'STAGE 02 Gate: practice preview (Shift mode after Check-in DAY 5)') : '';
+    /* 51차~: STAGE 03 탑재관리편 안내(잠김·미리 공개) */
+    var s3note = !window.SAGA_STAGES.wb ? '' : !stageOpen('03') ? L('STAGE 03 ロードコントロール編：ゲート編の本番DAY 5をクリアすると開きます（練習モードなら先に体験できます）', 'STAGE 03 탑재관리편: 게이트편 실전 DAY 5를 통과하면 열립니다(연습 모드에서는 미리 해 볼 수 있습니다)', 'STAGE 03 Load control: opens after you clear Gate DAY 5 in Shift mode (try it early in Practice)')
+      : stagePreviewOnly('wb') ? L('STAGE 03 ロードコントロール編：練習モードで先行公開中', 'STAGE 03 탑재관리편: 연습 모드 미리 공개 중', 'STAGE 03 Load control: practice preview') : '';
+    if (s3note) s2note = s2note ? { ja: s2note.ja + ' ／ ' + s3note.ja, ko: s2note.ko + ' / ' + s3note.ko, en: s2note.en + ' / ' + s3note.en } : s3note;
     var dd = curDay(); G.day = dd.n; applyDayHints(dd.n);
     var days = DY.list.map(function (d) {
       var stt = DY.status(G.hist, d.n, G.country, G.practice), r = DY.rec(G.hist, d, G.country);
@@ -2599,6 +2936,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       '<div class="qbar"><div class="seg" id="segc"><button data-c="JP" class="' + (G.country === 'JP' ? 'on' : '') + '">' + esc(tx(L('日本', '일본', 'Japan'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button><button data-c="KR" class="' + (G.country === 'KR' ? 'on' : '') + '">' + esc(tx(L('韓国', '한국', 'Korea'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button></div>' +
       '<div class="seg mode" id="segmode" role="group"><button id="tg-c" aria-pressed="' + !G.practice + '" class="' + (G.practice ? '' : 'on') + '">' + esc(tx(T.modeC)) + '<small>' + esc(tx(L('順番に', '차례대로', 'In order'))) + '</small></button><button id="tg-p" aria-pressed="' + !!G.practice + '" class="' + (G.practice ? 'on' : '') + '">' + esc(tx(T.modeP)) + '<small>' + esc(tx(L('どの日も', '모든 날', 'Any day'))) + '</small></button></div></div>' +
       '<p class="modenote">' + esc(tx(G.practice ? L('練習：どの日もすぐ選べます。記録は別に残り、本番の進み具合は変わりません。', '연습: 어느 날이든 바로 고를 수 있습니다. 기록은 따로 남고, 실전 진행에는 영향이 없습니다.', 'Practice: pick any day. Results are kept separately and do not change your shift progress.') : L('本番：前の日をB以上・安全合格で終えると次の日が開きます。', '실전: 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.', 'Shift: clear a day with B or better and a safety pass to open the next.'))) + '</p>' +
+      (ST.id === 'wb' ? '<div class="seg acseg" id="segac">' + [['737', 'B737-800', L('バルク', '벌크', 'bulk')], ['789', 'B787-9', L('ULD', 'ULD', 'ULD')]].map(function (x) { return '<button data-ac="' + x[0] + '" class="' + (wbAcKey() === x[0] ? 'on' : '') + '">' + x[1] + '<small>' + esc(tx(x[2])) + '</small></button>'; }).join('') + '</div>' : '') +
       runPanelHtml() +
       '<div class="twins"><div class="tw y"><img src="' + STG.src('koradon_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラドン', '코라돈', 'Koradon'))) + '</b><p>' + esc(tx(L('ヒント担当。迷ったときに声をかけてくれる兄', '힌트 담당. 헷갈릴 때 말을 걸어 주는 형', 'Tips — the elder twin who helps when you are stuck'))) + '</p></div></div>' +
       '<div class="tw g"><img src="' + STG.src('korarin_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラリン', '코라린', 'Korarin'))) + '</b><p>' + esc(tx(L('ルール担当。安全に厳しめの妹', '규칙 담당. 안전에 엄격한 동생', 'Rules — the younger twin, strict about safety'))) + '</p></div></div></div>' +
@@ -2606,7 +2944,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       '</div><div class="tr"><div class="tday" id="tday"><h2>STAGE ' + ST.stageNo + ' · ' + esc(tx(T.days)) + '</h2>' +
       '<div class="days" id="days">' + days + '</div>' +
       (G.hints && !G.practice ? '<p class="small" style="margin:6px 0 0">' + esc(tx(L('ヒントON：DAY 1はSまで、DAY 2以降は最高Aになります。', '힌트 켬: DAY 1은 S까지, DAY 2부터는 최고 A입니다.', 'Tips on: DAY 1 can reach S; from DAY 2 the best is A.'))) + '</p>' : '') +
-      hashNoteHtml() + '<button class="start" id="go">' + esc(tx(T.start)) + ' ▶<small>' + (G.practice ? esc(tx(T.modeP)) + ' · ' : '') + 'DAY ' + dd.n + ' ' + esc(tx(dd.nm)) + ' · ' + V0.flight + ' ' + V0.from + '→' + V0.to + '</small></button>' + lesH + '</div>' +
+      hashNoteHtml() + '<button class="start" id="go">' + esc(tx(T.start)) + ' ▶<small>' + (G.practice ? esc(tx(T.modeP)) + ' · ' : '') + 'DAY ' + dd.n + ' ' + esc(tx(dd.nm)) + ' · ' + V0.flight + ' ' + V0.from + '→' + V0.to + (ST.id === 'wb' ? ' · ' + (wbAcKey() === '789' ? 'B787-9' : 'B737-800') : '') + '</small></button>' + lesH + '</div>' +
       '<p class="fine">' + esc(tx(T.edu)) + '</p><p class="fine">' + esc(tx(T.credit)) + '</p></div></div>';
     $('#seglang').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; setLang(b.dataset.l); };
     $('#segc').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; G.country = b.dataset.c; save(); ensureStageAllowed(); renderTitle(); };   /* 35차 A-F01: 근무지를 바꾸면 그 근무지의 자격으로 다시 판단 */
@@ -2614,6 +2952,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     $('#tg-s').onclick = function () { G.sound = !G.sound; save(); renderTitle(); };
     $('#tg-v').onclick = function () { G.voice = !G.voice; VO.on = G.voice; save(); renderTitle(); };
     $('#go').onclick = startMission; bindRunPanel();
+    var sac = $('#segac'); if (sac) sac.onclick = function (e) { var b = e.target.closest('button[data-ac]'); if (!b || G.resuming) return; G.wbAc = b.dataset.ac; save(); renderTitle(); };   /* 51차~: 탑재관리편 기재 선택 */
     $('#kvset').onclick = function () { var p = $('#tsetp'), op = p.hidden; p.hidden = !op; this.setAttribute('aria-expanded', String(op)); };   /* 48차: ⚙ 설정(힌트·효과음·음성) */
     $('#tg-p').onclick = function () { if (G.practice) return; G.practice = true; save(); renderTitle(); };
     $('#tg-c').onclick = function () { if (!G.practice) return; G.practice = false; ensureStageAllowed(); save(); renderTitle(); };   /* 46차: 미리보기로 연 STAGE 02에서 실전으로 바꾸면 자격을 다시 봄(없으면 체크인편) */
@@ -4971,7 +5310,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   }
   var _stgPose = STG.pose, _gatePose = 'idle';
   STG.pose = function (pose, back) {   /* 게이트 근무 중에는 게이트 직원 그림으로 포즈 교체(체크인은 원래 함수) */
-    if (!ST || ST.id !== 'gt' || !gArt('staff_gate_idle_01')) return _stgPose(pose, back);
+    if (!ST || (ST.id !== 'gt' && ST.id !== 'wb') || !gArt('staff_gate_idle_01') || (ST.id === 'wb' && STG.has('staff_wb_input_01'))) return _stgPose(pose, back);
     var el = document.querySelector('#agentwrap img'); if (!el) return;
     var id = gStaffId(pose || 'idle'); if (id === el.getAttribute('data-asset')) return;
     el.style.opacity = .35; setTimeout(function () { var n = document.createElement('div'); n.innerHTML = STG.img(id, 'agent', 21, -14, 78, false, ''); var ni = n.firstChild; if (ni && el.parentNode) el.parentNode.replaceChild(ni, el); }, 90);
@@ -5473,6 +5812,654 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       return null;
     };
   })();
+  /* ================= STAGE 03 탑재관리편(W&B) — 합의본 v2 · Day 1 =================
+     계산은 window.WB(src_wb/wb_calc.js — 사이트 도구 「搭載計算の練習」과 같은 숫자 모델). 그림은 v05가 오기 전까지 게이트편 그림을 임시로 씀.
+     기재는 G.wbAc('737' | '789'), 기록 열쇠는 wb.dN.{JP|KR}.{737|789}(+.practice) */
+  var WB_PREVIEW = true;   /* 게이트편 실전 DAY 5 전이라도 연습 모드에서는 STAGE 03을 미리 공개 */
+  function wbAcKey() { return G.wbAc === '789' ? '789' : '737'; }
+  var WB_LIST = [
+    { n: 1, id: 'wb.d1', mission: window.MISSION_WB01 || null, hints: true, nm: L('はじめてのロードシート', '첫 로드시트', 'First load sheet'), learn: L('搭載計画・LIR・検算・最終人数・機長への提出', '탑재 계획·LIR·검산·최종 인원·기장 제출', 'Load plan, LIR, cross-check, final figures, captain sign-off') },
+    { n: 2, id: 'wb.d2', mission: window.MISSION_WB02 || null, hints: true, nm: L('重い便', '무거운 편', 'A heavy flight'), learn: L('貨物室の上限・重心の限界（前寄り）・搭載量の超過', '화물칸 상한·무게중심 한계(앞쪽 치우침)·허용 초과', 'Hold limits, CG limits (forward), overload') },
+    { n: 3, id: 'wb.d3', mission: window.MISSION_WB03 || null, hints: true, nm: L('特別な搭載物', '특수 탑재물', 'Special loads'), learn: L('ドライアイス・動物・電動車いす・生鮮・重量物', '드라이아이스·동물·전동 휠체어·신선식품·중량물', 'Dry ice, animals, powered wheelchairs, perishables, heavy items') },
+    { n: 4, id: 'wb.d4', mission: null, nm: L('イレギュラー①', '비정상 ①', 'Irregular ops 1'), learn: L('LMC・燃料変更・機体変更', 'LMC·연료 변경·기체 변경', 'LMC, fuel change, aircraft swap') },
+    { n: 5, id: 'wb.d5', mission: null, nm: L('イレギュラー②', '비정상 ②', 'Irregular ops 2'), learn: L('スタンバイ・空いた便の重心（後ろ寄り）・遅延', '대기 승객·빈 편 무게중심(뒤쪽 치우침)·지연', 'Standby, light-load CG (aft), delays') }
+  ];
+  var WB_BASE = window.SAGA_DAYS.make(WB_LIST);
+  var WB_DAYS = Object.assign({}, WB_BASE, {
+    key: function (d, c) { return WB_BASE.key(d, c) + '.' + wbAcKey(); },
+    rec: function (h, d, c) { return (h || {})[WB_BASE.key(d, c) + '.' + wbAcKey()] || null; },
+    record: function (h, d, c, run) { return WB_BASE.record(h, d, c + '.' + wbAcKey(), run); },
+    status: function (h, n, c, p) { var d = WB_LIST[n - 1]; if (!d || !d.mission) return 'soon'; if (n === 1 || p) return 'open'; return WB_BASE.cleared(WB_DAYS.rec(h, WB_LIST[n - 2], c)) ? 'open' : 'lock'; }
+  });
+  var WB_TEXT = {
+    days: L('ロードコントロール編 ― ロードシート1枚の5日間', '탑재관리편 — 로드시트 한 장의 5일', 'Load control — five days of load sheets'),
+    next: L('次の作業へ', '다음 작업으로', 'Next task'),
+    tabs: { prep: L('便の準備', '편 준비', 'Flight prep'), lir: L('搭載計画・LIR', '탑재 계획·LIR', 'Load plan · LIR'), rep: L('中間報告', '중간 보고', 'Interim report'), pre: L('予備ロードシート', '예비 로드시트', 'Prelim sheet'),
+      fin: L('最終データ', '최종 자료', 'Final figures'), notoc: L('機長への通知書', '기장 통보서', 'Captain notification'), sub: L('機長へ提出', '기장 제출', 'To captain'), ldm: L('記録', '기록', 'Records') },
+    eduData: L('教育用の仮想モデル・実際の運航には使用できません', '교육용 가상 모델 · 실제 운항 사용 금지', 'Educational model — not for operational use'),
+    allDone: L('ロードコントロール編の5日間をすべて終えました。', '탑재관리편 5일을 모두 마쳤습니다.', 'You have finished all five days of the load control chapter.'),
+    lastDayHow: L('次の日は準備中です。まず今日を復習しましょう。', '다음 날은 준비 중입니다. 먼저 오늘을 복습해 보세요.', 'The next day is coming soon. Review today first.'),
+    resumeProg: function (c) { return tx(L(c.completedPaxCount + '/' + c.total + ' 件 完了 · ' + (c.completedPaxCount + 1) + '件目から続ける', c.completedPaxCount + '/' + c.total + '건 완료 · ' + (c.completedPaxCount + 1) + '번째부터 이어하기', c.completedPaxCount + '/' + c.total + ' steps done · continue from step ' + (c.completedPaxCount + 1))); },
+    resumeMsg: function (done) { return L('前回の続き：' + done + '件目まで終わったところから再開しました。作業の途中の内容は保存されないため、次の作業から始まります。', '이어하기: ' + done + '번째 작업까지 마친 곳에서 다시 시작했습니다. 작업 도중의 내용은 저장되지 않으므로 다음 작업부터 시작합니다.', 'Resumed after step ' + done + '. Work partway through a step is not saved, so you continue with the next step.'); },
+    resumeNote: L('作業の途中の内容は保存されません（最後に終えた作業の次から）', '작업 도중의 내용은 저장되지 않습니다(마지막으로 마친 작업 다음부터)', 'Work partway through a step is not saved (you restart at the next step)'),
+    afterClose: null
+  };
+  var WB_RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'strikes', 'seq', 'evChecks', 'evRep', 'safety', 'acKey', 'plan', 'issued', 'repOk', 'entered', 'finConf', 'chkWrong', 'ed', 'subAt', 'subTries', 'frozenAt', 'struck', 'lirAt', 'preAt', 'handAt', 'spcChk', 'ex', 'exDone', 'exMove', 'notoc', 'lirC'];
+  var WB_RUNSKIP = GATE_RUNSKIP;
+  var WMISSL = {
+    'wb-prep': L('便の準備の確認を飛ばした', '편 준비 확인 누락', 'Skipped flight prep checks'),
+    'wb-lir-cg': L('重心が範囲外のままLIRを出そうとした', '무게중심이 범위 밖인 채 LIR 발행 시도', 'Tried to issue the LIR with the CG out of limits'),
+    'wb-lir-limit': L('貨物室・ULDの制限を超えたLIRを出そうとした', '화물칸·ULD 제한을 넘는 LIR 발행 시도', 'Tried to issue an LIR that breaks hold/ULD limits'),
+    'wb-report': L('中間報告をLIRと照合せずに受けた', '중간 보고를 LIR과 대조하지 않고 받음', 'Accepted the interim report without checking it against the LIR'),
+    'wb-pax': L('最終人数と違うロードシートを提出しようとした', '최종 인원과 다른 로드시트 제출 시도', 'Tried to submit a load sheet that differs from the final figures'),
+    'wb-final': L('最終の実搭載の確認を受けずに提出しようとした', '최종 실탑재 확인 없이 제출 시도', 'Tried to submit without the final actual-load confirmation'),
+    'wb-sheet': L('制限・重心の範囲外のロードシートを提出しようとした', '제한·무게중심 범위 밖 로드시트 제출 시도', 'Tried to submit a load sheet outside limits'),
+    'wb-notoc': L('機長への通知の対象を確認しなかった', '기장 통보 대상 확인 누락', 'Did not check what needs notifying to the captain'),
+    'wb-ldm': L('出発後の記録を省いた', '출발 후 기록 생략', 'Skipped the post-departure records')
+  };
+  var WACT = { 'wb-prep': 'complete-flight-prep', 'wb-lir-cg': 'balance-before-issuing-lir', 'wb-lir-limit': 'respect-hold-and-uld-limits', 'wb-report': 'compare-report-with-lir', 'wb-pax': 'use-final-figures',
+               'wb-final': 'get-final-load-confirmation', 'wb-sheet': 'submit-only-within-limits', 'wb-notoc': 'check-captain-notification', 'wb-ldm': 'file-departure-records' };
+  WMISSL['wb-off-order'] = L('降ろす順番を誤った（一般貨物→郵便→手荷物）', '내리는 순서 오류(일반 화물 → 우편 → 수하물)', 'Offloaded in the wrong order (cargo → mail → bags)');
+  WMISSL['wb-off-extra'] = L('必要以上に降ろした', '필요 이상으로 내림', 'Offloaded more than needed');
+  WMISSL['wb-notice'] = L('降ろした内容を貨物・旅客部門に連絡しなかった', '내린 내역을 화물·여객 부서에 연락하지 않음', 'Did not tell cargo/passenger services what was offloaded');
+  WACT['wb-off-order'] = 'offload-in-order'; WACT['wb-off-extra'] = 'offload-only-what-is-needed'; WACT['wb-notice'] = 'notify-offload';
+  WMISSL['wb-seg'] = L('動物とドライアイスを同じ貨物室に／動物を条件の合わない貨物室に置いたまま進めた', '동물과 드라이아이스를 같은 칸에 / 동물을 조건이 안 맞는 칸에 둔 채 진행', 'Proceeded with the animal next to dry ice or in an unsuitable hold');
+  WMISSL['wb-ice'] = L('ドライアイスの受託確認をせずに搭載を確定しようとした', '드라이아이스 수락 확인 없이 탑재 확정 시도', 'Tried to confirm loading without the dry-ice acceptance check');
+  WMISSL['wb-wch'] = L('電動車いすの電池確認をせずに搭載を確定しようとした', '전동 휠체어 배터리 확인 없이 탑재 확정 시도', 'Tried to confirm loading without the wheelchair battery checks');
+  WMISSL['wb-hea'] = L('重量物の台・分散・固定の確認をせずに搭載を確定しようとした', '중량물 받침·분산·고정 확인 없이 탑재 확정 시도', 'Tried to confirm loading without the heavy-item checks');
+  WMISSL['wb-notoc-miss'] = L('機長への通知書に必要な項目が欠けたまま提出しようとした', '기장 통보서에 필요한 항목이 빠진 채 제출 시도', 'Tried to submit with required captain-notification entries missing');
+  WMISSL['wb-except'] = L('例外の報告を隔離の確認なしにそのまま受けた', '예외 보고를 격리 확인 없이 그대로 받음', 'Accepted the exception report without checking separation');
+  WMISSL['wb-spc'] = L('特別な搭載物の確認を一部飛ばした', '특수 탑재물 확인 일부 누락', 'Skipped some special-load checks');
+  WMISSL['wb-notoc-extra'] = L('通知書の区分を誤った（不要な危険物欄）', '통보서 구분 오류(불필요한 위험물 칸)', 'Wrong notification section (unneeded DG entry)');
+  ['wb-seg', 'wb-ice', 'wb-wch', 'wb-hea', 'wb-notoc-miss'].forEach(function (k) { WACT[k] = 'special-load-safety'; }); WACT['wb-spc'] = 'check-special-loads'; WACT['wb-notoc-extra'] = 'classify-notoc';
+  var WOPS = ['wb-report', 'wb-off-order'];   /* 업무(최고 A) */
+  var WSAFE = ['wb-lir-limit', 'wb-pax', 'wb-final', 'wb-sheet', 'wb-seg', 'wb-ice', 'wb-wch', 'wb-hea', 'wb-notoc-miss'];
+  function wbT() { return V.t; }
+  function wbA() { return WB.ac(S.acKey); }
+  function wbD() { return M.data[S.acKey]; }
+  function wbNum(n) { return Math.round(n).toLocaleString('en-US'); }
+  function wbOff(id) { return S.plan[id] === 'X'; }   /* Day 2~: 내림(오프로드)으로 정한 탑재물 */
+  function wbUldsOn() { var d = wbD(); return d.ulds.filter(function (u) { return !wbOff(u.id); }).map(function (u) { return { id: u.id, type: u.type, content: u.content, pos: S.plan[u.id] || '', fixed: true }; }); }
+  function wbLoadsC() {   /* 계획(=실탑재) → 칸별 kg. 내림(X)은 뺌 */
+    var a = wbA(), d = wbD();
+    if (S.acKey === '789') { var c9 = WB.uldToCpt(a, wbUldsOn(), d.bulk5.kg); if (S.exMove) { c9[S.exMove.from] -= S.exMove.kg; c9[S.exMove.to] += S.exMove.kg; } return c9; }
+    var c = a.cpt.map(function () { return 0; }); d.items.forEach(function (it) { var j = S.plan[it.id]; if (j != null && j !== '' && j !== 'X') c[+j] += it.kg; }); return c;
+  }
+  function wbUnits() { var d = wbD(); return S.acKey === '789' ? d.ulds.map(function (u) { return { id: u.id, kind: u.kind, kg: u.content + WB.ULD_TYPES[u.type].tare }; }) : d.items.map(function (it) { return { id: it.id, kind: it.kind, kg: it.kg }; }); }
+  function wbState(p) { var a = wbA(); return { ad: p.ad, ch: p.ch, inf: p.inf, z: p.z.slice(), c: wbLoadsC(), tof: a.d[5], trip: a.d[6] }; }
+  function wbLive(c) { return !!c && S.cur === c && G.screen === 'play' && !S.leaving && !c.flags.done; }
+  function wbDone(c) { if (!wbLive(c)) return false; c.flags.done = true; document.querySelectorAll('#scr button,#scr input,#scr select').forEach(function (b) { b.disabled = true; }); return true; }
+  function wbEnd(ms) {
+    if (S.leaving) return; S.leaving = true; document.body.classList.add('busy');
+    var mine = S.cur; S.leaveGo = function () { if (S.cur !== mine || G.screen !== 'play') return; S.leaving = false; S.leaveGo = null; document.body.classList.remove('busy'); say('me', ''); wbCall(null); nextUnit(); };
+    setTimeout(function () { if (S.leaveGo) S.leaveGo(); }, ms || 400);
+  }
+  function wbBad(code, text, lesson) { note('bad', text, lesson || null, code); }
+  function wbStrike(code, text, lesson) {   /* 3A: 같은 사건(코드)은 한 번만 안전 C로 기록 */
+    S.struck = S.struck || {}; note('bad', text, lesson || null, code);
+    STG.pose('trouble'); if (S.struck[code]) return; S.struck[code] = 1; S.strikes++; S.safety.push({ who: wbUnitName(S.cur), code: code, what: WMISSL[code] });
+  }
+  var WCALL = { lm: L('ロードマスター（ハンドリング）', '탑재 책임자(조업사)', 'Loadmaster (handling)'), gate: L('ゲートSV', '게이트 SV', 'Gate SV'), cap: L('機長', '기장', 'Captain'), ops: L('運航管理', '운항관리', 'Dispatch') };
+  var WCALLART = { lm: 'people_loadmaster_bust_01', gate: 'staff_sv_01', cap: 'people_captain_bust_01', ops: 'people_dispatcher_bust_01' };
+  function wbCall(who, text) {   /* 무전·전화 창 + 말풍선(v05 상반신 그림. 게이트 SV는 v04 staff_sv_01). 조업사·기장 = 무전 자세, 게이트·운항관리 = 전화 자세 */
+    var w = $('#wbradio'), el = $('#bpx'); if (!w || !el) return;
+    if (!who) { w.classList.add('hide'); el.classList.add('hide'); if (S) { S.bub = S.bub || {}; S.bub.pax = null; } return; }
+    var art = STG.has(WCALLART[who]) ? WCALLART[who] : 'staff_sv_01';
+    w.innerHTML = (STG.has(art) ? '<img src="' + STG.src(art) + '" alt="">' : '') + '<b>' + esc(tx(WCALL[who])) + '</b><span>' + (who === 'gate' ? '☎' : '📻') + '</span>'; w.classList.remove('hide');
+    STG.pose(who === 'gate' || who === 'ops' ? 'phone' : 'radio');
+    if (!text) { el.classList.add('hide'); return; }
+    el.innerHTML = '<span class="who">' + esc(tx(WCALL[who])) + '</span>' + esc(tx(text)); el.classList.remove('hide');
+    S.bub = S.bub || {}; S.bub.pax = null;
+  }
+  function wbUnitName(c) { return tx(WB_TEXT.tabs[c.p.kind] || L('作業', '작업', 'Step')); }
+  function wbHint(kind) {
+    var H = {
+      prep: L('まずは便の条件を1つずつ確認。機体の重さ（DOW）と3つの最大重量、貨物室の上限、燃料が計算の出発点だよ。', '먼저 편의 조건을 하나씩 확인해. 기체 무게(DOW)와 최대 중량 3개, 화물칸 상한, 연료가 계산의 출발점이야.', 'Check the flight data one by one: DOW, the three maximum weights, hold limits and fuel are where the maths starts.'),
+      lir: L('前と後ろに分けて積もう。片方に寄せると重心（%MAC）が範囲の外に出る。貨物室ごとの上限も超えないでね。', '앞뒤로 나눠 실어. 한쪽에 몰면 무게중심(%MAC)이 범위 밖으로 나가. 화물칸마다 상한도 넘지 말고.', 'Split the load fore and aft. Piling it one way pushes the CG out of limits — and keep under each hold limit.'),
+      rep: L('ハンドリングの報告がLIRと同じか、貨物室ごとに見比べてから受けよう。', '조업사 보고가 LIR과 같은지 화물칸별로 비교하고 받아.', 'Compare the handling report with the LIR hold by hold before you accept it.'),
+      pre: L('TTL＝お客様＋貨物室。ZFW＝DOW＋TTL。TOW＝ZFW＋離陸燃料。LAW＝TOW−飛行燃料。許される離陸重量は3つのうち一番小さい値。余裕＝許される離陸重量−TOW。', 'TTL = 승객 + 화물칸. ZFW = DOW + TTL. TOW = ZFW + 이륙 연료. LAW = TOW − 비행 연료. 허용 이륙 중량은 3개 중 가장 작은 값. 여유 = 허용 − TOW.', 'TTL = passengers + holds. ZFW = DOW + TTL. TOW = ZFW + take-off fuel. LAW = TOW − trip fuel. Allowed TOW = the smallest of the three. Underload = allowed − TOW.'),
+      fin: L('予約の人数ではなく、ゲートの最終人数で。区画ごとの人数の合計が大人＋小児と合うかも見て。最終の実搭載の確認も忘れずに。', '예약 인원이 아니라 게이트 최종 인원으로. 구역별 합계가 성인+소아와 맞는지도 봐. 최종 실탑재 확인도 잊지 말고.', 'Use the gate’s final figures, not the booking. Zone totals must equal adults + children. Do not forget the final actual-load confirmation.'),
+      sub: L('範囲の外や、最終と違う数字のロードシートは機長に出してはだめ。出す前に自分で直せば大丈夫。', '범위 밖이거나 최종과 다른 숫자의 로드시트는 기장에게 내면 안 돼. 내기 전에 스스로 고치면 괜찮아.', 'Never hand the captain a sheet that is out of limits or differs from the final figures. Fixing it before you submit is fine.'),
+      ldm: L('出発したら、搭載の電文とロードシートを記録して保管。', '출발하면 탑재 전문과 로드시트를 기록·보관.', 'After departure, file the load message and keep the load sheet.')
+    };
+    if (M.special) {   /* Day 3 특수 탑재물 */
+      H.prep = L('今日は特別な搭載物がある便。準備で何が来るか確かめておこう。', '오늘은 특수 탑재물이 있는 편. 준비 단계에서 무엇이 오는지 확인해 둬.', 'Special loads today. Check what is coming during prep.');
+      H.lir = L('動物は温度・換気の合う貨物室だけ。ドライアイス入りのもの（生鮮のなかの保冷用も！）と同じ貨物室はだめ。電動車いすは電池の5項目、重量物は台・分散・固定を確認してからLIRを出そう。', '동물은 온도·환기가 맞는 칸만. 드라이아이스가 든 것(신선식품 보냉용도!)과 같은 칸은 안 돼. 전동 휠체어는 배터리 5항목, 중량물은 받침·분산·고정을 확인한 뒤 LIR을 내자.', 'Animals only in a suitable hold, never with anything containing dry ice (including the dry ice packed with perishables!). Check the 5 wheelchair-battery items and the heavy-item checks before issuing the LIR.');
+      H.rep = L('ハンドリングが貨物を動かしたら、そのまま受けないで。移した先に何があるか、隔離・上限・重心を再検査してから決めよう。', '조업사가 짐을 옮겼다면 그대로 받지 마. 옮긴 곳에 무엇이 있는지, 격리·상한·무게중심을 재검사한 뒤 정해.', 'If handling moved something, do not just accept it. Re-check what is in that hold — separation, limits and CG — before deciding.');
+      H.notoc = L('ドライアイスは危険物（DG NOTOC）。生鮮に入っているドライアイスもDG、生鮮そのものは特別な搭載物。動物・電動車いす・重量物は「特別な搭載物・補助具」の欄。', '드라이아이스는 위험물(DG NOTOC). 신선식품 속 드라이아이스도 DG, 신선식품 자체는 특수 탑재물. 동물·전동 휠체어·중량물은 「특수 탑재물·보조기」 칸.', 'Dry ice is dangerous goods (DG NOTOC) — including the dry ice inside perishables; the perishable itself is a special load. Animal, wheelchair and heavy item go in the special-load / mobility-aid section.');
+    }
+    if (M.day >= 2) {   /* Day 2 무거운 편 */
+      if (!M.special) H.lir = L('今日は満席で貨物も多い便。予約人数のまま全部積むと、許される離陸重量を超えるよ。超える分だけ、一般貨物 → 郵便 → 手荷物の順で降ろして、貨物・旅客部門に連絡。貨物室の上限と、チャートの重心も見てね。', '오늘은 만석에 화물도 많은 편. 예약 인원 그대로 다 실으면 허용 이륙 중량을 넘어. 넘는 만큼만 일반 화물 → 우편 → 수하물 순서로 내리고, 화물·여객 부서에 연락해. 화물칸 상한과 차트의 무게중심도 봐.', 'A full flight with lots of cargo. Loading everything with the booked passengers goes over the allowed take-off weight. Offload only the excess — cargo, then mail, then bags — and tell cargo and passenger services. Watch the hold limits and the CG on the chart.');
+      H.pre = L('今日から指数（INDEX）も検算。ZFWの指数＝DOI＋表の指数変化の合計、TOWの指数＝ZFWの指数＋離陸燃料の指数。重量は昨日と同じ式だよ。', '오늘부터 지수(INDEX)도 검산해. ZFW 지수 = DOI + 표의 지수 변화 합계, TOW 지수 = ZFW 지수 + 이륙 연료 지수. 중량은 어제와 같은 식이야.', 'From today, cross-check the index too: ZFW index = DOI + the index changes in the table; TOW index = ZFW index + take-off fuel index. Weights use the same formulas as yesterday.');
+    }
+    return G.hints ? H[kind] : null;
+  }
+  /* 52차 보완 1(GPT): 최종 자료 수신·대조(fin) 동안 시계를 아예 멈춤(버튼을 눌러도 시각이 가지 않음). 작업 시간은 단위 기록(mins)에만 남김 */
+  function wbTime(m) { if (S.cur && S.cur.p.kind === 'fin' && S.frozenAt != null) { S.cur.mins += m; updateBar(); return; } addTime(m); }
+  function wbStart(u) {
+    S.cur = { p: u, mood: 100, mins: 0, tab: u.kind, notes: [], chk: {}, bags: [], flags: {}, acts: {}, selfFix: [], needSV: false, svDone: false };
+    if (u.at && S.clock < pm(u.at) && u.kind !== 'sub') S.clock = pm(u.at);
+    if (u.kind === 'fin') S.frozenAt = S.clock;   /* 합의본 2절 ⑤: 최종 자료 수신·대조 동안 시계 멈춤 */
+    STG.pax(null); say('me', ''); wbCall(null);
+    updateBar(); guide(wbHint(u.kind)); renderTabs(); showTab(u.kind);
+  }
+  function wbKV(rows) { return '<dl class="kv">' + rows.map(function (r) { return '<dt>' + esc(tx(r[0])) + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>'; }
+  function wbEdu() { return '<p class="wbedu">' + esc(tx(WB_TEXT.eduData)) + '</p>'; }
+  /* ---------- ① 편 준비 ---------- */
+  var WPREP = [['reg', L('登録記号・DOW・DOI', '등록 기호·DOW·DOI', 'Registration, DOW, DOI')], ['max', L('最大重量3つ（ZFW・TOW・LAW）', '최대 중량 3개(ZFW·TOW·LAW)', 'The three max weights (ZFW, TOW, LAW)')], ['cpt', L('貨物室の上限', '화물칸 상한', 'Hold limits')],
+    ['fuel', L('燃料（運航管理の確認済み条件）', '연료(운항관리 확인 완료 조건)', 'Fuel (dispatch-confirmed)')], ['pax', L('予約人数と区画', '예약 인원과 구역', 'Booked passengers and zones')], ['spc', L('特別な搭載物の予告', '특수 탑재물 예고', 'Special-load notices')]];
+  function wbTabPrep() {
+    var c = S.cur, a = wbA(), d = wbD(); c.chk.prep = c.chk.prep || {};
+    scr('<div class="h3">' + esc(tx(L('便の準備チェック', '편 준비 체크', 'Flight prep checklist'))) + '</div>' +
+      wbKV([[T.flight, esc(V.flight + ' ' + V.from + '→' + V.to + ' · STD ' + V.std)], [L('機材', '기재', 'Aircraft'), esc(a.id + ' · ' + d.reg + ' · ' + a.ver)], ['DOW / DOI', wbNum(a.dow) + ' kg / ' + a.doi.toFixed(1)],
+        ['MAX ZFW / TOW / LAW', wbNum(a.mzfw) + ' / ' + wbNum(a.mtow) + ' / ' + wbNum(a.mlw)], [L('貨物室の上限', '화물칸 상한', 'Hold limits'), a.cpt.map(function (x) { return x.id + ': ' + wbNum(x.max); }).join(' · ')],
+        [L('燃料（離陸／飛行）', '연료(이륙/비행)', 'Fuel (take-off / trip)'), wbNum(a.d[5]) + ' / ' + wbNum(a.d[6]) + ' kg'], [L('予約', '예약', 'Booked'), d.book.ad + ' / ' + d.book.ch + ' / ' + d.book.inf + ' (' + a.zl.map(function (z, i) { return 'ABC'.charAt(i) + ' ' + d.book.z[i]; }).join(' · ') + ')'],
+        [L('特別な搭載物', '특수 탑재물', 'Special loads'), M.special ? wbSpc().map(function (x) { return '<span class="pill spc">' + esc(tx(WSPN[x.spc.t])) + (x.spc.ice && x.spc.t !== 'ICE' ? '+' + esc(tx(WSPN.ICE)) : '') + '</span> ' + esc(x.id); }).join(' ') : esc(tx(L('今日はなし', '오늘은 없음', 'None today')))]]) +
+      '<div class="chk">' + WPREP.map(function (it) { return '<button data-k="' + it[0] + '" data-a="prep-' + it[0] + '"><span>' + esc(tx(it[1])) + '</span><span class="st">' + (c.chk.prep[it[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      '<div class="btns"><button class="btn pri" id="w-prepdone" data-a="ok">' + esc(tx(L('準備完了', '준비 완료', 'Prep done'))) + '</button></div>' + wbEdu());
+    document.querySelectorAll('#scr .chk button').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; sfx.tap(); c.chk.prep[b.dataset.k] = true; wbTime(M.cost.check); wbTabPrep(); }; });
+    $('#w-prepdone').onclick = function () {
+      if (!wbDone(c)) return;
+      var miss = WPREP.filter(function (it) { return !c.chk.prep[it[0]]; });
+      if (miss.length) wbBad('wb-prep', function () { return tx(L('準備の確認を飛ばしました：', '준비 확인을 건너뛰었습니다: ', 'Skipped prep checks: ')) + miss.map(function (it) { return tx(it[1]); }).join(' / '); }, 'passenger/3-4');
+      else note('good', L('便の条件を6項目すべて確認しました。', '편 조건 6항목을 모두 확인했습니다.', 'Checked all six flight-prep items.'), 'passenger/3-4');
+      wbTime(M.cost.prep); sfx.ok(); wbEnd();
+    };
+  }
+  /* ---------- 간이 차트(%MAC 막대): ZFW·TOW·LAW 점과 엔벨로프 ---------- */
+  function wbMacBar(r) {
+    var X = function (p) { return Math.max(0, Math.min(100, (p - 5) / 40 * 100)); };
+    function row(lab, p, env) { var ok = p >= env[0] && p <= env[1]; return '<div class="wbmac"><span class="l">' + lab + '</span><span class="tr"><i class="env" style="left:' + X(env[0]) + '%;width:' + (X(env[1]) - X(env[0])) + '%"></i><i class="pt ' + (ok ? 'ok' : 'ng') + '" style="left:' + X(p) + '%"></i></span><span class="v ' + (ok ? 'ok' : 'ng') + '">' + p.toFixed(1) + '</span></div>'; }
+    return '<div class="wbmacs">' + row('ZFW', r.mz, r.ez) + row('TOW', r.mt, r.et) + row('LAW', r.ml, r.el) + '<p class="small">' + esc(tx(L('%MAC（緑＝許される範囲、教育用の仮の値）', '%MAC(초록 = 허용 범위, 교육용 가정값)', '%MAC (green = allowed range, educational values)'))) + '</p></div>';
+  }
+  function wbCptBars(c) {
+    var a = wbA(); return '<div class="wbcpt">' + a.cpt.map(function (x, j) { var p = Math.min(100, c[j] / x.max * 100), over = c[j] > x.max; return '<div class="wbc' + (over ? ' over' : '') + '"><b>' + x.id + '</b><span class="tr"><i style="width:' + p + '%"></i></span><span class="v">' + wbNum(c[j]) + ' / ' + wbNum(x.max) + '</span></div>'; }).join('') + '</div>';
+  }
+  /* ---------- Day 2~: 내림(오프로드)·허용 여유·밸런스 차트 ---------- */
+  window.AS_wbZoom = function () { wbChartZoom(); };
+  var WOFFRANK = { C: 0, M: 1, B: 2 };   /* Vela 교육용 내리는 순서: 일반 화물 → 우편 → 수하물(승객 동반 수하물은 마지막) */
+  function wbIsSpc(id) { var d = wbD(); return (d.items || d.ulds || []).some(function (x) { return x.id === id && x.spc; }); }
+  function wbOffOpt(id) { return M.day >= 2 && !(M.special && wbIsSpc(id)) ? '<option value="X"' + (S.plan[id] === 'X' ? ' selected' : '') + '>' + esc(tx(L('降ろす', '내림', 'Offload'))) + '</option>' : ''; }
+  function wbOffIds() { return wbUnits().filter(function (u) { return wbOff(u.id); }).map(function (u) { return u.id; }); }
+  function wbOverBox(r) {
+    var off = wbUnits().filter(function (u) { return wbOff(u.id); }), offKg = off.reduce(function (n, u) { return n + u.kg; }, 0), limN = ['MAX ZFW + TOF', 'MAX TOW', 'MAX LAW + TIF'][r.lim];
+    var h = '<div class="wbover ' + (r.ul < 0 ? 'ng' : 'ok') + '"><div><b>' + esc(tx(L('許される離陸重量', '허용 이륙 중량', 'Allowed TOW'))) + '</b> ' + wbNum(r.al) + ' kg <span class="small">(' + esc(limN) + ' · L)</span></div><div><b>' + esc(tx(L('予約人数での余裕', '예약 인원 기준 여유', 'Underload with booked passengers'))) + '</b> <span class="v">' + (r.ul < 0 ? '−' : '') + wbNum(Math.abs(r.ul)) + ' kg</span>' + (r.ul < 0 ? ' ' + esc(tx(L('（超過）', '(초과)', '(over)'))) : '') + '</div>';
+    if (off.length) h += '<div>' + esc(tx(L('降ろす', '내림', 'Offload'))) + ': <span class="mono">' + off.map(function (u) { return u.id; }).join(', ') + '</span> (' + wbNum(offKg) + ' kg)</div><div class="btns"><button class="btn" id="w-notice" data-a="ok"' + (S.cur.flags.notified ? ' disabled' : '') + '>' + (S.cur.flags.notified ? '✔ ' : '') + esc(tx(L('貨物・旅客部門に降ろす内容を連絡', '화물·여객 부서에 내릴 내역 연락', 'Tell cargo & passenger services what is offloaded'))) + '</button></div>';
+    return h + '</div>';
+  }
+  function wbChartZoom() {   /* 53차 권장: 좁은 화면에서 차트를 눌러 크게 보기(가로로 넘치는 부분은 창 안에서만 스크롤) */
+    var el = document.querySelector('.wbchart svg'); if (!el) return;
+    var ov = document.createElement('div'); ov.className = 'wbzoom'; ov.innerHTML = '<div class="wbzoomin">' + el.outerHTML + '</div><button class="btn" type="button">✕ ' + esc(tx(L('閉じる', '닫기', 'Close'))) + '</button>';
+    ov.onclick = function () { ov.remove(); }; document.body.appendChild(ov);
+  }
+  function wbChart(r) { var mc = function (lab, p, e) { var ok = p >= e[0] && p <= e[1]; return '<span class="' + (ok ? 'ok' : 'ng') + '">' + lab + ' ' + p.toFixed(1) + ' <small>(' + e[0].toFixed(1) + '–' + e[1].toFixed(1) + ')</small></span>'; };
+    return '<div class="wbchart" onclick="AS_wbZoom()" title="' + esc(tx(L('タップで拡大', '눌러서 크게 보기', 'Tap to enlarge'))) + '">' + WB.chartSVG(wbA(), r) + '<div class="wbmacv">%MAC ' + mc('ZFW', r.mz, r.ez) + mc('TOW', r.mt, r.et) + mc('LAW', r.ml, r.el) + '</div><p class="small">' + esc(tx(L('バランスチャート（指数–重量）：ZFW・TOW・LAWの3点が枠の中にあるか見ます。', '밸런스 차트(지수–중량): ZFW·TOW·LAW 세 점이 틀 안에 있는지 봅니다.', 'Balance chart (index vs weight): check that ZFW, TOW and LAW sit inside the envelope.'))) + '</p></div>'; }
+  function wbOffJudge(c, r) {   /* 발행할 때 한 번: 순서(업무)·필요 이상(감점)·연락(감점) */
+    var U = wbUnits(), off = U.filter(function (u) { return wbOff(u.id); }); if (!off.length) return;
+    /* 53차 보완(GPT F53-01): 내린 각 물품보다 먼저 내릴 종류(순위 C0 → M1 → B2)가 실린 채 남아 있으면 순서 오류(업무) — 일반 화물 남김·우편 남김 모두 */
+    var kept = U.filter(function (u) { return !wbOff(u.id); }), badOrder = off.some(function (u) { return kept.some(function (v) { return WOFFRANK[v.kind] < WOFFRANK[u.kind]; }); });
+    if (badOrder) wbBad('wb-off-order', L('先に降ろすもの（一般貨物 → 郵便 → 手荷物の順）が残っているのに、後の順番のものを降ろしました。', '먼저 내릴 것(일반 화물 → 우편 → 수하물 순)이 남아 있는데 뒤 순서의 것을 내렸습니다.', 'Offloaded a later-order item while an earlier-order item (cargo → mail → bags) stayed on.'), 'cargo/4-1');
+    var extra = off.filter(function (u) { return r.ul >= u.kg; });   /* 이것을 다시 실어도 여유 ≥ 0 → 필요 이상 */
+    if (extra.length) wbBad('wb-off-extra', L('必要以上に降ろしました（' + extra.map(function (u) { return u.id; }).join(', ') + 'は積めました）。', '필요 이상으로 내렸습니다(' + extra.map(function (u) { return u.id; }).join(', ') + '은(는) 실을 수 있었습니다).', 'Offloaded more than needed (' + extra.map(function (u) { return u.id; }).join(', ') + ' could have stayed).'), 'passenger/3-7');
+    if (!badOrder && !extra.length) note('good', L('許される重量に収まるよう、順番どおり最小限だけ降ろしました。', '허용 중량에 맞게 순서대로 최소한만 내렸습니다.', 'Offloaded only what was needed, in order.'), 'cargo/4-1');
+    if (!c.flags.notified || c.flags.notifiedIds !== wbOffIds().join()) wbBad('wb-notice', L('降ろす貨物の内容を貨物・旅客部門に連絡しないままLIRを出しました。', '내릴 화물 내역을 화물·여객 부서에 연락하지 않고 LIR을 발행했습니다.', 'Issued the LIR without telling cargo/passenger services what is offloaded.'), 'cargo/4-1');
+    else note('good', L('降ろす内容を貨物・旅客部門に連絡しました。', '내릴 내역을 화물·여객 부서에 연락했습니다.', 'Told cargo/passenger services what is offloaded.'), 'cargo/4-1');
+  }
+  /* ---------- Day 3: 특수 탑재물(합의본 3절 Day 3 · Vela 교육용 규칙) ---------- */
+  var WSPN = { ICE: L('ドライアイス', '드라이아이스', 'Dry ice'), AVIH: L('動物', '동물', 'Animal'), WCH: L('電動車いす', '전동 휠체어', 'Wheelchair'), PER: L('生鮮', '신선식품', 'Perishable'), HEA: L('重量物', '중량물', 'Heavy') };
+  var WSPCHK = {   /* 종류별 확인 항목(안전 = 빠지면 탑재 확정 막힘·안전 C, 그 밖 = 감점) */
+    ICE: { safe: true, code: 'wb-ice', k: [['acc', L('正味重量・包装（換気）・便の合計と貨物室ごとの教育用許容量（下の表）', '순중량·포장(환기)·편 합계와 칸별 교육용 허용량(아래 표)', 'Net weight, packaging (venting), flight total and per-hold educational allowance (table below)')]] },
+    WCH: { safe: true, code: 'wb-wch', k: [['ok', L('運航会社の承認（チェックイン記録）', '운항사 승인(체크인 기록)', 'Operator approval (check-in record)')], ['id', L('電池の種類の確認（リチウムイオン）', '배터리 종류 식별(리튬이온)', 'Battery type identified (lithium-ion)')], ['term', L('取り付け状態・端子の保護', '장착 상태·단자 보호', 'Installed securely, terminals protected')], ['act', L('不意の作動の防止', '우발 작동 방지', 'Protected against accidental activation')], ['spare', L('外した電池・予備電池は「客室で運ぶ」（貨物室に積まない）', '분리한 배터리·예비 배터리는 「객실 운송」(화물칸에 싣지 않음)', 'Removed/spare batteries travel in the cabin (not in the hold)')]] },
+    HEA: { safe: true, code: 'wb-hea', k: [['w', L('品物＋台の重さがカードと一致', '물품 + 받침 무게가 카드와 일치', 'Item + skid weight matches the card')], ['area', L('有効分散面積の床荷重 ≤ 適用限度、置く列が適合位置', '유효 분산 면적 바닥 하중 ≤ 적용 한도, 놓을 열이 적합 위치', 'Floor load over the effective area ≤ limit; row is a cleared position')], ['fix', L('固定条件（ネット＋ストラップ本数）・ULDの適合', '고정 조건(그물 + 스트랩 개수)·ULD 적합성', 'Restraint (net + straps) and ULD suitability')]] },
+    AVIH: { safe: false, k: [['temp', L('温度・換気の条件が合う貨物室か', '온도·환기 조건이 맞는 칸인지', 'Hold meets temperature/ventilation needs')]] },
+    PER: { safe: false, k: [['ice', L('ドライアイス入り（PER＋ICEの2つの属性）か', '드라이아이스 포함(PER + ICE 두 속성)인지', 'Contains dry ice (PER + ICE)?')]] }
+  };
+  function wbSpc() {   /* 특수 탑재물 목록 + 현재 칸(0부터, 5번 벌크 = 4) */
+    var d = wbD(), o = [];
+    if (S.acKey === '789') {
+      d.ulds.forEach(function (u) { if (!u.spc || wbOff(u.id)) return; var p = S.plan[u.id], h = p && p !== 'X' ? +String(p).charAt(0) - 1 : null; if (S.exMove && S.exMove.id === u.id) h = S.exMove.to; o.push({ id: u.id, nm: u.nm, kg: u.content, spc: u.spc, hold: h }); });
+      (d.bulk5.spc || []).forEach(function (b) { o.push({ id: b.id, nm: b.nm, kg: b.kg, spc: b.spc, hold: 4, fixed: true }); });
+    } else d.items.forEach(function (it) { if (!it.spc || wbOff(it.id)) return; var p = S.plan[it.id]; o.push({ id: it.id, nm: it.nm, kg: it.kg, spc: it.spc, hold: p != null && p !== '' && p !== 'X' ? +p : null }); });
+    return o;
+  }
+  function wbSegErr() {   /* 격리·칸 조건(3A) */
+    var d = wbD(), L0 = wbSpc(), e = [], av = L0.filter(function (x) { return x.spc.t === 'AVIH'; });
+    av.forEach(function (x) { if (x.hold != null && d.avihHold.indexOf(x.hold) < 0) e.push({ code: 'avih-hold', id: x.id }); });
+    L0.forEach(function (x) { if (!x.spc.ice || x.hold == null) return; av.forEach(function (v) { if (v.hold === x.hold) e.push({ code: 'ice-avih', id: x.id, with: v.id }); }); });
+    L0.forEach(function (x) { if (x.spc.t !== 'PER' || x.hold == null) return; av.forEach(function (v) { if (v.hold === x.hold) e.push({ code: 'per-avih', id: x.id, with: v.id }); }); });
+    var ice = L0.reduce(function (n, x) { return n + (x.spc.ice || 0); }, 0); if (ice > d.iceMax) e.push({ code: 'ice-max', kg: ice });
+    wbIceByHold().forEach(function (kg, h) { if (d.iceHold && kg > d.iceHold[h]) e.push({ code: 'ice-hold', hold: h, kg: kg }); });
+    if (d.hea) { var hp = S.plan[d.hea.id]; if (hp && hp !== 'X' && d.hea.rows.indexOf(hp) < 0) e.push({ code: 'hea-pos', id: d.hea.id }); }
+    return e;
+  }
+  function wbIceByHold() { var a = wbA(), o = a.cpt.map(function () { return 0; }); wbSpc().forEach(function (x) { if (x.spc.ice && x.hold != null) o[x.hold] += x.spc.ice; }); return o; }
+  function wbSegText(e) { var cpt = function (h) { return h === 4 && S.acKey === '789' ? '5' : String(h + 1); }; return e.map(function (x) { return x.code === 'avih-hold' ? tx(L('動物が条件の合わない貨物室にあります', '동물이 조건이 안 맞는 칸에 있습니다', 'The animal is in an unsuitable hold')) : x.code === 'ice-avih' ? tx(L(x.id + '（ドライアイス入り）と動物が同じ貨物室', x.id + '(드라이아이스 포함)과 동물이 같은 칸', x.id + ' (with dry ice) is in the same hold as the animal')) : x.code === 'per-avih' ? tx(L('生鮮と動物が同じ貨物室', '신선식품과 동물이 같은 칸', 'Perishables share a hold with the animal')) : x.code === 'ice-hold' ? tx(L(cpt(x.hold) + '番のドライアイスが貨物室ごとの教育用許容量を超えています', cpt(x.hold) + '번 칸 드라이아이스가 칸별 교육용 허용량을 넘습니다', 'Dry ice in hold ' + cpt(x.hold) + ' exceeds the per-hold educational allowance')) : x.code === 'hea-pos' ? tx(L('重量物が事前検討で認められていない位置にあります', '중량물이 사전 검토에서 허용되지 않은 위치에 있습니다', 'The heavy item is in a position not cleared by the pre-check')) : tx(L('ドライアイスの総量が教育用許容量を超えています', '드라이아이스 총량이 교육용 허용량을 넘습니다', 'Total dry ice exceeds the educational allowance')); }).join(' / '); }
+  function wbSpcPanel() {   /* LIR 화면: 특수 탑재물 확인 */
+    var L0 = wbSpc(), seen = {}, h = '<div class="wbspc"><b>' + esc(tx(L('特別な搭載物の確認', '특수 탑재물 확인', 'Special-load checks'))) + '</b>';
+    L0.forEach(function (x) {
+      var t = x.spc.t, def = WSPCHK[t]; h += '<div class="wbspi"><div><span class="pill">' + esc(tx(WSPN[t])) + (x.spc.ice && t !== 'ICE' ? '+' + esc(tx(WSPN.ICE)) : '') + '</span> <span class="mono">' + x.id + '</span> ' + esc(tx(x.nm)) + ' · ' + wbNum(x.kg) + ' kg' + (x.spc.ice ? ' · ' + esc(tx(L('ドライアイス', '드라이아이스', 'dry ice'))) + ' ' + x.spc.ice + ' kg' : '') + (x.spc.temp ? ' · ' + esc(tx(x.spc.temp)) : '') + (x.fixed ? ' · ' + esc(tx(L('5番バルク', '5번 벌크', 'bulk 5'))) : '') + '</div>';
+      if (def && !seen[t]) { seen[t] = 1; h += '<div class="chk">' + def.k.map(function (k) { var key = t + '.' + k[0]; return '<button data-sk="' + key + '" data-a="spc"><span>' + esc(tx(k[1])) + '</span><span class="st">' + (S.spcChk[key] ? '✔' : '') + '</span></button>'; }).join('') + '</div>'; }
+      h += '</div>';
+    });
+    var d = wbD(), seg = wbSegErr();
+    if (wbSpcTypes().indexOf('ICE') >= 0 && !seen.ICE) h += '<div class="wbspi"><span class="pill">' + esc(tx(WSPN.ICE)) + '</span><div class="chk">' + WSPCHK.ICE.k.map(function (k) { var key = 'ICE.' + k[0]; return '<button data-sk="' + key + '" data-a="spc"><span>' + esc(tx(k[1])) + '</span><span class="st">' + (S.spcChk[key] ? '✔' : '') + '</span></button>'; }).join('') + '</div></div>';
+    h += wbEvidence();
+    h += '<p class="small">' + esc(tx(L('Velaの教育用ルール：動物は温度・換気が合う貨物室だけ（', 'Vela 교육용 규칙: 동물은 온도·환기가 맞는 칸만(', 'Vela educational rules: animals only in a suitable hold ('))) + (S.acKey === '789' ? '5' : '4') + esc(tx(L('番）、ドライアイス入りのものと同じ貨物室は不可、生鮮も動物と別の貨物室。ドライアイスの総量は ', '번), 드라이아이스가 든 것과 같은 칸 불가, 신선식품도 동물과 다른 칸. 드라이아이스 총량은 ', '), never with anything containing dry ice, perishables in a different hold from the animal. Dry ice total up to '))) + wbNum(d.iceMax) + ' kg ' + esc(tx(L('まで。', '까지.', '.'))) + '</p>' + (seg.length ? '<div class="why bad">' + esc(wbSegText(seg)) + '</div>' : '');
+    return h + '</div>';
+  }
+  function wbSpcTypes() { var o = [], L0 = wbSpc(); L0.forEach(function (x) { if (o.indexOf(x.spc.t) < 0) o.push(x.spc.t); }); if (L0.some(function (x) { return x.spc.ice; }) && o.indexOf('ICE') < 0) o.unshift('ICE'); return o; }
+  /* 54차 보완 F54-03: 확인 근거 카드(Vela 교육용 승인값·사전 기술 검토 결과 — 직접 계산 없이 조건과 맞춰 확인) */
+  function wbEvidence() {
+    var d = wbD(), a = wbA(), ib = wbIceByHold(), tot = ib.reduce(function (n, v) { return n + v; }, 0), cn = function (j) { return S.acKey === '789' && j === 4 ? '5(BULK)' : String(j + 1); };
+    var h = '<div class="wbcard"><b>' + esc(tx(L('ドライアイス：教育用許容量（Vela承認値）', '드라이아이스: 교육용 허용량(Vela 승인값)', 'Dry ice: educational allowance (Vela-approved)'))) + '</b><table class="wbt"><tr><th>' + esc(tx(L('貨物室', '화물칸', 'Hold'))) + '</th><th>' + esc(tx(L('積む量', '실을 양', 'Planned'))) + '</th><th>' + esc(tx(L('許容量', '허용량', 'Allowance'))) + '</th></tr>' +
+      a.cpt.map(function (x, j) { var ov = ib[j] > d.iceHold[j]; return '<tr' + (ov ? ' class="diff"' : '') + '><td>' + cn(j) + '</td><td class="n">' + ib[j] + ' kg</td><td class="n">' + d.iceHold[j] + ' kg</td></tr>'; }).join('') +
+      '<tr><td>' + esc(tx(L('便の合計', '편 합계', 'Flight total'))) + '</td><td class="n">' + tot + ' kg</td><td class="n">' + d.iceMax + ' kg</td></tr></table></div>';
+    if (d.hea) { var hh = d.hea, area = hh.skidL * hh.skidW, load = (hh.piece + hh.skid) / area;
+      h += '<div class="wbcard"><b>' + esc(tx(L('重量物：事前の技術検討（ハンドリング・教育用）', '중량물: 사전 기술 검토(조업사·교육용)', 'Heavy item: pre-check by handling engineering (educational)'))) + '</b><dl class="kv"><dt>' + esc(tx(L('品物＋台', '물품 + 받침', 'Item + skid'))) + '</dt><dd>' + wbNum(hh.piece) + ' + ' + wbNum(hh.skid) + ' = ' + wbNum(hh.piece + hh.skid) + ' kg</dd><dt>' + esc(tx(L('有効分散面積', '유효 분산 면적', 'Effective spreading area'))) + '</dt><dd>' + hh.skidL + ' m × ' + hh.skidW + ' m = ' + area.toFixed(2) + ' m²</dd><dt>' + esc(tx(L('床荷重 / 適用限度', '바닥 하중 / 적용 한도', 'Floor load / limit'))) + '</dt><dd>' + Math.round(load) + ' kg/m² ≤ ' + hh.limit + ' kg/m²</dd><dt>' + esc(tx(L('適合位置', '적합 위치', 'Cleared positions'))) + '</dt><dd>' + hh.rows.join(' · ') + esc(tx(L('（4番の列と5番バルクは不可）', '(4번 칸 열·5번 벌크 불가)', ' (not hold 4 rows or bulk 5)'))) + '</dd><dt>' + esc(tx(L('固定', '고정', 'Restraint'))) + '</dt><dd>' + esc(tx(L('PMCネット＋ストラップ' + hh.tie + '本以上', 'PMC 그물 + 스트랩 ' + hh.tie + '개 이상', 'PMC net + at least ' + hh.tie + ' straps'))) + '</dd></dl><p class="small">' + esc(tx(L('台は荷重を分散するだけで、貨物室や位置の上限を増やしません。', '받침은 하중을 분산할 뿐 칸·위치 상한을 늘리지 않습니다.', 'The skid only spreads the load; it does not raise hold or position limits.'))) + '</p></div>'; }
+    return h;
+  }
+  function wbSpcMissing() { var out = { safe: [], soft: [] }; wbSpcTypes().forEach(function (t) { var def = WSPCHK[t]; if (!def) return; var miss = def.k.filter(function (k) { return !S.spcChk[t + '.' + k[0]]; }); if (miss.length) (def.safe ? out.safe : out.soft).push({ t: t, code: def.code, miss: miss }); }); return out; }
+  /* ---------- ② 탑재 계획·LIR ---------- */
+  function wbTabLir() {
+    var c = S.cur, a = wbA(), d = wbD(), is9 = S.acKey === '789', h = '<div class="h3">' + esc(tx(L('搭載計画（LIR）', '탑재 계획(LIR)', 'Load plan (LIR)'))) + ' <span class="small">' + esc(a.id + ' · ' + d.reg) + '</span></div>';
+    if (!is9) {
+      h += '<table class="wbt"><tr><th>ID</th><th>' + esc(tx(L('中身', '내용', 'Contents'))) + '</th><th>kg</th><th>' + esc(tx(L('貨物室', '화물칸', 'Hold'))) + '</th></tr>' + d.items.map(function (it) {
+        return '<tr><td class="mono">' + it.id + '</td><td>' + (it.spc ? '<span class="pill spc">' + esc(tx(WSPN[it.spc.t])) + '</span> ' : '') + esc(tx(it.nm)) + (it.pri ? ' <span class="pill">' + esc(tx(L('優先', '우선', 'Priority'))) + '</span>' : '') + '</td><td class="n">' + wbNum(it.kg) + '</td><td><select data-it="' + it.id + '"><option value="">—</option>' + a.cpt.map(function (x, j) { return '<option value="' + j + '"' + (S.plan[it.id] === String(j) ? ' selected' : '') + '>' + x.id + '</option>'; }).join('') + wbOffOpt(it.id) + '</select></td></tr>';
+      }).join('') + '</table>';
+    } else {
+      var all = WB.posList(), used = {}; d.ulds.forEach(function (u) { var p = S.plan[u.id]; if (!p || p === 'X') return; if (u.type === 'PMC') { used[p + 'L'] = u.id; used[p + 'R'] = u.id; } else used[p] = u.id; });
+      h += '<p class="small">' + esc(tx(L('787：貨物室1〜4は各3列、1列に左右2か所。AKE＝1か所、PMC＝1列全体（左右2か所）。5番はバルク。重心は貨物室ごとの簡易計算です。', '787: 화물칸 1~4는 각 3열, 한 열에 좌우 2자리. AKE = 한 자리, PMC = 한 열 전체(좌우 두 자리). 5번은 벌크. 무게중심은 칸 단위 간이 계산입니다.', '787: holds 1–4 have 3 rows each, 2 positions (L/R) per row. AKE = one position, PMC = a whole row. Hold 5 is bulk. CG uses a simplified per-hold model.'))) + (M.day >= 2 ? ' <b>' + esc(tx(L('同じ貨物室の中で列を変えても重心は変わりません。重心を動かすには貨物室を変えます。', '같은 칸 안에서 열을 바꿔도 무게중심은 변하지 않습니다. 무게중심을 옮기려면 칸을 바꿉니다.', 'Moving a ULD to another row in the same hold does not change the CG; change the hold to move it.'))) + '</b>' : '') + '</p>' +
+        '<table class="wbt"><tr><th>ULD</th><th>' + esc(tx(L('中身', '내용', 'Contents'))) + '</th><th>' + esc(tx(L('総重量', '총중량', 'Gross'))) + '</th><th>' + esc(tx(L('位置', '위치', 'Position'))) + '</th></tr>' + d.ulds.map(function (u) {
+          var t = WB.ULD_TYPES[u.type], cur = S.plan[u.id] || '', opts = u.type === 'PMC' ? ['11', '12', '13', '21', '22', '23', '31', '32', '33', '41', '42', '43'].filter(function (r) { var l = used[r + 'L'], rr = used[r + 'R']; return (!l || l === u.id) && (!rr || rr === u.id); })
+            : all.filter(function (p) { return !used[p] || used[p] === u.id; });
+          var ic = STG.has('prop_uld_' + u.type.toLowerCase() + '_01') ? '<img class="wbuldic" src="' + STG.src('prop_uld_' + u.type.toLowerCase() + '_01') + '" alt="">' : '';
+          return '<tr><td class="mono">' + u.id + '<br>' + ic + '<span class="small">' + u.type + '</span></td><td>' + (u.spc ? '<span class="pill spc">' + esc(tx(WSPN[u.spc.t])) + '</span> ' : '') + esc(tx(u.nm)) + (u.pri ? ' <span class="pill">' + esc(tx(L('優先', '우선', 'Priority'))) + '</span>' : '') + '</td><td class="n">' + wbNum(t.tare + u.content) + '<br><span class="small">' + esc(tx(L('自重', '자체', 'tare'))) + ' ' + t.tare + '</span></td><td><select data-it="' + u.id + '"><option value="">—</option>' + opts.map(function (p) { return '<option value="' + p + '"' + (cur === p ? ' selected' : '') + '>' + p + '</option>'; }).join('') + wbOffOpt(u.id) + '</select></td></tr>';
+        }).join('') + '<tr><td class="mono">BULK 5</td><td>' + esc(tx(d.bulk5.nm)) + '</td><td class="n">' + wbNum(d.bulk5.kg) + '</td><td>5</td></tr></table>';
+    }
+    var cc = wbLoadsC(), sh = WB.sheetErrors(a, wbState(d.book));
+    h += (M.special ? wbSpcPanel() : '') + wbCptBars(cc) + (M.day >= 2 ? wbOverBox(sh.r) + wbChart(sh.r) : wbMacBar(sh.r)) + '<p class="small">' + esc(tx(L('重心は予約人数で試算しています。', '무게중심은 예약 인원으로 미리 계산합니다.', 'CG is estimated with the booked passengers.'))) + '</p>' +
+      '<div class="btns"><button class="btn pri" id="w-issue" data-a="ok">' + esc(tx(L('ハンドリングにLIRを出す', '조업사에 LIR 발행', 'Issue LIR to handling'))) + '</button></div><div id="w-lirmsg"></div>' + wbEdu();
+    scr(h);
+    document.querySelectorAll('#scr select[data-it]').forEach(function (s) { s.onchange = function () { if (!wbLive(c)) return; S.plan[s.dataset.it] = s.value; if (c.flags.notified && wbOffIds().join() !== c.flags.notifiedIds) c.flags.notified = false; wbTime(0.2); wbTabLir(); }; });
+    document.querySelectorAll('#scr button[data-sk]').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; sfx.tap(); S.spcChk[b.dataset.sk] = true; wbTime(M.cost.spc || 0.4); wbTabLir(); }; });
+    var nb = $('#w-notice'); if (nb) nb.onclick = function () { if (!wbLive(c) || !wbOffIds().length) return; sfx.tap(); c.flags.notified = true; c.flags.notifiedIds = wbOffIds().join(); wbTime(M.cost.notice || 1); wbCall('ops', L('貨物・旅客部門に、降ろす貨物の内容を伝えました：' + wbOffIds().join(', '), '화물·여객 부서에 내릴 화물 내역을 전했습니다: ' + wbOffIds().join(', '), 'Told cargo and passenger services what is being offloaded: ' + wbOffIds().join(', '))); wbTabLir(); };
+    $('#w-issue').onclick = function () {
+      if (!wbLive(c)) return;
+      var un = (is9 ? d.ulds : d.items).filter(function (x) { return !S.plan[x.id] && S.plan[x.id] !== '0'; }).length, msg = $('#w-lirmsg');
+      if (un) { sfx.ng(); msg.innerHTML = '<div class="why bad">' + esc(tx(L('まだ置き場所が決まっていないものがあります（' + un + '）。', '아직 자리를 정하지 않은 것이 있습니다(' + un + ').', un + ' item(s) still have no position.'))) + '</div>'; return; }
+      var cc2 = wbLoadsC(), lim = a.cpt.some(function (x, j) { return cc2[j] > x.max; }) || (is9 && WB.uldErrors(wbUldsOn()).length > 0);
+      if (lim) { sfx.ng(); wbStrike('wb-lir-limit', L('貨物室・ULDの上限を超えたまま実行用のLIRを出そうとしました（発行・搭載は保留）。', '화물칸·ULD 상한을 넘은 채 실행용 LIR을 발행하려 했습니다(발행·탑재 보류).', 'Tried to issue an executable LIR that exceeds hold/ULD limits (issue and loading held).'), 'passenger/3-8'); msg.innerHTML = '<div class="why bad">' + esc(tx(L('上限を超えています。直してから出してください。', '상한을 넘었습니다. 고친 뒤 발행하세요.', 'Over a limit. Fix it before issuing.'))) + '</div>'; return; }
+      var r = WB.sheetErrors(a, wbState(d.book)).r;
+      if (r.ul < 0) { sfx.ng(); msg.innerHTML = '<div class="why bad">' + esc(tx(L('許される離陸重量を ' + wbNum(-r.ul) + ' kg 超えています。降ろすもの（一般貨物 → 郵便 → 手荷物の順）を決めてください。', '허용 이륙 중량을 ' + wbNum(-r.ul) + ' kg 넘습니다. 내릴 것을 정하세요(일반 화물 → 우편 → 수하물 순).', 'Over the allowed take-off weight by ' + wbNum(-r.ul) + ' kg. Choose what to offload (cargo → mail → bags).'))) + '</div>'; return; }
+      if (!(r.okz && r.okt && r.okl)) { sfx.ng(); if (!c.flags.cgBad) { c.flags.cgBad = true; wbBad('wb-lir-cg', L('重心が範囲の外のままLIRを出そうとしました。前後の貨物室に分けて直しました。', '무게중심이 범위 밖인 채 LIR을 발행하려 했습니다. 앞뒤 칸으로 나눠 고쳤습니다.', 'Tried to issue the LIR with the CG out of limits; rebalanced fore/aft.'), 'passenger/3-8'); } msg.innerHTML = '<div class="why bad">' + esc(tx(L('重心（%MAC）が範囲の外です。前と後ろに分けてください。', '무게중심(%MAC)이 범위 밖입니다. 앞뒤로 나눠 주세요.', 'The CG (%MAC) is out of limits. Split the load fore and aft.'))) + '</div>'; return; }
+      if (M.special) {   /* Day 3: 격리·DG 수락·배터리·중량물 확인 없이 탑재 확정(LIR 발행) 시도 = 안전 C, 발행 보류 */
+        var seg = wbSegErr(), ms = wbSpcMissing();
+        if (seg.length) { sfx.ng(); wbStrike('wb-seg', function () { return tx(L('動物の貨物室の条件・ドライアイスとの隔離を満たさないままLIRを出そうとしました（保留）：', '동물 칸 조건·드라이아이스 격리를 지키지 않은 채 LIR을 발행하려 했습니다(보류): ', 'Tried to issue the LIR without meeting the animal hold / dry-ice separation rules (held): ')) + wbSegText(seg); }, 'cargo/3-2'); msg.innerHTML = '<div class="why bad">' + esc(wbSegText(seg)) + '</div>'; return; }
+        if (ms.safe.length) { sfx.ng(); ms.safe.forEach(function (m) { wbStrike(m.code, WMISSL[m.code], m.t === 'WCH' ? 'passenger/1-12' : m.t === 'ICE' ? 'cargo/3-1' : 'cargo/3-4'); }); msg.innerHTML = '<div class="why bad">' + esc(tx(L('確認していない項目があります：', '확인하지 않은 항목이 있습니다: ', 'Unchecked items: '))) + ms.safe.map(function (m) { return tx(WSPN[m.t]) + '(' + m.miss.map(function (k) { return tx(k[1]); }).join(' / ') + ')'; }).join(' · ') + '</div>'; return; }
+        if (ms.soft.length && !c.flags.softWarn) { c.flags.softWarn = true; wbBad('wb-spc', function () { return tx(L('特別な搭載物の確認を一部飛ばしました：', '특수 탑재물 확인 일부를 건너뛰었습니다: ', 'Skipped some special-load checks: ')) + ms.soft.map(function (m) { return tx(WSPN[m.t]); }).join(' / '); }, 'cargo/3-2'); }
+      }
+      if (!wbDone(c)) return;
+      S.lirC = wbLoadsC();
+      wbOffJudge(c, r);
+      S.issued = true; wbTime(M.cost.lir); S.lirAt = S.clock; sfx.ok();
+      if (!c.flags.cgBad) note('good', L('上限と重心の範囲を守ってLIRを出しました。', '상한과 무게중심 범위를 지켜 LIR을 발행했습니다.', 'Issued the LIR within hold limits and CG range.'), 'passenger/3-8');
+      say('me', L('LIRを送りました。この内容で搭載をお願いします。', 'LIR 보냈습니다. 이대로 탑재 부탁합니다.', 'LIR sent. Please load as per this plan.'));
+      wbEnd(900);
+    };
+  }
+  /* ---------- ③ 중간 보고 ---------- */
+  /* Day 3 예외 보고(W3-except): 737 「3번이 가득 → 일부 4번」, 787 「4번이 가득 → 일부 5번 벌크」 */
+  function wbExPick(alt, skip) {
+    var d = wbD(), ex = d.except, cand = [];
+    if (S.acKey === '789') d.ulds.forEach(function (u) { var p = S.plan[u.id]; if (u.type === 'AKE' && p && p !== 'X' && +String(p).charAt(0) - 1 === ex.from) cand.push({ id: u.id, nm: u.nm, kg: u.content, ice: !!(u.spc && u.spc.ice), spc: u.spc }); });
+    else d.items.forEach(function (it) { var p = S.plan[it.id]; if (p != null && p !== '' && p !== 'X' && +p === ex.from) cand.push({ id: it.id, nm: it.nm, kg: it.kg, ice: !!(it.spc && it.spc.ice), spc: it.spc }); });
+    cand = cand.filter(function (x) { return x.id !== skip; });
+    var pick = alt ? cand.filter(function (x) { return !x.spc; })[0] : (cand.filter(function (x) { return x.ice; })[0] || cand.filter(function (x) { return !x.spc; })[0]);
+    return pick ? { id: pick.id, nm: pick.nm, kg: pick.kg, ice: pick.ice, from: ex.from, to: ex.to } : null;
+  }
+  function wbExApply(mv) { if (!mv) return; if (S.acKey === '789') S.exMove = { id: mv.id, kg: mv.kg, from: mv.from, to: mv.to }; else S.plan[mv.id] = String(mv.to); }
+  function wbExCheck(mv) {   /* 54차 보완 F54-01: 그 이동을 임시 반영해 격리·중량(칸 상한·MAX·여유)·무게중심(ZFW·TOW·LAW 엔벨로프)을 따로 검사(되돌림) */
+    var keep = { plan: Object.assign({}, S.plan), ex: S.exMove }; if (mv) wbExApply(mv);
+    var a = wbA(), d = wbD(), seg = wbSegErr(), cc = wbLoadsC(), sh = WB.sheetErrors(a, wbState(d.book)), codes = sh.errors.map(function (e) { return e.code; });
+    var w = cc.some(function (v, j) { return v > a.cpt[j].max; }) || codes.some(function (c) { return /^max-|underload|cpt-max/.test(c); }), cg = codes.some(function (c) { return /^env-/.test(c); });
+    S.plan = keep.plan; S.exMove = keep.ex;
+    return { seg: seg, w: w, cg: cg, r: sh.r, bad: seg.length > 0 || w || cg };
+  }
+  function wbExWouldBreak(mv) { return !!mv && wbExCheck(mv).bad; }
+  function wbExAlt(skip) {   /* 대신 옮길 짐: 특수물이 아닌 것 중 격리·중량·CG를 모두 통과하는 첫 물품. 없으면 원래 칸에 다시 정리(이동 없음) */
+    var d = wbD(), ex = d.except, cand = [];
+    if (S.acKey === '789') d.ulds.forEach(function (u) { var p = S.plan[u.id]; if (u.type === 'AKE' && !u.spc && u.id !== skip && p && p !== 'X' && +String(p).charAt(0) - 1 === ex.from) cand.push({ id: u.id, nm: u.nm, kg: u.content, ice: false, from: ex.from, to: ex.to }); });
+    else d.items.forEach(function (it) { var p = S.plan[it.id]; if (!it.spc && it.id !== skip && p != null && p !== '' && p !== 'X' && +p === ex.from) cand.push({ id: it.id, nm: it.nm, kg: it.kg, ice: false, from: ex.from, to: ex.to }); });
+    for (var i = 0; i < cand.length; i++) if (!wbExCheck(cand[i]).bad) return cand[i];
+    return null;
+  }
+  function wbHoldName(h) { return S.acKey === '789' && h === 4 ? tx(L('5番バルク', '5번 벌크', 'bulk 5')) : tx(L(h + 1 + '番', h + 1 + '번', 'hold ' + (h + 1))); }
+  function wbTabRepEx() {
+    var c = S.cur, a = wbA(); if (S.ex === null || S.ex === undefined) { var mv = wbExPick(); S.ex = mv ? Object.assign(mv, { bad: wbExCheck(mv).bad }) : { none: true }; }
+    var mv2 = S.ex.none ? null : S.ex, chk = mv2 ? wbExCheck(mv2) : null, lir = S.lirC || wbLoadsC(), after = lir.slice(); if (mv2) { after[mv2.from] -= mv2.kg; after[mv2.to] += mv2.kg; }
+    if (!c.flags.called) { c.flags.called = true; wbCall('lm', mv2 ? L('ハンドリングです。' + wbHoldName(mv2.from) + 'がいっぱいで、' + mv2.id + '（' + tx(mv2.nm) + '）' + mv2.kg + 'kgを' + wbHoldName(mv2.to) + 'に移しました。ほかはLIRどおりです。', '조업사입니다. ' + wbHoldName(mv2.from) + ' 칸이 가득 차서 ' + mv2.id + '(' + tx(mv2.nm) + ') ' + mv2.kg + 'kg을 ' + wbHoldName(mv2.to) + '(으)로 옮겼습니다. 나머지는 LIR대로입니다.', 'Handling here. ' + wbHoldName(mv2.from) + ' was full, so we moved ' + mv2.id + ' (' + tx(mv2.nm) + ', ' + mv2.kg + ' kg) to ' + wbHoldName(mv2.to) + '. Everything else is as per the LIR.') : L('ハンドリングです。中間報告、LIRどおりです。', '조업사입니다. 중간 보고, LIR대로입니다.', 'Handling here. Interim report: as per the LIR.')); }
+    var h = '<div class="h3">' + esc(tx(L('中間報告（例外あり）', '중간 보고(예외 보고)', 'Interim report (exception)'))) + '</div><table class="wbt"><tr><th>' + esc(tx(L('貨物室', '화물칸', 'Hold'))) + '</th><th>LIR</th><th>' + esc(tx(L('報告', '보고', 'Report'))) + '</th></tr>' + a.cpt.map(function (x, j) { var df = Math.round(after[j] - lir[j]); return '<tr' + (df ? ' class="diff"' : '') + '><td>' + x.id + '</td><td class="n">' + wbNum(lir[j]) + '</td><td class="n">' + wbNum(after[j]) + (df ? ' <b>(' + (df > 0 ? '+' : '−') + wbNum(Math.abs(df)) + ')</b>' : '') + '</td></tr>'; }).join('') + '</table>';
+    if (c.flags.rechk && mv2) {
+      var inTo = wbSpc().filter(function (x) { return x.hold === mv2.to && x.id !== mv2.id; }).map(function (x) { return tx(WSPN[x.spc.t]) + ' ' + x.id; });
+      h += '<div class="wbover ' + (mv2.bad ? 'ng' : 'ok') + '"><b>' + esc(tx(L('再検査', '재검사', 'Re-check'))) + '</b><div>' + esc(tx(L('移したもの', '옮긴 것', 'Moved'))) + ': ' + esc(mv2.id) + (mv2.ice ? ' (' + esc(tx(L('ドライアイス入り', '드라이아이스 포함', 'contains dry ice'))) + ')' : '') + '</div><div>' + esc(wbHoldName(mv2.to)) + esc(tx(L('にある特別な搭載物', '에 있는 특수 탑재물', ': special loads'))) + ': ' + esc(inTo.join(', ') || '—') + '</div><div class="wbrck">' + [[L('隔離（動物・ドライアイス・重量物位置）', '격리(동물·드라이아이스·중량물 위치)', 'Separation (animal, dry ice, heavy-item position)'), chk.seg.length === 0, chk.seg.length ? wbSegText(chk.seg) : ''], [L('重量（貨物室の上限・MAX・余裕）', '중량(칸 상한·MAX·여유)', 'Weight (hold limits, MAX, underload)'), !chk.w, ''], [L('重心（ZFW・TOW・LAW）', '무게중심(ZFW·TOW·LAW)', 'CG (ZFW, TOW, LAW)'), !chk.cg, '%MAC ZFW ' + chk.r.mz.toFixed(1) + ' / TOW ' + chk.r.mt.toFixed(1) + ' / LAW ' + chk.r.ml.toFixed(1)]].map(function (q) { return '<div class="' + (q[1] ? 'ok' : 'ng') + '">' + (q[1] ? '✔ ' : '✖ ') + esc(tx(q[0])) + (q[2] ? ' — ' + esc(q[2]) : '') + '</div>'; }).join('') + '</div><div>' + esc(mv2.bad ? tx(L('→ このまま実行すると違反（保留・出発不可）', '→ 이대로 실행하면 위반(보류·출발 불가)', '→ Executing this breaks the rules (hold, no departure)')) : tx(L('→ 3項目とも問題なし', '→ 세 항목 모두 문제 없음', '→ All three checks pass'))) + '</div>' + (S.acKey === '789' ? '<p class="small">' + esc(tx(L('787：AKEの中身だけを5番バルクに積み替え、空のAKE（自重）は元の位置に残ります。', '787: AKE의 내용물만 5번 벌크로 옮겨 싣고, 빈 AKE(자체 중량)는 원래 자리에 남습니다.', '787: only the AKE contents are re-stowed loose in bulk 5; the empty AKE (tare) stays in place.'))) + '</p>' : '') + '</div>';
+    }
+    h += '<div class="btns">' + (mv2 && !c.flags.rechk ? '<button class="btn" id="w-rechk" data-a="ok">' + esc(tx(L('隔離・上限・重心を再検査', '격리·상한·무게중심 재검사', 'Re-check separation, limits, CG'))) + '</button>' : '') +
+      '<button class="btn pri" id="w-exacc" data-a="ok">' + esc(tx(mv2 ? L('差を反映して受ける', '차이를 반영해 받음', 'Accept and apply the change') : L('LIRと照合して受ける（一致）', 'LIR과 대조하고 받음(일치)', 'Check against LIR and accept (match)'))) + '</button>' +
+      (mv2 ? '<button class="btn" id="w-exrel" data-a="ok">' + esc(tx(L('保留・積み直しを依頼', '보류·재배치 요청', 'Hold and ask for re-stowage'))) + '</button>' : '') + '</div>' + wbEdu();
+    scr(h);
+    var rb = $('#w-rechk'); if (rb) rb.onclick = function () { if (!wbLive(c)) return; sfx.tap(); c.flags.rechk = true; wbTime(M.cost.check * 2); wbTabRepEx(); };
+    $('#w-exacc').onclick = function () {
+      if (!wbDone(c)) return; sfx.ok(); S.repOk = true; wbTime(M.cost.radio);
+      if (!mv2) { note('good', L('中間報告をLIRと照合しました。', '중간 보고를 LIR과 대조했습니다.', 'Checked the interim report against the LIR.'), 'passenger/3-8'); S.exDone = 'ok'; wbEnd(900); return; }
+      wbExApply(mv2); S.exDone = mv2.bad ? 'accept-bad' : 'ok';
+      if (mv2.bad) note('bad', L('例外の報告をそのまま受けました。動物とドライアイスが同じ貨物室になっています（このまま提出すると機長は承認しません）。', '예외 보고를 그대로 받았습니다. 동물과 드라이아이스가 같은 칸이 됐습니다(이대로 제출하면 기장은 승인하지 않음).', 'Accepted the exception as is: the animal and dry ice now share a hold (the captain will not accept this).'), 'passenger/3-8', 'wb-except');
+      else note('good', L('例外の報告を確認し、問題がないので実搭載に反映しました。', '예외 보고를 확인하고 문제가 없어 실탑재에 반영했습니다.', 'Checked the exception, found no problem and applied it.'), 'passenger/3-8');
+      say('me', L('了解、反映します。', '확인, 반영하겠습니다.', 'Copy, applying it.')); wbEnd(900);
+    };
+    var xr = $('#w-exrel'); if (xr) xr.onclick = function () {
+      if (!wbDone(c)) return; sfx.ok(); S.repOk = true; wbTime(M.cost.radio * 2);
+      var alt = wbExAlt(mv2.id); wbExApply(alt); S.exDone = 'reloc';
+      wbCall('lm', alt ? L('了解、' + mv2.id + 'は' + wbHoldName(mv2.from) + 'に戻し、代わりに' + alt.id + '（' + alt.kg + 'kg）を' + wbHoldName(alt.to) + 'に移します。', '알겠습니다. ' + mv2.id + '은(는) ' + wbHoldName(mv2.from) + '에 되돌리고 대신 ' + alt.id + '(' + alt.kg + 'kg)을 ' + wbHoldName(alt.to) + '(으)로 옮깁니다.', 'Copy. ' + mv2.id + ' goes back to ' + wbHoldName(mv2.from) + '; we will move ' + alt.id + ' (' + alt.kg + ' kg) to ' + wbHoldName(alt.to) + ' instead.') : L('了解、' + mv2.id + 'は' + wbHoldName(mv2.from) + 'に戻して積み直します。', '알겠습니다. ' + mv2.id + '은(는) ' + wbHoldName(mv2.from) + '에 되돌려 다시 싣겠습니다.', 'Copy. We will re-stow ' + mv2.id + ' in ' + wbHoldName(mv2.from) + '.'));
+      note('good', mv2.bad ? L('例外を受ける前に隔離を確かめ、違反になるので積み直しを依頼しました。', '예외를 받기 전에 격리를 확인하고, 위반이 되므로 재배치를 요청했습니다.', 'Checked separation before accepting and asked for re-stowage because it would break the rules.') : L('問題のない移動でしたが、積み直しを依頼しました（時間がかかります）。', '문제없는 이동이었지만 재배치를 요청했습니다(시간이 걸림).', 'The move was fine, but you asked for re-stowage (costs time).'), 'passenger/3-8');
+      wbEnd(1200);
+    };
+  }
+  function wbTabRep() {
+    if (M.special) return wbTabRepEx();
+    var c = S.cur, a = wbA(), cc = wbLoadsC();
+    wbCall('lm', L('ロードコントロール、こちらハンドリング。中間報告です。貨物室ごとの実搭載を送ります。指示と違うところはありません。', '탑재관리, 여기는 조업사. 중간 보고입니다. 화물칸별 실탑재 보냅니다. 지시와 다른 곳은 없습니다.', 'Load control, handling here. Interim report: actual load by hold coming through. No exceptions to the instruction.'));
+    scr('<div class="h3">' + esc(tx(L('中間報告（暫定）', '중간 보고(잠정)', 'Interim report (provisional)'))) + '</div>' +
+      '<table class="wbt"><tr><th>' + esc(tx(L('貨物室', '화물칸', 'Hold'))) + '</th><th>LIR</th><th>' + esc(tx(L('報告', '보고', 'Report'))) + '</th></tr>' + a.cpt.map(function (x, j) { return '<tr><td>' + x.id + '</td><td class="n">' + wbNum(cc[j]) + '</td><td class="n">' + wbNum(cc[j]) + '</td></tr>'; }).join('') + '</table>' +
+      '<p class="small">' + esc(tx(L('中間報告は暫定です。提出前に最終の実搭載の確認を別に受けます。', '중간 보고는 잠정입니다. 제출 전에 최종 실탑재 확인을 따로 받습니다.', 'The interim report is provisional; a separate final confirmation comes before submission.'))) + '</p>' +
+      '<div class="btns"><button class="btn pri" id="w-repok" data-a="ok">' + esc(tx(L('LIRと照合して受ける（一致）', 'LIR과 대조하고 받음(일치)', 'Check against LIR and accept (match)'))) + '</button><button class="btn" id="w-repskip" data-a="wb-report">' + esc(tx(L('照合せずに受ける', '대조 없이 받음', 'Accept without checking'))) + '</button></div>' + wbEdu());
+    $('#w-repok').onclick = function () { if (!wbDone(c)) return; sfx.ok(); S.repOk = true; wbTime(M.cost.radio); note('good', L('中間報告を貨物室ごとにLIRと照合しました。', '중간 보고를 화물칸별로 LIR과 대조했습니다.', 'Checked the interim report against the LIR hold by hold.'), 'passenger/3-8'); say('me', L('了解、LIRと一致を確認しました。', '확인, LIR과 일치합니다.', 'Copy, matches the LIR.')); wbEnd(900); };
+    $('#w-repskip').onclick = function () { if (!wbDone(c)) return; sfx.ng(); S.repOk = false; wbTime(M.cost.radio * 0.5); wbBad('wb-report', L('中間報告をLIRと照合せずに受けました。', '중간 보고를 LIR과 대조하지 않고 받았습니다.', 'Accepted the interim report without checking it against the LIR.'), 'passenger/3-8'); say('me', L('了解です。', '알겠습니다.', 'Copy.')); wbEnd(900); };
+  }
+  /* ---------- 검산 칸(3D) ---------- */
+  var WF = { tl: L('搭載量の合計（TTL）', '총 탑재량(TTL)', 'Total traffic load (TTL)'), zfw: L('無燃料重量（ZFW）', '무연료 중량(ZFW)', 'Zero fuel weight (ZFW)'), tow: L('離陸重量（TOW）', '이륙 중량(TOW)', 'Take-off weight (TOW)'), law: L('着陸重量（LAW）', '착륙 중량(LAW)', 'Landing weight (LAW)'), al: L('許される離陸重量', '허용 이륙 중량', 'Allowed take-off weight'), ul: L('余裕（アンダーロード）', '여유(언더로드)', 'Underload'),
+    iz: L('ZFWの指数', 'ZFW 지수', 'ZFW index'), it: L('TOWの指数', 'TOW 지수', 'TOW index') };
+  var WFK = { iz: 'idx', it: 'idx' };   /* Day 2~: 지수 칸(±0.1). 나머지는 kg 정수 */
+  /* 52차 보완 4(GPT·합의본 3D): 같은 원인의 연쇄 오류는 한 번만 감점. 각 칸을 플레이어가 앞 칸에 넣은 값으로 다시 계산해 그 값과 맞으면 「앞 칸 때문」(감점 없음)
+     연결: TTL → ZFW(= DOW + TTL) → TOW(= ZFW + TOF) → LAW(= TOW − TIF) / 여유(= 허용 − TOW). 허용 TOW는 따로 판정 */
+  function wbDerived(f, ent, r) {
+    var a = wbA(), n = function (k) { var v = ent[k]; if (v == null || String(v).trim() === '') return null; var x = +String(v).replace(/[,\s]/g, ''); return isFinite(x) ? x : null; };
+    var up = function (k) { return ent[k + '_ok'] === false && n(k) != null ? n(k) : null; };   /* 앞 칸이 틀렸을 때만 그 값으로 이어 계산 */
+    if (f === 'zfw' && up('tl') != null) return a.dow + up('tl');
+    if (f === 'tow' && (up('zfw') != null || ent.zfw_chain)) return (n('zfw') != null ? n('zfw') : r.zfw) + a.d[5];
+    if (f === 'law' && (up('tow') != null || ent.tow_chain)) return (n('tow') != null ? n('tow') : r.tow) - a.d[6];
+    if (f === 'it' && up('iz') != null) return up('iz') + a.d[5] * a.fuel / 1000;   /* TOW 지수 = ZFW 지수 + 이륙 연료 지수 */
+    if (f === 'ul' && (up('tow') != null || up('al') != null || ent.tow_chain || ent.al_chain)) return (n('al') != null && ent.al_ok === false ? n('al') : r.al) - (n('tow') != null && ent.tow_ok === false ? n('tow') : r.tow);
+    return null;
+  }
+  function wbChkForm(id, fields, r, onOk) {
+    var c = S.cur, ent = c.flags[id] = c.flags[id] || {}, h = '<div class="wbchk">' + fields.map(function (f) { var st = ent[f + '_ok']; return '<label class="' + (st === true ? 'ok' : st === false ? 'ng' : '') + '"><span>' + esc(tx(WF[f])) + (st === false && ent[f + '_chain'] ? ' <em class="wbchain">' + esc(tx(L('前の欄が原因', '앞 칸 때문', 'from the line above'))) + '</em>' : '') + '</span><input inputmode="' + (WFK[f] ? 'decimal' : 'numeric') + '" data-f="' + f + '" value="' + esc(ent[f] != null ? ent[f] : '') + '"><i>' + (st === true ? '✔' : st === false ? '✖' : (WFK[f] ? 'IDX' : 'kg')) + '</i></label>'; }).join('') + '</div>' +
+      wbFormula() + '<div class="btns"><button class="btn pri" id="w-chk-' + id + '" data-a="ok">' + esc(tx(L('検算する', '검산하기', 'Cross-check'))) + '</button></div>';
+    return { html: h, bind: function () {
+      document.querySelectorAll('.wbchk input').forEach(function (inp) { inp.oninput = function () { ent[inp.dataset.f] = inp.value; }; });
+      $('#w-chk-' + id).onclick = function () {
+        if (!wbLive(c)) return; var allOk = true, blank = false;
+        fields.forEach(function (f) { ent[f + '_chain'] = false; });
+        fields.forEach(function (f) {
+          var v = ent[f]; if (v == null || String(v).trim() === '') { blank = true; allOk = false; ent[f + '_ok'] = null; return; }
+          var sv = String(v).replace(/[,\s]/g, ''), ok = WB.checkInput(WFK[f] || 'kg', sv, r[f]); ent[f + '_ok'] = ok;
+          if (ok) return; allOk = false;
+          var dv = wbDerived(f, ent, r);
+          if (dv != null && WB.checkInput(WFK[f] || 'kg', sv, dv)) { ent[f + '_chain'] = true; return; }   /* 앞 칸 때문 — 감점 안 함 */
+          S.chkWrong[f] = (S.chkWrong[f] || 0) + 1;
+        });
+        wbTime(M.cost.field); if (allOk) { sfx.ok(); onOk(); } else { sfx.ng(); showTab(c.tab); if (blank) { var m = $('#w-chkmsg'); if (m) m.innerHTML = '<div class="why">' + esc(tx(L('空欄があります。', '빈칸이 있습니다.', 'Some fields are blank.'))) + '</div>'; } }
+      };
+    } };
+  }
+  /* 52차 보완 2·3(GPT): 계산식 전체(허용 이륙 중량 비교식 포함)를 검산 칸 옆에 항상 표시 + 교육용 계산 가정 */
+  function wbFormula() {
+    var rows = [['TTL', L('75×大人の数 ＋ 35×小児の数 ＋ 0×幼児の数 ＋ 貨物室ごとの重量の合計', '75×성인 수 + 35×소아 수 + 0×유아 수 + 화물칸별 중량 합계', '75×adults + 35×children + 0×infants + sum of hold weights')], ['ZFW', 'DOW + TTL'], ['TOW', L('ZFW ＋ 離陸燃料（TOF）', 'ZFW + 이륙 연료(TOF)', 'ZFW + take-off fuel (TOF)')], ['LAW', L('TOW − 飛行燃料（TIF）', 'TOW − 비행 연료(TIF)', 'TOW − trip fuel (TIF)')],
+      [L('許される離陸重量', '허용 이륙 중량', 'Allowed TOW'), 'min( MAX ZFW + TOF , MAX TOW , MAX LAW + TIF )'], [L('余裕', '여유', 'Underload'), L('許される離陸重量 − TOW（0以上）', '허용 이륙 중량 − TOW(0 이상)', 'allowed TOW − TOW (≥ 0)')]];
+    if (M.day >= 2) rows.push([L('ZFWの指数', 'ZFW 지수', 'ZFW index'), L('DOI ＋ 客室区画の指数変化 ＋ 貨物室の指数変化', 'DOI + 객실 구역 지수 변화 + 화물칸 지수 변화', 'DOI + cabin-zone index changes + hold index changes')], [L('TOWの指数', 'TOW 지수', 'TOW index'), L('ZFWの指数 ＋ 離陸燃料の指数', 'ZFW 지수 + 이륙 연료 지수', 'ZFW index + take-off fuel index')]);
+    return '<div class="wbformula"><b>' + esc(tx(L('計算式', '계산식', 'Formulas'))) + '</b>' + rows.map(function (x) { return '<div><span>' + esc(tx(x[0])) + '</span> = ' + esc(tx(x[1])) + '</div>'; }).join('') + '</div>' + wbAssume();
+  }
+  function wbAssume() {
+    var li = [L('幼児は大人の標準重量に含まれるものとし、追加は0 kg（教育用の仮定）。大人75 kg・小児35 kgも教育用の標準重量です。', '유아는 성인 표준 중량에 포함된 것으로 보고 추가 0 kg(교육용 가정). 성인 75 kg·소아 35 kg도 교육용 표준 중량입니다.', 'Infants are treated as included in the adult standard weight: +0 kg (educational assumption). Adult 75 kg and child 35 kg are educational standard weights too.'),
+      L('許される離陸重量は構造上の最大重量（MAX ZFW・TOW・LAW）だけで計算した値です。滑走路・気象などの性能による制限（実際のAGTOW・RTOW）は扱いません。', '허용 이륙 중량은 구조상 최대 중량(MAX ZFW·TOW·LAW)만으로 계산한 값입니다. 활주로·기상 등 성능 제한(실제 AGTOW·RTOW)은 다루지 않습니다.', 'Allowed TOW uses only the structural maximums (MAX ZFW/TOW/LAW); performance limits (actual AGTOW/RTOW) are not covered.'),
+      L('787の積み付け位置・ULDの上限・重心は貨物室単位の簡易モデルで、実際の重量・重心マニュアル（WBM）の値ではありません。', '787 탑재 위치·ULD 한도·무게중심은 화물칸 단위 간이 모델이며 실제 중량·균형 매뉴얼(WBM) 값이 아닙니다.', '787 positions, ULD limits and CG use a simplified per-hold model, not values from an actual weight & balance manual (WBM).'),
+      L('最大ZFW・最大TOW・最大LAWの3つは、練習ツール（サイトの「搭載計算の練習」）で採用したメーカー公表の代表値を参考にしています。出典：Boeingの空港計画用資料・重量の型式の一覧（2026年9月確認）。', 'MAX ZFW·MAX TOW·MAX LAW 3개는 사이트 계산 도구(「搭載計算の練習」)에서 채택한 제조사 공개 대표값을 참고합니다. 출처: Boeing 공항 계획용 자료·중량 사양 목록(2026년 9월 확인).', 'MAX ZFW, MAX TOW and MAX LAW follow the manufacturer’s published representative values used by the site’s load-calculation practice tool. Source: Boeing airport-planning documents and weight-variant lists (checked September 2026).'),
+      L('DOW・DOI・燃料・標準重量・貨物室／ULDの上限・重心モデルなどは、Velaの教育用仮定値です。特定の登録機の承認済み運航資料ではありません。', 'DOW·DOI·연료·표준 중량·화물칸 및 ULD 한도·CG 모델 등은 Vela 교육용 가정값입니다. 특정 등록 기체의 승인된 운항 자료가 아닙니다.', 'DOW, DOI, fuel, standard weights, hold/ULD limits and the CG model are Vela educational assumptions, not approved operating data for any registered aircraft.'),
+      L('ロードコントロール編は現在、字幕だけです（音声は準備中）。', '탑재관리편은 현재 자막만 제공합니다(음성 준비 중).', 'Load control currently has captions only (voice in preparation).')];
+    return '<details class="wbassume"><summary>' + esc(tx(L('計算の前提（教育用）', '계산 가정(교육용)', 'Calculation assumptions (educational)'))) + '</summary><ul>' + li.map(function (x) { return '<li>' + esc(tx(x)) + '</li>'; }).join('') + '</ul></details>';
+  }
+  function wbDataBlock(p) {
+    var a = wbA(), cc = wbLoadsC();
+    return wbKV([['DOW', wbNum(a.dow)], [L('お客様（大人/小児/幼児）', '승객(성인/소아/유아)', 'Passengers (adult/child/infant)'), p.ad + ' / ' + p.ch + ' / ' + p.inf + ' <span class="small">(' + esc(tx(L('標準 75/35/0 kg', '표준 75/35/0 kg', 'std 75/35/0 kg'))) + ')</span>'],
+      [L('貨物室', '화물칸', 'Holds'), a.cpt.map(function (x, j) { return x.id + ': ' + wbNum(cc[j]); }).join(' · ')], [L('燃料（離陸／飛行）', '연료(이륙/비행)', 'Fuel (take-off / trip)'), wbNum(a.d[5]) + ' / ' + wbNum(a.d[6])], ['MAX ZFW / TOW / LAW', wbNum(a.mzfw) + ' / ' + wbNum(a.mtow) + ' / ' + wbNum(a.mlw)]]) + (M.day >= 2 ? wbIdxTable(p, cc) : '');
+  }
+  /* Day 2~: 지수 변화표(사이트 도구와 같은 식 — 구역 = 인원 × 평균 승객 중량 × 구역 팔 / 1000, 칸 = kg × 칸 팔 / 1000, 연료 = TOF × 연료 계수 / 1000). 소수 둘째 자리 */
+  function wbIdxTable(p, cc) {
+    var a = wbA(), pw = p.ad * 75 + p.ch * 35, n = p.ad + p.ch, per = n ? pw / n : 0, f2 = function (x) { return (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(2); }, rows = [['DOI', a.doi.toFixed(2)]];
+    a.zl.forEach(function (z, i) { rows.push([tx(L('区画 ', '구역 ', 'Zone ')) + z + ' (' + p.z[i] + ')', f2(p.z[i] * per * a.zf[i] / 1000)]); });
+    a.cpt.forEach(function (x, j) { rows.push([tx(L('貨物室 ', '화물칸 ', 'Hold ')) + x.id, f2(cc[j] * x.f / 1000)]); });
+    rows.push([L('離陸燃料（TOF）', '이륙 연료(TOF)', 'Take-off fuel (TOF)'), f2(a.d[5] * a.fuel / 1000)]);
+    return '<div class="wbidx"><b>' + esc(tx(L('指数の変化（INDEX）', '지수 변화(INDEX)', 'Index changes'))) + '</b><table class="wbt">' + rows.map(function (r) { return '<tr><td>' + esc(typeof r[0] === 'string' ? r[0] : tx(r[0])) + '</td><td class="n mono">' + r[1] + '</td></tr>'; }).join('') + '</table></div>';
+  }
+  /* ---------- ④ 예비판 로드시트 ---------- */
+  function wbTabPre() {
+    var c = S.cur, a = wbA(), d = wbD(), r = WB.calc(a, wbState(d.book)), F = M.day >= 2 ? ['tl', 'zfw', 'tow', 'law', 'al', 'ul', 'iz', 'it'] : ['tl', 'zfw', 'tow', 'law', 'al', 'ul'];
+    var form = wbChkForm('pre', F, r, function () {
+      if (!wbDone(c)) return; var w = F.reduce(function (n, f) { return n + Math.max(0, (S.chkWrong[f] || 0)); }, 0);
+      S.preAt = S.clock; note('good', M.day >= 2 ? L('予備ロードシートの重量6項目と指数2項目を検算しました。', '예비 로드시트 중량 6항목과 지수 2항목을 검산했습니다.', 'Cross-checked six weights and two indices on the preliminary sheet.') : L('予備ロードシートの重量6項目を検算しました。', '예비 로드시트 중량 6항목을 검산했습니다.', 'Cross-checked the six weights on the preliminary sheet.'), 'passenger/3-7'); wbEnd();
+    });
+    scr('<div class="h3">' + esc(tx(L('予備ロードシート（予約人数・中間報告で作成）', '예비 로드시트(예약 인원·중간 보고 기준)', 'Preliminary load sheet (booking + interim report)'))) + ' <span class="pill">EDNO —</span></div>' + wbDataBlock(d.book) + form.html + '<div id="w-chkmsg"></div>' +
+      (M.day >= 2 ? wbChart(r) : wbMacBar(r)) + '<p class="small">' + esc(tx(L('%MACはシステムの計算値。範囲の中にあるかを確認します。', '%MAC는 시스템 계산값. 범위 안에 있는지 확인합니다.', '%MAC is the system value; check it is within limits.'))) + '</p>' + wbEdu());
+    form.bind();
+  }
+  /* ---------- ⑤ 최종 자료(시계 정지) ---------- */
+  function wbTabFin() {
+    var c = S.cur, a = wbA(), d = wbD(), e = S.entered;
+    if (!c.flags.called) { c.flags.called = true; wbCall('gate', L('ゲートです。最終人数：大人' + d.fin.ad + '、小児' + d.fin.ch + '、幼児' + d.fin.inf + '。区画 A' + d.fin.z[0] + '・B' + d.fin.z[1] + '・C' + d.fin.z[2] + '。ノーショー' + ((d.book.ad + d.book.ch) - (d.fin.ad + d.fin.ch)) + '名で、手荷物はありません。', '게이트입니다. 최종 인원: 성인 ' + d.fin.ad + ', 소아 ' + d.fin.ch + ', 유아 ' + d.fin.inf + '. 구역 A' + d.fin.z[0] + '·B' + d.fin.z[1] + '·C' + d.fin.z[2] + '. 노쇼 ' + ((d.book.ad + d.book.ch) - (d.fin.ad + d.fin.ch)) + '명, 위탁 수하물 없음.', 'Gate here. Final: ' + d.fin.ad + ' adults, ' + d.fin.ch + ' children, ' + d.fin.inf + ' infants. Zones A' + d.fin.z[0] + ' B' + d.fin.z[1] + ' C' + d.fin.z[2] + '. ' + ((d.book.ad + d.book.ch) - (d.fin.ad + d.fin.ch)) + ' no-show(s), no checked bags.')); }
+    var inp = function (k, i, v) { return '<label><span>' + k + '</span><input inputmode="numeric" data-p="' + (i == null ? k : 'z' + i) + '" value="' + v + '"></label>'; };
+    var h = '<div class="h3">' + esc(tx(L('最終データの受信と照合', '최종 자료 수신·대조', 'Final figures: receive and reconcile'))) + ' <span class="pill">⏸ ' + esc(tx(L('時計停止中', '시계 정지 중', 'Clock paused'))) + '</span></div>' +
+      '<div class="wbpax">' + inp('ad', null, e.ad).replace('<span>ad</span>', '<span>' + esc(tx(L('大人', '성인', 'Adults'))) + '</span>') + inp('ch', null, e.ch).replace('<span>ch</span>', '<span>' + esc(tx(L('小児', '소아', 'Children'))) + '</span>') + inp('inf', null, e.inf).replace('<span>inf</span>', '<span>' + esc(tx(L('幼児', '유아', 'Infants'))) + '</span>') +
+      a.zl.map(function (z, i) { return inp('ABC'.charAt(i), i, e.z[i]); }).join('') + '</div>' +
+      '<div class="btns"><button class="btn" id="w-paxset" data-a="ok">' + esc(tx(L('この人数でロードシートを直す', '이 인원으로 로드시트 수정', 'Update the sheet with these figures'))) + '</button><button class="btn" id="w-finconf" data-a="ok"' + (S.finConf ? ' disabled' : '') + '>' + (S.finConf ? '✔ ' : '') + esc(tx(L('最終の実搭載の確認を受ける', '최종 실탑재 확인 받기', 'Get final actual-load confirmation'))) + '</button></div><div id="w-finmsg"></div>';
+    var r = WB.calc(a, wbState(e)), F = M.day >= 2 ? ['zfw', 'tow', 'ul', 'it'] : ['zfw', 'tow', 'ul'];
+    var form = wbChkForm('fin', F, r, function () { if (!wbDone(c)) return; S.clock = S.frozenAt; updateBar(); note('good', L('最終人数でロードシートを直し、重量を検算しました。', '최종 인원으로 로드시트를 고치고 중량을 검산했습니다.', 'Updated the sheet with final figures and cross-checked the weights.'), 'passenger/3-7'); wbEnd(); });
+    h += (c.flags.paxSet ? '<div class="h3" style="margin-top:8px">' + esc(tx(L('直したロードシートの検算', '고친 로드시트 검산', 'Cross-check the updated sheet'))) + '</div>' + wbDataBlock(e) + form.html + '<div id="w-chkmsg"></div>' + (M.day >= 2 ? wbChart(r) : wbMacBar(r)) : '') + wbEdu();
+    scr(h);
+    document.querySelectorAll('.wbpax input').forEach(function (i) { i.oninput = function () { var k = i.dataset.p, v = Math.max(0, Math.floor(+i.value || 0)); if (k.charAt(0) === 'z') e.z[+k.slice(1)] = v; else e[k] = v; }; });
+    $('#w-paxset').onclick = function () {
+      if (!wbLive(c)) return; var er = WB.stateErrors(a, wbState(e)).filter(function (x) { return /^zone|^inf/.test(x.code); });
+      if (er.length) { sfx.ng(); $('#w-finmsg').innerHTML = '<div class="why bad">' + esc(tx(L('区画の合計が大人＋小児と合わないか、席数・幼児の数が合いません。', '구역 합계가 성인+소아와 맞지 않거나 좌석 수·유아 수가 맞지 않습니다.', 'Zone totals do not match adults + children, or seats/infants are off.'))) + '</div>'; return; }
+      sfx.tap(); c.flags.paxSet = true; c.flags.fin = {}; wbTime(M.cost.field); wbTabFin();
+    };
+    $('#w-finconf').onclick = function () { if (!wbLive(c) || S.finConf) return; sfx.ok(); S.finConf = true; wbTime(M.cost.radio); wbCall('lm', L('最終の実搭載、中間報告と同じです。全数固定済み、例外なし。確認者サインしました。', '최종 실탑재, 중간 보고와 같습니다. 전부 고정 완료, 예외 없음. 확인자 서명했습니다.', 'Final actual load same as interim. All secured, no exceptions. Signed off.')); note('good', L('ハンドリングから最終の実搭載の確認を受けました。', '조업사에게 최종 실탑재 확인을 받았습니다.', 'Received the final actual-load confirmation from handling.'), 'passenger/3-8'); wbTabFin(); };
+    if (c.flags.paxSet) form.bind();
+  }
+  /* ---------- Day 3: 기장 통보서(DG NOTOC과 기타 특수 탑재물·보조기 통보를 같은 탭에서 구분, 합의본 Day 3) ---------- */
+  function wbNotocNeed(x) { return { dg: !!x.spc.ice, sp: ['AVIH', 'WCH', 'PER', 'HEA'].indexOf(x.spc.t) >= 0 }; }
+  function wbNotocRows(editable) {
+    var rows = S.notocDraft = S.notocDraft || {}, L0 = wbSpc();
+    return '<table class="wbt wbnotoc"><tr><th>' + esc(tx(L('品目', '품목', 'Item'))) + '</th><th>' + esc(tx(L('貨物室', '화물칸', 'Hold'))) + '</th><th>DG NOTOC</th><th>' + esc(tx(L('特別な搭載物・補助具', '특수 탑재물·보조기', 'Special load / mobility aid'))) + '</th></tr>' + L0.map(function (x) {
+      var r = rows[x.id] = rows[x.id] || { dg: false, sp: false }, info = (x.spc.un ? x.spc.un + ' · ' + esc(tx(L('ドライアイス', '드라이아이스', 'dry ice'))) + ' ' + x.spc.ice + ' kg' : '') + (x.spc.t === 'WCH' ? esc(tx(L('電池は取り付けたまま／予備電池1個は客室', '배터리 장착 상태 / 예비 배터리 1개는 객실', 'battery installed / 1 spare battery in cabin'))) : '') + (x.spc.temp ? ' ' + esc(tx(x.spc.temp)) : '') + (x.spc.t === 'HEA' ? esc(tx(L('品物', '물품', 'item'))) + ' ' + wbNum(x.spc.piece) + ' + ' + esc(tx(L('台', '받침', 'skid'))) + ' ' + wbNum(x.spc.skid) + ' kg' : '');
+      var tg = function (k, on) { return editable ? '<button class="wbtg' + (on ? ' on' : '') + '" data-nt="' + x.id + '.' + k + '" data-a="ok">' + (on ? '✔' : '—') + '</button>' : (on ? '✔' : '—'); };
+      return '<tr><td><span class="pill spc">' + esc(tx(WSPN[x.spc.t])) + '</span> <span class="mono">' + x.id + '</span><br><span class="small">' + esc(tx(x.nm)) + (info ? ' · ' + info : '') + '</span></td><td>' + (x.hold == null ? '—' : esc(wbHoldName(x.hold))) + '</td><td>' + tg('dg', r.dg) + '</td><td>' + tg('sp', r.sp) + '</td></tr>';
+    }).join('') + '</table>';
+  }
+  function wbNotocBind(redraw) { document.querySelectorAll('#scr button[data-nt]').forEach(function (b) { b.onclick = function () { if (!wbLive(S.cur)) return; sfx.tap(); var p = b.dataset.nt.split('.'), r = S.notocDraft[p[0]]; r[p[1]] = !r[p[1]]; wbTime(0.1); redraw(); }; }); }
+  function wbNotocErr(rows) { var miss = [], extra = []; wbSpc().forEach(function (x) { var n = wbNotocNeed(x), r = (rows || {})[x.id] || {}; if (n.dg && !r.dg) miss.push(x.id + ' DG'); if (n.sp && !r.sp) miss.push(x.id); if (!n.dg && r.dg) extra.push(x.id); }); return { miss: miss, extra: extra }; }
+  function wbTabNotoc() {
+    var c = S.cur;
+    scr('<div class="h3">' + esc(tx(L('機長への通知書（NOTOC）', '기장 통보서(NOTOC)', 'Notification to captain (NOTOC)'))) + '</div><p class="small">' + esc(tx(L('Velaは「危険物（DG）NOTOC」と「その他の特別な搭載物・補助具の通知」を分けて同じ書類で伝えます。実際の貨物室で、どちらに書くかを選びます（両方のこともあります）。', 'Vela는 「위험물(DG) NOTOC」과 「기타 특수 탑재물·보조기 통보」를 구분해 같은 서류로 전합니다. 실제 칸 기준으로 어느 쪽에 쓸지 고릅니다(둘 다인 것도 있음).', 'Vela separates the dangerous-goods NOTOC from other special-load / mobility-aid notifications on one form. Choose the section(s) for each item using the actual hold (some need both).'))) + '</p>' +
+      wbNotocRows(true) + '<div class="btns"><button class="btn pri" id="w-notocok" data-a="ok">' + esc(tx(L('通知書を作成', '통보서 작성 완료', 'Complete the notification'))) + '</button></div>' + wbEdu());
+    wbNotocBind(wbTabNotoc);
+    $('#w-notocok').onclick = function () {
+      if (!wbDone(c)) return; sfx.ok(); wbTime(M.cost.notoc || 2); S.notoc = JSON.parse(JSON.stringify(S.notocDraft || {}));
+      note('good', L('機長への通知書を作成しました（提出時に機長が確認します）。', '기장 통보서를 작성했습니다(제출 때 기장이 확인합니다).', 'Prepared the captain notification (the captain checks it at submission).'), 'cargo/7-3'); wbEnd();
+    };
+  }
+  /* ---------- ⑥ 기장 제출(3B) ---------- */
+  function wbTabSub() {
+    var c = S.cur, a = wbA(), d = wbD(), e = S.entered, r = WB.calc(a, wbState(e));
+    var ls = ['LOADSHEET   EDNO ' + S.ed + '   ' + V.flight + ' ' + V.from + '/' + V.to + '   ' + a.id + ' ' + d.reg,
+      'PAX ' + e.ad + '/' + e.ch + '/' + e.inf + '   ZONES ' + e.z.join('/'), 'LOAD IN CPTS ' + a.cpt.map(function (x, j) { return x.id + '/' + Math.round(wbLoadsC()[j]); }).join(' '),
+      'TTL ' + Math.round(r.tl) + '  DOW ' + a.dow, 'ZFW ' + Math.round(r.zfw) + '  MAX ' + a.mzfw + (r.lim === 0 ? ' L' : ''), 'TOF ' + a.d[5] + '  TOW ' + Math.round(r.tow) + '  MAX ' + a.mtow + (r.lim === 1 ? ' L' : ''),
+      'TIF ' + a.d[6] + '  LAW ' + Math.round(r.law) + '  MAX ' + a.mlw + (r.lim === 2 ? ' L' : ''), 'UNDERLOAD ' + Math.round(r.ul), 'MACZFW ' + r.mz.toFixed(1) + '  MACTOW ' + r.mt.toFixed(1) + '  MACLAW ' + r.ml.toFixed(1), '— ' + tx(WB_TEXT.eduData) + ' —'];
+    var h = '<div class="h3">' + esc(tx(L('機長への提出', '기장 제출', 'Submit to the captain'))) + '</div><pre class="wbls">' + esc(ls.join('\n')) + '</pre>' +
+      (M.special ? '<div class="h3" style="margin-top:6px">' + esc(tx(L('機長への通知書', '기장 통보서', 'Captain notification'))) + '</div>' + (function () { var keep = S.notocDraft; S.notocDraft = c.flags.fixNotoc ? S.notocDraft : JSON.parse(JSON.stringify(S.notoc || {})); var t = wbNotocRows(!!c.flags.fixNotoc); if (!c.flags.fixNotoc) S.notocDraft = keep; return t; })() : '') +
+      '<div class="chk"><button data-k="notoc" data-a="ok"><span>' + esc(tx(M.special ? L('機長への通知書を一緒に渡すことを確認', '기장 통보서를 함께 전달함을 확인', 'Confirm the notification goes with the sheet') : L('機長への通知（NOTOC等）：今日は対象なしを確認', '기장 통보(NOTOC 등): 오늘 대상 없음 확인', 'Captain notification (NOTOC etc.): confirm none today'))) + '</span><span class="st">' + (c.flags.notoc ? '✔' : '') + '</span></button></div>' +
+      '<div class="btns"><button class="btn pri" id="w-submit" data-a="ok">' + esc(tx(L('機長に提出する', '기장에게 제출', 'Submit to captain'))) + '</button>' + (c.flags.returned ? '<button class="btn" id="w-fix" data-a="ok">' + esc(tx(L('数字を直す', '숫자 고치기', 'Fix the figures'))) + '</button>' : '') + (M.special && c.flags.returned ? '<button class="btn" id="w-fixnt" data-a="ok">' + esc(tx(L('通知書を直す', '통보서 고치기', 'Fix the notification'))) + '</button>' + (wbSegErr().length ? '<button class="btn" id="w-reloc2" data-a="ok">' + esc(tx(L('ハンドリングに積み直しを依頼', '조업사에 재배치 요청', 'Ask handling to re-stow'))) + '</button>' : '') : '') + '</div><div id="w-submsg"></div>';
+    if (c.flags.fixing) {
+      h += '<div class="wbpax">' + ['ad', 'ch', 'inf'].map(function (k) { return '<label><span>' + k.toUpperCase() + '</span><input inputmode="numeric" data-p="' + k + '" value="' + e[k] + '"></label>'; }).join('') + a.zl.map(function (z, i) { return '<label><span>' + 'ABC'.charAt(i) + '</span><input inputmode="numeric" data-p="z' + i + '" value="' + e.z[i] + '"></label>'; }).join('') + '</div>' +
+        (S.finConf ? '' : '<div class="btns"><button class="btn" id="w-finconf2" data-a="ok">' + esc(tx(L('最終の実搭載の確認を受ける', '최종 실탑재 확인 받기', 'Get final actual-load confirmation'))) + '</button></div>');
+    }
+    scr(h + wbEdu());
+    document.querySelectorAll('#scr .chk button').forEach(function (b) { b.onclick = function () { if (!wbLive(c)) return; sfx.tap(); c.flags.notoc = true; wbTime(M.cost.check); wbTabSub(); }; });
+    document.querySelectorAll('.wbpax input').forEach(function (i) { i.oninput = function () { var k = i.dataset.p, v = Math.max(0, Math.floor(+i.value || 0)); if (k.charAt(0) === 'z') e.z[+k.slice(1)] = v; else e[k] = v; }; i.onchange = function () { wbTabSub(); }; });
+    var fx = $('#w-fix'); if (fx) fx.onclick = function () { if (!wbLive(c)) return; c.flags.fixing = true; wbTabSub(); };
+    var fn = $('#w-fixnt'); if (fn) fn.onclick = function () { if (!wbLive(c)) return; c.flags.fixNotoc = true; S.notocDraft = JSON.parse(JSON.stringify(S.notoc || {})); wbTabSub(); };
+    if (c.flags.fixNotoc) wbNotocBind(function () { S.notoc = JSON.parse(JSON.stringify(S.notocDraft)); wbTabSub(); });
+    var r2 = $('#w-reloc2'); if (r2) r2.onclick = function () { if (!wbLive(c)) return; sfx.tap(); wbTime(M.cost.radio * 2); var mv = S.ex && !S.ex.none ? S.ex : null; if (mv) { if (S.acKey === '789') S.exMove = null; else S.plan[mv.id] = String(mv.from); var alt = wbExAlt(mv.id); wbExApply(alt); S.exDone = 'reloc-late'; } wbCall('lm', L('了解、積み直しました。', '알겠습니다. 다시 실었습니다.', 'Copy, re-stowed.')); wbTabSub(); };
+    var f2 = $('#w-finconf2'); if (f2) f2.onclick = function () { if (!wbLive(c)) return; S.finConf = true; wbTime(M.cost.radio); wbCall('lm', L('最終の実搭載、中間報告と同じです。全数固定済み。', '최종 실탑재, 중간 보고와 같습니다. 전부 고정 완료.', 'Final actual load same as interim. All secured.')); wbTabSub(); };
+    $('#w-submit').onclick = function () {
+      if (!wbLive(c)) return; S.subTries = (S.subTries || 0) + 1; var handNow = S.clock; wbTime(M.cost.submit);   /* 52차 재확인 B: 기장에게 건넨 시각(전달)과 승인 완료 시각을 따로 기록 */
+      var sheet = WB.sheetErrors(a, wbState(e)), paxBad = e.ad !== d.fin.ad || e.ch !== d.fin.ch || e.inf !== d.fin.inf || e.z.join() !== d.fin.z.join(), probs = [];
+      if (paxBad) { wbStrike('wb-pax', L('ゲートの最終人数と違う人数のロードシートを提出しようとしました（機長は承認しません）。', '게이트 최종 인원과 다른 로드시트를 제출하려 했습니다(기장은 승인하지 않음).', 'Tried to submit a sheet whose figures differ from the gate’s final figures (not approved).'), 'passenger/2-7'); probs.push(L('人数', '인원', 'figures')); }
+      if (!S.finConf) { wbStrike('wb-final', L('最終の実搭載の確認を受けずに提出しようとしました。', '최종 실탑재 확인 없이 제출하려 했습니다.', 'Tried to submit without the final actual-load confirmation.'), 'passenger/3-8'); probs.push(L('最終の実搭載', '최종 실탑재', 'final load')); }
+      if (M.special) {
+        var sg = wbSegErr(); if (sg.length) { wbStrike('wb-seg', function () { return tx(L('隔離の違反があるまま提出しようとしました：', '격리 위반이 있는 채 제출하려 했습니다: ', 'Tried to submit with a separation violation: ')) + wbSegText(sg); }, 'cargo/3-2'); probs.push(L('隔離', '격리', 'separation')); }
+        if (S.notoc && c.flags.fixNotoc) S.notoc = JSON.parse(JSON.stringify(S.notocDraft || S.notoc));
+        var ne = wbNotocErr(S.notoc); if (ne.miss.length) { wbStrike('wb-notoc-miss', function () { return tx(L('通知書に必要な項目がありません：', '통보서에 필요한 항목이 없습니다: ', 'Missing notification entries: ')) + ne.miss.join(', '); }, 'cargo/7-3'); probs.push(L('通知書', '통보서', 'notification')); }
+      }
+      if (!sheet.ok) { wbStrike('wb-sheet', L('制限・重心の範囲外のロードシートを提出しようとしました。', '제한·무게중심 범위 밖 로드시트를 제출하려 했습니다.', 'Tried to submit a sheet outside limits.'), 'passenger/3-7'); probs.push(L('範囲', '범위', 'limits')); }
+      if (probs.length) {
+        sfx.ng(); c.flags.returned = true; wbCall('cap', L('数値を確認してください。このロードシートは承認できません。', '수치를 확인해 주세요. 이 로드시트는 승인할 수 없습니다.', 'Please check the figures. I cannot accept this load sheet.')); STG.pose('trouble');
+        wbTabSub(); $('#w-submsg').innerHTML = '<div class="why bad">' + esc(tx(L('機長が差し戻しました：', '기장이 돌려보냈습니다: ', 'Returned by the captain: '))) + probs.map(tx).join(' / ') + '</div>'; return;
+      }
+      if (!wbDone(c)) return;
+      if (!c.flags.notoc) wbBad('wb-notoc', L('機長への通知の対象（今日はなし）を確認せずに提出しました。', '기장 통보 대상(오늘은 없음)을 확인하지 않고 제출했습니다.', 'Submitted without confirming there is nothing to notify the captain.'), 'cargo/7-3');
+      if (M.special) { var ne2 = wbNotocErr(S.notoc), spcOf = function (id) { var x = wbSpc().filter(function (y) { return y.id === id; })[0]; return x ? x.spc.t : ''; }, exW = ne2.extra.filter(function (id) { return spcOf(id) === 'WCH'; }), exO = ne2.extra.filter(function (id) { return spcOf(id) !== 'WCH'; });
+        if (exW.length) wbBad('wb-notoc-extra', function () { return tx(L('この品目（' + exW.join(', ') + '）は、この画面では貨物のDG NOTOCではなく、補助具の通知欄で扱います。車いす用電池の危険物としての安全要件は引き続き適用されます。', '이 품목(' + exW.join(', ') + ')은 Vela의 이 화면에서 화물 DG NOTOC 대신 특수 탑재물·보조기 통보 칸으로 처리합니다. 휠체어 배터리의 위험물 안전요건은 그대로 적용됩니다.', 'This item (' + exW.join(', ') + ') is handled in the mobility-aid section here, not the cargo DG NOTOC. The dangerous-goods safety requirements for the wheelchair battery still apply.')); }, 'passenger/1-12');
+        if (exO.length) wbBad('wb-notoc-extra', function () { return tx(L('ドライアイスを含まない品目をDG NOTOCに書きました：', '드라이아이스가 없는 품목을 DG NOTOC에 적었습니다: ', 'Listed items without dry ice on the DG NOTOC: ')) + exO.join(', '); }, 'cargo/7-3');
+        if (!ne2.extra.length) note('good', L('危険物と特別な搭載物を区分した通知書を機長に渡しました。', '위험물과 특수 탑재물을 구분한 통보서를 기장에게 전달했습니다.', 'Handed the captain a notification with DG and special loads correctly separated.'), 'cargo/7-3'); }
+      S.handAt = handNow; S.subAt = S.clock; sfx.ok(); wbCall('cap', L('ロードシート受け取りました。承認します。', '로드시트 받았습니다. 승인합니다.', 'Load sheet received. Accepted.'));
+      note('good', c.flags.returned ? L('差し戻しのあと数字を直し、機長の承認を受けました。', '돌려받은 뒤 숫자를 고쳐 기장 승인을 받았습니다.', 'Fixed the figures after the return and got the captain’s acceptance.') : L('最終人数・実搭載と一致し、範囲内のロードシートで機長の承認を受けました。', '최종 인원·실탑재와 일치하고 범위 안인 로드시트로 기장 승인을 받았습니다.', 'Got the captain’s acceptance with a sheet that matches the final figures and is within limits.'), 'passenger/3-7');
+      wbEnd(1100);
+    };
+  }
+  /* ---------- ⑧ 기록 ---------- */
+  function wbTabLdm() {
+    var c = S.cur;
+    scr('<div class="h3">' + esc(tx(L('出発後の記録', '출발 후 기록', 'After departure'))) + '</div><p>' + esc(tx(L(V.flight + 'は出発しました。搭載の電文（簡易版）を確認し、ロードシートを記録として保管します。', V.flight + '이(가) 출발했습니다. 탑재 전문(간단판)을 확인하고 로드시트를 기록으로 보관합니다.', V.flight + ' has departed. Check the load message (simplified) and file the load sheet.'))) + '</p>' +
+      '<div class="btns"><button class="btn pri" id="w-ldm" data-a="ok">' + esc(tx(L('電文を確認・保管', '전문 확인·보관', 'Check and file'))) + '</button><button class="btn" id="w-ldmskip" data-a="wb-ldm">' + esc(tx(L('省略する', '생략', 'Skip'))) + '</button></div>' + wbEdu());
+    $('#w-ldm').onclick = function () { if (!wbDone(c)) return; sfx.ok(); wbTime(M.cost.ldm); S.ldmOk = true; note('good', L('搭載の電文を確認し、ロードシートを保管しました。', '탑재 전문을 확인하고 로드시트를 보관했습니다.', 'Checked the load message and filed the load sheet.'), 'passenger/3-7'); wbEnd(); };
+    $('#w-ldmskip').onclick = function () { if (!wbDone(c)) return; sfx.ng(); wbBad('wb-ldm', L('出発後の記録を省きました。', '출발 후 기록을 생략했습니다.', 'Skipped the post-departure records.'), 'passenger/3-7'); wbEnd(); };
+  }
+  /* ---------- 채점 ---------- */
+  /* 52차 보완 5 + 재확인 B(GPT): DAY 1 완화 규칙 — 작업 시작(LIR −60·예비판 −15)과 완료 기한(LIR 발행 −50·예비판 검산 −10)을 나눔.
+     기장은 합의본 그대로 전달 STD−10 · 승인 완료 목표 STD−8(최종 승인판을 건넨 시각과 승인 시각을 따로 기록).
+     배점 15 = LIR 4 · 예비판 4 · 전달 4 · 승인 3, 화면 시각(분) 기준 1분 늦을 때마다 1점(0점 아래 없음). DAY 2 이후로 자동 확대하지 않음 */
+  function wbDeadlines() {   /* 마감은 미션의 deadlines(STD 기준 분). Day 1 = 13절 완화(−50·−10·−10·−8), Day 2~ = 2절 그대로(−60·−15·−10·−8) */
+    var std = pm(V.std), D = M.deadlines || { lir: -50, pre: -10, hand: -10, sub: -8 }, t = V.t || {}, st = function (k) { return t[k] ? pm(t[k]) - std : null; };
+    var mk = function (k, lab, at, due, w) { var late = at == null ? null : Math.max(0, Math.floor(at + 1e-9) - due); return { k: k, lab: lab, at: at, due: due, late: late, w: w, pt: at == null ? 0 : Math.max(0, w - late) }; };
+    var sl = st('lir'), sp = st('pre'), fm = function (n) { return '−' + Math.abs(n); };
+    return [mk('lir', L('LIR発行（作業開始' + fm(sl) + '）', 'LIR 발행(작업 시작 ' + fm(sl) + ')', 'LIR issued (work starts ' + fm(sl) + ')'), S.lirAt, std + D.lir, 4), mk('pre', L('予備ロードシート検算（開始' + fm(sp) + '）', '예비 로드시트 검산(시작 ' + fm(sp) + ')', 'Preliminary sheet checked (starts ' + fm(sp) + ')'), S.preAt, std + D.pre, 4),
+      mk('hand', L('機長へ最終版を渡す', '기장에게 최종판 전달', 'Final sheet handed to captain'), S.handAt, std + D.hand, 4), mk('sub', L('機長の承認完了', '기장 승인 완료', 'Captain acceptance complete'), S.subAt, std + D.sub, 3)];
+  }
+  function wbScore() {
+    var unserved = S.list.length - S.results.length, allR = S.results.slice(), bad = 0;
+    allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && WSAFE.indexOf(n.c) < 0 && n.c !== 'wb-except') bad++; }); });   /* 예외를 그대로 받은 것은 사건 점수(evt)·제출 시 안전 C로만 반영 */
+    var chkPen = Math.min(20, Object.keys(S.chkWrong || {}).reduce(function (n, f) { return n + Math.max(0, S.chkWrong[f] - 1) * 2; }, 0));   /* 3D: 칸마다 첫 오입력 무감점, 2회부터 2점, 상한 20 */
+    var acc = Math.max(0, 100 - bad * 10 - chkPen - unserved * 15);
+    var dl = wbDeadlines(), tp = dl.reduce(function (n, x) { return n + x.pt; }, 0), tim = unserved ? Math.max(0, 40 - unserved * 10) : Math.round(tp / 15 * 100);   /* 52차 재확인 B: 마감 4개(4·4·4·3) */
+    var safe = S.strikes === 0;
+    var rep = Math.round(100 * ((S.repOk ? 1 : 0) + (S.finConf && !(S.struck || {})['wb-final'] ? 1 : 0) + (S.ldmOk ? 1 : 0)) / 3);
+    var parts = [{ k: 'acc', v: acc, w: 35 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 15 }, { k: 'rep', v: rep, w: 20 }];
+    if (M.special) {   /* 합의본 3절: 사건이 있는 날은 정확성·안전·시간·보고·사건 5항목 — 사건 = 예외 보고 처리(격리 위반이 되는 이동을 받으면 0, 제출 단계에서야 고치면 50) */
+      var ev = !S.ex || S.ex.none || !S.ex.bad ? 100 : S.exDone === 'reloc' ? 100 : S.exDone === 'reloc-late' ? 50 : 0;
+      parts = [{ k: 'acc', v: acc, w: 30 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 10 }, { k: 'rep', v: rep, w: 15 }, { k: 'evt', v: ev, w: 15 }];
+    }
+    var tot = Math.round(parts.reduce(function (a, x) { return a + x.v * x.w; }, 0) / 100);
+    var rank = !safe ? 'C' : tot >= 90 ? 'S' : tot >= 80 ? 'A' : tot >= 65 ? 'B' : 'C';
+    var opMiss = []; allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && WOPS.indexOf(n.c) >= 0 && opMiss.indexOf(n.c) < 0) opMiss.push(n.c); }); });
+    var opsPass = !opMiss.length, opCapped = safe && !opsPass && rank === 'S'; if (opCapped) rank = 'A';
+    var capped = S.day.n >= 2 && G.hints && !G.practice && rank === 'S'; if (capped) rank = 'A';
+    return { unserved: unserved, allR: allR, acc: acc, svc: 100, tim: tim, tot: tot, safe: safe, smiss: S.safety || [], parts: parts, rank: rank, opMiss: opMiss, opsPass: opsPass, opCapped: opCapped, capped: capped, opsCodes: WOPS, people: 0, chkPen: chkPen };
+  }
+  /* ---------- 되살린 상태 검사 ---------- */
+  function wbStateWhy(st) {
+    function num(x) { return typeof x === 'number' && isFinite(x); }
+    function int(x, lo, hi) { return num(x) && Math.floor(x) === x && x >= lo && x <= hi; }
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    if (['737', '789'].indexOf(st.acKey) < 0) return 'acKey';
+    if (!obj(st.plan) || Object.keys(st.plan).some(function (k) { return typeof st.plan[k] !== 'string' || st.plan[k].length > 3; })) return 'plan';
+    if (typeof st.issued !== 'boolean' || typeof st.finConf !== 'boolean') return 'flags';
+    var e = st.entered; if (!obj(e) || !int(e.ad, 0, 400) || !int(e.ch, 0, 400) || !int(e.inf, 0, 400) || !Array.isArray(e.z) || e.z.length !== 3 || !e.z.every(function (x) { return int(x, 0, 400); })) return 'entered';
+    if (!obj(st.chkWrong) || Object.keys(st.chkWrong).some(function (k) { return !int(st.chkWrong[k], 0, 999); })) return 'chk';
+    if (!int(st.ed, 1, 20) || !(st.subAt == null || num(st.subAt)) || !(st.lirAt == null || num(st.lirAt)) || !(st.preAt == null || num(st.preAt)) || !(st.handAt == null || num(st.handAt)) || !int(st.strikes, 0, 99) || !Array.isArray(st.results)) return 'core';
+    return null;
+  }
+  /* 52차: v05 그림 — 직원 자세 4종(input·radio·phone·trouble), 탭별 책상 소품. 그림이 없으면 게이트 직원 그림(gate.js STG.pose)으로 대체 */
+  var WPOSE = { idle: 'input', explain: 'input', greet: 'input', check: 'input', scan: 'input', announce: 'radio', radio: 'radio', phone: 'phone', trouble: 'trouble' };
+  var WPROP = { lir: 'prop_lir_board_01', pre: 'prop_loadsheet_01', fin: 'prop_loadsheet_01', sub: 'prop_loadsheet_01', ldm: 'prop_loadsheet_01' };
+  function wbArt() { return STG.has('staff_wb_input_01'); }
+  function wbStaffId(pose) { var id = 'staff_wb_' + (WPOSE[pose] || 'input') + '_01'; return STG.has(id) ? id : 'staff_wb_input_01'; }
+  function wbPropHtml() { var k = S && S.cur && S.cur.tab, id = WPROP[k]; return id && STG.has(id) ? STG.img(id, 'wbprop', 37, 22.5, k === 'lir' ? 15 : 12) : ''; }
+  var _wbPrevPose = STG.pose;
+  STG.pose = function (pose, back) {
+    if (!ST || ST.id !== 'wb') return _wbPrevPose(pose, back);
+    if (!wbArt()) return _wbPrevPose({ radio: 'announce', phone: 'announce', trouble: 'explain' }[pose] || pose, back);
+    var pw = $('#wbpropw'); if (pw) { var ph = wbPropHtml(), cur = pw.getAttribute('data-k') || ''; var nk = (S && S.cur && S.cur.tab) || ''; if (cur !== nk) { pw.innerHTML = ph; pw.setAttribute('data-k', nk); } }
+    var el = document.querySelector('#agentwrap img'); if (!el) return;
+    var id = wbStaffId(pose || 'idle'); if (id === el.getAttribute('data-asset')) return;
+    el.style.opacity = .35; setTimeout(function () { var n = document.createElement('div'); n.innerHTML = STG.img(id, 'agent', 20, -14, 80, false, ''); var ni = n.firstChild; if (ni && el.parentNode) el.parentNode.replaceChild(ni, el); }, 90);
+  };
+  function wbBgId() { return wbArt() ? (G.country === 'KR' && STG.has('wb_bg_02') ? 'wb_bg_02' : 'wb_bg_01') : (G.country === 'KR' && STG.has('gate_bg_02') ? 'gate_bg_02' : 'gate_bg_01'); }
+  function wbHero() {
+    var bg = STG.has('wb_bg_01') ? 'wb_bg_01' : (STG.has('gate_bg_01') ? 'gate_bg_01' : 'checkin_bg_02'), st = wbArt() ? 'staff_wb_radio_01' : (STG.has('staff_gate_idle_01') ? 'staff_gate_idle_01' : 'staff_checkin_explain_01');
+    return '<div class="herostage"><img class="bg" src="' + STG.src(bg) + '" alt="">' + STG.img(st, '', 50, 2, 86) + (STG.has('prop_uld_ake_01') ? STG.img('prop_uld_ake_01', '', 82, 4, 26) + STG.img('prop_uld_pmc_01', '', 92, 3, 18) : '') + STG.img('koradon_greet_01', 'mas', 15, 3, 44) + STG.img('korarin_greet_01', 'mas', 30, 3, 42) + '<div class="wbheroac">' + (wbAcKey() === '789' ? 'B787-9 · ULD' : 'B737-800 · BULK') + '</div></div>';
+  }
+  function wbScene() {
+    var bg = wbBgId(), art = wbArt(), st = art ? 'staff_wb_input_01' : (STG.has('staff_gate_idle_01') ? 'staff_gate_idle_01' : 'staff_checkin_greet_01');
+    var k = S && S.acKey === '789' ? '789' : '737', reg = (M && M.data && M.data[k]) ? M.data[k].reg : '';
+    var h = '<div class="stage gate wb' + (art ? ' wbv05' : '') + (bg === 'wb_bg_02' ? ' wbk2' : '') + '" id="stage"><img class="bg" src="' + STG.src(bg) + '" alt="" draggable="false">';
+    /* 배경 벽 모니터 2개(wb_bg_01·02 좌표가 조금 다름 → .wbk2) — 왼쪽: 편명·목적지·STD / 오른쪽: 기재·등록 기호 */
+    h += '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.from + ' → ' + V.to + ' ' + V.std) + '</span></div><div class="sign s2"><b id="ctrno">' + esc(k === '789' ? 'B787-9' : 'B737-800') + '</b><span>' + esc(reg + ' · LOAD CONTROL') + '</span></div>';
+    h += '<div id="queue" class="lay"></div><div id="agentwrap" class="lay">' + STG.img(st, 'agent', 20, -14, 80, false, '') + '</div>';
+    h += '<div class="lay">' + STG.img('prop_counter_01', 'counter', 22, -2, 30) + STG.img('prop_monitor_01', 'monitor', 36, 23, 19) + '</div><div class="lay" id="wbpropw"></div>';
+    h += '<div id="paxwrap" class="lay"><div id="pax" class="lay"></div></div><div class="wbradio hide" id="wbradio"></div><div class="wbedutag">' + esc(tx(WB_TEXT.eduData)) + '</div>';
+    return h + '</div>';
+  }
+  window.SAGA_STAGES = window.SAGA_STAGES || {};
+  if (window.WB && window.MISSION_WB01) window.SAGA_STAGES.wb = {
+    id: 'wb', stageNo: '03', name: L('ロードコントロール（W&B）', '탑재관리(W&B)', 'Load control (W&B)'), days: WB_DAYS, rules: window.RULES, rulesVer: 'W1.0', text: WB_TEXT,
+    lockLabel: L('🔒 ゲート編 DAY 5の後', '🔒 게이트편 DAY 5 후', '🔒 After Gate DAY 5'),
+    hero: wbHero, scene: function (V0) { return wbScene(V0); },
+    toolsHtml: function () { return ''; }, bindTools: function () {},
+    initState: function (dd, M0, V0, seed) { var k = wbAcKey(), b = M0.data[k].book; return { clock: pm(V0.start), close: pm(V0.close), bgQueue: 0, list: V0.pax(), seed: seed, adv: true, idx: -1, cur: null, results: [], revenue: [], strikes: 0, seq: 1, day: dd, evChecks: [], evRep: { need: 0, done: 0 }, safety: [],
+      acKey: k, plan: {}, issued: false, repOk: false, entered: { ad: b.ad, ch: b.ch, inf: b.inf, z: b.z.slice() }, finConf: false, chkWrong: {}, ed: 1, subAt: null, subTries: 0, frozenAt: null, struck: {}, lirAt: null, preAt: null, handAt: null, spcChk: {}, ex: null, exDone: null, exMove: null, notoc: null, lirC: null }; },
+    runFields: WB_RUNF, runSkip: WB_RUNSKIP.concat(['ldmOk']), freshList: function (mi, va) { return va.pax(); }, allUnits: function (l) { return l; },
+    acCode: function (s) { return (s || S).acKey === '789' ? 'B' : 'A'; }, acOf: function (c) { var k = c === 'B' ? '789' : '737'; G.wbAc = k; return k; },
+    phase: function () { return (S.idx + 1 >= S.list.length) ? 'finish' : 'pax'; }, runEvent: function () {},
+    startUnit: wbStart, stateWhy: wbStateWhy,
+    patchWhy: function (pp) { return pp == null || (typeof pp === 'object' && !Array.isArray(pp) && !Object.keys(pp).length) ? null : 'patch'; },
+    rangeWhy: function (s, o, va) { function num(x, lo, hi) { return typeof x === 'number' && isFinite(x) && x >= lo && x <= hi; } if (!num(s.clock, pm(va.start), pm(va.start) + 300) || !num(s.strikes, 0, 99)) return 'range'; return null; },
+    tabs: function (c) { return [c.tab]; }, tabState: function () { var c = S.cur; return c.flags.done ? 'ok' : ''; },
+    tab: { prep: wbTabPrep, lir: wbTabLir, rep: wbTabRep, notoc: wbTabNotoc, pre: wbTabPre, fin: wbTabFin, sub: wbTabSub, ldm: wbTabLdm },
+    tabPose: { prep: 'idle', lir: 'idle', rep: 'radio', notoc: 'idle', pre: 'idle', fin: 'phone', sub: 'idle', ldm: 'idle' },
+    banners: function () { return ''; }, afterScr: function () {},
+    barQueue: function () { return Math.max(0, S.list.length - S.results.length - (S.cur ? 1 : 0)); },
+    barDone: function () { return S.results.length + '/' + S.list.length; },
+    voiceCast: function () { return 'staff'; },
+    score: wbScore, revenueLines: function () { return []; }, legacyBest: function () {},
+    actions: WACT, reportCodes: [], missLabels: WMISSL, unitName: wbUnitName,
+    replayHead: function (r) { return esc(wbUnitName(r)); },
+    resultTitle: function () { return esc(tx(L('ロードシート承認', '로드시트 승인', 'Load sheet accepted'))) + ' · ' + V.flight + ' · ' + (S.acKey === '789' ? 'B787-9' : 'B737-800'); },
+    resultGates: function (sc) { return (sc.opMiss.length || !sc.opsPass ? '<div class="gate ' + (sc.opsPass ? 'ok' : 'ng') + '">' + esc(tx(sc.opsPass ? L('業務：合格', '업무: 합격', 'Operations: pass') : L('業務：要確認（最高A）', '업무: 확인 필요(최고 A)', 'Operations: needs review (max A)'))) + '</div>' : '') + (sc.chkPen ? '<p class="small">' + esc(tx(L('検算の入力ミス（2回目から）：−' + sc.chkPen, '검산 입력 실수(2회째부터): −' + sc.chkPen, 'Cross-check input errors (from the 2nd): −' + sc.chkPen))) + '</p>' : ''); },
+    resultExtra: function () { var a = wbA(), e = S.entered, r = WB.calc(a, wbState(e));
+      var tl = '<div class="panel"><h2>' + esc(tx(L('時間の判定（締め切り別）', '시간 판정(마감별)', 'Timing by deadline'))) + '</h2><table class="wbt"><tr><th></th><th>' + esc(tx(L('締め切り', '마감', 'Due'))) + '</th><th>' + esc(tx(L('実際', '실제', 'Actual'))) + '</th><th>' + esc(tx(L('点', '점수', 'Pts'))) + '</th></tr>' + wbDeadlines().map(function (x) { return '<tr><td>' + esc(tx(x.lab)) + '</td><td class="mono">' + hm(x.due) + '</td><td class="mono">' + (x.at == null ? '—' : hm(x.at)) + (x.late ? ' (+' + x.late + ')' : '') + '</td><td class="n">' + x.pt + ' / ' + x.w + '</td></tr>'; }).join('') + '</table><p class="small">' + esc(tx(M.day >= 2 ? L('締め切りは合意本2節のとおり：LIR発行−60・予備ロードシート検算−15・機長へ渡す−10・承認−8。作業はそれより前に始まります。最終データの受信・照合の間は時計が止まります。', '마감은 합의본 2절 그대로: LIR 발행 −60·예비 로드시트 검산 −15·기장 전달 −10·승인 −8. 작업은 그보다 먼저 시작합니다. 최종 자료 수신·대조 동안은 시계가 멈춥니다.', 'Deadlines as agreed: LIR issued −60, preliminary sheet checked −15, handed to captain −10, accepted −8. Work starts earlier. The clock stops while you reconcile the final figures.') : L('DAY 1は練習用に、LIRと予備ロードシートの締め切りを作業開始より少し後に置いています（LIR開始−60→発行−50、予備版開始−15→検算−10）。機長へは−10に渡し、−8までに承認を受けます。最終データの受信・照合の間は時計が止まります。', 'DAY 1은 연습용으로 LIR·예비 로드시트 마감을 작업 시작보다 조금 뒤에 둡니다(LIR 시작 −60 → 발행 −50, 예비판 시작 −15 → 검산 −10). 기장에게는 −10에 건네고 −8까지 승인을 받습니다. 최종 자료 수신·대조 동안은 시계가 멈춥니다.', 'For DAY 1 practice, the LIR and preliminary-sheet deadlines sit a little after work starts (LIR starts −60 → issued −50; preliminary starts −15 → checked −10). Hand the sheet to the captain at −10 and have it accepted by −8. The clock stops while you reconcile the final figures.'))) + '</p></div>';
+      return tl + '<div class="panel"><h2>' + esc(tx(L('最終ロードシート', '최종 로드시트', 'Final load sheet'))) + '</h2><p class="mono" style="margin:0;font-size:13px">EDNO ' + S.ed + ' · ZFW ' + wbNum(r.zfw) + ' · TOW ' + wbNum(r.tow) + ' · LAW ' + wbNum(r.law) + ' · UNDERLOAD ' + wbNum(r.ul) + ' · MACTOW ' + r.mt.toFixed(1) + '</p><p class="small">' + esc(tx(WB_TEXT.eduData)) + '</p></div>'; },
+    partLabels: { rep: L('報告・確認', '보고·확인', 'Reports & confirmations'), evt: L('例外への対応', '사건(예외) 처리', 'Exception handling') },
+    scoreVer: 'wb1', ruleDate: '2026-10-18', layoutVer: 'A',
+    testHooks: function () { return { wbScore: wbScore, wbStateWhy: wbStateWhy, loadsC: wbLoadsC, state: wbState }; }
+  };
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
   if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextUnit, showTab: showTab, renderTabs: renderTabs, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); }, setStage: function (id) { setStage(id); save(); renderTitle(); }, stage: function () { return ST.id; }, stageAllowed: stageAllowed };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();
