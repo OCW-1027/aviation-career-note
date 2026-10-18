@@ -4,9 +4,10 @@ import fs from 'fs';
 import vm from 'vm';
 import assert from 'assert';
 const src = fs.readFileSync(process.argv[2], 'utf8');
-const code = src.replace(/^export default \{/m, 'const __default = {') + '\n;({validate,prepare,textOf,stripThink,stripHarmony,cleanText,aiInput,maxTokensFor,effortOf,classify,originOk,allowedOrigins,worker:__default});';
+const code = src.replace(/^export default \{/m, 'const __default = {') + '\n;({validate,prepare,textOf,stripThink,stripHarmony,cleanText,aiInput,maxTokensFor,effortOf,classify,originOk,allowedOrigins,claudeInput,claudeBody,claudeKind,claudeText,worker:__default});';
+let fetchImpl = async () => { throw new Error('no fetch in test'); };   // 外への通信の偽物（Claude・Groq）
 const logs = [];
-const load = () => vm.runInContext(code, vm.createContext({ Response, Headers, Request, JSON, Date, Map, console: { log: (...a) => logs.push(a.join(' ')) }, String, Array, Object, Math }));
+const load = () => vm.runInContext(code, vm.createContext({ Response, Headers, Request, JSON, Date, Map, console: { log: (...a) => logs.push(a.join(' ')) }, String, Array, Object, Math, URL, AbortController, setTimeout, clearTimeout, FormData, Blob, btoa, fetch: (...a) => fetchImpl(...a) }));
 const W = load();
 let n = 0; const ok = (c, m) => { assert.ok(c, m); n++; };
 
@@ -150,6 +151,71 @@ const ossBody = { messages: [sys, u('こんにちは')], model: OSS };
   const e2 = { AI: { run: async () => ({ choices: [{ message: { content: null, reasoning_content: 'only thinking' } }] }) } };
   const r2 = await W2.worker.fetch(req('POST', ossBody, undefined, { 'CF-Connecting-IP': '5.5.5.6' }), e2);
   ok(r2.status === 502 && (await r2.json()).error === 'empty', 'both shapes empty -> empty');
+}
+
+// ── Claude（2026.10.18）── 順番 Claude → Workers AI → Groq
+{
+  const cf = { choices: [{ message: { content: '{"reply":"cf"}' } }] };
+  const mk = (extra = {}) => Object.assign({ ANTHROPIC_API_KEY: 'sk-test', AI: { run: async () => cf } }, extra);
+  const resp = (status, obj) => new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json' } });
+  const okBody = { id: 'msg_1', type: 'message', role: 'assistant', content: [{ type: 'text', text: '{"reply":"claude"}' }], stop_reason: 'end_turn' };
+  const errBody = (type, message) => ({ type: 'error', error: { type, message } });
+  const body = { messages: [sys, u('秘密の内容')], model: OSS };
+  let ip = 0; const go = (W2, e) => W2.worker.fetch(req('POST', body, undefined, { 'CF-Connecting-IP': '7.7.7.' + (++ip) }), e);
+  // 1) 正常：Claude が答える。送る形を確かめる
+  { const W2 = load(); let seenReq; fetchImpl = async (url, o) => { seenReq = { url, o }; return resp(200, okBody); };
+    const r2 = await go(W2, mk()); const j2 = await r2.json(); const b = JSON.parse(seenReq.o.body);
+    ok(r2.status === 200 && j2.text === '{"reply":"claude"}' && j2.via === 'claude', 'claude ok');
+    ok(seenReq.url === 'https://api.anthropic.com/v1/messages' && seenReq.o.headers['x-api-key'] === 'sk-test' && seenReq.o.headers['anthropic-version'] === '2023-06-01', 'claude url/headers');
+    ok(b.model === 'claude-haiku-5-5' && b.system === 'sys' && b.messages.length === 1 && b.messages[0].role === 'user' && b.max_tokens === 1000, 'claude body: model/system/max_tokens');
+    ok(b.thinking && b.thinking.type === 'disabled' && b.output_config.effort === 'low' && !('temperature' in b), 'claude: thinking off, effort low, no temperature'); }
+  // 2) クレジット不足 → Cloudflare（10分は Claude を飛ばす）
+  { const W2 = load(); let calls = 0; fetchImpl = async () => { calls++; return resp(400, errBody('invalid_request_error', 'Your credit balance is too low to access the Anthropic API.')); };
+    let r2 = await go(W2, mk()); let j2 = await r2.json();
+    ok(r2.status === 200 && j2.text === '{"reply":"cf"}' && !j2.via && calls === 1, 'credit low -> cloudflare');
+    r2 = await go(W2, mk()); j2 = await r2.json();
+    ok(r2.status === 200 && j2.text === '{"reply":"cf"}' && calls === 1, 'after credit low: claude paused'); }
+  // 3) 402 billing / 401 / 403 / 529 / 支出上限 400 → Cloudflare
+  for (const [st, t, m, kind] of [[402, 'billing_error', 'billing', 'credit'], [401, 'authentication_error', 'invalid x-api-key', 'auth'], [403, 'permission_error', 'no', 'auth'], [529, 'overloaded_error', 'Overloaded', 'busy'], [500, 'api_error', 'x', 'busy'], [400, 'invalid_request_error', 'You have reached your specified workspace API usage limits', 'quota'], [400, 'invalid_request_error', 'messages: roles must alternate', 'bad']]) {
+    const W2 = load(); fetchImpl = async () => resp(st, errBody(t, m)); const n0 = logs.length;
+    const r2 = await go(W2, mk()); const j2 = await r2.json();
+    ok(r2.status === 200 && j2.text === '{"reply":"cf"}' && logs.slice(n0).includes('talk-ai: claude_' + kind), `claude ${st} ${kind} -> cloudflare`);
+  }
+  // 4) キーなし → 今までと同じ（Claude を呼ばない）
+  { const W2 = load(); let calls = 0; fetchImpl = async () => { calls++; return resp(200, okBody); };
+    const r2 = await go(W2, { AI: { run: async () => cf } }); const j2 = await r2.json();
+    ok(r2.status === 200 && j2.text === '{"reply":"cf"}' && calls === 0, 'no key -> unchanged'); }
+  // 5) Claude 429 + Cloudflare の無料分終わり → Groq
+  { const W2 = load(); const urls = []; fetchImpl = async (url) => { urls.push(url); return /anthropic/.test(url) ? resp(429, errBody('rate_limit_error', 'rate')) : resp(200, { choices: [{ message: { content: '{"reply":"groq"}' } }] }); };
+    const r2 = await go(W2, mk({ GROQ_API_KEY: 'g', AI: { run: async () => { throw new Error('3036: daily free allocation') } } })); const j2 = await r2.json();
+    ok(r2.status === 200 && j2.text === '{"reply":"groq"}' && j2.via === 'groq' && urls.length === 2, 'claude 429 + cf quota -> groq'); }
+  // 6) 時間切れ → Cloudflare
+  { const W2 = load(); fetchImpl = (url, o) => new Promise((res, rej) => o.signal.addEventListener('abort', () => { const e = new Error('aborted'); e.name = 'AbortError'; rej(e); }));
+    const realST = setTimeout; const t0 = Date.now();
+    const W3 = vm.runInContext(code, vm.createContext({ Response, Headers, Request, JSON, Date, Map, console: { log: (...a) => logs.push(a.join(' ')) }, String, Array, Object, Math, URL, AbortController, setTimeout: (f) => realST(f, 5), clearTimeout, FormData, Blob, btoa, fetch: (...a) => fetchImpl(...a) }));
+    const n0 = logs.length; const r2 = await go(W3, mk()); const j2 = await r2.json();
+    ok(r2.status === 200 && j2.text === '{"reply":"cf"}' && logs.slice(n0).includes('talk-ai: claude_timeout') && Date.now() - t0 < 2000, 'timeout -> cloudflare'); }
+  // 7) 通信そのものの失敗・空の返事 → Cloudflare
+  { const W2 = load(); fetchImpl = async () => { throw new TypeError('network'); }; const r2 = await go(W2, mk()); ok((await r2.json()).text === '{"reply":"cf"}', 'network error -> cloudflare'); }
+  { const W2 = load(); fetchImpl = async () => resp(200, { content: [] }); const r2 = await go(W2, mk()); ok((await r2.json()).text === '{"reply":"cf"}', 'empty claude -> cloudflare'); }
+  // 8) Claude だけ（AI のつなぎなし）でも動く／Claude が失敗して他もないときは quota
+  { const W2 = load(); fetchImpl = async () => resp(200, okBody); const r2 = await go(W2, { ANTHROPIC_API_KEY: 'k' }); ok(r2.status === 200 && (await r2.json()).via === 'claude', 'claude only'); }
+  { const W2 = load(); fetchImpl = async () => resp(529, errBody('overloaded_error', 'x')); const r2 = await go(W2, { ANTHROPIC_API_KEY: 'k' }); ok(r2.status === 429 && (await r2.json()).error === 'quota', 'claude only, failed -> quota (page switches)'); }
+  // 9) 形の変換
+  const ci = W.claudeInput([sys, a('いらっしゃいませ'), u('a'), u('b'), a('c')]);
+  ok(ci.system === 'sys' && ci.messages[0].role === 'user' && ci.messages[1].role === 'assistant' && ci.messages[1].content === 'いらっしゃいませ', 'starts with user (AI speaks first)');
+  ok(ci.messages[2].content === 'a\n\nb' && ci.messages[ci.messages.length - 1].role === 'user' && ci.messages.every((m, i) => !i || m.role !== ci.messages[i - 1].role), 'merged + alternating + ends with user');
+  ok(!W.claudeInput([u('x')]).system && W.claudeInput([u('x')]).messages.length === 1, 'no system');
+  const b2 = W.claudeBody({ CLAUDE_MODEL: 'claude-sonnet-5-5' }, '@cf/qwen/qwen3-30b-a3b-fp8', [sys, u('x')]);
+  ok(b2.model === 'claude-sonnet-5-5' && !b2.thinking && b2.max_tokens === 400 && b2.output_config.effort === 'low', 'CLAUDE_MODEL switch, no thinking field for non-haiku');
+  ok(W.claudeText({ content: [{ type: 'thinking', thinking: 'no' }, { type: 'text', text: 'A' }, { type: 'text', text: 'B' }] }) === 'AB', 'text blocks only');
+  ok(W.claudeInput([{ role: 'system', content: 'Reasoning: low\nsys' }, u('x')]).system === 'sys', 'Reasoning line removed for claude');
+  const b3 = W.claudeBody({ CLAUDE_THINKING: 'on' }, OSS, [sys, u('x')]); ok(!b3.thinking && b3.max_tokens === 1000, 'CLAUDE_THINKING=on: haiku thinks');
+  const b4 = W.claudeBody({ CLAUDE_MODEL: 'claude-sonnet-5-5', CLAUDE_THINKING: 'off', CLAUDE_EFFORT: 'Medium' }, OSS, [sys, u('x')]); ok(b4.thinking.type === 'disabled' && b4.output_config.effort === 'medium', 'CLAUDE_THINKING=off / CLAUDE_EFFORT');
+  ok(W.claudeBody({ CLAUDE_EFFORT: 'max' }, OSS, [sys, u('x')]).output_config.effort === 'low', 'unknown effort -> low');
+  // 10) 状態確認（GET）
+  { const W2 = load(); const j2 = await (await W2.worker.fetch(req('GET'), mk())).json(); ok(j2.claude === true && j2.claude_model === 'claude-haiku-5-5' && !JSON.stringify(j2).includes('sk-test'), 'health shows claude, never the key'); }
+  fetchImpl = async () => { throw new Error('no fetch in test'); };
 }
 // logs never contain content
 ok(!logs.join('\n').includes('秘密') && logs.every(l => /^talk-ai: [\w ]+$/.test(l)), 'no content in logs: ' + JSON.stringify(logs));

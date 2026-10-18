@@ -190,3 +190,36 @@ Worker가 돌려주는 오류 이름: `origin`(허용 안 된 사이트) · `bad
 - 대화·음성 내용은 지금처럼 로그에 남기지 않습니다. Groq로 가는 요청은 Groq 이용약관의 데이터 처리 방침을 따릅니다.
 - 모델 선택: 사이트는 `talk_config.js`에서 gpt-oss-120b를 씁니다(2026-10 시험에서 qwen3는 빈 답·형식 깨짐이 있어 gpt-oss로 정함, 9절). gpt-oss는 Cloudflare 무료분을 빨리 쓰지만(하루 약 100~170회), 그 뒤에는 Groq의 같은 모델(openai/gpt-oss-120b)이 이어받으므로 그대로 둡니다.
 - 영상 제작용 받아쓰기 점검은 2026-10-18부터 이 Worker를 쓰지 않습니다(사이트 이용자 몫을 줄이지 않음).
+
+## 15. Claude 연결 — Max 요금제의 월 API 크레딧 사용 (2026-10-18 추가)
+배포본: `_build/worker/talk-worker.js`(2026-10-18 Claude판). 순서는 **Claude → Cloudflare Workers AI → Groq**입니다.
+
+- 비밀 변수 `ANTHROPIC_API_KEY`가 있을 때만 Claude를 씁니다. 없으면 예전과 완전히 같습니다.
+- 모델: 기본 `claude-haiku-5-5`(생각하기 끔·effort low). 품질이 부족하면 변수 `CLAUDE_MODEL`(Text)에 `claude-sonnet-5-5`를 넣어 시험합니다.
+- (선택) 변수 `CLAUDE_THINKING`(Text): `on`=생각하고 답함(느리지만 역할을 덜 헷갈림) / `off`=생각하지 않음. 비워 두면 Haiku만 off. 변수 `CLAUDE_EFFORT`(Text): `low`(기본) / `medium` / `high`. Worker 주소를 열면 `claude_thinking`·`claude_effort`로 지금 값이 보입니다. 페이지의 `talk_config.js`(model)는 바꾸지 않습니다 — 그 값은 Claude가 실패해 Cloudflare로 넘어갈 때만 쓰입니다.
+- **자동 대체:** 크레딧 부족·결제 오류·지출 한도 도달·키 오류(401/403)·429·서버 오류(5xx/529)·15초 안에 답 없음·빈 답 → 그 요청은 바로 Cloudflare(→ Groq)가 답합니다. 사용자 화면에는 오류가 나오지 않습니다. 크레딧 부족·키 오류 뒤에는 10분 동안 Claude를 건너뜁니다(기다리는 시간을 없앰).
+- 그래서 그달 크레딧이 끝나거나, 요금제를 바꾸거나(Max 20x → 5x) 해지해도 **사이트와 Worker를 고칠 필요가 없습니다.** 다시 Claude를 쓰려면 키(또는 크레딧)만 있으면 됩니다.
+- 응답 모양은 그대로(`{text, model}`)이고, Claude가 답한 대화에만 `via:'claude'`가 붙습니다(페이지는 무시).
+- 프롬프트 캐싱은 쓰지 않습니다(시스템 지시가 최대 3,000자라 캐싱 최소 길이에 못 미침).
+
+**지금 운영값(2026-10-18 실제 시험으로 정함)**
+- `CLAUDE_MODEL` = `claude-sonnet-5-5`, `CLAUDE_THINKING` = `on` (둘 다 Text 변수). 코드 기본값(Haiku)은 변수를 지웠을 때만 쓰입니다.
+- 시험: 실제 회화 페이지 7장면(일·한·영, AI가 손님 역·직원 역) + 역할 혼동이 잘 나던 한 차례를 8번 반복.
+  - Haiku·생각 끔: 학습자의 연습 표현을 AI가 대신 말함 7/8 (페이지 안전장치가 걸러 「다시 보내 주세요」가 뜸), 3~4문장으로 길어짐
+  - Haiku·생각 켬: 5/8
+  - **Sonnet·생각 켬: 0/8**, 1~2문장 지킴, 교정·힌트 정상, 「おわり」 정리 정상. 응답 1.4~4.2초
+- 비용 어림(공식 단가 기준, 실측 아님): Sonnet은 1회 주고받기에 약 1센트 → 월 150달러 한도로 약 1만 회 이상. 방문자가 늘어 한도에 가까워지면 Haiku로 되돌리는 것을 다시 검토(변수만 바꿈).
+
+**설정 순서**
+1. **Console(platform.claude.com):** Settings → Workspaces → 회화 전용 워크스페이스 `acn-talk` → **Limits**에서 월 지출 한도(Max 20x: 150달러 / Max 5x: 80달러 권장). 자동 충전은 끔.
+2. 그 워크스페이스에서 API 키 생성(이름 `talk-ai-worker`) → Cloudflare **talk-ai → Settings → Variables and Secrets → Add** → 종류 **Secret**, 이름 `ANTHROPIC_API_KEY`, 값 = 키 → Deploy. 키는 채팅·코드·저장소에 쓰지 않습니다.
+3. **코드 바꾸기:** 12절 방법대로 `talk-worker.js`를 붙여 넣고 Deploy.
+4. **확인:** Worker 주소를 열어 `"claude":true,"claude_model":"claude-haiku-5-5"`가 보이면 연결된 것입니다. **Observability → Logs**에 `talk-ai: claude`가 보이면 Claude가 답한 것, `talk-ai: claude_credit`(크레딧 부족)·`claude_quota`(한도)·`claude_auth`(키 문제)·`claude_busy`·`claude_timeout`·`claude_bad`(요청 형식 문제 — 반복되면 Claude 채팅에 알려 주세요)는 Cloudflare로 넘어간 것입니다.
+
+**되돌리기**
+- Cloudflare에서 `ANTHROPIC_API_KEY` Secret을 지우면 예전(Cloudflare → Groq)과 똑같이 동작합니다(코드는 그대로 둬도 됨).
+
+**요금제를 바꿀 때**
+- Max 20x → 5x: 크레딧이 월 100달러로 줄 뿐 그대로 동작합니다. Console 지출 한도만 80달러 정도로 낮춥니다.
+- 해지·Pro로 변경: 남은 크레딧이 끝나면 자동으로 Cloudflare → Groq로 넘어갑니다. 고칠 것 없음.
+- 쓴 금액은 Console의 Usage / Cost에서 워크스페이스별로 봅니다.

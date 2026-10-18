@@ -29,6 +29,16 @@
 //   聞き取り：whisper-large-v3-turbo（Workers AI と同じ種類）
 //   Groq の無料の分も終わったとき（429）は quota を返す。Groq は無料プランのままなら請求されない
 //   Groq に送る中身もログに書かない（console に出すのは「groq を使った／失敗の種類」だけ）
+// ・Claude（2026.10.18 追加・Max 料金プランの毎月の API クレジットを使う）：会話の順番は Claude → Workers AI → Groq
+//   秘密の変数 ANTHROPIC_API_KEY があるときだけ動く（なければ今までと同じ）。モデルは変数 CLAUDE_MODEL（ふつう claude-haiku-5-5）
+//   Messages API（POST https://api.anthropic.com/v1/messages、ヘッダー x-api-key・anthropic-version 2023-06-01）。
+//   system は system の欄へ、messages は user から始まり user/assistant が交互になるようにそろえる
+//   Haiku は「考える」を止め（thinking disabled）、考える量 low（output_config.effort）。返事の長さは今と同じ（400／gpt-oss 選択時 1000）
+//   変数 CLAUDE_THINKING（on＝考える・off＝考えない）、CLAUDE_EFFORT（low / medium / high）で変えられる。ページの「Reasoning: low」の行は Claude には送らない
+//   クレジット切れ（400 credit・402）・支出の上限・401/403・429・5xx/529・15秒で答えなし・空の返事 → そのまま次（Workers AI）へ。ページには失敗を見せない
+//   ページが送る model（Cloudflare のモデル名）は Claude では使わず、次に回したときだけ使う
+//   ログは「claude を使った／失敗の種類（credit・quota・busy・auth・timeout・bad・empty）」だけ。中身とキーは書かない
+//   プロンプトのキャッシュは使わない（system は 3,000字まで＝キャッシュできる最小の長さに届かないため）
 
 const DEFAULT_ORIGINS = ['https://ocw-1027.github.io'];
 const DEFAULT_MODEL = '@cf/qwen/qwen3-30b-a3b-fp8';
@@ -55,6 +65,13 @@ const GROQ_STT_URL = 'https://api.groq.com/openai/v1/audio/transcriptions';
 const GROQ_STT_MODEL = 'whisper-large-v3-turbo';
 const GROQ_MAP = { '@cf/openai/gpt-oss-120b': 'openai/gpt-oss-120b' };   // ここにないモデルは GROQ_DEFAULT
 const GROQ_DEFAULT = 'llama-3.3-70b-versatile';
+
+const CLAUDE_URL = 'https://api.anthropic.com/v1/messages';
+const CLAUDE_VERSION = '2023-06-01';
+const CLAUDE_DEFAULT = 'claude-haiku-5-5';
+const CLAUDE_TIMEOUT = 15000;    // これより遅いときは Workers AI へ
+const CLAUDE_PAUSE = 10 * 60000; // クレジット切れ・キーの問題のあとは、この間 Claude を飛ばす（無駄な待ち時間をなくす）
+let claudeNg = 0;                // 最後にクレジット切れ・キーの問題が出た時刻
 
 const hits = new Map();          // RL がないときの数え方（この Worker の1つの実行の中だけ。目安）
 
@@ -258,6 +275,64 @@ async function groqStt(env, buf, lang, prompt) {
   return await r.json();
 }
 
+// ── Claude（いちばん先） ──
+function claudeOn(env) { return !!(env && env.ANTHROPIC_API_KEY); }
+function claudeModel(env) { return String((env && env.CLAUDE_MODEL) || CLAUDE_DEFAULT).trim() || CLAUDE_DEFAULT; }
+// system を外に出し、user から始まって交互になるようにする（同じ役が続いたら1つにまとめる）
+function claudeInput(messages) {
+  let system = '';
+  const out = [];
+  for (const m of messages) {
+    if (m.role === 'system') { system = m.content.replace(/^Reasoning: \w+\n/, ''); continue; }   // gpt-oss 向けの1行は Claude には送らない
+    const last = out[out.length - 1];
+    if (last && last.role === m.role) last.content += '\n\n' + m.content;
+    else out.push({ role: m.role, content: m.content });
+  }
+  if (out.length && out[0].role !== 'user') out.unshift({ role: 'user', content: '(start)' });
+  if (out.length && out[out.length - 1].role !== 'user') out.push({ role: 'user', content: '(continue)' });
+  return { system, messages: out };
+}
+function claudeBody(env, model, messages) {
+  const cm = claudeModel(env), ci = claudeInput(messages);
+  const ef = String((env && env.CLAUDE_EFFORT) || 'low').trim().toLowerCase();
+  const body = { model: cm, max_tokens: maxTokensFor(model), messages: ci.messages, output_config: { effort: EFFORTS.includes(ef) ? ef : 'low' } };
+  if (ci.system) body.system = ci.system;
+  const th = String((env && env.CLAUDE_THINKING) || '').trim().toLowerCase();   // off＝考えない / on＝モデルにまかせる / なし＝Haiku だけ off
+  if (th === 'off' || (th !== 'on' && /haiku/i.test(cm))) body.thinking = { type: 'disabled' };
+  else if (th === 'on' && /haiku/i.test(cm)) body.max_tokens = Math.max(body.max_tokens, MAX_TOKENS_GPT_OSS);   // 考える分も枠を使うので広げる
+  return body;
+}
+function claudeKind(status, msg) {
+  if (status === 402 || (status === 400 && /credit/i.test(msg))) return 'credit';
+  if (status === 400 && /limit/i.test(msg)) return 'quota';
+  if (status === 401 || status === 403) return 'auth';
+  if (status === 429) return 'quota';
+  if (status >= 500) return 'busy';
+  return 'bad';
+}
+function claudeText(r) {
+  if (!r || !Array.isArray(r.content)) return '';
+  return r.content.filter(b => b && b.type === 'text' && typeof b.text === 'string').map(b => b.text).join('').trim();
+}
+// 答えの文を返す。だめなときは失敗の種類（文字）を返す
+async function claudeChat(env, model, messages) {
+  if (Date.now() - claudeNg < CLAUDE_PAUSE) return { fail: 'paused' };
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), CLAUDE_TIMEOUT);
+  try {
+    const r = await fetch(CLAUDE_URL, { method: 'POST', signal: ctl.signal, headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': CLAUDE_VERSION, 'content-type': 'application/json' }, body: JSON.stringify(claudeBody(env, model, messages)) });
+    if (!r.ok) {
+      let msg = ''; try { const e = await r.json(); msg = String((e && e.error && (e.error.message || e.error.type)) || ''); } catch (e) {}
+      const k = claudeKind(r.status, msg);
+      if (k === 'credit' || k === 'auth') claudeNg = Date.now();
+      return { fail: k };
+    }
+    const text = stripThink(claudeText(await r.json()));
+    return text ? { text } : { fail: 'empty' };
+  } catch (e) {
+    return { fail: (e && e.name === 'AbortError') ? 'timeout' : 'busy' };
+  } finally { clearTimeout(t); }
+}
+
 function b64(buf) {
   const u = new Uint8Array(buf); let s = '';
   for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000));
@@ -311,7 +386,7 @@ export default {
     }
     if (request.method === 'GET') {
       // 動いているかの確かめ用（ブラウザでこの Worker の住所を開くと見える）。会話はしない
-      return json({ ok: true, service: 'talk-ai', stt: true, ai: !!(env && env.AI), groq: groqOn(env), model: (env && env.MODEL) || DEFAULT_MODEL, origins: allowedOrigins(env) }, 200, allow);
+      return json({ ok: true, service: 'talk-ai', stt: true, ai: !!(env && env.AI), groq: groqOn(env), claude: claudeOn(env), claude_model: claudeOn(env) ? claudeModel(env) : '', claude_thinking: String((env && env.CLAUDE_THINKING) || '').toLowerCase() || 'auto', claude_effort: String((env && env.CLAUDE_EFFORT) || 'low').toLowerCase(), model: (env && env.MODEL) || DEFAULT_MODEL, origins: allowedOrigins(env) }, 200, allow);
     }
     if (request.method !== 'POST') return json({ error: 'method' }, 405, allow);
     if (!ok) return json({ error: 'origin' }, 403, '');
@@ -328,7 +403,12 @@ export default {
     if (v.error) return json({ error: v.error, detail: v.detail }, v.status, allow);
     if (!(await rateOk(request, env))) return json({ error: 'rate' }, 429, allow);
     const hasAI = !!(env && env.AI && typeof env.AI.run === 'function');
-    if (!hasAI && !groqOn(env)) { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
+    if (!hasAI && !groqOn(env) && !claudeOn(env)) { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
+    if (claudeOn(env)) {
+      const c = await claudeChat(env, v.model, v.messages);
+      if (c.text) { console.log('talk-ai: claude'); return json({ text: c.text, model: v.model, via: 'claude' }, 200, allow); }
+      console.log('talk-ai: claude_' + c.fail);   // 中身は書かない。このあと今までの順番（Workers AI → Groq）
+    }
     try {
       if (!hasAI) throw new Error('3036 no AI binding');   // つなぎがないときは Groq へ
       const text = await runAI(env, v.model, v.messages);
