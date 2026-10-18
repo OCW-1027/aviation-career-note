@@ -22,8 +22,15 @@
 //   ブラウザの聞き取りより正確（とくに日本語・韓国語・専門用語）。無料の分は会話と共通（1分の音声で約 0.0005 ドル相当）
 //   ?p=…（任意・300字まで）：直前の相手のせりふなど、話の流れ。Whisper の initial_prompt に渡すと、続きの言葉を正しく聞き取りやすくなる
 //   （流れの文そのものしか返らなかったときは、聞き取れなかったとみなして空にする）
+// ・予備の Groq（2026.10.18 追加・無料プランのまま使う）：Workers AI が quota（今日の無料の分の終わり）・busy のときだけ、
+//   Groq の無料の分に切り替える。秘密の変数 GROQ_API_KEY があるときだけ動く（なければ今までと同じ）
+//   会話：qwen・gemma → llama-3.3-70b-versatile、gpt-oss-120b → openai/gpt-oss-120b（考える量 low・考えた中身は返さない）
+//         変数 GROQ_MODEL で全部を1つのモデルにそろえることもできる
+//   聞き取り：whisper-large-v3-turbo（Workers AI と同じ種類）
+//   Groq の無料の分も終わったとき（429）は quota を返す。Groq は無料プランのままなら請求されない
+//   Groq に送る中身もログに書かない（console に出すのは「groq を使った／失敗の種類」だけ）
 
-const DEFAULT_ORIGINS = ['https://ocw-1027.github.io', 'https://www.ac-note.com', 'https://ac-note.com'];
+const DEFAULT_ORIGINS = ['https://ocw-1027.github.io'];
 const DEFAULT_MODEL = '@cf/qwen/qwen3-30b-a3b-fp8';
 const ALLOWED_MODELS = ['@cf/qwen/qwen3-30b-a3b-fp8', '@cf/google/gemma-3-12b-it', '@cf/openai/gpt-oss-120b'];
 const MAX_MESSAGES = 16;
@@ -42,6 +49,12 @@ const STT_LANGS = ['ja', 'ko', 'en'];
 const MAX_AUDIO = 2600 * 1024;   // 60秒の 16kHz・16bit・モノラル WAV ≒ 1.9MB
 // 無音のときに Whisper がよく作る決まり文句（これだけのときは「聞き取れなかった」にする）
 const STT_JUNK = /^(ご視聴(いただき)?ありがとうございました|チャンネル登録(よろしくお願いします|をお願いします)?|시청해\s*주셔서\s*감사합니다|구독과\s*좋아요(\s*부탁드립니다)?|thanks for watching!?|thank you for watching\.?)[。.!！\s]*$/i;
+
+const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const GROQ_STT_URL = 'https://api.groq.com/openai/v1/audio/transcriptions';
+const GROQ_STT_MODEL = 'whisper-large-v3-turbo';
+const GROQ_MAP = { '@cf/openai/gpt-oss-120b': 'openai/gpt-oss-120b' };   // ここにないモデルは GROQ_DEFAULT
+const GROQ_DEFAULT = 'llama-3.3-70b-versatile';
 
 const hits = new Map();          // RL がないときの数え方（この Worker の1つの実行の中だけ。目安）
 
@@ -218,6 +231,33 @@ async function rateOk(request, env) {
   return true;
 }
 
+// ── 予備の Groq ──
+function groqOn(env) { return !!(env && env.GROQ_API_KEY); }
+function groqFail(status) { const e = new Error('groq ' + status); e.groq = status === 429 ? 'quota' : (status >= 500 ? 'busy' : 'ai'); return e; }
+function groqClass(e) {
+  const g = e && e.groq;
+  if (g === 'quota') return { error: 'quota', status: 429 };
+  if (g === 'busy') return { error: 'busy', status: 503 };
+  return { error: 'ai', status: 502 };
+}
+async function groqChat(env, model, messages) {
+  const gm = (env && env.GROQ_MODEL) || GROQ_MAP[model] || GROQ_DEFAULT;
+  const body = { model: gm, messages: messages.map(x => ({ role: x.role, content: x.content })), max_completion_tokens: isGptOss(gm) ? MAX_TOKENS_GPT_OSS : MAX_TOKENS, temperature: 0.7 };
+  if (isGptOss(gm)) { body.reasoning_effort = effortOf(env) || 'low'; body.include_reasoning = false; }
+  const r = await fetch(GROQ_CHAT_URL, { method: 'POST', headers: { 'Authorization': 'Bearer ' + env.GROQ_API_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok) throw groqFail(r.status);
+  return cleanText(await r.json());
+}
+async function groqStt(env, buf, lang, prompt) {
+  const f = new FormData();
+  f.append('file', new Blob([buf], { type: 'audio/wav' }), 'audio.wav');
+  f.append('model', GROQ_STT_MODEL); f.append('language', lang); f.append('response_format', 'json'); f.append('temperature', '0');
+  if (prompt) f.append('prompt', prompt);
+  const r = await fetch(GROQ_STT_URL, { method: 'POST', headers: { 'Authorization': 'Bearer ' + env.GROQ_API_KEY }, body: f });
+  if (!r.ok) throw groqFail(r.status);
+  return await r.json();
+}
+
 function b64(buf) {
   const u = new Uint8Array(buf); let s = '';
   for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000));
@@ -236,18 +276,22 @@ async function stt(request, env, url, allow) {
   const h = new Uint8Array(buf, 0, Math.min(12, buf.byteLength));
   if (buf.byteLength < 1000 || String.fromCharCode(h[0], h[1], h[2], h[3]) !== 'RIFF' || String.fromCharCode(h[8], h[9], h[10], h[11]) !== 'WAVE') return json({ error: 'bad_request', detail: 'audio must be WAV' }, 400, allow);
   if (!(await rateOk(request, env))) return json({ error: 'rate' }, 429, allow);
-  if (!env || !env.AI || typeof env.AI.run !== 'function') { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
-  const audio = b64(buf);
+  const hasAI = !!(env && env.AI && typeof env.AI.run === 'function');
+  if (!hasAI && !groqOn(env)) { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
+  const audio = hasAI ? b64(buf) : '';
   const prompt = String(url.searchParams.get('p') || '').replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 300);
   const full = { audio, task: 'transcribe', language: lang, vad_filter: true, condition_on_previous_text: false };
   if (prompt) full.initial_prompt = prompt;
   let r;
   try {
+    if (!hasAI) throw new Error('3036 no AI binding');   // つなぎがないときは Groq へ
     try { r = await env.AI.run(STT_MODEL, full); }
     catch (e) { if (classify(e).error !== 'ai') throw e; console.log('talk-ai: stt_retry'); r = await env.AI.run(STT_MODEL, { audio, language: lang }); }
   } catch (e) {
     const c = classify(e); console.log('talk-ai: stt_' + c.error);
-    return json({ error: c.error }, c.status, allow);
+    if (c.error === 'ai' || !groqOn(env)) return json({ error: c.error }, c.status, allow);
+    try { r = await groqStt(env, buf, lang, prompt); console.log('talk-ai: stt_groq'); }
+    catch (g) { const gc = groqClass(g); console.log('talk-ai: stt_groq_' + gc.error); return json({ error: gc.error }, gc.status, allow); }
   }
   let text = String((r && (r.text || (r.transcription_info && r.transcription_info.text))) || '').replace(/\s+/g, ' ').trim();
   if (lang === 'ja') text = text.replace(/([^\x00-\x7F])\s+(?=[^\x00-\x7F])/g, '$1');   // 日本語の文字の間の空白を取る
@@ -267,7 +311,7 @@ export default {
     }
     if (request.method === 'GET') {
       // 動いているかの確かめ用（ブラウザでこの Worker の住所を開くと見える）。会話はしない
-      return json({ ok: true, service: 'talk-ai', stt: true, ai: !!(env && env.AI), model: (env && env.MODEL) || DEFAULT_MODEL, origins: allowedOrigins(env) }, 200, allow);
+      return json({ ok: true, service: 'talk-ai', stt: true, ai: !!(env && env.AI), groq: groqOn(env), model: (env && env.MODEL) || DEFAULT_MODEL, origins: allowedOrigins(env) }, 200, allow);
     }
     if (request.method !== 'POST') return json({ error: 'method' }, 405, allow);
     if (!ok) return json({ error: 'origin' }, 403, '');
@@ -283,15 +327,26 @@ export default {
     const v = validate(body, env);
     if (v.error) return json({ error: v.error, detail: v.detail }, v.status, allow);
     if (!(await rateOk(request, env))) return json({ error: 'rate' }, 429, allow);
-    if (!env || !env.AI || typeof env.AI.run !== 'function') { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
+    const hasAI = !!(env && env.AI && typeof env.AI.run === 'function');
+    if (!hasAI && !groqOn(env)) { console.log('talk-ai: no AI binding'); return json({ error: 'config' }, 500, allow); }
     try {
+      if (!hasAI) throw new Error('3036 no AI binding');   // つなぎがないときは Groq へ
       const text = await runAI(env, v.model, v.messages);
       if (!text) return json({ error: 'empty' }, 502, allow);
       return json({ text, model: v.model }, 200, allow);
     } catch (e) {
       const c = classify(e);
       console.log('talk-ai: ' + c.error);   // 中身は書かない
-      return json({ error: c.error }, c.status, allow);
+      if (c.error === 'ai' || !groqOn(env)) return json({ error: c.error }, c.status, allow);
+      try {
+        const text = await groqChat(env, v.model, v.messages);
+        console.log('talk-ai: groq');
+        if (!text) return json({ error: 'empty' }, 502, allow);
+        return json({ text, model: v.model, via: 'groq' }, 200, allow);
+      } catch (g) {
+        const gc = groqClass(g); console.log('talk-ai: groq_' + gc.error);
+        return json({ error: gc.error }, gc.status, allow);
+      }
     }
   },
 };

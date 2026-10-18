@@ -61,7 +61,7 @@
 
 - 주소는 **`https://` + 도메인까지만** 씁니다. 뒤의 `/aviation-career-note/` 는 넣지 않습니다.
 - 여러 개면 쉼표로 구분: `https://ocw-1027.github.io,https://www.ac-note.com`
-- 이 변수를 넣지 않아도 기본값이 `https://ocw-1027.github.io`·`https://www.ac-note.com`·`https://ac-note.com` 입니다(2026.10.17 공식 도메인 추가). 이미 배포한 Worker는 다시 배포하거나 변수를 고쳐야 반영됩니다.
+- 이 변수를 넣지 않으면 기본값은 `https://ocw-1027.github.io` 하나입니다. **공식 도메인(www.ac-note.com)을 연결하는 날**에는 이 변수에 위 3개 주소를 넣으세요(코드는 그대로, 2026-10-18 배포본 기준).
 - PC에서 시험할 때 쓰는 `http://localhost` 도 기본으로 허용됩니다. 막고 싶으면 변수 `ALLOW_LOCALHOST` 를 만들어 값 `false` 를 넣습니다.
 
 ## 6. 잘 동작하는지 확인
@@ -161,3 +161,32 @@ Worker가 돌려주는 오류 이름: `origin`(허용 안 된 사이트) · `bad
 - 비용: 음성 1분에 약 0.0005달러 상당. AI 대화와 같은 하루 무료 사용량(10,000 neurons)에서 빠지며, 무료 사용량이 끝나면 자동으로 브라우저 인식으로 돌아갑니다.
 - 음성은 문자로 바꾸는 데만 쓰고 저장하지 않습니다. 한 번에 최대 60초입니다.
 - (2026-10-10 개선) 인식할 때 **대화의 흐름**을 함께 보냅니다. AI 대화에서는 AI의 직전 말을, 대화 연습에서는 바로 앞 상대의 대사(첫 대사면 장면 이름)를 보냅니다. Whisper가 이어지는 말을 더 정확하게 알아듣습니다. 정답 문장은 보내지 않으므로 점수가 부풀려지지 않습니다. 이 개선도 Worker를 다시 붙여 넣고 Deploy해야 적용됩니다(그 전에는 지금처럼 동작).
+
+## 14. 예비(Groq) 설정 — 무료분이 끝났을 때 자동 전환 (2026-10-18 추가)
+배포본: `_build/worker/talk-worker.js`(2026-10-18 Groq 예비판, Cloudflare의 talk-ai와 같은 코드)
+
+**무엇이 바뀌나**
+- 평소에는 지금처럼 Cloudflare Workers AI 무료분을 씁니다.
+- Cloudflare가 「오늘 무료분 끝(quota)」이나 「혼잡(busy)」을 내면, 그 요청만 Groq 무료분으로 자동 전환합니다.
+  - AI 대화: qwen·gemma 요청 → `llama-3.3-70b-versatile`, gpt-oss-120b 요청 → `openai/gpt-oss-120b`(생각 내용은 돌려주지 않음). 변수 `GROQ_MODEL`로 하나로 고정할 수 있습니다.
+  - 받아쓰기: `whisper-large-v3-turbo`(Cloudflare와 같은 종류)
+- Groq 무료분까지 다 쓰면 지금처럼 `quota`를 돌려줍니다 → 페이지가 「다른 AI 앱으로 연습」으로 넘어갑니다.
+- 응답 모양은 그대로(`{text, model}` / `{error}`)이고, Groq로 처리된 대화에만 `via:'groq'`가 붙습니다(페이지는 무시해도 됨).
+- 둘 다 무료 플랜이라 청구가 생기지 않습니다. Groq를 유료(Developer)로 올리지만 않으면 됩니다.
+- `GROQ_API_KEY`를 넣지 않으면 예전과 완전히 같게 동작합니다.
+
+**설정 순서(약 10분)**
+1. **Groq 키 발급:** https://console.groq.com 가입(Google 계정 가능) → 왼쪽 **API Keys** → **Create API Key** → 이름 `talk-ai` → 키 복사(한 번만 보임). 카드 등록 화면이 나오면 진행하지 않습니다.
+2. **Cloudflare에 키 넣기:** Workers & Pages → **talk-ai** → **Settings** → **Variables and Secrets** → **Add** → 종류 **Secret**, 이름 `GROQ_API_KEY`, 값 = 복사한 키 → **Deploy**. (키는 코드·저장소에 절대 쓰지 않습니다.)
+3. **코드 바꾸기:** talk-ai → **Edit code** → `worker.js` 내용을 모두 지우고 `_build/worker/talk-worker.js` 내용을 붙여넣기 → **Deploy**.
+4. **확인:** 브라우저로 Worker 주소(예: https://talk-ai.kumamongmong.workers.dev)를 열어 `"groq":true`가 보이면 끝입니다. 실제 전환은 Cloudflare 무료분이 끝났을 때만 일어나며, **Observability → Logs**에 `talk-ai: groq` / `talk-ai: stt_groq`가 보이면 Groq로 넘어간 것입니다. (`groq_quota` 등은 Groq 쪽 한도·오류)
+
+**되돌리기**
+- `GROQ_API_KEY` Secret을 지우면 예전과 똑같이 동작합니다(코드는 그대로 둬도 됨).
+- 또는 Deployments에서 이전 버전(2dd7c48a)으로 Rollback합니다.
+
+**참고**
+- Groq 무료 한도는 바뀔 수 있습니다(공개 정리 자료 기준: 받아쓰기 하루 약 2,000회, 대화 모델별 하루 약 1,000회). 실제 값은 Groq 콘솔 **Settings → Limits**에서 확인합니다.
+- 대화·음성 내용은 지금처럼 로그에 남기지 않습니다. Groq로 가는 요청은 Groq 이용약관의 데이터 처리 방침을 따릅니다.
+- 모델 선택: 사이트는 `talk_config.js`에서 gpt-oss-120b를 씁니다(2026-10 시험에서 qwen3는 빈 답·형식 깨짐이 있어 gpt-oss로 정함, 9절). gpt-oss는 Cloudflare 무료분을 빨리 쓰지만(하루 약 100~170회), 그 뒤에는 Groq의 같은 모델(openai/gpt-oss-120b)이 이어받으므로 그대로 둡니다.
+- 영상 제작용 받아쓰기 점검은 2026-10-18부터 이 Worker를 쓰지 않습니다(사이트 이용자 몫을 줄이지 않음).
