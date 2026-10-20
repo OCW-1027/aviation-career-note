@@ -1,7 +1,7 @@
-/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편 Day 1–5·탑재관리편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
-window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}, "staff_gate_idle_01": {"src": "saga/img/staff_gate_idle_01.webp", "w": 415, "h": 900, "px": 0.586, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_scan_01": {"src": "saga/img/staff_gate_scan_01.webp", "w": 439, "h": 900, "px": 0.5661, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_announce_01": {"src": "saga/img/staff_gate_announce_01.webp", "w": 487, "h": 900, "px": 0.495, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_explain_01": {"src": "saga/img/staff_gate_explain_01.webp", "w": 542, "h": 900, "px": 0.4482, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_trouble_01": {"src": "saga/img/staff_gate_trouble_01.webp", "w": 420, "h": 900, "px": 0.5856, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "gate_bg_01": {"src": "saga/img/gate_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "gate_bg_02": {"src": "saga/img/gate_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "passenger_male_01_bp_01": {"src": "saga/img/passenger_male_01_bp_01.webp", "w": 515, "h": 900, "px": 0.7226, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_male_01", "hr": 1.0}, "passenger_female_02_bp_01": {"src": "saga/img/passenger_female_02_bp_01.webp", "w": 570, "h": 899, "px": 0.7131, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_female_02", "hr": 0.999332}, "passenger_female_03_infant_bp_01": {"src": "saga/img/passenger_female_03_infant_bp_01.webp", "w": 493, "h": 900, "px": 0.5537, "py": 0.9959, "flip": false, "cat": "passengers", "sameAs": "passenger_female_03_infant_01", "hr": 1.0}, "prop_bgr_01": {"src": "saga/img/prop_bgr_01.webp", "w": 520, "h": 478, "px": 0.4311, "py": 0.9929, "flip": false, "cat": "props"}, "prop_gate_tag_01": {"src": "saga/img/prop_gate_tag_01.webp", "w": 430, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_aisle_chair_01": {"src": "saga/img/prop_aisle_chair_01.webp", "w": 358, "h": 520, "px": 0.5565, "py": 0.994, "flip": false, "cat": "props"}, "prop_stroller_gate_01": {"src": "saga/img/prop_stroller_gate_01.webp", "w": 437, "h": 520, "px": 0.5074, "py": 0.9938, "flip": false, "cat": "props", "sameAs": "prop_stroller_folded_01"}, "prop_um_form_01": {"src": "saga/img/prop_um_form_01.webp", "w": 432, "h": 520, "px": 0.5, "py": 0.9937, "flip": false, "cat": "props"}, "prop_radio_01": {"src": "saga/img/prop_radio_01.webp", "w": 264, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props", "sameAs": "prop_radio_01@v04"}, "prop_mic_01": {"src": "saga/img/prop_mic_01.webp", "w": 420, "h": 520, "px": 0.509, "py": 0.9933, "flip": false, "cat": "props"}, "staff_sv_01": {"src": "saga/img/staff_sv_01.webp", "w": 393, "h": 900, "px": 0.6526, "py": 0.9961, "flip": false, "cat": "staff", "hr": 1.0}, "staff_wb_input_01": {"src": "saga/img/staff_wb_input_01.webp", "w": 442, "h": 900, "px": 0.5383, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_radio_01": {"src": "saga/img/staff_wb_radio_01.webp", "w": 409, "h": 900, "px": 0.5864, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_phone_01": {"src": "saga/img/staff_wb_phone_01.webp", "w": 443, "h": 900, "px": 0.5389, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_trouble_01": {"src": "saga/img/staff_wb_trouble_01.webp", "w": 485, "h": 900, "px": 0.5075, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_loadmaster_bust_01": {"src": "saga/img/people_loadmaster_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_dispatcher_bust_01": {"src": "saga/img/people_dispatcher_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_captain_bust_01": {"src": "saga/img/people_captain_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "wb_bg_01": {"src": "saga/img/wb_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "wb_bg_02": {"src": "saga/img/wb_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "prop_loadsheet_01": {"src": "saga/img/prop_loadsheet_01.webp", "w": 498, "h": 520, "px": 0.5, "py": 0.9924, "flip": true, "cat": "props"}, "prop_lir_board_01": {"src": "saga/img/prop_lir_board_01.webp", "w": 397, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props"}, "prop_notoc_01": {"src": "saga/img/prop_notoc_01.webp", "w": 520, "h": 348, "px": 0.5, "py": 0.9898, "flip": true, "cat": "props"}, "prop_uld_ake_01": {"src": "saga/img/prop_uld_ake_01.webp", "w": 520, "h": 421, "px": 0.5, "py": 0.9915, "flip": true, "cat": "props"}, "prop_uld_pmc_01": {"src": "saga/img/prop_uld_pmc_01.webp", "w": 520, "h": 315, "px": 0.5, "py": 0.9903, "flip": true, "cat": "props"}};
-window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e1f97":11661,"017c78d9":11949,"01ff8447":27693,"02608e8f":22893,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"0360a263":57933,"0372e30c":51213,"04170656":22701,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05382ef2":8877,"053bb83a":18669,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"07801492":13773,"0804812d":12813,"0815d609":63789,"08911573":24429,"089a08cd":19629,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b042d1a":24717,"0b0fc6ff":23181,"0b15794c":18093,"0b253baa":13389,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0dbf5c26":33549,"0f321d57":11949,"0f3b27e2":14157,"0f6c45bb":21069,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10774ea4":6477,"108a2963":16653,"10b9b398":26925,"10e5aae7":26061,"11353347":46029,"114530e3":18189,"117726b4":20877,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"11de62e7":5997,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12947755":27693,"12c66b14":23565,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"152ad0c6":51981,"1550e722":20589,"15ad3d3e":15789,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"19e314d7":57357,"1a352e30":28269,"1a78ecbd":18189,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1e2e03c0":62829,"1ec7ed77":10893,"1eceacdd":14445,"1ef8768a":13293,"1fc06217":13293,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"216ee28d":23853,"2193b357":4557,"22babe7c":22125,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"23772200":15693,"23b16202":20781,"241220dd":30189,"24302b9c":29997,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"258c0750":4845,"2627df20":12813,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"2733bb31":16365,"277016ca":9549,"277a2505":10509,"277be539":16941,"284c92f2":9741,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a50eb82":8589,"2a6ca9be":14637,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2b62b479":10797,"2b92c7bf":10701,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cb6c3e6":17229,"2cc2a6c8":10893,"2ce3e287":23949,"2e147517":7917,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"2fcb1fd8":19533,"30062188":25101,"304ce0e8":16365,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"320540c2":55629,"32485a1b":12333,"32832759":20205,"32d33712":61005,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"3317c179":4557,"334df891":13101,"336f3476":12237,"33c5eae1":13197,"347b7fc6":8877,"34b319f3":20397,"34c79320":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38623a3d":4077,"3875fba6":22317,"387c3cc5":19149,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39a9d567":37293,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3b6226eb":20685,"3b8e820c":5133,"3c20ea46":16077,"3cf3a519":18669,"3d7f11fc":30957,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3ee775e9":21549,"3f53f59b":15309,"3fab192f":13581,"3fcbb6d4":9549,"3ffbde00":5709,"401848f6":9837,"405c08a3":25005,"407e7514":14925,"40d1fc1a":21933,"4127a234":16461,"41581a26":32493,"41b2ccac":27117,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"42534135":14829,"428c73ac":14733,"429ee352":14637,"42ade8df":65709,"42da0937":18381,"42eff33e":6669,"42ff6b45":15597,"430ac058":11469,"4339758f":3885,"4361efdc":18765,"4383e84b":24813,"43d9b5ea":11565,"43e49916":8685,"444fea75":14637,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"461a5c60":19917,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"484480b8":39789,"4a0d5067":13389,"4a0e1563":16557,"4a5692fd":9741,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4bbf8b6f":42573,"4be72248":12813,"4bf35055":26541,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4da692cc":34413,"4ddc25ef":26061,"4ddd3de5":12429,"4e2dcaf6":26541,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50647676":13101,"50713d3b":14733,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"525fe908":11469,"5282ac80":13485,"5287681f":13965,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"559a719c":6381,"55ff9e0a":8397,"5606e70e":16173,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"569ce112":24525,"56aeecf7":14925,"56c28fec":22893,"57020ce7":23661,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58aad44e":6669,"58f2107a":4557,"5905abe7":52269,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"59fa9f5b":14157,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5b2817a2":19629,"5bc30b0c":6189,"5c05a05c":15597,"5c10b6a5":15405,"5c188a15":10893,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d37d1fd":21357,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e1b02d4":38733,"5e6293a2":27021,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61d2ee03":20397,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"627a8337":19149,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"634abd0c":22701,"637f3778":67245,"6389c7ce":9933,"6436733d":17229,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64db816c":13965,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"672ba710":17421,"6755401f":3693,"67f889d3":51213,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"698bdab6":13965,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6aa5e2a6":24525,"6ac63d3c":7053,"6ada06aa":17997,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b5b91c9":19245,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c71b9a7":21453,"6c9bb35d":8445,"6cc2b68b":18381,"6d79cf39":5901,"6df88f98":34701,"6e346345":13965,"6e45b4aa":22701,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f265640":7053,"6f35b02d":17229,"6f67c145":18765,"6f916efb":24717,"6fe3f2f3":9165,"7009e6e3":18957,"7087f307":21837,"70ace839":5613,"70ceecd7":15789,"70ff76db":7821,"71029f0e":24141,"7166db61":14925,"7224d333":24333,"7244acbc":17997,"7281160f":25869,"72f6bc2d":43821,"7321492e":11373,"7338e543":29613,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"74282aec":11949,"749e2919":21357,"74bff1e3":10797,"75a2e533":12333,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"772b8880":14253,"77704f09":7053,"779d7c04":30573,"7814b9a5":8493,"78ada3f2":9357,"79684e06":24141,"79cdfe1a":15213,"79eb8cdb":39885,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a40b598":10893,"7a851f8b":7149,"7a878fff":22221,"7b663459":22317,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7c9443d0":8589,"7cb0657b":4941,"7ce43c38":72813,"7d42f834":11469,"7dd7941a":11277,"7de9831a":4365,"7e268f02":14733,"7e2eb525":13869,"7e39bf64":27501,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7ececb77":40269,"7eec5a27":30477,"7f5d4783":24237,"7fafb60d":25293,"7fd19a44":20013,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"82997383":14061,"829a2da9":15885,"830226f3":7149,"83063c1c":11757,"83865889":7725,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"84f30bb0":6285,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"8585f5ef":13197,"85aba023":14541,"85b0ca94":31629,"86140811":51981,"86c6118e":16461,"86d3ce6a":9549,"86e30629":18573,"86f1d327":13581,"880eee58":21837,"88968b3e":22701,"88a1365d":51597,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"900b6db4":14349,"900c3369":20685,"90275d0e":3981,"9060204d":15597,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"9364ec4b":10701,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9417f53a":24141,"94268ca8":12045,"9452465d":26253,"947800ed":32589,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"95df5fc7":10125,"96040875":8685,"96936059":10029,"9702a48a":18189,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d68799":26349,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99cadd07":7245,"99d5d492":14445,"9abff8c0":18093,"9afd6a23":28941,"9b72a350":83757,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cc2e7b9":53805,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d660988":14925,"9d7aba60":24429,"9dbc39eb":11373,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9f32d3da":5613,"9f51d948":12717,"9f614f27":27789,"a0374dcf":21741,"a0572083":6861,"a05eaceb":30285,"a0869e8d":9453,"a183b100":11373,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a3e6f657":26637,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aa565f0b":21261,"aab24f6e":23469,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ab69b853":12333,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"add7cd82":9933,"ae98d056":21549,"aee49ca1":4749,"aefc1a16":57549,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b20428ce":38445,"b2764e19":17133,"b2799c78":12045,"b2f0c22c":24717,"b3986566":40557,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b68884c1":58029,"b6bb30f5":58029,"b7a981f3":21645,"b7d63f21":8205,"b7fac4d4":37869,"b821d088":8973,"b9476dfc":51597,"b94b3f9a":9165,"b9ec6657":52557,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bc3da75a":8301,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"bdfe3c69":4653,"be9f4413":25581,"befa6ee1":6573,"bf919f0f":4845,"bf96bcc6":21837,"bfe76df4":6861,"c0aeef83":29229,"c0d326e8":29757,"c1b3ae41":8781,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c320d572":27405,"c35e1c20":13773,"c3ae063f":59181,"c46ac345":22029,"c58ccdc9":11277,"c5ba55fe":20877,"c60a977f":15885,"c67090d0":29037,"c68cb3de":11469,"c6ced84a":3405,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c947e6ce":38925,"c9b7a6d3":15021,"ca69c6c0":24525,"ca91beb1":13389,"cabb5ead":11469,"cac77566":17517,"cb4b5a61":40749,"cb73f3d3":8685,"cbebd934":19245,"cc2bb383":5997,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"ccc3e5f3":40557,"cdbbb68f":16077,"cf0342c2":41325,"cf4c76f9":29133,"cf903d8a":21933,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d39d8202":24237,"d40d98b3":22029,"d43e0514":4557,"d4a9b5d6":41133,"d4df3b82":24909,"d50c8f82":10221,"d5b39d86":4077,"d5ee6e18":11949,"d62b35bf":14157,"d63a0dcc":15693,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d8b5d724":6573,"d8c77303":34989,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d95fcec1":17901,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"deb54a25":7917,"dec33802":12717,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e2441148":10317,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2b6ec19":22029,"e2db78be":9453,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e3da97d8":21933,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e52b582d":12717,"e5b55442":20301,"e5eb1dba":31917,"e66f1b0e":25869,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e7c6d95e":15405,"e8246b13":6573,"e833eb1a":21357,"e834502d":4173,"e85a568a":28845,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"ea68d3d6":7725,"eb2077c5":16077,"eb2c67cb":15597,"ebf2d40d":41997,"ec035359":23565,"ec0681c4":6765,"ec42c5a0":22029,"ecc2babd":4845,"ece1e617":23565,"ed0b9fc4":10797,"ed79d956":4365,"ed9beedc":44781,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"ef55ada2":3405,"f067aa86":12237,"f069fe63":4365,"f09836cc":16365,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f35649a3":12525,"f3dcf5f3":23853,"f3dd5872":82317,"f41df8eb":25197,"f4be769e":17613,"f4de1cd8":15501,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f8f09f54":20109,"f9070c9d":25389,"f9453009":21741,"f98ca4d6":25869,"f9e343fd":53325,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb45adfe":12333,"fb7c792a":24909,"fc6140c7":13581,"fc8dae10":26253,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fde725f9":30093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe485f9f":25293,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
-window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"passenger/2-1":{"ja":"ja/gnd/2-1/","ko":"ko/gnd/2-1/","en":"en/gnd/2-1/"},"passenger/2-4":{"ja":"ja/gnd/2-4/","ko":"ko/gnd/2-4/","en":"en/gnd/2-4/"},"passenger/2-5":{"ja":"ja/gnd/2-5/","ko":"ko/gnd/2-5/","en":"en/gnd/2-5/"},"passenger/2-7":{"ja":"ja/gnd/2-7/","ko":"ko/gnd/2-7/","en":"en/gnd/2-7/"},"passenger/3-4":{"ja":"ja/gnd/3-4/","ko":"ko/gnd/3-4/","en":"en/gnd/3-4/"},"passenger/3-7":{"ja":"ja/gnd/3-7/","ko":"ko/gnd/3-7/","en":"en/gnd/3-7/"},"passenger/3-8":{"ja":"ja/gnd/3-8/","ko":"ko/gnd/3-8/","en":"en/gnd/3-8/"},"cargo/3-1":{"ja":"ja/cgo/3-1/","ko":"ko/cgo/3-1/","en":"en/cgo/3-1/"},"cargo/3-2":{"ja":"ja/cgo/3-2/","ko":"ko/cgo/3-2/","en":"en/cgo/3-2/"},"cargo/3-4":{"ja":"ja/cgo/3-4/","ko":"ko/cgo/3-4/","en":"en/cgo/3-4/"},"cargo/4-1":{"ja":"ja/cgo/4-1/","ko":"ko/cgo/4-1/","en":"en/cgo/4-1/"},"cargo/7-3":{"ja":"ja/cgo/7-3/","ko":"ko/cgo/7-3/","en":"en/cgo/7-3/"}}};
+/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편·탑재관리편·램프편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
+window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}, "staff_gate_idle_01": {"src": "saga/img/staff_gate_idle_01.webp", "w": 415, "h": 900, "px": 0.586, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_scan_01": {"src": "saga/img/staff_gate_scan_01.webp", "w": 439, "h": 900, "px": 0.5661, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_announce_01": {"src": "saga/img/staff_gate_announce_01.webp", "w": 487, "h": 900, "px": 0.495, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_explain_01": {"src": "saga/img/staff_gate_explain_01.webp", "w": 542, "h": 900, "px": 0.4482, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_trouble_01": {"src": "saga/img/staff_gate_trouble_01.webp", "w": 420, "h": 900, "px": 0.5856, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "gate_bg_01": {"src": "saga/img/gate_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "gate_bg_02": {"src": "saga/img/gate_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "passenger_male_01_bp_01": {"src": "saga/img/passenger_male_01_bp_01.webp", "w": 515, "h": 900, "px": 0.7226, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_male_01", "hr": 1.0}, "passenger_female_02_bp_01": {"src": "saga/img/passenger_female_02_bp_01.webp", "w": 570, "h": 899, "px": 0.7131, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_female_02", "hr": 0.999332}, "passenger_female_03_infant_bp_01": {"src": "saga/img/passenger_female_03_infant_bp_01.webp", "w": 493, "h": 900, "px": 0.5537, "py": 0.9959, "flip": false, "cat": "passengers", "sameAs": "passenger_female_03_infant_01", "hr": 1.0}, "prop_bgr_01": {"src": "saga/img/prop_bgr_01.webp", "w": 520, "h": 478, "px": 0.4311, "py": 0.9929, "flip": false, "cat": "props"}, "prop_gate_tag_01": {"src": "saga/img/prop_gate_tag_01.webp", "w": 430, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_aisle_chair_01": {"src": "saga/img/prop_aisle_chair_01.webp", "w": 358, "h": 520, "px": 0.5565, "py": 0.994, "flip": false, "cat": "props"}, "prop_stroller_gate_01": {"src": "saga/img/prop_stroller_gate_01.webp", "w": 437, "h": 520, "px": 0.5074, "py": 0.9938, "flip": false, "cat": "props", "sameAs": "prop_stroller_folded_01"}, "prop_um_form_01": {"src": "saga/img/prop_um_form_01.webp", "w": 432, "h": 520, "px": 0.5, "py": 0.9937, "flip": false, "cat": "props"}, "prop_radio_01": {"src": "saga/img/prop_radio_01.webp", "w": 264, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props", "sameAs": "prop_radio_01@v04"}, "prop_mic_01": {"src": "saga/img/prop_mic_01.webp", "w": 420, "h": 520, "px": 0.509, "py": 0.9933, "flip": false, "cat": "props"}, "staff_sv_01": {"src": "saga/img/staff_sv_01.webp", "w": 393, "h": 900, "px": 0.6526, "py": 0.9961, "flip": false, "cat": "staff", "hr": 1.0}, "staff_wb_input_01": {"src": "saga/img/staff_wb_input_01.webp", "w": 442, "h": 900, "px": 0.5383, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_radio_01": {"src": "saga/img/staff_wb_radio_01.webp", "w": 409, "h": 900, "px": 0.5864, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_phone_01": {"src": "saga/img/staff_wb_phone_01.webp", "w": 443, "h": 900, "px": 0.5389, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_trouble_01": {"src": "saga/img/staff_wb_trouble_01.webp", "w": 485, "h": 900, "px": 0.5075, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_loadmaster_bust_01": {"src": "saga/img/people_loadmaster_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_dispatcher_bust_01": {"src": "saga/img/people_dispatcher_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_captain_bust_01": {"src": "saga/img/people_captain_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "wb_bg_01": {"src": "saga/img/wb_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "wb_bg_02": {"src": "saga/img/wb_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "prop_loadsheet_01": {"src": "saga/img/prop_loadsheet_01.webp", "w": 498, "h": 520, "px": 0.5, "py": 0.9924, "flip": true, "cat": "props"}, "prop_lir_board_01": {"src": "saga/img/prop_lir_board_01.webp", "w": 397, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props"}, "prop_notoc_01": {"src": "saga/img/prop_notoc_01.webp", "w": 520, "h": 348, "px": 0.5, "py": 0.9898, "flip": true, "cat": "props"}, "prop_uld_ake_01": {"src": "saga/img/prop_uld_ake_01.webp", "w": 520, "h": 421, "px": 0.5, "py": 0.9915, "flip": true, "cat": "props"}, "prop_uld_pmc_01": {"src": "saga/img/prop_uld_pmc_01.webp", "w": 520, "h": 315, "px": 0.5, "py": 0.9903, "flip": true, "cat": "props"}, "rp_bg_01": {"src": "saga/img/rp_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "staff_rp_radio_01": {"src": "saga/img/staff_rp_radio_01.webp", "w": 488, "h": 900, "px": 0.4963, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_board_01": {"src": "saga/img/staff_rp_board_01.webp", "w": 414, "h": 900, "px": 0.5452, "py": 0.9961, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_point_01": {"src": "saga/img/staff_rp_point_01.webp", "w": 575, "h": 900, "px": 0.4379, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_trouble_01": {"src": "saga/img/staff_rp_trouble_01.webp", "w": 410, "h": 900, "px": 0.5738, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_engineer_bust_01": {"src": "saga/img/people_engineer_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "people_cabinmgr_bust_01": {"src": "saga/img/people_cabinmgr_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "people_deicer_bust_01": {"src": "saga/img/people_deicer_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "rp_bg_02": {"src": "saga/img/rp_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "rp_bg_03": {"src": "saga/img/rp_bg_03.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}};
+window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e1f97":11661,"017c78d9":11949,"01ff8447":27693,"02608e8f":22893,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"0360a263":57933,"0372e30c":51213,"04170656":22701,"0441de7c":13197,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05382ef2":8877,"053bb83a":18669,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"07801492":13773,"0804812d":12813,"0815d609":63789,"08911573":24429,"089a08cd":19629,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b042d1a":24717,"0b0fc6ff":23181,"0b15794c":18093,"0b253baa":13389,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0dbf5c26":33549,"0f321d57":11949,"0f3b27e2":14157,"0f6c45bb":21069,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10774ea4":6477,"108a2963":16653,"10b9b398":26925,"10e5aae7":26061,"11353347":46029,"114530e3":18189,"117726b4":20877,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"11de62e7":5997,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12947755":27693,"12c66b14":23565,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"152ad0c6":51981,"15389b02":18861,"1550e722":20589,"15ad3d3e":15789,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17d69a98":24045,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"19e314d7":57357,"1a352e30":28269,"1a78ecbd":18189,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1e2e03c0":62829,"1ec7ed77":10893,"1eceacdd":14445,"1ef8768a":13293,"1fc06217":13293,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"216ee28d":23853,"2193b357":4557,"22babe7c":22125,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"23772200":15693,"23b16202":20781,"241220dd":30189,"24302b9c":29997,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"258c0750":4845,"2627df20":12813,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"2733bb31":16365,"277016ca":9549,"277a2505":10509,"277be539":16941,"284c92f2":9741,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a50eb82":8589,"2a6ca9be":14637,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2b62b479":10797,"2b92c7bf":10701,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cb6c3e6":17229,"2cc2a6c8":10893,"2ce23f41":17421,"2ce3e287":23949,"2e147517":7917,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"2fcb1fd8":19533,"30062188":25101,"304ce0e8":16365,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"320540c2":55629,"32485a1b":12333,"32832759":20205,"32aff339":24813,"32d33712":61005,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"3317c179":4557,"334df891":13101,"336f3476":12237,"33c5eae1":13197,"347b7fc6":8877,"34b319f3":20397,"34c79320":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"3580ac5f":15213,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38544cc5":17517,"38623a3d":4077,"3875fba6":22317,"387c3cc5":19149,"397b9af6":14253,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39a9d567":37293,"39ba9d3c":19725,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3b6226eb":20685,"3b8e820c":5133,"3bad470e":22605,"3c20ea46":16077,"3cf3a519":18669,"3d7f11fc":30957,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3ee775e9":21549,"3f53f59b":15309,"3fab192f":13581,"3fcbb6d4":9549,"3ffbde00":5709,"401848f6":9837,"405c08a3":25005,"407e7514":14925,"40d1fc1a":21933,"4127a234":16461,"41581a26":32493,"41b2ccac":27117,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"42534135":14829,"428c73ac":14733,"429ee352":14637,"42ade8df":65709,"42da0937":18381,"42eff33e":6669,"42ff6b45":15597,"430ac058":11469,"4339758f":3885,"4361efdc":18765,"4383e84b":24813,"43d9b5ea":11565,"43e49916":8685,"444fea75":14637,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"461a5c60":19917,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"480be90a":16941,"484480b8":39789,"4a0d5067":13389,"4a0e1563":16557,"4a5692fd":9741,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4bbf8b6f":42573,"4be72248":12813,"4bf35055":26541,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4da692cc":34413,"4ddc25ef":26061,"4ddd3de5":12429,"4e2dcaf6":26541,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50647676":13101,"50713d3b":14733,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"525fe908":11469,"5282ac80":13485,"5287681f":13965,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"5525a707":17805,"559a719c":6381,"55ff9e0a":8397,"5606e70e":16173,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"569ce112":24525,"56aeecf7":14925,"56c28fec":22893,"57020ce7":23661,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58aad44e":6669,"58f2107a":4557,"5905abe7":52269,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"59fa9f5b":14157,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5b2817a2":19629,"5bc30b0c":6189,"5c05a05c":15597,"5c10b6a5":15405,"5c188a15":10893,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d37d1fd":21357,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e1b02d4":38733,"5e6293a2":27021,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61d2ee03":20397,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"627a8337":19149,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"634abd0c":22701,"637f3778":67245,"6389c7ce":9933,"6436733d":17229,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64db816c":13965,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"6709bb58":16077,"672ba710":17421,"6755401f":3693,"67f889d3":51213,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"698bdab6":13965,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6aa5e2a6":24525,"6ac63d3c":7053,"6ada06aa":17997,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b5b91c9":19245,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c71b9a7":21453,"6c9bb35d":8445,"6cc2b68b":18381,"6d79cf39":5901,"6df88f98":34701,"6e346345":13965,"6e45b4aa":22701,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f265640":7053,"6f35b02d":17229,"6f67c145":18765,"6f916efb":24717,"6fe3f2f3":9165,"7009e6e3":18957,"7087f307":21837,"70ace839":5613,"70ceecd7":15789,"70ff76db":7821,"71029f0e":24141,"7166db61":14925,"7167549c":15885,"7224d333":24333,"7244acbc":17997,"7281160f":25869,"72f6bc2d":43821,"7321492e":11373,"7338e543":29613,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"74282aec":11949,"748a90ce":10509,"749e2919":21357,"74bff1e3":10797,"75a2e533":12333,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"7708b385":22893,"772b8880":14253,"77704f09":7053,"779d7c04":30573,"7814b9a5":8493,"78ada3f2":9357,"79684e06":24141,"79cdfe1a":15213,"79eb8cdb":39885,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a40b598":10893,"7a851f8b":7149,"7a878fff":22221,"7b141b8d":15405,"7b663459":22317,"7c2afc84":24237,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7c9443d0":8589,"7cb0657b":4941,"7ce43c38":72813,"7d42f834":11469,"7dd7941a":11277,"7de9831a":4365,"7e268f02":14733,"7e2eb525":13869,"7e39bf64":27501,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7ececb77":40269,"7eec5a27":30477,"7f5d4783":24237,"7fafb60d":25293,"7fd19a44":20013,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"82997383":14061,"829a2da9":15885,"830226f3":7149,"83063c1c":11757,"83865889":7725,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"8491936d":10125,"84f30bb0":6285,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"8585f5ef":13197,"85aba023":14541,"85b0ca94":31629,"86140811":51981,"86c6118e":16461,"86d3ce6a":9549,"86e30629":18573,"86f1d327":13581,"880eee58":21837,"88968b3e":22701,"88a1365d":51597,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"900b6db4":14349,"900c3369":20685,"90275d0e":3981,"9060204d":15597,"9207351d":21453,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"9364ec4b":10701,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9417f53a":24141,"94268ca8":12045,"9452465d":26253,"947800ed":32589,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"95077727":25389,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"95df5fc7":10125,"96040875":8685,"96936059":10029,"9702a48a":18189,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d68799":26349,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99803b70":17037,"99cadd07":7245,"99d5d492":14445,"9abff8c0":18093,"9afd6a23":28941,"9b72a350":83757,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cc2e7b9":53805,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d660988":14925,"9d7aba60":24429,"9dbc39eb":11373,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9ee26691":23277,"9f32d3da":5613,"9f51d948":12717,"9f614f27":27789,"a0374dcf":21741,"a0572083":6861,"a05eaceb":30285,"a0869e8d":9453,"a183b100":11373,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a3e6f657":26637,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aa565f0b":21261,"aab24f6e":23469,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ab69b853":12333,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"add7cd82":9933,"ae98d056":21549,"aee49ca1":4749,"aefc1a16":57549,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a161c8":21549,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b20428ce":38445,"b2764e19":17133,"b2799c78":12045,"b2f0c22c":24717,"b3986566":40557,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b68884c1":58029,"b6bb30f5":58029,"b7a981f3":21645,"b7d63f21":8205,"b7fac4d4":37869,"b821d088":8973,"b9476dfc":51597,"b94b3f9a":9165,"b9ec6657":52557,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bc3da75a":8301,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"bdfe3c69":4653,"be9f4413":25581,"befa6ee1":6573,"bf919f0f":4845,"bf96bcc6":21837,"bfe76df4":6861,"c0aeef83":29229,"c0d326e8":29757,"c1b3ae41":8781,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c320d572":27405,"c35e1c20":13773,"c3ae063f":59181,"c44bf753":17325,"c46ac345":22029,"c58ccdc9":11277,"c5ba55fe":20877,"c60a977f":15885,"c67090d0":29037,"c68cb3de":11469,"c6ced84a":3405,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c947e6ce":38925,"c9b7a6d3":15021,"c9b7b386":15021,"ca69c6c0":24525,"ca91beb1":13389,"cabb5ead":11469,"cac77566":17517,"cb4b5a61":40749,"cb73f3d3":8685,"cbebd934":19245,"cc2586e5":10797,"cc2bb383":5997,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"ccc3e5f3":40557,"cdbbb68f":16077,"cf0342c2":41325,"cf4c76f9":29133,"cf903d8a":21933,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d39d8202":24237,"d40d98b3":22029,"d43e0514":4557,"d4a9b5d6":41133,"d4df3b82":24909,"d50c8f82":10221,"d5b39d86":4077,"d5ee6e18":11949,"d62b35bf":14157,"d63a0dcc":15693,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d88fb78a":14733,"d8b5d724":6573,"d8c77303":34989,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d95fcec1":17901,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"deb54a25":7917,"dec33802":12717,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e2441148":10317,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2b6ec19":22029,"e2db78be":9453,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e3da97d8":21933,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e52b582d":12717,"e5b55442":20301,"e5eb1dba":31917,"e66f1b0e":25869,"e6bc9592":21453,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e7c6d95e":15405,"e8246b13":6573,"e833eb1a":21357,"e834502d":4173,"e85a568a":28845,"e8877978":22989,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"ea68d3d6":7725,"eb2077c5":16077,"eb2c67cb":15597,"ebf2d40d":41997,"ec035359":23565,"ec0681c4":6765,"ec42c5a0":22029,"ecc2babd":4845,"ece1e617":23565,"ed0b9fc4":10797,"ed79d956":4365,"ed9beedc":44781,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"ef55ada2":3405,"f067aa86":12237,"f069fe63":4365,"f09836cc":16365,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f35649a3":12525,"f3dcf5f3":23853,"f3dd5872":82317,"f41df8eb":25197,"f4be769e":17613,"f4de1cd8":15501,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f8f09f54":20109,"f9070c9d":25389,"f9234652":24621,"f9453009":21741,"f98ca4d6":25869,"f9e343fd":53325,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb45adfe":12333,"fb7c792a":24909,"fc6140c7":13581,"fc8dae10":26253,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fde725f9":30093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe485f9f":25293,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
+window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"passenger/2-1":{"ja":"ja/gnd/2-1/","ko":"ko/gnd/2-1/","en":"en/gnd/2-1/"},"passenger/2-4":{"ja":"ja/gnd/2-4/","ko":"ko/gnd/2-4/","en":"en/gnd/2-4/"},"passenger/2-5":{"ja":"ja/gnd/2-5/","ko":"ko/gnd/2-5/","en":"en/gnd/2-5/"},"passenger/2-7":{"ja":"ja/gnd/2-7/","ko":"ko/gnd/2-7/","en":"en/gnd/2-7/"},"passenger/3-4":{"ja":"ja/gnd/3-4/","ko":"ko/gnd/3-4/","en":"en/gnd/3-4/"},"passenger/3-7":{"ja":"ja/gnd/3-7/","ko":"ko/gnd/3-7/","en":"en/gnd/3-7/"},"passenger/3-8":{"ja":"ja/gnd/3-8/","ko":"ko/gnd/3-8/","en":"en/gnd/3-8/"},"cargo/3-1":{"ja":"ja/cgo/3-1/","ko":"ko/cgo/3-1/","en":"en/cgo/3-1/"},"cargo/3-2":{"ja":"ja/cgo/3-2/","ko":"ko/cgo/3-2/","en":"en/cgo/3-2/"},"cargo/3-4":{"ja":"ja/cgo/3-4/","ko":"ko/cgo/3-4/","en":"en/cgo/3-4/"},"cargo/4-1":{"ja":"ja/cgo/4-1/","ko":"ko/cgo/4-1/","en":"en/cgo/4-1/"},"cargo/7-3":{"ja":"ja/cgo/7-3/","ko":"ko/cgo/7-3/","en":"en/cgo/7-3/"},"passenger/3-1":{"ja":"ja/gnd/3-1/","ko":"ko/gnd/3-1/","en":"en/gnd/3-1/"},"passenger/3-2":{"ja":"ja/gnd/3-2/","ko":"ko/gnd/3-2/","en":"en/gnd/3-2/"},"passenger/3-3":{"ja":"ja/gnd/3-3/","ko":"ko/gnd/3-3/","en":"en/gnd/3-3/"},"passenger/3-5":{"ja":"ja/gnd/3-5/","ko":"ko/gnd/3-5/","en":"en/gnd/3-5/"},"passenger/3-6":{"ja":"ja/gnd/3-6/","ko":"ko/gnd/3-6/","en":"en/gnd/3-6/"},"station/1-2":{"ja":"ja/stn/1-2/","ko":"ko/stn/1-2/","en":"en/stn/1-2/"},"station/1-3":{"ja":"ja/stn/1-3/","ko":"ko/stn/1-3/","en":"en/stn/1-3/"},"station/1-7":{"ja":"ja/stn/1-7/","ko":"ko/stn/1-7/","en":"en/stn/1-7/"},"maintenance/0-3":{"ja":"ja/mnt/0-3/","ko":"ko/mnt/0-3/","en":"en/mnt/0-3/"},"maintenance/1-2":{"ja":"ja/mnt/1-2/","ko":"ko/mnt/1-2/","en":"en/mnt/1-2/"},"maintenance/3-3":{"ja":"ja/mnt/3-3/","ko":"ko/mnt/3-3/","en":"en/mnt/3-3/"},"maintenance/4-4":{"ja":"ja/mnt/4-4/","ko":"ko/mnt/4-4/","en":"en/mnt/4-4/"},"maintenance/5-4":{"ja":"ja/mnt/5-4/","ko":"ko/mnt/5-4/","en":"en/mnt/5-4/"}}};
 /* rules.js */
 /* 규칙 모듈 — core(공통 원리) / country(JP·KR) / airline(Vela Air, 교육용) / airport
    각 항목: basis = lesson(강좌 근거) | edu(교육용 가상값). 화면 언어와 업무 국가는 별개 */
@@ -66,6 +66,276 @@ window.RULES = {
     JP: { KOR: 'free', JPN: 'citizen', LUM: 'visa' }
   }
 };
+
+/* ../src_rp/rp_sched.js */
+/* STAGE 04 램프·턴어라운드편 — 턴어라운드 보드 엔진(합의본 v2 2B·2C·2E·2F·3C). 화면과 무관한 순수 계산(window.RPS, node 시험 가능).
+   시각은 모두 STD 기준 분(STD = 0, 음수 = STD 전). 수치는 Vela 교육용 가상 값 — 실제 기재 SOP·조업 계약 시간이 아님.
+   검산 도구 tools/rp_schedule_check.py와 같은 수치·같은 선행 조건(test/t61_rp_sched.js가 대조) */
+(function (root) {
+  'use strict';
+  var AC = {
+    '737': { ground: 70, blk: 2, deplane: 8, unload: 15, clean: 18, qclean: 10, cater: 15, qcater: 10, fuel: 15, water: 10,
+             maint: 15, crew: -50, sec: 5, load: 15, board: 25, board_std: -35, close: 5, ls: -12, r_deplane: 12, r_board: 28 },
+    '789': { ground: 90, blk: 2, deplane: 14, unload: 22, clean: 25, qclean: 14, cater: 22, qcater: 14, fuel: 25, water: 12,
+             maint: 20, crew: -60, sec: 6, load: 25, board: 30, board_std: -40, close: 5, ls: -15, r_deplane: 18, r_board: 34 }
+  };
+  var QUICK_SHORT = 15;   /* 실제 지상 시간 < 기재 표준 −15분이면 간이 청소·기내식 보충 허용(합의본 2B) */
+  var ORDER = ['maint', 'deplane', 'unload', 'clean', 'cater', 'fuel', 'water', 'sec', 'load', 'board', 'close', 'deice1', 'deice4'];
+  var DEICE = { deice1: 6, deice4: 6 };   /* Day 5 주기장 제빙(Type I) → 방빙(Type IV) — 이 시나리오 값 */
+  /* 선행 조건: 작업 id(완료 필요) 또는 시각 조건(time: 키). 시각 조건은 상태의 값을 봄 */
+  var NEEDS = {
+    maint: ['@blk'], deplane: ['@door'], unload: ['@cdoor'],
+    clean: ['deplane'], cater: ['deplane'], fuel: ['deplane'], water: ['deplane'],
+    sec: ['clean', 'cater', 'time:crew'], load: ['unload'],
+    board: ['sec', 'fuel', 'time:board_std'], close: ['board', 'load', 'time:ls'],
+    deice1: ['close'], deice4: ['deice1']
+  };
+  function used(st, id) { return id.indexOf('deice') !== 0 || !!(st.opt && st.opt.deice); }
+  function ac(k) { return AC[k === '789' ? '789' : '737']; }
+  function quickAllowed(st) { var a = ac(st.ac); return (-st.sta) < a.ground - QUICK_SHORT; }
+  function dur(st, id) {
+    var a = ac(st.ac), o = st.opt || {};
+    if (st.dur && st.dur[id] != null) return st.dur[id];   /* 사건으로 바뀐 시간(추가 급유·조류 점검 등) */
+    if (DEICE[id]) return DEICE[id];
+    if (id === 'deplane') return o.remote ? a.r_deplane : a.deplane;
+    if (id === 'board') return o.remote ? a.r_board : a.board;
+    if (id === 'clean') return o.fullClean === false && quickAllowed(st) ? a.qclean : a.clean;   /* opt.fullClean === false → 간이(허용될 때만) */
+    if (id === 'cater') return o.fullCater === false && quickAllowed(st) ? a.qcater : a.cater;
+    return a[id];
+  }
+  /* 시각 조건의 값(정상일만 표준 탑승 시작 적용 — 짧은 턴·원격은 보안 점검·급유 완료가 기준, 합의본 2B·2C) */
+  function timeOf(st, k) {
+    var a = ac(st.ac);
+    if (k === 'crew') return st.crewAt != null ? st.crewAt : a.crew;
+    if (k === 'board_std') return st.opt && (st.opt.late || st.opt.remote) ? -1e9 : a.board_std;
+    if (k === 'ls') return st.lsAt != null ? st.lsAt : a.ls;
+    return -1e9;
+  }
+  function mark(st, k) { return k === '@blk' ? st.blkAt : k === '@door' ? st.doorAt : k === '@cdoor' ? st.cdoorAt : null; }
+  /* 새 상태: STA(블록인 예정)·옵션. 블록인·도어는 플레이어 행동으로 기록(blkAt·doorAt·cdoorAt) */
+  function make(acKey, opt) {
+    opt = opt || {}; var a = ac(acKey);
+    return { ac: acKey === '789' ? '789' : '737', opt: opt, sta: -a.ground + (opt.late || 0), t: -a.ground + (opt.late || 0) - 15, tasks: {}, blkAt: null, doorAt: null, cdoorAt: null, crewAt: null, lsAt: null, pauses: [], hold: {}, dur: {} };
+  }
+  function isDone(st, id, at) { var x = st.tasks[id]; return !!x && x.e != null && x.e <= (at == null ? st.t : at) + 1e-9; }
+  function started(st, id) { return !!st.tasks[id]; }
+  /* 지금(st.t) 시작할 수 있는가 → null(가능) 또는 이유 코드 */
+  function why(st, id) {
+    if (started(st, id)) return 'started';
+    if (!used(st, id)) return 'unused';
+    if (st.hold && st.hold[id] != null && st.t + 1e-9 < st.hold[id]) return 'hold';   /* 사건으로 멈춘 작업(접촉 의심·낙뢰·버스 대기 등) */
+    var n = NEEDS[id]; for (var i = 0; i < n.length; i++) {
+      var k = n[i];
+      if (k.charAt(0) === '@') { var m = mark(st, k); if (m == null || m > st.t + 1e-9) return 'need' + k; continue; }
+      if (k.indexOf('time:') === 0) { if (st.t + 1e-9 < timeOf(st, k.slice(5))) return k; continue; }
+      if (!isDone(st, k)) return 'need:' + k;
+    }
+    return null;
+  }
+  function start(st, id) { var w = why(st, id); if (w) return w; st.tasks[id] = { s: st.t, e: st.t + dur(st, id) }; return null; }
+  /* 중단 구간(사건): 그 시각에 진행 중인 영향 작업의 끝을 늦춤 — Day 3 이후 사용 */
+  function pause(st, ids, mins) { st.hold = st.hold || {}; ids.forEach(function (id) { var x = st.tasks[id]; if (x && x.e > st.t) x.e += mins; else if (!x) st.hold[id] = Math.max(st.hold[id] || -1e9, st.t + mins); }); st.pauses.push({ at: st.t, ids: ids.slice(), m: mins }); }
+  function advance(st, m) { st.t += m; return st.t; }
+  /* 다음 경계(합의본 2E): 진행 중 작업의 완료·주어진 시각들 중 st.t보다 큰 가장 가까운 값(최대 st.t + cap) */
+  function nextBoundary(st, extras, cap) {
+    var t = st.t, best = t + (cap == null ? 5 : cap);
+    Object.keys(st.tasks).forEach(function (id) { var e = st.tasks[id].e; if (e > t + 1e-9 && e < best) best = e; });
+    (extras || []).forEach(function (x) { if (x != null && x > t + 1e-9 && x < best) best = x; });
+    return best;
+  }
+  /* 예상(남은 작업을 지금부터 바로 시작한다고 가정한 가장 빠른 일정) — 크리티컬·예상 준비 시각·최선 일정에 공통 */
+  function project(st, from) {
+    var now = from == null ? st.t : from, s = {}, e = {}, det = {};
+    var blk = st.blkAt != null ? st.blkAt : Math.max(now, st.sta);
+    var door = st.doorAt != null ? st.doorAt : blk + ac(st.ac).blk, cdoor = st.cdoorAt != null ? st.cdoorAt : door;
+    ORDER.forEach(function (id) {
+      if (!used(st, id)) return;
+      var x = st.tasks[id];
+      if (x) { s[id] = x.s; e[id] = x.e; det[id] = ['(started)']; return; }
+      var cand = [[now, '(now)']]; if (st.hold && st.hold[id] != null) cand.push([st.hold[id], '(hold)']);
+      NEEDS[id].forEach(function (k) {
+        if (k === '@blk') cand.push([blk, '@blk']); else if (k === '@door') cand.push([door, '@door']); else if (k === '@cdoor') cand.push([cdoor, '@cdoor']);
+        else if (k.indexOf('time:') === 0) cand.push([timeOf(st, k.slice(5)), k]);
+        else cand.push([e[k], k]);
+      });
+      var mx = Math.max.apply(null, cand.map(function (c) { return c[0]; }));
+      s[id] = mx; e[id] = mx + dur(st, id); det[id] = cand.filter(function (c) { return Math.abs(c[0] - mx) < 1e-9; }).map(function (c) { return c[1]; });
+    });
+    var last = used(st, 'deice4') ? e.deice4 : e.close;
+    var ready = Math.max(last, e.maint);   /* Ready = 도어 클로즈 묶음(제빙 편은 방빙) 완료 + 정비 확인(합의본 v2 2B) */
+    return { s: s, e: e, det: det, ready: ready, readyBy: e.maint > last ? 'maint' : (used(st, 'deice4') ? 'deice4' : 'close') };
+  }
+  /* 크리티컬 사슬 — 준비 완료를 결정한 작업(동률 갈래 모두 보존, 합의본 v2 1A-2) */
+  function critical(st, pr) {
+    pr = pr || project(st); var out = {}, last = used(st, 'deice4') ? 'deice4' : 'close', stack = [pr.readyBy === 'maint' ? 'maint' : last];
+    if (Math.abs(pr.e.maint - pr.e[last]) < 1e-9) stack = [last, 'maint'];
+    while (stack.length) { var id = stack.pop(); if (out[id]) continue; out[id] = true; (pr.det[id] || []).forEach(function (k) { if (NEEDS[k]) stack.push(k); }); }
+    return ORDER.filter(function (id) { return out[id]; });
+  }
+  function isUsed(st, id) { return used(st, id); }
+  /* 시나리오 최선 일정(행동 비용 0·자원 대기 없음): 블록인 STA·도어 STA+2 */
+  function earliest(acKey, opt) {
+    var st = make(acKey, opt); st.t = st.sta; st.blkAt = st.sta; st.doorAt = st.sta + ac(acKey).blk; st.cdoorAt = st.doorAt;
+    var pr = project(st, st.sta); pr.crit = critical(st, pr); pr.sta = st.sta; return pr;
+  }
+  /* 최선 AOBT = max(EOBT=0, TSAT(=max(최선 준비, EOBT, 외부 제약))) — 합의본 v2 2F */
+  function bestAobt(acKey, opt, external) { var pr = earliest(acKey, opt), tsat = Math.max(pr.ready, 0, external == null ? -1e9 : external); return Math.max(0, tsat); }
+  /* 시간 점수(합의본 3C): 조정 지연 L(9) + TOBT 정확도(3) + 갱신 적시성(3) */
+  function timeScore(o) {
+    var L = Math.max(0, Math.round(o.aobt - o.best));
+    var pL = L === 0 ? 9 : L <= 3 ? 7 : L <= 6 ? 5 : L <= 10 ? 3 : L <= 15 ? 1 : 0;
+    var err = o.tobtLast == null ? null : Math.abs(o.tobtLast - o.ready);
+    var pT = err == null ? 0 : err <= 5 ? 3 : err <= 10 ? 1 : 0;
+    var pV = o.viol === 0 ? 3 : o.viol === 1 ? 1 : 0;
+    return { L: L, err: err, pL: pL, pT: pT, pV: pV, total: pL + pT + pV };
+  }
+  root.RPS = { AC: AC, ORDER: ORDER, NEEDS: NEEDS, QUICK_SHORT: QUICK_SHORT, ac: ac, dur: dur, make: make, why: why, start: start, pause: pause, advance: advance,
+    isDone: isDone, started: started, isUsed: isUsed, DEICE: DEICE, nextBoundary: nextBoundary, project: project, critical: critical, earliest: earliest, bestAobt: bestAobt, timeScore: timeScore, quickAllowed: quickAllowed, timeOf: timeOf };
+  if (typeof module !== 'undefined' && module.exports) module.exports = root.RPS;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* ../src_rp/mission_rp01.js */
+/* 램프·턴어라운드편 Day 1 「はじめてのターンアラウンド」 미션 데이터 — 합의본 v2 3절 Day 1(사건 없음, 정시 도착)
+   모든 편·기체는 교육용 가상 데이터. 등록 기호 VL-xxx는 가상. 시각은 STD 기준(2A·2B): 도착 전 준비 −85 · 블록인 STA(737 −70 / 787 −90) · 출발 0
+   공정 시간·선행 조건은 window.RPS(src_rp/rp_sched.js) — 이 파일은 편·근무지·처리 단위만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = { JP: { std: '10:30', start: '08:40' }, KR: { std: '13:30', start: '11:40' } };   /* start = STD−110(787 도착 전 준비 −105보다 앞). 737은 −85부터 */
+  var AC = { '737': { reg: 'VL-8A1', pax: 172, stand: '61', prep: -85 }, '789': { reg: 'VL-9B1', pax: 252, stand: '24', prep: -105 } };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.std, t: t,
+      /* 처리 단위 8개(단계 경계마다 저장) — 시각(at)은 스테이지가 기재별로 계산 */
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('r-prep', 'prep', 'PREP'), u('r-blk', 'blk', 'BLOCK-IN'), u('r-door', 'door', 'DOOR'), u('r-svc', 'svc', 'SERVICE'),
+          u('r-brd', 'brd', 'BOARDING'), u('r-dep', 'dep', 'READY'), u('r-push', 'push', 'PUSHBACK'), u('r-rec', 'rec', 'RECORD')];
+      } };
+  }
+  window.MISSION_RP01 = {
+    id: 'rp01', generated: false, day: 1,
+    data: AC, opt: {}, external: null,   /* 사건 없음 · 외부 TSAT 제약 없음 → 최선 AOBT = 0 */
+    cost: { call: 1, check: 0, wait: 5 },   /* 합의본 2E: 확인·지시 0분, 무전·전화·수배 1분, 기다리기 최대 5분 */
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
+/* ../src_rp/mission_rp02.js */
+/* 램프·턴어라운드편 Day 2 「短いターンアラウンド」 — 합의본 v2 3절 Day 2(앞 편 도착 25분 지연, 간이 공정·크리티컬·정직한 TOBT·코드 93)
+   모든 편·기체는 교육용 가상 데이터. 등록 기호 VL-xxx는 가상. 시각은 STD 기준(2A·2B): 도착 전 준비 −85 · 블록인 STA(737 −70 / 787 −90) · 출발 0
+   공정 시간·선행 조건은 window.RPS(src_rp/rp_sched.js) — 이 파일은 편·근무지·처리 단위만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = { JP: { std: '10:30', start: '08:40' }, KR: { std: '13:30', start: '11:40' } };   /* start = STD−110(787 도착 전 준비 −105보다 앞). 737은 −85부터 */
+  var AC = { '737': { reg: 'VL-8A2', pax: 172, stand: '61', prep: -85 }, '789': { reg: 'VL-9B2', pax: 252, stand: '24', prep: -105 } };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.std, t: t,
+      /* 처리 단위 8개(단계 경계마다 저장) — 시각(at)은 스테이지가 기재별로 계산 */
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('r-prep', 'prep', 'PREP'), u('r-blk', 'blk', 'BLOCK-IN'), u('r-door', 'door', 'DOOR'), u('r-svc', 'svc', 'SERVICE'),
+          u('r-brd', 'brd', 'BOARDING'), u('r-dep', 'dep', 'READY'), u('r-push', 'push', 'PUSHBACK'), u('r-rec', 'rec', 'RECORD')];
+      } };
+  }
+  window.MISSION_RP02 = {
+    id: 'rp02', generated: false, day: 2,
+    data: AC,
+    opt: { late: 25 }, bestOpt: { late: 25, fullClean: false, fullCater: false }, external: null,
+    best: { '737': 10, '789': 11 }, bestCode: '93',   /* 최선 AOBT(검산 도구 2C: 737 +10, 787 +11) — 주원인 93 */
+    codes: ['15', '32', '35', '36', '37', '93'],
+    events: [{ id: 'late', kind: 'late', at: { '737': -85, '789': -105 } }],
+    cost: { call: 1, check: 0, wait: 5 },   /* 합의본 2E: 확인·지시 0분, 무전·전화·수배 1분, 기다리기 최대 5분 */
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
+/* ../src_rp/mission_rp03.js */
+/* 램프·턴어라운드편 Day 3 「ランプの安全」 — 합의본 v2 3절 Day 3(충돌 방지등·FOD·지상 접촉 의심·낙뢰)
+   모든 편·기체는 교육용 가상 데이터. 등록 기호 VL-xxx는 가상. 시각은 STD 기준(2A·2B): 도착 전 준비 −85 · 블록인 STA(737 −70 / 787 −90) · 출발 0
+   공정 시간·선행 조건은 window.RPS(src_rp/rp_sched.js) — 이 파일은 편·근무지·처리 단위만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = { JP: { std: '10:30', start: '08:40' }, KR: { std: '13:30', start: '11:40' } };   /* start = STD−110(787 도착 전 준비 −105보다 앞). 737은 −85부터 */
+  var AC = { '737': { reg: 'VL-8A3', pax: 172, stand: '61', prep: -85 }, '789': { reg: 'VL-9B3', pax: 252, stand: '24', prep: -105 } };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.std, t: t,
+      /* 처리 단위 8개(단계 경계마다 저장) — 시각(at)은 스테이지가 기재별로 계산 */
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('r-prep', 'prep', 'PREP'), u('r-blk', 'blk', 'BLOCK-IN'), u('r-door', 'door', 'DOOR'), u('r-svc', 'svc', 'SERVICE'),
+          u('r-brd', 'brd', 'BOARDING'), u('r-dep', 'dep', 'READY'), u('r-push', 'push', 'PUSHBACK'), u('r-rec', 'rec', 'RECORD')];
+      } };
+  }
+  window.MISSION_RP03 = {
+    id: 'rp03', generated: false, day: 3,
+    data: AC,
+    opt: {}, external: null, best: { '737': 0, '789': 0 }, bestCode: null, beaconLate: true, report: true,
+    codes: ['15', '32', '35', '36', '37', '52', '77'],
+    events: [{ id: 'fod', kind: 'fod', at: { '737': -85, '789': -105 } }, { id: 'contact', kind: 'contact', at: { '737': -50, '789': -60 }, mins: 15 }, { id: 'light', kind: 'light', at: { '737': -30, '789': -36 }, mins: 10 }],
+    cost: { call: 1, check: 0, wait: 5 },   /* 합의본 2E: 확인·지시 0분, 무전·전화·수배 1분, 기다리기 최대 5분 */
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
+/* ../src_rp/mission_rp04.js */
+/* 램프·턴어라운드편 Day 4 「整備・運航のイレギュラー」 — 합의본 v2 3절 Day 4(APU 불능·테크 로그/MEL·추가 연료·외부 TSAT)
+   모든 편·기체는 교육용 가상 데이터. 등록 기호 VL-xxx는 가상. 시각은 STD 기준(2A·2B): 도착 전 준비 −85 · 블록인 STA(737 −70 / 787 −90) · 출발 0
+   공정 시간·선행 조건은 window.RPS(src_rp/rp_sched.js) — 이 파일은 편·근무지·처리 단위만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = { JP: { std: '10:30', start: '08:40' }, KR: { std: '13:30', start: '11:40' } };   /* start = STD−110(787 도착 전 준비 −105보다 앞). 737은 −85부터 */
+  var AC = { '737': { reg: 'VL-8A4', pax: 172, stand: '61', prep: -85 }, '789': { reg: 'VL-9B4', pax: 252, stand: '24', prep: -105 } };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.std, t: t,
+      /* 처리 단위 8개(단계 경계마다 저장) — 시각(at)은 스테이지가 기재별로 계산 */
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('r-prep', 'prep', 'PREP'), u('r-blk', 'blk', 'BLOCK-IN'), u('r-door', 'door', 'DOOR'), u('r-svc', 'svc', 'SERVICE'),
+          u('r-brd', 'brd', 'BOARDING'), u('r-dep', 'dep', 'READY'), u('r-push', 'push', 'PUSHBACK'), u('r-rec', 'rec', 'RECORD')];
+      } };
+  }
+  window.MISSION_RP04 = {
+    id: 'rp04', generated: false, day: 4,
+    data: AC,
+    opt: {}, external: 15, best: { '737': 15, '789': 15 }, bestCode: '89',   /* 출발 공항 관제 TSAT = EOBT+15(가상 시나리오 값) */
+    codes: ['15', '32', '35', '36', '37', '39', '41', '62', '89'], startEquip: true,
+    events: [{ id: 'apu', kind: 'apu', at: { '737': -85, '789': -105 } }, { id: 'tlog', kind: 'tlog', at: { '737': -57, '789': -72 }, upto: { '737': -42, '789': -48 } }, { id: 'fuel', kind: 'fuel', at: { '737': -47, '789': -51 }, mins: 5 }, { id: 'mel', kind: 'mel', at: { '737': -42, '789': -48 }, mins: 5 }],
+    cost: { call: 1, check: 0, wait: 5 },   /* 합의본 2E: 확인·지시 0분, 무전·전화·수배 1분, 기다리기 최대 5분 */
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
+
+/* ../src_rp/mission_rp05.js */
+/* 램프·턴어라운드편 Day 5 「冬・沖止め」 — 합의본 v2 3절 Day 5(원격 주기장 버스·제빙/방빙과 HOT 인계·조류 충돌 점검)
+   모든 편·기체는 교육용 가상 데이터. 등록 기호 VL-xxx는 가상. 시각은 STD 기준(2A·2B): 도착 전 준비 −85 · 블록인 STA(737 −70 / 787 −90) · 출발 0
+   공정 시간·선행 조건은 window.RPS(src_rp/rp_sched.js) — 이 파일은 편·근무지·처리 단위만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var T = { JP: { std: '10:30', start: '08:40' }, KR: { std: '13:30', start: '11:40' } };   /* start = STD−110(787 도착 전 준비 −105보다 앞). 737은 −85부터 */
+  var AC = { '737': { reg: 'VL-8A5', pax: 172, stand: '61', prep: -85 }, '789': { reg: 'VL-9B5', pax: 252, stand: '24', prep: -105 } };
+  function variant(c, flight, from, to) {
+    var t = T[c];
+    return { flight: flight, from: from, to: to, std: t.std, start: t.start, close: t.std, t: t,
+      /* 처리 단위 8개(단계 경계마다 저장) — 시각(at)은 스테이지가 기재별로 계산 */
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('r-prep', 'prep', 'PREP'), u('r-blk', 'blk', 'BLOCK-IN'), u('r-door', 'door', 'DOOR'), u('r-svc', 'svc', 'SERVICE'),
+          u('r-brd', 'brd', 'BOARDING'), u('r-dep', 'dep', 'READY'), u('r-push', 'push', 'PUSHBACK'), u('r-rec', 'rec', 'RECORD')];
+      } };
+  }
+  window.MISSION_RP05 = {
+    id: 'rp05', generated: false, day: 5,
+    data: AC,
+    opt: { remote: true, deice: true }, external: null, best: { '737': 12, '789': 12 }, bestCode: '75', hot: 45, taxi: 15, push: 3, margin: 10,   /* HOT 45분·지상 이동 15분은 이 시나리오 한정 가상 값 */
+    codes: ['15', '32', '34', '35', '36', '37', '51', '75'],
+    events: [{ id: 'remote', kind: 'remote', at: { '737': -85, '789': -105 }, mins: 10 }, { id: 'bird', kind: 'bird', at: { '737': -85, '789': -105 }, mins: 10 }],
+    cost: { call: 1, check: 0, wait: 5 },   /* 합의본 2E: 확인·지시 0분, 무전·전화·수배 1분, 기다리기 최대 5분 */
+    variants: { JP: variant('JP', 'VELA 301', 'NRT', 'ICN'), KR: variant('KR', 'VELA 302', 'ICN', 'NRT') }
+  };
+})();
 
 /* ../src_wb/wb_calc.js */
 /* STAGE 03 탑재관리편 — 계산 엔진(합의본 v2 2A·2B·3C)
@@ -1874,9 +2144,9 @@ window.RULES = {
 })();
 
 /* lessons.js */
-window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）と電子渡航認証", "ko": "미리 보내는 승객 정보(API·PNR)와 전자여행허가", "en": "Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations"}, "ciq/1-1": {"ja": "旅券と査証 ― カウンターで何を確認するか", "ko": "여권과 비자 — 카운터에서 무엇을 확인하나", "en": "Passports and Visas: What to Check at the Counter"}, "ciq/1-2": {"ja": "TIMATIC ― 渡航条件を確認するためのデータベース", "ko": "TIMATIC — 입국 조건을 찾는 도구", "en": "TIMATIC: The Tool for Looking Up Entry Requirements"}, "ciq/1-4": {"ja": "入国拒否と送還の実際", "ko": "입국 거부와 송환의 실제", "en": "Refusal of Entry and Removal in Practice"}, "passenger/1-1": {"ja": "カウンターオープン前の準備とレイアウト", "ko": "카운터 오픈 전 준비와 레이아웃", "en": "Getting the Counter Ready, and How to Lay It Out"}, "passenger/1-3": {"ja": "チェックインの流れとパスポート・ビザ確認", "ko": "체크인 흐름과 여권·비자 확인", "en": "The Check-in Flow and Checking Passports and Visas"}, "passenger/1-4": {"ja": "以遠区間・乗り継ぎのお客様の手続き", "ko": "이원 구간·환승 승객 수속", "en": "Passengers with Onward and Connecting Flights"}, "passenger/1-5": {"ja": "座席指定・アップグレードと非常口座席", "ko": "좌석 배정·업그레이드와 비상구 열 좌석", "en": "Seat Assignment, Upgrades and Exit Row Seats"}, "passenger/1-6": {"ja": "特別対応① 幼児・小児、妊娠中・医療の配慮が必要なお客様", "ko": "특별 승객 ① 유아·소아, 임산부·의료 배려 승객", "en": "Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs"}, "passenger/1-7": {"ja": "特別対応② 車いす・お身体の不自由なお客様、お一人で旅行するお子様", "ko": "특별 승객 ② 휠체어·장애인 승객, 비동반 소아", "en": "Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors"}, "passenger/1-8": {"ja": "特別対応③ ペットの輸送", "ko": "특별 승객 ③ 반려동물 운송", "en": "Special Assistance 3: Carrying Pets"}, "passenger/1-10": {"ja": "手荷物規定① 受託・機内持ち込み・超過", "ko": "수하물 규정 ① 위탁·기내·초과", "en": "Baggage Rules 1: Checked, Carry-on and Excess"}, "passenger/1-12": {"ja": "危険物の基礎 ― お客様の手荷物で気をつけるもの", "ko": "위험물 기초 — 승객 수하물에서 주의할 것", "en": "Dangerous Goods Basics: What to Watch in Passenger Baggage"}, "passenger/1-13": {"ja": "リチウム電池とモバイルバッテリー ― 日韓の最新ルール", "ko": "리튬 배터리와 보조배터리 — 한일 최신 규정", "en": "Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea"}, "passenger/2-2": {"ja": "ゲートバッグと車いすの取り扱い", "ko": "게이트 백과 휠체어 처리", "en": "Gate-Checked Bags and Wheelchairs"}, "passenger/2-3": {"ja": "開披検査への対応", "ko": "개방 검사 대응", "en": "Handling a Bag Search with the Passenger"}, "passenger/5-4": {"ja": "遅延対応 ― ご案内・食事券・遅延証明", "ko": "지연 처리 — 안내·식사 쿠폰·지연 증명", "en": "Delays: Information, Meal Vouchers and Certificates"}, "passenger/5-6": {"ja": "欠航対応 ― 振替・エンドース・補償案内・苦情対応", "ko": "결항 처리 — 대체편·엔도스·보상 안내·클레임 접수", "en": "Cancellations: Rebooking, Endorsement, Compensation and Claims"}, "passenger/2-1": {"ja": "ゲート業務の準備", "ko": "게이트 업무 준비", "en": "Preparing for Gate Duty"}, "passenger/2-4": {"ja": "搭乗の流れとご案内の順番", "ko": "탑승 절차와 안내 순서", "en": "The Boarding Procedure and Boarding Order"}, "passenger/2-5": {"ja": "搭乗遅れのお客様の捜索とオフロード", "ko": "늦은 승객 수색과 오프로드", "en": "Searching for Late Passengers, and Offloading"}, "passenger/2-7": {"ja": "搭載書類と締め作業、マニュアル搭乗", "ko": "탑재 서류와 마감, 수동 탑승 절차", "en": "Flight Documents, Closing the Flight and Manual Boarding"}, "passenger/3-4": {"ja": "ロードコントロール入門 ― 重量と重心", "ko": "탑재관리 입문 — 무게와 균형", "en": "Load Control: Weight and Balance"}, "passenger/3-7": {"ja": "ロードシートの読み方 ― 1枚の書類で便の重量と重心を確認する", "ko": "로드시트 읽는 법 — 한 장의 종이로 편의 무게와 무게중심을 확인한다", "en": "Reading a Loadsheet: Checking a Flight’s Weight and Balance on One Page"}, "passenger/3-8": {"ja": "LIR（搭載指示書）の読み方と貨物室の配置", "ko": "LIR(탑재 지시서) 읽는 법과 화물칸 배치", "en": "Reading the LIR (Loading Instruction/Report) and the Hold Layout"}, "cargo/3-1": {"ja": "危険物 ― 貨物で運べるもの・運べないもの", "ko": "위험물 — 화물로 보낼 수 있는 것·없는 것", "en": "Dangerous Goods: What Can and Cannot Fly"}, "cargo/3-2": {"ja": "生きた動物", "ko": "생동물", "en": "Live Animals"}, "cargo/3-4": {"ja": "貴重品・重量物・大型貨物", "ko": "귀중품·중량물·대형 화물", "en": "Valuables, Heavy and Outsized Cargo"}, "cargo/4-1": {"ja": "搭載計画と機長への通知", "ko": "탑재 계획과 기장 통보", "en": "The Load Plan and Notification to the Captain"}, "cargo/7-3": {"ja": "危険物とNOTOCの受付実務 ― 止める勇気と3枚の通知書", "ko": "위험물과 NOTOC 접수 실무 — 멈추는 용기와 세 장의 통보서", "en": "Accepting Dangerous Goods and NOTOC in Practice: The Courage to Stop and Three Copies"}};
+window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）と電子渡航認証", "ko": "미리 보내는 승객 정보(API·PNR)와 전자여행허가", "en": "Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations"}, "ciq/1-1": {"ja": "旅券と査証 ― カウンターで何を確認するか", "ko": "여권과 비자 — 카운터에서 무엇을 확인하나", "en": "Passports and Visas: What to Check at the Counter"}, "ciq/1-2": {"ja": "TIMATIC ― 渡航条件を確認するためのデータベース", "ko": "TIMATIC — 입국 조건을 찾는 도구", "en": "TIMATIC: The Tool for Looking Up Entry Requirements"}, "ciq/1-4": {"ja": "入国拒否と送還の実際", "ko": "입국 거부와 송환의 실제", "en": "Refusal of Entry and Removal in Practice"}, "passenger/1-1": {"ja": "カウンターオープン前の準備とレイアウト", "ko": "카운터 오픈 전 준비와 레이아웃", "en": "Getting the Counter Ready, and How to Lay It Out"}, "passenger/1-3": {"ja": "チェックインの流れとパスポート・ビザ確認", "ko": "체크인 흐름과 여권·비자 확인", "en": "The Check-in Flow and Checking Passports and Visas"}, "passenger/1-4": {"ja": "以遠区間・乗り継ぎのお客様の手続き", "ko": "이원 구간·환승 승객 수속", "en": "Passengers with Onward and Connecting Flights"}, "passenger/1-5": {"ja": "座席指定・アップグレードと非常口座席", "ko": "좌석 배정·업그레이드와 비상구 열 좌석", "en": "Seat Assignment, Upgrades and Exit Row Seats"}, "passenger/1-6": {"ja": "特別対応① 幼児・小児、妊娠中・医療の配慮が必要なお客様", "ko": "특별 승객 ① 유아·소아, 임산부·의료 배려 승객", "en": "Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs"}, "passenger/1-7": {"ja": "特別対応② 車いす・お身体の不自由なお客様、お一人で旅行するお子様", "ko": "특별 승객 ② 휠체어·장애인 승객, 비동반 소아", "en": "Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors"}, "passenger/1-8": {"ja": "特別対応③ ペットの輸送", "ko": "특별 승객 ③ 반려동물 운송", "en": "Special Assistance 3: Carrying Pets"}, "passenger/1-10": {"ja": "手荷物規定① 受託・機内持ち込み・超過", "ko": "수하물 규정 ① 위탁·기내·초과", "en": "Baggage Rules 1: Checked, Carry-on and Excess"}, "passenger/1-12": {"ja": "危険物の基礎 ― お客様の手荷物で気をつけるもの", "ko": "위험물 기초 — 승객 수하물에서 주의할 것", "en": "Dangerous Goods Basics: What to Watch in Passenger Baggage"}, "passenger/1-13": {"ja": "リチウム電池とモバイルバッテリー ― 日韓の最新ルール", "ko": "리튬 배터리와 보조배터리 — 한일 최신 규정", "en": "Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea"}, "passenger/2-2": {"ja": "ゲートバッグと車いすの取り扱い", "ko": "게이트 백과 휠체어 처리", "en": "Gate-Checked Bags and Wheelchairs"}, "passenger/2-3": {"ja": "開披検査への対応", "ko": "개방 검사 대응", "en": "Handling a Bag Search with the Passenger"}, "passenger/5-4": {"ja": "遅延対応 ― ご案内・食事券・遅延証明", "ko": "지연 처리 — 안내·식사 쿠폰·지연 증명", "en": "Delays: Information, Meal Vouchers and Certificates"}, "passenger/5-6": {"ja": "欠航対応 ― 振替・エンドース・補償案内・苦情対応", "ko": "결항 처리 — 대체편·엔도스·보상 안내·클레임 접수", "en": "Cancellations: Rebooking, Endorsement, Compensation and Claims"}, "passenger/2-1": {"ja": "ゲート業務の準備", "ko": "게이트 업무 준비", "en": "Preparing for Gate Duty"}, "passenger/2-4": {"ja": "搭乗の流れとご案内の順番", "ko": "탑승 절차와 안내 순서", "en": "The Boarding Procedure and Boarding Order"}, "passenger/2-5": {"ja": "搭乗遅れのお客様の捜索とオフロード", "ko": "늦은 승객 수색과 오프로드", "en": "Searching for Late Passengers, and Offloading"}, "passenger/2-7": {"ja": "搭載書類と締め作業、マニュアル搭乗", "ko": "탑재 서류와 마감, 수동 탑승 절차", "en": "Flight Documents, Closing the Flight and Manual Boarding"}, "passenger/3-4": {"ja": "ロードコントロール入門 ― 重量と重心", "ko": "탑재관리 입문 — 무게와 균형", "en": "Load Control: Weight and Balance"}, "passenger/3-7": {"ja": "ロードシートの読み方 ― 1枚の書類で便の重量と重心を確認する", "ko": "로드시트 읽는 법 — 한 장의 종이로 편의 무게와 무게중심을 확인한다", "en": "Reading a Loadsheet: Checking a Flight’s Weight and Balance on One Page"}, "passenger/3-8": {"ja": "LIR（搭載指示書）の読み方と貨物室の配置", "ko": "LIR(탑재 지시서) 읽는 법과 화물칸 배치", "en": "Reading the LIR (Loading Instruction/Report) and the Hold Layout"}, "cargo/3-1": {"ja": "危険物 ― 貨物で運べるもの・運べないもの", "ko": "위험물 — 화물로 보낼 수 있는 것·없는 것", "en": "Dangerous Goods: What Can and Cannot Fly"}, "cargo/3-2": {"ja": "生きた動物", "ko": "생동물", "en": "Live Animals"}, "cargo/3-4": {"ja": "貴重品・重量物・大型貨物", "ko": "귀중품·중량물·대형 화물", "en": "Valuables, Heavy and Outsized Cargo"}, "cargo/4-1": {"ja": "搭載計画と機長への通知", "ko": "탑재 계획과 기장 통보", "en": "The Load Plan and Notification to the Captain"}, "cargo/7-3": {"ja": "危険物とNOTOCの受付実務 ― 止める勇気と3枚の通知書", "ko": "위험물과 NOTOC 접수 실무 — 멈추는 용기와 세 장의 통보서", "en": "Accepting Dangerous Goods and NOTOC in Practice: The Courage to Stop and Three Copies"}, "passenger/3-1": {"ja": "航空機ドア開閉の基礎", "ko": "항공기 도어 개폐의 기초", "en": "Aircraft Doors: The Basics"}, "passenger/3-2": {"ja": "到着業務と出発業務", "ko": "도착 업무와 출발 업무", "en": "Arrival and Departure Duties"}, "passenger/3-3": {"ja": "ターンアラウンド ― 到着から出発まで何が起きるか", "ko": "턴어라운드 — 도착부터 출발까지 무슨 일이 일어나나", "en": "Turnaround: What Happens Between Arrival and Departure"}, "passenger/3-5": {"ja": "ランプ安全の基本", "ko": "램프 안전의 기본", "en": "Ramp Safety Basics"}, "passenger/3-6": {"ja": "ランプの車両と器材（GSE）― 何が、どこで、何をするか", "ko": "램프 차량과 장비(GSE) — 무엇이, 어디서, 무엇을 하나", "en": "Ramp Vehicles and Equipment (GSE): What, Where and Why"}, "station/1-2": {"ja": "定時性を読み解く ― D0・D15と遅延コード", "ko": "정시성 읽는 법 — D0·D15와 지연 코드", "en": "Reading On-Time Performance: D0, D15 and Delay Codes"}, "station/1-3": {"ja": "地上起因の遅延を減らす", "ko": "지상 원인 지연 줄이기", "en": "Cutting Ground-Caused Delays"}, "station/1-7": {"ja": "A-CDMとTSAT ― 空港全体で定時性を上げる新しい決まり", "ko": "A-CDM과 TSAT — 공항 전체로 정시성을 높이는 새 규칙", "en": "A-CDM and TSAT: New Rules That Raise Punctuality Across the Whole Airport"}, "maintenance/0-3": {"ja": "支店と整備が出会う所 ― 折り返しの60分と、不具合が発生したとき", "ko": "지점과 정비가 만나는 곳 — 턴어라운드 60분과 결함이 생긴 아침", "en": "Where the Station Meets Maintenance: The 60-Minute Turnaround and the Morning of a Defect"}, "maintenance/1-2": {"ja": "空気と電気 ― ブリードのB737、電気のB787", "ko": "공기와 전기 — 블리드의 B737, 전기의 B787", "en": "Air and Electricity: the Bleed-Air B737 and the More-Electric B787"}, "maintenance/3-3": {"ja": "CDLと、運送・搭載への影響 ― MELの制限が支店の仕事を変える", "ko": "CDL과 운송·탑재에 미치는 영향 — MEL 제한이 지점의 일을 바꾼다", "en": "The CDL and Effects on Passenger Services and Loading: How MEL Restrictions Change the Station’s Work"}, "maintenance/4-4": {"ja": "防除雪氷と支店の冬の準備 ― 雪・霜・氷を付けたまま飛ばない", "ko": "제빙·방빙과 지점의 겨울 준비 — 눈·서리·얼음을 붙인 채 날지 않는다", "en": "De-icing, Anti-icing and Winter Readiness at the Station: Never Fly with Snow, Frost or Ice"}, "maintenance/5-4": {"ja": "臨時の点検 ― 落雷・鳥衝突・ハードランディングのあとで", "ko": "비정기 점검 — 낙뢰·조류 충돌·하드 랜딩 뒤에", "en": "Unscheduled Inspections: After Lightning, Bird Strikes and Hard Landings"}};
 /* 47차: 첫 화면 「이 날 관련 레슨」 — 스테이지별 레슨 → 나오는 DAY. ci는 tools/lesson_days.json, gt는 게이트 판정·방송의 lesson 참조에서, wb(10-18)는 합의본 v2 3절 레슨 열 */
-window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],"passenger/1-4":[2,5],"passenger/1-5":[1,2,3,4,5],"passenger/1-6":[3],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/1-10":[1,2,4,5],"passenger/1-13":[1,2,4,5],"passenger/5-4":[5],"passenger/5-6":[5],"ciq/0-4":[1,2],"ciq/1-1":[1],"ciq/1-2":[1,2],"ciq/1-4":[1]},"gt":{"passenger/2-1":[1,2,3,4,5],"passenger/2-4":[1,2,3,4,5],"passenger/2-5":[1,2,3,4,5],"passenger/2-7":[1,2,3,4,5],"passenger/2-2":[2,3],"passenger/1-12":[2],"passenger/1-13":[2],"passenger/1-5":[2,3,5],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/5-4":[5]},"wb":{"passenger/3-4":[1,2,4,5],"passenger/3-7":[1,2,3,4,5],"passenger/3-8":[1,2,3,5],"passenger/2-7":[1,5],"passenger/2-5":[4],"passenger/1-12":[3],"passenger/5-4":[5],"cargo/3-1":[3],"cargo/3-2":[3],"cargo/3-4":[3],"cargo/4-1":[2],"cargo/7-3":[3]}};
+window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],"passenger/1-4":[2,5],"passenger/1-5":[1,2,3,4,5],"passenger/1-6":[3],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/1-10":[1,2,4,5],"passenger/1-13":[1,2,4,5],"passenger/5-4":[5],"passenger/5-6":[5],"ciq/0-4":[1,2],"ciq/1-1":[1],"ciq/1-2":[1,2],"ciq/1-4":[1]},"gt":{"passenger/2-1":[1,2,3,4,5],"passenger/2-4":[1,2,3,4,5],"passenger/2-5":[1,2,3,4,5],"passenger/2-7":[1,2,3,4,5],"passenger/2-2":[2,3],"passenger/1-12":[2],"passenger/1-13":[2],"passenger/1-5":[2,3,5],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/5-4":[5]},"wb":{"passenger/3-4":[1,2,4,5],"passenger/3-7":[1,2,3,4,5],"passenger/3-8":[1,2,3,5],"passenger/2-7":[1,5],"passenger/2-5":[4],"passenger/1-12":[3],"passenger/5-4":[5],"cargo/3-1":[3],"cargo/3-2":[3],"cargo/3-4":[3],"cargo/4-1":[2],"cargo/7-3":[3]},"rp":{"passenger/3-1":[1,2,3,4,5],"passenger/3-2":[1,2,3,4,5],"passenger/3-3":[1,2,3,4,5],"passenger/3-5":[1,2,3],"passenger/3-6":[1,3,5],"station/1-2":[1,2,3,4,5],"station/1-3":[1,2],"station/1-7":[1,2,4],"maintenance/0-3":[1,3,4],"maintenance/1-2":[4],"maintenance/3-3":[4],"maintenance/4-4":[5],"maintenance/5-4":[5]}};
 
 /* scene.js */
 /* 2.5D 카운터 장면 + SD(2.5등신) 인물 — 캐릭터는 교체 가능한 레이어(SPEC: 영상과 공용 규격으로 확장 예정)
@@ -3025,7 +3295,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     /* 48차(사용자 10-17): 판매 게임 로비형 첫 화면 — 대표 그림(16:9, 로고·⚙) → 근무지·모드 한 줄 → 이어하기 → 코라돈·코라린 카드 → 열린 스테이지 카드(그림·진행 막대) + 준비 중 접기 → 탑승권형 DAY → 출근하기 → 관련 레슨. PC는 2단 */
     if (prevScr && prevScr !== 'title' && !G._fromPop) popPlayState(); G._fromPop = false;   /* 근무·결과 화면에서 버튼으로 돌아오면 넣어 둔 기록 한 칸을 되돌림 */
     var gtDef = !!window.SAGA_STAGES.gt, soon = [], cards = '';
-    var THUMB = { ci: 'checkin_bg_02', gt: 'gate_bg_01', wb: STG.has('wb_bg_01') ? 'wb_bg_01' : 'gate_bg_02' };
+    var THUMB = { ci: 'checkin_bg_02', gt: 'gate_bg_01', wb: STG.has('wb_bg_01') ? 'wb_bg_01' : 'gate_bg_02', rp: STG.has('rp_bg_01') ? 'rp_bg_01' : 'gate_bg_02' };   /* 61차: STAGE 04 램프편(그림 v06 전에는 게이트 그림) */
     STAGES.forEach(function (s) {
       var sid = stageIdOf(s.n), open = !!sid && stageOpen(s.n), cur = sid === ST.id, pv = open && stagePreviewOnly(sid);
       if (!sid) { soon.push(s); return; }
@@ -3067,7 +3337,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       '<div class="qbar"><div class="seg" id="segc"><button data-c="JP" class="' + (G.country === 'JP' ? 'on' : '') + '">' + esc(tx(L('日本', '일본', 'Japan'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button><button data-c="KR" class="' + (G.country === 'KR' ? 'on' : '') + '">' + esc(tx(L('韓国', '한국', 'Korea'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button></div>' +
       '<div class="seg mode" id="segmode" role="group"><button id="tg-c" aria-pressed="' + !G.practice + '" class="' + (G.practice ? '' : 'on') + '">' + esc(tx(T.modeC)) + '<small>' + esc(tx(L('順番に', '차례대로', 'In order'))) + '</small></button><button id="tg-p" aria-pressed="' + !!G.practice + '" class="' + (G.practice ? 'on' : '') + '">' + esc(tx(T.modeP)) + '<small>' + esc(tx(L('どの日も', '모든 날', 'Any day'))) + '</small></button></div></div>' +
       '<p class="modenote">' + esc(tx(G.practice ? L('練習：どの日もすぐ選べます。記録は別に残り、本番の進み具合は変わりません。', '연습: 어느 날이든 바로 고를 수 있습니다. 기록은 따로 남고, 실전 진행에는 영향이 없습니다.', 'Practice: pick any day. Results are kept separately and do not change your shift progress.') : L('本番：前の日をB以上・安全合格で終えると次の日が開きます。', '실전: 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.', 'Shift: clear a day with B or better and a safety pass to open the next.'))) + '</p>' +
-      (ST.id === 'wb' ? '<div class="seg acseg" id="segac">' + [['737', 'B737-800', L('バルク', '벌크', 'bulk')], ['789', 'B787-9', L('ULD', 'ULD', 'ULD')]].map(function (x) { return '<button data-ac="' + x[0] + '" class="' + (wbAcKey() === x[0] ? 'on' : '') + '">' + x[1] + '<small>' + esc(tx(x[2])) + '</small></button>'; }).join('') + '</div>' : '') +
+      (ST.id === 'wb' || ST.id === 'rp' ? '<div class="seg acseg" id="segac">' + [['737', 'B737-800', ST.id === 'rp' ? L('70分', '70분', '70 min') : L('バルク', '벌크', 'bulk')], ['789', 'B787-9', ST.id === 'rp' ? L('90分', '90분', '90 min') : L('ULD', 'ULD', 'ULD')]].map(function (x) { return '<button data-ac="' + x[0] + '" class="' + ((G.wbAc === '789' ? '789' : '737') === x[0] ? 'on' : '') + '">' + x[1] + '<small>' + esc(tx(x[2])) + '</small></button>'; }).join('') + '</div>' : '') +
       runPanelHtml() +
       '<div class="twins"><div class="tw y"><img src="' + STG.src('koradon_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラドン', '코라돈', 'Koradon'))) + '</b><p>' + esc(tx(L('ヒント担当。迷ったときに声をかけてくれる兄', '힌트 담당. 헷갈릴 때 말을 걸어 주는 형', 'Tips — the elder twin who helps when you are stuck'))) + '</p></div></div>' +
       '<div class="tw g"><img src="' + STG.src('korarin_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラリン', '코라린', 'Korarin'))) + '</b><p>' + esc(tx(L('ルール担当。安全に厳しめの妹', '규칙 담당. 안전에 엄격한 동생', 'Rules — the younger twin, strict about safety'))) + '</p></div></div></div>' +
@@ -6965,6 +7235,874 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     var _wsExtra = _ws.resultExtra;
     _ws.resultExtra = function () { return _wsExtra() + (M.irreg ? '<div class="panel"><h2>' + esc(tx(L('版とLMCの記録', '판·LMC 기록', 'Editions and LMC records'))) + '</h2>' + wbEdLogHtml() + '<p class="small">' + esc(tx(L('採点：事件の対応＝事件ごとに100点から、誤った選択−50・判定の省略−25（平均）。報告・確認＝中間報告・最終確認・記録＋事件のあとの関係部門への連絡（遅延は3か所の確認）。固定の練習課題です。', '채점: 사건 처리 = 사건마다 100점에서 틀린 선택 −50·판정 생략 −25(평균). 보고·확인 = 중간 보고·최종 확인·기록 + 사건 뒤 관계 부서 연락(지연은 3곳 확인). 고정 연습 과제입니다.', 'Scoring: incident handling = 100 per incident, −50 per wrong choice, −25 for skipping the check (averaged). Reports = interim report, final confirmation, records + informing departments after each incident (for the delay, the three checks). Fixed practice exercise.'))) + '</p></div>' : ''); };
     var _wsHooks = _ws.testHooks; _ws.testHooks = function () { var o = _wsHooks(); o.evt = function () { return S.evt; }; o.edLog = function () { return S.edLog; }; o.lmc = function () { return WB.lmc(wbA(), S.apState, wbState(S.entered)); }; o.ac = wbA; o.book = wbBook; o.fin = wbFin; return o; };
+  }
+  /* ================= STAGE 04 램프·턴어라운드편 — 합의본 v2(60차 보완2 확정) · Day 1 =================
+     공정 계산은 window.RPS(src_rp/rp_sched.js). 시각은 S.clock(그날의 분) — STD 기준 상대값은 rpRel().
+     처리 단위 8개(도착 전 준비 → 블록인 → 도어 → 동시 작업 → 보안 점검·탑승 → 출발 준비 → 푸시백 → 기록), 단위 경계마다 저장(엔진의 이어하기 방식).
+     기재는 탑재관리편과 같은 설정(G.wbAc '737' | '789'), 기록 열쇠는 rp.dN.{JP|KR}.{737|789}(+.practice). 그림은 램프 그림(v06)이 오기 전까지 게이트 그림을 임시로 씀 */
+  function rpAcKey() { return G.wbAc === '789' ? '789' : '737'; }
+  var RP_LIST = [
+    { n: 1, id: 'rp.d1', mission: window.MISSION_RP01 || null, hints: true, nm: L('はじめてのターンアラウンド', '첫 턴어라운드', 'First turnaround'), learn: L('ブロックイン・ドア・同時作業・TOBT・出発条件・プッシュバック', '블록인·도어·동시 작업·TOBT·출발 조건·푸시백', 'Block-in, doors, parallel tasks, TOBT, departure conditions, pushback') },
+    { n: 2, id: 'rp.d2', mission: window.MISSION_RP02 || null, hints: true, nm: L('短いターンアラウンド', '짧은 턴어라운드', 'A short turnaround'), learn: L('到着遅れ・簡易作業・クリティカルパス・正直なTOBT', '도착 지연·간이 공정·크리티컬 패스·정직한 TOBT', 'Late arrival, quick-turn tasks, critical path, honest TOBT') },
+    { n: 3, id: 'rp.d3', mission: window.MISSION_RP03 || null, hints: true, nm: L('ランプの安全', '램프 안전', 'Ramp safety'), learn: L('接触の疑い・落雷・FOD・衝突防止灯', '접촉 의심·낙뢰·FOD·충돌 방지등', 'Suspected contact, lightning, FOD, beacon') },
+    { n: 4, id: 'rp.d4', mission: window.MISSION_RP04 || null, hints: true, nm: L('整備・運航のイレギュラー', '정비·운항 비정상', 'Maintenance & ops irregularities'), learn: L('APU不作動・テクニカルログ・追加燃料・TSAT', 'APU 불능·테크 로그·추가 연료·TSAT', 'APU inop, tech log, extra fuel, TSAT') },
+    { n: 5, id: 'rp.d5', mission: window.MISSION_RP05 || null, hints: true, nm: L('冬・沖止め', '겨울·원격 주기장', 'Winter & remote stand'), learn: L('除氷・防氷とHOTの引き継ぎ・バス搭乗', '제빙·방빙과 HOT 인계·버스 탑승', 'De/anti-icing and HOT handover, bus boarding') }
+  ];
+  var RP_BASE = window.SAGA_DAYS.make(RP_LIST);
+  var RP_DAYS = Object.assign({}, RP_BASE, {
+    key: function (d, c) { return RP_BASE.key(d, c) + '.' + rpAcKey(); },
+    rec: function (h, d, c) { return (h || {})[RP_BASE.key(d, c) + '.' + rpAcKey()] || null; },
+    record: function (h, d, c, run) { return RP_BASE.record(h, d, c + '.' + rpAcKey(), run); },
+    status: function (h, n, c, p) { var d = RP_LIST[n - 1]; if (!d || !d.mission) return 'soon'; if (n === 1 || p) return 'open'; return RP_BASE.cleared(RP_DAYS.rec(h, RP_LIST[n - 2], c)) ? 'open' : 'lock'; }
+  });
+  var RP_TEXT = {
+    days: L('ランプ編 ― 駐機場の70分の5日間', '램프편 — 주기장 70분의 5일', 'Ramp — five days on the stand'),
+    next: L('次の作業へ', '다음 작업으로', 'Next task'),
+    tabs: { prep: L('到着前の準備', '도착 전 준비', 'Before arrival'), blk: L('ブロックイン', '블록인', 'Block-in'), door: L('ドアの開放', '도어 개방', 'Opening the door'), svc: L('同時作業', '동시 작업', 'Parallel tasks'),
+      brd: L('保安点検・搭乗', '보안 점검·탑승', 'Security check & boarding'), dep: L('出発の準備', '출발 준비', 'Ready for departure'), push: L('プッシュバック', '푸시백', 'Pushback'), rec: L('記録', '기록', 'Records') },
+    eduData: L('教育用の仮想モデル・実際の運航には使用できません', '교육용 가상 모델 · 실제 운항 사용 금지', 'Educational model — not for operational use'),
+    allDone: L('ランプ編の公開中の日をすべて終えました。', '램프편의 공개된 날을 모두 마쳤습니다.', 'You have finished all the ramp days released so far.'),
+    lastDayHow: L('次の日は準備中です。まず今日を復習しましょう。', '다음 날은 준비 중입니다. 먼저 오늘을 복습해 보세요.', 'The next day is coming soon. Review today first.'),
+    resumeProg: function (c) { return tx(L(c.completedPaxCount + '/' + c.total + ' 段階 完了 · ' + (c.completedPaxCount + 1) + '段階目から続ける', c.completedPaxCount + '/' + c.total + '단계 완료 · ' + (c.completedPaxCount + 1) + '번째 단계부터 이어하기', c.completedPaxCount + '/' + c.total + ' stages done · continue from stage ' + (c.completedPaxCount + 1))); },
+    resumeMsg: function (done) { return L('前回の続き：' + done + '段階目まで終わったところから再開しました。', '이어하기: ' + done + '번째 단계까지 마친 곳에서 다시 시작했습니다.', 'Resumed after stage ' + done + '.'); },
+    resumeNote: L('段階の途中の操作もこの端末に保存されます（同じ画面で続けた場合）', '단계 도중의 조작도 이 기기에 저장됩니다(같은 화면에서 이어할 때)', 'Actions within a stage are also saved on this device'),
+    afterClose: null
+  };
+  var RP_RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'strikes', 'seq', 'evChecks', 'evRep', 'safety', 'acKey', 'rp', 'tobt', 'tobtLog', 'tsat', 'tsatLog', 'req', 'appr', 'chocks', 'aobt', 'pushEnd', 'towOff', 'readyAt',
+    'gse', 'loader', 'blkSeq', 'doorSeq', 'aware', 'awareMiss', 'viol', 'code', 'recDone', 'struck', 'docsOk', 'chkPrep', 'chkDep', 'lsAt',
+    'evq', 'evr', 'evFired', 'evTimed', 'apuOk', 'startAt', 'busOk', 'fodRep', 'contactRep', 'hot', 'deiceReq', 'report', 'beaconOn', 'code2', 'evBlk'];
+  var RP_RUNSKIP = ['list', 'cur', 'seed', 'adv', 'day', 'ac', 'runId', 'rev', 'fp', 'startedAt', 'modalRedraw', 'bub', 'guideL', 'leaving', 'leaveGo', 'hrec', 'saveOk', 'mistakes', '_t', 'noSave', 'runWarn', 'resumed', 'dupRun', 'lastSave', 'testStopped', 'resumeAt', 'tabTok', 'takeover', 'writeFail', 'blocked', 'ownerLost', 'badState', 'dlChecked', 'rpMsg', 'rpJTried'];
+  /* 판정 코드(합의본 v2 3A) — S = 안전 C, B = 업무(최고 A), D·그 밖 = 감점 */
+  var RMISSL = {
+    'rp-s1': L('到着前に器材を制限線の内側へ置こうとした', '도착 전에 장비를 제한선 안에 두려 함', 'Tried to stage equipment inside the restraint line before arrival'),
+    'rp-s2': L('衝突防止灯の消灯・車輪止めの前に機体へ近づこうとした', '충돌 방지등 소등·고임목 전에 기체에 접근하려 함', 'Tried to approach before the beacon was off / chocks were in'),
+    'rp-s3': L('客室乗務員の合図なしにドアを開けようとした', '객실 승무원 신호 없이 도어를 열려 함', 'Tried to open the door without the cabin crew signal'),
+    'rp-s4': L('お客様がいる状態での給油・給油中の搭乗開始を試みた', '승객이 있는 상태의 급유·급유 중 탑승 시작을 시도', 'Tried to fuel with passengers on board / board during fuelling'),
+    'rp-s6': L('器材を危険区域（スライド展開範囲・エンジン区域）に置こうとした', '장비를 위험 구역(슬라이드 전개 범위·엔진 구역)에 두려 함', 'Tried to place equipment in a hazard zone (slide area / engine zone)'),
+    'rp-s8': L('出発条件がそろわないまま移動（プッシュバック）を始めようとした', '출발 조건이 갖춰지지 않은 채 이동(푸시백)을 시작하려 함', 'Tried to move (push back) with departure conditions unmet'),
+    'rp-s9a': L('ランプコントロールの許可なしにプッシュバックを始めようとした', '램프 컨트롤 허가 없이 푸시백을 시작하려 함', 'Tried to push back without ramp control approval'),
+    'rp-s9b': L('トーバー切り離しの確認なしに勤務を終えようとした', '토바 분리 확인 없이 근무를 끝내려 함', 'Tried to close out without confirming tow-bar disconnection'),
+    'rp-b1': L('TOBTの入力・更新が遅れた', 'TOBT 입력·갱신이 늦음', 'TOBT entered or updated late'),
+    'rp-b2': L('遅延コードで自社の原因を隠した', '지연 코드로 자사 원인을 숨김', 'Hid the company’s own cause in the delay code'),
+    'rp-b3': L('出発書類（GD・名簿）の確認を飛ばした', '출발 서류(GD·명단) 확인 누락', 'Skipped the departure documents (GD, manifest)'),
+    'rp-prep': L('到着前の確認を飛ばした', '도착 전 확인 누락', 'Skipped pre-arrival checks'),
+    'rp-blk-order': L('ブロックインの順番を誤った（車輪止め → コーン）', '블록인 순서 오류(고임목 → 콘)', 'Block-in out of order (chocks before cones)'),
+    'rp-door-order': L('ドア開放の確認の順番を誤った', '도어 개방 확인 순서 오류', 'Door-opening checks out of order'),
+    'rp-gse-door': L('器材を違うドアに付けようとした', '장비를 틀린 도어에 붙이려 함', 'Tried to put equipment at the wrong door'),
+    'rp-d1': L('遅延コードの選択を誤った', '지연 코드 선택 오류', 'Chose the wrong delay code'),
+    'rp-d2': L('TSATの3分前より早く／準備前に出発を要求した', 'TSAT 3분 전보다 일찍/준비 전에 출발 요청', 'Requested start-up too early (before TSAT−3 or before ready)'),
+    'rp-rec': L('出発後の記録を省いた', '출발 후 기록 생략', 'Skipped the post-departure records')
+  };
+  var RACT = { 'rp-s1': 'stage-gse-behind-line', 'rp-s2': 'wait-beacon-off-and-chocks', 'rp-s3': 'wait-for-door-signal', 'rp-s4': 'no-fuelling-with-passengers', 'rp-s6': 'keep-gse-out-of-hazard-zones', 'rp-s8': 'ready-only-when-conditions-met',
+    'rp-s9a': 'push-only-with-approval', 'rp-s9b': 'confirm-towbar-off', 'rp-b1': 'honest-timely-tobt', 'rp-b2': 'honest-delay-code', 'rp-b3': 'check-departure-documents', 'rp-prep': 'complete-pre-arrival-checks',
+    'rp-blk-order': 'block-in-sequence', 'rp-door-order': 'door-check-sequence', 'rp-gse-door': 'right-door-for-gse', 'rp-d1': 'pick-delay-code-by-cause', 'rp-d2': 'request-in-tsat-window', 'rp-rec': 'file-departure-records' };
+  var RSAFE = ['rp-s1', 'rp-s2', 'rp-s3', 'rp-s4', 'rp-s6', 'rp-s8', 'rp-s9a', 'rp-s9b'];
+  var ROPS = ['rp-b1', 'rp-b2', 'rp-b3'];
+  /* ---------- 시각·상태 도우미 ---------- */
+  function rpA() { return RPS.ac(S.acKey); }
+  function rpD() { return M.data[S.acKey]; }
+  function rpStd() { return pm(V.std); }
+  function rpRel() { return S.clock - rpStd(); }
+  function rpRelTxt(r) { r = Math.round(r); return 'STD' + (r === 0 ? '' : (r < 0 ? '−' : '+') + Math.abs(r)); }
+  function rpHm(r) { return hm(rpStd() + r); }
+  function rpT(r) { return rpHm(r) + ' <small>(' + rpRelTxt(r) + ')</small>'; }
+  function rpSta() { return S.rp.sta; }
+  function rpLive(c) { return !!c && S.cur === c && G.screen === 'play' && !S.leaving && !c.flags.done; }
+  function rpDone(c) { if (!rpLive(c)) return false; c.flags.done = true; document.querySelectorAll('#scr button,#scr input,#scr select').forEach(function (b) { b.disabled = true; }); return true; }
+  function rpEnd(ms) {
+    if (S.leaving) return; S.leaving = true; document.body.classList.add('busy');
+    var mine = S.cur; S.leaveGo = function () { if (S.cur !== mine || G.screen !== 'play') return; S.leaving = false; S.leaveGo = null; document.body.classList.remove('busy'); say('me', ''); rpCall(null); nextUnit(); };
+    setTimeout(function () { if (S.leaveGo) S.leaveGo(); }, ms || 400);
+  }
+  function rpBad(code, text, lesson) { note('bad', text, lesson || null, code); }
+  function rpStrike(code, text, lesson) {   /* 3A 차단형: 막힌 시도 자체를 안전 C로 기록(같은 코드는 한 번만) */
+    S.struck = S.struck || {}; note('bad', text, lesson || null, code); STG.pose('trouble'); sfx.ng();
+    if (S.struck[code]) return; S.struck[code] = 1; S.strikes++; S.safety.push({ who: rpUnitName(S.cur), code: code, what: RMISSL[code] });
+  }
+  function rpUnitName(c) { return tx(RP_TEXT.tabs[c.p.kind] || L('作業', '작업', 'Step')); }
+  function rpMsg(t, cls) { S.rpMsg = t ? { t: t, c: cls || 'info' } : null; }
+  function rpMsgHtml() { var m = S.rpMsg; return m ? '<div class="why ' + (m.c === 'bad' ? 'bad' : m.c === 'ok' ? 'good' : '') + '" role="status">' + esc(typeof m.t === 'function' ? m.t() : tx(m.t)) + '</div>' : ''; }
+  function rpEdu() { return '<p class="wbedu">' + esc(tx(RP_TEXT.eduData)) + '</p>'; }
+  /* ---------- 무전(음성 키 = 배역|일본어 고정 문장, 합성은 전 스테이지 음성 교체 때) ---------- */
+  var RCALL = { lead: L('ハンドリング（作業責任者）', '조업 반장', 'Ramp lead (handling)'), cabin: L('客室責任者', '객실 사무장', 'Cabin manager'), mx: L('整備士', '정비사', 'Engineer'), gate: L('ゲートSV', '게이트 SV', 'Gate SV'), ramp: L('ランプコントロール', '램프 컨트롤', 'Ramp control'), fuel: L('給油', '급유', 'Fuelling') };
+  var RCALLART = { lead: 'people_loadmaster_bust_01', gate: 'staff_sv_01', mx: 'people_engineer_bust_01', cabin: 'people_cabinmgr_bust_01', ramp: 'people_dispatcher_bust_01', fuel: 'people_loadmaster_bust_01' };   /* 65차 v06: 정비사·객실 사무장 새 그림, 램프 컨트롤·급유는 v05 상반신 재사용 + 이름표 */
+  var RVCAST = { lead: 'rp_lead', cabin: 'rp_cabin', mx: 'rp_mx', gate: 'rp_gate', ramp: 'rp_ramp', fuel: 'rp_fuel' };
+  /*RVO*/var RVO = {
+    lead_gse: 'ハンドリングです。器材は制限線の外で待機しています。',
+    lead_blk: 'ブロックイン完了。車輪止めとコーン、置きました。',
+    cabin_sig: '客室です。スライドを解除しました。ドアを開けてください。',
+    lead_cdoor: 'ハンドリングです。貨物室のドアを開けました。取り降ろしを始めます。',
+    mx_start: '整備です。外部点検とログの確認を始めます。',
+    mx_ok: '整備です。点検終わりました。ログにサインしました。出発できます。',
+    cabin_crew: '客室乗務員、搭乗しました。',
+    cabin_sec: '保安点検、終わりました。搭乗を始めてください。',
+    fuel_done: '給油です。給油が終わりました。',
+    gate_board: 'ゲートです。搭乗を開始します。',
+    gate_count: 'ゲートです。搭乗が終わりました。人数、合っています。',
+    lead_ls: 'ロードシート、承認済みのものが届きました。',
+    ramp_tsat: 'ランプコントロールです。TSATをお知らせします。',
+    ramp_early: 'ランプコントロールです。まだ要求できる時間ではありません。',
+    ramp_ok: 'ランプコントロールです。プッシュバック、承認します。',
+    ramp_miss: 'ランプコントロールです。TSATを過ぎました。新しいTSATを送ります。',
+    lead_push: 'プッシュバック完了。トーバー、切り離しました。'
+  };/*/RVO*/
+  function rpCall(who, text, vk) {
+    var w = $('#wbradio'), el = $('#bpx'); if (!w || !el) return;
+    if (!who) { w.classList.add('hide'); el.classList.add('hide'); if (S) { S.bub = S.bub || {}; S.bub.pax = null; } return; }
+    var art = RCALLART[who] && STG.has(RCALLART[who]) ? RCALLART[who] : '';
+    w.innerHTML = (art ? '<img src="' + STG.src(art) + '" alt="">' : '') + '<b>' + esc(tx(RCALL[who])) + '</b><span>📻</span>'; w.classList.remove('hide');
+    STG.pose('announce');
+    if (!text) { el.classList.add('hide'); return; }
+    var vja = vk && RVO[vk];
+    el.innerHTML = '<span class="who">' + esc(tx(RCALL[who])) + '</span>' + esc(tx(text)) + (G.lang !== 'ja' && G.voice && vja ? '<span class="jsub">' + esc(vja) + '</span>' : ''); el.classList.remove('hide');
+    if (G.voice && vja && window.VO && VO.say) VO.say(RVCAST[who], vja);
+    S.bub = S.bub || {}; S.bub.pax = null;
+  }
+  /* ---------- 61차 보완 F61-01: 단계 도중 저장(합의본 6절 「행동마다」) ----------
+     엔진의 이어하기 체크포인트는 단계 경계(결과 수 = 진행 위치)이므로, 단계 안의 상태는 별도 저널(acn-saga-rpj-v1)에 화면을 그릴 때마다 씀.
+     이어하기로 같은 근무·같은 단계에 다시 들어오면 저널의 보드·시각·확정한 판정(안전 C 포함)·그 단계의 기록을 되살림. 다른 근무·다른 단계의 저널은 쓰지 않음 */
+  var RPJ = 'acn-saga-rpj-v1';
+  var RPJF = ['clock', 'strikes', 'safety', 'rp', 'tobt', 'tobtLog', 'tsat', 'tsatLog', 'req', 'appr', 'chocks', 'aobt', 'pushEnd', 'towOff', 'readyAt', 'gse', 'loader', 'blkSeq', 'doorSeq', 'aware', 'awareMiss', 'viol', 'code', 'recDone', 'struck', 'docsOk', 'chkPrep', 'chkDep', 'lsAt',
+    'evq', 'evr', 'evFired', 'evTimed', 'apuOk', 'startAt', 'busOk', 'fodRep', 'contactRep', 'hot', 'deiceReq', 'report', 'beaconOn', 'code2', 'evBlk'];
+  function rpNotes3(ns) { return (ns || []).map(function (n) { var x = n.x; if (typeof x === 'function') { var keep = G.lang, o = {}; try { ['ja', 'ko', 'en'].forEach(function (l) { G.lang = l; try { o[l] = String(x()); } catch (e) { o[l] = ''; } }); } finally { G.lang = keep; } x = o; } return { t: n.t, x: x, l: n.l, c: n.c }; }); }
+  function rpJSave() {
+    if (!S || !S.runId || !S.cur || S.noSave === 'conflict' || G.screen !== 'play') return;
+    try { var o = { v: 1, runId: S.runId, idx: S.idx, done: S.results.length, s: {}, notes: rpNotes3(S.cur.notes), flags: Object.assign({}, S.cur.flags, { done: false }), selfFix: S.cur.selfFix || [], mins: S.cur.mins || 0 };
+      RPJF.forEach(function (k) { o.s[k] = S[k]; }); localStorage.setItem(RPJ, JSON.stringify(o)); } catch (e) {}
+  }
+  function rpJLoad() {
+    if (!S.resumed || S.rpJTried) return false; S.rpJTried = true;
+    var o = null; try { o = JSON.parse(localStorage.getItem(RPJ) || 'null'); } catch (e) { o = null; }
+    if (!o || o.v !== 1 || o.runId !== S.runId || o.idx !== S.idx || o.done !== S.results.length || !o.s) return false;
+    var ns = {}; Object.keys(S).forEach(function (k) { ns[k] = S[k]; }); RPJF.forEach(function (k) { if (k in o.s) ns[k] = o.s[k]; });
+    var bad = null; try { bad = rpStateWhy(JSON.parse(JSON.stringify(ns))); } catch (e) { bad = 'format'; }
+    if (bad || !(typeof ns.clock === 'number' && ns.clock >= S.clock - 1e-9)) return false;
+    RPJF.forEach(function (k) { if (k in o.s) S[k] = o.s[k]; });
+    S.cur.notes = o.notes || []; S.cur.flags = o.flags || {}; S.cur.flags.done = false; S.cur.selfFix = o.selfFix || []; S.cur.mins = o.mins || 0;
+    return true;
+  }
+  /* ---------- 시간 진행(합의본 2E·2F) ---------- */
+  /* 61차 보완 F61-03: 시간을 건너뛸 때도 1분마다 TOBT 인지·마감을 판정(합의본 v2 2F — 최초 초과 시각·마감 정각 그대로) */
+  function rpAdd(m) {
+    if (m > 0) { var r0 = rpRel(); for (var k = Math.floor(r0) + 1; k < r0 + m - 1e-9; k++) rpAware(k); addTime(m); }
+    rpSync();
+  }
+  function rpProjAt(k) { var st = S.rp, keep = st.t; st.t = k; var pr = RPS.project(st).ready; st.t = keep; return pr; }
+  function rpAware(k) {
+    if (S.readyAt != null) return;
+    var cur = S.tobt == null ? 0 : S.tobt, pr = rpProjAt(k);
+    if (pr > cur + 5 + 1e-9 && S.awareMiss !== cur) { if (S.aware == null) S.aware = k; else if (k > S.aware + 5 + 1e-9) { S.viol++; S.awareMiss = cur; S.aware = null; } }
+    else if (pr <= cur + 5 + 1e-9) S.aware = null;
+  }
+  /* 다음 인지 시각(예상 준비가 TOBT+5를 처음 넘는 분) — 기다리기 경계에 넣음 */
+  function rpAwareNext(cap) {
+    if (S.readyAt != null || S.aware != null) return null;
+    var cur = S.tobt == null ? 0 : S.tobt, r = rpRel(); if (S.awareMiss === cur) return null;
+    for (var k = Math.floor(r) + 1; k <= r + cap; k++) if (rpProjAt(k) > cur + 5 + 1e-9) return k;
+    return null;
+  }
+  function rpSync() {
+    var r = rpRel(), st = S.rp; st.t = r;
+    /* 승무원 탑승·승인 로드시트 도착(시나리오 시각) — 무전은 그 시각을 지난 뒤 처음 그릴 때 한 번 */
+    /* TSAT 발행(EOBT−20) — TSAT = max(TOBT, EOBT, 외부 제약), 이동 최조 시각 = max(EOBT, TSAT) */
+    if (S.tsat == null && r >= -20) { S.tsat = rpTsatFor(); S.tsatLog.push({ at: r, v: S.tsat, why: 'issue' }); var xt = M.external != null && S.tsat <= M.external + 1e-9 && M.external > 0; rpCall('ramp', xt ? L('TSAT ' + rpHm(S.tsat) + ' を発行しました（出発空港の管制の都合）。', 'TSAT ' + rpHm(S.tsat) + '을(를) 발행했습니다(출발 공항 관제 사정).', 'TSAT issued: ' + rpHm(S.tsat) + ' (departure ATC restriction).') : L('TSAT ' + rpHm(S.tsat) + ' を発行しました。', 'TSAT ' + rpHm(S.tsat) + '을(를) 발행했습니다.', 'TSAT issued: ' + rpHm(S.tsat) + '.'), 'ramp_tsat'); }
+    /* TSAT 놓침: TSAT+5까지 유효한 요청이 없으면 재배정 = TSAT+5+10(가상 시나리오 값). TSAT+5 정각의 요청은 먼저 유효로 평가(요청 처리에서 시각을 넘기기 전에 판정) */
+    if (S.tsat != null && !S.req && r > S.tsat + 5 + 1e-9) { var nt = S.tsat + 5 + 10; S.tsatLog.push({ at: r, v: nt, why: 'miss', prev: S.tsat }); S.tsat = nt; rpCall('ramp', L('TSATを過ぎました。新しいTSATは ' + rpHm(nt) + ' です。', 'TSAT를 지났습니다. 새 TSAT는 ' + rpHm(nt) + '입니다.', 'TSAT missed. New TSAT: ' + rpHm(nt) + '.'), 'ramp_miss'); }
+    /* TOBT 인지(합의본 v2 2F): 예상 준비 시각이 현재 TOBT+5를 처음 넘은 시각 → 5분 안에 갱신하지 않으면 위반 1회 */
+    rpAware(r); rpDeiceAuto(); rpEvFire();
+  }
+  function rpTsatFor() { return Math.max(S.tobt == null ? 0 : S.tobt, 0, M.external == null ? -1e9 : M.external); }
+  function rpWaitTarget() {
+    var a = rpA(), r = rpRel(), ex = [a.crew, a.ls, -25, -20, rpSta()];
+    if (!(M.opt && (M.opt.late || M.opt.remote))) ex.push(a.board_std);
+    if (S.tsat != null) ex.push(S.tsat - 3, S.tsat, S.tsat + 5);
+    if (S.aware != null) ex.push(S.aware + 5); else ex.push(rpAwareNext(M.cost.wait));
+    ex = ex.concat(rpEvTimes()); if (S.startAt != null) ex.push(S.startAt);
+    return RPS.nextBoundary(S.rp, ex, M.cost.wait) - r;
+  }
+  function rpWait(redraw) { var m = rpWaitTarget(); rpMsg(null); sfx.tap(); rpAdd(m); rpAutoEvents(); redraw(); }
+  /* 시나리오 자동 사건(무전): 승무원 탑승·로드시트 도착·작업 완료 알림 — 한 번씩 */
+  function rpAutoEvents() {
+    var a = rpA(), r = rpRel(), st = S.rp, said = st.said = st.said || {};
+    var sayOnce = function (k, who, text, vk) { if (said[k]) return; said[k] = 1; rpCall(who, text, vk); };
+    if (RPS.isDone(st, 'maint')) sayOnce('mx', 'mx', L('点検が終わり、ログにサインしました。出発できます。', '점검을 마치고 로그에 서명했습니다. 출발 가능합니다.', 'Inspection done, log signed. Released for departure.'), 'mx_ok');
+    if (r >= a.crew) sayOnce('crew', 'cabin', L('客室乗務員が搭乗しました。', '객실 승무원이 탑승했습니다.', 'Cabin crew are on board.'), 'cabin_crew');
+    if (RPS.isDone(st, 'sec')) sayOnce('sec', 'cabin', L('保安点検が終わりました。搭乗を始めてください。', '보안 점검이 끝났습니다. 탑승을 시작해 주세요.', 'Security check complete. You may start boarding.'), 'cabin_sec');
+    if (RPS.isDone(st, 'fuel')) sayOnce('fuel', 'fuel', L('給油が終わりました。', '급유가 끝났습니다.', 'Fuelling complete.'), 'fuel_done');
+    if (RPS.isDone(st, 'board')) sayOnce('board', 'gate', L('搭乗が終わりました。人数は合っています（' + rpD().pax + '名）。', '탑승이 끝났습니다. 인원 일치합니다(' + rpD().pax + '명).', 'Boarding complete. Headcount matches (' + rpD().pax + ').'), 'gate_count');
+    if (r >= a.ls && S.lsAt == null) { S.lsAt = r; sayOnce('ls', 'lead', L('承認済みのロードシートが届きました。', '승인된 로드시트가 도착했습니다.', 'The approved load sheet has arrived.'), 'lead_ls'); }
+  }
+  /* ---------- 장면 ---------- */
+  /* 65차: v06 램프 그림 — 배경 3장(일본·한국·겨울 원격), 직원 자세 4종(radio·board·point·trouble). 그림이 없으면 게이트 그림으로 대체 */
+  function rpArt() { return STG.has('staff_rp_radio_01'); }
+  var RPOSEU = { prep: 'point', blk: 'point', door: 'board', svc: 'board', brd: 'board', dep: 'board', push: 'radio', rec: 'board' };
+  var RPOSE = { announce: 'radio', radio: 'radio', trouble: 'trouble', point: 'point', board: 'board' };
+  function rpStaffId(pose) { var u = (S && S.cur && S.cur.p && RPOSEU[S.cur.p.kind]) || 'board', id = 'staff_rp_' + (RPOSE[pose] || u) + '_01'; return STG.has(id) ? id : 'staff_rp_radio_01'; }
+  function rpAgentImg(id) { return STG.img(id, 'agent', 19, 6, 76, false, ''); }   /* 바깥 주기장 — 책상이 없으므로 발까지 보이게(게이트·탑재관리는 책상 뒤 b −14) */
+  function rpBgId() { if (!rpArt()) return G.country === 'KR' && STG.has('gate_bg_02') ? 'gate_bg_02' : (STG.has('gate_bg_01') ? 'gate_bg_01' : 'checkin_bg_02'); return M && M.opt && M.opt.remote && STG.has('rp_bg_03') ? 'rp_bg_03' : (G.country === 'KR' && STG.has('rp_bg_02') ? 'rp_bg_02' : 'rp_bg_01'); }
+  var _rpPrevPose = STG.pose, rpPoseT = null;
+  STG.pose = function (pose, back) {
+    if (!ST || ST.id !== 'rp' || !rpArt()) return _rpPrevPose(pose, back);
+    var el = document.querySelector('#agentwrap img'); if (!el) return;
+    clearTimeout(rpPoseT); var id = rpStaffId(pose || 'idle');
+    if (pose === 'announce' || pose === 'trouble') rpPoseT = setTimeout(function () { STG.pose('idle'); }, 2600);   /* 무전·경고 뒤에는 그 단계 기본 자세로 */
+    if (id === el.getAttribute('data-asset')) return;
+    el.style.opacity = .35; setTimeout(function () { var n = document.createElement('div'); n.innerHTML = rpAgentImg(id); var ni = n.firstChild; var cur = document.querySelector('#agentwrap img'); if (ni && cur && cur.parentNode) cur.parentNode.replaceChild(ni, cur); }, 90);
+  };
+  function rpScene() {
+    var art = rpArt(), bg = rpBgId();
+    var st = art ? rpStaffId('idle') : (STG.has('staff_gate_idle_01') ? 'staff_gate_idle_01' : 'staff_checkin_greet_01'), k = S && S.acKey === '789' ? '789' : '737', d = M && M.data && M.data[k];
+    var h = '<div class="stage gate wb rp' + (art ? ' rpv06' : '') + '" id="stage"><img class="bg" src="' + STG.src(bg) + '" alt="" draggable="false">';
+    h += '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.from + ' → ' + V.to + ' ' + V.std) + '</span></div><div class="sign s2"><b id="ctrno">' + esc(k === '789' ? 'B787-9' : 'B737-800') + '</b><span>' + esc((d ? d.reg + ' · STAND ' + d.stand : '') + ' · RAMP') + '</span></div>';
+    h += '<div id="queue" class="lay"></div><div id="agentwrap" class="lay">' + (art ? rpAgentImg(st) : STG.img(st, 'agent', 20, -14, 80, false, '')) + '</div>';
+    h += '<div id="paxwrap" class="lay"><div id="pax" class="lay"></div></div><div class="wbradio hide" id="wbradio"></div><div class="wbedutag">' + esc(tx(RP_TEXT.eduData)) + (art ? '' : ' · ' + esc(tx(L('ランプの絵は準備中（仮の絵）', '램프 그림 준비 중(임시 그림)', 'Ramp art coming (placeholder)')))) + '</div>';
+    return h + '</div>';
+  }
+  function rpHero() {
+    var art = rpArt(), bg = art ? 'rp_bg_01' : (STG.has('gate_bg_02') ? 'gate_bg_02' : 'checkin_bg_02'), st = art ? 'staff_rp_point_01' : (STG.has('staff_gate_idle_01') ? 'staff_gate_idle_01' : 'staff_checkin_explain_01');
+    return '<div class="herostage"><img class="bg" src="' + STG.src(bg) + '" alt="">' + STG.img(st, '', 50, 2, 86) + STG.img('koradon_greet_01', 'mas', 15, 3, 44) + STG.img('korarin_greet_01', 'mas', 30, 3, 42) + '<div class="wbheroac">' + (rpAcKey() === '789' ? 'B787-9 · 90 min' : 'B737-800 · 70 min') + '</div></div>';
+  }
+  /* ---------- 주기장 평면도(코드로 그림, 합의본 2D) ---------- */
+  function rpPlan(marks, sel) {
+    var big = S.acKey === '789', L0 = big ? 300 : 240, x0 = (340 - L0) / 2, y = 110;
+    var h = '<svg class="rpplan" viewBox="0 0 340 220" role="img" aria-label="stand plan"><rect x="0" y="0" width="340" height="220" fill="#eef2f6"/>';
+    h += '<rect x="' + (x0 - 18) + '" y="' + (y - 64) + '" width="' + (L0 + 36) + '" height="128" fill="none" stroke="#e0a800" stroke-width="2" stroke-dasharray="6 4"/>';   /* 장비 제한선 */
+    h += '<line x1="170" y1="0" x2="170" y2="' + (y - 64) + '" stroke="#e0a800" stroke-width="2"/>';
+    h += '<rect x="' + x0 + '" y="' + (y - 11) + '" width="' + L0 + '" height="22" rx="11" fill="#fff" stroke="#24346b" stroke-width="2"/>';   /* 동체(기수 = 왼쪽) */
+    var wx = x0 + L0 * 0.42; h += '<polygon points="' + wx + ',' + (y - 11) + ' ' + (wx + 34) + ',' + (y - 58) + ' ' + (wx + 52) + ',' + (y - 58) + ' ' + (wx + 40) + ',' + (y - 11) + '" fill="#dfe6f2" stroke="#24346b"/><polygon points="' + wx + ',' + (y + 11) + ' ' + (wx + 34) + ',' + (y + 58) + ' ' + (wx + 52) + ',' + (y + 58) + ' ' + (wx + 40) + ',' + (y + 11) + '" fill="#dfe6f2" stroke="#24346b"/>';
+    [[-38], [38]].forEach(function (p) { h += '<circle cx="' + (wx + 14) + '" cy="' + (y + p[0]) + '" r="14" fill="rgba(220,40,40,.18)" stroke="#d33" stroke-dasharray="3 2"/><rect x="' + (wx + 6) + '" y="' + (y + p[0] - 5) + '" width="20" height="10" rx="4" fill="#24346b"/>'; });   /* 엔진 흡입 위험 구역 */
+    h += '<text x="' + (wx + 14) + '" y="' + (y - 58) + '" font-size="8" text-anchor="middle" fill="#d33">ENGINE</text>';
+    h += rpRemote() ? '<rect x="' + (x0 + 16) + '" y="' + (y - 34) + '" width="14" height="23" fill="#c9b98f"/><text x="' + (x0 + 23) + '" y="' + (y - 37) + '" font-size="8" text-anchor="middle">STEPS</text>' : '<rect x="' + (x0 + 14) + '" y="' + (y - 50) + '" width="18" height="39" fill="#b9c3d6"/><text x="' + (x0 + 23) + '" y="' + (y - 53) + '" font-size="8" text-anchor="middle">BRIDGE</text>';   /* 탑승교 또는 스텝카(원격) */   /* 탑승교(1L, 왼쪽 = 위) */
+    h += '<text x="' + (x0 + 23) + '" y="' + (y - 14) + '" font-size="7" text-anchor="middle">1L</text>';
+    (marks || []).forEach(function (m) { var on = sel === m.k; h += '<g><circle cx="' + m.x + '" cy="' + m.y + '" r="9" fill="' + (on ? '#f0a030' : '#fff') + '" stroke="' + (m.bad ? '#d33' : '#24346b') + '" stroke-width="2"/><text x="' + m.x + '" y="' + (m.y + 3) + '" font-size="9" text-anchor="middle" font-weight="700">' + m.n + '</text></g>'; });
+    h += '<text x="6" y="214" font-size="8" fill="#a07800">— — ' + esc(tx(L('器材の制限線（教育用の簡略図）', '장비 제한선(교육용 간이 그림)', 'Equipment restraint line (simplified)'))) + '</text></svg>';
+    return h;
+  }
+  function rpHint(kind) {
+    var H = {
+      prep: L('到着の前に、駐機場を歩いて落ちている物（FOD）を拾い、器材は制限線の外で待たせよう。前の便の不具合や、特別なお客様の情報も先に見ておくといいよ。', '도착 전에 주기장을 걸으며 떨어진 물건(FOD)을 줍고, 장비는 제한선 밖에서 기다리게 해. 앞 편 결함이나 특별 승객 정보도 미리 봐 두자.', 'Before arrival, walk the stand and pick up FOD, and keep equipment waiting outside the restraint line. Check the previous flight’s defects and special passengers too.'),
+      blk: L('飛行機が止まっても、衝突防止灯（赤い点滅）が消えるまでは近づかない。消えたら車輪止め → コーン → 電源・空調 → 搭乗橋の順だよ。', '비행기가 멈춰도 충돌 방지등(빨간 점멸)이 꺼질 때까지는 다가가지 마. 꺼지면 고임목 → 콘 → 전원·공조 → 탑승교 순서야.', 'Even when the aircraft stops, stay clear until the anti-collision beacon goes off. Then chocks → cones → power/air → bridge.'),
+      door: L('外からドアを開けるのは、客室乗務員の「スライド解除」の合図を窓越しに確かめてから。合図がなければ絶対に開けない。', '밖에서 도어를 여는 건 객실 승무원의 「슬라이드 해제」 신호를 창 너머로 확인한 뒤야. 신호가 없으면 절대 열지 마.', 'Only open from outside after you see the cabin crew’s “slide disarmed” signal through the window. No signal, no opening.'),
+      svc: L('降機が終わったら、清掃・機内食・給油・汚水と給水を同時に始めよう。一つずつだと搭乗が遅れるよ。給油はお客様が全員降りてから。', '하기가 끝나면 청소·기내식·급유·오수와 급수를 동시에 시작해. 하나씩 하면 탑승이 늦어져. 급유는 승객이 모두 내린 뒤에.', 'Once deplaning ends, start cleaning, catering, fuelling and water/lav together — one at a time delays boarding. Fuel only with nobody on board.'),
+      brd: L('TOBT（準備ができる見込みの時刻）はEOBT−25までに入れよう。赤いのがクリティカルパス。清掃・機内食が終わったら保安点検、給油も終われば搭乗だよ。', 'TOBT(준비될 예상 시각)는 EOBT−25까지 넣어. 빨간 줄이 크리티컬 패스야. 청소·기내식이 끝나면 보안 점검, 급유까지 끝나면 탑승이야.', 'Enter the TOBT (when you expect to be ready) by EOBT−25. Red is the critical path. Security check after cleaning and catering; board once fuelling is done too.'),
+      dep: L('搭乗と搭載が終わり、承認済みのロードシートが届いたらドアを閉める作業へ。出発条件を全部確かめてから「準備完了」を報告しよう。', '탑승과 탑재가 끝나고 승인된 로드시트가 오면 도어 클로즈 작업으로. 출발 조건을 모두 확인한 뒤 「준비 완료」를 보고해.', 'When boarding and loading are done and the approved load sheet is in, close up. Check every departure condition, then report ready.'),
+      push: L('要求はTSATの3分前から。許可が出たら車輪止めを外して動き出す。押し終わったらトーバーの切り離しを確かめてね。', '요청은 TSAT 3분 전부터. 허가가 나면 고임목을 빼고 출발. 다 밀고 나면 토바 분리를 확인해.', 'Request from TSAT−3. When approved, remove the chocks and move. After the push, confirm the tow bar is off.'),
+      rec: L('出発の時刻と遅れの原因を記録。原因は担当者ではなく、実際に何が起きたかで選ぶよ。', '출발 시각과 지연 원인을 기록해. 원인은 담당자가 아니라 실제로 무슨 일이 있었는지로 골라.', 'Record the departure time and the delay cause — by what actually happened, not by who handled it.')
+    };
+    rpHintDay(H);
+    return G.hints ? H[kind] : null;
+  }
+  function rpStart(u) {
+    S.cur = { p: u, mood: 100, mins: 0, tab: u.kind, notes: [], chk: {}, bags: [], flags: {}, acts: {}, selfFix: [], needSV: false, svDone: false };
+    var at = rpUnitAt(u.kind); if (at != null && rpRel() < at) S.clock = rpStd() + at;
+    rpMsg(null); if (rpJLoad()) rpMsg(L('この段階の途中（' + rpHm(rpRel()) + '）から続けます。確定した判定もそのままです。', '이 단계의 도중(' + rpHm(rpRel()) + ')부터 이어갑니다. 확정한 판정도 그대로입니다.', 'Continuing this stage from ' + rpHm(rpRel()) + '. Decisions already made are kept.'), 'info'); rpSync(); STG.pax(null); say('me', ''); rpCall(null);
+    if (u.kind === 'blk') rpCall('lead', L(V.flight + 'が' + rpD().stand + '番スポットに入りました。', V.flight + '이(가) ' + rpD().stand + '번 주기장에 들어왔습니다.', V.flight + ' is on stand ' + rpD().stand + '.'), null);
+    updateBar(); guide(rpHint(u.kind)); renderTabs(); showTab(u.kind); STG.pose('idle');
+  }
+  function rpUnitAt(kind) { if (kind === 'prep') return rpD().prep; if (kind === 'blk') return rpSta(); return null; }
+  function rpKV(rows) { return '<dl class="kv">' + rows.map(function (r) { return '<dt>' + esc(tx(r[0])) + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>'; }
+  /* ---------- ① 도착 전 준비 ---------- */
+  var RPREP = [['fod', L('スポットを歩いてFODを拾う', '주기장을 걸으며 FOD 줍기', 'Walk the stand and pick up FOD')], ['chock', L('車輪止め・コーンを用意', '고임목·콘 준비', 'Chocks and cones ready')], ['defect', L('前の便の不具合情報', '앞 편 결함 정보', 'Previous-flight defect info')],
+    ['spc', L('特別なお客様・乗り継ぎ・優先手荷物', '특별 승객·환승·우선 수하물', 'Special passengers, transfers, priority bags')], ['wx', L('天候（落雷・強風）', '날씨(낙뢰·강풍)', 'Weather (lightning, wind)')], ['crew', L('作業人員と器材の数', '작업 인원과 장비 수', 'Handling staff and equipment count')]];
+  var RGSE = [{ k: 'line', n: 'A', x: 22, y: 186, t: L('A：制限線の外の決められた待機場所', 'A: 제한선 밖 지정 대기 위치', 'A: the marked waiting area outside the restraint line') },
+    { k: 'door', n: 'B', x: 100, y: 84, bad: true, t: L('B：制限線の内側、ドアのすぐ近く（早く付けられる）', 'B: 제한선 안, 도어 바로 옆(빨리 붙일 수 있음)', 'B: inside the line, right by the door (quicker to attach)') },
+    { k: 'eng', n: 'C', x: 158, y: 150, bad: true, t: L('C：主翼の下、エンジンの前（空いている）', 'C: 주날개 아래, 엔진 앞(비어 있음)', 'C: under the wing, in front of the engine (it is free)') }];
+  function rpTabPrep() {
+    var c = S.cur, d = rpD(), a = rpA(); S.chkPrep = S.chkPrep || {};
+    scr('<div class="h3">' + esc(tx(L('到着前の準備', '도착 전 준비', 'Before the aircraft arrives'))) + '</div>' +
+      rpKV([[T.flight, esc(V.flight + ' ' + V.from + '→' + V.to)], [L('機材', '기재', 'Aircraft'), esc((S.acKey === '789' ? 'B787-9' : 'B737-800') + ' · ' + d.reg + ' · ' + d.pax + tx(L('名', '명', ' pax')))], [L('スポット', '주기장', 'Stand'), esc(d.stand)],
+        ['STA / STD', rpT(rpSta()) + ' / ' + rpT(0)], [L('標準の地上時間', '표준 지상 시간', 'Standard ground time'), a.ground + tx(T.min) + ' <small>(' + esc(tx(L('教育用の仮想値', '교육용 가상 값', 'educational value'))) + ')</small>'], [L('今', '지금', 'Now'), rpT(rpRel())]]) +
+      rpTobtBox() + '<div class="chk">' + RPREP.map(function (it) { return '<button data-k="' + it[0] + '" data-a="prep-' + it[0] + '"><span>' + esc(tx(it[1])) + '</span><span class="st">' + (S.chkPrep[it[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      '<div class="h3">' + esc(tx(L('器材の待機場所', '장비 대기 위치', 'Where equipment waits'))) + '</div>' + rpPlan(RGSE, S.gse && S.gse.pick) +
+      '<div class="chk">' + RGSE.map(function (g) { return '<button data-g="' + g.k + '" class="' + (S.gse && S.gse.pick === g.k ? 'on' : '') + '"><span>' + esc(tx(g.t)) + '</span><span class="st">' + (S.gse && S.gse.ok && S.gse.pick === g.k ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      '<div class="btns"><button class="btn" id="r-gseok" data-a="gse">' + esc(tx(L('この場所で待機させる（確定）', '이 위치에 대기(확정)', 'Hold equipment here (confirm)'))) + '</button><button class="btn pri" id="r-prepdone" data-a="ok"' + (S.gse && S.gse.ok ? '' : ' disabled') + '>' + esc(tx(L('到着前の準備 完了', '도착 전 준비 완료', 'Pre-arrival prep done'))) + '</button></div>' + rpMsgHtml() + rpEdu());
+    document.querySelectorAll('#scr button[data-k]').forEach(function (b) { b.onclick = function () { if (!rpLive(c)) return; sfx.tap(); S.chkPrep[b.dataset.k] = true; rpTabPrep(); }; });
+    document.querySelectorAll('#scr button[data-g]').forEach(function (b) { b.onclick = function () { if (!rpLive(c) || (S.gse && S.gse.ok)) return; sfx.tap(); S.gse = { pick: b.dataset.g, ok: false }; rpMsg(null); rpTabPrep(); }; });
+    rpBindBoard(rpTabPrep);
+    $('#r-gseok').onclick = function () {
+      if (!rpLive(c) || !S.gse || S.gse.ok) return;
+      if (S.gse.pick === 'line') { S.gse.ok = true; sfx.ok(); rpCall('lead', L('器材は制限線の外で待機しています。', '장비는 제한선 밖에서 대기 중입니다.', 'Equipment is waiting outside the restraint line.'), 'lead_gse'); rpMsg(L('器材を制限線の外で待機させました。', '장비를 제한선 밖에 대기시켰습니다.', 'Equipment is staged outside the restraint line.'), 'ok'); }
+      else { rpStrike(S.gse.pick === 'eng' ? 'rp-s6' : 'rp-s1', S.gse.pick === 'eng' ? L('エンジンの前（吸い込みの危険区域）に器材を置こうとしました。置けません。', '엔진 앞(흡입 위험 구역)에 장비를 두려 했습니다. 둘 수 없습니다.', 'Tried to stage equipment in front of the engine (intake hazard zone). Not allowed.') : L('到着前に器材を制限線の内側に置こうとしました。機体が止まるまで線の外で待ちます。', '도착 전에 장비를 제한선 안에 두려 했습니다. 기체가 멈출 때까지 선 밖에서 기다립니다.', 'Tried to stage equipment inside the restraint line before arrival. It must wait outside until the aircraft stops.'), 'passenger/3-6');
+        rpMsg(L('この場所には置けません（安全C）。別の場所を選んでください。', '이 위치에는 둘 수 없습니다(안전 C). 다른 위치를 고르세요.', 'Not allowed here (safety C). Choose another place.'), 'bad'); S.gse = null; }
+      rpTabPrep();
+    };
+    $('#r-prepdone').onclick = function () {
+      if (!S.gse || !S.gse.ok || !rpDone(c)) return;
+      var miss = RPREP.filter(function (it) { return !S.chkPrep[it[0]]; });
+      if (miss.length) rpBad('rp-prep', function () { return tx(L('到着前の確認を飛ばしました：', '도착 전 확인을 건너뛰었습니다: ', 'Skipped pre-arrival checks: ')) + miss.map(function (it) { return tx(it[1]); }).join(' / '); }, 'passenger/3-5');
+      else note('good', L('到着前の確認を6項目すべて終えました。', '도착 전 확인 6항목을 모두 마쳤습니다.', 'All six pre-arrival checks done.'), 'passenger/3-5');
+      sfx.ok(); rpEnd();
+    };
+  }
+  /* ---------- ② 블록인(합의본 2A②: 등 꺼짐 → 고임목 → 콘 → GPU·공조 → 탑승교) ---------- */
+  var RBLK = [['gpu', L('地上電源（GPU）・空調をつなぐ', '지상 전원(GPU)·공조 연결', 'Connect ground power (GPU) and air')], ['chock', L('車輪止めを置く', '고임목 놓기', 'Place the chocks')], ['bridge', L('搭乗橋を付ける', '탑승교 접현', 'Dock the boarding bridge')],
+    ['beacon', L('衝突防止灯の消灯・エンジン停止を確認', '충돌 방지등 소등·엔진 정지 확인', 'Confirm beacon off and engines stopped')], ['cone', L('コーンを置く（翼端・エンジン・尾部）', '콘 놓기(날개 끝·엔진·꼬리)', 'Place the cones (wingtips, engines, tail)')]];
+  function rpTabBlk() {
+    var c = S.cur, seq = S.blkSeq || (S.blkSeq = []), done = seq.length === RBLK.length, BL = rpItems(RBLK, 'blk');
+    scr('<div class="h3">' + esc(tx(L('ブロックイン ― 正しい順番で', '블록인 — 올바른 순서로', 'Block-in — in the right order'))) + '</div><p>' + esc(tx(L('飛行機が止まりました。いま翼の赤い衝突防止灯は' + (seq.indexOf('beacon') >= 0 || (M.beaconLate && !S.beaconOn) ? '消えています。' : '点滅しています。'), '비행기가 멈췄습니다. 지금 날개의 빨간 충돌 방지등은 ' + (seq.indexOf('beacon') >= 0 || (M.beaconLate && !S.beaconOn) ? '꺼져 있습니다.' : '깜박이고 있습니다.'), 'The aircraft has stopped. The red anti-collision beacon is ' + (seq.indexOf('beacon') >= 0 || (M.beaconLate && !S.beaconOn) ? 'now off.' : 'still flashing.')))) + '</p>' +
+      '<div class="chk">' + BL.map(function (it) { var i = seq.indexOf(it[0]); return '<button data-b="' + it[0] + '"' + (i >= 0 ? ' disabled' : '') + '><span>' + esc(tx(it[1])) + '</span><span class="st">' + (i >= 0 ? (i + 1) + ' ✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      '<div class="btns">' + (S.beaconOn ? '<button class="btn" id="r-fdcall" data-a="fdcall">' + esc(tx(L('操縦室に無線で確認（1分）', '조종실에 무전으로 확인(1분)', 'Check with the flight deck by radio (1 min)'))) + '</button>' : '') + '<button class="btn pri" id="r-blkdone" data-a="ok"' + (done ? '' : ' disabled') + '>' + esc(tx(L('ブロックイン完了', '블록인 완료', 'Block-in complete'))) + '</button></div>' + rpMsgHtml() + rpEdu());
+    document.querySelectorAll('#scr button[data-b]').forEach(function (b) { b.onclick = function () {
+      if (!rpLive(c)) return; var k = b.dataset.b;
+      if (k === 'beacon' && S.beaconOn) { sfx.ng(); rpMsg(L('衝突防止灯はまだ点いています。近づかずに操縦室に確かめます。', '충돌 방지등이 아직 켜져 있습니다. 다가가지 말고 조종실에 확인합니다.', 'The beacon is still on. Stay clear and check with the flight deck.'), 'info'); rpTabBlk(); return; }
+      if (k !== 'beacon' && (seq.indexOf('beacon') < 0 || S.beaconOn)) { rpStrike('rp-s2', L('衝突防止灯が点いたまま機体に近づこうとしました。消灯とエンジン停止を待ちます。', '충돌 방지등이 켜진 채 기체에 접근하려 했습니다. 소등과 엔진 정지를 기다립니다.', 'Tried to approach with the beacon still on. Wait for beacon off and engines stopped.'), 'passenger/3-5'); rpMsg(L('近づけません（安全C）。まず衝突防止灯の消灯を確認。', '접근할 수 없습니다(안전 C). 먼저 충돌 방지등 소등 확인.', 'Do not approach (safety C). Confirm the beacon is off first.'), 'bad'); rpTabBlk(); return; }
+      if ((k === 'gpu' || k === 'bridge') && seq.indexOf('chock') < 0) { rpStrike('rp-s2', L('車輪止めの前に器材を機体に付けようとしました。', '고임목 전에 장비를 기체에 붙이려 했습니다.', 'Tried to attach equipment before the chocks were in.'), 'passenger/3-6'); rpMsg(L('車輪止めが先です（安全C）。', '고임목이 먼저입니다(안전 C).', 'Chocks first (safety C).'), 'bad'); rpTabBlk(); return; }
+      if (k === 'cone' && seq.indexOf('chock') < 0 && !c.flags.blkOrd) { c.flags.blkOrd = true; rpBad('rp-blk-order', L('車輪止めより先にコーンを置きました（車輪止め → コーンの順）。', '고임목보다 먼저 콘을 놓았습니다(고임목 → 콘 순서).', 'Placed cones before the chocks (chocks → cones).'), 'passenger/3-6'); }
+      sfx.tap(); seq.push(k); rpMsg(null); rpTabBlk();
+    }; });
+    if ($('#r-fdcall')) $('#r-fdcall').onclick = function () { if (!rpLive(c)) return; S.beaconOn = false; rpAdd(1); rpCall('cabin', L('操縦室です。エンジンを止めました。衝突防止灯を消します。', '조종실입니다. 엔진을 껐습니다. 충돌 방지등을 끕니다.', 'Flight deck: engines off, beacon off now.'), null); note('good', L('衝突防止灯が点いたままのとき、近づかずに操縦室に確かめました。', '충돌 방지등이 켜진 채일 때 다가가지 않고 조종실에 확인했습니다.', 'With the beacon still on, stayed clear and checked with the flight deck.'), 'passenger/3-5'); sfx.ok(); rpTabBlk(); };
+    $('#r-blkdone').onclick = function () {
+      if (seq.length !== RBLK.length || !rpDone(c)) return;
+      var st = S.rp; st.blkAt = rpSta(); st.t = rpSta(); RPS.start(st, 'maint');   /* 정비사는 블록인 뒤 스스로 외부 점검·로그 시작 */
+      rpAdd(rpA().blk); rpCall('lead', L('ブロックイン完了。車輪止めとコーン、置きました。', '블록인 완료. 고임목과 콘을 놓았습니다.', 'Block-in complete. Chocks and cones in place.'), 'lead_blk');
+      note('good', L('衝突防止灯の消灯を確かめてから、車輪止め・器材の順に付けました。', '충돌 방지등 소등을 확인한 뒤 고임목·장비 순으로 붙였습니다.', 'Confirmed the beacon was off, then chocks and equipment in order.'), 'passenger/3-6'); sfx.ok(); rpEnd(700);
+    };
+  }
+  /* ---------- ③ 도어 개방(여객 3-1: 접현 → 주변 → 수신호 → 핸들 → 고정) + 화물칸 로더 위치 ---------- */
+  var RDOOR = [['handle', L('外部ハンドルでドアを開ける', '외부 핸들로 도어 열기', 'Open the door with the outside handle')], ['dock', L('搭乗橋の接続（すき間・高さ）を確認', '탑승교 접현(틈·높이) 확인', 'Check the bridge docking (gap, height)')], ['signal', L('窓越しに客室乗務員の合図（スライド解除）を確認', '창 너머 객실 승무원 신호(슬라이드 해제) 확인', 'See the cabin crew’s “slide disarmed” signal through the window')],
+    ['area', L('ドアの周り（人・物）を確認', '도어 주변(사람·물건) 확인', 'Check around the door (people, objects)')], ['lock', L('開いたドアの固定を確認', '열린 도어 고정 확인', 'Confirm the open door is locked back')]];
+  var RDOOR_OK = ['dock', 'area', 'signal', 'handle', 'lock'];
+  /* 원격 주기장(탑승교 없음, Day 5): 같은 키로 스텝카·버스 동선 항목을 씀(62차 F62-02) */
+  function rpRemote() { return !!(M.opt && M.opt.remote); }
+  var RREMOTE = { blk: { bridge: L('ステップ車を付ける（前方・後方ドア）', '스텝카 접현(전방·후방 도어)', 'Position the step cars (forward and aft doors)') },
+    door: { dock: L('ステップ車の接続（すき間・高さ・手すり）を確認', '스텝카 접현(틈·높이·난간) 확인', 'Check the step car (gap, height, handrails)') },
+    dep: { bridge: L('ステップ車の撤去・バスでの輸送完了（人数一致）', '스텝카 철수·버스 운송 완료(인원 일치)', 'Step cars removed, bus transfer complete (headcount matches)') } };
+  function rpItems(list, kind) { var m = rpRemote() ? RREMOTE[kind] : {}; return list.map(function (it) { return m[it[0]] ? [it[0], m[it[0]]] : it; }); }   /* 항상 새 배열(원본 RBLK·RDOOR·RDEP를 바꾸지 않음 — 63차 N63-01) */
+  function rpLoaderMarks() { var big = S.acKey === '789', x0 = (340 - (big ? 300 : 240)) / 2, Lf = big ? 300 : 240; return [{ k: 'cargo', n: '1', x: x0 + Lf * 0.25, y: 134, t: L('1：前方貨物室ドア（右側）', '1: 전방 화물칸 도어(오른쪽)', '1: forward cargo door (right side)') }, { k: 'svc', n: '2', x: x0 + Lf * 0.62, y: 134, t: L('2：後方の客室サービスドア（2R）', '2: 후방 객실 서비스 도어(2R)', '2: rear cabin service door (2R)') }, { k: 'slide', n: '3', x: x0 + 23, y: 76, bad: true, t: L('3：1Lドアの前（スライドが出る範囲）', '3: 1L 도어 앞(슬라이드 전개 범위)', '3: in front of door 1L (slide deployment area)') }]; }
+  function rpTabDoor() {
+    var c = S.cur, seq = S.doorSeq || (S.doorSeq = []), opened = seq.indexOf('lock') >= 0, mk = rpLoaderMarks(), ld = S.loader;
+    var ln = S.acKey === '789' ? L('ULDローダー', 'ULD 로더', 'ULD loader') : L('ベルトローダー', '벨트 로더', 'Belt loader');
+    scr('<div class="h3">' + esc(tx(L('1Lドアを開ける', '1L 도어 열기', 'Opening door 1L'))) + '</div>' +
+      '<div class="chk">' + rpItems(RDOOR, 'door').map(function (it) { var i = seq.indexOf(it[0]); return '<button data-d="' + it[0] + '"' + (i >= 0 ? ' disabled' : '') + '><span>' + esc(tx(it[1])) + '</span><span class="st">' + (i >= 0 ? (i + 1) + ' ✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      '<div class="h3">' + esc(tx(L('貨物室：', '화물칸: ', 'Cargo: '))) + esc(tx(ln)) + esc(tx(L('をどこに付ける？', '을(를) 어디에 붙일까?', ' — where does it go?'))) + '</div>' + rpPlan(mk, ld && ld.pick) +
+      '<div class="chk">' + mk.map(function (g) { return '<button data-l="' + g.k + '" class="' + (ld && ld.pick === g.k ? 'on' : '') + '"' + (ld && ld.ok ? ' disabled' : '') + '><span>' + esc(tx(g.t)) + '</span><span class="st">' + (ld && ld.ok && ld.pick === g.k ? '✔' : '') + '</span></button>'; }).join('') + '</div>' +
+      '<div class="btns"><button class="btn" id="r-ldok"' + (ld && !ld.ok ? '' : ' disabled') + '>' + esc(tx(L('ここに付ける（確定）', '여기에 붙이기(확정)', 'Attach here (confirm)'))) + '</button><button class="btn pri" id="r-doordone" data-a="ok"' + (opened && ld && ld.ok ? '' : ' disabled') + '>' + esc(tx(L('ドア開放・貨物室の準備 完了', '도어 개방·화물칸 준비 완료', 'Door open, cargo ready'))) + '</button></div>' + rpMsgHtml() + rpEdu());
+    document.querySelectorAll('#scr button[data-d]').forEach(function (b) { b.onclick = function () {
+      if (!rpLive(c)) return; var k = b.dataset.d;
+      if (k === 'handle' && seq.indexOf('signal') < 0) { rpStrike('rp-s3', L('客室乗務員の合図なしに外からドアを開けようとしました。スライドが出るおそれがあります。', '객실 승무원 신호 없이 밖에서 도어를 열려 했습니다. 슬라이드가 펼쳐질 위험이 있습니다.', 'Tried to open the door from outside without the cabin crew signal — the slide could deploy.'), 'passenger/3-1'); rpMsg(L('開けられません（安全C）。合図を待ちます。', '열 수 없습니다(안전 C). 신호를 기다립니다.', 'Cannot open (safety C). Wait for the signal.'), 'bad'); rpTabDoor(); return; }
+      if (k === 'lock' && seq.indexOf('handle') < 0) { rpMsg(L('まだドアは開いていません。', '아직 도어가 열리지 않았습니다.', 'The door is not open yet.'), 'info'); rpTabDoor(); return; }
+      if (k === 'signal') rpCall('cabin', L('スライドを解除しました。ドアを開けてください。', '슬라이드를 해제했습니다. 도어를 열어 주세요.', 'Slide disarmed. You may open the door.'), 'cabin_sig');
+      var want = RDOOR_OK[seq.length]; if (k !== want && !c.flags.doorOrd && k !== 'lock') { c.flags.doorOrd = true; rpBad('rp-door-order', L('ドア開放の確認の順番が違いました（接続 → 周り → 合図 → ハンドル → 固定）。', '도어 개방 확인 순서가 달랐습니다(접현 → 주변 → 신호 → 핸들 → 고정).', 'Door checks out of order (docking → surroundings → signal → handle → lock).'), 'passenger/3-1'); }
+      sfx.tap(); seq.push(k); rpMsg(null); rpTabDoor();
+    }; });
+    document.querySelectorAll('#scr button[data-l]').forEach(function (b) { b.onclick = function () { if (!rpLive(c) || (S.loader && S.loader.ok)) return; sfx.tap(); S.loader = { pick: b.dataset.l, ok: false }; rpMsg(null); rpTabDoor(); }; });
+    $('#r-ldok').onclick = function () {
+      if (!rpLive(c) || !S.loader || S.loader.ok) return; var p = S.loader.pick;
+      if (p === 'slide') { rpStrike('rp-s6', L('スライドが出る範囲に器材を置こうとしました。', '슬라이드 전개 범위에 장비를 두려 했습니다.', 'Tried to place equipment in the slide deployment area.'), 'passenger/3-6'); rpMsg(L('危険区域には置けません（安全C）。', '위험 구역에는 둘 수 없습니다(안전 C).', 'Not in a hazard zone (safety C).'), 'bad'); S.loader = null; }
+      else if (p === 'svc') { if (!c.flags.gseDoor) { c.flags.gseDoor = true; rpBad('rp-gse-door', L('ローダーを客室のサービスドアに付けようとしました（貨物室のドアへ）。', '로더를 객실 서비스 도어에 붙이려 했습니다(화물칸 도어로).', 'Tried to put the loader at a cabin service door (it goes to the cargo door).'), 'passenger/3-6'); } sfx.ng(); rpMsg(L('そこは貨物室のドアではありません。', '그곳은 화물칸 도어가 아닙니다.', 'That is not a cargo door.'), 'bad'); S.loader = null; }
+      else { S.loader.ok = true; sfx.ok(); rpMsg(null); }
+      rpTabDoor();
+    };
+    $('#r-doordone').onclick = function () {
+      if (!(seq.indexOf('lock') >= 0 && S.loader && S.loader.ok) || !rpDone(c)) return;
+      var st = S.rp, r = rpRel(); st.doorAt = r; st.cdoorAt = r; rpSync();
+      rpCall('lead', L('貨物室のドアを開けました。取り降ろしを始められます。', '화물칸 도어를 열었습니다. 하역을 시작할 수 있습니다.', 'Cargo door open. Ready to unload.'), 'lead_cdoor');
+      note('good', L('合図を確かめてからドアを開け、ローダーを貨物室のドアに付けました。', '신호를 확인하고 도어를 연 뒤 로더를 화물칸 도어에 붙였습니다.', 'Opened the door after the signal and put the loader at the cargo door.'), 'passenger/3-1'); sfx.ok(); rpEnd(600);
+    };
+  }
+  /* ---------- 턴어라운드 보드(④~⑥ 공통, 합의본 2B·5절) ---------- */
+  var RTASK = { maint: L('整備：外部点検・ログ', '정비: 외부 점검·로그', 'Maintenance: walkaround & log'), deplane: L('降機', '하기', 'Deplaning'), unload: L('取り降ろし', '하역', 'Unloading'), clean: L('清掃', '청소', 'Cleaning'), cater: L('機内食', '기내식', 'Catering'),
+    fuel: L('給油', '급유', 'Fuelling'), water: L('汚水・給水', '오수·급수', 'Lav & water'), sec: L('保安点検（客室）', '보안 점검(객실)', 'Cabin security check'), load: L('搭載', '탑재', 'Loading'), board: L('搭乗', '탑승', 'Boarding'), close: L('ドアクローズ・器材撤去・トーイングカー', '도어 클로즈·장비 철수·토잉카', 'Close-up, GSE clear, tug on'),
+    deice1: L('除氷（Type I）', '제빙(Type I)', 'De-icing (Type I)'), deice4: L('防氷（Type IV）', '방빙(Type IV)', 'Anti-icing (Type IV)') };
+  var RPLAY = { svc: ['deplane', 'unload', 'clean', 'cater', 'fuel', 'water'], brd: ['sec', 'load', 'board'], dep: ['close'] };
+  function rpNeedTxt(w) {
+    if (!w) return '';
+    if (w === 'started') return tx(L('開始済み', '시작함', 'started'));
+    if (w === 'time:board_std') return tx(L('標準の搭乗開始 ', '표준 탑승 시작 ', 'standard boarding start ')) + rpHm(rpA().board_std);
+    if (w === 'time:crew') return tx(L('乗務員の搭乗 ', '승무원 탑승 ', 'crew boarding ')) + rpHm(rpA().crew);
+    if (w === 'time:ls') return tx(L('承認済みロードシート ', '승인 로드시트 ', 'approved load sheet ')) + rpHm(rpA().ls);
+    if (w.indexOf('need:') === 0) return tx(RTASK[w.slice(5)]) + tx(L('の完了', ' 완료', ' done'));
+    return tx(L('ドアの開放', '도어 개방', 'door open'));
+  }
+  function rpBoard(kind) {
+    var st = S.rp, r = rpRel(), pr = RPS.project(st), crit = RPS.critical(st, pr), lo = Math.min(rpSta() - 2, -95), hi = 10, W = hi - lo;
+    var pct = function (x) { return Math.max(0, Math.min(100, (x - lo) / W * 100)).toFixed(1); };
+    var play = RPLAY[kind] || [];
+    var rows = RPS.ORDER.filter(function (id) { return RPS.isUsed(st, id); }).map(function (id) {
+      var x = st.tasks[id], s = x ? x.s : pr.s[id], e = x ? x.e : pr.e[id], dn = RPS.isDone(st, id), cr = crit.indexOf(id) >= 0, w = RPS.why(st, id);
+      var stt = dn ? '✔ ' + rpHm(e) : x ? rpHm(x.s) + '→' + rpHm(x.e) : tx(L('予定 ', '예정 ', 'plan ')) + rpHm(s);
+      var btn = play.indexOf(id) >= 0 && !x ? '<button class="btn sm" data-t="' + id + '" data-a="start-' + id + '">' + esc(tx(L('開始', '시작', 'Start'))) + '</button>' : '';
+      return '<tr class="' + (cr ? 'crit' : '') + (dn ? ' dn' : '') + '"><td>' + esc(tx(RTASK[id])) + '</td><td class="bar"><span class="nw" style="left:' + pct(r) + '%"></span><span class="pl" style="left:' + pct(pr.s[id]) + '%;width:' + (pct(pr.e[id]) - pct(pr.s[id])).toFixed(1) + '%"></span>' + (x ? '<span class="ac' + (dn ? ' dn' : '') + '" style="left:' + pct(x.s) + '%;width:' + (pct(Math.min(x.e, Math.max(r, x.s))) - pct(x.s)).toFixed(1) + '%"></span>' : '') + '</td><td class="mono">' + esc(stt) + (btn ? '<br>' + btn : (!x && w && play.indexOf(id) >= 0 ? '<br><small>' + esc(rpNeedTxt(w)) + '</small>' : '')) + '</td></tr>';
+    }).join('');
+    var tob = '<div class="rptop"><span>' + esc(tx(L('今 ', '지금 ', 'Now '))) + '<b>' + rpT(r) + '</b></span><span>TOBT <b>' + (S.tobt == null ? '—' : rpHm(S.tobt)) + '</b></span><span>TSAT <b>' + (S.tsat == null ? '—' : rpHm(S.tsat)) + '</b></span><span>' + esc(tx(L('準備完了の見込み ', '예상 준비 완료 ', 'Projected ready '))) + '<b>' + rpHm(pr.ready) + '</b></span></div>';
+    return tob + '<table class="wbt rpboard"><tr><th>' + esc(tx(L('作業', '작업', 'Task'))) + '</th><th class="bar"><small>' + rpHm(lo) + ' – ' + rpHm(hi) + '</small></th><th></th></tr>' + rows + '</table><p class="small">' + esc(tx(L('赤 = 準備完了を決めている作業（クリティカルパス、同じ時刻の分かれ道はすべて赤）。薄い帯 = 今から一番早く進めた場合の見込み。時間・順序は教育用の仮想値。', '빨강 = 준비 완료를 결정하는 작업(크리티컬 패스, 같은 시각의 갈래는 모두 빨강). 옅은 띠 = 지금부터 가장 빨리 진행할 때의 예상. 시간·순서는 교육용 가상 값.', 'Red = tasks that set the ready time (critical path; tied branches are all red). Pale band = projection if everything starts as early as possible. Times are educational values.'))) + '</p>';
+  }
+  function rpTobtBox() {
+    var opts = [], cur = S.tobt == null ? 0 : S.tobt; for (var v = -15; v <= 40; v++) opts.push('<option value="' + v + '"' + (v === cur ? ' selected' : '') + '>' + rpHm(v) + ' (' + rpRelTxt(v) + ')</option>');
+    return '<div class="rptobt"><label>TOBT <select id="r-tobt">' + opts.join('') + '</select></label><button class="btn sm" id="r-tobtok" data-a="tobt">' + esc(tx(S.tobt == null ? L('入力', '입력', 'Enter') : L('更新', '갱신', 'Update'))) + '</button><small>' + esc(tx(L('EOBT（=STD、ゲームの簡略化）の25分前までに入力。遅れが見えたら5分以内に更新。', 'EOBT(=STD, 게임 단순화) 25분 전까지 입력. 늦어질 것이 보이면 5분 안에 갱신.', 'Enter by EOBT−25 (EOBT = STD, game simplification). Update within 5 min when you see a delay.'))) + '</small></div>';
+  }
+  function rpBindBoard(redraw, onBad) {
+    var c = S.cur;
+    document.querySelectorAll('#scr button[data-t]').forEach(function (b) { b.onclick = function () {
+      if (!rpLive(c)) return; var id = b.dataset.t, w = RPS.why(S.rp, id);
+      if (w) {
+        var s4 = (id === 'fuel' && !RPS.isDone(S.rp, 'deplane')) || (id === 'board' && S.rp.tasks.fuel && !RPS.isDone(S.rp, 'fuel'));   /* 61차 보완 F61-04: 안전 조건은 첫 사유와 따로 검사(승객이 있는 채 급유·급유 중 탑승) */
+        if (s4) { rpStrike('rp-s4', id === 'fuel' ? L('お客様が降りきる前に給油を始めようとしました。', '승객이 다 내리기 전에 급유를 시작하려 했습니다.', 'Tried to start fuelling before all passengers were off.') : L('給油が終わる前に搭乗を始めようとしました。', '급유가 끝나기 전에 탑승을 시작하려 했습니다.', 'Tried to start boarding while fuelling was still in progress.'), 'passenger/3-3'); rpMsg(L('始められません（安全C）。', '시작할 수 없습니다(안전 C).', 'Cannot start (safety C).'), 'bad'); }
+        else { sfx.ng(); rpMsg(L('まだ始められません：' + rpNeedTxt(w), '아직 시작할 수 없습니다: ' + rpNeedTxt(w), 'Cannot start yet: ' + rpNeedTxt(w)), 'info'); }
+        redraw(); return;
+      }
+      RPS.start(S.rp, id); sfx.tap(); rpMsg(null);
+      if (id === 'board') rpCall('gate', L('搭乗を開始します。', '탑승을 시작합니다.', 'Starting boarding.'), 'gate_board');
+      rpSync(); redraw();
+    }; });
+    var tw = $('#r-wait'); if (tw) tw.onclick = function () { if (!rpLive(c)) return; rpWait(redraw); };
+    var tb = $('#r-tobtok'); if (tb) tb.onclick = function () { if (!rpLive(c)) return; var v = +$('#r-tobt').value; S.tobt = v; S.tobtLog.push({ at: rpRel(), v: v }); S.aware = null; S.awareMiss = null; if (S.tsat != null && !S.req) { var nt = rpTsatFor(); if (nt !== S.tsat) { S.tsat = nt; S.tsatLog.push({ at: rpRel(), v: nt, why: 'tobt' }); } } sfx.ok(); rpMsg(L('TOBTを ' + rpHm(v) + ' にしました。', 'TOBT를 ' + rpHm(v) + '(으)로 했습니다.', 'TOBT set to ' + rpHm(v) + '.'), 'ok'); redraw(); };
+  }
+  function rpWaitBtn() { var m = rpWaitTarget(); return '<button class="btn" id="r-wait" data-a="wait">⏱ ' + esc(tx(L(m + '分待つ', m + '분 기다리기', 'Wait ' + m + ' min'))) + '</button>'; }
+  /* ④ 동시 작업 */
+  function rpTabSvc() {
+    var c = S.cur, st = S.rp; rpAutoEvents();
+    var ok = RPS.isDone(st, 'deplane') && RPLAY.svc.every(function (id) { return RPS.started(st, id); });
+    scr('<div class="h3">' + esc(tx(L('降機と同時作業', '하기와 동시 작업', 'Deplaning and parallel tasks'))) + '</div>' + rpTobtBox() + rpQuickBox() + rpBoard('svc') +
+      (RPS.quickAllowed(S.rp) ? '' : '<p class="small">' + esc(tx(L('簡易清掃：今日は使えません（標準の地上時間 ― 実際の地上時間が標準より15分以上短いときだけ）。', '간이 청소: 오늘은 쓸 수 없음(표준 지상 시간 — 실제 지상 시간이 표준보다 15분 넘게 짧을 때만).', 'Quick clean: not today (normal ground time — only when actual ground time is over 15 min shorter than standard).'))) + '</p>') +
+      '<div class="btns">' + rpWaitBtn() + '<button class="btn pri" id="r-svcdone" data-a="ok"' + (ok ? '' : ' disabled') + '>' + esc(tx(L('作業の指示 完了 → 次へ', '작업 지시 완료 → 다음', 'Tasks under way → next'))) + '</button></div>' + rpMsgHtml() + rpEdu());
+    rpBindBoard(rpTabSvc); rpQuickBind(rpTabSvc);
+    $('#r-svcdone').onclick = function () { if (!ok || !rpDone(c)) return; note('good', L('降機のあと、清掃・機内食・給油・汚水と給水を指示しました。', '하기 뒤 청소·기내식·급유·오수와 급수를 지시했습니다.', 'Started cleaning, catering, fuelling and lav/water after deplaning.'), 'passenger/3-3'); sfx.ok(); rpEnd(); };
+  }
+  /* ⑤ 보안 점검·탑재·탑승 + TOBT */
+  function rpTabBrd() {
+    var c = S.cur, st = S.rp; rpAutoEvents();
+    var ok = RPS.started(st, 'board') && RPS.started(st, 'load');
+    scr('<div class="h3">' + esc(tx(L('保安点検・搭載・搭乗', '보안 점검·탑재·탑승', 'Security check, loading, boarding'))) + '</div>' + rpTobtBox() + rpBoard('brd') +
+      '<div class="btns">' + rpWaitBtn() + '<button class="btn pri" id="r-brddone" data-a="ok"' + (ok ? '' : ' disabled') + '>' + esc(tx(L('搭乗・搭載 開始 → 次へ', '탑승·탑재 시작 → 다음', 'Boarding and loading under way → next'))) + '</button></div>' + rpMsgHtml() + rpEdu());
+    rpBindBoard(rpTabBrd);
+    $('#r-brddone').onclick = function () { if (!ok || !rpDone(c)) return; note('good', L('保安点検のあとに搭乗を始め、搭載も進めました' + (S.tobt != null ? '（TOBT ' + rpHm(S.tobt) + '）' : '') + '。', '보안 점검 뒤 탑승을 시작하고 탑재도 진행했습니다' + (S.tobt != null ? '(TOBT ' + rpHm(S.tobt) + ')' : '') + '.', 'Started boarding after the security check and kept loading going' + (S.tobt != null ? ' (TOBT ' + rpHm(S.tobt) + ')' : '') + '.'), 'passenger/3-3'); sfx.ok(); rpEnd(); };
+  }
+  /* ⑥ 출발 준비 — 도어 클로즈 묶음 → 출발 조건 → 준비 완료(Ready = 묶음 완료 + 정비 확인 + 인원 대조, 합의본 v2 2B) */
+  var RDEP = [['cdoor', L('客室ドアの閉鎖を外から目で確認', '객실 도어 닫힘을 밖에서 눈으로 확인', 'Cabin doors closed (checked visually from outside)')], ['hold', L('貨物室のドアの閉鎖', '화물칸 도어 닫힘', 'Cargo doors closed')], ['gse', L('器材の撤去・安全区域が空いている', '장비 철수·안전 구역 비움', 'GSE removed, safety zone clear')],
+    ['bridge', L('搭乗橋の切り離し', '탑승교 분리', 'Bridge retracted')], ['tug', L('トーイングカーの接続', '토잉카 연결', 'Tug connected')], ['ls', L('承認済みのロードシート', '승인 로드시트', 'Approved load sheet')], ['count', L('人数の照合（ゲートの最終人数＝搭乗）', '인원 대조(게이트 최종 = 탑승)', 'Headcount (gate final = boarded)')],
+    ['mx', L('整備の確認（出発可・ログのサイン）', '정비 확인(출발 가능·로그 서명)', 'Maintenance release (log signed)')], ['docs', L('出発書類（GD・名簿）の搭載', '출발 서류(GD·명단) 탑재', 'Departure documents (GD, manifest) on board')]];
+  function rpTabDep() {
+    var c = S.cur, st = S.rp; rpAutoEvents(); S.chkDep = S.chkDep || {};
+    var closed = RPS.isDone(st, 'close');
+    scr('<div class="h3">' + esc(tx(L('出発の準備', '출발 준비', 'Getting ready to go'))) + '</div>' + rpTobtBox() + rpBoard('dep') +
+      rpDeiceBox() + rpStartBox() + (closed ? '<div class="h3">' + esc(tx(L('出発条件', '출발 조건', 'Departure conditions'))) + '</div><div class="chk">' + rpDepItems().map(function (it) { var w = rpDepWhy(it[0]); return '<button data-k="' + it[0] + '"' + (w && !S.chkDep[it[0]] ? ' class="dim"' : '') + '><span>' + esc(tx(it[1])) + (w && !S.chkDep[it[0]] ? '<small> — ' + esc(tx(w)) + '</small>' : '') + '</span><span class="st">' + (S.chkDep[it[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div>' : '') +
+      '<div class="btns">' + rpWaitBtn() + '<button class="btn pri" id="r-ready" data-a="ready"' + (closed ? '' : ' disabled') + '>' + esc(tx(L('準備完了（Ready）を報告', '준비 완료(Ready) 보고', 'Report ready'))) + '</button></div>' + rpMsgHtml() + rpEdu());
+    rpBindBoard(rpTabDep);
+    document.querySelectorAll('#scr .chk button[data-k]').forEach(function (b) { b.onclick = function () { if (!rpLive(c)) return; var w = rpDepWhy(b.dataset.k); if (w) { sfx.ng(); rpMsg(w, 'info'); rpTabDep(); return; } sfx.tap(); S.chkDep[b.dataset.k] = true; rpTabDep(); }; });
+    rpDeiceBind(rpTabDep);
+    if ($('#r-startnow')) $('#r-startnow').onclick = function () { if (!rpLive(c)) return; S.startAt = rpRel() + 10; rpAdd(1); sfx.tap(); rpTabDep(); };
+    $('#r-ready').onclick = function () {
+      if (!rpLive(c) || !closed) return;
+      var miss = rpDepItems().filter(function (it) { return it[0] !== 'docs' && !S.chkDep[it[0]]; });
+      if (miss.length) { sfx.ng(); rpMsg(function () { return tx(L('まだ準備完了にできません（報告を保留）。確かめていない出発条件：', '아직 준비 완료로 할 수 없습니다(보고 보류). 확인하지 않은 출발 조건: ', 'Not ready yet (report held). Unchecked: ')) + miss.map(function (it) { return tx(it[1]); }).join(' / '); }, 'info'); rpTabDep(); return; }   /* 61차 보완 F61-02: S8 판정은 이동 실행 때(합의본 3A). 보고 단계는 보류·안내만 */
+      if (!rpDone(c)) return;
+      S.readyAt = rpRel(); S.docsOk = !!S.chkDep.docs;
+      if (!S.docsOk) rpBad('rp-b3', L('出発書類（GD・名簿）を確かめずに準備完了にしました。', '출발 서류(GD·명단)를 확인하지 않고 준비 완료로 했습니다.', 'Reported ready without checking the departure documents.'), 'passenger/3-2');
+      note('good', L('出発条件をそろえて準備完了を報告しました（' + rpHm(S.readyAt) + '）。', '출발 조건을 갖추고 준비 완료를 보고했습니다(' + rpHm(S.readyAt) + ').', 'Reported ready with all conditions met (' + rpHm(S.readyAt) + ').'), 'passenger/3-2'); sfx.ok(); rpEnd();
+    };
+  }
+  /* ⑦ 푸시백(합의본 v2 2F·S9a·S9b) */
+  function rpTabPush() {
+    var c = S.cur, r = rpRel(); rpSync();
+    var canReq = !S.req, appr = !!S.appr, moving = S.aobt != null, pushed = S.pushEnd != null;
+    var st = '<div class="rptop"><span>' + esc(tx(L('今 ', '지금 ', 'Now '))) + '<b>' + rpT(r) + '</b></span><span>TSAT <b>' + (S.tsat == null ? '—' : rpHm(S.tsat)) + '</b></span><span>' + esc(tx(L('要求できる時間 ', '요청 가능 ', 'Request window '))) + '<b>' + (S.tsat == null ? '—' : rpHm(S.tsat - 3) + '–' + rpHm(S.tsat + 5)) + '</b></span></div>';
+    var steps = [[L('要求', '요청', 'Request'), !!S.req], [L('許可', '허가', 'Approval'), appr], [L('車輪止めを外す', '고임목 제거', 'Chocks away'), !!S.chocks], [L('移動開始（AOBT）', '이동 시작(AOBT)', 'Off-blocks (AOBT)'), moving], [L('プッシュバック完了', '푸시백 완료', 'Push complete'), pushed], [L('トーバー切り離し確認', '토바 분리 확인', 'Tow bar off'), !!S.towOff]];
+    scr('<div class="h3">' + esc(tx(L('プッシュバック', '푸시백', 'Pushback'))) + '</div>' + st + rpHotBox() + (M.opt && M.opt.deice && S.hot && !S.hot.handed ? rpDeiceBox() : '') + '<ol class="rpsteps">' + steps.map(function (x) { return '<li class="' + (x[1] ? 'ok' : '') + '">' + esc(tx(x[0])) + (x[1] ? ' ✔' : '') + '</li>'; }).join('') + '</ol>' +
+      '<div class="btns">' + (pushed ? '' : rpWaitBtn()) +
+      (canReq ? '<button class="btn" id="r-req" data-a="req">' + esc(tx(L('ランプコントロールに出発を要求', '램프 컨트롤에 출발 요청', 'Request start-up from ramp control'))) + '</button>' : '') +
+      (appr && !S.chocks ? '<button class="btn" id="r-chock" data-a="chock">' + esc(tx(L('車輪止めを外す', '고임목 제거', 'Remove chocks'))) + '</button>' : '') +
+      (!moving ? '<button class="btn" id="r-move" data-a="move">' + esc(tx(L('プッシュバック開始（移動）', '푸시백 시작(이동)', 'Start pushback (move)'))) + '</button>' : '') +
+      (pushed && !S.towOff ? '<button class="btn" id="r-tow" data-a="tow">' + esc(tx(L('トーバーの切り離しを確認', '토바 분리 확인', 'Confirm tow bar disconnected'))) + '</button>' : '') +
+      (pushed ? '<button class="btn pri" id="r-end" data-a="end">' + esc(tx(L('出発を確認・勤務の記録へ', '출발 확인·기록으로', 'Departure confirmed → records'))) + '</button>' : '') + '</div>' + rpMsgHtml() + rpEdu());
+    var wt = $('#r-wait'); if (wt) wt.onclick = function () { if (!rpLive(c)) return; rpWait(rpTabPush); rpApprove(); rpTabPush(); };
+    rpHotBind(rpTabPush); rpDeiceBind(rpTabPush);
+    if ($('#r-req')) $('#r-req').onclick = function () {
+      if (!rpLive(c)) return; var t = rpRel();
+      if (S.tsat == null || t < S.tsat - 3 - 1e-9) { if (!c.flags.reqEarly) { c.flags.reqEarly = true; rpBad('rp-d2', L('TSATの3分前より早く出発を要求しました（受け付けられません）。', 'TSAT 3분 전보다 일찍 출발을 요청했습니다(접수되지 않음).', 'Requested before TSAT−3 (rejected).'), 'station/1-7'); } rpCall('ramp', L('まだ要求できる時間ではありません。', '아직 요청할 수 있는 시간이 아닙니다.', 'Too early to request.'), 'ramp_early'); sfx.ng(); rpTabPush(); return; }
+      if (M.opt && M.opt.deice && S.hot && S.hot.handed && rpHotMargin() < M.margin - 1e-9) { sfx.ng(); rpMsg(L('HOTの余裕が10分未満です。要求せず、再確認・やり直しを依頼します。', 'HOT 여유가 10분 미만입니다. 요청하지 말고 재확인·재작업을 요청합니다.', 'HOT margin under 10 min — do not request; ask for a re-check / re-treatment.'), 'info'); rpTabPush(); return; }
+      S.req = { at: t }; sfx.tap(); rpApprove(); rpTabPush();
+    };
+    if ($('#r-chock')) $('#r-chock').onclick = function () { if (!rpLive(c)) return; S.chocks = true; sfx.tap(); rpTabPush(); };
+    if ($('#r-move')) $('#r-move').onclick = function () {
+      if (!rpLive(c)) return;
+      var gaps = rpDepItems().filter(function (it) { return it[0] !== 'docs' && !S.chkDep[it[0]]; });
+      if (S.readyAt == null || gaps.length) { rpStrike('rp-s8', L('出発条件がそろわないままプッシュバック（移動）を始めようとしました。', '출발 조건이 갖춰지지 않은 채 푸시백(이동)을 시작하려 했습니다.', 'Tried to start the pushback (move) with departure conditions unmet.'), 'passenger/3-2'); rpMsg(L('動けません（安全C）。', '움직일 수 없습니다(안전 C).', 'Cannot move (safety C).'), 'bad'); rpTabPush(); return; }   /* 방어 검사(정상 흐름에서는 Ready 뒤에만 이 단계) */
+      if (M.opt && M.opt.deice && (!S.hot || !S.hot.handed || rpHotMargin() < M.margin - 1e-9)) { rpStrike('rp-s11', L('HOTの余裕が足りない（または引き継ぎ前の）まま動き出そうとしました。', 'HOT 여유가 모자란(또는 인계 전인) 채 움직이려 했습니다.', 'Tried to move with too little HOT margin (or before the handover).'), 'maintenance/4-4'); rpMsg(L('動けません（安全C）。再確認・やり直しを依頼します。', '움직일 수 없습니다(안전 C). 재확인·재작업을 요청합니다.', 'Cannot move (safety C). Ask for a re-check / re-treatment.'), 'bad'); rpTabPush(); return; }
+      if (!S.appr) { rpStrike('rp-s9a', L('ランプコントロールの許可なしにプッシュバックを始めようとしました。', '램프 컨트롤 허가 없이 푸시백을 시작하려 했습니다.', 'Tried to start the pushback without ramp control approval.'), 'station/1-7'); rpMsg(L('動けません（安全C）。許可を待ちます。', '움직일 수 없습니다(안전 C). 허가를 기다립니다.', 'Cannot move (safety C). Wait for approval.'), 'bad'); rpTabPush(); return; }
+      if (!S.chocks) { sfx.ng(); rpMsg(L('車輪止めが付いたままです。', '고임목이 그대로 있습니다.', 'The chocks are still in.'), 'info'); rpTabPush(); return; }
+      S.aobt = rpRel(); sfx.ok(); rpAdd(3); S.pushEnd = rpRel(); rpCall('lead', L('プッシュバック完了。', '푸시백 완료.', 'Pushback complete.'), null); rpTabPush();
+    };
+    if ($('#r-tow')) $('#r-tow').onclick = function () { if (!rpLive(c)) return; S.towOff = true; sfx.ok(); rpCall('lead', L('プッシュバック完了。トーバー、切り離しました。', '푸시백 완료. 토바 분리했습니다.', 'Push complete. Tow bar disconnected.'), 'lead_push'); rpTabPush(); };
+    if ($('#r-end')) $('#r-end').onclick = function () {
+      if (!rpLive(c)) return;
+      if (!S.towOff) { rpStrike('rp-s9b', L('トーバーの切り離しを確かめずに勤務を終えようとしました。', '토바 분리를 확인하지 않고 근무를 끝내려 했습니다.', 'Tried to close out without confirming the tow bar was off.'), 'passenger/3-6'); rpMsg(L('終えられません（安全C）。トーバーの切り離しを確認。', '끝낼 수 없습니다(안전 C). 토바 분리를 확인.', 'Cannot close out (safety C). Confirm the tow bar is off.'), 'bad'); rpTabPush(); return; }
+      if (!rpDone(c)) return; note('good', L('許可を受けてから動き出し（AOBT ' + rpHm(S.aobt) + '）、トーバーの切り離しを確かめました。', '허가를 받은 뒤 움직이고(AOBT ' + rpHm(S.aobt) + ') 토바 분리를 확인했습니다.', 'Moved only after approval (AOBT ' + rpHm(S.aobt) + ') and confirmed the tow bar was off.'), 'station/1-7'); sfx.ok(); rpEnd();
+    };
+  }
+  /* 허가: 유효한 요청 뒤 max(요청 시각, TSAT, EOBT)에 남(그 전이면 기다리기 경계에서) */
+  function rpApprove() { if (!S.req || S.appr) return; var due = Math.max(S.tsat, 0, S.req.at); if (rpRel() + 1e-9 >= due) { S.appr = true; rpCall('ramp', L('プッシュバック、承認します。', '푸시백 승인합니다.', 'Pushback approved.'), 'ramp_ok'); } }
+  /* ⑧ 기록 — 실제 기록(보정 없음) + 지연 코드 */
+  var RCODES = [['15', L('搭乗（Vela DAY 1：降機・保安点検・搭乗・ドアの指示の遅れ）', '탑승(Vela DAY 1: 하기·보안 점검·탑승·도어 지시 지연)', 'Boarding (Vela DAY 1: late deplaning/security/boarding/door instructions)')], ['32', L('積み下ろし', '하역·탑재', 'Loading / unloading')], ['35', L('機内清掃', '기내 청소', 'Aircraft cleaning')], ['36', L('給油', '급유', 'Fuelling')], ['37', L('機内食', '기내식', 'Catering')], ['89', L('出発空港の制限（管制・TSAT）', '출발 공항 제한(관제·TSAT)', 'Departure airport restrictions (ATC, TSAT)')], ['93', L('機材繰り（前の便の遅れ）', '기재 회전(앞 편 지연)', 'Aircraft rotation (late inbound)')]];
+  var RCMAP = { deplane: '15', sec: '15', board: '15', close: '15', unload: '32', load: '32', clean: '35', cater: '37', fuel: '36', water: '35' };
+  /* 지연 원인(Day 1: 자사 공정만) — 실제 공정에서 준비 완료를 결정한 사슬 중, 시작할 수 있었던 때보다 늦게 시작한 분이 가장 큰 작업 */
+  function rpCause() {
+    var st = S.rp, lag = {}, chain = [];
+    var avail = function (id) { var av = -1e9, by = null; RPS.NEEDS[id].forEach(function (k) { var v = k === '@blk' ? st.blkAt : k === '@door' ? st.doorAt : k === '@cdoor' ? st.cdoorAt : k.indexOf('time:') === 0 ? RPS.timeOf(st, k.slice(5)) : (st.tasks[k] ? st.tasks[k].e : null); if (v != null && v > av + 1e-9) { av = v; by = RPS.NEEDS[k] ? k : null; } }); return { av: av, by: by }; };
+    /* 실제 공정에서 준비 완료를 결정한 사슬을 거꾸로 따라감(각 작업의 시작을 묶은 선행 작업) */
+    var id = st.tasks.close ? 'close' : null;
+    while (id && st.tasks[id] && chain.indexOf(id) < 0) { var a = avail(id); lag[id] = Math.max(0, st.tasks[id].s - a.av); chain.push(id); id = a.by; }
+    /* 사건이 늘린 분(중단·연장·사건 대기)은 사건 코드로 — 접촉 의심 52·낙뢰 77·조류 51·기체 결함 41·추가 연료 62(합의본 3D) */
+    var evc = st.evc || {}, ev = {}, base = { ac: st.ac, opt: st.opt, sta: st.sta };
+    var evCode = function (x) { var m = evc[x], b = null; if (m) Object.keys(m).forEach(function (k) { if (!b || m[k] > m[b]) b = k; }); return b; };
+    chain.forEach(function (x) {
+      var c = evCode(x); if (!c) return; var t = st.tasks[x], ext = (t.e - t.s) - RPS.dur(base, x);
+      if (ext > 1e-9) { var m = evc[x], sm = 0; Object.keys(m).forEach(function (k) { sm += m[k]; }); Object.keys(m).forEach(function (k) { ev[k] = (ev[k] || 0) + ext * m[k] / sm; }); }   /* 여러 사건이 같은 작업을 늘렸으면 분 비율로 나눔 */
+      if (lag[x] > 0 && st.hold && st.hold[x] != null) { var hm = Math.min(lag[x], Math.max(0, st.hold[x] - (t.s - lag[x]))); ev[c] = (ev[c] || 0) + hm; lag[x] -= hm; }   /* 사건 대기(hold)로 못 시작한 분은 사건 쪽, 그 뒤 늦게 시작한 분은 자사 */
+    });
+    var mt = st.tasks.maint, ce = st.tasks.close ? st.tasks.close.e : -1e9;
+    if (mt && mt.e > ce + 1e-9 && evCode('maint')) ev[evCode('maint')] = (ev[evCode('maint')] || 0) + (mt.e - ce);   /* 정비 확인이 준비 완료를 결정 */
+    /* 원인 후보(분) 한곳에 모음 — 상태만 보고 코드를 먼저 정하지 않음(62차 F62-03). 자사 공정 지연(RCMAP)·사건 분·간이 공정을 안 고른 분·시동 지원 늦은 수배·보고 지연 */
+    var cand = {}, add = function (k, m) { if (k && m > 1e-9) cand[k] = (cand[k] || 0) + m; };
+    Object.keys(ev).forEach(function (k) { add(k, ev[k]); });
+    chain.forEach(function (x) { if (lag[x] > 0) add(RCMAP[x], lag[x]); });
+    var A = RPS.ac(st.ac);
+    if (M.opt && M.opt.late && RPS.quickAllowed(st)) {   /* 짧은 턴에서 풀 청소·정상 기내식을 골라 늘어난 분 */
+      if (st.opt.fullClean !== false && chain.indexOf('clean') >= 0) add('35', A.clean - A.qclean);
+      if (st.opt.fullCater !== false && chain.indexOf('cater') >= 0) add('37', A.cater - A.qcater);
+    }
+    var last = RPS.isUsed(st, 'deice4') && st.tasks.deice4 ? st.tasks.deice4.e : (st.tasks.close ? st.tasks.close.e : null), work = last == null ? null : Math.max(last, mt ? mt.e : -1e9);
+    var m39 = 0; if (M.startEquip && !S.apuOk && S.startAt != null && work != null) { m39 = Math.max(0, S.startAt - work); add('39', m39); }   /* 시동 지원 장비 도착이 준비 완료를 늦춘 분 */
+    var readyLag = S.readyAt != null && work != null ? S.readyAt - Math.max(work, S.startAt != null && !S.apuOk ? S.startAt : -1e9) : 0;
+    if (readyLag >= 3) add('15', readyLag);   /* 작업이 다 끝난 뒤 준비 완료 보고가 늦은 분(무전 1~2분은 제외) */
+    var rank = Object.keys(cand).sort(function (x, y) { return cand[y] - cand[x]; }), code = rank[0] || null, second = rank[1] && cand[rank[1]] >= 2 ? rank[1] : null;
+    var best = null; chain.forEach(function (x) { if (lag[x] > 0 && RCMAP[x] === code && (!best || lag[x] > lag[best])) best = x; });
+    return { id: best, code: code, lag: lag, chain: chain, ev: ev, cand: cand, second: second };
+  }
+  function rpB1Note() { if (rpB1()) rpBad('rp-b1', (S.tobtLog || []).length ? L('TOBTの入力・更新が遅れました（EOBT−25までに入力／遅れが見えたら5分以内に更新）。', 'TOBT 입력·갱신이 늦었습니다(EOBT−25까지 입력 / 늦어질 것이 보이면 5분 안에 갱신).', 'TOBT entered or updated late (enter by EOBT−25; update within 5 min of seeing a delay).') : L('TOBTを入力しませんでした（EOBTをTOBTとして扱いました）。', 'TOBT를 입력하지 않았습니다(EOBT를 TOBT로 취급).', 'No TOBT entered (EOBT was used as the TOBT).'), 'station/1-7'); }
+  function rpTabRec() {
+    var c = S.cur, delay = Math.max(0, Math.round(S.aobt)), d0 = S.aobt <= 1e-9, d15 = S.aobt <= 15 + 1e-9, want = rpWantCodes(), CL = rpCodeList();
+    var opt = function (id, v, none) { return '<select id="' + id + '">' + (none ? '<option value="">' + esc(tx(none)) + '</option>' : '<option value="">—</option>') + CL.map(function (x) { return '<option value="' + x[0] + '"' + (v === x[0] ? ' selected' : '') + '>' + x[0] + ' ' + esc(tx(x[1])) + '</option>'; }).join('') + '</select>'; };
+    scr('<div class="h3">' + esc(tx(L('出発後の記録（実際の記録 ― 補正なし）', '출발 후 기록(실제 기록 — 보정 없음)', 'After departure — actual record (uncorrected)'))) + '</div>' +
+      rpKV([['AOBT', rpT(S.aobt)], [L('遅れ', '지연', 'Delay'), delay + tx(T.min)], ['D0', d0 ? '○' : '×'], ['D15', d15 ? '○' : '×'], [L('準備完了', '준비 완료', 'Ready'), rpT(S.readyAt)], ['TOBT', S.tobtLog.length ? S.tobtLog.map(function (x) { return rpHm(x.v) + ' <small>(' + esc(tx(L('入力 ', '입력 ', 'set '))) + rpHm(x.at) + ')</small>'; }).join(' → ') : '—'], ['TSAT', S.tsatLog.map(function (x) { return rpHm(x.v); }).join(' → ') || '—']]) +
+      (delay > 0 ? '<div class="h3">' + esc(tx(L('遅延コード（主な原因1つ＋ほかの原因）', '지연 코드(주원인 1 + 부원인)', 'Delay codes (one main cause + other)'))) + '</div><div class="rptobt"><label>' + esc(tx(L('主', '주', 'Main'))) + ' ' + opt('r-code', S.code) + '</label><label>' + esc(tx(L('副', '부', 'Other'))) + ' ' + opt('r-code2', S.code2, L('なし', '없음', 'none')) + '</label></div><p class="small">' + esc(tx(L('主な原因 = 遅れの分がいちばん大きい原因。分は重ならないようにゲームが計算します。15は、Vela DAY 1以降の降機・保安点検・搭乗・ドアの作業指示の遅れをまとめた教育用の分類です（標準の定義は搭乗の人数の不一致・呼び出しなど）。原因は担当者ではなく、実際に何が起きたかで選びます。コード表：サイトの「IATA遅延コード一覧（AHM730）」の版（Vela採用）。実際の運用は各社の規定・IATAの最新資料で確認。', '주원인 = 지연 분이 가장 큰 원인. 분은 겹치지 않게 게임이 계산합니다. 15는 Vela에서 하기·보안 점검·탑승·도어 작업 지시 지연을 묶은 교육용 분류입니다(표준 정의는 탑승 인원 불일치·호출 등). 원인은 담당자가 아니라 실제로 무슨 일이 있었는지로 고릅니다. 코드표: 사이트 「IATA 지연 코드 목록(AHM730)」 판본(Vela 채택). 실제 운용은 각사 규정·IATA 최신 자료로 확인.', 'Main = the cause with the most minutes; the game splits minutes without overlap. Here 15 is a Vela teaching bucket for late deplaning / security-check / boarding / door instructions (the standard definition covers boarding discrepancies, paging, etc.). Choose by what actually happened, not who handled it. Code table: the site’s “IATA delay codes (AHM730)” edition (Vela adopted). Check your company rules and the latest IATA material for real use.'))) + '</p>' : '<p>' + esc(tx(L('定時に出発しました（遅延コードなし）。', '정시에 출발했습니다(지연 코드 없음).', 'Departed on time (no delay code).'))) + '</p>') +
+      (M.report ? '<div class="chk"><button data-rep="1" class="' + (S.report ? 'on' : '') + '"><span>' + esc(tx(L('ヒヤリハット（接触の疑い）の安全報告を出す ― 事実・時刻・関係者（罰のためではない）', '아차 사고(접촉 의심) 안전 보고 제출 — 사실·시각·관련자(처벌 목적 아님)', 'File a safety report on the near miss (suspected contact) — facts, time, people (not for blame)'))) + '</span><span class="st">' + (S.report ? '✔' : '') + '</span></button></div>' : '') +
+      '<div class="btns"><button class="btn pri" id="r-rec" data-a="ok"' + (delay > 0 && !S.code ? ' disabled' : '') + '>' + esc(tx(L('記録を保存', '기록 저장', 'Save the record'))) + '</button><button class="btn" id="r-recskip" data-a="rp-rec">' + esc(tx(L('省略する', '생략', 'Skip'))) + '</button></div>' + rpEdu());
+    if ($('#r-code')) $('#r-code').onchange = function () { S.code = this.value || null; rpTabRec(); };
+    if ($('#r-code2')) $('#r-code2').onchange = function () { S.code2 = this.value || null; };
+    document.querySelectorAll('#scr button[data-rep]').forEach(function (b) { b.onclick = function () { if (!rpLive(c)) return; sfx.tap(); S.report = !S.report; rpTabRec(); }; });
+    $('#r-rec').onclick = function () {
+      if ((delay > 0 && !S.code) || !rpDone(c)) return; S.recDone = true;
+      if (delay > 0) {
+        var ch = [S.code, S.code2].filter(function (x) { return x; }), ownC = want.own > 0 ? (want.main === M.bestCode ? want.sub : want.main) : null;
+        var hid = ownC && ch.indexOf(ownC) < 0 && ch.some(function (x) { return x === '93' || x === '89' || x === '75' || x === M.bestCode; });
+        if (hid) rpBad('rp-b2', L('自社の工程の遅れ（' + ownC + '）を外の原因のコードだけで記録しました。', '자사 공정 지연(' + ownC + ')을 외부 원인 코드로만 기록했습니다.', 'Recorded the company’s own delay (' + ownC + ') under outside-cause codes only.'), 'station/1-2');
+        else if (S.code !== want.main || (S.code2 || null) !== (want.sub || null)) rpBad('rp-d1', L('遅延コードの選択が違いました（正しくは 主 ' + want.main + (want.sub ? '・副 ' + want.sub : '') + '）。', '지연 코드 선택이 틀렸습니다(정답 주 ' + want.main + (want.sub ? '·부 ' + want.sub : '') + ').', 'Wrong delay codes (correct: main ' + want.main + (want.sub ? ', other ' + want.sub : '') + ').'), 'station/1-2');
+        else note('good', L('遅延コード 主 ' + want.main + (want.sub ? '・副 ' + want.sub : '') + ' で記録しました（' + (want.ext ? '外の原因 ' + want.ext + '分' : '') + (want.ext && want.own ? '・' : '') + (want.own ? '自社 ' + want.own + '分' : '') + '）。', '지연 코드 주 ' + want.main + (want.sub ? '·부 ' + want.sub : '') + '(으)로 기록했습니다(' + (want.ext ? '외부 원인 ' + want.ext + '분' : '') + (want.ext && want.own ? '·' : '') + (want.own ? '자사 ' + want.own + '분' : '') + ').', 'Recorded main ' + want.main + (want.sub ? ', other ' + want.sub : '') + ' (' + (want.ext ? 'outside ' + want.ext + ' min' : '') + (want.ext && want.own ? ', ' : '') + (want.own ? 'own ' + want.own + ' min' : '') + ').'), 'station/1-2');
+      } else note('good', L('出発時刻と工程の記録を保存しました。', '출발 시각과 공정 기록을 저장했습니다.', 'Saved the departure time and process record.'), 'station/1-2');
+      if (M.report && !S.report) rpBad('rp-b4', L('ヒヤリハット（接触の疑い）の安全報告を出しませんでした。', '아차 사고(접촉 의심) 안전 보고를 내지 않았습니다.', 'Did not file the near-miss safety report.'), 'passenger/3-5');
+      else if (M.report) note('good', L('ヒヤリハットの安全報告を出しました。', '아차 사고 안전 보고를 냈습니다.', 'Filed the near-miss safety report.'), 'passenger/3-5');
+      rpB1Note(); sfx.ok(); rpEnd();
+    };
+    $('#r-recskip').onclick = function () { if (!rpDone(c)) return; sfx.ng(); rpBad('rp-rec', L('出発後の記録を省きました。', '출발 후 기록을 생략했습니다.', 'Skipped the post-departure records.'), 'station/1-3'); if (M.report) rpBad('rp-b4', L('ヒヤリハットの安全報告を出しませんでした。', '아차 사고 안전 보고를 내지 않았습니다.', 'Did not file the near-miss safety report.'), 'passenger/3-5'); rpB1Note(); rpEnd(); };
+  }
+  /* ---------- 채점(합의본 v2 3B·3C) ---------- */
+  function rpTimeParts() {
+    var tobtLast = null; (S.tobtLog || []).forEach(function (x) { if (S.readyAt == null || x.at <= S.readyAt + 1e-9) tobtLast = x.v; });   /* 준비 완료 전에 제출한 마지막 유효 TOBT(사후 수정 제외) */
+    var best = rpBest();
+    return Object.assign(RPS.timeScore({ aobt: S.aobt == null ? best + 99 : S.aobt, best: best, tobtLast: tobtLast, ready: S.readyAt == null ? best + 99 : S.readyAt, viol: S.viol || 0 }), { best: best, tobtLast: tobtLast });
+  }
+  function rpB1() { var first = (S.tobtLog || [])[0]; return !first || first.at > -25 + 1e-9 || (S.viol || 0) > 0; }
+  function rpScore() {
+    var unserved = S.list.length - S.results.length, allR = S.results.slice(), bad = 0;
+    allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && RSAFE.indexOf(n.c) < 0) bad++; }); });
+    var acc = Math.max(0, 100 - bad * 10 - unserved * 15);
+    var tp = rpTimeParts(), tim = unserved ? 0 : Math.round(tp.total / 15 * 100);
+    var safe = S.strikes === 0;
+    var rp4 = [rpB1() ? 0 : 1, S.docsOk ? 1 : 0, S.recDone ? 1 : 0]; if (M.report) rp4.push(S.report && S.recDone ? 1 : 0);
+    var rep = Math.round(100 * rp4.reduce(function (a, x) { return a + x; }, 0) / rp4.length);
+    var parts = [{ k: 'acc', v: acc, w: 35 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 15 }, { k: 'rep', v: rep, w: 20 }];
+    if (M.day >= 2) parts = [{ k: 'acc', v: acc, w: 30 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 10 }, { k: 'rep', v: rep, w: 15 }, { k: 'evt', v: unserved ? 0 : rpEvtScore(), w: 15 }];   /* 사건이 있는 날 5항목(탑재관리편 Day 2~와 같은 틀) */
+    var tot = Math.round(parts.reduce(function (a, x) { return a + x.v * x.w; }, 0) / 100);
+    var rank = !safe ? 'C' : tot >= 90 ? 'S' : tot >= 80 ? 'A' : tot >= 65 ? 'B' : 'C';
+    var opMiss = []; allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && ROPS.indexOf(n.c) >= 0 && opMiss.indexOf(n.c) < 0) opMiss.push(n.c); }); });
+    var opsPass = !opMiss.length, opCapped = safe && !opsPass && rank === 'S'; if (opCapped) rank = 'A';
+    var capped = S.day.n >= 2 && G.hints && !G.practice && rank === 'S'; if (capped) rank = 'A';
+    return { unserved: unserved, allR: allR, acc: acc, svc: 100, tim: tim, tot: tot, safe: safe, smiss: S.safety || [], parts: parts, rank: rank, opMiss: opMiss, opsPass: opsPass, opCapped: opCapped, capped: capped, opsCodes: ROPS, people: 0, tp: tp };
+  }
+  function rpStateWhy(st) {
+    function num(x) { return typeof x === 'number' && isFinite(x); }
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    if (['737', '789'].indexOf(st.acKey) < 0) return 'acKey';
+    var r = st.rp; if (!obj(r) || ['737', '789'].indexOf(r.ac) < 0 || !obj(r.tasks) || !num(r.sta) || !num(r.t)) return 'rp';
+    if (Object.keys(r.tasks).some(function (k) { var x = r.tasks[k]; return RPS.ORDER.indexOf(k) < 0 || !obj(x) || !num(x.s) || !num(x.e) || x.e < x.s; })) return 'tasks';
+    if (!Array.isArray(st.tobtLog) || !Array.isArray(st.tsatLog) || !(st.tobt == null || num(st.tobt)) || !(st.tsat == null || num(st.tsat)) || !(st.aobt == null || num(st.aobt)) || !(st.readyAt == null || num(st.readyAt))) return 'acdm';
+    if (!num(st.viol) || !num(st.strikes) || !Array.isArray(st.results)) return 'core';
+    return null;
+  }
+  window.SAGA_STAGES = window.SAGA_STAGES || {};
+  if (window.RPS && window.MISSION_RP01) window.SAGA_STAGES.rp = {
+    id: 'rp', stageNo: '04', name: L('ランプ・ターンアラウンド', '램프·턴어라운드', 'Ramp & turnaround'), days: RP_DAYS, rules: window.RULES, rulesVer: 'R1.0', text: RP_TEXT,
+    lockLabel: L('🔒 準備中', '🔒 준비 중', '🔒 Coming soon'),
+    hero: rpHero, scene: function () { return rpScene(); },
+    toolsHtml: function () { return ''; }, bindTools: function () {},
+    initState: function (dd, M0, V0, seed) { var k = rpAcKey(), st = RPS.make(k, M0.opt); return { clock: pm(V0.start), close: pm(V0.close), bgQueue: 0, list: V0.pax(), seed: seed, adv: true, idx: -1, cur: null, results: [], revenue: [], strikes: 0, seq: 1, day: dd, evChecks: [], evRep: { need: 0, done: 0 }, safety: [],
+      acKey: k, rp: st, tobt: null, tobtLog: [], tsat: null, tsatLog: [], req: null, appr: false, chocks: false, aobt: null, pushEnd: null, towOff: false, readyAt: null, gse: null, loader: null, blkSeq: [], doorSeq: [], aware: null, awareMiss: null, viol: 0, code: null, recDone: false, struck: {}, docsOk: false, chkPrep: {}, chkDep: {}, lsAt: null, evq: [], evr: {}, evFired: {}, evTimed: [], apuOk: false, startAt: null, busOk: false, fodRep: false, contactRep: false, hot: null, deiceReq: null, report: false, beaconOn: !!M0.beaconLate, code2: null }; },
+    runFields: RP_RUNF, runSkip: RP_RUNSKIP, freshList: function (mi, va) { return va.pax(); }, allUnits: function (l) { return l; },
+    acCode: function (s) { return (s || S).acKey === '789' ? 'B' : 'A'; }, acOf: function (c) { var k = c === 'B' ? '789' : '737'; G.wbAc = k; return k; },
+    phase: function () { return (S.idx + 1 >= S.list.length) ? 'finish' : 'pax'; }, runEvent: function () {},
+    startUnit: rpStart, stateWhy: rpStateWhy,
+    patchWhy: function (pp) { return pp == null || (typeof pp === 'object' && !Array.isArray(pp) && !Object.keys(pp).length) ? null : 'patch'; },
+    rangeWhy: function (s, o, va) { function num(x, lo, hi) { return typeof x === 'number' && isFinite(x) && x >= lo && x <= hi; } if (!num(s.clock, pm(va.start), pm(va.start) + 300) || !num(s.strikes, 0, 99)) return 'range'; return null; },
+    tabs: function (c) { return [c.tab]; }, tabState: function () { var c = S.cur; return c.flags.done ? 'ok' : ''; },
+    tab: { prep: rpTabPrep, blk: rpTabBlk, door: rpTabDoor, svc: rpTabSvc, brd: rpTabBrd, dep: rpTabDep, push: rpTabPush, rec: rpTabRec },
+    tabPose: { prep: 'check', blk: 'check', door: 'check', svc: 'idle', brd: 'idle', dep: 'check', push: 'announce', rec: 'idle' },
+    banners: function () { return rpEvBox(); }, afterScr: function () { rpEvBind(); rpJSave(); },
+    barQueue: function () { return Math.max(0, S.list.length - S.results.length - (S.cur ? 1 : 0)); },
+    barDone: function () { return S.results.length + '/' + S.list.length; },
+    voiceCast: function () { return 'staff'; },
+    score: rpScore, revenueLines: function () { return []; }, legacyBest: function () {},
+    actions: RACT, reportCodes: [], missLabels: RMISSL, unitName: rpUnitName,
+    replayHead: function (r) { return esc(rpUnitName(r)); },
+    resultTitle: function () { return esc(tx(L('ターンアラウンド', '턴어라운드', 'Turnaround'))) + ' · ' + V.flight + ' · ' + (S.acKey === '789' ? 'B787-9' : 'B737-800'); },
+    resultGates: function (sc) { return sc.opMiss.length || !sc.opsPass ? '<div class="gate ' + (sc.opsPass ? 'ok' : 'ng') + '">' + esc(tx(sc.opsPass ? L('業務：合格', '업무: 합격', 'Operations: pass') : L('業務：要確認（最高A）', '업무: 확인 필요(최고 A)', 'Operations: needs review (max A)'))) + '</div>' : ''; },
+    resultExtra: function (sc) {
+      var tp = (sc && sc.tp) || rpTimeParts(), d = S.aobt == null ? null : Math.max(0, Math.round(S.aobt));
+      var real = '<div class="panel"><h2>' + esc(tx(L('実際の記録（補正なし）', '실제 기록(보정 없음)', 'Actual record (uncorrected)'))) + '</h2><p class="mono" style="margin:0;font-size:13px">AOBT ' + (S.aobt == null ? '—' : rpHm(S.aobt)) + ' · ' + esc(tx(L('遅れ ', '지연 ', 'Delay '))) + (d == null ? '—' : d + tx(T.min)) + ' · D0 ' + (S.aobt != null && S.aobt <= 1e-9 ? '○' : '×') + ' · D15 ' + (S.aobt != null && S.aobt <= 15 + 1e-9 ? '○' : '×') + (S.code ? ' · CODE ' + S.code + (S.code2 ? ' / ' + S.code2 : '') : '') + '</p></div>';
+      var adj = '<div class="panel"><h2>' + esc(tx(L('時間の点（調整点 ― 自分で失った分だけ）', '시간 점수(조정 점수 — 스스로 잃은 분만)', 'Timing score (adjusted — only minutes you lost)'))) + '</h2><table class="wbt"><tr><td>' + esc(tx(L('調整遅延 L = 実際のAOBT − 最善のAOBT（' + rpHm(tp.best) + '）', '조정 지연 L = 실제 AOBT − 최선 AOBT(' + rpHm(tp.best) + ')', 'Adjusted delay L = actual AOBT − best AOBT (' + rpHm(tp.best) + ')'))) + '</td><td class="n">' + tp.L + tx(T.min) + '</td><td class="n">' + tp.pL + ' / 9</td></tr>' +
+        '<tr><td>' + esc(tx(L('TOBTの正確さ（準備完了前の最後のTOBT − 準備完了）', 'TOBT 정확도(준비 완료 전 마지막 TOBT − 준비 완료)', 'TOBT accuracy (last TOBT before ready − ready)'))) + '</td><td class="n">' + (tp.err == null ? '—' : tp.err + tx(T.min)) + '</td><td class="n">' + tp.pT + ' / 3</td></tr>' +
+        '<tr><td>' + esc(tx(L('TOBT更新の早さ（遅れが見えて5分以内）', 'TOBT 갱신 적시성(늦어질 것이 보인 뒤 5분 안)', 'TOBT update timeliness (within 5 min of seeing a delay)'))) + '</td><td class="n">' + esc(tx(L('違反 ', '위반 ', 'misses '))) + (S.viol || 0) + '</td><td class="n">' + tp.pV + ' / 3</td></tr></table><p class="small">' + esc(tx(L('外の制約（管制のTSATなど）で待った分は最善のAOBTに入っているので、点からは自動で外れます。自分で招いたTSATの逃しは外れません。実際の記録はそのまま残ります。', '외부 제약(관제 TSAT 등)으로 기다린 분은 최선 AOBT에 들어 있어 점수에서 자동으로 빠집니다. 스스로 놓친 TSAT는 빠지지 않습니다. 실제 기록은 그대로 남습니다.', 'Waiting caused by outside limits (e.g. an ATC TSAT) is already in the best AOBT, so it does not cost points; a TSAT you missed yourself does. The actual record is kept unchanged.'))) + '</p></div>';
+      return real + adj;
+    },
+    partLabels: { rep: L('報告・記録', '보고·기록', 'Reports & records'), evt: L('出来事への対応', '사건 대응', 'Handling events') },
+    scoreVer: 'rp1', ruleDate: '2026-10-18', layoutVer: 'A',
+    testHooks: function () { return { rpScore: rpScore, rpStateWhy: rpStateWhy, rpTimeParts: rpTimeParts, rpCause: rpCause, rel: rpRel, want: rpWantCodes, evt: rpEvtScore, hotMargin: rpHotMargin, add: function (m) { rpAdd(m); rpAutoEvents(); if (S.cur) showTab(S.cur.tab); } }; }
+  };
+  /* ================= STAGE 04 램프편 DAY 2~5 사건(합의본 v2 3절) — rp.js 뒤에 이어 붙임(같은 엔진 IIFE) =================
+     사건은 미션의 events[{id, kind, at:{737,789}}]. 그 시각이 되면 무전과 함께 「판단 상자」가 열리고, 고르기 전에는 기다리기·다음 단계로 갈 수 없음.
+     고른 결과는 S.evr[id] = 100 / 50 / 0(사건 점수), 판정 코드는 3A 표 그대로 */
+  RMISSL['rp-s5'] = L('FODを取り除かずにその区域の作業を続けようとした', 'FOD를 치우지 않고 그 구역 작업을 계속하려 함', 'Left FOD in place and carried on working in that area');
+  RMISSL['rp-s7'] = L('接触・鳥衝突の疑いで、整備の判断の前に影響する作業を続けた', '접촉·조류 충돌 의심에서 정비 판단 전에 영향 작업을 계속함', 'Continued affected work before the engineer’s verdict on a suspected strike/contact');
+  RMISSL['rp-s10'] = L('落雷警報のあとも屋外の作業を続けた', '낙뢰 경보 뒤에도 옥외 작업을 계속함', 'Kept outdoor work going after a lightning alert');
+  RMISSL['rp-s11'] = L('除氷の要求・HOTの余裕を無視して動き出そうとした', '제빙 요청·HOT 여유를 무시하고 움직이려 함', 'Tried to move ignoring the de-icing request / HOT margin');
+  RMISSL['rp-s12'] = L('MELで使えない位置への搭載を指示しようとした', 'MEL로 쓸 수 없는 위치에 탑재를 지시하려 함', 'Tried to load into a position restricted by the MEL');
+  RMISSL['rp-b4'] = L('ヒヤリハット（接触の疑い）の安全報告を出さなかった', '아차 사고(접촉 의심) 안전 보고를 내지 않음', 'Did not file a safety report on the near miss (suspected contact)');
+  RMISSL['rp-b5'] = L('APU不作動への機材（始動支援）を正しく手配しなかった', 'APU 불능에 맞는 장비(시동 지원)를 바르게 수배하지 않음', 'Did not arrange the right start support for the APU defect');
+  RMISSL['rp-d3'] = L('変更・出どころの共有をしなかった', '변경·출처 공유를 하지 않음', 'Did not share the change / the source');
+  RMISSL['rp-hot'] = L('機長への除氷の引き継ぎ内容を誤った', '기장에게 넘긴 제빙 인계 내용이 틀림', 'Gave the captain wrong de-icing details');
+  RMISSL['rp-fuel-plan'] = L('追加給油より先に搭乗を進めようとした', '추가 급유보다 탑승을 먼저 하려 함', 'Planned to board before the extra fuel');
+  RMISSL['rp-remote'] = L('沖止めのバス・ステップを手配しなかった', '원격 주기장 버스·스텝을 수배하지 않음', 'Did not arrange buses and steps for the remote stand');
+  RMISSL['rp-over'] = L('止める必要のない作業まで止めた', '멈출 필요 없는 작업까지 멈춤', 'Stopped work that did not need stopping');
+  ['rp-s5', 'rp-s7', 'rp-s10', 'rp-s11', 'rp-s12'].forEach(function (k) { RSAFE.push(k); RACT[k] = 'ramp-safety-' + k.slice(3); });
+  ['rp-b4', 'rp-b5'].forEach(function (k) { ROPS.push(k); RACT[k] = 'ramp-ops-' + k.slice(3); });
+  ['rp-d3', 'rp-hot', 'rp-fuel-plan', 'rp-remote', 'rp-over'].forEach(function (k) { RACT[k] = 'ramp-' + k.slice(3); });
+  RCALL.ops = L('運航管理', '운항관리', 'Dispatch'); RCALLART.ops = 'people_dispatcher_bust_01'; RVCAST.ops = 'rp_ops';
+  RCALL.deice = L('除氷担当', '디아이싱 담당', 'De-icing crew'); RCALLART.deice = 'people_deicer_bust_01'; RVCAST.deice = 'rp_deice';
+  RCALL.cap = L('機長', '기장', 'Captain'); RCALLART.cap = 'people_captain_bust_01'; RVCAST.cap = 'rp_cap';
+  /* 음성 키(고정 문장) 추가 — 합성은 전 스테이지 교체 때 */
+  RVO.ops_late = '運航管理です。前の便の到着が遅れます。新しい到着予定を送ります。';
+  RVO.lead_fod = 'ハンドリングです。スポットで金属の部品のようなものを見つけました。';
+  RVO.lead_contact = 'ハンドリングです。ローダーが後ろの貨物室のドアの近くに当たったかもしれません。';
+  RVO.ramp_light = 'ランプコントロールです。落雷警報を出します。屋外の作業を止めてください。';
+  RVO.ramp_clear = 'ランプコントロールです。落雷警報を解除します。';
+  RVO.mx_apu = '整備です。前の便からの不具合で、APUが使えません。';
+  RVO.mx_tlog = '整備です。テクニカルログに不具合の記録があります。判断まで少し時間をください。';
+  RVO.mx_mel = '整備です。MELを適用します。貨物室の一部の位置が使えません。';
+  RVO.ops_fuel = '運航管理です。燃料を追加します。搭乗の前に終わらせてください。';
+  RVO.ops_remote = '運航管理です。今日は沖止めのスポットです。搭乗橋はありません。';
+  RVO.mx_bird = '整備です。前の便が進入中に鳥と当たったかもしれません。外部の点検をします。';
+  RVO.mx_ok2 = '整備です。点検の結果、異常はありません。作業を再開できます。';
+  RVO.deice_done = '除氷担当です。防氷まで終わりました。';
+  RVO.cap_hot = '機長です。除氷の内容、受け取りました。';
+  function rpEvAt(e) { return e.at[S.acKey] != null ? e.at[S.acKey] : e.at['737']; }
+  function rpEvList() { return M.events || []; }
+  function rpEvDef(id) { var x = null; rpEvList().forEach(function (e) { if (e.id === id) x = e; }); return x; }
+  function rpEvTimes() { var r = rpRel(), o = []; rpEvList().forEach(function (e) { if (!(S.evFired || {})[e.id]) o.push(rpEvAt(e)); }); (S.evTimed || []).forEach(function (x) { if (!x.done) o.push(x.at); }); return o.filter(function (x) { return x > r; }); }
+  /* 사건 발생(시각이 되면 한 번) */
+  function rpEvFire() {
+    var r = rpRel(); S.evFired = S.evFired || {}; S.evq = S.evq || [];
+    rpEvList().forEach(function (e) {
+      if (S.evFired[e.id] || r + 1e-9 < rpEvAt(e)) return;
+      if ((e.kind === 'contact' || e.kind === 'light' || e.kind === 'fuel' || e.kind === 'mel' || e.kind === 'tlog') && S.rp.blkAt == null) return;
+      S.evFired[e.id] = r; S.evq.push(e.id); var D = RPEV[e.kind]; if (D.fire) D.fire(e); rpCall(D.who, D.radio(e), D.vk);
+    });
+    (S.evTimed || []).forEach(function (x) { if (!x.done && r + 1e-9 >= x.at) { x.done = true; if (x.say) rpCall(x.who, x.say, x.vk); } });
+  }
+  function rpTimed(at, who, say, vk) { S.evTimed = S.evTimed || []; S.evTimed.push({ at: at, who: who, say: say, vk: vk, done: false }); }
+  function rpEvPending() { return (S.evq || []).length ? S.evq[0] : null; }
+  /* 사건별 정의: who·radio·choices[{t, res, run}] */
+  var OUTDOOR = ['unload', 'load', 'fuel', 'water', 'cater'];
+  var RPEV = {
+    late: { who: 'ops', vk: 'ops_late', radio: function () { return L('前の便の到着が25分遅れます。新しい到着予定は ' + rpHm(rpSta()) + ' です（地上時間 ' + (-rpSta()) + '分）。', '앞 편 도착이 25분 늦습니다. 새 도착 예정은 ' + rpHm(rpSta()) + '입니다(지상 시간 ' + (-rpSta()) + '분).', 'The inbound is 25 min late. New arrival: ' + rpHm(rpSta()) + ' (ground time ' + (-rpSta()) + ' min).'); },
+      choices: [{ t: L('ゲート・ロードコントロール・客室に共有し、器材と人員を先に待機させる（1分）', '게이트·탑재관리·객실에 공유하고 장비·인원을 미리 대기시킨다(1분)', 'Share with gate, load control and cabin; have equipment and staff standing by (1 min)'), res: 100, cost: 1, good: L('到着の遅れを関係部署に共有し、短いターンの準備をしました。', '도착 지연을 관련 부서에 공유하고 짧은 턴을 준비했습니다.', 'Shared the late arrival and prepared for a short turn.'), lesson: 'station/1-3' },
+        { t: L('いつもどおり進める（共有は後で）', '평소대로 진행(공유는 나중에)', 'Carry on as usual (share later)'), res: 0, bad: 'rp-d3', badT: L('到着の遅れを関係部署に共有しませんでした。', '도착 지연을 관련 부서에 공유하지 않았습니다.', 'Did not share the late arrival.'), lesson: 'station/1-3' }] },
+    fod: { who: 'lead', vk: 'lead_fod', radio: function () { return L('スポットで金属の部品のようなもの（ボルト）を見つけました。', '주기장에서 금속 부품 같은 것(볼트)을 발견했습니다.', 'Found something like a metal part (a bolt) on the stand.'); },
+      choices: [{ t: L('拾って区域を確かめ、機体の部品かもしれないので整備に報告する（1分）', '주워서 구역을 확인하고, 기체 부품일 수 있어 정비에 보고한다(1분)', 'Pick it up, check the area and report it to maintenance as a possible aircraft part (1 min)'), res: 100, cost: 1, run: function () { S.fodRep = true; }, good: L('FODを取り除き、出どころを整備に報告しました（整備の確認が出発条件に入ります）。', 'FOD를 치우고 출처를 정비에 보고했습니다(정비 확인이 출발 조건에 들어감).', 'Removed the FOD and reported its possible source to maintenance.'), lesson: 'maintenance/0-3' },
+        { t: L('拾ってごみ箱に捨てる', '주워서 쓰레기통에 버린다', 'Pick it up and bin it'), res: 50, bad: 'rp-d3', badT: L('FODの出どころ（機体の部品かもしれない）を整備に報告しませんでした。', 'FOD 출처(기체 부품일 수 있음)를 정비에 보고하지 않았습니다.', 'Did not report the possible source of the FOD to maintenance.'), lesson: 'maintenance/0-3' },
+        { t: L('まだ作業前なのでそのままにする', '아직 작업 전이니 그대로 둔다', 'Leave it — work has not started yet'), res: 0, strike: 'rp-s5', badT: L('FODを取り除かずに、その区域で作業を始めることになりました。', 'FOD를 치우지 않은 채 그 구역에서 작업을 시작하게 되었습니다.', 'Left the FOD where work was about to start.'), lesson: 'passenger/3-5' }] },
+    contact: { who: 'lead', vk: 'lead_contact', radio: function () { return L('ローダーが後ろの貨物室のドアの近くに当たったかもしれません。傷は見えません。', '로더가 후방 화물칸 도어 근처에 닿았을지도 모릅니다. 흠집은 보이지 않습니다.', 'The loader may have touched near the aft cargo door. No visible damage.'); },
+      choices: [{ t: L('その貨物室の作業を止め、整備に「当たったかもしれない」とすぐ報告。ほかの作業は続ける（1分）', '그 칸 작업을 멈추고 정비에 「닿았을지 모른다」고 바로 보고. 다른 작업은 계속(1분)', 'Stop that hold’s work, report “may have touched” to maintenance now; other work continues (1 min)'), res: 100, cost: 1, run: function (e) { rpPause(['load', 'unload'], e.mins, '52'); rpMxExtend(rpRel() + e.mins, '52'); S.contactRep = true; rpTimed(rpRel() + e.mins, 'mx', L('点検の結果、異常はありません。作業を再開できます。', '점검 결과 이상 없습니다. 작업을 재개할 수 있습니다.', 'Inspected — no damage. You may resume.'), 'mx_ok2'); }, good: L('接触の疑いをすぐ報告し、影響する貨物室だけ止めました。', '접촉 의심을 바로 보고하고 영향받는 칸만 멈췄습니다.', 'Reported the suspected contact at once and stopped only the affected hold.'), lesson: 'maintenance/0-3' },
+        { t: L('傷が見えないので作業を続ける', '흠집이 안 보이니 작업을 계속한다', 'No visible damage — carry on'), res: 0, block: true, strike: 'rp-s7', badT: L('接触の疑いを報告せず、影響する作業を続けました。', '접촉 의심을 보고하지 않고 영향 작업을 계속했습니다.', 'Kept the affected work going without reporting the suspected contact.'), lesson: 'maintenance/0-3' },
+        { t: L('すべての作業を止めて整備の結論を待つ（1分）', '모든 작업을 멈추고 정비 결론을 기다린다(1분)', 'Stop every task and wait for the verdict (1 min)'), res: 50, cost: 1, run: function (e) { rpPause(RPS.ORDER.filter(function (id) { return id !== 'maint'; }), e.mins, '52'); rpMxExtend(rpRel() + e.mins, '52'); S.contactRep = true; rpTimed(rpRel() + e.mins, 'mx', L('点検の結果、異常はありません。作業を再開できます。', '점검 결과 이상 없습니다. 작업을 재개할 수 있습니다.', 'Inspected — no damage. You may resume.'), 'mx_ok2'); }, bad: 'rp-over', badT: L('報告はしましたが、関係のない作業まで止めました（独立した作業は続けてよい）。', '보고는 했지만 관계없는 작업까지 멈췄습니다(독립 작업은 계속해도 됨).', 'Reported, but also stopped unrelated work (independent tasks may continue).'), lesson: 'maintenance/0-3' }] },
+    light: { who: 'ramp', vk: 'ramp_light', radio: function (e) { return L('落雷警報（' + e.mins + '分）。屋外の作業を止めてください。', '낙뢰 경보(' + e.mins + '분). 옥외 작업을 멈춰 주세요.', 'Lightning alert (' + e.mins + ' min). Stop outdoor work.'); },
+      choices: [{ t: L('屋外の作業（取り降ろし・搭載・給油・機内食・汚水と給水）を止めて解除を待つ。搭乗橋での搭乗は続ける', '옥외 작업(하역·탑재·급유·기내식·오수/급수)을 멈추고 해제를 기다린다. 탑승교 탑승은 계속', 'Stop outdoor work (unloading, loading, fuel, catering, lav/water) until the all-clear; boarding through the bridge continues'), res: 100, run: function (e) { rpPause(OUTDOOR, e.mins, '77'); rpTimed(rpRel() + e.mins, 'ramp', L('落雷警報を解除します。', '낙뢰 경보를 해제합니다.', 'Lightning alert cleared.'), 'ramp_clear'); }, good: L('落雷警報で屋外の作業を止め、解除を待ちました。', '낙뢰 경보에 옥외 작업을 멈추고 해제를 기다렸습니다.', 'Stopped outdoor work for the lightning alert and waited for the all-clear.'), lesson: 'passenger/3-5' },
+        { t: L('急ぎの搭載だけは続ける', '급한 탑재만 계속한다', 'Keep only the urgent loading going'), res: 0, block: true, strike: 'rp-s10', badT: L('落雷警報のあとも屋外で搭載を続けました。', '낙뢰 경보 뒤에도 옥외 탑재를 계속했습니다.', 'Kept loading outdoors after the lightning alert.'), lesson: 'passenger/3-5' },
+        { t: L('搭乗も含めてすべて止める', '탑승을 포함해 모두 멈춘다', 'Stop everything, boarding included'), res: 50, run: function (e) { rpPause(OUTDOOR.concat(['board']), e.mins, '77'); rpTimed(rpRel() + e.mins, 'ramp', L('落雷警報を解除します。', '낙뢰 경보를 해제합니다.', 'Lightning alert cleared.'), 'ramp_clear'); }, bad: 'rp-over', badT: L('搭乗橋での搭乗まで止めました（Velaでは続けられる）。', '탑승교 탑승까지 멈췄습니다(Vela에서는 계속 가능).', 'Stopped bridge boarding too (allowed to continue under Vela rules).'), lesson: 'passenger/3-5' }] },
+    apu: { who: 'mx', vk: 'mx_apu', radio: function () { return L('前の便からの不具合で、APUが使えません。地上の電源・空調とエンジン始動の支援が必要です。', '앞 편 결함으로 APU를 쓸 수 없습니다. 지상 전원·공조와 엔진 시동 지원이 필요합니다.', 'APU inoperative from the previous flight. We need ground power, air and engine-start support.'); },
+      choices: function () { return S.acKey === '789' ? [
+        { t: L('GPU・空調と、整備が指定する始動用の外部電源（容量・接続数）を確保（1分）', 'GPU·공조와 정비가 지정한 시동용 외부 전원(용량·접속 수)을 확보(1분)', 'Arrange GPU, air, and the external power for start that maintenance specifies (capacity, connections) (1 min)'), res: 100, cost: 1, run: function () { S.apuOk = true; }, good: L('787は電気で始動 ― 整備の指定どおり外部電源を確保しました。', '787은 전기식 시동 — 정비 지정대로 외부 전원을 확보했습니다.', 'The 787 starts electrically — arranged external power as maintenance specified.'), lesson: 'maintenance/1-2' },
+        { t: L('ASU（圧縮空気の始動車）を手配', 'ASU(압축 공기 시동차) 수배', 'Order an ASU (air start unit)'), res: 0, bad: 'rp-b5', badT: L('787は電気式の始動です。ASUではなく整備が指定する外部電源が必要でした。', '787은 전기식 시동입니다. ASU가 아니라 정비가 지정한 외부 전원이 필요했습니다.', 'The 787 starts electrically — it needed the specified external power, not an ASU.'), lesson: 'maintenance/1-2' },
+        { t: L('GPUだけつなぐ', 'GPU만 연결한다', 'Just connect the GPU'), res: 0, bad: 'rp-b5', badT: L('始動の支援を手配しませんでした。', '시동 지원을 수배하지 않았습니다.', 'Did not arrange start support.'), lesson: 'maintenance/1-2' }] : [
+        { t: L('GPU・空調車をつなぐ準備と、ASU（圧縮空気の始動車）を手配 ― 条件は整備・乗務員に確認（1分）', 'GPU·공조차 연결 준비와 ASU(압축 공기 시동차) 수배 — 조건은 정비·승무원 확인(1분)', 'Prepare GPU and air cart, and order an ASU — conditions confirmed with maintenance and crew (1 min)'), res: 100, cost: 1, run: function () { S.apuOk = true; }, good: L('737は空気で始動 ― GPU・空調とASUを手配しました。', '737은 공기식 시동 — GPU·공조와 ASU를 수배했습니다.', 'The 737 starts with air — arranged GPU, air and an ASU.'), lesson: 'maintenance/1-2' },
+        { t: L('GPUだけつなぐ', 'GPU만 연결한다', 'Just connect the GPU'), res: 0, bad: 'rp-b5', badT: L('エンジン始動の支援（ASU）を手配しませんでした。', '엔진 시동 지원(ASU)을 수배하지 않았습니다.', 'Did not arrange engine-start support (ASU).'), lesson: 'maintenance/1-2' },
+        { t: L('外部電源だけ増やす', '외부 전원만 늘린다', 'Just add more external power'), res: 0, bad: 'rp-b5', badT: L('737の始動は空気（ASU）です。', '737 시동은 공기(ASU)입니다.', 'The 737 starts with air (ASU).'), lesson: 'maintenance/1-2' }]; } },
+    tlog: { who: 'mx', vk: 'mx_tlog', fire: function (e) { rpMxExtend(e.upto[S.acKey], '41'); }, radio: function (e) { return L('テクニカルログに不具合の記録があります。判断は ' + rpHm(e.upto[S.acKey]) + ' ごろの見込みです。', '테크니컬 로그에 결함 기록이 있습니다. 판단은 ' + rpHm(e.upto[S.acKey]) + '쯤 예상입니다.', 'A defect is recorded in the tech log. Verdict expected around ' + rpHm(e.upto[S.acKey]) + '.'); },
+      choices: [{ t: L('見込みをゲート・ロードコントロール・運航管理に共有し、ほかの作業は続ける（1分）', '전망을 게이트·탑재관리·운항관리에 공유하고 다른 작업은 계속(1분)', 'Share the outlook with gate, load control and dispatch; carry on with other work (1 min)'), res: 100, cost: 1, good: L('整備の見込みを関係部署に共有しました。', '정비 전망을 관련 부서에 공유했습니다.', 'Shared maintenance’s outlook.'), lesson: 'maintenance/0-3' },
+        { t: L('判断が出てから共有する', '판단이 나온 뒤 공유한다', 'Share once there is a verdict'), res: 50, bad: 'rp-d3', badT: L('整備の見込みをすぐ共有しませんでした。', '정비 전망을 바로 공유하지 않았습니다.', 'Did not share the outlook right away.'), lesson: 'maintenance/0-3' },
+        { t: L('整備を急がせる', '정비를 재촉한다', 'Hurry maintenance up'), res: 0, bad: 'rp-d3', badT: L('急がせても判断は早くなりません。見込みを共有するのが仕事です。', '재촉해도 판단은 빨라지지 않습니다. 전망을 공유하는 것이 일입니다.', 'Hurrying does not speed the verdict — sharing the outlook is the job.'), lesson: 'maintenance/0-3' }] },
+    mel: { who: 'mx', vk: 'mx_mel', radio: function () { return L('MELを適用します。後ろの貨物室の一部の位置が使えません。ロードコントロールが新しいLIRを送りました。', 'MEL을 적용합니다. 후방 화물칸 일부 위치를 쓸 수 없습니다. 탑재관리가 새 LIR을 보냈습니다.', 'MEL applied: some aft hold positions are unusable. Load control has sent a new LIR.'); },
+      choices: [{ t: L('新しいLIRを確かめ、そのとおりに積み直しを指示（1分）', '새 LIR을 확인하고 그대로 재배치를 지시(1분)', 'Check the new LIR and have the load rearranged to it (1 min)'), res: 100, cost: 1, run: function (e) { var x = S.rp.tasks.load; if (x) x.e = Math.max(x.e, rpRel()) + e.mins; else S.rp.dur.load = RPS.dur(S.rp, 'load') + e.mins; rpTag(['load'], '41', e.mins); }, good: L('MELの制限を反映した新しいLIRどおりに積み直しました（新しいLIR・承認版はSTAGE 03の結果を受け取って確認）。', 'MEL 제한을 반영한 새 LIR대로 재배치했습니다(새 LIR·승인판은 STAGE 03 결과를 받아 확인).', 'Re-loaded to the new LIR reflecting the MEL (the new LIR is STAGE 03’s output, checked here).'), lesson: 'maintenance/3-3' },
+        { t: L('積んだ分はそのまま、残りだけ新しいLIRで', '이미 실은 것은 그대로, 남은 것만 새 LIR로', 'Leave what is loaded; use the new LIR for the rest'), res: 0, block: true, strike: 'rp-s12', badT: L('MELで使えない位置に積んだままにしようとしました。', 'MEL로 쓸 수 없는 위치에 실은 채 두려 했습니다.', 'Tried to leave cargo in a position the MEL restricts.'), lesson: 'maintenance/3-3' },
+        { t: L('元のLIRのまま続ける', '원래 LIR대로 계속한다', 'Carry on with the original LIR'), res: 0, block: true, strike: 'rp-s12', badT: L('MELの制限を無視して元のLIRで搭載を続けようとしました。', 'MEL 제한을 무시하고 원래 LIR로 탑재를 계속하려 했습니다.', 'Tried to keep loading to the original LIR, ignoring the MEL.'), lesson: 'maintenance/3-3' }] },
+    fuel: { who: 'ops', vk: 'ops_fuel', radio: function (e) { return L('燃料を追加します（給油時間 +' + e.mins + '分ほど）。搭乗の前に終わらせてください。', '연료를 추가합니다(급유 시간 +' + e.mins + '분 정도). 탑승 전에 끝내 주세요.', 'Extra fuel (about +' + e.mins + ' min). Finish before boarding.'); },
+      choices: [{ t: L('給油担当に追加量を指示 ― 給油が終わってから搭乗（1分）', '급유 담당에 추가량 지시 — 급유가 끝난 뒤 탑승(1분)', 'Tell the fueller the extra amount — boarding after fuelling ends (1 min)'), res: 100, cost: 1, run: function (e) { rpFuelMore(e.mins); }, good: L('追加の給油を搭乗の前に終えるよう指示しました。', '추가 급유를 탑승 전에 끝내도록 지시했습니다.', 'Had the extra fuel finished before boarding.'), lesson: 'passenger/3-3' },
+        { t: L('搭乗を先に始めて、給油は続けてもらう', '탑승을 먼저 시작하고 급유는 이어서', 'Start boarding first and keep fuelling'), res: 0, run: function (e) { rpFuelMore(e.mins); }, bad: 'rp-fuel-plan', badT: L('お客様がいる状態での給油は禁止（Vela）。追加給油は搭乗の前に終えます。', '승객이 있는 상태의 급유는 금지(Vela). 추가 급유는 탑승 전에 끝냅니다.', 'No fuelling with passengers on board (Vela) — finish the extra fuel before boarding.'), lesson: 'passenger/3-3' }] },
+    remote: { who: 'ops', vk: 'ops_remote', radio: function () { return L('今日は沖止めのスポットです（搭乗橋なし）。', '오늘은 원격 주기장입니다(탑승교 없음).', 'Today is a remote stand (no bridge).'); },
+      choices: [{ t: L('ステップ車2台・ランプバスを手配し、バスの時間を搭乗に入れる（1分）', '스텝카 2대·램프 버스를 수배하고 버스 시간을 탑승에 반영(1분)', 'Order 2 step cars and ramp buses; allow bus time for boarding (1 min)'), res: 100, cost: 1, run: function () { S.busOk = true; }, good: L('沖止めのステップとバスを先に手配しました。', '원격 주기장 스텝과 버스를 미리 수배했습니다.', 'Arranged steps and buses for the remote stand in advance.'), lesson: 'passenger/3-6' },
+        { t: L('いつもどおり搭乗橋の準備をする', '평소대로 탑승교 준비를 한다', 'Prepare as usual for a bridge'), res: 0, run: function (e) { S.rp.hold.deplane = rpSta() + 2 + e.mins; rpTag(['deplane'], '34', e.mins); }, bad: 'rp-remote', badT: L('ステップ・バスがなく、降機が遅れました。', '스텝·버스가 없어 하기가 늦어졌습니다.', 'No steps or buses — deplaning was delayed.'), lesson: 'passenger/3-6' }] },
+    bird: { who: 'mx', vk: 'mx_bird', fire: function (e) { S.rp.dur.maint = RPS.ac(S.acKey).maint + e.mins; rpTag(['maint'], '51', e.mins); }, radio: function (e) { return L('前の便が進入中に鳥と当たったかもしれません。外部の臨時点検をします（いつもより約' + e.mins + '分長く）。', '앞 편이 접근 중 조류와 부딪혔을지 모릅니다. 외부 임시 점검을 합니다(평소보다 약 ' + e.mins + '분 길게).', 'The inbound may have hit a bird on approach. Extra external inspection (about ' + e.mins + ' min longer).'); },
+      choices: [{ t: L('点検の結論が出るまで出発は保留。ほかの作業は続け、見込みを共有（1分）', '점검 결론까지 출발은 보류. 다른 작업은 계속하고 전망 공유(1분)', 'Hold departure until the verdict; carry on with other work and share the outlook (1 min)'), res: 100, cost: 1, good: L('臨時点検の結論を待ちつつ、ほかの作業を進めました。', '임시 점검 결론을 기다리면서 다른 작업을 진행했습니다.', 'Waited for the inspection verdict while other work continued.'), lesson: 'maintenance/5-4' },
+        { t: L('すべての作業を止めて結論を待つ', '모든 작업을 멈추고 결론을 기다린다', 'Stop everything until the verdict'), res: 50, bad: 'rp-over', badT: L('独立した作業は続けてよい場面でした。', '독립 작업은 계속해도 되는 상황이었습니다.', 'Independent work could have continued.'), lesson: 'maintenance/5-4' },
+        { t: L('点検を待たずに出発の準備を終えると返事する', '점검을 기다리지 않고 출발 준비를 마치겠다고 회신', 'Reply that you will finish preparing without waiting for the inspection'), res: 0, block: true, strike: 'rp-s7', badT: L('鳥衝突の疑いで、整備の判断を待たずに出発を進めようとしました。', '조류 충돌 의심에서 정비 판단을 기다리지 않고 출발을 진행하려 했습니다.', 'Pressed on towards departure without the engineer’s verdict on a suspected bird strike.'), lesson: 'maintenance/5-4' }] }
+  };
+  /* 사건이 늘린 시간의 원인 코드(작업 → {코드: 분}) — 지연 원인 판정(rpCause)이 자사 공정 손실과 구분하는 데 씀 */
+  function rpTag(ids, c, m) { var v = S.rp.evc = S.rp.evc || {}; ids.forEach(function (id) { var o = v[id] = v[id] || {}; o[c] = (o[c] || 0) + (m || 1); }); }
+  function rpPause(ids, mins, c) { RPS.pause(S.rp, ids, mins); rpTag(ids, c, mins); }
+  function rpMxExtend(until, c) { var x = S.rp.tasks.maint; if (x) x.e = Math.max(x.e, until); else S.rp.hold.maint = Math.max(S.rp.hold.maint || -1e9, until - RPS.dur(S.rp, 'maint')); if (c) rpTag(['maint'], c, 1); }
+  function rpFuelMore(m) { rpTag(['fuel'], '62', m); var x = S.rp.tasks.fuel; if (!x) { S.rp.dur.fuel = RPS.dur(S.rp, 'fuel') + m; return; } if (x.e > rpRel()) x.e += m; else { delete S.rp.tasks.fuel; S.rp.dur.fuel = m + 3; } }   /* 진행 중이면 연장, 끝났으면 급유차 다시 불러 3분 + 추가분 */
+  function rpEvChoices(D) { return typeof D.choices === 'function' ? D.choices() : D.choices; }
+  function rpEvBox() {
+    var id = rpEvPending(); if (!id) return '';
+    var e = rpEvDef(id), D = RPEV[e.kind], ch = rpEvChoices(D);
+    return '<div class="rpev" role="dialog" aria-label="event"><b>📻 ' + esc(tx(RCALL[D.who])) + '</b><p>' + esc(tx(D.radio(e))) + '</p><div class="chk">' + ch.map(function (c, i) { var bl = ((S.evBlk || {})[e.id] || []).indexOf(i) >= 0; return '<button data-ev="' + i + '" data-a="ev-' + e.id + '-' + i + '"' + (bl ? ' disabled class="dim"' : '') + '><span>' + esc(tx(c.t)) + '</span>' + (bl ? '<span class="st">✕ ' + esc(tx(L('止めた', '막힘', 'blocked'))) + '</span>' : '') + '</button>'; }).join('') + '</div>' + (((S.evBlk || {})[e.id] || []).length ? '<p class="why bad">' + esc(tx(L('止めました（安全C）。安全な処理を選び直してください。', '막았습니다(안전 C). 안전한 처리를 다시 고르세요.', 'Blocked (safety C). Choose a safe action.'))) + '</p>' : '') + '<p class="small">' + esc(tx(L('判断するまで、時間は進みません（「待つ」・次へは止まります）。', '판단할 때까지 시간은 흐르지 않습니다(「기다리기」·다음 단계는 멈춤).', 'Time does not move until you decide (wait and next are paused).'))) + '</p></div>';
+  }
+  function rpEvBind() {
+    var id = rpEvPending(); if (!id) return;
+    document.querySelectorAll('#scr #r-wait, #scr .btns .btn.pri').forEach(function (b) { b.disabled = true; });
+    var c = S.cur, e = rpEvDef(id), D = RPEV[e.kind], ch = rpEvChoices(D);
+    document.querySelectorAll('#scr button[data-ev]').forEach(function (b) { b.onclick = function () {
+      if (!rpLive(c) || rpEvPending() !== id) return; var i = +b.dataset.ev, o = ch[i]; S.evr = S.evr || {}; S.evBlk = S.evBlk || {};
+      if (o.block) {   /* 3A 차단형(S7 영향 작업·S10·S12): 안전 C를 한 번 기록하고 그 처리는 실행하지 않음 — 사건은 남아 안전한 처리를 다시 고름(62차 F62-01) */
+        if ((S.evBlk[id] = S.evBlk[id] || []).indexOf(i) < 0) S.evBlk[id].push(i); S.evr[id] = 0; rpStrike(o.strike, o.badT, o.lesson);
+        rpMsg(L('止めました（安全C）。この処理はできません ― 安全な処理を選び直してください。', '막았습니다(안전 C). 이 처리는 할 수 없습니다 — 안전한 처리를 다시 고르세요.', 'Blocked (safety C). This cannot be done — choose a safe action.'), 'bad'); showTab(c.tab); STG.pose('trouble'); return;
+      }
+      S.evq.shift(); S.evr[id] = S.evBlk[id] && S.evBlk[id].length ? 0 : o.res;
+      if (o.strike) rpStrike(o.strike, o.badT, o.lesson); else if (o.bad) { sfx.ng(); rpBad(o.bad, o.badT, o.lesson); } else sfx.ok();
+      if (o.good) note('good', o.good, o.lesson);
+      if (o.run) o.run(e);
+      rpMsg(null); if (o.cost) rpAdd(o.cost); rpAutoEvents(); showTab(c.tab);
+    }; });
+  }
+  /* 출발 조건(합의본 2A⑦) — 날마다 추가 항목 */
+  function rpDepItems() {
+    var o = rpItems(RDEP, 'dep');
+    if (M.startEquip) o.splice(8, 0, ['start', S.acKey === '789' ? L('始動用の外部電源（整備の指定どおり）の接続', '시동용 외부 전원(정비 지정대로) 연결', 'Start power connected (as maintenance specified)') : L('ASU（始動支援）の接続', 'ASU(시동 지원) 연결', 'ASU (start support) connected')]);
+    if (M.opt && M.opt.deice) o.splice(8, 0, ['deice', L('除氷・防氷の完了と機長への引き継ぎ', '제빙·방빙 완료와 기장 인계', 'De/anti-icing done and handed over to the captain')]);
+    return o;
+  }
+  /* 출발 조건 항목을 지금 누를 수 있는가(누를 수 없으면 이유) */
+  function rpDepWhy(k) {
+    var st = S.rp;
+    if (k === 'mx' && !RPS.isDone(st, 'maint')) return L('整備の確認がまだです', '정비 확인이 아직입니다', 'Maintenance release not yet given');
+    if (k === 'start' && !S.apuOk && !(S.startAt != null && rpRel() + 1e-9 >= S.startAt)) return S.startAt != null ? L('始動支援の器材の到着待ち（' + rpHm(S.startAt) + '）', '시동 지원 장비 도착 대기(' + rpHm(S.startAt) + ')', 'Waiting for start equipment (' + rpHm(S.startAt) + ')') : L('始動支援の器材がありません', '시동 지원 장비가 없습니다', 'No start-support equipment');
+    if (k === 'deice' && !(S.hot && S.hot.handed)) return L('除氷・防氷と機長への引き継ぎがまだです', '제빙·방빙과 기장 인계가 아직입니다', 'De-icing and the captain handover are not done');
+    return null;
+  }
+  /* Day 4: 시동 지원을 잘못 수배했으면 출발 준비에서 지금 수배(10분 뒤 도착) */
+  function rpStartBox() {
+    if (!M.startEquip || S.apuOk || S.startAt != null || !RPS.isDone(S.rp, 'close')) return '';
+    return '<div class="rpev"><p>' + esc(tx(L('エンジン始動の支援の器材がありません（APU不作動）。いまから手配すると約10分かかります。', '엔진 시동 지원 장비가 없습니다(APU 불능). 지금 수배하면 약 10분 걸립니다.', 'No engine-start support (APU inoperative). Ordering now takes about 10 min.'))) + '</p><div class="btns"><button class="btn" id="r-startnow" data-a="startnow">' + esc(tx(S.acKey === '789' ? L('始動用の外部電源を手配', '시동용 외부 전원 수배', 'Order start power') : L('ASUを手配', 'ASU 수배', 'Order an ASU'))) + '</button></div></div>';
+  }
+  /* ---------- Day 5 제빙·방빙과 HOT 인계(합의본 v2 3E) ---------- */
+  var RHOT = { type: [['I', 'Type I'], ['II', 'Type II'], ['IV', 'Type IV']], prod: [['VELA-AF4', 'VELA-AF4'], ['VELA-AF1', 'VELA-AF1']], mix: [['100/0', '100/0'], ['75/25', '75/25'], ['50/50', '50/50']] };
+  function rpHotEnd() { var x = S.rp.tasks.deice4; return x ? x.s + M.hot : null; }
+  function rpHotMargin() { var end = rpHotEnd(); if (end == null) return null; var mv = Math.max(rpRel(), S.tsat == null ? 0 : S.tsat, 0); return end - (mv + M.push + M.taxi); }
+  function rpDeiceBox() {
+    if (!(M.opt && M.opt.deice) || !RPS.isDone(S.rp, 'close')) return '';
+    var st = S.rp, d1 = st.tasks.deice1, d4 = st.tasks.deice4, h = S.hot = S.hot || { handed: false, f: {} };
+    var hd = '<div class="rpev"><b>❄ ' + esc(tx(L('除氷・防氷（この事例は2段階：Type I → Type IV）', '제빙·방빙(이번 사례는 2단계: Type I → Type IV)', 'De/anti-icing (this case: two steps, Type I → Type IV)'))) + '</b>';
+    if (!d1) return hd + '<p>' + esc(tx(L('ドアを閉めた機体に霜が付いています。機長から除氷の要求があります。', '도어를 닫은 기체에 서리가 붙어 있습니다. 기장의 제빙 요청이 있습니다.', 'Frost on the closed-up aircraft. The captain requests de-icing.'))) + '</p><div class="btns"><button class="btn" id="r-deice" data-a="deice">' + esc(tx(L('除氷担当に除氷・防氷を要求', '디아이싱 담당에 제빙·방빙 요청', 'Request de/anti-icing'))) + '</button></div></div>';
+    if (!d4 || !RPS.isDone(st, 'deice4')) return hd + '<p>' + esc(tx(L('作業中：Type I ' + rpHm(d1.s) + '–' + rpHm(d1.e) + (d4 ? ' · Type IV ' + rpHm(d4.s) + '–' + rpHm(d4.e) : ''), '작업 중: Type I ' + rpHm(d1.s) + '–' + rpHm(d1.e) + (d4 ? ' · Type IV ' + rpHm(d4.s) + '–' + rpHm(d4.e) : ''), 'In progress: Type I ' + rpHm(d1.s) + '–' + rpHm(d1.e) + (d4 ? ' · Type IV ' + rpHm(d4.s) + '–' + rpHm(d4.e) : '')))) + '</p></div>';
+    var HL = { type: L('液の種類', '액 종류', 'Fluid type'), prod: L('製品', '제품', 'Product'), mix: L('混合比', '혼합비', 'Mix'), start: L('最終段階の開始', '마지막 단계 시작', 'Final step start') };
+    var sel = function (k, opts) { return '<label>' + esc(tx(HL[k])) + ' <select id="r-hot-' + k + '"><option value="">—</option>' + opts.map(function (o) { return '<option value="' + o[0] + '"' + (h.f[k] === o[0] ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select></label> '; };
+    var tms = [[String(d1.s), rpHm(d1.s)], [String(d4.s), rpHm(d4.s)], [String(d4.e), rpHm(d4.e)]];
+    return hd + '<p>' + esc(tx(L('作業が終わりました（防氷の確認済み）。機長に引き継ぎます。HOTは最後の段階の開始から計算（この事例の仮想値 ' + M.hot + '分）。', '작업이 끝났습니다(방빙 확인 완료). 기장에게 인계합니다. HOT는 마지막 단계 시작부터 계산(이 사례의 가상 값 ' + M.hot + '분).', 'Done (anti-icing checked). Hand over to the captain. HOT runs from the start of the last step (this case: ' + M.hot + ' min, fictional).'))) + '</p>' +
+      (h.handed ? '<p class="small">✔ ' + esc(tx(L('引き継ぎ済み', '인계 완료', 'Handed over'))) + ' · HOT ' + rpHm(rpHotEnd()) + '</p>' : '<div class="rptobt">' + sel('type', RHOT.type) + sel('prod', RHOT.prod) + sel('mix', RHOT.mix) + sel('start', tms) + '<button class="btn sm" id="r-hand" data-a="hand">' + esc(tx(L('機長に引き継ぐ', '기장에게 인계', 'Hand over'))) + '</button><small>' + esc(tx(L('液の種類・製品（教育用の仮想名）・混合比・最後の段階の開始時刻・作業確認（防氷コード）を伝えます。', '액 종류·제품(교육용 가상 명칭)·혼합비·마지막 단계 시작 시각·작업 확인(방빙 코드)을 전달합니다.', 'Pass on fluid type, product (fictional name), mix, last-step start time and the anti-icing code.'))) + '</small></div>') + '</div>';
+  }
+  function rpDeiceBind(redraw) {
+    var c = S.cur;
+    if ($('#r-deice')) $('#r-deice').onclick = function () { if (!rpLive(c)) return; S.deiceReq = rpRel(); RPS.start(S.rp, 'deice1'); sfx.tap(); rpAdd(0); redraw(); };
+    ['type', 'prod', 'mix', 'start'].forEach(function (k) { var el = $('#r-hot-' + k); if (el) el.onchange = function () { S.hot.f[k] = el.value; }; });
+    if ($('#r-hand')) $('#r-hand').onclick = function () {
+      if (!rpLive(c)) return; var f = S.hot.f, d4 = S.rp.tasks.deice4;
+      var ok = f.type === 'IV' && f.prod === 'VELA-AF4' && f.mix === '100/0' && +f.start === d4.s;
+      if (!ok) { S.hot.wrong = (S.hot.wrong || 0) + 1; if (S.hot.wrong === 1) rpBad('rp-hot', L('機長への引き継ぎ内容が違いました（Type IV・VELA-AF4・100/0・最後の段階の開始 ' + rpHm(d4.s) + '）。', '기장 인계 내용이 틀렸습니다(Type IV·VELA-AF4·100/0·마지막 단계 시작 ' + rpHm(d4.s) + ').', 'Wrong handover details (Type IV, VELA-AF4, 100/0, last step started ' + rpHm(d4.s) + ').'), 'maintenance/4-4'); sfx.ng(); rpMsg(L('内容が作業記録と違います。もう一度確かめてください。', '내용이 작업 기록과 다릅니다. 다시 확인하세요.', 'That does not match the work record. Check again.'), 'bad'); redraw(); return; }
+      S.hot.handed = true; S.hot.at = rpRel(); S.chkDep = S.chkDep || {}; sfx.ok(); rpCall('cap', L('除氷の内容、受け取りました。', '제빙 내용 받았습니다.', 'De-icing details received.'), 'cap_hot');
+      note('good', L('最後の段階の開始時刻から数えるHOTを機長に引き継ぎました。', '마지막 단계 시작부터 세는 HOT를 기장에게 인계했습니다.', 'Handed the captain the HOT counted from the last step’s start.'), 'maintenance/4-4'); redraw();
+    };
+  }
+  /* 방빙(Type IV)은 Type I이 끝나면 이어서 자동 시작 */
+  function rpDeiceAuto() { var st = S.rp, d1 = st.tasks.deice1; if (d1 && !st.tasks.deice4 && d1.e <= rpRel() + 1e-9) { st.tasks.deice4 = { s: d1.e, e: d1.e + RPS.DEICE.deice4 }; } if (st.tasks.deice4 && RPS.isDone(st, 'deice4') && !(st.said || {}).deice) { st.said = st.said || {}; st.said.deice = 1; rpCall('deice', L('防氷まで終わりました。', '방빙까지 끝났습니다.', 'Anti-icing complete.'), 'deice_done'); } }
+  /* 푸시백 화면의 HOT 여유(합의본 v2 3E) — 여유 10분 미만이면 보류·재확인 */
+  function rpHotBox() {
+    if (!(M.opt && M.opt.deice) || !S.hot || !S.hot.handed) return '';
+    var m = rpHotMargin(), end = rpHotEnd(), mv = Math.max(rpRel(), S.tsat == null ? 0 : S.tsat, 0), short = m < M.margin - 1e-9;
+    return '<div class="rpev' + (short ? ' bad' : '') + '"><b>HOT</b> ' + rpHm(end) + ' · ' + esc(tx(L('予想離陸 ', '예상 이륙 ', 'Expected take-off '))) + rpHm(mv + M.push + M.taxi) + ' <small>(' + esc(tx(L('移動 ', '이동 ', 'move '))) + rpHm(mv) + ' + ' + M.push + ' + ' + M.taxi + ')</small> · ' + esc(tx(L('余裕 ', '여유 ', 'Margin '))) + '<b>' + m + tx(T.min) + '</b> ' + esc(tx(short ? L('（10分未満 ― 要求せず、再確認・再作業を依頼）', '(10분 미만 — 요청하지 말고 재확인·재작업 요청)', '(under 10 — do not request; ask for a re-check / re-treatment)') : L('（10分以上・最終判断は機長）', '(10분 이상 · 최종 판단은 기장)', '(10+ min; the captain decides)'))) +
+      (short ? '<div class="btns"><button class="btn" id="r-redo" data-a="redo">' + esc(tx(L('再確認・防氷のやり直しを依頼', '재확인·방빙 재작업 요청', 'Ask for re-check / re-treatment'))) + '</button></div>' : '') + '</div>';
+  }
+  function rpHotBind(redraw) {
+    var c = S.cur;
+    if ($('#r-redo')) $('#r-redo').onclick = function () { if (!rpLive(c)) return; var r = rpRel(); S.rp.tasks.deice4 = { s: r, e: r + RPS.DEICE.deice4 }; S.hot.handed = false; S.hot.f = {}; S.hot.redo = (S.hot.redo || 0) + 1; S.rp.said.deice = 0; sfx.tap(); rpMsg(L('防氷をやり直します。終わったらもう一度引き継ぎます。', '방빙을 다시 합니다. 끝나면 다시 인계합니다.', 'Re-applying anti-ice; hand over again when done.'), 'info'); redraw(); };
+  }
+  /* ---------- 지연 코드(주원인 1 + 부원인, 합의본 3D) ---------- */
+  var RCODEALL = {
+    '15': L('搭乗（Vela DAY 1以降：降機・保安点検・搭乗・ドアの指示の遅れ）', '탑승(Vela: 하기·보안 점검·탑승·도어 지시 지연)', 'Boarding (Vela: late deplaning/security/boarding/door instructions)'),
+    '32': L('積み下ろし', '하역·탑재', 'Loading / unloading'), '34': L('サービス用器材の不足（ステップなど）', '서비스 장비 부족(스텝 등)', 'Servicing equipment (steps etc.)'),
+    '35': L('機内清掃', '기내 청소', 'Aircraft cleaning'), '36': L('給油', '급유', 'Fuelling'), '37': L('機内食', '기내식', 'Catering'),
+    '39': L('技術用器材の不足（始動支援など）', '기술 장비 부족(시동 지원 등)', 'Technical equipment (start support etc.)'), '41': L('機体の不具合', '기체 결함', 'Aircraft defects'),
+    '51': L('飛行中の損傷（鳥・雷など）の点検', '비행 중 손상(조류·낙뢰 등) 점검', 'Damage during flight ops (bird, lightning) — inspection'), '52': L('地上作業中の損傷（接触など）の点検 ― 疑いの点検を含む（Vela運用）', '지상 작업 중 손상(접촉 등) 점검 — 의심 점검 포함(Vela 운용)', 'Damage during ground ops (contact) — incl. suspected (Vela)'),
+    '62': L('運航上の要求（燃料など）', '운항상 요구(연료 등)', 'Operational requirements (fuel etc.)'), '75': L('機体の除氷・防氷', '기체 제빙·방빙', 'Aircraft de/anti-icing'),
+    '77': L('悪天候による地上作業の支障（落雷警報など）', '악천후로 인한 지상 작업 지장(낙뢰 경보 등)', 'Ground handling impaired by weather (lightning alert)'), '89': L('出発空港の制限（管制・TSAT）', '출발 공항 제한(관제·TSAT)', 'Departure airport restrictions (ATC, TSAT)'),
+    '93': L('機材繰り（前の便の遅れ）', '기재 회전(앞 편 지연)', 'Aircraft rotation (late inbound)')
+  };
+  function rpCodeList() { return (M.codes || ['15', '32', '35', '36', '37', '89', '93']).map(function (k) { return [k, RCODEALL[k]]; }); }
+  /* 정답: 지연 = 시나리오 몫(최선 AOBT, 미션 bestCode) + 자기 몫(L, 원인 사슬). 큰 쪽이 주원인, 나머지가 부원인. 분은 겹치지 않게 */
+  function rpOwnCode() { return rpCause().code || '15'; }   /* 원인 후보 분 비교(rpCause) 하나로 — 상태 우선 반환 없음(F62-03) */
+  function rpWantCodes() {
+    var d = Math.max(0, Math.round(S.aobt)), best = Math.max(0, rpBest()), ext = Math.min(d, best), own = Math.max(0, d - best);
+    if (!d) return { main: null, sub: null, ext: 0, own: 0 };
+    var ec = ext > 0 ? M.bestCode : null, oc = own > 0 ? rpOwnCode() : null;
+    if (ec && oc) return own > ext ? { main: oc, sub: ec, ext: ext, own: own } : { main: ec, sub: oc, ext: ext, own: own };
+    var c2 = oc && !ec ? rpCause().second : null;   /* 자사·사건 원인이 둘이면 둘째를 부원인으로(예: 접촉 점검 52 + 낙뢰 77) */
+    return { main: ec || oc, sub: c2 && c2 !== oc ? c2 : null, ext: ext, own: own };
+  }
+  function rpBest() { return M.best ? M.best[S.acKey] : RPS.bestAobt(S.acKey, M.bestOpt || M.opt, M.external); }
+  /* ---------- 사건 점수(합의본 3B 5항목의 「사건」) ---------- */
+  function rpEvtScore() {
+    var v = []; (M.events || []).forEach(function (e) { v.push((S.evr || {})[e.id] != null ? S.evr[e.id] : 0); });
+    if (M.beaconLate) v.push((S.struck || {})['rp-s2'] ? 0 : 100);
+    if (M.opt && M.opt.deice) v.push(!S.hot || !S.hot.handed ? 0 : S.hot.wrong ? 50 : 100);
+    if (M.opt && M.opt.late) v.push(S.rp.opt.fullClean === false || !RPS.quickAllowed(S.rp) ? 100 : 50);   /* Day 2 간이 공정 판단 */
+    return v.length ? Math.round(v.reduce(function (a, x) { return a + x; }, 0) / v.length) : 100;
+  }
+  /* ---------- 날마다 힌트 ---------- */
+  function rpHintDay(H) {
+    if (M.day === 2) { H.prep = L('前の便が遅れて地上時間が短い日。遅れが分かったらすぐTOBTを正直に直し（5分以内）、関係部署に共有しよう。', '앞 편이 늦어 지상 시간이 짧은 날. 지연을 알면 바로 TOBT를 정직하게 고치고(5분 안), 관련 부서에 공유해.', 'A late inbound, short ground time. Fix the TOBT honestly as soon as you know (within 5 min) and tell everyone.'); H.svc = L('今日は簡易清掃・機内食の補充が使える。737は清掃・保安と給油が同時に、787は給油が一番長い ― 赤い列を見て。', '오늘은 간이 청소·기내식 보충을 쓸 수 있어. 737은 청소·보안과 급유가 동률, 787은 급유가 가장 길어 — 빨간 줄을 봐.', 'Quick clean and catering top-up are allowed today. On the 737 cleaning/security and fuel tie; on the 787 fuel is longest — watch the red rows.'); }
+    if (M.day === 3) { H.blk = L('止まっても衝突防止灯がまだ点いているよ。近づかずに、操縦室に無線で確かめて。', '멈췄는데 충돌 방지등이 아직 켜져 있어. 다가가지 말고 조종실에 무전으로 확인해.', 'The beacon is still on. Do not approach — check with the flight deck by radio.'); H.svc = L('「当たったかもしれない」は、すぐ報告。止めるのは影響する作業だけ。落雷警報では屋外の作業を止める。', '「닿았을지 모른다」는 바로 보고. 멈추는 건 영향받는 작업만. 낙뢰 경보에는 옥외 작업을 멈춰.', '“May have touched” gets reported at once; stop only affected work. Lightning: stop outdoor work.'); H.brd = H.svc; H.rec = L('ヒヤリハットは安全報告に。罰ではなく、次を防ぐためだよ。', '아차 사고는 안전 보고로. 벌이 아니라 다음을 막기 위해서야.', 'File the near miss — not for blame, but to prevent the next one.'); }
+    if (M.day === 4) { H.prep = L('APUが使えない。737は空気（ASU）、787は電気（整備が指定する外部電源）で始動するよ。', 'APU를 쓸 수 없어. 737은 공기(ASU), 787은 전기(정비가 지정한 외부 전원)로 시동해.', 'APU inop: the 737 starts with air (ASU), the 787 with electrical power as maintenance specifies.'); H.svc = L('整備の見込みは共有、MELの新しいLIRは受け取ってそのとおりに。追加給油は搭乗の前に。', '정비 전망은 공유, MEL 새 LIR은 받아서 그대로. 추가 급유는 탑승 전에.', 'Share maintenance’s outlook, follow the new MEL LIR, and finish extra fuel before boarding.'); H.push = L('今日は管制のTSATが遅い。準備ができたら待つだけ ― その分は点から引かれないよ（実際の記録は残る）。', '오늘은 관제 TSAT가 늦어. 준비되면 기다리기만 — 그 분은 점수에서 빠져(실제 기록은 남아).', 'ATC gives a late TSAT today. Once ready, just wait — it does not cost points (the real record stays).'); }
+    if (M.day === 5) { H.prep = L('沖止めはステップとバス、鳥衝突の疑いは整備の結論待ち。霜の予報で除氷はドアを閉めてから ― TOBTは除氷が終わる見込み（STD+12ごろ）で早めに入れよう。', '원격 주기장은 스텝과 버스, 조류 충돌 의심은 정비 결론 대기. 서리 예보라 제빙은 도어를 닫은 뒤 — TOBT는 제빙이 끝나는 예상(STD+12쯤)으로 일찍 넣어.', 'Remote stand: steps and buses. Suspected bird strike: wait for the verdict. Frost forecast: de-icing after close-up — enter the TOBT early as the expected end of de-icing (about STD+12).'); H.dep = L('除氷は2段階。HOTは最後の段階（Type IV）の開始から。機長に液・製品・混合比・開始時刻を正しく。TOBTは除氷が終わる時刻に。', '제빙은 2단계. HOT는 마지막 단계(Type IV) 시작부터. 기장에게 액·제품·혼합비·시작 시각을 정확히. TOBT는 제빙이 끝나는 시각으로.', 'Two-step de-icing. HOT starts with the last step (Type IV). Give the captain fluid, product, mix and start time exactly. TOBT = when de-icing ends.'); H.push = L('予想離陸までHOTに10分以上の余裕があるか。足りなければ要求せず、再確認・やり直し。', '예상 이륙까지 HOT에 10분 이상 여유가 있는지. 모자라면 요청하지 말고 재확인·재작업.', 'Is there 10+ min of HOT left at expected take-off? If not, do not request — re-check / re-treat.'); H.blk = L('沖止めなので搭乗橋はないよ。衝突防止灯が消えたら車輪止め → コーン → 電源・空調 → ステップ車の順。', '원격 주기장이라 탑승교가 없어. 충돌 방지등이 꺼지면 고임목 → 콘 → 전원·공조 → 스텝카 순서야.', 'Remote stand — no bridge. Once the beacon is off: chocks → cones → power/air → step cars.'); }
+    return H;
+  }
+  /* ---------- Day 2 간이 공정 선택(합의본 2B: 실제 지상 시간 < 표준 −15분일 때만) ---------- */
+  function rpQuickBox() {
+    var st = S.rp; if (!RPS.quickAllowed(st)) return '';
+    var a = RPS.ac(S.acKey), o = st.opt, row = function (k, id, full, quick, fl, ql) { var done = !!st.tasks[id], q = o[k] === false; return '<div class="rpq"><b>' + esc(tx(RTASK[id])) + '</b> <button class="btn sm' + (!q ? ' on' : '') + '" data-qk="' + k + '" data-qv="1"' + (done ? ' disabled' : '') + '>' + esc(tx(fl)) + ' ' + full + tx(T.min) + '</button><button class="btn sm' + (q ? ' on' : '') + '" data-qk="' + k + '" data-qv="0"' + (done ? ' disabled' : '') + '>' + esc(tx(ql)) + ' ' + quick + tx(T.min) + '</button></div>'; };
+    return '<div class="rpev"><b>' + esc(tx(L('短いターン：簡易の作業を選べます（Vela教育用）', '짧은 턴: 간이 공정을 고를 수 있습니다(Vela 교육용)', 'Short turn: quick options allowed (Vela training rule)'))) + '</b>' +
+      row('fullClean', 'clean', a.clean, a.qclean, L('通常', '풀', 'Full'), L('簡易', '간이', 'Quick')) + row('fullCater', 'cater', a.cater, a.qcater, L('通常', '정상', 'Full'), L('補充', '보충', 'Top-up')) + '</div>';
+  }
+  function rpQuickBind(redraw) {
+    var c = S.cur;
+    document.querySelectorAll('#scr button[data-qk]').forEach(function (b) { b.onclick = function () { if (!rpLive(c)) return; var k = b.dataset.qk; if (S.rp.tasks[k === 'fullClean' ? 'clean' : 'cater']) return; S.rp.opt[k] = b.dataset.qv === '1'; sfx.tap(); rpSync(); redraw(); }; });
   }
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
   if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextUnit, showTab: showTab, renderTabs: renderTabs, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); }, setStage: function (id) { setStage(id); save(); renderTitle(); }, stage: function () { return ST.id; }, stageAllowed: stageAllowed };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */

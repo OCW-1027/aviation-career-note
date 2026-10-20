@@ -1,4 +1,4 @@
-/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편 Day 1–5·탑재관리편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
+/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편·탑재관리편·램프편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
 /* AIRLINE SAGA — Stage 01 체크인 (Vela Air: 교육용 가상 항공사)
    layout: 위 = 공항 카운터 장면(2.5D) / 아래 = 업무 단말(DCS). 넓은 화면에서는 좌우 배치 */
 :root{
@@ -609,3 +609,41 @@ html.sh-saga .t48 .langrow{display:none}
 /* 탑재관리편 Day 4·5: LMC 줄 입력 표·판 목록 */
 .wbt.wblmc select{font-size:13px;max-width:8.5em}.wbt.wblmc input{font-size:13px}.wbt.wblmc td{padding:4px 3px}
 @media (max-width:480px){.wbt.wblmc select{max-width:6.2em;font-size:12px}.wbt.wblmc input{width:3.8em!important;font-size:12px}}
+/* 61차: STAGE 04 램프편 — 턴어라운드 보드·평면도·푸시백 단계(그림 v06 전에는 게이트 장면을 씀) */
+.rptop{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;margin:4px 0 6px;padding:5px 8px;background:rgba(255,255,255,.1);color:inherit;border:1px solid rgba(255,255,255,.18);border-radius:8px}
+.rptop b{font-variant-numeric:tabular-nums}
+.rptobt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0;font-size:13px}
+.rptobt small{flex-basis:100%;opacity:.75}
+.rptobt select{font-size:13px;padding:2px}
+.rpboard td,.rpboard th{font-size:12px;padding:3px 4px}
+.rpboard td:first-child{width:34%}
+.rpboard td.mono{width:28%;font-size:11px}
+.rpboard .bar,.rpboard th.bar{position:relative;min-width:80px;height:20px}
+.rpboard th.bar small{font-weight:400;font-size:10px;opacity:.75}
+.rpboard .bar .pl{position:absolute;top:5px;height:10px;background:#d9e2ef;border-radius:3px}
+.rpboard .bar .ac{position:absolute;top:5px;height:10px;background:#3f7d8c;border-radius:3px}
+.rpboard .bar .ac.dn{background:#7aa5b0}
+.rpboard tr.crit td:first-child{color:#c0392b;font-weight:700}
+.rpboard tr.crit .pl{background:#f3c1bb}
+.rpboard tr.dn td:first-child{opacity:.7}
+.rpboard .bar .nw{position:absolute;top:0;bottom:0;width:2px;background:#f0a030;z-index:1}
+.btn.sm{padding:3px 10px;font-size:12px;min-height:0}
+.rpplan{width:100%;max-width:420px;display:block;margin:4px auto;border-radius:8px}
+.rpsteps{margin:6px 0 6px 18px;padding:0;font-size:13px}
+.rpsteps li.ok{color:#7ddc8a;font-weight:700}
+.stage.rp .wbedutag{max-width:70%}
+.rpboard .btn.sm,.rptobt .btn.sm{min-height:34px;padding:6px 14px;font-size:13px}   /* 61차 권고: 휴대폰에서 누르기 쉽게 */
+/* 62차: 램프편 DAY 2~5 사건 상자·간이 공정·흐린 출발 조건 */
+.rpev{margin:6px 0;padding:8px 10px;border-radius:10px;background:rgba(240,160,48,.14);border:1px solid rgba(240,160,48,.5)}
+.rpev.bad{background:rgba(220,60,60,.16);border-color:rgba(220,60,60,.6)}
+.rpev p{margin:4px 0}
+.rpq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0}
+.rpq .btn.on,.chk button.on{outline:2px solid #f0a030}
+.chk button.dim{opacity:.6}
+/* 65차: 램프편 v06 그림 — 바깥 주기장이라 편명·기재 표지는 왼쪽 위 반투명 판(배경 위에 얹음) */
+.stage.rp.rpv06 .sign{background:rgba(20,33,61,.82);border-radius:8px;padding:2px 6px;color:#ffd9a0;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.stage.rp.rpv06 .sign.s1{left:2%;top:4%;width:23%;height:10%;font-size:clamp(5px,1.25vw,14px)}
+.stage.rp.rpv06 .sign.s2{left:26.5%;top:4%;width:33%;height:10%;font-size:clamp(5px,1.25vw,14px)}
+@media (min-width:900px){.stage.rp.rpv06 .sign.s1,.stage.rp.rpv06 .sign.s2{font-size:clamp(7px,.9vw,14px)}}
+.stage.rp.rpv06 .wbradio img{object-position:50% 20%}
+@media (max-width:600px){.wbheroac{top:36%;font-size:11px;padding:4px 8px}}   /* 65차: 휴대폰에서 첫 화면 부제와 겹치지 않게(탑재관리·램프 공통) */
