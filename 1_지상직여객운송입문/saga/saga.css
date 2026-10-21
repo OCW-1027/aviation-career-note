@@ -668,3 +668,11 @@ html.sh-saga .t48 .langrow{display:none}
 .flkv th{width:42%;text-align:left;font-weight:600;color:var(--ink)}
 .flkv td{font-variant-numeric:tabular-nums}
 .flkv small{color:var(--sub)}
+
+/* 71차: FINAL 잠금 카드 — 네 스테이지 진행 */
+.flcard.fllock{opacity:.96}
+.flcard .fllist{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.flcard .fllist li{display:flex;justify-content:space-between;gap:6px;padding:7px 10px;border:1px solid #d9dee7;border-radius:10px;background:#f7f9fc;font-size:13px}
+.flcard .fllist li.ok{border-color:#9fd3b4;background:#eef9f2}
+.flcard .fllist li b{white-space:nowrap}
+@media (max-width:600px){.flcard .fllist{grid-template-columns:1fr}}

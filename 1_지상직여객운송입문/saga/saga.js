@@ -2842,7 +2842,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     try { localStorage.setItem('art-lang', l); } catch (e) {}
     var lb = document.getElementById('lang'); if (lb) lb.querySelectorAll('button[data-l]').forEach(function (b) { b.classList.toggle('on', b.dataset.l === l); });
     if (G.screen === 'title') renderTitle();
-    else if (G.screen === 'play' && S && S.cur) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); var mr = S.modalRedraw; renderTabs(); showTab(S.cur.tab); var b = S.bub || {}; if (b.me) say('me', b.me, true); if (b.pax) say('pax', b.pax, true); var gv = $('#guide'); if (S.guideL && gv && !gv.classList.contains('hide')) guide(S.guideL); if (mr) mr(); }
+    else if (G.screen === 'play' && S && S.cur) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); var mr = S.modalRedraw; renderTabs(); showTab(S.cur.tab); var b = S.bub || {}; if (b.me) say('me', b.me, true); if (b.pax) say('pax', b.pax, true); var gv = $('#guide'); if (S.guideL && gv && !gv.classList.contains('hide')) guide(S.guideL); if (mr) mr(); if (ST.relang) try { ST.relang(); } catch (e) {} }   /* 71차: 그림 위 글자(안내 표지·무전 창)도 새 언어로 */
     else if (G.screen === 'play' && S && !S.cur && S.modalRedraw) { $('#gbar').innerHTML = barInner(); bindBar(); updateBar(); S.modalRedraw(); }
     else if (G.screen === 'result') finish();
   }
@@ -5214,6 +5214,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     id: 'ci', stageNo: '01', name: L('チェックイン', '체크인', 'Check-in'), days: window.SAGA_DAYS, rules: window.RULES, rulesVer: '28.0', text: CI_TEXT,
     hero: ciHero,
     scene: function (V, ap) { return STG.html({ flight: V.flight, to: V.to, std: V.std, counter: ap.counter }); },
+    relang: function () { var b = $('#svb'); if (b) b.textContent = tx(L('責任者（SV）に確認・報告', '책임자(SV)에게 확인·보고', 'Check with / report to the supervisor (SV)')); },   /* 71차: 언어를 바꾸면 SV 버튼도 */
     toolsHtml: function () { return S.adv ? '<div class="svrow"><button class="btn svb" id="svb">' + esc(tx(L('責任者（SV）に確認・報告', '책임자(SV)에게 확인·보고', 'Check with / report to the supervisor (SV)'))) + '</button></div>' : ''; },
     bindTools: function () { if ($('#svb')) $('#svb').onclick = askSV; },
     initState: ciInitState, runFields: RUNF, runSkip: RUNSKIP, freshList: freshList, allUnits: allPax,
@@ -6501,8 +6502,13 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     cap_swold: '登録記号が違います。この機体の数値で作り直してください。',
     cap_delay: '変更がないなら、再作成は不要です。再確認だけ記録してください。'
   };/*/WVO*/
+  var wbLast = null, wbQuiet = false;   /* 71차: 언어를 바꾸면 무전 창·말풍선을 그 언어로 다시 그림(음성은 다시 재생하지 않음) */
+  function wbRelang() {
+    var et = document.querySelector('#stage .wbedutag'); if (et) et.textContent = tx(WB_TEXT.eduData);
+    var w = $('#wbradio'); if (wbLast && w && !w.classList.contains('hide')) { var bp = $('#bpx'), bv = !!bp && !bp.classList.contains('hide'), keep = wbLast; wbQuiet = true; try { wbCall(keep[0], bv ? keep[1] : null, keep[2]); wbLast = keep; } finally { wbQuiet = false; } }
+  }
   function wbCall(who, text, vk) {   /* 무전·전화 창 + 말풍선(v05 상반신 그림. 게이트 SV는 v04 staff_sv_01). 조업사·기장 = 무전 자세, 게이트·운항관리 = 전화 자세 */
-    var w = $('#wbradio'), el = $('#bpx'); if (!w || !el) return;
+    var w = $('#wbradio'), el = $('#bpx'); if (!w || !el) return; wbLast = who ? [who, text, vk] : null;
     if (!who) { w.classList.add('hide'); el.classList.add('hide'); if (S) { S.bub = S.bub || {}; S.bub.pax = null; } return; }
     var art = STG.has(WCALLART[who]) ? WCALLART[who] : 'staff_sv_01';
     w.innerHTML = (STG.has(art) ? '<img src="' + STG.src(art) + '" alt="">' : '') + '<b>' + esc(tx(WCALL[who])) + '</b><span>' + (who === 'gate' ? '☎' : '📻') + '</span>'; w.classList.remove('hide');
@@ -6510,7 +6516,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     if (!text) { el.classList.add('hide'); return; }
     var vja = vk && WVO[vk];
     el.innerHTML = '<span class="who">' + esc(tx(WCALL[who])) + '</span>' + esc(tx(text)) + (G.lang !== 'ja' && G.voice && vja ? '<span class="jsub">' + esc(vja) + '</span>' : ''); el.classList.remove('hide');
-    if (G.voice && vja && window.VO && VO.say) VO.say(WVCAST[who], vja);
+    if (G.voice && vja && !wbQuiet && window.VO && VO.say) VO.say(WVCAST[who], vja);
     S.bub = S.bub || {}; S.bub.pax = null;
   }
   function wbUnitName(c) { return tx(WB_TEXT.tabs[c.p.kind] || L('作業', '작업', 'Step')); }
@@ -7054,7 +7060,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   if (window.WB && window.MISSION_WB01) window.SAGA_STAGES.wb = {
     id: 'wb', stageNo: '03', name: L('ロードコントロール（W&B）', '탑재관리(W&B)', 'Load control (W&B)'), days: WB_DAYS, rules: window.RULES, rulesVer: 'W1.0', text: WB_TEXT,
     lockLabel: L('🔒 ゲート編 DAY 5の後', '🔒 게이트편 DAY 5 후', '🔒 After Gate DAY 5'),
-    hero: wbHero, scene: function (V0) { return wbScene(V0); },
+    hero: wbHero, scene: function (V0) { return wbScene(V0); }, relang: function () { wbRelang(); },
     toolsHtml: function () { return ''; }, bindTools: function () {},
     initState: function (dd, M0, V0, seed) { var k = wbAcKey(), b = M0.data[k].book; return { clock: pm(V0.start), close: pm(V0.close), bgQueue: 0, list: V0.pax(), seed: seed, adv: true, idx: -1, cur: null, results: [], revenue: [], strikes: 0, seq: 1, day: dd, evChecks: [], evRep: { need: 0, done: 0 }, safety: [],
       acKey: k, plan: {}, issued: false, repOk: false, entered: { ad: b.ad, ch: b.ch, inf: b.inf, z: b.z.slice() }, finConf: false, chkWrong: {}, ed: 1, subAt: null, subTries: 0, frozenAt: null, struck: {}, lirAt: null, preAt: null, handAt: null, spcChk: {}, ex: null, exDone: null, exMove: null, notoc: null, lirC: null, swap: null, fuel: null, lmcC: null, apState: null, lmcLog: [], edLog: [], evt: {}, etd: null, zoneReq: null, ldmArch: false }; },
@@ -7505,8 +7511,13 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     ramp_miss: 'ランプコントロールです。TSATを過ぎました。新しいTSATを送ります。',
     lead_push: 'プッシュバック完了。トーバー、切り離しました。'
   };/*/RVO*/
+  var rpLast = null, rpQuiet = false;   /* 71차: 언어를 바꾸면 무전 창·말풍선·그림 아래 안내를 그 언어로 다시 그림(음성은 다시 재생하지 않음) */
+  function rpRelang() {
+    var et = document.querySelector('#stage .wbedutag'); if (et) et.textContent = tx(RP_TEXT.eduData) + (rpArt() ? '' : ' · ' + tx(L('ランプの絵は準備中（仮の絵）', '램프 그림 준비 중(임시 그림)', 'Ramp art coming (placeholder)')));
+    var w = $('#wbradio'); if (rpLast && w && !w.classList.contains('hide')) { var bp = $('#bpx'), bv = !!bp && !bp.classList.contains('hide'), keep = rpLast; rpQuiet = true; try { rpCall(keep[0], bv ? keep[1] : null, keep[2]); rpLast = keep; } finally { rpQuiet = false; } }
+  }
   function rpCall(who, text, vk) {
-    var w = $('#wbradio'), el = $('#bpx'); if (!w || !el) return;
+    var w = $('#wbradio'), el = $('#bpx'); if (!w || !el) return; rpLast = who ? [who, text, vk] : null;
     if (!who) { w.classList.add('hide'); el.classList.add('hide'); if (S) { S.bub = S.bub || {}; S.bub.pax = null; } return; }
     var art = RCALLART[who] && STG.has(RCALLART[who]) ? RCALLART[who] : '';
     w.innerHTML = (art ? '<img src="' + STG.src(art) + '" alt="">' : '') + '<b>' + esc(tx(RCALL[who])) + '</b><span>📻</span>'; w.classList.remove('hide');
@@ -7514,7 +7525,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     if (!text) { el.classList.add('hide'); return; }
     var vja = vk && RVO[vk];
     el.innerHTML = '<span class="who">' + esc(tx(RCALL[who])) + '</span>' + esc(tx(text)) + (G.lang !== 'ja' && G.voice && vja ? '<span class="jsub">' + esc(vja) + '</span>' : ''); el.classList.remove('hide');
-    if (G.voice && vja && window.VO && VO.say) VO.say(RVCAST[who], vja);
+    if (G.voice && vja && !rpQuiet && window.VO && VO.say) VO.say(RVCAST[who], vja);
     S.bub = S.bub || {}; S.bub.pax = null;
   }
   /* ---------- 61차 보완 F61-01: 단계 도중 저장(합의본 6절 「행동마다」) ----------
@@ -7993,7 +8004,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   if (window.RPS && window.MISSION_RP01) window.SAGA_STAGES.rp = {
     id: 'rp', stageNo: '04', name: L('ランプ・ターンアラウンド', '램프·턴어라운드', 'Ramp & turnaround'), days: RP_DAYS, rules: window.RULES, rulesVer: 'R1.0', text: RP_TEXT,
     lockLabel: L('🔒 準備中', '🔒 준비 중', '🔒 Coming soon'),
-    hero: rpHero, scene: function () { return rpScene(); },
+    hero: rpHero, scene: function () { return rpScene(); }, relang: function () { rpRelang(); },
     toolsHtml: function () { return ''; }, bindTools: function () {},
     initState: function (dd, M0, V0, seed) { var k = rpAcKey(), st = RPS.make(k, M0.opt); return { clock: pm(V0.start), close: pm(V0.close), bgQueue: 0, list: V0.pax(), seed: seed, adv: true, idx: -1, cur: null, results: [], revenue: [], strikes: 0, seq: 1, day: dd, evChecks: [], evRep: { need: 0, done: 0 }, safety: [],
       acKey: k, rp: st, tobt: null, tobtLog: [], tsat: null, tsatLog: [], req: null, appr: false, chocks: false, aobt: null, pushEnd: null, towOff: false, readyAt: null, gse: null, loader: null, blkSeq: [], doorSeq: [], aware: null, awareMiss: null, viol: 0, code: null, recDone: false, struck: {}, docsOk: false, chkPrep: {}, chkDep: {}, lsAt: null, evq: [], evr: {}, evFired: {}, evTimed: [], apuOk: false, startAt: null, busOk: false, fodRep: false, contactRep: false, hot: null, deiceReq: null, report: false, beaconOn: !!M0.beaconLate, code2: null }; },
@@ -8308,7 +8319,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   function flSnap(f) { return flCopy({ rev: f.rev, clock: f.clock, std: f.std, country: f.country, roster: f.roster, book: f.book, bg: f.bg, bags: f.bags, ci: f.ci, gt: f.gt, wb: f.wb }); }
   function flEnv(f) { if (G.flPrevAc == null) G.flPrevAc = G.wbAc || '737'; G.wbAc = '737'; if (typeof WB_TEXT !== 'undefined' && !G.flLmcTab) { G.flLmcTab = WB_TEXT.tabs.lmc; WB_TEXT.tabs.lmc = L('LMC（承認後の変更）', 'LMC(승인 뒤 변경)', 'LMC (post-approval change)'); }   /* 70차 권고: B 노쇼와 Z 추가 탑승 혼동 방지 */
     G.country = f.country; G.practice = !!f.practice; }
-  function flEnvOff() { if (G.flPrevAc != null) { G.wbAc = G.flPrevAc; G.flPrevAc = null; } if (typeof WB_TEXT !== 'undefined' && G.flLmcTab) { WB_TEXT.tabs.lmc = G.flLmcTab; G.flLmcTab = null; } }
+  function flEnvOff() { G.flResView = false; if (G.flPrevAc != null) { G.wbAc = G.flPrevAc; G.flPrevAc = null; } if (typeof WB_TEXT !== 'undefined' && G.flLmcTab) { WB_TEXT.tabs.lmc = G.flLmcTab; G.flLmcTab = null; } }
 
   /* ---------- 자리 시작(입력 스냅샷 고정 → 그 스테이지의 압축 근무 시작) ---------- */
   /* 70차 F70-03: 엔진은 「한 단위도 마치지 않은 진행본」을 이어하기로 보여 주지 않음. 종합편 램프는 첫 단위(출발 준비)가 길고 단계 도중 저널(acn-saga-rpj-v1)이 있으므로,
@@ -8320,7 +8331,8 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   }
   var runInfo0 = runInfo; runInfo = function () { var r = runInfo0(); if (r) return r; var o = readRun(); if (flRpMid(o) && !checkRun(o)) return { o: o }; return null; };
   function flBegin(step) {
-    var f = flRead(); G.flight = f;
+    if (!flUnlocked()) { renderTitle(); return; }   /* 71차: 잠긴 상태에서는 시작하지 않음 */
+    G.flResView = false; var f = flRead(); G.flight = f;
     if (!f || f.step !== step || !flReady()) { renderTitle(); return; }
     if (!f.legs[step] || !f.legs[step].input) { f.legs[step] = { input: flSnap(f), inputVer: f.rev, startedAt: new Date().toISOString() }; if (!flWrite(f)) { flWarn(); return; } }
     flEnv(f); setStage(step); save();
@@ -8767,7 +8779,9 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     C5: [L('最新の書類', '최신 문서', 'Latest documents'), L('ランプが受け取って確認したEDNO・LMC・機長通知＝有効な版', '램프가 받아 확인한 EDNO·LMC·기장 통보 = 유효한 판', 'The EDNO, LMC and captain notice the ramp received and checked = the valid edition')],
     C6: [L('最終照合', '최종 대조', 'Final check'), L('ゲート最終（名簿 v2）＝ロードシート＋LMC＝ランプの人数照合', '게이트 최종(명단 v2) = 로드시트 + LMC = 램프 인원 대조', 'Gate final (manifest v2) = load sheet + LMC = the ramp\'s headcount')] };
   function flMissLabel(c) { if (/^fl-C\d$/.test(c)) return tx(L('連結 ', '연결 ', 'Link ')) + c.slice(3) + ' ' + tx(FLCN[c.slice(3)][0]); for (var i = 0; i < FLSTEP.length; i++) { var m = (window.SAGA_STAGES[FLSTEP[i]] || {}).missLabels || {}; if (m[c]) return tx(m[c]); } return LS[c] ? c + ' ' + tx(LS[c]) : c; }
+  var finish0 = finish; finish = function () { if (G.flResView && G.screen === 'result') return flResult(); return finish0.apply(this, arguments); };   /* 71차: 종합 결과에서 언어를 바꾸면 종합 결과를 그 언어로(램프 자리 결과로 바뀌지 않게) */
   function flResult() {
+    G.flResView = true;
     var f = flRead(); G.flight = f; if (!f || f.step !== 'done' || !f.total) { renderTitle(); return; }
     G.screen = 'result'; playCls(); var t = f.total, C = f.conn, X = FLX.T[f.country], rec = (window.SAGA_DAYS.rec(G.hist, FLDAY, f.country + (f.practice ? '.practice' : '')) || {}), top = rec.top;
     var who = function (k) { return k ? tx(FLNAME[k]) : ''; };
@@ -8807,13 +8821,36 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     if (!flWrite(n)) { flWarn(); return; } G.flight = n; flBegin(step);
   }
   function flNewFlight() {
+    if (!flUnlocked()) { renderTitle(); return; }
     var f = flRead(), go = function () { var n = flNew(G.country, G.practice); if (!flWrite(n)) { flWarn(); return; } G.flight = n; flBegin('ci'); };
     if (f && f.step !== 'done') return askConfirm(L('進行中の便があります', '진행 중인 편이 있습니다', 'A flight is in progress'), L('新しく始めると、進行中の便（' + tx(FLNAME[f.step]) + 'から）は消えます。記録済みの結果はそのまま残ります。', '새로 시작하면 진행 중인 편(' + tx(FLNAME[f.step]) + '부터)은 지워집니다. 기록된 결과는 그대로 남습니다.', 'Starting new deletes the flight in progress (next: ' + tx(FLNAME[f.step]) + '). Recorded results stay.'), L('新しく始める', '새로 시작', 'Start new'), go);
     go();
   }
   /* 첫 화면 카드(스테이지 목록 아래) */
+  /* 71차(사용자 결정 10-21): FINAL은 운항 관련 네 스테이지(체크인·게이트·탑재관리·램프)를 모두 마친 뒤에 열림.
+     「마침」 = 그 스테이지의 DAY 1~5를 모두 B 이상·안전 합격으로 끝냄(지금 근무지 기준, 실전 기록이든 연습 기록이든 인정) */
+  var FLNEED = ['ci', 'gt', 'wb', 'rp'];
+  function flStageProg(sid) {
+    var stg = window.SAGA_STAGES[sid], sd = stg && stg.days; if (!sd) return { k: 0, n: 5 };
+    /* 기록 열쇠 = 날 id.근무지[.기재(탑재관리·램프 737/789)][.practice]. 기재가 있는 스테이지는 한 기재로 DAY 1~5를 모두 마치면 완료(실전·연습 섞어도 인정) */
+    var acs = sid === 'wb' || sid === 'rp' ? ['.737', '.789'] : [''], best = 0, n = 0, H = G.hist || {};
+    sd.list.forEach(function (d) { if (d.mission) n++; });
+    acs.forEach(function (a) { var k = 0; sd.list.forEach(function (d) { if (!d.mission) return; var b = d.id + '.' + G.country + a; if (sd.cleared(H[b]) || sd.cleared(H[b + '.practice'])) k++; }); best = Math.max(best, k); });
+    return { k: best, n: n || 5 };
+  }
+  function flUnlocked() {
+    if (window.SAGA_TEST && window.__flOpen) return true;   /* 시험용 */
+    return FLNEED.every(function (sid) { var p = flStageProg(sid); return p.k >= p.n; });
+  }
+  function flLockHtml() {
+    var NM = { ci: L('チェックイン', '체크인', 'Check-in'), gt: L('ゲート', '게이트', 'Gate'), wb: L('ロードコントロール', '탑재관리', 'Load control'), rp: L('ランプ', '램프', 'Ramp') };
+    var rows = FLNEED.map(function (sid, i) { var p = flStageProg(sid), ok = p.k >= p.n; return '<li class="' + (ok ? 'ok' : '') + '"><span>STAGE 0' + (i + 1) + ' ' + esc(tx(NM[sid])) + '</span><b>' + (ok ? '✔' : '🔒') + ' ' + p.k + '/' + p.n + '</b></li>'; }).join('');
+    return '<section class="panel flcard fllock" id="flcard"><div class="flhd"><span class="n">FINAL</span><b>' + esc(tx(FLTITLE)) + '</b><small>🔒 ' + esc(tx(L('運航の4つのステージをすべて終えると開きます', '운항 관련 네 스테이지를 모두 마치면 열립니다', 'Opens when all four operations stages are complete'))) + '</small></div>' +
+      '<p class="small">' + esc(tx(L('各ステージの DAY 1〜5 を B以上・安全合格で終えること（本番・練習のどちらの記録でも可、今の勤務地の記録）。', '각 스테이지의 DAY 1~5를 B 이상·안전 합격으로 마칠 것(실전·연습 어느 기록이든 인정, 지금 근무지 기록).', 'Finish DAY 1–5 of each stage with B or better and a safety pass (shift or practice records both count; for the current base).'))) + '</p><ul class="fllist">' + rows + '</ul></section>';
+  }
   function flCardHtml() {
     if (!flReady()) return '';
+    if (!flUnlocked()) return flLockHtml();
     var f = flRead(); G.flight = f;
     var SD = window.SAGA_DAYS, rc = SD.rec(G.hist, FLDAY, G.country + (G.practice ? '.practice' : '')), tp = rc && rc.top;
     var st = !f ? '' : f.step === 'done' ? L('前の便：総合 ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'), '지난 편: 종합 ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'), 'Last flight: ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'))
@@ -8827,6 +8864,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
         : '<button class="start" id="fl-new" style="width:auto">' + esc(tx(L('出発の準備を始める ▶', '출발 준비 시작 ▶', 'Start the departure ▶'))) + '<small>' + esc(tx(G.practice ? T.modeP : T.modeC)) + ' · ' + (G.country === 'JP' ? 'VELA 301 NRT→ICN' : 'VELA 302 ICN→NRT') + '</small></button>' + (f && f.total ? '<button class="btn" id="fl-res">' + esc(tx(L('前の便の総合結果', '지난 편 종합 결과', 'Last flight\'s result'))) + '</button>' : '')) + '</div>' + (f ? flRedoHtml(f).replace('class="panel"', 'class="flredo"') : '') + '</section>';
   }
   function flBindCard() {
+    if (!flUnlocked()) return;
     var go = $('#fl-go'); if (go) go.onclick = function () { if (G.resuming) return; sfx.tap(); flGo(); };
     var nw = $('#fl-new'); if (nw) nw.onclick = function () { if (G.resuming) return; sfx.tap(); flNewFlight(); };
     var rs = $('#fl-res'); if (rs) rs.onclick = function () { sfx.tap(); flResult(); };
