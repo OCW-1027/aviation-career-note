@@ -1,7 +1,7 @@
 {
  "version": "234665bb93e7",
- "count": 925,
- "totalBytes": 17382297,
+ "count": 938,
+ "totalBytes": 17711298,
  "source": "voices/voices.json (단일 HTML에 내장된 승인 음성)",
  "voices": {
   "00200d58": {
@@ -2660,9 +2660,19 @@
    "bytes": 10221,
    "sha256": "ae0f76c697e89cc182cc0e2c50d3676a3d1b2c1b9bb231c31813e90e16a4c0fb"
   },
+  "016e06b9": {
+   "bytes": 21549,
+   "sha256": "82d2092b26d4d11ffdf65ca46bf1695815f7293eae6347f847ca21f6e22149fe",
+   "gate": true
+  },
   "017c78d9": {
    "bytes": 11949,
    "sha256": "1f1a8df78ceaf84177af15ca488731922b327e31c2ec089d2bd7b486269a3f75",
+   "gate": true
+  },
+  "01c72c31": {
+   "bytes": 26445,
+   "sha256": "e045f5ddf4ec5374ceaacaeb7cb948390ccd09646c9905dd2d43fcf30f4e5ad2",
    "gate": true
   },
   "02608e8f": {
@@ -2683,6 +2693,11 @@
   "0441de7c": {
    "bytes": 13197,
    "sha256": "248a48c9bb86be7e11024afd5d5f2e7b642a40a594fdf192f71f21e1a457cef3",
+   "gate": true
+  },
+  "05141efe": {
+   "bytes": 18573,
+   "sha256": "1ff7c414c48e5cfb3dd78e994b8ab276f9a84371ba2c4c44e7c8f616facf498f",
    "gate": true
   },
   "053bb83a": {
@@ -2775,6 +2790,11 @@
    "sha256": "9352f684311acc9578dfd7246d466ea374fad89895cded783eb8f5b464de5e93",
    "gate": true
   },
+  "15c47881": {
+   "bytes": 32589,
+   "sha256": "ac2c3cafb03a3c261be0c57ac46779d33f0bd2b4bd8d84c060bbd2e513c84921",
+   "gate": true
+  },
   "17d69a98": {
    "bytes": 24045,
    "sha256": "ac24977bc766ae4823679c1e9c8a6141e8146786c56e1a9ffb5c41f06d2b2711",
@@ -2818,6 +2838,11 @@
   "2193b357": {
    "bytes": 4557,
    "sha256": "f7927a14fb4bba25f07b8b5a5bf19e837433e4ee971cb3e5b7f3ad486335e79a",
+   "gate": true
+  },
+  "22d5fd4e": {
+   "bytes": 27501,
+   "sha256": "460af082197ae2b0365ca983c8c33845183ccb2e4c8070ef29057c042b31077f",
    "gate": true
   },
   "23772200": {
@@ -3270,6 +3295,11 @@
    "sha256": "df4c66d362af82114fef3d99529c39af580b989c3abc8ee1fe1f7ad38a55b6c3",
    "gate": true
   },
+  "6f190e00": {
+   "bytes": 13773,
+   "sha256": "6c065be7161d67673e777e73d2b13b2762ad3af193acadc43355493562da55ff",
+   "gate": true
+  },
   "6f67c145": {
    "bytes": 18765,
    "sha256": "4341b6780b213526b345cd275a224a87b3602a315b05489c9ed42bc963fd0996",
@@ -3343,6 +3373,11 @@
   "7814b9a5": {
    "bytes": 8493,
    "sha256": "9469c69b3dca2cbbc8f34211e90db0acc1ee696a44ebb57e1fb34f6cd8000327",
+   "gate": true
+  },
+  "79a52fe0": {
+   "bytes": 19629,
+   "sha256": "737d04e15b73200a8f4f75c847e2631306b05cc9fc399b4e8c1dfcd312ca54ea",
    "gate": true
   },
   "79eb8cdb": {
@@ -3460,6 +3495,16 @@
    "sha256": "4ec5212931a8b12c46bd74a226f78e685320072eaa7dc4f00beb9f11507aa4e8",
    "gate": true
   },
+  "88bfc619": {
+   "bytes": 30285,
+   "sha256": "ad6a7bd7e8cb8c380b79a2f59fc82930717e9ccace7b8d7ff0e96292edcb0300",
+   "gate": true
+  },
+  "8b8c4dd5": {
+   "bytes": 24909,
+   "sha256": "81a0f398aae966671538de2ead7a1c18e8dc778965e47d859f0f73d82d724b98",
+   "gate": true
+  },
   "900b6db4": {
    "bytes": 14349,
    "sha256": "f7ad72efe38ecc805fcdf838a912c26f8bb43f69095165e9a5aa0891762ef29e",
@@ -3493,6 +3538,11 @@
   "94268ca8": {
    "bytes": 12045,
    "sha256": "04ee09b91bd028e7121a311897f072b5cb57942f1171b5dcb632599642384238",
+   "gate": true
+  },
+  "942ac292": {
+   "bytes": 19053,
+   "sha256": "1a627e604337d4ef08ab9062627a4cb7ccd2fe3cd8ce145a12d6aa267ff22dac",
    "gate": true
   },
   "947800ed": {
@@ -3885,6 +3935,11 @@
    "sha256": "b52fd2ca1aad3b4fa7d83d37a7114251495373c5f29af70feb2daa470ee09f7c",
    "gate": true
   },
+  "ecc37809": {
+   "bytes": 23277,
+   "sha256": "a9c0e8b20ef9066dae8cfe1913de21296acdf6e79a7357083dbb4a3f254605f1",
+   "gate": true
+  },
   "ed79d956": {
    "bytes": 4365,
    "sha256": "ddf020b6c16493d27b3c6df77e088178954296e022881aecd9485299165b0da6",
@@ -3908,6 +3963,11 @@
   "f09836cc": {
    "bytes": 16365,
    "sha256": "04c4950dab7c6ef22d2df93eec3f8f511308ad31ba53a8e9fc70d7d06369e775",
+   "gate": true
+  },
+  "f34774be": {
+   "bytes": 20205,
+   "sha256": "01215fb1009674f0f98a4e99533baebfa0b572428da96114bcd5c88d54928dfb",
    "gate": true
   },
   "f3dd5872": {
@@ -3945,6 +4005,11 @@
    "sha256": "701fd26610d19534a36b075795843d95d370ed0c902c798498700fab333335a1",
    "gate": true
   },
+  "fc109be5": {
+   "bytes": 51213,
+   "sha256": "0e7fab0c75873ae601c6024ffbb389d60c3f6410ddb6f0fa300313b001ec51fa",
+   "gate": true
+  },
   "fc6140c7": {
    "bytes": 13581,
    "sha256": "bdee7abf8000ad69b32029d0a4357f9852bb1278480d64f9c78b5aa5d82099b2",
@@ -3966,5 +4031,5 @@
    "gate": true
   }
  },
- "gateVoices": 261
+ "gateVoices": 274
 }

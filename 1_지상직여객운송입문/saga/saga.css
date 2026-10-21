@@ -647,3 +647,24 @@ html.sh-saga .t48 .langrow{display:none}
 @media (min-width:900px){.stage.rp.rpv06 .sign.s1,.stage.rp.rpv06 .sign.s2{font-size:clamp(7px,.9vw,14px)}}
 .stage.rp.rpv06 .wbradio img{object-position:50% 20%}
 @media (max-width:600px){.wbheroac{top:36%;font-size:11px;padding:4px 8px}}   /* 65차: 휴대폰에서 첫 화면 부제와 겹치지 않게(탑재관리·램프 공통) */
+/* 70차: 종합편 「한 편을 띄우다」 — 첫 화면 카드·자리 인계·종합 결과 */
+.flcard{border:2px solid var(--vela);background:linear-gradient(135deg,#f4f7ff,#fffaf2);margin-top:10px}
+.flcard .flhd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin-bottom:4px}
+.flcard .flhd .n{background:var(--vela);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;padding:2px 7px;border-radius:4px}
+.flcard .flhd b{font-size:18px}
+.flcard .flhd small{color:var(--sub);font-size:12px;flex-basis:100%}
+.flcard p{margin:4px 0}
+.flcard .flst{font-weight:700;font-size:14px}
+.flcard .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.flcard .btns .start{flex:1 1 220px}
+.flcard .flredo{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+.flcard .flredo h2{font-size:14px;margin:0 0 4px}
+.flhand .kv{margin:0 0 6px}
+.flres .flconn td{vertical-align:top}
+.flres .flconn small{color:var(--sub)}
+.fltags .on{background:#e9f6ef}
+.fltags td,.fltags th{padding:4px 6px}
+@media (max-width:600px){.flcard .flhd b{font-size:16px}.flcard .btns .start{flex-basis:100%}.fltags{font-size:12px}}
+.flkv th{width:42%;text-align:left;font-weight:600;color:var(--ink)}
+.flkv td{font-variant-numeric:tabular-nums}
+.flkv small{color:var(--sub)}
