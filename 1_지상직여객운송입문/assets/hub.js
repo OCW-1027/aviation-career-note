@@ -5,7 +5,7 @@
 var LB={ja:{new:'NEW',upd:'更新',last:'最終更新'},ko:{new:'NEW',upd:'업데이트',last:'최종 업데이트'},en:{new:'NEW',upd:'Updated',last:'Last updated'}};
 function apply(){var U=window.UPDATES||[],days=window.UPDATES_DAYS||60,now=Date.now(),hid=window.HUB_ID,m={},last='';
  var LD=(window.LESSON_DATES||{})[hid]||{};Object.keys(LD).forEach(function(k){if(LD[k]>last)last=LD[k]});
- U.forEach(function(x){if(x.c!==hid)return;if(!last||x.d>last)last=x.d;if(!x.k)return;if((now-Date.parse(x.d))/864e5>days)return;if(!m[x.k]||m[x.k].d<x.d)m[x.k]=x});
+ var OP=window.SITE_OPEN||'';U.forEach(function(x){if(x.c!==hid)return;if(!last||x.d>last)last=x.d;if(!x.k)return;if(OP&&x.d<OP)return;if((now-Date.parse(x.d))/864e5>days)return;if(!m[x.k]||m[x.k].d<x.d)m[x.k]=x});if(OP&&last&&last<OP)last=OP;
  var L=LB[document.documentElement.lang]||LB.ja;
  if(!document.getElementById('upd-css')){var st=document.createElement('style');st.id='upd-css';st.textContent='.card .nb{display:inline-block;font-size:11px;font-weight:700;line-height:1.6;padding:0 8px;border-radius:999px;margin:0 0 4px;letter-spacing:.02em;align-self:flex-start}.card .nb.new{background:#D0506A;color:#fff}.card .nb.upd{background:#FFE08A;color:#3A2A00}';document.head.appendChild(st)}
  Array.prototype.forEach.call(document.querySelectorAll('.card[data-k]'),function(a){var o=a.querySelector('.nb');if(o)o.parentNode.removeChild(o);var x=m[a.getAttribute('data-k')];if(!x)return;var b=document.createElement('span');b.className='nb '+x.t;b.textContent=L[x.t]+' '+x.d.slice(5).replace('-','.');var mm=a.querySelector('.m');if(mm)mm.insertBefore(b,mm.firstChild)});

@@ -39,7 +39,7 @@ sections:[
 {name:"Old aircraft",x:"Fully depreciated and almost free on paper, but fuel and maintenance climb and the risk of cancellations and delays rises."},
 {name:"Average fleet age",x:"A measure of an airline’s constitution: LCC fleets tend to be younger and FSC fleets older (check each company’s disclosures ★). A young fleet signals continuing investment, though the depreciation burden also depends on leasing, cost and useful lives."},
 {name:"Fleet commonality",x:"LCCs stick to one type (family) to share maintenance, spares and crew training and so cut costs. Jeju Air’s B737-8 introduction is a renewal within the same B737 family. ★"}]},
-{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Management Simulation: compare ‘buy aircraft’ and ‘lease aircraft’ across the three statements"}]},
+{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Finance Simulation: compare ‘buy aircraft’ and ‘lease aircraft’ across the three statements"}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Compare owning and leasing",x:"For a 15.0bn aircraft used 20 years, which is cheaper: owning (5% residual, 0.71bn a year depreciation plus interest) or leasing at 0.9bn a year? And if returned after 10 years?"},
 {name:"Read a balance sheet",x:"In your own or a nearby airline’s annual report, find aircraft book value, fleet count, average age and the share of leased aircraft."}]}]}],
@@ -134,7 +134,7 @@ sections:[
 {name:"Currency",x:"Yen, won, euro. Compare ratios by default; if comparing amounts, convert at one date and say so."},
 {name:"Consolidation scope",x:"ANA’s consolidation of NCA, Korean Air’s integration of Asiana: do not read growth rates at face value where scope changed (1-6)."},
 {name:"Always cite source and date",x:"This table reflects public documents as of October 2026 and is refreshed every quarter. ★"}]},
-{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Management Simulation: change fuel, FX and load factor yourself and move Vela Air’s yearly measures"}]},
+{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Finance Simulation: change fuel, FX and load factor yourself and move Vela Air’s yearly measures"}]},
 {h:"On to Part 6",blocks:[{t:"note",x:"You now have the material to read an airline’s accounts. Part 6 organises the measures of profitability, safety, efficiency and growth, compares across industries, and reads trends over time."}]}],
 voice:"When reading another airline’s results, the most useful thing is to name one difference from your own: fuel share, ancillaries, the depth of cash. Follow that one every quarter and the map of the industry forms in your head.",
 terms:[["Ancillary revenue","付帯収入（アンシラリー）","부대수입(앤실러리)"],["Liquidity on hand","手元流動性","보유 유동성"],["Ultra low-cost carrier","超低コスト航空会社（ULCC）","초저비용 항공사(ULCC)"],["Merger / integration","統合（経営統合）","통합(경영 통합)"],["Primary source","一次資料","1차 자료"]],

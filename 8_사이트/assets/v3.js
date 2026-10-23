@@ -107,5 +107,18 @@ function localLabels(){var k=lang==='ja'?1:lang==='ko'?2:0,map={};LB.forEach(fun
 window.ACN={E:E,lang:function(){return lang},fitL2:fitAll,fitTitles:fitAll};
 /* 右下のボタン（上へ・戻る・ホーム）：ほかのページと同じ nav.js を使う。ホームは新しいトップページ（2026.10） */
 (function(){var me=document.currentScript&&document.currentScript.src;if(!me)return;window.ACN_HOME=new URL('../index.html',me).href;var n=document.createElement('script');n.src=new URL('../../1_\uc9c0\uc0c1\uc9c1\uc5ec\uac1d\uc6b4\uc1a1\uc785\ubb38/assets/nav.js',me).href;document.head.appendChild(n);var w=document.createElement('script');w.src=new URL('ja_wrap.js',me).href;document.head.appendChild(w)})();
+/* ページ内の場所（#learn など）へのリンク（2026.10.23 사용자 제보：PC 홈에서 아래로 스크롤해도 「직무별 항공 강좌」로 되돌아감）
+   原因：住所に #learn が付いたまま開くと、読み込みが終わった時点でブラウザが #learn へ自動で戻す（その前にスクロールしていても）。
+   ・#… 付きで開いたら：描画のすぐ後に自分で移動し、住所から #… を外す。読み込み完了・フォント読み込み後は、まだ自分でスクロールしていないときだけ合わせ直す
+   ・同じページの #… へのリンク：住所を変えずに、なめらかに移動（#… が住所に残らない）
+   ・求人ページの開閉（<details>）はそのページの処理にまかせる */
+var userMoved=false;['wheel','touchmove','keydown','mousedown'].forEach(function(t){window.addEventListener(t,function(){userMoved=true},{passive:true})});   /* 読み込み中のスクロールも数える */
+function hashFix(){if(NOJS)return;var h=location.hash,el=h&&h.length>1&&document.getElementById(decodeURIComponent(h.slice(1)));
+ if(el&&el.tagName!=='DETAILS'){
+  try{history.replaceState(history.state,'',location.pathname+location.search)}catch(e){}
+  var go=function(){if(!userMoved)el.scrollIntoView({block:'start',behavior:'auto'})};go();window.addEventListener('load',go);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(go)}
+ document.addEventListener('click',function(e){if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;var a=e.target&&e.target.closest&&e.target.closest('a[href*="#"]');if(!a)return;var u;try{u=new URL(a.href,location.href)}catch(x){return}
+  if(u.pathname!==location.pathname||u.hash.length<2)return;var t=document.getElementById(decodeURIComponent(u.hash.slice(1)));if(!t||t.tagName==='DETAILS')return;e.preventDefault();t.scrollIntoView({block:'start',behavior:'smooth'})})}
 document.addEventListener('DOMContentLoaded',draw);
+document.addEventListener('DOMContentLoaded',hashFix);
 })();

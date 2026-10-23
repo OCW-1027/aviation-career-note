@@ -107,7 +107,7 @@ sections:[
 {name:"Where interest and dividends sit",x:"JAL puts interest and dividends received in investing and interest paid in financing; J-GAAP companies such as ANA often put them in operating. Align before comparing operating cash flow. ★"},
 {name:"Separate one-off funding",x:"The 177.2bn of perpetual bonds does not recur every year. Without it, financing is −1,326: the mature + − − shape."},
 {name:"Source and date",x:"Figures from the earnings release of 30 April 2026; the annual securities report adds notes. ★"}]},
-{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Management Simulation: follow quarterly cash movements through the three groups"}]}],
+{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Finance Simulation: follow quarterly cash movements through the three groups"}]}],
 voice:"Of all the statements in an earnings release, the cash flow statement is the hardest to dress up. Profit moves with accounting judgments; cash does not. When in doubt, look at two numbers here: operating cash flow and closing cash.",
 terms:[["Perpetual subordinated bonds","永久劣後債","영구후순위채"],["Repayment of lease liabilities","リース負債の返済","리스부채 상환"],["Effect of exchange rate changes on cash","為替換算差額","환율 변동 효과"],["Liquidity on hand","手元流動性","보유 유동성"]],
 quiz:[{q:"Why was JAL’s financing cash flow positive in the year to March 2026?",opts:["Issue of perpetual subordinated bonds","More borrowing","Suspended dividends","Asset sales"],a:0,exp:"The 177.2bn issue was the main cause; ordinary borrowing was repaid on a net basis ★."},

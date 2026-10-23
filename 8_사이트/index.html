@@ -352,7 +352,7 @@ en:{title:'Aviation Career Note',
 var KICK={GND:['旅客ハンドリング','여객운송','Passenger Operations'],DSP:['運航管理','운항관리','Flight Operations'],STN:['支店運営','지점 운영','Station Management'],CGO:['航空貨物','항공화물','Air Cargo'],MNT:['航空機と整備','항공기와 정비','Aircraft & Maintenance'],SLS:['航空営業','항공 영업','Airline Sales'],CIQ:['税関・出入国・検疫','세관·출입국·검역','CIQ'],OPN:['支店開設','지점 개설','Station Launch'],IRR:['現場事例','현장 사례','Field Cases'],BAS:['航空基礎','항공 기초','Fundamentals'],APT:['空港','공항','Airports'],INT:['就職と面接','취업과 면접','Career & Interview'],EXP:['日本の暮らし','일본 생활','Living in Japan']},
  LVN={Beginner:['入門','입문','Beginner'],Intermediate:['中級','중급','Intermediate'],Advanced:['上級','고급','Advanced']},
  LEVEL={GND:'Beginner',DSP:'Intermediate',STN:'Advanced',CGO:'Intermediate',MNT:'Intermediate',SLS:'Intermediate',CIQ:'Beginner',OPN:'Advanced',IRR:'Advanced',BAS:'Beginner',APT:'Beginner',INT:'Beginner',EXP:'Beginner'},
- TOPC=['GND','DSP','STN','CGO','MNT','SLS','CIQ','OPN'],MOREC=['IRR','BAS','APT','INT','EXP'],   /* 2026.10 처음 8개(PC 2줄)·나머지 5개 */
+ TOPC=['GND','DSP','STN','CGO','MNT','SLS','CIQ','OPN','IRR','BAS','APT','INT','EXP'],MOREC=[],   /* 2026.10.23 사용자 결정：접지 않고 13개 모두 표시(예전：처음 8개·나머지 5개는 「すべての講座を見る」) */
  /* ツールは data/home_data.js の id で指す（ファイル名は公開時に英語に変わるので、名前で探さない）。LABS＝最初に見せる4つ。名前は TOOLS の各言語の名前を使う（名前の中の \n はカードでは改行、検索の結果では空白）*/
  LABS=['saga','lc','dsp','exam_jp','rm','fsc','fin_link','fin_sim'], /* 24차（사용자 결정 B안）：직무 흐름 순(공항 → 운항 → 영업 → 재무)으로 처음 8つ。残りは「ほかの練習ツール（+n）」 */
  FINT=['fin_tx','fin_link','fin_cost','fin_sim','fin_ratio','fin_val','fin_memo','ye'],
@@ -435,7 +435,7 @@ window.PAGE_RENDER=function(l){lang=l;var t=T[lang],s=S();document.title=t.title
  $('hl').innerHTML=t.hl;$('ll').textContent=t.ll;
  function card(c){var x=s[c];if(!x)return '';var d=x[lang]||x.ja;return '<a class="course-card" href="'+x.p+'"><div class="kicker">'+E(KICK[c]?KICK[c][li(lang)]:c)+'</div><h3>'+E(d[1])+'</h3><p class="muted">'+E(d[2])+'</p><div class="meta-row"><span>'+x.n+' '+t.lessons+' · '+E(LEVEL[c]&&LVN[LEVEL[c]]?LVN[LEVEL[c]][li(lang)]:'')+'</span><span class="go">'+E(t.view2)+'</span></div></a>'}
  $('courseTop').innerHTML=TOPC.map(card).join('');$('moreCourses').innerHTML=MOREC.map(card).join('');
- var mN=MOREC.filter(function(c){return s[c]}).length;toggle('mlBtn','moreCourses',[t.ml[0].replace(/\s*→$/,'')+(lang==='ja'?'（+'+mN+'） →':' (+'+mN+') →'),t.ml[1]]);
+ var mN=MOREC.filter(function(c){return s[c]}).length;if(!mN){$('mlBtn').hidden=true;$('moreCourses').hidden=true}else toggle('mlBtn','moreCourses',[t.ml[0].replace(/\s*→$/,'')+(lang==='ja'?'（+'+mN+'） →':' (+'+mN+') →'),t.ml[1]]);
  $('hpath').textContent=t.hpath;$('lpath').textContent=t.lpath;
  if($('pcta'))$('pcta').innerHTML='<a class="btn primary" href="plan.html#make">'+E(t.pcta[0])+'</a><a class="btn pghost" href="plan.html#how">'+E(t.pcta[1])+'</a><small>'+E(t.pcta[2])+'</small>';
  $('steps').innerHTML=STEPS.map(function(st,i){var x=s[st[1]];return '<a class="step" href="'+(x?x.p:'#learn')+'"><small>0'+(i+1)+'</small><b>'+E(st[0][li(lang)])+'</b><span>'+E(t.stepSub[i])+'</span></a>'}).join('');

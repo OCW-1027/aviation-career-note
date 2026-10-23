@@ -32,7 +32,7 @@ krdsp:{ja:'\u97d3\u56fd\u0020\u904b\u822a\u7ba1\u7406\u58eb\u0020\u7df4\u7fd2\u5
 fincard:{ja:'取引と財務諸表の練習',ko:'거래와 재무제표 연습',en:'Transactions & Statements Practice'},
 finlink:{ja:'財務諸表連動シミュレーター',ko:'재무제표 연동 시뮬레이터',en:'Linked Financial Statements Simulator'},
 fincost:{ja:'航空原価計算の練習',ko:'항공 원가 계산 연습',en:'Airline Cost & Break-even Practice'},
-finsim:{ja:'航空会社経営シミュレーション',ko:'항공사 경영 시뮬레이션',en:'Airline Management Simulation'},
+finsim:{ja:'航空会社の財務シミュレーション',ko:'항공사 재무 시뮬레이션',en:'Airline Finance Simulation'},
 finratio:{ja:'財務比率の計算練習',ko:'재무 비율 계산 연습',en:'Financial Ratio Practice'},
 finval:{ja:'企業価値の計算練習',ko:'기업가치 계산 연습',en:'Company Valuation Practice'},
 finmemo:{ja:'投資検討報告書の下書き',ko:'투자 검토 보고서 초안',en:'Investment Memo Draft'},

@@ -120,7 +120,7 @@ sections:[
 {name:"Closing cash → cash",x:"1,044, 1,256 and 1,338 agree with the balance sheet."},
 {name:"Aircraft = opening + purchases − depreciation",x:"2,100 + 300 − 254 = 2,146 / 2,146 + 0 − 262 = 1,884 / 1,884 + 300 − 270 = 1,914."},
 {name:"Assets = liabilities + equity",x:"Matches at every year end (5,910, 5,880, 6,012)."}]},
-{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Management Simulation: run a year of Vela Air on your own decisions and watch the three statements change"}]},
+{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Finance Simulation: run a year of Vela Air on your own decisions and watch the three statements change"}]},
 {h:"On to Part 5",blocks:[{t:"note",x:"You now know how to read the three statements and how they connect. Part 5 turns to what is specific to airlines: fuel and hedging, owning versus leasing aircraft, unearned revenue and miles, maintenance provisions, and per-seat-kilometre measures (RASK and CASK), using real airlines’ figures."}]}],
 voice:"Three years side by side reveal management’s judgment: investment and dividends paused in year 2 to protect cash, then resumed in year 3. One year’s accounts are a result; three years are a way of thinking.",
 terms:[["Three-year comparison","3期比較","3개년 비교"],["Break-even load factor","損益分岐利用率","손익분기 탑승률"],["Interest-bearing debt","有利子負債","유이자부채(이자부 부채)"],["Financial strength","体力","체력(재무 건전성)"]],

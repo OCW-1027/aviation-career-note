@@ -73,7 +73,8 @@ const HUBS = hubCtx.window.HUBS;
 const dctx = { window: {} }; vm.createContext(dctx);
 for (const f of ['lesson_dates.js', 'updates.js']) { const p = path.join(SRC, '1_지상직여객운송입문/assets', f); if (fs.existsSync(p)) vm.runInContext(fs.readFileSync(p, 'utf8'), dctx); }
 const LDATES = dctx.window.LESSON_DATES || {}, UPD = dctx.window.UPDATES || [];
-const lessonDate = (dir, k) => { const D = LDATES[dir] || {}; let d = D[k] || D['*'] || ''; UPD.forEach(x => { if (x.c === dir && x.k === k && x.d > d) d = x.d; }); return d; };
+const OPEN = dctx.window.SITE_OPEN || '';   // サイト公開日（lesson_dates.js）。これより前の日付は公開日として表示
+const lessonDate = (dir, k) => { const D = LDATES[dir] || {}; let d = D[k] || D['*'] || ''; UPD.forEach(x => { if (x.c === dir && x.k === k && x.d > d) d = x.d; }); if (OPEN && d && d < OPEN) d = OPEN; return d; };
 
 // ページの読み込み：ローカルのファイルだけ読み、外部（フォントなど）は読まない
 class LocalOnly extends ResourceLoader {

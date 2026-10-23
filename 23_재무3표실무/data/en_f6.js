@@ -226,7 +226,7 @@ sections:[
 {name:"Build the page for two airlines",x:"Pick two of the six in 5-6 and fill in the rows of this lesson’s table from their earnings releases, annual reports and traffic data. Where a row cannot be filled, write ‘not disclosed’."},
 {name:"Write one reason for the gap",x:"In one sentence, say which operating row (load factor, unit revenue, CASK ex fuel) explains the difference in the two airlines’ operating margins."},
 {name:"Your own airline’s page",x:"Build the same table for the last three years of your own company (or one you want to join) and mark the row that moved most."}]},
-{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Management Simulation: see the operating metrics and the three statements move together with each situation and response"},
+{t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Finance Simulation: see the operating metrics and the three statements move together with each situation and response"},
 {t:"note",x:"Part 7 uses these ratios to think about what a company is worth: multiples such as PER, PBR and EV/EBITDA, and DCF, which derives value from future cash."}]}],
 voice:"Do not stop at ‘their margin is higher than ours’. Go down to the operating rows until you can say ‘their load factor is three points higher’ or ‘their CASK ex fuel is 0.5 yen lower’. That is when you start to see what to change on the front line.",
 terms:[["Index (base year = 100)","指数（基準年 ＝ 100）","지수(기준 연도 = 100)"],["Common-size statement","構成比（百分率損益計算書）","구성비(백분율 손익계산서)"],["CASK excluding fuel","燃油を除くCASK","연료 제외 CASK"],["Net debt to EBITDA","純有利子負債 ÷ EBITDA","순차입금 ÷ EBITDA"],["Trend analysis","時系列分析","시계열 분석(추세 분석)"]],
