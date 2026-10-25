@@ -125,7 +125,7 @@ set("1-4",{"title":"Passengers with Onward and Connecting Flights","hl":"Transfe
 {"name":"Documents for the final destination and transfer point","x":"Whether the passenger must enter the transfer country, whether the conditions for transit without visa (TWOV) are met, the visa for the final destination."},
 {"name":"Bag tag destinations","x":"Check with the passenger that the airport codes for the final destination and transfer points are right."},
 {"name":"Whether bags must be collected at the transfer point","x":"Depending on the country and airport, bags must be collected once at the transfer point and taken through customs. Tell the passenger clearly."}]},
-{"t":"point","warn":true,"x":"If you do not tell passengers when bags must be collected at the transfer point, the bags are left behind. Writing the destination and where to collect them on the boarding pass makes it certain they know."}]},
+{"t":"point","warn":true,"x":"If you do not tell passengers when bags must be collected at the transfer point, the bags are left behind. Writing the destination and where to collect them on the boarding pass makes it clear."}]},
 {"h":"Stopovers and excess charges","blocks":[{"t":"p","x":"When a passenger stays in an intermediate city rather than connecting on the same day, excess baggage charges can be paid once from the origin to the final destination, or only as far as the stopover and then, when the journey resumes, under the rules of that flight (depending on the airline’s rules)."}]},
 {"h":"Rerouting and endorsement","blocks":[{"t":"rows","items":[
 {"name":"Rerouting","x":"Changing to another route or flight when a delay or cancellation means the planned connection cannot be made. Check the fare conditions and seat availability on the new flight."},
@@ -306,7 +306,7 @@ set("1-10",{"title":"Baggage Rules 1: Checked, Carry-on and Excess","hl":"Baggag
 {"name":"If it is too big","x":"Switch it to checked baggage at the counter. Many airlines do this free of charge when the reason is cabin space."}]}]},
 {"h":"Excess baggage charges","blocks":[{"t":"rows","items":[
 {"name":"Three kinds of excess","x":"Extra pieces, excess weight (e.g. over 23 kg) and oversize (e.g. 159–203 cm, 204–292 cm). If more than one applies, the charges are added together."},
-{"name":"Buying in advance","x":"Many airlines sell excess allowance more cheaply online and elsewhere before departure. Airport rates on the day are higher."},
+{"name":"Buying in advance","x":"Many airlines sell excess baggage more cheaply online and elsewhere before departure. Airport rates on the day are higher."},
 {"name":"Connections","x":"Can be paid once to the final destination or only as far as a stopover (depending on the airline’s rules)."},
 {"name":"Sports equipment","x":"Has its own size standards, so oversize charges often do not apply (lesson 1-11)."}]},
 {"t":"point","x":"Excess charges are a common source of disputes. Show the allowance and the excess in concrete terms and let the passenger choose between paying, reducing the bag (moving items to the cabin) or sending it separately; passengers then find it easier to accept."}]},

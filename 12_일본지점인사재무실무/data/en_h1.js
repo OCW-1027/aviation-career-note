@@ -269,7 +269,7 @@ lead:["In a small branch, it is important to protect cash through a system. Spli
 "This article covers how to split accounts, building daily and monthly cash reports, and the payment procedure (for an airline example, see Launching Flights to Japan 2-2)."],
 sections:[
 {h:"Splitting the accounts",blocks:[{t:"fig",id:"adm_cash",cap:"Figure: the payment process and segregation of duties."},{t:"table",cols:["Account","Use"],rows:[
-["Operating (imprest) account","Day-to-day payments: salaries, rent, communications, adviser fees"],
+["Operating (imprest) account","Day-to-day payments: salaries, rent, communications, advisory fees"],
 ["Revenue account","Sales receipts. Not moved without head office approval"],
 ["Tax and insurance payments","From the operating account, by electronic payment or similar"]]}]},
 {h:"Daily and monthly cash reports",blocks:[{t:"check",items:[
@@ -324,7 +324,7 @@ lead:["A foreign company’s Japan branch is a permanent establishment of a fore
 "This article lists the main taxes a branch deals with, how to think about filing and payment timing, and the taxes most easily overlooked."],
 sections:[
 {h:"The main taxes",blocks:[{t:"fig",id:"adm_tax",cap:"Figure: main taxes for a foreign company’s branch (Japan)."},{t:"table",cols:["Tax","Outline"],rows:[
-["Corporate tax and local corporate tax","On income attributable to the Japan branch. The fiscal year matches the head office’s. Filed in principle within two months of year end"],
+["Corporate tax and local corporate tax","On income attributable to the Japan branch. The fiscal year matches the foreign company’s. Filed in principle within two months of year end"],
 ["Corporate inhabitant tax and enterprise tax","Prefectural and municipal taxes. The per capita levy applies even with no income"],
 ["Consumption tax","The difference between tax on sales and tax on purchases is filed (5-2)"],
 ["Withholding income tax","Deducted from staff salaries and from fees to tax accountants, lawyers and others, and paid over"],
@@ -367,7 +367,7 @@ deep:[
 {name:"Close the accounts",sub:"After the year-end"},
 {name:"Calculate the taxes",sub:"Income → corporation tax → local taxes"},
 {name:"File and pay",sub:"Within two months of the year-end"},
-{name:"Interim return",sub:"If last year’s corporation tax exceeded 200,000 yen, make a prepayment six months into the year"},
+{name:"Interim return",sub:"If last year’s corporation tax exceeded 200,000 yen, prepay six months into the year"},
 {name:"Next year",sub:"Enterprise tax is an expense in the year it is paid"}]},
 {t:"point",x:"The line “income taxes” in the accounts is the total of the taxes calculated here. For the company in this example it runs from about 25% to 38% of income, rising with income. In the cash plan, enter this payment two months after the year-end and in the interim return month."}]}],
 deepKr:[
@@ -524,7 +524,7 @@ sections:[
 {name:"Streamline procedures",x:"Electronic payment and electronic invoices cut fees and time."},
 {name:"Balance with quality",x:"Always check that a cut does not affect safety, quality or punctuality."}]},
 {t:"point",x:"What matters in a budget is having a basis you can explain to head office. Attach last year’s actuals, contracts and quotes as the basis."}]},
-{h:"Cost cuts: what worked and what we dropped",blocks:[{"t":"table","cols":["Review","Result"],"rows":[["Combined the line and mobile phone contracts","About ¥600,000 a year saved"],["Got competing quotes when renewing the handling contract","Rate cut by about 5%"],["Tried cutting counter cleaning","Dropped: it would have hurt how customers saw us"],["Tried cutting standby staff","Dropped: no cover on disruption days"]]}]}],
+{h:"Cost cuts: what worked and what we dropped",blocks:[{"t":"table","cols":["Review","Result"],"rows":[["Combined the line and mobile phone contracts","About ¥600,000 a year saved"],["Got competing quotes when renewing the handling contract","Rate cut by about 5%"],["Tried cutting counter cleaning","Dropped: it hurt how customers saw us"],["Tried cutting standby staff","Dropped: no cover on disruption days"]]}]}],
 voice:"When cutting costs, start with things no one sees, such as combining communications contracts, and be careful with anything customers notice, such as how often the counters are cleaned. Always stop once to think how a cut will look to the front line and to customers.",
 terms:[["Budgeting","予算編成","예산 편성"],["Fixed Cost","固定費","고정비"],["Competing Quotes","相見積もり","비교 견적"],["Contingency","予備費","예비비"]],
 quiz:[{q:"What makes a budget more accurate?",opts:["Listing fixed costs and putting annual costs in the right month","Copying last year","Making everything contingency","Not making one"],a:0,exp:"Watch invoice timing too."},

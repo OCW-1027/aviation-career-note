@@ -80,7 +80,7 @@ sections:[
 {h:"Why airline FCF swings",blocks:[{t:"rows",items:[
 {name:"Deliveries come in lumps",x:"Aircraft arrive years after ordering, so capex jumps in delivery years. JAL’s fixed asset purchases: 290.0bn in the year to March 2025, 202.4bn in the year to March 2026 ★."},
 {name:"Demand shocks",x:"In fiscal 2020 airlines such as JAL had negative operating cash flow and deeply negative FCF, filled by borrowing and share issues. ★"},
-{name:"The unearned-revenue wave",x:"In growth years, advance ticket sales swell operating cash flow and make FCF look better than underlying strength; a reversal can follow the next year."},
+{name:"The unearned-revenue wave",x:"In growth years, advance ticket sales swell operating cash flow and make FCF look better than underlying strength; a reversal can come the following year."},
 {name:"Lease or buy",x:"Growing the fleet through leases shows no investing outflow; the cost appears in operating expenses (or as depreciation plus lease payments). Not directly comparable with a purchase-heavy airline (2-3)."}]}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Three years of FCF",x:"Vela Air years 1–3: 394−300, 222−0, 442−300. Total them and list where each year’s cash went (repayments, dividends)."},

@@ -47,7 +47,7 @@ sections:[
 {name:"Charges and schemes",x:"Revisions to airport charges and changes to incentive schemes."},
 {name:"Security",x:"Changes to screening and joint security training (5-2)."},
 {name:"Emergencies",x:"The airport emergency plan, joint exercises (5-4) and how large-scale disruption is handled."}]},
-{t:"point",x:"When a major disaster closes an airport, the order in which operations resume and how flights are allocated are coordinated through the committee. It is important to attend meetings regularly and build relationships in which people know you."}]},
+{t:"point",x:"When a major disaster closes an airport, the order in which operations resume and how flights are allocated are coordinated through the committee. It is important to attend meetings regularly and become a familiar face."}]},
 {h:"The bodies around it",blocks:[{t:"table",cols:["Who","Typical relationship"],rows:[
 ["The ministry, airport office and FAIB","Approvals, slots and reporting (Part 1)"],
 ["The airport company","Facilities, charges, incentives, ID passes"],

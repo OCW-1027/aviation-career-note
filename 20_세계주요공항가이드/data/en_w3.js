@@ -56,7 +56,7 @@ sections:[
 ["March 2025","Concourses D and E open ahead of schedule with 17 new gates; capacity over 65 million"],
 ["2026","Phased rehabilitation of the eastern runway to ICAO safety standards while operations continue"],
 ["Future","A possible Concourse F is still under consideration ★"]]},
-{t:"point",x:"Concourses D and E reduced remote stands and bus transfers. For a hub that sells short connection times, the number of contact gates is a direct measure of its competitiveness."}]},
+{t:"point",x:"Concourses D and E reduced remote stands and bus transfers. For a hub that sells short connection times, the number of contact gates is what makes it competitive."}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Night waves",x:"European and Asian flights cluster at night, creating a late-night connection peak."},
 {name:"Runway works",x:"The 2026 eastern runway rehabilitation may bring operating restrictions or time limits; check NOTAMs."},

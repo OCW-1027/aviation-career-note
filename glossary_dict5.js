@@ -10,7 +10,7 @@ window.DICT=(window.DICT||[]).concat([
 ["APT","Belt Loader","ベルトローダー","벨트 로더","手荷物をベルトで貨物室へ運ぶ車両","수하물을 벨트로 화물칸에 옮기는 차량","A vehicle with a conveyor belt for loading loose bags"],
 ["APT","High Loader (Main Deck / Lower Deck Loader)","ハイリフトローダー","하이 로더","ULDを持ち上げて貨物室へ入れる車両","ULD를 들어 올려 화물칸에 넣는 차량","A lift platform loading ULDs into the hold"],
 ["APT","Dolly","ドーリー","돌리","ULDを載せて牽引する台車","ULD를 실어 견인하는 대차","A trailer carrying a ULD"],
-["APT","Baggage Cart","手荷物カート（バゲージカート）","수하물 카트","ばらの手荷物を運ぶ荷台付きの台車","낱개 수하물을 실어 옮기는 대차","A trailer carrying loose bags"],
+["APT","Baggage Cart","手荷物カート（バゲージカート）","수하물 카트","ばらの手荷物を運ぶ荷台付きの台車","낱개 수하물을 옮기는, 적재함이 달린 대차","A trailer carrying loose bags"],
 ["APT","Tug / Tractor","トーイングトラクター（牽引車）","견인차(터그)","カート・ドーリーを牽引する車両","카트·돌리를 끄는 차량","The vehicle towing carts and dollies"],
 ["APT","Towbarless Tractor","トーバーレス牽引車","토바리스 견인차","前輪を持ち上げて機体を押す・引く車両","앞바퀴를 들어 올려 기체를 밀고 당기는 차량","A tug that lifts the nose wheel to push or tow the aircraft"],
 ["APT","Passenger Steps","パッセンジャーステップ（タラップ）","승객용 스텝(트랩)","沖止めで乗り降りに使う階段車","원격 주기장에서 승하기에 사용하는 계단 차량","Mobile stairs for boarding at remote stands"],
@@ -53,7 +53,7 @@ window.DICT=(window.DICT||[]).concat([
 ["ORG","EU261","EU261（欧州の旅客の権利の規則）","EU261(유럽 승객 권리 규정)","欧州発着などの遅延・欠航・搭乗拒否の補償とケアを定めた規則","유럽 출발 등의 지연·결항·탑승 거절 보상과 케어를 정한 규정","The EU rules on compensation and care for delays, cancellations and denied boarding"],
 ["ORG","Tokyo Convention","東京条約","도쿄 협약","機内での犯罪・不法な行為と機長の権限を定めた条約","기내 범죄·불법 행위와 기장 권한을 정한 협약","The treaty on offences on board and the captain’s powers"],
 ["MSG","SITA","SITA（航空の通信会社）","SITA(항공 통신 회사)","航空会社・空港の電報・システムを支える業界の通信会社","항공사·공항 전보·시스템을 지원하는 업계 통신 회사","The industry-owned provider of airline communications and IT"],
-["MSG","Teletype Address","電報のアドレス","전보 주소","空港3文字＋部署2文字＋航空会社2文字の7文字の宛先（例：NRTKLXX）","공항 3자+부서 2자+항공사 2자로 된 7자 수신처(예: NRTKLXX)","A seven-letter address: airport, department and airline codes (e.g. NRTKLXX)"],
+["MSG","Teletype Address","電報のアドレス","전보 주소","空港3文字＋部署2文字＋航空会社2文字の7文字の宛先（例：NRTKLXX）","공항 3자+부서 2자+항공사 2자로 된 7자 수신처(예: NRTKLXX)","A seven-letter address: airport, department and airline codes"],
 ["MSG","Estimated Time Message (ETM/EA/ED)","見込み時刻の電報","예상 시각 전보","出発・到着の見込み時刻の変更を知らせる電報の要素","출발·도착 예상 시각의 변경을 알리는 전보 요소","Message elements giving revised estimated times"],
 ["MSG","Divert Message (DIV)","ダイバートの電報","회항 전보","目的地を変更したことを知らせる電報","목적지 변경을 알리는 전보","Message reporting a diversion"],
 ["OPS","Crew Briefing","乗務員のブリーフィング","승무원 브리핑","出発前に運航・客室の乗務員が情報を共有する打ち合わせ","출발 전 운항·객실 승무원이 정보를 공유하는 회의","The pre-flight meeting where crew share information"],
@@ -62,5 +62,5 @@ window.DICT=(window.DICT||[]).concat([
 ["WX","Typhoon","台風","태풍","北西太平洋の強い熱帯低気圧。欠航・振り替えの計画が必要","북서태평양의 강한 열대저기압. 결항·대체 수송 계획이 필요","A strong tropical cyclone in the north-west Pacific"],
 ["WX","Snow Removal Plan","除雪計画","제설 계획","空港が滑走路・誘導路・エプロンの除雪の順番と時間を決めた計画","공항이 활주로·유도로·계류장 제설 순서와 시간을 정한 계획","The airport’s plan for clearing runways, taxiways and aprons"],
 ["BIZ","Slot Conference","スロット調整会議","슬롯 조정 회의","IATAの世界会議。シーズンごとに混雑空港の発着枠を調整する","IATA 세계 회의. 시즌마다 혼잡 공항의 출도착 시각을 조정","IATA’s twice-yearly conference allocating slots at congested airports"],
-["BIZ","Use It or Lose It (80/20 Rule)","80/20ルール","80/20 규칙","割り当てられた発着枠を一定の割合以上使わないと翌年の同じシーズンの優先権を失う規則","배정받은 슬롯을 일정 비율 이상 사용하지 않으면 다음 해 같은 시즌의 우선권을 잃는 규칙","Slots must be used at least 80% of the time to be kept"]
+["BIZ","Use It or Lose It (80/20 Rule)","80/20ルール","80/20 규칙","割り当てられた発着枠を一定の割合以上使わないと翌年に失う規則","배정받은 슬롯을 일정 비율 이상 사용하지 않으면 다음 해에 잃는 규칙","Slots must be used at least 80% of the time to be kept"]
 ]);

@@ -102,7 +102,7 @@ sections:[
 ["Payable days","Payables ÷ purchases × days","Days from purchase to payment","0 days (cash)"]]},
 {t:"point",x:"Lengthening periods signal slow collection (receivables) or unsold goods and excess parts (inventory). When they grow year on year, find out why (treated as analysis in Part 6)."}]},
 {h:"Try it",blocks:[{t:"check",items:[
-{name:"Calculate working capital",x:"Vela Air opening: receivables 250 + inventory 120 − payables 350 − unearned revenue 600 − miles 120 = ? Explain what a negative figure means."},
+{name:"Calculate working capital",x:"Vela Air opening: receivables 250 + inventory 120 − payables 350 − unflown tickets 600 − miles 120 = ? Explain what a negative figure means."},
 {name:"List your station’s receivables",x:"Write down the money your station has ‘sold but not yet received’: invoices to travel agencies, card payments for excess baggage and so on."}]}]}],
 voice:"The dangerous station receivables are invoices to travel agencies that were never raised, and amounts held back over complaints. Looking at an ‘invoiced but unpaid’ list at month end protects head office’s working capital.",
 terms:[["Accounts receivable","売掛金","매출채권"],["Inventory","棚卸資産（在庫）","재고자산"],["Accounts payable","買掛金","매입채무"],["Working capital","運転資本","운전자본"],["Turnover period (days)","回転期間","회전기간"],["Unearned revenue","前受金","선수금"]],

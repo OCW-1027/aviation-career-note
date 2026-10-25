@@ -58,7 +58,7 @@ quiz:[{q:"What does a live animal container need?",opts:["To be as small as poss
 {q:"What do you think about first if there is a delay?",opts:["The rate","Water and temperature","The colour of the paperwork","The next booking"],a:1,exp:"The animal’s condition comes first."}],
 next:"3-3 Perishables and pharmaceuticals: the cold chain"});
 
-set("3-3",{title:"Perishables and Pharmaceuticals: The Cold Chain",hl:"the cold chain",subtitle:"Never let the temperature break. Tens of minutes left out can ruin the product",
+set("3-3",{title:"Perishables and Pharmaceuticals: The Cold Chain",hl:"the cold chain",subtitle:"Never let the temperature break. Leaving it out for tens of minutes can ruin the product",
 lead:["Seafood, fruit, flowers, and pharmaceuticals and vaccines. Temperature-controlled cargo has to stay within a set range from origin to destination. That unbroken control is the cold chain.",
 "This lesson covers the temperature bands, where the chain breaks most easily, the quality standards for pharmaceutical transport, and what the front line does about it."],
 sections:[
@@ -122,7 +122,7 @@ sections:[
 {h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal and loading, arrival checks and delivery to site light up in turn; the right side shows who is mainly responsible."},
 {t:"check",items:[
 {name:"Export control",x:"Confirm with the manufacturer and shipper whether the equipment or parts require an export licence. Obtaining one takes time. ★"},
-{name:"Dimensions and weight",x:"Confirm the packed dimensions, weight and centre of gravity from a drawing. Will it fit in a passenger aircraft's belly hold, or is a freighter needed (0-2, 3-4)?"},
+{name:"Dimensions and weight",x:"Confirm the packed dimensions, weight and centre of gravity from a drawing. Will it fit in the belly hold of a passenger aircraft, or is a freighter needed (0-2, 3-4)?"},
 {name:"Insurance",x:"For high-value shipments, confirm the cover and the limits."},
 {name:"Schedule",x:"Work back from the installation date to leave time for transport, clearance and inland delivery."}]}]},
 {h:"Packing and transport",blocks:[{t:"table",cols:["Risk","Typical measure"],rows:[

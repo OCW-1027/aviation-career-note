@@ -36,7 +36,7 @@ sections:[
 {name:"Tax returns",x:"Corporate tax, consumption tax and others are calculated from the figures in the books."},
 {name:"Reporting to head office and shareholders",x:"Monthly and annual results are reported in a set format (6-1)."},
 {name:"Management decisions",x:"The figures show where profit comes from and where money goes."},
-{name:"Audits and tax inspections",x:"The books show that the evidence for each transaction is linked to them (7-2)."}]}]},
+{name:"Audits and tax inspections",x:"Records show that the evidence for each transaction connects to the books (7-2)."}]}]},
 {h:"The rules",blocks:[{t:"fig",id:"adm_jnl",cap:"Split the transaction into left and right; the two totals must always be equal."},
 {t:"table",cols:["Category","When it increases","When it decreases"],rows:[
 ["Assets (cash, deposits, receivables, equipment)","Left (debit)","Right (credit)"],
@@ -123,7 +123,7 @@ deep:[
 {h:"Tips for reading Japanese accounts",blocks:[{t:"rows",items:[
 {name:"△ means minus",x:"Japanese accounts show negatives with “△”. “Net loss △500,000” is a loss of 500,000 yen."},
 {name:"Check the unit first",x:"Yen, thousands or millions: check the top right of the table. Reading a thousands table as yen puts you out by a factor of 1,000."},
-{name:"Start and end dates",x:"“自 2026年4月1日　至 2027年3月31日” is the P/L period; “2027年3月31日現在” is the balance sheet date."},
+{name:"Start and end dates",x:"“自 2026年4月1日　至 2027年3月31日” is the profit and loss statement’s period; “2027年3月31日現在” is the balance sheet date."},
 {name:"Breakdowns on separate sheets",x:"Breakdowns of selling, general and administrative expenses or manufacturing costs are often given in separate schedules."},
 {name:"Compare with last year",x:"One year alone tells you little. Put last year’s accounts beside this year’s, account by account, and look for the reasons behind big changes."}]},
 {t:"link",href:"決算の練習.html",x:"[Practice] Year-End Closing Practice: build a fictional company’s accounts in this Japanese format"}]}],
@@ -308,7 +308,7 @@ quiz:[{q:"What is most easily missed in managing contracts?",opts:["The colour o
 next:"0-7 A year in HR: from hiring to year-end adjustment"});
 
 set("0-7",{title:"A Year in HR: From Hiring to Year-end Adjustment",hl:"a year in HR",subtitle:"The same tasks return in the same months each year. With a map of the year, nothing catches you out",
-lead:["HR and payroll work has procedures that come round at fixed times every year: April starters, insurance procedures in June and July, year-end tax adjustment in December. Each has a deadline, and being late causes trouble for staff and the company.","This lesson covers the annual cycle of HR and payroll work, the steps from hiring to the first day, appraisal and pay rises, and the procedures when someone leaves."],
+lead:["HR and payroll work has procedures that come round at fixed times every year: April starters, insurance procedures in June and July, year-end tax adjustment in December. Each has a deadline, and being late causes trouble for staff and the company.","This article covers the annual cycle of HR and payroll work, the steps from hiring to the first day, appraisal and pay rises, and the procedures when someone leaves."],
 sections:[
 {h:"The HR and payroll year",blocks:[{t:"region",jp:[{t:"fig",id:"adm_hrcal",cap:"Colours show the type of work: purple for pay and tax, blue for hiring and training, orange for social and labour insurance."}],
 kr:[{"t":"fig","id":"adm_hrcalkr","cap":"Colours show the type of work: purple for pay and tax, blue for hiring and HR, orange for the four social insurances."}]}]},
@@ -340,7 +340,7 @@ sections:[
 {h:"Report, inform, consult",blocks:[{t:"fig",id:"adm_hrs",cap:"Figure: report the conclusion first."},{t:"rows",items:[
 {name:"Report",x:"Tell the person who gave you the task how it went or how it is progressing."},
 {name:"Inform",x:"Share decisions and facts with those concerned, without adding your own opinion."},
-{name:"Consult",x:"When unsure, ask for views before deciding. Do not keep it to yourself."}]}]},
+{name:"Consult",x:"When unsure, ask for views before deciding. Do not try to handle it alone."}]}]},
 {h:"Report the conclusion first",blocks:[{t:"ladder",rise:10,steps:[{name:"Conclusion",sub:"What happened, what the outcome is"},{name:"Reason",sub:"Why it happened"},{name:"Details",sub:"Figures and facts"},{name:"Next step",sub:"What you will do, what you need decided"}]},
 {t:"point",x:"The worse the news, the sooner you share it. A first report need not be complete: say what you know now and when you will report next."}]},
 {h:"Structuring a work email",blocks:[{t:"table",cols:["Part","How to write it","Example"],rows:[

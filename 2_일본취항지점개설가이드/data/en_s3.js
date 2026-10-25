@@ -32,7 +32,7 @@ sections:[
 voice:"When choosing a handler, what matters more than price is whether it can supply extra staff on a disrupted day. Check how it actually performs on delay days, including its reputation with other airlines.",
 terms:[["Ground Handling Agent (GHA)","ハンドリング会社","조업사"],["Additional Charges","追加料金","추가 요금"],["Ground Power Unit (GPU)","地上電源","지상 전원"],["Air Conditioning Unit (ACU / PCA)","空調機","냉난방 장치"],["Air Start Unit (ASU)","エンジン始動装置","엔진 시동 장치"],["De-icing / Anti-icing","防除氷","제방빙"]],
 quiz:[{q:"How should handling offers be compared?",opts:["On the base rate alone","On the annual total including surcharges","On company size","On name recognition"],a:1,exp:"Use your own history to build the annual total."},
-{q:"What should be confirmed early as a precondition for launch?",opts:["Uniforms","That a handler and a fuel supplier can take you","The venue for the ceremony","Business cards"],a:1,exp:"Launches have slipped over staffing and refused fuelling contracts."},
+{q:"What must be confirmed early as a precondition for launch?",opts:["Uniforms","That a handler and a fuel supplier can take you","The venue for the ceremony","Business cards"],a:1,exp:"Launches have slipped over staffing and refused fuelling contracts."},
 {q:"Why does coverage at alternate airports matter?",opts:["It does not","You need someone to work the flight after a diversion","It is cheaper","It is good publicity"],a:1,exp:"It decides whether you can get staff at the diversion airport."}],
 next:"3-2 Reading the ground handling agreement (SGHA)"});
 

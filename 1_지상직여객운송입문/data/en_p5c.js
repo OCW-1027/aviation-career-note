@@ -27,9 +27,9 @@ sections:[
 {name:"Common mistake",x:"Waiting ‘just a bit longer’ and delaying the whole flight; rushing the bag reconciliation and getting it wrong."},
 {name:"Lesson",x:"Set in advance the criteria for waiting and who decides. It is recorded as delay code 15 (boarding) — see the IATA delay code list."}]}]},
 {h:"Case 5: a long wait after the doors close in bad weather",blocks:[{t:"rows",items:[
-{name:"First",x:"Confirm the expected wait with the captain and operations control and set how often to update the cabin. Start preparing to deplane before the national limit (for example four hours on international flights) (5-7)."},
+{name:"First",x:"Confirm the expected wait with the captain and operations control and set how often to update the cabin. Start preparing to deplane well before the national limit (for example four hours on international flights) (5-7)."},
 {name:"Common mistake",x:"Starting to prepare just before the limit, so the gate, staff and bags are not ready."},
-{name:"Lesson",x:"Draw up a timetable of what to do and how many minutes before the limit."}]}]},
+{name:"Lesson",x:"Draw up a timetable of what to do and how many minutes before the limit to do it."}]}]},
 {h:"Case 6: a group arrives after check-in has closed",blocks:[{t:"rows",items:[
 {name:"First",x:"The supervisor weighs the closing rule against the effect of accepting them (bags, loading, departure time)."},
 {name:"Common mistake",x:"The counter accepts them on its own and the flight leaves late; no record of why they were refused."},

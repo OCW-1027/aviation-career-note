@@ -31,7 +31,7 @@ aid_vor:function(l){
 /* 2 DMEの斜め距離：局の真上 6,000ft でも約1NM と表示される */
 aid_dme:function(l){
  var W=({ja:{t:'DME は「斜めの距離」を測る',dme:'DMEの表示',gnd:'地面の上の距離',over:'局の真上でも 6,000ft（約1NM）と表示',far:'遠くでは、斜めの距離と地面の距離はほぼ同じ',rule:'目安：高さ1,000ftごとに局から1NM以上離れていれば、誤差は小さい',st:'DME局'},
-  ko:{t:'DME는 ‘경사 거리’를 잰다',dme:'DME 표시',gnd:'지상 거리',over:'국 바로 위에서도 6,000ft(약 1NM)로 표시',far:'멀리서는 경사 거리와 지상 거리가 거의 같다',rule:'기준: 높이 1,000ft마다 국에서 1NM 이상 떨어져 있으면 오차는 작다',st:'DME국'},
+  ko:{t:'DME는 ‘경사 거리’를 잰다',dme:'DME 표시',gnd:'지상 거리',over:'국 바로 위에서도 6,000ft(약 1NM)로 표시',far:'멀리서는 비스듬한 거리와 지상 거리가 거의 같다',rule:'기준: 높이 1,000ft마다 국에서 1NM 이상 떨어져 있으면 오차는 작다',st:'DME국'},
   en:{t:'DME measures slant range',dme:'DME reading',gnd:'Ground distance',over:'Even directly overhead at 6,000 ft it reads about 1 NM',far:'Far away, slant range and ground distance are almost equal',rule:'Rule of thumb: the error is small if you are at least 1 NM from the station for every 1,000 ft of height',st:'DME station'}})[l];
  if(!W)return F.aid_dme('ja');
  setK(1);
@@ -69,7 +69,7 @@ aid_ndb:function(l){
 /* 4 電波が届く距離：地球は丸いので、高く飛ぶほど遠くのVHFを受けられる */
 aid_los:function(l){
  var W=({ja:{t:'VHFの電波が届く距離（見通し距離）',f:'届く距離（NM）≒ 1.23 × √（高さ[ft]）',blk:'地平線の向こうは届かない',st:'VOR',ex:'1,000ft：約39NM　10,000ft：約123NM　36,000ft：約233NM'},
-  ko:{t:'VHF 전파가 닿는 거리(가시선)',f:'닿는 거리(NM) ≒ 1.23 × √(높이[ft])',blk:'지평선 너머로는 닿지 않는다',st:'VOR',ex:'1,000ft: 약 39NM　10,000ft: 약 123NM　36,000ft: 약 233NM'},
+  ko:{t:'VHF 전파가 닿는 거리(가시선 거리)',f:'닿는 거리(NM) ≒ 1.23 × √(높이[ft])',blk:'지평선 너머로는 닿지 않는다',st:'VOR',ex:'1,000ft: 약 39NM　10,000ft: 약 123NM　36,000ft: 약 233NM'},
   en:{t:'How far VHF signals reach (line of sight)',f:'Range (NM) ≈ 1.23 × √(height in ft)',blk:'No signal beyond the horizon',st:'VOR',ex:'1,000 ft: about 39 NM · 10,000 ft: about 123 NM · 36,000 ft: about 233 NM'}})[l];
  if(!W)return F.aid_los('ja');
  setK(1);
@@ -151,7 +151,7 @@ aid_crit:function(l){
 
 /* 8 レーダーの種類：一次レーダー（反射）、二次レーダー（トランスポンダーの応答）、ADS-B（機体が自分の位置を放送） */
 aid_radar:function(l){
- var W=({ja:{t:'レーダーと ADS-B',psr:'一次レーダー：反射波を受信する（識別・高度は分からない）',ssr:'二次レーダー：機のトランスポンダーが答える（コード・高度）',ads:'ADS-B：機体がGNSSの位置を自分で放送する',codes:'緊急コード：7500 不法妨害・7600 通信障害・7700 緊急事態'},
+ var W=({ja:{t:'レーダーと ADS-B',psr:'一次レーダー：反射波を受信する（識別・高度は分からない）',ssr:'二次レーダー：機のトランスポンダーが答える（コード・高度）',ads:'ADS-B：機体がGNSSの位置を自分で放送する',codes:'緊急コード：7500 不法妨害・7600 通信の故障・7700 緊急事態'},
   ko:{t:'레이더와 ADS-B',psr:'1차 레이더: 반사된 전파를 받는다(식별·고도는 모른다)',ssr:'2차 레이더: 항공기 트랜스폰더가 답한다(코드·고도)',ads:'ADS-B: 항공기가 GNSS 위치를 스스로 방송한다',codes:'비상 코드: 7500 불법 방해·7600 통신 두절·7700 비상사태'},
   en:{t:'Radar and ADS-B',psr:'Primary radar: receives reflections (no identity or altitude)',ssr:'Secondary radar: the aircraft’s transponder replies (code and altitude)',ads:'ADS-B: the aircraft broadcasts its own GNSS position',codes:'Emergency codes: 7500 unlawful interference, 7600 radio failure, 7700 emergency'}})[l];
  if(!W)return F.aid_radar('ja');
@@ -200,7 +200,7 @@ aid_lights:function(l){
 /* 10 PAPI：4つの灯火の白と赤で、坂の上か下かが分かる */
 aid_papi:function(l){
  var W=({ja:{t:'PAPI ― 4つの灯火で坂を知る',st:['高すぎる','少し高い','ちょうどよい（約3°）','少し低い','低すぎる'],rule:'白2・赤2 がちょうどよい。赤が増えるほど低い（「赤は危ない」）',pos:'ふつう滑走路の左側、接地点の横に置く'},
-  ko:{t:'PAPI — 등화 4개로 경사 확인',st:['너무 높다','조금 높다','적정(약 3°)','조금 낮다','너무 낮다'],rule:'흰색 2·빨강 2가 딱 좋다. 빨강이 늘수록 낮다(‘빨강은 위험’)',pos:'보통 활주로 왼쪽, 접지점 옆에 둔다'},
+  ko:{t:'PAPI — 등화 4개로 경사 확인',st:['너무 높다','조금 높다','알맞다(약 3°)','조금 낮다','너무 낮다'],rule:'흰색 2·빨강 2가 딱 좋다. 빨강이 늘수록 낮다(‘빨강은 위험’)',pos:'보통 활주로 왼쪽, 접지점 옆에 둔다'},
   en:{t:'PAPI: four lights show the slope',st:['Too high','Slightly high','On slope (about 3°)','Slightly low','Too low'],rule:'Two white and two red means on slope; more red means lower (“red is danger”)',pos:'Usually on the left of the runway, beside the touchdown point'}})[l];
  if(!W)return F.aid_papi('ja');
  setK(1);
@@ -223,8 +223,8 @@ aid_papi:function(l){
 /* 11 滑走路の標識：番号を付け、説明は下の一覧に */
 aid_marks:function(l){
  var W=({ja:{t:'滑走路の標識（白）と停止位置（黄）',items:['進入端の標識：縦の線の数で滑走路の幅が分かる','滑走路の番号：磁方位を10で割った数（337°→34）。平行な滑走路は L・C・R','目標点の標識：大きな2本の帯。進入の目標にする','接地帯の標識：接地する範囲を示す','中心線','滑走路停止位置の標識（誘導路・黄）：実線の側で止まる。許可なく越えない']},
-  ko:{t:'활주로 표지(흰색)와 정지 위치(노랑)',items:['시단 표지: 세로 줄 수로 활주로 폭을 알 수 있다','활주로 번호: 자방위를 10으로 나눈 수(337°→34). 평행 활주로는 L·C·R','조준점 표지: 큰 띠 2개. 접근 시 목표로 삼는다','접지대 표지: 접지 구역을 나타낸다','중심선','활주로 정지 위치 표지(유도로·노랑): 실선 쪽에서 멈춘다. 허가 없이 넘지 않는다']},
-  en:{t:'Runway markings (white) and holding position (yellow)',items:['Threshold marking: the number of stripes shows the runway width','Runway designator: magnetic heading divided by 10 (337° → 34); parallel runways add L, C, R','Aiming point marking: two large bars used as the approach target','Touchdown zone markings: show where to touch down','Centreline','Runway-holding position marking (taxiway, yellow): stop on the solid-line side; do not cross without clearance']}})[l];
+  ko:{t:'활주로 표지(흰색)와 정지 위치(노랑)',items:['시단 표지: 세로 줄 수로 활주로 폭을 알 수 있다','활주로 번호: 자방위를 10으로 나눈 수(337°→34). 평행 활주로는 L·C·R','조준점 표지: 큰 띠 2개. 접근 시 목표로 삼는다','접지대 표지: 접지하는 범위를 나타낸다','중심선','활주로 정지 위치 표지(유도로·노랑): 실선 쪽에서 멈춘다. 허가 없이 넘지 않는다']},
+  en:{t:'Runway markings (white) and holding position (yellow)',items:['Threshold marking: the number of stripes shows the runway width','Runway designator: magnetic heading divided by 10 (337° → 34); parallel runways add L, C, R','Aiming point marking: two large bars used as the approach target','Touchdown zone markings: show where to touch down','Centreline','Runway-holding position marking (taxiway, yellow): stop on the solid-line side; never cross without clearance']}})[l];
  if(!W)return F.aid_marks('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,240,'#DDE8D4',14);
@@ -267,8 +267,8 @@ aid_signs:function(l){
 /* 13 降り方の違い：段階降下（ダイブ・アンド・ドライブ）と、一定の坂で降りるCDFA */
 app_types:function(l){
  var W=({ja:{t:'非精密進入の降り方',a:'段階降下（ダイブ・アンド・ドライブ）',b:'CDFA（一定の坂で連続して降りる）',mda:'MDA（最低降下高度）',da:'DA（CDFAで使う決心の高さ）',na:'MDAで水平に飛びながら滑走路を探す。地面に近い所で姿勢や推力を何度も変える',nb:'精密進入と同じように一定の坂で降り、DAで決める。安定した進入になり、事故が少ない',rw:'滑走路'},
-  ko:{t:'비정밀접근의 강하 방법',a:'계단식 강하(다이브 앤드 드라이브)',b:'CDFA(일정한 경사로 연속 강하)',mda:'MDA(최저강하고도)',da:'DA(CDFA에서 쓰는 결심 높이)',na:'MDA에서 수평 비행하며 활주로를 찾는다. 지면 가까이에서 자세와 추력을 여러 번 바꾼다',nb:'정밀접근처럼 일정한 경사로 내려와 DA에서 판단한다. 접근이 안정되어 사고가 적다',rw:'활주로'},
-  en:{t:'Two ways to fly a non-precision approach',a:'Step-down (“dive and drive”)',b:'CDFA (continuous descent on a constant slope)',mda:'MDA (minimum descent altitude)',da:'DA (decision altitude for CDFA)',na:'Level off at the MDA and search for the runway, changing attitude and thrust repeatedly close to the ground',nb:'Descend on a constant slope as in a precision approach and decide at the DA: a stable approach with fewer accidents',rw:'Runway'}})[l];
+  ko:{t:'비정밀접근의 강하 방법',a:'계단식 강하(다이브 앤드 드라이브)',b:'CDFA(일정한 경사로 연속 강하)',mda:'MDA(최저강하고도)',da:'DA(CDFA에서 쓰는 결심 높이)',na:'MDA에서 수평 비행하며 활주로를 찾는다. 지면 가까이에서 자세와 추력을 여러 번 바꾼다',nb:'정밀접근처럼 일정한 경사로 내려와 DA에서 결정한다. 접근이 안정되어 사고가 적다',rw:'활주로'},
+  en:{t:'Two ways to fly a non-precision approach',a:'Step-down (“dive and drive”)',b:'CDFA (continuous descent on a constant slope)',mda:'MDA (minimum descent altitude)',da:'DA (decision altitude used with CDFA)',na:'Level off at the MDA and search for the runway, changing attitude and thrust repeatedly close to the ground',nb:'Descend on a constant slope as in a precision approach and decide at the DA: a stable approach with fewer accidents',rw:'Runway'}})[l];
  if(!W)return F.app_types('ja');
  setK(1);var nar=NARROW();
  function panel(x0,y0,w,k){var col=k?'#1F7A6E':'#D64545',g=R(x0,y0,w,200,'#DCEEFB',14)+tx(x0+w/2,y0+26,k?W.b:W.a,13,col,900)+R(x0,y0+176,w,24,'#9CC98B',0);
@@ -322,7 +322,7 @@ app_circ:function(l){
 /* 16 最低気象条件のくらべ：進入の種類でDA／MDAが違い、代替空港の計画ではさらに上乗せする */
 app_min:function(l){
  var W=({ja:{t:'進入の種類と最低の高さ（例）',lbl:[['CAT III','0〜50ft'],['CAT II','100ft'],['CAT I（ILS）','200ft'],['RNP（LPV）','250ft'],['RNP（LNAV）','400ft'],['VOR','500ft'],['周回進入','700ft']],alt:'代替空港の計画用（上乗せ）',note:'数字は分かりやすくした例。実際の値は空港ごとの進入図と、会社・国の規定で決まる'},
-  ko:{t:'접근 종류와 최저 높이(예)',lbl:[['CAT III','0~50ft'],['CAT II','100ft'],['CAT I(ILS)','200ft'],['RNP(LPV)','250ft'],['RNP(LNAV)','400ft'],['VOR','500ft'],['선회접근','700ft']],alt:'교체공항 계획용(추가분)',note:'숫자는 설명용 예시이다. 실제 값은 공항별 접근도와 회사·국가 규정으로 정해진다'},
+  ko:{t:'접근 종류와 최저 높이(예)',lbl:[['CAT III','0~50ft'],['CAT II','100ft'],['CAT I(ILS)','200ft'],['RNP(LPV)','250ft'],['RNP(LNAV)','400ft'],['VOR','500ft'],['선회접근','700ft']],alt:'교체공항 계획용(추가분)',note:'숫자는 알기 쉽게 만든 예이다. 실제 값은 공항별 접근도와 회사·국가 규정으로 정해진다'},
   en:{t:'Approach type and minimum height (examples)',lbl:[['CAT III','0–50 ft'],['CAT II','100 ft'],['CAT I (ILS)','200 ft'],['RNP (LPV)','250 ft'],['RNP (LNAV)','400 ft'],['VOR','500 ft'],['Circling','700 ft']],alt:'Alternate planning margin',note:'Illustrative numbers only; real values come from each airport’s approach charts and company and national rules'}})[l];
  if(!W)return F.app_min('ja');
  setK(1);

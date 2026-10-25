@@ -152,8 +152,8 @@ quiz:[{q:"On audit day you are asked something you don’t know. You…",opts:["
 {q:"A corrective plan includes…",opts:["Cause, action, deadline, owner","Excuses","Reasons to blame the handler","Nothing"],a:0,exp:"Organised to show at the next audit."}],
 next:"8-5 Reporting accidents and incidents, and emergency response"});
 
-set("8-5",{title:"Reporting Accidents and Incidents, and Emergency Response",hl:"emergency response",subtitle:"Safety first, then the initial report, then the authorities within the deadline — and practise in normal times",
-lead:["When an accident, serious incident or security event happens, what the station does in the first hours is already defined: protect people, give the initial report to the right people under the company’s emergency procedures, and keep a timed record. Whether, when and how to report to the authorities depends on the event and the country.","This lesson covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
+set("8-5",{title:"Reporting Accidents and Incidents, and Emergency Response",hl:"emergency response",subtitle:"Safety first, then the initial report, then the authorities within the deadline — and practise in advance",
+lead:["When an accident, serious incident or security event happens, what the station does in the first hours is defined: protect people, give the initial report to the right people under the company’s emergency procedures, and keep a timed record. Whether, when and how to report to the authorities depends on the event and the country.","This lesson covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
 sections:[
 {h:"What is reported (examples)",blocks:[{t:"table",cols:["Category","Example","Reporting"],rows:[
 ["Accident","Death or injury, major aircraft damage","Emergency notification, then report to the authorities by the method and deadline set in law and company procedures"],
@@ -175,7 +175,7 @@ sections:[
 ["Communications","Media and social media handled by the channel head office designates; no individual statements"],
 ["Log","One person keeps the timeline throughout"]]},
 {t:"point",warn:true,x:"Staff must never post about an accident or event on personal social media or speak to reporters on their own. Make sure everyone knows this in advance."}]},
-{h:"Exercises in normal times",blocks:[{t:"rows",items:[
+{h:"Routine exercises",blocks:[{t:"rows",items:[
 {name:"Airport exercises",x:"Take part in the airport’s full-scale exercise (for example about once a year) and confirm the station’s role (Launching Flights 5-4)."},
 {name:"Tabletop exercises",x:"Practise the order of calls and how to write reports, using a scenario."},
 {name:"Contact lists",x:"Check regularly that night and holiday contacts are current."},

@@ -50,13 +50,13 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 <script>
 var KEY='acn-finratio-v1';
 var X={title:['財務比率の計算練習','재무 비율 계산 연습','Financial Ratio Practice'],
-lead:['財務諸表の主な数字を入れると、収益性・安全性・効率性・成長性・キャッシュフローの比率を、式と数字つきで計算します。まず例（小さな会社、Vela Airの3年）で確かめてから、自分の会社や気になる会社の数字に入れかえてください。','재무제표의 주요 숫자를 넣으면 수익성·안전성·효율성·성장성·현금흐름의 비율을 식과 숫자를 함께 보여 주며 계산합니다. 먼저 예시(작은 회사, Vela Air의 3개년)로 확인한 뒤, 내 회사나 궁금한 회사의 숫자로 바꿔 넣어 보세요.','Enter the main figures from the financial statements and the tool calculates ratios for profitability, solvency, efficiency, growth and cash flow, showing the formula and the numbers used. Start with the examples (the small company, Vela Air’s three years), then replace them with figures for your own company or one you are interested in.'],
+lead:['財務諸表の主な数字を入れると、収益性・安全性・効率性・成長性・キャッシュフローの比率を、式と数字つきで計算します。まず例（小さな会社、Vela Airの3年）で確かめてから、自分の会社や気になる会社の数字に入れかえてください。','재무제표의 주요 숫자를 넣으면 수익성·안전성·효율성·성장성·현금흐름의 비율을 식과 숫자를 함께 보여 주며 계산합니다. 먼저 예시(작은 회사, Vela Air의 3개년)로 확인한 뒤, 내 회사나 궁금한 회사의 숫자로 바꿔 넣어 보세요.','Enter the main figures from the financial statements and the tool calculates ratios for profitability, stability, efficiency, growth and cash flow, showing the formula and the numbers used. Start with the examples (the small company, Vela Air’s three years), then replace them with figures for your own company or one you are interested in.'],
 pre:['例を選ぶ','예시 고르기','Choose an example'],pren:['例を選ぶと数字が入ります。そのあと、どの欄も自由に書きかえられます。','예시를 고르면 숫자가 들어갑니다. 그 뒤에는 어느 칸이든 자유롭게 바꿀 수 있습니다.','Choosing an example fills in the figures. You can then change any field.'],
 inh:['数字を入れる','숫자 넣기','Enter the figures'],blank:['空欄から始める','빈칸에서 시작','Start blank'],
 unit:['単位','단위','Unit'],opt:['任意','선택','optional'],
 pl:['損益計算書','손익계산서','Income statement'],bs:['貸借対照表','재무상태표','Balance sheet'],cf:['キャッシュフロー計算書','현금흐름표','Cash flow statement'],
 du:['ROEの分解','ROE 분해','ROE breakdown'],
-g1:['収益性 ― もうける力','수익성 — 버는 힘','Profitability'],g2:['安全性 ― 耐える力','안전성 — 버티는 힘','Solvency'],g3:['効率性 ― 資産の使い方','효율성 — 자산 활용법','Efficiency'],g4:['成長性 ― 伸びる力','성장성 — 늘어나는 힘','Growth'],g5:['キャッシュフロー ― 現金の裏づけ','현금흐름 — 현금의 뒷받침','Cash flow'],
+g1:['収益性 ― もうける力','수익성 — 버는 힘','Profitability'],g2:['安全性 ― 耐える力','안전성 — 버티는 힘','Stability'],g3:['効率性 ― 資産の使い方','효율성 — 자산 활용법','Efficiency'],g4:['成長性 ― 伸びる力','성장성 — 늘어나는 힘','Growth'],g5:['キャッシュフロー ― 現金の裏づけ','현금흐름 — 현금의 뒷받침','Cash flow'],
 les:['レッスン','레슨','Lesson'],avg:['期首と期末の平均','기초와 기말의 평균','average of opening and closing'],end:['期末の残高（期首が空欄のため）','기말 잔액(기초가 빈칸이므로)','closing balance (opening is blank)'],
 need:['次の数字を入れると計算します：','다음 숫자를 넣으면 계산합니다: ','Enter these to calculate: '],
 x:['倍','배','×'],tm:['回','회','×'],dy:['日','일',' days'],yr:['年','년',' years'],mo:['か月分','개월분',' months'],
@@ -80,7 +80,7 @@ ocf:['営業キャッシュフロー','영업현금흐름','Operating cash flow'
 /* 比率：[名前, 式（言葉）, 読み方] */
 var RT={gpm:[['売上総利益率','매출총이익률','Gross margin'],['（売上 − 売上原価）÷ 売上','(매출 − 매출원가) ÷ 매출','(Sales − cost of sales) ÷ sales'],['売った値段のうち、原価を引いて残る割合','판매 가격에서 원가를 빼고 남는 비율','What is left of the selling price after direct costs']],
 opm:[['営業利益率','영업이익률','Operating margin'],['営業利益 ÷ 売上','영업이익 ÷ 매출','Operating profit ÷ sales'],['本業でもうける力','본업의 수익력','The earning power of the core business']],
-ebm:[['EBITDAマージン','EBITDA 마진','EBITDA margin'],['（営業利益 ＋ 減価償却費）÷ 売上','(영업이익 + 감가상각비) ÷ 매출','(Operating profit + depreciation) ÷ sales'],['設備を買った会社と借りた会社をならして比べるときに使う','설비를 구매한 회사와 리스한 회사를 같은 기준으로 비교할 때 쓴다','Used to compare companies that own assets with those that lease']],
+ebm:[['EBITDAマージン','EBITDA 마진','EBITDA margin'],['（営業利益 ＋ 減価償却費）÷ 売上','(영업이익 + 감가상각비) ÷ 매출','(Operating profit + depreciation) ÷ sales'],['設備を買った会社と借りた会社をならして比べるときに使う','설비를 산 회사와 빌린 회사를 같은 기준으로 비교할 때 쓴다','Used to compare companies that own assets with those that lease']],
 npm:[['当期純利益率','당기순이익률','Net margin'],['当期純利益 ÷ 売上','당기순이익 ÷ 매출','Net profit ÷ sales'],['株主の取り分になる割合','주주 몫이 되는 비율','The share that reaches shareholders']],
 roe:[['ROE（自己資本利益率）','ROE(자기자본이익률)','Return on equity'],['当期純利益 ÷ 自己資本','당기순이익 ÷ 자기자본','Net profit ÷ equity'],['株主のお金がどれだけ利益を生んだか','주주의 돈이 얼마나 이익을 냈는가','How much profit the owners’ money produced']],
 roa:[['ROA（総資産利益率）','ROA(총자산이익률)','Return on assets'],['当期純利益 ÷ 総資産','당기순이익 ÷ 총자산','Net profit ÷ total assets'],['借入で買ったものも含め、全部の資産が生んだ利益','차입으로 산 것까지 포함한 전체 자산이 낸 이익','Profit produced by all assets, including those funded by debt']],
@@ -103,7 +103,7 @@ sgr:[['持続可能な成長率','지속가능 성장률','Sustainable growth ra
 ocn:[['営業CF ÷ 当期純利益','영업현금흐름 ÷ 당기순이익','Operating cash flow ÷ net profit'],['営業キャッシュフロー ÷ 当期純利益','영업현금흐름 ÷ 당기순이익','Operating cash flow ÷ net profit'],['1倍を大きく下回る年が続いたら、利益が現金になっていない','1배를 크게 밑도는 해가 이어지면 이익이 현금화되지 않고 있다','If it stays well below 1×, profit is not turning into cash']],
 ocm:[['営業CFマージン','영업현금흐름 마진','Operating cash flow margin'],['営業キャッシュフロー ÷ 売上','영업현금흐름 ÷ 매출','Operating cash flow ÷ sales'],['売上100のうち、現金として残る分','매출 100 가운데 현금으로 남는 몫','Cash generated per 100 of sales']],
 fcf:[['フリーキャッシュフロー','잉여현금흐름','Free cash flow'],['営業キャッシュフロー − 設備投資','영업현금흐름 − 설비투자','Operating cash flow − capital expenditure'],['稼いだ現金から投資を引いて残るお金','번 현금에서 투자를 빼고 남는 돈','Cash left after investment']],
-fcl:[['リース返済後のFCF','리스 상환 후 FCF','FCF after lease payments'],['フリーキャッシュフロー − リース債務の返済','잉여현금흐름 − 리스부채 상환','Free cash flow − lease repayments'],['航空会社を比べるときは、ここまで引いて見る','항공사를 비교할 때는 여기까지 빼고 본다','When comparing airlines, deduct lease repayments as well']],
+fcl:[['リース返済後のFCF','리스 상환 후 FCF','FCF after lease payments'],['フリーキャッシュフロー − リース債務の返済','잉여현금흐름 − 리스부채 상환','Free cash flow − lease repayments'],['航空会社を比べるときは、ここまで引いて見る','항공사를 비교할 때는 여기까지 빼고 본다','When comparing airlines, look at the figure after lease repayments']],
 cxd:[['設備投資 ÷ 減価償却費','설비투자 ÷ 감가상각비','Capital expenditure ÷ depreciation'],['設備投資 ÷ 減価償却費','설비투자 ÷ 감가상각비','Capital expenditure ÷ depreciation'],['1倍を下回る年が続くと、設備は古くなっていく','1배를 밑도는 해가 이어지면 설비는 낡아 간다','If it stays below 1× for years, the assets are ageing']],
 dco:[['有利子負債 ÷ 営業CF','유이자부채 ÷ 영업현금흐름','Debt to operating cash flow'],['有利子負債 ÷ 営業キャッシュフロー','유이자부채 ÷ 영업현금흐름','Interest-bearing debt ÷ operating cash flow'],['稼いだ現金で借入を返すのに何年かかるか','번 현금으로 차입을 갚는 데 몇 년 걸리는가','Years of operating cash flow needed to repay the debt']],
 oci:[['営業CF ÷ 支払利息','영업현금흐름 ÷ 이자비용','Operating cash flow ÷ interest'],['営業キャッシュフロー ÷ 支払利息','영업현금흐름 ÷ 이자비용','Operating cash flow ÷ interest expense'],['日本の決算短信に載るインタレスト・カバレッジ・レシオと同じ考え方','일본 결산단신에 실리는 이자보상배율(인터레스트 커버리지 레시오)과 같은 개념','The same idea as the interest coverage ratio in Japanese earnings releases']],

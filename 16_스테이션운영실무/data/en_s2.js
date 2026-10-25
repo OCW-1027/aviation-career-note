@@ -137,7 +137,7 @@ sections:[
 {name:"The same findings keep appearing",x:"In many companies’ scorecards, repeated identical corrective actions also count against the station."},
 {name:"Months with no meeting",x:"The busier the month, the more it matters to meet, even briefly. Some companies count a skipped meeting as “not done” in their scorecard. ★"},
 {name:"No numbers on the table",x:"It has become an exchange of opinions. Start by sharing the figures."},
-{name:"No one from the front line",x:"Actions agreed only between managers do not reach the front line. Bring the supervisors in."}]},
+{name:"No one from the front line",x:"Actions agreed only between managers never reach the front line. Bring the supervisors in."}]},
 {t:"point",x:"The monthly meeting is a place for making promises, not for assigning blame. In months when promises were kept, say so clearly."}]}],
 voice:"End the monthly meeting on what you will do together next month rather than on criticism, and the mood changes. Ask questions that let the handler propose the fixes.",
 terms:[["Monthly Performance Meeting","月例会議","월간 회의"],["Corrective Action","是正措置","시정조치"],["Minutes","議事録","회의록"],["Root Cause","根本原因","근본 원인"]],

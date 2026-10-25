@@ -15,7 +15,7 @@ sections:[
 {h:"What to watch in operations and handling",blocks:[{t:"check",items:[
 {name:"Slots are full",x:"Hourly slots are over 90% used; a small delay ripples through later flights."},
 {name:"Circling approaches",x:"With hills to the north, southerly winds require circling approaches; cloud and visibility can then cause delays or diversions."},
-{name:"International delays",x:"Delays at Gimhae have risen 21% since 2023, with over half on international flights; protecting the morning departure wave shapes the whole day’s punctuality."},
+{name:"International delays",x:"Delays at Gimhae have risen 21% since 2023, with over half on international flights; protecting the morning departure wave sets the whole day’s punctuality."},
 {name:"Military operations",x:"Air Force exercises and national events bring time restrictions; check NOTAMs daily."},
 {name:"The 23:00 restriction",x:"Evening delays easily run into the restricted hours; decide alternates and passenger accommodation early."}]}]},
 {h:"Future plans: Gadeokdo New Airport",blocks:[{t:"table",cols:["When","Event"],rows:[

@@ -29,7 +29,7 @@ var F={
 /* 0-1 1件の貨物の流れ：荷主から届け先まで。右は出発を基準にした時刻の目安 */
 cgo_flow:function(l){
  var W=({ja:{t:'1件の貨物が届くまで（輸出から輸入、時刻は目安）',st:['荷主：品物を用意し、インボイスとパッキングリストを作る','フォワーダー：集荷し、ほかの荷主の貨物とまとめてハウスAWBを発行する','上屋（貨物ターミナル）：搬入・計量・保安検査。税関の輸出許可を受ける','ULDの組み付け：パレットやコンテナに積み、重さと形を確かめる','航空会社：搭載計画どおりに機体に積み、出発する','到着地：取り降ろし・ULDの分解・輸入許可','フォワーダーが受け取り、届け先へ配達する'],who:['前日〜当日','出発6時間前ごろ','締め切り：出発3〜4時間前★','出発2〜3時間前','出発','到着後2〜4時間★','到着の当日〜翌日']},
-  ko:{t:'화물 한 건이 도착하기까지(수출에서 수입, 시각은 대략)',st:['화주: 물품을 준비하고 인보이스와 패킹 리스트를 작성한다','포워더: 집하해 다른 화주의 화물과 묶고 하우스 AWB를 발행한다','화물터미널: 반입·계량·보안검색. 세관 수출 허가를 받는다','ULD 빌드업: 팔레트나 컨테이너에 쌓고 무게와 외형을 확인한다','항공사: 탑재 계획대로 기체에 싣고 출발한다','도착지: 하기·ULD 해체·수입 허가','포워더가 인수해 수하인에게 배달한다'],who:['전날~당일','출발 6시간 전쯤','마감: 출발 3~4시간 전★','출발 2~3시간 전','출발','도착 후 2~4시간★','도착 당일~다음 날']},
+  ko:{t:'화물 한 건이 도착하기까지(수출에서 수입, 시각은 참고치)',st:['화주: 물품을 준비하고 인보이스와 패킹 리스트를 작성한다','포워더: 집하해 다른 화주의 화물과 묶고 하우스 AWB를 발행한다','화물터미널: 반입·계량·보안검색. 세관 수출 허가를 받는다','ULD 빌드업: 팔레트나 컨테이너에 쌓고 무게와 외형을 확인한다','항공사: 탑재 계획대로 기체에 싣고 출발한다','도착지: 하기·ULD 해체·수입 허가','포워더가 인수해 수하인에게 배달한다'],who:['전날~당일','출발 6시간 전쯤','마감: 출발 3~4시간 전★','출발 2~3시간 전','출발','도착 후 2~4시간★','도착 당일~다음 날']},
   en:{t:'How one shipment travels (export to import; times are a guide)',st:['Shipper: prepares the goods, the invoice and the packing list','Forwarder: collects, consolidates with other shippers’ cargo and issues a house AWB','Cargo terminal: acceptance, weighing and screening; customs export clearance','ULD build-up: loaded onto pallets or containers, weight and contour checked','Airline: loads the aircraft to the load plan and departs','Destination: offloading, ULD breakdown and import clearance','The forwarder collects and delivers to the consignee'],who:['Day before or same day','About 6 h before departure','Cut-off: 3–4 h before ★','2–3 h before departure','Departure','2–4 h after arrival ★','Arrival day or next day']}})[l];
  if(!W)return F.cgo_flow('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#E08A2E','#2C7A7B','#D64545','#E08A2E','#2E9B5F'],'14s')},
@@ -52,7 +52,7 @@ cgo_awb:function(l){
 /* 0-2 貨物室の大きさ：B737-800・B787-9のベリーと貨物専用機。棒が伸びる */
 cgo_hold:function(l){
  var W=({ja:{t:'貨物を積める容積の目安',r:[['B737-800（旅客機）','床下のばら積み・約44m³'],['B787-9（旅客機）','床下のULD・約170m³'],['B777F（貨物専用機）','主甲板＋床下・約650m³、最大約100トン']],n:['旅客機の床下は、乗客の手荷物を積んだ残りが貨物のスペース。満席の日ほど少なくなる','B737はULDを使わず手で積む（ばら積み）。B787はULD（コンテナ・パレット）で積むので、大きな貨物や量の多い貨物に向く','数字はメーカーの公表値をもとにした目安。仕様と座席の配置で変わる★']},
-  ko:{t:'화물 적재 용적(참고치)',r:[['B737-800(여객기)','하부 벌크 적재·약 44m³'],['B787-9(여객기)','하부 ULD·약 170m³'],['B777F(화물기)','메인 데크+하부·약 650m³, 최대 약 100톤']],n:['여객기 하부는 승객 수하물을 싣고 남은 곳이 화물 공간. 만석인 날일수록 적어진다','B737은 ULD 없이 손으로 싣는다(벌크). B787은 ULD(컨테이너·팔레트)로 실어 크거나 양이 많은 화물에 맞는다','수치는 제작사 공표치에 기반한 대략치. 사양과 좌석 배치에 따라 다르다★']},
+  ko:{t:'화물 적재 용적(참고치)',r:[['B737-800(여객기)','하부 벌크 적재·약 44m³'],['B787-9(여객기)','하부 ULD·약 170m³'],['B777F(화물기)','메인 데크+하부·약 650m³, 최대 약 100톤']],n:['여객기 하부는 승객 수하물을 싣고 남은 곳이 화물 공간. 만석인 날일수록 적어진다','B737은 ULD 없이 손으로 싣는다(벌크). B787은 ULD(컨테이너·팔레트)로 실어 크거나 양이 많은 화물에 맞는다','수치는 제작사 공표치를 바탕으로 한 참고치. 사양과 좌석 배치에 따라 다르다★']},
   en:{t:'Cargo volume at a glance',r:[['B737-800 (passenger)','Lower deck, bulk loaded: about 44 m³'],['B787-9 (passenger)','Lower deck in ULDs: about 170 m³'],['B777F (freighter)','Main deck + lower deck: about 650 m³, up to about 100 t']],n:['On a passenger aircraft, cargo gets what is left of the hold after passenger baggage, so less on full flights','The B737 is bulk loaded by hand without ULDs; the B787 uses ULDs (containers and pallets), suiting larger or heavier volumes','Figures are guides based on manufacturer data and vary with specification and cabin layout ★']}})[l];
  if(!W)return F.cgo_hold('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(11)*1.3,v=[44,170,650],cc=['#2F6FD6','#2C7A7B','#E08A2E'];
@@ -125,7 +125,7 @@ cgo_exp:function(l){
 /* 1-4 輸入の流れ（日本）：到着前の報告から引き渡しまで */
 cgo_imp:function(l){
  var W=({ja:{t:'輸入の流れ（日本の例）',st:['到着前に、マスター・ハウス運送状の情報と積荷目録を税関に報告する★','到着後、取り降ろして保税上屋へ運ぶ','通関業者が輸入申告をする（関税・消費税）','納税後に輸入許可。保税の管理から外れる','フォワーダーが受け取り、荷受人へ引き渡す'],who:['航空会社・フォワーダー','上屋','通関業者','税関','フォワーダー']},
-  ko:{t:'수입 흐름(일본의 예)',st:['도착 전에 마스터·하우스 운송장 정보와 적하목록을 세관에 보고★','도착 후 하기해 보세 화물터미널로 이송','관세사가 수입 신고(관세·소비세)','납세 후 수입 허가. 보세 관리에서 해제','포워더가 인수해 수하인에게 인도'],who:['항공사·포워더','화물터미널','관세사','세관','포워더']},
+  ko:{t:'수입 흐름(일본의 예)',st:['도착 전에 마스터·하우스 운송장 정보와 적하목록을 세관에 보고★','도착 후 하기해 보세 화물터미널로 이송','관세사가 수입 신고(관세·소비세)','납세 후 수입 허가. 보세 관리 해제','포워더가 인수해 수하인에게 인도'],who:['항공사·포워더','화물터미널','관세사','세관','포워더']},
   en:{t:'Import flow (Japan example)',st:['Before arrival, master and house AWB data and the manifest are reported to customs ★','After arrival, cargo is offloaded and taken to the bonded terminal','The customs broker files the import declaration (duty and consumption tax)','After payment, import permission: the cargo leaves bonded control','The forwarder collects and delivers to the consignee'],who:['Airline & forwarder','Terminal','Customs broker','Customs','Forwarder']}})[l];
  if(!W)return F.cgo_imp('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#E08A2E','#2F6FD6','#6B4FA0','#2E9B5F','#2C7A7B'],'12s')},
@@ -173,7 +173,7 @@ cgo_sec:function(l){
 /* 2-4 保税の上屋：到着から引き渡しまでの確かめ方（引き渡しの前に2重の確認） */
 cgo_bond:function(l){
  var W=({ja:{t:'保税の上屋：到着から引き渡しまで',st:['到着：積荷目録と実際の貨物を照合する','過不足・破損を記録し、決められた期限までに報告する','輸入の許可が出るまで、未許可の区画に保管する','NACCSで輸入の許可を確かめる','引き取る人と書類を、2人で確かめる','引き渡し、搬出の時刻と相手を記録する'],who:['上屋','上屋→税関','上屋','上屋','上屋（2人）','上屋']},
-  ko:{t:'보세 화물터미널: 도착에서 인도까지',st:['도착: 적하목록과 실제 화물을 대조한다','과부족·파손을 기록하고 정해진 기한까지 보고한다','수입 허가가 나올 때까지 미허가 구역에 보관한다','NACCS로 수입 허가를 확인한다','인수자와 서류를 직원 두 명이 확인한다','인도 후 반출 시각과 인수자를 기록한다'],who:['화물터미널','화물터미널→세관','화물터미널','화물터미널','화물터미널(2인)','화물터미널']},
+  ko:{t:'보세 화물터미널: 도착에서 인도까지',st:['도착: 적하목록과 실제 화물을 대조한다','과부족·파손을 기록하고 정해진 기한까지 보고한다','수입 허가가 나올 때까지 미허가 구역에 보관한다','NACCS로 수입 허가를 확인한다','인수자와 서류를 직원 두 명이 확인한다','인도하고 반출 시각과 인수자를 기록한다'],who:['화물터미널','화물터미널→세관','화물터미널','화물터미널','화물터미널(2인)','화물터미널']},
   en:{t:'Bonded terminal: from arrival to release',st:['Arrival: check the actual cargo against the manifest','Record shortages, overages and damage, and report them by the deadline','Store in the uncleared area until import is cleared','Confirm import permission on NACCS','Two staff check the collector and the documents','Release, and record the time and the recipient'],who:['Terminal','Terminal → customs','Terminal','Terminal','Terminal (two people)','Terminal']}})[l];
  if(!W)return F.cgo_bond('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#2F6FD6','#E08A2E','#6B4FA0','#2E9B5F','#D64545','#2C7A7B'],'13s')},
@@ -204,7 +204,7 @@ cgo_dg4:function(l){
 /* 3-2 生きた動物：予約から検疫まで */
 cgo_avi:function(l){
  var W=({ja:{t:'生きた動物を運ぶ流れ（例）',st:['予約：便と機種で運べるか、暑い時期・寒い時期の制限はないか','受け付け：容器の大きさ・換気・水と餌の入れ口を確かめる','書類：健康証明書、種類によっては輸出入の許可','搭載：温度と換気が管理された区画へ。ドライアイスとは離す','機長に知らせる：特別な搭載物の通知（NOTOC）に書く','到着：最優先で取り降ろし、動物検疫を受ける'],who:['予約の係','上屋','荷主','搭載の係','搭載管理','上屋・検疫所']},
-  ko:{t:'생동물을 운송하는 흐름(예)',st:['예약: 항공편·기종으로 운송 가능한지, 하절기·동절기 제한은 없는지','접수: 용기 크기·환기·물과 먹이 투입구를 확인한다','서류: 건강증명서, 종류에 따라 수출입 허가','탑재: 온도·환기가 관리되는 구역에 싣고 드라이아이스와 떨어뜨린다','기장에게 알림: 특수 탑재물 통지(NOTOC)에 적는다','도착: 최우선으로 하기하고 동물 검역을 받는다'],who:['예약 담당','화물터미널','화주','탑재 담당','탑재관리','화물터미널·검역소']},
+  ko:{t:'생동물을 운송하는 흐름(예)',st:['예약: 항공편·기종으로 운송 가능한지, 더운 시기·추운 시기 제한은 없는지','접수: 용기 크기·환기·물과 먹이 투입구를 확인한다','서류: 건강증명서, 종류에 따라 수출입 허가','탑재: 온도·환기가 관리되는 구역에 싣고 드라이아이스와 떨어뜨린다','기장에게 알림: 특수 탑재물 통지(NOTOC)에 적는다','도착: 최우선으로 하기하고 동물 검역을 받는다'],who:['예약 담당','화물터미널','화주','탑재 담당','탑재관리','화물터미널·검역소']},
   en:{t:'Carrying live animals (example)',st:['Booking: can this flight and type carry it; any hot or cold season limits?','Acceptance: check container size, ventilation and food and water access','Documents: health certificate and, for some species, import or export permits','Loading: into a temperature- and ventilation-controlled zone, away from dry ice','Tell the captain: list it on the special load notification (NOTOC)','Arrival: offload first and pass animal quarantine'],who:['Reservations','Terminal','Shipper','Loading team','Load control','Terminal & quarantine']}})[l];
  if(!W)return F.cgo_avi('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#2F6FD6','#2C7A7B','#6B4FA0','#E08A2E','#D64545','#2E9B5F'],'13s')},
@@ -228,7 +228,7 @@ cgo_cold:function(l){
 /* 3-4 扉の大きさ：木箱が貨物室の扉を通るか（B787の前方の扉の例、数字は目安） */
 cgo_door:function(l){
  var W=({ja:{t:'扉を通るか：寸法を先に確かめる（数字は目安★）',d:'貨物室の扉 約270×170cm',a:'木箱A 240×150cm',b:'木箱B 240×185cm',ok:'通る',ng:'通らない',n:['木箱Aは扉より小さいので通る。木箱Bは扉より15cm高いので通らない','扉の大きさは機種と扉の位置で違う。予約の前にメーカーの資料・航空会社の表で確かめる','通らないときは、梱包を変えるか、扉の大きい貨物専用機を検討する']},
-  ko:{t:'문을 통과하는가: 치수를 먼저 확인한다(대략적 수치★)',d:'화물칸 문 약 270×170cm',a:'나무상자 A 240×150cm',b:'나무상자 B 240×185cm',ok:'통과',ng:'통과 못 함',n:['나무상자 A는 문보다 작아 통과한다. B는 문보다 15cm 높아 통과하지 못한다','문 크기는 기종과 문 위치에 따라 다르다. 예약 전에 제작사 자료·항공사 표로 확인한다','통과하지 못하면 포장을 바꾸거나 문이 큰 화물기를 검토한다']},
+  ko:{t:'문을 통과하는가: 치수를 먼저 확인한다(숫자는 참고치★)',d:'화물칸 문 약 270×170cm',a:'나무상자 A 240×150cm',b:'나무상자 B 240×185cm',ok:'통과',ng:'통과 못 함',n:['나무상자 A는 문보다 작아 통과한다. B는 문보다 15cm 높아 통과하지 못한다','문 크기는 기종과 문 위치에 따라 다르다. 예약 전에 제작사 자료·항공사 표로 확인한다','통과하지 못하면 포장을 바꾸거나 문이 큰 화물기를 검토한다']},
   en:{t:'Will it go through the door? Check dimensions first (indicative figures ★)',d:'Cargo door about 270×170 cm',a:'Crate A 240×150 cm',b:'Crate B 240×185 cm',ok:'Fits',ng:'Does not fit',n:['Crate A is smaller than the door and goes in; crate B is 15 cm too tall','Door sizes differ by aircraft type and door position; check the manufacturer data and the airline’s tables before booking','If it will not fit, repack it or consider a freighter with a larger door']}})[l];
  if(!W)return F.cgo_door('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),sc=0.9,dur='8s',yend=0;
@@ -243,7 +243,7 @@ cgo_door:function(l){
 cgo_semi:function(l){
  var W=({ja:{t:'半導体の装置を運ぶ流れ（例）',st:['輸出の管理：該当・非該当を判定し、必要なら許可を取る','梱包：防振・防湿、衝撃と傾きのセンサーを付ける','国内の輸送：空気ばね付きのトラックで上屋へ','上屋・搭載：フォークリフトの差し込み位置を守り、機体に固定','到着：センサーと梱包を確かめ、写真で記録','据え付けの場所へ：日程に合わせて国内の配送'],who:['メーカー・荷主','梱包の会社','運送会社','上屋・航空会社','フォワーダー','運送会社']},
   ko:{t:'반도체 장비를 운송하는 흐름(예)',st:['수출 관리: 해당·비해당을 판정하고 필요하면 허가를 받는다','포장: 방진·방습, 충격·기울기 센서를 붙인다','국내 운송: 에어 서스펜션 트럭으로 화물터미널로','화물터미널·탑재: 지게차 삽입 위치를 지키고 기체에 고정','도착: 센서와 포장을 확인하고 사진으로 기록','설치 장소로: 일정에 맞춰 국내 배송'],who:['제조사·화주','포장 회사','운송 회사','화물터미널·항공사','포워더','운송 회사']},
-  en:{t:'Moving semiconductor equipment (example)',st:['Export control: classify the item and obtain a licence if required','Packing: anti-vibration and moisture protection, shock and tilt indicators','Road leg: air-suspension truck to the terminal','Terminal and loading: respect forklift points, secure to the aircraft','Arrival: check indicators and packing, record with photos','To the installation site: domestic delivery on schedule'],who:['Maker & shipper','Packing company','Haulier','Terminal & airline','Forwarder','Haulier']}})[l];
+  en:{t:'Moving semiconductor equipment (example)',st:['Export control: classify the item and obtain a licence if required','Packing: anti-vibration and moisture protection, shock and tilt indicators','Road leg: air-suspension truck to the terminal','Terminal and loading: forklift points respected, secured to the aircraft','Arrival: check indicators and packing, record with photos','To the installation site: domestic delivery on schedule'],who:['Maker & shipper','Packing company','Haulier','Terminal & airline','Forwarder','Haulier']}})[l];
  if(!W)return F.cgo_semi('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#6B4FA0','#2F6FD6','#2C7A7B','#E08A2E','#D64545','#2E9B5F'],'13s')},
 /* 4-1 床下の搭載位置（中型機の例）：特別な貨物を位置に置き、重心の針が範囲に収まる */
@@ -294,8 +294,8 @@ cgo_cpm:function(l){
  var L=LIST(W.n,y+10,600,11);return SVG(L.y+8,s+L.s)},
 /* 4-3 事故の申し出の期限：受け取り（引き渡し）からの日数（国際の条約の例） */
 cgo_claim:function(l){
- var W=({ja:{t:'事故の申し出の期限（国際条約の例★）',d:'日',a:'受け取り',b:'破損：14日以内に書面で',c:'遅れ：21日以内に書面で',st:['その場で写真を撮る','受取書に破損・不足を書く','書面で申し出る'],n:['破損は受け取りから14日以内、遅れは貨物を受け取れる状態になってから21日以内に申し出る（モントリオール条約）★','補償限度は重量あたりで決まる（1kgあたり約26SDR）★。高額貨物は価格を申告するか保険をかける','期限を過ぎると請求が難しくなる。まず記録、すぐに連絡']},
-  ko:{t:'사고 이의 제기 기한(국제 조약의 예★)',d:'일',a:'인수',b:'파손: 14일 이내에 서면으로',c:'지연: 21일 이내에 서면으로',st:['발견 즉시 사진을 찍는다','인수증에 파손·부족을 적는다','서면으로 이의를 제기한다'],n:['파손은 인수 후 14일 이내, 지연은 화물을 인수할 수 있게 된 날부터 21일 이내에 이의를 제기한다(몬트리올 협약)★','보상 한도는 무게로 정한다(1kg당 약 26SDR)★. 고액 화물은 가격을 신고하거나 보험에 든다','기한이 지나면 청구가 어려워진다. 먼저 기록, 바로 연락']},
+ var W=({ja:{t:'事故の申し出の期限（国際条約の例★）',d:'日',a:'受け取り',b:'破損：14日以内に書面で',c:'遅れ：21日以内に書面で',st:['その場で写真を撮る','受取書に破損・不足を書く','書面で申し出る'],n:['破損は受け取りから14日以内、遅れは貨物を受け取れる状態になってから21日以内に申し出る（モントリオール条約）★','補償限度は重量あたりで決まっている（1kgあたり約26SDR）★。高額貨物は価格を申告するか、保険をかけるとよい','期限を過ぎると請求が難しくなる。まず記録、すぐに連絡']},
+  ko:{t:'사고 이의 제기 기한(국제 조약의 예★)',d:'일',a:'인수',b:'파손: 14일 이내에 서면으로',c:'지연: 21일 이내에 서면으로',st:['발견 즉시 사진을 찍는다','인수증에 파손·부족을 적는다','서면으로 이의를 제기한다'],n:['파손은 인수 후 14일 이내, 지연은 화물을 인수할 수 있게 된 날부터 21일 이내에 이의를 제기한다(몬트리올 협약)★','보상 한도는 무게당으로 정해져 있다(1kg당 약 26SDR)★. 고액 화물은 가격을 신고하거나 보험에 드는 것이 좋다','기한이 지나면 청구가 어려워진다. 먼저 기록, 바로 연락']},
   en:{t:'Time limits for complaints (international convention example ★)',d:'days',a:'Receipt',b:'Damage: in writing within 14 days',c:'Delay: in writing within 21 days',st:['Photos on the spot','Note damage or shortage on the receipt','Complain in writing'],n:['Damage within 14 days of receipt; delay within 21 days of the cargo being placed at the consignee’s disposal (Montreal Convention) ★','Liability is limited by weight (about 26 SDR per kg) ★; declare a value or insure high-value cargo','Miss the deadline and a claim becomes hard: record first, then report at once']}})[l];
  if(!W)return F.cgo_claim('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),x0=60,x1=600,X=function(d){return x0+d/24*(x1-x0)},y=110,dur='8s';
@@ -313,14 +313,14 @@ cgo_claim:function(l){
 /* 5-1 GSAを通るお金と情報の流れ（例） */
 cgo_gsa:function(l){
  var W=({ja:{t:'GSAを通る予約・書類・お金の流れ（例）',st:['フォワーダーがGSAに予約を申し込む','GSAが航空会社に搭載の見込みを確かめ、予約を確定する','運送状（AWB）を発行し、在庫を管理する','月ごとに売上と予約の実績を航空会社に報告する','運賃は精算システム（CASSなど）を通じて回収する★','手数料を差し引き、航空会社へ送金する'],who:['フォワーダー→GSA','GSA⇄航空会社','GSA','GSA→航空会社','フォワーダー→GSA','GSA→航空会社']},
-  ko:{t:'GSA를 거치는 예약·서류·돈의 흐름(예)',st:['포워더가 GSA에 예약을 신청한다','GSA가 항공사에 탑재 여부를 확인하고 예약을 확정한다','운송장(AWB)을 발행하고 재고를 관리한다','매달 매출과 예약 실적을 항공사에 보고한다','운임은 정산 시스템(CASS 등)을 통해 회수한다★','수수료를 뺀 뒤 항공사에 송금한다'],who:['포워더→GSA','GSA⇄항공사','GSA','GSA→항공사','포워더→GSA','GSA→항공사']},
+  ko:{t:'GSA를 거치는 예약·서류·돈의 흐름(예)',st:['포워더가 GSA에 예약을 신청한다','GSA가 항공사에 탑재 가능 여부를 확인하고 예약을 확정한다','운송장(AWB)을 발행하고 재고를 관리한다','매달 매출과 예약 실적을 항공사에 보고한다','운임은 정산 시스템(CASS 등)을 통해 회수한다★','수수료를 뺀 뒤 항공사에 송금한다'],who:['포워더→GSA','GSA⇄항공사','GSA','GSA→항공사','포워더→GSA','GSA→항공사']},
   en:{t:'Bookings, documents and money through a GSA (example)',st:['The forwarder requests a booking from the GSA','The GSA checks capacity with the airline and confirms','The GSA issues the air waybill and manages the stock','Each month the GSA reports sales and bookings to the airline','Charges are collected through a settlement system such as CASS ★','The GSA deducts its commission and remits to the airline'],who:['Forwarder → GSA','GSA ⇄ airline','GSA','GSA → airline','Forwarder → GSA','GSA → airline']}})[l];
  if(!W)return F.cgo_gsa('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#2F6FD6','#6B4FA0','#2C7A7B','#E08A2E','#2E9B5F','#D64545'],'13s')},
 /* 5-2 ハンドリング会社の品質の指標（3か月、架空）：目標の線を超えた月が赤 */
 cgo_kpi:function(l){
  var W=({ja:{t:'ハンドリング会社の品質指標（3か月・架空）',m:['7月','8月','9月'],k:[['積み残し率（%）',[0.4,0.9,0.5],0.6],['事故件数（件）',[2,1,4],3],['電報の遅れ（件）',[1,0,1],2]],g:'目標',n:['赤い棒は目標を超えた月。8月は積み残し、9月は事故が目標を超えた','月例会議で原因（繁忙期の人員・機材の変更など）を確かめ、改善の期限を決める','数字だけでなく、点検で見た現場の様子とあわせて話し合う']},
-  ko:{t:'조업사 품질 지표(3개월·가상)',m:['7월','8월','9월'],k:[['미탑재율(%)',[0.4,0.9,0.5],0.6],['사고 건수(건)',[2,1,4],3],['전문 지연(건)',[1,0,1],2]],g:'목표',n:['빨간 막대는 목표를 넘은 달. 8월은 미탑재, 9월은 사고가 목표를 넘었다','월간 회의에서 원인(성수기 인원·기재 변경 등)을 확인하고 개선 기한을 정한다','숫자뿐 아니라 점검에서 확인한 현장 상황과 함께 논의한다']},
+  ko:{t:'조업사 품질 지표(3개월·가상)',m:['7월','8월','9월'],k:[['미탑재율(%)',[0.4,0.9,0.5],0.6],['사고 건수(건)',[2,1,4],3],['전문 지연(건)',[1,0,1],2]],g:'목표',n:['빨간 막대는 목표를 넘은 달. 8월은 미탑재, 9월은 사고가 목표를 넘었다','월간 회의에서 원인(성수기 인원·기재 변경 등)을 확인하고 개선 기한을 정한다','숫자뿐 아니라 점검에서 본 현장 상황과 함께 논의한다']},
   en:{t:'Handler quality indicators (three months, fictional)',m:['Jul','Aug','Sep'],k:[['Offload rate (%)',[0.4,0.9,0.5],0.6],['Incidents (count)',[2,1,4],3],['Late messages (count)',[1,0,1],2]],g:'Target',n:['Red bars are months over target: offloads in August, incidents in September','At the monthly meeting, find the cause (peak staffing, equipment changes) and set a deadline for the fix','Discuss the numbers together with what the audit saw on the floor']}})[l];
  if(!W)return F.cgo_kpi('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,dur='6s';
@@ -352,7 +352,7 @@ cgo_career:function(l){
 /* 6-1 出発から逆算する時間表（分前、旅客便の例） */
 cgo_tl1:function(l){
  var W=({ja:{t:'出発から逆算する時間表（旅客便の例）',u:'出発までの分',m:[[240,'搬入の締め切り（一般の貨物）'],[180,'搬入の締め切り（急送）'],[100,'ULDの計量（100〜70分前）'],[90,'書類の締め切り・ドーリーで待機'],[40,'機側へ搬出'],[20,'書類袋を機内へ']],n:['数字は1つの会社の例。空港・機材・SLAで変わる★','どこか1つが遅れると、その後ろがすべて詰まる。遅れそうなら早めにロードコントロールへ']},
-  ko:{t:'출발에서 역산하는 시간표(여객편 예)',u:'출발 전(분)',m:[[240,'반입 마감(일반 화물)'],[180,'반입 마감(급송)'],[100,'ULD 계량(100~70분 전)'],[90,'서류 마감·돌리에 실어 대기'],[40,'항공기로 반출'],[20,'서류 봉투를 기내로']],n:['숫자는 한 회사의 예. 공항·기재·SLA에 따라 다르다★','어느 하나가 늦으면 그 뒤가 모두 밀린다. 늦을 것 같으면 일찍 로드 컨트롤에 알린다']},
+  ko:{t:'출발에서 역산하는 시간표(여객편 예)',u:'출발 전(분)',m:[[240,'반입 마감(일반 화물)'],[180,'반입 마감(급송)'],[100,'ULD 계량(100~70분 전)'],[90,'서류 마감·돌리에 실어 대기'],[40,'항공기 옆으로 반출'],[20,'서류 봉투를 기내로']],n:['숫자는 한 회사의 예. 공항·기재·SLA에 따라 다르다★','어느 하나가 늦으면 그 뒤가 모두 밀린다. 늦을 것 같으면 일찍 로드 컨트롤에 알린다']},
   en:{t:'Timeline counted back from departure (passenger flight example)',u:'minutes before departure',m:[[240,'Acceptance cut-off (general cargo)'],[180,'Acceptance cut-off (express)'],[100,'ULD weighing (100–70 min before)'],[90,'Document cut-off; ready on dollies'],[40,'Out to the aircraft'],[20,'Document pouch on board']],n:['Figures are one airline’s example and vary by airport, aircraft and SLA ★','If one step slips, everything behind it is squeezed; warn load control early']}})[l];
  if(!W)return F.cgo_tl1('ja');setK(1);
  var C=['#2F6FD6','#6B4FA0','#2C7A7B','#E08A2E','#D64545','#2E9B5F'];
@@ -463,7 +463,7 @@ cgo_liab:function(l){
 cgo_sgha:function(l){
  var W=({ja:{t:'ハンドリング会社との契約：SGHAとSLA',b:[['SGHAの本文','責任・保険・支払い・解約（IATAの標準）'],['附属書A','業務の定義の一覧'],['附属書B','空港・実際に頼む業務・料金']],sla:['SLA','時間基準・データ作業・KPIと目標・罰則・定例会議'],x:'IATA AHM 810（SGHA、2023年版）／AHM 803（SLAのひな形）★',n:['SGHAは「何を・いくらで」、SLAは「どれだけの品質で」を決める','SLAの数字（締め切り・引き渡しの時刻など）が、現場の時間表（6-1・6-3）のもとになる']},
   ko:{t:'조업사와의 계약: SGHA와 SLA',b:[['SGHA 본문','책임·보험·지급·해지(IATA 표준)'],['부속서 A','업무 정의 목록'],['부속서 B','공항·실제 맡기는 업무·요금']],sla:['SLA','시간 기준·데이터 작업·KPI와 목표·벌칙·정례 회의'],x:'IATA AHM 810(SGHA, 2023년판) / AHM 803(SLA 양식)★',n:['SGHA는 「무엇을·얼마에」, SLA는 「어떤 품질로」를 정한다','SLA의 숫자(마감·인도 시각 등)가 현장 시간표(6-1·6-3)의 바탕이 된다']},
-  en:{t:'Agreements with the handler: SGHA and SLA',b:[['SGHA main agreement','Liability, insurance, payment, termination (IATA standard)'],['Annex A','Definitions of services'],['Annex B','Airport, services actually ordered and charges']],sla:['SLA','Time standards, data tasks, KPIs and targets, penalties, regular meetings'],x:'IATA AHM 810 (SGHA, 2023 edition) / AHM 803 (SLA template) ★',n:['The SGHA sets what is done and at what price; the SLA sets the quality','The SLA’s numbers (cut-offs, release times) underpin the station timelines (6-1, 6-3)']}})[l];
+  en:{t:'Agreements with the handler: SGHA and SLA',b:[['SGHA main agreement','Liability, insurance, payment, termination (IATA standard)'],['Annex A','Definitions of services'],['Annex B','Airport, services actually ordered and charges']],sla:['SLA','Time standards, data tasks, KPIs and targets, penalties, regular meetings'],x:'IATA AHM 810 (SGHA, 2023 edition) / AHM 803 (SLA template) ★',n:['The SGHA sets what is done and at what price; the SLA sets the quality level','The SLA’s numbers (cut-offs, release times) underpin the station timelines (6-1, 6-3)']}})[l];
  if(!W)return F.cgo_sgha('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=62,lh=FS(10)*1.3,dur='8s',col=['#2F6FD6','#6B4FA0','#2C7A7B'];
  var y0=y;W.b.forEach(function(b,i){var nl=LI(b[1],10,250).length,h=FS(11)*1.3+nl*lh+22,a=(i*0.15).toFixed(2),c=(i*0.15+0.1).toFixed(2);

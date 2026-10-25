@@ -53,7 +53,7 @@ sections:[
 {name:"Consolidation",x:"The forwarder combines several shippers’ cargo into one consignment for the airline, bringing the rate down."},
 {name:"Direct",x:"One shipper’s cargo travels as a single consignment."},
 {name:"Documents",x:"In a consolidation there are two levels: the airline’s master air waybill and the forwarder’s house air waybills (1-2)."}]}]}],
-voice:"For cargo too large or heavy for the belly, a freighter or cooperation with another carrier is considered. Make a habit of checking each aircraft type’s loading limits before accepting.",
+voice:"For cargo too large or heavy for the belly, the options to consider are a freighter or another carrier. Make a habit of checking each aircraft type’s loading limits before accepting.",
 terms:[["Belly Hold","ベリー","벨리(하부 화물칸)"],["Freighter","貨物専用機","화물 전용기"],["Main Deck","主甲板","메인 데크"],["Consolidation","混載","혼재"]],
 quiz:[{q:"What is hard to carry in a passenger belly?",opts:["Small general cargo","Tall machinery","Documents","Electronic components"],a:1,exp:"The cargo door sets the limit."},
 {q:"What is it called when several shippers’ cargo travels together?",opts:["Direct","Consolidation","Return","Storage"],a:1,exp:"It brings the rate down."},
@@ -62,7 +62,7 @@ next:"0-3 Cargo airports"});
 
 set("0-3",{title:"Cargo Airports",hl:"cargo airports",subtitle:"What makes an airport a cargo hub",
 lead:["Japan’s international air cargo is concentrated at Narita, with Kansai next. Elsewhere in Asia, Incheon is one of the world’s major cargo airports. Airports differ in how the cargo terminal is run, whether they operate around the clock, and how they handle transit cargo.",
-"This lesson sets out the characteristics of the main airports and the pattern of cargo flows. Figures change from year to year, so the lesson describes trends."],
+"This article sets out the characteristics of the main airports and the pattern of cargo flows. Figures change from year to year, so it describes tendencies."],
 sections:[
 {h:"The main airports (tendencies)",blocks:[{t:"fig",id:"cgo_map",cap:"Animated figure: major cargo airports in Korea and Japan; lines flow from Incheon to Japanese airports, showing its role as a transfer hub."},
 {t:"table",cols:["Airport","Features"],rows:[

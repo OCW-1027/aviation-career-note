@@ -12,7 +12,7 @@ sections:[
 ["Fee","150,000 yen per application (registration and licence tax)"],
 ["Review standards","The Bureau’s review standards and standard processing periods (1994 notice); safety review follows the procedure and detailed rules"],
 ["Appeals","Under the Administrative Complaint Review Act"],
-["Format","There is no prescribed form; the application follows MLIT’s published sample. Items may be stated as ‘see attached’ and given on separate sheets"]]},
+["Format","There is no prescribed form; the application follows MLIT’s published sample. The required entries may be put on a separate sheet, with “see attached” in the application"]]},
 {t:"note",x:"Summarised from MLIT’s one-stop guide to the foreign international air transport permit, checked September 2026."}]},
 {h:"From application to post-launch oversight",blocks:[{t:"fig",id:"fao_flow",cap:"File no later than three months before launch. Review covers business and safety, and fares, schedules and slots follow the permit. After launch, ramp inspections and safety oversight continue"},
 {t:"rows",items:[
@@ -41,7 +41,7 @@ sections:[
 ["6) Accessibility measures","Attach the accessibility plan by airport and aircraft type (see below)"],
 ["7) Measures against falling objects","Applies to aeroplanes over 5,700 kg MTOW; technical management, technical measures and training, in a document signed by the responsible person"],
 ["8) Compensation for falling-object damage","Attach the confirmation of consent to the falling-object compensation agreement"]]}]},
-{h:"The attachments: where each document comes from",blocks:[{t:"fig",id:"fao_docs",cap:"Grouping the attachments into five sources (the home-state authority, the state of registry, the crew, the company and documents prepared in Japan) helps prevent omissions"},
+{h:"The attachments: where each document comes from",blocks:[{t:"fig",id:"fao_docs",cap:"Collecting the attachments in five groups by source (home-state authority, state of registry, crew, company, and documents prepared in Japan) means fewer omissions"},
 {t:"table",cols:["Group","Document","Source"],rows:[
 ["General","Evidence that the home state has licensed the airline for the route","Home-state aviation authority"],
 ["General","Articles of incorporation","Company"],

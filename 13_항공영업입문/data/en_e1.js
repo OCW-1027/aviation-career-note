@@ -32,7 +32,7 @@ lead:["A route to and from Japan carries demand in both directions: people from 
 sections:[
 {h:"What characterises the demand",blocks:[{t:"fig",id:"sls_season",cap:"Figure: seasonal waves on Japan–Korea routes (example)."},{t:"check",items:[
 {name:"Two directions",x:"The strength of demand from each end differs by season, which affects seat allocation and fares."},
-{name:"Short trips",x:"Many short trips, either weekends or two to three nights, on short-haul routes."},
+{name:"Short trips",x:"Many short trips, such as weekends or stays of two or three nights."},
 {name:"Purposes",x:"Sightseeing, shopping, food, entertainment such as concerts and fan events, beauty treatments, business."},
 {name:"Repeat travellers",x:"Many travel back and forth often and are sensitive to fares, timings and service."}]}]},
 {h:"The seasonal pattern (example)",blocks:[{t:"table",cols:["Period","From Japan","From the other country"],rows:[
@@ -127,7 +127,7 @@ sections:[
 {name:"What a block is",x:"A set number of seats handed to an agency, to be named by a deadline."},
 {name:"Deadlines and release",x:"Set the release deadline for unnamed seats; after it, they go back on general sale."},
 {name:"Checking utilisation",x:"Check, agency by agency, what share of the seats given were actually used."},
-{name:"Allocation",x:"The stronger the demand, the more seats go to agencies with a record of using them."}]},
+{name:"Allocation",x:"The stronger the demand, the more the allocation should go to agencies with a record of using it."}]},
 {t:"point",x:"Trust with agencies is often decided by how you handle disruption. Telling agencies about cancellations and delays early and accurately is what earns the next sale."}]}],
 voice:"Trust with agencies is built by passing on bad news quickly, more than good news. Tell your contact directly and first about cancellations and schedule changes.",
 terms:[["Block / Allotment","ブロック","블록(좌석 할당)"],["Release Deadline","リリース期限","반환 기한"],["Purchasing","仕入れ","매입"],["Incentive Travel","報奨旅行","포상 여행"]],

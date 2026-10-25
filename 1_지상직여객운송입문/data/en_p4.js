@@ -64,7 +64,7 @@ sections:[
 {t:"table",cols:["Prevention","How"],rows:[
 ["At check-in","Encourage name labels and a distinctive ribbon or strap; remind passengers to keep the tag receipt"],
 ["Flights with many similar bags","For groups or common brands, announce at the belt: “Please check the tag number before you leave”"],
-["At the belt","Post staff to match tag receipts with bag tags; some airports check tags at the exit"],
+["At the belt","Assign staff to match tag receipts with bag tags; some airports check tags at the exit"],
 ["The last bag left","Take it off before the belt stops and look up the owner by tag number at once"]]},
 {t:"ladder",rise:10,steps:[{name:"Check the remaining bag",sub:"Owner A from tag and label (OHD)"},{name:"Match the report",sub:"Compare with B’s missing bag (AHL)"},{name:"Contact A",sub:"From the booking; ask them to check the bag"},{name:"Arrange recovery",sub:"Back to the airport, courier, or collection by staff"},{name:"Deliver both",sub:"Each bag to its owner"},{name:"Close the records",sub:"Close AHL and OHD; review the cause"}]},
 {t:"note",x:"* Recovery costs are usually borne by the airline. If the contents must be checked, do it with a witness and record it."}]}],

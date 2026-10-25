@@ -34,7 +34,7 @@ nav_speeds:function(l){
 nav_ias_tas:function(l){
  var W=({ja:{t:'同じIAS 250ktでも、高い所ほど実際は速い',ias:'IAS（計器）',tas:'TAS（本当の速さ）',thin:'高い所は空気が薄い',thick:'低い所は空気が濃い',rule:'目安：TAS ≒ IAS × (1 ＋ 0.02 × 高度[千ft])',h:'高度'},
   ko:{t:'같은 IAS 250kt라도 높은 곳일수록 실제로는 빠르다',ias:'IAS(계기)',tas:'TAS(실제 속도)',thin:'높은 곳은 공기가 옅다',thick:'낮은 곳은 공기가 짙다',rule:'기준: TAS ≒ IAS × (1 + 0.02 × 고도[천 ft])',h:'고도'},
-  en:{t:'Same 250 kt IAS: the higher you fly, the faster you go',ias:'IAS (instrument)',tas:'TAS (true speed)',thin:'Thin air up high',thick:'Dense air down low',rule:'Rule of thumb: TAS ≈ IAS × (1 + 0.02 × altitude in thousands of ft)',h:'Altitude'}})[l];
+  en:{t:'Same 250 kt IAS, but the higher you fly, the faster you actually go',ias:'IAS (instrument)',tas:'TAS (true speed)',thin:'Thin air up high',thick:'Dense air down low',rule:'Rule of thumb: TAS ≈ IAS × (1 + 0.02 × altitude in thousands of ft)',h:'Altitude'}})[l];
  if(!W)return F.nav_ias_tas('ja');
  var nar=NARROW();setK(nar?1.35:1);
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
@@ -80,7 +80,7 @@ nav_mach:function(l){
 /* 4 暑い日の離陸：同じ空港でも、暑いと空気が薄く、離陸の滑走が長くなる（密度高度） */
 nav_densalt:function(l){
  var W=({ja:{t:'密度高度：暑い日は「高い空港」と同じ',cool:'涼しい日（15℃）',hot:'暑い日（35℃）',da0:'密度高度 ≒ 空港の標高',da1:'密度高度 ≒ 標高 ＋ 約2,400ft',roll:'離陸の滑走',rule:'目安：密度高度 ≒ 気圧高度 ＋ 120ft ×（気温 − 標準の気温）',eff:'空気が薄い → エンジンの力と翼の揚力が小さい → 長く走る'},
-  ko:{t:'밀도고도: 더운 날은 ‘높은 공항’과 같다',cool:'선선한 날(15℃)',hot:'더운 날(35℃)',da0:'밀도고도 ≒ 공항 표고',da1:'밀도고도 ≒ 표고 + 약 2,400ft',roll:'이륙 활주',rule:'기준: 밀도고도 ≒ 기압고도 + 120ft × (기온 − 표준 기온)',eff:'공기가 옅다 → 엔진 힘과 날개 양력이 작다 → 길게 달린다'},
+  ko:{t:'밀도고도: 더운 날은 ‘높은 공항’과 같다',cool:'선선한 날(15℃)',hot:'더운 날(35℃)',da0:'밀도고도 ≒ 공항 표고',da1:'밀도고도 ≒ 표고 + 약 2,400ft',roll:'이륙 활주',rule:'기준: 밀도고도 ≒ 기압고도 + 120ft × (기온 − 표준 기온)',eff:'공기가 옅다 → 엔진 힘과 날개 양력이 작다 → 활주 거리가 길어진다'},
   en:{t:'Density altitude: a hot day is like a higher airport',cool:'Cool day (15 °C)',hot:'Hot day (35 °C)',da0:'Density altitude ≈ field elevation',da1:'Density altitude ≈ elevation + about 2,400 ft',roll:'Take-off roll',rule:'Rule of thumb: density altitude ≈ pressure altitude + 120 ft × (temperature − standard temperature)',eff:'Thinner air → less engine thrust and wing lift → a longer run'}})[l];
  if(!W)return F.nav_densalt('ja');
  var nar=NARROW();setK(nar?1.3:1);
@@ -99,7 +99,7 @@ nav_densalt:function(l){
 /* 5 川を渡る船：流れに負けないように、へさきを上流に向ける（偏流修正） */
 nav_river:function(l){
  var W=({ja:{t:'川を渡る船で考える偏流',a:'へさきをまっすぐ向けると…',b:'へさきを上流に向けると…',drift:'流されて、目的地の下流に着く',ok:'まっすぐ目的地に着く',cur:'川の流れ＝風',goal:'目的地',wca:'修正角'},
-  ko:{t:'강을 건너는 배로 보는 편류',a:'뱃머리를 똑바로 향하면…',b:'뱃머리를 상류로 향하면…',drift:'떠밀려서 목적지 하류에 닿는다',ok:'똑바로 목적지에 닿는다',cur:'강물의 흐름=바람',goal:'목적지',wca:'수정각'},
+  ko:{t:'강을 건너는 배로 이해하는 편류',a:'뱃머리를 똑바로 향하면…',b:'뱃머리를 상류로 향하면…',drift:'떠밀려서 목적지 하류에 닿는다',ok:'똑바로 목적지에 닿는다',cur:'강물의 흐름=바람',goal:'목적지',wca:'수정각'},
   en:{t:'Drift, explained with a boat crossing a river',a:'Point the bow straight across…',b:'Point the bow upstream…',drift:'…and the current carries you downstream of the target',ok:'…and you arrive straight at the target',cur:'River current = wind',goal:'Target',wca:'Correction angle'}})[l];
  if(!W)return F.nav_river('ja');
  var nar=NARROW();setK(nar?1.3:1);
@@ -202,7 +202,7 @@ nav_1in60:function(l){
 /* 10 航路からのずれの修正：ずれた角度＋合流の角度で、目的地に向かう */
 nav_offtrack:function(l){
  var W=({ja:{t:'針路からずれたときの修正',a:'出発地',b:'目的地',x:'今の位置',off:'4NM ずれている',flown:'40NM 飛んだ',togo:'残り 80NM',te:'ずれた角度 4×60÷40＝6°',ca:'合流の角度 4×60÷80＝3°',tot:'右へ 6°＋3°＝9° 変えて目的地へ'},
-  ko:{t:'침로에서 벗어났을 때의 수정',a:'출발지',b:'목적지',x:'현재 위치',off:'4NM 이탈',flown:'40NM 비행',togo:'남은 80NM',te:'벗어난 각도 4×60÷40=6°',ca:'합류 각도 4×60÷80=3°',tot:'오른쪽으로 6°+3°=9° 바꿔 목적지로'},
+  ko:{t:'침로에서 벗어났을 때의 수정',a:'출발지',b:'목적지',x:'현재 위치',off:'4NM 벗어남',flown:'40NM 비행',togo:'남은 80NM',te:'벗어난 각도 4×60÷40=6°',ca:'합류 각도 4×60÷80=3°',tot:'오른쪽으로 6°+3°=9° 바꿔 목적지로'},
   en:{t:'Correcting after drifting off course',a:'Departure',b:'Destination',x:'Present position',off:'4 NM off course',flown:'40 NM flown',togo:'80 NM to go',te:'Track error 4 × 60 ÷ 40 = 6°',ca:'Closing angle 4 × 60 ÷ 80 = 3°',tot:'Turn right 6° + 3° = 9° to reach the destination'}})[l];
  if(!W)return F.nav_offtrack('ja');
  setK(1);
@@ -260,7 +260,7 @@ nav_descent:function(l){
 /* 13 従来の航法とRNAV：無線施設を順に通る道と、ウェイポイントをまっすぐ結ぶ道 */
 nav_rnav:function(l){
  var W=({ja:{t:'従来の航法とRNAV（広域航法）',a:'従来の航法',b:'RNAV',vor:'VOR（地上の無線施設）',wp:'ウェイポイント（座標の点）',na:'無線施設の上を順に通るので、道が曲がり長くなる',nb:'座標の点をまっすぐ結べるので、道が短く自由になる',dep:'出発',arr:'到着'},
-  ko:{t:'기존 항법과 RNAV(광역항법)',a:'기존 항법',b:'RNAV',vor:'VOR(지상 무선시설)',wp:'웨이포인트(좌표 지점)',na:'무선시설 위를 차례로 지나 경로가 굽고 길어진다',nb:'좌표 지점을 직결할 수 있어 경로가 짧고 자유롭다',dep:'출발',arr:'도착'},
+  ko:{t:'기존 항법과 RNAV(광역항법)',a:'기존 항법',b:'RNAV',vor:'VOR(지상 무선시설)',wp:'웨이포인트(좌표 지점)',na:'무선시설 위를 차례로 지나 경로가 굽고 길어진다',nb:'좌표 지점을 곧게 이을 수 있어 경로가 짧고 자유롭다',dep:'출발',arr:'도착'},
   en:{t:'Conventional navigation and RNAV (area navigation)',a:'Conventional',b:'RNAV',vor:'VOR (ground radio station)',wp:'Waypoint (a set of coordinates)',na:'Flying over each station in turn bends and lengthens the route',nb:'Joining coordinates directly makes routes shorter and more flexible',dep:'Dep',arr:'Arr'}})[l];
  if(!W)return F.nav_rnav('ja');
  setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;
@@ -307,7 +307,7 @@ nav_rnp:function(l){
 /* 15 GNSS：4機で位置、5機で異常を見つけ（RAIM）、6機で異常な衛星を外す（FDE）。静止衛星（SBAS）が補正を送る */
 nav_gnss:function(l){
  var W=({ja:{t:'GNSS（衛星航法）のしくみ',s4:'4機：位置（緯度・経度・高さ）と時計のずれを求める',s5:'5機：異常な衛星がないかを見つける（RAIM）',s6:'6機：異常な衛星を外して使い続ける（FDE）',sbas:'静止衛星（SBAS）：地上の基準局で求めた補正と信頼性の情報を送る',names:'GPS（米）・GLONASS（露）・Galileo（欧）・BeiDou（中）。日本の「みちびき」はGPSを補う',ref:'基準局'},
-  ko:{t:'GNSS(위성항법)의 원리',s4:'4기: 위치(위도·경도·높이)와 시계 오차를 구한다',s5:'5기: 이상 위성이 없는지 확인한다(RAIM)',s6:'6기: 이상 위성을 빼고 계속 쓴다(FDE)',sbas:'정지위성(SBAS): 지상 기준국에서 구한 보정과 신뢰성 정보를 보낸다',names:'GPS(미)·GLONASS(러)·Galileo(유럽)·BeiDou(중). 일본의 ‘미치비키’는 GPS를 보완',ref:'기준국'},
+  ko:{t:'GNSS(위성항법)의 원리',s4:'4기: 위치(위도·경도·높이)와 시계 오차를 구한다',s5:'5기: 이상한 위성이 없는지 찾아낸다(RAIM)',s6:'6기: 이상한 위성을 빼고 계속 쓴다(FDE)',sbas:'정지위성(SBAS): 지상 기준국에서 구한 보정과 신뢰성 정보를 보낸다',names:'GPS(미)·GLONASS(러)·Galileo(유럽)·BeiDou(중). 일본의 ‘미치비키’는 GPS를 보완',ref:'기준국'},
   en:{t:'How GNSS (satellite navigation) works',s4:'4 satellites: position (latitude, longitude, height) and receiver clock error',s5:'5 satellites: detect a faulty satellite (RAIM)',s6:'6 satellites: exclude the faulty one and carry on (FDE)',sbas:'Geostationary satellite (SBAS): sends corrections and integrity data worked out by ground reference stations',names:'GPS (US), GLONASS (Russia), Galileo (EU), BeiDou (China); Japan’s QZSS (Michibiki) supplements GPS',ref:'Reference station'}})[l];
  if(!W)return F.nav_gnss('ja');
  setK(1);var FS=H.FS,LI=H.LINES;
@@ -394,8 +394,8 @@ nav_msa:function(l){
 
 /* 19 High to Low, Look out below：高気圧から低気圧へ、暖かい所から寒い所へ飛ぶと、同じ指示でも実際は低い */
 nav_highlow:function(l){
- var W=({ja:{t:'「High to Low, Look out below」',p:'気圧：高い所から低い所へ',tm:'気温：暖かい所から寒い所へ',hp:'高気圧',lp:'低気圧',wm:'暖かい',cd:'寒い',ind:'高度計の表示は同じ 5,000ft',tru:'実際の高度は下がる',r1:'QNHを再設定しないと、1hPaで約30ft低い（10hPaで約300ft）',r2:'気温が標準より10℃低いと、約4％低い（ISA−20℃なら約8％）'},
-  ko:{t:'‘High to Low, Look out below’',p:'기압: 높은 곳에서 낮은 곳으로',tm:'기온: 따뜻한 곳에서 추운 곳으로',hp:'고기압',lp:'저기압',wm:'온난',cd:'한랭',ind:'고도계 표시는 똑같이 5,000ft',tru:'실제 고도는 낮아진다',r1:'QNH를 재설정하지 않으면 1hPa당 약 30ft 낮다(10hPa면 약 300ft)',r2:'기온이 표준보다 10℃ 낮으면 약 4% 낮다(ISA−20℃면 약 8%)'},
+ var W=({ja:{t:'「High to Low, Look out below」',p:'気圧：高い所から低い所へ',tm:'気温：暖かい所から寒い所へ',hp:'高気圧',lp:'低気圧',wm:'暖かい',cd:'寒い',ind:'高度計の表示は同じ 5,000ft',tru:'実際の高さは下がる',r1:'QNHを再設定しないと、1hPaで約30ft低い（10hPaで約300ft）',r2:'気温が標準より10℃低いと、約4％低い（ISA−20℃なら約8％）'},
+  ko:{t:'‘High to Low, Look out below’',p:'기압: 높은 곳에서 낮은 곳으로',tm:'기온: 따뜻한 곳에서 추운 곳으로',hp:'고기압',lp:'저기압',wm:'온난',cd:'한랭',ind:'고도계 표시는 똑같이 5,000ft',tru:'실제 높이는 낮아진다',r1:'QNH를 재설정하지 않으면 1hPa당 약 30ft 낮다(10hPa면 약 300ft)',r2:'기온이 표준보다 10℃ 낮으면 약 4% 낮다(ISA−20℃면 약 8%)'},
   en:{t:'“High to low, look out below”',p:'Pressure: from high to low',tm:'Temperature: from warm to cold',hp:'High',lp:'Low',wm:'Warm',cd:'Cold',ind:'The altimeter still reads 5,000 ft',tru:'True height drops',r1:'Without resetting QNH, about 30 ft lower per hPa (about 300 ft for 10 hPa)',r2:'About 4% lower for every 10 °C below standard (about 8% at ISA−20 °C)'}})[l];
  if(!W)return F.nav_highlow('ja');
  setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;

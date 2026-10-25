@@ -21,9 +21,9 @@ sections:[
 {name:"It is not only passengers",x:"Crew, catering waste, in-flight sales, cargo and the aircraft itself are all subject to CIQ."}]}]},
 {h:"Where the airline stands",blocks:[{t:"check",items:[
 {name:"The authorities decide",x:"Whether someone may enter, or something may be brought in, is for the authorities. The airline provides the necessary information and cooperates with the procedures."},
-{name:"Do not say “it will be fine” as if it were certain",x:"Show the passenger the official information and explain that the authorities make the final decision."},
+{name:"Never promise “it will be fine”",x:"Show the passenger the official information and explain that the authorities make the final decision."},
 {name:"Check before you answer",x:"Rules differ by country and change often. Use current material, not memory."}]},
-{t:"point",x:"The CIQ agencies are both the authorities that examine and grant permission and partner agencies that airlines work with every day at the same airport."}]}],
+{t:"point",x:"The CIQ agencies are authorities that examine and grant permission, and also partners that airlines work with every day at the same airport."}]}],
 voice:"Customs, immigration and quarantine each look at different things and have different contact points. A station list of the three agencies' contacts, and of which one to consult in which situation, lets you act without hesitation when an urgent question comes in.",
 terms:[["Customs","税関","세관"],["Immigration","出入国審査","출입국 심사"],["Quarantine","検疫","검역"],["Animal and Plant Quarantine","動植物検疫","동식물 검역"]],
 quiz:[{q:"Which part of CIQ confirms a person’s right to enter?",opts:["Immigration (I)","Customs (C)","Quarantine (Q)","The airport company"],a:0,exp:"Immigration looks at people; customs at goods and money; quarantine at disease and pests."},

@@ -23,8 +23,8 @@ var ORG={
  ko:['회사 안에서 돈과 사람을 떠받치는 네 가지 일',['경영자(사장·지점장)','회사의 방향을 정하고 최종 책임을 짐'],[
   ['인사','사람','채용·배치·평가·급여 계산·근태·교육. 일하는 사람에 관한 일을 맡음','#2F8FE0'],
   ['총무','환경','계약·비품·사무실·업무용 차량·문서·보험·행사. 회사가 돌아가는 바탕을 갖춤','#2C8C8C'],
-  ['경리(회계)','기록','매일의 거래를 장부에 기록하고 월차·연차 결산과 세금 신고로 연결함','#7A5CC7'],
-  ['재무(자금)','돈의 흐름','입금과 지급, 은행 거래, 자금 계획, 해외 송금을 관리함','#1F8A5B']],
+  ['경리(회계)','기록','매일의 거래를 장부에 기록하고 월별·연도 결산과 세금 신고로 연결함','#7A5CC7'],
+  ['재무(자금)','돈의 흐름','입금과 지급, 은행 관계, 자금 계획, 해외 송금을 관리함','#1F8A5B']],
   '작은 지점이나 회사에서는 한 사람이 둘 이상의 역할을 겸합니다. 누가 무엇을 맡는지 표로 정리해 두세요.'],
  en:['Four jobs that keep a company’s money and people running',['Management (president / station manager)','Sets the direction and carries final responsibility'],[
   ['HR','People','Hiring, assignment, appraisal, payroll calculation, attendance and training: everything to do with the people who work there','#2F8FE0'],
@@ -192,7 +192,7 @@ function xlFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=
 /* 5-2. 給与明細（韓国）：月給300万ウォンの例 */
 var PAYKR={
  ja:['韓国：月給300万ウォンの例 ― 総支給から手取りまで',[['総支給',3000000,'#9DB4C8'],['国民年金（4.75%）',142500,'#E08A2F'],['健康保険（3.595%）',107850,'#E08A2F'],['長期療養保険（健康保険料の13.14%）',14170,'#E08A2F'],['雇用保険（0.9%）',27000,'#E08A2F'],['所得税（簡易税額表）',89730,'#7A5CC7'],['地方所得税（所得税の10%）',8970,'#7A5CC7'],['手取り',2609780,'#1F8A5B']],'ウォン','※ 2026年の料率、扶養は本人1人、非課税の手当なしの概算例です。所得税は扶養の人数で大きく変わります。★'],
- ko:['한국: 월급 300만 원의 예 — 총지급액에서 수령액까지',[['총지급액',3000000,'#9DB4C8'],['국민연금(4.75%)',142500,'#E08A2F'],['건강보험(3.595%)',107850,'#E08A2F'],['장기요양보험(건강보험료의 13.14%)',14170,'#E08A2F'],['고용보험(0.9%)',27000,'#E08A2F'],['소득세(간이세액표)',89730,'#7A5CC7'],['지방소득세(소득세의 10%)',8970,'#7A5CC7'],['수령액',2609780,'#1F8A5B']],'원','※ 2026년 요율·부양가족 본인 1명·비과세 수당 없음 기준 어림값입니다. 소득세는 부양가족 수에 따라 크게 달라집니다. ★'],
+ ko:['한국: 월급 300만 원의 예 — 총지급액에서 수령액까지',[['총지급액',3000000,'#9DB4C8'],['국민연금(4.75%)',142500,'#E08A2F'],['건강보험(3.595%)',107850,'#E08A2F'],['장기요양보험(건강보험료의 13.14%)',14170,'#E08A2F'],['고용보험(0.9%)',27000,'#E08A2F'],['소득세(간이세액표)',89730,'#7A5CC7'],['지방소득세(소득세의 10%)',8970,'#7A5CC7'],['수령액',2609780,'#1F8A5B']],'원','※ 2026년 요율, 부양가족 본인 1명, 비과세 수당 없음을 가정한 어림 계산 예입니다. 소득세는 부양가족 수에 따라 크게 달라집니다. ★'],
  en:['Korea: monthly salary of ₩3,000,000, from gross to take-home',[['Gross pay',3000000,'#9DB4C8'],['National pension (4.75%)',142500,'#E08A2F'],['Health insurance (3.595%)',107850,'#E08A2F'],['Long-term care (13.14% of health premium)',14170,'#E08A2F'],['Employment insurance (0.9%)',27000,'#E08A2F'],['Income tax (simplified tax table)',89730,'#7A5CC7'],['Local income tax (10% of income tax)',8970,'#7A5CC7'],['Take-home pay',2609780,'#1F8A5B']],'','* Rough example at 2026 rates: no dependants other than the employee, no tax-free allowances. Income tax varies a lot with the number of dependants. ★','₩']};
 
 /* 6-2. 人事・給与の1年（韓国） */
@@ -223,7 +223,7 @@ var HRCALKR={
   ['Jul','National pension income base changes. Half-yearly withholding tax for January–June','#E08A2F'],
   ['Aug','Next year’s minimum wage is announced (applies from January)','#2F8FE0'],
   ['Dec','Check remaining annual leave and unused-leave pay; plan next year’s hiring','#2F8FE0']],
-  ['Pay and tax','Hiring and HR','Four social insurances'],'All year: insurance enrolment and exit notifications, statutory training (once a year), health checks. Dates vary by year and company, so check them. ★']};
+  ['Pay and tax','Hiring and HR','Four social insurances'],'All year: insurance enrolment and loss-of-coverage notifications, statutory training (once a year), health checks. Dates vary by year and company, so check them. ★']};
 
 /* 8. 残業の上限（日本・韓国）：横の棒 */
 var OTJP={
@@ -243,7 +243,7 @@ function limFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 /* 9. 出産と育児の休み（日本・韓国）：時間の帯 */
 var LVJP={
  ja:['日本：出産と育児の休み（例）',[['産前休業（6週）',6,'#E08A2F'],['産後休業（8週）',8,'#D0453E'],['育児休業（子が1歳まで）',44,'#2F8FE0'],['延長（保育所に入れないなど。最長2歳まで）',52,'#9DB4C8']],6,'出産','父親は、子の出生から8週間以内に4週間までの「出生時の育児休業」も取れます。★'],
- ko:['일본: 출산·육아 휴업(예)',[['산전휴업(6주)',6,'#E08A2F'],['산후휴업(8주)',8,'#D0453E'],['육아휴업(자녀가 1세까지)',44,'#2F8FE0'],['연장(어린이집 입소 불가 시 등. 최장 2세까지)',52,'#9DB4C8']],6,'출산','아버지는 자녀 출생 후 8주 이내에 4주까지 「출생 시 육아휴업」도 쓸 수 있습니다. ★'],
+ ko:['일본: 출산·육아 휴업(예)',[['산전휴업(6주)',6,'#E08A2F'],['산후휴업(8주)',8,'#D0453E'],['육아휴업(자녀가 1세까지)',44,'#2F8FE0'],['연장(어린이집에 들어가지 못하는 경우 등. 최장 2세까지)',52,'#9DB4C8']],6,'출산','아버지는 자녀 출생 후 8주 이내에 4주까지 「출생 시 육아휴업」도 쓸 수 있습니다. ★'],
  en:['Japan: leave for birth and childcare (example)',[['Pre-birth leave (6 weeks)',6,'#E08A2F'],['Post-birth leave (8 weeks)',8,'#D0453E'],['Childcare leave (until the child turns 1)',44,'#2F8FE0'],['Extension (e.g. no nursery place; up to age 2)',52,'#9DB4C8']],6,'Birth','Fathers can also take up to four weeks of birth-time childcare leave within eight weeks of the birth. ★']};
 var LVKR={
  ja:['韓国：出産と育児の休み（例）',[['出産前後休暇（90日。出産後45日以上）',13,'#E08A2F'],['育児休職（1年）',52,'#2F8FE0'],['追加の6か月（父母がそれぞれ3か月以上使うと）',26,'#9DB4C8']],6.4,'出産','配偶者の出産休暇は20日（出産から120日以内、4回まで分けて使える）。★'],

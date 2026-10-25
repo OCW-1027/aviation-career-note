@@ -6,7 +6,7 @@ window.DICT=(window.DICT||[]).concat([
 ["CGO","Consolidation","混載","혼재","複数の荷主の貨物を1つにまとめて運ぶこと","여러 화주의 화물을 하나로 묶어 운송하는 것","Combining several shippers’ goods into one shipment"],
 ["CGO","Chargeable Weight","運賃計算重量","운임 적용 중량","実重量と容積重量の大きい方","실중량과 용적중량 중 큰 쪽","The greater of actual weight and volumetric weight"],
 ["CGO","Volumetric Weight","容積重量","용적 중량","大きさから計算する重さ（一般に縦×横×高さ（cm）÷6000）","크기로 계산하는 무게(보통 가로×세로×높이(cm)÷6000)","Weight calculated from dimensions, commonly L×W×H in cm divided by 6000"],
-["CGO","Cargo Manifest","積荷目録","적하목록","便に積んだ貨物の一覧。税関に提出する","항공편에 실은 화물 목록. 세관에 제출한다","The list of cargo on a flight, submitted to customs"],
+["CGO","Cargo Manifest","積荷目録","적하목록","便に積んだ貨物の一覧。税関に提出する","항공편에 실은 화물 목록. 세관에 제출","The list of cargo on a flight, submitted to customs"],
 ["CGO","Bonded Area","保税地域","보세구역","輸入の手続きが済むまで貨物を置く税関の管理区域","수입 절차가 끝날 때까지 화물을 두는 세관 관리 구역","A customs-controlled area for goods not yet cleared"],
 ["CGO","Known Consignor / Regulated Agent","特定荷主・特定航空貨物利用運送事業者","지정 화주·보안 승인 운송업자","保安の基準を満たし、貨物の保安を確保できると認められた荷主・事業者","보안 기준을 충족해 화물 보안을 확보할 수 있다고 인정된 화주·사업자","Shippers and agents approved as meeting cargo security standards"],
 ["CGO","Perishable Cargo (PER)","生鮮貨物","신선 화물","食品・花など温度と時間に注意が必要な貨物","식품·꽃 등 온도와 시간에 주의가 필요한 화물","Goods such as food and flowers needing temperature and time control"],

@@ -10,7 +10,7 @@ sections:[
 ["Security training procedures","How the training is actually delivered","Reviewed annually; advise if unchanged"],
 ["Self-audit results","The report on your security self-audit","Once a year"]]},
 {t:"note",x:"* An example based on several airlines’ practice. Confirm the names, frequency and forms with current official guidance. ★"}]},
-{h:"The annual revision (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Prepare",sub:"February to March: go through last year’s programme and what has changed"},{name:"Agree with head office",sub:"Review the content with head office security"},{name:"Discuss with the authorities",sub:"Send it by email and incorporate their comments"},{name:"File",sub:"Submit the change notification online and have it accepted"},{name:"Distribute",sub:"To the station and the handling company"}]},
+{h:"The annual revision (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Prepare",sub:"February to March: organise last year’s programme and what has changed"},{name:"Agree with head office",sub:"Review the content with head office security"},{name:"Discuss with the authorities",sub:"Send it by email and incorporate their comments"},{name:"File",sub:"Submit the change notification online and have it accepted"},{name:"Distribute",sub:"To the station and the handling company"}]},
 {t:"point",x:"When the authorities’ model programme changes format, they ask you to follow it. Where your own operation differs, adapt it and note what the difference is."}]},
 {h:"When a revision is needed immediately",blocks:[{t:"check",items:[
 {name:"Contacts change",x:"When the person responsible for security in Japan, or the contact details, change."},

@@ -1,7 +1,7 @@
 /* 支店長の引き継ぎガイド — English version (all 9) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("1-1",{title:"What Goes in a Handover Document",hl:"the handover document",subtitle:"Not just what you do, but why, when and with whom",
-lead:["A change of manager is one of the biggest risks any operation faces. When information that exists only in the outgoing manager’s head is lost, it can lead to missed deadlines with the authorities and forgotten promises to partners.",
+lead:["A change of manager is one of the biggest risks any operation faces. When information that exists only in the outgoing manager’s head is lost, it leads to missed deadlines with the authorities and forgotten promises to partners.",
 "The examples come from an airline station, but the same framework works wherever a manager changes: a ground handling company’s office, an airport-related business, a foreign company’s base in Japan, or a department inside any organisation. This article sets out the overall structure of a handover document, how to divide it by area, and the principles for writing it. It is based on the structure of a real handover the author prepared: four documents covering the authorities, HR and administration, finance and sales, plus a table of duties."],
 sections:[
 {h:"Structure of the handover (example)",blocks:[{t:"fig",id:"hov_doc",cap:"Figure: what a handover document contains (example)."},{t:"table",cols:["Document","Content"],rows:[
@@ -160,7 +160,7 @@ sections:[
 {name:"Announce the change",x:"Tell staff early when the change happens and who is coming, to ease uncertainty."},
 {name:"Meetings",x:"Make time for the successor to meet each member of staff."},
 {name:"Hand over promises",x:"Anything the predecessor promised staff — on pay, assignment, leave — must be passed on."}]},
-{t:"point",x:"A change of manager is a big source of anxiety for staff. Reliably handing over the promises made to them is what keeps the team steady."}]}],
+{t:"point",x:"A change of manager is a big source of anxiety for staff. Making sure every promise made to them reaches the successor is what keeps the team steady."}]}],
 voice:"When a manager changes, staff most want to know what will change and what will stay the same. Saying this clearly in the first week greatly reduces anxiety.",
 terms:[["Employee Register","社員台帳","직원 대장"],["Asset Register","資産台帳","자산 대장"],["Personal Information","個人情報","개인정보"],["Introduction Meeting","顔合わせ","상견례"]],
 quiz:[{q:"What is right about handing over personal information?",opts:["Only what is needed, with its location written down","Everything in the handover document","Email it to everyone","Destroy it"],a:0,exp:"Keep access restricted."},

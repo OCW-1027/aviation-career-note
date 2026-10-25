@@ -4,7 +4,7 @@ set("6-1",{title:"At the Departure Counter: Thinking Through Situations",hl:"Dep
 lead:["From here on, we apply what we learned in earlier lessons to real situations. With a passenger in front of you at the counter, what do you check and what do you say?","There is not always a single answer. But the order of thinking is the same: is the document theirs, is it valid, and does it meet the requirements of every country on the itinerary?"],
 sections:[
 {h:"Passports and visas",blocks:[{t:"fig",id:"ciq_counter",cap:"Figure: at the departure counter — situations and responses (example)."},{t:"rows",items:[
-{name:"The passport has five months left; the destination requires six months or more",x:"Refuse boarding. Explain why and direct them to the passport office and give details of the next flight. The requirement is set by the destination country. (1-1)"},
+{name:"The passport has five months left; the destination requires six months or more",x:"Refuse boarding. Explain why and direct them to the passport office and advise on the next flight. The requirement is set by the destination country. (1-1)"},
 {name:"The name is spelled one letter differently in the booking and the passport",x:"Correct the booking to match the passport. The data sent to the authorities must be exactly as in the passport. (0-4, 4-1)"},
 {name:"The visa is in an old passport",x:"Check in TIMATIC whether both the old and the new passport must be carried. (1-1, 1-2)"}]}]},
 {h:"Connections",blocks:[{t:"rows",items:[
@@ -20,7 +20,7 @@ sections:[
 {name:"Look it up before deciding",x:"Check with TIMATIC and the authorities’ guidance, not your own experience or the passenger’s explanation."},
 {name:"If you do not know, ask",x:"Your supervisor or head office’s duty officer. Keep a record of the question and the answer."},
 {name:"When refusing, give the reason and the next step",x:"What is missing, where to get it, and when the next flight is."},
-{name:"Do not say “that will be fine”",x:"Whether the passenger can enter is decided by the authorities at the destination."}]},
+{name:"Never say “that will be fine”",x:"Whether the passenger can enter is decided by the authorities at the destination."}]},
 {t:"point",x:"Refusing a passenger at the origin is hard. But it serves them far better than being sent back from the destination."}]}],
 voice:{h:"A Reported Case",x:"The Jewish Chronicle in Britain reported that a mother and her five children were unable to board a flight from Manchester to Israel because one child’s passport had less than six months left. She had contacted the airline the day before without getting a clear answer; the family were checked in, then stopped at the gate. They obtained a new passport and flew with another airline the next day. The airline apologised, and the Civil Aviation Authority said it reminds airlines to give passengers consistent information. If a passenger must be stopped, doing it at the first desk, with the reason, is the least painful for them."},
 terms:[["Denied Boarding","搭乗のお断り","탑승 거절"],["Transit Point","乗り継ぎ地","환승지"],["Re-entry","再入国","재입국"],["Quarantine Detention","係留","계류"]],
@@ -70,7 +70,7 @@ sections:[
 {h:"Unplanned airports and illness on board",blocks:[{t:"rows",items:[
 {name:"Weather forces a landing at a domestic-only airport",x:"In principle, wait on board. Contact the authorities and follow their instructions. Nothing and nobody leaves the aircraft until then. (5-4)"},
 {name:"A passenger develops a fever thirty minutes before arrival",x:"Inform the quarantine station before arrival. Other passengers may not be allowed off until instructions are given. (3-1)"},
-{name:"A crew member falls ill and stays behind",x:"Permission granted as crew assumes departure on the next flight. Consult the authorities about their status. (1-6)"}]}]},
+{name:"A crew member falls ill and stays behind",x:"Crew permission assumes that they leave on the next flight. Consult the authorities about their status. (1-6)"}]}]},
 {h:"Baggage and the aircraft",blocks:[{t:"rows",items:[
 {name:"A bag that missed the passenger’s flight arrives on a later one",x:"It is delivered only after customs inspection. Do not hand it to the delivery company before that. (2-4)"},
 {name:"A bag of international waste is found among domestic rubbish",x:"Separate it at once, record it and inform the authorities. Go over the procedure again with the cleaning company. ★ (3-5)"},
@@ -98,7 +98,7 @@ sections:[
 {h:"What colleagues often ask",blocks:[{t:"rows",items:[
 {name:"“The automatic check passed. Why ask again?”",x:"Because the machine cannot see a connection that is not in the booking, or a separately bought ticket. (1-2)"},
 {name:"“The passenger says they went before without trouble.”",x:"Requirements change. Having travelled before does not mean they can travel today. (1-1)"},
-{name:"“What if I refuse and it turns out they could have travelled?”",x:"That is why you keep a record of what you checked. You can show afterwards that the refusal had grounds. (1-2, 5-1)"},
+{name:"“What if I refuse and it turns out they could have travelled?”",x:"That is why you keep a record of the results of your checks. You can show afterwards that the refusal had grounds. (1-2, 5-1)"},
 {name:"“Whom do I ask?”",x:"Your supervisor, head office’s duty officer, the authorities’ desk. Keep the contacts within reach at all times. (5-3)"}]}]},
 {h:"Keeping your knowledge current",blocks:[{t:"check",items:[
 {name:"Rules change",x:"The figures and dates in this course were confirmed in October 2026. Check the authorities’ official websites before relying on them."},

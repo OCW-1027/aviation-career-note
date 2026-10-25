@@ -176,7 +176,7 @@ sections:[
 {h:"How the station manager engages",blocks:[{t:"rows",items:[
 {name:"Attend regularly",x:"Go to the regular meetings and build face-to-face relationships."},
 {name:"Bring it back",x:"Share what was discussed with head office and the team, and decide what to do."},
-{name:"Talk to peers",x:"Exchanging information with station managers from your own country’s airlines is often very useful in practice."}]},
+{name:"Talk to peers",x:"Exchanging information with station managers from your own country’s airlines is very useful in practice."}]},
 {t:"point",x:"You will often hear about a change at the AOC before head office or your own authority does. Sharing it quickly builds trust in the station."}]}],
 voice:"The AOC is where you learn in advance about plans from the airport company, authorities and other airlines. Feed schedule changes you hear there into the station plan at once.",
 terms:[["Airline Operator’s Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Working Group","作業部会","실무 그룹"],["A-CDM","空港の協調的意思決定","공항 협력적 의사결정"],["Airport Authority / Operator","空港会社","공항공사"],["Joint Exercise","合同訓練","합동 훈련"]],

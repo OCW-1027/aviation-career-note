@@ -38,7 +38,7 @@ function flowFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),
 /* 1-1 搭乗券を渡す前の3つの問い。行：[問い, 見るもの, 色] */
 var DOC={
  ja:['搭乗券を渡す前の、3つの問い',[['本人か','顔写真・年齢・性別が本人と合う。氏名が予約と同じ',IC],['旅券は有効か','到着の日に有効。行き先が求める残りの期間がある。傷みがない',QC],['条件に合うか','目的地と乗り継ぎ地の、査証・電子渡航認証・帰りの航空券',CC]],'3つとも「はい」なら、搭乗券を渡す','1つでも「いいえ」「分からない」なら、決める前に調べる・相談する'],
- ko:['탑승권을 건네기 전의 세 가지 질문',[['본인인가','얼굴 사진·나이·성별이 본인과 맞는다. 이름이 예약과 같다',IC],['여권은 유효한가','도착일에 유효하다. 목적지가 요구하는 남은 유효기간이 있다. 훼손이 없다',QC],['조건에 맞는가','목적지와 환승지의 비자·전자여행허가·돌아오는 항공권',CC]],'셋 다 「예」이면 탑승권을 건넨다','하나라도 「아니요」 「모르겠다」이면, 판단하기 전에 확인·상의한다'],
+ ko:['탑승권을 건네기 전의 세 가지 질문',[['본인인가','얼굴 사진·나이·성별이 본인과 맞는다. 이름이 예약과 같다',IC],['여권은 유효한가','도착일에 유효하다. 목적지가 요구하는 남은 유효기간이 있다. 훼손이 없다',QC],['조건에 맞는가','목적지와 환승지의 비자·전자여행허가·돌아오는 항공권',CC]],'셋 다 「예」이면 탑승권을 건넨다','하나라도 「아니요」 「모르겠다」이면, 판단하기 전에 찾아보고 상의한다'],
  en:['Three questions before handing over a boarding pass',[['Is it theirs?','Photo, age and sex match the passenger. The name matches the booking',IC],['Is the passport valid?','Valid on the day of arrival, with the remaining period the destination requires, and undamaged',QC],['Does it meet the requirements?','Visa, travel authorisation and return ticket for the destination and every transit point',CC]],'Yes to all three: hand over the boarding pass','Any “no” or “not sure”: look it up or ask before deciding']};
 function docFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),r0=Math.max(15,FS(13)*0.8);
  d[1].forEach(function(r,i){var c=r[2],tw=600-r0*2-56,h1=hgt(r[0],13.5,tw),h2=hgt(r[1],12,tw),h=Math.max(h1+h2+24,r0*2+16);
@@ -125,7 +125,7 @@ function divFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 /* 6-4 この講座の3つの原則（docFig の枠を使う） */
 var RULE={
  ja:['この講座の3つの原則',[['旅程に出てくる国は、すべて調べる','目的地だけでなく、乗り継ぎ地も。経験ではなく、当局の案内で',IC],['迷ったら、申告する','お客様にも、そう伝える。申告した人は、罰を受けない',QC],['当局の指示の前に、動かさない','人も、手荷物も、機内食も。困ったときほど、先に知らせる',CC]],'決めるのは、当局です','航空会社の仕事は、確かめること、知らせること、従うこと'],
- ko:['이 강좌의 세 가지 원칙',[['일정에 나오는 나라는 모두 확인한다','목적지뿐 아니라 환승지도. 경험이 아니라 당국의 안내로',IC],['애매하면 신고한다','승객에게도 그렇게 알린다. 신고한 사람은 벌을 받지 않는다',QC],['당국의 지시 전에 옮기지 않는다','사람도, 수하물도, 기내식도. 곤란할수록 먼저 알린다',CC]],'정하는 것은 당국입니다','항공사의 일은 확인하는 것, 알리는 것, 따르는 것'],
+ ko:['이 강좌의 세 가지 원칙',[['일정에 나오는 나라는 모두 확인한다','목적지뿐 아니라 환승지도. 경험이 아니라 당국의 안내로',IC],['애매하면 신고한다','승객에게도 그렇게 알린다. 신고한 사람은 벌을 받지 않는다',QC],['당국의 지시 전에 이동시키지 않는다','사람도, 수하물도, 기내식도. 곤란할수록 먼저 알린다',CC]],'정하는 것은 당국입니다','항공사의 일은 확인하는 것, 알리는 것, 따르는 것'],
  en:['The three principles of this course',[['Look up every country on the itinerary','Not only the destination but the transit points too, from the authorities’ guidance rather than experience',IC],['If in doubt, declare','Tell passengers the same. Those who declare are not penalised',QC],['Move nothing before the authorities instruct','Not passengers, bags or catering. The harder the situation, the sooner you tell them',CC]],'The authorities decide','The airline’s job is to check, to inform and to comply']};
 
 window.FIGS=window.FIGS||{};

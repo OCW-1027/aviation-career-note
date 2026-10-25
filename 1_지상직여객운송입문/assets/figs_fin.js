@@ -62,7 +62,7 @@ fin_taiyaki:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBo
 /* 1-2 五つの利益の滝：たい焼き屋の1か月（売上 → 売上総利益 → 営業利益 → 経常利益 → 税引前利益 → 当期純利益） */
 fin_waterfall:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
  var steps=[[L(lang,'売上','매출','Sales'),260000,'t',PL],[L(lang,'材料費','재료비','Ingredients'),-75000,'d',R],[L(lang,'売上総利益','매출총이익','Gross profit'),185000,'t',PL],
-  [L(lang,'家賃・人件費など','임대료·인건비 등','Rent, wages etc.'),-104000,'d',R],[L(lang,'営業利益','영업이익','Operating profit'),81000,'t',PL],[L(lang,'支払利息','지급이자','Interest'),-1000,'d',R],
+  [L(lang,'家賃・人件費など','임대료·인건비 등','Rent, wages etc.'),-104000,'d',R],[L(lang,'営業利益','영업이익','Operating profit'),81000,'t',PL],[L(lang,'支払利息','이자비용','Interest'),-1000,'d',R],
   [L(lang,'経常利益','경상이익','Ordinary profit'),80000,'t',PL],[L(lang,'税金','세금','Tax'),-16000,'d',R],[L(lang,'当期純利益','당기순이익','Net profit'),64000,'t',BS]];
  var x0=40,w=78,gap=16,base=330,scale=260/260000,run=0;
  steps.forEach(function(st,i){var x=x0+i*(w+gap),h,y;
@@ -104,7 +104,7 @@ fin_depreciation:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" v
  for(var m=0;m<60;m+=3){var x=x0+(x1-x0)*m/60;s+=Rc(x+2,y1-10,(x1-x0)/60*3-4,10,PL,2)}
  s+=tx(x0+20,y0+16,L(lang,'屋台の帳簿上の価値（貸借対照表）','포장마차의 장부상 가치(재무상태표)','Cart’s book value (balance sheet)'),13,BS,800,'start');
  s+=tx(x1-10,y1-20,L(lang,'毎月4,000円ずつ費用（損益計算書）','매달 4,000엔씩 비용(손익계산서)','4,000 yen a month as cost (income statement)'),13,PL,800,'end');
- s+=tx(450,335,L(lang,'買った日に240,000円の現金が出て、費用は60回に分けて計上。1か月目の帳簿価値 236,000円 ＝ 240,000 − 4,000','산 날에 현금 240,000엔이 나가고, 비용은 60회로 나눠 잡힌다. 1개월째 장부 가치 236,000엔 = 240,000 − 4,000','Cash of 240,000 leaves on purchase day; the cost is spread over 60 months. Book value after month 1: 236,000 = 240,000 − 4,000'),12,D,600);
+ s+=tx(450,335,L(lang,'買った日に240,000円の現金が出て、費用は60回に分けて計上される。1か月目の帳簿価値 236,000円 ＝ 240,000 − 4,000','산 날에 현금 240,000엔이 나가고, 비용은 60회로 나눠 잡힌다. 1개월째 장부 가치 236,000엔 = 240,000 − 4,000','Cash of 240,000 leaves on purchase day; the cost is spread over 60 months. Book value after month 1: 236,000 = 240,000 − 4,000'),12,D,600);
  return s+'</svg>'},
 /* 3-3 利益から営業キャッシュフローへの橋：たい焼き屋（間接法） */
 fin_cash_bridge:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img">'+Rc(0,0,900,380,'#F7FAFD');
@@ -122,7 +122,7 @@ fin_cash_bridge:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vi
 /* 3-5 3つの活動の符号パターン：会社の状態を読む */
 fin_cf_patterns:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+Rc(0,0,900,360,'#F7FAFD');
  var P=[['+','−','−',L(lang,'健全・成熟','건전·성숙','Healthy, mature'),L(lang,'稼いだ現金で投資し、借入を返す','번 현금으로 투자하고 차입을 갚는다','Earns cash, invests, repays debt'),BS],
-  ['+','−','+',L(lang,'成長・拡大','성장·확대','Growing'),L(lang,'稼ぎ以上に投資し、不足を借入で補う','수익 이상 투자하고 부족분은 차입으로 메운다','Invests beyond earnings, borrows the gap'),PL],
+  ['+','−','+',L(lang,'成長・拡大','성장·확대','Growing'),L(lang,'稼ぎ以上に投資し、不足を借入で補う','버는 것 이상으로 투자하고 부족분을 차입으로 메운다','Invests beyond earnings, borrows the gap'),PL],
   ['+','+','−',L(lang,'縮小・整理','축소·정리','Shrinking'),L(lang,'資産を売って借入を返している','자산을 팔아 차입을 갚고 있다','Sells assets to repay debt'),CF],
   ['−','−','+',L(lang,'立ち上げ・危機','창업·위기','Start-up or crisis'),L(lang,'本業で現金が出ていき、投資も続け、借入で支える','본업에서 현금이 나가고 투자도 하며 차입으로 버틴다','Core business burns cash, still investing, funded by borrowing'),R]];
  var hd=[L(lang,'営業','영업','Operating'),L(lang,'投資','투자','Investing'),L(lang,'財務','재무','Financing')];
@@ -236,7 +236,7 @@ fin_cf_quality:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vie
 /* 6-3 回転期間：小さな会社の「仕入れてから現金が戻るまで」（在庫20日＋売掛金10日−買掛金23日＝CCC 7日） */
 fin_ccc:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img">'+Rc(0,0,900,340,'#F7FAFD');
  var x0=170,sc=22,dy=L(lang,'日','일',' d');
- var E=[[0,L(lang,'仕入れ','매입','Buy'),62],[20,L(lang,'売る','판매','Sell'),62],[23,L(lang,'支払う','대금 지급','Pay supplier'),318],[30,L(lang,'入金','입금','Cash in'),62]];
+ var E=[[0,L(lang,'仕入れる','매입','Buy'),62],[20,L(lang,'売る','판매','Sell'),62],[23,L(lang,'支払う','대금 지급','Pay supplier'),318],[30,L(lang,'入金','입금','Cash in'),62]];
  E.forEach(function(e){var x=x0+e[0]*sc;s+='<line x1="'+x+'" y1="72" x2="'+x+'" y2="296" stroke="'+G+'" stroke-width="1.5" stroke-dasharray="4 4"/>'+tx(x,e[2],e[1]+'（'+e[0]+dy+'）',12,D,700)});
  s+=Rc(x0,88,20*sc,46,BS,8)+tx(x0+10*sc,117,L(lang,'在庫 20日','재고 20일','Inventory 20 days'),14,'#fff',800);
  s+=Rc(x0+20*sc,88,10*sc,46,PL,8)+tx(x0+25*sc,117,L(lang,'売掛金 10日','매출채권 10일','Receivables 10 d'),14,'#fff',800);
@@ -273,7 +273,7 @@ fin_coverage:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewB
   s+=tx(x+92,base+(ng?66:24),y[0],13,D,800)+Rc(x+46,base+(ng?76:34),92,28,ng?'#FDEEF0':'#E8F3F0',14)+tx(x+92,base+(ng?95:53),y[3],14,ng?R:BS,800)});
  s+='<line x1="60" y1="'+base+'" x2="860" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
  s+=Rc(190,52,14,14,BS,3)+tx(210,64,L(lang,'営業利益＋金融収益','영업이익+금융수익','Operating profit + financial income'),12,D,600,'start')+Rc(560,52,14,14,CF,3)+tx(580,64,L(lang,'支払利息','이자비용','Interest expense'),12,D,600,'start');
- s+=tx(450,30,L(lang,'本業の稼ぎは支払利息の何倍か（億円）。1倍を下回ると、利息を稼ぎで払えていない','본업 이익은 이자비용의 몇 배인가(억 엔). 1배 미만이면 이익으로 이자를 감당 못 한다','How many times core earnings cover interest (100m yen). Below 1×, interest is not covered'),12.5,D,600);
+ s+=tx(450,30,L(lang,'本業の稼ぎは支払利息の何倍か（億円）。1倍を下回ると、利息を稼ぎで払えていない','본업 이익은 이자비용의 몇 배인가(억 엔). 1배 미만이면 이익으로 이자를 내지 못하고 있다','How many times core earnings cover interest (100m yen). Below 1×, interest is not covered'),12.5,D,600);
  return s+'</svg>'},
 fin_asset_turn:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD');
  var Rw=[[L(lang,'小さな会社（百万円）','작은 회사(백만 엔)','Small company (million yen)'),92.65,300,1.9,L(lang,'3.24回','3.24회','3.24×'),'92.65','300'],[L(lang,'Vela Air 1年目（億円）','Vela Air 1년 차(억 엔)','Vela Air year 1 (100m yen)'),5955,3000,0.1,L(lang,'0.50回','0.50회','0.50×'),'5,955','3,000']];
@@ -303,7 +303,7 @@ fin_ev_bridge:function(lang){return WF(L(lang,'企業価値（EV）＝ 時価総
 fin_dcf_value:function(lang){return WF(L(lang,'DCFで出したVela Airの価値（億円、割引率5%・成長率0.5%）','DCF로 구한 Vela Air의 가치(억 엔, 할인율 5%·성장률 0.5%)','Vela Air valued by DCF (100m yen; 5% discount rate, 0.5% growth)'),[
  [L(lang,['5年分のFCFの','現在価値'],['5년 치 FCF의','현재가치'],['PV of five','years of FCF']),517,1,PL],[L(lang,['継続価値の','現在価値'],['영구가치의','현재가치'],['PV of the','terminal value']),2275,0,CF],[L(lang,['企業価値','（EV）'],['기업가치','(EV)'],['Enterprise','value']),2792,1,D],[L(lang,['純有利子負債'],['순차입금'],['Net debt']),-732,0,R],[L(lang,['株主価値','（1株2,060円）'],['주주가치','(1주 2,060엔)'],['Equity value','(2,060 yen a share)']),2060,1,BS]],
  {h:372,base:262,sc:0.07,x0:70,step:162,bw:104,ly:286,note:L(lang,'企業価値の8割が継続価値。前提が少し動くだけで答えは大きく変わる','기업가치의 8할이 영구가치. 전제가 조금만 움직여도 답이 크게 바뀐다','Four-fifths of the value is terminal value: small changes in assumptions move the answer a lot')})},
-fin_normalize:function(lang){return WF(L(lang,'決算書のEBITDAを「正常な稼ぎ」に直す（ミナト・グランドサービス、百万円）','결산서의 EBITDA를 「정상 수익」으로 조정한다(미나토 그라운드 서비스, 백만 엔)','From reported EBITDA to normalised earnings (Minato Ground Services, million yen)'),[
+fin_normalize:function(lang){return WF(L(lang,'決算書のEBITDAを「正常な稼ぎ」に直す（ミナト・グランドサービス、百万円）','결산서의 EBITDA를 「정상 수익력」으로 조정한다(미나토 그라운드 서비스, 백만 엔)','From reported EBITDA to normalised earnings (Minato Ground Services, million yen)'),[
  [L(lang,['決算書の','EBITDA'],['결산서의','EBITDA'],['Reported','EBITDA']),180,1,'#8A96A3'],[L(lang,['役員報酬'],['임원 보수'],['Owner pay']),40,0],[L(lang,['節税保険'],['절세 보험'],['Tax-driven','insurance']),20,0],[L(lang,['私的な','経費'],['사적','경비'],['Private','expenses']),10,0],[L(lang,['未払いの','残業代'],['미지급','잔업수당'],['Unpaid','overtime']),-15,0],[L(lang,['一時の','修繕費'],['일회성','수선비'],['One-off','repairs']),12,0],[L(lang,['一時の','補助金'],['일회성','보조금'],['One-off','subsidy']),-18,0],[L(lang,['正常収益力'],['정상 수익력'],['Normalised','earnings']),229,1,BS]],
  {h:372,base:262,sc:1.2,off:100,x0:44,step:104,bw:74,ly:286,note:L(lang,'足す調整だけでなく、引く調整も探す。※ 縦軸は100から','더하는 조정뿐 아니라 빼는 조정도 찾는다. ※ 세로축은 100부터','Look for adjustments that reduce earnings, not only those that add. * Axis starts at 100')})},
 fin_net_assets:function(lang){return WF(L(lang,'帳簿の純資産を「実態純資産」に直す（百万円）','장부 순자산을 「실질 순자산」으로 조정한다(백만 엔)','From book net assets to real net assets (million yen)'),[
@@ -338,7 +338,7 @@ fin_discount:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewB
  var F1=[110,115,120,125,130],P1=[104.8,104.3,103.7,102.8,101.9],Yn=[4,5,6,7,8];
  F1.forEach(function(v,i){var x=96+i*156;s+=Rc(x,base-v*sc,58,v*sc,'#fff',5,' stroke="'+G+'" stroke-width="2"')+tx(x+29,base-v*sc-8,v,13.5,D,800)+Rc(x+66,base-P1[i]*sc,58,P1[i]*sc,PL,5)+tx(x+95,base-P1[i]*sc-8,P1[i].toFixed(1),13.5,PL,800)+tx(x+62,base+22,L(lang,Yn[i]+'年目',Yn[i]+'년 차','Year '+Yn[i]),13,D,800)});
  s+='<line x1="60" y1="'+base+'" x2="860" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
- s+=Rc(250,306,14,14,'#fff',3,' stroke="'+G+'" stroke-width="2"')+tx(270,318,L(lang,'その年に受け取る現金','그해에 받는 현금','Cash received that year'),12,D,600,'start')+Rc(500,306,14,14,PL,3)+tx(520,318,L(lang,'今日の価値（割引率5%）','현재 가치(할인율 5%)','Value today (5% discount rate)'),12,D,600,'start');
+ s+=Rc(250,306,14,14,'#fff',3,' stroke="'+G+'" stroke-width="2"')+tx(270,318,L(lang,'その年に受け取る現金','그해에 받는 현금','Cash received that year'),12,D,600,'start')+Rc(500,306,14,14,PL,3)+tx(520,318,L(lang,'今日の価値（割引率5%）','오늘의 가치(할인율 5%)','Value today (5% discount rate)'),12,D,600,'start');
  s+=tx(450,28,L(lang,'先の年の現金ほど、今日の価値に直すと小さくなる（億円）','먼 해의 현금일수록 현재 가치로 환산하면 작아진다(억 엔)','The further out the cash, the smaller its value today (100m yen)'),12.5,D,600);
  return s+'</svg>'},
 fin_bs_check:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img">'+Rc(0,0,900,380,'#F7FAFD'),sc=0.18,y0=70,ck=L(lang,'（確かめる）','(확인)',' (check)');
@@ -351,7 +351,7 @@ fin_bs_check:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewB
  return s+'</svg>'},
 fin_net_debt:function(lang){return WF(L(lang,'借入金600が、純有利子負債460になるまで（百万円）','차입금 600이 순차입금 460이 되기까지(백만 엔)','From borrowings of 600 to net debt of 460 (million yen)'),[
  [L(lang,['借入金'],['차입금'],['Borrowings']),600,1,'#8A96A3'],[L(lang,['帳簿にない','リース'],['장부에 없는','리스'],['Leases not','on the books']),50,0,R],[L(lang,['退職給付の','積立不足'],['퇴직급여','미적립'],['Pension','shortfall']),80,0,R],[L(lang,['未払いの','残業代'],['미지급','잔업수당'],['Unpaid','overtime']),30,0,R],[L(lang,['現金'],['현금'],['Cash']),-300,0,BS],[L(lang,['純有利子負債'],['순차입금'],['Net debt']),460,1,D]],
- {h:372,base:262,sc:0.25,x0:52,step:138,bw:92,ly:286,note:L(lang,'借入とみなす項目が増えるほど、株式の価値は下がる','차입으로 보는 항목이 늘수록 주식 가치는 내려간다','The more items are treated as debt, the lower the share price')})},
+ {h:372,base:262,sc:0.25,x0:52,step:138,bw:92,ly:286,note:L(lang,'借入とみなす項目が増えるほど、株式の値段は下がる','차입으로 보는 항목이 늘수록 주식 가격은 내려간다','The more items are treated as debt, the lower the share price')})},
 fin_memo_page:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 390" role="img">'+Rc(0,0,900,390,'#F7FAFD');
  s+=Rc(40,44,820,52,'#EAF3FD',10,' stroke="'+PL+'" stroke-width="2.5"')+tx(450,76,L(lang,'結論：条件つきで投資する ― 株式800（企業価値1,260、正常収益力の5.5倍）','결론: 조건부로 투자한다 — 주식 800(기업가치 1,260, 정상 수익력의 5.5배)','Conclusion: invest, with conditions — 800 for the shares (EV 1,260; 5.5× normalised earnings)'),14,D,800);
  function bx(x,t,c,ls){var o=Rc(x,108,400,150,'#fff',10,' stroke="'+c+'" stroke-width="2.5"')+tx(x+16,134,t,13.5,c,800,'start');ls.forEach(function(l,j){o+=tx(x+16,162+j*28,l,12,D,600,'start')});return o}
@@ -441,7 +441,7 @@ function NOTE(y,s){var h=hgt(s,11.5,580);return [TW2(320,y,s,11.5,G,700,580),h]}
 /* 8-1 基準はどこに書いてあるか。行：[書類, どこ, 書いてある文（原文）, 意味] */
 var WHERE={
  ja:['基準は、ここに書いてある',[['日本の決算短信','表紙のタイトル','2026年3月期 決算短信〔IFRS〕（連結）','〔 〕の中が基準。〔日本基準〕〔IFRS〕など',CF],['日本の有価証券報告書','「経理の状況」のいちばん初め','連結財務諸表の作成方法について','どの基準で連結財務諸表を作成したかが書いてある',PL],['韓国の事業報告書・監査報告書','財務諸表の注記「재무제표 작성기준」','한국채택국제회계기준(K-IFRS)에 따라 작성','K-IFRSか、一般企業会計基準かが書いてある',BS]],'航空会社の例',['JAL ― IFRS','ANA ― 日本基準','大韓航空・チェジュ航空 ― K-IFRS'],'数字を比べる前に、まず基準を確かめます。'],
- ko:['기준은 여기에 적혀 있다',[['일본의 결산단신','표지의 제목','2026年3月期 決算短信〔IFRS〕（連結）','〔 〕 안이 기준. 〔日本基準〕〔IFRS〕 등',CF],['일본의 유가증권보고서','「経理の状況」의 맨 처음','連結財務諸表の作成方法について','어느 기준으로 연결재무제표를 작성했는지 적혀 있다',PL],['한국의 사업보고서·감사보고서','재무제표 주석 「재무제표 작성기준」','한국채택국제회계기준(K-IFRS)에 따라 작성','K-IFRS인지 일반기업회계기준인지 적혀 있다',BS]],'항공사 예',['JAL — IFRS','ANA — 일본 기준','대한항공·제주항공 — K-IFRS'],'숫자를 비교하기 전에 먼저 기준을 확인합니다.'],
+ ko:['기준은 여기에 적혀 있다',[['일본의 결산단신','표지의 제목','2026年3月期 決算短信〔IFRS〕（連結）','〔 〕 안이 기준. 〔日本基準〕〔IFRS〕 등',CF],['일본의 유가증권보고서','「経理の状況」의 맨 처음','連結財務諸表の作成方法について','어느 기준으로 연결재무제표를 작성했는지 적혀 있다',PL],['한국의 사업보고서·감사보고서','재무제표 주석 「재무제표 작성기준」','한국채택국제회계기준(K-IFRS)에 따라 작성','K-IFRS인지 일반기업회계기준인지 적혀 있다',BS]],'항공사의 예',['JAL — IFRS','ANA — 일본 기준','대한항공·제주항공 — K-IFRS'],'숫자를 비교하기 전에 먼저 기준을 확인합니다.'],
  en:['Where the accounting standard is stated',[['Japanese earnings release (kessan tanshin)','The title on the cover','2026年3月期 決算短信〔IFRS〕（連結）','The standard is in the brackets: 〔日本基準〕 (Japanese GAAP), 〔IFRS〕 and so on',CF],['Japanese annual securities report','The start of “経理の状況” (financial information)','連結財務諸表の作成方法について','States which standard the consolidated statements follow',PL],['Korean business report and audit report','The note “재무제표 작성기준” (basis of preparation)','한국채택국제회계기준(K-IFRS)에 따라 작성','States K-IFRS or Korean general accounting standards',BS]],'Airline examples',['JAL: IFRS','ANA: Japanese GAAP','Korean Air, Jeju Air: K-IFRS'],'Check the standard before you compare any numbers.']};
 function whereFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600);
  d[1].forEach(function(r){var c=r[4],h0=hgt(r[0],13,560)+14,h1=hgt(r[1],11.5,540),h2=hgt(r[2],12.5,520)+14,h3=hgt(r[3],11.5,540),y0=y;
@@ -507,7 +507,7 @@ function audFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 /* 8-6 決算期のずれと、為替の使い分け */
 var PER={
  ja:['決算期のずれと、為替レートの使い分け',['韓国：12月決算（1月〜12月）','日本：3月決算（4月〜翌年3月）'],'重なるのは9か月。3か月ずれています。季節の影響が大きい航空会社では、四半期の数字を足し合わせて同じ12か月にそろえます。',[['損益計算書（売上・利益）','期中平均レートで換算する',PL],['貸借対照表（資産・負債）','期末日のレートで換算する',BS]],'数字は月。「2025年度」と書いてあっても、日本と韓国では指している期間が違います。'],
- ko:['결산기 차이와 환율 적용 방법',['한국: 12월 결산(1월~12월)','일본: 3월 결산(4월~다음 해 3월)'],'9개월이 겹치고 3개월이 어긋납니다. 계절 영향이 큰 항공사는 분기 숫자를 더해 같은 12개월로 맞춥니다.',[['손익계산서(매출·이익)','기간 평균 환율로 환산한다',PL],['재무상태표(자산·부채)','기말일 환율로 환산한다',BS]],'숫자는 월입니다. 같은 「2025년도」라도 일본과 한국은 가리키는 기간이 다릅니다.'],
+ ko:['결산기 차이와 환율 적용 방법',['한국: 12월 결산(1월~12월)','일본: 3월 결산(4월~다음 해 3월)'],'9개월이 겹치고 3개월이 어긋납니다. 계절 영향이 큰 항공사는 분기 숫자를 더해 같은 12개월로 맞춥니다.',[['손익계산서(매출·이익)','기간 평균 환율로 환산한다',PL],['재무상태표(자산·부채)','기말일 환율로 환산한다',BS]],'숫자는 월입니다. 「2025년도」라고 적혀 있어도 일본과 한국은 가리키는 기간이 다릅니다.'],
  en:['Different year-ends, and which exchange rate to use',['Korea: December year-end (January to December)','Japan: March year-end (April to the following March)'],'Nine months overlap; three do not. Airlines with strong seasonality add up quarterly figures to cover the same twelve months.',[['Income statement (sales, profit)','Translate at the average rate for the period',PL],['Balance sheet (assets, liabilities)','Translate at the rate on the closing date',BS]],'Numbers are months. Even when both say “fiscal 2025”, Japan and Korea mean different periods.']};
 function perFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,NV,600),f=FS(11),cw=40,x0=20,bh=Math.max(26,f*1.5);
  var mo=[1,2,3,4,5,6,7,8,9,10,11,12,1,2,3];

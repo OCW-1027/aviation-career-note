@@ -78,7 +78,7 @@ voice:"Don’t keep the corrective action log for the station manager’s eyes o
 terms:[["Annual Plan","年間計画","연간 계획"],["Corrective Action","是正処置","시정 조치"],["Immediate Action (Correction)","応急の処置","응급 조치"],["Root Cause Analysis","原因の分析","원인 분석"],["Effectiveness Check","効果の確認","효과 확인"],["Corrective Action Log","是正の一覧表","시정 조치 목록"]],
 quiz:[{q:"What is the difference between immediate and corrective action?",opts:["None","Immediate action stops what is happening; corrective action stops it happening again","Corrective action is unnecessary","Immediate action is enough to close"],a:1,exp:"Close on immediate action alone and the same finding returns."},
 {q:"Which conclusion should a root cause analysis avoid?",opts:["No box on the handover sheet","Individual carelessness, so be careful","The manual is out of date","Training comes too late"],a:1,exp:"Look for the system gap, not someone to blame."},
-{q:"What is needed before closing a corrective action?",opts:["Nothing","Check the same item at the next check to confirm it worked","Replace the staff member","Delete the record"],a:1,exp:"It closes only once the fix is shown to work."}],
+{q:"What is needed before closing a corrective action?",opts:["Nothing","Review the same item at the next check to confirm it worked","Replace the staff member","Delete the record"],a:1,exp:"It closes only once the fix is shown to work."}],
 next:"8-3 JAPAN eVISA and the JESTA travel authorisation"});
 
 set("8-3",{title:"JAPAN eVISA and the JESTA Travel Authorisation",hl:"eVISA",subtitle:"Visas on a phone screen, and pre-travel screening coming for visa-exempt travellers too ★ (checked October 2026)",
@@ -102,7 +102,7 @@ sections:[
 {name:"Type and validity",x:"A single-entry short-stay visa, entry within its validity, and not already used ★."},
 {name:"Means of entry",x:"The visa covers entry by air."},
 {name:"No connection",x:"Point the passenger to the airport Wi-Fi. If it still cannot be displayed, follow head office’s procedure for an enquiry."},
-{name:"Airline enquiry",x:"Check how the airline verifies a passenger’s eVISA, using the Ministry’s and embassies’ guidance and confirming with head office and the passenger systems team ★."},
+{name:"Airline enquiry",x:"Confirm how the airline verifies a passenger’s eVISA by checking the Ministry’s and embassies’ guidance and asking head office and the passenger systems team ★."},
 {name:"Record",x:"Record how you checked and the result, and check IATA’s travel document information (Timatic) as well."}]},
 {t:"point",x:"On flights to Japan, the eVISA is mainly checked at the departure airport. The Japan station’s role is to pass the authorities’ notices accurately to head office and the other airports, and to be ready to return passengers who are refused entry."}]},
 {h:"JESTA: what has been announced",blocks:[{t:"rows",items:[

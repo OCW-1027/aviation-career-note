@@ -32,7 +32,7 @@ next:"5-2 Check-in errors, duplicates and wrong tags"});
 set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in errors","subtitle":"Mistakes will happen. Systems that catch them and a culture of prompt reporting keep the damage small",
 "lead":["Checking a passenger in under someone else’s name, checking the same passenger in twice, printing a bag tag for the wrong destination: check-in mistakes affect numbers, weights, documents and security alike. Confusing passengers with the same name can even lead to fraudulent boarding.","This lesson covers the main types of mistake and their effects, the systems that catch them, what to do for each, and habits that prevent them."],
 "sections":[
-{"h":"The main mistakes and their effects","blocks":[{"t":"table","cols":["Mistake","What happens"],"rows":[["Checking in the wrong person (mis-check-in)","The passenger list, documents and security records do not match. The real passenger cannot check in"],["Duplicate check-in","The passenger count comes out too high, causing errors in weight and seats"],["Duplicate tags","Two tags with the same number, so the bags cannot be traced"],["Wrong destination on the tag","The bag may be sent to the wrong airport"],["Tag coming off (tag off)","A bag whose owner cannot be identified"],["Seat assigned twice","More than one passenger assigned to the same seat on board"]]}]},
+{"h":"The main mistakes and their effects","blocks":[{"t":"table","cols":["Mistake","What happens"],"rows":[["Checking in the wrong person (mis-check-in)","The passenger list, documents and security records do not match. The real passenger cannot check in"],["Duplicate check-in","The passenger count comes out too high, causing errors in weight and seats"],["Duplicate tags","Two tags with the same number, so the bags cannot be traced"],["Wrong destination on the tag","The bag may be sent to the wrong airport"],["Tag coming off (tag off)","A bag whose owner cannot be identified"],["Seat assigned twice","Two passengers assigned to the same seat on board"]]}]},
 {"h":"Systems that catch mistakes","blocks":[{"t":"fig","id":"gnd_layers","cap":"Animated figure: mistakes (red dots) are stopped by one of the layered checks. No single check catches them all."},{"t":"rows","items":[
 {"name":"Search by booking reference (PNR)","x":"Do not search by name. Always ask the passenger for the booking reference (PNR) and retrieve the booking with it. Once the PNR identifies the booking, move on to the identity check."},
 {"name":"Let the passenger say their name","x":"After retrieving the PNR, ask the passenger to say their name and check it against the passport and the booking. Do not read the name out and wait for a “yes”."},
@@ -123,7 +123,7 @@ sections:[
 {h:"Explaining the reason",blocks:[{t:"rows",items:[
 {name:"Air traffic control",x:"Explain that it is a necessary measure taken by the airport or the authorities for safe operations."},
 {name:"Maintenance",x:"Explain that it is an unavoidable measure taken for safe operations."},
-{name:"The principle",x:"Accurate and straightforward, without jargon or words that unnecessarily alarm people. Share the same wording with the crew."}]},
+{name:"The principle",x:"Accurate and straightforward, without jargon or words that alarm people. Share the same wording with the crew."}]},
 {t:"point",x:"Delay certificates are often needed for insurance or an employer. Make sure staff can explain how to obtain one, at the counter or online."}]}],
 voice:"What calms the counter on a long-delay day is regular updates. Even with no news, give the current situation and the time of the next update at set intervals.",
 terms:[["Delay","遅延","지연"],["Meal Voucher","食事券","식사 쿠폰"],["Delay Certificate","遅延証明書","지연 증명서"],["Hotel Accommodation","宿泊","숙박"],["Force Majeure","不可抗力","불가항력"],["Air Traffic Control (ATC)","航空管制","항공교통관제"]],
@@ -132,7 +132,7 @@ quiz:[{q:"What makes passengers angriest during a delay?",opts:["The delay itsel
 {q:"How do you explain a maintenance delay?",opts:["Describe the fault in detail","Say it is an unavoidable measure for safety","Give no reason","Blame the passengers"],a:1,exp:"Accurate, and without alarming people."}],
 next:"5-5 Diversions"});
 
-set("5-5",{title:"Diversions",hl:"diversions",subtitle:"You may land where your airline has no station. Procedures prepared in advance are the key",
+set("5-5",{title:"Diversions",hl:"diversions",subtitle:"You may land where your airline has no station. A plan prepared in advance is the key",
 lead:["Weather, a medical emergency or a technical problem can mean an aircraft cannot land at its destination and goes to another airport (a diversion), or returns to where it started (a return). Where it lands may well be an airport where your airline has no station.","This lesson covers the difference between landing at an airport with your own station and one without, what happens to the passengers on board, and what each diversion airport’s plan should contain."],
 sections:[
 {h:"Diversion and return",blocks:[{t:"cards",n:2,items:[

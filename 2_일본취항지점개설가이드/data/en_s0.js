@@ -23,7 +23,7 @@ sections:[
 {name:"Registration documents",x:"The head office articles, board minutes and affidavits all have to be prepared at home and then translated and certified."},
 {name:"Handling company staffing",x:"At airports short of labour, the hours you want may not be available."},
 {name:"System connections",x:"IDs for shared airport systems and the lines themselves take weeks to arrange."},
-{name:"Security training",x:"Japan’s security instructor courses run at set times of year."}]},
+{name:"Security training",x:"Japan’s security instructor courses only run at set times of year."}]},
 {t:"point",warn:true,x:"Give the checklist columns for status, owner, deadline and notes, and update it weekly. Head office, the station and the providers all working from the same table is the single best defence against delay."}]},
 {h:"How the checklist is usually grouped",blocks:[{t:"rows",items:[
 {name:"Setting up the entity",x:"Providers, registration, corporate accounts, social insurance, tax, finance"},

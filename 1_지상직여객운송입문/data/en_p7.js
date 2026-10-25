@@ -20,7 +20,7 @@ sections:[
 {name:"Two fields",x:"Airport ground handling and aircraft maintenance. Each has its own test and its own permitted duties."},
 {name:"Ground handling duties",x:"Ground movement support, baggage and cargo handling, loading and unloading, and aircraft cleaning; under the current operating policy, passenger handling, transporting and loading catering, and aviation fuel handling are also covered. Check the current policy and test guidelines for the exact scope. ★"},
 {name:"The tests",x:"The aviation skills evaluation test run by the Japan Aeronautical Engineers’ Association (written and practical, in Japanese with readings over the kanji), plus a Japanese language test."},
-{name:"Type 1 and Type 2",x:"Type 2 requires a higher skill level than Type 1 and a set amount of practical experience. There is no limit on renewals, and if the requirements are met, a spouse and children can accompany the worker as dependants."},
+{name:"Type 1 and Type 2",x:"Type 2 requires a higher skill level than Type 1 and the prescribed practical experience. There is no limit on renewals, and if the requirements are met, a spouse and children can accompany the worker as dependants."},
 {name:"Accepting employers",x:"Limited to businesses approved to operate at the airport, which must join the sector council. In national strategic special zones there are exceptions extending to cargo work at bonded warehouses off the airport."},
 {name:"Numbers",x:"The government has set out how many people it expects to accept in the aviation field to address the labour shortage."}]},
 {t:"point",x:"Under Specified Skilled Worker status, your work is limited to the approved field. If you want to work at the counter, or on the ramp, check first whether that work is inside the field."}]},
@@ -74,7 +74,7 @@ quiz:[{q:"How do you make a career summary easy to follow?",opts:["Keep it abstr
 next:"7-3 Qualifications worth having"});
 
 set("7-3",{title:"Qualifications Worth Having: Dangerous Goods, Security and Load Control",hl:"qualifications",subtitle:"Aviation work runs on training, passing the assessment, and renewing before it expires",
-lead:["Working for an airline or a handling company means taking the training required by law and by company rules for your role, and passing the assessment. Many courses have an expiry date, and without completing recurrent training before it expires you cannot continue in that role.",
+lead:["Working for an airline or a handling company means taking the training required by law and by company rules for your role, and passing the assessment. Many types of training have an expiry, and without completing recurrent training in time you cannot continue in that role.",
 "This article covers the main training and qualifications for ground staff, examples of statutory training, how initial and recurrent training work, the assessment standard, and the path to becoming an instructor."],
 sections:[
 {h:"Main training and qualifications",blocks:[{t:"fig",id:"gnd_cert",cap:"Animated figure: useful training and qualifications, and where they count, light up in turn."},{t:"table",cols:["Area","What it covers","Where it is used"],rows:[

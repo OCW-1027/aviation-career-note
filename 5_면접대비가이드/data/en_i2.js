@@ -59,7 +59,7 @@ sections:[
 ["A bag is over the weight limit and the passenger refuses to pay","Explain the rule and the charge, and offer options such as repacking"],
 ["A passenger is angry and shouting","Move somewhere quieter, hear them out, establish the facts, and hand over to a supervisor if needed"],
 ["An expired passport is noticed just before departure","Explain that they cannot board, explain how to sort it out, and keep a record"],
-["A pregnant passenger has no medical certificate","Confirm how many weeks pregnant she is and decide by the rules; if unsure, check (Ground Staff 1-6)"],
+["A pregnant passenger has no medical certificate","Confirm how many weeks pregnant the passenger is and decide by the rules; if unsure, check (Ground Staff 1-6)"],
 ["A colleague is giving a passenger wrong information","Correct it gently on the spot and talk to the colleague later; the passenger comes first"],
 ["Passengers crowd round during a delay","Gather the latest information and tell everyone the same thing. Promise nothing you do not know"],
 ["A passenger says there is a power bank in their checked bag","Have them take it out of the checked bag. Safety first (Ground Staff 1-13)"]]}]},
@@ -84,7 +84,7 @@ sections:[
 ["Questions in another language","Self-introduction or motivation in English or another language"],
 ["Checking polite Japanese","For non-native speakers, whether you can use the honorific language of customer service"]]}]},
 {h:"Situations that come up",blocks:[{t:"check",items:[
-{name:"Check-in",x:"Asking for the passport, number of bags, seat preference, giving the gate and boarding time."},
+{name:"Check-in",x:"Asking for the passport, number of bags, seat preference, giving the gate and the time."},
 {name:"Baggage rules",x:"Excess weight, items not allowed in the cabin, power banks."},
 {name:"Explaining a delay",x:"Apology, reason, new time, meal vouchers."},
 {name:"Directions",x:"Security, the gate, transfers, baggage claim."}]}]},
@@ -147,7 +147,7 @@ sections:[
 {h:"Explaining why you are moving",blocks:[{t:"check",items:[
 {name:"Forward-looking reasons",x:"“I want to work in Japan connecting the two countries” or “I want to take on a broader role”."},
 {name:"Do not criticise your former employer",x:"Even if dissatisfaction is the reason, reframe it as what you want to do next."},
-{name:"Consistency",x:"Your motivation, career plan and reason for moving should connect consistently."}]},
+{name:"Consistency",x:"Your motivation, career plan and reason for moving should fit together as one consistent story."}]},
 {t:"point",x:"Experienced hires are expected to contribute from day one and to be flexible. Show concretely what you can do while respecting the rules of your new workplace."}]}],
 voice:"Experience at airports abroad comes across best as the scale of the same work rather than the country’s name. Give flight counts, team sizes and cases in numbers.",
 terms:[["Experienced Hire","経験者採用","경력직 채용"],["Immediate Contributor","即戦力","즉시 전력"],["Reason for Changing Jobs","転職理由","이직 사유"],["Consistency","一貫性","일관성"],["Beyond Sector","以遠区間","이원 구간"]],
@@ -229,7 +229,7 @@ sections:[
 {h:"Looking back",blocks:[{t:"rows",items:[
 {name:"Preparation",x:"Know the interviewer’s view, match the type of company, and present your experience concretely on paper (1-1 to 1-3)."},
 {name:"The interview",x:"A one-minute self-introduction, answers that address the intent, safety then rules then passenger then report, and language you can actually use (2-1 to 2-5)."},
-{name:"Experienced hires and after the offer",x:"Present your experience in terms of how it applies in Japan, for management roles show how you turned practices into systems, and confirm status of residence and terms early (3-1 to 3-3)."}]}]}],
+{name:"Experienced hires and after the offer",x:"Present your experience in terms of how it applies in Japan, for management roles show how you built systems, and confirm status of residence and terms early (3-1 to 3-3)."}]}]}],
 voice:"People who turn out to be good hires are often those who ask straight away when unsure. Bringing your own questions to the interview is a good sign too.",
 terms:[["Hiring","採用","채용"],["Fit","相性","궁합"],["Training System","教育体制","교육 체계"],["Paid Leave","有給休暇","유급휴가"],["Career Path","キャリアパス","커리어 경로"]],
 quiz:[{q:"What does hiring for a small station tend to overlook?",opts:["The reality of the early commute","The company logo","The weather","Revenue"],a:0,exp:"Check that the first train gets them in."},

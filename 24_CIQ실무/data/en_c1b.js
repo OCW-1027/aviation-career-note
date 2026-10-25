@@ -74,7 +74,7 @@ sections:[
 ["Proof of status","Residence card (special permanent residents: special permanent resident certificate)","Residence card (permanent resident card, domestic residence report card)"],
 ["Re-entry rule","Special re-entry permit: no re-entry permit is needed if returning within one year of leaving (two years for special permanent residents), or by the expiry of the period of stay if that comes first","Registered foreign residents need no re-entry permit if returning within one year of departure, or within their remaining period of stay if shorter (two years for permanent residents, F-5)"],
 ["On leaving","Indicate the intention to re-enter in the prescribed way and carry the residence card","Carry the residence card"]]},
-{t:"point",x:"Returning even one day after the special re-entry period ends means losing the status of residence itself. Advise anyone leaving for a long time to obtain a re-entry permit from the immigration office before departure."}]},
+{t:"point",x:"Missing the special re-entry deadline by even one day means losing the status of residence itself. Advise anyone leaving for a long time to obtain a re-entry permit from the immigration office before departure."}]},
 {h:"Automated gates",blocks:[{t:"rows",items:[
 {name:"Japan",x:"There are facial recognition gates and automated gates that require prior registration. Check the authority’s guidance on who may use them. ★"},
 {name:"Korea",x:"The Smart Entry Service (SES) is available to Korean nationals and to registered foreign residents and others. ★"},

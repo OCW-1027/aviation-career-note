@@ -395,7 +395,7 @@ met_jet_section:function(l){
 /* 10 ジェット気流の地図：冬は日本の上で強く、夏は北へ移って弱まる。東行きは追い風、西行きは向かい風 */
 met_jet_map:function(l){
  var W=({ja:{t:'上空約10kmのジェット気流',w:'冬',su:'夏',kr:'韓国',jp:'日本',cn:'中国',us:'北アメリカへ',wi:'冬は日本の上で世界有数の強さ（150〜200kt以上のことも）',sm:'夏は北へ移り、弱くなる',e:'東へ（韓国・日本→北米）：追い風で速い',wbd:'西へ（北米→韓国・日本）：向かい風で遅い'},
-  ko:{t:'상공 약 10km의 제트기류',w:'겨울',su:'여름',kr:'한국',jp:'일본',cn:'중국',us:'북미로',wi:'겨울에는 일본 상공에서 세계 최강급(150~200kt 이상일 때도)',sm:'여름에는 북쪽으로 옮겨 가며 약해진다',e:'동쪽으로(한국·일본→북미): 뒷바람으로 빠르다',wbd:'서쪽으로(북미→한국·일본): 맞바람으로 느리다'},
+  ko:{t:'상공 약 10km의 제트기류',w:'겨울',su:'여름',kr:'한국',jp:'일본',cn:'중국',us:'북미로',wi:'겨울에는 일본 상공에서 세계적으로 강하다(150~200kt 이상일 때도)',sm:'여름에는 북쪽으로 옮겨 가며 약해진다',e:'동쪽으로(한국·일본→북미): 뒷바람으로 빠르다',wbd:'서쪽으로(북미→한국·일본): 맞바람으로 느리다'},
   en:{t:'The jet stream about 10 km up',w:'Winter',su:'Summer',kr:'Korea',jp:'Japan',cn:'China',us:'To North America',wi:'Over Japan in winter it is among the world’s strongest (sometimes 150–200 kt or more)',sm:'In summer it moves north and weakens',e:'Eastbound (Korea/Japan → North America): tailwind, faster',wbd:'Westbound (North America → Korea/Japan): headwind, slower'}})[l];
  if(!W)return F.met_jet_map('ja');
  var nar=NARROW();K=nar?1.35:1;
@@ -479,7 +479,7 @@ met_mtnwave:function(l){
 /* 13 雷雨の一生：積雲期・成熟期・消散期 */
 met_ts_life:function(l){
  var W=({ja:{t:['積雲期','成熟期','消散期'],d:['上昇気流だけ。雲がぐんぐん伸びる','上昇気流と下降気流が並ぶ。強い雨・雷・ひょう・突風','下降気流だけ。雨が弱まり雲がくずれる'],tm:['約10〜15分','約15〜30分','約30分'],life:'ひとつの雷雨の一生はおよそ1時間。いくつも続くと数時間になる',up:'上昇',dn:'下降'},
-  ko:{t:['적운기','성숙기','소산기'],d:['상승기류만 있다. 구름이 쑥쑥 자란다','상승기류와 하강기류가 함께 있다. 강한 비·번개·우박·돌풍','하강기류만 있다. 비가 약해지고 구름이 흩어진다'],tm:['약 10~15분','약 15~30분','약 30분'],life:'뇌우 하나의 일생은 약 1시간. 여러 개가 이어지면 몇 시간이 된다',up:'상승',dn:'하강'},
+  ko:{t:['적운기','성숙기','소산기'],d:['상승기류만 있다. 구름이 쑥쑥 자란다','상승기류와 하강기류가 함께 있다. 강한 비·번개·우박·돌풍','하강기류만 있다. 비가 약해지고 구름이 무너진다'],tm:['약 10~15분','약 15~30분','약 30분'],life:'뇌우 하나의 일생은 약 1시간. 여러 개가 이어지면 몇 시간이 된다',up:'상승',dn:'하강'},
   en:{t:['Cumulus stage','Mature stage','Dissipating stage'],d:['Updrafts only; the cloud grows fast','Updrafts and downdrafts side by side: heavy rain, lightning, hail, gusts','Downdrafts only; rain eases and the cloud collapses'],tm:['About 10–15 min','About 15–30 min','About 30 min'],life:'A single thunderstorm lasts about an hour; a series of cells can go on for hours',up:'Up',dn:'Down'}})[l];
  if(!W)return F.met_ts_life('ja');
  var nar=NARROW();K=nar?1.2:1;
@@ -698,7 +698,7 @@ met_levels:function(l){
 met_upper_chart:function(l){
  var W=({ja:{t:'500hPa（上空約5,500m）の天気図',tr:'気圧の谷（トラフ）',ri:'気圧の尾根（リッジ）',lo:'低い（寒い）',hi:'高い（暖かい）',wi:'風は等高度線に沿って吹く（低い方を左に見て）',fast:'線が混む＝風が強い',bad:'谷の前面：上昇気流で天気が悪い',good:'尾根の下：晴れやすい'},
   ko:{t:'500hPa(상공 약 5,500m) 일기도',tr:'기압골(트로프)',ri:'기압마루(리지)',lo:'낮다(춥다)',hi:'높다(따뜻하다)',wi:'바람은 등고도선을 따라 분다(낮은 쪽을 왼쪽에 두고)',fast:'선이 촘촘=바람이 강하다',bad:'기압골 앞쪽: 상승기류로 날씨가 나쁘다',good:'기압마루 아래: 맑기 쉽다'},
-  en:{t:'The 500 hPa chart (about 5,500 m up)',tr:'Trough',ri:'Ridge',lo:'Low (cold)',hi:'High (warm)',wi:'Wind blows along the height lines, with low heights on its left',fast:'Tight lines = strong wind',bad:'Ahead of the trough: rising air, bad weather',good:'Under the ridge: often fine'}})[l];
+  en:{t:'The 500 hPa chart (about 5,500 m up)',tr:'Trough',ri:'Ridge',lo:'Low (cold)',hi:'High (warm)',wi:'Wind blows along the height lines, with low heights on its left',fast:'Crowded lines = strong wind',bad:'Ahead of the trough: rising air, bad weather',good:'Under the ridge: likely fine'}})[l];
  if(!W)return F.met_upper_chart('ja');
  var nar=NARROW();K=nar?1.3:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600)+R(14,44,612,460,'#EEF5FB',12);

@@ -43,7 +43,7 @@ atc_classes:function(l){
 /* 3 空域の形：管制圏（地面から）、進入管制区（逆さのウェディングケーキ）、航空路、非管制空域、FIRの境 */
 atc_struct:function(l){
  var W=({ja:{t:'空域のかたち（横から見た図）',items:['管制圏（CTR）：空港のまわり、地面から','進入管制区（TMA）：上ほど広い、逆さのケーキの形','航空路：空港と空港を結ぶ管制された道','非管制空域：管制区の下や外','飛行情報区（FIR）の境：仁川FIR と 福岡FIR（日本は1つのFIR）'],inc:'仁川FIR',fuk:'福岡FIR'},
-  ko:{t:'공역의 모양(옆에서 본 그림)',items:['관제권(CTR): 공항 주변, 지면부터','접근관제구역(TMA): 위로 갈수록 넓은 거꾸로 된 케이크 모양','항공로: 공항과 공항을 잇는 관제 경로','비관제공역: 관제구역 아래나 바깥','비행정보구역(FIR) 경계: 인천 FIR과 후쿠오카 FIR(일본은 FIR 하나)'],inc:'인천 FIR',fuk:'후쿠오카 FIR'},
+  ko:{t:'공역의 모양(옆에서 본 그림)',items:['관제권(CTR): 공항 주변, 지면부터','접근관제구역(TMA): 위로 갈수록 넓은 거꾸로 된 케이크 모양','항공로: 공항과 공항을 잇는 관제되는 경로','비관제공역: 관제구역 아래나 바깥','비행정보구역(FIR) 경계: 인천 FIR과 후쿠오카 FIR(일본은 FIR 하나)'],inc:'인천 FIR',fuk:'후쿠오카 FIR'},
   en:{t:'The shape of airspace (side view)',items:['Control zone (CTR): around the airport, from the surface','Terminal control area (TMA): wider higher up, like an upside-down wedding cake','Airways: controlled routes between airports','Uncontrolled airspace: below or outside controlled areas','Flight information region (FIR) boundary: Incheon FIR and Fukuoka FIR (Japan has a single FIR)'],inc:'Incheon FIR',fuk:'Fukuoka FIR'}})[l];
  if(!W)return F.atc_struct('ja');
  setK(1);
@@ -92,7 +92,7 @@ atc_clr:function(l){
 atc_sep:function(l){
  var W=({ja:{t:'管制の3つの間隔',v:'垂直の間隔',h:'横の間隔',lg:'縦の間隔',dv:'上下 1,000ft（RVSMのFL410まで）。その上は2,000ft',dh:'経路の間を空ける（洋上ではRNPなどで決まる）',dl:'同じ経路で前後を空ける。時間（例：10分）または距離。レーダーでは5NM（空港の近くは3NM）が基本'},
   ko:{t:'관제의 3가지 분리',v:'수직 분리',h:'수평(측방) 분리',lg:'종 분리',dv:'위아래 1,000ft(RVSM의 FL410까지). 그 위는 2,000ft',dh:'경로 사이를 띄운다(해상에서는 RNP 등으로 정한다)',dl:'같은 경로에서 앞뒤를 띄운다. 시간(예: 10분) 또는 거리. 레이더에서는 5NM(공항 근처는 3NM)이 기본'},
-  en:{t:'Three kinds of ATC separation',v:'Vertical',h:'Lateral',lg:'Longitudinal',dv:'1,000 ft (up to FL410 in RVSM airspace), 2,000 ft above',dh:'Space between routes (set by RNP etc. over the ocean)',dl:'Space ahead and behind on the same route, by time (e.g. 10 minutes) or distance; with radar, normally 5 NM (3 NM near airports)'}})[l];
+  en:{t:'Three kinds of ATC separation',v:'Vertical',h:'Lateral',lg:'Longitudinal',dv:'1,000 ft (up to FL410 in RVSM airspace), 2,000 ft above',dh:'Space between routes (set by RNP etc. over the ocean)',dl:'Space ahead and behind on the same route, by time (e.g. 10 minutes) or distance; with radar, the basic spacing is 5 NM (3 NM near airports)'}})[l];
  if(!W)return F.atc_sep('ja');
  setK(1);var nar=NARROW();
  function panel(x0,y0,w,k){var col=['#2F6FD6','#1F7A6E','#E08A2F'][k],g=R(x0,y0,w,170,'#0E2238',14)+tx(x0+w/2,y0+26,[W.v,W.h,W.lg][k],13,'#fff',900),cx=x0+w/2;
@@ -202,7 +202,7 @@ atc_roger:function(l){
 /* 12 洋上の通信：陸の近くはVHF、離れるとHF（電離層で反射）とSELCAL、衛星でCPDLC・ADS-C */
 atc_ocean:function(l){
  var W=({ja:{t:'洋上の通信',vhf:'VHF（見通しの範囲だけ）',hf:'HF（電離層で反射して遠くへ）',sat:'衛星：CPDLC・ADS-C',items:['VHF：118〜137MHz。陸の近くだけ届く。緊急は121.5MHz','HF：電離層で反射して遠くまで届くが、雑音が多い。SELCAL（呼び出し音）で呼ばれるまで聞き続けなくてよい','CPDLC：管制と文字でやりとりする。ADS-C：機体が位置を自動で報告する','位置通報の順：コールサイン・位置・時刻・高度・次の位置と予定時刻・その次の位置']},
-  ko:{t:'해상 통신',vhf:'VHF(가시거리 안에서만)',hf:'HF(전리층에 반사되어 멀리)',sat:'위성: CPDLC·ADS-C',items:['VHF: 118~137MHz. 육지 근처에서만 닿는다. 비상은 121.5MHz','HF: 전리층에 반사되어 멀리까지 닿지만 잡음이 많다. SELCAL(호출음)이 울릴 때까지 계속 듣지 않아도 된다','CPDLC: 관제와 문자로 주고받는다. ADS-C: 항공기가 위치를 자동으로 보고한다','위치 보고 순서: 호출부호·위치·시각·고도·다음 위치와 예정 시각·그다음 위치']},
+  ko:{t:'해상 통신',vhf:'VHF(가시거리 안에서만)',hf:'HF(전리층에 반사되어 멀리)',sat:'위성: CPDLC·ADS-C',items:['VHF: 118~137MHz. 육지 근처에서만 닿는다. 비상은 121.5MHz','HF: 전리층에 반사되어 멀리까지 닿지만 잡음이 많다. SELCAL(호출음)로 호출될 때까지 계속 듣지 않아도 된다','CPDLC: 관제와 문자로 주고받는다. ADS-C: 항공기가 위치를 자동으로 보고한다','위치 보고 순서: 호출부호·위치·시각·고도·다음 위치와 예정 시각·그다음 위치']},
   en:{t:'Communications over the ocean',vhf:'VHF (line of sight only)',hf:'HF (reflected by the ionosphere)',sat:'Satellite: CPDLC, ADS-C',items:['VHF: 118–137 MHz, reaching only near land; emergency frequency 121.5 MHz','HF: reflected by the ionosphere to reach far but noisy; SELCAL chimes mean the crew need not listen continuously','CPDLC: text messages with ATC. ADS-C: the aircraft reports its position automatically','Position report order: call sign, position, time, level, next position and estimate, the one after']}})[l];
  if(!W)return F.atc_ocean('ja');
  setK(1);
@@ -219,7 +219,7 @@ atc_ocean:function(l){
 /* 13 通信の途絶（計器気象状態・ICAOの基本）：7600 → 最後の高度・速さを保つ → 飛行計画の高度 → 目的地の施設 → 待機 → 予定の時刻に降下・進入 → 30分以内に着陸 */
 atc_lost:function(l){
  var W=({ja:{t:'通信が途絶えたとき（計器気象状態・ICAOの基本）',st:['トランスポンダーを 7600 にする','最後に指示された高度と速さを保つ（レーダーの下では7分間）','飛行計画の高度・速さに戻して飛ぶ','目的地の航法施設へ向かい、待機する','予定の時刻（EAT か到着予定）に降下・進入を始める','その時刻から30分以内に着陸する'],note:'有視界気象状態なら、そのまま有視界で近くの適当な空港に着陸して報告する。細かい決まりは各国のAIPで確かめる'},
-  ko:{t:'통신이 끊겼을 때(계기기상상태·ICAO 기본)',st:['트랜스폰더를 7600으로 한다','마지막으로 지시받은 고도와 속도를 유지한다(레이더 아래에서는 7분간)','비행계획의 고도·속도로 복귀한다','목적지 항행시설로 가서 대기한다','예정 시각(EAT 또는 도착 예정)에 강하·접근을 시작한다','그 시각부터 30분 안에 착륙한다'],note:'시계기상상태라면 그대로 시계비행으로 가까운 적당한 공항에 착륙해 보고한다. 세부 규정은 각국 AIP로 확인한다'},
+  ko:{t:'통신이 끊겼을 때(계기기상상태·ICAO 기본)',st:['트랜스폰더를 7600으로 한다','마지막으로 지시받은 고도와 속도를 유지한다(레이더 아래에서는 7분간)','비행계획의 고도·속도로 돌아가 비행한다','목적지 항행시설로 가서 대기한다','예정 시각(EAT 또는 도착 예정)에 강하·접근을 시작한다','그 시각부터 30분 안에 착륙한다'],note:'시계기상상태라면 그대로 시계비행으로 가까운 적당한 공항에 착륙해 보고한다. 세부 규정은 각국 AIP로 확인한다'},
   en:{t:'Radio failure (IMC, ICAO basic procedure)',st:['Set the transponder to 7600','Keep the last assigned level and speed (for 7 minutes under radar)','Resume the flight-planned level and speed','Proceed to the navigation aid serving the destination and hold','Begin descent and approach at the expected time (EAT or ETA)','Land within 30 minutes of that time'],note:'In VMC, continue in VMC, land at the nearest suitable aerodrome and report. Check the details in each country’s AIP'}})[l];
  if(!W)return F.atc_lost('ja');
  setK(1);var n=6,dur=12;
@@ -256,7 +256,7 @@ atc_emerg:function(l){
 /* 15 要撃の信号：要撃機が横に来て翼を振り、前に出る。要撃された機は翼を振って答え、ついていく */
 atc_intercept:function(l){
  var W=({ja:{t:'要撃されたときの信号',ic:'要撃機',you:'要撃された機',items:['要撃機：左前方に来て翼を振り、灯火を点滅させてから、ゆっくり向きを変える＝「ついてこい」','要撃された機：翼を振り、灯火を点滅させて答え、ついていく','すぐに 121.5MHz で呼び、トランスポンダーは指示がなければ 7700 にする'],note:'信号の規定は ICAO Annex 2 の付録。運航管理者は、飛行計画と防空識別圏の手続きを正しく行い、要撃を招かないようにする'},
-  ko:{t:'요격당했을 때의 신호',ic:'요격기',you:'요격당한 항공기',items:['요격기: 왼쪽 앞으로 와 날개를 흔들고 등을 깜박인 뒤 천천히 방향을 바꾼다 = ‘따라오라’','요격당한 항공기: 날개를 흔들고 등을 깜박여 답하고 따라간다','즉시 121.5MHz로 호출하고, 트랜스폰더는 지시가 없으면 7700에 맞춘다'],note:'신호 규정은 ICAO Annex 2 부록에 있다. 운항관리사는 비행계획과 방공식별구역 절차를 제대로 지켜 요격을 막는다'},
+  ko:{t:'요격당했을 때의 신호',ic:'요격기',you:'요격당한 항공기',items:['요격기: 왼쪽 앞으로 와 날개를 흔들고 등을 깜박인 뒤 천천히 방향을 바꾼다 = ‘따라오라’','요격당한 항공기: 날개를 흔들고 등을 깜박여 답하고 따라간다','즉시 121.5MHz로 호출하고, 트랜스폰더는 지시가 없으면 7700에 맞춘다'],note:'신호 규정은 ICAO Annex 2 부록에 있다. 운항관리사는 비행계획과 방공식별구역 절차를 올바르게 처리해 요격을 초래하지 않도록 한다'},
   en:{t:'Signals when intercepted',ic:'Interceptor',you:'Intercepted aircraft',items:['Interceptor: comes up ahead on the left, rocks its wings and flashes its lights, then turns slowly away = “follow me”','Intercepted aircraft: rocks its wings and flashes its lights to acknowledge, then follows','Call at once on 121.5 MHz and, unless instructed otherwise, set the transponder to 7700'],note:'The signals are in an appendix to ICAO Annex 2. Dispatchers prevent interceptions by filing correct flight plans and following ADIZ procedures'}})[l];
  if(!W)return F.atc_intercept('ja');
  setK(1);

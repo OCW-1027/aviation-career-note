@@ -171,7 +171,7 @@ sections:[
 {name:"Points for career changers",x:"Always show that you understand how hotels and airports differ: rules for safety come first and cut-off times are strict. Saying “customer service is the same everywhere” makes your understanding look shallow."}]}]},
 {h:"What the three have in common",blocks:[{t:"cards",n:3,items:[
 {name:"One experience, told in depth",tag:"Past",x:"Each builds on one central experience and keeps the others for probing or other questions."},
-{name:"The core value runs into the future",tag:"Present → future",x:"Keeping time, bridging, giving the outlook: each becomes their role after joining."},
+{name:"The core value runs into the future",tag:"Present → future",x:"Keeping time, bridging, giving the outlook: each becomes the role after joining."},
 {name:"Ready to learn the differences",tag:"Year 1",x:"The more experienced, or the further from aviation, the more they put relearning airport and Japanese rules first."}]}]},
 {h:"Common mistakes and how to fix them",blocks:[{t:"table",cols:["Mistake","What is happening","Fix"],rows:[
 ["Too many experiences","Five or six, all shallow","Build on the one closest to your core value; bring out others when probed"],

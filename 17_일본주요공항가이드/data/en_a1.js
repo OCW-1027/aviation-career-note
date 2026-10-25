@@ -57,7 +57,7 @@ sections:[
 ["Terminals","T1 and T2 (major and foreign airlines), T3 (LCCs)"],
 ["Role","The Tokyo region’s hub for international flights and cargo; domestic services are mainly LCC and connecting routes"]]}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
-{name:"The end of operating hours",x:"If a delay threatens to run past closing time, you are pushed to decide early whether to cancel or depart. Consult head office and operations control early, especially on delays from the evening onward."},
+{name:"The end of operating hours",x:"If a delay threatens to run past closing time, you are pushed to decide early whether to cancel or depart. On delays from the evening onward, consult head office and operations control especially early."},
 {name:"Long taxi times",x:"Taxiing from terminal to runway takes a while. Set your cut-offs allowing for the time after door close."},
 {name:"Counter allocation",x:"Terminal counters are allocated each season under the airport’s guidelines. File changes to frequencies or times early."},
 {name:"The BHS",x:"Know the rules for the in-line screening baggage system and the fallback procedure when it fails; take part in the drills."},

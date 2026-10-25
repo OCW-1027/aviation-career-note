@@ -105,7 +105,7 @@ sections:[
 voice:"Airport office space may not be free, and the location may not be settled until a few months before launch. In the meantime, rent temporary space through the airport company and split the work with the city office.",
 terms:[["Serviced Office","レンタルオフィス","공유 오피스"],["Lease Agreement","賃貸借契約","임대차 계약"],["Automatic Renewal","自動更新","자동 갱신"],["Deposit / Key Money","敷金・礼金","보증금·사례금"],["Corporate Lease","法人契約","법인 계약"],["Contract Register","契約台帳","계약 대장"]],
 quiz:[{q:"What suits a small station for its city office?",opts:["A large owned building","A serviced office","Only the airport office","No office"],a:1,exp:"Low set-up cost and usable as the registered address."},
-{q:"What should you watch out for in an automatically renewing contract?",opts:["Nothing","The deadline for giving notice","The wall colour","The number of desks"],a:1,exp:"Miss it and the contract renews."},
+{q:"What must you watch out for in an automatically renewing contract?",opts:["Nothing","The deadline for giving notice","The wall colour","The number of desks"],a:1,exp:"Miss it and the contract renews."},
 {q:"What is needed before signing a new contract?",opts:["Head office legal review and approval","A travel agency’s consent","Only the airport company’s permission","Nothing"],a:0,exp:"Follow head office rules."}],
 next:"2-4 Work rules, social insurance and labour insurance"});
 
@@ -172,7 +172,7 @@ sections:[
 {h:"What is needed immediately after joining",blocks:[{t:"check",items:[
 {name:"Training",x:"Statutory training (security, dangerous goods), head office initial training, and the security course needed for the airport ID pass."},
 {name:"Airport ID pass",x:"It takes time from application to issue (Ground Staff 6-3)."},
-{name:"System accounts",x:"Apply for accounts on the reservations, check-in and internal systems."},
+{name:"System accounts",x:"Account applications for reservations, check-in and internal systems."},
 {name:"The rest",x:"Business cards, office keys, uniform, manuals and contact lists, and an explanation of how inhabitant tax works."}]},
 {t:"point",x:"In a small station, one resignation has a large effect. Keeping written procedures and handover notes, and building a roster where people can actually take leave, is the surest way to keep people."}]}],
 voice:"For the first hires, choose people who can look things up for themselves and report back over people with more experience. In a small station, every person also ends up owning procedures.",

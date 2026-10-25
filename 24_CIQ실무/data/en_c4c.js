@@ -15,7 +15,7 @@ sections:[
 ["Meat products","Not allowed. Pork products from areas with African swine fever: a fine of TWD 200,000 for a first offence and TWD 1 million for a second"],
 ["If the fine is not paid","Entry is not allowed until it is paid. Foreign nationals who cannot pay are refused entry"],
 ["Fruit","A fine of TWD 3,000 to 15,000 for bringing it in undeclared. Fruit from the in-flight meal is also covered"],
-["If declared","No fine. Items can also be voluntarily surrendered in the designated bins before quarantine"],
+["If declared","No fine. Items can also be voluntarily discarded in the designated bins before quarantine"],
 ["E-cigarettes and heated tobacco","E-cigarettes are completely banned. Heated tobacco cannot be brought in from abroad either. From February 2026 the only exception is approved products bought at duty-free shops in Taiwan’s airports"]]},
 {t:"rows",items:[
 {name:"How items are found",x:"All bags from higher-risk areas are X-rayed, and detector dogs are also used."},

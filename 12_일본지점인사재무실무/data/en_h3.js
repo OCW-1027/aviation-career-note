@@ -59,7 +59,7 @@ sections:[
 {name:"Accounting",x:"Tax collected is a deposit received from passengers, not subject to consumption tax. If the receipt shows the tax separately, the tax amount can be excluded when determining stamp duty."},
 {name:"Collecting in foreign currency",x:"Collect the equivalent of ¥3,000 converted at a reasonable rate; pay the state ¥3,000 in yen."},
 {name:"Award tickets",x:"If miles are used as a means of paying the whole ticket including the tax, it counts as collected."},
-{name:"Receiving exemption documents later",x:"Without a face-to-face desk, documents may be received and checked at the airport counter after ticketing; if none are presented, the airline collects the tax from the passenger and pays it."},
+{name:"Receiving exemption documents later",x:"Without a face-to-face desk, documents may be received and checked at the airport counter after ticketing; if none are presented, the airline must collect the tax from the passenger and pay it."},
 {name:"Passengers who do not depart",x:"No tax arises without departure; refunds of tax collected follow the conditions of carriage and head office rules."}]},
 {t:"point",x:"Around the change, questions from call centres, travel agencies and airport counters increase. Make sure customer notices and internal procedures say the same thing: the amount depends on the ticket issue date and any change of departure date (Course 13 and Course 1)."}]}],
 voice:"In the month before an increase, questions keep coming about whether the tax changes each time a booking is changed. A one-page table that decides by ticketing date and departure date, handed to airport and reservations staff, keeps everyone’s answers consistent.",

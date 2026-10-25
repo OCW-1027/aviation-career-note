@@ -1,6 +1,6 @@
 /* CIQの役割 — English version (Part 2 Customs, lessons 2-1 to 2-4) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("2-1",{title:"What Customs Does, and the Passenger Declaration",hl:"Customs",subtitle:"Customs looks at goods and money. A declaration is how passengers give customs the necessary information accurately themselves",
+set("2-1",{title:"What Customs Does, and the Passenger Declaration",hl:"Customs",subtitle:"Customs looks at goods and money. A declaration is how passengers themselves report the required information accurately",
 lead:["Customs is the agency that oversees goods and money crossing the border. At an airport, passengers’ bags, crew belongings, cargo and even the catering and duty-free goods on the aircraft all come under customs supervision.","For passengers, customs is the last step on arrival, after they reclaim their bags. Fewer of them are held up there when they are told what to expect before departure and on board."],
 sections:[
 {h:"What airport customs does",blocks:[{t:"fig",id:"ciq_customs",cap:"Figure: customs on arrival."},{t:"rows",items:[
@@ -86,7 +86,7 @@ sections:[
 {name:"Customs decides",x:"The airline must not assure a passenger that something can be brought in."},
 {name:"Separate from dangerous goods rules",x:"Whether something may be carried on the aircraft (security and dangerous goods) and whether it may enter the country (customs) are different rules. Both must be met."},
 {name:"When a passenger asks about a suspicious package",x:"Advise them not to carry it, and inform security and customs if necessary."}]},
-{t:"point",x:"“I didn’t know” does not in itself excuse a passenger at customs. That is exactly why informing passengers in advance is how the airline can help."}]}],
+{t:"point",x:"“I didn’t know” does not in itself excuse a passenger at customs. That is exactly why the airline can help by informing passengers in advance."}]}],
 voice:{h:"A Reported Case",x:"A woman’s post on X went viral after she described moving 4 kg of a stranger’s luggage into her own bag at Kansai Airport, to save a Malaysian woman an excess-baggage charge of about JPY 12,000. It was widely criticised as typically dangerous behaviour, and she apologised the next day. A lawyer explained that if the contents had been stimulants, a claim of not knowing would be unlikely to be accepted and the charges could be very serious (Source: Bengo4.com News). Japan Customs also warns that whoever carries a bag is held responsible for it, even if it was entrusted to them by someone else (Source: Japan Customs leaflet on drug couriers, April 2025). It is a scene that can arise at the counter whenever excess baggage charges come up."},
 terms:[["Means of Payment","支払手段","지급수단"],["Prohibited Goods","輸入禁止品","수입 금지 물품"],["Convention on International Trade in Endangered Species (CITES)","ワシントン条約","워싱턴 협약"],["Goods Infringing Intellectual Property","知的財産権侵害物品","지식재산권 침해 물품"]],
 quiz:[{q:"When must cash and the like be declared in Japan?",opts:["When the total exceeds the equivalent of 1 million yen","When it exceeds 100,000 yen","Always, whatever the amount","Never"],a:0,exp:"It is declared on both departure and arrival."},

@@ -37,7 +37,7 @@ finratio:{ja:'財務比率の計算練習',ko:'재무 비율 계산 연습',en:'
 finval:{ja:'企業価値の計算練習',ko:'기업가치 계산 연습',en:'Company Valuation Practice'},
 finmemo:{ja:'投資検討報告書の下書き',ko:'투자 검토 보고서 초안',en:'Investment Memo Draft'},
 fsc:{ja:'日本発 燃油サーチャージの計算',ko:'일본발 유류할증료 계산',en:'Japan-Origin Fuel Surcharge Calculator'},
-finclose:{ja:'年次決算の練習',ko:'1년 결산 연습',en:'Year-End Closing Practice'}};
+finclose:{ja:'年次決算の練習',ko:'연간 결산 연습',en:'Year-End Closing Practice'}};
 /* 下の共通ボタン（2026.10）：ツールが属する講座の目次へ・資料・ツールへ。講座のないツールは資料・ツールのボタンだけ */
 var CR={p1:['1_지상직여객운송입문/00_シリーズ全体_地上職旅客運送入門.html','旅客ハンドリング実務','항공 여객운송 실무','Airline Passenger Operations'],
 p2:['2_일본취항지점개설가이드/00_シリーズ全体_日本就航支店開設ガイド.html','外国航空会社の日本就航・支店開設ガイド','외국 항공사 일본 취항·지점 개설 가이드','Launching Flights to Japan: A Station Setup Guide for Foreign Airlines'],

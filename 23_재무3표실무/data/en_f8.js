@@ -123,7 +123,7 @@ sections:[
 ["Credit research reports","Sales and profit trends, customers, a credit score","Paid; some figures come from interviews"],
 ["Accounts and tax returns from the company","Down to the breakdown of each account","Only if the company provides them; often unaudited (7-3)"],
 ["Certificate of registered matters","Directors, capital, head office, date of incorporation","No financial figures"]]},
-{t:"point",x:"Unlisted Japanese companies show very few numbers to the outside. In Korea the audit reports of unlisted companies above a certain size are public (8-5), so anyone who starts searching with the same expectations will be caught off guard."},
+{t:"point",x:"Unlisted Japanese companies show very few numbers to the outside. In Korea the audit reports of unlisted companies above a certain size are public (8-5), so anyone who starts searching with Korean expectations will be caught off guard."},
 {t:"note",x:"* A large company is a stock company with capital of 500 million yen or more, or liabilities of 20 billion yen or more (Companies Act). ★"}]},
 {h:"Where to look first, and practice",blocks:[{t:"ladder",steps:[
 {name:"The company’s investor relations page",sub:"Earnings releases, presentations and links to the securities report"},

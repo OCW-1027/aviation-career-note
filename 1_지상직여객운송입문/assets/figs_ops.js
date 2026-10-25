@@ -71,7 +71,7 @@ ops_minfuel:function(l){
 /* 4 火山灰：噴火した火山の灰の雲が風で広がり、航空路が避けて通る。航空用の色の警報が変わる */
 ops_ash:function(l){
  var W=({ja:{t:'火山灰の雲と経路の変更',wind:'上空の風',old:'もとの経路',nw:'避ける経路（距離が増え、燃料も増える）',cc:'航空カラーコード',cols:['緑','黄','オレンジ','赤'],items:['ASHTAM・VAAC の火山灰情報・VA SIGMET で、範囲と高さを確かめる','経路・高度・時刻と重ねて、灰の雲を避ける経路と燃料を決める','降灰で空港が閉鎖されることがある。目的地・代替空港の見込みも確かめる']},
-  ko:{t:'화산재 구름과 경로 변경',wind:'상공의 바람',old:'원래 경로',nw:'피해 가는 경로(거리가 늘고 연료도 늘어난다)',cc:'항공 색상 코드',cols:['녹색','황색','주황','적색'],items:['ASHTAM·VAAC 화산재 정보·VA SIGMET으로 범위와 높이를 확인한다','경로·고도·시각과 대조해 화산재 구름을 피하는 경로와 연료를 정한다','강회로 공항이 폐쇄될 수 있다. 목적지·교체공항의 전망도 확인한다']},
+  ko:{t:'화산재 구름과 경로 변경',wind:'상공의 바람',old:'원래 경로',nw:'피해 가는 경로(거리가 늘고 연료도 늘어난다)',cc:'항공 색상 코드',cols:['녹색','황색','주황','적색'],items:['ASHTAM·VAAC 화산재 정보·VA SIGMET으로 범위와 높이를 확인한다','경로·고도·시각에 겹쳐 보고 화산재 구름을 피하는 경로와 연료를 정한다','강회로 공항이 폐쇄될 수 있다. 목적지·교체공항의 전망도 확인한다']},
   en:{t:'Volcanic ash clouds and rerouting',wind:'Upper wind',old:'Original route',nw:'Avoiding route (longer, so more fuel)',cc:'Aviation colour code',cols:['Green','Yellow','Orange','Red'],items:['Check the extent and height in the ASHTAM, VAAC advisories and VA SIGMET','Overlay them on the route, level and times, and plan an avoiding route and fuel','Ash fall can close airports; check the outlook for the destination and alternates too']}})[l];
  if(!W)return F.ops_ash('ja');
  setK(1);var dur=10;
@@ -201,8 +201,8 @@ case_winter:function(l){
 
 /* 12 総合事例②：太平洋のEDTO夜間便。経路・交替空港・等時点、急減圧で交替空港へ */
 case_edto:function(l){
- var W=({ja:{t:'事例②の流れ ― 仁川→ホノルル（EDTO 180分・練習用・架空の値）',a:'交替空港A',b:'交替空港B',c:'交替空港C',etp:'等時点（ETP）',ash:'火山灰（VA SIGMET）',dec:'急減圧 → 10,000ftへ降下し、Bへダイバート',items:['出発前：ジェット気流の追い風で経路と高度を選び、交替空港A・B・Cの天気を使う可能性のある時間の前後1時間で確かめる','MEL で片方の空調が使えないと巡航高度が制限され、燃料が足りない → 機材を替える判断','EDTO 臨界燃料：最も厳しい等時点で急減圧とエンジン故障を想定し、交替空港まで飛べる燃料を確保','飛行中：火山灰の範囲を避けて経路を変え、急減圧のときは交替空港Bへ']},
-  ko:{t:'사례 ②의 흐름 — 인천→호놀룰루(EDTO 180분·연습용·가상의 값)',a:'교체공항 A',b:'교체공항 B',c:'교체공항 C',etp:'등시점(ETP)',ash:'화산재(VA SIGMET)',dec:'급감압 → 10,000ft로 강하해 B로 회항',items:['출발 전: 제트기류 순풍으로 경로와 고도를 고르고, 교체공항 A·B·C 날씨를 사용 예상 시간 전후 1시간으로 확인','MEL로 한쪽 공조를 쓸 수 없으면 비행 고도가 제한되어 연료가 모자란다 → 기재 변경 판단','EDTO 임계연료: 가장 엄격한 등시점에서 급감압과 엔진 고장을 가정해 교체공항까지 갈 연료를 확보','비행 중: 화산재 범위를 피해 경로를 바꾸고, 급감압 때는 교체공항 B로']},
+ var W=({ja:{t:'事例②の流れ ― 仁川→ホノルル（EDTO 180分・練習用・架空の値）',a:'交替空港A',b:'交替空港B',c:'交替空港C',etp:'等時点（ETP）',ash:'火山灰（VA SIGMET）',dec:'急減圧 → 10,000ftへ降下し、Bへダイバート',items:['出発前：ジェット気流の追い風で経路と高度を選び、交替空港A・B・Cの天気を使う可能性のある時間の前後1時間で確かめる','MEL で片方の空調が使えないと上がれる高度が制限され、燃料が足りない → 機材を替える判断','EDTO 臨界燃料：最も厳しい等時点で急減圧とエンジン故障を想定し、交替空港まで飛べる燃料を確保','飛行中：火山灰の範囲を避けて経路を変え、急減圧のときは交替空港Bへ']},
+  ko:{t:'사례 ②의 흐름 — 인천→호놀룰루(EDTO 180분·연습용·가상의 값)',a:'교체공항 A',b:'교체공항 B',c:'교체공항 C',etp:'등시점(ETP)',ash:'화산재(VA SIGMET)',dec:'급감압 → 10,000ft로 강하해 B로 회항',items:['출발 전: 제트기류 순풍으로 경로와 고도를 고르고, 교체공항 A·B·C 날씨를 사용 가능성이 있는 시간 전후 1시간으로 확인','MEL로 한쪽 공조를 쓸 수 없으면 올라갈 수 있는 고도가 제한되어 연료가 모자란다 → 기재 변경 판단','EDTO 임계연료: 가장 엄격한 등시점에서 급감압과 엔진 고장을 가정해 교체공항까지 갈 연료를 확보','비행 중: 화산재 범위를 피해 경로를 바꾸고, 급감압 때는 교체공항 B로']},
   en:{t:'Case 2 flow: Incheon to Honolulu (EDTO 180 min, exercise, fictitious values)',a:'Alternate A',b:'Alternate B',c:'Alternate C',etp:'Equal-time point (ETP)',ash:'Volcanic ash (VA SIGMET)',dec:'Decompression → descend to 10,000 ft and divert to B',items:['Before departure: choose route and level for the jet-stream tailwind, and check the weather at alternates A, B and C for one hour either side of possible use','An MEL item with one air-conditioning pack inoperative limits altitude so fuel is insufficient → decide to swap aircraft','EDTO critical fuel: assume decompression plus engine failure at the most critical ETP and carry enough to reach the alternate','In flight: reroute around the ash, and after a decompression divert to alternate B']}})[l];
  if(!W)return F.case_edto('ja');
  setK(1);var dur=12;
@@ -234,8 +234,8 @@ _caseTL:function(title,ev){
 
 /* 14 総合事例③：夏の午後の雷雨とダイバート（金浦→関西・架空） */
 case_summer:function(l){
- var W=({ja:{t:'事例③の流れ ― 夏の午後の金浦→関西（練習用・架空の値）',ev:[['11:30','TAF：15〜18時に雷雨（TEMPO TSRA）','関西の到着予定16:10がその時間に入る'],['12:00','燃料と代替空港','待機と迂回の追加燃料。代替空港は同じ雷雨域にかからない中部'],['15:40','到着地の雷雨で待機','管制のEFCと残りの燃料を確かめる'],['16:05','マイクロバーストの警報','進入をやめて復行（ゴーアラウンド）'],['16:25','ダイバートの判断','2回目の待機で基準の燃料に近づく → 中部へ'],['17:20','中部に着陸','地上の手配・乗員の勤務時間・再出発か運航終了か']]},
-  ko:{t:'사례 ③의 흐름 — 여름 오후의 김포→간사이(연습용·가상의 값)',ev:[['11:30','TAF: 15~18시 뇌우(TEMPO TSRA)','간사이 도착 예정 16:10이 해당 시간대'],['12:00','연료와 교체공항','대기·우회용 추가 연료. 교체공항은 같은 뇌우대에 걸리지 않는 주부'],['15:40','도착지 뇌우로 대기','관제 EFC와 잔여 연료 확인'],['16:05','마이크로버스트 경보','접근 중단 후 복행(고어라운드)'],['16:25','다이버트 판단','두 번째 대기로 기준 연료에 가까워진다 → 주부로'],['17:20','주부에 착륙','지상 준비·승무원 근무시간·재출발 또는 운항 종료']]},
+ var W=({ja:{t:'事例③の流れ ― 夏の午後の金浦→関西（練習用・架空の値）',ev:[['11:30','TAF：15〜18時に雷雨（TEMPO TSRA）','関西の到着予定16:10がその時間に入る'],['12:00','燃料と代替空港','待機と迂回の追加燃料。代替空港は同じ雷雨の列に入らない中部'],['15:40','到着地の雷雨で待機','管制のEFCと残りの燃料を確かめる'],['16:05','マイクロバーストの警報','進入をやめて復行（ゴーアラウンド）'],['16:25','ダイバートの判断','2回目の待機で基準の燃料に近づく → 中部へ'],['17:20','中部に着陸','地上の手配・乗員の勤務時間・再出発か運航終了か']]},
+  ko:{t:'사례 ③의 흐름 — 여름 오후의 김포→간사이(연습용·가상의 값)',ev:[['11:30','TAF: 15~18시 뇌우(TEMPO TSRA)','간사이 도착 예정 16:10이 해당 시간대'],['12:00','연료와 교체공항','대기·우회용 추가 연료. 교체공항은 같은 뇌우 열에 걸리지 않는 주부'],['15:40','도착지 뇌우로 대기','관제 EFC와 잔여 연료 확인'],['16:05','마이크로버스트 경보','접근 중단 후 복행(고어라운드)'],['16:25','다이버트 판단','두 번째 대기로 기준 연료에 가까워진다 → 주부로'],['17:20','주부에 착륙','지상 준비·승무원 근무시간·재출발 또는 운항 종료']]},
   en:{t:'Case 3 flow: a summer afternoon, Gimpo to Kansai (exercise, fictitious values)',ev:[['11:30','TAF: thunderstorms 15–18 (TEMPO TSRA)','The 16:10 arrival at Kansai falls within that period'],['12:00','Fuel and alternates','Additional fuel for holding and deviations; Chubu chosen as the alternate, clear of the same line of storms'],['15:40','Holding for storms at the destination','Check the ATC EFC time and remaining fuel'],['16:05','Microburst alert','Approach abandoned, go-around'],['16:25','Diversion decision','A second hold brings fuel close to the limit → divert to Chubu'],['17:20','Landing at Chubu','Ground arrangements, crew duty time, re-departure or end of operation']]}})[l];
  if(!W)return F.case_summer('ja');return F._caseTL(W.t,W.ev)},
 

@@ -25,7 +25,7 @@ sections:[
 {h:"Being ready for failures",blocks:[{t:"rows",items:[
 {name:"Manual fallback",x:"Keep the materials needed for manual working — a passenger list, a seat map, handwritten boarding passes and tags — and practise regularly (many airlines do so at least once a year; Ground Staff 2-7)."},
 {name:"Contacts",x:"Keep a contact list for the shared system provider, head office IT and the handling company."},
-{name:"Account management",x:"Tidy the accounts whenever staff change. Do not write passwords in shared documents."}]},
+{name:"Account management",x:"Tidy the accounts whenever staff change. Never write passwords in a shared document."}]},
 {t:"point",warn:true,x:"System connections take far longer from application to service than people expect. Once a launch is decided, make the application a top priority, alongside the airport formalities."}]}],
 voice:"In pre-launch tests, the boarding-pass printers may drop some characters from your company’s layout. Fix the layout with head-office systems staff and check printing again on every terminal before going live.",
 terms:[["CUTE / CUPPS","共用端末","공용 단말"],["Passenger Service System / DCS","旅客システム","여객 시스템"],["Boarding Pass Printer (BPP)","搭乗券プリンター","탑승권 프린터"],["Bag Tag Printer (BTP)","手荷物タグプリンター","수하물 태그 프린터"],["Boarding Gate Reader (BGR)","搭乗券読み取り機","탑승권 리더기"],["Operational Messages (MVT / LDM)","運航の電報","운항 전문"]],
@@ -122,7 +122,7 @@ sections:[
 {t:"rows",items:[
 {name:"Effect at the airport",x:"Travellers must present their passport at a terminal on departure, within 90 days of purchase, for customs confirmation. Work is under way to keep queues down, and the departure flow and the time it takes may change."},
 {name:"For the airline",x:"Tell passengers that departure formalities may take longer, and confirm how duty-free goods are handled when a departure is cancelled (Ground Staff 2-6)."}]},
-{t:"note",x:"* From the government’s explanatory material on the tax reform outline. Check the latest guidance from the National Tax Agency and customs for details. ★"}]},
+{t:"note",x:"* From the government’s explanatory material on the FY2025 tax reform outline. Check the latest guidance from the National Tax Agency and customs for details. ★"}]},
 {h:"What to settle before launch",blocks:[{t:"check",items:[
 {name:"Customs",x:"The confirmations for a new service (4-2), the corporate application, and access procedures for staff areas."},
 {name:"Quarantine",x:"The announcement material and the contact structure during an outbreak."},

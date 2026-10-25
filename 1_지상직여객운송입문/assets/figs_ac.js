@@ -30,7 +30,7 @@ ac_forces:function(l){
 /* 2 迎え角と失速：迎え角が大きくなると揚力が増えるが、臨界の角度を超えると空気がはがれて揚力が急に減る */
 ac_stall:function(l){
  var W=({ja:{t:'迎え角と失速',aoa:'迎え角',ok:'空気が翼に沿って流れる',st:'失速：上面から空気がはがれる',gx:'迎え角',gy:'揚力係数',crit:'臨界迎え角（約15°〜18°）',n:['失速は「速さ」ではなく「迎え角」で起きる。どの速さでも臨界迎え角を超えると失速する','フラップ・スラットを出すと、低い速さでも大きな揚力が得られ、失速速度が下がる','翼に氷や雪が付くと、形がくずれて失速しやすくなる（離陸前の防除雪氷）']},
-  ko:{t:'받음각과 실속',aoa:'받음각',ok:'공기가 날개를 따라 흐른다',st:'실속: 윗면에서 공기가 떨어져 나간다',gx:'받음각',gy:'양력계수',crit:'임계 받음각(약 15°~18°)',n:['실속은 ‘속도’가 아니라 ‘받음각’이 원인이다. 어떤 속도에서도 임계 받음각을 넘으면 실속한다','플랩·슬랫을 내리면 낮은 속도에서도 큰 양력을 얻어 실속 속도가 내려간다','날개에 얼음이나 눈이 붙으면 모양이 망가져 실속하기 쉬워진다(이륙 전 방빙·제빙)']},
+  ko:{t:'받음각과 실속',aoa:'받음각',ok:'공기가 날개를 따라 흐른다',st:'실속: 윗면에서 공기가 떨어져 나간다',gx:'받음각',gy:'양력계수',crit:'임계 받음각(약 15°~18°)',n:['실속은 ‘속도’가 아니라 ‘받음각’ 때문에 일어난다. 어떤 속도에서도 임계 받음각을 넘으면 실속한다','플랩·슬랫을 내리면 낮은 속도에서도 큰 양력을 얻어 실속 속도가 내려간다','날개에 얼음이나 눈이 붙으면 모양이 망가져 실속하기 쉬워진다(이륙 전 방빙·제빙)']},
   en:{t:'Angle of attack and the stall',aoa:'Angle of attack',ok:'Air flows smoothly along the wing',st:'Stall: the airflow separates from the upper surface',gx:'Angle of attack',gy:'Lift coefficient',crit:'Critical angle (about 15°–18°)',n:['A stall is caused by angle of attack, not speed: exceed the critical angle at any speed and the wing stalls','Flaps and slats give more lift at low speed and lower the stall speed','Ice or snow on the wing spoils its shape and makes a stall more likely (hence de-icing before take-off)']}})[l];
  if(!W)return F.ac_stall('ja');
  setK(1);var nar=NARROW();
@@ -76,7 +76,7 @@ ac_bank:function(l){
 /* 4 高い所の速さの幅（コフィン・コーナー）：高く上がるほど、低速のバフェットと高速のバフェットの間が狭くなる */
 ac_coffin:function(l){
  var W=({ja:{t:'高い所では速さの幅が狭くなる',lo:'低速のバフェット（失速に近い）',hi:'高速のバフェット（マック数の限界）',cc:'コフィン・コーナー',hv:'重いと幅はさらに狭い',x:'速さ',y:'高度',n:['高く上がるほど空気が薄く、失速に近い速さは上がり、マック数の限界の速さは下がる','重い飛行機ほど、上がれる高さ（最適高度・最大高度）が低い','会社は、揺れ（1.3gなど）に耐える余裕を残して上がれる高さを決める']},
-  ko:{t:'높은 곳에서는 속도 폭이 좁아진다',lo:'저속 버핏(실속 근접)',hi:'고속 버핏(마하수 한계)',cc:'코핀 코너',hv:'무거우면 폭이 더 좁다',x:'속도',y:'고도',n:['높이 올라갈수록 공기가 희박해져 실속에 가까운 속도는 오르고, 마하수 한계 속도는 내려간다','무거운 비행기일수록 올라갈 수 있는 높이(최적 고도·최대 고도)가 낮다','항공사는 흔들림(1.3g 등)을 견딜 여유를 남겨 올라갈 수 있는 높이를 정한다']},
+  ko:{t:'높은 곳에서는 속도 폭이 좁아진다',lo:'저속 버핏(실속 근접)',hi:'고속 버핏(마하수 한계)',cc:'코핀 코너',hv:'무거우면 폭이 더 좁다',x:'속도',y:'고도',n:['높이 올라갈수록 공기가 희박해져 실속에 가까운 속도는 오르고, 마하수 한계 속도는 내려간다','무거운 비행기일수록 올라갈 수 있는 높이(최적 고도·최대 고도)가 낮다','운항사는 흔들림(1.3g 등)을 견딜 여유를 남겨 올라갈 수 있는 높이를 정한다']},
   en:{t:'The speed range narrows at altitude',lo:'Low-speed buffet (near the stall)',hi:'High-speed buffet (Mach limit)',cc:'Coffin corner',hv:'Heavier: narrower still',x:'Speed',y:'Altitude',n:['Higher up, the air is thinner: the near-stall speed rises and the Mach-limit speed falls','The heavier the aircraft, the lower the altitude it can reach (optimum and maximum altitude)','Operators set the usable altitude so that a margin remains for turbulence (e.g. 1.3 g)']}})[l];
  if(!W)return F.ac_coffin('ja');
  setK(1);
@@ -133,7 +133,7 @@ ac_decl:function(l){
 /* 7 V1でエンジンが止まったら：続ければ TODA の中で35ftに、やめれば ASDA の中で止まる */
 ac_go_stop:function(l){
  var W=({ja:{t:'V1でエンジンが止まったら',go:'離陸を続ける：TODAの中で高さ35ftに届く',stop:'離陸をやめる：ASDAの中で止まる',fail:'エンジン停止',note:'この2つが両方成り立つように、重量とV1を決める。滑走路が濡れていると、止まるための距離が長くなる'},
-  ko:{t:'V1에서 엔진이 멈추면',go:'이륙 계속: TODA 안에서 35ft 높이 도달',stop:'이륙 중단: ASDA 안에서 정지',fail:'엔진 정지',note:'이 두 가지가 모두 성립하도록 중량과 V1을 정한다. 활주로가 젖어 있으면 정지 거리가 길어진다'},
+  ko:{t:'V1에서 엔진이 멈추면',go:'이륙을 계속한다: TODA 안에서 높이 35ft에 도달한다',stop:'이륙을 중단한다: ASDA 안에서 정지한다',fail:'엔진 정지',note:'이 두 가지가 모두 성립하도록 중량과 V1을 정한다. 활주로가 젖어 있으면 정지 거리가 길어진다'},
   en:{t:'If an engine fails at V1',go:'Continue: reach 35 ft within the TODA',stop:'Reject: stop within the ASDA',fail:'Engine failure',note:'Weight and V1 are chosen so that both are possible; on a wet runway the stopping distance is longer'}})[l];
  if(!W)return F.ac_go_stop('ja');
  setK(1);
@@ -283,8 +283,8 @@ ac_redund:function(l){
 
 /* 15 地上での防除雪氷：Type I（オレンジ・温かい）で落とし、Type IV（緑・とろみ）で防ぐ。ホールドオーバータイムの中で離陸 */
 ac_deice:function(l){
- var W=({ja:{t:'地上での防除雪氷（デアイシング）',t1:'① Type I：温めた液で雪・氷を落とす',t4:'② Type IV：とろみのある液で、しばらく付かないように守る',hot:'ホールドオーバータイム：防氷効果が続く時間',take:'この時間内に離陸する。過ぎたら再処理する',n:['持続時間は、雪の強さ・気温・液の種類をもとに表で決まる（数分〜数十分）','除雪氷の場所・順番・時間が出発の遅れに直結する。冬は運航管理者・地上係員・整備が連携する']},
-  ko:{t:'지상 방빙·제빙(디아이싱)',t1:'① Type I: 데운 액으로 눈·얼음을 제거한다',t4:'② Type IV: 끈적한 액으로 한동안 붙지 않게 막는다',hot:'홀드오버 타임: 방빙 효과가 지속되는 시간',take:'이 시간 안에 이륙한다. 지나면 재처리한다',n:['지속 시간은 눈의 세기·기온·액 종류로 표에서 정한다(몇 분~수십 분)','제빙 장소·순서·시간이 출발 지연으로 바로 이어진다. 겨울에는 운항관리사·지상 직원·정비가 연계한다']},
+ var W=({ja:{t:'地上での防除雪氷（デアイシング）',t1:'① Type I：温めた液で雪・氷を落とす',t4:'② Type IV：とろみのある液で、しばらく付かないように守る',hot:'ホールドオーバータイム：保護効果が続く時間',take:'この時間内に離陸する。過ぎたら、もう一度処理する',n:['持続時間は、雪の強さ・気温・液の種類をもとに表で決まる（数分〜数十分）','除雪氷の場所・順番・時間が出発の遅れに直結する。冬は運航管理者・地上係員・整備が連携する']},
+  ko:{t:'지상 방빙·제빙(디아이싱)',t1:'① Type I: 데운 액으로 눈·얼음을 제거한다',t4:'② Type IV: 끈적한 액으로 한동안 붙지 않게 막는다',hot:'홀드오버 타임: 보호 효과가 지속되는 시간',take:'이 시간 안에 이륙한다. 지나면 다시 처리한다',n:['지속 시간은 눈의 세기·기온·액 종류로 표에서 정한다(몇 분~수십 분)','제빙 장소·순서·시간이 출발 지연으로 바로 이어진다. 겨울에는 운항관리사·지상 직원·정비가 연계한다']},
   en:{t:'De-icing and anti-icing on the ground',t1:'① Type I: heated fluid removes snow and ice',t4:'② Type IV: thickened fluid keeps it from building up again for a while',hot:'Holdover time: how long the protection lasts',take:'Take off within this time, or treat the aircraft again',n:['Holdover times come from tables based on precipitation, temperature and fluid type (a few minutes to tens of minutes)','De-icing location, sequence and time translate directly into departure delays; in winter, dispatch, ground handling and maintenance work closely together']}})[l];
  if(!W)return F.ac_deice('ja');
  setK(1);var dur=10;
@@ -366,7 +366,7 @@ ac_cg:function(l){
 /* 14-5 ③ 重心の許容範囲（エンベロープ）：ZFW・TOW・LW の3点がすべて枠の中にあること */
 ac_env:function(l){
  var W=({ja:{t:'重さと重心の点が、許容範囲の枠の中にあるか',xa:'重心の位置（%MAC）',ya:'重さ（t）',fw:'前方の限界',af:'後方の限界',pt:['ZFW 62.7t・27％','TOW 71.7t・24％','LW 65.7t・25.5％'],n:['前すぎる：機首が重く、離陸で機首を上げにくい。昇降舵が足りず、燃料も多く使う','後ろすぎる：機体が不安定になり、操縦が難しい。地上では尾部が下がって機体が傾くおそれ','高重量では前方の限界が後ろへ寄り、枠がせまくなる。3つの点がすべて枠の中にあることを確かめる']},
-  ko:{t:'무게와 무게중심의 점이 허용 범위 안에 있는가',xa:'무게중심 위치(%MAC)',ya:'무게(t)',fw:'전방 한계',af:'후방 한계',pt:['ZFW 62.7t·27%','TOW 71.7t·24%','LW 65.7t·25.5%'],n:['너무 앞: 기수가 무거워 이륙 때 들기 어렵다. 승강타 효과가 모자라고 연료도 많이 쓴다','너무 뒤: 기체가 불안정해 조종이 어렵다. 지상에서는 꼬리가 내려가 기체가 기울 수 있다','고중량에서는 전방 한계가 뒤로 이동해 범위가 좁아진다. 세 점이 모두 범위 안에 있는지 확인한다']},
+  ko:{t:'무게와 무게중심의 점이 허용 범위 안에 있는가',xa:'무게중심 위치(%MAC)',ya:'무게(t)',fw:'전방 한계',af:'후방 한계',pt:['ZFW 62.7t·27%','TOW 71.7t·24%','LW 65.7t·25.5%'],n:['너무 앞: 기수가 무거워 이륙 때 기수를 들기 어렵다. 승강타 효과가 모자라고 연료도 많이 쓴다','너무 뒤: 기체가 불안정해 조종이 어렵다. 지상에서는 꼬리가 내려가 기체가 기울 수 있다','고중량에서는 전방 한계가 뒤로 이동해 범위가 좁아진다. 세 점이 모두 범위 안에 있는지 확인한다']},
   en:{t:'Are the weight and CG points inside the envelope?',xa:'CG position (%MAC)',ya:'Weight (t)',fw:'Forward limit',af:'Aft limit',pt:['ZFW 62.7t · 27%','TOW 71.7t · 24%','LW 65.7t · 25.5%'],n:['Too far forward: the nose is heavy and hard to raise on take-off; elevator authority runs short and more fuel is burned','Too far aft: the aircraft becomes unstable and hard to control; on the ground the tail can drop and the aircraft tip','At high weights the forward limit moves aft and the envelope narrows. Check that all three points are inside']}})[l];
  if(!W)return F.ac_env('ja');
  setK(1);

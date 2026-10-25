@@ -173,7 +173,7 @@ sections:[
 ["Is it within the contract?","Is the task outside the handling agreement (SGHA)?"],
 ["Does the system need changing?","Do DCS settings or forms need a help-desk request?"],
 ["Can it be ready in time?","Time for training, notices and materials"]]},
-{t:"note",x:"* If you find a conflict with Japanese rules, do not fix it locally; send it back to planning with the supporting grounds. Head office decides for the whole network."}]},
+{t:"note",x:"* If you find a conflict with Japanese rules, do not fix it locally; send it back to planning with supporting evidence. Head office decides for the whole network."}]},
 {h:"Passing it to the handler",blocks:[{t:"check",items:[
 {name:"Translate into Japanese",x:"Give the original (English or Korean) with a Japanese translation; the station is responsible for the translation."},
 {name:"Show what changes in a table",x:"A before-and-after table reduces misreading."},
@@ -188,7 +188,7 @@ sections:[
 {t:"point",x:"One of the most common audit findings is “the rule exists but the front line does not know it”. The station’s job ends only when it has confirmed the message got through."}]}],
 voice:"When the baggage rules change, make a one-page before-and-after table in Japanese for the handler. Posted at the counter, it keeps questions down even on the morning the change takes effect.",
 terms:[["Operational Instruction","運用の指示","운영 지시"],["Manual Revision","マニュアルの改訂","매뉴얼 개정"],["Station SOP","支店の手順書","지점 표준운영절차"],["Read-and-Sign","確認の署名","확인 서명"],["Document Control","最新版の管理","최신판 관리"]],
-quiz:[{q:"You notice a head-office instruction conflicts with Japanese rules. You…",opts:["Send it back to planning with the supporting grounds","Fix it locally","Use it anyway","Leave it to the handler"],a:0,exp:"Head office decides for the whole network."},
+quiz:[{q:"You notice a head-office instruction conflicts with Japanese rules. You…",opts:["Send it back to planning with supporting evidence","Fix it locally","Use it anyway","Leave it to the handler"],a:0,exp:"Head office decides for the whole network."},
 {q:"What helps when passing changes to the handler?",opts:["A before-and-after table","The original text only","Verbal instructions only","Nothing"],a:0,exp:"Seeing the change at a glance reduces misreading."},
 {q:"What do audits most often find?",opts:["The rule exists but the front line does not know it","Too many rules","Long meetings","Too many notices"],a:0,exp:"The job ends when you have confirmed the message got through."}],
 next:"4-5 Schedule Changes and Seasonal Preparation"});
@@ -289,7 +289,7 @@ quiz:[{q:"What must you always do when reporting a failure to the help desk?",op
 {q:"What matters in deciding to switch to manual processing?",opts:["A time-based rule set in advance","Waiting until it is fixed","Letting passengers decide","No rule"],a:0,exp:"Without a rule the switch comes late and so does the departure."},
 {q:"What do you do after the system is restored?",opts:["Bring manually processed data into the system","Nothing","Throw away the records","Wait until the next day"],a:0,exp:"Only matching data means things are normal."}],
 next:"4-8 Performance Reports, Budgets and Head-Office Audits"});
-set("4-8",{title:"Performance Reports, Budgets and Head-Office Audits",hl:"Head-Office Audits",subtitle:"Report in numbers, explain in numbers, and turn findings into improvements. A station manager’s year is built around this exchange with head office",
+set("4-8",{title:"Performance Reports, Budgets and Head-Office Audits",hl:"Head-Office Audits",subtitle:"Report in numbers, explain in numbers, and turn findings into improvements. A station manager’s year is made up of this exchange with head office",
 lead:["Every month the station reports its operational quality and costs to head office. Once a year it sets a budget and explains the difference from actual results. And head office’s internal auditors come to check that the station works to the rules.","This lesson covers what goes in the monthly report, how to build a budget and explain variances, the annual review, and how to handle a head-office audit. For how to think about costs, see also HR, General Affairs and Finance in Practice 6-1 and 6-2."],
 sections:[
 {h:"Monthly performance report (example)",blocks:[{t:"fig",id:"stn_cycle",cap:"Moving diagram: report, explain, receive findings, improve. The dotted line shows the cycle starting again the next year."},{t:"table",cols:["Item","Content"],rows:[

@@ -31,7 +31,7 @@ quiz:[{q:"When did X-ray screening of cargo become standard in Japan?",opts:["Oc
 {q:"Which is poor warehouse practice?",opts:["Leaving cargo in a CCTV blind spot","Segregating secured cargo","Minimising entrances","Recording screening"],a:0,exp:"Such cargo needs re-screening."}],
 next:"7-2 Destination rules: the US and the EU"});
 set("7-2",{title:"Destination Rules: The United States and the EU",hl:"destination rules",subtitle:"ACAS for the US and ICS2 for the EU: data sent before loading, and high-risk cargo told “do not load”. Security documents and the security-status code on the AWB",
-lead:["Origin-country rules are not enough for international cargo security. The US and the EU receive cargo data before it is loaded onto aircraft bound for them and assess the risk.","This lesson covers the essentials of US ACAS and EU ICS2 and the documents and codes that stations and handlers check."],
+lead:["Origin-country rules are not enough for international cargo security. The US and the EU receive cargo data before it is loaded onto aircraft bound for them and assess the risk.","This lesson covers the essentials of US ACAS and EU ICS2 and the documents and codes stations and handlers must check."],
 sections:[
 {h:"US ACAS",blocks:[{t:"table",cols:["Item","Content"],rows:[
 ["Start","Mandatory from 12 June 2018 (interim final rule), fully enforced after a one-year period"],
@@ -108,7 +108,7 @@ sections:[
 {name:"4 Formal claim",x:"A formal monetary claim is reviewed at head office against insurance and liability limits."}]}]},
 {h:"Records the station keeps",blocks:[{t:"check",items:[
 {name:"Point of discovery",x:"Where, when and by whom: on opening the ULD or at delivery (4-3)."},
-{name:"Photos",x:"Take photos of packaging, labels and the ULD condition where found."},
+{name:"Photos",x:"Photograph the condition of packaging, labels and the ULD where found."},
 {name:"Irregularity report",x:"Complete an IRR and get the consignee’s signature on the damage checklist (6-3)."},
 {name:"Related messages",x:"Keep FFM, UWS and work orders showing build-up and weights."}]},
 {t:"point",x:"Claims are often decided by the record made at the point of discovery. Recording quickly, on the spot and with photos protects both the company and the shipper."}]}],

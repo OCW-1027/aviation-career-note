@@ -121,7 +121,7 @@ next:"8-4 Handling disruptions for direct customers"});
 
 set("8-4",{title:"Handling Disruptions for Direct Customers: Website, Call Centre, Corporate Accounts and Members",hl:"direct customers",subtitle:"In direct sales the airline is the customer’s direct point of contact: informing, changing, refunding and recording are all yours",
 lead:["For tickets sold on your own website, app or call centre, the airline deals with the customer directly. You inform them using the contact details taken at booking, and you handle changes and refunds yourselves. In a disruption, calls pile up at the call centre and customers speak up on social media.",
-"This lesson covers how handling differs between indirect and direct sales, how to inform direct customers, handling corporate clients, members and passengers with special needs, explaining compensation, and an exercise for a typhoon cancelling the next day’s flight."],
+"This lesson covers how handling differs between indirect and direct sales, how to inform direct customers, how to handle corporate clients, members and passengers with special needs, how to explain compensation, and an exercise for a typhoon cancelling the next day’s flight."],
 sections:[
 {h:"Indirect and direct compared",blocks:[{t:"fig",id:"sls_inddir",cap:"Animated figure: in indirect (agency) and direct (airline) sales, who informs the customer and who handles changes and refunds."},{t:"table",cols:["","Indirect (agency)","Direct (airline)"],rows:[
 ["First notice","Airline → agency → customer","Airline → customer (email, SMS, app)"],
