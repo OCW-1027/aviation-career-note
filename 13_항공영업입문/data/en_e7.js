@@ -28,13 +28,13 @@ sections:[
 {name:"Travel agency groups",x:"Large groups use many seats on busy legs; compare with bid prices first (group quotes, 7-6)."},
 {name:"The station’s role",x:"Reporting Japanese holidays, events and competitor moves (4-2) early makes forecasts and bid prices more accurate."}]}]}],
 voice:"Bookings for passengers flying from Japan via Seoul to third countries can be squeezed out by Seoul-only bookings. Passing that connecting demand from the station to head office RM can change how the seats are sold.",
-terms:[["Bid Price","入札価格（ビッドプライス）","입찰 가격(비드 프라이스)"],["Origin and Destination (O&D)","出発地〜目的地","출발지~목적지"],["Displacement","押し出し","밀어내기(대체 손실)"],["Point of Sale (POS)","販売地","판매지"],["Minimum Length of Stay","最低の連泊","최소 숙박일"]],
+terms:[["Bid Price","入札価格（ビッドプライス）","입찰 가격(비드 프라이스)"],["Origin and Destination (O&D)","出発地〜目的地","출발지~목적지"],["Displacement","押し出し","밀어내기(대체 손실)"],["Point of Sale (POS)","販売地","판매지"],["Minimum Length of Stay","最低宿泊日数","최소 숙박 일수"]],
 quiz:[{q:"A ¥55,000 booking arrives for an itinerary whose bid prices sum to ¥63,000. You…",opts:["Accept","Reject","Must accept","Accept without raising the fare"],a:1,exp:"Accept only if the fare is at least the sum of the itinerary’s bid prices. ¥55,000 < ¥63,000, so accepting would give up expected future revenue worth ¥63,000: reject."},
 {q:"What is a bid price?",opts:["Revenue expected to be lost by selling the last seat","The highest fare","Tax","A fee"],a:0,exp:"A bid price is the future revenue expected to be lost by selling the last seat on a leg now — the seat’s value. Sell if the fare exceeds it; refuse if not. It is not the maximum fare or a tax."},
 {q:"How can station sales help bid-price accuracy?",opts:["Report local holidays, events and competitor moves early","Arrange meals","Clean the airport","Nothing"],a:0,exp:"Bid prices come from demand forecasts, so the sooner stations report local holidays, events and competitor moves, the more accurate the forecast and the bid price. Local knowledge the head-office system lacks is exactly what stations can add."}],
 next:"7-6 Dynamic pricing and new ways to sell"});
 set("7-6",{title:"Dynamic Pricing and New Ways to Sell: From Opening Classes to Moving Prices",hl:"dynamic pricing",subtitle:"From fixed fare ladders to prices that move continuously with demand: NDC offers, ancillary bundles, group quotes, and the rules and trust around price display",
-lead:["Traditional RM managed revenue by opening and closing steps on a fixed fare ladder (booking classes). With NDC (2-3), airlines can now build and present their own offers, and prices themselves are moving more finely.","But if customers feel moving prices are unfair, brands lose trust. This lesson covers new pricing approaches, group quotes and the Korean and Japanese rules on price display."],
+lead:["Traditional RM managed revenue by opening and closing steps on a fixed fare ladder (booking classes). With NDC (2-3), airlines can now build and present their own offers, and are moving toward finer variation in the prices themselves.","But if customers feel moving prices are unfair, brands lose trust. This lesson covers new pricing approaches, group quotes and the Korean and Japanese rules on price display."],
 sections:[
 {h:"How pricing is changing",blocks:[{t:"fig",id:"rm_dyn",cap:"Figure: how pricing is changing."},{t:"table",cols:["","Traditional","Emerging"],rows:[
 ["Fares","Choose from fixed steps (classes)","Fine-grained prices that move with demand (continuous pricing)"],
@@ -68,7 +68,7 @@ next:"7-7 By the numbers: metrics and RM meetings"});
 set("7-7",{title:"By the Numbers: Airline and Hotel Metrics and the RM Meeting",hl:"RM metrics",subtitle:"Load factor, yield and RASK; hotel ADR, RevPAR and GOPPAR; and what a weekly RM meeting looks at and decides",
 lead:["RM results cannot be judged by load factor alone or by price alone. The key measure multiplies the two: revenue per unit of capacity offered, RASK for airlines and RevPAR for hotels.","This lesson calculates the main airline and hotel metrics with practice figures and sets out what RM and sales teams review and decide each week."],
 sections:[
-{h:"Airline metrics (practice: 180 seats, 1,000 km)",blocks:[{t:"fig",id:"rm_kpi",cap:"Figure: airline indicators (exercise)."},{t:"table",cols:["Metric","Formula","Calculation","Result"],rows:[
+{h:"Airline metrics (practice: 180 seats, 1,000 km)",blocks:[{t:"fig",id:"rm_kpi",cap:"Figure: airline metrics (practice)."},{t:"table",cols:["Metric","Formula","Calculation","Result"],rows:[
 ["Load factor (LF)","Passengers ÷ seats","153 ÷ 180","85%"],
 ["Yield","Passenger revenue ÷ RPK","¥4,590,000 ÷ (153 × 1,000 km)","¥30 per RPK"],
 ["RASK","Revenue ÷ ASK","¥4,590,000 ÷ (180 × 1,000 km)","¥25.5"],
@@ -117,7 +117,7 @@ sections:[
 {name:"Contracted inventory",x:"Holding airline blocks (3-1) or hotel rooms carries the risk of unsold stock; plan to sell out before release dates."},
 {name:"Early and late pricing",x:"Lock in demand with early-booking discounts, then reprice close in according to remaining stock."},
 {name:"Package pricing",x:"For dynamic packages of flights and hotels, set the total price from the value of each component."},
-{name:"Utilisation",x:"Check block utilisation weekly and release early to keep airline trust."}]}]},
+{name:"Utilisation",x:"Check block utilisation weekly and release early to maintain the airline’s trust."}]}]},
 {h:"Other businesses",blocks:[{t:"table",cols:["Business","Inventory","How RM is used (examples)"],rows:[
 ["Restaurants","Tables × time slots","Set menus and fixed seatings at peak times, discounts off-peak"],
 ["Air cargo","Weight and volume × flights","Balancing long-term allotments and spot sales; managing both weight and volume"],

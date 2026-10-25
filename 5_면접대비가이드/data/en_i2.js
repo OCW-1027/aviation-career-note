@@ -1,7 +1,7 @@
 /* 航空業界の面接対策 — English version (2-2 to 2-5) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("2-2",{title:"Thirty Common Questions",hl:"common questions",subtitle:"Understand why the question is asked, and the shape of the answer follows",
-lead:["Here are the questions most often asked in airport ground staff interviews, thirty of them in six themes. What matters is not memorising model answers but understanding what the interviewer wants to find out with each question — its intent — and answering from your own experience.",
+lead:["Here are the questions most often asked in airport ground staff interviews, thirty of them grouped into six themes. What matters is not memorising model answers but understanding what the interviewer wants to find out with each question — its intent — and answering from your own experience.",
 "The basic shape of an answer is conclusion, then reason or situation, then result or lesson, in about a minute."],
 sections:[
 {h:"About you (5)",blocks:[{t:"fig",id:"int_q30",cap:"Figure: common question areas and intent."},{t:"table",cols:["Question","What the interviewer wants to know"],rows:[
@@ -12,7 +12,7 @@ sections:[
 ["How do you deal with stress?","Tolerance of irregular hours and complaints"]]}]},
 {h:"About your application (5)",blocks:[{t:"table",cols:["Question","What the interviewer wants to know"],rows:[
 ["Why airport work?","Your understanding of the job"],
-["Why this company?","Your understanding of the company and how it differs"],
+["Why this company?","Your understanding of the company and how it differs from other companies"],
 ["Are you applying elsewhere?","How serious you are (be honest, and keep your reasons consistent)"],
 ["What would you like to take on after joining?","Your outlook for growth"],
 ["Where do you see yourself in five years?","Intention to stay, and how you think about your career"]]}]},
@@ -20,7 +20,7 @@ sections:[
 ["Tell us about a time a customer was pleased with you","Concrete service behaviour"],
 ["Tell us about dealing with an angry customer","Composure, listening, how you resolved it"],
 ["What would you do with an unreasonable demand?","The balance between the rules and sincerity"],
-["What do you keep in mind serving international passengers?","Awareness of languages and cultures"],
+["What do you keep in mind when serving international passengers?","Awareness of languages and cultures"],
 ["What matters in assisting passengers with disabilities?","Consideration and the habit of checking"]]}]},
 {h:"Team and rules (5)",blocks:[{t:"table",cols:["Question","What the interviewer wants to know"],rows:[
 ["What did you do when your team disagreed?","The balance between cooperating and speaking up"],
@@ -37,29 +37,29 @@ sections:[
 {h:"Languages and more (5)",blocks:[{t:"table",cols:["Question","What the interviewer wants to know"],rows:[
 ["Please explain this situation in English (or another language)","Language you can actually use (2-4)"],
 ["What aviation news caught your attention?","Interest in the industry"],
-["What have you noticed using airports?","Observation, an eye for improvement"],
+["What have you noticed when using airports?","Observation, an eye for improvement"],
 ["Do you have any questions for us?","Motivation and how well you prepared"],
 ["Is there anything else you would like to say?","Whether you can close in your own words"]]},
 {t:"point",x:"What all thirty have in common is speaking from specific situations. Rather than preparing thirty answers, prepare five experiences you can use and combine them to fit the question. It will sound far more natural."}]}],
 voice:"For common questions, prepare a pattern — one-sentence conclusion plus one example — rather than memorised answers. Then a reworded question will not throw you.",
 terms:[["Intent","意図","의도"],["Strengths and Weaknesses","長所・短所","장점·단점"],["Active Listening","傾聴","경청"],["Unreasonable Demand","理不尽な要求","무리한 요구"],["Assignment","配属","배치"]],
 quiz:[{q:"What is the basic shape of an answer?",opts:["Conclusion, reason or situation, result or lesson","Situation, feeling, conclusion","Apology, conclusion","Anything goes"],a:0,exp:"About a minute."},
-{q:"What does “what if a senior’s instruction contradicted the rules” test?",opts:["Whether you obey seniors","The courage to keep the rules and how you say so","Whether you will change jobs","Stamina"],a:1,exp:"It is a safety judgment."},
+{q:"What does “what if a senior’s instruction contradicted the rules” test?",opts:["Whether you obey seniors","The courage to keep the rules and how you say so","Whether you will change jobs","Stamina"],a:1,exp:"It looks at safety-related judgement."},
 {q:"What is the efficient way to prepare for thirty questions?",opts:["Memorise all thirty","Prepare five experiences and combine them","Do not prepare","Copy model answers"],a:1,exp:"You will sound natural."}],
 next:"2-3 Situational questions: what would you do if…"});
 
-set("2-3",{title:"Situational Questions: What Would You Do If…",hl:"situational questions",subtitle:"There is no single right answer. What is watched is the order in which you think",
-lead:["Airport interviews often ask about specific situations: “A passenger says, just before departure, that they have forgotten their passport. What do you do?” These are designed so that you can answer without experience, and the interviewer is watching the order of your thinking and your priorities more than the content.",
+set("2-3",{title:"Situational Questions: What Would You Do If…",hl:"situational questions",subtitle:"There is no single right answer. What interviewers look for is the order in which you think",
+lead:["Airport interviews often ask about specific situations: “A passenger says, just before departure, that they have forgotten their passport. What do you do?” These are designed so that you can answer without experience, and the interviewer is looking at the order of your thinking and your priorities more than the content.",
 "This article gives a pattern for answering situational questions and the thinking behind eight typical situations."],
 sections:[
-{h:"The pattern: safety, rules, passenger, report",blocks:[{t:"fig",id:"int_order",cap:"Figure: a shape for situational answers."},{t:"ladder",rise:10,steps:[{name:"Safety",sub:"Is there any danger?"},{name:"Rules",sub:"What must be followed?"},{name:"The passenger",sub:"Acknowledge their feelings and look for what you can do"},{name:"Report and consult",sub:"Do not decide alone"},{name:"Record",sub:"Use it next time"}]},
-{t:"point",x:"“I would report to my supervisor and confirm the rule first” scores far higher at an airport than “I would sort it out myself”."}]},
+{h:"The pattern: safety, rules, passenger, report",blocks:[{t:"fig",id:"int_order",cap:"Figure: a pattern for answering situational questions."},{t:"ladder",rise:10,steps:[{name:"Safety",sub:"Is there any danger?"},{name:"Rules",sub:"What must be followed?"},{name:"The passenger",sub:"Acknowledge their feelings and look for what you can do"},{name:"Report and consult",sub:"Do not decide alone"},{name:"Record",sub:"Use it next time"}]},
+{t:"point",x:"“I would report to my supervisor and confirm the rule first” scores higher at an airport than “I would sort it out myself”."}]},
 {h:"Typical situations and how to think about them",blocks:[{t:"table",cols:["Situation","How to think about it"],rows:[
 ["A passenger arrives after the cut-off and insists on boarding","Explain the rule kindly, look together for the next flight or another option, and tell your supervisor"],
 ["A bag is over the weight limit and the passenger refuses to pay","Explain the rule and the charge, and offer options such as repacking"],
 ["A passenger is angry and shouting","Move somewhere quieter, hear them out, establish the facts, and hand over to a supervisor if needed"],
 ["An expired passport is noticed just before departure","Explain that they cannot board, explain how to sort it out, and keep a record"],
-["A pregnant passenger has no medical certificate","Confirm the week of pregnancy and decide by the rules; if unsure, check (Ground Staff 1-6)"],
+["A pregnant passenger has no medical certificate","Confirm how many weeks pregnant she is and decide by the rules; if unsure, check (Ground Staff 1-6)"],
 ["A colleague is giving a passenger wrong information","Correct it gently on the spot and talk to the colleague later; the passenger comes first"],
 ["Passengers crowd round during a delay","Gather the latest information and tell everyone the same thing. Promise nothing you do not know"],
 ["A passenger says there is a power bank in their checked bag","Have them take it out of the checked bag. Safety first (Ground Staff 1-13)"]]}]},
@@ -84,7 +84,7 @@ sections:[
 ["Questions in another language","Self-introduction or motivation in English or another language"],
 ["Checking polite Japanese","For non-native speakers, whether you can use the honorific language of customer service"]]}]},
 {h:"Situations that come up",blocks:[{t:"check",items:[
-{name:"Check-in",x:"Asking for the passport, number of bags, seat preference, directing to the gate with the time."},
+{name:"Check-in",x:"Asking for the passport, number of bags, seat preference, giving the gate and boarding time."},
 {name:"Baggage rules",x:"Excess weight, items not allowed in the cabin, power banks."},
 {name:"Explaining a delay",x:"Apology, reason, new time, meal vouchers."},
 {name:"Directions",x:"Security, the gate, transfers, baggage claim."}]}]},
@@ -121,7 +121,7 @@ sections:[
 {name:"The sound breaks up",x:"Say calmly: “I’m sorry, the sound cut out. Could you say that again, please?”"},
 {name:"The connection drops",x:"Rejoin immediately. If you cannot, call or email the contact you were given."},
 {name:"Have the contact ready",x:"Note the phone number and email for problems before the interview starts."}]},
-{t:"point",x:"What is watched is not the problem but how calmly you handle it — exactly as in airport disruption."}]}],
+{t:"point",x:"What interviewers watch is not the problem itself but how calmly you handle it — exactly as when handling disruption at the airport."}]}],
 voice:"In online interviews, eye line and sound shape the impression. Test camera height, lighting and microphone the day before at the same time of day.",
 terms:[["Online Interview","オンライン面接","온라인 면접"],["Connection Test","接続テスト","접속 테스트"],["Eye Contact","目線","시선"],["Tethering","テザリング","테더링"],["Join / Leave","入室・退室","입실·퇴실"]],
 quiz:[{q:"Where do you look when speaking on screen?",opts:["At the interviewer’s face on screen","At the camera","At your notes","At the ceiling"],a:1,exp:"Looking at the camera reads as eye contact."},
@@ -143,11 +143,11 @@ sections:[
 {name:"Know what is different about Japanese airports",x:"Who runs what (airport companies, handling companies), the CIQ procedures, the level of detail in service (Ground Staff 0-4)."},
 {name:"A learning attitude",x:"Say that you want to learn the Japanese way first and then put your experience to use."},
 {name:"Compare specifically, judge sparingly",x:"Not “it was better at home” but “we did it this way, so I will pick this up quickly”."},
-{name:"If the role changes, show you know the difference",x:"Moving from a ground handler to an airline’s station rep, for example, recast task experience as the ability to check work, decide and report. The interviewer wants someone who can fill the role, not someone who is good at the tasks (4-2)."}]}]},
+{name:"If the role changes, show you know the difference",x:"When moving from a ground handler to an airline’s station rep, for example, recast task experience as the ability to check work, decide and report. The interviewer wants someone who can fill the role, not someone who is good at the tasks (4-2)."}]}]},
 {h:"Explaining why you are moving",blocks:[{t:"check",items:[
 {name:"Forward-looking reasons",x:"“I want to work in Japan connecting the two countries” or “I want to take on a broader role”."},
-{name:"Never criticise your former employer",x:"Even if dissatisfaction is the reason, reframe it as what you want to do next."},
-{name:"Consistency",x:"Your motivation, career plan and reason for moving should form one line."}]},
+{name:"Do not criticise your former employer",x:"Even if dissatisfaction is the reason, reframe it as what you want to do next."},
+{name:"Consistency",x:"Your motivation, career plan and reason for moving should connect consistently."}]},
 {t:"point",x:"Experienced hires are expected to contribute from day one and to be flexible. Show concretely what you can do while respecting the rules of your new workplace."}]}],
 voice:"Experience at airports abroad comes across best as the scale of the same work rather than the country’s name. Give flight counts, team sizes and cases in numbers.",
 terms:[["Experienced Hire","経験者採用","경력직 채용"],["Immediate Contributor","即戦力","즉시 전력"],["Reason for Changing Jobs","転職理由","이직 사유"],["Consistency","一貫性","일관성"],["Beyond Sector","以遠区間","이원 구간"]],
@@ -201,7 +201,7 @@ sections:[
 {h:"Worth doing before you join",blocks:[{t:"rows",items:[
 {name:"Background reading",x:"The company’s routes and aircraft, and airport basics (the Airport Ground Staff series)."},
 {name:"Language",x:"Announcement phrases and how numbers are said (the phrasebook)."},
-{name:"Practical life",x:"Somewhere to live from which you can make early starts, and transport."},
+{name:"Daily life",x:"Somewhere to live from which you can make early starts, and transport."},
 {name:"Documents",x:"The withholding slip from your previous employer, employment insurance papers, copies of your certificates."}]}]}],
 voice:"After an offer, align your start date with the residence-status procedure together with the company. Late paperwork can push back your start date.",
 terms:[["Job Offer","内定","내정"],["Employment Contract","雇用契約","고용 계약"],["Certificate of Eligibility (COE)","在留資格認定証明書","재류자격인정증명서"],["Probation Period","試用期間","수습 기간"],["Residence Card","在留カード","재류카드"]],
@@ -211,14 +211,14 @@ quiz:[{q:"Who applies for the Certificate of Eligibility when you join from abro
 next:"3-4 From the interviewer’s side: what hiring tends to overlook"});
 
 set("3-4",{title:"From the Interviewer’s Side: What Hiring Tends to Overlook",hl:"the interviewer’s side",subtitle:"The hiring side learns a lot too. The smaller the station, the heavier each hire",
-lead:["This article takes the employer’s side. In a small airport station, a single hire shapes the atmosphere and the quality of the whole team. From experience as an interviewer, this article sets out what hiring tends to overlook, and what candidates should look for in a company."],
+lead:["This article takes the employer’s side. In a small airport station, a single hire shapes the atmosphere and the quality of the whole team. Drawing on experience as an interviewer, this article sets out what hiring tends to overlook, and what candidates should look for in a company."],
 sections:[
-{h:"What hiring tends to overlook",blocks:[{t:"fig",id:"int_see",cap:"Figure: what hiring overlooks and what applicants check."},{t:"check",items:[
+{h:"What hiring tends to overlook",blocks:[{t:"fig",id:"int_see",cap:"Figure: what hiring tends to overlook and what candidates look for in a company."},{t:"check",items:[
 {name:"The reality of the commute",x:"Whether the first train gets them in on time for an early shift. Sometimes it only emerges after hiring that they cannot."},
 {name:"Time to train",x:"Whether the hiring date allows for how long it takes someone to become effective."},
 {name:"Fit with the team",x:"In a small team, a cooperative attitude often matters more than skills."},
 {name:"Status of residence",x:"Foreign staff’s expiry dates and the outlook for renewal."},
-{name:"Real language ability",x:"Test scores and usable language differ. Check with role-play."}]}]},
+{name:"Real language ability",x:"Test scores and practical ability on the job differ. Check with role-play."}]}]},
 {h:"What candidates should look for in a company",blocks:[{t:"table",cols:["Point","How to check"],rows:[
 ["Training","How long and what it covers, and whether there is someone to teach you"],
 ["Rostering","How shifts are built, how easy it is to take days off and paid leave"],
@@ -229,11 +229,11 @@ sections:[
 {h:"Looking back",blocks:[{t:"rows",items:[
 {name:"Preparation",x:"Know the interviewer’s view, match the type of company, and present your experience concretely on paper (1-1 to 1-3)."},
 {name:"The interview",x:"A one-minute self-introduction, answers that address the intent, safety then rules then passenger then report, and language you can actually use (2-1 to 2-5)."},
-{name:"Experienced hires and after the offer",x:"Present experience as how it will work here, show managers’ achievements built into systems, and confirm status of residence and terms early (3-1 to 3-3)."}]}]}],
+{name:"Experienced hires and after the offer",x:"Present your experience in terms of how it applies in Japan, for management roles show how you turned practices into systems, and confirm status of residence and terms early (3-1 to 3-3)."}]}]}],
 voice:"People who turn out to be good hires are often those who ask straight away when unsure. Bringing your own questions to the interview is a good sign too.",
 terms:[["Hiring","採用","채용"],["Fit","相性","궁합"],["Training System","教育体制","교육 체계"],["Paid Leave","有給休暇","유급휴가"],["Career Path","キャリアパス","커리어 경로"]],
 quiz:[{q:"What does hiring for a small station tend to overlook?",opts:["The reality of the early commute","The company logo","The weather","Revenue"],a:0,exp:"Check that the first train gets them in."},
-{q:"What is an interview for the candidate?",opts:["Only a place to be chosen","Also a place to choose the company","A place where you cannot ask anything","A formality"],a:1,exp:"Find out whether you could stay."},
+{q:"What is an interview for the candidate?",opts:["Only a place to be chosen","Also a place to choose the company","A place where you cannot ask anything","A formality"],a:1,exp:"Find out whether you could stay for the long term."},
 {q:"What is worth checking about a company?",opts:["Training and career paths","The president’s age","The office rent","The other candidates"],a:0,exp:"Rostering and atmosphere too."}],
 next:"4-1 One consistent story: one conclusion, from past to future"});
 })(window.ARTS);

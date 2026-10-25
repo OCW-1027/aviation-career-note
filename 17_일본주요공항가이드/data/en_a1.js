@@ -30,7 +30,7 @@ sections:[
 ["Scheme","Online authorisation before travel for foreign nationals coming to Japan without a visa (similar to the US ESTA)"],
 ["Who","Short-stay visitors from the 74 visa-exempt countries and territories (tourism, business and similar), plus some cruise passengers and some transit passengers entering temporarily ★"],
 ["Airline duties","Reporting booking data and refusing boarding to passengers without authorisation"],
-["Progress","Cabinet approved the Immigration Control Act amendment on 10 March 2026; the House of Councillors passed it on 29 May and it was promulgated on 5 June (Act No. 32 of 2026), including the creation of JESTA (electronic travel authorization). Commencement dates are set in stages by cabinet order ★"],
+["Progress","Cabinet approved the Immigration Control Act amendment on 10 March 2026; the House of Councillors passed it on 29 May and it was promulgated on 5 June (Act No. 32 of 2026), including the creation of JESTA (electronic travel authorisation). Commencement dates are set in stages by cabinet order ★"],
 ["Start","Targeted during fiscal 2028"],
 ["Fee and validity","Not yet decided ★"]]},
 {t:"point",x:"Korean passports are visa-exempt, so once JESTA starts, passengers flying from Korea to Japan will need authorisation before departure. As with Korea’s K-ETA (Guide to Korea’s Major Airports 0-2), check-in will have more to verify. When the start date and procedures are set, update the station SOP and passenger information at once."}]},
@@ -48,7 +48,7 @@ quiz:[{q:"What should you check first to understand an airport?",opts:["Operator
 next:"1-1 Narita International Airport (NRT)"});
 
 set("1-1",{title:"Narita International Airport (NRT)",hl:"Narita",subtitle:"Tokyo’s international gateway: the operating-hours wall and the runway expansion",
-lead:["Narita handles much of the Tokyo region’s international traffic, cargo and LCCs. It is an inland airport more than 60 km from central Tokyo, and its long history with the surrounding communities means strict commitments on operating hours and flight paths.","This article covers Narita’s basics, what to watch in passenger and handling work, and the ongoing capacity expansion."],
+lead:["Narita handles much of the Tokyo region’s international traffic, cargo and LCCs. It is an inland airport more than 60 km from central Tokyo, and its long history with the surrounding communities means strict commitments on operating hours and flight paths.","This lesson covers Narita’s basics, what to watch in passenger and handling work, and the ongoing capacity expansion."],
 sections:[
 {h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_nrt",cap:"Figure: Narita at a glance: operator, runways, hours and handling notes."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Narita International Airport Corporation (NAA)"],
@@ -57,13 +57,13 @@ sections:[
 ["Terminals","T1 and T2 (major and foreign airlines), T3 (LCCs)"],
 ["Role","The Tokyo region’s hub for international flights and cargo; domestic services are mainly LCC and connecting routes"]]}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
-{name:"The end of operating hours",x:"If a delay threatens to run past closing time, you are pushed to decide on cancelling or departing early. Consult head office and operations control early on any evening delay."},
+{name:"The end of operating hours",x:"If a delay threatens to run past closing time, you are pushed to decide early whether to cancel or depart. Consult head office and operations control early, especially on delays from the evening onward."},
 {name:"Long taxi times",x:"Taxiing from terminal to runway takes a while. Set your cut-offs allowing for the time after door close."},
 {name:"Counter allocation",x:"Terminal counters are allocated each season under the airport’s guidelines. File changes to frequencies or times early."},
 {name:"The BHS",x:"Know the rules for the in-line screening baggage system and the fallback procedure when it fails; take part in the drills."},
 {name:"Committees",x:"Facility and rule changes are shared through the airport-wide AOC and the terminal operating committees."},
 {name:"APU restrictions",x:"APU use on stand is restricted for environmental reasons. Have a procedure for ground power and pre-conditioned air. ★"},
-{name:"De-icing and snow clearance",x:"De-icing is normally done on stand before departure. In heavy snow the runways may be closed alternately for clearance, and there have been past cases of chaos when stands ran out. Before winter, confirm how many units your contractor has and how the queue is set. ★"}]}]},
+{name:"De-icing and snow clearance",x:"De-icing is normally done on stand before departure. In heavy snow the runways may be closed alternately for clearance, and there have been past cases of chaos when stands ran out. Before winter, confirm how many units your contractor has and how the order is decided. ★"}]}]},
 {h:"The capacity expansion",blocks:[{t:"table",cols:["Plan","Status (September 2026)"],rows:[
 ["Runway B extension","From 2,500 m to 3,500 m. The land is secured, and the extension is to open first, within FY2029"],
 ["New Runway C","A 3,500 m runway south of Runway B. About 90% of the land has been acquired; preparations for compulsory purchase have begun and the opening date is undecided"],
@@ -80,7 +80,7 @@ quiz:[{q:"What is Narita aiming to open first, within FY2029?",opts:["The Runway
 next:"1-2 Tokyo International Airport, Haneda (HND)"});
 
 set("1-2",{title:"Tokyo International Airport, Haneda (HND)",hl:"Haneda",subtitle:"Japan’s biggest airport: 24 hours, four runways, and terminals being reshaped",
-lead:["Haneda is Japan’s largest domestic hub and an international airport close to central Tokyo. It has four runways and operates 24 hours, yet its slots are extremely valuable and its terminals are split in three.","This article covers Haneda’s basics, what to watch in passenger and handling work, and the terminal reshaping planned into the 2030s."],
+lead:["Haneda is Japan’s largest domestic hub and an international airport close to central Tokyo. It has four runways and operates 24 hours, yet its slots are extremely valuable and its terminals are split into three.","This article covers Haneda’s basics, what to watch in passenger and handling work, and the terminal reshaping planned into the 2030s."],
 sections:[
 {h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_hnd",cap:"Figure: Haneda at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","The state runs the runways and air traffic control; Japan Airport Terminal runs T1 and T2; Tokyo International Air Terminal runs T3"],
@@ -94,9 +94,9 @@ sections:[
 {name:"Late-night and early-morning flights",x:"Ground transport is limited at those hours. Plan how passengers will get away if a flight is delayed or cancelled."},
 {name:"Preventing runway incursions",x:"After the runway collision in January 2024, ATC communication and runway-entry safeguards were tightened. Ramp staff need to learn the latest rules too. ★"},
 {name:"Constant works",x:"New satellites and apron renewals keep coming. Check every notice of stand and route changes."},
-{name:"De-icing",x:"Normally done on stand before departure. With so many flights, snow days quickly spread delays through the de-icing queue and runway clearance. Dyed fluids since the 2023 winter schedule. ★"}]}]},
+{name:"De-icing",x:"Normally done on stand before departure. With so many flights, delays spread quickly on snow days because of de-icing queues and runway snow clearance. Dyed fluids since the 2023 winter schedule. ★"}]}]},
 {h:"Future plans",blocks:[{t:"table",cols:["Plan","Expected timing (September 2026)"],rows:[
-["T1 north satellite","Around summer 2026: six stands with boarding bridges"],
+["T1 north satellite","Opening around summer 2026; six stands with boarding bridges"],
 ["T2 north satellite extension","Around spring 2027"],
 ["International flights at T1","Studies now under way (possibly in the 2030s)"],
 ["Linking T1 and T2","A deck built over the expressway with new stands and a connecting concourse; possibly the early 2030s"],

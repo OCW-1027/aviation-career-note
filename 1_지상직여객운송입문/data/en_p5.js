@@ -29,10 +29,10 @@ quiz:[{q:"Who is normally responsible for returning an inadmissible passenger?",
 {q:"What usually happens to the passport on the return flight?",opts:["The passenger keeps it","It is given to the senior cabin crew","It is destroyed","It is posted"],a:1,exp:"The crew carry it and hand it over at the departure station."}],
 next:"5-2 Check-in errors, duplicates and wrong tags"});
 
-set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in errors","subtitle":"Mistakes will happen. Systems that catch them and a culture of reporting at once keep the damage small",
+set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in errors","subtitle":"Mistakes will happen. Systems that catch them and a culture of prompt reporting keep the damage small",
 "lead":["Checking a passenger in under someone else’s name, checking the same passenger in twice, printing a bag tag for the wrong destination: check-in mistakes affect numbers, weights, documents and security alike. Confusing passengers with the same name can even lead to fraudulent boarding.","This lesson covers the main types of mistake and their effects, the systems that catch them, what to do for each, and habits that prevent them."],
 "sections":[
-{"h":"The main mistakes and their effects","blocks":[{"t":"table","cols":["Mistake","What happens"],"rows":[["Checking in the wrong person (mis-check-in)","The passenger list, documents and security records do not match. The real passenger cannot check in"],["Duplicate check-in","The number is counted too high, causing errors in weight and seats"],["Duplicate tags","Two tags with the same number, so the bags cannot be traced"],["Wrong destination on the tag","The bag goes to another airport"],["Tag coming off (tag off)","A bag whose owner cannot be identified"],["Seat assigned twice","Two people for the same seat on board"]]}]},
+{"h":"The main mistakes and their effects","blocks":[{"t":"table","cols":["Mistake","What happens"],"rows":[["Checking in the wrong person (mis-check-in)","The passenger list, documents and security records do not match. The real passenger cannot check in"],["Duplicate check-in","The passenger count comes out too high, causing errors in weight and seats"],["Duplicate tags","Two tags with the same number, so the bags cannot be traced"],["Wrong destination on the tag","The bag may be sent to the wrong airport"],["Tag coming off (tag off)","A bag whose owner cannot be identified"],["Seat assigned twice","More than one passenger assigned to the same seat on board"]]}]},
 {"h":"Systems that catch mistakes","blocks":[{"t":"fig","id":"gnd_layers","cap":"Animated figure: mistakes (red dots) are stopped by one of the layered checks. No single check catches them all."},{"t":"rows","items":[
 {"name":"Search by booking reference (PNR)","x":"Do not search by name. Always ask the passenger for the booking reference (PNR) and retrieve the booking with it. Once the PNR identifies the booking, move on to the identity check."},
 {"name":"Let the passenger say their name","x":"After retrieving the PNR, ask the passenger to say their name and check it against the passport and the booking. Do not read the name out and wait for a “yes”."},
@@ -40,8 +40,8 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 {"name":"Boarding pass reader warnings","x":"Warnings such as “already boarded” or “other flight” reveal duplicate or wrong boarding (lesson 2-4)."},
 {"name":"Reconciling numbers","x":"Reconcile the number checked in with the number on board before closing the door (lesson 2-7)."},
 {"name":"Baggage reconciliation","x":"Match the bags loaded against the passengers on board."}]}]},
-{"h":"What to do for each mistake","blocks":[{"t":"table","cols":["Mistake","What to do"],"rows":[["Mis-check-in","Recover and cancel the wrong boarding pass and tags. Check in the right passenger again. If already boarded or loaded, check with the cabin and ramp"],["Duplicate check-in","Cancel the duplicate and recover the boarding pass. Correct the numbers and the loadsheet"],["Duplicate tags","Identify both bags and replace with new tags. Correct the system record"],["Wrong destination on the tag","If before loading, replace it. If after departure, contact the destination and transfer points and ask them to forward it"],["Tag off","Find the owner from the contents and records (lesson 4-3). If not found, register it as a left-behind bag"],["Seat assigned twice","If found at the gate, reassign the seat and tell the cabin"]]},
-{"t":"point","warn":true,"x":"If someone has boarded on a boarding pass that passed to the wrong person, treat it as a security matter. Tell the purser so it can be checked, and contact the authorities if needed."}]},
+{"h":"What to do for each mistake","blocks":[{"t":"table","cols":["Mistake","What to do"],"rows":[["Mis-check-in","Recover and cancel the wrong boarding pass and tags. Check in the right passenger again. If already boarded or loaded, check with the cabin and ramp"],["Duplicate check-in","Cancel the duplicate and recover the boarding pass. Correct the numbers and the loadsheet"],["Duplicate tags","Identify both bags and replace them with new tags. Correct the system record"],["Wrong destination on the tag","If before loading, replace it. If after departure, contact the destination and transfer points and ask them to forward it"],["Tag off","Find the owner from the contents and records (lesson 4-3). If not found, register it as a left-behind bag"],["Seat assigned twice","If found at the gate, reassign the seat and tell the cabin"]]},
+{"t":"point","warn":true,"x":"If someone has boarded on a boarding pass that was given to the wrong person, treat it as a security matter. Tell the purser so it can be checked, and contact the authorities if needed."}]},
 {"h":"Habits that prevent mistakes","blocks":[{"t":"check","items":[
 {"name":"PNR, then name, then passport","x":"Retrieve by booking reference (PNR), have the passenger say their name, then check the passport. Keep to this order every time."},
 {"name":"Confirm out loud","x":"Confirm the destination and flight aloud together with the passenger."},
@@ -49,7 +49,7 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 {"name":"Finish one passenger at a time","x":"Clear the previous passenger’s documents and tags before calling the next. Do not spread several passengers’ documents across the counter."},
 {"name":"Group check-in","x":"Count the number of people and tags again at the end."},
 {"name":"Report as soon as you know","x":"Do not hide mistakes; tell a senior member of staff and the ramp straight away."}]},
-{"t":"point","x":"Building a culture where people can report at once, rather than blaming mistakes, is the best way to keep incidents small. It is the same principle as safety reporting (lesson 3-5)."}]}],
+{"t":"point","x":"Building a culture where people can report straight away, rather than blaming mistakes, is the best way to keep incidents small. It is the same principle as safety reporting (lesson 3-5)."}]}],
 "voice":"Searching by name causes mix-ups between passengers with the same or similar names. Always retrieve the booking by PNR; once it matches, have the passenger say their name and check it against the passport. That order is the most reliable.",
 "terms":[["Mis-check-in","ミスチェックイン","잘못된 체크인"],["Duplicate Check-in","二重チェックイン","중복 체크인"],["Duplicate Tag","タグの重複","중복 태그"],["Tag Off","タグオフ","태그 탈락"],["Same Name Passengers","同姓同名","동명이인"],["Baggage Reconciliation","手荷物照合","수하물 대조"]],
 "quiz":[{"q":"What is the most reliable way to link a passenger to the right booking at check-in?","opts":["Search by name and ask “You are Mr/Ms X, aren’t you?”","Retrieve by booking reference (PNR); if it matches, have them say their name and check the passport","Ask only the surname","Just look at the boarding pass"],"a":1,"exp":"The PNR identifies the booking; then have them say their name and check it against the passport."},
@@ -57,33 +57,33 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 {"q":"Which is not a habit that prevents mistakes?","opts":["Confirming out loud","Spreading several passengers’ documents out at once","Checking the destination before attaching the tag","Reporting at once"],"a":1,"exp":"Finish one passenger at a time."}],
 "next":"5-3 Medical emergencies and injuries on board: what the ground does"});
 
-set("5-3",{title:"Medical Emergencies and Injuries on Board: What the Ground Does",hl:"medical emergencies",subtitle:"From the captain’s call to touchdown, line up medical care, immigration and the family",
-lead:["A passenger collapses in flight, is scalded, or is injured in turbulence. It happens on board, but preparing for what comes after landing is ground work. From the moment the captain’s message arrives, the time to touchdown is what you have.",
-"This article covers what the ground does for each type of case, what to prepare at the arrival station, the principles when a passenger dies on board, and the records and reporting."],
+set("5-3",{title:"Medical Emergencies and Injuries on Board: What the Ground Does",hl:"medical emergencies",subtitle:"From the captain’s call to touchdown, line up medical care, immigration and contact with the family",
+lead:["A passenger collapses in flight, is scalded, or is injured in turbulence. It happens on board, but preparing for what comes after landing is the ground’s job. From the moment the captain’s message arrives, the time until touchdown is what counts.",
+"This lesson covers what the ground does for each type of case, what to prepare at the arrival station, the principles when a passenger dies on board, and the records and reporting."],
 sections:[
 {h:"Types of case and the ground response",blocks:[{t:"fig",id:"gnd_med",cap:"Animated figure: for each type of incident on board, the ground preparation at the arrival station lights up in turn."},{t:"table",cols:["Case","Main ground response"],rows:[
 ["Sudden illness","Confirm the symptoms and have the airport medical team or an ambulance standing by; contact quarantine if needed"],
 ["Scald from a hot drink","Confirm the extent in advance and decide on medical standby; hospital if serious"],
-["Item falling from an overhead bin","The same. If overloading by a passenger caused it, offer to accompany them to hospital and mediate between the parties"],
+["Item falling from an overhead bin","The same. If overloading by a passenger caused it, ask the owner to go to hospital with the injured passenger and mediate between the parties"],
 ["Turbulence injuries","Injuries can be as serious as spinal fractures, so have an ambulance standing by for immediate transfer"]]}]},
 {h:"What to prepare at the arrival station",blocks:[{t:"check",items:[
 {name:"Gather the facts",x:"Flight, arrival time, the passenger’s name, nationality, age and seat, the symptoms, who is travelling with them, and what was done on board."},
-{name:"Medical standby",x:"Airport clinic, ambulance, paramedics. Arrange with the airport whether they can come to the aircraft."},
+{name:"Medical standby",x:"Airport clinic, ambulance, paramedics. Check with the airport whether they can come right up to the aircraft."},
 {name:"Border formalities",x:"If an emergency transfer is needed, contact immigration, customs, quarantine and the other agencies concerned, and coordinate the necessary formalities under the airport’s emergency procedures."},
-{name:"Family and companions",x:"Look after companions. Contact the family with regard to the passenger’s condition, privacy and the company’s emergency procedures. Where needed, consider working with the consulate."},
+{name:"Family and companions",x:"Look after companions. Contact the family taking into account the passenger’s condition, privacy and the company’s emergency procedures. Where needed, consider working with the consulate."},
 {name:"Baggage",x:"Prioritise unloading their checked bags and hand them to the passenger or their companion."},
 {name:"Order of disembarkation",x:"Agree with the cabin whether the patient leaves first or after the other passengers."}]}]},
 {h:"If a passenger dies on board",blocks:[{t:"rows",items:[
 {name:"Restrict information",x:"Give information only to the defined recipients and the press officer."},
 {name:"The reporting line",x:"An example reporting chain: senior cabin crew, captain, operations and the arrival station, the responsible department at head office, then executives and the authorities (the order and recipients follow each airline’s emergency procedures)."},
 {name:"On board",x:"Preserve the scene and, if necessary, move other passengers away. After landing, disembarkation may be held until the station manager gives instructions."},
-{name:"At the arrival station",x:"Notify the police, quarantine, medical services and customs so the scene can be examined, then arrange transfer to hospital. Speak with the family carefully about arrangements."},
+{name:"At the arrival station",x:"Notify the police, quarantine, medical services and customs so the scene can be examined, then arrange transfer to hospital. Contact the family and discuss the handling of the remains with care."},
 {name:"Documents",x:"Check what is needed for transporting the remains and for the funeral: confirmation of death, the death certificate, embalming documents and so on."}]},
-{t:"point",x:"Many airlines will support the family regardless of liability: return tickets, transport of the remains, accommodation locally. Where an infectious disease is suspected, follow the quarantine authority’s instructions."}]},
+{t:"point",x:"Some airlines have rules to support the family regardless of liability: return tickets, transport of the remains, accommodation locally. Where an infectious disease is suspected, follow the quarantine authority’s instructions."}]},
 {h:"Records and reporting",blocks:[{t:"check",items:[
 {name:"The captain’s report",x:"The captain files a report, which goes to the authorities through the company’s safety department."},
-{name:"The ground record",x:"Log the time you were notified, what you arranged and how things developed after arrival, in order."},
-{name:"Costs",x:"Record how medical costs were handled, ready for the rules and any later discussion of compensation, and share it with the departments concerned."}]}]}],
+{name:"The ground record",x:"Log the time you were notified, what you arranged and how things developed after arrival, in time order."},
+{name:"Costs",x:"Record how medical costs were handled, in line with the rules and in preparation for any later discussion of compensation, and share it with the departments concerned."}]}]}],
 voice:"When told of a medical emergency on board, you need ambulance, gate, wheelchair and other departments moving before arrival. Keep the order of calls on one page.",
 terms:[["Medical Emergency","急病人","응급 환자"],["Turbulence","タービュランス","난기류"],["Ambulance","救急車","구급차"],["Quarantine","検疫","검역"],["Captain’s Report","機長報告書","기장 보고서"],["Human Remains (HUM)","ご遺体の輸送","유해 운송"]],
 quiz:[{q:"You are told of injuries from turbulence. What do you do?",opts:["Deal with it after arrival","Have an ambulance standing by in advance","Ask the passenger to walk","Handle it tomorrow"],a:1,exp:"Injuries can be serious, so arrange standby before landing."},
@@ -123,17 +123,17 @@ sections:[
 {h:"Explaining the reason",blocks:[{t:"rows",items:[
 {name:"Air traffic control",x:"Explain that it is a necessary measure taken by the airport or the authorities for safe operations."},
 {name:"Maintenance",x:"Explain that it is an unavoidable measure taken for safe operations."},
-{name:"The principle",x:"Accurate and straightforward, without jargon or words that alarm people. Share the same wording with the crew."}]},
+{name:"The principle",x:"Accurate and straightforward, without jargon or words that unnecessarily alarm people. Share the same wording with the crew."}]},
 {t:"point",x:"Delay certificates are often needed for insurance or an employer. Make sure staff can explain how to obtain one, at the counter or online."}]}],
 voice:"What calms the counter on a long-delay day is regular updates. Even with no news, give the current situation and the time of the next update at set intervals.",
 terms:[["Delay","遅延","지연"],["Meal Voucher","食事券","식사 쿠폰"],["Delay Certificate","遅延証明書","지연 증명서"],["Hotel Accommodation","宿泊","숙박"],["Force Majeure","不可抗力","불가항력"],["Air Traffic Control (ATC)","航空管制","항공교통관제"]],
 quiz:[{q:"What makes passengers angriest during a delay?",opts:["The delay itself","Being told nothing","The weather","The aircraft type"],a:1,exp:"Lack of information is what drives frustration."},
-{q:"What do you do when no departure time can be fixed?",opts:["Nothing","Keep updating at a set interval, such as every 15–30 minutes","Announce once an hour only","Wait until it is fixed"],a:1,exp:"Keep the updates coming at the promised interval."},
+{q:"What do you do when no departure time can be fixed?",opts:["Nothing","Keep updating at a set interval, such as every 15–30 minutes","Announce once an hour only","Wait until it is fixed"],a:1,exp:"Keep the updates coming at the set interval."},
 {q:"How do you explain a maintenance delay?",opts:["Describe the fault in detail","Say it is an unavoidable measure for safety","Give no reason","Blame the passengers"],a:1,exp:"Accurate, and without alarming people."}],
 next:"5-5 Diversions"});
 
-set("5-5",{title:"Diversions",hl:"diversions",subtitle:"You may land where your airline has no station. The plan you wrote in advance decides how it goes",
-lead:["Weather, a medical emergency or a technical problem can mean an aircraft cannot land at its destination and goes to another airport (a diversion), or returns to where it started (a return). Where it lands may well be an airport where your airline has no station.","This article covers the difference between landing at your own station and elsewhere, what happens to the passengers on board, and what each diversion airport’s plan should contain."],
+set("5-5",{title:"Diversions",hl:"diversions",subtitle:"You may land where your airline has no station. Procedures prepared in advance are the key",
+lead:["Weather, a medical emergency or a technical problem can mean an aircraft cannot land at its destination and goes to another airport (a diversion), or returns to where it started (a return). Where it lands may well be an airport where your airline has no station.","This lesson covers the difference between landing at an airport with your own station and one without, what happens to the passengers on board, and what each diversion airport’s plan should contain."],
 sections:[
 {h:"Diversion and return",blocks:[{t:"cards",n:2,items:[
 {ic:"🛬",name:"Diversion",tag:"Diversion",x:"Unable to land at the destination, the flight lands at an alternate or intermediate airport."},
@@ -148,7 +148,7 @@ sections:[
 {name:"Waiting outside",x:"Where local conditions allow, the station manager may let passengers clear immigration and wait outside the airport."},
 {name:"Passengers who want to enter here",x:"They may be allowed to clear immigration locally, on condition that their checked bags are delivered at the original destination."},
 {name:"Resuming the flight",x:"Crew duty limits may mean the flight cannot continue that day, in which case switch to accommodation and rebooking."}]},
-{t:"point",warn:true,x:"In a diversion, passengers, baggage, cargo and crew all move at once. Agree at the outset who decides what, between the station, operations and the handling company."}]},
+{t:"point",warn:true,x:"In a diversion, you handle passengers, baggage, cargo and crew all at once. Agree at the outset who decides what, between the station, operations control and the handling company."}]},
 {h:"The plan to prepare in advance",blocks:[{t:"check",items:[
 {name:"Who is responsible",x:"Which station covers each diversion airport, and what the handling company does."},
 {name:"Emergency contacts",x:"Staff, handling company, airport and authorities."},
@@ -170,30 +170,30 @@ quiz:[{q:"What is it called when a flight goes back to where it started?",opts:[
 {q:"What should be prepared before a diversion happens?",opts:["Nothing","A plan for each alternate airport","A poster","A menu"],a:1,exp:"Contacts, procedures, equipment and service suppliers."}],
 next:"5-6 Cancellations: rebooking, endorsement, compensation and claims"});
 
-set("5-6",{title:"Cancellations: Rebooking, Endorsement, Compensation and Claims",hl:"cancellations",subtitle:"Rebuilding hundreds of itineraries with limited time and limited seats",
-lead:["When a flight is cancelled, a crowd arrives at the counter at once. Every itinerary has to be rebuilt, hotels and transport arranged, and compensation and complaints taken.","This article covers what happens when a cancellation is confirmed, the rebooking options, connections affected by a late or cancelled inbound, what happens to the catering, and how complaints and redress claims are received."],
+set("5-6",{title:"Cancellations: Rebooking, Endorsement, Compensation and Claims",hl:"cancellations",subtitle:"Rebuilding many passengers’ itineraries with limited time and limited seats",
+lead:["When a flight is cancelled, a crowd arrives at the counter at once. Every itinerary has to be rebuilt, hotels and transport arranged, and compensation and complaints handled.","This article covers what happens when a cancellation is confirmed, the rebooking options, connections affected by a late or cancelled inbound, what happens to the catering, and how complaints and redress claims are received."],
 sections:[
 {h:"When a cancellation is confirmed",blocks:[{t:"ladder",rise:10,steps:[{name:"Confirm the facts",sub:"Cause, alternative flights, when operations resume"},{name:"Brief",sub:"So every member of staff says the same thing"},{name:"Inform",sub:"Announcements and individual contact"},{name:"Rebook",sub:"To an agreed priority"},{name:"Hotels and transport",sub:"For those who need them"},{name:"Baggage",sub:"Return the offloaded bags"}]},
-{t:"point",x:"Check first on passengers needing particular care: unaccompanied minors, those who are unwell, wheelchair users, elderly passengers and families with infants."}]},
+{t:"point",x:"Check first on passengers needing particular care: unaccompanied minors, those who are unwell, wheelchair users, elderly passengers and families with infants, and give them priority."}]},
 {h:"Rebooking options",blocks:[{t:"fig",id:"gnd_reacc",cap:"Animated figure: the four re-accommodation options light up in turn."},{t:"table",cols:["Option","What it means"],rows:[
 ["Your own next flight","The most common. Allocated by available seats and priority"],
 ["Endorsement to another airline","Putting the passenger on a carrier you have an agreement with"],
 ["Rerouting","Reaching the final destination through a different connecting point"],
-["Refund","For passengers who abandon the trip. Normally without a fee when the airline cancelled"]]}]},
+["Refund","For passengers who abandon the trip. Normally without a fee when the airline cancels for its own reasons"]]}]},
 {h:"Inbound flights and connections",blocks:[{t:"check",items:[
 {name:"Check the inbound",x:"Use what the departure station sends and tell passengers the arrival will be late."},
 {name:"Passengers who will miss the connection",x:"Rebook them on an alternative flight."},
 {name:"If there is nothing that day",x:"Accommodation may be provided at the airline’s expense."}]}]},
 {h:"What happens to the catering",blocks:[{t:"rows",items:[
 {name:"Before it is loaded",x:"The station manager decides with the caterer whether to load it."},
-{name:"After it is loaded",x:"The senior cabin crew makes the final decision on whether it can be served."},
+{name:"After it is loaded",x:"The senior cabin crew member makes the final decision on whether it can be served."},
 {name:"How long catering keeps",x:"Shelf life is set by the caterer’s and the airline’s hygiene standards. Refrigerated before loading, it is typically two to three days from production (hot and cold meals differ); once loaded, many standards call for consumption within a few hours. Catering that has been offloaded is not reused."}]}]},
 {h:"Taking complaints and redress claims",blocks:[{t:"check",items:[
-{name:"How to listen",x:"Listen to the end, carefully, and never look indifferent. If you cannot answer now, agree to come back to them promptly."},
-{name:"Clear fault on our side",x:"Establish the facts, explain what has been confirmed honestly, and refer questions of liability to the department responsible."},
+{name:"How to listen",x:"Listen to the end, carefully, and avoid appearing indifferent. If you cannot answer now, agree to come back to them promptly."},
+{name:"Clear fault on our side",x:"Establish the facts, honestly explain what has been confirmed, and refer questions of liability to the department responsible."},
 {name:"How claims are received",x:"In writing or online as a rule. If taken verbally, write it up and have the passenger check and sign it."},
-{name:"What you need",x:"Name, address and contacts, the booked and actual itinerary, when and where what happened, the ticket, and evidence of the loss."},
-{name:"Processing",x:"Where the airline is liable, calculate the loss, obtain a settlement and receipt and pay. Where it is not, decline in writing with reasons the passenger can follow. Amounts above the station’s authority go to head office."}]},
+{name:"What you need",x:"Name, address and contact details, the booked and actual itinerary, when, where and what happened, the ticket, and evidence of the loss."},
+{name:"Processing",x:"Where the airline is liable, calculate the loss, obtain a settlement and receipt and pay. Where it is not, decline in writing with reasons the passenger can follow. Amounts above the station’s authority require head office approval."}]},
 {t:"point",x:"Some countries require airlines to run a passenger redress desk at the airport for cancellations and delays, lost or damaged baggage, denied boarding and late refunds, with a set processing period and a link to the national consumer agency (Korea: Aviation Business Act Art. 61, result within 14 days of receipt, or within 60 days for special reasons such as translation; otherwise, or at the passenger’s request, the claim goes to the Korea Consumer Agency). Know what applies on your routes. ★"}]},
 {h:"Practical wisdom: cancellations known in advance and on the day",blocks:[{t:"table",cols:["","Cancellation known in advance","Cancellation on the day (before departure, ramp return, diversion)"],rows:[
 ["Airport","Contact passengers (SMS, email, messaging apps); notices to the handler and CIQ","Often caused by maintenance, so also check things such as customs clearance for parts. Split staff to handle alternative seats, hotels, duty-free refunds and so on at the same time"],
@@ -204,7 +204,7 @@ sections:[
 {name:"Higher classes",x:"Agree with head office in advance before moving higher-class passengers to other airlines."},
 {name:"Settling afterwards",x:"For meal vouchers, hotels, buses and other airlines’ tickets, attach the report, go through the spending procedure, and sort vouchers and payments by supplier."}]},
 {t:"point",x:"From the moment a cancellation is decided, work in three directions at once: the airport, sales and the authorities. Decide who does what in normal times and keep a list of contacts."}]}],
-voice:"Mass rebooking goes faster when passengers are grouped. Handle connections, special passengers and groups first, then rebook the rest in bulk and finish with individual notices.",
+voice:"Mass rebooking goes faster when passengers are grouped by their circumstances. Handle connections, special passengers and groups first, then rebook the rest in bulk and finish with individual notices.",
 terms:[["Cancellation","欠航","결항"],["Rebooking","振り替え","재예약"],["Endorsement","エンドース","엔도스"],["Refund","払い戻し","환불"],["Passenger Claim","苦情","클레임"],["Consumer Redress","被害救済","피해구제"]],
 quiz:[{q:"Whose situation do you check first when a flight is cancelled?",opts:["Only top-tier members","Unaccompanied minors, unwell passengers, wheelchair users and others needing care","Whoever arrives last","Groups"],a:1,exp:"Those needing particular care come first."},
 {q:"What happens to catering that has been offloaded?",opts:["Load it again","It is not reused","Hand it to passengers","Use it tomorrow"],a:1,exp:"For hygiene reasons it is not reused."},
@@ -212,25 +212,25 @@ quiz:[{q:"Whose situation do you check first when a flight is cancelled?",opts:[
 next:"5-7 Tarmac delays"});
 
 set("5-7",{title:"Tarmac Delays",hl:"tarmac delays",subtitle:"Time spent on the ground with the door closed has legal limits and reporting duties in some countries",
-lead:["When passengers are kept on board on the ground for a long time, before departure or after arrival, it is called a tarmac delay. Passengers cannot leave, and anxiety and frustration build quickly. Several countries therefore set limits on the waiting time and duties to keep passengers informed.","This article covers examples of those rules, the criteria for letting passengers off, what the ground provides, and the reporting and records."],
+lead:["When passengers are kept on board on the ground for a long time, before departure or after arrival, it is called a tarmac delay. Passengers cannot leave, and anxiety and frustration build quickly. Several countries therefore set limits on the waiting time and duties to keep passengers informed.","This lesson covers examples of those rules, the criteria for letting passengers off, what ground staff provide, and reporting and record-keeping."],
 sections:[
 {h:"Examples of national rules",blocks:[{t:"table",cols:["Country","Main rule (example)"],rows:[
 ["Korea","No tarmac delay beyond 3 hours domestic or 4 hours international (with safety, security and airport-operation exceptions). Update passengers every 30 minutes on the reason and the situation. Beyond 2 hours, provide food and drink and report without delay to the ministry (regional aviation office) (Aviation Business Act Art. 61-2, checked October 2026)"],
 ["United States","Departing flights must begin moving to a place where passengers can deplane before 3 hours domestic or 4 hours international; arriving flights must offer the chance to deplane within those times (with safety, security and ATC exceptions). Food and water by the 2-hour point, working lavatories, and medical attention if needed"],
 ["EU","No specific tarmac limit, but compensation and assistance rules apply to delays overall"],
 ["Japan","No single statutory limit; airlines apply their own standards"]]},
-{t:"note",x:"* Exceptions apply, for example where the captain judges that staying out is necessary for safety or security, or where the authorities judge that returning to the gate would seriously disrupt airport operations. Check the current rules. ★"}]},
+{t:"note",x:"* Exceptions apply, for example where the captain judges that remaining on the tarmac is necessary for safety or security, or where the authorities judge that returning to the gate would seriously disrupt airport operations. Check the current rules. ★"}]},
 {h:"When passengers are let off (example; differs by country and airline)",blocks:[{t:"fig",id:"gnd_tarmac",cap:"Animated figure: an arrow moves along the time since door close, marking updates, food and drink, and limits. Examples of national rules."},{t:"table",cols:["Waiting time","What happens"],rows:[
 ["Up to the airline’s own limit (for example 2–3 hours)","Passengers normally stay on board; some airlines let them move between the aircraft and a waiting area"],
 ["Before the national limit","Passengers are normally disembarked before the legal limit is reached (some countries set 3 hours domestic and 4 hours international)"]]}]},
-{h:"What the ground provides",blocks:[{t:"check",items:[
+{h:"What ground staff provide",blocks:[{t:"check",items:[
 {name:"Information",x:"Keep in contact with operations and the captain and pass the cause and outlook to the cabin, so updates can continue at the agreed interval."},
 {name:"Food and water",x:"If what is on board runs short, send out more water and snacks."},
 {name:"Lavatories and air conditioning",x:"Service the lavatories and arrange ground power and an air conditioning unit."},
 {name:"Medical",x:"Look after anyone unwell and have medical help standing by."},
 {name:"Getting back to a gate",x:"Secure a stand and a bridge, steps or buses, and the staff. Check the immigration and security handling for disembarking."},
 {name:"Passengers who get off",x:"Where they wait, how they reboard, and what happens to their bags."}]},
-{t:"point",warn:true,x:"Handling a long tarmac delay needs people and equipment. The rules also require you to have the resources to carry out your contingency plan. Decide in advance how you will staff a night or a day of bad weather."}]},
+{t:"point",warn:true,x:"Handling a long tarmac delay needs people and equipment. The rules also require you to have the resources to carry out your contingency plan. Decide in advance how you will respond at night or in bad weather."}]},
 {h:"Reporting and records",blocks:[{t:"rows",items:[
 {name:"What to record",x:"The reference start and end times of the wait, its length, the cause, and what was done for passengers (announcements, food and drink, chances to deplane), recorded as the applicable rules require."},
 {name:"Reporting",x:"Report to the authority as the rules require (in Korea after 2 hours, to the ministry via the regional aviation office; in the United States, the Department of Transportation)."},
@@ -239,6 +239,6 @@ voice:"During a long tarmac delay, the ground supports water, snacks, toilets an
 terms:[["Tarmac Delay","ターマックディレイ","기내 장시간 대기"],["Movement Area","移動地域","이동지역"],["Ground Power Unit (GPU)","地上電源","지상 전원"],["Pre-conditioned Air (PCA)","空調車","냉난방 차량"],["Contingency Plan","非常計画","비상 계획"],["Regional Office of Aviation","地方航空庁","지방항공청"]],
 quiz:[{q:"In Korea, what is the limit for an international tarmac delay (exceptions aside)?",opts:["2 hours","3 hours","4 hours","6 hours"],a:2,exp:"Three hours domestic, four hours international."},
 {q:"How often must passengers be updated under that rule?",opts:["Every 5 minutes","Every 30 minutes","Every hour","No updates needed"],a:1,exp:"Every 30 minutes, with the reason and the situation."},
-{q:"In the airline example, what happens beyond two hours?",opts:["Passengers are normally disembarked","They normally stay on board","Let them choose","Nothing"],a:0,exp:"Beyond two hours, passengers are normally taken off."}],
+{q:"In the airline example, what happens beyond two hours?",opts:["Passengers are normally disembarked","They normally stay on board","Passengers choose","Nothing"],a:0,exp:"Beyond two hours, passengers are normally taken off."}],
 next:"5-8 Irregular operations casebook: practising judgment"});
 })(window.ARTS);

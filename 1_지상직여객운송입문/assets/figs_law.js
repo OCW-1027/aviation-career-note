@@ -12,8 +12,8 @@ function ROWS(rows,y,w,sz,hl,dur){var g='',n=rows.length;rows.forEach(function(r
 var F={
 /* 1 機長の権限が及ぶとき：出発前の確認 → ドアが閉まってから開くまで → 危難のとき → 事故の報告 */
 law_pic:function(l){
- var W=({ja:{t:'機長の権限と義務（時間の流れで）',door:'すべての乗降口が閉じてから、開くまで',rows:[['出発前の確認：航行に支障がなく、運航の準備が整ったことを確かめる','日：第73条の2'],['乗り組む者を指揮監督する','韓：第62条①|日：第73条'],['機内の安全を害する行為を止め、必要なら拘束・降機させる','日：第73条の4|韓：航空保安法'],['危難のとき：旅客に避難の方法などを命じる。旅客を助け、最後に機を離れる','韓：第62条③④|日：第74条'],['事故・準事故などを国に報告する（できなければ使用者）','韓：第62条⑤|日：第76条']]},
-  ko:{t:'기장의 권한과 의무(시간 순서로)',door:'모든 출입문이 닫힌 때부터 열릴 때까지',rows:[['출발 전 확인: 비행에 지장이 없고 운항 준비가 갖춰졌는지 확인','일: 제73조의2'],['승무원을 지휘·감독한다','한: 제62조①|일: 제73조'],['기내 안전을 해치는 행위를 막고 필요하면 구속·하기시킨다','일: 제73조의4|한: 항공보안법'],['위난 때: 여객에게 피난 방법 등을 명한다. 여객을 구조하고 마지막에 떠난다','한: 제62조③④|일: 제74조'],['사고·준사고 등을 국가에 보고(못 하면 소유자 등)','한: 제62조⑤|일: 제76조']]},
+ var W=({ja:{t:'機長の権限と義務（時系列で）',door:'すべての乗降口が閉じてから、開くまで',rows:[['出発前の確認：航行に支障がなく、運航の準備が整ったことを確かめる','日：第73条の2'],['乗り組む者を指揮監督する','韓：第62条①|日：第73条'],['機内の安全を害する行為を止め、必要なら拘束・降機させる','日：第73条の4|韓：航空保安法'],['危難のとき：旅客に避難の方法などを命じる。旅客を助け、最後に機を離れる','韓：第62条③④|日：第74条'],['事故・準事故などを国に報告する（できなければ使用者）','韓：第62条⑤|日：第76条']]},
+  ko:{t:'기장의 권한과 의무(시간순)',door:'모든 출입문이 닫힌 때부터 열릴 때까지',rows:[['출발 전 확인: 비행에 지장이 없고 운항 준비가 갖춰졌는지 확인','일: 제73조의2'],['승무원을 지휘·감독한다','한: 제62조①|일: 제73조'],['기내 안전을 해치는 행위를 막고 필요하면 구속·하기시킨다','일: 제73조의4|한: 항공보안법'],['위난 때: 여객에게 피난 방법 등을 명한다. 여객을 구조하고 마지막에 떠난다','한: 제62조③④|일: 제74조'],['사고·준사고 등을 국가에 보고(못 하면 소유자 등)','한: 제62조⑤|일: 제76조']]},
   en:{t:'The captain’s authority and duties, in order',door:'From when all doors close until one opens',rows:[['Pre-departure check: the aircraft is fit to fly and preparations are complete','JP: Art. 73-2'],['Directs and supervises those on board','KR: Art. 62(1)|JP: Art. 73'],['Stops acts that endanger safety, restraining or disembarking offenders if needed','JP: Art. 73-4|KR: Aviation Security Act'],['In danger: orders passengers on evacuation, rescues them and leaves the aircraft last','KR: Art. 62(3)(4)|JP: Art. 74'],['Reports accidents and serious incidents to the state (the operator if the captain cannot)','KR: Art. 62(5)|JP: Art. 76']]}})[l];
  if(!W)return F.law_pic('ja');
  setK(1);var dur=12;
@@ -27,8 +27,8 @@ law_pic:function(l){
 /* 2 飲酒の基準：韓国 0.02％、日本 血中0.2g/L（＝0.02％）・呼気0.09mg/L */
 law_alc:function(l){
  var W=({ja:{t:'アルコールの基準（韓国と日本）',kr:'韓国（航空安全法 第57条）',jp:'日本（航空法 第70条・航空局長通達）',k1:'血中アルコール濃度 0.02% 以上は業務禁止',j1:'血中 0.2g/L 以上 または 呼気 0.09mg/L 以上は業務禁止',k2:'業務中の飲酒は禁止。国は呼気の測定ができ、従わなければならない',j2:'操縦士・客室乗務員は飛行勤務の前8時間以内の飲酒禁止。乗務前後に検査',same:'0.2g/L ＝ 0.02%。両国とも同じ水準で、運航管理者も対象'},
-  ko:{t:'음주 기준(한국과 일본)',kr:'한국(항공안전법 제57조)',jp:'일본(항공법 제70조·항공국장 통달)',k1:'혈중알코올농도 0.02% 이상이면 업무 금지',j1:'혈중 0.2g/L 이상 또는 호기 0.09mg/L 이상이면 업무 금지',k2:'업무 중 음주 금지. 국가는 호흡 측정을 할 수 있고, 따라야 한다',j2:'조종사·객실승무원은 비행근무 전 8시간 안의 음주 금지. 승무 전후 검사',same:'0.2g/L = 0.02%. 두 나라 모두 같은 수준이며 운항관리사도 대상'},
-  en:{t:'Alcohol limits (Korea and Japan)',kr:'Korea (Aviation Safety Act Art. 57)',jp:'Japan (Civil Aeronautics Act Art. 70, JCAB notice)',k1:'Duties prohibited at a blood alcohol concentration of 0.02% or more',j1:'Duties prohibited at 0.2 g/L in blood or 0.09 mg/L in breath, or more',k2:'No drinking while on duty; the state may breath-test staff, who must comply',j2:'Pilots and cabin crew may not drink within 8 hours before flight duty; tested before and after duty',same:'0.2 g/L equals 0.02%: the same level in both countries, and dispatchers are covered too'}})[l];
+  ko:{t:'음주 기준(한국과 일본)',kr:'한국(항공안전법 제57조)',jp:'일본(항공법 제70조·항공국장 통달)',k1:'혈중알코올농도 0.02% 이상이면 업무 금지',j1:'혈중 0.2g/L 이상 또는 호기 0.09mg/L 이상이면 업무 금지',k2:'업무 중 음주 금지. 국가는 음주 측정을 할 수 있고 응해야 한다',j2:'조종사·객실승무원은 비행근무 전 8시간 이내 음주 금지. 승무 전후 검사',same:'0.2g/L = 0.02%. 두 나라 모두 같은 수준이며 운항관리사도 대상'},
+  en:{t:'Alcohol limits (Korea and Japan)',kr:'Korea (Aviation Safety Act Art. 57)',jp:'Japan (Civil Aeronautics Act Art. 70, JCAB notice)',k1:'Duties prohibited at a blood alcohol concentration of 0.02% or more',j1:'Duties prohibited at ≥0.2 g/L in blood or ≥0.09 mg/L in breath',k2:'No drinking while on duty; the state may breath-test staff, who must comply',j2:'Pilots and cabin crew may not drink within 8 hours before flight duty; tested before and after duty',same:'0.2 g/L equals 0.02%: the same level in both countries, and dispatchers are covered too'}})[l];
  if(!W)return F.law_alc('ja');
  setK(1);var nar=NARROW();
  function card(x0,y0,w,title,a,b,col){var lh=FS(11.5)*1.3,na=LI(a,12,w-30).length,nb=LI(b,11,w-30).length,h=FS(13)*1.6+na*FS(12)*1.3+nb*lh+44;
@@ -69,7 +69,7 @@ law_minalt:function(l){
 
 /* 4 義務報告と自発報告 */
 law_report:function(l){
- var W=({ja:{t:'安全の報告：義務と自発',duty:'義務の報告',vol:'自発の報告',d1:'事故・重大インシデント（準事故）・義務報告の対象となる安全障害',d2:'韓：航空安全法 第59条・第62条⑤　日：航空法 第76条・第76条の2',v1:'義務報告の対象でない安全障害、ヒヤリとした事例、危険の芽',v2:'韓：第61条（発生から10日以内の報告は、故意・重大な過失でなければ処分しない）　日：VOICES（第三者が運営し、匿名化）',goal:'目的は罰することではなく、同じことをくり返さないこと（安全管理システム）'},
+ var W=({ja:{t:'安全の報告：義務と自発',duty:'義務報告',vol:'自発報告',d1:'事故・重大インシデント（準事故）・義務報告の対象となる安全障害',d2:'韓：航空安全法 第59条・第62条⑤　日：航空法 第76条・第76条の2',v1:'義務報告の対象でない安全障害、ヒヤリとした事例、危険の芽',v2:'韓：第61条（発生から10日以内の報告は、故意・重大な過失でなければ処分しない）　日：VOICES（第三者が運営し、匿名化）',goal:'目的は罰することではなく、同じことをくり返さないこと（安全管理システム）'},
   ko:{t:'안전 보고: 의무와 자율',duty:'의무보고',vol:'자율보고',d1:'항공기사고·준사고·의무보고 대상 항공안전장애',d2:'한: 항공안전법 제59조·제62조⑤　일: 항공법 제76조·제76조의2',v1:'의무보고 대상이 아닌 항공안전장애, 아찔했던 사례, 위해요인',v2:'한: 제61조(발생일부터 10일 안에 보고하면 고의·중과실이 아닌 한 처분하지 않음)　일: VOICES(제3자가 운영하고 비식별화)',goal:'목적은 벌하는 것이 아니라 같은 일을 되풀이하지 않는 것(안전관리시스템)'},
   en:{t:'Safety reporting: mandatory and voluntary',duty:'Mandatory reports',vol:'Voluntary reports',d1:'Accidents, serious incidents and reportable safety occurrences',d2:'KR: Aviation Safety Act Arts. 59 and 62(5)   JP: Civil Aeronautics Act Arts. 76 and 76-2',v1:'Non-mandatory occurrences, near misses and hazards',v2:'KR: Art. 61 (no penalty for reports within 10 days unless intentional or grossly negligent)   JP: VOICES (run by a third party, de-identified)',goal:'The aim is not to punish but to stop the same thing happening again (safety management system)'}})[l];
  if(!W)return F.law_report('ja');
@@ -88,8 +88,8 @@ law_report:function(l){
 /* 5 航空会社が運航を始めるまで */
 law_aoc:function(l){
  var W=({ja:{t:'航空会社が運航を始めるまで',steps:[['事業の免許・許可','韓：航空事業法 第7条|日：第100条'],['安全運航体制の検査と運航証明（人・機材・施設・運航管理・整備）','韓：航空安全法 第90条|日：第102条（施設の検査）'],['運航規程・整備規程の認可','韓：第93条|日：第104条'],['安全管理システム（安全管理規程・安全統括管理者）','韓：第58条②|日：第103条の2（届出）'],['運航開始（その後も体制を保ち、変更は検査を受ける）','韓：第90条⑤|日：第134条（立入検査）']]},
-  ko:{t:'항공사가 운항을 시작하기까지',steps:[['사업 면허·허가','한: 항공사업법 제7조|일: 제100조'],['안전운항체계 검사와 운항증명(인력·장비·시설·운항관리·정비)','한: 항공안전법 제90조|일: 제102조(시설 검사)'],['운항규정·정비규정 인가','한: 제93조|일: 제104조'],['안전관리시스템(안전관리규정·안전총괄관리자)','한: 제58조②|일: 제103조의2(신고)'],['운항 시작(그 뒤에도 체계를 유지하고, 바뀌면 검사)','한: 제90조⑤|일: 제134조(출입 검사)']]},
-  en:{t:'What an airline needs before it can fly',steps:[['Business licence or permit','KR: Aviation Business Act Art. 7|JP: Art. 100'],['Inspection of the safety system and the air operator certificate (people, aircraft, facilities, dispatch, maintenance)','KR: Aviation Safety Act Art. 90|JP: Art. 102 (facility inspection)'],['Approval of the operations and maintenance manuals','KR: Art. 93|JP: Art. 104'],['Safety management system (safety management rules, accountable manager)','KR: Art. 58(2)|JP: Art. 103-2 (notification)'],['Start of operations (the system must be kept up and changes inspected)','KR: Art. 90(5)|JP: Art. 134 (on-site inspection)']]}})[l];
+  ko:{t:'항공사가 운항을 시작하기까지',steps:[['사업 면허·허가','한: 항공사업법 제7조|일: 제100조'],['안전운항체계 검사와 운항증명(인력·장비·시설·운항관리·정비)','한: 항공안전법 제90조|일: 제102조(시설 검사)'],['운항규정·정비규정 인가','한: 제93조|일: 제104조'],['안전관리시스템(안전관리규정·안전총괄관리자)','한: 제58조②|일: 제103조의2(신고)'],['운항 시작(그 뒤에도 체계를 유지하고, 변경 시 검사)','한: 제90조⑤|일: 제134조(출입 검사)']]},
+  en:{t:'What an airline needs before it can fly',steps:[['Business licence or permit','KR: Aviation Business Act Art. 7|JP: Art. 100'],['Inspection of the safety system and the air operator certificate (people, aircraft, facilities, dispatch, maintenance)','KR: Aviation Safety Act Art. 90|JP: Art. 102 (facility inspection)'],['Approval of the operations and maintenance manuals','KR: Art. 93|JP: Art. 104'],['Safety management system (safety management rules, accountable manager)','KR: Art. 58(2)|JP: Art. 103-2 (notification)'],['Start of operations (the system is maintained and changes inspected)','KR: Art. 90(5)|JP: Art. 134 (on-site inspection)']]}})[l];
  if(!W)return F.law_aoc('ja');
  setK(1);var dur=12,n=W.steps.length;
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,110,'#DCEEFB',14)+R(20,142,600,24,'#9CC98B',0)+R(40,138,560,8,'#5B6770',3);
@@ -102,8 +102,8 @@ law_aoc:function(l){
 
 /* 6 運航証明と運営基準（OpSpecs）：何を、どこで、どう飛べるかを決める */
 law_ops:function(l){
- var W=({ja:{t:'運航証明と運営基準（OpSpecs）',cert:'運航証明書',ops:'運営基準（付属）',items:['使える空港・路線','使う機種・登録記号','EDTO（双発機の長距離洋上飛行）','RVSM・PBN（RNAV／RNP）','CAT II／III の進入','危険物の輸送'],note:'運営基準にない運航はできない。範囲を変えるときは当局の変更の手続きが必要（韓国：航空安全法 第90条②④）'},
-  ko:{t:'운항증명과 운영기준(OpSpecs)',cert:'운항증명서',ops:'운영기준(부속)',items:['쓸 수 있는 공항·노선','쓰는 기종·등록기호','EDTO(쌍발기 장거리 해상 비행)','RVSM·PBN(RNAV/RNP)','CAT II/III 접근','위험물 운송'],note:'운영기준에 없는 운항은 할 수 없다. 범위를 바꾸려면 당국의 변경 절차가 필요(한국: 항공안전법 제90조②④)'},
+ var W=({ja:{t:'運航証明と運営基準（OpSpecs）',cert:'運航証明書',ops:'運営基準（付属）',items:['使える空港・路線','使う機種・登録記号','EDTO（双発機の長距離洋上飛行）','RVSM・PBN（RNAV／RNP）','CAT II／III の進入','危険物の輸送'],note:'運営基準にない運航はできない。範囲を変えるときは当局の変更手続きが必要（韓国：航空安全法 第90条②④）'},
+  ko:{t:'운항증명과 운영기준(OpSpecs)',cert:'운항증명서',ops:'운영기준(부속)',items:['사용 가능 공항·노선','사용 기종·등록기호','EDTO(쌍발기 장거리 해상 비행)','RVSM·PBN(RNAV/RNP)','CAT II/III 접근','위험물 운송'],note:'운영기준에 없는 운항은 불가. 범위를 바꾸려면 당국의 변경 절차가 필요(한국: 항공안전법 제90조②④)'},
   en:{t:'The air operator certificate and operations specifications (OpSpecs)',cert:'Air operator certificate',ops:'Operations specifications (attached)',items:['Approved airports and routes','Aircraft types and registrations','EDTO (long overwater twin-engine flights)','RVSM and PBN (RNAV/RNP)','CAT II/III approaches','Dangerous goods'],note:'Operations outside the OpSpecs are not allowed; changing their scope needs the authority’s amendment process (Korea: Aviation Safety Act Art. 90(2)(4))'}})[l];
  if(!W)return F.law_ops('ja');
  setK(1);var dur=9,n=W.items.length,nar=NARROW();
@@ -118,7 +118,7 @@ law_ops:function(l){
 /* 7 安全管理システム（SMS）の4つの柱と、リスクの評価 */
 law_sms:function(l){
  var W=({ja:{t:'安全管理システム（SMS）',p:['安全の方針と目標','リスクの管理','安全の保証','安全の推進'],pd:['経営の約束・責任者','危険の芽を見つけて評価し、対策する','指標で監視・内部監査','教育・情報の共有'],x:'起きやすさ',y:'重大さ',m:'対策（手順・訓練・装備）',note:'ICAO Annex 19 の考え方。航空会社は国の承認・届出を受けたSMSを持つ（韓：航空安全法 第58条②／日：航空法 第103条の2）'},
-  ko:{t:'안전관리시스템(SMS)',p:['안전 정책과 목표','위험관리','안전 보증','안전 증진'],pd:['경영의 약속·책임자','위해요인을 찾아 평가하고 대책을 세운다','지표로 감시·내부 감사','교육·정보 공유'],x:'발생 가능성',y:'심각도',m:'대책(절차·훈련·장비)',note:'ICAO Annex 19의 생각. 항공사는 국가의 승인·신고를 거친 SMS를 갖춘다(한: 항공안전법 제58조②/일: 항공법 제103조의2)'},
+  ko:{t:'안전관리시스템(SMS)',p:['안전 정책과 목표','위험관리','안전 보증','안전 증진'],pd:['경영진 의지·책임자','위해요인을 찾아 평가하고 대책을 세운다','지표로 감시·내부 감사','교육·정보 공유'],x:'발생 가능성',y:'심각도',m:'대책(절차·훈련·장비)',note:'ICAO Annex 19의 개념. 항공사는 국가의 승인·신고를 거친 SMS를 갖춘다(한: 항공안전법 제58조②/일: 항공법 제103조의2)'},
   en:{t:'Safety management system (SMS)',p:['Safety policy and objectives','Safety risk management','Safety assurance','Safety promotion'],pd:['Management commitment, accountable manager','Find hazards, assess and mitigate risks','Monitor indicators, internal audits','Training and communication'],x:'Likelihood',y:'Severity',m:'Mitigation (procedures, training, equipment)',note:'Based on ICAO Annex 19; airlines must have an SMS approved by or notified to the state (KR: Aviation Safety Act Art. 58(2) / JP: Civil Aeronautics Act Art. 103-2)'}})[l];
  if(!W)return F.law_sms('ja');
  setK(1);var nar=NARROW();
@@ -141,7 +141,7 @@ law_sms:function(l){
 /* 8 航空保安：保安検査 → 搭乗 → 機内（機長等の権限・乗客の協力義務・拘束したままの離陸の禁止） */
 law_sec:function(l){
  var W=({ja:{t:'航空保安 ― 地上から機内まで',st:['保安検査（旅客・手荷物）','搭乗','機内：機長等の権限'],items:['機長や機長から権限を受けた乗務員は、保安を害する行為・人命や財産に危害を与える行為・機内の秩序を乱す行為を止めるための措置をとれる（韓：航空保安法 第22条①）','機内にいる人は、機長等から求められたら協力しなければならない（同②）','拘束した人を乗せたまま離陸してはならない（本人の同意などの例外を除く、同③）','日本：航空法 第73条の4（機長の措置）、第9章（危害行為の防止・保安検査）'],sq:'不法な妨害 → トランスポンダー 7500'},
-  ko:{t:'항공보안 — 지상에서 기내까지',st:['보안검색(여객·수하물)','탑승','기내: 기장 등의 권한'],items:['기장이나 기장에게 권한을 위임받은 승무원은 보안을 해치는 행위·인명이나 재산에 위해를 주는 행위·기내 질서를 어지럽히는 행위를 저지하는 조치를 할 수 있다(한: 항공보안법 제22조①)','기내에 있는 사람은 기장 등이 요청하면 협조해야 한다(같은 조②)','체포한 사람을 태운 채 이륙해서는 안 된다(본인 동의 등 예외 제외, 같은 조③)','일본: 항공법 제73조의4(기장의 조치), 제9장(위해 행위 방지·보안검사)'],sq:'불법 방해 → 트랜스폰더 7500'},
+  ko:{t:'항공보안 — 지상에서 기내까지',st:['보안검색(여객·수하물)','탑승','기내: 기장 등의 권한'],items:['기장이나 기장에게 권한을 위임받은 승무원은 보안을 해치는 행위·인명이나 재산에 위해를 주는 행위·기내 질서를 어지럽히는 행위를 저지하는 조치를 할 수 있다(한: 항공보안법 제22조①)','기내에 있는 사람은 기장 등이 요청하면 협조해야 한다(같은 조②)','체포한 사람을 태운 채 이륙해서는 안 된다(본인 동의 등 예외 제외, 같은 조③)','일본: 항공법 제73조의4(기장의 조치), 제9장(위해 행위 방지·보안검색)'],sq:'불법 방해 → 트랜스폰더 7500'},
   en:{t:'Aviation security: from the ground to the cabin',st:['Security screening (passengers, bags)','Boarding','On board: authority of the captain and crew'],items:['The captain, or crew delegated by the captain, may act to stop acts that endanger security, threaten life or property, or disturb order on board (KR: Aviation Security Act Art. 22(1))','Everyone on board must cooperate when asked by the captain or crew (Art. 22(2))','A restrained person must not be flown onward after landing, except with their consent or where disembarkation is impossible (Art. 22(3))','Japan: Civil Aeronautics Act Art. 73-4 (captain’s measures) and Chapter 9 (preventing harmful acts, security screening)'],sq:'Unlawful interference → transponder 7500'}})[l];
  if(!W)return F.law_sec('ja');
  setK(1);var dur=9;

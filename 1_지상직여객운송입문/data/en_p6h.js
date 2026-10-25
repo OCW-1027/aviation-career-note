@@ -29,7 +29,7 @@ sections:[
 {t:"rows",items:[{name:"Also required",x:"Protecting the privacy of those involved, and never disadvantaging anyone for asking for help."}]}]},
 {h:"Korea’s rules",blocks:[{t:"rows",items:[
 {name:"Occupational Safety and Health Act (customer-facing workers)",x:"Since October 2018, employers must take measures to prevent health harm to customer-facing workers from customers’ abuse — such as notices to customers, allowing work to stop or be reassigned, and supporting treatment and counselling."},
-{name:"No retaliation",x:"Workers who request these measures must not be treated unfavourably (with penalties)."}]},
+{name:"No retaliation",x:"Workers who request these measures must not be treated unfavourably (penalties apply)."}]},
 {t:"note",x:"* Check current law for detailed measures and penalties. ★"}]},
 {h:"Airline policy (the ANA–JAL joint policy as an example)",blocks:[{t:"rows",items:[
 {name:"A distinctive definition",x:"Besides the general definition, it includes acts that breach the Civil Aeronautics Act and related laws, and acts that could lead to such breaches — because they bear directly on safety on board and at the airport."},
@@ -51,7 +51,7 @@ next:"6-12 Handling customer harassment on the front line"});
 set("6-12",{title:"Handling Customer Harassment on the Front Line: Recognising It, Responding, Recording and Recovering",hl:"Handling Customer Harassment",subtitle:"Never alone: listen sincerely, explain limits with reasons, and draw the line as an organisation when it goes too far",
 lead:["Dealing with harassment should not depend on one person’s patience or eloquence. Deciding in advance, as an organisation, when to listen, when a supervisor takes over and when to refuse service or call the police protects both staff and other passengers.","This lesson covers how to recognise harassment at the airport, the response steps, useful phrases, how to keep records and how to look after staff."],
 sections:[
-{h:"Response steps",blocks:[{t:"fig",id:"gnd_khstep",cap:"Animated figure: the response escalates from the agent to a supervisor, security and police, lighting up in turn."},{t:"ladder",rise:10,steps:[{name:"Listen and check",sub:"Hear the facts and the request calmly"},{name:"Explain",sub:"What you can and cannot do, citing the rules"},{name:"Hand over",sub:"Respond in pairs; bring in a supervisor"},{name:"Set limits",sub:"State limits on time and repetition"},{name:"Refuse or report",sub:"If it continues, refuse service; call police or airport security"}]},
+{h:"Response steps",blocks:[{t:"fig",id:"gnd_khstep",cap:"Animated figure: the response escalates from the agent to a supervisor, security and police, lighting up in turn."},{t:"ladder",rise:10,steps:[{name:"Listen and check",sub:"Hear the facts and the request calmly"},{name:"Explain",sub:"What you can and cannot do, citing the rules"},{name:"Hand over",sub:"Respond with colleagues; bring in a supervisor"},{name:"Set limits",sub:"State limits on time and repetition"},{name:"Refuse or report",sub:"If it continues, refuse service; call police or airport security"}]},
 {t:"point",warn:true,x:"If there is violence, a threat or damage — any danger to you — skip the steps, move away immediately and contact your supervisor, airport security or the police."}]},
 {h:"Airport-specific points",blocks:[{t:"table",cols:["Situation","What to watch"],rows:[
 ["Many upset passengers during delays or cancellations","Early and repeated information is the best prevention (Course 1, lesson 5-8). If you do not know, say you will update them as soon as you do"],
@@ -79,8 +79,8 @@ sections:[
 {name:"Where to get support",x:"Share internal contacts, the occupational physician and outside services."},
 {name:"Review as a team",x:"Without blaming individuals, look at what procedures, information or staffing could have prevented it."}]}]}],
 voice:"Move someone who has taken harsh words away from the counter first. The record can be written together once they have calmed down. A written record speeds up the company’s decision, and the person feels they are not carrying it alone.",
-terms:[["Firm Response","毅然とした対応","단호한 대응"],["Refusal of Service","利用のお断り","이용 거절"],["Incident Record","記録","기록"],["Psychological Care","心のケア","마음 케어"],["Occupational Physician","産業医","산업의"],["Escalation","エスカレーション","에스컬레이션"]],
-quiz:[{q:"Which order of response is right?",opts:["Call the police at once","Listen → explain → hand over → set limits → refuse or report","Endure it alone for as long as it takes","Accept every demand"],a:1,exp:"But move away and call for help immediately if you are in danger."},
+terms:[["Firm Response","毅然とした対応","단호한 대응"],["Refusal of Service","利用のお断り","이용 거절"],["Incident Record","記録","기록"],["Psychological Care","心のケア","마음 케어"],["Occupational Physician","産業医","산업보건의"],["Escalation","エスカレーション","에스컬레이션"]],
+quiz:[{q:"Which is the correct order of response steps?",opts:["Call the police at once","Listen → explain → hand over → set limits → refuse or report","Endure it alone for as long as it takes","Accept every demand"],a:1,exp:"But move away and call for help immediately if you are in danger."},
 {q:"What best prevents harassment during delays and cancellations?",opts:["Early and repeated information","Closing the counter","Saying nothing","Promising compensation"],a:0,exp:"A lack of information fuels anger."},
 {q:"How should staff who faced harassment be treated?",opts:["Put them straight onto the next passenger","Let them rest, reassure them and share support contacts","Criticise their handling","Do nothing"],a:1,exp:"Review as a team without blaming individuals."}],
 next:"7-1 Working in ground operations in Japan: hiring routes and visas"});

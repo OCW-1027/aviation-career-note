@@ -12,7 +12,7 @@ sections:[
 ["Passenger","Counter opening time, queue time (for example economy within x minutes), keeping to boarding start and close times"],
 ["Baggage","Time to first and last bag on the belt after arrival, mishandled baggage rate"],
 ["Ramp","Staff and equipment in position before arrival, loading and unloading times, delays caused by equipment faults"],
-["Load control","Loadsheet finalised on time, zero load errors"],
+["Load control","Load sheet finalised on time, zero load errors"],
 ["Quality and training","Validity of licences and training, deadlines for correcting audit findings"]]},
 {t:"note",x:"* Target values vary with the airport, aircraft and number of flights. Methods differ too: Company A may define queue time as “90% of passengers within x minutes”, Company B as “an average of x minutes”. ★"}]},
 {h:"An SLA scorecard (example)",blocks:[{t:"table",cols:["Indicator","Target","This month","Result"],rows:[
@@ -73,7 +73,7 @@ sections:[
 ["Recommendation for improvement","3","—"],
 ["Corrective action needed","2","Non-conforming"],
 ["Stop immediately","1 (immediate correction)","Non-conforming (major)"]]},
-{t:"note",x:"* Some audits, such as IATA’s Safety Audit for Ground Operations (ISAGO), judge simply conforming or non-conforming. ★"}]},
+{t:"note",x:"* Some audits, such as IATA’s Safety Audit for Ground Operations (ISAGO), judge results as conforming or non-conforming. ★"}]},
 {h:"Writing findings well",blocks:[{t:"check",items:[
 {name:"Write what you saw",x:"When, where and what. Not “poor handling” but “10:05, counter 3: bag tagged without checking the weight”."},
 {name:"Cite the standard",x:"Add which rule or procedure, and which section, was not met. A finding with no standard gives the other side nothing to fix."},
@@ -91,7 +91,7 @@ deepLabel:"In depth: sample checklists by area",
 deep:[
 {h:"Ramp (example)",blocks:[{t:"table",cols:["Check item","What to look at"],rows:[
 ["Readiness before arrival","Staff and equipment in position five minutes before arrival; stand checked for foreign objects (FOD)"],
-["Approaching the aircraft","A guide person present; vehicle speeds and stopping positions as per procedure"],
+["Approaching the aircraft","A guide present; vehicle speeds and stopping positions as per procedure"],
 ["Chocks and cones","Placed in the right order and positions"],
 ["Loading","Positions as per the loading instruction (LIR); restraints and nets in place"],
 ["Dangerous goods and special cargo","Position, segregation and securing; notification to the captain (NOTOC)"],
@@ -118,7 +118,7 @@ quiz:[{q:"What do you check first on a checklist?",opts:["Whether last time’s 
 next:"2-3 The monthly meeting and corrective action"});
 
 set("2-3",{title:"The Monthly Meeting and Corrective Action",hl:"monthly meeting",subtitle:"If the same finding appears three months running, the meeting is not working",
-lead:["The monthly meeting with the handler is at the heart of station management. Bring the audit findings, the delay and baggage numbers and the customer feedback; discuss the causes, agree corrections, and check them the following month.","This article covers a standard agenda, how to run corrective actions, and the signs that the meeting has become a formality."],
+lead:["The monthly meeting with the handler is at the heart of station management. Bring the audit findings, the delay and baggage numbers and the customer feedback; discuss the causes, agree corrections, and check them the following month.","This lesson covers a standard agenda, how to run corrective actions, and the signs that the meeting has become a formality."],
 sections:[
 {h:"A standard agenda (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Last month’s promises",sub:"Progress on corrections"},{name:"Numbers",sub:"Punctuality, baggage, complaints, safety"},{name:"Audit findings",sub:"This month’s"},{name:"Changes",sub:"Rules, schedules, facilities"},{name:"New promises",sub:"Owners and deadlines"}]}]},
 {h:"Running corrective actions",blocks:[{t:"fig",id:"stn_capa",cap:"Two findings followed over three months: one closed, one repeated."},{t:"table",cols:["Stage","What happens"],rows:[
@@ -137,7 +137,7 @@ sections:[
 {name:"The same findings keep appearing",x:"In many companies’ scorecards, repeated identical corrective actions also count against the station."},
 {name:"Months with no meeting",x:"The busier the month, the more it matters to meet, even briefly. Some companies count a skipped meeting as “not done” in their scorecard. ★"},
 {name:"No numbers on the table",x:"It has become an exchange of opinions. Start by sharing the figures."},
-{name:"No one from the front line",x:"Actions agreed only between managers never reach the floor. Bring the supervisors in."}]},
+{name:"No one from the front line",x:"Actions agreed only between managers do not reach the front line. Bring the supervisors in."}]},
 {t:"point",x:"The monthly meeting is a place for making promises, not for assigning blame. In months when promises were kept, say so clearly."}]}],
 voice:"End the monthly meeting on what you will do together next month rather than on criticism, and the mood changes. Ask questions that let the handler propose the fixes.",
 terms:[["Monthly Performance Meeting","月例会議","월간 회의"],["Corrective Action","是正措置","시정조치"],["Minutes","議事録","회의록"],["Root Cause","根本原因","근본 원인"]],
@@ -146,8 +146,8 @@ quiz:[{q:"What is checked first at the monthly meeting?",opts:["Progress on last
 {q:"Which is a sign the meeting has become a formality?",opts:["The same findings keep appearing","Discussion is based on numbers","Front-line staff attend","Promises are kept"],a:0,exp:"Repeated findings are the warning sign."}],
 next:"2-4 Becoming one team with your handler"});
 
-set("2-4",{title:"Becoming One Team with Your Handler",hl:"one team",subtitle:"Not a contractor but colleagues getting the same flight away. Build the relationship before you need it",
-lead:["A night of disruption, a sudden extra flight, a peak season short of hands. At times like these, what keeps the station running is not just the contract but the trust built up with the handler’s people.","This article covers building relationships with the handler’s key people, spotting staffing problems early, and behaviour to avoid."],
+set("2-4",{title:"Becoming One Team with Your Handler",hl:"one team",subtitle:"Not contractors but colleagues getting the same flight away. Build the relationship before you need it",
+lead:["A night of disruption, a sudden extra flight, a peak season short of hands. At times like these, what keeps the station running is not just the contract but the trust built up with the handler’s people.","This lesson covers building relationships with the handler’s key people, spotting staffing problems early, and behaviour to avoid."],
 sections:[
 {h:"The basics of the relationship",blocks:[{t:"check",items:[
 {name:"Know the key people",x:"The duty manager, the supervisors, the sales and contract lead. Know who can decide what."},

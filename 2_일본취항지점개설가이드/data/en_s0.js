@@ -23,7 +23,7 @@ sections:[
 {name:"Registration documents",x:"The head office articles, board minutes and affidavits all have to be prepared at home and then translated and certified."},
 {name:"Handling company staffing",x:"At airports short of labour, the hours you want may not be available."},
 {name:"System connections",x:"IDs for shared airport systems and the lines themselves take weeks to arrange."},
-{name:"Security training",x:"Japan’s security instructor courses only run at set times of year."}]},
+{name:"Security training",x:"Japan’s security instructor courses run at set times of year."}]},
 {t:"point",warn:true,x:"Give the checklist columns for status, owner, deadline and notes, and update it weekly. Head office, the station and the providers all working from the same table is the single best defence against delay."}]},
 {h:"How the checklist is usually grouped",blocks:[{t:"rows",items:[
 {name:"Setting up the entity",x:"Providers, registration, corporate accounts, social insurance, tax, finance"},
@@ -45,18 +45,18 @@ set("0-2",{title:"Who Does What: Head Office, the Station, Agents and the Handli
 lead:["Preparing to serve Japan involves many head office departments, the station in Japan, legal and accounting providers, a filing agent and the handling company. Where roles are vague, two departments write the same document, or nobody contacts the authorities at all.",
 "This article covers who is involved and what each does, what the station manager owns, what to ask head office for (department names differ by airline), and how to divide the work."],
 sections:[
-{h:"Who is involved",blocks:[{t:"fig",id:"opn_roles",cap:"Animated figure: the roles of head office, station, filing agent, service firms and handler (example)."},{t:"table",cols:["Party","Main role"],rows:[
-["Head office network planning","The launch plan, operating approvals, slots, the big negotiations with authorities"],
+{h:"Who is involved",blocks:[{t:"fig",id:"opn_roles",cap:"Animated figure: the roles of head office, station, filing agent, legal and accounting providers and the handling company (example)."},{t:"table",cols:["Party","Main role"],rows:[
+["Head office network planning","The launch plan, operating approvals, slots, major negotiations with the authorities"],
 ["Head office flight operations and maintenance","Material on the operational and maintenance set-up, aircraft used, filings on equipment"],
 ["Head office airport operations","Airport procedures, manuals, handling company contracts"],
 ["Head office sales and pricing","Fares, sales policy, GDS and BSP"],
 ["Head office finance, HR and administration","Accounts, budget, remittances, employment terms, equipment"],
-["The Japan station (station manager)","The point of contact in Japan: authorities, airport, providers, and overall local preparation"],
+["The Japan station (station manager)","The point of contact in Japan: liaising with the authorities, the airport and providers, and overseeing local preparation"],
 ["Filing agent","Preparing and filing applications with the Japanese authorities"],
 ["Legal and accounting providers","Registration, tax filings, social insurance, payroll support"],
 ["Handling company","Passenger, ramp and cargo work at the airport, and helping write the procedures"]]}]},
 {h:"What the station manager owns (example)",blocks:[{t:"check",items:[
-{name:"The authorities",x:"Contact with the transport ministry, the airport office and the flight information officers (FAIB), and the online filing accounts."},
+{name:"The authorities",x:"Contact with the transport ministry, the airport office and the flight information officers (FAIB), and handling online filings."},
 {name:"Setting up the entity",x:"Choosing providers, registration documents, opening the bank account, office and housing contracts."},
 {name:"The airport",x:"The kick-off meeting with the handling company, writing the procedures for each area, checking the facilities."},
 {name:"People",x:"The hiring plan and interviews, employment contracts, the training plan."},
@@ -65,11 +65,11 @@ sections:[
 {name:"Operational and maintenance material",x:"Organisation charts for operations and maintenance, reports on the aircraft used, measures to prevent parts falling from aircraft: documents only the specialist departments can produce."},
 {name:"Manuals and rules",x:"The information needed to see where the head office manual and the Japanese rules differ, and to write the station SOP."},
 {name:"Finance",x:"When funds are remitted, how the station’s money is managed, how expenses are processed."},
-{name:"A tip for asking",x:"Attach the previous filing and ask for “the same format as this”. It cuts rework dramatically."}]}]},
+{name:"A tip for asking",x:"Attach the previous filing and ask for “the same format as this”. It cuts rework."}]}]},
 {h:"Dividing the work",blocks:[{t:"check",items:[
 {name:"Put an owner on every line",x:"One main owner per checklist item."},
 {name:"Kick-off meeting",x:"Bring the handling company, head office and the station together to review progress, hear what each needs from the other, and set priorities."},
-{name:"One point of contact",x:"Decide, for example, that all contact with the authorities goes through the station manager."},
+{name:"One point of contact",x:"Decide, for example, that contact with the authorities goes through the station manager."},
 {name:"Keep the record",x:"Save exchanges with the authorities and copies of filings in a folder the station and head office share."}]},
 {t:"point",x:"Even when you do not know which official handles something, calling a department that might be involved gets you pointed to the right person. Do not put it off because you are unsure; make the call."}]}],
 voice:"Naming one Japan-side contact for each head-office department speeds up answers to the authorities’ questions. Deadline management, such as fare filing deadlines, should stay with the station rather than head office.",
@@ -85,11 +85,11 @@ lead:["The Japanese bodies a foreign airline deals with run from the Civil Aviat
 sections:[
 {h:"The main bodies",blocks:[{t:"fig",id:"opn_admin",cap:"Animated figure: which part of Japan’s aviation administration handles what (example)."},{t:"table",cols:["Body","Main dealings with foreign airlines"],rows:[
 ["Civil Aviation Bureau, International Air Transport Division","The foreign air carrier operating licence, approval and notification of the business (schedule) plan, fare approvals"],
-["Civil Aviation Bureau, Safety Department","Operational safety (approvals on equipment), aviation security (programme and training), dangerous goods, safety oversight"],
+["Civil Aviation Bureau, Safety Department","Operational safety (equipment-related approvals), aviation security (programme and training), dangerous goods, safety oversight"],
 ["Flight information officers (FAIB)","Filing the schedule at Haneda, Narita and elsewhere, monthly and daily slot coordination, delay reporting"],
 ["Japan Schedule Coordination (JSC)","Coordinating international slots at congested airports before each season"],
 ["Regional bureaux and airport offices","Operational procedures at the airport and local oversight"],
-["Airport companies (Narita, Kansai and others)","Use of facilities, airport charges, ID passes, incentive schemes, the airport operators committee"],
+["Airport companies (Narita, Kansai and others)","Use of facilities, airport charges, ID passes, incentive schemes, the airline operators committee (AOC)"],
 ["Customs, Immigration Services Agency, quarantine","Arrival and departure formalities, advance passenger data, electronic declarations through NACCS"]]}]},
 {h:"The online channels",blocks:[{t:"rows",items:[
 {name:"J-MAT",x:"The bureau’s online system for applications and notifications: the business plan and its changes, aircraft information, traffic reports, and notifying changes to the security programme."},
@@ -103,7 +103,7 @@ sections:[
 {name:"Splitting the work",x:"The usual pattern is that head office handles the home side and the station and the filing agent handle the Japanese side."}]}]},
 {h:"Building the relationships",blocks:[{t:"rows",items:[
 {name:"Calls before service starts",x:"Introduce yourself and exchange contacts with the International Air Transport Division, the airport office, FAIB, the airport company and CIQ before the first flight."},
-{name:"Contact list",x:"Prepare a contact table for weekdays, nights and holidays and file it with the authorities; it also forms an attachment to the business plan."},
+{name:"Contact list",x:"Prepare an emergency contact table for weekdays, nights and holidays and file it with the authorities; it also forms an attachment to the business plan."},
 {name:"Read the local practice",x:"Keep the bureau’s notices — filing standards for schedules, how “unavoidable circumstances” such as weather are interpreted — organised by year."}]}]}],
 voice:"Even similar filings go to different places depending on the procedure: the transport ministry, the regional civil aviation bureau or the airport company. List the recipient and contact for each procedure, and you will not get lost the second time.",
 terms:[["Japan Civil Aviation Bureau (JCAB)","国土交通省航空局","국토교통성 항공국"],["International Air Transport Division","国際航空課","국제항공과"],["FAIB","航空管制運航情報官","항공관제운항정보관"],["Japan Schedule Coordination (JSC)","国際線発着調整事務局","국제선 발착조정사무국"],["Airport Office (CAB)","空港事務所","공항사무소"],["Traffic Rights","運輸権","운수권"]],

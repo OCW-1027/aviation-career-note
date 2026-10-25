@@ -2,7 +2,7 @@
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("5-1",{title:"The Security Programme and Training Plan: The Annual Revision",hl:"the security programme",subtitle:"A foreign airline operating in Japan files its own security programme and reviews it every year ★",
 lead:["A foreign airline serving Japan must produce its own aviation security programme for its operations there and file it with the transport ministry, together with an annual plan for security training for its own staff and the handling company’s.",
-"This article covers what these documents are, the annual revision cycle, when a revision is needed immediately, and how to respond when the authorities change their standards. The content of a security programme is sensitive security information, so only the procedure and the thinking are described here."],
+"This article covers what these documents are, the annual revision cycle, when a revision is needed immediately, and how to respond when the authorities change their standards. The content of a security programme is sensitive security information, so only the procedure and the approach are described here."],
 sections:[
 {h:"The documents filed",blocks:[{t:"fig",id:"opn_avsec",cap:"Animated figure: security documents filed with the authority (example)."},{t:"table",cols:["Document","What it is","Frequency (example)"],rows:[
 ["Your own aviation security programme","The security structure and measures for your operations in Japan, showing where they differ from the authorities’ model programme","Reviewed at least once a year (April to March)"],
@@ -10,7 +10,7 @@ sections:[
 ["Security training procedures","How the training is actually delivered","Reviewed annually; advise if unchanged"],
 ["Self-audit results","The report on your security self-audit","Once a year"]]},
 {t:"note",x:"* An example based on several airlines’ practice. Confirm the names, frequency and forms with current official guidance. ★"}]},
-{h:"The annual revision (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Prepare",sub:"February to March: last year’s programme and what has changed"},{name:"Agree with head office",sub:"Review the content with head office security"},{name:"Discuss with the authorities",sub:"Send it by email and reflect their comments"},{name:"File",sub:"Notify the change online and have it accepted"},{name:"Distribute",sub:"To the station and the handling company"}]},
+{h:"The annual revision (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Prepare",sub:"February to March: go through last year’s programme and what has changed"},{name:"Agree with head office",sub:"Review the content with head office security"},{name:"Discuss with the authorities",sub:"Send it by email and incorporate their comments"},{name:"File",sub:"Submit the change notification online and have it accepted"},{name:"Distribute",sub:"To the station and the handling company"}]},
 {t:"point",x:"When the authorities’ model programme changes format, they ask you to follow it. Where your own operation differs, adapt it and note what the difference is."}]},
 {h:"When a revision is needed immediately",blocks:[{t:"check",items:[
 {name:"Contacts change",x:"When the person responsible for security in Japan, or the contact details, change."},
@@ -18,10 +18,10 @@ sections:[
 {name:"Screening equipment changes",x:"When the list of equipment at an airport changes."},
 {name:"A new route or station",x:"When you start serving another Japanese airport or open a station there."},
 {name:"A divergence appears",x:"When your operation comes to differ from the model programme."}]},
-{t:"point",warn:true,x:"Having changed something without filing it is always picked up in an audit. Make it a habit to ask, the moment something changes, whether the programme needs revising."}]},
+{t:"point",warn:true,x:"A change that has not been filed is always picked up in an audit. Make it a habit to ask, the moment something changes, whether the programme needs revising."}]},
 {h:"When the standards change",blocks:[{t:"rows",items:[
 {name:"Notice of amendments",x:"When the authorities amend their security standards, notice comes through the airport community."},
-{name:"File and apply",x:"Obtain the amended version, file it, replace the pages in your paper copy, and work it into your passenger and cargo procedures and your emergency procedures."},
+{name:"File and apply",x:"Obtain the amended version, file it, replace the pages in your paper copy, review the content and work it into your passenger and cargo procedures and your emergency procedures."},
 {name:"Briefings",x:"The authorities sometimes hold briefings for foreign airlines. Store the material with the care sensitive security information requires."}]}]}],
 voice:"When revising the security programme, regulators may say it is hard to see how head-office rules map to Japanese airport procedures. Attach a cross-reference table every time you submit a revision.",
 terms:[["Air Carrier Security Programme","航空保安計画","항공보안계획"],["Aviation Security Training","航空保安教育訓練","항공보안 교육훈련"],["Training Plan","実施計画","실시 계획"],["Self-audit","自己監査","자체 감사"],["Notification of Change","変更届出","변경 신고"],["Sensitive Security Information (SSI)","保安上の機微情報","보안 민감 정보"]],
@@ -34,7 +34,7 @@ set("5-2",{title:"Security Instructors and Airport Passes",hl:"security instruct
 lead:["Japan requires airlines to appoint an aviation security instructor. A foreign carrier must have at least one in Japan, responsible for security training of its own staff and of the handling company.",
 "This article covers qualifying and renewing as an instructor, the role, the security course required for an airport pass, handling restricted areas, and keeping the training records."],
 sections:[
-{h:"Qualifying and renewing (example)",blocks:[{t:"fig",id:"opn_instr",cap:"Animated figure: security instructors and airport ID (example)."},{t:"table",cols:["Course","What it involves"],rows:[
+{h:"Qualifying and renewing (example)",blocks:[{t:"fig",id:"opn_instr",cap:"Animated figure: security instructors and airport passes (example)."},{t:"table",cols:["Course","What it involves"],rows:[
 ["Initial course","About two days. Dates are announced annually, so apply early to fit your launch plan"],
 ["Recurrent course","About a day a year, sometimes online. Without it the qualification lapses"],
 ["How many","At least one in Japan. Having a manager qualified as well as the station manager covers leave and transfers"]]},
@@ -52,17 +52,17 @@ sections:[
 {h:"Handling the restricted area",blocks:[{t:"check",items:[
 {name:"Door codes and similar",x:"Codes for doors into the immigration area are shared with as few people as possible, and you may be asked to sign an undertaking about how they are handled."},
 {name:"Passengers refused entry",x:"The authorities set out the procedure for moving and guarding them until the return flight. Check your contract and procedures with the security company (3-5)."},
-{name:"Storing material",x:"Security material is sensitive security information and is kept where people outside the circle cannot see it."}]},
-{t:"point",warn:true,x:"Never share security material or door codes casually by email or chat. Write the rules for storing and sharing them into the station SOP."}]}],
+{name:"Storing material",x:"Security material is sensitive security information and is kept where unauthorised people cannot see it."}]},
+{t:"point",warn:true,x:"Do not share security material or door codes casually by email or chat. Write the rules for storing and sharing them into the station SOP."}]}],
 voice:"For a security instructor, what matters is keeping a record of what was taught. Always record the date, content and attendees of each session; it pays off in audits.",
-terms:[["Aviation Security Instructor","航空保安インストラクター","항공보안 인스트럭터"],["Initial Instructor Course","養成講習","양성 교육"],["Recurrent Course","定期講習","정기 교육"],["Restricted Area","制限区域","보호구역"],["Temporary Pass","一時パス","임시 출입증"],["Undertaking / Pledge","誓約書","서약서"]],
+terms:[["Aviation Security Instructor","航空保安インストラクター","항공보안 인스트럭터"],["Initial Instructor Course","養成講習","양성 강습"],["Recurrent Course","定期講習","정기 강습"],["Restricted Area","制限区域","보호구역"],["Temporary Pass","一時パス","임시 출입증"],["Undertaking / Pledge","誓約書","서약서"]],
 quiz:[{q:"How many security instructors must be in Japan?",opts:["None","At least one","Every member of staff","One at head office is enough"],a:1,exp:"At least one in Japan."},
 {q:"How is the qualification maintained?",opts:["Nothing is needed","An annual recurrent course","Once every ten years","An exam only"],a:1,exp:"Without the recurrent course it lapses."},
 {q:"How is security material handled?",opts:["Shared on chat","Kept where outsiders cannot see it","Posted on social media","Left on the desk"],a:1,exp:"It is treated as sensitive security information."}],
 next:"5-3 Preparing for the authorities’ audits"});
 
 set("5-3",{title:"Preparing for the Authorities’ Audits",hl:"audits",subtitle:"An annual audit, plus unannounced inspections. What gets looked at most is the training record ★",
-lead:["A foreign airline serving Japan is audited by the transport ministry on security, dangerous goods, safety and cabin matters, alongside head office audits and inspections by its own authority. Preparation is not something done on the day; it is the daily records.",
+lead:["A foreign airline serving Japan is audited by the transport ministry on security, dangerous goods, safety and cabin matters, alongside head office audits and inspections by its own authority. Preparation is not something done on the day; it comes from the daily records.",
 "This article covers the types of audit and when they come, what is looked at most closely, what to have ready, and how to respond to findings. It draws on several airlines’ experience, and methods change from year to year."],
 sections:[
 {h:"Types of audit (example)",blocks:[{t:"fig",id:"opn_audit",cap:"Animated figure: audits and inspections a station faces (example)."},{t:"table",cols:["Audit","When and what"],rows:[
@@ -114,7 +114,7 @@ sections:[
 {name:"The handling company",x:"Securing staff and facilities at the airport."}]}]},
 {h:"The airport plan and joint exercises",blocks:[{t:"rows",items:[
 {name:"The airport’s plan",x:"Airport companies hold an emergency plan setting out the roles of fire, medical services, police and the airlines."},
-{name:"Joint exercises",x:"Take part in the exercises run by the airport company, the operators committee and the agencies, and confirm your own role."},
+{name:"Joint exercises",x:"Take part in the exercises run by the airport company, the airline operators committee (AOC) and the agencies, and confirm your own role."},
 {name:"Internal training",x:"Take head office’s emergency response training for stations and go team members, and run tabletop exercises at the station."}]}]},
 {h:"Keeping ready",blocks:[{t:"check",items:[
 {name:"Contacts",x:"Keep contacts current for the emergency centre, the airport, the authorities, the handling company, hotels and interpreters, managed as security requires."},

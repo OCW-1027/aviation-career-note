@@ -17,7 +17,7 @@ sections:[
 {h:"Structure of a Japan-origin booking and ticketing guideline (example)",blocks:[{t:"table",cols:["Section","Contents"],rows:[
 ["1 Basics","Validity period, sales area, commission, revision history"],
 ["2 Booking classes","Classes by cabin; which agencies may use IT and group classes"],
-["3 Basic rules","Open or waitlisted bookings, sale outside the country of issue (SOTO), buying ancillaries"],
+["3 Basic rules","Whether open and waitlisted bookings are allowed, sale outside the country of issue (SOTO), buying ancillaries"],
 ["4 Fare quotes","Fare display and pricing entries for each main GDS"],
 ["5 Mandatory booking items","Passport data (APIS), passenger contact (SSR CTCM, CTCE), name entry rules"],
 ["6 Ticketing time limits","Limits by days to departure; IT and group fares follow their fare rules"],
@@ -31,11 +31,11 @@ sections:[
 {name:"In Japanese, in tables",x:"Write tables and entry examples in Japanese so ticketing staff can look things up quickly; not English-only, not long prose."},
 {name:"Revision history first",x:"Put what changed, and from when, on page one to prevent errors from outdated versions."},
 {name:"Make passenger contact mandatory",x:"Require phone (CTCM) and email (CTCE) so passengers can be told of delays and cancellations (Course 1, lesson 5-8)."},
-{name:"Entries for each GDS",x:"Show the same operation side by side for each GDS used by Japanese agencies."},
+{name:"Entries for each GDS",x:"Show the same operation side by side for each main GDS used by Japanese agencies."},
 {name:"Test before sending",x:"Actually book, ticket, void and refund in the main GDSs and check the results before distribution."},
 {name:"Post it in the GDS",x:"Also publish it on the GDS provider’s notice pages so agencies can find it."}]}]}],
 voice:"Agencies ask similar questions before a launch. Collect the questions and answers in one document and it becomes your booking and ticketing guideline.",
-terms:[["Form of Payment (FOP)","支払い方法","지불 수단"],["Reissue","再発行","재발행"],["Refund Application (RA)","払い戻しの申請","환불 신청"],["Void","無効化（VOID）","발권 취소(VOID)"],["Name Correction","名前の訂正","이름 정정"],["Passenger Contact (CTCM/CTCE)","お客様の連絡先（SSR）","승객 연락처(SSR)"]],
+terms:[["Form of Payment (FOP)","支払い方法","결제 수단"],["Reissue","再発行","재발행"],["Refund Application (RA)","払い戻しの申請","환불 신청"],["Void","無効化（VOID）","발권 취소(VOID)"],["Name Correction","名前の訂正","이름 정정"],["Passenger Contact (CTCM/CTCE)","お客様の連絡先（SSR）","승객 연락처(SSR)"]],
 quiz:[{q:"What tends to happen if answers are given to agencies only verbally?",opts:["They are lost when staff change, causing ADMs","Sales rise","Nothing","Ticketing gets faster"],a:0,exp:"Put them in writing before launch."},
 {q:"What should be mandatory at booking so passengers can be told about disruptions?",opts:["Passenger phone and email (CTCM, CTCE)","Favourite food","Seat colour","The agency’s address only"],a:0,exp:"Without contact details, notices cannot reach them."},
 {q:"What belongs on page one of the guideline?",opts:["The revision history","The company’s history","Advertising","Nothing"],a:0,exp:"It prevents errors from outdated versions."}],
@@ -78,8 +78,8 @@ quiz:[{q:"When is it usual to make the first visit to agencies?",opts:["Before t
 {q:"What do you collect for major agencies and ask head office to register?",opts:["PCCs and ticketing BSP numbers","Staff birthdays","Office size","Favourite airlines"],a:0,exp:"Needed to sell through GDS and BSP."},
 {q:"What material helps agencies build packages?",opts:["Logo and cabin, seat and aircraft photos","Internal pay scales","Head office budget","Nothing"],a:0,exp:"Used on product pages and brochures."}],
 next:"6-4 Seasonal sales strategy"});
-set("6-4",{title:"Seasonal Sales Strategy: Waves from Japan and Korea, and the January Promotion Season",hl:"seasonal strategy",subtitle:"Peaks differ between the two countries. Pre-sell the low season with group and IT fares. Bring fares to the New Year sales battle",
-lead:["On two-country routes such as Japan–Korea, peaks and troughs differ between the two origins. Rely only on one side’s peaks and the other side’s low season leaves empty seats.","This lesson covers the seasonal pattern from each origin, how to fill the low season, the agencies’ big January promotion, and how to sell to different customer groups."],
+set("6-4",{title:"Seasonal Sales Strategy: Waves from Japan and Korea, and the January Promotion Season",hl:"seasonal strategy",subtitle:"Peaks differ between the two countries. Pre-sell the low season with group and IT fares. Bring fares to the New Year sales season",
+lead:["On two-country routes such as Japan–Korea, peaks and troughs differ between the two origins. Relying only on one side’s peaks leaves empty seats in the other side’s low season.","This lesson covers the seasonal pattern from each origin, how to fill the low season, the agencies’ big January promotion, and how to sell to different customer groups."],
 sections:[
 {h:"Seasonal pattern (Japan–Korea example)",blocks:[{t:"fig",id:"sls_peak",cap:"Figure: peak periods on Japan–Korea routes (example)."},{t:"table",cols:["","Peak","Low"],rows:[
 ["From Korea","Late December to February, late July to mid-August, Lunar New Year, Chuseok and other holidays","—"],
@@ -111,6 +111,6 @@ voice:"Off-peak products sell better when built together with agencies. Before t
 terms:[["Peak Season","繁忙期","성수기"],["Low Season","閑散期","비수기"],["Spot Fare","スポット運賃","스폿 운임"],["Volume Incentive (VI)","報奨金（VI）","판매 장려금(VI)"],["Wholesaler","ホールセラー","홀세일러"],["Weak Day","不振日","부진일"]],
 quiz:[{q:"Which is a low season from Japan?",opts:["Golden Week","Early to mid-April (new school year)","Obon","Late December"],a:1,exp:"Demand slows at the start of the school year."},
 {q:"When do agencies run their biggest promotion of the year?",opts:["Early January","June","September","It varies"],a:0,exp:"Pre-sales now start from late November or early December."},
-{q:"Which is a good way to fill the low season?",opts:["Pre-sell seats with group and IT fares","Do nothing","Cancel all flights","Keep fares secret"],a:0,exp:"Steadier than last-minute cuts."}],
+{q:"Which is a good way to fill the low season?",opts:["Pre-sell seats with group and IT fares","Do nothing","Cancel all flights","Keep fares secret"],a:0,exp:"Results tend to be steadier than with last-minute cuts."}],
 next:"6-5 An annual sales calendar for Japan–Korea routes"});
 })(window.ARTS);

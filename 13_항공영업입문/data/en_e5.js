@@ -1,6 +1,6 @@
 /* 航空営業入門 6-5 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("6-5",{title:"An Annual Sales Calendar for Japan–Korea Routes: Building One with the 2027 Calendar",hl:"annual sales calendar",subtitle:"Overlay the two waves, Korea-origin and Japan-origin, to plan the year: market size, how the 2027 holidays fall, a toolbox of fares and sales measures, and what to do how many months ahead",
+set("6-5",{title:"An Annual Sales Calendar for Japan–Korea Routes: Building One with the 2027 Calendar",hl:"annual sales calendar",subtitle:"Overlay the two waves, Korea-origin and Japan-origin, to plan the year: market size, how the 2027 holidays fall, a toolbox of fares and sales measures, and a timeline of what to do months ahead",
 lead:["Japan–Korea is one of the busiest bilateral air markets in the world. Yet 2025 figures show that Koreans visiting Japan outnumbered Japanese visiting Korea by about 2.6 to 1, so demand is heavily one-sided. Relying only on Korea-origin peaks leaves empty seats in Japan-origin low seasons.","This lesson checks the size of the market, overlays the Korea-origin and Japan-origin waves across the year, and builds an annual sales calendar using how the 2027 holidays fall. It then sets out which fare and sales tools to use, and how many months ahead."],
 sections:[
 {h:"Market size (2025)",blocks:[{t:"table",cols:["Item","2025","Key point"],rows:[
@@ -23,7 +23,7 @@ sections:[
 ["Late December","Strong at year-end","Strong on 28–31 December","Close cheap fares on near-full days"]]},
 {t:"note",x:"* The index and month boundaries are illustrative. In practice they vary with last year’s booking pace, events and exchange rates (1-2). ★"}]},
 {h:"Exercise: how the 2027 holidays fall",blocks:[{t:"table",cols:["Country","Holidays (2027)","Pattern","Outlook"],rows:[
-["Korea","Seollal 6–8 February plus substitute holiday 9 February","Four days, Saturday 6 to Tuesday 9 February: one of the long breaks of 2027","Korea-origin demand concentrates in early February; target the weeks either side for Japan-origin"],
+["Korea","Seollal 6–8 February plus substitute holiday 9 February","Four days, Saturday 6 to Tuesday 9 February: one of the major breaks of 2027","Korea-origin demand concentrates in early February; target the weeks either side for Japan-origin"],
 ["Korea","Children’s Day 5 May (Wed), Buddha’s Birthday 13 May (Thu)","Mid-week holidays that become long weekends with leave","Short-trip demand"],
 ["Korea","Liberation Day 15 August (Sun), substitute 16 August (Mon)","Three-day weekend","End-of-summer demand"],
 ["Korea","Chuseok 14–16 September (Tue–Thu)","Taking 13 and 17 September off gives nine days, 11–19 September","The autumn Korea-origin peak; fix mid-September seats and fares early"],
@@ -36,7 +36,7 @@ sections:[
 {t:"note",x:"* Korean holidays follow the published 2027 almanac; Japanese holidays are calculated from the rules of the National Holidays Act (the nth Monday and so on). Always confirm actual dates and substitute holidays against official announcements. ★"},
 {t:"point",x:"In 2027, Korea’s Chuseok (mid-September) and Japan’s September holidays fall close together, so demand in both directions is likely to overlap. Conversely, April, June and November tend to be weak both ways; how you fill them decides the year’s results."}]},
 {h:"A toolbox of fares and sales measures",blocks:[{t:"table",cols:["Tool","When to use it","Watch out for"],rows:[
-["Low-day settings (designated special-fare days)","Days or weekdays where bookings lag","Decide early and tell agencies; last-minute alone has little effect"],
+["Low-day settings (designated special-fare days)","Dates or days of the week when bookings lag","Decide early and tell agencies; last-minute action alone has little effect"],
 ["Minimum selling price by period","Set floors by quarter or half-year","Stops agencies underselling; check competitors’ periods too"],
 ["Class-wide promotions for all agencies","Promoting a specific class (e.g. premium economy)","Handling of override commissions, GDS notices and tour codes"],
 ["Exclusive agency products","Low seasons and specific customer segments","Joint promotion; commit to the product period and seat numbers"],
@@ -45,7 +45,7 @@ sections:[
 ["Advance sales with group fares","Filling low-season seats early","Deadlines for numbers and names; cancellation terms"],
 ["Incentive groups","Corporate reward travel","Whether departure times and stay lengths fit; conditions such as one free ticket per 15 passengers"]]},
 {t:"note",x:"* Names and methods vary by airline. Always coordinate fares with head-office revenue management (4-2). ★"}]},
-{h:"What to do how many months ahead",blocks:[{t:"table",cols:["When","What to do"],rows:[
+{h:"What to do, and how many months ahead",blocks:[{t:"table",cols:["When","What to do"],rows:[
 ["6 months ahead","Submit draft minimum selling prices, low-season group fares and requests for extra flights or aircraft for holidays to head office"],
 ["4–3 months ahead","Agree promotions and exclusive products with agencies; distribute agency fares (such as IT fares)"],
 ["2 months ahead","Set low days based on booking pace; publicity and social media"],

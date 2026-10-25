@@ -11,7 +11,7 @@ var F={
 /* 1 EDTO：交替空港からのダイバージョン時間の円。60分の円の外の区間がEDTO。承認された最大ダイバージョン時間（例：180分）の円が経路を覆う */
 ops_edto:function(l){
  var W=({ja:{t:'EDTO ― ダイバージョン時間の円で経路を守る',a1:'出発地',a2:'目的地',alt:'経路上の交替空港',c60:'60分の円（基準時間）',out:'60分の円の外＝EDTOの区間',c180:'承認された最大ダイバージョン時間（例：180分）の円',items:['1発不作動の巡航速度・無風で、交替空港まで60分の円（双発機の基準時間）を出る経路はEDTO','会社は機種・路線ごとに最大ダイバージョン時間の承認を受け、その円の中に経路を収める','経路上の交替空港の天気は、使う可能性のある時間の前後1時間に最低気象条件以上であること（8-2の表）']},
-  ko:{t:'EDTO — 회항시간 원으로 경로를 지킨다',a1:'출발지',a2:'목적지',alt:'항로상 교체공항',c60:'60분 원(기준시간)',out:'60분 원 밖 = EDTO 구간',c180:'승인된 최대회항시간(예: 180분) 원',items:['1개 발동기 부작동 순항속도·무풍으로 교체공항까지 60분 원(쌍발기 기준시간)을 벗어나는 경로가 EDTO','회사는 기종·노선별로 최대회항시간을 승인받고, 그 원 안에 경로를 넣는다','항로상 교체공항 날씨는 쓸 수 있는 시간 전후 1시간 동안 최저 기상치 이상이어야 한다(8-2 표)']},
+  ko:{t:'EDTO — 회항시간 원으로 경로를 지킨다',a1:'출발지',a2:'목적지',alt:'항로상 교체공항',c60:'60분 원(기준시간)',out:'60분 원 밖 = EDTO 구간',c180:'승인된 최대회항시간(예: 180분) 원',items:['1개 발동기 부작동 순항속도·무풍 기준, 교체공항 60분 원(쌍발기 기준시간)을 벗어나는 경로는 EDTO다','회사는 기종·노선별로 최대회항시간을 승인받고, 그 원 안에 경로를 둔다','항로상 교체공항 날씨는 사용 예상 시간 전후 1시간 동안 최저 기상치 이상이어야 한다(8-2 표)']},
   en:{t:'EDTO: keeping the route inside diversion-time circles',a1:'Departure',a2:'Destination',alt:'En-route alternates',c60:'60-minute circles (threshold time)',out:'Outside the 60-minute circles = EDTO segment',c180:'Approved maximum diversion time circles (e.g. 180 min)',items:['A route that leaves the 60-minute circles around alternates (one engine out, still air; the twin-engine threshold) is an EDTO operation','Operators are approved for a maximum diversion time by type and route, and must keep the route inside those circles','En-route alternate weather must be at or above minima from one hour before to one hour after the possible time of use (table in 8-2)']}})[l];
  if(!W)return F.ops_edto('ja');
  setK(1);var dur=10;
@@ -33,7 +33,7 @@ ops_edto:function(l){
 /* 2 一日の勤務：乗務時間・飛行勤務時間・勤務時間の範囲 */
 ops_day:function(l){
  var W=({ja:{t:'一日の勤務と3つの時間',ev:['出頭（報告）','動き出す','到着・停止','動き出す','到着・停止','勤務の終わり'],leg:['1区間目','2区間目'],ft:'乗務時間（動き出してから止まるまで・区間の合計）',fdp:'飛行勤務時間（出頭から最後の区間が終わるまで）',duty:'勤務時間（出頭からすべての勤務が終わるまで）',lim:'韓国・操縦士2名の上限：乗務時間8時間・飛行勤務時間13時間（日本は開始時刻と区間数で変わる。6-1の表）'},
-  ko:{t:'하루 근무와 3가지 시간',ev:['출근 보고','움직이기 시작','도착·정지','움직이기 시작','도착·정지','근무 종료'],leg:['1구간','2구간'],ft:'승무시간(움직이기 시작해 멈출 때까지·구간 합계)',fdp:'비행근무시간(출근 보고부터 마지막 구간이 끝날 때까지)',duty:'근무시간(출근 보고부터 모든 근무가 끝날 때까지)',lim:'한국·조종사 2명 상한: 승무시간 8시간·비행근무시간 13시간(일본은 시작 시각과 구간 수로 바뀐다. 6-1 표)'},
+  ko:{t:'하루 근무와 3가지 시간',ev:['출근 보고','이동 시작','도착·정지','이동 시작','도착·정지','근무 종료'],leg:['1구간','2구간'],ft:'승무시간(이동 시작부터 정지까지·구간 합계)',fdp:'비행근무시간(출근 보고부터 마지막 구간이 끝날 때까지)',duty:'근무시간(출근 보고부터 모든 근무가 끝날 때까지)',lim:'한국·조종사 2명 상한: 승무시간 8시간·비행근무시간 13시간(일본은 시작 시각과 구간 수로 바뀐다. 6-1 표)'},
   en:{t:'A duty day and its three time measures',ev:['Report','Off blocks','On blocks','Off blocks','On blocks','End of duty'],leg:['Sector 1','Sector 2'],ft:'Flight time (off blocks to on blocks, summed over sectors)',fdp:'Flight duty period (report to the end of the last sector)',duty:'Duty time (report to the end of all duties)',lim:'Korea, two pilots: flight time 8 hours, FDP 13 hours (Japan varies with start time and number of sectors; see the table in 6-1)'}})[l];
  if(!W)return F.ops_day('ja');
  setK(1);var dur=10,x=[50,120,260,330,470,570],y0=150;
@@ -53,7 +53,7 @@ ops_day:function(l){
 /* 3 飛行中の燃料：残りが減ると、遅延情報の要求 → MINIMUM FUEL → MAYDAY FUEL */
 ops_minfuel:function(l){
  var W=({ja:{t:'飛行中の燃料と2つの通報',tank:'着陸時に残る見込みの燃料',l1:'交替空港まで＋最終予備：これより少なそうなら管制に遅延の情報を求める',l2:'MINIMUM FUEL：特定の空港に降りるしかなく、承認が変わると最終予備を下回るかもしれない（緊急ではない）',l3:'MAYDAY FUEL：最も近い空港に降りても最終予備を下回る見込み（緊急の宣言）',note:'MINIMUM FUEL は「これ以上の遅れは受けられない」という知らせ。優先して着陸したいときは MAYDAY FUEL が必要'},
-  ko:{t:'비행 중 연료와 두 가지 통보',tank:'착륙 때 남을 것으로 예상되는 연료',l1:'교체공항까지 + 최종예비: 이보다 적을 것 같으면 관제에 지연 정보를 요청',l2:'MINIMUM FUEL: 특정 공항에 착륙할 수밖에 없고 허가가 바뀌면 최종예비보다 적어질 수 있을 때(비상 아님)',l3:'MAYDAY FUEL: 가장 가까운 공항에 착륙해도 최종예비보다 적어질 것으로 예상될 때(비상 선언)',note:'MINIMUM FUEL은 ‘더 이상의 지연은 받을 수 없다’는 알림. 우선 착륙을 원하면 MAYDAY FUEL이 필요하다'},
+  ko:{t:'비행 중 연료와 두 가지 통보',tank:'착륙 시 남을 것으로 예상되는 연료',l1:'교체공항까지 + 최종예비: 이보다 적을 것 같으면 관제에 지연 정보를 요청',l2:'MINIMUM FUEL: 특정 공항에 착륙할 수밖에 없고 허가가 바뀌면 최종예비보다 적어질 수 있을 때(비상 아님)',l3:'MAYDAY FUEL: 가장 가까운 공항에 착륙해도 최종예비보다 적어질 것으로 예상될 때(비상 선언)',note:'MINIMUM FUEL은 ‘더 이상의 지연은 감수할 수 없다’는 알림. 우선 착륙을 원하면 MAYDAY FUEL이 필요'},
   en:{t:'Fuel in flight and the two calls',tank:'Expected fuel on landing',l1:'Alternate + final reserve: if landing with less looks likely, ask ATC for delay information',l2:'MINIMUM FUEL: committed to one airport, and any change in clearance could mean landing below final reserve (not an emergency)',l3:'MAYDAY FUEL: expected to land below final reserve even at the nearest airport (an emergency)',note:'MINIMUM FUEL means “no further delay can be accepted”; to get priority, declare MAYDAY FUEL'}})[l];
  if(!W)return F.ops_minfuel('ja');
  setK(1);var dur=9,tx0=60,tw=90,ty=70,th=200;
@@ -70,8 +70,8 @@ ops_minfuel:function(l){
 
 /* 4 火山灰：噴火した火山の灰の雲が風で広がり、航空路が避けて通る。航空用の色の警報が変わる */
 ops_ash:function(l){
- var W=({ja:{t:'火山灰の雲と経路の変更',wind:'上空の風',old:'もとの経路',nw:'避ける経路（距離が増え、燃料も増える）',cc:'航空用の色の警報',cols:['緑','黄','オレンジ','赤'],items:['ASHTAM・VAAC の火山灰情報・VA SIGMET で、範囲と高さを確かめる','経路・高度・時刻と重ねて、灰の雲を避ける経路と燃料を決める','降灰で空港が閉鎖されることがある。目的地・代替空港の見込みも確かめる']},
-  ko:{t:'화산재 구름과 경로 변경',wind:'상공의 바람',old:'원래 경로',nw:'피해 가는 경로(거리가 늘고 연료도 늘어난다)',cc:'항공용 색 경보',cols:['녹색','황색','주황','적색'],items:['ASHTAM·VAAC 화산재 정보·VA SIGMET으로 범위와 높이를 확인한다','경로·고도·시각과 겹쳐 화산재 구름을 피하는 경로와 연료를 정한다','강회로 공항이 폐쇄될 수 있다. 목적지·교체공항의 전망도 확인한다']},
+ var W=({ja:{t:'火山灰の雲と経路の変更',wind:'上空の風',old:'もとの経路',nw:'避ける経路（距離が増え、燃料も増える）',cc:'航空カラーコード',cols:['緑','黄','オレンジ','赤'],items:['ASHTAM・VAAC の火山灰情報・VA SIGMET で、範囲と高さを確かめる','経路・高度・時刻と重ねて、灰の雲を避ける経路と燃料を決める','降灰で空港が閉鎖されることがある。目的地・代替空港の見込みも確かめる']},
+  ko:{t:'화산재 구름과 경로 변경',wind:'상공의 바람',old:'원래 경로',nw:'피해 가는 경로(거리가 늘고 연료도 늘어난다)',cc:'항공 색상 코드',cols:['녹색','황색','주황','적색'],items:['ASHTAM·VAAC 화산재 정보·VA SIGMET으로 범위와 높이를 확인한다','경로·고도·시각과 대조해 화산재 구름을 피하는 경로와 연료를 정한다','강회로 공항이 폐쇄될 수 있다. 목적지·교체공항의 전망도 확인한다']},
   en:{t:'Volcanic ash clouds and rerouting',wind:'Upper wind',old:'Original route',nw:'Avoiding route (longer, so more fuel)',cc:'Aviation colour code',cols:['Green','Yellow','Orange','Red'],items:['Check the extent and height in the ASHTAM, VAAC advisories and VA SIGMET','Overlay them on the route, level and times, and plan an avoiding route and fuel','Ash fall can close airports; check the outlook for the destination and alternates too']}})[l];
  if(!W)return F.ops_ash('ja');
  setK(1);var dur=10;
@@ -150,7 +150,7 @@ ops_fpl:function(l){
 /* 9 出発前の書類の束：機長のフォルダーに集まり、署名して出発の許可 */
 ops_docs:function(l){
  var W=({ja:{t:'出発前の書類の束と機長の署名',docs:['OFP（運航飛行計画書）','NOTAMと気象','ロードシート','特殊な搭載物の通知（NOTOC）','航空日誌の関係ページ'],who:['運航管理者','運航管理者','搭載管理','貨物・搭載','整備'],fold:'機長のフォルダー',sign:'機長の確認・署名 → 出発の許可',note:'作り直したOFP・ロードシートは古い版を回収し、新しい版だけを機内に置く。署名した書類は決められた期間保存する（9-2）'},
-  ko:{t:'출발 전 서류 묶음과 기장 서명',docs:['OFP(운항비행계획서)','NOTAM과 기상','로드시트','특수 탑재물 통지(NOTOC)','항공일지 관련 페이지'],who:['운항관리사','운항관리사','탑재관리','화물·탑재','정비'],fold:'기장 폴더',sign:'기장 확인·서명 → 비행 인가',note:'다시 만든 OFP·로드시트는 옛 판을 회수하고 새 판만 기내에 둔다. 서명한 서류는 정해진 기간 보존한다(9-2)'},
+  ko:{t:'출발 전 서류 묶음과 기장 서명',docs:['OFP(운항비행계획서)','NOTAM과 기상','로드시트','특수 탑재물 통지(NOTOC)','항공일지 관련 페이지'],who:['운항관리사','운항관리사','탑재관리','화물·탑재','정비'],fold:'기장 폴더',sign:'기장 확인·서명 → 비행 인가',note:'재발행한 OFP·로드시트는 이전 판을 회수하고 새 판만 기내에 둔다. 서명한 서류는 정해진 기간 보존한다(9-2)'},
   en:{t:'The pre-departure document pack and the captain’s signature',docs:['OFP (operational flight plan)','NOTAMs and weather','Load sheet','Special load notification (NOTOC)','Relevant technical log pages'],who:['Dispatcher','Dispatcher','Load control','Cargo and loading','Maintenance'],fold:'Captain’s folder',sign:'Captain checks and signs → flight release',note:'When the OFP or load sheet is reissued, collect the old version so only the new one is on board; keep signed documents for the set period (9-2)'}})[l];
  if(!W)return F.ops_docs('ja');
  setK(1);var dur=10,n=W.docs.length,y=62,lh=FS(11)*1.3;
@@ -201,8 +201,8 @@ case_winter:function(l){
 
 /* 12 総合事例②：太平洋のEDTO夜間便。経路・交替空港・等時点、急減圧で交替空港へ */
 case_edto:function(l){
- var W=({ja:{t:'事例②の流れ ― 仁川→ホノルル（EDTO 180分・練習用・架空の値）',a:'交替空港A',b:'交替空港B',c:'交替空港C',etp:'等時点（ETP）',ash:'火山灰（VA SIGMET）',dec:'急減圧 → 10,000ftへ降下し、Bへダイバート',items:['出発前：ジェット気流の追い風で経路と高度を選び、交替空港A・B・Cの天気を使う可能性のある時間の前後1時間で確かめる','MEL で片方の空調が使えないと上がれる高さが制限され、燃料が足りない → 機材を替える判断','EDTO 臨界燃料：最も厳しい等時点で急減圧とエンジン故障を想定し、交替空港まで飛べる燃料を確保','飛行中：火山灰の範囲を避けて経路を変え、急減圧のときは交替空港Bへ']},
-  ko:{t:'사례 ②의 흐름 — 인천→호놀룰루(EDTO 180분·연습용·가상의 값)',a:'교체공항 A',b:'교체공항 B',c:'교체공항 C',etp:'등시점(ETP)',ash:'화산재(VA SIGMET)',dec:'급감압 → 10,000ft로 강하해 B로 회항',items:['출발 전: 제트기류 뒷바람으로 경로와 고도를 고르고, 교체공항 A·B·C 날씨를 쓸 수 있는 시간 전후 1시간으로 확인','MEL로 한쪽 공조를 쓸 수 없으면 올라갈 수 있는 높이가 제한되어 연료가 모자란다 → 기재 변경 판단','EDTO 임계연료: 가장 엄격한 등시점에서 급감압과 엔진 고장을 가정해 교체공항까지 날 연료를 확보','비행 중: 화산재 범위를 피해 경로를 바꾸고, 급감압 때는 교체공항 B로']},
+ var W=({ja:{t:'事例②の流れ ― 仁川→ホノルル（EDTO 180分・練習用・架空の値）',a:'交替空港A',b:'交替空港B',c:'交替空港C',etp:'等時点（ETP）',ash:'火山灰（VA SIGMET）',dec:'急減圧 → 10,000ftへ降下し、Bへダイバート',items:['出発前：ジェット気流の追い風で経路と高度を選び、交替空港A・B・Cの天気を使う可能性のある時間の前後1時間で確かめる','MEL で片方の空調が使えないと巡航高度が制限され、燃料が足りない → 機材を替える判断','EDTO 臨界燃料：最も厳しい等時点で急減圧とエンジン故障を想定し、交替空港まで飛べる燃料を確保','飛行中：火山灰の範囲を避けて経路を変え、急減圧のときは交替空港Bへ']},
+  ko:{t:'사례 ②의 흐름 — 인천→호놀룰루(EDTO 180분·연습용·가상의 값)',a:'교체공항 A',b:'교체공항 B',c:'교체공항 C',etp:'등시점(ETP)',ash:'화산재(VA SIGMET)',dec:'급감압 → 10,000ft로 강하해 B로 회항',items:['출발 전: 제트기류 순풍으로 경로와 고도를 고르고, 교체공항 A·B·C 날씨를 사용 예상 시간 전후 1시간으로 확인','MEL로 한쪽 공조를 쓸 수 없으면 비행 고도가 제한되어 연료가 모자란다 → 기재 변경 판단','EDTO 임계연료: 가장 엄격한 등시점에서 급감압과 엔진 고장을 가정해 교체공항까지 갈 연료를 확보','비행 중: 화산재 범위를 피해 경로를 바꾸고, 급감압 때는 교체공항 B로']},
   en:{t:'Case 2 flow: Incheon to Honolulu (EDTO 180 min, exercise, fictitious values)',a:'Alternate A',b:'Alternate B',c:'Alternate C',etp:'Equal-time point (ETP)',ash:'Volcanic ash (VA SIGMET)',dec:'Decompression → descend to 10,000 ft and divert to B',items:['Before departure: choose route and level for the jet-stream tailwind, and check the weather at alternates A, B and C for one hour either side of possible use','An MEL item with one air-conditioning pack inoperative limits altitude so fuel is insufficient → decide to swap aircraft','EDTO critical fuel: assume decompression plus engine failure at the most critical ETP and carry enough to reach the alternate','In flight: reroute around the ash, and after a decompression divert to alternate B']}})[l];
  if(!W)return F.case_edto('ja');
  setK(1);var dur=12;
@@ -234,15 +234,15 @@ _caseTL:function(title,ev){
 
 /* 14 総合事例③：夏の午後の雷雨とダイバート（金浦→関西・架空） */
 case_summer:function(l){
- var W=({ja:{t:'事例③の流れ ― 夏の午後の金浦→関西（練習用・架空の値）',ev:[['11:30','TAF：15〜18時に雷雨（TEMPO TSRA）','関西の到着予定16:10がその時間に入る'],['12:00','燃料と代替空港','待機と迂回の追加燃料。代替空港は同じ雷雨の列に入らない中部'],['15:40','到着地の雷雨で待機','管制のEFCと残りの燃料を確かめる'],['16:05','マイクロバーストの警報','進入をやめて復行（ゴーアラウンド）'],['16:25','ダイバートの判断','2回目の待機で基準の燃料に近づく → 中部へ'],['17:20','中部に着陸','地上の手配・乗員の勤務時間・再出発か運航終了か']]},
-  ko:{t:'사례 ③의 흐름 — 여름 오후의 김포→간사이(연습용·가상의 값)',ev:[['11:30','TAF: 15~18시 뇌우(TEMPO TSRA)','간사이 도착 예정 16:10이 그 시간에 든다'],['12:00','연료와 교체공항','대기와 우회의 추가 연료. 교체공항은 같은 뇌우 열에 들지 않는 주부'],['15:40','도착지 뇌우로 대기','관제의 EFC와 남은 연료를 확인'],['16:05','마이크로버스트 경보','접근을 멈추고 실패접근(고어라운드)'],['16:25','다이버트 판단','두 번째 대기로 기준 연료에 가까워진다 → 주부로'],['17:20','주부에 착륙','지상 준비·승무원 근무시간·재출발인지 운항 종료인지']]},
+ var W=({ja:{t:'事例③の流れ ― 夏の午後の金浦→関西（練習用・架空の値）',ev:[['11:30','TAF：15〜18時に雷雨（TEMPO TSRA）','関西の到着予定16:10がその時間に入る'],['12:00','燃料と代替空港','待機と迂回の追加燃料。代替空港は同じ雷雨域にかからない中部'],['15:40','到着地の雷雨で待機','管制のEFCと残りの燃料を確かめる'],['16:05','マイクロバーストの警報','進入をやめて復行（ゴーアラウンド）'],['16:25','ダイバートの判断','2回目の待機で基準の燃料に近づく → 中部へ'],['17:20','中部に着陸','地上の手配・乗員の勤務時間・再出発か運航終了か']]},
+  ko:{t:'사례 ③의 흐름 — 여름 오후의 김포→간사이(연습용·가상의 값)',ev:[['11:30','TAF: 15~18시 뇌우(TEMPO TSRA)','간사이 도착 예정 16:10이 해당 시간대'],['12:00','연료와 교체공항','대기·우회용 추가 연료. 교체공항은 같은 뇌우대에 걸리지 않는 주부'],['15:40','도착지 뇌우로 대기','관제 EFC와 잔여 연료 확인'],['16:05','마이크로버스트 경보','접근 중단 후 복행(고어라운드)'],['16:25','다이버트 판단','두 번째 대기로 기준 연료에 가까워진다 → 주부로'],['17:20','주부에 착륙','지상 준비·승무원 근무시간·재출발 또는 운항 종료']]},
   en:{t:'Case 3 flow: a summer afternoon, Gimpo to Kansai (exercise, fictitious values)',ev:[['11:30','TAF: thunderstorms 15–18 (TEMPO TSRA)','The 16:10 arrival at Kansai falls within that period'],['12:00','Fuel and alternates','Additional fuel for holding and deviations; Chubu chosen as the alternate, clear of the same line of storms'],['15:40','Holding for storms at the destination','Check the ATC EFC time and remaining fuel'],['16:05','Microburst alert','Approach abandoned, go-around'],['16:25','Diversion decision','A second hold brings fuel close to the limit → divert to Chubu'],['17:20','Landing at Chubu','Ground arrangements, crew duty time, re-departure or end of operation']]}})[l];
  if(!W)return F.case_summer('ja');return F._caseTL(W.t,W.ev)},
 
 /* 15 総合事例④：台風の接近（架空） */
 case_typhoon:function(l){
  var W=({ja:{t:'事例④の流れ ― 台風の接近と那覇の便（練習用・架空の値）',ev:[['2日前','予報円と暴風域の時刻を読む','那覇に暴風域がかかるのは明日18時〜明後日6時の見込み'],['前日 10:00','欠航と時刻の変更','明日15時以降の那覇発着を欠航、朝の便を前倒し・増便'],['前日 18:00','航空機の避難','那覇に泊まる機体を福岡へ回送（夜間駐機を避ける）'],['当日 12:00','地上の備え','地上の機材・車両の固定、搭乗橋の格納、ランプ作業の中止'],['通過後','運航の再開','滑走路・施設の点検の後、乗員と機体の配置を戻して臨時便']]},
-  ko:{t:'사례 ④의 흐름 — 태풍 접근과 나하 편(연습용·가상의 값)',ev:[['이틀 전','예보원과 폭풍역 시각 읽기','나하에 폭풍역이 걸리는 것은 내일 18시~모레 6시 전망'],['전날 10:00','결항과 시각 변경','내일 15시 이후 나하 출발·도착 결항, 아침 편을 앞당기거나 증편'],['전날 18:00','항공기 피난','나하에 밤을 보낼 기체를 후쿠오카로 회송(야간 주기를 피한다)'],['당일 12:00','지상 대비','지상 장비·차량 고정, 탑승교 격납, 램프 작업 중지'],['통과 뒤','운항 재개','활주로·시설 점검 뒤 승무원과 기체 배치를 되돌려 임시편']]},
+  ko:{t:'사례 ④의 흐름 — 태풍 접근과 나하 편(연습용·가상의 값)',ev:[['이틀 전','예보원과 폭풍역 시각 읽기','나하는 내일 18시~모레 6시 폭풍역에 들 전망'],['전날 10:00','결항과 시각 변경','내일 15시 이후 나하 출발·도착 결항, 아침 편을 앞당기거나 증편'],['전날 18:00','항공기 피난','나하에서 밤을 보낼 기체를 후쿠오카로 회송(야간 주기 회피)'],['당일 12:00','지상 대비','지상 장비·차량 고정, 탑승교 격납, 램프 작업 중지'],['통과 뒤','운항 재개','활주로·시설 점검 후 승무원·기체 재배치, 임시편 운항']]},
   en:{t:'Case 4 flow: an approaching typhoon and flights to Naha (exercise, fictitious values)',ev:[['D−2','Read the forecast circle and storm-area timing','Storm-force winds expected at Naha from 18:00 tomorrow to 06:00 the day after'],['D−1 10:00','Cancellations and retiming','Cancel Naha flights from 15:00 tomorrow; bring morning flights forward or add extras'],['D−1 18:00','Evacuating aircraft','Ferry the aircraft due to night-stop at Naha to Fukuoka'],['Day 12:00','Ground preparations','Secure ground equipment and vehicles, retract boarding bridges, stop ramp work'],['After','Resuming operations','After runway and facility checks, reposition crews and aircraft and run extra flights']]}})[l];
  if(!W)return F.case_typhoon('ja');return F._caseTL(W.t,W.ev)},
 /* 16 総合事例⑤：急病人とダイバート（架空） */

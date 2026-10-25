@@ -11,7 +11,7 @@ sections:[
 {name:"CIQ",x:"Dealing with customs, immigration and quarantine."},
 {name:"Passenger service",x:"Passengers needing assistance, complaints and service improvements."},
 {name:"Irregular operations",x:"Handling delays and cancellations, recording them and reporting the outcome."}]}]},
-{h:"How a day runs (one international rotation a day)",blocks:[{t:"fig",id:"gnd_day",cap:"Animated figure: from four hours before departure to after it, each period’s tasks light up in turn (example)."},{t:"table",cols:["Roughly","Main work"],rows:[
+{h:"How a day runs (one international rotation a day)",blocks:[{t:"fig",id:"gnd_day",cap:"Animated figure: from four hours before departure to after it, each period’s tasks light up in turn (example)."},{t:"table",cols:["Approximate time","Main work"],rows:[
 ["3 to 4 hours before departure","Check the flight details and head office instructions; brief the handling company"],
 ["3 hours before","Confirm the counter is ready; check-in opens"],
 ["1 hour before","Check-in closes; move to the gate; check the loading"],
@@ -30,18 +30,18 @@ sections:[
 ["Start of the month","Monthly report in the first day or two; traffic report to the authorities"],
 ["Monthly","Monthly meetings with the handling company (passenger, ramp, cargo), the duty roster, baggage irregularity numbers and compensation"],
 ["Monthly","Checking the facility charges, settling meal vouchers, writing up the quality checks"],
-["As required","Airport operators committee (AOC) meetings, preparing for head office audits, manual revisions"]]}]},
+["As required","Airline operators committee (AOC) meetings, preparing for head office audits, manual revisions"]]}]},
 {h:"Splitting the duties (small station example)",blocks:[{t:"table",cols:["Role","Main work"],rows:[
 ["Coordination and reporting","Weekly and monthly reports, meetings, audit preparation, manuals"],
 ["Baggage and training","Baggage irregularities and reporting, training new handling company staff and developing their trainers"],
 ["Documents, supplies and passes","Operational documents and forms, stock of replacement bags, airport ID passes"],
 ["Everyone","Supervising each flight and handling irregular operations"]]},
-{t:"point",x:"In a small station, one absence can stop the work. Assign roles, but make sure everyone can cover for everyone else, with written procedures and handover notes."},
+{t:"point",x:"In a small station, one absence can stop the work. Assign roles, but make sure everyone can cover for one another to some extent, with written procedures and handover notes."},
 {t:"note",x:"* How a duty manager runs the day, and how to assign roles in a disruption, are covered in detail in Airport Station Management in Practice 3-1 and 3-3."}]}],
 voice:"Getting through a manager’s busiest days comes from handing off the work you do not have to do yourself. Keep yourself free for the tasks that need your judgment.",
 terms:[["Station Manager / Duty Manager","運送マネージャー","운송 매니저"],["No-show","ノーショー","노쇼"],["Daily Report","日報","일일 보고"],["Passenger Service Facility Charge (PSFC)","旅客施設使用料","여객시설 사용료"],["Quality Check","品質監査","품질 점검"],["Duty Roster","勤務表","근무표"]],
 quiz:[{q:"Who usually does the hands-on work at an overseas station?",opts:["Head office staff","The handling company’s staff","Passengers","The authorities"],a:1,exp:"The airline’s managers supervise."},
-{q:"What belongs to closing the flight?",opts:["No-shows and the daily report","Cooking the catering","Ticket sales strategy","Payroll"],a:0,exp:"Records and reports are pulled together flight by flight."},
+{q:"What is part of closing the flight?",opts:["No-shows and the daily report","Preparing in-flight meals","Ticket sales strategy","Payroll"],a:0,exp:"Records and reports are pulled together flight by flight."},
 {q:"What matters most in a small station?",opts:["Leaving it all to one person","Written procedures and handover notes","Keeping no records","Assigning nothing"],a:1,exp:"So the work continues when someone is away."}],
 next:"6-2 Managing the handling company: meetings, quality checks and training"});
 
@@ -80,8 +80,8 @@ sections:[
 {h:"Safety audits and cost verification",blocks:[{t:"rows",items:[
 {name:"Safety audits",x:"Audit regularly, raise findings and confirm both the corrective plan and its implementation."},
 {name:"A safety owner on their side",x:"Ask the handling company to name someone responsible for safety."},
-{name:"Reporting lines",x:"Make sure accidents and near misses there reach the airline."},
-{name:"Cost verification",x:"Each month, check the flights operated and any additional work (extended work during delays) before approving the invoice. Managing the time each task takes also reduces cost."}]},
+{name:"Reporting lines",x:"Make sure accidents and near misses at the handling company reach the airline."},
+{name:"Cost verification",x:"Each month, check the flights operated and any additional work (such as extended work during delays) before approving the invoice. Managing the time each task takes also reduces cost."}]},
 {t:"point",warn:true,x:"Review regularly whether the scope in the contract (the SGHA and its annexes) still matches what you actually ask for on the ramp."},
 {t:"note",x:"* Setting SLAs, quality audits, monthly meetings and building the relationship with the handler are covered from the duty manager’s side in Airport Station Management in Practice 2-1 to 2-4."}]}],
 voice:"Relations with your handler improve when you look for causes together after a problem. End meetings on what you will change together next month rather than on criticism.",
@@ -92,8 +92,8 @@ quiz:[{q:"What stays with the airline even when the work is contracted out?",opt
 next:"6-3 Managing airport ID passes"});
 
 set("6-3",{title:"Managing Airport ID Passes",hl:"airport ID passes",subtitle:"The key to the restricted area. The station is responsible from issue to return",
-lead:["Entering an airport’s restricted areas, the departure area and the ramp, requires an ID pass issued by the airport operator or the authorities. The pass is a security control, and losing one or misusing it is a serious matter for the whole airport.",
-"This article covers the types of pass, the path from issue to return, the pass controller’s role, what to do about a loss, and the day-to-day points."],
+lead:["Entering an airport’s restricted areas (such as the departure area and the ramp) requires an ID pass issued by the airport operator or the authorities. The pass is a security control, and losing one or misusing it is a serious matter for the whole airport.",
+"This article covers the types of pass, the path from issue to return, the pass controller’s role, what to do if a pass is lost, and points for day-to-day management."],
 sections:[
 {h:"Types of pass (example at a Japanese airport)",blocks:[{t:"table",cols:["Type","What it covers"],rows:[
 ["Airport operator pass","Issued by the airport company for the terminal restricted areas and the ramp. Colours and symbols show which zones it covers"],
@@ -105,23 +105,23 @@ sections:[
 {name:"Keep the list",x:"Who holds which pass and until when."},
 {name:"Track expiry",x:"Prompt renewals before they expire."},
 {name:"Leavers and transfers",x:"Collect the pass on the last working day and return it to the airport company."},
-{name:"Regular reporting",x:"File the pass returns to the airport company and the agencies on time."},
+{name:"Regular reporting",x:"Submit pass reports to the airport company and the agencies on time."},
 {name:"Training",x:"Remind everyone how a pass is used: never lend it, wear it visibly, never take someone else through."}]}]},
 {h:"If a pass is lost",blocks:[{t:"ladder",rise:10,steps:[{name:"Report at once",sub:"Holder reports promptly to the controller and the designated contact"},{name:"Deactivate",sub:"Stop the pass working"},{name:"Notify",sub:"The police where required"},{name:"Reissue",sub:"Application and fee"},{name:"Prevent a repeat",sub:"Find out how it happened and tell everyone"}]},
 {t:"point",warn:true,x:"Repeated losses or passes not returned can affect the whole station’s applications. Tie collecting a leaver’s pass to the HR process."}]}],
 voice:"Airport passes are easily left uncollected when staff leave or move. Set a rule that HR changes are passed to the pass administrator straight away.",
 terms:[["Airport ID Pass","空港IDパス","공항 출입증"],["Restricted Area / Airside","制限区域","보호구역"],["Security Awareness Training","保安講習","보안 교육"],["Airside Driving Permit","車両運転許可","차량 운전 허가"],["Temporary Pass","一時パス","임시 출입증"],["Pass Controller","管理責任者","관리 책임자"]],
-quiz:[{q:"What happens to a leaver’s pass?",opts:["They keep it","It is collected on the last working day and returned","It is passed to a colleague","It stays valid until it expires"],a:1,exp:"It must be collected and returned to the airport company."},
-{q:"Which of these is wrong?",opts:["Wear it visibly","Lend it to a colleague","Never take others through","Keep it in date"],a:1,exp:"Lending a pass is prohibited."},
+quiz:[{q:"What happens to a leaver’s pass?",opts:["They keep it","It is collected on the last working day and returned","It is handed to the successor","It stays valid until it expires"],a:1,exp:"It must be collected and returned to the airport company."},
+{q:"Which of these is the wrong way to use a pass?",opts:["Wear it visibly","Lend it to a colleague","Never take others through","Keep it in date"],a:1,exp:"Lending a pass is prohibited."},
 {q:"What do you do first if a pass is lost?",opts:["Say nothing","Report it immediately","Keep looking for it","Report it next week"],a:1,exp:"Report at once so it can be deactivated."}],
-next:"6-4 Preparing for audits"});
+next:"6-4 Preparing for audits — head office and authorities"});
 
 set("6-4",{title:"Preparing for Audits",hl:"audits",subtitle:"An audit is decided by the records you kept every day, not by the day itself",
 lead:["An overseas station is audited by head office for safety and quality, inspected by its own country’s aviation authority, and audited by the authorities of the country it operates in for security, dangerous goods and safety.",
 "This article covers the main types of audit, what auditors look at, the records a station keeps and for how long, and the habits of a station that does well in audits."],
 sections:[
 {h:"The main audits",blocks:[{t:"fig",id:"gnd_audit",cap:"Animated figure: the main audits a station faces, and what they cover, light up in turn."},{t:"table",cols:["Audit","What it covers"],rows:[
-["Head office safety and quality audit","Operating to the manual, training records, management of the handling company. Regular and special (after an incident)"],
+["Head office safety and quality audit","Operating to the manual, training records, management of the handling company. Can be regular or special (e.g. after an incident)"],
 ["Home country authority inspection","Operational safety standards, security, dangerous goods and passenger handling"],
 ["Host country authority audit","The security programme, security training, dangerous goods, cabin safety (in Japan, the Ministry of Land, Infrastructure, Transport and Tourism)"],
 ["Station self-assessment","The station scores itself against the checklist and improves from it"]]}]},
@@ -145,7 +145,7 @@ sections:[
 {name:"Write records the same day",x:"Catching up later always leaves gaps."},
 {name:"Fix where things are filed",x:"Agree where paper and electronic records live so anyone can produce them."},
 {name:"Put it in the annual calendar",x:"Audit dates and training renewals belong on the calendar (6-6)."},
-{name:"Self-check",x:"Use the audit checklist on yourselves a few times a year."},
+{name:"Self-check",x:"Use the audit checklist to check yourselves a few times a year."},
 {name:"Welcome findings",x:"A finding is material for improvement. Do not hide it; show the cause and the fix."}]},
 {t:"point",x:"Audits by the host country focus on whether the security and training programmes match that country’s rules. Keep a station SOP that supplements the head office manual with the local requirements."},
 {t:"note",x:"* Writing findings and handling head-office audits are also covered in Airport Station Management in Practice 2-2 and 4-8."}]}],
@@ -161,7 +161,7 @@ lead:["The AOC, the Airline Operator’s Committee, is the body formed by the ai
 sections:[
 {h:"What the AOC deals with",blocks:[{t:"fig",id:"gnd_aoc",cap:"Animated figure: the six themes handled by the Airline Operator’s Committee light up in turn."},{t:"table",cols:["Topic","Examples"],rows:[
 ["Facilities","Counter allocation, terminal works, baggage systems"],
-["Operations","Handling peaks, improving punctuality (A-CDM), snow clearing and de-icing"],
+["Operations","Managing peak periods, improving punctuality (e.g. A-CDM), snow clearing and de-icing"],
 ["Charges","Revisions to airport charges, discounts and incentive schemes"],
 ["Security","Changes to screening, security training, the pass system"],
 ["Emergencies","The airport emergency plan and joint exercises"],
@@ -174,14 +174,14 @@ sections:[
 {name:"Contacts with other airlines",x:"Help during irregular operations, information on handling companies, shared good practice."},
 {name:"Emergency readiness",x:"You take part in joint exercises and the emergency contact structure."}]}]},
 {h:"How the station manager engages",blocks:[{t:"rows",items:[
-{name:"Attend regularly",x:"Go to the regular meetings and build relationships people can put a face to."},
+{name:"Attend regularly",x:"Go to the regular meetings and build face-to-face relationships."},
 {name:"Bring it back",x:"Share what was discussed with head office and the team, and decide what to do."},
-{name:"Talk to peers",x:"Exchanging information with station managers from your own country’s airlines is often just as useful in practice."}]},
-{t:"point",x:"You will often hear about a change at the AOC before head office or your own authority does. Sharing it quickly raises the standing of the station."}]}],
+{name:"Talk to peers",x:"Exchanging information with station managers from your own country’s airlines is often very useful in practice."}]},
+{t:"point",x:"You will often hear about a change at the AOC before head office or your own authority does. Sharing it quickly builds trust in the station."}]}],
 voice:"The AOC is where you learn in advance about plans from the airport company, authorities and other airlines. Feed schedule changes you hear there into the station plan at once.",
 terms:[["Airline Operator’s Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Working Group","作業部会","실무 그룹"],["A-CDM","空港の協調的意思決定","공항 협력적 의사결정"],["Airport Authority / Operator","空港会社","공항공사"],["Joint Exercise","合同訓練","합동 훈련"]],
 quiz:[{q:"What is an AOC?",opts:["Airport police","The committee of airlines serving an airport","A travel agency body","A government department"],a:1,exp:"The Airline Operator’s Committee."},
-{q:"Which is NOT a benefit of the AOC?",opts:["Early information","A collective voice","Setting fares together","Cooperation in emergencies"],a:2,exp:"Fares are each airline’s own decision and are never discussed, for competition law reasons too."},
+{q:"Which is NOT a benefit of the AOC?",opts:["Early information","A collective voice","Setting fares together","Cooperation in emergencies"],a:2,exp:"Fares are each airline’s own decision and, for competition law reasons, are never discussed."},
 {q:"What does the station manager do after a meeting?",opts:["Nothing","Share it with head office and the team","Leave it to other airlines","Forget it"],a:1,exp:"Bring it back and decide what action is needed."}],
 next:"6-6 The station’s monthly and annual calendar"});
 

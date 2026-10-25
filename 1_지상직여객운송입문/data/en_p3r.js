@@ -1,7 +1,7 @@
 /* 旅客運送の実務 3-8 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-8",{title:"Reading the LIR (Loading Instruction/Report) and the Hold Layout",hl:"LIR",subtitle:"What goes in which hold: one page of instructions and report underpins every figure on the loadsheet",
-lead:["The loadsheet figures depend on what was actually loaded where. Load control instructs what goes in each hold, and the ramp loading supervisor writes back what was done, on the LIR: the Loading Instruction/Report.","This article reads an LIR for the same fictional flight as 3-7, then looks at the hold layout, the idea of the centre of gravity and the basic loading rules."],
+lead:["The loadsheet figures depend on what was actually loaded where. Load control uses the LIR (Loading Instruction/Report) to instruct what goes in each hold, and the ramp loading supervisor records on it what was actually loaded and returns it.","This lesson walks through an LIR for the same fictional flight as 3-7, then looks at the hold layout, how the centre of gravity works and the basic loading rules."],
 sections:[
 {h:"An example LIR",blocks:[{t:"fig",id:"lir",cap:"The numbers match the table below. Same fictional flight as the 3-7 loadsheet. Formats differ by airline and system."},
 {t:"table",cols:["No.","Field","How to read it"],rows:[
@@ -19,7 +19,7 @@ sections:[
 ["B","Hold doors. Items needed first on arrival (transfer and priority bags) are easiest to place near them"],
 ["C","Narrow-body example: bags often loaded loose (bulk). Compartment numbering varies by aircraft and airline"],
 ["D","Wide-body example: loaded in containers and pallets (ULDs), with bulk hold 5 at the rear"]]}]},
-{h:"The idea of the centre of gravity",blocks:[{t:"fig",id:"cg_balance",cap:"The centre of gravity shown as a seesaw. See the table for A to E."},
+{h:"How the centre of gravity works",blocks:[{t:"fig",id:"cg_balance",cap:"The centre of gravity shown as a seesaw. See the table for A to E."},
 {t:"table",cols:["Mark","Meaning"],rows:[
 ["A, B","The forward and aft CG limits"],
 ["C","Within limits: safe to take off and fly"],
@@ -37,7 +37,7 @@ sections:[
 {name:"Report",x:"If loading differs from the instruction, write it on the LIR and tell load control; the loadsheet must be corrected (last minute change or reissue)."}]},
 {t:"link",href:"搭載計算の練習.html?lang=en",x:"On the Load Control (Weight & Balance) Practice page, change hold weights and watch how the balance index moves"}]}],
 voice:"If actual loading differs from the LIR, the centre of gravity changes. After loading, check each hold against the LIR and correct any difference before departure.",
-terms:[["Loading Instruction/Report (LIR)","搭載指示書","탑재 지시서"],["Compartment / Hold","貨物室","화물칸"],["Bulk Loading","バルク搭載","벌크 탑재"],["Floor Loading Limit","床の強度の上限","바닥 강도 한계"],["Segregation","隔離（離して積むこと）","격리 적재"],["Tail Tipping","尻もち","꼬리 내려앉음"]],
+terms:[["Loading Instruction/Report (LIR)","搭載指示書","탑재 지시서"],["Compartment / Hold","貨物室","화물칸"],["Bulk Loading","バルク搭載","벌크 탑재"],["Floor Loading Limit","床の強度の上限","바닥 강도 한계"],["Segregation","隔離（離して積むこと）","격리 적재"],["Tail Tipping","テールティッピング","꼬리 내려앉음"]],
 quiz:[{q:"What is written to the right of the planned load on the LIR?",opts:["The weather","What was actually loaded","The fare","Crew names"],a:1,exp:"The loading supervisor writes back the result."},
 {q:"What can happen on the ground if the CG is too far aft?",opts:["Bird strike","Tail tipping","Diversion","No-show"],a:1,exp:"The tail may sink to the ground."},
 {q:"How should animals be loaded?",opts:["First on, last off","Last on, first off","Next to dry ice","Anywhere"],a:1,exp:"Also watch ventilation and temperature."}],

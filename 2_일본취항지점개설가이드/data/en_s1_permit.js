@@ -12,7 +12,7 @@ sections:[
 ["Fee","150,000 yen per application (registration and licence tax)"],
 ["Review standards","The Bureau’s review standards and standard processing periods (1994 notice); safety review follows the procedure and detailed rules"],
 ["Appeals","Under the Administrative Complaint Review Act"],
-["Format","There is no prescribed form; the application follows MLIT’s published sample. Items may be given as attachments marked as such"]]},
+["Format","There is no prescribed form; the application follows MLIT’s published sample. Items may be stated as ‘see attached’ and given on separate sheets"]]},
 {t:"note",x:"Summarised from MLIT’s one-stop guide to the foreign international air transport permit, checked September 2026."}]},
 {h:"From application to post-launch oversight",blocks:[{t:"fig",id:"fao_flow",cap:"File no later than three months before launch. Review covers business and safety, and fares, schedules and slots follow the permit. After launch, ramp inspections and safety oversight continue"},
 {t:"rows",items:[
@@ -41,7 +41,7 @@ sections:[
 ["6) Accessibility measures","Attach the accessibility plan by airport and aircraft type (see below)"],
 ["7) Measures against falling objects","Applies to aeroplanes over 5,700 kg MTOW; technical management, technical measures and training, in a document signed by the responsible person"],
 ["8) Compensation for falling-object damage","Attach the confirmation of consent to the falling-object compensation agreement"]]}]},
-{h:"The attachments: where each document comes from",blocks:[{t:"fig",id:"fao_docs",cap:"Group the attachments by source, the home-state authority, the state of registry, the crew, the company and documents prepared in Japan, and little is missed"},
+{h:"The attachments: where each document comes from",blocks:[{t:"fig",id:"fao_docs",cap:"Grouping the attachments into five sources (the home-state authority, the state of registry, the crew, the company and documents prepared in Japan) helps prevent omissions"},
 {t:"table",cols:["Group","Document","Source"],rows:[
 ["General","Evidence that the home state has licensed the airline for the route","Home-state aviation authority"],
 ["General","Articles of incorporation","Company"],
@@ -70,7 +70,7 @@ sections:[
 {name:"Owner names in the accessibility plan",x:"For boarding bridges, lift vehicles and similar equipment, state the type and owner by airport and aircraft type. Where the owner is someone else (airport company, handler), attach evidence of the right to use it."},
 {name:"Translation quality",x:"A Japanese translation of the conditions of carriage is required; explanations of financial statements and certificates may be requested. Keep terminology (types, airports, legal terms) consistent across documents."},
 {name:"Contractors in Japan",x:"If maintenance or dispatch is contracted in Japan, securing the contractor is a review item. Time the handling and maintenance contracts (3-1, 3-5) to the filing."},
-{name:"Safety standing of the home state",x:"While the home state, state of registry or licensing state is under an ICAO Significant Safety Concern, the review itself is not carried out. FAA Category 2 or the EU air safety list means more ramp inspections after launch."}]},
+{name:"Safety standing of the home state",x:"While the home state, state of registry or licensing state is under an ICAO Significant Safety Concern, the review itself is not carried out. Being in FAA Category 2 or on the EU air safety list means more ramp inspections after launch."}]},
 {t:"point",warn:true,x:"The most common exchange during review is about inconsistencies between documents. Tabulate company names, registration marks, type designations, AOC numbers and expiry dates before filing and reconcile them; it sharply reduces questions from the authority."}]},
 {h:"What the safety review looks at",blocks:[{t:"table",cols:["Subject","Main checks"],rows:[
 ["Home-state AOC","Issued by the home state and its safety authority; validity; operator name; authorisation for commercial air transport (if not on the AOC, in the operations specifications)"],

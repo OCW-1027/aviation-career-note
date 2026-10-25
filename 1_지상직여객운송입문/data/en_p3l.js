@@ -1,7 +1,7 @@
 /* 旅客運送の実務 3-7 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-7",{title:"Reading a Loadsheet: Checking a Flight’s Weight and Balance on One Page",hl:"Loadsheet",subtitle:"Read it in numbered order and you know where to look and what to check — including how to verify the sums and write a last minute change",
-lead:["The loadsheet shows that every weight and the centre of gravity for the flight are within limits. Load control prepares it and the captain checks and signs (approves) it. If a single figure is wrong, the basis for a safe flight is gone.","This article walks through a fictional loadsheet in a commonly used format, in numbered order. Once you understand how the figures relate, you can spot mistakes on the spot."],
+lead:["The loadsheet shows that every weight and the centre of gravity for the flight are within limits. Load control prepares it and the captain checks and signs (approves) it. If a single figure is wrong, the basis for a safe flight is gone.","This article walks through a fictional loadsheet in a commonly used format, in numbered order. Once you understand how the figures relate, you can catch mistakes on the spot."],
 sections:[
 {h:"An example loadsheet",blocks:[{t:"fig",id:"loadsheet",cap:"The numbers match the table below. All figures are fictional. Formats differ by airline and system."},
 {t:"table",cols:["No.","Field","How to read it"],rows:[
@@ -33,13 +33,13 @@ sections:[
 {name:"Fuel",x:"Take-off and trip fuel match the figures from operations control."},
 {name:"Special loads",x:"Dangerous goods, live animals and so on match the notice to the captain (NOTOC)."},
 {name:"Balance",x:"Indices and %MAC are within limits; if close to the edge, reconsider where the load goes."}]}]},
-{h:"Writing a last minute change (LMC)",blocks:[{t:"p",x:"If passengers or bags change slightly after the loadsheet is handed over, within set limits the change is written on as a last minute change instead of reissuing. The limits are set for each airline and aircraft type."},
+{h:"Writing a last minute change (LMC)",blocks:[{t:"p",x:"If passengers or bags change slightly after the loadsheet is handed over, the change is recorded as a last minute change instead of reissuing the loadsheet, as long as it is within set limits. The limits are set for each airline and aircraft type."},
 {t:"table",cols:["Example","How it might be written","What to check"],rows:[
 ["Two more adult passengers","DEST BKK / PAX / 0C / +2 / +150","Within the underload (2010) and only a small balance change"],
 ["One bag offloaded","DEST BKK / BAG / CPT4 / − / −20","Reconcile the offloaded bag (2-5)"]]},
 {t:"point",warn:true,x:"Changes beyond the limits, or that move the balance significantly, mean a new loadsheet with a new edition number. When in doubt, reissue."}]}],
 voice:"A single wrong figure on the load sheet delays departure. Check once more, just before departure, that the totals for passengers, baggage and cargo add up.",
-terms:[["Loadsheet","ロードシート","로드시트"],["Dry Operating Weight (DOW)","乾燥運航重量","건조 운항 중량"],["Zero Fuel Weight (ZFW)","無燃料重量","무연료 중량"],["Underload","余裕（許容搭載量の残り）","여유 중량"],["Mean Aerodynamic Chord (MAC)","平均空力翼弦","평균 공력 시위"],["Last Minute Change (LMC)","最後の変更","최종 변경"]],
+terms:[["Loadsheet","ロードシート","로드시트"],["Dry Operating Weight (DOW)","乾燥運航重量","건조 운항 중량"],["Zero Fuel Weight (ZFW)","無燃料重量","무연료 중량"],["Underload","余裕（許容搭載量の残り）","여유 중량"],["Mean Aerodynamic Chord (MAC)","平均空力翼弦","평균 공력 시위"],["Last Minute Change (LMC)","最終変更","최종 변경"]],
 quiz:[{q:"How is zero fuel weight (ZFW) calculated?",opts:["DOW + traffic load","TOW − trip fuel","DOW + fuel","Traffic load + fuel"],a:0,exp:"The dry operating weight plus passengers, bags and cargo."},
 {q:"In the example, which limit makes the underload 2010 kg?",opts:["Max zero fuel weight","Max take-off weight","Max landing weight","Seat count"],a:0,exp:"Max zero fuel weight + take-off fuel = 75300 is the lowest, hence the L on the ZFW line."},
 {q:"What if a change goes beyond the limits?",opts:["Correct it by hand","Issue a new loadsheet","Depart anyway","Just tell the captain"],a:1,exp:"Reissue with a new edition number."}],

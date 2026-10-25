@@ -52,7 +52,7 @@ sections:[
 {name:"Decision",x:"Operations control (OCC) and head office decide on delays, cancellations and replacement flights."},
 {name:"Policy",x:"Head office passenger and sales teams set the wording and the rebooking and refund conditions (the waiver)."},
 {name:"Sharing",x:"The airport station, sales and the call centre receive the same content at the same time."},
-{name:"Informing",x:"The airport tells passengers there; sales tells agencies and corporate clients; the airline tells direct customers."},
+{name:"Informing",x:"The airport tells passengers there; sales tells agencies and corporate clients; the call centre and the airline’s website tell direct customers."},
 {name:"Updates and records",x:"Update in the same order when things change, and record who was told what and when."}]},
 {t:"note",x:"* Department names and roles vary. Keep a list of your own contact order and points of contact. ★"}]},
 {h:"What sales does in the first hour",blocks:[{t:"check",items:[
@@ -65,10 +65,10 @@ sections:[
 {h:"The time you knew and the time you told",blocks:[{t:"point",warn:true,x:"For flights to and from Korea, airlines must inform passengers without delay once they know of a delay or cancellation, and airlines that informed late have been fined (Passenger 5-8). Record the time of every message sales sends to agencies and customers too, not only the airport’s. ★"}]},
 {h:"When it can be foreseen, such as a typhoon",blocks:[{t:"rows",items:[
 {name:"Set a decision time",x:"Agree internally by what time the day before the next day’s operation will be decided."},
-{name:"Publish conditions early",x:"Even before cancelling, publish a waiver letting passengers on affected flights rebook or refund free of charge."},
+{name:"Publish conditions early",x:"Even before cancelling, publish a waiver letting passengers on affected flights rebook or get a refund free of charge."},
 {name:"Mass notification",x:"Send one email to all agencies and publish the same content on the website, social media and the app."},
 {name:"Add staff",x:"Increase call-centre and agency-desk staff and opening hours."}]},
-{t:"point",x:"Early conditions give customers time to change their own plans and reduce the chaos at the airport on the day."}]}],
+{t:"point",x:"Publishing conditions early gives customers time to change their own plans and reduce the chaos at the airport on the day."}]}],
 voice:"In a disruption the sales phones never stop. If you are unsure, speak from the same page the airport is using. When the wording is aligned inside the company, what you say outside will not waver.",
 terms:[["Operations Control Centre (OCC)","運航管理センター","운항통제센터"],["Waiver","ウェーバー（特別な取り扱いの条件）","웨이버(특별 취급 조건)"],["Schedule Change","スケジュール変更","스케줄 변경"],["Mass Notification","一斉の案内","일괄 안내"],["Next Update Time","次の案内の時刻","다음 안내 시각"]],
 quiz:[{q:"What should sales do first in a disruption?",opts:["Let each person inform customers as they see fit","Set up a single internal source of information","Refuse enquiries","Think about it tomorrow"],a:1,exp:"It stops out-of-date information and different wording from circulating."},
@@ -97,17 +97,17 @@ sections:[
 {name:"Validity and version",x:"How long the conditions apply and which version this is; issue a new version for any change."}]},
 {t:"point",warn:true,x:"Vague conditions make agencies hesitate and keep customers waiting. Processing that does not match the conditions also leads to ADMs (3-2) and disputes with agencies later. Avoid ambiguous wording and add examples."}]},
 {h:"Groups and packages",blocks:[{t:"rows",items:[
-{name:"Seats first",x:"Groups are large and seats on alternative flights go quickly. The account manager agrees with the agency and secures them first."},
+{name:"Seats first",x:"Groups are large and seats on alternative flights go quickly. The account manager works with the agency and secures them first."},
 {name:"Hotels and tours",x:"Packages include hotels, local tours and transfers. The agency deals with its customers under its travel terms (in Japan, flight cancellations are often outside the itinerary-guarantee compensation) ★."},
 {name:"Tour leaders and ground agents",x:"Confirm contact details for the day and share them with the airport station."},
-{name:"Large groups",x:"Agree with the station where they will check in and wait at the airport (8-1)."}]}]},
+{name:"Large groups",x:"Agree with the station on where they will check in and wait at the airport (8-1)."}]}]},
 {h:"Common questions and how to answer",blocks:[{t:"table",cols:["Question","How to answer"],rows:[
 ["When will it fly?","The confirmed facts and the time of the next update"],
 ["Can it be changed free of charge?","The waiver conditions (scope, dates, flights)"],
-["Will hotel and meals be covered?","The company rules; it depends on the cause (weather or ATC, or the airline’s responsibility)"],
+["Will hotel and meal costs be covered?","The company rules; it depends on the cause (weather or ATC, or the airline’s responsibility)"],
 ["Can they move to another airline?","The endorsement conditions and available flights"],
 ["What is the refund fee?","As in the conditions, with the procedure and deadline"],
-["We have no contact for the customer","Ask the agency to inform the customer, and to add contact details to the booking where possible"]]}]},
+["We have no contact details for the customer","Ask the agency to inform the customer, and to add contact details to the booking where possible"]]}]},
 {h:"Afterwards",blocks:[{t:"rows",items:[
 {name:"Check ADMs",x:"Make sure no ADMs were raised on processing that followed the conditions, and cancel any that were."},
 {name:"Thank the agencies",x:"The account manager thanks agencies that worked nights and holidays and reviews the event with them."},
@@ -119,9 +119,9 @@ quiz:[{q:"What must a waiver include?",opts:["The president’s name","Affected 
 {q:"What if the booking has no customer contact details?",opts:["Give up on contacting them","Ask the agency to inform the customer","Wait at the airport","Use social media only"],a:1,exp:"The agency is the first point of contact."}],
 next:"8-4 Handling disruptions for direct customers"});
 
-set("8-4",{title:"Handling Disruptions for Direct Customers: Website, Call Centre, Corporate Accounts and Members",hl:"direct customers",subtitle:"In direct sales the airline is the customer’s only point of contact: informing, changing, refunding and recording are all yours",
+set("8-4",{title:"Handling Disruptions for Direct Customers: Website, Call Centre, Corporate Accounts and Members",hl:"direct customers",subtitle:"In direct sales the airline is the customer’s direct point of contact: informing, changing, refunding and recording are all yours",
 lead:["For tickets sold on your own website, app or call centre, the airline deals with the customer directly. You inform them using the contact details taken at booking, and you handle changes and refunds yourselves. In a disruption, calls pile up at the call centre and customers speak up on social media.",
-"This lesson covers how handling differs between indirect and direct sales, how to inform direct customers, corporate clients, members and passengers with special needs, explaining compensation, and an exercise for a typhoon cancelling the next day’s flight."],
+"This lesson covers how handling differs between indirect and direct sales, how to inform direct customers, handling corporate clients, members and passengers with special needs, explaining compensation, and an exercise for a typhoon cancelling the next day’s flight."],
 sections:[
 {h:"Indirect and direct compared",blocks:[{t:"fig",id:"sls_inddir",cap:"Animated figure: in indirect (agency) and direct (airline) sales, who informs the customer and who handles changes and refunds."},{t:"table",cols:["","Indirect (agency)","Direct (airline)"],rows:[
 ["First notice","Airline → agency → customer","Airline → customer (email, SMS, app)"],
@@ -129,7 +129,7 @@ sections:[
 ["Customer contact details","Held by the agency (sometimes not in the booking)","Held by you from the booking"],
 ["Where enquiries go","The agency’s desk","Your call centre and social media"],
 ["Watch for","Do not let terms differ between agencies","Wrong or missing contact details; customers the notice does not reach"]]},
-{t:"point",x:"Passengers on the same flight receive different notices depending on where they bought. Align conditions and content across indirect and direct sales so that no customer is treated unfairly (2-1)."}]},
+{t:"point",x:"Passengers on the same flight receive different notices depending on where they bought their tickets. Align conditions and content across indirect and direct sales so that no customer is treated unfairly (2-1)."}]},
 {h:"How to inform direct customers",blocks:[{t:"fig",id:"sls_direct",cap:"Animated figure: the order for informing direct customers, from the first notice to the call centre and the airport (example)."},{t:"check",items:[
 {name:"Mass notice",x:"Email, SMS and app message to every customer on affected flights, in the language they booked in."},
 {name:"Website and social media",x:"The same content in the news section and on social media, with the time of each update."},
@@ -138,7 +138,7 @@ sections:[
 {name:"Same as the airport",x:"Align with what the airport and agencies are being told (8-2)."},
 {name:"Those not reached",x:"List bounced emails and customers without contact details, and follow up by phone or at the airport."}]}]},
 {h:"Corporate clients, members and special passengers",blocks:[{t:"rows",items:[
-{name:"Corporate travel",x:"Contact the company’s travel manager or travel management agency directly, and find flights that make the meeting."},
+{name:"Corporate travel",x:"Contact the company’s travel manager or travel management agency directly, and find flights that arrive in time for meetings and business appointments."},
 {name:"Elite members",x:"Some airlines offer priority lines or priority rebooking; policies differ ★."},
 {name:"Connecting passengers",x:"Rebook onward flights (including other airlines) first, and find a combination that reaches the final destination."},
 {name:"Special services",x:"Re-arrange wheelchairs, unaccompanied minors and medical needs on the new flight, and tell the airport station."}]}]},
@@ -148,7 +148,7 @@ sections:[
 ["Flights to and from the EU, etc.","EU Regulation 261/2004 sets compensation and care such as meals and hotels"]]},
 {t:"point",x:"Whether compensation applies depends on the cause: force majeure such as weather or air traffic control, or the airline’s responsibility. Sales should not promise on the spot; explain the company’s standards and where to apply."},
 {t:"note",x:"* Application varies by country, airline, cause and route. Check the latest law and conditions of carriage. ★"}]},
-{h:"Exercise: a typhoon cancels tomorrow’s flight (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before 15:00",sub:"Operational decision (cancel)"},{name:"15:30",sub:"Share internally; finalise wording and the waiver"},{name:"16:00",sub:"Mass notice to direct customers, email to all agencies, post on website and social media"},{name:"16:30",sub:"Individual calls to groups, corporate, connecting and special-service customers"},{name:"17:00 on",sub:"Extra call-centre staff; phone those not reached"},{name:"Morning of",sub:"Information at the airport; compile records and review"}]},
+{h:"Exercise: a typhoon cancels tomorrow’s flight (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before 15:00",sub:"Operational decision (cancel)"},{name:"15:30",sub:"Share internally; finalise wording and the waiver"},{name:"16:00",sub:"Mass notice to direct customers, email to all agencies, post on website and social media"},{name:"16:30",sub:"Individual calls to groups, corporate, connecting and special-service customers"},{name:"From 17:00",sub:"Extra call-centre staff; phone those not reached"},{name:"On the day (morning)",sub:"Information at the airport; compile records and review"}]},
 {t:"rows",items:[
 {name:"Think it through",x:"In your airline, who does what, using what, at each of these times? Are the contact numbers and template wording ready in advance?"}]}]}],
 voice:"Direct customers take the airline’s handling as the airline itself. Notice that comes quickly, changes they can make themselves, and a phone line that answers: get those three right and trust survives a disruption.",

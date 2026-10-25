@@ -4,7 +4,7 @@ set("3-4",{title:"Travelling with Pets: Dogs and Cats Across Borders",hl:"Pets",
 lead:["Taking a dog or cat abroad, or bringing one home: for the passenger it is a family member moving, but for the country it is the export and import of an animal. If the quarantine conditions are not met, the animal may be held for a long time on arrival or sent back.","At the airline counter, the first thing to check is not the size of the cage or the charge, but whether the quarantine documents are complete."],
 sections:[
 {h:"Two sets of rules, checked separately",blocks:[{t:"rows",items:[
-{name:"The country’s rules (quarantine)",x:"The destination’s import conditions and the export inspection of the country being left. This lesson covers these."},
+{name:"The country’s rules (quarantine)",x:"The destination’s import conditions and the export inspection in the departure country. This lesson covers these."},
 {name:"The airline’s rules (carriage)",x:"Cabin or hold, cage size, number of animals, breeds not carried, restrictions in hot weather. They differ by airline."},
 {name:"Both must be met",x:"Even if the airline can carry the animal, it cannot enter without meeting quarantine conditions, and the reverse is also true."}]}]},
 {h:"Bringing a dog or cat into Japan",blocks:[{t:"fig",id:"ciq_pet",cap:"The order of steps for bringing a dog or cat into Japan from a non-designated region. Count back from the arrival date."},{t:"rows",items:[
@@ -24,9 +24,9 @@ sections:[
 {t:"note",x:"* When taking an animal out of Korea, obtain an export health certificate from the quarantine agency before departure, to match the destination’s conditions."}]},
 {h:"What to confirm at the counter",blocks:[{t:"check",items:[
 {name:"Does the animal meet the destination’s import conditions?",x:"Original certificates, microchip number, test dates. Transit points have conditions too."},
-{name:"Has it passed the export inspection of the country being left?",x:"An export certificate from the quarantine office before departure."},
+{name:"Has it passed the export inspection in the departure country?",x:"An export certificate from the quarantine office before departure."},
 {name:"Was the airline told at booking?",x:"Some flights cannot accept an animal declared only on the day."},
-{name:"Assistance dogs",x:"Guide dogs and similar are carried under different rules. Quarantine conditions are in principle the same. ★"}]},
+{name:"Assistance dogs",x:"Guide dogs and other assistance dogs are carried under different rules. Quarantine conditions are in principle the same. ★"}]},
 {t:"point",x:"When asked “Can I take my pet?”, first ask back, “Have you checked the destination’s quarantine conditions?” Preparation may have to start months ahead."}]}],
 voice:{h:"A Reported Case",x:"From 1 August 2024 the US Centers for Disease Control and Prevention (CDC) applied new requirements to dogs entering the United States, including a minimum age of six months, a microchip and an import form. Some airlines stopped taking new bookings for dogs to the US, saying they were not set up to meet the requirements, and animal welfare groups called it a de facto ban. Just before the rule took effect, the CDC eased the paperwork for dogs coming from countries with no or low risk of rabies (Sources: Military Times, July 2024; statements by animal welfare groups). A dog that does not meet the requirements is sent back to where it came from at the owner’s expense. Pet rules need to be checked at the time of booking."},
 terms:[["Quarantine Detention","係留の検査","계류 검사"],["Microchip","マイクロチップ","마이크로칩"],["Rabies Antibody Titre","狂犬病の抗体価","광견병 항체가"],["Export Health Certificate","輸出の検疫証明書","수출 검역증명서"]],
@@ -43,8 +43,8 @@ sections:[
 {name:"Passengers who fall ill on board",x:"Covered in lesson 3-1."},
 {name:"Animals in the hold",x:"Pets and animals carried as cargo. Quarantine is told of their arrival (3-4)."}]}]},
 {h:"Leftover meals and rubbish",blocks:[{t:"rows",items:[
-{name:"Keep it separate from ordinary rubbish",x:"Food waste and rubbish from an international cabin is kept apart from domestic rubbish and disposed of in the prescribed way, such as incineration. ★"},
-{name:"Handled by authorised contractors",x:"Unloading, transport and disposal are each done by contractors and procedures that meet the local authorities’ approval or registration requirements. ★"},
+{name:"Keep it separate from domestic rubbish",x:"Food waste and rubbish from an international cabin are kept apart from domestic rubbish and disposed of in the prescribed way, such as incineration. ★"},
+{name:"Handled by authorised contractors",x:"Unloading, transport and disposal are each carried out by contractors, and under procedures, that meet the local authorities’ approval or registration requirements. ★"},
 {name:"Nothing is taken away",x:"Cleaning staff and employees must not take leftover meals home, and they cannot be used on domestic flights."},
 {name:"Passengers too",x:"Before arrival, ask passengers not to take meals or fruit off the aircraft (3-2, 3-3)."}]},
 {t:"note",x:"* Procedures and contractor rules differ by country and airport. Check your company’s rules and the authorities’ guidance."}]},
@@ -61,7 +61,7 @@ sections:[
 {name:"Check with the cleaning and catering companies",x:"A new member of staff who does not know the rule may mix international waste with domestic rubbish."}]},
 {t:"point",x:"It is unglamorous work, but when it is not done properly a country’s farming suffers. This is one place where the airline carries out part of quarantine itself."}]}],
 voice:"Requirements for catering waste handling and aircraft disinfection or disinsection vary by country or region and over time. The station should check the latest authority instructions and company procedures, then share them reliably with the personnel and contractors assigned to the work.",
-terms:[["International Catering Waste","国際線のごみ","국제선 폐기물"],["Aircraft Disinsection","機内の消毒（虫の駆除）","기내 소독(살충)"],["Vector","病気を運ぶ虫","매개 곤충"],["Incineration","焼却","소각"]],
+terms:[["International Catering Waste","国際線のごみ","국제선 폐기물"],["Aircraft Disinsection","航空機の殺虫処理（ディスインセクション）","기내 소독(살충)"],["Vector","病気を運ぶ虫","매개 곤충"],["Incineration","焼却","소각"]],
 quiz:[{q:"How is leftover food from an international flight handled?",opts:["Kept separate from domestic rubbish and disposed of in the prescribed way","Thrown away with domestic rubbish","Taken home by cleaning staff","Served on domestic flights"],a:0,exp:"It can carry livestock diseases and pests."},
 {q:"What is the purpose of disinsection?",opts:["To stop insects such as mosquitoes carrying disease or pests","To make the cabin look clean","To remove smells","To cool the aircraft"],a:0,exp:"Some countries require it of arriving aircraft."},
 {q:"At an unplanned airport, what happens to meals and rubbish?",opts:["They stay on board until quarantine and customs give instructions","They are unloaded and thrown away at once","They are given to passengers","They are used on the next flight"],a:0,exp:"Check with the authorities before moving anything."}],

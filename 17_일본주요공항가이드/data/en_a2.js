@@ -34,7 +34,7 @@ sections:[
 ["Operator","Kansai Airports (run together with Kansai and Kobe)"],
 ["Runways","Runway A 1,828 m, Runway B 3,000 m"],
 ["Hours","7:00–21:00"],
-["Movements","Up to 370 a day, of which 200 jet ★"],
+["Movements","Up to 370 a day, including up to 200 jet movements ★"],
 ["Routes","Domestic only (international flights use Kansai)"]]}]},
 {h:"The division of roles among Kansai’s three airports",blocks:[{t:"table",cols:["Airport","Main role"],rows:[
 ["Kansai","International, LCC and cargo hub, 24 hours"],
@@ -44,10 +44,10 @@ sections:[
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
 {name:"Closing at 21:00",x:"Arrivals that cannot make 21:00 may divert to Kansai or elsewhere. Decide early on any evening delay."},
 {name:"Close to homes",x:"Noise rules are especially strict. Follow the rules on engine runs and operations on stand."},
-{name:"The movement cap",x:"Extra flights or time changes are only possible within the cap. Arrange extra flights early."},
+{name:"The movement cap",x:"Extra flights or time changes are only possible within the cap. Coordinate ad hoc flights early."},
 {name:"After a diversion",x:"Decide in advance how passengers who land at Kansai will get to the Itami area (buses and so on)."},
-{name:"De-icing",x:"Snow is rare, but winter-morning frost or cold snaps can require it. Make sure the queue for on-stand de-icing does not collide with the 21:00 close. Dyed fluids since the 2024 winter schedule. ★"}]},
-{t:"point",x:"At Itami, keeping to time is what the airport’s very existence rests on. Operations built around the 21:00 wall, and diversion plans, are essential."}]}],
+{name:"De-icing",x:"Snow is rare, but winter-morning frost or cold snaps can require it. Make sure the queue for on-stand de-icing does not run into the 21:00 closing. Dyed fluids have been used since the 2024 winter schedule. ★"}]},
+{t:"point",x:"At Itami, keeping strictly to operating hours is especially important. Operations planned around the 21:00 closing time, and diversion plans, are essential."}]}],
 voice:"Itami’s 9 pm closing is strict. If you may miss it, consider diverting to Kansai or elsewhere early, and prepare transport and hotel guidance for passengers at the same time.",
 terms:[["City Airport","都市型空港","도시형 공항"],["Movement Cap","発着回数の上限","이착륙 횟수 상한"],["Jet Slots","ジェット枠","제트기 슬롯"],["Alternate Acceptance","代替受け入れ","대체 수용"]],
 quiz:[{q:"What are Itami’s operating hours?",opts:["7:00–21:00","24 hours","6:00–24:00","7:00–22:00"],a:0,exp:"A city airport surrounded by housing."},
@@ -68,9 +68,9 @@ sections:[
 {name:"One runway",x:"An inspection, closure, incident or disabled aircraft stops the whole airport. Plan on delays spreading all at once."},
 {name:"Night-time closures",x:"The runway closes during set night hours for maintenance. Check how late-night and early-morning delays that run into the closure are handled. ★"},
 {name:"Moving between terminals",x:"T1 and T2 are some distance apart. Check transport and timing for LCC connections and terminal changes."},
-{name:"Weather at sea",x:"Strong winds and typhoons in Ise Bay hit hard. Watch the rail, road and ferry links too."},
-{name:"De-icing and snow clearance",x:"Snow falls only a few times a year, but when it does, clearing the single runway stops the whole airport. De-icing is normally on stand before departure. Dyed fluids since the 2023 winter schedule. ★"}]}]},
-{h:"Future plans",blocks:[{t:"table",cols:["Plan","Detail (September 2026)"],rows:[
+{name:"Weather at sea",x:"The airport is easily affected by strong winds and typhoons in Ise Bay. Watch the rail, road and ferry links too."},
+{name:"De-icing and snow clearance",x:"Snow falls only a few times a year, but when it does, clearing the single runway stops the whole airport. De-icing is normally done on stand before departure. Dyed fluids have been used since the 2023 winter schedule. ★"}]}]},
+{h:"Future plans",blocks:[{t:"table",cols:["Plan","Detail (as of September 2026)"],rows:[
 ["Alternate runway","Converting the taxiway east of the runway into a 3,290 m by 45 m runway; work began in April 2025, aiming to open within FY2027"],
 ["True 24-hour operation","With the alternate runway, operations can continue during major maintenance of the main runway and night closures will no longer be needed"],
 ["Second runway","The alternate runway is positioned as a step toward a future second runway"],
@@ -92,14 +92,14 @@ sections:[
 ["Runways","Two: the existing runway, and a 2,500 m additional runway opened in March 2025"],
 ["Hours","7:00–22:00 ★"],
 ["Terminals","Domestic, and international (expansion completed in 2025)"],
-["Capacity","Hourly movements rose from 38 to 40 (the runways are close together, which limits simultaneous use)"]]}]},
+["Capacity","The hourly movement limit rose from 38 to 40 (the runways are close together, which limits simultaneous use)"]]}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
 {name:"Closing at 22:00",x:"Flights that cannot make 22:00 need a cancellation or diversion decision. Consult early on any evening delay."},
 {name:"Queues for departure",x:"At peak times the take-off queue is long. Treat door-close time and actual take-off time separately."},
 {name:"Domestic–international transfers",x:"The terminals are apart and linked by bus (on a dedicated road on the international side). Allow for connection times."},
 {name:"New international facilities",x:"The expansion added boarding bridges, self bag drop and smart security lanes. Decide how your operation will use them. ★"},
-{name:"De-icing",x:"Snow is rare, but it is needed in cold snaps. De-icing at peak times easily carries delays toward the 22:00 close. Dyed fluids since the 2024 winter schedule. ★"}]},
-{t:"point",x:"Fukuoka is all about running on time within limited hours. Get the first flight out on time and do not let evening delays run up to 22:00."}]}],
+{name:"De-icing",x:"Snow is rare, but de-icing is needed in cold snaps. De-icing at peak times easily carries delays toward the 22:00 close. Dyed fluids since the 2024 winter schedule. ★"}]},
+{t:"point",x:"At Fukuoka, the key is to keep delays to a minimum within limited operating hours. Get the first flight out on time and do not let evening delays run up to 22:00."}]}],
 voice:"Fukuoka closes at 10 pm. On days of long delays, work back from closing time from the evening and be ready to bring forward check-in cut-off and boarding.",
 terms:[["Congested Airport","過密空港","혼잡 공항"],["Additional Runway","増設滑走路","증설 활주로"],["Inter-terminal Bus","連絡バス","연결 버스"],["Self Bag Drop","自動手荷物預け機","자동 수하물 위탁기"]],
 quiz:[{q:"What are Fukuoka Airport’s operating hours?",opts:["7:00–22:00","24 hours","6:00–24:00","7:00–21:00"],a:0,exp:"It is very close to the city. ★"},
@@ -108,7 +108,7 @@ quiz:[{q:"What are Fukuoka Airport’s operating hours?",opts:["7:00–22:00","2
 next:"3-2 New Chitose Airport (CTS)"});
 
 set("3-2",{title:"New Chitose Airport (CTS)",hl:"New Chitose",subtitle:"Hokkaido’s gateway: winter snow, and preparing for the day transport stops",
-lead:["New Chitose is Hokkaido’s air gateway, with domestic and international traffic at record levels. The key to understanding it is winter snow: runway clearance and de-icing delay flights, and when the railway stops, the terminals fill with people.","This article covers New Chitose’s basics, winter operations, and what to watch in passenger and handling work."],
+lead:["New Chitose is Hokkaido’s air gateway, with domestic and international traffic at record levels. The key to understanding it is winter snow: runway clearance and de-icing delay flights, and when the railway stops, the terminals fill with people.","This lesson covers New Chitose’s basics, winter operations, and what to watch in passenger and handling work."],
 sections:[
 {h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_cts",cap:"Figure: New Chitose at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Hokkaido Airports (running seven Hokkaido airports together)"],
@@ -117,14 +117,14 @@ sections:[
 ["Terminals","Domestic and international, linked by a connecting facility"],
 ["Scale","FY2026 forecast: about 21.5 million domestic and 4.8 million international passengers, about 26.4 million in total"]]}]},
 {h:"Winter operations",blocks:[{t:"check",items:[
-{name:"Snow clearance",x:"Runways close temporarily for snow clearance. Get clearance schedules and expected closures as early as possible."},
-{name:"De-icing",x:"New Chitose has Japan’s first dedicated de-icing apron (2010), near the runway. Because aircraft taxi several kilometres from the terminal to the runway end, it lets them take off before holdover time runs out, and re-treatment does not mean returning to the terminal. The number of aircraft that can be treated at once is limited, so queues can form. A further de-icing apron is planned (check the published timing). Dyed fluids since the 2023 winter schedule. ★"},
+{name:"Snow clearance",x:"Runways may close temporarily for snow clearance. Get snow-clearance schedules and expected closures as early as possible."},
+{name:"De-icing",x:"New Chitose has Japan’s first dedicated de-icing apron (2010), near the runway. Because aircraft taxi several kilometres from the terminal to the runway end, it lets them take off before holdover time runs out, and aircraft can be re-treated without returning to the terminal. The number of aircraft that can be treated at once is limited, so queues can form. A further de-icing apron is planned (check the published timing). Dyed fluids since the 2023 winter schedule. ★"},
 {name:"Ramp safety",x:"Working and driving on icy surfaces, protecting bags and equipment from snow. Keeping staff warm and rested is part of safety."},
 {name:"When transport stops",x:"When heavy snow stops the railway, many people are left at the airport. In January 2026 about 7,000 were stranded; in June 2026 the conditions were relaxed so emergency buses can also run when JR services are partly suspended or cancelled in advance. ★"}]}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"rows",items:[
-{name:"Decisions on heavy-snow days",x:"If you are going to cancel, decide early. Arrange information and accommodation before the last evening flight’s passengers find they cannot leave the airport."},
+{name:"Decisions on heavy-snow days",x:"If you are going to cancel, decide early. Plan passenger information and accommodation arrangements before the last evening flight’s passengers find they cannot leave the airport."},
 {name:"Growth in international flights",x:"More international flights and passengers mean congestion at the terminal and CIQ. Adjust counter opening times and staffing by season."},
-{name:"Sharing with the military",x:"The neighbouring air base brings its own airspace and operational factors. Keep a close eye on airport operational information. ★"}]},
+{name:"Sharing the airport with the JASDF",x:"The neighbouring air base brings its own airspace and operational factors. Keep a close eye on airport operational information. ★"}]},
 {t:"point",x:"Winter at New Chitose is not only about delays but about passengers who cannot leave the airport. Make a habit of viewing the forecast, the snow-clearance plan and rail status on one screen."}]}],
 voice:"Heavy snow can leave passengers stranded at New Chitose. Agree before winter how blankets, water, food and information are shared with the airport operator.",
 terms:[["Snow Removal","除雪","제설"],["De-icing / Anti-icing","防除氷","제빙·방빙"],["Stranded Passengers","滞留者","체류객"],["Japan Air Self-Defense Force (JASDF)","航空自衛隊","항공자위대"]],
@@ -134,7 +134,7 @@ quiz:[{q:"What mainly causes winter delays at New Chitose?",opts:["Snow clearanc
 next:"3-3 Naha Airport (OKA)"});
 
 set("3-3",{title:"Naha Airport (OKA)",hl:"Naha",subtitle:"Okinawa’s gateway, shared with the Self-Defense Force: a second runway and typhoon preparedness",
-lead:["Naha is Okinawa’s air gateway, serving tourists, connections to the outlying islands and international routes to Asia. It shares its runways with the Japan Air Self-Defense Force, and US military approach paths run through the surrounding airspace — circumstances found at no other major airport.","This article covers Naha’s basics, what a joint-use airport demands, and typhoon preparedness."],
+lead:["Naha is Okinawa’s air gateway, serving tourists, connections to the outlying islands and international routes to Asia. It shares its runways with the Japan Air Self-Defense Force, and US military approach paths run through the surrounding airspace — circumstances found at no other major airport.","This lesson covers Naha’s basics, what a joint-use airport demands, and typhoon preparedness."],
 sections:[
 {h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_oka",cap:"Figure: Naha at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","The state (transport ministry); terminals are run by a building company"],
@@ -150,7 +150,7 @@ sections:[
 {name:"De-icing",x:"Snow and icing are practically never a concern, so de-icing is normally unnecessary. But aircraft rotating to snowy mainland airports in winter bring de-icing delays back with them as reactionary delays on the next departure."}]}]},
 {h:"Typhoon preparedness",blocks:[{t:"rows",items:[
 {name:"Decide early",x:"When a typhoon approaches, plan cancellations, extra flights and earlier departures early. Tourists rush to secure flights home."},
-{name:"Passengers who cannot leave",x:"Prolonged cancellations can exhaust hotel rooms. Prepare for passengers staying at the airport and for information."},
+{name:"Passengers who cannot leave",x:"Prolonged cancellations can exhaust hotel rooms. Prepare for passengers staying at the airport and for providing information."},
 {name:"Ramp safety",x:"Set standards for securing equipment and ULDs in high winds, and for stopping work."}]},
 {t:"point",x:"Naha supports an island economy built on tourism and is also a defence base. Understanding the airport’s situation, and explaining carefully to passengers why they are waiting, builds trust."}]}],
 voice:"Typhoons can cancel flights at Naha for days. Tourists have often checked out already, so give rebooking guidance together with hotel and transport information quickly.",

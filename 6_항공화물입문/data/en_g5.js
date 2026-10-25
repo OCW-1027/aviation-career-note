@@ -44,14 +44,14 @@ set("6-2",{title:"From Acceptance to Build-up and Weighing: Floor Limits and the
 lead:["Most cargo incidents can be prevented at acceptance and build-up. Spotting damaged packaging or hidden dangerous goods at acceptance prevents incidents in flight. Failing to spread heavy items to suit floor strength damages the aircraft.","This lesson covers acceptance checks, floor-loading calculations, build-up steps and the UWS weight check, with example figures."],
 sections:[
 {h:"What to check at acceptance",blocks:[{t:"check",items:[
-{name:"Booking",x:"Do not accept unbooked cargo without checking with sales."},
+{name:"Booking",x:"Do not accept unbooked cargo; check with sales."},
 {name:"Weight and volume",x:"Weigh and measure; compare actual and volume weight with the AWB and record differences."},
 {name:"Packaging",x:"Check for damage, leaks or wetness; record and have the shipper confirm. Refuse if severe."},
 {name:"Size",x:"Within aircraft and company limits (e.g. up to 160 cm high)."},
 {name:"Prohibited items",x:"Items banned by origin, transit and destination states and the airline."},
 {name:"Hidden dangerous goods",x:"Check anything suspicious from its description, labels or weight (7-3)."},
 {name:"Safety data sheets (SDS/MSDS)",x:"Confirm chemicals are not dangerous goods with a valid sheet (e.g. within 3 years); open and check if in doubt."},
-{name:"Magnetized material",x:"Check the gauss report against the rules (7-3)."}]}]},
+{name:"Magnetised material",x:"Check the gauss report against the rules (7-3)."}]}]},
 {h:"Floor strength and spreading weight",blocks:[{t:"fig",id:"cgo_floor",cap:"Animated figure: a 2,400 kg item on a small base exceeds the floor limit; spread on shoring to 2.0 m × 1.5 m, it falls within it."},
 {t:"p",x:"Hold floors have a maximum load per square metre. Heavy items with small bases are placed on boards (shoring) to spread the load."},
 {t:"table",cols:["Step","Calculation (example)"],rows:[
@@ -67,7 +67,7 @@ sections:[
 {name:"3 Heavy first",x:"Heavy, sturdy items at the bottom and as central as possible."},
 {name:"4 Light and small items",x:"Light items on top; small items in gaps or the centre to avoid loss."},
 {name:"5 Secure",x:"Spread heavy items on boards and tie down with ropes and straps."},
-{name:"6 Cover",x:"Fold up and tape the base sheet and cover the top; add another sheet in rain or snow."}]}]},
+{name:"6 Cover",x:"Fold up and secure the base sheet and cover the top; add another sheet in rain or snow."}]}]},
 {h:"Checking weight differences (UWS)",blocks:[{t:"fig",id:"cgo_uws",cap:"Animated figure: manifest and scale weights compared as bars; the 2.3% difference is over the 1% decision line."},
 {t:"p",x:"Weigh each built ULD and compare manifest and actual weights on the ULD weight statement (UWS). Record the weight of every material: ULD, boards, sheets and ropes."},
 {t:"table",cols:["Item","Example"],rows:[
@@ -75,10 +75,10 @@ sections:[
 ["Weighed","3,120 kg"],
 ["Difference","70 kg (about 2.3%)"],
 ["Decision (e.g. over 1%)","Do not load until the cause is found: wrong weights, unrecorded materials or unmanifested cargo"]]},
-{t:"point",warn:true,x:"Weight differences go straight to balance and safety. Do not load on a “close enough” basis; find the cause, then update the load sheet (load control 3-7)."}]},
+{t:"point",warn:true,x:"Weight differences directly affect balance and safety. Do not load on a “close enough” basis; find the cause, then update the load sheet (load control 3-7)."}]},
 {h:"Documents and corrections",blocks:[{t:"rows",items:[
 {name:"Customs",x:"Confirm export permission or declaration at origin (NACCS in Japan, 1-4)."},
-{name:"Document pouch",x:"Manifests to the senior cabin crew by, for example, 20 minutes before departure."},
+{name:"Document pouch",x:"Put manifests and other documents in the pouch and hand it to the senior cabin crew by, for example, 20 minutes before departure."},
 {name:"Instructions to destination",x:"Send special-handling and priority instructions ahead (6-3)."},
 {name:"Corrections (CCA)",x:"If shipper, consignee, description or weight in FWB or FHL data is wrong, origin resends correct data; errors cause customs holds at destination."}]}]}],
 voice:"A ULD with a large weight discrepancy may contain cargo whose weight differs from the declaration. Agree with the handling agent that anything over the threshold is explained before it is loaded.",
@@ -96,10 +96,10 @@ sections:[
 {name:"Storage",x:"Prepare space and staff for chilled or frozen goods, live animals, dangerous goods and valuables."},
 {name:"Quarantine documents",x:"Confirm required plant, animal and food documents have come from origin."}]}]},
 {h:"On arrival",blocks:[{t:"rows",items:[
-{name:"Documents",x:"Collect the pouch from the senior cabin crew or ground staff immediately; never leave it unattended."},
+{name:"Documents",x:"Collect the document pouch from the senior cabin crew or ground staff immediately; never leave it unattended."},
 {name:"ULD condition",x:"Check ULDs on the ramp for damage, wetness and loose nets."},
 {name:"Irregularity reports (IRR)",x:"Record damage, shortages, overages and label errors found during breakdown and report to the airline (4-3)."},
-{name:"Storage",x:"Store in the designated bonded area, with special cargo kept appropriately against damage or theft; report damaged cargo to customs and hold it."}]}]},
+{name:"Storage",x:"Store in the designated bonded area. Keep special cargo in conditions suited to its nature to prevent damage or theft. Report damaged cargo in line with customs rules and hold it."}]}]},
 {h:"Time to delivery (example)",blocks:[{t:"fig",id:"cgo_tl2",cap:"Animated figure: notification, release and flight close-out markers on an axis from arrival to 240 minutes. SLA example."},
 {t:"table",cols:["Task","Time after arrival (example)"],rows:[
 ["Arrival notice to the consignee","Within 60 minutes"],
@@ -109,9 +109,9 @@ sections:[
 ["Flight close in the system","180 minutes"]]},
 {t:"note",x:"* Times are examples from a handling SLA (7-5)."}]},
 {h:"Delivery",blocks:[{t:"check",items:[
-{name:"Temperature-controlled cargo",x:"Confirm storage needs with the shipper; without a reply, judge from the cargo, AWB, FFM and pre-alert."},
+{name:"Temperature-controlled cargo",x:"Confirm temperature-control needs with the shipper; without a reply, judge from the cargo, AWB, FFM and pre-alert."},
 {name:"Identity",x:"Verify the collector’s identity and obtain a signature."},
-{name:"Charges",x:"Calculate and collect charges-collect amounts."},
+{name:"Charges",x:"Calculate and collect charges payable at destination (charges collect)."},
 {name:"Uncollected cargo",x:"After a set period (e.g. 30 days), update the status and contact the shipper or agent."}]}]},
 {h:"Status messages (examples)",blocks:[{t:"table",cols:["Code","Meaning","Where"],rows:[
 ["RCS","Received from shipper","Origin warehouse"],["MAN","Manifested","Before departure"],["DEP","Departed","Origin"],["ARR","Arrived","Destination"],["RCF","Received from flight","Destination warehouse"],["NFD","Consignee notified","Destination"],["DLV","Delivered","Destination"]]},
@@ -123,18 +123,18 @@ quiz:[{q:"Which messages reveal special cargo before arrival?",opts:["CPM, LDM, 
 {q:"Which status code means the consignee has been notified?",opts:["RCS","DEP","NFD","MAN"],a:2,exp:"Notified for delivery."}],
 next:"6-4 Transfer cargo"});
 set("6-4",{title:"Transfer Cargo: Intact ULD or Rebuild?",hl:"transfer cargo",subtitle:"To or from other airlines’ flights: connecting times, checks on receipt, unbooked cargo and dangerous goods, security records and re-screening",
-lead:["Transfer cargo links two flights in a short time. Delays miss connections; skipped checks carry security or dangerous-goods problems straight onto the next flight.","This lesson covers the two forms, intact ULD or rebuild, checks when receiving from other airlines, and security records and re-screening under Korean and Japanese rules."],
+lead:["Transfer cargo links two flights in a short time. Delays cause missed connections; skipped checks carry security or dangerous-goods problems straight onto the next flight.","This lesson covers the two forms (intact ULD or rebuild), checks when receiving from other airlines, and security records and re-screening under Korean and Japanese rules."],
 sections:[
-{h:"Two forms",blocks:[{t:"fig",id:"cgo_trans",cap:"Animated figure: a through ULD (top) moves quickly with no rebuild; a rebuild (bottom) passes an extra step. Times are examples."},
+{h:"Two forms",blocks:[{t:"fig",id:"cgo_trans",cap:"Animated figure: an intact ULD (top) moves quickly with no rebuild; a rebuild (bottom) goes through an extra step. Times are examples."},
 {t:"table",cols:["Form","What happens","Time (example)"],rows:[
-["Intact ULD (thru)","The ULD built at origin goes straight to the connection","90 minutes before the connection"],
-["Rebuild","The ULD is broken down and rebuilt for the connection","180–240 minutes before the connection"],
+["Intact ULD (thru)","The ULD built at origin goes straight to the connection","By 90 minutes before the connection"],
+["Rebuild","The ULD is broken down and rebuilt for the connection","By 180–240 minutes before the connection"],
 ["Loose handover","Pieces handed individually to another airline","As agreed with the other airline"]]},
-{t:"note",x:"* Where terminals differ, hand over cargo and documents quickly to suit the other airline’s schedule."}]},
+{t:"note",x:"* Where the airlines use different cargo terminals, hand over cargo and documents quickly to suit the other airline’s schedule."}]},
 {h:"Checks on receipt",blocks:[{t:"check",items:[
 {name:"Booking",x:"Unbooked interline cargo is normally refused, except company-defined urgent items such as AOG parts, organs or blood."},
 {name:"Condition",x:"Check every piece for damage and labels; refuse damage that cannot be fixed and accept after repair."},
-{name:"Data",x:"Confirm FWB and FHL data has been received."},
+{name:"Data",x:"Confirm electronic data such as FWB and FHL has been received."},
 {name:"Documents",x:"Check whether security or quarantine documents are needed for the destination or cargo type."},
 {name:"Dangerous goods",x:"Transfer DG is usually refused without company approval (with some exceptions, e.g. certain lithium batteries) (7-3)."}]}]},
 {h:"Security records and re-screening",blocks:[{t:"table",cols:["","Korea","Japan"],rows:[
@@ -142,7 +142,7 @@ sections:[
 ["Company add-on (example)","X-ray re-screening of all transfer cargo","Re-screen if records cannot be confirmed"]]},
 {t:"point",x:"Transfer security depends on an unbroken record of checks at the previous airport. If the record breaks, re-check before loading (7-1)."}]}],
 voice:"For transfer cargo with a short connection, share the position of the inbound ULDs with the handling agent in advance. Deciding beforehand whether a ULD goes through intact or is rebuilt means connections are rarely missed.",
-terms:[["Transfer Cargo","積み替え（トランシップ）貨物","환적 화물"],["Thru Unit (Intact BUP)","ULDのまま","스루(ULD 그대로)"],["Minimum Connecting Time (MCT)","最小の乗り継ぎ時間","최소 연결 시간"],["Aircraft on Ground (AOG)","緊急の部品","긴급 부품"],["Interline","他社との連帯の輸送","인터라인"]],
+terms:[["Transfer Cargo","積み替え（トランシップ）貨物","환적 화물"],["Thru Unit (Intact BUP)","ULDのまま","스루(ULD 그대로)"],["Minimum Connecting Time (MCT)","最小乗り継ぎ時間","최소 연결 시간"],["Aircraft on Ground (AOG)","緊急の部品","긴급 부품"],["Interline","他社との連帯輸送","인터라인"]],
 quiz:[{q:"Which needs more time before the connection?",opts:["Intact ULD","Rebuild","The same","Neither"],a:1,exp:"Breaking down and rebuilding takes time."},
 {q:"Under Korea’s Aviation Security Act, when must the carrier screen known-consignor cargo?",opts:["When moved from a freighter to a passenger aircraft","On rainy days","On night flights","For light cargo"],a:0,exp:"Art. 17-4(3)5."},
 {q:"Unbooked interline transfer cargo is…",opts:["Normally refused (urgent items excepted)","Always accepted","Always refused","Charged double"],a:0,exp:"The company defines exceptions."}],

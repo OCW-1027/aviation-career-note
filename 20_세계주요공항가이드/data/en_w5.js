@@ -13,9 +13,9 @@ sections:[
 {h:"Connecting at a US airport",blocks:[{t:"table",cols:["Situation","Details"],rows:[
 ["Immigration","There is no airside transit in the US; even international-to-international passengers clear immigration and customs at the first airport (0-2)"],
 ["Baggage","Collected at the first arrival airport and rechecked after customs"],
-["ESTA","Needed (or a visa) for any routing via the US, even if the US is not the destination"],
+["ESTA","An ESTA or a visa is needed for any routing via the US, even if the US is not the destination"],
 ["Preclearance","Some foreign airports let passengers clear US immigration before departure"]]},
-{t:"point",x:"Connecting at a big domestic hub like Atlanta means immigration, customs, bag recheck and security, so it needs a longer connection than airports in Japan or elsewhere in Asia."}]},
+{t:"point",x:"Connecting at a big domestic hub like Atlanta means immigration, customs, bag recheck and security, so a longer connection time is needed than at airports in Japan or elsewhere in Asia."}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Thunderstorms",x:"Summer afternoon storms often bring ramp closures and air traffic flow restrictions."},
 {name:"Delta banks",x:"Delta’s arrival and departure waves come several times a day, congesting taxiways and security."},
@@ -25,13 +25,13 @@ sections:[
 {name:"Japan",x:"Delta links Haneda and Atlanta."},
 {name:"How it is used",x:"For connections from Korea and Japan to the southeastern US and Latin America."}]}]}],
 voice:"When connecting in the United States, passengers usually clear immigration and re-check their bags at the first airport they land at. Explaining this at check-in cuts connection problems.",
-terms:[["Hartsfield-Jackson Atlanta International Airport","ハーツフィールド・ジャクソン国際空港","하츠필드-잭슨 국제공항"],["Plane Train","プレーントレイン","플레인 트레인"],["Preclearance","事前の入国の審査","사전 입국심사"],["Ramp Closure","ランプの閉鎖","램프 작업 중지"],["Bag Recheck","荷物の預け直し","수하물 재위탁"]],
+terms:[["Hartsfield-Jackson Atlanta International Airport","ハーツフィールド・ジャクソン国際空港","하츠필드-잭슨 국제공항"],["Plane Train","プレーントレイン","플레인 트레인"],["Preclearance","事前の入国審査","사전 입국심사"],["Ramp Closure","ランプの閉鎖","램프 작업 중지"],["Bag Recheck","荷物の預け直し","수하물 재위탁"]],
 quiz:[{q:"Which airport was first in the world for passengers in 2025?",opts:["Dubai","Atlanta","Haneda","London Heathrow"],a:1,exp:"106.3 million."},
 {q:"Which airport was first for aircraft movements in 2025?",opts:["Atlanta","Chicago O’Hare","Dallas","Denver"],a:1,exp:"About 860,000."},
 {q:"When connecting between international flights at a US airport, what happens to checked bags?",opts:["Collected at the first airport and rechecked after customs","Sent through automatically","Discarded","Carried on board"],a:0,exp:"Because there is no airside transit."}],
 next:"5-2 Los Angeles (LAX)"});
 set("5-2",{title:"Los Angeles (LAX): The Pacific Gateway and a Major Rebuild for the 2028 Olympics",hl:"Los Angeles",subtitle:"America’s Pacific gateway and a rare airport where Delta, American and United all have hubs. The centrepiece of a roughly US$30 billion rebuild is the Automated People Mover (APM)",
-lead:["Los Angeles International is the Pacific gateway linking Asia and the United States. Unusually, all three big US airlines, Delta, American and United, operate hubs there, and many flights from Japan and Korea arrive.","About 73.71 million passengers used it in 2025, still below 88 million in 2019 (76.59 million in 2024). The airport is investing about US$30 billion ahead of the 2028 Olympics, centred on an Automated People Mover (APM) linking the terminals with rail and rental-car facilities."],
+lead:["Los Angeles International is the Pacific gateway linking Asia and the United States. Unusually, all three big US airlines, Delta, American and United, operate hubs there, and it receives many flights from Japan and Korea.","About 73.71 million passengers used it in 2025, still below 88 million in 2019 (76.59 million in 2024). The airport is investing about US$30 billion in a rebuild ahead of the 2028 Olympics, centred on an Automated People Mover (APM) linking the terminals with rail and rental-car facilities."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_lax",cap:"Figure: Los Angeles at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: LAX / ICAO: KLAX"],
@@ -42,13 +42,13 @@ sections:[
 ["Main airlines","Delta, United, American, Alaska, Southwest"]]},
 {t:"note",x:"* The 2025 figure is the sum of LAWA’s monthly statistics as compiled by the Los Angeles Business Journal; the fall came mainly from domestic capacity cuts."}]},
 {h:"The rebuild for 2028",blocks:[{t:"table",cols:["Project","Details"],rows:[
-["Automated People Mover (APM)","3.62 km with six stations, linking the terminals with the LAX/Metro Transit Center (opened June 2025) and a consolidated rental-car facility; opening has been repeatedly delayed; a September 2026 filing put construction completion at 8 December and passenger service in January 2027, with no guarantee of no further delay ★"],
+["Automated People Mover (APM)","3.62 km with six stations, linking the terminals with the LAX/Metro Transit Center (opened June 2025) and a consolidated rental-car facility; opening has been repeatedly delayed; a September 2026 filing put construction completion at 8 December and passenger service in January 2027, and further delays are possible ★"],
 ["Consolidated rental-car facility","Brings rental companies together to ease road congestion"],
 ["Terminal works","Rebuilding Terminal 5, upgrading TBIT and more"],
 ["2028","Construction to pause during the Olympics; the traffic forecast has been cut to about 90 million"]]}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Road congestion",x:"The horseshoe road around the terminals is chronically jammed; advise passengers to arrive early."},
-{name:"Fog",x:"Morning marine layer from spring to summer can reduce visibility."},
+{name:"Fog",x:"From spring to summer, the morning marine layer can reduce visibility."},
 {name:"Entry",x:"International flights mainly use TBIT; after US immigration and customs, bags are rechecked for domestic connections (5-1)."}]}]},
 {h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[
 {name:"Japan",x:"JAL, ANA, Delta, United, American, ZIPAIR and others link Haneda, Narita and Kansai with LAX."},
@@ -83,7 +83,7 @@ sections:[
 {name:"AirTrain",x:"AirTrain JFK links the terminals with subway and rail stations."}]}]},
 {h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[
 {name:"Japan",x:"JAL, ANA, Delta, American and others link Haneda and Narita with JFK. JAL uses T8; ANA is due to move from T7 to the new T6 (check the airline for the date)."},
-{name:"Korea",x:"Korean Air, Asiana and others link Incheon with JFK. Korean Air stays in the current T1 until the New Terminal One opens (planned for the first quarter of 2027)."}]}]}],
+{name:"Korea",x:"Korean Air, Asiana and others link Incheon with JFK. Korean Air stays in the current T1 until New Terminal One opens (planned for the first quarter of 2027)."}]}]}],
 voice:"At JFK airlines keep moving to new terminals, so the same airline may use different terminals at different times. During a move, check passenger notices and booking confirmation emails together.",
 terms:[["Port Authority of New York and New Jersey","ニューヨーク・ニュージャージー港湾公社","뉴욕·뉴저지 항만청"],["New Terminal One","ニュー・ターミナル・ワン","뉴 터미널 원"],["AirTrain JFK","エアトレイン","에어트레인"],["Nor'easter","ノーイースター","노이스터(북동풍 폭풍)"],["Terminal Relocation","ターミナルの移動","터미널 이전"]],
 quiz:[{q:"How much is the JFK redevelopment worth in total?",opts:["US$4 billion","US$9.5 billion","US$19 billion","US$50 billion"],a:2,exp:"Including two new terminals."},
@@ -118,9 +118,9 @@ sections:[
 {name:"Japan",x:"Qantas, JAL, ANA and others link Haneda, Narita and Kansai with Sydney."},
 {name:"Korea",x:"Korean Air, Qantas and others link Incheon with Sydney."}]}]}],
 voice:"Sydney restricts night operations, so a late departure with a long delay can slip to the next day. With a new airport opening, passengers need to be told even more clearly which airport they are using.",
-terms:[["Curfew","夜間の運航禁止","야간 운항 금지(커퓨)"],["Western Sydney International (Nancy-Bird Walton) Airport","ウェスタン・シドニー国際空港","웨스턴시드니 국제공항"],["Air Services Agreement","航空協定","항공협정"],["Electronic Travel Authority (ETA)","電子の渡航の許可（豪州）","전자여행허가(호주)"],["Hourly Movement Cap","時間あたりの発着の上限","시간당 이착륙 상한"]],
+terms:[["Curfew","夜間の運航禁止","야간 운항 금지(커퓨)"],["Western Sydney International (Nancy-Bird Walton) Airport","ウェスタン・シドニー国際空港","웨스턴시드니 국제공항"],["Air Services Agreement","航空協定","항공협정"],["Electronic Travel Authority (ETA)","電子渡航許可（豪州）","전자여행허가(호주)"],["Hourly Movement Cap","時間あたりの発着の上限","시간당 이착륙 상한"]],
 quiz:[{q:"When are most movements banned at Sydney Kingsford Smith?",opts:["9pm–5am","11pm–6am","Midnight–5am","No ban"],a:1,exp:"Under a 1995 Act."},
-{q:"When do passenger flights start at Western Sydney International?",opts:["2025","26 July 2026","25 October 2026","2028"],a:2,exp:"26 July is the start of cargo."},
-{q:"What is WSI’s biggest advantage?",opts:["24-hour operation","Five runways","Domestic only","A city-centre location"],a:0,exp:"There is no curfew."}],
+{q:"When do passenger flights start at Western Sydney International?",opts:["2025","26 July 2026","25 October 2026","2028"],a:2,exp:"26 July is when cargo flights begin."},
+{q:"What is WSI’s most distinctive feature?",opts:["24-hour operation","Five runways","Domestic only","A city-centre location"],a:0,exp:"There is no curfew."}],
 next:""});
 })(window.ARTS);

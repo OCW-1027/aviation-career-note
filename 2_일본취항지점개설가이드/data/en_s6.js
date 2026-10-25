@@ -2,7 +2,7 @@
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-1",{title:"Writing the Station SOP",hl:"the station SOP",subtitle:"The head office manual is the common rule. The station writes what it takes to work at a Japanese airport",
 lead:["A head office passenger handling manual is the rule for every station. But a Japanese airport brings its own law, its own airport company rules, the handling company’s structure and the CIQ procedures. Without a station SOP and emergency procedures reflecting all of that, the front line cannot work.",
-"This article covers where the SOP sits, an example contents list, how to write one, how to record the split with the handling company, and how to revise and control it."],
+"This article covers where the SOP sits, an example contents list, how to write one, how to set out the division of roles with the handling company, and how to revise and control it."],
 sections:[
 {h:"Where the SOP sits",blocks:[{t:"fig",id:"opn_sop",cap:"Animated figure: writing the station SOP (example)."},{t:"table",cols:["Document","What it is"],rows:[
 ["Head office manuals","Conditions of carriage, passenger handling, loading and dangerous goods, flight operations. Common to every station"],
@@ -25,9 +25,9 @@ sections:[
 {h:"Revision and control",blocks:[{t:"check",items:[
 {name:"What triggers a revision",x:"A head office manual revision, a change in local rules, an audit finding, a lesson from an irregular operation."},
 {name:"Record revisions",x:"Log the revision number, date and content, and make sure only the current version is on the floor."},
-{name:"Storage",x:"Documents auditors ask for are kept locked but within reach of staff."},
+{name:"Storage",x:"Keep documents auditors ask for locked but within reach of staff."},
 {name:"Annual review",x:"Review the whole thing at least once a year."}]},
-{t:"point",x:"An SOP means nothing until it is used. Tie it to new staff training and to the quality check items (6-2, 6-3)."}]}],
+{t:"point",x:"An SOP means nothing until it is used. Tie it to new staff training and to the quality audit items (6-2, 6-3)."}]}],
 voice:"The chapter that takes longest in a station SOP is the one on disruptions. Lay head-office rules alongside airport rules and settle, one by one, who decides what and when.",
 terms:[["Standard Operating Procedures (SOP)","標準作業手順書","표준 운영 절차서"],["Emergency Procedures","緊急時手順書","비상 대응 절차서"],["Conditions of Carriage","運送約款","운송약관"],["Revision","改訂","개정"],["Briefing Sheet","ブリーフィングシート","브리핑 시트"],["Document Control","最新版管理","최신판 관리"]],
 quiz:[{q:"Where does the station SOP sit?",opts:["It can ignore the head office manual","Within the head office manual, reflecting local conditions","The handling company writes its own","It is not needed"],a:1,exp:"It makes the common rules specific."},
@@ -57,7 +57,7 @@ sections:[
 {name:"What to record",x:"Attendee, company, date, course, assessment result and the expiry of the qualification."},
 {name:"Retention",x:"For the authorities’ audits, both the airline and the handling company keep them for a set period; three years or more is generally recommended (5-3)★."},
 {name:"The handling company’s records",x:"Require them to manage their training records to your standard, and check periodically."},
-{name:"Developing trainers",x:"Build people inside the handling company who can teach, so new staff keep being trained."}]}]}],
+{name:"Developing trainers",x:"Develop people inside the handling company who can teach, so new staff keep being trained."}]}]}],
 voice:"In handler training, rules that differ from other airlines, such as your baggage weight limits and special-passenger handling, take time to sink in. Hand out one sheet listing only the differences, and mistakes on the floor drop.",
 terms:[["Initial Training","初期教育","초기 교육"],["Test Flight (in System)","テスト便","테스트 편"],["Training Certificate","修了証明","수료 증명"],["Weight and Balance","重量・重心管理","중량·평형 관리"],["Passengers with Reduced Mobility","交通弱者","교통약자"],["Instructor","指導者","강사"]],
 quiz:[{q:"Who is trained?",opts:["Passenger staff only","Passenger, weight and balance, ramp, cargo, maintenance and fuelling","Travel agencies only","Nobody"],a:1,exp:"Every contractor learns your way of working."},
@@ -66,7 +66,7 @@ quiz:[{q:"Who is trained?",opts:["Passenger staff only","Passenger, weight and b
 next:"6-3 The test flight and trial operation"});
 
 set("6-3",{title:"The Test Flight and Trial Operation",hl:"the trial",subtitle:"Before the first flight, run it exactly as it will be, against a checklist",
-lead:["Preparation can look complete and still leave gaps: printer settings, signage, handing over documents, where the ramp staff stand. So before the first flight you run a trial exactly as the real thing.",
+lead:["Preparation can look complete and still leave gaps: printer settings, signage, handing over documents, where the ramp staff stand. So before the first flight you run a trial that follows the same flow as the real operation.",
 "This article covers how a trial runs and the checklist items for the office, the counter, the gate, load control and arrivals."],
 sections:[
 {h:"How the trial runs",blocks:[{t:"fig",id:"opn_trial",cap:"Animated figure: the test flight and trial run (example)."},{t:"ladder",rise:10,steps:[{name:"Build the test flight",sub:"A flight and bookings in the system"},{name:"Assign roles",sub:"Passengers and observers"},{name:"Run it for real",sub:"Counter, gate, ramp, arrivals"},{name:"Work the checklist",sub:"Yes, no or not applicable"},{name:"Fix and re-check",sub:"Before the first flight"}]}]},
@@ -85,7 +85,7 @@ sections:[
 {t:"point",warn:true,x:"Anything marked no in the trial is fixed before the first flight and checked again. Where it cannot be fixed, agree the workaround with head office."}]}],
 voice:"Trials reveal small inconsistencies, such as gate announcements with no rule for how to read the flight number. Small as they are, standardise them before going live.",
 terms:[["Trial Operation","試験運用","시험 운용"],["Test Flight","テスト便","테스트 편"],["Checklist","チェックリスト","체크리스트"],["Briefing","ブリーフィング","브리핑"],["Ramp Clear","ランプの退避","램프 클리어"],["Corrective Action","是正","시정"]],
-quiz:[{q:"What is a trial for?",opts:["Form’s sake","Running it as the real thing to find the gaps","Taking photographs","Gathering passengers"],a:1,exp:"It finds what preparation missed."},
+quiz:[{q:"What is a trial for?",opts:["Just for form’s sake","Running it as the real thing to find the gaps","Taking photographs","Gathering passengers"],a:1,exp:"It finds what preparation missed."},
 {q:"What happens to items marked no?",opts:["Fly anyway","Fix them and re-check before the first flight","Do not record them","Fix them next year"],a:1,exp:"Where they cannot be fixed, agree with head office."},
 {q:"Which is a load control checklist item?",opts:["What to do if the captain does not accept the loadsheet","The shop menu","The staff outing","Uniform colours"],a:0,exp:"Sending, filing and the refusal procedure."}],
 next:"6-4 Preparing for irregular operations"});
@@ -103,7 +103,7 @@ sections:[
 ["Airport facilities","Use of lounges and waiting areas"]]}]},
 {h:"The structure",blocks:[{t:"check",items:[
 {name:"Decision criteria",x:"When meal vouchers or hotels are provided, by length and cause of delay, and who decides (Ground Staff 5-4)."},
-{name:"When the manager is away",x:"Write the procedure for a duty manager: who to call and what to decide."},
+{name:"When the station manager is away",x:"Write the procedure for a duty manager: who to call and what to decide."},
 {name:"Contacting head office",x:"The order in which operations control, reservations, sales and customer service are told."},
 {name:"Filings",x:"The slot and business plan procedures for cancellations and delays, planned or same-day (Part 1)."}]}]},
 {h:"Communications",blocks:[{t:"rows",items:[
@@ -120,12 +120,12 @@ sections:[
 voice:"Your first disruption after launch may be something ordinary, such as a delay of a few hours from a technical fault. Meal vouchers and a hotel contact list prepared in advance will be put straight to use.",
 terms:[["Irregular Operations (IROPS)","イレギュラー","비정상 운항"],["Meal Voucher","食事券","식사 쿠폰"],["Endorsement","エンドース","엔도스"],["Alternate Airport","代替空港","교체 공항"],["Hotline","ホットライン","핫라인"],["Compensation","補償","보상"]],
 quiz:[{q:"What must be arranged before launch?",opts:["Hotels, meal vouchers, other airlines and alternate airports","The staff outing","New year cards","Uniform colours"],a:0,exp:"Disruption happens in the first weeks too."},
-{q:"How do you prepare for the manager being away?",opts:["Do nothing","Write the procedure for a duty manager","Cancel the flight","Leave it to head office"],a:1,exp:"Who to call and what to decide."},
+{q:"How do you prepare for the station manager being away?",opts:["Do nothing","Write the procedure for a duty manager","Cancel the flight","Leave it to head office"],a:1,exp:"Who to call and what to decide."},
 {q:"What helps on a disrupted day?",opts:["One sheet with the arrangements and contacts","Working from memory","Hunting through a phone book","Nothing"],a:0,exp:"Keep it at the counter, the gate and the office."}],
 next:"6-5 The day of the first flight"});
 
 set("6-5",{title:"The Day of the First Flight",hl:"the first flight",subtitle:"An ordinary operation, under more attention than usual. The day you find out whether the preparation holds",
-lead:["On the first day, head office executives, the airport company, the authorities, travel agencies and the press all turn up. There is a ceremony to run, and at the same time the flight itself has to operate safely and on time, exactly as always.",
+lead:["On the day of the first flight, head office executives, the airport company, the authorities, travel agencies and the press all turn up. There is a ceremony to run, and at the same time the flight itself has to operate safely and on time, exactly as always.",
 "This article covers the day from the final checks to the closing work, preparing the ceremony, who does what on the day, and what to review afterwards."],
 sections:[
 {h:"Final checks the day before",blocks:[{t:"fig",id:"opn_day1",cap:"Animated figure: the first flight’s day (example)."},{t:"check",items:[
@@ -137,7 +137,7 @@ sections:[
 {h:"Preparing the ceremony",blocks:[{t:"rows",items:[
 {name:"Work with the airport company",x:"Agree the place (often in front of the gate), the time, the guests, the gifts and press access. Airport companies often help."},
 {name:"Protect the operation",x:"Finish the ceremony before boarding starts so it cannot affect the departure."},
-{name:"The touches",x:"A water cannon salute, commemorative gifts, banners. Get the permissions in advance."},
+{name:"Celebratory touches",x:"A water cannon salute, commemorative gifts, banners. Get permission from the relevant departments in advance."},
 {name:"Press",x:"Agree what may be covered and who speaks. Arrange access if they enter the restricted area."}]}]},
 {h:"Who does what (example)",blocks:[{t:"table",cols:["Role","What they do"],rows:[
 ["Station manager","Overall control, looking after guests, liaison with head office and the authorities"],
@@ -146,7 +146,7 @@ sections:[
 ["Handling company","The passenger and ramp work, exactly as normal"]]},
 {t:"point",warn:true,x:"Do not let the ceremony pull people away and leave the counter or the gate short. Keep the operational roles and the ceremony roles separate."}]},
 {h:"Reviewing afterwards",blocks:[{t:"check",items:[
-{name:"The day’s record",x:"Punctuality, boarded numbers, baggage, problems and what passengers said."},
+{name:"The day’s record",x:"Punctuality, number of passengers boarded, baggage, problems and what passengers said."},
 {name:"Reporting and thanks",x:"Report to head office and thank the airport company, the authorities and the handling company."},
 {name:"Debrief",x:"Review with the handling company and feed the corrections into the SOP (6-1)."},
 {name:"The first month",x:"For a while after launch, have the station manager and duty managers on the floor for every flight, so problems surface early."}]}]}],

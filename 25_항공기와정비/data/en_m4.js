@@ -39,7 +39,7 @@ sections:[
 ["AOG roles","Who handles parts ordering, customs and passengers (Part 5)","After drills or a real AOG"]]},
 {t:"point",x:"The point is that at night, one look at this sheet tells you whom to call. A single old phone number can cause a delay. Each company decides the sheet’s name and format."}]},
 {h:"Customs clearance and delivering parts",blocks:[{t:"rows",items:[
-{name:"Urgent parts",x:"AOG parts arrive on freighters or in passenger aircraft holds; warn the customs broker so they can be released on arrival"},
+{name:"Urgent parts",x:"AOG parts arrive on freighters or in passenger aircraft holds; notify the customs broker in advance so the parts can be released on arrival"},
 {name:"Duties",x:"Many countries exempt aircraft parts from duty or reduce it; agree with the broker how to complete the paperwork ★"},
 {name:"Airside delivery",x:"Arrange permits and vehicles to take cleared parts to the aircraft inside the restricted area"},
 {name:"Returning removed parts",x:"Failed parts go back for repair with their release documents (2-3)"}]}]},
@@ -53,7 +53,7 @@ quiz:[{q:"What does the station mainly handle?",opts:["Certifying the pre-depart
 {q:"When should the readiness sheet be reviewed?",opts:["Never","When contracts, staff, lists or rules change","Once every ten years","Only after an accident"],a:1,exp:"Leaving changed contacts or people unrecorded delays night-time communication."},
 {q:"What should contractor invoices be checked against?",opts:["Work records","Fare tables","Crew rosters","Weather charts"],a:0,exp:"Extra labour hours and night surcharges are checked against the work records."}],
 next:"4-3 Contractor Audits and Authority Inspections"});
-set("4-3",{title:"Contractor Audits and Authority Inspections: Checking After You Entrust",hl:"Audits and Inspections",subtitle:"Types and steps of audits, findings and corrective action, authority spot checks of aircraft and documents (ramp inspections), and station preparation",
+set("4-3",{title:"Contractor Audits and Authority Inspections: Continuing Checks After Contracting Out",hl:"Audits and Inspections",subtitle:"Types and steps of audits, findings and corrective action, authority spot checks of aircraft and documents (ramp inspections), and station preparation",
 lead:["Choosing a contractor and signing a contract is not the end. The quality department audits contractors at set intervals and keeps checking that work and records meet the standard.","At foreign airports the local authority may also make unannounced checks of the aircraft and its documents. In both cases, a station that has arranged people and places in advance keeps them short."],
 sections:[
 {h:"How an audit runs",blocks:[{t:"fig",id:"mnt_audit",cap:"Animated figure: plan, on-site check, findings, corrective action, then verification and closure, highlighted in turn. The colours on the right show who mainly handles each step."},
@@ -73,9 +73,9 @@ sections:[
 {name:"Documents ready to hand",x:"The maintenance readiness sheet, a copy of the maintenance contract and the list of authorised staff"},
 {name:"Records",x:"Keep the station’s own record of audit and inspection dates, findings and corrective actions"}]}]}],
 voice:"Audit findings are not about blaming the contractor; they are for the safety of the next flight. Thanking the contractor once corrective action is complete makes the next audit go positively too.",
-terms:[["Audit","監査","감사"],["Finding","指摘","지적"],["Corrective action","是正の処置","시정 조치"],["Ramp inspection","ランプ・インスペクション","램프 점검"],["Inspector","検査官","검사관"]],
+terms:[["Audit","監査","감사"],["Finding","指摘","지적"],["Corrective action","是正処置","시정 조치"],["Ramp inspection","ランプ・インスペクション","램프 점검"],["Inspector","検査官","검사관"]],
 quiz:[{q:"What triggers a special audit?",opts:["New uniforms","A serious error or a jump in delays","A fare change","Seasonal holidays"],a:1,exp:"Special audits follow serious errors, repeat defects or a jump in delays."},
 {q:"What does a ramp inspection not check?",opts:["The aircraft exterior","Documents on board","Crew licences","Fare revenue"],a:3,exp:"Inspectors check the aircraft, cabin, documents and crew licences, not revenue."},
-{q:"After a finding, what does the contractor provide?",opts:["Causes and corrective actions","New fares","Passenger lists","Weather forecasts"],a:0,exp:"The contractor gives causes and fixes and completes them by the deadline."}],
+{q:"After a finding, what does the contractor provide?",opts:["Causes and corrective actions","New fares","Passenger lists","Weather forecasts"],a:0,exp:"The contractor submits the causes and corrective actions and completes them by the deadline."}],
 next:"4-4 De-icing, Anti-icing and Winter Readiness at the Station"});
 })(window.ARTS);

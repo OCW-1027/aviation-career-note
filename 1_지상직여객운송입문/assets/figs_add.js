@@ -61,7 +61,7 @@ var F={
 bas_types:function(l){
  var W=({ja:{t:'旅客機の4つの分類と座席の目安',c:[['ターボプロップ機','〜80席。プロペラ。短い路線・離島。ATR 72・Q400'],['リージョナルジェット','〜130席。地方の路線。E190-E2・A220'],['単通路機','〜240席。通路が1本。A320neo・B737-8'],['双通路機','250席〜。通路が2本。B787・A350・B777']],n:['翼幅で空港の区分が変わる：A320・B737はC、B767はD、B787・A350・B777はE、A380はF','単通路機はばら積み（バルク）が中心、双通路機はULDで搭載する','大きい機材ほど、手荷物・貨物・給油・清掃に時間がかかる']},
   ko:{t:'여객기의 4가지 분류와 좌석 기준',c:[['터보프롭기','~80석. 프로펠러. 단거리·도서 노선. ATR 72·Q400'],['리저널 제트','~130석. 지방 노선. E190-E2·A220'],['단일통로기','~240석. 통로 1개. A320neo·B737-8'],['이중통로기','250석~. 통로 2개. B787·A350·B777']],n:['날개폭에 따라 공항 등급이 달라진다: A320·B737은 C, B767은 D, B787·A350·B777은 E, A380은 F','단일통로기는 벌크 적재가 중심, 이중통로기는 ULD로 적재한다','기재가 클수록 수하물·화물·급유·청소에 시간이 걸린다']},
-  en:{t:'Four classes of airliner and typical seats',c:[['Turboprop','Up to 80 seats; propellers; short and island routes. ATR 72, Q400'],['Regional jet','Up to 130 seats; regional routes. E190-E2, A220'],['Narrow-body','Up to 240 seats; one aisle. A320neo, B737-8'],['Wide-body','250 seats and up; two aisles. B787, A350, B777']],n:['Wingspan sets the airport code: A320/B737 C, B767 D, B787/A350/B777 E, A380 F','Narrow-bodies mostly carry bulk loads; wide-bodies use ULDs','The bigger the aircraft, the longer baggage, cargo, fuelling and cleaning take']}})[l];
+  en:{t:'Four airliner types and typical seating',c:[['Turboprop','Up to 80 seats; propellers; short and island routes. ATR 72, Q400'],['Regional jet','Up to 130 seats; regional routes. E190-E2, A220'],['Narrow-body','Up to 240 seats; one aisle. A320neo, B737-8'],['Wide-body','250 seats and up; two aisles. B787, A350, B777']],n:['Wingspan sets the code letter: A320/B737 C, B767 D, B787/A350/B777 E, A380 F','Narrow-bodies mostly carry bulk loads; wide-bodies use ULDs','The bigger the aircraft, the longer baggage, cargo, fuelling and cleaning take']}})[l];
  if(!W)return F.bas_types('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0','#E08A2E','#7A5CC7']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -69,7 +69,7 @@ bas_types:function(l){
 bas_slot:function(l){
  var W=({ja:{t:'スロット（発着枠）の1年の流れ（例）',st:['次の季節の希望スケジュールを出す（初期の提出）','調整者が配分の結果を知らせる（初期の配分）','IATAのスロット会議で調整（年2回）','使わないスロットは基準日までに返す','運航し、80%以上使ったかを確かめる'],who:['航空会社','調整者','スロット会議','航空会社','調整者・当局'],k:'80%以上使えば翌年も同じスロット（ヒストリック）。使わなければ失う',n:['調整空港（レベル3）はスロットがなければ運航できない。日本では成田・羽田・福岡・関西をJSCが配分','天候・空港の閉鎖など航空会社の責任でない理由は、条件付きで使用とみなされることがある。記録が大切']},
   ko:{t:'슬롯(이착륙 시간대)의 1년 흐름(예)',st:['다음 시즌의 희망 스케줄을 낸다(초기 제출)','조정자가 배분 결과를 알린다(초기 배분)','IATA 슬롯 회의에서 조정(연 2회)','쓰지 않을 슬롯은 기준일까지 반납','운항하고 80% 이상 썼는지 확인'],who:['항공사','조정자','슬롯 회의','항공사','조정자·당국'],k:'80% 이상 쓰면 다음 해에도 같은 슬롯(히스토릭). 쓰지 않으면 잃는다',n:['조정 공항(레벨 3)은 슬롯이 없으면 운항할 수 없다. 일본은 나리타·하네다·후쿠오카·간사이를 JSC가 배분','기상·공항 폐쇄 등 항공사 책임이 아닌 사유는 조건부로 사용한 것으로 인정될 수 있다. 기록이 중요']},
-  en:{t:'A year of airport slots (example)',st:['Submit the wished schedule for the next season (initial submission)','The coordinator sends the allocation (initial allocation)','Adjust at the IATA Slot Conference (twice a year)','Hand back unused slots by the baseline date','Operate, and check that at least 80% was used'],who:['Airline','Coordinator','Slot Conference','Airline','Coordinator, authority'],k:'Use at least 80% and keep the same slots next year (historics); use it or lose it',n:['At a coordinated (level 3) airport you cannot operate without a slot. In Japan, JSC allocates Narita, Haneda, Fukuoka and Kansai','Flights lost for reasons beyond the airline, such as weather or closures, may count as used under set conditions; keep records']}})[l];
+  en:{t:'A year of airport slots (example)',st:['Submit the desired schedule for next season (initial submission)','The coordinator sends the allocation (initial allocation)','Adjust at the IATA Slot Conference (twice a year)','Hand back unused slots by the deadline','Operate, and check that at least 80% was used'],who:['Airline','Coordinator','Slot Conference','Airline','Coordinator, authority'],k:'Use at least 80% and keep the same slots next year (historics); use it or lose it',n:['At a coordinated (level 3) airport you cannot operate without a slot. In Japan, JSC allocates Narita, Haneda, Fukuoka and Kansai','Flights lost for reasons beyond the airline, such as weather or closures, may count as used under set conditions; keep records']}})[l];
  if(!W)return F.bas_slot('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#2E9B5F'],'10s');s+=A.s;
  var K=KEY(A.y+16,W.k,'#1769e0');s+=K.s;var y=K.y;
@@ -78,7 +78,7 @@ bas_slot:function(l){
 /* 基礎 2-3 3つのアライアンスとLCC */
 bas_alli:function(l){
  var W=({ja:{t:'3つのアライアンスと日本・韓国の航空会社（2026年）',c:[['スターアライアンス','1997年。ANA。アシアナは2026年12月16日に脱退'],['ワンワールド','1999年。JAL'],['スカイチーム','2000年。大韓航空。12月17日からアシアナも統合']],n:['アライアンスでできること：マイル・ラウンジ・乗り継ぎ先までの手荷物（インターライン）','LCC：1機種に統一・安い基本運賃＋追加で購入・自社サイト中心・地上の時間は25〜40分が目安']},
-  ko:{t:'3대 얼라이언스와 일본·한국 항공사(2026년)',c:[['스타얼라이언스','1997년. ANA. 아시아나는 2026년 12월 16일 탈퇴'],['원월드','1999년. JAL'],['스카이팀','2000년. 대한항공. 12월 17일부터 아시아나도 통합']],n:['얼라이언스로 할 수 있는 것: 마일리지·라운지·환승지까지 수하물 연결(인터라인)','LCC: 한 기종으로 통일·싼 기본 운임＋추가 구매·자사 사이트 중심·지상 시간은 25~40분이 기준']},
+  ko:{t:'3대 얼라이언스와 일본·한국 항공사(2026년)',c:[['스타얼라이언스','1997년. ANA. 아시아나는 2026년 12월 16일 탈퇴'],['원월드','1999년. JAL'],['스카이팀','2000년. 대한항공. 12월 17일부터 아시아나도 통합']],n:['얼라이언스로 할 수 있는 것: 마일리지·라운지·환승지까지 수하물 연결(인터라인)','LCC: 한 기종으로 통일·싼 기본 운임＋추가 구매·자사 사이트 중심·지상 체류는 약 25~40분']},
   en:{t:'The three alliances and Japanese and Korean airlines (2026)',c:[['Star Alliance','1997. ANA. Asiana leaves on 16 December 2026'],['oneworld','1999. JAL'],['SkyTeam','2000. Korean Air; Asiana joins it from 17 December']],n:['What alliances offer: miles, lounges, baggage checked through to the final stop (interline)','LCCs: one aircraft type, low base fares plus paid extras, own website first, 25–40 minutes on the ground']}})[l];
  if(!W)return F.bas_alli('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#5B6B7D','#C8102E','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
@@ -87,7 +87,7 @@ bas_alli:function(l){
 bas_id:function(l){
  var W=({ja:{t:'国内線の本人確認：国によってこんなに違う（2026年9月時点★）',r:[['日本','法令の義務はない。多くは搭乗券だけ（保安検査は全員）','#5B6B7D'],['韓国','義務。身分証の原本・モバイル身分証・生体情報','#1769e0'],['アメリカ','義務（18歳以上）。REAL ID対応の身分証','#D64545'],['中国','義務（実名制）。保安検査で顔と照合','#E08A2E'],['シェンゲン圏の中','国・航空会社による。旅券・身分証を求めるのが一般的','#2C8C8C']],n:['日本から韓国の国内線に乗り継ぐお客様には、身分証（外国人は旅券）が要ると案内する','義務でない場面でも、会社の規則で求める確認は省かない']},
   ko:{t:'국내선 본인 확인: 나라마다 이렇게 다르다(2026년 9월 기준★)',r:[['일본','법령상 의무는 없음. 대부분 탑승권만(보안검색은 전원)','#5B6B7D'],['한국','의무. 신분증 원본·모바일 신분증·생체정보','#1769e0'],['미국','의무(18세 이상). REAL ID 규격 신분증','#D64545'],['중국','의무(실명제). 보안검색에서 얼굴과 대조','#E08A2E'],['솅겐 지역 안','나라·항공사마다 다름. 여권·신분증 요구가 일반적','#2C8C8C']],n:['일본에서 한국 국내선으로 환승하는 승객에게는 신분증(외국인은 여권)이 필요하다고 안내한다','의무가 아닌 경우에도 회사 규정이 요구하는 확인은 생략하지 않는다']},
-  en:{t:'Domestic ID checks: how much countries differ (as of September 2026 ★)',r:[['Japan','No legal requirement; usually the boarding pass alone (everyone is screened)','#5B6B7D'],['Korea','Required: original ID, mobile ID or registered biometrics','#1769e0'],['United States','Required (18 and over): REAL ID-compliant ID','#D64545'],['China','Required (real-name system): face matched at screening','#E08A2E'],['Within Schengen','Depends on country and airline; passport or ID usually asked','#2C8C8C']],n:['Tell passengers connecting from Japan to a Korean domestic flight that they need ID (a passport for foreigners)','Even where checks are not required by law, never skip those your company requires']}})[l];
+  en:{t:'Domestic ID checks: how much countries differ (as of September 2026 ★)',r:[['Japan','No legal requirement; usually the boarding pass alone (everyone is screened)','#5B6B7D'],['Korea','Required: original ID, mobile ID or registered biometrics','#1769e0'],['United States','Required (18 and over): REAL ID-compliant ID','#D64545'],['China','Required (real-name system): face matched at screening','#E08A2E'],['Within Schengen','Varies by country and airline; passport/ID usually asked for','#2C8C8C']],n:['Tell passengers connecting from Japan to a Korean domestic flight that they need ID (a passport for foreigners)','Even where checks are not required by law, never skip those your company requires']}})[l];
  if(!W)return F.bas_id('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 
@@ -102,7 +102,7 @@ dsp_turn:function(l){
 /* 旅客 0-3 定時出発を支える4つのチーム */
 gnd_4team:function(l){
  var W=({ja:{t:'定時出発を支える4つのチーム',c:[['カウンター','受付の締め切りを守り、手荷物の個数と重さを機体側へ'],['ゲート','搭乗の順番と人数を管理し、最後の1人まで確認'],['ランプ','決められた順序と時間で、安全に搭載・取り降ろし'],['ロードコントロール','重量と重心を計算し、安全に飛べる搭載か確かめる']],k:'お客様の流れと機体の準備、2つの流れが合ったとき定時に出発できる'},
-  ko:{t:'정시 출발을 받치는 4개 팀',c:[['카운터','수속 마감을 지키고 수하물 개수와 무게를 기체 쪽에 전달'],['게이트','탑승 순서와 인원을 관리하고 마지막 1명까지 확인'],['램프','정해진 순서와 시간으로 안전하게 탑재·하기'],['로드 컨트롤','중량과 무게중심을 계산해 안전하게 비행할 수 있는 탑재인지 확인']],k:'승객의 흐름과 기체 준비, 두 흐름이 맞을 때 정시에 출발할 수 있다'},
+  ko:{t:'정시 출발을 돕는 4개 팀',c:[['카운터','수속 마감을 지키고 수하물 개수와 무게를 기체 쪽에 전달'],['게이트','탑승 순서와 인원을 관리하고 마지막 1명까지 확인'],['램프','정해진 순서와 시간으로 안전하게 탑재·하기'],['로드 컨트롤','중량과 무게중심을 계산해 안전하게 비행할 수 있는 탑재인지 확인']],k:'승객의 흐름과 기체 준비, 두 흐름이 맞을 때 정시에 출발할 수 있다'},
   en:{t:'Four teams behind an on-time departure',c:[['Counter','Keeps the cut-off; passes bag count and weight on'],['Gate','Boarding order and numbers, to the last passenger'],['Ramp','Safe loading in the set order and time'],['Load control','Weight and balance: is the load safe?']],k:'A flight leaves on time when the passenger flow and the aircraft flow meet'}})[l];
  if(!W)return F.gnd_4team('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7']);s+=A.s;
@@ -111,7 +111,7 @@ gnd_4team:function(l){
 /* 現場事例 8-1 判断の記録の型 */
 irr_log:function(l){
  var W=({ja:{t:'イレギュラー時の判断記録：1行の書き方',st:['確かめた事実を、誰から聞いたかまで書く','分からないことは「未確認」へ。誰がいつ確かめるか','決定と理由を1行で。決める人・承認も','次に見直す時刻を書く。過ぎたら必ず見直す'],who:['事実','未確認','決定と理由','次の時刻'],k:'交代のときは、この記録を一緒に見ながら渡す'},
-  ko:{t:'비정상 판단 기록: 한 줄 쓰는 법',st:['확인한 사실을 누구에게 들었는지까지 쓴다','모르는 것은 「미확인」으로. 누가 언제 확인할지','결정과 이유를 한 줄로. 결정한 사람·승인도','다음에 다시 볼 시각을 쓴다. 지나면 반드시 다시 본다'],who:['사실','미확인','결정과 이유','다음 시각'],k:'교대 시에는 이 기록을 함께 보며 인계한다'},
+  ko:{t:'비정상 판단 기록: 한 줄 쓰는 법',st:['확인한 사실을 누구에게 들었는지까지 쓴다','모르는 것은 「미확인」으로. 누가 언제 확인할지','결정과 이유를 한 줄로. 결정한 사람·승인도','다음 재검토 시각을 쓴다. 지나면 반드시 재검토한다'],who:['사실','미확인','결정과 이유','다음 시각'],k:'교대 시에는 이 기록을 함께 보며 인계한다'},
   en:{t:'Recording irregularity decisions: how to write one line',st:['Write the confirmed fact, including who told you','Put unknowns under “unconfirmed”, with who checks and when','Write the decision and its reason in one line, with who decided and approved','Set the next review time, and always review once it passes'],who:['Fact','Unconfirmed','Decision and reason','Next time'],k:'At handover, go through this record together'}})[l];
  if(!W)return F.irr_log('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#E08A2E','#2C8C8C','#D64545'],'9s');s+=A.s;
@@ -128,8 +128,8 @@ irr_3way:function(l){
 /* 現場事例 8-3 月例会議の進め方 */
 irr_meet:function(l){
  var W=({ja:{t:'月例のステーション運営会議：数字から来月の課題へ',st:['実績を目標・前月と並べて見る','安全の報告を先に扱う','平均・合計ではなく内訳を確かめる','足りない資料を相手を決めて頼む','来月の課題と、効果を見る指標を1つずつ決める'],who:['実績','優先順位','原因','依頼','課題と指標'],k:'安全の報告は「減らす数字」ではなく「隠さない」ことが目標'},
-  ko:{t:'월례 스테이션 운영 회의: 숫자에서 다음 달 과제로',st:['실적을 목표·전월과 비교한다','안전 보고를 먼저 다룬다','평균·합계가 아니라 내역을 확인한다','부족한 자료를 상대를 정해 요청한다','다음 달 과제와 효과를 볼 지표를 하나씩 정한다'],who:['실적','우선순위','원인','요청','과제와 지표'],k:'안전 보고는 「줄일 숫자」가 아니라 「숨기지 않는 것」이 목표'},
-  en:{t:'The monthly station meeting: from numbers to next month’s tasks',st:['Read results against target and last month','Take safety reports first','Check the breakdown, not just averages and totals','Ask a named party for the missing data','Set next month’s tasks, each with one indicator'],who:['Results','Priority','Cause','Request','Task and indicator'],k:'The aim for safety reports is not to reduce them but to keep them open'}})[l];
+  ko:{t:'월례 스테이션 운영 회의: 숫자에서 다음 달 과제로',st:['실적을 목표·전월과 비교한다','안전 보고를 먼저 다룬다','평균·합계가 아니라 내역을 확인한다','부족한 자료는 상대를 정해 요청한다','다음 달 과제와 효과 측정 지표를 하나씩 정한다'],who:['실적','우선순위','원인','요청','과제와 지표'],k:'안전 보고는 「줄일 숫자」가 아니라 「숨기지 않는 것」이 목표'},
+  en:{t:'The monthly station meeting: from numbers to next month’s tasks',st:['Read results against target and last month','Take safety reports first','Check the breakdown, not just averages and totals','Ask a named party for the missing data','Set one task and one indicator for next month'],who:['Results','Priority','Cause','Request','Task and indicator'],k:'For safety reports, the aim is not fewer reports but nothing hidden'}})[l];
  if(!W)return F.irr_meet('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#D64545','#E08A2E','#7A5CC7','#2E9B5F'],'10s');s+=A.s;
  var K=KEY(A.y+16,W.k,'#0f3558');return SVG(K.y,s+K.s)},

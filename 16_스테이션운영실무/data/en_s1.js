@@ -25,7 +25,7 @@ sections:[
 {name:"Weighted by priority",x:"For example, punctuality carries the most weight (40–50% of the total) and the rest is split among the other items. Capability items are ranked the same way."},
 {name:"The evaluator’s overall judgment",x:"The score is the basis, but the evaluator may move the grade up or down by one."},
 {name:"Reviewed every year",x:"Targets are reset for each station from the previous period, and priorities shift with the business plan."},
-{name:"Recognition and improvement",x:"The top station is recognised; low or sharply declining stations may face a special quality audit."}]}]},
+{name:"Recognition and improvement",x:"Top stations are recognised; low or sharply declining stations may face a special quality audit."}]}]},
 {h:"How companies differ (examples)",blocks:[{t:"table",cols:["","Form of evaluation","Cycle"],rows:[
 ["Company A","Two axes, performance and capability; five grades S–D with the target at B","Every six months"],
 ["Company B","A 100-point scorecard adding up punctuality, baggage, complaints and safety, with stations ranked","Collected monthly, ranked quarterly"],
@@ -45,7 +45,7 @@ quiz:[{q:"Which is the right way to read station performance figures?",opts:["Lo
 next:"1-2 Reading on-time performance: D0, D15 and delay codes"});
 
 set("1-2",{title:"Reading On-Time Performance: D0, D15 and Delay Codes",hl:"on-time performance",subtitle:"Why a flight was late matters more than how late. Delay codes are a map for improvement",
-lead:["Punctuality is the face of a station’s performance. But the same “on-time rate” can differ widely depending on how many minutes count as on time and which moment counts as departure.","This article covers how punctuality is defined and calculated, and how to read the delay codes used to classify causes."],
+lead:["Punctuality is the headline measure of a station’s performance. But the same “on-time rate” can differ widely depending on how many minutes count as on time and which moment counts as departure.","This lesson covers how punctuality is defined and calculated, and how to read the delay codes used to classify causes."],
 sections:[
 {h:"Definitions",blocks:[{t:"table",cols:["Term","Meaning"],rows:[
 ["When departure is measured","Usually the moment the aircraft starts to move off its stand (off-block)"],
@@ -68,7 +68,7 @@ sections:[
 ["Bag sorting fell behind and loading started late","18","Baggage processing"],
 ["Too few loaders for the cargo, so the doors could not be closed","32","Loading and unloading"],
 ["A departure-airport ATC restriction held up pushback approval","89","Restrictions at the airport of departure"]]},
-{t:"note",x:"* The numbers are typical IATA standard delay codes. How to use sub-codes, and how to split main and secondary codes when causes overlap, follows each airline’s own rules. ★ The full list is in Course 1’s IATA delay code tool."}]},
+{t:"note",x:"* The numbers are typical IATA standard delay codes. How to use sub-codes, and how to decide the main and secondary codes when causes overlap, follows each airline’s own rules. ★ The full list is in Course 1’s IATA delay code tool."}]},
 {h:"Using delay codes",blocks:[{t:"fig",id:"stn_delay",cap:"A month’s delay minutes sorted by code. Blue is what the station and handler can control; grey is outside causes."},{t:"check",items:[
 {name:"Delays the station can control",x:"Many codes in the 10s and 30s come from ground processes. They feed straight into your score, and they can be fixed."},
 {name:"Code honestly",x:"Choosing a convenient code hides the cause and misleads head office’s analysis."},
@@ -101,7 +101,7 @@ quiz:[{q:"What is D15?",opts:["Share of flights leaving within 15 minutes of STD
 next:"1-3 Cutting ground-caused delays"});
 
 set("1-3",{title:"Cutting Ground-Caused Delays",hl:"ground-caused delays",subtitle:"Delays are minutes that add up. Protect the critical path and bring work forward",
-lead:["Most big delays are really a string of small ones. Boarding starts three minutes late, five minutes go on searching for the last passenger, four more on finalising the loadsheet. None is large on its own; together they cost you the on-time departure.","This article covers the critical path to departure, the common ground-caused delays and how to prevent them, and what to do once a delay has happened."],
+lead:["Most big delays are really a string of small ones. Boarding starts three minutes late, five minutes go on searching for the last passenger, four more on finalising the loadsheet. None is large on its own; together they cost you the on-time departure.","This lesson covers the critical path to departure, the common ground-caused delays and how to prevent them, and what to do once a delay has happened."],
 sections:[
 {h:"The critical path to departure (example)",blocks:[{t:"fig",id:"stn_crit",cap:"Moving diagram: the red line is time passing. A delay on an orange task (the critical path) delays departure by the same amount."},{t:"ladder",rise:10,steps:[{name:"Arrival and block-in",sub:"The inbound time sets the clock"},{name:"Disembarking and unloading",sub:"Passengers and bags"},{name:"Cleaning, catering, fuel",sub:"Run in parallel"},{name:"Loading and loadsheet",sub:"Final figures deadline"},{name:"Boarding and door close",sub:"Headcount reconciled"},{name:"Pushback",sub:"Off-block"}]},
 {t:"note",x:"* The order and timing of each process are set by the aircraft type, the airport and your company’s standard turnaround. ★"}]},
@@ -120,7 +120,7 @@ sections:[
 {name:"Action",x:"Review the break plan with the handler at every seasonal schedule change."}]},
 {t:"note",x:"* Do not stop at an answer that blames a person; keep asking why until you reach a procedure or a system. See 2-3 for corrective actions and 4-5 for seasonal preparation."}]},
 {h:"After a delay",blocks:[{t:"check",items:[
-{name:"Record the facts in times",x:"Log the start and end of each process so it is clear where the minutes were lost."},
+{name:"Record the facts with times",x:"Log the start and end of each process so it is clear where the minutes were lost."},
 {name:"Code and cause",x:"Separate the primary delay code, the direct cause and the underlying cause (ask why, and why again)."},
 {name:"Prevent a repeat",x:"Who changes what, by when — agreed with the handler too."},
 {name:"Deadline",x:"Report to head office the same day or the next, as your company requires."}]},
@@ -133,7 +133,7 @@ quiz:[{q:"What are most big delays made of?",opts:["Small delays of a few minute
 next:"1-4 Baggage, customer and safety measures"});
 
 set("1-4",{title:"Baggage, Customer and Safety Measures",hl:"baggage, customer and safety",subtitle:"Punctuality alone does not make a good station. Three numbers that are easy to overlook",
-lead:["A station with a high on-time rate still scores badly if bags are left behind, complaints pile up or there are incidents on the ramp. In fact, rushing to stay on time can be what drives these numbers down.","This article covers how to read the baggage, customer and safety measures, and how to go about improving them."],
+lead:["A station with a high on-time rate still scores badly if bags are left behind, complaints pile up or there are incidents on the ramp. In fact, rushing to stay on time can be what makes these numbers worse.","This lesson covers how to read the baggage, customer and safety measures, and how to go about improving them."],
 sections:[
 {h:"Reading the three measures",blocks:[{t:"table",cols:["Measure","What it covers","Common causes"],rows:[
 ["Mishandled baggage","Delayed (left behind), damaged and lost bags, often compared per 1,000 passengers","Bags checked in near the deadline, short transfer connections, wrong tags"],
@@ -145,7 +145,7 @@ sections:[
 {name:"Count compliments too",x:"Finding and sharing good service raises the standard on the floor."},
 {name:"How MBR is counted",x:"Mishandled bags per 1,000 passengers. Targets vary widely with the company, the route and how many passengers connect. Companies also set their own rules on what counts — for instance whether cases that became complaints through poor follow-up are added. ★"},
 {name:"Station self-audit",x:"At set intervals — often once a year — check the operation against a checklist, including the handler’s work. ★"}]}]},
-{h:"Compare rates, not counts (worked examples)",blocks:[{t:"fig",id:"stn_ratio",cap:"Counts (grey) and rates per 1,000 passengers (coloured) compared over three months."},{t:"table",cols:["Indicator","Calculation","Example (24,000 passengers, 300 flights a month)"],rows:[
+{h:"Compare rates, not counts (worked examples)",blocks:[{t:"fig",id:"stn_ratio",cap:"Counts (grey) and rates per 1,000 passengers (coloured) compared over three months."},{t:"table",cols:["Measure","Calculation","Example (24,000 passengers, 300 flights a month)"],rows:[
 ["Mishandled bag rate","Mishandled bags ÷ passengers × 1,000","12 ÷ 24,000 × 1,000 = 0.5 per thousand"],
 ["Complaint rate","Complaints ÷ passengers × 10,000","6 ÷ 24,000 × 10,000 = 2.5 per ten thousand"],
 ["On-time departure rate","On-time flights ÷ all flights × 100","285 ÷ 300 × 100 = 95%"]]},
@@ -154,7 +154,7 @@ sections:[
 {t:"point",x:"Punctuality, baggage, customers and safety are connected. Forcing flights out on time creates incidents and complaints. A duty manager needs the balance to watch all four at once."}]}],
 voice:"When baggage incidents keep happening, break them down by flight and by stage, not just by count. The causes usually cluster in one or two places.",
 terms:[["Property Irregularity Report (PIR)","手荷物事故報告","수하물 사고 보고서"],["Short-Shipped Baggage","積み残し","미탑재"],["Safety Report","安全報告","안전 보고"],["Corrective Action","是正措置","시정 조치"]],
-quiz:[{q:"What is true about the number of safety reports?",opts:["Many small reports show a healthy operation","Fewer is always better","They need not be counted","Reporting is discouraged"],a:0,exp:"A culture where people hesitate to report is the real danger."},
+quiz:[{q:"What is true about the number of safety reports?",opts:["Many small reports show a healthy operation","Fewer is always better","They need not be counted","Reporting is prohibited"],a:0,exp:"A culture where people hesitate to report is the real danger."},
 {q:"When analysing mishandled baggage, what do you separate?",opts:["Which process it happened in","The weather","Only the day of the week","Staff preferences"],a:0,exp:"Separate check-in, sorting, loading and transfers."},
 {q:"How are the four measures related?",opts:["Forcing punctuality creates incidents and complaints","Only punctuality matters","They are unrelated","Safety is not scored"],a:0,exp:"You need the balance to watch all four together."}],
 next:"1-5 Reading safety performance indicators (SPIs)"});
@@ -194,28 +194,28 @@ quiz:[{q:"What is an example formula for the load control error SPI?",opts:["Occ
 next:"1-6 Automation and ancillary revenue"});
 
 set("1-6",{title:"Automation and Ancillary Revenue",hl:"automation and ancillary revenue",subtitle:"Passenger operations contribute to efficiency and revenue too",
-lead:["Station scorecards can include online check-in rates and ancillary revenue earned at the airport, not just safety and punctuality. Shorter counter queues help punctuality, and charging correctly under the rules is also a matter of fairness.","This article covers the automation and ancillary revenue measures, and what a duty manager can do on the ground."],
+lead:["Station scorecards can include online check-in rates and ancillary revenue earned at the airport, not just safety and punctuality. Shorter counter queues help punctuality, and charging correctly under the rules is also a matter of fairness.","This lesson covers the automation and ancillary revenue measures, and what a duty manager can do on the ground."],
 sections:[
-{h:"The two measures (example)",blocks:[{t:"fig",id:"stn_self",cap:"Top: how the check-in channels change. Bottom: ancillary revenue per flight by item."},{t:"table",cols:["Measure","How it is measured","Example target"],rows:[
+{h:"The two measures (example)",blocks:[{t:"fig",id:"stn_self",cap:"Top: change in the share of each check-in channel. Bottom: ancillary revenue per flight by item."},{t:"table",cols:["Measure","How it is measured","Example target"],rows:[
 ["Automation","Share of boarded passengers who used online check-in or a kiosk (charter flights excluded)","Anywhere from 30% to 70%, depending on the route and airport facilities; growth over the previous quarter is also scored"],
 ["Ancillary revenue","Revenue per flight from upgrades, excess baggage, paid seats such as front rows or exit rows, and oversize baggage charges","Above the station’s average for the previous period (the margin varies by company)"]]},
 {t:"note",x:"* Definitions and targets differ by company. ★"}]},
 {h:"Raising automation",blocks:[{t:"check",items:[
 {name:"Tell passengers early",x:"Promote online check-in in booking confirmations and pre-departure messages, working with sales and head office."},
 {name:"Direct people before the counter",x:"Put an agent at the head of the queue to help passengers who can check in on their phones. QR code signs help."},
-{name:"Bag-drop-only counters",x:"Open a dedicated position just for passengers who have already checked in."},
+{name:"Bag-drop-only counters",x:"Open a dedicated position to take bags from passengers who have already checked in."},
 {name:"Measure the effect",x:"Record the usage rate alongside counter waiting times and staffing."}]}]},
 {h:"Looking after the floor when moving to self-service",blocks:[{t:"rows",items:[
-{name:"Put guides on the floor",x:"Station staff by the machines. In the first few months especially, walk passengers through the steps."},
+{name:"Put guides on the floor",x:"Place staff by the machines. In the first few months especially, walk passengers through the steps."},
 {name:"Passengers who need help",x:"Keep a quick route to a staffed counter for older passengers, wheelchair users, families with infants and international passengers whose documents need checking."},
 {name:"Machine faults",x:"Agree whom to call for breakdowns and paper jams, and the fallback procedure until they are fixed."},
 {name:"Reading the numbers",x:"Look not only at usage rates but at how many passengers started on a machine and then came to a staffed counter. That is where improvements lie."}]}]},
 {h:"How to think about ancillary revenue",blocks:[{t:"rows",items:[
 {name:"Charge by the rules",x:"Letting excess baggage through is unfair to passengers who paid. Keep everyone to the same standard."},
-{name:"No hard selling",x:"Offer upgrades naturally, with agreed wording. Pushy selling turns into complaints."},
+{name:"No hard selling",x:"Offer upgrades naturally, with agreed wording. Pushy selling leads to complaints."},
 {name:"Exit rows: safety first",x:"Even when paid for, always check the passenger meets the conditions to assist (age, language and so on)."},
 {name:"Record and settle",x:"Record revenue by flight and settle it the same day."}]},
-{t:"point",x:"Automation and ancillary revenue are the numbers that show passenger operations is not just a cost centre but a department that contributes to the company."}]}],
+{t:"point",x:"Automation and ancillary revenue are the numbers that show passenger operations is not just a cost centre but a department that can also contribute to revenue."}]}],
 voice:"Online check-in take-up rises more with a word from staff than with signs. Build the habit of briefly telling queuing passengers how to use it next time.",
 terms:[["Online Check-in","オンラインチェックイン","온라인 체크인"],["Ancillary Revenue","付帯収入","부대수익"],["Excess Baggage Charge","超過手荷物料金","초과 수하물 요금"],["Bag Drop Counter","手荷物専用カウンター","수하물 전용 카운터"]],
 quiz:[{q:"Which is an automation measure?",opts:["Online check-in and kiosk usage rate","Number of staff","Fare levels","The weather"],a:0,exp:"It is measured as a share of boarded passengers."},

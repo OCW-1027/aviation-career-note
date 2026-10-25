@@ -1,17 +1,17 @@
 /* CIQの役割 — English version (Part 1, lessons 1-1 to 1-4) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("1-1",{title:"Passports and Visas: What to Check at the Counter",hl:"Passports and Visas",subtitle:"Is it theirs, is it valid, does it meet the destination’s requirements? Check the three in the same order every time",
-lead:["In the few seconds between taking a passport and handing over a boarding pass, the airline decides whether it may carry this passenger. There seems to be a lot to look at, but there are only three questions. Is the document theirs? Is it valid? Does it meet the requirements of the destination and every transit point?","This lesson sets out what to look at on a passport and a visa. How to look up the requirements themselves is the next lesson (TIMATIC)."],
+set("1-1",{title:"Passports and Visas: What to Check at the Counter",hl:"Passports and Visas",subtitle:"Is it theirs, is it valid, does it meet the destination’s requirements? Check these three in the same order every time",
+lead:["In the few dozen seconds between taking a passport and handing over a boarding pass, the airline decides whether it may carry this passenger. There seems to be a lot to look at, but there are only three questions. Is the document theirs? Is it valid? Does it meet the requirements of the destination and every transit point?","This lesson sets out what to look at on a passport and a visa. How to look up the requirements themselves is covered in the next lesson (TIMATIC)."],
 sections:[
 {h:"What to look at on a passport",blocks:[{t:"table",cols:["Where","What to confirm"],rows:[
 ["Photograph","That the photo, age and sex match the person in front of you"],
 ["Name","Spelled as in the booking and on the boarding pass. Watch for maiden names, middle names and name order"],
 ["Validity","Valid on the day of arrival. Some countries require a remaining period, such as six months from entry or three months beyond departure"],
-["Condition","No tears, water damage, missing pages or writing. A damaged passport can be refused"],
+["Condition","No tears, water damage, missing pages or writing. Entry can be refused on a damaged passport"],
 ["Type","Ordinary, official or diplomatic passport, emergency passport, travel document. Visa requirements differ by type"],
-["Machine readable zone (MRZ)","The two lines at the bottom. What is scanned should match the photo page"]]}]},
+["Machine readable zone (MRZ)","The two lines at the bottom. The scanned data should match the details on the photo page"]]}]},
 {h:"Visa basics",blocks:[{t:"rows",items:[
-{name:"What a visa is",x:"A mark from the country’s embassy or consulate that the holder may present themselves for entry. It does not guarantee entry; the immigration officer on arrival decides."},
+{name:"What a visa is",x:"An indication from the country’s embassy or consulate that the holder may present themselves for entry. It does not guarantee entry; the immigration officer on arrival decides."},
 {name:"Visa exemption",x:"Under agreements between countries, short stays may need no visa. Purpose (tourism, business) and length of stay are limited."},
 {name:"What to look at",x:"Type (visitor, work, study, transit), validity, number of entries (single or multiple), name and passport number."},
 {name:"Electronic visas",x:"There is no sticker. Confirm with the printed notice or the authority’s system."},
@@ -26,20 +26,20 @@ sections:[
 {name:"1. Is it theirs? 2. Is it valid? 3. Does it meet the requirements?",x:"A fixed order means nothing is missed when it is busy."},
 {name:"Dual nationals",x:"Confirm which passport is used to leave and which to enter, and that the name and nationality in the booking match it."},
 {name:"Do not decide from your own experience",x:"Even for the same nationality, requirements change with residence status and previous immigration history."}]},
-{t:"point",x:"Checking a passport and visa is not about doubting the passenger. It is checking together at the origin so that they are not stopped at the destination."}]}],
-voice:{h:"A Reported Case",x:"In August 2023 British media reported that one member of a family heading for Thailand was refused boarding by Qatar Airways because of a tear of about a millimetre on the photo page of her passport. The family paid an extra GBP 5,000 at another airline’s desk to go to Turkey instead, and that airline accepted the same passport. Qatar Airways declined to cover the costs, saying that responsibility for holding the correct documents lies with the passenger (Source: Manchester Evening News). Damage to the photo page is where airlines’ judgments most easily differ, so the counter needs a company standard."},
+{t:"point",x:"Checking a passport and visa is not about doubting the passenger. It is about checking together at the origin so that they are not stopped at the destination."}]}],
+voice:{h:"A Reported Case",x:"In August 2023 British media reported that one member of a family heading for Thailand was refused boarding by Qatar Airways because of a tear of about a millimetre on the photo page of her passport. The family paid an extra GBP 5,000 at another airline’s desk to go to Turkey instead, and that airline accepted the same passport. Qatar Airways declined to cover the costs, saying that responsibility for holding the correct documents lies with the passenger (Source: Manchester Evening News). Damage to the photo page is an area where airlines’ judgments easily differ, so the counter needs a company standard."},
 terms:[["Passport","旅券","여권"],["Visa","査証","비자"],["Visa Waiver","査証免除","비자 면제"],["Machine Readable Zone (MRZ)","機械読み取り領域","기계 판독 영역"]],
 quiz:[{q:"Which statement about visas is right?",opts:["A visa does not guarantee entry; the immigration officer decides","Holding one always means entry","The airline issues it","Requirements are the same everywhere"],a:0,exp:"A visa only allows the holder to present themselves for entry."},
 {q:"What should you watch for in passport validity?",opts:["Some countries require a remaining period","Valid on arrival is enough everywhere","Only the issue date matters","It need not be checked"],a:0,exp:"Some require, for example, six months from the date of entry."},
-{q:"What order does this lesson recommend at the counter?",opts:["Theirs? Valid? Meets the requirements?","Requirements, name, photo","Only the visa","Just listen to the passenger"],a:0,exp:"A fixed order reduces misses."}],
+{q:"What order does this lesson recommend at the counter?",opts:["Theirs? Valid? Meets the requirements?","Requirements, name, photo","Only the visa","Just listen to the passenger"],a:0,exp:"A fixed order reduces oversights."}],
 next:"1-2 TIMATIC: the tool for looking up entry requirements"});
 set("1-2",{title:"TIMATIC: The Tool for Looking Up Entry Requirements",hl:"TIMATIC",subtitle:"Enter nationality, destination, transit points and purpose, and read the answer to the end",
 lead:["Nobody can memorise the entry requirements of nearly two hundred countries and territories, and they change almost daily. So airlines use a shared database called TIMATIC.","A tool only helps when used correctly. Change one input and the answer changes."],
 sections:[
 {h:"What TIMATIC is",blocks:[{t:"fig",id:"ciq_timatic",cap:"Figure: checking entry rules in TIMATIC."},{t:"rows",items:[
 {name:"Who produces it",x:"The International Air Transport Association (IATA). It holds each country’s passport, visa and health requirements and is updated from information supplied by authorities and airlines."},
-{name:"Where it is used",x:"From the check-in system. Some systems check requirements automatically when the passport is scanned."},
-{name:"For passengers",x:"Airline websites offer a checking tool based on the same information. Use it when advising at booking."}]}]},
+{name:"Where it is used",x:"It can be accessed from the check-in system. Some systems check requirements automatically when the passport is scanned."},
+{name:"For passengers",x:"Airline websites offer a checking tool based on the same information. It can be used when advising passengers at booking."}]}]},
 {h:"What to enter",blocks:[{t:"table",cols:["Input","Why it is needed"],rows:[
 ["Nationality (issuing country of the passport)","The basis of the requirements"],
 ["Type of passport","Ordinary and official passports are treated differently"],
@@ -58,7 +58,7 @@ sections:[
 {h:"Cautions when relying on the tool",blocks:[{t:"check",items:[
 {name:"A different input gives a different answer",x:"Leave out the nationality, passport type or a transit point and the answer will be wrong."},
 {name:"Even when the automatic check says OK",x:"If there is a transit not in the booking (a separately bought ticket), look it up yourself."},
-{name:"If the answer is unclear, ask",x:"Confirm with your supervisor or head office’s duty officer before deciding to board."},
+{name:"If the answer is unclear, ask",x:"Confirm with your supervisor or head office’s duty officer before deciding whether the passenger can board."},
 {name:"Keep what you looked up",x:"Save the screen or a printout. It is your evidence if a penalty or complaint follows."}]},
 {t:"point",x:"TIMATIC is not a machine that gives the answer; it is a reference that tells you the requirements. Applying them is your job, because you are the one looking at the passenger."}]}],
 voice:"A TIMATIC result of 'OK' means nothing if the nationality, transit point or purpose of travel entered differs from the facts. When you hit an unclear exception, keep a record of the result screen and, if needed, check again against official embassy or government information.",
@@ -68,9 +68,9 @@ quiz:[{q:"Who produces TIMATIC?",opts:["The International Air Transport Associat
 {q:"The answer says “Visa not required, except…”. What do you do?",opts:["Read the condition after “except”","Conclude no visa is needed","Ask the passenger","Do not check further"],a:0,exp:"The exceptions contain the important conditions."}],
 next:"1-3 Electronic travel authorisations: the rules by country"});
 set("1-3",{title:"Electronic Travel Authorisations: The Rules by Country",hl:"Electronic Travel Authorisations",subtitle:"More and more countries require an application before travel, even from people who need no visa",
-lead:["Even travellers who need no visa must now, for a growing number of countries, apply online before travel and be authorised before they can board. The United States’ ESTA is the best known, but the United Kingdom, Korea, Europe and Japan are all adopting the same idea.","Fees and eligibility change often. What follows was confirmed in October 2026. Always check the authority’s official website before relying on it."],
+lead:["A growing number of countries and regions now require even visa-exempt travellers to apply online before travel and be authorised before they can board. The United States’ ESTA is the best known, but the United Kingdom, Korea, Europe and Japan are all adopting the same idea.","Fees and eligibility change often. What follows was confirmed in October 2026. Always check the authority’s official website before relying on it."],
 sections:[
-{h:"The main electronic travel authorisations",blocks:[{t:"fig",id:"ciq_levels",cap:"An electronic travel authorisation sits between “a visa is needed” and “nothing is needed”."},{t:"table",cols:["Country or region, and name","Fee and validity","Notes"],rows:[
+{h:"The main electronic travel authorisations",blocks:[{t:"fig",id:"ciq_levels",cap:"An electronic travel authorisation sits between “a visa is needed” and “no advance formality needed”."},{t:"table",cols:["Country or region, and name","Fee and validity","Notes"],rows:[
 ["United States: ESTA","USD 40 (from 30 September 2025). Two years, or until the passport expires","For nationals of Visa Waiver Program countries; stays of up to 90 days"],
 ["Canada: eTA","CAD 7. Five years, or until the passport expires","Visa-exempt nationals arriving by air"],
 ["United Kingdom: ETA","GBP 20 (since 8 April 2026; GBP 16 before that). Two years, or until the passport expires","Nationals who need no visa"],
@@ -106,24 +106,24 @@ next:"1-4 Refusal of entry and removal in practice"});
 set("1-4",{title:"Refusal of Entry and Removal in Practice",hl:"Refusal of Entry",subtitle:"A passenger refused on arrival is, in principle, taken back by the airline that brought them",
 lead:["However carefully you check, some passengers will still be refused entry. Even with complete documents, a passenger can be refused for answers given at immigration or for past records.","What does the airline do then? This lesson looks at both the station at the destination and the station that sent the passenger."],
 sections:[
-{h:"The main reasons for refusal",blocks:[{t:"fig",id:"ciq_inad",cap:"Figure: when a passenger is refused entry."},{t:"table",cols:["Reason","Example"],rows:[
-["Missing documents","No visa or travel authorisation, too little passport validity, no return ticket"],
+{h:"The main reasons for refusal",blocks:[{t:"fig",id:"ciq_inad",cap:"Figure: the flow when a passenger is refused entry."},{t:"table",cols:["Reason","Example"],rows:[
+["Missing documents","No visa or travel authorisation, insufficient remaining passport validity, no return ticket"],
 ["Purpose does not match","Entering as a visitor but intending to work; unable to explain where they will stay or their plans"],
 ["Insufficient funds","Cannot show money or a means of payment"],
 ["Past records","Overstays, removals or earlier refusals"],
 ["Inconsistent answers","What was declared and what is said at immigration do not match"]]},
-{t:"note",x:"* From the third row down, the counter usually cannot know. The airline is held responsible mainly when it failed to check documents."}]},
+{t:"note",x:"* Issues from the third row down usually cannot be identified at the counter. The airline is held responsible mainly when it failed to check documents."}]},
 {h:"What happens at the destination",blocks:[{t:"ladder",steps:[
 {name:"Secondary inspection",sub:"An immigration officer questions the passenger in detail"},
 {name:"Decision to refuse entry",sub:"The authority notifies the airline that brought the passenger"},
 {name:"Arranging the return flight",sub:"Normally the airline’s next departure; a seat is secured"},
 {name:"Waiting for departure",sub:"In a facility within the airport, under the authority’s control"},
 {name:"Boarding",sub:"The crew may hold the passport and papers until arrival"},
-{name:"Arrival at the origin",sub:"The origin station meets the flight and hands over to the authorities"}]},
+{name:"Arrival at the origin",sub:"The origin station meets the flight and hands the passenger over to the authorities"}]},
 {t:"note",x:"* Procedures and document names differ by country."}]},
 {h:"What the sending station does",blocks:[{t:"rows",items:[
 {name:"Receive the notification",x:"The destination station or head office sends the name, flight, reason and return flight."},
-{name:"Check the check-in record",x:"Who checked what and accepted the passenger, and whether the result was kept."},
+{name:"Check the check-in record",x:"Who checked what and accepted the passenger, and whether the result was recorded."},
 {name:"Report to head office",x:"Facts, cause and expected cost, in the incident report format of lesson 3-4."},
 {name:"Meet the returning passenger",x:"Meet the flight and explain costs and next steps. It is not the place for blame."},
 {name:"Do not let it happen again",x:"If something was missed, share that requirement with everyone."}]}]},
@@ -133,10 +133,10 @@ sections:[
 {name:"Records",x:"Keep the name, flight, reason for refusal, actions and costs. They are needed if the authority issues a penalty notice."},
 {name:"Deportees (DEPO) are handled separately",x:"When carrying someone removed by the state, obtain head-office approval in advance, confirm whether there is an escort and inform the captain."}]},
 {t:"point",x:"A passenger refused entry is in the hardest position of all. The airline’s job is not to change the decision but to bring them back safely and with courtesy."}]}],
-voice:{h:"A Reported Case",x:"In July 2023 Malaysia’s home minister announced a Cabinet decision that airlines, rather than third parties, would now be responsible for sending back travellers refused entry with a Not to Land notice (Source: The Star, 12 July 2023). In Canada, Air Canada told a review of the national transport system that airlines bear all the costs of removals, including security (Source: CTV News). In any country, refusal of entry and removal often end up as the airline’s work (Lessons from the Field 4-1)."},
-terms:[["Refusal of Entry","入国拒否","입국 거부"],["Removal","送還","송환"],["Holding Facility","待機の施設","대기 시설"],["Escort","付き添い","호송인"]],
+voice:{h:"A Reported Case",x:"In July 2023 Malaysia’s home minister announced a Cabinet decision that airlines, rather than third parties, would now be responsible for sending back travellers refused entry with a Not to Land notice (Source: The Star, 12 July 2023). In Canada, Air Canada told a review of the national transport system that airlines bear all the costs of removals, including security (Source: CTV News). In any country, refusal of entry and removal often end up being handled by the airline (Lessons from the Field 4-1)."},
+terms:[["Refusal of Entry","入国拒否","입국 거부"],["Removal","送還","송환"],["Holding Facility","待機施設","대기 시설"],["Escort","付き添い","호송인"]],
 quiz:[{q:"Why can a passenger with complete documents still be refused entry?",opts:["Answers at immigration and past records also count","The airline refuses them","Customs decides","It never happens"],a:0,exp:"The immigration officer at the destination makes the final decision."},
 {q:"Who, in principle, arranges the return flight of a refused passenger?",opts:["The airline that brought them","The passenger","The destination airport company","The embassy"],a:0,exp:"The carrying airline has the duty of return."},
-{q:"What does the sending station check first?",opts:["The record of what was checked at check-in","The passenger’s occupation","The weather at the destination","The number of meals"],a:0,exp:"It confirms what was looked up before the passenger was accepted."}],
+{q:"What does the sending station check first?",opts:["The record of what was checked at check-in","The passenger’s occupation","The weather at the destination","The number of meals"],a:0,exp:"It confirms what was checked before the passenger was accepted."}],
 next:"1-5 Transit without a visa"});
 })(window.ARTS);

@@ -19,8 +19,8 @@ sections:[
 ["Design","Built around automation and AI, with autonomous vehicles and robots for baggage and cargo; tunnels link T5 to T1–T4"]]},
 {t:"point",x:"Changi has repeatedly built the next terminal before the current ones fill up: with about 70 million passengers against a 90 million capacity in 2025, it is investing in a terminal ten years ahead."}]},
 {h:"Transfers and entry",blocks:[{t:"table",cols:["Item","Details"],rows:[
-["International to international","Connect without immigration; the Skytrain links terminals airside"],
-["Arrival card","SG Arrival Card (electronic); paper cards abolished in 2022; submit within three days of arrival"],
+["International to international","Connect without clearing immigration; the Skytrain links terminals airside"],
+["Arrival card","SG Arrival Card (electronic); paper cards abolished in 2022; submit from three days before arrival"],
 ["Korean and Japanese passports","No visa for short stays; eligible for automated gates ★"],
 ["Long connections","Free city tours and airport attractions such as Jewel can be offered"]]},
 {t:"note",x:"* Check the Immigration & Checkpoints Authority (ICA) for current conditions. ★"}]},
@@ -39,8 +39,8 @@ quiz:[{q:"When is Changi’s T5 due to open?",opts:["2027","The mid-2030s","2040
 {q:"What will Changi’s annual capacity be after T5 opens?",opts:["90 million","100 million","140 million","200 million"],a:2,exp:"T5 adds 50 million."},
 {q:"Which is true of Singapore’s arrival card?",opts:["Paper cards are handed out on board","The electronic SG Arrival Card is submitted before arrival","There is no arrival card","It is filled in at a counter on arrival"],a:1,exp:"Paper cards were abolished in 2022."}],
 next:"2-2 Bangkok Suvarnabhumi (BKK)"});
-set("2-2",{title:"Bangkok Suvarnabhumi (BKK): 65 Million with SAT-1 and a Third Runway, 150 Million by 2033",hl:"Suvarnabhumi",subtitle:"Opened in 2006. The SAT-1 satellite terminal in 2023 and the third runway in November 2024 expanded capacity; the East Expansion and South Terminal aim for one of the world’s largest airports. Plus the split with Don Mueang",
-lead:["Bangkok has Suvarnabhumi, for international and long-haul flights, and Don Mueang, for low-cost and domestic services. Suvarnabhumi opened on 28 September 2006, handled 62.23 million passengers in 2024 and 62.90 million in 2025 (+1.1%) (Airports of Thailand).","The SAT-1 satellite terminal in 2023 and the third runway from 1 November 2024 raised capacity to 65 million a year and 94 movements an hour. This lesson covers the expansion plan and operational and entry points."],
+set("2-2",{title:"Bangkok Suvarnabhumi (BKK): 65 Million with SAT-1 and a Third Runway, 150 Million by 2033",hl:"Suvarnabhumi",subtitle:"Opened in 2006. The SAT-1 satellite terminal in 2023 and the third runway in November 2024 expanded capacity; the East Expansion and South Terminal aim for one of the world’s largest airports. Plus how it shares roles with Don Mueang",
+lead:["Bangkok has Suvarnabhumi, for international and long-haul flights, and Don Mueang, for low-cost and domestic services. Suvarnabhumi opened on 28 September 2006, handled 62.23 million passengers in 2024 and 62.90 million in 2025 (+1.1%) (Airports of Thailand).","The SAT-1 satellite terminal in 2023 and the third runway from 1 November 2024 raised capacity to 65 million a year and 94 movements an hour. This lesson covers the expansion plan and key points on operations and entry."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_bkk",cap:"Figure: Bangkok Suvarnabhumi at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: BKK / ICAO: VTBS"],
@@ -63,10 +63,10 @@ sections:[
 {h:"Entry and transfers",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["TDAC (digital arrival card)","Since 1 May 2025 foreigners submit the Thailand Digital Arrival Card up to 72 hours before arrival (Thai Immigration Bureau)"],
 ["Korean and Japanese passports","No visa for short tourist stays; the general visa-free stay was cut from 60 to 30 days from 15 September 2026 (countries with bilateral agreements follow those; check current guidance) ★"],
-["International to international","Connect without immigration; the main terminal and SAT-1 are linked by an automated people mover"]]}]},
+["International to international","Connect without passing through immigration; the main terminal and SAT-1 are linked by an automated people mover"]]}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Congestion",x:"Operating close to capacity means long queues at immigration and security at peak times."},
-{name:"Rainy season",x:"Thunderstorms from May to October cause delays."},
+{name:"Rainy season",x:"Thunderstorms from May to October often cause delays."},
 {name:"Cargo",x:"Thailand’s main trade gateway, with large volumes of perishables such as fruit and flowers."}]}]},
 {h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[
 {name:"Japan",x:"Thai Airways, JAL, ANA and Japanese and Korean low-cost carriers serve Narita, Haneda, Kansai, Chubu, Fukuoka, Sapporo and more; one of the biggest destinations for Japanese tourists."},
@@ -98,11 +98,11 @@ sections:[
 ["International to international","Airside connections within the same terminal; between T1 and T2 by shuttle bus or rail, which may require entry ★"]]}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"Wrong terminal",x:"Malaysia Airlines and AirAsia use different terminals; state the terminal in bookings and information."},
-{name:"Storms and haze",x:"Afternoon thunderstorms, and dry-season haze that can cut visibility."},
+{name:"Storms and haze",x:"Afternoon thunderstorms and dry-season haze can reduce visibility."},
 {name:"Cargo",x:"Electronics exports drive growing cargo volumes."}]}]},
 {h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[
-{name:"Japan",x:"Malaysia Airlines serves Narita and Kansai; AirAsia X flies to Tokyo, Osaka, Sapporo and more, with many JAL codeshares."},
-{name:"Korea",x:"Malaysia Airlines, Korean Air and AirAsia X among others serve Incheon."}]}]}],
+{name:"Japan",x:"Malaysia Airlines serves Narita and Kansai; AirAsia X flies to Tokyo, Osaka, Sapporo and more. There are also many codeshares with JAL."},
+{name:"Korea",x:"Malaysia Airlines, Korean Air, AirAsia X and others serve Incheon."}]}]}],
 voice:"Kuala Lumpur’s main terminal and low-cost terminal are far apart, so advise transferring passengers to check their terminal in advance.",
 terms:[["Malaysia Airports Holdings Berhad (MAHB)","マレーシア空港","말레이시아공항공사"],["Aerotrain","エアロトレイン","에어로트레인"],["Malaysia Digital Arrival Card (MDAC)","マレーシア電子入国カード","말레이시아 전자 입국카드"],["Satellite Building","サテライト","새틀라이트(위성동)"],["Autogate","自動化ゲート","자동 출입국 게이트"]],
 quiz:[{q:"KLIA’s 2025 passengers and world rank?",opts:["40 million, 50th","63.3 million, 20th","80 million, 10th","100 million, 5th"],a:1,exp:"Up from 26th to 20th."},
@@ -144,9 +144,9 @@ sections:[
 {h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[
 {name:"Japan",x:"JAL, ANA and Air India link Narita and Haneda with Delhi."},
 {name:"Korea",x:"Korean Air and Air India link Incheon with Delhi."},
-{name:"Demand",x:"Strong expatriate and business demand from Japanese and Korean companies; connections compete fiercely with Middle East carriers."}]}]}],
+{name:"Demand",x:"Strong expatriate and business demand from Japanese and Korean companies; connecting traffic faces fierce competition from Middle East carriers."}]}]}],
 voice:"Passengers to India need their visa conditions checked carefully at the counter, so check-in tends to take longer than on other routes. Allow generous counter opening times.",
-terms:[["Delhi International Airport Ltd (DIAL)","デリー国際空港（運営会社）","델리국제공항(운영사)"],["Noida International Airport (Jewar)","ノイダ国際空港","노이다 국제공항"],["e-Visa","電子査証","전자 비자"],["e-Arrival Card","電子の入国カード（インド）","전자 입국카드(인도)"],["Dense Fog","濃霧","짙은 안개"]],
+terms:[["Delhi International Airport Ltd (DIAL)","デリー国際空港（運営会社）","델리국제공항(운영사)"],["Noida International Airport (Jewar)","ノイダ国際空港","노이다 국제공항"],["e-Visa","電子査証","전자 비자"],["e-Arrival Card","電子入国カード（インド）","전자 입국카드(인도)"],["Dense Fog","濃霧","짙은 안개"]],
 quiz:[{q:"When did Delhi’s expanded T1 begin full operation?",opts:["2023","15 April 2025","26 October 2025","2030"],a:1,exp:"26 October was the T2 reopening."},
 {q:"When did Noida International Airport (Jewar) open?",opts:["2024","2025","28 March 2026","2030"],a:2,exp:"Phase 1 handles 12 million a year."},
 {q:"Which weather is the main winter concern at Delhi?",opts:["Dense fog","Typhoons","Heavy snow","Sandstorms"],a:0,exp:"Fog in December and January causes delays and cancellations."}],

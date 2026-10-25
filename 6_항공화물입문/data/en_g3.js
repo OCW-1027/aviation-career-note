@@ -2,7 +2,7 @@
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-1",{title:"Dangerous Goods: What Can and Cannot Fly",hl:"dangerous goods",subtitle:"Classification, packing, marking and documents. All four, or it does not fly ★",
 lead:["Lithium batteries, paint, aerosols, dry ice, chemicals. Many everyday goods count as dangerous goods in air transport. Under the international rules — ICAO’s technical instructions and the IATA dangerous goods regulations — they divide into goods that can fly, goods that can fly under conditions, and goods that cannot.",
-"This article covers the classes, the four conditions for carriage, what acceptance checks, and the notification to the captain. The rules are revised every year, so always use the current edition."],
+"This article covers the classes, the four conditions for carriage, acceptance checks and the notification to the captain. The rules are revised every year, so always use the current edition."],
 sections:[
 {h:"The nine classes",blocks:[{t:"fig",id:"cgo_dg",cap:"Animated figure: the nine class labels (shapes and colours simplified) light up in turn; numbers are the class numbers."},
 {t:"table",cols:["Class","Examples"],rows:[
@@ -15,11 +15,11 @@ sections:[
 ["7 Radioactive material","Medical isotopes"],
 ["8 Corrosives","Battery acid, acids"],
 ["9 Miscellaneous","Lithium batteries, dry ice, magnetised material"]]}]},
-{h:"The four conditions",blocks:[{t:"fig",id:"cgo_dg4",cap:"Animated figure: using lithium ion batteries packed with equipment (UN3481), the four conditions of classification, packing, marking and documents light up in turn. Confirm the packing instruction number ★."},
+{h:"The four conditions",blocks:[{t:"fig",id:"cgo_dg4",cap:"Animated figure: using lithium-ion batteries packed with equipment (UN3481), the four conditions of classification, packing, marking and documents light up in turn. Confirm the packing instruction number ★."},
 {t:"point",warn:true,x:"Shipping dangerous goods without declaring them causes serious accidents and breaks the law. Where the commodity description is vague, check what is inside."}]},
 {h:"Acceptance and loading",blocks:[{t:"check",items:[
-{name:"Acceptance checklist",x:"Check documents, packing and marking against the set items, and refuse anything deficient."},
-{name:"Segregation",x:"Keep apart combinations of classes that cannot travel together."},
+{name:"Acceptance checklist",x:"Check documents, packing and marking against set checklist items, and refuse anything deficient."},
+{name:"Segregation",x:"Keep apart classes that cannot travel together."},
 {name:"Not on passenger aircraft",x:"Some dangerous goods may travel only on freighters."},
 {name:"Notification to the captain",x:"Tell the captain what dangerous goods are loaded, in what quantity and where (4-1)."},
 {name:"Training",x:"Anyone handling dangerous goods takes recurrent training for their role."}]}]}],
@@ -34,7 +34,7 @@ set("3-2",{title:"Live Animals",hl:"live animals",subtitle:"The animal’s welfa
 lead:["Pets, ornamental fish, laboratory animals, livestock, racehorses. Aircraft carry a great many live animals. An animal is a living thing before it is cargo: temperature, ventilation, water and stress all have to be managed, and the destination’s quarantine requirements met.",
 "This article covers the basics of carrying animals, the container requirements, loading, and quarantine on arrival (for pets as passenger baggage, see Ground Staff 1-8)."],
 sections:[
-{h:"The basics",blocks:[{t:"fig",id:"cgo_avi",cap:"Animated figure: booking, acceptance, documents, loading, notifying the captain, and arrival with quarantine light up in turn, with who is mainly responsible."},
+{h:"The basics",blocks:[{t:"fig",id:"cgo_avi",cap:"Animated figure: booking, acceptance, documents, loading, notifying the captain, and arrival with quarantine light up in turn; the right side shows who is mainly responsible."},
 {t:"check",items:[
 {name:"International rules",x:"Follow IATA’s live animals regulations and the container and condition requirements for each species."},
 {name:"Check at booking",x:"Which animals and how many can travel depends on the flight and aircraft, and there may be restrictions in hot or cold weather."},
@@ -47,7 +47,7 @@ sections:[
 ["What cannot travel with it","Dry ice (carbon dioxide), some dangerous goods, foodstuffs"],
 ["Notification","The captain is told that live animals are on board"]]}]},
 {h:"Arrival and quarantine",blocks:[{t:"rows",items:[
-{name:"Quarantine at destination",x:"Dogs, cats and birds arriving in Japan are inspected by the animal quarantine service. Failing the conditions can mean a long period in quarantine."},
+{name:"Quarantine at destination",x:"Dogs, cats, birds and other animals arriving in Japan are inspected by the animal quarantine service. Failing the conditions can mean a long period in quarantine."},
 {name:"Unload first",x:"Unload them as a priority on arrival and move them somewhere temperature controlled."},
 {name:"Report anything wrong",x:"If an animal looks unwell, record and report it at once."}]},
 {t:"point",x:"With animals, the condition of the animal comes before the schedule. If there is a delay or an offload, think first about water and temperature."}]}],
@@ -58,9 +58,9 @@ quiz:[{q:"What does a live animal container need?",opts:["To be as small as poss
 {q:"What do you think about first if there is a delay?",opts:["The rate","Water and temperature","The colour of the paperwork","The next booking"],a:1,exp:"The animal’s condition comes first."}],
 next:"3-3 Perishables and pharmaceuticals: the cold chain"});
 
-set("3-3",{title:"Perishables and Pharmaceuticals: The Cold Chain",hl:"the cold chain",subtitle:"Never let the temperature break. Half an hour on the ramp can ruin the product",
+set("3-3",{title:"Perishables and Pharmaceuticals: The Cold Chain",hl:"the cold chain",subtitle:"Never let the temperature break. Tens of minutes left out can ruin the product",
 lead:["Seafood, fruit, flowers, and pharmaceuticals and vaccines. Temperature-controlled cargo has to stay within a set range from origin to destination. That unbroken control is the cold chain.",
-"This article covers the temperature bands, where the chain breaks most easily, the quality standards for pharmaceutical transport, and what the front line does about it."],
+"This lesson covers the temperature bands, where the chain breaks most easily, the quality standards for pharmaceutical transport, and what the front line does about it."],
 sections:[
 {h:"Temperature bands (examples)",blocks:[{t:"table",cols:["Band","Examples"],rows:[
 ["Frozen (-15°C or below)","Frozen seafood"],
@@ -68,7 +68,7 @@ sections:[
 ["Controlled room temperature (15 to 25°C)","Some pharmaceuticals"],
 ["Ambient","General cargo"]]},
 {t:"note",x:"* The range is set by the shipper’s instructions and the commodity."}]},
-{h:"Where the chain breaks",blocks:[{t:"fig",id:"cgo_cold",cap:"Animated figure: a fictional temperature log for 2–8 °C pharmaceuticals; the line draws left to right and leaves the green band during the ramp wait."},
+{h:"Where the chain breaks",blocks:[{t:"fig",id:"cgo_cold",cap:"Animated figure: a fictional temperature log for 2–8°C pharmaceuticals; the line draws left to right and leaves the green band during the ramp wait."},
 {t:"check",items:[
 {name:"Waiting on the ramp",x:"Time spent waiting to load in summer heat or winter wind."},
 {name:"Transfers",x:"Being transferred at a connecting airport."},
@@ -78,7 +78,7 @@ sections:[
 {name:"Quality standards",x:"Pharmaceutical transport calls for industry certification, such as IATA’s pharmaceutical handling certification, and management in line with good distribution practice. ★"},
 {name:"Temperature records",x:"A logger records the temperature through the journey and is checked on arrival."},
 {name:"Dedicated equipment",x:"Temperature-controlled containers, temperature-controlled warehouses, refrigerated vehicles."},
-{name:"Priority handling",x:"Bring it out of the warehouse just before loading so it waits on the ramp as little as possible."}]},
+{name:"Priority handling",x:"It is brought out of the warehouse just before loading so that it waits on the ramp as little as possible."}]},
 {t:"point",x:"In the cold chain, the record of what temperature was held is the proof of quality. Keep the temperature records and the times of each handover."}]}],
 voice:"A summer ramp is a place where pharmaceuticals need particular care. Bring them out just before loading to cut waiting time, and have shade and cool-chain equipment ready.",
 terms:[["Cold Chain","コールドチェーン","콜드체인"],["Temperature Logger","温度ロガー","온도 기록계"],["Controlled Room Temperature","定温","정온"],["Pharmaceutical Logistics","医薬品輸送","의약품 운송"]],
@@ -96,12 +96,12 @@ sections:[
 {name:"Storage",x:"A locked area or a safe, with a named witness."},
 {name:"Handover",x:"Signed for at every handover."},
 {name:"Information",x:"Do not tell more people than necessary what the cargo is, or which flight and time it moves."}]}]},
-{h:"Heavy and outsized cargo",blocks:[{t:"fig",id:"cgo_door",cap:"Animated figure: two crates are laid over the cargo door (dotted). A fits; B is too tall. Figures are guides ★."},
+{h:"Heavy and outsized cargo",blocks:[{t:"fig",id:"cgo_door",cap:"Animated figure: two crates are laid over the cargo door (dotted). A fits; B is too tall. Figures are approximate ★."},
 {t:"table",cols:["Check","What it means"],rows:[
 ["Floor loading","The limit per square metre. Spread the weight with skids"],
 ["Door dimensions","Height, width and diagonal, and the geometry if it has to be tilted in"],
-["Securing","Strapped and fixed to the aircraft so nothing moves in flight"],
-["Balance","Its effect on the load plan (4-1)"],
+["Securing","Strapped and fixed to the aircraft so nothing moves in transit"],
+["Centre of gravity","Its effect on the load plan (4-1)"],
 ["Special equipment","Forklifts, high loaders and similar"]]}]},
 {h:"What to confirm at booking",blocks:[{t:"rows",items:[
 {name:"Dimensional drawings",x:"Get the packed dimensions, weight and centre of gravity on a drawing."},
@@ -110,19 +110,19 @@ sections:[
 {t:"point",x:"With outsized cargo it is easy to think about loading and forget unloading. Confirm the destination’s equipment before you confirm the booking."}]}],
 voice:"Heavy pieces need floor loading and restraint calculated before loading. Deciding the shoring and number of straps in advance means no hesitation on the ramp.",
 terms:[["Valuable Cargo (VAL)","貴重品","귀중품"],["Heavy Cargo (HEA)","重量物","중량물"],["Outsized Cargo","大型貨物","대형 화물"],["Floor Loading Limit","床荷重","바닥 하중"]],
-quiz:[{q:"What matters in handing over valuables?",opts:["Signing for them","A verbal handover","Anyone may receive them","No record"],a:0,exp:"Every handover is recorded."},
+quiz:[{q:"What matters when handing over valuables?",opts:["Signing for them","A verbal handover","Anyone may receive them","No record"],a:0,exp:"Every handover is recorded."},
 {q:"How do you spread the weight of a heavy shipment?",opts:["Use skids","Put a net over it","Add a label","Lower the temperature"],a:0,exp:"To stay within the floor loading limit."},
 {q:"What is easiest to forget with outsized cargo?",opts:["Whether it can be unloaded at the destination","The weather at origin","The shipper’s name","The currency of the rate"],a:0,exp:"Check the unloading equipment."}],
 next:"3-5 Semiconductor and precision equipment"});
 
 set("3-5",{title:"Semiconductor and Precision Equipment",hl:"precision equipment",subtitle:"Vibration, shock, humidity, temperature — and export control. The more valuable the machine, the longer the preparation ★",
-lead:["Semiconductor production and inspection equipment can be worth hundreds of thousands or millions per unit. Slight vibration, shock or humidity throws the performance out, so packing, transport and installation need consistent control. Such equipment may also contain technology with military applications, which brings export control into the picture.",
+lead:["Semiconductor production and inspection equipment can be worth hundreds of thousands or millions per unit. Even slight vibration, shock or humidity throws its performance off, so packing, transport and installation need consistent control. Such equipment may also contain technology with military applications, which brings export control into the picture.",
 "This article follows the air transport of semiconductor-related equipment and covers the preparation, the packing, the journey and the arrival."],
 sections:[
-{h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal and loading, arrival checks and delivery to site light up in turn, with who is mainly responsible."},
+{h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal and loading, arrival checks and delivery to site light up in turn; the right side shows who is mainly responsible."},
 {t:"check",items:[
 {name:"Export control",x:"Confirm with the manufacturer and shipper whether the equipment or parts require an export licence. Obtaining one takes time. ★"},
-{name:"Dimensions and weight",x:"Confirm the packed dimensions, weight and centre of gravity from a drawing. Will it fit a passenger belly, or is a freighter needed (0-2, 3-4)?"},
+{name:"Dimensions and weight",x:"Confirm the packed dimensions, weight and centre of gravity from a drawing. Will it fit in a passenger aircraft's belly hold, or is a freighter needed (0-2, 3-4)?"},
 {name:"Insurance",x:"For high-value shipments, confirm the cover and the limits."},
 {name:"Schedule",x:"Work back from the installation date to leave time for transport, clearance and inland delivery."}]}]},
 {h:"Packing and transport",blocks:[{t:"table",cols:["Risk","Typical measure"],rows:[
@@ -135,12 +135,12 @@ sections:[
 {name:"Checks on arrival",x:"Read the shock and tilt indicators, inspect the packing and photograph it."},
 {name:"Customs",x:"Agree the tariff classification and the documents — invoice, packing list, specifications — with the broker in advance."},
 {name:"Inland delivery",x:"Air-ride trucks to the plant, with the door size and floor strength confirmed beforehand."},
-{name:"If something shows",x:"If an indicator has triggered, tell everyone concerned before unpacking and keep the record for the insurance claim."}]},
+{name:"If something is wrong",x:"If an indicator has triggered, tell everyone concerned before unpacking and keep the record for the insurance claim."}]},
 {t:"point",x:"Moving precision equipment is a team job: the manufacturer, the shipper, the forwarder, the airline and the installation engineers. Agree in advance who checks what, and when."}]}],
 voice:"When semiconductor equipment arrives, check the shock and tilt indicators and the outer packing first. If anything is wrong, photograph it before opening and tell the parties at once.",
 terms:[["Semiconductor Equipment","半導体製造装置","반도체 제조 장비"],["Export Classification","該非判定","해당·비해당 판정"],["Shock Indicator","衝撃センサー","충격 센서"],["Air-ride Truck","空気ばね車","에어 서스펜션 차량"]],
 quiz:[{q:"What must be checked when exporting semiconductor equipment?",opts:["Export control classification","Passenger seating","Catering","Airport shops"],a:0,exp:"A licence, where required, takes time."},
-{q:"How is vibration and shock addressed?",opts:["Anti-vibration packing and air-ride trucks","No packing","Hard braking","Stacking"],a:0,exp:"Shock indicators record what happened."},
+{q:"How are vibration and shock addressed?",opts:["Anti-vibration packing and air-ride trucks","No packing","Hard braking","Stacking"],a:0,exp:"Shock indicators record what happened."},
 {q:"A shock indicator has triggered on arrival. What do you do?",opts:["Unpack it anyway","Tell everyone concerned before unpacking and keep the record","Dispose of it","Hide it"],a:1,exp:"It also supports the insurance claim."}],
 next:"4-1 The load plan and notification to the captain"});
 })(window.ARTS);

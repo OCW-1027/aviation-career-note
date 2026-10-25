@@ -20,12 +20,12 @@ var TX={
  sug:L3('経路の例を作る','경로 예 만들기','Suggest a route'),back:L3('1つ戻す','하나 지우기','Undo'),clr:L3('消す','지우기','Clear'),
  nx:L3('次に書けるもの：','다음에 쓸 수 있는 것:','Next:'),
  ok:L3('経路ができました','경로가 완성되었습니다','Route complete'),
- sum:L3('{n} 区間 · 約 {d} NM · 例の巡航高度 {f}','{n}개 구간 · 약 {d} NM · 순항 고도 예 {f}','{n} legs · about {d} NM · example cruise level {f}'),
+ sum:L3('{n} 区間 · 約 {d} NM · 巡航高度の例 {f}','{n}개 구간 · 약 {d} NM · 순항 고도 예 {f}','{n} legs · about {d} NM · example cruise level {f}'),
  need:L3('経路を完成させると、地図と各タブで練習できます。','경로를 완성하면 지도와 각 탭에서 연습할 수 있습니다.','Complete the route to practise it on the map and in each tab.'),
- nosug:L3('この組み合わせでは、データの航空路で経路を作れませんでした（韓国側は既存の4経路だけです）。','이 조합으로는 데이터의 항공로로 경로를 만들지 못했습니다(한국 쪽은 기존 4개 경로뿐입니다).','No route could be made with the airways in the data for this pair (Korea has only the four existing routes).'),
+ nosug:L3('この組み合わせでは、データにある航空路で経路を作れませんでした（韓国側は既存の4経路だけです）。','이 조합으로는 데이터에 있는 항공로로 경로를 만들지 못했습니다(한국 쪽은 기존 4개 경로뿐입니다).','No route could be made with the airways in the data for this pair (Korea has only the four existing routes).'),
  same:L3('出発と到着が同じです。','출발과 도착이 같습니다.','Departure and arrival are the same.'),
  e_dep:L3('最初は出発空港 {x} を書きます。','처음에는 출발 공항 {x}를 씁니다.','Start with the departure airport {x}.'),
- e_sid:L3('{t} は出発方式の終わりの地点として遠すぎるか、ありません（目安：空港から15〜100NMの航空路上の地点）。','{t}는 출발 절차 끝 지점으로 너무 멀거나 없는 지점입니다(기준: 공항에서 15~100NM 거리의 항공로 위 지점).','{t} is too far from the airport, or unknown, to end a departure (guide: a point on an airway 15–100 NM away).'),
+ e_sid:L3('{t} は出発方式の終点としては遠すぎるか、データにない地点です（目安：空港から15〜100NMの航空路上の地点）。','{t}는 출발 절차의 종료 지점으로는 너무 멀거나 데이터에 없는 지점입니다(기준: 공항에서 15~100NM 거리의 항공로 위 지점).','{t} is too far from the airport, or unknown, to end a departure (guide: a point on an airway 15–100 NM away).'),
  e_star:L3('{c} から到着空港へは遠すぎます（目安：100NM以内の地点から到着方式へ）。','{c}에서 도착 공항까지는 너무 멉니다(기준: 100NM 이내 지점에서 도착 절차로).','{c} is too far from the arrival airport (guide: start the arrival within 100 NM).'),
  e_after:L3('到着空港のあとには何も書きません。','도착 공항 뒤에는 아무것도 쓰지 않습니다.','Nothing goes after the arrival airport.'),
  e_awy:L3('{t} はデータにない航空路か地点です。','{t}는 데이터에 없는 항공로 또는 지점입니다.','{t} is not an airway or point in the data.'),
@@ -38,7 +38,7 @@ var TX={
  apt:L3('空港','공항','Airport'),
  part:L3('書きかけ：{n} 区間 · 約 {d} NM。到着空港まで続けてください。','작성 중: {n}개 구간 · 약 {d} NM. 도착 공항까지 이어 써 주세요.','In progress: {n} legs · about {d} NM. Continue to the arrival airport.'),
  APPC:L3('到着の管制（アプローチ）','도착 관제(어프로치)','Approach control'),
- HOFF:L3('ここで隣のFIRの管制へ引き継ぎ','여기서 옆 FIR의 관제로 이양','Hand-off to the next FIR here')};
+ HOFF:L3('ここで隣のFIRの管制へ引き継ぎ','여기서 인접 FIR 관제로 이양','Hand-off to the next FIR here')};
 function msg(k,v){var s=tx(TX[k]);for(var x in v)s=s.split('{'+x+'}').join(v[x]);return s}
 function pos(k){return N.pt[k]||(N.apt[k]&&[N.apt[k][0],N.apt[k][1]])}
 function dist(a,b){var p=pos(a),q=pos(b);return p&&q?hav(p,q)[0]:1e9}

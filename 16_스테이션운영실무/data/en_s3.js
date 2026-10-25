@@ -3,7 +3,7 @@
 set("3-1",{title:"The Duty Manager’s Day and the Briefing",hl:"briefing",subtitle:"The ten minutes before a flight decide the quality of the day",
 lead:["A duty manager is neither the person at the counter nor the person loading bags. It is the person who watches the whole flight, makes the calls and joins everything up. At the centre of that job are the briefing before the flight and the debrief after it.","This article covers a duty manager’s day, what to say at the briefing, and how to run the debrief."],
 sections:[
-{h:"A duty manager’s day (example)",blocks:[{t:"fig",id:"stn_day",cap:"Moving diagram: the day at the top, the five-minute briefing below. The orange block moves on one minute at a time."},{t:"ladder",rise:10,steps:[{name:"The day before",sub:"Bookings, special passengers, changes"},{name:"Arriving",sub:"Operational info, weather, staffing"},{name:"Briefing",sub:"Before the counter opens"},{name:"Supervising",sub:"Counter, gate and ramp rounds"},{name:"Debrief",sub:"Closing, records, reports"}]}]},
+{h:"A duty manager’s day (example)",blocks:[{t:"fig",id:"stn_day",cap:"Moving diagram: the day at the top, the five-minute briefing below. The orange block moves on one minute at a time."},{t:"ladder",rise:10,steps:[{name:"The day before",sub:"Bookings, special passengers, changes"},{name:"Start of shift",sub:"Operational info, weather, staffing"},{name:"Briefing",sub:"Before the counter opens"},{name:"Supervising",sub:"Counter, gate and ramp rounds"},{name:"Debrief",sub:"Closing, records, reports"}]}]},
 {h:"What to say at the briefing",blocks:[{t:"check",items:[
 {name:"Flight information",x:"Bookings and expected passengers, aircraft, gate, departure time, weather, the inbound flight’s status."},
 {name:"Special passengers",x:"Wheelchairs, families with infants, groups, VIPs, deportees — the plan and who handles each."},
@@ -33,11 +33,11 @@ next:"3-2 Setting priorities for decisions"});
 set("3-2",{title:"Setting Priorities for Decisions",hl:"priorities",subtitle:"Decide the order before you need it. Safety before punctuality, rules before requests",
 lead:["A duty manager makes dozens of small decisions every day: how long to wait for a missing passenger, whether to offload a bag, how to answer a seat complaint. Agonise over each and the flight will not leave on time.","This article covers the order of priorities, the standards to agree in advance, and why decisions should be recorded."],
 sections:[
-{h:"The order of priorities",blocks:[{t:"fig",id:"stn_prio",cap:"Higher steps are considered first. The red boxes are examples of an order that must not be reversed."},{t:"ladder",rise:10,steps:[{name:"1 Safety",sub:"Of the flight and people"},{name:"2 Security",sub:"Passenger–bag reconciliation and more"},{name:"3 Rules and law",sub:"Authority and company rules"},{name:"4 Passenger care",sub:"Information, assistance, compensation"},{name:"5 Punctuality",sub:"Keeping delays out"},{name:"6 Cost",sub:"Considered last"}]},
+{h:"The order of priorities",blocks:[{t:"fig",id:"stn_prio",cap:"Higher steps are considered first. The red boxes are examples of an order that must not be reversed."},{t:"ladder",rise:10,steps:[{name:"1 Safety",sub:"Of the flight and people"},{name:"2 Security",sub:"Passenger–bag reconciliation and more"},{name:"3 Rules and law",sub:"Authority and company rules"},{name:"4 Passenger care",sub:"Information, assistance, compensation"},{name:"5 Punctuality",sub:"Avoiding delays"},{name:"6 Cost",sub:"Considered last"}]},
 {t:"point",x:"Higher steps come first. Never trade safety for punctuality; never bend a rule for a request. But do everything the rules allow."}]},
 {h:"Standards to agree in advance (examples)",blocks:[{t:"table",cols:["Situation","What to decide beforehand"],rows:[
 ["Missing passengers","How many minutes before departure the offload decision is made, and who makes it"],
-["Meals and more in a delay","The conditions (cause, length, time of day, what other airlines do) and whether head office must be consulted"],
+["Meals and other care during delays","The conditions (cause, length, time of day, what other airlines do) and whether head office must be consulted"],
 ["Upgrades","Who may approve them, and on what conditions"],
 ["Rerouting on another airline","Departure-time conditions, compensation, prior agreement with head office"],
 ["Decisions beyond you","Whom to call, in what order (head office duty officer, your manager)"]]},
@@ -52,13 +52,13 @@ sections:[
 {h:"Record your decisions",blocks:[{t:"check",items:[
 {name:"What and why",x:"Note the decision and the reason (facts and standards) briefly."},
 {name:"Who you consulted",x:"Head office, the captain, the handler — with times."},
-{name:"So you can explain later",x:"When a complaint or an audit asks, the record protects the station and you."}]},
+{name:"So you can explain later",x:"When a complaint or an audit raises questions, the record protects the station and you."}]},
 {t:"point",x:"A good duty manager decides not only quickly but in a way that can be explained later. Agree standards first and record decisions: with those two, hesitation shrinks dramatically."}]}],
 voice:"When torn between punctuality and safety, the answer is always safety. Recording your reasons on the spot also makes explaining it later easy.",
 terms:[["Priority","優先順位","우선순위"],["Passenger-Baggage Reconciliation","手荷物と旅客の一致","승객·수하물 일치"],["Rerouting / Endorsement","振り替え（他社便）","타사편 대체"],["Duty Officer","当直","당직"]],
 quiz:[{q:"What sits at the top of the order of priorities?",opts:["Safety","Punctuality","Cost","Passenger requests"],a:0,exp:"Safety, security, rules, passenger care, punctuality, cost."},
 {q:"What if a passenger’s request conflicts with the rules?",opts:["Keep the rule and do everything it allows","Grant the request","Refuse and stop there","Ignore it"],a:0,exp:"Do everything within the rules."},
-{q:"Why record decisions?",opts:["So they can be explained later, protecting the station and you","Only for appraisals","No particular reason","Records are unnecessary"],a:0,exp:"They help when a complaint or audit asks."}],
+{q:"Why record decisions?",opts:["So they can be explained later, protecting the station and you","Only for appraisals","No particular reason","Records are unnecessary"],a:0,exp:"They help when a complaint or audit raises questions."}],
 next:"3-3 The duty manager in irregular operations"});
 
 set("3-3",{title:"The Duty Manager in Irregular Operations",hl:"irregular operations",subtitle:"Decide, inform, notify, arrange — all four at once",
@@ -100,9 +100,9 @@ lead:["When a disrupted flight finally leaves, the floor breathes out. The duty 
 sections:[
 {h:"Follow-up (examples)",blocks:[{t:"table",cols:["Area","What to do"],rows:[
 ["Passengers","Apology messages, delay and cancellation certificates, compensation claims received and paid"],
-["Costs","Check invoices for vouchers, hotels and buses; raise spending approvals and vouchers; register new suppliers; pay"],
+["Costs","Check invoices for vouchers, hotels and buses; raise spending approvals and accounting slips; register new suppliers; pay"],
 ["Partners","Confirm extra work by the handler and airport company, and agree the costs"],
-["Records","Passenger lists, rerouting lists, items handed out, photos"]]},
+["Records","Passenger lists, rebooking lists, items handed out, photos"]]},
 {t:"note",x:"* When taking passengers’ bank details for compensation, handle personal data with particular care and dispose of it as the rules require once it is no longer needed."}]},
 {h:"Writing an incident report",blocks:[{t:"fig",id:"stn_report",cap:"Top: the first report and the full report. Bottom: the five parts of an incident report. The timeline holds facts only; opinions go separately under cause."},{t:"ladder",rise:10,steps:[{name:"Summary",sub:"One or two lines"},{name:"Timeline",sub:"Times and facts"},{name:"Actions",sub:"What was done"},{name:"Cause",sub:"Direct and underlying"},{name:"Prevention",sub:"Who, what, by when"}]},
 {t:"check",items:[

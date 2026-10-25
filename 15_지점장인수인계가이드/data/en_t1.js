@@ -1,7 +1,7 @@
 /* 支店長の引き継ぎガイド — English version (all 9) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("1-1",{title:"What Goes in a Handover Document",hl:"the handover document",subtitle:"Not just what you do, but why, when and with whom",
-lead:["A change of manager is one of the biggest risks any operation faces. When information that exists only in the outgoing manager’s head is lost, deadlines with the authorities are missed and promises to partners are forgotten.",
+lead:["A change of manager is one of the biggest risks any operation faces. When information that exists only in the outgoing manager’s head is lost, it can lead to missed deadlines with the authorities and forgotten promises to partners.",
 "The examples come from an airline station, but the same framework works wherever a manager changes: a ground handling company’s office, an airport-related business, a foreign company’s base in Japan, or a department inside any organisation. This article sets out the overall structure of a handover document, how to divide it by area, and the principles for writing it. It is based on the structure of a real handover the author prepared: four documents covering the authorities, HR and administration, finance and sales, plus a table of duties."],
 sections:[
 {h:"Structure of the handover (example)",blocks:[{t:"fig",id:"hov_doc",cap:"Figure: what a handover document contains (example)."},{t:"table",cols:["Document","Content"],rows:[
@@ -26,7 +26,7 @@ sections:[
 voice:"Writing a handover always reveals things only you knew. Listing the small checks you did every day without thinking often turns out to be the most valuable part for your successor.",
 terms:[["Handover Document","引き継ぎ書","인계서"],["Job Allocation Table","業務分掌表","업무 분장표"],["Open Issues","進行中の案件","진행 중 안건"],["Basis / Reference","根拠","근거"]],
 quiz:[{q:"What belongs in a handover document?",opts:["Procedure, reasons, deadlines, counterparties and basis","Passwords","Personal grievances","Nothing"],a:0,exp:"Writing the why is what matters."},
-{q:"What is the test of a good handover document?",opts:["The successor can run a month without phoning the predecessor","Many pages","A nice design","Written in English"],a:0,exp:"Reread it as the successor."},
+{q:"What is the test of a good handover document?",opts:["The successor can run the station for a month without phoning the predecessor","Many pages","A nice design","Written in English"],a:0,exp:"Reread it as the successor would."},
 {q:"How are passwords handed over?",opts:["Securely by the company’s method, then changed by the successor","In the handover document","By email","Verbally only"],a:0,exp:"They never go in the document."}],
 next:"1-2 Building a table of duties"});
 
@@ -34,7 +34,7 @@ set("1-2",{title:"Building a Table of Duties",hl:"the table of duties",subtitle:
 lead:["A table of duties lists every piece of work at the station and shows who does it, how often and how long it takes. It helps not only at handover but in staffing plans, reviewing the work, and preparing cover for absences.",
 "This article covers the columns, how to build it and how to use it."],
 sections:[
-{h:"The columns (example)",blocks:[{t:"fig",id:"hov_matrix",cap:"Figure: building a duty allocation table."},{t:"table",cols:["Column","Content"],rows:[
+{h:"The columns (example)",blocks:[{t:"fig",id:"hov_matrix",cap:"Figure: building a table of duties."},{t:"table",cols:["Column","Content"],rows:[
 ["Category","Authorities, operations, sales, HR and administration, finance, other"],
 ["Sub-category","For example, authorities: approvals, periodic reporting, security"],
 ["Task","The specific work, such as the monthly traffic report"],
@@ -64,7 +64,7 @@ sections:[
 ["1st to 5th","Close last month’s costs, report to head office, file monthly traffic figures with the authorities"],
 ["Around the 10th","Pay withholding and inhabitant tax (where the special terms do not apply)"],
 ["Mid-month","Monthly meeting with the handling company, checking invoices"],
-["Late month","Next month’s funding forecast, request the remittance from head office"],
+["Late in the month","Next month’s funding forecast, request the remittance from head office"],
 ["Month end","Pay salaries, reconcile the daily cash report"]]}]},
 {h:"What goes in the annual calendar (examples)",blocks:[{t:"check",items:[
 {name:"Authorities",x:"Summer and winter schedule filings, business plan changes, security and training plan reviews, annual reports."},
@@ -113,7 +113,7 @@ quiz:[{q:"What can a gap in work with the authorities lead to?",opts:["Penalties
 next:"2-2 Handing over finance"});
 
 set("2-2",{title:"Handing Over Finance",hl:"handing over finance",subtitle:"Balances, payables, receivables and payment terms. Fix the numbers as at the handover date",
-lead:["The most important thing in handing over finance is to fix the numbers as at the handover date. The predecessor and the successor check together the account balances, the costs still to be paid, the money still to come in and anything prepaid, and put it in writing.",
+lead:["The most important thing in handing over finance is to fix the numbers as at the handover date. The predecessor and the successor check the account balances, the costs still to be paid, the money still to come in and anything prepaid together, and put it in writing.",
 "This article covers what to hand over, the checks on the handover date, and switching authorities (for the practice in detail, see HR, Admin and Finance in Practice, Parts 4 to 7)."],
 sections:[
 {h:"What to hand over (example)",blocks:[{t:"fig",id:"hov_fin",cap:"Figure: what both people check on handover day."},{t:"table",cols:["Area","What to hand over"],rows:[
@@ -133,7 +133,7 @@ sections:[
 {name:"Banks",x:"Change the registered details and the online banking authority. The banks’ procedures take time."},
 {name:"Seals",x:"Hand over the company seals, passbooks and cards, and record it."},
 {name:"Head office approval",x:"Notify head office of the change in approval authority."}]},
-{t:"point",warn:true,x:"Start changing the bank authorities while the predecessor is still in Japan. After they leave, the paperwork takes much longer and payments risk stopping."}]}],
+{t:"point",warn:true,x:"Start changing the bank authorities while the predecessor is still in Japan. After they leave, the paperwork takes much longer and there is a risk that payments will stop."}]}],
 voice:"On handover day, check bank balances, cash and unpaid bills together and both sign. That one sheet protects you both.",
 terms:[["Accounts Payable","未払金","미지급금"],["Accounts Receivable","未収金","미수금"],["Prepaid Expense","前払費用","선급 비용"],["Authorised Signatory","権限者","권한자"]],
 quiz:[{q:"What matters most in handing over finance?",opts:["Fixing the numbers as at the handover date","Doing it verbally","Thinking about it later","Leaving it to head office"],a:0,exp:"Check together and sign."},
@@ -142,10 +142,10 @@ quiz:[{q:"What matters most in handing over finance?",opts:["Fixing the numbers 
 next:"2-3 Handing over HR and administration"});
 
 set("2-3",{title:"Handing Over HR and Administration",hl:"HR and administration",subtitle:"Staff, insurance, housing, assets and contracts: handing over the care of people and things",
-lead:["Handing over HR and administration means passing on the staff’s employment terms and the status of their procedures, social and labour insurance, the housing and office contracts, and assets such as equipment, keys and seals. Because much of it is personal information, how it is handed over matters too.",
+lead:["Handing over HR and administration means passing on the staff’s employment terms and the status of related procedures, social and labour insurance, the housing and office contracts, and assets such as equipment, keys and seals. Because much of it is personal information, how it is handed over matters too.",
 "This article covers what to hand over, how to treat personal information, and how to explain the change to staff (for the rules, see HR, Admin and Finance in Practice and the Expat Guide to Japan)."],
 sections:[
-{h:"What to hand over (example)",blocks:[{t:"fig",id:"hov_hr",cap:"Figure: HR and admin to hand over (example)."},{t:"table",cols:["Area","What to hand over"],rows:[
+{h:"What to hand over (example)",blocks:[{t:"fig",id:"hov_hr",cap:"Figure: HR and admin items to hand over (example)."},{t:"table",cols:["Area","What to hand over"],rows:[
 ["Staff","Employment type, contract periods and renewal dates, status of residence expiry for foreign staff"],
 ["Attendance and leave","How attendance is managed, the annual leave register, anyone on leave"],
 ["Insurance and employment","The status of social and labour insurance procedures, the labour and social security attorney, the work rules"],
@@ -153,14 +153,14 @@ sections:[
 ["Assets","The register of equipment, computers, keys, seals and airport ID passes"],
 ["Contracts","The list of suppliers: office supplies, communications, insurance, cleaning"]]}]},
 {h:"Personal information",blocks:[{t:"check",items:[
-{name:"Only what is needed",x:"Pay, evaluation and health information go only as far as the successor needs for the job."},
+{name:"Only what is needed",x:"Pay, evaluation and health information are passed on only to the extent the successor needs for the job."},
 {name:"Where it is kept",x:"Keep it locked away or in folders with restricted access, and write only its location in the handover."},
 {name:"Verbal notes",x:"Sensitivities that should not be written down, such as family circumstances, are passed on verbally, with the person’s consent."}]}]},
 {h:"Explaining to staff",blocks:[{t:"rows",items:[
 {name:"Announce the change",x:"Tell staff early when the change happens and who is coming, to ease uncertainty."},
 {name:"Meetings",x:"Make time for the successor to meet each member of staff."},
 {name:"Hand over promises",x:"Anything the predecessor promised staff — on pay, assignment, leave — must be passed on."}]},
-{t:"point",x:"A change of manager is a big source of anxiety for staff. Handing over every promise made to them is what keeps the team steady."}]}],
+{t:"point",x:"A change of manager is a big source of anxiety for staff. Reliably handing over the promises made to them is what keeps the team steady."}]}],
 voice:"When a manager changes, staff most want to know what will change and what will stay the same. Saying this clearly in the first week greatly reduces anxiety.",
 terms:[["Employee Register","社員台帳","직원 대장"],["Asset Register","資産台帳","자산 대장"],["Personal Information","個人情報","개인정보"],["Introduction Meeting","顔合わせ","상견례"]],
 quiz:[{q:"What is right about handing over personal information?",opts:["Only what is needed, with its location written down","Everything in the handover document","Email it to everyone","Destroy it"],a:0,exp:"Keep access restricted."},
@@ -209,7 +209,7 @@ sections:[
 {t:"note",x:"* Contact trees and security information are kept separately from the procedure itself, with restricted access."}]},
 {h:"Handing over accounts",blocks:[{t:"ladder",rise:10,steps:[{name:"List them",sub:"System, purpose and administrator (no passwords)"},{name:"Change the administrator",sub:"Add the successor through the company’s process"},{name:"Change the password",sub:"The successor sets their own"},{name:"Disable the predecessor",sub:"Remove their account and rights"},{name:"Confirm",sub:"Check every item on the list has switched"}]}]},
 {h:"Accounts that usually need switching (examples)",blocks:[{t:"check",items:[
-{name:"Online filing with the authorities",x:"Also requires the change of registered responsible person."},
+{name:"Online filing with the authorities",x:"Also requires changing the registered responsible person."},
 {name:"Banking and tax",x:"Online banking, electronic filing and payment."},
 {name:"Operational systems",x:"Reservations, check-in and flight information, internal email and shared folders."},
 {name:"Partner portals",x:"Sites of the airport company, the handling company, the GDS and the BSP."},
@@ -230,7 +230,7 @@ sections:[
 ["Week 1","Read the handover, the table of duties and the annual calendar. Meet each member of staff. Verify balances and payables"],
 ["Week 2","Courtesy calls on the authorities, the airport and the handling company. Spend a full day watching the counter, gate and ramp"],
 ["Week 3","Calls on the main travel agencies and partners. Confirm the owner and next action for each open issue"],
-["Week 4","Confirm that accounts, authorities and seals have all switched. List what you have noticed and share it with head office"]]}]},
+["Week 4","Confirm that accounts, access rights and seals have all switched. List what you have noticed and share it with head office"]]}]},
 {h:"Questions to ask your predecessor (examples)",blocks:[{t:"check",items:[
 {name:"The biggest concern",x:"“What worries you most about the station right now?”"},
 {name:"Deadlines",x:"“What procedures have deadlines in the next three months?”"},
@@ -242,10 +242,10 @@ sections:[
 {name:"By area",x:"The authorities, finance, HR and administration, sales, absence cover and accounts (Part 2)."},
 {name:"The incoming side",x:"Listen, verify, do not change things straight away, and list and share what you notice (Part 3)."}]},
 {t:"point",x:"A handover is a joint effort. When the predecessor aims to leave nothing the successor will struggle with, and the successor respects that experience while looking with fresh eyes, the operation carries on without a break."}]}],
-voice:"Use your first 30 days to listen rather than change. Hearing staff, handlers and the authorities first makes later changes far easier to accept.",
+voice:"Use your first 30 days to listen rather than change. Listening to staff, handlers and the authorities first makes later changes far easier to accept.",
 terms:[["Taking Up the Post","着任","부임"],["One-on-one Meeting","面談","면담"],["Open Issues","進行中の案件","진행 중 안건"],["Joint Effort","共同作業","공동 작업"]],
 quiz:[{q:"What should you avoid straight after arriving?",opts:["Big changes before understanding the whole","Reading the handover","Meeting staff","Verifying balances"],a:0,exp:"Understand the whole first."},
 {q:"Which is a good question for your predecessor?",opts:["What procedures have deadlines in the next three months?","What is your favourite food?","How do you spend weekends?","What colour is your car?"],a:0,exp:"Ask about deadlines, concerns, relationships, promises and failures."},
-{q:"What belongs in week 4?",opts:["Confirming accounts, authorities and seals have switched","Nothing","Throwing away the handover","Replacing the staff"],a:0,exp:"Share what you noticed with head office."}],
+{q:"What belongs in week 4?",opts:["Confirming accounts, access rights and seals have switched","Nothing","Throwing away the handover","Replacing the staff"],a:0,exp:"Share what you noticed with head office."}],
 next:""});
 })(window.ARTS);

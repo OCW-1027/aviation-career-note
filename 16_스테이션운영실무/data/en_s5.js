@@ -28,10 +28,10 @@ sections:[
 {name:"Nights and holidays",x:"Include duty phone numbers, and check whether departments other than OCC have a duty officer."},
 {name:"Keep it current",x:"Update every quarter or after any staff move. An out-of-date sheet is the most dangerous kind."},
 {name:"Put it in writing",x:"Phone when it is urgent, then always email the key points, so there is no doubt about what was said."},
-{name:"One voice",x:"Do not ask several departments the same question separately. If answers differ, ask planning to settle it."}]}]},
+{name:"One voice",x:"Do not ask several departments the same question separately. If answers differ, ask passenger services planning to settle it."}]}]},
 {h:"The station’s role alongside head office",blocks:[{t:"fig",id:"stn_tier",cap:"Three layers: head office, the station and the local parties. The red dotted line shows that head office does not contact the local parties directly."},{t:"rows",items:[
 {name:"Head office",x:"Makes the rules, decides and approves, balancing the whole network."},
-{name:"The station",x:"Gathers local facts accurately, carries out decisions and feeds the front line’s view back."},
+{name:"The station",x:"Gathers local facts accurately, carries out decisions and feeds the front line’s view back to head office."},
 {name:"Local contact point",x:"The station is the contact for the airport company, authorities and handler; head office normally does not contact them directly."},
 {name:"As translator",x:"Turning Japanese rules and airport notices into something head office can decide on is also the station’s job."}]},
 {t:"point",x:"Head office cannot see the front line. The accuracy and speed of what the station sends decide the quality of head office’s decisions."}]}],
@@ -63,7 +63,7 @@ sections:[
 {name:"Match times to the record",x:"Use system and message times, not your own watch. Do not mix local time and UTC."},
 {name:"Choose delay codes by cause",x:"The biggest cause is the main code, others secondary. If in doubt, go back to the rules agreed with the punctuality team (1-2)."},
 {name:"Do not guess",x:"Write “being checked” for what is unknown and follow up when you know."},
-{name:"Units and bases",x:"Weights in kg; decide and state whether passenger counts include infants."},
+{name:"Units and counting basis",x:"Weights in kg; decide and state whether passenger counts include infants."},
 {name:"Correct openly",x:"If you find a mistake after sending, send a correction rather than fixing it quietly."}]}]},
 {h:"Common mistakes",blocks:[{t:"table",cols:["Mistake","What happens","How to prevent it"],rows:[
 ["Sending the delay code as “other”","The cause is unknown and nothing can be fixed","Add a one-line reason whenever you use “other”"],
@@ -90,20 +90,20 @@ deep:[
 {name:"Do the times match the system?",x:"Use system and message times, not your own watch."},
 {name:"Do the delay minutes and codes agree?",x:"Do the minutes per code add up to the delay?"},
 {name:"Any blanks?",x:"Write “none” where there is nothing to report."},
-{name:"Right recipients?",x:"Sent to the agreed addresses by the agreed time."}]}]},
+{name:"Right recipients?",x:"Send it to the agreed addresses by the agreed time."}]}]},
 {h:"When the numbers do not match",blocks:[{t:"table",cols:["What does not match","Common cause","How to fix it"],rows:[
 ["Passengers boarded and the system figure","Manual boarding at the gate; transfer passengers not processed","Reconcile with the gate records (stubs, scanner log)"],
 ["Number of bags","Gate-checked or offloaded bags not reflected","Reconcile with the baggage reconciliation record"],
 ["Delay minutes","A change to the scheduled time not reflected","Use operations control’s time and note the change under remarks"]]},
-{t:"point",x:"Do not send numbers that do not match. If you do not know why, write “under review” and send a correction once you do."}]}],
+{t:"point",x:"Do not send numbers that do not match. If you do not know why, write “being checked” and send a correction once you do."}]}],
 voice:"If your daily figures keep failing to match the DCS, set aside five minutes after closing to check them with the agent on duty. That alone sharply cuts queries from head office.",
-terms:[["Daily Operations Report","運航の日報","일일 운항 보고"],["Movement Message (MVT)","出発の電報","출발 전문"],["Delay Code","遅延コード","지연 코드"],["No-show","ノーショー","노쇼"],["Offload","オフロード","오프로드"]],
+terms:[["Daily Operations Report","運航日報","일일 운항 보고"],["Movement Message (MVT)","出発の電報","출발 전문"],["Delay Code","遅延コード","지연 코드"],["No-show","ノーショー","노쇼"],["Offload","オフロード","오프로드"]],
 quiz:[{q:"What should times in the daily report match?",opts:["System and message records","Your own watch","Rough times","Nothing; leave them out"],a:0,exp:"If report and record times differ, totals will not reconcile."},
 {q:"You find a mistake after sending. You…",opts:["Send a correction","Fix it quietly","Leave it","Fix everything the next day"],a:0,exp:"Marking it as a correction lets head office fix its totals too."},
 {q:"How do you write a cause you do not yet know?",opts:["“Being checked”, then follow up","A guess","Leave it blank","Just “other”"],a:0,exp:"Guesses lead to the wrong fixes."}],
 next:"4-3 Reporting Disruptions and Who Decides"});
 set("4-3",{title:"Reporting Disruptions and Who Decides",hl:"Who Decides",subtitle:"Settle who decides before it happens. When the decider is clear, the station can concentrate on gathering facts",
-lead:["In delays, cancellations and diversions, the station and head office act at the same time. If it is unclear who decides what, things get checked twice, or time passes with no one deciding.","This lesson covers the three stages of reporting, how decisions are split between head office and the station, and contact at night and on holidays. It pairs well with field cases 8-1 (the decision log) and 8-2 (one cancellation, three audiences)."],
+lead:["During delays, cancellations and diversions, the station and head office act at the same time. If it is unclear who decides what, things get checked twice, or time passes with no one deciding.","This lesson covers the three stages of reporting, how decisions are split between head office and the station, and contact at night and on holidays. It pairs well with field cases 8-1 (the decision log) and 8-2 (one cancellation, three audiences)."],
 sections:[
 {h:"Three stages of reporting",blocks:[{t:"ladder",rise:12,steps:[
 {name:"Initial report",sub:"What happened, the impact, what is not yet known (within 15–30 minutes as a guide)"},
@@ -127,9 +127,9 @@ sections:[
 {h:"Between Korea and Japan",blocks:[{t:"check",items:[
 {name:"No time difference, different holidays",x:"Korea’s Seollal and Chuseok do not line up with Japan’s New Year and Obon. Know in advance when head office will be short-staffed."},
 {name:"Messages run on UTC",x:"Both countries are on UTC+9, but messages and operational records use UTC; take care around the change of date."},
-{name:"Language",x:"Reports to head office are in Korean, contact with the airport and authorities in Japanese. Say the same facts in both without contradiction."}]},
+{name:"Language",x:"Reports to head office are in Korean, contact with the airport and authorities in Japanese. Convey the same facts in both languages without contradiction."}]},
 {t:"point",x:"In the first thirty minutes of a disruption, the station’s job is not to decide but to give the decider the facts needed to decide."}]}],
-deepLabel:"In depth: sample irregularity reports",
+deepLabel:"In depth: sample disruption reports",
 deep:[
 {h:"A sample initial report",blocks:[
 {t:"p",x:"An initial report is short and separates what is known from what is not. The example below is fictional."},
@@ -153,14 +153,14 @@ deep:[
 {t:"note",x:"* Which events must be reported, to whom and by when depends on the country, the airport and the event. Check your company’s rules and each airport’s procedures. ★"}]}],
 voice:"If you cannot reach head office’s duty officer during a late-night cancellation, book hotels within your delegated authority and report everything first thing in the morning. Confirming that authority in writing beforehand is what carries you through such a night.",
 terms:[["Initial Report","第一報","1차 보고"],["Interim Report","途中の報告","중간 보고"],["Final Report","最終の報告","최종 보고"],["Delegated Authority","任された権限","위임된 권한"],["Corporate Communications","広報","홍보"]],
-quiz:[{q:"What belongs in the initial report?",opts:["What happened, the impact and what is not yet known","The conclusion on cause","The compensation amount","Nothing"],a:0,exp:"Speed matters most; say what is unknown as unknown."},
+quiz:[{q:"What belongs in the initial report?",opts:["What happened, the impact and what is not yet known","The conclusion on cause","The compensation amount","Nothing"],a:0,exp:"Speed matters in an initial report; if something is not known, say so."},
 {q:"What does the station do about compensation?",opts:["Explains the standards as set and makes no promises","Promises an amount on the spot","Decides regardless of head office","Says nothing"],a:0,exp:"Head office sets compensation standards."},
-{q:"A journalist calls. You…",opts:["Do not answer and pass them to corporate communications","Let the station manager answer","Let staff answer","Ignore them"],a:0,exp:"Company statements come from a single point."}],
+{q:"A journalist calls. You…",opts:["Do not answer and pass them to corporate communications","Let the station manager answer","Let staff answer","Ignore them"],a:0,exp:"Company statements come from a single point of contact."}],
 next:"4-4 Passing On Instructions and Manual Revisions"});
 set("4-4",{title:"Passing On Instructions and Manual Revisions",hl:"Passing On Revisions",subtitle:"An instruction means nothing until the front line follows it. Read, align, pass on, confirm, record",
-lead:["Revisions, operational instructions and safety reminders arrive from head office almost every week. If the station only receives them, the front line carries on the old way.","This lesson covers the steps from receiving an instruction to embedding it, checking it against Japanese and airport rules, passing it to the handler, and keeping records."],
+lead:["Revisions, operational instructions and safety reminders arrive from head office almost every week. If the station only receives them, the front line carries on the old way.","This lesson covers the steps from receiving an instruction to embedding it at the front line, checking it against Japanese and airport rules, passing it to the handler, and keeping records."],
 sections:[
-{h:"The flow",blocks:[{t:"fig",id:"stn_relay",cap:"Moving diagram: an instruction travels from head office through the station to the handler, and the signatures come back to the station."},{t:"ladder",rise:10,steps:[
+{h:"The flow",blocks:[{t:"fig",id:"stn_relay",cap:"Moving diagram: an instruction travels from head office through the station to the handler, and the confirmation signatures come back to the station."},{t:"ladder",rise:10,steps:[
 {name:"Receive",sub:"Log it in the register"},
 {name:"Read and assess",sub:"Which tasks and flights does it affect?"},
 {name:"Update station procedures",sub:"Revise the station SOP and notices"},
@@ -173,7 +173,7 @@ sections:[
 ["Is it within the contract?","Is the task outside the handling agreement (SGHA)?"],
 ["Does the system need changing?","Do DCS settings or forms need a help-desk request?"],
 ["Can it be ready in time?","Time for training, notices and materials"]]},
-{t:"note",x:"* If you find a conflict with Japanese rules, do not fix it locally; send it back to planning with the basis. Head office decides for the whole network."}]},
+{t:"note",x:"* If you find a conflict with Japanese rules, do not fix it locally; send it back to planning with the supporting grounds. Head office decides for the whole network."}]},
 {h:"Passing it to the handler",blocks:[{t:"check",items:[
 {name:"Translate into Japanese",x:"Give the original (English or Korean) with a Japanese translation; the station is responsible for the translation."},
 {name:"Show what changes in a table",x:"A before-and-after table reduces misreading."},
@@ -185,10 +185,10 @@ sections:[
 {name:"Read-and-sign",x:"Each person confirms reading by signature or electronic acknowledgement."},
 {name:"Document control",x:"Are the manuals at the front line the latest edition? Remove old ones."},
 {name:"What auditors look at",x:"Whether the latest edition is on site, whether distribution is recorded, and whether staff know the content (2-3)."}]},
-{t:"point",x:"The most common audit finding is “the rule exists but the front line does not know it”. The station’s job ends only when it has confirmed the message got through."}]}],
+{t:"point",x:"One of the most common audit findings is “the rule exists but the front line does not know it”. The station’s job ends only when it has confirmed the message got through."}]}],
 voice:"When the baggage rules change, make a one-page before-and-after table in Japanese for the handler. Posted at the counter, it keeps questions down even on the morning the change takes effect.",
 terms:[["Operational Instruction","運用の指示","운영 지시"],["Manual Revision","マニュアルの改訂","매뉴얼 개정"],["Station SOP","支店の手順書","지점 표준운영절차"],["Read-and-Sign","確認の署名","확인 서명"],["Document Control","最新版の管理","최신판 관리"]],
-quiz:[{q:"You notice a head-office instruction conflicts with Japanese rules. You…",opts:["Send it back to planning with the basis","Fix it locally","Use it anyway","Leave it to the handler"],a:0,exp:"Head office decides for the whole network."},
+quiz:[{q:"You notice a head-office instruction conflicts with Japanese rules. You…",opts:["Send it back to planning with the supporting grounds","Fix it locally","Use it anyway","Leave it to the handler"],a:0,exp:"Head office decides for the whole network."},
 {q:"What helps when passing changes to the handler?",opts:["A before-and-after table","The original text only","Verbal instructions only","Nothing"],a:0,exp:"Seeing the change at a glance reduces misreading."},
 {q:"What do audits most often find?",opts:["The rule exists but the front line does not know it","Too many rules","Long meetings","Too many notices"],a:0,exp:"The job ends when you have confirmed the message got through."}],
 next:"4-5 Schedule Changes and Seasonal Preparation"});
@@ -213,8 +213,8 @@ sections:[
 ["Suspensions and cuts","Rebooking booked passengers, minimum guarantees in the handling contract, staff rosters"]]}]},
 {h:"Charters in particular",blocks:[{t:"check",items:[
 {name:"Whose flight is it?",x:"Did head-office sales or a travel agency sign the contract? Confirm first who is billed."},
-{name:"Passenger list",x:"When will you receive it, and in time for advance passenger information?"},
-{name:"Out-of-hours requests",x:"Late-night or early flights may need out-of-hours CIQ, security and airport requests, with charges."},
+{name:"Passenger list",x:"When will you receive it, and will it arrive in time for advance passenger information submission?"},
+{name:"Out-of-hours requests",x:"Late-night or early-morning flights may need out-of-hours CIQ, security and airport requests, with charges."},
 {name:"Handling quote",x:"Work outside the scheduled-service contract needs a separate quote."},
 {name:"Special baggage",x:"Ask in advance about sports equipment, instruments or filming gear typical of the group."}]},
 {t:"point",x:"Seasonal preparation starts before a change is confirmed. Passing on local constraints while head office is still planning makes the work after confirmation far easier."}]}],
@@ -234,14 +234,14 @@ sections:[
 {time:"On the day",a:"Reports last-minute changes",b:"Handles them at the counter and gate and reports back"}]}]},
 {h:"Preparing for each type of passenger",blocks:[{t:"table",cols:["Passenger","Confirm with head office","Station preparation"],rows:[
 ["Groups","Numbers, leader, pooled baggage, seating wishes","Dedicated counter, check-in time, staff to guide"],
-["VIP / CIP","Status, companions, media, whether it may be made public","Lounge or private route, meeting, security coordination"],
+["VIP / CIP","Status, companions, media, whether it may be made public","Lounge or private route, meet-and-greet, security coordination"],
 ["Wheelchair or medical help","Wheelchair type (WCHR/S/C), approval of the medical form (MEDIF)","Wheelchairs, boarding order, message to the destination"],
 ["Unaccompanied minor (UM)","Application form, name and contact of the person meeting","Escort, handover record"],
 ["Deportee (DEPA/DEPU)","Whether escorted, documents from the authorities","Timing with the authorities, seat position"],
 ["Pets and animals","Cabin or hold, cage size","Acceptance time, temperature and seasonal limits"]]},
 {t:"note",x:"* Codes and form names vary by airline. Medical forms are approved by head office’s medical staff."}]},
 {h:"Deadlines for receiving information",blocks:[{t:"fig",id:"stn_deadline",cap:"Moving diagram: from seven days before departure to the day itself. Flags are deadlines; the red zone is after the deadline."},{t:"check",items:[
-{name:"Set deadlines",x:"For example, groups seven days before and special services by 17:00 the day before, agreed in writing."},
+{name:"Set deadlines",x:"Head office and the station agree deadlines in writing, for example groups seven days before and special services by 17:00 the day before."},
 {name:"After the deadline",x:"The station decides whether a late request can be accepted and replies."},
 {name:"Receive it as a list",x:"A list in a fixed format, not text in an email, means fewer omissions."},
 {name:"Acknowledge",x:"Tell head office you have received it and what you can prepare."}]}]},
@@ -259,7 +259,7 @@ next:"4-7 DCS Settings and System Failures"});
 set("4-7",{title:"DCS Settings and Handling System Failures",hl:"System Failures",subtitle:"Ask head office for settings, and get through failures together. Being ready to work by hand protects the station on the day the system stops",
 lead:["Check-in, boarding and loading all run on the departure control system (DCS). Most settings, such as seat blocks and baggage rules, are made by head office, not the station. And on the day the system stops, the station and head office have to act at the same time.","This lesson covers the settings a station asks head office for, the stages of handling a failure, preparing to work by hand, and what to tell the help desk. Read it alongside field case 6-6 (the systems came back but operations did not)."],
 sections:[
-{h:"Settings the station asks for (example)",blocks:[{t:"table",cols:["Setting","Example","Ask"],rows:[
+{h:"Settings the station asks for (examples)",blocks:[{t:"table",cols:["Setting","Example","Who to ask"],rows:[
 ["Seat blocks","Seats held for groups, crew or balance","Load control, reservations"],
 ["Baggage rules","Free allowance and excess charges","Planning, systems"],
 ["Flight details","Gate, time and aircraft changes","Operations control, systems"],
@@ -284,13 +284,13 @@ sections:[
 {name:"Impact",x:"Flights, passenger numbers and departure times affected."}]},
 {t:"point",x:"Systems coming back does not mean operations come back. Things are normal only once everything processed by hand has been brought back into the system."}]}],
 voice:"Even if the check-in system stops in the morning, a passenger list printed the night before lets you switch to manual processing and start boarding. Make printing the next day’s list part of closing.",
-terms:[["Departure Control System (DCS)","出発の管理のシステム","출발 관리 시스템"],["Help Desk","ヘルプデスク","헬프데스크"],["Incident Number","障害の番号","장애 번호"],["Passenger Name List (PNL)","乗客の名簿","승객 명단"],["Manual Check-in","手作業のチェックイン","수작업 체크인"]],
+terms:[["Departure Control System (DCS)","出発管理システム","출발 관리 시스템"],["Help Desk","ヘルプデスク","헬프데스크"],["Incident Number","障害番号","장애 번호"],["Passenger Name List (PNL)","乗客名簿","승객 명단"],["Manual Check-in","手作業のチェックイン","수작업 체크인"]],
 quiz:[{q:"What must you always do when reporting a failure to the help desk?",opts:["Note the incident number","Hang up and forget it","Fix it yourself","Nothing"],a:0,exp:"The number speeds up every exchange with head office."},
 {q:"What matters in deciding to switch to manual processing?",opts:["A time-based rule set in advance","Waiting until it is fixed","Letting passengers decide","No rule"],a:0,exp:"Without a rule the switch comes late and so does the departure."},
 {q:"What do you do after the system is restored?",opts:["Bring manually processed data into the system","Nothing","Throw away the records","Wait until the next day"],a:0,exp:"Only matching data means things are normal."}],
 next:"4-8 Performance Reports, Budgets and Head-Office Audits"});
-set("4-8",{title:"Performance Reports, Budgets and Head-Office Audits",hl:"Head-Office Audits",subtitle:"Report in numbers, explain in numbers, and turn findings into improvements. A station manager’s year is made of this exchange with head office",
-lead:["Every month the station reports its operational quality and costs to head office. Once a year it sets a budget and explains the difference from actual results. And head office’s internal auditors come to check that the station works to the rules.","This lesson covers what goes in the monthly report, how to build a budget and explain variances, the annual review, and how to handle a head-office audit. For cost thinking, see also HR, General Affairs and Finance in Practice 6-1 and 6-2."],
+set("4-8",{title:"Performance Reports, Budgets and Head-Office Audits",hl:"Head-Office Audits",subtitle:"Report in numbers, explain in numbers, and turn findings into improvements. A station manager’s year is built around this exchange with head office",
+lead:["Every month the station reports its operational quality and costs to head office. Once a year it sets a budget and explains the difference from actual results. And head office’s internal auditors come to check that the station works to the rules.","This lesson covers what goes in the monthly report, how to build a budget and explain variances, the annual review, and how to handle a head-office audit. For how to think about costs, see also HR, General Affairs and Finance in Practice 6-1 and 6-2."],
 sections:[
 {h:"Monthly performance report (example)",blocks:[{t:"fig",id:"stn_cycle",cap:"Moving diagram: report, explain, receive findings, improve. The dotted line shows the cycle starting again the next year."},{t:"table",cols:["Item","Content"],rows:[
 ["Punctuality","On-time departure rate; delay causes (airline, airport, weather and so on)"],
@@ -320,7 +320,7 @@ sections:[
 {name:"Completion report",sub:"Report with evidence"}]},
 {t:"point",x:"An audit is not there to blame the station but to find what the station cannot see for itself. A record of findings corrected in full protects the station at the next audit."}]}],
 voice:"When a head-office audit raises a finding, make no excuses: set a deadline, correct it and report with photos and records. That record will make the next year’s audit go much faster.",
-terms:[["Monthly Performance Report","月の実績の報告","월간 실적 보고"],["Budget Variance","予算と実績の差","예산 대비 실적 차이"],["Airport Charges","空港の使用料","공항 사용료"],["Internal Audit","内部の監査","내부 감사"],["Corrective Action Plan","是正の計画","시정 계획"]],
+terms:[["Monthly Performance Report","月次の実績報告","월간 실적 보고"],["Budget Variance","予算と実績の差","예산 대비 실적 차이"],["Airport Charges","空港の使用料","공항 사용료"],["Internal Audit","内部監査","내부 감사"],["Corrective Action Plan","是正の計画","시정 계획"]],
 quiz:[{q:"What is the basic way to explain a budget variance?",opts:["Split it into frequencies, rates, disruptions and exchange rates","Give only the total","Do not explain","Leave it to next year"],a:0,exp:"Splitting by cause feeds into the next budget and actions."},
 {q:"You receive an audit finding. You…",opts:["Confirm the facts and correct it with a cause, action and deadline","Make excuses","Do nothing","Blame the auditor"],a:0,exp:"The record of correction protects the station next time."},
 {q:"What should you confirm about airport charges?",opts:["Whether head office or the station pays","Whether they can be skipped","Set the amount yourself","Nothing"],a:0,exp:"Who pays decides whether they sit in the station budget."}],

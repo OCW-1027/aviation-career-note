@@ -32,9 +32,9 @@ next:"2-2 ULDs and build-up"});
 
 set("2-2",{title:"ULDs and Build-up",hl:"ULDs and build-up",subtitle:"The craft of stacking cargo into the shape of an aircraft",
 lead:["Cargo is loaded onto an aircraft in unit load devices (ULDs): containers and pallets. Stacking the cargo onto them is called build-up.",
-"This article covers the types of ULD, the basics of build-up, why the load must follow the aircraft’s contour, and how ULDs are managed."],
+"This lesson covers the types of ULD, the basics of build-up, why the load must follow the aircraft’s contour, and how ULDs are managed."],
 sections:[
-{h:"Types of ULD (examples)",blocks:[{t:"table",cols:["Type","Character"],rows:[
+{h:"Types of ULD (examples)",blocks:[{t:"table",cols:["Type","Features"],rows:[
 ["Container","Box-shaped. Common in passenger bellies for baggage and smaller consignments"],
 ["Pallet","A flat base. Cargo is stacked on it and secured with a net, for larger or irregular items"],
 ["Temperature-controlled container","With cooling or heating, for pharmaceuticals and similar"],
@@ -43,7 +43,7 @@ sections:[
 {h:"The basics of build-up",blocks:[{t:"fig",id:"cgo_uld",cap:"Animated figure: a container (AKE) and a pallet (PMC). The pallet is built heaviest first and kept within the contour (dotted line). Dimensions are typical examples ★."},
 {t:"check",items:[
 {name:"Heavy at the bottom",x:"Heavy and sturdy items low, light and fragile items on top."},
-{name:"Follow the contour",x:"Stay within the profile that matches the curve of the fuselage. Anything proud of it cannot be loaded."},
+{name:"Follow the contour",x:"Stay within the profile that matches the curve of the fuselage. Anything that extends beyond it cannot be loaded."},
 {name:"Weight limits",x:"Respect the maximum weight per ULD and the floor loading limits."},
 {name:"Secure it",x:"Nets and straps so nothing moves."},
 {name:"Segregate",x:"Keep apart what cannot travel together: incompatible dangerous goods, perishables and chemicals (3-1)."}]}]},
@@ -56,20 +56,20 @@ voice:"Good build-up staff keep to the basics every time: heavy items at the bot
 terms:[["Unit Load Device (ULD)","ULD","ULD(단위 탑재 용기)"],["Build-up","ビルドアップ","빌드업"],["Contour","輪郭","윤곽(컨투어)"],["Pallet","パレット","팔레트"]],
 quiz:[{q:"What is stacking cargo onto a ULD called?",opts:["Build-up","Check-in","Clearance","Weighing"],a:0,exp:"It follows the shape of the aircraft."},
 {q:"What is the basic rule of build-up?",opts:["Light items at the bottom","Heavy at the bottom, fragile on top","Shape does not matter","Do not secure it"],a:1,exp:"Contour and weight limits apply too."},
-{q:"What happens if a ULD is proud of the contour?",opts:["Nothing","It cannot be loaded","The rate falls","It arrives sooner"],a:1,exp:"It must fit the curve of the fuselage."}],
+{q:"What happens if a ULD extends beyond the contour?",opts:["Nothing","It cannot be loaded","The rate falls","It arrives sooner"],a:1,exp:"It must fit the curve of the fuselage."}],
 next:"2-3 Cargo security"});
 
 set("2-3",{title:"Cargo Security",hl:"cargo security",subtitle:"Known consignors and regulated agents form an unbroken chain ★",
-lead:["Cargo, like passenger baggage, has to be secured against explosives reaching an aircraft. Screening every shipment at the airport is not practical, so most countries rely on a chain: shippers and transport companies whose security arrangements have been approved keep the cargo secure without a break.",
-"This article covers the thinking behind cargo security, an outline of the scheme in Japan, and what to watch on the warehouse floor. It does not describe the security procedures themselves."],
+lead:["Cargo, like passenger baggage, has to be secured against explosives reaching an aircraft. Screening every shipment at the airport is not practical, so many countries rely on a chain: shippers and transport companies whose security arrangements have been approved keep the cargo secure without a break.",
+"This lesson covers the thinking behind cargo security, an outline of the scheme in Japan, and what to watch on the warehouse floor. It does not describe the security procedures themselves."],
 sections:[
 {h:"The thinking",blocks:[{t:"fig",id:"cgo_sec",cap:"Animated figure: top, an unbroken secure chain from a known consignor to loading (the cargo moves straight through); bottom, a broken chain where the cargo is screened at the terminal before moving on."},
 {t:"p",x:"If the cargo stays secure from shipper to loading without a break, screening at the airport can be reduced or omitted. Where the chain breaks, as with cargo from an unapproved shipper, it is screened at the airport or elsewhere."}]},
 {h:"The scheme in Japan",blocks:[{t:"rows",items:[
-{name:"Known shippers and regulated agents",x:"Under the national standards, approved shippers and approved transport companies keep the cargo secure. ★"},
-{name:"Other countries",x:"Destinations such as the EU and the United States apply their own security requirements."},
+{name:"Known consignors and regulated agents",x:"Under the national standards, approved shippers and approved transport companies keep the cargo secure. ★"},
+{name:"Other countries",x:"Destinations such as the EU and the United States may apply their own security requirements."},
 {name:"Screening methods",x:"X-ray, explosive trace detection and others, depending on the type of cargo."}]},
-{t:"note",x:"* Scheme names and requirements change. Check current official guidance. ★"}]},
+{t:"note",x:"* Scheme names and requirements may change. Check current official guidance. ★"}]},
 {h:"On the floor",blocks:[{t:"check",items:[
 {name:"Check the security status",x:"At acceptance, establish whether the shipment is already secure or needs screening."},
 {name:"Tamper evidence",x:"Whether the seals and labels on secure cargo are intact."},
@@ -77,14 +77,14 @@ sections:[
 {name:"Records",x:"Who handled which cargo, and when."}]}]}],
 voice:"Cargo security screening often brings acceptance cut-off forward. Telling shippers and agents the new cut-off in advance reduces confusion on the floor.",
 terms:[["Known Consignor","特定荷主","특정 화주"],["Regulated Agent","特定航空貨物利用運送事業者","규제 대리인"],["Secure Supply Chain","保安の連鎖","보안 사슬"],["Tamper Evidence","改ざん防止","변조 방지"]],
-quiz:[{q:"What happens when the security chain is broken?",opts:["It loads anyway","It is screened at the airport or elsewhere","Return only","Storage only"],a:1,exp:"An unbroken chain lets screening be reduced or omitted."},
+quiz:[{q:"What happens when the security chain is broken?",opts:["It is loaded anyway","It is screened at the airport or elsewhere","Return only","Storage only"],a:1,exp:"An unbroken chain lets screening be reduced or omitted."},
 {q:"What do you check on the floor?",opts:["The security status and the seals","The colour of the cargo","The shipper’s hobbies","The weather"],a:0,exp:"Tamper evidence matters too."},
 {q:"What may the destination country require?",opts:["Its own security requirements","Particular music","Particular meals","Nothing"],a:0,exp:"The EU and the United States are examples."}],
 next:"2-4 Running a bonded warehouse"});
 
 set("2-4",{title:"Running a Bonded Warehouse",hl:"the bonded warehouse",subtitle:"A warehouse under customs control: always able to say what is where, and since when",
-lead:["Most airport cargo warehouses are bonded areas licensed by customs. Because they hold cargo before export or import permission, movements and storage must be recorded precisely and be explainable to customs at any moment.",
-"This article covers what that control requires, the daily work, the relationship with customs, and the pitfalls."],
+lead:["Most airport cargo warehouses are bonded areas licensed by customs. Because they hold cargo before export or import permission, movements and storage must be recorded precisely so they can be explained to customs at any time.",
+"This article covers what that control requires, the daily work, the relationship with customs, and common pitfalls."],
 sections:[
 {h:"What the control requires",blocks:[{t:"table",cols:["Control","What it means"],rows:[
 ["Receiving and release records","What came in when, and what went out when"],

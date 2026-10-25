@@ -2,13 +2,13 @@
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("7-1",{title:"Travel Agencies, GDS and BSP: Starting Sales",hl:"starting sales",subtitle:"Prepare to sell while you prepare to fly. In Japan the trade carries much of the selling ★",
 lead:["However well the operation is prepared, a route does not survive unless the seats sell. In the Japanese market travel agencies carry a great deal of the selling, especially for packages and groups, and being in the GDS and the BSP is the precondition for that.",
-"This article covers the steps to start selling, building relationships with the trade, preparing the GDS and BSP, distributing fares and policing ticketing, direct sales, and the bodies worth knowing."],
+"This article covers the steps to start selling, building relationships with the trade, preparing the GDS and BSP, distributing fares and auditing ticketing, direct sales, and the bodies worth knowing."],
 sections:[
 {h:"The steps (example)",blocks:[{t:"fig",id:"opn_sales",cap:"Animated figure: launching sales (example)."},{t:"ladder",rise:10,steps:[{name:"Understand the market",sub:"Competitors’ schedules and fares, demand"},{name:"Set the sales policy",sub:"The group and individual mix, the main channels"},{name:"GDS and BSP",sub:"Contracts and participation"},{name:"Brief the trade",sub:"Announce the service, distribute fares"},{name:"Start selling",sub:"Share the booking position and support the channels"}]}]},
 {h:"Building relationships with the trade",blocks:[{t:"check",items:[
 {name:"Announcing the service",x:"Once the launch is decided, call on the air ticket buyers and product planners at the main agencies."},
 {name:"Sharing the policy",x:"Set the sales target from Japan and the group and individual mix, allowing for limited brand recognition, the timings and the frequency."},
-{name:"Allotments",x:"Whether to give agencies blocks of seats, agreed with head office according to the sales mix."},
+{name:"Allotments",x:"Agree with head office, according to the sales mix, whether to give agencies blocks of seats."},
 {name:"Sales support",x:"Helping with product planning, promotions and trade briefings."}]}]},
 {h:"GDS, BSP and fare distribution",blocks:[{t:"table",cols:["Item","What it involves"],rows:[
 ["GDS","The systems agencies use to book and ticket. Contract with the main ones used in the market and load your flights and fares; post rules and notices on the GDS boards"],
@@ -33,7 +33,7 @@ quiz:[{q:"Which is true of the Japanese market?",opts:["Travel agencies carry mu
 next:"7-2 The airport operators committee and the bodies around it"});
 
 set("7-2",{title:"The Airline Operator’s Committee and the Bodies Around It",hl:"the AOC",subtitle:"Join before launch. Meetings, fees and shared facilities all run through it ★",
-lead:["The airport operators committee is the body of airlines serving an airport. Because using shared facilities, dealing with the airport company and cooperating in emergencies all run through it, joining before launch is essential (for an overview see Ground Staff 6-5).",
+lead:["The Airline Operator’s Committee (AOC) is the body of airlines serving an airport. Because using shared facilities, dealing with the airport company and cooperating in emergencies all run through it, joining before launch is essential (for an overview see Ground Staff 6-5).",
 "This article covers how to join, the fees and the meetings, the shared facilities accessed through it, the relationship with the terminal’s lead airline, and the other bodies to know."],
 sections:[
 {h:"Joining (example)",blocks:[{t:"fig",id:"opn_aoc",cap:"Animated figure: joining the AOC (example)."},{t:"ladder",rise:10,steps:[{name:"Contact the secretariat",sub:"Your intention to join and the launch date"},{name:"Application",sub:"Company details and contacts"},{name:"The constitution",sub:"Read the current version"},{name:"Fees",sub:"The annual fee, invoiced and paid"},{name:"Attend",sub:"Terminal and full committees"}]},
@@ -41,13 +41,13 @@ sections:[
 {h:"Fees and budget",blocks:[{t:"rows",items:[
 {name:"Annual fee",x:"Usually invoiced once a year, for example at the start of the year with payment due some months later. The timing can move, so budget it in the right quarter."},
 {name:"Shared facility costs",x:"Shared system lines, consumables and security screening are invoiced separately in proportion to flights or passengers (3-3)."}]}]},
-{h:"The terminal’s lead airline",blocks:[{t:"p",x:"In some terminals a major airline runs the baggage system and the bonded areas, and other carriers contract with that airline to use them. Before launch, confirm which facility you contract with whom for (3-3)."}]},
+{h:"The terminal’s lead airline",blocks:[{t:"p",x:"In some terminals a major airline runs the baggage system and the bonded areas, and other carriers contract with that airline to use them. Before launch, confirm which facilities you will contract for, and with whom (3-3)."}]},
 {h:"What the meetings give you",blocks:[{t:"check",items:[
 {name:"Changes at the airport",x:"Terminal works, changes to passenger flows, congestion measures, winter operations."},
 {name:"Charges and schemes",x:"Revisions to airport charges and changes to incentive schemes."},
 {name:"Security",x:"Changes to screening and joint security training (5-2)."},
 {name:"Emergencies",x:"The airport emergency plan, joint exercises (5-4) and how large-scale disruption is handled."}]},
-{t:"point",x:"When a major disaster closes an airport, the order in which operations resume and how flights are allocated are coordinated through the committee. Attending regularly, and being a face people know, is what makes that work."}]},
+{t:"point",x:"When a major disaster closes an airport, the order in which operations resume and how flights are allocated are coordinated through the committee. It is important to attend meetings regularly and build relationships in which people know you."}]},
 {h:"The bodies around it",blocks:[{t:"table",cols:["Who","Typical relationship"],rows:[
 ["The ministry, airport office and FAIB","Approvals, slots and reporting (Part 1)"],
 ["The airport company","Facilities, charges, incentives, ID passes"],
@@ -57,12 +57,12 @@ sections:[
 voice:"AOC meetings let you learn early about changes such as new airport counter allocations. That gives you time to prepare signage and procedure changes.",
 terms:[["Airline Operator’s Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Annual Fee","年会費","연회비"],["Terminal Lead Airline","ターミナル運営航空会社","터미널 운영 항공사"],["Common-use Facilities","共用施設","공용 시설"],["Resumption of Operations","運用再開","운영 재개"]],
 quiz:[{q:"When should you join the committee?",opts:["A year after launch","Before launch","Never","After the audit"],a:1,exp:"You need it for shared facilities and more."},
-{q:"What should you watch in budgeting the annual fee?",opts:["No budget needed","Put it in the right quarter for when it is invoiced","Pay monthly","The airport company pays it"],a:1,exp:"The invoicing timing can move."},
-{q:"Who coordinates the resumption of operations after a major closure?",opts:["The committee","A travel agency","The shops","Passengers"],a:0,exp:"Order of resumption and flight allocation are coordinated there."}],
+{q:"What should you watch for when budgeting the annual fee?",opts:["No budget needed","Put it in the right quarter for when it is invoiced","Pay monthly","The airport company pays it"],a:1,exp:"The invoicing timing can move."},
+{q:"Who coordinates the resumption of operations after a major closure?",opts:["The committee","A travel agency","The shops","Passengers"],a:0,exp:"The order of resumption and flight allocation are coordinated through the committee."}],
 next:"7-3 The first year’s operating calendar"});
 
 set("7-3",{title:"The First Year’s Operating Calendar",hl:"the operating calendar",subtitle:"In year one you go through the main annual procedures once. From year two they become routine",
-lead:["The first year after launch is when you meet the main annual procedures for the first time: the monthly close, the seasonal approvals, the yearly security, tax and employment filings, and the first audits. Get the records and procedures right here and from year two they can be run as routine work.",
+lead:["The first year after launch is when you go through the main annual procedures for the first time: the monthly close, the seasonal approvals, the yearly security, tax and employment filings, and the first audits. Get the records and procedures right here and from year two they can be run as routine work.",
 "This article sets out the milestones of the first year, the monthly rhythm and the main annual procedures, and how to make the station’s operation stick (for the monthly and annual detail see also Ground Staff 6-6)."],
 sections:[
 {h:"Milestones of the first year (example)",blocks:[{t:"fig",id:"opn_year",cap:"Animated figure: milestones in the first year after launch (example)."},{t:"table",cols:["When","Milestone"],rows:[
@@ -86,7 +86,7 @@ sections:[
 ["August to September","Winter seasonal filing"],
 ["October to December","Joint security training, next year’s budget, year-end tax adjustment"],
 ["Once a year","Security self-audit, the authorities’ audits, the committee’s annual fee"]]},
-{t:"note",x:"* Japanese requirements and several airlines’ practice. Confirm the dates each year. ★"}]},
+{t:"note",x:"* An example based on Japanese requirements and several airlines’ practice. Confirm the dates each year. ★"}]},
 {h:"Making it stick",blocks:[{t:"rows",items:[
 {name:"Record the first year",x:"For every procedure, keep when, what, to whom and with which documents, in a folder. Next year it becomes the template."},
 {name:"Work the calendar backwards",x:"Enter the preparation start date and the owner, not just the deadline (Ground Staff 6-6)."},
@@ -96,7 +96,7 @@ sections:[
 {t:"point",x:"The checklist you built for the launch keeps working afterwards as the operating checklist. At the end of year one, tidy it so it can be used for the next new station as well."}]}],
 voice:"Build a list of annual procedures from your first year of operation. From the second year you can use it to start preparing a month before each procedure.",
 terms:[["Operations Calendar","運営カレンダー","운영 캘린더"],["Seasonal Initial Filing","期首申請","기수 신청"],["Monthly Meeting","月例会議","월간 회의"],["Annual Renewal (Labour Insurance)","年度更新","연도 갱신"],["Handover","引き継ぎ","인계"],["Template","ひな形","서식"]],
-quiz:[{q:"What is the point of the first year?",opts:["Record nothing","Meet every annual procedure once and get the records and procedures right","Record it all in year two","Leave it to head office"],a:1,exp:"From year two it repeats."},
+quiz:[{q:"What is the point of the first year?",opts:["Record nothing","Go through every annual procedure once and get the records and procedures right","Record it all in year two","Leave it to head office"],a:1,exp:"From year two it repeats."},
 {q:"What do you do for the first time at the first season change?",opts:["File the next season’s schedule, slots and fares","The inaugural ceremony","The staff outing","Change the uniform"],a:0,exp:"The Part 1 procedures, on your own."},
 {q:"What makes the operation stick?",opts:["Only the station manager knows it","Procedures and records organised in a shared folder","Keep no records","Start from scratch each year"],a:1,exp:"Make it possible to hand over."}],
 next:"8-1 The self-audit checklist: checking your own station"});

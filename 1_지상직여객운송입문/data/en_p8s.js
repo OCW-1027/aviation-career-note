@@ -18,7 +18,7 @@ sections:[
 {name:"What",x:"Include near misses that did not become accidents: a vehicle too close to the aircraft, dangerous goods almost missed, a check nearly skipped through fatigue."},
 {name:"When",x:"As soon as possible, while memories are fresh."},
 {name:"How",x:"Use the company’s safety reporting system or form; some companies have anonymous or confidential reporting."},
-{name:"Afterwards",x:"Tell the reporter what happened. Without feedback, the next report never comes."}]}]},
+{name:"Afterwards",x:"Tell the reporter the outcome. Without feedback, the next report never comes."}]}]},
 {h:"Just culture",blocks:[{t:"p",x:"Reports flow where people who report honestly are not unfairly blamed. That does not mean anything goes: a just culture separates responses by type of behaviour."},
 {t:"table",cols:["Behaviour","Example","Response"],rows:[
 ["Human error","Misread a figure after believing it was checked","Support, do not blame; fix the system (procedure, display, double check)"],
@@ -33,7 +33,7 @@ quiz:[{q:"What does security prevent?",opts:["Unintended accidents","Deliberate 
 next:"8-2 Passenger security duties: from counter to gate"});
 
 set("8-2",{title:"Passenger Security Duties: From Counter to Gate",hl:"security duties",subtitle:"Identity checks, bag reconciliation, suspicious items and the final gate check: security lives in everyday procedures",
-lead:["Passenger and baggage screening is carried out under each airport’s own arrangements, but passenger services have important security roles too: is the passenger who they claim to be, is there a bag on board whose owner is not, is anyone unauthorised near the aircraft?","This article covers who does what, checks at the counter and gate, passenger–baggage reconciliation, responding to suspicious items and people, and handling security information. Follow your own airline’s security programme for the detail."],
+lead:["Passenger and baggage screening is carried out under each airport’s own arrangements, but passenger services have important security roles too: confirming that passengers are who they claim to be, that no bag is on board without its owner, and that no unauthorised person approaches the aircraft.","This lesson covers who does what, checks at the counter and gate, passenger–baggage reconciliation, responding to suspicious items and people, and handling security information. Follow your own airline’s security programme for the detail."],
 sections:[
 {h:"Who does what (example)",blocks:[{t:"fig",id:"gnd_secrole",cap:"Animated figure: who does what in security lights up in turn (example)."},{t:"table",cols:["Party","Main roles"],rows:[
 ["Airline (including contractors)","Identity checks, security questions, passenger–baggage reconciliation, final gate check, arranging aircraft security checks"],
@@ -49,7 +49,7 @@ sections:[
 {h:"Passenger–baggage reconciliation",blocks:[{t:"p",x:"As a rule, a checked bag does not fly unless its owner is on board (2-5). Many airports and airlines match boarding records with bag tags so that bags of passengers who do not board can be found quickly."},
 {t:"table",cols:["Situation","Action"],rows:[
 ["The passenger does not board","Offload the bag, matched by tag number"],
-["Exceptions carrying the bag alone","Only where the law and security rules allow it and the required additional security measures are met"],
+["Exceptions where the bag travels without its owner","Only where the law and security rules allow it and the required additional security measures are met"],
 ["A bag whose owner or routing cannot be confirmed","Not loaded until the required security checks are complete"]]}]},
 {h:"Suspicious items and people",blocks:[{t:"ladder",rise:10,steps:[{name:"Do not touch",sub:"Do not move or open it"},{name:"Move away",sub:"Keep people back"},{name:"Report",sub:"Supervisor, airport security, police"},{name:"Record",sub:"Time, place, description, actions"}]},
 {t:"rows",items:[
@@ -112,7 +112,7 @@ sections:[
 ["Instructor qualification cannot be shown","Keep certificates and renewal records"]]}]}],
 voice:"Training records compiled in a rush before an audit end up with gaps. Record each session as soon as it ends and manage them in a table by employee.",
 terms:[["Security Training","保安教育","보안 교육"],["Security Training Programme","教育訓練の実施計画","교육훈련 실시계획"],["Training Records","教育の記録","교육 기록"],["Record of Instructions and Dissemination","指示・伝達の記録","지시·전파 기록"],["Contractor / Service Provider","委託先","위탁처"],["Instructor","講師","강사"]],
-quiz:[{q:"Which is right about keeping training records?",opts:["This year only","Keep them for the period set for each type of training","Delete leavers at once","A verbal explanation is enough"],a:1,exp:"The period depends on the type of training and the authority’s and company rules; audits ask for previous years too."},
+quiz:[{q:"Which is right about keeping training records?",opts:["This year only","Keep them for the period set for each type of training","Delete leavers’ records at once","A verbal explanation is enough"],a:1,exp:"The period depends on the type of training and the authority’s and company rules; audits ask for previous years too."},
 {q:"Which is right about the handling company’s security training?",opts:["Not the airline’s concern","The airline checks the records and keeps evidence of checking","Leaving it to the handler is enough","Audits don’t look at it"],a:1,exp:"Evidence of checking contractors is required."},
 {q:"What should be recorded when a security instruction arrives?",opts:["Nothing","Who it went to, how, and proof of receipt","Just the original","Telling people verbally is enough"],a:1,exp:"Record who, when, how and acknowledgement."}],
 next:"8-4 Preparing for and handling an audit: the front-line view"});
@@ -146,14 +146,14 @@ sections:[
 {name:"For next time",x:"Keep findings and corrections in one file so they can be presented at an audit when needed."}]},
 {t:"point",warn:true,x:"An audit is a map of your station’s weak points. Showing through everyday records that you fix problems earns far more trust than hiding them."}]}],
 voice:"If an auditor questions you on the floor, answer factually within what you know, and say you will check if you do not. Never answer on guesswork.",
-terms:[["Being Audited","受検（監査を受けること）","수검"],["Unannounced Inspection","予告なしの点検","불시 점검"],["Debrief","講評","강평"],["Corrective Action","是正の措置","시정 조치"],["Self-inspection","自己点検","자체 점검"],["Restricted Area Pass","制限区域のパス","보호구역 출입증"]],
+terms:[["Being Audited","受検（監査を受けること）","수검"],["Unannounced Inspection","予告なしの点検","불시 점검"],["Debrief","講評","강평"],["Corrective Action","是正措置","시정 조치"],["Self-inspection","自己点検","자체 점검"],["Restricted Area Pass","制限区域のパス","보호구역 출입증"]],
 quiz:[{q:"On audit day you are asked something you don’t know. You…",opts:["Guess","Say “I’ll check” and bring in the supervisor","Stay silent","Change the subject"],a:1,exp:"Never guess."},
 {q:"What should preparation check first?",opts:["That last findings were fixed","Uniform colours","Sales","The weather"],a:0,exp:"Start with previous findings and their corrections."},
 {q:"A corrective plan includes…",opts:["Cause, action, deadline, owner","Excuses","Reasons to blame the handler","Nothing"],a:0,exp:"Organised to show at the next audit."}],
 next:"8-5 Reporting accidents and incidents, and emergency response"});
 
-set("8-5",{title:"Reporting Accidents and Incidents, and Emergency Response",hl:"emergency response",subtitle:"Safety first, then the initial report, then the authorities within the deadline — and practise in peacetime",
-lead:["When an accident, serious incident or security event happens, what the station does in the first hours is set: protect people, give the initial report to the right people under the company’s emergency procedures, and keep a timed record. Whether, when and how to report to the authorities depends on the event and the country.","This article covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
+set("8-5",{title:"Reporting Accidents and Incidents, and Emergency Response",hl:"emergency response",subtitle:"Safety first, then the initial report, then the authorities within the deadline — and practise in normal times",
+lead:["When an accident, serious incident or security event happens, what the station does in the first hours is already defined: protect people, give the initial report to the right people under the company’s emergency procedures, and keep a timed record. Whether, when and how to report to the authorities depends on the event and the country.","This lesson covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
 sections:[
 {h:"What is reported (examples)",blocks:[{t:"table",cols:["Category","Example","Reporting"],rows:[
 ["Accident","Death or injury, major aircraft damage","Emergency notification, then report to the authorities by the method and deadline set in law and company procedures"],
@@ -175,13 +175,13 @@ sections:[
 ["Communications","Media and social media handled by the channel head office designates; no individual statements"],
 ["Log","One person keeps the timeline throughout"]]},
 {t:"point",warn:true,x:"Staff must never post about an accident or event on personal social media or speak to reporters on their own. Make sure everyone knows this in advance."}]},
-{h:"Exercises in peacetime",blocks:[{t:"rows",items:[
+{h:"Exercises in normal times",blocks:[{t:"rows",items:[
 {name:"Airport exercises",x:"Take part in the airport’s full-scale exercise (for example about once a year) and confirm the station’s role (Launching Flights 5-4)."},
 {name:"Tabletop exercises",x:"Practise the order of calls and how to write reports, using a scenario."},
 {name:"Contact lists",x:"Check regularly that night and holiday contacts are current."},
 {name:"Records",x:"Record exercises and participants, just like training."}]}]}],
 voice:"When you receive a first report at night, think first of people’s safety, then the operational impact, then the reporting chain. Write down what you heard at once, with times.",
-terms:[["Accident","事故","사고"],["Serious Incident","重大インシデント","준사고"],["Initial Report","第一報","1차 보고"],["Emergency Response Plan (ERP)","緊急時対応計画","긴급대응계획"],["Family Assistance","家族の支援","가족 지원"],["Tabletop Exercise","机上の訓練","도상 훈련"]],
+terms:[["Accident","事故","사고"],["Serious Incident","重大インシデント","준사고"],["Initial Report","第一報","1차 보고"],["Emergency Response Plan (ERP)","緊急時対応計画","긴급대응계획"],["Family Assistance","家族の支援","가족 지원"],["Tabletop Exercise","机上訓練","도상 훈련"]],
 quiz:[{q:"What comes first when an event happens?",opts:["A perfect report","Making people safe","Posting on social media","Investigating the cause"],a:1,exp:"Safety first, then the initial report."},
 {q:"How should the initial report be sent?",opts:["Only when everything is known","Quickly, with what is known","Not at all","Next day"],a:1,exp:"Mark unknowns as being confirmed."},
 {q:"Who handles the media?",opts:["Front-line staff individually","The channel head office designates","Social media posts","Anyone"],a:1,exp:"No individual statements."}],

@@ -2,15 +2,15 @@
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("1-1",{title:"Types of Employment and Stating the Terms",hl:"types of employment",subtitle:"Permanent, fixed-term, part-time. Understand the differences and put the terms in writing ★",
 lead:["When a Japan branch hires, the first decision is the type of employment. Permanent employees with no fixed term, fixed-term contract employees, and part-timers with shorter hours each come with their own legal rules. And the employer is obliged to set out the working conditions in writing or equivalent.",
-"This article covers the differences between the types, the terms that must be stated in writing, and the points head office tends to misunderstand."],
+"This lesson covers the differences between the types, the terms that must be stated in writing, and the points head office tends to misunderstand."],
 sections:[
-{h:"Types of employment",blocks:[{t:"fig",id:"adm_hire",cap:"Figure: hiring: the order of steps."},{t:"region",jp:[{t:"table",cols:["Type","Character"],rows:[
+{h:"Types of employment",blocks:[{t:"fig",id:"adm_hire",cap:"Figure: the order of steps in hiring."},{t:"region",jp:[{t:"table",cols:["Type","Key points"],rows:[
 ["Permanent (indefinite term)","No fixed term. Dismissal is tightly restricted (3-1)"],
 ["Contract (fixed term)","A set term. Once renewals take the total beyond five years, the employee can apply to convert to indefinite employment"],
 ["Part-time","Shorter scheduled hours. Subject to social insurance depending on conditions (2-2)"],
 ["Agency workers","Employees of a staffing agency placed with you, with limits such as on the placement period"]]},
 {t:"note",x:"* Unreasonable differences in treatment between regular and non-regular employees are prohibited (equal pay for equal work). ★"}],
-kr:[{"t":"table","cols":["Type","Key points"],"rows":[["Regular (no fixed term)","Dismissal needs just cause (3-1)"],["Fixed-term","Using the same person for more than two years makes the contract open-ended"],["Part-time","Treatment in proportion to hours; under 15 hours a week, no weekly paid holiday, annual leave or severance"],["Dispatched","Usually up to two years, and only for permitted kinds of work"]]},
+kr:[{"t":"table","cols":["Type","Key points"],"rows":[["Regular (no fixed term)","Dismissal needs just cause (3-1)"],["Fixed-term","Using the same person for more than two years makes the contract open-ended"],["Part-time","Treatment in proportion to hours; under 15 hours a week, no weekly paid holiday, annual leave or severance"],["Agency workers","Usually up to two years, and only for permitted kinds of work"]]},
 {"t":"note","x":"* Unreasonable discrimination because a worker is fixed-term or part-time is prohibited. ★"}]}]},
 {h:"Terms that must be stated in writing",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Term and renewal",x:"Whether there is a term, whether and on what basis it renews, and any cap on renewals."},
@@ -38,18 +38,18 @@ next:"1-2 Working hours, overtime and premium pay"});
 
 set("1-2",{title:"Working Hours, Overtime and Premium Pay",hl:"working hours",subtitle:"Eight hours a day, forty a week is the rule. Beyond that you need an agreement and premium pay ★",
 lead:["The basic rule on working hours in Japan is eight hours a day and forty a week. To have staff work beyond that, you must conclude an agreement on overtime and holiday work with a workers’ representative (the so-called Article 36 agreement), file it with the labour standards office, and pay premium rates.",
-"This article covers the rules, the overtime caps, the premium rates, and what to watch with airport-style shift work."],
+"This article covers the rules, the overtime caps, the premium rates, and what to watch for in airport shift work."],
 sections:[
 {h:"The rules and the overtime caps",blocks:[{t:"region",jp:[{t:"table",cols:["Item","Content"],rows:[
 ["Statutory hours","8 hours a day, 40 a week"],
 ["Breaks","45 minutes if over 6 hours; at least 1 hour if over 8"],
 ["Statutory days off","At least one a week (or four in four weeks)"],
 ["Overtime cap","In principle 45 hours a month, 360 a year, with limits even in special circumstances"],
-["The agreement","Required, and filed, before overtime or holiday work"]]},
+["The agreement","Must be concluded and filed before overtime or holiday work"]]},
 {t:"note",x:"* Check the detail and exceptions in the law and current guidance. ★"},
 {"t":"fig","id":"adm_otjp","cap":"The special-clause limits, including holiday work, apply both to a single month and to the multi-month average."}],
 kr:[{"t":"fig","id":"adm_otkr","cap":"Overtime requires the employee’s agreement and cannot exceed 12 hours a week."},
-{"t":"table","cols":["Item","Rule"],"rows":[["Statutory hours","8 hours a day, 40 a week"],["Breaks","30 minutes per 4 hours, 1 hour per 8 hours or more"],["Weekly holiday","At least one paid day off a week"],["Overtime","Up to 12 hours a week by agreement"]]}]}]},
+{"t":"table","cols":["Item","Rule"],"rows":[["Statutory hours","8 hours a day, 40 a week"],["Breaks","30 minutes for 4 hours of work; at least 1 hour for 8 hours"],["Weekly holiday","At least one paid day off a week"],["Overtime","Up to 12 hours a week by agreement"]]}]}]},
 {h:"Premium rates",blocks:[{t:"region",jp:[{t:"table",cols:["Type","Premium"],rows:[
 ["Overtime","25% or more (50% or more beyond 60 hours a month)"],
 ["Late-night work (22:00 to 05:00)","25% or more"],
@@ -57,8 +57,8 @@ kr:[{"t":"fig","id":"adm_otkr","cap":"Overtime requires the employee’s agreeme
 ["Overtime that is also late-night","50% or more"]]}],
 kr:[{"t":"table","cols":["Type","Premium"],"rows":[["Overtime","50% or more"],["Night work (22:00–06:00)","50% or more"],["Holiday work (up to 8 hours)","50% or more"],["Holiday work beyond 8 hours","100% or more"]]},
 {"t":"note","x":"* The premium rules do not apply to workplaces with fewer than five regular employees. ★"}]}]},
-{h:"Flexible working arrangements",blocks:[{"t":"region","jp":[{"t":"rows","items":[{"name":"Variable working hours","x":"Average 40 hours a week over a month or a year; suits workplaces with busy and quiet seasons."},{"name":"Flextime","x":"Employees choose their start and finish within total hours for a settlement period of up to three months."},{"name":"Discretionary work","x":"For specialist roles, a set number of hours is deemed worked regardless of actual time. Strict procedures apply."},{"name":"Managers","x":"Not covered by overtime and holiday premiums, but night premiums and health care still apply. Judged by the reality of the role, not the title. ★"}]}],"kr":[{"t":"rows","items":[{"name":"Flexible hours","x":"Average 40 hours a week over two weeks, three months or six months."},{"name":"Optional hours","x":"Employees choose their start and finish within total hours for a settlement period, usually one month."},{"name":"Discretionary work","x":"For specified work such as research or design, an agreed number of hours is deemed worked."},{"name":"Managers","x":"Excluded from the hours and holiday rules, but night premiums still apply. Judged by the reality of the role, not the title. ★"}]}]}]},
-{h:"Recording and checking attendance",blocks:[{"t":"check","items":[{"name":"Objective records","x":"Use IC cards or computer logs rather than self-reporting alone."},{"name":"Request and approval","x":"Make prior request and manager approval the norm for overtime."},{"name":"Mid-month check","x":"Look at overtime mid-month and speak early to anyone nearing the limit."},{"name":"Match against payroll","x":"At every close, check attendance records against overtime pay."}]}]},
+{h:"Flexible working arrangements",blocks:[{"t":"region","jp":[{"t":"rows","items":[{"name":"Variable working hours","x":"Average 40 hours a week over a month or a year; suits workplaces with busy and quiet seasons."},{"name":"Flextime","x":"Employees choose their start and finish within total hours for a settlement period of up to three months."},{"name":"Discretionary work","x":"For specialist roles, a set number of hours is deemed worked regardless of actual time. Strict procedures apply."},{"name":"Managers","x":"Not covered by overtime and holiday premiums, but night premiums and health management still apply. Judged by the reality of the role, not the title. ★"}]}],"kr":[{"t":"rows","items":[{"name":"Flexible hours","x":"Average 40 hours a week over two weeks, three months or six months."},{"name":"Optional hours","x":"Employees choose their start and finish within total hours for a settlement period, usually one month."},{"name":"Discretionary work","x":"For specified work such as research or design, an agreed number of hours is deemed worked."},{"name":"Managers","x":"Excluded from the hours and holiday rules, but night premiums still apply. Judged by the reality of the role, not the title. ★"}]}]}]},
+{h:"Recording and checking attendance",blocks:[{"t":"check","items":[{"name":"Objective records","x":"Use IC cards or computer logs rather than self-reporting alone."},{"name":"Request and approval","x":"Make prior requests and manager approval the norm for overtime."},{"name":"Mid-month check","x":"Look at overtime mid-month and speak early to anyone nearing the limit."},{"name":"Match against payroll","x":"At every close, check attendance records against overtime pay."}]}]},
 {h:"Shift work",blocks:[{t:"check",items:[
 {name:"Variable working hours",x:"Averaging hours over a month or a year requires provisions in the work rules or an agreement."},
 {name:"Early and late shifts",x:"Early and late airport shifts include hours that attract the late-night premium."},
@@ -74,7 +74,7 @@ next:"1-3 Leave: annual, childcare, family care and sickness"});
 
 set("1-3",{title:"Leave: Annual, Childcare, Family Care and Sickness",hl:"leave",subtitle:"Leave the law requires, and leave the company decides ★",
 lead:["Leave in Japan divides into leave the law requires you to give — annual paid leave, maternity leave, childcare leave, family care leave — and leave the company sets itself, such as summer holidays, bereavement leave and sick leave. In a small branch, one person’s absence affects the operation, so understanding the rules and planning ahead are essential.",
-"This article outlines the main types of leave and how to run them in a small branch."],
+"This lesson outlines the main types of leave and how to run them in a small branch."],
 sections:[
 {h:"Main leave required by law",blocks:[{t:"region",jp:[{"t":"fig","id":"adm_lvjp","cap":"Pre- and post-birth leave lead into childcare leave, with the birth as the dividing line."},
 {t:"table",cols:["Leave","Outline"],rows:[
@@ -92,11 +92,11 @@ kr:[{"t":"fig","id":"adm_lvkr","cap":"Maternity leave leads into childcare leave
 {name:"Bereavement and celebration leave",x:"Weddings, funerals and so on, with days set in the rules."},
 {name:"Sick leave",x:"Not required by law. The rules decide whether it is paid and whether a certificate is needed."},
 {name:"Unpaid leave",x:"Long absences at the employee’s request, with the conditions for granting them set out."}]}]},
-{h:"Before and after long leave",blocks:[{"t":"region","jp":[{"t":"check","items":[{"name":"Receive the request","x":"Take requests for maternity and childcare leave in writing and fix the dates (childcare leave usually a month ahead)."},{"name":"Benefit claims","x":"Help with the maternity allowance (health insurance) and childcare leave benefit (employment insurance). ★"},{"name":"Social insurance","x":"Health insurance and pension premiums, both employee and employer shares, are waived during maternity and childcare leave on application where the conditions are met. ★"},{"name":"Return","x":"Discuss the return date, any wish for shorter hours and the work allocation a month ahead."}]}],"kr":[{"t":"check","items":[{"name":"Receive the request","x":"Childcare leave is normally requested at least 30 days ahead; fix the dates."},{"name":"Benefit claims","x":"Help with maternity leave pay and childcare leave benefit from employment insurance. ★"},{"name":"Cover","x":"Check subsidies for hiring a replacement."},{"name":"Return","x":"The employee must return to the same work, or work at the same pay level."}]}]}]},
+{h:"Before and after long leave",blocks:[{"t":"region","jp":[{"t":"check","items":[{"name":"Receive the request","x":"Take requests for maternity and childcare leave in writing and fix the dates (childcare leave usually a month ahead)."},{"name":"Benefit claims","x":"Help with the maternity allowance (health insurance) and childcare leave benefit (employment insurance). ★"},{"name":"Social insurance","x":"Health insurance and pension premiums, both employee and employer shares, are waived during maternity and childcare leave on application where the conditions are met. ★"},{"name":"Return","x":"Discuss the return date, any wish for shorter hours and the work allocation a month ahead."}]}],"kr":[{"t":"check","items":[{"name":"Receive the request","x":"Childcare leave is normally requested at least 30 days ahead; fix the dates."},{"name":"Benefit claims","x":"Help with maternity leave pay and childcare leave benefit from employment insurance. ★"},{"name":"Cover","x":"Check subsidies for hiring a replacement."},{"name":"Return","x":"The employer must return the employee to the same work, or to work at the same pay level."}]}]}]},
 {h:"Running leave in a small branch",blocks:[{t:"rows",items:[
 {name:"Plan the year",x:"Collect annual leave plans at the start of the year and adjust them away from peak periods."},
 {name:"Keep a register",x:"Track grant dates, days and leave taken, and confirm the five days are taken."},
-{name:"Cover",x:"Plan support for long absences from other stations, head office or the handling company."},
+{name:"Cover",x:"Plan support from other branches, head office or the handling company for long absences."},
 {name:"No detrimental treatment",x:"Treating someone unfavourably for requesting or taking childcare or family care leave is prohibited."}]},
 {t:"point",x:"A workplace where people can take leave is one where people stay. Precisely because the team is small, build a system — planning and cover — that lets people take it."}]}],
 voice:"When a small station has a maternity or childcare leave, get through it by combining help from the handling company with short-term support from head office. Writing the handover documents together from three months before the leave reassures the employee and helps them settle back in quickly.",
@@ -107,7 +107,7 @@ quiz:[{q:"(Japan) How many days must someone granted 10 or more days of annual l
 next:"2-1 The annual cycle of payroll and insurance"});
 
 set("2-1",{title:"The Annual Cycle of Payroll and Insurance",hl:"payroll and insurance",subtitle:"Monthly payroll and the annual insurance and tax procedures on one calendar ★",
-lead:["Payroll is monthly work, but social insurance, labour insurance and tax each have annual procedures, and missing the timing brings late charges. In a small branch, the efficient approach is to put the monthly and annual procedures on one calendar and share them with your tax accountant and labour and social security attorney.",
+lead:["Payroll is monthly work, but social insurance, labour insurance and tax each have annual procedures, and missing the timing leads to problems such as late charges. In a small branch, the efficient approach is to put the monthly and annual procedures on one calendar and share them with your tax accountant and labour and social security attorney.",
 "This article sets out the monthly payroll flow and the annual procedures. See also Launching Flights to Japan 2-4."],
 sections:[
 {h:"The monthly flow",blocks:[{t:"fig",id:"adm_pay",cap:"Figure: the monthly payroll cycle."},{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Confirm overtime and leave"},{name:"Apply changes",sub:"Joiners, leavers, raises, allowances"},{name:"Calculate",sub:"Adviser or system"},{name:"Check",sub:"Against last month"},{name:"Pay",sub:"Pay day and payslips"}]}]},
@@ -120,11 +120,11 @@ sections:[
 {t:"note",x:"* Timings and content change with amendments. ★"}],
 kr:[{"t":"table","cols":["When","Procedure"],"rows":[["January","Half-yearly withholding tax for July–December (by 10 January); prepare the year-end settlement"],["February","Year-end tax settlement in February’s pay"],["March","Submit payment statements (by 10 March); report total remuneration for health, employment and industrial accident insurance"],["April","Last year’s health insurance is settled through April’s premiums"],["July","National pension income base changes; half-yearly withholding tax for January–June (by 10 July)"],["10th of each month","Pay withholding tax, local income tax and the four insurance premiums"]]},
 {"t":"note","x":"* Half-yearly payment applies to small companies with approval. Dates can change from year to year. ★"}]}]},
-{h:"Sharing the work with professionals",blocks:[{"t":"table","cols":["Task","Usually done by","Key point"],"rows":[["Closing attendance and reporting changes","The branch","Keep to the cut-off date; give joiners, leavers and pay rises in writing"],["Calculating pay","A professional or a system","Review the assumptions (allowances, deductions) once a year"],["Comparing with last month","The branch","Check the reason at least for anyone with a large difference"],["Approving payment","Branch manager and head office","Keep a record of the approval"],["Annual procedures","A professional","The branch hands over material two weeks before each deadline"]]},
+{h:"Sharing the work with professionals",blocks:[{"t":"table","cols":["Task","Usually done by","Key point"],"rows":[["Closing attendance and reporting changes","The branch","Keep to the cut-off date; give joiners, leavers and pay rises in writing"],["Calculating pay","A professional or a system","Review the assumptions (allowances, deductions) once a year"],["Comparing with last month","The branch","Check the reason at least for anyone with a large difference"],["Approving payment","Branch manager and head office","Keep a record of the approval"],["Annual procedures","A professional","The branch hands over material no later than two weeks before each deadline"]]},
 {"t":"point","x":"Even when professionals do the work, checking and approving remain the company’s job. Put who does what by when in a table and share it with them."}]},
 {h:"Tips for a small branch",blocks:[{t:"check",items:[
 {name:"Compare with last month",x:"Compare pay and deductions with last month and find the reason for any big difference."},
-{name:"Rate changes",x:"Confirm that the March and April rate changes reached the payroll."},
+{name:"Rate changes",x:"Confirm that the March and April rate changes were applied in the payroll calculation."},
 {name:"Head office check",x:"Agree the head office HR check: who, and by when."},
 {name:"Records",x:"Keep the statutory ledgers such as the wage ledger (7-2)."}]}]}],
 deepLabel:"In depth: standard remuneration and bonuses",
@@ -134,7 +134,7 @@ deep:[
 {t:"stdcalc"}]},
 {h:"Three points at which the standard amount is set",blocks:[{t:"rows",items:[
 {name:"On joining",x:"Set from the contracted salary, allowances and expected overtime. File the enrolment notice within five days of joining."},
-{name:"Each year (the annual determination)",x:"Set from the average pay for April to June and filed between 1 and 10 July. It applies from September’s premiums, which are deducted from October’s pay."},
+{name:"Each year (the annual determination)",x:"Set from the average pay for April to June; the base remuneration report is filed between 1 and 10 July. It applies from September’s premiums, which are deducted from October’s pay."},
 {name:"When pay changes a lot (occasional revision)",x:"If fixed pay changes (a raise, a cut, a new allowance) and the average of the three months from the change differs by two grades or more, the amount is revised from the fourth month. File a change notice."},
 {name:"What counts as remuneration",x:"Base pay, overtime, commuting and housing allowances count. Expense reimbursements, one-off gifts and bonuses paid three times a year or less do not. Bonuses paid four or more times a year count as remuneration."}]},
 {t:"point",x:"If commuting allowances are paid six months at a time, convert them to a monthly amount. Workplaces with heavy overtime in April to June tend to move up a grade, which affects a whole year of premiums."}]},
@@ -151,7 +151,7 @@ deepKr:[
 {t:"rows",items:[
 {name:"Bonuses",x:"In Korea bonuses count as pay and there is no separate “standard bonus amount”. In a year with large bonuses, the difference is paid in the following April’s health insurance reconciliation."},
 {name:"When pay changes",x:"After a significant change such as a raise, the employer can report new monthly remuneration and change premiums from that month."}]},
-{t:"point",x:"Japan sets a grade in advance and uses it for a year; Korea charges on actual pay and settles up later. That one contrast explains most of the difference in payroll between the two countries."}]}],
+{t:"point",x:"Japan sets a grade in advance and uses it for a year; Korea charges on actual pay and settles up later. Remembering this contrast makes the difference in payroll between the two countries easier to understand."}]}],
 voice:"The month when insurance rates change is easy to miss in the payroll system. Mark rate-change months on the annual calendar, and check one person’s payslip by hand in the month of the change.",
 terms:[["Payslip","給与明細","급여명세서"],["Wage Ledger","賃金台帳","임금 대장"],["Premium Rate","料率","요율"],["Year-end Tax Adjustment","年末調整","연말정산"]],
 quiz:[{q:"What is an effective monthly payroll check?",opts:["Compare with last month","No check","Once a year","Leave it to staff"],a:0,exp:"Find the reason for big differences."},
@@ -160,10 +160,10 @@ quiz:[{q:"What is an effective monthly payroll check?",opts:["Compare with last 
 next:"2-2 Social insurance for part-time and contract staff"});
 
 set("2-2",{title:"Social Insurance for Part-time and Contract Staff",hl:"insurance for part-timers",subtitle:"Twenty hours a week is one benchmark, and coverage keeps widening ★",
-lead:["Part-time and contract staff must also be enrolled in health insurance and the employees’ pension once they meet conditions on hours and company size. Coverage has been widened step by step, and people once outside it may now be inside. Employment insurance has its own conditions too.",
+lead:["Part-time and contract staff must also be enrolled in health insurance and the employees’ pension once they meet conditions on hours and company size. Coverage has been widened step by step, and people who were once outside it may now be covered. Employment insurance has its own conditions too.",
 "This article sets out how enrolment works, how to check it, and what is easily missed."],
 sections:[
-{h:"How enrolment works",blocks:[{t:"fig",id:"adm_parttime",cap:"Figure: deciding insurance for part-time and contract staff."},{t:"region",jp:[{t:"table",cols:["Insurance","How it works"],rows:[
+{h:"How enrolment works",blocks:[{t:"fig",id:"adm_parttime",cap:"Figure: the order for deciding insurance enrolment for part-time and contract staff."},{t:"region",jp:[{t:"table",cols:["Insurance","How it works"],rows:[
 ["Health insurance and pension","Anyone working at least three quarters of a regular employee’s hours is enrolled. Below that, conditions such as 20 or more hours a week, together with company size, can bring people in"],
 ["Employment insurance","Enrolled on conditions such as 20 or more hours a week and an expected employment of 31 days or more"],
 ["Workers’ accident insurance","Covers every worker regardless of employment type"]]},
@@ -175,7 +175,7 @@ kr:[{"t":"table","cols":["Insurance","How it works"],"rows":[["National pension"
 {"t":"note","x":"* Re-assess on the hours actually worked, not just the contract. If in doubt, ask a professional."}]},
 {h:"Easily missed",blocks:[{t:"check",items:[
 {name:"Hours creeping up",x:"Even with a contract under 20 hours a week, working more than that on a continuing basis can require enrolment."},
-{name:"Students",x:"Students are treated differently under some insurance."},
+{name:"Students",x:"Students are treated differently under some insurance schemes."},
 {name:"Foreign staff",x:"Enrolled on the same conditions regardless of nationality. For pension, check whether a social security agreement applies (Expat Guide to Japan 2-2)."},
 {name:"The employee’s wishes",x:"Even if the employee does not want to join, you must enrol them if they meet the conditions."}]},
 {t:"point",warn:true,x:"Missed enrolment can mean being asked for back contributions later. Re-assess every time a contract changes."}]}],
@@ -197,7 +197,7 @@ deep:[
 {t:"note",x:"* Standard monthly remuneration of 104,000 yen (grade 6), Tokyo, Japan Health Insurance Association, FY2026 rates; an estimate. Long-term care insurance is added at ages 40–64."}]}],
 deepKr:[
 {h:"Part-time workers and the four insurances in Korea",blocks:[
-{t:"p",x:"From here on the basis is the Korean system. The Korean benchmark is 60 hours a month (15 hours a week)."},
+{t:"p",x:"From here on, this section covers the Korean system. The Korean benchmark is 60 hours a month (15 hours a week)."},
 {t:"table",cols:["Insurance","Conditions","People under 60 hours a month"],rows:[["National Pension","One month or more, 60 hours a month or more","Enrolled if working 8 or more days a month or earning above a set amount"],["Health insurance","One month or more, 60 hours a month or more","Not an employee member (covered as a regional member)"],["Employment insurance","60 hours a month or more","Excluded in principle; enrolled after three months of continuous work"],["Industrial accident insurance","All workers regardless of hours or type","Enrolled"]]},
 {t:"point",x:"Japan’s line is 20 hours a week, Korea’s 60 hours a month (15 a week). Because the lines differ, do not apply head office’s Korean rule directly to the Japanese branch."}]}],
 voice:"Some part-timers are contracted for 18 hours a week but go over 20 in busy periods. A rule to total actual hours from attendance records and reassess every three months prevents missed enrolment and retroactive procedures later.",
@@ -209,7 +209,7 @@ next:"3-1 From hiring to leaving"});
 
 set("3-1",{title:"From Hiring to Leaving: How Hard Dismissal Is",hl:"hiring to leaving",subtitle:"In Japan it is very hard to make someone leave. That is why hiring and probation matter so much ★",
 lead:["In Japan, a dismissal imposed by the employer is invalid unless it has objectively reasonable grounds and is socially appropriate. The bar is far higher than head offices abroad usually assume. That makes judgment at the hiring stage, and the systems for probation, evaluation and record-keeping, all the more important.",
-"This article covers the path from hiring to leaving and what to watch in resignations and dismissals."],
+"This article covers the path from hiring to leaving and what to watch for in resignations and dismissals."],
 sections:[
 {h:"The path",blocks:[{t:"fig",id:"adm_exit",cap:"Figure: before considering dismissal."},{t:"ladder",rise:10,steps:[{name:"Hiring",sub:"Terms stated, contract"},{name:"Probation",sub:"Confirming suitability"},{name:"Evaluation and development",sub:"Keep records"},{name:"Contract renewal",sub:"For fixed terms"},{name:"Leaving",sub:"Resignation, agreement or dismissal"}]}]},
 {h:"Ways of leaving, and what to watch",blocks:[{t:"region",jp:[{t:"table",cols:["Type","What to watch"],rows:[
@@ -226,9 +226,9 @@ kr:[{"t":"table","cols":["Type","What to watch"],"rows":[["Resignation","Receive
 {h:"Procedures on leaving",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Social insurance",x:"File loss of health insurance, pension and employment insurance status, and issue the separation notice."},
 {name:"Tax",x:"Issue the withholding slip and file the change in inhabitant tax payroll deduction (Launching Flights to Japan 2-4)."},
-{name:"Returns",x:"ID card, airport pass, keys, computer, and disabling accounts."},
+{name:"Returns",x:"Return the ID card, airport pass, keys and computer; disable accounts."},
 {name:"Severance",x:"Where the rules provide for it, the calculation and the tax treatment of retirement income."}]}],
-kr:[{"t":"check","items":[{"name":"Four insurances","x":"Notify loss (health within 14 days; pension, employment and accident insurance by the 15th of the following month), and the separation certificate: issue it within 10 days of the employee’s written request, and if the employment centre requests it, submit it within 10 days of that request. ★"},{"name":"Tax","x":"Withhold tax on retirement income and give the withholding slip. ★"},{"name":"Returns","x":"ID card, airport pass, keys, computer, and accounts disabled."},{"name":"Severance","x":"At least 30 days’ average wages per year of service for anyone employed continuously for a year or more at 15 hours a week or more (four-week average), normally paid within 14 days of leaving. ★"}]}]},
+kr:[{"t":"check","items":[{"name":"Four insurances","x":"Notify loss (health within 14 days; pension, employment and accident insurance by the 15th of the following month), and the separation certificate: issue it within 10 days of the employee’s written request, and if the employment centre requests it, submit it within 10 days of that request. ★"},{"name":"Tax","x":"Withhold tax on retirement income and give the withholding slip. ★"},{"name":"Returns","x":"Return the ID card, airport pass, keys and computer; disable accounts."},{"name":"Severance","x":"At least 30 days’ average wages per year of service for anyone employed continuously for a year or more at 15 hours a week or more (four-week average), normally paid within 14 days of leaving. ★"}]}]},
 {t:"point",x:"In Japan, hiring carefully and evaluating and recording thoroughly during probation protects both sides."}]}],
 voice:"Head office may ask you to let a poor performer go by next month. Explain how Japanese courts approach dismissal and that without records the company is likely to lose, and win head office over to starting with a six-month improvement plan and records of meetings.",
 terms:[["Dismissal","解雇","해고"],["Notice of Dismissal","解雇予告","해고 예고"],["Probation Period","試用期間","수습 기간"],["Separation Notice","離職票","이직표"]],
@@ -265,19 +265,19 @@ quiz:[{q:"Which is an advantage of direct operation?",opts:["Know-how builds up 
 next:"4-1 Accounts, the daily cash report and payments"});
 
 set("4-1",{title:"Accounts, the Daily Cash Report and Payments",hl:"cash management",subtitle:"Separate money out from money in, and be able to explain the balance every day",
-lead:["In a small branch, cash is protected by the system. Split accounts by purpose, record each day’s (or week’s) receipts and payments in a daily cash report, and make payments through a set procedure with approval. That alone prevents most errors and fraud.",
+lead:["In a small branch, it is important to protect cash through a system. Split accounts by purpose, record each day’s (or week’s) receipts and payments in a daily cash report, and make payments through a set procedure with approval. That alone prevents most errors and fraud.",
 "This article covers how to split accounts, building daily and monthly cash reports, and the payment procedure (for an airline example, see Launching Flights to Japan 2-2)."],
 sections:[
 {h:"Splitting the accounts",blocks:[{t:"fig",id:"adm_cash",cap:"Figure: the payment process and segregation of duties."},{t:"table",cols:["Account","Use"],rows:[
-["Operating (imprest) account","Day-to-day payments: salaries, rent, communications, advisers"],
+["Operating (imprest) account","Day-to-day payments: salaries, rent, communications, adviser fees"],
 ["Revenue account","Sales receipts. Not moved without head office approval"],
-["Tax and insurance payments","From the operating account, by electronic payment and similar"]]}]},
+["Tax and insurance payments","From the operating account, by electronic payment or similar"]]}]},
 {h:"Daily and monthly cash reports",blocks:[{t:"check",items:[
 {name:"Daily report",x:"Date, description, in, out, balance, voucher number. It must match the account balance."},
 {name:"Monthly report",x:"The month’s receipts and payments totalled by account, used for head office reporting and budget control."},
 {name:"Reconciling balances",x:"At month end, match the passbook or online banking balance against the books."},
 {name:"Forecast",x:"Project next month’s payments and balance, and ask head office to remit before a shortfall arises."}]}]},
-{h:"A daily cash report, example",blocks:[{"t":"table","cols":["Date","Description","In","Out","Balance","Evidence"],"rows":[["10/01","Brought forward","","","1,200,000",""],["10/01","Operating funds from head office","3,000,000","","4,200,000","A-12"],["10/05","Office rent","","450,000","3,750,000","B-031"],["10/10","Withholding tax paid","","82,000","3,668,000","C-007"],["10/25","Salaries paid","","1,850,000","1,818,000","D-10"],["10/31","Month-end balance (agrees with bank)","","","1,818,000","✓"]]},
+{h:"Example daily cash report",blocks:[{"t":"table","cols":["Date","Description","In","Out","Balance","Evidence"],"rows":[["10/01","Brought forward","","","1,200,000",""],["10/01","Operating funds from head office","3,000,000","","4,200,000","A-12"],["10/05","Office rent","","450,000","3,750,000","B-031"],["10/10","Withholding tax paid","","82,000","3,668,000","C-007"],["10/25","Salaries paid","","1,850,000","1,818,000","D-10"],["10/31","Month-end balance (agrees with bank)","","","1,818,000","✓"]]},
 {"t":"note","x":"* Amounts in yen, for illustration. Agree the balance column with the bank every day and mistakes show up at once. The evidence column holds invoice or remittance numbers."}]},
 {h:"The payment procedure",blocks:[{t:"ladder",rise:10,steps:[{name:"Receive the invoice",sub:"Check content and amount"},{name:"Approve",sub:"Under the approval rules"},{name:"Pay",sub:"Transfer or electronic payment"},{name:"Record",sub:"Daily report and evidence filed"},{name:"Settle",sub:"To head office at month end"}]},
 {t:"point",warn:true,x:"Separating the person who prepares a payment from the person who approves it — segregation of duties — is the basis of fraud prevention. Even in a small team, create that separation through head office approval or dual approval online."}]},
@@ -298,7 +298,7 @@ sections:[
 {name:"Fees",x:"The sending, receiving and intermediary banks all charge. Decide who bears them, sender or recipient."},
 {name:"Exchange rates",x:"When the yen and head office’s currency are converted, and how foreign exchange gains and losses are booked."},
 {name:"Documents",x:"The bank may ask for the purpose and basis — the invoice or contract."}]}]},
-{h:"How a remittance travels, and how long it takes",blocks:[{"t":"ladder","rise":10,"steps":[{"name":"Request","sub":"To head office in writing"},{"name":"Head office’s bank","sub":"Sends the payment"},{"name":"Intermediary bank","sub":"May deduct a fee"},{"name":"Bank in Japan","sub":"Credits and checks it"},{"name":"Station records","sub":"Daily report, FX difference"}]},
+{h:"How a remittance travels, and how long it takes",blocks:[{"t":"ladder","rise":10,"steps":[{"name":"Request","sub":"To head office in writing"},{"name":"Head office’s bank","sub":"Sends the payment"},{"name":"Intermediary bank","sub":"May deduct a fee"},{"name":"Bank in Japan","sub":"Credits and checks it"},{"name":"Branch records","sub":"Daily report, FX difference"}]},
 {"t":"table","cols":["When","What to watch"],"rows":[["January–February","Korea’s Lunar New Year holiday"],["Late April–early May","Japan’s Golden Week"],["September–October","Korea’s Chuseok holiday"],["Late December–early January","New Year in both countries"]]},
 {"t":"note","x":"* Holiday dates change from year to year. Before a holiday, request remittances at least two weeks ahead."}]},
 {h:"How reporting works",blocks:[{t:"rows",items:[
@@ -306,12 +306,12 @@ sections:[
 {name:"Bank checks",x:"When you remit, the bank may check the purpose and counterparty and ask you to complete the report form."},
 {name:"Sanctions checks",x:"Depending on the country and purpose, checks against economic sanctions and other controls are made."}]},
 {t:"note",x:"* Confirm the thresholds and forms in current Bank of Japan and Ministry of Finance guidance. ★"}]},
-{h:"Rules for money moving with head office",blocks:[{t:"table",cols:["Rule","Content"],rows:[
+{h:"Rules for moving funds with head office",blocks:[{t:"table",cols:["Rule","Content"],rows:[
 ["Remittance request deadline","Request next month’s funds by a set day each month"],
-["When short","The procedure for urgent top-ups, and approval for temporary use of the revenue account"],
+["When funds run short","The procedure for urgent top-ups, and approval for temporary use of the revenue account"],
 ["Remitting sales","When, how, and how much to keep"],
 ["Records","Requests, receipts and fees recorded in the daily cash report"]]},
-{t:"point",x:"Plan remittances on the assumption that they will be late and shrink with fees, and leave a margin."}]}],
+{t:"point",x:"Plan remittances with a margin, on the assumption that they will arrive late and be reduced by fees."}]}],
 voice:"If a Lunar New Year holiday delays head office’s remittance, you can miss the rent due date. Put both countries’ holidays on the calendar at the start of the year, and request remittances two weeks ahead before a holiday.",
 terms:[["International Remittance","海外送金","해외 송금"],["Foreign Exchange and Foreign Trade Act","外為法","외환법"],["Foreign Exchange Gain / Loss","為替差損益","환차손익"],["Report on Payments","支払等報告","지급 등 보고"]],
 quiz:[{q:"When should you request an international remittance?",opts:["About a week before the deadline","On the deadline","The day after","Any time"],a:0,exp:"Allow for holidays in both countries."},
@@ -319,12 +319,12 @@ quiz:[{q:"When should you request an international remittance?",opts:["About a w
 {q:"What should be decided about remittance fees?",opts:["Who bears them","The colour","The language","Business cards"],a:0,exp:"Sender or recipient."}],
 next:"5-1 The tax picture for a foreign company’s branch"});
 
-set("5-1",{title:"The Tax Picture for a Foreign Company’s Branch",hl:"branch taxes",subtitle:"Corporate tax, consumption tax, withholding, local taxes, stamp duty, depreciable assets. One list to miss nothing ★",
+set("5-1",{title:"The Tax Picture for a Foreign Company’s Branch",hl:"branch taxes",subtitle:"Corporate tax, consumption tax, withholding, local taxes, stamp duty, depreciable assets. One list so nothing is missed ★",
 lead:["A foreign company’s Japan branch is a permanent establishment of a foreign corporation under Japanese tax law, and pays corporate tax on income earned in Japan. On top of that come consumption tax, withholding on payments to staff and advisers, local taxes, stamp duty on contracts and receipts, and depreciable assets tax on business assets.",
 "This article lists the main taxes a branch deals with, how to think about filing and payment timing, and the taxes most easily overlooked."],
 sections:[
 {h:"The main taxes",blocks:[{t:"fig",id:"adm_tax",cap:"Figure: main taxes for a foreign company’s branch (Japan)."},{t:"table",cols:["Tax","Outline"],rows:[
-["Corporate tax and local corporate tax","On income attributable to the Japan branch. The fiscal year matches the head company’s. Filed in principle within two months of year end"],
+["Corporate tax and local corporate tax","On income attributable to the Japan branch. The fiscal year matches the head office’s. Filed in principle within two months of year end"],
 ["Corporate inhabitant tax and enterprise tax","Prefectural and municipal taxes. The per capita levy applies even with no income"],
 ["Consumption tax","The difference between tax on sales and tax on purchases is filed (5-2)"],
 ["Withholding income tax","Deducted from staff salaries and from fees to tax accountants, lawyers and others, and paid over"],
@@ -341,13 +341,13 @@ sections:[
 {h:"The relationship with head office",blocks:[{t:"rows",items:[
 {name:"Head office–branch transactions",x:"Allocations of head office costs and payments to head office must follow the tax rules, with the basis documented."},
 {name:"Tax treaties",x:"The tax treaty between Japan and your country may adjust double taxation or reduce withholding rates."},
-{name:"Professionals",x:"Foreign corporations are safest filing through a tax accountant experienced in them."}]},
+{name:"Professionals",x:"For a foreign corporation, it is safest to file through a tax accountant experienced with foreign corporations."}]},
 {t:"point",x:"With tax, “we didn’t know” is no defence. Keep an annual list of filings and payments and review it with your tax accountant every year."}]},
 {h:"Branch or subsidiary?",blocks:[{"t":"table","cols":["Item","Branch","Subsidiary (Japanese company)"],"rows":[["Legal status","Part of the same company as head office","An independent Japanese company"],["Income taxed in Japan","Income attributable to the branch","All of the company’s income"],["Sending profits to head office","Normally no withholding tax","Withholding tax on dividends (reduced by treaty)"],["Liability","Borne directly by head office","Limited to the capital invested"],["Setting up","Branch registration (relatively simple)","Company incorporation, articles and so on"]]},
 {"t":"note","x":"* Which suits you depends on the scale of the business and your plans. Compare them with a professional before deciding. ★"}]}],
 deep:[
 {h:"Calculating a company’s taxes: a small company in Tokyo",blocks:[
-{t:"p",x:"Tax on a company’s income is more than the national corporation tax. Local corporation tax, inhabitant tax, enterprise tax and special corporate enterprise tax are layered on top, and for years beginning on or after April 2026 a defence special corporation tax is added. Here we calculate from income to tax for a company with capital of 100 million yen or less in Tokyo’s 23 wards."},
+{t:"p",x:"Tax on a company’s income is more than the national corporation tax. Local corporation tax, inhabitant tax, enterprise tax and special corporate enterprise tax are layered on top, and for years beginning on or after April 2026 a defence special corporation tax is added. Here we work through the calculation from income to tax for a company with capital of 100 million yen or less in Tokyo’s 23 wards."},
 {t:"corpcalc",inc:10000000},
 {t:"table",cols:["Tax","Applied to","Rate (Tokyo 23 wards, capital of 100 million yen or less)","Paid to"],rows:[
 ["Corporation tax","Income","Qualifying small companies: 15% up to 8 million yen, 23.2% above (17%, or no relief, may apply above 1 billion yen of income) ★","The state (tax office)"],
@@ -367,15 +367,15 @@ deep:[
 {name:"Close the accounts",sub:"After the year-end"},
 {name:"Calculate the taxes",sub:"Income → corporation tax → local taxes"},
 {name:"File and pay",sub:"Within two months of the year-end"},
-{name:"Interim return",sub:"If last year’s corporation tax exceeded 200,000 yen, prepay half a year on"},
+{name:"Interim return",sub:"If last year’s corporation tax exceeded 200,000 yen, make a prepayment six months into the year"},
 {name:"Next year",sub:"Enterprise tax is an expense in the year it is paid"}]},
 {t:"point",x:"The line “income taxes” in the accounts is the total of the taxes calculated here. For the company in this example it runs from about 25% to 38% of income, rising with income. In the cash plan, enter this payment two months after the year-end and in the interim return month."}]}],
 deepKr:[
 {h:"Calculating Korean corporation tax",blocks:[
-{t:"p",x:"In Korea there are two: the national corporation tax and the local income tax. For years beginning on or after 1 January 2026, the corporation tax rate rose by one point in every band."},
+{t:"p",x:"In Korea there are two: the national corporation tax and the local income tax. For years beginning on or after 1 January 2026, the corporation tax rate rose by one percentage point in every band."},
 {t:"corpcalc",kr:1,inc:1000000000},
 {t:"table",cols:["Tax base","Corporation tax","Including local income tax"],rows:[["Up to 200 million won","10%","11%"],["Over 200 million, up to 20 billion won","20%","22%"],["Over 20 billion, up to 300 billion won","22%","24.2%"],["Over 300 billion won","25%","27.5%"]]},
-{t:"note",x:"* For years that began in or before 2025 each rate was one point lower (9%, 19%, 21%, 24%). ★"}]},
+{t:"note",x:"* For years that began in or before 2025 each rate was one percentage point lower (9%, 19%, 21%, 24%). ★"}]},
 {h:"Filing and payment compared with Japan",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Filing deadline","Within two months of the year-end (extension available)","Within three months of the year-end (end of March for a December year-end)"],
 ["Local taxes","Inhabitant tax, enterprise tax, special corporate enterprise tax","Local income tax (filed within four months of the year-end)"],
@@ -405,7 +405,7 @@ sections:[
 {name:"Checking suppliers",x:"Check that suppliers are registered and that their registration numbers are correct."},
 {name:"Your own registration",x:"Check whether you need to issue qualified invoices on your own sales as a taxable enterprise."},
 {name:"Transitional measures",x:"Purchases from unregistered suppliers are subject to phased transitional measures. ★"}]}],
-kr:[{"t":"check","items":[{"name":"Rate","x":"10%; exports and international transport are zero-rated."},{"name":"Tax invoices","x":"To deduct input tax you must receive and keep (electronic) tax invoices. Companies must issue them electronically."},{"name":"Returns","x":"Companies file four times a year, by the 25th of January, April, July and October. ★"},{"name":"Early refund","x":"With zero-rated sales or capital investment, a refund can be paid within 15 days of the filing deadline; ordinary refunds within 30. ★"}]}]}]},
+kr:[{"t":"check","items":[{"name":"Rate","x":"10%; exports and international transport are zero-rated."},{"name":"Tax invoices","x":"To deduct input tax you must receive and keep (electronic) tax invoices. Companies must issue them electronically."},{"name":"Returns","x":"Companies file four times a year, by the 25th of January, April, July and October. ★"},{"name":"Early refund","x":"With zero-rated sales or capital investment, a refund can be paid within 15 days of the filing deadline; ordinary refunds within 30 days. ★"}]}]}]},
 {h:"Preparing to claim",blocks:[{t:"rows",items:[
 {name:"Organise invoices",x:"Gather invoices by month and supplier and list the tax amounts and registration numbers."},
 {name:"Costs paid by head office",x:"Collect invoices for Japanese costs head office paid directly, such as airport charges (Launching Flights to Japan 2-2)."},
@@ -441,7 +441,7 @@ deepKr:[
 {t:"note",x:"* The example figures are fictional, for a company selling mainly international flights."}]},
 {h:"Filing calendar (companies)",blocks:[
 {t:"table",cols:["Return","Period covered","Due"],rows:[["First-half preliminary","January–March","25 April"],["First-half final","April–June","25 July"],["Second-half preliminary","July–September","25 October"],["Second-half final","October–December","25 January"]]},
-{t:"note",x:"* Companies with supplies under 150 million won in the previous tax period pay a notice from the tax office of 50% of the previous tax instead of filing a preliminary return (no notice if under 500,000 won). A deadline on a holiday moves to the next working day. ★"}]},
+{t:"note",x:"* Companies with supplies under 150 million won in the previous tax period pay 50% of the previous period’s tax, as notified by the tax office, instead of filing a preliminary return (no notice if under 500,000 won). A deadline on a holiday moves to the next working day. ★"}]},
 {h:"Points to know",blocks:[{t:"rows",items:[
 {name:"Simplified taxation is for individuals only",x:"Only individual businesses with prior-year supplies under 104 million won can be simplified taxpayers. Companies are general taxpayers however small their sales. ★"},
 {name:"Zero rating",x:"Exports and international transport are zero-rated: no output tax, but input tax is deductible, so a refund arises."},
@@ -461,13 +461,13 @@ quiz:[{q:"Which branches tend to get consumption tax refunds?",opts:["Those whos
 next:"5-3 International Tourist Tax: the July 2026 rise to ¥3,000"});
 
 set("6-1",{title:"The Monthly Close and Reporting to Head Office",hl:"the monthly close",subtitle:"Close last month in the first five days. Accrue what has not been invoiced",
-lead:["To fit head office’s monthly closing, the branch closes last month’s costs in the first few days of the month and reports to head office. Costs not yet invoiced are accrued on an estimate and adjusted the following month to the confirmed figure. The quality of this monthly close decides how fast and accurately head office can close.",
-"This article covers the flow of the monthly close, accruals, prepaid expenses, and what to report to head office."],
+lead:["In line with head office’s monthly close, the branch closes last month’s costs in the first few days of the month and reports to head office. Costs not yet invoiced are accrued on an estimate and adjusted the following month to the confirmed figure. The quality of this monthly close decides how fast and accurately head office can close.",
+"This lesson covers the flow of the monthly close, accruals, prepaid expenses, and what to report to head office."],
 sections:[
-{h:"The flow",blocks:[{t:"fig",id:"adm_close",cap:"Figure: the month-end close."},{t:"ladder",rise:10,steps:[{name:"Month end",sub:"Daily cash report and balance reconciliation"},{name:"Days 1 to 3",sub:"Gather invoices, raise vouchers"},{name:"Days 3 to 5",sub:"Accrue estimates and check"},{name:"Close",sub:"To head office accounting"},{name:"Report",sub:"Against budget, with comments"}]}]},
+{h:"The flow of the monthly close",blocks:[{t:"fig",id:"adm_close",cap:"Figure: the flow of the monthly close."},{t:"ladder",rise:10,steps:[{name:"Month end",sub:"Daily cash report and balance reconciliation"},{name:"Days 1 to 3",sub:"Gather invoices, raise vouchers"},{name:"Days 3 to 5",sub:"Accrue estimates and check"},{name:"Close",sub:"To head office accounting"},{name:"Report",sub:"Against budget, with comments"}]}]},
 {h:"Accruals, an example",blocks:[{"t":"table","cols":["Item","Amount (example)","Basis"],"rows":[["September electricity (invoice arrives 20 October)","¥45,000","Average of the previous three months"],["September handling fees (billed at the end of next month)","¥1,200,000","Flights × contract rate"],["When the invoice arrives in October","Adjust only the difference in October","E.g. actual ¥48,000 → add ¥3,000"]]},
 {"t":"note","x":"* Recording the basis for each estimate the same way every month makes the later adjustment easy."}]},
-{h:"Points in booking",blocks:[{t:"table",cols:["Item","How to think about it"],rows:[
+{h:"Key points in booking",blocks:[{t:"table",cols:["Item","How to think about it"],rows:[
 ["Accruals","Estimate costs not yet invoiced from last month’s actuals and similar, and adjust once confirmed"],
 ["Prepaid expenses","For costs such as next month’s rent paid in advance, confirm with accounting which month they belong to"],
 ["Booking date versus document date","Distinguish the month the cost arose from the date on the invoice"],
@@ -477,14 +477,14 @@ sections:[
 {name:"One-off costs",x:"Explain costs that occurred only this month: disruption, repairs, hiring."},
 {name:"Next month’s outlook",x:"Large payments coming and the funding needed."},
 {name:"Issues",x:"Matters needing a decision, such as contract renewals or rate changes."}]},
-{t:"point",x:"The biggest secret of the monthly close is doing it in the same order and the same format every month. Using last month’s vouchers as the template cuts mistakes."}]},
+{t:"point",x:"The most important tip for the monthly close is doing it in the same order and the same format every month. Using last month’s vouchers as the template cuts mistakes."}]},
 {h:"A one-page report to head office, example",blocks:[{"t":"table","cols":["Account","Budget","Actual","Difference","Comment"],"rows":[["Staff costs","2,400","2,450","+50","More overtime (delays)"],["Rent","450","450","0",""],["Handling fees","1,200","1,320","+120","Two extra flights"],["Communications and systems","180","160","−20","One line cancelled"],["Total","4,230","4,380","+150",""]]},
-{"t":"note","x":"* Figures in ¥ thousands. Commenting at least on accounts more than 5% off budget cuts the questions from head office."}]}],
+{"t":"note","x":"* Figures in ¥ thousands. Commenting at least on accounts more than 5% off budget reduces questions from head office."}]}],
 deepLabel:"In depth: from the monthly close to the year-end",
 deep:[
 {h:"The once-a-year closing adjustments",blocks:[
 {t:"p",x:"On top of each monthly close, the year-end brings “closing adjustments” that put the whole year right. If estimates have gone in every month, there is little left to adjust."},
-{t:"table",cols:["Item","Example entry (debit / credit)","Point"],rows:[["Depreciation","Depreciation / Equipment","Spread computers and desks over their useful lives"],["Accrued expenses","Salaries / Accrued expenses","March salaries paid in April belong to March"],["Prepaid expenses","Prepaid expenses / Rent","April rent paid in March belongs to next year"],["Clearing suspense","Travel / Suspense payments","Move settled items to the right account"],["Income taxes","Income taxes / Income taxes payable","Estimate the year’s tax and book it, netting off interim payments"]]},
+{t:"table",cols:["Item","Example entry (debit / credit)","Point"],rows:[["Depreciation","Depreciation / Equipment","Spread computers and desks over their useful lives"],["Accrued expenses","Salaries / Accrued expenses","March salaries paid in April belong to March"],["Prepaid expenses","Prepaid expenses / Rent","April rent paid in March belongs to the next financial year"],["Clearing suspense","Travel / Suspense payments","Move settled items to the right account"],["Income taxes","Income taxes / Income taxes payable","Estimate the year’s tax and book it, netting off interim payments"]]},
 {t:"note",x:"* The example company in Year-End Closing Practice makes its adjustments in this order."}]},
 {h:"Timetable for a March year-end company (example)",blocks:[
 {t:"table",cols:["When","What"],rows:[["31 March","Year-end. Count cash, deposits and stock"],["Early to mid-April","Closing adjustments; finalise the trial balance"],["Late April to mid-May","Prepare the accounts; the tax accountant calculates tax"],["Late May","Board approves the accounts"],["By 31 May","File and pay corporation tax, local taxes and consumption tax (two months after the year-end)"],["June","Annual general meeting (companies with an extension file by the end of June)"],["November","Interim return (if last year’s corporation tax was above a set level)"]]},
@@ -493,7 +493,7 @@ deep:[
 {t:"table",cols:["When","What"],rows:[["31 December","Year-end"],["January to February","Closing adjustments; prepare the accounts"],["February to March","External audit (where required)"],["March","Annual general meeting"],["By 31 March","File and pay corporation tax (three months from the end of the year-end month)"],["By 30 April","File local corporate income tax"],["August","Interim prepayment (first half)"]]},
 {t:"note",x:"* Japan’s filing deadline is two months after the year-end; Korea’s is three. If head office in Korea and the branch in Japan close on different timetables, agree first how the Japanese figures will reach head office in time. ★"}]},
 {h:"Monthly habits that make the year-end easier",blocks:[{t:"check",items:[
-{name:"Book estimates every month",x:"Estimating costs whose invoices have not arrived each month leaves less to correct at the year-end."},
+{name:"Book estimates every month",x:"Estimating each month the costs whose invoices have not arrived leaves less to correct at the year-end."},
 {name:"Clear suspense within the month",x:"Keeping suspense payments and receipts near zero each month saves re-investigating them at the year-end."},
 {name:"A fixed asset register",x:"Recording purchase date, cost and useful life makes depreciation quick to calculate."},
 {name:"Balance confirmations",x:"Obtain year-end balance certificates for deposits and loans from the banks and agree them to the books."}]},
@@ -506,13 +506,13 @@ quiz:[{q:"How are costs not yet invoiced handled?",opts:["Accrued on an estimate
 next:"6-2 Budgeting and cutting costs"});
 
 set("6-2",{title:"Budgeting and Cutting Costs",hl:"budgeting",subtitle:"List the fixed costs, and put the once-a-year costs in the right month",
-lead:["A branch budget is usually built for the following year during head office’s budgeting season (autumn to winter, for example) and reviewed every six months. The secret to accuracy is listing the monthly fixed costs and placing once-a-year costs in the correct month or quarter.",
-"This article covers how to build the budget, costs that are easily missed, and what to consider when cutting costs."],
+lead:["A branch budget is usually built for the following year during head office’s budgeting season (autumn to winter, for example) and reviewed every six months. The key to an accurate budget is listing the monthly fixed costs and placing once-a-year costs in the correct month or quarter.",
+"This lesson covers how to build the budget, costs that are easily missed, and what to consider when cutting costs."],
 sections:[
-{h:"Building the budget",blocks:[{t:"fig",id:"adm_budget",cap:"Figure: building a budget."},{t:"ladder",rise:10,steps:[{name:"Fixed costs",sub:"Rent, salaries, communications, advisers"},{name:"Variable costs",sub:"Linked to activity"},{name:"Annual costs",sub:"Memberships, insurance, renewal fees"},{name:"New plans",sub:"Hiring, moves, systems"},{name:"Agree with head office",sub:"Approval and review"}]}]},
-{h:"An annual budget, example",blocks:[{"t":"table","cols":["Account","Annual budget","Basis"],"rows":[["Staff (four people)","¥28.8m","Salaries, bonuses and social insurance (incl. employer share)"],["Rent","¥5.4m","Lease (¥450,000 a month)"],["Handling fees","¥14.4m","Planned flights × contract rate"],["Communications and systems","¥2.16m","Annual contracts"],["Once-a-year costs","¥1.2m","Fees, insurance, renewals (placed in the month paid)"],["Contingency","¥1m","Irregular operations"]]},
+{h:"Building the budget",blocks:[{t:"fig",id:"adm_budget",cap:"Figure: building a budget."},{t:"ladder",rise:10,steps:[{name:"Fixed costs",sub:"Rent, salaries, communications, advisory fees"},{name:"Variable costs",sub:"Linked to activity"},{name:"Annual costs",sub:"Memberships, insurance, renewal fees"},{name:"New plans",sub:"Hiring, moves, systems"},{name:"Agree with head office",sub:"Approval and review"}]}]},
+{h:"Example annual budget",blocks:[{"t":"table","cols":["Account","Annual budget","Basis"],"rows":[["Staff (four people)","¥28.8m","Salaries, bonuses and social insurance (incl. employer share)"],["Rent","¥5.4m","Lease (¥450,000 a month)"],["Handling fees","¥14.4m","Planned flights × contract rate"],["Communications and systems","¥2.16m","Annual contracts"],["Once-a-year costs","¥1.2m","Fees, insurance, renewals (placed in the month paid)"],["Contingency","¥1m","Irregular operations"]]},
 {"t":"note","x":"* Amounts are illustrative. Attach whatever is in the basis column as supporting material."}]},
-{h:"Easily missed",blocks:[{t:"check",items:[
+{h:"Easily missed costs",blocks:[{t:"check",items:[
 {name:"Annual fees and contracts",x:"Industry body fees, annual radio and system contracts. The invoice month can move."},
 {name:"Rate changes",x:"Social insurance rates, rent increases (and any mid-contract increase clause)."},
 {name:"Taxes",x:"The per capita levy, depreciable assets tax, stamp duty (5-1)."},
@@ -520,11 +520,11 @@ sections:[
 {name:"A contingency for disruption",x:"Reserve funds for delays and cancellations."}]}]},
 {h:"Cutting costs",blocks:[{t:"rows",items:[
 {name:"Review contracts",x:"At renewal, get competing quotes and negotiate: handling, communications, office."},
-{name:"Things not used",x:"Close unused accounts, lines and insurance."},
+{name:"Unused items",x:"Close unused accounts, lines and insurance."},
 {name:"Streamline procedures",x:"Electronic payment and electronic invoices cut fees and time."},
 {name:"Balance with quality",x:"Always check that a cut does not affect safety, quality or punctuality."}]},
 {t:"point",x:"What matters in a budget is having a basis you can explain to head office. Attach last year’s actuals, contracts and quotes as the basis."}]},
-{h:"Cost cuts: what worked and what we dropped",blocks:[{"t":"table","cols":["Review","Result"],"rows":[["Combined the line and mobile phone contracts","About ¥600,000 a year saved"],["Got competing quotes when renewing the handling contract","Rate cut by about 5%"],["Tried cutting counter cleaning","Dropped: it hurt how customers saw us"],["Tried cutting standby staff","Dropped: no cover on disruption days"]]}]}],
+{h:"Cost cuts: what worked and what we dropped",blocks:[{"t":"table","cols":["Review","Result"],"rows":[["Combined the line and mobile phone contracts","About ¥600,000 a year saved"],["Got competing quotes when renewing the handling contract","Rate cut by about 5%"],["Tried cutting counter cleaning","Dropped: it would have hurt how customers saw us"],["Tried cutting standby staff","Dropped: no cover on disruption days"]]}]}],
 voice:"When cutting costs, start with things no one sees, such as combining communications contracts, and be careful with anything customers notice, such as how often the counters are cleaned. Always stop once to think how a cut will look to the front line and to customers.",
 terms:[["Budgeting","予算編成","예산 편성"],["Fixed Cost","固定費","고정비"],["Competing Quotes","相見積もり","비교 견적"],["Contingency","予備費","예비비"]],
 quiz:[{q:"What makes a budget more accurate?",opts:["Listing fixed costs and putting annual costs in the right month","Copying last year","Making everything contingency","Not making one"],a:0,exp:"Watch invoice timing too."},
@@ -543,7 +543,7 @@ sections:[
 ["Asset control","Registers of equipment, computers, keys and seals, and who controls them"],
 ["Contract control","The contract register, legal review, managing renewal and termination"],
 ["Work rules and pay rules","Working conditions and pay calculation (filing required with 10 or more employees)"]]}]},
-{h:"An approval authority table, example",blocks:[{"t":"table","cols":["Item","Staff","Station manager","Head office"],"rows":[["Everyday supplies (under ¥50,000)","Request","Approve","—"],["Payments (¥50,000–¥500,000)","Request","Approve","Informed"],["Payments (¥500,000 or more)","Request","Check","Approve"],["Signing or renewing contracts","Draft","Check","Approve"],["Hiring and pay changes","Draft","Check","Approve"]]},
+{h:"Approval authority table (example)",blocks:[{"t":"table","cols":["Item","Staff","Branch manager","Head office"],"rows":[["Everyday supplies (under ¥50,000)","Request","Approve","—"],["Payments (¥50,000–¥500,000)","Request","Approve","Informed"],["Payments (¥500,000 or more)","Request","Check","Approve"],["Signing or renewing contracts","Draft","Check","Approve"],["Hiring and pay changes","Draft","Check","Approve"]]},
 {"t":"note","x":"* Amounts are examples. Set them to match head office’s rules and share the same table across the team."}]},
 {h:"Tips for writing them",blocks:[{t:"check",items:[
 {name:"Build on head office’s rules",x:"Avoid conflict with head office rules, and add what is specific to Japan: stamp duty, withholding, social insurance."},
@@ -571,8 +571,8 @@ sections:[
 ["Invoices, receipts and contracts","Kept likewise as evidence of transactions"],
 ["Wage ledgers, attendance records","A set period under the Labour Standards Act"],
 ["Social insurance documents","As each scheme requires"]]},
-{t:"note",x:"* Retention periods differ by document and scheme and are amended. Confirm with a professional. ★"}],
-kr:[{"t":"table","cols":["Document","Retention (guide)"],"rows":[["National tax books and evidence (tax invoices etc.)","5 years (from the filing deadline)"],["Commercial books and important documents","10 years (vouchers 5)"],["Employment contracts, wage ledgers and similar","3 years"],["Four-insurance documents","As each scheme requires (often 3 years)"]]},
+{t:"note",x:"* Retention periods differ by document and scheme and are sometimes amended. Confirm with a professional. ★"}],
+kr:[{"t":"table","cols":["Document","Retention (guide)"],"rows":[["National tax books and evidence (tax invoices etc.)","5 years (from the filing deadline)"],["Commercial books and important documents","10 years (vouchers 5)"],["Employment contracts, wage ledgers and similar","3 years"],["Four major social insurance documents","As each scheme requires (often 3 years)"]]},
 {"t":"note","x":"* Periods differ by law and change over time. When in doubt, keep to the longer one. ★"}]}]},
 {h:"Keeping electronic transaction data",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Keep it electronic",x:"Invoice PDFs received by email or online are kept as electronic files, not printed."},
@@ -580,17 +580,17 @@ kr:[{"t":"table","cols":["Document","Retention (guide)"],"rows":[["National tax 
 {name:"Protected from alteration",x:"For example, by setting internal rules that prevent correction and deletion."},
 {name:"Viewable",x:"Ready to be shown on screen or printed at any time, such as in a tax audit."}]},
 {t:"note",x:"* Check the detailed requirements and any relief measures in the National Tax Agency’s current guidance. ★"}],
-kr:[{"t":"check","items":[{"name":"Electronic tax invoices","x":"Must be sent to the National Tax Service by the day after issue; check it went through. Properly transmitted e-invoices are exempt from separate retention (other evidence is not). ★"},{"name":"Electronic books","x":"Accounting software ledgers must be kept too, ready to print at any time."},{"name":"Paper evidence","x":"Can be kept as electronic documents that meet the legal requirements (for example, stored at a certified e-document centre); some originals must still be kept. ★"},{"name":"Findability","x":"Keep a list searchable by date, supplier and amount."}]}]}]},
+kr:[{"t":"check","items":[{"name":"Electronic tax invoices","x":"Must be sent to the National Tax Service by the day after issue; confirm that the transmission succeeded. Properly transmitted e-invoices are exempt from separate retention (other evidence is not). ★"},{"name":"Electronic books","x":"Accounting software ledgers must be kept too, ready to print at any time."},{"name":"Paper evidence","x":"Can be kept as electronic documents that meet the legal requirements (for example, stored at a certified e-document centre); some originals must still be kept. ★"},{"name":"Findability","x":"Keep a list searchable by date, supplier and amount."}]}]}]},
 {h:"A system a small branch can run",blocks:[{t:"rows",items:[
 {name:"Folder rules",x:"Save to year / month / supplier folders, with file names like date_supplier_amount."},
-{name:"An index",x:"A monthly list of invoices — date, supplier, amount, consumption tax, registration number, file name — which also serves the tax refund (5-2)."},
+{name:"An index",x:"A monthly list of invoices — date, supplier, amount, consumption tax, registration number, file name — which can also be used for the consumption tax refund (5-2)."},
 {name:"Internal rules",x:"Set the rule not to correct or delete, and how to record it if you do (7-1)."},
 {name:"Backups",x:"Regular backups to the cloud and to a separate location."}]},
 {t:"point",x:"A retention system makes the monthly close, tax refunds, tax audits and handovers all easier. Set the rules once, at the start."}]}],
 voice:"Setting a filing rule of year, month and supplier keeps handovers to a successor short. In a tax audit you can put any requested invoice on screen at once, which shortens the audit.",
 terms:[["Electronic Books Preservation Act","電子帳簿保存法","전자장부보존법"],["Electronic Transactions","電子取引","전자 거래"],["Retention Period","保存期間","보존 기간"],["Tax Audit","税務調査","세무 조사"]],
-quiz:[{q:"(Japan) How should an invoice PDF received by email be kept?",opts:["In principle, electronically","Printed, then deleted","Not kept","Just forwarded to head office"],a:0,exp:"Electronic transaction data must be kept electronically."},
-{q:"What is required of electronic records?",opts:["Searchable by date, amount and supplier","Colour coding","Voice recording","Paper only"],a:0,exp:"A naming rule or index will do."},
+quiz:[{q:"(Japan) How should an invoice PDF received by email be kept?",opts:["In principle, electronically","Printed, then deleted","Not kept","Just sent to Korea"],a:0,exp:"Electronic transaction data must be kept electronically."},
+{q:"What is required of electronic records?",opts:["Searchable by date, amount and supplier","Colour coding","Voice recording","Paper only"],a:0,exp:"A file naming rule or an index can handle this."},
 {q:"What does a retention system help with?",opts:["The monthly close, refunds, tax audits and handovers","Nothing","Design only","Publicity"],a:0,exp:"Set the rules at the start."}],
 next:""});
 })(window.ARTS);

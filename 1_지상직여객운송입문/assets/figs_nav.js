@@ -11,7 +11,7 @@ var F={
 /* 1 速度のはしご：IAS → CAS → EAS → TAS → GS */
 nav_speeds:function(l){
  var W=({ja:{t:'速度のはしご ― 計器の速度から地面に対する速度まで',s:[['IAS','指示対気速度','計器の針が示す速度'],['CAS','較正対気速度','計器・取り付け位置の誤差を直す'],['EAS','等価対気速度','空気の圧縮の影響を直す（高速・高高度）'],['TAS','真対気速度','空気の薄さ（密度）を直す＝空気に対する本当の速さ'],['GS','対地速度','風を足し引き＝地面に対する速さ']],fx:['誤差の修正','圧縮性の修正','密度の修正','風の修正'],use:['操縦・失速の目安','性能表','高高度の計算','航法・燃料','到着時刻']},
-  ko:{t:'속도의 사다리 — 계기 속도에서 지면에 대한 속도까지',s:[['IAS','지시대기속도','계기 바늘이 가리키는 속도'],['CAS','수정대기속도','계기·장착 위치의 오차를 바로잡는다'],['EAS','등가대기속도','공기 압축의 영향을 바로잡는다(고속·고고도)'],['TAS','진대기속도','공기의 옅음(밀도)을 바로잡는다=공기에 대한 진짜 속도'],['GS','대지속도','바람을 더하고 뺀다=지면에 대한 속도']],fx:['오차 수정','압축성 수정','밀도 수정','바람 수정'],use:['조종·실속의 기준','성능표','고고도 계산','항법·연료','도착 시각']},
+  ko:{t:'속도의 사다리 — 계기 속도에서 지면에 대한 속도까지',s:[['IAS','지시대기속도','계기 바늘이 가리키는 속도'],['CAS','수정대기속도','계기·장착 위치의 오차를 바로잡는다'],['EAS','등가대기속도','공기 압축의 영향을 바로잡는다(고속·고고도)'],['TAS','진대기속도','공기 밀도의 영향을 바로잡는다=공기에 대한 실제 속도'],['GS','대지속도','바람을 더하고 뺀다=지면에 대한 속도']],fx:['오차 수정','압축성 수정','밀도 수정','바람 수정'],use:['조종·실속의 기준','성능표','고고도 계산','항법·연료','도착 시각']},
   en:{t:'The speed ladder: from the instrument to speed over the ground',s:[['IAS','Indicated airspeed','What the needle shows'],['CAS','Calibrated airspeed','Corrects instrument and position error'],['EAS','Equivalent airspeed','Corrects for compressibility (high speed and altitude)'],['TAS','True airspeed','Corrects for air density: true speed through the air'],['GS','Ground speed','Adds or subtracts the wind: speed over the ground']],fx:['Error correction','Compressibility','Density','Wind'],use:['Handling, stall margins','Performance charts','High-altitude calculations','Navigation, fuel','Arrival time']}})[l];
  if(!W)return F.nav_speeds('ja');
  var nar=NARROW();setK(nar?1.3:1);
@@ -33,8 +33,8 @@ nav_speeds:function(l){
 /* 2 高く上がると、同じIASでも実際は速い：IAS 250kt のまま TAS が増える */
 nav_ias_tas:function(l){
  var W=({ja:{t:'同じIAS 250ktでも、高い所ほど実際は速い',ias:'IAS（計器）',tas:'TAS（本当の速さ）',thin:'高い所は空気が薄い',thick:'低い所は空気が濃い',rule:'目安：TAS ≒ IAS × (1 ＋ 0.02 × 高度[千ft])',h:'高度'},
-  ko:{t:'같은 IAS 250kt라도 높은 곳일수록 실제로는 빠르다',ias:'IAS(계기)',tas:'TAS(진짜 속도)',thin:'높은 곳은 공기가 옅다',thick:'낮은 곳은 공기가 짙다',rule:'기준: TAS ≒ IAS × (1 + 0.02 × 고도[천 ft])',h:'고도'},
-  en:{t:'Same 250 kt IAS, but faster in reality the higher you go',ias:'IAS (instrument)',tas:'TAS (true speed)',thin:'Thin air up high',thick:'Dense air down low',rule:'Rule of thumb: TAS ≈ IAS × (1 + 0.02 × altitude in thousands of ft)',h:'Altitude'}})[l];
+  ko:{t:'같은 IAS 250kt라도 높은 곳일수록 실제로는 빠르다',ias:'IAS(계기)',tas:'TAS(실제 속도)',thin:'높은 곳은 공기가 옅다',thick:'낮은 곳은 공기가 짙다',rule:'기준: TAS ≒ IAS × (1 + 0.02 × 고도[천 ft])',h:'고도'},
+  en:{t:'Same 250 kt IAS: the higher you fly, the faster you go',ias:'IAS (instrument)',tas:'TAS (true speed)',thin:'Thin air up high',thick:'Dense air down low',rule:'Rule of thumb: TAS ≈ IAS × (1 + 0.02 × altitude in thousands of ft)',h:'Altitude'}})[l];
  if(!W)return F.nav_ias_tas('ja');
  var nar=NARROW();setK(nar?1.35:1);
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
@@ -61,7 +61,7 @@ nav_ias_tas:function(l){
 /* 3 音の速さとマック数：気温が下がると音は遅くなる。同じM0.80でも高い所では実際の速さが小さい */
 nav_mach:function(l){
  var W=({ja:{t:'音の速さとマック数',a0:'地上（15℃）：音の速さ 約661kt',a1:'上空（−56.5℃）：音の速さ 約573kt',m0:'M0.80 ＝ 約529kt',m1:'M0.80 ＝ 約458kt',rule:'音の速さ（kt）≒ 38.94 × √（気温[℃] ＋ 273）',why:'空気が冷たいほど、音はゆっくり伝わる',cr:'上昇はIAS一定 → ある高度からマック数一定（クロスオーバー）'},
-  ko:{t:'소리의 빠르기와 마하수',a0:'지상(15℃): 소리의 빠르기 약 661kt',a1:'상공(−56.5℃): 소리의 빠르기 약 573kt',m0:'M0.80 = 약 529kt',m1:'M0.80 = 약 458kt',rule:'소리의 빠르기(kt) ≒ 38.94 × √(기온[℃] + 273)',why:'공기가 찰수록 소리는 천천히 전해진다',cr:'상승은 IAS 일정 → 어느 고도부터 마하수 일정(크로스오버)'},
+  ko:{t:'음속과 마하수',a0:'지상(15℃): 음속 약 661kt',a1:'상공(−56.5℃): 음속 약 573kt',m0:'M0.80 = 약 529kt',m1:'M0.80 = 약 458kt',rule:'음속(kt) ≒ 38.94 × √(기온[℃] + 273)',why:'공기가 찰수록 소리는 천천히 전해진다',cr:'상승은 IAS 일정 → 어느 고도부터 마하수 일정(크로스오버)'},
   en:{t:'The speed of sound and Mach number',a0:'Ground (15 °C): speed of sound about 661 kt',a1:'Aloft (−56.5 °C): speed of sound about 573 kt',m0:'M0.80 = about 529 kt',m1:'M0.80 = about 458 kt',rule:'Speed of sound (kt) ≈ 38.94 × √(temperature in °C + 273)',why:'The colder the air, the more slowly sound travels',cr:'Climb at constant IAS, then constant Mach above the crossover altitude'}})[l];
  if(!W)return F.nav_mach('ja');
  var nar=NARROW();setK(nar?1.3:1);
@@ -80,7 +80,7 @@ nav_mach:function(l){
 /* 4 暑い日の離陸：同じ空港でも、暑いと空気が薄く、離陸の滑走が長くなる（密度高度） */
 nav_densalt:function(l){
  var W=({ja:{t:'密度高度：暑い日は「高い空港」と同じ',cool:'涼しい日（15℃）',hot:'暑い日（35℃）',da0:'密度高度 ≒ 空港の標高',da1:'密度高度 ≒ 標高 ＋ 約2,400ft',roll:'離陸の滑走',rule:'目安：密度高度 ≒ 気圧高度 ＋ 120ft ×（気温 − 標準の気温）',eff:'空気が薄い → エンジンの力と翼の揚力が小さい → 長く走る'},
-  ko:{t:'밀도고도: 더운 날은 ‘높은 공항’과 같다',cool:'선선한 날(15℃)',hot:'더운 날(35℃)',da0:'밀도고도 ≒ 공항 표고',da1:'밀도고도 ≒ 표고 + 약 2,400ft',roll:'이륙 활주',rule:'기준: 밀도고도 ≒ 기압고도 + 120ft × (기온 − 표준 기온)',eff:'공기가 옅다 → 엔진 힘과 날개 양력이 작다 → 오래 달린다'},
+  ko:{t:'밀도고도: 더운 날은 ‘높은 공항’과 같다',cool:'선선한 날(15℃)',hot:'더운 날(35℃)',da0:'밀도고도 ≒ 공항 표고',da1:'밀도고도 ≒ 표고 + 약 2,400ft',roll:'이륙 활주',rule:'기준: 밀도고도 ≒ 기압고도 + 120ft × (기온 − 표준 기온)',eff:'공기가 옅다 → 엔진 힘과 날개 양력이 작다 → 길게 달린다'},
   en:{t:'Density altitude: a hot day is like a higher airport',cool:'Cool day (15 °C)',hot:'Hot day (35 °C)',da0:'Density altitude ≈ field elevation',da1:'Density altitude ≈ elevation + about 2,400 ft',roll:'Take-off roll',rule:'Rule of thumb: density altitude ≈ pressure altitude + 120 ft × (temperature − standard temperature)',eff:'Thinner air → less engine thrust and wing lift → a longer run'}})[l];
  if(!W)return F.nav_densalt('ja');
  var nar=NARROW();setK(nar?1.3:1);
@@ -99,7 +99,7 @@ nav_densalt:function(l){
 /* 5 川を渡る船：流れに負けないように、へさきを上流に向ける（偏流修正） */
 nav_river:function(l){
  var W=({ja:{t:'川を渡る船で考える偏流',a:'へさきをまっすぐ向けると…',b:'へさきを上流に向けると…',drift:'流されて、目的地の下流に着く',ok:'まっすぐ目的地に着く',cur:'川の流れ＝風',goal:'目的地',wca:'修正角'},
-  ko:{t:'강을 건너는 배로 생각하는 편류',a:'뱃머리를 똑바로 향하면…',b:'뱃머리를 상류로 향하면…',drift:'떠밀려서 목적지 하류에 닿는다',ok:'똑바로 목적지에 닿는다',cur:'강물의 흐름=바람',goal:'목적지',wca:'수정각'},
+  ko:{t:'강을 건너는 배로 보는 편류',a:'뱃머리를 똑바로 향하면…',b:'뱃머리를 상류로 향하면…',drift:'떠밀려서 목적지 하류에 닿는다',ok:'똑바로 목적지에 닿는다',cur:'강물의 흐름=바람',goal:'목적지',wca:'수정각'},
   en:{t:'Drift, explained with a boat crossing a river',a:'Point the bow straight across…',b:'Point the bow upstream…',drift:'…and the current carries you downstream of the target',ok:'…and you arrive straight at the target',cur:'River current = wind',goal:'Target',wca:'Correction angle'}})[l];
  if(!W)return F.nav_river('ja');
  var nar=NARROW();setK(nar?1.3:1);
@@ -183,7 +183,7 @@ nav_var:function(l){
 /* 9 1 in 60 の法則：1°ずれると、60NM 先で約1NM ずれる */
 nav_1in60:function(l){
  var W=({ja:{t:'1 in 60 の法則',p:'予定の針路',e:'1°ずれた航跡',r:'1°のずれ → 60NM 先で約1NM',r2:'30NM で約0.5NM、120NM で約2NM',f:'ずれ（NM）≒ 角度（度）× 距離（NM）÷ 60'},
-  ko:{t:'1 in 60 법칙',p:'예정 침로',e:'1° 벗어난 항적',r:'1° 벗어나면 → 60NM 앞에서 약 1NM',r2:'30NM에서 약 0.5NM, 120NM에서 약 2NM',f:'벗어난 거리(NM) ≒ 각도(도) × 거리(NM) ÷ 60'},
+  ko:{t:'1 in 60 법칙',p:'예정 침로',e:'1° 벗어난 항적',r:'1° 벗어나면 → 60NM에서 약 1NM',r2:'30NM에서 약 0.5NM, 120NM에서 약 2NM',f:'벗어난 거리(NM) ≒ 각도(도) × 거리(NM) ÷ 60'},
   en:{t:'The 1-in-60 rule',p:'Planned course',e:'Track 1° off',r:'1° off → about 1 NM off after 60 NM',r2:'About 0.5 NM at 30 NM and 2 NM at 120 NM',f:'Off-track distance (NM) ≈ angle (°) × distance (NM) ÷ 60'}})[l];
  if(!W)return F.nav_1in60('ja');
  setK(1);
@@ -202,7 +202,7 @@ nav_1in60:function(l){
 /* 10 航路からのずれの修正：ずれた角度＋合流の角度で、目的地に向かう */
 nav_offtrack:function(l){
  var W=({ja:{t:'針路からずれたときの修正',a:'出発地',b:'目的地',x:'今の位置',off:'4NM ずれている',flown:'40NM 飛んだ',togo:'残り 80NM',te:'ずれた角度 4×60÷40＝6°',ca:'合流の角度 4×60÷80＝3°',tot:'右へ 6°＋3°＝9° 変えて目的地へ'},
-  ko:{t:'침로에서 벗어났을 때의 수정',a:'출발지',b:'목적지',x:'현재 위치',off:'4NM 벗어나 있다',flown:'40NM 비행',togo:'남은 80NM',te:'벗어난 각도 4×60÷40=6°',ca:'합류 각도 4×60÷80=3°',tot:'오른쪽으로 6°+3°=9° 바꿔 목적지로'},
+  ko:{t:'침로에서 벗어났을 때의 수정',a:'출발지',b:'목적지',x:'현재 위치',off:'4NM 이탈',flown:'40NM 비행',togo:'남은 80NM',te:'벗어난 각도 4×60÷40=6°',ca:'합류 각도 4×60÷80=3°',tot:'오른쪽으로 6°+3°=9° 바꿔 목적지로'},
   en:{t:'Correcting after drifting off course',a:'Departure',b:'Destination',x:'Present position',off:'4 NM off course',flown:'40 NM flown',togo:'80 NM to go',te:'Track error 4 × 60 ÷ 40 = 6°',ca:'Closing angle 4 × 60 ÷ 80 = 3°',tot:'Turn right 6° + 3° = 9° to reach the destination'}})[l];
  if(!W)return F.nav_offtrack('ja');
  setK(1);
@@ -245,7 +245,7 @@ nav_tsd:function(l){
 /* 12 3°の降下：1NMで約300ft、降下を始める距離は「高さ（千ft）× 3」、降下率は GS × 5 */
 nav_descent:function(l){
  var W=({ja:{t:'3°で降りる計画',tod:'降下開始（TOD）',rw:'滑走路',r1:'3°の坂 ＝ 1NMで約300ft',r2:'降下を始める距離（NM）≒ 降りる高さ（千ft）× 3',r3:'降下率（ft/分）≒ GS（kt）× 5',ex:'例：FL350 から 3,000ft まで → 32 × 3 ＝ 約96NM 手前から'},
-  ko:{t:'3°로 내려오는 계획',tod:'강하 시작(TOD)',rw:'활주로',r1:'3° 경사 = 1NM에 약 300ft',r2:'강하 시작 거리(NM) ≒ 내려갈 높이(천 ft) × 3',r3:'강하율(ft/분) ≒ GS(kt) × 5',ex:'예: FL350에서 3,000ft까지 → 32 × 3 = 약 96NM 전부터'},
+  ko:{t:'3° 강하 계획',tod:'강하 시작(TOD)',rw:'활주로',r1:'3° 경사 = 1NM에 약 300ft',r2:'강하 시작 거리(NM) ≒ 내려갈 높이(천 ft) × 3',r3:'강하율(ft/분) ≒ GS(kt) × 5',ex:'예: FL350에서 3,000ft까지 → 32 × 3 = 약 96NM 전부터'},
   en:{t:'Planning a 3° descent',tod:'Top of descent (TOD)',rw:'Runway',r1:'3° slope = about 300 ft per NM',r2:'Distance to start descent (NM) ≈ height to lose (thousands of ft) × 3',r3:'Rate of descent (ft/min) ≈ GS (kt) × 5',ex:'Example: FL350 to 3,000 ft → 32 × 3 = start about 96 NM out'}})[l];
  if(!W)return F.nav_descent('ja');
  setK(1);
@@ -260,7 +260,7 @@ nav_descent:function(l){
 /* 13 従来の航法とRNAV：無線施設を順に通る道と、ウェイポイントをまっすぐ結ぶ道 */
 nav_rnav:function(l){
  var W=({ja:{t:'従来の航法とRNAV（広域航法）',a:'従来の航法',b:'RNAV',vor:'VOR（地上の無線施設）',wp:'ウェイポイント（座標の点）',na:'無線施設の上を順に通るので、道が曲がり長くなる',nb:'座標の点をまっすぐ結べるので、道が短く自由になる',dep:'出発',arr:'到着'},
-  ko:{t:'기존 항법과 RNAV(광역항법)',a:'기존 항법',b:'RNAV',vor:'VOR(지상 무선시설)',wp:'웨이포인트(좌표 지점)',na:'무선시설 위를 차례로 지나므로 길이 굽고 길어진다',nb:'좌표 지점을 곧게 이을 수 있어 길이 짧고 자유롭다',dep:'출발',arr:'도착'},
+  ko:{t:'기존 항법과 RNAV(광역항법)',a:'기존 항법',b:'RNAV',vor:'VOR(지상 무선시설)',wp:'웨이포인트(좌표 지점)',na:'무선시설 위를 차례로 지나 경로가 굽고 길어진다',nb:'좌표 지점을 직결할 수 있어 경로가 짧고 자유롭다',dep:'출발',arr:'도착'},
   en:{t:'Conventional navigation and RNAV (area navigation)',a:'Conventional',b:'RNAV',vor:'VOR (ground radio station)',wp:'Waypoint (a set of coordinates)',na:'Flying over each station in turn bends and lengthens the route',nb:'Joining coordinates directly makes routes shorter and more flexible',dep:'Dep',arr:'Arr'}})[l];
  if(!W)return F.nav_rnav('ja');
  setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;
@@ -306,8 +306,8 @@ nav_rnp:function(l){
 
 /* 15 GNSS：4機で位置、5機で異常を見つけ（RAIM）、6機で異常な衛星を外す（FDE）。静止衛星（SBAS）が補正を送る */
 nav_gnss:function(l){
- var W=({ja:{t:'GNSS（衛星航法）のしくみ',s4:'4機：位置（緯度・経度・高さ）と時計のずれを求める',s5:'5機：おかしな衛星がないかを見つける（RAIM）',s6:'6機：おかしな衛星を外して使い続ける（FDE）',sbas:'静止衛星（SBAS）：地上の基準局で求めた補正と信頼性の情報を送る',names:'GPS（米）・GLONASS（露）・Galileo（欧）・BeiDou（中）。日本の「みちびき」はGPSを補う',ref:'基準局'},
-  ko:{t:'GNSS(위성항법)의 원리',s4:'4기: 위치(위도·경도·높이)와 시계 오차를 구한다',s5:'5기: 이상한 위성이 없는지 찾아낸다(RAIM)',s6:'6기: 이상한 위성을 빼고 계속 쓴다(FDE)',sbas:'정지위성(SBAS): 지상 기준국에서 구한 보정과 신뢰성 정보를 보낸다',names:'GPS(미)·GLONASS(러)·Galileo(유럽)·BeiDou(중). 일본의 ‘미치비키’는 GPS를 보완',ref:'기준국'},
+ var W=({ja:{t:'GNSS（衛星航法）のしくみ',s4:'4機：位置（緯度・経度・高さ）と時計のずれを求める',s5:'5機：異常な衛星がないかを見つける（RAIM）',s6:'6機：異常な衛星を外して使い続ける（FDE）',sbas:'静止衛星（SBAS）：地上の基準局で求めた補正と信頼性の情報を送る',names:'GPS（米）・GLONASS（露）・Galileo（欧）・BeiDou（中）。日本の「みちびき」はGPSを補う',ref:'基準局'},
+  ko:{t:'GNSS(위성항법)의 원리',s4:'4기: 위치(위도·경도·높이)와 시계 오차를 구한다',s5:'5기: 이상 위성이 없는지 확인한다(RAIM)',s6:'6기: 이상 위성을 빼고 계속 쓴다(FDE)',sbas:'정지위성(SBAS): 지상 기준국에서 구한 보정과 신뢰성 정보를 보낸다',names:'GPS(미)·GLONASS(러)·Galileo(유럽)·BeiDou(중). 일본의 ‘미치비키’는 GPS를 보완',ref:'기준국'},
   en:{t:'How GNSS (satellite navigation) works',s4:'4 satellites: position (latitude, longitude, height) and receiver clock error',s5:'5 satellites: detect a faulty satellite (RAIM)',s6:'6 satellites: exclude the faulty one and carry on (FDE)',sbas:'Geostationary satellite (SBAS): sends corrections and integrity data worked out by ground reference stations',names:'GPS (US), GLONASS (Russia), Galileo (EU), BeiDou (China); Japan’s QZSS (Michibiki) supplements GPS',ref:'Reference station'}})[l];
  if(!W)return F.nav_gnss('ja');
  setK(1);var FS=H.FS,LI=H.LINES;
@@ -330,7 +330,7 @@ nav_gnss:function(l){
 /* 16 ウェイポイントでの曲がり方：フライバイ・フライオーバー・RF（一定の半径の円弧） */
 nav_turns:function(l){
  var W=({ja:{t:'ウェイポイントでの曲がり方',fb:'フライバイ',fo:'フライオーバー',rf:'RF（円弧）',dfb:'手前から曲がり始め、点の内側を回る。ふつうはこちら',dfo:'点の真上を通ってから曲がるので、外へふくらむ',drf:'決まった半径の円弧を正確に飛ぶ。RNP AR などで使う'},
-  ko:{t:'웨이포인트에서 도는 방법',fb:'플라이바이',fo:'플라이오버',rf:'RF(원호)',dfb:'앞에서부터 돌기 시작해 점의 안쪽을 돈다. 보통은 이쪽',dfo:'점 바로 위를 지난 뒤 돌기 때문에 바깥으로 부푼다',drf:'정해진 반지름의 원호를 정확히 난다. RNP AR 등에서 쓴다'},
+  ko:{t:'웨이포인트 선회 방식',fb:'플라이바이',fo:'플라이오버',rf:'RF(원호)',dfb:'미리 선회를 시작해 점의 안쪽을 돈다. 보통은 이쪽',dfo:'점 바로 위를 지난 뒤 선회하므로 바깥으로 벌어진다',drf:'일정 반경의 원호를 정확히 비행한다. RNP AR 등에서 쓴다'},
   en:{t:'How aircraft turn at waypoints',fb:'Fly-by',fo:'Fly-over',rf:'RF (arc)',dfb:'Starts turning early and cuts inside the point; the usual case',dfo:'Passes directly over the point before turning, so it swings wide',drf:'Flies an arc of a fixed radius precisely; used in RNP AR and similar'}})[l];
  if(!W)return F.nav_turns('ja');
  setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;
@@ -356,7 +356,7 @@ nav_turns:function(l){
 /* 17 最低高度の種類：MOCA は障害物だけ、MEA は障害物＋無線の電波が届く高さ */
 nav_minalt:function(l){
  var W=({ja:{t:'航空路の最低高度',mea:'MEA（最低経路高度）：障害物をよける＋電波が届く',moca:'MOCA（最低障害物回避高度）：障害物だけをよける',clr:'障害物の上に 1,000ft（山岳地は 2,000ft）',sig:'電波が届く範囲',vor:'VOR'},
-  ko:{t:'항공로의 최저고도',mea:'MEA(최저항로고도): 장애물 회피 + 전파 수신',moca:'MOCA(최저장애물회피고도): 장애물만 피한다',clr:'장애물 위로 1,000ft(산악지는 2,000ft)',sig:'전파가 닿는 범위',vor:'VOR'},
+  ko:{t:'항공로의 최저고도',mea:'MEA(최저항로고도): 장애물 회피 + 전파 수신',moca:'MOCA(최저장애물회피고도): 장애물 회피만',clr:'장애물 위로 1,000ft(산악지는 2,000ft)',sig:'전파가 닿는 범위',vor:'VOR'},
   en:{t:'Minimum altitudes on airways',mea:'MEA (minimum en-route altitude): obstacle clearance + signal reception',moca:'MOCA (minimum obstacle clearance altitude): obstacle clearance only',clr:'1,000 ft above obstacles (2,000 ft in mountains)',sig:'Signal coverage',vor:'VOR'}})[l];
  if(!W)return F.nav_minalt('ja');
  setK(1);var FS=H.FS,LI=H.LINES;
@@ -375,8 +375,8 @@ nav_minalt:function(l){
 
 /* 18 MSA（最低扇形別高度）：施設から25NMの円を向きで分け、区域ごとに最低高度を決める */
 nav_msa:function(l){
- var W=({ja:{t:'MSA（最低扇形別高度）',r:'半径 25NM',c:'障害物の上に 1,000ft 以上',use:'計器進入図に載っていて、緊急のときに安全な高さの目安になる',ft:'ft'},
-  ko:{t:'MSA(최저구역고도)',r:'반경 25NM',c:'장애물 위로 1,000ft 이상',use:'계기접근도에 실려 있으며, 비상시 안전한 높이의 기준이 된다',ft:'ft'},
+ var W=({ja:{t:'MSA（最低扇形別高度）',r:'半径 25NM',c:'障害物の上に 1,000ft 以上',use:'計器進入図に記載され、緊急時に安全な高度の目安となる',ft:'ft'},
+  ko:{t:'MSA(최저구역고도)',r:'반경 25NM',c:'장애물 위로 1,000ft 이상',use:'계기접근도에 표시되며, 비상시 안전 고도의 기준이 된다',ft:'ft'},
   en:{t:'MSA (minimum sector altitude)',r:'Radius 25 NM',c:'At least 1,000 ft above obstacles',use:'Shown on approach charts as a safe height to use in an emergency',ft:'ft'}})[l];
  if(!W)return F.nav_msa('ja');
  setK(1);var FS=H.FS,LI=H.LINES;
@@ -394,8 +394,8 @@ nav_msa:function(l){
 
 /* 19 High to Low, Look out below：高気圧から低気圧へ、暖かい所から寒い所へ飛ぶと、同じ指示でも実際は低い */
 nav_highlow:function(l){
- var W=({ja:{t:'「High to Low, Look out below」',p:'気圧：高い所から低い所へ',tm:'気温：暖かい所から寒い所へ',hp:'高気圧',lp:'低気圧',wm:'暖かい',cd:'寒い',ind:'高度計の表示は同じ 5,000ft',tru:'本当の高さは下がる',r1:'QNHを入れ直さないと、1hPaで約30ft低い（10hPaで約300ft）',r2:'気温が標準より10℃低いと、約4％低い（ISA−20℃なら約8％）'},
-  ko:{t:'‘High to Low, Look out below’',p:'기압: 높은 곳에서 낮은 곳으로',tm:'기온: 따뜻한 곳에서 추운 곳으로',hp:'고기압',lp:'저기압',wm:'따뜻하다',cd:'춥다',ind:'고도계 표시는 똑같이 5,000ft',tru:'진짜 높이는 내려간다',r1:'QNH를 다시 넣지 않으면 1hPa에 약 30ft 낮다(10hPa면 약 300ft)',r2:'기온이 표준보다 10℃ 낮으면 약 4% 낮다(ISA−20℃면 약 8%)'},
+ var W=({ja:{t:'「High to Low, Look out below」',p:'気圧：高い所から低い所へ',tm:'気温：暖かい所から寒い所へ',hp:'高気圧',lp:'低気圧',wm:'暖かい',cd:'寒い',ind:'高度計の表示は同じ 5,000ft',tru:'実際の高度は下がる',r1:'QNHを再設定しないと、1hPaで約30ft低い（10hPaで約300ft）',r2:'気温が標準より10℃低いと、約4％低い（ISA−20℃なら約8％）'},
+  ko:{t:'‘High to Low, Look out below’',p:'기압: 높은 곳에서 낮은 곳으로',tm:'기온: 따뜻한 곳에서 추운 곳으로',hp:'고기압',lp:'저기압',wm:'온난',cd:'한랭',ind:'고도계 표시는 똑같이 5,000ft',tru:'실제 고도는 낮아진다',r1:'QNH를 재설정하지 않으면 1hPa당 약 30ft 낮다(10hPa면 약 300ft)',r2:'기온이 표준보다 10℃ 낮으면 약 4% 낮다(ISA−20℃면 약 8%)'},
   en:{t:'“High to low, look out below”',p:'Pressure: from high to low',tm:'Temperature: from warm to cold',hp:'High',lp:'Low',wm:'Warm',cd:'Cold',ind:'The altimeter still reads 5,000 ft',tru:'True height drops',r1:'Without resetting QNH, about 30 ft lower per hPa (about 300 ft for 10 hPa)',r2:'About 4% lower for every 10 °C below standard (about 8% at ISA−20 °C)'}})[l];
  if(!W)return F.nav_highlow('ja');
  setK(1);var nar=NARROW(),FS=H.FS,LI=H.LINES;
@@ -414,8 +414,8 @@ nav_highlow:function(l){
 
 /* 20 RVSM：FL290〜FL410 は 1,000ft 間隔。東向き（000〜179°）は奇数、西向きは偶数の高度 */
 nav_rvsm:function(l){
- var W=({ja:{t:'RVSM（短縮垂直間隔）',in:'FL290〜FL410：1,000ft 間隔',out:'FL410 より上：2,000ft 間隔',east:'東向き（000〜179°）＝ 奇数',west:'西向き（180〜359°）＝ 偶数',req:'使う条件：独立した2つの高度計、自動操縦の高度保持、高度の警報、高度を伝えるトランスポンダー、会社と機体の承認（飛行計画の項目10に W）'},
-  ko:{t:'RVSM(수직분리 축소)',in:'FL290~FL410: 1,000ft 간격',out:'FL410 위: 2,000ft 간격',east:'동쪽행(000~179°) = 홀수',west:'서쪽행(180~359°) = 짝수',req:'쓰는 조건: 독립된 고도계 2개, 자동조종의 고도 유지, 고도 경보, 고도를 알리는 트랜스폰더, 회사와 기체의 승인(비행계획 항목 10에 W)'},
+ var W=({ja:{t:'RVSM（短縮垂直間隔）',in:'FL290〜FL410：1,000ft 間隔',out:'FL410 より上：2,000ft 間隔',east:'東向き（000〜179°）＝ 奇数',west:'西向き（180〜359°）＝ 偶数',req:'運用条件：独立した2つの高度計、自動操縦の高度保持、高度警報、高度を伝えるトランスポンダー、会社と機体の承認（飛行計画の項目10に W）'},
+  ko:{t:'RVSM(수직분리 축소)',in:'FL290~FL410: 1,000ft 간격',out:'FL410 위: 2,000ft 간격',east:'동쪽행(000~179°) = 홀수',west:'서쪽행(180~359°) = 짝수',req:'운용 조건: 독립된 고도계 2개, 자동조종 고도 유지, 고도 경보, 고도를 알리는 트랜스폰더, 회사와 기체의 승인(비행계획 항목 10에 W)'},
   en:{t:'RVSM (reduced vertical separation minimum)',in:'FL290–FL410: 1,000 ft apart',out:'Above FL410: 2,000 ft apart',east:'Eastbound (000–179°) = odd levels',west:'Westbound (180–359°) = even levels',req:'Requirements: two independent altimeters, autopilot altitude hold, altitude alerting, an altitude-reporting transponder, and operator and aircraft approval (W in flight-plan item 10)'}})[l];
  if(!W)return F.nav_rvsm('ja');
  setK(1);var FS=H.FS,LI=H.LINES;

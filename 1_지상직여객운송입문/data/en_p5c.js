@@ -1,9 +1,9 @@
 /* 旅客運送の実務 5-8 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("5-8",{title:"Irregular Operations Casebook: Practising Judgment",hl:"casebook",subtitle:"What matters is the gap between when you knew and when you told passengers. Published penalty cases and six everyday situations",
-lead:["In irregular operations, passengers and regulators look at when the airline knew, when it told people and what it did. In Korea, fines on airlines that knew about a delay or bags left behind but told passengers late have been made public.","This article sets out published penalty cases (without airline names) and common front-line situations as cases, with what to do first, common mistakes and the lesson. Read it with 5-4 to 5-7."],
+lead:["In irregular operations, passengers and regulators look at when the airline knew, when it told people and what it did. In Korea, cases have been made public in which airlines were fined for telling passengers late about delays or bags left behind that they already knew about.","This article sets out published penalty cases (without airline names) and common front-line situations, with what to do first, common mistakes and the lesson. Read it with 5-4 to 5-7."],
 sections:[
-{h:"Published penalty cases (Korea)",blocks:[{t:"fig",id:"gnd_gap",cap:"Animated figure: the gap between the time known and the time told grows; with examples of published penalties in Korea."},{t:"table",cols:["Case","What was found","Penalty (as published)"],rows:[
+{h:"Published penalty cases (Korea)",blocks:[{t:"fig",id:"gnd_gap",cap:"Animated figure: how the gap between the time known and the time told grows, with examples of published penalties in Korea."},{t:"table",cols:["Case","What was found","Penalty (as published)"],rows:[
 ["Korean airline: late delay notices (2024)","Seven flights in about three months where the airline knew of a delay but told passengers late","KRW 2 million per flight, KRW 14 million in total"],
 ["Korean airline: delay notices missing or late (2025)","Nine flights in about two and a half months where a known delay was not notified, or notified late","KRW 2 million per flight, KRW 18 million in total"],
 ["Korean airline: bags not loaded (2025)","A reroute around volcanic ash limited the load; the airline knew 3–4 hours before departure that some bags could not go, but texted passengers only after take-off","KRW 4 million per flight, KRW 12 million for three flights"],
@@ -27,9 +27,9 @@ sections:[
 {name:"Common mistake",x:"Waiting ‘just a bit longer’ and delaying the whole flight; rushing the bag reconciliation and getting it wrong."},
 {name:"Lesson",x:"Set in advance the criteria for waiting and who decides. It is recorded as delay code 15 (boarding) — see the IATA delay code list."}]}]},
 {h:"Case 5: a long wait after the doors close in bad weather",blocks:[{t:"rows",items:[
-{name:"First",x:"Confirm the expected wait with the captain and operations control and set how often to update the cabin. Start preparing to deplane well before the national limit (for example four hours on international flights) (5-7)."},
+{name:"First",x:"Confirm the expected wait with the captain and operations control and set how often to update the cabin. Start preparing to deplane before the national limit (for example four hours on international flights) (5-7)."},
 {name:"Common mistake",x:"Starting to prepare just before the limit, so the gate, staff and bags are not ready."},
-{name:"Lesson",x:"Write down what to do how many minutes before the limit."}]}]},
+{name:"Lesson",x:"Draw up a timetable of what to do and how many minutes before the limit."}]}]},
 {h:"Case 6: a group arrives after check-in has closed",blocks:[{t:"rows",items:[
 {name:"First",x:"The supervisor weighs the closing rule against the effect of accepting them (bags, loading, departure time)."},
 {name:"Common mistake",x:"The counter accepts them on its own and the flight leaves late; no record of why they were refused."},

@@ -53,7 +53,7 @@ sections:[
 ["De-icing days","Confirm in advance with the airport and ATC how de-icing location and sequence relate to TSAT"]]},
 {t:"point",warn:true,x:"A delay spent waiting for TSAT is coded differently depending on whether you were ready and waited for the airport/ATC sequence, or were late with your own preparation. Keep a record of TOBT entries and actual readiness times so delay causes can be allocated correctly (1-2, 1-3)."}]},
 {h:"Reading punctuality differently",blocks:[{t:"rows",items:[
-{name:"Waiting even when on schedule",x:"Even if you are ready on time, the runway sequence may give a later TSAT. Separate time spent waiting for TSAT from delay you caused when reviewing punctuality figures."},
+{name:"Waiting even when on schedule",x:"Even if you are ready on time, the runway sequence may give a later TSAT. When reviewing punctuality figures, separate time spent waiting for TSAT from delay you caused."},
 {name:"TOBT accuracy as a measure",x:"Some airports and airlines track how often TOBT was changed and whether start-up happened within 5 minutes of TOBT, as measures for stations and handlers."},
 {name:"Review in the monthly meeting",x:"Review flights that missed TSAT or updated TOBT late in the monthly handler meeting and fix the procedure (2-3)."}]}]}],
 voice:"When TSAT is introduced, some try to get ahead in the queue by declaring an early TOBT. Making sure the floor updates the TOBT as soon as readiness changes actually makes departures more stable.",

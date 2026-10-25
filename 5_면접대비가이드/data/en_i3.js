@@ -41,7 +41,7 @@ next:"4-2 Understanding the job: interviewers hire a role, not a set of tasks"})
 set("4-3",{title:"Designing Your Story: List Your Experiences and Find Your Core Value",hl:"Designing Your Story",subtitle:"A good story is not thought up; it is assembled from materials laid out in front of you",
 lead:["Stories built only in your head tend to become strings of phrases heard elsewhere. List plenty of experiences first, find the idea they share (your core value), then lay it over the company’s features. Built in that order, the story is in your own words and holds up under probing.","This article sets out five steps with questions and tables for each. The site’s Story Design Sheet lets you fill them in step by step."],
 sections:[
-{h:"Five steps to build the story",blocks:[{t:"fig",id:"int_design",cap:"Figure: designing one storyline."},{t:"ladder",rise:10,steps:[{name:"1. List experiences",sub:"Ten or more, small ones too"},{name:"2. Dig into three",sub:"Situation, task, action, result, learning"},{name:"3. Find your core value",sub:"The idea the three share"},{name:"4. Lay it over the company",sub:"Core value × company feature = fit"},{name:"5. Draw the future, write the core sentence",sub:"Year 1, year 3, year 5"}]},
+{h:"Five steps to build the story",blocks:[{t:"fig",id:"int_design",cap:"Figure: designing one storyline."},{t:"ladder",rise:10,steps:[{name:"1. List experiences",sub:"Ten or more, small ones too"},{name:"2. Dig into three",sub:"Situation, task, action, result, learning"},{name:"3. Find your core value",sub:"The idea the three share"},{name:"4. Lay it over the company",sub:"Core value × company feature = fit"},{name:"5. Map out the future, write the core sentence",sub:"Year 1, year 3, year 5"}]},
 {t:"point",x:"Work through the steps in order. If you settle your motivation first and then hunt for experiences, you bend the experiences to fit, and they collapse under probing."}]},
 {h:"Step 1: list your experiences",blocks:[{t:"rows",items:[
 {name:"Scope",x:"Work, part-time jobs, study, clubs, volunteering, study abroad, helping your family. They do not have to be impressive."},
@@ -54,7 +54,7 @@ sections:[
 ["Action","What you thought and actually did","Switched to handing the group’s keys to the tour leader, told individual guests the likely wait first, and asked the supervisor for help"],
 ["Result","What happened, in numbers if possible","The queue cleared in about 20 minutes with no complaints that day"],
 ["Learning","How you used it next time","Wrote a procedure for predicting busy times and preparing in advance, and shared it with the team"]]},
-{t:"point",x:"Under “action,” write what you did. Not “the team worked hard” but what you thought and did within it. Writing the learning makes it easier to connect to the future."}]},
+{t:"point",x:"Under “action,” write what you did. Not “the team worked hard” but what you thought and did within it. Including the learning makes it easier to connect the experience to the future."}]},
 {h:"Step 3: find your core value",blocks:[{t:"rows",items:[
 {name:"Look for what they share",x:"Put the three experiences side by side and look for a common reason behind your actions. For example, in all three you looked at the whole picture first and set the order to cut waiting time."},
 {name:"Ask “why?” three times",x:"Asking “why did I do that?” three times brings out the idea behind the action. Cut the queue → did not want guests to worry → I believe telling people what to expect gives them peace of mind."},
@@ -62,19 +62,19 @@ sections:[
 {name:"Look at what others say",x:"What managers, colleagues or customers tell you again and again (“well organised,” “calm”) is your strength as others see it."}]},
 {t:"table",cols:["Example core value","Link to airport work"],rows:[
 ["Give people the outlook first so they feel reassured","Delay and cancellation announcements, boarding guidance"],
-["Keep the rules while explaining them in words people understand","Baggage, documents and dangerous goods, explaining cut-off times"],
+["Follow the rules while explaining them in words people understand","Baggage, documents and dangerous goods, explaining cut-off times"],
 ["See the whole picture and set order and priority","Check-in congestion, gate boarding, sequencing ramp work"],
 ["Do not let a small doubt pass","Security and safety, document checks, a reporting culture"],
 ["Connect people of different languages and cultures","Foreign passengers, foreign airline stations, liaison with head office"]]}]},
 {h:"Step 4: lay it over the company to create a point of fit",blocks:[{t:"table",cols:["What to research","Where","Example point of fit"],rows:[
 ["Routes and passengers","Company website, timetables, airport departure boards","Mainly Japan–Korea routes → can guide passengers in both Korean and Japanese"],
 ["Business and direction","Medium-term business plan, integrated report, news releases","Adding routes or aircraft → learn the procedures and support the launch period"],
-["Type of company","Company profile, job postings","A ground handler serving many airlines → keep each airline’s different procedures exactly"],
+["Type of company","Company profile, job postings","A ground handler serving many airlines → follow each airline’s different procedures exactly"],
 ["The role","The job description, recruitment pages, your questions in the interview","Know the decisions, supervision and coordination entrusted, not just the tasks → say why you are needed in the language of the role (4-2)"],
 ["Work and training","Job postings, recruitment pages, staff profiles","A small station with a wide range of duties → learn from check-in to operations liaison"],
 ["What the operation looks like","Go to the airport and watch","How staff guide passengers at peak times → describe a concrete situation that matches your core value"]]},
 {t:"point",x:"A point of fit is not the company’s good points; it is where the company’s features overlap with your core value. A motivation that only praises the company could come from any candidate."}]},
-{h:"Step 5: draw the future and write the core sentence",blocks:[{t:"rows",items:[
+{h:"Step 5: map out the future and write the core sentence",blocks:[{t:"rows",items:[
 {name:"Future in stages",x:"Year 1 (learn the basics), year 3 (be trusted with more), year 5 (teach, lead or specialise). See 4-6."},
 {name:"Carry the core value into the future",x:"If your core value is giving the outlook first, place the future on the same line: for example, becoming the person who leads passenger guidance on disrupted days."},
 {name:"Put it in one sentence",x:"Fit it to the pattern in 4-1 and check you can say it aloud in under 30 seconds. Where it is hard to say, the connection is weak."}]},
@@ -93,9 +93,9 @@ quiz:[{q:"What is the right order for building your story?",opts:["Settle your m
 next:"4-4 The same story from papers to interview: Japanese and Korean documents"});
 
 set("4-4",{title:"The Same Story from Papers to Interview: Japanese and Korean Documents",hl:"from Papers to Interview",subtitle:"One conclusion, shown from a different angle in each document and each question",
-lead:["Once the story is built, you distribute it across the fields of your documents and the questions in the interview. The skill is not to repeat the same sentence everywhere but to show the same conclusion from the angle each field and question asks for.","Japanese and Korean application documents differ in form and in their items. This article also covers what to watch when you reuse a Korean self-introduction essay (자기소개서) for a Japanese application, or send Japanese documents to a Korean company."],
+lead:["Once the story is built, you distribute it across the fields of your documents and the questions in the interview. The skill is not to repeat the same sentence everywhere but to show the same conclusion from the angle each field and question asks for.","Japanese and Korean application documents differ in form and in their items. This article also covers what to watch out for when you reuse a Korean self-introduction essay (자기소개서) for a Japanese application, or send Japanese documents to a Korean company."],
 sections:[
-{h:"Japanese documents and the four parts",blocks:[{t:"fig",id:"int_docs",cap:"Figure: turning a Korean self-introduction letter into Japanese documents."},{t:"table",cols:["Document","Main fields","Part to put forward"],rows:[
+{h:"Japanese documents and the four parts",blocks:[{t:"fig",id:"int_docs",cap:"Figure: turning a Korean self-introduction essay into Japanese documents."},{t:"table",cols:["Document","Main fields","Part to put forward"],rows:[
 ["Rirekisho (CV)","Motivation, self-PR, special skills","Mainly the point of fit, with the present (strength) in brief"],
 ["Shokumu keirekisho (career history)","Career summary, work history, applicable experience and skills, self-PR","The past in concrete detail, summed up by the present"],
 ["Entry sheet (mainly new graduates)","What you worked hardest at as a student, self-PR, motivation, what you want to do after joining","One part per question, all leading to the core sentence"],
@@ -107,7 +107,7 @@ sections:[
 ["지원 동기","Motivation","Point of fit"],
 ["입사 후 포부","Aspirations after joining","Future"],
 ["직무 관련 경험·역량","Job-related experience and ability","Past and present; more companies now build the essay around this"]]},
-{t:"point",x:"The items in a Korean 자기소개서 often run past → present → fit → future, which suits a consistent story well. Each company sets its own questions and character limits, so answer the question asked, head on, first."}]},
+{t:"point",x:"The items in a Korean 자기소개서 often run past → present → fit → future, which suits a consistent story well. Each company sets its own questions and character limits, so the first priority is to answer each question head on."}]},
 {h:"Moving between Japan and Korea",blocks:[{t:"rows",items:[
 {name:"Do not reuse 성장 과정 as it is",x:"Japanese documents rarely have a “how you grew up” field. Drop family and childhood and replace them with experience from work or study."},
 {name:"Turn 입사 후 포부 into “what I want to work on after joining”",x:"In Japan, stages and specifics tend to count for more than enthusiasm. Recast it as year 1 and year 3."},
@@ -143,10 +143,10 @@ quiz:[{q:"Which of the four parts does 입사 후 포부 in a Korean 자기소�
 next:"4-5 Consistent stories by example: three cases"});
 
 set("4-5",{title:"Consistent Stories by Example: Three Cases",hl:"Three Cases",subtitle:"A new graduate, an experienced airport hire and a career changer, each built differently",
-lead:["Here three people in different positions are followed through the four parts, the core sentence and a one-minute self-introduction. The people and experiences are fictional, based on common examples.","Use the case closest to your own as a guide, but always put it in terms of your own experience. Copying the example wording will collapse under probing."],
+lead:["Here we follow three people in different positions through the four parts, the core sentence and a one-minute self-introduction. The people and experiences are fictional, based on common examples.","Use the case closest to your own as a guide, but always put it in terms of your own experience. If you copy the example wording, your answers will collapse under probing."],
 sections:[
 {h:"Case 1: a new graduate joining a ground handler",blocks:[{t:"fig",id:"int_cases",cap:"Figure: three cases: background and core."},{t:"table",cols:["Part","Content"],rows:[
-["Past","Four years of part-time work in a hotel banquet hall. On wedding days, agreed with colleagues the order for serving food and drinks to the start time, and never ran late"],
+["Past","Four years of part-time work in a hotel banquet hall. On wedding days, agreed with colleagues on the order for serving food and drinks to match the start time, and never ran late"],
 ["Present (strength, core value)","In work with fixed times, sees the whole flow, sets the order and gets colleagues moving. Core value: keeping a fixed time as a team"],
 ["Point of fit","Serving many airlines, connecting passenger, baggage and ramp work toward the departure time. Keeping each airline’s different procedures matches keeping each banquet’s different running order"],
 ["Future","Year 1: learn check-in and gate basics and each airline’s procedures precisely. Year 3: assist the flight coordinator and be trusted with on-time departure preparation. Year 5: lead training of new staff and peak-season staffing"]]},
@@ -171,7 +171,7 @@ sections:[
 {name:"Points for career changers",x:"Always show that you understand how hotels and airports differ: rules for safety come first and cut-off times are strict. Saying “customer service is the same everywhere” makes your understanding look shallow."}]}]},
 {h:"What the three have in common",blocks:[{t:"cards",n:3,items:[
 {name:"One experience, told in depth",tag:"Past",x:"Each builds on one central experience and keeps the others for probing or other questions."},
-{name:"The core value runs into the future",tag:"Present → future",x:"Keeping time, bridging, giving the outlook: each becomes the role after joining."},
+{name:"The core value runs into the future",tag:"Present → future",x:"Keeping time, bridging, giving the outlook: each becomes their role after joining."},
 {name:"Ready to learn the differences",tag:"Year 1",x:"The more experienced, or the further from aviation, the more they put relearning airport and Japanese rules first."}]}]},
 {h:"Common mistakes and how to fix them",blocks:[{t:"table",cols:["Mistake","What is happening","Fix"],rows:[
 ["Too many experiences","Five or six, all shallow","Build on the one closest to your core value; bring out others when probed"],
@@ -188,7 +188,7 @@ quiz:[{q:"In Case 2, what should year 1 of the future always include?",opts:["Ai
 next:"4-6 Talking about your plans after joining: five years on and your career outlook"});
 
 set("4-6",{title:"Talking About Your Plans After Joining: Five Years On and Your Career Outlook",hl:"Plans After Joining",subtitle:"Present the future not as a dream but as stages that follow on from your past and present",
-lead:["“What do you want to do after joining?” and “Where do you see yourself in five years?” check the last part of the story, the future. If it does not connect to your past and point of fit, the whole story weakens.","This article covers what interviewers want to confirm with these questions, how to talk in stages, examples of airport careers, wording to avoid, and how to link your last question to the future."],
+lead:["“What do you want to do after joining?” and “Where do you see yourself in five years?” check the final part of your story: the future. If it does not connect to your past and point of fit, the whole story weakens.","This article covers what interviewers want to confirm with these questions, how to talk in stages, examples of airport careers, wording to avoid, and how to link your last question to the future."],
 sections:[
 {h:"What the question is checking",blocks:[{t:"fig",id:"int_plan",cap:"Figure: talking about plans in stages."},{t:"rows",items:[
 {name:"Intention to stay",x:"Training takes time and money. Do you picture yourself growing rather than leaving soon?"},
@@ -209,10 +209,10 @@ sections:[
 {name:"Head office and planning",tag:"Broadening",x:"Uses operational experience to plan procedures, systems and services."}]},
 {t:"p",x:"This site’s courses on flight dispatch, airline sales and station manager handovers cover each of these roles in detail."}]},
 {h:"Wording to avoid",blocks:[{t:"check",items:[
-{name:"Do not belittle the job you applied for",x:"“I want to move to head-office planning soon” sounds uninterested in the role. Include a stage of building skill in it first."},
+{name:"Do not belittle the job you applied for",x:"“I want to move to head-office planning soon” sounds uninterested in the role. Start with a stage of building your skills in that role."},
 {name:"Do not give only a big goal",x:"Not just “I want to be station manager,” but what you will learn in which year to get there."},
 {name:"Avoid “nothing in particular”",x:"Having no plan suggests you will not stay or do not understand the work."},
-{name:"Do not name roles the company does not have",x:"Aiming at work the company does not do shows you did not research it."},
+{name:"Do not name systems or departments the company does not have",x:"Aiming at work the company does not do shows you did not research it."},
 {name:"Do not assume you will move on",x:"“Gain experience and go elsewhere” is not something to say in an interview."},
 {name:"Carry your core value into the future",x:"Describe the future in the same words as your past and present: “giving the outlook” becomes “leading guidance on disrupted days.”"}]}]},
 {h:"Link your last question to the future",blocks:[{t:"table",cols:["Example question","Part it links to"],rows:[
@@ -226,7 +226,7 @@ sections:[
 {t:"link",href:"ストーリー設計シート.html?lang=en",x:"Sum up the four parts and your core sentence on the Story Design Sheet"}]}],
 voice:"A “five years from now” answer sticks when it describes the work you want to be trusted with rather than a job title. Find where that overlaps with the company’s direction.",
 terms:[["Post-hire Goals","入社後の抱負","입사 후 포부"],["Career Outlook","キャリアの見通し","경력 전망"],["Reverse Question","逆質問","역질문"],["In-house Certification","社内の認定","사내 인증"],["Flight Dispatcher Skill Examination","運航管理者技能検定","운항관리자 기능 검정"]],
-quiz:[{q:"Which is NOT something the “five years” question checks?",opts:["Intention to stay","Understanding of the work","Fit with the company’s direction","Plans to move to another company"],a:3,exp:"Interviewers look at your intention to stay, understanding of the work, fit with the company’s direction and ability to plan your own growth. Talk that assumes you will move on is avoided in interviews."},
+quiz:[{q:"Which is NOT something the “five years” question checks?",opts:["Intention to stay","Understanding of the work","Fit with the company’s direction","Plans to move to another company"],a:3,exp:"Interviewers look at your intention to stay, understanding of the work, fit with the company’s direction and ability to plan your own growth. In interviews, avoid talk that assumes you will move on."},
 {q:"Which way of talking about plans is most likely to be valued?",opts:["“I want to be a supervisor within a year”","“Nothing in particular”","In stages for year 1, 3 and 5, fitted to the company’s systems","“I want to move to head-office planning soon”"],a:2,exp:"Stages show realism and an understanding of the work. Option 1 has no stages, 2 has no plan and 4 sounds uninterested in the role applied for."},
 {q:"Which last question links to the future?",opts:["How many routes do you have?","Do you get a lot of holidays?","How are new staff trained before they work the counter alone?","Nothing in particular"],a:2,exp:"Asking about training links to your year-1 plan and shows motivation. Option 1 can be looked up, 2 is only about conditions and 4 shows no motivation."}],
 next:""});

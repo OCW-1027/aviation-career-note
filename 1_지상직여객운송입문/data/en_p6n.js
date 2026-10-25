@@ -1,10 +1,10 @@
 /* 旅客運送の実務 6-10 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-10",{title:"Welcoming New Staff: The First 30 Days, from Day One to Working Solo",hl:"working solo",subtitle:"Start ID passes and training before day one. Weekly goals, and a checklist for deciding when someone can work on their own",
-lead:["Airport work has a lot to learn, and mistakes can affect safety and security. How you design a new starter’s first month makes a big difference to whether they stay and to the quality of the operation.","This lesson covers preparation before the start date, the 30-day plan, the buddy’s role, the checklist for signing someone off, and common mistakes."],
+lead:["Airport work involves a lot to learn, and mistakes can affect safety and security. How you design a new starter’s first month makes a big difference to whether they stay and to the quality of the operation.","This lesson covers preparation before the start date, the 30-day plan, the buddy’s role, the checklist for signing someone off, and common mistakes."],
 sections:[
 {h:"Before the start date",blocks:[{t:"check",items:[
-{name:"Airport ID pass",x:"Issuing often takes time; apply working back from the start date (6-3)."},
+{name:"Airport ID pass",x:"Issuing a pass often takes time; apply by working back from the start date (6-3)."},
 {name:"System access",x:"Set up IDs and permissions for departure control, reservations and internal systems."},
 {name:"Training bookings",x:"Book initial security, dangerous goods and safety training first; some tasks cannot be done without them."},
 {name:"A buddy",x:"Choose an experienced colleague to work alongside for the first month and align rosters."},
@@ -25,7 +25,7 @@ sections:[
 {h:"Sign-off checklist (example: counter and gate)",blocks:[{t:"table",cols:["Area","What to confirm"],rows:[
 ["Identity and travel documents","Matches passport to face and checks entry requirements (1-3)"],
 ["Baggage acceptance","Checks weight and pieces, asks the dangerous goods questions, tags correctly (1-10, 1-12)"],
-["Special assistance","Arranges and communicates wheelchairs, unaccompanied minors and so on (1-7)"],
+["Special assistance","Arranges and communicates assistance for wheelchair users, unaccompanied minors and so on (1-7)"],
 ["Boarding","Manages closing time, reconciles numbers, handles no-shows at the gate (2-5)"],
 ["Security","Can explain the procedure for suspicious items and people (8-2)"],
 ["Reporting","Knows whom to tell, and what, when stuck or after a mistake"]]},

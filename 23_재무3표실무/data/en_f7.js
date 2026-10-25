@@ -2,9 +2,9 @@
    Not investment advice: a general explanation of methods. Vela Air’s share price and share count, and Minato Ground Services, are fictional. */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("7-1",{title:"PER, PBR and EV/EBITDA: Pricing a Company with Multiples",hl:"Pricing a Company with Multiples",subtitle:"A company’s price is measured as a multiple of its profit or net assets. The starting point is to separate the price to shareholders from the price of the whole business",
-lead:["Part 6 used ratios to read a company’s strength and earning power. Part 7 asks what price that company carries. The tools are the same whether you are reviewing an investment or trying to see how the market views your own employer.","The quickest method is the multiple: how many times profit, net assets or EBITDA a company trades at, compared with similar companies. Here we treat Vela Air as a listed company with 100 million shares at 1,500 yen each."],
+lead:["Part 6 used ratios to read a company’s financial strength and earning power. Part 7 asks what price that company carries. The tools are the same whether you are reviewing an investment or trying to see how the market views your own employer.","The quickest method is the multiple: how many times profit, net assets or EBITDA a company trades at, compared with similar companies. Here we treat Vela Air as a listed company with 100 million shares at 1,500 yen each."],
 sections:[
-{h:"The price to shareholders and the price of the whole business",blocks:[{t:"fig",id:"fin_ev_bridge",cap:"Add net debt to the owners’ price (market cap) and you get the price of the business (enterprise value)"},
+{h:"The price to shareholders and the price of the whole business",blocks:[{t:"fig",id:"fin_ev_bridge",cap:"Add net debt to the price to shareholders (market cap) and you get the price of the business (enterprise value)"},
 {t:"rows",items:[
 {name:"Market capitalisation = share price × shares in issue",x:"1,500 yen × 100 million shares = 150bn yen (1,500 in units of 100m yen). The price of everything the shareholders own."},
 {name:"Enterprise value (EV) = market cap + net debt",x:"1,500 + (interest-bearing debt 2,070 − cash 1,338) = 2,232. What it would cost to buy the company together with its debt: the price of the business itself."},
@@ -14,8 +14,8 @@ sections:[
 {t:"table",cols:["Multiple","Formula","Vela Air year 3","What it shows"],rows:[
 ["PER (price-to-earnings)","Share price ÷ earnings per share","1,500 ÷ 127 = 11.8×","How many years of profit the price represents"],
 ["PBR (price-to-book)","Share price ÷ net assets per share","1,500 ÷ 1,942 = 0.77×","Dear or cheap against net assets; 1× is the rough break-up value"],
-["EV/EBITDA","Enterprise value ÷ EBITDA","2,232 ÷ 501 = 4.5×","The price of the business, evened out for debt and depreciation"],
-["Dividend yield","Dividend per share ÷ share price","50 ÷ 1,500 = 3.3%","The dividend as a share of the price"]]},
+["EV/EBITDA","Enterprise value ÷ EBITDA","2,232 ÷ 501 = 4.5×","The price of the business, adjusted for differences in debt and depreciation"],
+["Dividend yield","Dividend per share ÷ share price","50 ÷ 1,500 = 3.3%","The dividend as a percentage of the share price"]]},
 {t:"point",x:"PBR = PER × ROE. 11.8 × 6.5% (ROE on closing equity) = 0.77. A PBR below 1× is a sign that the market thinks ROE falls short of the return investors want."}]},
 {h:"When multiples fail or mislead",blocks:[{t:"rows",items:[
 {name:"No PER in a loss year",x:"Vela Air made a net loss in year 2, so PER cannot be calculated. EV/EBITDA on the same EV jumps to 2,232 ÷ 208 = 10.7×. Use a normal year’s profit, not a temporarily depressed one."},
@@ -37,7 +37,7 @@ quiz:[{q:"Which is the correct calculation of enterprise value (EV)?",opts:["Mar
 {q:"What does a PBR below 1× tell you?",opts:["The share price is below net assets per share","The company is loss-making","It has no debt","It pays no dividend"],a:0,exp:"PBR = share price ÷ net assets per share. A low ROE tends to push it below 1×."},
 {q:"How should you price a company with multiples in a loss year?",opts:["Use a normal year’s profit, or EV/EBITDA and PBR","Use the negative PER as it is","Give up: multiples cannot be used","Decide on sales alone"],a:0,exp:"Look at normal earnings, not a temporarily depressed figure."}]});
 set("7-2",{title:"DCF Basics: Turning Future Cash into Today’s Value",hl:"Turning Future Cash into Today’s Value",subtitle:"A company is worth the cash it will generate from now on. But 100 yen next year weighs less than 100 yen today. Learn how to discount, and how much depends on the assumptions",
-lead:["Multiples price a company from what similar companies cost. Discounted cash flow (DCF) values it from the cash it will generate itself. The idea is simple: restate future free cash flow in today’s money and add it up.","The hard part is not the arithmetic but the assumptions: how many years, how much cash, discounted at what rate. A small change moves the answer a long way. We work it once by hand on Vela Air to get the feel."],
+lead:["Multiples price a company from what similar companies cost. Discounted cash flow (DCF) values it from the cash it will generate itself. The idea is simple: restate future free cash flow in today’s money and add it up.","The hard part is not the arithmetic but the assumptions: how many years, how much cash, discounted at what rate. A small change moves the answer a long way. We work it once by hand on Vela Air to get a feel for it."],
 sections:[
 {h:"100 yen today and 100 yen next year",blocks:[{t:"table",cols:["When received","Formula (5% discount rate)","Value today"],rows:[
 ["100 in one year","100 ÷ 1.05","95.2"],["100 in five years","100 ÷ 1.05 to the power 5","78.4"],["100 in ten years","100 ÷ 1.05 to the power 10","61.4"]]},
@@ -69,8 +69,8 @@ terms:[["Discounted cash flow","DCF（割引キャッシュフロー法）","DCF
 quiz:[{q:"At a 5% discount rate, what is 100 received in one year worth today?",opts:["About 95","100","105","About 90"],a:0,exp:"100 ÷ 1.05 = 95.2."},
 {q:"In Vela Air’s DCF, how much of enterprise value is terminal value?",opts:["About four-fifths","About one-fifth","About half","Almost none"],a:0,exp:"2,275 ÷ 2,792 = about 81%. That is why the terminal value assumptions decide the answer."},
 {q:"How do you get from DCF enterprise value to equity value?",opts:["Deduct net debt","Add net debt","Deduct depreciation","Multiply by sales"],a:0,exp:"Enterprise value − net debt = equity value."}]});
-set("7-3",{title:"Reading an Unlisted Company’s Numbers: Restating the Accounts to Normal",hl:"Restating the Accounts to Normal",subtitle:"The accounts of an owner-managed company are shaped by tax and by the family’s affairs. For an investment, redraw them as the company will look after it is bought",
-lead:["From here we look at companies that are not listed. Their accounts are mostly prepared for the tax return and are not audited. The owner’s pay and insurance, and money moving between the company and the owner personally, are commonly mixed in.","Our example is a fictional company, Minato Ground Services: ground handling at regional airports, sales of 2.4bn yen, about 300 staff, wholly owned by the founding family. We restate its reported profit to the normal earnings that will continue after a purchase."],
+set("7-3",{title:"Reading an Unlisted Company’s Numbers: Restating the Accounts on a Normal Basis",hl:"Restating the Accounts on a Normal Basis",subtitle:"The accounts of an owner-managed company are shaped by tax and by the family’s affairs. When considering an investment, restate them to show the company as it will look after the purchase",
+lead:["From here we look at companies that are not listed. Their accounts are mostly prepared for the tax return and are not audited. The owner’s pay and insurance, and money moving between the company and the owner personally, are commonly mixed in.","Our example is a fictional company, Minato Ground Services: a ground handler at a regional airport, sales of 2.4bn yen, about 300 staff, wholly owned by the founding family. We restate its reported profit to the normal earnings that will continue after a purchase."],
 sections:[
 {h:"The company as reported",blocks:[{t:"fig",id:"fin_bs_check",cap:"Minato Ground Services’ balance sheet. The red items are checked in 7-4"},
 {t:"table",cols:["Income (million yen)","Amount","Balance sheet (million yen)","Amount"],rows:[
@@ -85,7 +85,7 @@ sections:[
 ["One-off repairs","+12","A large repair this year only; it will not recur next year"],
 ["One-off subsidy","−18","A subsidy received this year only; it will not come in next year"],
 ["Normalised earnings (adjusted EBITDA)","229 (9.5%)","180 + 40 + 20 + 10 − 15 + 12 − 18"]]},
-{t:"point",x:"Adjustments do not only add. Material prepared by a seller tends to be heavy on additions. Finding the deductions (unpaid overtime, one-off gains, repairs or staff that are short) is the buyer’s job."}]},
+{t:"point",x:"Adjustments do not only add. Material prepared by a seller tends to be heavy on additions. Finding the deductions (unpaid overtime, one-off gains, repair or staffing shortfalls) is the buyer’s job."}]},
 {h:"Accounts to look at with suspicion",blocks:[{t:"rows",items:[
 {name:"Loans to directors and suspense payments",x:"Money that went from the company to the owner personally. Will it come back? If not, do not count it as an asset."},
 {name:"The age of receivables",x:"400 is 61 days of sales. With month-end invoicing and payment the following month, 45 to 60 days is normal, so check by customer for old balances or disputed invoices."},
@@ -93,8 +93,8 @@ sections:[
 {name:"Off-balance-sheet obligations",x:"Unfunded retirement benefits, unpaid overtime, leases, guarantees. The less something appears in the accounts, the more you need to ask."},
 {name:"Customer concentration",x:"The largest airline customer is 45% of sales, on a contract renewed yearly. Calculate separately what the company looks like without it."}]}]},
 {h:"Why it differs from a listed company, and try it",blocks:[{t:"cards",n:3,items:[
-{ic:"🧾",name:"Accounts prepared for tax",tag:"Purpose",x:"Treatments tend to make profit look smaller. A listed company’s accounts, by contrast, are prepared to show investors"},
-{ic:"👪",name:"Company and household are close",tag:"Owner",x:"Pay, insurance, cars, property, loans: business costs and family costs mix"},
+{ic:"🧾",name:"Accounts prepared for tax",tag:"Purpose",x:"Many accounting treatments make profit look smaller. A listed company’s accounts, by contrast, are prepared to show investors"},
+{ic:"👪",name:"Company and household are close",tag:"Owner",x:"Pay, insurance, cars, property, loans: business costs and family costs are mixed"},
 {ic:"🔍",name:"No audit",tag:"Reliability",x:"Many are not checked by an accountant. Verify the basis of each number yourself"}]},
 {t:"check",items:[
 {name:"Add one more adjustment",x:"You learn that vehicle (GSE) replacement has been deferred for three years and that in a normal year repairs would cost 10 more. What are normalised earnings now?"},
@@ -105,24 +105,24 @@ quiz:[{q:"When calculating normalised earnings, what is added back to profit?",o
 {q:"Unpaid overtime is discovered. What happens to normalised earnings?",opts:["They fall (it is a recurring cost once paid properly)","They rise","No change","Sales increase"],a:0,exp:"It is a deduction. The unpaid amount for past years is also counted separately as a liability (7-4)."},
 {q:"What is the basic stance when reading an unlisted company’s accounts?",opts:["Verify the basis of each number yourself","Trust the accounts as they are","Look only at sales","Ask the tax office"],a:0,exp:"The accounts are prepared for tax and are usually unaudited."}]});
 set("7-4",{title:"Financial Due Diligence: Four Things to Check Before Buying",hl:"Four Things to Check Before Buying",subtitle:"Normal earnings, real net assets, true debt and working capital. Whatever you find is absorbed through the price, the contract or a condition",
-lead:["Due diligence (DD) is the investigation carried out before an investment or acquisition. Financial DD does not audit whether the accounts are correct; it establishes how much it is right to pay for the company and what could happen after buying it.","There are four things to establish: (1) normalised earnings (7-3), (2) real net assets, (3) net debt, including items treated as debt, and (4) working capital. We go through them on Minato Ground Services."],
+lead:["Due diligence (DD) is the investigation carried out before an investment or acquisition. Financial DD does not audit whether the accounts are correct; it establishes how much it is right to pay for the company and what could happen after buying it.","There are four things to establish: (1) normalised earnings (7-3), (2) adjusted net assets, (3) net debt, including items treated as debt, and (4) working capital. We go through them using the Minato Ground Services example."],
 sections:[
-{h:"2. Real net assets: restating book net assets to current value",blocks:[{t:"fig",id:"fin_net_assets",cap:"From book net assets of 500, deducting assets that will not come back and liabilities not recorded leaves 340"},
+{h:"2. Adjusted net assets: restating book net assets to current value",blocks:[{t:"fig",id:"fin_net_assets",cap:"From book net assets of 500, deducting assets that will not come back and liabilities not recorded leaves 340"},
 {t:"table",cols:["Item","Amount (million yen)","Reason"],rows:[
-["Book net assets","500","As reported"],["Loan to the owner","−60","No prospect of repayment"],["Uncollectable receivables and old inventory","−20","No movement for over a year"],["Unfunded retirement benefits","−80","Short of the amount calculated under the company’s rules"],["Unpaid overtime (past two years)","−30","An obligation to pay retrospectively"],["Unrealised gain on insurance","+30","Surrender value 150 − book value 120"],["Real net assets","340","500 − 60 − 20 − 80 − 30 + 30"]]},
+["Book net assets","500","As reported"],["Loan to the owner","−60","No prospect of repayment"],["Uncollectable receivables and old inventory","−20","No movement for over a year"],["Unfunded retirement benefits","−80","Short of the amount calculated under the company’s rules"],["Unpaid overtime (past two years)","−30","An obligation to pay retrospectively"],["Unrealised gain on insurance","+30","Surrender value 150 − book value 120"],["Adjusted net assets","340","500 − 60 − 20 − 80 − 30 + 30"]]},
 {t:"point",x:"Net assets were 340, not 500. The gap of 160 cannot be seen from the accounts alone. It appears only after requesting documents, questioning the staff, and matching the rules against the payroll records."}]},
 {h:"3. Net debt: what counts as borrowing?",blocks:[{t:"fig",id:"fin_net_debt",cap:"Start from bank borrowings of 600, add the items treated as debt, deduct cash"},
-{t:"table",cols:["Item","Amount (million yen)","Thinking"],rows:[
+{t:"table",cols:["Item","Amount (million yen)","Rationale"],rows:[
 ["Borrowings","600","Bank loans"],["Lease obligations (not on the books)","+50","Vehicle leases: the obligation to pay is the same as a loan"],["Unfunded retirement benefits","+80","Will be paid in cash one day; treated as debt"],["Unpaid overtime","+30","Likewise an obligation to pay"],["Cash","−300","Deduct cash on hand"],["Net debt (as defined in the DD)","460","600 + 50 + 80 + 30 − 300"]]},
 {t:"rows",items:[
-{name:"Why it matters",x:"Price of the shares = enterprise value − net debt (7-1). Every 30 added to the items treated as debt takes 30 off the share price. What goes in is the negotiation between seller and buyer."},
+{name:"Why it matters",x:"Price of the shares = enterprise value − net debt (7-1). Every 30 added to the items treated as debt takes 30 off the share price. What goes in is itself a matter of negotiation between seller and buyer."},
 {name:"4. Working capital",x:"Receivables less payables and accruals. Look at one to two years of monthly movement and settle on a normal level. Check that payments were not delayed just at the year-end to make cash look larger."}]},
-{t:"note",x:"* Retirement benefits and overtime appear in both real net assets and net debt, but they are not deducted twice. One is used when pricing from net assets, the other when pricing from enterprise value."}]},
-{h:"How it runs",blocks:[{t:"ladder",steps:[
+{t:"note",x:"* Retirement benefits and overtime appear in both adjusted net assets and net debt, but they are not deducted twice. One is used when pricing from net assets, the other when pricing from enterprise value."}]},
+{h:"How the process runs",blocks:[{t:"ladder",steps:[
 {name:"Request documents",sub:"Three to five years of accounts and tax returns, monthly trial balances, sales by customer, a schedule of borrowings, payroll records, contracts"},
 {name:"Analyse the numbers",sub:"Monthly trends, profitability by customer and site, ageing of receivables"},
 {name:"Question management and staff",sub:"The reasons behind the numbers; commitments and disputes not in the accounts"},
-{name:"Write the report",sub:"Normalised earnings, real net assets, net debt, working capital and the findings"},
+{name:"Write the report",sub:"Normalised earnings, adjusted net assets, net debt, working capital and the findings"},
 {name:"Reflect it in price and contract",sub:"Adjust the price, protect through the contract, set conditions"}]}]},
 {h:"How to absorb what you find",blocks:[{t:"table",cols:["Finding","How to absorb it","Example"],rows:[
 ["A problem with a known amount","Reflect it in the price","Include the 30 of unpaid overtime in net debt"],["A problem that may or may not arise","Protect through the contract (warranties and indemnities)","If past tax returns prove wrong, the seller bears the cost"],["A problem that can be fixed before buying","Make it a condition of completion","The loan to the owner is repaid by the completion date"],["A problem that cannot be absorbed","Walk away","No prospect that the contract with the largest customer will continue"]]},
@@ -160,7 +160,7 @@ sections:[
 {name:"Separate fact from opinion",x:"‘45% of sales come from one customer’ is fact; ‘dependence is high’ is opinion. Fact first, opinion after."},
 {name:"Show a range",x:"Value is a range, not a single number (7-2). Set out upside, base and downside cases side by side."},
 {name:"Bad news up front",x:"Do not hide the risks at the back. Put the largest one in a single line on the conclusion page."}]}]},
-{h:"Common mistakes, and try it",blocks:[{t:"table",cols:["Mistake","Fix"],rows:[
+{h:"Common mistakes and exercises",blocks:[{t:"table",cols:["Mistake","Fix"],rows:[
 ["Writing everything in the order investigated","Only what the conclusion needs in the body; the rest in an appendix"],["Using the seller’s numbers as they are","Write with your own adjusted figure (normalised earnings)"],["Only listing risks","Give the amount, and whether price, contract or condition absorbs it"],["One basis for the price","Check with both multiples and DCF and explain the gap"],["No plan for after the purchase","Write what happens in the first 100 days and where the company is in five years"]]},
 {t:"check",items:[
 {name:"Write the conclusion in three lines",x:"For Minato Ground Services, write three lines: invest or not, the price, and the largest risk with how it is absorbed (figures from 7-3 and 7-4; the price is tested in 7-6)."},
@@ -180,7 +180,7 @@ sections:[
 {t:"note",x:"* Equity value = enterprise value − net debt of 460. FCF 110 = normalised earnings 229 − tax 44 − capital expenditure 70 − increase in working capital 5. The 5–6× multiple and the 8–10% discount rate are assumptions chosen for a small unlisted company. ★"}]},
 {h:"Setting the price",blocks:[{t:"rows",items:[
 {name:"Proposed price: 800 for the shares (enterprise value 1,260)",x:"5.5 times normalised earnings: mid-range on multiples and towards the low end of the DCF range. Divided by the reported EBITDA of 180 it is 7.0×, a price that cannot be paid unless the adjustments are accepted."},
-{name:"Goodwill of 460",x:"800 − real net assets of 340. This part is not backed by assets; it is paid for future earning power. If the earnings do not continue, this 460 is the loss."},
+{name:"Goodwill of 460",x:"800 − real net assets of 340. This part is not backed by assets; it is paid for future earning power. If the earnings do not continue, this 460 becomes a loss."},
 {name:"The weight of debt",x:"Net debt 460 ÷ normalised earnings 229 = 2.0×. If borrowing is added to fund the purchase, check how far this multiple rises (6-2)."}]}]},
 {h:"Absorbing the risks",blocks:[{t:"table",cols:["Risk","Size","How it is absorbed"],rows:[
 ["The largest customer (45% of sales) is on a one-year contract","Losing it removes nearly half of normalised earnings","Make confirmation of the customer’s intention to continue a condition of completion"],

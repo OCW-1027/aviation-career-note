@@ -1,8 +1,8 @@
 /* 共通設定（article.js より前に読み込む）— 日本語・한국어・English */
 (function(){
-var PARTS={ja:['','Part 1 引き継ぎの土台','Part 2 分野ごとの引き継ぎ','Part 3 後任者の立場から'],ko:['','Part 1 인계의 토대','Part 2 분야별 인계','Part 3 받는 쪽'],en:['','Part 1 The Foundation','Part 2 Handover by Area','Part 3 The Incoming Manager']};
+var PARTS={ja:['','Part 1 引き継ぎの土台','Part 2 分野ごとの引き継ぎ','Part 3 後任者の立場から'],ko:['','Part 1 인계의 토대','Part 2 분야별 인계','Part 3 후임자의 입장에서'],en:['','Part 1 Handover Foundations','Part 2 Handover by Area','Part 3 The Incoming Manager']};
 var S={ja:'管理職の引き継ぎ ― 引き継ぎ書から着任後30日まで',ko:'관리자 인수인계 — 인계서부터 부임 후 30일까지',en:'Management Handover: From Handover Notes to Your First 30 Days'};
-var DEF={ja:{voice:'引き継いだ人のひと言'},ko:{voice:'인계한 사람의 한마디'},en:{voice:'From Someone Who Handed Over'}};
+var DEF={ja:{voice:'引き継いだ人のひと言'},ko:{voice:'인계한 사람의 한마디'},en:{voice:'A Word from an Outgoing Manager'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];
  a.meta.home=a.meta.home||'00_シリーズ全体_引き継ぎガイド.html';a.meta.from=a.meta.from||'NRT';
  a.meta.en={series:S.en,part:PARTS.en[pn]};

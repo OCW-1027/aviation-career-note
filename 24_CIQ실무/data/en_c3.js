@@ -21,7 +21,7 @@ sections:[
 {name:"Arrival",sub:"Quarantine officers board, or check at a designated place"},
 {name:"Wait for instructions",sub:"Other passengers may not be allowed off until they are given"},
 {name:"Contact details",sub:"Details of passengers seated nearby may be requested"}]}]},
-{h:"What the station does",blocks:[{t:"check",items:[
+{h:"What the airline station does",blocks:[{t:"check",items:[
 {name:"Keep the contacts ready",x:"Put the quarantine station’s number and the out-of-hours procedure on the duty roster."},
 {name:"What to say while disembarkation is held",x:"Give the reason briefly. Never tell other passengers who is ill."},
 {name:"Connections and the next flight",x:"Late disembarkation affects connections and the aircraft’s next departure. Tell operations early."},

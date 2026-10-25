@@ -27,7 +27,7 @@ quiz:[{q:"Where did Incheon rank for international passengers in 2025?",opts:["1
 {q:"Why do Atlanta and Dallas rank so high for passengers?",opts:["They are large domestic hubs","They are mainly international","They carry lots of cargo","They have no slots"],a:0,exp:"Domestic traffic is 80–95%."},
 {q:"What happens at a Level 3 airport?",opts:["No slot, no operation","Free scheduling","Free night operations","No landing fees"],a:0,exp:"The 80% use rule also applies."}],
 next:"0-2 Entry and transfer rules: ESTA, ETA, EES and ETIAS"});
-set("0-2",{title:"Entry and Transfer Rules: ESTA, ETA, EES and ETIAS",hl:"entry rules",subtitle:"Even visa-free travel now needs advance authorisation. The US, UK and EU systems, and what to watch when passengers connect",
+set("0-2",{title:"Entry and Transfer Rules: ESTA, ETA, EES and ETIAS",hl:"entry rules",subtitle:"Even visa-free travel now needs advance authorisation. The US, UK and EU systems, and what to watch for when passengers connect",
 lead:["Korean and Japanese passports give visa-free access to many countries, but over the past decade online pre-travel authorisation has spread. Carry a passenger without one and the airline bears the cost of returning them if they are refused entry, plus fines.","This lesson covers the US, UK and EU systems every station counter must check, and how to tell whether a connection involves passing through immigration."],
 sections:[
 {h:"Main pre-travel authorisations",blocks:[{t:"fig",id:"wld_entry",cap:"Figure: main pre-travel authorisations and entry records."},{t:"table",cols:["Country or area","System","Key points (September 2026)"],rows:[
@@ -41,14 +41,14 @@ sections:[
 {h:"What to check at the counter",blocks:[{t:"check",items:[
 {name:"Transit points as well as the destination",x:"If the connection passes through immigration, the transit country’s rules apply too (for example a UK ETA when clearing UK immigration to connect)."},
 {name:"Nationality and passport",x:"Conditions change for dual nationals or anyone travelling on another country’s passport."},
-{name:"First EES registration",x:"First entry to the Schengen area takes longer while the face and fingerprints are registered; advise generous connection times."},
+{name:"First EES registration",x:"First entry to the Schengen area takes longer while facial images and fingerprints are registered; advise generous connection times."},
 {name:"Keep records",x:"Record that the authorisation was checked; it supports the explanation if entry is refused."}]}]},
 {h:"Transfers and immigration",blocks:[{t:"table",cols:["Type of connection","Immigration","Examples"],rows:[
 ["International to international at the same airport (airside)","Usually not required","Connections at Incheon, Singapore or Dubai"],
 ["Connecting at a US airport","Always required, even international to international","ESTA needed even when connecting at Los Angeles for South America"],
 ["From outside Schengen to another Schengen airport","At the first arrival airport","Arriving in Paris and connecting to Lyon"],
 ["Changing airports","Entry required","Heathrow to Gatwick in London"]]},
-{t:"point",x:"The United States has no airside transit. Passengers routing via the US need an ESTA or visa even if the US is not their destination. This is one of the most common counter errors."}]}],
+{t:"point",x:"The United States has no airside transit. Passengers routing via the US need an ESTA or visa even if the US is not their destination. This is one of the points station counters often get wrong."}]}],
 voice:"Pre-travel authorisations are sometimes required even for passengers who are only transiting, which makes them easy to miss at the counter. Put checking the rules for transit points, not just the final destination, on your checklist.",
 terms:[["ESTA (Electronic System for Travel Authorization)","電子渡航認証（米国）","전자여행허가(미국)"],["ETA (Electronic Travel Authorisation)","電子渡航認証（英国）","전자여행허가(영국)"],["EES (Entry/Exit System)","出入国の記録の仕組み（EU）","출입국 기록 시스템(EU)"],["ETIAS","欧州の渡航の許可","유럽 여행 허가"],["TIMATIC","渡航書類のデータベース","여행 서류 데이터베이스"]],
 quiz:[{q:"What is the ESTA fee from 30 September 2025?",opts:["$14","$21","$40","$60"],a:2,exp:"It rose from $21 to $40."},

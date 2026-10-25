@@ -17,7 +17,7 @@ sections:[
 ["Weight and balance","Load instructions against the actual load","Quarterly"],
 ["Training records","Expired courses, the handling company’s records","Quarterly"],
 ["Emergency readiness","Contact list updates, kit expiry dates, exercise records","Six-monthly"]]},
-{t:"note",x:"* Areas and intervals are examples. Set them by your head office quality rules, the authority’s standards and your number of flights. ★"}]},
+{t:"note",x:"* Areas and intervals are examples. Set them according to your head office quality rules, the authority’s standards and your number of flights. ★"}]},
 {h:"Sample checklist (counter and gate)",blocks:[{t:"table",cols:["No.","Item","How to check","Result"],rows:[
 ["1","The current manual is kept at the counter","Look","Pass"],
 ["2","Staff can explain the passport and visa check","Ask","Pass"],
@@ -44,7 +44,7 @@ lead:["Self-audits and quality audits of the handling company do not last if the
 "Anything a check or audit finds is not just patched on the spot: you look for the cause, change the system so it does not happen again, and confirm that the change worked. This article shows an example annual plan, the corrective action flow and how to fill in a corrective action request."],
 sections:[
 {h:"The annual audit plan (example)",blocks:[{t:"table",cols:["When","Checks and audits"],rows:[
-["April","Fix the year’s plan; summarise the trends in last year’s findings"],
+["April","Finalise the year’s plan; summarise the trends in last year’s findings"],
 ["May to June","Counter and security self-audits; quality audit of the handling company"],
 ["July to August","Pre-peak checks (temporary staff, baggage flow)"],
 ["September","Dangerous goods, weight and balance"],
@@ -58,11 +58,11 @@ sections:[
 ["Number","CAR-2026-07"],
 ["Finding","October self-audit: no record of gate passport checks for three flights"],
 ["Immediate action","Checked with the staff on duty, completed the records, reminded everyone"],
-["Root cause","No one was assigned the record at shift change; each assumed the other would write it"],
+["Root cause","No one was assigned to keep the record at shift change; each assumed the other would write it"],
 ["Corrective action","Added a ‘record owner’ box to the handover sheet, revised the manual, held a briefing"],
 ["Due date and owner","15 November; passenger services duty manager"],
 ["Effectiveness check","Same item checked for three months from December; all Pass"],
-["Closure","Confirmed by the station manager and reported to head office quality"]]}]},
+["Closure","Confirmed by the station manager and reported to the head office quality team"]]}]},
 {h:"Digging for the cause",blocks:[{t:"rows",items:[
 {name:"Keep asking why",x:"“No record” → why → “no one assigned” → why → “no box on the handover sheet”. Keep going until you reach a gap in the system."},
 {name:"Don’t blame people",x:"Stop at “individual carelessness” and the only fix is “be careful”. Look for a set-up that makes the error unlikely whoever does the job."},
@@ -70,7 +70,7 @@ sections:[
 {h:"Tracking and reporting",blocks:[{t:"check",items:[
 {name:"Corrective action log",x:"Track number, content, owner, due date and status (open, in progress, checking effectiveness, closed) in one list."},
 {name:"Monthly meeting",x:"At the monthly meeting with the handling company, review items that are nearly due or overdue."},
-{name:"Reporting to head office",x:"Report in the format and at the frequency set by head office quality and safety."},
+{name:"Reporting to head office",x:"Report in the format and at the frequency set by the head office quality and safety department."},
 {name:"Authority findings",x:"Report the corrective action on the authority’s findings by the deadline it sets ★."},
 {name:"Year-end review",x:"At year end, analyse which areas produced the most findings and feed that into next year’s plan and training."}]},
 {t:"point",warn:true,x:"Repeated findings make the authority and head office question the management system itself. For any overdue action, always record the reason and the new due date."}]}],
@@ -78,11 +78,11 @@ voice:"Don’t keep the corrective action log for the station manager’s eyes o
 terms:[["Annual Plan","年間計画","연간 계획"],["Corrective Action","是正処置","시정 조치"],["Immediate Action (Correction)","応急の処置","응급 조치"],["Root Cause Analysis","原因の分析","원인 분석"],["Effectiveness Check","効果の確認","효과 확인"],["Corrective Action Log","是正の一覧表","시정 조치 목록"]],
 quiz:[{q:"What is the difference between immediate and corrective action?",opts:["None","Immediate action stops what is happening; corrective action stops it happening again","Corrective action is unnecessary","Immediate action is enough to close"],a:1,exp:"Close on immediate action alone and the same finding returns."},
 {q:"Which conclusion should a root cause analysis avoid?",opts:["No box on the handover sheet","Individual carelessness, so be careful","The manual is out of date","Training comes too late"],a:1,exp:"Look for the system gap, not someone to blame."},
-{q:"What is needed before closing a corrective action?",opts:["Nothing","Check the same item at the next audit to confirm it worked","Replace the staff member","Delete the record"],a:1,exp:"It closes only once the fix is shown to work."}],
+{q:"What is needed before closing a corrective action?",opts:["Nothing","Check the same item at the next check to confirm it worked","Replace the staff member","Delete the record"],a:1,exp:"It closes only once the fix is shown to work."}],
 next:"8-3 JAPAN eVISA and the JESTA travel authorisation"});
 
 set("8-3",{title:"JAPAN eVISA and the JESTA Travel Authorisation",hl:"eVISA",subtitle:"Visas on a phone screen, and pre-travel screening coming for visa-exempt travellers too ★ (checked October 2026)",
-lead:["Japanese visas are gradually moving from the paper sticker in the passport to an electronic visa, JAPAN eVISA. The list of eligible countries and regions keeps growing, so check-in staff increasingly meet visas that leave no sticker in the passport.",
+lead:["Japanese visas are gradually moving from the paper sticker in the passport to an electronic visa, JAPAN eVISA. The list of eligible countries and regions keeps growing, so check-in staff increasingly come across visas that leave no sticker in the passport.",
 "In 2026 Japan also passed a law creating JESTA, an electronic travel authorisation that visa-exempt foreign nationals will have to obtain online before travelling. This article explains how JAPAN eVISA works and how to check it, what has been officially announced about JESTA, and how both compare with Korea’s K-ETA."],
 sections:[
 {h:"What JAPAN eVISA is",blocks:[{t:"rows",items:[
@@ -102,7 +102,7 @@ sections:[
 {name:"Type and validity",x:"A single-entry short-stay visa, entry within its validity, and not already used ★."},
 {name:"Means of entry",x:"The visa covers entry by air."},
 {name:"No connection",x:"Point the passenger to the airport Wi-Fi. If it still cannot be displayed, follow head office’s procedure for an enquiry."},
-{name:"Airline enquiry",x:"Check how the airline verifies a passenger’s eVISA against the Ministry’s and embassies’ guidance, and with head office and the passenger systems team ★."},
+{name:"Airline enquiry",x:"Check how the airline verifies a passenger’s eVISA, using the Ministry’s and embassies’ guidance and confirming with head office and the passenger systems team ★."},
 {name:"Record",x:"Record how you checked and the result, and check IATA’s travel document information (Timatic) as well."}]},
 {t:"point",x:"On flights to Japan, the eVISA is mainly checked at the departure airport. The Japan station’s role is to pass the authorities’ notices accurately to head office and the other airports, and to be ready to return passengers who are refused entry."}]},
 {h:"JESTA: what has been announced",blocks:[{t:"rows",items:[
@@ -114,9 +114,9 @@ sections:[
 {t:"note",x:"* As of October 2026 the application process and the airline verification arrangements have not been published. Check the Immigration Services Agency’s notices regularly. ★"}]},
 {h:"Side by side with Korea’s K-ETA",blocks:[{t:"table",cols:["Item","JAPAN eVISA","JESTA (planned)","K-ETA"],rows:[
 ["Type","Electronic visa","Travel authorisation","Travel authorisation"],
-["Who","Those needing a visa (some countries)","Visa-exempt foreigners","Visa-exempt foreigners"],
-["Started","March 2023","Aimed for FY2028 ★","September 2021"],
-["Flights at the station","To Japan (checked at origin)","To Japan (checked at origin)","Japan to Korea"]]},
+["Who","Those needing a visa (some countries and regions)","Visa-exempt foreigners","Visa-exempt foreigners"],
+["Started","March 2023","Targeted for FY2028 ★","September 2021"],
+["Flights involving the station","To Japan (checked at origin)","To Japan (checked at origin)","Japan to Korea"]]},
 {t:"note",x:"* Korea has temporarily exempted travellers from some countries, including Japan, from K-ETA until 31 December 2026 (check whether it is extended) ★."}]},
 {h:"Getting the station ready",blocks:[{t:"check",items:[
 {name:"Keep informed",x:"A named person checks the notices of the Ministry of Foreign Affairs, the Immigration Services Agency and IATA regularly."},

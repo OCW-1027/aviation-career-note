@@ -44,7 +44,7 @@ sections:[
 {name:"Fuelling",x:"Plans are in weight (kg), uplift in volume (litres); convert with the specific gravity and compare the fuel receipt with the aircraft gauges"},
 {name:"Fuel quality",x:"The fuel company tests daily for water and contamination; if in doubt, fuelling stops"},
 {name:"Fuel spills",x:"Stop work and call the fire service and the airport. Fuelling while passengers board or disembark has its own rules"}]},
-{t:"point",x:"When a twin flies long distances over water and remote areas, the route is planned so it always stays within a set time of a suitable airport on one engine (EDTO/ETOPS). B787s are often approved for long times, and a set maintenance service check is required before departure ★."}]},
+{t:"point",x:"When a twin flies long distances over water and remote areas, the route is planned so it always stays within a set time of a suitable airport on one engine (EDTO/ETOPS). B787s are often approved for long diversion times, and a set maintenance service check is required before departure ★."}]},
 {h:"Documents carried on board",blocks:[{t:"table",cols:["Document","What it is"],rows:[
 ["Certificate of registration","Which state the aircraft is registered in (nationality and registration marks)"],
 ["Certificate of airworthiness","Certifies the aircraft is fit to fly (some states set a validity period)"],

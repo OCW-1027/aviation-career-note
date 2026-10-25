@@ -1,10 +1,10 @@
 /* 航空営業 入門 — English version (Part 1–3) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("1-1",{title:"How the Japanese Outbound Travel Market Works",hl:"the market",subtitle:"Packages, groups, independent travellers and business: who buys, where, and how",
-lead:["Japan’s outbound travel market divides into four: package tours put together by travel agencies, group travel for schools and companies, independent travel, and business travel. Online booking by individuals keeps growing, but for groups and packages travel agencies still carry great weight.",
-"This article covers how the market divides, what characterises each segment, and what an airline salesperson needs to hold on to."],
+lead:["Japan’s outbound travel market falls into four main segments: package tours put together by travel agencies, group travel for schools and companies, independent travel, and business travel. Online booking by individuals keeps growing, but for groups and packages travel agencies still carry great weight.",
+"This article covers how the market divides, what characterises each segment, and what an airline salesperson needs to keep in mind."],
 sections:[
-{h:"How the market divides",blocks:[{t:"fig",id:"sls_mkt",cap:"Figure: four segments of Japan’s outbound market."},{t:"table",cols:["Segment","Character"],rows:[
+{h:"How the market divides",blocks:[{t:"fig",id:"sls_mkt",cap:"Figure: four segments of Japan’s outbound market."},{t:"table",cols:["Segment","Characteristics"],rows:[
 ["Package tours","Agencies combine flights and hotels, buying seats in bulk"],
 ["Group travel","School trips, corporate incentive trips, study tours. Large numbers of seats secured early"],
 ["Independent travel","Airline websites, online travel agencies (OTAs) and agency counters"],
@@ -12,9 +12,9 @@ sections:[
 {h:"What sets Japan apart",blocks:[{t:"check",items:[
 {name:"The weight of travel agencies",x:"Many agencies, from the large generalists to specialists strong in particular destinations."},
 {name:"High expectations",x:"Of punctuality, careful explanation and how problems are handled."},
-{name:"Information in Japanese",x:"How clear the fare rules, baggage rules and notices are in Japanese goes straight to sales."},
+{name:"Information in Japanese",x:"How clear the fare rules, baggage rules and notices are in Japanese directly affects sales."},
 {name:"Digital",x:"Among independent travellers, booking and comparing on a smartphone is the norm."}]}]},
-{h:"What a salesperson holds on to",blocks:[{t:"rows",items:[
+{h:"Key points for sales staff",blocks:[{t:"rows",items:[
 {name:"Which segments to target",x:"Choose the segments that fit your timings, aircraft and fare level."},
 {name:"The sales mix",x:"Decide the split between groups, packages and individuals, and reflect it in seat allocation and fare policy (Part 4)."},
 {name:"Agency relationships",x:"Each segment has a different contact at the agency: air purchasing, product planning, group sales."}]},
@@ -27,12 +27,12 @@ quiz:[{q:"What characterises the Japanese market?",opts:["Travel agencies carry 
 next:"1-2 Demand and seasonality on international routes"});
 
 set("1-2",{title:"Demand and Seasonality on International Routes",hl:"demand",subtitle:"Read when the holidays, school breaks and events of both countries overlap",
-lead:["A route to and from Japan carries demand in both directions: people from Japan travelling out, and people from the other country coming in. Public holidays, long weekends, school breaks, concerts and sports events in both countries, and exchange rate moves, all shift demand sharply.",
+lead:["A route to and from Japan carries demand in both directions: people from Japan travelling out, and people from the other country coming in. Public holidays, long weekends, school breaks, concerts and sports events in both countries, and exchange rate movements all shift demand sharply.",
 "This article sets out what characterises the demand, the seasonal pattern, and the information you need to read it."],
 sections:[
 {h:"What characterises the demand",blocks:[{t:"fig",id:"sls_season",cap:"Figure: seasonal waves on Japan–Korea routes (example)."},{t:"check",items:[
 {name:"Two directions",x:"The strength of demand from each end differs by season, which affects seat allocation and fares."},
-{name:"Short trips",x:"Many weekend trips of two or three nights on short-haul routes."},
+{name:"Short trips",x:"Many short trips, either weekends or two to three nights, on short-haul routes."},
 {name:"Purposes",x:"Sightseeing, shopping, food, entertainment such as concerts and fan events, beauty treatments, business."},
 {name:"Repeat travellers",x:"Many travel back and forth often and are sensitive to fares, timings and service."}]}]},
 {h:"The seasonal pattern (example)",blocks:[{t:"table",cols:["Period","From Japan","From the other country"],rows:[
@@ -55,11 +55,11 @@ quiz:[{q:"When is demand from the other country likely to peak?",opts:["During t
 {q:"What do you do about the troughs?",opts:["Build products with agencies","Nothing","Cancel every flight","Keep fares secret"],a:0,exp:"Create the demand."}],
 next:"1-3 Redefining the market: OTAs and independent travel"});
 
-set("2-1",{title:"Indirect and Direct Sales",hl:"indirect and direct",subtitle:"Not one or the other, but a role for each in each segment",
+set("2-1",{title:"Indirect and Direct Sales",hl:"indirect and direct",subtitle:"Not one or the other, but a separate role for each, segment by segment",
 lead:["Ticket sales divide into indirect sales through travel agencies and direct sales through your own website, app and call centre. Direct sales carry no commission and give you the customer data; indirect sales bring demand you cannot reach alone, such as groups and packages.",
 "This article compares the two, looks at how they are used in Japan, and covers what to watch when growing direct sales."],
 sections:[
-{h:"Indirect and direct compared",blocks:[{t:"fig",id:"sls_chan",cap:"Figure: indirect versus direct sales."},{t:"table",cols:["","Indirect (agencies)","Direct (your own)"],rows:[
+{h:"Indirect and direct compared",blocks:[{t:"fig",id:"sls_chan",cap:"Figure: indirect versus direct sales."},{t:"table",cols:["","Indirect (agencies)","Direct (your own channels)"],rows:[
 ["Demand reached","Groups, packages, business","Independent travellers"],
 ["Cost","Commission and incentives","Site operation, payment fees, advertising"],
 ["Customer data","Held by the agency","Held by you"],
@@ -74,13 +74,13 @@ sections:[
 {name:"Quality of the Japanese",x:"Awkward translation undermines trust. Have a native speaker check it."},
 {name:"Payment",x:"Japanese credit cards, convenience store payment and electronic payment."},
 {name:"Enquiries",x:"A Japanese-language contact point by phone, chat or email."},
-{name:"Relations with agencies",x:"Keep undercutting agencies on your own site and their cooperation dries up."}]},
+{name:"Relations with agencies",x:"If you keep undercutting agencies on your own site, their cooperation becomes harder to get."}]},
 {t:"point",x:"Indirect and direct are not rivals but a division of roles. Decide for each segment where you sell, and adjust through fare policy."}]}],
 voice:"Growing direct sales and keeping agency relationships can go together. Leave group and corporate demand, where agencies are strong, to them and explain the division of roles.",
-terms:[["Indirect Sales","間接販売","간접 판매"],["Direct Sales","直接販売","직접 판매"],["Commission","手数料","수수료"],["Payment","決済","결제"]],
+terms:[["Indirect Sales","間接販売","간접판매"],["Direct Sales","直接販売","직접 판매"],["Commission","手数料","수수료"],["Payment","決済","결제"]],
 quiz:[{q:"What is the advantage of direct sales?",opts:["No commission, and you hold the customer data","It brings group demand","The agency handles problems","It costs nothing"],a:0,exp:"Site operation and payment still cost money."},
 {q:"Which demand do agencies bring best?",opts:["Groups, packages and business","Individuals only","Transfers only","Cargo"],a:0,exp:"Demand you cannot reach alone."},
-{q:"What should you watch when growing direct sales?",opts:["Do not keep undercutting agencies","Japanese is unnecessary","One payment method is enough","Do not take enquiries"],a:0,exp:"Agency cooperation dries up."}],
+{q:"What should you watch when growing direct sales?",opts:["Do not keep undercutting agencies","Japanese is unnecessary","One payment method is enough","Do not take enquiries"],a:0,exp:"Agency cooperation becomes harder to get."}],
 next:"2-2 GDS, BSP and NDC"});
 
 set("2-2",{title:"GDS, BSP and NDC: The Sales Infrastructure",hl:"the sales infrastructure",subtitle:"Three systems that let agencies book, ticket and settle",
@@ -112,7 +112,7 @@ set("3-1",{title:"Building Relationships with Agencies, and Seat Blocks",hl:"age
 lead:["Selling to travel agencies rests on trust with the people there. Who you need to meet depends on the purpose: air purchasing, tour planning, group sales. Running seat blocks — handing agencies seats in bulk for packages and groups — is one of the central jobs in airline sales.",
 "This article covers how to call on agencies, what material to leave, and how to think about blocks."],
 sections:[
-{h:"Who to meet",blocks:[{t:"fig",id:"sls_block",cap:"Figure: running group blocks."},{t:"table",cols:["Contact","What you discuss"],rows:[
+{h:"Who to meet",blocks:[{t:"fig",id:"sls_block",cap:"Figure: running seat blocks."},{t:"table",cols:["Contact","What you discuss"],rows:[
 ["Air purchasing","Fares, seats and ticketing conditions"],
 ["Tour planning","New products and seasonal campaigns"],
 ["Group sales","Quotes and seats for school and incentive trips"],
@@ -127,7 +127,7 @@ sections:[
 {name:"What a block is",x:"A set number of seats handed to an agency, to be named by a deadline."},
 {name:"Deadlines and release",x:"Set the release deadline for unnamed seats; after it, they go back on general sale."},
 {name:"Checking utilisation",x:"Check, agency by agency, what share of the seats given were actually used."},
-{name:"Allocation",x:"The stronger the demand, the more the allocation should go to agencies with a record of using it."}]},
+{name:"Allocation",x:"The stronger the demand, the more seats go to agencies with a record of using them."}]},
 {t:"point",x:"Trust with agencies is often decided by how you handle disruption. Telling agencies about cancellations and delays early and accurately is what earns the next sale."}]}],
 voice:"Trust with agencies is built by passing on bad news quickly, more than good news. Tell your contact directly and first about cancellations and schedule changes.",
 terms:[["Block / Allotment","ブロック","블록(좌석 할당)"],["Release Deadline","リリース期限","반환 기한"],["Purchasing","仕入れ","매입"],["Incentive Travel","報奨旅行","포상 여행"]],
@@ -137,8 +137,8 @@ quiz:[{q:"What is it called when seats are handed to an agency in bulk?",opts:["
 next:"3-2 Volume incentives and ADMs"});
 
 set("3-2",{title:"Volume Incentives and ADMs",hl:"incentives and ADMs",subtitle:"A way to reward agencies that sell, and a way to correct ticketing errors",
-lead:["Airlines sometimes pay agencies that sell a lot over a period an incentive based on volume. On the other side, where an agency makes a ticketing error — the wrong fare, a rule breach — there is a mechanism to recover the difference: the agency debit memo (ADM).",
-"This article covers how to think about designing incentives, and what to watch in running ADMs. Specific terms and percentages are not covered."],
+lead:["Airlines sometimes pay an incentive based on volume to agencies that sell a lot over a set period. On the other side, where an agency makes a ticketing error — the wrong fare, a rule breach — there is a mechanism to recover the difference: the agency debit memo (ADM).",
+"This article covers how to think about designing incentives, and what to watch for when running ADMs. Specific terms and percentages are not covered."],
 sections:[
 {h:"Designing incentives",blocks:[{t:"fig",id:"sls_adm",cap:"Figure: incentives and ADMs."},{t:"check",items:[
 {name:"Purpose",x:"Be clear whether you want to grow a particular route, season or segment, or overall revenue."},

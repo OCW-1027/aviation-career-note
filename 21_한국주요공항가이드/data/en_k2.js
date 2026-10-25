@@ -3,7 +3,7 @@
 set("2-1",{title:"Gimhae International Airport (PUS)",hl:"Gimhae",subtitle:"Gateway to Busan and South Gyeongsang and the busiest regional airport for international flights. Shared with the Air Force and almost out of slots; next comes Gadeokdo New Airport (target opening 2035)",
 lead:["Gimhae International Airport, in western Busan, is a joint civil-military airport sharing its runways with an Air Force base (the 5th Air Mobility Wing). In 2025 it handled 10.44 million international passengers, first among regional airports, with routes to 16 countries and territories (Korea Airports Corporation).","Its slots are nearly full and delays are rising. This lesson covers the basics, what to watch in operations and handling, and the Gadeokdo New Airport plan."],
 sections:[
-{h:"Key facts (September 2026)",blocks:[{t:"fig",id:"kor_pus",cap:"Figure: Gimhae at a glance."},{t:"table",cols:["Item","Details"],rows:[
+{h:"Key facts (as of September 2026)",blocks:[{t:"fig",id:"kor_pus",cap:"Figure: Gimhae at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: PUS / ICAO: RKPK"],
 ["Operator","Korea Airports Corporation (airfield shared with the Air Force’s 5th Air Mobility Wing)"],
 ["Runways","Two, parallel"],
@@ -14,8 +14,8 @@ sections:[
 ["Main airlines","Air Busan, Korean Air, Jin Air, T’way Air and others ★"]]}]},
 {h:"What to watch in operations and handling",blocks:[{t:"check",items:[
 {name:"Slots are full",x:"Hourly slots are over 90% used; a small delay ripples through later flights."},
-{name:"Circling approaches",x:"With hills to the north, southerly winds require circling approaches; cloud and visibility can then cause delays or diversions"},
-{name:"International delays",x:"Delays at Gimhae have risen 21% since 2023, over half on international flights; protecting the morning departure wave sets the day’s punctuality."},
+{name:"Circling approaches",x:"With hills to the north, southerly winds require circling approaches; cloud and visibility can then cause delays or diversions."},
+{name:"International delays",x:"Delays at Gimhae have risen 21% since 2023, with over half on international flights; protecting the morning departure wave shapes the whole day’s punctuality."},
 {name:"Military operations",x:"Air Force exercises and national events bring time restrictions; check NOTAMs daily."},
 {name:"The 23:00 restriction",x:"Evening delays easily run into the restricted hours; decide alternates and passenger accommodation early."}]}]},
 {h:"Future plans: Gadeokdo New Airport",blocks:[{t:"table",cols:["When","Event"],rows:[
@@ -29,7 +29,7 @@ sections:[
 {t:"note",x:"* The opening date and budget may change with contracts and construction; check announcements by the Ministry and the Gadeokdo New Airport Construction Authority. ★"},
 {t:"point",x:"At Gimhae, decisions turn on slots and wind. Protect the morning departure wave and read the approach conditions early on southerly days; until the move to the new airport in the 2030s, operations will stay within tight slot limits."}]}],
 voice:"Gimhae is shared with the military, so its operating hours and runway situation can differ from other airports. When a delay arises, make a habit of first checking until when the flight can still land.",
-terms:[["Joint Civil-Military Airport","民軍共用の空港","민군 공용 공항"],["Circling Approach","旋回進入","선회 접근"],["Gadeokdo New Airport","加徳島新空港","가덕도신공항"],["Slot","発着の枠","슬롯"],["Negotiated Contract","随意契約","수의계약"]],
+terms:[["Joint Civil-Military Airport","民軍共用の空港","민군 공용 공항"],["Circling Approach","旋回進入","선회 접근"],["Gadeokdo New Airport","加徳島新空港","가덕도신공항"],["Slot","発着枠","슬롯"],["Negotiated Contract","随意契約","수의계약"]],
 quiz:[{q:"Which regional airport had the most international passengers in 2025?",opts:["Gimpo","Gimhae","Jeju","Cheongju"],a:1,exp:"10.44 million."},
 {q:"What is Gadeokdo New Airport’s target opening (announced November 2025)?",opts:["2029","2032","2035","Undecided"],a:2,exp:"Construction extended to 106 months."},
 {q:"Which approach is needed at Gimhae in southerly winds?",opts:["A circling approach","A visual landing without instruments","A sea landing","No approach is possible"],a:0,exp:"Because of the hills to the north."}],

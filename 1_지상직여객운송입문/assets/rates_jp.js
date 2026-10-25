@@ -10,7 +10,7 @@ window.RATES={checked:'2026-10-03',
  it:{
   kenpo:{n:['健康保険（東京）','건강보험(도쿄)','Health insurance (Tokyo)'],v:9.85,sp:'half',base:'std',from:'2026-03',next:'2027-03'},
   kaigo:{n:['介護保険（40〜64歳）','개호보험(40~64세)','Long-term care insurance (ages 40–64)'],v:1.62,sp:'half',base:'std',from:'2026-03',next:'2027-03'},
-  shien:{n:['子ども・子育て支援金','어린이·육아 지원금','Child and childcare support levy'],v:0.23,sp:'half',base:'std',from:'2026-04',next:'2027-04'},
+  shien:{n:['子ども・子育て支援金','아동·육아 지원금','Child and childcare support levy'],v:0.23,sp:'half',base:'std',from:'2026-04',next:'2027-04'},
   kosei:{n:['厚生年金','후생연금','Employees’ pension'],v:18.3,sp:'half',base:'stdp',from:'2017-09',next:'2027-09'},
   koyo:{n:['雇用保険（一般の事業）','고용보험(일반 사업)','Employment insurance (general businesses)'],v:1.35,e:0.5,c:0.85,base:'pay',from:'2026-04',next:'2027-04'},
   rosai:{n:['労災保険（その他の各種事業）','노재보험(기타 각종 사업)','Workers’ accident insurance (other businesses)'],v:0.3,e:0,c:0.3,base:'pay',from:'2024-04',next:'2027-04'},

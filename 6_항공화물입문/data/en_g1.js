@@ -23,7 +23,7 @@ sections:[
 {name:"High value",x:"Semiconductors, electronic components, precision equipment and pharmaceuticals: goods with high value for their weight."},
 {name:"Freshness and deadlines",x:"Perishables, live animals, urgent spare parts."},
 {name:"Security",x:"Shorter transit means relatively less exposure to damage and theft."}]},
-{t:"point",x:"Air cargo work is about not dropping the baton between those five parties. Whichever one you work for, knowing what happens before and after you cuts mistakes."}]}],
+{t:"point",x:"Air cargo work is about not dropping the baton between those five parties. Whichever one you work for, knowing what happens before and after you reduces mistakes."}]}],
 voice:"Coming from passenger work, the biggest difference in cargo is that goods cannot speak for themselves. Documents and labels do the talking a passenger would.",
 terms:[["Shipper","荷主","화주"],["Freight Forwarder","フォワーダー","포워더"],["Cargo Terminal / Warehouse","上屋","화물터미널"],["Customs Clearance","通関","통관"]],
 quiz:[{q:"Who books the airline and prepares the documents for the shipper?",opts:["The forwarder","Customs","The airport company","A travel agency"],a:0,exp:"They arrange collection, clearance and delivery too."},
@@ -44,7 +44,7 @@ sections:[
 ["Timings","Tied to the passenger schedule","Set by cargo demand"]]}]},
 {h:"What decides whether it fits",blocks:[{t:"rows",items:[
 {name:"The door",x:"Anything taller or wider than the cargo door simply will not go in, and doors differ by aircraft type."},
-{name:"Floor strength",x:"There is a limit per square metre. Heavy items are spread over boards."},
+{name:"Floor strength",x:"There is a limit per square metre. Heavy items are placed on boards to spread the weight."},
 {name:"The ULD",x:"The shape and size of the containers and pallets used (2-2)."},
 {name:"Balance",x:"Whether the load stays within the weight and balance plan (4-1)."}]},
 {t:"point",warn:true,x:"“The weight was fine but it was a few centimetres too tall” is a common story. For large shipments, confirm the aircraft type and the dimensions with the airline before booking (3-5)."}]},
@@ -53,22 +53,22 @@ sections:[
 {name:"Consolidation",x:"The forwarder combines several shippers’ cargo into one consignment for the airline, bringing the rate down."},
 {name:"Direct",x:"One shipper’s cargo travels as a single consignment."},
 {name:"Documents",x:"In a consolidation there are two levels: the airline’s master air waybill and the forwarder’s house air waybills (1-2)."}]}]}],
-voice:"Cargo too large or heavy for the belly needs a freighter or another carrier. Make a habit of checking each aircraft type’s loading limits before accepting.",
+voice:"For cargo too large or heavy for the belly, a freighter or cooperation with another carrier is considered. Make a habit of checking each aircraft type’s loading limits before accepting.",
 terms:[["Belly Hold","ベリー","벨리(하부 화물칸)"],["Freighter","貨物専用機","화물 전용기"],["Main Deck","主甲板","메인 데크"],["Consolidation","混載","혼재"]],
 quiz:[{q:"What is hard to carry in a passenger belly?",opts:["Small general cargo","Tall machinery","Documents","Electronic components"],a:1,exp:"The cargo door sets the limit."},
 {q:"What is it called when several shippers’ cargo travels together?",opts:["Direct","Consolidation","Return","Storage"],a:1,exp:"It brings the rate down."},
-{q:"What must be confirmed before booking large cargo?",opts:["The aircraft type and the dimensions","The weather","Only the rate","The chairman’s name"],a:0,exp:"A few centimetres can stop it loading."}],
+{q:"What must be confirmed before booking large cargo?",opts:["The aircraft type and the dimensions","The weather","Only the rate","The chairman’s name"],a:0,exp:"A difference of a few centimetres can mean it does not fit."}],
 next:"0-3 Cargo airports"});
 
 set("0-3",{title:"Cargo Airports",hl:"cargo airports",subtitle:"What makes an airport a cargo hub",
 lead:["Japan’s international air cargo is concentrated at Narita, with Kansai next. Elsewhere in Asia, Incheon is one of the world’s major cargo airports. Airports differ in how the cargo terminal is run, whether they operate around the clock, and how they handle transit cargo.",
-"This article sets out the characteristics of the main airports and the shape of the traffic. Figures move from year to year, so it describes tendencies."],
+"This lesson sets out the characteristics of the main airports and the pattern of cargo flows. Figures change from year to year, so the lesson describes trends."],
 sections:[
 {h:"The main airports (tendencies)",blocks:[{t:"fig",id:"cgo_map",cap:"Animated figure: major cargo airports in Korea and Japan; lines flow from Incheon to Japanese airports, showing its role as a transfer hub."},
-{t:"table",cols:["Airport","Character"],rows:[
+{t:"table",cols:["Airport","Features"],rows:[
 ["Narita","Japan’s largest international cargo gateway, with many freighters. Night operations are restricted"],
 ["Kansai","Operates 24 hours. The western Japan gateway, with dedicated pharmaceutical facilities"],
-["Haneda","Mostly passenger belly. Close to central Tokyo and strong on urgent consignments"],
+["Haneda","Mainly belly cargo on passenger flights. Close to central Tokyo and strong on urgent consignments"],
 ["Chubu","Operates 24 hours. Close to the automotive and aerospace industries"],
 ["Incheon","A major transfer hub for Asia, with large freighter networks"]]},
 {t:"note",x:"* Volumes and rankings change each year. Check current statistics. ★"}]},
@@ -81,7 +81,7 @@ sections:[
 {name:"Time",x:"The distance from the shipper’s factory, the acceptance deadline, and whether the airport runs 24 hours."},
 {name:"Flights",x:"Direct and connecting services to the destination, and the aircraft types and their belly capacity."},
 {name:"Facilities",x:"Temperature control, dangerous goods, outsized cargo and pharmaceutical facilities."},
-{name:"Cost",x:"Airport charges, the inland trucking and the storage."}]}]}],
+{name:"Cost",x:"Airport charges, inland trucking costs and storage charges."}]}]}],
 voice:"Shifts in Japan–Korea cargo show up first in statistics and shipper enquiries. When a commodity is growing, prepare its packing, temperature and document requirements in advance.",
 terms:[["Cargo Terminal","貨物ターミナル","화물 터미널"],["Transit / Transfer Cargo","乗り継ぎ貨物","환적 화물"],["24-hour Operation","24時間運用","24시간 운용"],["Cross-border E-commerce","越境電子商取引","해외 직구"]],
 quiz:[{q:"Which is Japan’s largest international cargo gateway?",opts:["Narita","Naha","New Chitose","Fukuoka"],a:0,exp:"Many freighters serve it."},
@@ -94,7 +94,7 @@ lead:["Air cargo rates are calculated on whichever is greater: the actual weight
 "This article covers the booking flow, volumetric weight, what makes up the rate, and the common surcharges. Actual rates differ by carrier, route and season and are not covered."],
 sections:[
 {h:"The booking flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Enquiry",sub:"Commodity, pieces, weight, dimensions, dates"},{name:"Check the space",sub:"Flight, aircraft type, special handling"},{name:"Confirm",sub:"An air waybill number is allocated"},{name:"Delivery in",sub:"To the warehouse by the cut-off"},{name:"Loading",sub:"Anything offloaded goes on the next flight"}]}]},
-{h:"Volumetric weight",blocks:[{t:"fig",id:"cgo_chw",cap:"Animated figure: a light, bulky box and a small, heavy box. Bars compare actual and volume weight; the greater one is the chargeable weight."},
+{h:"Volumetric weight",blocks:[{t:"fig",id:"cgo_chw",cap:"Animated figure: a light, bulky box and a small, heavy box. Bars compare actual and volumetric weight; the greater one is the chargeable weight."},
 {t:"rows",items:[
 {name:"How it is worked out",x:"Length by width by height in centimetres, divided by a standard divisor, commonly 6,000, giving a weight in kilograms. ★"},
 {name:"Compare",x:"The greater of the actual weight and the volumetric weight is the chargeable weight."},
@@ -105,7 +105,7 @@ sections:[
 ["Fuel surcharge","167 kg × ¥100","¥16,700"],
 ["Security charge","167 kg × ¥20","¥3,340"],
 ["Total","","¥70,140"]]},
-{t:"note",x:"* All rates are fictional. Some airlines apply surcharges to the actual weight instead ★. Smaller packaging lowers the volume weight and every line with it."}]},
+{t:"note",x:"* All rates are fictional. Some airlines apply surcharges to the actual weight instead ★. Smaller packaging lowers the volumetric weight and every line with it."}]},
 {h:"What makes up the rate (example)",blocks:[{t:"table",cols:["Item","What it is"],rows:[
 ["Base rate","A unit rate by weight break, falling as the weight rises"],
 ["Fuel surcharge","Linked to fuel prices"],
@@ -116,7 +116,7 @@ voice:"Air freight is charged on the greater of actual and volumetric weight. Ad
 terms:[["Volumetric Weight","容積重量","용적 중량"],["Chargeable Weight","チャージャブル・ウェイト","적용 중량"],["Fuel Surcharge","燃油サーチャージ","유류할증료"],["Offload","積み残し","미탑재 화물"]],
 quiz:[{q:"Which weight is used for the rate?",opts:["The actual weight only","The greater of actual and volumetric weight","The lesser","The average"],a:1,exp:"That is the chargeable weight."},
 {q:"How is a 100 by 100 by 100 cm box weighing 50 kg charged?",opts:["On 50 kg","On the volumetric weight, about 167 kg","Free","It cannot be calculated"],a:1,exp:"Light, bulky goods are charged on size."},
-{q:"What should you watch about storage charges?",opts:["They rise once the free period ends","They are always free","The airline always pays","They do not matter"],a:0,exp:"Watch for delays in collection."}],
+{q:"What should you watch for with storage charges?",opts:["They rise once the free period ends","They are always free","The airline always pays","They do not matter"],a:0,exp:"Watch for delays in collection."}],
 next:"1-2 Reading an air waybill"});
 
 set("1-2",{title:"Reading an Air Waybill",hl:"the air waybill",subtitle:"The shipment’s passport: number, shipper, consignee, commodity and weight all live here",
@@ -137,11 +137,11 @@ sections:[
 ["Handling information","Dangerous goods, temperature control, fragile and similar instructions"],
 ["Charges","Whether prepaid or collect"]]}]},
 {h:"Master and house",blocks:[{t:"p",x:"Where a forwarder consolidates, the airline issues a master air waybill and the forwarder issues a house air waybill to each shipper beneath it. To the airline the shipper is the forwarder; to each individual shipper the carrier is the forwarder."},
-{t:"point",warn:true,x:"A vague commodity description gets shipments stopped in customs or screening. Avoid “general goods” or “parts”, and write what it actually is."}]}],
+{t:"point",warn:true,x:"A vague commodity description can get shipments stopped in customs or screening. Avoid “general goods” or “parts”, and write what it actually is."}]}],
 voice:"Small errors on an air waybill become long delays in clearance at destination. Always check description, pieces, weight and consignee contact against the actual goods at acceptance.",
 terms:[["Air Waybill (AWB)","航空運送状","항공 운송장"],["Consignee","荷受人","수하인"],["Master AWB (MAWB)","マスター運送状","마스터 운송장"],["House AWB (HAWB)","ハウス運送状","하우스 운송장"]],
 quiz:[{q:"What do the first three digits of an air waybill number identify?",opts:["The airline","The destination","The weight","The date"],a:0,exp:"A prefix allocated by IATA."},
-{q:"What does a forwarder issue to each shipper in a consolidation?",opts:["A master","A house waybill","A passport","An invoice"],a:1,exp:"House waybills sit beneath the master."},
+{q:"What does a forwarder issue to each shipper in a consolidation?",opts:["A master waybill","A house waybill","A passport","An invoice"],a:1,exp:"House waybills sit beneath the master."},
 {q:"Which commodity description is good?",opts:["Parts","General goods","Parts for semiconductor production equipment","Miscellaneous"],a:2,exp:"Vague descriptions get stopped in customs and screening."}],
 next:"1-3 Electronic waybills and cargo messaging"});
 
@@ -175,7 +175,7 @@ lead:["In Japan most air cargo import and export formalities go through NACCS, t
 sections:[
 {h:"Export (example)",blocks:[{t:"fig",id:"cgo_exp",cap:"Animated figure: from delivery into the bonded terminal to the NACCS declaration, review, export permission and loading. The right column shows who is mainly responsible."}]},
 {h:"Import (example)",blocks:[{t:"fig",id:"cgo_imp",cap:"Animated figure: from advance reporting to offloading, the import declaration, permission and delivery. The right column shows who is mainly responsible."}]},
-{h:"Ideas worth holding on to",blocks:[{t:"rows",items:[
+{h:"Key ideas",blocks:[{t:"rows",items:[
 {name:"Bonded status",x:"Cargo before export or import permission sits under customs control in a bonded area and cannot simply be moved."},
 {name:"An accurate manifest",x:"If it does not match what was actually loaded, customs will require a correction. Reflect offloads and late additions immediately."},
 {name:"Advance reporting",x:"For cargo arriving in Japan, the carrier reports the master and house waybill information, including shipper and consignee, to customs through NACCS before arrival, within a deadline set by flight time. Check the current deadlines. ★"},

@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 2 Customs, lessons 2-1 to 2-4) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("2-1",{title:"What Customs Does, and the Passenger Declaration",hl:"Customs",subtitle:"Customs looks at goods and money. A declaration is how a passenger tells the truth first",
-lead:["Customs is the agency that looks at goods and money crossing the border. At an airport, passengers’ bags, crew belongings, cargo and even the catering and duty-free goods on the aircraft all pass under its eye.","For passengers, customs is the last gate after reclaiming their bags. Fewer of them are held up there when they are told what to expect before departure and on board."],
+set("2-1",{title:"What Customs Does, and the Passenger Declaration",hl:"Customs",subtitle:"Customs looks at goods and money. A declaration is how passengers give customs the necessary information accurately themselves",
+lead:["Customs is the agency that oversees goods and money crossing the border. At an airport, passengers’ bags, crew belongings, cargo and even the catering and duty-free goods on the aircraft all come under customs supervision.","For passengers, customs is the last step on arrival, after they reclaim their bags. Fewer of them are held up there when they are told what to expect before departure and on board."],
 sections:[
 {h:"What airport customs does",blocks:[{t:"fig",id:"ciq_customs",cap:"Figure: customs on arrival."},{t:"rows",items:[
 {name:"Collects tax",x:"Duty and consumption tax on goods above the duty-free allowance."},
@@ -76,8 +76,8 @@ sections:[
 ["Permit or formalities required","Hunting guns, air guns and swords; animals and plants protected by CITES and products made from them (ivory, crocodile leather, some traditional medicines); medicines and cosmetics (up to personal-use quantities)"],
 ["Quarantine required","Meat products, fruit, vegetables, plants, animals (Part 3)"]]},
 {t:"note",x:"* Korea uses the same division into prohibited, restricted and quarantine items. Check Korea Customs for the details of items and quantities."}]},
-{h:"Situations that come up",blocks:[{t:"rows",items:[
-{name:"Packages carried for others",x:"Packages that someone asked to be handed over at the airport have contained drugs. Tell passengers to refuse anything whose contents they do not know."},
+{h:"Common situations",blocks:[{t:"rows",items:[
+{name:"Packages carried for others",x:"There have been cases where a package that someone asked a passenger to hand over at the airport contained drugs. Tell passengers to refuse anything whose contents they do not know."},
 {name:"Medicines",x:"Advise passengers to carry prescription medicines in their original containers where possible, with a document showing the prescription. An ingredient sold freely at home may be restricted at the destination."},
 {name:"Counterfeit goods",x:"They cannot be brought in, even as souvenirs."},
 {name:"Leather goods, traditional medicines, musical instruments",x:"If they contain CITES-listed species, they cannot be brought in without certificates."},
@@ -86,20 +86,20 @@ sections:[
 {name:"Customs decides",x:"The airline must not assure a passenger that something can be brought in."},
 {name:"Separate from dangerous goods rules",x:"Whether something may be carried on the aircraft (security and dangerous goods) and whether it may enter the country (customs) are different rules. Both must be met."},
 {name:"When a passenger asks about a suspicious package",x:"Advise them not to carry it, and inform security and customs if necessary."}]},
-{t:"point",x:"“I didn’t know” does not in itself excuse a passenger at customs. That is exactly why telling passengers is where the airline can help."}]}],
-voice:{h:"A Reported Case",x:"A woman’s post on X went viral after she described moving 4 kg of a stranger’s luggage into her own bag at Kansai Airport, to save a Malaysian woman an excess-baggage charge of about JPY 12,000. It was widely criticised as typically dangerous behaviour, and she apologised the next day. A lawyer explained that if the contents had been stimulants, a claim of not knowing would be hard to make good and the charges could be very serious (Source: Bengo4.com News). Japan Customs also warns that whoever carries a bag is held responsible for it, even if it was entrusted to them by someone else (Source: Japan Customs leaflet on drug couriers, April 2025). It is a scene that can arise at the counter whenever excess baggage charges come up."},
-terms:[["Means of Payment","支払手段","지급수단"],["Prohibited Goods","輸入の禁止品","수입 금지 물품"],["Convention on International Trade in Endangered Species (CITES)","ワシントン条約","워싱턴 협약"],["Goods Infringing Intellectual Property","知的財産を侵す物","지식재산권 침해 물품"]],
+{t:"point",x:"“I didn’t know” does not in itself excuse a passenger at customs. That is exactly why informing passengers in advance is how the airline can help."}]}],
+voice:{h:"A Reported Case",x:"A woman’s post on X went viral after she described moving 4 kg of a stranger’s luggage into her own bag at Kansai Airport, to save a Malaysian woman an excess-baggage charge of about JPY 12,000. It was widely criticised as typically dangerous behaviour, and she apologised the next day. A lawyer explained that if the contents had been stimulants, a claim of not knowing would be unlikely to be accepted and the charges could be very serious (Source: Bengo4.com News). Japan Customs also warns that whoever carries a bag is held responsible for it, even if it was entrusted to them by someone else (Source: Japan Customs leaflet on drug couriers, April 2025). It is a scene that can arise at the counter whenever excess baggage charges come up."},
+terms:[["Means of Payment","支払手段","지급수단"],["Prohibited Goods","輸入禁止品","수입 금지 물품"],["Convention on International Trade in Endangered Species (CITES)","ワシントン条約","워싱턴 협약"],["Goods Infringing Intellectual Property","知的財産権侵害物品","지식재산권 침해 물품"]],
 quiz:[{q:"When must cash and the like be declared in Japan?",opts:["When the total exceeds the equivalent of 1 million yen","When it exceeds 100,000 yen","Always, whatever the amount","Never"],a:0,exp:"It is declared on both departure and arrival."},
 {q:"How do “may it be carried on the aircraft” and “may it enter the country” relate?",opts:["They are different rules and both must be met","They are the same rule","Meeting either is enough","The airline decides"],a:0,exp:"Security and dangerous goods rules are separate from customs rules."},
 {q:"A passenger has been asked to carry a package without knowing the contents. What do you advise?",opts:["Refuse it","Carry it as it is","Let the airline keep it","Do not show it to customs"],a:0,exp:"In principle, the person carrying it is responsible for the contents."}],
 next:"2-4 Airlines and customs: aircraft stores, in-flight sales and delayed baggage"});
-set("2-4",{title:"Airlines and Customs: Aircraft Stores, In-Flight Sales and Delayed Baggage",hl:"Airlines and Customs",subtitle:"Customs deals with more than passengers. The airline itself is inside customs procedures on every flight",
+set("2-4",{title:"Airlines and Customs: Aircraft Stores, In-Flight Sales and Delayed Baggage",hl:"Airlines and Customs",subtitle:"Customs deals with more than passengers. The airline itself is also subject to customs procedures on every flight",
 lead:["Customs does not look only at passengers’ bags. An international aircraft crosses the border carrying catering, drinks, duty-free goods for sale and fuel, and all of these are under customs control.","There is one more situation in which a station deals with customs almost every day: bags that did not arrive on the same flight as their owners."],
 sections:[
 {h:"What the aircraft carries",blocks:[{t:"fig",id:"ciq_bag",cap:"Figure: delayed baggage and customs."},{t:"table",cols:["Item","How customs treats it"],rows:[
 ["Catering, drinks and equipment (aircraft stores)","Loaded untaxed, for use on an aircraft operating internationally. Loading and unloading involve customs formalities ★"],
 ["Duty-free goods for sale on board","Counted; sealing and storage after arrival follow local customs instructions and company procedure ★"],
-["Fuel","Fuel for international flights is treated differently for tax from domestic fuel ★"],
+["Fuel","Fuel for international flights is taxed differently from fuel for domestic flights ★"],
 ["Using an international aircraft on a domestic flight","Remaining stores and duty-free goods need formalities before they can be used domestically ★"]]},
 {t:"note",x:"* The names and details of procedures differ by country and airport. Check your company’s rules and the customs authority’s guidance."}]},
 {h:"Delayed baggage",blocks:[{t:"ladder",steps:[
@@ -116,8 +116,8 @@ sections:[
 {name:"When the count does not match",x:"If stores or duty-free goods do not match the paperwork, customs will need an explanation. Record it on the spot."},
 {name:"Arriving at an unplanned airport",x:"After a diversion or return, do not move passengers, bags or stores until customs gives instructions (Part 5)."},
 {name:"A passenger leaves a bag behind",x:"A bag left in the reclaim hall is still under customs control. Check with customs before taking it out."}]},
-{t:"point",x:"Customs rules come down to one idea: nothing untaxed enters the country without permission. If in doubt, ask before you move it."}]}],
-voice:"Aircraft stores and delayed baggage go through customs on a different track from passengers. Agreeing in advance with the handling company who declares them and which documents are kept prevents missed or late deliveries.",
+{t:"point",x:"Customs rules come down to one idea: nothing untaxed enters the country without permission. If in doubt, ask before moving anything."}]}],
+voice:"Aircraft stores and delayed baggage go through customs separately from passenger procedures. Agreeing in advance with the handling company who declares them and which documents are kept prevents missed or late deliveries.",
 terms:[["Aircraft Stores","機用品","기용품"],["Bonded (Under Customs Control)","保税","보세"],["Customs Seal","封印","봉인"],["Property Irregularity Report (PIR)","手荷物事故報告書","수하물 사고 보고서"]],
 quiz:[{q:"How does customs treat catering and drinks on an international flight?",opts:["They are loaded untaxed, with formalities for loading and unloading","They have nothing to do with customs","Tax is paid on every arrival","They count as passenger baggage"],a:0,exp:"What the aircraft carries is also under customs control."},
 {q:"What is needed before a delayed bag is delivered to the passenger?",opts:["Customs inspection","Nothing","Only the passenger’s signature","Only the airport company’s permission"],a:0,exp:"The airline presents the bag on the passenger’s behalf."},

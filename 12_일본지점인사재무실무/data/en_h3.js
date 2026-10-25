@@ -26,7 +26,7 @@ sections:[
 {t:"rows",items:[
 {name:"Transit passengers",x:"A single ticket must be issued, and the arrival in Japan and departure from Japan shown on it must be within 24 hours. If weather pushes the actual stay beyond 24 hours, the passenger remains non-taxable if the ticket showed less. But if the airport before Japan and the airport after Japan are the same (a return trip), the exemption does not apply."},
 {name:"Under 2",x:"Judged by age on the day of departure; for return tickets and similar, by age on the earliest travel start date in that ticket."},
-{name:"Two seats for one person",x:"Buying an extra seat for an instrument and similar still means one departure: tax is charged once."}]}]},
+{name:"Two seats for one person",x:"Buying an extra seat for an instrument or similar still means one departure: tax is charged once."}]}]},
 {h:"Airline obligations",blocks:[{t:"table",cols:["Obligation","Details"],rows:[
 ["Notification","File a notification of commencing international passenger transport before starting (tax office if the airline has a place of business in Japan, otherwise customs)"],
 ["Collection","Collect the tax by the time the passenger boards"],
@@ -37,12 +37,12 @@ sections:[
 {t:"table",cols:["","Domestic operator (has a branch in Japan)","Foreign operator (no branch in Japan)"],rows:[
 ["Where to file and pay","Tax office (e-Tax, direct debit and others)","Customs (NACCS, electronic payment and others)"],
 ["Acting on its behalf","A tax accountant or others with a power of attorney","Appoint and register a tax agent"],
-["If a branch opens mid-month","—","File a discontinuation notice with customs and a commencement notice with the tax office; the payee changes from that day"]]}]},
+["If a branch opens later","—","File a discontinuation notice with customs and a commencement notice with the tax office; the payee changes from that day"]]}]},
 {h:"Codeshares and exemption documents",blocks:[{t:"table",cols:["","Operating carrier","Marketing (contracting) carrier"],rows:[
 ["Collects and pays the tax","○","—"],
 ["Keeps the records","○","—"],
 ["Keeps exemption documents","—","○"]]},
-{t:"point",x:"Where another airline operates your flight number, or you operate theirs, agree in the contract where exemption documents are held. The operating carrier should be able to obtain copies from the marketing carrier in case of a tax audit."}]},
+{t:"point",x:"Where another airline operates your flight number, or you operate theirs, agree in the contract where exemption documents are held. It helps if the operating carrier can obtain copies from the marketing carrier in case of a tax audit."}]},
 {h:"The station’s monthly routine",blocks:[{t:"fig",id:"ttax_monthly",cap:"Moving diagram: ① flights operate in the month of departure (M) ② daily records by flight ③ at the start of M+1, reconcile with the airport passenger facility charge count ④ payment approval and accounting entry ⑤ in M+2 the tax accountant prepares the statement ⑥ payment. Example: July departures are due by 30 September."},
 {t:"table",cols:["Date","Flight","Route","Dep.","Taxable (¥3,000)","Taxable (old ¥1,000)","Out of scope","Non-taxable","Exempt","Remarks"],rows:[
 ["07/03","XX123","NRT-ICN","10:00","250","40","1","2","1","INF 2, deportee 1, exemption form 1"]]},
@@ -56,10 +56,10 @@ sections:[
 {name:"Payment",x:"Due at the end of the second month; some stations pay around the 10th of that month to allow for holidays in both countries and transfer times."}]}]},
 {h:"Points to watch",blocks:[{t:"rows",items:[
 {name:"Late payment",x:"Late-payment penalty tax (5% or 10%) and delinquency tax apply; the penalty may not apply where there was intent to pay on time and payment is made within one month of the deadline."},
-{name:"Accounting",x:"Tax collected is a deposit received from passengers, not subject to consumption tax. If the receipt shows the tax separately, it is excluded when determining stamp duty."},
+{name:"Accounting",x:"Tax collected is a deposit received from passengers, not subject to consumption tax. If the receipt shows the tax separately, the tax amount can be excluded when determining stamp duty."},
 {name:"Collecting in foreign currency",x:"Collect the equivalent of ¥3,000 converted at a reasonable rate; pay the state ¥3,000 in yen."},
 {name:"Award tickets",x:"If miles are used as a means of paying the whole ticket including the tax, it counts as collected."},
-{name:"Receiving exemption documents later",x:"Without a face-to-face desk, documents may be received and checked at the airport counter after ticketing; if none are presented, the airline must collect and pay the tax."},
+{name:"Receiving exemption documents later",x:"Without a face-to-face desk, documents may be received and checked at the airport counter after ticketing; if none are presented, the airline collects the tax from the passenger and pays it."},
 {name:"Passengers who do not depart",x:"No tax arises without departure; refunds of tax collected follow the conditions of carriage and head office rules."}]},
 {t:"point",x:"Around the change, questions from call centres, travel agencies and airport counters increase. Make sure customer notices and internal procedures say the same thing: the amount depends on the ticket issue date and any change of departure date (Course 13 and Course 1)."}]}],
 voice:"In the month before an increase, questions keep coming about whether the tax changes each time a booking is changed. A one-page table that decides by ticketing date and departure date, handed to airport and reservations staff, keeps everyone’s answers consistent.",

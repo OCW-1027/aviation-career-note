@@ -140,7 +140,7 @@ met_layers:function(l){l=l||'ja';
 /* 2 ボールで見る「安定」：谷のボール（戻る）・山のボール（転がり落ちる）・平らな所のボール（止まった所にいる） */
 met_ball:function(l){
  var W=({ja:['安定','不安定','中立','少し押しても、元の場所に戻る','少し押すと、どんどん離れていく','押した先で、そのまま止まる','大気では：空気が上がっても元の高さに戻る → 雲は横に広がる','大気では：空気が上がり続ける → 雲が縦に伸びる（積乱雲）'],
-  ko:['안정','불안정','중립','조금 밀어도 원래 자리로 돌아온다','조금 밀면 점점 멀어진다','민 곳에서 그대로 멈춘다','대기에서는: 공기가 올라가도 원래 높이로 돌아온다 → 구름이 옆으로 퍼진다','대기에서는: 공기가 계속 올라간다 → 구름이 위로 솟는다(적란운)'],
+  ko:['안정','불안정','중립','조금 밀어도 원래 자리로 돌아온다','조금 밀면 점점 멀어진다','밀린 곳에서 그대로 멈춘다','대기에서는: 공기가 올라가도 원래 높이로 돌아온다 → 구름이 옆으로 퍼진다','대기에서는: 공기가 계속 올라간다 → 구름이 위로 솟는다(적란운)'],
   en:['Stable','Unstable','Neutral','Push it and it rolls back','Push it and it keeps going','Push it and it stays where it stops','In the air: a lifted parcel sinks back → clouds spread sideways','In the air: a lifted parcel keeps rising → clouds tower up (Cb)']})[l];
  if(!W)return F.met_ball('ja');
  var nar=NARROW();K=nar?1.25:1;
@@ -265,9 +265,9 @@ met_fronts:function(l){
  var W=({ja:{c:'寒冷前線',w:'温暖前線',cold:'冷たい空気',warm:'暖かい空気',go:'進む向き',
    c1:'冷たい空気が暖かい空気の下にもぐり込む',c2:'急な坂（約1/50〜1/100）',c3:'積乱雲・強いにわか雨・雷・突風',c4:'悪天の幅はせまい（数十km）',
    w1:'暖かい空気が冷たい空気の上をはい上がる',w2:'ゆるい坂（約1/100〜1/300）',w3:'層状の雲：巻雲→巻層雲→高層雲→乱層雲',w4:'しとしと雨・低い雲が広い範囲（数百km）',rain:'雨'},
-  ko:{c:'한랭전선',w:'온난전선',cold:'찬 공기',warm:'따뜻한 공기',go:'나아가는 방향',
+  ko:{c:'한랭전선',w:'온난전선',cold:'찬 공기',warm:'따뜻한 공기',go:'진행 방향',
    c1:'찬 공기가 따뜻한 공기 아래로 파고든다',c2:'가파른 경사(약 1/50~1/100)',c3:'적란운·강한 소나기·뇌우·돌풍',c4:'악천후 폭은 좁다(수십 km)',
-   w1:'따뜻한 공기가 찬 공기 위를 타고 오른다',w2:'완만한 경사(약 1/100~1/300)',w3:'층상 구름: 권운→권층운→고층운→난층운',w4:'부슬비·낮은 구름이 넓은 범위(수백 km)',rain:'비'},
+   w1:'따뜻한 공기가 찬 공기 위를 타고 오른다',w2:'완만한 경사(약 1/100~1/300)',w3:'층상 구름: 권운→권층운→고층운→난층운',w4:'넓은 범위에 부슬비·낮은 구름(수백 km)',rain:'비'},
   en:{c:'Cold front',w:'Warm front',cold:'Cold air',warm:'Warm air',go:'Direction of travel',
    c1:'Cold air pushes in under the warm air',c2:'Steep slope (about 1/50–1/100)',c3:'Cumulonimbus, heavy showers, thunder, gusts',c4:'A narrow band of bad weather (tens of km)',
    w1:'Warm air slides up over the cold air',w2:'Gentle slope (about 1/100–1/300)',w3:'Layer cloud: Ci → Cs → As → Ns',w4:'Steady rain and low cloud over a wide area (hundreds of km)',rain:'Rain'}})[l];
@@ -307,7 +307,7 @@ met_front_map:function(l){
  var W=({ja:{t:'天気図の低気圧と前線',L:'低',sec:'暖域（暖かい区域）',sh:'にわか雨・雷',rn:'広い範囲の雨',cold:'寒冷前線',warm:'温暖前線',stat:'停滞前線',occl:'閉塞前線',lg:'前線の記号',
    d:['記号の向きが前線の進む方向','赤い半円が進む方向','ほとんど動かない（梅雨前線など）','寒冷前線が温暖前線に追いついた'],nw:'北西の風に変わる',sw:'南寄りの風'},
   ko:{t:'일기도의 저기압과 전선',L:'저',sec:'난역(따뜻한 구역)',sh:'소나기·뇌우',rn:'넓은 범위의 비',cold:'한랭전선',warm:'온난전선',stat:'정체전선',occl:'폐색전선',lg:'전선 기호',
-   d:['기호가 향한 쪽이 전선이 나아가는 방향','빨간 반원이 나아가는 방향','거의 움직이지 않는다(장마전선 등)','한랭전선이 온난전선을 따라잡았다'],nw:'북서풍으로 바뀐다',sw:'남쪽 바람'},
+   d:['기호가 향한 쪽이 전선이 나아가는 방향','빨간 반원이 나아가는 방향','거의 움직이지 않는다(장마전선 등)','한랭전선이 온난전선을 따라잡았다'],nw:'북서풍으로 바뀐다',sw:'남풍 계열'},
   en:{t:'A low and its fronts on a weather chart',L:'L',sec:'Warm sector',sh:'Showers, thunder',rn:'Widespread rain',cold:'Cold front',warm:'Warm front',stat:'Stationary front',occl:'Occluded front',lg:'Front symbols',
    d:['Triangles point the way the front moves','Semicircles point the way it moves','Hardly moves (e.g. the rainy-season front)','The cold front has caught the warm front'],nw:'Wind shifts to northwest',sw:'Southerly wind'}})[l];
  if(!W)return F.met_front_map('ja');
@@ -395,8 +395,8 @@ met_jet_section:function(l){
 /* 10 ジェット気流の地図：冬は日本の上で強く、夏は北へ移って弱まる。東行きは追い風、西行きは向かい風 */
 met_jet_map:function(l){
  var W=({ja:{t:'上空約10kmのジェット気流',w:'冬',su:'夏',kr:'韓国',jp:'日本',cn:'中国',us:'北アメリカへ',wi:'冬は日本の上で世界有数の強さ（150〜200kt以上のことも）',sm:'夏は北へ移り、弱くなる',e:'東へ（韓国・日本→北米）：追い風で速い',wbd:'西へ（北米→韓国・日本）：向かい風で遅い'},
-  ko:{t:'상공 약 10km의 제트기류',w:'겨울',su:'여름',kr:'한국',jp:'일본',cn:'중국',us:'북미로',wi:'겨울에는 일본 위에서 세계적으로 강하다(150~200kt 이상일 때도)',sm:'여름에는 북쪽으로 옮겨 가며 약해진다',e:'동쪽으로(한국·일본→북미): 뒷바람으로 빠르다',wbd:'서쪽으로(북미→한국·일본): 맞바람으로 느리다'},
-  en:{t:'The jet stream about 10 km up',w:'Winter',su:'Summer',kr:'Korea',jp:'Japan',cn:'China',us:'To North America',wi:'In winter it is among the world’s strongest over Japan (sometimes 150–200 kt or more)',sm:'In summer it moves north and weakens',e:'Eastbound (Korea/Japan → North America): tailwind, faster',wbd:'Westbound (North America → Korea/Japan): headwind, slower'}})[l];
+  ko:{t:'상공 약 10km의 제트기류',w:'겨울',su:'여름',kr:'한국',jp:'일본',cn:'중국',us:'북미로',wi:'겨울에는 일본 상공에서 세계 최강급(150~200kt 이상일 때도)',sm:'여름에는 북쪽으로 옮겨 가며 약해진다',e:'동쪽으로(한국·일본→북미): 뒷바람으로 빠르다',wbd:'서쪽으로(북미→한국·일본): 맞바람으로 느리다'},
+  en:{t:'The jet stream about 10 km up',w:'Winter',su:'Summer',kr:'Korea',jp:'Japan',cn:'China',us:'To North America',wi:'Over Japan in winter it is among the world’s strongest (sometimes 150–200 kt or more)',sm:'In summer it moves north and weakens',e:'Eastbound (Korea/Japan → North America): tailwind, faster',wbd:'Westbound (North America → Korea/Japan): headwind, slower'}})[l];
  if(!W)return F.met_jet_map('ja');
  var nar=NARROW();K=nar?1.35:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img">'+R(0,0,900,470,'#F7FAFD')+R(10,40,880,330,'#CFE8F7',14);
@@ -423,7 +423,7 @@ met_jet_map:function(l){
 /* 11 晴天乱気流のしくみ：速い層と遅い層の境で波が巻き上がって砕ける（ケルビン・ヘルムホルツ波）＋目安の数字 */
 met_kh:function(l){
  var W=({ja:{t:'晴天乱気流（CAT）：雲がなくても揺れる',fa:'速い風',sl:'遅い風',br:'境目で波が巻き上がって砕ける',c:['ジェットの中心の風速','110kt以上'],v:['上下の風の差（鉛直シアー）','5kt／1,000ft以上'],h:['横の風の差（水平シアー）','40kt／150NM以上'],tm:['等温線の間隔','5℃／120NMより密'],src:'目安：米国FAA AC 00-30C、日本の試験（等温線）'},
-  ko:{t:'청천난류(CAT): 구름이 없어도 흔들린다',fa:'빠른 바람',sl:'느린 바람',br:'경계에서 파도가 말려 올라가 부서진다',c:['제트 중심의 풍속','110kt 이상'],v:['위아래 바람 차이(연직 시어)','5kt/1,000ft 이상'],h:['옆 바람 차이(수평 시어)','40kt/150NM 이상'],tm:['등온선 간격','5℃/120NM보다 촘촘'],src:'기준: 미국 FAA AC 00-30C, 일본 시험(등온선)'},
+  ko:{t:'청천난류(CAT): 구름이 없어도 흔들린다',fa:'빠른 바람',sl:'느린 바람',br:'경계에서 파도가 말려 올라가 부서진다',c:['제트 중심의 풍속','110kt 이상'],v:['위아래 바람 차이(연직 시어)','5kt/1,000ft 이상'],h:['좌우 바람 차이(수평 시어)','40kt/150NM 이상'],tm:['등온선 간격','5℃/120NM보다 촘촘'],src:'참고치: 미국 FAA AC 00-30C, 일본 시험(등온선)'},
   en:{t:'Clear-air turbulence (CAT): bumps without cloud',fa:'Fast wind',sl:'Slow wind',br:'Waves curl up and break at the boundary',c:['Jet core speed','110 kt or more'],v:['Vertical wind shear','5 kt per 1,000 ft or more'],h:['Horizontal wind shear','40 kt per 150 NM or more'],tm:['Isotherm spacing','Closer than 5 °C per 120 NM'],src:'Rules of thumb: FAA AC 00-30C; isotherms from the Japanese exam'}})[l];
  if(!W)return F.met_kh('ja');
  var nar=NARROW();K=nar?1.25:1;
@@ -450,7 +450,7 @@ met_kh:function(l){
 /* 12 山岳波：山を越えた風が波打ち、レンズ雲・笠雲・ローター雲ができる。一番激しいのはローター */
 met_mtnwave:function(l){
  var W=({ja:{t:'山岳波：山の風下に波ができる',wind:'強い風（山にほぼ直角）',cap:'笠雲',len:'レンズ雲（波の山にできる）',rot:'ローター雲：最も激しい乱気流',dn:'強い下降気流',st:'安定な層',far:'風下へ数百kmまで続くことも'},
-  ko:{t:'산악파: 산의 바람 아래쪽에 파도가 생긴다',wind:'강한 바람(산에 거의 직각)',cap:'삿갓구름',len:'렌즈구름(파도 마루에 생긴다)',rot:'로터 구름: 가장 심한 난기류',dn:'강한 하강기류',st:'안정한 층',far:'바람 아래쪽 수백 km까지 이어지기도'},
+  ko:{t:'산악파: 산의 풍하측에 파동이 생긴다',wind:'강한 바람(산에 거의 직각)',cap:'삿갓구름',len:'렌즈구름(파동 마루에 생긴다)',rot:'로터 구름: 가장 심한 난기류',dn:'강한 하강기류',st:'안정층',far:'풍하측 수백 km까지 이어지기도 한다'},
   en:{t:'Mountain waves: waves form downwind of a ridge',wind:'Strong wind (nearly at right angles to the ridge)',cap:'Cap cloud',len:'Lenticular clouds (on the wave crests)',rot:'Rotor cloud: the most severe turbulence',dn:'Strong downdraft',st:'Stable layer',far:'Can extend hundreds of km downwind'}})[l];
  if(!W)return F.met_mtnwave('ja');
  var nar=NARROW();K=nar?1.1:1;
@@ -479,7 +479,7 @@ met_mtnwave:function(l){
 /* 13 雷雨の一生：積雲期・成熟期・消散期 */
 met_ts_life:function(l){
  var W=({ja:{t:['積雲期','成熟期','消散期'],d:['上昇気流だけ。雲がぐんぐん伸びる','上昇気流と下降気流が並ぶ。強い雨・雷・ひょう・突風','下降気流だけ。雨が弱まり雲がくずれる'],tm:['約10〜15分','約15〜30分','約30分'],life:'ひとつの雷雨の一生はおよそ1時間。いくつも続くと数時間になる',up:'上昇',dn:'下降'},
-  ko:{t:['적운기','성숙기','소산기'],d:['상승기류만 있다. 구름이 쑥쑥 자란다','상승기류와 하강기류가 함께 있다. 강한 비·번개·우박·돌풍','하강기류만 있다. 비가 약해지고 구름이 무너진다'],tm:['약 10~15분','약 15~30분','약 30분'],life:'뇌우 하나의 일생은 약 1시간. 여러 개가 이어지면 몇 시간이 된다',up:'상승',dn:'하강'},
+  ko:{t:['적운기','성숙기','소산기'],d:['상승기류만 있다. 구름이 쑥쑥 자란다','상승기류와 하강기류가 함께 있다. 강한 비·번개·우박·돌풍','하강기류만 있다. 비가 약해지고 구름이 흩어진다'],tm:['약 10~15분','약 15~30분','약 30분'],life:'뇌우 하나의 일생은 약 1시간. 여러 개가 이어지면 몇 시간이 된다',up:'상승',dn:'하강'},
   en:{t:['Cumulus stage','Mature stage','Dissipating stage'],d:['Updrafts only; the cloud grows fast','Updrafts and downdrafts side by side: heavy rain, lightning, hail, gusts','Downdrafts only; rain eases and the cloud collapses'],tm:['About 10–15 min','About 15–30 min','About 30 min'],life:'A single thunderstorm lasts about an hour; a series of cells can go on for hours',up:'Up',dn:'Down'}})[l];
  if(!W)return F.met_ts_life('ja');
  var nar=NARROW();K=nar?1.2:1;
@@ -504,7 +504,7 @@ met_ts_life:function(l){
 /* 14 積乱雲の危険：かなとこ・ひょう・乱気流・着氷・雷・強い雨・ダウンバースト・ガストフロント */
 met_cb_hazards:function(l){
  var W=({ja:{t:'積乱雲の危険',anv:'かなとこ雲（風下へ何百kmも広がる）',ot:'かなとこの上の盛り上がり＝強い上昇気流',hail:'ひょう：雲の外、かなとこの下にも降る',turb:'激しい乱気流：雲の外20マイル先まで',ice:'着氷（0℃〜−20℃の層）',ltg:'雷',rain:'強い雨・視程不良',db:'ダウンバースト',gf:'ガストフロント（初期突風）：風向・風速の急変'},
-  ko:{t:'적란운의 위험',anv:'모루구름(바람 아래쪽으로 수백 km 퍼짐)',ot:'모루 위의 솟은 부분=강한 상승기류',hail:'우박: 구름 밖, 모루 아래에도 떨어진다',turb:'심한 난기류: 구름 밖 20마일까지',ice:'착빙(0℃~−20℃ 층)',ltg:'번개',rain:'강한 비·나쁜 시정',db:'다운버스트',gf:'돌풍전선(초기돌풍): 풍향·풍속 급변'},
+  ko:{t:'적란운의 위험',anv:'모루구름(풍하측으로 수백 km 퍼짐)',ot:'모루 위의 솟은 부분=강한 상승기류',hail:'우박: 구름 밖, 모루 아래에도 떨어진다',turb:'심한 난기류: 구름 밖 20마일까지',ice:'착빙(0℃~−20℃ 층)',ltg:'번개',rain:'강한 비·시정 불량',db:'다운버스트',gf:'돌풍전선(초기돌풍): 풍향·풍속 급변'},
   en:{t:'The hazards of a cumulonimbus',anv:'Anvil (spreads hundreds of km downwind)',ot:'Overshooting top = strong updraft',hail:'Hail: also outside the cloud, under the anvil',turb:'Severe turbulence: up to 20 miles from the storm',ice:'Icing (0 °C to −20 °C layer)',ltg:'Lightning',rain:'Heavy rain, poor visibility',db:'Downburst',gf:'Gust front (first gust): sudden wind shift'}})[l];
  if(!W)return F.met_cb_hazards('ja');
  var nar=NARROW();K=nar?1.1:1;
@@ -534,7 +534,7 @@ met_cb_hazards:function(l){
 /* 15 マイクロバーストの中の着陸：向かい風が増える → 下降気流 → 追い風に変わって沈む */
 met_microburst:function(l){
  var W=({ja:{t:'マイクロバーストに入った着陸機',p:'予定の降下経路',a:'① 向かい風が増える：速度が増え、経路より上に浮く',b:'② 強い下降気流：押し下げられる',c:'③ 追い風に変わる：速度と揚力が減り、経路より下に沈む（最も危険）',sz:'直径 4km 未満・強い風は数分〜十数分',gd:'地面'},
-  ko:{t:'마이크로버스트에 들어간 착륙기',p:'예정 강하 경로',a:'① 맞바람이 늘어난다: 속도가 늘어 경로보다 위로 뜬다',b:'② 강한 하강기류: 아래로 밀린다',c:'③ 뒷바람으로 바뀐다: 속도와 양력이 줄어 경로보다 아래로 가라앉는다(가장 위험)',sz:'지름 4km 미만·강한 바람은 몇 분~십수 분',gd:'지면'},
+  ko:{t:'마이크로버스트에 들어간 착륙기',p:'예정 강하 경로',a:'① 맞바람이 강해진다: 속도가 늘어 경로보다 위로 뜬다',b:'② 강한 하강기류: 아래로 밀린다',c:'③ 뒷바람으로 바뀐다: 속도와 양력이 줄어 경로보다 아래로 가라앉는다(가장 위험)',sz:'지름 4km 미만·강한 바람은 몇 분~십수 분',gd:'지면'},
   en:{t:'A landing aircraft flying into a microburst',p:'Planned glide path',a:'① Headwind increases: airspeed rises, the aircraft floats above the path',b:'② Strong downdraft: the aircraft is pushed down',c:'③ The wind turns to a tailwind: airspeed and lift fall and it sinks below the path (the most dangerous point)',sz:'Less than 4 km across; strong winds last a few minutes to about a quarter of an hour',gd:'Ground'}})[l];
  if(!W)return F.met_microburst('ja');
  var nar=NARROW();K=nar?1.1:1;
@@ -559,8 +559,8 @@ met_microburst:function(l){
 
 /* 16 雷雨を避ける：強いエコーから20マイル以上、風上側を回る */
 met_ts_avoid:function(l){
- var W=({ja:{t:'気象レーダーで雷雨を避ける',r:'強いエコー（赤）',y:'中くらい（黄）',g:'弱い（緑）',w:'上空の風',ok:'風上側を20マイル以上はなれて回る',ng:'エコーの間は40マイル以上ないと通らない',an:'かなとこの下（風下）はひょうの危険',p:'予定の経路'},
-  ko:{t:'기상 레이더로 뇌우 피하기',r:'강한 에코(빨강)',y:'중간(노랑)',g:'약함(초록)',w:'상공의 바람',ok:'바람이 불어오는 쪽으로 20마일 이상 떨어져 돌아간다',ng:'에코 사이가 40마일 이상이 아니면 지나가지 않는다',an:'모루 아래(바람 아래쪽)는 우박 위험',p:'예정 경로'},
+ var W=({ja:{t:'気象レーダーで雷雨を避ける',r:'強いエコー（赤）',y:'中くらい（黄）',g:'弱い（緑）',w:'上空の風',ok:'風上側を20マイル以上離れて回る',ng:'エコーの間は40マイル以上ないと通らない',an:'かなとこの下（風下）はひょうの危険',p:'予定の経路'},
+  ko:{t:'기상 레이더로 뇌우 피하기',r:'강한 에코(빨강)',y:'중간(노랑)',g:'약함(초록)',w:'상공의 바람',ok:'바람이 불어오는 쪽으로 20마일 이상 떨어져 돌아간다',ng:'에코 간격이 40마일 미만이면 사이로 지나가지 않는다',an:'모루 아래(바람 아래쪽)는 우박 위험',p:'예정 경로'},
   en:{t:'Avoiding thunderstorms on weather radar',r:'Strong echo (red)',y:'Moderate (yellow)',g:'Weak (green)',w:'Upper wind',ok:'Go round on the upwind side, 20 miles or more away',ng:'Do not fly between echoes less than 40 miles apart',an:'Under the anvil (downwind): risk of hail',p:'Planned route'}})[l];
  if(!W)return F.met_ts_avoid('ja');
  var nar=NARROW();K=nar?1.3:1;
@@ -583,7 +583,7 @@ met_ts_avoid:function(l){
 /* 17 台風の断面：眼・眼の壁・らせん状の雨の帯、下から吸い込み上から吹き出す */
 met_ty_section:function(l){
  var W=({ja:{t:'台風の断面',eye:'眼：風が弱く晴れている（下降気流）',wall:'眼の壁：最も強い風と雨',band:'らせん状の雨の帯',in:'下の層：湿った空気が吸い込まれる',out:'上の層：吹き出して巻雲が広がる',warm:'中心は周りより暖かい（暖気核）',sea:'暖かい海（26〜27℃以上）から水蒸気が補給される'},
-  ko:{t:'태풍의 단면',eye:'눈: 바람이 약하고 맑다(하강기류)',wall:'눈벽: 가장 강한 바람과 비',band:'나선형 비구름대',in:'아래층: 습한 공기가 빨려 들어간다',out:'위층: 뿜어져 나가 권운이 퍼진다',warm:'중심은 주변보다 따뜻하다(온난핵)',sea:'따뜻한 바다(26~27℃ 이상)에서 수증기가 공급된다'},
+  ko:{t:'태풍의 단면',eye:'눈: 바람이 약하고 맑다(하강기류)',wall:'눈벽: 가장 강한 바람과 비',band:'나선형 비구름대',in:'하층: 습한 공기가 빨려 들어간다',out:'상층: 뿜어져 나가 권운이 퍼진다',warm:'중심은 주변보다 따뜻하다(온난핵)',sea:'따뜻한 바다(26~27℃ 이상)에서 수증기가 공급된다'},
   en:{t:'Cross-section of a typhoon',eye:'Eye: light wind, clear sky (sinking air)',wall:'Eyewall: the strongest wind and rain',band:'Spiral rain bands',in:'Low level: moist air is drawn in',out:'Upper level: air flows out and cirrus spreads',warm:'The centre is warmer than its surroundings (warm core)',sea:'A warm sea (26–27 °C or more) supplies water vapour'}})[l];
  if(!W)return F.met_ty_section('ja');
  var nar=NARROW();K=nar?1.1:1;
@@ -631,9 +631,9 @@ met_ty_plan:function(l){
 
 /* 19 台風の進路と予報円：太平洋高気圧の縁を回り、偏西風に乗って北東へ速く進む */
 met_ty_track:function(l){
- var W=({ja:{t:'台風の進み方と予報円',hi:'太平洋高気圧',we:'偏西風',bo:'発生：暖かい海（北緯5〜20°ぐらい）',cur:'転向：向きを北東に変える',fast:'偏西風に乗って速く進む',kr:'韓国',jp:'日本',fc:'予報円：中心が入る確率70%',warn:'暴風警戒域'},
+ var W=({ja:{t:'台風の進み方と予報円',hi:'太平洋高気圧',we:'偏西風',bo:'発生：暖かい海（北緯5〜20°程度）',cur:'転向：向きを北東に変える',fast:'偏西風に乗って速く進む',kr:'韓国',jp:'日本',fc:'予報円：中心が入る確率70%',warn:'暴風警戒域'},
   ko:{t:'태풍의 진로와 예보원',hi:'북태평양 고기압',we:'편서풍',bo:'발생: 따뜻한 바다(북위 5~20° 정도)',cur:'전향: 방향을 북동쪽으로 바꾼다',fast:'편서풍을 타고 빠르게 나아간다',kr:'한국',jp:'일본',fc:'예보원: 중심이 들어갈 확률 70%',warn:'폭풍경계역'},
-  en:{t:'How typhoons move, and the forecast circles',hi:'Pacific high',we:'Westerlies',bo:'Forms over warm sea (about 5–20°N)',cur:'Recurvature: turns northeast',fast:'Speeds up on the westerlies',kr:'Korea',jp:'Japan',fc:'Forecast circle: 70% chance the centre is inside',warn:'Storm warning area'}})[l];
+  en:{t:'Typhoon tracks and forecast circles',hi:'Pacific high',we:'Westerlies',bo:'Forms over warm sea (about 5–20°N)',cur:'Recurvature: turns northeast',fast:'Speeds up on the westerlies',kr:'Korea',jp:'Japan',fc:'Forecast circle: 70% chance the centre is inside',warn:'Storm warning area'}})[l];
  if(!W)return F.met_ty_track('ja');
  var nar=NARROW();K=nar?1.3:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img">'+R(0,0,640,640,'#CFE8F7',16)+TTL(320,30,W.t,15,'#0f3558',600);
@@ -673,8 +673,8 @@ met_ty_scale:function(l){
  K=1;return s+'</svg>'},
 /* 21 気圧面の高さ：ラジオゾンデが上がると、850〜200hPa の面が順に光る */
 met_levels:function(l){
- var W=({ja:{t:'気圧面の高さ（標準大気）',u:['下の層の気温・湿り気、雪か雨か','雲のできやすさ（湿数）、上昇気流','気圧の谷と尾根、上空の寒気','ジェット気流、巡航高度の風','ジェット気流の中心、巡航高度','ジェット気流・圏界面の近く'],son:'ラジオゾンデ（1日2回、世界同時刻に観測）',h:'高さ'},
-  ko:{t:'기압면의 높이(표준대기)',u:['아래층의 기온·습도, 눈인지 비인지','구름이 생기기 쉬운지(습수), 상승기류','기압골과 기압마루, 상공의 찬 공기','제트기류, 순항고도의 바람','제트기류의 중심, 순항고도','제트기류·대류권계면 근처'],son:'라디오존데(하루 2회, 세계 동시 관측)',h:'높이'},
+ var W=({ja:{t:'気圧面の高さ（標準大気）',u:['下層の気温・湿り気、雪か雨か','雲のできやすさ（湿数）、上昇気流','気圧の谷と尾根、上空の寒気','ジェット気流、巡航高度の風','ジェット気流の中心、巡航高度','ジェット気流・圏界面の近く'],son:'ラジオゾンデ（1日2回、世界同時刻に観測）',h:'高さ'},
+  ko:{t:'기압면의 높이(표준대기)',u:['하층의 기온·습도, 눈인지 비인지','구름이 생기기 쉬운지(습수), 상승기류','기압골과 기압마루, 상공의 찬 공기','제트기류, 순항고도의 바람','제트기류의 중심, 순항고도','제트기류·대류권계면 근처'],son:'라디오존데(하루 2회, 세계 동시 관측)',h:'높이'},
   en:{t:'Heights of the pressure levels (standard atmosphere)',u:['Low-level temperature and moisture; snow or rain','Cloud (dew-point depression), rising air','Troughs and ridges, cold air aloft','Jet stream, winds at cruising level','Jet core, cruising level','Jet stream, near the tropopause'],son:'Radiosonde (launched twice a day, worldwide at the same time)',h:'Height'}})[l];
  if(!W)return F.met_levels('ja');
  var nar=NARROW();K=1;
@@ -698,7 +698,7 @@ met_levels:function(l){
 met_upper_chart:function(l){
  var W=({ja:{t:'500hPa（上空約5,500m）の天気図',tr:'気圧の谷（トラフ）',ri:'気圧の尾根（リッジ）',lo:'低い（寒い）',hi:'高い（暖かい）',wi:'風は等高度線に沿って吹く（低い方を左に見て）',fast:'線が混む＝風が強い',bad:'谷の前面：上昇気流で天気が悪い',good:'尾根の下：晴れやすい'},
   ko:{t:'500hPa(상공 약 5,500m) 일기도',tr:'기압골(트로프)',ri:'기압마루(리지)',lo:'낮다(춥다)',hi:'높다(따뜻하다)',wi:'바람은 등고도선을 따라 분다(낮은 쪽을 왼쪽에 두고)',fast:'선이 촘촘=바람이 강하다',bad:'기압골 앞쪽: 상승기류로 날씨가 나쁘다',good:'기압마루 아래: 맑기 쉽다'},
-  en:{t:'The 500 hPa chart (about 5,500 m up)',tr:'Trough',ri:'Ridge',lo:'Low (cold)',hi:'High (warm)',wi:'Wind blows along the height lines, with low heights on its left',fast:'Crowded lines = strong wind',bad:'Ahead of the trough: rising air, bad weather',good:'Under the ridge: fine weather'}})[l];
+  en:{t:'The 500 hPa chart (about 5,500 m up)',tr:'Trough',ri:'Ridge',lo:'Low (cold)',hi:'High (warm)',wi:'Wind blows along the height lines, with low heights on its left',fast:'Tight lines = strong wind',bad:'Ahead of the trough: rising air, bad weather',good:'Under the ridge: often fine'}})[l];
  if(!W)return F.met_upper_chart('ja');
  var nar=NARROW();K=nar?1.3:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600)+R(14,44,612,460,'#EEF5FB',12);
@@ -718,7 +718,7 @@ met_upper_chart:function(l){
 
 /* 23 風の矢羽根を読む：半分の羽根5kt、羽根10kt、旗50kt。気温と湿数も */
 met_barbs:function(l){
- var W=({ja:{t:'観測点の記入の読み方',hb:'短い羽根＝5kt',fb:'長い羽根＝10kt',pn:'旗＝50kt',sum:'50＋10＋5＝65kt',from:'棒が出ている方向から風が吹いてくる',tm:'気温',dd:'湿数（気温−露点）',wet:'湿数3℃未満＝湿っていて雲がありそう',ex:'例：西の風 65kt',tms:'気温 −22℃',dds:'湿数 2℃'},
+ var W=({ja:{t:'観測点記入の読み方',hb:'短い羽根＝5kt',fb:'長い羽根＝10kt',pn:'旗＝50kt',sum:'50＋10＋5＝65kt',from:'棒が出ている方向から風が吹いてくる',tm:'気温',dd:'湿数（気温−露点）',wet:'湿数3℃未満＝湿っていて雲がありそう',ex:'例：西の風 65kt',tms:'気温 −22℃',dds:'湿数 2℃'},
   ko:{t:'관측점 기입 읽는 법',hb:'짧은 깃=5kt',fb:'긴 깃=10kt',pn:'삼각기=50kt',sum:'50+10+5=65kt',from:'막대가 뻗은 방향에서 바람이 불어온다',tm:'기온',dd:'습수(기온−이슬점)',wet:'습수 3℃ 미만=습해서 구름이 있을 듯',ex:'예: 서풍 65kt',tms:'기온 −22℃',dds:'습수 2℃'},
   en:{t:'Reading a station plot',hb:'Short barb = 5 kt',fb:'Long barb = 10 kt',pn:'Pennant = 50 kt',sum:'50 + 10 + 5 = 65 kt',from:'The wind blows from the direction the shaft points',tm:'Temperature',dd:'Dew-point depression (temperature − dew point)',wet:'Depression under 3 °C = moist, cloud likely',ex:'Example: westerly, 65 kt',tms:'Temp −22 °C',dds:'T − Td 2 °C'}})[l];
  if(!W)return F.met_barbs('ja');

@@ -1,6 +1,6 @@
 /* 韓国の主要空港ガイド Part 1 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("1-1",{title:"Incheon International Airport (ICN)",hl:"Incheon",subtitle:"The centre of Korea’s international flying: 24 hours, four runways and two terminals. Korean Air and Asiana now share T2 after their merger; next come a third terminal and a fifth runway",
+set("1-1",{title:"Incheon International Airport (ICN)",hl:"Incheon",subtitle:"The centre of Korea’s international air travel: 24 hours, four runways and two terminals. Korean Air and Asiana now share T2 after their merger; next come a third terminal and a fifth runway",
 lead:["Incheon International Airport was built on reclaimed land between Yeongjong and Yongyu islands, about 50 km west of Seoul. Opened in 2001, it handled 73.55 million international passengers in 2025, third in the world after Dubai and Heathrow (ACI World), and ranked seventh for cargo.","It is also an important connecting airport linking Japanese regional cities with North America, Europe and Southeast Asia. This lesson covers the basics, what to watch in operations and handling, and future plans."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"kor_icn",cap:"Figure: Incheon at a glance."},{t:"table",cols:["Item","Details"],rows:[

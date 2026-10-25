@@ -1,6 +1,6 @@
 /* 共通設定（article.js より前に読み込む）— 日本語・한국어・English */
 (function(){
-var PARTS={ja:['Part 0 空港を理解する','Part 1 首都圏','Part 2 釜山・済州'],ko:['Part 0 공항을 이해하다','Part 1 수도권','Part 2 부산·제주'],en:['Part 0 Understanding Korea’s Airports','Part 1 The Seoul Area','Part 2 Busan and Jeju']};
+var PARTS={ja:['Part 0 空港を理解する','Part 1 首都圏','Part 2 釜山・済州'],ko:['Part 0 공항 이해하기','Part 1 수도권','Part 2 부산·제주'],en:['Part 0 Understanding Korea’s Airports','Part 1 The Seoul Area','Part 2 Busan and Jeju']};
 var S={ja:'主要空港ガイド・韓国',ko:'주요 공항 가이드 · 한국',en:'Guide to Major Airports: Korea'};
 var DEF={ja:{voice:'現場のひと言'},ko:{voice:'현장 한마디'},en:{voice:'Voice from the Field'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];

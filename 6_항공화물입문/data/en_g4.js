@@ -8,10 +8,10 @@ sections:[
 {h:"Positions for special cargo",blocks:[{t:"table",cols:["Cargo","What decides the position"],rows:[
 ["Dangerous goods","Segregation by class, and a record the captain can read easily"],
 ["Live animals","A compartment with controlled temperature and ventilation, away from dry ice"],
-["Perishables and pharmaceuticals","Temperature control, and a position that comes off quickly"],
+["Perishables and pharmaceuticals","Temperature control, and a position that can be unloaded quickly"],
 ["Heavy items","Floor strength and the effect on balance"],
 ["Transfer cargo","A position that can be unloaded first on arrival"]]}]},
-{h:"Notification to the captain (NOTOC)",blocks:[{t:"fig",id:"cgo_notoc",cap:"Animated figure: three lines of a fictional NOTOC (lithium ion batteries, dry ice, live animal) light up in turn; the animal and dry ice are in separate positions."},
+{h:"Notification to the captain (NOTOC)",blocks:[{t:"fig",id:"cgo_notoc",cap:"Animated figure: three lines of a fictional NOTOC (lithium-ion batteries, dry ice, live animal) light up in turn; the animal and dry ice are in separate positions."},
 {t:"rows",items:[
 {name:"What it contains",x:"The type, quantity, position and UN number of dangerous goods and other special cargo."},
 {name:"Acceptance",x:"The captain checks it and signs."},
@@ -26,7 +26,7 @@ quiz:[{q:"What goes in the notification to the captain?",opts:["The type, quanti
 next:"4-2 Load messages and cargo documents"});
 
 set("4-2",{title:"Load Messages and Cargo Documents",hl:"load messages",subtitle:"Telling the arrival station what is where, before the aircraft gets there",
-lead:["Once loading is done, the departure station sends the arrival station the ULD positions and weights, the special cargo and anything offloaded, by message. The arrival station uses it to prepare for unloading and storage.",
+lead:["Once loading is done, the departure station sends the arrival station a message giving the ULD positions and weights, the special cargo and anything offloaded. The arrival station uses this information to prepare for unloading and storage.",
 "This article covers recording ULD weights, the main messages, the documents carried on board, and what is checked on arrival."],
 sections:[
 {h:"Recording ULD weights",blocks:[{t:"p",x:"For each ULD built up, record the number, destination, weight and the category of contents. That record — the ULD weight statement — feeds both the load plan and the manifest."}]},
@@ -45,7 +45,7 @@ voice:"Errors in load messages throw the destination’s unloading plan into dis
 terms:[["ULD Weight Statement","ULD重量記録","ULD 중량 기록"],["Load Message (LDM)","搭載の電報","탑재 전문"],["Container Pallet Message (CPM)","ULD配置の電報","컨테이너·팔레트 전문"],["Offload","積み残し","미탑재"]],
 quiz:[{q:"Why send the load messages?",opts:["To give the arrival station time to prepare","To set the rate","To choose passengers","To report the weather"],a:0,exp:"They are used to prepare unloading and storage."},
 {q:"What is checked first on arrival?",opts:["The messages and documents against the actual ULDs","The shops","Only the passenger count","Nothing"],a:0,exp:"Record any overage, shortage or damage."},
-{q:"What happens to offloaded cargo?",opts:["Nothing","A flight is chosen and everyone is told","It is destroyed","Only a refund"],a:1,exp:"It is traced through to delivery."}],
+{q:"What happens to offloaded cargo?",opts:["Nothing","A flight is chosen and the parties concerned are told","It is destroyed","Only a refund"],a:1,exp:"It is traced through to delivery."}],
 next:"4-3 Cargo irregularities"});
 
 set("4-3",{title:"Cargo Irregularities: Damage, Loss and Delay",hl:"cargo irregularities",subtitle:"What you record when you find it decides liability and compensation ★",
@@ -78,14 +78,14 @@ next:"5-1 The role of the general sales agent"});
 
 set("5-1",{title:"The Role of the General Sales Agent",hl:"the GSA",subtitle:"The company that sells a foreign airline’s cargo locally",
 lead:["Rather than build their own cargo sales organisation in a market, foreign airlines often appoint a general sales agent (GSA). The GSA sells to forwarders, takes bookings, quotes rates and manages the documents on the airline’s behalf.",
-"This article covers what a GSA does, how the work splits with the airline, and what to look for when choosing and managing one."],
+"This article covers what a GSA does, how the work is split with the airline, and what to look for when choosing and managing one."],
 sections:[
 {h:"What a GSA does",blocks:[{t:"check",items:[
 {name:"Selling",x:"Calling on forwarders, quoting rates and selling the space."},
 {name:"Bookings",x:"Taking bookings, managing the loading outlook, advising offloads."},
 {name:"Documents",x:"Holding waybill stock, controlling issuance, reporting sales."},
 {name:"Settlement",x:"Invoicing and collecting the freight charges and remitting to the airline."}]}]},
-{h:"How the work splits (example)",blocks:[{t:"fig",id:"cgo_gsa",cap:"Animated figure: how bookings, documents and money flow between forwarder, GSA and airline, in six steps that light up in turn."},
+{h:"How the work is split (example)",blocks:[{t:"fig",id:"cgo_gsa",cap:"Animated figure: how bookings, documents and money flow between forwarder, GSA and airline, in six steps that light up in turn."},
 {t:"table",cols:["The airline","The GSA"],rows:[
 ["Sets the rate policy and the sales targets","Sells within that policy"],
 ["Makes the final loading decision","Adjusts bookings and advises"],
@@ -96,11 +96,11 @@ sections:[
 {name:"Financial health",x:"They collect and remit your revenue, so their finances matter."},
 {name:"Reporting",x:"How often and how accurately they report sales, bookings and collections."},
 {name:"Conflicts of interest",x:"Whether they also represent a competing airline."}]},
-{t:"point",x:"The GSA is the airline’s face in that market. A passenger station manager who follows what the GSA is doing finds it easier to use belly space well and to handle enquiries about large shipments."}]}],
+{t:"point",x:"The GSA is the airline’s point of contact in the local cargo market. A passenger station manager who follows what the GSA is doing finds it easier to use belly space well and to handle enquiries about large shipments."}]}],
 voice:"The passenger station and the GSA share the same flight’s space. Telling each other in advance about heavy-baggage and heavy-cargo days makes load planning easier.",
 terms:[["General Sales Agent (GSA)","販売総代理店","판매 총대리점"],["Space / Capacity","スペース","공간(스페이스)"],["Collection","回収","회수"],["Conflict of Interest","利益相反","이해 상충"]],
 quiz:[{q:"What does a GSA do for the airline?",opts:["Cargo sales, bookings and settlement","Flying","Maintenance","Inflight service"],a:0,exp:"It runs cargo sales in that market."},
-{q:"What matters most when choosing a GSA?",opts:["Financial health and track record","The size of their office","The age of their president","Their logo colour"],a:0,exp:"They collect and remit your money."},
+{q:"What matters when choosing a GSA?",opts:["Financial health and track record","Only the size of their office","The age of their president","Their logo colour"],a:0,exp:"They collect and remit your money."},
 {q:"Who makes the final loading decision in this example?",opts:["The airline","The GSA","The shipper","Customs"],a:0,exp:"The GSA adjusts bookings and advises."}],
 next:"5-2 Managing the cargo handling company"});
 
@@ -116,9 +116,9 @@ sections:[
 {name:"Documents and messages",x:"The accuracy and timing of manifests and load messages."}]}]},
 {h:"The monthly meeting",blocks:[{t:"fig",id:"cgo_kpi",cap:"Animated figure: three handler quality indicators over three months; the dotted line is the target and bars over it are red. Figures are fictional."},
 {t:"table",cols:["Agenda","Content"],rows:[
-["Performance","Tonnage handled, offloads, irregularity numbers"],
+["Performance","Tonnage handled, offloads, incident counts"],
 ["Quality","Check results, findings and improvements"],
-["Special cargo","How dangerous goods, pharmaceuticals and the rest are running"],
+["Special cargo","Handling status of dangerous goods, pharmaceuticals and similar cargo"],
 ["What is coming","Peak seasons, aircraft changes, schedule changes"],
 ["Other","Staffing, equipment, invoice questions"]]}]},
 {h:"Verifying invoices",blocks:[{t:"rows",items:[
@@ -142,7 +142,7 @@ sections:[
 ["Volume carried","The chargeable weight actually loaded"],
 ["Rate level","Set by supply and demand, competition and commodity"],
 ["Special handling","Surcharges for dangerous goods, temperature control and outsized cargo"],
-["Utilisation","How much of the available capacity was used"],
+["Load factor","How much of the available capacity was used"],
 ["Costs","Handling, security and airport charges"]]}]},
 {h:"Types of rate (examples)",blocks:[{t:"check",items:[
 {name:"General cargo rates",x:"Unit rates by weight break."},
@@ -162,7 +162,7 @@ quiz:[{q:"Which does NOT drive cargo revenue?",opts:["Volume carried","Rate leve
 next:"5-4 Careers and qualifications in cargo"});
 
 set("5-4",{title:"Careers and Qualifications in Cargo",hl:"cargo careers",subtitle:"Airline, handler, forwarder, GSA — one industry you can move around in",
-lead:["Air cargo work spans many companies: airlines, handling companies, forwarders, GSAs and customs brokers. Wherever you gain experience, it carries over to the others, and that is the character of this industry.",
+lead:["Air cargo work spans many companies: airlines, handling companies, forwarders, GSAs and customs brokers. Experience gained in one place carries over to the others, which is a defining feature of this industry.",
 "This article covers the main jobs, useful qualifications and training, the career paths, and how cargo differs from the passenger side."],
 sections:[
 {h:"The main jobs",blocks:[{t:"table",cols:["Job","What it involves"],rows:[
@@ -171,7 +171,7 @@ sections:[
 ["Dangerous goods acceptance","Checking and accepting dangerous goods"],
 ["Forwarder sales and operations","Proposals to shippers, bookings, documents, arranging clearance"],
 ["Customs specialist","Declarations to customs (a licensed qualification)"],
-["Airline or GSA cargo sales","Selling the space, rates and managing customers"]]}]},
+["Airline or GSA cargo sales","Selling space, rates and customer management"]]}]},
 {h:"Useful qualifications and training (examples)",blocks:[{t:"check",items:[
 {name:"Dangerous goods training",x:"Training for your role, renewed at intervals."},
 {name:"Customs specialist licence",x:"A national qualification in Japan, required for customs brokerage work. ★"},

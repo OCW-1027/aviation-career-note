@@ -41,7 +41,7 @@ mnt_zones:function(l){
 /* 航空機と整備 4-4 雪・霜・氷を確かめる面と、液をかけない所 */
 mnt_deice_ac:function(l){
  var W=({ja:{t:'確かめて取り除く面と、液を直接かけない所（B737の例）',n:['主翼の上面：雪・霜・氷を残さない。離陸の揚力にいちばん影響する','水平尾翼：上の面も下の面も確かめる','胴体の上面：積もった雪は、翼や尾翼に落ちる前に取り除く','垂直尾翼：左右の両面','液を直接かけない所：エンジンの空気の取り入れ口・APU・ピトー管と静圧孔・操縦室の窓など（機種の手順による）★'],k:'作業車の位置と散布の順番は、機種の手順と各社の防除雪氷の手順で決まる★'},
-  ko:{t:'확인하고 제거하는 면과 제빙액을 직접 뿌리지 않는 곳(B737의 예)',n:['주날개 윗면: 눈·서리·얼음을 남기지 않는다. 이륙 양력에 가장 크게 영향을 준다','수평꼬리날개: 윗면과 아랫면 모두 확인한다','동체 윗면: 쌓인 눈은 날개나 꼬리날개로 떨어지기 전에 제거한다','수직꼬리날개: 좌우 양면','직접 뿌리지 않는 곳: 엔진 공기흡입구·APU·피토관과 정압공·조종실 창문 등(기종 절차에 따름)★'],k:'작업 차량의 위치와 살포 순서는 기종 절차와 각 사의 제빙·방빙 절차로 정한다★'},
+  ko:{t:'확인하고 제거하는 면과 제빙액을 직접 뿌리지 않는 곳(B737의 예)',n:['주날개 윗면: 눈·서리·얼음을 남기지 않는다. 이륙 양력에 가장 크게 영향을 준다','수평꼬리날개: 윗면과 아랫면 모두 확인한다','동체 윗면: 쌓인 눈은 날개나 꼬리날개로 떨어지기 전에 제거한다','수직꼬리날개: 좌우 양면','직접 뿌리지 않는 곳: 엔진 공기흡입구·APU·피토관과 정압공·조종실 창문 등(기종 절차에 따름)★'],k:'작업 차량의 위치와 살포 순서는 기종 절차와 각 사의 제빙·방빙 절차에 따른다★'},
   en:{t:'Surfaces to check and clear, and places fluid must not be sprayed directly (B737 example)',n:['Upper wing surfaces: leave no snow, frost or ice; they matter most for lift on take-off','Horizontal stabilisers: check both the upper and lower surfaces','Top of the fuselage: clear built-up snow before it slides onto the wings and tail','Vertical stabiliser (fin): both sides','Do not spray directly: engine inlets, the APU, pitot tubes and static ports, flight deck windows and similar (per the type’s procedure)★'],k:'Truck positions and spraying order follow the aircraft type’s procedure and each airline’s de-icing procedure★'}})[l];
  if(!W)return F.mnt_deice_ac('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=PLANE(T.y),P=A.P;s+=A.s;
@@ -60,7 +60,7 @@ mnt_deice_ac:function(l){
 /* 航空機と整備 5-4 臨時の点検：機体のどこを見るか */
 mnt_cond_ac:function(l){
  var W=({ja:{t:'臨時の点検：機体のどこを見るか（B737の例）',n:['落雷：電流が入った所と出た所。機首・翼の先・水平尾翼の先・尾部などに小さな焦げ跡がないか','鳥衝突：当たった所。機首・操縦室の窓・エンジン・翼の前縁。エンジンは内部まで見ることがある','ハードランディング：脚と脚の取付部、胴体と主翼の付け根まわりの構造'],k:'実際の範囲と方法は、製造者の手順書と各社の整備規程で決まる★'},
-  ko:{t:'비정기 점검: 기체의 어디를 보는가(B737의 예)',n:['낙뢰: 전류가 들어간 곳과 나간 곳. 기수·날개 끝·수평꼬리날개 끝·꼬리 부분 등에 작은 그을음 자국이 없는지','조류 충돌: 부딪힌 곳. 기수·조종실 창문·엔진·날개 앞전. 엔진은 내부까지 보기도 한다','하드 랜딩: 착륙장치와 그 장착부, 동체와 주날개 뿌리 주변 구조'],k:'실제 범위와 방법은 제작사 매뉴얼과 각 사의 정비규정으로 정한다★'},
+  ko:{t:'비정기 점검: 기체의 어디를 보는가(B737의 예)',n:['낙뢰: 전류가 들어간 곳과 나간 곳. 기수·날개 끝·수평꼬리날개 끝·꼬리 부분 등에 작은 그을음 자국이 없는지','조류 충돌: 부딪힌 곳. 기수·조종실 창문·엔진·날개 앞전. 엔진은 내부까지 보기도 한다','하드 랜딩: 착륙장치와 그 장착부, 동체와 주날개 뿌리 주변 구조'],k:'실제 범위와 방법은 제작사 매뉴얼과 각 사의 정비규정에 따른다★'},
   en:{t:'Unscheduled inspections: where on the aircraft to look (B737 example)',n:['Lightning: where the current entered and left. Look for small burn marks at the nose, wing tips, stabiliser tips, tail and similar places','Bird strike: where it hit. Nose, flight deck windows, engines, wing leading edges. Engines may be inspected inside','Hard landing: the landing gear and its attachments, and the structure around the wing-to-body joint'],k:'The actual scope and method follow the manufacturer’s manual and each airline’s maintenance rules★'}})[l];
  if(!W)return F.mnt_cond_ac('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=PLANE(T.y),P=A.P;s+=A.s;

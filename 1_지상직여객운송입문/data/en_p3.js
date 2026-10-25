@@ -8,13 +8,13 @@ sections:[
 {name:"Cabin doors",x:"Numbered from the front: 1L and 1R, 2L and 2R and so on. The L (left) side is normally used for passengers."},
 {name:"Cargo doors",x:"One for each hold: forward, aft and bulk. The number and position differ by aircraft type."},
 {name:"Service doors",x:"Catering and cleaning mainly use the doors on the right (R) side."}]},
-{t:"point",x:"Change the aircraft and the doors move. Check for each type which door the boarding bridge or steps should serve (1-9)."}]},
+{t:"point",x:"When the aircraft changes, the door positions change too. Check for each type which door the boarding bridge or steps should serve (1-9)."}]},
 {h:"Who operates the door (example; differs by airline and type)",blocks:[{t:"table",cols:["Situation","Who operates it"],rows:[
 ["Opening on arrival for disembarkation","Ground staff from outside, including handling company staff"],
 ["Opening from inside the cabin","Cabin crew or an engineer"],
 ["Airports where opening from outside is difficult","The senior cabin crew member"],
 ["Test or training flights","An engineer"],
-["Early flights or after a long time parked","An engineer, before the crew arrives"],
+["Door closed for an early flight or after a long time parked","An engineer, before the crew arrives"],
 ["Closing before departure","Cabin crew, from inside"]]}]},
 {h:"Opening the door, step by step",blocks:[{t:"ladder",rise:10,steps:[{name:"Check the equipment",sub:"Bridge or steps correctly in position"},{name:"Check around",sub:"Nothing obstructing the door"},{name:"The signal",sub:"Thumbs up through the window with the cabin crew"},{name:"Open",sub:"Using the external handle in the set direction"},{name:"Confirm it is locked open",sub:"Fully open and secured"}]},
 {t:"point",warn:true,x:"The signal confirms that the slide has been disarmed. If there is no signal, or you cannot see the cabin crew through the window, never open the door."}]},
@@ -25,22 +25,22 @@ sections:[
 {h:"Preventing inadvertent deployment",blocks:[{t:"rows",items:[
 {name:"Why it matters",x:"Replacing or repacking a slide takes time, delaying or cancelling the flight, and people nearby can be injured."},
 {name:"Common causes",x:"Skipping the signal, assuming rather than checking when rushed, and not confirming the door mode."},
-{name:"Habits that prevent it",x:"Make “no signal, no opening” a rule for everyone, and let new staff learn the procedure physically on a real aircraft in training."}]}]}],
+{name:"Habits that prevent it",x:"Make “no signal, no opening” a rule for everyone, and let new staff learn the procedure hands-on on a real aircraft in training."}]}]}],
 voice:"Before opening a door, always confirm the slide-disarmed signal and the position of the bridge or steps. Exchanging the confirmation signal with the cabin crew is the basic rule.",
 terms:[["Escape Slide","脱出用スライド","탈출 슬라이드"],["Armed","作動状態","작동 상태"],["Disarmed","解除状態","해제 상태"],["Cabin Door","客室のドア","객실 도어"],["Cargo Door","貨物室のドア","화물칸 도어"],["Passenger Boarding Bridge (PBB)","搭乗橋","탑승교"]],
 quiz:[{q:"What is needed before opening a door from outside?",opts:["A knock","The signal from the cabin crew","Only the captain’s permission","Nothing"],a:1,exp:"The signal confirms the slide has been disarmed."},
 {q:"Who closes the door before departure in this example?",opts:["Ground staff","Cabin crew","A passenger","Only an engineer"],a:1,exp:"Cabin crew close it from inside; ground staff confirm from outside."},
-{q:"What happens if a door is opened from inside while the slide is armed?",opts:["Nothing","The slide deploys","The door will not move","Only an alarm sounds"],a:1,exp:"It leads to delays, cancellations and possible injury. What happens when opening from outside differs by type and door, so follow the SOP and cross-check."}],
+{q:"What happens if a door is opened from inside while the slide is armed?",opts:["Nothing","The slide deploys","The door will not open","Only an alarm sounds"],a:1,exp:"It leads to delays, cancellations and possible injury. What happens when opening from outside differs by type and door, so follow the SOP and cross-check."}],
 next:"3-2 Arrival and departure duties"});
 
-set("3-2",{title:"Arrival and Departure Duties",hl:"arrival and departure",subtitle:"Arrival is preparing to receive; departure is confirming before you send them off. Both run on checklists",
+set("3-2",{title:"Arrival and Departure Duties",hl:"arrival and departure",subtitle:"Arrival is preparing to receive the flight; departure is confirming before you send the flight off. Both run on checklists",
 lead:["The station manager is responsible for the whole of the daily departure operation up to pushback. Arrival and departure duties follow a set order by time, and the person in charge checks that each step has happened as it should.",
 "This article covers preparing to receive an arrival (gate, baggage, operations), what to confirm on a departure (before boarding, during boarding, before pushback and after departure), ordering catering, and handling border documents and passenger information."],
 sections:[
 {h:"Preparing to receive an arrival",blocks:[{t:"table",cols:["Who","What they check"],rows:[
 ["Gate","Estimated arrival time, gate changes, arrival displays, VIPs, passengers needing assistance and unaccompanied minors, wheelchairs ready, buses if the aircraft parks on a remote stand"],
 ["Baggage","Baggage claim ready, any fault on the belt, how much baggage is loaded (from the CPM), requests to unload VIP bags first, passengers whose bags missed the connection, irregularity forms and rush tags ready"],
-["Operations","Any defect on the inbound aircraft (APU failure, inflight entertainment and so on), special requests from passengers, connecting passengers"]]},
+["Operations","Any defect on the inbound aircraft (APU failure, inflight entertainment faults and so on), special requests from passengers, connecting passengers"]]},
 {t:"point",x:"If you identify passengers whose bags missed the connection before the flight lands, you can meet them and explain on arrival. That causes far less frustration than letting them wait at the belt first."}]},
 {h:"What to confirm on a departure",blocks:[{t:"fig",id:"gnd_depchk",cap:"Animated figure: the checks before boarding, during boarding, before pushback and after departure light up in turn."},{t:"table",cols:["When","What to confirm"],rows:[
 ["Before boarding","Catering and cabin supplies loaded, cleaning finished, maintenance checks complete, cabin crew ready"],
@@ -53,7 +53,7 @@ sections:[
 ["Additional order","1 hour before departure","Whatever is still needed before check-in closes"]]},
 {t:"check",items:[
 {name:"Check the loading",x:"How the loaders handle it, the quantity and where it is stowed, and the handover to the cabin crew."},
-{name:"Report problems",x:"If catering looks like being late or short, report it to the responsible department at head office."}]}]},
+{name:"Report problems",x:"If catering looks likely to be late or short, report it to the responsible department at head office."}]}]},
 {h:"Border documents and passenger information",blocks:[{t:"rows",items:[
 {name:"General Declaration (GD)",x:"Aircraft operator, destination, flight number, crew list and so on. Used for the arrival and departure declaration."},
 {name:"Passenger manifest (PM)",x:"The final list of passengers who boarded. Retained for a set period (for example, one year)."},
@@ -62,7 +62,7 @@ sections:[
 {t:"point",warn:true,x:"Passenger travel records are personal data and are not casually disclosed to third parties, family included. Where there are legitimate grounds, such as an inquiry based on law or the passenger’s consent, follow the company’s personal data procedures."}]},
 {h:"Watch it on video",blocks:[{t:"video",title:"Ground handling: pushback and marshalling",ch:"ANA",url:"https://www.youtube.com/watch?v=iSszQPAdZPA"}]}],
 voice:"Before an arrival, check wheelchair, transfer and special-passenger information and the state of the bridge. Everyone and everything needed should be in place before the door opens.",
-terms:[["Estimated Time of Arrival (ETA)","到着予定時刻","도착 예정 시각"],["Scheduled / Estimated Time of Departure","出発予定時刻","출발 예정 시각"],["Container / Pallet Message (CPM)","コンテナ・パレット電報","컨테이너·팔레트 전문"],["Passenger Manifest (PM)","乗客名簿","승객 명단"],["General Declaration (GD)","出入国の申告書","입출항 신고서"],["Final Meal Order","機内食の最終発注","기내식 최종 주문"]],
+terms:[["Estimated Time of Arrival (ETA)","到着予定時刻","도착 예정 시각"],["Scheduled / Estimated Time of Departure","出発予定時刻","출발 예정 시각"],["Container / Pallet Message (CPM)","コンテナ・パレット電報","컨테이너·팔레트 전문"],["Passenger Manifest (PM)","旅客名簿","승객 명단"],["General Declaration (GD)","出入国の申告書","입출항 신고서"],["Final Meal Order","機内食の最終発注","기내식 최종 주문"]],
 quiz:[{q:"Why identify passengers whose bags missed the connection in advance?",opts:["No particular reason","So you can meet them on arrival and explain first","To charge them","To dispose of the bags"],a:1,exp:"It saves them waiting at the belt before they learn anything."},
 {q:"Which is NOT part of the checks before pushback?",opts:["Documents on board","The exact boarded count","Ground equipment clear","Ordering catering"],a:3,exp:"Catering is ordered in stages from the previous day."},
 {q:"A passenger’s family asks whether they were on board. What do you do?",opts:["Tell them","As a rule, do not tell them","Show them the manifest","Read it out over the phone"],a:1,exp:"Family members are third parties too."}],
@@ -70,7 +70,7 @@ next:"3-3 Turnaround: what happens between arrival and departure"});
 
 set("3-3",{title:"Turnaround: What Happens Between Arrival and Departure",hl:"turnaround",subtitle:"Some tasks run in parallel; others must follow each other. Delays come from the second kind",
 lead:["The ground work between an aircraft arriving and leaving again as the next flight is called the turnaround. Disembarking, unloading and loading, fuelling, cleaning, catering, maintenance, boarding: much of it happens at the same time.",
-"Airlines set a standard turnaround for each aircraft type and route. This article covers the whole picture, the critical path (the tasks whose delay goes straight into the departure time), how to read a turnaround chart, and how to keep delays from building."],
+"Airlines set a standard turnaround for each aircraft type and route. This lesson covers the whole picture, the critical path (the tasks whose delay goes straight into the departure time), how to read a turnaround chart, and how to keep delays from building."],
 sections:[
 {h:"The main tasks",blocks:[{t:"table",cols:["Task","What it involves"],rows:[
 ["Ramp in","Stopping, engines off, chocks in place, ground power or the APU started"],
@@ -90,7 +90,7 @@ sections:[
 ["International, short haul","60–75 minutes","30–40 minutes before departure"],
 ["International, long haul","90–120 minutes","35–45 minutes before departure"],
 ["Routes needing extra security measures, etc.","120 minutes or more","40–50 minutes before departure"]]},
-{t:"note",x:"* Guide figures drawn from several airlines; they vary with aircraft, airport and bridge or bus boarding. Ground time covers disembarking, ground work and boarding. Flights that change from domestic to international may use the international figure. ★"}]},
+{t:"note",x:"* Guide figures drawn from several airlines; they vary with aircraft, airport and whether boarding is by bridge or bus. Ground time covers disembarking, ground work and boarding. Flights that change from domestic to international may use the international figure. ★"}]},
 {h:"Reading the chart (70-minute international short haul)",blocks:[{t:"fig",id:"gnd_turn",cap:"Animated figure: a 70-minute ground-time chart; a vertical line moves with the clock. Red tasks are the critical path (example)."},{t:"table",cols:["Time to departure","Main activity"],rows:[
 ["-70 to -68 min","Arrival, doors open, unloading starts"],
 ["-60 min","Disembarking complete; cleaning, catering and fuelling start"],
@@ -102,11 +102,11 @@ sections:[
 ["About -5 min","Door closed"],
 ["0 min","Departure"]]}]},
 {h:"Keeping delays from building",blocks:[{t:"check",items:[
-{name:"Protect the critical path",x:"Hold the start times for disembarking and boarding above everything else."},
-{name:"Share early",x:"The moment a task looks like running late, tell operations, the gate and the cabin."},
+{name:"Protect the critical path",x:"Give the start times for disembarking and boarding top priority."},
+{name:"Share early",x:"As soon as a task looks likely to run late, tell operations, the gate and the cabin."},
 {name:"Remove waiting",x:"Position the cleaning team and the catering truck before the aircraft arrives so they are not waiting beside it."},
-{name:"Record with delay codes",x:"Record the cause using the IATA delay codes so the same cause can be reduced next time."}]},
-{t:"point",x:"On-time performance is the station’s report card. Record which task lost how many minutes and go through it at the monthly meeting with the handling company (6-2)."}]},
+{name:"Record with delay codes",x:"Record the cause using the IATA delay codes to reduce delays from the same cause."}]},
+{t:"point",x:"On-time performance is a key measure of how the station is run. Record which task lost how many minutes and go through it at the monthly meeting with the handling company (6-2)."}]},
 {h:"Watch it on video",blocks:[{t:"video",title:"A day of ground handling, filmed from the staff’s point of view",ch:"ANA",url:"https://www.youtube.com/watch?v=EfLr1yPew1k"}]}],
 voice:"To shorten turnarounds, separate tasks that can run in parallel from those that must follow in order. Start with the tasks that create waiting time.",
 terms:[["Turnaround","ターンアラウンド","턴어라운드"],["Ground Time","地上時間","지상 체류 시간"],["Critical Path","クリティカルパス","크리티컬 패스"],["Chocks","車輪止め","고임목"],["APU","補助動力装置","보조 동력 장치"],["IATA Delay Code","遅延コード","지연 코드"]],
@@ -115,8 +115,8 @@ quiz:[{q:"What is the critical path?",opts:["Tasks that run in parallel","The ch
 {q:"What is used to record the cause of a delay?",opts:["A weather chart","IATA delay codes","A seat map","A fare table"],a:1,exp:"They are used to analyse causes and prevent repeats."}],
 next:"3-4 Load control: weight and balance"});
 
-set("3-4",{title:"Load Control: Weight and Balance",hl:"load control",subtitle:"Not too heavy, not out of balance — protecting safety and fuel burn at the same time",
-lead:["An aircraft cannot fly safely if it exceeds its weight limits or if its centre of gravity falls outside the permitted range. Load control is the work of calculating how much of the passengers, baggage, cargo and fuel goes where, and telling the captain.","A well-placed centre of gravity also saves fuel. This article covers the weight definitions and how they relate, how fuel is planned, standard passenger weights, the loading instruction and the loadsheet, last minute changes, and how a load controller’s day runs."],
+set("3-4",{title:"Load Control: Weight and Balance",hl:"load control",subtitle:"Not too heavy, not out of balance — protecting safety and fuel efficiency at the same time",
+lead:["An aircraft cannot fly safely if it exceeds its weight limits or if its centre of gravity falls outside the permitted range. Load control is the work of calculating how much of the passengers, baggage, cargo and fuel goes where, and telling the captain.","A well-placed centre of gravity also saves fuel. This lesson covers the weight definitions and how they relate, how fuel is planned, standard passenger weights, the loading instruction and the loadsheet, last minute changes, and how a load controller’s day runs."],
 sections:[
 {h:"Two purposes",blocks:[{t:"cards",n:2,items:[
 {ic:"🛡️",name:"Safe operation",x:"Weight: keep the aircraft from being overloaded. Balance: place passengers, baggage and cargo so the centre of gravity stays within limits."},
@@ -145,7 +145,7 @@ sections:[
 {name:"Loading order",x:"Cargo, then mail, then baggage, so that baggage comes off first at the destination."},
 {name:"Loadsheet",x:"The document bringing together the aircraft, fuel, cargo and baggage, passengers and crew weights and the centre of gravity. The captain checks and accepts it, sometimes electronically."},
 {name:"Notification to captain (NOTOC)",x:"The document telling the captain that dangerous goods or other special loads are on board."}]}]},
-{h:"Last minute changes (LMC)",blocks:[{t:"p",x:"Passenger numbers or the weight of baggage and cargo can change after the loadsheet has been handed over. Within set limits the change can be written on rather than the sheet redone (the limits on passengers, weight and centre-of-gravity movement are set by each company and aircraft type). Beyond that, a new loadsheet is produced. ★"},
+{h:"Last minute changes (LMC)",blocks:[{t:"p",x:"Passenger numbers or the weight of baggage and cargo can change after the loadsheet has been handed over. Within set limits the change can be amended on the existing sheet rather than redone (the limits on passengers, weight and centre-of-gravity movement are set by each company and aircraft type). Beyond that, a new loadsheet is produced. ★"},
 {t:"point",warn:true,x:"When the loadsheet is handed over, always give the captain the actual boarded count. Reconciling the numbers at the gate (2-7) is what keeps load control accurate."}]},
 {h:"How the load controller’s day runs (example)",blocks:[{t:"table",cols:["When","Task"],rows:[
 ["7 days before","Work out how many baggage containers are needed from the bookings"],
@@ -156,7 +156,7 @@ sections:[
 ["7 minutes before","Confirm last minute changes and send the loadsheet"],
 ["30 minutes after departure","Send the load messages (LDM, CPM and so on)"]]}]}],
 voice:"On the load sheet, ground staff should look first at whether passenger numbers and baggage pieces and weight match reality. If they do not, tell load control before departure.",
-terms:[["Weight & Balance / Load Control","重量・重心管理","중량·평형 관리"],["Dry Operating Weight (DOW)","運航重量","운항 중량"],["Zero Fuel Weight (ZFW)","無燃料重量","무연료 중량"],["Loading Instruction Report (LIR)","搭載指示書","탑재 지시서"],["Last Minute Change (LMC)","最後の変更","최종 변경"],["NOTOC","機長への危険物通知","기장 통보서"]],
+terms:[["Weight & Balance / Load Control","重量・重心管理","중량·평형 관리"],["Dry Operating Weight (DOW)","運航重量","운항 중량"],["Zero Fuel Weight (ZFW)","無燃料重量","무연료 중량"],["Loading Instruction Report (LIR)","搭載指示書","탑재 지시서"],["Last Minute Change (LMC)","最終変更","최종 변경"],["NOTOC","機長への危険物通知","기장 통보서"]],
 quiz:[{q:"How is the available payload calculated?",opts:["Maximum take-off weight plus fuel","Allowable take-off weight minus dry operating weight minus take-off fuel","Passengers times 100","Fuel minus dry operating weight"],a:1,exp:"AGTOW minus DOW minus take-off fuel."},
 {q:"Why is baggage loaded last?",opts:["It is light","So it comes off first at the destination","It is cheap","There is no rule"],a:1,exp:"It keeps passengers from waiting."},
 {q:"What must always be given to the captain with the loadsheet?",opts:["The weather","The actual boarded count","The revenue","The seat colours"],a:1,exp:"An accurate count is the basis of the whole calculation."}],
@@ -178,7 +178,7 @@ sections:[
 {name:"Where you may walk",x:"Use the marked walkways; never cut under an aircraft or between vehicles."},
 {name:"Engines",x:"Stay away from an aircraft with its anti-collision beacon on: the engines are running or about to."},
 {name:"Pick up debris",x:"Pick up anything lying on the ramp, and hold regular FOD walks with the whole team."},
-{name:"Lightning",x:"Stop outdoor work to the agreed criteria when lightning approaches."},
+{name:"Lightning",x:"Stop outdoor work according to the set criteria when lightning approaches."},
 {name:"Mobile phones",x:"Follow the rules for use on the ramp, especially near an aircraft being fuelled."}]}]},
 {h:"The safety management system (SMS)",blocks:[{t:"p",x:"Airlines are required to run a safety management system: rather than reacting after an accident, it finds hazards, assesses them and reduces them."},
 {t:"ladder",rise:10,steps:[{name:"Find the hazard",sub:"Reports, inspections, analysis"},{name:"Assess",sub:"Likelihood x severity"},{name:"Act",sub:"Procedures, equipment, training"},{name:"Monitor",sub:"Track the safety indicators"},{name:"Improve",sub:"On to the next measure"}]},

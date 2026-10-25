@@ -1,7 +1,7 @@
 /* 外国航空会社の日本就航・支店開設ガイド — English version (Part 3: 空港の契約とハンドリング会社) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-1",{title:"Choosing a Ground Handling Company",hl:"handling companies",subtitle:"Do not compare on the headline rate alone. Look at surcharges, staffing, experience and alternate airports",
-lead:["A foreign airline contracts out almost all of its airport work. Which company you choose drives punctuality, baggage irregularities, passenger satisfaction and cost alike.",
+lead:["A foreign airline contracts out almost all of its airport work to handling companies. Which company you choose drives punctuality, baggage irregularities, passenger satisfaction and cost alike.",
 "This article covers the state of the handling industry at Japanese airports, how to compare offers, how to read the surcharges, how to start up after selection, and when to review the contract. The comparison example is generalised, without names or amounts."],
 sections:[
 {h:"The state of the industry at Japanese airports",blocks:[{t:"fig",id:"opn_gh",cap:"Animated figure: the ground handling market at Japanese airports (example)."},{t:"check",items:[
@@ -32,7 +32,7 @@ sections:[
 voice:"When choosing a handler, what matters more than price is whether it can supply extra staff on a disrupted day. Check how it actually performs on delay days, including its reputation with other airlines.",
 terms:[["Ground Handling Agent (GHA)","ハンドリング会社","조업사"],["Additional Charges","追加料金","추가 요금"],["Ground Power Unit (GPU)","地上電源","지상 전원"],["Air Conditioning Unit (ACU / PCA)","空調機","냉난방 장치"],["Air Start Unit (ASU)","エンジン始動装置","엔진 시동 장치"],["De-icing / Anti-icing","防除氷","제방빙"]],
 quiz:[{q:"How should handling offers be compared?",opts:["On the base rate alone","On the annual total including surcharges","On company size","On name recognition"],a:1,exp:"Use your own history to build the annual total."},
-{q:"What must be confirmed early as a precondition for launch?",opts:["Uniforms","That a handler and a fuel supplier can take you","The venue for the ceremony","Business cards"],a:1,exp:"Launches have slipped over staffing and refused fuelling contracts."},
+{q:"What should be confirmed early as a precondition for launch?",opts:["Uniforms","That a handler and a fuel supplier can take you","The venue for the ceremony","Business cards"],a:1,exp:"Launches have slipped over staffing and refused fuelling contracts."},
 {q:"Why does coverage at alternate airports matter?",opts:["It does not","You need someone to work the flight after a diversion","It is cheaper","It is good publicity"],a:1,exp:"It decides whether you can get staff at the diversion airport."}],
 next:"3-2 Reading the ground handling agreement (SGHA)"});
 
@@ -60,7 +60,7 @@ sections:[
 {name:"Invoicing",x:"The cut-off, the payment deadline and how the detail is presented."}]},
 {t:"point",warn:true,x:"The final text is signed only after head office legal has reviewed and approved it. The station’s job is to tell legal what actually happens on the ramp, including where surcharges arise."}]},
 {h:"Running the contract",blocks:[{t:"check",items:[
-{name:"Reconcile invoices",x:"Match each month against the flights operated, the delay records and the number of assistance cases."},
+{name:"Reconcile invoices",x:"Match each month’s invoices against the flights operated, the delay records and the number of assistance cases."},
 {name:"Watch for scope creep",x:"Check regularly whether you are asking for work that is not in the contract."},
 {name:"Keep the quality record",x:"Share the SLA targets and the actuals at the monthly meeting."},
 {name:"Before renewal",x:"A few months before expiry, review quality, cost and the alternatives."}]}]}],
@@ -85,11 +85,11 @@ sections:[
 ["Airport office","The airport company","Lease (2-3)"]]},
 {t:"note",x:"* One airport’s arrangement. The operator and counterparties differ by airport and terminal."}]},
 {h:"Counter allocation",blocks:[{t:"rows",items:[
-{name:"Allocation guidelines",x:"Airport companies usually publish guidelines. You apply for the hours and the number of desks and are allocated accordingly."},
+{name:"Allocation guidelines",x:"Airport companies often publish guidelines. You apply for the hours and the number of desks and are allocated accordingly."},
 {name:"Counter procedures",x:"Where the airport publishes rules on using, signing and clearing the counters, read them."},
 {name:"Ticket desk",x:"Decide whether to have a ticketing counter; if not, agree how sales are handled, for example on a station laptop."},
 {name:"Counter maps",x:"Produce a map of where your counters are and put it on your website."}]}]},
-{h:"Shared facilities through the AOC",blocks:[{t:"p",x:"At most airports, shared facilities are accessed through membership of the airport operators committee. Shared system line charges, consumables and security screening costs are invoiced in proportion to flights or passengers (Ground Staff 6-5; 7-2 in this series)."}]},
+{h:"Shared facilities through the AOC",blocks:[{t:"p",x:"At many airports, shared facilities are accessed through membership of the Airline Operators Committee (AOC). Shared system line charges, consumables and security screening costs are invoiced in proportion to flights or passengers (Ground Staff 6-5; 7-2 in this series)."}]},
 {h:"Pre-launch checklist",blocks:[{t:"check",items:[
 {name:"Counters",x:"The hours and desks allocated, and registering the displays (FIDS and the counter signs)."},
 {name:"Gates and stands",x:"Which gate and bridge, and buses where the aircraft parks remotely."},
@@ -106,7 +106,7 @@ quiz:[{q:"In the example, how are gate charges set?",opts:["By hours used","Shar
 next:"3-4 Incentive schemes and how airport charges work"});
 
 set("3-4",{title:"Incentive Schemes and How Airport Charges Work",hl:"airport charges",subtitle:"Landing, parking, bridges and passenger charges — and incentives for new routes ★",
-lead:["What you pay the airport covers landing, parking, boarding bridges and the baggage system, and it is a large share of an airline’s costs. At the same time, airport companies often run incentives, such as landing fee discounts, to attract new routes.","This article covers the main charges and how they are set, the charges collected from passengers, how to find the incentive schemes, and how invoices are checked. Amounts and schemes change every year, so always work from current information."],
+lead:["What you pay the airport covers landing, parking, boarding bridges and the baggage system, and it is a large share of an airline’s costs. At the same time, airport companies may run incentives, such as landing fee discounts, to attract new routes.","This article covers the main charges and how they are set, the charges collected from passengers, how to find the incentive schemes, and how invoices are checked. Amounts and schemes change every year, so always work from current information."],
 sections:[
 {h:"The main charges",blocks:[{t:"fig",id:"opn_fee",cap:"Animated figure: main airport charges and how they are set (example)."},{t:"table",cols:["Charge","How it is set (example)"],rows:[
 ["Landing fee","Aircraft weight (maximum take-off weight) and the noise category"],
@@ -125,9 +125,9 @@ sections:[
 {name:"Marketing support",x:"Support for launch advertising, trade briefings and the inaugural event."},
 {name:"Temporary reductions",x:"Airports have also cut charges temporarily during downturns in demand."},
 {name:"Conditions",x:"The eligible period, frequencies, the application deadline and the documents required. Some cannot be claimed retrospectively."}]},
-{t:"point",warn:true,x:"Schemes change each year, and missing the deadline can mean missing the benefit entirely. Once a launch is decided, ask the airport company’s team for the current scheme first. ★"}]},
+{t:"point",warn:true,x:"Schemes change each year, and missing the deadline can mean losing the benefit. Once a launch is decided, ask the airport company’s team for the current scheme first. ★"}]},
 {h:"Checking the invoices (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Confirm the activity",sub:"The airport company asks you to verify at the start of the month"},{name:"Reconcile",sub:"Flights, aircraft, times and passenger numbers against your records"},{name:"Respond",sub:"Ask for corrections where they differ"},{name:"Invoice",sub:"Around mid-month"},{name:"Payment",sub:"From head office, before the deadline"}]},
-{t:"point",x:"Payments to the airport company are large. Request payment early, allowing for holidays in both countries and transfer times, so nothing falls late (2-2)."}]}],
+{t:"point",x:"Payments to the airport company are large. Request payment early, allowing for holidays in both countries and transfer times, so that nothing is paid late (2-2)."}]}],
 voice:"Landing-fee support schemes for new routes differ by airport in timing and required documents. Check with the airport company’s contact several months before launch and apply together with the operating plan.",
 terms:[["Landing Fee","着陸料","착륙료"],["Parking Fee","停留料","정류료"],["Boarding Bridge Charge","搭乗橋使用料","탑승교 사용료"],["Passenger Service Facility Charge (PSFC)","旅客施設使用料","여객시설 사용료"],["Passenger Security Service Charge (PSSC)","旅客保安サービス料","여객 보안 서비스료"],["Incentive Program","就航支援制度","취항 지원 제도"]],
 quiz:[{q:"Who collects the passenger facility charge from passengers?",opts:["The airport company directly","The airline, on its behalf","A travel agency","The state"],a:1,exp:"Collected with the ticket and passed to the airport company."},
@@ -136,14 +136,14 @@ quiz:[{q:"Who collects the passenger facility charge from passengers?",opts:["Th
 next:"3-5 Fuelling, catering, aircraft guarding and other contracts"});
 
 set("3-5",{title:"Fuelling, Catering, Aircraft Guarding and Other Contracts",hl:"the other contracts",subtitle:"A handler is not all you need. The contracts that are easiest to forget",
-lead:["Operating at an airport takes more than a handling company: fuelling, catering, guarding the aircraft on stand, escorting passengers refused entry, radios and lounges. Any one of them missing shows up in the operation or in an irregular situation.","This article covers the main contracts to settle before launch, what to watch in each, the arrangements that prepare you for irregular operations, and how to manage them all."],
+lead:["Operating at an airport takes more than a handling company: fuelling, catering, guarding the aircraft on stand, escorting passengers refused entry, radios and lounges. If any one of them is missing, it causes problems for the operation or for handling irregular situations.","This article covers the main contracts to settle before launch, what to watch in each, the arrangements that prepare you for irregular operations, and how to manage them all."],
 sections:[
 {h:"The main contracts",blocks:[{t:"fig",id:"opn_other",cap:"Animated figure: other contracts and what to watch (example)."},{t:"table",cols:["Contract","What to watch"],rows:[
 ["Fuelling","At some airports the fuel companies have no spare capacity and new or added services struggle to get a contract. Fuelling at alternate airports is a separate arrangement"],
 ["Catering","Whether to carry both directions from the home station or contract locally for the Japan leg. Handling of special meals"],
 ["Aircraft guarding on stand","Ground watch while the aircraft is parked. Where the airport company subsidises it, account for the subsidy correctly"],
 ["Guarding inadmissible passengers","Watching and escorting until the return flight; invoiced the following month. Where the cost cannot be recovered from the passenger, the airline bears it"],
-["Radios","For communication around the airport, usually the same supplier as the handling company; changing handler means terminating them"],
+["Radios","For communication around the airport, usually the same supplier as the handling company; changing handler means terminating the radio contract"],
 ["Maintenance","The line maintenance provider and its approvals for your aircraft types"],
 ["Cargo","The cargo handler and the general sales agent (GSA)"]]}]},
 {h:"Preparing for irregular operations",blocks:[{t:"check",items:[
@@ -157,11 +157,11 @@ sections:[
 {name:"Annual costs",x:"For anything paid once a year, such as radios, check the funds cover it that month."},
 {name:"Subsidies",x:"Where a cost is subsidised, account for the invoice and the subsidy correctly."},
 {name:"When you change handler",x:"Radios, bonded arrangements and systems tied to the handler all need reviewing too."}]},
-{t:"point",x:"Irregular operations can happen in the first week. Settle hotels, meal vouchers and endorsement arrangements before the first flight."}]}],
+{t:"point",x:"Irregular operations can happen soon after launch. Settle hotels, meal vouchers and endorsement arrangements before the first flight."}]}],
 voice:"If the fuel contract is not settled until just before launch, you end up scrambling to arrange fuel for the first flight. Talk to head office’s fuel team early and progress the fuel supplier contract alongside the airport contracts.",
 terms:[["Fuelling","給油","급유"],["Catering","機内食","기내식"],["Aircraft Security (Guarding)","機体警備","주기 경비"],["INAD Escort / Guarding","上陸防止","상륙 방지"],["Radio","無線機","무전기"],["GSA","販売総代理店","판매 총대리점"]],
 quiz:[{q:"Which is true of fuelling?",opts:["A contract is easy to get anywhere","Some airports have no spare capacity and contracts are hard to get","The handling company always arranges it","It is not needed"],a:1,exp:"Confirm it early as a precondition for launching."},
 {q:"Who bears the cost of guarding an inadmissible passenger when it cannot be recovered?",opts:["The airport company","The airline","The state","The security company"],a:1,exp:"If the passenger cannot be charged, the airline bears it."},
-{q:"What must be settled before the first flight?",opts:["Hotels, meal vouchers and endorsement arrangements","The staff outing","New year cards","Poster colours"],a:0,exp:"Disruption can happen in the first week."}],
+{q:"What must be settled before the first flight?",opts:["Hotels, meal vouchers and endorsement arrangements","The staff outing","New Year cards","Poster colours"],a:0,exp:"Disruption can happen soon after launch."}],
 next:"4-1 Shared airport systems and printer testing"});
 })(window.ARTS);

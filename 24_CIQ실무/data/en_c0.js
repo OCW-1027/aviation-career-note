@@ -17,20 +17,20 @@ sections:[
 {h:"Why airline staff need to know CIQ",blocks:[{t:"rows",items:[
 {name:"Checking documents before boarding is the airline’s job",x:"Carry a passenger without the right passport, visa or travel authorisation and the airline pays for the return and may be fined (0-3)."},
 {name:"Most passenger questions are about CIQ",x:"“Can I take this in?” “Do I enter the country when I transfer?” The authorities decide, but you need to be able to show where the correct information is."},
-{name:"It matters in irregular operations",x:"Late arrivals, diversions, extra flights: CIQ hours and locations decide whether a flight can operate (Part 5)."},
+{name:"It matters during irregular operations",x:"Late arrivals, diversions, extra flights: CIQ hours and locations decide whether a flight can operate (Part 5)."},
 {name:"It is not only passengers",x:"Crew, catering waste, in-flight sales, cargo and the aircraft itself are all subject to CIQ."}]}]},
 {h:"Where the airline stands",blocks:[{t:"check",items:[
-{name:"The authorities decide",x:"Whether someone may enter, or something may be brought in, is for the authorities. The airline informs and cooperates."},
-{name:"Never say “it will be fine”",x:"Show the passenger the official information and explain that the authorities make the final decision."},
+{name:"The authorities decide",x:"Whether someone may enter, or something may be brought in, is for the authorities. The airline provides the necessary information and cooperates with the procedures."},
+{name:"Do not say “it will be fine” as if it were certain",x:"Show the passenger the official information and explain that the authorities make the final decision."},
 {name:"Check before you answer",x:"Rules differ by country and change often. Use current material, not memory."}]},
-{t:"point",x:"CIQ is both the party that lets your flight through and a colleague you run flights with every day at the same airport."}]}],
+{t:"point",x:"The CIQ agencies are both the authorities that examine and grant permission and partner agencies that airlines work with every day at the same airport."}]}],
 voice:"Customs, immigration and quarantine each look at different things and have different contact points. A station list of the three agencies' contacts, and of which one to consult in which situation, lets you act without hesitation when an urgent question comes in.",
 terms:[["Customs","税関","세관"],["Immigration","出入国審査","출입국 심사"],["Quarantine","検疫","검역"],["Animal and Plant Quarantine","動植物検疫","동식물 검역"]],
 quiz:[{q:"Which part of CIQ confirms a person’s right to enter?",opts:["Immigration (I)","Customs (C)","Quarantine (Q)","The airport company"],a:0,exp:"Immigration looks at people; customs at goods and money; quarantine at disease and pests."},
 {q:"In Japan, who checks meat products and animals brought in?",opts:["The Animal Quarantine Service","Japan Customs","The Immigration Services Agency","The quarantine station for people"],a:0,exp:"Animals go to the Animal Quarantine Service and plants to the Plant Protection Station, both under the agriculture ministry."},
 {q:"A passenger asks “Can I take this in?” What is the basic approach?",opts:["Show the official information and explain that the authorities decide","Say from memory that it is fine","Do not answer","State that it is not allowed"],a:0,exp:"The authorities decide. Point to where the correct information is."}],
 next:"0-2 Departure, arrival and transfer"});
-set("0-2",{title:"Departure, Arrival and Transfer",hl:"flow",subtitle:"On arrival: quarantine, immigration, baggage, animal and plant quarantine, customs. The order has reasons",
+set("0-2",{title:"The Flow of Departure, Arrival and Transfer",hl:"flow",subtitle:"On arrival: quarantine, immigration, baggage, animal and plant quarantine, customs. There is a reason for the order",
 lead:["CIQ desks are laid out in a fixed order. Knowing it lets you see where passengers are likely to be held up and how long a transfer will really take.","This lesson describes the usual flow in Japan and Korea. Layouts differ a little from airport to airport."],
 sections:[
 {h:"The arrival flow",blocks:[{t:"fig",id:"ciq_flow",cap:"The order on arrival and on departure. Green is quarantine, blue immigration, orange customs."},{t:"table",cols:["Step","Place","What is checked","Japan and Korea"],rows:[
@@ -49,7 +49,7 @@ sections:[
 {h:"Transfers",blocks:[{t:"rows",items:[
 {name:"International to international",x:"In many countries you do not enter; you only pass transfer security. But some, such as the United States, require every transfer passenger to clear immigration and customs (Part 4)."},
 {name:"International to domestic",x:"Immigration and customs are cleared at the first airport of arrival, and checked bags are normally reclaimed and re-checked."},
-{name:"Visas for passengers who do not enter",x:"Some countries require a transit visa for certain nationalities even without entry. At check-in, look up the transit point as well as the final destination."}]}]},
+{name:"Visas for passengers who do not enter",x:"Some countries require a transit visa for certain nationalities even without entry. At check-in, check the conditions for the transit point as well as the final destination."}]}]},
 {h:"Where passengers get held up",blocks:[{t:"check",items:[
 {name:"The immigration queue",x:"When arrivals bunch together the queue alone can take tens of minutes, which eats directly into connection time."},
 {name:"Animal and plant quarantine",x:"Passengers with meat products or fruit stop here. Failing to declare carries penalties (Part 3)."},
@@ -65,7 +65,7 @@ next:"0-3 The airline’s responsibility: documents, returns and penalties"});
 set("0-3",{title:"The Airline’s Responsibility: Documents, Returns and Penalties",hl:"responsibility",subtitle:"The check-in counter is the first border. Carry a passenger without the right documents and the airline is responsible",
 lead:["If a passenger is refused entry on arrival, the airline that brought them must take them back to where they came from, normally at its own cost. Some countries also fine the airline for each improperly documented passenger.","That is why airlines check passports, visas and travel authorisations before boarding. It is not a courtesy; it is an obligation placed on the airline."],
 sections:[
-{h:"What to check before carrying",blocks:[{t:"fig",id:"ciq_resp",cap:"Figure: what the airline checks before carrying a passenger."},{t:"table",cols:["What to check","What to look at"],rows:[
+{h:"What to check before carrying a passenger",blocks:[{t:"fig",id:"ciq_resp",cap:"Figure: what the airline checks before carrying a passenger."},{t:"table",cols:["What to check","What to look at"],rows:[
 ["Passport","That it belongs to the passenger, has enough validity (some countries require a minimum remaining period) and is not damaged"],
 ["Visa or travel authorisation","For the destination and every transit point. Requirements change with nationality and purpose"],
 ["Entry conditions","Return or onward ticket, permitted length of stay, re-entry permits and so on"],
@@ -91,10 +91,10 @@ voice:{h:"A Reported Case",x:"In 2018 the Court of Appeal in England upheld a GB
 terms:[["Inadmissible Passenger (INAD)","入国拒否者","입국 거부자"],["Deportee (DEPO)","退去強制者","강제 퇴거자"],["Removal / Return","送還","송환"],["Travel Documents","渡航書類","여행 서류"]],
 quiz:[{q:"Who, in principle, takes back a passenger refused entry on arrival?",opts:["The airline that brought them","The destination airport company","The passenger’s travel agent","Customs at the destination"],a:0,exp:"The carrying airline has the duty of return and normally bears the cost."},
 {q:"Which places do you look up at the counter?",opts:["Both the destination and the transit point","Only the final destination","Only the origin","None"],a:0,exp:"Some countries require a visa for transit."},
-{q:"What is the difference between INAD and DEPO?",opts:["INAD is refused on arrival; DEPO is ordered to leave after entering","They mean the same","INAD is crew, DEPO is a passenger","INAD is a cargo term"],a:0,exp:"Who carries them and who pays is different."}],
+{q:"What is the difference between INAD and DEPO?",opts:["INAD is refused on arrival; DEPO is ordered to leave after entering","They mean the same","INAD is crew, DEPO is a passenger","INAD is a cargo term"],a:0,exp:"Who carries them and who pays differ."}],
 next:"0-4 Passenger data sent in advance (API, PNR) and electronic travel authorisations"});
 set("0-4",{title:"Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations",hl:"in advance",subtitle:"Border control starts before the passenger reaches the airport",
-lead:["Border checks now begin before the passenger arrives. Airlines send passport details and booking records to the destination’s authorities before departure, and the authorities assess who may enter while the flight is still to come.","More countries also require an online application before travel even from nationalities that need no visa. Japan has decided to do the same."],
+lead:["Border checks now begin before the passenger arrives. Airlines send passport details and booking records to the destination’s authorities before departure, and the authorities assess who may enter before the flight arrives.","More countries also require an online application before travel even from nationalities that need no visa. Japan has decided to do the same."],
 sections:[
 {h:"Data sent ahead",blocks:[{t:"fig",id:"ciq_api",cap:"Figure: passenger data sent in advance."},{t:"table",cols:["Name","What it contains","When it is sent"],rows:[
 ["API (Advance Passenger Information)","Passport details (name, nationality, passport number, date of birth) and the flight","From before departure to just after"],
@@ -112,11 +112,11 @@ sections:[
 {name:"When",x:"The target is fiscal 2028 (by the end of March 2029). Check the latest official material for the bill’s passage and the detailed rules."}]}]},
 {h:"How counter work changes",blocks:[{t:"check",items:[
 {name:"Scan the passport correctly",x:"What you scan goes straight to the authorities. A scanning or typing error becomes an error in their records."},
-{name:"If the system answers “do not board”",x:"Do not decide yourself. Confirm with the set contact (the authority or head office), and do not guess at the reason to the passenger."},
+{name:"If the system answers “do not board”",x:"Do not decide yourself. Confirm with the set contact (the authority or head office), and do not give the passenger a guessed reason."},
 {name:"Confirm the authorisation before boarding",x:"More and more countries will not allow boarding without one, and applying on the spot may be too late."},
 {name:"Treat it as personal data",x:"Do not leave screens visible or printouts lying around."}]},
 {t:"point",x:"The airline’s system is now part of border control. Correct input is the basis of a correct decision."}]}],
-voice:{h:"A Reported Case",x:"The UK government announced that from 25 February 2026 airlines would stop passengers boarding without an Electronic Travel Authorisation (ETA), an eVisa or other valid permission. Until then, travel had been allowed while passengers were encouraged to apply. Transfer passengers who pass through passport control need an ETA too (Sources: UK government, 24 February 2026, and others). Checking the authorisation is moving from the passenger’s own responsibility to the airline’s check before boarding."},
+voice:{h:"A reported case",x:"The UK government announced that from 25 February 2026 airlines would stop passengers boarding without an Electronic Travel Authorisation (ETA), an eVisa or other valid permission. Until then, travel had been allowed while passengers were encouraged to apply. Transfer passengers who pass through passport control need an ETA too (Sources: UK government, 24 February 2026, and others). Checking the authorisation is moving from the passenger’s own responsibility to the airline’s check before boarding."},
 terms:[["Advance Passenger Information (API)","事前旅客情報","사전 승객 정보"],["Passenger Name Record (PNR)","予約の記録","예약 기록"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"],["Interactive API (iAPI)","対話型API","대화형 API"]],
 quiz:[{q:"What does API contain?",opts:["Passport details and the flight","Form of payment and seat","Baggage weight","Meal requests"],a:0,exp:"API is passport details and the flight; PNR is the booking record."},
 {q:"What new duty does Japan’s JESTA place on airlines?",opts:["Not to carry to Japan a covered foreign national without notice that boarding is permitted","To issue visas","To carry out immigration checks","To collect the fee"],a:0,exp:"Only passengers cleared by the authorities may be carried."},

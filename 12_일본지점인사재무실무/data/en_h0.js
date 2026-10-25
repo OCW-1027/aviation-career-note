@@ -12,9 +12,9 @@ sections:[
 ["Finance","Checking receipts, payments and balances","Updating the cash plan","Budget, meetings with the bank"]]},
 {t:"note",x:"* Companies split these differently. In many, accounting also runs payroll, or HR and general affairs are one team."}]},
 {h:"When a small team combines the roles",blocks:[{t:"check",items:[
-{name:"Separate paying from recording and checking",x:"If one person does everything, nobody can catch mistakes or fraud. If that is impossible, have head office or a manager check every month."},
+{name:"Separate paying from recording and checking",x:"If one person does everything, nobody can catch mistakes or fraud. If that is difficult, have head office or a manager check every month."},
 {name:"Put approval limits in a table",x:"Decide who may approve up to what amount, and keep it in writing (7-1)."},
-{name:"Use outside professionals",x:"Tax accountants, labour and social security attorneys and judicial scriveners can take the difficult judgments."},
+{name:"Use outside professionals",x:"Tax accountants, labour and social security attorneys and judicial scriveners can handle work that needs specialist judgement."},
 {name:"Write the procedures down",x:"Record the steps and deadlines so work continues when someone is away or leaves."}]}]},
 {h:"A map of this series",blocks:[{t:"rows",items:[
 {name:"Part 0 Money and People: First Steps",x:"How a company works, accounting basics, payroll, the year in general affairs and HR, and workplace basics."},
@@ -36,7 +36,7 @@ sections:[
 {name:"Tax returns",x:"Corporate tax, consumption tax and others are calculated from the figures in the books."},
 {name:"Reporting to head office and shareholders",x:"Monthly and annual results are reported in a set format (6-1)."},
 {name:"Management decisions",x:"The figures show where profit comes from and where money goes."},
-{name:"Audits and tax inspections",x:"They show that the evidence for each transaction connects to the books (7-2)."}]}]},
+{name:"Audits and tax inspections",x:"The books show that the evidence for each transaction is linked to them (7-2)."}]}]},
 {h:"The rules",blocks:[{t:"fig",id:"adm_jnl",cap:"Split the transaction into left and right; the two totals must always be equal."},
 {t:"table",cols:["Category","When it increases","When it decreases"],rows:[
 ["Assets (cash, deposits, receivables, equipment)","Left (debit)","Right (credit)"],
@@ -115,15 +115,15 @@ sections:[
 deepLabel:"In depth: reading real financial statements",
 deep:[
 {h:"What a Japanese set of accounts contains",blocks:[
-{t:"table",cols:["Document","Contents","Small companies"],rows:[["Balance sheet","Assets, liabilities and net assets at the year-end","Always prepared"],["Income statement","The year’s revenue, expenses and profit","Always prepared"],["Statement of changes in shareholders’ equity","How net assets changed over the year","Always prepared"],["Notes to the financial statements","Accounting policies and important matters","Always prepared"],["Cash flow statement","The year’s cash movements","Required for listed companies and similar; not required for SMEs"],["Account-by-account schedules","Counterparties and amounts for deposits, receivables, loans and so on","Attached to the corporation tax return"]]},
+{t:"table",cols:["Document","Contents","Small companies"],rows:[["Balance sheet","Assets, liabilities and net assets at the year-end","Always prepared"],["Profit and loss statement","The year’s revenue, expenses and profit","Always prepared"],["Statement of changes in shareholders’ equity","How net assets changed over the year","Always prepared"],["Notes to the financial statements","Accounting policies and important matters","Always prepared"],["Cash flow statement","The year’s cash movements","Required for listed companies and similar; not required for SMEs"],["Account-by-account schedules","Counterparties and amounts for deposits, receivables, loans and so on","Attached to the corporation tax return"]]},
 {t:"note",x:"* The first four are the “financial documents” under the Companies Act. Listed companies also file consolidated statements and a cash flow statement in their annual securities report under the Financial Instruments and Exchange Act. ★"}]},
 {h:"Financial statements in Korea",blocks:[
-{t:"table",cols:["","Japan (SMEs)","Korea"],rows:[["Core statements","Balance sheet, income statement, statement of changes in equity, notes","Statement of financial position, income statement (comprehensive income), statement of changes in equity, cash flow statement, notes"],["Cash flow statement","Not required","One of the core statements"],["Accounting standards","SME accounting guidelines and similar","K-IFRS for listed companies; general accounting standards for others"],["Publication","Public notice of results (e.g. in the official gazette)","Companies subject to external audit publish on DART"]]},
+{t:"table",cols:["","Japan (SMEs)","Korea"],rows:[["Core statements","Balance sheet, profit and loss statement, statement of changes in equity, notes","Statement of financial position, income statement (comprehensive income), statement of changes in equity, cash flow statement, notes"],["Cash flow statement","Not required","One of the core statements"],["Accounting standards","SME accounting guidelines and similar","K-IFRS for listed companies; general accounting standards for others"],["Publication","Public notice of results (e.g. in the official gazette)","Companies subject to external audit publish on DART"]]},
 {t:"note",x:"* Whether a Korean company is subject to external audit depends on its type (stock or limited company) and thresholds for assets, liabilities, sales and headcount. ★"}]},
 {h:"Tips for reading Japanese accounts",blocks:[{t:"rows",items:[
 {name:"△ means minus",x:"Japanese accounts show negatives with “△”. “Net loss △500,000” is a loss of 500,000 yen."},
 {name:"Check the unit first",x:"Yen, thousands or millions: check the top right of the table. Reading a thousands table as yen puts you out by a factor of 1,000."},
-{name:"Start and end dates",x:"“自 2026年4月1日　至 2027年3月31日” is the income statement’s period; “2027年3月31日現在” is the balance sheet date."},
+{name:"Start and end dates",x:"“自 2026年4月1日　至 2027年3月31日” is the P/L period; “2027年3月31日現在” is the balance sheet date."},
 {name:"Breakdowns on separate sheets",x:"Breakdowns of selling, general and administrative expenses or manufacturing costs are often given in separate schedules."},
 {name:"Compare with last year",x:"One year alone tells you little. Put last year’s accounts beside this year’s, account by account, and look for the reasons behind big changes."}]},
 {t:"link",href:"決算の練習.html",x:"[Practice] Year-End Closing Practice: build a fictional company’s accounts in this Japanese format"}]}],
@@ -169,7 +169,7 @@ quiz:[{q:"What does going bankrupt in the black mean?",opts:["Failing because of
 next:"0-5 Payroll: from gross pay to take-home pay"});
 
 set("0-5",{title:"Payroll: From Gross Pay to Take-home Pay",hl:"payroll",subtitle:"What is deducted and how much, seen from both the payroll team’s side and the employee’s",
-lead:["A payslip lists set items: the time worked (attendance), the amounts paid (earnings), and social insurance and taxes (deductions). Gross pay minus deductions is the take-home pay that actually reaches the bank account.","This article covers the three parts of a payslip, the size of deductions on a ¥300,000 salary in Japan and a ₩3,000,000 salary in Korea, how each deduction is set, and the monthly payroll cycle."],
+lead:["A payslip lists set items: the time worked (attendance), the amounts paid (earnings), and social insurance and taxes (deductions). Gross pay minus deductions is the take-home pay that actually reaches the bank account.","This lesson covers the three parts of a payslip, the size of deductions on a ¥300,000 salary in Japan and a ₩3,000,000 salary in Korea, how each deduction is set, and the monthly payroll cycle."],
 sections:[
 {h:"The three parts of a payslip",blocks:[{t:"region",jp:[{t:"rows",items:[
 {name:"Attendance",x:"Days worked, overtime hours, holiday work and paid leave taken."},
@@ -179,9 +179,9 @@ kr:[{t:"rows",items:[
 {name:"Attendance",x:"Days worked, overtime hours, holiday work and annual leave taken."},
 {name:"Earnings",x:"Base salary, allowances and overtime pay (at workplaces with five or more regular employees, a premium of at least 50% on ordinary wages). For staff not provided with meals, a meal allowance is free of income tax up to ₩200,000 a month. ★"},
 {name:"Deductions",x:"The four social insurances (national pension, health, long-term care, employment) and taxes (income tax and local income tax)."}]}]}]},
-{h:"From gross to take-home",blocks:[{t:"region",jp:[{t:"fig",id:"adm_pay",cap:"Around a fifth of gross pay goes in social insurance and taxes."},
+{h:"From gross to take-home",blocks:[{t:"region",jp:[{t:"fig",id:"adm_pay",cap:"Around a fifth of gross pay goes to social insurance and taxes."},
 {t:"note",x:"* From the April 2026 premium (paid in May), a child and childcare support levy is collected with health insurance. The month it first comes off pay depends on whether the company deducts premiums in the same or the following month. The amount is small, but a new line appears on the payslip. ★"}],
-kr:[{t:"fig",id:"adm_paykr",cap:"Around 13% of gross pay goes in social insurance and taxes."},
+kr:[{t:"fig",id:"adm_paykr",cap:"Around 13% of gross pay goes to social insurance and taxes."},
 {t:"note",x:"* The national pension rate rises by 0.5 points a year from 2026, reaching 13% in 2033. ★"}]}]},
 {h:"How deductions are set",blocks:[{t:"region",jp:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
 ["Health insurance and pension","Standard monthly remuneration (from average April–June pay)","Usually for a year from September, or mid-year if pay changes a lot"],
@@ -244,7 +244,7 @@ deep:[
 {t:"note",x:"* The rate tables and the calculation in this lesson are generated from a single list of rates. Check the “rates checked on” date under each table, and always use the official premium table in force for real payroll. ★"}]}],
 deepKr:[
 {h:"Calculating the four social insurances",blocks:[
-{t:"p",x:"From here on the basis is the Korean system. The National Pension, health insurance, long-term care insurance and employment insurance are a rate applied to pay, split equally between employee and employer. Industrial accident insurance is paid entirely by the employer."},
+{t:"p",x:"From here on the basis is the Korean system. The National Pension, health insurance, long-term care insurance and employment insurance are calculated by applying a rate to pay, split equally between employee and employer. Industrial accident insurance is paid entirely by the employer."},
 {t:"rates",keys:["kr_np","kr_hi","kr_ltc","kr_ei","kr_ei2","kr_ia"]},
 {t:"rows",items:[
 {name:"Standard monthly income (National Pension)",x:"The pension rate is applied to a standard monthly income with an upper and a lower limit: 6.59 million won and 410,000 won from July 2026, revised every July. ★"},
@@ -267,7 +267,7 @@ voice:"Payroll mistakes cost trust quickly. Make it a habit for someone other th
 terms:[["Gross Pay","総支給額","총지급액"],["Take-home Pay","手取り","수령액"],["Withholding Tax","源泉徴収","원천징수"],["Standard Monthly Remuneration","標準報酬月額","표준보수월액"],["Residence Tax Deducted from Pay","特別徴収","특별징수"]],
 quiz:[{q:"(Japan) What is residence tax based on?",opts:["This month’s pay","Last year’s income","Next year’s forecast","Company profit"],a:1,exp:"It is based on last year’s income and deducted in twelve instalments from June."},
 {q:"(Japan) What are health insurance and pension contributions based on?",opts:["Standard monthly remuneration","Today’s sales","Age alone","Company size"],a:0,exp:"It is set from April–June pay and normally used for a year from September."},
-{q:"What is an effective payroll check?",opts:["No check","Someone else checks anyone very different from last month","Leave it to employees","Once a year"],a:1,exp:"A second check prevents mistakes."}],
+{q:"What is an effective payroll check?",opts:["No check","Someone else checks employees whose pay changed a lot from last month","Leave it to employees","Once a year"],a:1,exp:"A second check prevents mistakes."}],
 next:"0-6 General affairs: contracts, equipment, the office and documents"});
 
 set("0-6",{title:"General Affairs: Contracts, Equipment, the Office and Documents",hl:"general affairs",subtitle:"The groundwork that keeps a company running, done before problems arise",
@@ -308,7 +308,7 @@ quiz:[{q:"What is most easily missed in managing contracts?",opts:["The colour o
 next:"0-7 A year in HR: from hiring to year-end adjustment"});
 
 set("0-7",{title:"A Year in HR: From Hiring to Year-end Adjustment",hl:"a year in HR",subtitle:"The same tasks return in the same months each year. With a map of the year, nothing catches you out",
-lead:["HR and payroll work has procedures that come round at fixed times every year: April starters, insurance procedures in June and July, year-end tax adjustment in December. Each has a deadline, and being late causes trouble for staff and the company.","This article covers the annual cycle of HR and payroll work, the steps from hiring to the first day, appraisal and pay rises, and the procedures when someone leaves."],
+lead:["HR and payroll work has procedures that come round at fixed times every year: April starters, insurance procedures in June and July, year-end tax adjustment in December. Each has a deadline, and being late causes trouble for staff and the company.","This lesson covers the annual cycle of HR and payroll work, the steps from hiring to the first day, appraisal and pay rises, and the procedures when someone leaves."],
 sections:[
 {h:"The HR and payroll year",blocks:[{t:"region",jp:[{t:"fig",id:"adm_hrcal",cap:"Colours show the type of work: purple for pay and tax, blue for hiring and training, orange for social and labour insurance."}],
 kr:[{"t":"fig","id":"adm_hrcalkr","cap":"Colours show the type of work: purple for pay and tax, blue for hiring and HR, orange for the four social insurances."}]}]},
@@ -320,7 +320,7 @@ kr:[{"t":"note","x":"* Insurance enrolment is normally due within 14 days for he
 {name:"Mid-year: review meeting",x:"Check progress and hear about any difficulties."},
 {name:"End of year: appraisal",x:"Assess against the agreed goals and explain the reasons to the employee."},
 {name:"Apply the result",x:"Reflect it in pay rises or bonuses, and confirm in writing when the change takes effect."}]},
-{t:"point",x:"Sharing the appraisal criteria at the start of the year makes the year-end result much easier to accept."}]},
+{t:"point",x:"Sharing the appraisal criteria at the start of the year makes the year-end result easier to accept."}]},
 {h:"When someone leaves",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Fix the leaving date",x:"Receive the resignation and confirm the last working day and remaining paid leave."},
 {name:"Insurance procedures",x:"Notify loss of health insurance and pension cover (within five days). File the employment insurance loss notice and separation certificate with Hello Work within ten days from the day after cover ends, then pass on the separation slip Hello Work issues. ★"},
@@ -335,12 +335,12 @@ quiz:[{q:"(Japan) In which month is year-end tax adjustment done?",opts:["April"
 next:"0-8 Reporting, informing, consulting and work emails"});
 
 set("0-8",{title:"Reporting, Informing, Consulting and Work Emails",hl:"reporting and email",subtitle:"Lead with the conclusion, and share bad news early. Communication that speeds work up",
-lead:["No job in a company is finished alone. Work moves when you tell your manager, colleagues, head office and partners what they need, when they need it. Japanese companies call this hō-ren-sō: report, inform, consult. It is one of the first things a new employee is taught.","This article covers what each part means, how to report starting from the conclusion, how to structure a work email, and points to watch when working across countries, such as between a Korean head office and a Japanese branch."],
+lead:["In a company, no job gets done alone. Work moves when you tell your manager, colleagues, head office and partners what they need, when they need it. Japanese companies call this hō-ren-sō: report, inform, consult. It is one of the first things a new employee is taught.","This article covers what each part means, how to report starting from the conclusion, how to structure a work email, and points to watch when working across countries, such as between a Korean head office and a Japanese branch."],
 sections:[
 {h:"Report, inform, consult",blocks:[{t:"fig",id:"adm_hrs",cap:"Figure: report the conclusion first."},{t:"rows",items:[
 {name:"Report",x:"Tell the person who gave you the task how it went or how it is progressing."},
 {name:"Inform",x:"Share decisions and facts with those concerned, without adding your own opinion."},
-{name:"Consult",x:"When unsure, ask for views before deciding. Do not carry it alone."}]}]},
+{name:"Consult",x:"When unsure, ask for views before deciding. Do not keep it to yourself."}]}]},
 {h:"Report the conclusion first",blocks:[{t:"ladder",rise:10,steps:[{name:"Conclusion",sub:"What happened, what the outcome is"},{name:"Reason",sub:"Why it happened"},{name:"Details",sub:"Figures and facts"},{name:"Next step",sub:"What you will do, what you need decided"}]},
 {t:"point",x:"The worse the news, the sooner you share it. A first report need not be complete: say what you know now and when you will report next."}]},
 {h:"Structuring a work email",blocks:[{t:"table",cols:["Part","How to write it","Example"],rows:[
@@ -375,7 +375,7 @@ sections:[
 {t:"table",cols:["Function","What it does","Typical use"],rows:[
 ["SUM / AVERAGE","Total / average","Total monthly expenses"],
 ["ROUND","Rounds a number","Fractions in tax and premiums"],
-["IF","Changes the result by condition","Show Check above a limit"],
+["IF","Changes the result by condition","Show ‘Check’ above a limit"],
 ["SUMIF / COUNTIF","Adds / counts only matching rows","Expenses by item, headcount by team"],
 ["XLOOKUP (VLOOKUP)","Finds and returns a value from a table","Name from an employee number"],
 ["EOMONTH","Returns the last day of a month","Calculating payment due dates"]]}]},
@@ -394,12 +394,12 @@ sections:[
 voice:"In spreadsheets, layout comes before functions. Build tables with one record per row and no merged cells, and any total you need later becomes easy.",
 terms:[["Function","関数","함수"],["Absolute Reference","絶対参照","절대 참조"],["Pivot Table","ピボットテーブル","피벗 테이블"],["Conditional Formatting","条件付き書式","조건부 서식"],["Cross-check","検算","검산"]],
 quiz:[{q:"Which is a principle of an easy-to-total table?",opts:["Merge cells","One record per row","Three header rows","Type units with the numbers"],a:1,exp:"One record per row, one header row, no merged cells."},
-{q:"Which function adds only the rows where the item is Travel?",opts:["SUM","SUMIF","ROUND","EOMONTH"],a:1,exp:"It adds only rows that meet the condition."},
+{q:"Which function adds only the rows where the item is ‘Travel’?",opts:["SUM","SUMIF","ROUND","EOMONTH"],a:1,exp:"It adds only rows that meet the condition."},
 {q:"How do you stop a cell reference moving when copying a formula?",opts:["Fix it as $A$1","Colour it","Delete it","Merge it"],a:0,exp:"Use an absolute reference."}],
 next:"0-10 Rules of employment, payslips and paid leave from the employee’s side"});
 
-set("0-10",{title:"Rules of Employment, Payslips and Paid Leave from the Employee’s Side",hl:"the employee’s side",subtitle:"Read the agreement between you and the company once, when you join",
-lead:["So far we have looked at HR and money from the company’s side. This article looks from the other side, the employee’s: the documents you receive on joining, what to read first in the rules of employment, the rules on paid leave, and what to check on your monthly payslip.","Knowing your rights and duties is the foundation for working well with a company for a long time."],
+set("0-10",{title:"Rules of Employment, Payslips and Paid Leave from the Employee’s Side",hl:"the Employee’s Side",subtitle:"Read the agreement between you and the company once, when you join",
+lead:["So far we have looked at HR and money from the company’s side. This lesson looks from the other side, the employee’s: the documents you receive on joining, what to read first in the rules of employment, the rules on paid leave, and what to check on your monthly payslip.","Knowing your rights and duties is the foundation for working well with a company for a long time."],
 sections:[
 {h:"Documents you receive on joining",blocks:[{t:"fig",id:"adm_slip",cap:"Figure: reading a payslip."},{t:"region",jp:[{t:"rows",items:[
 {name:"Statement of employment terms",x:"Your pay, working hours, days off and contract period (1-1)."},
@@ -422,7 +422,7 @@ kr:[{"t":"table","cols":["Length of service","Annual leave"],"rows":[["Under 1 y
 {h:"What to check on your payslip",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Attendance figures",x:"Do days worked and overtime hours match your own record?"},
 {name:"Overtime pay",x:"Has premium pay been paid for the overtime hours?"},
-{name:"The month premiums change",x:"Social insurance changes to the new amount in September’s (or October’s) pay."},
+{name:"The month premiums change",x:"Social insurance premiums change to the new amount in September’s (or October’s) pay."},
 {name:"The month residence tax changes",x:"The new residence tax amount starts with June’s pay."},
 {name:"Year-end adjustment result",x:"December’s or January’s pay includes any income tax refund (or extra charge)."}]},
 {t:"point",x:"How to read each line of a payslip in detail is also covered in lesson 6-1 of Living in Japan."}],
@@ -431,6 +431,6 @@ voice:"The rules of employment are the agreement between you and the company. Re
 terms:[["Rules of Employment","就業規則","취업규칙"],["Statement of Employment Terms","労働条件通知書","근로조건통지서"],["Annual Paid Leave","年次有給休暇","연차 유급휴가"],["Article 36 Overtime Agreement","36協定","36협정"],["Employer-designated Leave Dates","時季指定","시기 지정"]],
 quiz:[{q:"(Japan) After six months with 80% attendance, how many days of paid leave do you get?",opts:["5","10","15","20"],a:1,exp:"It starts at ten days and rises with length of service."},
 {q:"(Japan) What happens to unused paid leave?",opts:["It lasts for ever","It expires after two years","It expires next month","It is always paid out"],a:1,exp:"The limitation period is two years."},
-{q:"(Japan) Around which month do social insurance deductions usually change?",opts:["January","April","September–October","December"],a:2,exp:"Based on the base report, they change from September."}],
+{q:"(Japan) Around which month do social insurance deductions usually change?",opts:["January","April","September–October","December"],a:2,exp:"Based on the standard remuneration report, they change from September."}],
 next:"Part 1 1-1 Types of employment and stating the terms"});
 })(window.ARTS);

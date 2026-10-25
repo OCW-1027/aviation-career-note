@@ -12,11 +12,11 @@ sections:[
 {h:"The thinking behind fare families",blocks:[{t:"table",cols:["Example","What is included (example)"],rows:[
 ["Light","Seat only. Baggage and changes are paid extras"],
 ["Standard","Includes checked baggage and some seat selection"],
-["Flex","Much more freedom to change and refund"]]},
+["Flex","High flexibility for changes and refunds"]]},
 {t:"p",x:"Names and contents differ by airline. What matters is that passengers can see at a glance what is included and what is not."}]},
 {h:"Adapting fares to Japan",blocks:[{t:"check",items:[
 {name:"Clear Japanese",x:"Explain the rules briefly in Japanese, in a table. Literal translations of rules cause misunderstanding."},
-{name:"Easy for agencies",x:"Do not multiply booking classes, and avoid complex rules that breed ADMs (3-2)."},
+{name:"Easy for agencies",x:"Do not create too many booking classes, and avoid complex rules that breed ADMs (3-2)."},
 {name:"Total price display",x:"Some contexts require the price shown to include taxes and charges. ★"},
 {name:"Against the competition",x:"Compare with other airlines’ fares and baggage terms on the route and make the difference easy to see."}]},
 {t:"point",x:"A fare sells on clarity as well as price. Aim for fares that neither Japanese passengers nor agencies have to puzzle over."}]}],
@@ -24,7 +24,7 @@ voice:"Fare rules generate fewer enquiries when one table shows what is and is n
 terms:[["Booking Class","予約クラス","예약 클래스"],["Fare Family / Branded Fare","フェアファミリー","운임 패밀리"],["Fare Rules","運賃規則","운임 규정"],["Total Price Display","総額表示","총액 표시"]],
 quiz:[{q:"What represents the fare step within a cabin?",opts:["The booking class","The seat number","The flight number","The gate number"],a:0,exp:"The cheapest steps sell out first."},
 {q:"What matters in a fare family?",opts:["Seeing at a glance what is included","Long names","Complex rules","English-only explanations"],a:0,exp:"Ease of choice is part of the product."},
-{q:"What happens if you multiply booking classes?",opts:["It tends to cause agency errors and ADMs","Revenue always rises","Nothing","Fares fall"],a:0,exp:"Put ease of use first."}],
+{q:"What happens if you create too many booking classes?",opts:["It tends to cause agency errors and ADMs","Revenue always rises","Nothing","Fares fall"],a:0,exp:"Put ease of use first."}],
 next:"4-2 Ancillaries and the basics of revenue management"});
 
 set("4-2",{title:"Ancillaries and the Basics of Revenue Management",hl:"revenue management",subtitle:"When to sell a seat and at what price — and the revenue beyond the fare",
@@ -45,9 +45,9 @@ sections:[
 {h:"Selling ancillaries",blocks:[{t:"rows",items:[
 {name:"The main ancillaries",x:"Checked baggage, seat selection, meals, priority boarding, lounges, change fees."},
 {name:"Where they are sold",x:"At booking, in the pre-departure email, and at the airport counter."},
-{name:"Electronic documents",x:"Payment for ancillaries is usually managed with an electronic miscellaneous document (EMD)."},
+{name:"Electronic documents",x:"Payment for ancillaries is often managed with an electronic miscellaneous document (EMD)."},
 {name:"Clarity",x:"Finding out about a charge for the first time at the airport breeds resentment. Make it clear at booking."}]},
-{t:"point",x:"The value of a station’s sales team is local knowledge. Get the Japanese market movements behind the numbers to head office revenue management early."}]}],
+{t:"point",x:"The value of a station’s sales team is local knowledge. Pass the Japanese market movements behind the numbers to the head office revenue management team early."}]}],
 voice:"Head office sees the local market mainly through numbers. Sending short, regular notes on competitor fares, events and agency reactions makes it more likely to shape pricing.",
 terms:[["Revenue Management","収益管理","수익 관리"],["Load Factor","搭乗率","탑승률"],["Yield","イールド","일드(단위 수익)"],["Ancillary Services","付帯サービス","부가서비스"]],
 quiz:[{q:"Which two measures must be watched together?",opts:["Load factor and yield","Flight number and aircraft","Weather and season","Staff numbers"],a:0,exp:"Load factor alone does not raise revenue."},
@@ -56,10 +56,10 @@ quiz:[{q:"Which two measures must be watched together?",opts:["Load factor and y
 next:"4-3 Types of fare: PEX and IT fares"});
 
 set("5-1",{title:"Launch Publicity and Press Briefings",hl:"launch publicity",subtitle:"Say what is new in one line, and get it written about",
-lead:["A new route, extra frequencies or a terminal move are big chances to be covered by the media. Through press briefings and releases, explain clearly what is new for Japanese readers and what becomes easier.",
+lead:["A new route, extra frequencies or a terminal move are big opportunities for media coverage. Through press briefings and releases, explain clearly what is new for Japanese readers and what becomes easier.",
 "This article covers the publicity sequence for a launch, preparing a press briefing, writing a press release, and using social media."],
 sections:[
-{h:"The sequence (example)",blocks:[{t:"fig",id:"sls_pr",cap:"Figure: launch publicity in order (example)."},{t:"ladder",rise:10,steps:[{name:"Timing",sub:"Check where the approvals stand"},{name:"The message",sub:"What is new, in one line"},{name:"Material",sub:"Release and photographs"},{name:"Press briefing",sub:"Prepare for questions"},{name:"Launch day",sub:"Coverage of the ceremony"}]},
+{h:"The sequence (example)",blocks:[{t:"fig",id:"sls_pr",cap:"Figure: the launch publicity sequence (example)."},{t:"ladder",rise:10,steps:[{name:"Timing",sub:"Check where the approvals stand"},{name:"The message",sub:"What is new, in one line"},{name:"Material",sub:"Release and photographs"},{name:"Press briefing",sub:"Prepare for questions"},{name:"Launch day",sub:"Coverage of the ceremony"}]},
 {t:"point",warn:true,x:"Do not announce as settled anything the authorities have not yet approved. Use “planned” and “subject to approval” precisely (Launching Flights to Japan, Part 1)."}]},
 {h:"Preparing the briefing",blocks:[{t:"check",items:[
 {name:"Likely questions",x:"The fare level, the load factor target, how you differ from competitors, your approach to safety, local hiring."},
@@ -73,13 +73,13 @@ sections:[
 {name:"Social media",x:"A Japanese account: a countdown to launch, a look inside the cabin, campaigns. Agree a review step for posts to avoid controversy."}]}]}],
 voice:"Press briefings always bring unexpected questions. Agree answers on sensitive topics — fares, safety, competitors, possible withdrawal — with head office beforehand.",
 terms:[["Press Release","プレスリリース","보도자료"],["Press Briefing","記者懇談会","기자간담회"],["Q&A Preparation","想定問答","예상 문답"],["Inaugural Ceremony","就航式","취항식"]],
-quiz:[{q:"What must you watch when announcing before approval?",opts:["Use “planned” and “subject to approval” precisely","Say it is confirmed","Announce nothing","Mention only the fare"],a:0,exp:"Check where the approvals stand."},
+quiz:[{q:"What must you watch out for when announcing before approval?",opts:["Use “planned” and “subject to approval” precisely","Say it is confirmed","Announce nothing","Mention only the fare"],a:0,exp:"Check where the approvals stand."},
 {q:"What makes coverage more likely?",opts:["A joint announcement with the airport company or a tourism body","No material","English only","No photographs"],a:0,exp:"It adds news value."},
-{q:"What goes in the headline of a release?",opts:["From when, between where, and what is new","The president’s hobbies","Only the office address","The weather"],a:0,exp:"Facts first."}],
+{q:"What goes in the headline of a release?",opts:["From when, between where and where, and what is new","The president’s hobbies","Only the office address","The weather"],a:0,exp:"Facts first."}],
 next:"5-2 Working with tourism bodies, and events"});
 
-set("5-2",{title:"Working with Tourism Bodies, and Events",hl:"partnerships and events",subtitle:"An airline cannot create demand alone. Work with destinations, tourism bodies and agencies to create a reason to travel",
-lead:["Growing demand on a new route means showing what makes the destination worth visiting and creating a reason to go. Campaigns and events with the tourism bodies of both countries, local governments, airport companies and travel agencies are what work.",
+set("5-2",{title:"Working with Tourism Bodies and Holding Events",hl:"partnerships and events",subtitle:"An airline cannot create demand alone. Work with destinations, tourism bodies and agencies to create a reason to travel",
+lead:["Growing demand on a new route means showing what makes the destination worth visiting and creating a reason to go. Campaigns and events with the tourism bodies of both countries, local governments, airport companies and travel agencies are effective for this.",
 "This article covers who to partner with and on what, planning events, and measuring the effect."],
 sections:[
 {h:"Partners and what you do together (examples)",blocks:[{t:"fig",id:"sls_collab",cap:"Figure: partners and joint activities (example)."},{t:"table",cols:["Partner","Examples"],rows:[
@@ -92,12 +92,12 @@ sections:[
 {name:"Seasonal attractions",x:"Tie in with the destination’s festivals, blossom and autumn leaves."},
 {name:"Agency briefings",x:"Give agencies the new route, the fares and the destination information in one go."},
 {name:"Media visits",x:"Let journalists and influencers experience the destination, observing the rules on invitations and disclosure."},
-{name:"Local media",x:"Present the route on regional radio and newspapers."}]}]},
+{name:"Local media",x:"Present the route on regional radio and in newspapers."}]}]},
 {h:"Measuring the effect",blocks:[{t:"rows",items:[
 {name:"Change in bookings",x:"Bookings during the campaign and afterwards."},
 {name:"Agency products",x:"How many new tours were created and how they are selling."},
 {name:"Exposure",x:"The number and content of articles and social media mentions."},
-{name:"Return on investment",x:"Compare the cost with the added revenue and use it in the next plan."}]},
+{name:"Return on investment",x:"Compare the cost with the added revenue and use the result in the next plan."}]},
 {t:"point",x:"Partnership works best as an annual plan, not a one-off event. Keep a yearly list of occasions and talk to partners early."}]}],
 voice:"Partnerships with tourism bodies last when you agree at the start who pays for what and how success is measured. Reporting results in numbers makes the next one easier.",
 terms:[["National Tourism Organisation","観光の公的機関","관광 공공기관"],["Travel Fair","旅行博","여행 박람회"],["Familiarisation Trip (FAM Trip)","招待旅行","초청 여행"],["Return on Investment","費用対効果","비용 대비 효과"]],
@@ -106,8 +106,8 @@ quiz:[{q:"What grows demand on a new route?",opts:["Working with tourism bodies,
 {q:"What makes partnerships work?",opts:["Running them as an annual plan","One-offs","Last-minute contact","A new partner every time"],a:0,exp:"Talk to partners early."}],
 next:"6-1 Building the annual business plan"});
 
-set("6-1",{title:"Building the Annual Business Plan",hl:"the business plan",subtitle:"Look at the market, the competition and yourself, then decide who, where and at what price",
-lead:["The station’s annual sales plan brings together head office’s route and fleet plan and the outlook for the Japanese market. Beyond the revenue target, it has to make specific which segments, through which channels and with which initiatives you will sell.",
+set("6-1",{title:"Building the Annual Business Plan",hl:"the business plan",subtitle:"Look at the market, the competition and your own airline, then decide who, where and at what price",
+lead:["The station’s annual sales plan brings together head office’s route and fleet plan and the outlook for the Japanese market. Beyond the revenue target, it has to set out specifically which segments, through which channels and with which initiatives you will sell.",
 "This article covers the structure of the plan, how to analyse the market, how to set targets and how to align with head office."],
 sections:[
 {h:"Structure of the plan (example)",blocks:[{t:"fig",id:"sls_plan",cap:"Figure: six chapters of an annual business plan (example)."},{t:"table",cols:["Chapter","Content"],rows:[
@@ -120,8 +120,8 @@ sections:[
 {h:"Analysing the market",blocks:[{t:"check",items:[
 {name:"The market",x:"Traffic trends between the two countries, changing travel purposes and age groups."},
 {name:"Competitors",x:"Frequencies, timings, fares and service on the same route."},
-{name:"Yourself",x:"Strengths (timings, aircraft, service) and weaknesses (recognition, frequency)."},
-{name:"Channels",x:"Results and headroom for agencies, OTAs and direct sales."}]}]},
+{name:"Your own airline",x:"Strengths (timings, aircraft, service) and weaknesses (recognition, frequency)."},
+{name:"Channels",x:"Results and growth potential for agencies, OTAs and direct sales."}]}]},
 {h:"Setting targets and aligning with head office",blocks:[{t:"rows",items:[
 {name:"Targets with a basis",x:"Build them up from last year’s results, booking pace and the market outlook."},
 {name:"Monthly targets",x:"Split the annual target across months in line with the seasonal pattern (1-2)."},
@@ -144,12 +144,12 @@ sections:[
 ["Load factor and yield","By flight and by month (4-2)"],
 ["Revenue by channel","Changes in the mix of agencies, OTAs and direct"],
 ["Results by agency","Block utilisation and growth at the main agencies"],
-["Ancillaries","Revenue from baggage, seat selection and the rest"]]}]},
+["Ancillaries","Revenue from baggage, seat selection and other services"]]}]},
 {h:"The shape of a report",blocks:[{t:"ladder",rise:10,steps:[{name:"Conclusion",sub:"Ahead of or behind target"},{name:"Numbers",sub:"Actual, last year, target"},{name:"Causes",sub:"Market, competitors, ourselves"},{name:"Actions",sub:"What we do next"},{name:"Requests to head office",sub:"Fares, seats, budget"}]},
 {t:"point",x:"Bad news first, and early. Report it with the cause and the next step, and head office will trust the station to handle it (Expat Guide to Japan 4-2)."}]},
 {h:"Looking back at Parts 1–6",blocks:[{t:"rows",items:[
-{name:"The market",x:"Japan is a market you sell together with agencies; international routes carry demand both ways with strong seasonal swings (Part 1)."},
-{name:"Channels",x:"Indirect and direct are a division of roles; GDS, BSP and NDC are the infrastructure (Part 2)."},
+{name:"The market",x:"Japan is a market where you sell together with agencies; international routes carry demand both ways with strong seasonal swings (Part 1)."},
+{name:"Channels",x:"Indirect and direct sales share the roles; GDS, BSP and NDC are the infrastructure (Part 2)."},
 {name:"Agencies",x:"Trust, blocks, incentives and ADMs (Part 3)."},
 {name:"Fares and revenue",x:"Clear fares, and load factor and yield together (Part 4)."},
 {name:"Publicity and planning",x:"Partnerships that create a reason to travel, plans with a basis, and early reporting (Parts 5 and 6)."}]}]}],

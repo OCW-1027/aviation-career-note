@@ -6,7 +6,7 @@ sections:[
 {h:"Roles in the operations department (example)",blocks:[{t:"fig",id:"gnd_ops",cap:"Animated figure: the roles and work of the handler’s operations department light up in turn (example)."},{t:"table",cols:["Role","Main work"],rows:[
 ["Operations control (the desk)","Monitoring each flight, directing front-line teams, handling delays and irregularities, liaising with the airline station"],
 ["Resource allocation","Rosters, staff and GSE for each flight, reacting to stand changes"],
-["Load control","Loading instructions (LIR), producing loadsheets where contracted, handling last minute changes (3-7, 3-8)"],
+["Load control","Loading instructions (LIR), producing loadsheets where contracted, handling last-minute changes (3-7, 3-8)"],
 ["Operational messages","Sending MVT, LDM, CPM, PTM and other messages; recording delay codes (see the IATA delay code list)"],
 ["Quality and training","Quality checks, training plans and records, supporting airline audits"]]},
 {t:"note",x:"* How the work is divided depends on the company and airport. In a small operation one person may cover several roles. ★"}]},
@@ -32,7 +32,7 @@ sections:[
 {name:"Review together",x:"After a major delay or disruption, put the desk’s log and the station’s log side by side and review them."}]},
 {t:"note",x:"* Working with the operations department from the airline duty manager’s side is covered in Airport Station Management in Practice 2-4."}]}],
 voice:"In major disruption, contact with the handler’s operations desk is your lifeline. Confirm contact points and decision authority with each other in normal times.",
-terms:[["Operations Department","オペレーション部門","오퍼레이션 부서"],["Operations Control Desk","運営の統括（デスク）","운영 통제(데스크)"],["Resource Allocation","資源の割り当て","자원 배정"],["Load Control","搭載管理","탑재관리"],["Authorisation List","資格の名簿","자격 명단"],["Escalation","エスカレーション","에스컬레이션(상향 보고)"]],
+terms:[["Operations Department","オペレーション部門","오퍼레이션 부서"],["Operations Control Desk","運営の統括（デスク）","운영 통제(데스크)"],["Resource Allocation","資源の割り当て","자원 배정"],["Load Control","搭載管理","탑재관리"],["Authorisation List","資格者名簿","자격 명단"],["Escalation","エスカレーション","에스컬레이션(상향 보고)"]],
 quiz:[{q:"Which is not part of the operations department’s work?",opts:["Allocating staff and GSE","Recording delay codes","Cabin service on board","Sending messages"],a:2,exp:"Cabin service is the cabin crew’s job."},
 {q:"What matters most when allocating load control staff?",opts:["Anyone who is free","Only qualified, in-date people","Give it to new starters","No need to check with the airline"],a:1,exp:"Expired authorisations are a common audit finding."},
 {q:"Where should the station send changes for the handler?",opts:["Directly to individuals on the ramp","To the desk","Nowhere","In a batch the next day"],a:1,exp:"Keep one point of contact."}],
