@@ -20,7 +20,7 @@ sections:[
 {name:"Write a roll-forward",x:"If the stall earns 30,000 yen in month 2 and pays the owner a 10,000 dividend, what are retained earnings at month end (starting from 64,000)?"},
 {name:"Check a join",x:"Vela Air aircraft: 2,146 at end of year 1 → 1,884 at end of year 2 → 1,914 at end of year 3. Explain each year with purchases and depreciation (1-1, 3-4)."}]}]}],
 voice:"When accounts arrive, first compare the bottom line of the income statement with the change in retained earnings. If dividends and buybacks explain the difference, all is well; if not, that is your cue to read the notes on valuation differences or changes in accounting policy.",
-terms:[["Retained earnings roll-forward","利益剰余金のロールフォワード","이익잉여금 롤포워드(연결 계산)"],["Distributable amount","分配可能額","배당 가능 이익"],["No dividend","無配","무배당"],["Recapitalisation","資本増強","자본 확충"]],
+terms:[["Retained earnings roll-forward","利益剰余金のロールフォワード","이익잉여금 롤포워드(기초~기말 변동 계산)"],["Distributable amount","分配可能額","배당 가능 이익"],["No dividend","無配","무배당"],["Recapitalisation","資本増強","자본 확충"]],
 quiz:[{q:"Opening retained earnings 1,020, net profit 90, dividend 40: closing retained earnings?",opts:["1,070","1,110","1,030","980"],a:0,exp:"1,020 + 90 − 40 = 1,070."},
 {q:"In a loss year, equity…",opts:["Falls as retained earnings fall","Falls through share capital","Is unchanged","Falls through liabilities"],a:0,exp:"A loss reduces retained earnings directly."},
 {q:"What sets the ceiling on dividends?",opts:["Retained earnings (the distributable amount)","Sales","Cash balance","Borrowings"],a:0,exp:"Cash alone is not enough; without retained earnings no dividend can be paid."}]});

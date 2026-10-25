@@ -109,7 +109,7 @@ sections:[
 {t:"table",cols:["Document","When","Where","Contents"],rows:[
 ["Earnings release (full year)","Within about 45 days of the year-end","The company’s investor relations page; TDnet (timely disclosure service)","Fast: summary of results, financial statements, forecast for the next year"],
 ["Annual securities report","Within three months of the year-end","EDINET (Financial Services Agency); the company’s investor relations page","Detailed: business, risks, notes, facilities, shareholders"],
-["Quarterly earnings release (Q1 and Q3)","Within about 45 days of each quarter-end","TDnet; the company’s investor relations page","Quarterly results and financial statements"],
+["Quarterly earnings release (Q1 and Q3)","Within 45 days of the Q1 or Q3 quarter-end. If a delay is expected, the reason and expected timing are disclosed immediately","TDnet; the company’s investor relations page","Quarterly results and financial statements"],
 ["Half-year report","After the first half ★","EDINET","Half-year financial statements and state of the business"]]},
 {t:"note",x:"* For quarters beginning on or after 1 April 2024, the statutory quarterly report was abolished and Q1 and Q3 reporting was unified into the stock exchange’s quarterly earnings release. A half-year report is filed for the second quarter. ★"}]},
 {h:"Choose the document by what you want to know",blocks:[{t:"fig",id:"fin_doc_pick",cap:"What you want to know, and the document to open. Orange is the earnings release, blue the annual securities report, green EDINET."},{t:"rows",items:[

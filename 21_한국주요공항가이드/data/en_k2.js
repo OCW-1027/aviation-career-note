@@ -59,7 +59,7 @@ sections:[
 ["Opening","Construction and opening dates not yet set (environmental assessment under way) ★"]]},
 {t:"point",x:"At Jeju, decisions turn on how quickly passengers can be moved once the weather clears. Settle extra-flight, reprotection and accommodation procedures for mass-cancellation days before each season."}]}],
 voice:"Jeju is an airport where wind and snow easily cause cancellations all at once. In peak season seats on alternative flights fill quickly, so when a weather warning comes out, work out alternative transport in advance.",
-terms:[["Wind Shear","ウインドシア","윈드시어"],["Mass Cancellation","一斉の欠航","대규모 결항"],["Extra Section","臨時便","임시편"],["Jeju Second Airport","済州第2空港","제주 제2공항"],["Environmental Impact Assessment","環境影響評価","환경영향평가"]],
+terms:[["Wind Shear","ウインドシア","윈드시어"],["Mass Cancellation","一斉欠航","대규모 결항"],["Extra Section","臨時便","임시편"],["Jeju Second Airport","済州第2空港","제주 제2공항"],["Environmental Impact Assessment","環境影響評価","환경영향평가"]],
 quiz:[{q:"What share of Korea’s domestic passengers flew Jeju routes in 2025?",opts:["About 30%","About 50%","87.6%","100%"],a:2,exp:"26.51 million."},
 {q:"When was Jeju Second Airport’s basic plan published?",opts:["2019","6 September 2024","March 2025","Not yet"],a:1,exp:"It will be built in Seongsan-eup, Seogwipo."},
 {q:"What matters most at Jeju after the weather clears?",opts:["Moving passengers fast with extra flights","Cancelling all flights","Doing nothing","Operating only international flights"],a:0,exp:"Partner airports’ hours may need extending too."}],

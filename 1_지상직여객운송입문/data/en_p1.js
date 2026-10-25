@@ -41,7 +41,7 @@ set("1-1",{"title":"Getting the Counter Ready, and How to Lay It Out","hl":"Prep
 {"q":"Which is not one of the security questions about checked baggage?","opts":["Items from strangers","Bags left unattended","Purpose of travel","Dangerous goods"],"a":2,"exp":"The security questions are about the safety of the baggage."}],
 "next":"1-2 The basics of airport announcements"});
 set("1-2",{"title":"The Basics of Airport Announcements (Normal and Irregular Operations)","hl":"Announcements","subtitle":"Place, situation and the passenger’s point of view: build announcements on three axes",
-"lead":["Announcements are the only way to give the same information to many passengers at once. Airlines set sample texts and speaking standards for each place (counter, gate, baggage claim) and each situation (normal or irregular operations).","This lesson covers the basic approach to announcing, the flow at each place, the key points in delays and cancellations, and templates for real announcements."],
+"lead":["Announcements are one of the important ways to give the same information to many passengers at once. Airlines set sample texts and speaking standards for each place (counter, gate, baggage claim) and each situation (normal or irregular operations).","This lesson covers the basic approach to announcing, the flow at each place, the key points in delays and cancellations, and templates for real announcements."],
 "sections":[
 {"h":"The basic approach","blocks":[{"t":"check","items":[
 {"name":"Check the equipment","x":"Before announcing, check the equipment works and the volume and sound quality are right. Agree timings in advance so you do not overlap with the airline next door."},

@@ -198,14 +198,14 @@ quiz:[{q:"Why is an airline’s operating cash flow often three to four times it
 {q:"What happens if capital expenditure stays below depreciation for years?",opts:["The fleet and equipment age","Cash must fall","Profit must rise","Debt must rise"],a:0,exp:"Less is being bought than is being used up."},
 {q:"What should be deducted when reading the FCF of an IFRS airline?",opts:["Repayment of lease liabilities","Depreciation","The increase in unearned revenue","Income tax"],a:0,exp:"Lease principal repayments are shown in financing, so FCF looks larger unless they are deducted."}]});
 set("6-6",{title:"Comparing Airlines: Operating Metrics and Financial Ratios on One Page",hl:"on One Page",subtitle:"Put load factor and CASK in the same table as margin, equity ratio and cash flow. You can then read three years of trends and the gap to other airlines, along with the reasons",
-lead:["The last five lessons assembled the ratios for profitability, safety, efficiency, growth and cash flow. This lesson puts them on one page alongside the airline operating metrics from 5-5.","Financial ratios are the result; operating metrics are the cause. Did the margin fall because of load factor, price, fuel, or non-fuel costs? With everything on one page, you can read both the three-year story and the difference from other airlines, along with the reasons."],
+lead:["The last five lessons assembled the ratios for profitability, financial stability, efficiency, growth and cash flow. This lesson puts them on one page alongside the airline operating metrics from 5-5.","Financial ratios are the result; operating metrics are the cause. Did the margin fall because of load factor, price, fuel, or non-fuel costs? With everything on one page, you can read both the three-year story and the difference from other airlines, along with the reasons."],
 sections:[
 {h:"Vela Air on one page",blocks:[{t:"table",cols:["","Year 1","Year 2 (fuel spike)","Year 3"],rows:[
 ["[Operations] ASK (100m seat-km) / load factor","200 / 82%","205 / 80%","215 / 83%"],
 ["[Operations] Total revenue ÷ ASK / CASK (yen)","15.0 / 14.1","15.4 / 15.7","15.4 / 14.3"],
 ["[Operations] CASK ex fuel (yen)","10.7","10.8","10.6"],
 ["[Profitability] Operating margin / ROE","6.0% / 4.6%","−1.7% / −5.5%","7.0% / 6.7%"],
-["[Safety] Equity ratio / net debt ÷ EBITDA","33.3% / 2.4×","31.7% / 4.0×","32.3% / 1.5×"],
+["[Financial stability] Equity ratio / net debt ÷ EBITDA","33.3% / 2.4×","31.7% / 4.0×","32.3% / 1.5×"],
 ["[Efficiency] Asset turnover / ASK per aircraft","0.50× / 4.00","0.54× / 4.10","0.55× / 4.22"],
 ["[Growth] Passenger revenue year-on-year (volume / price)","—","+5.3% (±0% / +5.3%)","+3.9% (+8.8% / −4.5%)"],
 ["[Cash] Operating cash flow margin / FCF after lease payments","13.1% / +34","7.0% / +162","13.4% / +82"]]},

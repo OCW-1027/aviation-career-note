@@ -30,7 +30,7 @@ terms:[["Travel Agency","旅行会社","여행사"],["GDS","予約・発券シ�
 quiz:[{q:"Which is true of the Japanese market?",opts:["Travel agencies carry much of the selling","Direct sales only","The GDS is not used","There are no group tours"],a:0,exp:"Packages and groups make the trade powerful."},
 {q:"What is an ADM?",opts:["A debit raised against an agency for a ticketing error","An airport charge","Catering","A security programme"],a:0,exp:"An agency debit memo."},
 {q:"What reduces agency errors fastest?",opts:["More complex rules","Simple booking classes and rules, with a clear local-language notice","No notice at all","Notices in English only"],a:1,exp:"Clarity in the local language matters."}],
-next:"7-2 The airport operators committee and the bodies around it"});
+next:"7-2 The Airline Operators Committee (AOC) and the bodies around it"});
 
 set("7-2",{title:"The Airline Operator’s Committee and the Bodies Around It",hl:"the AOC",subtitle:"Join before launch. Meetings, fees and shared facilities all run through it ★",
 lead:["The Airline Operator’s Committee (AOC) is the body of airlines serving an airport. Because using shared facilities, dealing with the airport company and cooperating in emergencies all run through it, joining before launch is essential (for an overview see Ground Staff 6-5).",

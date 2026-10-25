@@ -132,7 +132,7 @@ cgo_imp:function(l){
 /* 2-1 受け付けの確認：1件の貨物を順に確かめる。右は確かめた結果（架空の例） */
 cgo_accept:function(l){
  var W=({ja:{t:'受け付けで1件の貨物を確かめる（架空の例）',st:['書類と貨物：AWB 180-12345675、2個、品名が一致するか','計量：申告120kg、実測126kg','寸法：120×100×110cm。容積重量は約220kg','ラベル：AWBの番号、天地無用・上積み禁止','保安：確認済みの荷主（KS）の貨物か、検査が要るか','保管：区分を決め、所定の区画へ置く'],who:['一致','126kgに訂正','220kgで計算','貼り直し不要','検査を省略★','一般の区画']},
-  ko:{t:'접수에서 화물 한 건을 확인한다(가상의 예)',st:['서류와 화물: AWB 180-12345675, 2개, 품명이 일치하는가','계량: 신고 120kg, 실측 126kg','치수: 120×100×110cm. 용적 중량은 약 220kg','라벨: AWB 번호, 천지무용·적재 금지','보안: 확인된 화주(KS)의 화물인가, 검사가 필요한가','보관: 구분을 정해 지정된 구역에 둔다'],who:['일치','126kg로 정정','220kg로 계산','다시 붙일 필요 없음','검사 생략★','일반 구역']},
+  ko:{t:'접수에서 화물 한 건을 확인한다(가상의 예)',st:['서류와 화물: AWB 180-12345675, 2개, 품명이 일치하는가','계량: 신고 120kg, 실측 126kg','치수: 120×100×110cm. 용적 중량은 약 220kg','라벨: AWB 번호, 천지무용·상단 적재 금지','보안: 확인된 화주(KS)의 화물인가, 검사가 필요한가','보관: 구분을 정해 지정된 구역에 둔다'],who:['일치','126kg로 정정','220kg로 계산','다시 붙일 필요 없음','검사 생략★','일반 구역']},
   en:{t:'Checking one shipment at acceptance (fictional example)',st:['Documents vs cargo: AWB 180-12345675, 2 pieces, description matches?','Weighing: declared 120 kg, scale shows 126 kg','Dimensions: 120×100×110 cm; volume weight about 220 kg','Labels: AWB number, this way up, do not stack','Security: from a known consignor (KS), or screening needed?','Storage: decide the category and place it in the right area'],who:['Matches','Corrected to 126 kg','Charged on 220 kg','No relabelling','No screening ★','General area']}})[l];
  if(!W)return F.cgo_accept('ja');setK(1);
  return STEPS(W.t,W.st,W.who,['#2E9B5F','#D64545','#E08A2E','#2E9B5F','#2F6FD6','#2C7A7B'],'13s')},

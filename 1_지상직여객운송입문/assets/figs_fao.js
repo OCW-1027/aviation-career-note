@@ -20,7 +20,7 @@ ko:{flow:{m:[['사전 상담','본사·국제항공과'],['신청','3개월 전�
   ['등록국(기재별)',['등록증명서','감항증명서','소음·배출물 증명','83조의2 협정(해당 시)']],
   ['승무원(각자)',['기능증명(형식 한정)','항공신체검사증명','항공영어능력증명']],
   ['회사(신청자)',['정관','3년분 재무제표','운송약관+일본어 번역','보험증명','위임장','탈락 방지 조치(서명)']],
-  ['일본 측에서 작성',['이동 지원 조치 계획','낙하물 협정 동의 확인서','보안계획','노선도·다이어그램']]],aria:'첨부 서류의 다섯 출처'}},
+  ['일본 측에서 작성',['이동 지원 조치 계획','낙하물 협정 동의 확인서','보안계획','노선도·운항 시간표']]],aria:'첨부 서류의 다섯 출처'}},
 en:{flow:{m:[['Consultation','Head office, MLIT'],['Filing','3 months before'],['Review','Business + safety'],['Permit','Press release'],['Fares, plan, slots','1-2 to 1-5'],['First flight',''],['Oversight after launch','Ramp inspections']],
  lanes:['Business: Int’l Air Transport Div.','Safety: Safety Department'],ask:'Queries to home / registry authority',br:'3 months or more',aria:'From application through review, permit and post-launch oversight'},
  docs:{to:'Application + attachments → Int’l Air Transport Division',cols:[
@@ -28,7 +28,7 @@ en:{flow:{m:[['Consultation','Head office, MLIT'],['Filing','3 months before'],[
   ['State of registry (per aircraft)',['Registration certificate','Airworthiness certificate','Noise and emissions','Art. 83 bis agreement (if any)']],
   ['Crew (each member)',['Licence (type rating)','Medical certificate','English proficiency']],
   ['Company (applicant)',['Articles of incorporation','3 years of financials','Conditions of carriage + JP','Insurance certificate','Power of attorney','Falling-object measures (signed)']],
-  ['Prepared in Japan',['Accessibility plan','Falling-object consent','Security programme','Route map, diagram']]],aria:'The five sources of the attachments'}}};
+  ['Prepared in Japan',['Accessibility plan','Falling-object consent','Security programme','Route map, schedule']]],aria:'The five sources of the attachments'}}};
 var F='font-family="Noto Sans JP,Noto Sans KR,Hiragino Sans,Malgun Gothic,sans-serif"';
 var C={b:'#2F8FE0',t:'#1F7A6E',p:'#7A6FF0',o:'#E08A2F',y:'#F2B233',d:'#243447',g:'#5F6F80',l:'#E3E9EF'};
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}

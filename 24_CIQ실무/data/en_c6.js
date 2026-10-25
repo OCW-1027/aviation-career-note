@@ -33,9 +33,9 @@ lead:["Some passengers are stopped on arrival even with every document in order.
 sections:[
 {h:"Food",blocks:[{t:"fig",id:"ciq_items",cap:"Figure: belongings that get stopped on arrival (example)."},{t:"rows",items:[
 {name:"Fruit from the in-flight service, put in a bag for later",x:"Ask passengers in the pre-arrival announcement not to take it off. In the United States that alone can bring a fine. (3-3, 4-2)"},
-{name:"Jerky or instant noodles containing meat, bought as presents",x:"They cannot be brought into Japan, Korea, Taiwan, the United States and many other countries. If declared and surrendered, there is no penalty. (3-2, 4-2, 4-7)"},
+{name:"Jerky or instant noodles containing meat, bought as presents",x:"They cannot be brought into Japan, Korea, Taiwan, the United States and many other countries. Tell them to declare them. (3-2, 4-2, 4-7)"},
 {name:"Cheese bought in Paris, being taken to London",x:"Since April 2025 meat and dairy products cannot be taken from Europe into Britain. (4-5)"},
-{name:"Unsure whether to declare",x:"Tell them to declare. In every country, those who declare are not penalised. (4-6)"}]}]},
+{name:"Unsure whether to declare",x:"Tell them to declare. (4-6)"}]}]},
 {h:"Tobacco, medicines, alcohol",blocks:[{t:"rows",items:[
 {name:"Heated tobacco, going to Taiwan",x:"It cannot be brought in from abroad, even in checked baggage. (4-7)"},
 {name:"An e-cigarette, going to Thailand or Singapore",x:"Bringing it in and using it are both illegal. (4-8)"},
@@ -52,7 +52,7 @@ sections:[
 {t:"point",x:"What you tell passengers is always the same: “If in doubt, declare it.”"}]}],
 voice:{h:"A Reported Case",x:"In July 2022 a detector dog at Darwin Airport in Australia found two undeclared McDonald’s sausage-and-egg muffins and a ham croissant in the backpack of a passenger arriving from Bali. Foot-and-mouth disease was spreading in Indonesia at the time, and the passenger was given an AUD 2,664 infringement notice for failing to declare risk items and for submitting a false declaration (Sources: reports of the Australian agriculture minister’s statement, August 2022). A breakfast bought at the airport counts too if it contains meat."},
 terms:[["Bringing In","持ち込み","반입"],["Surrender","放棄","포기"],["Confiscation","没収","몰수"],["Duty-Free Shop","免税店","면세점"]],
-quiz:[{q:"What do you tell a passenger carrying meat products as presents?",opts:["Declare and surrender them and there is no penalty","Put them at the bottom of the bag","A small amount is fine","It is fine if bought duty-free"],a:0,exp:"Quantity, packaging and where it was bought make no difference."},
+quiz:[{q:"What do you tell a passenger carrying meat products as presents?",opts:["Tell them to declare them","Put them at the bottom of the bag","A small amount is fine","It is fine if bought duty-free"],a:0,exp:"Quantity, packaging and where it was bought make no difference."},
 {q:"A passenger asks whether a medicine can be brought in. What do you say?",opts:["Check the guidance of the destination’s authorities","“That will be fine”","“No, it cannot”","Nothing"],a:0,exp:"The airline does not decide."},
 {q:"What applies to a passenger carrying a large amount of cash?",opts:["Declare it if it exceeds the set amount","It cannot be carried","Hide it","Leave it with the airline"],a:0,exp:"Carrying it is not itself prohibited."}],
 next:"6-3 When things do not go to plan"});
@@ -87,7 +87,7 @@ lead:["CIQ rules differ from country to country and change almost every year. No
 sections:[
 {h:"Three principles",blocks:[{t:"fig",id:"ciq_rules",cap:"The course in summary. Countries and rules change; these three do not."},{t:"rows",items:[
 {name:"1. Look up every country on the itinerary",x:"Not only the destination but the transit points too, using TIMATIC and the authorities’ guidance rather than experience."},
-{name:"2. If in doubt, declare",x:"Tell passengers the same. In every country, those who declare are not penalised."},
+{name:"2. If in doubt, declare",x:"Tell passengers the same. Even when goods are declared, they may be refused entry or penalties may apply, depending on the item and the country’s rules."},
 {name:"3. Move nothing before the authorities give instructions",x:"Not passengers, bags, catering or waste. The more difficult the situation, the sooner you tell them."}]}]},
 {h:"What passengers often ask",blocks:[{t:"rows",items:[
 {name:"“Do I need a visa?”",x:"Even without a visa, a travel authorisation or arrival card may be needed. Check both the destination and the transit points, and point to the official website. (1-3)"},

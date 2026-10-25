@@ -16,7 +16,7 @@ sections:[
 {name:"+ − − (mature)",x:"Earns cash from trading, invests within it, repays debt and pays dividends with the rest. Vela Air year 1; JAL in recent years."},
 {name:"+ − + (growth investment)",x:"Invests beyond earnings and covers the gap with borrowing or new shares. Airlines in a period of large aircraft orders. JAL’s year to March 2026 shows + in financing because of perpetual subordinated bonds."},
 {name:"+ + − (shrinking, selling)",x:"Selling assets to repay debt: companies in restructuring or fleet rationalisation."},
-{name:"− − + (start-up or crisis)",x:"Cash leaves the business and borrowing fills the gap. The stall’s first month is close to this (operating is positive, but the cash position rests on investing and financing). Airlines such as JAL looked like this in fiscal 2020. ★"}]}]},
+{name:"− − + (start-up or crisis)",x:"Cash leaves the business and borrowing fills the gap. The stall’s first month is close to this (operating is positive, but the cash position rests on investing and financing). Airlines such as JAL looked like this in fiscal 2020, during the COVID-19 pandemic. ★"}]}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Sort the items",x:"‘Sold an aircraft’, ‘Issued bonds’, ‘Paid for fuel’, ‘Paid a dividend’, ‘Bought spare parts’, ‘Paid corporate tax’: which of the three groups?"},
 {name:"Find your company’s shape",x:"In the latest earnings release of your own or a nearby airline, read the signs of the three groups and decide which of the four patterns fits."}]}]}],

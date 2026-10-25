@@ -88,7 +88,7 @@ law_report:function(l){
 /* 5 航空会社が運航を始めるまで */
 law_aoc:function(l){
  var W=({ja:{t:'航空会社が運航を始めるまで',steps:[['事業の免許・許可','韓：航空事業法 第7条|日：第100条'],['安全運航体制の検査と運航証明（人・機材・施設・運航管理・整備）','韓：航空安全法 第90条|日：第102条（施設の検査）'],['運航規程・整備規程の認可','韓：第93条|日：第104条'],['安全管理システム（安全管理規程・安全統括管理者）','韓：第58条②|日：第103条の2（届出）'],['運航開始（その後も体制を保ち、変更は検査を受ける）','韓：第90条⑤|日：第134条（立入検査）']]},
-  ko:{t:'항공사가 운항을 시작하기까지',steps:[['사업 면허·허가','한: 항공사업법 제7조|일: 제100조'],['안전운항체계 검사와 운항증명(인력·장비·시설·운항관리·정비)','한: 항공안전법 제90조|일: 제102조(시설 검사)'],['운항규정·정비규정 인가','한: 제93조|일: 제104조'],['안전관리시스템(안전관리규정·안전총괄관리자)','한: 제58조②|일: 제103조의2(신고)'],['운항 시작(그 뒤에도 체계를 유지하고, 변경 시 검사)','한: 제90조⑤|일: 제134조(출입 검사)']]},
+  ko:{t:'항공사가 운항을 시작하기까지',steps:[['사업 면허·허가','한: 항공사업법 제7조|일: 제100조'],['안전운항체계 검사와 운항증명(인력·항공기·시설·운항관리·정비)','한: 항공안전법 제90조|일: 제102조(시설 검사)'],['운항규정·정비규정 인가','한: 제93조|일: 제104조'],['안전관리시스템(안전관리규정·안전총괄관리자)','한: 제58조②|일: 제103조의2(신고)'],['운항 시작(그 뒤에도 체계를 유지하고, 변경 시 검사)','한: 제90조⑤|일: 제134조(출입 검사)']]},
   en:{t:'What an airline needs before it can fly',steps:[['Business licence or permit','KR: Aviation Business Act Art. 7|JP: Art. 100'],['Inspection of the safety system and the air operator certificate (people, aircraft, facilities, dispatch, maintenance)','KR: Aviation Safety Act Art. 90|JP: Art. 102 (facility inspection)'],['Approval of the operations and maintenance manuals','KR: Art. 93|JP: Art. 104'],['Safety management system (safety management rules, accountable manager)','KR: Art. 58(2)|JP: Art. 103-2 (notification)'],['Start of operations (the system must be maintained and changes inspected)','KR: Art. 90(5)|JP: Art. 134 (on-site inspection)']]}})[l];
  if(!W)return F.law_aoc('ja');
  setK(1);var dur=12,n=W.steps.length;

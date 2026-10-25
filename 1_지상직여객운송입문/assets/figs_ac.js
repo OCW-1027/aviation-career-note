@@ -149,9 +149,9 @@ ac_go_stop:function(l){
 
 /* 8 性能で決まる最大離陸重量：いくつかの制限のうち、いちばん小さい値 */
 ac_mtow:function(l){
- var W=({ja:{t:'その日の最大離陸重量は「いちばん小さい制限」',lims:['構造の限界（機体の強さ）','滑走路の長さ','上昇の勾配（エンジン1つ停止）','障害物を越える','タイヤ・ブレーキ','着陸重量から逆算'],pick:'この日の最大離陸重量',n:['高温・高地空港・濡れた滑走路・追い風は、多くの制限を小さくする','最大離陸重量から、燃料（出発に必要な量）を引いた残りが、旅客・貨物に使える重さ（ペイロード）の上限になる']},
-  ko:{t:'그날의 최대 이륙 중량은 ‘가장 작은 제한’',lims:['구조 한계(기체 강도)','활주로 길이','상승 경사(엔진 하나 정지)','장애물 통과','타이어·브레이크','착륙 중량에서 역산'],pick:'이날의 최대 이륙 중량',n:['고온·고지 공항·젖은 활주로·뒷바람은 여러 제한값을 낮춘다','최대 이륙 중량에서 연료(출발에 필요한 양)를 뺀 나머지가 승객·화물을 실을 수 있는 무게(페이로드)의 상한이 된다']},
-  en:{t:'Today’s maximum take-off weight is the smallest limit',lims:['Structural limit (airframe strength)','Runway length','Climb gradient (one engine out)','Obstacle clearance','Tyres and brakes','Back-calculated from landing weight'],pick:'Today’s maximum take-off weight',n:['Hot, high airports, wet runways and tailwinds shrink many of the limits','Maximum take-off weight minus the fuel needed for departure caps the weight available for passengers and cargo (payload)']}})[l];
+ var W=({ja:{t:'その日の最大離陸重量は「いちばん小さい制限」',lims:['構造の限界（機体の強さ）','滑走路の長さ','上昇の勾配（エンジン1つ停止）','障害物を越える','タイヤ・ブレーキ','着陸重量から逆算'],pick:'この日の最大離陸重量',n:['高温・高地空港・濡れた滑走路・追い風は、多くの制限を小さくする','その日の最大離陸重量から運航自重と離陸燃料を引いた値が、旅客・貨物に使える重さ（ペイロード）の上限を決める条件の一つになる']},
+  ko:{t:'그날의 최대 이륙 중량은 ‘가장 작은 제한’',lims:['구조 한계(기체 강도)','활주로 길이','상승 경사(엔진 하나 정지)','장애물 통과','타이어·브레이크','착륙 중량에서 역산'],pick:'이날의 최대 이륙 중량',n:['고온·고지 공항·젖은 활주로·뒷바람은 여러 제한값을 낮춘다','그날의 최대 이륙 중량에서 운항 자중과 이륙 연료를 뺀 값이 승객·화물을 실을 수 있는 무게(페이로드) 상한을 정하는 조건 중 하나가 된다']},
+  en:{t:'Today’s maximum take-off weight is the smallest limit',lims:['Structural limit (airframe strength)','Runway length','Climb gradient (one engine out)','Obstacle clearance','Tyres and brakes','Back-calculated from landing weight'],pick:'Today’s maximum take-off weight',n:['Hot, high airports, wet runways and tailwinds shrink many of the limits','Today’s maximum take-off weight minus the dry operating weight and take-off fuel is one of the limits on the weight available for passengers and cargo (payload)']}})[l];
  if(!W)return F.ac_mtow('ja');
  setK(1);
  var vals=[100,86,82,90,95,88],mn=Math.min.apply(null,vals),y=64,lh=FS(11)*1.3;

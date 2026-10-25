@@ -216,7 +216,7 @@ gnd_golf:function(l){
 /* 1-12 手荷物の危険物：機内持ち込みと預け入れの○×（代表例★） */
 gnd_dgbag:function(l){
  var W=({ja:{t:'お客様の手荷物の危険物：持ち込みと預け入れ（代表例★）',c:['品目','機内','預け'],r:[['喫煙用ライター・マッチ（1人1個）',1,0],['電子たばこ・加熱式たばこ',1,0],['化粧品・医薬品のスプレー（1容器0.5L以下）',1,1],['引火性ガスのスプレー（潤滑油・塗料など）',0,0],['アルコール 24〜70%（1人5Lまで）',1,1],['アルコール 70%超',0,0],['ドライアイス（1人2.5kgまで）',1,1],['花火・キャンプ用ガス・燃料',0,0]],n:['国・航空会社によってはさらに厳しい。迷う物は危険物の担当・規定で確かめる','リチウム電池・モバイルバッテリーは次の回（1-13）で']},
-  ko:{t:'승객 수하물의 위험물: 기내 반입과 위탁(대표 예★)',c:['품목','기내','위탁'],r:[['흡연용 라이터·성냥(1인 1개)',1,0],['전자담배·가열식 담배',1,0],['화장품·의약품 스프레이(1용기 0.5L 이하)',1,1],['인화성 가스 스프레이(윤활유·도료 등)',0,0],['알코올 24~70%(1인 5L까지)',1,1],['알코올 70% 초과',0,0],['드라이아이스(1인 2.5kg까지)',1,1],['폭죽·캠핑용 가스·연료',0,0]],n:['나라·항공사에 따라 더 엄격할 수 있다. 헷갈리는 물건은 위험물 담당·규정으로 확인한다','리튬전지·보조배터리는 다음 레슨(1-13)에서']},
+  ko:{t:'승객 수하물의 위험물: 기내 반입과 위탁(대표 예★)',c:['품목','기내','위탁'],r:[['흡연용 라이터·성냥(1인 1개)',1,0],['전자담배·가열식 담배',1,0],['화장품·의약품 스프레이(용기당 0.5L 이하)',1,1],['인화성 가스 스프레이(윤활유·도료 등)',0,0],['알코올 24~70%(1인 5L까지)',1,1],['알코올 70% 초과',0,0],['드라이아이스(1인 2.5kg까지)',1,1],['폭죽·캠핑용 가스·연료',0,0]],n:['나라·항공사에 따라 더 엄격할 수 있다. 헷갈리는 물건은 위험물 담당·규정으로 확인한다','리튬전지·보조배터리는 다음 레슨(1-13)에서']},
   en:{t:'Dangerous goods in passenger baggage: cabin or checked (typical examples ★)',c:['Item','Cabin','Checked'],r:[['Lighter or matches for smoking (one per person)',1,0],['E-cigarettes and heated tobacco',1,0],['Toiletry and medical aerosols (0.5 L per container)',1,1],['Flammable-gas aerosols (lubricants, paint)',0,0],['Alcohol 24–70% (up to 5 L per person)',1,1],['Alcohol over 70%',0,0],['Dry ice (up to 2.5 kg per person)',1,1],['Fireworks, camping gas, fuel',0,0]],n:['Some countries and airlines are stricter; check doubtful items with your DG specialist or manual','Lithium batteries and power banks are covered in the next lesson (1-13)']}})[l];
  if(!W)return F.gnd_dgbag('ja');setK(1);
  var T=TOP(W.t),s=T.s,y=T.y,dur='12s',c1=420,cw=88,n=W.r.length,rh=34;
@@ -631,7 +631,7 @@ gnd_kpi:function(l){
 /* 6-10 新しいスタッフの30日（例★） */
 gnd_30d:function(l){
  var W=({ja:{t:'新しいスタッフの30日：着任から独り立ちまで（例★）',st:['迷わず出勤でき、安全の基本ルールを知る','保安・危険物・安全の初期教育を受け、記録に残す','指導者が見ている中で簡単な手続きができる','一人でできる業務の一覧ができる','独り立ちの判定と記録、今後の教育の計画'],who:['1日目','1週目','2週目','3週目','4週目（30日）'],n:['指導者（バディ）を決め、毎週短い面談で進み具合を確かめる','経験者は短く、未経験者は長くなることがある']},
-  ko:{t:'신입 직원의 30일: 부임부터 독립까지(예★)',st:['헤매지 않고 출근하고, 안전 기본 규칙을 안다','보안·위험물·안전 초기 교육을 받고 기록으로 남긴다','지도자가 보는 가운데 간단한 수속을 할 수 있다','혼자 할 수 있는 업무 목록이 생긴다','독립 판정과 기록, 앞으로의 교육 계획'],who:['1일째','1주차','2주차','3주차','4주차(30일)'],n:['지도자(버디)를 정하고 매주 짧은 면담으로 진행을 확인한다','경력자는 짧고, 미경험자는 길어질 수 있다']},
+  ko:{t:'신입 직원의 30일: 부임부터 독립까지(예★)',st:['헤매지 않고 출근하고, 안전 기본 규칙을 안다','보안·위험물·안전 초기 교육을 받고 기록으로 남긴다','지도자가 보는 가운데 간단한 수속을 할 수 있다','혼자 할 수 있는 업무 목록이 생긴다','독립 판정과 기록, 앞으로의 교육 계획'],who:['첫날','1주차','2주차','3주차','4주차(30일)'],n:['지도자(버디)를 정하고 매주 짧은 면담으로 진행을 확인한다','경력자는 짧고, 미경험자는 길어질 수 있다']},
   en:{t:'A new staff member’s first 30 days: from arrival to working solo (example ★)',st:['Can find the way in and knows the basic safety rules','Completes initial security, DG and safety training, recorded','Can do simple tasks while the trainer watches','Has a list of tasks they can do alone','Sign-off for solo work, recorded, with a training plan'],who:['Day 1','Week 1','Week 2','Week 3','Week 4 (day 30)'],n:['Assign a buddy and check progress in a short weekly talk','Experienced hires may need less time, newcomers more']}})[l];
  if(!W)return F.gnd_30d('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#2E9B5F'],'10s');s+=A.s;
@@ -1640,9 +1640,9 @@ ciq_resp:function(l){
  if(!W)return F.ciq_resp('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ciq_api:function(l){
- var W=({ja:{t:'先に送る旅客の情報',r:[['API（事前旅客情報）','旅券の情報と便。出発前〜出発直後に送る','#1769e0'],['PNR（予約の記録）','旅程・連絡先・支払い。数日前から数回','#2C8C8C'],['iAPI（対話型）','当局が搭乗の可否をその場で返す','#E08A2E']],n:['電子渡航認証：ESTA・eTA・ETA・K-ETA・ETIAS（開始日未定）・JESTA（2028年度中の導入が目標）★','「搭乗できません」の応答は、自分で判断せず決められた連絡先に確かめる']},
-  ko:{t:'미리 보내는 승객 정보',r:[['API(사전승객정보)','여권 정보와 항공편. 출발 전~직후','#1769e0'],['PNR(예약 기록)','여정·연락처·결제. 며칠 전부터 여러 번','#2C8C8C'],['iAPI(대화형)','당국이 탑승 가부를 즉시 회신한다','#E08A2E']],n:['전자여행허가: ESTA·eTA·ETA·K-ETA·ETIAS(2026년 4분기 예정)·JESTA(2028년도 중 도입 목표)★','「탑승 불가」 응답은 스스로 판단하지 말고 정해진 연락처에 확인한다']},
-  en:{t:'Passenger data sent in advance',r:[['API (advance passenger information)','Passport details and flight, before to just after departure','#1769e0'],['PNR (booking record)','Itinerary, contacts, payment; several times from days before','#2C8C8C'],['iAPI (interactive)','The authority returns board / no-board at once','#E08A2E']],n:['Travel authorisations: ESTA, eTA, ETA, K-ETA, ETIAS (planned Q4 2026), JESTA (target FY2028) ★','Never decide on a “do not board” response yourself; check with the designated contact']}})[l];
+ var W=({ja:{t:'先に送る旅客の情報',r:[['API（事前旅客情報）','旅券の情報と便。出発前〜出発直後に送る','#1769e0'],['PNR（予約の記録）','旅程・連絡先・支払い。数日前から数回','#2C8C8C'],['iAPI（対話型）','当局が搭乗の可否をその場で返す','#E08A2E']],n:['電子渡航認証：ESTA・eTA・ETA・K-ETA・ETIAS（2026年第4四半期予定・正確な開始日は未定）・JESTA（2028年度中の導入が目標）★','「搭乗できません」の応答は、自分で判断せず決められた連絡先に確かめる']},
+  ko:{t:'미리 보내는 승객 정보',r:[['API(사전승객정보)','여권 정보와 항공편. 출발 전~직후','#1769e0'],['PNR(예약 기록)','여정·연락처·결제. 며칠 전부터 여러 번','#2C8C8C'],['iAPI(대화형)','당국이 탑승 가부를 즉시 회신한다','#E08A2E']],n:['전자여행허가: ESTA·eTA·ETA·K-ETA·ETIAS(2026년 4분기 예정·정확한 개시일 미정)·JESTA(2028년도 중 도입 목표)★','「탑승 불가」 응답은 스스로 판단하지 말고 정해진 연락처에 확인한다']},
+  en:{t:'Passenger data sent in advance',r:[['API (advance passenger information)','Passport details and flight, before to just after departure','#1769e0'],['PNR (booking record)','Itinerary, contacts, payment; several times from days before','#2C8C8C'],['iAPI (interactive)','The authority returns board / no-board at once','#E08A2E']],n:['Travel authorisations: ESTA, eTA, ETA, K-ETA, ETIAS (planned Q4 2026, exact date TBC), JESTA (target FY2028) ★','Never decide on a “do not board” response yourself; check with the designated contact']}})[l];
  if(!W)return F.ciq_api('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ciq_timatic:function(l){
@@ -1684,7 +1684,7 @@ ciq_customs:function(l){
 ciq_cash:function(l){
  var W=({ja:{t:'現金の申告と、持ち込めない物（日本の例）',r:[['現金など','100万円相当を超えたら申告（出国・入国）','#1769e0'],['持ち込めない','麻薬・銃・爆発物・偽の貨幣・偽ブランド品','#D64545'],['許可・手続きが要る','猟銃・刀剣・ワシントン条約の動植物','#E08A2E'],['検疫が要る','肉製品・果物・野菜・植物・動物','#2C8C8C']],n:['持ち込めるかを判断するのは税関。航空会社は保証しない','機内に持ち込めるか（保安・危険物）と国に持ち込めるか（税関）は別の決まり']},
   ko:{t:'현금 신고와 반입 금지 물품(일본의 예)',r:[['현금 등','100만 엔 상당을 넘으면 신고(출국·입국)','#1769e0'],['반입 금지','마약·총기·폭발물·위조 화폐·위조 명품','#D64545'],['허가·절차 필요','엽총·도검·워싱턴 협약 동식물','#E08A2E'],['검역 필요','육류 제품·과일·채소·식물·동물','#2C8C8C']],n:['반입 가능 여부는 세관이 판단한다. 항공사는 보증하지 않는다','기내 반입(보안·위험물)과 해당 국가 반입(세관)은 별개의 규칙']},
-  en:{t:'Declaring cash and prohibited items (Japan example)',r:[['Cash and equivalents','Declare above ¥1 million equivalent, in or out','#1769e0'],['Prohibited','Drugs, firearms, explosives, counterfeit money and branded goods','#D64545'],['Permit or procedure needed','Hunting guns, swords, CITES species and products','#E08A2E'],['Quarantine needed','Meat, fruit, vegetables, plants, animals','#2C8C8C']],n:['Customs decides what may enter; the airline must not guarantee it','What may go in the cabin (security, dangerous goods) and what may enter the country (customs) are separate rules']}})[l];
+  en:{t:'Declaring cash and prohibited items (Japan example)',r:[['Cash and equivalents','Declare above ¥1 million equivalent, in or out','#1769e0'],['Prohibited','Drugs, firearms, explosives, counterfeit money and counterfeit branded goods','#D64545'],['Permit or procedure needed','Hunting guns, swords, CITES species and products','#E08A2E'],['Quarantine needed','Meat, fruit, vegetables, plants, animals','#2C8C8C']],n:['Customs decides what may enter; the airline must not guarantee it','What may go in the cabin (security, dangerous goods) and what may enter the country (customs) are separate rules']}})[l];
  if(!W)return F.ciq_cash('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 /* ===== CIQ Part 2〜4 の図（続き）2026.10 ===== */
@@ -1731,7 +1731,7 @@ ciq_ca:function(l){
  if(!W)return F.ciq_ca('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 ciq_eu:function(l){
- var W=({ja:{t:'欧州（シェンゲン圏）と英国',c:[['シェンゲン圏','最初の空港で入国審査とEESの登録（2026年4月10日から全面）。滞在は180日のうち90日まで。ETIASは開始日未定★'],['英国','シェンゲン圏でもEUでもない。ETAは20ポンド（2026年4月8日から）。EUからの肉・乳製品も持ち込めない（2025年4月12日から）']],n:['EUの外から肉・乳製品は持ち込めない。乳児用の粉ミルク・医療用の食品は2kgまで','1万ユーロ以上の現金は申告（1人ごとに数える）']},
+ var W=({ja:{t:'欧州（シェンゲン圏）と英国',c:[['シェンゲン圏','最初の空港で入国審査とEESの登録（2026年4月10日から全面）。滞在は180日のうち90日まで。ETIASは2026年第4四半期に開始予定★'],['英国','シェンゲン圏でもEUでもない。ETAは20ポンド（2026年4月8日から）。EUからの肉・乳製品も持ち込めない（2025年4月12日から）']],n:['EUの外から肉・乳製品は持ち込めない。乳児用の粉ミルク・医療用の食品は2kgまで','1万ユーロ以上の現金は申告（1人ごとに数える）']},
   ko:{t:'유럽(솅겐 지역)과 영국',c:[['솅겐 지역','처음 도착한 공항에서 입국심사와 EES 등록(2026년 4월 10일부터 전면). 체류는 180일 중 90일까지. ETIAS는 2026년 4분기 예정★'],['영국','솅겐 지역도 EU도 아니다. ETA는 20파운드(2026년 4월 8일부터). EU에서 오는 고기·유제품도 반입 불가(2025년 4월 12일부터)']],n:['EU 밖에서 고기·유제품은 반입 불가. 유아용 분유·의료용 식품은 2kg까지','1만 유로 이상의 현금은 신고(1인 기준)']},
   en:{t:'Europe (Schengen) and the UK',c:[['Schengen area','Immigration and EES registration at the first airport (fully live from 10 Apr 2026); 90 days in any 180; ETIAS planned Q4 2026 ★'],['United Kingdom','Neither Schengen nor EU. ETA costs £20 (from 8 Apr 2026). Meat and dairy from the EU also banned (from 12 Apr 2025)']],n:['No meat or dairy from outside the EU; infant formula and medical foods up to 2 kg','Declare cash of €10,000 or more (counted per person)']}})[l];
  if(!W)return F.ciq_eu('ja');setK(1);
@@ -2091,7 +2091,7 @@ lf_transfer:function(l){
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_prep:function(l){
  var W=({ja:{t:'日本語がわからなくても備える3つ',c:[['警報を受ける','Safety tips（15言語）・携帯の緊急速報・キキクル・市区町村の防災アプリ'],['備蓄（最低3日）','水1人1日3リットル・食べ物・携帯トイレ1人1日5回分・薬・書類の写し'],['家族の連絡','災害用伝言ダイヤル171・集まる場所を2か所・本国の家族に前もって伝える']],n:['韓国籍の人：外交部 領事コールセンター（24時間、+82-2-3210-0404）','在留カードをなくしたら警察に届け、14日以内に再交付の申請']},
-  ko:{t:'일본어를 몰라도 준비하는 3가지',c:[['경보 받기','Safety tips(15개 언어)·휴대폰 긴급 속보·키키쿠루·시구정촌 방재 앱'],['비축(최소 3일)','물 한 사람 하루 3리터·식품·휴대 화장실 하루 5회분·약·서류 사본'],['가족 연락','재해용 전언 다이얼 171·모일 곳 두 곳·본국 가족에게 미리 알리기']],n:['한국 국적자: 외교부 영사콜센터(24시간, +82-2-3210-0404)','재류카드 분실 시 경찰에 신고 후 14일 이내 재교부 신청']},
+  ko:{t:'일본어를 몰라도 준비하는 3가지',c:[['경보 받기','Safety tips(15개 언어)·휴대폰 긴급 속보·키키쿠루·시구정촌 방재 앱'],['비축(최소 3일)','물 1인 1일 3리터·식품·휴대 화장실 하루 5회분·약·서류 사본'],['가족 연락','재해용 전언 다이얼 171·모일 곳 두 곳·본국 가족에게 미리 알리기']],n:['한국 국적자: 외교부 영사콜센터(24시간, +82-2-3210-0404)','재류카드 분실 시 경찰에 신고 후 14일 이내 재교부 신청']},
   en:{t:'Three ways to prepare, even without Japanese',c:[['Get alerts','Safety tips (15 languages), phone emergency alerts, Kikikuru, your city’s disaster app'],['Stockpile (3 days minimum)','3 litres of water per person a day, food, portable toilets (5 uses a day), medicines, copies of documents'],['Family contact','Disaster message dial 171, two meeting places, tell family at home what you will do']],n:['Korean nationals: MOFA consular call centre (24 hours, +82-2-3210-0404)','Lost residence card: report to police, then apply for a new one within 14 days']}})[l];
  if(!W)return F.lf_prep('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#D64545','#2C8C8C','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},

@@ -218,7 +218,7 @@ sections:[
 {name:"Time to train",x:"Whether the hiring date allows for how long it takes someone to become effective."},
 {name:"Fit with the team",x:"In a small team, a cooperative attitude often matters more than skills."},
 {name:"Status of residence",x:"Foreign staff’s expiry dates and the outlook for renewal."},
-{name:"Real language ability",x:"Test scores and practical ability on the job differ. Check with role-play."}]}]},
+{name:"Real language ability",x:"Language test scores and practical language skills are not the same. Check with role-play."}]}]},
 {h:"What candidates should look for in a company",blocks:[{t:"table",cols:["Point","How to check"],rows:[
 ["Training","How long and what it covers, and whether there is someone to teach you"],
 ["Rostering","How shifts are built, how easy it is to take days off and paid leave"],

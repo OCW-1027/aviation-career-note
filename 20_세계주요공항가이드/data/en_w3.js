@@ -1,6 +1,6 @@
 /* 世界の主要空港ガイド Part 3 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("3-1",{title:"Dubai (DXB): First in the World for International Traffic, Moving Next to Al Maktoum (DWC)",hl:"Dubai",subtitle:"95.2 million passengers in 2025, the most international passengers any airport has ever handled in a year. Home of Emirates. The US$35 billion DWC project targets an eventual 260 million, with all flights eventually moving there",
+set("3-1",{title:"Dubai (DXB): World No. 1 for International Traffic, with a Move to Al Maktoum (DWC) Ahead",hl:"Dubai",subtitle:"95.2 million passengers in 2025, the most international passengers any airport has ever handled in a year. Home of Emirates. The US$35 billion DWC project targets an eventual 260 million, with all flights eventually moving there",
 lead:["Dubai International (DXB) has been the world’s busiest airport for international passengers since 2014. In 2025 it handled 95.2 million passengers (+3.1%), the highest annual international traffic ever recorded by any airport (Dubai Airports), and it forecasts 99.5 million for 2026.","As Emirates’ home, it is a giant transfer hub linking Europe, Africa, Asia and Oceania. But the city-centre site has no room to grow, so Dubai is investing US$35 billion in Al Maktoum International (DWC) to the south and plans eventually to move every flight there."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_dxb",cap:"Figure: Dubai at a glance."},{t:"table",cols:["Item","Details"],rows:[

@@ -32,7 +32,7 @@ window.DICT=(window.DICT||[]).concat([
 ["SEC","Screening","保安検査","보안검색","旅客・手荷物・貨物に危険な物がないかを調べること","승객·수하물·화물에 위험물이 없는지 조사하는 것","Checking people, bags and cargo for prohibited items"],
 ["SEC","Hold Baggage Screening (HBS)","預け手荷物の検査（HBS）","위탁 수하물 검색(HBS)","預けた手荷物をX線などで検査すること","위탁 수하물을 X선 등으로 검사하는 것","Screening checked bags by X-ray and other means"],
 ["SEC","Explosive Detection System (EDS)","爆発物検知装置（EDS）","폭발물 탐지 장비(EDS)","手荷物の爆発物を自動で見つける装置","수하물 속 폭발물을 자동으로 찾는 장비","Equipment that automatically detects explosives in bags"],
-["SEC","Liquids, Aerosols and Gels (LAGs)","液体物の制限（LAGs）","액체류 제한(LAGs)","国際線の機内持ち込みの液体の制限（1容器100ml等）","국제선 기내 반입 액체 제한(1용기 100ml 등)","Limits on liquids in cabin baggage, such as 100 ml per container"],
+["SEC","Liquids, Aerosols and Gels (LAGs)","液体物の制限（LAGs）","액체류 제한(LAGs)","国際線の機内持ち込みの液体の制限（1容器100ml等）","국제선 기내 반입 액체 제한(용기당 100ml 등)","Limits on liquids in cabin baggage, such as 100 ml per container"],
 ["SEC","Security Tamper-Evident Bag (STEB)","不正開封防止袋（STEB）","개봉 방지 봉투(STEB)","免税品の液体を入れる、開封の有無が分かる袋","면세품 액체를 담는, 개봉 여부를 알 수 있는 봉투","The sealed bag for duty-free liquids"],
 ["SEC","Restricted Area Pass","制限区域の立入証","보호구역 출입증","制限区域に入る人が身に着ける許可証","보호구역에 들어가는 사람이 착용하는 허가증","The pass worn to enter restricted areas"],
 ["SEC","Sensitive Security Information (SSI)","保安上の機密情報","보안 민감 정보","外部に漏れると保安を損なう情報","외부에 공개되면 보안을 약화시키는 정보","Information that would weaken security if disclosed"],

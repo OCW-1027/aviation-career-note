@@ -154,7 +154,7 @@ terms:[["Audit","監査","심사·감사"],["Corrective Action","是正措置","
 quiz:[{q:"What is always checked about previous findings?",opts:["Nothing","Whether they have been fixed","Who raised them","The cost"],a:1,exp:"Closing out previous findings is always checked."},
 {q:"When should records be written?",opts:["The day before the audit","The same day","At month end","Not at all"],a:1,exp:"Catching up later leaves gaps."},
 {q:"Example retention for financial and tax records in Japan?",opts:["1 year","3 years","7 years","Not required"],a:2,exp:"Seven years is the usual requirement in Japan."}],
-next:"6-5 The airport operators committee (AOC)"});
+next:"6-5 The Airline Operators Committee (AOC)"});
 
 set("6-5",{title:"The Airline Operator’s Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport company and the agencies",
 lead:["The AOC, the Airline Operator’s Committee, is the body formed by the airlines serving an airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is the way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],

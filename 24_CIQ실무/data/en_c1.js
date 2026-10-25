@@ -79,7 +79,7 @@ sections:[
 ["Korea: K-ETA","KRW 10,000. Three years, or until the passport expires","22 countries and territories, including Japan and the United States, are exempt until 31 December 2026"],
 ["Europe (Schengen): ETIAS","EUR 20 (free under 18 and over 70). Three years","Due to start in the last quarter of 2026; the exact date is announced months in advance (not yet announced as of October 2026). Transitional and grace periods of at least 12 months follow the start"],
 ["Japan: JESTA","Not yet set","Targeted for fiscal 2028 (0-4)"]]},
-{t:"note",x:"* Items marked ★ were not confirmed this time. Fees, eligibility and validity change."}]},
+{t:"note",x:"* Fees, eligibility and validity change."}]},
 {h:"Europe: EES and ETIAS are different things",blocks:[{t:"table",cols:["","EES (Entry/Exit System)","ETIAS (authorisation before travel)"],rows:[
 ["What it does","Registers face and fingerprints at the border and records entries and exits, replacing passport stamps","An online application before travel, resulting in an authorisation"],
 ["Application and fee","No application. Free","Application required. EUR 20"],
