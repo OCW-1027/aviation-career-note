@@ -1,7 +1,7 @@
 /* 航空の基礎知識 0-1・0-2 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("0-1",{title:"Parts of an Airliner and What They Do: Including What to Watch on the Ground",hl:"parts",subtitle:"Moving wing surfaces, tail, doors, gear and sensors. Know the names and you can follow what engineers and ramp staff are saying",
-lead:["The names of aircraft parts are the shared language of ramp, maintenance and flight operations. Once you understand “hook the tug to the nose gear”, “flaps still down” or “pitot cover”, the work on the ramp starts to make sense.","This lesson identifies 18 parts on top and side views, then covers the aircraft’s three movements, what the lights mean and where to take care on the ground."],
+lead:["The names of aircraft parts are the shared language of ramp, maintenance and flight operations. Once you understand “hook the tug to the nose gear”, “flaps still down” or “pitot cover”, the work on the ramp starts to make sense.","This lesson identifies 18 parts using top and side views, then covers the aircraft’s three movements, what the lights mean and where to take care on the ground."],
 sections:[
 {h:"Names of the parts",blocks:[{t:"fig",id:"aircraft_parts",cap:"Top: plan view. Bottom: side view (nose to the right). Numbers match the table."},
 {t:"table",cols:["No.","Part","What it does / care on the ground"],rows:[
@@ -86,5 +86,5 @@ terms:[["Narrow-body","単通路機","단일 통로기"],["Wide-body","双通路
 quiz:[{q:"What is the ICAO type designator for the B787-9?",opts:["B789","789","B787","B7X9"],a:0,exp:"The IATA code is 789."},
 {q:"Which aerodrome code letter does the A380 fall under?",opts:["C","D","E","F"],a:3,exp:"The largest category, for spans of about 80 m."},
 {q:"What does “neo” mean?",opts:["New Engine Option","Extended range","Freighter","Shortened fuselage"],a:0,exp:"New Engine Option."}],
-next:"Part 1 Sky and Time — 1-1 Why planes fly"});
+next:"Part 1 The Sky and Time — 1-1 Why planes fly"});
 })(window.ARTS);

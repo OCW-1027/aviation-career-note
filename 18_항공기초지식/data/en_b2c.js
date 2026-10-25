@@ -38,7 +38,7 @@ sections:[
 {name:"Lights and markings",x:"Never cross a red stop bar or red runway status lights, even with a clearance. If something feels wrong, stop and check."},
 {name:"Pushback communication",x:"Headset exchanges between the tug crew and the flight deck (“brakes set”, “cleared to disconnect”) should also be read back."},
 {name:"The handler’s role",x:"The national guidelines (November 2025) note that handling vehicles enter runways often and that ramp incidents are rising, and call on ground handlers to take the initiative in preventing incursions and to join each airport’s cooperation framework."},
-{name:"Equipment for vehicles at major airports",x:"The same guidelines set out, among other things, that vehicles entering runways at eight major airports (New Chitose, Narita, Haneda, Chubu, Itami, Kansai, Fukuoka and Naha) be considered for equipment that automatically transmits position and other data. ★"}]}]},
+{name:"Equipment for vehicles at major airports",x:"The same guidelines propose, among other measures, considering equipment that automatically transmits position and other data for vehicles entering runways at eight major airports (New Chitose, Narita, Haneda, Chubu, Itami, Kansai, Fukuoka and Naha). ★"}]}]},
 {h:"Main measures since the Haneda accident",blocks:[{t:"table",cols:["When","Measures (main ones)"],rows:[
 ["January 2024","Instructions to ATC units and airlines to reinforce basic procedures; staff assigned at major airports to monitor runway incursions on radar at all times"],
 ["June 2024","Interim report of the accident countermeasures committee, recommending a revised handbook and more"],
@@ -48,7 +48,7 @@ sections:[
 {t:"note",x:"* Compiled by this site from the main published documents; check MLIT announcements for the latest measures. ★"}]}],
 voice:"Even when driving on the ramp, always read back radio instructions, and say ‘confirm’ when unsure. The busier the day, the more it matters not to skip the readback.",
 terms:[["Runway Incursion","滑走路誤進入","활주로 오진입"],["Readback","復唱","복창"],["Hearback","聞き返し（ヒアバック）","확인 청취(히어백)"],["Communication Loop","交信ループ","교신 루프"],["Stop Bar","ストップバー","스톱바"],["Runway Status Lights (RWSL)","滑走路状態表示灯","활주로 상태 표시등"]],
-quiz:[{q:"Which is true about readback?",opts:["A readback always prevents mishearing","Mishearings are caught only when the controller or others hear the readback back","“Roger” is enough","Readback is unnecessary"],a:1,exp:"Readback and hearback work together."},
+quiz:[{q:"Which is true about readback?",opts:["A readback always prevents mishearing","Mishearings are caught only when the controller or others check the readback (hearback)","“Roger” is enough","Readback is unnecessary"],a:1,exp:"Readback and hearback work together."},
 {q:"What is departure sequence information such as “number one”?",opts:["A take-off clearance","Not a clearance","Permission to enter the runway","Something to ignore"],a:1,exp:"Never mistake sequence information for a clearance."},
 {q:"What should a vehicle do at a red stop bar?",opts:["Cross quickly","Never cross it, even with a clearance; stop and check","Flash lights and cross","Ask the vehicle behind"],a:1,exp:"If lights and instructions disagree, stop and check."}],
 next:"2-5 Airways: the roads in the sky and reading an enroute chart"});

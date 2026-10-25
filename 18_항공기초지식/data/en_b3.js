@@ -1,7 +1,7 @@
 /* 航空の基礎知識 3-1 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-1",{title:"A Timeline of Aviation History: 120 Years Worldwide, in Japan and in Korea",hl:"aviation history",subtitle:"From the first flight to jets, deregulation, alliances, LCCs, the pandemic and consolidation — and where today’s rules came from",
-lead:["In the 120-odd years since the Wright brothers first flew in 1903, aviation has become transport for people all over the world. Many of today’s airport and airline rules grew out of events in that history.","This lesson follows major events worldwide, in Japan and in Korea on a moving timeline, groups them into four eras and links them to today’s work."],
+lead:["In the 120-odd years since the Wright brothers first flew in 1903, aviation has become a form of transport used by people all over the world. Many of today’s airport and airline rules grew out of events in that history.","This lesson follows major events worldwide, in Japan and in Korea on a moving timeline, groups them into four eras and links them to today’s work."],
 sections:[
 {h:"A moving timeline",blocks:[{t:"fig",id:"history_anim",cap:"Moving timeline: events appear in order as time passes. Numbers match the table below."},
 {t:"table",cols:["No.","Year","Where","Event"],rows:[
@@ -25,7 +25,7 @@ sections:[
 ["—","2011","Japan","The Boeing 787 enters service with ANA, the first in the world"]]},
 {t:"note",x:"* Years are those commonly cited. Check airline and agency sources for details. ★"}]},
 {h:"Four eras",blocks:[{t:"table",cols:["Era","Characteristics","Link to today"],rows:[
-["Propeller era (1900s–1950s)","Flying becomes transport; international rules are made","The Chicago Convention, ICAO and IATA standards"],
+["Propeller era (1900s–1950s)","Flying becomes a means of transport; international rules are made","The Chicago Convention, ICAO and IATA standards"],
 ["Jet era (1950s–1970s)","Faster, bigger, further; airports grow","Large airports, ULDs, mass transport by jumbo"],
 ["Deregulation and globalisation (1978 on)","Freedom on fares and routes, alliances, hub airports","Open skies, alliances, connections"],
 ["LCC and digital era (2000s on)","Low fares, online sales, tighter security, automation","LCCs, NDC, API, smart airports"]]}]},
@@ -34,7 +34,7 @@ sections:[
 {name:"Terrorism and security",x:"Since 2001, screening, advance passenger information (API) and passenger–baggage reconciliation have been greatly strengthened (Course 1, Part 8)."},
 {name:"Deregulation and competition",x:"LCCs transformed fares and sales, spreading ancillary charges and self-service (2-3)."},
 {name:"After the pandemic",x:"Contactless processes, automation and facial recognition — smart airport initiatives — advanced rapidly."}]},
-{t:"point",x:"Today’s rules carry lessons from past accidents, incidents and changes. Asking “why does this procedure exist?” through history makes the work more meaningful."}]}],
+{t:"point",x:"Today’s rules carry lessons from past accidents, incidents and changes. Looking to history to answer “why does this procedure exist?” makes the work more meaningful."}]}],
 voice:"Living through a time when flights stopped shows how many people’s work lies behind everyday normal. Knowing the history makes you steadier when change comes.",
 terms:[["Powered Flight","動力飛行","동력 비행"],["Jet Airliner","ジェット旅客機","제트 여객기"],["Deregulation","規制緩和","규제 완화"],["Hub Airport","ハブ空港","허브 공항"],["Supersonic Transport","超音速旅客機","초음속 여객기"],["The First Year of LCCs","LCC元年","LCC 원년"]],
 quiz:[{q:"Which treaty created ICAO?",opts:["The Chicago Convention","The Montreal Convention","The Tokyo Convention","The Warsaw Convention"],a:0,exp:"The 1944 Chicago Convention; ICAO began in 1947."},

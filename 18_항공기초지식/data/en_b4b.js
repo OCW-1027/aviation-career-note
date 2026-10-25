@@ -7,7 +7,7 @@ deep:[{"h": "Domestic flights: prepare for ID systems going down", "blocks": [{"
 sections:[
 {h:"Comparing domestic identity checks",blocks:[{t:"fig",id:"bas_id",cap:"Animated figure: domestic ID checks compared by country."},{t:"table",cols:["Country or region","Identity check","Main methods and features"],rows:[
 ["Japan","No legal requirement (September 2026)","Most passengers board with a boarding pass alone; airlines may ask for ID for age-based discount fares. Everyone goes through security screening"],
-["Korea","Required. Since 28 January 2022, no boarding pass or boarding without an original ID","Original ID, mobile ID or pre-registered biometrics (e.g. palm vein; registration valid five years). Using someone else’s ID can bring up to three years in prison or a fine of up to KRW 30 million"],
+["Korea","Required. Since 28 January 2022, passengers without an original ID cannot be issued a boarding pass or board","Original ID, mobile ID or pre-registered biometrics (e.g. palm vein; registration valid five years). Using someone else’s ID can bring up to three years in prison or a fine of up to KRW 30 million"],
 ["United States","Required (18 and over)","REAL ID-compliant licence, passport and others; fully enforced from 7 May 2025. From 1 February 2026 those without one pay $45 for TSA ConfirmID (valid 10 days, can take up to 30 minutes)"],
 ["China","Required (real-name system)","ID and face matched at security"],
 ["India","Required","ID checked at the terminal entrance; the DigiYatra face system is spreading"],
