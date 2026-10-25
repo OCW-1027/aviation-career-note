@@ -1,6 +1,6 @@
 /* 地上職・旅客運送 入門 — English version (Part 3: シップサイド・ランプ) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("3-1",{title:"Aircraft Doors: The Basics",hl:"aircraft doors",subtitle:"Never open without the signal. An inadvertent slide deployment means damage and delay",
+set("3-1",{title:"Aircraft Doors: The Basics",hl:"aircraft doors",subtitle:"Never open without the signal. An inadvertent slide deployment can lead to serious accidents or damage",
 lead:["Passenger aircraft doors carry an escape slide that inflates automatically when the door is opened, so that people can evacuate quickly. In flight and while taxiing the slide is armed. What happens if the door is opened in that state depends on the aircraft type, the door and the direction of opening: on some types opening from outside disarms it automatically, but in other cases the slide can deploy with great force. So door operation always follows the procedure (SOP) for that type, with a cross-check.",
 "This article covers the types and numbering of doors, who opens and closes them, the procedure for opening and closing, and how to keep a slide from deploying by mistake."],
 sections:[
@@ -43,7 +43,7 @@ sections:[
 ["Operations","Any defect on the inbound aircraft (APU failure, inflight entertainment faults and so on), special requests from passengers, connecting passengers"]]},
 {t:"point",x:"If you identify passengers whose bags missed the connection before the flight lands, you can meet them and explain on arrival. That causes far less frustration than letting them wait at the belt first."}]},
 {h:"What to confirm on a departure",blocks:[{t:"fig",id:"gnd_depchk",cap:"Animated figure: the checks before boarding, during boarding, before pushback and after departure light up in turn."},{t:"table",cols:["When","What to confirm"],rows:[
-["Before boarding","Catering and cabin supplies loaded, cleaning finished, maintenance checks complete, cabin crew ready"],
+["Before boarding","Catering and cabin supplies loaded, cleaning finished, maintenance checks complete, security check done, cabin crew ready"],
 ["During boarding","That passengers, documents, baggage and cargo are correctly boarded and loaded; special loads (diplomatic mail, dangerous goods, valuables); fragile baggage; the manifest against the actual count"],
 ["Before pushback","Border documents on board, the exact boarded count, the door confirmed closed, ground equipment clear"],
 ["After departure","Operational messages sent, anything notable passed to the arrival and transit stations, care with confidential information in messages"]]}]},
@@ -52,13 +52,13 @@ sections:[
 ["Final order","6 hours before departure","Adjusted for changes in bookings"],
 ["Additional order","1 hour before departure","Whatever is still needed before check-in closes"]]},
 {t:"check",items:[
-{name:"Check the loading",x:"How the loaders handle it, the quantity and where it is stowed, and the handover to the cabin crew."},
+{name:"Check the loading",x:"How the loaders handle it, the quantity, special meals and where it is stowed, and the handover to the cabin crew."},
 {name:"Report problems",x:"If catering looks likely to be late or short, report it to the responsible department at head office."}]}]},
 {h:"Border documents and passenger information",blocks:[{t:"rows",items:[
 {name:"General Declaration (GD)",x:"Aircraft operator, destination, flight number, crew list and so on. Used for the arrival and departure declaration."},
 {name:"Passenger manifest (PM)",x:"The final list of passengers who boarded. Retained for a set period (for example, one year)."},
 {name:"Cargo manifest",x:"The number and weight of cargo loaded. Needed for customs clearance."},
-{name:"Electronic filing",x:"Many countries let you file arrival and departure reports to several agencies in a single electronic submission. In Japan this goes through NACCS to customs and others."}]},
+{name:"Electronic filing",x:"In Korea, arrival and departure reports can be filed to the relevant agencies in a single electronic submission (EDI). In Japan this goes through NACCS to customs and others."}]},
 {t:"point",warn:true,x:"Passenger travel records are personal data and are not casually disclosed to third parties, family included. Where there are legitimate grounds, such as an inquiry based on law or the passenger’s consent, follow the company’s personal data procedures."}]},
 {h:"Watch it on video",blocks:[{t:"video",title:"Ground handling: pushback and marshalling",ch:"ANA",url:"https://www.youtube.com/watch?v=iSszQPAdZPA"}]}],
 voice:"Before an arrival, check wheelchair, transfer and special-passenger information and the state of the bridge. Everyone and everything needed should be in place before the door opens.",
@@ -104,7 +104,7 @@ sections:[
 {h:"Keeping delays from building",blocks:[{t:"check",items:[
 {name:"Protect the critical path",x:"Give the start times for disembarking and boarding top priority."},
 {name:"Share early",x:"As soon as a task looks likely to run late, tell operations, the gate and the cabin."},
-{name:"Remove waiting",x:"Position the cleaning team and the catering truck before the aircraft arrives so they are not waiting beside it."},
+{name:"Reduce unnecessary waiting",x:"Confirm safe waiting positions and the conditions for starting work, and coordinate so each team can start work when it is needed."},
 {name:"Record with delay codes",x:"Record the cause using the IATA delay codes to reduce delays from the same cause."}]},
 {t:"point",x:"On-time performance is a key measure of how the station is run. Record which task lost how many minutes and go through it at the monthly meeting with the handling company (6-2)."}]},
 {h:"Watch it on video",blocks:[{t:"video",title:"A day of ground handling, filmed from the staff’s point of view",ch:"ANA",url:"https://www.youtube.com/watch?v=EfLr1yPew1k"}]}],

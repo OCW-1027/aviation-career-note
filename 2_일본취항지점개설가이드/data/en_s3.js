@@ -8,7 +8,7 @@ sections:[
 {name:"A chronic shortage of staff",x:"Handling companies continue to lose experienced staff and struggle to recruit, partly over pay. Airlines have had launches postponed because no staff were available."},
 {name:"Fuelling capacity",x:"At some airports the fuel companies have no spare people or equipment, and new services and additional flights have been refused fuelling contracts (reported around 2023 to 2024). Securing fuel is a precondition for launching."},
 {name:"Types of company",x:"Group companies of the large Japanese airlines, affiliates of the airport company, and international handling companies. Which are available differs by airport."},
-{name:"Tendering",x:"With rising costs, some airlines now settle terms by tender."}]},
+{name:"Tendering",x:"With rising staff numbers and costs, some companies now settle contract terms by tender."}]},
 {t:"point",warn:true,x:"Securing a handler and a fuel supplier weighs as heavily on a launch as the slots do. As soon as a service is under consideration, sound out the candidates on whether they can take you."}]},
 {h:"How to compare",blocks:[{t:"table",cols:["What to look at","What to check"],rows:[
 ["Scope","Passenger and ramp, or ramp only. Whether cargo, maintenance and fuelling are separate companies"],

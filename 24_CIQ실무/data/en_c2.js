@@ -79,7 +79,7 @@ sections:[
 {h:"Common situations",blocks:[{t:"rows",items:[
 {name:"Packages carried for others",x:"There have been cases where a package that someone asked a passenger to hand over at the airport contained drugs. Tell passengers to refuse anything whose contents they do not know."},
 {name:"Medicines",x:"Advise passengers to carry prescription medicines in their original containers where possible, with a document showing the prescription. An ingredient sold freely at home may be restricted at the destination."},
-{name:"Counterfeit goods",x:"They cannot be brought in, even as souvenirs."},
+{name:"Counterfeit goods",x:"They cannot be brought in, even for personal use or as souvenirs."},
 {name:"Leather goods, traditional medicines, musical instruments",x:"If they contain CITES-listed species, they cannot be brought in without certificates."},
 {name:"E-cigarettes and heated tobacco",x:"Some countries and regions ban bringing them in (Taiwan, for example). Check the destination’s rules. ★"}]}]},
 {h:"Where the airline stands",blocks:[{t:"check",items:[

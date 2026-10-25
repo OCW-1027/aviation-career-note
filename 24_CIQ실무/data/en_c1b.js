@@ -32,12 +32,12 @@ quiz:[{q:"What applies to an international-to-international transfer in the Unit
 {q:"What should you watch for when a passenger connects on separately bought tickets?",opts:["They may need to enter at the transit point","Nothing changes","No visa is needed any more","Bags always go through to the final destination"],a:0,exp:"Reclaiming and re-checking bags means entering."}],
 next:"1-6 Crew immigration"});
 set("1-6",{title:"Crew Immigration",hl:"Crew",subtitle:"Crew cross borders too. There are separate procedures for short stays",
-lead:["Pilots and cabin crew cross a border on every flight. Like passengers, they are subject to immigration, customs and quarantine.","But because they arrive and leave again on the next flight, many countries have a simpler procedure for crew. The station’s role is to support it."],
+lead:["Pilots and cabin crew cross a border on every flight. Like passengers, they are subject to immigration, customs and quarantine.","However, for crew scheduled to operate or travel onward after arrival, many countries and regions have dedicated or simplified procedures. The station’s role is to support them."],
 sections:[
 {h:"How crew procedures work",blocks:[{t:"fig",id:"ciq_crew",cap:"Figure: crew documents for entry and exit."},{t:"rows",items:[
 {name:"Crew are subject to the same controls",x:"They carry passports and pass immigration, customs and quarantine. Many airports have a dedicated lane."},
 {name:"A short stay is assumed",x:"On the assumption that they leave on their next duty flight, some countries grant a permit in place of a visa."},
-{name:"The list is what counts",x:"Crew are notified to the authorities in advance on a list for each flight. Anyone not on it is not treated as crew."}]}]},
+{name:"The list is what counts",x:"Crew details are submitted to the authorities in advance, for example on a crew list for each flight. Anyone not on the list may not be granted the special procedures for crew."}]}]},
 {h:"Documents",blocks:[{t:"table",cols:["Document","Content"],rows:[
 ["Passport","Validity, and the remaining period required by the destination"],
 ["Crew identification","Company ID, crew member certificate"],

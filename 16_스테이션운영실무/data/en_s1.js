@@ -17,7 +17,7 @@ sections:[
 ["Performance (results)","Automation","Use of online check-in and kiosks (1-6)"],
 ["Performance (results)","Ancillary revenue","Revenue per flight from upgrades, excess baggage, paid seats and so on (1-6)"],
 ["Capability (process)","Cooperation and compliance","Breaches of official rules, failing to follow manuals or head office instructions, attendance, customer-handling problems, missed training (points deducted per case; compliments add points)"],
-["Capability (process)","Quality management","Holding the monthly handler meeting and quality audits, repeated identical corrective actions, load control errors, undeclared or misdeclared dangerous goods (1-5)"],
+["Capability (process)","Quality management","Holding the monthly handler meeting and quality audits, repeated identical corrective actions, load control errors, undeclared dangerous goods (1-5)"],
 ["Capability (process)","Baggage management","Mishandled baggage rate (MBR) and its change from the previous period (1-4)"]]},
 {t:"note",x:"* A general example drawn from the way several airlines evaluate their stations. ★"}]},
 {h:"How the scoring works (example)",blocks:[{t:"rows",items:[

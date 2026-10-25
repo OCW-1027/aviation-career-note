@@ -62,11 +62,11 @@ sections:[
 {name:"Cargo items",x:"Arranging clearance where goods need it, for example urgent maintenance parts."}]},
 {t:"point",x:"Even when the handling company does the input, the responsibility is the airline’s. Write who inputs what and when into the SOP, and review it at the monthly meeting."}]}],
 voice:"Before launch, confirm with customs when the entry and departure declarations and passenger manifest are to be filed electronically. One test transmission in advance saves panic on the day of the first flight.",
-terms:[["NACCS","輸出入・港湾関連情報処理システム","일본 통관·항만 정보 시스템"],["Arrival / Departure Report","入出港届","입출항 신고"],["Passenger List (P/L)","乗客名簿","승객 명단"],["Cargo Manifest (C/L)","積荷目録","적하목록"],["General Declaration (G/D)","一般申告書","일반 신고서"],["Tax Agent","納税管理人","납세 관리인"]],
+terms:[["NACCS","輸出入・港湾関連情報処理システム","일본 통관·항만 정보 시스템"],["Arrival / Departure Report","入出港届","입출항 신고"],["Passenger List (P/L)","乗客名簿","승객 명단"],["Cargo Manifest","積荷目録","적하목록"],["General Declaration (G/D)","一般申告書","일반 신고서"],["Tax Agent","納税管理人","납세 관리인"]],
 quiz:[{q:"Which is filed through NACCS?",opts:["Passenger lists and cargo manifests","Staff salaries","Travel agency contracts","The catering menu"],a:0,exp:"Arrival and departure formalities are filed electronically."},
 {q:"Where does responsibility lie when the handler does the input?",opts:["With the handler alone","With the airline","With customs","With nobody"],a:1,exp:"Write who inputs what into the SOP."},
 {q:"Which is NOT settled with customs before launch?",opts:["Aircraft type and flight numbers","Who files the arrival and departure reports","The handling companies","Where staff are from"],a:3,exp:"The checks cover operational details, responsibilities and handling arrangements."}],
-next:"4-3 Advance passenger information and interactive systems"});
+next:"4-3 Advance passenger information (API/iAPI) and transmission testing"});
 
 set("4-3",{title:"Advance Passenger Information and Interactive Systems",hl:"advance passenger information",subtitle:"Send the passenger’s details before they fly — and in some countries get a board or no-board answer back ★",
 lead:["On international flights to and from Japan, airlines must send passport details (advance passenger information, API) and booking details (PNR) to immigration and customs. Beyond that, interactive systems that return a board or no-board answer to each transmission (iAPI) are spreading.",

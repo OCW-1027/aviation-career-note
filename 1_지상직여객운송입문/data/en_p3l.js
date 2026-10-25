@@ -6,7 +6,7 @@ sections:[
 {h:"An example loadsheet",blocks:[{t:"fig",id:"loadsheet",cap:"The numbers match the table below. All figures are fictional. Formats differ by airline and system."},
 {t:"table",cols:["No.","Field","How to read it"],rows:[
 ["1","Flight details","From/to, flight number/date, registration, cabin version (C12Y162 = 12 business and 162 economy seats), crew (2 flight deck / 6 cabin), time prepared"],
-["2","Prepared, approved, edition","Who checked it, who approved it, and the edition number (EDNO), which changes when it is reissued"],
+["2","Prepared, approved, edition","Who checked it, who approved it, the edition number (EDNO) and so on. The display differs by system; on reissue, the edition number and other details are updated"],
 ["3","Load in compartments","Bags, cargo and mail by hold (1 to 5 and so on); the total is on the left"],
 ["4","Passengers and cabin bags","Passenger weight (standard weights) and numbers: 150/4/1 = 150 adults, 4 children, 1 infant (infants do not occupy seats)"],
 ["5","Dry operating weight (DOW)","The aircraft, crew and cabin equipment — fixed for the flight"],
@@ -17,7 +17,7 @@ sections:[
 ["10","Balance (index and MAC)","DOI and DLI (dry operating and loaded index), the indices and %MAC at each weight — check they are within limits. STAB is the take-off stabiliser setting"],
 ["11","Seating","Passengers by cabin zone (A, B, C), used for the balance calculation"],
 ["12","Last minute changes","Where changes after closing are written in (LMC)"],
-["13","Signature","The preparer’s signature, kept on record with the captain’s approval"]]}]},
+["13","Approval and record","Checks and approvals by the preparer and the captain, including electronic approval, kept as the company specifies"]]}]},
 {h:"Checking how the figures relate (using the example)",blocks:[{t:"table",cols:["Check","Calculation","Example"],rows:[
 ["Total traffic load","Compartments + passengers","5700 + 11390 = 17090"],
 ["Zero fuel weight","DOW + traffic load","43600 + 17090 = 60690 (max 62700)"],

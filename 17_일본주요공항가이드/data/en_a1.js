@@ -96,7 +96,7 @@ sections:[
 {name:"Constant works",x:"New satellites and apron renewals keep coming. Check every notice of stand and route changes."},
 {name:"De-icing",x:"Normally done on stand before departure. With so many flights, delays spread quickly on snow days because of de-icing queues and runway snow clearance. Dyed fluids since the 2023 winter schedule. ★"}]}]},
 {h:"Future plans",blocks:[{t:"table",cols:["Plan","Expected timing (September 2026)"],rows:[
-["T1 north satellite","Opening around summer 2026; six stands with boarding bridges"],
+["T1 north satellite","Opened on 1 September 2026; six stands with boarding bridges"],
 ["T2 north satellite extension","Around spring 2027"],
 ["International flights at T1","Studies now under way (possibly in the 2030s)"],
 ["Linking T1 and T2","A deck built over the expressway with new stands and a connecting concourse; possibly the early 2030s"],

@@ -365,7 +365,7 @@ ac_cg:function(l){
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
 /* 14-5 ③ 重心の許容範囲（エンベロープ）：ZFW・TOW・LW の3点がすべて枠の中にあること */
 ac_env:function(l){
- var W=({ja:{t:'重さと重心の点が、許容範囲の枠の中にあるか',xa:'重心の位置（%MAC）',ya:'重さ（t）',fw:'前方の限界',af:'後方の限界',pt:['ZFW 62.7t・27％','TOW 71.7t・24％','LW 65.7t・25.5％'],n:['前すぎる：機首が重く、離陸で機首を上げにくい。昇降舵が足りず、燃料も多く使う','後ろすぎる：機体が不安定になり、操縦が難しい。地上では尾部が下がって機体が傾くおそれ','高重量では前方の限界が後ろへ寄り、枠がせまくなる。3つの点がすべて枠の中にあることを確かめる']},
+ var W=({ja:{t:'重さと重心の点が、許容範囲の枠の中にあるか',xa:'重心の位置（%MAC）',ya:'重さ（t）',fw:'前方の限界',af:'後方の限界',pt:['ZFW 62.7t・27％','TOW 71.7t・24％','LW 65.7t・25.5％'],n:['前すぎる：機首が重く、離陸で機首を上げにくい。昇降舵の効きが足りず、燃料も多く使う','後ろすぎる：機体が不安定になり、操縦が難しい。地上では尾部が下がって機体が傾くおそれ','高重量では前方の限界が後ろへ寄り、枠がせまくなる。3つの点がすべて枠の中にあることを確かめる']},
   ko:{t:'무게와 무게중심의 점이 허용 범위 안에 있는가',xa:'무게중심 위치(%MAC)',ya:'무게(t)',fw:'전방 한계',af:'후방 한계',pt:['ZFW 62.7t·27%','TOW 71.7t·24%','LW 65.7t·25.5%'],n:['너무 앞: 기수가 무거워 이륙 때 기수를 들기 어렵다. 승강타 효과가 모자라고 연료도 많이 쓴다','너무 뒤: 기체가 불안정해 조종이 어렵다. 지상에서는 꼬리가 내려가 기체가 기울 수 있다','고중량에서는 전방 한계가 뒤로 이동해 범위가 좁아진다. 세 점이 모두 범위 안에 있는지 확인한다']},
   en:{t:'Are the weight and CG points inside the envelope?',xa:'CG position (%MAC)',ya:'Weight (t)',fw:'Forward limit',af:'Aft limit',pt:['ZFW 62.7t · 27%','TOW 71.7t · 24%','LW 65.7t · 25.5%'],n:['Too far forward: the nose is heavy and hard to raise on take-off; elevator authority runs short and more fuel is burned','Too far aft: the aircraft becomes unstable and hard to control; on the ground the tail can drop and the aircraft tip','At high weights the forward limit moves aft and the envelope narrows. Check that all three points are inside']}})[l];
  if(!W)return F.ac_env('ja');

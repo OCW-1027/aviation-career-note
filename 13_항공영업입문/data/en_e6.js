@@ -23,7 +23,7 @@ sections:[
 ["2023","JAL merges nine domestic fares into three from 12 April, with prices varying by demand","From opening and closing classes to moving prices (7-6)"]]},
 {t:"note",x:"* American Airlines’ history and results are from Smith, Leimkuhler and Darrow, Interfaces (1992). In practice RM is generally reported to add a few per cent to revenue."}]},
 {h:"Where RM is used",blocks:[{t:"table",cols:["Business","Inventory","Main levers"],rows:[
-["Airlines","Seats × flights","Opening and closing fare classes, overbooking, group acceptance decisions"],
+["Airlines","Seats × flights","Opening and closing booking classes, overbooking, group acceptance decisions"],
 ["Hotels","Rooms × nights","Rate plans, length-of-stay rules, channel inventory, overbooking"],
 ["Travel agencies","Contracted seats and rooms, packages","Early-booking discounts, release dates, repricing"],
 ["Car rental","Cars × days","Rates by car type, length and location"],

@@ -6,7 +6,7 @@ sections:[
 {h:"Questions agencies always ask",blocks:[{t:"fig",id:"sls_guide",cap:"Figure: questions every agency asks."},{t:"table",cols:["Question","What to decide"],rows:[
 ["Forms of payment (FOP)","Which are accepted: cash (BSP), credit cards and so on"],
 ["How reissue fees are collected","By EMD, or in the tax box"],
-["Involuntary changes and refunds","Procedures and documents for schedule changes, illness, death"],
+["Change and refund exceptions","Procedures and documents, kept separate for airline-caused changes (such as schedule changes) and for exceptions for illness, death and similar"],
 ["Refund method","Automated refund, or a refund application in BSPlink (RA)"],
 ["Refund form","Back to the original payment, or a voucher"],
 ["Void rule","How many hours after issue a ticket can be voided"],
@@ -17,7 +17,7 @@ sections:[
 {h:"Structure of a Japan-origin booking and ticketing guideline (example)",blocks:[{t:"table",cols:["Section","Contents"],rows:[
 ["1 Basics","Validity period, sales area, commission, revision history"],
 ["2 Booking classes","Classes by cabin; which agencies may use IT and group classes"],
-["3 Basic rules","Whether open and waitlisted bookings are allowed, sale outside the country of issue (SOTO), buying ancillaries"],
+["3 Basic rules","Whether open and waitlisted bookings are allowed, handling of SOTO (sold and ticketed outside the country where the journey starts), buying ancillaries"],
 ["4 Fare quotes","Fare display and pricing entries for each main GDS"],
 ["5 Mandatory booking items","Passport data (APIS), passenger contact (SSR CTCM, CTCE), name entry rules"],
 ["6 Ticketing time limits","Limits by days to departure; IT and group fares follow their fare rules"],

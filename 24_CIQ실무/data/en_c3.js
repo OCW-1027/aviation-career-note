@@ -77,7 +77,7 @@ sections:[
 {t:"note",x:"* Which items from which countries may be brought in can be looked up on the websites of the plant protection authorities. Point passengers to those pages."}]},
 {h:"What is covered",blocks:[{t:"rows",items:[
 {name:"Fruit and vegetables",x:"Almost everything fresh is subject to inspection."},
-{name:"Seeds, seedlings and bulbs",x:"Often bought as gardening souvenirs."},
+{name:"Seeds, seedlings and bulbs",x:"Sometimes bought as gardening souvenirs."},
 {name:"Cut flowers and garlands",x:"A bouquet received as a gift or a welcome garland is covered too."},
 {name:"Grains, beans, nuts and spices",x:"Covered when unprocessed."},
 {name:"Processed items",x:"Tea, bottled goods and pickles that are fully processed may not need inspection. If in doubt, show them at the counter. ★"}]}]},

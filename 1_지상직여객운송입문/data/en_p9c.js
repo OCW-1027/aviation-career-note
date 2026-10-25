@@ -41,16 +41,16 @@ set("9-2",{part:P,title:"Handover from Ground to Cabin: Exit Rows, Special Passe
 lead:["Decisions made at check-in or the gate — exit-row seats, wheelchairs, unaccompanied children — only matter if they reach the cabin crew correctly. If not, passengers are moved on board or left waiting at the destination.","This lesson covers exit-row conditions and procedures, handing over special passengers, the documents carried on board, and how ground and cabin work together at boarding."],
 sections:[
 {h:"Exit-row seats",blocks:[{t:"table",cols:["Who cannot be seated there (examples)","Why"],rows:[
-["Children under a set age (e.g. under 15)","Cannot assist crew in an emergency"],
+["Passengers who do not meet the age requirement set by the airline or country (e.g. under 15)","Do not meet the requirements for providing assistance in an emergency"],
 ["Pregnant passengers, passengers with infants and others (depending on the applicable rules)","Affects evacuation movement and time"],
-["Passengers with reduced mobility or recent surgery","Difficulty operating doors or helping others"],
-["Passengers who cannot understand instructions","Cannot follow or relay emergency commands"]]},
+["Passengers who would have difficulty performing the actions needed in an emergency, or who have had recent surgery","Difficulty operating doors or helping others"],
+["Passengers who would have difficulty understanding emergency instructions and communicating as needed","Do not meet the instruction and communication requirements for assisting an evacuation"]]},
 {t:"check",items:[
 {name:"Explain verbally",x:"At check-in or seat assignment, explain that it is an exit row and what help may be needed."},
 {name:"Confirm willingness",x:"Confirm the passenger can help (some airlines mark the boarding pass or ask for a signature)."},
 {name:"Record it",x:"Enter it in the special passenger list, hand it to the crew and keep a record."},
 {name:"Recheck on board",x:"Crew check again after seating and move anyone who does not meet the conditions."}]},
-{t:"note",x:"* Age and other conditions depend on country and airline rules. ★"}]},
+{t:"note",x:"* Exit-row seats are assigned to passengers who meet the applicable country and airline eligibility requirements. Age and other conditions depend on country and airline rules. ★"}]},
 {h:"Handing over special passengers (examples)",blocks:[{t:"fig",id:"gnd_hand",cap:"Animated figure: what to hand over to the cabin for each type of special passenger lights up in turn (example)."},{t:"table",cols:["Passenger","What to hand over"],rows:[
 ["Unaccompanied minor (UM)","Travel documents and a copy of the guardian’s declaration to the senior crew member; at the destination, handed to staff and released only after checking the guardian"],
 ["Young passenger travelling alone (YPTA etc.)","Some airlines apply UM-like procedures"],
@@ -65,7 +65,7 @@ sections:[
 ["Notification to captain (NOTOC)","Dangerous goods and special loads (3-8)"],
 ["General declaration (GD)","Flight and crew details for authorities at destination"],
 ["Passenger and cargo manifests","Required by some countries"]]},
-{t:"point",x:"Record not just that documents were handed over but who received them. If a problem arises at the destination, you can see where the information stopped."}]},
+{t:"point",x:"For documents requiring acknowledgement of receipt, record not just that they were handed over but who received them, following the prescribed procedure. If a problem arises at the destination, you can see where the information stopped."}]},
 {h:"Working together at boarding",blocks:[{t:"rows",items:[
 {name:"Start of boarding",x:"Begin boarding only after the cabin signals it is ready."},
 {name:"Passenger count",x:"Reconcile the scanned boarding count with the cabin head-count; do not close the door until they match."},
@@ -108,8 +108,8 @@ quiz:[{q:"One reason a long delay can end in cancellation?",opts:["Crew duty lim
 {q:"Which is correct about alcohol control for cabin crew at Japanese airlines?",opts:["No limit","Unfit if any alcohol is detected; tests and records before and after duty are required","One beer allowed","Tested only after flight"],a:1,exp:"Cabin crew too are barred from duty under the influence, with tests and records before and after duty."},
 {q:"What counts as unfit for duty under Korean law?",opts:["0.02% blood alcohol or more","0.5% or more","1% or more","No limit"],a:0,exp:"Under the Aviation Safety Act."}],
 next:"9-4 Unruly passengers and handover on arrival"});
-set("9-4",{part:P,title:"Unruly Passengers and Handover on Arrival: Prevent Before Boarding, Connect After Landing",hl:"unruly passengers",subtitle:"Accepting intoxicated passengers, the captain’s authority, and handing over to police at the destination: the roles of ground and cabin",
-lead:["Abuse, violence, smoking and refusing crew instructions on board threaten other passengers and the safety of the flight. Many cases can be spotted before boarding, and when they do happen, the ground response at the destination matters.","This lesson covers types of unruly behaviour, what ground staff can do before boarding, the captain’s authority and the law, and handover and records on arrival."],
+set("9-4",{part:P,title:"Unruly Passengers and Handover on Arrival: Prevent Before Boarding, Connect After Landing",hl:"unruly passengers",subtitle:"Accepting intoxicated passengers, the captain’s authority, and handover to the relevant authorities at the destination: the roles of ground and cabin",
+lead:["Abuse, violence, smoking and refusing crew instructions on board threaten other passengers and the safety of the flight. Warning signs should be identified before boarding, and when an incident occurs, it is important to coordinate the response on board and at the destination.","This lesson covers types of unruly behaviour, what ground staff can do before boarding, the captain’s authority and the law, and handover and records on arrival."],
 sections:[
 {h:"Examples of unruly behaviour",blocks:[{t:"table",cols:["Type","Examples"],rows:[
 ["Not following crew instructions","Ignoring seat belt, device or baggage stowage instructions"],

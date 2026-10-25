@@ -157,7 +157,7 @@ quiz:[{q:"How should experience from abroad be presented?",opts:["Stress that it
 next:"3-2 Interviews for manager and station manager roles"});
 
 set("3-2",{title:"Interviews for Manager and Station Manager Roles",hl:"management interviews",subtitle:"Less what you can do yourself, more the results you got by moving a team and partners",
-lead:["Interviews for duty manager and station manager roles test not only operational ability but developing people, coordinating with handling companies, the authorities and head office, and managing by numbers. The interviewers are more often head office executives or the head of HR.",
+lead:["Interviews for transport manager and station manager roles test not only operational ability but developing people, coordinating with handling companies, the authorities and head office, and managing by numbers. The interviewers are more often head office executives or the head of HR.",
 "This article covers what is examined in management interviews, how to organise your achievements beforehand, and the questions that come up most."],
 sections:[
 {h:"What is examined",blocks:[{t:"fig",id:"int_mgr",cap:"Figure: structuring a manager’s achievements."},{t:"table",cols:["Aspect","What they want to know"],rows:[

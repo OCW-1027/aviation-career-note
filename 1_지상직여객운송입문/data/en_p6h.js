@@ -33,7 +33,7 @@ sections:[
 {t:"note",x:"* Check current law for detailed measures and penalties. ★"}]},
 {h:"Airline policy (the ANA–JAL joint policy as an example)",blocks:[{t:"rows",items:[
 {name:"A distinctive definition",x:"Besides the general definition, it includes acts that breach the Civil Aeronautics Act and related laws, and acts that could lead to such breaches — because they bear directly on safety on board and at the airport."},
-{name:"Order of response",x:"First a warning; if it continues, service may be refused under the conditions of carriage; serious conduct and crimes are handled strictly with the police and other authorities."},
+{name:"Order of response",x:"Depending on the situation, give a caution or warning; where necessary, consider refusing service under the conditions of carriage or consulting the police. Where there is urgent danger, such as violence, safety comes first."},
 {name:"Protecting staff",x:"Psychological care for affected staff, training in correct responses, and regular exchanges across the industry."}]}]},
 {h:"What stations and handlers should prepare",blocks:[{t:"check",items:[
 {name:"Show the policy",x:"Make the airline’s policy visible at counters, gates and online in Japanese, Korean and English."},

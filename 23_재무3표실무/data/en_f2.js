@@ -94,7 +94,7 @@ sections:[
 {name:"Receivables are small",x:"Fares arrive before the flight. Receivables arise from travel agency settlements (BSP), cargo, card companies and mileage partners. JAL: 254.6bn yen, about 13% of revenue ★."},
 {name:"Unearned revenue helps cash",x:"Tickets paid before travel and miles not yet used. JAL: 484.5bn yen ★. The more sales grow, the more unearned revenue grows and the earlier cash arrives. This is why airline working capital is often negative."},
 {name:"Inventory is spare parts",x:"Engine parts, consumables, cabin supplies: not for sale, but held so that maintenance never stops. JAL: 60.6bn yen ★. Changes appear in operating cash flow."},
-{name:"Payables are fuel, handling and airport charges",x:"Amounts owed to suppliers, typically settled the month after, so one to two months of costs."}]},
+{name:"Payables are fuel, handling and airport charges",x:"Amounts owed to suppliers, often settled the month after; payment terms and balances vary by company and contract."}]},
 {t:"note",x:"* Funding that relies on unearned revenue reverses when demand stops suddenly, as in 2020: refunds of tickets already paid for drained cash at many airlines."}]},
 {h:"Reading through turnover periods",blocks:[{t:"table",cols:["Indicator","Formula","Meaning","Taiyaki stall (one month)"],rows:[
 ["Receivable days","Receivables ÷ sales × days","Days from sale to collection","20,000 ÷ 260,000 × 30 = 2.3 days"],

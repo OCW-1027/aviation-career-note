@@ -87,7 +87,7 @@ sections:[
 ["Name of the statement","Balance sheet (貸借対照表)","Statement of financial position (재무상태표)"],
 ["Order","Usually current first, then non-current","The company chooses; some start with non-current items"],
 ["Equity section","Shareholders’ equity, accumulated other comprehensive income, non-controlling interests","Equity: share capital, surplus, other components of equity, non-controlling interests"],
-["Interest and dividends (cash flow statement)","Many companies show interest and dividends received and interest paid under operating activities","The company chooses under current IAS 7; some, like JAL, show interest paid under financing. This changes once IFRS 18 applies ★"]]}]},
+["Interest and dividends (cash flow statement)","Many companies show interest and dividends received and interest paid under operating activities","The company chooses under current IAS 7; some, like JAL, show interest paid under financing. This changes once IFRS 18 applies (years beginning on or after 1 January 2027; early application permitted) ★"]]}]},
 {h:"Effect on ratios, and practice",blocks:[{t:"table",cols:["Ratio","When leases are on the balance sheet","When goodwill is not amortised"],rows:[
 ["Equity ratio","Falls (total assets grow)","Tends to look higher (goodwill stays in assets)"],
 ["Debt-to-equity","Rises (lease liabilities count as debt)","No change"],
@@ -107,9 +107,9 @@ lead:["Once the standards are clear, the next step is getting the documents. Aft
 sections:[
 {h:"A listed company’s year",blocks:[{t:"fig",id:"fin_jp_disclosure",cap:"The financial reports a listed company with a March year-end publishes during the year"},
 {t:"table",cols:["Document","When","Where","Contents"],rows:[
-["Earnings release (full year)","Within about 45 days of the year-end","The company’s investor relations page; TDnet (timely disclosure service)","Fast: summary of results, financial statements, forecast for the next year"],
+["Earnings release (full year)","As soon as results are finalised; the exchange considers within 45 days of the year-end appropriate and within 30 days more desirable","The company’s investor relations page; TDnet (timely disclosure service)","Fast: summary of results, financial statements, forecast for the next year"],
 ["Annual securities report","Within three months of the year-end","EDINET (Financial Services Agency); the company’s investor relations page","Detailed: business, risks, notes, facilities, shareholders"],
-["Quarterly earnings release (Q1 and Q3)","Within 45 days of the Q1 or Q3 quarter-end. If a delay is expected, the reason and expected timing are disclosed immediately","TDnet; the company’s investor relations page","Quarterly results and financial statements"],
+["Quarterly earnings release (Q1 and Q3)","Disclose as soon as results are finalised, in principle within 45 days of the Q1/Q3 end (the next business day if day 45 is a holiday). If exceeded or expected to be exceeded, disclose reasons and expected timing immediately","TDnet; the company’s investor relations page","Quarterly results and financial statements"],
 ["Half-year report","After the first half ★","EDINET","Half-year financial statements and state of the business"]]},
 {t:"note",x:"* For quarters beginning on or after 1 April 2024, the statutory quarterly report was abolished and Q1 and Q3 reporting was unified into the stock exchange’s quarterly earnings release. A half-year report is filed for the second quarter. ★"}]},
 {h:"Choose the document by what you want to know",blocks:[{t:"fig",id:"fin_doc_pick",cap:"What you want to know, and the document to open. Orange is the earnings release, blue the annual securities report, green EDINET."},{t:"rows",items:[

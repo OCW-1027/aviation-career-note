@@ -9,12 +9,12 @@ sections:[
 ["Opened","1981 (replacing Paya Lebar)"],
 ["Terminals","T1 to T4 (capacity 90 million a year); T5 under construction"],
 ["2025 results","About 70 million passengers (a record); 69.40 million international (4th)"],
-["Main airlines","Singapore Airlines (Star Alliance), Scoot, Jetstar Asia and others"],
+["Main airlines","Singapore Airlines (Star Alliance), Scoot and others"],
 ["Awards","Skytrax World’s Best Airport 2025 (13th time)"]]},
 {t:"note",x:"* Check Changi Airport Group’s release for the final 2025 annual figure."}]},
 {h:"The Terminal 5 plan",blocks:[{t:"table",cols:["When","Details"],rows:[
 ["February 2025","Government adds S$5 billion to the Changi Airport Development Fund"],
-["14 May 2025","T5 groundbreaking; contracts for tunnels, airfield and substructure awarded"],
+["14 May 2025","T5 groundbreaking; contracts for tunnels, apron and substructure awarded"],
 ["Mid-2030s","First phase of T5 opens, adding 50 million a year for a total of 140 million (+55%)"],
 ["Design","Built around automation and AI, with autonomous vehicles and robots for baggage and cargo; tunnels link T5 to T1–T4"]]},
 {t:"point",x:"Changi has repeatedly built the next terminal before the current ones fill up: with about 70 million passengers against a 90 million capacity in 2025, it is investing in a terminal ten years ahead."}]},
@@ -131,7 +131,7 @@ sections:[
 ["Operator","A subsidiary of Zurich Airport (40-year concession)"],
 ["Location","About 72 km southeast of Delhi, in Uttar Pradesh"],
 ["Future","Phased growth to 70 million a year; international services during 2026"]]},
-{t:"point",x:"Delhi’s two airports are 72 km apart and will serve different catchments for now (central Delhi and Gurgaon via Indira Gandhi; eastern Uttar Pradesh via Noida). Always confirm the airport when advising passengers."}]},
+{t:"point",x:"Delhi’s two airports are 72 km apart and will serve different catchments for now (central Delhi and Gurgaon via Indira Gandhi; the Jewar area of Uttar Pradesh via Noida). Always confirm the airport when advising passengers."}]},
 {h:"Entry and transfers",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["Visas","Korean and Japanese passports are eligible for e-Visas or visas on arrival; applying online in advance is the norm ★"],
 ["Electronic arrival card","From 1 October 2025 foreigners must submit an e-Arrival Card, available from 72 hours before arrival ★"],

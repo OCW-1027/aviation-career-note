@@ -58,7 +58,7 @@ sections:[
 {name:"“Please declare all food”",x:"Never say “that will be fine”. The officer decides."},
 {name:"Do not take meals or fruit off the aircraft",x:"Say so in the pre-arrival announcement. Uneaten fruit stays on board."},
 {name:"Common souvenirs from Japan and Korea",x:"Ready meals containing meat, instant noodles, jerky, fruit. It is best if passengers notice before departure."},
-{name:"Do not answer “no” to the question",x:"Even for a single sweet, tell passengers to answer “yes” and show it if in doubt."}]},
+{name:"If in doubt, do not simply answer “no”",x:"If passengers are unsure whether an item is covered, tell them to declare it and check with the officer."}]},
 {t:"point",x:"In the United States the offence is not having the item but failing to declare it. Explaining this principle to passengers in advance helps them avoid trouble."}]}],
 voice:{h:"A Reported Case",x:"In September 2026 it was reported that at Seattle-Tacoma International Airport about 8.4 kg of undeclared pork sausage and cured pork and 0.4 kg of venison sausage were found in the luggage of a passenger arriving from Spain, and all of it was confiscated. The passenger, a member of the Global Entry trusted-traveller programme, was fined USD 500. Spain had found African swine fever in wild boar near Barcelona in November 2025. CBP says fines for undeclared agricultural products can reach USD 1,000 and that repeat offenders lose their Global Entry privileges (Source: Euro Weekly News, September 2026)."},
 terms:[["CBP Agriculture Specialist","農産物の専門の係官","농산물 검사관"],["Animal and Plant Health Inspection Service (APHIS)","動植物検疫局","동식물검역소"],["Civil Penalty","民事の罰金","민사 벌금"],["Declaration","申告","신고"]],

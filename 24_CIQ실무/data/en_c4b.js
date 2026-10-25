@@ -7,7 +7,7 @@ sections:[
 {name:"Electronic travel authorisation (eTA)",x:"Required of visa-exempt nationals arriving by air, including when only transiting."},
 {name:"Immigration and customs",x:"The Canada Border Services Agency (CBSA) carries out both. The rules on food are set by the Canadian Food Inspection Agency (CFIA)."},
 {name:"Advance declaration",x:"At some airports the customs declaration can be completed before arrival through an app or website."},
-{name:"Flying from Canada to the United States",x:"At Canada’s main airports US immigration and customs are cleared before departure (4-1). Passengers need to arrive at the airport earlier."}]}]},
+{name:"Flying from Canada to the United States",x:"At Canada’s main airports US immigration and customs are cleared before departure (4-1). Passengers need to arrive at the airport earlier than usual."}]}]},
 {h:"Declare all food, plants and animals",blocks:[{t:"table",cols:["","Details"],rows:[
 ["What to declare","Meat (raw or cooked), milk, butter and cheese, eggs, fish, fruit, vegetables, seeds, nuts, wooden products, soil"],
 ["If not declared","The items may be confiscated. The traveller is liable to a penalty of up to CAD 1,300, or prosecution. The traveller may also be charged the cost of disposal"],
@@ -84,10 +84,10 @@ sections:[
 {h:"Penalties around the world, side by side",blocks:[{t:"fig",id:"ciq_fines",cap:"Penalties for not declaring food, animals or plants, by country (as confirmed in October 2026)."},{t:"check",items:[
 {name:"In every country, those who declare are not penalised",x:"This is the most important thing to tell passengers."},
 {name:"“It’s only a little” and “I didn’t know” do not help",x:"Quantity and reasons do not reduce the penalty."},
-{name:"It is not only the fine",x:"Visa cancellation, refusal of entry, inspection on every later arrival. The trip itself can be lost."}]},
+{name:"It is not only the fine",x:"Visa cancellation, refusal of entry, inspection on the next arrival. Future travel can be seriously affected."}]},
 {t:"point",x:"If in doubt, declare. Always say this to passengers bound for Australia and New Zealand before they board."}]}],
 voice:{h:"A Reported Case",x:"In October 2019 undeclared food, including about 4.5 kg of pork as well as quail and squid, was found in the luggage of a 45-year-old Vietnamese woman arriving at Sydney Airport. Under laws changed earlier that year, Australia cancelled a tourist visa over undeclared food for the first time; she was sent back to Vietnam and barred from returning for three years. The agriculture minister said the share of seized pork carrying African swine fever had risen from 15% in February to 48% in September (Sources: AP, ABC and others, October 2019). A passenger refused entry is, in principle, flown back by the airline that brought them (1-4)."},
-terms:[["Biosecurity","生物の安全","생물 보안"],["Infringement Notice","過料の通知","범칙금 통지"],["Traveller Declaration","旅行者の申告","여행자 신고"],["Visa Cancellation","査証の取り消し","비자 취소"]],
+terms:[["Biosecurity","バイオセキュリティ","생물보안(바이오시큐리티)"],["Infringement Notice","過料の通知","범칙금 통지"],["Traveller Declaration","旅行者の申告","여행자 신고"],["Visa Cancellation","査証の取り消し","비자 취소"]],
 quiz:[{q:"What can happen in Australia if goods are not declared?",opts:["An infringement notice of up to AUD 6,600 and visa cancellation","A warning only","Nothing","A fine of AUD 10"],a:0,exp:"A cancelled visa can mean being barred for up to three years."},
 {q:"What is the instant fine in New Zealand for not declaring?",opts:["NZD 400","NZD 40","NZD 4","There is none"],a:0,exp:"Deliberate concealment carries much heavier penalties."},
 {q:"Besides food, what do these two countries examine?",opts:["Shoes with soil, wooden items, seeds","Books","Only clothing","Nothing"],a:0,exp:"Anything that could carry disease or pests."}],

@@ -133,7 +133,7 @@ sections:[
 {t:"note",x:"* Where the airlines use different cargo terminals, hand over cargo and documents quickly to suit the other airline’s schedule."}]},
 {h:"Checks on receipt",blocks:[{t:"check",items:[
 {name:"Booking",x:"Unbooked interline cargo is normally refused, except company-defined urgent items such as AOG parts, organs or blood."},
-{name:"Condition",x:"Check every piece for damage and labels; refuse damage that cannot be fixed and accept after repair."},
+{name:"Condition",x:"Check every piece for damage and labels; refuse damage that cannot be fixed; repair fixable damage, then confirm whether to accept."},
 {name:"Data",x:"Confirm electronic data such as FWB and FHL has been received."},
 {name:"Documents",x:"Check whether security or quarantine documents are needed for the destination or cargo type."},
 {name:"Dangerous goods",x:"Transfer DG is usually refused without company approval (with some exceptions, e.g. certain lithium batteries) (7-3)."}]}]},

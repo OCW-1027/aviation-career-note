@@ -10,7 +10,7 @@ sections:[
 ["Entry conditions not met","No return ticket, insufficient funds, no address for the stay"],
 ["Doubt about the purpose","Stated tourism but judged to be intending to work"],
 ["Past record","Previous overstay or removal"]]}]},
-{h:"At the arrival station (typical example)",blocks:[{t:"fig",id:"gnd_inad",cap:"Animated figure: a passenger refused entry is returned from the destination to the origin, with what each station does."},{t:"ladder",rise:10,steps:[{name:"Notified",sub:"Immigration tells the airline"},{name:"Take charge",sub:"Receive the passenger and the documents"},{name:"Book the return",sub:"Arrange the earliest flight"},{name:"While they wait",sub:"Government facilities, meals"},{name:"Hand over",sub:"Passport to the senior cabin crew, then boarding"},{name:"Report",sub:"Advise the departure station and head office"}]},
+{h:"At the arrival station (typical example)",blocks:[{t:"fig",id:"gnd_inad",cap:"Animated figure: a passenger refused entry is returned from the destination to the origin, with what each station does."},{t:"ladder",rise:10,steps:[{name:"Notified",sub:"Immigration tells the airline"},{name:"Take charge",sub:"Receive the passenger and the documents"},{name:"Arrange departure or removal",sub:"Book the earliest flight"},{name:"While they wait",sub:"Government facilities, meals"},{name:"Hand over",sub:"Passport to the senior cabin crew, then boarding"},{name:"Report",sub:"Advise the departure station and head office"}]},
 {t:"rows",items:[
 {name:"The passport",x:"It is usually handed by arrival staff to the senior cabin crew, and passed to the authorities or staff at the departure station."},
 {name:"Costs",x:"The return fare and the costs while waiting are normally borne by the carrying airline, which may be able to recover them from the passenger under its conditions of carriage."},
@@ -19,7 +19,7 @@ sections:[
 {t:"point",warn:true,x:"A record showing that the documents were checked at check-in is the basis for asking for a fine to be waived. Keeping that evidence, such as a saved screen from the travel requirements database, protects the company."}]},
 {h:"Preventing a repeat",blocks:[{t:"check",items:[
 {name:"Check the requirements",x:"Use the database (such as TIMATIC) every time; never rely on memory."},
-{name:"Advance passenger information",x:"In some countries the API systems give an indication before boarding of whether entry will be permitted."},
+{name:"Advance passenger information",x:"Some countries use API/APIS, and some use Interactive API or APP, where the authorities send back a response such as whether the passenger may board. The systems and the airline’s procedures vary by country. Sending advance information does not guarantee entry; the final decision is made at immigration on arrival."},
 {name:"When something feels wrong",x:"Suspected forgery, or a story that does not add up: consult your supervisor."},
 {name:"Share the cases",x:"Share INAD cases between the station and head office and use them in training."}]}]}],
 voice:"Returning an inadmissible passenger is an emotional moment. Follow procedure, but calmly explain the next flight and the paperwork, and record the handover.",
@@ -48,7 +48,7 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 {"name":"Tag only after checking the destination","x":"Look at the airport code and name on the printed tag before attaching it."},
 {"name":"Finish one passenger at a time","x":"Clear the previous passenger’s documents and tags before calling the next. Do not spread several passengers’ documents across the counter."},
 {"name":"Group check-in","x":"Count the number of people and tags again at the end."},
-{"name":"Report as soon as you know","x":"Do not hide mistakes; tell a senior member of staff and the ramp straight away."}]},
+{"name":"Report as soon as you know","x":"Once you notice a mistake, report it promptly to the designated contacts, such as a senior member of staff, the gate or the ramp, depending on the work affected."}]},
 {"t":"point","x":"Building a culture where people can report straight away, rather than blaming mistakes, is the best way to keep incidents small. It is the same principle as safety reporting (lesson 3-5)."}]}],
 "voice":"Searching by name causes mix-ups between passengers with the same or similar names. Always retrieve the booking by PNR; once it matches, have the passenger say their name and check it against the passport. That order is the most reliable.",
 "terms":[["Mis-check-in","ミスチェックイン","잘못된 체크인"],["Duplicate Check-in","二重チェックイン","중복 체크인"],["Duplicate Tag","タグの重複","중복 태그"],["Tag Off","タグオフ","태그 탈락"],["Same Name Passengers","同姓同名","동명이인"],["Baggage Reconciliation","手荷物照合","수하물 대조"]],
@@ -57,8 +57,8 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 {"q":"Which is not a habit that prevents mistakes?","opts":["Confirming out loud","Spreading several passengers’ documents out at once","Checking the destination before attaching the tag","Reporting at once"],"a":1,"exp":"Finish one passenger at a time."}],
 "next":"5-3 Medical emergencies and injuries on board: what the ground does"});
 
-set("5-3",{title:"Medical Emergencies and Injuries on Board: What the Ground Does",hl:"medical emergencies",subtitle:"From the captain’s call to touchdown, line up medical care, immigration and contact with the family",
-lead:["A passenger collapses in flight, is scalded, or is injured in turbulence. It happens on board, but preparing for what comes after landing is the ground’s job. From the moment the captain’s message arrives, the time until touchdown is what counts.",
+set("5-3",{title:"Medical Emergencies and Injuries on Board: What the Ground Does",hl:"medical emergencies",subtitle:"From the call from the aircraft to touchdown, line up medical care, immigration and contact with the family",
+lead:["A passenger collapses in flight, is scalded, or is injured in turbulence. It happens on board, but preparing for what comes after landing is the ground’s job. When word comes from the aircraft, use the information received to prepare promptly for the passenger’s arrival.",
 "This lesson covers what the ground does for each type of case, what to prepare at the arrival station, the principles when a passenger dies on board, and the records and reporting."],
 sections:[
 {h:"Types of case and the ground response",blocks:[{t:"fig",id:"gnd_med",cap:"Animated figure: for each type of incident on board, the ground preparation at the arrival station lights up in turn."},{t:"table",cols:["Case","Main ground response"],rows:[
@@ -72,7 +72,7 @@ sections:[
 {name:"Border formalities",x:"If an emergency transfer is needed, contact immigration, customs, quarantine and the other agencies concerned, and coordinate the necessary formalities under the airport’s emergency procedures."},
 {name:"Family and companions",x:"Look after companions. Contact the family taking into account the passenger’s condition, privacy and the company’s emergency procedures. Where needed, consider working with the consulate."},
 {name:"Baggage",x:"Prioritise unloading their checked bags and hand them to the passenger or their companion."},
-{name:"Order of disembarkation",x:"Agree with the cabin whether the patient leaves first or after the other passengers."}]}]},
+{name:"Disembarkation and transfer",x:"Work with the captain, cabin crew, medical staff and airport staff to decide the order of transfer and disembarkation based on the symptoms and safety."}]}]},
 {h:"If a passenger dies on board",blocks:[{t:"rows",items:[
 {name:"Restrict information",x:"Give information only to the defined recipients and the press officer."},
 {name:"The reporting line",x:"An example reporting chain: senior cabin crew, captain, operations and the arrival station, the responsible department at head office, then executives and the authorities (the order and recipients follow each airline’s emergency procedures)."},
@@ -145,9 +145,9 @@ sections:[
 ["Authorities","The station coordinates with the departments and authorities concerned and confirms the formalities needed","Head office or the designated station works with the local handling company and the authorities"]]}]},
 {h:"What happens to passengers on board (example)",blocks:[{t:"rows",items:[
 {name:"If the wait on the ground will be long (e.g. 1–2 hours or more)",x:"If airport facilities allow, disembark passengers and have them wait in a designated area."},
-{name:"Waiting outside",x:"Where local conditions allow, the station manager may let passengers clear immigration and wait outside the airport."},
+{name:"Waiting outside",x:"Where local conditions and the procedures of the agencies concerned allow, passengers may clear immigration and wait outside the airport."},
 {name:"Passengers who want to enter here",x:"They may be allowed to clear immigration locally, on condition that their checked bags are delivered at the original destination."},
-{name:"Resuming the flight",x:"Crew duty limits may mean the flight cannot continue that day, in which case switch to accommodation and rebooking."}]},
+{name:"Resuming the flight",x:"Check crew duty and rest requirements and aircraft and airport conditions; if the flight cannot restart, switch to a replacement crew, accommodation, rebooking and so on."}]},
 {t:"point",warn:true,x:"In a diversion, you handle passengers, baggage, cargo and crew all at once. Agree at the outset who decides what, between the station, operations control and the handling company."}]},
 {h:"The plan to prepare in advance",blocks:[{t:"check",items:[
 {name:"Who is responsible",x:"Which station covers each diversion airport, and what the handling company does."},
@@ -166,7 +166,7 @@ sections:[
 voice:"When a diversion is reported, first get in touch with the handler or station at the diversion airport. The first decision is whether passengers and crew need hotels and transport.",
 terms:[["Diversion","ダイバート","회항 (다이버트)"],["Return to Origin","リターン","회항 (리턴)"],["Alternate Airport","代替空港","교체 공항"],["Off-line Station","自社の支店がない空港","오프라인 공항"],["Flight Duty Period Limit","乗務員の勤務時間の制限","승무원 근무시간 제한"],["Emergency Contact List","緊急連絡網","비상 연락망"]],
 quiz:[{q:"What is it called when a flight goes back to where it started?",opts:["Diversion","Return","Offload","Endorsement"],a:1,exp:"A return; landing at another airport is a diversion."},
-{q:"Who works the flight at an airport with no station?",opts:["Nobody","The airport’s handling company, with the senior cabin crew helping if needed","The passengers","The police"],a:1,exp:"The nearest station arranges it."},
+{q:"Who works the flight at an airport with no station?",opts:["Nobody","The airport’s handling company, with the senior cabin crew helping if needed","The passengers","The police"],a:1,exp:"The responsible station or head office works with the local handling company and others."},
 {q:"What should be prepared before a diversion happens?",opts:["Nothing","A plan for each alternate airport","A poster","A menu"],a:1,exp:"Contacts, procedures, equipment and service suppliers."}],
 next:"5-6 Cancellations: rebooking, endorsement, compensation and claims"});
 
@@ -189,7 +189,7 @@ sections:[
 {name:"After it is loaded",x:"The senior cabin crew member makes the final decision on whether it can be served."},
 {name:"How long catering keeps",x:"Shelf life is set by the caterer’s and the airline’s hygiene standards. Refrigerated before loading, it is typically two to three days from production (hot and cold meals differ); once loaded, many standards call for consumption within a few hours. Catering that has been offloaded is not reused."}]}]},
 {h:"Taking complaints and redress claims",blocks:[{t:"check",items:[
-{name:"How to listen",x:"Listen to the end, carefully, and avoid appearing indifferent. If you cannot answer now, agree to come back to them promptly."},
+{name:"How to listen",x:"Listen to the end, carefully, and avoid appearing indifferent. If you cannot answer now, tell them when and how you will get back to them after checking."},
 {name:"Clear fault on our side",x:"Establish the facts, honestly explain what has been confirmed, and refer questions of liability to the department responsible."},
 {name:"How claims are received",x:"In writing or online as a rule. If taken verbally, write it up and have the passenger check and sign it."},
 {name:"What you need",x:"Name, address and contact details, the booked and actual itinerary, when, where and what happened, the ticket, and evidence of the loss."},

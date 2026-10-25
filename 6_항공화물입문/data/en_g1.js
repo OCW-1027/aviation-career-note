@@ -39,7 +39,7 @@ sections:[
 {t:"table",cols:["","Passenger belly","Freighter"],rows:[
 ["Frequency","As many as the passenger flights","Fewer"],
 ["Height that fits","Limited by the cargo door of the hold","Large items fit on the main deck"],
-["Weight available","What is left after passengers and baggage","Considerably more"],
+["Cargo capacity","What is left after passengers and baggage","More than the belly"],
 ["Suits","Small and medium general cargo, urgent consignments","Large machinery, long items, high volumes"],
 ["Timings","Tied to the passenger schedule","Set by cargo demand"]]}]},
 {h:"What decides whether it fits",blocks:[{t:"rows",items:[
@@ -58,7 +58,7 @@ terms:[["Belly Hold","ベリー","벨리(하부 화물칸)"],["Freighter","貨�
 quiz:[{q:"What is hard to carry in a passenger belly?",opts:["Small general cargo","Tall machinery","Documents","Electronic components"],a:1,exp:"The cargo door sets the limit."},
 {q:"What is it called when several shippers’ cargo travels together?",opts:["Direct","Consolidation","Return","Storage"],a:1,exp:"It brings the rate down."},
 {q:"What must be confirmed before booking large cargo?",opts:["The aircraft type and the dimensions","The weather","Only the rate","The chairman’s name"],a:0,exp:"A difference of a few centimetres can mean it does not fit."}],
-next:"0-3 Cargo airports"});
+next:"0-3 Major cargo airports in Japan and Korea"});
 
 set("0-3",{title:"Cargo Airports",hl:"cargo airports",subtitle:"What makes an airport a cargo hub",
 lead:["Japan’s international air cargo is concentrated at Narita, with Kansai next. Elsewhere in Asia, Incheon is one of the world’s major cargo airports. Airports differ in how the cargo terminal is run, whether they operate around the clock, and how they handle transit cargo.",

@@ -79,7 +79,7 @@ sections:[
 {name:"Later in the month",x:"Meetings with the passenger and ramp handling companies, and the payment runs."},
 {name:"Weekly and month end",x:"The weekly and monthly reports."}]}]},
 {h:"The main annual procedures (example)",blocks:[{t:"table",cols:["When","Procedure"],rows:[
-["January to February","Summer seasonal filing, the comprehensive equipment application, withholding tax, preparing the consumption tax refund"],
+["January to February","Summer seasonal filing, the comprehensive application under Articles 60 and 61 of Japan’s Civil Aeronautics Act, withholding tax, preparing the consumption tax refund"],
 ["February to March","Fare filings; revising the security programme and training plan"],
 ["March to April","Changes to social and employment insurance rates; health checks; the previous year’s results report under Articles 60 and 61 (from April)"],
 ["June to July","Base remuneration report, annual labour insurance renewal, withholding tax"],

@@ -22,7 +22,7 @@ sections:[
 {name:"Bank accounts",x:"Opening an account for a foreign company’s branch takes time, and often cannot start until registration is complete."},
 {name:"Registration documents",x:"The head office articles, board minutes and affidavits all have to be prepared at home and then translated and certified."},
 {name:"Handling company staffing",x:"At airports short of labour, the hours you want may not be available."},
-{name:"System connections",x:"IDs for shared airport systems and the lines themselves take weeks to arrange."},
+{name:"System connections",x:"Applications for shared airport system IDs and lines take time to process."},
 {name:"Security training",x:"Japan’s security instructor courses only run at set times of year."}]},
 {t:"point",warn:true,x:"Give the checklist columns for status, owner, deadline and notes, and update it weekly. Head office, the station and the providers all working from the same table is the single best defence against delay."}]},
 {h:"How the checklist is usually grouped",blocks:[{t:"rows",items:[

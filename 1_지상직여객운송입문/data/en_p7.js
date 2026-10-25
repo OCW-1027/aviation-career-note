@@ -5,7 +5,7 @@ lead:["To work at a Japanese airport as a foreign national you need a status of 
 "This article covers the main employers at Japanese airports, the main statuses of residence, how the Specified Skilled Worker route in aviation works, and what to watch for."],
 sections:[
 {h:"Main employers at a Japanese airport",blocks:[{t:"table",cols:["Employer","Main work","Notes"],rows:[
-["Ground service arms of Japanese airline groups","Passenger, ramp and cargo handling","Regular graduate and mid-career intakes; work for their own airline and for foreign carriers"],
+["Ground service arms of Japanese airline groups","Passenger, ramp and cargo handling","Many graduate and mid-career hires; work for their own airline and for foreign carriers"],
 ["Independent handling companies","Contracted work for foreign airlines","High demand for multilingual staff"],
 ["Foreign airline stations in Japan","Duty managers and station staff","Small teams; mostly supervision and coordination"],
 ["Airport companies and their affiliates","Information, security, facilities","Work on the airport operator’s side"]]}]},
@@ -23,15 +23,15 @@ sections:[
 {name:"Type 1 and Type 2",x:"Type 2 requires a higher skill level than Type 1 and the prescribed practical experience. There is no limit on renewals, and if the requirements are met, a spouse and children can accompany the worker as dependants."},
 {name:"Accepting employers",x:"Limited to businesses approved to operate at the airport, which must join the sector council. In national strategic special zones there are exceptions extending to cargo work at bonded warehouses off the airport."},
 {name:"Numbers",x:"The government has set out how many people it expects to accept in the aviation field to address the labour shortage."}]},
-{t:"point",x:"Under Specified Skilled Worker status, your work is limited to the approved field. If you want to work at the counter, or on the ramp, check first whether that work is inside the field."}]},
+{t:"point",x:"Under Specified Skilled Worker status, your work is limited to the approved field. At the job offer and employment contract stage, check whether the role you want is covered by the Specified Skilled Worker duties, and which duties you will actually do at the accepting employer."}]},
 {h:"What to watch for",blocks:[{t:"check",items:[
-{name:"Does the work match?",x:"Doing work outside the scope of your status can amount to illegal employment."},
+{name:"Does the work match?",x:"With a status that restricts work, doing work outside the permitted scope can amount to illegal employment."},
 {name:"Can the company host you?",x:"For Specified Skilled Worker, only employers meeting the conditions can hire you."},
 {name:"Changing jobs",x:"Depending on the status, a change of employer needs a change of status or a notification."},
 {name:"Family",x:"Whether family can join you depends on the status."}]}]},
 {h:"Related material",blocks:[{t:"video",title:"Specified Skilled Worker (aviation): study materials and test information",ch:"Japan Aeronautical Engineers’ Association",url:"https://exam.jaea.or.jp/?page_id=356"}]}],
 voice:"When hiring foreign nationals, first check that their residence status matches the work. Set the start date together with the residence procedure timeline.",
-terms:[["Status of Residence","在留資格","재류자격"],["Specified Skilled Worker (SSW)","特定技能","특정기능"],["Engineer / Specialist in Humanities / International Services","技術・人文知識・国際業務","기술·인문지식·국제업무"],["Intra-company Transferee","企業内転勤","기업내전근"],["Working Holiday","ワーキングホリデー","워킹홀리데이"],["Accepting Organization","受入れ機関","수용 기관"]],
+terms:[["Status of Residence","在留資格","재류자격"],["Specified Skilled Worker (SSW)","特定技能","특정기능"],["Engineer / Specialist in Humanities / International Services","技術・人文知識・国際業務","기술·인문지식·국제업무"],["Intra-company Transferee","企業内転勤","기업내전근"],["Working Holiday","ワーキングホリデー","워킹홀리데이"],["Accepting Organisation","受入れ機関","수용 기관"]],
 quiz:[{q:"What are the two fields of Specified Skilled Worker (aviation)?",opts:["Cabin crew and pilots","Airport ground handling and aircraft maintenance","Sales and accounting","Reservations and ticketing"],a:1,exp:"Each field has its own test and permitted duties."},
 {q:"What happens if you work outside your status?",opts:["Nothing","It can amount to illegal employment","Your pay rises","The status changes automatically"],a:1,exp:"Always check that the work matches the status."},
 {q:"What does Type 2 status allow?",opts:["Nothing different","No cap on total stay, and a spouse and children can join you if the requirements are met","Immediate permanent residence","Any job at all"],a:1,exp:"It widens the options for a long career."}],
@@ -114,13 +114,13 @@ terms:[["Initial Training","初期教育","초기 교육"],["Recurrent Training"
 quiz:[{q:"What happens if you fail recurrent assessment?",opts:["Nothing","You cannot hold that role","Your pay rises","You pass automatically"],a:1,exp:"Passing is what keeps the qualification alive."},
 {q:"In the example, what is the pass mark?",opts:["50%","60%","80%","100%"],a:2,exp:"Many airlines require 80% or above in each subject."},
 {q:"What questions are used for a reassessment?",opts:["The same ones","Different ones","None","Oral only"],a:1,exp:"Different questions keep the assessment fair."}],
-next:"7-4 From agent to station manager: the career ladder"});
+next:"7-4 From a handling company to station manager: the career ladder"});
 
 set("7-4",{title:"From Agent to Station Manager: The Career Ladder",hl:"the career ladder",subtitle:"Add management, regulation, sales and finance to front-line experience, one step at a time",
 lead:["An airport ground career can run from agent at a handling company through team leader, instructor, duty manager at an airline and on to station manager. Each step adds people, money, regulators and sales to the work on the ground.",
 "This lesson covers the ladder, what to build at each step, the full picture of a foreign airline station manager’s job, and how to prepare for the next step."],
 sections:[
-{h:"The ladder (example)",blocks:[{t:"fig",id:"gnd_career",cap:"Animated figure: a marker climbs the ladder from agent to station manager (example)."},{t:"ladder",rise:10,steps:[{name:"Agent",sub:"Passenger and ramp work"},{name:"Team leader",sub:"In charge of a flight"},{name:"Instructor / supervisor",sub:"Training and supervising"},{name:"Duty manager",sub:"Running the operation for an airline"},{name:"Station manager",sub:"Running the whole station"}]}]},
+{h:"The ladder (example)",blocks:[{t:"fig",id:"gnd_career",cap:"Animated figure: a marker climbs the ladder from agent to station manager (example)."},{t:"ladder",rise:10,steps:[{name:"Agent",sub:"Passenger and ramp work"},{name:"Team leader",sub:"In charge of a flight"},{name:"Instructor / supervisor",sub:"Training and supervising"},{name:"Duty manager",sub:"Passenger and transport operations management"},{name:"Station manager",sub:"Running the whole station"}]}]},
 {h:"What to build at each step",blocks:[{t:"table",cols:["Step","What to build"],rows:[
 ["Agent","Exact knowledge of the rules, service skills, the habit of reporting"],
 ["Team leader / supervisor","Judgement, coaching, handling irregular operations"],
@@ -138,9 +138,9 @@ sections:[
 {name:"Records and reporting",x:"Record the improvements you were part of in numbers: on-time performance, baggage irregularity counts."},
 {name:"Put your hand up",x:"Volunteer for the work one step above: training, audit preparation, a new route project."},
 {name:"Read the rules",x:"Do not only use the manual; understand why each rule exists."},
-{name:"Learn the local system",x:"The basics of employment, tax, immigration and aviation law, and how to work with professionals."},
-{name:"Build contacts",x:"The AOC, station managers from other airlines, the airport company and the authorities."}]}]},
-{h:"The view a station manager needs",blocks:[{t:"point",x:"A station manager stands between the front line, the company and the country. Adding regulatory, sales and financial knowledge to front-line experience is how you prepare to be trusted with a station."}]}],
+{name:"Learn the basics of the system",x:"Alongside aviation and airport rules, understand the basics of employment, tax, immigration and the other systems needed to run a station, and which matters to take to professionals."},
+{name:"Build contacts",x:"The AOC, station managers of airlines from the same country, the airport company and the authorities."}]}]},
+{h:"The view a station manager needs",blocks:[{t:"point",x:"A station manager is the link between the front line, the company, and the authorities and local community. Adding regulatory, sales and financial knowledge to front-line experience is how you prepare to be trusted with a station."}]}],
 voice:"As station manager, you spend more time on people and numbers than on frontline work. Deliberately make time to be on the floor and listen to your staff.",
 terms:[["Agent","エージェント","에이전트"],["Supervisor (SV)","スーパーバイザー","슈퍼바이저"],["Station Manager","運送マネージャー","운송 매니저"],["Country / Station General Manager","支店長","지점장"],["GSA","販売総代理店","판매 총대리점"],["Imprest / Advance Fund","前渡金","전도금"]],
 quiz:[{q:"What does a station manager particularly need?",opts:["Only memorising the rules","Regulatory work, sales, finance, HR and negotiation","Only announcements","Only ramp driving"],a:1,exp:"Running a company, on top of the front line."},

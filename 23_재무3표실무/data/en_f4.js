@@ -62,7 +62,7 @@ sections:[
 ["Use ingredients 75,000","Cost −75,000","Ingredients −75,000 / retained earnings −75,000","— (already recorded at purchase)"],
 ["Accrue tax 16,000","Cost −16,000","— / tax payable +16,000, retained earnings −16,000","— (paid next month)"],
 ["Total","Profit 64,000","Assets 580,000 = liabilities 216,000 + equity 364,000","Cash +309,000"]]},
-{t:"point",x:"Some transactions move all three statements (selling for cash), some move two (selling on credit, depreciation), some move one (buying the cart: a swap within the balance sheet plus an investing cash flow). The goal is to be able to say which statement does not move."}]},
+{t:"point",x:"Some transactions move all three statements (selling for cash); others move two: the income statement and balance sheet (selling on credit, depreciation), or the balance sheet and cash flow statement (buying the cart: a swap within the balance sheet plus an investing cash flow). The goal is to be able to say which statement does not move."}]},
 {h:"Four patterns of moving and not moving",blocks:[{t:"table",cols:["Pattern","Profit","Cash","Examples"],rows:[
 ["Both move","Yes","Yes","Cash sale, paying rent, paying for fuel"],["Only profit moves","Yes","No","Credit sale, depreciation, accrued expenses, recognising a provision"],["Only cash moves","No","Yes","Borrowing and repaying, buying aircraft, dividends, receiving advance payments"],["Neither moves","No","No","Re-labelling stock, internal transfers; only the balance sheet changes (e.g. refinancing short-term debt into long-term)"]]},
 {t:"note",x:"* The two middle patterns, ‘only profit’ and ‘only cash’, are the whole story of why profit and cash differ (3-2)."}]},

@@ -15,9 +15,9 @@ sections:[
 {t:"point",x:"The hold totals in the example (1: 1500, 3: 2100, 4: 1800, 5: 300) are the same as ‘LOAD IN COMPARTMENTS’ on the 3-7 loadsheet. Always check that the LIR and the loadsheet agree."}]},
 {h:"The hold layout",blocks:[{t:"fig",id:"hold_layout",cap:"Top: a narrow-body example; bottom: a wide-body example. Numbers are compartments; see the table for A to D."},
 {t:"table",cols:["Mark","Meaning"],rows:[
-["A","The allowed centre of gravity range, around the wing. Weight and position of the load must keep the CG inside it"],
+["A","The allowed centre of gravity range, around the wing. The weight and position of the load and passengers are taken into account to keep the CG within it"],
 ["B","Hold doors. Items needed first on arrival (transfer and priority bags) are easiest to place near them"],
-["C","Narrow-body example: bags often loaded loose (bulk). Compartment numbering varies by aircraft and airline"],
+["C","Narrow-body example: bags often loaded loose (bulk), though some types use ULDs. Compartment layout and numbering vary by aircraft type and airline"],
 ["D","Wide-body example: loaded in containers and pallets (ULDs), with bulk hold 5 at the rear"]]}]},
 {h:"How the centre of gravity works",blocks:[{t:"fig",id:"cg_balance",cap:"The centre of gravity shown as a seesaw. See the table for A to E."},
 {t:"table",cols:["Mark","Meaning"],rows:[
@@ -30,7 +30,7 @@ sections:[
 {name:"Order of loading",x:"Generally load forward holds first and unload aft holds first, following the aircraft’s rules. ★"}]}]},
 {h:"Basic loading rules",blocks:[{t:"check",items:[
 {name:"Respect limits",x:"Never exceed a hold’s maximum weight or the floor loading limit."},
-{name:"Secure the load",x:"Use nets and locks so nothing moves; heavy items at the bottom."},
+{name:"Secure the load",x:"Secure the load firmly with nets, locks, straps or other prescribed restraints so nothing moves in flight; heavy items at the bottom."},
 {name:"Segregate",x:"Keep apart the combinations the rules require, such as dangerous goods and animals (dry ice and animals, for example)."},
 {name:"Animals",x:"In a hold with ventilation and temperature control; last on, first off."},
 {name:"Transfer and priority",x:"Bags needed quickly on arrival go near the door."},

@@ -39,14 +39,14 @@ sections:[
 {h:"The division of roles among Kansai’s three airports",blocks:[{t:"table",cols:["Airport","Main role"],rows:[
 ["Kansai","International, LCC and cargo hub, 24 hours"],
 ["Itami","Domestic city airport"],
-["Kobe","Domestic only (no international flights). In the Kansai area, Kobe Airport has accepted international charters since 2025 ★"]]},
+["Kobe","Scheduled domestic flights only (no scheduled international flights). Kobe Airport has also accepted international charters since 2025 ★"]]},
 {t:"note",x:"* When Kansai closed after the 2018 typhoon, Itami and Kobe temporarily took replacement flights, including international ones. Mutual support among the three airports is part of disaster preparedness."}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
 {name:"Closing at 21:00",x:"Arrivals that cannot make 21:00 may divert to Kansai or elsewhere. Decide early on any evening delay."},
 {name:"Close to homes",x:"Noise rules are especially strict. Follow the rules on engine runs and operations on stand."},
 {name:"The movement cap",x:"Extra flights or time changes are only possible within the cap. Coordinate ad hoc flights early."},
 {name:"After a diversion",x:"Decide in advance how passengers who land at Kansai will get to the Itami area (buses and so on)."},
-{name:"De-icing",x:"Snow is rare, but winter-morning frost or cold snaps can require it. Make sure the queue for on-stand de-icing does not run into the 21:00 closing. Dyed fluids have been used since the 2024 winter schedule. ★"}]},
+{name:"De-icing",x:"Snow is rare, but winter-morning frost or cold snaps can require it. Make sure the queue for on-stand de-icing does not run into the 21:00 closing. Use of dyed fluids at Japanese airports has been expanding since the 2024 winter schedule. ★"}]},
 {t:"point",x:"At Itami, keeping strictly to operating hours is especially important. Operations planned around the 21:00 closing time, and diversion plans, are essential."}]}],
 voice:"Itami’s 9 pm closing is strict. If you may miss it, consider diverting to Kansai or elsewhere early, and prepare transport and hotel guidance for passengers at the same time.",
 terms:[["City Airport","都市型空港","도시형 공항"],["Movement Cap","発着回数の上限","이착륙 횟수 상한"],["Jet Slots","ジェット枠","제트기 슬롯"],["Alternate Acceptance","代替受け入れ","대체 수용"]],
@@ -134,7 +134,7 @@ quiz:[{q:"What mainly causes winter delays at New Chitose?",opts:["Snow clearanc
 next:"3-3 Naha Airport (OKA)"});
 
 set("3-3",{title:"Naha Airport (OKA)",hl:"Naha",subtitle:"Okinawa’s gateway, shared with the Self-Defense Force: a second runway and typhoon preparedness",
-lead:["Naha is Okinawa’s air gateway, serving tourists, connections to the outlying islands and international routes to Asia. It shares its runways with the Japan Air Self-Defense Force, and US military approach paths run through the surrounding airspace — circumstances found at no other major airport.","This lesson covers Naha’s basics, what a joint-use airport demands, and typhoon preparedness."],
+lead:["Naha is Okinawa’s air gateway, serving tourists, connections to the outlying islands and international routes to Asia. It shares its runways with the Japan Air Self-Defense Force, and routes used by US military aircraft run through the surrounding airspace — circumstances not found at other airports.","This lesson covers Naha’s basics, what a joint-use airport demands, and typhoon preparedness."],
 sections:[
 {h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_oka",cap:"Figure: Naha at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","The state (transport ministry); terminals are run by a building company"],

@@ -53,7 +53,7 @@ sections:[
 ["T2C, T2D and T2A","Other foreign airlines (including JAL)"],
 ["T1","Star Alliance carriers (including ANA) and other foreign airlines"],
 ["T2G","Air France regional short-haul flights"]]},
-{t:"note",x:"* Allocations may change; check the booking and airport information. ★ Within T2, use the CDGVAL automated train and buses; T2G is reached by shuttle bus."}]},
+{t:"note",x:"* Allocations may change; check the booking and airport information. ★ CDGVAL is an automated shuttle train linking T1, T2 and T3; buses also run within T2, and T2G is reached by shuttle bus."}]},
 {h:"History and outlook",blocks:[{t:"table",cols:["Year","Event"],rows:[
 ["1974","Opens with the circular T1"],
 ["From 1982","T2 halls open in stages"],

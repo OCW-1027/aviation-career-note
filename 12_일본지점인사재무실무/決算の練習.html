@@ -88,7 +88,7 @@ prt:['印刷・PDFに保存','인쇄·PDF 저장','Print / save as PDF'],wrd:['W
 k:[['売上高','営業利益','経常利益','税引前当期純利益','法人税等','当期純利益','総資産','純資産','自己資本比率'],['매출액','영업이익','경상이익','법인세 차감 전 순이익','법인세 등','당기순이익','총자산','자본(순자산)','자기자본비율'],['Net sales','Operating profit','Ordinary profit','Profit before tax','Income taxes','Net profit','Total assets','Net assets','Equity ratio']],
 c:{obOk:['期首残高の借方と貸方が一致しています','기초 잔액의 차변과 대변이 일치합니다','Opening debits and credits agree'],obNg:['期首残高の借方と貸方が {d} 円違います。前の期の貸借対照表と見比べてください','기초 잔액의 차변과 대변이 {d}엔 다릅니다. 전기 재무상태표와 비교해 보세요','Opening debits and credits differ by {d} yen. Compare with last year’s balance sheet'],
  bad:['科目か金額が足りない仕訳が {n} 行あります（色のついた行）。その行は計算に入れていません','계정이나 금액이 빠진 분개가 {n}줄 있습니다(색으로 표시된 줄). 그 줄은 계산에 넣지 않았습니다','{n} entries are missing an account or amount (highlighted). They are left out of the calculation'],
- tbOk:['試算表の借方合計と貸方合計が一致しています','시산표의 차변 합계와 대변 합계가 일치합니다','Trial balance debits equal credits'],bsOk:['貸借対照表の資産合計と、負債・純資産合計が一致しています','재무상태표의 자산 합계와 부채·자본 합계가 일치합니다','Total assets equal total liabilities and net assets'],bsNg:['貸借対照表が {d} 円合いません','재무상태표에 {d}엔의 차이가 있습니다','The balance sheet is out by {d} yen'],
+ tbOk:['試算表の借方合計と貸方合計が一致しています','시산표의 차변 합계와 대변 합계가 일치합니다','Trial balance debits equal credits'],tbNg:['試算表の借方合計と貸方合計が {d} 円合いません','시산표의 차변 합계와 대변 합계에 {d}엔의 차이가 있습니다','Trial balance debits and credits differ by {d} yen'],bsOk:['貸借対照表の資産合計と、負債・純資産合計が一致しています','재무상태표의 자산 합계와 부채·자본 합계가 일치합니다','Total assets equal total liabilities and net assets'],bsNg:['貸借対照表が {d} 円合いません','재무상태표에 {d}엔의 차이가 있습니다','The balance sheet is out by {d} yen'],
  sus:['仮払金・仮受金が残っています。決算までに正しい科目に振り替えます','가지급금·가수금이 남아 있습니다. 결산 전까지 올바른 계정으로 대체합니다','Suspense accounts still have balances. Reclassify them before the year-end'],
  cash:['現金・預金がマイナスです。入力の漏れや、借方と貸方の逆を確かめてください','현금·예금이 마이너스입니다. 빠진 입력이나 차변·대변이 거꾸로 된 곳을 확인하세요','Cash or deposits are negative. Check for missing entries or reversed sides'],
  dep:['固定資産があるのに減価償却費がありません。忘れていませんか','고정자산이 있는데 감가상각비가 없습니다. 누락되지 않았습니까?','There are fixed assets but no depreciation. Has it been forgotten?'],
@@ -222,7 +222,7 @@ function out(){var R=calc(),y=t('yen');
  var C=X.c,ck=[],L2=function(k){return C[k][LI]};
  ck.push(Math.round(R.od-R.oc)===0?['ok',L2('obOk')]:['ng',L2('obNg').replace('{d}',fs(Math.abs(R.od-R.oc)))]);
  if(R.bad)ck.push(['ng',L2('bad').replace('{n}',R.bad)]);
- ck.push(Math.round(R.td-R.tc)===0?['ok',L2('tbOk')]:['ng',L2('bsNg').replace('{d}',fs(R.td-R.tc))]);
+ ck.push(Math.round(R.td-R.tc)===0?['ok',L2('tbOk')]:['ng',L2('tbNg').replace('{d}',fs(Math.abs(R.td-R.tc)))]);
  var diff=Math.round(R.ta-R.tl-R.te);ck.push(diff===0?['ok',L2('bsOk')]:['ng',L2('bsNg').replace('{d}',fs(Math.abs(diff)))]);
  function nb(c){return R.B[c]?nbal(c,R.B[c]):0}
  if(nb('153')||nb('210'))ck.push(['wa',L2('sus')]);if(nb('100')<0||nb('110')<0||nb('111')<0)ck.push(['wa',L2('cash')]);

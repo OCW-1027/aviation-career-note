@@ -347,27 +347,27 @@ sections:[
 {"t":"note","x":"* Which suits you depends on the scale of the business and your plans. Compare them with a professional before deciding. ★"}]}],
 deep:[
 {h:"Calculating a company’s taxes: a small company in Tokyo",blocks:[
-{t:"p",x:"Tax on a company’s income is more than the national corporation tax. Local corporation tax, inhabitant tax, enterprise tax and special corporate enterprise tax are layered on top, and for years beginning on or after April 2026 a defence special corporation tax is added. Here we work through the calculation from income to tax for a company with capital of 100 million yen or less in Tokyo’s 23 wards."},
+{t:"p",x:"Tax on a company’s income is more than the national corporate tax. Local corporate tax, corporate inhabitant tax, enterprise tax and special corporate enterprise tax are layered on top, and for years beginning on or after April 2026 a defence special corporation tax is added. Here we work through the calculation from income to tax for a company with capital of 100 million yen or less in Tokyo’s 23 wards."},
 {t:"corpcalc",inc:10000000},
 {t:"table",cols:["Tax","Applied to","Rate (Tokyo 23 wards, capital of 100 million yen or less)","Paid to"],rows:[
-["Corporation tax","Income","Qualifying small companies: 15% up to 8 million yen, 23.2% above (17%, or no relief, may apply above 1 billion yen of income) ★","The state (tax office)"],
-["Local corporation tax","Corporation tax","10.3%","The state (tax office)"],
-["Defence special corporation tax","Corporation tax − 5 million yen","4% (years beginning on or after 1 April 2026)","The state (tax office)"],
-["Inhabitant tax (tax-based part)","Corporation tax","7.0% (10.4% once corporation tax exceeds 10 million yen a year)","Metropolitan tax office"],
-["Inhabitant tax (per-capita part)","Capital and number of employees","From 70,000 yen a year (charged even in a loss)","Metropolitan tax office"],
+["Corporate tax","Income","Qualifying small companies: 15% up to 8 million yen, 23.2% above (17%, or no relief, may apply above 1 billion yen of income) ★","The state (tax office)"],
+["Local corporate tax","Corporate tax","10.3%","The state (tax office)"],
+["Defence special corporation tax","Corporate tax − 5 million yen","4% (years beginning on or after 1 April 2026)","The state (tax office)"],
+["Corporate inhabitant tax (tax-based part)","Corporate tax","7.0% (10.4% once corporate tax exceeds 10 million yen a year)","Metropolitan tax office"],
+["Corporate inhabitant tax (per-capita part)","Capital and number of employees","From 70,000 yen a year (charged even in a loss)","Metropolitan tax office"],
 ["Enterprise tax","Income","3.5%, 5.3% and 7.0% (excess rates once income exceeds 25 million yen a year)","Metropolitan tax office"],
 ["Special corporate enterprise tax","Enterprise tax at standard rates","37%","Metropolitan tax office (a national tax)"]]},
 {t:"note",x:"* The 15% up to 8 million yen is a special rate for small companies, for years beginning on or before 31 March 2027. Check each year’s tax reform to see whether it is extended. ★"}]},
 {h:"What changes with area and company size",blocks:[{t:"rows",items:[
-{name:"What differs by area",x:"Inhabitant tax and enterprise tax rates are set by prefectures and municipalities. Some use “excess rates” above the national standard rates, and Tokyo is one of them. Corporation tax, local corporation tax and the defence special corporation tax are the same nationwide."},
+{name:"What differs by area",x:"Corporate inhabitant tax and enterprise tax rates are set by prefectures and municipalities. Some use “excess rates” above the national standard rates, and Tokyo is one of them. Corporate tax, local corporate tax and the defence special corporation tax are the same nationwide."},
 {name:"Tokyo’s 23 wards",x:"In the 23 wards the metropolitan government also levies the part that elsewhere goes to the municipality, so the return goes to the metropolitan tax office. With an office outside the 23 wards, you file with both the prefecture and the municipality."},
 {name:"Companies with capital above 100 million yen",x:"The 15% rate is not available and 23.2% applies to all income. For companies with capital over 100 million yen and certain others, enterprise tax is size-based, charged on added value and capital as well as income, so tax arises even in a loss. Whether it applies is judged on current rules covering capital, capital surplus and full ownership (anti-capital-reduction rules for years from April 2025, the 100% subsidiary rule for years from April 2026). ★"},
 {name:"Branches of foreign companies",x:"Income attributable to the branch is taxed at the same rates as a Japanese company. Capital is judged for the whole foreign company, so even a small branch often cannot use the small-company rate. Income from operating international flights may be exempt in Japan under a tax treaty’s international transport article or a reciprocal exemption, so confirm the applicable treaty and the scope of taxable income with a tax accountant (Article 8 of the Japan–Korea treaty, for example, taxes international traffic profits only in the residence state and also exempts them from Japanese enterprise tax). ★"}]}]},
 {h:"Filing and payment",blocks:[{t:"ladder",steps:[
 {name:"Close the accounts",sub:"After the year-end"},
-{name:"Calculate the taxes",sub:"Income → corporation tax → local taxes"},
+{name:"Calculate the taxes",sub:"Income → corporate tax → local taxes"},
 {name:"File and pay",sub:"Within two months of the year-end"},
-{name:"Interim return",sub:"If last year’s corporation tax exceeded 200,000 yen, prepay six months into the year"},
+{name:"Interim return",sub:"If last year’s corporate tax exceeded 200,000 yen, prepay six months into the year"},
 {name:"Next year",sub:"Enterprise tax is an expense in the year it is paid"}]},
 {t:"point",x:"The line “income taxes” in the accounts is the total of the taxes calculated here. For the company in this example it runs from about 25% to 38% of income, rising with income. In the cash plan, enter this payment two months after the year-end and in the interim return month."}]}],
 deepKr:[
@@ -378,8 +378,8 @@ deepKr:[
 {t:"note",x:"* For years that began in or before 2025 each rate was one percentage point lower (9%, 19%, 21%, 24%). ★"}]},
 {h:"Filing and payment compared with Japan",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Filing deadline","Within two months of the year-end (extension available)","Within three months of the year-end (end of March for a December year-end)"],
-["Local taxes","Inhabitant tax, enterprise tax, special corporate enterprise tax","Local income tax (filed within four months of the year-end)"],
-["Tax charged even in a loss","Per-capita inhabitant tax (from 70,000 yen a year)","None"],
+["Local taxes","Corporate inhabitant tax, enterprise tax, special corporate enterprise tax","Local income tax (filed within four months of the year-end)"],
+["Tax charged even in a loss","Per-capita corporate inhabitant tax (from 70,000 yen a year)","None"],
 ["Prepayment","Interim return (half a year into the year)","Interim prepayment (within two months of the end of the first half)"],
 ["Small-company rate","15% on income up to 8 million yen","10% on a tax base up to 200 million won"]]},
 {t:"point",x:"On a tax base of 1 billion won, corporation tax is 180 million won (200 million × 10% + 800 million × 20%) and local income tax is 18 million won: 198 million won in all, or 19.8%."}]}],
@@ -422,7 +422,7 @@ deep:[
 {t:"rows",items:[
 {name:"The FY2026 reform",x:"The original plan was 50% from October 2026 and 0% from October 2029. The reform inserted two years at 70% and extended relief to September 2031. Make sure your accounting software has a “70% deductible” category. ★"},
 {name:"Cap per supplier",x:"Purchases from a single supplier without qualified invoices above 100 million yen a year (tax included) will not qualify. The 2026 reform lowered the cap from 1 billion yen, for tax periods beginning on or after 1 October 2026 (for March year ends, from the year beginning April 2027). For purchases from 1 October 2026 the transitional deduction rate also falls from 80% to 70%. ★"},
-{name:"The 20% special rule has ended",x:"The rule letting businesses that registered for invoices pay just 20% of their output tax applies up to the tax period that includes 30 September 2026 (for December year ends, that period is still running). Only individual sole traders may then choose a 30% rule for 2027 and 2028. ★"},
+{name:"End of the 20% special rule (by tax period)",x:"The rule letting businesses that registered for invoices pay just 20% of their output tax applies up to the tax period that includes 30 September 2026 (for December year ends, that period is still running). Only individual sole traders may then choose a 30% rule for 2027 and 2028. ★"},
 {name:"What the books must show",x:"To use the relief, the books must note that the purchase is covered, for example “80% deductible” or “70% deductible”."}]}]},
 {h:"Who must pay and how often to file",blocks:[{t:"rows",items:[
 {name:"Exempt businesses",x:"If taxable sales in the base period (two years earlier) were 10 million yen or less, the business is in principle exempt. Registering to issue qualified invoices makes it taxable, however. The same applies to branches of foreign companies."},
@@ -441,7 +441,7 @@ deepKr:[
 {t:"note",x:"* The example figures are fictional, for a company selling mainly international flights."}]},
 {h:"Filing calendar (companies)",blocks:[
 {t:"table",cols:["Return","Period covered","Due"],rows:[["First-half preliminary","January–March","25 April"],["First-half final","April–June","25 July"],["Second-half preliminary","July–September","25 October"],["Second-half final","October–December","25 January"]]},
-{t:"note",x:"* Companies with supplies under 150 million won in the previous tax period pay 50% of the previous period’s tax, as notified by the tax office, instead of filing a preliminary return (no notice if under 500,000 won). A deadline on a holiday moves to the next working day. ★"}]},
+{t:"note",x:"* Companies with supplies under 150 million won in the previous tax period pay 50% of the previous period’s tax, as notified by the tax office, instead of filing a preliminary return (no notice if under 500,000 won). A deadline on a holiday (Saturday, Sunday or public holiday) moves to the next working day. ★"}]},
 {h:"Points to know",blocks:[{t:"rows",items:[
 {name:"Simplified taxation is for individuals only",x:"Only individual businesses with prior-year supplies under 104 million won can be simplified taxpayers. Companies are general taxpayers however small their sales. ★"},
 {name:"Zero rating",x:"Exports and international transport are zero-rated: no output tax, but input tax is deductible, so a refund arises."},

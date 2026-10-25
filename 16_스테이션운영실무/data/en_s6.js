@@ -176,7 +176,7 @@ sections:[
 ["Reports","Fast, accurate, conclusion first","Passes on decisions in Japanese, reasons included"],
 ["When problems arise","Raises facts and options together","Checks the facts together before blaming the floor"],
 ["Day to day","Records kept in line with the rules","Shows up at training, meetings and on the floor"],
-["At times of change","Gets changes to the floor by the deadline","Tries to protect the reasons and the time to prepare"]]},
+["At times of change","Gets changes to the floor by the deadline","Explains the reasons and tries to secure time to prepare"]]},
 {t:"point",x:"A station trusted by only one side does not last. Being on the side of neither head office nor the local side, but of passenger safety and the company’s promises, is what earns trust from both."}]},
 {h:"Handing trust on",blocks:[{t:"rows",items:[
 {name:"Contact sheet",x:"Contacts at head office, the airport company, the authorities and the handler, with out-of-hours numbers. Date it."},

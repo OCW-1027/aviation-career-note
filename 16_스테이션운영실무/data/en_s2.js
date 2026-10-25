@@ -86,7 +86,7 @@ sections:[
 {name:"Ramp: arrival and departure",x:"Marshalling hand signals or standing by the docking system’s emergency stop; cone positions; how equipment approaches; door procedures; loading to the load plan."},
 {name:"Passenger: before opening",x:"Pre-flight seat allocation (infants, children, wheelchairs), equipment, printers and microphone ready, notices displayed, forms ready, staffing, briefing."},
 {name:"Passenger: during check-in",x:"Checking passports and visas, checking bags and asking the dangerous goods questions, running the bag-drop counter, managing the cut-off."}]},
-{t:"point",x:"Write facts in the remarks, not impressions. Not “slow”, but “equipment not in position 15 minutes before arrival (it arrived 5 minutes before)”. Facts let the other side answer with improvements rather than arguments."}]}],
+{t:"point",x:"Write facts in the remarks, not impressions. Not “slow”, but “equipment not in position by the contracted 15 minutes before arrival (in position only 5 minutes before)”. Facts let the other side answer with improvements rather than arguments."}]}],
 deepLabel:"In depth: sample checklists by area",
 deep:[
 {h:"Ramp (example)",blocks:[{t:"table",cols:["Check item","What to look at"],rows:[
@@ -150,7 +150,7 @@ set("2-4",{title:"Becoming One Team with Your Handler",hl:"one team",subtitle:"N
 lead:["A night of disruption, a sudden extra flight, a peak season short of hands. At times like these, what keeps the station running is not just the contract but the trust built up with the handler’s people.","This lesson covers building relationships with the handler’s key people, spotting staffing problems early, and behaviour to avoid."],
 sections:[
 {h:"The basics of the relationship",blocks:[{t:"check",items:[
-{name:"Know the key people",x:"The duty manager, the supervisors, the sales and contract lead. Know who can decide what."},
+{name:"Know the key people",x:"The handler’s duty manager, the supervisors, the sales and contract lead. Know who can decide what."},
 {name:"Talk regularly",x:"Not only in meetings: see each other on the floor, and sometimes hear what people really think over a meal (within company rules)."},
 {name:"Spot staffing issues early",x:"Resignations, hiring, peak-season rosters. Work out measures with head office before hands run short."},
 {name:"Put good work into words",x:"On days the flight left on time or a hard flight was handled well, thank people specifically, and mention it in reports to head office."}]}]},
@@ -165,15 +165,15 @@ sections:[
 {name:"Joint exercises",x:"Run tabletop exercises for disruptions and pre-season briefings together."},
 {name:"Saying thank you",x:"Tell the handler, by name, about flights that went well and staff who did a good job."}]},
 {t:"note",x:"* The role and training of a handler’s operations department are covered in detail in Airline Passenger Operations 6-7."}]},
-{h:"Where the duty manager stands",blocks:[{t:"fig",id:"stn_team",cap:"What the duty manager gives to and takes from the handler, head office and station staff."},{t:"table",cols:["Towards","What the duty manager does"],rows:[
+{h:"Where the station operations lead stands",blocks:[{t:"fig",id:"stn_team",cap:"What the station operations lead gives to and takes from the handler, head office and station staff."},{t:"table",cols:["Towards","What the station operations lead does"],rows:[
 ["The handler","Explains the airline’s standards and listens to the floor’s problems; looks for ways to make things work, not reasons they cannot"],
 ["Head office","Explains local realities — staffing, facilities, airport rules — in facts and numbers, and asks for the support needed"],
-["Station staff","Makes it a rule that findings for the handler go through the duty manager, so there is one point of contact"]]},
+["Station staff","Makes it a rule that findings for the handler go through the station operations lead, so there is one point of contact"]]},
 {t:"point",x:"At a good station the handler says “it’s a pleasure to work that airline’s flights”. That reputation pays off most on the night things go wrong."}]}],
 voice:"Trust with your handler is built from everyday thanks and fair evaluation. With that trust, they will go the extra mile with you on a disruption night.",
 terms:[["Key Person","キーパーソン","핵심 담당자"],["Duty Manager","デューティーマネージャー","듀티 매니저"],["Peak Season","繁忙期","성수기"],["Single Point of Contact","窓口","창구"]],
 quiz:[{q:"What finally rescues the station on a night of disruption?",opts:["Trust with the handler’s people","The contract clauses","Penalties","Fares"],a:0,exp:"Build the relationship in ordinary times."},
 {q:"How should a handler problem be reported to head office?",opts:["Tell the handler first and check the cause together","Escalate quietly","Do not report","Post it on social media"],a:0,exp:"That order protects trust."},
-{q:"What is the rule when station staff raise issues with the handler?",opts:["Go through the duty manager, one point of contact","Everyone speaks freely","In front of passengers","Never raise them"],a:0,exp:"One point of contact avoids confusion."}],
+{q:"What is the rule when station staff raise issues with the handler?",opts:["Go through the station operations lead, one point of contact","Everyone speaks freely","In front of passengers","Never raise them"],a:0,exp:"One point of contact avoids confusion."}],
 next:"Part 3 The Duty Manager’s Judgment and Attitude — 3-1 The duty manager’s day and the briefing"});
 })(window.ARTS);

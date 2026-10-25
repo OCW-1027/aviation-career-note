@@ -11,7 +11,7 @@ sections:[
 ["Terminals","Terminal 1 (T1) and Terminal 2 (T2, about 52 million a year after the Phase 4 expansion)"],
 ["Capacity","106 million passengers and 6.3 million tonnes of cargo a year (after Phase 4)"],
 ["Hours","24 hours"],
-["2025 results","73.55 million international passengers (3rd), 2.95 million tonnes of cargo (7th); about 74.04 million total passengers forecast by the airport"]]},
+["2025 results","73.55 million international passengers (3rd), 2.95 million tonnes of cargo (7th); 74,071,475 total passengers (about 74.07 million), according to the airport corporation’s actual figures"]]},
 {t:"table",cols:["Terminal","Main airlines (2026)"],rows:[
 ["T2","Korean Air, Asiana (from 14 January 2026), Jin Air, Air Busan and Air Seoul (moved in 2025), Delta, Air France, KLM and other SkyTeam carriers"],
 ["T1","Other foreign airlines and many Korean low-cost carriers"]]}]},

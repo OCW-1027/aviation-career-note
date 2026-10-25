@@ -65,7 +65,7 @@ quiz:[{q:"Who is trained?",opts:["Passenger staff only","Passenger, weight and b
 {q:"What is correct about training records?",opts:["Throw them away","Keep them for a set period, generally three years or more","Remember them","The handling company’s are not needed"],a:1,exp:"They are the documents auditors look at most."}],
 next:"6-3 The test flight and trial operation"});
 
-set("6-3",{title:"The Test Flight and Trial Operation",hl:"the trial",subtitle:"Before the first flight, run it exactly as it will be, against a checklist",
+set("6-3",{title:"The Test Flight and Trial Operation",hl:"Trial Operation",subtitle:"Before the first flight, run it exactly as it will be, against a checklist",
 lead:["Preparation can look complete and still leave gaps: printer settings, signage, handing over documents, where the ramp staff stand. So before the first flight you run a trial that follows the same flow as the real operation.",
 "This article covers how a trial runs and the checklist items for the office, the counter, the gate, load control and arrivals."],
 sections:[

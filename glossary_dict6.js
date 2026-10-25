@@ -10,7 +10,7 @@ window.DICT=(window.DICT||[]).concat([
 ["BIZ","Distribution Cost Charge (GDS Surcharge)","GDSの追加料金","GDS 추가 요금","GDS経由の予約に航空会社が課す料金。2015年にルフトハンザ・グループが初めて導入","GDS 경유 예약에 항공사가 부과하는 요금. 2015년 루프트한자 그룹이 처음 도입","A charge airlines add to GDS bookings; first introduced by Lufthansa Group in 2015"],
 ["BIZ","Published Excursion Fare (PEX)","PEX運賃（特別運賃）","PEX 운임(특별 운임)","航空会社が設定する割引運賃。航空券単体で個人に販売できる","항공사가 설정하는 할인 운임. 항공권 단독으로 개인에게 판매할 수 있다","An airline-set discounted fare that can be sold as a ticket alone"],
 ["BIZ","Inclusive Tour Fare (IT)","IT運賃（包括旅行運賃）","IT 운임(포괄 여행 운임)","ホテルなど地上の手配と組み合わせて旅行会社が売る運賃","호텔 등 지상 수배와 조합해 여행사가 파는 운임","A fare sold by agencies only as part of a package with ground arrangements"],
-["BIZ","Group Inclusive Tour Fare (GV)","GV運賃（グループ包括旅行運賃）","GV 운임(그룹 포괄 여행 운임)","グループ形態のIT運賃。日本では1名から使えるGV1が多い","그룹 형태의 IT 운임. 일본에서는 1명부터 이용할 수 있는 GV1이 많다","A group-form IT fare; in Japan GV1, applicable from one passenger, is common"],
+["BIZ","Group Inclusive Tour Fare (GV)","GV運賃（グループ包括旅行運賃）","GV 운임(그룹 포괄 여행 운임)","グループ形態のIT運賃。最少人数などの適用条件は個別の運賃規定で確認する","그룹 형태의 IT 운임. 최소 인원 등 적용 조건은 개별 운임 규정에서 확인한다","A group-form IT fare; check the individual fare rules for conditions such as minimum group size"],
 ["BIZ","Tour Code","ツアーコード","투어 코드","IT運賃・特別な条件での発券時に入力する識別番号","IT 운임·특별 조건 발권 시 입력하는 식별 번호","An identifier entered when ticketing IT or special fares"],
 ["BIZ","Void","VOID（発券の取り消し）","VOID(발권 취소)","発券の直後、決められた時間内に航空券を無効にすること","발권 직후 정해진 시간 안에 항공권을 무효로 하는 것","Cancelling a ticket within a set time after issue"],
 ["BIZ","Involuntary Refund","会社都合の払い戻し","비자발적 환불","欠航・大幅な時刻変更など、航空会社の都合による払い戻し","결항·큰 폭의 시각 변경 등 항공사 사정으로 인한 환불","A refund caused by the airline, such as a cancellation"],

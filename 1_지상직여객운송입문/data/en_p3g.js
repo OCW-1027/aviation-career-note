@@ -18,7 +18,7 @@ sections:[
 ["11","Hydrant dispenser (fuel)","Fuels the aircraft from the underground hydrant system; some airports use tankers","No ignition sources and restricted access while fuelling; procedures for fuelling with passengers on board"],
 ["12","De-icing truck","Sprays de-icing and anti-icing fluid","Missed areas; holdover time"]]},
 {t:"note",x:"* There are others too — ramp buses, baggage tractors, cargo transporters. Names differ by company and airport. ★"}]},
-{h:"Where they go, and in what order",blocks:[{t:"fig",id:"turnaround",cap:"Numbers match the table above. The GSE appears in the order it arrives between arrival (STA) and departure (STD). Small yellow squares are chocks; orange triangles are safety cones."},
+{h:"Where they go, and in what order",blocks:[{t:"fig",id:"turnaround",cap:"Numbers match the table above. It shows an example of GSE positioning and tasks between arrival (STA) and departure (STD). Small yellow squares are chocks; orange triangles are safety cones."},
 {t:"ladder",rise:8,steps:[{name:"Stop",sub:"Chocks and cones"},{name:"Connect",sub:"Bridge or steps, GPU and air"},{name:"Unload and load",sub:"Loaders and carts"},{name:"Service",sub:"Catering, lavatory, water"},{name:"Fuel",sub:"Dispenser"},{name:"Depart",sub:"Remove equipment, push back"}]},
 {t:"note",x:"* On many aircraft the cargo and catering doors are on the right-hand side, but it varies by type. Always check your company’s GSE positioning diagram for each aircraft type. ★"}]},
 {h:"Danger zones around the aircraft",blocks:[{t:"fig",id:"ramp_safety",cap:"A to E are explained in the table below. The red circles show the engine intake hazard."},

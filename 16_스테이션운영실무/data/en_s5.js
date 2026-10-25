@@ -158,7 +158,7 @@ quiz:[{q:"What belongs in the initial report?",opts:["What happened, the impact 
 {q:"A journalist calls. You…",opts:["Do not answer and pass them to corporate communications","Let the station manager answer","Let staff answer","Ignore them"],a:0,exp:"Company statements come from a single point of contact."}],
 next:"4-4 Passing On Instructions and Manual Revisions"});
 set("4-4",{title:"Passing On Instructions and Manual Revisions",hl:"Passing On Revisions",subtitle:"An instruction means nothing until the front line follows it. Read, align, pass on, confirm, record",
-lead:["Revisions, operational instructions and safety reminders arrive from head office almost every week. If the station only receives them, the front line carries on the old way.","This lesson covers the steps from receiving an instruction to embedding it at the front line, checking it against Japanese and airport rules, passing it to the handler, and keeping records."],
+lead:["Revisions, operational instructions and cautionary notices arrive from head office almost every week. If the station only receives them, the front line carries on the old way.","This lesson covers the steps from receiving an instruction to embedding it at the front line, checking it against Japanese and airport rules, passing it to the handler, and keeping records."],
 sections:[
 {h:"The flow",blocks:[{t:"fig",id:"stn_relay",cap:"Moving diagram: an instruction travels from head office through the station to the handler, and the confirmation signatures come back to the station."},{t:"ladder",rise:10,steps:[
 {name:"Receive",sub:"Log it in the register"},

@@ -40,7 +40,7 @@ window.DICT=(window.DICT||[]).concat([
 ["OPS","Turnaround","ターンアラウンド","턴어라운드","到着から次の出発までの地上での作業","도착부터 다음 출발까지의 지상 작업","All ground activity between arrival and the next departure"],
 ["OPS","Minimum Ground Time (MGT)","最小地上時間","최소 지상 시간","ターンアラウンドに必要な最短の時間","턴어라운드에 필요한 최소 시간","The shortest time needed to turn an aircraft round"],
 ["OPS","Operations Control Centre (OCC)","運航管理センター（OCC）","운항통제센터(OCC)","運航の状況を一元的に管理する部署","운항 상황을 일원적으로 관리하는 부서","The centre that runs the airline’s daily operation"],
-["OPS","Flight Dispatcher","運航管理者（ディスパッチャー）","운항관리사","飛行計画・燃料・気象などを検討して出発を判断する担当","비행계획·연료·기상 등을 검토해 출발을 판단하는 담당자","The person who plans flights and shares release decisions with the captain"],
+["OPS","Flight Dispatcher","運航管理者（ディスパッチャー）","운항관리사","飛行計画・燃料・気象などを検討し、機長とともに出発を判断する担当","비행계획·연료·기상 등을 검토해 기장과 함께 출발을 판단하는 담당자","The person who reviews flight plans, fuel and weather and shares release decisions with the captain"],
 ["OPS","Flight Plan","飛行計画","비행계획","経路・高度・燃料などを定めた計画。管制へ提出する","경로·고도·연료 등을 정한 계획. 관제에 제출한다","The plan of route, levels and fuel, filed with ATC"],
 ["OPS","Pilot in Command (PIC)","機長","기장","便の安全に最終的な責任を持つ操縦士","항공편의 안전에 최종 책임을 지는 조종사","The pilot with final responsibility for the flight"],
 ["OPS","Flight Duty Period (FDP)","乗務時間の上限（FDP）","비행 근무 시간(FDP)","乗務員が勤務できる時間の上限の規則","승무원이 근무할 수 있는 시간의 상한을 정한 규칙","Rules limiting how long crew may work"],

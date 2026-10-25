@@ -1,6 +1,6 @@
 /* CIQの役割 — English version (Part 4: China, Taiwan and Hong Kong; South-East Asia and the Middle East; lessons 4-7 and 4-8) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("4-7",{title:"China, Taiwan and Hong Kong: The Closer the Country, the Easier the Mistake",hl:"China, Taiwan and Hong Kong",subtitle:"Taiwan fines TWD 200,000 for pork products, and heated tobacco cannot be brought in either",
+set("4-7",{title:"China, Taiwan and Hong Kong: The Closer the Country, the Easier the Mistake",hl:"China, Taiwan and Hong Kong",subtitle:"Taiwan imposes an administrative fine of TWD 200,000 for pork products, and heated tobacco cannot be brought in either",
 lead:["These are relatively close to Japan and Korea, but their immigration, customs and quarantine systems differ greatly. Mainland China, Taiwan, Hong Kong and Macao each have their own immigration control and customs.","Taiwan in particular has some of the strictest rules in Asia on meat products and on e-cigarettes and heated tobacco. Things passengers from Japan use every day can be restricted there."],
 sections:[
 {h:"Mainland China",blocks:[{t:"fig",id:"ciq_cn",cap:"Figure: mainland China, Taiwan and Hong Kong."},{t:"table",cols:["","Details"],rows:[
@@ -12,9 +12,9 @@ sections:[
 {t:"note",x:"* Travel between mainland China and Hong Kong or Macao also involves immigration control and customs."}]},
 {h:"Taiwan",blocks:[{t:"table",cols:["","Details"],rows:[
 ["Arrival card","Submitted online before arrival, free of charge"],
-["Meat products","Not allowed. Pork products from areas with African swine fever: a fine of TWD 200,000 for a first offence and TWD 1 million for a second"],
+["Meat products","Not allowed. Pork products from areas with African swine fever: an administrative fine of TWD 200,000 for a first offence and TWD 1 million for a second"],
 ["If the fine is not paid","Entry is not allowed until it is paid. Foreign nationals who cannot pay are refused entry"],
-["Fruit","A fine of TWD 3,000 to 15,000 for bringing it in undeclared. Fruit from the in-flight meal is also covered"],
+["Fruit","An administrative fine of TWD 3,000 to 15,000 for bringing it in undeclared. Fruit from the in-flight meal is also covered"],
 ["If declared","No fine. Items can also be voluntarily discarded in the designated bins before quarantine"],
 ["E-cigarettes and heated tobacco","E-cigarettes are completely banned. Heated tobacco cannot be brought in from abroad either. From February 2026 the only exception is approved products bought at duty-free shops in Taiwan’s airports"]]},
 {t:"rows",items:[
@@ -29,10 +29,10 @@ sections:[
 {name:"Food carried by passengers to Taiwan",x:"Souvenirs containing meat, and fruit handed out on board. Say so in the pre-arrival announcement."},
 {name:"China’s visa exemption",x:"Check the length and purpose of stay, and the itinerary when using the 240-hour visa-free transit. It cannot be used for a simple return trip that does not meet the scheme’s requirements."},
 {name:"Passengers going to mainland China through Hong Kong",x:"Check the requirements of Hong Kong and of mainland China separately."}]},
-{t:"point",x:"Do not assume “it’s nearby, so it’s the same as usual”. A single heated tobacco device in everyday use in Japan is enough to get a passenger stopped at a Taiwanese airport."}]}],
-voice:{h:"A Reported Case",x:"On 22 March 2023 Taiwan brought into force its amended tobacco hazards prevention law, banning e-cigarettes outright and allowing heated tobacco only for products that pass a health-risk review. Taipei Customs said it had seized around 110,000 heated tobacco items in about a year and warned that offenders face fines of TWD 50,000 to 5,000,000 (Source: Taiwan Ministry of Finance, April 2024). From February 2026 some approved products were allowed under conditions, but products bought abroad still cannot in practice be brought in (Source: travel trade news site tokutenryoko.com, January 2026). Because so many people in Japan use them, both passengers and staff easily overlook them."},
+{t:"point",x:"Do not assume “it’s nearby, so it’s the same as usual”; check the entry requirements for each trip individually. Even heated tobacco commonly used in Japan is restricted in Taiwan."}]}],
+voice:{h:"A Reported Case",x:"On 22 March 2023 Taiwan brought into force its amended tobacco hazards prevention law, banning e-cigarettes outright and allowing heated tobacco only for products that pass a health-risk review. Taipei Customs said it had seized around 110,000 heated tobacco items in about a year and warned that offenders face administrative fines of TWD 50,000 to 5,000,000 (Source: Taiwan Ministry of Finance, April 2024). From February 2026 some approved products were allowed under conditions, but products bought abroad still cannot in practice be brought in (Source: travel trade news site tokutenryoko.com, January 2026). Because so many people in Japan use them, both passengers and staff easily overlook them."},
 terms:[["Heated Tobacco Product","加熱式たばこ","가열식 담배"],["E-cigarette","電子たばこ","전자담배"],["Visa Exemption","査証免除","비자 면제"],["Administrative Fine","過料","과태료"]],
-quiz:[{q:"What is the fine for a first offence of bringing pork products into Taiwan from an area with African swine fever?",opts:["TWD 200,000","TWD 2,000","TWD 200","There is none"],a:0,exp:"A second offence is TWD 1 million. Foreign nationals who cannot pay are refused entry."},
+quiz:[{q:"What is the administrative fine for a first offence of bringing pork products into Taiwan from an area with African swine fever?",opts:["TWD 200,000","TWD 2,000","TWD 200","There is none"],a:0,exp:"A second offence is TWD 1 million. Foreign nationals who cannot pay are refused entry."},
 {q:"What cannot be brought into Taiwan from abroad?",opts:["E-cigarettes and heated tobacco","Paper books","Clothing","A toothbrush"],a:0,exp:"Not even in checked baggage."},
 {q:"How do mainland China and Hong Kong relate?",opts:["Separate immigration control and customs","One check for both","No checks","Only customs is shared"],a:0,exp:"Visa requirements differ as well."}],
 next:"4-8 South-East Asia and the Middle East"});
@@ -41,8 +41,8 @@ lead:["In South-East Asia and the Middle East, what gets passengers into trouble
 sections:[
 {h:"Three things that change with the destination",blocks:[{t:"fig",id:"ciq_sea",cap:"Figure: South-East Asia and the Middle East: three things that change."},{t:"rows",items:[
 {name:"Medicines",x:"Painkillers, cough medicines, sleeping tablets and ADHD medicines can contain controlled ingredients."},
-{name:"E-cigarettes and heated tobacco",x:"Some countries ban both bringing them in and using them."},
-{name:"Alcohol and pork",x:"Some countries ban bringing them in for religious reasons."}]}]},
+{name:"E-cigarettes and heated tobacco",x:"Some countries and regions ban bringing them in, possessing them and using them."},
+{name:"Alcohol and pork",x:"Some countries ban bringing them in for religious or legal reasons."}]}]},
 {h:"South-East Asia",blocks:[{t:"table",cols:["Country","Rules"],rows:[
 ["Thailand","Since 1 May 2025 non-Thai nationals entering Thailand must, as a rule, submit the Thailand Digital Arrival Card (TDAC) online within three days before arrival. E-cigarettes and heated tobacco are illegal, and bringing them in can lead to a fine or imprisonment"],
 ["Singapore","E-cigarettes are illegal. Penalties were increased on 1 September 2025, and foreign nationals can face fines, deportation and a ban on re-entry. An online arrival card is submitted before arrival ★"],
@@ -55,17 +55,17 @@ sections:[
 ["United Arab Emirates","The duty-free alcohol allowance is 4 litres in Dubai, Abu Dhabi and Sharjah, but rules on possessing and drinking alcohol differ by emirate (Sharjah bans it). Check the destination emirate’s rules on pork products too ★"],
 ["All three","Medicines containing narcotic, psychotropic or other controlled ingredients may need prior approval, a prescription or similar ★"]]},
 {t:"note",x:"* The Middle East details were not checked against official sources. Always check the website of the destination’s authorities or embassy. ★"}]},
-{h:"Medicines: what to watch most, in any country",blocks:[{t:"check",items:[
+{h:"Medicines: key points to check before travel",blocks:[{t:"check",items:[
 {name:"The ingredient decides",x:"It is the ingredient, not the brand name, that matters. Over-the-counter cold and cough medicines can contain controlled ingredients."},
 {name:"Original container and a document showing the prescription",x:"Carry prescription medicines in their original containers with the prescription details in English."},
 {name:"Some countries require prior approval",x:"Check the procedure on the destination authority’s website before departure."},
 {name:"The same applies when entering Japan",x:"Japan too has ingredients that cannot be brought in and medicines that need prior formalities. ★"},
-{name:"The airline does not decide whether a medicine is allowed",x:"If asked, point to the guidance of the destination’s authorities or embassy."}]},
+{name:"The airline does not make the final decision on whether a medicine is allowed",x:"If asked, point to the guidance of the destination’s authorities or embassy."}]},
 {t:"point",x:"Food usually ends with confiscation. Medicines and e-cigarettes can end with a person being detained. They are worth including in the information given at booking."}]}],
 voice:{h:"A Reported Case",x:"Thailand bans the import, sale and possession of e-cigarettes. According to the Bangkok Post, the Excise Department issued a warning to visitors after some embassies in Bangkok complained that their tourists had been fined for arriving with e-cigarettes; at that point it had seized 80 cases in three months, with fines totalling THB 5 million (Source: Bangkok Post). More recently a tourist caught vaping on a beach was reported to have been released after paying a THB 40,000 fine, about USD 1,200 (Source: Fox News). Even items allowed in Japan or Korea may be subject to the rules not only of the destination but also of countries and regions passed through on the way."},
 terms:[["Digital Arrival Card","デジタルの入国カード","디지털 입국 카드"],["Controlled Medicines","規制される薬","규제 의약품"],["Deportation","退去措置","강제 출국"],["Prescription","処方箋","처방전"]],
 quiz:[{q:"What has Thailand required of non-Thai nationals since 1 May 2025?",opts:["A digital arrival card submitted within three days before arrival","Only a paper arrival card","Nothing","Always a visa"],a:0,exp:"It is submitted online."},
-{q:"What is illegal in both Thailand and Singapore?",opts:["E-cigarettes","Paper books","Water","Umbrellas"],a:0,exp:"Both bringing them in and using them are illegal."},
+{q:"What is illegal in both Thailand and Singapore?",opts:["E-cigarettes","Paper books","Water","Umbrellas"],a:0,exp:"Bringing them in, possessing them and using them are illegal."},
 {q:"What decides whether a medicine can be brought in?",opts:["The ingredients","The brand name","The price","The shop it was bought in"],a:0,exp:"Over-the-counter medicines can contain controlled ingredients."}],
 next:"5-1 Reducing document errors: building the station’s system"});
 })(window.ARTS);

@@ -37,7 +37,7 @@ sections:[
 ["Codes","IATA: LAX / ICAO: KLAX"],
 ["Operator","Los Angeles World Airports (LAWA, a city department)"],
 ["Runways","Four parallel runways (two north, two south)"],
-["Terminals","Nine terminals around the horseshoe road (World Way) plus the Tom Bradley International Terminal (TBIT)"],
+["Terminals","Nine terminals in total: T1–T8 around the horseshoe road (World Way) and the Tom Bradley International Terminal (TBIT)"],
 ["2025 results","About 73.71 million (−3.76%; about 50.11 million domestic and 23.6 million international)"],
 ["Main airlines","Delta, United, American, Alaska, Southwest"]]},
 {t:"note",x:"* The 2025 figure is the sum of LAWA’s monthly statistics as compiled by the Los Angeles Business Journal; the fall came mainly from domestic capacity cuts."}]},
@@ -91,7 +91,7 @@ quiz:[{q:"How much is the JFK redevelopment worth in total?",opts:["US$4 billion
 {q:"How many gates will New Terminal One have at completion?",opts:["10","14","23","50"],a:2,exp:"The first phase has 14."}],
 next:"5-4 Sydney (SYD) and Western Sydney (WSI)"});
 set("5-4",{title:"Sydney (SYD) and Western Sydney (WSI): A Curfewed Airport and a 24-hour Newcomer Opening in October 2026",hl:"Sydney",subtitle:"Kingsford Smith handled 42.54 million passengers in 2025 under an 11pm–6am curfew and an hourly movement cap. Western Sydney International opens in the western suburbs on 25 October 2026",
-lead:["Sydney Kingsford Smith is Australia’s largest airport. A 1995 law bans most movements between 11pm and 6am and caps movements per hour. It handled 42.54 million passengers in 2025, with a record 17.17 million international passengers (★).","To relieve these limits, the 24-hour Western Sydney International (Nancy-Bird Walton) Airport has been built about 44 km west of the city, starting cargo flights on 26 July 2026 and passenger flights on 25 October 2026 (Australian Government). This lesson compares the two."],
+lead:["Sydney Kingsford Smith is Australia’s largest airport. A 1995 law bans most movements between 11pm and 6am and caps movements per hour. It handled 42.54 million passengers in 2025, with a record 17.17 million international passengers (★).","To relieve these limits, the 24-hour Western Sydney International (Nancy-Bird Walton) Airport has been built about 44 km west of the city. It began cargo flights on 26 July 2026, and passenger flights start on 25 October 2026 (Australian Government). This lesson compares the two."],
 sections:[
 {h:"The two airports (September 2026)",blocks:[{t:"fig",id:"wld_syd",cap:"Figure: Sydney’s two airports."},{t:"table",cols:["Item","Sydney (SYD)","Western Sydney (WSI)"],rows:[
 ["ICAO","YSSY","YSWS"],

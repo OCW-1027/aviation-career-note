@@ -86,7 +86,7 @@ sections:[
 {name:"If in doubt, ask before you decide",x:"Ask your supervisor or head office’s duty officer. It cannot be fixed after departure."},
 {name:"When you refuse, record why",x:"Note what you checked and which requirement was not met. It protects you if there is a complaint."},
 {name:"Do not accept “I got in before”",x:"Requirements change. Last time is no guarantee."}]},
-{t:"point",x:"The counter is the passenger’s first border. Stopping them here also protects them from being refused entry on arrival."}]}],
+{t:"point",x:"The counter is the passenger’s first border. Checking travel requirements properly here also helps protect them from being refused entry on arrival."}]}],
 voice:{h:"A Reported Case",x:"In 2018 the Court of Appeal in England upheld a GBP 2,000 charge on Ryanair for carrying a Bosnian man from Germany to the UK. He was travelling for one night with his Austrian son but could not produce the documents he needed to enter (Sources: Free Movement, Gherson and others). In another case Ryanair put forward evidence that such charges cost it over GBP 400,000 a year (Source: Mondaq, 2016). GBP 2,000 a passenger becomes a large cost once it adds up."},
 terms:[["Inadmissible Passenger (INAD)","入国拒否者","입국 거부자"],["Deportee (DEPO)","退去強制者","강제 퇴거자"],["Removal / Return","送還","송환"],["Travel Documents","渡航書類","여행 서류"]],
 quiz:[{q:"Who, in principle, takes back a passenger refused entry on arrival?",opts:["The airline that brought them","The destination airport company","The passenger’s travel agent","Customs at the destination"],a:0,exp:"The carrying airline has the duty of return and normally bears the cost."},

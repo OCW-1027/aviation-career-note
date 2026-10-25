@@ -6,7 +6,7 @@ sections:[
 {h:"Interviewers hire a role, not a set of tasks",blocks:[{t:"fig",id:"int_role",cap:"Figure: ground handling staff versus airline station rep."},{t:"cards",n:3,items:[
 {name:"Why the position exists",tag:"Starting point",x:"What problem is the company solving, and what will it entrust to this person? The purpose behind the job description."},
 {name:"What the role needs",tag:"Desired profile",x:"Speed at tasks, or judgement and coordination, or supervision and reporting? Needs differ greatly by role."},
-{name:"Why you are needed",tag:"Heart of the answer",x:"How your experience and strengths serve that role. This becomes the core of your motivation and self-PR."}]},
+{name:"Why you are needed",tag:"Heart of the answer",x:"How your experience and strengths serve that role. This becomes the core of your motivation and self-presentation."}]},
 {t:"point",x:"An answer built on a correct understanding of the role tells the interviewer at once that you know the job. Preparing from the interviewer’s side changes the quality of your answers dramatically."}]},
 {h:"Station rep versus ground handling staff",blocks:[{t:"table",cols:["Aspect","Ground handling staff","Airline station rep"],rows:[
 ["Position","Contracted by the airline; does the work following set procedures","Represents the airline and is responsible for its whole operation at that airport"],

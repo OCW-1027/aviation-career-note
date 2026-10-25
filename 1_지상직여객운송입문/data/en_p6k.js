@@ -36,7 +36,7 @@ sections:[
 {name:"This month’s conclusion (example)",x:"Went well: the holiday peak ran without major delays. Issues: slow information during the typhoon cancellation; delayed transfer bags. Next month: reassign responsibility and wording for cancellation notices (5-8); review transfer connection times with head office."}]}]},
 {h:"Writing a report people read",blocks:[{t:"check",items:[
 {name:"Figure → reason → action",x:"Do not list figures alone; always add the reason and next month’s action."},
-{name:"Compare",x:"Against last month, the same month last year and the target; one month’s figure alone says little."},
+{name:"Compare",x:"Against last month, the same month last year and the target, taking account of seasonal factors and differences in the number of flights; one month’s figure alone says little."},
 {name:"Include good news",x:"Record and share good work by staff and the handler."},
 {name:"Keep the format",x:"Do not change indicators or layout month to month; if you change them, say why."},
 {name:"Keep the sources",x:"Save where each figure came from (daily reports, delay codes, incident records) so you can show it when asked."}]}]},

@@ -47,7 +47,7 @@ sections:[
 {name:"Where they are sold",x:"At booking, in the pre-departure email, and at the airport counter."},
 {name:"Electronic documents",x:"Payment for ancillaries is often managed with an electronic miscellaneous document (EMD)."},
 {name:"Clarity",x:"Finding out about a charge for the first time at the airport breeds resentment. Make it clear at booking."}]},
-{t:"point",x:"The value of a station’s sales team is local knowledge. Pass the Japanese market movements behind the numbers to the head office revenue management team early."}]}],
+{t:"point",x:"The value of a station’s sales team is local knowledge. Pass the Japanese market movements behind the numbers to the head office revenue management team early. ※ Revenue management is covered in Part 7, lessons 7-1–7-8."}]}],
 voice:"Head office sees the local market mainly through numbers. Sending short, regular notes on competitor fares, events and agency reactions makes it more likely to shape pricing.",
 terms:[["Revenue Management","収益管理","수익 관리"],["Load Factor","搭乗率","탑승률"],["Yield","イールド","일드(단위 수익)"],["Ancillary Services","付帯サービス","부가서비스"]],
 quiz:[{q:"Which two measures must be watched together?",opts:["Load factor and yield","Flight number and aircraft","Weather and season","Staff numbers"],a:0,exp:"Load factor alone does not raise revenue."},
@@ -148,7 +148,7 @@ sections:[
 {h:"The shape of a report",blocks:[{t:"ladder",rise:10,steps:[{name:"Conclusion",sub:"Ahead of or behind target"},{name:"Numbers",sub:"Actual, last year, target"},{name:"Causes",sub:"Market, competitors, ourselves"},{name:"Actions",sub:"What we do next"},{name:"Requests to head office",sub:"Fares, seats, budget"}]},
 {t:"point",x:"Bad news first, and early. Report it with the cause and the next step, and head office will trust the station to handle it (Expat Guide to Japan 4-2)."}]},
 {h:"Looking back at Parts 1–6",blocks:[{t:"rows",items:[
-{name:"The market",x:"Japan is a market where you sell together with agencies; international routes carry demand both ways with strong seasonal swings (Part 1)."},
+{name:"The market",x:"Japan is a market where you sell together with agencies; Japan–Korea routes carry demand both ways with strong seasonal swings (Part 1)."},
 {name:"Channels",x:"Indirect and direct sales share the roles; GDS, BSP and NDC are the infrastructure (Part 2)."},
 {name:"Agencies",x:"Trust, blocks, incentives and ADMs (Part 3)."},
 {name:"Fares and revenue",x:"Clear fares, and load factor and yield together (Part 4)."},

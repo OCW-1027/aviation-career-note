@@ -9,7 +9,7 @@ sections:[
 ["1 Explosives","Fireworks, ammunition"],
 ["2 Gases","Aerosols, fire extinguishers, oxygen cylinders"],
 ["3 Flammable liquids","Paint, alcohol, fuel"],
-["4 Flammable solids","Matches, some metal powders"],
+["4 Flammable solids etc. (4.1 flammable solids, 4.2 spontaneously combustible substances, 4.3 dangerous when wet)","Matches, some metal powders"],
 ["5 Oxidisers and organic peroxides","Some bleaches"],
 ["6 Toxic and infectious substances","Pesticides, diagnostic specimens"],
 ["7 Radioactive material","Medical isotopes"],
@@ -116,7 +116,7 @@ quiz:[{q:"What matters when handing over valuables?",opts:["Signing for them","A
 next:"3-5 Semiconductor and precision equipment"});
 
 set("3-5",{title:"Semiconductor and Precision Equipment",hl:"precision equipment",subtitle:"Vibration, shock, humidity, temperature — and export control. The more valuable the machine, the longer the preparation ★",
-lead:["Semiconductor production and inspection equipment can be worth hundreds of thousands or millions per unit. Even slight vibration, shock or humidity throws its performance off, so packing, transport and installation need consistent control. Such equipment may also contain technology with military applications, which brings export control into the picture.",
+lead:["Semiconductor production and inspection equipment can be worth tens of millions to hundreds of millions of yen per unit. Even slight vibration, shock or humidity throws its performance off, so packing, transport and installation need consistent control. Such equipment may also contain technology with military applications, which brings export control into the picture.",
 "This article follows the air transport of semiconductor-related equipment and covers the preparation, the packing, the journey and the arrival."],
 sections:[
 {h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal and loading, arrival checks and delivery to site light up in turn; the right side shows who is mainly responsible."},

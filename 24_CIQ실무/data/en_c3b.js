@@ -1,6 +1,6 @@
 /* CIQの役割 — English version (Part 3 Quarantine, lessons 3-4 and 3-5) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("3-4",{title:"Travelling with Pets: Dogs and Cats Across Borders",hl:"Pets",subtitle:"A pet is not baggage; it is an animal being imported. Preparation can take more than seven months",
+set("3-4",{title:"Travelling with Pets: Dogs and Cats Across Borders",hl:"Pets",subtitle:"A pet is not just baggage; it is an animal subject to import and export procedures. Preparation can take more than seven months",
 lead:["Taking a dog or cat abroad, or bringing one home: for the passenger it is a family member moving, but for the country it is the export and import of an animal. If the quarantine conditions are not met, the animal may be held for a long time on arrival or sent back.","At the airline counter, the first thing to check is not the size of the cage or the charge, but whether the quarantine documents are complete."],
 sections:[
 {h:"Two sets of rules, checked separately",blocks:[{t:"rows",items:[

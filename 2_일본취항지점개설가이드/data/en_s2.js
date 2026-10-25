@@ -76,7 +76,7 @@ next:"2-3 Offices and staff housing"});
 
 set("2-3",{title:"Offices and Staff Housing",hl:"offices and housing",subtitle:"A city office for registration, an airport office for operations, and housing — three contracts, three purposes",
 lead:["An airline station needs a city office as its registered and commercial base, and an airport office for airport operations. Where there are expatriates, staff housing is leased as well. Each has a different counterparty and different terms.",
-"This article covers the types of office and how to choose one, what to watch for in the contracts, housing, what to prepare when setting up, and how to manage the contracts."],
+"This article covers the types of office and how to choose one, what to watch for in the contracts, securing and fitting out the airport office, housing, and how to manage the contracts."],
 sections:[
 {h:"The types of office",blocks:[{t:"fig",id:"opn_office",cap:"Animated figure: three places a station needs (example)."},{t:"table",cols:["Type","Purpose","Counterparty (example)"],rows:[
 ["City office","The registered address, sales, receiving post and invoices","A serviced office or the building manager"],

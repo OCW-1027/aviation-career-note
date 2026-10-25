@@ -5,7 +5,7 @@ lead:["Carrying a passenger without the right visa or travel authorisation is on
 sections:[
 {h:"Why it happens",blocks:[{t:"fig",id:"ciq_fine",cap:"Figure: when a penalty notice arrives."},{t:"table",cols:["Cause","Example"],rows:[
 ["Transit point not checked","Only the final destination was looked up; there was a separately bought ticket"],
-["A change in requirements was not known","A visa became necessary last month; a travel authorisation was introduced"],
+["A change in requirements was not known","Following a change in the rules, a visa became necessary; a travel authorisation was introduced"],
 ["The passenger’s explanation was accepted","“I go there all the time”; “I checked with the embassy”"],
 ["Something on the passport was missed","Remaining validity, damage, the spelling of the name"],
 ["Pressed for time","Just before closing; a long queue"]]}]},
@@ -23,7 +23,7 @@ sections:[
 {name:"Prevent a repeat",sub:"Choose one measure that fits the cause and tell everyone"}]},
 {t:"note",x:"* How to appeal and the deadline differ by country."}]},
 {h:"Look at the numbers",blocks:[{t:"check",items:[
-{name:"Look at the rate, not the count",x:"How many per 10,000 passengers carried. More flights naturally mean more cases."},
+{name:"Look at the rate, not only the count",x:"How many per 10,000 passengers carried. More flights naturally mean more cases."},
 {name:"Break it down by cause",x:"Transit points, passport validity, travel authorisations. Start with the commonest."},
 {name:"Break it down by route",x:"Is it concentrated on certain destinations?"},
 {name:"Share with the handling company",x:"Where check-in is outsourced, review the numbers and measures together."}]},
@@ -58,7 +58,7 @@ sections:[
 {name:"Flights without passengers",x:"Even on a ferry flight, the aircraft, crew and stores are subject to CIQ."},
 {name:"Crew changes",x:"The immigration status of crew who change over and stay (1-6)."},
 {name:"Delays",x:"If the flight is later than notified, the officers may have gone (5-3)."}]},
-{t:"point",x:"Whether an extra flight can operate is sometimes decided, before any traffic rights, by whether CIQ and the airport can accept it."}]}],
+{t:"point",x:"Whether an extra flight can operate sometimes depends not only on operating permission but also on whether CIQ and the airport can accept it."}]}],
 voice:{h:"A Reported Case",x:"When Miyako Airport in Okinawa received Asiana Airlines charter flights from Incheon, it had no international facilities, so customs and immigration were carried out in a partitioned section of the domestic area. Because the space was cramped, the prefecture decided to build CIQ facilities, with use planned from March 2016 (Source: Ryukyu Shimpo). For a charter to an airport without permanent CIQ facilities, both the space and the people have to be agreed with the agencies long before the flight."},
 terms:[["Extra Flight","臨時便","임시편"],["Charter Flight","チャーター便","전세편"],["Prior Coordination","事前協議","사전 협의"],["Ferry Flight","回送便","공수편(페리편)"]],
 quiz:[{q:"What comes first for CIQ when operating an extra flight?",opts:["Tell them in advance and confirm they can handle it","Tell them after arrival","Do nothing","Tell only the airport company"],a:0,exp:"CIQ staffs for the regular schedule."},
@@ -143,7 +143,7 @@ sections:[
 {t:"note",x:"* These are samples. Write the actual wording to match the latest guidance from the destination’s authorities."}]},
 {h:"A pre-arrival announcement (sample)",blocks:[{t:"p",x:"“We will be landing shortly. In this country, bringing in meat products, fruit and vegetables is restricted by law. Please do not take with you any fruit or meals served on board. If you have any such items, please declare them at the quarantine counter after arrival. If you declare them, you will not be penalised.”"},
 {t:"rows",items:[
-{name:"Keep it short",x:"Passengers do not listen to long announcements. Limit it to the one or two commonest violations at that destination."},
+{name:"Keep it short",x:"Passengers do not listen to long announcements. Limit it to the one or two items requiring particular attention at that destination."},
 {name:"Say what to do",x:"Do not stop at “it is prohibited”. Say “please declare it” or “please leave it on board”."},
 {name:"In the passengers’ languages",x:"Choose languages to match the nationalities on board."}]}]},
 {h:"Writing and revising the wording",blocks:[{t:"check",items:[

@@ -19,12 +19,12 @@ sections:[
 {name:"When",x:"As soon as possible, while memories are fresh."},
 {name:"How",x:"Use the company’s safety reporting system or form; some companies have anonymous or confidential reporting."},
 {name:"Afterwards",x:"Tell the reporter the outcome. Without feedback, the next report never comes."}]}]},
-{h:"Just culture",blocks:[{t:"p",x:"Reports flow where people who report honestly are not unfairly blamed. That does not mean anything goes: a just culture separates responses by type of behaviour."},
+{h:"Just culture",blocks:[{t:"p",x:"A just culture does not punish everyone who reports safety information alike; it assesses the nature and circumstances of each act fairly and balances learning with accountability. It does not excuse deliberate violations or reckless acts."},
 {t:"table",cols:["Behaviour","Example","Response"],rows:[
 ["Human error","Misread a figure after believing it was checked","Support, do not blame; fix the system (procedure, display, double check)"],
-["At-risk behaviour","Skipped a step because ‘it’s always fine’","Coach, and find out why the shortcut was tempting"],
+["At-risk behaviour","Skipped a step because ‘it’s always fine’","Coach as needed, and look into the underlying factors behind the shortcut"],
 ["Reckless behaviour","Knowingly broke a rule despite the danger","Deal with it firmly under company rules"]]},
-{t:"point",warn:true,x:"If managers react angrily to a report, reporting stops that day. Start with “thank you for telling us.”"}]}],
+{t:"point",warn:true,x:"If managers inappropriately blame people who report, voluntary reporting from the front line may decline. First acknowledge the report itself and thank the reporter."}]}],
 voice:"Near-miss reports are for fixing procedures, not for punishment. Thank whoever reports, and tell them what was changed as a result.",
 terms:[["Safety Management System (SMS)","安全管理システム","안전관리시스템"],["Aviation Security","航空保安","항공보안"],["Hazard","ハザード","위해 요인"],["Near Miss","ヒヤリ・ハット","아차 사고"],["Just Culture","公正な文化","공정한 문화"],["Safety Performance Indicator (SPI)","安全の指標","안전 지표"]],
 quiz:[{q:"What does security prevent?",opts:["Unintended accidents","Deliberate unlawful interference","Aircraft failures","Weather delays"],a:1,exp:"Hijacking, unauthorised access and the like."},
@@ -43,7 +43,7 @@ sections:[
 {t:"note",x:"* The split differs by country, airport and contract. Check your station’s security programme. ★"}]},
 {h:"Security at the counter",blocks:[{t:"check",items:[
 {name:"Identity",x:"Where ID checks are required, as on international flights, compare the photo in the passport or ID with the passenger’s face, and the name with the booking and boarding details, following company procedure."},
-{name:"Security questions",x:"“Did you pack your bags yourself?” “Are you carrying anything for someone else?” Whether and how to ask differs by country and airline (1-1)."},
+{name:"Security questions",x:"“Did you pack your bags yourself?” “Are you carrying anything for someone else?” Whether to ask and what to ask follow the national and company security programme; use the set questions as worded (1-1)."},
 {name:"Behaviour",x:"Hesitant answers, inconsistent stories, luggage that does not fit the trip: pass concerns to the supervisor."},
 {name:"Jokes",x:"Remarks such as “there’s a bomb in my bag” are reported under the set procedure, even as a joke."}]}]},
 {h:"Passenger–baggage reconciliation",blocks:[{t:"p",x:"As a rule, a checked bag does not fly unless its owner is on board (2-5). Many airports and airlines match boarding records with bag tags so that bags of passengers who do not board can be found quickly."},
@@ -53,11 +53,11 @@ sections:[
 ["A bag whose owner or routing cannot be confirmed","Not loaded until the required security checks are complete"]]}]},
 {h:"Suspicious items and people",blocks:[{t:"ladder",rise:10,steps:[{name:"Do not touch",sub:"Do not move or open it"},{name:"Move away",sub:"Keep people back"},{name:"Report",sub:"Supervisor, airport security, police"},{name:"Record",sub:"Time, place, description, actions"}]},
 {t:"rows",items:[
-{name:"Unattended bags",x:"Contact airport security under the airport’s procedure before paging for the owner."},
+{name:"Unattended bags",x:"Contact airport security under the airport’s security procedure before paging for the owner. Do not move or open the bag on your own initiative."},
 {name:"People not permitted to board",x:"Some people may not board under instructions from the authorities or company rules. The supervisor decides; staff do not make that call alone."},
 {name:"Unlawful acts on board",x:"When the crew report one, prepare to hand over to police and the airport at the destination."}]}]},
 {h:"The final check at the gate",blocks:[{t:"check",items:[
-{name:"Passenger and boarding pass",x:"Match the name, the ID and the face (2-4)."},
+{name:"Passenger and boarding pass",x:"Match the name, the ID and the face, following airport, route and company procedure (2-4)."},
 {name:"Unauthorised people",x:"Keep them off the bridge and the ramp; control the doors."},
 {name:"Prohibited items",x:"Anything found at the gate, even after screening, is handled under the rules."},
 {name:"Head count",x:"Boarded numbers, the manifest and the loadsheet must agree."}]},
@@ -153,15 +153,15 @@ quiz:[{q:"On audit day you are asked something you don’t know. You…",opts:["
 next:"8-5 Reporting accidents and incidents, and emergency response"});
 
 set("8-5",{title:"Reporting Accidents and Incidents, and Emergency Response",hl:"emergency response",subtitle:"Safety first, then the initial report, then the authorities within the deadline — and practise in advance",
-lead:["When an accident, serious incident or security event happens, what the station does in the first hours is defined: protect people, give the initial report to the right people under the company’s emergency procedures, and keep a timed record. Whether, when and how to report to the authorities depends on the event and the country.","This lesson covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
+lead:["When an accident, a serious incident or a safety or security event happens, what the station does in the first hours is defined: protect people, give the initial report to the right people under the company’s emergency procedures, and keep a timed record. Whether, when and how to report to the authorities depends on the event and the country.","This lesson covers what is reported and how, what goes in the initial report, the station’s role in the emergency response plan (ERP), and exercises."],
 sections:[
 {h:"What is reported (examples)",blocks:[{t:"table",cols:["Category","Example","Reporting"],rows:[
 ["Accident","Death or injury, major aircraft damage","Emergency notification, then report to the authorities by the method and deadline set in law and company procedures"],
-["Serious incident","An event that could have led to an accident","To the authorities within the set deadline"],
-["Safety occurrence or hazard","Vehicle contact, loading error, dangerous goods found","Check whether a statutory report is needed, and also report through the company safety reporting system"],
+["Serious incident","An event that could have led to an accident","Make the required reports under law and company procedures"],
+["Safety occurrence or hazard","Vehicle contact, loading error, dangerous goods occurrence","Check whether a statutory report is needed, and also report through the company safety reporting system"],
 ["Security event","Suspicious item, unauthorised access, unlawful act on board","Airport, police and head office security; the authorities where required"]]},
 {t:"note",x:"* Categories and deadlines differ by country and airline. List who to report to, and by when, for each type in the station procedures. ★"}]},
-{h:"The reporting flow",blocks:[{t:"fig",id:"gnd_rep",cap:"Animated figure: the reporting flow from making safe to preventing recurrence lights up in turn."},{t:"ladder",rise:10,steps:[{name:"Make it safe",sub:"Care for the injured, remove danger"},{name:"Initial report",sub:"Supervisor, operations control, head office"},{name:"Record",sub:"Time, place, people, situation, actions"},{name:"Report to the authorities",sub:"By the set deadline and form"},{name:"Investigate and prevent",sub:"Analyse causes and share actions"}]},
+{h:"The reporting flow",blocks:[{t:"fig",id:"gnd_rep",cap:"Animated figure: the reporting flow from making safe to preventing recurrence lights up in turn."},{t:"ladder",rise:10,steps:[{name:"Make it safe",sub:"Care for the injured, prevent secondary harm"},{name:"Initial report",sub:"Supervisor, operations control, head office"},{name:"Record",sub:"Time, place, people, situation, actions"},{name:"Report to the authorities",sub:"By the set deadline and form"},{name:"Investigate and prevent",sub:"Analyse causes and share actions"}]},
 {t:"point",x:"Send the initial report quickly with what you know, marking unknowns as “being confirmed”. A fast first report plus updates is worth more than a perfect report that arrives late."}]},
 {h:"What goes in the initial report",blocks:[{t:"check",items:[
 {name:"When and where",x:"Date and time, airport, stand or location, flight number."},
@@ -170,7 +170,7 @@ sections:[
 {name:"What has been done",x:"Actions taken and what is expected next."},
 {name:"Reporter",x:"Name and contact details."}]}]},
 {h:"The station’s role in the emergency response plan",blocks:[{t:"table",cols:["Role","What it involves (example)"],rows:[
-["Local response centre","Led by the station manager; single point of contact with the airport, authorities and head office"],
+["Local liaison and coordination point","Set up communication lines with the airport, authorities and head office under the emergency response plan"],
 ["Passengers and families","Confirm the manifest, set up an enquiry point, prepare family assistance"],
 ["Communications","Media and social media handled by the channel head office designates; no individual statements"],
 ["Log","One person keeps the timeline throughout"]]},

@@ -254,7 +254,7 @@ function renderExp(x,d,lf){var e=EXP[lang],m=x.m,R=ROUTES[st.r];
   return '<details data-k="'+k+'"'+(openIds[k]?' open':'')+'><summary><i style="background:'+COL[k]+'"></i>'+d.C[k][0]+'<span class="amt">'+fy(x.c[k])+'</span><span class="tg">'+e.tag[TAGS[k]]+'</span></summary><div class="dbody">'+
    '<h4>'+(lang==='ja'?'実際に含まれる費用':lang==='ko'?'실제로 포함되는 비용':'What real airlines include')+'</h4><ul>'+E.sub.map(function(q){return '<li>'+q+'</li>'}).join('')+'</ul>'+
    '<h4>'+(lang==='ja'?'このツールの計算':lang==='ko'?'이 도구의 계산':'How this tool calculates it')+'</h4><p>'+fill(E.how,vals)+'</p>'+
-   '<h4>'+(lang==='ja'?'現場との関係':lang==='ko'?'현장과의 관계':'What the station can do')+'</h4><p>'+E.field+'</p></div></details>'}).join('');
+   '<h4>'+(lang==='ja'?'現場との関係':lang==='ko'?'현장과의 관계':'Link to station work')+'</h4><p>'+E.field+'</p></div></details>'}).join('');
  var unit=m.fare+m.ancp;
  var kv={tot:fy(x.tot),ask:fy(x.ask),seats:x.seats,km:fy(m.km),cask:x.cask.toFixed(1),rev:fy(x.rev),rask:x.rask.toFixed(1),cargo:fy(x.rv.cargo),unit:fy(unit),be:pct(x.be),perSeat:fy(x.perSeat)};
  document.getElementById('kpiexp').innerHTML=e.K.map(function(q){return '<h4 style="margin:10px 0 2px;font-size:14px">'+q[0]+'</h4><div class="formula" style="white-space:normal">'+fill(q[1],kv)+'</div>'}).join('');}

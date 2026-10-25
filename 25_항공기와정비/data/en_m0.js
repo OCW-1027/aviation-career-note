@@ -9,7 +9,7 @@ sections:[
 {t:"table",cols:["Stage","What it is","Who"],rows:[
 ["Type certificate (TC)","Certifies that the type’s design meets the safety standards","Authority of the state of design (the US FAA for the B737 and B787)"],
 ["Certificate of airworthiness (C of A)","Certifies that each aircraft is fit to fly; one of the documents carried on board","Authority of the state of registry (Korea’s transport ministry for a Korean aircraft)"],
-["Continuing airworthiness","Inspections and repairs under the maintenance programme, compliance with airworthiness directives (ADs) and records","The airline (maintenance department)"],
+["Continuing airworthiness","Inspections and repairs under the maintenance control manual and maintenance programme, compliance with airworthiness directives (ADs) and records","The airline (maintenance department)"],
 ["Release for each flight","Checks before every flight and the certifying engineer’s signature (release to service)","Certifying engineer; finally accepted by the captain"]]}]},
 {h:"Where the B737 and B787 fit",blocks:[{t:"table",cols:["","B737 (B737-800 etc.)","B787 (B787-9 etc.)"],rows:[
 ["Size","Narrow-body (about 180–190 seats)","Wide-body (about 250–300 seats)"],

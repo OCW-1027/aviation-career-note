@@ -361,7 +361,7 @@ cgo_tl1:function(l){
 cgo_acl:function(l){
  var W=({ja:{t:'貨物に使える重さ（中型機の例・架空）',a:'許容搭載量（ACL）38,000kg',p:[['旅客','290人×80kg＝23,200kg',23200,'#2F6FD6'],['手荷物','290人×16kg＝4,640kg',4640,'#6B4FA0'],['貨物','残り10,160kg',10160,'#E08A2E']],n:['貨物の枠は、ACLから旅客と手荷物を引いた残り','手荷物は個数でもコンテナの数が決まる（319個÷40個＝8台）。場所も貨物の枠を減らす','前日に予想の旅客数・手荷物を旅客の担当と確かめる']},
   ko:{t:'화물에 쓸 수 있는 무게(중형기 예·가상)',a:'허용 탑재량(ACL) 38,000kg',p:[['여객','290명×80kg=23,200kg',23200,'#2F6FD6'],['수하물','290명×16kg=4,640kg',4640,'#6B4FA0'],['화물','나머지 10,160kg',10160,'#E08A2E']],n:['화물 몫은 ACL에서 여객과 수하물을 뺀 나머지','수하물은 개수로도 컨테이너 수가 정해진다(319개÷40개=8대). 자리도 화물 몫을 줄인다','전날 예상 여객 수·수하물을 여객 담당과 확인한다']},
-  en:{t:'Weight available for cargo (wide-body example, fictional)',a:'Allowed traffic load (ACL) 38,000 kg',p:[['Passengers','290 × 80 kg = 23,200 kg',23200,'#2F6FD6'],['Baggage','290 × 16 kg = 4,640 kg',4640,'#6B4FA0'],['Cargo','Remaining 10,160 kg',10160,'#E08A2E']],n:['Cargo gets what is left of the ACL after passengers and baggage','Baggage also takes positions: 319 bags ÷ 40 per container = 8 containers, which reduces cargo space','Check expected passenger and bag numbers with the passenger team the day before']}})[l];
+  en:{t:'Weight available for cargo (wide-body example, fictional)',a:'Allowable cabin load (ACL) 38,000 kg',p:[['Passengers','290 × 80 kg = 23,200 kg',23200,'#2F6FD6'],['Baggage','290 × 16 kg = 4,640 kg',4640,'#6B4FA0'],['Cargo','Remaining 10,160 kg',10160,'#E08A2E']],n:['Cargo gets what is left of the ACL after passengers and baggage','Baggage also takes positions: 319 bags ÷ 40 per container = 8 containers, which reduces cargo space','Check expected passenger and bag numbers with the passenger team the day before']}})[l];
  if(!W)return F.cgo_acl('ja');setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=60,dur='7s',x=30,tot=38000;
  s+=WR(320,y+FS(11)*0.9,W.a,11,'#0f3558',900,580);y+=FS(11)*1.3+12;
@@ -402,7 +402,7 @@ cgo_uws:function(l){
 /* 6-3 到着から引き渡しまでの時間（SLAの例） */
 cgo_tl2:function(l){
  var W=({ja:{t:'到着から引き渡しまで（SLAの例）',u:'到着後（分）',m:[[60,'荷受人へ到着の通知'],[120,'急送・生鮮品・ULDのままの引き渡し、乗り継ぎへの引き継ぎ'],[180,'便の締め（システム）'],[240,'一般の貨物（ばら）の引き渡し']],n:['時間はハンドリング会社とのSLAの例★。守れなかった件数は月例の会議で確かめる（5-2）','急ぐ貨物ほど、ULDのまま扱える位置に積んでもらうと早い']},
-  ko:{t:'도착에서 인도까지(SLA 예)',u:'도착부터 분',m:[[60,'수하인에게 도착 통지'],[120,'급송·신선품·ULD 그대로 인도, 환적 화물 인계'],[180,'편 마감(시스템)'],[240,'일반 화물(벌크) 인도']],n:['시간은 조업사와의 SLA 예★. 지키지 못한 건수는 월간 회의에서 확인한다(5-2)','급한 화물일수록 ULD 그대로 다룰 수 있는 위치에 실어 두면 빠르다']},
+  ko:{t:'도착에서 인도까지(SLA 예)',u:'도착 후(분)',m:[[60,'수하인에게 도착 통지'],[120,'급송·신선품·ULD 그대로 인도, 환적 화물 인계'],[180,'편 마감(시스템)'],[240,'일반 화물(벌크) 인도']],n:['시간은 조업사와의 SLA 예★. 지키지 못한 건수는 월간 회의에서 확인한다(5-2)','급한 화물일수록 ULD 그대로 다룰 수 있는 위치에 실어 두면 빠르다']},
   en:{t:'From arrival to delivery (SLA example)',u:'minutes after arrival',m:[[60,'Consignee notified of arrival'],[120,'Express, perishables and intact ULDs released; transfers handed over'],[180,'Flight closed in the system'],[240,'General (loose) cargo released']],n:['Times are an example SLA with the handler ★; review missed targets at the monthly meeting (5-2)','Urgent cargo moves fastest if loaded where it can be handled as an intact ULD']}})[l];
  if(!W)return F.cgo_tl2('ja');setK(1);
  var C=['#2F6FD6','#2E9B5F','#6B4FA0','#E08A2E'];

@@ -24,7 +24,7 @@ terms:[["Package Tour","パッケージツアー","패키지 투어"],["Group Tr
 quiz:[{q:"What characterises the Japanese market?",opts:["Travel agencies carry great weight","There are no travel agencies","Expectations are low","Japanese information is unnecessary"],a:0,exp:"Especially for groups and packages."},
 {q:"Which segment secures large numbers of seats early?",opts:["Group travel","Independent travel","Business travel","Transfers"],a:0,exp:"School and incentive trips, for example."},
 {q:"What is the first step in selling?",opts:["Give agencies fares, rules and information that are easy to sell","Keep the fares secret","Skip the Japanese notices","Avoid agencies"],a:0,exp:"It is a market you sell together."}],
-next:"1-2 Demand and seasonality on international routes"});
+next:"1-2 Demand and seasonality on Japan–Korea routes"});
 
 set("1-2",{title:"Demand and Seasonality on International Routes",hl:"demand",subtitle:"Read when the holidays, school breaks and events of both countries overlap",
 lead:["A route to and from Japan carries demand in both directions: people from Japan travelling out, and people from the other country coming in. Public holidays, long weekends, school breaks, concerts and sports events in both countries, and exchange rate movements all shift demand sharply.",

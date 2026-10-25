@@ -10,7 +10,7 @@ sections:[
 {h:"Fluid types and one-step or two-step treatment",blocks:[{t:"table",cols:["Type","Characteristics","Main use"],rows:[
 ["Type I","Thin, applied heated; protects only briefly","De-icing (first step)"],
 ["Type II","Thickened; shears off in the airflow as the aircraft accelerates","Anti-icing"],
-["Type III","Between Types II and IV; suits aircraft with lower rotation speeds","Anti-icing (mainly smaller aircraft)"],
+["Type III","Thickened; suits aircraft with lower rotation speeds","Anti-icing (mainly smaller aircraft)"],
 ["Type IV","Strongly thickened; longest protection","Anti-icing"]]},
 {t:"table",cols:["Method","What happens"],rows:[
 ["One-step","Heated fluid removes contamination and protects in a single application"],

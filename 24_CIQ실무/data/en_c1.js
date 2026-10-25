@@ -4,18 +4,18 @@ set("1-1",{title:"Passports and Visas: What to Check at the Counter",hl:"Passpor
 lead:["In the few dozen seconds between taking a passport and handing over a boarding pass, the airline decides whether it may carry this passenger. There seems to be a lot to look at, but there are only three questions. Is the document theirs? Is it valid? Does it meet the requirements of the destination and every transit point?","This lesson sets out what to look at on a passport and a visa. How to look up the requirements themselves is covered in the next lesson (TIMATIC)."],
 sections:[
 {h:"What to look at on a passport",blocks:[{t:"table",cols:["Where","What to confirm"],rows:[
-["Photograph","That the photo, age and sex match the person in front of you"],
+["Photograph","That the photo and personal details match the person in front of you"],
 ["Name","Spelled as in the booking and on the boarding pass. Watch for maiden names, middle names and name order"],
 ["Validity","Valid on the day of arrival. Some countries require a remaining period, such as six months from entry or three months beyond departure"],
 ["Condition","No tears, water damage, missing pages or writing. Entry can be refused on a damaged passport"],
 ["Type","Ordinary, official or diplomatic passport, emergency passport, travel document. Visa requirements differ by type"],
-["Machine readable zone (MRZ)","The two lines at the bottom. The scanned data should match the details on the photo page"]]}]},
+["Machine readable zone (MRZ)","The machine readable area at the bottom of the photo data page. The scanned data should match the details on the photo page"]]}]},
 {h:"Visa basics",blocks:[{t:"rows",items:[
 {name:"What a visa is",x:"An indication from the country’s embassy or consulate that the holder may present themselves for entry. It does not guarantee entry; the immigration officer on arrival decides."},
 {name:"Visa exemption",x:"Under agreements between countries, short stays may need no visa. Purpose (tourism, business) and length of stay are limited."},
 {name:"What to look at",x:"Type (visitor, work, study, transit), validity, number of entries (single or multiple), name and passport number."},
 {name:"Electronic visas",x:"There is no sticker. Confirm with the printed notice or the authority’s system."},
-{name:"A visa in an old passport",x:"Some countries, such as the United States, require the passenger to present both the old and the new passport. ★"}]}]},
+{name:"A visa in an old passport",x:"If a valid visa is in an old passport, some countries, such as the United States, require the passenger to present both the old and the new passport. ★"}]}]},
 {h:"What may be required besides a visa",blocks:[{t:"table",cols:["Item","Example"],rows:[
 ["Return or onward ticket","Some countries refuse entry on a one-way ticket"],
 ["Permitted length of stay","The booked return date must not exceed the stay allowed"],
@@ -58,8 +58,8 @@ sections:[
 {h:"Cautions when relying on the tool",blocks:[{t:"check",items:[
 {name:"A different input gives a different answer",x:"Leave out the nationality, passport type or a transit point and the answer will be wrong."},
 {name:"Even when the automatic check says OK",x:"If there is a transit not in the booking (a separately bought ticket), look it up yourself."},
-{name:"If the answer is unclear, ask",x:"Confirm with your supervisor or head office’s duty officer before deciding whether the passenger can board."},
-{name:"Keep what you looked up",x:"Save the screen or a printout. It is your evidence if a penalty or complaint follows."}]},
+{name:"If the answer is unclear, ask",x:"Confirm with your supervisor or the designated department or person at head office before deciding whether the passenger can board."},
+{name:"Keep what you looked up",x:"Save the screen or a printout. It is your evidence if a penalty under the relevant country’s rules or a complaint follows."}]},
 {t:"point",x:"TIMATIC is not a machine that gives the answer; it is a reference that tells you the requirements. Applying them is your job, because you are the one looking at the passenger."}]}],
 voice:"A TIMATIC result of 'OK' means nothing if the nationality, transit point or purpose of travel entered differs from the facts. When you hit an unclear exception, keep a record of the result screen and, if needed, check again against official embassy or government information.",
 terms:[["Travel Information Manual Automatic (TIMATIC)","TIMATIC","TIMATIC"],["Transit Visa","乗り継ぎ査証","환승 비자"],["Purpose of Stay","滞在の目的","체류 목적"],["Automated Document Check","書類の自動確認","서류 자동 확인"]],
@@ -107,26 +107,26 @@ set("1-4",{title:"Refusal of Entry and Removal in Practice",hl:"Refusal of Entry
 lead:["However carefully you check, some passengers will still be refused entry. Even with complete documents, a passenger can be refused for answers given at immigration or for past records.","What does the airline do then? This lesson looks at both the station at the destination and the station that sent the passenger."],
 sections:[
 {h:"The main reasons for refusal",blocks:[{t:"fig",id:"ciq_inad",cap:"Figure: the flow when a passenger is refused entry."},{t:"table",cols:["Reason","Example"],rows:[
-["Missing documents","No visa or travel authorisation, insufficient remaining passport validity, no return ticket"],
+["Missing documents","No visa or travel authorisation, insufficient remaining passport validity, no return or onward ticket"],
 ["Purpose does not match","Entering as a visitor but intending to work; unable to explain where they will stay or their plans"],
 ["Insufficient funds","Cannot show money or a means of payment"],
 ["Past records","Overstays, removals or earlier refusals"],
 ["Inconsistent answers","What was declared and what is said at immigration do not match"]]},
-{t:"note",x:"* Issues from the third row down usually cannot be identified at the counter. The airline is held responsible mainly when it failed to check documents."}]},
+{t:"note",x:"* Issues from the third row down usually cannot be identified at the counter. The airline’s checking responsibility becomes an issue mainly when it failed to check the required travel documents."}]},
 {h:"What happens at the destination",blocks:[{t:"ladder",steps:[
 {name:"Secondary inspection",sub:"An immigration officer questions the passenger in detail"},
 {name:"Decision to refuse entry",sub:"The authority notifies the airline that brought the passenger"},
 {name:"Arranging the return flight",sub:"Normally the airline’s next departure; a seat is secured"},
 {name:"Waiting for departure",sub:"In a facility within the airport, under the authority’s control"},
-{name:"Boarding",sub:"The crew may hold the passport and papers until arrival"},
+{name:"Boarding",sub:"Under set procedures, the crew may hold the passport and other documents until arrival"},
 {name:"Arrival at the origin",sub:"The origin station meets the flight and hands the passenger over to the authorities"}]},
 {t:"note",x:"* Procedures and document names differ by country."}]},
 {h:"What the sending station does",blocks:[{t:"rows",items:[
 {name:"Receive the notification",x:"The destination station or head office sends the name, flight, reason and return flight."},
 {name:"Check the check-in record",x:"Who checked what and accepted the passenger, and whether the result was recorded."},
 {name:"Report to head office",x:"Facts, cause and expected cost, in the incident report format of lesson 3-4."},
-{name:"Meet the returning passenger",x:"Meet the flight and explain costs and next steps. It is not the place for blame."},
-{name:"Do not let it happen again",x:"If something was missed, share that requirement with everyone."}]}]},
+{name:"Meet the returning passenger",x:"Meet the flight and explain who bears the costs and the next steps. This is not the place to hold the passenger responsible; give them the information they need."},
+{name:"Do not let it happen again",x:"If something was missed, share that requirement and the measures to prevent recurrence with those concerned."}]}]},
 {h:"Costs, records and deportees",blocks:[{t:"check",items:[
 {name:"The return fare",x:"The return sector of the passenger’s own ticket can sometimes be used. Whether any shortfall is charged to the passenger depends on company rules."},
 {name:"Costs while waiting",x:"The airline may be asked to pay for meals or the facility."},

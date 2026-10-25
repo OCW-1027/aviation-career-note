@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 6 Cases and Q&A, lessons 6-1 to 6-4) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-1",{title:"At the Departure Counter: Thinking Through Situations",hl:"Departure Situations",subtitle:"Passports, connections, residents, animals travelling with passengers. Ten common situations",
-lead:["From here on, we apply what we learned in earlier lessons to real situations. With a passenger in front of you at the counter, what do you check and what do you say?","There is not always a single answer. But the order of thinking is the same: is the document theirs, is it valid, and does it meet the requirements of every country on the itinerary?"],
+lead:["From here on, we apply what we learned in earlier lessons to real situations. With a passenger in front of you at the counter, what do you check and what do you say?","There is not always a single answer. But the order of thinking is the same: is the passenger the person identified in the passport, is the passport valid, and does it meet the requirements of every country on the itinerary?"],
 sections:[
 {h:"Passports and visas",blocks:[{t:"fig",id:"ciq_counter",cap:"Figure: at the departure counter — situations and responses (example)."},{t:"rows",items:[
 {name:"The passport has five months left; the destination requires six months or more",x:"Refuse boarding. Explain why and direct them to the passport office and advise on the next flight. The requirement is set by the destination country. (1-1)"},

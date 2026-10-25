@@ -92,7 +92,7 @@ sections:[
 ["Contacts","Where they are staying, phone, email"]]}]},
 {h:"Registration quality decides the result",blocks:[{t:"check",items:[
 {name:"A wrong tag number",x:"One digit out and nothing matches. Enter it from the receipt, checking as you go."},
-{name:"“Black suitcase” alone",x:"There are millions. Add the type, brand, markings and contents."},
+{name:"“Black suitcase” alone",x:"There are millions. Add the type, brand and markings as specifically as you can."},
 {name:"How to describe contents",x:"Not “clothes” but “blue denim jacket, children’s shoes” — something that can be matched when the bag is opened."},
 {name:"Keep it updated",x:"Update a change of delivery address or any extra detail from the passenger straight away."}]},
 {t:"point",x:"The same applies to registering a bag with no owner. When the tag has come off, look inside for a name or address to register it with."}]},
@@ -112,7 +112,7 @@ set("4-4",{title:"Lost Property",hl:"lost property",subtitle:"Items left on boar
 lead:["A phone in a seat pocket, a passport left at the counter, a charger at the gate. Lost property turns up every day. It matters to its owner, and mishandling it can cause real trouble.",
 "This lesson covers the path from finding an item to returning it, items that need particular care, how national law applies, and how to handle enquiries."],
 sections:[
-{h:"From finding to returning",blocks:[{t:"ladder",rise:10,steps:[{name:"Found and received",sub:"From the cabin, cleaning or the counter"},{name:"Record",sub:"Date, place, flight, item, features, finder"},{name:"Store",sub:"In a locked place"},{name:"Find the owner",sub:"From the seat number or a name"},{name:"Return",sub:"Verify identity and take a signature"},{name:"After the period",sub:"To the police or as the law requires"}]}]},
+{h:"From finding to returning",blocks:[{t:"ladder",rise:10,steps:[{name:"Found and received",sub:"From the cabin, cleaning or the counter"},{name:"Record",sub:"Date, place, flight, item, features, finder"},{name:"Store",sub:"In a locked place"},{name:"Find the owner",sub:"From the seat number or a name"},{name:"Return",sub:"Verify identity and keep the required record of receipt"},{name:"After the period",sub:"To the police or as the law requires"}]}]},
 {h:"Items needing particular care",blocks:[{t:"fig",id:"gnd_lost",cap:"Animated figure: lost items needing particular care, and how to handle them, light up in turn. Follow company and airport rules."},{t:"table",cols:["Item","Watch for"],rows:[
 ["Passports and ID","Find the owner immediately; it affects their departure or entry, so work with the agencies concerned"],
 ["Cash and valuables","Check with two people and record it. Note the amount, seal it and store it"],
@@ -128,9 +128,9 @@ sections:[
 {name:"If nothing is found",x:"Take their contact details and promise to call if it turns up. Point them to the airport lost property office and the police."}]},
 {t:"point",x:"How lost property is handled directly affects trust in the airline. “They looked for it” is something passengers remember for a long time."}]}],
 voice:"Recording exactly when and where an item was found is the key to reuniting it with its owner. Organise the records so enquiries can be matched straight away.",
-terms:[["Lost & Found","忘れ物・落とし物（遺失物）","유실물"],["Found Property","拾得物","습득물"],["Lost Property Act","遺失物法","유실물법"],["Receipt Signature","受領の署名","수령 서명"],["ID Verification","本人確認","본인 확인"],["Cash on Delivery","着払い","착불"]],
+terms:[["Lost & Found","忘れ物・落とし物（遺失物）","유실물"],["Found Property","拾得物","습득물"],["Lost Property Act","遺失物法","유실물법"],["Receipt Record","受領記録","수령 기록"],["ID Verification","本人確認","본인 확인"],["Cash on Delivery","着払い","착불"]],
 quiz:[{q:"How should lost property containing cash be handled?",opts:["Count it alone","Check with two people, record the amount and seal it","Just take it to the police","Do not note the amount"],a:1,exp:"Checking with two people prevents later disputes."},
 {q:"What is correct for a found phone?",opts:["Look through it to find the owner","Respect privacy and do not look inside","Dispose of it immediately","Hand it to anyone"],a:1,exp:"Personal data must be respected."},
-{q:"What is needed when returning lost property?",opts:["Nothing","Identity verification and a signature","A fee","A photograph"],a:1,exp:"It records that the item went back to the right person."}],
+{q:"What is needed when returning lost property?",opts:["Nothing","Identity verification and the required record of receipt","A fee","A photograph"],a:1,exp:"It records that the item went back to the right person."}],
 next:"Part 5 Irregular Operations — 5-1 Inadmissible passengers (INAD)"});
 })(window.ARTS);
