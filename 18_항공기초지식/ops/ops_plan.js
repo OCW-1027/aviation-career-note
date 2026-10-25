@@ -26,7 +26,7 @@ var AC={A21N:{n:'A321neo',w:'M',tas:450,ff:2500,taxi:200,mtow:97000,mlw:79200,mz
  A333:{n:'A330-300',w:'H',tas:470,ff:5800,taxi:350,mtow:242000,mlw:187000,mzfw:175000,zfw:160000},B77W:{n:'B777-300ER',w:'H',tas:490,ff:7500,taxi:450,mtow:351534,mlw:251290,mzfw:237682,zfw:215000}};
 window.OPS_DATA={AW:AW,DEPX:DEPX,ARRX:ARRX,EX:EX,AC:AC};
 var S={rid:null,route:'',ac:'A21N',fl:'',wd:270,ws:60,eobt:'0100',cs:'ACN123',zfw:'',extra:0,sub:'calc'};
-function P(k){return PT[k]||XP[k]}
+function P(k){return PT[k]||XP[k]||(window.FREE&&FREE.pos(k))}
 function f0(n){return Math.round(n).toLocaleString('en-US')}
 function hm(m){m=Math.round(m);return Math.floor(m/60)+':'+('0'+m%60).slice(-2)}
 var TX={
@@ -60,7 +60,7 @@ var TX={
  q1x:L3('一方通行の向き・航空路の上の地点・出発/到着方式のつながりを確かめます。','일방통행 방향·항공로 위의 지점·출발/도착 절차 연결을 확인합니다.','Check one-way direction, points on the airway and departure/arrival links.')};
 function msg(k,v){var s=tx(TX[k]);for(var x in v)s=s.split('{'+x+'}').join(v[x]);return s}
 function nextAw(c){return Object.keys(AW).filter(function(k){var l=AW[k],x=l.indexOf(c);return x>=0&&x<l.length-1})}
-function parse(str,dep,arr){var t=str.trim().toUpperCase().split(/\s+/).filter(Boolean),legs=[],cur,i;
+function parse(str,dep,arr){if(R[ri].id==='free'&&window.FREE)return FREE.parse(str,dep,arr);var t=str.trim().toUpperCase().split(/\s+/).filter(Boolean),legs=[],cur,i;
  if(!t.length)return {next:[dep],legs:legs};
  if(t[0]!==dep)return {err:[0,msg('e_dep',{x:dep})],next:[dep],legs:legs};
  if(t.length===1)return {next:DEPX[dep],legs:legs};
@@ -78,13 +78,13 @@ function parse(str,dep,arr){var t=str.trim().toUpperCase().split(/\s+/).filter(B
  var nx=nextAw(cur);if(ARRX[arr].indexOf(cur)>=0)nx.push(arr);return {legs:legs,next:nx}}
 function calc(legs){var a=AC[S.ac],tot=0,time=0,rows=[];legs.forEach(function(l){var h=hav(P(l.a),P(l.b)),d=h[0],tc=h[1],hw=S.ws*Math.cos((S.wd-tc)*Math.PI/180),gs=Math.max(150,a.tas-hw);if(l.via==='SID'||l.via==='STAR')gs=Math.min(gs,260);var m=d/gs*60;tot+=d;time+=m;rows.push({l:l,d:d,mc:(tc+8+360)%360,gs:gs,m:m})});return {rows:rows,tot:tot,time:time+6}}
 window.OPS_CALC={parse:parse,calc:calc,S:S,P:P};
-function rule(){return S.rule||((R[ri].id==='hf'||R[ri].id==='fh')?'jp':'kr')}
-function fuel(c,dest){var a=AC[S.ac],jp=rule()==='jp',trip=c.time/60*a.ff*1.08,hold=a.ff*0.8,cont=Math.max(trip*0.05,hold*5/60),alt=ALT[dest],ad=hav(P(dest),P(alt))[0],af=S.noalt?0.25*hold:(ad/a.tas+0.25)*a.ff,fr=0.5*hold,ex=+S.extra||0,tx0=a.taxi,blk=trip+cont+af+fr+ex+tx0,zfw=+S.zfw||a.zfw,tow=zfw+blk-tx0,lw=tow-trip;
+function rule(){var r=R[ri];return S.rule||((r.id==='hf'||r.id==='fh'||(r.id==='free'&&r.s.length&&!/^RK/.test(r.s[0][0])&&!/^RK/.test(r.s[r.s.length-1][0])))?'jp':'kr')}
+function fuel(c,dest){var a=AC[S.ac],jp=rule()==='jp',trip=c.time/60*a.ff*1.08,hold=a.ff*0.8,cont=Math.max(trip*0.05,hold*5/60),alt=ALT[dest]||(window.FREE&&FREE.alt(dest))||dest,ad=hav(P(dest),P(alt))[0],af=S.noalt?0.25*hold:(ad/a.tas+0.25)*a.ff,fr=0.5*hold,ex=+S.extra||0,tx0=a.taxi,blk=trip+cont+af+fr+ex+tx0,zfw=+S.zfw||a.zfw,tow=zfw+blk-tx0,lw=tow-trip;
  var L=jp?TX.fj:TX.fk,rows=[[TX.fu[0],trip],[L.cont,cont]];
  if(S.noalt){if(jp)rows.push([L.h45,af+fr]);else rows.push([L.h15,af],[L.frd,fr])}else rows.push([L.alt,af],[L.fr,fr]);
  rows.push([TX.fu[4],ex],[TX.fu[5],tx0],[TX.fu[6],blk]);
  return {trip:trip,cont:cont,alt:alt,af:af,fr:fr,ex:ex,taxi:tx0,blk:blk,zfw:zfw,tow:tow,lw:lw,rows:rows,basis:L.basis}}
-function render(){var r=R[ri],dep=r.s[0][0],arr=r.s[r.s.length-1][0];if(S.rid!==r.id){S.rid=r.id;S.route=EX[r.id];S.fl=r.fl.slice(2);S.zfw='';S.rule=''}
+function render(){var r=R[ri],dep=r.s[0][0],arr=r.s[r.s.length-1][0];if(S.rid!==r.id||(r.id==='free'&&S.ex!==r.ex)){S.rid=r.id;S.ex=r.ex;S.route=EX[r.id]||r.ex||'';S.fl=r.fl.slice(2);S.zfw='';S.rule=''}
  var sub='<div class="row tabs" id="opsSub" style="margin-top:12px">'+[['calc',TX.calc],['quiz',TX.quiz]].map(function(m){return '<button class="pill'+(S.sub===m[0]?' on':'')+'" data-s="'+m[0]+'">'+tx(m[1])+'</button>'}).join('')+'</div>';
  if(S.sub==='quiz'){$('panel').innerHTML=sub+'<div id="opsQ"></div>';bindSub();OPS_QUIZ($('opsQ'),makeQuiz);return}
  var sel='<select id="oAc">'+Object.keys(AC).map(function(k){return '<option value="'+k+'"'+(S.ac===k?' selected':'')+'>'+AC[k].n+'</option>'}).join('')+'</select>';
@@ -119,7 +119,7 @@ function render(){var r=R[ri],dep=r.s[0][0],arr=r.s[r.s.length-1][0];if(S.rid!==
   fo+='<p style="margin-top:10px"><a href="../1_\uc9c0\uc0c1\uc9c1\uc5ec\uac1d\uc6b4\uc1a1\uc785\ubb38/\u642d\u8f09\u8a08\u7b97\u306e\u7df4\u7fd2.html?lang='+lang+'">'+tx(TX.load)+'</a></p>';
   if(!c.rows.length)fo='';$('oFu').innerHTML=fo}
  $('oRt').oninput=function(){S.route=this.value.toUpperCase();upd()};
- $('oEx').onclick=function(){S.route=EX[r.id];$('oRt').value=S.route;upd()};$('oCl').onclick=function(){S.route='';$('oRt').value='';upd()};
+ $('oEx').onclick=function(){S.route=EX[r.id]||r.ex||'';$('oRt').value=S.route;upd()};$('oCl').onclick=function(){S.route='';$('oRt').value='';upd()};
  $('oBk').onclick=function(){var t=S.route.trim().split(/\s+/);t.pop();S.route=t.join(' ');$('oRt').value=S.route;upd()};
  $('oAc').onchange=function(){S.ac=this.value;S.zfw='';$('oZf').value=AC[S.ac].zfw;upd()};
  $('oRu').onchange=function(){S.rule=this.value;upd()};$('oNa').onchange=function(){S.noalt=this.value==='1';upd()};
@@ -137,9 +137,9 @@ c:L3('補正燃料＝運航燃料×5%。{t}×0.05＝{a}kg。風の予報の違�
 w:L3('離陸重量＝ZFW＋搭載燃料−地上走行の燃料。{z}＋{b}＝{r}kg（ランプ重量）、ここから地上走行の{x}kgを引いて{a}kg。地上走行の燃料は離陸の前に使い切るので、離陸重量には入りません。','이륙 중량=ZFW+탑재 연료−지상 이동 연료. {z}+{b}={r}kg(램프 중량), 여기서 지상 이동 {x}kg을 빼면 {a}kg. 지상 이동 연료는 이륙 전에 다 쓰므로 이륙 중량에 들어가지 않습니다.','TOW = ZFW + block fuel − taxi fuel. {z} + {b} = {r} kg (ramp weight); minus {x} kg of taxi fuel gives {a} kg. Taxi fuel is burned before take-off, so it is not part of the take-off weight.'),
 g:L3('向かい風は引き、追い風は足します。{t}−{w}＝{a}kt。横風の成分があると実際は少し変わりますが、ここでは真正面の向かい風として計算します。','맞바람은 빼고 뒷바람은 더합니다. {t}−{w}={a}kt. 측풍 성분이 있으면 실제로는 조금 달라지지만 여기서는 정면 맞바람으로 계산합니다.','Subtract a headwind and add a tailwind: {t} − {w} = {a} kt. A crosswind component would change this slightly; here it is treated as a direct headwind.')};
 function xq1(b){return tx(XQ.wr)+'<code>'+b+'</code><br>'+tx(/^[A-Z]\d+$/.test(b)?XQ.aw:XQ.pt)+'<br>'+tx(TX.q1x)}
-function makeQuiz(){var r=R[ri],out=[],ex=EX[r.id].split(' '),q;
+function makeQuiz(){var r=R[ri],out=[],ex=(EX[r.id]||r.ex||'').split(' '),q,fr=r.id==='free'&&window.FREE;
  /* 経路のまちがい探し */
- var t=ex.slice(),bad;if(t.length>5&&Math.random()<.5){var k=2;t[k]=r.id==='gc'?'Y722':r.id==='cg'?'Y711':(t[k]==='Y697'?'Y16':'Y517');bad=t[k]}else{var last=t.length-2;t[last]=r.id==='gc'?'SAMUL':r.id==='cg'?'DOTOL':r.id==='in'?'ENPAR':'LANAT';bad=t[last]}
+ var t=ex.slice(),bad;if(t.length>5&&Math.random()<.5){var k=2;t[k]=fr?FREE.wrongAw(t[k]):r.id==='gc'?'Y722':r.id==='cg'?'Y711':(t[k]==='Y697'?'Y16':'Y517');bad=t[k]}else{var last=t.length-2;t[last]=fr?FREE.wrongFix(r):r.id==='gc'?'SAMUL':r.id==='cg'?'DOTOL':r.id==='in'?'ENPAR':'LANAT';bad=t[last]}
  var o=OPS_OPTS(bad,shuf(t.filter(function(x){return x!==bad}))),q1={q:msg('q1',{r:t.join(' ')}),o:o.o,a:o.a,x:xq1(bad)};out.push(q1);
  var d=rnd(8,30)*5,g=rnd(38,52)*10,m=Math.round(d/g*60);o=OPS_OPTS(m+'',[Math.round(d/g*100)+'',Math.round(g/d)+'',(m+15)+'',Math.max(1,m-12)+'']);out.push({q:msg('q2',{d:d,g:g}),o:o.o.map(function(x){return x+(lang==='en'?' min':lang==='ko'?'분':'分')}),a:o.a,x:xpf(XQ.t,{d:d,g:g,h:(d/g).toFixed(3),m:m})});
  var tr=rnd(30,90)*100;o=OPS_OPTS(f0(tr*0.05),[f0(tr*0.5),f0(tr*0.1),f0(tr*0.005)]);out.push({q:msg('q3',{t:f0(tr)}),o:o.o.map(function(x){return x+' kg'}),a:o.a,x:xpf(XQ.c,{t:f0(tr),a:f0(tr*0.05)})});

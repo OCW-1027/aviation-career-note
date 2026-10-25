@@ -51,7 +51,7 @@ var TX={taf:L3('TAFと代替空港','TAF와 교체 공항','TAF and alternates')
  q4:L3('NOTAMの「C)」の欄が表すのは？','NOTAM의 ‘C)’ 칸이 나타내는 것은?','What does field C) of a NOTAM show?'),
  q5:L3('到着予定に「着陸の最低条件を下回るTEMPO」がかかるとき、運航管理として適切なのは？','도착 예정에 ‘착륙 최저 조건을 밑도는 TEMPO’가 걸릴 때 운항관리로서 적절한 것은?','A TEMPO below landing minima covers the ETA. What is an appropriate dispatch response?')};
 function hmx(v){return v>=10000?'10 km+':v+' m'}
-function render(){var r=R[ri],arr=r.s[r.s.length-1][0];if(S.rid!==r.id){S.rid=r.id;S.taf=TAF[arr];S.eta=ETA[arr]}
+function render(){var r=R[ri],arr=r.s[r.s.length-1][0];if(S.rid!==r.id||S.arr!==arr){S.rid=r.id;S.arr=arr;S.taf=TAF[arr]||TAF.RJTT.replace(/RJTT/g,arr);S.eta=ETA[arr]||ETA.RJTT}
  var sub='<div class="row tabs" id="wxSub" style="margin-top:12px">'+[['taf',TX.taf],['notam',TX.notam],['quiz',TX.quiz]].map(function(q){return '<button class="pill'+(S.sub===q[0]?' on':'')+'" data-s="'+q[0]+'">'+tx(q[1])+'</button>'}).join('')+'</div>',h='';
  if(S.sub==='taf')h='<div class="card" style="margin-top:12px"><label style="font-size:13px;color:var(--sub)">'+tx(TX.tl)+'</label><textarea id="wxT" rows="3" style="width:100%;font:14.5px Consolas,Menlo,monospace;padding:10px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0">'+S.taf+'</textarea>'+
   '<div class="kv" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px"><label>'+tx(TX.eta)+'<br><input id="wxE" value="'+S.eta+'" maxlength="4" style="width:100%"></label><label>'+tx(TX.min)+'<br><input id="wxD" value="'+S.dh+'" style="width:45%"> / <input id="wxV" value="'+S.vis+'" style="width:45%"></label></div><div id="wxO"></div><p class="note">'+tx(TX.tnote)+'</p></div>';

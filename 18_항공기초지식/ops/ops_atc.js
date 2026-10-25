@@ -21,7 +21,7 @@ function norm(s){var t=String(s).toLowerCase().replace(/[,;:!?]/g,' ').split(/\s
  var o='';t.forEach(function(w,i){var prevD=o.length&&/[0-9.]$/.test(o),curD=/^[0-9.]+$/.test(w);o+=(prevD&&curD?'':' ')+w});return o.toUpperCase().replace(/\s+/g,' ').trim()}
 function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1))}
 function newScenario(){var r=R[ri],dep=r.s[0][0],arr=r.s[r.s.length-1][0],cs='ACN'+rnd(101,989),alt=[5000,6000,7000][rnd(0,2)],fq=['119.1','120.8','121.35','124.2','125.5','126.9'][rnd(0,5)],sq;do{sq=''+rnd(1,6)+rnd(0,7)+rnd(0,7)+rnd(0,7)}while(/^7[5-7]00$/.test(sq));
- return {cs:cs,dep:dep,arr:arr,city:CITY[arr],alt:alt,fq:fq,sq:sq,first:r.s[1][0]}}
+ return {cs:cs,dep:dep,arr:arr,city:CITY[arr]||(window.FREE&&FREE.city(arr))||arr,alt:alt,fq:fq,sq:sq,first:r.s[1][0]}}
 function clearance(c){return c.cs+', cleared to '+c.city+' via '+c.first+' departure, flight planned route. Climb '+c.alt+' feet. Departure frequency '+c.fq+'. Squawk '+c.sq+'.'}
 function model(c){return 'Cleared to '+c.city+' via '+c.first+' departure, flight planned route, climb '+c.alt+' feet, departure '+c.fq+', squawk '+c.sq+', '+c.cs+'.'}
 function check(c,rb){var n=' '+norm(rb)+' ';return [['cs',n.indexOf(' '+c.cs+' ')>=0||n.indexOf(' '+c.cs)>=0],['dest',n.indexOf(c.city.toUpperCase())>=0||n.indexOf(c.arr)>=0],['route',/FLIGHT PLANNED|PLANNED ROUTE/.test(n)||n.indexOf(c.first)>=0],['alt',n.indexOf(String(c.alt))>=0||n.indexOf(String(c.alt/1000)+'000')>=0],['fq',n.replace(/ /g,'').indexOf(c.fq)>=0],['sq',n.indexOf(c.sq)>=0]]}

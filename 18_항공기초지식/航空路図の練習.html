@@ -59,6 +59,8 @@ header{position:relative}header h1{margin:0 0 8px}
 <script src="ops/ops_sep.js"></script>
 <script src="ops/ops_flow.js"></script>
 <script src="ops/ops_wx.js"></script>
+<script src="ops/route_net.js"></script>
+<script src="ops/ops_free.js"></script>
 <script>
 /* 航空路図の練習（2026.09）
    地図のデータは レッスン2-5・2-6 と同じ route_maps.js・route_icn_nrt.js を使う。
@@ -86,6 +88,8 @@ var R=[
  s:[['RJTT','SID',C('東京ディパーチャー','도쿄 디파처','Tokyo Departure'),'dep'],['GUSRO','Y20',C('東京航空交通管制部','도쿄 항공교통관제부','Tokyo ACC'),'clb'],['SUGAL','Y20',C('福岡航空交通管制部（FL335以上の高高度を担当）','후쿠오카 항공교통관제부(FL335 이상 고고도 담당)','Fukuoka ACC (upper airspace, FL335 and above)'),'crz'],['KAMMY','Y20',C('福岡航空交通管制部（高高度）','후쿠오카 항공교통관제부(고고도)','Fukuoka ACC (upper airspace)'),'crz'],['STOUT','Y20',C('福岡航空交通管制部 — 降下','후쿠오카 항공교통관제부 — 강하','Fukuoka ACC: descent'),'des'],['KIRIN','APP',C('福岡アプローチ','후쿠오카 어프로치','Fukuoka Approach'),'des'],['RJFF','',C('到着・福岡タワー → グランド','도착·후쿠오카 타워 → 그라운드','Arrived: Fukuoka Tower → Ground'),'arr']]},
 {id:'fh',map:'jdm',name:C('福岡 → 羽田（Y231・Y235・Y23）','후쿠오카 → 하네다(Y231·Y235·Y23)','Fukuoka → Haneda (Y231, Y235, Y23)'),fl:'FL370',odd:true,fir:'',
  s:[['RJFF','SID',C('福岡ディパーチャー','후쿠오카 디파처','Fukuoka Departure'),'dep'],['IPRIR','Y231',C('福岡航空交通管制部 — 上昇','후쿠오카 항공교통관제부 — 상승','Fukuoka ACC: climb'),'clb'],['OMKAT','Y235',C('福岡航空交通管制部（FL335以上の高高度を担当）','후쿠오카 항공교통관제부(FL335 이상 고고도 담당)','Fukuoka ACC (upper airspace, FL335 and above)'),'crz'],['FLUTE','Y23',C('福岡航空交通管制部 — 降下','후쿠오카 항공교통관제부 — 강하','Fukuoka ACC: descent'),'des'],['ARTIC','Y71',C('東京航空交通管制部','도쿄 항공교통관제부','Tokyo ACC'),'des'],['XAC','APP',C('東京アプローチ（大島VORから）','도쿄 어프로치(오시마 VOR부터)','Tokyo Approach (from Oshima VOR)'),'des'],['RJTT','',C('到着・羽田タワー → グランド','도착·하네다 타워 → 그라운드','Arrived: Haneda Tower → Ground'),'arr']]}];
+/* 経路を自分で作る（2026.10.25、ops_free.js）。完成するまで s は空 */
+if(window.FREE)R.push({id:'free',map:'free',name:FREE.name,fl:'FL350',odd:true,fir:'',s:[]});
 var T={ja:{kick:'航空キャリアノート',ttl:'運航管理実務の練習 ― 航空路・飛行計画・管制・間隔・流れ',lead:'運航管理者・操縦士・管制官の仕事を、1便の流れで練習します。路線を選び、上のタブで「たどる」「飛行計画・燃料」「管制の交信」「高度・間隔」「遅延・流れ」を切り替えます。どのタブにも計算と問題があります。',follow:'たどる',quiz:'問題を解く',now:'今の地点',next:'次の地点',aw:'この区間の道',dist:'区間の距離',mc:'磁方位（目安）',cum:'累計 / 残り',ctl:'話している相手',ph:'飛行の段階',prev:'◀ 前へ',nx:'次へ ▶',reset:'はじめから',auto:'自動で進む',stop:'止める',nm:'海里',done:'到着しました',PH:{dep:'出発',clb:'上昇',crz:'巡航',des:'降下',arr:'到着'},SID:'出発方式（SID）',APP:'到着方式・進入',none:'—',
  q1:'{a} の次に通る地点は？',q2:'{a} → {b} の区間で通る道は？',q3:'この便で、管制が別の国に引き継がれる地点は？',q4:'{a} → {b} の区間の距離は約？',q5:'この便（{r}）の巡航高度の例として正しいのは？',q5x:'磁方位が000〜179°の便は奇数、180〜359°の便は偶数の高度が基本。この便の主な磁方位は約{m}°なので{oe}。',odd:'奇数',even:'偶数',ok:'正解！',ng:'残念…',ans:'答え：',nextq:'次の問題',res:'結果',again:'もう一度',of:'問中',cor:'問正解',
  note:'地図・経路は教育用の略図です（地点・経路：韓国AIP・日本AIP・日本のAIC標準経路、FIR境界：韓国AIP、海岸線：Natural Earth）。実際の経路・高度・担当の管制は便ごとに変わります。航法には使えません。レッスン：航空基礎知識 2-5・2-6',
@@ -106,7 +110,7 @@ function legs(r){var o=[],cum=0;for(var i=0;i<r.s.length;i++){var k=r.s[i][0],n=
 function awName(a){var t=T[lang];return a==='SID'?t.SID:a==='APP'?t.APP:a||t.none}
 function pad(n){return ('00'+n).slice(-3)}
 /* 地図 */
-function mapSVG(r,cur){var L=legs(r),INK='#1B2B4B',MAG='#8E3B8A',s,pts=[],box,vb;
+function mapSVG(r,cur){if(r.map==='free')return FREE.mapSVG(r,cur);var L=legs(r),INK='#1B2B4B',MAG='#8E3B8A',s,pts=[],box,vb;
  if(r.map==='inr'||r.map==='jdm'){var M=r.map==='inr'?(window.RMAP2&&RMAP2.map):(window.RMAP4&&RMAP4.map);if(!M)return '';box=M.box;pts=r.s.map(function(x){return M.pts[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
   s='<svg viewBox="'+vb.join(' ')+'" role="img"><defs><clipPath id="pc"><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'"/></clipPath></defs><rect x="'+box[0]+'" y="'+box[1]+'" width="'+box[2]+'" height="'+box[3]+'" fill="#DDEBF6"/><g clip-path="url(#pc)"><path d="'+M.land+'" fill="#EDE3C8" stroke="#A89B78" stroke-width=".6"/><path d="'+M.fir+'" fill="none" stroke="'+MAG+'" stroke-width="2" stroke-dasharray="10 4 2 4"/>';}
  else{var E=window.RMAP3&&RMAP3.main;if(!E)return '';box=E.box;pts=r.s.map(function(x){return E.p[x[0]]||E.a[x[0]]});vb=[box[0]-10,box[1]-10,box[2]+20,box[3]+20];
@@ -148,7 +152,7 @@ function xpMain(q,r){var t=T[lang],x=XM[lang],L=legs(r),s=x[q.t],v={a:q.a||'',b:
  if(q.t==='q1'){v.b=q.ans;v.s=L.map(function(p){return (p.k===q.a||p.k===q.ans)?'<b>'+p.k+'</b>':p.k}).join(' → ')}
  if(q.t==='q5')v.a=q.ans;
  for(var k in v)s=s.split('{'+k+'}').join(v[k]);return s}
-function makeQuiz(){var r=R[ri],L=legs(r),out=[],allP=Object.keys(PT).filter(function(k){return !/^R[KJ]/.test(k)}),AW=['Y697','Y51','Y517','Y303','Y30','Y16','Y685','Y711','Y722','Y20','Y231','Y235','Y23','Y71','B576','A593'];
+function makeQuiz(){var r=R[ri],L=legs(r),out=[],allP=Object.keys(PT).filter(function(k){return !/^R[KJ]/.test(k)}),AW=r.awOpts||['Y697','Y51','Y517','Y303','Y30','Y16','Y685','Y711','Y722','Y20','Y231','Y235','Y23','Y71','B576','A593'];
  var inner=L.slice(1,L.length-1);
  var a=inner[Math.floor(Math.random()*inner.length)],ai=L.indexOf(a);out.push({t:'q1',a:a.k,ans:L[ai+1].k,opts:uniq([L[ai+1].k].concat(shuf(r.s.map(function(x){return x[0]}).filter(function(k){return k!==L[ai+1].k&&k!==a.k})).slice(0,3)))});
  var en=L.filter(function(x,i){return i<L.length-1&&/^[A-Z]\d/.test(x.aw)});var e=en[Math.floor(Math.random()*en.length)],ei=L.indexOf(e);
@@ -175,6 +179,8 @@ function render(){var t=T[lang];document.documentElement.lang=lang;document.titl
  $('routes').innerHTML=R.map(function(r,i){return '<button class="pill'+(i===ri?' on':'')+'" data-r="'+i+'">'+r.name[lang]+'</button>'}).join('')+(R[ri].map==='enr'?'<span style="font-size:12.5px;color:var(--sub)">'+t.hint+'</span>':'');
  $('modes').innerHTML=[['follow',t.follow],['quiz',t.quiz]].concat(Object.keys(window.OPS_MODS||{}).map(function(k){return [k,OPS_MODS[k].label[lang]]})).map(function(m){return '<button class="pill'+(m[0]===mode?' on':'')+'" data-m="'+m[0]+'">'+m[1]+'</button>'}).join('');
  Array.prototype.forEach.call(document.querySelectorAll('[data-r]'),function(b){b.onclick=function(){stop();ri=+b.getAttribute('data-r');step=0;QZ=null;render()}});
+ var fb=$('freeBox'),F=R[ri].id==='free';if(!fb){fb=document.createElement('div');fb.id='freeBox';$('modes').parentNode.insertBefore(fb,$('modes'))}fb.style.display=F?'':'none';
+ if(F){FREE.init();FREE.ui(fb);if(R[ri].s.length<2){$('modes').innerHTML='';$('panel').innerHTML='<div class="card" style="margin-top:12px">'+FREE.need()+'</div>';return}}
  Array.prototype.forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){stop();mode=b.getAttribute('data-m');QZ=null;step=0;render()}});
  if(mode==='follow')follow();else if(mode==='quiz')quiz();else if(window.OPS_MODS&&OPS_MODS[mode]){$('map').innerHTML=mapSVG(R[ri],0);OPS_MODS[mode].render()}else{mode='follow';follow()}}
 try{var mm=location.search.match(/[?&]m=([a-z]+)/);if(mm)mode=mm[1]}catch(e){}
