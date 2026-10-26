@@ -14,7 +14,7 @@ sections:[
 {name:"What a visa is",x:"An indication from the country’s embassy or consulate that the holder may present themselves for entry. It does not guarantee entry; the immigration officer on arrival decides."},
 {name:"Visa exemption",x:"Under agreements between countries, short stays may need no visa. Purpose (tourism, business) and length of stay are limited."},
 {name:"What to look at",x:"Type (visitor, work, study, transit), validity, number of entries (single or multiple), name and passport number."},
-{name:"Electronic visas",x:"There is no sticker. Confirm with the printed notice or the authority’s system."},
+{name:"Electronic visas",x:"There is no sticker. Confirm with the electronic notice or the authority’s system. How it is checked, including whether a printout is accepted, follows each country’s guidance."},
 {name:"A visa in an old passport",x:"If a valid visa is in an old passport, some countries, such as the United States, require the passenger to present both the old and the new passport. ★"}]}]},
 {h:"What may be required besides a visa",blocks:[{t:"table",cols:["Item","Example"],rows:[
 ["Return or onward ticket","Some countries refuse entry on a one-way ticket"],

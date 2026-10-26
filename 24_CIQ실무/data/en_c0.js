@@ -15,7 +15,7 @@ sections:[
 ["Plant quarantine","Plant Protection Stations (Ministry of Agriculture, Forestry and Fisheries)","Animal and Plant Quarantine Agency"]]},
 {t:"note",x:"* Names and combinations differ by country. In the United States, Customs and Border Protection (CBP) handles immigration, customs and agricultural inspection together (Part 4)."}]},
 {h:"Why airline staff need to know CIQ",blocks:[{t:"rows",items:[
-{name:"Checking documents before boarding is the airline’s job",x:"Carry a passenger without the right passport, visa or travel authorisation and the airline pays for the return and may be fined (0-3)."},
+{name:"Checking documents before boarding is the airline’s job",x:"Carry a passenger without the right passport, visa or travel authorisation and the airline may have to pay for the return and may be fined (0-3)."},
 {name:"Most passenger questions are about CIQ",x:"“Can I take this in?” “Do I enter the country when I transfer?” The authorities decide, but you need to be able to show where the correct information is."},
 {name:"It matters during irregular operations",x:"Late arrivals, diversions, extra flights: CIQ hours and locations decide whether a flight can operate (Part 5)."},
 {name:"It is not only passengers",x:"Crew, catering waste, in-flight sales, cargo and the aircraft itself are all subject to CIQ."}]}]},

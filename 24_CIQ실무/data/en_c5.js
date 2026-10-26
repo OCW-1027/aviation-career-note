@@ -39,7 +39,7 @@ lead:["Scheduled flights arrive at the same time every day, and CIQ assigns offi
 sections:[
 {h:"How it differs from a scheduled flight",blocks:[{t:"fig",id:"ciq_extra",cap:"Figure: extra and charter flights: who to tell and what."},{t:"rows",items:[
 {name:"Staffing",x:"CIQ officers are assigned according to the airport’s flight times."},
-{name:"Regional airports",x:"At airports with few international flights there may normally be no officers. They come from a nearby office only when there is a flight."},
+{name:"Regional airports",x:"At airports with few international flights there may normally be no officers. Officers may be sent from a nearby office only for the hours when there is a flight."},
 {name:"Facilities",x:"Check that the inspection area, baggage screening equipment and quarantine facilities can be used at that time."}]}]},
 {h:"Whom to tell, and what",blocks:[{t:"table",cols:["Whom","What"],rows:[
 ["Customs","Flight, aircraft, time, passenger numbers, handling of catering and duty-free goods"],

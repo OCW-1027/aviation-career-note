@@ -112,7 +112,7 @@ sections:[
 voice:"Airport passes are easily left uncollected when staff leave or move. Set a rule that HR changes are passed to the pass administrator straight away.",
 terms:[["Airport ID Pass","空港IDパス","공항 출입증"],["Restricted Area / Airside","制限区域","보호구역"],["Security Awareness Training","保安講習","보안 교육"],["Airside Driving Permit","車両運転許可","차량 운전 허가"],["Temporary Pass","一時パス","임시 출입증"],["Pass Controller","管理責任者","관리 책임자"]],
 quiz:[{q:"What happens to a leaver’s pass?",opts:["They keep it","It is collected on the last working day and returned","It is handed to the successor","It stays valid until it expires"],a:1,exp:"It must be collected and returned to the airport company."},
-{q:"Which of these is the wrong way to use a pass?",opts:["Wear it visibly","Lend it to a colleague","Never take others through","Keep it in date"],a:1,exp:"Lending a pass is prohibited."},
+{q:"Which of these is the wrong way to use a pass?",opts:["Wear it visibly","Lend it to a colleague","Never take others through","Keep it in date"],a:1,exp:"Lending your pass to others or borrowing someone else’s pass is prohibited."},
 {q:"What do you do first if a pass is lost?",opts:["Say nothing","Report it immediately","Keep looking for it","Report it next week"],a:1,exp:"Report it to the designated contact at once, then follow the issuing body’s procedure to have it suspended."}],
 next:"6-4 Preparing for audits — head office and authorities"});
 

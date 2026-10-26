@@ -32,7 +32,7 @@ h1{font-size:22px;margin:10px 0 4px}.lead{color:var(--muted);font-size:14px;marg
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 .kpi{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .kpi span{display:block;color:var(--muted);font-size:12.5px}.kpi b{font-size:22px;font-variant-numeric:tabular-nums}.kpi em{font-style:normal;font-size:12px;color:var(--muted);display:block}
-.kpi.good b{color:var(--ok)}.kpi.bad b{color:var(--ng)}
+.kpi b small.u{font-size:13px;font-weight:600;color:var(--muted)}.kpi.good b{color:var(--ok)}.kpi.bad b{color:var(--ng)}
 .sc{display:flex;flex-wrap:wrap;gap:8px}
 .sc button{min-height:46px;border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:6px 12px;font-size:14px;cursor:pointer;color:var(--ink)}
 .sc button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -81,6 +81,7 @@ details{border:1px solid var(--line);border-radius:12px;padding:0;margin:8px 0;b
 <div class="card"><h2 id="t_sc"></h2>
  <div class="sc" id="scen"></div>
  <div class="delta" id="delta"></div>
+ <div class="note" id="t_scnote"></div>
 </div>
 
 <div class="card exp"><h2 id="t_exp"></h2>
@@ -99,7 +100,7 @@ details{border:1px solid var(--line);border-radius:12px;padding:0;margin:8px 0;b
 var L={
 ja:{title:'航空原価計算の練習 ― 1便のコストと損益分岐点',lead:'1便を運航するのに、何にいくらかかるのか。路線と機材を選び、座席利用率を動かすと、費用の内訳と損益分岐点が変わります。Vela Air（架空の航空会社）の設定による練習用の数字です。',
  route:'路線',type:'機材',lf:'座席利用率',lfnote:'実際の航空会社の年間平均は80%前後です。満席の日もあれば6割の日もあります。',
- perflight:'1便あたりの費用（円）',rev:'1便あたりの収入（円）',k1:'1便の損益',k2:'座席1席あたりの費用',k2e:'空席でも同じだけかかる',k3:'座席キロあたり費用（CASK）',k4:'損益分岐点の座席利用率',
+ perflight:'1便あたりの費用（円）',rev:'1便あたりの収入（円）',k1:'1便の損益',k2:'座席1席あたりの費用',k2e:'費用合計を座席数で割った平均',k3:'座席キロあたり費用（CASK）',k4:'損益分岐点の座席利用率',
  sc:'もし、こうなったら',tbl:'費用の内訳',th1:'項目',th2:'円',th3:'比率',th4:'何にかかるお金か',
  note:'※ 架空の数字です。実際の航空会社の公開資料（費用の構成比・座席キロあたりの収入と費用）の範囲を参考に、Vela Airの設定として作りました。会社・路線・時期によって大きく違います。',
  R:{dom:['国内線 短距離','約900km・1時間40分'],mid:['国際線 中距離','約4,600km・6時間'],long:['国際線 長距離','約9,600km・12時間']},
@@ -107,11 +108,11 @@ ja:{title:'航空原価計算の練習 ― 1便のコストと損益分岐点',l
  carrier:'航空会社のタイプ',CR:{fsc:['フルサービス（FSC）','運賃に機内食・手荷物を含む。貨物も運ぶ'],lcc:['LCC','低運賃。手荷物・座席指定・機内販売は有料。単一機種・高稼働']},seatnote:'座席数は各社の配置で大きく変わります（同じA350-900でも国内線高密度と国際線配置では100席以上の差）。ここでは代表的な数で計算しています。',
  C:{fuel:['燃油費','ジェット燃料。市況と為替で大きく動く'],crew:['乗務員','操縦士・客室乗務員の人件費と手当'],handling:['地上ハンドリング','チェックイン・搭乗・搭載・清掃など委託作業'],maint:['整備','飛行時間に応じた点検・部品・エンジン'],own:['機材費','航空機の減価償却と賃借料'],airport:['空港・航行の使用料','着陸料・航行援助施設の使用料・駐機料'],sales:['販売費','予約システム・代理店手数料・カード手数料'],other:['機内サービス・保険など','機内食・備品・保険・雑費'],overhead:['本社・間接費','本社・IT・教育・支店の固定費の配賦']},
  RV:{fare:'運賃収入',anc:'付帯収入',cargo:'貨物収入'},
- S:{base:'基本',fuel1:'燃油 1%削減',delay:'出発 30分遅延',lf5:'利用率 +5pt',kero:'燃油価格 +50%',fx:'円安 +10%'},
- profit:'利益',loss:'損失',pax:'人',seats:'席',yen:'円',vs:'基本との差：費用 ',rev2:'、損益 ',bego:'いまの利用率より',beok:'低い → 黒字',beng:'高い → 赤字',cask:'収入（RASK）',na:'この機材では運航しない設定です'},
+ S:{base:'基本',fuel1:'燃油 1%削減',delay:'出発 30分遅延',lf5:'利用率 +5pt',kero:'燃油価格 +50%',fx:'円安 +10%（燃油費のみ）'},
+ profit:'利益',loss:'損失',pax:'人',seats:'席',yen:'円',vs:'基本との差：費用 ',rev2:'、損益 ',beem:'乗客 {n}人から黒字（いま {p}人 → {r}）',beover:'満席（{s}席）でも赤字',bk:'黒字',ak:'赤字',ofrev:'（収入の{p}）',overpct:'100%超',lfapp:'座席利用率：基本 {b} ＋ シナリオ 5ポイント ＝ 計算に使う利用率 {a}',cap:'（上限）',scnote:'※ シナリオは計算の一部だけを動かす簡略化です。「円安 +10%」は燃料単価に使う為替（150円→165円/ドル）だけを変え、整備・機材費・運賃など他の項目は変えていません。',cask:'総収入RASK（貨物を含む）',na:'この機材では運航しない設定です'},
 ko:{title:'항공 원가 계산 연습 — 한 편의 비용과 손익분기점',lead:'비행기 한 편을 띄우는 데 어디에 얼마가 드는가. 노선과 기종을 고르고 탑승률을 움직이면 비용 내역과 손익분기점이 바뀝니다. Vela Air(가상 항공사) 설정에 따른 연습용 숫자입니다.',
  route:'노선',type:'기종',lf:'탑승률',lfnote:'실제 항공사의 연평균은 80% 안팎입니다. 만석인 날도, 60%인 날도 있습니다.',
- perflight:'한 편의 비용(엔)',rev:'한 편의 수입(엔)',k1:'한 편의 손익',k2:'좌석 1석당 비용',k2e:'빈 좌석이어도 똑같이 든다',k3:'좌석킬로당 비용(CASK)',k4:'손익분기 탑승률',
+ perflight:'한 편의 비용(엔)',rev:'한 편의 수입(엔)',k1:'한 편의 손익',k2:'좌석 1석당 비용',k2e:'비용 합계를 좌석 수로 나눈 평균',k3:'좌석킬로당 비용(CASK)',k4:'손익분기 탑승률',
  sc:'만약 이렇게 되면',tbl:'비용 내역',th1:'항목',th2:'엔',th3:'비율',th4:'무엇에 드는 돈인가',
  note:'※ 가상의 숫자입니다. 실제 항공사의 공개 자료(비용 구성비·좌석킬로당 수입과 비용)에 나타난 범위를 참고해 Vela Air 설정에 맞춰 만들었습니다. 회사·노선·시기에 따라 크게 다릅니다.',
  R:{dom:['국내선 단거리','약 900km·1시간 40분'],mid:['국제선 중거리','약 4,600km·6시간'],long:['국제선 장거리','약 9,600km·12시간']},
@@ -119,11 +120,11 @@ ko:{title:'항공 원가 계산 연습 — 한 편의 비용과 손익분기점'
  carrier:'항공사 유형',CR:{fsc:['풀서비스(FSC)','운임에 기내식·수하물 포함. 화물도 운송'],lcc:['LCC','운임을 낮추고 수하물·좌석 지정·기내 판매는 유료. 단일 기종·높은 가동률']},seatnote:'좌석 수는 각 회사의 배치에 따라 크게 다릅니다(같은 A350-900이라도 국내선 고밀도와 국제선 배치는 100석 넘게 차이). 여기서는 대표적인 수로 계산합니다.',
  C:{fuel:['연료비','제트 연료. 유가와 환율에 따라 크게 움직임'],crew:['승무원','조종사·객실승무원 인건비와 수당'],handling:['지상조업','체크인·탑승·탑재·청소 등 위탁 작업'],maint:['정비','비행시간에 따른 점검·부품·엔진'],own:['항공기 비용','항공기 감가상각과 임차료'],airport:['공항·항행 사용료','착륙료·항행시설 사용료·주기료'],sales:['판매비','예약 시스템·대리점 수수료·카드 수수료'],other:['기내 서비스·보험 등','기내식·비품·보험·잡비'],overhead:['본사·간접비','본사·IT·교육·지점 고정비 배부']},
  RV:{fare:'운임 수입',anc:'부대수입',cargo:'화물 수입'},
- S:{base:'기본',fuel1:'연료 1% 절감',delay:'출발 30분 지연',lf5:'탑승률 +5%p',kero:'유가 +50%',fx:'엔저 +10%'},
- profit:'이익',loss:'손실',pax:'명',seats:'석',yen:'엔',vs:'기본과의 차이: 비용 ',rev2:', 손익 ',bego:'지금 탑승률보다',beok:'낮음 → 흑자',beng:'높음 → 적자',cask:'수입은(RASK)',na:'이 기종으로는 운항하지 않는 설정입니다'},
+ S:{base:'기본',fuel1:'연료 1% 절감',delay:'출발 30분 지연',lf5:'탑승률 +5%p',kero:'유가 +50%',fx:'엔저 +10%(연료비만)'},
+ profit:'이익',loss:'손실',pax:'명',seats:'석',yen:'엔',vs:'기본과의 차이: 비용 ',rev2:', 손익 ',beem:'승객 {n}명부터 흑자(현재 {p}명 → {r})',beover:'만석({s}석)이어도 적자',bk:'흑자',ak:'적자',ofrev:'(수입의 {p})',overpct:'100% 초과',lfapp:'탑승률: 기본 {b} + 시나리오 5%p = 계산에 쓰는 탑승률 {a}',cap:'(상한)',scnote:'※ 시나리오는 계산의 일부만 움직이는 단순화입니다. 「엔저 +10%」는 연료 단가에 쓰는 환율(달러당 150엔→165엔)만 바꾸고, 정비·항공기 비용·운임 등 다른 항목은 바꾸지 않습니다.',cask:'총수입 RASK(화물 포함)',na:'이 기종으로는 운항하지 않는 설정입니다'},
 en:{title:'Airline Cost & Break-even Practice',lead:'Where the money goes to operate a single flight. Pick a route and aircraft, move the load factor, and watch the cost breakdown and break-even point change. Practice figures based on Vela Air, a fictional airline.',
  route:'Route',type:'Aircraft',lf:'Load factor',lfnote:'Real airlines average around 80% over a year; some days are full, others are at 60%.',
- perflight:'cost per flight (yen)',rev:'revenue per flight (yen)',k1:'Result for this flight',k2:'Cost per seat',k2e:'the same whether the seat is sold or empty',k3:'Cost per seat-km (CASK)',k4:'Break-even load factor',
+ perflight:'cost per flight (yen)',rev:'revenue per flight (yen)',k1:'Result for this flight',k2:'Cost per seat',k2e:'average: total cost ÷ seats',k3:'Cost per seat-km (CASK)',k4:'Break-even load factor',
  sc:'What if…',tbl:'Cost breakdown',th1:'Item',th2:'Yen',th3:'Share',th4:'What the money pays for',
  note:'* Fictional figures. Built with Vela Air settings, using the ranges seen in real airlines’ published data (cost mix, revenue and cost per seat-km). Actual figures vary widely by airline, route and period.',
  R:{dom:['Domestic short-haul','approx. 900 km, 1 h 40 min'],mid:['International medium-haul','approx. 4,600 km, 6 h'],long:['International long-haul','approx. 9,600 km, 12 h']},
@@ -131,8 +132,8 @@ en:{title:'Airline Cost & Break-even Practice',lead:'Where the money goes to ope
  carrier:'Type of airline',CR:{fsc:['Full-service (FSC)','Meals and baggage included in the fare; carries cargo'],lcc:['Low-cost (LCC)','Low fares; bags, seat selection and on-board sales are paid extras. Single type, high utilisation']},seatnote:'Seat counts vary widely with each airline’s layout (the same A350-900 can differ by over 100 seats between a dense domestic and an international layout). Representative figures are used here.',
  C:{fuel:['Fuel','Jet fuel; moves with oil prices and exchange rates'],crew:['Crew','Pilot and cabin crew pay and allowances'],handling:['Ground handling','Check-in, boarding, loading, cleaning and other contracted work'],maint:['Maintenance','Checks, parts and engines, driven by flying hours'],own:['Aircraft','Depreciation and lease costs'],airport:['Airport and navigation charges','Landing fees, air navigation charges, parking'],sales:['Distribution','Booking systems, agency and card commissions'],other:['Catering, insurance and other','Meals, supplies, insurance, sundries'],overhead:['Head office and overheads','Head office, IT, training and station fixed costs allocated']},
  RV:{fare:'Fares',anc:'Ancillaries',cargo:'Cargo'},
- S:{base:'Base',fuel1:'Fuel −1%',delay:'30-min departure delay',lf5:'Load factor +5 pts',kero:'Oil price +50%',fx:'Yen −10% (weaker)'},
- profit:'Profit',loss:'Loss',pax:'pax',seats:'seats',yen:'yen',vs:'vs base: cost ',rev2:', result ',bego:'Current load factor is',beok:'above it → profit',beng:'below it → loss',cask:'revenue (RASK)',na:'Not operated with this aircraft in these settings'}};
+ S:{base:'Base',fuel1:'Fuel −1%',delay:'30-min departure delay',lf5:'Load factor +5 pts',kero:'Oil price +50%',fx:'Yen −10% (fuel cost only)'},
+ profit:'Profit',loss:'Loss',pax:'pax',seats:'seats',yen:'yen',vs:'vs base: cost ',rev2:', result ',beem:'Profit from {n} pax (now {p} → {r})',beover:'Loss even when full ({s} seats)',bk:'profit',ak:'loss',ofrev:' ({p} of revenue)',overpct:'over 100%',lfapp:'Load factor: base {b} + scenario 5 pts = {a} used in the calculation',cap:' (cap)',scnote:'* Scenarios move only part of the calculation. “Yen −10%” changes only the exchange rate used for the fuel price (150 → 165 yen per dollar); maintenance, aircraft cost, fares and other items stay the same.',cask:'total RASK (incl. cargo)',na:'Not operated with this aircraft in these settings'}};
 var ROUTES={dom:{km:900,bh:{s:1.7,m:1.8,l:1.9},fare:15500,cargo:{s:200e3,m:450e3,l:600e3},intl:false,other:1100,crewx:1.0},
  mid:{km:4600,bh:{s:6.3,m:6.2,l:6.1},fare:46000,cargo:{s:700e3,m:1800e3,l:2600e3},intl:true,other:3200,crewx:1.35},
  long:{km:9600,bh:{s:null,m:12.3,l:12.0},fare:86000,cargo:{s:null,m:4200e3,l:6000e3},intl:true,other:5800,crewx:1.6}};
@@ -156,18 +157,23 @@ function calc(r,t,lf,o){o=o||{};var R=ROUTES[r],T=TYPES[t],bh=R.bh[t];if(bh==nul
  var sub=fuel+crew+handling+maint+own+airport+sales+other,oh=ohR*sub;
  var c={fuel:fuel,crew:crew,handling:handling,maint:maint,own:own,airport:airport,sales:sales,other:other,overhead:oh};
  var tot=sub+oh,rev=fare+anc+cargo,ask=seats*R.km;
- var unit=(fareP+ancP)*seats; var be=(tot-cargo)/unit;
- return {c:c,tot:tot,rev:rev,rv:{fare:fare,anc:anc,cargo:cargo},profit:rev-tot,pax:pax,seats:seats,perSeat:tot/seats,cask:tot/ask,rask:rev/ask,be:be,ask:ask,lcc:lcc,
-  m:{bh:bh,yk:yk,kero:kero,fx:fx,pilots:pilots,cabin:T.cabin,burn:T.burn,crewx:R.crewx,hdl:T.hdl[R.intl?'intl':'dom'],mtow:T.mtow,landing:landing,nav:nav,km:R.km,fare:fareP,ancp:ancP,otherp:otherP,otherf:(R.intl?80e3:40e3),salesR:salesR,ohR:ohR,maint:T.maint,own:T.own,sub:sub,delay:delay,fa:fa,fixedPerFlight:tot-sales-pax*otherP}};}
+ /* 損益分岐：費用＝固定費＋乗客1人あたり変動費×乗客数、収入＝貨物＋乗客1人あたり収入×乗客数 として損益0を解く（間接費は直接費に比例して配賦） */
+ var otherF=(R.intl?80e3:40e3),fixed=(fuel+crew+handling+maint+own+airport+otherF)*(1+ohR),vc=(salesR*fareP+otherP)*(1+ohR),upax=fareP+ancP,margin=upax-vc;
+ /* 乗客は round(座席×利用率) の整数。表示する損益分岐点＝黒字になる最少の乗客数 paxBE に届く最低の利用率（0.1%単位、切り上げ）。beC＝2本の直線の交点（連続近似） */
+ var paxStar=margin>0?(fixed-cargo)/margin:Infinity,beC=paxStar/seats,paxBE=paxStar===Infinity?Infinity:Math.max(0,Math.ceil(paxStar-1e-9));
+ var be=paxBE>seats?Infinity:Math.max(0,Math.ceil((paxBE-0.5)/seats*1000-1e-9)/1000);
+ return {c:c,tot:tot,rev:rev,rv:{fare:fare,anc:anc,cargo:cargo},profit:rev-tot,pax:pax,seats:seats,perSeat:tot/seats,cask:tot/ask,rask:rev/ask,be:be,beC:beC,paxStar:paxStar,paxBE:paxBE,fixed:fixed,vc:vc,upax:upax,margin:margin,ask:ask,lcc:lcc,
+  m:{bh:bh,yk:yk,kero:kero,fx:fx,pilots:pilots,cabin:T.cabin,burn:T.burn,crewx:R.crewx,hdl:T.hdl[R.intl?'intl':'dom'],mtow:T.mtow,landing:landing,nav:nav,km:R.km,fare:fareP,ancp:ancP,otherp:otherP,otherf:(R.intl?80e3:40e3),salesR:salesR,ohR:ohR,maint:T.maint,own:T.own,sub:sub,delay:delay,fa:fa,fixedPerFlight:fixed}};}
 
 var EXP={
 ja:{exp:'この数字の読み方',items:'費用の項目ごとの解説 ― 何が含まれ、どう計算したか',itemslead:'各項目を開くと、実際の航空会社でその項目に入る費用、このツールの計算式（いまの数字を当てはめたもの）、現場が動かせる部分を確認できます。',kpiexp:'指標の計算式',
  tag:{bh:'飛行時間に比例',dep:'1便ごとに固定',pax:'乗客数に比例',oh:'配賦（割り当て）'},
- X:['帯グラフは、この1便を飛ばすのにかかる費用を、燃油から本社の間接費まで9つの項目に分けて並べたものです。合計 {tot}円のうち、乗客が1人もいなくてもかかる費用（燃油・乗務員・ハンドリング・整備・機材・空港・間接費）が {fixed}円で、全体の {fixedPct} を占めます。乗客数に応じて増える費用は、販売費と機内サービス・保険などだけです。',
-     '座席を1席多く売ると、収入は運賃 {fare}円＋付帯収入 {anc}円、追加の費用は約 {mc}円（販売手数料と機内サービス分）。差額 {mg}円がそのまま損益に乗ります。そのため航空会社は座席利用率を1ポイントでも上げようとします。',
-     '下のグラフは、座席利用率を40%から100%まで動かしたときの収入（青）と費用（橙）です。2本の線が交わる {be} が損益分岐点。いまの利用率 {lf} はその{side}にあります。費用の線がほとんど平らなのが、固定費の大きい航空事業の特徴です。'],
+ X:['帯グラフは、この1便を飛ばすのにかかる費用を、燃油から本社の間接費まで9つの項目に分けて並べたものです。合計 {tot}円のうち、乗客が1人もいなくてもかかる費用（燃油・乗務員・ハンドリング・整備・機材・空港、保険など1便ごとの固定分と、それに配賦される間接費）が {fixed}円で、全体の {fixedPct} を占めます。乗客数に応じて増えるのは、販売費と1人あたりの機内サービス費、その分の間接費の配賦だけです。',
+     '座席を1席多く売ると、収入は運賃 {fare}円＋付帯収入 {anc}円、追加の費用は約 {mc}円（販売手数料・機内サービスと、その分の間接費の配賦）。差額 {mg}円がそのまま損益に乗ります。そのため航空会社は座席利用率を1ポイントでも上げようとします。なお、座席1席あたりの費用（{perSeat}円）は費用合計を座席数で割った平均額で、乗客が1人増えたときに増える費用（約 {mc}円）とは違います。',
+     '上のグラフは、座席利用率を40%から100%まで動かしたときの収入（青）と費用（橙）です。損益が0になるのは乗客 {paxStar}人（2本の線の交点、利用率 約{bec}）ですが、乗客は1人単位なので、黒字になるのは {paxBE}人からです。このツールは乗客数を「座席数×利用率」の四捨五入で数えるため、{paxBE}人になる最低の利用率 {be} を損益分岐点として表示しています（グラフの点線）。いまの利用率 {lf}（乗客 {pax}人）はその{side}にあります。費用の線がほとんど平らなのが、固定費の大きい航空事業の特徴です。'],
+ X2over:'上のグラフは、座席利用率を40%から100%まで動かしたときの収入（青）と費用（橙）です。この条件では満席（{seats}席）でも収入が費用に届かず、2本の線は交わりません（損益0に必要な乗客は {paxStar}人）。費用の線がほとんど平らなのが、固定費の大きい航空事業の特徴です。',
  side:{ok:'右（黒字側）',ng:'左（赤字側）'},
- lccnote:'【LCCの設定】運賃を低くする代わりに、付帯収入（手荷物・座席指定・機内販売）が収入の {ancpct} を占めます。貨物はほとんど運ばず、機内食は有料なので「機内サービス」の費用がほぼありません。単一機種で稼働率が高いため1便あたりの機材費が低く、乗務員・ハンドリングは必要最小限、販売は直販中心（販売費 {salesPct}%）、本社機能も小規模です（間接費 {ohPct}%）。その結果、座席キロあたり費用（CASK）は {cask}円 と、同じ路線・機材のFSC（{fcask}円）より低くなります。実際の例：Peachの座席キロあたり収入 10.7円（ANA国内線15.9円）、ライアンエアの付帯収入比率 33.8%、済州航空 9.2%。',
+ lccnote:'【LCCの設定】運賃を低くする代わりに、付帯収入（手荷物・座席指定・機内販売）が収入の {ancpct} を占めます。貨物はほとんど運ばず、機内食は有料なので「機内サービス」の費用がほぼありません。単一機種で稼働率が高いため1便あたりの機材費が低く、乗務員・ハンドリングは必要最小限、販売は直販中心（販売費 {salesPct}%）、本社機能も小規模です（間接費 {ohPct}%）。その結果、座席キロあたり費用（CASK）は {cask}円 と、同じ路線・機材のFSC（{fcask}円）より低くなります。',
  E:{fuel:{sub:['ジェット燃料の代金（市況はシンガポール・ケロシンなどの指標価格）','国内線の航空機燃料税（日本）','給油作業・貯蔵の手数料','燃油ヘッジの損益（会社によって費用に含める）'],how:'消費量 {burn}kg/時 × 飛行時間 {bh}時間 × 単価 {yk}円/kg ＝ {v}円。単価は、ケロシン {kero}ドル/バレル × 為替 {fx}円 ÷ 127kg/バレル で計算しています。{delaytxt}',field:'機体の重さ（搭載量・燃料の積みすぎ）、地上での待機時間、エンジンの使い方で変わります。支店にできるのは、搭載の正確さと定時出発で無駄な燃料を減らすことです。'},
   crew:{sub:['操縦士・客室乗務員の給与と賞与','乗務手当・深夜手当','滞在先のホテルと日当（国際線）','訓練費と資格の維持','制服・移動の交通費'],how:'（操縦士 {pilots}人 × 26,000円 ＋ 客室乗務員 {cabin}人 × 6,500円）× （飛行 {bh}時間 ＋ 地上1時間）× 路線係数 {crewx} ＝ {v}円。長距離は交代要員が乗るので人数と係数が増えます。',field:'遅延が長引くと乗務時間の上限にかかり、交代の乗務員や宿泊が必要になります。定時運航が乗務員費の増加を防ぎます。'},
   handling:{sub:['チェックイン・搭乗口の案内要員','手荷物の仕分け・搭載・取り降ろし','ランプ作業（プッシュバック・給水・汚水・GPU）','機内清掃・リネン','冬季の除氷・防氷（別料金が多い）','運航書類の受け渡し・ロードコントロール'],how:'1便あたりの契約単価 {hdl}円（機材の大きさと国際・国内で変わる）{delaytxt2} ＝ {v}円。実際はSGHAの付属書Bで便ごと・作業ごとの単価が決まります。',field:'支店が直接管理する費用です。追加作業の依頼、遅延時の延長作業、契約外の作業が請求を押し上げます（空港支店の運営実務 2-1・4-8）。'},
@@ -178,17 +184,19 @@ ja:{exp:'この数字の読み方',items:'費用の項目ごとの解説 ― 何
   other:{sub:['機内食・飲み物・機内販売の仕入れ','機内用品（毛布・ヘッドホン・雑誌）','機体・賠償責任保険','遅延・欠航時のお客様補償','通信・気象情報のサービス料'],how:'乗客 {pax}人 × 1人あたり {otherp}円 ＋ 1便あたりの保険・雑費 {otherf}円 ＝ {v}円。国際線の長距離は機内食が複数回出るので1人あたりが大きくなります。',field:'補償（食事券・ホテル）はこの項目に入ります。遅延対応の判断が費用に直結します。'},
   overhead:{sub:['本社の人件費（企画・財務・人事・運航管理）','ITシステム（予約・運航・整備のシステム）','乗務員・地上職の教育訓練','支店の事務所費・固定人件費','監査・法務・保険の共通費'],how:'直接費の合計 {sub}円 × {ohPct}% ＝ {v}円。本社や支店の固定費は特定の便には結びつかないので、便数や座席キロに応じて「配賦」します。配賦のしかたは会社ごとに違います。',field:'便数を増やすと1便あたりの配賦は小さくなります。路線の採算を見るとき、この配賦を含めるか（フルコスト）含めないか（直接費）で結論が変わることがあります。'}},
  K:[['座席キロあたり費用（CASK）','費用合計 {tot}円 ÷ 座席キロ {ask}（{seats}席 × {km}km）＝ {cask}円。座席1つを1km運ぶのにかかる費用。路線や機材が違う便を比べるときの共通の物差しです。'],
-    ['座席キロあたり収入（RASK）','収入合計 {rev}円 ÷ 座席キロ {ask} ＝ {rask}円。RASKがCASKより大きければ黒字です。'],
-    ['損益分岐点の座席利用率','（費用合計 {tot}円 − 貨物収入 {cargo}円）÷（1席あたり収入 {unit}円 × {seats}席）＝ {be}。これより利用率が高ければ黒字、低ければ赤字になります。'],
-    ['座席1席あたりの費用','費用合計 {tot}円 ÷ {seats}席 ＝ {perSeat}円。売れても売れなくても1席にこれだけかかっている、と考えると空席の重さが分かります。']],
+    ['座席キロあたり総収入（RASK、貨物を含む）','収入合計（運賃・付帯収入・貨物）{rev}円 ÷ 座席キロ {ask} ＝ {rask}円。ここでは貨物収入も含めた総収入で計算しています（旅客収入だけで計算する旅客RASKとは別の数字です）。RASKがCASKより大きければ黒字です。'],
+    ['損益分岐点の座席利用率','損益0の乗客数 ＝（固定費 {fixed}円 − 貨物収入 {cargo}円）÷（乗客1人あたりの収入 {upax}円 − 乗客1人あたりの変動費 {vc}円）＝ {paxStar}人。乗客は1人単位なので、黒字は {paxBE}人から。乗客数は「{seats}席 × 利用率」を四捨五入して数えるため、{paxBE}人になる最低の利用率（0.1%単位）{be} を損益分岐点としています。2本の線の交点（{paxStar}人 ÷ {seats}席 ＝ {bec}）とは、乗客を1人単位で数える分だけ差が出ます。固定費と変動費は路線・機材・シナリオで決まり、利用率を動かしても変わりません。'],
+    ['座席1席あたりの費用','費用合計 {tot}円 ÷ {seats}席 ＝ {perSeat}円。1便の費用を座席に平均して割り当てた額で、空席1つ・乗客1人ごとにこの金額がかかるという意味ではありません。乗客を1人増やしたときに増える費用は約 {vc}円（販売費・機内サービスと、その分の間接費）だけです。費用の大部分は空席があっても減らないため、空席が多いほど乗客1人あたりの費用（費用合計 ÷ 乗客数）が大きくなります。']],
+ K2over:'損益0の乗客数 ＝（固定費 {fixed}円 − 貨物収入 {cargo}円）÷（乗客1人あたりの収入 {upax}円 − 乗客1人あたりの変動費 {vc}円）＝ {paxStar}人。座席は {seats}席なので、この条件では満席でも黒字になりません。',
  delaytxt:'（30分遅延のシナリオでは、地上待機中の燃料を消費量の30%で加算）',delaytxt2:'（遅延のシナリオでは、延長作業 1時間あたり120,000円を加算）'},
 ko:{exp:'이 숫자를 읽는 방법',items:'비용 항목별 해설 — 무엇이 포함되고 어떻게 계산하는가',itemslead:'각 항목을 열면 실제 항공사에서 그 항목에 들어가는 비용, 이 도구의 계산식(지금 숫자를 대입한 것), 현장에서 영향을 줄 수 있는 부분을 볼 수 있습니다.',kpiexp:'지표의 계산식',
  tag:{bh:'비행시간에 비례',dep:'한 편마다 고정',pax:'승객 수에 비례',oh:'배부(할당)'},
- X:['띠 그래프는 이 한 편을 띄우는 데 드는 비용을 연료비부터 본사 간접비까지 9개 항목으로 나누어 나타낸 것입니다. 합계 {tot}엔 가운데 승객이 한 명도 없어도 드는 비용(연료·승무원·조업·정비·항공기·공항·간접비)이 {fixed}엔, 전체의 {fixedPct}입니다. 승객이 늘면 함께 늘어나는 비용은 판매비와 기내 서비스·보험뿐입니다.',
-     '좌석을 하나 더 팔면 수입은 운임 {fare}엔 + 부대수입 {anc}엔, 추가 비용은 약 {mc}엔(판매 수수료와 기내 서비스)입니다. 차액 {mg}엔이 그대로 손익에 더해집니다. 그래서 항공사는 탑승률을 1%p라도 올리려 합니다.',
-     '아래 그림은 탑승률을 40%에서 100%까지 움직였을 때의 수입(파랑)과 비용(주황)입니다. 두 선이 만나는 {be}가 손익분기점입니다. 지금 탑승률 {lf}는 그 {side}에 있습니다. 비용선이 거의 평평한 것이 고정비가 큰 항공 사업의 특징입니다.'],
+ X:['띠 그래프는 이 한 편을 띄우는 데 드는 비용을 연료비부터 본사 간접비까지 9개 항목으로 나누어 나타낸 것입니다. 합계 {tot}엔 가운데 승객이 한 명도 없어도 드는 비용(연료·승무원·조업·정비·항공기·공항, 보험 등 한 편마다 드는 고정분과 여기에 배부되는 간접비)이 {fixed}엔, 전체의 {fixedPct}입니다. 승객이 늘면 함께 늘어나는 비용은 판매비와 1인당 기내 서비스 비용, 그만큼 배부되는 간접비뿐입니다.',
+     '좌석을 하나 더 팔면 수입은 운임 {fare}엔 + 부대수입 {anc}엔, 추가 비용은 약 {mc}엔(판매 수수료·기내 서비스와 그만큼의 간접비 배부)입니다. 차액 {mg}엔이 그대로 손익에 더해집니다. 그래서 항공사는 탑승률을 1%p라도 올리려 합니다. 참고로 좌석 1석당 비용({perSeat}엔)은 비용 합계를 좌석 수로 나눈 평균이며, 승객이 1명 늘 때 늘어나는 비용(약 {mc}엔)과는 다릅니다.',
+     '위 그래프는 탑승률을 40%에서 100%까지 움직였을 때의 수입(파랑)과 비용(주황)입니다. 손익이 0이 되는 것은 승객 {paxStar}명(두 선의 교점, 탑승률 약 {bec})이지만, 승객은 1명 단위이므로 흑자가 되는 것은 {paxBE}명부터입니다. 이 도구는 승객 수를 「좌석 수 × 탑승률」을 반올림해 세므로, {paxBE}명이 되는 가장 낮은 탑승률 {be}를 손익분기점으로 표시합니다(그래프의 점선). 지금 탑승률 {lf}(승객 {pax}명)는 그 {side}에 있습니다. 비용선이 거의 평평한 것이 고정비가 큰 항공 사업의 특징입니다.'],
+ X2over:'위 그래프는 탑승률을 40%에서 100%까지 움직였을 때의 수입(파랑)과 비용(주황)입니다. 이 조건에서는 만석({seats}석)이어도 수입이 비용에 미치지 못해 두 선이 만나지 않습니다(손익 0에 필요한 승객은 {paxStar}명). 비용선이 거의 평평한 것이 고정비가 큰 항공 사업의 특징입니다.',
  side:{ok:'오른쪽(흑자 쪽)',ng:'왼쪽(적자 쪽)'},
- lccnote:'【LCC 설정】운임을 낮추는 대신 부대수입(수하물·좌석 지정·기내 판매)이 수입의 {ancpct}를 차지합니다. 화물은 거의 운반하지 않고, 기내식은 유료라 「기내 서비스」 비용이 거의 없습니다. 단일 기종에 가동률이 높아 한 편당 항공기 비용이 낮고, 승무원·조업은 필요 최소한, 판매는 직판 중심(판매비 {salesPct}%), 본사도 작습니다(간접비 {ohPct}%). 그 결과 좌석킬로당 비용(CASK)은 {cask}엔으로, 같은 노선·기종의 FSC({fcask}엔)보다 낮아집니다. 실제 예: Peach의 좌석킬로당 수입 10.7엔(ANA 국내선 15.9엔), 라이언에어 부대수입 비율 33.8%, 제주항공 9.2%.',
+ lccnote:'[LCC 설정] 운임을 낮추는 대신 부대수입(수하물·좌석 지정·기내 판매)이 수입의 {ancpct}를 차지합니다. 화물은 거의 운반하지 않고, 기내식은 유료라 「기내 서비스」 비용이 거의 없습니다. 단일 기종에 가동률이 높아 한 편당 항공기 비용이 낮고, 승무원·조업은 필요 최소한, 판매는 직판 중심(판매비 {salesPct}%), 본사도 작습니다(간접비 {ohPct}%). 그 결과 좌석킬로당 비용(CASK)은 {cask}엔으로, 같은 노선·기종의 FSC({fcask}엔)보다 낮아집니다.',
  E:{fuel:{sub:['제트 연료 대금(시세는 싱가포르 케로신 등 지표 가격)','국내선 항공기 연료세(일본)','급유 작업·저장 수수료','연료 헤지 손익(회사에 따라 비용에 포함)'],how:'소비량 {burn}kg/시간 × 비행시간 {bh}시간 × 단가 {yk}엔/kg = {v}엔. 단가는 케로신 {kero}달러/배럴 × 환율 {fx}엔 ÷ 127kg/배럴로 계산합니다.{delaytxt}',field:'기체 무게(탑재량·연료 과다 탑재), 지상 대기 시간, 엔진 사용 방식에 따라 달라집니다. 지점이 할 수 있는 것은 정확한 탑재와 정시 출발로 낭비되는 연료를 줄이는 일입니다.'},
   crew:{sub:['조종사·객실승무원 급여와 상여','승무 수당·심야 수당','체재지 호텔과 일당(국제선)','훈련비와 자격 유지','유니폼·이동 교통비'],how:'(조종사 {pilots}명 × 26,000엔 + 객실승무원 {cabin}명 × 6,500엔) × (비행 {bh}시간 + 지상 1시간) × 노선 계수 {crewx} = {v}엔. 장거리는 교대 요원이 타므로 인원과 계수가 늘어납니다.',field:'지연이 길어지면 승무시간 상한에 걸려 교대 승무원과 숙박이 필요해집니다. 정시 운항이 승무원 비용 증가를 막습니다.'},
   handling:{sub:['체크인·탑승구 안내 인원','수하물 분류·탑재·하기','램프 작업(푸시백·급수·오수·GPU)','기내 청소·리넨','겨울철 제빙·방빙(별도 요금이 많음)','운항 서류 전달·로드컨트롤'],how:'한 편당 계약 단가 {hdl}엔(기종 크기와 국제·국내에 따라 다름){delaytxt2} = {v}엔. 실제로는 SGHA 부속서 B에서 편별·작업별 단가가 정해집니다.',field:'지점이 직접 관리하는 비용입니다. 추가 작업 요청, 지연 시 연장 작업, 계약 외 작업이 청구액을 늘립니다(공항 지점 운영 실무 2-1·4-8).'},
@@ -199,17 +207,19 @@ ko:{exp:'이 숫자를 읽는 방법',items:'비용 항목별 해설 — 무엇�
   other:{sub:['기내식·음료·기내 판매품 구매','기내 용품(담요·헤드폰·잡지)','기체·배상책임 보험','지연·결항 시 승객 보상','통신·기상 정보 서비스료'],how:'승객 {pax}명 × 1인당 {otherp}엔 + 한 편당 보험·잡비 {otherf}엔 = {v}엔. 국제선 장거리는 기내식이 여러 번 나오므로 1인당 금액이 커집니다.',field:'보상(식사권·호텔)이 이 항목에 들어갑니다. 지연 대응 판단이 비용에 직결됩니다.'},
   overhead:{sub:['본사 인건비(기획·재무·인사·운항관리)','IT 시스템(예약·운항·정비 시스템)','승무원·지상직 교육 훈련','지점 사무실비·고정 인건비','감사·법무·보험 공통비'],how:'직접비 합계 {sub}엔 × {ohPct}% = {v}엔. 본사나 지점의 고정비는 특정 편에 묶이지 않으므로 편수나 좌석킬로에 따라 「배부」합니다. 배부 방법은 회사마다 다릅니다.',field:'편수를 늘리면 한 편당 배부액은 작아집니다. 노선 채산을 볼 때 이 배부를 넣는지(풀코스트) 빼는지(직접비)에 따라 결론이 달라질 수 있습니다.'}},
  K:[['좌석킬로당 비용(CASK)','비용 합계 {tot}엔 ÷ 좌석킬로 {ask}({seats}석 × {km}km) = {cask}엔. 좌석 하나를 1km 운송하는 데 드는 비용. 노선이나 기종이 다른 편을 비교할 때의 공통 잣대입니다.'],
-    ['좌석킬로당 수입(RASK)','수입 합계 {rev}엔 ÷ 좌석킬로 {ask} = {rask}엔. RASK가 CASK보다 크면 흑자입니다.'],
-    ['손익분기 탑승률','(비용 합계 {tot}엔 − 화물 수입 {cargo}엔) ÷ (1석당 수입 {unit}엔 × {seats}석) = {be}. 이보다 탑승률이 높으면 흑자, 낮으면 적자입니다.'],
-    ['좌석 1석당 비용','비용 합계 {tot}엔 ÷ {seats}석 = {perSeat}엔. 팔리든 안 팔리든 1석에 이만큼의 비용이 든다고 생각하면 빈 좌석의 무게를 실감할 수 있습니다.']],
+    ['좌석킬로당 총수입(RASK, 화물 포함)','수입 합계(운임·부대수입·화물) {rev}엔 ÷ 좌석킬로 {ask} = {rask}엔. 여기서는 화물 수입을 포함한 총수입으로 계산합니다(여객 수입만으로 계산하는 여객 RASK와는 다른 숫자입니다). RASK가 CASK보다 크면 흑자입니다.'],
+    ['손익분기 탑승률','손익 0의 승객 수 = (고정비 {fixed}엔 − 화물 수입 {cargo}엔) ÷ (승객 1인당 수입 {upax}엔 − 승객 1인당 변동비 {vc}엔) = {paxStar}명. 승객은 1명 단위이므로 흑자는 {paxBE}명부터입니다. 승객 수는 「{seats}석 × 탑승률」을 반올림해 세므로, {paxBE}명이 되는 가장 낮은 탑승률(0.1% 단위) {be}를 손익분기점으로 삼습니다. 두 선의 교점({paxStar}명 ÷ {seats}석 = {bec})과는 승객을 1명 단위로 세는 만큼 차이가 납니다. 고정비와 변동비는 노선·기종·시나리오로 정해지며, 탑승률을 움직여도 바뀌지 않습니다.'],
+    ['좌석 1석당 비용','비용 합계 {tot}엔 ÷ {seats}석 = {perSeat}엔. 한 편의 비용을 좌석에 평균으로 나눠 배분한 금액이며, 빈 좌석 하나·승객 한 명마다 이만큼의 비용이 든다는 뜻은 아닙니다. 승객이 1명 늘 때 늘어나는 비용은 약 {vc}엔(판매비·기내 서비스와 그만큼의 간접비)뿐입니다. 비용의 대부분은 빈 좌석이 있어도 줄지 않으므로, 빈 좌석이 많을수록 승객 1인당 비용(비용 합계 ÷ 승객 수)이 커집니다.']],
+ K2over:'손익 0의 승객 수 = (고정비 {fixed}엔 − 화물 수입 {cargo}엔) ÷ (승객 1인당 수입 {upax}엔 − 승객 1인당 변동비 {vc}엔) = {paxStar}명. 좌석은 {seats}석이므로 이 조건에서는 만석이어도 흑자가 되지 않습니다.',
  delaytxt:'(30분 지연 시나리오에서는 지상 대기 중 연료를 소비량의 30%로 계산해 가산)',delaytxt2:'(지연 시나리오에서는 연장 작업 1시간당 120,000엔을 가산)'},
 en:{exp:'How to read these numbers',items:'Cost items explained: what is included and how it is calculated',itemslead:'Open an item to see what real airlines book under it, the formula this tool uses (with the current figures filled in), and what the station can influence.',kpiexp:'How the indicators are calculated',
  tag:{bh:'Scales with flying hours',dep:'Fixed per flight',pax:'Scales with passengers',oh:'Allocated'},
- X:['The bar lays out the cost of operating this one flight in nine items, from fuel to head-office overheads. Of the total {tot} yen, {fixed} yen ({fixedPct}) is spent even with no passengers on board: fuel, crew, handling, maintenance, aircraft, airport charges and overheads. Only distribution and catering, insurance and sundries rise with passenger numbers.',
-     'Selling one more seat brings in the fare {fare} yen plus ancillaries {anc} yen, and adds only about {mc} yen of cost (commission and catering). The difference, {mg} yen, goes straight to the bottom line. That is why airlines fight for every point of load factor.',
-     'The chart below moves the load factor from 40% to 100% and plots revenue (blue) against cost (orange). They cross at {be}, the break-even point; the current load factor {lf} sits to its {side}. The almost flat cost line is the mark of a business dominated by fixed costs.'],
+ X:['The bar lays out the cost of operating this one flight in nine items, from fuel to head-office overheads. Of the total {tot} yen, {fixed} yen ({fixedPct}) is spent even with no passengers on board: fuel, crew, handling, maintenance, aircraft, airport charges, the fixed per-flight part of insurance and sundries, and the overheads allocated to them. Only distribution, per-passenger catering and the overheads allocated to them rise with passenger numbers.',
+     'Selling one more seat brings in the fare {fare} yen plus ancillaries {anc} yen, and adds only about {mc} yen of cost (commission and catering, plus the overheads allocated to them). The difference, {mg} yen, goes straight to the bottom line. That is why airlines fight for every point of load factor. Note that the cost per seat ({perSeat} yen) is total cost divided by seats, an average, not the extra cost of one more passenger (about {mc} yen).',
+     'The chart above moves the load factor from 40% to 100% and plots revenue (blue) against cost (orange). Profit is zero at {paxStar} passengers (where the lines cross, a load factor of about {bec}), but passengers come in whole numbers, so the flight makes a profit from {paxBE} passengers. This tool counts passengers by rounding seats × load factor, so it shows the lowest load factor that gives {paxBE} passengers, {be}, as the break-even point (dotted line). The current load factor {lf} ({pax} passengers) sits to its {side}. The almost flat cost line is the mark of a business dominated by fixed costs.'],
+ X2over:'The chart above moves the load factor from 40% to 100% and plots revenue (blue) against cost (orange). In these settings revenue stays below cost even when all {seats} seats are full, so the lines do not cross (break-even would need {paxStar} passengers). The almost flat cost line is the mark of a business dominated by fixed costs.',
  side:{ok:'right (profit side)',ng:'left (loss side)'},
- lccnote:'[LCC settings] Fares are low, so ancillaries (bags, seat selection, on-board sales) make up {ancpct} of revenue. Almost no cargo is carried and meals are sold, so catering cost nearly disappears. A single fleet type with high utilisation lowers aircraft cost per flight; crew and handling are kept to a minimum, sales are mostly direct (distribution {salesPct}%) and head office is lean (overheads {ohPct}%). As a result CASK is {cask} yen against {fcask} yen for a full-service carrier on the same route and aircraft. Real examples: Peach earns 10.7 yen per seat-km (ANA domestic 15.9), Ryanair gets 33.8% of revenue from ancillaries, Jeju Air 9.2%.',
+ lccnote:'[LCC settings] Fares are low, so ancillaries (bags, seat selection, on-board sales) make up {ancpct} of revenue. Almost no cargo is carried and meals are sold, so catering cost nearly disappears. A single fleet type with high utilisation lowers aircraft cost per flight; crew and handling are kept to a minimum, sales are mostly direct (distribution {salesPct}%) and head office is lean (overheads {ohPct}%). As a result CASK is {cask} yen against {fcask} yen for a full-service carrier on the same route and aircraft.',
  E:{fuel:{sub:['Jet fuel (priced off benchmarks such as Singapore kerosene)','Aviation fuel tax on domestic flights (Japan)','Into-plane and storage fees','Fuel hedging gains and losses (booked here by some airlines)'],how:'Burn {burn} kg/h × block time {bh} h × price {yk} yen/kg = {v} yen. Price = kerosene {kero} $/bbl × FX {fx} yen ÷ 127 kg per barrel.{delaytxt}',field:'Driven by aircraft weight (load, excess fuel), time on the ground and engine use. A station reduces waste through accurate loading and on-time departures.'},
   crew:{sub:['Pilot and cabin crew salaries and bonuses','Flight and night allowances','Hotels and per diems down route (international)','Training and licence renewals','Uniforms and positioning travel'],how:'({pilots} pilots × 26,000 yen + {cabin} cabin crew × 6,500 yen) × (block {bh} h + 1 h ground) × route factor {crewx} = {v} yen. Long-haul flights carry augmented crews, so headcount and the factor rise.',field:'A long delay hits duty-time limits and forces crew changes or hotels. Punctuality protects crew cost.'},
   handling:{sub:['Check-in and gate agents','Baggage sorting, loading and unloading','Ramp services (pushback, water, lavatory, GPU)','Cabin cleaning and linen','Winter de-icing and anti-icing (often charged separately)','Flight documents and load control'],how:'Contract rate per turnaround {hdl} yen (varies with aircraft size and domestic/international){delaytxt2} = {v} yen. In practice SGHA Annex B sets rates per flight and per service.',field:'The cost a station controls most directly. Extra requests, extended work during delays and out-of-scope services push invoices up (Station Management 2-1, 4-8).'},
@@ -220,32 +230,33 @@ en:{exp:'How to read these numbers',items:'Cost items explained: what is include
   other:{sub:['Meals, drinks and in-flight sales stock','Cabin supplies (blankets, headsets, magazines)','Hull and liability insurance','Passenger compensation for delays and cancellations','Communications and weather services'],how:'Passengers {pax} × {otherp} yen each + insurance and sundries {otherf} yen per flight = {v} yen. Long-haul flights serve several meals, so the per-passenger amount is higher.',field:'Compensation (meal vouchers, hotels) sits here. Decisions during a delay feed straight into this cost.'},
   overhead:{sub:['Head-office staff (planning, finance, HR, operations control)','IT systems (reservations, operations, maintenance)','Training for crew and ground staff','Station offices and fixed staff costs','Audit, legal and shared insurance'],how:'Direct costs {sub} yen × {ohPct}% = {v} yen. Head-office and station fixed costs do not belong to any one flight, so they are allocated by flights or seat-km. Allocation methods differ by airline.',field:'More flights spread the allocation thinner. Whether a route pays can depend on whether this allocation is included (full cost) or excluded (direct cost).'}},
  K:[['Cost per seat-km (CASK)','Total cost {tot} yen ÷ seat-km {ask} ({seats} seats × {km} km) = {cask} yen. The cost of carrying one seat one kilometre, the common yardstick for comparing flights on different routes and aircraft.'],
-    ['Revenue per seat-km (RASK)','Total revenue {rev} yen ÷ seat-km {ask} = {rask} yen. When RASK exceeds CASK the flight is profitable.'],
-    ['Break-even load factor','(Total cost {tot} yen − cargo revenue {cargo} yen) ÷ (revenue per seat {unit} yen × {seats} seats) = {be}. Above this load factor the flight makes money; below it, it loses money.'],
-    ['Cost per seat','Total cost {tot} yen ÷ {seats} seats = {perSeat} yen. Each seat costs this much whether it is sold or not, which is what makes an empty seat so expensive.']],
+    ['Total revenue per seat-km (RASK, incl. cargo)','Total revenue (fares, ancillaries and cargo) {rev} yen ÷ seat-km {ask} = {rask} yen. Cargo is included here, so this differs from passenger RASK, which uses passenger revenue only. When RASK exceeds CASK the flight is profitable.'],
+    ['Break-even load factor','Break-even passengers = (fixed cost {fixed} yen − cargo revenue {cargo} yen) ÷ (revenue per passenger {upax} yen − variable cost per passenger {vc} yen) = {paxStar}. Passengers come in whole numbers, so profit starts at {paxBE}. Passengers are counted by rounding {seats} seats × load factor, so the break-even point shown is the lowest load factor (to 0.1%) that gives {paxBE} passengers: {be}. It differs slightly from where the two lines cross ({paxStar} ÷ {seats} seats = {bec}) because passengers are counted one by one. Fixed and variable costs depend on the route, aircraft and scenario, and do not change when you move the load factor.'],
+    ['Cost per seat','Total cost {tot} yen ÷ {seats} seats = {perSeat} yen. This is the flight’s cost averaged over its seats; it does not mean that each empty seat or each extra passenger costs this much. One more passenger adds only about {vc} yen (distribution and catering, plus the overheads allocated to them). Most costs do not fall when seats are empty, so the more empty seats, the higher the cost per passenger (total cost ÷ passengers).']],
+ K2over:'Break-even passengers = (fixed cost {fixed} yen − cargo revenue {cargo} yen) ÷ (revenue per passenger {upax} yen − variable cost per passenger {vc} yen) = {paxStar}. With {seats} seats, the flight cannot make a profit in these settings even when full.',
  delaytxt:' (In the 30-minute delay scenario, ground fuel at 30% of burn is added.)',delaytxt2:' (In the delay scenario, extended work at 120,000 yen per hour is added.)'}};
 var TAGS={fuel:'bh',crew:'bh',handling:'dep',maint:'bh',own:'bh',airport:'dep',sales:'pax',other:'pax',overhead:'oh'};
 function fill(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k]!==undefined?o[k]:'{'+k+'}'})}
 function renderExp(x,d,lf){var e=EXP[lang],m=x.m,R=ROUTES[st.r];
- var mc=m.fare*m.salesR+m.otherp, mg=m.fare+m.ancp-mc, be=x.be;
- var o={tot:fy(x.tot),fixed:fy(m.fixedPerFlight),fixedPct:pct(m.fixedPerFlight/x.tot),fare:fy(m.fare),anc:fy(m.ancp),mc:fy(mc),mg:fy(mg),be:pct(be),lf:pct(lf),side:(lf>=be?e.side.ok:e.side.ng)};
+ var be=x.be,over=(be===Infinity);
+ var o={tot:fy(x.tot),fixed:fy(m.fixedPerFlight),fixedPct:pct(m.fixedPerFlight/x.tot),fare:fy(m.fare),anc:fy(m.ancp),mc:fy(x.vc),mg:fy(x.margin),perSeat:fy(x.perSeat),be:over?d.overpct:pct(be),bec:pct(x.beC),paxStar:x.paxStar.toFixed(1),paxBE:x.paxBE,pax:x.pax,seats:x.seats,lf:pct(lf),side:(x.profit>=0?e.side.ok:e.side.ng)};
  document.getElementById('t_exp').textContent=e.exp;document.getElementById('t_items').textContent=e.items;document.getElementById('t_itemslead').textContent=e.itemslead;document.getElementById('t_kpiexp').textContent=e.kpiexp;
  document.getElementById('exp1').innerHTML='<p class="big">'+fill(e.X[0],o)+'</p><p>'+fill(e.X[1],o)+'</p>';
  var lccp='';if(x.lcc){var sv=st.cr;st.cr='fsc';var fx=calc(st.r,st.t,lf,SCEN[st.sc]||{});st.cr=sv;lccp='<p>'+fill(e.lccnote,{ancpct:pct(x.rv.anc/x.rev),salesPct:Math.round(m.salesR*100),ohPct:Math.round(m.ohR*100),cask:x.cask.toFixed(1),fcask:fx?fx.cask.toFixed(1):'—'})+'</p>'}
- document.getElementById('exp2').innerHTML='<p>'+fill(e.X[2],o)+'</p>'+lccp;
+ document.getElementById('exp2').innerHTML='<p>'+fill(over?e.X2over:e.X[2],o)+'</p>'+lccp;
  // chart
  var W=640,H=280,L=52,Rm=16,T=14,Bt=40,pts=[],maxv=0;
  for(var p=40;p<=100;p+=5){var y=calc(st.r,st.t,p/100,SCEN[st.sc]||{});pts.push([p,y.rev,y.tot]);maxv=Math.max(maxv,y.rev,y.tot)}
- maxv=maxv*1.08;function X(p){return L+(p-40)/60*(W-L-Rm)}function Y(v){return T+(1-v/maxv)*(H-T-Bt)}
+ maxv=maxv*1.08;function tk(v){if(v<1)return '0';if(maxv<1e6)return fy(v);return lang==='en'?(v/1e6).toFixed(maxv<1e7?2:1)+'M':(v/1e4).toFixed(0)+(lang==='ko'?'만':'万')}function X(p){return L+(p-40)/60*(W-L-Rm)}function Y(v){return T+(1-v/maxv)*(H-T-Bt)}
  var s='<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#fff"/>';
- for(var g=0;g<=4;g++){var v=maxv*g/4,yy=Y(v);s+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-Rm)+'" y2="'+yy+'" stroke="#e6ecf2"/><text x="'+(L-6)+'" y="'+(yy+4)+'" font-size="10" text-anchor="end" fill="#5b6b7d">'+(v>=1e6?(v/1e4).toFixed(0)+'万':fy(v))+'</text>'}
+ for(var g=0;g<=4;g++){var v=maxv*g/4,yy=Y(v);s+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-Rm)+'" y2="'+yy+'" stroke="#e6ecf2"/><text x="'+(L-6)+'" y="'+(yy+4)+'" font-size="10" text-anchor="end" fill="#5b6b7d">'+tk(v)+'</text>'}
  for(var p2=40;p2<=100;p2+=10){s+='<text x="'+X(p2)+'" y="'+(H-Bt+16)+'" font-size="11" text-anchor="middle" fill="#5b6b7d">'+p2+'%</text>'}
  var rp=pts.map(function(q){return X(q[0]).toFixed(1)+','+Y(q[1]).toFixed(1)}).join(' '),cp=pts.map(function(q){return X(q[0]).toFixed(1)+','+Y(q[2]).toFixed(1)}).join(' ');
  s+='<polyline points="'+cp+'" fill="none" stroke="#e08a2f" stroke-width="3"/><polyline points="'+rp+'" fill="none" stroke="#2f8fe0" stroke-width="3"/>';
- if(be>=0.4&&be<=1){var bx=X(be*100),by=Y(calc(st.r,st.t,be,SCEN[st.sc]||{}).tot);s+='<line x1="'+bx+'" y1="'+T+'" x2="'+bx+'" y2="'+(H-Bt)+'" stroke="#1d2a38" stroke-dasharray="4 4"/><circle cx="'+bx+'" cy="'+by+'" r="6" fill="#1d2a38"/><text x="'+bx+'" y="'+(T+10)+'" font-size="11" text-anchor="middle" fill="#1d2a38" font-weight="700">'+pct(be)+'</text>'}
+ if(!over&&be>=0.4&&be<=1){var bx=X(be*100),by=Y(calc(st.r,st.t,be,SCEN[st.sc]||{}).tot);s+='<line x1="'+bx+'" y1="'+T+'" x2="'+bx+'" y2="'+(H-Bt)+'" stroke="#1d2a38" stroke-dasharray="4 4"/><circle cx="'+bx+'" cy="'+by+'" r="6" fill="#1d2a38"/><text x="'+bx+'" y="'+(T+10)+'" font-size="11" text-anchor="middle" fill="#1d2a38" font-weight="700">'+pct(be)+'</text>'}
  var cx=X(lf*100),cy=Y(x.rev);s+='<circle cx="'+cx+'" cy="'+cy+'" r="7" fill="#fff" stroke="#2f8fe0" stroke-width="3"/><circle cx="'+cx+'" cy="'+Y(x.tot)+'" r="7" fill="#fff" stroke="#e08a2f" stroke-width="3"/>';
  s+='<text x="'+(W-Rm)+'" y="'+(H-6)+'" font-size="11" text-anchor="end" fill="#5b6b7d">'+(lang==='ja'?'座席利用率':lang==='ko'?'탑승률':'Load factor')+'</text>';
- s+='<text x="'+(L+8)+'" y="'+(H-Bt-8)+'" font-size="11" fill="#2f8fe0" font-weight="700">'+d.rev.split('(')[0]+'</text><text x="'+(L+8)+'" y="'+(H-Bt-22)+'" font-size="11" fill="#e08a2f" font-weight="700">'+d.perflight.split('(')[0]+'</text>';
+ s+='<text x="'+(L+8)+'" y="'+(H-Bt-8)+'" font-size="11" fill="#2f8fe0" font-weight="700">'+d.rev+'</text><text x="'+(L+8)+'" y="'+(H-Bt-22)+'" font-size="11" fill="#e08a2f" font-weight="700">'+d.perflight+'</text>';
  document.getElementById('chart').innerHTML=s;
  // items
  var vals={burn:fy(m.burn),bh:m.bh,yk:m.yk.toFixed(1),kero:fy(m.kero),fx:fy(m.fx),pilots:m.pilots,cabin:m.cabin,crewx:m.crewx,hdl:fy(m.hdl),maint:fy(m.maint),own:fy(m.own),landing:fy(m.landing),nav:fy(m.nav),mtow:m.mtow,km:fy(m.km),farerev:fy(x.rv.fare),pax:x.pax,otherp:fy(m.otherp),otherf:fy(m.otherf),sub:fy(m.sub),salesPct:Math.round(m.salesR*100),ohPct:Math.round(m.ohR*100),delaytxt:(m.delay?e.delaytxt:''),delaytxt2:(m.delay?e.delaytxt2:'')};
@@ -255,9 +266,8 @@ function renderExp(x,d,lf){var e=EXP[lang],m=x.m,R=ROUTES[st.r];
    '<h4>'+(lang==='ja'?'実際に含まれる費用':lang==='ko'?'실제로 포함되는 비용':'What real airlines include')+'</h4><ul>'+E.sub.map(function(q){return '<li>'+q+'</li>'}).join('')+'</ul>'+
    '<h4>'+(lang==='ja'?'このツールの計算':lang==='ko'?'이 도구의 계산':'How this tool calculates it')+'</h4><p>'+fill(E.how,vals)+'</p>'+
    '<h4>'+(lang==='ja'?'現場との関係':lang==='ko'?'현장과의 관계':'Link to station work')+'</h4><p>'+E.field+'</p></div></details>'}).join('');
- var unit=m.fare+m.ancp;
- var kv={tot:fy(x.tot),ask:fy(x.ask),seats:x.seats,km:fy(m.km),cask:x.cask.toFixed(1),rev:fy(x.rev),rask:x.rask.toFixed(1),cargo:fy(x.rv.cargo),unit:fy(unit),be:pct(x.be),perSeat:fy(x.perSeat)};
- document.getElementById('kpiexp').innerHTML=e.K.map(function(q){return '<h4 style="margin:10px 0 2px;font-size:14px">'+q[0]+'</h4><div class="formula" style="white-space:normal">'+fill(q[1],kv)+'</div>'}).join('');}
+ var kv={tot:fy(x.tot),ask:fy(x.ask),seats:x.seats,km:fy(m.km),cask:x.cask.toFixed(1),rev:fy(x.rev),rask:x.rask.toFixed(1),cargo:fy(x.rv.cargo),upax:fy(x.upax),vc:fy(x.vc),fixed:fy(x.fixed),paxStar:x.paxStar.toFixed(1),paxBE:x.paxBE,be:over?d.overpct:pct(x.be),bec:pct(x.beC),perSeat:fy(x.perSeat)};
+ document.getElementById('kpiexp').innerHTML=e.K.map(function(q,i){return '<h4 style="margin:10px 0 2px;font-size:14px">'+q[0]+'</h4><div class="formula" style="white-space:normal">'+fill(i===2&&over?e.K2over:q[1],kv)+'</div>'}).join('');}
 var lang=localStorage.getItem('art-lang')||(document.documentElement.lang||'ja');if(!L[lang])lang='ja';
 var st={r:'dom',t:'s',lf:0.82,sc:'base',cr:'fsc'};
 function fy(n){return Math.round(n).toLocaleString('ja-JP')}
@@ -281,12 +291,13 @@ function render(){var d=L[lang];document.documentElement.lang=lang;document.titl
  var RC={fare:'#2f8fe0',anc:'#7fb6e8',cargo:'#1f7a6e'};
  document.getElementById('revbar').innerHTML=['fare','anc','cargo'].map(function(k){return '<div style="width:'+(x.rv[k]/x.rev*100)+'%;background:'+RC[k]+'"></div>'}).join('');
  document.getElementById('revlegend').innerHTML=['fare','anc','cargo'].map(function(k){return '<div><span><i style="background:'+RC[k]+'"></i>'+d.RV[k]+'</span><b>'+fy(x.rv[k])+'</b></div>'}).join('')+'<div><span>'+x.pax+' '+d.pax+' / '+x.seats+' '+d.seats+'</span></div>';
- var kp=document.getElementById('k_profit');kp.className='kpi '+(x.profit>=0?'good':'bad');kp.querySelector('b').textContent=(x.profit>=0?'+':'−')+fy(Math.abs(x.profit));kp.querySelector('em').textContent=(x.profit>=0?d.profit:d.loss)+' '+pct(x.profit/x.rev);
- document.getElementById('k_seat').textContent=fy(x.perSeat);
+ var kp=document.getElementById('k_profit');kp.className='kpi '+(x.profit>=0?'good':'bad');kp.querySelector('b').innerHTML=(x.profit>=0?'+':'−')+fy(Math.abs(x.profit))+'<small class="u"> '+d.yen+'</small>';kp.querySelector('em').textContent=(x.profit>=0?d.profit:d.loss)+fill(d.ofrev,{p:pct(Math.abs(x.profit/x.rev))});
+ document.getElementById('k_seat').innerHTML=fy(x.perSeat)+'<small class="u"> '+d.yen+'</small>';
  document.getElementById('k_cask').textContent=x.cask.toFixed(1)+' '+d.yen;document.getElementById('k_rask').textContent=d.cask+' '+x.rask.toFixed(1)+' '+d.yen;
- var kb=document.getElementById('k_be');kb.className='kpi '+(lf>=x.be?'good':'bad');kb.querySelector('b').textContent=pct(x.be);kb.querySelector('em').textContent=d.bego+' '+(lf>=x.be?d.beok:d.beng);
+ var kb=document.getElementById('k_be');kb.className='kpi '+(x.profit>=0?'good':'bad');kb.querySelector('b').textContent=x.be===Infinity?d.overpct:pct(x.be);kb.querySelector('em').textContent=x.be===Infinity?fill(d.beover,{s:x.seats}):fill(d.beem,{n:x.paxBE,p:x.pax,r:x.profit>=0?d.bk:d.ak});
  var dc=x.tot-base.tot,dp=x.profit-base.profit;
- document.getElementById('delta').innerHTML=st.sc==='base'?'':d.vs+'<b class="'+(dc>0?'up':'dn')+'">'+(dc>=0?'+':'−')+fy(Math.abs(dc))+'</b>'+d.rev2+'<b class="'+(dp>=0?'dn':'up')+'">'+(dp>=0?'+':'−')+fy(Math.abs(dp))+'</b>';
+ document.getElementById('t_scnote').textContent=d.scnote;
+ document.getElementById('delta').innerHTML=st.sc==='base'?'':(o.lf?fill(d.lfapp,{b:Math.round(st.lf*100)+'%',a:Math.round(lf*100)+'%'+(st.lf+o.lf>1.0000001?d.cap:'')})+'<br>':'')+d.vs+'<b class="'+(dc>0?'up':'dn')+'">'+(dc>=0?'+':'−')+fy(Math.abs(dc))+'</b>'+d.rev2+'<b class="'+(dp>=0?'dn':'up')+'">'+(dp>=0?'+':'−')+fy(Math.abs(dp))+'</b>';
  tb.innerHTML=ORDER.map(function(k){return '<tr><td><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+COL[k]+';margin-right:6px"></i>'+d.C[k][0]+'</td><td class="n">'+fy(x.c[k])+'</td><td class="n">'+pct(x.c[k]/x.tot)+'</td><td>'+d.C[k][1]+'</td></tr>'}).join('');
  renderExp(x,d,lf);}
 document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;localStorage.setItem('art-lang',lang);render()}});

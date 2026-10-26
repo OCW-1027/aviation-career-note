@@ -42,7 +42,7 @@ sections:[
 {name:"Regular medicine, going to the Middle East",x:"Depending on the ingredients, prior approval may be needed. Tell the passenger to check the destination authority’s guidance. The airline does not decide. (4-8)"},
 {name:"Several bottles of alcohol bought duty-free",x:"They count towards the allowance of the country of arrival, and some countries ban bringing in alcohol. (2-2, 4-8)"}]}]},
 {h:"Money, and packages for others",blocks:[{t:"rows",items:[
-{name:"Carrying a large amount of cash",x:"Carrying it is not prohibited. Above the set amount, it is declared: roughly the equivalent of 1 million yen in Japan and USD 10,000 in Korea and the United States. (2-3, 4-3)"},
+{name:"Carrying a large amount of cash",x:"Carrying it is not prohibited. Above the set amount, it is declared: the threshold is the equivalent of 1 million yen in Japan and USD 10,000 in Korea and the United States. (2-3, 4-3)"},
 {name:"Asked to deliver a package without knowing what is in it",x:"Advise them to refuse. The person carrying it is responsible for the contents. (2-3)"},
 {name:"Counterfeit branded goods bought as souvenirs",x:"They cannot be brought in, even for personal use. (2-3)"}]}]},
 {h:"Opportunities to inform passengers",blocks:[{t:"check",items:[

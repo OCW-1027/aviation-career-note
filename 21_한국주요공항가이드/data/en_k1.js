@@ -60,7 +60,7 @@ sections:[
 ["Facilities and services","Terminal upgrades and wider use of biometric (palm and face) boarding ★"]]},
 {t:"point",x:"At Gimpo, decisions turn on 23:00 and Jeju’s weather. Spotting evening delays and changes at Jeju early is what makes a Gimpo station strong."}]}],
 voice:"Gimpo has both domestic and international terminals, and international passengers sometimes head to the domestic side. For passengers on the Haneda and Kansai routes, always include the international terminal's location in your notices.",
-terms:[["Korea Airports Corporation (KAC)","韓国空港公社","한국공항공사"],["Curfew","運航の制限の時間","운항 제한 시간(커퓨)"],["Diversion","目的地の変更","회항(다이버트)"],["City Airport","都心空港","도심 공항"],["Domestic Flight","国内線","국내선"]],
+terms:[["Korea Airports Corporation (KAC)","韓国空港公社","한국공항공사"],["Curfew","運航制限時間（カーフュー）","운항 제한 시간(커퓨)"],["Diversion","ダイバート","회항(다이버트)"],["City Airport","都心空港","도심 공항"],["Domestic Flight","国内線","국내선"]],
 quiz:[{q:"When are flights restricted at Gimpo?",opts:["22:00–05:00","23:00–06:00","00:00–05:00","No restriction"],a:1,exp:"To limit noise."},
 {q:"Which were Gimpo’s biggest international routes in 2025?",opts:["Japan","China","Taiwan","United States"],a:0,exp:"2.98 million passengers."},
 {q:"When did Gimpo–Haneda flights begin?",opts:["March 2001","November 2003","2010","2019"],a:1,exp:"On 30 November 2003."}],

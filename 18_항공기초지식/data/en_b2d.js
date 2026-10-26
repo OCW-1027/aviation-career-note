@@ -56,7 +56,7 @@ sections:[
 {name:"Explaining to passengers",x:"Why the same route takes different times each way, or why a flight takes a detour, can be explained by winds and airways."}]}]}],
 voice:"Knowing the airways makes conversations with dispatch and the crew much easier to follow. When you hear that a reroute will lengthen the flight, you know which airspace is being avoided and can brief passengers with confidence.",
 terms:[["Airway / ATS Route","航空路","항공로"],["Waypoint","ウェイポイント","웨이포인트"],["Standard Instrument Departure (SID)","出発方式","표준 출발 절차"],["Standard Terminal Arrival Route (STAR)","到着方式","표준 도착 절차"],["Flight Information Region (FIR)","飛行情報区","비행정보구역"],["Aeronautical Information Publication (AIP)","航空路誌","항공정보간행물"]],
-quiz:[{q:"Which airway do flights from Gimpo to Jeju use?",opts:["Y711","Y722","A593","Either"],a:0,exp:"Flights to Gimpo use Y722: a one-way pair."},
+quiz:[{q:"Which airway do flights from Gimpo to Jeju use?",opts:["Y711","Y722","A593","Either"],a:0,exp:"Gimpo to Jeju uses Y711; return flights to Gimpo use Y722: a one-way pair, one airway for each direction."},
 {q:"What does an airway name starting with “Y” indicate?",opts:["An international conventional route","A mainly domestic RNAV route","Upper airspace only","A helicopter route"],a:1,exp:"Q, T, Y and Z are mainly domestic RNAV routes."},
 {q:"Until 2021, who controlled the AKARA corridor east of 125°E?",opts:["Korea","China","Japan","Taiwan"],a:2,exp:"China controlled the west and Japan the east."}],
 next:"2-6 Following Incheon to Narita on an enroute chart"});

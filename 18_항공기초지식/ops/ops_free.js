@@ -15,7 +15,7 @@ var NEAR=100,KR={};N.kr.forEach(function(k){KR[k]=1});
 var BND={LANAT:1,SAPRA:1};   /* 仁川FIRと福岡FIRの境界の地点 */
 var TX={
  h:L3('経路を自分で作る','경로 직접 만들기','Build your own route'),
- lead:L3('出発・到着の空港を選び、飛行計画書の経路の欄と同じ書き方で経路を書きます。下の候補を押すと続きを足せます。完成すると、たどる・問題・飛行計画などのタブでその経路を練習できます。','출발·도착 공항을 고르고, 비행계획서 경로 칸과 같은 방식으로 경로를 씁니다. 아래 후보를 누르면 이어서 추가됩니다. 완성하면 따라가기·문제·비행계획 등의 탭에서 그 경로로 연습할 수 있습니다.','Choose the departure and arrival airports, then write the route the way it goes in a flight plan. Tap a suggestion to add the next part. When the route is complete, practise it in Follow, Quiz, Flight plan and the other tabs.'),
+ lead:L3('出発・到着の空港を選び、経路を書きます。書き方は、出発・到着の空港も1つの欄に続けて書く、この練習用の簡易な形です（実際の飛行計画書では、出発空港・経路・到着空港は別の項目です）。日本の空港の出発・到着は、方式（SID・STAR）のデータがないため、距離で選んだ仮の接続です。下の候補を押すと続きを足せます。完成すると、たどる・問題・飛行計画などのタブでその経路を練習できます。','출발·도착 공항을 고르고 경로를 씁니다. 표기 방식은 출발·도착 공항까지 한 칸에 이어 쓰는 이 연습용 간이 형식입니다(실제 비행계획서에서는 출발 공항·경로·도착 공항이 별도 항목입니다). 일본 공항의 출발·도착은 절차(SID·STAR) 데이터가 없어 거리로 고른 가상 연결입니다. 아래 후보를 누르면 이어서 추가됩니다. 완성하면 따라가기·문제·비행계획 등의 탭에서 그 경로로 연습할 수 있습니다.','Choose the departure and arrival airports, then write the route. This practice uses a simplified format with the departure and arrival airports in the same line (in a real flight plan, the departure aerodrome, route and destination are separate items). Departures and arrivals at Japanese airports are hypothetical links chosen by distance, as there is no SID or STAR data. Tap a suggestion to add the next part. When the route is complete, practise it in Follow, Quiz, Flight plan and the other tabs.'),
  dep:L3('出発','출발','From'),arr:L3('到着','도착','To'),rt:L3('経路','경로','Route'),
  sug:L3('経路の例を作る','경로 예 만들기','Suggest a route'),back:L3('1つ戻す','하나 지우기','Undo'),clr:L3('消す','지우기','Clear'),
  nx:L3('次に書けるもの：','다음에 쓸 수 있는 것:','Next:'),
@@ -24,14 +24,14 @@ var TX={
  need:L3('経路を完成させると、地図と各タブで練習できます。','경로를 완성하면 지도와 각 탭에서 연습할 수 있습니다.','Complete the route to practise it on the map and in each tab.'),
  nosug:L3('この組み合わせでは、データにある航空路で経路を作れませんでした（韓国側は既存の4経路だけです）。','이 조합으로는 데이터에 있는 항공로로 경로를 만들지 못했습니다(한국 쪽은 기존 4개 경로뿐입니다).','No route could be made with the airways in the data for this pair (Korea has only the four existing routes).'),
  same:L3('出発と到着が同じです。','출발과 도착이 같습니다.','Departure and arrival are the same.'),
- e_dep:L3('最初は出発空港 {x} を書きます。','처음에는 출발 공항 {x}를 씁니다.','Start with the departure airport {x}.'),
- e_sid:L3('{t} は出発方式の終点として使えない地点です。空港からの距離と経路を確認してください（練習用の目安：空港から15〜100NMの航空路上の地点。韓国の空港は登録された出発方式の地点だけ）。','{t}는 출발 절차의 종료 지점으로 쓸 수 없는 지점입니다. 공항과의 거리와 경로를 확인하세요(연습용 기준: 공항에서 15~100NM 거리의 항공로 위 지점. 한국 공항은 등록된 출발 절차의 지점만).','{t} cannot be used to end a departure. Check its distance from the airport and the route (practice guide: a point on an airway 15–100 NM away; Korean airports accept only their listed SID points).'),
- e_star:L3('{c} は到着方式の始点として使えない地点です。到着空港からの距離と経路を確認してください（練習用の目安：到着空港から10〜100NMの地点から到着方式へ。韓国の空港は登録された到着方式の地点だけ）。','{c}는 도착 절차의 시작 지점으로 쓸 수 없는 지점입니다. 도착 공항과의 거리와 경로를 확인하세요(연습용 기준: 도착 공항에서 10~100NM 거리의 지점에서 도착 절차로. 한국 공항은 등록된 도착 절차의 지점만).','{c} cannot be used to start the arrival. Check its distance from the arrival airport and the route (practice guide: start the arrival 10–100 NM from the airport; Korean airports accept only their listed STAR points).'),
+ e_dep:L3('最初は出発空港 {x} を書きます。','처음에는 출발 공항({x})을 씁니다.','Start with the departure airport {x}.'),
+ e_sid:L3('{t}：この練習で出発の最初の地点に使えない地点です。空港からの距離と経路を確認してください（日本の空港は出発方式のデータがないため、空港から15〜100NMの航空路上の地点を仮の接続にします。韓国の空港は登録された出発方式の地点だけ）。','{t}: 이 연습에서 출발 후 첫 지점으로 쓸 수 없는 지점입니다. 공항과의 거리와 경로를 확인하세요(일본 공항은 출발 절차 데이터가 없어 공항에서 15~100NM 거리의 항공로 위 지점을 가상 연결로 씁니다. 한국 공항은 등록된 출발 절차의 지점만).','{t}: this point cannot be the first point after departure in this practice. Check its distance from the airport and the route (Japanese airports have no departure procedure data, so a point on an airway 15–100 NM away is used as a hypothetical link; Korean airports accept only their listed SID points).'),
+ e_star:L3('{c}：この練習で到着空港へつなげない地点です。到着空港からの距離と経路を確認してください（日本の空港は到着方式のデータがないため、到着空港から10〜100NMの地点を仮の接続にします。韓国の空港は登録された到着方式の地点だけ）。','{c}: 이 연습에서 도착 공항으로 연결할 수 없는 지점입니다. 도착 공항과의 거리와 경로를 확인하세요(일본 공항은 도착 절차 데이터가 없어 도착 공항에서 10~100NM 거리의 지점을 가상 연결로 씁니다. 한국 공항은 등록된 도착 절차의 지점만).','{c}: this point cannot link to the arrival airport in this practice. Check its distance from the arrival airport and the route (Japanese airports have no arrival procedure data, so a point 10–100 NM away is used as a hypothetical link; Korean airports accept only their listed STAR points).'),
  e_after:L3('到着空港のあとには何も書きません。','도착 공항 뒤에는 아무것도 쓰지 않습니다.','Nothing goes after the arrival airport.'),
- e_awy:L3('{t} はデータにない航空路か地点です。','{t}는 데이터에 없는 항공로 또는 지점입니다.','{t} is not an airway or point in the data.'),
- e_noton:L3('{c} は {t} の上にありません。','{c}는 {t} 위에 없습니다.','{c} is not on {t}.'),
- e_notonq:L3('{q} は {t} の上にありません。','{q}는 {t} 위에 없습니다.','{q} is not on {t}.'),
- e_dir:L3('{t} は {a} → {b} の向きには飛べません（一方通行）。','{t}는 {a} → {b} 방향으로는 비행할 수 없습니다(일방통행).','{t} cannot be flown from {a} to {b} (one-way).'),
+ e_awy:L3('{t}：データにない航空路か地点です。','{t}: 데이터에 없는 항공로 또는 지점입니다.','{t}: not an airway or point in the data.'),
+ e_noton:L3('{c}：{t} の上にない地点です。','{c}: {t} 위에 없는 지점입니다.','{c}: not a point on {t}.'),
+ e_notonq:L3('{q}：{t} の上にない地点です。','{q}: {t} 위에 없는 지점입니다.','{q}: not a point on {t}.'),
+ e_dir:L3('{t}：{a} → {b} の向きには飛べません（一方通行）。','{t}: {a} → {b} 방향으로는 비행할 수 없습니다(일방통행).','{t}: cannot be flown from {a} to {b} (one-way).'),
  e_dct:L3('DCT のあとには地点を書きます。','DCT 뒤에는 지점을 씁니다.','Write a point after DCT.'),
  w_dct:L3('DCT（直行）は練習用に使えますが、実際は管制の許可や空域の条件が必要です。','DCT(직행)는 연습용으로 쓸 수 있지만, 실제로는 관제 허가나 공역 조건이 필요합니다.','DCT is allowed here for practice; in real operations it needs ATC approval and airspace conditions.'),
  data:L3('データ：{j}・{k}。空港の座標：OurAirports。教育用で、航法には使えません。','데이터: {j}·{k}. 공항 좌표: OurAirports. 교육용이며 항법에 쓸 수 없습니다.','Data: {j} / {k}. Airport positions: OurAirports. For learning only, not for navigation.'),
@@ -74,7 +74,7 @@ function parse(str,dep,arr){var t=String(str||'').trim().toUpperCase().split(/\s
   var fwd=ib>ia,j;for(j=ia;fwd?j<ib:j>ib;j+=fwd?1:-1){if(!canFly(tk,fwd?j:j-1,fwd))return {err:[i,msg('e_dir',{t:tk,a:A.p[j],b:A.p[j+(fwd?1:-1)]})],legs:legs,next:reach(tk,cur)};legs.push({a:A.p[j],b:A.p[j+(fwd?1:-1)],via:tk})}
   cur=q;i+=2}
  return {legs:legs,next:nextAfterFix(cur,arr),warn:warn}}
-/* 経路の例：航空路の網で一番短い道（向きを守る）。DCT と低い高度用の V・W 経路は使わない */
+/* 経路の例：航空路の網で一番短い道（向きを守る）。DCT と V・W で始まる経路は使わない（この道具の実装上の条件） */
 function suggest(dep,arr){if(!dep||!arr||dep===arr)return '';awAt('');var st=sidList(dep),best={},prev={},Q=[];
  st.forEach(function(k){best[k]=dist(dep,k);prev[k]=null;Q.push(k)});
  var done={},goal=null,gd=1e9;
@@ -111,11 +111,15 @@ function mapSVG(r,cur,partial){var INK='#1B2B4B',MAG='#8E3B8A',ks=r&&r.s.length?
  if(pts.length>1){s+='<polyline points="'+pts.map(function(p){return p.join(',')}).join(' ')+'" fill="none" stroke="'+(r?'#9AA7B5':'#2F8FE0')+'" stroke-width="'+(3*k).toFixed(2)+'" stroke-dasharray="'+(7*k)+' '+(5*k)+'"/>';
   if(r&&cur>0)s+='<polyline points="'+pts.slice(0,cur+1).map(function(p){return p.join(',')}).join(' ')+'" fill="none" stroke="#2F8FE0" stroke-width="'+(4*k).toFixed(2)+'"/>';
   if(r&&cur<pts.length-1)s+='<line x1="'+pts[cur][0]+'" y1="'+pts[cur][1]+'" x2="'+pts[cur+1][0]+'" y2="'+pts[cur+1][1]+'" stroke="#E08A2F" stroke-width="'+(4*k).toFixed(2)+'"/>'}
- var many=ks.length>18;ks.forEach(function(nm,i){var p=prj(nm);if(!p)return;var apt=!!N.apt[nm],on=r&&i===cur,col=r&&i<=cur?'#2F8FE0':INK;
+ var many=ks.length>18,LB=[],lh=13*k,lw=function(nm){return nm.length*7.2*k+4*k};ks.forEach(function(nm,i){var p=prj(nm);if(!p)return;var apt=!!N.apt[nm],on=r&&i===cur,col=r&&i<=cur?'#2F8FE0':INK;
   if(apt)s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(7*k)+'" fill="#fff" stroke="'+col+'" stroke-width="'+(2.4*k)+'"/>';
   else s+='<path d="M'+p[0]+' '+(p[1]-7*k)+' L'+(p[0]+6.5*k)+' '+(p[1]+4.5*k)+' L'+(p[0]-6.5*k)+' '+(p[1]+4.5*k)+' Z" fill="#fff" stroke="'+col+'" stroke-width="'+(1.8*k)+'"/>';
   if(r&&nm===r.fir)s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(13*k)+'" fill="none" stroke="'+MAG+'" stroke-width="'+(2*k)+'"/>';
-  if(!many||apt||on||i%2===0)s+='<text x="'+p[0]+'" y="'+(p[1]+(i%2?20:-12)*k)+'" font-size="'+((on?13:11)*k).toFixed(2)+'" font-weight="800" text-anchor="middle" fill="'+(on?'#b3600a':col)+'" font-family="Arial" paint-order="stroke" stroke="#fff" stroke-width="'+(2.5*k).toFixed(2)+'">'+nm+'</text>'});
+  /* 名前の位置：上・下・右・左の順に、すでに置いた名前や現在位置の機体と重ならない所を選ぶ */
+  var cand=[[0,-12*k],[0,20*k],[lw(nm)/2+9*k,4*k],[-lw(nm)/2-9*k,4*k],[0,-28*k],[0,38*k]];if(i%2)cand=[cand[1],cand[0],cand[2],cand[3],cand[5],cand[4]];
+  var hit=function(x,y){var bw=lw(nm);if(r){var ap=pts[cur]||null;if(ap&&Math.abs(x-ap[0])<(bw/2+17*k)&&Math.abs(y-4*k-ap[1])<(lh/2+17*k))return true}if(ks.some(function(m,j){var q=j!==i&&prj(m);return q&&Math.abs(x-q[0])<bw/2+8*k&&Math.abs(y-4*k-q[1])<lh/2+8*k}))return true;return LB.some(function(b){return Math.abs(x-b[0])<(bw+b[2])/2&&Math.abs(y-b[1])<lh})};
+  var off=cand[0];for(var ci=0;ci<cand.length;ci++){if(!hit(p[0]+cand[ci][0],p[1]+cand[ci][1])){off=cand[ci];break}}
+  if(!many||apt||on||i%2===0){LB.push([p[0]+off[0],p[1]+off[1],lw(nm)]);s+='<text x="'+(p[0]+off[0])+'" y="'+(p[1]+off[1])+'" font-size="'+((on?13:11)*k).toFixed(2)+'" font-weight="800" text-anchor="middle" fill="'+(on?'#b3600a':col)+'" font-family="Arial" paint-order="stroke" stroke="#fff" stroke-width="'+(2.5*k).toFixed(2)+'">'+nm+'</text>'}});
  if(r&&pts.length){var p=pts[cur],q=pts[Math.min(cur+1,pts.length-1)],pv=pts[Math.max(cur-1,0)],ang=cur<pts.length-1?Math.atan2(q[1]-p[1],q[0]-p[0]):Math.atan2(p[1]-pv[1],p[0]-pv[0]);
   s+='<g transform="translate('+p[0]+','+p[1]+') rotate('+(ang*180/Math.PI)+') scale('+k+')"><circle r="17" fill="#FFE9CC" opacity=".8"/>'+(window.ACFT?'<g transform="scale(.68)">'+window.ACFT.top({c:'#E08A2F',w:'#F4B979',line:'#7a3e0a'})+'</g>':'<path transform="scale(.68)" d="M20 0 L-20 -6 L-14 0 L-20 6 Z" fill="#E08A2F"/>')+'</g>'}
  return s+'</g><rect x="'+vb[0]+'" y="'+vb[1]+'" width="'+w+'" height="'+h+'" fill="none" stroke="'+INK+'" stroke-width="'+(1.5*k)+'"/></svg>'}

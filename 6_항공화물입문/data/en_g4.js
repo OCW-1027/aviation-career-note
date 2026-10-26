@@ -139,7 +139,7 @@ lead:["Passengers are the core of a passenger flight’s revenue, but belly carg
 sections:[
 {h:"What drives the revenue",blocks:[{t:"fig",id:"cgo_rev",cap:"Animated figure: bars compare available weight, weight loaded and offloads on one belly flight, then revenue and load factor are worked out. Figures are fictional."},
 {t:"table",cols:["Driver","What it means"],rows:[
-["Volume carried","The chargeable weight actually loaded"],
+["Volume carried","The weight actually loaded (rates are normally charged on the chargeable weight: the greater of actual and volumetric weight)"],
 ["Rate level","Set by supply and demand, competition and commodity"],
 ["Special handling","Surcharges for dangerous goods, temperature control and outsized cargo"],
 ["Load factor","How much of the available capacity was used"],
@@ -152,7 +152,7 @@ sections:[
 {h:"Growing the revenue",blocks:[{t:"rows",items:[
 {name:"Reduce offloads",x:"Narrow the gap between what is booked and what is loaded."},
 {name:"Know the belly capacity",x:"Publish the weight and volume available for cargo early, from the passenger and baggage forecast."},
-{name:"Go for higher-value commodities",x:"Precision equipment and pharmaceuticals, where special handling earns a premium."},
+{name:"Go for cargo requiring special handling",x:"Precision equipment and pharmaceuticals, where special handling earns a premium."},
 {name:"Work with the passenger side",x:"The station and the GSA sharing information makes it possible to say yes to outsized or urgent requests."}]}]}],
 voice:"Belly cargo revenue often props up flights with few passengers. Looking at cargo revenue alongside passenger revenue flight by flight makes route decisions more accurate.",
 terms:[["Cargo Load Factor","搭載率","탑재율"],["Spot Rate","スポット運賃","스폿 운임"],["Contract Rate","契約運賃","계약 운임"],["Profitability","採算","채산"]],
@@ -174,7 +174,7 @@ sections:[
 ["Airline or GSA cargo sales","Selling space, rates and customer management"]]}]},
 {h:"Useful qualifications and training (examples)",blocks:[{t:"check",items:[
 {name:"Dangerous goods training",x:"Training for your role, renewed at intervals."},
-{name:"Customs specialist licence",x:"A national qualification in Japan, required for customs brokerage work. ★"},
+{name:"Customs specialist licence",x:"A national qualification in Japan. Customs brokers in principle assign licensed specialists to each office to review specified customs documents. ★"},
 {name:"Trade knowledge",x:"Incoterms, invoices and the basics of insurance."},
 {name:"Languages",x:"English is essential for documents and messages, and a further language is a real advantage on the routes you serve."},
 {name:"Equipment skills",x:"Some warehouse work requires certified training, for example on forklifts."}]}]},
@@ -187,7 +187,7 @@ sections:[
 {t:"point",x:"Air cargo is the invisible infrastructure beneath modern industry and daily life. Knowing it alongside the passenger side is what lets you see how an airport really works."}]}],
 voice:"Knowing both passenger and cargo work shows you how the whole airport flows. If you are new to cargo, starting with a dangerous-goods qualification is the most immediately useful.",
 terms:[["Licensed Customs Specialist","通関士","통관사(일본)"],["Incoterms","インコタームズ","인코텀즈"],["Load Control","ロードコントロール","탑재관리"],["Career Path","キャリアパス","커리어 경로"]],
-quiz:[{q:"Which licensed qualification covers customs declarations?",opts:["Customs specialist","Dispatcher","Cabin crew","Engineer"],a:0,exp:"It is required for customs brokerage work."},
+quiz:[{q:"Which licensed qualification covers customs declarations?",opts:["Customs specialist","Dispatcher","Cabin crew","Engineer"],a:0,exp:"Customs brokers in principle assign them to each office to review specified customs documents."},
 {q:"What counts for more in cargo?",opts:["Accuracy in documents, data and rules","Smiling alone","The uniform","A loud voice"],a:0,exp:"Your customers are companies."},
 {q:"What characterises the cargo industry?",opts:["Experience carries between employers","You cannot move","No qualifications needed","No English needed"],a:0,exp:"The companies are closely connected."}],
 next:"6-1 The export timeline and how much cargo fits"});

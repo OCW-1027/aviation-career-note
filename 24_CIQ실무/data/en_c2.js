@@ -97,7 +97,7 @@ set("2-4",{title:"Airlines and Customs: Aircraft Stores, In-Flight Sales and Del
 lead:["Customs does not look only at passengers’ bags. An international aircraft crosses the border carrying catering, drinks, duty-free goods for sale and fuel, and all of these are under customs control.","There is one more situation in which a station deals with customs almost every day: bags that did not arrive on the same flight as their owners."],
 sections:[
 {h:"What the aircraft carries",blocks:[{t:"fig",id:"ciq_bag",cap:"Figure: delayed baggage and customs."},{t:"table",cols:["Item","How customs treats it"],rows:[
-["Catering, drinks and equipment (aircraft stores)","Loaded untaxed, for use on an aircraft operating internationally. Loading and unloading involve customs formalities ★"],
+["Catering, drinks and equipment (aircraft stores)","Loaded in bond, for use on an aircraft operating internationally. Loading and unloading involve customs formalities ★"],
 ["Duty-free goods for sale on board","Counted; sealing and storage after arrival follow local customs instructions and company procedure ★"],
 ["Fuel","Fuel for international flights is taxed differently from fuel for domestic flights ★"],
 ["Using an international aircraft on a domestic flight","Remaining stores and duty-free goods need formalities before they can be used domestically ★"]]},
@@ -116,7 +116,7 @@ sections:[
 {name:"When the count does not match",x:"If stores or duty-free goods do not match the paperwork, customs will need an explanation. Record it on the spot."},
 {name:"Arriving at an unplanned airport",x:"After a diversion or return, do not move passengers, bags or stores until customs gives instructions (Part 5)."},
 {name:"A passenger leaves a bag behind",x:"A bag left in the reclaim hall is still under customs control. Check with customs before taking it out."}]},
-{t:"point",x:"Customs rules come down to one idea: nothing untaxed enters the country without permission. If in doubt, ask before moving anything."}]}],
+{t:"point",x:"The basic principle of customs procedures is that bonded goods do not enter the country without the prescribed formalities. If in doubt, ask before moving anything."}]}],
 voice:"Aircraft stores and delayed baggage go through customs separately from passenger procedures. Agreeing in advance with the handling company who declares them and which documents are kept prevents missed or late deliveries.",
 terms:[["Aircraft Stores","機用品","기용품"],["Bonded (Under Customs Control)","保税","보세"],["Customs Seal","封印","봉인"],["Property Irregularity Report (PIR)","手荷物事故報告書","수하물 사고 보고서"]],
 quiz:[{q:"How does customs treat catering and drinks on an international flight?",opts:["They are loaded untaxed, with formalities for loading and unloading","They have nothing to do with customs","Tax is paid on every arrival","They count as passenger baggage"],a:0,exp:"What the aircraft carries is also under customs control."},

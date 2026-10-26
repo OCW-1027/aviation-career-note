@@ -1,10 +1,10 @@
 /* CIQの役割 — English version (Part 4: Canada, Europe and the UK, Australia and New Zealand; lessons 4-4 to 4-6) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("4-4",{title:"Canada: Declare All Food, Plants and Animals",hl:"Canada",subtitle:"The same idea as the United States: a penalty of up to CAD 1,300 if you do not declare",
-lead:["Canada shares a border with the United States and its rules follow much the same approach. Anything to do with food, plants or animals is declared, and the officer decides whether it may come in.","Travellers arriving by air need an electronic travel authorisation (eTA), even if they need no visa."],
+lead:["Canada shares a border with the United States and its rules follow much the same approach. Anything to do with food, plants or animals is declared, and the officer decides whether it may come in.","Visa-exempt travellers arriving by air generally need an electronic travel authorisation (eTA). Exemptions include US citizens and US lawful permanent residents."],
 sections:[
 {h:"Entry",blocks:[{t:"fig",id:"ciq_ca",cap:"Figure: Canada: food, plants and animals to declare."},{t:"rows",items:[
-{name:"Electronic travel authorisation (eTA)",x:"Required of visa-exempt nationals arriving by air, including when only transiting."},
+{name:"Electronic travel authorisation (eTA)",x:"Generally required of visa-exempt nationals arriving by air, including when only transiting. US citizens, US lawful permanent residents and some others are exempt."},
 {name:"Immigration and customs",x:"The Canada Border Services Agency (CBSA) carries out both. The rules on food are set by the Canadian Food Inspection Agency (CFIA)."},
 {name:"Advance declaration",x:"At some airports the customs declaration can be completed before arrival through an app or website."},
 {name:"Flying from Canada to the United States",x:"At Canada’s main airports US immigration and customs are cleared before departure (4-1). Passengers need to arrive at the airport earlier than usual."}]}]},

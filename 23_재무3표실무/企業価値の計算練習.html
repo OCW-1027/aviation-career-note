@@ -59,9 +59,12 @@ r1:['倍率法 ― EBITDAの何倍か','배수법 — EBITDA의 몇 배인가','
 les:['レッスン','레슨','Lesson'],sw:['← 横にスクロールできます →','← 옆으로 밀어서 볼 수 있습니다 →','← Scroll sideways →'],
 need:['次の数字を入れると計算します：','다음 숫자를 넣으면 계산합니다: ','Enter these to calculate: '],
 x:['倍','배','×'],yr:['年目','년 차',''],yrp:['','','Year '],
-fcf:['フリーキャッシュフロー','잉여현금흐름','Free cash flow'],df:['割引係数','할인계수','Discount factor'],pv:['現在価値','현재가치','Present value'],
+fcf:['フリーキャッシュフロー（FCFF）','잉여현금흐름(FCFF)','Free cash flow (FCFF)'],df:['割引係数','할인계수','Discount factor'],pv:['現在価値','현재가치','Present value'],
 eqv:['株式価値','주식 가치','Equity value'],dr:['割引率','할인율','Discount rate'],gr:['成長率','성장률','Growth'],
 wg:['割引率は成長率より大きくしてください','할인율은 성장률보다 크게 넣어 주세요','The discount rate must be higher than the growth rate'],
+ffbad:['DCF：基準の割引率が成長率以下で計算できないため、DCFの幅は表示していません。感度分析の一部の組み合わせが計算できても、基準のDCFの幅としては扱いません。','DCF: 기준 할인율이 성장률 이하라서 계산할 수 없으므로 DCF 범위는 표시하지 않습니다. 민감도 분석의 일부 조합이 계산되더라도 기준 DCF의 범위로 다루지 않습니다.','DCF: the base discount rate is not higher than the growth rate, so no DCF range is shown. Combinations in the sensitivity grid that can still be calculated are not treated as the base DCF range.'],
+ffpart:['割引率が成長率以下になる組み合わせは「—」とし、DCFの幅には含めていません。','할인율이 성장률 이하가 되는 조합은 ‘—’로 표시하고 DCF 범위에 포함하지 않습니다.','Combinations where the discount rate is not higher than the growth rate show “—” and are left out of the DCF range.'],
+sens:['割引率と成長率を、基準からそれぞれ入れた幅（%ポイント）だけ上下に動かしたときの株式価値です。','할인율과 성장률을 기준에서 각각 입력한 폭(%p)만큼 올리고 내렸을 때의 주식 가치입니다.','Equity value when the discount rate and growth rate are each moved up and down from the base by the width entered (percentage points).'],
 ff1:['倍率法','배수법','Multiples'],ff2:['DCF（幅）','DCF(범위)','DCF (range)'],ff3:['純資産','순자산','Net assets'],ffp:['価格','가격','Price'],
 note:['※ 例の数字は架空です。計算の考え方を学ぶためのもので、投資の助言ではありません。倍率・割引率・成長率は置いた前提で、答えは前提しだいで大きく変わります。入れた数字はこの端末のブラウザーにだけ保存されます。','※ 예시 숫자는 가상입니다. 계산 방식을 익히기 위한 것이며 투자 조언이 아닙니다. 배수·할인율·성장률은 가정한 전제이며, 답은 전제에 따라 크게 달라집니다. 입력한 숫자는 이 기기의 브라우저에만 저장됩니다.','* The example figures are fictional. The tool is for learning how valuation works and is not investment advice. The multiple, discount rate and growth rate are assumptions, and the answer depends heavily on them. Your figures are saved only in this browser.']};
 var PN={vela:['Vela Air 3年目','Vela Air 3년 차','Vela Air year 3'],minato:['ミナト・グランドサービス','미나토 그라운드 서비스','Minato Ground Services']};
@@ -69,11 +72,14 @@ var PU={vela:['億円','억 엔','100m yen'],minato:['百万円','백만 엔','m
 var PRE={vela:{ebitda:501,nd:732,na:1942,ni:127,px:1500,m1:4,m2:5,f1:110,f2:115,f3:120,f4:125,f5:130,w:5,g:0.5,dw:0.5,dg:0.5,e5:'',xm:'',xnd:''},
 minato:{ebitda:229,nd:460,na:340,ni:'',px:800,m1:5,m2:6,f1:110,f2:111.1,f3:112.21,f4:113.33,f5:114.46,w:9,g:1,dw:1,dg:'',e5:280,xm:5.5,xnd:200}};
 var FIELDS=[['g1',['ebitda','nd','na','ni','px']],['g2',['m1','m2']],['g3',['f1','f2','f3','f4','f5','w','g','dw','dg']],['g4',['e5','xm','xnd']]];
-var OPT={na:1,ni:1,px:1,dw:1,dg:1,e5:1,xm:1,xnd:1};
+var OPT={na:1,ni:1,px:1,dw:1,dg:1};
+/* 入力グループの説明 */
+var GN={g3:['ここでのFCFは、会社全体のフリーキャッシュフロー（FCFF）です。税引後の営業利益に減価償却費を足し、設備投資と運転資本の増加を引いた、利息を払う前の現金を入れます。割引率には、これに対応する加重平均資本コスト（WACC）を使います。DCFの企業価値から純有利子負債を引いて株式価値にします。','여기서 FCF는 회사 전체의 잉여현금흐름(FCFF)입니다. 세후 영업이익에 감가상각비를 더하고 설비투자와 운전자본 증가분을 뺀, 이자를 지급하기 전의 현금을 넣습니다. 할인율에는 이에 대응하는 가중평균자본비용(WACC)을 사용합니다. DCF로 구한 기업가치에서 순차입금을 빼 주식 가치를 구합니다.','FCF here is free cash flow to the firm (FCFF): after-tax operating profit plus depreciation, minus capital expenditure and the increase in working capital, before interest is paid. Discount it at the matching weighted average cost of capital (WACC). Equity value is the DCF enterprise value minus net debt.'],
+g4:['この欄は任意です。使うときは3つとも入れてください。5年後に借入がない場合も、純有利子負債は空欄にせず0を入れます（現金の方が多ければマイナス）。','이 칸은 선택 사항입니다. 사용할 때는 세 항목을 모두 넣어 주세요. 5년 뒤 차입금이 없는 경우에도 순차입금을 빈칸으로 두지 말고 0을 넣습니다(현금이 더 많으면 마이너스).','This section is optional. If you use it, fill in all three. If there is no debt in five years, enter 0 for net debt rather than leaving it blank (a negative figure if cash is larger).']};
 var FL={ebitda:['EBITDA（正常収益力）','EBITDA(정상 수익력)','EBITDA (normalised)'],nd:['純有利子負債','순차입금','Net debt'],na:['純資産','순자산','Net assets'],ni:['当期純利益','당기순이익','Net profit'],px:['株式の価格（時価総額・提示価格）','주식의 가격(시가총액·제시 가격)','Price of the shares'],
 m1:['倍率（下）','배수(하한)','Multiple, low'],m2:['倍率（上）','배수(상한)','Multiple, high'],
 f1:['FCF 1年目','FCF 1년 차','FCF year 1'],f2:['FCF 2年目','FCF 2년 차','FCF year 2'],f3:['FCF 3年目','FCF 3년 차','FCF year 3'],f4:['FCF 4年目','FCF 4년 차','FCF year 4'],f5:['FCF 5年目','FCF 5년 차','FCF year 5'],
-w:['割引率（%）','할인율(%)','Discount rate (%)'],g:['6年目からの成長率（%）','6년 차부터의 성장률(%)','Growth from year 6 (%)'],dw:['感度：割引率の幅（±%）','민감도: 할인율의 폭(±%)','Sensitivity: discount rate (±%)'],dg:['感度：成長率の幅（±%）','민감도: 성장률의 폭(±%)','Sensitivity: growth (±%)'],
+w:['割引率・WACC（%）','할인율·WACC(%)','Discount rate, WACC (%)'],g:['6年目からの成長率（%）','6년 차부터의 성장률(%)','Growth from year 6 (%)'],dw:['感度：割引率の幅（±%ポイント）','민감도: 할인율의 폭(±%p)','Sensitivity: discount rate (± % points)'],dg:['感度：成長率の幅（±%ポイント）','민감도: 성장률의 폭(±%p)','Sensitivity: growth (± % points)'],
 e5:['5年後のEBITDA','5년 뒤 EBITDA','EBITDA in five years'],xm:['売るときの倍率','팔 때의 배수','Exit multiple'],xnd:['5年後の純有利子負債','5년 뒤 순차입금','Net debt in five years']};
 /* 結果の行：[名前, 式（言葉）, 読み方] */
 var RT={evm:[['企業価値','기업가치','Enterprise value'],['EBITDA × 倍率','EBITDA × 배수','EBITDA × multiple'],['似た会社が取引されている倍率を、この会社の稼ぎに掛ける','비슷한 회사가 거래되는 배수를 이 회사의 수익력에 곱한다','Apply the multiple at which similar companies trade to this company’s earnings']],
@@ -88,7 +94,7 @@ evp:[['企業価値（価格から）','기업가치(가격 기준)','Enterprise
 imp:[['EV/EBITDA','EV/EBITDA','EV/EBITDA'],['企業価値 ÷ EBITDA','기업가치 ÷ EBITDA','Enterprise value ÷ EBITDA'],['倍率法で置いた幅の中に入っているか','배수법에서 가정한 범위 안에 드는가','Is it inside the range assumed for multiples?']],
 per:[['PER','PER','PER'],['株式の価格 ÷ 当期純利益','주식의 가격 ÷ 당기순이익','Price ÷ net profit'],['利益の何年分で買うか','이익의 몇 년 치에 해당하는 가격에 사는가','How many years of profit the price represents']],
 pbr:[['PBR','PBR','PBR'],['株式の価格 ÷ 純資産','주식의 가격 ÷ 순자산','Price ÷ net assets'],['1倍を下回ると、純資産より安い','1배를 밑돌면 순자산보다 싸다','Below 1×, the price is under net assets']],
-gw:[['のれん（価格 − 純資産）','영업권(가격 − 순자산)','Goodwill (price − net assets)'],['株式の価格 − 純資産','주식의 가격 − 순자산','Price − net assets'],['資産の裏づけがなく、これから稼ぐ力に払う部分','자산의 뒷받침 없이 앞으로의 수익력에 지불하는 부분','The part not backed by assets, paid for future earning power']],
+gw:[['価格 − 純資産の簡易差額','가격 − 순자산의 간이 차액','Simple gap: price − net assets'],['株式の価格 − 純資産（帳簿）','주식의 가격 − 순자산(장부)','Price − net assets (book)'],['帳簿の純資産を超えて払う部分の目安。会計上ののれんは、取得日の識別可能な純資産を公正価値で測って求めるため、この差額とは別物','장부상 순자산을 넘어 지불하는 부분의 참고치. 회계상 영업권은 취득일의 식별 가능한 순자산을 공정가치로 측정해 구하므로 이 차액과 다르다','A rough guide to what you pay above book net assets. Accounting goodwill is measured against the acquisition-date fair value of identifiable net assets, so it is not this figure']],
 xeq:[['5年後の株式の価値','5년 뒤의 주식 가치','Equity value in five years'],['5年後のEBITDA × 倍率 − 5年後の純有利子負債','5년 뒤 EBITDA × 배수 − 5년 뒤 순차입금','EBITDA in five years × multiple − net debt then'],['稼ぎの成長と借入の返済で増える','이익 성장과 차입금 상환으로 늘어난다','It grows through earnings growth and debt repayment']],
 moic:[['投資倍率','투자 배수','Multiple on invested capital'],['5年後の株式の価値 ÷ 株式の価格','5년 뒤 주식 가치 ÷ 주식의 가격','Equity value in five years ÷ price paid'],['払ったお金が何倍になるか','투자한 돈이 몇 배가 되는가','How many times the money comes back']],
 irr:[['年あたりの利回り','연 수익률','Return per year'],['投資倍率の5乗根 − 1','투자 배수의 5제곱근 − 1','Fifth root of the multiple − 1'],['計画どおりにいった場合の数字。悪い場合も入れて確かめる','계획대로 진행됐을 때의 수치다. 나쁜 경우도 넣어 확인한다','This assumes the plan is met. Enter a downside case too']]};
@@ -111,24 +117,29 @@ function calc(){var eb=N('ebitda'),nd=N('nd'),na=N('na'),ni=N('ni'),px=N('px'),m
  var d=V.okF?dcf(F,w,g):null;V.d=d;V.ev=d?d.ev:NaN;V.eq=d?d.ev-nd:NaN;V.tvs=d?dv(d.ptv,d.ev):NaN;
  V.ws=dw>0?[w-dw,w,w+dw]:[w];V.gs=dg>0?[g-dg,g,g+dg]:[g];
  V.grid=V.ws.map(function(a){return V.gs.map(function(b){var r=V.okF?dcf(F,a,b):null;return r?r.ev-nd:NaN})});
- var fl=[].concat.apply([],V.grid).filter(isFinite);V.dmin=fl.length?Math.min.apply(null,fl):NaN;V.dmax=fl.length?Math.max.apply(null,fl):NaN;
+ var all=[].concat.apply([],V.grid),fl=all.filter(isFinite);V.part=!!d&&isFinite(nd)&&fl.length<all.length;
+ /* 基準のDCFが計算できないときは、感度表の残りの組み合わせで幅を作らない */
+ V.dmin=d&&fl.length?Math.min.apply(null,fl):NaN;V.dmax=d&&fl.length?Math.max.apply(null,fl):NaN;
  V.evp=px+nd;V.imp=dv(px+nd,eb);V.per=ni>0?dv(px,ni):NaN;V.pbr=na>0?dv(px,na):NaN;V.gw=px-na;
- V.xeq=e5*xm-(isNaN(xnd)?0:xnd);V.moic=px>0?dv(V.xeq,px):NaN;V.irr=V.moic>0?Math.pow(V.moic,0.2)-1:NaN;
- V.eb=eb;V.nd=nd;V.na=na;V.ni=ni;V.px=px;V.m1=m1;V.m2=m2;V.e5=e5;V.xm=xm;V.xnd=isNaN(xnd)?0:xnd;return V}
-function row(id,ok,txt,num,o){o=o||{};var d=RT[id];return '<div class="r'+(o.neg?' neg':'')+(ok?'':' na')+'"><span class="nm">'+esc(t(d[0]))+'</span><span class="v">'+esc(ok?txt:'—')+'</span><span class="fm">'+esc(t(d[1]))+(ok?' ＝ '+esc(num):(o.msg?'　'+esc(o.msg):''))+'</span><span class="hn'+(o.al?' al':'')+'">'+esc(t(d[2]))+'</span></div>'}
-function miss(ks){var m=ks.filter(function(k){return isNaN(N(k))}).map(function(k){return t(FL[k])});return m.length?t(X.need)+m.join(LI===2?', ':'、'):''}
+ /* 5年後の純有利子負債が空欄なら0とみなさず、計算しない（0を入れたときは計算する） */
+ V.xeq=e5*xm-xnd;V.moic=px>0?dv(V.xeq,px):NaN;V.irr=V.moic>0?Math.pow(V.moic,0.2)-1:NaN;
+ V.eb=eb;V.nd=nd;V.na=na;V.ni=ni;V.px=px;V.m1=m1;V.m2=m2;V.e5=e5;V.xm=xm;V.xnd=xnd;return V}
+/* 韓国語・英語の画面では全角の記号を使わない */
+function pz(s){s=String(s);if(LI===0)return s;return s.replace(/ 〜 /g,LI===1?' ~ ':' – ').replace(/〜/g,'~').replace(/＝/g,'=').replace(/＋/g,'+').replace(/\s*（/g,' (').replace(/）(?=[^\s)）])/g,') ').replace(/）/g,')').replace(/　/g,' ').replace(/：/g,': ').replace(/、/g,', ')}
+function row(id,ok,txt,num,o){o=o||{};var d=RT[id];return '<div class="r'+(o.neg?' neg':'')+(ok?'':' na')+'"><span class="nm">'+esc(t(d[0]))+'</span><span class="v">'+esc(ok?pz(txt):'—')+'</span><span class="fm">'+esc(t(d[1]))+esc(pz(ok?' ＝ '+num:(o.msg?'　'+o.msg:'')))+'</span><span class="hn'+(o.al?' al':'')+'">'+esc(t(d[2]))+'</span></div>'}
+function miss(ks){var m=ks.filter(function(k){return isNaN(N(k))}).map(function(k){return t(FL[k])});return m.length?t(X.need)+m.join(LI===0?'、':', '):''}
 function card(k,les,col,body){return '<div class="card"><h2 style="border-left:6px solid var(--'+col+');padding-left:10px">'+esc(t(X[k]))+'<span class="tag">'+esc(t(X.les))+' '+les+'</span></h2>'+body+'</div>'}
 function yl(i){return t(X.yrp)+(i+1)+t(X.yr)}
 function nice(x){var p=Math.pow(10,Math.floor(Math.log(x)/Math.LN10)),m=x/p;return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p}
 function ff(V){var rows=[],vals=[];
  if(isFinite(V.eqm1)&&isFinite(V.eqm2)){var a=Math.min(V.eqm1,V.eqm2),b=Math.max(V.eqm1,V.eqm2);rows.push([t(X.ff1),a,b,'#2f8fe0']);vals.push(a,b)}
- if(isFinite(V.dmin)){rows.push([t(X.ff2),V.dmin,V.dmax,'#e08a2f']);vals.push(V.dmin,V.dmax)}
+ if(V.d&&isFinite(V.dmin)){rows.push([t(X.ff2),V.dmin,V.dmax,'#e08a2f']);vals.push(V.dmin,V.dmax)}
  if(isFinite(V.na)){rows.push([t(X.ff3),V.na,V.na,'#1f7a6e']);vals.push(V.na)}
  if(!rows.length)return '';if(isFinite(V.px))vals.push(V.px);
  var lo=Math.min(0,Math.min.apply(null,vals)),hi=Math.max.apply(null,vals);if(hi<=lo)hi=lo+1;hi=lo+(hi-lo)*1.1;
  var x0=126,x1=404,H=58+rows.length*46+34,ax=58+rows.length*46;function Xp(v){return x0+(v-lo)/(hi-lo)*(x1-x0)}
  var s='<svg class="ff" viewBox="0 0 420 '+H+'" role="img" xmlns="http://www.w3.org/2000/svg">';
- rows.forEach(function(r,i){var y=44+i*46,wd=Math.max(Xp(r[2])-Xp(r[1]),6);s+='<text x="'+(x0-10)+'" y="'+(y+13)+'" text-anchor="end" font-size="12" font-weight="800" fill="#1d2a38">'+esc(r[0])+'</text><text x="'+(x0-10)+'" y="'+(y+28)+'" text-anchor="end" font-size="11" font-weight="600" fill="#5b6b7d">'+(r[1]===r[2]?f(r[1],0):f(r[1],0)+' 〜 '+f(r[2],0))+'</text><rect x="'+(Xp(r[1])-(r[1]===r[2]?3:0))+'" y="'+y+'" width="'+wd+'" height="30" rx="6" fill="'+r[3]+'"/>'});
+ rows.forEach(function(r,i){var y=44+i*46,wd=Math.max(Xp(r[2])-Xp(r[1]),6);s+='<text x="'+(x0-10)+'" y="'+(y+13)+'" text-anchor="end" font-size="12" font-weight="800" fill="#1d2a38">'+esc(r[0])+'</text><text x="'+(x0-10)+'" y="'+(y+28)+'" text-anchor="end" font-size="11" font-weight="600" fill="#5b6b7d">'+(r[1]===r[2]?f(r[1],0):pz(f(r[1],0)+' 〜 '+f(r[2],0)))+'</text><rect x="'+(Xp(r[1])-(r[1]===r[2]?3:0))+'" y="'+y+'" width="'+wd+'" height="30" rx="6" fill="'+r[3]+'"/>'});
  s+='<line x1="'+x0+'" y1="'+ax+'" x2="'+x1+'" y2="'+ax+'" stroke="#1d2a38" stroke-width="1.5"/>';
  var st=nice((hi-lo)/5.5);for(var v=Math.ceil(lo/st-1e-9)*st;v<=hi+1e-9;v+=st){s+='<line x1="'+Xp(v)+'" y1="'+ax+'" x2="'+Xp(v)+'" y2="'+(ax+5)+'" stroke="#1d2a38" stroke-width="1.5"/><text x="'+Xp(v)+'" y="'+(ax+19)+'" text-anchor="middle" font-size="10.5" font-weight="600" fill="#5b6b7d">'+f(v,0)+'</text>'}
  if(isFinite(V.px)){var xp=Xp(V.px),an=xp>x1-40?'end':(xp<x0+40?'start':'middle');s+='<line x1="'+xp+'" y1="30" x2="'+xp+'" y2="'+(ax-2)+'" stroke="#1d2a38" stroke-width="2" stroke-dasharray="5 4"/><text x="'+xp+'" y="22" text-anchor="'+an+'" font-size="12" font-weight="800" fill="#1d2a38">'+esc(t(X.ffp))+' '+f(V.px,0)+'</text>'}
@@ -141,17 +152,17 @@ function out(){var V=calc(),h='',x=t(X.x),pc=function(v){return f(v*100,1)+'%'};
  var m3=V.bad?t(X.wg):miss(['f1','f2','f3','f4','f5','w','g']);
  b2+=row('sum',!!d,d?f(d.sum,0):'',d?d.pv.map(function(v){return f(v,1)}).join(' ＋ '):'',{msg:m3})+row('tv',!!d,d?f(d.tv,0):'',d?f(V.F[4])+' × '+f(1+V.g,3)+' ÷（'+f(V.w,3)+' − '+f(V.g,3)+'）':'',{msg:m3})+row('ptv',!!d,d?f(d.ptv,0):'',d?f(d.tv,0)+' × '+f(1/Math.pow(1+V.w,5),3):'',{msg:m3})+row('ev',!!d,d?f(d.ev,0):'',d?f(d.sum,0)+' ＋ '+f(d.ptv,0):'',{msg:m3})+row('eq',!!d&&isFinite(V.eq),f(V.eq,0),d?f(d.ev,0)+' − '+f(V.nd):'',{msg:m3||miss(['nd']),neg:V.eq<0})+row('tvs',!!d,pc(V.tvs),d?f(d.ptv,0)+' ÷ '+f(d.ev,0):'',{msg:m3,al:V.tvs>0.75});
  h+=card('r2','7-2','cf',b2);
- if(d&&isFinite(V.nd)&&(V.ws.length>1||V.gs.length>1)){var tb='<div class="tw"><table><tr><th>'+esc(t(X.eqv))+'</th>'+V.gs.map(function(g){return '<th>'+esc(t(X.gr))+' '+f(g*100,1)+'%</th>'}).join('')+'</tr>'+V.ws.map(function(w,i){return '<tr><td>'+esc(t(X.dr))+' '+f(w*100,1)+'%</td>'+V.grid[i].map(function(v,j){return '<td'+(w===V.w&&V.gs[j]===V.g?' class="base"':'')+'>'+f(v,0)+'</td>'}).join('')+'</tr>'}).join('')+'</table></div><p class="note">'+esc(f(V.dmin,0)+' 〜 '+f(V.dmax,0))+'</p>';h+=card('r3','7-2','cf',tb)}
- var fg=ff(V);if(fg)h+=card('r4','7-6','ink',fg);
+ if(d&&isFinite(V.nd)&&(V.ws.length>1||V.gs.length>1)){var tb='<div class="tw"><table><tr><th>'+esc(t(X.eqv))+'</th>'+V.gs.map(function(g){return '<th>'+esc(t(X.gr))+' '+f(g*100,1)+'%</th>'}).join('')+'</tr>'+V.ws.map(function(w,i){return '<tr><td>'+esc(t(X.dr))+' '+f(w*100,1)+'%</td>'+V.grid[i].map(function(v,j){return '<td'+(w===V.w&&V.gs[j]===V.g?' class="base"':'')+'>'+f(v,0)+'</td>'}).join('')+'</tr>'}).join('')+'</table></div><p class="note">'+esc(pz(f(V.dmin,0)+' 〜 '+f(V.dmax,0)))+'</p><p class="note">'+esc(t(X.sens))+(V.part?' '+esc(t(X.ffpart)):'')+'</p>';h+=card('r3','7-2','cf',tb)}
+ var fg=ff(V),fn=V.bad?t(X.ffbad):(V.part&&isFinite(V.dmin)?t(X.ffpart):'');if(fg||fn)h+=card('r4','7-6','ink',fg+(fn?'<p class="note">'+esc(fn)+'</p>':''));
  if(isFinite(V.px)){h+=card('r5','7-6','bs',row('evp',isFinite(V.evp),f(V.evp,0),f(V.px)+' ＋ '+f(V.nd),{msg:miss(['nd'])})+row('imp',isFinite(V.imp),f(V.imp,1)+x,f(V.evp,0)+' ÷ '+f(V.eb),{msg:miss(['nd','ebitda']),al:isFinite(V.imp)&&ok1&&(V.imp>Math.max(V.m1,V.m2)+1e-9)})+(isFinite(V.ni)?row('per',isFinite(V.per),f(V.per,1)+x,f(V.px)+' ÷ '+f(V.ni)):'')+(isFinite(V.na)?row('pbr',isFinite(V.pbr),f(V.pbr,2)+x,f(V.px)+' ÷ '+f(V.na))+row('gw',true,f(V.gw,0),f(V.px)+' − '+f(V.na),{neg:V.gw<0}):''))}
- if(isFinite(V.e5)||isFinite(V.xm)){var okx=isFinite(V.xeq);h+=card('r6','7-6','bs',row('xeq',okx,f(V.xeq,0),f(V.e5)+' × '+f(V.xm)+x+' − '+f(V.xnd),{msg:miss(['e5','xm'])})+row('moic',isFinite(V.moic),f(V.moic,2)+x,f(V.xeq,0)+' ÷ '+f(V.px),{msg:miss(['e5','xm','px'])})+row('irr',isFinite(V.irr),pc(V.irr),f(V.moic,2)+' ^（1 ÷ 5）− 1',{msg:miss(['e5','xm','px']),neg:V.irr<0}))}
+ if(isFinite(V.e5)||isFinite(V.xm)){var okx=isFinite(V.xeq);h+=card('r6','7-6','bs',row('xeq',okx,f(V.xeq,0),f(V.e5)+' × '+f(V.xm)+x+' − '+f(V.xnd),{msg:miss(['e5','xm','xnd'])})+row('moic',isFinite(V.moic),f(V.moic,2)+x,f(V.xeq,0)+' ÷ '+f(V.px),{msg:miss(['e5','xm','xnd','px'])})+row('irr',isFinite(V.irr),pc(V.irr),f(V.moic,2)+' ^（1 ÷ 5）− 1',{msg:miss(['e5','xm','xnd','px']),neg:V.irr<0}))}
  document.getElementById('res').innerHTML=h}
 function render(){LI=lang==='ja'?0:lang==='ko'?1:2;document.documentElement.lang=lang;document.title=t(X.title);
  ['title','lead','pre','pren','note'].forEach(function(k){document.getElementById('t_'+k).textContent=t(X[k])});
  document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===lang)});
  document.getElementById('pre').innerHTML=Object.keys(PRE).map(function(k){return '<button type="button" data-p="'+k+'"'+(P===k?' class="on"':'')+'>'+esc(t(PN[k]))+'</button>'}).join('')+'<button type="button" data-p="blank" class="sub'+(P==='blank'?' on':'')+'">'+esc(t(X.blank))+'</button>';
- document.getElementById('t_in').innerHTML=esc(t(X.inh))+'<span class="tag">'+esc(t(X.unit))+'：'+esc(t(PU[P]||PU.blank))+'</span>';
- document.getElementById('inp').innerHTML=FIELDS.map(function(g){return '<div class="grp '+g[0]+'"><h3>'+esc(t(X[g[0]]))+'</h3><div class="g">'+g[1].map(function(k){return '<label>'+esc(t(FL[k]))+(OPT[k]?'（'+esc(t(X.opt))+'）':'')+'<input type="text" inputmode="decimal" autocomplete="off" data-k="'+k+'" value="'+esc(D[k])+'"></label>'}).join('')+'</div></div>'}).join('');
+ document.getElementById('t_in').innerHTML=esc(t(X.inh))+'<span class="tag">'+esc(pz(t(X.unit)+'：'+t(PU[P]||PU.blank)))+'</span>';
+ document.getElementById('inp').innerHTML=FIELDS.map(function(g){return '<div class="grp '+g[0]+'"><h3>'+esc(t(X[g[0]]))+'</h3>'+(GN[g[0]]?'<p class="note" style="margin:0 0 8px">'+esc(t(GN[g[0]]))+'</p>':'')+'<div class="g">'+g[1].map(function(k){return '<label>'+esc(t(FL[k]))+(OPT[k]?(LI===0?'（'+esc(t(X.opt))+'）':'('+esc(t(X.opt))+')'):'')+'<input type="text" inputmode="decimal" autocomplete="off" data-k="'+k+'" value="'+esc(D[k])+'"></label>'}).join('')+'</div></div>'}).join('');
  out()}
 document.getElementById('pre').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;P=b.dataset.p;D=P==='blank'?blank():cp(PRE[P]);save();render()});
 document.getElementById('inp').addEventListener('input',function(e){var k=e.target.dataset.k;if(!k)return;D[k]=e.target.value;save();out()});

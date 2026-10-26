@@ -46,6 +46,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #ffbf47;outline-offse
 <div class="card">
  <h2 id="t_presets"></h2>
  <div class="presets" id="presets"></div>
+ <p class="note" id="chgs" style="margin:0 0 10px;overflow-wrap:anywhere"></p>
  <div class="lay">
   <div id="sliders"></div>
   <div>
@@ -77,50 +78,57 @@ ja:{title:'財務諸表連動シミュレーター ― 小さな会社の1年を
  presets:'場面を選ぶ（つまみが動きます）',pl:'損益計算書（1年）',bs:'貸借対照表（期末）',cf:'キャッシュフロー計算書（1年）',bridge:'利益 → 現金の橋（営業キャッシュフローまで）',how:'このシミュレーターの仕組み',
  g1:'商売',g2:'運転資本（お金をしばる3つ）',g3:'投資と資金',
  S:{rev:'売上',cogs:'売上原価率',sga:'人件費・家賃などの固定費',dep:'減価償却費',ard:'売掛金の回収までの日数',invd:'在庫を持つ日数',apd:'買掛金を払うまでの日数',capex:'設備投資',loan:'新しい借入',repay:'借入の返済',div:'配当'},
- P:{base:['基本の年','講座0-3の小さな会社そのまま'],ar:['掛け売りが増えた','大口の取引先が増え、回収が60日後に'],inv:['在庫を積み増した','先買いで在庫90日分'],capex:['大きな設備投資','設備60を買い、借入40で補う'],repay:['借入を一気に返す','借入30を全額返済'],div:['配当を増やす','利益のほとんどを配当に'],boom:['売上が急に伸びた','売上1.6倍、ただし回収は45日後、在庫も増える'],slump:['売上が落ちた','売上7割、固定費はそのまま']},
+ P:{base:['基本の年','講座0-3の小さな会社そのまま'],ar:['掛け売りが増えた','大口の取引先が増え、回収が60日後に'],inv:['在庫を積み増した','先買いで在庫90日分'],capex:['大きな設備投資','設備60を買い、借入40で補う。減価償却費も18に'],repay:['借入を一気に返す','借入30を全額返済'],div:['配当を増やす','利益のほとんどを配当に'],boom:['売上が急に伸びた','売上1.6倍。回収45日・在庫40日に延び、固定費も170に'],slump:['売上が落ちた','売上7割、固定費はそのまま']},
  R:{rev:'売上',cogs:'売上原価',gross:'売上総利益',sga:'人件費・家賃など',dep:'減価償却費',op:'営業利益',int:'支払利息',pretax:'税引前利益',tax:'法人税（30%）',net:'当期純利益',
   a:'資産',cash:'現金',ar:'売掛金',inv:'在庫',ppe:'設備（簿価）',ta:'資産合計',l:'負債・純資産',ap:'買掛金',ln:'借入金',cap:'資本金',re:'利益剰余金',tl:'負債・純資産合計',
   cfo:'営業活動',cfi:'投資活動',cff:'財務活動',chg:'現金の増減',beg:'期首現金',end:'期末現金',
   b_net:'当期純利益',b_dep:'＋減価償却',b_ar:'売掛金の増減',b_inv:'在庫の増減',b_ap:'買掛金の増減',b_cfo:'営業CF'},
  C:{eq:'資産 ＝ 負債＋純資産',cash:'期末現金 ＝ C/Fの期末現金',re:'利益剰余金 ＝ 期首＋利益−配当',ratio:'自己資本比率'},
- W:{neg:'期末の現金がマイナスです。利益が{net}でも、払うべき日に現金がありません ― 黒字倒産の形です（講座4-4）。回収を早める、在庫を減らす、借入を長期にする、のいずれかが必要です。',loss:'赤字の年です。税金はゼロ、利益剰余金は減ります。現金は{cash}です。',gap:'利益 {net} に対して現金は {chg} 動きました。差の主な理由：{why}。',ok:'利益も現金もプラスです。利益 {net}、現金の増減 {chg}。'},
- why:{ar:'売掛金の増加',inv:'在庫の増加',ap:'買掛金の変化',dep:'減価償却（現金が出ない費用）',capex:'設備投資',fin:'借入・返済・配当'},
- bridgenote:'緑は現金を増やす調整、赤は減らす調整です。この橋の先に、投資（設備）と財務（借入・返済・配当）が続いて期末現金になります。',
- howtxt:'売上原価 ＝ 売上 × 原価率。売掛金 ＝ 売上 × 回収日数 ÷ 365、在庫 ＝ 原価 × 在庫日数 ÷ 365、買掛金 ＝ 原価 × 支払日数 ÷ 365（期首はそれぞれ 3・4・5）。支払利息 ＝ 期首借入＋新規借入 の 3.3%。法人税は税引前利益の30%（赤字ならゼロ、その年に納付）。設備の期首簿価60に投資を足し減価償却を引きます。営業CF ＝ 利益＋減価償却−売掛金増−在庫増＋買掛金増。資産＝負債＋純資産は、つまみをどう動かしても必ず一致します ― 一致しないつまみは存在しません。'},
+ W:{negp:'期末の資金不足（仮の計算）：期末現金が {cash} です。利益は {net} の黒字ですが、現金が足りません。このまま資金を手当てできなければ、黒字でも支払いができなくなる「黒字倒産」につながる形です（講座4-4）。現金を減らした主な項目：{why}。',negl:'期末の資金不足（仮の計算）：期末現金が {cash} です。この年は赤字（当期純利益 {net}）なので、黒字倒産ではなく、赤字と資金不足が重なった形です。税金はゼロ、利益剰余金は減ります。現金を減らした主な項目：{why}。',negnote:'※この期末現金のマイナスは、資金がどれだけ足りないかを示す仮の計算です。実際の会社では現金がマイナスになることはなく、期中に借入などで不足を埋められなければ支払いが滞るおそれがあります。この数字だけで支払不能や倒産が決まるわけではありません。',fix:'対策の例：{fix}。',loss:'赤字の年です。税金はゼロ、利益剰余金は減ります。現金の増減は {chg} です。',gap:'利益 {net} に対して、現金の増減は {chg} です。内訳は営業CF {cfo}、投資CF {cfi}、財務CF {cff} です。',depnote:'営業CFでは、現金が出ない費用である減価償却費 {dep} を利益に足し戻しています（減価償却で現金が増えたわけではありません）。',gapwhy:'利益と現金の差の主な項目：{why}。',ok:'利益も現金もプラスです。利益 {net}、現金の増減 {chg}。'},
+ why:{ar:['売掛金の増加','売掛金の減少'],inv:['在庫の増加','在庫の減少'],ap:['買掛金の減少','買掛金の増加'],capex:'設備投資',loan:'新しい借入',repay:'借入の返済',div:'配当',loss:'当期の赤字'},
+ fix:{ar:'売掛金の回収を早める',inv:'在庫を減らす',ap:'支払条件を見直す',capex:'設備投資の時期を見直すか長期の借入で手当てする',repay:'返済の時期や額を見直す（借り換えなど）',div:'配当を見直す',loss:'費用の削減や売上の回復で赤字を減らす'},
+ chg:'基本の年から変わっている入力：',nochg:'基本の年からの変更はありません。',
+ bridgenote:'緑は利益に足す調整、赤は利益から引く調整です。減価償却は現金が出ない費用を足し戻すもので、現金を生むわけではありません。この橋の先に、投資（設備）と財務（借入・返済・配当）が続いて期末現金になります。',
+ howtxt:'売上原価 ＝ 売上 × 原価率。売掛金 ＝ 売上 × 回収日数 ÷ 365、在庫 ＝ 原価 × 在庫日数 ÷ 365、買掛金 ＝ 原価 × 支払日数 ÷ 365（期首はそれぞれ 3・4・5）。支払利息 ＝ 期首借入＋新規借入 の 3.3%。法人税は税引前利益の30%（赤字ならゼロ、その年に納付）。設備の期首簿価60に投資を足し減価償却を引きます。営業CF ＝ 利益＋減価償却−売掛金増−在庫増＋買掛金増。資産＝負債＋純資産は、つまみをどう動かしても必ず一致します ― 一致しないつまみは存在しません。「財務比率の計算練習」の「小さな会社」は、この基本の年とは数字が少し違う別の例です（当期純利益20.2と20.3など）。'},
 ko:{title:'재무제표 연동 시뮬레이터 — 작은 회사의 1년을 움직여 보기',lead:'슬라이더를 움직이면 손익계산서·재무상태표·현금흐름표가 동시에 바뀝니다. 이익과 현금이 어디서 어긋나는지 직접 확인하세요. 단위는 백만 엔입니다. 기초 숫자는 강좌 0-3의 「작은 회사」입니다.',
  presets:'상황 선택(슬라이더가 움직입니다)',pl:'손익계산서(1년)',bs:'재무상태표(기말)',cf:'현금흐름표(1년)',bridge:'이익 → 현금의 다리(영업현금흐름까지)',how:'이 시뮬레이터의 구조',
  g1:'사업',g2:'운전자본(현금을 묶는 세 가지)',g3:'투자와 자금',
  S:{rev:'매출',cogs:'매출원가율',sga:'인건비·임대료 등 고정비',dep:'감가상각비',ard:'매출채권 회수 일수',invd:'재고 보유 일수',apd:'매입채무 지급 일수',capex:'설비투자',loan:'신규 차입',repay:'차입 상환',div:'배당'},
- P:{base:['기본 연도','강좌 0-3의 작은 회사 그대로'],ar:['외상 매출 증가','대형 거래처가 늘어 회수가 60일 뒤로'],inv:['재고 확대','선매입으로 재고 90일분'],capex:['대규모 설비투자','설비 60을 사고 차입 40으로 보충'],repay:['차입금 일괄 상환','차입 30을 전액 상환'],div:['배당 확대','이익 대부분을 배당으로'],boom:['매출 급증','매출 1.6배, 다만 회수는 45일 뒤, 재고도 증가'],slump:['매출 감소','매출 7할, 고정비는 그대로']},
+ P:{base:['기본 연도','강좌 0-3의 작은 회사 그대로'],ar:['외상 매출 증가','대형 거래처가 늘어 회수가 60일 뒤로'],inv:['재고 확대','선매입으로 재고 90일분'],capex:['대규모 설비투자','설비 60을 사고 차입 40으로 보충, 감가상각비도 18로'],repay:['차입금 일괄 상환','차입 30을 전액 상환'],div:['배당 확대','이익 대부분을 배당으로'],boom:['매출 급증','매출 1.6배, 회수 45일·재고 40일로 늘고 고정비도 170으로'],slump:['매출 감소','매출 7할, 고정비는 그대로']},
  R:{rev:'매출',cogs:'매출원가',gross:'매출총이익',sga:'인건비·임대료 등',dep:'감가상각비',op:'영업이익',int:'이자 비용',pretax:'세전이익',tax:'법인세(30%)',net:'당기순이익',
   a:'자산',cash:'현금',ar:'매출채권',inv:'재고',ppe:'설비(장부가)',ta:'자산 합계',l:'부채·자본',ap:'매입채무',ln:'차입금',cap:'자본금',re:'이익잉여금',tl:'부채·자본 합계',
   cfo:'영업활동',cfi:'투자활동',cff:'재무활동',chg:'현금 증감',beg:'기초 현금',end:'기말 현금',
   b_net:'당기순이익',b_dep:'+감가상각',b_ar:'매출채권 증감',b_inv:'재고 증감',b_ap:'매입채무 증감',b_cfo:'영업CF'},
  C:{eq:'자산 = 부채 + 자본',cash:'기말 현금 = C/F의 기말 현금',re:'이익잉여금 = 기초 + 이익 − 배당',ratio:'자기자본비율'},
- W:{neg:'기말 현금이 마이너스입니다. 이익이 {net}이어도 내야 할 날에 현금이 없습니다 — 흑자 도산의 형태입니다(강좌 4-4). 회수를 앞당기거나, 재고를 줄이거나, 차입을 장기로 바꾸는 것 중 하나가 필요합니다.',loss:'적자인 해입니다. 세금은 0, 이익잉여금은 감소합니다. 현금은 {cash}입니다.',gap:'이익 {net} 대비 현금은 {chg} 변동했습니다. 차이의 주요 원인: {why}.',ok:'이익도 현금도 플러스입니다. 이익 {net}, 현금 증감 {chg}.'},
- why:{ar:'매출채권 증가',inv:'재고 증가',ap:'매입채무 변화',dep:'감가상각(현금이 나가지 않는 비용)',capex:'설비투자',fin:'차입·상환·배당'},
- bridgenote:'초록은 현금을 늘리는 조정, 빨강은 줄이는 조정입니다. 이 다리 끝에 투자(설비)와 재무(차입·상환·배당)가 이어져 기말 현금이 됩니다.',
- howtxt:'매출원가 = 매출 × 원가율. 매출채권 = 매출 × 회수 일수 ÷ 365, 재고 = 원가 × 재고 일수 ÷ 365, 매입채무 = 원가 × 지급 일수 ÷ 365(기초는 각각 3·4·5). 이자 비용 = (기초 차입금 + 신규 차입금)의 3.3%. 법인세는 세전이익의 30%(적자면 0, 그해에 납부). 설비는 기초 장부가 60에 투자를 더하고 감가상각을 뺍니다. 영업CF = 이익 + 감가상각 − 매출채권 증가 − 재고 증가 + 매입채무 증가. 자산 = 부채 + 자본은 슬라이더를 어떻게 움직여도 반드시 일치합니다 — 일치하지 않게 만드는 슬라이더는 없습니다.'},
+ W:{negp:'기말 자금 부족(가상 계산): 기말 현금이 {cash}입니다. 이익은 흑자({net})이지만 현금이 부족합니다. 이대로 자금을 마련하지 못하면 흑자인데도 지급하지 못하는 흑자 도산으로 이어질 수 있는 형태입니다(강좌 4-4). 현금을 줄인 주요 항목: {why}.',negl:'기말 자금 부족(가상 계산): 기말 현금이 {cash}입니다. 이 해는 적자(당기순이익 {net})이므로 흑자 도산이 아니라 적자와 자금 부족이 겹친 형태입니다. 세금은 0이고 이익잉여금은 감소합니다. 현금을 줄인 주요 항목: {why}.',negnote:'※ 여기서 기말 현금의 마이너스는 자금이 얼마나 부족한지를 보여 주는 가상 계산입니다. 실제 회사에서는 현금이 마이너스가 되지 않으며, 기중에 차입 등으로 부족분을 메우지 못하면 지급이 막힐 우려가 있습니다. 이 숫자만으로 지급불능이나 도산이 확정되지는 않습니다.',fix:'대책의 예: {fix}.',loss:'적자인 해입니다. 세금은 0, 이익잉여금은 감소합니다. 현금 증감은 {chg}입니다.',gap:'이익 {net} 대비 현금 증감은 {chg}입니다. 내역은 영업CF {cfo}, 투자CF {cfi}, 재무CF {cff}입니다.',depnote:'영업CF에서는 현금이 나가지 않는 비용인 감가상각비({dep})를 이익에 다시 더합니다(감가상각으로 현금이 늘어난 것은 아닙니다).',gapwhy:'이익과 현금 차이의 주요 항목: {why}.',ok:'이익도 현금도 플러스입니다. 이익 {net}, 현금 증감 {chg}.'},
+ why:{ar:['매출채권 증가','매출채권 감소'],inv:['재고 증가','재고 감소'],ap:['매입채무 감소','매입채무 증가'],capex:'설비투자',loan:'신규 차입',repay:'차입 상환',div:'배당',loss:'당기 적자'},
+ fix:{ar:'매출채권 회수 앞당기기',inv:'재고 줄이기',ap:'지급 조건 재검토',capex:'설비투자 시기 재검토 또는 장기 차입으로 조달',repay:'상환 시기·금액 재검토(차환 등)',div:'배당 재검토',loss:'비용 절감이나 매출 회복으로 적자 줄이기'},
+ chg:'기본 연도에서 바뀐 입력: ',nochg:'기본 연도에서 바뀐 입력이 없습니다.',
+ bridgenote:'초록은 이익에 더하는 조정, 빨강은 이익에서 빼는 조정입니다. 감가상각은 현금이 나가지 않는 비용을 다시 더하는 것이며, 현금을 만들어 내는 것은 아닙니다. 이 다리 끝에 투자(설비)와 재무(차입·상환·배당)가 이어져 기말 현금이 됩니다.',
+ howtxt:'매출원가 = 매출 × 원가율. 매출채권 = 매출 × 회수 일수 ÷ 365, 재고 = 원가 × 재고 일수 ÷ 365, 매입채무 = 원가 × 지급 일수 ÷ 365(기초는 각각 3·4·5). 이자 비용 = (기초 차입금 + 신규 차입금)의 3.3%. 법인세는 세전이익의 30%(적자면 0, 그해에 납부). 설비는 기초 장부가 60에 투자를 더하고 감가상각을 뺍니다. 영업CF = 이익 + 감가상각 − 매출채권 증가 − 재고 증가 + 매입채무 증가. 자산 = 부채 + 자본은 슬라이더를 어떻게 움직여도 반드시 일치합니다 — 일치하지 않게 만드는 슬라이더는 없습니다. 「재무 비율 계산 연습」의 「작은 회사」는 이 기본 연도와 숫자가 조금 다른 별도의 예시입니다(당기순이익 20.2와 20.3 등).'},
 en:{title:'Linked Financial Statements Simulator',lead:'Move the sliders and the income statement, balance sheet and cash flow statement change together. See for yourself where profit and cash part ways. Unit: millions of yen. Opening figures come from the small company in lesson 0-3.',
  presets:'Pick a scenario (the sliders move)',pl:'Income statement (year)',bs:'Balance sheet (year end)',cf:'Cash flow statement (year)',bridge:'Bridge from profit to cash (to operating cash flow)',how:'How this simulator works',
  g1:'Trading',g2:'Working capital (the three that tie up cash)',g3:'Investment and funding',
  S:{rev:'Sales',cogs:'Cost of sales ratio',sga:'Fixed costs (staff, rent etc.)',dep:'Depreciation',ard:'Days to collect receivables',invd:'Days of inventory held',apd:'Days to pay suppliers',capex:'Capital expenditure',loan:'New borrowing',repay:'Loan repayment',div:'Dividend'},
- P:{base:['Base year','The small company from lesson 0-3'],ar:['More credit sales','Big customers paying after 60 days'],inv:['Stocking up','Buying ahead: 90 days of inventory'],capex:['Big investment','Buy 60 of equipment, 40 funded by a loan'],repay:['Repay all debt','Repay the 30 loan in full'],div:['Raise the dividend','Pay out most of the profit'],boom:['Sales jump','Sales ×1.6, but collection takes 45 days and inventory grows'],slump:['Sales fall','Sales at 70%, fixed costs unchanged']},
+ P:{base:['Base year','The small company from lesson 0-3'],ar:['More credit sales','Big customers paying after 60 days'],inv:['Stocking up','Buying ahead: 90 days of inventory'],capex:['Big investment','Buy 60 of equipment, 40 funded by a loan; depreciation rises to 18'],repay:['Repay all debt','Repay the 30 loan in full'],div:['Raise the dividend','Pay out most of the profit'],boom:['Sales jump','Sales ×1.6; collection 45 days, inventory 40 days, fixed costs up to 170'],slump:['Sales fall','Sales at 70%, fixed costs unchanged']},
  R:{rev:'Sales',cogs:'Cost of sales',gross:'Gross profit',sga:'Staff, rent etc.',dep:'Depreciation',op:'Operating profit',int:'Interest',pretax:'Profit before tax',tax:'Tax (30%)',net:'Net profit',
   a:'Assets',cash:'Cash',ar:'Receivables',inv:'Inventory',ppe:'Equipment (net)',ta:'Total assets',l:'Liabilities and equity',ap:'Payables',ln:'Loan',cap:'Capital',re:'Retained earnings',tl:'Total liabilities and equity',
   cfo:'Operating',cfi:'Investing',cff:'Financing',chg:'Change in cash',beg:'Opening cash',end:'Closing cash',
   b_net:'Net profit',b_dep:'+ Depreciation',b_ar:'Receivables change',b_inv:'Inventory change',b_ap:'Payables change',b_cfo:'Operating CF'},
  C:{eq:'Assets = liabilities + equity',cash:'Closing cash = cash flow closing cash',re:'Retained earnings = opening + profit − dividend',ratio:'Equity ratio'},
- W:{neg:'Closing cash is negative. Profit is {net}, yet there is no cash on the day payments fall due: insolvency while profitable (lesson 4-4). Collect faster, hold less inventory or refinance the loan long-term.',loss:'A loss year. No tax, and retained earnings fall. Cash: {cash}.',gap:'Profit {net}, but cash moved {chg}. Main reasons: {why}.',ok:'Both profit and cash are positive. Profit {net}, change in cash {chg}.'},
- why:{ar:'rise in receivables',inv:'rise in inventory',ap:'change in payables',dep:'depreciation (a non-cash cost)',capex:'capital expenditure',fin:'borrowing, repayment and dividends'},
- bridgenote:'Green adjustments add cash, red ones take it away. After this bridge come investing (equipment) and financing (loans, repayments, dividends) to reach closing cash.',
- howtxt:'Cost of sales = sales × ratio. Receivables = sales × collection days ÷ 365, inventory = cost × inventory days ÷ 365, payables = cost × payment days ÷ 365 (opening 3, 4 and 5). Interest = 3.3% of opening plus new loans. Tax is 30% of profit before tax (zero on a loss, paid in the year). Equipment: opening 60 plus capex less depreciation. Operating CF = profit + depreciation − receivables increase − inventory increase + payables increase. Assets always equal liabilities plus equity, however you move the sliders: there is no slider that breaks it.'}};
+ W:{negp:'Year-end cash shortfall (simulated): closing cash is {cash}. The company made a profit of {net}, yet it is short of cash. If the shortfall is not funded, this is the pattern that leads to insolvency while profitable (lesson 4-4). Main items that reduced cash: {why}.',negl:'Year-end cash shortfall (simulated): closing cash is {cash}. This is a loss year (net profit {net}), so this is not insolvency while profitable: a loss and a cash shortfall come together. No tax, and retained earnings fall. Main items that reduced cash: {why}.',negnote:'Note: negative closing cash here is a simulated figure showing how much cash is missing. A real company cannot hold negative cash; if it cannot cover the gap during the year, for example by borrowing, it may be unable to make payments. This figure alone does not mean the company is insolvent or bankrupt.',fix:'Possible measures: {fix}.',loss:'A loss year. No tax, and retained earnings fall. Change in cash: {chg}.',gap:'Profit is {net} and the change in cash is {chg}: operating CF {cfo}, investing CF {cfi}, financing CF {cff}.',depnote:'Operating CF adds back depreciation of {dep} because it is a non-cash cost (depreciation itself does not bring in cash).',gapwhy:'Main items behind the gap between profit and cash: {why}.',ok:'Both profit and cash are positive. Profit {net}, change in cash {chg}.'},
+ why:{ar:['rise in receivables','fall in receivables'],inv:['rise in inventory','fall in inventory'],ap:['fall in payables','rise in payables'],capex:'capital expenditure',loan:'new borrowing',repay:'loan repayment',div:'dividend',loss:'loss for the year'},
+ fix:{ar:'collect receivables faster',inv:'hold less inventory',ap:'review payment terms',capex:'rethink the timing of capex or fund it with a long-term loan',repay:'rethink the timing or amount of repayment (e.g. refinancing)',div:'review the dividend',loss:'cut costs or recover sales to reduce the loss'},
+ chg:'Inputs changed from the base year: ',nochg:'No inputs changed from the base year.',
+ bridgenote:'Green adjustments are added to profit, red ones are deducted. Depreciation is a non-cash cost added back; it does not generate cash. After this bridge come investing (equipment) and financing (loans, repayments, dividends) to reach closing cash.',
+ howtxt:'Cost of sales = sales × ratio. Receivables = sales × collection days ÷ 365, inventory = cost × inventory days ÷ 365, payables = cost × payment days ÷ 365 (opening 3, 4 and 5). Interest = 3.3% of opening plus new loans. Tax is 30% of profit before tax (zero on a loss, paid in the year). Equipment: opening 60 plus capex less depreciation. Operating CF = profit + depreciation − receivables increase − inventory increase + payables increase. Assets always equal liabilities plus equity, however you move the sliders: there is no slider that breaks it. The small company in Financial Ratio Practice is a separate example whose figures differ slightly from this base year (net profit 20.2 vs 20.3, for example).'}};
 var OPEN={cash:20,ar:3,inv:4,ppe:60,ap:5,loan:30,cap:30,re:22};
-var SL=[['rev',150,600,10,300,'g1'],['cogs',25,55,0.5,36.7,'g1','%'],['sga',100,220,2,148,'g1'],['dep',0,40,1,12,'g1'],['ard',0,90,1,10,'g2','d'],['invd',0,120,1,20,'g2','d'],['apd',0,90,1,23,'g2','d'],['capex',0,100,2,20,'g3'],['loan',0,100,2,0,'g3'],['repay',0,30,1,6,'g3'],['div',0,40,1,5,'g3']];
+var SL=[['rev',150,600,10,300,'g1'],['cogs',25,55,0.1,36.7,'g1','%'],['sga',100,220,2,148,'g1'],['dep',0,40,1,12,'g1'],['ard',0,90,1,10,'g2','d'],['invd',0,120,1,20,'g2','d'],['apd',0,90,1,23,'g2','d'],['capex',0,100,2,20,'g3'],['loan',0,100,2,0,'g3'],['repay',0,30,1,6,'g3'],['div',0,40,1,5,'g3']];
 var PRE={base:{},ar:{ard:60},inv:{invd:90},capex:{capex:60,loan:40,dep:18},repay:{repay:30},div:{div:20},boom:{rev:480,ard:45,invd:40,sga:170},slump:{rev:210}};
 var lang=localStorage.getItem('art-lang')||'ja',V={},preset='base';
-function f1(n){var s=(Math.round(n*10)/10).toLocaleString('ja-JP',{minimumFractionDigits:1,maximumFractionDigits:1});return s}
-function sg(n){return (n>=0?'+':'−')+f1(Math.abs(n))}
+function f1(n){var r=Math.round(n*10)/10;if(r===0)r=0;return (r<0?'−':'')+Math.abs(r).toLocaleString('ja-JP',{minimumFractionDigits:1,maximumFractionDigits:1})} /* −0.0 を 0.0 に、負号は − に統一（2026.10） */
+function sg(n){var r=Math.round(n*10)/10;return (r<0?'−':'+')+f1(Math.abs(r))}
+function sv(k,x){return k==='cogs'?(Math.round(x*10)/10).toFixed(1):String(x)}
 function calc(v){var cogs=v.rev*v.cogs/100,gross=v.rev-cogs,op=gross-v.sga-v.dep,intr=(OPEN.loan+v.loan)*0.033,pretax=op-intr,tax=Math.max(0,pretax)*0.3,net=pretax-tax;
  var ar=v.rev*v.ard/365,inv=cogs*v.invd/365,ap=cogs*v.apd/365;var dAR=ar-OPEN.ar,dInv=inv-OPEN.inv,dAP=ap-OPEN.ap;
  var cfo=net+v.dep-dAR-dInv+dAP,cfi=-v.capex,cff=v.loan-v.repay-v.div,chg=cfo+cfi+cff,cash=OPEN.cash+chg;
@@ -133,20 +141,31 @@ function render(){var d=L[lang];document.documentElement.lang=lang;document.titl
  var P=document.getElementById('presets');P.innerHTML='';Object.keys(PRE).forEach(function(k){var b=document.createElement('button');b.innerHTML='<b>'+d.P[k][0]+'</b><br><small>'+d.P[k][1]+'</small>';b.className=preset===k?'on':'';b.onclick=function(){preset=k;SL.forEach(function(s){V[s[0]]=(PRE[k][s[0]]!=null)?PRE[k][s[0]]:s[4]});render()};P.appendChild(b)});
  var S=document.getElementById('sliders');S.innerHTML='';var groups={g1:[],g2:[],g3:[]};SL.forEach(function(s){groups[s[5]].push(s)});
  var col={g1:'var(--pl)',g2:'var(--bs)',g3:'var(--cf)'};
- Object.keys(groups).forEach(function(g){var div=document.createElement('div');div.className='grp';div.innerHTML='<h3><i style="background:'+col[g]+'"></i>'+d[g]+'</h3>';groups[g].forEach(function(s){var id=s[0],unit=s[6]==='%'?'%':s[6]==='d'?(lang==='ja'?'日':lang==='ko'?'일':' days'):'';var w=document.createElement('div');w.className='sl';w.innerHTML='<label><span>'+d.S[id]+'</span><b id="v_'+id+'">'+V[id]+unit+'</b></label><input type="range" min="'+s[1]+'" max="'+s[2]+'" step="'+s[3]+'" value="'+V[id]+'" data-k="'+id+'" aria-label="'+d.S[id]+'"><output></output>';div.appendChild(w)});S.appendChild(div)});
- S.querySelectorAll('input[type=range]').forEach(function(r){r.oninput=function(){V[r.dataset.k]=parseFloat(r.value);preset=null;document.querySelectorAll('.presets button').forEach(function(b){b.classList.remove('on')});update()}});
+ Object.keys(groups).forEach(function(g){var div=document.createElement('div');div.className='grp';div.innerHTML='<h3><i style="background:'+col[g]+'"></i>'+d[g]+'</h3>';groups[g].forEach(function(s){var id=s[0],unit=s[6]==='%'?'%':s[6]==='d'?(lang==='ja'?'日':lang==='ko'?'일':' days'):'';var w=document.createElement('div');w.className='sl';w.innerHTML='<label><span>'+d.S[id]+'</span><b id="v_'+id+'">'+sv(id,V[id])+unit+'</b></label><input type="range" min="'+s[1]+'" max="'+s[2]+'" step="'+s[3]+'" value="'+V[id]+'" data-k="'+id+'" aria-label="'+d.S[id]+'"><output></output>';div.appendChild(w)});S.appendChild(div)});
+ S.querySelectorAll('input[type=range]').forEach(function(r){r.oninput=function(){V[r.dataset.k]=Math.round(parseFloat(r.value)*10)/10;preset=null;document.querySelectorAll('.presets button').forEach(function(b){b.classList.remove('on')});update()}});
  update()}
 function update(){var d=L[lang],c=calc(V),b=BASE,v=V;
- SL.forEach(function(s){var unit=s[6]==='%'?'%':s[6]==='d'?(lang==='ja'?'日':lang==='ko'?'일':' days'):'';var e=document.getElementById('v_'+s[0]);if(e)e.textContent=V[s[0]]+unit});
+ SL.forEach(function(s){var unit=s[6]==='%'?'%':s[6]==='d'?(lang==='ja'?'日':lang==='ko'?'일':' days'):'';var e=document.getElementById('v_'+s[0]);if(e)e.textContent=sv(s[0],V[s[0]])+unit});
+ var ch=[];SL.forEach(function(s){var k=s[0];if(Math.abs(V[k]-BASEV[k])>1e-9){var u=s[6]==='%'?'%':s[6]==='d'?(lang==='ja'?'日':lang==='ko'?'일':' days'):'';ch.push(d.S[k]+' '+sv(k,BASEV[k])+u+' → '+sv(k,V[k])+u)}});
+ document.getElementById('chgs').textContent=ch.length?d.chg+ch.join(lang==='ja'?'、':lang==='ko'?', ':'; '):d.nochg;
  document.getElementById('pl').innerHTML=row('rev',v.rev,b.v.rev)+row('cogs',-c.cogs,-b.cogs)+row('gross',c.gross,b.gross,'sum')+row('sga',-v.sga,-b.v.sga)+row('dep',-v.dep,-b.v.dep)+row('op',c.op,b.op,'sum')+row('int',-c.intr,-b.intr)+row('pretax',c.pretax,b.pretax)+row('tax',-c.tax,-b.tax)+row('net',c.net,b.net,'sum');
  document.getElementById('bs').innerHTML='<tr class="hd"><td>'+d.R.a+'</td><td></td></tr>'+row('cash',c.cash,b.cash)+row('ar',c.ar,b.ar)+row('inv',c.inv,b.inv)+row('ppe',c.ppe,b.ppe)+row('ta',c.ta,b.ta,'sum')+'<tr class="hd"><td>'+d.R.l+'</td><td></td></tr>'+row('ap',c.ap,b.ap)+row('ln',c.loan,b.loan)+row('cap',OPEN.cap,OPEN.cap)+row('re',c.re,b.re)+row('tl',c.tl,b.tl,'sum');
  document.getElementById('cf').innerHTML=row('cfo',c.cfo,b.cfo)+row('cfi',c.cfi,b.cfi)+row('cff',c.cff,b.cff)+row('chg',c.chg,b.chg,'sum')+row('beg',OPEN.cash,OPEN.cash)+row('end',c.cash,b.cash,'sum');
  var ratio=c.re+OPEN.cap;var eqr=c.ta>0?ratio/c.ta*100:0;
- var CK=[[d.C.eq,Math.abs(c.ta-c.tl)<0.05,f1(c.ta)+' = '+f1(c.tl)],[d.C.cash,true,f1(c.cash)],[d.C.re,true,f1(OPEN.re)+' + '+f1(c.net)+' − '+f1(v.div)+' = '+f1(c.re)],[d.C.ratio,eqr>=20,Math.round(eqr*10)/10+'%']];
+ var CK=[[d.C.eq,Math.abs(c.ta-c.tl)<0.05,f1(c.ta)+' = '+f1(c.tl)],[d.C.cash,true,f1(c.cash)],[d.C.re,true,f1(OPEN.re)+(c.net<0?' − '+f1(-c.net):' + '+f1(c.net))+' − '+f1(v.div)+' = '+f1(c.re)],[d.C.ratio,eqr>=20,Math.round(eqr*10)/10+'%']];
  document.getElementById('checks').innerHTML=CK.map(function(k){return '<div class="chk'+(k[1]?'':' bad')+'"><b>'+(k[1]?'✓ ':'✗ ')+k[0]+'</b>'+k[2]+'</div>'}).join('');
  var W=document.getElementById('warn');var msg,cls='';
- var reasons=[];[['ar',-c.dAR],['inv',-c.dInv],['ap',c.dAP],['dep',v.dep],['capex',-v.capex],['fin',c.cff]].sort(function(a,b){return Math.abs(b[1])-Math.abs(a[1])}).slice(0,2).forEach(function(r){reasons.push(d.why[r[0]]+'（'+sg(r[1])+'）')});
- if(c.cash<0){msg=d.W.neg.replace('{net}',f1(c.net))}else if(c.net<0){msg=d.W.loss.replace('{cash}',sg(c.chg))}else if(Math.abs(c.chg-c.net)>5){msg=d.W.gap.replace('{net}',f1(c.net)).replace('{chg}',sg(c.chg)).replace('{why}',reasons.join(lang==='en'?', ':'、'));cls=' ok'}else{msg=d.W.ok.replace('{net}',f1(c.net)).replace('{chg}',sg(c.chg));cls=' ok'}
+ var lp=lang==='ja'?['（','）']:lang==='ko'?['(',')']:[' (',')'],sep=lang==='ja'?'、':lang==='ko'?', ':'; ',js=lang==='ja'?'':' ';
+ function wl(k,x){var w=d.why[k];return typeof w==='string'?w:w[x<0?0:1]}
+ var IT=[['ar',-c.dAR],['inv',-c.dInv],['ap',c.dAP],['capex',-v.capex],['loan',v.loan],['repay',-v.repay],['div',-v.div]];if(c.net<0)IT.push(['loss',c.net]);
+ IT=IT.filter(function(r){return Math.abs(r[1])>=0.05}).sort(function(a,b){return Math.abs(b[1])-Math.abs(a[1])});
+ function why(list){return list.slice(0,2).map(function(r){return wl(r[0],r[1])+lp[0]+sg(r[1])+lp[1]}).join(sep)}
+ /* 2026.10: 期末現金<0 は黒字/赤字で分け、仮の計算であること・直接の原因・対策を分けて示す。減価償却は現金減少の原因に入れず、足し戻しとして説明 */
+ if(c.cash<0){var dn=IT.filter(function(r){return r[1]<0});var top=dn.slice(0,2),fx=[];top.forEach(function(r){if(d.fix[r[0]]&&fx.indexOf(d.fix[r[0]])<0)fx.push(d.fix[r[0]])});
+  msg=(c.net<0?d.W.negl:d.W.negp).replace('{cash}',f1(c.cash)).replace('{net}',f1(c.net)).replace('{why}',why(top))+'<br><small>'+d.W.negnote+'</small>'+(fx.length?'<br>'+d.W.fix.replace('{fix}',fx.join(sep)):'')}
+ else if(c.net<0){msg=d.W.loss.replace('{chg}',sg(c.chg))}
+ else if(Math.abs(c.chg-c.net)>5){msg=d.W.gap.replace('{net}',f1(c.net)).replace(/\{chg\}/g,sg(c.chg)).replace('{cfo}',sg(c.cfo)).replace('{cfi}',sg(c.cfi)).replace('{cff}',sg(c.cff))+(v.dep>0?js+d.W.depnote.replace('{dep}',f1(v.dep)):'')+(IT.length?js+d.W.gapwhy.replace('{why}',why(IT)):'');cls=' ok'}
+ else{msg=d.W.ok.replace('{net}',f1(c.net)).replace('{chg}',sg(c.chg));cls=' ok'}
  W.innerHTML='<div class="warn'+cls+'">'+msg+'</div>';
  var steps=[['b_net',c.net,'t','var(--pl)'],['b_dep',v.dep,'d'],['b_ar',-c.dAR,'d'],['b_inv',-c.dInv,'d'],['b_ap',c.dAP,'d'],['b_cfo',c.cfo,'t','var(--cf)']];
  var mx=Math.max(1,Math.abs(c.net),Math.abs(c.cfo),Math.abs(c.net)+v.dep+Math.abs(c.dAR)+Math.abs(c.dInv)+Math.abs(c.dAP));var H=110;

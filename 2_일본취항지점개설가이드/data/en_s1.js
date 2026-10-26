@@ -36,7 +36,7 @@ quiz:[{q:"What is the deadline for changing frequency?",opts:["10 days before","
 {q:"What must you check in the seasonal filing?",opts:["That the filing matches the slots you hold","The weather","Revenue","Seat colours"],a:0,exp:"A mismatch affects your operation."}],
 next:"1-3 Slots and coordination with FAIB"});
 
-set("1-3",{title:"Slots and Coordination with FAIB",hl:"slots",subtitle:"JSC for the pre-season stage through monthly schedule confirmation, FAIB for last-minute and same-day changes: the point of contact changes with the timing ★",
+set("1-3",{title:"Slots and Coordination with FAIB",hl:"slots",subtitle:"JSC before the season, FAIB during the season: the point of contact changes with the timing, so check the current JSC and FAIB guidance when filing ★",
 lead:["At congested airports such as Narita and Haneda, the times at which an aircraft may take off or land — the slots — are limited. Airlines secure slots in advance under IATA's worldwide slot rules and then operate to them.",
 "This article covers the basics of slots, coordination before the season by Japan Schedule Coordination (JSC), coordination during the season by the flight information officers (FAIB), delay reporting, and what the station needs to watch."],
 sections:[

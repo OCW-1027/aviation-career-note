@@ -113,7 +113,7 @@ sections:[
 {h:"The monthly flow",blocks:[{t:"fig",id:"adm_pay",cap:"Figure: the monthly payroll cycle."},{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Confirm overtime and leave"},{name:"Apply changes",sub:"Joiners, leavers, raises, allowances"},{name:"Calculate",sub:"Adviser or system"},{name:"Check",sub:"Against last month"},{name:"Pay",sub:"Pay day and payslips"}]}]},
 {h:"Main annual procedures",blocks:[{t:"region",jp:[{t:"table",cols:["When","Procedure"],rows:[
 ["January","Withholding tax under the special terms, the depreciable assets return (5-1), salary payment reports"],
-["March to April","Changes in health insurance, pension and employment insurance rates"],
+["March to April","Changes in health insurance, long-term care insurance and employment insurance rates (the pension rate is fixed at 18.3%)"],
 ["May to June","Inhabitant tax notices and the start of payroll deduction"],
 ["June to July","Annual labour insurance renewal, the base remuneration report, withholding tax under the special terms"],
 ["November to December","Year-end tax adjustment"]]},
@@ -259,7 +259,7 @@ sections:[
 {t:"point",x:"Going direct is not just a change of organisation; it means taking on all the management of a Japanese business. Build the HR and finance systems first, then switch."}]}],
 voice:"When switching from an agent to your own station, what tends to take longest is not hiring but airport ID passes and restricted-area procedures. Check first how long the airport company’s and authorities’ procedures take, and plan backwards from the switch date.",
 terms:[["Direct Operation","直営","직영"],["Agent","代理店","대리점"],["Transfer of Employment","転籍","전적"],["Parallel Operation","並行運用","병행 운용"]],
-quiz:[{q:"Which is an advantage of direct operation?",opts:["Know-how builds up in-house","No legal preparation","No fixed costs","Indirect control"],a:0,exp:"You also decide quality and speed."},
+quiz:[{q:"Which is an advantage of direct operation?",opts:["Know-how builds up in-house","No legal preparation","No fixed costs","Indirect control"],a:0,exp:"With direct operation, experience and know-how build up in-house. You also decide quality and speed."},
 {q:"What must be made clear when taking on the agent’s staff?",opts:["Pay, recognition of service and paid leave","Business card colour","Desk location","Hobbies"],a:0,exp:"Put the transfer terms in writing."},
 {q:"What should be built before switching?",opts:["The HR and finance systems","A logo","Gifts","A party"],a:0,exp:"You take on all the management."}],
 next:"4-1 Accounts, the daily cash report and payments"});

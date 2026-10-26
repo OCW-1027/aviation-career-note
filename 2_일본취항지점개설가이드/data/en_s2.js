@@ -125,10 +125,10 @@ sections:[
 {name:"Special payment terms for withholding tax",x:"Employers with fewer than ten staff can pay twice a year rather than monthly: January to June by 10 July, and July to December by 20 January. It also covers withholding on professional fees."},
 {name:"Inhabitant tax by payroll deduction",x:"Inhabitant tax based on last year’s income is deducted from pay and remitted to the municipality in twelve instalments from June to May. The notice arrives around May."},
 {name:"Joiners and leavers",x:"File the change notification for payroll deduction with the employee’s municipality."},
-{name:"If you miss a payment",x:"Unpaid tax becomes the employee’s arrears and affects their credit. Keep the deadlines."}]}]},
+{name:"If you miss a payment",x:"Inhabitant tax deducted from pay is remitted by the company, as the special collection agent, by the set deadline. Responsibility for payment lies with the company, not the employee. Keep the deadlines."}]}]},
 {h:"The year-end adjustment",blocks:[{t:"check",items:[
 {name:"When",x:"Collect the forms in November and December and settle in the December or January payroll."},
-{name:"Who",x:"Every employee on the payroll."},
+{name:"Who",x:"In principle, employees who have submitted the declaration for dependant exemptions. Those with pay over 20 million yen, among others, are excluded."},
 {name:"What to collect",x:"Declarations and certificates for dependants, insurance premiums, mortgage relief and so on."},
 {name:"Refunds",x:"The company refunds the employee and adjusts it against the withholding tax it pays."}]}]},
 {h:"Work rules, paid leave and health checks",blocks:[{t:"table",cols:["Item","The point"],rows:[
