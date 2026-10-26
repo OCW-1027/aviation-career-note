@@ -68,7 +68,7 @@ var CSS='@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;60
 
 /* フッターの「お問い合わせ」（2026.10.17 公式メール）。v3.js と acn_shell.js に同じものを置く（片方を直したらもう片方も） */
 function ACN_CT(l,U){var t={ja:['お問い合わせ','すべての窓口 →'],ko:['문의','모든 문의 창구 →'],en:['Contact','All contacts →']}[l]||['お問い合わせ','すべての窓口 →'],k={ja:0,ko:1,en:2}[l]||0,
- I=[['info',['一般お問い合わせ','일반 문의','General Inquiries']],['support',['会員サポート','회원 지원','Member Support']],['contact',['法人・学校提携','기업·학교 제휴','Business & School Partnerships']],['recruit',['求人広告のお問い合わせ','구인광고 문의','Job Advertising Inquiries']]];
+ I=[['info',['一般お問い合わせ','일반 문의','General Inquiries']],['support',['会員サポート','회원 지원','Member Support']],['contact',['コンサルティング・法人・学校提携','컨설팅·기업·학교 제휴','Consulting & Business/School Partnerships']],['recruit',['求人広告のお問い合わせ','구인광고 문의','Job Advertising Inquiries']]];
  return '<b>'+t[0]+'</b>'+I.map(function(x){var m=x[0]+'@ac-note.com';return '<span><em>'+x[1][k]+'</em><a href="mailto:'+m+'">'+m+'</a></span>'}).join('')+'<a class="acn-ctall" href="'+U('contact.html')+'">'+t[1]+'</a>'}
 var hd,ft,crumb,last='';
 function draw(){var l=L();if(l===last&&hd)return;last=l;var c=C[l];

@@ -4,7 +4,7 @@
 (function(){
 /* フッターの「お問い合わせ」（2026.10.17 公式メール）。v3.js と acn_shell.js に同じものを置く（片方を直したらもう片方も） */
 function ACN_CT(l,U){var t={ja:['お問い合わせ','すべての窓口 →'],ko:['문의','모든 문의 창구 →'],en:['Contact','All contacts →']}[l]||['お問い合わせ','すべての窓口 →'],k={ja:0,ko:1,en:2}[l]||0,
- I=[['info',['一般お問い合わせ','일반 문의','General inquiries']],['support',['会員サポート','회원 지원','Member support']],['contact',['法人・学校提携','기업·학교 제휴','Business & school partnerships']],['recruit',['求人広告のお問い合わせ','구인 광고 문의','Job advertising inquiries']]];
+ I=[['info',['一般お問い合わせ','일반 문의','General inquiries']],['support',['会員サポート','회원 지원','Member support']],['contact',['コンサルティング・法人・学校提携','컨설팅·기업·학교 제휴','Consulting & business/school partnerships']],['recruit',['求人広告のお問い合わせ','구인 광고 문의','Job advertising inquiries']]];
  return '<b>'+t[0]+'</b>'+I.map(function(x){var m=x[0]+'@ac-note.com';return '<span><em>'+x[1][k]+'</em><a href="mailto:'+m+'">'+m+'</a></span>'}).join('')+'<a class="acn-ctall" href="'+U('contact.html')+'">'+t[1]+'</a>'}
 var C={
 ja:{proto:['GPTの設計案をもとにした試作です。いまのトップページは','こちら'],brand:'航空キャリアノート',nav:['航空講座','会社実務','会話練習','実務練習','ゲーム','求人','コーチング','コミュニティ'],mem:'メンバーシップ',
