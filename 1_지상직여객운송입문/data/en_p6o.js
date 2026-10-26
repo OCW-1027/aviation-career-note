@@ -11,7 +11,7 @@ sections:[
 ["Quality and training","Quality checks, training plans and records, supporting airline audits"]]},
 {t:"note",x:"* How the work is divided depends on the company and airport. In a small operation one person may cover several roles. ★"}]},
 {h:"A typical day",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before",sub:"Allocate next day’s flights, staff and equipment"},{name:"Start of shift",sub:"Briefing, confirm the day’s changes"},{name:"Each flight",sub:"Monitor progress; at airports using A-CDM, update the target off-block time (TOBT)"},{name:"Delays and changes",sub:"Reallocate staff and equipment, inform the airline"},{name:"End of shift",sub:"Daily report of performance, delay codes and events"}]},
-{t:"point",x:"The operations department is usually first to record why a flight was late. Agreeing in advance with the airline station how delay codes are assigned reduces disputes at the monthly meeting (6-2)."}]},
+{t:"point",x:"Which department first records the cause of a delay depends on the scope of the handling contract and how the airport is organised. Agreeing in advance with the airline station how delay codes are assigned reduces disputes at the monthly meeting (6-2)."}]},
 {h:"Training each role needs (example)",blocks:[{t:"table",cols:["Role","Training","Point"],rows:[
 ["Everyone","Security, safety (SMS and ramp safety), dangerous goods awareness","Initial and recurrent; check the retention period for each type (dangerous goods: at least 36 months under international rules; 8-3)"],
 ["Operations control","Each airline’s procedures, radio use, delay codes, irregular operations","List the procedures that differ by airline"],
@@ -35,6 +35,6 @@ voice:"In major disruption, contact with the handler’s operations desk is your
 terms:[["Operations Department","オペレーション部門","오퍼레이션 부서"],["Operations Control Desk","運営の統括（デスク）","운영 통제(데스크)"],["Resource Allocation","資源の割り当て","자원 배정"],["Load Control","搭載管理","탑재관리"],["Authorisation List","資格者名簿","자격 명단"],["Escalation","エスカレーション","에스컬레이션(상향 보고)"]],
 quiz:[{q:"Which is not part of the operations department’s work?",opts:["Allocating staff and GSE","Recording delay codes","Cabin service on board","Sending messages"],a:2,exp:"Cabin service is the cabin crew’s job."},
 {q:"What matters most when allocating load control staff?",opts:["Anyone who is free","Only qualified, in-date people","Give it to new starters","No need to check with the airline"],a:1,exp:"Expired authorisations are a common audit finding."},
-{q:"Where should the station send changes for the handler?",opts:["Directly to individuals on the ramp","To the desk","Nowhere","In a batch the next day"],a:1,exp:"Keep one point of contact."}],
+{q:"Where should the station send changes for the handler?",opts:["Directly to individuals on the ramp","To the desk","Nowhere","In a batch the next day"],a:1,exp:"Use a single contact route so that the staff concerned can check the changes."}],
 next:"6-8 Checking invoices and managing station costs"});
 })(window.ARTS);

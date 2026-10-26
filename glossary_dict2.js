@@ -73,7 +73,7 @@ window.DICT=(window.DICT||[]).concat([
 ["WB","Loading Instruction/Report (LIR)","搭載指示書（LIR）","탑재 지시서(LIR)","どの貨物室に何を積むかの指示と、その結果の報告","어느 화물칸에 무엇을 실을지에 대한 지시와 그 결과 보고","Instructions on what goes in which hold, and the loaders’ report"],
 ["WB","Notification to Captain (NOTOC)","機長への通知書（NOTOC）","기장 통보서(NOTOC)","危険物や特別な搭載物を機長に知らせる書類","위험물이나 특수 탑재물을 기장에게 알리는 서류","The document informing the captain of dangerous goods and special loads"],
 ["WB","Last Minute Change (LMC)","最終変更（LMC）","최종 변경(LMC)","ロードシートを渡した後の小さな変更","로드시트를 건넨 뒤의 작은 변경","A small change after the loadsheet is issued"],
-["WB","Dry Operating Weight (DOW)","乾燥運航重量（DOW）","건조 운항 중량(DOW)","機体・乗務員・備品を含み、燃料と搭載物を除いた重さ","기체·승무원·비품을 포함하고 연료와 탑재물을 뺀 무게","Aircraft, crew and equipment, without fuel or payload"],
+["WB","Dry Operating Weight (DOW)","乾燥運航重量（DOW）","건조 운항 중량(DOW)","機体に運航に必要な乗務員・備品などを含み、使用可能燃料と有償搭載量を除いた重さ","기체에 운항에 필요한 승무원·비품 등을 포함하고, 사용 가능 연료와 유상 탑재량을 뺀 무게","The aircraft with the crew and equipment needed for operation, excluding usable fuel and payload"],
 ["WB","Zero Fuel Weight (ZFW)","無燃料重量（ZFW）","무연료 중량(ZFW)","DOWに搭載物を足した重さ","DOW에 탑재물을 더한 무게","DOW plus traffic load"],
 ["WB","Take-off Weight (TOW)","離陸重量（TOW）","이륙 중량(TOW)","ZFWに離陸燃料を足した重さ","ZFW에 이륙 연료를 더한 무게","ZFW plus take-off fuel"],
 ["WB","Landing Weight (LAW)","着陸重量（LAW）","착륙 중량(LAW)","TOWから飛行燃料を引いた重さ","TOW에서 비행 연료를 뺀 무게","TOW minus trip fuel"],

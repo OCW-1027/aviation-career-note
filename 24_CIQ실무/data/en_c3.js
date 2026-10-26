@@ -34,7 +34,7 @@ quiz:[{q:"A passenger develops a fever in flight. What happens before arrival?",
 {q:"Who handles human quarantine in Japan?",opts:["Quarantine stations (Ministry of Health, Labour and Welfare)","The Animal Quarantine Service","Customs","The Immigration Services Agency"],a:0,exp:"Animal and plant quarantine belong to the agriculture ministry."}],
 next:"3-2 Animal quarantine: meat products cannot be brought in"});
 set("3-2",{title:"Animal Quarantine: Meat Products Cannot Be Brought In",hl:"Meat Products",subtitle:"“It’s only a little”, “it’s vacuum-packed”, “I bought it duty-free”: none of these works",
-lead:["This is the rule that surprises passengers most on arrival. A single sausage, a bag of jerky, one meat bun: none may be brought into Japan or Korea. Quantity and packaging make no difference.","The reason is livestock disease. An infection arriving in one passenger’s bag can damage a whole country’s farming, which is why the penalties are heavy."],
+lead:["One rule that can surprise passengers on arrival concerns animal products. A single sausage, a bag of jerky, one meat bun: none may be brought into Japan or Korea. Quantity and packaging make no difference.","The reason is livestock disease. An infection arriving in one passenger’s bag can damage a whole country’s farming, which is why the penalties are heavy."],
 sections:[
 {h:"Why it is so strict",blocks:[{t:"rows",items:[
 {name:"The diseases to keep out",x:"African swine fever, foot-and-mouth disease, avian influenza. Once in, large numbers of animals have to be destroyed."},
@@ -55,7 +55,7 @@ sections:[
 {name:"If in doubt, declare",x:"Show it at the quarantine counter and anything that cannot be brought in is simply surrendered."},
 {name:"Anyone who has visited a farm",x:"Disease can travel on shoes and clothing. Japan asks visitors not to touch livestock for a week before and after arrival."},
 {name:"The same applies to post",x:"Meat products cannot be sent by international mail either."}]},
-{t:"point",x:"The pre-arrival announcement works best: “Meat products and fruit cannot be brought in. If you have any, please declare them at the quarantine counter.”"}]}],
+{t:"point",x:"The pre-arrival announcement is an effective way to prevent violations: “Meat products and fruit cannot be brought in. If you have any, please declare them at the quarantine counter.”"}]}],
 voice:{h:"A Reported Case",x:"After African swine fever was found in China in August 2018, the first time in Asia, Japanese airports repeatedly found the virus’s genes in pork products brought from China in hand luggage, with seven cases by May 2019 (Source: Matsumoto Livestock Hygiene Service Center, Nagano, May 2019). From April 2019 the Animal Quarantine Service began dealing strictly with illegal imports even when passengers gave them up voluntarily, and from July 2020 an amended law raised the maximum fine from JPY 1 million to JPY 3 million (JPY 50 million for companies). Goods bought duty-free are covered, and passport and boarding pass details are recorded at inspection (Source: Animal Quarantine Service, Ministry of Agriculture)."},
 terms:[["Livestock Infectious Disease","家畜の伝染病","가축전염병"],["African Swine Fever (ASF)","アフリカ豚熱","아프리카돼지열병"],["Quarantine Detector Dog","検疫探知犬","검역 탐지견"],["Animal Products","畜産物","축산물"]],
 quiz:[{q:"What is the penalty for illegally bringing meat products into Japan?",opts:["Imprisonment for up to three years or a fine of up to 3 million yen","A warning only","Nothing once the item is thrown away","A 10,000 yen fine"],a:0,exp:"For companies the fine is up to 50 million yen."},
@@ -67,8 +67,8 @@ lead:["The fruit was delicious on holiday, so why not take some home for the fam
 sections:[
 {h:"Why it is so strict",blocks:[{t:"fig",id:"ciq_plant",cap:"Figure: items subject to plant quarantine."},{t:"rows",items:[
 {name:"Pests",x:"Fruit flies lay their eggs inside fruit, where they cannot be seen."},
-{name:"Diseases",x:"Plant diseases travel on leaves, seeds and soil."},
-{name:"Soil",x:"Soil carries pests and disease. Soil itself, and plants with soil on them, cannot be brought in. ★"}]}]},
+{name:"Diseases",x:"Plant diseases may be carried in attached to leaves, seeds, soil and similar items."},
+{name:"Soil",x:"Soil may include pests and pathogens. Soil itself, and plants with soil on them, cannot be brought in. ★"}]}]},
 {h:"The rules and penalties in Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["The principle","Fresh fruit, vegetables, grains and beans need an inspection certificate issued by the exporting country’s government, even where import is not prohibited","Many agricultural products cannot be brought in even in small amounts. Permitted items still need the exporting country’s certificate"],
 ["Examples that cannot be brought in","Depends on the combination of country and item. Fresh fruit such as mangoes from many countries ★","Fresh fruit such as mangoes and apples; unprocessed grains; raw peanuts; some dried fruit containing seeds"],

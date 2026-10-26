@@ -1,7 +1,7 @@
 /* 旅客運送の実務 3-6 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("3-6",{title:"Ramp Vehicles and Equipment (GSE): What, Where and Why",hl:"GSE",subtitle:"Ten or more vehicles gather around one flight. Learn their names, jobs, positions and order from the pictures",
-lead:["The moment an aircraft stops on stand, a crowd of vehicles arrives: one to supply power, one for air conditioning, others to load bags, bring meals and refuel. Together they are called ground support equipment, or GSE.","Knowing what each piece of GSE is and does helps not only ramp staff but also counter and gate agents and duty managers, who can then see at once where a delay or a safety problem is coming from."],
+lead:["The moment an aircraft stops on stand, a crowd of vehicles arrives: one to supply power, one for air conditioning, others to load bags, bring meals and refuel. Together they are called ground support equipment, or GSE.","Knowing what each piece of GSE is and does helps not only ramp staff but also counter and gate agents and duty managers, as it makes it easier to identify where a delay or a safety problem is coming from."],
 sections:[
 {h:"The main GSE",blocks:[{t:"fig",id:"gse_catalog",cap:"The numbers match the table below."},
 {t:"table",cols:["No.","Name","What it does","What to watch"],rows:[

@@ -22,12 +22,12 @@ sections:[
 {name:"The tests",x:"The aviation skills evaluation test run by the Japan Aeronautical Engineers’ Association (written and practical, in Japanese with readings over the kanji), plus a Japanese language test."},
 {name:"Type 1 and Type 2",x:"Type 2 requires a higher skill level than Type 1 and the prescribed practical experience. There is no limit on renewals, and if the requirements are met, a spouse and children can accompany the worker as dependants."},
 {name:"Accepting employers",x:"Limited to businesses approved to operate at the airport, which must join the sector council. In national strategic special zones there are exceptions extending to cargo work at bonded warehouses off the airport."},
-{name:"Numbers",x:"The government has set out how many people it expects to accept in the aviation field to address the labour shortage."}]},
+{name:"Numbers",x:"To address the labour shortage, the government has set a policy of accepting workers in the aviation field up to a set maximum number."}]},
 {t:"point",x:"Under Specified Skilled Worker status, your work is limited to the approved field. At the job offer and employment contract stage, check whether the role you want is covered by the Specified Skilled Worker duties, and which duties you will actually do at the accepting employer."}]},
 {h:"What to watch for",blocks:[{t:"check",items:[
 {name:"Does the work match?",x:"With a status that restricts work, doing work outside the permitted scope can amount to illegal employment."},
 {name:"Can the company host you?",x:"For Specified Skilled Worker, only employers meeting the conditions can hire you."},
-{name:"Changing jobs",x:"Depending on the status, a change of employer needs a change of status or a notification."},
+{name:"Changing jobs",x:"Depending on your status, the new employer and the duties, a notification about your affiliated organisation or a change of status may be required. Check the Immigration Services Agency guidance in advance."},
 {name:"Family",x:"Whether family can join you depends on the status."}]}]},
 {h:"Related material",blocks:[{t:"video",title:"Specified Skilled Worker (aviation): study materials and test information",ch:"Japan Aeronautical Engineers’ Association",url:"https://exam.jaea.or.jp/?page_id=356"}]}],
 voice:"When hiring foreign nationals, first check that their residence status matches the work. Set the start date together with the residence procedure timeline.",
@@ -48,8 +48,8 @@ sections:[
 ["Foreign airline station","Business-level reading and writing for emails and documents for the authorities"]]},
 {t:"note",x:"* Standards differ by company. Always check the job advertisement."}]},
 {h:"Japanese-style application documents",blocks:[{t:"check",items:[
-{name:"Rirekisho",x:"A set form listing education, employment and qualifications in date order, with rules even for the photograph."},
-{name:"Career summary",x:"What you did, what you achieved and what you learned, in concrete terms. Numbers (how many flights, how many passengers, what percentage) make your points clearer."},
+{name:"Rirekisho",x:"If the employer specifies a form, follow it, and set out education, employment and qualifications clearly. Check the employer’s guidance on whether a photograph is needed."},
+{name:"Career summary",x:"Your duties, role, achievements and the skills you gained, in concrete terms. Where you have meaningful figures, such as workload or improvements, adding them makes your points clearer."},
 {name:"Motivation",x:"Why an airport in Japan, why this company, and what you want to do after joining, tied to your own experience."},
 {name:"Qualifications",x:"Japanese language tests, TOEIC, dangerous goods or security training certificates."}]}]},
 {h:"Common interview questions",blocks:[{t:"table",cols:["Question","How to prepare"],rows:[
@@ -59,18 +59,18 @@ sections:[
 ["Following the rules","What you decided when a rule and a passenger’s wish collided"],
 ["Irregular hours","Your understanding of early, late and weekend work"],
 ["Living in Japan","Housing, and whether you intend to stay"]]},
-{t:"point",x:"Japanese interviews put great weight on language, appearance and punctuality. Even online, check your background, sound and camera position beforehand."}]},
+{t:"point",x:"Interviewers look at the content of your answers and also at basic business manners, such as language suited to the employer, appearance and punctuality. Even online, check your background, sound and camera position beforehand."}]},
 {h:"Turning experience abroad into a strength",blocks:[{t:"rows",items:[
-{name:"Languages",x:"Being able to work in Japanese, English and your own language is a real strength on international routes."},
-{name:"Knowing another market",x:"Understanding how airports in your own country work, and what passengers from there expect."},
-{name:"Service experience",x:"Service work elsewhere is valued in Japan too. Explain concretely how it transfers to the work here."}]}]},
+{name:"Languages",x:"Where the role requires it, the ability to work in several languages, such as Japanese, English and your own language, is a strength."},
+{name:"Knowing another market",x:"Knowledge of how airports in your own country operate and of what passengers from there tend to expect can be used on routes and work linked to that country."},
+{name:"Practical experience",x:"Airport, airline or service experience elsewhere is a strength if you can explain concretely how it relates to the role you are applying for."}]}]},
 {h:"From offer to starting work",blocks:[{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Employment contract"},{name:"Certificate of Eligibility",sub:"You or a proxy (such as a staff member of the employer) applies in Japan (usually 1–3 months)"},{name:"Visa",sub:"At the Japanese embassy or consulate"},{name:"Arrival",sub:"Receive the residence card"},{name:"Registration",sub:"Address, insurance and pension"}]},
 {t:"note",x:"* This is the route for a work visa (Certificate of Eligibility). Specified Skilled Worker (aviation: airport ground handling), the working holiday scheme (for Korean nationals 18–25, up to 30 where approved, twice in a lifetime from October 2025) and other routes differ; check the Immigration Services Agency and MOFA (checked October 2026). Timings and documents vary by status and over time. Check with your employer early."}]}],
 voice:"Japanese airport interviews value, alongside language ability, a willingness to relearn Japanese airport rules. Show that you do not overrate your experience.",
 terms:[["JLPT","日本語能力試験","일본어능력시험"],["Resume (Rirekisho)","履歴書","이력서"],["Career Summary (Shokumu Keirekisho)","職務経歴書","경력기술서"],["Motivation","志望動機","지원 동기"],["Certificate of Eligibility (COE)","在留資格認定証明書","재류자격인정증명서"],["Residence Card","在留カード","재류카드"]],
-quiz:[{q:"How do you make a career summary easy to follow?",opts:["Keep it abstract","Use concrete numbers","One line is enough","Do not write one"],a:1,exp:"Flights, passengers, percentages."},
-{q:"Who normally applies for the Certificate of Eligibility?",opts:["You, from abroad","You, or a proxy in Japan such as a staff member of the employer","The embassy","No application is needed"],a:1,exp:"A proxy, such as a staff member of the accepting employer, usually files it in Japan on behalf of the applicant abroad. Check the required documents in the Immigration Services Agency’s latest guidance."},
-{q:"What weighs heavily in a Japanese interview?",opts:["Striking clothes","Language, appearance and punctuality","Content despite arriving late","How long you talk"],a:1,exp:"Interviewers look at the basics."}],
+quiz:[{q:"How do you make a career summary easy to follow?",opts:["Keep it abstract","Use concrete numbers","One line is enough","Do not write one"],a:1,exp:"If you have achievements relevant to the work, show them with accurate figures such as flights, passengers handled or improvement rates."},
+{q:"Which is correct about applying for the Certificate of Eligibility (COE)?",opts:["It must be filed only at the Japanese embassy in your home country","You, or a proxy in Japan such as a staff member of the employer, applies","Only a travel agency can apply","No application is needed"],a:1,exp:"A proxy, such as a staff member of the accepting employer, usually files it in Japan on behalf of the applicant abroad. Check the required documents in the Immigration Services Agency’s latest guidance."},
+{q:"Which is appropriate when preparing for an interview in Japan?",opts:["Not researching the employer","Preparing both your answers and basic business manners","Not calling ahead even if you will be late","Not checking the job description"],a:1,exp:"Understand the role at the employer, and prepare the basics too, such as your answers, timekeeping and appearance."}],
 next:"7-3 Qualifications worth having"});
 
 set("7-3",{title:"Qualifications Worth Having: Dangerous Goods, Security and Load Control",hl:"qualifications",subtitle:"Aviation work runs on training, passing the assessment, and renewing before it expires",
@@ -117,15 +117,15 @@ quiz:[{q:"What happens if you fail recurrent assessment?",opts:["Nothing","You c
 next:"7-4 From a handling company to station manager: the career ladder"});
 
 set("7-4",{title:"From Agent to Station Manager: The Career Ladder",hl:"the career ladder",subtitle:"Add management, regulation, sales and finance to front-line experience, one step at a time",
-lead:["An airport ground career can run from agent at a handling company through team leader, instructor, duty manager at an airline and on to station manager. Each step adds people, money, regulators and sales to the work on the ground.",
+lead:["In airport ground work, hands-on experience at a handling company can also be the base for widening your career into team leader, instructor, operations management or running an airline station. Actual promotion and career paths vary by company and job type. Each step adds people, money, regulators and sales to the work on the ground.",
 "This lesson covers the ladder, what to build at each step, the full picture of a foreign airline station manager’s job, and how to prepare for the next step."],
 sections:[
-{h:"The ladder (example)",blocks:[{t:"fig",id:"gnd_career",cap:"Animated figure: a marker climbs the ladder from agent to station manager (example)."},{t:"ladder",rise:10,steps:[{name:"Agent",sub:"Passenger and ramp work"},{name:"Team leader",sub:"In charge of a flight"},{name:"Instructor / supervisor",sub:"Training and supervising"},{name:"Duty manager",sub:"Passenger and transport operations management"},{name:"Station manager",sub:"Running the whole station"}]}]},
+{h:"The ladder (example)",blocks:[{t:"fig",id:"gnd_career",cap:"Animated figure: a marker climbs the ladder from agent to station manager (example)."},{t:"ladder",rise:10,steps:[{name:"Agent",sub:"Passenger and ramp work"},{name:"Team leader",sub:"In charge of a flight"},{name:"Instructor / supervisor",sub:"Training and supervising"},{name:"Operations manager",sub:"Passenger and transport operations management"},{name:"Station manager",sub:"Running the whole station"}]}]},
 {h:"What to build at each step",blocks:[{t:"table",cols:["Step","What to build"],rows:[
 ["Agent","Exact knowledge of the rules, service skills, the habit of reporting"],
 ["Team leader / supervisor","Judgement, coaching, handling irregular operations"],
 ["Instructor","Teaching, assessing, writing procedures"],
-["Duty manager","Working with the handling company, quality management, dealing with head office, reporting"],
+["Operations manager","Working with the handling company, quality management, dealing with head office, reporting"],
 ["Station manager","Regulators, sales, finance and HR, external negotiation, crisis management"]]}]},
 {h:"A foreign airline station manager’s job (Japan example; the scope varies by airline and station size)",blocks:[{t:"table",cols:["Area","Main work"],rows:[
 ["Operations and regulators","Running the station, irregular operations, airport ID passes, checking handling costs, safety and security (annual revision of the security programme, internal audits), approvals (summer and winter schedules, fares, approvals for foreign carriers under the Civil Aeronautics Act, Arts. 129, 129-2 and 129-3), AOC attendance, all audits"],
@@ -133,7 +133,7 @@ sections:[
 ["Cargo","Managing the cargo handler and the GSA, cargo procedures"],
 ["Finance","Imprest funds, airport and sales revenue, expenses, budgets, consumption tax refunds, departure tax filings, tax audits"],
 ["HR and administration","Payroll, social insurance, labour insurance, hiring, work visas, year-end adjustment, health checks, rosters, contracts, keeping the company registration current"]]},
-{t:"point",x:"In a small station the manager is involved in operations, sales, finance and HR alike. It is not only an aviation job; it is the job of running a company in Japan."}]},
+{t:"point",x:"In a small station the manager may be involved in several areas, such as operations, sales, finance and HR. It is not only an aviation job; it is the job of running a company in Japan."}]},
 {h:"Preparing for the next step",blocks:[{t:"check",items:[
 {name:"Records and reporting",x:"Record the improvements you were part of in numbers: on-time performance, baggage irregularity counts."},
 {name:"Put your hand up",x:"Volunteer for the work one step above: training, audit preparation, a new route project."},
@@ -142,9 +142,9 @@ sections:[
 {name:"Build contacts",x:"The AOC, station managers of airlines from the same country, the airport company and the authorities."}]}]},
 {h:"The view a station manager needs",blocks:[{t:"point",x:"A station manager is the link between the front line, the company, and the authorities and local community. Adding regulatory, sales and financial knowledge to front-line experience is how you prepare to be trusted with a station."}]}],
 voice:"As station manager, you spend more time on people and numbers than on frontline work. Deliberately make time to be on the floor and listen to your staff.",
-terms:[["Agent","エージェント","에이전트"],["Supervisor (SV)","スーパーバイザー","슈퍼바이저"],["Station Manager","運送マネージャー","운송 매니저"],["Country / Station General Manager","支店長","지점장"],["GSA","販売総代理店","판매 총대리점"],["Imprest / Advance Fund","前渡金","전도금"]],
+terms:[["Agent","エージェント","에이전트"],["Supervisor (SV)","スーパーバイザー","슈퍼바이저"],["Operations Manager","運送マネージャー","운송 매니저"],["Country / Station General Manager","支店長","지점장"],["GSA","販売総代理店","판매 총대리점"],["Imprest / Advance Fund","前渡金","전도금"]],
 quiz:[{q:"What does a station manager particularly need?",opts:["Only memorising the rules","Regulatory work, sales, finance, HR and negotiation","Only announcements","Only ramp driving"],a:1,exp:"Running a company, on top of the front line."},
 {q:"What is good preparation for the next step?",opts:["Only your current job","Volunteering for work one step above","Keeping no records","Not reading the rules"],a:1,exp:"Training and audit preparation are good places to start."},
-{q:"What characterises a small foreign airline station?",opts:["Operations only","The manager touches operations, sales, finance and HR","Sales only","The manager sits at head office"],a:1,exp:"It is also the job of running a company locally."}],
+{q:"What characterises a small foreign airline station?",opts:["Operations only","The manager may handle a wide range of work, such as operations, sales, finance and HR","Sales only","The manager sits at head office"],a:1,exp:"Depending on their scope, the manager also handles station management and coordination with stakeholders."}],
 next:""});
 })(window.ARTS);

@@ -11,7 +11,7 @@ sections:[
 ["The airport used, or the timing of arrivals and departures (other than ad hoc changes)","By 30 days before"],
 ["Anything else","By 10 days before"]]},
 {t:"note",x:"* Summarised from the ministry’s one-stop guide. Minor changes may be handled by notification. ★"}]},
-{h:"The seasonal filing",blocks:[{t:"p",x:"The initial business plan is filed for each IATA season (summer: last Sunday of March to last Saturday of October; winter: last Sunday of October to last Saturday of March). The division usually sends a reminder by email; the deadlines fall around early February for summer and early September for winter."},
+{h:"The seasonal filing",blocks:[{t:"p",x:"The initial business plan is filed for each IATA season (summer: last Sunday of March to last Saturday of October; winter: last Sunday of October to last Saturday of March). The International Air Transport Division usually sends a reminder by email; the deadlines fall around early February for summer and early September for winter."},
 {t:"check",items:[
 {name:"Long-term schedule",x:"Where there is codesharing, the marketing carrier’s schedule as well."},
 {name:"Emergency contact table",x:"Contacts covering nights and weekends as well as working hours."},
@@ -70,14 +70,14 @@ quiz:[{q:"What proportion of a slot series must normally be used to keep histori
 {q:"Where does planning a new service start?",opts:["Finding a venue for the ceremony","Whether the slots you want are obtainable","Uniform design","Advertising"],a:1,exp:"Without slots there is no service."}],
 next:"1-4 Fare and fuel surcharge approvals"});
 
-set("1-4",{title:"Fare and Fuel Surcharge Approvals",hl:"Fuel Surcharge Approvals",subtitle:"Fares from Japan, fares from the other end, and the fuel surcharge — all by 30 days before ★",
+set("1-4",{title:"Fare and Fuel Surcharge Approvals",hl:"Fare Approval",subtitle:"Fares from Japan, fares from the other end, and the fuel surcharge — all by 30 days before ★",
 lead:["The fares and charges a foreign airline uses on services touching Japan need approval from the Minister of Land, Infrastructure, Transport and Tourism. That covers ordinary fares, promotional fares, changes to rules such as baggage charges, and the fuel surcharge.","This article covers the legal basis and the deadline, what needs approval, how a fuel surcharge filing runs, and how the work splits between the station and head office."],
 sections:[
 {h:"Approval of fares and charges (Article 129-2)",blocks:[{t:"fig",id:"opn_fare",cap:"Animated figure: how fares and charges are approved (example)."},{t:"table",cols:["Item","Detail"],rows:[
 ["Legal basis","Article 129-2 of the Civil Aeronautics Act; Article 233 of the enforcement regulations"],
 ["Who","Foreign international air transport operators"],
 ["When to file","By 30 days before the intended date"],
-["Where","International Air Transport Division, Civil Aviation Bureau"],
+["Where","International Air Transport Division, Aviation Network Department, Civil Aviation Bureau"],
 ["Fee","None"]]},
 {t:"note",x:"* Summarised from the ministry’s one-stop guide. ★"}]},
 {h:"What needs approval (examples)",blocks:[{t:"check",items:[
@@ -101,7 +101,7 @@ sections:[
 voice:"For fuel surcharges, share with head office the deadline 30 days before the start date. Presenting the exchange-rate and oil-price reference periods the same way every time also reduces questions from the authorities.",
 terms:[["Tariff Approval","運賃の認可","운임 인가"],["Fuel Surcharge","燃油特別付加運賃","유류할증료"],["Promotional Fare","販売促進運賃","프로모션 운임"],["Fare Rules","運賃規則","운임 규정"],["Japan Point of Origin","日本発","일본 출발"],["Tariff","タリフ","운임표"]],
 quiz:[{q:"What is the deadline for a foreign carrier’s fare filing?",opts:["10 days before","30 days before the intended date","45 days before","After it takes effect"],a:1,exp:"By 30 days before."},
-{q:"Which does NOT need approval?",opts:["Fares sold from Japan","The fuel surcharge","Changes to baggage charge rules","The staff canteen price list"],a:3,exp:"Only air transport fares and charges."},
+{q:"Which does NOT need approval?",opts:["Fares sold from Japan","The fuel surcharge","Changes to baggage charge rules","The staff canteen price list"],a:3,exp:"Air transport fares and charges are covered."},
 {q:"Who sets the fare amounts?",opts:["The station","Head office pricing and sales","The airport company","A travel agency"],a:1,exp:"The station files them and is the contact point."}],
 next:"1-5 Articles 60 and 61, and other notifications"});
 

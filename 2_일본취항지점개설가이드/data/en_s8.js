@@ -8,7 +8,7 @@ sections:[
 {name:"Purpose",x:"The station checks, regularly and on its own initiative, that the work follows the manual and that the records exist."},
 {name:"Who does it",x:"The station manager appoints the auditors. Having people check an area that is not their own (a cross-check) makes blind spots easier to see."},
 {name:"Scope",x:"Include work outsourced to the handling company (counter, ramp, cargo and so on) as well as your own staff’s work."},
-{name:"Link to official audits",x:"In security, airlines carry out a self-audit and report the result to the authority (1-6, 5-3) ★. In other areas, self-audit records show the authority and head office that the station manages itself day to day."}]}]},
+{name:"Link to official audits",x:"In security, some airlines carry out a self-audit and report the result to the authority (1-6, 5-3) ★. In other areas, self-audit records show the authority and head office that the station manages itself day to day."}]}]},
 {h:"Areas and intervals (example)",blocks:[{t:"table",cols:["Area","Main items","Interval"],rows:[
 ["Counter and gate","Passport and visa checks, security questions, bag tags, boarding reconciliation","Monthly"],
 ["Security","Restricted-area access, ID card control, aircraft guarding records","Monthly"],

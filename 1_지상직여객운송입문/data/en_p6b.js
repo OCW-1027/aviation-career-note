@@ -1,7 +1,7 @@
 /* 旅客運送の実務 6-8 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-8",{title:"Checking Invoices and Managing Station Costs: Reading Airport and Handler Invoices",hl:"checking invoices",subtitle:"An invoice can only be checked against actual activity: have your flight records, contract rates and delay causes ready",
-lead:["Every month a station receives many invoices — from the airport operator, the ground handler, the fuel supplier, system providers and others. The amounts are large and the line items many; pay them unchecked and miscounted flights, wrong overtime surcharges and charges for extra work you were not responsible for all become your costs.","This article covers the station’s main costs, how to check an invoice, what to compare, and monthly budget control."],
+lead:["Every month a station receives many invoices — from the airport operator, the ground handler, the fuel supplier, system providers and others. The amounts are large and the line items many; pay them unchecked and miscounted flights, wrong overtime surcharges and charges for extra work you were not responsible for may end up recorded as costs.","This article covers the station’s main costs, how to check an invoice, what to compare, and monthly budget control."],
 sections:[
 {h:"The station’s main costs (example)",blocks:[{t:"table",cols:["Cost","What it covers","How it is set (example)"],rows:[
 ["Airport charges","Landing, parking, boarding bridge use and so on","Aircraft weight, time, number of uses"],

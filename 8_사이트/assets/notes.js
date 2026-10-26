@@ -72,11 +72,11 @@ function hasNote(){var n=ld(KN,{})[KEY];return !!(n&&n.t&&n.t.trim())}
 function paintFab(){var t=T[L()];fab.innerHTML='<span aria-hidden="true">📝</span>'+E(t.fab)+'<span class="acn-dot"></span>';fab.classList.toggle('has',hasNote()||!!ld(KR,{})[KEY]);fab.setAttribute('aria-label',t.ttl)}
 function title(){var h=document.getElementById('title')||document.querySelector('h1');return h?h.textContent.trim():KEY}
 function upTime(){var el=pn.querySelector('#snb-tm');if(el)el.textContent=Math.max(0,Math.round(secOf()/60))+' '+T[L()].min}
-function render(){var t=T[L()],n=ld(KN,{})[KEY]||{t:'',u:0},r=ld(KR,{})[KEY],b=!!ld(KB,{})[KEY];
+function render(){var c=/^ja/.test(L())?String.fromCharCode(65306):String.fromCharCode(58,32),t=T[L()],n=ld(KN,{})[KEY]||{t:'',u:0},r=ld(KR,{})[KEY],b=!!ld(KB,{})[KEY];
  pn.setAttribute('aria-label',t.ttl);
  pn.innerHTML='<div class="snb-hd"><div><b>'+E(m[2].toUpperCase()+' '+m[3])+' · '+E(t.ttl)+'</b><h3>'+E(title())+'</h3></div><button type="button" class="snb-x" id="snb-x">'+E(t.close)+'</button></div>'+
  '<div class="snb-bd"><div class="snb-lb">'+E(t.rate)+'</div><div class="snb-rt">'+[1,2,3].map(function(i){return '<button type="button" data-r="'+i+'" class="'+(r&&r.r===i?'on'+i:'')+'">'+E(t.r[i-1])+'</button>'}).join('')+'</div>'+
- '<div class="snb-nx">'+(r?E(t.next)+'：<b>'+E(r.n)+'</b>':E(t.none))+'</div>'+
+ '<div class="snb-nx">'+(r?E(t.next)+c+'<b>'+E(r.n)+'</b>':E(t.none))+'</div>'+
  '<div class="snb-lb">'+E(t.bm)+'</div><div class="snb-row"><button type="button" class="snb-bm'+(b?' on':'')+'" id="snb-bm">★ '+E(b?t.bmOn:t.bm)+'</button><span class="snb-nx" style="margin:0">'+E(t.time)+'：<b id="snb-tm"></b></span></div>'+
  '<div class="snb-lb">'+E(t.memo)+'</div><div class="snb-tl"><button type="button" class="snb-q" id="snb-q">❝ '+E(t.quote)+'</button><span id="snb-st"></span></div>'+
  '<textarea id="snb-tx" placeholder="'+E(t.ph)+'">'+E(n.t)+'</textarea><div class="snb-tl"><span id="snb-cc"></span><span></span></div></div>'+

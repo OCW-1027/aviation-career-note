@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 2 Customs, lessons 2-1 to 2-4) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("2-1",{title:"What Customs Does, and the Passenger Declaration",hl:"Customs",subtitle:"Customs looks at goods and money. A declaration is how passengers themselves report the required information accurately",
-lead:["Customs is the agency that oversees goods and money crossing the border. At an airport, passengers’ bags, crew belongings, cargo and even the catering and duty-free goods on the aircraft all come under customs supervision.","For passengers, customs is the last step on arrival, after they reclaim their bags. Fewer of them are held up there when they are told what to expect before departure and on board."],
+set("2-1",{title:"What Customs Does, and the Passenger Declaration",hl:"Customs",subtitle:"Customs looks at goods and cash. A declaration is how passengers themselves report the required information accurately",
+lead:["Customs is the government agency responsible for controlling goods crossing the border, levying duties and taxes, handling declarations and more. At an airport, passengers’ bags, crew belongings, cargo and even the catering and duty-free goods on the aircraft all come under customs supervision.","For passengers, customs is the last step on arrival, after they reclaim their bags. Fewer of them are held up there when they are told what to expect before departure and on board."],
 sections:[
 {h:"What airport customs does",blocks:[{t:"fig",id:"ciq_customs",cap:"Figure: customs on arrival."},{t:"rows",items:[
 {name:"Collects tax",x:"Duty and consumption tax on goods above the duty-free allowance."},
@@ -19,12 +19,12 @@ sections:[
 {name:"Declare",sub:"Hand in the paper form or use the gate for electronic declarations"},
 {name:"Questions and inspection",sub:"Open bags when asked"},
 {name:"Pay any tax due",sub:"On what exceeds the allowance"},
-{name:"Into the arrivals hall",sub:"After this point nothing more can be declared"}]}]},
+{name:"Into the arrivals hall",sub:"Complete any required declaration before leaving the customs area"}]}]},
 {h:"What to tell passengers",blocks:[{t:"check",items:[
 {name:"If in doubt, declare",x:"Declaring means paying tax or surrendering something. Being caught without declaring means penalty tax or prosecution."},
 {name:"Never carry a package without knowing what is in it",x:"In principle, the person carrying it is responsible for the contents."},
 {name:"Keep receipts",x:"Being able to show prices speeds things up."},
-{name:"Complete the electronic declaration before departure",x:"Entering it after arrival takes time in the queue."}]},
+{name:"If possible, complete the electronic declaration before departure",x:"Starting it after arrival can slow down the process."}]},
 {t:"point",x:"At customs, what matters is not only the goods themselves but whether they were properly declared."}]}],
 voice:{h:"A Reported Case",x:"In Japan, gold smuggling surged after the 2014 consumption-tax rise. Customs detections went from 12 cases and about 133 kg in 2013 to 1,347 cases and about 6,277 kg in 2017. In November 2017 the Ministry of Finance adopted emergency measures to stop gold smuggling and installed walk-through metal detectors at airports (Source: Japan Customs 150th anniversary publication). Cases fell for a time, but in January–June 2024 detections were up 81% on the same period a year earlier, and customs is tightening controls again (Source: Japan Customs, November 2024). This is part of the background to stricter checks on arriving passengers."},
 terms:[["Accompanied Goods","携帯品","휴대품"],["Unaccompanied Baggage","別送品","별송품"],["Customs Declaration Form","申告書","신고서"],["Customs Duty","関税","관세"]],
@@ -64,7 +64,7 @@ quiz:[{q:"What is the alcohol allowance on entering Japan?",opts:["Three bottles
 {q:"In Korea, what happens when goods over the allowance are declared voluntarily?",opts:["Duty is reduced by 30% (up to KRW 200,000)","No tax at all","A penalty is added","They are confiscated"],a:0,exp:"Being caught without declaring brings a 40% penalty."}],
 next:"2-3 Declaring cash, and what cannot be brought in"});
 set("2-3",{title:"Declaring Cash, and What Cannot Be Brought In",hl:"What Cannot Be Brought In",subtitle:"Goods that are taxed, goods that need formalities, and goods that cannot come in at all",
-lead:["Tax is not the only reason passengers are stopped at customs. Some have not declared large amounts of cash. Some carry things that need a permit. Some carry things that cannot be brought in at all.","Most do so without knowing. A word at the counter or on board is the best prevention."],
+lead:["Tax is not the only reason passengers are stopped at customs. Some have not declared large amounts of cash. Some carry things that need a permit. Some carry things that cannot be brought in at all.","Most do so without knowing. A word at the counter or on board helps prevent problems."],
 sections:[
 {h:"Declaring cash and the like",blocks:[{t:"fig",id:"ciq_cash",cap:"Figure: declaring cash and prohibited items (Japan example)."},{t:"table",cols:["","Japan","Korea"],rows:[
 ["When a declaration is needed","When cash, cheques and similar exceed the equivalent of 1 million yen in total; gold bullion (90% purity or more) over 1 kg","When the total exceeds the equivalent of USD 10,000"],

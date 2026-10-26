@@ -45,11 +45,11 @@ sections:[
 {h:"Leftover meals and rubbish",blocks:[{t:"rows",items:[
 {name:"Keep it separate from domestic rubbish",x:"Food waste and rubbish from an international cabin are kept apart from domestic rubbish and disposed of in the prescribed way, such as incineration. ★"},
 {name:"Handled by authorised contractors",x:"Unloading, transport and disposal are each carried out by contractors, and under procedures, that meet the local authorities’ approval or registration requirements. ★"},
-{name:"Nothing is taken away",x:"Cleaning staff and employees must not take leftover meals home, and they cannot be used on domestic flights."},
+{name:"Nothing is taken away",x:"Cleaning staff and employees must not take leftover meals home, and the meals cannot be used for domestic flights without the prescribed procedures."},
 {name:"Passengers too",x:"Before arrival, ask passengers not to take meals or fruit off the aircraft (3-2, 3-3)."}]},
 {t:"note",x:"* Procedures and contractor rules differ by country and airport. Check your company’s rules and the authorities’ guidance."}]},
 {h:"Disinsection",blocks:[{t:"table",cols:["","Details"],rows:[
-["Purpose","To stop mosquitoes and other insects carrying disease or pests"],
+["Purpose","To prevent disease-carrying insects such as mosquitoes from being introduced by aircraft"],
 ["Countries that require it","Some countries, such as Australia and New Zealand, require it of arriving aircraft ★"],
 ["Methods","Spraying before boarding or before descent, or treating the cabin in advance so that the effect remains ★"],
 ["Proof","A record or certificate may be required on arrival ★"],
@@ -59,11 +59,11 @@ sections:[
 {name:"Arriving at an unplanned airport",x:"Meals and rubbish are not unloaded until quarantine and customs give instructions (2-4)."},
 {name:"Expiry of the disinsection certificate",x:"Residual treatment is valid for a set period. Flying after it expires means treatment will be required on arrival. ★"},
 {name:"Check with the cleaning and catering companies",x:"A new member of staff who does not know the rule may mix international waste with domestic rubbish."}]},
-{t:"point",x:"It is unglamorous work, but when it is not done properly a country’s farming suffers. This is one place where the airline carries out part of quarantine itself."}]}],
+{t:"point",x:"It is unglamorous work, but when it is not done properly it may harm a country’s farming. This is one place where the airline carries out part of quarantine itself."}]}],
 voice:"Requirements for catering waste handling and aircraft disinfection or disinsection vary by country or region and over time. The station should check the latest authority instructions and company procedures, then share them reliably with the personnel and contractors assigned to the work.",
 terms:[["International Catering Waste","国際線のごみ","국제선 폐기물"],["Aircraft Disinsection","航空機の殺虫処理（ディスインセクション）","기내 소독(살충)"],["Vector","病気を運ぶ虫","매개 곤충"],["Incineration","焼却","소각"]],
 quiz:[{q:"How is leftover food from an international flight handled?",opts:["Kept separate from domestic rubbish and disposed of in the prescribed way","Thrown away with domestic rubbish","Taken home by cleaning staff","Served on domestic flights"],a:0,exp:"It can carry livestock diseases and pests."},
-{q:"What is the purpose of disinsection?",opts:["To stop insects such as mosquitoes carrying disease or pests","To make the cabin look clean","To remove smells","To cool the aircraft"],a:0,exp:"Some countries require it of arriving aircraft."},
+{q:"What is the purpose of disinsection?",opts:["To prevent disease-carrying insects such as mosquitoes from being introduced by aircraft","To make the cabin look clean","To remove smells","To cool the aircraft"],a:0,exp:"Some countries require it of arriving aircraft."},
 {q:"At an unplanned airport, what happens to meals and rubbish?",opts:["They stay on board until quarantine and customs give instructions","They are unloaded and thrown away at once","They are given to passengers","They are used on the next flight"],a:0,exp:"Check with the authorities before moving anything."}],
 next:"4-1 United States 1: entry"});
 })(window.ARTS);

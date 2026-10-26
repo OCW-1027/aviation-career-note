@@ -54,7 +54,7 @@ sections:[
 {h:"Response steps",blocks:[{t:"fig",id:"gnd_khstep",cap:"Animated figure: the response escalates from the agent to a supervisor, security and police, lighting up in turn."},{t:"ladder",rise:10,steps:[{name:"Listen and check",sub:"Hear the facts and the request calmly"},{name:"Explain",sub:"What you can and cannot do, citing the rules"},{name:"Hand over",sub:"Respond with colleagues; bring in a supervisor"},{name:"Set limits",sub:"State limits on time and repetition"},{name:"Refuse or report",sub:"If it continues, refuse service; call police or airport security"}]},
 {t:"point",warn:true,x:"If there is violence, a threat or damage — any danger to you — skip the steps, move away immediately and contact your supervisor, airport security or the police."}]},
 {h:"Airport-specific points",blocks:[{t:"table",cols:["Situation","What to watch"],rows:[
-["Many upset passengers during delays or cancellations","Early and repeated information is the best prevention (Course 1, lesson 5-8). If you do not know, say you will update them as soon as you do"],
+["Many upset passengers during delays or cancellations","Early and repeated information is an important preventive measure (Course 1, lesson 5-8). If you do not know, say you will update them as soon as you do"],
 ["Abuse or intoxication at the gate","Where safety is involved, consult the captain and supervisor and refuse boarding under the conditions of carriage (9-4)"],
 ["Unauthorised filming and social media","Ask them to stop filming; mind other passengers and staff in shot; keep records following company procedure"],
 ["Language barriers","Misunderstanding can inflame anger; use interpreting tools and short, slow sentences"],
@@ -81,7 +81,7 @@ sections:[
 voice:"Move someone who has taken harsh words away from the counter first. The record can be written together once they have calmed down. A written record speeds up the company’s decision, and the person feels they are not carrying it alone.",
 terms:[["Firm Response","毅然とした対応","단호한 대응"],["Refusal of Service","利用のお断り","이용 거절"],["Incident Record","記録","기록"],["Psychological Care","心のケア","마음 케어"],["Occupational Physician","産業医","산업보건의"],["Escalation","エスカレーション","에스컬레이션"]],
 quiz:[{q:"Which is the correct order of response steps?",opts:["Call the police at once","Listen → explain → hand over → set limits → refuse or report","Endure it alone for as long as it takes","Accept every demand"],a:1,exp:"But move away and call for help immediately if you are in danger."},
-{q:"What best prevents harassment during delays and cancellations?",opts:["Early and repeated information","Closing the counter","Saying nothing","Promising compensation"],a:0,exp:"A lack of information fuels anger."},
+{q:"What is effective in keeping frustration from growing during delays and cancellations?",opts:["Early and repeated information","Closing the counter","Saying nothing","Promising compensation"],a:0,exp:"A lack of information fuels anger."},
 {q:"How should staff who faced harassment be treated?",opts:["Put them straight onto the next passenger","Let them rest, reassure them and share support contacts","Criticise their handling","Do nothing"],a:1,exp:"Review as a team without blaming individuals."}],
 next:"7-1 Working in ground operations in Japan: hiring routes and visas"});
 })(window.ARTS);

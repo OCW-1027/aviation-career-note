@@ -25,7 +25,7 @@ sections:[
 {name:"Address in the United States",x:"Ask for the first address in the US before departure."},
 {name:"Connection time",x:"Allow for immigration, baggage re-check and security. When an arrival is late, check connections early."},
 {name:"Missing documents",x:"Carrying a passenger without the visa, ESTA or other document required for their nationality, status and purpose of travel can result in penalties, such as fines, for the airline. ★"}]},
-{t:"point",x:"A passenger who is “only passing through” the United States still needs a visa or ESTA. Telling them at booking is the best prevention."}]}],
+{t:"point",x:"A passenger who is “only passing through” the United States still needs a visa or ESTA. Informing them from the booking stage helps prevent problems at boarding."}]}],
 voice:"Passengers transferring in the United States, even to a final destination in another country, in principle go through immigration at their first US airport. Passengers who have completed US Preclearance at an airport outside the United States normally do not repeat CBP clearance on arrival. Speak early, at the departure check-in counter, to passengers with short connections or without the visa, travel authorization or other documents they need.",
 terms:[["Customs and Border Protection (CBP)","税関・国境警備局","세관·국경보호청"],["Preclearance","出発地での米国入国審査","사전 입국 심사"],["Visa Waiver Program (VWP)","査証免除プログラム","비자 면제 프로그램"],["Secure Flight","出発前の照合","출발 전 대조"]],
 quiz:[{q:"What applies to international-to-international transfer passengers in the United States?",opts:["They all clear immigration and customs","They do not enter","They pass security only","The airline decides"],a:0,exp:"A visa or ESTA is required."},
@@ -33,13 +33,13 @@ quiz:[{q:"What applies to international-to-international transfer passengers in 
 {q:"What has the ESTA fee been since 30 September 2025?",opts:["USD 40","USD 21","USD 14","Free"],a:0,exp:"Stays are limited to 90 days."}],
 next:"4-2 United States 2: agricultural inspection"});
 set("4-2",{title:"United States 2: Agricultural Inspection. Declare and There Is No Penalty; Fail to Declare and There Is a Fine",hl:"Agricultural Inspection",subtitle:"Declare even a single apple. The officer decides whether it may come in",
-lead:["This is where passengers arriving in the United States run into the most trouble. An apple handed out on board, left in a bag. A cup of instant noodles bought as a souvenir, containing meat extract. That alone is enough for a fine.","But the US rule is easy to understand. Declare all food. If a declared item turns out not to be allowed, surrender it on the spot and there is no penalty. It is those who do not declare who are penalised."],
+lead:["This is where passengers arriving in the United States run into the most trouble. An apple handed out on board, left in a bag. A cup of instant noodles bought as a souvenir, containing meat extract. Failing to declare them can result in a fine or other penalties.","But the US rule is easy to understand. Declare all food. If a declared item turns out not to be allowed, surrender it on the spot and there is no penalty. It is those who do not declare who are penalised."],
 sections:[
 {h:"The US approach",blocks:[{t:"fig",id:"ciq_us",cap:"Entering the United States with food: declare it. What happens to those who declare, and to those who do not."},{t:"rows",items:[
 {name:"Declare all food and agricultural items",x:"Passengers do not have to judge for themselves whether something is allowed. The officer decides."},
 {name:"Declared, but not allowed",x:"Surrender it on the spot and there is no penalty."},
 {name:"Not declared, and found",x:"The fine is USD 300 for a first offence and USD 500 for a second. Even for non-commercial quantities, a first offence can be penalised by up to USD 1,000."},
-{name:"Besides the fine",x:"The item is confiscated, and membership of expedited entry programmes such as Global Entry can be lost."}]}]},
+{name:"Besides the fine",x:"The item may be confiscated, and membership of expedited entry programmes such as Global Entry can be lost."}]}]},
 {h:"What cannot be brought in, and what to watch out for",blocks:[{t:"table",cols:["Item","Treatment"],rows:[
 ["Meat and meat products (fresh, dried, canned)","Not allowed from most countries"],
 ["Foods made with meat","Bouillon, soup mixes and the like are usually not allowed if they contain meat"],

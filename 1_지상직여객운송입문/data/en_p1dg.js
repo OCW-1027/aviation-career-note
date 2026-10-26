@@ -1,12 +1,12 @@
 /* 旅客運送の実務 1-12・1-13 — English version (2026.09 revision) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("1-12",{title:"Dangerous Goods Basics: What to Watch in Passenger Baggage",hl:"Dangerous goods",subtitle:"Cabin only, checked only, or neither: typical items, and the irregularities that often arise",
+set("1-12",{title:"Dangerous Goods Basics: What to Watch in Passenger Baggage",hl:"Dangerous goods",subtitle:"Cabin and checked baggage: what is allowed, with quantity and approval conditions, item by item",
 lead:["Japan’s Civil Aeronautics Act defines as dangerous goods anything that may explode, burn easily, harm people or damage other property, and restricts their carriage by air. Some everyday items may still be carried in the cabin or checked under set conditions.","Things that are safe on the ground face pressure and temperature changes and vibration in flight. This article follows the typical examples published by Japan’s Civil Aviation Bureau, item by item, and the irregularities that most often arise at the counter and gate."],
 sections:[
 {h:"Why they are dangerous in flight",blocks:[{t:"cards",n:3,items:[
 {ic:"🌡️",name:"Pressure and temperature",x:"Lower pressure makes contents expand, leak or burst."},
 {ic:"📳",name:"Vibration and impact",x:"Switches turn on, batteries short-circuit, containers break."},
-{ic:"🔥",name:"Nowhere to go",x:"A fire in the cabin or hold cannot be escaped or put out as easily as on the ground."}]}]},
+{ic:"🔥",name:"Limited response on board",x:"A fire in the cabin or hold is much harder to escape or fight than on the ground. The hold is difficult to reach and deal with in flight."}]}]},
 {h:"The nine classes",blocks:[{t:"table",cols:["Class","Examples"],rows:[
 ["1 Explosives","Fireworks, party poppers, ammunition"],["2 Gases","Aerosols, camping gas, extinguishers, oxygen cylinders"],["3 Flammable liquids","Lighter fuel, paint, thinner, some perfumes"],["4 Flammable solids","Matches, charcoal"],["5 Oxidisers","Bleach, peroxides"],["6 Toxic and infectious substances","Insecticides, pesticides, infectious substances"],["7 Radioactive material","Medical and industrial radioactive material"],["8 Corrosives","Mercury, acids, spillable batteries"],["9 Miscellaneous","Lithium batteries, dry ice, strongly magnetic items"]]}]},
 {h:"Treatment in passenger baggage (typical examples)",blocks:[{t:"fig",id:"gnd_dgbag",cap:"Animated figure: typical items light up in turn, with ○ or × for the cabin and checked baggage. See the table for conditions."},{t:"table",cols:["Item","Cabin","Checked","Conditions"],rows:[
@@ -40,7 +40,7 @@ sections:[
 {name:"If you find something",x:"Have it removed from the checked bag. Items not allowed in the cabin either are surrendered or sent separately under your procedure, and recorded."}]},
 {t:"point",x:"The Civil Aviation Bureau publishes lists of examples, posters and detailed guidance on powered wheelchairs, hair irons and power banks. Display them and use them as the basis for your explanations."}]}],
 voice:"Dangerous goods found at the counter are mostly everyday items: aerosols, lighters, batteries. Asking specifically whether the bag contains such things works best.",
-terms:[["Dangerous Goods (DG)","危険物","위험물"],["Smart Baggage","スマート手荷物","스마트 수하물"],["Dry Ice","ドライアイス","드라이아이스"],["Portable Oxygen Concentrator (POC)","携帯型酸素濃縮器","휴대용 산소농축기"],["Safety Data Sheet (SDS)","安全データシート","안전보건자료"]],
+terms:[["Dangerous Goods (DG)","危険物","위험물"],["Smart Baggage","スマート手荷物","스마트 수하물"],["Dry Ice","ドライアイス","드라이아이스"],["Portable Oxygen Concentrator (POC)","携帯型酸素濃縮器","휴대용 산소농축기"],["Safety Data Sheet (SDS)","安全データシート","물질안전보건자료"]],
 quiz:[{q:"What is the limit on toiletry and medicinal aerosols?",opts:["No limit","0.5 L per container and 2 L per person","One per person","Checked only"],a:1,exp:"Up to 2 L per person in total."},
 {q:"Smart baggage whose battery cannot be removed (over 2.7 Wh lithium-ion or 0.3 g lithium metal)…",opts:["can be checked","can go in the cabin","can be neither carried on nor checked","can be checked if switched off"],a:2,exp:"Such bags can in principle be neither carried on nor checked, except for very small batteries (2.7 Wh lithium-ion or 0.3 g lithium metal or less). If removable, the battery goes in the cabin and the bag is checked."},
 {q:"Alcohol over 70%…",opts:["up to 5 L","cabin only","not allowed at all","checked only"],a:2,exp:"Over 24% and up to 70% is limited to 5 L per person."}],

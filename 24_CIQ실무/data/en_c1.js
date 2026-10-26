@@ -25,7 +25,7 @@ sections:[
 {h:"Check in the same order every time",blocks:[{t:"fig",id:"ciq_doccheck",cap:"The three questions to settle before handing over a boarding pass, and their order."},{t:"check",items:[
 {name:"1. Is it theirs? 2. Is it valid? 3. Does it meet the requirements?",x:"A fixed order means nothing is missed when it is busy."},
 {name:"Dual nationals",x:"Confirm which passport is used to leave and which to enter, and that the name and nationality in the booking match it."},
-{name:"Do not decide from your own experience",x:"Even for the same nationality, requirements change with residence status and previous immigration history."}]},
+{name:"Do not decide from your own experience",x:"Even for the same nationality, requirements can change with residence status and previous immigration history."}]},
 {t:"point",x:"Checking a passport and visa is not about doubting the passenger. It is about checking together at the origin so that they are not stopped at the destination."}]}],
 voice:{h:"A Reported Case",x:"In August 2023 British media reported that one member of a family heading for Thailand was refused boarding by Qatar Airways because of a tear of about a millimetre on the photo page of her passport. The family paid an extra GBP 5,000 at another airline’s desk to go to Turkey instead, and that airline accepted the same passport. Qatar Airways declined to cover the costs, saying that responsibility for holding the correct documents lies with the passenger (Source: Manchester Evening News). Damage to the photo page is an area where airlines’ judgments easily differ, so the counter needs a company standard."},
 terms:[["Passport","旅券","여권"],["Visa","査証","비자"],["Visa Waiver","査証免除","비자 면제"],["Machine Readable Zone (MRZ)","機械読み取り領域","기계 판독 영역"]],
@@ -132,11 +132,11 @@ sections:[
 {name:"Costs while waiting",x:"The airline may be asked to pay for meals or the facility."},
 {name:"Records",x:"Keep the name, flight, reason for refusal, actions and costs. They are needed if the authority issues a penalty notice."},
 {name:"Deportees (DEPO) are handled separately",x:"When carrying someone removed by the state, obtain head-office approval in advance, confirm whether there is an escort and inform the captain."}]},
-{t:"point",x:"A passenger refused entry is in the hardest position of all. The airline’s job is not to change the decision but to bring them back safely and with courtesy."}]}],
+{t:"point",x:"A passenger refused entry may be under great anxiety or strain. The airline’s job is not to change the decision but to support the return process in line with the authority’s instructions and company procedures, with care for the passenger’s safety and dignity."}]}],
 voice:{h:"A Reported Case",x:"In July 2023 Malaysia’s home minister announced a Cabinet decision that airlines, rather than third parties, would now be responsible for sending back travellers refused entry with a Not to Land notice (Source: The Star, 12 July 2023). In Canada, Air Canada told a review of the national transport system that airlines bear all the costs of removals, including security (Source: CTV News). In any country, refusal of entry and removal often end up being handled by the airline (Lessons from the Field 4-1)."},
 terms:[["Refusal of Entry","入国拒否","입국 거부"],["Removal","送還","송환"],["Holding Facility","待機施設","대기 시설"],["Escort","付き添い","호송인"]],
 quiz:[{q:"Why can a passenger with complete documents still be refused entry?",opts:["Answers at immigration and past records also count","The airline refuses them","Customs decides","It never happens"],a:0,exp:"The immigration officer at the destination makes the final decision."},
-{q:"Who, in principle, arranges the return flight of a refused passenger?",opts:["The airline that brought them","The passenger","The destination airport company","The embassy"],a:0,exp:"The carrying airline has the duty of return."},
+{q:"Who, in principle, arranges the return flight of a refused passenger?",opts:["The airline that brought them","The passenger","The destination airport company","The embassy"],a:0,exp:"The carrying airline has the duty of return. Who bears the costs depends on the applicable regulations and company rules."},
 {q:"What does the sending station check first?",opts:["The record of what was checked at check-in","The passenger’s occupation","The weather at the destination","The number of meals"],a:0,exp:"It confirms what was checked before the passenger was accepted."}],
 next:"1-5 Transit without a visa"});
 })(window.ARTS);

@@ -52,7 +52,7 @@ sections:[
 ["Computer bought for ¥150,000","Equipment 150,000","Bank deposit 150,000"]]},
 {t:"note",x:"* Equipment costing ¥100,000 or more is recorded as an asset and expensed over several years (depreciation). Check current tax rules, including special treatment for small companies. ★"}]},
 {h:"From receipt to accounts",blocks:[{t:"ladder",rise:10,steps:[{name:"Evidence",sub:"Receipts, invoices, contracts"},{name:"Journal entry",sub:"Recorded left and right"},{name:"General ledger",sub:"Grouped by account"},{name:"Trial balance",sub:"Left and right totals checked"},{name:"Accounts",sub:"P/L and balance sheet (0-3)"}]},
-{t:"point",x:"Accounting software now produces everything from entries to accounts automatically. Even so, if you understand what an entry means, you will spot figures that look wrong straight away."}]}],
+{t:"point",x:"Accounting software now supports the whole process, from entries to preparing the accounts. Even so, if you understand what an entry means, you will find it easier to spot figures or treatments that look wrong."}]}],
 deepLabel:"In depth: accounts and the books",
 deep:[
 {h:"Account names in Japanese, Korean and English",blocks:[

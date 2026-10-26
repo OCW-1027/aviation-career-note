@@ -61,8 +61,8 @@ quiz:[{q:"What is hard to carry in a passenger belly?",opts:["Small general carg
 next:"0-3 Major cargo airports in Japan and Korea"});
 
 set("0-3",{title:"Cargo Airports",hl:"cargo airports",subtitle:"What makes an airport a cargo hub",
-lead:["Japan’s international air cargo is concentrated at Narita, with Kansai next. Elsewhere in Asia, Incheon is one of the world’s major cargo airports. Airports differ in how the cargo terminal is run, whether they operate around the clock, and how they handle transit cargo.",
-"This article sets out the characteristics of the main airports and the pattern of cargo flows. Figures change from year to year, so it describes tendencies."],
+lead:["Japan’s international air cargo is concentrated at Narita, with Kansai next. In Korea, Incheon is one of the world’s major cargo airports. Airports differ in how the cargo terminal is run, whether they operate around the clock, and how they handle transit cargo.",
+"This article sets out the characteristics of the main airports in Japan and Korea and the pattern of Japan–Korea cargo flows. Figures change from year to year, so it describes tendencies."],
 sections:[
 {h:"The main airports (tendencies)",blocks:[{t:"fig",id:"cgo_map",cap:"Animated figure: major cargo airports in Korea and Japan; lines flow from Incheon to Japanese airports, showing its role as a transfer hub."},
 {t:"table",cols:["Airport","Features"],rows:[
@@ -72,10 +72,10 @@ sections:[
 ["Chubu","Operates 24 hours. Close to the automotive and aerospace industries"],
 ["Incheon","A major transfer hub for Asia, with large freighter networks"]]},
 {t:"note",x:"* Volumes and rankings change each year. Check current statistics. ★"}]},
-{h:"What moves on these routes",blocks:[{t:"check",items:[
-{name:"Semiconductors and electronics",x:"Semiconductor production equipment, materials and components make up much of the traffic between industrial economies."},
-{name:"Transfers",x:"Cargo from Japan often transfers at a regional hub on its way to the rest of Asia, Europe and the Americas."},
-{name:"Passenger belly",x:"On routes with many frequencies, belly space is a valuable part of the capacity."},
+{h:"What moves between Japan and Korea",blocks:[{t:"check",items:[
+{name:"Semiconductors and electronics",x:"Semiconductor production equipment, materials and components make up much of the traffic between Japan and Korea."},
+{name:"Transfers",x:"Cargo from Japan often transfers at Incheon on its way to the rest of Asia, Europe and the Americas."},
+{name:"Passenger belly",x:"On Japan–Korea routes, with their many frequencies, belly space is a valuable part of the capacity."},
 {name:"E-commerce",x:"Cross-border online shopping keeps adding small consignments."}]}]},
 {h:"Choosing an airport",blocks:[{t:"rows",items:[
 {name:"Time",x:"The distance from the shipper’s factory, the acceptance deadline, and whether the airport runs 24 hours."},
@@ -85,7 +85,7 @@ sections:[
 voice:"Shifts in Japan–Korea cargo show up first in statistics and shipper enquiries. When a commodity is growing, prepare its packing, temperature and document requirements in advance.",
 terms:[["Cargo Terminal","貨物ターミナル","화물 터미널"],["Transit / Transfer Cargo","乗り継ぎ貨物","환적 화물"],["24-hour Operation","24時間運用","24시간 운용"],["Cross-border E-commerce","越境電子商取引","해외 직구"]],
 quiz:[{q:"Which is Japan’s largest international cargo gateway?",opts:["Narita","Naha","New Chitose","Fukuoka"],a:0,exp:"Many freighters serve it."},
-{q:"Which commodity is typical of these routes?",opts:["Semiconductor equipment, materials and components","Gravel","Live cattle","Crude oil"],a:0,exp:"The industries are closely linked."},
+{q:"Which commodity is typical of Japan–Korea cargo?",opts:["Semiconductor equipment, materials and components","Gravel","Live cattle","Crude oil"],a:0,exp:"The industries are closely linked."},
 {q:"Which does NOT matter when choosing an airport?",opts:["The acceptance deadline","Specialist facilities","Cost","The colour of the terminal"],a:3,exp:"Time, flights, facilities and cost."}],
 next:"1-1 Booking and the basics of rates"});
 
@@ -178,7 +178,7 @@ sections:[
 {h:"Key ideas",blocks:[{t:"rows",items:[
 {name:"Bonded status",x:"Cargo before export or import permission sits under customs control in a bonded area and cannot simply be moved."},
 {name:"An accurate manifest",x:"If it does not match what was actually loaded, customs will require a correction. Reflect offloads and late additions immediately."},
-{name:"Advance reporting",x:"For cargo arriving in Japan, the carrier reports the master and house waybill information, including shipper and consignee, to customs through NACCS before arrival, within a deadline set by flight time. Check the current deadlines. ★"},
+{name:"Advance reporting",x:"For cargo arriving in Japan, airlines and others report the master and house waybill information, including shipper and consignee, to customs before arrival (by a set time before arrival, depending on flight time), in principle through NACCS. Check the reporting deadlines in the customs guidance. ★"},
 {name:"Export controls",x:"Some goods, such as semiconductor equipment, need an export licence (3-5)."}]}]}],
 voice:"Manifest corrections have fixed deadlines and procedures, and the later they are, the bigger the job. Set a contact order so manifest staff hear at once when loading changes.",
 terms:[["Cargo Manifest","積荷目録","적하목록"],["Bonded Area","保税地域","보세 구역"],["Export Declaration","輸出申告","수출 신고"],["Customs Broker","通関業者","관세사(통관업자)"]],

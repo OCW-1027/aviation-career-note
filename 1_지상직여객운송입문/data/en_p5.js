@@ -14,11 +14,11 @@ sections:[
 {t:"rows",items:[
 {name:"The passport",x:"It is usually handed by arrival staff to the senior cabin crew, and passed to the authorities or staff at the departure station."},
 {name:"Costs",x:"The return fare and the costs while waiting are normally borne by the carrying airline, which may be able to recover them from the passenger under its conditions of carriage."},
-{name:"Treating the passenger",x:"Someone refused entry is under real strain. Explain the facts calmly and treat them with dignity."}]}]},
+{name:"Treating the passenger",x:"Someone refused entry may be under real strain. Explain the facts calmly and treat them with dignity."}]}]},
 {h:"Investigation and fines at the departure station",blocks:[{t:"ladder",rise:10,steps:[{name:"Notice received",sub:"An infringement notice"},{name:"Investigate",sub:"Check-in records, the agent’s account"},{name:"Decide",sub:"Was there negligence?"},{name:"If there was",sub:"Corrective action and retraining"},{name:"If there was not",sub:"Submit a representation seeking waiver of the fine"}]},
 {t:"point",warn:true,x:"A record showing that the documents were checked at check-in is the basis for asking for a fine to be waived. Keeping that evidence, such as a saved screen from the travel requirements database, protects the company."}]},
 {h:"Preventing a repeat",blocks:[{t:"check",items:[
-{name:"Check the requirements",x:"Use the database (such as TIMATIC) every time; never rely on memory."},
+{name:"Check the requirements",x:"Check the latest official information or the designated travel requirements system (such as TIMATIC); never rely on memory alone."},
 {name:"Advance passenger information",x:"Some countries use API/APIS, and some use Interactive API or APP, where the authorities send back a response such as whether the passenger may board. The systems and the airline’s procedures vary by country. Sending advance information does not guarantee entry; the final decision is made at immigration on arrival."},
 {name:"When something feels wrong",x:"Suspected forgery, or a story that does not add up: consult your supervisor."},
 {name:"Share the cases",x:"Share INAD cases between the station and head office and use them in training."}]}]}],
@@ -29,7 +29,7 @@ quiz:[{q:"Who is normally responsible for returning an inadmissible passenger?",
 {q:"What usually happens to the passport on the return flight?",opts:["The passenger keeps it","It is given to the senior cabin crew","It is destroyed","It is posted"],a:1,exp:"The crew carry it and hand it over at the departure station."}],
 next:"5-2 Check-in errors, duplicates and wrong tags"});
 
-set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in errors","subtitle":"Mistakes will happen. Systems that catch them and a culture of prompt reporting keep the damage small",
+set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in errors","subtitle":"Eliminating every mistake is difficult. Systems that catch them and a culture of prompt reporting keep the damage small",
 "lead":["Checking a passenger in under someone else’s name, checking the same passenger in twice, printing a bag tag for the wrong destination: check-in mistakes affect numbers, weights, documents and security alike. Confusing passengers with the same name can even lead to fraudulent boarding.","This lesson covers the main types of mistake and their effects, the systems that catch them, what to do for each, and habits that prevent them."],
 "sections":[
 {"h":"The main mistakes and their effects","blocks":[{"t":"table","cols":["Mistake","What happens"],"rows":[["Checking in the wrong person (mis-check-in)","The passenger list, documents and security records do not match. The real passenger cannot check in"],["Duplicate check-in","The passenger count comes out too high, causing errors in weight and seats"],["Duplicate tags","Two tags with the same number, so the bags cannot be traced"],["Wrong destination on the tag","The bag may be sent to the wrong airport"],["Tag coming off (tag off)","A bag whose owner cannot be identified"],["Seat assigned twice","Two passengers assigned to the same seat on board"]]}]},
@@ -49,7 +49,7 @@ set("5-2",{"title":"Check-in Errors, Duplicates and Wrong Tags","hl":"Check-in e
 {"name":"Finish one passenger at a time","x":"Clear the previous passenger’s documents and tags before calling the next. Do not spread several passengers’ documents across the counter."},
 {"name":"Group check-in","x":"Count the number of people and tags again at the end."},
 {"name":"Report as soon as you know","x":"Once you notice a mistake, report it promptly to the designated contacts, such as a senior member of staff, the gate or the ramp, depending on the work affected."}]},
-{"t":"point","x":"Building a culture where people can report straight away, rather than blaming mistakes, is the best way to keep incidents small. It is the same principle as safety reporting (lesson 3-5)."}]}],
+{"t":"point","x":"Building a culture where people can report straight away, rather than blaming mistakes, is important in limiting the impact. It is the same principle as safety reporting (lesson 3-5)."}]}],
 "voice":"Searching by name causes mix-ups between passengers with the same or similar names. Always retrieve the booking by PNR; once it matches, have the passenger say their name and check it against the passport. That order is the most reliable.",
 "terms":[["Mis-check-in","ミスチェックイン","잘못된 체크인"],["Duplicate Check-in","二重チェックイン","중복 체크인"],["Duplicate Tag","タグの重複","중복 태그"],["Tag Off","タグオフ","태그 탈락"],["Same Name Passengers","同姓同名","동명이인"],["Baggage Reconciliation","手荷物照合","수하물 대조"]],
 "quiz":[{"q":"What is the most reliable way to link a passenger to the right booking at check-in?","opts":["Search by name and ask “You are Mr/Ms X, aren’t you?”","Retrieve by booking reference (PNR); if it matches, have them say their name and check the passport","Ask only the surname","Just look at the boarding pass"],"a":1,"exp":"The PNR identifies the booking; then have them say their name and check it against the passport."},
@@ -156,13 +156,13 @@ sections:[
 {name:"Equipment",x:"Where to get steps, buses, wheelchairs and tugs."},
 {name:"Passenger services",x:"Where to get transport, hotels, drinks and meals."}]},
 {t:"note",x:"* Based on the airline’s emergency and diversion plans, it is important to organise in advance the contacts, handling, fuelling, CIQ and passenger arrangements for each expected alternate airport."}]},
-{h:"Practical wisdom: operating limits and airports without a station",blocks:[{t:"check",items:[
-{name:"Operating hour limits (curfew)",x:"At airports with night-time restrictions such as Narita, an emergency landing is possible, but handlers may not be available at night. Staff are often only in place from early morning, between scheduled flights."},
-{name:"Crew duty hours",x:"A long-haul flight that diverts may be unable to leave because of crew duty limits. Check the rest limits first; if they cannot be met, coordinate a replacement crew with head office."},
-{name:"Fuelling",x:"Fuel contracts for scheduled flights often cover only the routes served. At a diversion airport, arrange a separate fuel supplier through operations control or purchasing. Fuelling with passengers on board needs checks under the captain’s responsibility."},
-{name:"Airports without a station",x:"Your own staff may not be allowed into restricted areas. Ask the local handler to deal with the documents and immigration procedures, and direct things by phone while watching from an observation deck or similar."},
-{name:"Congested airports",x:"At airports where slots and stands are busy, the aircraft may be moved to a remote stand if it cannot leave by the set time."},
-{name:"Afterwards",x:"For emergency diversions, it may be possible to apply for landing fees to be waived. Report to the authorities as requested."}]}]}],
+{h:"Points to check: operating limits and airports without a station",blocks:[{t:"check",items:[
+{name:"Operating hour limits (curfew)",x:"Check whether the diversion airport has night-time operating restrictions, and whether handling staff are available outside the hours of its scheduled flights."},
+{name:"Crew duty hours",x:"Check crew duty and rest requirements early; if the flight cannot leave within them, coordinate a replacement crew with head office."},
+{name:"Fuelling",x:"Confirm with operations control how fuel can be arranged at each expected alternate airport, following the airline’s procedures."},
+{name:"Airports without a station",x:"Confirm what the local handling company will do on your behalf, such as documents and immigration-related procedures, and how your airline will give instructions and receive updates."},
+{name:"Congested airports",x:"Check slot and stand availability, and what happens if the aircraft cannot leave by the agreed time."},
+{name:"Afterwards",x:"Report to the authorities as requested, and complete any follow-up under the airline’s procedures."}]}]}],
 voice:"When a diversion is reported, first get in touch with the handler or station at the diversion airport. The first decision is whether passengers and crew need hotels and transport.",
 terms:[["Diversion","ダイバート","회항 (다이버트)"],["Return to Origin","リターン","회항 (리턴)"],["Alternate Airport","代替空港","교체 공항"],["Off-line Station","自社の支店がない空港","오프라인 공항"],["Flight Duty Period Limit","乗務員の勤務時間の制限","승무원 근무시간 제한"],["Emergency Contact List","緊急連絡網","비상 연락망"]],
 quiz:[{q:"What is it called when a flight goes back to where it started?",opts:["Diversion","Return","Offload","Endorsement"],a:1,exp:"A return; landing at another airport is a diversion."},
@@ -177,17 +177,17 @@ sections:[
 {t:"point",x:"Check first on passengers needing particular care: unaccompanied minors, those who are unwell, wheelchair users, elderly passengers and families with infants, and give them priority."}]},
 {h:"Rebooking options",blocks:[{t:"fig",id:"gnd_reacc",cap:"Animated figure: the four re-accommodation options light up in turn."},{t:"table",cols:["Option","What it means"],rows:[
 ["Your own next flight","The most common. Allocated by available seats and priority"],
-["Endorsement to another airline","Putting the passenger on a carrier you have an agreement with"],
+["Endorsement to another airline","Depending on interline agreements, commercial arrangements and fare conditions, the passenger may be moved to another airline’s flight. Carry out ticket procedures such as endorsement as needed"],
 ["Rerouting","Reaching the final destination through a different connecting point"],
 ["Refund","For passengers who abandon the trip. Normally without a fee when the airline cancels for its own reasons"]]}]},
 {h:"Inbound flights and connections",blocks:[{t:"check",items:[
 {name:"Check the inbound",x:"Use what the departure station sends and tell passengers the arrival will be late."},
-{name:"Passengers who will miss the connection",x:"Rebook them on an alternative flight."},
-{name:"If there is nothing that day",x:"Accommodation may be provided at the airline’s expense."}]}]},
+{name:"Passengers who will miss the connection",x:"Check seat availability, connection conditions and the applicable rules, and rebook them on an available alternative flight."},
+{name:"If there is nothing that day",x:"Depending on the cause of the cancellation, applicable law and the airline’s own rules, accommodation, transport and so on may be arranged."}]}]},
 {h:"What happens to the catering",blocks:[{t:"rows",items:[
 {name:"Before it is loaded",x:"The station manager decides with the caterer whether to load it."},
 {name:"After it is loaded",x:"The senior cabin crew member makes the final decision on whether it can be served."},
-{name:"How long catering keeps",x:"Shelf life is set by the caterer’s and the airline’s hygiene standards. Refrigerated before loading, it is typically two to three days from production (hot and cold meals differ); once loaded, many standards call for consumption within a few hours. Catering that has been offloaded is not reused."}]}]},
+{name:"How long catering keeps",x:"Shelf life is set by the caterer’s and the airline’s hygiene standards. Refrigerated before loading, it is typically two to three days from production (hot and cold meals differ); once loaded, many standards call for consumption within a few hours. Catering that has been offloaded is not reused, as a rule."}]}]},
 {h:"Taking complaints and redress claims",blocks:[{t:"check",items:[
 {name:"How to listen",x:"Listen to the end, carefully, and avoid appearing indifferent. If you cannot answer now, tell them when and how you will get back to them after checking."},
 {name:"Clear fault on our side",x:"Establish the facts, honestly explain what has been confirmed, and refer questions of liability to the department responsible."},
@@ -207,7 +207,7 @@ sections:[
 voice:"Mass rebooking goes faster when passengers are grouped by their circumstances. Handle connections, special passengers and groups first, then rebook the rest in bulk and finish with individual notices.",
 terms:[["Cancellation","欠航","결항"],["Rebooking","振り替え","재예약"],["Endorsement","エンドース","엔도스"],["Refund","払い戻し","환불"],["Passenger Claim","苦情","클레임"],["Consumer Redress","被害救済","피해구제"]],
 quiz:[{q:"Whose situation do you check first when a flight is cancelled?",opts:["Only top-tier members","Unaccompanied minors, unwell passengers, wheelchair users and others needing care","Whoever arrives last","Groups"],a:1,exp:"Those needing particular care come first."},
-{q:"What happens to catering that has been offloaded?",opts:["Load it again","It is not reused","Hand it to passengers","Use it tomorrow"],a:1,exp:"For hygiene reasons it is not reused."},
+{q:"What happens to catering that has been offloaded?",opts:["Load it again","As a rule, it is not reused","Hand it to passengers","Use it tomorrow"],a:1,exp:"For hygiene reasons it is not reused, as a rule."},
 {q:"What do you do with a complaint made verbally?",opts:["Do not record it","Write it up and have the passenger check and sign it","Write it from memory later","Just tell your manager"],a:1,exp:"Claims are received in writing as a rule."}],
 next:"5-7 Tarmac delays"});
 
@@ -239,6 +239,6 @@ voice:"During a long tarmac delay, the ground supports water, snacks, toilets an
 terms:[["Tarmac Delay","ターマックディレイ","기내 장시간 대기"],["Movement Area","移動地域","이동지역"],["Ground Power Unit (GPU)","地上電源","지상 전원"],["Pre-conditioned Air (PCA)","空調車","냉난방 차량"],["Contingency Plan","非常計画","비상 계획"],["Regional Office of Aviation","地方航空庁","지방항공청"]],
 quiz:[{q:"In Korea, what is the limit for an international tarmac delay (exceptions aside)?",opts:["2 hours","3 hours","4 hours","6 hours"],a:2,exp:"Three hours domestic, four hours international."},
 {q:"How often must passengers be updated under that rule?",opts:["Every 5 minutes","Every 30 minutes","Every hour","No updates needed"],a:1,exp:"Every 30 minutes, with the reason and the situation."},
-{q:"In the airline example, what happens beyond two hours?",opts:["Passengers are normally disembarked","They normally stay on board","Passengers choose","Nothing"],a:0,exp:"Beyond two hours, passengers are normally taken off."}],
+{q:"What happens as the national limit approaches?",opts:["Passengers are normally disembarked","They normally stay on board","Passengers choose","Nothing"],a:0,exp:"Passengers are normally disembarked before the limit is exceeded."}],
 next:"5-8 Irregular operations casebook: practising judgment"});
 })(window.ARTS);

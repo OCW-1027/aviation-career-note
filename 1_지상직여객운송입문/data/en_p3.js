@@ -111,7 +111,7 @@ sections:[
 voice:"To shorten turnarounds, separate tasks that can run in parallel from those that must follow in order. Start with the tasks that create waiting time.",
 terms:[["Turnaround","ターンアラウンド","턴어라운드"],["Ground Time","地上時間","지상 체류 시간"],["Critical Path","クリティカルパス","크리티컬 패스"],["Chocks","車輪止め","고임목"],["APU","補助動力装置","보조 동력 장치"],["IATA Delay Code","遅延コード","지연 코드"]],
 quiz:[{q:"What is the critical path?",opts:["Tasks that run in parallel","The chain of tasks that must run in order, where a delay goes straight into the departure","The cheapest task","Maintenance only"],a:1,exp:"For example disembarking, the security check and boarding."},
-{q:"How do you count the time for fuelling, cleaning and catering?",opts:["Add them up","Take the longest of them","Take the shortest","Do not count it"],a:1,exp:"They run in parallel."},
+{q:"How do you count the time for fuelling, cleaning and catering?",opts:["Add them up","Take the longest of them","Take the shortest","Do not count it"],a:1,exp:"Only tasks that meet the safety conditions and are allowed by company procedures may run in parallel, so their times overlap."},
 {q:"What is used to record the cause of a delay?",opts:["A weather chart","IATA delay codes","A seat map","A fare table"],a:1,exp:"They are used to analyse causes and prevent repeats."}],
 next:"3-4 Load control: weight and balance"});
 
@@ -162,7 +162,7 @@ quiz:[{q:"How is the available payload calculated?",opts:["Maximum take-off weig
 {q:"What must always be given to the captain with the loadsheet?",opts:["The weather","The actual boarded count","The revenue","The seat colours"],a:1,exp:"An accurate count is the basis of the whole calculation."}],
 next:"3-5 Ramp safety basics"});
 
-set("3-5",{title:"Ramp Safety Basics",hl:"ramp safety",subtitle:"Engines, vehicles, noise, weather. The ramp is the most dangerous workplace at an airport",
+set("3-5",{title:"Ramp Safety Basics",hl:"ramp safety",subtitle:"Engines, vehicles, noise, weather. The ramp is a work area with concentrated hazards",
 lead:["On the ramp, people work beside moving aircraft, a stream of ground vehicles, and engines and propellers that are turning. Ground staff go out there too, to operate doors, meet arrivals or check baggage.","This article covers the main hazards, the rules everyone follows, the systems that keep safety in place (safety reporting, inspections and management of change), and how to oversee a handling company’s safety."],
 sections:[
 {h:"The main hazards",blocks:[{t:"fig",id:"gnd_ramp",cap:"Animated figure: the engine intake zone (red), jet blast zone (orange), the flashing anti-collision light and the walkway. Zone sizes vary by aircraft and power."},{t:"table",cols:["Hazard","What it means"],rows:[

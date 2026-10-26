@@ -1,6 +1,6 @@
 /* CIQの役割 — English version (Part 0) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("0-1",{title:"What CIQ Is: Three Agencies at the Border",hl:"CIQ",subtitle:"Customs looks at goods, immigration at people, quarantine at disease and pests. Every international airport has all three",
+set("0-1",{title:"What CIQ Is: Three Agencies at the Border",hl:"CIQ",subtitle:"Customs looks at goods, immigration at people, quarantine at disease and pests. The three government agencies responsible for CIQ at international airports",
 lead:["At any airport with international flights there are government desks that belong to neither the airline nor the airport company: Customs, Immigration and Quarantine. Together they are known as CIQ.","International passengers go through these procedures according to the rules and their route, and crew, catering and cargo are also subject to CIQ. Where or when CIQ is not open, international flights cannot operate. This course looks at what the three agencies check and how that connects to airline work, in Japan, Korea and countries around the world."],
 sections:[
 {h:"The three jobs",blocks:[{t:"fig",id:"ciq_three",cap:"What customs, immigration and quarantine each look at, and why."},{t:"table",cols:["","What it looks at","Purpose","Where in the airport"],rows:[
@@ -22,7 +22,7 @@ sections:[
 {h:"Where the airline stands",blocks:[{t:"check",items:[
 {name:"The authorities decide",x:"Whether someone may enter, or something may be brought in, is for the authorities. The airline provides the necessary information and cooperates with the procedures."},
 {name:"Never promise “it will be fine”",x:"Show the passenger the official information and explain that the authorities make the final decision."},
-{name:"Check before you answer",x:"Rules differ by country and change often. Use current material, not memory."}]},
+{name:"Check before you answer",x:"Rules differ by country and may change. Use current material, not memory."}]},
 {t:"point",x:"The CIQ agencies are authorities that examine and grant permission, and also partners that airlines work with every day at the same airport."}]}],
 voice:"Customs, immigration and quarantine each look at different things and have different contact points. A station list of the three agencies' contacts, and of which one to consult in which situation, lets you act without hesitation when an urgent question comes in.",
 terms:[["Customs","税関","세관"],["Immigration","出入国審査","출입국 심사"],["Quarantine","検疫","검역"],["Animal and Plant Quarantine","動植物検疫","동식물 검역"]],
@@ -63,7 +63,7 @@ quiz:[{q:"What comes first on arrival?",opts:["Quarantine (people)","Customs","I
 {q:"What should you watch for on international-to-international transfers?",opts:["Some countries require a visa or immigration clearance even for transit","No country requires entry","Only the final destination matters","Bags must always be reclaimed"],a:0,exp:"Some countries, such as the United States, clear all transfer passengers through immigration and customs."}],
 next:"0-3 The airline’s responsibility: documents, returns and penalties"});
 set("0-3",{title:"The Airline’s Responsibility: Documents, Returns and Penalties",hl:"responsibility",subtitle:"The check-in counter is the first border. Carry a passenger without the right documents and the airline is responsible",
-lead:["If a passenger is refused entry on arrival, the airline that brought them must take them back to where they came from, normally at its own cost. Some countries also fine the airline for each improperly documented passenger.","That is why airlines check passports, visas and travel authorisations before boarding. It is not a courtesy; it is an obligation placed on the airline."],
+lead:["If a passenger is refused entry on arrival, the airline that brought them must take them back to where they came from, normally at its own cost. Some countries also fine the airline for each improperly documented passenger.","That is why airlines check passports, visas and travel authorisations before boarding. It is not only a courtesy but also an important obligation placed on the airline."],
 sections:[
 {h:"What to check before carrying a passenger",blocks:[{t:"fig",id:"ciq_resp",cap:"Figure: what the airline checks before carrying a passenger."},{t:"table",cols:["What to check","What to look at"],rows:[
 ["Passport","That it belongs to the passenger, has enough validity (some countries require a minimum remaining period) and is not damaged"],
@@ -80,7 +80,7 @@ sections:[
 {h:"What the airline bears",blocks:[{t:"rows",items:[
 {name:"Penalties",x:"Many countries fine the airline for each improperly documented passenger. Amounts differ by country (Parts 4 and 5)."},
 {name:"Cost of return",x:"The return seat, and accommodation or escorts until the passenger leaves."},
-{name:"Standing with the authorities",x:"Repeat cases bring closer scrutiny and affect the operation."}]}]},
+{name:"Standing with the authorities",x:"Repeat cases bring closer scrutiny and can also affect operations."}]}]},
 {h:"The basics at the counter",blocks:[{t:"check",items:[
 {name:"Look up both the destination and the transit point",x:"A passenger may meet the destination’s requirements and still need a visa for the transit point."},
 {name:"If in doubt, ask before you decide",x:"Ask your supervisor or head office’s duty officer. It cannot be fixed after departure."},

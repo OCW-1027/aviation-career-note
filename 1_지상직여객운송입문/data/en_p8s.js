@@ -10,15 +10,15 @@ sections:[
 ["Local systems","Safety management system, safety reporting","Security programme, security training, security checks"]]},
 {t:"point",x:"They are separate systems but overlap in practice. Offloading the bag of a passenger who did not board is a security rule — and it changes the load, so it is a safety matter too."}]},
 {h:"The four pillars of SMS",blocks:[{t:"table",cols:["Pillar","What it means","At a station"],rows:[
-["1 Policy and objectives","Safety policy, accountable people, goals","The station manager displays the policy and sets annual goals"],
+["1 Policy and objectives","Safety policy, safety responsibilities and authorities, objectives","The station’s responsible manager communicates the safety policy under the company’s SMS lines of responsibility and sets annual goals"],
 ["2 Safety risk management","Find hazards, assess risk, decide controls","Identify risks before a new airport, aircraft or procedure"],
 ["3 Safety assurance","Monitor and audit whether controls work","Review indicators such as ramp contacts and loading errors monthly"],
 ["4 Safety promotion","Training and sharing information","Safety meetings, shared lessons, recurrent training"]]}]},
 {h:"Reporting hazards",blocks:[{t:"check",items:[
-{name:"What",x:"Include near misses that did not become accidents: a vehicle too close to the aircraft, dangerous goods almost missed, a check nearly skipped through fatigue."},
+{name:"What",x:"Report not only accidents and incidents but also hazards and near misses covered by the company’s safety reporting system: a vehicle too close to the aircraft, dangerous goods almost missed, a check nearly skipped through fatigue."},
 {name:"When",x:"As soon as possible, while memories are fresh."},
 {name:"How",x:"Use the company’s safety reporting system or form; some companies have anonymous or confidential reporting."},
-{name:"Afterwards",x:"Tell the reporter the outcome. Without feedback, the next report never comes."}]}]},
+{name:"Afterwards",x:"Tell the reporter the outcome. Sharing how reports are handled supports continued reporting and improvement."}]}]},
 {h:"Just culture",blocks:[{t:"p",x:"A just culture does not punish everyone who reports safety information alike; it assesses the nature and circumstances of each act fairly and balances learning with accountability. It does not excuse deliberate violations or reckless acts."},
 {t:"table",cols:["Behaviour","Example","Response"],rows:[
 ["Human error","Misread a figure after believing it was checked","Support, do not blame; fix the system (procedure, display, double check)"],
@@ -64,10 +64,10 @@ sections:[
 {t:"point",warn:true,x:"The details of security programmes and procedures must not leave the company. Never discuss them on social media or in private conversation, and never leave documents lying around."}]}],
 voice:"If a passenger at the counter concerns you, do not judge alone; pass it to the supervisor at once. Report briefly and stick to the facts of what concerned you.",
 terms:[["Security Questions","保安に関する質問","보안 질문"],["Passenger Baggage Reconciliation","手荷物と旅客の照合","승객·수하물 대조"],["Suspicious Item","不審物","수상한 물건"],["Restricted Area","制限区域","보호구역"],["Security Programme","保安計画","보안계획"],["Act of Unlawful Interference","不法妨害行為","불법 방해 행위"]],
-quiz:[{q:"As a rule, what happens to a checked bag whose owner has not boarded?",opts:["It flies anyway","It is offloaded","Decide at the destination","It goes in the cabin"],a:1,exp:"Bags do not fly without their owner, as a rule."},
+quiz:[{q:"As a rule, what happens to a checked bag whose owner has not boarded?",opts:["It flies anyway","It is offloaded","Check only after arrival","It goes in the cabin"],a:1,exp:"Bags do not fly without their owner, as a rule."},
 {q:"What do you do first on finding a suspicious item?",opts:["Open it","Do not touch it, and move away","Find the owner and hand it over","Throw it away"],a:1,exp:"Do not touch, move away, report."},
 {q:"A passenger jokes that there is a bomb in their bag. You…",opts:["Laugh it off","Report it under the set procedure","Ignore it","Hand over the boarding pass"],a:1,exp:"Even jokes are reported under the procedure."}],
-next:"8-3 Security training and records: what audits look at most"});
+next:"8-3 Security training and records: key points checked in audits"});
 
 set("8-3",{title:"Security Training and Records: What Audits Look at Most",hl:"security training",subtitle:"Training without a record counts as training not done — for your own staff, your handler, and the instructions you pass on",
 lead:["Training is what security audits weigh most heavily, and training is proven by records. However well you teach, incomplete records can lead an auditor to conclude it never happened.","This article covers the types of security training and who needs them, what to record, how long to keep it, checking your handling company’s training, and the easily forgotten record of instructions and how they were passed on."],
@@ -149,7 +149,7 @@ voice:"If an auditor questions you on the floor, answer factually within what yo
 terms:[["Being Audited","受検（監査を受けること）","수검"],["Unannounced Inspection","予告なしの点検","불시 점검"],["Debrief","講評","강평"],["Corrective Action","是正措置","시정 조치"],["Self-inspection","自己点検","자체 점검"],["Restricted Area Pass","制限区域のパス","보호구역 출입증"]],
 quiz:[{q:"On audit day you are asked something you don’t know. You…",opts:["Guess","Say “I’ll check” and bring in the supervisor","Stay silent","Change the subject"],a:1,exp:"Never guess."},
 {q:"What should preparation check first?",opts:["That last findings were fixed","Uniform colours","Sales","The weather"],a:0,exp:"Start with previous findings and their corrections."},
-{q:"A corrective plan includes…",opts:["Cause, action, deadline, owner","Excuses","Reasons to blame the handler","Nothing"],a:0,exp:"Organised to show at the next audit."}],
+{q:"A corrective plan includes…",opts:["Cause, action, deadline, owner","Excuses","Reasons to blame the handler","Nothing"],a:0,exp:"Set the cause, action (corrective action), deadline and owner, and keep track of implementation status and records."}],
 next:"8-5 Reporting accidents and incidents, and emergency response"});
 
 set("8-5",{title:"Reporting Accidents and Incidents, and Emergency Response",hl:"emergency response",subtitle:"Safety first, then the initial report, then the authorities within the deadline — and practise in advance",
@@ -182,7 +182,7 @@ sections:[
 {name:"Records",x:"Record exercises and participants, just like training."}]}]}],
 voice:"When you receive a first report at night, think first of people’s safety, then the operational impact, then the reporting chain. Write down what you heard at once, with times.",
 terms:[["Accident","事故","사고"],["Serious Incident","重大インシデント","준사고"],["Initial Report","第一報","1차 보고"],["Emergency Response Plan (ERP)","緊急時対応計画","긴급대응계획"],["Family Assistance","家族の支援","가족 지원"],["Tabletop Exercise","机上訓練","도상 훈련"]],
-quiz:[{q:"What comes first when an event happens?",opts:["A perfect report","Making people safe","Posting on social media","Investigating the cause"],a:1,exp:"Safety first, then the initial report."},
+quiz:[{q:"What comes first when an event happens?",opts:["A perfect report","Making people safe","Posting on social media","Investigating the cause"],a:1,exp:"Put people’s safety and emergency notification first, and give the required initial report promptly."},
 {q:"How should the initial report be sent?",opts:["Only when everything is known","Quickly, with what is known","Not at all","Next day"],a:1,exp:"Mark unknowns as being confirmed."},
 {q:"Who handles the media?",opts:["Front-line staff individually","The channel head office designates","Social media posts","Anyone"],a:1,exp:"No individual statements."}],
 next:""});

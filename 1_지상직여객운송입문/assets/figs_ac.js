@@ -112,7 +112,7 @@ ac_vspeeds:function(l){
 /* 6 公示された距離：TORA・TODA（＋クリアウェイ）・ASDA（＋ストップウェイ）・LDA（移設された進入端） */
 ac_decl:function(l){
  var W=({ja:{t:'空港が公示する4つの距離',rw:'滑走路',sw:'ストップウェイ',cw:'クリアウェイ',dt:'移設された進入端',rows:[['TORA','離陸滑走に使える長さ','滑走路'],['TODA','離陸（35ftまで）に使える長さ','滑走路＋クリアウェイ'],['ASDA','加速して止まるまでに使える長さ','滑走路＋ストップウェイ'],['LDA','着陸に使える長さ','移設された進入端から']],note:'長さはAIPの飛行場の項（AD 2）に空港・滑走路ごとに載っている。工事などで変わるときはNOTAMで知らせる'},
-  ko:{t:'공항이 공시하는 4가지 거리',rw:'활주로',sw:'정지로',cw:'개방로',dt:'이설된 시단',rows:[['TORA','이륙 활주에 쓸 수 있는 길이','활주로'],['TODA','이륙(35ft까지)에 쓸 수 있는 길이','활주로+개방로'],['ASDA','가속해 멈출 때까지 쓸 수 있는 길이','활주로+정지로'],['LDA','착륙에 쓸 수 있는 길이','이설된 시단부터']],note:'길이는 AIP의 비행장 항목(AD 2)에 공항·활주로별로 실려 있다. 공사 등으로 바뀔 때는 NOTAM으로 알린다'},
+  ko:{t:'공항이 공시하는 4가지 거리',rw:'활주로',sw:'정지로(SWY)',cw:'개방구역(CWY)',dt:'이설된 시단',rows:[['TORA','이륙 활주에 쓸 수 있는 길이','활주로'],['TODA','이륙(35ft까지)에 쓸 수 있는 길이','활주로+개방구역'],['ASDA','가속해 멈출 때까지 쓸 수 있는 길이','활주로+정지로'],['LDA','착륙에 쓸 수 있는 길이','이설된 시단부터']],note:'길이는 AIP의 비행장 항목(AD 2)에 공항·활주로별로 실려 있다. 공사 등으로 바뀔 때는 NOTAM으로 알린다'},
   en:{t:'The four declared distances',rw:'Runway',sw:'Stopway',cw:'Clearway',dt:'Displaced threshold',rows:[['TORA','Length available for the take-off run','Runway'],['TODA','Length available for take-off (to 35 ft)','Runway + clearway'],['ASDA','Length available to accelerate and stop','Runway + stopway'],['LDA','Length available for landing','From the displaced threshold']],note:'Published per airport and runway in the aerodrome section of the AIP (AD 2); changes, e.g. for works, are notified by NOTAM'}})[l];
  if(!W)return F.ac_decl('ja');
  setK(1);

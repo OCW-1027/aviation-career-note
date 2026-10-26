@@ -124,7 +124,7 @@ sections:[
 {name:"Code and cause",x:"Separate the primary delay code, the direct cause and the underlying cause (ask why, and why again)."},
 {name:"Prevent a repeat",x:"Who changes what, by when — agreed with the handler too."},
 {name:"Deadline",x:"Report to head office the same day or the next, as your company requires."}]},
-{t:"point",x:"Aim for D0 and D15 will follow. Protecting the first flight of the morning and the short turnarounds protects the whole day."}]}],
+{t:"point",x:"Achieving D0 consistently also helps improve D15. Protecting the first flight of the morning and the short turnarounds protects the whole day."}]}],
 voice:"The first departure sets the tone for the whole day. Make it a station rule to check staff, equipment and documents for the first flight the night before.",
 terms:[["Critical Path","クリティカルパス","크리티컬 패스"],["Block-In","ブロックイン","블록인"],["Load Message (LDM)","ロードメッセージ","탑재 메시지"],["Standard Turnaround Schedule","標準作業工程","표준 작업 공정"]],
 quiz:[{q:"What are most big delays made of?",opts:["Small delays of a few minutes adding up","Only weather","Only maintenance","Chance"],a:0,exp:"Small losses in each process combine to cost the on-time departure."},

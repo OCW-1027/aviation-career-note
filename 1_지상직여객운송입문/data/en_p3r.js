@@ -11,7 +11,7 @@ sections:[
 ["4","Special loads","Dangerous goods (for example dry ice UN1845), live animals and so on; must match the NOTOC"],
 ["5","Instructions","Order and position of loading, items to keep apart (animals and dry ice), items to place by the door"],
 ["6","Exceptions","Anything not loaded as instructed (for example hold 4 full, some moved to 5)"],
-["7","Signature","The loading supervisor’s signature and time; the loadsheet relies on this report"]]},
+["7","Confirmation and record","Confirmation by the loading supervisor, the time, and a signature or electronic record; the actual load is the basis for preparing or correcting the loadsheet"]]},
 {t:"point",x:"The hold totals in the example (1: 1500, 3: 2100, 4: 1800, 5: 300) are the same as ‘LOAD IN COMPARTMENTS’ on the 3-7 loadsheet. Always check that the LIR and the loadsheet agree."}]},
 {h:"The hold layout",blocks:[{t:"fig",id:"hold_layout",cap:"Top: a narrow-body example; bottom: a wide-body example. Numbers are compartments; see the table for A to D."},
 {t:"table",cols:["Mark","Meaning"],rows:[
@@ -34,7 +34,7 @@ sections:[
 {name:"Segregate",x:"Keep apart the combinations the rules require, such as dangerous goods and animals (dry ice and animals, for example)."},
 {name:"Animals",x:"In a hold with ventilation and temperature control; last on, first off."},
 {name:"Transfer and priority",x:"Bags needed quickly on arrival go near the door."},
-{name:"Report",x:"If loading differs from the instruction, write it on the LIR and tell load control; the loadsheet must be corrected (last minute change or reissue)."}]},
+{name:"Report",x:"If loading differs from the instruction, write it on the LIR and tell load control; a last minute change (LMC) or reissue of the loadsheet may be needed."}]},
 {t:"link",href:"搭載計算の練習.html?lang=en",x:"On the Load Control (Weight & Balance) Practice page, change hold weights and watch how the balance index moves"}]}],
 voice:"If actual loading differs from the LIR, the centre of gravity changes. After loading, check each hold against the LIR and correct any difference before departure.",
 terms:[["Loading Instruction/Report (LIR)","搭載指示書","탑재 지시서"],["Compartment / Hold","貨物室","화물칸"],["Bulk Loading","バルク搭載","벌크 탑재"],["Floor Loading Limit","床の強度の上限","바닥 강도 한계"],["Segregation","隔離（離して積むこと）","격리 적재"],["Tail Tipping","テールティッピング","꼬리 내려앉음"]],

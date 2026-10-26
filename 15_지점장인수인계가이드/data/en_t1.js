@@ -24,7 +24,7 @@ sections:[
 {name:"Emotional judgments",x:"No personal grievances about partners or staff. Write them as facts and issues."}]},
 {t:"point",x:"A good handover document lets the successor run the station for a month without phoning the predecessor. When you finish, read it again as the successor would."}]}],
 voice:"Writing a handover always reveals things only you knew. Listing the small checks you did every day without thinking often turns out to be the most valuable part for your successor.",
-terms:[["Handover Document","引き継ぎ書","인계서"],["Job Allocation Table","業務分掌表","업무 분장표"],["Open Issues","進行中の案件","진행 중 안건"],["Basis / Reference","根拠","근거"]],
+terms:[["Handover Document","引き継ぎ書","인계서"],["Table of Duties / Job Allocation Table","業務分掌表","업무 분장표"],["Open Issues","進行中の案件","진행 중 안건"],["Basis / Reference","根拠","근거"]],
 quiz:[{q:"What belongs in a handover document?",opts:["Procedure, reasons, deadlines, counterparties and basis","Passwords","Personal grievances","Nothing"],a:0,exp:"Writing the why is what matters."},
 {q:"What is the test of a good handover document?",opts:["The successor can run the station for a month without phoning the predecessor","Many pages","A nice design","Written in English"],a:0,exp:"Reread it as the successor would."},
 {q:"How are passwords handed over?",opts:["Securely by the company’s method, then changed by the successor","In the handover document","By email","Verbally only"],a:0,exp:"They never go in the document."}],

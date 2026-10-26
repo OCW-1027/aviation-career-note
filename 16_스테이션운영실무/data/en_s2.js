@@ -155,7 +155,7 @@ sections:[
 {name:"Spot staffing issues early",x:"Resignations, hiring, peak-season rosters. Work out measures with head office before hands run short."},
 {name:"Put good work into words",x:"On days the flight left on time or a hard flight was handled well, thank people specifically, and mention it in reports to head office."}]}]},
 {h:"What not to do",blocks:[{t:"rows",items:[
-{name:"Raise your voice on the floor",x:"Give findings as facts, through the person in charge — never in front of passengers."},
+{name:"Raise your voice on the floor",x:"Give findings as facts, through the person in charge. Take particular care in front of passengers."},
 {name:"Treat extra work as a given",x:"Ask first about anything outside the contract; if it costs money, settle it with head office."},
 {name:"Escalate behind their backs",x:"Tell the handler first, check the cause together, then report."},
 {name:"Play favourites",x:"Use the same standard for everyone. Rely on one person and nothing works on their day off."}]}]},

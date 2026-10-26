@@ -117,7 +117,7 @@ fin_cash_bridge:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vi
   s+='<g>'+Rc(x,y,w,h,'#F7FAFD',6)+'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;'+(i/6*0.6).toFixed(2)+';'+((i+1)/6*0.6).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/></g>';
   s+=tx(x+w/2,base+18,v[0],11,D,v[2]==='t'?800:500)});
  s+='<line x1="30" y1="'+base+'" x2="870" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
- s+=tx(450,352,L(lang,'利益64,000円 → 現金が動かない費用を足し、現金が入っていない売上と、払ったのに費用でない分を引く → 商売が生んだ現金49,000円','이익 64,000엔 → 현금이 나가지 않는 비용을 더하고, 현금이 안 들어온 매출과 지출했으나 비용이 아닌 몫을 뺀다 → 장사로 번 현금 49,000엔','Profit 64,000 → add non-cash costs, subtract sales not yet collected and payments that are not costs → cash from trading 49,000'),12,D,600);
+ s+=tx(450,352,L(lang,'利益64,000円 → 現金が動かない費用を足し、現金が入っていない売上と、払ったのに費用でない分を引く → 商売が生んだ現金49,000円','이익 64,000엔 → 현금이 나가지 않는 비용을 더하고, 현금이 안 들어온 매출과 지출했으나 비용이 아닌 몫을 뺀다 → 장사로 번 현금 49,000엔','Profit ¥64,000 → add non-cash costs, subtract sales not yet collected and payments that are not costs → cash from trading ¥49,000'),12,D,600);
  return s+'</svg>'},
 /* 3-5 3つの活動の符号パターン：会社の状態を読む */
 fin_cf_patterns:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+Rc(0,0,900,360,'#F7FAFD');
@@ -131,7 +131,7 @@ fin_cf_patterns:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vi
   [0,1,2].forEach(function(k){var x=140+k*70;s+='<circle cx="'+x+'" cy="'+(y+28)+'" r="18" fill="'+(p[k]==='+'?BS:R)+'"/>'+tx(x,y+35,p[k],20,'#fff',800)});
   s+=tx(340,y+25,p[3],15,D,800,'start')+tx(340,y+45,p[4],12,G,500,'start');
   s+='<animate attributeName="opacity" values="0.35;1;1;0.35" keyTimes="0;'+(i*0.22).toFixed(2)+';'+(i*0.22+0.25).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/></g>'});
- s+=tx(450,350,L(lang,'JAL 2026年3月期は「＋・−・＋」。営業で3,949億円を稼ぎ、1,831億円を投資し、永久劣後債などで446億円を調達（成長投資の局面）','JAL 2026년 3월기는 「+·−·+」. 영업으로 3,949억 엔을 벌고 1,831억 엔을 투자하고 영구후순위채 등으로 446억 엔을 조달(성장 투자 국면)','JAL, year to March 2026: + / − / +. Earned 394.9bn from operations, invested 183.1bn and raised 44.6bn through perpetual bonds and other financing: a growth-investment phase'),11,D,600);
+ s+=tx(450,350,L(lang,'JAL 2026年3月期は「＋・−・＋」。営業で3,949億円を稼ぎ、1,831億円を投資し、永久劣後債などで446億円を調達（成長投資の局面）','JAL 2026년 3월기는 「+·−·+」. 영업으로 3,949억 엔을 벌고 1,831억 엔을 투자하고 영구후순위채 등으로 446억 엔을 조달(성장 투자 국면)','JAL, year to March 2026: + / − / +. Earned ¥394.9bn from operations, invested ¥183.1bn and raised ¥44.6bn through perpetual bonds and other financing: a growth-investment phase'),11,D,600);
  return s+'</svg>'},
 /* 3-3 当期純利益から営業キャッシュフローへの橋（Vela Air 1年目、億円） */
 fin_cash_bridge:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img">'+Rc(0,0,900,400,'#F7FAFD');
@@ -143,7 +143,7 @@ fin_cash_bridge:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" vi
   s+='<g>'+Rc(x,y-14,w,Math.max(h,3)+16,'#F7FAFD',0)+'<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;'+(i/8*0.6).toFixed(2)+';'+((i+0.6)/8*0.6).toFixed(2)+';1" dur="6s" repeatCount="indefinite"/></g>';
   s+=tx(x+w/2,base+16,v[0],10.5,D,v[2]==='t'?800:500)});
  s+='<line x1="30" y1="'+base+'" x2="880" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
- s+=tx(450,372,L(lang,'利益90億円が、お金の出ていかない費用（減価償却）と、先に受け取った前受金で、営業キャッシュフロー394億円になる','이익 90억 엔이 현금이 나가지 않는 비용(감가상각)과 미리 받은 선수금으로 영업현금흐름 394억 엔이 된다','Profit of 9.0bn becomes operating cash flow of 39.4bn through non-cash depreciation and cash received in advance'),12,D,600);
+ s+=tx(450,372,L(lang,'利益90億円が、お金の出ていかない費用（減価償却）と、先に受け取った前受金で、営業キャッシュフロー394億円になる','이익 90억 엔이 현금이 나가지 않는 비용(감가상각)과 미리 받은 선수금으로 영업현금흐름 394억 엔이 된다','Profit of ¥9.0bn becomes operating cash flow of ¥39.4bn through non-cash depreciation and cash received in advance'),12,D,600);
  return s+'</svg>'},
 /* 3-1 3つの区分の符号パターン */
 fin_cf_patterns:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD');

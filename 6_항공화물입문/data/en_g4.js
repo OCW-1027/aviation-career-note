@@ -10,7 +10,7 @@ sections:[
 ["Live animals","A compartment with controlled temperature and ventilation, away from dry ice"],
 ["Perishables and pharmaceuticals","Temperature control, and a position that can be unloaded quickly"],
 ["Heavy items","Floor strength and the effect on balance"],
-["Transfer cargo","A position that can be unloaded first on arrival"]]}]},
+["Transfer cargo","A position that can be unloaded promptly after arrival"]]}]},
 {h:"Notification to the captain (NOTOC)",blocks:[{t:"fig",id:"cgo_notoc",cap:"Animated figure: three lines of a fictional NOTOC (lithium-ion batteries, dry ice, live animal) light up in turn; the animal and dry ice are in separate positions."},
 {t:"rows",items:[
 {name:"What it contains",x:"The type, quantity, position and UN number of dangerous goods and other special cargo."},
@@ -21,7 +21,7 @@ sections:[
 voice:"A last-minute load change means reissuing the NOTOC. When something changes, confirm aloud with the loading team what moved and where.",
 terms:[["Load Planning","搭載計画","탑재 계획"],["Load Sheet","ロードシート","로드시트"],["NOTOC","機長への通知","기장 통보서"],["Centre of Gravity","重心","무게중심"]],
 quiz:[{q:"What goes in the notification to the captain?",opts:["The type, quantity and position of dangerous and special cargo","Passenger names","The rate","The weather"],a:0,exp:"It is the lifeline in an emergency."},
-{q:"Where should transfer cargo be loaded?",opts:["Where it can be unloaded first","At the very back","Anywhere","In the cabin"],a:0,exp:"To protect the connection time."},
+{q:"Where should transfer cargo be loaded?",opts:["Where it can be unloaded promptly after arrival","At the very back","Anywhere","In the cabin"],a:0,exp:"To protect the connection time."},
 {q:"What happens if the load changes?",opts:["Leave the notification as it is","Reissue it","Mention it verbally","Do nothing"],a:1,exp:"The document must match what is on board."}],
 next:"4-2 Load messages and cargo documents"});
 

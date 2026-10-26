@@ -33,9 +33,9 @@ sections:[
 {name:"Crew hours",x:"If a delay pushes crew towards their duty limit, a crew change or cancellation follows (9-3)."}]}]}],
 voice:"A short briefing with the purser needs only three things: special passengers, boarding start time and the cabin baggage situation. One minute of sharing before boarding smooths the departure.",
 terms:[["Cabin Crew","客室乗務員","객실승무원"],["Safety Personnel","保安要員","안전 요원"],["Senior Cabin Crew / Purser","客室責任者","객실 사무장"],["Recurrent Training","定期訓練","정기 훈련"],["Emergency Evacuation","緊急脱出","비상 탈출"],["Briefing","ブリーフィング","브리핑"]],
-quiz:[{q:"What is the basic rule for minimum cabin crew?",opts:["Number of passengers on board","Number of passenger seats (one per 50 as a basis)","Aircraft length","Flight time"],a:1,exp:"It is based on seats."},
+quiz:[{q:"Which statement about minimum cabin crew numbers is correct?",opts:["Decided only by the number of passengers on board","Decided under the law and operations manual, based on aircraft type, passenger seats, emergency exits and more","Decided by flight revenue","Decided freely by ground staff on the day"],a:1,exp:"In Japan, a numerical standard based on passenger seats applies, and aircraft type and equipment are also taken into account."},
 {q:"What is cabin crew’s most important role?",opts:["In-flight sales","Keeping passengers safe as safety personnel","Loading bags","Explaining fares"],a:1,exp:"Safety comes before service."},
-{q:"What happens when crew are short?",opts:["Nothing changes","Check what the law and operations manual allow; if the requirement cannot be met, the flight is held","Fares fall","A bigger aircraft is used"],a:1,exp:"Ground staff must block seats or rebook passengers."}],
+{q:"What happens when crew are short?",opts:["Nothing changes","Check what the law and operations manual allow; if the requirement cannot be met, the flight is held","Fares fall","A bigger aircraft is used"],a:1,exp:"Check the applicable requirements, including whether reducing seats is allowed, and secure crew or rebook passengers as needed."}],
 next:"9-2 Handover from ground to cabin"});
 set("9-2",{part:P,title:"Handover from Ground to Cabin: Exit Rows, Special Passengers and Flight Documents",hl:"handover",subtitle:"Does what was decided at the counter reach the cabin correctly? Check it with consent, documents and records",
 lead:["Decisions made at check-in or the gate — exit-row seats, wheelchairs, unaccompanied children — only matter if they reach the cabin crew correctly. If not, passengers are moved on board or left waiting at the destination.","This lesson covers exit-row conditions and procedures, handing over special passengers, the documents carried on board, and how ground and cabin work together at boarding."],
@@ -48,13 +48,13 @@ sections:[
 {t:"check",items:[
 {name:"Explain verbally",x:"At check-in or seat assignment, explain that it is an exit row and what help may be needed."},
 {name:"Confirm willingness",x:"Confirm the passenger can help (some airlines mark the boarding pass or ask for a signature)."},
-{name:"Record it",x:"Enter it in the special passenger list, hand it to the crew and keep a record."},
-{name:"Recheck on board",x:"Crew check again after seating and move anyone who does not meet the conditions."}]},
+{name:"Share and record",x:"Pass the information to the cabin by the method the airline sets (system, special passenger list etc.) and keep the necessary records."},
+{name:"Recheck on board",x:"Cabin crew also check exit-row eligibility as needed and, if the conditions are not met, change the seat according to company procedures."}]},
 {t:"note",x:"* Exit-row seats are assigned to passengers who meet the applicable country and airline eligibility requirements. Age and other conditions depend on country and airline rules. ★"}]},
 {h:"Handing over special passengers (examples)",blocks:[{t:"fig",id:"gnd_hand",cap:"Animated figure: what to hand over to the cabin for each type of special passenger lights up in turn (example)."},{t:"table",cols:["Passenger","What to hand over"],rows:[
-["Unaccompanied minor (UM)","Travel documents and a copy of the guardian’s declaration to the senior crew member; at the destination, handed to staff and released only after checking the guardian"],
+["Unaccompanied minor (UM)","Hand the required documents and handover details to the cabin crew member designated in the airline’s UM procedures and confirm receipt; at the destination, follow the prescribed handover and identity-check procedure"],
 ["Young passenger travelling alone (YPTA etc.)","Some airlines apply UM-like procedures"],
-["Pregnant passenger","Weeks of pregnancy and a doctor’s certificate where required (conditions vary); priority boarding"],
+["Pregnant passenger","Check weeks of pregnancy and any required medical certificate under company rules and hand over the support needed; priority boarding etc. according to company procedures and the passenger’s wishes"],
 ["Visually impaired passenger with service dog","Dog’s documents and quarantine checks; placement on board and assistance at the destination arranged according to the applicable rules, airline procedures and the passenger’s wishes"],
 ["Wheelchair passenger","WCHR, WCHS or WCHC category; on-board wheelchair if needed; arrangements at destination"],
 ["Stretcher, oxygen, medical escort","Approved medical form (MEDIF), seating, ambulance at destination"],
@@ -73,8 +73,8 @@ sections:[
 {name:"After the door closes",x:"If a passenger must disembark or be added, decide with the captain and cabin (Course 1, lesson 2-5)."}]}]}],
 voice:"Entering special-passenger information in the system does not mean the cabin has it. Confirm it verbally with the cabin crew once more at the gate.",
 terms:[["Exit Row Seat","非常口の座席","비상구 좌석"],["Passenger Information List (PIL) / SHR","特別なお客様の一覧","특별 승객 목록"],["Unaccompanied Minor (UM)","一人旅の子ども","비동반 소아"],["Medical Information Form (MEDIF)","医療の書類","의료 정보서"],["Service Animal","補助犬","보조견"],["General Declaration (GD)","一般申告書","일반 신고서"]],
-quiz:[{q:"What must you do when seating someone in an exit row?",opts:["Say nothing","Explain, confirm they can help, and record it","Raise the fare","Not tell the cabin"],a:1,exp:"The crew check again on board."},
-{q:"Who looks after a UM’s documents on board?",opts:["A nearby passenger","The senior cabin crew member","The captain’s family","Anyone"],a:1,exp:"They are handed to staff at the destination."},
+quiz:[{q:"What must you do when seating someone in an exit row?",opts:["Say nothing","Explain, confirm they can help, and pass it to the cabin by company procedure","Raise the fare","Not tell the cabin"],a:1,exp:"The cabin crew also check eligibility under the applicable rules and change the seat according to company procedures if the conditions are not met."},
+{q:"Who looks after a UM’s documents on board?",opts:["A nearby passenger","The cabin crew member designated in the UM procedures","The captain’s family","Anyone"],a:1,exp:"Receipt is confirmed, and at the destination they are handed to staff following the prescribed procedure."},
 {q:"What if the boarding count does not match?",opts:["Close the door anyway","Do not close the door until it matches","Count later","Ignore it"],a:1,exp:"A basic rule of safety and security."}],
 next:"9-3 Crew duty, rest and alcohol rules"});
 set("9-3",{part:P,title:"Crew Duty, Rest and Alcohol Rules: Why a Delay Can Become a Cancellation",hl:"duty and alcohol",subtitle:"Understanding crew duty and rest limits and the standards for alcohol control",
@@ -95,7 +95,7 @@ sections:[
 ["Limit","Unfit to fly if any alcohol is detected (for pilots the legal threshold is 0.2 g/L in blood or 0.09 mg/L in breath)","0.02% blood alcohol or more counts as unfit for duty"],
 ["Before duty","For pilots and cabin crew of Japanese air carriers: no drinking within eight hours before flight duty or cabin duty begins; company rules may be stricter (e.g. 12 hours)","Set by law and company rules"],
 ["Testing","Pilots and cabin crew: checks before and after duty. Staff performing pre-flight maintenance or air-ground communications: checks before duty","Must submit to official tests; airlines must test and keep records"],
-["Penalties","Administrative action, etc.","Up to 3 years in prison or KRW 30 million fine; the airline’s AOC may be revoked or operations suspended for up to 6 months"]]},
+["If breached","Reporting, administrative action or penalties, etc., depending on the applicable company rules and aviation law","Up to 3 years in prison or KRW 30 million fine; the airline’s AOC may be revoked or operations suspended for up to 6 months"]]},
 {t:"note",x:"* Japan: in 2019 pre-duty alcohol testing became mandatory for cabin crew, engineers doing pre-flight maintenance and dispatchers, and duty is prohibited if any alcohol is detected (MLIT). Korea: Aviation Safety Act Art. 57 (0.02% blood alcohol or more), Art. 146 (up to 3 years in prison or KRW 30 million), Art. 91 (AOC revocation or suspension up to 6 months), checked October 2026. Check current law and company rules for details. ★"}]},
 {h:"Effects on ground work",blocks:[{t:"check",items:[
 {name:"Replacement crew",x:"Crew who fail a test cannot fly; the flight may be delayed while replacements are found."},
@@ -117,7 +117,7 @@ sections:[
 ["Endangering safety","Smoking in the lavatory, tampering with exit doors or equipment"],
 ["Intoxication","Disruption or trouble caused by heavy drinking"]]}]},
 {h:"What ground staff can do before boarding",blocks:[{t:"check",items:[
-{name:"Acceptance decision",x:"If a passenger is heavily intoxicated or aggressive and safe operation is in doubt, carriage can be refused under the conditions of carriage; decide with a supervisor."},
+{name:"Acceptance decision",x:"If a passenger is heavily intoxicated or aggressive and safe operation may be affected, decide on acceptance with a supervisor under the conditions of carriage and company rules."},
 {name:"Inform the cabin",x:"If a passenger is a concern, tell the senior cabin crew member the passenger’s seat, party size and behaviour."},
 {name:"Record it",x:"Record the decision, the reasons and who was involved (Course 1, Part 5)."},
 {name:"Do not decide alone",x:"Gate staff should seek a supervisor’s and the captain’s judgement."}]}]},
@@ -133,7 +133,7 @@ sections:[
 {name:"Preventing recurrence",x:"Check as a company whether the same passenger or situation keeps recurring."}]}]}],
 voice:"Handing over a disruptive passenger on arrival goes smoothly only if the order of contact with cabin, police and airport is set. Always record the time and who took over.",
 terms:[["Unruly Passenger","迷惑行為を行うお客様","기내 난동 승객"],["Captain’s Authority","機長の権限","기장의 권한"],["Tokyo Convention","東京条約","도쿄 협약"],["Refusal to Carry","搭乗の拒否","탑승 거절"],["Handover to Authorities","引き渡し","인도"],["Emotional Labour","感情労働","감정노동"]],
-quiz:[{q:"How should a heavily intoxicated passenger be handled if safe operation is in doubt?",opts:["Board them anyway","Consult a supervisor; carriage can be refused under the conditions of carriage","Give them a drink","Do not tell the cabin"],a:1,exp:"Do not decide alone, and keep a record."},
+quiz:[{q:"How should a heavily intoxicated passenger be handled if safe operation is in doubt?",opts:["Board them anyway","Work with a supervisor and the captain to decide on acceptance under the applicable conditions of carriage and company procedures","Give them a drink","Do not tell the cabin"],a:1,exp:"Do not decide alone, and keep a record."},
 {q:"Which treaty covers offences on board, the captain’s authority and handover on landing?",opts:["Tokyo Convention","Chicago Convention","Montreal Convention (carrier liability)","Warsaw Convention"],a:0,exp:"It protects safety on board."},
 {q:"What should ground staff record at handover?",opts:["Weather only","When, by whom and to whom, and receipt of the crew report","The fare","Seat colour"],a:1,exp:"Used for later proceedings and prevention."}],
 next:""});

@@ -1,7 +1,7 @@
 /* 世界の主要空港ガイド Part 4 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("4-1",{title:"London Heathrow (LHR): 84.5 Million on Two Runways, and the Fate of a Third",hl:"Heathrow",subtitle:"Europe’s biggest hub, with a record 84.5 million passengers in 2025 and some of the world’s most valuable slots. The third runway faces a parliamentary vote in autumn 2026, consent by 2029 and first flights in about ten years",
-lead:["London Heathrow handles 84.5 million passengers a year on just two runways (2025, a record), making it Europe’s biggest hub (Heathrow Airport). It ranks second in the world for international passengers and was named Europe’s most punctual hub in 2025.","With only two runways, its slots are among the hardest to obtain anywhere. After decades of debate, the government backed a third runway in 2025 and Parliament is due to vote in 2026. This lesson covers Heathrow’s features and how the third runway is progressing."],
+lead:["London Heathrow handles 84.5 million passengers a year on just two runways (2025, a record), making it Europe’s biggest hub (Heathrow Airport). It ranks second in the world for international passengers and was named Europe’s most punctual hub in 2025.","With only two runways, its slots are among the hardest to obtain anywhere. The long-debated third runway won government backing in 2025, and Parliament is due to vote in 2026. This lesson covers Heathrow’s features and how the third runway is progressing."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_lhr",cap:"Figure: London Heathrow at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: LHR / ICAO: EGLL"],
@@ -126,7 +126,7 @@ sections:[
 {t:"point",x:"Unable to add movements, Schiphol and KLM are carrying more passengers per flight with larger aircraft (about 144 passengers per movement in 2025)."}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
 {name:"One terminal",x:"All flights leave from one terminal, so connections are simple and minimum connecting times short."},
-{name:"Schengen entry",x:"Passengers connecting from outside Schengen into Schengen clear immigration (EES) at Schiphol."},
+{name:"Schengen entry",x:"Passengers connecting from outside Schengen into Schengen clear immigration at Schiphol, where checks use the Entry/Exit System (EES)."},
 {name:"Wind",x:"Schiphol is close to the North Sea, so strong winds are common and change runway use, causing delays."},
 {name:"Airport charges",x:"Airport charges rose by about 41% in April 2025, raising airline costs."}]}]},
 {h:"Routes to Korea and Japan",blocks:[{t:"rows",items:[

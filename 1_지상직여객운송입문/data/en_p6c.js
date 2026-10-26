@@ -1,7 +1,7 @@
 /* 旅客運送の実務 6-6 — English version (2026.09 revision) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-6",{title:"The Station’s Monthly and Annual Calendar",hl:"calendar",subtitle:"Daily, weekly, monthly, quarterly, yearly: list deadlines by area and work back from the date preparation must start",
-lead:["Besides flight-by-flight work, an airport station has monthly closing tasks and big annual procedures: schedule filings, fare filings, security programme revisions, tax and social insurance, and preparing for peak seasons, typhoons and snow. Miss a deadline and the problem is serious.","This article sets out a general calendar for a foreign airline’s station in Japan and the handling operation behind it, organised by area and by time horizon. Dates vary by company, contract and financial year, so write in your own."],
+lead:["Besides flight-by-flight work, an airport station has monthly closing tasks and big annual procedures: schedule filings, fare filings, security programme revisions, tax and social insurance, and preparing for peak seasons, typhoons and snow. Missing a deadline can disrupt operations or regulatory compliance, so the applicable requirements and filing deadlines need to be checked.","This article sets out a general calendar for a foreign airline’s station in Japan and the handling operation behind it, organised by area and by time horizon. Dates vary by company, contract and financial year, so write in your own."],
 sections:[
 {h:"By time horizon",blocks:[{t:"table",cols:["Horizon","Main work (examples)"],rows:[
 ["Daily","Flight-by-flight work, recording delays and irregularities, same-day reporting"],

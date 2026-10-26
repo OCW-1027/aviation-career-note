@@ -26,7 +26,7 @@ sections:[
 {h:"Principles for setting up contacts",blocks:[{t:"check",items:[
 {name:"A main and a deputy",x:"Two names per department, so nothing stops when one is away."},
 {name:"Nights and holidays",x:"Include duty phone numbers, and check whether departments other than OCC have a duty officer."},
-{name:"Keep it current",x:"Update every quarter or after any staff move. An out-of-date sheet is the most dangerous kind."},
+{name:"Keep it current",x:"Update every quarter or after any staff move. An out-of-date contact list becomes a serious risk in an emergency."},
 {name:"Put it in writing",x:"Phone when it is urgent, then always email the key points, so there is no doubt about what was said."},
 {name:"One voice",x:"Do not ask several departments the same question separately. If answers differ, ask passenger services planning to settle it."}]}]},
 {h:"The station’s role alongside head office",blocks:[{t:"fig",id:"stn_tier",cap:"Three layers: head office, the station and the local parties. The red dotted line shows that head office does not contact the local parties directly."},{t:"rows",items:[

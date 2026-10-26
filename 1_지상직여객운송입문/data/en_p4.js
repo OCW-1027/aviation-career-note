@@ -19,7 +19,7 @@ sections:[
 {t:"rows",items:[
 {name:"Liability cap",x:"For international carriage under the Montreal Convention, the liability limit for lost, damaged or delayed baggage is 1,519 SDR per passenger from 28 December 2024. Actual compensation is decided on the damage, the proof provided, the applicable law, the conditions of carriage and so on."},
 {name:"Declared value",x:"Passengers checking valuable items can declare a higher value and pay a charge to raise the limit, up to whatever maximum the airline allows."}]},
-{t:"note",x:"* Which rules apply depends on the convention’s ratification and the airline’s conditions of carriage. The figures are reviewed periodically, so check the current amounts. ★"}]},
+{t:"note",x:"* Handling depends on the applicable international convention, national law and conditions of carriage. SDR-based liability limits are reviewed periodically, so check the latest official information. ★"}]},
 {h:"Where compensation may be limited or excluded (check the cause)",blocks:[{t:"check",items:[
 {name:"Items that should not be checked",x:"Cash, jewellery, laptops, cameras, important documents and anything else passengers are told to carry in the cabin (1-10). Even where the conditions of carriage limit liability for these items, the applicable convention or law may lead to a different result."},
 {name:"Normal wear",x:"Minor scratches, dents and soiling from normal use. Damage to protruding parts such as handles, wheels and straps is not excluded automatically if it happened in carriage; check the applicable law and the cause."},
@@ -60,7 +60,7 @@ sections:[
 ["Transit","Checks bags that could not be transferred and forwards them"],
 ["Every station","Registers bags with no owner in the tracing system as on-hand"]]}]},
 {h:"Bags taken by mistake",blocks:[{t:"p",x:"Passengers do sometimes walk off with a bag of a similar colour and shape. When one bag is left on the belt and a passenger reports theirs missing at the same time, suspect a swap."},
-{t:"point",x:"Checking tags at the belt, and encouraging name labels or a ribbon, prevents most swaps. The passenger who took the wrong bag almost never meant to, so ask for their help politely."},
+{t:"point",x:"Checking tags at the belt, and encouraging name labels or a ribbon, helps prevent baggage mix-ups. The passenger who took the wrong bag almost never meant to, so ask for their help politely."},
 {t:"table",cols:["Prevention","How"],rows:[
 ["At check-in","Encourage name labels and a distinctive ribbon or strap; remind passengers to keep the tag receipt"],
 ["Flights with many similar bags","For groups or common brands, announce at the belt: “Please check the tag number before you leave”"],
@@ -125,7 +125,7 @@ sections:[
 {name:"Ask",x:"Flight, date, seat number, item, colour, features, contents."},
 {name:"Match",x:"Compare with the record; if it has been found, explain how identity will be verified."},
 {name:"Passengers far away",x:"If they want it posted, explain the cost and the method and get their agreement. Valuables and items containing batteries can only be sent in certain ways."},
-{name:"If nothing is found",x:"Take their contact details and promise to call if it turns up. Point them to the airport lost property office and the police."}]},
+{name:"If nothing is found",x:"Take their contact details and explain how they will be contacted if it turns up and whom to contact. Point them to the airport lost property office and the police."}]},
 {t:"point",x:"How lost property is handled directly affects trust in the airline. “They looked for it” is something passengers remember for a long time."}]}],
 voice:"Recording exactly when and where an item was found is the key to reuniting it with its owner. Organise the records so enquiries can be matched straight away.",
 terms:[["Lost & Found","忘れ物・落とし物（遺失物）","유실물"],["Found Property","拾得物","습득물"],["Lost Property Act","遺失物法","유실물법"],["Receipt Record","受領記録","수령 기록"],["ID Verification","本人確認","본인 확인"],["Cash on Delivery","着払い","착불"]],

@@ -133,8 +133,8 @@ sections:[
 {t:"table",cols:["","Year 1","Year 2","Year 3"],rows:[
 ["Passenger revenue (100m yen)","2,460","2,590 (+5.3%)","2,690 (+3.9%)"],
 ["Volume: RPK (100m pax-km)","164","164 (±0%)","178.5 (+8.8%)"],
-["Price: yield (yen)","15.0","15.8 (+5.3%)","15.1 (−4.5%)"]]},
-{t:"point",x:"Year 2’s growth was all price; year 3’s was all volume. In year 2 the fuel spike was passed on through fares and surcharges, yield rose, and no more passengers flew. In year 3 yield came back down and load factor rose. Both are ‘higher revenue’, but what lies behind them is the opposite."}]},
+["Price: yield (yen)","15.0","15.8 (+5.3%)","15.1 (−4.6%)"]]},
+{t:"point",x:"Year 2’s growth was all price; year 3’s was all volume. In year 2 the fuel spike was passed on through fares and surcharges, yield rose, and no more passengers flew. In year 3 yield came back down and load factor rose. Both are ‘higher revenue’, but what lies behind them is the opposite. Percentage changes are calculated from unrounded yield (passenger revenue ÷ RPK)."}]},
 {h:"Which business drove the growth",blocks:[{t:"table",cols:["Increase (100m yen)","Year 1 → 2","Year 2 → 3"],rows:[
 ["International passenger","+100","+80"],["Domestic passenger","+30","+20"],["Cargo","+20","0"],["Ancillary","+10","+20"],["Other","0","+20"],["Total increase in sales","+160","+140"]]},
 {t:"rows",items:[

@@ -222,7 +222,7 @@ kr:[{"t":"table","cols":["Type","What to watch"],"rows":[["Resignation","Receive
 {"t":"note","x":"* An employee can apply to the Labour Relations Commission for relief within three months of an unfair dismissal. Some dismissal restrictions do not apply to workplaces with fewer than five regular employees. ★"}]}]},
 {h:"Before considering dismissal",blocks:[{"t":"ladder","rise":10,"steps":[{"name":"Record the problem","sub":"Specific, with dates"},{"name":"Meet and set goals","sub":"Targets and deadlines"},{"name":"Other options","sub":"Role, post, agreed exit"},{"name":"Take advice","sub":"Before deciding"},{"name":"Written notice","sub":"Reason and timing"}]},
 {"t":"check","items":[{"name":"Record the problem","x":"Note when, what and how it fell short of expectations, with dates."},{"name":"A chance to improve","x":"Set specific goals and deadlines, and keep notes of the meetings."},{"name":"Other options","x":"Consider a change of post, a revised role or an agreed departure first."},{"name":"Take advice","x":"Before deciding, consult a labour and social security attorney or lawyer (in Korea, a certified labour attorney)."}]},
-{"t":"point","x":"Dismissals without records are almost always lost. Start keeping records from the day you notice a problem."}]},
+{"t":"point","x":"Without sufficient records, it becomes difficult to explain why a dismissal is reasonable and appropriate. From the point you identify a problem, keep proper records of the facts and of how you responded."}]},
 {h:"Procedures on leaving",blocks:[{t:"region",jp:[{t:"check",items:[
 {name:"Social insurance",x:"File loss of health insurance, pension and employment insurance status, and issue the separation notice."},
 {name:"Tax",x:"Issue the withholding slip and file the change in inhabitant tax payroll deduction (Launching Flights to Japan 2-4)."},
@@ -294,13 +294,13 @@ lead:["A foreign company’s Japan branch moves money across borders routinely: 
 "This article covers the practicalities of international remittances and how reporting works."],
 sections:[
 {h:"The practicalities",blocks:[{t:"fig",id:"adm_remit",cap:"Figure: how a remittance from head office flows."},{t:"check",items:[
-{name:"Days",x:"It takes several days from sending to arrival. Allow for holidays in both countries — long holidays at home, Japan’s Golden Week — and request about a week before the deadline."},
+{name:"Days",x:"It takes several days from sending to arrival. Allow for holidays in both countries — long holidays in head office’s country (Lunar New Year and Chuseok for a Korean head office), Japan’s Golden Week — and request about a week before the deadline."},
 {name:"Fees",x:"The sending, receiving and intermediary banks all charge. Decide who bears them, sender or recipient."},
-{name:"Exchange rates",x:"When the yen and head office’s currency are converted, and how foreign exchange gains and losses are booked."},
+{name:"Exchange rates",x:"When the yen and head office’s currency (the won, for a Korean head office) are converted, and how foreign exchange gains and losses are booked."},
 {name:"Documents",x:"The bank may ask for the purpose and basis — the invoice or contract."}]}]},
 {h:"How a remittance travels, and how long it takes",blocks:[{"t":"ladder","rise":10,"steps":[{"name":"Request","sub":"To head office in writing"},{"name":"Head office’s bank","sub":"Sends the payment"},{"name":"Intermediary bank","sub":"May deduct a fee"},{"name":"Bank in Japan","sub":"Credits and checks it"},{"name":"Branch records","sub":"Daily report, FX difference"}]},
 {"t":"table","cols":["When","What to watch"],"rows":[["January–February","Korea’s Lunar New Year holiday"],["Late April–early May","Japan’s Golden Week"],["September–October","Korea’s Chuseok holiday"],["Late December–early January","New Year in both countries"]]},
-{"t":"note","x":"* Holiday dates change from year to year. Before a holiday, request remittances at least two weeks ahead."}]},
+{"t":"note","x":"* The table assumes a head office in Korea. Holiday dates change from year to year. Before a holiday, request remittances at least two weeks ahead."}]},
 {h:"How reporting works",blocks:[{t:"rows",items:[
 {name:"Payment reports",x:"A single payment or receipt between Japan and abroad (or between a resident and a non-resident) exceeding the equivalent of ¥30 million must be reported to the Minister of Finance via the Bank of Japan under the Foreign Exchange Act. For remittances through a bank, the report is submitted to the bank. Some items, such as payment for exported and imported goods, are exempt. ★"},
 {name:"Bank checks",x:"When you remit, the bank may check the purpose and counterparty and ask you to complete the report form."},
@@ -340,7 +340,7 @@ sections:[
 {name:"Depreciable assets return",x:"Office computers, desks and safes can count. The deadline is the end of January."}]}]},
 {h:"The relationship with head office",blocks:[{t:"rows",items:[
 {name:"Head office–branch transactions",x:"Allocations of head office costs and payments to head office must follow the tax rules, with the basis documented."},
-{name:"Tax treaties",x:"The tax treaty between Japan and your country may adjust double taxation or reduce withholding rates."},
+{name:"Tax treaties",x:"For a Korean head office, the Japan–Korea tax treaty may adjust double taxation or reduce withholding rates."},
 {name:"Professionals",x:"For a foreign corporation, it is safest to file through a tax accountant experienced with foreign corporations."}]},
 {t:"point",x:"With tax, “we didn’t know” is no defence. Keep an annual list of filings and payments and review it with your tax accountant every year."}]},
 {h:"Branch or subsidiary?",blocks:[{"t":"table","cols":["Item","Branch","Subsidiary (Japanese company)"],"rows":[["Legal status","Part of the same company as head office","An independent Japanese company"],["Income taxed in Japan","Income attributable to the branch","All of the company’s income"],["Sending profits to head office","Normally no withholding tax","Withholding tax on dividends (reduced by treaty)"],["Liability","Borne directly by head office","Limited to the capital invested"],["Setting up","Branch registration (relatively simple)","Company incorporation, articles and so on"]]},
@@ -556,7 +556,7 @@ sections:[
 {name:"Accounts",x:"A record of accounts issued and disabled. Passwords never go in shared documents."}]},
 {t:"point",x:"Rules exist to be followed. Keep them short and specific, and pair them with the forms."}]}],
 voice:"Without an approval authority table, you hesitate every time over which payments to refer to head office. With one, the hesitation goes, and in an audit showing the table is explanation enough.",
-terms:[["Approval Authority Rules","決裁規程","전결 규정"],["Expense Policy","経費規程","경비 규정"],["Asset Register","資産台帳","자산 대장"],["Seal Control","印鑑管理","인감 관리"]],
+terms:[["Approval Authority Rules","決裁規程","결재 규정(전결 권한 포함)"],["Expense Policy","経費規程","경비 규정"],["Asset Register","資産台帳","자산 대장"],["Seal Control","印鑑管理","인감 관리"]],
 quiz:[{q:"How should a rule be written?",opts:["Specifically, e.g. “head office approval above ¥X”","“Judge appropriately”","Say nothing","Pass it on verbally"],a:0,exp:"So anyone makes the same decision."},
 {q:"What should be recorded for the company seal?",opts:["Date, document and approver of each use","Its colour","Its weight","Its price"],a:0,exp:"Keep a use log."},
 {q:"What should be created together with the rules?",opts:["Request, claim and register forms","Posters","Gifts","A logo"],a:0,exp:"So the rules are actually followed."}],

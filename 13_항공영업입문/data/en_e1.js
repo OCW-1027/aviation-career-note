@@ -30,12 +30,12 @@ set("1-2",{title:"Demand and Seasonality on International Routes",hl:"demand",su
 lead:["A route to and from Japan carries demand in both directions: people from Japan travelling out, and people from the other country coming in. Public holidays, long weekends, school breaks, concerts and sports events in both countries, and exchange rate movements all shift demand sharply.",
 "This article sets out what characterises the demand, the seasonal pattern, and the information you need to read it."],
 sections:[
-{h:"What characterises the demand",blocks:[{t:"fig",id:"sls_season",cap:"Figure: seasonal waves on Japan–Korea routes (example)."},{t:"check",items:[
+{h:"What characterises the demand",blocks:[{t:"fig",id:"sls_season",cap:"Figure: example case — seasonal waves on Japan–Korea routes."},{t:"check",items:[
 {name:"Two directions",x:"The strength of demand from each end differs by season, which affects seat allocation and fares."},
 {name:"Short trips",x:"Many short trips, such as weekends or stays of two or three nights."},
 {name:"Purposes",x:"Sightseeing, shopping, food, entertainment such as concerts and fan events, beauty treatments, business."},
 {name:"Repeat travellers",x:"Many travel back and forth often and are sensitive to fares, timings and service."}]}]},
-{h:"The seasonal pattern (example)",blocks:[{t:"table",cols:["Period","From Japan","From the other country"],rows:[
+{h:"The seasonal pattern on routes to and from Japan (general example)",blocks:[{t:"table",cols:["Period","From Japan","From the other country"],rows:[
 ["New Year","High","Depends on the country"],
 ["The other country’s own holidays (e.g. Lunar New Year, harvest festivals)","—","High"],
 ["Spring break and Golden Week","High","—"],

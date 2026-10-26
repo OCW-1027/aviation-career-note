@@ -66,7 +66,7 @@ quiz:[{q:"What aim was given for Tokyo Disney Resort’s variable pricing?",opts
 {q:"What does Korea’s Aviation Business Act Art. 62(5) require?",opts:["Clearly provide the total the customer actually pays","Change fares daily","Keep fares secret","Sell for cash only"],a:0,exp:"Korea’s Aviation Business Act Art. 62(5) requires airlines, GSAs and travel agencies to present clearly the total the customer actually pays (fare plus fuel surcharges and taxes). Even with changing prices, the displayed price is the total."}],
 next:"7-7 By the numbers: metrics and RM meetings"});
 set("7-7",{title:"By the Numbers: Airline and Hotel Metrics and the RM Meeting",hl:"RM metrics",subtitle:"Load factor, yield and RASK; hotel ADR, RevPAR and GOPPAR; and what a weekly RM meeting looks at and decides",
-lead:["RM results cannot be judged by load factor alone or by price alone. The key measure multiplies the two: revenue per unit of capacity offered, RASK for airlines and RevPAR for hotels.","This lesson calculates the main airline and hotel metrics with practice figures and sets out what RM and sales teams review and decide each week."],
+lead:["RM results cannot be judged by load factor alone or by price alone. A key indicator multiplies the two: revenue per unit of capacity offered, RASK for airlines and RevPAR for hotels.","This lesson calculates the main airline and hotel metrics with practice figures and sets out what RM and sales teams review and decide each week."],
 sections:[
 {h:"Airline metrics (practice: 180 seats, 1,000 km)",blocks:[{t:"fig",id:"rm_kpi",cap:"Figure: airline metrics (practice)."},{t:"table",cols:["Metric","Formula","Calculation","Result"],rows:[
 ["Load factor (LF)","Passengers ÷ seats","153 ÷ 180","85%"],

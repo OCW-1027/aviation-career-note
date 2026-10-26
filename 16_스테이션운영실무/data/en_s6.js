@@ -125,7 +125,7 @@ terms:[["Time Difference","時差","시차"],["Daylight Saving Time","夏時間"
 quiz:[{q:"What should you watch out for between Japan and Korea?",opts:["There is no time difference, but public holidays differ","There is a one-hour difference","Daylight saving applies","Nothing in particular"],a:0,exp:"The clocks match, but lunar-calendar holidays, among others, mean days off differ."},
 {q:"What is a good way to state a deadline in an email?",opts:["In both Japan time and the reader’s time","Just “as soon as possible”","Leave it out","Japan time only"],a:0,exp:"Giving the reader’s time as well reduces misreadings."},
 {q:"Something urgent comes up in head office’s middle of the night. You…",opts:["Send it to head office’s duty desk (the 24-hour contact)","Keep calling one person’s mobile","Do nothing until morning","Let the ground handling company decide"],a:0,exp:"Urgent items go to the set duty desk. Relying on one person stalls things."}],
-next:"5-5 Deciding Through Cases: Comparing Safe and Lawful Options"});
+next:"5-5 Deciding Through Cases: Comparing Safe and Appropriate Options"});
 
 set("5-5",{title:"Deciding Through Cases: Comparing Safe and Lawful Options",hl:"Comparing Options",subtitle:"Options that break the rules are never on the list. Compare what remains on time, cost, customer satisfaction and staff workload",
 lead:["Decisions on the floor rarely have a single right answer. There are usually several options that are safe and fit the law and company rules, and the one you choose changes the balance between time, cost, customer satisfaction and staff workload.","This lesson uses three fictional cases to practise setting options side by side. Every option is within the rules. Options that break the rules are removed before any comparison."],

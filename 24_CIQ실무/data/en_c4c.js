@@ -1,6 +1,6 @@
 /* CIQの役割 — English version (Part 4: China, Taiwan and Hong Kong; South-East Asia and the Middle East; lessons 4-7 and 4-8) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("4-7",{title:"China, Taiwan and Hong Kong: The Closer the Country, the Easier the Mistake",hl:"China, Taiwan and Hong Kong",subtitle:"Taiwan imposes an administrative fine of TWD 200,000 for pork products, and heated tobacco cannot be brought in either",
+set("4-7",{title:"China, Taiwan and Hong Kong: The Closer the Destination, the Greater the Need to Avoid Missed Checks Caused by Assumptions",hl:"China, Taiwan and Hong Kong",subtitle:"Taiwan imposes an administrative fine of TWD 200,000 for pork products, and heated tobacco cannot be brought in either",
 lead:["These are relatively close to Japan and Korea, but their immigration, customs and quarantine systems differ greatly. Mainland China, Taiwan, Hong Kong and Macao each have their own immigration control and customs.","Taiwan in particular has some of the strictest rules in Asia on meat products and on e-cigarettes and heated tobacco. Things passengers from Japan use every day can be restricted there."],
 sections:[
 {h:"Mainland China",blocks:[{t:"fig",id:"ciq_cn",cap:"Figure: mainland China, Taiwan and Hong Kong."},{t:"table",cols:["","Details"],rows:[
@@ -61,7 +61,7 @@ sections:[
 {name:"Some countries require prior approval",x:"Check the procedure on the destination authority’s website before departure."},
 {name:"The same applies when entering Japan",x:"Japan too has ingredients that cannot be brought in and medicines that need prior formalities. ★"},
 {name:"The airline does not make the final decision on whether a medicine is allowed",x:"If asked, point to the guidance of the destination’s authorities or embassy."}]},
-{t:"point",x:"Food usually ends with confiscation. Medicines and e-cigarettes can end with a person being detained. They are worth including in the information given at booking."}]}],
+{t:"point",x:"Food usually ends with confiscation. Medicines and e-cigarettes can end with a person being detained. Including them in passenger information from booking through to departure helps prevent problems."}]}],
 voice:{h:"A Reported Case",x:"Thailand bans the import, sale and possession of e-cigarettes. According to the Bangkok Post, the Excise Department issued a warning to visitors after some embassies in Bangkok complained that their tourists had been fined for arriving with e-cigarettes; at that point it had seized 80 cases in three months, with fines totalling THB 5 million (Source: Bangkok Post). More recently a tourist caught vaping on a beach was reported to have been released after paying a THB 40,000 fine, about USD 1,200 (Source: Fox News). Even items allowed in Japan or Korea may be subject to the rules not only of the destination but also of countries and regions passed through on the way."},
 terms:[["Digital Arrival Card","デジタルの入国カード","디지털 입국 카드"],["Controlled Medicines","規制される薬","규제 의약품"],["Deportation","退去措置","강제 출국"],["Prescription","処方箋","처방전"]],
 quiz:[{q:"What has Thailand required of non-Thai nationals since 1 May 2025?",opts:["A digital arrival card submitted within three days before arrival","Only a paper arrival card","Nothing","Always a visa"],a:0,exp:"It is submitted online."},

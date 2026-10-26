@@ -97,8 +97,8 @@ lead:["Entering an airport’s restricted and security areas requires an ID pass
 sections:[
 {h:"Types of pass (example at a Japanese airport)",blocks:[{t:"table",cols:["Type","What it covers"],rows:[
 ["Airport operator pass","Issued by the airport company for the terminal restricted areas and the ramp. Colours and symbols show which zones it covers"],
-["CIQ area pass","For entering customs and immigration areas; arranged with those agencies"],
-["Vehicle permit","To drive on the ramp; requires a driving course"],
+["CIQ area pass","Entering customs, immigration, quarantine and similar areas may need approval and procedures separate from the airport pass"],
+["Vehicle permit","To drive within the restricted area; each airport may require a course, test or similar"],
 ["Temporary pass","For short-term visitors or staff helping out, usually on condition of being escorted"]]}]},
 {h:"The life of a pass",blocks:[{t:"fig",id:"gnd_pass",cap:"Animated figure: the life of an ID pass, from application to return, lights up around the circle."},{t:"ladder",rise:10,steps:[{name:"Apply",sub:"Documents and identity check"},{name:"Security training",sub:"Take the airport’s security course"},{name:"Issued",sub:"Collected and recorded"},{name:"Use and renewal",sub:"Track the expiry"},{name:"Returned",sub:"Always collected on leaving or transferring"}]}]},
 {h:"The pass controller’s role",blocks:[{t:"check",items:[
@@ -107,13 +107,13 @@ sections:[
 {name:"Leavers and transfers",x:"Collect the pass on the last working day and return it to the airport company."},
 {name:"Regular reporting",x:"Submit pass reports to the airport company and the agencies on time."},
 {name:"Training",x:"Remind everyone how a pass is used: never lend it, wear it visibly, never take someone else through."}]}]},
-{h:"If a pass is lost",blocks:[{t:"ladder",rise:10,steps:[{name:"Report at once",sub:"Holder reports promptly to the controller and the designated contact"},{name:"Deactivate",sub:"Stop the pass working"},{name:"Notify",sub:"The police where required"},{name:"Reissue",sub:"Application and fee"},{name:"Prevent a repeat",sub:"Find out how it happened and tell everyone"}]},
+{h:"If a pass is lost",blocks:[{t:"ladder",rise:10,steps:[{name:"Report at once",sub:"Holder reports promptly to the controller and the designated contact"},{name:"Deactivate",sub:"Ask the issuing body to cancel or suspend it under its procedures"},{name:"Notify",sub:"The police where required"},{name:"Reissue",sub:"Application and fee"},{name:"Prevent a repeat",sub:"Find out how it happened and tell everyone"}]},
 {t:"point",warn:true,x:"Repeated losses or passes not returned can affect the whole station’s applications. Tie collecting a leaver’s pass to the HR process."}]}],
 voice:"Airport passes are easily left uncollected when staff leave or move. Set a rule that HR changes are passed to the pass administrator straight away.",
 terms:[["Airport ID Pass","空港IDパス","공항 출입증"],["Restricted Area / Airside","制限区域","보호구역"],["Security Awareness Training","保安講習","보안 교육"],["Airside Driving Permit","車両運転許可","차량 운전 허가"],["Temporary Pass","一時パス","임시 출입증"],["Pass Controller","管理責任者","관리 책임자"]],
 quiz:[{q:"What happens to a leaver’s pass?",opts:["They keep it","It is collected on the last working day and returned","It is handed to the successor","It stays valid until it expires"],a:1,exp:"It must be collected and returned to the airport company."},
 {q:"Which of these is the wrong way to use a pass?",opts:["Wear it visibly","Lend it to a colleague","Never take others through","Keep it in date"],a:1,exp:"Lending a pass is prohibited."},
-{q:"What do you do first if a pass is lost?",opts:["Say nothing","Report it immediately","Keep looking for it","Report it next week"],a:1,exp:"Report at once so it can be deactivated."}],
+{q:"What do you do first if a pass is lost?",opts:["Say nothing","Report it immediately","Keep looking for it","Report it next week"],a:1,exp:"Report it to the designated contact at once, then follow the issuing body’s procedure to have it suspended."}],
 next:"6-4 Preparing for audits — head office and authorities"});
 
 set("6-4",{title:"Preparing for Audits",hl:"audits",subtitle:"An audit is decided by the records you kept every day, not by the day itself",
@@ -157,7 +157,7 @@ quiz:[{q:"What is always checked about previous findings?",opts:["Nothing","Whet
 next:"6-5 The Airline Operators Committee (AOC)"});
 
 set("6-5",{title:"The Airline Operator’s Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport operator and relevant bodies",
-lead:["The AOC, the Airline Operator’s Committee, is the body formed by the airlines serving an airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is the way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
+lead:["The AOC, the Airline Operator’s Committee, is the body formed by the airlines serving an airport. Its name, membership and powers vary from airport to airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is one useful way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
 sections:[
 {h:"What the AOC deals with",blocks:[{t:"fig",id:"gnd_aoc",cap:"Animated figure: the six themes handled by the Airline Operator’s Committee light up in turn."},{t:"table",cols:["Topic","Examples"],rows:[
 ["Facilities","Counter allocation, terminal works, baggage systems"],
@@ -170,7 +170,7 @@ sections:[
 {t:"note",x:"* Procedures and rules differ by AOC. Check the current constitution."}]},
 {h:"What you get out of it",blocks:[{t:"check",items:[
 {name:"Early information",x:"You hear about terminal works and rule changes before they are settled."},
-{name:"A voice",x:"Airline requests reach the airport company as one collective position."},
+{name:"A voice",x:"Airlines may be able to agree a position on shared issues and discuss it with the airport operator and others."},
 {name:"Contacts with other airlines",x:"Help during irregular operations, information on handling companies, shared good practice."},
 {name:"Emergency readiness",x:"You take part in joint exercises and the emergency contact structure."}]}]},
 {h:"How the station manager engages",blocks:[{t:"rows",items:[

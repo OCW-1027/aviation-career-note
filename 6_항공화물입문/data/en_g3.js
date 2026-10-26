@@ -121,7 +121,7 @@ lead:["Semiconductor production and inspection equipment can be worth tens of mi
 sections:[
 {h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal and loading, arrival checks and delivery to site light up in turn; the right side shows who is mainly responsible."},
 {t:"check",items:[
-{name:"Export control",x:"Confirm with the manufacturer and shipper whether the equipment or parts require an export licence. Obtaining one takes time. ★"},
+{name:"Export control",x:"Confirm with the manufacturer and shipper whether the equipment or parts require an export licence under Japan’s Foreign Exchange and Foreign Trade Act. Obtaining one takes time. ★"},
 {name:"Dimensions and weight",x:"Confirm the packed dimensions, weight and centre of gravity from a drawing. Will it fit in the belly hold of a passenger aircraft, or is a freighter needed (0-2, 3-4)?"},
 {name:"Insurance",x:"For high-value shipments, confirm the cover and the limits."},
 {name:"Schedule",x:"Work back from the installation date to leave time for transport, clearance and inland delivery."}]}]},

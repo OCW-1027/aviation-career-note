@@ -1,7 +1,7 @@
 /* 航空業界の面接対策 — English version (Part 1 + 2-1) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("1-1",{title:"What the Interviewer Is Looking For",hl:"the interviewer’s view",subtitle:"What airport work really needs is the ability to keep the rules and still be kind to people",
-lead:["In an airport ground staff interview, the interviewer is not judging how smoothly you talk. They are asking whether you can be put in front of passengers, whether you will stay calm on a disrupted day, and whether you will last as part of the team.",
+lead:["In an airport ground staff interview, the interviewer is not judging only how smoothly you talk. They are asking whether you can be put in front of passengers, whether you will stay calm on a disrupted day, and whether you will last as part of the team.",
 "Drawing on experience on the hiring side of the table, this article sets out the five things an interviewer wants to confirm, what separates candidates, and the mistakes candidates make most often."],
 sections:[
 {h:"Five things the interviewer wants to confirm",blocks:[{t:"fig",id:"int_look",cap:"Figure: five things interviewers want to confirm."},{t:"table",cols:["Aspect","What they want to know"],rows:[
@@ -100,6 +100,6 @@ voice:"A good motivation links why this company and what you can do for it. Talk
 terms:[["Self-introduction","自己紹介","자기소개"],["Motivation","志望動機","지원 동기"],["Strength","強み","강점"],["Contribution","貢献","공헌"],["Reading Aloud Monotonously","棒読み","단조로운 낭독"]],
 quiz:[{q:"How many strengths should the self-introduction focus on?",opts:["One","Three","Five","None"],a:0,exp:"One told through a situation stays longer."},
 {q:"Which is NOT an element of motivation?",opts:["Why airport work","Why this company","What you want to do","Because there are many days off"],a:3,exp:"Ask about conditions when invited to ask questions."},
-{q:"How should you deliver a prepared answer?",opts:["Word for word","Remember the points and use your own words","Speak quickly","Close your eyes"],a:1,exp:"Recitation does not land."}],
+{q:"How should you deliver a prepared answer?",opts:["Word for word","Remember the points and use your own words","Speak quickly","Close your eyes"],a:1,exp:"Recitation tends not to land."}],
 next:"2-2 Thirty common questions"});
 })(window.ARTS);

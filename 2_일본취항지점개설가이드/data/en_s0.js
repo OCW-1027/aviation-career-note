@@ -24,7 +24,7 @@ sections:[
 {name:"Handling company staffing",x:"At airports short of labour, the hours you want may not be available."},
 {name:"System connections",x:"Applications for shared airport system IDs and lines take time to process."},
 {name:"Security training",x:"Japan’s security instructor courses only run at set times of year."}]},
-{t:"point",warn:true,x:"Give the checklist columns for status, owner, deadline and notes, and update it weekly. Head office, the station and the providers all working from the same table is the single best defence against delay."}]},
+{t:"point",warn:true,x:"Give the checklist columns for status, owner, deadline and notes, and update it weekly. Head office, the station and the providers all working from the same table is an effective approach to preventing delay."}]},
 {h:"How the checklist is usually grouped",blocks:[{t:"rows",items:[
 {name:"Setting up the entity",x:"Providers, registration, corporate accounts, social insurance, tax, finance"},
 {name:"HR and administration",x:"Employment contracts, work rules, hiring, housing, office, equipment"},
@@ -38,7 +38,7 @@ voice:"On a new route, securing airport offices and counters can take longer tha
 terms:[["Market Entry / Inaugural Service","就航","취항"],["Inaugural Flight","初便","첫 편"],["Agent / Representative","代理人","대리인"],["Slot","発着枠","슬롯"],["Registration","登記","등기"],["Checklist","チェックリスト","체크리스트"]],
 quiz:[{q:"When must the foreign air carrier operating licence be applied for?",opts:["A week before service","By three months before service starts","After service starts","No deadline"],a:1,exp:"By three months before the planned start of service."},
 {q:"What is the deadline for filing fares?",opts:["30 days before the intended date","The day before","A year before","Not required"],a:0,exp:"Foreign carriers file fares by 30 days before the intended date."},
-{q:"What best prevents delay?",opts:["The station manager tracking it alone","Head office, the station and the providers working from one checklist","Passing things on verbally","Not fixing a launch date"],a:1,exp:"Share status, owner and deadline."}],
+{q:"What is an effective way to prevent delay?",opts:["The station manager tracking it alone","Head office, the station and the providers working from one checklist","Passing things on verbally","Not fixing a launch date"],a:1,exp:"Share status, owner and deadline."}],
 next:"0-2 Who does what: head office, the station, agents and the handling company"});
 
 set("0-2",{title:"Who Does What: Head Office, the Station, Agents and the Handling Company",hl:"roles",subtitle:"The station manager is the point of contact in Japan, linking head office specialists to local professionals",

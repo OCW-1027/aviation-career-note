@@ -34,8 +34,8 @@ quiz:[{q:"What works best in reducing document errors?",opts:["Building a flow i
 {q:"What should you watch when looking at the number of cases?",opts:["Look at the rate per number of passengers carried","Look only at the count","Do not look","Look only at busy months"],a:0,exp:"More flights naturally mean more cases."},
 {q:"What comes first when a penalty notice arrives?",opts:["Gather the facts, such as the check-in record","Pay at once","Discipline the agent","Do nothing"],a:0,exp:"An appeal may be possible."}],
 next:"5-2 Extra and charter flights and CIQ"});
-set("5-2",{title:"Extra and Charter Flights and CIQ",hl:"Extra Flights",subtitle:"CIQ staffs for the regular schedule. A flight outside it will not be handled unless CIQ is told first",
-lead:["Scheduled flights arrive at the same time every day, and CIQ assigns officers to match. So what happens when an extra flight operates at an unusual time, or a charter flies to an airport with no international service?","The answer is simple: tell them first and confirm that they can handle it. Otherwise, even if the aircraft arrives, nobody can get off."],
+set("5-2",{title:"Extra and Charter Flights and CIQ",hl:"Extra Flights",subtitle:"CIQ staffs for the regular schedule. An extra flight needs prior coordination and confirmation that it can be accepted",
+lead:["Scheduled flights arrive at the same time every day, and CIQ assigns officers to match. So what happens when an extra flight operates at an unusual time, or a charter flies to an airport with no international service?","The key is to consult the agencies early and confirm whether the flight can be accepted. Without prior coordination, passengers may not be able to disembark even after the aircraft arrives."],
 sections:[
 {h:"How it differs from a scheduled flight",blocks:[{t:"fig",id:"ciq_extra",cap:"Figure: extra and charter flights: who to tell and what."},{t:"rows",items:[
 {name:"Staffing",x:"CIQ officers are assigned according to the airport’s flight times."},
@@ -66,10 +66,10 @@ quiz:[{q:"What comes first for CIQ when operating an extra flight?",opts:["Tell 
 {q:"When is a good time to consult CIQ?",opts:["While the plan is under consideration","The day before departure","After arrival","There is no need"],a:0,exp:"You learn early which times cannot be handled."}],
 next:"5-3 CIQ hours and delayed flights"});
 set("5-3",{title:"CIQ Hours and Delayed Flights",hl:"CIQ Hours",subtitle:"When a delay may run past CIQ hours: the earlier you tell them, the more options there are",
-lead:["CIQ at large airports stays open late. At regional airports the officers go home once the last flight has arrived. What happens when a delayed flight then turns up?","CIQ hours are separate from the airport’s operating hours and from the airline’s own shifts. When a delay is expected, CIQ is one of the first parties to check with."],
+lead:["CIQ at large airports stays open late. At some regional airports, the officers leave once the last flight has been handled. What happens when a delayed flight then turns up?","CIQ hours are separate from the airport’s operating hours and from the airline’s own shifts. When a delay is expected, CIQ is one of the first parties to check with."],
 sections:[
 {h:"CIQ has opening hours too",blocks:[{t:"fig",id:"ciq_late",cap:"Figure: when a delay may run past CIQ hours."},{t:"rows",items:[
-{name:"They differ by airport",x:"Busy airports are open for long hours. Airports with few flights open only around flight times."},
+{name:"They differ by airport",x:"Busy airports may be open for long hours. Airports with few flights open only around flight times."},
 {name:"They differ between the CIQ agencies",x:"Customs, immigration and quarantine do not necessarily keep the same hours."},
 {name:"They are separate from airport operating hours",x:"Even while the runway is available, international passengers cannot disembark without CIQ."}]}]},
 {h:"When a delay may run past the hours",blocks:[{t:"ladder",steps:[
@@ -89,7 +89,7 @@ sections:[
 {name:"Decide how much delay triggers a call",x:"Set a threshold for the station so that nobody hesitates."},
 {name:"Early, and with a reliable time",x:"A time that keeps changing is a burden on the other side. Say how firm it is."},
 {name:"Records",x:"When, to whom, what was said and what the answer was."}]},
-{t:"point",x:"Whether hours are extended depends not only on rules but on the everyday relationship. Do not be the station that appears only when it wants something."}]}],
+{t:"point",x:"Whether hours are extended depends not only on rules but on the everyday relationship. It is important to keep up working relations with the agencies in normal times as well."}]}],
 voice:{h:"A Reported Case",x:"In September 2018, when a typhoon put Kansai Airport out of action, the Japanese government decided that Itami would take up to 20 and Kobe up to 15 international and domestic flights a day in its place. Kobe extended its operating hours from 7:00–22:00 to 6:00–23:00, and the ministry said the individual flights would be set in coordination with the airport company, the airlines and the CIQ agencies (Source: Ministry of Land, Infrastructure, Transport and Tourism, 13 September 2018). Airport hours and CIQ staffing have to move together (Lessons from the Field 1-1)."},
 terms:[["Operating Hours","開庁の時間","개청 시간"],["Extension of Hours","時間の延長","시간 연장"],["Diversion","ダイバート（目的地変更）","목적지 변경(회항)"],["Airport Operating Hours","運用の時間","운용 시간"]],
 quiz:[{q:"What comes first when a delay may run past CIQ hours?",opts:["Tell CIQ and the airport the new arrival time at once","Discuss it after arrival","Nothing","Tell only the passengers"],a:0,exp:"The earlier, the more options there are."},
@@ -101,7 +101,7 @@ lead:["Weather, a medical emergency or a technical fault can bring an internatio
 sections:[
 {h:"Why it is difficult",blocks:[{t:"fig",id:"ciq_divert",cap:"The order of thinking when an international flight arrives at an unplanned airport."},{t:"rows",items:[
 {name:"Passengers have not yet entered the country",x:"They have not passed immigration, customs or quarantine. Leaving the aircraft and landing without permission would be an offence such as illegal landing."},
-{name:"Some airports have no CIQ",x:"A domestic-only airport has neither officers nor an inspection area."},
+{name:"Some airports have no CIQ",x:"A domestic-only airport may not have CIQ officers or inspection facilities permanently in place."},
 {name:"The same goes for goods",x:"Bags, catering, duty-free goods and waste cannot be unloaded without instructions from customs or quarantine (2-4, 3-5)."}]}]},
 {h:"Three situations",blocks:[{t:"table",cols:["Situation","What to do"],rows:[
 ["Landed at an airport with CIQ","Contact the authorities and follow their instructions. Decide whether passengers enter and disembark, or wait on board and continue"],
@@ -129,12 +129,12 @@ set("5-5",{title:"Informing Passengers: At Booking, at the Gate, on Board",hl:"I
 lead:["As the earlier lessons showed, most passengers stopped at CIQ simply did not know the rules. They had no travel authorisation. They were carrying food containing meat. They had an e-cigarette in their bag.","An airline cannot change the rules. But it can tell people. There are three chances: at booking, at the gate, and on board."],
 sections:[
 {h:"Three chances to inform",blocks:[{t:"fig",id:"ciq_guide",cap:"Figure: three chances to inform passengers."},{t:"table",cols:["When","What to say","Why then"],rows:[
-["At booking and a few days before departure","Visas, travel authorisations, arrival cards, what cannot be brought in","Anything that takes days to prepare can only be dealt with here"],
+["At booking and a few days before departure","Visas, travel authorisations, arrival cards, what cannot be brought in","For anything that takes days to prepare, early information is important"],
 ["At the gate","Food, tobacco, and not taking items served on board off the aircraft","They can still leave things behind"],
 ["On board before arrival","How to declare, and what must not be taken off","The last chance to inform passengers before arrival. Remind them to declare what is required"]]}]},
 {h:"A line for each destination (samples)",blocks:[{t:"table",cols:["Destination","What to say"],rows:[
 ["Japan","Meat products, fruit and vegetables are subject to import restrictions. Everyone submits a customs declaration"],
-["Korea","Meat products, dairy products and fruit cannot be brought in. If you have any, please declare them at quarantine"],
+["Korea","Meat products, dairy products and fruit are subject to import restrictions. If you have any, please declare them at quarantine"],
 ["United States and Canada","Please declare all food. Please do not take with you any fruit served on board"],
 ["Australia and New Zealand","You must declare food, plants, animal products and shoes with soil on them"],
 ["Taiwan","Meat products, e-cigarettes and heated tobacco cannot be brought in"],
@@ -154,7 +154,7 @@ sections:[
 {t:"point",x:"The airline does not make the rules at the border. But, standing between the passenger and those rules, it plays an important role in telling passengers in advance what they need to know."}]}],
 voice:{h:"A Reported Case",x:"In April 2018 a passenger on a Delta flight from Paris to Minneapolis kept an apple handed out by the cabin crew, meaning to eat it on her connecting flight. US customs found it, and she was reported to have been fined USD 500 and to have lost her Global Entry status for not declaring it (Sources: AP, BBC and others). Food handed out on board is covered by the import rules too, which is why the pre-arrival announcement should ask passengers not to take fruit from the flight off the aircraft."},
 terms:[["Pre-travel Information","事前の案内","사전 안내"],["Cabin Announcement","機内の放送","기내 방송"],["Declaration","申告","신고"],["Gate Announcement","搭乗口の案内","탑승구 안내"]],
-quiz:[{q:"When should passengers be told about things that take days to prepare, such as visas and travel authorisations?",opts:["At booking and a few days before departure","At the gate","On board before arrival","Never"],a:0,exp:"That is the only time it can still be dealt with."},
+quiz:[{q:"When should passengers be told about things that take days to prepare, such as visas and travel authorisations?",opts:["At booking and a few days before departure","At the gate","On board before arrival","Never"],a:0,exp:"Telling passengers early, before departure, is important."},
 {q:"What matters in a pre-arrival announcement?",opts:["Keep it short and say what to do","Speak for as long as possible","Read out every prohibited item","Say “that will be fine”"],a:0,exp:"Say what to do: “please declare it”."},
 {q:"What is the most dangerous kind of passenger information?",opts:["Information that is out of date","Short information","Information in a foreign language","Information that encourages declaring"],a:0,exp:"Revise as soon as something changes."}],
 next:"6-1 At the departure counter: thinking in situations"});

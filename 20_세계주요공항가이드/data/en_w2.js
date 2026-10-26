@@ -20,7 +20,7 @@ sections:[
 {t:"point",x:"Changi has repeatedly built the next terminal before the current ones fill up: with about 70 million passengers against a 90 million capacity in 2025, it is investing in a terminal ten years ahead."}]},
 {h:"Transfers and entry",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["International to international","Connect without clearing immigration; the Skytrain links terminals airside"],
-["Arrival card","SG Arrival Card (electronic); paper cards abolished in 2022; submit from three days before arrival"],
+["Arrival card","SG Arrival Card (electronic); paper cards abolished on 27 March 2020; submit from three days before arrival"],
 ["Korean and Japanese passports","No visa for short stays; eligible for automated gates ★"],
 ["Long connections","Free city tours and airport attractions such as Jewel can be offered"]]},
 {t:"note",x:"* Check the Immigration & Checkpoints Authority (ICA) for current conditions. ★"}]},
@@ -37,7 +37,7 @@ voice:"Changi makes transfers easy, which is also why many bookings use short co
 terms:[["Changi Airport Group (CAG)","チャンギ空港グループ","창이공항그룹"],["Terminal 5 (T5)","ターミナル5","제5터미널"],["SG Arrival Card","電子の入国カード","전자 입국카드"],["Skytrain","スカイトレイン","스카이트레인"],["Automated Immigration Gates","自動化ゲート","자동 출입국 게이트"]],
 quiz:[{q:"When is Changi’s T5 due to open?",opts:["2027","The mid-2030s","2040","Undecided"],a:1,exp:"Groundbreaking was on 14 May 2025."},
 {q:"What will Changi’s annual capacity be after T5 opens?",opts:["90 million","100 million","140 million","200 million"],a:2,exp:"T5 adds 50 million."},
-{q:"Which is true of Singapore’s arrival card?",opts:["Paper cards are handed out on board","The electronic SG Arrival Card is submitted before arrival","There is no arrival card","It is filled in at a counter on arrival"],a:1,exp:"Paper cards were abolished in 2022."}],
+{q:"Which is true of Singapore’s arrival card?",opts:["Paper cards are handed out on board","The electronic SG Arrival Card is submitted before arrival","There is no arrival card","It is filled in at a counter on arrival"],a:1,exp:"Paper cards were abolished on 27 March 2020."}],
 next:"2-2 Bangkok Suvarnabhumi (BKK)"});
 set("2-2",{title:"Bangkok Suvarnabhumi (BKK): 65 Million with SAT-1 and a Third Runway, 150 Million by 2033",hl:"Suvarnabhumi",subtitle:"Opened in 2006. The SAT-1 satellite terminal in 2023 and the third runway in November 2024 expanded capacity; the East Expansion and South Terminal aim for one of the world’s largest airports. Plus how it shares roles with Don Mueang",
 lead:["Bangkok has Suvarnabhumi, for international and long-haul flights, and Don Mueang, for low-cost and domestic services. Suvarnabhumi opened on 28 September 2006, handled 62.23 million passengers in 2024 and 62.90 million in 2025 (+1.1%) (Airports of Thailand).","The SAT-1 satellite terminal in 2023 and the third runway from 1 November 2024 raised capacity to 65 million a year and 94 movements an hour. This lesson covers the expansion plan and key points on operations and entry."],
@@ -107,7 +107,7 @@ voice:"Kuala Lumpur’s main terminal and low-cost terminal are far apart, so ad
 terms:[["Malaysia Airports Holdings Berhad (MAHB)","マレーシア空港","말레이시아공항공사"],["Aerotrain","エアロトレイン","에어로트레인"],["Malaysia Digital Arrival Card (MDAC)","マレーシア電子入国カード","말레이시아 전자 입국카드"],["Satellite Building","サテライト","새틀라이트(위성동)"],["Autogate","自動化ゲート","자동 출입국 게이트"]],
 quiz:[{q:"KLIA’s 2025 passengers and world rank?",opts:["40 million, 50th","63.3 million, 20th","80 million, 10th","100 million, 5th"],a:1,exp:"Up from 26th to 20th."},
 {q:"When did KLIA’s Aerotrain resume with new trains?",opts:["March 2023","November 2024","1 July 2025","2027"],a:2,exp:"After about two years out of service."},
-{q:"How far in advance can the MDAC be submitted?",opts:["Only on the day","From three days before","From a month before","Not required"],a:1,exp:"Earlier submissions are invalid."}],
+{q:"How far in advance can the MDAC be submitted?",opts:["Only on the day","From three days before","From a month before","Not required"],a:1,exp:"Submit within the permitted window (from three days before arrival, including the arrival day); check the latest Immigration Department guidance for exact day counting."}],
 next:"2-4 Delhi (DEL)"});
 set("2-4",{title:"Delhi Indira Gandhi (DEL): Four Runways, 100 Million Capacity and a Second Airport",hl:"Delhi",subtitle:"India’s busiest airport. The 2025 Terminal 1 expansion and Terminal 2 refurbishment lifted capacity to 105 million; in March 2026 Noida International opened as the region’s second airport",
 lead:["Delhi’s Indira Gandhi International Airport is India’s busiest and South Asia’s largest gateway. Expanded repeatedly since privatisation in 2006, it reached a capacity of 105 million a year in 2025 with the enlarged Terminal 1 (full operation from 15 April) and the refurbished Terminal 2 (reopened 26 October).","On 28 March 2026 Noida International Airport (Jewar) opened about 72 km to the southeast, giving the Delhi region two airports. This lesson covers Delhi’s layout, expansion plans and entry rules."],

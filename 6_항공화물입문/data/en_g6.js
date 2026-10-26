@@ -9,7 +9,7 @@ sections:[
 ["Airline","Checks KS and RA records and screens cargo whose record is broken before loading"]]},
 {t:"table",cols:["When","What happened"],rows:[
 ["October 2005","KS/RA system begins"],["December 2012","New KS/RA system (first for US-bound passenger flights)"],["April 2014","Extended to all international passenger flights"],["March 2025","Explosive screening widened"],["1 January 2026","X-ray screening becomes standard; MLIT issues separate guidance for cargo that is hard to screen"]]},
-{t:"note",x:"* The 2025–2026 tightening was confirmed through trade press and materials citing MLIT notices; check current national guidelines for detail. ★ KS status has a validity period (two years in internal material)."}]},
+{t:"note",x:"* The 2025–2026 tightening was confirmed through trade press and materials citing MLIT notices; check current national guidelines and notices for detail. ★ KS status has a validity period (two years in internal material)."}]},
 {h:"Korea’s Aviation Security Act",blocks:[{t:"fig",id:"cgo_ksra",cap:"Animated figure: Japan’s KS/RA and Korea’s known consignors compared in four rows: approved shipper, who screens, when the record breaks, and the legal basis."},
 {t:"table",cols:["Article","Content"],rows:[
 ["Art. 15(2)–(3)","Air carriers must screen cargo, directly or through a state-designated contractor"],

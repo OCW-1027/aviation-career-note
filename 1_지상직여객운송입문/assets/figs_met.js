@@ -102,9 +102,9 @@ met_layers:function(l){l=l||'ja';
  var s='';
  s+='<defs><linearGradient id="mlT" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9FD3F7"/><stop offset="1" stop-color="#5FA8E6"/></linearGradient><linearGradient id="mlS" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#3F7CC4"/><stop offset="1" stop-color="#2B4F8F"/></linearGradient><linearGradient id="mlM" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#26396B"/><stop offset="1" stop-color="#1B2447"/></linearGradient><linearGradient id="mlH" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#171C35"/><stop offset="1" stop-color="#0E1022"/></linearGradient></defs>';
  /* 層の帯 */
- s+=R(70,Y(12),380,Y(0)-Y(12),'url(#mlT)')+R(70,Y(50),380,Y(12)-Y(50),'url(#mlS)')+R(70,Y(85),380,Y(50)-Y(85),'url(#mlM)')+R(70,Y(100),380,Y(85)-Y(100),'url(#mlH)');
+ s+=R(70,Y(11),380,Y(0)-Y(11),'url(#mlT)')+R(70,Y(50),380,Y(11)-Y(50),'url(#mlS)')+R(70,Y(85),380,Y(50)-Y(85),'url(#mlM)')+R(70,Y(100),380,Y(85)-Y(100),'url(#mlH)');
  /* 境界の線と名前 */
- [[12,W[4],'#fff'],[50,W[5],'#fff'],[85,W[6],'#fff']].forEach(function(v){s+='<line x1="70" y1="'+Y(v[0])+'" x2="450" y2="'+Y(v[0])+'" stroke="#fff" stroke-width="2" stroke-dasharray="6 5" opacity=".8"/>'+tx(446,Y(v[0])-6,v[1],11,'#fff',700,'end')});
+ [[11,W[4],'#fff'],[50,W[5],'#fff'],[85,W[6],'#fff']].forEach(function(v){s+='<line x1="70" y1="'+Y(v[0])+'" x2="450" y2="'+Y(v[0])+'" stroke="#fff" stroke-width="2" stroke-dasharray="6 5" opacity=".8"/>'+tx(446,Y(v[0])-6,v[1],11,'#fff',700,'end')});
  s+=tx(86,Y(6)+6,W[3],20,'#0f3558',900,'start')+tx(86,Y(31)+6,W[2],20,'#fff',900,'start')+tx(86,Y(67)+6,W[1],20,'#fff',900,'start')+tx(86,Y(93)+6,W[0],18,'#fff',900,'start');
  /* 対流圏：雲・山・飛行機 */
  s+='<path d="M250 490 L300 '+Y(8.8)+' L318 '+(Y(8.8)+14)+' L335 '+(Y(8.8)+6)+' L380 490 Z" fill="#7C8A74"/><path d="M300 '+Y(8.8)+' L318 '+(Y(8.8)+14)+' L335 '+(Y(8.8)+6)+' L322 '+(Y(8.8)+32)+' L292 '+(Y(8.8)+26)+' Z" fill="#fff"/>';
@@ -125,7 +125,7 @@ met_layers:function(l){l=l||'ja';
  var sL=s;s='';
  s+=R(470,Y(100),410,Y(0)-Y(100),'#fff',8,' stroke="#D9E3EC"');
  [-80,-60,-40,-20,0,20].forEach(function(c){s+='<line x1="'+X(c)+'" y1="'+Y(100)+'" x2="'+X(c)+'" y2="'+Y(0)+'" stroke="#EEF2F6"/>'+tx(X(c),Y(0)+16,c+'℃',10,G,700)});
- [12,50,85].forEach(function(h){s+='<line x1="470" y1="'+Y(h)+'" x2="880" y2="'+Y(h)+'" stroke="#C9D6E3" stroke-dasharray="4 4"/>'});
+ [11,50,85].forEach(function(h){s+='<line x1="470" y1="'+Y(h)+'" x2="880" y2="'+Y(h)+'" stroke="#C9D6E3" stroke-dasharray="4 4"/>'});
  [[5,W[3]],[30,W[2]],[67,W[1]],[93,W[0]]].forEach(function(v){s+=tx(478,Y(v[0])+4,v[1],11,'#9AA7B4',800,'start')});
  var pts=[[0,15],[11,-56.5],[20,-56.5],[32,-44.5],[47,-2.5],[51,-2.5],[71,-58.5],[85,-86],[100,-55]];
  var d='M'+pts.map(function(p){return X(p[1]).toFixed(1)+' '+Y(p[0]).toFixed(1)}).join(' L');
@@ -535,7 +535,7 @@ met_cb_hazards:function(l){
 met_microburst:function(l){
  var W=({ja:{t:'マイクロバーストに入った着陸機',p:'予定の降下経路',a:'① 向かい風が増える：速度が増え、経路より上に浮く',b:'② 強い下降気流：押し下げられる',c:'③ 追い風に変わる：速度と揚力が減り、経路より下に沈む（最も危険）',sz:'直径 4km 未満・強い風は数分〜十数分',gd:'地面'},
   ko:{t:'마이크로버스트에 들어간 착륙기',p:'예정 강하 경로',a:'① 맞바람이 강해진다: 속도가 늘어 경로보다 위로 뜬다',b:'② 강한 하강기류: 아래로 밀린다',c:'③ 뒷바람으로 바뀐다: 속도와 양력이 줄어 경로보다 아래로 가라앉는다(가장 위험)',sz:'지름 4km 미만·강한 바람은 몇 분~십수 분',gd:'지면'},
-  en:{t:'A landing aircraft flying into a microburst',p:'Planned glide path',a:'① Headwind increases: airspeed rises, the aircraft floats above the path',b:'② Strong downdraft: the aircraft is pushed down',c:'③ The wind turns to a tailwind: airspeed and lift fall and it sinks below the path (the most dangerous point)',sz:'Less than 4 km across; strong winds last a few minutes to about a quarter of an hour',gd:'Ground'}})[l];
+  en:{t:'A landing aircraft flying into a microburst',p:'Planned glide path',a:'① Headwind increases: airspeed rises, the aircraft floats above the path',b:'② Strong downdraft: the aircraft is pushed down',c:'③ The wind turns to a tailwind: airspeed and lift fall and it sinks below the path (the most dangerous point)',sz:'Less than 4 km across; strong winds last a few to a dozen or so minutes',gd:'Ground'}})[l];
  if(!W)return F.met_microburst('ja');
  var nar=NARROW();K=nar?1.1:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" role="img">'+R(0,0,900,480,'#DCEEFB')+TTL(450,28,W.t,16,'#0f3558',860);

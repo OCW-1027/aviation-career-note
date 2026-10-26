@@ -71,7 +71,7 @@ sections:[
 ["Capacity","From 300,000 to 500,000 movements a year"],
 ["New terminal","A concept to merge T1–T3 into one terminal (2030s onward)"]]},
 {t:"note",x:"* Both runways were originally due to open at the end of March 2029, but this has been postponed. The B-runway extension is now targeted to open first, within FY2029; the C runway has no opening date because land acquisition is not complete (four-party council, July 2026). Check NAA’s latest announcements. ★"},
-{t:"point",x:"At Narita, time is the axis of every decision: operating hours, taxi time, BHS cut-offs. The habit of working backwards from the clock is what makes a Narita station strong."}]}],
+{t:"point",x:"At Narita, time management is central to decision-making: operating hours, taxi time, BHS cut-offs. The habit of working backwards from each cut-off time leads to stable station operations."}]}],
 voice:"At Narita, time to decide runs short as closing time nears. On days with expected delays, decide early what you will do if the flight cannot leave by a set time.",
 terms:[["Narita International Airport Corporation (NAA)","成田国際空港株式会社","나리타국제공항주식회사"],["Airport Capacity Expansion","機能強化","기능 강화"],["Auxiliary Power Unit (APU)","補助動力装置","보조동력장치"],["Baggage Handling System (BHS)","手荷物搬送設備","수하물 처리 설비"]],
 quiz:[{q:"What is Narita aiming to open first, within FY2029?",opts:["The Runway B extension","The new Runway C","A fourth terminal","An offshore runway"],a:0,exp:"The land for the Runway B extension is secured."},

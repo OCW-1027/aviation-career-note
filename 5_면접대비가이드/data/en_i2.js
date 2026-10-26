@@ -199,7 +199,7 @@ sections:[
 {name:"Entry",x:"You receive a residence card on entry and register your address."},
 {name:"If you are already in Japan",x:"You may need to apply to change your status. Confirm that the job matches the status. ★"}]}]},
 {h:"Worth doing before you join",blocks:[{t:"rows",items:[
-{name:"Background reading",x:"The company’s routes and aircraft, and airport basics (the Airport Ground Staff series)."},
+{name:"Background reading",x:"The company’s routes and aircraft, and airport basics (the Ground Staff series)."},
 {name:"Language",x:"Announcement phrases and how numbers are said (the phrasebook)."},
 {name:"Daily life",x:"Somewhere to live from which you can make early starts, and transport."},
 {name:"Documents",x:"The withholding slip from your previous employer, employment insurance papers, copies of your certificates."}]}]}],
@@ -231,7 +231,7 @@ sections:[
 {name:"The interview",x:"A one-minute self-introduction, answers that address the intent, safety then rules then passenger then report, and language you can actually use (2-1 to 2-5)."},
 {name:"Experienced hires and after the offer",x:"Present your experience in terms of how it applies in Japan, for management roles show how you built systems, and confirm status of residence and terms early (3-1 to 3-3)."}]}]}],
 voice:"People who turn out to be good hires are often those who ask straight away when unsure. Bringing your own questions to the interview is a good sign too.",
-terms:[["Hiring","採用","채용"],["Fit","相性","궁합"],["Training System","教育体制","교육 체계"],["Paid Leave","有給休暇","유급휴가"],["Career Path","キャリアパス","커리어 경로"]],
+terms:[["Hiring","採用","채용"],["Fit","相性","적합성"],["Training System","教育体制","교육 체계"],["Paid Leave","有給休暇","유급휴가"],["Career Path","キャリアパス","커리어 경로"]],
 quiz:[{q:"What does hiring for a small station tend to overlook?",opts:["The reality of the early commute","The company logo","The weather","Revenue"],a:0,exp:"Check that the first train gets them in."},
 {q:"What is an interview for the candidate?",opts:["Only a place to be chosen","Also a place to choose the company","A place where you cannot ask anything","A formality"],a:1,exp:"Find out whether you could stay for the long term."},
 {q:"What is worth checking about a company?",opts:["Training and career paths","The president’s age","The office rent","The other candidates"],a:0,exp:"Rostering and atmosphere too."}],

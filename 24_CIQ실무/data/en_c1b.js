@@ -42,7 +42,7 @@ sections:[
 ["Passport","Validity, and the remaining period required by the destination"],
 ["Crew identification","Company ID, crew member certificate"],
 ["General Declaration (GD)","The flight, the aircraft, the crew list and a health declaration. The basic document for every international flight"],
-["Crew list","In some countries sent before departure as the crew part of advance passenger information (0-4)"],
+["Crew list","Some countries require it to be sent to the authorities before departure as the crew part of advance passenger information (API, 0-4)"],
 ["Visa","Some countries require visas for crew too. The United States requires a crew visa ★"]]}]},
 {h:"Japan and Korea",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
 ["Permission to land","Crew landing permission (up to 15 days)","Crew landing permission (up to 15 days)"],

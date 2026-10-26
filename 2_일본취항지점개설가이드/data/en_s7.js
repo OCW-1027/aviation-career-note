@@ -85,7 +85,7 @@ sections:[
 ["June to July","Base remuneration report, annual labour insurance renewal, withholding tax"],
 ["August to September","Winter seasonal filing"],
 ["October to December","Joint security training, next year’s budget, year-end tax adjustment"],
-["Once a year","Security self-audit, the authorities’ audits, the committee’s annual fee"]]},
+["Once a year","Security self-audit, the authorities’ audits, the AOC (Airline Operators Committee) annual fee"]]},
 {t:"note",x:"* An example based on Japanese requirements and several airlines’ practice. Confirm the dates each year. ★"}]},
 {h:"Making it stick",blocks:[{t:"rows",items:[
 {name:"Record the first year",x:"For every procedure, keep when, what, to whom and with which documents, in a folder. Next year it becomes the template."},
