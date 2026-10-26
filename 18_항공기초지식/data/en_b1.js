@@ -24,7 +24,7 @@ sections:[
 ["FM (from)","A rapid, complete change from that time","Read everything after FM as a new forecast; nothing carries over"],
 ["BECMG (becoming)","A gradual change during the period","After the period, the new conditions persist"],
 ["TEMPO (temporary)","Temporary fluctuations, each under an hour and together under half the period","The base forecast still applies; this is the line most often missed"],
-["PROB30 / PROB40","A 30% or 40% chance","Check the issuing authority’s current rules for PROB groups and their timing; current NWS TAFs use PROB30. Often combined with TEMPO"]]},
+["PROB30 / PROB40","A 30% or 40% chance","Follow the issuing authority’s current rules for PROB groups and their timing. NWS uses PROB30 only and does not combine it with TEMPO as a single change group. Check other authorities’ rules for combined PROB and TEMPO groups"]]},
 {t:"point",warn:true,x:"The base forecast may look fine, but if a TEMPO line shows thunderstorms or heavy snow, work may stop or run late in that window. Always read a TAF to the last line."}]},
 {h:"Common codes",blocks:[{t:"table",cols:["Code","Meaning","Code","Meaning"],rows:[
 ["RA, SHRA","Rain, rain showers","TS, TSRA","Thunder, thunderstorm with rain"],

@@ -80,13 +80,13 @@ quiz:[{q:"Who produces specialist documents such as the operations and maintenan
 next:"0-3 The map of aviation administration in Japan"});
 
 set("0-3",{title:"The Map of Aviation Administration in Japan",hl:"the map",subtitle:"Knowing which filing goes where saves you from guessing later",
-lead:["The Japanese bodies a foreign airline deals with run from the Civil Aviation Bureau at the ministry, through the regional bureaux and airport offices, the flight information officers (FAIB), the international slot coordinator, the airport companies, and CIQ — customs, immigration and quarantine.",
+lead:["The Japanese bodies a foreign airline deals with run from the Civil Aviation Bureau at the ministry, through the regional bureaux and airport offices, the Flight and Airport Information BASE (FAIB), the international slot coordinator, the airport companies, and CIQ — customs, immigration and quarantine.",
 "This article lays out who handles what, and how a foreign airline comes into contact with each. Organisations and responsibilities are reorganised from time to time, so check the current structure. ★"],
 sections:[
 {h:"The main bodies",blocks:[{t:"fig",id:"opn_admin",cap:"Animated figure: which part of Japan’s aviation administration handles what (example)."},{t:"table",cols:["Body","Main dealings with foreign airlines"],rows:[
 ["Civil Aviation Bureau, International Air Transport Division","The foreign air carrier operating licence, approval and notification of the business (schedule) plan, fare approvals"],
 ["Civil Aviation Bureau, Safety Department","Operational safety (equipment-related approvals), aviation security (programme and training), dangerous goods, safety oversight"],
-["Flight information officers (FAIB)","Filing the schedule at Haneda, Narita and elsewhere, monthly and daily slot coordination, delay reporting"],
+["Flight and Airport Information BASE (FAIB)","Filing the schedule at Haneda, Narita and elsewhere, monthly and daily slot coordination, delay reporting"],
 ["Japan Schedule Coordination (JSC)","Coordinating international slots at congested airports before each season"],
 ["Regional bureaux and airport offices","Operational procedures at the airport and local oversight"],
 ["Airport companies (Narita, Kansai and others)","Use of facilities, airport charges, ID passes, incentive schemes, the airline operators committee (AOC)"],
@@ -106,9 +106,9 @@ sections:[
 {name:"Contact list",x:"Prepare an emergency contact table for weekdays, nights and holidays and file it with the authorities; it also forms an attachment to the business plan."},
 {name:"Read the local practice",x:"Keep the bureau’s notices — filing standards for schedules, how “unavoidable circumstances” such as weather are interpreted — organised by year."}]}]}],
 voice:"Even similar filings go to different places depending on the procedure: the transport ministry, the regional civil aviation bureau or the airport company. List the recipient and contact for each procedure, and you will not get lost the second time.",
-terms:[["Japan Civil Aviation Bureau (JCAB)","国土交通省航空局","국토교통성 항공국"],["International Air Transport Division","国際航空課","국제항공과"],["FAIB","航空管制運航情報官","항공관제운항정보관"],["Japan Schedule Coordination (JSC)","国際線発着調整事務局","국제선 발착조정사무국"],["Airport Office (CAB)","空港事務所","공항사무소"],["Traffic Rights","運輸権","운수권"]],
+terms:[["Japan Civil Aviation Bureau (JCAB)","国土交通省航空局","국토교통성 항공국"],["International Air Transport Division","国際航空課","국제항공과"],["Flight and Airport Information BASE (FAIB)","運航拠点（FAIB）","운항 거점(FAIB)"],["Japan Schedule Coordination (JSC)","国際線発着調整事務局","국제선 발착조정사무국"],["Airport Office (CAB)","空港事務所","공항사무소"],["Traffic Rights","運輸権","운수권"]],
 quiz:[{q:"Who approves a foreign airline’s fares?",opts:["The airport company","The International Air Transport Division","Customs","Quarantine"],a:1,exp:"The International Air Transport Division of the Civil Aviation Bureau."},
-{q:"Where is the schedule filed at Haneda and Narita?",opts:["FAIB, the flight information officers","A travel agency","An airport shop","The public health centre"],a:0,exp:"Monthly and daily coordination goes to FAIB."},
+{q:"Where is the schedule filed at Haneda and Narita?",opts:["FAIB (Flight and Airport Information BASE)","A travel agency","An airport shop","The public health centre"],a:0,exp:"Monthly and daily coordination goes to FAIB."},
 {q:"Which is the bureau’s online filing system?",opts:["NACCS","J-MAT","GDS","BSP"],a:1,exp:"Used for the business plan, aircraft and traffic reports."}],
 next:"1-1 The foreign air carrier operating licence"});
 })(window.ARTS);
