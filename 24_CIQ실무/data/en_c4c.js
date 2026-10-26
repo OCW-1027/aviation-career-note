@@ -1,6 +1,6 @@
 /* CIQの役割 — English version (Part 4: China, Taiwan and Hong Kong; South-East Asia and the Middle East; lessons 4-7 and 4-8) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("4-7",{title:"China, Taiwan and Hong Kong: The Closer the Destination, the Greater the Need to Avoid Missed Checks Caused by Assumptions",hl:"China, Taiwan and Hong Kong",subtitle:"Taiwan imposes an administrative fine of TWD 200,000 for pork products, and heated tobacco cannot be brought in either",
+set("4-7",{title:"China, Taiwan and Hong Kong: Avoiding Assumptions About Nearby Destinations",hl:"China, Taiwan and Hong Kong",subtitle:"Taiwan imposes an administrative fine of TWD 200,000 for pork products, and heated tobacco cannot be brought in either",
 lead:["These are relatively close to Japan and Korea, but their immigration, customs and quarantine systems differ greatly. Mainland China, Taiwan, Hong Kong and Macao each have their own immigration control and customs.","Taiwan in particular has some of the strictest rules in Asia on meat products and on e-cigarettes and heated tobacco. Things passengers from Japan use every day can be restricted there."],
 sections:[
 {h:"Mainland China",blocks:[{t:"fig",id:"ciq_cn",cap:"Figure: mainland China, Taiwan and Hong Kong."},{t:"table",cols:["","Details"],rows:[

@@ -66,7 +66,7 @@ sections:[
 {h:"The thinking",blocks:[{t:"fig",id:"cgo_sec",cap:"Animated figure: top, an unbroken secure chain from a known consignor to loading (the cargo moves straight through); bottom, a broken chain where the cargo is screened at the terminal before moving on."},
 {t:"p",x:"If the cargo stays secure from shipper to loading without a break, screening at the airport can be reduced or omitted. Where the chain breaks, as with cargo from an unapproved shipper, it is screened at the airport or elsewhere."}]},
 {h:"The scheme in Japan",blocks:[{t:"rows",items:[
-{name:"Known consignors and regulated agents",x:"Under the national standards, approved shippers and approved transport companies keep the cargo secure. ★"},
+{name:"Known shippers (KS) and regulated agents (RA)",x:"Under the national standards, approved shippers and approved transport companies keep the cargo secure. ★"},
 {name:"Other countries",x:"Destinations such as the EU and the United States may apply their own security requirements."},
 {name:"Screening methods",x:"X-ray, explosive trace detection and others, depending on the type of cargo."}]},
 {t:"note",x:"* Scheme names and requirements may change. Check current official guidance. ★"}]},
@@ -76,7 +76,7 @@ sections:[
 {name:"Access control",x:"Keep unauthorised people out of the secure area."},
 {name:"Records",x:"Who handled which cargo, and when."}]}]}],
 voice:"Cargo security screening often brings acceptance cut-off forward. Telling shippers and agents the new cut-off in advance reduces confusion on the floor.",
-terms:[["Known Consignor","特定荷主","특정 화주"],["Regulated Agent","特定航空貨物利用運送事業者","규제 대리인"],["Secure Supply Chain","保安の連鎖","보안 사슬"],["Tamper Evidence","改ざん防止","변조 방지"]],
+terms:[["Known Shipper (KS)","特定荷主","특정 화주"],["Regulated Agent","特定航空貨物利用運送事業者","규제 대리인"],["Secure Supply Chain","保安の連鎖","보안 사슬"],["Tamper Evidence","改ざん防止","변조 방지"]],
 quiz:[{q:"What happens when the security chain is broken?",opts:["It is loaded anyway","It is screened at the airport or elsewhere","Return only","Storage only"],a:1,exp:"An unbroken chain lets screening be reduced or omitted."},
 {q:"What do you check on the floor?",opts:["The security status and the seals","The colour of the cargo","The shipper’s hobbies","The weather"],a:0,exp:"Tamper evidence matters too."},
 {q:"What may the destination country require?",opts:["Its own security requirements","Particular music","Particular meals","Nothing"],a:0,exp:"The EU and the United States are examples."}],

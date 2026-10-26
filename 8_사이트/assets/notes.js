@@ -77,7 +77,7 @@ function render(){var c=/^ja/.test(L())?String.fromCharCode(65306):String.fromCh
  pn.innerHTML='<div class="snb-hd"><div><b>'+E(m[2].toUpperCase()+' '+m[3])+' · '+E(t.ttl)+'</b><h3>'+E(title())+'</h3></div><button type="button" class="snb-x" id="snb-x">'+E(t.close)+'</button></div>'+
  '<div class="snb-bd"><div class="snb-lb">'+E(t.rate)+'</div><div class="snb-rt">'+[1,2,3].map(function(i){return '<button type="button" data-r="'+i+'" class="'+(r&&r.r===i?'on'+i:'')+'">'+E(t.r[i-1])+'</button>'}).join('')+'</div>'+
  '<div class="snb-nx">'+(r?E(t.next)+c+'<b>'+E(r.n)+'</b>':E(t.none))+'</div>'+
- '<div class="snb-lb">'+E(t.bm)+'</div><div class="snb-row"><button type="button" class="snb-bm'+(b?' on':'')+'" id="snb-bm">★ '+E(b?t.bmOn:t.bm)+'</button><span class="snb-nx" style="margin:0">'+E(t.time)+'：<b id="snb-tm"></b></span></div>'+
+ '<div class="snb-lb">'+E(t.bm)+'</div><div class="snb-row"><button type="button" class="snb-bm'+(b?' on':'')+'" id="snb-bm">★ '+E(b?t.bmOn:t.bm)+'</button><span class="snb-nx" style="margin:0">'+E(t.time)+c+'<b id="snb-tm"></b></span></div>'+
  '<div class="snb-lb">'+E(t.memo)+'</div><div class="snb-tl"><button type="button" class="snb-q" id="snb-q">❝ '+E(t.quote)+'</button><span id="snb-st"></span></div>'+
  '<textarea id="snb-tx" placeholder="'+E(t.ph)+'">'+E(n.t)+'</textarea><div class="snb-tl"><span id="snb-cc"></span><span></span></div></div>'+
  '<div class="snb-ft"><a href="'+STUDY+'?lang='+L()+'">'+E(t.all)+'</a><div>'+E(t.dev)+'</div></div>';

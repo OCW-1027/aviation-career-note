@@ -93,7 +93,7 @@ sections:[
 ["2026","Plans for 24-hour Aerotrain operation and reliability improvements (Ministry of Transport)"]]},
 {t:"note",x:"* Faults and incidents such as passengers forcing doors were reported after the restart, and an improvement plan is under way. ★"}]},
 {h:"Entry and transfers",blocks:[{t:"table",cols:["Item","Details"],rows:[
-["MDAC (Malaysia Digital Arrival Card)","Foreigners submit the free electronic arrival card within three days before arrival (Immigration Department of Malaysia); some airlines check the QR code at check-in"],
+["MDAC (Malaysia Digital Arrival Card)","Foreigners submit the free electronic arrival card when arriving within three days including the submission date—for example, from 24 October for arrival on 26 October (Immigration Department of Malaysia); some airlines check the QR code at check-in"],
 ["Autogates","Japanese, Korean, Singaporean and other passports are eligible (first-time users register at a staffed counter)"],
 ["International to international","Airside connections within the same terminal; between T1 and T2 by shuttle bus or rail, which may require entry ★"]]}]},
 {h:"Operations and handling",blocks:[{t:"check",items:[
@@ -107,10 +107,10 @@ voice:"Kuala Lumpur’s main terminal and low-cost terminal are far apart, so ad
 terms:[["Malaysia Airports Holdings Berhad (MAHB)","マレーシア空港","말레이시아공항공사"],["Aerotrain","エアロトレイン","에어로트레인"],["Malaysia Digital Arrival Card (MDAC)","マレーシア電子入国カード","말레이시아 전자 입국카드"],["Satellite Building","サテライト","새틀라이트(위성동)"],["Autogate","自動化ゲート","자동 출입국 게이트"]],
 quiz:[{q:"KLIA’s 2025 passengers and world rank?",opts:["40 million, 50th","63.3 million, 20th","80 million, 10th","100 million, 5th"],a:1,exp:"Up from 26th to 20th."},
 {q:"When did KLIA’s Aerotrain resume with new trains?",opts:["March 2023","November 2024","1 July 2025","2027"],a:2,exp:"After about two years out of service."},
-{q:"How far in advance can the MDAC be submitted?",opts:["Only on the day","From three days before","From a month before","Not required"],a:1,exp:"Submit within the permitted window (from three days before arrival, including the arrival day); check the latest Immigration Department guidance for exact day counting."}],
+{q:"When can the MDAC be submitted?",opts:["Only on the day","From two days before arrival (within three days including submission)","From a month before","Not required"],a:1,exp:"Arrival must be within three days including the submission date—for example, submit from 24 October for arrival on 26 October; check the latest Immigration Department guidance for exact day counting."}],
 next:"2-4 Delhi (DEL)"});
 set("2-4",{title:"Delhi Indira Gandhi (DEL): Four Runways, 100 Million Capacity and a Second Airport",hl:"Delhi",subtitle:"India’s busiest airport. The 2025 Terminal 1 expansion and Terminal 2 refurbishment lifted capacity to 105 million; in March 2026 Noida International opened as the region’s second airport",
-lead:["Delhi’s Indira Gandhi International Airport is India’s busiest and South Asia’s largest gateway. Expanded repeatedly since privatisation in 2006, it reached a capacity of 105 million a year in 2025 with the enlarged Terminal 1 (full operation from 15 April) and the refurbished Terminal 2 (reopened 26 October).","On 28 March 2026 Noida International Airport (Jewar) opened about 72 km to the southeast, giving the Delhi region two airports. This lesson covers Delhi’s layout, expansion plans and entry rules."],
+lead:["Delhi’s Indira Gandhi International Airport is India’s busiest and South Asia’s largest gateway. Expanded repeatedly since privatisation in 2006, it reached a capacity of 105 million a year in 2025 with the enlarged Terminal 1 (full operation from 15 April) and the refurbished Terminal 2 (reopened 26 October).","On 28 March 2026 Noida International Airport at Jewar, southeast of Delhi, opened, giving the Delhi region two airports. This lesson covers Delhi’s layout, expansion plans and entry rules."],
 sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"wld_del",cap:"Figure: Delhi at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: DEL / ICAO: VIDP"],
@@ -129,9 +129,9 @@ sections:[
 {t:"table",cols:["Noida International Airport (Jewar)","Details"],rows:[
 ["Opened","28 March 2026 (Phase 1: 12 million a year, one runway)"],
 ["Operator","A subsidiary of Zurich Airport (40-year concession)"],
-["Location","About 72 km southeast of Delhi, in Uttar Pradesh"],
+["Location","Jewar, southeast of Delhi, in Uttar Pradesh"],
 ["Future","Phased growth to 70 million a year; international services during 2026"]]},
-{t:"point",x:"Delhi’s two airports are 72 km apart and will serve different catchments for now (central Delhi and Gurgaon via Indira Gandhi; the Jewar area of Uttar Pradesh via Noida). Always confirm the airport when advising passengers."}]},
+{t:"point",x:"Delhi’s two airports will serve different catchments for now (central Delhi and Gurgaon via Indira Gandhi; the Jewar area of Uttar Pradesh via Noida). Always confirm the airport when advising passengers."}]},
 {h:"Entry and transfers",blocks:[{t:"table",cols:["Item","Details"],rows:[
 ["Visas","Korean and Japanese passports are eligible for e-Visas or visas on arrival; applying online in advance is the norm ★"],
 ["Electronic arrival card","From 1 October 2025 foreigners must submit an e-Arrival Card, available from 72 hours before arrival ★"],

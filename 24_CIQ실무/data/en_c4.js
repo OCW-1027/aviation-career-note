@@ -75,7 +75,7 @@ sections:[
 ["Alcohol","One litre, aged 21 or over"],
 ["Tobacco","200 cigarettes and 100 cigars"],
 ["State rules","Individual states have their own rules on bringing in alcohol"]]},
-{t:"note",x:"* The USD 800 for US residents applies after at least 48 hours abroad (once every 30 days). Visitors’ USD 100 gift exemption applies to stays of at least 72 hours and cannot include alcohol. Check the US customs website before relying on these figures."}]},
+{t:"note",x:"* The USD 800 for US residents generally applies after at least 48 hours abroad, provided the exemption has not been used within the preceding 30 days (the 48-hour condition has exceptions depending on the country and type of trip). Visitors’ USD 100 gift exemption applies to stays of at least 72 hours and cannot include alcohol. Check the US customs website before relying on these figures."}]},
 {h:"Declaring cash and the like",blocks:[{t:"rows",items:[
 {name:"Over USD 10,000",x:"When cash, cheques and the like total more than USD 10,000, they must be declared, both on entering and on leaving."},
 {name:"The total for people travelling together",x:"Cash carried jointly by a family or group is added together to decide whether it exceeds USD 10,000. ★"},

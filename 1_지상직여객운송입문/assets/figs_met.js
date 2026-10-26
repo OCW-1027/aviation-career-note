@@ -654,9 +654,9 @@ met_ty_track:function(l){
 
 /* 20 台風の強さと大きさのものさし（気象庁） */
 met_ty_scale:function(l){
- var W=({ja:{t1:'強さ（最大風速）',t2:'大きさ（風速15m/s以上の範囲の半径）',s:['強い','非常に強い','猛烈な'],v:['33m/s以上（64kt）','44m/s以上（85kt）','54m/s以上（105kt）'],z:['大型','超大型'],r:['500km以上','800km以上'],n:'台風：最大風速 約17m/s（34kt）以上',jp:'日本列島の長さ（約2,000km）'},
-  ko:{t1:'세기(최대풍속)',t2:'크기(풍속 15m/s 이상 범위의 반경)',s:['강한','매우 강한','맹렬한'],v:['33m/s 이상(64kt)','44m/s 이상(85kt)','54m/s 이상(105kt)'],z:['대형','초대형'],r:['500km 이상','800km 이상'],n:'태풍: 최대풍속 약 17m/s(34kt) 이상',jp:'일본 열도 길이(약 2,000km)'},
-  en:{t1:'Intensity (maximum wind)',t2:'Size (radius of winds of 15 m/s or more)',s:['Strong','Very strong','Violent'],v:['33 m/s or more (64 kt)','44 m/s or more (85 kt)','54 m/s or more (105 kt)'],z:['Large','Very large'],r:['500 km or more','800 km or more'],n:'Typhoon: maximum wind about 17 m/s (34 kt) or more',jp:'Length of Japan (about 2,000 km)'}})[l];
+ var W=({ja:{t1:'強さ（最大風速）',t2:'大きさ（風速15m/s以上の範囲の半径）',s:['強い','非常に強い','猛烈な'],v:['33m/s以上（64kt）','44m/s以上（85kt）','54m/s以上（105kt）'],z:['大型','超大型'],r:['500km以上','800km以上'],n:'台風：最大風速 約17m/s（34kt）以上',jp:'日本の南北の長さ（約3,000km）'},
+  ko:{t1:'세기(최대풍속)',t2:'크기(풍속 15m/s 이상 범위의 반경)',s:['강한','매우 강한','맹렬한'],v:['33m/s 이상(64kt)','44m/s 이상(85kt)','54m/s 이상(105kt)'],z:['대형','초대형'],r:['500km 이상','800km 이상'],n:'태풍: 최대풍속 약 17m/s(34kt) 이상',jp:'일본의 남북 길이(약 3,000km)'},
+  en:{t1:'Intensity (maximum wind)',t2:'Size (radius of winds of 15 m/s or more)',s:['Strong','Very strong','Violent'],v:['33 m/s or more (64 kt)','44 m/s or more (85 kt)','54 m/s or more (105 kt)'],z:['Large','Very large'],r:['500 km or more','800 km or more'],n:'Typhoon: maximum wind about 17 m/s (34 kt) or more',jp:'North–south extent of Japan (about 3,000 km)'}})[l];
  if(!W)return F.met_ty_scale('ja');
  var nar=NARROW();K=nar?1.25:1;
  var a=R(0,0,420,330,'#fff',16,' stroke="#D9E3EC"')+tx(210,32,W.t1,15,D,900);
@@ -666,7 +666,7 @@ met_ty_scale:function(l){
  var b=R(0,0,420,330,'#fff',16,' stroke="#D9E3EC"')+tx(210,32,W.t2,14,D,900);
  b+='<circle cx="140" cy="190" r="0" fill="#2F8FE0" opacity=".3"><animate attributeName="r" values="0;62;62" keyTimes="0;.4;1" dur="4s" repeatCount="indefinite"/></circle><circle cx="300" cy="190" r="0" fill="#2F6FD6" opacity=".3"><animate attributeName="r" values="0;100;100" keyTimes="0;.4;1" dur="4s" begin=".3s" repeatCount="indefinite"/></circle>';
  b+=tx(140,186,W.z[0],15,'#1d4d8a',900)+tx(140,206,W.r[0],11,'#1d4d8a',800)+tx(300,186,W.z[1],15,'#0f3558',900)+tx(300,206,W.r[1],11,'#0f3558',800);
- b+='<line x1="86" y1="306" x2="334" y2="306" stroke="#6B7785" stroke-width="3"/><line x1="86" y1="300" x2="86" y2="312" stroke="#6B7785" stroke-width="3"/><line x1="334" y1="300" x2="334" y2="312" stroke="#6B7785" stroke-width="3"/>'+tx(210,298,W.jp,10.5,G,800);
+ b+='<line x1="24" y1="306" x2="396" y2="306" stroke="#6B7785" stroke-width="3"/><line x1="24" y1="300" x2="24" y2="312" stroke="#6B7785" stroke-width="3"/><line x1="396" y1="300" x2="396" y2="312" stroke="#6B7785" stroke-width="3"/>'+tx(210,298,W.jp,10.5,G,800);
  var s;
  if(nar)s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 690" role="img">'+R(0,0,440,690,'#F7FAFD')+'<g transform="translate(10 10)">'+a+'</g><g transform="translate(10 350)">'+b+'</g>';
  else s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 350" role="img">'+R(0,0,880,350,'#F7FAFD')+'<g transform="translate(10 10)">'+a+'</g><g transform="translate(450 10)">'+b+'</g>';

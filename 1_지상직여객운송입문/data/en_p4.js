@@ -130,7 +130,7 @@ sections:[
 voice:"Recording exactly when and where an item was found is the key to reuniting it with its owner. Organise the records so enquiries can be matched straight away.",
 terms:[["Lost & Found","忘れ物・落とし物（遺失物）","유실물"],["Found Property","拾得物","습득물"],["Lost Property Act","遺失物法","유실물법"],["Receipt Record","受領記録","수령 기록"],["ID Verification","本人確認","본인 확인"],["Cash on Delivery","着払い","착불"]],
 quiz:[{q:"How should lost property containing cash be handled?",opts:["Count it alone","Check with two people, record the amount and seal it","Just take it to the police","Do not note the amount"],a:1,exp:"Checking with two people prevents later disputes."},
-{q:"What is correct for a found phone?",opts:["Look through it to find the owner","Respect privacy and do not look inside","Dispose of it immediately","Hand it to anyone"],a:1,exp:"Personal data must be respected."},
+{q:"What is correct for a found phone?",opts:["Look through it to find the owner","Respect privacy and do not look inside","Dispose of it immediately","Hand it to anyone"],a:1,exp:"Respect personal data and follow the handling procedures of the company or facility."},
 {q:"What is needed when returning lost property?",opts:["Nothing","Identity verification and the required record of receipt","A fee","A photograph"],a:1,exp:"It records that the item went back to the right person."}],
 next:"Part 5 Irregular Operations — 5-1 Inadmissible passengers (INAD)"});
 })(window.ARTS);

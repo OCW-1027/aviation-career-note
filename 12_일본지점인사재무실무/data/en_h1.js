@@ -136,7 +136,7 @@ deep:[
 {name:"On joining",x:"Set from the contracted salary, allowances and expected overtime. File the enrolment notice within five days of joining."},
 {name:"Each year (the annual determination)",x:"Set from the average pay for April to June; the base remuneration report is filed between 1 and 10 July. It applies from September’s premiums, which are deducted from October’s pay."},
 {name:"When pay changes a lot (occasional revision)",x:"If fixed pay changes (a raise, a cut, a new allowance) and the average of the three months from the change differs by two grades or more, the amount is revised from the fourth month. File a change notice."},
-{name:"What counts as remuneration",x:"Base pay, overtime, commuting and housing allowances count. Expense reimbursements, one-off gifts and bonuses paid three times a year or less do not. Bonuses paid four or more times a year count as remuneration."}]},
+{name:"Note: what counts as remuneration",x:"Base pay, overtime, commuting and housing allowances count. Expense reimbursements, one-off gifts and bonuses paid three times a year or less do not. Bonuses paid four or more times a year count as remuneration."}]},
 {t:"point",x:"If commuting allowances are paid six months at a time, convert them to a monthly amount. Workplaces with heavy overtime in April to June tend to move up a grade, which affects a whole year of premiums."}]},
 {h:"Premiums on bonuses",blocks:[
 {t:"p",x:"Social insurance is also deducted from bonuses: the same rates apply to the “standard bonus amount”, the bonus rounded down to the nearest 1,000 yen. File a bonus payment notice within five days."},

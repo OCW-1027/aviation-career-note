@@ -134,7 +134,7 @@ quiz:[{q:"What mainly causes winter delays at New Chitose?",opts:["Snow clearanc
 next:"3-3 Naha Airport (OKA)"});
 
 set("3-3",{title:"Naha Airport (OKA)",hl:"Naha",subtitle:"Okinawa’s gateway, shared with the Self-Defense Force: a second runway and typhoon preparedness",
-lead:["Naha is Okinawa’s air gateway, serving tourists, connections to the outlying islands and international routes to Asia. It shares its runways with the Japan Air Self-Defense Force, and routes used by US military aircraft run through the surrounding airspace — circumstances not found at other airports.","This lesson covers Naha’s basics, what a joint-use airport demands, and typhoon preparedness."],
+lead:["Naha is Okinawa’s air gateway, serving tourists, connections to the outlying islands and international routes to Asia. It shares its runways with the Japan Air Self-Defense Force, and routes used by US military aircraft run through the surrounding airspace, which can mean take-off queues and limits on how the runways are used.","This lesson covers Naha’s basics, what a joint-use airport demands, and typhoon preparedness."],
 sections:[
 {h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_oka",cap:"Figure: Naha at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","The state (transport ministry); terminals are run by a building company"],

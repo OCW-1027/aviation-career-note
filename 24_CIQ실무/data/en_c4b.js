@@ -1,6 +1,6 @@
 /* CIQの役割 — English version (Part 4: Canada, Europe and the UK, Australia and New Zealand; lessons 4-4 to 4-6) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("4-4",{title:"Canada: Declare All Food, Plants and Animals",hl:"Canada",subtitle:"The same idea as the United States: no penalty if you declare, up to CAD 1,300 if you do not",
+set("4-4",{title:"Canada: Declare All Food, Plants and Animals",hl:"Canada",subtitle:"The same idea as the United States: a penalty of up to CAD 1,300 if you do not declare",
 lead:["Canada shares a border with the United States and its rules follow much the same approach. Anything to do with food, plants or animals is declared, and the officer decides whether it may come in.","Travellers arriving by air need an electronic travel authorisation (eTA), even if they need no visa."],
 sections:[
 {h:"Entry",blocks:[{t:"fig",id:"ciq_ca",cap:"Figure: Canada: food, plants and animals to declare."},{t:"rows",items:[
@@ -11,7 +11,7 @@ sections:[
 {h:"Declare all food, plants and animals",blocks:[{t:"table",cols:["","Details"],rows:[
 ["What to declare","Meat (raw or cooked), milk, butter and cheese, eggs, fish, fruit, vegetables, seeds, nuts, wooden products, soil"],
 ["If not declared","The items may be confiscated. The traveller is liable to a penalty of up to CAD 1,300, or prosecution. The traveller may also be charged the cost of disposal"],
-["If declared","No penalty, even if the items turn out not to be allowed"],
+["If declared","Declaration does not guarantee admission; prohibited or non-compliant imports may still be seized or subject to enforcement"],
 ["How items are found","Detector dogs sniff out food in the baggage reclaim area"]]}]},
 {h:"Easily missed",blocks:[{t:"rows",items:[
 {name:"Processed foods, canned goods, home-made food",x:"They must be declared even though they are processed."},
@@ -23,12 +23,12 @@ sections:[
 {name:"Cash",x:"Cash and the like of CAD 10,000 or more must be declared, both on entering and on leaving."},
 {name:"Cannabis",x:"Even though it is permitted within Canada, taking it across the border in either direction is illegal."},
 {name:"What to say at the counter",x:"As with the United States: “Please declare all food.”"}]},
-{t:"point",x:"In Canada too, the main reason for a penalty is not having the item but failing to declare it."}]}],
+{t:"point",x:"In Canada too, declare all food, plant and animal products. Declaration does not guarantee admission; prohibited or non-compliant imports may still be seized or subject to enforcement."}]}],
 voice:{h:"A Reported Case",x:"A traveller arriving at Toronto Pearson Airport answered “yes” at the self-service kiosk to the question about food including meat, but “no” to the question about other meat and animal products. Meat was found at secondary inspection and she was given a CAD 1,300 penalty, which the Federal Court of Appeal upheld in September 2024: her answers were inconsistent and she did not mention the meat until an officer asked (Sources: Federal Court of Appeal of Canada; Canadian Lawyer). A declaration has to be complete and accurate the first time the question is asked."},
 terms:[["Canada Border Services Agency (CBSA)","カナダ国境サービス庁","캐나다 국경서비스청"],["Canadian Food Inspection Agency (CFIA)","カナダ食品検査庁","캐나다 식품검사청"],["Administrative Monetary Penalty","過料","과태료"],["Advance Declaration","事前申告","사전 신고"]],
 quiz:[{q:"What is the maximum penalty in Canada for not declaring food?",opts:["CAD 1,300","CAD 130","CAD 13","There is none"],a:0,exp:"Prosecution is also possible."},
 {q:"What must be declared in Canada?",opts:["Everything to do with food, plants and animals","Only meat","Only fruit","Nothing"],a:0,exp:"Dairy products, wooden items and soil are included."},
-{q:"A declared item turns out not to be allowed. What happens?",opts:["No penalty","A penalty is paid","Entry is refused","Arrest"],a:0,exp:"The offence is failing to declare."}],
+{q:"A declared item turns out not to be allowed. What happens?",opts:["It may be seized or subject to enforcement, depending on the breach","It can always be brought in because it was declared","Declaring means no action of any kind","Declaring again allows it in"],a:0,exp:"Declaration does not guarantee admission."}],
 next:"4-5 Europe and the United Kingdom"});
 set("4-5",{title:"Europe and the United Kingdom: Schengen, EES, and Meat and Dairy",hl:"Europe and the UK",subtitle:"In the Schengen Area you generally clear immigration at the first point of entry. The UK has a separate border system, and its rules tightened in 2025",
 lead:["In Europe’s Schengen Area there is, as a rule, only one border check even when travelling through several countries. You clear immigration at the first Schengen country you arrive in and then, as a rule, travel on without internal border checks.","The United Kingdom is in neither Schengen nor the EU. Its immigration control and its food rules are separate, and since April 2025 meat and dairy products can no longer be taken from Europe into Britain."],

@@ -100,7 +100,7 @@ sections:[
 {h:"Liability limits",blocks:[{t:"fig",id:"cgo_liab",cap:"Animated figure: bars show the main steps in the per-kg liability limit (17, 22 and 26 SDR), with a worked example for 100 kg."},
 {t:"table",cols:["Period","Limit for destruction, loss, damage or delay (per kg)"],rows:[
 ["Original (in force 2003)","17 SDR"],["From 28 December 2019","22 SDR"],["From 28 December 2024","26 SDR (1 SDR ≈ US$1.3)"]]},
-{t:"note",x:"* The table shows the main values only; from 30 December 2009 to 27 December 2019 the limit was 19 SDR. Limits are reviewed for inflation every five years (Art. 24). A shipper who declares a value and pays the charge is covered up to that value. The convention is in force for both Korea (2007) and Japan (2003)."}]},
+{t:"note",x:"* The table shows the main values only; from 30 December 2009 to 27 December 2019 the limit was 19 SDR. Limits are reviewed for inflation every five years (Art. 24). The US-dollar equivalent changes daily; refer to the limit expressed in SDR. A shipper who declares a value and pays the charge is covered up to that value. The convention is in force for both Korea (2007) and Japan (2003)."}]},
 {h:"Claim flow (example)",blocks:[{t:"rows",items:[
 {name:"1 Pre-claim",x:"Received from the consignee or other parties by email within the time limit."},
 {name:"2 Documents",x:"Cover letter (AWB and house AWB numbers, flight, arrival date, origin, contact), damage record at delivery, AWB copy, invoice and packing list."},
