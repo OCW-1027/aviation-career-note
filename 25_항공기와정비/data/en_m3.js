@@ -41,7 +41,7 @@ sections:[
 {name:"Recording",x:"The defect and MEL item are entered in the technical log and signed by the certifying engineer"},
 {name:"Placarding",x:"An INOP placard is fitted to the unusable item so crew and engineers can see it"},
 {name:"Deferred defect list",x:"MCC lists every deferral across the fleet and manages limits, parts supply and where the fix will be done"},
-{name:"Extensions",x:"Some airlines may extend B and C items once under an authority-approved scheme; A items cannot be extended ★"},
+{name:"Extensions",x:"Under FAA OpSpec/MSpec D095 continuing authorisation, a one-time extension is allowed for B and C items only; A and D items cannot be extended under the same authority, and any extension needs a separate application to, and approval from, the responsible Flight Standards office ★"},
 {name:"Repeat deferrals",x:"If the same item keeps being deferred, it is investigated as a reliability issue (2-3)"}]},
 {t:"point",warn:true,x:"If an aircraft with a deferral close to its limit night-stops at an overseas airport without the part, it may not be able to depart the next morning. The flying programme should route it to a base that has the part."}]},
 {h:"Operating in Japan: Articles 60 and 61",blocks:[{t:"rows",items:[

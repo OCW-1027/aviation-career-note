@@ -36,9 +36,9 @@ quiz:[{q:"What is the deadline for changing frequency?",opts:["10 days before","
 {q:"What must you check in the seasonal filing?",opts:["That the filing matches the slots you hold","The weather","Revenue","Seat colours"],a:0,exp:"A mismatch affects your operation."}],
 next:"1-3 Slots and coordination with FAIB"});
 
-set("1-3",{title:"Slots and Coordination with FAIB",hl:"slots",subtitle:"JSC before the season, FAIB during the season: the point of contact changes with the timing, so check the current JSC and FAIB guidance when filing ★",
+set("1-3",{title:"Slots and Coordination with FAIB",hl:"slots",subtitle:"For scheduled flights at Narita, Haneda and the other listed airports, contact JSC before the monthly data release and FAIB afterwards. Extra and charter flights use FAIB throughout the season. Check the current airport-specific guidance. ★",
 lead:["At congested airports such as Narita and Haneda, the times at which an aircraft may take off or land — the slots — are limited. Airlines secure slots in advance under IATA's worldwide slot rules and then operate to them.",
-"This article covers the basics of slots, coordination before the season by Japan Schedule Coordination (JSC), coordination during the season by the flight information officers (FAIB), delay reporting, and what the station needs to watch."],
+"This article covers the basics of slots, coordination by Japan Schedule Coordination (JSC) and by the flight information officers (FAIB) and when the contact changes, delay reporting, and what the station needs to watch."],
 sections:[
 {h:"The basics",blocks:[{t:"fig",id:"opn_slot",cap:"Animated figure: slot basics."},{t:"rows",items:[
 {name:"What a slot is",x:"The right to take off or land at a particular airport at a particular time. At congested airports it must be coordinated in advance."},
@@ -66,7 +66,7 @@ deep:[{h:"When a submission is needed (example)",blocks:[{t:"table",cols:["Case"
 voice:"If a new route cannot get the slot it wants, prepare several alternatives either side and keep coordinating. Another option is to start on a time 30 minutes off and apply again for the preferred time the following season.",
 terms:[["Slot","発着枠","슬롯"],["Japan Schedule Coordination (JSC)","国際線発着調整事務局","국제선 발착조정사무국"],["FAIB","航空管制運航情報官","항공관제운항정보관"],["Schedule Filing","運航計画書","운항계획서"],["Historic Precedence (Grandfather Rights)","既得権","기득권"],["Spot / Stand","駐機場","주기장"]],
 quiz:[{q:"What proportion of a slot series must normally be used to keep historic precedence?",opts:["50%","60%","80%","100%"],a:2,exp:"Normally 80% — use it or lose it."},
-{q:"Who coordinates slots from about two months before operation?",opts:["JSC","FAIB","The airport company","A travel agency"],a:1,exp:"Monthly and daily coordination during the season is handled by FAIB."},
+{q:"Who coordinates slots from about two months before operation?",opts:["JSC","FAIB","The airport company","A travel agency"],a:1,exp:"Monthly and daily coordination is handled by FAIB."},
 {q:"Where does planning a new service start?",opts:["Finding a venue for the ceremony","Whether the slots you want are obtainable","Uniform design","Advertising"],a:1,exp:"Without slots there is no service."}],
 next:"1-4 Fare and fuel surcharge approvals"});
 

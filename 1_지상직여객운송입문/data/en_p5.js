@@ -146,7 +146,7 @@ sections:[
 {h:"What happens to passengers on board (example)",blocks:[{t:"rows",items:[
 {name:"If the wait on the ground will be long (e.g. 1–2 hours or more)",x:"If airport facilities allow, disembark passengers and have them wait in a designated area."},
 {name:"Waiting outside",x:"Where local conditions and the procedures of the agencies concerned allow, passengers may clear immigration and wait outside the airport."},
-{name:"Passengers who want to enter here",x:"They may be allowed to clear immigration locally, on condition that their checked bags are delivered at the original destination."},
+{name:"Passengers who want to enter here",x:"They may be allowed to clear immigration locally, on condition that their checked bags are delivered at the original destination. If they want to end their journey here, confirm ticket handling, baggage delivery and customs and immigration procedures separately with the company and the authorities concerned."},
 {name:"Resuming the flight",x:"Check crew duty and rest requirements and aircraft and airport conditions; if the flight cannot restart, switch to a replacement crew, accommodation, rebooking and so on."}]},
 {t:"point",warn:true,x:"In a diversion, you handle passengers, baggage, cargo and crew all at once. Agree at the outset who decides what, between the station, operations control and the handling company."}]},
 {h:"The plan to prepare in advance",blocks:[{t:"check",items:[
@@ -235,7 +235,7 @@ sections:[
 {name:"What to record",x:"The reference start and end times of the wait, its length, the cause, and what was done for passengers (announcements, food and drink, chances to deplane), recorded as the applicable rules require."},
 {name:"Reporting",x:"Report to the authority as the rules require (in Korea after 2 hours, to the ministry via the regional aviation office; in the United States, the Department of Transportation)."},
 {name:"Retention",x:"Keep the records for the period the applicable rules and company rules require. ★"}]}]}],
-voice:"During a long tarmac delay, the ground supports water, snacks, toilets and information. Agree first with the captain how often you will share updates.",
+voice:"During a long tarmac delay, the ground supports water, snacks, toilets and information. Coordinate with the captain and dispatch to confirm the applicable update intervals and the contact person.",
 terms:[["Tarmac Delay","ターマックディレイ","기내 장시간 대기"],["Movement Area","移動地域","이동지역"],["Ground Power Unit (GPU)","地上電源","지상 전원"],["Pre-conditioned Air (PCA)","空調車","냉난방 차량"],["Contingency Plan","非常計画","비상 계획"],["Regional Office of Aviation","地方航空庁","지방항공청"]],
 quiz:[{q:"In Korea, what is the limit for an international tarmac delay (exceptions aside)?",opts:["2 hours","3 hours","4 hours","6 hours"],a:2,exp:"Three hours domestic, four hours international."},
 {q:"How often must passengers be updated under that rule?",opts:["Every 5 minutes","Every 30 minutes","Every hour","No updates needed"],a:1,exp:"Every 30 minutes, with the reason and the situation."},

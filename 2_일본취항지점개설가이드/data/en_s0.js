@@ -72,7 +72,7 @@ sections:[
 {name:"One point of contact",x:"Decide, for example, that contact with the authorities goes through the station manager."},
 {name:"Keep the record",x:"Save exchanges with the authorities and copies of filings in a folder the station and head office share."}]},
 {t:"point",x:"Even when you do not know which official handles something, calling a department that might be involved gets you pointed to the right person. Do not put it off because you are unsure; make the call."}]}],
-voice:"Naming one Japan-side contact for each head-office department speeds up answers to the authorities’ questions. Deadline management, such as fare filing deadlines, should stay with the station rather than head office.",
+voice:"Naming one Japan-side contact for each head-office department speeds up answers to the authorities’ questions. However, do not leave deadlines such as fare filing deadlines solely to head office; track them at the station as well.",
 terms:[["Filing Agent","申請代理人","신청 대리인"],["Service Provider (Legal / Accounting)","代行業者","대행업체"],["Kick-off Meeting","キックオフ会議","킥오프 미팅"],["Owner / Person in Charge","主担当","주 담당"],["Station SOP","支店の手順書","지점 절차서"],["Point of Contact","窓口","창구"]],
 quiz:[{q:"Who produces specialist documents such as the operations and maintenance organisation charts?",opts:["The station manager","Head office flight operations and maintenance","A travel agency","The airport company"],a:1,exp:"Ask head office for documents only specialists can write."},
 {q:"How do you make requests to head office efficient?",opts:["Ask verbally only","Attach the previous filing","Do not give a deadline","Change the format each time"],a:1,exp:"It cuts rework."},

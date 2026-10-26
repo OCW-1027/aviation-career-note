@@ -25,7 +25,7 @@ sections:[
 {name:"Tour leaders and ground agents",x:"Give their contact numbers for the day to the station; ask them to report delays or no-shows immediately."},
 {name:"Special passengers",x:"Tell the station in advance about wheelchair users, pregnant passengers and infants in the group."},
 {name:"Late arrival",x:"Decide in advance who judges what happens if the group misses the deadline (wait, or next flight)."}]},
-{t:"point",x:"A large group is a big event for the airport too. Simply telling the station what you sold by the day before cuts queues and trouble on the day."}]},
+{t:"point",x:"A large group booking also has a big impact on how the airport handles that flight. Simply telling the station what you sold by the day before cuts queues and trouble on the day."}]},
 {h:"Staying connected with the station",blocks:[{t:"rows",items:[
 {name:"See the operation",x:"Visit the airport about once a month and watch the counter and gate. It makes what you tell customers more accurate."},
 {name:"Share what you sold",x:"Large groups, VIPs, demand driven by campaigns and new sales conditions."},

@@ -45,7 +45,7 @@ sections:[
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Write the three for your household",x:"This month’s income and spending (report card), today’s bank balance and loans (photograph), this month’s bank movements (bankbook). The same three statements a company has."},
 {name:"Sort the questions",x:"‘How many staff do we have?’, ‘What were last year’s sales?’, ‘What did we spend the cash on?’, ‘Has the loan gone down?’: which are about a period and which about a point in time?"}]}]}],
-voice:"‘Is there budget for it?’ is a photograph question; ‘Are we in the red this month?’ is a report-card question. Simply noticing which one is being asked makes meetings run more smoothly.",
+voice:"Cash available now is a snapshot question; this month’s profit is a performance question. Budget availability concerns the plan and internal spending authorisation.",
 terms:[["Period","期間","기간"],["Point in time","時点","시점"],["Closing date","決算日","결산일"],["Book value","簿価","장부가"],["Insolvency while profitable","黒字倒産","흑자 도산"]],
 quiz:[{q:"What does the balance sheet show?",opts:["The position at the closing date","A year’s sales and costs","A year’s cash movements","Next year’s plan"],a:0,exp:"The balance sheet is a photograph of one specific day."},
 {q:"Which statement answers ‘why did cash fall this year’?",opts:["Cash flow statement","Balance sheet","Income statement","Minutes of the shareholders’ meeting"],a:0,exp:"It sorts cash movements into operating, investing and financing."},

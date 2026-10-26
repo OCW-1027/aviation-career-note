@@ -71,7 +71,7 @@ sections:[
 {name:"Passenger count",x:"Reconcile the scanned boarding count with the cabin head-count; do not close the door until they match."},
 {name:"Final documents",x:"Hand over the final loadsheet and special passenger list, and mention any changes verbally too."},
 {name:"After the door closes",x:"If a passenger must disembark or be added, decide with the captain and cabin (Course 1, lesson 2-5)."}]}]}],
-voice:"Entering special-passenger information in the system does not mean the cabin has it. Confirm it verbally with the cabin crew once more at the gate.",
+voice:"Follow company handover procedures to ensure the cabin receives the information, and reconfirm important points verbally where required.",
 terms:[["Exit Row Seat","非常口の座席","비상구 좌석"],["Passenger Information List (PIL) / SHR","特別なお客様の一覧","특별 승객 목록"],["Unaccompanied Minor (UM)","一人旅の子ども","비동반 소아"],["Medical Information Form (MEDIF)","医療の書類","의료 정보서"],["Service Animal","補助犬","보조견"],["General Declaration (GD)","一般申告書","일반 신고서"]],
 quiz:[{q:"What must you do when seating someone in an exit row?",opts:["Say nothing","Explain, confirm they can help, and pass it to the cabin by company procedure","Raise the fare","Not tell the cabin"],a:1,exp:"The cabin crew also check eligibility under the applicable rules and change the seat according to company procedures if the conditions are not met."},
 {q:"Who looks after a UM’s documents on board?",opts:["A nearby passenger","The cabin crew member designated in the UM procedures","The captain’s family","Anyone"],a:1,exp:"Receipt is confirmed, and at the destination they are handed to staff following the prescribed procedure."},
@@ -131,7 +131,7 @@ sections:[
 {h:"Protecting crew and staff",blocks:[{t:"rows",items:[
 {name:"Emotional labour",x:"Consider the physical and mental strain on crew and ground staff who faced the behaviour, and use support and rest arrangements."},
 {name:"Preventing recurrence",x:"Check as a company whether the same passenger or situation keeps recurring."}]}]}],
-voice:"Handing over a disruptive passenger on arrival goes smoothly only if the order of contact with cabin, police and airport is set. Always record the time and who took over.",
+voice:"Handing over a disruptive passenger on arrival goes smoothly only if the order of contact with cabin, police and airport is set. Record the handover time, the recipient and the documents received, following company procedures.",
 terms:[["Unruly Passenger","迷惑行為を行うお客様","기내 난동 승객"],["Captain’s Authority","機長の権限","기장의 권한"],["Tokyo Convention","東京条約","도쿄 협약"],["Refusal to Carry","搭乗の拒否","탑승 거절"],["Handover to Authorities","引き渡し","인도"],["Emotional Labour","感情労働","감정노동"]],
 quiz:[{q:"How should a heavily intoxicated passenger be handled if safe operation is in doubt?",opts:["Board them anyway","Work with a supervisor and the captain to decide on acceptance under the applicable conditions of carriage and company procedures","Give them a drink","Do not tell the cabin"],a:1,exp:"Do not decide alone, and keep a record."},
 {q:"Which treaty covers offences on board, the captain’s authority and handover on landing?",opts:["Tokyo Convention","Chicago Convention","Montreal Convention (carrier liability)","Warsaw Convention"],a:0,exp:"It protects safety on board."},

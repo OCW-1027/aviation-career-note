@@ -141,7 +141,7 @@ sections:[
 ["Thailand and Singapore","Bringing in or using e-cigarettes is prohibited"],
 ["The Middle East","There are rules on bringing in alcohol, pork products and medicines. Please check the guidance of the authorities at your destination"]]},
 {t:"note",x:"* These are samples. Write the actual wording to match the latest guidance from the destination’s authorities."}]},
-{h:"A pre-arrival announcement (sample)",blocks:[{t:"p",x:"“We will be landing shortly. In this country, bringing in meat products, fruit and vegetables is restricted by law. Please do not take with you any fruit or meals served on board. If you have any such items, please declare them at the quarantine counter after arrival. If you declare them, you will not be penalised.”"},
+{h:"A pre-arrival announcement (sample)",blocks:[{t:"p",x:"“We will be landing shortly. In this country, bringing in meat products, fruit and vegetables is restricted by law. Please do not take with you any fruit or meals served on board. If you have any such items, please declare them at the quarantine counter after arrival. Declare all food. Customs and other competent authorities decide whether it can be brought in and how it is handled.”"},
 {t:"rows",items:[
 {name:"Keep it short",x:"Passengers do not listen to long announcements. Limit it to the one or two items requiring particular attention at that destination."},
 {name:"Say what to do",x:"Do not stop at “it is prohibited”. Say “please declare it” or “please leave it on board”."},

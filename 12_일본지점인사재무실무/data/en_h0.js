@@ -161,7 +161,7 @@ sections:[
 {name:"Exchange rates",x:"Movements between head office’s currency and the yen change the yen value of the same budget."},
 {name:"Airport income",x:"At an airline station, charges collected and refunds paid at the airport are part of the cash flow too (4-1)."}]},
 {t:"point",x:"Opening accounts and preparing funds when setting up in Japan are covered in lesson 2-2 of Launching Flights and a Station in Japan."}]}],
-voice:"A cash forecast built on optimism is useless. If you assume money comes in late and goes out early, you can see in advance the month you will really be short.",
+voice:"An overly optimistic cash forecast makes it harder to see the actual position. If you assume money comes in late and goes out early, you can see in advance the month you will really be short.",
 terms:[["Bankruptcy Despite Profit","黒字倒産","흑자도산"],["Cash Flow Forecast","資金繰り表","자금 계획표"],["Accounts Receivable","売掛金","매출채권"],["Working Capital","運転資金","운전 자금"],["Cash on Hand","手元資金","보유 현금"]],
 quiz:[{q:"What does going bankrupt in the black mean?",opts:["Failing because of losses","Failing for lack of cash despite making a profit","Not paying tax","Having no sales"],a:1,exp:"Profit and cash do not move together."},
 {q:"What happens when a loan is repaid?",opts:["Profit and cash both fall","Profit is unchanged but cash falls","Only profit falls","Neither changes"],a:1,exp:"Repayment is not an expense."},

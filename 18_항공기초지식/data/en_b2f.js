@@ -19,7 +19,7 @@ sections:[
 {name:"Chicago Convention (1944)",x:"The founding treaty of international civil aviation, starting from each state’s sovereignty over its airspace. It also created ICAO."},
 {name:"Transit agreement",x:"An agreement under which many states grant each other the first and second freedoms."},
 {name:"Bilateral air services agreements",x:"The third to fifth freedoms are set country by country, covering routes, frequencies, numbers of airlines and fares."},
-{name:"Open skies",x:"Agreements removing limits on routes, frequencies and airlines. Japan agreed one with the United States in 2010 and many more since; congested airports are often treated separately."}]}]},
+{name:"Open skies",x:"Agreements removing limits on routes, frequencies and airlines. Japan reached substantive agreement with the United States in December 2009, signed the memorandum of understanding on 25 October 2010 and has concluded many more since; congested airports are often treated separately."}]}]},
 {h:"Cabotage (domestic carriage)",blocks:[{t:"rows",items:[
 {name:"The rule",x:"Most countries do not allow foreign airlines to carry passengers on domestic sectors (cabotage). Japan and Korea are among them."},
 {name:"The exception",x:"Within the EU, EU airlines may operate domestic routes in other member states as part of a single aviation market."}]},

@@ -91,7 +91,7 @@ sections:[
 {name:"A no-board answer",x:"Do not issue a boarding pass; contact the authorities through the agreed procedure. Do not guess at the reason when speaking to the passenger."},
 {name:"A refer answer",x:"Report it to your supervisor and wait for the authorities’ instruction."},
 {name:"Records",x:"Record the answer and what was done. It also reduces the number of passengers refused entry on arrival (Ground Staff 5-1)."}]}]}],
-voice:"When pre-clearance returns “do not board”, the cause can be a mistyped passport number. Correcting it against the passport at the counter and resending often clears the passenger, so set up a procedure for checking input.",
+voice:"When pre-clearance returns “do not board”, the cause can be a mistyped passport number. Correcting input errors and retransmitting may resolve some no-board responses; establish a check procedure.",
 terms:[["Advance Passenger Information (API)","事前旅客情報","사전 승객 정보"],["Passenger Name Record (PNR)","予約記録","예약 기록"],["Interactive API (iAPI)","インタラクティブ型API","대화형 API"],["Pre-departure Passenger Checking","搭乗者事前確認制度","탑승자 사전확인제도"],["Board / No-board","搭乗可・不可","탑승 가·불가"],["PAXLST / CUSRES","メッセージ形式","메시지 형식"]],
 quiz:[{q:"What makes an interactive API system different?",opts:["It only sends data","The authorities send back a board or no-board answer","It is filed on paper","It is sent after arrival"],a:1,exp:"An answer comes back for each passenger."},
 {q:"What do you do on a no-board answer?",opts:["Issue the boarding pass","Withhold it and contact the authorities as agreed","Guess at the reason for the passenger","Ignore it"],a:1,exp:"Follow the agreed procedure."},

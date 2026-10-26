@@ -95,7 +95,7 @@ sections:[
 {h:"The daily work",blocks:[{t:"fig",id:"cgo_bond",cap:"Animated figure: six steps at a bonded terminal light up in turn, from checking and recording arriving cargo to confirming import permission and a two-person release."},
 {t:"check",items:[
 {name:"Checking arrivals",x:"Reconcile the manifest against the actual cargo and record any overage, shortage or damage."},
-{name:"Release",x:"Confirm import permission before releasing to the consignee or the customs broker."},
+{name:"Release",x:"Confirm import permission before releasing to the consignee or the customs broker appointed by the consignee."},
 {name:"Transfer cargo",x:"Move it to the next flight while it stays bonded."},
 {name:"Supporting inspections",x:"Bring cargo selected for examination to the designated place."}]}]},
 {h:"Pitfalls",blocks:[{t:"rows",items:[

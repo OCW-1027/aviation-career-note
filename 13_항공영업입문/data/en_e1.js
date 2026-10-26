@@ -129,7 +129,7 @@ sections:[
 {name:"Checking utilisation",x:"Check, agency by agency, what share of the seats given were actually used."},
 {name:"Allocation",x:"The stronger the demand, the more the allocation should go to agencies with a record of using it."}]},
 {t:"point",x:"Trust with agencies is often decided by how you handle disruption. Telling agencies about cancellations and delays early and accurately is what earns the next sale."}]}],
-voice:"Trust with agencies is built by passing on bad news quickly, more than good news. Tell your contact directly and first about cancellations and schedule changes.",
+voice:"Trust with agencies is built by passing on unwelcome news, such as cancellations and schedule changes, quickly and accurately. Tell your contact directly and first about cancellations and schedule changes.",
 terms:[["Block / Allotment","ブロック","블록(좌석 할당)"],["Release Deadline","リリース期限","반환 기한"],["Purchasing","仕入れ","매입"],["Incentive Travel","報奨旅行","포상 여행"]],
 quiz:[{q:"What is it called when seats are handed to an agency in bulk?",opts:["A block","An offload","An endorsement","A diversion"],a:0,exp:"They are named by a deadline."},
 {q:"What is the deadline for returning unnamed seats called?",opts:["The release deadline","The day of departure","Next year","There is none"],a:0,exp:"After it, seats go back on general sale."},

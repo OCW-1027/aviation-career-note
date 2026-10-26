@@ -26,7 +26,7 @@ sections:[
 {name:"Embassy and trade bodies",x:"Your own embassy and the trade and investment agencies."},
 {name:"Local events",x:"Share information on local festivals and events with head office sales."}]}]}],
 voice:"When you visit travel agencies before launch, they often ask more about seat allocation terms, commission and what happens on cancellation than about fares. Passing that feedback to head-office sales can prompt a review of sales terms.",
-terms:[["Travel Agency","旅行会社","여행사"],["GDS","予約・発券システム","예약·발권 시스템"],["BSP (Billing and Settlement Plan)","銀行精算制度","BSP 정산"],["Seat Block / Allotment","座席割り当て","블록"],["Agency Debit Memo (ADM)","請求（ADM）","ADM"],["Direct Sales","直販","직판"]],
+terms:[["Travel Agency","旅行会社","여행사"],["GDS","予約・発券システム","예약·발권 시스템"],["BSP (Billing and Settlement Plan)","BSP（旅行会社と航空会社の間の集中精算制度）","BSP 정산"],["Seat Block / Allotment","座席割り当て","블록"],["Agency Debit Memo (ADM)","請求（ADM）","ADM"],["Direct Sales","直販","직판"]],
 quiz:[{q:"Which is true of the Japanese market?",opts:["Travel agencies carry much of the selling","Direct sales only","The GDS is not used","There are no group tours"],a:0,exp:"Packages and groups make the trade powerful."},
 {q:"What is an ADM?",opts:["A debit raised against an agency for a ticketing error","An airport charge","Catering","A security programme"],a:0,exp:"An agency debit memo."},
 {q:"What reduces agency errors fastest?",opts:["More complex rules","Simple booking classes and rules, with a clear local-language notice","No notice at all","Notices in English only"],a:1,exp:"Clarity in the local language matters."}],
