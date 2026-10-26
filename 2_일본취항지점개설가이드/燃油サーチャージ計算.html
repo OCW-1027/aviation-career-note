@@ -34,7 +34,7 @@ th{background:#f2f6fa;text-align:center;font-weight:600;font-size:13px}
 td{text-align:center}td.n{text-align:center;white-space:nowrap}td.c{text-align:center}
 /* 表の文字はまん中に。路線などの名前は途中で折り返さない（2026.10） */
 table input,table select{text-align:center;text-align-last:center}
-td.rt{white-space:nowrap}.paper .tw td{white-space:nowrap}.paper .tw th{white-space:nowrap}.paper .tw th,.paper .tw td{padding:5px 5px}.paper .tw table{font-size:12.5px}
+td.rt{white-space:nowrap}.paper .tw td{white-space:nowrap}.paper .tw th{white-space:nowrap;line-height:1.5}.paper .tw th,.paper .tw td{padding:5px 5px}.paper .tw table{font-size:12.5px}
 table.ed input,table.ed select,html.sh table.ed input,html.sh table.ed select{min-width:86px;padding:5px 7px;min-height:34px}
 html[lang=ko] .card,html[lang=ko] .privacy,html[lang=ko] .note{word-break:keep-all;overflow-wrap:break-word}
 table.ed td.x,table.ed th.x{width:44px;text-align:center}
@@ -62,7 +62,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .tabs button{flex:1;min-height:50px;border:2px solid var(--line);border-radius:12px;background:#fff;font:inherit;font-size:16px;font-weight:800;color:var(--muted);cursor:pointer}
 .tabs button.on{border-color:#1d2a38;background:#1d2a38;color:#fff}
 .paper .tw{overflow-x:auto}
-@media print{.paper .tw{overflow:visible}.paper .tw table{font-size:10px}.paper .tw th,.paper .tw td{padding:3px 4px}}
+@media print{.paper .tw,.paper .tw table{zoom:1!important}.paper .tw{overflow:visible}.paper .tw table{font-size:10px}.paper .tw th,.paper .tw td{padding:3px 4px}}
 @media(max-width:700px){.paper{padding:18px 14px}}
 @media print{body{background:#fff}.tabs,#app>.note,.shbar,header,.bar,.privacy,#note,.shfoot,.nv-fab,#nv-copy,#app>.card:not(#docsec),#docsec>*:not(.paper){display:none!important}.paper hr{border:0;margin:0;break-after:page;page-break-after:always}.wrap{padding:0;max-width:none}#docsec{border:0;padding:0;margin:0}.paper{border:0;padding:0;margin:0}}
 /* 入力の表：路線グループの名前は折り返さない、選択欄は中身が見える幅に（2026.10） */
@@ -348,7 +348,10 @@ function out(){var R=calc(),y=t('yen'),has=R.jpy>0,dl=D.ref.mode==='avg',P=D.pax
  var mx=Math.max(R.costJ,R.incJ,1);
  $('o_sum').innerHTML='<div class="bars"><div><span>'+t('cost')+CL()+'<b>'+fy(R.costJ/1000)+'</b> '+t('k')+(LI?' ($'+fy(R.costU)+')':'（$'+fy(R.costU)+'）')+'</span><i style="width:'+(R.costJ/mx*100)+'%;background:var(--ng)"></i></div><div><span>'+t('inc')+CL()+'<b>'+fy(R.incJ/1000)+'</b> '+t('k')+(LI?' (':'（')+t('pc')+' '+fy(R.incP/1000)+(LI?' + ':' ＋ ')+t('cc')+' '+fy(R.incC/1000)+(LI?')':'）')+'</span><i style="width:'+(R.incJ/mx*100)+'%;background:var(--ok)"></i></div></div>'+(doc==='p'?[['rJ',R.rJ],['rO',R.rO]].map(function(z){return isFinite(z[1])?'<div class="res '+(z[1]<=1?'ok':'ng')+'">'+t(z[0])+CL()+'<b>'+pct(z[1])+'</b>'+(LI?' ':'　')+t(z[1]<=1?'ok':'ng')+'</div>':(z[0]==='rO'?'<div class="res">'+t('rO')+CL()+'—'+(LI?' ':'　')+t('rNa')+'</div>':'')}).join('')+(isFinite(R.ratio)?'<p class="note">'+t('rT')+CL()+pct(R)+'</p>':''):(isFinite(R.ratio)?'<div class="res '+(R.ratio<=1?'ok':'ng')+'">'+t('rat')+CL()+'<b>'+pct(R)+'</b>'+(LI?' ':'　')+t(R.ratio<=1?'ok':'ng')+'</div>':''))+(false?'<div class="res '+(R.ratioC<=1?'ok':'ng')+'">'+t('ratC')+CL()+'<b>'+pct(R.ratioC)+'</b>　'+t(R.ratioC<=1?'ok':'ng')+'</div>':'');
  $('o_why').innerHTML=why(R);
- $('paper').innerHTML=doc==='p'?docP(R):docC(R)}
+ $('paper').innerHTML=doc==='p'?docP(R):docC(R);fitPaper()}
+/* 申請書の表が紙の幅に収まらないときは、横スクロールにせず表を縮めて収める */
+function fitPaper(){each('#paper .tw',function(w){var t=w.querySelector('table');if(!t)return;w.style.zoom='';t.style.zoom='';t.style.minWidth='';var a=w.clientWidth,n=t.scrollWidth;if(!(a>0&&n>a))return;var z=Math.floor(a/n*1000)/1000;t.style.zoom=z;for(var k=0;k<20&&w.scrollWidth>w.clientWidth;k++){z-=0.005;t.style.zoom=z}})}
+window.addEventListener('resize',function(){clearTimeout(fitPaper.k);fitPaper.k=setTimeout(fitPaper,150)});
 function why(R){var y=t('yen'),has=R.jpy>0,g0=D.pax.groups[0]||{},th=R.pj>=0?fy(num(D.pax.table[R.pj].th)):'—',lo=R.cj>=0?fy(num(D.cg.table[R.cj].lo)):'—',W=[];
  var fl='<div class="flow"><div><span>'+t('avU')+'</span><b>'+(R.usd?'$'+f2(R.usd):'—')+'</b></div><i>×</i><div><span>'+t('avF')+'</span><b>'+(R.fx?f2(R.fx):'—')+'</b></div><i>＝</i><div class="k"><span>'+t('kJ')+'</span><b>'+(has?fy(R.jpy)+' '+y:'—')+'</b></div><i>→</i><div'+(doc==='c'?' style="display:none"':'')+'><span>'+UC(t('pc'))+CL()+esc(g0.name||'')+'</span><b>'+(has?(R.pa[0]>0?fy(R.pa[0])+' '+y:t('abo')):'—')+'</b></div><div'+(doc==='p'?' style="display:none"':'')+'><span>'+UC(t('cc'))+CL()+esc(D.cg.route||'')+'</span><b>'+(R.usd>0?(R.ca>0?fy(R.ca)+' '+t('ykg'):t('abo')):'—')+'</b></div></div>';
  if(!has)return fl;
@@ -364,7 +367,7 @@ function why(R){var y=t('yen'),has=R.jpy>0,g0=D.pax.groups[0]||{},th=R.pj>=0?fy(
  else W.push(['収入 ＝ 旅客数 × 金額 ＋ 貨物の重量（kg）× 1kgあたりの額 ＝ <code>'+fy(R.incP/1000)+' ＋ '+fy(R.incC/1000)+' ＝ '+fy(R.incJ/1000)+' 千円</code>。回収率 ＝ 収入 ÷ 追加の燃油コスト ＝ <code>'+pct(R)+'</code>。燃油サーチャージは燃油の値上がり分を補うためのものなので、収入が追加コストを超えない（100%以下）ことを確かめます。','수입 = 여객 수 × 금액 + 화물 중량(kg) × kg당 금액 = <code>'+fy(R.incP/1000)+' + '+fy(R.incC/1000)+' = '+fy(R.incJ/1000)+'천 엔</code>. 회수율 = 수입 ÷ 추가 연료비 = <code>'+pct(R)+'</code>. 유류할증료는 유가가 오른 만큼을 보전하기 위한 것이므로, 수입이 추가 비용을 넘지 않는지(100% 이하) 확인합니다.','Income = passengers × amount + cargo weight (kg) × amount per kg = <code>'+fy(R.incP/1000)+' + '+fy(R.incC/1000)+' = '+fy(R.incJ/1000)+' thousand yen</code>. Recovery ratio = income ÷ extra fuel cost = <code>'+pct(R)+'</code>. A fuel surcharge exists to cover the rise in fuel cost, so check that income does not exceed the extra cost (100% or less).']);
  D.base=B0;return fl+'<ol class="why">'+W.map(function(w){return '<li>'+w[LI]+'</li>'}).join('')+'</ol>'}
 function dl(txt,name,type){var b=new Blob([txt],{type:type}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove()}
-function word(){var b=$('paper').innerHTML.replace(/<hr>/g,'<br clear="all" style="page-break-before:always">').replace(/<table>/g,'<table border="1" cellspacing="0" cellpadding="5" style="border-collapse:collapse;border:1px solid #000">').replace(/<h3>/g,'<h3 align="center" style="text-align:center">').replace(/ class="r"/g,' align="right" style="text-align:right"').replace(/ class="n"/g,' align="right" style="text-align:right"').replace(/ class="c"/g,' align="center" style="text-align:center"');
+function word(){var b=$('paper').innerHTML.replace(/ style="[^"]*zoom[^"]*"/g,'').replace(/<hr>/g,'<br clear="all" style="page-break-before:always">').replace(/<table>/g,'<table border="1" cellspacing="0" cellpadding="5" style="border-collapse:collapse;border:1px solid #000">').replace(/<h3>/g,'<h3 align="center" style="text-align:center">').replace(/ class="r"/g,' align="right" style="text-align:right"').replace(/ class="n"/g,' align="right" style="text-align:right"').replace(/ class="c"/g,' align="center" style="text-align:center"');
  var h='<html><head><meta charset="utf-8"><style>body{font-family:"MS Mincho","Yu Mincho",serif;font-size:10.5pt;line-height:1.8}td,th{border:1px solid #000;padding:3pt 6pt}</style></head><body>'+b+'</body></html>';
  dl(String.fromCharCode(65279)+h,((doc==='p'?D.co.docP:D.co.docC)||'fuel-surcharge')+'.doc','application/msword')}
 
