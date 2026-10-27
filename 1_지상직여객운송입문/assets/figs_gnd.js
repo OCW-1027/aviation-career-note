@@ -1554,7 +1554,7 @@ int_role:function(l){
  if(!W)return F.int_role('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#5B6B7D','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 int_design:function(l){
- var W=({ja:{t:'一貫したストーリーの組み立て：5つの手順',st:['経験を10個以上書き出す（小さなことも）','3つを選び、状況・課題・行動・結果・学びで掘り下げる','3つに共通する考え方＝軸を見つける','軸×会社の特徴＝接点','1年目・3年目・5年目を描き、核の一文にする'],who:['書き出す','掘り下げる','軸','接点','未来'],n:['軸は「なぜそうしたのか」を3回重ねると見えてくる','書き出す段階では、評価や感想はまだ書かない']},
+ var W=({ja:{t:'一貫したストーリーの組み立て：5つの手順',st:['経験を10個以上書き出す（小さなことも）','3つを選び、状況・課題・行動・結果・学びで掘り下げる','3つに共通する考え方＝軸を見つける','軸×会社の特徴＝接点','未来を描き、核となる一文にまとめる'],who:['書き出す','掘り下げる','軸','接点','未来'],n:['軸は「なぜそうしたのか」を3回重ねると見えてくる','書き出す段階では、評価や感想はまだ書かない']},
   ko:{t:'일관된 스토리 설계: 5단계',st:['경험을 10개 이상 적어 본다(작은 것도)','3개를 골라 상황·과제·행동·결과·배움으로 파고든다','3개에 공통된 생각인 축을 찾는다','축×회사의 특징＝접점','1년차·3년차·5년차를 그려 핵심 한 문장으로'],who:['적기','파고들기','축','접점','미래'],n:['축은 「왜 그렇게 했나」를 3번 거듭하면 보인다','적어 보는 단계에서는 평가나 감상을 아직 쓰지 않는다']},
   en:{t:'Designing one storyline: five steps',st:['List ten or more experiences, small ones too','Pick three and dig in: situation, task, action, result, lesson','Find the common way of thinking: your core','Core × company features = the link','Picture years one, three and five and write one core sentence'],who:['List','Dig','Core','Link','Future'],n:['Asking “why did I do that?” three times reveals your core','When listing, do not yet judge or add feelings']}})[l];
  if(!W)return F.int_design('ja');setK(1);

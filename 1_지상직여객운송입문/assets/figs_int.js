@@ -1,10 +1,10 @@
 /* 面接対策 Part 4 の図（2026.09）
-   int_story：結論（核の一文）に向かって、過去→現在→接点→未来を一本の線でつなぐ図。
+   int_story：結論（核となる一文）に向かって、過去→現在→接点→未来を一本の線でつなぐ図。
    表示している言語（html の lang）に合わせて文字を変える。figs.js の後に読み込む。 */
 (function(){
 window.FIGS=window.FIGS||{};
 var TX={
-ja:{top:'結論（核の一文）',p:[['過去','経験'],['現在','強み・軸'],['接点','なぜここか'],['未来','入社後の計画']],q:[['職務経歴','学生時代の経験'],['自己PR','長所・短所'],['志望動機','転職の理由'],['5年後','最後の質問']],line:'一本の線',aria:'過去・現在・接点・未来を一本の線でつなぎ、すべてが結論（核の一文）に向かう図'},
+ja:{top:'結論（核となる一文）',p:[['過去','経験'],['現在','強み・軸'],['接点','なぜここか'],['未来','入社後の計画']],q:[['職務経歴','学生時代の経験'],['自己PR','長所・短所'],['志望動機','転職の理由'],['5年後','最後の質問']],line:'一本の線',aria:'過去・現在・接点・未来を一本の線でつなぎ、すべてが結論（核となる一文）に向かう図'},
 ko:{top:'결론(핵심 한 문장)',p:[['과거','경험'],['현재','강점·축'],['접점','왜 여기인가'],['미래','입사 후 계획']],q:[['경력','학창 시절 경험'],['자기 PR','장점·단점'],['지원 동기','이직 사유'],['5년 후','마지막 질문']],line:'한 줄',aria:'과거·현재·접점·미래를 한 줄로 잇고, 모두 결론(핵심 한 문장)을 향하는 그림'},
 en:{top:'Conclusion (core sentence)',p:[['Past','Experience'],['Present','Strength, core value'],['Fit','Why here'],['Future','Plan after joining']],q:[['Career history','Student experience'],['Self-PR','Strengths, weaknesses'],['Motivation','Why change jobs'],['Five years on','Last question']],line:'One line',aria:'Past, present, point of fit and future joined in one line, all pointing to the conclusion (core sentence)'}};
 var C=['#2F8FE0','#1F7A6E','#7A6FF0','#E08A2F'];
