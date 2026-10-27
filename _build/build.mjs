@@ -121,8 +121,9 @@ for (const dir of Object.keys(HUBS)) {
   // 単独の HTML で書いたレッスン（例：0-1_….html）も数える
   const soloFiles = fs.readdirSync(path.join(SRC, dir)).filter(n => /^\d+-\d+_.+\.html$/.test(n));
   soloFiles.forEach(n => soloPages.push(dir + '/' + n));
-  // 講座の目次（hub.js）と同じ数え方：レッスン＋単独のページ＋目次に載せた練習ページ（HUBS の extra）。重なりは1つに 2026.10
-  catalog[dir] = { n: new Set(keys.concat(Object.keys(HUBS[dir].extra || {}), soloFiles.map(n => n.split('_')[0]))).size, code: HUBS[dir].code };
+  // 講座の目次（hub.js）と同じ数え方：レッスン＋単独のページ。重なりは1つに 2026.10
+  // 目次に載せた練習ページ（HUBS の extra、例：搭載計算の練習）はレッスンではないので数えない 2026.10.27
+  catalog[dir] = { n: new Set(keys.concat(soloFiles.map(n => n.split('_')[0]))).size, code: HUBS[dir].code };
   if (LIMIT) keys = keys.slice(0, LIMIT);
   const code = String(HUBS[dir].code).toLowerCase();
   const index = {};

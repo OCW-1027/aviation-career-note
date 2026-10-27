@@ -37,7 +37,7 @@ function render(){var U=UI[lang];document.documentElement.lang=lang;document.tit
  Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){lang=b.getAttribute('data-l');try{localStorage.setItem('art-lang',lang)}catch(e){}render()}});
  $('brandTxt').textContent=H.site?H.site[lang]:'';
  $('code').textContent=H.code;$('h1').textContent=H.name[lang];$('lead').textContent=H.lead[lang];
- $('stats').innerHTML='<div><b>'+keys.length+'</b>'+U.n+'</div><div><b>'+(H.parts[lang].filter(function(p){return p}).length)+'</b>'+(U.np||'Parts')+'</div>';
+ $('stats').innerHTML='<div><b>'+keys.filter(function(k){return A[k]}).length+'</b>'+U.n+'</div><div><b>'+(H.parts[lang].filter(function(p){return p}).length)+'</b>'+(U.np||'Parts')+'</div>';
  /* 講座ごとの注意（★の付く内容と確かめる先）と「内容の扱いと免責」への案内 2026.10 */
  (function(){var st=$('stats');if(!st||!st.parentNode)return;var bx=$('hubCaution');if(!bx){bx=document.createElement('div');bx.id='hubCaution';st.parentNode.insertBefore(bx,st.nextSibling)}
   var CT={ja:['この講座を読むときの注意','★の付いた内容','確認先','講座の内容は、学習のための一般的な情報です。実際の業務・手続きの前に、最新の公式情報と自社の規程で確かめてください。','内容の扱いと免責 →'],ko:['이 강좌를 읽을 때 주의할 점','★가 붙은 내용','확인할 곳','강좌 내용은 학습을 위한 일반 정보입니다. 실제 업무·절차 전에 최신 공식 정보와 자사 규정을 확인하세요.','콘텐츠 이용 안내·면책 →'],en:['Before you use this course','What ★ marks','Where to check','This course provides general information for learning purposes. Before carrying out actual work or procedures, check the latest official information and your own company’s rules.','Content notice and disclaimer →']}[lang]||{},cu=H.caution,i=({ja:0,ko:1,en:2})[lang]||0;
