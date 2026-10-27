@@ -66,7 +66,7 @@ var D={},CK={};
 try{var o=JSON.parse(localStorage.getItem(KEY)||'{}');D=o.d||{};CK=o.c||{}}catch(e){}
 var T={
 ja:{kick:'航空業界の面接対策',ttl:'ストーリー設計シート',lead:'経験を書き出し、軸を見つけ、会社と重ね、入社後の計画まで一本の線でつなぎます。書き込むと、核の一文・1分の自己紹介・志望動機の下書きと、つながりの点検が下に出ます。',
-privacy:'書き込んだ内容は、このブラウザ（この端末）にだけ自動で保存され、どこにも送られません。共用のパソコンでは、使い終わったら「すべて消す」を押してください。',
+privacy:'書き込んだ内容は、このブラウザ（この端末）にだけ自動で保存され、どこにも送られません。共用のパソコンでは、使い終わったら「すべて消す」を押してください。',privM:'書き込んだ内容は、このブラウザ（この端末）に自動で保存されます。会員としてログインしているときは、ほかの端末でも続きを開けるよう、会員の記録にも保存されます。共用のパソコンでは、使い終わったら「すべて消す」を押してください。',
 saved:'保存しました',ex:'例を入れる',exConfirm:'今の内容を例で置き換えます。よろしいですか？',exp:'テキストで書き出す',copy:'下書きをコピー',copied:'コピーしました',clr:'すべて消す',clrConfirm:'書き込んだ内容をすべて消します。元に戻せません。よろしいですか？',
 st:[['経験を書き出す','仕事・アルバイト・学業など、小さなことでも10個以上。1行に1つ、「いつ・どこで・何があったか」だけ。'],['3つを選んで掘り下げる','状況・課題・行動・結果・学び。「行動」には、自分が考えて実際にしたことを書きます。'],['軸を見つける','3つの経験に共通する考え方。「なぜそうしたのか」を3回繰り返すと見えてきます。'],['会社と仕事を重ねる','まず応募する仕事の役割を面接官の立場で読み解き（4-2）、会社の特徴（路線・お客様・事業・働き方）と自分の軸が重なるところを接点にします。'],['未来を描く','1年目（基本）・3年目（任される）・5年目（教える・まとめる・専門）の段階で。'],['核の一文','過去・現在・接点・未来を1文に。30秒以内で言えるかを目安に。']],
 f:{name:'名前',pos:'今の立場',posh:'例：〇〇大学4年／ホテルのフロント7年',list:'経験のリスト',listh:'1行に1つ',e:'経験',s:'状況',t:'課題',a:'行動',r:'結果',l:'学び',axis:'軸（大切にしている考え）',axish:'例：見通しを先に伝えて安心してもらう',heard:'周りからよく言われること',co:'会社名',role:'応募する仕事の役割',roleh:'作業ではなく、任される判断・管理・調整。面接官はなぜこのポジションを採るのか',cofeat:'会社の特徴',cofeath:'路線・お客様・事業・働き方など、その会社でしか言えないこと',fit:'接点（なぜこの会社か）',y1:'1年目',y3:'3年目',y5:'5年目',core:'核の一文',coreh:'「型から組み立てる」で下書きを作り、自分の言葉に直します'},
@@ -83,7 +83,7 @@ fill:'（　）',
 note:'このシートは、講座「航空業界の面接対策」Part 4（4-1〜4-6）の手順に沿っています。下書きは型に当てはめて並べるだけなので、必ず自分の言葉に直してください。「軸とのつながり」は、軸の言葉が各欄にどれだけ出てくるかを文字の並びで数えた目安で、内容の良し悪しを判定するものではありません。例の人物と経験は架空です。',
 back:'講座に戻る'},
 ko:{kick:'항공업계 면접 대비',ttl:'스토리 설계 시트',lead:'경험을 적어 보고, 축을 찾고, 회사와 연결해, 입사 후 계획까지 하나의 흐름으로 잇습니다. 내용을 입력하면 핵심 한 문장·1분 자기소개·지원 동기 초안과 연결 점검 결과가 아래에 표시됩니다.',
-privacy:'입력한 내용은 이 브라우저(이 기기)에만 자동 저장되며 어디에도 전송되지 않습니다. 공용 컴퓨터에서는 사용이 끝나면 ‘모두 지우기’를 눌러 주세요.',
+privacy:'입력한 내용은 이 브라우저(이 기기)에만 자동 저장되며 어디에도 전송되지 않습니다. 공용 컴퓨터에서는 사용이 끝나면 ‘모두 지우기’를 눌러 주세요.',privM:'입력한 내용은 이 브라우저(이 기기)에 자동 저장됩니다. 회원으로 로그인한 경우에는 다른 기기에서도 이어서 열 수 있도록 회원 기록에도 저장됩니다. 공용 컴퓨터에서는 사용이 끝나면 ‘모두 지우기’를 눌러 주세요.',
 saved:'저장했습니다',ex:'예시 넣기',exConfirm:'현재 내용을 예시로 바꿉니다. 계속하시겠습니까?',exp:'텍스트로 내보내기',copy:'초안 복사',copied:'복사했습니다',clr:'모두 지우기',clrConfirm:'입력한 내용을 모두 지웁니다. 되돌릴 수 없습니다. 계속하시겠습니까?',
 st:[['경험을 적어 낸다','일·아르바이트·학업 등 작은 것도 10개 이상. 한 줄에 하나, ‘언제·어디서·무슨 일이 있었나’만.'],['세 가지를 골라 파고든다','상황·과제·행동·결과·배움. ‘행동’에는 내가 생각하고 실제로 한 것을 씁니다.'],['축을 찾는다','세 경험에 공통된 생각. “왜 그렇게 했는가”를 세 번 되물으면 보입니다.'],['회사·직무와 연결한다','먼저 지원 직무의 역할을 면접관 입장에서 파악하고(4-2), 회사의 특징(노선·승객·사업·일하는 방식)과 나의 축이 겹치는 곳을 접점으로 삼습니다.'],['미래를 그린다','1년 차(기본)·3년 차(맡는다)·5년 차(가르친다·이끈다·전문) 단계로.'],['핵심 한 문장','과거·현재·접점·미래를 한 문장으로. 30초 안에 말할 수 있는지가 기준.']],
 f:{name:'이름',pos:'현재 상황(소속·학년·직무 등)',posh:'예: ○○대학 4학년 / 호텔 프런트 7년',list:'경험 목록',listh:'한 줄에 하나',e:'경험',s:'상황',t:'과제',a:'행동',r:'결과',l:'배움',axis:'축(중요하게 여기는 생각)',axish:'예: 앞으로의 상황을 먼저 알려 안심시킨다',heard:'주변에서 자주 듣는 말',co:'회사 이름',role:'지원 직무의 역할',roleh:'작업이 아니라 맡게 될 판단·관리·조정. 면접관은 왜 이 직무에 사람을 뽑는가',cofeat:'회사의 특징',cofeath:'노선·승객·사업·일하는 방식 등 그 회사에서만 말할 수 있는 것',fit:'접점(왜 이 회사인가)',y1:'1년 차',y3:'3년 차',y5:'5년 차',core:'핵심 한 문장',coreh:'‘틀로 조립하기’로 초안을 만들고 자기 말로 고칩니다'},
@@ -95,12 +95,12 @@ mc:['지원하는 일의 역할(작업이 아니라 무엇을 맡는가)을 자�
 time:function(n){return n+'자 · 말하면 약 '+Math.max(1,Math.round(n/300*60))+'초(1분에 약 300자 기준)'},
 tpl:{core:function(d){return '저는 '+c(d.e1s)+' 경험으로 익힌 ‘'+c(d.axis)+'’를 '+c(d.fit)+' 귀사에서 살려, 앞으로는 '+jo(d.y5,'을','를')+' 맡고 싶습니다.'},
 intro:function(d){return c(d.pos)+' '+c(d.name)+'입니다.\n'+c(d.e1s)+'에서 '+c(d.e1t)+' 때, '+c(d.e1a)+'. '+c(d.e1r)+'.\n이 경험으로 ‘'+c(d.axis)+'’는 것을 소중히 여기게 되었습니다.\n'+c(d.fit)+' 귀사에서 이 힘을 살리고 싶습니다.\n오늘 잘 부탁드립니다.'},
-mot:function(d){return c(d.co)+'에 지원한 이유는 '+c(d.cofeat)+' 때문입니다.\n이 일은 '+c(d.role)+' 역할이라고 이해하고 있습니다.\n저는 '+c(d.e1s)+'에서 '+c(d.e1t)+' 때의 경험으로 ‘'+c(d.axis)+'’는 것을 소중히 여겨 왔습니다.\n'+c(d.fit)+' 귀사이기에 이 힘이 발휘된다고 생각합니다.\n입사 후에는 먼저 '+c(d.y1)+'. 3년 차에는 '+c(d.y3)+'. 앞으로는 '+jo(d.y5,'을','를')+' 맡고 싶습니다.'}},
+mot:function(d){return c(d.co)+'에 지원한 이유는 '+c(d.cofeat)+' 때문입니다.\n이 일은 '+c(d.role)+' 역할이라고 이해하고 있습니다.\n저는 '+c(d.e1s)+'에서 '+c(d.e1t)+' 때 '+c(d.e1a)+'. 이 경험으로 ‘'+c(d.axis)+'’는 것을 소중히 여겨 왔습니다.\n'+c(d.fit)+' 귀사이기에 이 힘이 발휘된다고 생각합니다.\n입사 후에는 먼저 '+c(d.y1)+'. 3년 차에는 '+c(d.y3)+'. 앞으로는 '+jo(d.y5,'을','를')+' 맡고 싶습니다.'}},
 fill:'( )',
 note:'이 시트는 강좌 ‘항공업계 면접 대비’ Part 4(4-1~4-6)의 순서를 따릅니다. 초안은 입력한 내용을 틀에 맞춰 늘어놓은 것일 뿐이니 반드시 자기 말로 고치세요. ‘축과의 연결’은 축에 쓴 말이 각 칸에 얼마나 나오는지를 글자 단위로 센 참고치이며, 내용의 좋고 나쁨을 판정하는 것이 아닙니다. 예시의 인물과 경험은 가상입니다.',
 back:'강좌로 돌아가기'},
 en:{kick:'Aviation Industry Interview Prep',ttl:'Story Design Sheet',lead:'List your experiences, find your core value, lay it over the company and draw one line through to your plans after joining. As you write, drafts of your core sentence, one-minute self-introduction and motivation appear below, with a check on how well they connect.',
-privacy:'What you write is saved automatically in this browser on this device only and is never sent anywhere. On a shared computer, press “Clear all” when you finish.',
+privacy:'What you write is saved automatically in this browser on this device only and is never sent anywhere. On a shared computer, press “Clear all” when you finish.',privM:'What you write is saved automatically in this browser on this device. When you are signed in as a member, it is also saved to your member record so you can continue on another device. On a shared computer, press “Clear all” when you finish.',
 saved:'Saved',ex:'Fill with example',exConfirm:'Replace what you have written with the example?',exp:'Export as text',copy:'Copy drafts',copied:'Copied',clr:'Clear all',clrConfirm:'This deletes everything you have written and cannot be undone. Continue?',
 st:[['List your experiences','Ten or more, however small, from work, part-time jobs or study. One per line: when, where, what happened.'],['Dig into three','Situation, task, action, result, learning. Under “action,” write what you thought and actually did.'],['Find your core value','The idea your three experiences share. Asking “why did I do that?” three times brings it out.'],['Lay it over the company and the role','First read the role you are applying for from the interviewer’s side (4-2); then the point of fit is where the company’s features (routes, passengers, business, way of working) overlap with your core value.'],['Draw the future','In stages: year 1 (basics), year 3 (trusted with more), year 5 (teach, lead or specialise).'],['Core sentence','Past, present, fit and future in one sentence you can say in under 30 seconds.']],
 f:{name:'Name',pos:'Current position',posh:'e.g. final-year student at … University / 7 years at a hotel front desk',list:'List of experiences',listh:'One per line',e:'Experience',s:'Situation',t:'Task',a:'Action',r:'Result',l:'Learning',axis:'Core value (what you value)',axish:'e.g. giving people the outlook first so they feel reassured',heard:'What others often say about you',co:'Company name',role:'The role you are applying for',roleh:'Not the tasks but the decisions, supervision and coordination entrusted; why the interviewer is hiring for this position',cofeat:'Company features',cofeath:'Routes, passengers, business, way of working: things only true of this company',fit:'Point of fit (why this company)',y1:'Year 1',y3:'Year 3',y5:'Year 5',core:'Core sentence',coreh:'Use “Build from pattern” for a draft, then rewrite it in your own words'},
@@ -143,7 +143,7 @@ var tm=null,tm2=null;function save(){try{localStorage.setItem(KEY,JSON.stringify
 function field(id,lab,hint,ta){var v=D[id]||'';return '<label for="f_'+id+'">'+esc(lab)+(hint?'<small>'+esc(hint)+'</small>':'')+'</label>'+(ta?'<textarea id="f_'+id+'" data-k="'+id+'" rows="'+(ta===true?2:ta)+'">'+esc(v)+'</textarea>':'<input type="text" id="f_'+id+'" data-k="'+id+'" value="'+esc(v)+'">')}
 function step(n,h,body){return '<section class="step"><h2><span class="n">'+n+'</span>'+esc(h[0])+'</h2><p class="hint">'+esc(h[1])+'</p>'+body+'</section>'}
 function render(){var t=T[L],f=t.f;document.documentElement.lang=L;document.title=t.ttl+' ― '+t.kick;
- ['kick','ttl','lead','privacy','note'].forEach(function(k){$(k).textContent=t[k]});
+ ['kick','ttl','lead','privacy','note'].forEach(function(k){$(k).textContent=t[k]});if(window.Member&&window.Member.enabled&&window.Member.enabled())$('privacy').textContent=t.privM;
  $('langs').innerHTML=['ja','ko','en'].map(function(l){return '<button type="button" data-l="'+l+'" class="'+(l===L?'on':'')+'">'+{ja:'日本語',ko:'한국어',en:'English'}[l]+'</button>'}).join('');
  Array.prototype.forEach.call($('langs').querySelectorAll('button'),function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('art-lang',L)}catch(e){}render()}});
  $('bar').innerHTML='<button class="btn" id="bEx" type="button">'+esc(t.ex)+'</button><button class="btn" id="bCp" type="button">'+esc(t.copy)+'</button><button class="btn" id="bTx" type="button">'+esc(t.exp)+'</button><button class="btn del" id="bCl" type="button">'+esc(t.clr)+'</button><a class="btn" href="00_シリーズ全体_面接対策.html">'+esc(t.back)+'</a><span class="saved" id="sv"></span>';
@@ -180,7 +180,7 @@ function outs(){var t=T[L],o=t.o;var core=D.core||'';
  var h='<section class="out"><h2>'+esc(o.h)+'</h2>';
  h+=box(o.core,core||t.tpl.core(D))+box(o.intro,t.tpl.intro(D))+box(o.mot,t.tpl.mot(D));
  h+='<h3 style="font-size:15px;margin:18px 0 6px">'+esc(o.chk)+'</h3>';
- if(need.length)h+='<p class="miss">'+esc(o.miss)+esc(need.join(L==='en'?', ':'・'))+'</p>';
+ if(need.length)h+='<p class="miss">'+esc(o.miss)+esc(need.join(L==='en'?', ':L==='ko'?'·':'・'))+'</p>';
  h+='<p class="meta">'+esc(o.meter)+'</p>';
  [['fit',D.fit],['fut',[D.y1,D.y3,D.y5].join(' ')],['core',core]].forEach(function(x,i){var v=link(D.axis,x[1]);var col=v==null?'#cfd6e3':v>=40?'#1F7A6E':v>=20?'#E0A82F':'#D9663B';
   h+='<div class="meter"><span>'+esc(t.mt[i])+'</span><div class="track"><div class="fill" style="width:'+(v==null?0:Math.max(4,v))+'%;background:'+col+'"></div></div><b style="text-align:right">'+(v==null?o.none:v+'%')+'</b></div>'});
