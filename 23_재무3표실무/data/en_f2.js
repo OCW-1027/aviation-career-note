@@ -24,7 +24,7 @@ sections:[
 {name:"Write your own balance sheet",x:"Savings, car and home on the left, loans on the right; the difference is your equity."},
 {name:"Add a transaction",x:"If the stall buys 30,000 yen of ingredients on credit at month end, how do the two sides move? Do they still match?"}]}]}],
 voice:"When you read a balance sheet, start on the right: whose money is this? An aircraft bought with borrowed money and one bought with earned money are the same asset, but the company behind them has very different strength.",
-terms:[["Assets","資産","자산"],["Liabilities","負債","부채"],["Equity (net assets)","純資産","자본(순자산)"],["Negative equity","債務超過","자본 잠식(채무 초과)"],["Balance (assets = liabilities + equity)","貸借一致","대차 일치"]],
+terms:[["Assets","資産","자산"],["Liabilities","負債","부채"],["Equity (net assets)","純資産","자본(순자산)"],["Negative equity","債務超過","완전자본잠식(채무 초과)"],["Balance (assets = liabilities + equity)","貸借一致","대차 일치"]],
 quiz:[{q:"What is equity?",opts:["Assets minus liabilities: what belongs to shareholders","Total cash","Total borrowings","Total sales"],a:0,exp:"The net share with no obligation to repay."},
 {q:"When the cart is bought for cash, the balance sheet…",opts:["Swaps cash for the cart within assets; the total is unchanged","Grows on both sides","Shows lower equity","Shows lower liabilities"],a:0,exp:"A swap within the left side does not change the total."},
 {q:"Can equity equal total assets?",opts:["Yes, if the company has no liabilities","Never","Only when equity is zero","Only in negative equity"],a:0,exp:"With no liabilities, assets = equity. The opposite case, negative equity, is when equity falls below zero."}]});
@@ -52,7 +52,7 @@ sections:[
 {name:"Recalculate the current ratio",x:"If the stall buys a second cart (240,000) with a one-year loan, what is the new current ratio?"},
 {name:"Think about unflown tickets",x:"Explain, from the way tickets are sold, why the 60.0bn of unflown ticket revenue is a liability with no direct cash outflow."}]}]}],
 voice:"A station budget works the same way. Put next month’s invoices (current liabilities) beside next month’s incoming budget (current assets) and the question ‘can we pay this month?’ answers itself faster.",
-terms:[["Current assets","流動資産","유동자산"],["Non-current assets","固定資産（非流動資産）","비유동자산"],["Current liabilities","流動負債","유동부채"],["Non-current liabilities","固定負債（非流動負債）","비유동부채"],["Current ratio","流動比率","유동비율"],["Construction in progress / prepayments for aircraft","建設仮勘定","건설중인자산"]],
+terms:[["Current assets","流動資産","유동자산"],["Non-current assets","固定資産（非流動資産）","비유동자산"],["Current liabilities","流動負債","유동부채"],["Non-current liabilities","固定負債（非流動負債）","비유동부채"],["Current ratio","流動比率","유동비율"],["Construction in progress","建設仮勘定","건설중인자산"]],
 quiz:[{q:"The basic test for current versus non-current is…",opts:["Whether it turns into cash (or falls due) within one year","Whether the amount is large","Company policy","The tax office’s instructions"],a:0,exp:"The one-year rule."},
 {q:"Unflown ticket revenue is…",opts:["A current liability","A non-current asset","Equity","A current asset"],a:0,exp:"An obligation to carry passengers within a year."},
 {q:"The stall’s current ratio (current assets 344,000, current liabilities 216,000) is…",opts:["About 159%","About 63%","About 100%","About 216%"],a:0,exp:"344,000 ÷ 216,000 = 1.59."}]});
@@ -173,7 +173,7 @@ sections:[
 {name:"Source and date",x:"Figures are from the earnings release of 30 April 2026. The annual securities report (June) adds detailed notes. ★"}]},
 {t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Finance Simulation: watch the balance sheet move quarter by quarter"}]}],
 voice:"Pick two numbers to look at first and you will read a balance sheet quickly. We suggest cash and interest-bearing debt. The difference between them, net cash, tells you how well the company can withstand the next downturn.",
-terms:[["Total assets","総資産","총자산"],["Contract liabilities","契約負債","계약부채"],["Interest-bearing debt","有利子負債","유이자부채(이자부 부채)"],["Net cash","ネット・キャッシュ","순현금"],["Deferred tax assets","繰延税金資産","이연법인세자산"],["Provisions","引当金","충당금"]],
+terms:[["Total assets","総資産","총자산"],["Contract liabilities","契約負債","계약부채"],["Interest-bearing debt","有利子負債","유이자부채"],["Net cash","ネット・キャッシュ","순현금"],["Deferred tax assets","繰延税金資産","이연법인세자산"],["Provisions","引当金","충당금"]],
 quiz:[{q:"Aircraft as a share of JAL’s total assets at 31 March 2026?",opts:["About 33%","About 10%","About 50%","About 5%"],a:0,exp:"1,041.7bn ÷ 3,198.8bn = 32.6% ★."},
 {q:"Which describes contract liabilities (unflown tickets and miles)?",opts:["A liability that disappears as flights are flown, with no cash repayment","A loan repaid in cash within a year","Unpaid dividends","Unpaid aircraft purchase prices"],a:0,exp:"The obligation is settled by providing the service."},
 {q:"Cash 1,010.2bn, interest-bearing debt 875.9bn. This position is called…",opts:["Net cash (effectively debt-free)","Negative equity","Insolvency while profitable","A falling equity ratio"],a:0,exp:"Cash exceeds interest-bearing debt."}]});

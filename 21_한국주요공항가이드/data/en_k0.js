@@ -63,7 +63,7 @@ sections:[
 {name:"Who is not covered",x:"Korean nationals and foreign residents holding a Korean residence card do not need a K-ETA."}]},
 {t:"point",x:"Japanese passengers do not need a K-ETA until 31 December 2026, but itineraries crossing into 2027 need care. Track the Ministry of Justice’s announcements on extending or ending the exemption and be ready to update check-in and reservation guidance at once. Japan is preparing a similar scheme, JESTA, for fiscal 2028 (Guide to Japan’s Major Airports 0-1)."}]}],
 voice:"Whether K-ETA is needed changes with nationality and timing, and passengers are easily confused at the counter. Before any temporary exemption ends, have all staff recheck the current list of countries.",
-terms:[["Korea Electronic Travel Authorization (K-ETA)","電子渡航許可（韓国）","전자여행허가"],["Visa-free Entry","無査証入国","무사증 입국"],["Temporary Exemption","一時免除","한시 면제"],["Arrival Card","入国カード","입국신고서"],["TIMATIC","渡航書類のデータベース","여행 서류 데이터베이스"]],
+terms:[["Korea Electronic Travel Authorization (K-ETA)","電子渡航許可（韓国）","전자여행허가"],["Visa-free Entry","無査証入国","무사증 입국"],["Temporary Exemption","一時免除","한시 면제"],["Arrival Card","入国カード","입국신고서"],["TIMATIC","ティマティック（TIMATIC）","티매틱(TIMATIC)"]],
 quiz:[{q:"Until when are Japanese nationals exempt from K-ETA (as of September 2026)?",opts:["31 December 2025","31 December 2026","31 December 2027","Indefinitely"],a:1,exp:"Extended by a year in December 2025."},
 {q:"How long is a K-ETA valid?",opts:["90 days","One year","Three years","Ten years"],a:2,exp:"Or until the passport expires if sooner."},
 {q:"What does an exempt traveller gain by applying for a K-ETA?",opts:["No need to fill in an arrival card","A free authorisation","A visa","Nothing, they cannot apply"],a:0,exp:"The fee still applies."}],

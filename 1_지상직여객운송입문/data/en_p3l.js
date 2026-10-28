@@ -39,7 +39,7 @@ sections:[
 ["One bag offloaded","DEST BKK / BAG / CPT4 / − / −20","Reconcile the offloaded bag (2-5)"]]},
 {t:"point",warn:true,x:"Changes beyond the limits, or that move the balance significantly, mean a new loadsheet with a new edition number. When in doubt, reissue."}]}],
 voice:"A single wrong figure on the load sheet delays departure. Check once more, just before departure, that the totals for passengers, baggage and cargo add up.",
-terms:[["Loadsheet","ロードシート","로드시트"],["Dry Operating Weight (DOW)","乾燥運航重量","건조 운항 중량"],["Zero Fuel Weight (ZFW)","無燃料重量","무연료 중량"],["Underload","余裕（許容搭載量の残り）","여유 중량"],["Mean Aerodynamic Chord (MAC)","平均空力翼弦","평균 공력 시위"],["Last Minute Change (LMC)","最終変更","최종 변경"]],
+terms:[["Loadsheet","ロードシート","로드시트"],["Dry Operating Weight (DOW)","乾燥運航重量","건조 운항 중량"],["Zero Fuel Weight (ZFW)","無燃料重量","무연료 중량"],["Underload","アンダーロード（許容搭載量の残り）","여유 중량"],["Mean Aerodynamic Chord (MAC)","平均空力翼弦","평균 공력 시위"],["Last Minute Change (LMC)","最終変更","최종 변경"]],
 quiz:[{q:"How is zero fuel weight (ZFW) calculated?",opts:["DOW + traffic load","TOW − trip fuel","DOW + fuel","Traffic load + fuel"],a:0,exp:"The dry operating weight plus passengers, bags and cargo."},
 {q:"In the example, which limit makes the underload 2010 kg?",opts:["Max zero fuel weight","Max take-off weight","Max landing weight","Seat count"],a:0,exp:"Max zero fuel weight + take-off fuel = 75300 is the lowest, hence the L on the ZFW line."},
 {q:"What if a change goes beyond the limits?",opts:["Correct it by hand","Issue a new loadsheet","Depart anyway","Just tell the captain"],a:1,exp:"Reissue with a new edition number."}],

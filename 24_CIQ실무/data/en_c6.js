@@ -23,12 +23,12 @@ sections:[
 {name:"Never say “that will be fine”",x:"Whether the passenger can enter is decided by the authorities at the destination."}]},
 {t:"point",x:"Refusing a passenger at the origin is hard. But it serves them far better than being sent back from the destination."}]}],
 voice:{h:"A Reported Case",x:"The Jewish Chronicle in Britain reported that a mother and her five children were unable to board a flight from Manchester to Israel because one child’s passport had less than six months left. She had contacted the airline the day before without getting a clear answer; the family were checked in, then stopped at the gate. They obtained a new passport and flew with another airline the next day. The airline apologised, and the Civil Aviation Authority said it reminds airlines to give passengers consistent information. If a passenger must be stopped, doing it at the first desk, with the reason, is the least painful for them."},
-terms:[["Denied Boarding","搭乗のお断り","탑승 거절"],["Transit Point","乗り継ぎ地","환승지"],["Re-entry","再入国","재입국"],["Quarantine Detention","係留","계류"]],
+terms:[["Refusal of carriage","搭乗拒否","탑승 거절"],["Transit Point","乗り継ぎ地","환승지"],["Re-entry","再入国","재입국"],["Animal quarantine detention","動物検疫の係留","동물 검역 계류"]],
 quiz:[{q:"The passport’s remaining validity is less than the destination requires. What do you do?",opts:["Refuse boarding and explain the reason and the next step","Carry the passenger anyway","Leave it to the passenger","Tell them to sort it out at the destination"],a:0,exp:"The requirement is set by the destination country."},
 {q:"What do you look up for a passenger connecting on a separately bought ticket?",opts:["The transit point’s entry requirements","Only the final destination","Only the origin","Nothing"],a:0,exp:"They will enter at the transit point to reclaim their bags."},
 {q:"What must you not do when unsure?",opts:["Say “that will be fine”","Look it up in TIMATIC","Ask your supervisor","Keep a record"],a:0,exp:"The authorities at the destination decide."}],
 next:"6-2 So that passengers are not stopped on arrival"});
-set("6-2",{title:"So That Passengers Are Not Stopped on Arrival: Situations with Belongings",hl:"Belongings",subtitle:"Food, tobacco, medicines, alcohol, cash, packages carried for others. Things passengers have not noticed",
+set("6-2",{title:"Avoiding Hold-ups on Arrival: Situations with Belongings",hl:"Belongings",subtitle:"Food, tobacco, medicines, alcohol, cash, packages carried for others. Things passengers have not noticed",
 lead:["Some passengers are stopped on arrival even with every document in order. The cause is in their bag.","In none of these situations does the passenger mean any harm. They simply did not know. That is why letting them know can prevent it."],
 sections:[
 {h:"Food",blocks:[{t:"fig",id:"ciq_items",cap:"Figure: belongings that get stopped on arrival (example)."},{t:"rows",items:[
@@ -77,12 +77,12 @@ sections:[
 {name:"The count of duty-free goods for sale on board does not match the paperwork",x:"Record it on the spot and explain to customs. Do not break a seal on your own. (2-4)"}]},
 {t:"point",x:"The more difficult the situation, the sooner you tell them. What the authorities dislike most is being told afterwards."}]}],
 voice:{h:"A Reported Case",x:"From March 2018 a Syrian man lived for about seven months in Terminal 2 of Kuala Lumpur International Airport. After his Malaysian stay expired he was refused boarding on a flight to another country, could not enter his destination and could not return to Malaysia. He lived on donated airline meals, was detained in October for being in a restricted area, and in November was accepted by Canada as a refugee (Sources: Amnesty International, NBC News and others). Someone who can neither enter nor leave is left inside the airport. What the airline and the station can do is stay in contact with the authorities and not move until the documents are in order."},
-terms:[["Inadmissible Passenger (INAD)","入国を認められない旅客","입국 불허 승객"],["Incident Report","経緯報告書","경위서"],["Out-of-Hours Handling","時間外の対応","시간 외 대응"],["Holding on Board","機内での待機","기내 대기"]],
+terms:[["Inadmissible Passenger (INAD)","入国拒否旅客 (INAD)","입국 불허 승객 (INAD)"],["Incident Report","経緯報告書","경위서"],["Out-of-Hours Handling","時間外の対応","시간 외 대응"],["Holding on Board","機内での待機","기내 대기"]],
 quiz:[{q:"What comes first in every situation?",opts:["Tell the authorities, wait for instructions, keep a record","Proceed on your own judgment","Let the passengers decide","Do nothing"],a:0,exp:"The earlier you tell them, the more options there are."},
 {q:"What is needed before a delayed bag is delivered?",opts:["Customs inspection","Only a phone call from the passenger","Nothing","The airport company’s signature"],a:0,exp:"Do not hand it to the delivery company before inspection."},
 {q:"The same oversight keeps happening. What do you do?",opts:["Look for the gap in the procedure","Reprimand the agent","Stop recording","Stop checking"],a:0,exp:"Fix the flow, not the person."}],
 next:"6-4 Common questions, and a summary of the course"});
-set("6-4",{title:"Common Questions, and a Summary of the Course",hl:"Summary",subtitle:"What this course has covered comes down to three principles",
+set("6-4",{title:"Common Questions and Course Summary",hl:"Summary",subtitle:"What this course has covered comes down to three principles",
 lead:["CIQ rules differ from country to country and change almost every year. Nobody can memorise them all, and what you memorise will have changed by next year.","Some things do not change, though: the order of thinking, and what to do when unsure. This final lesson sums them up in three points."],
 sections:[
 {h:"Three principles",blocks:[{t:"fig",id:"ciq_rules",cap:"The course in summary. Countries and rules change; these three do not."},{t:"rows",items:[
@@ -107,7 +107,7 @@ sections:[
 {name:"Related courses",x:"Counter work is covered in Passenger Operations, running a station in Airport Station Management, and practice in judgment in Learning from Field Cases."}]},
 {t:"point",x:"Countries make the rules at the border. The airline’s job is to check, to inform and to comply. Those three things protect the passenger."}]}],
 voice:"CIQ rules change often, through amendments and changes in practice. Rather than relying too much on what you have memorized, make a habit of checking which official information applies, and from when; it is the surest way to protect passengers and your company.",
-terms:[["Authorities","当局","당국"],["Official Source","公式の情報","공식 정보"],["Principle","原則","원칙"],["Verification","確認","확인"]],
+terms:[["Authorities","当局","당국"],["Official Source","公式情報源","공식 출처"],["Principle","原則","원칙"],["Verification","確認","확인"]],
 quiz:[{q:"Which is not one of this course’s three principles?",opts:["Memorise every rule","Look up every country on the itinerary","If in doubt, declare","Move nothing before the authorities give instructions"],a:0,exp:"Rules change. What does not change is the order of thinking."},
 {q:"A passenger says, “I’m only connecting, so I don’t need anything, do I?” What do you do?",opts:["Check the transit point’s requirements","Answer “no, nothing”","Just say “I don’t know”","Look up only the destination"],a:0,exp:"Some countries require transfer passengers to enter the country."},
 {q:"What does ★ mean in this course?",opts:["Content that could not be confirmed against official sources and should not be used as it stands","Especially important content","Content that appears in an exam","Out-of-date content"],a:0,exp:"Check the authorities’ official websites before relying on it."}],

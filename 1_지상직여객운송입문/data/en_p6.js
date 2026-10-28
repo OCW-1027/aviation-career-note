@@ -39,7 +39,7 @@ sections:[
 {t:"point",x:"In a small station, one absence can stop the work. Assign roles, but make sure everyone can cover for one another to some extent, with written procedures and handover notes. For tasks that require authority or a qualification, make clear who is responsible."},
 {t:"note",x:"* How a duty manager runs the day, and how to assign roles in a disruption, are covered in detail in Airport Station Management in Practice 3-1 and 3-3."}]}],
 voice:"Getting through a manager’s busiest days comes from handing off the work you do not have to do yourself. Keep yourself free for the tasks that need your judgment.",
-terms:[["Station Manager / Duty Manager","運送マネージャー","운송 매니저"],["No-show","ノーショー","노쇼"],["Daily Report","日報","일일 보고"],["Passenger Service Facility Charge (PSFC)","旅客施設使用料","여객시설 사용료"],["Quality Audit","品質監査","품질 감사"],["Duty Roster","勤務表","근무표"]],
+terms:[["Airport Services Manager","空港空港運送マネージャー","공항 공항 운송 매니저"],["No-show","ノーショー","노쇼"],["Daily Report","日報","일일 보고"],["Passenger Service Facility Charge (PSFC)","旅客施設使用料","여객시설 사용료"],["Quality Audit","品質監査","품질 감사"],["Duty Roster","勤務表","근무표"]],
 quiz:[{q:"Who usually does the hands-on work at an overseas station?",opts:["Head office staff","The handling company’s staff","Passengers","The authorities"],a:1,exp:"The airline’s managers supervise."},
 {q:"What is part of closing the flight?",opts:["No-shows and the daily report","Preparing in-flight meals","Ticket sales strategy","Payroll"],a:0,exp:"Records and reports are pulled together flight by flight."},
 {q:"What matters most in a small station?",opts:["Leaving it all to one person","Written procedures and handover notes","Keeping no records","Assigning nothing"],a:1,exp:"So the work continues when someone is away."}],
@@ -85,7 +85,7 @@ sections:[
 {t:"point",warn:true,x:"Review regularly whether the scope in the contract (the SGHA and its annexes) still matches what you actually ask for on the ramp."},
 {t:"note",x:"* Setting SLAs, quality audits, monthly meetings and building the relationship with the handler are covered from the duty manager’s side in Airport Station Management in Practice 2-1 to 2-4."}]}],
 voice:"Relations with your handler improve when you look for causes together after a problem. End meetings on what you will change together next month rather than on criticism.",
-terms:[["Ground Handling Agent (GHA)","ハンドリング会社","조업사"],["SGHA","地上業務委託契約","지상조업 계약"],["Quality Audit / Check","品質監査","품질 점검"],["Corrective Action","是正措置","시정 조치"],["Minutes","議事録","회의록"],["Instructor / Trainer","指導者","강사"]],
+terms:[["Ground Handling Agent (GHA)","ハンドリング会社","조업사"],["SGHA","標準地上業務委託契約 (SGHA)","표준지상조업계약 (SGHA)"],["Quality Audit / Check","品質監査","품질 점검"],["Corrective Action","是正措置","시정 조치"],["Minutes","議事録","회의록"],["Instructor / Trainer","インストラクター","강사"]],
 quiz:[{q:"What stays with the airline even when the work is contracted out?",opts:["Nothing","Responsibility towards passengers and the authorities","The manual labour","Only the cost"],a:1,exp:"That is why monitoring, assessment and training are needed."},
 {q:"Why carry out unannounced checks?",opts:["To catch people out","To see what an ordinary day looks like","To cut costs","No reason"],a:1,exp:"They show the work as it normally is."},
 {q:"What do you check before approving the invoice?",opts:["Nothing","The flights operated and any additional work","The weather","Revenue"],a:1,exp:"Match the invoice against what was done."}],
@@ -156,10 +156,10 @@ quiz:[{q:"What is always checked about previous findings?",opts:["Nothing","Whet
 {q:"Example retention for financial and tax records in Japan?",opts:["1 year","3 years","7 years","Not required"],a:2,exp:"Seven years is the usual requirement in Japan."}],
 next:"6-5 The Airline Operators Committee (AOC)"});
 
-set("6-5",{title:"The Airline Operator’s Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport operator and relevant bodies",
-lead:["The AOC, the Airline Operator’s Committee, is the body formed by the airlines serving an airport. Its name, membership and powers vary from airport to airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is one useful way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
+set("6-5",{title:"The Airline Operators Committee (AOC)",hl:"AOC",subtitle:"Where the airlines at one airport meet the airport operator and relevant bodies",
+lead:["The AOC, the Airline Operators Committee, is the body formed by the airlines serving an airport. Its name, membership and powers vary from airport to airport. There are terminal committees and airport-wide committees, and they discuss facilities, operations, charges and security with the airport company and the agencies concerned.","For an airline that has just started service, the AOC is one useful way into local information and into contact with the other carriers. This article covers what the AOC deals with, how to join, what you get out of it, and how a station manager should engage."],
 sections:[
-{h:"What the AOC deals with",blocks:[{t:"fig",id:"gnd_aoc",cap:"Animated figure: the six themes handled by the Airline Operator’s Committee light up in turn."},{t:"table",cols:["Topic","Examples"],rows:[
+{h:"What the AOC deals with",blocks:[{t:"fig",id:"gnd_aoc",cap:"Animated figure: the six themes handled by the Airline Operators Committee light up in turn."},{t:"table",cols:["Topic","Examples"],rows:[
 ["Facilities","Counter allocation, terminal works, baggage systems"],
 ["Operations","Managing peak periods, improving punctuality (e.g. A-CDM), snow clearing and de-icing"],
 ["Charges","Revisions to airport charges, discounts and incentive schemes"],
@@ -179,8 +179,8 @@ sections:[
 {name:"Talk to peers",x:"Exchanging information with station managers from your own country’s airlines is very useful in practice."}]},
 {t:"point",x:"You will often hear about a change at the AOC before head office or your own authority does. Sharing it quickly builds trust in the station."}]}],
 voice:"The AOC is where you learn in advance about plans from the airport company, authorities and other airlines. Feed schedule changes you hear there into the station plan at once.",
-terms:[["Airline Operator’s Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Working Group","作業部会","실무 그룹"],["A-CDM","空港の協調的意思決定","공항 협력적 의사결정"],["Airport Authority / Operator","空港会社","공항공사"],["Joint Exercise","合同訓練","합동 훈련"]],
-quiz:[{q:"What is an AOC?",opts:["Airport police","The committee of airlines serving an airport","A travel agency body","A government department"],a:1,exp:"The Airline Operator’s Committee."},
+terms:[["Airline Operators Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Working Group","作業部会","실무 그룹"],["A-CDM","空港の協調的意思決定","공항 협력적 의사결정"],["Airport operator","空港運営者","공항 운영자"],["Joint Exercise","合同訓練","합동 훈련"]],
+quiz:[{q:"What is an AOC?",opts:["Airport police","The committee of airlines serving an airport","A travel agency body","A government department"],a:1,exp:"The Airline Operators Committee."},
 {q:"Which is NOT a benefit of the AOC?",opts:["Early information","A collective voice","Setting fares together","Cooperation in emergencies"],a:2,exp:"Fares are each airline’s own decision and, for competition law reasons, are never discussed."},
 {q:"What does the station manager do after a meeting?",opts:["Nothing","Share it with head office and the team","Leave it to other airlines","Forget it"],a:1,exp:"Bring it back and decide what action is needed."}],
 next:"6-6 The station’s monthly and annual calendar"});

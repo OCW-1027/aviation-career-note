@@ -1072,7 +1072,7 @@ opn_sales:function(l){
 opn_aoc:function(l){
  var W=({ja:{t:'航空会社運営委員会（AOC）への加入（例）',st:['事務局に連絡する','申込書を出す','規約を確かめる','会費を払う','会議に参加する'],who:['加入の意向・就航予定','会社の情報・連絡先','最新の規約','年会費','ターミナル別・全体'],n:['会議では空港の計画・工事・共用施設の情報が早く入る。他社とのつながりもできる']},
   ko:{t:'항공사운영위원회(AOC) 가입(예)',st:['사무국에 연락한다','신청서를 낸다','규약을 확인한다','회비를 낸다','회의에 참가한다'],who:['가입 의향·취항 예정','회사 정보·연락처','최신 규약','연회비','터미널별·전체'],n:['회의에서는 공항 계획·공사·공용 시설 정보가 빨리 들어온다. 타사와의 관계도 생긴다']},
-  en:{t:'Joining the Airline Operator’s Committee (AOC) (example)',st:['Contact the secretariat','Submit the application','Check the constitution','Pay the fee','Attend meetings'],who:['Intention and launch date','Company details and contacts','Current rules','Annual fee','By terminal and plenary'],n:['Meetings bring early news of airport plans, works and shared facilities, and contacts with other airlines']}})[l];
+  en:{t:'Joining the Airline Operators Committee (AOC) (example)',st:['Contact the secretariat','Submit the application','Check the constitution','Pay the fee','Attend meetings'],who:['Intention and launch date','Company details and contacts','Current rules','Annual fee','By terminal and plenary'],n:['Meetings bring early news of airport plans, works and shared facilities, and contacts with other airlines']}})[l];
  if(!W)return F.opn_aoc('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
 opn_year:function(l){

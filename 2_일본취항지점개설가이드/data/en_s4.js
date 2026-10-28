@@ -28,7 +28,7 @@ sections:[
 {name:"Account management",x:"Tidy the accounts whenever staff change. Never write passwords in a shared document."}]},
 {t:"point",warn:true,x:"System connections take far longer from application to service than people expect. Once a launch is decided, make the application a top priority, alongside the airport formalities."}]}],
 voice:"In pre-launch tests, the boarding-pass printers may drop some characters from your company’s layout. Fix the layout with head-office systems staff and check printing again on every terminal before going live.",
-terms:[["CUTE / CUPPS","共用端末","공용 단말"],["Passenger Service System / DCS","旅客システム","여객 시스템"],["Boarding Pass Printer (BPP)","搭乗券プリンター","탑승권 프린터"],["Bag Tag Printer (BTP)","手荷物タグプリンター","수하물 태그 프린터"],["Boarding Gate Reader (BGR)","搭乗券読み取り機","탑승권 리더기"],["Operational Messages (MVT / LDM)","運航の電報","운항 전문"]],
+terms:[["CUTE / CUPPS","共用端末","공용 단말"],["Passenger Service System / DCS","旅客システム","여객 시스템"],["Boarding Pass Printer (BPP)","搭乗券プリンター","탑승권 프린터"],["Bag Tag Printer (BTP)","手荷物タグプリンター","수하물 태그 프린터"],["Boarding Gate Reader (BGR)","搭乗券読み取り機","탑승권 리더기"],["Operational Messages (MVT / LDM)","運航電報","운항 전문"]],
 quiz:[{q:"What does the pre-launch test flight check?",opts:["The whole flow from check-in to boarding","Staff uniforms","The airport shops","The weather"],a:0,exp:"A test flight in the system, run end to end."},
 {q:"What is important to note about shared system connections?",opts:["Applying the day before launch is fine","Application to service takes time","No application is needed","The handler does all of it"],a:1,exp:"Apply as a priority."},
 {q:"How do you prepare for a system failure?",opts:["Do nothing","Keep the manual materials and practise","Just ask passengers to wait","Cancel the flight"],a:1,exp:"Prepare manual working."}],
@@ -62,13 +62,13 @@ sections:[
 {name:"Cargo items",x:"Arranging clearance where goods need it, for example urgent maintenance parts."}]},
 {t:"point",x:"Even when the handling company does the input, the responsibility is the airline’s. Write who inputs what and when into the SOP, and review it at the monthly meeting."}]}],
 voice:"Before launch, confirm with customs when the entry and departure declarations and passenger manifest are to be filed electronically. One test transmission in advance saves panic on the day of the first flight.",
-terms:[["NACCS","輸出入・港湾関連情報処理システム","일본 통관·항만 정보 시스템"],["Arrival / Departure Report","入出港届","입출항 신고"],["Passenger List (P/L)","乗客名簿","승객 명단"],["Cargo Manifest","積荷目録","적하목록"],["General Declaration (G/D)","一般申告書","일반 신고서"],["Tax Agent","納税管理人","납세 관리인"]],
+terms:[["NACCS","輸出入・港湾関連情報処理システム","일본 통관·항만 정보 시스템"],["Arrival / Departure Report","入出港届","입출항 신고"],["Passenger List (P/L)","旅客氏名表","승객 명단"],["Cargo Manifest","積荷目録","적하목록"],["General Declaration (G/D)","一般申告書","일반 신고서"],["Tax Agent","納税管理人","납세 관리인"]],
 quiz:[{q:"Which is filed through NACCS?",opts:["Passenger lists and cargo manifests","Staff salaries","Travel agency contracts","The catering menu"],a:0,exp:"Arrival and departure formalities are filed electronically."},
 {q:"Where does responsibility lie when the handler does the input?",opts:["With the handler alone","With the airline","With customs","With nobody"],a:1,exp:"Write who inputs what into the SOP."},
 {q:"Which is NOT settled with customs before launch?",opts:["Aircraft type and flight numbers","Who files the arrival and departure reports","The handling companies","Where staff are from"],a:3,exp:"The checks cover operational details, responsibilities and handling arrangements."}],
 next:"4-3 Advance passenger information (API/iAPI) and transmission testing"});
 
-set("4-3",{title:"Advance Passenger Information and Interactive Systems",hl:"advance passenger information",subtitle:"Send the passenger’s details before they fly — and in some countries get a board or no-board answer back ★",
+set("4-3",{title:"Advance Passenger Information (API/iAPI) and Japan–Korea Transmission Testing",hl:"advance passenger information",subtitle:"Send the passenger’s details before they fly — and in some countries get a board or no-board answer back ★",
 lead:["On international flights to and from Japan, airlines must send passport details (advance passenger information, API) and booking details (PNR) to immigration and customs. Beyond that, interactive systems that return a board or no-board answer to each transmission (iAPI) are spreading.",
 "This article covers the difference between API and PNR, how the interactive systems work, examples of national schemes, the pre-launch transmission tests, and what happens at check-in. Timing and scope change, so always check current guidance."],
 sections:[
@@ -129,7 +129,7 @@ sections:[
 {name:"Animal and plant quarantine",x:"The flow when a pet arrives, and the contacts."},
 {name:"Immigration",x:"The procedure for escorting and guarding passengers refused entry, and undertakings on managing gate door codes, among other things (Part 5)."}]}]}],
 voice:"When quarantine is tightened, align the in-flight announcements in Japanese, Korean and English and check them with cabin crew before arrival. At the airport, add staff to help passengers fill in the forms.",
-terms:[["Quarantine Station","検疫所","검역소"],["Animal Quarantine","動物検疫","동물 검역"],["Plant Protection","植物防疫","식물 검역"],["Tax-free Program (Consumption Tax)","免税制度","면세 제도"],["Refund Method","リファンド方式","환급 방식"],["Electronic Travel Authorization","電子渡航認証","전자여행허가"]],
+terms:[["Quarantine Station","検疫所","검역소"],["Animal Quarantine","動物検疫","동물 검역"],["Plant Protection","植物防疫","식물 검역"],["Tax-free Scheme","免税制度","면세 제도"],["Refund Method","リファンド方式","환급 방식"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"]],
 quiz:[{q:"When does Japan’s visitor tax-free scheme move to a refund method?",opts:["April 2025","1 November 2026","April 2027","It is not changing"],a:1,exp:"It applies from 1 November 2026."},
 {q:"How does a sale work under the refund method?",opts:["Sold tax-free","Sold with tax, refunded after departure is confirmed","Sold only at the airport","Not sold"],a:1,exp:"The refund follows confirmation that the goods are leaving."},
 {q:"Who provides the in-flight quarantine announcement material?",opts:["A travel agency","The quarantine service","An airport shop","The handling company"],a:1,exp:"Scripts and recordings are provided in several languages."}],

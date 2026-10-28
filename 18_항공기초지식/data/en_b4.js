@@ -58,7 +58,7 @@ sections:[
 {name:"AI-driven operations",x:"AI forecasting delays, congestion and stand use to deploy staff and GSE in advance."}]},
 {t:"point",x:"Even in a smart airport, it is people who help passengers in the end. Noticing who cannot get through, stepping in and judging exceptions will be the most valuable skill in ground work."}]}],
 voice:"With facial recognition, counter work shifts from processing to guidance and handling exceptions. The new role is to focus on the explanations and help machines cannot give.",
-terms:[["Smart Airport","スマート空港","스마트 공항"],["Biometrics","生体認証","생체 인증"],["One ID","ワンアイディー","원 아이디"],["Entry/Exit System (EES)","出入国システム（EU）","출입국 시스템(EU)"],["ETIAS","欧州渡航情報認証制度","유럽 여행 정보 인증 제도"],["RFID Bag Tag","RFIDタグ","RFID 태그"]],
+terms:[["Smart Airport","スマート空港","스마트 공항"],["Biometrics","生体認証","생체 인증"],["One ID","One ID（ワンID）","원 아이디"],["Entry/Exit System (EES)","EU出入国システム（EES）","EU 출입국 시스템(EES)"],["ETIAS","欧州渡航情報認証制度（ETIAS）","유럽 여행정보인증제도(ETIAS)"],["RFID Bag Tag","RFID手荷物タグ","RFID 수하물 태그"]],
 quiz:[{q:"What does the industry call “enrol once, be recognised by the same face many times”?",opts:["One ID","A-CDM","BSP","NOTAM"],a:0,exp:"A concept promoted by IATA."},
 {q:"When did the EU’s EES become fully operational?",opts:["January 2024","12 October 2025","10 April 2026","It has not started"],a:2,exp:"It began in phases on 12 October 2025."},
 {q:"Why are people still needed in a smart airport?",opts:["Some passengers and situations need exceptions","The law says so","Machines are expensive","They are not"],a:0,exp:"Children, wheelchair users, system failures and more."}],

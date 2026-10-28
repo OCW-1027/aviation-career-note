@@ -37,7 +37,7 @@ sections:[
 {name:"Report",x:"If loading differs from the instruction, write it on the LIR and tell load control; a last minute change (LMC) or reissue of the loadsheet may be needed."}]},
 {t:"link",href:"搭載計算の練習.html?lang=en",x:"On the Load Control (Weight & Balance) Practice page, change hold weights and watch how the balance index moves"}]}],
 voice:"Differences from the LIR can affect weight and balance or special-cargo information; report discrepancies for correction before departure.",
-terms:[["Loading Instruction/Report (LIR)","搭載指示書","탑재 지시서"],["Compartment / Hold","貨物室","화물칸"],["Bulk Loading","バルク搭載","벌크 탑재"],["Floor Loading Limit","床の強度の上限","바닥 강도 한계"],["Segregation","隔離（離して積むこと）","격리 적재"],["Tail Tipping","テールティッピング","꼬리 내려앉음"]],
+terms:[["Loading Instruction/Report (LIR)","搭載指示書","탑재 지시서"],["Compartment / Hold","貨物室","화물실"],["Bulk Loading","バルク搭載","벌크 탑재"],["Floor Loading Limit","床面荷重制限","바닥 하중 제한"],["Segregation","隔離（離して積むこと）","격리 적재"],["Tail Tipping","テールティッピング","테일 티핑"]],
 quiz:[{q:"What is written to the right of the planned load on the LIR?",opts:["The weather","What was actually loaded","The fare","Crew names"],a:1,exp:"The loading supervisor writes back the result."},
 {q:"What can happen on the ground if the CG is too far aft?",opts:["Bird strike","Tail tipping","Diversion","No-show"],a:1,exp:"The tail may sink to the ground."},
 {q:"How should animals be loaded?",opts:["First on, last off","Last on, first off","Next to dry ice","Anywhere"],a:1,exp:"Also watch ventilation and temperature."}],

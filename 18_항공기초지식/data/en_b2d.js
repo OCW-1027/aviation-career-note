@@ -1,6 +1,6 @@
 /* 航空の基礎知識 2-5 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("2-5",{title:"Airways: The Roads in the Sky and How to Read an Enroute Chart",hl:"airways",subtitle:"How departures, airways and arrivals connect, chart symbols, route names and altitude rules, the airspace around Korea and Japan, and routes reshaped by politics",
+set("2-5",{title:"Airways: The Roads in the Sky and How to Read an En-route Chart",hl:"airways",subtitle:"How departures, airways and arrivals connect, chart symbols, route names and altitude rules, the airspace around Korea and Japan, and routes reshaped by politics",
 lead:["Aircraft may seem to fly freely, but they actually follow airways: roads in the sky set by air traffic control. Just as roads have junctions and signs, airways are built by linking points called waypoints, and each has defined heights and widths.","Using the real airways between Seoul (Gimpo) and Jeju, this lesson covers reading an enroute chart, the rules for airway names and how altitudes are separated, then looks at the airspace around Korea and Japan and at routes changed by politics."],
 sections:[
 {h:"Roads in the sky: every flight has three parts",blocks:[{t:"fig",id:"route_profile",cap:"Moving diagram: Gimpo (RKSS) to Jeju (RKPC). 1 Standard instrument departure (SID): from the runway to the airway entry, 2 the airway (Y711): cruising past each waypoint, 3 standard arrival (STAR) and approach: from the airway exit to the runway. Only some waypoints are shown."},
@@ -55,7 +55,7 @@ sections:[
 {name:"Flight plans",x:"Airlines file a flight plan listing the airways for each flight; stations plan boarding and departure around its times."},
 {name:"Explaining to passengers",x:"Why the same route takes different times each way, or why a flight takes a detour, can be explained by winds and airways."}]}]}],
 voice:"Knowing the airways makes conversations with dispatch and the crew much easier to follow. When you hear that a reroute will lengthen the flight, you know which airspace is being avoided and can brief passengers with confidence.",
-terms:[["Airway / ATS Route","航空路","항공로"],["Waypoint","ウェイポイント","웨이포인트"],["Standard Instrument Departure (SID)","出発方式","표준 출발 절차"],["Standard Terminal Arrival Route (STAR)","到着方式","표준 도착 절차"],["Flight Information Region (FIR)","飛行情報区","비행정보구역"],["Aeronautical Information Publication (AIP)","航空路誌","항공정보간행물"]],
+terms:[["Airway / ATS Route","航空路","항공로"],["Waypoint","ウェイポイント","웨이포인트"],["Standard Instrument Departure (SID)","標準計器出発方式","표준계기출발절차"],["Standard Terminal Arrival Route (STAR)","標準到着経路","표준계기도착절차"],["Flight Information Region (FIR)","飛行情報区","비행정보구역"],["Aeronautical Information Publication (AIP)","航空路誌","항공정보간행물"]],
 quiz:[{q:"Which airway do flights from Gimpo to Jeju use?",opts:["Y711","Y722","A593","Either"],a:0,exp:"Gimpo to Jeju uses Y711; return flights to Gimpo use Y722: a one-way pair, one airway for each direction."},
 {q:"What does an airway name starting with “Y” indicate?",opts:["An international conventional route","A mainly domestic RNAV route","Upper airspace only","A helicopter route"],a:1,exp:"Q, T, Y and Z are mainly domestic RNAV routes."},
 {q:"Until 2021, who controlled the AKARA corridor east of 125°E?",opts:["Korea","China","Japan","Taiwan"],a:2,exp:"China controlled the west and Japan the east."}],

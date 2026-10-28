@@ -60,7 +60,7 @@ quiz:[{q:"What is hard to carry in a passenger belly?",opts:["Small general carg
 {q:"What must be confirmed before booking large cargo?",opts:["The aircraft type and the dimensions","The weather","Only the rate","The chairman’s name"],a:0,exp:"A difference of a few centimetres can mean it does not fit."}],
 next:"0-3 Major cargo airports in Japan and Korea"});
 
-set("0-3",{title:"Cargo Airports",hl:"cargo airports",subtitle:"What makes an airport a cargo hub",
+set("0-3",{title:"Major Cargo Airports in Japan and Korea",hl:"cargo airports",subtitle:"What makes an airport a cargo hub",
 lead:["Japan’s international air cargo is concentrated at Narita, with Kansai next. In Korea, Incheon is one of the world’s major cargo airports. Airports differ in how the cargo terminal is run, whether they operate around the clock, and how they handle transit cargo.",
 "This article sets out the characteristics of the main airports in Japan and Korea and the pattern of Japan–Korea cargo flows. Figures change from year to year, so it describes tendencies."],
 sections:[
@@ -83,7 +83,7 @@ sections:[
 {name:"Facilities",x:"Temperature control, dangerous goods, outsized cargo and pharmaceutical facilities."},
 {name:"Cost",x:"Airport charges, inland trucking costs and storage charges."}]}]}],
 voice:"Shifts in Japan–Korea cargo show up first in statistics and shipper enquiries. When a commodity is growing, prepare its packing, temperature and document requirements in advance.",
-terms:[["Cargo Terminal","貨物ターミナル","화물 터미널"],["Transit / Transfer Cargo","乗り継ぎ貨物","환적 화물"],["24-hour Operation","24時間運用","24시간 운용"],["Cross-border E-commerce","越境電子商取引","해외 직구"]],
+terms:[["Cargo Terminal","貨物ターミナル","화물 터미널"],["Transit / Transfer Cargo","積み替え貨物","환적 화물"],["24-hour Operation","24時間運用","24시간 운용"],["Cross-border E-commerce","越境EC","국경 간 전자상거래(크로스보더 EC)"]],
 quiz:[{q:"Which is Japan’s largest international cargo gateway?",opts:["Narita","Naha","New Chitose","Fukuoka"],a:0,exp:"Many freighters serve it."},
 {q:"Which commodity is typical of Japan–Korea cargo?",opts:["Semiconductor equipment, materials and components","Gravel","Live cattle","Crude oil"],a:0,exp:"The industries are closely linked."},
 {q:"Which does NOT matter when choosing an airport?",opts:["The acceptance deadline","Specialist facilities","Cost","The colour of the terminal"],a:3,exp:"Time, flights, facilities and cost."}],
@@ -163,7 +163,7 @@ sections:[
 {t:"note",x:"* The formats are industry standards, in text and XML. Names for them differ between companies."}]},
 {h:"Data quality",blocks:[{t:"p",x:"Now that the data arrives ahead of the freight, an error in it — weight, pieces, commodity — turns directly into a delay in customs or screening. Checking that the freight and the data agree matters more than ever on the warehouse floor."}]}],
 voice:"Electronic air waybills save time spent hunting for paper, but an input error now travels the whole journey. Checking at the first point of entry matters more than ever.",
-terms:[["e-AWB","電子運送状","전자 운송장"],["Flight Manifest","フライト・マニフェスト","적하목록(편별)"],["Status Update","状況の更新","상태 업데이트"],["Data Quality","データ品質","데이터 품질"]],
+terms:[["e-AWB","電子運送状","전자 운송장"],["Flight Manifest","フライト・マニフェスト","적하목록"],["Status Update","ステータス更新","상태 업데이트"],["Data Quality","データ品質","데이터 품질"]],
 quiz:[{q:"What is the benefit of the electronic waybill?",opts:["Fewer keying errors","More paper","No checks possible","Heavier freight"],a:0,exp:"The data is reused rather than retyped."},
 {q:"What shows which shipments were loaded on a flight?",opts:["The flight manifest","An invoice","An insurance policy","A business card"],a:0,exp:"It is also used to report to customs."},
 {q:"What matters more once everything is electronic?",opts:["Checking that the freight and the data agree","Filing paper","Handwriting","Telephoning only"],a:0,exp:"Data errors become delays."}],

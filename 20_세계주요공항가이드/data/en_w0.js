@@ -50,7 +50,7 @@ sections:[
 ["Changing airports","Entry required","Heathrow to Gatwick in London"]]},
 {t:"point",x:"The United States has no airside transit. Passengers routing via the US need an ESTA or visa even if the US is not their destination. This is one of the points station counters often get wrong."}]}],
 voice:"Pre-travel authorisations are sometimes required even for passengers who are only transiting, which makes them easy to miss at the counter. Put checking the rules for transit points, not just the final destination, on your checklist.",
-terms:[["ESTA (Electronic System for Travel Authorization)","電子渡航認証（米国）","전자여행허가(미국)"],["ETA (Electronic Travel Authorisation)","電子渡航認証（英国）","전자여행허가(영국)"],["EES (Entry/Exit System)","出入国記録の仕組み（EU）","출입국 기록 시스템(EU)"],["ETIAS","欧州の渡航の許可","유럽 여행 허가"],["TIMATIC","渡航書類のデータベース","여행 서류 데이터베이스"]],
+terms:[["ESTA (Electronic System for Travel Authorization)","電子渡航認証（米国）","전자여행허가(미국)"],["ETA (Electronic Travel Authorisation)","電子渡航認証（英国）","전자여행허가(영국)"],["EES (Entry/Exit System)","出入国記録システム（EU）","출입국 기록 시스템(EU)"],["ETIAS (European Travel Information and Authorisation System)","欧州渡航情報認証制度","유럽 전자여행허가"],["TIMATIC","渡航条件データベース","출입국 규정 데이터베이스"]],
 quiz:[{q:"What is the ESTA fee from 30 September 2025?",opts:["$14","$21","$40","$60"],a:2,exp:"It rose from $21 to $40."},
 {q:"When did the EU EES become fully operational?",opts:["1 January 2024","12 October 2025","10 April 2026","Not yet"],a:2,exp:"It started progressively on 12 October 2025 and became fully operational on 10 April 2026."},
 {q:"A passenger connecting between international flights at a US airport…",opts:["Passes immigration, so needs an ESTA or visa","Needs nothing","Needs an EU ETIAS","Needs a UK ETA"],a:0,exp:"The US has no airside transit."}],

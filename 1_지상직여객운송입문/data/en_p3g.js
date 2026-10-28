@@ -36,7 +36,7 @@ sections:[
 {name:"Licences",x:"Driving airside needs the airport’s own permit, and there are also in-house qualifications for each type of equipment. ★"}]},
 {t:"point",warn:true,x:"Much of the damage to aircraft on the ground comes from contact with GSE. Repairs take time and can lead to delays or cancellations. Make “stop, check, slowly” everyone’s habit."}]}],
 voice:"Positioning GSE as required before arrival can help make the turnaround more efficient. Draw up a diagram of where each piece of equipment waits.",
-terms:[["Ground Support Equipment (GSE)","地上支援器材","지상조업 장비"],["Belt Loader","ベルトローダー","벨트 로더"],["High Loader / ULD Loader","ハイリフトローダー","하이리프트 로더"],["Ground Power Unit (GPU)","地上電源装置","지상 전원 공급 장치"],["Pre-conditioned Air (PCA)","地上空調装置","공조 장치"],["Tow Tractor / Pushback Tug","トーイングトラクター","토잉 트랙터"]],
+terms:[["Ground Support Equipment (GSE)","地上支援器材","지상조업 장비"],["Belt Loader","ベルトローダー","벨트 로더"],["High Loader / ULD Loader","ハイリフトローダー","하이리프트 로더"],["Ground Power Unit (GPU)","地上電源装置","지상 전원 공급 장치"],["Pre-conditioned Air (PCA)","地上空調装置","지상 공조 장치"],["Aircraft tow tractor / pushback tug","航空機牽引車","항공기 견인차"]],
 quiz:[{q:"Which GSE loads and unloads containers (ULDs)?",opts:["High loader","Belt loader","Water truck","GPU"],a:0,exp:"Belt loaders are for loose bags and cargo."},
 {q:"Where does GSE wait before the aircraft arrives?",opts:["Outside the equipment restraint line","In front of the engines","On the nose guideline","Anywhere"],a:0,exp:"It approaches once the aircraft has stopped and is chocked."},
 {q:"What is the basic rule when GSE approaches the aircraft?",opts:["Stop, check the brakes, then walking pace","Hurry by the shortest route","Reverse without a guide","Drive fast"],a:0,exp:"“Stop, check, slowly.”"}],

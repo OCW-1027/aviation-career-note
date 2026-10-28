@@ -32,7 +32,7 @@ sections:[
 {name:"Hear the front line",x:"Excess baggage, document problems, missed connections: ask what better explanations at the point of sale could have prevented."}]},
 {t:"note",x:"* The detailed airport procedures are in the course Airline Passenger Operations (e.g. 1-3 check-in, 1-10 and 1-11 baggage, 2-1 the gate)."}]}],
 voice:"Sales and the airport station keep the same promise from opposite ends. Check the airport’s rules before you sell, and tell the airport after you sell. That two-way habit pays off when things go wrong.",
-terms:[["Check-in Deadline","締め切り時刻","마감 시각"],["Minimum Connecting Time (MCT)","最低乗り継ぎ時間","최소 연결 시간"],["Special Service Request (SSR)","特別なサービスの申し込み","특별 서비스 요청"],["Group","団体","단체"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"]],
+terms:[["Check-in Deadline","チェックイン締め切り時刻","탑승수속 마감 시각"],["Minimum Connecting Time (MCT)","最低乗り継ぎ時間","최소 연결 시간"],["Special Service Request (SSR)","特別サービスリクエスト（SSR）","특별 서비스 요청"],["Group","団体","단체"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"]],
 quiz:[{q:"What should sales tell customers about seat assignments?",opts:["They are always honoured","They can change if the aircraft changes","They cannot be changed at the airport","The fee is refunded"],a:1,exp:"An aircraft change can change the seat map."},
 {q:"What is the risk of connecting on separately bought tickets?",opts:["None","If the first flight is late, the next is often not protected","Baggage is cheaper","Bags are always checked through"],a:1,exp:"Recommend through tickets."},
 {q:"After selling a large group, what should sales do by the day before?",opts:["Nothing","Tell the station the numbers, arrival time and special passengers","Work it out at the airport on the day","Tell only the agency"],a:1,exp:"The station can prepare counters and staff."}],
@@ -70,7 +70,7 @@ sections:[
 {name:"Add staff",x:"Increase call-centre and agency-desk staff and opening hours."}]},
 {t:"point",x:"Publishing conditions early gives customers time to change their own plans and reduce the chaos at the airport on the day."}]}],
 voice:"In a disruption the sales phones never stop. If you are unsure, speak from the same page the airport is using. When the wording is aligned inside the company, what you say outside will not waver.",
-terms:[["Operations Control Centre (OCC)","運航管理センター","운항통제센터"],["Waiver","ウェーバー（特別な取り扱いの条件）","웨이버(특별 취급 조건)"],["Schedule Change","スケジュール変更","스케줄 변경"],["Mass Notification","一斉の案内","일괄 안내"],["Next Update Time","次の案内の時刻","다음 안내 시각"]],
+terms:[["Operations Control Centre (OCC)","運航管理センター","운항통제센터"],["Waiver","ウェーバー（特別な取り扱いの条件）","웨이버(특별 취급 조건)"],["Schedule Change","スケジュール変更","스케줄 변경"],["Mass Notification","一斉通知","일괄 안내"],["Next Update Time","次回案内時刻","다음 안내 시각"]],
 quiz:[{q:"What should sales do first in a disruption?",opts:["Let each person inform customers as they see fit","Set up a single internal source of information","Refuse enquiries","Think about it tomorrow"],a:1,exp:"It stops out-of-date information and different wording from circulating."},
 {q:"What do you say when asked about something not yet decided?",opts:["Guess","Promise the time of the next update","Say nothing","Tell them to ask the airport"],a:1,exp:"Customers want to know when they will know more."},
 {q:"With a typhoon forecast, what should be done early?",opts:["Nothing until the day","Publish rebooking and refund conditions","Raise fares","Keep agencies out of it"],a:1,exp:"Customers get time to change their own plans."}],
@@ -119,7 +119,7 @@ quiz:[{q:"What must a waiver include?",opts:["The president’s name","Affected 
 {q:"What if the booking has no customer contact details?",opts:["Give up on contacting them","Ask the agency to inform the customer","Wait at the airport","Use social media only"],a:1,exp:"The agency is the first point of contact."}],
 next:"8-4 Handling disruptions for direct customers"});
 
-set("8-4",{title:"Handling Disruptions for Direct Customers: Website, Call Centre, Corporate Accounts and Members",hl:"direct customers",subtitle:"In direct sales the airline is the customer’s direct point of contact: informing, changing, refunding and recording are all yours",
+set("8-4",{title:"Serving Direct Customers: Website, Call Centre, Corporate Accounts and Members",hl:"direct customers",subtitle:"In direct sales the airline is the customer’s direct point of contact: informing, changing, refunding and recording are all yours",
 lead:["For tickets sold on your own website, app or call centre, the airline deals with the customer directly. You inform them using the contact details taken at booking, and you handle changes and refunds yourselves. In a disruption, calls pile up at the call centre and customers speak up on social media.",
 "This lesson covers how handling differs between indirect and direct sales, how to inform direct customers, how to handle corporate clients, members and passengers with special needs, how to explain compensation, and an exercise for a typhoon cancelling the next day’s flight."],
 sections:[
@@ -152,7 +152,7 @@ sections:[
 {t:"rows",items:[
 {name:"Think it through",x:"In your airline, who does what, using what, at each of these times? Are the contact numbers and template wording ready in advance?"}]}]}],
 voice:"Direct customers take the airline’s handling as the airline itself. Notice that comes quickly, changes they can make themselves, and a phone line that answers: get those three right and trust survives a disruption.",
-terms:[["Direct Sales","直販","직판"],["Mass Notification","一斉の通知","일괄 통지"],["Call Centre","コールセンター","콜센터"],["Elite Member","上級の会員","상위 등급 회원"],["Compensation","補償","보상"],["Conditions of Carriage","運送約款","운송약관"]],
+terms:[["Direct Sales","直販","직판"],["Mass Notification","一斉通知","일괄 통지"],["Call Centre","コールセンター","콜센터"],["Elite Member","上級会員","상위 등급 회원"],["Compensation","補償","보상"],["Conditions of Carriage","運送約款","운송약관"]],
 quiz:[{q:"How are direct customers informed first?",opts:["Through an agency","By the airline, by email, SMS or app","When they reach the airport","They are not informed"],a:1,exp:"In direct sales the airline is the point of contact."},
 {q:"What should sales do when asked about compensation?",opts:["Promise a full payment on the spot","Explain the company’s standards and where to apply","Say it is never paid","Not answer"],a:1,exp:"It depends on the cause, so do not promise on the spot."},
 {q:"What about customers whose notice email bounced?",opts:["Leave them","List them and follow up by phone or at the airport","Social media is enough","Leave it to agencies"],a:1,exp:"Make sure no one is left uninformed."}],

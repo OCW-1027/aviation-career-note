@@ -72,13 +72,13 @@ sections:[
 {name:"Photographs",x:"Provide cleared images in high resolution."},
 {name:"Social media",x:"A Japanese account: a countdown to launch, a look inside the cabin, campaigns. Agree a review step for posts to avoid controversy."}]}]}],
 voice:"Press briefings always bring unexpected questions. Agree answers on sensitive topics — fares, safety, competitors, possible withdrawal — with head office beforehand.",
-terms:[["Press Release","プレスリリース","보도자료"],["Press Briefing","記者懇談会","기자간담회"],["Q&A Preparation","想定問答","예상 문답"],["Inaugural Ceremony","就航式","취항식"]],
+terms:[["Press Release","プレスリリース","보도자료"],["Press Briefing","記者懇談会","기자간담회"],["Anticipated Q&A","想定問答","예상 질의응답"],["Inaugural Ceremony","就航式","취항식"]],
 quiz:[{q:"What must you watch out for when announcing before approval?",opts:["Use “planned” and “subject to approval” precisely","Say it is confirmed","Announce nothing","Mention only the fare"],a:0,exp:"Check where the approvals stand."},
 {q:"What makes coverage more likely?",opts:["A joint announcement with the airport company or a tourism body","No material","English only","No photographs"],a:0,exp:"It adds news value."},
 {q:"What goes in the headline of a release?",opts:["From when, between where and where, and what is new","The president’s hobbies","Only the office address","The weather"],a:0,exp:"Facts first."}],
 next:"5-2 Working with tourism bodies, and events"});
 
-set("5-2",{title:"Working with Tourism Bodies and Holding Events",hl:"partnerships and events",subtitle:"An airline cannot create demand alone. Work with destinations, tourism bodies and agencies to create a reason to travel",
+set("5-2",{title:"Working with Tourism Organisations and Holding Events",hl:"partnerships and events",subtitle:"An airline cannot create demand alone. Work with destinations, tourism bodies and agencies to create a reason to travel",
 lead:["Growing demand on a new route means showing what makes the destination worth visiting and creating a reason to go. Campaigns and events with the tourism bodies of both countries, local governments, airport companies and travel agencies are effective for this.",
 "This article covers who to partner with and on what, planning events, and measuring the effect."],
 sections:[
@@ -100,7 +100,7 @@ sections:[
 {name:"Return on investment",x:"Compare the cost with the added revenue and use the result in the next plan."}]},
 {t:"point",x:"Partnership works best as an annual plan, not a one-off event. Keep a yearly list of occasions and talk to partners early."}]}],
 voice:"Partnerships with tourism bodies last when you agree at the start who pays for what and how success is measured. Reporting results in numbers makes the next one easier.",
-terms:[["National Tourism Organisation","観光の公的機関","관광 공공기관"],["Travel Fair","旅行博","여행 박람회"],["Familiarisation Trip (FAM Trip)","招待旅行","초청 여행"],["Return on Investment","費用対効果","비용 대비 효과"]],
+terms:[["National Tourism Organisation","政府観光局（NTO）","국가 관광기구(NTO)"],["Travel Fair","旅行博","여행 박람회"],["Familiarisation Trip (FAM Trip)","ファムトリップ","팸투어"],["Return on investment (ROI)","投資収益率（ROI）","투자수익률(ROI)"]],
 quiz:[{q:"What grows demand on a new route?",opts:["Working with tourism bodies, local governments and agencies","Advertising alone","Doing nothing","Only cutting fares"],a:0,exp:"Create a reason to travel."},
 {q:"Which measures show the effect of a partnership?",opts:["Change in bookings and the number of new tours","Staff numbers","Office size","The weather"],a:0,exp:"Compare cost and return as well."},
 {q:"What makes partnerships work?",opts:["Running them as an annual plan","One-offs","Last-minute contact","A new partner every time"],a:0,exp:"Talk to partners early."}],

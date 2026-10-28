@@ -20,7 +20,7 @@ sections:[
 {t:"note",x:"* The periods are indicative. They shift with slot availability, the pace of approvals and aircraft delivery. Always confirm statutory deadlines from current official guidance. ★"}]},
 {h:"Where things usually slip",blocks:[{t:"check",items:[
 {name:"Bank accounts",x:"Opening an account for a foreign company’s branch takes time, and often cannot start until registration is complete."},
-{name:"Registration documents",x:"The head office articles, board minutes and affidavits all have to be prepared at home and then translated and certified."},
+{name:"Corporate Registration documents",x:"The head office articles, board minutes and affidavits all have to be prepared at home and then translated and certified."},
 {name:"Handling company staffing",x:"At airports short of labour, the hours you want may not be available."},
 {name:"System connections",x:"Applications for shared airport system IDs and lines take time to process."},
 {name:"Security training",x:"Japan’s security instructor courses only run at set times of year."}]},
@@ -35,7 +35,7 @@ sections:[
 {name:"Training",x:"Initial training for your own staff, training the handling company (passenger, weight and balance, ramp, cargo, maintenance, fuelling), the test flight"},
 {name:"Sales and stakeholders",x:"Travel agencies, GDS, BSP, sales policy, the airport company, tourism bodies, the embassy"}]}]}],
 voice:"On a new route, securing airport offices and counters can take longer than the permits. Put the six streams of preparation on one sheet and review it with head office every week, and you will see at once which stream is falling behind.",
-terms:[["Market Entry / Inaugural Service","就航","취항"],["Inaugural Flight","初便","첫 편"],["Agent / Representative","代理人","대리인"],["Slot","発着枠","슬롯"],["Registration","登記","등기"],["Checklist","チェックリスト","체크리스트"]],
+terms:[["Market Entry / Inaugural Service","就航","취항"],["Inaugural Flight","初便","첫 편"],["Agent / Representative","代理人","대리인"],["Slot","発着枠","슬롯"],["Corporate Registration","登記","등기"],["Checklist","チェックリスト","체크리스트"]],
 quiz:[{q:"When must the foreign air carrier operating licence be applied for?",opts:["A week before service","By three months before service starts","After service starts","No deadline"],a:1,exp:"By three months before the planned start of service."},
 {q:"What is the deadline for filing fares?",opts:["30 days before the intended date","The day before","A year before","Not required"],a:0,exp:"Foreign carriers file fares by 30 days before the intended date."},
 {q:"What is an effective way to prevent delay?",opts:["The station manager tracking it alone","Head office, the station and the providers working from one checklist","Passing things on verbally","Not fixing a launch date"],a:1,exp:"Share status, owner and deadline."}],

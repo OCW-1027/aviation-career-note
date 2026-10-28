@@ -47,7 +47,7 @@ sections:[
 ["November 2025","Guidelines on Ensuring Runway Safety issued"]]},
 {t:"note",x:"* Compiled by this site from the main published documents; check MLIT announcements for the latest measures. ★"}]}],
 voice:"Even when driving on the ramp, always read back radio instructions, and say ‘confirm’ when unsure. The busier the day, the more it matters not to skip the readback.",
-terms:[["Runway Incursion","滑走路誤進入","활주로 오진입"],["Readback","復唱","복창"],["Hearback","聞き返し（ヒアバック）","확인 청취(히어백)"],["Communication Loop","交信ループ","교신 루프"],["Stop Bar","ストップバー","스톱바"],["Runway Status Lights (RWSL)","滑走路状態表示灯","활주로 상태 표시등"]],
+terms:[["Runway Incursion","滑走路誤進入","활주로 침범"],["Readback","復唱","복창"],["Hearback","ヒアバック（復唱の確認）","복창 확인(히어백)"],["Communication Loop","交信ループ","교신 루프"],["Stop Bar","ストップバー","스톱바"],["Runway Status Lights (RWSL)","滑走路状態表示灯","활주로 상태 표시등"]],
 quiz:[{q:"Which is true about readback?",opts:["A readback always prevents mishearing","Mishearings can be caught when the controller or others listen to and check the readback (hearback)","“Roger” is enough","Readback is unnecessary"],a:1,exp:"Readback and hearback work together."},
 {q:"What is departure sequence information such as “number one”?",opts:["A take-off clearance","Not a clearance","Permission to enter the runway","Something to ignore"],a:1,exp:"Never mistake sequence information for a clearance."},
 {q:"What should a vehicle do at a red stop bar?",opts:["Cross quickly","Never cross it, even with a clearance; stop and check","Flash lights and cross","Ask the vehicle behind"],a:1,exp:"If lights and instructions disagree, stop and check."}],

@@ -1,7 +1,7 @@
 /* 外国航空会社の日本就航・支店開設ガイド — English version (Part 7: 営業と関係機関) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("7-1",{title:"Travel Agencies, GDS and BSP: Starting Sales",hl:"starting sales",subtitle:"Prepare to sell while you prepare to fly. In Japan the trade carries much of the selling ★",
-lead:["However well the operation is prepared, a route does not survive unless the seats sell. In the Japanese market travel agencies carry a great deal of the selling, especially for packages and groups, and being in the GDS and the BSP is the precondition for that.",
+set("7-1",{title:"Travel Agencies, Global Distribution System (GDS) and BSP: Starting Sales",hl:"starting sales",subtitle:"Prepare to sell while you prepare to fly. In Japan the trade carries much of the selling ★",
+lead:["However well the operation is prepared, a route does not survive unless the seats sell. In the Japanese market travel agencies carry a great deal of the selling, especially for packages and groups, and being in the Global Distribution System (GDS) and the BSP is the precondition for that.",
 "This article covers the steps to start selling, building relationships with the trade, preparing the GDS and BSP, distributing fares and auditing ticketing, direct sales, and the bodies worth knowing."],
 sections:[
 {h:"The steps (example)",blocks:[{t:"fig",id:"opn_sales",cap:"Animated figure: launching sales (example)."},{t:"ladder",rise:10,steps:[{name:"Understand the market",sub:"Competitors’ schedules and fares, demand"},{name:"Set the sales policy",sub:"The group and individual mix, the main channels"},{name:"GDS and BSP",sub:"Contracts and participation"},{name:"Brief the trade",sub:"Announce the service, distribute fares"},{name:"Start selling",sub:"Share the booking position and support the channels"}]}]},
@@ -26,14 +26,14 @@ sections:[
 {name:"Embassy and trade bodies",x:"Your own embassy and the trade and investment agencies."},
 {name:"Local events",x:"Share information on local festivals and events with head office sales."}]}]}],
 voice:"When you visit travel agencies before launch, they often ask more about seat allocation terms, commission and what happens on cancellation than about fares. Passing that feedback to head-office sales can prompt a review of sales terms.",
-terms:[["Travel Agency","旅行会社","여행사"],["GDS","予約・発券システム","예약·발권 시스템"],["BSP (Billing and Settlement Plan)","BSP（旅行会社と航空会社の間の集中精算制度）","BSP 정산"],["Seat Block / Allotment","座席割り当て","블록"],["Agency Debit Memo (ADM)","請求（ADM）","ADM"],["Direct Sales","直販","직판"]],
+terms:[["Travel Agency","旅行会社","여행사"],["Global Distribution System (GDS)","GDS","GDS"],["BSP (Billing and Settlement Plan)","BSP","BSP 정산"],["Seat Block / Allotment","座席ブロック","좌석 블록"],["Agency Debit Memo (ADM)","ADM","ADM"],["Direct Sales","直販","직판"]],
 quiz:[{q:"Which is true of the Japanese market?",opts:["Travel agencies carry much of the selling","Direct sales only","The GDS is not used","There are no group tours"],a:0,exp:"Packages and groups make the trade powerful."},
 {q:"What is an ADM?",opts:["A debit raised against an agency for a ticketing error","An airport charge","Catering","A security programme"],a:0,exp:"An agency debit memo."},
 {q:"What reduces agency errors fastest?",opts:["More complex rules","Simple booking classes and rules, with a clear local-language notice","No notice at all","Notices in English only"],a:1,exp:"Clarity in the local language matters."}],
 next:"7-2 The Airline Operators Committee (AOC) and the bodies around it"});
 
-set("7-2",{title:"The Airline Operator’s Committee and the Bodies Around It",hl:"the AOC",subtitle:"Join before launch. Meetings, fees and shared facilities all run through it ★",
-lead:["The Airline Operator’s Committee (AOC) is the body of airlines serving an airport. Because using shared facilities, dealing with the airport company and cooperating in emergencies all run through it, joining before launch is essential (for an overview see Ground Staff 6-5).",
+set("7-2",{title:"The Airline Operators Committee and the Bodies Around It",hl:"the AOC",subtitle:"Join before launch. Meetings, fees and shared facilities all run through it ★",
+lead:["The Airline Operators Committee (AOC) is the body of airlines serving an airport. Because using shared facilities, dealing with the airport company and cooperating in emergencies all run through it, joining before launch is essential (for an overview see Ground Staff 6-5).",
 "This article covers how to join, the fees and the meetings, the shared facilities accessed through it, the relationship with the terminal’s lead airline, and the other bodies to know."],
 sections:[
 {h:"Joining (example)",blocks:[{t:"fig",id:"opn_aoc",cap:"Animated figure: joining the AOC (example)."},{t:"ladder",rise:10,steps:[{name:"Contact the secretariat",sub:"Your intention to join and the launch date"},{name:"Application",sub:"Company details and contacts"},{name:"The constitution",sub:"Read the current version"},{name:"Fees",sub:"The annual fee, invoiced and paid"},{name:"Attend",sub:"Terminal and full committees"}]},
@@ -55,7 +55,7 @@ sections:[
 ["Stations of airlines from your own country","Information, help during disruption, rebooking"],
 ["Tourism and trade bodies","Launch publicity and events"]]}]}],
 voice:"AOC meetings let you learn early about changes such as new airport counter allocations. That gives you time to prepare signage and procedure changes.",
-terms:[["Airline Operator’s Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Annual Fee","年会費","연회비"],["Terminal Lead Airline","ターミナル運営航空会社","터미널 운영 항공사"],["Common-use Facilities","共用施設","공용 시설"],["Resumption of Operations","運用再開","운영 재개"]],
+terms:[["Airline Operators Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Annual Fee","年会費","연회비"],["Terminal lead airline","ターミナル幹事航空会社","터미널 대표 항공사"],["Common-use Facilities","共用施設","공용 시설"],["Resumption of Operations","運用再開","운영 재개"]],
 quiz:[{q:"When should you join the committee?",opts:["A year after launch","Before launch","Never","After the audit"],a:1,exp:"You need it for shared facilities and more."},
 {q:"What should you watch for when budgeting the annual fee?",opts:["No budget needed","Put it in the right quarter for when it is invoiced","Pay monthly","The airport company pays it"],a:1,exp:"The invoicing timing can move."},
 {q:"Who coordinates the resumption of operations after a major closure?",opts:["The committee","A travel agency","The shops","Passengers"],a:0,exp:"The order of resumption and flight allocation are coordinated through the committee."}],
@@ -95,7 +95,7 @@ sections:[
 {name:"Check yourselves",x:"From year two, build self-audits and corrective action into the annual plan (8-1, 8-2)."}]},
 {t:"point",x:"The checklist you built for the launch keeps working afterwards as the operating checklist. At the end of year one, tidy it so it can be used for the next new station as well."}]}],
 voice:"Build a list of annual procedures from your first year of operation. From the second year you can use it to start preparing a month before each procedure.",
-terms:[["Operations Calendar","運営カレンダー","운영 캘린더"],["Seasonal Initial Filing","期首申請","기수 신청"],["Monthly Meeting","月例会議","월간 회의"],["Annual Renewal (Labour Insurance)","年度更新","연도 갱신"],["Handover","引き継ぎ","인계"],["Template","ひな形","서식"]],
+terms:[["Operations Calendar","運営カレンダー","운영 캘린더"],["Seasonal Initial Filing","期首申請","기수 신청"],["Monthly Meeting","月例会議","월례 회의"],["Annual Renewal (Labour Insurance)","年度更新","연도 갱신"],["Handover","引き継ぎ","인계"],["Template","ひな形","서식"]],
 quiz:[{q:"What is the point of the first year?",opts:["Record nothing","Go through every annual procedure once and get the records and procedures right","Record it all in year two","Leave it to head office"],a:1,exp:"From year two it repeats."},
 {q:"What do you do for the first time at the first season change?",opts:["File the next season’s schedule, slots and fares","The inaugural ceremony","The staff outing","Change the uniform"],a:0,exp:"The Part 1 procedures, on your own."},
 {q:"What makes the operation stick?",opts:["Only the station manager knows it","Procedures and records organised in a shared folder","Keep no records","Start from scratch each year"],a:1,exp:"Make it possible to hand over."}],

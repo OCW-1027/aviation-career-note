@@ -62,7 +62,7 @@ sections:[
 {name:"Reporting duties",x:"Depending on severity, a report to the authority may be required. Always inform the company safety department. ★"}]},
 {t:"point",warn:true,x:"Departure preparations may go ahead, but the doors must not close until the inspection is complete and maintenance has signed."}]}],
 voice:"To passengers, lightning and bird strikes sound dramatic. Calmly explaining that this is a standard safety inspection makes the wait far less worrying.",
-terms:[["Unscheduled (conditional) inspection","臨時の点検","비정기 점검"],["Lightning strike","落雷","낙뢰"],["Bird strike","鳥衝突","조류 충돌"],["Hard landing","ハードランディング","하드 랜딩"],["Overweight landing","過重量着陸","과중량 착륙"],["Static wick","放電索","정전기 방전기"]],
+terms:[["Unscheduled (conditional) inspection","臨時点検","비정기 점검"],["Lightning strike","落雷","낙뢰"],["Bird strike","バードストライク","조류 충돌"],["Hard landing","ハードランディング","하드 랜딩"],["Overweight landing","過重量着陸","과중량 착륙"],["Static wick","放電索","정전기 방전기"]],
 quiz:[{q:"Until the unscheduled inspection is complete, the aircraft…",opts:["cannot depart on its next flight","may depart with passengers","may depart without maintenance","moves to another airport"],a:0,exp:"It cannot depart until the inspection is complete and maintenance has signed."},
 {q:"Roughly how often is an airliner struck by lightning?",opts:["About once a year","Once in ten years","Every day","Almost never"],a:0,exp:"Estimates put it at about once per 1,000 flight hours, or about once a year."},
 {q:"If damage is found, what is checked next?",opts:["The fare table","Whether the MEL allows departure","The number of meals","Only the weather forecast"],a:1,exp:"Check whether the MEL allows departure; if not, move to repair and AOG handling."}],

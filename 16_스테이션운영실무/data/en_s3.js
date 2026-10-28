@@ -55,7 +55,7 @@ sections:[
 {name:"So you can explain later",x:"When a complaint or an audit raises questions, the record protects the station and you."}]},
 {t:"point",x:"A good duty manager decides not only quickly but in a way that can be explained later. Agree standards first and record decisions: with those two, hesitation shrinks dramatically."}]}],
 voice:"When torn between punctuality and safety, the answer is always safety. Recording your reasons on the spot also makes explaining it later easy.",
-terms:[["Priority","優先順位","우선순위"],["Passenger-Baggage Reconciliation","手荷物と旅客の一致","승객·수하물 일치"],["Rerouting / Endorsement","振り替え（他社便）","타사편 대체"],["Duty Officer","当直","당직"]],
+terms:[["Priority","優先順位","우선순위"],["Passenger-Baggage Reconciliation","旅客・手荷物照合","승객·수하물 일치"],["Reaccommodation on another airline","振り替え（他社便）","타사편 대체"],["Duty Officer","当直責任者","당직 책임자"]],
 quiz:[{q:"What sits at the top of the order of priorities?",opts:["Safety","Punctuality","Cost","Passenger requests"],a:0,exp:"Safety, security, rules, passenger care, punctuality, cost."},
 {q:"What if a passenger’s request conflicts with the rules?",opts:["Keep the rule and do everything it allows","Grant the request","Refuse and stop there","Ignore it"],a:0,exp:"Do everything within the rules."},
 {q:"Why record decisions?",opts:["So they can be explained later, protecting the station and you","Only for appraisals","No particular reason","Records are unnecessary"],a:0,exp:"They help when a complaint or audit raises questions."}],
@@ -89,7 +89,7 @@ sections:[
 {name:"Records",x:"List who was moved to which flight and on what terms."}]},
 {t:"point",x:"The worse it gets, the more the duty manager stays on the floor, speaks up and records decisions. When passengers are most anxious, the duty manager is the calmest person there."}]}],
 voice:"Information arrives late during a night diversion. Do not wait for confirmation: move hotels, transport and staff based on the worst case.",
-terms:[["Diversion","ダイバート","다이버트(회항)"],["Technical Landing","テクニカルランディング","테크니컬 랜딩"],["Curfew","夜間の運用制限","야간 운항 제한(커퓨)"],["Flight Duty Period Limit","乗員の勤務時間の上限","승무원 근무시간 제한"]],
+terms:[["Diversion","ダイバート","다이버트"],["Technical Landing","テクニカルランディング","테크니컬 랜딩"],["Curfew","カーフュー（夜間運用制限）","야간 운항 제한(커퓨)"],["Flight Duty Period Limit","飛行勤務時間の制限","비행근무시간 제한"]],
 quiz:[{q:"Which four jobs does a duty manager run at once in a disruption?",opts:["Decide, inform, notify, arrange","Wait, apologise, go home, rest","Sales, PR, accounts, HR","Nothing"],a:0,exp:"All four run in parallel."},
 {q:"What must be factored in on a long-haul diversion?",opts:["Crew duty time limits","How the meals taste","Seat colours","Fares"],a:0,exp:"Exceeding them can stop the flight continuing."},
 {q:"What must always be agreed with head office before rerouting on another airline?",opts:["Compensation and how premium cabins are handled","The flight number","The weather","The gate number"],a:0,exp:"It involves cost and fairness."}],
@@ -129,7 +129,7 @@ quiz:[{q:"What goes in the timeline of an incident report?",opts:["Times and fac
 {q:"What goes in the weekly report?",opts:["Numbers and what was out of the ordinary","The same routine every day","Personal impressions","Nothing"],a:0,exp:"Leave out the routine and report the changes."}],
 next:"3-5 Growing people, and for those who want the job"});
 
-set("3-5",{title:"Growing People, and for Those Who Want the Job",hl:"growing people",subtitle:"A good duty manager builds a floor that runs without them",
+set("3-5",{title:"Developing Your Team, and Advice for Future Duty Managers",hl:"growing people",subtitle:"A good duty manager builds a floor that runs without them",
 lead:["Every excellent station has an excellent duty manager — and around that person, the next duty managers are growing. The last job of a duty manager is to develop people who can do the job in their place.","This article sets out the habits of a duty manager who grows people, and what to prepare if you want the job yourself."],
 sections:[
 {h:"Habits that grow people",blocks:[{t:"check",items:[
