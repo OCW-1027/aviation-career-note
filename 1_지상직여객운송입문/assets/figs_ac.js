@@ -29,9 +29,9 @@ ac_forces:function(l){
 
 /* 2 迎え角と失速：迎え角が大きくなると揚力が増えるが、臨界の角度を超えると空気がはがれて揚力が急に減る */
 ac_stall:function(l){
- var W=({ja:{t:'迎え角と失速',aoa:'迎え角',ok:'空気が翼に沿って流れる',st:'失速：上面から空気がはがれる',gx:'迎え角',gy:'揚力係数',crit:'臨界迎え角（約15°〜18°）',n:['失速は「速さ」ではなく「迎え角」で起きる。どの速さでも臨界迎え角を超えると失速する','フラップ・スラットを出すと、低い速さでも大きな揚力が得られ、失速速度が下がる','翼に氷や雪が付くと、形がくずれて失速しやすくなる（離陸前の防除雪氷）']},
-  ko:{t:'받음각과 실속',aoa:'받음각',ok:'공기가 날개를 따라 흐른다',st:'실속: 윗면에서 공기가 떨어져 나간다',gx:'받음각',gy:'양력계수',crit:'임계 받음각(약 15°~18°)',n:['실속은 ‘속도’가 아니라 ‘받음각’ 때문에 일어난다. 어떤 속도에서도 임계 받음각을 넘으면 실속한다','플랩·슬랫을 내리면 낮은 속도에서도 큰 양력을 얻어 실속 속도가 내려간다','날개에 얼음이나 눈이 붙으면 모양이 망가져 실속하기 쉬워진다(이륙 전 방빙·제빙)']},
-  en:{t:'Angle of attack and the stall',aoa:'Angle of attack',ok:'Air flows smoothly along the wing',st:'Stall: the airflow separates from the upper surface',gx:'Angle of attack',gy:'Lift coefficient',crit:'Critical angle (about 15°–18°)',n:['A stall is caused by angle of attack, not speed: exceed the critical angle at any speed and the wing stalls','Flaps and slats give more lift at low speed and lower the stall speed','Ice or snow on the wing spoils its shape and makes a stall more likely (hence de-icing before take-off)']}})[l];
+ var W=({ja:{t:'迎え角と失速',aoa:'迎え角',ok:'空気が翼に沿って流れる',st:'失速：上面から空気がはがれる',gx:'迎え角',gy:'揚力係数',crit:'臨界迎え角（例：約15°〜18°。翼や形態で異なる）',n:['失速は「速さ」ではなく「迎え角」で起きる。どの速さでも臨界迎え角を超えると失速する','フラップ・スラットを出すと、低い速さでも大きな揚力が得られ、失速速度が下がる','翼に氷や雪が付くと、形がくずれて失速しやすくなる（離陸前の防除雪氷）']},
+  ko:{t:'받음각과 실속',aoa:'받음각',ok:'공기가 날개를 따라 흐른다',st:'실속: 윗면에서 공기가 떨어져 나간다',gx:'받음각',gy:'양력계수',crit:'임계 받음각(예: 약 15°~18°. 날개·형태에 따라 다르다)',n:['실속은 ‘속도’가 아니라 ‘받음각’ 때문에 일어난다. 어떤 속도에서도 임계 받음각을 넘으면 실속한다','플랩·슬랫을 내리면 낮은 속도에서도 큰 양력을 얻어 실속 속도가 내려간다','날개에 얼음이나 눈이 붙으면 모양이 망가져 실속하기 쉬워진다(이륙 전 방빙·제빙)']},
+  en:{t:'Angle of attack and the stall',aoa:'Angle of attack',ok:'Air flows smoothly along the wing',st:'Stall: the airflow separates from the upper surface',gx:'Angle of attack',gy:'Lift coefficient',crit:'Critical angle (e.g. about 15°–18°; varies with wing and configuration)',n:['A stall is caused by angle of attack, not speed: exceed the critical angle at any speed and the wing stalls','Flaps and slats give more lift at low speed and lower the stall speed','Ice or snow on the wing spoils its shape and makes a stall more likely (hence de-icing before take-off)']}})[l];
  if(!W)return F.ac_stall('ja');
  setK(1);var nar=NARROW();
  var foil='M-90 0 C-86 -14 -50 -24 0 -22 C40 -20 80 -10 100 0 C60 4 0 8 -60 6 C-80 5 -90 3 -90 0 Z';
@@ -58,9 +58,9 @@ ac_stall:function(l){
 
 /* 3 旋回と荷重倍数：傾きが大きいほど荷重倍数と失速速度が大きくなる */
 ac_bank:function(l){
- var W=({ja:{t:'旋回と荷重倍数',bank:'傾き',n:'荷重倍数',vs:'失速速度',rows:[['0°','1.0','×1.00'],['30°','1.15','×1.07'],['45°','1.41','×1.19'],['60°','2.0','×1.41']],f:'荷重倍数 ＝ 1 ÷ cos（傾き）　失速速度 ∝ √荷重倍数',lim:'輸送用飛行機の強度限界（フラップを上げた状態）：＋2.5g〜−1.0g'},
-  ko:{t:'선회와 하중배수',bank:'경사',n:'하중배수',vs:'실속 속도',rows:[['0°','1.0','×1.00'],['30°','1.15','×1.07'],['45°','1.41','×1.19'],['60°','2.0','×1.41']],f:'하중배수 = 1 ÷ cos(경사)　실속 속도 ∝ √하중배수',lim:'수송용 비행기의 강도 한계(플랩을 올린 상태): +2.5g~−1.0g'},
-  en:{t:'Turns and load factor',bank:'Bank',n:'Load factor',vs:'Stall speed',rows:[['0°','1.0','×1.00'],['30°','1.15','×1.07'],['45°','1.41','×1.19'],['60°','2.0','×1.41']],f:'Load factor = 1 ÷ cos(bank)   stall speed ∝ √load factor',lim:'Strength limits for transport aeroplanes (flaps up): +2.5 g to −1.0 g'}})[l];
+ var W=({ja:{t:'旋回と荷重倍数（水平旋回）',bank:'傾き',n:'荷重倍数',vs:'失速速度',rows:[['0°','1.0','×1.00'],['30°','1.15','×1.07'],['45°','1.41','×1.19'],['60°','2.0','×1.41']],f:'荷重倍数 ＝ 1 ÷ cos（傾き）　失速速度 ∝ √荷重倍数',lim:'設計の基準の一例（輸送用飛行機・フラップ上げ）：＋2.5g〜−1.0g。実際の制限はAFMで確認'},
+  ko:{t:'선회와 하중배수(수평 선회)',bank:'경사',n:'하중배수',vs:'실속 속도',rows:[['0°','1.0','×1.00'],['30°','1.15','×1.07'],['45°','1.41','×1.19'],['60°','2.0','×1.41']],f:'하중배수 = 1 ÷ cos(경사)　실속 속도 ∝ √하중배수',lim:'설계 기준의 한 예(수송용 비행기·플랩 올림): +2.5g~−1.0g. 실제 제한은 AFM으로 확인'},
+  en:{t:'Turns and load factor (level turns)',bank:'Bank',n:'Load factor',vs:'Stall speed',rows:[['0°','1.0','×1.00'],['30°','1.15','×1.07'],['45°','1.41','×1.19'],['60°','2.0','×1.41']],f:'Load factor = 1 ÷ cos(bank)   stall speed ∝ √load factor',lim:'One design example (transport aeroplanes, flaps up): +2.5 g to −1.0 g; actual limits are in the AFM'}})[l];
  if(!W)return F.ac_bank('ja');
  setK(1);var dur=10,cx=320,cy=150;
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,180,'#DCEEFB',14)+'<line x1="60" y1="'+cy+'" x2="580" y2="'+cy+'" stroke="#9FB0C2" stroke-dasharray="6 6"/>';
@@ -132,9 +132,9 @@ ac_decl:function(l){
 
 /* 7 V1でエンジンが止まったら：続ければ TODA の中で35ftに、やめれば ASDA の中で止まる */
 ac_go_stop:function(l){
- var W=({ja:{t:'V1でエンジンが止まったら',go:'離陸を続ける：TODAの中で高さ35ftに届く',stop:'離陸をやめる：ASDAの中で止まる',fail:'エンジン停止',note:'この2つが両方成り立つように、重量とV1を決める。滑走路が濡れていると、止まるための距離が長くなる'},
-  ko:{t:'V1에서 엔진이 멈추면',go:'이륙을 계속한다: TODA 안에서 높이 35ft에 도달한다',stop:'이륙을 중단한다: ASDA 안에서 정지한다',fail:'엔진 정지',note:'이 두 가지가 모두 성립하도록 중량과 V1을 정한다. 활주로가 젖어 있으면 정지 거리가 길어진다'},
-  en:{t:'If an engine fails at V1',go:'Continue: reach 35 ft within the TODA',stop:'Reject: stop within the ASDA',fail:'Engine failure',note:'Weight and V1 are chosen so that both are possible; on a wet runway the stopping distance is longer'}})[l];
+ var W=({ja:{t:'V1とエンジン故障（故障を想定した計算）',go:'離陸を続ける：TODAの中で高さ35ftに届く',stop:'離陸をやめる：ASDAの中で止まる',fail:'故障を想定',note:'この2つが両方成り立つように、重量とV1を決める。滑走路が濡れていると、止まるための距離が長くなる'},
+  ko:{t:'V1과 엔진 고장(고장을 가정한 계산)',go:'이륙을 계속한다: TODA 안에서 높이 35ft에 도달한다',stop:'이륙을 중단한다: ASDA 안에서 정지한다',fail:'고장 가정',note:'이 두 가지가 모두 성립하도록 중량과 V1을 정한다. 활주로가 젖어 있으면 정지 거리가 길어진다'},
+  en:{t:'V1 and an engine failure (the planning assumption)',go:'Continue: reach 35 ft within the TODA',stop:'Reject: stop within the ASDA',fail:'Assumed failure',note:'Weight and V1 are chosen so that both are possible; on a wet runway the stopping distance is longer'}})[l];
  if(!W)return F.ac_go_stop('ja');
  setK(1);
  function lane(y0,go){var g=R(20,y0,600,120,go?'#DCEEFB':'#EEF5FB',12)+R(20,y0+92,600,28,'#9CC98B',0)+R(40,y0+88,500,8,'#5B6770',3)+(go?'<rect x="540" y="'+(y0+80)+'" width="70" height="20" fill="none" stroke="#1F7A6E" stroke-dasharray="5 4"/>':'<rect x="540" y="'+(y0+88)+'" width="40" height="8" fill="#8C9BAA"/>');
@@ -166,9 +166,9 @@ ac_mtow:function(l){
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
 /* 9 ターボファンの中：ファンが吸った空気の大部分は外側（バイパス）へ、一部が圧縮機→燃焼室→タービン→ノズルを通る */
 ac_engine:function(l){
- var W=({ja:{t:'ターボファン・エンジンのしくみ',items:['ファン：たくさんの空気を後ろへ押し出す。推力の大部分はここから','圧縮機：空気を何十分の一に圧縮する','燃焼室：燃料を燃やして高温・高圧のガスにする','タービン：ガスの力で回り、ファンと圧縮機を回す','ノズル：ガスを後ろへ噴き出す'],by:'バイパス（外側を流れる空気）',core:'コア（中を通る空気）',ratio:'今の旅客機はバイパス比 約9〜12：外側を流れる空気が中の約10倍。静かで燃費がよい'},
-  ko:{t:'터보팬 엔진의 원리',items:['팬: 많은 공기를 뒤로 밀어낸다. 추력 대부분은 여기서 나온다','압축기: 공기를 몇십 분의 일로 압축한다','연소실: 연료를 태워 고온·고압 가스로 만든다','터빈: 가스의 힘으로 돌며 팬과 압축기를 돌린다','노즐: 가스를 뒤로 내뿜는다'],by:'바이패스(바깥을 흐르는 공기)',core:'코어(안을 지나는 공기)',ratio:'현재 여객기는 바이패스비 약 9~12: 바깥을 흐르는 공기가 안의 약 10배. 조용하고 연료 효율이 좋다'},
-  en:{t:'How a turbofan engine works',items:['Fan: pushes a large mass of air backwards and produces most of the thrust','Compressor: squeezes the air to a small fraction of its volume','Combustor: burns fuel to make hot, high-pressure gas','Turbine: driven by the gas, it turns the fan and compressor','Nozzle: exhausts the gas rearwards'],by:'Bypass air (around the outside)',core:'Core air (through the middle)',ratio:'Modern airliners have bypass ratios of about 9–12: roughly ten times as much air flows around the core as through it, making them quiet and fuel-efficient'}})[l];
+ var W=({ja:{t:'ターボファン・エンジンのしくみ',items:['ファン：たくさんの空気を後ろへ押し出す。推力の大部分はここから','圧縮機：空気を何十分の一に圧縮する','燃焼室：燃料を燃やして高温・高圧のガスにする','タービン：ガスの力で回り、ファンと圧縮機を回す','ノズル：ガスを後ろへ噴き出す'],by:'バイパス（外側を流れる空気）',core:'コア（中を通る空気）',ratio:'バイパス比は機種によって違う。外側を流れる空気が多いほど、静かで燃費がよい'},
+  ko:{t:'터보팬 엔진의 원리',items:['팬: 많은 공기를 뒤로 밀어낸다. 추력 대부분은 여기서 나온다','압축기: 공기를 몇십 분의 일로 압축한다','연소실: 연료를 태워 고온·고압 가스로 만든다','터빈: 가스의 힘으로 돌며 팬과 압축기를 돌린다','노즐: 가스를 뒤로 내뿜는다'],by:'바이패스(바깥을 흐르는 공기)',core:'코어(안을 지나는 공기)',ratio:'바이패스비는 기종에 따라 다르다. 바깥을 흐르는 공기가 많을수록 조용하고 연료 효율이 좋다'},
+  en:{t:'How a turbofan engine works',items:['Fan: pushes a large mass of air backwards and produces most of the thrust','Compressor: squeezes the air to a small fraction of its volume','Combustor: burns fuel to make hot, high-pressure gas','Turbine: driven by the gas, it turns the fan and compressor','Nozzle: exhausts the gas rearwards'],by:'Bypass air (around the outside)',core:'Core air (through the middle)',ratio:'Bypass ratios vary by type: the more air flows around the core, the quieter and more fuel-efficient the engine'}})[l];
  if(!W)return F.ac_engine('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,230,'#EEF5FB',14);
@@ -212,9 +212,9 @@ ac_thrust:function(l){
 
 /* 11 燃料の計画の中身（ICAO Annex 6 の考え方） */
 ac_fuel:function(l){
- var W=({ja:{t:'燃料計画の中身',items:[['地上走行','出発前の地上走行・APU'],['飛行','目的地に着くまでに使う量'],['予備（コンティンジェンシー）','予想とのずれに備える。飛行燃料の5％など'],['代替空港','目的地に降りられず、代替空港へ行く量'],['最終予備','代替空港の上空1,500ftで30分待機できる量（ジェット機）'],['追加・機長の判断','待機の予想、特別な事情、機長の判断で足す量']],note:'細かい決まりは各国の規則と会社の運航規程による。「最終予備に手をつけそうなら緊急（MAYDAY FUEL）」'},
-  ko:{t:'연료 계획의 구성',items:[['지상 이동','출발 전 지상 이동·APU'],['운항','목적지에 닿을 때까지 쓰는 양'],['예비(컨틴전시)','예상과의 차이에 대비한다. 운항 연료의 5% 등'],['교체공항','목적지에 내리지 못하고 교체공항으로 가는 양'],['최종 예비','교체공항 상공 1,500ft에서 30분 대기할 수 있는 양(제트기)'],['추가·기장 판단','대기 예상, 특별한 사정, 기장 판단으로 더하는 양']],note:'세부 규정은 각국 규칙과 회사 운항규정에 따른다. ‘최종 예비에 손댈 것 같으면 비상(MAYDAY FUEL)’'},
-  en:{t:'What goes into the fuel plan',items:[['Taxi','Taxiing and APU use before departure'],['Trip','Fuel to reach the destination'],['Contingency','For deviations from the plan, e.g. 5% of trip fuel'],['Alternate','Fuel to go on to the alternate if the destination is unusable'],['Final reserve','30 minutes holding at 1,500 ft over the alternate (turbine aircraft)'],['Additional and discretionary','For expected holding, special circumstances or the captain’s decision']],note:'Details follow national rules and the operations manual. If final reserve is about to be used, declare an emergency (MAYDAY FUEL)'}})[l];
+ var W=({ja:{t:'燃料計画の中身',items:[['地上走行','出発前の地上走行・APU'],['飛行','目的地に着くまでに使う量'],['予備（コンティンジェンシー）','予想とのずれに備える。飛行燃料の5％など'],['代替空港','目的地に降りられず、代替空港へ行く量'],['最終予備','所定の条件で30分待機できる量（ジェット機。韓国・日本の区分は分けて確認）'],['追加・機長の判断','待機の予想、特別な事情、機長の判断で足す量']],note:'細かい決まりは各国の規則と会社の運航規程による。「安全に着陸できる最寄りの空港でも最終予備を下回る見込みなら MAYDAY FUEL」'},
+  ko:{t:'연료 계획의 구성',items:[['지상 이동','출발 전 지상 이동·APU'],['운항','목적지에 닿을 때까지 쓰는 양'],['예비(컨틴전시)','예상과의 차이에 대비한다. 운항 연료의 5% 등'],['교체공항','목적지에 내리지 못하고 교체공항으로 가는 양'],['최종 예비','정해진 조건에서 30분 대기할 수 있는 양(제트기. 한국·일본 구분은 따로 확인)'],['추가·기장 판단','대기 예상, 특별한 사정, 기장 판단으로 더하는 양']],note:'세부 규정은 각국 규칙과 회사 운항규정에 따른다. ‘안전하게 착륙할 수 있는 가장 가까운 공항이라도 최종 예비를 밑돌 전망이면 MAYDAY FUEL’'},
+  en:{t:'What goes into the fuel plan',items:[['Taxi','Taxiing and APU use before departure'],['Trip','Fuel to reach the destination'],['Contingency','For deviations from the plan, e.g. 5% of trip fuel'],['Alternate','Fuel to go on to the alternate if the destination is unusable'],['Final reserve','30 minutes holding under the specified conditions (turbine aircraft; check the Korean and Japanese rules separately)'],['Additional and discretionary','For expected holding, special circumstances or the captain’s decision']],note:'Details follow national rules and the operations manual. If the aircraft is expected to land with less than final reserve even at the nearest suitable airport, declare MAYDAY FUEL'}})[l];
  if(!W)return F.ac_fuel('ja');
  setK(1);
  var cols=['#9FB0C2','#2F6FD6','#1F7A6E','#E08A2F','#D64545','#6B4FA0'],vals=[4,60,6,12,8,10],tot=0;vals.forEach(function(v){tot+=v});
@@ -229,9 +229,9 @@ ac_fuel:function(l){
 
 /* 12 燃料が凍らないように：長い巡航で燃料の温度が下がる。凍る温度に近づいたら降下するか速さを上げる */
 ac_freeze:function(l){
- var W=({ja:{t:'燃料の温度に気をつける',x:'飛行時間',y:'燃料の温度',fp:'Jet A-1 の凍る温度 −47℃',act:'近づいたら：降下する・速さを上げる（空気との摩擦で温める）',n:['日本・韓国の空港の燃料は多くが Jet A-1（凍る温度 −47℃）。米国内では Jet A（−40℃）も使われる','寒い上空を長く飛ぶと、燃料の温度はゆっくり下がる。極地に近い経路では特に注意','燃料は体積（リットル）で入れ、計画は重さ（kg）で行う。密度 約0.8で換算する（10,000L ≒ 8,000kg）']},
-  ko:{t:'연료 온도에 주의한다',x:'비행시간',y:'연료 온도',fp:'Jet A-1의 어는점 −47℃',act:'가까워지면: 강하하거나 속도를 올린다(공기와의 마찰로 데운다)',n:['한국·일본 공항 연료는 대부분 Jet A-1(어는점 −47℃). 미국 국내에서는 Jet A(−40℃)도 쓴다','추운 상공을 오래 날면 연료 온도가 천천히 내려간다. 극지 부근 경로에서 특히 주의한다','연료는 부피(리터)로 넣고 계획은 무게(kg)로 한다. 밀도 약 0.8로 환산한다(10,000L ≒ 8,000kg)']},
-  en:{t:'Watch the fuel temperature',x:'Flight time',y:'Fuel temperature',fp:'Jet A-1 freezing point −47 °C',act:'If it gets close: descend or fly faster (warming from air friction)',n:['Most fuel at Korean and Japanese airports is Jet A-1 (freezing point −47 °C); Jet A (−40 °C) is also used within the US','On long flights in very cold air the fuel slowly cools, especially on routes near the poles','Fuel is uplifted by volume (litres) but planned by mass (kg), converted with a density of about 0.8 (10,000 L ≈ 8,000 kg)']}})[l];
+ var W=({ja:{t:'燃料の温度に気をつける',x:'飛行時間',y:'燃料の温度',fp:'Jet A-1 の凍結点（規格：−47℃以下）',act:'近づいたら：機種の手順に従って対応する',n:['日本・韓国の空港の燃料は多くが Jet A-1（凍結点は規格で−47℃以下）。米国内では Jet A（−40℃以下）も使われる','寒い上空を長く飛ぶと、燃料の温度はゆっくり下がる。極地に近い経路では特に注意','燃料は体積（リットルやガロン）で入れ、計画は重さ（kg）で行う。密度 約0.8kg/Lで換算する（10,000L ≒ 8,000kg）']},
+  ko:{t:'연료 온도에 주의한다',x:'비행시간',y:'연료 온도',fp:'Jet A-1의 어는점(규격: −47℃ 이하)',act:'가까워지면: 기종 절차에 따라 대응한다',n:['한국·일본 공항 연료는 대부분 Jet A-1(어는점은 규격상 −47℃ 이하). 미국 국내에서는 Jet A(−40℃ 이하)도 쓴다','추운 상공을 오래 날면 연료 온도가 천천히 내려간다. 극지 부근 경로에서 특히 주의한다','연료는 부피(리터나 갤런)로 넣고 계획은 무게(kg)로 한다. 밀도 약 0.8kg/L로 환산한다(10,000L ≒ 8,000kg)']},
+  en:{t:'Watch the fuel temperature',x:'Flight time',y:'Fuel temperature',fp:'Jet A-1 freezing point (specification: −47 °C max)',act:'If it gets close: follow the type’s procedure',n:['Most fuel at Korean and Japanese airports is Jet A-1 (freezing point −47 °C max by specification); Jet A (−40 °C max) is also used within the US','On long flights in very cold air the fuel slowly cools, especially on routes near the poles','Fuel is uplifted by volume (litres or gallons) but planned by mass (kg), converted at a density of about 0.8 kg/L (10,000 L ≈ 8,000 kg)']}})[l];
  if(!W)return F.ac_freeze('ja');
  setK(1);var gx0=90,gy0=250,gw=500,gh=170;
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,230,'#EEF5FB',14);
@@ -263,9 +263,9 @@ ac_press:function(l){
 
 /* 14 系統の多重化：油圧3系統、電気はエンジンの発電機 → APUの発電機 → バッテリー → RAT */
 ac_redund:function(l){
- var W=({ja:{t:'系統をいくつも持つ（多重化）',hyd:'油圧（3系統）',use:['操縦翼面','脚','ブレーキ'],el:'電気（代替の順）',src:['エンジンの発電機','APUの発電機','バッテリー','RAT（風で回る発電機）'],note:'1つが壊れても、ほかの系統で飛び続けられるように作られている。どこまで壊れても出発できるかを決めるのが MEL'},
-  ko:{t:'여러 계통 갖추기(다중화)',hyd:'유압(3계통)',use:['조종면','착륙장치','브레이크'],el:'전기(대체 순서)',src:['엔진 발전기','APU 발전기','배터리','RAT(바람으로 도는 발전기)'],note:'하나가 고장 나도 다른 계통으로 계속 날 수 있게 설계되어 있다. 어디까지 고장 나도 출발할 수 있는지를 정하는 것이 MEL'},
-  en:{t:'Built-in redundancy',hyd:'Hydraulics (three systems)',use:['Flight controls','Landing gear','Brakes'],el:'Electrical (backup order)',src:['Engine generators','APU generator','Battery','RAT (wind-driven generator)'],note:'Aircraft are built to keep flying when one system fails; the MEL decides how much may be inoperative at departure'}})[l];
+ var W=({ja:{t:'系統をいくつも持つ（多重化）',hyd:'油圧（3系統）',use:['操縦翼面','脚','ブレーキ'],el:'電気（例。種類と切替えは機種による）',src:['エンジンの発電機','APUの発電機','バッテリー','RAT（風で回る発電機）'],note:'1つが壊れても、ほかの系統で飛び続けられるように作られている。どこまで壊れても出発できるかを決めるのが MEL'},
+  ko:{t:'여러 계통 갖추기(다중화)',hyd:'유압(3계통)',use:['조종면','착륙장치','브레이크'],el:'전기(예. 종류와 전환은 기종에 따라 다르다)',src:['엔진 발전기','APU 발전기','배터리','RAT(바람으로 도는 발전기)'],note:'하나가 고장 나도 다른 계통으로 계속 날 수 있게 설계되어 있다. 어디까지 고장 나도 출발할 수 있는지를 정하는 것이 MEL'},
+  en:{t:'Built-in redundancy',hyd:'Hydraulics (three systems)',use:['Flight controls','Landing gear','Brakes'],el:'Electrical (example; sources vary by type)',src:['Engine generators','APU generator','Battery','RAT (wind-driven generator)'],note:'Aircraft are built to keep flying when one system fails; the MEL decides how much may be inoperative at departure'}})[l];
  if(!W)return F.ac_redund('ja');
  setK(1);var nar=NARROW();
  var s=TTL(320,30,W.t,15,'#0f3558',600);
@@ -283,9 +283,9 @@ ac_redund:function(l){
 
 /* 15 地上での防除雪氷：Type I（オレンジ・温かい）で落とし、Type IV（緑・とろみ）で防ぐ。ホールドオーバータイムの中で離陸 */
 ac_deice:function(l){
- var W=({ja:{t:'地上での防除雪氷（デアイシング）',t1:'① Type I：温めた液で雪・氷を落とす',t4:'② Type IV：とろみのある液で、しばらく付かないように守る',hot:'ホールドオーバータイム：保護効果が続く時間',take:'この時間内に離陸する。過ぎたら、もう一度処理する',n:['持続時間は、雪の強さ・気温・液の種類をもとに表で決まる（数分〜数十分）','除雪氷の場所・順番・時間が出発の遅れに直結する。冬は運航管理者・地上係員・整備が連携する']},
-  ko:{t:'지상 방빙·제빙(디아이싱)',t1:'① Type I: 데운 액으로 눈·얼음을 제거한다',t4:'② Type IV: 끈적한 액으로 한동안 붙지 않게 막는다',hot:'홀드오버 타임: 보호 효과가 지속되는 시간',take:'이 시간 안에 이륙한다. 지나면 다시 처리한다',n:['지속 시간은 눈의 세기·기온·액 종류로 표에서 정한다(몇 분~수십 분)','제빙 장소·순서·시간이 출발 지연으로 바로 이어진다. 겨울에는 운항관리사·지상 직원·정비가 연계한다']},
-  en:{t:'De-icing and anti-icing on the ground',t1:'① Type I: heated fluid removes snow and ice',t4:'② Type IV: thickened fluid keeps it from building up again for a while',hot:'Holdover time: how long the protection lasts',take:'Take off within this time, or treat the aircraft again',n:['Holdover times come from tables based on precipitation, temperature and fluid type (a few minutes to tens of minutes)','De-icing location, sequence and time translate directly into departure delays; in winter, dispatch, ground handling and maintenance work closely together']}})[l];
+ var W=({ja:{t:'地上での防除雪氷（2段階作業の例）',t1:'① Type I：温めた液で雪・氷を落とす',t4:'② Type IV：とろみのある液で、しばらく付かないように守る',hot:'ホールドオーバータイム：保護効果が続く時間の目安',take:'保証の時間ではない。過ぎたら、承認された点検・再作業の手順に従う',n:['持続時間は、雪の強さ・気温・液の種類をもとに表で決まる（数分〜数十分）','除雪氷の場所・順番・時間が出発の遅れに直結する。冬は運航管理者・地上係員・整備が連携する']},
+  ko:{t:'지상 방빙·제빙(2단계 작업의 예)',t1:'① Type I: 데운 액으로 눈·얼음을 제거한다',t4:'② Type IV: 끈적한 액으로 한동안 붙지 않게 막는다',hot:'홀드오버 타임: 보호 효과가 지속되는 시간의 기준',take:'보장 시간이 아니다. 지나면 승인된 점검·재처리 절차를 따른다',n:['지속 시간은 눈의 세기·기온·액 종류로 표에서 정한다(몇 분~수십 분)','제빙 장소·순서·시간이 출발 지연으로 바로 이어진다. 겨울에는 운항관리사·지상 직원·정비가 연계한다']},
+  en:{t:'De-icing and anti-icing on the ground (a two-step example)',t1:'① Type I: heated fluid removes snow and ice',t4:'② Type IV: thickened fluid keeps it from building up again for a while',hot:'Holdover time: an estimate of how long the protection lasts',take:'It is not a guarantee: if exceeded, follow the approved check or re-treatment procedure',n:['Holdover times come from tables based on precipitation, temperature and fluid type (a few minutes to tens of minutes)','De-icing location, sequence and time translate directly into departure delays; in winter, dispatch, ground handling and maintenance work closely together']}})[l];
  if(!W)return F.ac_deice('ja');
  setK(1);var dur=10;
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,190,'#DCE6F0',14)+R(20,216,600,30,'#EEF2F6',0);
@@ -340,9 +340,9 @@ ac_wtstack:function(l){
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
 /* 14-5 ② 重心と %MAC：機体に重さが加わるたびに重心（CG）が動き、平均空力翼弦（MAC）の何％の位置かで表す */
 ac_cg:function(l){
- var W=({ja:{t:'重心は「重さ×距離」の合計から決まり、MACの何％かで表す',datum:'基準線',st:['① 空の機体（運航自重）','② 後ろの客席に乗客','③ 前の貨物室に貨物','④ 主翼のタンクに燃料'],w:['乗客','貨物','燃料'],mac:'MAC',le:'0％',te:'100％',cg:'CG',pct:['24％','31％','27％','25％'],f:['MAC（平均空力翼弦）：主翼の平均の幅。重心はこの前縁から何％の位置かで表す','モーメント＝重さ×基準線からの距離','重心の位置＝モーメントの合計÷重さの合計','%MAC＝（重心−MACの前縁）÷MACの長さ×100']},
-  ko:{t:'무게중심은 ‘무게×거리’의 합계로 정해지고, MAC의 몇 %인지로 나타낸다',datum:'기준선',st:['① 빈 기체(운항 자중)','② 뒤쪽 객석에 승객','③ 앞쪽 화물칸에 화물','④ 주날개 탱크에 연료'],w:['승객','화물','연료'],mac:'MAC',le:'0%',te:'100%',cg:'CG',pct:['24%','31%','27%','25%'],f:['MAC(평균 공력 시위): 주날개의 평균 폭. 무게중심은 그 앞전에서 몇 % 위치인지로 나타낸다','모멘트 = 무게 × 기준선에서의 거리','무게중심 위치 = 모멘트 합계 ÷ 무게 합계','%MAC = (무게중심 − MAC 앞전) ÷ MAC 길이 × 100']},
-  en:{t:'The CG comes from the sum of weight × distance and is shown as a % of the MAC',datum:'Datum',st:['① Empty aircraft (DOW)','② Passengers in the rear cabin','③ Cargo in the forward hold','④ Fuel in the wing tanks'],w:['Pax','Cargo','Fuel'],mac:'MAC',le:'0%',te:'100%',cg:'CG',pct:['24%','31%','27%','25%'],f:['MAC (mean aerodynamic chord): the average width of the wing. The CG is given as a % of it from its leading edge','Moment = weight × distance from the datum','CG position = total moment ÷ total weight','%MAC = (CG − leading edge of the MAC) ÷ MAC length × 100']}})[l];
+ var W=({ja:{t:'重心は「重さ×距離」の合計から決まり、MACの何％かで表す（この講座の仮の例）',datum:'基準線',st:['① 空の機体（運航自重）','② 後ろの客席に乗客','③ 前の貨物室に貨物','④ 主翼のタンクに燃料'],w:['乗客','貨物','燃料'],mac:'MAC',le:'0％',te:'100％',cg:'CG',pct:['24％','31％','27％','25％'],f:['MAC（平均空力翼弦）：重心の位置を表す基準の長さ。重心はこの前縁から何％の位置かで表す','モーメント＝重さ×基準線からの距離','重心の位置＝モーメントの合計÷重さの合計','%MAC＝（重心−MACの前縁）÷MACの長さ×100']},
+  ko:{t:'무게중심은 ‘무게×거리’의 합계로 정해지고, MAC의 몇 %인지로 나타낸다(이 강좌의 가상 예)',datum:'기준선',st:['① 빈 기체(운항 자중)','② 뒤쪽 객석에 승객','③ 앞쪽 화물칸에 화물','④ 주날개 탱크에 연료'],w:['승객','화물','연료'],mac:'MAC',le:'0%',te:'100%',cg:'CG',pct:['24%','31%','27%','25%'],f:['MAC(평균 공력 시위): 무게중심 위치를 나타내는 기준 길이. 무게중심은 그 앞전에서 몇 % 위치인지로 나타낸다','모멘트 = 무게 × 기준선에서의 거리','무게중심 위치 = 모멘트 합계 ÷ 무게 합계','%MAC = (무게중심 − MAC 앞전) ÷ MAC 길이 × 100']},
+  en:{t:'The CG comes from the sum of weight × distance and is shown as a % of the MAC (an example for this course)',datum:'Datum',st:['① Empty aircraft (DOW)','② Passengers in the rear cabin','③ Cargo in the forward hold','④ Fuel in the wing tanks'],w:['Pax','Cargo','Fuel'],mac:'MAC',le:'0%',te:'100%',cg:'CG',pct:['24%','31%','27%','25%'],f:['MAC (mean aerodynamic chord): the reference length used to state the CG position, given as a % from its leading edge','Moment = weight × distance from the datum','CG position = total moment ÷ total weight','%MAC = (CG − leading edge of the MAC) ÷ MAC length × 100']}})[l];
  if(!W)return F.ac_cg('ja');
  setK(1);
  var dur='12s',n=4,s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,170,'#DCEEFB',14);

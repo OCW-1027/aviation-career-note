@@ -42,9 +42,9 @@ atc_classes:function(l){
 
 /* 3 空域の形：管制圏（地面から）、進入管制区（逆さのウェディングケーキ）、航空路、非管制空域、FIRの境 */
 atc_struct:function(l){
- var W=({ja:{t:'空域のかたち（横から見た図）',items:['管制圏（CTR）：空港のまわり、地面から','進入管制区（TMA）：上ほど広い、逆さのケーキの形','航空路：空港と空港を結ぶ管制された道','非管制空域：管制区の下や外','飛行情報区（FIR）の境：仁川FIR と 福岡FIR（日本は1つのFIR）'],inc:'仁川FIR',fuk:'福岡FIR'},
-  ko:{t:'공역의 모양(옆에서 본 그림)',items:['관제권(CTR): 공항 주변, 지면부터','접근관제구역(TMA): 위로 갈수록 넓은 거꾸로 된 케이크 모양','항공로: 공항과 공항을 잇는 관제되는 경로','비관제공역: 관제구역 아래나 바깥','비행정보구역(FIR) 경계: 인천 FIR과 후쿠오카 FIR(일본은 FIR 하나)'],inc:'인천 FIR',fuk:'후쿠오카 FIR'},
-  en:{t:'The shape of airspace (side view)',items:['Control zone (CTR): around the airport, from the surface','Terminal control area (TMA): wider higher up, like an upside-down wedding cake','Airways: controlled routes between airports','Uncontrolled airspace: below or outside controlled areas','Flight information region (FIR) boundary: Incheon FIR and Fukuoka FIR (Japan has a single FIR)'],inc:'Incheon FIR',fuk:'Fukuoka FIR'}})[l];
+ var W=({ja:{t:'空域のかたち（横から見た図）',items:['管制圏（CTR）：空港のまわり、地面から','進入管制区（TMA）：空港の周りの上空。形と高さは航空図で確認','航空路：空港と空港を結ぶ管制された道','非管制空域：管制区の下や外','飛行情報区（FIR）の境：仁川FIR と 福岡FIR（国境と一致するとは限らない）'],inc:'仁川FIR',fuk:'福岡FIR'},
+  ko:{t:'공역의 모양(옆에서 본 그림)',items:['관제권(CTR): 공항 주변, 지면부터','접근관제구역(TMA): 공항 주변 상공. 모양과 높이는 항공도로 확인','항공로: 공항과 공항을 잇는 관제되는 경로','비관제공역: 관제구역 아래나 바깥','비행정보구역(FIR) 경계: 인천 FIR과 후쿠오카 FIR(국경과 일치한다고는 할 수 없다)'],inc:'인천 FIR',fuk:'후쿠오카 FIR'},
+  en:{t:'The shape of airspace (side view)',items:['Control zone (CTR): around the airport, from the surface','Terminal control area (TMA): the airspace around the airport; check its shape and levels on the charts','Airways: controlled routes between airports','Uncontrolled airspace: below or outside controlled areas','Flight information region (FIR) boundary: Incheon FIR and Fukuoka FIR (not necessarily the national border)'],inc:'Incheon FIR',fuk:'Fukuoka FIR'}})[l];
  if(!W)return F.atc_struct('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,230,'#EEF5FB',14)+R(20,262,600,24,'#9CC98B',0);
@@ -75,9 +75,9 @@ atc_special:function(l){
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
 /* 5 管制承認（CRAFT）：承認の5つの要素を順に強調し、パイロットが復唱する */
 atc_clr:function(l){
- var W=({ja:{t:'管制承認の5つの要素（CRAFT）',atc:'管制（クリアランス・デリバリー）',pil:'パイロットの復唱',k:[['C','承認の限界点（どこまで）'],['R','経路（出発方式・飛行計画の経路）'],['A','高度（最初に上がる高さ）'],['F','周波数（出発後の交信先）'],['T','トランスポンダーのコード']],note:'承認は必ず復唱して、聞き違いがないかを確かめる。例の出発方式の名前は架空'},
-  ko:{t:'관제 허가의 5가지 요소(CRAFT)',atc:'관제(클리어런스 딜리버리)',pil:'조종사의 복창',k:[['C','허가 한계점(어디까지)'],['R','경로(출발 방식·비행계획 경로)'],['A','고도(처음 올라갈 높이)'],['F','주파수(출발 뒤 부를 곳)'],['T','트랜스폰더 코드']],note:'허가는 반드시 복창해 잘못 들은 것이 없는지 확인한다. 예시 출발 방식명은 가상이다'},
-  en:{t:'The five parts of an ATC clearance (CRAFT)',atc:'ATC (clearance delivery)',pil:'Pilot’s readback',k:[['C','Clearance limit (how far)'],['R','Route (departure procedure, flight-planned route)'],['A','Altitude (initial climb)'],['F','Frequency (whom to call after departure)'],['T','Transponder code']],note:'Always read the clearance back to catch any mishearing. The departure name in the example is fictitious'}})[l];
+ var W=({ja:{t:'管制承認の内容を整理する覚え方（CRAFT）',atc:'管制（クリアランス・デリバリー）',pil:'パイロットの復唱',k:[['C','承認の限界点（どこまで）'],['R','経路（出発方式・飛行計画の経路）'],['A','高度（最初に上がる高さ）'],['F','周波数（出発後の交信先）'],['T','トランスポンダーのコード']],note:'承認は必ず復唱して、聞き違いがないかを確かめる。例の出発方式の名前は架空'},
+  ko:{t:'관제 허가 내용을 정리하는 암기법(CRAFT)',atc:'관제(클리어런스 딜리버리)',pil:'조종사의 복창',k:[['C','허가 한계점(어디까지)'],['R','경로(출발 방식·비행계획 경로)'],['A','고도(처음 올라갈 높이)'],['F','주파수(출발 뒤 부를 곳)'],['T','트랜스폰더 코드']],note:'허가는 반드시 복창해 잘못 들은 것이 없는지 확인한다. 예시 출발 방식명은 가상이다'},
+  en:{t:'A memory aid for the parts of a clearance (CRAFT)',atc:'ATC (clearance delivery)',pil:'Pilot’s readback',k:[['C','Clearance limit (how far)'],['R','Route (departure procedure, flight-planned route)'],['A','Altitude (initial climb)'],['F','Frequency (whom to call after departure)'],['T','Transponder code']],note:'Always read the clearance back to catch any mishearing. The departure name in the example is fictitious'}})[l];
  if(!W)return F.atc_clr('ja');
  setK(1);
  var msg=[['C','cleared to Tokyo Narita'],['R','via SAMPLE 1A departure, flight planned route'],['A','climb and maintain 6000'],['F','departure frequency 125.15'],['T','squawk 3421']];
@@ -90,9 +90,9 @@ atc_clr:function(l){
 
 /* 6 3つの間隔：垂直（上下）・横（隣の経路）・縦（同じ経路の前後） */
 atc_sep:function(l){
- var W=({ja:{t:'管制の3つの間隔',v:'垂直の間隔',h:'横の間隔',lg:'縦の間隔',dv:'上下 1,000ft（RVSMのFL410まで）。その上は2,000ft',dh:'経路の間を空ける（洋上ではRNPなどで決まる）',dl:'同じ経路で前後を空ける。時間（例：10分）または距離。レーダーでは5NM（空港の近くは3NM）が基本'},
-  ko:{t:'관제의 3가지 분리',v:'수직 분리',h:'수평(측방) 분리',lg:'종 분리',dv:'위아래 1,000ft(RVSM의 FL410까지). 그 위는 2,000ft',dh:'경로 사이를 띄운다(해상에서는 RNP 등으로 정한다)',dl:'같은 경로에서 앞뒤를 띄운다. 시간(예: 10분) 또는 거리. 레이더에서는 5NM(공항 근처는 3NM)이 기본'},
-  en:{t:'Three kinds of ATC separation',v:'Vertical',h:'Lateral',lg:'Longitudinal',dv:'1,000 ft (up to FL410 in RVSM airspace), 2,000 ft above',dh:'Space between routes (set by RNP etc. over the ocean)',dl:'Space ahead and behind on the same route, by time (e.g. 10 minutes) or distance; with radar, the basic spacing is 5 NM (3 NM near airports)'}})[l];
+ var W=({ja:{t:'管制の3つの間隔',v:'垂直の間隔',h:'横の間隔',lg:'縦の間隔',dv:'上下 1,000ft（RVSM承認機どうし、FL410まで）。その上は2,000ft',dh:'経路の間を空ける（洋上ではRNPなどで決まる）',dl:'同じ経路で前後を空ける。時間（例：10分）または距離。レーダーでは条件により5NM・3NMなど（空域や監視の性能で変わる）'},
+  ko:{t:'관제의 3가지 분리',v:'수직 분리',h:'수평(측방) 분리',lg:'종 분리',dv:'위아래 1,000ft(RVSM 승인기끼리, FL410까지). 그 위는 2,000ft',dh:'경로 사이를 띄운다(해상에서는 RNP 등으로 정한다)',dl:'같은 경로에서 앞뒤를 띄운다. 시간(예: 10분) 또는 거리. 레이더에서는 조건에 따라 5NM·3NM 등(공역과 감시 성능에 따라 다르다)'},
+  en:{t:'Three kinds of ATC separation',v:'Vertical',h:'Lateral',lg:'Longitudinal',dv:'1,000 ft between RVSM-approved aircraft up to FL410, 2,000 ft above',dh:'Space between routes (set by RNP etc. over the ocean)',dl:'Space ahead and behind on the same route, by time (e.g. 10 minutes) or distance; with radar, 5 NM, 3 NM and so on depending on the airspace and surveillance'}})[l];
  if(!W)return F.atc_sep('ja');
  setK(1);var nar=NARROW();
  function panel(x0,y0,w,k){var col=['#2F6FD6','#1F7A6E','#E08A2F'][k],g=R(x0,y0,w,170,'#0E2238',14)+tx(x0+w/2,y0+26,[W.v,W.h,W.lg][k],13,'#fff',900),cx=x0+w/2;
@@ -112,9 +112,9 @@ atc_sep:function(l){
 
 /* 7 後方乱気流（ウェイク）：大きな機の翼の先から渦ができ、下がりながら広がる。後ろの機との間隔 */
 atc_wake:function(l){
- var W=({ja:{t:'後方乱気流（ウェイク・タービュランス）',sink:'渦はゆっくり下がり、横に広がる（数分残ることがある）',tbl:'レーダーでの間隔（ICAOの例）',lead:'前の機',fol:'後ろの機',cat:[['スーパー（A380）','ヘビー 6NM・ミディアム 7NM・ライト 8NM'],['ヘビー','ヘビー 4NM・ミディアム 5NM・ライト 6NM'],['ミディアム','ライト 5NM']],note:'離陸では、重い機の後ろに軽い機が続くとき2分空ける（ICAOの基本）。国によっては細かい区分（RECAT）を使う'},
-  ko:{t:'후방 난기류(웨이크 터뷸런스)',sink:'소용돌이는 천천히 내려가며 옆으로 퍼진다(몇 분 남기도 한다)',tbl:'레이더 분리(ICAO 예)',lead:'앞 항공기',fol:'뒤 항공기',cat:[['슈퍼(A380)','헤비 6NM·미디엄 7NM·라이트 8NM'],['헤비','헤비 4NM·미디엄 5NM·라이트 6NM'],['미디엄','라이트 5NM']],note:'이륙 시 무거운 항공기 뒤에 가벼운 항공기가 이어질 때 2분 띄운다(ICAO 기본). 나라에 따라 세분화한 구분(RECAT)을 쓴다'},
-  en:{t:'Wake turbulence',sink:'The vortices sink slowly and spread sideways (they can last several minutes)',tbl:'Radar separation (ICAO examples)',lead:'Leader',fol:'Follower',cat:[['Super (A380)','Heavy 6 NM, Medium 7 NM, Light 8 NM'],['Heavy','Heavy 4 NM, Medium 5 NM, Light 6 NM'],['Medium','Light 5 NM']],note:'On departure, a lighter aircraft behind a heavier one waits 2 minutes (ICAO basic rule). Some countries use finer categories (RECAT)'}})[l];
+ var W=({ja:{t:'後方乱気流（ウェイク・タービュランス）',sink:'渦はゆっくり下がり、横に広がる（数分残ることがある）',tbl:'レーダーでの間隔（ICAOの従来の4区分の例）',lead:'前の機',fol:'後ろの機',cat:[['スーパー（A380）','ヘビー 6NM・ミディアム 7NM・ライト 8NM'],['ヘビー','ヘビー 4NM・ミディアム 5NM・ライト 6NM'],['ミディアム','ライト 5NM']],note:'離陸では、重い機の後ろに軽い機が続くとき2分空ける（ICAOの基本）。国によっては細かい区分（RECAT）を使う'},
+  ko:{t:'후방 난기류(웨이크 터뷸런스)',sink:'소용돌이는 천천히 내려가며 옆으로 퍼진다(몇 분 남기도 한다)',tbl:'레이더 분리(ICAO 기존 4구분의 예)',lead:'앞 항공기',fol:'뒤 항공기',cat:[['슈퍼(A380)','헤비 6NM·미디엄 7NM·라이트 8NM'],['헤비','헤비 4NM·미디엄 5NM·라이트 6NM'],['미디엄','라이트 5NM']],note:'이륙 시 무거운 항공기 뒤에 가벼운 항공기가 이어질 때 2분 띄운다(ICAO 기본). 나라에 따라 세분화한 구분(RECAT)을 쓴다'},
+  en:{t:'Wake turbulence',sink:'The vortices sink slowly and spread sideways (they can last several minutes)',tbl:'Radar separation (ICAO 4-category example)',lead:'Leader',fol:'Follower',cat:[['Super (A380)','Heavy 6 NM, Medium 7 NM, Light 8 NM'],['Heavy','Heavy 4 NM, Medium 5 NM, Light 6 NM'],['Medium','Light 5 NM']],note:'On departure, a lighter aircraft behind a heavier one waits 2 minutes (ICAO basic rule). Some countries use finer categories (RECAT)'}})[l];
  if(!W)return F.atc_wake('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#DCEEFB',14);
@@ -169,12 +169,12 @@ atc_phon:function(l){
 
 /* 10 呼び出しと復唱の流れ：最初の呼び出し → 指示 → 復唱（最後にコールサイン） */
 atc_call:function(l){
- var W=({ja:{t:'呼び出しと復唱の流れ',p:'パイロット',a:'管制',k:['最初の呼び出し：相手 → 自分 → 用件（高度など）','管制の指示','復唱：大事な部分をくり返し、最後に自分のコールサイン'],note:'コールサインは航空会社の呼び名＋便名（例：KOREAN AIR 705 ＝ コリアンエア セブン ゼロ ファイブ）'},
-  ko:{t:'호출과 복창의 흐름',p:'조종사',a:'관제',k:['첫 호출: 상대 → 자신 → 용건(고도 등)','관제 지시','복창: 중요한 부분을 되풀이하고 마지막에 자신의 호출부호'],note:'호출부호는 항공사 호칭 + 편명(예: KOREAN AIR 705 = 코리안에어 세븐 제로 파이브)'},
-  en:{t:'The flow of a call and readback',p:'Pilot',a:'ATC',k:['Initial call: whom you are calling → who you are → the message (e.g. level)','ATC instruction','Readback: repeat the key parts and end with your call sign'],note:'Call signs are the airline’s telephony designator plus the flight number (e.g. KOREAN AIR 705 = “Korean Air Seven Zero Five”)'}})[l];
+ var W=({ja:{t:'呼び出しと復唱の流れ',p:'パイロット',a:'管制',k:['最初の呼び出し：相手 → 自分 → 用件（高度など）','管制の指示','復唱：大事な部分をくり返し、最後に自分のコールサイン'],note:'コールサインは航空会社の呼び名＋便名（例：架空の SAMPLE AIR 705 ＝ サンプルエア セブン ゼロ ファイブ）'},
+  ko:{t:'호출과 복창의 흐름',p:'조종사',a:'관제',k:['첫 호출: 상대 → 자신 → 용건(고도 등)','관제 지시','복창: 중요한 부분을 되풀이하고 마지막에 자신의 호출부호'],note:'호출부호는 항공사 호칭 + 편명(예: 가상의 SAMPLE AIR 705 = 샘플에어 세븐 제로 파이브)'},
+  en:{t:'The flow of a call and readback',p:'Pilot',a:'ATC',k:['Initial call: whom you are calling → who you are → the message (e.g. level)','ATC instruction','Readback: repeat the key parts and end with your call sign'],note:'Call signs are the airline’s telephony designator plus the flight number (e.g. the fictitious SAMPLE AIR 705 = “Sample Air Seven Zero Five”)'}})[l];
  if(!W)return F.atc_call('ja');
  setK(1);
- var msgs=[[0,'Tokyo Control, Korean Air 705, flight level 350'],[1,'Korean Air 705, Tokyo Control, radar contact, descend and maintain flight level 240'],[0,'Descend and maintain flight level 240, Korean Air 705']];
+ var msgs=[[0,'Tokyo Control, Sample Air 705, flight level 350'],[1,'Sample Air 705, Tokyo Control, radar contact, descend and maintain flight level 240'],[0,'Descend and maintain flight level 240, Sample Air 705']];
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=72;
  msgs.forEach(function(m,i){var atc=m[0]===1,n=LI(m[1],11.5,420).length,lh=FS(11.5)*1.3,h=n*lh+20,x=atc?180:40,col=atc?'#2F6FD6':'#1F7A6E';
   var g=R(x,y,440,h,atc?'#E3F1FB':'#E8F5F2',14,' stroke="'+col+'" stroke-width="2"')+WR(x+220,y+10+n*lh/2+FS(11.5)*0.3,m[1],11.5,D,800,420)+LB(atc?x+440:x,y-2,atc?W.a:W.p,10.5,'#fff',atc?'end':'start',col)+BADGE(atc?x-24:x+464,y+h/2,i+1,11);
@@ -189,11 +189,11 @@ atc_roger:function(l){
   en:{t:'“ROGER” is not a readback',bad:'Poor',good:'Good',why:'ROGER only means “received”. Level, heading, speed and runway instructions must be read back with the numbers',w:[['ROGER','I have received all of your transmission'],['WILCO','Understood, will comply'],['AFFIRM / NEGATIVE','Yes / no'],['UNABLE','Cannot comply (give the reason)'],['SAY AGAIN','Repeat your last transmission'],['STANDBY','Wait, I will call you']]}})[l];
  if(!W)return F.atc_roger('ja');
  setK(1);
- var s=TTL(320,30,W.t,15,'#0f3558',600),atc='Korean Air 705, climb and maintain flight level 350';
+ var s=TTL(320,30,W.t,15,'#0f3558',600),atc='Sample Air 705, climb and maintain flight level 350';
  var n0=LI(atc,11.5,560).length,lh=FS(11.5)*1.3,h0=n0*lh+18;s+=R(40,58,560,h0,'#E3F1FB',14,' stroke="#2F6FD6" stroke-width="2"')+WR(320,58+9+n0*lh/2+FS(11.5)*0.3,atc,11.5,D,800,540);
  var y=58+h0+16,hb=lh+20;
- s+='<g>'+R(20,y,290,hb,'#FDEAE3',12,' stroke="#D64545" stroke-width="2"')+tx(165,y+hb/2+FS(11.5)*0.35,'Roger, Korean Air 705',11.5,'#D64545',900)+LB(24,y-2,'✗ '+W.bad,10.5,'#fff','start','#D64545')+'<animate attributeName="opacity" values=".35;1;1;.35;.35" keyTimes="0;.1;.45;.5;1" dur="8s" repeatCount="indefinite"/></g>';
- var gtxt='Climb and maintain flight level 350, Korean Air 705',ng=LI(gtxt,11.5,270).length,hg=Math.max(hb,ng*lh+20);
+ s+='<g>'+R(20,y,290,hb,'#FDEAE3',12,' stroke="#D64545" stroke-width="2"')+tx(165,y+hb/2+FS(11.5)*0.35,'Roger, Sample Air 705',11.5,'#D64545',900)+LB(24,y-2,'✗ '+W.bad,10.5,'#fff','start','#D64545')+'<animate attributeName="opacity" values=".35;1;1;.35;.35" keyTimes="0;.1;.45;.5;1" dur="8s" repeatCount="indefinite"/></g>';
+ var gtxt='Climb and maintain flight level 350, Sample Air 705',ng=LI(gtxt,11.5,270).length,hg=Math.max(hb,ng*lh+20);
  s+='<g>'+R(330,y,290,hg,'#E8F5F2',12,' stroke="#1F7A6E" stroke-width="2"')+WR(475,y+10+ng*lh/2+FS(11.5)*0.3,gtxt,11.5,'#1F7A6E',900,270)+LB(334,y-2,'✓ '+W.good,10.5,'#fff','start','#1F7A6E')+'<animate attributeName="opacity" values=".35;.35;1;1" keyTimes="0;.5;.6;1" dur="8s" repeatCount="indefinite"/></g>';
  y+=Math.max(hb,hg)+14;var n1=LI(W.why,11.5,560).length;s+=R(20,y,600,n1*lh+16,'#FFF1E3',10)+WR(320,y+8+n1*lh/2+FS(11.5)*0.3,W.why,11.5,'#8a3b00',900,560);y+=n1*lh+26;
  W.w.forEach(function(r,i){var nn=LI(r[1],11,340).length,hh=Math.max(FS(11.5)*1.5,nn*FS(11)*1.3+10);s+=R(20,y,600,hh,i%2?'#fff':'#F4F7FB',6)+tx(36,y+hh/2+FS(11.5)*0.35,r[0],11.5,'#2F6FD6',900,'start')+WR(440,y+hh/2+FS(11)*0.3,r[1],11,D,800,340);y+=hh+4});
@@ -218,9 +218,9 @@ atc_ocean:function(l){
  var HH=L.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+L.s+'</svg>'},
 /* 13 通信の途絶（計器気象状態・ICAOの基本）：7600 → 最後の高度・速さを保つ → 飛行計画の高度 → 目的地の施設 → 待機 → 予定の時刻に降下・進入 → 30分以内に着陸 */
 atc_lost:function(l){
- var W=({ja:{t:'通信が途絶えたとき（計器気象状態・ICAOの基本）',st:['トランスポンダーを 7600 にする','最後に指示された高度と速さを保つ（レーダーの下では7分間）','飛行計画の高度・速さに戻して飛ぶ','目的地の航法施設へ向かい、待機する','予定の時刻（EAT か到着予定）に降下・進入を始める','その時刻から30分以内に着陸する'],note:'有視界気象状態なら、そのまま有視界で近くの適当な空港に着陸して報告する。細かい決まりは各国のAIPで確かめる'},
-  ko:{t:'통신이 끊겼을 때(계기기상상태·ICAO 기본)',st:['트랜스폰더를 7600으로 한다','마지막으로 지시받은 고도와 속도를 유지한다(레이더 아래에서는 7분간)','비행계획의 고도·속도로 돌아가 비행한다','목적지 항행시설로 가서 대기한다','예정 시각(EAT 또는 도착 예정)에 강하·접근을 시작한다','그 시각부터 30분 안에 착륙한다'],note:'시계기상상태라면 그대로 시계비행으로 가까운 적당한 공항에 착륙해 보고한다. 세부 규정은 각국 AIP로 확인한다'},
-  en:{t:'Radio failure (IMC, ICAO basic procedure)',st:['Set the transponder to 7600','Keep the last assigned level and speed (for 7 minutes under radar)','Resume the flight-planned level and speed','Proceed to the navigation aid serving the destination and hold','Begin descent and approach at the expected time (EAT or ETA)','Land within 30 minutes of that time'],note:'In VMC, continue in VMC, land at the nearest suitable aerodrome and report. Check the details in each country’s AIP'}})[l];
+ var W=({ja:{t:'通信が途絶えたとき（計器気象状態・ICAOの基本の一例）',st:['トランスポンダーを 7600 にする','最後の管制承認に従い、指示された高度と速さを保つ（時間の決まりは空域による）','その後の経路・高度は、最後の承認・公示された手順・最低高度などで決まる','目的地の航法施設へ向かい、待機する（例）','予定の時刻に降下・進入を始める（例）','着陸する。具体的な時間の決まりは、飛ぶ国の現行のAIPで確認'],note:'有視界気象状態なら、そのまま有視界で近くの適当な空港に着陸して報告する。細かい決まりは各国のAIPで確かめる'},
+  ko:{t:'통신이 끊겼을 때(계기기상상태·ICAO 기본의 한 예)',st:['트랜스폰더를 7600으로 한다','마지막 관제 허가에 따라 지시받은 고도와 속도를 유지한다(시간 규정은 공역에 따라 다르다)','그 뒤의 경로·고도는 마지막 허가·공시된 절차·최저고도 등으로 정해진다','목적지 항행시설로 가서 대기한다(예)','예정 시각에 강하·접근을 시작한다(예)','착륙한다. 구체적인 시간 규정은 비행하는 나라의 현행 AIP로 확인'],note:'시계기상상태라면 그대로 시계비행으로 가까운 적당한 공항에 착륙해 보고한다. 세부 규정은 각국 AIP로 확인한다'},
+  en:{t:'Radio failure (IMC: one example of the ICAO basic procedure)',st:['Set the transponder to 7600','Follow the last clearance and keep the assigned level and speed (time rules depend on the airspace)','The route and level after that depend on the last clearance, the published procedure and minimum altitudes','Proceed to the navigation aid serving the destination and hold (example)','Begin descent and approach at the expected time (example)','Land; check the specific time rules in the current AIP of the country'],note:'In VMC, continue in VMC, land at the nearest suitable aerodrome and report. Check the details in each country’s AIP'}})[l];
  if(!W)return F.atc_lost('ja');
  setK(1);var n=6,dur=12;
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,150,'#DCEEFB',14)+R(20,186,600,20,'#9CC98B',0);
@@ -272,9 +272,9 @@ atc_intercept:function(l){
 
 /* 16 TCAS：近づくと TA（交通情報）、さらに近づくと RA（回避の指示）。一方は上昇、もう一方は降下 */
 atc_tcas:function(l){
- var W=({ja:{t:'TCAS（航空機衝突防止装置）',ta:'TA「TRAFFIC, TRAFFIC」',ra1:'RA「CLIMB, CLIMB」',ra2:'RA「DESCEND, DESCEND」',items:['TA（交通情報）：近づく機を知らせる。すれ違うおよそ40秒前（高度で変わる）','RA（回避の指示）：上昇か降下を指示する。およそ25秒前。相手機のTCASと調整し、逆向きの指示を出す','RAが出たら、管制の指示と違っても RA に従い、すぐ管制に「TCAS RA」と伝える','「CLEAR OF CONFLICT」が出たら、元の許可された高度に戻る']},
-  ko:{t:'TCAS(공중충돌방지장치)',ta:'TA ‘TRAFFIC, TRAFFIC’',ra1:'RA ‘CLIMB, CLIMB’',ra2:'RA ‘DESCEND, DESCEND’',items:['TA(교통 정보): 다가오는 항공기를 알린다. 스쳐 지나기 약 40초 전(고도에 따라 다르다)','RA(회피 지시): 상승이나 강하를 지시한다. 약 25초 전. 상대기 TCAS와 조정해 반대 방향을 지시한다','RA가 나오면 관제 지시와 달라도 RA를 따르고, 곧바로 관제에 ‘TCAS RA’라고 알린다','‘CLEAR OF CONFLICT’가 나오면 원래 허가된 고도로 돌아간다']},
-  en:{t:'TCAS (traffic alert and collision avoidance system)',ta:'TA “TRAFFIC, TRAFFIC”',ra1:'RA “CLIMB, CLIMB”',ra2:'RA “DESCEND, DESCEND”',items:['TA (traffic advisory): warns of nearby traffic about 40 seconds before closest approach (varies with altitude)','RA (resolution advisory): commands a climb or descent about 25 seconds before; the two TCAS units coordinate so the aircraft go opposite ways','Follow the RA even if it conflicts with ATC, and tell ATC “TCAS RA” at once','When “CLEAR OF CONFLICT” sounds, return to the cleared level']}})[l];
+ var W=({ja:{t:'TCAS（航空機衝突防止装置）',ta:'TA「TRAFFIC, TRAFFIC」',ra1:'RA「CLIMB, CLIMB」',ra2:'RA「DESCEND, DESCEND」',items:['TA（交通情報）：近づく機を知らせる。すれ違うおよそ40秒前（高度で変わる）','RA（回避の指示）：上昇・降下や垂直速度の制限などを指示する。時間は高度などで変わる（例：およそ25秒前）。相手機のTCASと調整する','RAが出たら、管制の指示と違っても RA に従い、可能になり次第、管制に「TCAS RA」と伝える','「CLEAR OF CONFLICT」が出たら、元の許可された高度に戻る']},
+  ko:{t:'TCAS(공중충돌방지장치)',ta:'TA ‘TRAFFIC, TRAFFIC’',ra1:'RA ‘CLIMB, CLIMB’',ra2:'RA ‘DESCEND, DESCEND’',items:['TA(교통 정보): 다가오는 항공기를 알린다. 스쳐 지나기 약 40초 전(고도에 따라 다르다)','RA(회피 지시): 상승·강하나 수직 속도 제한 등을 지시한다. 시간은 고도 등에 따라 다르다(예: 약 25초 전). 상대기 TCAS와 조정한다','RA가 나오면 관제 지시와 달라도 RA를 따르고, 가능해지는 대로 관제에 ‘TCAS RA’라고 알린다','‘CLEAR OF CONFLICT’가 나오면 원래 허가된 고도로 돌아간다']},
+  en:{t:'TCAS (traffic alert and collision avoidance system)',ta:'TA “TRAFFIC, TRAFFIC”',ra1:'RA “CLIMB, CLIMB”',ra2:'RA “DESCEND, DESCEND”',items:['TA (traffic advisory): warns of nearby traffic about 40 seconds before closest approach (varies with altitude)','RA (resolution advisory): commands a climb or descent, a vertical-speed limit and so on; timing varies with altitude (e.g. about 25 seconds before); the TCAS units coordinate','Follow the RA even if it conflicts with ATC, and tell ATC “TCAS RA” as soon as possible','When “CLEAR OF CONFLICT” sounds, return to the cleared level']}})[l];
  if(!W)return F.atc_tcas('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,220,'#0E2238',14);

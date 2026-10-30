@@ -422,9 +422,9 @@ met_jet_map:function(l){
 
 /* 11 晴天乱気流のしくみ：速い層と遅い層の境で波が巻き上がって砕ける（ケルビン・ヘルムホルツ波）＋目安の数字 */
 met_kh:function(l){
- var W=({ja:{t:'晴天乱気流（CAT）：雲がなくても揺れる',fa:'速い風',sl:'遅い風',br:'境目で波が巻き上がって砕ける',c:['ジェットの中心の風速','110kt以上'],v:['上下の風の差（鉛直シアー）','5kt／1,000ft以上'],h:['横の風の差（水平シアー）','40kt／150NM以上'],tm:['等温線の間隔','5℃／120NMより密'],src:'目安：米国FAA AC 00-30C、日本の試験（等温線）'},
-  ko:{t:'청천난류(CAT): 구름이 없어도 흔들린다',fa:'빠른 바람',sl:'느린 바람',br:'경계에서 파도가 말려 올라가 부서진다',c:['제트 중심의 풍속','110kt 이상'],v:['위아래 바람 차이(연직 시어)','5kt/1,000ft 이상'],h:['좌우 바람 차이(수평 시어)','40kt/150NM 이상'],tm:['등온선 간격','5℃/120NM보다 촘촘'],src:'참고치: 미국 FAA AC 00-30C, 일본 시험(등온선)'},
-  en:{t:'Clear-air turbulence (CAT): bumps without cloud',fa:'Fast wind',sl:'Slow wind',br:'Waves curl up and break at the boundary',c:['Jet core speed','110 kt or more'],v:['Vertical wind shear','5 kt per 1,000 ft or more'],h:['Horizontal wind shear','40 kt per 150 NM or more'],tm:['Isotherm spacing','Closer than 5 °C per 120 NM'],src:'Rules of thumb: FAA AC 00-30C; isotherms from the Japanese exam'}})[l];
+ var W=({ja:{t:'晴天乱気流（CAT）：雲がなくても揺れる',fa:'速い風',sl:'遅い風',br:'境目で波が巻き上がって砕ける',c:['ジェット気流の中心','強い風の近く'],v:['上下の風の差（鉛直シアー）','差が大きい所'],h:['横の風の差（水平シアー）','差が大きい所'],tm:['等温線の間隔','混んでいる所'],src:'どれも手がかりの一つ。数値一つで安全とは判断せず、予想図や他機からの報告と合わせて見る'},
+  ko:{t:'청천난류(CAT): 구름이 없어도 흔들린다',fa:'빠른 바람',sl:'느린 바람',br:'경계에서 파도가 말려 올라가 부서진다',c:['제트기류의 중심','강한 바람 근처'],v:['위아래 바람 차이(연직 시어)','차이가 큰 곳'],h:['좌우 바람 차이(수평 시어)','차이가 큰 곳'],tm:['등온선 간격','촘촘한 곳'],src:'모두 단서의 하나. 수치 하나로 안전하다고 판단하지 말고 예상도·다른 항공기의 보고와 함께 본다'},
+  en:{t:'Clear-air turbulence (CAT): bumps without cloud',fa:'Fast wind',sl:'Slow wind',br:'Waves curl up and break at the boundary',c:['Jet stream core','Near the strongest winds'],v:['Vertical wind shear','Where it is large'],h:['Horizontal wind shear','Where it is large'],tm:['Isotherm spacing','Where closely packed'],src:'Each is only a clue: no single number shows that it is safe, so read them with forecast charts and pilot reports'}})[l];
  if(!W)return F.met_kh('ja');
  var nar=NARROW();K=nar?1.25:1;
  var sc=R(10,40,560,300,'#EAF4FC',14)+TTL(290,30,W.t,15,'#0f3558',540);
@@ -559,9 +559,9 @@ met_microburst:function(l){
 
 /* 16 雷雨を避ける：強いエコーから20マイル以上、風上側を回る */
 met_ts_avoid:function(l){
- var W=({ja:{t:'気象レーダーで雷雨を避ける',r:'強いエコー（赤）',y:'中くらい（黄）',g:'弱い（緑）',w:'上空の風',ok:'風上側を20マイル以上離れて回る',ng:'エコーの間は40マイル以上ないと通らない',an:'かなとこの下（風下）はひょうの危険',p:'予定の経路'},
-  ko:{t:'기상 레이더로 뇌우 피하기',r:'강한 에코(빨강)',y:'중간(노랑)',g:'약함(초록)',w:'상공의 바람',ok:'바람이 불어오는 쪽으로 20마일 이상 떨어져 돌아간다',ng:'에코 간격이 40마일 미만이면 사이로 지나가지 않는다',an:'모루 아래(바람 아래쪽)는 우박 위험',p:'예정 경로'},
-  en:{t:'Avoiding thunderstorms on weather radar',r:'Strong echo (red)',y:'Moderate (yellow)',g:'Weak (green)',w:'Upper wind',ok:'Go round on the upwind side, 20 miles or more away',ng:'Do not fly between echoes less than 40 miles apart',an:'Under the anvil (downwind): risk of hail',p:'Planned route'}})[l];
+ var W=({ja:{t:'気象レーダーで雷雨を避ける',r:'強いエコー（赤）',y:'中くらい（黄）',g:'弱い（緑）',w:'上空の風',ok:'風上側を20マイル以上離れて回る',ng:'エコーの間隔が広くても安全な通路とは限らない。必要なら大きく回る',an:'かなとこの下（風下）はひょうの危険',p:'予定の経路'},
+  ko:{t:'기상 레이더로 뇌우 피하기',r:'강한 에코(빨강)',y:'중간(노랑)',g:'약함(초록)',w:'상공의 바람',ok:'바람이 불어오는 쪽으로 20마일 이상 떨어져 돌아간다',ng:'에코 간격이 넓어도 안전한 통로라는 뜻은 아니다. 필요하면 크게 우회한다',an:'모루 아래(바람 아래쪽)는 우박 위험',p:'예정 경로'},
+  en:{t:'Avoiding thunderstorms on weather radar',r:'Strong echo (red)',y:'Moderate (yellow)',g:'Weak (green)',w:'Upper wind',ok:'Go round on the upwind side, 20 miles or more away',ng:'A wide gap between echoes is not a safe corridor; detour widely if needed',an:'Under the anvil (downwind): risk of hail',p:'Planned route'}})[l];
  if(!W)return F.met_ts_avoid('ja');
  var nar=NARROW();K=nar?1.3:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" role="img">'+R(0,0,640,600,'#0E2238',16)+TTL(320,32,W.t,16,'#fff',600);
@@ -611,9 +611,9 @@ met_ty_section:function(l){
 
 /* 18 上から見た台風：反時計回りのうず、進む向きの右側が危険（風と進む速さが足し合わさる） */
 met_ty_plan:function(l){
- var W=({ja:{t:'上から見た台風（北半球）',go:'進む向き',R:'右側：危険半円（風＋進む速さ）',Lf:'左側：可航半円（風−進む速さ）',st:'強風域（15m/s以上）',vio:'暴風域（25m/s以上）',ex:'例：風40m/s＋移動10m/s＝50m/s',ex2:'例：風40m/s−移動10m/s＝30m/s'},
-  ko:{t:'위에서 본 태풍(북반구)',go:'진행 방향',R:'오른쪽: 위험반원(바람+이동 속도)',Lf:'왼쪽: 가항반원(바람−이동 속도)',st:'강풍역(15m/s 이상)',vio:'폭풍역(25m/s 이상)',ex:'예: 바람 40m/s+이동 10m/s=50m/s',ex2:'예: 바람 40m/s−이동 10m/s=30m/s'},
-  en:{t:'A typhoon seen from above (northern hemisphere)',go:'Direction of travel',R:'Right: dangerous semicircle (wind + speed of travel)',Lf:'Left: navigable semicircle (wind − speed of travel)',st:'Strong-wind area (15 m/s or more)',vio:'Storm area (25 m/s or more)',ex:'e.g. wind 40 m/s + movement 10 m/s = 50 m/s',ex2:'e.g. wind 40 m/s − movement 10 m/s = 30 m/s'}})[l];
+ var W=({ja:{t:'上から見た台風（北半球）',go:'進む向き',R:'右側：危険半円（風＋進む速さ）',Lf:'左側：可航半円（風−進む速さ。それでも暴風・大雨に注意）',st:'強風域（15m/s以上）',vio:'暴風域（25m/s以上）',ex:'例：風40m/s＋移動10m/s＝50m/s',ex2:'例：風40m/s−移動10m/s＝30m/s'},
+  ko:{t:'위에서 본 태풍(북반구)',go:'진행 방향',R:'오른쪽: 위험반원(바람+이동 속도)',Lf:'왼쪽: 가항반원(바람−이동 속도. 그래도 폭풍·호우에 주의)',st:'강풍역(15m/s 이상)',vio:'폭풍역(25m/s 이상)',ex:'예: 바람 40m/s+이동 10m/s=50m/s',ex2:'예: 바람 40m/s−이동 10m/s=30m/s'},
+  en:{t:'A typhoon seen from above (northern hemisphere)',go:'Direction of travel',R:'Right: dangerous semicircle (wind + speed of travel)',Lf:'Left: navigable semicircle (wind − travel; still hazardous)',st:'Strong-wind area (15 m/s or more)',vio:'Storm area (25 m/s or more)',ex:'e.g. wind 40 m/s + movement 10 m/s = 50 m/s',ex2:'e.g. wind 40 m/s − movement 10 m/s = 30 m/s'}})[l];
  if(!W)return F.met_ty_plan('ja');
  var nar=NARROW();K=nar?1.3:1;
  var cx=320,cy=360;
@@ -631,9 +631,9 @@ met_ty_plan:function(l){
 
 /* 19 台風の進路と予報円：太平洋高気圧の縁を回り、偏西風に乗って北東へ速く進む */
 met_ty_track:function(l){
- var W=({ja:{t:'台風の進み方と予報円',hi:'太平洋高気圧',we:'偏西風',bo:'発生：暖かい海（北緯5〜20°程度）',cur:'転向：向きを北東に変える',fast:'偏西風に乗って速く進む',kr:'韓国',jp:'日本',fc:'予報円：中心が入る確率70%',warn:'暴風警戒域'},
-  ko:{t:'태풍의 진로와 예보원',hi:'북태평양 고기압',we:'편서풍',bo:'발생: 따뜻한 바다(북위 5~20° 정도)',cur:'전향: 방향을 북동쪽으로 바꾼다',fast:'편서풍을 타고 빠르게 나아간다',kr:'한국',jp:'일본',fc:'예보원: 중심이 들어갈 확률 70%',warn:'폭풍경계역'},
-  en:{t:'Typhoon tracks and forecast circles',hi:'Pacific high',we:'Westerlies',bo:'Forms over warm sea (about 5–20°N)',cur:'Recurvature: turns northeast',fast:'Speeds up on the westerlies',kr:'Korea',jp:'Japan',fc:'Forecast circle: 70% chance the centre is inside',warn:'Storm warning area'}})[l];
+ var W=({ja:{t:'台風の進み方と予報円',hi:'太平洋高気圧',we:'偏西風',bo:'発生：暖かい海（北緯5〜20°程度）',cur:'転向：北東へ向きを変える例',fast:'偏西風に乗って速く進む',kr:'韓国',jp:'日本',fc:'予報円：中心が入る確率70%',warn:'暴風警戒域'},
+  ko:{t:'태풍의 진로와 예보원',hi:'북태평양 고기압',we:'편서풍',bo:'발생: 따뜻한 바다(북위 5~20° 정도)',cur:'전향: 북동쪽으로 바뀌는 예',fast:'편서풍을 타고 빠르게 나아간다',kr:'한국',jp:'일본',fc:'예보원: 중심이 들어갈 확률 70%',warn:'폭풍경계역'},
+  en:{t:'Typhoon tracks and forecast circles',hi:'Pacific high',we:'Westerlies',bo:'Forms over warm sea (about 5–20°N)',cur:'Recurvature (typical)',fast:'Speeds up on the westerlies',kr:'Korea',jp:'Japan',fc:'Forecast circle: 70% chance the centre is inside',warn:'Storm warning area'}})[l];
  if(!W)return F.met_ty_track('ja');
  var nar=NARROW();K=nar?1.3:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img">'+R(0,0,640,640,'#CFE8F7',16)+TTL(320,30,W.t,15,'#0f3558',600);
@@ -743,9 +743,9 @@ met_barbs:function(l){
 
 /* 24 渦度：谷では反時計回り（正）、尾根では時計回り（負）。谷の前面で空気が上がる */
 met_vort:function(l){
- var W=({ja:{t:'渦度（うずの強さ）',tr:'谷：反時計回り＝正の渦度',ri:'尾根：時計回り＝負の渦度',up:'谷の前面：空気が上がり雲ができる',dn:'谷の後ろ：空気が下がり晴れる',wind:'西風'},
-  ko:{t:'와도(소용돌이의 세기)',tr:'기압골: 반시계=양의 와도',ri:'기압마루: 시계 방향=음의 와도',up:'기압골 앞쪽: 공기가 올라가 구름이 생긴다',dn:'기압골 뒤쪽: 공기가 내려가 맑다',wind:'서풍'},
-  en:{t:'Vorticity (how strongly the air spins)',tr:'Trough: anticlockwise = positive vorticity',ri:'Ridge: clockwise = negative vorticity',up:'Ahead of the trough: air rises and cloud forms',dn:'Behind the trough: air sinks and skies clear',wind:'Westerly'}})[l];
+ var W=({ja:{t:'相対渦度（うずの強さ。理想化した例）',tr:'谷：反時計回り＝正の渦度',ri:'尾根：時計回り＝負の渦度',up:'谷の前面：空気が上がり雲ができる',dn:'谷の後ろ：空気が下がり晴れる',wind:'西風'},
+  ko:{t:'상대 와도(소용돌이의 세기. 단순화한 예)',tr:'기압골: 반시계=양의 와도',ri:'기압마루: 시계 방향=음의 와도',up:'기압골 앞쪽: 공기가 올라가 구름이 생긴다',dn:'기압골 뒤쪽: 공기가 내려가 맑다',wind:'서풍'},
+  en:{t:'Relative vorticity (how strongly the air spins: an idealised example)',tr:'Trough: anticlockwise = positive vorticity',ri:'Ridge: clockwise = negative vorticity',up:'Ahead of the trough: air rises and cloud forms',dn:'Behind the trough: air sinks and skies clear',wind:'Westerly'}})[l];
  if(!W)return F.met_vort('ja');
  var nar=NARROW();K=nar?1.3:1;
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img">'+R(0,0,640,480,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600)+R(14,44,612,400,'#EEF5FB',12);

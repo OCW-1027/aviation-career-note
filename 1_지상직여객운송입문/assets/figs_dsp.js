@@ -28,7 +28,7 @@ dsp_law:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9
    '<animate attributeName="opacity" values="0.4;1;1;0.4" keyTimes="0;'+(ri/5).toFixed(2)+';'+((ri+1)/5).toFixed(2)+';1" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
    if(ri<c[2].length-1)s+='<path d="M'+(x+125)+' '+(y+62)+' L'+(x+125)+' '+(y+74)+'" stroke="'+c[1]+'" stroke-width="3"/>'})});
  s+='<path d="M290 110 C320 110 320 110 330 110" stroke="'+B+'" stroke-width="2" stroke-dasharray="5 4"/><path d="M290 110 C560 60 600 80 620 110" fill="none" stroke="'+B+'" stroke-width="2" stroke-dasharray="5 4"/>';
- s+=tx(450,460,'ICAO standards are adopted into each country\u2019s own laws and rules',12,G,700);
+ s+=tx(450,460,'Each country sets its own laws and rules on the basis of ICAO standards',12,G,700);
  return s+'</svg>'},
 /* OCC と支店・機体のつながり */
 dsp_occ:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img">'+R(0,0,900,420,'#F7FAFD'),DUR=6,
@@ -58,8 +58,8 @@ dsp_window:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 
  s+=R(X(6),80,X(15)-X(6),28,'#DDEFE9',6)+tx(X(6)+8,99,'BASE 9999 FEW020',13,T,800,'start');
  s+=R(X(9),126,X(11)-X(9),28,'#E3EDFA',6)+tx(X(9)+8,145,'BECMG 3000 BR BKN006',13,B,800,'start');
  s+=R(X(10.5),172,X(15)-X(10.5),28,'#FBE3E3',6)+tx(X(10.5)+8,191,'TEMPO 0600 FG VV002',13,'#C2344F',800,'start');
- s+='<g><rect x="'+(X(10)-110)+'" y="210" width="220" height="34" rx="8" fill="#C2344F"/>'+tx(X(10),232,'WORST: 600 m / 200 ft',14,'#fff',800)+'<animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></g>';
- s+=tx(450,310,'Groups overlapping ETA ±1 h decide the planning weather',12,G,700);
+ s+='<g><rect x="'+(X(10)-110)+'" y="210" width="220" height="34" rx="8" fill="#C2344F"/>'+tx(X(10),232,'TEMPO: 600 m / 200 ft',14,'#fff',800)+'<animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></g>';
+ s+=tx(450,310,'Groups overlapping ETA ±1 h are checked; TEMPO/PROB follow the applicable rules (example)',12,G,700);
  return s+'</svg>'},
 /* NOTAM を項目ごとに読む */
 dsp_notam:function(){var L=[['D1234/26 NOTAMN','SERIES D, No.1234 of 2026, NEW'],['Q) RKRR','FIR: INCHEON'],['/QARLC','SUBJECT AR (ATS ROUTE) + CONDITION LC (CLOSED)'],['/IV/NBO/E','IFR+VFR / PURPOSE / SCOPE: EN ROUTE'],['/200/300','LOWER FL200 / UPPER FL300'],['/3530N12650E050','CENTRE AND RADIUS 50 NM'],['A) RKRR','LOCATION'],['B) 2609270000','FROM 27 SEP 2026 00:00 UTC'],['C) 2610052359','TO 05 OCT 2026 23:59 UTC'],['E) ATS RTE Y711 ...','PLAIN-LANGUAGE TEXT']],N=L.length,DUR=N*1.7,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img">'+R(0,0,900,360,'#F7FAFD');
@@ -75,18 +75,18 @@ dsp_rwycc:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
  sets=[[5,5,5],[5,3,2],[3,2,1]];
  s+=R(60,110,780,90,'#3A4350',6);for(var i=1;i<3;i++)s+='<line x1="'+(60+i*260)+'" y1="110" x2="'+(60+i*260)+'" y2="200" stroke="#fff" stroke-width="2" stroke-dasharray="8 6"/>';
  s+='<line x1="70" y1="155" x2="830" y2="155" stroke="#fff" stroke-width="3" stroke-dasharray="30 20"/>'+tx(80,100,'RWY 14R',14,D,800,'start')+tx(820,100,'32L',14,D,800,'end');
- ['TOUCHDOWN','MIDPOINT','STOP-END'].forEach(function(n,i){s+=tx(190+i*260,228,n,12,G,700)});
+ ['PART 1','PART 2','PART 3'].forEach(function(n,i){s+=tx(190+i*260,228,n,12,G,700)});
  sets.forEach(function(v,k){var a=(k/3).toFixed(3),b=((k+1)/3).toFixed(3);s+='<g opacity="0">';
   v.forEach(function(c,i){var x=190+i*260;s+='<circle cx="'+x+'" cy="155" r="32" fill="'+col[c]+'" stroke="#fff" stroke-width="3"/>'+tx(x,165,c,30,'#fff',900)});
   s+=R(250,250,400,40,'#fff',8,' stroke="#C9D6E3" stroke-width="2"')+'<text x="450" y="277" font-size="18" font-weight="800" fill="'+D+'" text-anchor="middle" font-family="Consolas,Menlo,monospace">RWYCC '+v.join('/')+'</text>';
   s+='<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;'+a+';'+b+';'+b+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
  var lg=[[6,'DRY'],[5,'GOOD'],[4,'GOOD TO MEDIUM'],[3,'MEDIUM'],[2,'MEDIUM TO POOR'],[1,'POOR'],[0,'LESS THAN POOR']];
  var lx=80,ly=14;lg.forEach(function(l,i){if(i===4){lx=150;ly=48}s+='<rect x="'+lx+'" y="'+ly+'" width="24" height="24" rx="5" fill="'+col[l[0]]+'"/>'+tx(lx+12,ly+17,l[0],14,'#fff',900)+tx(lx+30,ly+17,l[1],10,D,700,'start');lx+=56+l[1].length*9});
- s+=tx(450,316,'Code for each third of the runway (6 = dry … 0 = nil braking, runway closure considered)',12,G,700);
+ s+=tx(450,316,'Code for each third, reported from the lower-numbered runway end (6 = dry … 0 = nil braking)',12,G,700);
  return s+'</svg>'},
 /* 運航飛行計画書（OFP）をブロックごとに読む（練習用）。韓国版：金浦→済州、日本版：羽田→福岡（Y20の地点・距離は日本AIP ENR 3.3、2026年10月版） */
 dsp_ofp:function(){return ofpFig([
- [40,['ACN123  RKSS-RKPC  27SEP26  A20N HL8XXX','STD 0100Z  STA 0205Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
+ [40,['XXX123  RKSS-RKPC  27SEP26  A20N HL8XXX','STD 0100Z  STA 0205Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
  [100,['RKSS MONSI Y711 KIDOS RKPC','FL240   GND DIST 251NM   AIR DIST 262NM'],'ROUTE, CRUISING LEVEL, DISTANCE'],
  [160,['TRIP  2900   CONT   190   ALTN  1300','FINRES 1140   EXTRA    0   TAXI   200   BLOCK 5730'],'FUEL (kg): TRIP → BLOCK'],
  [220,['ZFW 61200/64300   TOW 66730/79000','LW  63830/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
@@ -94,7 +94,7 @@ dsp_ofp:function(){return ofpFig([
  [340,['ALTN RKPK  DIST 150NM  FL150  1300','NOTAM / WX ATTACHED'],'ALTERNATE, ATTACHED NOTAM AND WEATHER'],
  [400,['DISPATCHER ________','CAPTAIN ________'],'SIGNATURES: DISPATCHER, THEN CAPTAIN']],'KOREA · PRACTICE OFP')},
 dsp_ofp_jp:function(){return ofpFig([
- [40,['ACN801  RJTT-RJFF  27SEP26  A20N JA00XX','STD 0000Z  STA 0130Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
+ [40,['XXX801  RJTT-RJFF  27SEP26  A20N JA00XX','STD 0000Z  STA 0130Z  CI 30'],'HEADER: FLIGHT, DATE, AIRCRAFT, TIMES'],
  [100,['RJTT TIARA GUSRO Y20 KIRIN RJFF','FL380   Y20 GUSRO-KIRIN 420.6NM (AIP)'],'ROUTE, CRUISING LEVEL, DISTANCE'],
  [160,['TRIP  3600   CONT  190 (5%/5MIN)   ALTN RJFR  900','HOLD 30MIN 1140   TAXI  150   BLOCK 5980'],'FUEL (kg): ART. 153 + NOTICE 319'],
  [220,['ZFW 60500/64300   TOW 66330/79000','LW  62730/67400   (ACTUAL/MAXIMUM)'],'WEIGHTS vs LIMITS'],
@@ -113,7 +113,7 @@ dsp_fuel:function(){var C={TAXI:'#9AA7B5',TRIP:'#2F8FE0',CONT:'#E08A2F',ALTN:'#1
    s+='<g opacity="0"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="44" fill="'+col+'" stroke="#fff" stroke-width="1.5"/>'+(w>52?'<text x="'+(x+w/2)+'" y="'+(y+20)+'" font-size="12" font-weight="800" fill="#fff" text-anchor="middle" font-family="Arial">'+g[0]+'</text><text x="'+(x+w/2)+'" y="'+(y+36)+'" font-size="11.5" font-weight="700" fill="#fff" text-anchor="middle" font-family="Arial">'+g[1]+'</text>':'<text x="'+(x+w/2)+'" y="'+(y+62)+'" font-size="11" font-weight="700" fill="'+col+'" text-anchor="middle" font-family="Arial">'+g[0]+' '+g[1]+'</text>')+'<animate attributeName="opacity" values="0;1;1" keyTimes="0;'+a+';1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></g>';
    x+=w;tot+=g[1]});
   s+='<text x="'+(x+10)+'" y="'+(y+28)+'" font-size="15" font-weight="900" fill="'+D+'" font-family="Arial" opacity="0">= '+tot+'<animate attributeName="opacity" values="0;1;1" keyTimes="0;0.9;1" calcMode="discrete" dur="'+DUR+'s" repeatCount="indefinite"/></text>'});
- s+=tx(450,452,'SAME AMOUNTS, DIFFERENT NAMES: KOREA SPLITS “FINAL RESERVE” OUT; JAPAN STATES THE HOLDING TIME DIRECTLY',12.5,O,800);
+ s+=tx(450,452,'CLOSE AMOUNTS IN THIS EXAMPLE: KOREA SPLITS OUT “FINAL RESERVE”; JAPAN STATES THE HOLDING TIME',12.5,O,800);
  return s+'</svg>'},
 /* 乗務割の例：金浦⇄済州（韓国・別表18）と羽田⇄福岡（日本・「航空機乗組員の乗務割について」2024年版）、2名編成・4区間。練習用の時刻 */
 dsp_fdp:function(){var X0=70,PX=56,H0=5,DUR=14,

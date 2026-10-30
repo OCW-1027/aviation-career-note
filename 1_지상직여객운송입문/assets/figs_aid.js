@@ -11,9 +11,9 @@ function box(items,x0,y0,w,sz){var y=y0,g='';items.forEach(function(v){var n=LI(
 var F={
 /* 1 VORのしくみ（灯台のたとえ）：全方向の光と回る光の時間差で方位が分かる */
 aid_vor:function(l){
- var W=({ja:{t:'VOR のしくみ ― 灯台のたとえ',a:'① 磁北（000）を向いたとき、全方向に一度光る（基準）',b:'② 回る光が自分に当たるまでの時間 → 方位',rad:'090°ラジアル＝局から東へ出る線',n:'磁北',note:'本物のVORは光ではなく電波の位相の差で方位を知らせる（VHF 108.00〜117.95MHz）'},
-  ko:{t:'VOR의 원리 — 등대 비유',a:'① 자북(000)을 향할 때 모든 방향으로 한 번 번쩍인다(기준)',b:'② 도는 빛이 나에게 닿을 때까지의 시간 → 방위',rad:'090° 레이디얼 = 국에서 동쪽으로 나가는 선',n:'자북',note:'실제 VOR는 빛이 아니라 전파의 위상 차로 방위를 알린다(VHF 108.00~117.95MHz)'},
-  en:{t:'How VOR works: the lighthouse analogy',a:'① A flash in all directions when the beam points to magnetic north (000) (reference)',b:'② Time until the rotating beam reaches you → your bearing',rad:'The 090° radial = the line running east from the station',n:'Mag N',note:'A real VOR uses the phase difference between radio signals, not light (VHF 108.00–117.95 MHz)'}})[l];
+ var W=({ja:{t:'VOR のしくみ ― 灯台のたとえ',a:'① 磁北（000）を向いたとき、全方向に一度光る（基準）',b:'② 回る光が自分に当たるまでの時間 → 方位',rad:'090°ラジアル＝局から磁方位090°へ出る線',n:'磁北',note:'本物のVORは光ではなく電波の位相の差で方位を知らせる（VHF 108.00〜117.95MHz）'},
+  ko:{t:'VOR의 원리 — 등대 비유',a:'① 자북(000)을 향할 때 모든 방향으로 한 번 번쩍인다(기준)',b:'② 도는 빛이 나에게 닿을 때까지의 시간 → 방위',rad:'090° 레이디얼 = 국에서 자방위 090°로 나가는 선',n:'자북',note:'실제 VOR는 빛이 아니라 전파의 위상 차로 방위를 알린다(VHF 108.00~117.95MHz)'},
+  en:{t:'How VOR works: the lighthouse analogy',a:'① A flash in all directions when the beam points to magnetic north (000) (reference)',b:'② Time until the rotating beam reaches you → your bearing',rad:'The 090° radial = the line running out from the station on 090° magnetic',n:'Mag N',note:'A real VOR uses the phase difference between radio signals, not light (VHF 108.00–117.95 MHz)'}})[l];
  if(!W)return F.aid_vor('ja');
  setK(1);var cx=320,cy=250,r=160;
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,390,'#0E2238',14);
@@ -30,9 +30,9 @@ aid_vor:function(l){
 
 /* 2 DMEの斜め距離：局の真上 6,000ft でも約1NM と表示される */
 aid_dme:function(l){
- var W=({ja:{t:'DME は「斜めの距離」を測る',dme:'DMEの表示',gnd:'地面の上の距離',over:'局の真上でも 6,000ft（約1NM）と表示',far:'遠くでは、斜めの距離と地面の距離はほぼ同じ',rule:'目安：高さ1,000ftごとに局から1NM以上離れていれば、誤差は小さい',st:'DME局'},
-  ko:{t:'DME는 ‘경사 거리’를 잰다',dme:'DME 표시',gnd:'지상 거리',over:'국 바로 위에서도 6,000ft(약 1NM)로 표시',far:'멀리서는 비스듬한 거리와 지상 거리가 거의 같다',rule:'기준: 높이 1,000ft마다 국에서 1NM 이상 떨어져 있으면 오차는 작다',st:'DME국'},
-  en:{t:'DME measures slant range',dme:'DME reading',gnd:'Ground distance',over:'Even directly overhead at 6,000 ft it reads about 1 NM',far:'Far away, slant range and ground distance are almost equal',rule:'Rule of thumb: the error is small if you are at least 1 NM from the station for every 1,000 ft of height',st:'DME station'}})[l];
+ var W=({ja:{t:'DME は「斜めの距離」を測る',dme:'DMEの表示',gnd:'地面の上の距離',over:'局のアンテナの真上 6,000ft でも約1NMと表示',far:'遠くでは、斜めの距離と地面の距離はほぼ同じ',rule:'目安：高さ1,000ftごとに局から1NM以上離れていれば、誤差は小さい',st:'DME局'},
+  ko:{t:'DME는 ‘경사 거리’를 잰다',dme:'DME 표시',gnd:'지상 거리',over:'국 안테나 바로 위 6,000ft에서도 약 1NM로 표시',far:'멀리서는 비스듬한 거리와 지상 거리가 거의 같다',rule:'기준: 높이 1,000ft마다 국에서 1NM 이상 떨어져 있으면 오차는 작다',st:'DME국'},
+  en:{t:'DME measures slant range',dme:'DME reading',gnd:'Ground distance',over:'Even directly overhead, 6,000 ft above the antenna, it reads about 1 NM',far:'Far away, slant range and ground distance are almost equal',rule:'Rule of thumb: the error is small if you are at least 1 NM from the station for every 1,000 ft of height',st:'DME station'}})[l];
  if(!W)return F.aid_dme('ja');
  setK(1);
  var gx=520,gy=320,s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,300,'#DCEEFB',14)+R(20,320,600,36,'#9CC98B');
@@ -50,9 +50,9 @@ aid_dme:function(l){
 
 /* 3 NDBとADF：機首の向きが変わっても、針はいつも局を指す */
 aid_ndb:function(l){
- var W=({ja:{t:'NDB と ADF ― 針はいつも局を指す',ndb:'NDB',rb:'相対方位（RB）',mh:'機首の磁方位（MH）',f:'局の磁方位 ＝ 機首の磁方位 ＋ 相対方位',ex:'例：MH 030°、RB 060° → 局は 090°（真東）',err:'誤差：夜（電離層の反射）、海岸線、雷雨、山。多くの国で廃止が進む'},
-  ko:{t:'NDB와 ADF — 바늘은 늘 국을 가리킨다',ndb:'NDB',rb:'상대 방위(RB)',mh:'기수 자방위(MH)',f:'국의 자방위 = 기수 자방위 + 상대 방위',ex:'예: MH 030°, RB 060° → 국은 090°(정동)',err:'오차: 밤(전리층 반사), 해안선, 뇌우, 산. 많은 나라에서 폐지가 진행 중'},
-  en:{t:'NDB and ADF: the needle always points to the station',ndb:'NDB',rb:'Relative bearing (RB)',mh:'Magnetic heading (MH)',f:'Magnetic bearing to the station = MH + RB',ex:'Example: MH 030°, RB 060° → station at 090° (due east)',err:'Errors: night effect (ionosphere), coastlines, thunderstorms, mountains. Being withdrawn in many countries'}})[l];
+ var W=({ja:{t:'NDB と ADF ― 針はいつも局を指す',ndb:'NDB',rb:'相対方位（RB）',mh:'機首の磁方位（MH）',f:'局の磁方位 ＝ 機首の磁方位 ＋ 相対方位',ex:'例：MH 030°、RB 060° → 局は磁方位 090°',err:'誤差：夜（電離層の反射）、海岸線、雷雨、山。多くの国で廃止が進む'},
+  ko:{t:'NDB와 ADF — 바늘은 늘 국을 가리킨다',ndb:'NDB',rb:'상대 방위(RB)',mh:'기수 자방위(MH)',f:'국의 자방위 = 기수 자방위 + 상대 방위',ex:'예: MH 030°, RB 060° → 국은 자방위 090°',err:'오차: 밤(전리층 반사), 해안선, 뇌우, 산. 많은 나라에서 폐지가 진행 중'},
+  en:{t:'NDB and ADF: the needle always points to the station',ndb:'NDB',rb:'Relative bearing (RB)',mh:'Magnetic heading (MH)',f:'Magnetic bearing to the station = MH + RB',ex:'Example: MH 030°, RB 060° → station at 090° magnetic',err:'Errors: night effect (ionosphere), coastlines, thunderstorms, mountains. Being withdrawn in many countries'}})[l];
  if(!W)return F.aid_ndb('ja');
  setK(1);
  var sx=520,sy=200,px=230,py=200;
@@ -68,9 +68,9 @@ aid_ndb:function(l){
 
 /* 4 電波が届く距離：地球は丸いので、高く飛ぶほど遠くのVHFを受けられる */
 aid_los:function(l){
- var W=({ja:{t:'VHFの電波が届く距離（見通し距離）',f:'届く距離（NM）≒ 1.23 × √（高さ[ft]）',blk:'地平線の向こうは届かない',st:'VOR',ex:'1,000ft：約39NM　10,000ft：約123NM　36,000ft：約233NM'},
-  ko:{t:'VHF 전파가 닿는 거리(가시선 거리)',f:'닿는 거리(NM) ≒ 1.23 × √(높이[ft])',blk:'지평선 너머로는 닿지 않는다',st:'VOR',ex:'1,000ft: 약 39NM　10,000ft: 약 123NM　36,000ft: 약 233NM'},
-  en:{t:'How far VHF signals reach (line of sight)',f:'Range (NM) ≈ 1.23 × √(height in ft)',blk:'No signal beyond the horizon',st:'VOR',ex:'1,000 ft: about 39 NM · 10,000 ft: about 123 NM · 36,000 ft: about 233 NM'}})[l];
+ var W=({ja:{t:'VHFの電波が届く距離の目安（見通し距離）',f:'届く距離（NM）≒ 1.23 × √（高さ[ft]）',blk:'地平線の向こうは届かない',st:'VOR',ex:'1,000ft：約39NM　10,000ft：約123NM　36,000ft：約233NM'},
+  ko:{t:'VHF 전파가 닿는 거리의 기준(가시선 거리)',f:'닿는 거리(NM) ≒ 1.23 × √(높이[ft])',blk:'지평선 너머로는 닿지 않는다',st:'VOR',ex:'1,000ft: 약 39NM　10,000ft: 약 123NM　36,000ft: 약 233NM'},
+  en:{t:'How far VHF signals reach: a rule of thumb (line of sight)',f:'Range (NM) ≈ 1.23 × √(height in ft)',blk:'No signal beyond the horizon',st:'VOR',ex:'1,000 ft: about 39 NM · 10,000 ft: about 123 NM · 36,000 ft: about 233 NM'}})[l];
  if(!W)return F.aid_los('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,300,'#0E2238',14);
@@ -84,9 +84,9 @@ aid_los:function(l){
  var HH=b.y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+b.s+'</svg>'},
 /* 5 ILSの2つの電波：ローカライザー（左右）とグライドパス（上下3°）。ずれると計器の針が直す向きを示す */
 aid_ils:function(l){
- var W=({ja:{t:'ILS ― 左右と上下の2つの電波',top:'上から見る：ローカライザー（左右）',side:'横から見る：グライドパス（上下 約3°）',fl:'右へ直す',fu:'上へ直す',loc:'ローカライザー（滑走路の先）',gp:'グライドパス（滑走路の横）',n1:'針は「進むべき向き」を示す。針のほうへ飛ぶ',n2:'グライドパスには 6°・9° の偽の坂があるので、下から近づいて捕捉する'},
-  ko:{t:'ILS — 좌우와 상하의 두 전파',top:'위에서 보기: 로컬라이저(좌우)',side:'옆에서 보기: 글라이드패스(상하 약 3°)',fl:'오른쪽으로 수정',fu:'위로 수정',loc:'로컬라이저(활주로 끝 너머)',gp:'글라이드패스(활주로 옆)',n1:'바늘은 ‘가야 할 방향’을 보여 준다. 바늘 쪽으로 난다',n2:'글라이드패스에는 6°·9°의 가짜 경사가 있으므로 아래에서 다가가 잡는다'},
-  en:{t:'ILS: two signals, lateral and vertical',top:'From above: localizer (left/right)',side:'From the side: glide path (up/down, about 3°)',fl:'Fly right',fu:'Fly up',loc:'Localizer (beyond the runway end)',gp:'Glide path (beside the runway)',n1:'The needle shows which way to go: fly towards the needle',n2:'The glide path has false slopes at 6° and 9°, so intercept it from below'}})[l];
+ var W=({ja:{t:'ILS ― 左右と上下の2つの電波',top:'上から見る：ローカライザー（左右）',side:'横から見る：グライドパス（上下 約3°）',fl:'右へ直す',fu:'上へ直す',loc:'ローカライザー（滑走路の先）',gp:'グライドパス（滑走路の横）',n1:'針はコースからのずれを示す。公示された方式に従ってコースを捉える',n2:'グライドパスには 6°・9° の偽の坂があるので、下から近づいて捕捉する'},
+  ko:{t:'ILS — 좌우와 상하의 두 전파',top:'위에서 보기: 로컬라이저(좌우)',side:'옆에서 보기: 글라이드패스(상하 약 3°)',fl:'오른쪽으로 수정',fu:'위로 수정',loc:'로컬라이저(활주로 끝 너머)',gp:'글라이드패스(활주로 옆)',n1:'바늘은 코스에서 벗어난 정도를 보여 준다. 공시된 방식에 따라 코스를 잡는다',n2:'글라이드패스에는 6°·9°의 가짜 경사가 있으므로 아래에서 다가가 잡는다'},
+  en:{t:'ILS: two signals, lateral and vertical',top:'From above: localizer (left/right)',side:'From the side: glide path (up/down, about 3°)',fl:'Fly right',fu:'Fly up',loc:'Localizer (beyond the runway end)',gp:'Glide path (beside the runway)',n1:'The needle shows deviation from the course; intercept it following the published procedure',n2:'The glide path has false slopes at 6° and 9°, so intercept it from below'}})[l];
  if(!W)return F.aid_ils('ja');
  setK(1);var nar=NARROW();
  function cdi(x,y,dx,dy){return '<g transform="translate('+x+' '+y+')"><circle r="34" fill="#fff" stroke="#243447" stroke-width="3"/>'+[-24,-12,12,24].map(function(v){return '<circle cx="'+v+'" cy="0" r="2.5" fill="#243447"/><circle cx="0" cy="'+v+'" r="2.5" fill="#243447"/>'}).join('')+'<line x1="'+dx+'" y1="-28" x2="'+dx+'" y2="28" stroke="#E08A2F" stroke-width="4"/><line x1="-28" y1="'+dy+'" x2="28" y2="'+dy+'" stroke="#2F6FD6" stroke-width="4"/><path d="M-8 0 h16 M0 -4 v8" stroke="#D64545" stroke-width="3"/></g>'}
@@ -111,9 +111,9 @@ aid_ils:function(l){
 
 /* 6 ILSのカテゴリー：決心高度で滑走路の灯火が見えなければ着陸できない。CAT I→III ほど低く、見える距離が短くてもよい */
 aid_cat:function(l){
- var W=({ja:{t:'ILS のカテゴリー（決心高度と RVR）',dh:'決心高度（DH）',rvr:'滑走路視距離（RVR）',see:'DHで灯火が見えれば着陸、見えなければやり直し（復行）',rows:[['CAT I','200ft 以上','550m 以上'],['CAT II','100〜200ft','300m 以上'],['CAT IIIA','100ft 未満（なし可）','175m 以上'],['CAT IIIB','50ft 未満（なし可）','50〜175m']],note:'値は ICAO Annex 6 の従来の区分。CAT II・III には機体・乗員・空港それぞれの承認と設備が必要'},
-  ko:{t:'ILS 카테고리(결심고도와 RVR)',dh:'결심고도(DH)',rvr:'활주로가시거리(RVR)',see:'DH에서 등화가 보이면 착륙, 안 보이면 다시 시도(복행)',rows:[['CAT I','200ft 이상','550m 이상'],['CAT II','100~200ft','300m 이상'],['CAT IIIA','100ft 미만(없음도)','175m 이상'],['CAT IIIB','50ft 미만(없음도)','50~175m']],note:'값은 ICAO Annex 6의 기존 구분. CAT II·III에는 기체·승무원·공항 각각의 승인과 설비가 필요'},
-  en:{t:'ILS categories (decision height and RVR)',dh:'Decision height (DH)',rvr:'Runway visual range (RVR)',see:'If the lights are visible at DH, land; if not, go around',rows:[['CAT I','200 ft or more','550 m or more'],['CAT II','100–200 ft','300 m or more'],['CAT IIIA','Below 100 ft (or none)','175 m or more'],['CAT IIIB','Below 50 ft (or none)','50–175 m']],note:'Values follow the traditional ICAO Annex 6 categories. CAT II and III need approvals and equipment for the aircraft, crew and airport'}})[l];
+ var W=({ja:{t:'ILS のカテゴリー（決心高と RVR）',dh:'決心高（DH）',rvr:'滑走路視距離（RVR）',see:'DHで必要な目視物標が見えれば着陸、見えなければ復行',rows:[['CAT I','200ft 以上','550m 以上'],['CAT II','100〜200ft','300m 以上'],['CAT IIIA','100ft 未満（なし可）','175m 以上'],['CAT IIIB','50ft 未満（なし可）','50〜175m']],note:'値は ICAO Annex 6 の従来の区分。CAT II・III には機体・乗員・空港それぞれの承認と設備が必要'},
+  ko:{t:'ILS 카테고리(결심높이와 RVR)',dh:'결심높이(DH)',rvr:'활주로가시거리(RVR)',see:'DH에서 필요한 목시 참조물이 보이면 착륙, 안 보이면 복행',rows:[['CAT I','200ft 이상','550m 이상'],['CAT II','100~200ft','300m 이상'],['CAT IIIA','100ft 미만(없음도)','175m 이상'],['CAT IIIB','50ft 미만(없음도)','50~175m']],note:'값은 ICAO Annex 6의 기존 구분. CAT II·III에는 기체·승무원·공항 각각의 승인과 설비가 필요'},
+  en:{t:'ILS categories (decision height and RVR)',dh:'Decision height (DH)',rvr:'Runway visual range (RVR)',see:'Land if the required references are in sight at DH; otherwise go around',rows:[['CAT I','200 ft or more','550 m or more'],['CAT II','100–200 ft','300 m or more'],['CAT IIIA','Below 100 ft (or none)','175 m or more'],['CAT IIIB','Below 50 ft (or none)','50–175 m']],note:'Values follow the traditional ICAO Annex 6 categories. CAT II and III need approvals and equipment for the aircraft, crew and airport'}})[l];
  if(!W)return F.aid_cat('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,250,'#DCEEFB',14)+R(20,276,600,30,'#9CC98B',0);
@@ -169,9 +169,9 @@ aid_radar:function(l){
  var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
 /* 9 夜の滑走路の灯火：番号を付け、説明は下の一覧に */
 aid_lights:function(l){
- var W=({ja:{t:'夜の滑走路の灯火',items:['進入灯：白。横棒つき（CAT Iで約900m）。順に光る閃光灯（ラビット）で向きを示す','進入端灯：緑（滑走路の始まり）','滑走路灯：白。計器用の滑走路では最後の600mが黄色（残りが少ない）','中心線灯：白。残り900〜300mは白と赤の交互、最後の300mは赤','接地帯灯：白の横棒（CAT II／IIIの最初の900m）','滑走路末端灯：赤（ここで滑走路が終わる）']},
-  ko:{t:'야간 활주로 등화',items:['접근등: 흰색. 가로 막대 포함(CAT I에서 약 900m). 차례로 번쩍이는 섬광등(래빗)으로 방향을 알린다','시단등: 녹색(활주로의 시작)','활주로등: 흰색. 계기용 활주로에서는 마지막 600m가 노란색(남은 거리가 짧다)','중심선등: 흰색. 남은 900~300m는 흰색·빨강 교대, 마지막 300m는 빨강','접지대등: 흰색 가로 막대(CAT II/III의 처음 900m)','활주로 종단등: 빨강(여기서 활주로가 끝난다)']},
-  en:{t:'Runway lighting at night',items:['Approach lights: white, with crossbars (about 900 m for CAT I); sequenced flashers (the “rabbit”) show the direction','Threshold lights: green (start of the runway)','Runway edge lights: white; on instrument runways the last 600 m are yellow (little runway left)','Centreline lights: white; alternating red and white from 900 m to 300 m remaining, red for the last 300 m','Touchdown zone lights: white barrettes (first 900 m on CAT II/III runways)','Runway end lights: red (the runway ends here)']}})[l];
+ var W=({ja:{t:'夜の滑走路の灯火',items:['進入灯：白。横棒つき（CAT Iで約900m）。順に光る閃光灯（ラビット）で向きを示す','滑走路末端灯：緑（滑走路の始まり）','滑走路灯：白。計器用の滑走路では最後の600m（全長の3分の1の方が短ければそちら）が黄色','中心線灯：白。残り900〜300mは白と赤の交互、最後の300mは赤','接地帯灯：白の横棒（CAT II／IIIの最初の900m）','滑走路終端灯：赤（ここで滑走路が終わる）']},
+  ko:{t:'야간 활주로 등화',items:['진입등: 흰색. 가로 막대 포함(CAT I에서 약 900m). 차례로 번쩍이는 섬광등(래빗)으로 방향을 알린다','시단등: 녹색(활주로의 시작)','활주로등: 흰색. 계기용 활주로에서는 마지막 600m(전체 길이의 3분의 1이 더 짧으면 그쪽)가 노란색','중심선등: 흰색. 남은 900~300m는 흰색·빨강 교대, 마지막 300m는 빨강','접지대등: 흰색 가로 막대(CAT II/III의 처음 900m)','활주로 종단등: 빨강(여기서 활주로가 끝난다)']},
+  en:{t:'Runway lighting at night',items:['Approach lights: white, with crossbars (about 900 m for CAT I); sequenced flashers (the “rabbit”) show the direction','Threshold lights: green (start of the runway)','Runway edge lights: white; on instrument runways the last 600 m, or the last third if shorter, are yellow','Centreline lights: white; alternating red and white from 900 m to 300 m remaining, red for the last 300 m','Touchdown zone lights: white barrettes (first 900 m on CAT II/III runways)','Runway end lights: red (the runway ends here)']}})[l];
  if(!W)return F.aid_lights('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,200,'#0B1726',14);
@@ -246,9 +246,9 @@ aid_marks:function(l){
 
 /* 12 表示板と停止線灯：赤は「止まる」、黒は「今いる所」、黄は「行き先」 */
 aid_signs:function(l){
- var W=({ja:{t:'飛行場の表示板と停止線灯',mand:'指示表示板（赤地・白字）：滑走路の手前など。許可なく先へ進まない',loc:'位置表示板（黒地・黄字）：今いる誘導路',dir:'方向表示板（黄地・黒字）：行き先の誘導路と向き',ne:'進入禁止（赤地・白の横棒）',bar:'停止線灯（赤）：点いていたら止まる。管制が消したら進める',rgl:'滑走路警戒灯（黄の点滅）：この先は滑走路'},
-  ko:{t:'비행장 표지판과 정지선 등화',mand:'의무 지시 표지판(빨간 바탕·흰 글자): 활주로 앞 등. 허가 없이 넘지 않는다',loc:'위치 표지판(검은 바탕·노란 글자): 지금 있는 유도로',dir:'방향 표지판(노랑 바탕·검정 글자): 갈 유도로와 방향',ne:'진입 금지(빨간 바탕·흰 가로 막대)',bar:'정지선 등화(빨강): 켜져 있으면 멈춘다. 관제가 끄면 나아간다',rgl:'활주로 경계등(노란색 점멸): 이 앞은 활주로'},
-  en:{t:'Aerodrome signs and stop bars',mand:'Mandatory instruction sign (red with white text): e.g. before a runway; do not proceed without clearance',loc:'Location sign (black with yellow text): the taxiway you are on',dir:'Direction sign (yellow with black text): the taxiway ahead and its direction',ne:'No entry (red with a white bar)',bar:'Stop bar (red lights): stop while lit; proceed when ATC switches it off',rgl:'Runway guard lights (flashing yellow): runway ahead'}})[l];
+ var W=({ja:{t:'飛行場の表示板と停止線灯',mand:'指示表示板（赤地・白字）：滑走路の手前など。許可なく先へ進まない',loc:'位置表示板（黒地・黄字）：今いる誘導路',dir:'方向表示板（黄地・黒字）：行き先の誘導路と向き',ne:'進入禁止（赤地・白の横棒）',bar:'停止線灯（赤）：点いていたら止まる。消えても、進むには管制の許可が必要',rgl:'滑走路警戒灯（黄の点滅）：この先は滑走路'},
+  ko:{t:'비행장 표지판과 정지선 등화',mand:'의무 지시 표지판(빨간 바탕·흰 글자): 활주로 앞 등. 허가 없이 넘지 않는다',loc:'위치 표지판(검은 바탕·노란 글자): 지금 있는 유도로',dir:'방향 표지판(노랑 바탕·검정 글자): 갈 유도로와 방향',ne:'진입 금지(빨간 바탕·흰 가로 막대)',bar:'정지선 등화(빨강): 켜져 있으면 멈춘다. 꺼져도 나아가려면 관제 허가가 필요하다',rgl:'활주로 경계등(노란색 점멸): 이 앞은 활주로'},
+  en:{t:'Aerodrome signs and stop bars',mand:'Mandatory instruction sign (red with white text): e.g. before a runway; do not proceed without clearance',loc:'Location sign (black with yellow text): the taxiway you are on',dir:'Direction sign (yellow with black text): the taxiway ahead and its direction',ne:'No entry (red with a white bar)',bar:'Stop bar (red lights): stop while lit; even when it is off, proceed only with an ATC clearance',rgl:'Runway guard lights (flashing yellow): runway ahead'}})[l];
  if(!W)return F.aid_signs('ja');
  setK(1);
  function sign(x,y,w,bg,fg,txt,br){return '<g transform="translate('+x+' '+y+')"><rect x="0" y="0" width="'+w+'" height="40" rx="4" fill="'+bg+'" stroke="'+(br||bg)+'" stroke-width="3"/><text x="'+(w/2)+'" y="28" font-size="22" font-weight="900" fill="'+fg+'" text-anchor="middle" font-family="Arial,sans-serif">'+txt+'</text></g>'}
@@ -266,9 +266,9 @@ aid_signs:function(l){
  var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
 /* 13 降り方の違い：段階降下（ダイブ・アンド・ドライブ）と、一定の坂で降りるCDFA */
 app_types:function(l){
- var W=({ja:{t:'非精密進入の降り方',a:'段階降下（ダイブ・アンド・ドライブ）',b:'CDFA（一定の坂で連続して降りる）',mda:'MDA（最低降下高度）',da:'DA（CDFAで使う決心の高さ）',na:'MDAで水平に飛びながら滑走路を探す。地面に近い所で姿勢や推力を何度も変える',nb:'精密進入と同じように一定の坂で降り、DAで決める。安定した進入になり、事故が少ない',rw:'滑走路'},
-  ko:{t:'비정밀접근의 강하 방법',a:'계단식 강하(다이브 앤드 드라이브)',b:'CDFA(일정한 경사로 연속 강하)',mda:'MDA(최저강하고도)',da:'DA(CDFA에서 쓰는 결심 높이)',na:'MDA에서 수평 비행하며 활주로를 찾는다. 지면 가까이에서 자세와 추력을 여러 번 바꾼다',nb:'정밀접근처럼 일정한 경사로 내려와 DA에서 결정한다. 접근이 안정되어 사고가 적다',rw:'활주로'},
-  en:{t:'Two ways to fly a non-precision approach',a:'Step-down (“dive and drive”)',b:'CDFA (continuous descent on a constant slope)',mda:'MDA (minimum descent altitude)',da:'DA (decision altitude used with CDFA)',na:'Level off at the MDA and search for the runway, changing attitude and thrust repeatedly close to the ground',nb:'Descend on a constant slope as in a precision approach and decide at the DA: a stable approach with fewer accidents',rw:'Runway'}})[l];
+ var W=({ja:{t:'非精密進入の降り方',a:'段階降下（ダイブ・アンド・ドライブ）',b:'CDFA（一定の坂で連続して降りる）',mda:'MDA（最低降下高度）',da:'DA（CDFAで使う決心の高さ。MDA＋承認された余裕）',na:'MDAで水平に飛びながら滑走路を探し、MAPtまでに見えなければ復行。地面に近い所で姿勢や推力を何度も変える',nb:'精密進入と同じように一定の坂で降り、DAで決める。安定した進入になり、事故が少ない',rw:'滑走路'},
+  ko:{t:'비정밀접근의 강하 방법',a:'계단식 강하(다이브 앤드 드라이브)',b:'CDFA(일정한 경사로 연속 강하)',mda:'MDA(최저강하고도)',da:'DA(CDFA에서 쓰는 결심 높이. MDA+승인된 여유)',na:'MDA에서 수평 비행하며 활주로를 찾고, MAPt까지 보이지 않으면 복행. 지면 가까이에서 자세와 추력을 여러 번 바꾼다',nb:'정밀접근처럼 일정한 경사로 내려와 DA에서 결정한다. 접근이 안정되어 사고가 적다',rw:'활주로'},
+  en:{t:'Two ways to fly a non-precision approach',a:'Step-down (“dive and drive”)',b:'CDFA (continuous descent on a constant slope)',mda:'MDA (minimum descent altitude)',da:'DA (used with CDFA: MDA plus an approved margin)',na:'Level off at the MDA and search for the runway, going around at the MAPt if it is not in sight, changing attitude and thrust repeatedly close to the ground',nb:'Descend on a constant slope as in a precision approach and decide at the DA: a stable approach with fewer accidents',rw:'Runway'}})[l];
  if(!W)return F.app_types('ja');
  setK(1);var nar=NARROW();
  function panel(x0,y0,w,k){var col=k?'#1F7A6E':'#D64545',g=R(x0,y0,w,200,'#DCEEFB',14)+tx(x0+w/2,y0+26,k?W.b:W.a,13,col,900)+R(x0,y0+176,w,24,'#9CC98B',0);
@@ -285,9 +285,9 @@ app_types:function(l){
 
 /* 14 DA／MDAでの判断：目で見る目標が見えれば着陸、見えなければ復行（上昇勾配2.5％） */
 app_dec:function(l){
- var W=({ja:{t:'DA／MDA での判断',see:'見えた → 着陸',nosee:'見えない → 復行',vis:'見るもの：進入灯、進入端とその灯火・標識、接地帯とその灯火・標識、PAPI など',ma:'復行：決められた経路を上昇（ふつう2.5％以上の上昇勾配）',dh:'DA／MDA'},
-  ko:{t:'DA/MDA에서의 판단',see:'보임 → 착륙',nosee:'안 보임 → 복행',vis:'볼 것: 접근등, 시단과 그 등화·표지, 접지대와 그 등화·표지, PAPI 등',ma:'복행: 정해진 경로로 상승(보통 2.5% 이상의 상승 경사)',dh:'DA/MDA'},
-  en:{t:'The decision at DA/MDA',see:'In sight → land',nosee:'Not in sight → go around',vis:'Look for: approach lights, the threshold and its lights or markings, the touchdown zone and its lights or markings, PAPI, etc.',ma:'Missed approach: climb along the published path (normally at least a 2.5% gradient)',dh:'DA/MDA'}})[l];
+ var W=({ja:{t:'DA／MDA での判断',see:'見えて条件を満たす → 着陸',nosee:'満たさない → 復行',vis:'見るもの：進入灯、進入端とその灯火・標識、接地帯とその灯火・標識、PAPI など',ma:'復行：決められた経路を上昇（前提の上昇勾配は進入図で確認。2.5％が多い）',dh:'DA／MDA'},
+  ko:{t:'DA/MDA에서의 판단',see:'보이고 조건 충족 → 착륙',nosee:'충족하지 못함 → 복행',vis:'볼 것: 접근등, 시단과 그 등화·표지, 접지대와 그 등화·표지, PAPI 등',ma:'복행: 정해진 경로로 상승(전제가 되는 상승 경사는 접근도로 확인. 2.5%가 많다)',dh:'DA/MDA'},
+  en:{t:'The decision at DA/MDA',see:'In sight, conditions met → land',nosee:'Otherwise → go around',vis:'Look for: approach lights, the threshold and its lights or markings, the touchdown zone and its lights or markings, PAPI, etc.',ma:'Missed approach: climb along the published path (check the assumed gradient on the chart; 2.5% is common)',dh:'DA/MDA'}})[l];
  if(!W)return F.app_dec('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,250,'#DCEEFB',14)+R(20,276,600,30,'#9CC98B',0);
