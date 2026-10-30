@@ -1,7 +1,7 @@
 /* 航空貨物 入門 — English version (Part 4–5) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("4-1",{title:"The Load Plan and Notification to the Captain",hl:"the load plan",subtitle:"Weight, balance, position and special cargo, all on one sheet for the captain",
-lead:["Where cargo is placed bears directly on the aircraft’s weight and balance. The load controller decides the positions from the combined weight of passengers, baggage, cargo and fuel, and tells the captain about any dangerous goods, animals or other special cargo.",
+lead:["Where cargo is placed bears directly on the aircraft’s weight and balance. The load controller decides the positions from the combined weight of passengers, baggage, cargo and fuel, and, following company procedures, tells the captain about dangerous goods, animals or other special cargo that require notification.",
 "This article covers how the load plan is built, how positions are decided for special cargo, and what the notification to the captain (NOTOC) does (for passenger load control, see Ground Staff 3-4)."],
 sections:[
 {h:"How the load plan is built",blocks:[{t:"fig",id:"cgo_lplan",cap:"Animated figure: general and special cargo (dangerous goods, live animal, perishables, heavy) are placed in lower-deck positions, then the CG pointer settles within limits. Positions simplified."}]},
@@ -10,10 +10,10 @@ sections:[
 ["Live animals","A compartment with controlled temperature and ventilation, away from dry ice"],
 ["Perishables and pharmaceuticals","Temperature control, and a position that can be unloaded quickly"],
 ["Heavy items","Floor strength and the effect on balance"],
-["Transfer cargo","A position that can be unloaded promptly after arrival"]]}]},
+["Transfer cargo","Position adjusted for the connection time while staying within safety limits"]]}]},
 {h:"Notification to the captain (NOTOC)",blocks:[{t:"fig",id:"cgo_notoc",cap:"Animated figure: three lines of a fictional NOTOC (lithium-ion batteries, dry ice, live animal) light up in turn; the animal and dry ice are in separate positions."},
 {t:"rows",items:[
-{name:"What it contains",x:"The type, quantity, position and UN number of dangerous goods and other special cargo."},
+{name:"What it contains",x:"The type, quantity, position and UN number of dangerous goods and other special cargo that require notification; the exact items follow the company’s form."},
 {name:"Acceptance",x:"The captain checks it and signs."},
 {name:"Retention",x:"A copy is kept at the departure station for the required period."},
 {name:"Changes",x:"If the load changes, the notification is reissued."}]},
@@ -21,7 +21,7 @@ sections:[
 voice:"A last-minute load change means reissuing the NOTOC. When something changes, confirm aloud with the loading team what moved and where.",
 terms:[["Load Planning","搭載計画","탑재 계획"],["Load Sheet","ロードシート","로드시트"],["NOTOC","機長通知書 (NOTOC)","기장 통보서 (NOTOC)"],["Centre of Gravity","重心","무게중심"]],
 quiz:[{q:"What goes in the notification to the captain?",opts:["The type, quantity and position of dangerous and special cargo","Passenger names","The rate","The weather"],a:0,exp:"It is the lifeline in an emergency."},
-{q:"Where should transfer cargo be loaded?",opts:["Where it can be unloaded promptly after arrival","At the very back","Anywhere","In the cabin"],a:0,exp:"To protect the connection time."},
+{q:"Where should transfer cargo be loaded?",opts:["Where it can be unloaded promptly, while staying within safety limits","At the very back","Anywhere","In the cabin"],a:0,exp:"To protect the connection time, within safety limits."},
 {q:"What happens if the load changes?",opts:["Leave the notification as it is","Reissue it","Mention it verbally","Do nothing"],a:1,exp:"The document must match what is on board."}],
 next:"4-2 Load messages and cargo documents"});
 
@@ -32,7 +32,7 @@ sections:[
 {h:"Recording ULD weights",blocks:[{t:"p",x:"For each ULD built up, record the number, destination, weight and the category of contents. That record — the ULD weight statement — feeds both the load plan and the manifest."}]},
 {h:"The main messages (examples)",blocks:[{t:"fig",id:"cgo_cpm",cap:"Animated figure: a container/pallet message (CPM, example) read line by line, with the meaning of each line in grey. Format simplified."},
 {t:"table",cols:["Type","What it carries"],rows:[
-["Load message","Weights and pieces by compartment: passengers, baggage, cargo and mail"],
+["Load message","Passenger numbers, and baggage, cargo and mail weights by compartment, among other load details"],
 ["Container/pallet message (CPM)","ULD positions: which ULD is in which position"],
 ["(CPM, continued)","ULD numbers and destinations"],
 ["Offload information","Cargo that was planned but did not travel"]]}]},
@@ -63,9 +63,9 @@ sections:[
 {name:"Paperwork",x:"The irregularity report, the waybill number, and when, where and by whom it was found."},
 {name:"Noted at delivery",x:"Have the consignee write the damage or shortage on the delivery receipt."},
 {name:"Telling people",x:"Advise the departure station, the shipper’s side and the forwarder promptly."}]}]},
-{h:"Claims and prevention",blocks:[{t:"fig",id:"cgo_claim",cap:"Animated figure: bars grow to the 14-day (damage) and 21-day (delay) complaint limits from receipt. International convention example ★."},
+{h:"Claims and prevention",blocks:[{t:"fig",id:"cgo_claim",cap:"Animated figure: bars grow to the complaint limits: damage in writing as soon as it is discovered and at the latest 14 days from receipt; delay within 21 days of the cargo being placed at the consignee’s disposal. International convention example ★."},
 {t:"rows",items:[
-{name:"Time limits",x:"International conventions set deadlines for complaints about damage and delay, for example 14 days from receipt for damage. Check the convention and the conditions on the waybill. ★"},
+{name:"Time limits",x:"International conventions set deadlines for complaints about damage and delay, for example, for damage, a written complaint as soon as it is discovered and at the latest within 14 days of receipt; for delay, within 21 days of the cargo being placed at the consignee’s disposal. Check the convention and the conditions on the waybill. ★"},
 {name:"Limits of liability",x:"The conventions cap liability by weight. For high-value cargo, a declared value or insurance matters."},
 {name:"Prevention",x:"Analyse where irregularities cluster — location, process, commodity — and feed it back into procedures, training and packing."}]},
 {t:"point",x:"Without a record, it becomes hard to find the cause and resolve the case. Make photographing and recording it on the spot a habit."}]}],
@@ -74,7 +74,7 @@ terms:[["Cargo Irregularity","貨物事故","화물 사고"],["Damage","破損",
 quiz:[{q:"What is the key evidence for liability and compensation?",opts:["The record made when it was found","The rate","The flight number","The weather"],a:0,exp:"Photographs and paperwork."},
 {q:"What should the consignee do at delivery?",opts:["Write the damage or shortage on the receipt","Say nothing","Refuse delivery","Ask for a refund"],a:0,exp:"It supports any later claim."},
 {q:"What matters for high-value cargo?",opts:["A declared value or insurance","Cheap packing","No records","Speed alone"],a:0,exp:"Convention liability is capped."}],
-next:"5-1 The role of the general sales agent"});
+next:"5-1 The Role of the General Sales Agent"});
 
 set("5-1",{title:"The Role of the General Sales Agent",hl:"the GSA",subtitle:"The company that sells a foreign airline’s cargo locally",
 lead:["Rather than build their own cargo sales organisation in a market, foreign airlines often appoint a general sales agent (GSA). The GSA sells to forwarders, takes bookings, quotes rates and manages the documents on the airline’s behalf.",
@@ -83,8 +83,8 @@ sections:[
 {h:"What a GSA does",blocks:[{t:"check",items:[
 {name:"Selling",x:"Calling on forwarders, quoting rates and selling the space."},
 {name:"Bookings",x:"Taking bookings, managing the loading outlook, advising offloads."},
-{name:"Documents",x:"Holding waybill stock, controlling issuance, reporting sales."},
-{name:"Settlement",x:"Invoicing and collecting the freight charges and remitting to the airline."}]}]},
+{name:"Documents",x:"Managing AWB numbers and issuance under the contract, reporting sales."},
+{name:"Settlement",x:"Invoicing and settling the freight charges under the contract."}]}]},
 {h:"How the work is split (example)",blocks:[{t:"fig",id:"cgo_gsa",cap:"Animated figure: how bookings, documents and money flow between forwarder, GSA and airline, in six steps that light up in turn."},
 {t:"table",cols:["The airline","The GSA"],rows:[
 ["Sets the rate policy and the sales targets","Sells within that policy"],
@@ -104,8 +104,8 @@ quiz:[{q:"What does a GSA do for the airline?",opts:["Cargo sales, bookings and 
 {q:"Who makes the final loading decision in this example?",opts:["The airline","The GSA","The shipper","Customs"],a:0,exp:"The GSA adjusts bookings and advises."}],
 next:"5-2 Managing the cargo handling company"});
 
-set("5-2",{title:"Managing the Cargo Handling Company",hl:"managing cargo handling",subtitle:"As with passengers, contracting the work out does not move the responsibility",
-lead:["Warehouse work is usually contracted out too. As on the passenger side, quality and safety remain the airline’s responsibility. Monthly meetings, quality checks and invoice verification are the three pillars.",
+set("5-2",{title:"Managing the Cargo Handling Company",hl:"managing cargo handling",subtitle:"As with passengers, contracting the work out does not remove the airline’s responsibility",
+lead:["Warehouse work is usually contracted out too. As on the passenger side, quality and safety remain the airline’s responsibility. The handler also has responsibilities under its contract and the law. Monthly meetings, quality checks and invoice verification are the three pillars.",
 "This article covers what to check in cargo handling, the monthly meeting and verifying the invoices (for passenger handling, see Ground Staff 6-2)."],
 sections:[
 {h:"What to check (examples)",blocks:[{t:"check",items:[
@@ -128,7 +128,7 @@ sections:[
 {t:"point",x:"Cargo quality problems reach the passenger side too: late loading becomes a late departure. Keep the passenger and cargo teams sharing information."}]}],
 voice:"In cargo handler meetings, focus on whether the same causes keep recurring rather than on incident counts. Agreeing one fix per recurring cause is what raises quality.",
 terms:[["Quality Check","品質点検","품질 점검"],["Monthly Meeting","月例会議","월간 회의"],["Handling Charge","取り扱い料","취급료"],["Offload","積み残し","미탑재"]],
-quiz:[{q:"Where does responsibility sit when warehouse work is contracted out?",opts:["With the handler alone","With the airline","With the shipper","With customs"],a:1,exp:"Contracting out does not move it."},
+quiz:[{q:"Where does responsibility sit when warehouse work is contracted out?",opts:["With the handler alone","With the airline","With the shipper","With customs"],a:1,exp:"Contracting out does not remove the airline’s responsibility. The handler also has responsibilities under its contract and the law."},
 {q:"How does a cargo problem reach passengers?",opts:["Late loading becomes a late departure","The catering changes","More seats appear","The fare falls"],a:0,exp:"Share information between the teams."},
 {q:"What do you check on special handling charges?",opts:["Whether they match the work actually done","The colour","The length","The font"],a:0,exp:"Dangerous goods, temperature control and the rest."}],
 next:"5-3 Cargo revenue and how rates work"});
@@ -142,8 +142,8 @@ sections:[
 ["Volume carried","The weight actually loaded (rates are normally charged on the chargeable weight: the greater of actual and volumetric weight)"],
 ["Rate level","Set by supply and demand, competition and commodity"],
 ["Special handling","Surcharges for dangerous goods, temperature control and outsized cargo"],
-["Load factor","How much of the available capacity was used"],
-["Costs","Handling, security and airport charges"]]}]},
+["Load factor","The weight actually loaded as a proportion of the available capacity"],
+["Costs","Handling, security and airport charges (deducted from revenue to see profitability)"]]}]},
 {h:"Types of rate (examples)",blocks:[{t:"check",items:[
 {name:"General cargo rates",x:"Unit rates by weight break."},
 {name:"Commodity rates",x:"Rates for particular commodities on particular routes."},
@@ -156,7 +156,7 @@ sections:[
 {name:"Work with the passenger side",x:"The station and the GSA sharing information makes it possible to say yes to outsized or urgent requests."}]}]}],
 voice:"Belly cargo revenue often props up flights with few passengers. Looking at cargo revenue alongside passenger revenue flight by flight makes route decisions more accurate.",
 terms:[["Cargo Load Factor","搭載率","탑재율"],["Spot Rate","スポット運賃","스폿 운임"],["Contract Rate","契約運賃","계약 운임"],["Profitability","採算","수익성"]],
-quiz:[{q:"Which does NOT drive cargo revenue?",opts:["Volume carried","Rate level","Special handling","The colour of the terminal"],a:3,exp:"Volume, rate, surcharges and cost."},
+quiz:[{q:"Which does NOT drive cargo revenue?",opts:["Volume carried","Rate level","Special handling","The colour of the terminal"],a:3,exp:"Revenue comes from volume, rate and surcharges; costs are then deducted to see profitability."},
 {q:"How do you grow the revenue?",opts:["Reduce offloads","Stop taking bookings","Hide the rates","Do not use the belly"],a:0,exp:"Narrow the gap between booked and loaded."},
 {q:"What is a one-off rate set by the market called?",opts:["A spot rate","A contract rate","A general rate","A passenger fare"],a:0,exp:"It moves with the market."}],
 next:"5-4 Careers and qualifications in cargo"});

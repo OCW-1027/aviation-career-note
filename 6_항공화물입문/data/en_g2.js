@@ -4,7 +4,7 @@ set("2-1",{title:"Acceptance, Weighing and Storage",hl:"acceptance",subtitle:"At
 lead:["When cargo reaches the airport warehouse, the first step is acceptance: checking that the documents and the freight agree, the pieces, weight and dimensions, the condition of the packing and the labels, and querying anything wrong on the spot.",
 "This article covers what acceptance checks, how weight and dimensions are taken, the storage categories, and the problems that come up most."],
 sections:[
-{h:"What acceptance checks",blocks:[{t:"fig",id:"cgo_accept",cap:"Animated figure: one shipment (AWB 180-12345675) is checked for documents, weight, dimensions, labels, security and storage in turn, with the result on the right. Figures are fictional."},
+{h:"What acceptance checks",blocks:[{t:"fig",id:"cgo_accept",cap:"Animated figure: one shipment (AWB XXX-12345675) is checked for documents, weight, dimensions, labels, security and storage in turn, with the result on the right. Figures are fictional; for illustration only, not a real air waybill."},
 {t:"check",items:[
 {name:"Documents against freight",x:"The waybill number, the number of pieces and the commodity."},
 {name:"Weight and dimensions",x:"Measure them. If they differ from what was declared, correct it — it affects the rate."},
@@ -31,7 +31,7 @@ quiz:[{q:"The weight differs from the declaration. What do you do?",opts:["Leave
 next:"2-2 ULDs and build-up"});
 
 set("2-2",{title:"ULDs and Build-up",hl:"ULDs and build-up",subtitle:"The craft of stacking cargo into the shape of an aircraft",
-lead:["Cargo is loaded onto an aircraft in unit load devices (ULDs): containers and pallets. Stacking the cargo onto them is called build-up.",
+lead:["On flights that use them, cargo is loaded onto the aircraft in unit load devices (ULDs): containers and pallets. Stacking the cargo onto them is called build-up. Some flights carry cargo loose (bulk) instead.",
 "This lesson covers the types of ULD, the basics of build-up, why the load must follow the aircraft’s contour, and how ULDs are managed."],
 sections:[
 {h:"Types of ULD (examples)",blocks:[{t:"table",cols:["Type","Features"],rows:[
@@ -48,8 +48,8 @@ sections:[
 {name:"Secure it",x:"Nets and straps so nothing moves."},
 {name:"Segregate",x:"Keep apart what cannot travel together: incompatible dangerous goods, perishables and chemicals (3-1)."}]}]},
 {h:"Managing ULDs",blocks:[{t:"rows",items:[
-{name:"Stock control",x:"ULDs are airline assets. Track how many are at each station and move them to where they are short."},
-{name:"Damage checks",x:"A damaged ULD cannot be used. Inspect and arrange repair."},
+{name:"Stock control",x:"ULDs are managed including their owners and any lessees. Track how many are at each station and move them to where they are short."},
+{name:"Damage checks",x:"Inspect and judge any damage against the set serviceability limits. Do not use a ULD beyond those limits; arrange repair."},
 {name:"Tags",x:"Attach the tag showing the ULD number, destination and weight."}]},
 {t:"point",x:"Build-up is a puzzle of weight, shape, safety and efficiency. Good build-up puts more cargo on each flight, and that goes straight to the airline’s revenue."}]}],
 voice:"Good build-up staff keep to the basics every time: heavy items at the bottom, sturdy items on the outside. The knack is to picture the order once before you start stacking.",
@@ -64,7 +64,7 @@ lead:["Cargo, like passenger baggage, has to be secured against explosives reach
 "This lesson covers the thinking behind cargo security, an outline of the scheme in Japan, and what to watch on the warehouse floor. It does not describe the security procedures themselves."],
 sections:[
 {h:"The thinking",blocks:[{t:"fig",id:"cgo_sec",cap:"Animated figure: top, an unbroken secure chain from a known consignor to loading (the cargo moves straight through); bottom, a broken chain where the cargo is screened at the terminal before moving on."},
-{t:"p",x:"If the cargo stays secure from shipper to loading without a break, screening at the airport can be reduced or omitted. Where the chain breaks, as with cargo from an unapproved shipper, it is screened at the airport or elsewhere."}]},
+{t:"p",x:"If the cargo stays secure from shipper to loading without a break, screening at the airport may be reduced or omitted, depending on the applicable scheme, the destination's requirements and the condition of the cargo. Where the chain breaks, as with cargo from an unapproved shipper, it is screened at the airport or elsewhere."}]},
 {h:"The scheme in Japan",blocks:[{t:"rows",items:[
 {name:"Known shippers (KS) and regulated agents (RA)",x:"Under the national standards, approved shippers and approved transport companies keep the cargo secure. ★"},
 {name:"Other countries",x:"Destinations such as the EU and the United States may apply their own security requirements."},
@@ -77,7 +77,7 @@ sections:[
 {name:"Records",x:"Who handled which cargo, and when."}]}]}],
 voice:"Cargo security screening often brings acceptance cut-off forward. Telling shippers and agents the new cut-off in advance reduces confusion on the floor.",
 terms:[["Known Shipper (KS, Japan)","特定荷主（KS・日本）","특정 화주(KS·일본)"],["Regulated Agent (RA, Japan)","特定航空貨物利用運送事業者等（RA・日本）","보안인증 화물취급업체(RA·일본)"],["Secure Supply Chain","セキュア・サプライチェーン","보안 공급망"],["Tamper Evidence","改ざん痕跡の確認","변조 흔적 확인"]],
-quiz:[{q:"What happens when the security chain is broken?",opts:["It is loaded anyway","It is screened at the airport or elsewhere","Return only","Storage only"],a:1,exp:"An unbroken chain lets screening be reduced or omitted."},
+quiz:[{q:"What happens when the security chain is broken?",opts:["It is loaded anyway","It is screened at the airport or elsewhere","Return only","Storage only"],a:1,exp:"Cargo from a broken chain is screened. Even with an unbroken chain, whether screening can be reduced or omitted depends on the applicable scheme and the destination's requirements."},
 {q:"What do you check on the floor?",opts:["The security status and the seals","The colour of the cargo","The shipper’s hobbies","The weather"],a:0,exp:"Tamper evidence matters too."},
 {q:"What may the destination country require?",opts:["Its own security requirements","Particular music","Particular meals","Nothing"],a:0,exp:"The EU and the United States are examples."}],
 next:"2-4 Running a bonded warehouse"});

@@ -1,6 +1,6 @@
 /* 航空貨物 入門 — English version (Part 3: 特殊な貨物) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("3-1",{title:"Dangerous Goods: What Can and Cannot Fly",hl:"dangerous goods",subtitle:"Classification, packing, marking and documents. All four, or it does not fly ★",
+set("3-1",{title:"Dangerous Goods: What Can and Cannot Fly",hl:"dangerous goods",subtitle:"Classification, packing, marking and documents. Check all four, plus whether it may fly at all and any state or airline conditions ★",
 lead:["Lithium batteries, paint, aerosols, dry ice, chemicals. Many everyday goods count as dangerous goods in air transport. Under the international rules — ICAO’s technical instructions and the IATA dangerous goods regulations — they divide into goods that can fly, goods that can fly under conditions, and goods that cannot.",
 "This article covers the classes, the four conditions for carriage, acceptance checks and the notification to the captain. The rules are revised every year, so always use the current edition."],
 sections:[
@@ -15,7 +15,7 @@ sections:[
 ["7 Radioactive material","Medical isotopes"],
 ["8 Corrosives","Battery acid, acids"],
 ["9 Miscellaneous","Lithium batteries, dry ice, magnetised material"]]}]},
-{h:"The four conditions",blocks:[{t:"fig",id:"cgo_dg4",cap:"Animated figure: using lithium-ion batteries packed with equipment (UN3481), the four conditions of classification, packing, marking and documents light up in turn. Confirm the packing instruction number ★."},
+{h:"The four conditions",blocks:[{t:"fig",id:"cgo_dg4",cap:"Animated figure: using lithium-ion batteries packed with equipment (UN3481), the four conditions of classification, packing, marking and documents light up in turn. The packing instruction number and whether documents are required depend on the product, battery, quantity and packing ★."},
 {t:"point",warn:true,x:"Shipping dangerous goods without declaring them causes serious accidents and breaks the law. Where the commodity description is vague, check what is inside."}]},
 {h:"Acceptance and loading",blocks:[{t:"check",items:[
 {name:"Acceptance checklist",x:"Check documents, packing and marking against set checklist items, and refuse anything deficient."},
@@ -25,7 +25,7 @@ sections:[
 {name:"Training",x:"Anyone handling dangerous goods takes recurrent training for their role."}]}]}],
 voice:"Undeclared dangerous goods often turn up in shipments with vague descriptions. Keep a list of specific questions — batteries included? aerosols? — at the acceptance counter.",
 terms:[["Dangerous Goods Regulations (DGR)","危険物規則","위험물 규정"],["UN Number","国連番号","UN 번호"],["Shipper’s Declaration","危険物申告書","위험물 신고서"],["Undeclared Dangerous Goods","未申告危険物","미신고 위험물"]],
-quiz:[{q:"What are the four conditions for carrying dangerous goods?",opts:["Classification, packing, marking and documents","Colour, shape, weight and price","Shipper, rate, flight and weather","None"],a:0,exp:"All four must be in place."},
+quiz:[{q:"What are the four conditions for carrying dangerous goods?",opts:["Classification, packing, marking and documents","Colour, shape, weight and price","Shipper, rate, flight and weather","None"],a:0,exp:"Check all four, then confirm whether the item may fly at all and any state or airline conditions."},
 {q:"Which class covers lithium batteries?",opts:["1","3","9","7"],a:2,exp:"Class 9, miscellaneous dangerous goods."},
 {q:"Who is told what dangerous goods are on board?",opts:["The captain","A travel agency","Only the consignee","Passengers"],a:0,exp:"Type, quantity and position."}],
 next:"3-2 Live animals"});
@@ -41,19 +41,19 @@ sections:[
 {name:"Documents",x:"Health certificates, import and export permits where required, and the shipper’s certification."},
 {name:"Protected species",x:"Animals under international trade controls need the relevant permits."}]}]},
 {h:"Container and loading",blocks:[{t:"table",cols:["Item","What matters"],rows:[
-["Container","Big enough to stand and turn around in, ventilated, escape-proof, with access for food and water"],
+["Container","For dogs and similar animals, big enough to stand naturally and turn around in (requirements differ by species), ventilated, escape-proof, with access for food and water"],
 ["Marking","The live animals label and orientation markings"],
 ["Where it is loaded","A hold compartment with controlled temperature and ventilation"],
 ["What cannot travel with it","Dry ice (carbon dioxide), some dangerous goods, foodstuffs"],
 ["Notification","The captain is told that live animals are on board"]]}]},
 {h:"Arrival and quarantine",blocks:[{t:"rows",items:[
-{name:"Quarantine at destination",x:"Dogs, cats, birds and other animals arriving in Japan are inspected by the animal quarantine service. Failing the conditions can mean a long period in quarantine."},
+{name:"Quarantine at destination",x:"Dogs, cats, poultry and other animals arriving in Japan are inspected by the animal quarantine service. For other birds, also check the separate notification system. Failing the conditions can mean a long period in quarantine."},
 {name:"Unload first",x:"Unload them as a priority on arrival and move them somewhere temperature controlled."},
 {name:"Report anything wrong",x:"If an animal looks unwell, record and report it at once."}]},
 {t:"point",x:"With animals, the condition of the animal comes before the schedule. If there is a delay or an offload, think first about water and temperature."}]}],
 voice:"For live animals, every minute of delay is a burden on the animal. Decide before departure who checks water, temperature and ventilation during transfers or delays.",
 terms:[["Live Animals (AVI)","生きた動物","생동물"],["Health Certificate","健康証明書","건강 증명서"],["Animal Quarantine","動物検疫","동물 검역"],["Container / Crate","輸送容器","운송 용기"]],
-quiz:[{q:"What does a live animal container need?",opts:["To be as small as possible","Room to stand and turn, with ventilation","To be sealed","No water access"],a:1,exp:"It must also be escape-proof."},
+quiz:[{q:"What does a dog’s container need?",opts:["To be as small as possible","Room to stand and turn, with ventilation","To be sealed","No water access"],a:1,exp:"It must also be escape-proof."},
 {q:"What cannot be loaded with live animals?",opts:["Dry ice","Documents","Clothing","Books"],a:0,exp:"Carbon dioxide affects them."},
 {q:"What do you think about first if there is a delay?",opts:["The rate","Water and temperature","The colour of the paperwork","The next booking"],a:1,exp:"The animal’s condition comes first."}],
 next:"3-3 Perishables and pharmaceuticals: the cold chain"});
@@ -75,7 +75,7 @@ sections:[
 {name:"Waiting for clearance",x:"Where it is stored while import permission is pending."},
 {name:"Delays and offloads",x:"When a flight runs late and the journey takes longer than planned."}]}]},
 {h:"Pharmaceuticals, and what the front line does",blocks:[{t:"rows",items:[
-{name:"Quality standards",x:"Pharmaceutical transport calls for industry certification, such as IATA’s pharmaceutical handling certification, and management in line with good distribution practice. ★"},
+{name:"Quality standards",x:"Pharmaceutical transport follows the law and the shipper’s conditions, such as good distribution practice. Industry certification, such as IATA’s pharmaceutical handling certification, is one example of a quality certification. ★"},
 {name:"Temperature records",x:"A logger records the temperature through the journey and is checked on arrival."},
 {name:"Dedicated equipment",x:"Temperature-controlled containers, temperature-controlled warehouses, refrigerated vehicles."},
 {name:"Priority handling",x:"It is brought out of the warehouse just before loading so that it waits on the ramp as little as possible."}]},
@@ -98,7 +98,7 @@ sections:[
 {name:"Information",x:"Do not tell more people than necessary what the cargo is, or which flight and time it moves."}]}]},
 {h:"Heavy and outsized cargo",blocks:[{t:"fig",id:"cgo_door",cap:"Animated figure: two crates are laid over the cargo door (dotted). A fits; B is too tall. Figures are approximate ★."},
 {t:"table",cols:["Check","What it means"],rows:[
-["Floor loading","The limit per square metre. Spread the weight with skids"],
+["Floor loading","The limit per square metre. Spread the weight with approved spreader boards or similar, following the manufacturer’s and company’s approved method. A skid is the base under the cargo"],
 ["Door dimensions","Height, width and diagonal, and the geometry if it has to be tilted in"],
 ["Securing","Strapped and fixed to the aircraft so nothing moves in transit"],
 ["Centre of gravity","Its effect on the load plan (4-1)"],
@@ -111,7 +111,7 @@ sections:[
 voice:"Heavy pieces need floor loading and restraint calculated before loading. Deciding the shoring and number of straps in advance means no hesitation on the ramp.",
 terms:[["Valuable Cargo (VAL)","貴重品","귀중품"],["Heavy Cargo (HEA)","重量物","중량물"],["Outsized Cargo (BIG)","大型貨物","대형 화물"],["Floor Loading Limit","床面荷重制限","바닥 하중 제한"]],
 quiz:[{q:"What matters when handing over valuables?",opts:["Signing for them","A verbal handover","Anyone may receive them","No record"],a:0,exp:"Every handover is recorded."},
-{q:"How do you spread the weight of a heavy shipment?",opts:["Use skids","Put a net over it","Add a label","Lower the temperature"],a:0,exp:"To stay within the floor loading limit."},
+{q:"How do you spread the weight of a heavy shipment?",opts:["Use approved spreader boards","Put a net over it","Add a label","Lower the temperature"],a:0,exp:"To stay within the floor loading limit, using the method approved by the manufacturer and your company."},
 {q:"What is easiest to forget with outsized cargo?",opts:["Whether it can be unloaded at the destination","The weather at origin","The shipper’s name","The currency of the rate"],a:0,exp:"Check the unloading equipment."}],
 next:"3-5 Semiconductor and precision equipment"});
 
@@ -119,7 +119,7 @@ set("3-5",{title:"Semiconductor and Precision Equipment",hl:"precision equipment
 lead:["Semiconductor production and inspection equipment can be worth tens of millions to hundreds of millions of yen per unit. Even slight vibration, shock or humidity throws its performance off, so packing, transport and installation need consistent control. Such equipment may also contain technology with military applications, which brings export control into the picture.",
 "This article follows the air transport of semiconductor-related equipment and covers the preparation, the packing, the journey and the arrival."],
 sections:[
-{h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal and loading, arrival checks and delivery to site light up in turn; the right side shows who is mainly responsible."},
+{h:"Preparation",blocks:[{t:"fig",id:"cgo_semi",cap:"Animated figure: export control, packing, the road leg, terminal acceptance and build-up, loading at the aircraft, arrival checks and delivery to site light up in turn; the right side shows who is mainly responsible."},
 {t:"check",items:[
 {name:"Export control",x:"Confirm with the manufacturer and shipper whether the equipment or parts require an export licence under Japan’s Foreign Exchange and Foreign Trade Act. Obtaining one takes time. ★"},
 {name:"Dimensions and weight",x:"Confirm the packed dimensions, weight and centre of gravity from a drawing. Will it fit in the belly hold of a passenger aircraft, or is a freighter needed (0-2, 3-4)?"},

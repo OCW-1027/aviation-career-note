@@ -6,12 +6,12 @@ lead:["Air cargo passes through many hands before it reaches an aircraft: the co
 sections:[
 {h:"From export to import",blocks:[{t:"fig",id:"cgo_flow",cap:"Animated figure: seven stages from shipper to forwarder, terminal, airline, destination and delivery light up in turn. Times on the right are a guide relative to departure and vary by airport, airline and cargo type ★."}]},
 {h:"The documents that travel with the cargo",blocks:[{t:"table",cols:["Document","Prepared by","Contents"],rows:[
-["Air waybill (AWB)","Airline or forwarder","Shipper, consignee, origin and destination, pieces, weight, description and charges; an 11-digit number (3-digit airline prefix + 8 digits)"],
+["Air waybill (AWB)","Airline or forwarder","Shipper, consignee, origin and destination, pieces, weight, description and charges; a master AWB has an 11-digit number (3-digit prefix of the issuing airline + 8 digits)"],
 ["Commercial invoice","Shipper","Description, quantity, unit price, value and terms; customs checks the value"],
 ["Packing list","Shipper","Contents, weight and size of each package"],
 ["Export permit","Customs (declared by a broker)","Permission to export; without it the cargo cannot be loaded"],
-["Dangerous goods declaration","Shipper","When batteries, chemicals or other dangerous goods are included (4-3)"]]},
-{t:"point",x:"The AWB number is the key to tracing a shipment. When someone asks about cargo, start by asking for the AWB number; the 3-digit prefix (for example Korean Air 180, Japan Airlines 131) also tells you at once which airline carries it."}]},
+["Dangerous goods declaration","Shipper","When batteries, chemicals or other dangerous goods are included; check the item and applicable conditions and prepare it where required (4-3)"]]},
+{t:"point",x:"The AWB number is the key to tracing a shipment. When someone asks about cargo, start by asking for the AWB number; the 3-digit prefix of a master AWB (for example the ‘XXX’ in XXX-12345675, for illustration only and not a real air waybill) also tells you which airline issued it."}]},
 {h:"Who does what",blocks:[{t:"table",cols:["Party","Main role"],rows:[
 ["Shipper","The company sending goods. Decides the commodity, weight, dimensions, destination and deadline"],
 ["Freight forwarder","Books the airline on the shipper’s behalf, prepares the documents and arranges collection, clearance and delivery"],
@@ -35,7 +35,7 @@ set("0-2",{title:"Belly Hold and Freighter",hl:"belly and freighter",subtitle:"T
 lead:["Air cargo travels either in the hold beneath a passenger cabin (the belly) or on a dedicated freighter. On short routes with many passenger flights, a great deal of cargo moves in the belly.",
 "This article covers the characteristics of each, the difference in what fits, and how to choose."],
 sections:[
-{h:"Belly and freighter compared",blocks:[{t:"fig",id:"cgo_hold",cap:"Animated figure: rough cargo volume for the B737-800 and B787-9 lower decks and the B777F freighter, compared by bar length."},
+{h:"Belly and freighter compared",blocks:[{t:"fig",id:"cgo_hold",cap:"Animated figure: rough cargo volume for the B737-800 and B787-9 lower decks and the B777F freighter, compared by bar length. Figures are illustrative examples; check the actual conditions in the aircraft type and company documents."},
 {t:"table",cols:["","Passenger belly","Freighter"],rows:[
 ["Frequency","As many as the passenger flights","Fewer"],
 ["Height that fits","Limited by the cargo door of the hold","Large items fit on the main deck"],
@@ -48,7 +48,7 @@ sections:[
 {name:"The ULD",x:"The shape and size of the containers and pallets used (2-2)."},
 {name:"Balance",x:"Whether the load stays within the weight and balance plan (4-1)."}]},
 {t:"point",warn:true,x:"“The weight was fine but it was a few centimetres too tall” is a common story. For large shipments, confirm the aircraft type and the dimensions with the airline before booking (3-5)."}]},
-{h:"Consolidation and direct shipments",blocks:[{t:"fig",id:"cgo_awb",cap:"Animated figure: three house AWBs (forwarder and each shipper) light up under one master AWB (airline and forwarder). Figures are examples."},
+{h:"Consolidation and direct shipments",blocks:[{t:"fig",id:"cgo_awb",cap:"Animated figure: three house AWBs (forwarder and each shipper) light up under one master AWB (airline and forwarder). Numbers are for illustration only and are not real air waybills."},
 {t:"check",items:[
 {name:"Consolidation",x:"The forwarder combines several shippers’ cargo into one consignment for the airline, bringing the rate down."},
 {name:"Direct",x:"One shipper’s cargo travels as a single consignment."},
@@ -93,7 +93,7 @@ set("1-1",{title:"Booking and the Basics of Rates",hl:"booking and rates",subtit
 lead:["Air cargo rates are calculated on whichever is greater: the actual weight, or the weight derived from the dimensions (the volumetric weight). Light, bulky goods are charged on their size.",
 "This article covers the booking flow, volumetric weight, what makes up the rate, and the common surcharges. Actual rates differ by carrier, route and season and are not covered."],
 sections:[
-{h:"The booking flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Enquiry",sub:"Commodity, pieces, weight, dimensions, dates"},{name:"Check the space",sub:"Flight, aircraft type, special handling"},{name:"Confirm",sub:"An air waybill number is allocated"},{name:"Delivery in",sub:"To the warehouse by the cut-off"},{name:"Loading",sub:"Anything offloaded goes on the next flight"}]}]},
+{h:"The booking flow",blocks:[{t:"ladder",rise:10,steps:[{name:"Enquiry",sub:"Commodity, pieces, weight, dimensions, dates"},{name:"Check the space",sub:"Flight, aircraft type, special handling"},{name:"Confirm",sub:"The air waybill number is checked"},{name:"Delivery in",sub:"To the warehouse by the cut-off"},{name:"Loading",sub:"For offloaded cargo, an alternative flight and terms are agreed with the parties"}]}]},
 {h:"Volumetric weight",blocks:[{t:"fig",id:"cgo_chw",cap:"Animated figure: a light, bulky box and a small, heavy box. Bars compare actual and volumetric weight; the greater one is the chargeable weight."},
 {t:"rows",items:[
 {name:"How it is worked out",x:"Length by width by height in centimetres, divided by a standard divisor, commonly 6,000, giving a weight in kilograms. ★"},
@@ -105,7 +105,7 @@ sections:[
 ["Fuel surcharge","167 kg × ¥100","¥16,700"],
 ["Security charge","167 kg × ¥20","¥3,340"],
 ["Total","","¥70,140"]]},
-{t:"note",x:"* All rates are fictional. Some airlines apply surcharges to the actual weight instead ★. Smaller packaging lowers the volumetric weight and every line with it."}]},
+{t:"note",x:"* All rates are fictional. Some airlines apply surcharges to the actual weight instead ★. In this example, smaller packaging lowers the volumetric weight, and the charges based on that weight fall with it. Charges based on actual weight, minimum charges and rounding should be checked against the contract."}]},
 {h:"What makes up the rate (example)",blocks:[{t:"table",cols:["Item","What it is"],rows:[
 ["Base rate","A unit rate by weight break, falling as the weight rises"],
 ["Fuel surcharge","Linked to fuel prices"],
@@ -113,7 +113,7 @@ sections:[
 ["Special handling","Dangerous goods, live animals, temperature control, outsized cargo"],
 ["Airport and warehouse charges","Terminal handling and storage, which rises once the free period ends"]]}]}],
 voice:"Air freight is charged on the greater of actual and volumetric weight. Advising shippers on reducing packed dimensions can change the charge considerably.",
-terms:[["Volumetric Weight","容積重量","용적 중량"],["Chargeable Weight","チャージャブル・ウェイト","적용 중량"],["Fuel Surcharge","燃油サーチャージ","유류할증료"],["Offload","積み残し","미탑재 화물"]],
+terms:[["Volumetric Weight","容積重量","용적 중량"],["Chargeable Weight","チャージャブル・ウェイト","적용 중량(차저블 웨이트)"],["Fuel Surcharge","燃油サーチャージ","유류할증료"],["Offload","積み残し","미탑재 화물"]],
 quiz:[{q:"Which weight is used for the rate?",opts:["The actual weight only","The greater of actual and volumetric weight","The lesser","The average"],a:1,exp:"That is the chargeable weight."},
 {q:"How is a 100 by 100 by 100 cm box weighing 50 kg charged?",opts:["On 50 kg","On the volumetric weight, about 167 kg","Free","It cannot be calculated"],a:1,exp:"Light, bulky goods are charged on size."},
 {q:"What should you watch for with storage charges?",opts:["They rise once the free period ends","They are always free","The airline always pays","They do not matter"],a:0,exp:"Watch for delays in collection."}],
@@ -124,10 +124,10 @@ lead:["The air waybill (AWB) is the evidence of the contract of carriage between
 "This article covers how the number is built, what the waybill records, and the relationship between master and house waybills."],
 sections:[
 {h:"The number",blocks:[{t:"rows",items:[
-{name:"Eleven digits",x:"The first three identify the airline; the remaining eight are the serial, the last digit being a check digit."},
+{name:"Eleven digits",x:"On a master air waybill, the first three identify the airline; the remaining eight are the serial, the last digit being a check digit."},
 {name:"The airline prefix",x:"A three-digit number allocated to each airline by IATA."},
-{name:"The check digit",x:"A digit that catches keying errors in the number."}]}]},
-{h:"What it records",blocks:[{t:"fig",id:"cgo_awbform",cap:"Animated figure: the main boxes of a fictional AWB (Narita to Incheon, semiconductor equipment parts) light up in numbered order, matching the notes below."},
+{name:"The check digit",x:"A digit that helps catch keying errors in the number, though not every error."}]}]},
+{h:"What it records",blocks:[{t:"fig",id:"cgo_awbform",cap:"Animated figure: the main boxes of a fictional AWB (prefix shown as XXX; for illustration only, not a real waybill; Narita to Incheon, semiconductor equipment parts) light up in numbered order, matching the notes below."},
 {t:"table",cols:["Field","Content"],rows:[
 ["Shipper","Name and address of the sender"],
 ["Consignee","Name and address of the receiver"],
@@ -140,7 +140,7 @@ sections:[
 {t:"point",warn:true,x:"A vague commodity description can get shipments stopped in customs or screening. Avoid “general goods” or “parts”, and write what it actually is."}]}],
 voice:"Small errors on an air waybill become long delays in clearance at destination. Always check description, pieces, weight and consignee contact against the actual goods at acceptance.",
 terms:[["Air Waybill (AWB)","航空運送状","항공 운송장"],["Consignee","荷受人","수하인"],["Master AWB (MAWB)","マスター運送状","마스터 운송장"],["House AWB (HAWB)","ハウス運送状","하우스 운송장"]],
-quiz:[{q:"What do the first three digits of an air waybill number identify?",opts:["The airline","The destination","The weight","The date"],a:0,exp:"A prefix allocated by IATA."},
+quiz:[{q:"What do the first three digits of a master air waybill number identify?",opts:["The airline","The destination","The weight","The date"],a:0,exp:"A prefix allocated by IATA."},
 {q:"What does a forwarder issue to each shipper in a consolidation?",opts:["A master waybill","A house waybill","A passport","An invoice"],a:1,exp:"House waybills sit beneath the master."},
 {q:"Which commodity description is good?",opts:["Parts","General goods","Parts for semiconductor production equipment","Miscellaneous"],a:2,exp:"Vague descriptions get stopped in customs and screening."}],
 next:"1-3 Electronic waybills and cargo messaging"});
@@ -163,7 +163,7 @@ sections:[
 {t:"note",x:"* The formats are industry standards, in text and XML. Names for them differ between companies."}]},
 {h:"Data quality",blocks:[{t:"p",x:"Now that the data arrives ahead of the freight, an error in it — weight, pieces, commodity — turns directly into a delay in customs or screening. Checking that the freight and the data agree matters more than ever on the warehouse floor."}]}],
 voice:"Electronic air waybills save time spent hunting for paper, but an input error now travels the whole journey. Checking at the first point of entry matters more than ever.",
-terms:[["e-AWB","電子運送状","전자 운송장"],["Flight Manifest","フライト・マニフェスト","적하목록"],["Status Update","ステータス更新","상태 업데이트"],["Data Quality","データ品質","데이터 품질"]],
+terms:[["e-AWB","電子運送状","전자 운송장"],["Flight Manifest","フライト・マニフェスト","플라이트 매니페스트(적하목록)"],["Status Update","ステータス更新","상태 업데이트"],["Data Quality","データ品質","데이터 품질"]],
 quiz:[{q:"What is the benefit of the electronic waybill?",opts:["Fewer keying errors","More paper","No checks possible","Heavier freight"],a:0,exp:"The data is reused rather than retyped."},
 {q:"What shows which shipments were loaded on a flight?",opts:["The flight manifest","An invoice","An insurance policy","A business card"],a:0,exp:"It is also used to report to customs."},
 {q:"What matters more once everything is electronic?",opts:["Checking that the freight and the data agree","Filing paper","Handwriting","Telephoning only"],a:0,exp:"Data errors become delays."}],

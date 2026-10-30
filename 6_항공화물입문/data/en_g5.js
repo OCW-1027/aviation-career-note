@@ -7,7 +7,7 @@ sections:[
 {t:"table",cols:["Task","Deadline (before departure)","Purpose"],rows:[
 ["Booking confirmation","24 hours","Fix the load and start warehouse and ramp preparation"],
 ["Acceptance cut-off (general cargo)","240 minutes","Time for acceptance, screening and build-up"],
-["Acceptance cut-off (express)","180 minutes","Shorter only for urgent cargo"],
+["Acceptance cut-off (express)","180 minutes","In this example, a separate cut-off is set under company procedure, only for express cargo that can be handled"],
 ["Documents","90 minutes","Complete AWBs and manifests and file with customs"],
 ["ULD weighing","70–100 minutes","Weighing window for the whole flight; confirm weights for load control"],
 ["On dollies, ready for pick-up","90 minutes","Each ULD, once weighed, ready for the ramp team"],
@@ -17,7 +17,7 @@ sections:[
 ["Transfer (rebuild)","180–240 minutes before the connection","Time to break down and rebuild"]]},
 {t:"note",x:"* Figures are one airline’s passenger-flight example; they vary by airport, aircraft and handling contract (SLA, 7-5). Always check your own SOP."}]},
 {h:"Cargo capacity",blocks:[{t:"fig",id:"cgo_acl",cap:"Animated figure: a 38,000 kg ACL bar fills with passengers, baggage and then cargo; what remains is the cargo allowance. Figures are fictional."},
-{t:"p",x:"On a passenger flight, cargo capacity is the allowable cabin load (ACL) minus passenger and baggage weights. The ACL is set by operations for each route and adjusted with actual data (dispatch course Part 5; load control 3-7)."},
+{t:"p",x:"On a passenger flight, cargo capacity is the allowable load (ACL) minus passenger and baggage weights. The ACL is set by operations for each route and adjusted with actual data (dispatch course Part 5; load control 3-7)."},
 {t:"table",cols:["Item","Calculation (example)","Result"],rows:[
 ["ACL","From route analysis","38,000 kg"],
 ["Passengers","290 × standard weight 80 kg","23,200 kg"],
@@ -32,12 +32,12 @@ sections:[
 ["50 minutes before departure","Final cargo weight (final payload)"]]},
 {t:"note",x:"* Dispatchers use these weights to check fuel and the flight plan (dispatch course Parts 4–5). Late or large changes cause delays or refuelling."}]},
 {h:"Publishing which special cargo you accept",blocks:[{t:"table",cols:["Code","Cargo","Accepted (example)"],rows:[
-["DGR","Dangerous goods","Yes (prior approval)"],["AVI","Live animals","Yes"],["PER","Perishables","Yes"],["WET","Wet cargo","Yes"],["HUM","Human remains","Yes"],["VAL","Valuables","No"],["DIP","Diplomatic cargo","No"],["CAR","Vehicles","No"]]},
+["—","Dangerous goods (DGR is the regulations’ abbreviation, not a special handling code)","Yes (prior approval)"],["AVI","Live animals","Yes"],["PER","Perishables","Yes"],["WET","Wet cargo","Yes"],["HUM","Human remains","Yes"],["VAL","Valuables","No"],["DIP","Diplomatic cargo","No"],["—","Vehicles","No"]]},
 {t:"note",x:"* Set embargoes and restrictions by airport facilities, aircraft and company policy, and tell agents and forwarders in advance."}]}],
 voice:"On busy peak-season flights, the weight available for cargo can come out lower than forecast at booking. Rechecking the cargo allowance against the previous day’s passenger bookings and telling forwarders early reduces offloads on the day.",
-terms:[["Allowable Cabin Load (ACL)","許容搭載量","허용탑재중량"],["Confirmed Booking Acceptance (CBA)","予約の確定","예약 확정"],["Payload","ペイロード","페이로드"],["Cargo Acceptance Cut-off","搬入の締め切り","반입 마감"],["Embargo","エンバーゴ（取り扱い制限）","엠바고(취급 제한)"]],
+terms:[["ACL (allowable load)","許容搭載量","허용탑재중량"],["Booking Confirmation","予約の確定","예약 확정"],["Payload","ペイロード","페이로드"],["Cargo Acceptance Cut-off","搬入の締め切り","반입 마감"],["Embargo","エンバーゴ（取り扱い制限）","엠바고(취급 제한)"]],
 quiz:[{q:"How is cargo capacity on a passenger flight calculated?",opts:["ACL − passenger weight − baggage weight","ACL + passenger weight","Seats × 80 kg","Fuel load"],a:0,exp:"Cargo gets what passengers and baggage leave."},
-{q:"Why is the express acceptance cut-off (example) shorter?",opts:["To accept urgent cargo with higher priority","No screening needed","It is lighter","No customs"],a:0,exp:"Work is prioritised."},
+{q:"Why is the express acceptance cut-off (example) shorter?",opts:["In this example, company procedure sets a separate cut-off only for express cargo that can be handled","No screening needed","It is lighter","No customs"],a:0,exp:"In this company’s example, only express cargo that can be handled is prioritised; being urgent alone does not shorten the cut-off."},
 {q:"If cargo weight changes significantly after the final figure is sent…",opts:["Tell dispatch immediately","Depart anyway","Fix it on the next flight","Reduce passengers"],a:0,exp:"It affects fuel and the flight plan."}],
 next:"6-2 From acceptance to build-up and weighing"});
 set("6-2",{title:"From Acceptance to Build-up and Weighing: Floor Limits and the 1% UWS Check",hl:"build-up",subtitle:"What to check at acceptance, spreading weight to suit floor strength, the steps of ULD build-up, checking weight differences on the UWS, the document pouch and corrections (CCA)",
@@ -45,21 +45,21 @@ lead:["Most cargo incidents can be prevented at acceptance and build-up. Spottin
 sections:[
 {h:"What to check at acceptance",blocks:[{t:"check",items:[
 {name:"Booking",x:"Do not accept unbooked cargo; check with sales."},
-{name:"Weight and volume",x:"Weigh and measure; compare actual and volume weight with the AWB and record differences."},
+{name:"Weight and volume",x:"Weigh, and calculate volume weight from the dimensions; compare both with the AWB and record differences."},
 {name:"Packaging",x:"Check for damage, leaks or wetness; record and have the shipper confirm. Refuse if severe."},
 {name:"Size",x:"Within aircraft and company limits (e.g. up to 160 cm high)."},
 {name:"Prohibited items",x:"Items banned by origin, transit and destination states and the airline."},
 {name:"Hidden dangerous goods",x:"Check anything suspicious from its description, labels or weight (7-3)."},
-{name:"Safety data sheets (SDS/MSDS)",x:"Confirm chemicals are not dangerous goods with a valid sheet (e.g. within 3 years); open and check if in doubt."},
+{name:"Safety data sheets (SDS/MSDS)",x:"Check whether chemicals are dangerous goods with a valid sheet (company example: within 3 years), but do not clear them on the SDS alone. If in doubt, stop work and refer to the dangerous goods specialist; do not open the package yourself."},
 {name:"Magnetised material",x:"Check the gauss report against the rules (7-3)."}]}]},
-{h:"Floor strength and spreading weight",blocks:[{t:"fig",id:"cgo_floor",cap:"Animated figure: a 2,400 kg item on a small base exceeds the floor limit; spread on shoring to 2.0 m × 1.5 m, it falls within it."},
+{h:"Floor strength and spreading weight",blocks:[{t:"fig",id:"cgo_floor",cap:"Animated figure: a 2,400 kg item on a small base exceeds the floor limit; spread on shoring to 2.0 m × 1.5 m, it falls within it on paper (shoring strength, restraint and aircraft/ULD limits are checked by the supervisor)."},
 {t:"p",x:"Hold floors have a maximum load per square metre. Heavy items with small bases are placed on boards (shoring) to spread the load."},
 {t:"table",cols:["Step","Calculation (example)"],rows:[
 ["Item","2,400 kg, base 1.2 m × 1.0 m = 1.2 m²"],
 ["Load on the base","2,400 ÷ 1.2 = 2,000 kg/m²"],
 ["Floor limit (example)","800 kg/m²"],
 ["Area needed","2,400 ÷ 800 = 3.0 m²"],
-["Instruction","Spread on boards to, say, 2.0 m × 1.5 m"]]},
+["Instruction","Spread on boards to, say, 2.0 m × 1.5 m (the supervisor also checks board strength, load transfer, restraint and aircraft/ULD limits)"]]},
 {t:"note",x:"* Limits vary by aircraft, position and ULD. Items above company thresholds (e.g. over 2,300 kg per piece or over size limits) need a supervisor’s check and spreading instructions."}]},
 {h:"Building up a ULD",blocks:[{t:"rows",items:[
 {name:"1 Inspect",x:"Check the ULD for damage and place it on a dolly or stand, never directly on the floor."},
@@ -80,12 +80,12 @@ sections:[
 {name:"Customs",x:"Confirm export permission or declaration at origin (NACCS in Japan, 1-4)."},
 {name:"Document pouch",x:"Put manifests and other documents in the pouch and hand it to the senior cabin crew by, for example, 20 minutes before departure."},
 {name:"Instructions to destination",x:"Send special-handling and priority instructions ahead (6-3)."},
-{name:"Corrections (CCA)",x:"If shipper, consignee, description or weight in FWB or FHL data is wrong, origin resends correct data; errors cause customs holds at destination."}]}]}],
+{name:"Corrections (CCA)",x:"When charges, other charges or the payment method must be corrected, notify the parties concerned with a CCA (Cargo Charges Correction Advice). This is distinct from resending corrected FWB or FHL data for errors in shipper, description or weight."}]}]}],
 voice:"A ULD with a large weight discrepancy may contain cargo whose weight differs from the declaration. Agree with the handling agent that anything over the threshold is explained before it is loaded.",
 terms:[["Cargo Acceptance","受付","접수"],["Floor Loading Limit","床面荷重制限","바닥 하중 제한"],["Shoring","ショアリング","쇼어링"],["ULD Weight Statement (UWS)","ULD重量表","ULD 중량표"],["Cargo Charges Correction Advice (CCA)","運賃訂正通知 (CCA)","운임 정정 통지(CCA)"]],
-quiz:[{q:"A 2,400 kg item on a 1.2 m² base with an 800 kg/m² floor limit needs…",opts:["1.2 m²","2.0 m²","3.0 m²","8.0 m²"],a:2,exp:"2,400 ÷ 800 = 3.0 m²."},
+quiz:[{q:"A 2,400 kg item on a 1.2 m² base with an 800 kg/m² floor limit needs…",opts:["1.2 m²","2.0 m²","3.0 m²","8.0 m²"],a:2,exp:"2,400 ÷ 800 = 3.0 m². This is the calculated area; board strength and restraint are also checked by the supervisor."},
 {q:"If the UWS shows a large difference…",opts:["Do not load until the cause is found","Load it anyway","Change the figures","Just move it to the next flight"],a:0,exp:"It affects balance and safety."},
-{q:"What is a CCA?",opts:["Origin correcting and resending wrong electronic data","Cargo insurance","ULD repair","DG declaration"],a:0,exp:"It prevents customs holds at destination."}],
+{q:"What is a CCA?",opts:["A notice correcting charges or the payment method","Cargo insurance","ULD repair","DG declaration"],a:0,exp:"It is distinct from resending FWB or FHL data."}],
 next:"6-3 Import cargo: from preparation to delivery"});
 set("6-3",{title:"Import Cargo: From Pre-arrival Preparation to Delivery",hl:"import cargo",subtitle:"Prepare special cargo from origin messages and pre-alerts; on arrival check documents and ULDs; notify, store, verify identity and deliver. Plus the flow of status messages",
 lead:["Import work starts before the aircraft lands. Messages and pre-alerts from origin reveal chilled cargo, live animals or dangerous goods, so space and staff can be prepared.","On arrival, collect the documents, check the ULDs and record anything wrong. Then notify the consignee, verify identity and deliver. This lesson covers the flow, time standards and status messages."],
@@ -109,7 +109,7 @@ sections:[
 ["Flight close in the system","180 minutes"]]},
 {t:"note",x:"* Times are examples from a handling SLA (7-5)."}]},
 {h:"Delivery",blocks:[{t:"check",items:[
-{name:"Temperature-controlled cargo",x:"Confirm temperature-control needs with the shipper; without a reply, judge from the cargo, AWB, FFM and pre-alert."},
+{name:"Temperature-controlled cargo",x:"Confirm temperature-control needs with the shipper; without a reply, do not decide a temperature yourself: keep to the conditions specified in the documents and check anything unclear with the person in charge."},
 {name:"Identity",x:"Verify the collector’s identity and obtain a signature."},
 {name:"Charges",x:"Calculate and collect charges payable at destination (charges collect)."},
 {name:"Uncollected cargo",x:"After a set period (e.g. 30 days), update the status and contact the shipper or agent."}]}]},
@@ -138,13 +138,13 @@ sections:[
 {name:"Documents",x:"Check whether security or quarantine documents are needed for the destination or cargo type."},
 {name:"Dangerous goods",x:"Transfer DG is usually refused without company approval (with some exceptions, e.g. certain lithium batteries) (7-3)."}]}]},
 {h:"Security records and re-screening",blocks:[{t:"table",cols:["","Korea","Japan"],rows:[
-["Basis","Aviation Security Act Art. 17-4(3): even cargo screened by a known consignor must be screened by the carrier when moved from a freighter to a passenger aircraft, among other cases","Transfer cargo from other countries is limited to cargo whose security at origin or transit is confirmed by written or electronic records (aviation security standards)"],
+["Basis","Aviation Security Act (check the current text): even cargo screened by a known consignor must be screened by the carrier under conditions set by law (e.g. when moved from a freighter to a passenger aircraft)","Transfer cargo from other countries is limited to cargo whose security at origin or transit is confirmed by written or electronic records (aviation security standards)"],
 ["Company add-on (example)","X-ray re-screening of all transfer cargo","Re-screen if records cannot be confirmed"]]},
 {t:"point",x:"Transfer security depends on an unbroken record of checks at the previous airport. If the record breaks, re-check before loading (7-1)."}]}],
 voice:"For transfer cargo with a short connection, share the position of the inbound ULDs with the handling agent in advance. Deciding beforehand whether a ULD goes through intact or is rebuilt means connections are rarely missed.",
 terms:[["Transfer Cargo","積み替え（トランシップ）貨物","환적 화물"],["Thru Unit (Intact BUP)","スルーユニット（スルーユニット）","스루 유닛(ULD 그대로)"],["Minimum Connecting Time (MCT)","最小乗り継ぎ時間","최소 연결 시간"],["AOG spares transport","AOG（運航停止機向け緊急部品輸送）","AOG(운항 중단 항공기용 긴급 부품 운송)"],["Interline","インターライン","인터라인"]],
 quiz:[{q:"Which needs more time before the connection?",opts:["Intact ULD","Rebuild","The same","Neither"],a:1,exp:"Breaking down and rebuilding takes time."},
-{q:"Under Korea’s Aviation Security Act, when must the carrier screen known-consignor cargo?",opts:["When moved from a freighter to a passenger aircraft","On rainy days","On night flights","For light cargo"],a:0,exp:"Art. 17-4(3)5."},
+{q:"Under Korea’s Aviation Security Act, which is an example of when the carrier must screen known-consignor cargo?",opts:["When moved from a freighter to a passenger aircraft","On rainy days","On night flights","For light cargo"],a:0,exp:"The carrier re-checks under conditions set by law; check the current text of the Act."},
 {q:"Unbooked interline transfer cargo is…",opts:["Normally refused (urgent items excepted)","Always accepted","Always refused","Charged double"],a:0,exp:"The company defines exceptions."}],
 next:"7-1 Cargo security in Korea and Japan: KS/RA and known consignors"});
 })(window.ARTS);
