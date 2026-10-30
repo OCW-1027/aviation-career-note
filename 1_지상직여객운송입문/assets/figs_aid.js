@@ -273,9 +273,9 @@ app_types:function(l){
  setK(1);var nar=NARROW();
  function panel(x0,y0,w,k){var col=k?'#1F7A6E':'#D64545',g=R(x0,y0,w,200,'#DCEEFB',14)+tx(x0+w/2,y0+26,k?W.b:W.a,13,col,900)+R(x0,y0+176,w,24,'#9CC98B',0);
   var rx=x0+w-110;g+=R(rx,y0+172,90,6,'#5B6770',2)+tx(rx+45,y0+194,W.rw,10.5,'#2F5E24',800);
-  var my=y0+140;g+='<line x1="'+(x0+10)+'" y1="'+my+'" x2="'+(x0+w-10)+'" y2="'+my+'" stroke="'+(k?'#1F7A6E':'#D64545')+'" stroke-width="2" stroke-dasharray="5 5"/>'+LB(x0+14,my-8,k?W.da:W.mda,10,'#fff','start',col);
+  var my=y0+140;g+='<line x1="'+(x0+10)+'" y1="'+my+'" x2="'+(x0+w-10)+'" y2="'+my+'" stroke="'+(k?'#1F7A6E':'#D64545')+'" stroke-width="2" stroke-dasharray="5 5"/>';var lbt=k?W.da:W.mda,lbn=LI(lbt,10,195).length;
   var p=k?'M'+(x0+20)+' '+(y0+54)+' L'+(rx-30)+' '+my+' L'+(rx+10)+' '+(y0+172):'M'+(x0+20)+' '+(y0+54)+' L'+(x0+w*0.3)+' '+(y0+54)+' L'+(x0+w*0.38)+' '+(y0+96)+' L'+(x0+w*0.5)+' '+(y0+96)+' L'+(x0+w*0.58)+' '+my+' L'+(rx-10)+' '+my+' L'+(rx+10)+' '+(y0+172);
-  g+='<path d="'+p+'" fill="none" stroke="'+col+'" stroke-width="3"/><g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>';
+  g+='<path d="'+p+'" fill="none" stroke="'+col+'" stroke-width="3"/><g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="'+p+'"/></g>'+LBW(x0+14,my-8-(lbn-1)*FS(10)*1.3/2-(lbn>1?4:0),lbt,10,'#fff','start',col,195);
   var n=LI(k?W.nb:W.na,11,w-24).length,lh=FS(11)*1.3;g+=R(x0,y0+208,w,n*lh+16,'#fff',10,' stroke="#D9E3EC"')+WR(x0+w/2,y0+216+n*lh/2+FS(11)*0.3,k?W.nb:W.na,11,D,800,w-24);
   return {s:g,h:208+n*lh+16}}
  var s,HH,vw;
