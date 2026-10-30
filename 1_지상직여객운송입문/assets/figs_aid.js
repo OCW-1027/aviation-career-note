@@ -266,8 +266,8 @@ aid_signs:function(l){
  var HH=y+8;return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 '+HH.toFixed(0)+'" role="img">'+R(0,0,640,HH,'#F7FAFD')+s+body+'</svg>'},
 /* 13 降り方の違い：段階降下（ダイブ・アンド・ドライブ）と、一定の坂で降りるCDFA */
 app_types:function(l){
- var W=({ja:{t:'非精密進入の降り方',a:'段階降下（ダイブ・アンド・ドライブ）',b:'CDFA（一定の坂で連続して降りる）',mda:'MDA（最低降下高度）',da:'DA（CDFAで使う決心の高さ。MDA＋承認された余裕）',na:'MDAで水平に飛びながら滑走路を探し、MAPtまでに見えなければ復行。地面に近い所で姿勢や推力を何度も変える',nb:'精密進入と同じように一定の坂で降り、DAで決める。安定した進入になり、事故が少ない',rw:'滑走路'},
-  ko:{t:'비정밀접근의 강하 방법',a:'계단식 강하(다이브 앤드 드라이브)',b:'CDFA(일정한 경사로 연속 강하)',mda:'MDA(최저강하고도)',da:'DA(CDFA에서 쓰는 결심 높이. MDA+승인된 여유)',na:'MDA에서 수평 비행하며 활주로를 찾고, MAPt까지 보이지 않으면 복행. 지면 가까이에서 자세와 추력을 여러 번 바꾼다',nb:'정밀접근처럼 일정한 경사로 내려와 DA에서 결정한다. 접근이 안정되어 사고가 적다',rw:'활주로'},
+ var W=({ja:{t:'非精密進入の降り方',a:'段階降下（ダイブ・アンド・ドライブ）',b:'CDFA（一定の坂で連続して降りる）',mda:'MDA（最低降下高度）',da:'DA（CDFAで使う決心高度。MDA＋承認された余裕）',na:'MDAで水平に飛びながら滑走路を探し、MAPtまでに見えなければ復行。地面に近い所で姿勢や推力を何度も変える',nb:'精密進入と同じように一定の坂で降り、DAで決める。安定した進入になり、事故が少ない',rw:'滑走路'},
+  ko:{t:'비정밀접근의 강하 방법',a:'계단식 강하(다이브 앤드 드라이브)',b:'CDFA(일정한 경사로 연속 강하)',mda:'MDA(최저강하고도)',da:'DA(CDFA에서 쓰는 결심고도. MDA+승인된 여유)',na:'MDA에서 수평 비행하며 활주로를 찾고, MAPt까지 보이지 않으면 복행. 지면 가까이에서 자세와 추력을 여러 번 바꾼다',nb:'정밀접근처럼 일정한 경사로 내려와 DA에서 결정한다. 접근이 안정되어 사고가 적다',rw:'활주로'},
   en:{t:'Two ways to fly a non-precision approach',a:'Step-down (“dive and drive”)',b:'CDFA (continuous descent on a constant slope)',mda:'MDA (minimum descent altitude)',da:'DA (used with CDFA: MDA plus an approved margin)',na:'Level off at the MDA and search for the runway, going around at the MAPt if it is not in sight, changing attitude and thrust repeatedly close to the ground',nb:'Descend on a constant slope as in a precision approach and decide at the DA: a stable approach with fewer accidents',rw:'Runway'}})[l];
  if(!W)return F.app_types('ja');
  setK(1);var nar=NARROW();
@@ -285,9 +285,9 @@ app_types:function(l){
 
 /* 14 DA／MDAでの判断：目で見る目標が見えれば着陸、見えなければ復行（上昇勾配2.5％） */
 app_dec:function(l){
- var W=({ja:{t:'DA／MDA での判断',see:'見えて条件を満たす → 着陸',nosee:'満たさない → 復行',vis:'見るもの：進入灯、進入端とその灯火・標識、接地帯とその灯火・標識、PAPI など',ma:'復行：決められた経路を上昇（前提の上昇勾配は進入図で確認。2.5％が多い）',dh:'DA／MDA'},
-  ko:{t:'DA/MDA에서의 판단',see:'보이고 조건 충족 → 착륙',nosee:'충족하지 못함 → 복행',vis:'볼 것: 접근등, 시단과 그 등화·표지, 접지대와 그 등화·표지, PAPI 등',ma:'복행: 정해진 경로로 상승(전제가 되는 상승 경사는 접근도로 확인. 2.5%가 많다)',dh:'DA/MDA'},
-  en:{t:'The decision at DA/MDA',see:'In sight, conditions met → land',nosee:'Otherwise → go around',vis:'Look for: approach lights, the threshold and its lights or markings, the touchdown zone and its lights or markings, PAPI, etc.',ma:'Missed approach: climb along the published path (check the assumed gradient on the chart; 2.5% is common)',dh:'DA/MDA'}})[l];
+ var W=({ja:{t:'DA／MDA での判断',see:'見えて条件を満たす → 着陸',nosee:'満たさない → 復行',vis:'見るもの：進入灯、進入端とその灯火・標識、接地帯とその灯火・標識、PAPI など',ma:'MDAではMAPtまでに判断。復行：決められた経路を上昇（前提の上昇勾配は進入図で確認。2.5％が多い）',dh:'DA／MDA'},
+  ko:{t:'DA/MDA에서의 판단',see:'보이고 조건 충족 → 착륙',nosee:'충족 못 함 → 복행',vis:'볼 것: 접근등, 시단과 그 등화·표지, 접지대와 그 등화·표지, PAPI 등',ma:'MDA에서는 MAPt까지 판단. 복행: 정해진 경로로 상승(전제가 되는 상승 경사는 접근도로 확인. 2.5%가 많다)',dh:'DA/MDA'},
+  en:{t:'The decision at DA/MDA',see:'In sight, conditions met → land',nosee:'Otherwise → go around',vis:'Look for: approach lights, the threshold and its lights or markings, the touchdown zone and its lights or markings, PAPI, etc.',ma:'At an MDA, decide by the MAPt. Missed approach: climb along the published path (check the assumed gradient on the chart; 2.5% is common)',dh:'DA/MDA'}})[l];
  if(!W)return F.app_dec('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,56,600,250,'#DCEEFB',14)+R(20,276,600,30,'#9CC98B',0);

@@ -132,13 +132,13 @@ ac_decl:function(l){
 
 /* 7 V1でエンジンが止まったら：続ければ TODA の中で35ftに、やめれば ASDA の中で止まる */
 ac_go_stop:function(l){
- var W=({ja:{t:'V1とエンジン故障（故障を想定した計算）',go:'離陸を続ける：TODAの中で高さ35ftに届く',stop:'離陸をやめる：ASDAの中で止まる',fail:'故障を想定',note:'この2つが両方成り立つように、重量とV1を決める。滑走路が濡れていると、止まるための距離が長くなる'},
-  ko:{t:'V1과 엔진 고장(고장을 가정한 계산)',go:'이륙을 계속한다: TODA 안에서 높이 35ft에 도달한다',stop:'이륙을 중단한다: ASDA 안에서 정지한다',fail:'고장 가정',note:'이 두 가지가 모두 성립하도록 중량과 V1을 정한다. 활주로가 젖어 있으면 정지 거리가 길어진다'},
-  en:{t:'V1 and an engine failure (the planning assumption)',go:'Continue: reach 35 ft within the TODA',stop:'Reject: stop within the ASDA',fail:'Assumed failure',note:'Weight and V1 are chosen so that both are possible; on a wet runway the stopping distance is longer'}})[l];
+ var W=({ja:{t:'V1とエンジン故障（故障を想定した計算）',go:'離陸を続ける：TODAの中で高さ35ftに届く',stop:'離陸をやめる：ASDAの中で止まる',fail:'故障を想定',note:'VEF：故障発生を仮定する速度。V1：中止の最初の操作を始める上限で、所定の故障後に離陸を続けるための下限。この2つの条件が両方成り立つように、重量とV1を決める。滑走路が濡れていると、止まるための距離が長くなる'},
+  ko:{t:'V1과 엔진 고장(고장을 가정한 계산)',go:'이륙을 계속한다: TODA 안에서 높이 35ft에 도달한다',stop:'이륙을 중단한다: ASDA 안에서 정지한다',fail:'고장 가정',note:'VEF: 고장 발생 가정 속도. V1: 중단 첫 조작의 상한이자 정해진 고장 뒤 계속 이륙하기 위한 하한. 이 두 조건이 모두 성립하도록 중량과 V1을 정한다. 활주로가 젖어 있으면 정지 거리가 길어진다'},
+  en:{t:'V1 and an engine failure (the planning assumption)',go:'Continue: reach 35 ft within the TODA',stop:'Reject: stop within the ASDA',fail:'Failure',note:'VEF: the assumed engine-failure speed. V1: the latest speed for the first stopping action and the minimum for continuing the take-off after the specified failure. Weight and V1 are chosen so that both are possible; on a wet runway the stopping distance is longer'}})[l];
  if(!W)return F.ac_go_stop('ja');
  setK(1);
  function lane(y0,go){var g=R(20,y0,600,120,go?'#DCEEFB':'#EEF5FB',12)+R(20,y0+92,600,28,'#9CC98B',0)+R(40,y0+88,500,8,'#5B6770',3)+(go?'<rect x="540" y="'+(y0+80)+'" width="70" height="20" fill="none" stroke="#1F7A6E" stroke-dasharray="5 4"/>':'<rect x="540" y="'+(y0+88)+'" width="40" height="8" fill="#8C9BAA"/>');
-  g+='<line x1="260" y1="'+(y0+30)+'" x2="260" y2="'+(y0+100)+'" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(252,y0+22,'V1 ✕ '+W.fail,11,'#fff','end','#D64545');
+  g+='<line x1="225" y1="'+(y0+30)+'" x2="225" y2="'+(y0+100)+'" stroke="#D64545" stroke-width="2" stroke-dasharray="4 4"/>'+LB(219,y0+22,'VEF ✕ '+W.fail,11,'#fff','end','#D64545')+'<line x1="260" y1="'+(y0+30)+'" x2="260" y2="'+(y0+100)+'" stroke="#2F6FD6" stroke-width="2"/>'+LB(250,y0+22,'V1',11,'#fff','middle','#2F6FD6');
   var p=go?'M60 '+(y0+80)+' L260 '+(y0+80)+' L440 '+(y0+80)+' L600 '+(y0+56):'M60 '+(y0+80)+' L260 '+(y0+80)+' L560 '+(y0+80);
   g+='<g>'+planeS('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="'+(go?'0;.38;1;1':'0;.4;1;1')+'" keyTimes="0;.4;.85;1" calcMode="'+(go?'linear':'spline')+'"'+(go?'':' keySplines="0 0 1 1;0 0 .3 1;0 0 1 1"')+' path="'+p+'"/></g>';
   var t=go?W.go:W.stop;g+=LBW(445,y0+44,t,11.5,go?'#1F7A6E':'#8a3b00','middle','#fff',300);

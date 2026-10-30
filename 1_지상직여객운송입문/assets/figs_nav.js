@@ -32,9 +32,9 @@ nav_speeds:function(l){
 
 /* 2 高く上がると、同じIASでも実際は速い：IAS 250kt のまま TAS が増える */
 nav_ias_tas:function(l){
- var W=({ja:{t:'同じIAS 250ktでも、高い所ほど実際は速い',ias:'IAS（計器）',tas:'TAS（本当の速さ）',thin:'高い所は空気が薄い',thick:'低い所は空気が濃い',rule:'低い高度での目安：TAS ≒ IAS × (1 ＋ 0.02 × 高度[千ft])。高高度は気温や圧縮性も含めて計算',h:'高度'},
-  ko:{t:'같은 IAS 250kt라도 높은 곳일수록 실제로는 빠르다',ias:'IAS(계기)',tas:'TAS(실제 속도)',thin:'높은 곳은 공기가 옅다',thick:'낮은 곳은 공기가 짙다',rule:'낮은 고도의 기준: TAS ≒ IAS × (1 + 0.02 × 고도[천 ft]). 높은 고도는 기온·압축성도 포함해 계산',h:'고도'},
-  en:{t:'Same 250 kt IAS, but the higher you fly, the faster you actually go',ias:'IAS (instrument)',tas:'TAS (true speed)',thin:'Thin air up high',thick:'Dense air down low',rule:'Low-altitude rule of thumb: TAS ≈ IAS × (1 + 0.02 × altitude in thousands of ft); at high altitude include temperature and compressibility',h:'Altitude'}})[l];
+ var W=({ja:{t:'同じIAS 250ktでも、高い所ほど実際は速い',ias:'IAS（計器）',tas:'TAS（本当の速さ）',thin:'高い所は空気が薄い',thick:'低い所は空気が濃い',rule:'同じIASでも、TASは気圧や気温、圧縮性などに応じて変わる。低い高度の目安（1,000ftごとに約2％）は高高度では使わない',h:'高度'},
+  ko:{t:'같은 IAS 250kt라도 높은 곳일수록 실제로는 빠르다',ias:'IAS(계기)',tas:'TAS(실제 속도)',thin:'높은 곳은 공기가 옅다',thick:'낮은 곳은 공기가 짙다',rule:'같은 IAS라도 TAS는 기압·기온·압축성 등에 따라 달라진다. 낮은 고도의 기준(1,000ft마다 약 2%)은 높은 고도에서는 쓰지 않는다',h:'고도'},
+  en:{t:'Same 250 kt IAS, but the higher you fly, the faster you actually go',ias:'IAS (instrument)',tas:'TAS (true speed)',thin:'Thin air up high',thick:'Dense air down low',rule:'At the same IAS, TAS depends on pressure, temperature and compressibility; do not use the low-altitude rule of thumb (about 2% per 1,000 ft) at high altitude',h:'Altitude'}})[l];
  if(!W)return F.nav_ias_tas('ja');
  var nar=NARROW();setK(nar?1.35:1);
  var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img">'+R(0,0,640,560,'#F7FAFD')+TTL(320,28,W.t,15,'#0f3558',600);
@@ -53,7 +53,7 @@ nav_ias_tas:function(l){
    else{kt='0;'+a.toFixed(3)+';'+(a+0.005).toFixed(3)+';'+b.toFixed(3)+';'+(b+0.005).toFixed(3)+';1';vs='0;0;1;1;0;0'}
    g+='<text x="'+cx+'" y="'+(cy+10)+'" font-size="'+fs+'" font-weight="900" fill="'+col+'" text-anchor="middle" font-family="Arial,sans-serif" opacity="'+(i===0?1:0)+'">'+v+'<animate attributeName="opacity" values="'+vs+'" keyTimes="'+kt+'" dur="8s" repeatCount="indefinite"/></text>'});
   return g+tx(cx,cy+34,'kt',12,G,800)}
- s+=gauge(500,150,W.ias,'#6B7785',['250'])+gauge(500,360,W.tas,'#E08A2F',['265','295','325','355','385','400']);
+ s+=gauge(500,150,W.ias,'#6B7785',['250'])+gauge(500,360,W.tas,'#E08A2F',['≈250','>250','≫250']);
  var rl=H.LINES(W.rule,11,560).length,rh=rl*H.FS(11)*1.3+14;s+=R(20,522,600,rh,'#FFF1E3',10)+WR(320,522+7+rl*H.FS(11)*1.3/2+H.FS(11)*0.3,W.rule,11,'#0f3558',900,560);
  s=s.replace(/viewBox="0 0 640 560"/,'viewBox="0 0 640 '+(530+rh).toFixed(0)+'"').replace(R(0,0,640,560,'#F7FAFD'),R(0,0,640,530+rh,'#F7FAFD'));
  setK(1);return s+'</svg>'},
@@ -79,9 +79,9 @@ nav_mach:function(l){
 
 /* 4 暑い日の離陸：同じ空港でも、暑いと空気が薄く、離陸の滑走が長くなる（密度高度） */
 nav_densalt:function(l){
- var W=({ja:{t:'密度高度：暑い日は「高い空港」と同じ',cool:'涼しい日（15℃）',hot:'暑い日（35℃）',da0:'密度高度 ≒ 空港の標高',da1:'密度高度 ≒ 標高 ＋ 約2,400ft',roll:'離陸の滑走',rule:'目安：密度高度 ≒ 気圧高度 ＋ 120ft ×（気温 − 標準の気温）',eff:'空気が薄い → エンジンの力と翼の揚力が小さい → 長く走る'},
-  ko:{t:'밀도고도: 더운 날은 ‘높은 공항’과 같다',cool:'선선한 날(15℃)',hot:'더운 날(35℃)',da0:'밀도고도 ≒ 공항 표고',da1:'밀도고도 ≒ 표고 + 약 2,400ft',roll:'이륙 활주',rule:'기준: 밀도고도 ≒ 기압고도 + 120ft × (기온 − 표준 기온)',eff:'공기가 옅다 → 엔진 힘과 날개 양력이 작다 → 활주 거리가 길어진다'},
-  en:{t:'Density altitude: a hot day is like a higher airport',cool:'Cool day (15 °C)',hot:'Hot day (35 °C)',da0:'Density altitude ≈ field elevation',da1:'Density altitude ≈ elevation + about 2,400 ft',roll:'Take-off roll',rule:'Rule of thumb: density altitude ≈ pressure altitude + 120 ft × (temperature − standard temperature)',eff:'Thinner air → less engine thrust and wing lift → a longer run'}})[l];
+ var W=({ja:{t:'密度高度：暑い日は「高い空港」と同じ（海面・標準気圧の概算例）',cool:'涼しい日（15℃）',hot:'暑い日（35℃）',da0:'密度高度 ≒ 空港の標高',da1:'密度高度 ≒ 標高 ＋ 約2,400ft',roll:'離陸の滑走',rule:'目安：密度高度 ≒ 気圧高度 ＋ 120ft ×（気温 − 標準の気温）',eff:'空気が薄い → エンジンの力と翼の揚力が小さい → 長く走る'},
+  ko:{t:'밀도고도: 더운 날은 ‘높은 공항’과 같다(해면·표준기압 근사 예)',cool:'선선한 날(15℃)',hot:'더운 날(35℃)',da0:'밀도고도 ≒ 공항 표고',da1:'밀도고도 ≒ 표고 + 약 2,400ft',roll:'이륙 활주',rule:'기준: 밀도고도 ≒ 기압고도 + 120ft × (기온 − 표준 기온)',eff:'공기가 옅다 → 엔진 힘과 날개 양력이 작다 → 활주 거리가 길어진다'},
+  en:{t:'Density altitude: a hot day is like a higher airport (sea level, standard pressure, approximate)',cool:'Cool day (15 °C)',hot:'Hot day (35 °C)',da0:'Density altitude ≈ field elevation',da1:'Density altitude ≈ elevation + about 2,400 ft',roll:'Take-off roll',rule:'Rule of thumb: density altitude ≈ pressure altitude + 120 ft × (temperature − standard temperature)',eff:'Thinner air → less engine thrust and wing lift → a longer run'}})[l];
  if(!W)return F.nav_densalt('ja');
  var nar=NARROW();setK(nar?1.3:1);
  function rw(y,lab,da,col,end,dur,sun){var g=R(20,y,600,150,'#fff',14,' stroke="'+col+'" stroke-width="2"')+tx(40,y+30,lab,14,col,900,'start')+(sun?'<circle cx="590" cy="'+(y+28)+'" r="14" fill="#F2B233"><animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/></circle>':'');
