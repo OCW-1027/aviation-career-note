@@ -5,7 +5,7 @@ lead:["Even within the same economy cabin, airlines divide fares finely by when 
 "This article covers how fares are built, the thinking behind fare families, and what to watch when adapting fares to the Japanese market."],
 sections:[
 {h:"How fares are built (example)",blocks:[{t:"fig",id:"sls_fare",cap:"Figure: how fare families work (example)."},{t:"table",cols:["Element","What it is"],rows:[
-["Booking class","A code for the fare step within a cabin. The cheapest steps sell out first"],
+["Booking class","A code for the fare step within a cabin. When the allocation for cheaper classes shrinks, only higher fares may remain. Classes can also reopen depending on bookings"],
 ["Fare rules","Validity, change and refund conditions, minimum and maximum stay"],
 ["Taxes and charges","Airport charges, departure tax, fuel surcharge and so on, separate from the fare"],
 ["Ancillaries","Paid extras such as baggage, seat selection and meals (4-2)"]]}]},
@@ -22,7 +22,7 @@ sections:[
 {t:"point",x:"A fare sells on clarity as well as price. Aim for fares that neither Japanese passengers nor agencies have to puzzle over."}]}],
 voice:"Fare rules generate fewer enquiries when one table shows what is and is not allowed. Start with changes, refunds and baggage.",
 terms:[["Booking Class","予約クラス","예약 클래스"],["Fare Family / Branded Fare","フェアファミリー","운임 패밀리"],["Fare Rules","運賃規則","운임 규정"],["Total Price Display","総額表示","총액 표시"]],
-quiz:[{q:"What represents the fare step within a cabin?",opts:["The booking class","The seat number","The flight number","The gate number"],a:0,exp:"The cheapest steps sell out first."},
+quiz:[{q:"What represents the fare step within a cabin?",opts:["The booking class","The seat number","The flight number","The gate number"],a:0,exp:"The seats available in each class change with booking trends and other factors."},
 {q:"What matters in a fare family?",opts:["Seeing at a glance what is included","Long names","Complex rules","English-only explanations"],a:0,exp:"Ease of choice is part of the product."},
 {q:"What happens if you create too many booking classes?",opts:["It tends to cause agency errors and ADMs","Revenue always rises","Nothing","Fares fall"],a:0,exp:"Put ease of use first."}],
 next:"4-2 Ancillaries and the basics of revenue management"});
@@ -36,7 +36,7 @@ sections:[
 ["Yield","Revenue per passenger kilometre: the level of the fares"],
 ["Seat allocation","Adjusting the seats in the cheaper classes according to the forecast"],
 ["Overbooking","Accepting slightly more bookings than seats, allowing for passengers who book but do not show"]]},
-{t:"p",x:"Raising the load factor on cheap fares alone does not raise revenue. Watching load factor and yield together is the basis of revenue management."}]},
+{t:"p",x:"Raising the load factor on cheap fares alone may not raise total revenue, depending on how far the average fare falls. Watching load factor and yield together is the basis of revenue management."}]},
 {h:"What the station should tell head office",blocks:[{t:"check",items:[
 {name:"Local demand",x:"Japanese holidays, events, school breaks and how agency products are moving (1-2)."},
 {name:"Competitors",x:"Other airlines’ fares, campaigns and frequency changes on the route."},
@@ -50,7 +50,7 @@ sections:[
 {t:"point",x:"The value of a station’s sales team is local knowledge. Pass the Japanese market movements behind the numbers to the head office revenue management team early. ※ Revenue management is covered in Part 7, lessons 7-1–7-8."}]}],
 voice:"Head office sees the local market mainly through numbers. Sending short, regular notes on competitor fares, events and agency reactions makes it more likely to shape pricing.",
 terms:[["Revenue Management","収益管理","수익 관리"],["Load Factor","搭乗率","탑승률"],["Yield","イールド","일드(단위 수익)"],["Ancillary Services","付帯サービス","부가서비스"]],
-quiz:[{q:"Which two measures must be watched together?",opts:["Load factor and yield","Flight number and aircraft","Weather and season","Staff numbers"],a:0,exp:"Load factor alone does not raise revenue."},
+quiz:[{q:"Which two measures must be watched together?",opts:["Load factor and yield","Flight number and aircraft","Weather and season","Staff numbers"],a:0,exp:"Load factor alone does not guarantee higher revenue."},
 {q:"What information is worth passing to head office?",opts:["Local demand, competitors and group enquiries","Staff hobbies","The office colour","Nothing"],a:0,exp:"The market behind the numbers."},
 {q:"How do you avoid resentment over ancillaries?",opts:["Make the charges clear at booking","Tell them first at the airport","Hide them","Make them free"],a:0,exp:"Clarity is what matters."}],
 next:"4-3 Types of fare: PEX and IT fares"});
@@ -68,7 +68,7 @@ sections:[
 {name:"Joint announcements",x:"Announcing with the airport company or a tourism body makes coverage more likely."}]}]},
 {h:"Press releases and social media",blocks:[{t:"rows",items:[
 {name:"Headline",x:"From when, between where and where, and what is new."},
-{name:"Body",x:"Facts first, and only confirmed numbers. Give the contact point."},
+{name:"Body",x:"Facts first. Check the basis for every number and label each one clearly as an actual result, a target or a plan. Never present anything unconfirmed as settled. Give the contact point."},
 {name:"Photographs",x:"Provide cleared images in high resolution."},
 {name:"Social media",x:"A Japanese account: a countdown to launch, a look inside the cabin, campaigns. Agree a review step for posts to avoid controversy."}]}]}],
 voice:"Press briefings always bring unexpected questions. Agree answers on sensitive topics — fares, safety, competitors, possible withdrawal — with head office beforehand.",
@@ -91,18 +91,18 @@ sections:[
 {h:"Planning events (examples)",blocks:[{t:"check",items:[
 {name:"Seasonal attractions",x:"Tie in with the destination’s festivals, blossom and autumn leaves."},
 {name:"Agency briefings",x:"Give agencies the new route, the fares and the destination information in one go."},
-{name:"Media visits",x:"Let journalists and influencers experience the destination, observing the rules on invitations and disclosure."},
+{name:"Media visits",x:"Let journalists and influencers experience the destination, observing the conditions of the invitation and making clear any invitation, payment or similar relationship."},
 {name:"Local media",x:"Present the route on regional radio and in newspapers."}]}]},
 {h:"Measuring the effect",blocks:[{t:"rows",items:[
 {name:"Change in bookings",x:"Bookings during the campaign and afterwards."},
 {name:"Agency products",x:"How many new tours were created and how they are selling."},
 {name:"Exposure",x:"The number and content of articles and social media mentions."},
-{name:"Return on investment",x:"Compare the cost with the added revenue and use the result in the next plan."}]},
+{name:"Return on investment",x:"Compare the cost with the added profit, not just the added revenue, and use the result in the next plan."}]},
 {t:"point",x:"Partnership works best as an annual plan, not a one-off event. Keep a yearly list of occasions and talk to partners early."}]}],
 voice:"Partnerships with tourism bodies last when you agree at the start who pays for what and how success is measured. Reporting results in numbers makes the next one easier.",
 terms:[["National Tourism Organisation","政府観光局（NTO）","국가 관광기구(NTO)"],["Travel Fair","旅行博","여행 박람회"],["Familiarisation Trip (FAM Trip)","ファムトリップ","팸투어"],["Return on investment (ROI)","投資収益率（ROI）","투자수익률(ROI)"]],
 quiz:[{q:"What grows demand on a new route?",opts:["Working with tourism bodies, local governments and agencies","Advertising alone","Doing nothing","Only cutting fares"],a:0,exp:"Create a reason to travel."},
-{q:"Which measures show the effect of a partnership?",opts:["Change in bookings and the number of new tours","Staff numbers","Office size","The weather"],a:0,exp:"Compare cost and return as well."},
+{q:"Which measures show the effect of a partnership?",opts:["Change in bookings and the number of new tours","Staff numbers","Office size","The weather"],a:0,exp:"Compare cost and added profit as well."},
 {q:"What makes partnerships work?",opts:["Running them as an annual plan","One-offs","Last-minute contact","A new partner every time"],a:0,exp:"Talk to partners early."}],
 next:"6-1 Building the annual business plan"});
 
@@ -137,7 +137,7 @@ next:"6-2 Tracking and reporting performance"});
 
 set("6-2",{title:"Tracking and Reporting Performance",hl:"tracking performance",subtitle:"Watch the movement weekly, explain the causes monthly, and act on both",
 lead:["Waiting for the results is too late. Watch the booking pace week by week and act as soon as a gap against target opens. Monthly reports explain not just the numbers but the causes of the gap and what comes next.",
-"This article covers the measures to watch, the shape of weekly and monthly reports, and a look back at Parts 1–6."],
+"This article covers the measures to watch, the shape of weekly and monthly reports, and a look back at the sales basics covered so far."],
 sections:[
 {h:"Measures to watch (examples)",blocks:[{t:"fig",id:"sls_kpi",cap:"Figure: sales indicators to watch every month (example)."},{t:"table",cols:["Measure","How to read it"],rows:[
 ["Booking pace","Bookings by departure month, against last year"],
@@ -146,17 +146,17 @@ sections:[
 ["Results by agency","Block utilisation and growth at the main agencies"],
 ["Ancillaries","Revenue from baggage, seat selection and other services"]]}]},
 {h:"The shape of a report",blocks:[{t:"ladder",rise:10,steps:[{name:"Conclusion",sub:"Ahead of or behind target"},{name:"Numbers",sub:"Actual, last year, target"},{name:"Causes",sub:"Market, competitors, ourselves"},{name:"Actions",sub:"What we do next"},{name:"Requests to head office",sub:"Fares, seats, budget"}]},
-{t:"point",x:"Bad news first, and early. Report it with the cause and the next step, and head office will trust the station to handle it (Expat Guide to Japan 4-2)."}]},
-{h:"Looking back at Parts 1–6",blocks:[{t:"rows",items:[
+{t:"point",x:"Bad news first, and early. Report it with the cause and the next step, and head office can make decisions more easily (Expat Guide to Japan 4-2)."}]},
+{h:"Looking back at the sales basics so far",blocks:[{t:"rows",items:[
 {name:"The market",x:"Japan is a market where you sell together with agencies; Japan–Korea routes carry demand both ways with strong seasonal swings (Part 1)."},
 {name:"Channels",x:"Indirect and direct sales share the roles; GDS, BSP and NDC are the infrastructure (Part 2)."},
 {name:"Agencies",x:"Trust, blocks, incentives and ADMs (Part 3)."},
 {name:"Fares and revenue",x:"Clear fares, and load factor and yield together (Part 4)."},
 {name:"Publicity and planning",x:"Partnerships that create a reason to travel, plans with a basis, and early reporting (Parts 5 and 6)."}]}]}],
-voice:"When results fall short, break the cause down by route, period and sales channel. Once the cause is clear, the response narrows and explaining it to head office gets shorter.",
+voice:"When results fall short, break the cause down by route, period and sales channel. Once the cause is clear, you can prioritise the responses according to it and explaining it to head office gets shorter.",
 terms:[["Performance Management","実績管理","실적 관리"],["Year-on-Year","前年比","전년 대비"],["Weekly Report","週次報告","주간 보고"],["By Channel","チャネル別","채널별"]],
 quiz:[{q:"When should sales performance be checked?",opts:["Booking pace, weekly","Once a year after the results","Never","Only on the day of departure"],a:0,exp:"Act as soon as a gap opens."},
 {q:"What is explained alongside the numbers?",opts:["The cause of the gap and the next action","Staff hobbies","The weather","The office colour"],a:0,exp:"Follow the report shape."},
-{q:"When should bad news be reported?",opts:["Early, with the cause and next step","As late as possible","Never","Hidden with the good news"],a:0,exp:"It builds trust."}],
-next:""});
+{q:"When should bad news be reported?",opts:["Early, with the cause and next step","As late as possible","Never","Hidden with the good news"],a:0,exp:"It helps head office make decisions."}],
+next:"6-3 Sales Preparation Before a New Route Launches: To-do List and Policy-setting"});
 })(window.ARTS);

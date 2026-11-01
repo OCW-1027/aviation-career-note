@@ -8,7 +8,7 @@ sections:[
 ["Strength","Simple","Raises revenue for carriers with many connections"],
 ["Weakness","High-value long itineraries can be displaced by short local traffic","Harder forecasting and data management"],
 ["Suits","Mainly point-to-point carriers","Large hub-and-spoke networks"]]}]},
-{h:"Deciding with bid prices",blocks:[{t:"p",x:"A bid price is the revenue expected to be lost by selling the last seat on a leg. Accept a booking if its fare is at least the sum of the bid prices of the legs it uses; otherwise reject it."},
+{h:"Deciding with bid prices",blocks:[{t:"p",x:"A bid price is an estimate of the future revenue expected to be lost by using one seat on a leg at that point. Accept a booking if its fare is at least the sum of the bid prices of the legs it uses; otherwise reject it."},
 {t:"table",cols:["Leg (practice)","Bid price"],rows:[["Fukuoka → Seoul","¥18,000"],["Seoul → Bangkok","¥45,000 (busy)"]]},
 {t:"table",cols:["Booking","Fare","Sum of bid prices","Decision"],rows:[
 ["Seoul → Bangkok only","¥48,000","¥45,000","Accept (48,000 ≥ 45,000)"],
@@ -30,19 +30,19 @@ sections:[
 voice:"Bookings for passengers flying from Japan via Seoul to third countries can be squeezed out by Seoul-only bookings. Passing that connecting demand from the station to head office RM can change how the seats are sold.",
 terms:[["Bid Price","ビッドプライス（限界座席価値）","비드 프라이스(좌석의 한계가치)"],["Origin and Destination (O&D)","O&D（出発地・目的地）","O&D(출발지·목적지)"],["Displacement","ディスプレイスメント（押し出し）","대체 손실(디스플레이스먼트)"],["Point of Sale (POS)","販売地","판매지"],["Minimum Length of Stay","最低宿泊日数","최소 숙박 일수"]],
 quiz:[{q:"A ¥55,000 booking arrives for an itinerary whose bid prices sum to ¥63,000. You…",opts:["Accept","Reject","Must accept","Accept without raising the fare"],a:1,exp:"Accept only if the fare is at least the sum of the itinerary’s bid prices. ¥55,000 < ¥63,000, so accepting would give up expected future revenue worth ¥63,000: reject."},
-{q:"What is a bid price?",opts:["Revenue expected to be lost by selling the last seat","The highest fare","Tax","A fee"],a:0,exp:"A bid price is the future revenue expected to be lost by selling the last seat on a leg now — the seat’s value. Sell if the fare exceeds it; refuse if not. It is not the maximum fare or a tax."},
+{q:"What is a bid price?",opts:["An estimate of the future revenue expected to be lost by using one seat at that point","The highest fare","Tax","A fee"],a:0,exp:"A bid price is an estimate of the future revenue expected to be lost by using one seat on a leg at that point — the seat’s value. Sell if the fare exceeds it; refuse if not. It is not the maximum fare or a tax."},
 {q:"How can station sales help bid-price accuracy?",opts:["Report local holidays, events and competitor moves early","Arrange meals","Clean the airport","Nothing"],a:0,exp:"Bid prices come from demand forecasts, so the sooner stations report local holidays, events and competitor moves, the more accurate the forecast and the bid price. Local knowledge the head-office system lacks is exactly what stations can add."}],
 next:"7-6 Dynamic pricing and new ways to sell"});
 set("7-6",{title:"Dynamic Pricing and New Ways to Sell: From Opening Classes to Moving Prices",hl:"dynamic pricing",subtitle:"From fixed fare ladders to prices that move continuously with demand: NDC offers, ancillary bundles, group quotes, and the rules and trust around price display",
-lead:["Traditional RM managed revenue by opening and closing steps on a fixed fare ladder (booking classes). With NDC (2-3), airlines can now build and present their own offers, and are moving towards varying the prices themselves more finely.","But if customers feel moving prices are unfair, brands lose trust. This lesson covers new pricing approaches, group quotes and the Korean and Japanese rules on price display."],
+lead:["Traditional RM managed revenue by opening and closing steps on a fixed fare ladder (booking classes). With NDC (2-3), airlines can now build and present their own offers, and they are also moving towards varying the prices themselves more finely. NDC, however, is a standard for delivering product information, not a pricing method in itself; keep it separate from continuous pricing.","But if customers feel moving prices are unfair, brands lose trust. This lesson covers new pricing approaches, group quotes and the Korean and Japanese rules on price display."],
 sections:[
 {h:"How pricing is changing",blocks:[{t:"fig",id:"rm_dyn",cap:"Figure: how pricing is changing."},{t:"table",cols:["","Traditional","Emerging"],rows:[
 ["Fares","Choose from fixed steps (classes)","Fine-grained prices that move with demand (continuous pricing)"],
-["Distribution","GDS shows fare tables and availability separately","Airlines build and present offers through NDC"],
+["Distribution","Traditional GDS connections show fare tables and availability separately","Airlines build and present offers through NDC (also delivered via GDSs or aggregators)"],
 ["Content","Fare, then ancillaries","Fare families, ancillaries and seats bundled (4-1, 4-2)"],
 ["By customer","Mostly the same","Offers vary by membership or trip purpose (beware of going too far)"]]}]},
 {h:"Japanese examples",blocks:[{t:"table",cols:["Case","What changed","Aim"],rows:[
-["JAL domestic (flights from 12 April 2023)","Nine fares merged into three: flexible until the day, until the day before, and 28 days ahead, with prices varying by demand","Simplicity and demand-based prices"],
+["A major Japanese airline’s domestic flights (from 12 April 2023)","Nine fares reorganised into three main fares: flexible until the day, until the day before, and 28 days ahead, with prices varying by demand (other fares, such as member fares, also exist)","Simplicity and demand-based prices"],
 ["Tokyo Disney Resort (from 20 March 2021)","Variable ticket prices by date","Evening out crowding"]]},
 {t:"point",x:"Moving prices is not only about charging more. Shifting customers from busy days to quiet ones smooths crowding and can raise both satisfaction and revenue."}]},
 {h:"Group quotes",blocks:[{t:"rows",items:[
@@ -51,7 +51,7 @@ sections:[
 {name:"Release dates",x:"Set release dates and utilisation commitments for travel agency blocks (3-1) so unused seats return to sale."},
 {name:"Ancillary revenue",x:"Include the group’s baggage, seat and on-board sales in the decision."}]}]},
 {h:"Price display and trust",blocks:[{t:"table",cols:["","Korea","Japan"],rows:[
-["Total price","Aviation Business Act Art. 62(5): airlines, GSAs and travel agencies must clearly provide the total the customer actually pays, including fares and charges; the ministry inspects and publishes results","Consumption tax total-price display: prices shown to consumers must include tax (mandatory from 1 April 2021)"],
+["Total price","Aviation Business Act Art. 62(5): airlines, GSAs and travel agencies must clearly provide the total the customer actually pays, including fares and charges; the ministry inspects and publishes results","Consumption tax total-price display: prices of taxable transactions shown to consumers must include tax (mandatory since April 2004; the special exception allowing tax-exclusive prices ended on 1 April 2021). This is separate from showing the total actually paid for an international ticket"],
 ["Misleading display","(Act on Fair Labeling and Advertising, etc.)","Act against Unjustifiable Premiums and Misleading Representations: bans representations that mislead customers into thinking terms are much better than they are, and unfair reference-price displays"]]},
 {t:"check",items:[
 {name:"The first price shown",x:"Show the amount to be paid, including fuel surcharges, airport charges and fees, from the start."},
@@ -65,16 +65,16 @@ quiz:[{q:"What aim was given for Tokyo Disney Resort’s variable pricing?",opts
 {q:"What should a group quote compare?",opts:["The group fare and displaced individual revenue","Staff numbers","Airport size","Weather only"],a:0,exp:"A group quote compares the group’s total fare with the individual revenue displaced by giving it those seats (the bid-price sum). If the group fare is lower, a peak-period group should be declined or its terms revisited."},
 {q:"What does Korea’s Aviation Business Act Art. 62(5) require?",opts:["Clearly provide the total the customer actually pays","Change fares daily","Keep fares secret","Sell for cash only"],a:0,exp:"Korea’s Aviation Business Act Art. 62(5) requires airlines, GSAs and travel agencies to present clearly the total the customer actually pays (fare plus fuel surcharges and taxes). Even with changing prices, the displayed price is the total."}],
 next:"7-7 By the numbers: metrics and RM meetings"});
-set("7-7",{title:"By the Numbers: Airline and Hotel Metrics and the RM Meeting",hl:"RM metrics",subtitle:"Load factor, yield and RASK; hotel ADR, RevPAR and GOPPAR; and what a weekly RM meeting looks at and decides",
-lead:["RM results cannot be judged by load factor alone or by price alone. A key indicator multiplies the two: revenue per unit of capacity offered, RASK for airlines and RevPAR for hotels.","This lesson calculates the main airline and hotel metrics with practice figures and sets out what RM and sales teams review and decide each week."],
+set("7-7",{title:"By the Numbers: Airline and Hotel Metrics and the RM Meeting",hl:"RM metrics",subtitle:"Load factor, yield and PRASK; hotel ADR, RevPAR and GOPPAR; and what a weekly RM meeting looks at and decides",
+lead:["RM results cannot be judged by load factor alone or by price alone. A key indicator multiplies the two: revenue per unit of capacity offered, PRASK (passenger revenue only) for airlines and RevPAR for hotels.","This lesson calculates the main airline and hotel metrics with practice figures and sets out what RM and sales teams review and decide each week."],
 sections:[
 {h:"Airline metrics (practice: 180 seats, 1,000 km)",blocks:[{t:"fig",id:"rm_kpi",cap:"Figure: airline metrics (practice)."},{t:"table",cols:["Metric","Formula","Calculation","Result"],rows:[
 ["Load factor (LF)","Passengers ÷ seats","153 ÷ 180","85%"],
 ["Yield","Passenger revenue ÷ RPK","¥4,590,000 ÷ (153 × 1,000 km)","¥30 per RPK"],
-["RASK","Revenue ÷ ASK","¥4,590,000 ÷ (180 × 1,000 km)","¥25.5"],
+["PRASK","Passenger revenue ÷ ASK","¥4,590,000 ÷ (180 × 1,000 km)","¥25.5"],
 ["CASK","Cost ÷ ASK","¥4,140,000 ÷ 180,000","¥23"],
-["Break-even load factor","CASK ÷ yield","23 ÷ 30","About 77%"]]},
-{t:"point",x:"RASK = yield × load factor (30 × 0.85 = 25.5). Raising load factor by discounting does not raise RASK if yield falls. RM is about making this product larger."}]},
+["Break-even load factor (passenger revenue alone covering costs)","CASK ÷ yield","23 ÷ 30","About 77%"]]},
+{t:"point",x:"Here we deal with passenger revenue only and call it PRASK; cargo and other revenue are excluded, and yield is multiplied by load factor. PRASK = yield × load factor (30 × 0.85 = 25.5). Raising load factor by discounting does not raise PRASK if yield falls. RM is about making this product larger."}]},
 {h:"Hotel metrics (practice: a 200-room hotel for one day)",blocks:[{t:"table",cols:["Metric","Formula","Calculation","Result"],rows:[
 ["Occupancy (Occ)","Rooms sold ÷ rooms available","170 ÷ 200","85%"],
 ["ADR","Room revenue ÷ rooms sold","¥3,400,000 ÷ 170","¥20,000"],
@@ -93,10 +93,10 @@ sections:[
 {name:"What station sales should bring",x:"Travel agency sales trends, group prospects, Japanese events, competitor discounts, and the story behind the numbers."},
 {name:"After the meeting",x:"Turn decisions into travel agency notices, campaigns and booking practices."}]}]}],
 voice:"Reporting only load factor at the weekly meeting tends to get little reaction from head office. Showing revenue per seat side by side with the previous year makes the discussion far more concrete.",
-terms:[["Load Factor (LF)","搭乗率","탑승률"],["RASK (Revenue per Available Seat Kilometre)","提供座席キロあたり収入 (RASK)","공급석킬로미터당 수입 (RASK)"],["ADR (Average Daily Rate)","平均客室単価","객실 평균 단가"],["RevPAR","販売可能客室あたりの売上","판매 가능 객실당 매출"],["GOPPAR","販売可能客室あたりの営業総利益","판매 가능 객실당 영업총이익"]],
-quiz:[{q:"With yield ¥30 and load factor 85%, RASK is…",opts:["¥25.5","¥30","¥35.3","¥85"],a:0,exp:"RASK (passenger revenue per available seat-km) = yield × load factor = ¥30 × 0.85 = ¥25.5; empty seats make it lower than the yield. ¥85 comes from multiplying by the percentage as a whole number."},
-{q:"With ADR ¥20,000 and occupancy 85%, RevPAR is…",opts:["¥17,000","¥20,000","¥23,529","¥85,000"],a:0,exp:"RevPAR (revenue per available room) = ADR × occupancy = ¥20,000 × 0.85 = ¥17,000 — the hotel equivalent of RASK, lower than ADR by the empty rooms. ¥23,529 comes from dividing instead of multiplying."},
-{q:"The break-even load factor formula is…",opts:["CASK ÷ yield","Yield ÷ CASK","RASK × CASK","Seats ÷ passengers"],a:0,exp:"Break-even load factor = CASK ÷ yield: the share of seats that must be filled for passenger revenue to cover costs. For example, CASK ¥23 and yield ¥30 give 23 ÷ 30 ≈ 77%."}],
+terms:[["Load Factor (LF)","搭乗率","탑승률"],["PRASK (Passenger Revenue per Available Seat Kilometre)","提供座席キロあたり旅客収入 (PRASK)","공급석킬로미터당 여객 수입 (PRASK)"],["ADR (Average Daily Rate)","平均客室単価","객실 평균 단가"],["RevPAR","販売可能客室あたりの売上","판매 가능 객실당 매출"],["GOPPAR","販売可能客室あたりの営業総利益","판매 가능 객실당 영업총이익"]],
+quiz:[{q:"With yield ¥30 and load factor 85%, PRASK is…",opts:["¥25.5","¥30","¥35.3","¥85"],a:0,exp:"PRASK (passenger revenue per available seat-km, excluding cargo and other revenue) = yield × load factor = ¥30 × 0.85 = ¥25.5; empty seats make it lower than the yield. ¥85 comes from multiplying by the percentage as a whole number."},
+{q:"With ADR ¥20,000 and occupancy 85%, RevPAR is…",opts:["¥17,000","¥20,000","¥23,529","¥85,000"],a:0,exp:"RevPAR (revenue per available room) = ADR × occupancy = ¥20,000 × 0.85 = ¥17,000 — the hotel equivalent of PRASK, lower than ADR by the empty rooms. ¥23,529 comes from dividing instead of multiplying."},
+{q:"If passenger revenue alone must cover costs, the break-even load factor formula is…",opts:["CASK ÷ yield","Yield ÷ CASK","RASK × CASK","Seats ÷ passengers"],a:0,exp:"Break-even load factor = CASK ÷ yield: the share of seats that must be filled for passenger revenue alone to cover costs, excluding cargo and other revenue. For example, CASK ¥23 and yield ¥30 give 23 ÷ 30 ≈ 77%."}],
 next:"7-8 Applying RM to any business"});
 set("7-8",{title:"Applying RM to Any Business: Hotels, Travel Agencies, Others, and Investment Reviews",hl:"applying RM",subtitle:"Six questions for applying airline-born RM to hotels, travel agencies, restaurants, cargo and more, and the questions that reveal how much RM could add when reviewing a business or investment",
 lead:["RM is not an airline specialism but a way of thinking for any business with fixed capacity, perishable inventory and fluctuating demand. The first step is to put into words what your inventory is and how customers can be segmented.","This lesson gives six questions for applying RM anywhere, how hotels, travel agencies and other businesses use it, and what to check from an RM perspective when reviewing a business or investment."],

@@ -9,15 +9,15 @@ sections:[
 ["Variable demand","Peaks by day, season and time","Holiday peaks, Friday evenings","Weekend hotels, holiday theme parks"],
 ["Segmentable customers","Willingness to pay differs","Business versus leisure travellers","Corporate versus individual, early versus late bookers"],
 ["Advance sales","Sold ahead through bookings","Months before departure","Hotel bookings, concert pre-sales"]]},
-{t:"point",x:"One more condition matters: a low marginal cost. Unless the flight is full, one extra passenger barely changes aircraft, crew or fuel costs, so selling cheaply rather than flying empty makes sense."}]},
+{t:"point",x:"One more condition matters: a low marginal cost. Unless the flight is full, one extra passenger adds some costs, such as fuel, but these can be small compared with the fixed costs of aircraft and crew, so selling cheaply rather than flying empty makes sense."}]},
 {h:"A short history",blocks:[{t:"table",cols:["Year","Event","Significance"],rows:[
-["1968","American Airlines automates overbooking in its SABRE reservation system","Booking data becomes the basis for numerical decisions"],
+["1960s onwards","Airline reservations are computerised, and research and practice on overbooking and related topics develop","Booking data becomes the basis for numerical decisions"],
 ["1972","Littlewood of BOAC publishes a rule for allocating seats between two fares","The answer to “wait for the high fare or sell the low one?” (7-3)"],
 ["1978","US airline deregulation","Free pricing and fierce competition"],
 ["1985","On 17 January American launches deep “Ultimate Super Saver” fares against low-cost rivals","Discount seats offered only on flights likely to have empty seats"],
 ["1987","Belobaba publishes EMSR for multiple fare classes","A method still in use (7-3)"],
-["1988","American introduces its automated DINAMO system","Every flight managed by calculation, daily"],
-["1992","The developers report a US$1.4 billion benefit over three years","RM’s value becomes widely known"],
+["Late 1980s","Systems that support seat allocation by calculation spread in practice","Calculation-based control becomes central to practice"],
+["1992","The developers estimate the revenue benefit over the previous three years at US$1.4 billion","RM’s value becomes widely known"],
 ["1990s","Spread to hotels and car rental; hotels start calling it “revenue management”","A cross-industry discipline"],
 ["2021","Tokyo Disney Resort introduces variable pricing from 20 March","To even out crowding"],
 ["2023","JAL merges nine domestic fares into three from 12 April, with prices varying by demand","From opening and closing classes to moving prices (7-6)"]]},
@@ -34,14 +34,14 @@ sections:[
 {t:"point",x:"Any business with fixed capacity, perishable inventory and fluctuating demand can use RM thinking. Lesson 7-8 shows how to apply it beyond aviation and what to check when evaluating a business or investment."}]}],
 voice:"An empty seat loses its value the moment the flight leaves. It is a simple truth, but it is the starting point for reading sales figures every day. With the RM team, starting from reducing empty seats rather than selling high makes your points land.",
 terms:[["Revenue Management (RM)","収益管理（Revenue Management）","Revenue Management(수익관리)"],["Yield Management","イールドマネジメント","일드 매니지먼트"],["Marginal Cost","限界費用","한계비용"],["Perishable Inventory","消滅性在庫","소멸성 재고"],["Capacity","供給量","공급량"]],
-quiz:[{q:"Which is NOT a condition that favours RM?",opts:["Fixed capacity","Inventory can be carried over to the next day","Fluctuating demand","Customers differ in willingness to pay"],a:1,exp:"RM works where ① capacity is fixed, ② inventory is perishable (an empty seat is worth nothing after departure), ③ demand fluctuates and ④ customers’ willingness to pay differs. If inventory could be carried over, there would be no reason to sell it cheaply today, so that is not a condition."},
-{q:"What benefit did American Airlines’ developers report in 1992?",opts:["US$100 million a year","US$1.4 billion over three years","US$100 billion over ten years","None"],a:1,exp:"The 1992 Interfaces paper by American Airlines’ RM developers estimated the benefit at US$1.4 billion over three years — more than the airline’s net profit over the same period, one reason RM became central to airline management."},
+quiz:[{q:"Which is NOT a condition that favours RM?",opts:["Fixed capacity","Inventory can be carried over to the next day","Fluctuating demand","Customers differ in willingness to pay"],a:1,exp:"RM works where ① capacity is fixed, ② inventory is perishable (an empty seat is worth nothing after departure), ③ demand fluctuates and ④ customers’ willingness to pay differs. If inventory could be carried over, there would be less need to sell it cheaply today, so that is not a condition that favours RM. Fixed capacity and perishability are what make RM a good fit."},
+{q:"What benefit did American Airlines’ developers estimate in 1992?",opts:["US$100 million a year","US$1.4 billion over three years","US$100 billion over ten years","None"],a:1,exp:"The 1992 Interfaces paper by American Airlines’ RM developers estimated the benefit at US$1.4 billion over three years — more than the airline’s net profit over the same period, one reason RM became central to airline management."},
 {q:"Which best describes RM?",opts:["Only raising prices","Protecting seats for high-paying customers while still selling seats that would go empty","Selling everything at one price","An advertising technique"],a:1,exp:"RM protects seats for customers who will pay more while still selling, even cheaply, seats that would otherwise fly empty. Raising prices alone leaves more seats empty; a single price for all loses revenue from those willing to pay more."}],
 next:"7-2 Segmenting customers: willingness to pay and fare fences"});
 set("7-2",{title:"Segmenting Customers: Willingness to Pay and Fare Fences",hl:"fare fences",subtitle:"The same seat is worth different amounts to different people. Fences that stop high-paying customers trading down, booking classes, and the Korean and Japanese rules on fares",
-lead:["On the same flight in the same economy seat, a traveller heading to tomorrow’s meeting and one planning a holiday three months away are willing to pay very different amounts. RM turns this difference in willingness to pay into different fares.","But if anyone can choose the cheapest fare, revenue simply falls. So cheaper fares carry conditions, or fences, that keep high-paying customers from trading down. This lesson covers segmentation, types of fence, how booking classes work and the legal framework for fares."],
+lead:["On the same flight in the same economy seat, a traveller heading to tomorrow’s meeting and one planning a holiday three months away are willing to pay very different amounts. This is an example for thinking about how customers differ; actual purchase conditions and willingness to pay vary from person to person. RM turns this difference in willingness to pay into different fares.","But if anyone can choose the cheapest fare, revenue simply falls. So cheaper fares carry conditions, or fences, that keep high-paying customers from trading down. This lesson covers segmentation, types of fence, how booking classes work and the legal framework for fares."],
 sections:[
-{h:"Two kinds of customer",blocks:[{t:"fig",id:"rm_fence",cap:"Figure: fare fences."},{t:"table",cols:["","Business","Leisure"],rows:[
+{h:"Two kinds of customer (typical tendencies)",blocks:[{t:"fig",id:"rm_fence",cap:"Figure: fare fences."},{t:"table",cols:["","Business","Leisure"],rows:[
 ["Booking time","Often late","Early"],
 ["Price sensitivity","Low (company pays)","High (pays personally)"],
 ["Changes and cancellations","Often needed","Rare"],
@@ -57,7 +57,7 @@ sections:[
 {t:"point",warn:true,x:"Weak fences let high-paying customers trade down (dilution). Fences that are too complex confuse customers and cause complaints. JAL’s 2023 consolidation of domestic fares from nine types to three is an example of balancing this with simplicity."}]},
 {h:"Booking classes (RBD) and nesting",blocks:[{t:"p",x:"Airlines split the same economy cabin into booking classes (a single letter, the RBD), each with its own fare and conditions. RM analysts decide how many seats each class may sell and open or close them in the reservation system."},
 {t:"table",cols:["Booking class (example)","Fare (example)","Conditions (example)","Status (example)"],rows:[
-["Y","¥60,000","Fully flexible and refundable","Always open"],
+["Y","¥60,000","Fully flexible and refundable","Always open (an assumption of this simple nesting example)"],
 ["B","¥45,000","Changes for a fee","Up to 88 seats"],
 ["M","¥30,000","Purchase 14 days ahead","Up to 67 seats"],
 ["Q","¥20,000","28 days ahead, non-refundable","Up to 34 seats (closed when sold out)"]]},
@@ -67,7 +67,7 @@ sections:[
 ["Travel agencies","Early-booking discounts, last-minute reductions, tiers within packages"],
 ["Theme parks","Date-based prices, entry-time prices"]]}]},
 {h:"The legal framework for fares",blocks:[{t:"table",cols:["","Korea (Aviation Business Act)","Japan (Civil Aeronautics Act)"],rows:[
-["International","Art. 14(1): approval from or filing with the Minister under air services agreements","Art. 105(3): approval by the Minister"],
+["International","Art. 14(1): approval from or filing with the Minister under air services agreements","Art. 105(3): approval by the Minister (Japanese carriers; foreign carriers under Art. 129-2)"],
 ["Domestic","Art. 14(2): at least 20 days’ advance notice of new or changed fares","Art. 105(1): prior filing with the Minister"],
 ["Standards","Art. 14(3): no unreasonable discrimination against particular passengers or shippers, no unfair competition, etc.","Art. 105(2): the Minister may order changes for unfair discrimination, gross inappropriateness or unfair competition"],
 ["Display","Art. 62(5): airlines, GSAs and travel agencies must clearly provide the total amount the customer actually pays","Art. 107: fares, charges and conditions of carriage posted at offices and made available online"]]},
@@ -81,7 +81,7 @@ next:"7-3 Allocating seats: Littlewood’s rule and nesting"});
 set("7-3",{title:"Allocating Seats: Littlewood’s Rule and Nesting (EMSR)",hl:"seat allocation",subtitle:"Sell the last seat to today’s low-fare customer, or keep it for a high-fare customer who may come later? One formula gives the answer; here it is checked with numbers and extended to four classes",
 lead:["The core question of RM is simple. One seat is left and a ¥20,000 booking arrives. Sell it, or keep it for someone who would pay ¥50,000 just before departure?","Littlewood’s rule (1972) was the first to answer it with numbers. This lesson works through the idea and calculation, its extension to several classes (EMSR) and nesting, where higher classes can use seats from lower ones, using practice figures."],
 sections:[
-{h:"Littlewood’s rule",blocks:[{t:"fig",id:"rm_little",cap:"Figure: Littlewood’s rule (exercise)."},{t:"p",x:"Compare the expected value of holding a seat, the high fare times the probability that at least one more high-fare customer arrives, with the certain low fare. Protect the seat while high fare × probability > low fare; the point where they are equal gives the protection level."},
+{h:"Littlewood’s rule",blocks:[{t:"fig",id:"rm_little",cap:"Figure: Littlewood’s rule (exercise)."},{t:"p",x:"Compare the expected value of holding a seat, the high fare times the probability that high-fare demand exceeds the seats already protected (at least one more high-fare customer arrives), with the certain low fare. Protect the seat while high fare × probability > low fare; the point where they are equal gives the protection level."},
 {t:"table",cols:["","Formula"],rows:[
 ["Decision","High fare × P(high-fare demand > y) = low fare"],
 ["Equivalently","P(high-fare demand > y) = low fare ÷ high fare"],
@@ -94,10 +94,10 @@ sections:[
 ["z","Value for 1 − 0.4 = 0.6: 0.253"],
 ["Protection level","30 + 10 × 0.253 = 32.5 → 33 seats"],
 ["Low-fare limit","100 − 33 = 67 seats"]]},
-{t:"table",cols:["Low fare ÷ high fare","Seats to protect (mean 30, SD 10)"],rows:[
-["0.2 (very cheap low fare)","38"],["0.4","33"],["0.5","30 (the mean)"],["0.6","28"],["0.8 (small gap)","22"]]},
+{t:"table",cols:["Low fare ÷ high fare","Seats to protect (normally distributed demand example: mean 30, SD 10; rounded to the nearest whole number)"],rows:[
+["0.2 (very cheap low fare)","38"],["0.4","33"],["0.5","30 (the mean in this normal-distribution example)"],["0.6","27"],["0.8 (small gap)","22"]]},
 {t:"point",x:"The wider the fare gap, the more seats are protected for high-fare customers. With a small gap, selling the low fare now is better."}]},
-{h:"Four classes (EMSR-b)",blocks:[{t:"p",x:"With three or more classes, the classes above are treated as one high-fare block and Littlewood’s rule is applied against the next class down. The block fare is the demand-weighted average; mean demands add, and standard deviations combine as the square root of the sum of squares."},
+{h:"Four classes (EMSR-b)",blocks:[{t:"p",x:"With three or more classes, the classes above are treated as one high-fare block and Littlewood’s rule is applied against the next class down. The block fare is the demand-weighted average; mean demands add, and standard deviations combine as the square root of the sum of squares. In this example, demand in each class is assumed to be independent, and results are rounded to the nearest whole number."},
 {t:"table",cols:["Class","Fare","Mean demand","SD"],rows:[["Y","¥60,000","15","5"],["B","¥45,000","20","7"],["M","¥30,000","30","9"],["Q","¥20,000","60","15"]]},
 {t:"table",cols:["Protected block","Block fare","Ratio with next class","Protection level","Next class limit (100 seats)"],rows:[
 ["Y","¥60,000","45,000 ÷ 60,000 = 0.75","11.6 → 12","B: 88"],
@@ -112,7 +112,7 @@ sections:[
 {t:"note",x:"* Real systems add forecasts, cancellations, overbooking (7-4) and connections (7-5). This lesson uses a single leg without cancellations to show the idea."}]}],
 voice:"When you hesitate over a cheap group booking on a flight close to departure, look at past late-booking numbers. Deciding by expected later demand rather than by instinct helps station judgement too.",
 terms:[["Protection Level","保護席数","보호 좌석 수"],["Booking Limit","販売上限","판매 한도"],["Littlewood’s Rule","リトルウッドの法則","리틀우드 법칙"],["Expected Marginal Seat Revenue (EMSR)","期待限界座席収入","기대 한계 좌석 수입"],["Standard Deviation","標準偏差","표준편차"]],
-quiz:[{q:"With fares of ¥50,000 and ¥20,000, what probability does Littlewood’s rule compare?",opts:["0.2","0.4","0.6","1.0"],a:1,exp:"Littlewood’s rule compares low fare ÷ high fare = 20,000 ÷ 50,000 = 0.4: protect seats up to the point where the chance of high-fare demand exceeding y equals 0.4. Take care not to confuse it with 0.6 (1 − 0.4)."},
+quiz:[{q:"With fares of ¥50,000 and ¥20,000, under Littlewood’s rule, what is the threshold for the probability that high-fare demand exceeds the protection level?",opts:["0.2","0.4","0.6","1.0"],a:1,exp:"Under Littlewood’s rule, the threshold is low fare ÷ high fare = 20,000 ÷ 50,000 = 0.4: protect seats up to the point where the chance of high-fare demand exceeding y equals 0.4. Take care not to confuse it with 0.6 (1 − 0.4)."},
 {q:"As the fare gap widens, the protection level…",opts:["Rises","Falls","Stays the same","Becomes zero"],a:0,exp:"The wider the gap, the smaller the ratio (low ÷ high) and the more it is worth waiting for high-fare customers, so protection rises. With a small gap, selling early at the low fare pays better."},
 {q:"Which describes nesting?",opts:["Fixing seats by class","Higher classes can use lower-class seats","Cheap classes never sell out first","All fares equal"],a:1,exp:"With nesting, higher classes can use seats allocated to lower classes. Fixing seats by class wastes them: a high-fare customer could be refused while lower-class seats sit empty. Cheap classes selling out first is normal."}],
 next:"7-4 Forecasting and overbooking"});
@@ -122,7 +122,7 @@ sections:[
 {h:"Demand forecasting",blocks:[{t:"fig",id:"rm_fcst",cap:"Figure: five things to watch when forecasting demand."},{t:"rows",items:[
 {name:"Booking curve",x:"Seats sold by days before departure, compared with last year or similar flights."},
 {name:"Pickup",x:"How many more seats will sell from a given point to departure, based on past flights on the same day of the week and in the same season."},
-{name:"Hidden demand",x:"Once a class closes or the flight fills, turned-away demand is not recorded; forecasting from sales alone understates true demand (unconstraining)."},
+{name:"Hidden demand",x:"Once a class closes or the flight fills, turned-away demand does not appear in sales figures (check search and denial records too); forecasting from sales alone understates true demand (unconstraining)."},
 {name:"Spill and recapture",x:"Some turned-away customers rebook on another flight or a higher class (recapture); others go to competitors (spill)."},
 {name:"Local intelligence",x:"Holidays, events, school breaks, travel agency products: information stations can pick up early (4-2)."}]}]},
 {h:"How overbooking works",blocks:[{t:"p",x:"The more you sell, the fewer empty seats, but the higher the chance of denied boarding. Compare the gain from filling a seat with the cost of denying boarding, and keep selling only while the gain is larger."},
@@ -134,8 +134,8 @@ sections:[
 {h:"Rules when boarding is denied",blocks:[{t:"table",cols:["","Korea","Japan"],rows:[
 ["Basis","Air Transport User Protection Standard Art. 4 (Notice 2026-116); Consumer Dispute Resolution Standard (FTC Notice 2025-14)","No statutory compensation amounts; each carrier’s conditions of carriage and policies apply"],
 ["First step","On flights departing Korean airports, seek volunteers to minimise involuntary denied boarding","Many carriers seek volunteers with incentives"],
-["International compensation","With a substitute flight: on routes of up to 4 hours, US$200 if within 2–4 hours, US$400 beyond 4 hours; on longer routes US$300 and US$600. No substitute: refund plus US$600 (maximum amounts paid)","Carrier policy"],
-["Domestic compensation","Substitute within 1–3 hours: 20% of the segment fare; after 3 hours: 30%. No substitute: refund plus a ticket for the segment","Carrier policy"]]},
+["International compensation","With a substitute flight (timed by delay in arrival at the destination): on routes of up to 4 hours, US$200 if arrival is 2–4 hours late, US$400 if more than 4 hours late; on longer routes US$300 and US$600. No substitute: refund plus US$600 (maximum amounts under the standard; higher compensation may be agreed)","Carrier policy"],
+["Domestic compensation","Substitute arriving at the destination 1–3 hours late: 20% of the segment fare; more than 3 hours late: 30%. No substitute: refund plus a ticket for the segment","Carrier policy"]]},
 {t:"note",x:"* Korea’s standard requires the maximum amounts under the Consumer Dispute Resolution Standard for involuntary denied boarding; it does not apply where higher amounts are agreed or paid. Check each Japanese carrier’s own guidance. ★"}]},
 {h:"On the ground",blocks:[{t:"rows",items:[
 {name:"Share the forecast",x:"The day before and on the morning of departure, share bookings and expected show-ups with dispatch and the airport."},
@@ -144,8 +144,8 @@ sections:[
 {name:"Selection and records",x:"Choose passengers under company rules and record reasons and compensation."}]}]}],
 voice:"On days when overbooking might mean denying boarding, have the whole counter team go through the procedure for asking for volunteers and the compensation on offer the day before. Being prepared keeps the announcements calm on the day.",
 terms:[["Demand Forecasting","需要予測","수요 예측"],["Booking Curve","ブッキングカーブ","부킹 커브"],["No-show","ノーショー","노쇼"],["Denied Boarding","搭乗拒否","탑승 거부"],["Unconstraining","アンコンストレイニング（制約除去）","수요 제약 해제"]],
-quiz:[{q:"Because turned-away demand is not recorded, forecasting from sales alone…",opts:["Understates true demand","Overstates true demand","Has no effect","Raises fares"],a:0,exp:"Customers turned away after a class closes leave no record, so forecasting from sales alone understates demand (constrained demand). That leads to selling cheap too early and understating demand again — a spiral that unconstraining corrects."},
-{q:"Under Korea’s standard, on an international route of up to 4 hours with a substitute within 2–4 hours, the maximum compensation is…",opts:["US$100","US$200","US$400","US$600"],a:1,exp:"Under Korea’s consumer dispute resolution standard, on international routes of up to four hours the cap is US$200 for a substitute two to four hours later and US$400 if it is more than four hours later: longer waits bring higher compensation."},
+quiz:[{q:"Because turned-away demand does not appear in sales figures, forecasting from sales alone…",opts:["Understates true demand","Overstates true demand","Has no effect","Raises fares"],a:0,exp:"Customers turned away after a class closes do not appear in sales figures, so forecasting from sales alone understates demand (constrained demand). That leads to selling cheap too early and understating demand again — a spiral that unconstraining corrects."},
+{q:"Under Korea’s standard, on an international route of up to 4 hours with a substitute flight arriving at the destination 2–4 hours late, the compensation amount in the standard is…",opts:["US$100","US$200","US$400","US$600"],a:1,exp:"Under Korea’s consumer dispute resolution standard, on international routes of up to four hours the cap is US$200 when the substitute reaches the destination two to four hours late and US$400 if it is more than four hours late: longer delays in arrival bring higher compensation. Higher compensation may also be agreed."},
 {q:"If the cost of each denied boarding rises, the best booking level…",opts:["Rises","Falls","Stays the same","Doubles"],a:1,exp:"Accepting more bookings cuts empty-seat losses but raises denied-boarding losses. The higher the cost per denied passenger (compensation, hotel, goodwill), the heavier that side weighs, so the best booking level falls."}],
 next:"7-5 Networks and bid prices"});
 })(window.ARTS);

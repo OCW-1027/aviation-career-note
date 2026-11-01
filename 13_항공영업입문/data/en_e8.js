@@ -6,10 +6,10 @@ lead:["Sales staff are rarely at the airport. Yet every promise in a ticket you 
 sections:[
 {h:"What you sold, and what happens at the airport",blocks:[{t:"fig",id:"sls_promise",cap:"Animated figure: each promise made at the time of sale, and where it is tested at the airport, lights up in turn (example)."},{t:"table",cols:["Promise when selling","What happens at the airport","What sales should tell customers"],rows:[
 ["Departure time","Check-in and gate deadlines; miss them and you may not fly","The deadlines and the recommended arrival time ★"],
-["Seat assignment","An aircraft change can change the seat map","A seat assignment is not guaranteed and can change"],
+["Seat assignment","An aircraft change can change the seat map","A seat assignment is not guaranteed and can change; what happens and the refund conditions if it does"],
 ["Baggage allowance","Weight and pieces are checked at the counter; excess is charged","The allowance for each fare and the excess charges"],
-["Connections","Bookings below the minimum connecting time (MCT) are not allowed; separate tickets are often not protected","Book through tickets; the risk of separate tickets"],
-["Special services","Wheelchairs, unaccompanied minors, pets and medical needs require advance requests","How to request and the deadline (e.g. 48 hours) ★"],
+["Connections","Through bookings below the minimum connecting time (MCT) are normally not allowed; separate tickets are often not protected","Book through tickets; the risk of separate tickets"],
+["Special services","Wheelchairs, unaccompanied minors, pets and medical needs require advance requests","How to request and the deadline (which varies by the type of assistance and the airline), and what happens if the request could not be made in advance ★"],
 ["Travel documents","No valid passport, visa or electronic travel authorisation means no boarding","Passengers must check for themselves, and where to ask"]]},
 {t:"note",x:"* Deadlines vary by airline, airport and fare. Keep a list of your own rules. ★"}]},
 {h:"What to confirm with the airport station",blocks:[{t:"check",items:[
@@ -33,7 +33,7 @@ sections:[
 {t:"note",x:"* The detailed airport procedures are in the course Airline Passenger Operations (e.g. 1-3 check-in, 1-10 and 1-11 baggage, 2-1 the gate)."}]}],
 voice:"Sales and the airport station keep the same promise from opposite ends. Check the airport’s rules before you sell, and tell the airport after you sell. That two-way habit pays off when things go wrong.",
 terms:[["Check-in Deadline","チェックイン締め切り時刻","탑승수속 마감 시각"],["Minimum Connecting Time (MCT)","最低乗り継ぎ時間","최소 연결 시간"],["Special Service Request (SSR)","特別サービスリクエスト（SSR）","특별 서비스 요청"],["Group","団体","단체"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"]],
-quiz:[{q:"What should sales tell customers about seat assignments?",opts:["They are always honoured","They can change if the aircraft changes","They cannot be changed at the airport","The fee is refunded"],a:1,exp:"An aircraft change can change the seat map."},
+quiz:[{q:"What should sales tell customers about seat assignments?",opts:["They are always honoured","They can change if the aircraft changes","They cannot be changed at the airport","The fee is refunded"],a:1,exp:"An aircraft change can change the seat map. If a paid seat assignment changes, check the airline’s and fare’s rules for what happens and the refund conditions."},
 {q:"What is the risk of connecting on separately bought tickets?",opts:["None","If the first flight is late, the next is often not protected","Baggage is cheaper","Bags are always checked through"],a:1,exp:"Recommend through tickets."},
 {q:"After selling a large group, what should sales do by the day before?",opts:["Nothing","Tell the station the numbers, arrival time and special passengers","Work it out at the airport on the day","Tell only the agency"],a:1,exp:"The station can prepare counters and staff."}],
 next:"8-2 When operations are disrupted"});
@@ -62,7 +62,7 @@ sections:[
 {name:"Most affected first",x:"Groups, connecting passengers, corporate travellers, VIPs and those with special service requests."},
 {name:"Next update time",x:"For anything not yet decided, promise when you will update."},
 {name:"Record",x:"Who you contacted, when and what you said: the basis for later enquiries, complaints and reports."}]}]},
-{h:"The time you knew and the time you told",blocks:[{t:"point",warn:true,x:"For flights to and from Korea, airlines must inform passengers without delay once they know of a delay or cancellation, and airlines that informed late have been fined (Passenger 5-8). Record the time of every message sales sends to agencies and customers too, not only the airport’s. ★"}]},
+{h:"The time you knew and the time you told",blocks:[{t:"point",warn:true,x:"For tickets departing from Korea, there is a standard requiring airlines to inform passengers without delay of operational changes such as a delay of 30 minutes or more or a cancellation, where their contact details are known. Check the current rules for scope, exceptions and method (Passenger 5-8). Record the time of every message sales sends to agencies and customers too, not only the airport’s. ★"}]},
 {h:"When it can be foreseen, such as a typhoon",blocks:[{t:"rows",items:[
 {name:"Set a decision time",x:"Agree internally by what time the day before the next day’s operation will be decided."},
 {name:"Publish conditions early",x:"Even before cancelling, publish a waiver letting passengers on affected flights rebook or get a refund free of charge."},
@@ -81,12 +81,12 @@ lead:["For tickets sold through a travel agency, the agency is the customer’s 
 "This lesson covers what to send agencies, how to write the rebooking and refund conditions (the waiver), groups and packages, common questions and how to answer them, and what to do afterwards."],
 sections:[
 {h:"What to send agencies",blocks:[{t:"fig",id:"sls_agent",cap:"Animated figure: what to send travel agencies in a disruption, and how, lights up in turn (example)."},{t:"table",cols:["What","Content and method"],rows:[
-["Booking changes (GDS)","A schedule change notification updates the booking status and places it in the agency’s queue; the agency checks the status and acts ★"],
+["Booking changes (GDS)","For bookings made through a GDS, a schedule change notification updates the booking status and places it in the agency’s queue; the agency checks the status and acts ★"],
 ["Rebooking and refund conditions","The waiver: affected flights, dates, permitted flights, refund handling and what to enter on the ticket"],
 ["Mass notification","One email to all agencies and the agency website, with version and time stated"],
 ["Point of contact","A dedicated agency phone line and email, with extended hours"],
 ["Groups and blocks","The account manager calls each agency and secures seats on alternative flights first"],
-["Refunds","Through BSP under your own procedures; no fees where the conditions say so"]]},
+["Refunds","Tickets settled through BSP are refunded under the relevant procedure and your own rules; handling differs by sales channel; no fees where the conditions say so"]]},
 {t:"note",x:"* How changes appear in the GDS (status codes and so on) and how they are processed differ by GDS and airline. Keep an agency guide ready (2-2, 3-3). ★"}]},
 {h:"How to write a waiver",blocks:[{t:"check",items:[
 {name:"Scope",x:"Flight numbers, dates and sectors; the ticketing date the waiver applies to."},
@@ -98,13 +98,13 @@ sections:[
 {t:"point",warn:true,x:"Vague conditions make agencies hesitate and keep customers waiting. Processing that does not match the conditions also leads to ADMs (3-2) and disputes with agencies later. Avoid ambiguous wording and add examples."}]},
 {h:"Groups and packages",blocks:[{t:"rows",items:[
 {name:"Seats first",x:"Groups are large and seats on alternative flights go quickly. The account manager works with the agency and secures them first."},
-{name:"Hotels and tours",x:"Packages include hotels, local tours and transfers. The agency deals with its customers under its travel terms (in Japan, flight cancellations are often outside the itinerary-guarantee compensation) ★."},
+{name:"Hotels and tours",x:"Packages include hotels, local tours and transfers. The agency deals with its customers under its travel terms (in Japan, changes due to cancellations may fall outside the itinerary-guarantee change compensation; refunds and damages are checked separately) ★."},
 {name:"Tour leaders and ground agents",x:"Confirm contact details for the day and share them with the airport station."},
 {name:"Large groups",x:"Agree with the station on where they will check in and wait at the airport (8-1)."}]}]},
 {h:"Common questions and how to answer",blocks:[{t:"table",cols:["Question","How to answer"],rows:[
 ["When will it fly?","The confirmed facts and the time of the next update"],
 ["Can it be changed free of charge?","The waiver conditions (scope, dates, flights)"],
-["Will hotel and meal costs be covered?","The company rules; it depends on the cause (weather or ATC, or the airline’s responsibility)"],
+["Will hotel and meal costs be covered?","Check the applicable law first, then explain the company rules; check meal and hotel support separately from monetary compensation (compensation may depend on the cause: weather or ATC, or the airline’s responsibility)"],
 ["Can they move to another airline?","The endorsement conditions and available flights"],
 ["What is the refund fee?","As in the conditions, with the procedure and deadline"],
 ["We have no contact details for the customer","Ask the agency to inform the customer, and to add contact details to the booking where possible"]]}]},
@@ -129,7 +129,7 @@ sections:[
 ["Customer contact details","Held by the agency (sometimes not in the booking)","Held by you from the booking"],
 ["Where enquiries go","The agency’s desk","Your call centre and social media"],
 ["Watch for","Do not let terms differ between agencies","Wrong or missing contact details; customers the notice does not reach"]]},
-{t:"point",x:"Passengers on the same flight receive different notices depending on where they bought their tickets. Align conditions and content across indirect and direct sales so that no customer is treated unfairly (2-1)."}]},
+{t:"point",x:"Passengers on the same flight receive different notices depending on where they bought their tickets. Align conditions and content across indirect and direct sales so that no customer is treated unfairly (2-1). Even when an agency is the point of contact, the airline is not released from its responsibility to give the necessary information and assistance."}]},
 {h:"How to inform direct customers",blocks:[{t:"fig",id:"sls_direct",cap:"Animated figure: the order for informing direct customers, from the first notice to the call centre and the airport (example)."},{t:"check",items:[
 {name:"Mass notice",x:"Email, SMS and app message to every customer on affected flights, in the language they booked in."},
 {name:"Website and social media",x:"The same content in the news section and on social media, with the time of each update."},
@@ -144,11 +144,11 @@ sections:[
 {name:"Special services",x:"Re-arrange wheelchairs, unaccompanied minors and medical needs on the new flight, and tell the airport station."}]}]},
 {h:"Explaining compensation (examples ★)",blocks:[{t:"table",cols:["Country or region","Main rules (examples)"],rows:[
 ["Korea","The consumer dispute resolution standards give compensation guidelines for delays and cancellations the airline is responsible for (Passenger 5-4)"],
-["Japan","No uniform statutory compensation; each airline’s conditions of carriage and policy apply"],
-["Flights to and from the EU, etc.","EU Regulation 261/2004 sets compensation and care such as meals and hotels"]]},
+["Japan","No uniform statutory fixed compensation; each airline’s conditions of carriage and policy apply. Liability for damages is assessed separately"],
+["Flights departing the EU, etc.","EU Regulation 261/2004 applies to flights departing the EU and others, depending on the operating carrier and route; financial compensation and care such as meals and hotels are set out separately"]]},
 {t:"point",x:"Whether compensation applies depends on the cause: force majeure such as weather or air traffic control, or the airline’s responsibility. Sales should not promise on the spot; explain the company’s standards and where to apply."},
 {t:"note",x:"* Application varies by country, airline, cause and route. Check the latest law and conditions of carriage. ★"}]},
-{h:"Exercise: a typhoon cancels tomorrow’s flight (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before 15:00",sub:"Operational decision (cancel)"},{name:"15:30",sub:"Share internally; finalise wording and the waiver"},{name:"16:00",sub:"Mass notice to direct customers, email to all agencies, post on website and social media"},{name:"16:30",sub:"Individual calls to groups, corporate, connecting and special-service customers"},{name:"From 17:00",sub:"Extra call-centre staff; phone those not reached"},{name:"On the day (morning)",sub:"Information at the airport; compile records and review"}]},
+{h:"Exercise: a typhoon cancels tomorrow’s flight (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before 15:00",sub:"Operational decision (cancel); promptly notify the confirmed facts"},{name:"15:30",sub:"Share internally; finalise wording and the waiver"},{name:"16:00",sub:"Follow-up with rebooking conditions: mass notice to direct customers, email to all agencies, post on website and social media"},{name:"16:30",sub:"Individual calls to groups, corporate, connecting and special-service customers"},{name:"From 17:00",sub:"Extra call-centre staff; phone those not reached"},{name:"On the day (morning)",sub:"Information at the airport; compile records and review"}]},
 {t:"rows",items:[
 {name:"Think it through",x:"In your airline, who does what, using what, at each of these times? Are the contact numbers and template wording ready in advance?"}]}]}],
 voice:"Direct customers take the airline’s handling as the airline itself. Notice that comes quickly, changes they can make themselves, and a phone line that answers: get those three right and trust survives a disruption.",

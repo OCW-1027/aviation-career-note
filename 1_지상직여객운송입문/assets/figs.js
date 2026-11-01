@@ -352,8 +352,8 @@ jk_year_wave:function(){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="
   '<rect x="'+(X0-20)+'" y="'+ly+'" width="26" height="6" rx="3" fill="'+c+'"/><text x="'+(X0+12)+'" y="'+(ly+7)+'" font-size="14" font-weight="800" fill="'+c+'" font-family="Arial">'+name+'</text>'}
  s+=line(KR,B,'KR \u2192 JP',22)+line(JP,OR,'JP \u2192 KR',44);
  /* 番号：連休 */
- var M=[[1,KR[1],1,B],[8,KR[8],2,B],[2,JP[2],3,OR],[4,JP[4],4,OR],[7,JP[7],5,OR],[11,KR[11],6,D]];
- M.forEach(function(m){var x=X(m[0]),y=Y(m[1])-22;s+='<g opacity="0">'+badge(m[2],x,y,12,m[3])+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.6;.64;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
+ var M=[[1,KR[1],1,B],[8,KR[8],2,B],[2,JP[2],3,OR],[4,JP[4],4,OR],[7,JP[7],5,OR],[11,KR[11],6,D],[4,KR[4],7,B,1],[6,KR[6],8,B]];
+ M.forEach(function(m){var x=X(m[0]),y=m[4]?Y(m[1])+24:Y(m[1])-22;s+='<g opacity="0">'+badge(m[2],x,y,12,m[3])+'<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.6;.64;1" dur="'+DUR+'s" repeatCount="indefinite"/></g>'});
  return s+'</svg>'},
 baggage_flow:function(){var D3=12,s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img"><rect width="900" height="360" fill="#F7FAFD"/>';
  var P=[[70,120],[210,120],[350,120],[490,240],[650,240],[820,160]];

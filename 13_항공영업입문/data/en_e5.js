@@ -1,16 +1,16 @@
 /* 航空営業入門 6-5 — English version */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("6-5",{title:"An Annual Sales Calendar for Japan–Korea Routes: Building One with the 2027 Calendar",hl:"annual sales calendar",subtitle:"Overlay the two waves, Korea-origin and Japan-origin, to plan the year: market size, how the 2027 holidays fall, a toolbox of fares and sales measures, and a timeline of what to do months ahead",
-lead:["Japan–Korea is one of the busiest bilateral air markets in the world. Yet 2025 figures show that Koreans visiting Japan outnumbered Japanese visiting Korea by about 2.6 to 1, so demand is heavily one-sided. Relying only on Korea-origin peaks leaves empty seats in Japan-origin low seasons.","This lesson checks the size of the market, overlays the Korea-origin and Japan-origin waves across the year, and builds an annual sales calendar using how the 2027 holidays fall. It then sets out which fare and sales tools to use, and how many months ahead."],
+lead:["Japan and Korea form a market with busy two-way travel. However, visitor numbers by nationality are not the same as air demand by point of origin. Koreans visiting Japan far outnumber Japanese visiting Korea, but the direction of demand should be checked against bookings by origin. Relying only on Korea-origin peaks leaves empty seats in Japan-origin low seasons.","This lesson checks the size of the market, overlays the Korea-origin and Japan-origin waves across the year, and builds an annual sales calendar using how the 2027 holidays fall. It then sets out which fare and sales tools to use, and how many months ahead."],
 sections:[
 {h:"Market size (2025)",blocks:[{t:"table",cols:["Item","2025","Key point"],rows:[
 ["Korea to Japan (Korean visitors to Japan)","9,459,600 (up 7.3%)","A record and the largest source market; December’s 974,200 was the highest single month ever"],
-["Japan to Korea (Japanese visitors to Korea)","3,653,000 (up 13.3%)","Faster growth, but only about 40% of the Korea-origin volume"],
+["Japan to Korea (Japanese visitors to Korea)","3,653,000 (up 13.3%, estimate)","Faster growth, but only about 40% of the number of Korean visitors to Japan"],
 ["Korean outbound travel","29.55 million","Above the 2019 pre-pandemic peak; Japan is the top destination"],
 ["Total visitors to Japan","42,683,600","Above 40 million for the first time"]]},
-{t:"note",x:"* Sources: Japan National Tourism Organization (JNTO) visitor arrivals (December 2025 estimate, full year); Korea Tourism Organization tourism statistics (2025, provisional)."},
+{t:"note",x:"* Sources: Japan National Tourism Organization (JNTO) estimates published in January 2026 (2025, full year); Korea Tourism Organization tourism statistics (2025, provisional). Figures may change when finalised. These are visitor counts by nationality, not air demand by point of origin."},
 {t:"point",x:"Because Korea-origin demand is large, seats fill easily from Korea, while Japan-origin demand swings strongly by season; how a branch fills the Japan-origin troughs shows its skill. Exchange rates and new routes to regional airports also shift the direction of demand."}]},
-{h:"Overlaying the two waves",blocks:[{t:"fig",id:"jk_year_wave",cap:"Moving diagram: blue = Korea-origin (KR→JP), orange = Japan-origin (JP→KR) demand as an illustrative index. Light orange bands = Japan-origin low seasons (April, June, November). 1 Lunar New Year (Seollal), 2 Chuseok, 3 late March (Japanese spring break), 4 Golden Week, 5 Obon, 6 year-end holidays."},
+{h:"Overlaying the two waves",blocks:[{t:"fig",id:"jk_year_wave",cap:"Moving diagram: blue = Korea-origin (KR→JP), orange = Japan-origin (JP→KR) demand as an illustrative index. Light orange bands = Japan-origin low seasons (April, June, November). 1 Lunar New Year (Seollal), 2 Chuseok, 3 late March (Japanese spring break), 4 Golden Week, 5 Obon, 6 year-end holidays, 7 Korea’s Labour Day (1–3 May), 8 Constitution Day (17–19 July)."},
 {t:"table",cols:["Period","Korea-origin","Japan-origin","Branch actions (examples)"],rows:[
 ["January–February","Strong with Lunar New Year and winter break","Weak after New Year, recovering a little with February holidays","Use the big January promotion to book spring Japan-origin travel early (6-4)"],
 ["March","Somewhat weak before spring break","Strong at end-March spring break","Products for Japanese students and families"],
@@ -24,8 +24,8 @@ sections:[
 {t:"note",x:"* The index and month boundaries are illustrative. In practice they vary with last year’s booking pace, events and exchange rates (1-2). ★"}]},
 {h:"Exercise: how the 2027 holidays fall",blocks:[{t:"table",cols:["Country","Holidays (2027)","Pattern","Outlook"],rows:[
 ["Korea","Seollal 6–8 February plus substitute holiday 9 February","Four days, Saturday 6 to Tuesday 9 February: one of the major breaks of 2027","Korea-origin demand concentrates in early February; target the weeks either side for Japan-origin"],
-["Korea","Children’s Day 5 May (Wed), Buddha’s Birthday 13 May (Thu)","Mid-week holidays that become long weekends with leave","Short-trip demand"],
-["Korea","Liberation Day 15 August (Sun), substitute 16 August (Mon)","Three-day weekend","End-of-summer demand"],
+["Korea","Labour Day 1 May (Sat), substitute 3 May (Mon); Children’s Day 5 May (Wed); Buddha’s Birthday 13 May (Thu)","Three-day weekend 1–3 May; Children’s Day and Buddha’s Birthday are mid-week holidays that become long weekends with leave","Short-trip demand"],
+["Korea","Constitution Day 17 July (Sat), substitute 19 July (Mon); Liberation Day 15 August (Sun), substitute 16 August (Mon)","Three-day weekends 17–19 July and 14–16 August","End-of-summer demand"],
 ["Korea","Chuseok 14–16 September (Tue–Thu)","Taking 13 and 17 September off gives nine days, 11–19 September","The autumn Korea-origin peak; fix mid-September seats and fares early"],
 ["Korea","National Foundation Day 3 October (Sun), substitute 4 October; Hangul Day 9 October (Sat), substitute 11 October","Two three-day weekends","October weekend demand"],
 ["Japan","Golden Week: 29 April (Thu), 1–5 May (Sat–Wed)","Taking 30 April off gives seven days, 29 April–5 May","The spring Japan-origin peak; quiet afterwards"],
@@ -33,11 +33,11 @@ sections:[
 ["Japan","Mountain Day 11 August (Wed), Obon around 13–16 August","Obon runs Friday to Monday","The summer Japan-origin peak"],
 ["Japan","Respect for the Aged Day 20 September (Mon), Autumnal Equinox 23 September (Thu)","A three-day weekend and scattered days","September holiday demand, close to Korea’s Chuseok"],
 ["Japan","Sports Day 11 October (Mon)","Three-day weekend","Same day as Korea’s substitute Hangul Day holiday"]]},
-{t:"note",x:"* Korean holidays follow the published 2027 almanac; Japanese holidays are calculated from the rules of the National Holidays Act (the nth Monday and so on). Always confirm actual dates and substitute holidays against official announcements. ★"},
+{t:"note",x:"* Korean holidays follow the 2027 almanac published in June 2026; Japanese holidays follow the 2027 national holidays published by the Cabinet Office. Always confirm actual dates and substitute holidays against official announcements. ★"},
 {t:"point",x:"In 2027, Korea’s Chuseok (mid-September) and Japan’s September holidays fall close together, so demand in both directions is likely to overlap. Conversely, April, June and November tend to be weak both ways; how you fill them decides the year’s results."}]},
 {h:"A toolbox of fares and sales measures",blocks:[{t:"table",cols:["Tool","When to use it","Watch out for"],rows:[
 ["Low-day settings (designated special-fare days)","Dates or days of the week when bookings lag","Decide early and tell agencies; last-minute action alone has little effect"],
-["Minimum selling price by period","Set floors by quarter or half-year","Stops agencies underselling; check competitors’ periods too"],
+["Minimum selling price by period","Set floors by quarter or half-year","Set as a floor on the airline’s own fares; whether to restrict agencies’ resale prices needs a check of the contract type and competition law; check competitors’ periods too"],
 ["Class-wide promotions for all agencies","Promoting a specific class (e.g. premium economy)","Handling of override commissions, GDS notices and tour codes"],
 ["Exclusive agency products","Low seasons and specific customer segments","Joint promotion; commit to the product period and seat numbers"],
 ["New-frequency launch promotions","Raising awareness of new days or flights","Limit the flights and classes covered"],
@@ -58,8 +58,8 @@ sections:[
 {name:"Know agencies’ timelines",x:"Large agencies plan products early; discuss promotions at least three months ahead."}]}]}],
 voice:"If empty seats stand out in the Japan-origin low season, propose campaigns timed to Japanese holidays and school breaks to head office. Laying the Korea-origin and Japan-origin waves over each other on one calendar lets those discussions run on numbers.",
 terms:[["Annual Sales Calendar","年間販売カレンダー","연간 판매 캘린더"],["Low Season","閑散期","비수기"],["Peak Season","繁忙期","성수기"],["Minimum Selling Price","最低販売価格","최저 판매가"],["Group Fare","団体運賃","단체 운임"],["Incentive Travel","インセンティブ旅行","인센티브 여행"]],
-quiz:[{q:"In 2025, Koreans visiting Japan outnumbered Japanese visiting Korea by about how much?",opts:["About 1 to 1","About 1.5 to 1","About 2.6 to 1","About 5 to 1"],a:2,exp:"About 9.46 million against about 3.65 million."},
-{q:"What is Korea’s longest holiday break in 2027?",opts:["Seollal (6–9 February)","Children’s Day","Liberation Day","Christmas"],a:0,exp:"7 February is a Sunday, so 9 February becomes a substitute holiday."},
+quiz:[{q:"Which statement about visitor numbers by nationality and seat demand by point of origin is correct?",opts:["They can be used as the same figure","The ratio of visitors becomes the ratio of seat sales","They are different statistics, so also check bookings by origin","Visitor numbers have nothing to do with demand"],a:2,exp:"Visitor numbers by nationality and air demand by point of origin are different statistics. Because they measure different things, also check bookings by origin."},
+{q:"With a five-day working week and no personal leave added, what is Korea’s longest holiday break in 2027?",opts:["Seollal (6–9 February)","Children’s Day","Liberation Day","Christmas"],a:0,exp:"7 February is a Sunday, so 9 February becomes a substitute holiday, giving four days from 6 to 9 February. Chuseok (14–16 September) becomes nine days if leave is taken on the 13th and 17th."},
 {q:"Which is a good way to fill Japan-origin low seasons?",opts:["Only offer last-minute specials","Set low days early and sell ahead with group fares and exclusive agency products","Raise fares","Do nothing"],a:1,exp:"The earlier you decide and tell agencies, the better it works."}],
 next:"7-1 What is revenue management?"});
 })(window.ARTS);
