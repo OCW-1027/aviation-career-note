@@ -45,7 +45,7 @@ sections:[
 {h:"Types of disruption and the effect on sales",blocks:[{t:"table",cols:["Type","Main effect on sales"],rows:[
 ["Delay on the day","Questions from agencies and customers; checking the impact on connections and group itineraries"],
 ["Cancellation on the day","Explaining rebooking and refund conditions; rebuilding groups and packages"],
-["Diversion or return","A different arrival airport; questions about hotels and transport (Passenger 5-5)"],
+["Diversion or return","A different arrival airport; questions about hotels and transport (Airline Passenger Operations, 5-5)"],
 ["Advance schedule change","New times, aircraft or suspended flights; contacting customers and checking connections still work"],
 ["Typhoon, heavy snow and other forecasts","Cancellations decided in advance; publishing rebooking and refund conditions early"]]}]},
 {h:"How the information flows",blocks:[{t:"fig",id:"sls_flow",cap:"Animated figure: the flow from the operational decision to informing agencies and direct customers, and recording, lights up in turn (example)."},{t:"rows",items:[
@@ -58,11 +58,11 @@ sections:[
 {h:"What sales does in the first hour",blocks:[{t:"check",items:[
 {name:"One source",x:"Agree where information is kept inside the company and who updates it, so out-of-date versions do not circulate."},
 {name:"Check the facts",x:"What, when, which flights, how many people. Separate what is still being checked."},
-{name:"Same words as the airport",x:"Use the same content as the airport announcement (why, when, what; Passenger 1-2). Different wording breeds distrust."},
+{name:"Same words as the airport",x:"Use the same content as the airport announcement (why, when, what; Airline Passenger Operations, 1-2). Different wording breeds distrust."},
 {name:"Most affected first",x:"Groups, connecting passengers, corporate travellers, VIPs and those with special service requests."},
 {name:"Next update time",x:"For anything not yet decided, promise when you will update."},
 {name:"Record",x:"Who you contacted, when and what you said: the basis for later enquiries, complaints and reports."}]}]},
-{h:"The time you knew and the time you told",blocks:[{t:"point",warn:true,x:"For tickets departing from Korea, there is a standard requiring airlines to inform passengers without delay of operational changes such as a delay of 30 minutes or more or a cancellation, where their contact details are known. Check the current rules for scope, exceptions and method (Passenger 5-8). Record the time of every message sales sends to agencies and customers too, not only the airport’s. ★"}]},
+{h:"The time you knew and the time you told",blocks:[{t:"point",warn:true,x:"For tickets departing from Korea, there is a standard requiring airlines to inform passengers without delay of operational changes such as a delay of 30 minutes or more or a cancellation, where their contact details are known. Check the current rules for scope, exceptions and method (Airline Passenger Operations, 5-8). Record the time of every message sales sends to agencies and customers too, not only the airport’s. ★"}]},
 {h:"When it can be foreseen, such as a typhoon",blocks:[{t:"rows",items:[
 {name:"Set a decision time",x:"Agree internally by what time the day before the next day’s operation will be decided."},
 {name:"Publish conditions early",x:"Even before cancelling, publish a waiver letting passengers on affected flights rebook or get a refund free of charge."},
@@ -143,10 +143,10 @@ sections:[
 {name:"Connecting passengers",x:"Rebook onward flights (including other airlines) first, and find a combination that reaches the final destination."},
 {name:"Special services",x:"Re-arrange wheelchairs, unaccompanied minors and medical needs on the new flight, and tell the airport station."}]}]},
 {h:"Explaining compensation (examples ★)",blocks:[{t:"table",cols:["Country or region","Main rules (examples)"],rows:[
-["Korea","The consumer dispute resolution standards give compensation guidelines for delays and cancellations the airline is responsible for (Passenger 5-4)"],
+["Korea","The consumer dispute resolution standards give compensation guidelines for delays and cancellations the airline is responsible for (Airline Passenger Operations, 5-4)"],
 ["Japan","No uniform statutory fixed compensation; each airline’s conditions of carriage and policy apply. Liability for damages is assessed separately"],
 ["Flights departing the EU, etc.","EU Regulation 261/2004 applies to flights departing the EU and others, depending on the operating carrier and route; financial compensation and care such as meals and hotels are set out separately"]]},
-{t:"point",x:"Check cash compensation separately from meals and accommodation. Do not make an immediate promise: check applicable law and company rules, then direct the customer to the responsible contact."},
+{t:"point",x:"Check cash compensation separately from meals and accommodation. Whether compensation applies also depends on the cause (weather or air traffic control, or the airline’s responsibility). Do not make an immediate promise: check applicable law and company rules, then direct the customer to the responsible contact."},
 {t:"note",x:"* Application varies by country, airline, cause and route. Check the latest law and conditions of carriage. ★"}]},
 {h:"Exercise: a typhoon cancels tomorrow’s flight (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before 15:00",sub:"Operational decision (cancel); promptly notify the confirmed facts"},{name:"15:30",sub:"Share internally; finalise wording and the waiver"},{name:"16:00",sub:"Follow-up with rebooking conditions: mass notice to direct customers, email to all agencies, post on website and social media"},{name:"16:30",sub:"Individual calls to groups, corporate, connecting and special-service customers"},{name:"From 17:00",sub:"Extra call-centre staff; phone those not reached"},{name:"On the day (morning)",sub:"Information at the airport; compile records and review"}]},
 {t:"rows",items:[

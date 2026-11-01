@@ -78,7 +78,7 @@ sections:[
 {name:"Japanese and Korean law",x:"Japan’s Immigration Control and Refugee Recognition Act and Korea’s Immigration Act both place a duty of return on the carrier. ★"},
 {name:"The international framework",x:"Annex 9 (Facilitation) to the Chicago Convention sets out the roles of states and airlines."}]}]},
 {h:"What the airline bears",blocks:[{t:"rows",items:[
-{name:"Penalties",x:"Many countries fine the airline for each improperly documented passenger. Amounts differ by country (Parts 4 and 5)."},
+{name:"Penalties",x:"Some countries impose financial penalties on airlines that carry improperly documented passengers. Amounts differ by country (Parts 4 and 5)."},
 {name:"Cost of return",x:"The return seat, and accommodation or escorts until the passenger leaves. How much of this the airline bears depends on the reason for refusal and the country’s law."},
 {name:"Standing with the authorities",x:"Repeat cases bring closer scrutiny and can also affect operations."}]}]},
 {h:"The basics at the counter",blocks:[{t:"check",items:[
@@ -87,7 +87,7 @@ sections:[
 {name:"When you refuse, record why",x:"Note what you checked and which requirement was not met. It protects you if there is a complaint."},
 {name:"Do not accept “I got in before”",x:"Requirements change. Last time is no guarantee."}]},
 {t:"point",x:"The counter is the passenger’s first border. Checking travel requirements properly here also helps protect them from being refused entry on arrival."}]}],
-voice:{h:"A Reported Case",x:"In 2018 the Court of Appeal in England upheld a GBP 2,000 charge on an airline for carrying a male passenger from Germany to the UK. He was on a short trip but could not produce the documents he needed to enter (Sources: Free Movement, Gherson and others). In another case the same airline put forward evidence that such charges cost it over GBP 400,000 a year (Source: Mondaq, 2016). GBP 2,000 a passenger becomes a large cost once it adds up."},
+voice:{h:"A Reported Case",x:"In 2018 the Court of Appeal in England upheld a GBP 2,000 charge on an airline for carrying a male passenger from Germany to the UK. He was on a short trip but could not produce the documents he needed to enter (Sources: Free Movement, Gherson and others). Airlines have also been reported as arguing that such charges add up to large sums each year. GBP 2,000 a passenger becomes a large cost once it adds up."},
 terms:[["Inadmissible Passenger (INAD)","入国拒否者","입국 거부자"],["Deportee (DEPO)","退去強制者","강제 퇴거자"],["Removal / Return","送還","송환"],["Travel Documents","渡航書類","여행 서류"]],
 quiz:[{q:"Who, in principle, takes back a passenger refused entry on arrival?",opts:["The airline that brought them","The destination airport company","The passenger’s travel agent","Customs at the destination"],a:0,exp:"The carrying airline has the duty of return. Who bears the costs depends on the reason for refusal and the country’s law."},
 {q:"Which places do you look up at the counter?",opts:["Both the destination and the transit point","Only the final destination","Only the origin","None"],a:0,exp:"Some countries require a visa for transit."},

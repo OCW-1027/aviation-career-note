@@ -67,7 +67,7 @@ sections:[
 {h:"When a visitor enters",blocks:[{t:"fig",id:"ciq_jpkr",cap:"Figure: visitors entering Japan and Korea."},{t:"table",cols:["","Japan","Korea"],rows:[
 ["What is submitted","Passport and disembarkation card (paper or Visit Japan Web)","Passport and arrival card (the e-Arrival Card began on 24 February 2025; it can be submitted from three days before arrival and is free)"],
 ["Face and fingerprints","In principle a photograph and fingerprints are provided (some people are exempt)","In principle face and fingerprints are provided (some people are exempt) ★"],
-["Electronic travel authorisation","JESTA (targeted for fiscal 2028)","K-ETA (22 countries and territories including Japan are exempt until 31 December 2026)"],
+["Electronic travel authorisation","JESTA (amended law promulgated; not yet in operation)","K-ETA (Japan and some other countries and territories are exempt until 31 December 2026)"],
 ["Who needs no card","Re-entrants (who use the re-entry record instead) and others ★","K-ETA holders, registered foreign residents, crew and others"]]},
 {t:"note",x:"* Check the authority’s guidance on how long Korea’s paper arrival card remains in use. ★"}]},
 {h:"When a resident returns",blocks:[{t:"table",cols:["","Japan","Korea"],rows:[
