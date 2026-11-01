@@ -21,7 +21,7 @@ sections:[
 {name:"Pay any tax due",sub:"On what exceeds the allowance"},
 {name:"Into the arrivals hall",sub:"Complete any required declaration before leaving the customs area"}]}]},
 {h:"What to tell passengers",blocks:[{t:"check",items:[
-{name:"If in doubt, declare",x:"Declaring means paying tax or surrendering something. Being caught without declaring means penalty tax or prosecution."},
+{name:"If in doubt, declare",x:"Declare anything you are unsure about and let the authorities decide. Declaring does not necessarily mean the item will be allowed in, or that no penalty under the law will apply. Being caught without declaring means penalty tax or prosecution."},
 {name:"Never carry a package without knowing what is in it",x:"In principle, the person carrying it is responsible for the contents."},
 {name:"Keep receipts",x:"Being able to show prices speeds things up."},
 {name:"If possible, complete the electronic declaration before departure",x:"Starting it after arrival can slow down the process."}]},
@@ -31,7 +31,7 @@ terms:[["Accompanied Goods","携帯品","휴대품"],["Unaccompanied Baggage","�
 quiz:[{q:"Who submits a customs declaration on entering Japan?",opts:["Everyone entering","Only those with something to declare","Only foreign nationals","Only those who shopped duty-free"],a:0,exp:"Everyone submits one, even with nothing to declare."},
 {q:"A passenger is unsure whether to declare. What is the advice?",opts:["Declare","Do not declare","Put it at the bottom of the bag","Ask someone else to carry it"],a:0,exp:"Failing to make a required declaration can lead to penalties."},
 {q:"Who is responsible for the contents of a package carried for someone else?",opts:["The person carrying it","Only the person who asked","The airline","The airport company"],a:0,exp:"Never carry a package without knowing what is in it."}],
-next:"2-2 Duty-free allowances in Japan and Korea"});
+next:"2-2 Duty-Free Allowances in Japan and Korea"});
 set("2-2",{title:"Duty-Free Allowances in Japan and Korea",hl:"Duty-Free Allowances",subtitle:"Alcohol, tobacco and perfume have their own limits. For other goods: 200,000 yen in Japan, USD 800 in Korea",
 lead:["“How much can I bring in without paying tax?” It is one of the questions passengers ask most often. Japan and Korea set their limits a little differently.","What follows was confirmed in October 2026. Quantities and amounts change with revisions, so point passengers to the customs authority’s official website."],
 sections:[
@@ -43,17 +43,17 @@ sections:[
 ["Age","No alcohol or tobacco allowance under 20. Under six: only items for the child’s own use","No alcohol or tobacco allowance under 19 (counted by year of birth)"]]}]},
 {h:"How Japan counts",blocks:[{t:"rows",items:[
 {name:"Items of 10,000 yen or less",x:"Where the total for one item is 10,000 yen or less it is in principle exempt and not counted towards the 200,000 yen."},
-{name:"A single item over 200,000 yen",x:"A bag costing 250,000 yen, for example, is taxed on the full 250,000 yen, not on the amount above 200,000."},
+{name:"A single item over 200,000 yen",x:"A bag costing 250,000 yen, for example, is taxable as a whole item; 200,000 yen is not deducted from it."},
 {name:"Accompanied and unaccompanied goods",x:"Counted together when a passenger has both."},
 {name:"Commercial goods and samples",x:"Not for personal use, so not exempt."}]}]},
 {h:"How Korea counts",blocks:[{t:"rows",items:[
 {name:"What counts towards USD 800",x:"Goods bought abroad plus goods bought in Korean duty-free shops and brought back."},
-{name:"Alcohol: exceed either limit and all of it is taxed",x:"Go over the total volume or the total value and tax applies to the whole, not just the excess."},
+{name:"Alcohol over the allowance",x:"Going over the total volume or the total value takes alcohol outside the allowance. Which items are taxed is determined by the customs authority’s calculation method."},
 {name:"If you declare voluntarily",x:"Duty is reduced by 30% (up to KRW 200,000)."},
 {name:"If you are caught without declaring",x:"A penalty of 40% of the tax due is added, or 60% for a second case within two years."}]}]},
 {h:"Questions you will hear",blocks:[{t:"check",items:[
 {name:"“Are things bought duty-free on departure separate?”",x:"No. They count towards the allowance of the country of arrival."},
-{name:"“Can a family combine allowances?”",x:"Allowances are, in principle, per person (in Japan, a single item over 200,000 yen is taxed on its full value). Korea Customs Service states that family members cannot combine their allowances; for other countries, check each customs authority’s rules. ★"},
+{name:"“Can a family combine allowances?”",x:"Allowances are, in principle, per person (in Japan, a single item over 200,000 yen is taxable as a whole). Korea Customs Service states that family members cannot combine their allowances; for other countries, check each customs authority’s rules. ★"},
 {name:"“Do gifts count?”",x:"Yes. So do things received or carried for someone else."},
 {name:"“How much tax will I pay?”",x:"The airline does not calculate it. Point to the customs authority’s guidance (Korea Customs has a page for estimating tax in advance)."}]},
 {t:"point",x:"A duty-free shop is not a shop where no tax ever applies; it sells to people leaving the country without charging tax. The rules of the country they return to are separate."}]}],
@@ -62,37 +62,37 @@ terms:[["Duty-Free Allowance","免税の範囲","면세 범위"],["Overseas Reta
 quiz:[{q:"What is the alcohol allowance on entering Japan?",opts:["Three bottles (of 760 ml each)","One bottle","Five bottles","No limit"],a:0,exp:"There is no alcohol or tobacco allowance under 20."},
 {q:"What is Korea’s allowance for other goods?",opts:["Up to USD 800","Up to USD 600","Up to 200,000 yen","No limit"],a:0,exp:"Alcohol, tobacco and perfume are separate from the USD 800."},
 {q:"In Korea, what happens when goods over the allowance are declared voluntarily?",opts:["Duty is reduced by 30% (up to KRW 200,000)","No tax at all","A penalty is added","They are confiscated"],a:0,exp:"Being caught without declaring brings a 40% penalty."}],
-next:"2-3 Declaring cash, and what cannot be brought in"});
+next:"2-3 Declaring Cash, and What Cannot Be Brought In"});
 set("2-3",{title:"Declaring Cash, and What Cannot Be Brought In",hl:"What Cannot Be Brought In",subtitle:"Goods that are taxed, goods that need formalities, and goods that cannot come in at all",
 lead:["Tax is not the only reason passengers are stopped at customs. Some have not declared large amounts of cash. Some carry things that need a permit. Some carry things that cannot be brought in at all.","Most do so without knowing. A word at the counter or on board helps prevent problems."],
 sections:[
 {h:"Declaring cash and the like",blocks:[{t:"fig",id:"ciq_cash",cap:"Figure: declaring cash and prohibited items (Japan example)."},{t:"table",cols:["","Japan","Korea"],rows:[
-["When a declaration is needed","When cash, cheques and similar exceed the equivalent of 1 million yen in total; gold bullion (90% purity or more) over 1 kg","When the total exceeds the equivalent of USD 10,000"],
+["When a declaration is needed","When cash, cheques and similar exceed the equivalent of 1 million yen in total; gold bullion (90% purity or more) over 1 kg (a separate declaration from the baggage declaration)","When the total exceeds the equivalent of USD 10,000"],
 ["When","On both departure and arrival","On both departure and arrival"],
 ["If not declared","Liable to penalty or confiscation","Liable to penalty or confiscation"]]},
-{t:"note",x:"* Carrying money in or out is not prohibited; it only has to be declared. Tell passengers this."}]},
+{t:"note",x:"* Carrying money in or out is not prohibited in itself. Besides the customs declaration, other procedures may be needed depending on the purpose of the funds and similar factors. Tell passengers this."}]},
 {h:"Prohibited goods and goods needing formalities (Japan as an example)",blocks:[{t:"table",cols:["Category","Examples"],rows:[
-["Prohibited","Narcotics, stimulants, cannabis and designated drugs; pistols and other firearms and ammunition; explosives; counterfeit money and cards; obscene magazines and DVDs and child pornography; counterfeit branded goods and pirated copies"],
+["Prohibited","Narcotics, stimulants, cannabis and designated drugs; pistols and other firearms and ammunition; explosives; counterfeit money and cards; obscene magazines and DVDs and child pornography; counterfeit branded goods and pirated copies that infringe intellectual property rights"],
 ["Permit or formalities required","Hunting guns, air guns and swords; animals and plants protected by CITES and products made from them (ivory, crocodile leather, some traditional medicines); medicines and cosmetics (up to personal-use quantities)"],
 ["Quarantine required","Meat products, fruit, vegetables, plants, animals (Part 3)"]]},
 {t:"note",x:"* Korea uses the same division into prohibited, restricted and quarantine items. Check Korea Customs for the details of items and quantities."}]},
 {h:"Common situations",blocks:[{t:"rows",items:[
 {name:"Packages carried for others",x:"There have been cases where a package that someone asked a passenger to hand over at the airport contained drugs. Tell passengers to refuse anything whose contents they do not know."},
 {name:"Medicines",x:"Advise passengers to carry prescription medicines in their original containers where possible, with a document showing the prescription. An ingredient sold freely at home may be restricted at the destination."},
-{name:"Counterfeit goods",x:"They cannot be brought in, even for personal use or as souvenirs."},
-{name:"Leather goods, traditional medicines, musical instruments",x:"If they contain CITES-listed species, they cannot be brought in without certificates."},
+{name:"Counterfeit goods",x:"The rules on counterfeit goods differ depending on the type of goods and how they are traded. Check customs guidance."},
+{name:"Leather goods, traditional medicines, musical instruments",x:"If they contain CITES-listed species, permits or certificates may be needed depending on the species and how they are traded. Check customs guidance."},
 {name:"E-cigarettes and heated tobacco",x:"Some countries and regions ban bringing them in (Taiwan, for example). Check the destination’s rules. ★"}]}]},
 {h:"Where the airline stands",blocks:[{t:"check",items:[
 {name:"Customs decides",x:"The airline must not assure a passenger that something can be brought in."},
 {name:"Separate from dangerous goods rules",x:"Whether something may be carried on the aircraft (security and dangerous goods) and whether it may enter the country (customs) are different rules. Both must be met."},
 {name:"When a passenger asks about a suspicious package",x:"Advise them not to carry it, and inform security and customs if necessary."}]},
 {t:"point",x:"“I didn’t know” does not in itself excuse a passenger at customs. That is exactly why the airline can help by informing passengers in advance."}]}],
-voice:{h:"A Reported Case",x:"A woman’s post on X went viral after she described moving 4 kg of a stranger’s luggage into her own bag at Kansai Airport, to save a Malaysian woman an excess-baggage charge of about JPY 12,000. It was widely criticised as typically dangerous behaviour, and she apologised the next day. A lawyer explained that if the contents had been stimulants, a claim of not knowing would be unlikely to be accepted and the charges could be very serious (Source: Bengo4.com News). Japan Customs also warns that whoever carries a bag is held responsible for it, even if it was entrusted to them by someone else (Source: Japan Customs leaflet on drug couriers, April 2025). It is a scene that can arise at the counter whenever excess baggage charges come up."},
+voice:{h:"A Reported Case",x:"A woman’s post on X went viral after she described moving part of a stranger’s luggage into her own bag at Kansai Airport, to save a Malaysian woman an excess-baggage charge. It was widely criticised as typically dangerous behaviour, and she apologised the next day. A lawyer explained that if the contents had been stimulants, a claim of not knowing would be unlikely to be accepted and the charges could be very serious (Source: Bengo4.com News). Japan Customs also warns that whoever carries a bag is held responsible for it, even if it was entrusted to them by someone else (Source: Japan Customs leaflet on drug couriers, April 2025). It is a scene that can arise at the counter whenever excess baggage charges come up."},
 terms:[["Means of Payment","支払手段","지급수단"],["Prohibited Goods","輸入禁止品","수입 금지 물품"],["Convention on International Trade in Endangered Species (CITES)","ワシントン条約","워싱턴 협약"],["Goods Infringing Intellectual Property","知的財産権侵害物品","지식재산권 침해 물품"]],
 quiz:[{q:"When must cash and the like be declared in Japan?",opts:["When the total exceeds the equivalent of 1 million yen","When it exceeds 100,000 yen","Always, whatever the amount","Never"],a:0,exp:"It is declared on both departure and arrival."},
 {q:"How do “may it be carried on the aircraft” and “may it enter the country” relate?",opts:["They are different rules and both must be met","They are the same rule","Meeting either is enough","The airline decides"],a:0,exp:"Security and dangerous goods rules are separate from customs rules."},
 {q:"A passenger has been asked to carry a package without knowing the contents. What do you advise?",opts:["Refuse it","Carry it as it is","Let the airline keep it","Do not show it to customs"],a:0,exp:"In principle, the person carrying it is responsible for the contents."}],
-next:"2-4 Airlines and customs: aircraft stores, in-flight sales and delayed baggage"});
+next:"2-4 Airlines and Customs: Aircraft Stores, In-Flight Sales and Delayed Baggage"});
 set("2-4",{title:"Airlines and Customs: Aircraft Stores, In-Flight Sales and Delayed Baggage",hl:"Airlines and Customs",subtitle:"Customs deals with more than passengers. The airline itself is also subject to customs procedures on every flight",
 lead:["Customs does not look only at passengers’ bags. An international aircraft crosses the border carrying catering, drinks, duty-free goods for sale and fuel, and all of these are under customs control.","There is one more situation in which a station deals with customs almost every day: bags that did not arrive on the same flight as their owners."],
 sections:[
@@ -114,13 +114,13 @@ sections:[
 {h:"What the station must watch",blocks:[{t:"check",items:[
 {name:"Never break a seal on your own",x:"Customs seals and seals on duty-free containers are opened by the designated person following the set procedure."},
 {name:"When the count does not match",x:"If stores or duty-free goods do not match the paperwork, customs will need an explanation. Record it on the spot."},
-{name:"Arriving at an unplanned airport",x:"After a diversion or return, do not move passengers, bags or stores until customs gives instructions (Part 5)."},
+{name:"Arriving at an unplanned airport",x:"After a diversion or return, the safety of life comes first in an emergency. Otherwise, do not move passengers, bags or stores on your own until customs, quarantine or other authorities give instructions (Part 5)."},
 {name:"A passenger leaves a bag behind",x:"A bag left in the reclaim hall is still under customs control. Check with customs before taking it out."}]},
 {t:"point",x:"The basic principle of customs procedures is that bonded goods do not enter the country without the prescribed formalities. If in doubt, ask before moving anything."}]}],
 voice:"Aircraft stores and delayed baggage go through customs separately from passenger procedures. Agreeing in advance with the handling company who declares them and which documents are kept prevents missed or late deliveries.",
 terms:[["Aircraft Stores","機用品","기용품"],["Bonded (Under Customs Control)","保税","보세"],["Customs Seal","封印","봉인"],["Property Irregularity Report (PIR)","手荷物事故報告書","수하물 사고 보고서"]],
-quiz:[{q:"How does customs treat catering and drinks on an international flight?",opts:["They are loaded untaxed, with formalities for loading and unloading","They have nothing to do with customs","Tax is paid on every arrival","They count as passenger baggage"],a:0,exp:"What the aircraft carries is also under customs control."},
+quiz:[{q:"How does customs treat catering and drinks on an international flight?",opts:["They are loaded in bond, with duties suspended, and formalities apply to loading and unloading","They have nothing to do with customs","Tax is paid on every arrival","They count as passenger baggage"],a:0,exp:"What the aircraft carries is also under customs control. Bonded means the collection of duties is suspended under customs control; it is not the same as a final exemption."},
 {q:"What is needed before a delayed bag is delivered to the passenger?",opts:["Customs inspection","Nothing","Only the passenger’s signature","Only the airport company’s permission"],a:0,exp:"The airline presents the bag on the passenger’s behalf."},
-{q:"What comes first when a flight arrives at an unplanned airport?",opts:["Do not move passengers, bags or stores until customs gives instructions","Let everyone off at once","Sell duty-free goods","Unload and discard the stores"],a:0,exp:"If in doubt, ask before moving anything."}],
-next:"3-1 Human quarantine: keeping infections out"});
+{q:"What comes first when a flight arrives at an unplanned airport?",opts:["Except in an emergency, do not move passengers, bags or stores until customs or quarantine gives instructions","Let everyone off at once","Sell duty-free goods","Unload and discard the stores"],a:0,exp:"In an emergency, the safety of life comes first. Otherwise, if in doubt, ask before moving anything."}],
+next:"3-1 Human Quarantine: Keeping Infections Out"});
 })(window.ARTS);

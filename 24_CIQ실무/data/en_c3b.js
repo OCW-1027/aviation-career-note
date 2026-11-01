@@ -8,10 +8,10 @@ sections:[
 {name:"The airline’s rules (carriage)",x:"Cabin or hold, cage size, number of animals, breeds not carried, restrictions in hot weather. They differ by airline."},
 {name:"Both must be met",x:"Even if the airline can carry the animal, it cannot enter without meeting quarantine conditions, and the reverse is also true."}]}]},
 {h:"Bringing a dog or cat into Japan",blocks:[{t:"fig",id:"ciq_pet",cap:"The order of steps for bringing a dog or cat into Japan from a non-designated region. Count back from the arrival date."},{t:"rows",items:[
-{name:"The order matters",x:"Microchip (ISO standard), then at least two rabies vaccinations, then an antibody test (0.5 IU/ml or more), then a 180-day wait, advance notification at least 40 days before arrival, and a certificate from the exporting country’s government."},
-{name:"If the conditions are met",x:"Inspection on arrival is usually completed within 12 hours."},
+{name:"The order matters",x:"Microchip (ISO standard), then at least two rabies vaccinations, then an antibody test (0.5 IU/ml or more), then a 180-day wait (during which advance notification is also made at least 40 days before arrival), and a certificate from the exporting country’s government."},
+{name:"If the conditions are met",x:"Detention on arrival is limited to 12 hours or less."},
 {name:"If they are not",x:"The animal may be held at a quarantine facility for up to 180 days after arrival."},
-{name:"From designated regions",x:"From Iceland, Australia, New Zealand, Fiji, Hawaii and Guam, the antibody test and the 180-day wait are not required (other conditions apply)."},
+{name:"From designated regions",x:"From Iceland, Australia, New Zealand, Fiji, Hawaii and Guam, the antibody test and the 180-day wait are not required if residence conditions are met, such as the animal having been kept there continuously since birth (other conditions also apply)."},
 {name:"Leaving Japan and returning after a short stay",x:"If the microchip, vaccinations and antibody test are done in Japan before departure, and the other conditions are met, the animal may be able to return without waiting 180 days abroad."},
 {name:"Penalties",x:"Bringing an animal in without quarantine: for dogs, imprisonment for up to three years or a fine of up to 3 million yen; for cats, a fine of up to 300,000 yen."}]}]},
 {h:"Bringing a dog or cat into Korea",blocks:[{t:"table",cols:["Condition","Details"],rows:[
@@ -30,10 +30,10 @@ sections:[
 {t:"point",x:"When asked “Can I take my pet?”, first ask back, “Have you checked the destination’s quarantine conditions?” Preparation may have to start months ahead."}]}],
 voice:{h:"A Reported Case",x:"From 1 August 2024 the US Centers for Disease Control and Prevention (CDC) applied new requirements to dogs entering the United States, including a minimum age of six months, a microchip and an import form. Some airlines stopped taking new bookings for dogs to the US, saying they were not set up to meet the requirements, and animal welfare groups called it a de facto ban. Just before the rule took effect, the CDC eased the paperwork for dogs coming from countries with no or low risk of rabies (Sources: Military Times, July 2024; statements by animal welfare groups). A dog that does not meet the requirements is sent back to where it came from at the owner’s expense. Pet rules need to be checked at the time of booking."},
 terms:[["Quarantine inspection during detention","係留検査","계류 검사"],["Microchip","マイクロチップ","마이크로칩"],["Rabies Antibody Titre","狂犬病の抗体価","광견병 항체가"],["Export Health Certificate","輸出検疫証明書","수출 검역증명서"]],
-quiz:[{q:"Bringing a dog into Japan from a non-designated region: how long is the wait after the blood sample?",opts:["180 days","30 days","40 days","No wait"],a:0,exp:"Advance notification is made at least 40 days before arrival."},
+quiz:[{q:"Bringing a dog into Japan from a non-designated region: how long is the wait after the blood sample?",opts:["180 days","30 days","40 days","No wait"],a:0,exp:"During this wait, advance notification is also made at least 40 days before arrival."},
 {q:"For which dogs and cats entering Korea is a rabies antibody test required?",opts:["Those aged 90 days or more from anywhere other than a rabies-free region","All of them","Only those under 90 days","None"],a:0,exp:"A neutralising antibody titre of 0.5 IU/ml or more is required."},
 {q:"A passenger asks “Can I take my pet?” What do you check first?",opts:["The destination’s quarantine conditions","The colour of the cage","The dog’s name","The seat number"],a:0,exp:"Preparation may need to start months ahead."}],
-next:"3-5 Aircraft and quarantine: catering waste and disinsection"});
+next:"3-5 Aircraft and Quarantine: Catering Waste and Disinsection"});
 set("3-5",{title:"Aircraft and Quarantine: Catering Waste and Disinsection",hl:"Aircraft and Quarantine",subtitle:"Quarantine looks at more than people and bags. It also looks at what the aircraft brings in",
 lead:["An international aircraft can carry disease and pests: leftover meals, rubbish, a mosquito that got on board. These too are subject to quarantine.","Passengers never see it, but on every arrival the cleaning, catering and handling staff deal with them according to the rules. The station’s role is to see that the rules are followed."],
 sections:[
@@ -51,13 +51,13 @@ sections:[
 {h:"Disinsection",blocks:[{t:"table",cols:["","Details"],rows:[
 ["Purpose","To prevent disease-carrying insects such as mosquitoes from being introduced by aircraft"],
 ["Countries that require it","Some countries, such as Australia and New Zealand, require it of arriving aircraft ★"],
-["Methods","Spraying before boarding or before descent, or treating the cabin in advance so that the effect remains ★"],
+["Methods","Methods include residual treatment and pre-embarkation or pre-departure treatment; the method used must be approved by the arrival country ★"],
 ["Proof","A record or certificate may be required on arrival ★"],
 ["Telling passengers","An announcement is made before spraying in the cabin"]]}]},
 {h:"What the station does",blocks:[{t:"check",items:[
 {name:"Record the handover of waste",x:"When, to whom and how much. Inspectors look at this."},
 {name:"Arriving at an unplanned airport",x:"Meals and rubbish are not unloaded until quarantine and customs give instructions (2-4)."},
-{name:"Expiry of the disinsection certificate",x:"Residual treatment is valid for a set period. Flying after it expires means treatment will be required on arrival. ★"},
+{name:"Disinsection records and certificates",x:"Check disinsection records or certificates, and manage the validity period of residual treatment. Flying after it expires means treatment will be required on arrival. ★"},
 {name:"Check with the cleaning and catering companies",x:"A new member of staff who does not know the rule may mix international waste with domestic rubbish."}]},
 {t:"point",x:"It is unglamorous work, but when it is not done properly it may harm a country’s farming. This is one place where the airline carries out part of quarantine itself."}]}],
 voice:"Requirements for catering waste handling and aircraft disinfection or disinsection vary by country or region and over time. The station should check the latest authority instructions and company procedures, then share them reliably with the personnel and contractors assigned to the work.",
@@ -65,5 +65,5 @@ terms:[["International Catering Waste","国際線機内食廃棄物","국제선 
 quiz:[{q:"How is leftover food from an international flight handled?",opts:["Kept separate from domestic rubbish and disposed of in the prescribed way","Thrown away with domestic rubbish","Taken home by cleaning staff","Served on domestic flights"],a:0,exp:"It can carry livestock diseases and pests."},
 {q:"What is the purpose of disinsection?",opts:["To prevent disease-carrying insects such as mosquitoes from being introduced by aircraft","To make the cabin look clean","To remove smells","To cool the aircraft"],a:0,exp:"Some countries require it of arriving aircraft."},
 {q:"At an unplanned airport, what happens to meals and rubbish?",opts:["They stay on board until quarantine and customs give instructions","They are unloaded and thrown away at once","They are given to passengers","They are used on the next flight"],a:0,exp:"Check with the authorities before moving anything."}],
-next:"4-1 United States 1: entry"});
+next:"4-1 United States 1: Entry. As a Rule, Every Transfer Passenger Clears Immigration"});
 })(window.ARTS);

@@ -30,7 +30,7 @@ sections:[
 {h:"Tips for writing it",blocks:[{t:"check",items:[
 {name:"In Japanese, in tables",x:"Write tables and entry examples in Japanese so ticketing staff can look things up quickly; not English-only, not long prose."},
 {name:"Revision history first",x:"Put what changed, and from when, on page one to prevent errors from outdated versions."},
-{name:"Ask for passenger contact",x:"Ask for phone (CTCM) and email (CTCE) so passengers can be told of delays and cancellations, and enter them in the booking with consent; also show how to record a refusal (such as CTCR) (Course 1, lesson 5-8)."},
+{name:"Ask for passenger contact",x:"Ask for phone (CTCM) and email (CTCE) so passengers can be told of delays and cancellations, and enter them in the booking with consent; also show how to record a refusal (such as CTCR) (Airline Passenger Operations, 5-8)."},
 {name:"Entries for each GDS",x:"Show the same operation side by side for each main GDS used by Japanese agencies."},
 {name:"Test before sending",x:"Actually book, ticket, void and refund in the main GDSs and check the results before distribution."},
 {name:"Post it in the GDS",x:"Also publish it on the GDS provider’s notice pages so agencies can find it."}]}]}],
@@ -44,7 +44,7 @@ set("6-3",{title:"Sales Preparation Before a New Route Launches: To-do List and 
 lead:["Starting to sell only once the launch date is fixed is too late. Filings with the authorities, GDS contracts and BSP membership, confirming fares and rules, informing agencies and preparing staff all run in parallel from several months before launch.","This lesson covers the pre-launch sales to-do list, the policies to decide first, and how to time your first visits to agencies."],
 sections:[
 {h:"To-do list (example)",blocks:[{t:"fig",id:"sls_prep",cap:"Figure: sales preparation before launch (example)."},{t:"table",cols:["Area","What to do"],rows:[
-["Filings","Schedule filings; international fare and fuel surcharge procedures (these vary by airline and applicable agreement; check the authorities’ latest guidance); baggage rules and more; agree the split with head office and any agent (Course 2)"],
+["Filings","Schedule filings; international fare and fuel surcharge procedures (these vary by airline and applicable agreement; check the authorities’ latest guidance); baggage rules and more; agree the split with head office and any agent (Launching Flights to Japan: A Station Setup Guide for Foreign Airlines)"],
 ["Sales systems","GDS contracts, BSP membership, meetings and training with the GDS offices in Japan"],
 ["Registering agencies","Collect major agencies’ PCCs (GDS office codes) and ticketing BSP numbers, and ask head office to register them"],
 ["Fares and rules","Confirm Japan-origin fares, rules and fuel surcharges, and write the Japanese guideline (3-3)"],
@@ -71,7 +71,7 @@ sections:[
 ["At launch","Sales support ×1","Agency support, fare and schedule filings"],
 ["At launch","Administration (HR, accounts) ×1","HR, general affairs, accounting"],
 ["After launch","Sales ×1","Managing agents, new channels, charters"]]},
-{t:"note",x:"* Depends on frequency, workload and head office structure. Many stations run with a handful of people including the manager, even at daily frequency (Courses 2 and 12). ★"}]}],
+{t:"note",x:"* Depends on frequency, workload and head office structure. Many stations run with a handful of people including the manager, even at daily frequency (see Launching Flights to Japan: A Station Setup Guide for Foreign Airlines, and HR, General Affairs and Finance in Practice). ★"}]}],
 voice:"In this example, before launch, visit agencies in order of sales volume and group demand. The aim is to have met all the main agencies before sales open.",
 terms:[["Pseudo City Code (PCC)","PCC","PCC"],["Online Application","電子申請","전자 신청"],["Minimum Selling Price (MSP)","最低販売価格","최저 판매 가격"],["Tour Code","ツアーコード","투어 코드"],["Free of Charge Ticket (FOC)","無償航空券","무상 항공권"],["Incentive Group","インセンティブ団体","포상 여행 단체"]],
 quiz:[{q:"In this example, when is the first visit to agencies made?",opts:["Before the launch date is fixed","Once the date is fixed and an official notice is ready","The year after launch","Never"],a:1,exp:"In this example, the visit is made with confirmed details."},
@@ -108,7 +108,7 @@ sections:[
 ["Direct sales","With few frequencies the cost may outweigh the gain; compare with working through OTAs"]]},
 {t:"point",x:"From talks with an agency to head office approval usually takes a day or more. Prepare promotions with time to spare, and agree in advance what the station may decide on its own, so opportunities are not missed."}]}],
 voice:"Off-peak products sell better when built together with agencies. Before the New Year promotion, propose seats and fares in step with their product-planning calendar.",
-terms:[["Peak Season","繁忙期","성수기"],["Low Season","閑散期","비수기"],["Spot Fare","スポット運賃","스폿 운임"],["Volume Incentive (VI)","報奨金（VI）","판매 장려금(VI)"],["Wholesaler","ホールセラー","홀세일러"],["Weak Day","不振日","부진일"]],
+terms:[["Peak Season","繁忙期","성수기"],["Low Season","閑散期","비수기"],["Spot Fare","スポット運賃","스폿 운임"],["Volume Incentive (VI)","報奨金（VI）","판매 장려금(VI)"],["Wholesaler","ホールセラー","홀세일러"],["Weak Day","不振日","예약이 부진한 날(부진일)"]],
 quiz:[{q:"Which is a low season from Japan?",opts:["Golden Week","Early to mid-April (new school year)","Obon","Late December"],a:1,exp:"Demand slows at the start of the school year."},
 {q:"In this lesson’s example, when do agencies often run large promotions?",opts:["Early January","June","September","It varies"],a:0,exp:"Timing varies by company and product; in this example, some pre-sales start from late November or early December."},
 {q:"Which is a good way to fill the low season?",opts:["Pre-sell seats with group and IT fares","Do nothing","Cancel all flights","Keep fares secret"],a:0,exp:"Results tend to be steadier than with last-minute cuts."}],

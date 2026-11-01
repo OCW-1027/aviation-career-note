@@ -116,7 +116,7 @@ voice:"What troubles agencies most in a disruption is unclear conditions. Even i
 terms:[["Schedule Change","スケジュール変更","스케줄 변경"],["Queue","キュー","큐(작업 대기열)"],["Waiver","ウェーバー","웨이버"],["Endorsement","エンドース","엔도스"],["Refund","払い戻し","환불"],["Itinerary Guarantee","旅程保証","여정 보증"]],
 quiz:[{q:"What must a waiver include?",opts:["The president’s name","Affected flights, dates, what can be changed and refund handling","The weather forecast","The fare’s cost price"],a:1,exp:"So agencies can process without hesitation."},
 {q:"What tends to happen if processing does not match the conditions?",opts:["Nothing","It leads to ADMs","Fees are refunded","More seats appear"],a:1,exp:"It leads to disputes with agencies later."},
-{q:"What if the booking has no customer contact details?",opts:["Give up on contacting them","Ask the agency to inform the customer","Wait at the airport","Use social media only"],a:1,exp:"The agency is the first point of contact."}],
+{q:"What if the booking has no customer contact details?",opts:["Give up on contacting them","Ask the agency to inform the customer","Wait at the airport","Use social media only"],a:1,exp:"The agency is the initial contact point. This does not remove the airline’s responsibility to inform and assist passengers."}],
 next:"8-4 Handling disruptions for direct customers"});
 
 set("8-4",{title:"Serving Direct Customers: Website, Call Centre, Corporate Accounts and Members",hl:"direct customers",subtitle:"In direct sales the airline is the customer’s direct point of contact: informing, changing, refunding and recording are all yours",
@@ -146,7 +146,7 @@ sections:[
 ["Korea","The consumer dispute resolution standards give compensation guidelines for delays and cancellations the airline is responsible for (Passenger 5-4)"],
 ["Japan","No uniform statutory fixed compensation; each airline’s conditions of carriage and policy apply. Liability for damages is assessed separately"],
 ["Flights departing the EU, etc.","EU Regulation 261/2004 applies to flights departing the EU and others, depending on the operating carrier and route; financial compensation and care such as meals and hotels are set out separately"]]},
-{t:"point",x:"Whether compensation applies depends on the cause: force majeure such as weather or air traffic control, or the airline’s responsibility. Sales should not promise on the spot; explain the company’s standards and where to apply."},
+{t:"point",x:"Check cash compensation separately from meals and accommodation. Do not make an immediate promise: check applicable law and company rules, then direct the customer to the responsible contact."},
 {t:"note",x:"* Application varies by country, airline, cause and route. Check the latest law and conditions of carriage. ★"}]},
 {h:"Exercise: a typhoon cancels tomorrow’s flight (example)",blocks:[{t:"ladder",rise:10,steps:[{name:"Day before 15:00",sub:"Operational decision (cancel); promptly notify the confirmed facts"},{name:"15:30",sub:"Share internally; finalise wording and the waiver"},{name:"16:00",sub:"Follow-up with rebooking conditions: mass notice to direct customers, email to all agencies, post on website and social media"},{name:"16:30",sub:"Individual calls to groups, corporate, connecting and special-service customers"},{name:"From 17:00",sub:"Extra call-centre staff; phone those not reached"},{name:"On the day (morning)",sub:"Information at the airport; compile records and review"}]},
 {t:"rows",items:[
@@ -154,7 +154,7 @@ sections:[
 voice:"Direct customers take the airline’s handling as the airline itself. Notice that comes quickly, changes they can make themselves, and a phone line that answers: get those three right and trust survives a disruption.",
 terms:[["Direct Sales","直販","직판"],["Mass Notification","一斉通知","일괄 통지"],["Call Centre","コールセンター","콜센터"],["Elite Member","上級会員","상위 등급 회원"],["Compensation","補償","보상"],["Conditions of Carriage","運送約款","운송약관"]],
 quiz:[{q:"How are direct customers informed first?",opts:["Through an agency","By the airline, by email, SMS or app","When they reach the airport","They are not informed"],a:1,exp:"In direct sales the airline is the point of contact."},
-{q:"What should sales do when asked about compensation?",opts:["Promise a full payment on the spot","Explain the company’s standards and where to apply","Say it is never paid","Not answer"],a:1,exp:"It depends on the cause, so do not promise on the spot."},
+{q:"What should sales do when asked about compensation?",opts:["Promise a full payment on the spot","Check applicable law and company rules, then direct the customer to the responsible contact","Say it is never paid","Not answer"],a:1,exp:"Cash compensation and care are separate. Do not decide both solely from the cause; check the applicable law."},
 {q:"What about customers whose notice email bounced?",opts:["Leave them","List them and follow up by phone or at the airport","Social media is enough","Leave it to agencies"],a:1,exp:"Make sure no one is left uninformed."}],
 next:""});
 })(window.ARTS);

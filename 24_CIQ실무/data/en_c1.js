@@ -1,7 +1,7 @@
 /* CIQの役割 — English version (Part 1, lessons 1-1 to 1-4) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("1-1",{title:"Passports and Visas: What to Check at the Counter",hl:"Passports and Visas",subtitle:"Is it theirs, is it valid, does it meet the destination’s requirements? Check these three in the same order every time",
-lead:["In the few dozen seconds between taking a passport and handing over a boarding pass, the airline decides whether it may carry this passenger. There seems to be a lot to look at, but there are only three questions. Is the document theirs? Is it valid? Does it meet the requirements of the destination and every transit point?","This lesson sets out what to look at on a passport and a visa. How to look up the requirements themselves is covered in the next lesson (TIMATIC)."],
+lead:["In the few dozen seconds between taking a passport and handing over a boarding pass, the airline decides whether it may carry this passenger. There are many items to check, but they can be grouped into three broad questions. Is the document theirs? Is it valid? Does it meet the requirements of the destination and every transit point?","This lesson sets out what to look at on a passport and a visa. How to look up the requirements themselves is covered in the next lesson (TIMATIC)."],
 sections:[
 {h:"What to look at on a passport",blocks:[{t:"table",cols:["Where","What to confirm"],rows:[
 ["Photograph","That the photo and personal details match the person in front of you"],
@@ -21,27 +21,27 @@ sections:[
 ["Permitted length of stay","The booked return date must not exceed the stay allowed"],
 ["Residence status or re-entry permit","For people returning to where they live: Japan’s residence card, Korea’s residence card and so on"],
 ["Minors","Some countries require a parental consent letter ★"],
-["Vaccination certificate","Some countries require one from arrivals from areas with yellow fever"]]}]},
+["Vaccination certificate","May be required depending on the disease, such as yellow fever, and the destination. Check transit conditions too"]]}]},
 {h:"Check in the same order every time",blocks:[{t:"fig",id:"ciq_doccheck",cap:"The three questions to settle before handing over a boarding pass, and their order."},{t:"check",items:[
 {name:"1. Is it theirs? 2. Is it valid? 3. Does it meet the requirements?",x:"A fixed order means nothing is missed when it is busy."},
-{name:"Dual nationals",x:"Confirm which passport is used to leave and which to enter, and that the name and nationality in the booking match it."},
+{name:"Passengers with more than one passport",x:"Confirm the passport to be used for each country, the name in the booking and the data sent to the authorities."},
 {name:"Do not decide from your own experience",x:"Even for the same nationality, requirements can change with residence status and previous immigration history."}]},
 {t:"point",x:"Checking a passport and visa is not about doubting the passenger. It is about checking together at the origin so that they are not stopped at the destination."}]}],
-voice:{h:"A Reported Case",x:"In August 2023 British media reported that one member of a family heading for Thailand was refused boarding by Qatar Airways because of a tear of about a millimetre on the photo page of her passport. The family paid an extra GBP 5,000 at another airline’s desk to go to Turkey instead, and that airline accepted the same passport. Qatar Airways declined to cover the costs, saying that responsibility for holding the correct documents lies with the passenger (Source: Manchester Evening News). Damage to the photo page is an area where airlines’ judgments easily differ, so the counter needs a company standard."},
+voice:{h:"A Reported Case",x:"British media reported that one member of a family heading for Thailand was refused boarding by an airline because of a small tear on the photo page of her passport. The family paid a large additional sum at another airline’s desk to go to Turkey instead, and that airline accepted the same passport. The first airline declined to cover the costs, saying that responsibility for holding the correct documents lies with the passenger. Damage to the photo page is an area where airlines’ judgments easily differ, so the counter needs a company standard."},
 terms:[["Passport","旅券","여권"],["Visa","査証","비자"],["Visa Waiver","査証免除","비자 면제"],["Machine Readable Zone (MRZ)","機械読み取り領域","기계 판독 영역"]],
 quiz:[{q:"Which statement about visas is right?",opts:["A visa does not guarantee entry; the immigration officer decides","Holding one always means entry","The airline issues it","Requirements are the same everywhere"],a:0,exp:"A visa only allows the holder to present themselves for entry."},
 {q:"What should you watch for in passport validity?",opts:["Some countries require a remaining period","Valid on arrival is enough everywhere","Only the issue date matters","It need not be checked"],a:0,exp:"Some require, for example, six months from the date of entry."},
 {q:"What order does this lesson recommend at the counter?",opts:["Theirs? Valid? Meets the requirements?","Requirements, name, photo","Only the visa","Just listen to the passenger"],a:0,exp:"A fixed order reduces oversights."}],
-next:"1-2 TIMATIC: the tool for looking up entry requirements"});
+next:"1-2 TIMATIC: The Tool for Looking Up Entry Requirements"});
 set("1-2",{title:"TIMATIC: The Tool for Looking Up Entry Requirements",hl:"TIMATIC",subtitle:"Enter nationality, destination, transit points and purpose, and read the answer to the end",
 lead:["Nobody can memorise the entry requirements of nearly two hundred countries and territories, and they change almost daily. So airlines use a shared database called TIMATIC.","A tool only helps when used correctly. Change one input and the answer changes."],
 sections:[
 {h:"What TIMATIC is",blocks:[{t:"fig",id:"ciq_timatic",cap:"Figure: checking entry rules in TIMATIC."},{t:"rows",items:[
 {name:"Who produces it",x:"The International Air Transport Association (IATA). It holds each country’s passport, visa and health requirements and is updated from information supplied by authorities and airlines."},
-{name:"Where it is used",x:"It can be accessed from the check-in system. Some systems check requirements automatically when the passport is scanned."},
+{name:"Where it is used",x:"It can be accessed from the check-in system. Some systems check requirements automatically when the passport is scanned. The final decision on entry, however, rests with the authorities."},
 {name:"For passengers",x:"Airline websites offer a checking tool based on the same information. It can be used when advising passengers at booking."}]}]},
 {h:"What to enter",blocks:[{t:"table",cols:["Input","Why it is needed"],rows:[
-["Nationality (issuing country of the passport)","The basis of the requirements"],
+["Nationality and issuing country of the travel document (separate fields)","The basis of the requirements; enter each as shown in the document"],
 ["Type of passport","Ordinary and official passports are treated differently"],
 ["Origin, transit points and destination","Transit points have requirements too"],
 ["Length and purpose of stay","Whether the trip falls within a visa exemption"],
@@ -66,28 +66,28 @@ terms:[["Travel Information Manual Automatic (TIMATIC)","TIMATIC","TIMATIC"],["T
 quiz:[{q:"Who produces TIMATIC?",opts:["The International Air Transport Association (IATA)","National customs services","Airport companies","Travel agencies"],a:0,exp:"It is updated from information supplied by authorities and airlines."},
 {q:"Which input must not be forgotten?",opts:["Transit points","The passenger’s occupation","The seat number","The number of bags"],a:0,exp:"Transit points have entry and transit requirements of their own."},
 {q:"The answer says “Visa not required, except…”. What do you do?",opts:["Read the condition after “except”","Conclude no visa is needed","Ask the passenger","Do not check further"],a:0,exp:"The exceptions contain the important conditions."}],
-next:"1-3 Electronic travel authorisations: the rules by country"});
+next:"1-3 Electronic Travel Authorisations: The Rules by Country"});
 set("1-3",{title:"Electronic Travel Authorisations: The Rules by Country",hl:"Electronic Travel Authorisations",subtitle:"More and more countries require an application before travel, even from people who need no visa",
-lead:["A growing number of countries and regions now require even visa-exempt travellers to apply online before travel and be authorised before they can board. The United States’ ESTA is the best known, but the United Kingdom, Korea, Europe and Japan are all adopting the same idea.","Fees and eligibility change often. What follows was confirmed in October 2026. Always check the authority’s official website before relying on it."],
+lead:["A growing number of countries and regions now require even visa-exempt travellers to apply online before travel and be authorised before they can board. The United States’ ESTA is the best known; the United Kingdom and Korea already operate similar schemes, and Europe (ETIAS) and Japan are preparing to introduce them. Similar names do not mean the same legal status.","Fees and eligibility change often. What follows was confirmed in November 2026. Always check the authority’s official website before relying on it."],
 sections:[
-{h:"The main electronic travel authorisations",blocks:[{t:"fig",id:"ciq_levels",cap:"An electronic travel authorisation sits between “a visa is needed” and “no advance formality needed”."},{t:"table",cols:["Country or region, and name","Fee and validity","Notes"],rows:[
-["United States: ESTA","USD 40 (from 30 September 2025). Two years, or until the passport expires","For nationals of Visa Waiver Program countries; stays of up to 90 days"],
+{h:"The main electronic travel authorisations",blocks:[{t:"fig",id:"ciq_levels",cap:"An electronic travel authorisation sits between “a visa is needed” and “no advance formality needed”. Australia’s ETA, however, is a type of visa."},{t:"table",cols:["Country or region, and name","Fee and validity","Notes"],rows:[
+["United States: ESTA","USD 40.62 (from 16 October 2026; USD 40 from 30 September 2025). Two years, or until the passport expires","For nationals of Visa Waiver Program countries; stays of up to 90 days"],
 ["Canada: eTA","CAD 7. Five years, or until the passport expires","Visa-exempt nationals arriving by air"],
 ["United Kingdom: ETA","GBP 20 (since 8 April 2026; GBP 16 before that). Two years, or until the passport expires","Nationals who need no visa"],
-["Australia: ETA","AUD 20 application service fee. One year","Applied for through the official app"],
+["Australia: ETA","AUD 20 application service fee. One year","A type of visa (subclass 601). Applied for through the official app"],
 ["New Zealand: NZeTA","NZD 17 to 23 (depending on app or website) plus a visitor levy of NZD 100. Two years","Required even for transit"],
-["Korea: K-ETA","KRW 10,000. Three years, or until the passport expires","22 countries and territories, including Japan and the United States, are exempt until 31 December 2026"],
-["Europe (Schengen): ETIAS","EUR 20 (free under 18 and over 70). Three years","Due to start in the last quarter of 2026; the exact date is announced months in advance (not yet announced as of October 2026). Transitional and grace periods of at least 12 months follow the start"],
+["Korea: K-ETA","KRW 10,000. Three years, or until the passport expires","Some countries and territories, including Japan and the United States, are exempt until 31 December 2026"],
+["Europe (Schengen): ETIAS","EUR 20 (free under 18 and over 70). Three years","Not yet accepting applications (as of November 2026). Check the start date and transitional arrangements in the EU’s latest official announcements"],
 ["Japan: JESTA","Not yet set","Targeted for fiscal 2028 (0-4)"]]},
 {t:"note",x:"* Fees, eligibility and validity change."}]},
 {h:"Europe: EES and ETIAS are different things",blocks:[{t:"table",cols:["","EES (Entry/Exit System)","ETIAS (authorisation before travel)"],rows:[
 ["What it does","Registers face and fingerprints at the border and records entries and exits, replacing passport stamps","An online application before travel, resulting in an authorisation"],
 ["Application and fee","No application. Free","Application required. EUR 20"],
-["When","Began on 12 October 2025; fully operational from 10 April 2026","Due in the last quarter of 2026 (start date not yet announced)"]]},
+["When","Began on 12 October 2025; fully operational from 10 April 2026","Not yet accepting applications (check the EU’s latest announcements for the start date)"]]},
 {t:"note",x:"* At airports using EES, first-time registration takes time, which affects connection times on arrival."}]},
 {h:"Korea: K-ETA",blocks:[{t:"rows",items:[
-{name:"Since when, and for whom",x:"Introduced in September 2021 for nationals of the 112 countries and territories that can enter without a visa."},
-{name:"The temporary exemption",x:"22 countries and territories, including Japan, the United States, Canada, the United Kingdom, Singapore, Taiwan and Hong Kong, are exempt until 31 December 2026."},
+{name:"Since when, and for whom",x:"Introduced in September 2021 for nationals of countries and territories that can enter without a visa. Check eligibility on the official website."},
+{name:"The temporary exemption",x:"Some countries and territories, including Japan, the United States, Canada, the United Kingdom, Singapore, Taiwan and Hong Kong, are exempt until 31 December 2026."},
 {name:"Exempt travellers may still apply",x:"They may apply voluntarily. Holding a K-ETA removes the need to submit an arrival card. The fee then applies."},
 {name:"Check at the end of the year",x:"The exemption has so far been extended a year at a time. Check the authority’s announcement at year-end for 2027 onwards."}]}]},
 {h:"What happens at the counter",blocks:[{t:"check",items:[
@@ -99,10 +99,10 @@ sections:[
 {t:"point",x:"An electronic travel authorisation sits between “a visa is needed” and “no advance formality needed”. Saying “you don’t need a visa” is no longer enough."}]}],
 voice:{h:"A Reported Case",x:"In July 2024 the Korea Consumer Agency warned that it was receiving reports from people who had applied for a US ESTA through overseas agency websites instead of the official one and paid high fees. The official fee at the time was USD 21, while agency sites designed to look like the official one charged up to USD 145, and they sometimes appear near the top of search results (Source: Asia Economy, July 2024). US Customs and Border Protection had also warned in 2021 to use only the official website. Guidance to passengers should give the official web address, not just the name of the authorisation."},
 terms:[["Electronic System for Travel Authorization (ESTA)","電子渡航認証システム（米国）","전자여행허가제(미국)"],["European Travel Information and Authorisation System (ETIAS)","欧州渡航情報認証制度","유럽 여행 정보 인증 제도"],["Entry/Exit System (EES)","出入国システム（欧州）","출입국 시스템(유럽)"],["Korea Electronic Travel Authorization (K-ETA)","韓国電子渡航許可","전자여행허가(한국)"]],
-quiz:[{q:"What has the ESTA fee been since 30 September 2025?",opts:["USD 40","USD 21","USD 14","Free"],a:0,exp:"It rose from USD 21 to USD 40."},
+quiz:[{q:"What did the ESTA fee become on 30 September 2025?",opts:["USD 40","USD 21","USD 14","Free"],a:0,exp:"It rose from USD 21 to USD 40. Since 16 October 2026 it has been USD 40.62."},
 {q:"What is the difference between Europe’s EES and ETIAS?",opts:["EES records entries and exits at the border; ETIAS is an authorisation before travel","They are the same","EES has a fee; ETIAS is free","EES is a type of visa"],a:0,exp:"EES needs no application and is free; ETIAS needs an application and a fee."},
-{q:"For Korea’s K-ETA, what applies to Japanese passport holders in 2026?",opts:["They are exempt until 31 December 2026","They must apply","They need a visa","They cannot enter"],a:0,exp:"22 countries and territories are temporarily exempt."}],
-next:"1-4 Refusal of entry and removal in practice"});
+{q:"For Korea’s K-ETA, what applies to Japanese passport holders in 2026?",opts:["They are exempt until 31 December 2026","They must apply","They need a visa","They cannot enter"],a:0,exp:"Some countries and territories, including Japan, are temporarily exempt."}],
+next:"1-4 Refusal of Entry and Removal in Practice"});
 set("1-4",{title:"Refusal of Entry and Removal in Practice",hl:"Refusal of Entry",subtitle:"A passenger refused on arrival is, in principle, taken back by the airline that brought them",
 lead:["However carefully you check, some passengers will still be refused entry. Even with complete documents, a passenger can be refused for answers given at immigration or for past records.","What does the airline do then? This lesson looks at both the station at the destination and the station that sent the passenger."],
 sections:[
@@ -124,19 +124,19 @@ sections:[
 {h:"What the sending station does",blocks:[{t:"rows",items:[
 {name:"Receive the notification",x:"The destination station or head office sends the name, flight, reason and return flight."},
 {name:"Check the check-in record",x:"Who checked what and accepted the passenger, and whether the result was recorded."},
-{name:"Report to head office",x:"Facts, cause and expected cost, in the incident report format of lesson 3-4."},
+{name:"Report to head office",x:"Facts, cause and expected cost, summarised in an incident report."},
 {name:"Meet the returning passenger",x:"Meet the flight and explain who bears the costs and the next steps. This is not the place to hold the passenger responsible; give them the information they need."},
 {name:"Do not let it happen again",x:"If something was missed, share that requirement and the measures to prevent recurrence with those concerned."}]}]},
 {h:"Costs, records and deportees",blocks:[{t:"check",items:[
 {name:"The return fare",x:"The return sector of the passenger’s own ticket can sometimes be used. Whether any shortfall is charged to the passenger depends on company rules."},
 {name:"Costs while waiting",x:"The airline may be asked to pay for meals or the facility."},
 {name:"Records",x:"Keep the name, flight, reason for refusal, actions and costs. They are needed if the authority issues a penalty notice."},
-{name:"Deportees (DEPO) are handled separately",x:"When carrying someone removed by the state, obtain head-office approval in advance, confirm whether there is an escort and inform the captain."}]},
+{name:"Deportees (DEPO) are handled separately",x:"When carrying someone removed by the state, obtain head-office approval in advance, confirm whether there is an escort and inform the captain. Arrangements and costs differ by country."}]},
 {t:"point",x:"A passenger refused entry may be under great anxiety or strain. The airline’s job is not to change the decision but to support the return process in line with the authority’s instructions and company procedures, with care for the passenger’s safety and dignity."}]}],
-voice:{h:"A Reported Case",x:"In July 2023 Malaysia’s home minister announced a Cabinet decision that airlines, rather than third parties, would now be responsible for sending back travellers refused entry with a Not to Land notice (Source: The Star, 12 July 2023). In Canada, Air Canada told a review of the national transport system that airlines bear all the costs of removals, including security (Source: CTV News). In any country, refusal of entry and removal often end up being handled by the airline (Lessons from the Field 4-1)."},
+voice:{h:"A Reported Case",x:"There have been reports of governments changing who is responsible for returning travellers refused entry (Not to Land), and of airlines complaining about the cost of removals and escorts. Such reports reflect the time they were made, so check the current rules for each country. In many countries, refusal of entry and removal are handled by the airline (Lessons from the Field 4-1)."},
 terms:[["Refusal of Entry","入国拒否","입국 거부"],["Removal","送還","송환"],["Holding Facility","待機施設","대기 시설"],["Escort","護送者","호송인"]],
 quiz:[{q:"Why can a passenger with complete documents still be refused entry?",opts:["Answers at immigration and past records also count","The airline refuses them","Customs decides","It never happens"],a:0,exp:"The immigration officer at the destination makes the final decision."},
-{q:"Who, in principle, arranges the return flight of a refused passenger?",opts:["The airline that brought them","The passenger","The destination airport company","The embassy"],a:0,exp:"The carrying airline has the duty of return. Who bears the costs depends on the applicable regulations and company rules."},
+{q:"Who, in principle, arranges the return flight of a refused passenger?",opts:["The airline that brought them","The passenger","The destination airport company","The embassy"],a:0,exp:"The carrying airline arranges the return. Who bears the costs depends on the applicable regulations and company rules."},
 {q:"What does the sending station check first?",opts:["The record of what was checked at check-in","The passenger’s occupation","The weather at the destination","The number of meals"],a:0,exp:"It confirms what was checked before the passenger was accepted."}],
-next:"1-5 Transit without a visa"});
+next:"1-5 Transit Without a Visa: “I’m Not Entering” Is Not Enough"});
 })(window.ARTS);

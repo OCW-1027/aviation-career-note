@@ -19,21 +19,21 @@ sections:[
 {name:"Receive the notice",sub:"From the destination authority or the destination station"},
 {name:"Gather the facts",sub:"The check-in record, the saved result of what was looked up, the agent’s account"},
 {name:"Report to head office",sub:"In the incident report format of lesson 3-4 (Airport Station Management)"},
-{name:"Decide whether to appeal",sub:"The documents were properly checked; a sophisticated forgery could not be detected by normal checks. Check the procedure and deadline for appeal or reduction under that country’s rules (in the US, a written defence within 30 days of the notice of intention to fine) ★"},
+{name:"Decide whether to appeal",sub:"The documents were properly checked; a sophisticated forgery could not be detected by normal checks. Check the procedure and deadline for appeal or reduction under that country’s rules (e.g. in the US, under 8 CFR 280.12, a written defence within 30 days of service of the Notice of Intention to Fine (NIF), distinct from challenging a final decision)"},
 {name:"Prevent a repeat",sub:"Choose one measure that fits the cause and tell everyone"}]},
 {t:"note",x:"* How to appeal and the deadline differ by country."}]},
 {h:"Look at the numbers",blocks:[{t:"check",items:[
-{name:"Look at the rate, not only the count",x:"How many per 10,000 passengers carried. More flights naturally mean more cases."},
+{name:"Look at the rate, not only the count",x:"How many per 10,000 passengers carried. When passenger numbers differ, counts alone cannot be compared."},
 {name:"Break it down by cause",x:"Transit points, passport validity, travel authorisations. Start with the commonest."},
 {name:"Break it down by route",x:"Is it concentrated on certain destinations?"},
 {name:"Share with the handling company",x:"Where check-in is outsourced, review the numbers and measures together."}]},
 {t:"point",x:"“Let’s be careful” is not a measure. Decide which step of the procedure changes, and how."}]}],
-voice:{h:"A Reported Case",x:"In March 2026 it was reported that a Dutch appeal court upheld a EUR 4,000 fine on KLM for carrying a passenger without a visa from Curaçao to Amsterdam. KLM argued that the documents had been checked by staff of an outside handling company; the court rejected this, holding that such staff act on the airline’s behalf. Handing the check to a handler does not hand over the responsibility. (Source: Curaçao Chronicle, March 2026)"},
+voice:{h:"A Reported Case",x:"In March 2026 it was reported that a Dutch appeal court upheld a EUR 4,000 fine on an airline for carrying a passenger without a visa from Curaçao to Amsterdam. The airline argued that the documents had been checked by staff of an outside handling company; the court rejected this, holding that such staff act on the airline’s behalf. Handing the check to a handler does not hand over the responsibility. (Source: Curaçao Chronicle, March 2026)"},
 terms:[["Improperly Documented Passenger","渡航書類不備の旅客","서류 미비 승객"],["Appeal","異議の申し立て","이의 신청"],["Prevention of Recurrence","再発防止","재발 방지"],["Check Record","確認の記録","확인 기록"]],
 quiz:[{q:"What works best in reducing document errors?",opts:["Building a flow in which misses are hard to make","Reprimanding agents strongly","Stopping checks","Leaving it to passengers"],a:0,exp:"Do not rely on one person’s attention."},
-{q:"What should you watch when looking at the number of cases?",opts:["Look at the rate per number of passengers carried","Look only at the count","Do not look","Look only at busy months"],a:0,exp:"More flights naturally mean more cases."},
+{q:"What should you watch when looking at the number of cases?",opts:["Look at the rate per number of passengers carried","Look only at the count","Do not look","Look only at busy months"],a:0,exp:"When passenger numbers differ, counts alone cannot be compared. Look at the rate per passengers carried as well."},
 {q:"What comes first when a penalty notice arrives?",opts:["Gather the facts, such as the check-in record","Pay at once","Discipline the agent","Do nothing"],a:0,exp:"An appeal may be possible."}],
-next:"5-2 Extra and charter flights and CIQ"});
+next:"5-2 Extra and Charter Flights and CIQ"});
 set("5-2",{title:"Extra and Charter Flights and CIQ",hl:"Extra Flights",subtitle:"CIQ staffs for the regular schedule. An extra flight needs prior coordination and confirmation that it can be accepted",
 lead:["Scheduled flights arrive at the same time every day, and CIQ assigns officers to match. So what happens when an extra flight operates at an unusual time, or a charter flies to an airport with no international service?","The key is to consult the agencies early and confirm whether the flight can be accepted. Without prior coordination, passengers may not be able to disembark even after the aircraft arrives."],
 sections:[
@@ -59,19 +59,19 @@ sections:[
 {name:"Crew changes",x:"The immigration status of crew who change over and stay (1-6)."},
 {name:"Delays",x:"If the flight is later than notified, the officers may have gone (5-3)."}]},
 {t:"point",x:"Whether an extra flight can operate sometimes depends not only on operating permission but also on whether CIQ and the airport can accept it."}]}],
-voice:{h:"A Reported Case",x:"When Miyako Airport in Okinawa received Asiana Airlines charter flights from Incheon, it had no international facilities, so customs and immigration were carried out in a partitioned section of the domestic area. Because the space was cramped, the prefecture decided to build CIQ facilities, with use planned from March 2016 (Source: Ryukyu Shimpo). For a charter to an airport without permanent CIQ facilities, both the space and the people have to be agreed with the agencies long before the flight."},
+voice:{h:"A Reported Case",x:"When Miyako Airport in Okinawa received an airline’s charter flights from Incheon, it had no international facilities, so customs and immigration were carried out in a partitioned section of the domestic area. Because the space was cramped, the prefecture decided at the time to build CIQ facilities (Source: Ryukyu Shimpo). For a charter to an airport without permanent CIQ facilities, both the space and the people have to be agreed with the agencies long before the flight."},
 terms:[["Extra Flight","臨時便","임시편"],["Charter Flight","チャーター便","전세편"],["Prior Coordination","事前協議","사전 협의"],["Ferry Flight","回送便","페리편"]],
 quiz:[{q:"What comes first for CIQ when operating an extra flight?",opts:["Tell them in advance and confirm they can handle it","Tell them after arrival","Do nothing","Tell only the airport company"],a:0,exp:"CIQ staffs for the regular schedule."},
 {q:"What applies to a ferry flight with no passengers?",opts:["The aircraft, crew and stores are subject to CIQ","It has nothing to do with CIQ","Only customs is involved","Only quarantine is involved"],a:0,exp:"They are covered even without passengers."},
 {q:"When is a good time to consult CIQ?",opts:["While the plan is under consideration","The day before departure","After arrival","There is no need"],a:0,exp:"You learn early which times cannot be handled."}],
-next:"5-3 CIQ hours and delayed flights"});
+next:"5-3 CIQ Hours and Delayed Flights"});
 set("5-3",{title:"CIQ Hours and Delayed Flights",hl:"CIQ Hours",subtitle:"When a delay may run past CIQ hours: the earlier you tell them, the more options there are",
 lead:["CIQ at large airports stays open late. At some regional airports, the officers leave once the last flight has been handled. What happens when a delayed flight then turns up?","CIQ hours are separate from the airport’s operating hours and from the airline’s own shifts. When a delay is expected, CIQ is one of the first parties to check with."],
 sections:[
 {h:"CIQ has opening hours too",blocks:[{t:"fig",id:"ciq_late",cap:"Figure: when a delay may run past CIQ hours."},{t:"rows",items:[
 {name:"They differ by airport",x:"Busy airports may be open for long hours. Airports with few flights open only around flight times."},
 {name:"They differ between the CIQ agencies",x:"Customs, immigration and quarantine do not necessarily keep the same hours."},
-{name:"They are separate from airport operating hours",x:"Even while the runway is available, international passengers cannot disembark without CIQ."}]}]},
+{name:"They are separate from airport operating hours",x:"Even while the runway is available, international passengers cannot disembark without CIQ. Emergency safety measures are a separate matter."}]}]},
 {h:"When a delay may run past the hours",blocks:[{t:"ladder",steps:[
 {name:"A delay is expected",sub:"At the origin, on the previous sector, or because of weather"},
 {name:"Get the new arrival time",sub:"The most reliable estimate, from operations"},
@@ -89,18 +89,18 @@ sections:[
 {name:"Decide how much delay triggers a call",x:"Set a threshold for the station so that nobody hesitates."},
 {name:"Early, and with a reliable time",x:"A time that keeps changing is a burden on the other side. Say how firm it is."},
 {name:"Records",x:"When, to whom, what was said and what the answer was."}]},
-{t:"point",x:"Whether hours are extended depends not only on rules but on the everyday relationship. It is important to keep up working relations with the agencies in normal times as well."}]}],
-voice:{h:"A Reported Case",x:"In September 2018, when a typhoon put Kansai Airport out of action, the Japanese government decided that Itami would take up to 20 and Kobe up to 15 international and domestic flights a day in its place. Kobe extended its operating hours from 7:00–22:00 to 6:00–23:00, and the ministry said the individual flights would be set in coordination with the airport company, the airlines and the CIQ agencies (Source: Ministry of Land, Infrastructure, Transport and Tourism, 13 September 2018). Airport hours and CIQ staffing have to move together (Lessons from the Field 1-1)."},
+{t:"point",x:"Whether hours are extended depends on the rules, staffing and other conditions. Set up contact arrangements with the agencies in normal times."}]}],
+voice:{h:"A Reported Case",x:"In September 2018, when a typhoon put Kansai Airport out of action, the Japanese government decided that Itami would take up to 20 and Kobe up to 15 international and domestic flights a day in its place. Kobe extended its operating hours, and the ministry said the individual flights would be set in coordination with the airport company, the airlines and the CIQ agencies (Source: Minister of Land, Infrastructure, Transport and Tourism, press conference, 14 September 2018). Airport hours and CIQ staffing have to move together (Lessons from the Field 1-1)."},
 terms:[["Operating Hours","開庁時間","개청 시간"],["Extension of Hours","時間の延長","시간 연장"],["Diversion","ダイバート（目的地変更）","다이버트(목적지 변경)"],["Airport Operating Hours","空港の運用時間","공항 운영 시간"]],
 quiz:[{q:"What comes first when a delay may run past CIQ hours?",opts:["Tell CIQ and the airport the new arrival time at once","Discuss it after arrival","Nothing","Tell only the passengers"],a:0,exp:"The earlier, the more options there are."},
 {q:"Which statement about CIQ hours is right?",opts:["They are separate from airport operating hours and may differ between agencies","Every airport is open 24 hours","They always match airport operating hours","The airline sets them"],a:0,exp:"Customs, immigration and quarantine may differ."},
 {q:"What happens if CIQ cannot handle the flight?",opts:["Decide whether to divert or hold the departure","Land and let passengers off anyway","Let passengers decide","The airport company inspects them"],a:0,exp:"The decision is made with operations."}],
-next:"5-4 Landing at an unplanned airport"});
-set("5-4",{title:"Landing at an Unplanned Airport",hl:"Unplanned Airports",subtitle:"International passengers have not yet entered the country. Nobody and nothing leaves the aircraft without the authorities’ instructions",
+next:"5-4 Landing at an Unplanned Airport"});
+set("5-4",{title:"Landing at an Unplanned Airport",hl:"Unplanned Airports",subtitle:"International passengers have not yet entered the country. Normally nobody and nothing leaves the aircraft without the authorities’ instructions, but evacuation and life-saving come first",
 lead:["Weather, a medical emergency or a technical fault can bring an international flight down at an airport that was not planned. There may be no CIQ there; it may be a domestic-only airport.","It is tempting to think that opening the door and letting passengers off would make things easier. But international passengers have not yet entered any country. Whether they may leave the aircraft is for the authorities to decide."],
 sections:[
 {h:"Why it is difficult",blocks:[{t:"fig",id:"ciq_divert",cap:"The order of thinking when an international flight arrives at an unplanned airport."},{t:"rows",items:[
-{name:"Passengers have not yet entered the country",x:"They have not passed immigration, customs or quarantine. Leaving the aircraft and landing without permission would be an offence such as illegal landing."},
+{name:"Passengers have not yet entered the country",x:"They have not passed immigration, customs or quarantine. Normal disembarkation is arranged with the authorities. However, evacuation and life-saving must not be delayed, and the necessary reports are made at the same time."},
 {name:"Some airports have no CIQ",x:"A domestic-only airport may not have CIQ officers or inspection facilities permanently in place."},
 {name:"The same goes for goods",x:"Bags, catering, duty-free goods and waste cannot be unloaded without instructions from customs or quarantine (2-4, 3-5)."}]}]},
 {h:"Three situations",blocks:[{t:"table",cols:["Situation","What to do"],rows:[
@@ -113,24 +113,24 @@ sections:[
 {t:"note",x:"* These are set out in Japan’s Immigration Control and Refugee Recognition Act and Korea’s Immigration Act (confirmed in October 2026). Check your company’s rules and the authorities’ guidance for the procedures."}]},
 {h:"What the station does",blocks:[{t:"check",items:[
 {name:"First, contact the authorities and the airport",x:"Customs, immigration, quarantine and the airport operator. Be able to find the contacts even for an unplanned airport."},
-{name:"Doors and disembarkation wait for instructions",x:"Nothing moves until the captain and the authorities have agreed."},
+{name:"Doors and disembarkation wait for instructions",x:"Nothing moves until the captain and the authorities have agreed, except that evacuation and life-saving come first; the necessary reports and procedures run in parallel."},
 {name:"Keep the cabin habitable",x:"Air conditioning, water, food and toilets matter more the longer the wait."},
 {name:"Update at set intervals",x:"Even with nothing new, say, “The next update will be in so many minutes.”"},
 {name:"If it drags on",x:"Enter and stay overnight, or continue within the crew’s duty time? Decide with operations."},
 {name:"Records",x:"Times, who was contacted, what was instructed. You will be asked later."}]},
-{t:"point",x:"Do not act on the wish to let people off. The order is: contact, instruction, then disembarkation."}]}],
-voice:{h:"A Reported Case",x:"In June 2023 Air India flight 173 from Delhi to San Francisco diverted to Magadan in Russia’s far east with an engine problem, carrying 216 passengers and 16 crew. The airline had no staff in Russia; passengers were housed in makeshift accommodation including a school, and a replacement aircraft took them on about 39 hours later (Sources: NBC News, Tribune India and others). At an unplanned airport, entry, accommodation and permission for a replacement flight all depend on the local authorities and the airport."},
+{t:"point",x:"Do not act on the wish to let people off. The order is: contact, instruction, then disembarkation (evacuation and life-saving come first)."}]}],
+voice:{h:"A Reported Case",x:"In June 2023 an airline’s flight from Delhi to San Francisco diverted to Magadan in Russia’s far east with an engine problem, carrying 216 passengers and 16 crew. The airline had no staff in Russia; passengers were housed in makeshift accommodation including a school, and a replacement aircraft took them on about 39 hours later (Sources: NBC News, Tribune India and others). At an unplanned airport, entry, accommodation and permission for a replacement flight all depend on the local authorities and the airport."},
 terms:[["Diversion","ダイバート（目的地変更）","다이버트(목적지 변경)"],["Emergency Landing Permission","緊急上陸許可","긴급상륙허가"],["Holding on Board","機内での待機","기내 대기"],["Continuation Flight","再出発","재출발"]],
 quiz:[{q:"An international flight lands at an unplanned airport. When may passengers disembark?",opts:["After the authorities give instructions","As soon as it arrives","As soon as the captain decides","If the airport company allows it"],a:0,exp:"The passengers have not yet entered the country."},
 {q:"What is the principle at an airport without CIQ?",opts:["Wait on board, contact the authorities and follow their instructions","Let everyone off","Send passengers out through the domestic exit","Unload the bags only"],a:0,exp:"Decide whether officers will come or the flight will go to an airport with CIQ."},
 {q:"What applies in a medical emergency?",opts:["Life comes first: call the emergency services and inform the authorities at the same time","Wait for the authorities before calling an ambulance","Wait until the flight continues","Do nothing"],a:0,exp:"Emergency landing permission is obtained."}],
-next:"5-5 Informing passengers: at booking, at the gate, on board"});
+next:"5-5 Informing Passengers: At Booking, at the Gate, on Board"});
 set("5-5",{title:"Informing Passengers: At Booking, at the Gate, on Board",hl:"Informing Passengers",subtitle:"A basic and effective way to reduce trouble on arrival",
-lead:["As the earlier lessons showed, most passengers stopped at CIQ simply did not know the rules. They had no travel authorisation. They were carrying food containing meat. They had an e-cigarette in their bag.","An airline cannot change the rules. But it can tell people. There are three chances: at booking, at the gate, and on board."],
+lead:["As the earlier lessons showed, one reason passengers are stopped at CIQ is that they did not know the rules. They had no travel authorisation. They were carrying food containing meat. They had an e-cigarette in their bag.","An airline cannot change the rules. But it can tell people. There are three chances: at booking, at the gate, and on board."],
 sections:[
 {h:"Three chances to inform",blocks:[{t:"fig",id:"ciq_guide",cap:"Figure: three chances to inform passengers."},{t:"table",cols:["When","What to say","Why then"],rows:[
 ["At booking and a few days before departure","Visas, travel authorisations, arrival cards, what cannot be brought in","For anything that takes days to prepare, early information is important"],
-["At the gate","Food, tobacco, and not taking items served on board off the aircraft","They can still leave things behind"],
+["At the gate","Not taking food or tobacco restricted at the destination, or items served on board, off the aircraft","They can still leave things behind"],
 ["On board before arrival","How to declare, and what must not be taken off","The last chance to inform passengers before arrival. Remind them to declare what is required"]]}]},
 {h:"A line for each destination (samples)",blocks:[{t:"table",cols:["Destination","What to say"],rows:[
 ["Japan","Meat products, fruit and vegetables are subject to import restrictions. Everyone submits a customs declaration"],
@@ -145,17 +145,17 @@ sections:[
 {t:"rows",items:[
 {name:"Keep it short",x:"Passengers do not listen to long announcements. Limit it to the one or two items requiring particular attention at that destination."},
 {name:"Say what to do",x:"Do not stop at “it is prohibited”. Say “please declare it” or “please leave it on board”."},
-{name:"In the passengers’ languages",x:"Choose languages to match the nationalities on board."}]}]},
+{name:"In the passengers’ languages",x:"Choose languages that the passengers on board understand."}]}]},
 {h:"Writing and revising the wording",blocks:[{t:"check",items:[
 {name:"Follow the authorities’ wording",x:"Do not rephrase according to your own interpretation."},
 {name:"Never say “that will be fine”",x:"What you can say is “please declare it”."},
 {name:"Revise as soon as something changes",x:"Decide who revises which text. Out-of-date information is the most dangerous."},
 {name:"Check whether it worked",x:"After a change, ask the destination station whether fewer passengers are being stopped."}]},
 {t:"point",x:"The airline does not make the rules at the border. But, standing between the passenger and those rules, it plays an important role in telling passengers in advance what they need to know."}]}],
-voice:{h:"A Reported Case",x:"In April 2018 a passenger on a Delta flight from Paris to Minneapolis kept an apple handed out by the cabin crew, meaning to eat it on her connecting flight. US customs found it, and she was reported to have been fined USD 500 and to have lost her Global Entry status for not declaring it (Sources: AP, BBC and others). Food handed out on board is covered by the import rules too, which is why the pre-arrival announcement should ask passengers not to take fruit from the flight off the aircraft."},
+voice:{h:"A Reported Case",x:"In April 2018 a passenger on a flight from Paris to Minneapolis kept an apple handed out by the cabin crew, meaning to eat it on her connecting flight. US customs found it, and she was reported to have been fined USD 500 and to have lost her Global Entry status for not declaring it (Sources: AP, BBC and others). It was later reported that the penalty had been withdrawn and her status restored. Food handed out on board is covered by the import rules too, which is why the pre-arrival announcement should ask passengers not to take fruit from the flight off the aircraft."},
 terms:[["Pre-travel Information","事前の案内","사전 안내"],["Cabin Announcement","機内アナウンス","기내 방송"],["Declaration","申告","신고"],["Gate Announcement","ゲートアナウンス","탑승구 안내"]],
 quiz:[{q:"When should passengers be told about things that take days to prepare, such as visas and travel authorisations?",opts:["At booking and a few days before departure","At the gate","On board before arrival","Never"],a:0,exp:"Telling passengers early, before departure, is important."},
 {q:"What matters in a pre-arrival announcement?",opts:["Keep it short and say what to do","Speak for as long as possible","Read out every prohibited item","Say “that will be fine”"],a:0,exp:"Say what to do: “please declare it”."},
 {q:"What is the most dangerous kind of passenger information?",opts:["Information that is out of date","Short information","Information in a foreign language","Information that encourages declaring"],a:0,exp:"Revise as soon as something changes."}],
-next:"6-1 At the departure counter: thinking in situations"});
+next:"6-1 At the Departure Counter: Thinking Through Situations"});
 })(window.ARTS);

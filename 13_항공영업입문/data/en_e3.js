@@ -27,7 +27,7 @@ sections:[
 ["Leaving fares to head office","Feeding market changes (competitors, events, exchange rates) back to head office quickly (4-2)"]]},
 {t:"point",x:"Agencies are not obsolete: they still matter for groups, MICE, older travellers and complex itineraries. The key is to rebuild, market by market, which channel sells what to whom."}]},
 {h:"What the station does",blocks:[{t:"check",items:[
-{name:"Results by channel",x:"Review bookings and revenue by direct, OTA and agency each month (include them in the Course 1 lesson 6-9 monthly report)."},
+{name:"Results by channel",x:"Review bookings and revenue by direct, OTA and agency each month (include them in the monthly report: Airline Passenger Operations, 6-9)."},
 {name:"How you appear on OTAs",x:"Check that fares, baggage allowances, photos and descriptions display correctly on the main OTAs and metasearch."},
 {name:"Strengthening direct sales",x:"Are membership, the app, the Japanese-language site and payment methods right for Japanese customers?"},
 {name:"Responding to reviews",x:"Turn common complaints (baggage, delay information) into improvements on the ground."}]}]}],
@@ -44,7 +44,7 @@ deep:[{"h": "The road to offers and orders", "blocks": [{"t": "p", "x": "IATA’
 sections:[
 {h:"First, the word API",blocks:[{t:"fig",id:"sls_ndc",cap:"Figure: traditional GDS distribution versus NDC."},{t:"rows",items:[
 {name:"API (application programming interface)",x:"A defined doorway through which systems exchange information. NDC lets airlines connect with sellers through APIs, either directly or via GDSs and aggregators."},
-{name:"Careful: the other API",x:"This is not the API (advance passenger information) used at borders (Course 18, lesson 4-2). In sales and distribution, API almost always means a system interface."}]}]},
+{name:"Careful: the other API",x:"This is not the API (advance passenger information) used at borders (Aviation Fundamentals, 4-2). In sales and distribution, API almost always means a system interface."}]}]},
 {h:"Traditional distribution versus NDC",blocks:[{t:"table",cols:["","Traditional (GDS, EDIFACT)","NDC"],rows:[
 ["How fares appear","Fares are filed and the GDS calculates and displays them","The airline builds an offer on the spot and returns it via API"],
 ["Ancillaries","Limited; bags and seats handled separately","Seats, bags, meals and bundles offered together"],
@@ -56,7 +56,7 @@ sections:[
 ["2015","Lufthansa Group becomes the first to add a charge on GDS bookings; other major carriers follow"],
 ["2020s","Sales through NDC are growing, but the share varies by region and by how it is counted"],
 ["Now","The transition to NDC and order management is under way; adoption varies widely by market and by the scope of each study"],
-["2030","IATA’s aspiration of “100% Offers and Orders”"]]},
+["Future direction","IATA’s aspiration of “100% Offers and Orders”"]]},
 {t:"note",x:"* Figures are as published and are updated in newer reports. Check each airline’s own announcements for its NDC status and charges. ★"}]},
 {h:"Effects on agencies and the station",blocks:[{t:"check",items:[
 {name:"Fares and products only on NDC",x:"If bundles or benefits appear only through NDC, GDS-only agencies lose out."},
@@ -67,7 +67,7 @@ sections:[
 {h:"APIs spreading further",blocks:[{t:"rows",items:[
 {name:"OTAs and metasearch",x:"Airlines supply fares and availability directly via API, and sell bags and seats as well."},
 {name:"Corporate travel",x:"APIs link to travel management companies (TMCs) and corporate systems, applying corporate fares and policies."},
-{name:"Disruption notices",x:"Operational changes are pushed to sellers via API, speeding up customer contact and rebooking (Course 1, lesson 5-8)."}]},
+{name:"Disruption notices",x:"Operational changes are pushed to sellers via API, speeding up customer contact and rebooking (Airline Passenger Operations, 5-8)."}]},
 {t:"point",x:"NDC and APIs let the airline decide where, what and how it sells. The station should know how Japanese agencies and OTAs are connected, and help them through the transition."}]}],
 voice:"When explaining a move to NDC, start with how the agency’s work will change rather than the technology. Ticketing screens and settlement are their first concern.",
 terms:[["New Distribution Capability (NDC)","NDC（新流通規格）","NDC(신유통 표준)"],["Application Programming Interface (API)","アプリケーション・プログラミング・インターフェース","애플리케이션 프로그래밍 인터페이스"],["Offers and Orders","オファーとオーダー","오퍼와 오더"],["ONE Order","ワンオーダー","원 오더"],["Aggregator","アグリゲーター","애그리게이터"],["GDS Surcharge / Distribution Cost Charge","GDSの追加料金","GDS 추가 요금"]],
@@ -102,7 +102,7 @@ sections:[
 {name:"Changes and refunds",x:"Conditions differ by fare; share them so that what customers are told matches what happens at the airport."}]},
 {t:"point",x:"A fare is not just a price but a set of rules about who may sell it, with what and by when. Station sales staff share the conditions of the applicable IT fare (name, ticketing deadline, etc.) with head office, making sure they match what agencies are told."}]}],
 voice:"For IT fares, agree clearly with agencies at the outset what must be bundled. Vague conditions later turn into ADMs and disputes.",
-terms:[["Published Excursion Fare (PEX)","正規割引運賃（PEX）","PEX 운임"],["Inclusive Tour Fare (IT)","包括旅行運賃","포괄 여행 운임"],["Group Inclusive Tour Fare (GV)","団体包括旅行運賃（GV）","단체 포괄 여행 운임(GV)"],["Ticketing Time Limit (TL)","発券期限","발권 기한"],["Booking Class (RBD)","予約クラス","예약 클래스"],["Fare Rules","運賃規則","운임 규칙"]],
+terms:[["Published Excursion Fare (PEX)","正規割引運賃（PEX）","PEX 운임"],["Inclusive Tour Fare (IT)","包括旅行運賃","포괄 여행 운임"],["Group Inclusive Tour Fare (GV)","団体包括旅行運賃（GV）","단체 포괄 여행 운임(GV)"],["Ticketing Time Limit (TL)","発券期限","발권 기한"],["Booking Class (RBD)","予約クラス","예약 클래스"],["Fare Rules","運賃規則","운임 규정"]],
 quiz:[{q:"Which fare cannot be sold as a ticket alone?",opts:["Normal fare","PEX fare","IT fare","All can"],a:2,exp:"It must be combined with hotels or other ground arrangements."},
 {q:"In this lesson’s example, which group-fare form applies from one passenger?",opts:["GV1","GV10","PEX1","IT0"],a:0,exp:"Check the name and conditions in the applicable fare rules."},
 {q:"In this lesson’s example, which condition of the IT fare (GV1) was described?",opts:["Different seats","Always a different booking class","A ticketing time limit that may be longer (check the fare rules)","Different meals"],a:2,exp:"A longer limit lets agencies wait for arrangements before ticketing; conditions differ by fare, so check the applicable fare rules."}],
