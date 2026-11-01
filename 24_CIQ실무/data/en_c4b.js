@@ -31,7 +31,7 @@ quiz:[{q:"What is the maximum penalty in Canada for not declaring food?",opts:["
 {q:"A declared item turns out not to be allowed. What happens?",opts:["It may be seized or subject to enforcement, depending on the breach","It can always be brought in because it was declared","Declaring means no action of any kind","Declaring again allows it in"],a:0,exp:"Declaration does not guarantee admission."}],
 next:"4-5 Europe and the United Kingdom: Schengen, EES, and Meat and Dairy"});
 set("4-5",{title:"Europe and the United Kingdom: Schengen, EES, and Meat and Dairy",hl:"Europe and the UK",subtitle:"In the Schengen Area you generally clear immigration at the first point of entry. The UK has a separate border system, and its rules tightened in 2025",
-lead:["In Europe’s Schengen Area there is, as a rule, only one border check even when travelling through several countries. You clear immigration at the first Schengen country you arrive in and then, as a rule, travel on without internal border checks.","The United Kingdom is in neither Schengen nor the EU. Its immigration control and its food rules are separate, and since April 2025 meat and dairy products can no longer be taken from the EU into Great Britain (England, Scotland and Wales)."],
+lead:["In Europe’s Schengen Area there is, as a rule, only one border check even when travelling through several countries. You clear immigration at the first Schengen country you arrive in and then, as a rule, travel on without internal border checks.","The United Kingdom is in neither Schengen nor the EU. Its immigration control and its food rules are separate, and since April 2025 beef, sheep, goat and pork products and dairy can no longer be taken from the EU into Great Britain (England, Scotland and Wales); conditions depend on origin and meat type."],
 sections:[
 {h:"Entering Europe (the Schengen Area)",blocks:[{t:"fig",id:"ciq_eu",cap:"Figure: Europe (Schengen) and the UK."},{t:"rows",items:[
 {name:"Entry is at the first country",x:"Immigration is cleared at the first Schengen airport. Onward flights within the Schengen Area are, as a rule, boarded like domestic ones."},
@@ -40,7 +40,7 @@ sections:[
 {name:"Permitted stay",x:"Short stays without a visa are limited to 90 days in any 180, counted across all countries in the area."},
 {name:"Schengen and the EU are not the same",x:"Ireland is in the EU but not in Schengen. Switzerland and Norway are not in the EU but are in Schengen. ★"}]}]},
 {h:"Food that cannot be brought into Europe",blocks:[{t:"table",cols:["Item","Treatment"],rows:[
-["Meat and dairy products","Cannot be brought in from outside the EU in personal baggage"],
+["Meat and dairy products","Cannot be brought in from outside the EU in personal baggage (origin-specific exceptions apply)"],
 ["Exceptions","Up to 2 kg in total of powdered infant milk, infant food or food needed for medical reasons (commercially packaged, shelf-stable and unopened)"],
 ["Fruit, vegetables and plants","Most need a certificate from the exporting country ★"],
 ["Cash","EUR 10,000 or more in cash and similar must be declared when crossing the EU’s external border (counted per person)"]]},
@@ -48,8 +48,8 @@ sections:[
 {h:"The United Kingdom",blocks:[{t:"table",cols:["","Details"],rows:[
 ["Entry","In neither Schengen nor the EU. There is immigration control even when arriving from Europe"],
 ["Electronic travel authorisation (ETA)","Required for visa-exempt nationals. GBP 20 (since 8 April 2026)"],
-["Meat and dairy products","Not allowed from outside the EU. Since 12 April 2025, meat from cattle, sheep, goats and pigs and dairy products cannot be brought in from the EU either. This includes sandwiches, cheese and cured meats, whether packaged or bought duty-free"],
-["What is allowed","Up to 2 kg per person of powdered infant milk or food needed for medical reasons. Chocolate, confectionery, bread, cakes, biscuits and pasta are allowed if they meet conditions (for example, no meat or fresh cream)"],
+["Meat and dairy products","Rules depend on origin and meat type. Since 12 April 2025, beef, sheep, goat and pork products and dairy cannot be brought in from the EU and specified territories either. This includes sandwiches, cheese and cured meats, whether packaged or bought duty-free"],
+["What is allowed","Up to 2 kg per person of powdered infant milk or food needed for medical reasons, not requiring refrigeration before use and in branded, unopened packaging (unless currently in use). Chocolate, confectionery, bread, cakes, biscuits and pasta are allowed if they meet conditions (for example, no meat or fresh cream)"],
 ["Penalty","Items are surrendered at the border or seized. In serious cases, fines of up to GBP 5,000 in England"]]},
 {t:"note",x:"* The UK food rules here apply mainly to England, Scotland and Wales (Northern Ireland has separate rules). The measure responds to foot-and-mouth disease in Europe. Its duration and scope may change."}]},
 {h:"What to watch at the counter",blocks:[{t:"check",items:[

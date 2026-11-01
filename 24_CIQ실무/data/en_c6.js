@@ -12,7 +12,7 @@ sections:[
 {name:"Changing at the transit point on a separately bought ticket",x:"The passenger will often have to enter at the transit point to reclaim bags, though this depends on the airport and itinerary. Look up the transit point’s entry requirements. (1-2, 1-5)"},
 {name:"A 240-hour transit in China, then back to the country of origin",x:"The transit scheme cannot be used for a return trip. Check separately whether the 30-day visa exemption applies. (1-5, 4-7)"}]}]},
 {h:"Residents and animals",blocks:[{t:"rows",items:[
-{name:"A foreign resident of Japan has left the residence card behind",x:"Without the card there is no way to confirm they can re-enter Japan as a resident (special re-entry). Without the card, check the re-entry eligibility and the proof required with the authorities. (1-7)"},
+{name:"A foreign resident of Japan has left the residence card behind",x:"Without the card it is hard to confirm on the spot that they can re-enter as a resident (special re-entry). Ask the authorities to confirm re-entry eligibility and acceptable alternative evidence. (1-7)"},
 {name:"More than a year has passed since leaving",x:"If they hold no ordinary re-entry permit and the special re-entry period (two years for special permanent residents) has passed, the status of residence has been lost. Check the type and validity of any re-entry permit, and consult immigration and your company’s help desk. (1-7)"},
 {name:"A four-month-old dog bound for the United States",x:"Dogs under six months generally cannot enter the United States. Check with your company’s help desk and the authorities before accepting it. (4-3)"},
 {name:"A cat bound for Japan, with no advance notification made",x:"If the conditions are not met, the animal is held at a quarantine facility for up to 180 days after arrival. Explain before departure, and consult the animal quarantine service and your company’s help desk in advance. (3-4)"}]}]},
@@ -34,7 +34,7 @@ sections:[
 {h:"Food",blocks:[{t:"fig",id:"ciq_items",cap:"Figure: belongings that get stopped on arrival (example)."},{t:"rows",items:[
 {name:"Fruit from the in-flight service, put in a bag for later",x:"Ask passengers in the pre-arrival announcement not to take it off. In the United States fruit must also be declared; bringing it in undeclared can lead to a penalty. (3-3, 4-2)"},
 {name:"Jerky or instant noodles containing meat, bought as presents",x:"They cannot be brought into Japan, Korea, Taiwan, the United States and many other countries. Tell them to declare them. (3-2, 4-2, 4-7)"},
-{name:"Cheese bought in Paris, being taken to London",x:"Since April 2025 meat and dairy products cannot be taken from Europe into Britain. (4-5)"},
+{name:"Cheese bought in Paris, being taken to London",x:"Since April 2025 dairy products such as cheese, and beef, sheep, goat and pork products, cannot be taken from the EU into Great Britain (GB). (4-5)"},
 {name:"Unsure whether to declare",x:"Tell them to declare. (4-6)"}]}]},
 {h:"Tobacco, medicines, alcohol",blocks:[{t:"rows",items:[
 {name:"Heated tobacco, going to Taiwan",x:"It cannot be brought in from abroad, even in checked baggage. (4-7)"},

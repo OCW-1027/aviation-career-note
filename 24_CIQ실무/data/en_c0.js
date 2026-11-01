@@ -9,7 +9,7 @@ sections:[
 ["Quarantine (Q)","Disease and pests","Keep human infections, animal diseases and plant pests out of the country","First on arrival (people); after baggage reclaim (animals and plants)"]]}]},
 {h:"The agencies in Japan and Korea",blocks:[{t:"table",cols:["Job","Japan","Korea"],rows:[
 ["Customs","Japan Customs (Ministry of Finance)","Korea Customs Service"],
-["Immigration","Immigration Services Agency (Ministry of Justice)","Immigration and Foreign Policy Headquarters and local immigration offices (Ministry of Justice)"],
+["Immigration","Immigration Services Agency (Ministry of Justice)","Korea Immigration Service and its local immigration offices (Ministry of Justice)"],
 ["Human quarantine","Quarantine stations (Ministry of Health, Labour and Welfare)","National Quarantine Stations (Korea Disease Control and Prevention Agency)"],
 ["Animal quarantine","Animal Quarantine Service (Ministry of Agriculture, Forestry and Fisheries)","Animal and Plant Quarantine Agency"],
 ["Plant quarantine","Plant Protection Stations (Ministry of Agriculture, Forestry and Fisheries)","Animal and Plant Quarantine Agency"]]},
