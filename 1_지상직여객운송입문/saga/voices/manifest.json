@@ -1,7 +1,7 @@
 {
  "version": "234665bb93e7",
- "count": 938,
- "totalBytes": 17711298,
+ "count": 939,
+ "totalBytes": 17730063,
  "source": "voices/voices.json (단일 HTML에 내장된 승인 음성)",
  "voices": {
   "00200d58": {
@@ -3860,6 +3860,11 @@
    "sha256": "b54326de72867ce46c230e58161004b6615077eadf6d1940a1d0664c202a7c86",
    "gate": true
   },
+  "df03c8e4": {
+   "bytes": 19149,
+   "sha256": "53c8537f759046aeba3a779fc35de655e5148d23b0fb8a90de08f9cc14abe6c9",
+   "gate": true
+  },
   "e2441148": {
    "bytes": 10317,
    "sha256": "e3c62942739ceded9de094728692382007323128ed2677d0943b32f00b0ba3b6",
@@ -3886,8 +3891,8 @@
    "gate": true
   },
   "e6bc9592": {
-   "bytes": 21453,
-   "sha256": "9eac8a9a5b972c2a6c8cfac2aa901b81cf63436ccc43d723b511adcc8612c0ff",
+   "bytes": 21069,
+   "sha256": "5beef0be6115e032c6d560fe9a8f0dc105d4b292de22cdfcd110b52d0051a105",
    "gate": true
   },
   "e7c6d95e": {
@@ -4031,5 +4036,5 @@
    "gate": true
   }
  },
- "gateVoices": 274
+ "gateVoices": 275
 }

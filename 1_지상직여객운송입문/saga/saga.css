@@ -662,6 +662,8 @@ html.sh-saga .t48 .langrow{display:none}
 .flhand .kv{margin:0 0 6px}
 .flres .flconn td{vertical-align:top}
 .flres .flconn small{color:var(--sub)}
+.flres .flconn td.mono{white-space:nowrap;min-width:2.6em}.flres .flconn td.n{white-space:nowrap}   /* H1-09: 연결 코드(C1~C6)·판정 기호 줄바꿈 금지 */
+.flres .flroles th,.flres .flroles td.n{white-space:nowrap;text-align:right}.flres .flroles td.flrole{white-space:nowrap;min-width:7.5em}.flres .flroles tr.flhasdet td{border-bottom:0}.flres .flroles tr.fldet td{padding:0 5px 6px;font-size:12px;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere}   /* H1-08 */
 .fltags .on{background:#e9f6ef}
 .fltags td,.fltags th{padding:4px 6px}
 @media (max-width:600px){.flcard .flhd b{font-size:16px}.flcard .btns .start{flex-basis:100%}.fltags{font-size:12px}}
