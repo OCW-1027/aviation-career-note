@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIRLINE SAGA 경영편 — 항공사 경영 시뮬레이션(한국어판)</title>
+<meta name="description" content="AIRLINE SAGA 경영편: 가상의 항공사 Vela Air를 경영하는 교육용 시뮬레이션. 노선 개설·운항·재무·위기 대응을 1년 동안 체험(한국어판 · 日本語・English 準備中).">
+<link rel="icon" href="data:,">
+<script>(function(){var L=["ja","ko","en"],q=(location.search.match(/[?&]lang=(ja|ko|en)\b/)||[])[1],s=null;try{s=localStorage.getItem("art-lang")}catch(e){}var n=(navigator.language||"ja").slice(0,2),l=q||(L.indexOf(s)>=0?s:(L.indexOf(n)>=0?n:"ja"));if(q){try{localStorage.setItem("art-lang",q)}catch(e){}}window.MG_LANG=l;window.MG_LANGS_READY=["ko"];document.documentElement.lang=window.MG_LANGS_READY.indexOf(l)>=0?l:"ko"})();</script>
+<link rel="stylesheet" href="saga/mg/mg.css">
+</head>
+<body>
+<div id="mgLangNote" style="display:none;position:relative;margin:6px 8px;z-index:1;background:#fff8e6;color:#3b2a00;border:1px solid #e0b450;border-radius:10px;padding:8px 36px 8px 12px;font-size:13px;line-height:1.5;box-shadow:0 4px 16px rgba(0,0,0,.35)"><span id="mgLangNoteT"></span><button type="button" id="mgLangNoteX" aria-label="close" style="position:absolute;right:6px;top:6px;border:0;background:transparent;font-size:18px;cursor:pointer;color:#3b2a00">×</button></div>
+<script>(function(){var l=window.MG_LANG,T={ja:"経営編は現在、韓国語版のみです。日本語版は準備中です。",en:"The Management edition is currently available in Korean only. English is in preparation."};if(!T[l]||(window.MG_LANGS_READY||[]).indexOf(l)>=0)return;var k="acn-mg-langnote:"+l,d=null;try{d=localStorage.getItem(k)}catch(e){}if(d==="1")return;var n=document.getElementById("mgLangNote");document.getElementById("mgLangNoteT").textContent=T[l];n.style.display="block";document.getElementById("mgLangNoteX").onclick=function(){n.style.display="none";try{localStorage.setItem(k,"1")}catch(e){}}})();</script>
+<div class="top">
+ <span class="logo"><b>VELA AIR</b>운항 상황실 <small>경영 모드 시험판</small></span>
+ <div class="clk"><span id="clock">—</span><span id="clockSub"></span></div>
+ <div class="seg"><button id="bPause" title="정지">❚❚</button><button data-sp="1">×1</button><button data-sp="6">×6</button><button data-sp="30">×30</button><button data-sp="120">×120</button><button data-sp="1440">×1440</button></div>
+ <button class="btn" id="bNext" title="운항 기록 한 줄 또는 결재·연출이 생길 때까지 진행 — 하루 진행은 「오늘 끝까지」">다음 기록까지</button><button class="btn" id="bDay">오늘 끝까지</button>
+ <button class="btn" id="bSave">저장</button><button class="btn" id="bExit" style="display:none" title="저장하고 게임 고르기 화면으로">나가기</button>
+ <span class="sp"></span>
+ <details class="more" id="moreMenu"><summary class="btn" title="게임 메뉴 — 저장본 불러오기·내보내기·처음부터·새 캠페인" aria-label="게임 메뉴">⋯<span class="ml"> 게임 메뉴</span></summary><div class="morebox">
+  <button class="btn" id="bLoad">재개(저장본 불러오기)</button><button class="btn" id="bExport">내보내기</button><button class="btn" id="bReset">처음부터</button><button class="btn" id="bNew">새 캠페인</button>
+  <div id="devSet"><div class="moresub">시험 설정</div>
+  <select class="btn" id="calSel"><option value="real">실달력</option><option value="30d">통제 30일(모델 대사)</option><option value="deal">통제 30일 + 5대 추가 결재</option></select>
+  <label class="chk"><input type="checkbox" id="scn"> 첫 편 20분 지연(시험)</label></div>
+ </div></details>
+</div>
+<div id="notice"></div><div class="hint" id="hint"></div><div class="dlghint" id="dlgHint"></div>
+<div class="app"><nav class="rail" id="rail">
+ <button data-mod="dash" class="on"><i>◎</i><span>운항 상황실</span><span class="s">상황실</span></button>
+ <button data-mod="inbox"><i>✉</i><span>결재함</span><span class="s">결재</span><em id="badgeInbox" style="display:none"></em></button>
+ <button data-mod="fin"><i>¥</i><span>재무</span><span class="s">재무</span><em id="badgeFin" class="dot" style="display:none">!</em></button>
+ <button data-mod="data"><i>▤</i><span>월결산·회의</span><span class="s">회의</span></button>
+ <button data-mod="org"><i>⌂</i><span>조직</span><span class="s">조직</span></button>
+ <button data-mod="bench"><i>◩</i><span>벤치마크</span><span class="s">벤치</span></button>
+ <button data-mod="set"><i>⚙</i><span>설정</span><span class="s">설정</span></button>
+ <button data-mod="net"><i>⌖</i><span>노선망</span><span class="s">노선망</span></button>
+ <button data-mod="mkt"><i>⇄</i><span>시장</span><span class="s">시장</span></button>
+ <button data-mod="skd"><i>☷</i><span>시간표</span><span class="s">시간표</span></button>
+ <button data-mod="rp"><i>✎</i><span>노선 설계</span><span class="s">설계</span></button>
+ <button data-mod="slot"><i>▦</i><span>슬롯</span><span class="s">슬롯</span></button>
+ <button data-mod="fleet"><i>✈</i><span>기단</span><span class="s">기단</span></button>
+</nav><div class="body">
+<div class="kpi" id="kpi"></div>
+<div class="hqband" id="hqband"></div>
+<div class="mod" id="m_dash">
+<div class="main">
+ <div class="pn fleetp"><h3>기체 <small>누르면 지구본이 따라감</small></h3><div id="fleet"></div></div>
+ <div class="pn globe"><canvas id="gl"></canvas>
+  <div class="gtitle">VELA AIR 운항망<small>끌기 = 회전 · 휠/두 손가락 = 확대 · 기체를 누르면 선택</small></div>
+  <div class="zbox"><button id="zIn" title="확대">＋</button><button id="zOut" title="축소">－</button><button id="zJP">일본</button><button id="zNet">운항망</button><button id="zAll">전체</button><span id="zLbl">×1.0</span><span id="perf"></span></div>
+  <div class="gleg"><i style="background:#fff"></i>비행 중 <i style="background:#ff7a88"></i>지연 <i style="background:#39d4ff"></i>지상 <i style="background:#ff5c6c"></i>정비 <i style="background:#ffb547"></i>허브<span class="l2"><br>밤 지역은 어둡게 · 밤 공항은 불빛 · 선 위 빛 = 운항 노선</span></div>
+ </div>
+ <div class="side">
+  <div class="pn"><h3>결재함 <small>부서장 보고</small></h3><div id="inbox"></div></div>
+  <div class="pn"><h3>오늘 브리핑 <small>원장에서 바로 계산</small></h3><div id="today"></div></div>
+  <div class="pn"><h3>부서장 보고 <small>최근 주요 사건</small></h3><div id="brief"></div></div>
+ </div>
+</div>
+<div style="padding:0 14px 10px"><div class="pn"><h3>24시간 기체 운항표 <small>OCC 시각화 · 막대를 누르면 그 기체 선택</small></h3><div class="gthead" id="gtHead"></div><div class="gtwrap"><canvas id="gt"></canvas></div></div></div>
+<div style="padding:0 14px 10px"><div class="pn">
+ <div class="tabs"><button data-tab="flt" class="on">오늘의 편</button><button data-tab="fin">월결산·재무</button><button data-tab="log">사건 로그</button></div>
+ <div id="tab_flt"><div id="ftwrap" style="max-height:460px;overflow:auto"><table id="ft"></table></div></div>
+ <div id="tab_fin" style="display:none"><div class="fin2"><div style="overflow:auto"><table id="finTbl"></table></div><div><div style="font-size:11px;color:var(--sub);margin-bottom:4px">지금 재무상태표(원장 잔액)</div><div id="finBS"></div></div></div></div>
+ <div id="tab_log" style="display:none"><div class="log" id="log"></div></div>
+</div></div>
+</div>
+<div class="mod" id="m_inbox" style="display:none"></div>
+<div class="mod" id="m_fin" style="display:none"></div>
+<div class="mod" id="m_data" style="display:none"></div>
+<div class="mod" id="m_org" style="display:none"></div>
+<div class="mod" id="m_bench" style="display:none"></div>
+<div class="mod" id="m_set" style="display:none"></div>
+<div class="mod" id="m_net" style="display:none"></div>
+<div class="mod" id="m_mkt" style="display:none"></div>
+<div class="mod" id="m_skd" style="display:none"></div>
+<div class="mod" id="m_rp" style="display:none"></div>
+<div class="mod" id="m_slot" style="display:none"></div>
+<div class="mod" id="m_fleet" style="display:none"></div>
+</div></div>
+<div class="foot">교육용 경영 시뮬레이션 · 실제 운항 사용 금지 · 시장·경쟁사·수요는 교육용 가정(실제 시장 자료 아님) · 지도 Natural Earth(공개 도메인) · 공항 OurAirports(공개 도메인) · 시간대 timezone-boundary-builder(ODbL)·OpenFlights(ODbL/DbCL) 대조 · 시각은 본사(JST), 표의 STD/STA 등은 각 공항 현지시각 · ×1 = 현실 1초가 게임 1분 · 그림 v07 · 벤치마크는 교육용 가상 통계</div>
+<div class="modal" id="modal"><div class="box"><button id="mClose" title="닫기">×</button><div class="hd"><span id="mFace"></span><div><div class="who" id="mWho"></div><h4 id="mTitle"></h4></div></div><div id="mImg"></div><p id="mBody"></p><div class="opts" id="mOpts"></div><div id="mErr"></div></div></div>
+<div id="stamp"></div>
+<div class="meet" id="meet"></div>
+<div class="fx" id="fx"></div><div id="toasts"></div><div class="endv" id="endv"></div>
+<script>/* 196차 MB-04 표 맞추기(표시 전용): 820px 이하에서 화면 폭보다 넓은 표 → ① 글자 0.5px씩 줄임(최소 8.5px) ② 그래도 넓고 첫 줄이 제목(th)인 표 → 「한 행 = 한 묶음(제목: 값)」 ③ 제목 없는 표만 칸 안 줄바꿈
+   197차 N196-01: 도구가 바꾼 것만 기록(data-mgfit = 원래 인라인 font-size · data-mgfit-h · data-mgfit-th) → 화면 폭이 바뀌면 먼저 원래대로 되돌린 뒤 현재 폭에서 다시 계산 · 820px 초과 = 되돌리고 끝(PC = 새로 연 화면과 같음) · 원래 인라인 값·원래 data-th는 지우지 않음 */
+(function(){var busy=0,lastW=0;
+ function hdr(t){var r=t.rows[0];if(!r)return null;var c=r.cells,h=[];for(var i=0;i<c.length;i++){if(c[i].tagName!=='TH')return null;h.push(c[i].textContent.trim());for(var j=1;j<(c[i].colSpan||1);j++)h.push('')}return h}
+ function mark(t){if(!t.hasAttribute('data-mgfit'))t.setAttribute('data-mgfit',t.style.fontSize||'~')}
+ function restore(t){if(!t.hasAttribute('data-mgfit'))return;var o=t.getAttribute('data-mgfit');t.style.fontSize=o==='~'?'':o;t.classList.remove('fit','fitw','stk');t.removeAttribute('data-mgfit');if(t.getAttribute('style')==='')t.removeAttribute('style');
+  var hs=t.querySelectorAll('[data-mgfit-h]');for(var i=0;i<hs.length;i++){hs[i].classList.remove('stkh');hs[i].removeAttribute('data-mgfit-h');if(hs[i].getAttribute('class')==='')hs[i].removeAttribute('class')}
+  var cs=t.querySelectorAll('[data-mgfit-th]');for(var j=0;j<cs.length;j++){cs[j].removeAttribute('data-th');cs[j].removeAttribute('data-mgfit-th')}}
+ function stack(t,h){mark(t);t.classList.add('stk');var r0=t.rows[0];if(!r0.classList.contains('stkh')){r0.classList.add('stkh');r0.setAttribute('data-mgfit-h','1')}
+  for(var r=1;r<t.rows.length;r++){var c=t.rows[r].cells,k=0;for(var i=0;i<c.length;i++){if(!c[i].hasAttribute('data-th')){c[i].setAttribute('data-th',h[k]||'');c[i].setAttribute('data-mgfit-th','1')}k+=c[i].colSpan||1}}}
+ function fit(){busy=0;var w=window.innerWidth,chg=w!==lastW;lastW=w;var ts=document.querySelectorAll('table');
+  if(w>820){for(var a=0;a<ts.length;a++)restore(ts[a]);return}
+  for(var i=0;i<ts.length;i++){var t=ts[i];if(chg)restore(t);if(!t.offsetParent)continue;var box=t.parentElement;if(!box)continue;var av=box.clientWidth;
+   if(t.classList.contains('stk')){var h0=hdr(t);if(h0)stack(t,h0);continue}if(!av||t.scrollWidth<=av+1)continue;
+   mark(t);t.classList.add('fit');var fs=parseFloat(getComputedStyle(t).fontSize)||11,g=0;while(t.scrollWidth>av+1&&fs>8.5&&g++<14){fs-=0.5;t.style.fontSize=fs+'px'}
+   if(t.scrollWidth>av+1){var h=hdr(t);if(h&&t.rows.length>1){var o=t.getAttribute('data-mgfit');t.style.fontSize=o==='~'?'':o;t.classList.remove('fit');stack(t,h)}else t.classList.add('fitw')}}}
+ function q(){if(!busy){busy=1;setTimeout(fit,120)}}window.MG_FIT=fit;
+ document.addEventListener('DOMContentLoaded',function(){new MutationObserver(function(ms){for(var i=0;i<ms.length;i++){var el=ms[i].target;if(el&&el.closest&&el.closest('table,.tblw,.mod,.pn,.meet,#modal')&&!el.closest('.top,#kpi,#hqband')){q();return}}}).observe(document.body,{childList:true,subtree:true});q()});window.addEventListener('resize',q)})();</script>
+<script>window.MG_SITE={exit:"AIRLINE_SAGA_SELECT.html"};</script>
+<script src="saga/mg/voices_mg.js"></script>
+<script src="saga/mg/airports_v20261022.js"></script>
+<script src="saga/mg/mg_assets.js"></script>
+<script src="saga/mg/mg.js"></script>
+</body>
+</html>
