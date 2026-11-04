@@ -1,10 +1,10 @@
 /* 財務3表の実務 — English version (Part 0) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("0-1",{title:"Where a Company’s Money Comes From, and Where It Goes",hl:"Comes From",subtitle:"Money raised from owners and lenders becomes assets, earns sales, pays costs and is left over as profit",
-lead:["However large the company, its money moves in one loop. Money collected from somebody buys the tools of the trade, earns sales, pays costs, and whatever profit is left is either handed back or kept in the business. Once you can walk round this loop, you already understand half of the three statements.","An airline is no different. Money from shareholders and banks buys aircraft, passengers pay fares, fuel, wages and airport charges are paid, and what remains is profit. The figures run to hundreds of billions of yen, but the shape is the same as a taiyaki stall."],
+lead:["However large the company, its money moves in one loop. Money collected from somebody buys the tools of the trade, earns sales, pays costs, and whatever profit is left is either paid out as dividends or kept in the business. Repaying a loan is not a share of profit but a cash outflow, so profit and cash are read separately. Once you can walk round this loop, you already understand half of the three statements.","An airline is no different. Money from shareholders and banks buys aircraft, passengers pay fares, fuel, wages and airport charges are paid, and what remains is profit. The figures run to hundreds of billions of yen, but the shape is the same as a taiyaki stall."],
 sections:[
-{h:"Walking round the money loop",blocks:[{t:"fig",id:"fin_flow",cap:"Money raised from owners and lenders becomes assets → sales → costs → profit, then is handed back or kept. The yellow dot is the money moving"},
-{t:"ladder",rise:22,steps:[{name:"Raise",sub:"Owners’ capital and bank loans"},{name:"Spend",sub:"Buy equipment, facilities, stock: the tools of the trade"},{name:"Earn",sub:"Sell to customers and book sales"},{name:"Pay",sub:"Pay for materials, wages, rent and other costs"},{name:"Keep",sub:"Hand profit back (dividends, repayments) or keep it in the business"}]}]},
+{h:"Walking round the money loop",blocks:[{t:"fig",id:"fin_flow",cap:"Money raised from owners and lenders becomes assets → sales → costs → profit, then is paid out as dividends or kept. Loan repayment is a separate cash outflow. The yellow dot is the money moving"},
+{t:"ladder",rise:22,steps:[{name:"Raise",sub:"Owners’ capital and bank loans"},{name:"Spend",sub:"Buy equipment, facilities, stock: the tools of the trade"},{name:"Earn",sub:"Sell to customers and book sales"},{name:"Pay",sub:"Pay for materials, wages, rent and other costs"},{name:"Keep",sub:"Pay profit out as dividends or keep it in the business (loan repayment is a cash outflow)"}]}]},
 {h:"Which part of the loop each statement looks at",blocks:[{t:"table",cols:["Statement","Where it looks","The question it answers"],rows:[
 ["Income statement (P/L)","Earn → Pay → Keep","How much did we earn this period, and how much was left?"],
 ["Balance sheet (B/S)","Raise → Spend","Where does the money come from right now, and what form has it taken?"],
@@ -57,12 +57,12 @@ sections:[
 ["1st","Owner puts her own money into the business","300,000","B/S: cash +, capital + / C/F: financing +"],
 ["1st","Borrows from the bank","200,000","B/S: cash +, loan + / C/F: financing +"],
 ["2nd","Buys the cart (to last 5 years)","240,000","B/S: cash −, cart + / C/F: investing −"],
-["Daily","Buys ingredients for cash","90,000","B/S: cash −, ingredients (stock) + / C/F: operating −"],
-["Daily","Sales for cash","240,000","P/L: sales + / B/S: cash + / C/F: operating +"],
+["Daily (month total)","Buys ingredients for cash","90,000","B/S: cash −, ingredients (stock) + / C/F: operating −"],
+["Daily (month total)","Sales for cash","240,000","P/L: sales + / B/S: cash + / C/F: operating +"],
 ["20th","Supplies a school event, paid next month","20,000","P/L: sales + / B/S: receivable + (no cash yet)"],
 ["Month end","Pays rent, part-time wages, utilities","100,000","P/L: costs / B/S: cash − / C/F: operating −"],
 ["Month end","Pays interest on the loan","1,000","P/L: interest / B/S: cash − / C/F: operating −"],
-["Month end","Records one month’s wear on the cart","4,000","P/L: depreciation / B/S: cart − (240,000 ÷ 60 months)"],
+["Month end","Allocates one month of the cart’s cost over 60 months","4,000","P/L: depreciation / B/S: cart − (240,000 ÷ 60 months)"],
 ["Month end","Counts the ingredients left","15,000","Ingredients used = 90,000 − 15,000 = 75,000"]]},
 {t:"note",x:"* Tax is taken as 20% of profit and paid next month, so it sits in ‘tax payable’. Real tax rates and rules differ by company and country. ★"}]},
 {h:"The three statements that result",blocks:[{t:"fig",id:"fin_taiyaki",cap:"One set of events produces three statements. Profit of 64,000 yen lands in equity; closing cash of 309,000 yen lands in assets: the same numbers appear in two statements"},
@@ -84,7 +84,7 @@ sections:[
 {h:"Three things to notice",blocks:[{t:"rows",items:[
 {name:"Profit of 64,000 and cash of 309,000 are different things",x:"Cash rose so much not because of trading but because capital and the loan came in. The cash the business itself generated is the 49,000 under operating."},
 {name:"A sale that is not cash",x:"The 20,000 for the school event counts as a sale, but the cash has not arrived (receivable). This is the most basic form of the gap between profit and cash."},
-{name:"A cost with no payment",x:"No cash left the business for the 4,000 of depreciation this month. The 240,000 paid on the 2nd is spread over 60 months as a cost."}]},
+{name:"A cost with no new payment",x:"Recording the 4,000 of depreciation involves no new cash outflow. The cart’s cost of 240,000, paid on the 2nd, is allocated evenly over 60 months with no residual value."}]},
 {t:"point",x:"Total assets 580,000 = liabilities 216,000 + equity 364,000. Profit 64,000 sits inside equity; closing cash 309,000 sits inside assets. If this equality breaks, a record is wrong somewhere."}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Change a number and check",x:"If sales had been 200,000 yen, what would profit, cash and equity be? Does assets = liabilities + equity still hold?"},
@@ -93,6 +93,6 @@ sections:[
 voice:"The only statements whose numbers you truly trust are the ones you have built yourself. Rewrite the stall’s ten lines by hand. An airline’s accounts do the same thing, just with more lines.",
 terms:[["Accounts receivable","売掛金","매출채권(외상)"],["Inventory","在庫","재고"],["Depreciation","減価償却費","감가상각비"],["Tax payable","未払税金","미지급 세금"],["Retained earnings","利益剰余金","이익잉여금"]],
 quiz:[{q:"How is the 20,000 yen supplied to the school event (paid next month) treated this month?",opts:["Counted as a sale and shown as a receivable in assets","Not counted as a sale until the cash arrives","Treated as a cost","Counted as next month’s sale"],a:0,exp:"Sales are recognised on delivery; with no cash yet, it becomes a receivable."},
-{q:"Which is true of the 4,000 yen depreciation?",opts:["No cash was paid this month, but it is a cost","4,000 yen was paid in cash this month","The cart’s value does not change","It is a loan repayment"],a:0,exp:"The 240,000 yen cart is spread over 60 months as a cost."},
+{q:"Which is true of the 4,000 yen depreciation?",opts:["No new cash outflow when recorded, but it is this month’s cost","4,000 yen was paid in cash this month","The cart’s value does not change","It is a loan repayment"],a:0,exp:"The cart’s cost of 240,000 yen is allocated evenly over 60 months with no residual value. It was paid on the 2nd, so recording depreciation involves no new cash outflow."},
 {q:"Total assets are 580,000 yen. What do liabilities plus equity add up to?",opts:["580,000 yen","516,000 yen","364,000 yen","309,000 yen"],a:0,exp:"Assets = liabilities (216,000) + equity (364,000) always holds."}]});
 })(window.ARTS);

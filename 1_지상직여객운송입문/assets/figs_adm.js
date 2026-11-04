@@ -68,21 +68,21 @@ function jnlFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 var FS3={
  ja:['財務諸表の3つの表は、つながっている',[
   ['損益計算書（P/L）','1年間でいくら稼いだか','売上 − 費用 ＝ 利益','#2F8FE0'],
-  ['貸借対照表（B/S）','決算日に何を持ち、何を借りているか','資産 ＝ 負債 ＋ 純資産','#7A5CC7'],
-  ['キャッシュ・フロー計算書（C/F）','現金が実際にいくら出入りしたか','営業・投資・財務の3つに分けて見る','#1F8A5B']],
-  ['1年の利益は、純資産（利益剰余金）に積み上がる','期末の現金は、貸借対照表の「現金」と同じ金額になる'],
+  ['貸借対照表（B/S）','決算日に何を持ち、何を借りているか','資産 ＝ 負債 ＋ 純資産','#1F8A5B'],
+  ['キャッシュ・フロー計算書（C/F）','現金が実際にいくら出入りしたか','営業・投資・財務の3つに分けて見る','#E08A2F']],
+  ['1年の利益は、純資産（利益剰余金）に積み上がる','期末の現金・現金同等物は、貸借対照表の対応額とつながる'],
   '利益が出ていても、売掛金が回収できていなければ現金は増えません（0-4）。'],
  ko:['재무제표의 세 가지 표는 서로 이어져 있다',[
   ['손익계산서(P/L)','1년 동안 얼마를 벌었나','매출 − 비용 = 이익','#2F8FE0'],
-  ['대차대조표(B/S)','결산일에 무엇을 가졌고 무엇을 빌렸나','자산 = 부채 + 순자산','#7A5CC7'],
-  ['현금흐름표(C/F)','현금이 실제로 얼마나 들어오고 나갔나','영업·투자·재무 세 가지로 나눠 봄','#1F8A5B']],
-  ['1년의 이익은 순자산(이익잉여금)에 쌓인다','기말 현금은 대차대조표의 「현금」과 같은 금액이 된다'],
+  ['재무상태표(B/S)','결산일에 무엇을 가졌고 무엇을 빌렸나','자산 = 부채 + 순자산','#1F8A5B'],
+  ['현금흐름표(C/F)','현금이 실제로 얼마나 들어오고 나갔나','영업·투자·재무 세 가지로 나눠 봄','#E08A2F']],
+  ['1년의 이익은 순자산(이익잉여금)에 쌓인다','기말 현금·현금성자산은 재무상태표의 해당 금액과 연결된다'],
   '이익이 나도 매출채권을 회수하지 못하면 현금은 늘지 않습니다(0-4).'],
  en:['The three financial statements are linked',[
   ['Profit and loss (P/L)','How much was earned over the year','Sales − expenses = profit','#2F8FE0'],
-  ['Balance sheet (B/S)','What the company owns and owes on the closing date','Assets = liabilities + net assets','#7A5CC7'],
-  ['Cash flow statement (C/F)','How much cash actually came in and went out','Seen in three parts: operating, investing, financing','#1F8A5B']],
-  ['The year’s profit builds up in net assets (retained earnings)','Cash at year end equals the cash figure on the balance sheet'],
+  ['Balance sheet (B/S)','What the company owns and owes on the closing date','Assets = liabilities + net assets','#1F8A5B'],
+  ['Cash flow statement (C/F)','How much cash actually came in and went out','Seen in three parts: operating, investing, financing','#E08A2F']],
+  ['The year’s profit builds up in net assets (retained earnings)','Year-end cash and equivalents link to the matching B/S figure'],
   'A profit does not raise cash until receivables are actually collected (0-4).']};
 function fs3Fig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),dur=9,bx=[];
  function box(r){var c=r[3],h1=hgt(r[0],13,520),h2=hgt(r[1],11.5,520),h3=hgt(r[2],13,480),h=h1+h2+h3+40,o='';
@@ -141,7 +141,7 @@ var HRCAL={
   ['9〜10月','新しい標準報酬月額で保険料が変わる。最低賃金の改定','#E08A2F'],
   ['11月','年末調整の書類を社員に配って集める','#7A5CC7'],
   ['12月','年末調整、冬の賞与','#7A5CC7']],
-  ['給与・税','採用・教育','社会保険・労働保険'],'1年を通して：健康診断（年1回）、有給休暇の年5日取得の管理。日付は年や会社で違うので確かめましょう。★'],
+  ['給与・税','採用・教育','社会保険・労働保険'],'1年を通して：健康診断（年1回）、年休10日以上の人の年5日取得の管理。日付は年や会社で違うので確かめましょう。★'],
  ko:['인사·급여 업무의 1년(예)',[
   ['1월','급여지급보고서·법정조서 제출(1월 31일까지)','#7A5CC7'],
   ['2~3월','신입·경력 채용, 4월 배치와 연수 준비','#2F8FE0'],
@@ -151,7 +151,7 @@ var HRCAL={
   ['9~10월','새 표준보수월액으로 보험료 변경. 최저임금 개정','#E08A2F'],
   ['11월','연말정산 서류를 직원에게 배부·회수','#7A5CC7'],
   ['12월','연말정산, 겨울 상여','#7A5CC7']],
-  ['급여·세금','채용·교육','사회보험·노동보험'],'1년 내내: 건강검진(연 1회), 유급휴가 연 5일 사용 관리. 날짜는 연도·회사마다 다르니 확인하세요. ★'],
+  ['급여·세금','채용·교육','사회보험·노동보험'],'1년 내내: 건강검진(연 1회), 연차 10일 이상 부여자의 연 5일 사용 관리. 날짜는 연도·회사마다 다르니 확인하세요. ★'],
  en:['A year of HR and payroll work (example)',[
   ['Jan','Submit payment reports and statutory returns (by 31 January)','#7A5CC7'],
   ['Feb–Mar','Hiring graduates and mid-career staff; preparing April placements and training','#2F8FE0'],
@@ -161,7 +161,7 @@ var HRCAL={
   ['Sep–Oct','Premiums change with the new standard remuneration. Minimum wage revised','#E08A2F'],
   ['Nov','Hand out and collect year-end adjustment forms','#7A5CC7'],
   ['Dec','Year-end tax adjustment, winter bonus','#7A5CC7']],
-  ['Pay and tax','Hiring and training','Social and labour insurance'],'All year: annual health checks and making sure staff take five days of paid leave. Dates vary by year and company, so check them. ★']};
+  ['Pay and tax','Hiring and training','Social and labour insurance'],'All year: annual health checks and making sure staff granted 10+ days of leave take five. Dates vary by year and company, so check them. ★']};
 function hrcalFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600);
  var cols=['#7A5CC7','#2F8FE0','#E08A2F'],lx=30;
  d[2].forEach(function(g,i){var W=[100,140,180,240,320,420,560].filter(function(v){return LI(g,11,v).length===1})[0]||560,w=W+40;
@@ -246,9 +246,9 @@ var LVJP={
  ko:['일본: 출산·육아 휴업(예)',[['산전휴업(6주)',6,'#E08A2F'],['산후휴업(8주)',8,'#D0453E'],['육아휴업(자녀가 1세까지)',44,'#2F8FE0'],['연장(어린이집에 들어가지 못하는 경우 등. 최장 2세까지)',52,'#9DB4C8']],6,'출산','아버지는 자녀 출생 후 8주 이내에 4주까지 「출생 시 육아휴업」도 쓸 수 있습니다. ★'],
  en:['Japan: leave for birth and childcare (example)',[['Pre-birth leave (6 weeks)',6,'#E08A2F'],['Post-birth leave (8 weeks)',8,'#D0453E'],['Childcare leave (until the child turns 1)',44,'#2F8FE0'],['Extension (e.g. no nursery place; up to age 2)',52,'#9DB4C8']],6,'Birth','Fathers can also take up to four weeks of birth-time childcare leave within eight weeks of the birth. ★']};
 var LVKR={
- ja:['韓国：出産と育児の休み（例）',[['出産前後休暇（90日。出産後45日以上）',13,'#E08A2F'],['育児休職（1年）',52,'#2F8FE0'],['追加の6か月（父母がそれぞれ3か月以上使うと）',26,'#9DB4C8']],6.4,'出産','配偶者の出産休暇は20日（出産から120日以内、4回まで分けて使える）。★'],
- ko:['한국: 출산·육아 휴가(예)',[['출산전후휴가(90일, 출산 후 45일 이상)',13,'#E08A2F'],['육아휴직(1년)',52,'#2F8FE0'],['추가 6개월(부모가 각각 3개월 이상 쓰면)',26,'#9DB4C8']],6.4,'출산','배우자 출산휴가는 20일(출산일부터 120일 이내, 4번까지 나눠 사용). ★'],
- en:['Korea: leave for birth and childcare (example)',[['Maternity leave (90 days, at least 45 after birth)',13,'#E08A2F'],['Childcare leave (1 year)',52,'#2F8FE0'],['Extra 6 months (if each parent takes 3 months or more)',26,'#9DB4C8']],6.4,'Birth','Paternity leave is 20 days, taken within 120 days of the birth in up to four blocks. ★']};
+ ja:['韓国：出産と育児の休み（例）',[['出産前後休暇（90日。出産後45日以上）',13,'#E08A2F'],['育児休職（原則1年）',52,'#2F8FE0'],['追加の6か月（父母各3か月以上など条件あり）',26,'#9DB4C8']],6.4,'出産','配偶者の出産休暇は20日（出産から120日以内、4回まで分けて使える）。★'],
+ ko:['한국: 출산·육아 휴가(예)',[['출산전후휴가(90일, 출산 후 45일 이상)',13,'#E08A2F'],['육아휴직(원칙 1년)',52,'#2F8FE0'],['추가 6개월(부모 각 3개월 이상 등 요건 충족 시)',26,'#9DB4C8']],6.4,'출산','배우자 출산휴가는 20일(출산일부터 120일 이내, 4번까지 나눠 사용). ★'],
+ en:['Korea: leave for birth and childcare (example)',[['Maternity leave (90 days, at least 45 after birth)',13,'#E08A2F'],['Childcare leave (1 year in principle)',52,'#2F8FE0'],['Extra 6 months (if eligible, e.g. each parent 3+ months)',26,'#9DB4C8']],6.4,'Birth','Paternity leave is 20 days, taken within 120 days of the birth in up to four blocks. ★']};
 function lvFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),tot=0,x=30,W=580;
  d[1].forEach(function(r){tot+=r[1]});y+=FS(12)*1.6;
  var bx=x+W*d[2]/tot;s+='<line x1="'+bx+'" y1="'+(y-FS(12)*1.2)+'" x2="'+bx+'" y2="'+(y+40)+'" stroke="#0f3558" stroke-width="2" stroke-dasharray="4 3"/>'+tx(bx,y-FS(12)*1.4,d[3],12,'#0f3558',900);

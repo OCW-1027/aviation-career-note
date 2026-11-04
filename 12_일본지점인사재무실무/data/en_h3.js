@@ -18,14 +18,14 @@ sections:[
 ["Issued 28 June for 3 July → changed on 2 July to 4 July","¥3,000 (date changed on or after 1 July)"],
 ["Open ticket bought in June, date fixed on 10 July","¥3,000 (date fixed on or after 1 July)"],
 ["Issued 1 July, departs 3 July","¥3,000"]]},
-{t:"point",warn:true,x:"The test is not the departure date but the date of the contract (ticket issue) and the date the departure date was fixed. Passengers on the same flight on the same day can owe different amounts. Check change and reissue histories, and confirm the TK amount on the ticket matches."}]},
+{t:"point",warn:true,x:"The amount depends not only on the departure date but also on the date of the contract (ticket issue), the date the departure date was fixed and any change history. Passengers on the same flight on the same day can owe different amounts. Check change and reissue histories, and confirm the TK amount on the ticket matches."}]},
 {h:"Who is not taxed",blocks:[{t:"table",cols:["Category","Main cases"],rows:[
 ["Outside the scope","Aircraft and ship crew (including crew travelling on duty), deportees and similar, people leaving on government aircraft or ships, people who returned to Japan without calling abroad because of weather and similar"],
 ["Non-taxable","Certain transit passengers departing within 24 hours of arrival, people on aircraft that called in Japan because of weather and similar, children under 2"],
 ["Exempt (documents required)","Foreign ambassadors, consuls and similar posted to Japan (on official business), state guests and similar, members of US forces and UN forces (on official business)"]]},
 {t:"rows",items:[
-{name:"Transit passengers",x:"A single ticket must be issued, and the arrival in Japan and departure from Japan shown on it must be within 24 hours. If weather pushes the actual stay beyond 24 hours, the passenger remains non-taxable if the ticket showed less. But if the airport before Japan and the airport after Japan are the same (a return trip), the exemption does not apply."},
-{name:"Under 2",x:"Judged by age on the day of departure; for return tickets and similar, by age on the earliest travel start date in that ticket."},
+{name:"Transit passengers",x:"A single ticket must be issued, and the arrival in Japan and departure from Japan shown on it must be within 24 hours. If weather pushes the actual stay beyond 24 hours, the passenger remains non-taxable if the ticket showed less. But if the foreign airport before Japan and the one after Japan are the same, this transit exemption does not apply."},
+{name:"Under 2",x:"Judged in principle by age on the day of departure; for return tickets and similar, by age on the earliest travel start date in that ticket."},
 {name:"Two seats for one person",x:"Buying an extra seat for an instrument or similar still means one departure: tax is charged once."}]}]},
 {h:"Airline obligations",blocks:[{t:"table",cols:["Obligation","Details"],rows:[
 ["Notification","File a notification of commencing international passenger transport before starting (tax office if the airline has a place of business in Japan, otherwise customs)"],
@@ -50,8 +50,8 @@ sections:[
 {t:"link",href:"files/tourist_tax_monthly_template.xlsx",x:"Download the monthly Excel template (enter by flight; totals and tax by port and the payment deadline are calculated automatically; monthly checklist included)"},
 {t:"check",items:[
 {name:"Daily",x:"After each flight, record numbers and categories from the departure control system (DCS) and advance passenger information (APIS); confirm infants in DCS and APIS."},
-{name:"Evidence",x:"Keep the basis for transit, exemption and out-of-scope cases (ticket itineraries, original exemption forms). Keep original exemption forms for seven years and attach copies to the monthly report."},
-{name:"Month-end check",x:"Compare with the passenger count billed as the airport passenger facility charge and investigate any difference."},
+{name:"Evidence",x:"Keep the basis for transit, exemption and out-of-scope cases (ticket itineraries, exemption forms). Original exemption documents are kept by the carrier that made the contract of carriage; if that is not the operating carrier, attach copies to the monthly report."},
+{name:"Early next-month check",x:"Compare with the passenger count billed as the airport passenger facility charge and investigate any difference."},
 {name:"The next month",x:"Process payment approval and the accounting entry, and send the tally and evidence to the tax accountant to prepare the statement."},
 {name:"Payment",x:"Due at the end of the second month; some stations pay around the 10th of that month to allow for holidays in both countries and transfer times."}]}]},
 {h:"Points to watch",blocks:[{t:"rows",items:[
@@ -67,5 +67,5 @@ terms:[["International Tourist Tax (Departure Tax)","国際観光旅客税（出
 quiz:[{q:"A ticket was issued on 28 June 2026 and on 2 July the departure was changed to 4 July. How much tax?",opts:["¥1,000","¥3,000","¥0","¥2,000"],a:1,exp:"The date was changed on or after 1 July, so the new rate applies."},
 {q:"When is tax on July departures due?",opts:["31 July","31 August","30 September","March next year"],a:2,exp:"By the end of the second month after the month of departure."},
 {q:"On a codeshare, who must keep exemption documents?",opts:["The operating carrier","The carrier that made the contract of carriage (marketing carrier)","The airport operator","The tax accountant"],a:1,exp:"The operator collects and pays; the contracting carrier keeps exemption documents."}],
-next:"6-1 The monthly close and reporting to head office"});
+next:"6-1 The Monthly Close and Reporting to Head Office"});
 })(window.ARTS);

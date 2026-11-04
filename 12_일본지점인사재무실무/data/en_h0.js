@@ -27,7 +27,7 @@ terms:[["Human Resources (HR)","人事","인사"],["General Affairs","総務","�
 quiz:[{q:"Which job records each day’s transactions and turns them into accounts?",opts:["HR","General affairs","Accounting","Finance"],a:2,exp:"That is accounting."},
 {q:"What is the most basic safeguard when a small team combines roles?",opts:["Give everything to one person","Separate paying from recording and checking","Keep no records","Approve verbally"],a:1,exp:"If you cannot separate them, have head office check regularly."},
 {q:"When is year-end tax adjustment usually done?",opts:["April","July","December","Every day"],a:2,exp:"The year’s income tax is settled through December’s pay."}],
-next:"0-2 First steps in accounting: journal entries"});
+next:"0-2 First Steps in Accounting: Recording Transactions as Journal Entries"});
 
 set("0-2",{title:"First Steps in Accounting: Recording Transactions as Journal Entries",hl:"journal entries",subtitle:"Every transaction is written on a left and a right side, and every set of books starts there",
 lead:["Accounting begins by recording each movement of money in a company, each transaction, in the books in a fixed way. That way is the journal entry. Each transaction is written from two sides, the left (debit) and the right (credit), and the two totals must always match.","This article covers the rules of journal entries, common entries you will meet, and how a receipt becomes a set of accounts."],
@@ -50,7 +50,7 @@ sections:[
 ["Next month the ¥500,000 arrives","Bank deposit 500,000","Accounts receivable 500,000"],
 ["Office rent of ¥200,000 paid by transfer","Rent 200,000","Bank deposit 200,000"],
 ["Computer bought for ¥150,000","Equipment 150,000","Bank deposit 150,000"]]},
-{t:"note",x:"* Equipment costing ¥100,000 or more is recorded as an asset and expensed over several years (depreciation). Check current tax rules, including special treatment for small companies. ★"}]},
+{t:"note",x:"* Under Japanese tax rules, equipment costing ¥100,000 or more is in principle recorded as an asset and expensed over several years (depreciation). Other treatments exist, such as lump-sum depreciation for items under ¥200,000 and the small-company special rule for low-value assets (under ¥400,000 for items acquired on or after 1 April 2026, subject to eligibility and an annual cap). Check current tax rules. ★"}]},
 {h:"From receipt to accounts",blocks:[{t:"ladder",rise:10,steps:[{name:"Evidence",sub:"Receipts, invoices, contracts"},{name:"Journal entry",sub:"Recorded left and right"},{name:"General ledger",sub:"Grouped by account"},{name:"Trial balance",sub:"Left and right totals checked"},{name:"Accounts",sub:"P/L and balance sheet (0-3)"}]},
 {t:"point",x:"Accounting software now supports the whole process, from entries to preparing the accounts. Even so, if you understand what an entry means, you will find it easier to spot figures or treatments that look wrong."}]}],
 deepLabel:"In depth: accounts and the books",
@@ -61,7 +61,7 @@ deep:[
 {t:"note",x:"* The numbers are one small company’s way of coding its books; every company differs. Korean companies use K-IFRS or Korean GAAP names, so the same account may be worded slightly differently."}]},
 {h:"Numbering and order",blocks:[
 {t:"table",cols:["Number","Type","Normal balance","Statement"],rows:[["100s","Assets","Debit (left)","Balance sheet"],["200s","Liabilities","Credit (right)","Balance sheet"],["300s","Equity","Credit (right)","Balance sheet"],["400s","Revenue","Credit (right)","Income statement"],["500s","Expenses","Debit (left)","Income statement"]]},
-{t:"point",x:"Accounting software numbers each account to speed up entry and sorting. Numbering differs between companies, but the order assets → liabilities → equity → revenue → expenses is the same everywhere. Some accounts, such as the allowance for doubtful accounts and accumulated depreciation, sit among the assets but carry a credit balance."}]},
+{t:"point",x:"Accounting software numbers each account to speed up entry and sorting. Account numbers and their order vary by company and software. Here the accounts are grouped into five categories: assets → liabilities → equity → revenue → expenses. Some accounts, such as the allowance for doubtful accounts and accumulated depreciation, sit among the assets but carry a credit balance."}]},
 {h:"Accounts named differently in Japan and Korea",blocks:[
 {t:"table",cols:["Japanese","Korean (as used in practice)","What it records"],rows:[
 ["売掛金","외상매출금, 매출채권","Amounts owed by customers"],
@@ -87,12 +87,12 @@ terms:[["Journal Entry","仕訳","분개"],["Debit","借方","차변"],["Credit"
 quiz:[{q:"Stationery is bought with cash. What goes on the debit (left)?",opts:["Cash","Supplies expense","Sales","Loans"],a:1,exp:"An expense increased, so it is a debit; cash decreased, so it is a credit."},
 {q:"Which rule always applies?",opts:["Left is larger","Right is larger","Left and right totals are equal","Only one side is written"],a:2,exp:"Every transaction balances."},
 {q:"A sale is to be paid next month. Which account goes on the left?",opts:["Accounts receivable","Bank deposit","Accounts payable","Salaries"],a:0,exp:"Money not yet received is an asset called accounts receivable."}],
-next:"0-3 The three financial statements"});
+next:"0-3 The Three Financial Statements: P/L, Balance Sheet and Cash Flow"});
 
 set("0-3",{title:"The Three Financial Statements: P/L, Balance Sheet and Cash Flow",hl:"financial statements",subtitle:"Did we earn, what do we hold, and how did cash move: three statements, three questions",
 lead:["Journal entries are gathered into the financial statements. At their heart are three: the profit and loss statement for the year’s results, the balance sheet for what the company holds on the closing date, and the cash flow statement for the cash that came in and went out.","This article covers what each statement does and how they connect, how to read the P/L and the balance sheet, and a few figures that show a company’s health."],
 sections:[
-{h:"The three statements and how they link",blocks:[{t:"fig",id:"adm_fs3",cap:"Profit builds up in net assets on the balance sheet, and year-end cash matches the cash on the balance sheet."}]},
+{h:"The three statements and how they link",blocks:[{t:"fig",id:"adm_fs3",cap:"Profit builds up in net assets on the balance sheet, and year-end cash and cash equivalents link to the matching balance sheet figure (differences from cash and deposits are reconciled in the notes)."}]},
 {h:"Reading the P/L from the top",blocks:[{t:"table",cols:["Line","Meaning"],rows:[
 ["Sales","What was earned from goods and services sold"],
 ["Cost of sales","What it cost to buy or make what was sold"],
@@ -110,13 +110,13 @@ sections:[
 {h:"Figures that show a company’s health",blocks:[{t:"table",cols:["Figure","Calculation","What it shows"],rows:[
 ["Operating margin","Operating profit ÷ sales","How efficiently the core business earns"],
 ["Current ratio","Current assets ÷ current liabilities","Whether payments due within a year are covered (100% or more as a guide)"],
-["Equity ratio","Net assets ÷ total assets","Whether the company leans too heavily on debt"]]},
+["Equity ratio","Equity (net assets less non-controlling interests etc.) ÷ total assets","Whether the company leans too heavily on debt"]]},
 {t:"note",x:"* Benchmarks vary widely by industry. Compare with similar companies and with the previous year."}]}],
 deepLabel:"In depth: reading real financial statements",
 deep:[
 {h:"What a Japanese set of accounts contains",blocks:[
 {t:"table",cols:["Document","Contents","Small companies"],rows:[["Balance sheet","Assets, liabilities and net assets at the year-end","Always prepared"],["Profit and loss statement","The year’s revenue, expenses and profit","Always prepared"],["Statement of changes in shareholders’ equity","How net assets changed over the year","Always prepared"],["Notes to the financial statements","Accounting policies and important matters","Always prepared"],["Cash flow statement","The year’s cash movements","Required for listed companies and similar; not required for SMEs"],["Account-by-account schedules","Counterparties and amounts for deposits, receivables, loans and so on","Attached to the corporation tax return"]]},
-{t:"note",x:"* The first four are the “financial documents” under the Companies Act. Listed companies also file consolidated statements and a cash flow statement in their annual securities report under the Financial Instruments and Exchange Act. ★"}]},
+{t:"note",x:"* The first four are the “financial documents” a stock company (kabushiki kaisha) prepares under the Companies Act. Listed companies also file consolidated statements and a cash flow statement in their annual securities report under the Financial Instruments and Exchange Act. ★"}]},
 {h:"Financial statements in Korea",blocks:[
 {t:"table",cols:["","Japan (SMEs)","Korea"],rows:[["Core statements","Balance sheet, profit and loss statement, statement of changes in equity, notes","Statement of financial position, income statement (comprehensive income), statement of changes in equity, cash flow statement, notes"],["Cash flow statement","Not required","One of the core statements"],["Accounting standards","SME accounting guidelines and similar","K-IFRS for listed companies; general accounting standards for others"],["Publication","Public notice of results (e.g. in the official gazette)","Companies subject to external audit publish on DART"]]},
 {t:"note",x:"* Whether a Korean company is subject to external audit depends on its type (stock or limited company) and thresholds for assets, liabilities, sales and headcount. ★"}]},
@@ -128,20 +128,20 @@ deep:[
 {name:"Compare with last year",x:"One year alone tells you little. Put last year’s accounts beside this year’s, account by account, and look for the reasons behind big changes."}]},
 {t:"link",href:"決算の練習.html",x:"[Practice] Year-End Closing Practice: build a fictional company’s accounts in this Japanese format"}]}],
 voice:"When you first look at financial statements, look for what changed most from last year rather than reading every figure. Asking why it changed is where analysis begins.",
-terms:[["Profit and Loss Statement (P/L)","損益計算書","손익계산서"],["Balance Sheet (B/S)","貸借対照表","대차대조표(재무상태표)"],["Cash Flow Statement (C/F)","キャッシュ・フロー計算書","현금흐름표"],["Operating Profit","営業利益","영업이익"],["Net Assets","純資産","순자산"]],
+terms:[["Profit and Loss Statement (P/L)","損益計算書","손익계산서"],["Balance Sheet (B/S)","貸借対照表","재무상태표"],["Cash Flow Statement (C/F)","キャッシュ・フロー計算書","현금흐름표"],["Operating Profit","営業利益","영업이익"],["Net Assets","純資産","순자산"]],
 quiz:[{q:"Which line shows profit from the core business?",opts:["Sales","Operating profit","Net profit for the year","Cost of sales"],a:1,exp:"Operating profit is gross profit minus SG&A."},
 {q:"What does the right side of the balance sheet show?",opts:["What the money is used for","Where the money came from","The year’s profit","Cash in and out"],a:1,exp:"Left is the use; right is the source."},
 {q:"Where does the year’s profit build up on the balance sheet?",opts:["Current assets","Long-term liabilities","Net assets (retained earnings)","Receivables"],a:2,exp:"Profit is added to retained earnings in net assets."}],
-next:"0-4 Cash management: profit and cash are not the same"});
+next:"0-4 Cash Management: Profit and Cash Are Not the Same"});
 
 set("0-4",{title:"Cash Management: Profit and Cash Are Not the Same",hl:"cash management",subtitle:"Using a cash flow forecast to avoid running out of money while making a profit",
 lead:["Companies do not only fail because they make losses. Even a profitable company may be unable to continue if it lacks cash on the day a payment is due. This is sometimes called going bankrupt in the black. Profit is a figure in the books; cash is money actually in the bank, and the two do not move together.","This article covers why profit and cash diverge, how to build a cash flow forecast, daily habits that protect cash, and points specific to the branch of a foreign company."],
 sections:[
-{h:"Why profit and cash diverge",blocks:[{t:"fig",id:"adm_cash",cap:"Profit (blue) keeps rising, but if customers pay late, cash (green) can briefly go negative."},
+{h:"Why profit and cash diverge",blocks:[{t:"fig",id:"adm_cash",cap:"Profit (blue) may be rising, but if customers pay late, cash (green) can run short."},
 {t:"rows",items:[
 {name:"Late collection of receivables",x:"Sales are booked, but the money arrives next month or the month after. Salaries and rent have to be paid in the meantime."},
 {name:"Buying equipment",x:"The cost is spread over several years as depreciation, but the cash goes out all at once."},
-{name:"Repaying loans",x:"Repayment is not an expense, so profit is unchanged, but cash goes down."},
+{name:"Repaying loan principal",x:"Repaying principal is not an expense, so profit is unchanged, but cash goes down."},
 {name:"Large payments falling together",x:"Bonuses, taxes, insurance renewals and annual contracts can land in the same month."}]}]},
 {h:"Building a cash flow forecast",blocks:[{t:"table",cols:["Item (¥10k)","Month 2","Month 3","Month 4"],rows:[
 ["Opening balance","300","180","90"],
@@ -164,9 +164,9 @@ sections:[
 voice:"An overly optimistic cash forecast makes it harder to see the actual position. If you assume money comes in late and goes out early, you can see in advance the month you will really be short.",
 terms:[["Bankruptcy Despite Profit","黒字倒産","흑자도산"],["Cash Flow Forecast","資金繰り表","자금 계획표"],["Accounts Receivable","売掛金","매출채권"],["Working Capital","運転資金","운전 자금"],["Cash on Hand","手元資金","보유 현금"]],
 quiz:[{q:"What does going bankrupt in the black mean?",opts:["Failing because of losses","Failing for lack of cash despite making a profit","Not paying tax","Having no sales"],a:1,exp:"Profit and cash do not move together."},
-{q:"What happens when a loan is repaid?",opts:["Profit and cash both fall","Profit is unchanged but cash falls","Only profit falls","Neither changes"],a:1,exp:"Repayment is not an expense."},
+{q:"What happens when loan principal is repaid?",opts:["Profit and cash both fall","Profit is unchanged but cash falls","Only profit falls","Neither changes"],a:1,exp:"Repaying principal is not an expense (interest is)."},
 {q:"What is the basic rule for a cash forecast?",opts:["Receipts early, payments late","Receipts late, payments early","Be optimistic about both","Do not make one"],a:1,exp:"A cautious forecast shows shortfalls sooner."}],
-next:"0-5 Payroll: from gross pay to take-home pay"});
+next:"0-5 Payroll: From Gross Pay to Take-home Pay"});
 
 set("0-5",{title:"Payroll: From Gross Pay to Take-home Pay",hl:"payroll",subtitle:"What is deducted and how much, seen from both the payroll team’s side and the employee’s",
 lead:["A payslip lists set items: the time worked (attendance), the amounts paid (earnings), and social insurance and taxes (deductions). Gross pay minus deductions is the take-home pay that actually reaches the bank account.","This lesson covers the three parts of a payslip, the size of deductions on a ¥300,000 salary in Japan and a ₩3,000,000 salary in Korea, how each deduction is set, and the monthly payroll cycle."],
@@ -178,7 +178,7 @@ sections:[
 kr:[{t:"rows",items:[
 {name:"Attendance",x:"Days worked, overtime hours, holiday work and annual leave taken."},
 {name:"Earnings",x:"Base salary, allowances and overtime pay (at workplaces with five or more regular employees, a premium of at least 50% on ordinary wages). For staff not provided with meals, a meal allowance is free of income tax up to ₩200,000 a month. ★"},
-{name:"Deductions",x:"The four social insurances (national pension, health, long-term care, employment) and taxes (income tax and local income tax)."}]}]}]},
+{name:"Deductions",x:"The employee’s share of the four social insurances (national pension, health with long-term care, employment; industrial accident insurance is paid wholly by the employer) and taxes (income tax and local income tax)."}]}]}]},
 {h:"From gross to take-home",blocks:[{t:"region",jp:[{t:"fig",id:"adm_pay",cap:"Around a fifth of gross pay goes to social insurance and taxes."},
 {t:"note",x:"* From the April 2026 premium (paid in May), a child and childcare support levy is collected with health insurance. The month it first comes off pay depends on whether the company deducts premiums in the same or the following month. The amount is small, but a new line appears on the payslip. ★"}],
 kr:[{t:"fig",id:"adm_paykr",cap:"Around 13% of gross pay goes to social insurance and taxes."},
@@ -188,7 +188,7 @@ kr:[{t:"fig",id:"adm_paykr",cap:"Around 13% of gross pay goes to social insuranc
 ["Employment insurance","That month’s gross pay × the rate","Monthly; the rate is reviewed each April"],
 ["Income tax","That month’s pay after social insurance, and the number of dependants","Monthly; settled for the year in December’s year-end adjustment"],
 ["Residence tax","Last year’s income","Twelve instalments from June to the following May"]]},
-{t:"note",x:"* The employer also pays its own share of social insurance, so as a rough guide the cost of employing someone is about 15–17% more than their salary (Tokyo, FY2026; higher for ages 40–64 because of long-term care premiums, and it varies with rates, industry and earnings caps). ★"}],
+{t:"note",x:"* The employer also pays its own share of social and labour insurance (employment and workers’ accident insurance), so as a rough guide the cost of employing someone is about 15–17% more than their salary (Tokyo, FY2026; higher for ages 40–64 because of long-term care premiums, and it varies with rates, industry and earnings caps). ★"}],
 kr:[{t:"table",cols:["Deduction","Based on","When it changes"],rows:[
 ["National pension","Standard monthly income (from last year’s income)","Reset every July"],
 ["Health and long-term care","Monthly remuneration","Monthly; last year is settled the following April"],
@@ -210,7 +210,7 @@ deep:[
 {h:"A worked example at 300,000 yen",blocks:[
 {t:"p",x:"Change the standard monthly remuneration and the age band, and the employee and employer amounts are recalculated."},
 {t:"paycalc",std:300000},
-{t:"point",x:"On top of pay, the employer pays about 16% of pay in social and labour insurance. Budget for a new hire as pay plus the employer’s share, not pay alone."}]},
+{t:"point",x:"On top of pay, the employer pays about 16% of pay in social and labour insurance (in this example; roughly 15–17% as a guide). Budget for a new hire as pay plus the employer’s share, not pay alone."}]},
 {h:"Employment insurance, workers’ accident insurance and the child and childcare contribution",blocks:[
 {t:"rates",keys:["koyo","rosai","kyoshutsu"]},
 {t:"rows",items:[
@@ -252,7 +252,7 @@ deepKr:[
 {name:"Long-term care insurance",x:"A set percentage of the health insurance premium (13.14% in 2026), equal to 0.9448% of monthly remuneration."}]}]},
 {h:"A worked example at 3 million won",blocks:[
 {t:"paycalc",kr:1,std:3000000},
-{t:"point",x:"On top of pay, the employer pays about 11% of pay for the four insurances. It is smaller than in Japan (about 16%) because the pension and health insurance rates are lower."}]},
+{t:"point",x:"On top of pay, the employer pays about 11% of pay for the four insurances (in this example; roughly 11–12% as a guide). It is smaller than in Japan (about 16%) because the pension and health insurance rates are lower."}]},
 {h:"Income tax and local income tax",blocks:[{t:"krtaxcalc"},{t:"rows",items:[
 {name:"Monthly withholding",x:"The tax comes from the National Tax Service’s simplified withholding table, using monthly pay and the number of dependants. Local income tax is 10% of the income tax and is deducted with it."},
 {name:"Year-end settlement",x:"The year’s tax is recalculated and the difference settled in the following February’s pay. Deductions for insurance, medical and education costs and card spending are reflected here."},
@@ -268,12 +268,12 @@ terms:[["Gross Pay","総支給額","총지급액"],["Take-home Pay","手取り",
 quiz:[{q:"(Japan) What is residence tax based on?",opts:["This month’s pay","Last year’s income","Next year’s forecast","Company profit"],a:1,exp:"It is based on last year’s income and deducted in twelve instalments from June."},
 {q:"(Japan) What are health insurance and pension contributions based on?",opts:["Standard monthly remuneration","Today’s sales","Age alone","Company size"],a:0,exp:"It is set from April–June pay and normally used for a year from September."},
 {q:"What is an effective payroll check?",opts:["No check","Someone else checks employees whose pay changed a lot from last month","Leave it to employees","Once a year"],a:1,exp:"A second check prevents mistakes."}],
-next:"0-6 General affairs: contracts, equipment, the office and documents"});
+next:"0-6 General Affairs: Contracts, Equipment, the Office and Documents"});
 
 set("0-6",{title:"General Affairs: Contracts, Equipment, the Office and Documents",hl:"general affairs",subtitle:"The groundwork that keeps a company running, done before problems arise",
-lead:["General affairs work goes unnoticed while nothing goes wrong. But a forgotten contract renewal or loose control of equipment can lead to large losses and trouble. General affairs looks after the foundations the company relies on every day.","This article covers what general affairs handles, how to manage contracts, Japanese document habits (seals, ringi approvals, revenue stamps), and disaster preparedness and office safety."],
+lead:["General affairs work goes unnoticed while nothing goes wrong. But a forgotten contract renewal or loose control of equipment can lead to large losses and trouble. General affairs looks after the foundations the company relies on every day.","This article covers what general affairs handles, how to manage contracts, Japanese document and sealing customs (seals, ringi approvals, revenue stamps), and disaster preparedness and office safety."],
 sections:[
-{h:"What general affairs handles",blocks:[{t:"fig",id:"adm_ga",cap:"Figure: general affairs: what to check, and when."},{t:"table",cols:["Area","What it covers","When to check"],rows:[
+{h:"What general affairs handles",blocks:[{t:"fig",id:"adm_ga",cap:"Figure: the five main areas of general affairs and when to check them. The table below adds a sixth, welfare and events."},{t:"table",cols:["Area","What it covers","When to check"],rows:[
 ["Contracts","Office lease, leasing, maintenance, insurance","One to three months before renewal"],
 ["Equipment and assets","Computers, mobile phones, keys, company cars","Keep a register and check against the items once a year"],
 ["The office","Faults, cleaning, visitors, post","Daily"],
@@ -305,7 +305,7 @@ terms:[["General Affairs","総務","총무"],["Approval Request (Ringi)","稟議
 quiz:[{q:"What is most easily missed in managing contracts?",opts:["The colour of the contract","The notice deadline","The typeface of the address","The page count"],a:1,exp:"Miss it and the contract may renew automatically."},
 {q:"What is ringi?",opts:["A company event","Deciding spending or contracts after approvals pass in a set order","Payroll","Filing tax"],a:1,exp:"It runs on set thresholds such as amounts."},
 {q:"(Japan) Does an electronic contract need a revenue stamp?",opts:["Always","No","Twice the amount","The other party pays"],a:1,exp:"Stamp duty applies to paper documents, not electronic ones."}],
-next:"0-7 A year in HR: from hiring to year-end adjustment"});
+next:"0-7 A Year in HR: From Hiring to Year-end Adjustment"});
 
 set("0-7",{title:"A Year in HR: From Hiring to Year-end Adjustment",hl:"a year in HR",subtitle:"The same tasks return in the same months each year. With a map of the year, nothing catches you out",
 lead:["HR and payroll work has procedures that come round at fixed times every year: April starters, insurance procedures in June and July, year-end tax adjustment in December. Each has a deadline, and being late causes trouble for staff and the company.","This article covers the annual cycle of HR and payroll work, the steps from hiring to the first day, appraisal and pay rises, and the procedures when someone leaves."],
@@ -326,13 +326,13 @@ kr:[{"t":"note","x":"* Insurance enrolment is normally due within 14 days for he
 {name:"Insurance procedures",x:"Notify loss of health insurance and pension cover (within five days). File the employment insurance loss notice and separation certificate with Hello Work within ten days from the day after cover ends, then pass on the separation slip Hello Work issues. ★"},
 {name:"Tax documents",x:"Give the withholding tax slip within a month of leaving, and settle how the remaining residence tax is handled. ★"},
 {name:"Returns and handover",x:"Collect the ID card, building pass, computer and keys, and hand over the work."}]}],
-kr:[{"t":"check","items":[{"name":"Fix the leaving date","x":"Receive the resignation and confirm the last working day and remaining annual leave (and pay for unused leave)."},{"name":"Insurance procedures","x":"Notify loss of the four insurances (health within 14 days; pension, employment and accident insurance by the 15th of the following month), and the separation certificate: issue it within 10 days of the employee’s written request, and if the employment centre requests it, submit it within 10 days of that request. ★"},{"name":"Severance and wages","x":"Pay severance and any outstanding wages within 14 days of leaving as a rule (the parties may agree to extend this), and give the retirement income withholding slip. ★"},{"name":"Returns and handover","x":"Collect the ID card, building pass, computer and keys, and hand over the work."}]}]}]}],
+kr:[{"t":"check","items":[{"name":"Fix the leaving date","x":"Receive the resignation and confirm the last working day and remaining annual leave (workplaces with five or more regular staff; and pay for unused leave)."},{"name":"Insurance procedures","x":"Notify loss of the four insurances (health within 14 days; pension, employment and accident insurance by the 15th of the following month), and the separation certificate: issue it within 10 days of the employee’s written request, and if the employment centre requests it, submit it within 10 days of that request. ★"},{"name":"Severance and wages","x":"Pay severance and any outstanding wages within 14 days of leaving as a rule (the parties may agree to extend this), and give the retirement income withholding slip. ★"},{"name":"Returns and handover","x":"Collect the ID card, building pass, computer and keys, and hand over the work."}]}]}]}],
 voice:"The HR year brings the same tasks back in the same months. Leave a note of what you did this year against each month, and next year’s you, and your successor, will thank you.",
 terms:[["Year-end Tax Adjustment","年末調整","연말정산"],["Annual Social Insurance Base Report","算定基礎届","산정기초신고"],["Annual Labour Insurance Renewal","労働保険の年度更新","노동보험 연도 갱신"],["Insurance Enrolment Notification","資格取得届","자격취득신고"],["Separation Notice (for Unemployment Benefits)","離職票","이직표(일본 실업급여 신청 서류)"]],
 quiz:[{q:"(Japan) In which month is year-end tax adjustment done?",opts:["April","July","December","Every month"],a:2,exp:"The year’s income tax is settled through December’s pay."},
 {q:"(Japan) What is the deadline for the social insurance base report?",opts:["31 January","10 July","25 December","There is none"],a:1,exp:"It is based on April–June pay and normally due by 10 July."},
 {q:"How do you make appraisals easier to accept?",opts:["Share the criteria at the start of the year","Decide suddenly at year end","Say nothing","Judge on pay alone"],a:0,exp:"Knowing the criteria in advance makes the result easier to accept."}],
-next:"0-8 Reporting, informing, consulting and work emails"});
+next:"0-8 Reporting, Informing, Consulting and Work Emails"});
 
 set("0-8",{title:"Reporting, Informing, Consulting and Work Emails",hl:"reporting and email",subtitle:"Lead with the conclusion, and share bad news early. Communication that speeds work up",
 lead:["In a company, no job gets done alone. Work moves when you tell your manager, colleagues, head office and partners what they need, when they need it. Japanese companies call this hō-ren-sō: report, inform, consult. It is one of the first things a new employee is taught.","This article covers what each part means, how to report starting from the conclusion, how to structure a work email, and points to watch when working across countries, such as between a Korean head office and a Japanese branch."],
@@ -355,12 +355,12 @@ sections:[
 {name:"Holidays differ",x:"Check the other side’s holidays first: Lunar New Year and Chuseok in Korea, Golden Week and Obon in Japan."},
 {name:"Put decisions in writing",x:"Send a short summary email the same day for anything decided by phone or in a meeting."},
 {name:"Key points in both languages",x:"Where a misunderstanding would be costly, write in both Japanese and Korean, or show it in figures and tables."}]}]}],
-voice:"The key to a report is that the reader knows straight away what they need to do. Simply putting the conclusion and your request in the first line makes work move much faster.",
+voice:"Write a report so that the reader understands straight away what they need to do. Simply putting the conclusion and your request in the first line makes work move much faster.",
 terms:[["Report, Inform, Consult","報連相","보고·연락·상의"],["Subject Line","件名","제목"],["CC (Carbon Copy)","CC","참조"],["Bottom Line Up Front","結論から","결론부터"],["Escalation","エスカレーション","에스컬레이션"]],
 quiz:[{q:"What comes first in a report?",opts:["A long greeting","The conclusion","Excuses","The weather"],a:1,exp:"Conclusion, reason, details, next step."},
 {q:"What should you do with bad news?",opts:["Wait until you know everything","Share it as early as possible","Keep it to yourself","Save it for the weekend"],a:1,exp:"A first report does not need to be complete."},
 {q:"What about something decided by phone?",opts:["Remember it","Email a summary the same day","Raise it at the next meeting","Do nothing"],a:1,exp:"Putting it in writing prevents misunderstandings."}],
-next:"0-9 Spreadsheet basics"});
+next:"0-9 Spreadsheet Basics: Features Used Every Day at Work"});
 
 set("0-9",{title:"Spreadsheet Basics: Features Used Every Day at Work",hl:"spreadsheet basics",subtitle:"Table layout before functions: building tables that are easy to total and hard to get wrong",
 lead:["Payroll totals, expense lists, cash forecasts, sales tracking: much of a company’s number work is done in spreadsheets such as Excel. Before learning clever functions, it matters more to know the table layout that makes totals easy later.","This article covers the principles of building a table, the functions you will use most, how to total and check, and habits that prevent mistakes."],
@@ -374,7 +374,7 @@ sections:[
 {h:"Functions you will use most",blocks:[{t:"fig",id:"adm_xl",cap:"Examples of a total (SUM), a conditional total (SUMIF) and a conditional display (IF)."},
 {t:"table",cols:["Function","What it does","Typical use"],rows:[
 ["SUM / AVERAGE","Total / average","Total monthly expenses"],
-["ROUND","Rounds a number","Fractions in tax and premiums"],
+["ROUND","Rounds a number","Rounding amounts (tax and premiums follow their prescribed rounding rules)"],
 ["IF","Changes the result by condition","Show ‘Check’ above a limit"],
 ["SUMIF / COUNTIF","Adds / counts only matching rows","Expenses by item, headcount by team"],
 ["XLOOKUP (VLOOKUP)","Finds and returns a value from a table","Name from an employee number"],
@@ -396,7 +396,7 @@ terms:[["Function","関数","함수"],["Absolute Reference","絶対参照","절�
 quiz:[{q:"Which is a principle of an easy-to-total table?",opts:["Merge cells","One record per row","Three header rows","Type units with the numbers"],a:1,exp:"One record per row, one header row, no merged cells."},
 {q:"Which function adds only the rows where the item is ‘Travel’?",opts:["SUM","SUMIF","ROUND","EOMONTH"],a:1,exp:"It adds only rows that meet the condition."},
 {q:"How do you stop a cell reference moving when copying a formula?",opts:["Fix it as $A$1","Colour it","Delete it","Merge it"],a:0,exp:"Use an absolute reference."}],
-next:"0-10 Rules of employment, payslips and paid leave from the employee’s side"});
+next:"0-10 Rules of Employment, Payslips and Paid Leave from the Employee’s Side"});
 
 set("0-10",{title:"Rules of Employment, Payslips and Paid Leave from the Employee’s Side",hl:"the Employee’s Side",subtitle:"Read the agreement between you and the company once, when you join",
 lead:["So far we have looked at HR and money from the company’s side. This lesson looks from the other side, the employee’s: the documents you receive on joining, what to read first in the rules of employment, the rules on paid leave, and what to check on your monthly payslip.","Knowing your rights and duties is the foundation for working well with a company for a long time."],
@@ -406,7 +406,7 @@ sections:[
 {name:"Rules of employment",x:"The company’s basic rules. Every workplace with ten or more regular employees must draw them up and file them, and post or keep them where staff can see them at any time. ★"},
 {name:"Pay regulations",x:"How pay is calculated, allowances and the rules for pay rises."},
 {name:"Article 36 agreement",x:"The agreement between the company and staff representatives that allows overtime and holiday work, including the overtime limits."}]}],
-kr:[{"t":"rows","items":[{"name":"Employment contract","x":"Pay, hours, days off, annual leave and other terms must be set out in writing and given to the employee. ★"},{"name":"Rules of employment","x":"Workplaces with ten or more regular employees must draw them up and file them."},{"name":"Wage statement","x":"Each payday, a statement showing the items and how they were calculated must be given."},{"name":"Overtime limit","x":"Up to 12 hours a week by agreement (a 52-hour week)."}]}]}]},
+kr:[{"t":"rows","items":[{"name":"Employment contract","x":"Pay, hours, days off, annual leave and other terms must be set out in writing and given to the employee. ★"},{"name":"Rules of employment","x":"Workplaces with ten or more regular employees must draw them up and file them."},{"name":"Wage statement","x":"Each payday, a statement showing the items and how they were calculated must be given."},{"name":"Overtime limit","x":"In principle, at workplaces with five or more regular employees: up to 12 hours a week by agreement (a 52-hour week)."}]}]}]},
 {h:"What to read first in the rules",blocks:[{t:"check",items:[
 {name:"Hours, breaks and days off",x:"Start and finish times, break times and company holidays."},
 {name:"Overtime and premiums",x:"How to apply for overtime and the premium rates."},
@@ -415,7 +415,7 @@ kr:[{"t":"rows","items":[{"name":"Employment contract","x":"Pay, hours, days off
 {name:"Leaving",x:"How much notice to give, for example one month, and the procedure."}]}]},
 {h:"The rules on paid leave",blocks:[{t:"region",jp:[{t:"table",cols:["Length of service","Days per year"],rows:[
 ["6 months","10"],["1 year 6 months","11"],["2 years 6 months","12"],["3 years 6 months","14"],["4 years 6 months","16"],["5 years 6 months","18"],["6 years 6 months or more","20"]]},
-{t:"note",x:"* You must have attended at least 80% of working days. Employers must make sure anyone entitled to ten or more days takes at least five a year. Unused days expire after two years. Part-timers receive fewer days in proportion to the days they work. ★"}],
+{t:"note",x:"* You must have attended at least 80% of working days. Employers must make sure anyone entitled to ten or more days takes at least five a year. Unused days expire after two years. Part-timers working four days or fewer and under 30 hours a week, among others, receive fewer days in proportion to their scheduled working days. ★"}],
 kr:[{"t":"table","cols":["Length of service","Annual leave"],"rows":[["Under 1 year","1 day per month of full attendance (up to 11)"],["1 year (80% attendance)","15 days"],["3 years","16 days"],["5 years","17 days"],["21 years or more","25 days (the maximum)"]]},
 {"t":"note","x":"* From the third year, one day is added every two years, up to 25. Workplaces with fewer than five regular employees are exempt. Unused leave is normally paid out, unless the employer used the formal procedure to encourage it to be taken. ★"},
 {"t":"rows","items":[{"name":"Weekly paid holiday","x":"Anyone working 15 hours or more a week who attends every scheduled day gets one paid day off a week."},{"name":"Severance pay","x":"Anyone employed for a year or more at 15 hours or more a week receives 30 days’ average wages per year of service, paid within 14 days of leaving."}]}]}]},
@@ -426,11 +426,11 @@ kr:[{"t":"table","cols":["Length of service","Annual leave"],"rows":[["Under 1 y
 {name:"The month residence tax changes",x:"The new residence tax amount starts with June’s pay."},
 {name:"Year-end adjustment result",x:"December’s or January’s pay includes any income tax refund (or extra charge)."}]},
 {t:"point",x:"How to read each line of a payslip in detail is also covered in lesson 6-1 of Living in Japan."}],
-kr:[{"t":"check","items":[{"name":"Attendance figures","x":"Do days worked and overtime hours match your own record?"},{"name":"Overtime pay","x":"Has at least a 50% premium on ordinary wages been paid?"},{"name":"The months premiums change","x":"National pension changes in July; health insurance is settled in April."},{"name":"Year-end settlement result","x":"February’s pay includes any income tax refund (or extra charge)."}]}]}]}],
+kr:[{"t":"check","items":[{"name":"Attendance figures","x":"Do days worked and overtime hours match your own record?"},{"name":"Overtime pay","x":"Has at least a 50% premium on ordinary wages been paid (workplaces with five or more regular employees)?"},{"name":"The months premiums change","x":"National pension changes in July; health insurance is settled in April."},{"name":"Year-end settlement result","x":"February’s pay includes any income tax refund (or extra charge)."}]}]}]}],
 voice:"The rules of employment are the agreement between you and the company. Read them once when you join, and you will not be caught off guard at important moments such as taking leave or resigning.",
 terms:[["Rules of Employment","就業規則","취업규칙"],["Statement of Employment Terms","労働条件通知書","근로조건통지서"],["Annual Paid Leave","年次有給休暇","연차 유급휴가"],["Article 36 Overtime Agreement","36協定","36협정"],["Employer-designated Leave Dates","時季指定","시기 지정"]],
 quiz:[{q:"(Japan) After six months with 80% attendance, how many days of paid leave do you get?",opts:["5","10","15","20"],a:1,exp:"It starts at ten days and rises with length of service."},
 {q:"(Japan) What happens to unused paid leave?",opts:["It lasts for ever","It expires after two years","It expires next month","It is always paid out"],a:1,exp:"The limitation period is two years."},
-{q:"(Japan) Around which month do social insurance deductions usually change?",opts:["January","April","September–October","December"],a:2,exp:"Based on the standard remuneration report, they change from September."}],
-next:"Part 1 1-1 Types of employment and stating the terms"});
+{q:"(Japan) Around which month do social insurance deductions usually change?",opts:["January","April","September–October","December"],a:2,exp:"Based on the standard remuneration report, they change from the September premium; depending on how the company collects, the new amount is deducted from September’s or October’s pay."}],
+next:"Part 1 1-1 Types of Employment and Stating the Terms"});
 })(window.ARTS);

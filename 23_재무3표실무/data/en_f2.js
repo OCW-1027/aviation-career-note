@@ -8,7 +8,7 @@ sections:[
 ["Assets","What the company holds that will produce money in future","Cash 309,000, receivable 20,000, ingredients 15,000, cart 236,000"],
 ["Liabilities","What is held on behalf of others and must one day be repaid","Loan 200,000, tax payable 16,000"],
 ["Equity","What belongs to the shareholders (the owner); no obligation to repay","Capital 300,000, retained earnings 64,000"]]},
-{t:"point",x:"Equity = assets − liabilities: what is left after deducting every obligation from everything held. When equity turns negative (negative equity), the company could not repay its debts even by selling everything."}]},
+{t:"point",x:"Equity = assets − liabilities: what is left after deducting every obligation from everything held. When equity turns negative, the company has negative equity on its books: liabilities exceed assets at book value. Keep this separate from what the assets could actually be sold for."}]},
 {h:"Why they always match: follow each transaction",blocks:[{t:"table",cols:["Transaction","Left (assets)","Right (liabilities and equity)","Match"],rows:[
 ["Owner invests 300,000","Cash +300,000","Capital +300,000","Yes"],
 ["Borrows 200,000 from the bank","Cash +200,000","Loan +200,000","Yes"],
@@ -32,28 +32,28 @@ set("2-2",{title:"Current and Non-current: Will It Turn into Cash within a Year?
 lead:["Both assets and liabilities are split into current and non-current by whether they turn into cash (or fall due) within a year. Current assets: cash, receivables, inventory. Non-current: aircraft, buildings, long-term investments. Current liabilities: payables, short-term borrowings, loans due within a year. Non-current: long-term borrowings, lease liabilities.","The split shows whether obligations due within a year (current liabilities) can be met from what becomes cash within a year (current assets). Airlines are unusual in carrying large unflown ticket revenue among current liabilities."],
 sections:[
 {h:"Drawing the one-year line",blocks:[{t:"fig",id:"fn_curr",cap:"Figure: current and non-current."},{t:"table",cols:["","Current (within one year)","Non-current (beyond one year)"],rows:[
-["Assets","Cash, receivables, inventory (parts, materials), prepaid expenses","Aircraft, buildings and equipment, software, investments, deposits, deferred tax assets"],
+["Assets","Cash, receivables, inventory (parts, materials), prepaid expenses (expensed within a year)","Aircraft, buildings and equipment, software, investments, deposits, deferred tax assets"],
 ["Liabilities","Payables, accrued expenses, short-term borrowings, current portion of long-term debt, unflown ticket revenue, tax payable","Long-term borrowings, bonds, lease liabilities, retirement provisions, long-term maintenance provisions"],
 ["Taiyaki stall","Cash 309,000, receivable 20,000, ingredients 15,000 / loan 200,000 (treated as short-term), tax payable 16,000","Cart 236,000 / none"]]},
-{t:"note",x:"* One year is the rule; industries with an operating cycle longer than a year may use the cycle instead. For airlines the one-year rule is fine."}]},
+{t:"note",x:"* Items within the normal operating cycle (receivables, inventory, unflown ticket revenue) and items collected, used up or paid within a year are current (operating-cycle and one-year rules). Prepaid expenses never become cash; they are current because they are expensed within a year."}]},
 {h:"Comparing current items: the current ratio",blocks:[{t:"rows",items:[
 {name:"Current ratio = current assets ÷ current liabilities",x:"Taiyaki stall: 344,000 ÷ 216,000 = 159%. Payments due within a year are covered 1.6 times over."},
 {name:"Vela Air, opening",x:"Current assets 1,720 (cash 1,200, receivables 250, inventory 120, other 150) ÷ current liabilities 1,370 (unflown tickets 600, miles 120, payables 350, short-term debt 300) = 126%."},
-{name:"Airlines can run on a lower ratio",x:"Unflown ticket revenue is not repaid; it disappears when the flight is flown. It involves no direct cash outflow, so airlines often operate below 100% without strain. Discount that item when reading."},
+{name:"Airlines can run on a lower ratio",x:"Unflown ticket revenue is normally settled by providing the flight, not by repayment, so airlines often operate below 100% without strain. Cash is still needed for operating costs and refunds, so do not remove the whole item from payment obligations when reading."},
 {name:"JAL, 31 March 2026",x:"Current assets 1,445.5bn yen, current liabilities 1,002.7bn → current ratio 144%. Contract liabilities (unflown tickets and miles) make up 484.5bn of the current liabilities. ★"}]},
 {t:"point",x:"What counts as a normal current ratio differs by industry: lower in retail, higher in manufacturing. For airlines, read it knowing how unflown ticket revenue behaves."}]},
 {h:"What non-current assets contain (airlines)",blocks:[{t:"table",cols:["Item","Content","Reading point"],rows:[
 ["Aircraft","Owned aircraft at cost less depreciation","JAL 1,041.7bn yen, 32.6% of total assets (31 March 2026) ★. Leased aircraft appear differently depending on the standard (2-3, 5-3)"],
 ["Prepayments for aircraft","Advance payments on aircraft not yet delivered","JAL 115.6bn. Prepayments already made on undelivered aircraft (the full order book is in the commitments note) ★"],
 ["Buildings and ground equipment","Hangars, maintenance shops, offices, airport equipment","Terminal buildings belong to airport companies; airlines mostly rent"],
-["Software and goodwill","Reservation and operations systems; premium paid on acquisitions","Grows with heavy IT investment"],
+["Software and goodwill","Reservation and operations systems; premium paid on acquisitions","Software grows with IT investment; goodwill arises from acquisitions, so read it separately"],
 ["Investments and deposits","Shares in partners, deposits with airports and lessors","Hard to turn into cash; exclude when judging liquidity"]]}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Recalculate the current ratio",x:"If the stall buys a second cart (240,000) with a one-year loan, what is the new current ratio?"},
-{name:"Think about unflown tickets",x:"Explain, from the way tickets are sold, why the 60.0bn of unflown ticket revenue is a liability with no direct cash outflow."}]}]}],
+{name:"Think about unflown tickets",x:"Explain, from the way tickets are sold, why the 60.0bn of unflown ticket revenue is settled by flying rather than repayment, and why cash for operating costs and refunds is still needed."}]}]}],
 voice:"A station budget works the same way. Put next month’s invoices (current liabilities) beside next month’s incoming budget (current assets) and the question ‘can we pay this month?’ answers itself faster.",
 terms:[["Current assets","流動資産","유동자산"],["Non-current assets","固定資産（非流動資産）","비유동자산"],["Current liabilities","流動負債","유동부채"],["Non-current liabilities","固定負債（非流動負債）","비유동부채"],["Current ratio","流動比率","유동비율"],["Construction in progress","建設仮勘定","건설중인자산"]],
-quiz:[{q:"The basic test for current versus non-current is…",opts:["Whether it turns into cash (or falls due) within one year","Whether the amount is large","Company policy","The tax office’s instructions"],a:0,exp:"The one-year rule."},
+quiz:[{q:"The basic test for current versus non-current is…",opts:["Whether it turns into cash (or falls due) within one year","Whether the amount is large","Company policy","The tax office’s instructions"],a:0,exp:"The one-year rule (items within the normal operating cycle are also current)."},
 {q:"Unflown ticket revenue is…",opts:["A current liability","A non-current asset","Equity","A current asset"],a:0,exp:"An obligation to carry passengers within a year."},
 {q:"The stall’s current ratio (current assets 344,000, current liabilities 216,000) is…",opts:["About 159%","About 63%","About 100%","About 216%"],a:0,exp:"344,000 ÷ 216,000 = 1.59."}]});
 set("2-3",{title:"Depreciation: Spreading the Cost of Expensive Assets over Their Life",hl:"Depreciation",subtitle:"All the cash leaves on purchase day; the cost is spread over the years. How an airline writes down its aircraft changes its profit",
@@ -67,12 +67,12 @@ sections:[
 {name:"① Useful life",x:"How many years of use. Five for the cart; airlines estimate a life for each fleet and state it in their accounting-policy notes (check each company’s notes ★). Tax law has its own statutory lives (up to 10 years for aircraft in Japan, for aeroplanes over 130 tonnes maximum take-off weight)."},
 {name:"② Residual value",x:"Value at the end of use. Aircraft have a second-hand market, so part of the cost may be kept as residual value (check each company’s notes for the rate ★)."},
 {name:"③ Method",x:"Straight-line: the same amount each year (the cart). Declining balance: more at first, less later. Straight-line is the most common method for aircraft."},
-{name:"Example: one aircraft at 15.0bn, 20 years, 5% residual",x:"(15.0 − 0.75) ÷ 20 = 0.71bn a year. Vela Air (aircraft 210bn, most of the 25.4bn depreciation) implies an average write-off period of 8–9 years, consistent with a young fleet."}]},
+{name:"Example: one aircraft at 15.0bn, 20 years, 5% residual",x:"(15.0 − 0.75) ÷ 20 = 0.71bn a year. Vela Air (aircraft 210bn, most of the 25.4bn depreciation) gives about 8.3 years on a simple division. However, depreciation mixes components with different lives, and remaining life needs further assumptions, so this figure alone does not show average fleet age or how young the fleet is."}]},
 {t:"note",x:"* Useful lives, residual values and methods are stated under ‘significant accounting policies’ in each company’s annual securities report, and differ between companies even for the same type. ★"}]},
 {h:"How leased aircraft appear",blocks:[{t:"table",cols:["Standard","Treatment","Effect"],rows:[
-["Japanese GAAP (current)","Operating leases appear neither as assets nor liabilities; lease rentals are expensed each period","Assets and liabilities look smaller and the equity ratio higher. ANA and Skymark expense aircraft rentals ★"],
+["Japanese GAAP (current)","Operating leases appear neither as assets nor liabilities; lease rentals are expensed each period (finance leases are already on balance sheet)","Assets and liabilities look smaller and the equity ratio higher. ANA and Skymark expense aircraft rentals ★"],
 ["IFRS 16 / K-IFRS 1116","Leased aircraft are recognised as right-of-use assets, future rentals as lease liabilities, and the asset is depreciated","Assets and liabilities grow; the cost splits into depreciation plus interest. JAL, Korean Air, Jeju Air ★"],
-["Japan’s new lease standard","From fiscal years beginning on or after 1 April 2027, lessees under Japanese GAAP bring leases on balance sheet in principle (with exemptions such as short-term and low-value leases) ★","Balance sheets of J-GAAP airlines such as ANA are expected to change markedly"]]},
+["Japan’s new lease standard","From fiscal years beginning on or after 1 April 2027, lessees under Japanese GAAP bring leases on balance sheet in principle (with exemptions such as short-term and low-value leases); early application is permitted from fiscal years beginning on or after 1 April 2025 ★","Balance sheets of J-GAAP airlines such as ANA are expected to change markedly"]]},
 {t:"point",x:"Two airlines flying 100 aircraft each can show completely different balance sheets depending on how many are owned, how many leased, and which standard applies. Check how leases are treated before comparing."}]},
 {h:"Try it",blocks:[{t:"check",items:[
 {name:"Calculate depreciation",x:"An aircraft costing 12.0bn depreciated straight-line over 18 years with 10% residual: how much a year? How does annual profit change if the life is 15 years instead?"},
@@ -86,10 +86,10 @@ set("2-4",{title:"Receivables, Inventory and Payables: Three Items That Tie Up C
 lead:["Profitable, yet short of cash. Much of the reason lies in three items: receivables (sold but not yet collected), inventory (bought but not yet used or sold) and payables (bought but not yet paid). The first two tie up cash; the third helps it.","For airlines the picture is different. Passengers pay before flying, so receivables are small and unearned ticket revenue helps cash instead. Inventory is spare parts: not for sale, yet large. This lesson brings the pieces together as working capital."],
 sections:[
 {h:"The three items and cash",blocks:[{t:"fig",id:"fn_wc",cap:"Figure: items that tie up cash, and items that help."},{t:"table",cols:["Item","What it is","Effect on cash","Taiyaki stall"],rows:[
-["Receivables","Sold, not yet collected","A rise reduces cash (a sale with no cash yet)","School event 20,000"],
+["Receivables","Sold, not yet collected","Not cash until collected (later than a cash sale)","School event 20,000"],
 ["Inventory","Bought, not yet used or sold","A rise reduces cash (paid for, not yet a cost)","Ingredients 15,000"],
-["Payables","Bought, not yet paid","A rise increases cash (a cost with no cash out yet)","None (cash purchases)"]]},
-{t:"point",x:"Working capital = receivables + inventory − payables: the cash tied up simply to keep trading. As sales grow, working capital grows too, which is how ‘selling well but short of cash’ happens."}]},
+["Payables","Bought, not yet paid","Cash kept until payment (later than a cash purchase)","None (cash purchases)"]]},
+{t:"point",x:"Here we use a simplified operating working-capital formula, receivables + inventory − payables (and similar items): the cash tied up simply to keep trading. As sales grow, working capital grows too, which is how ‘selling well but short of cash’ happens."}]},
 {h:"Airline working capital runs the other way",blocks:[{t:"rows",items:[
 {name:"Receivables are small",x:"Fares arrive before the flight. Receivables arise from travel agency settlements (BSP), cargo, card companies and mileage partners. JAL: 254.6bn yen, about 13% of revenue ★."},
 {name:"Unearned revenue helps cash",x:"Tickets paid before travel and miles not yet used. JAL: 484.5bn yen ★. The more sales grow, the more unearned revenue grows and the earlier cash arrives. This is why airline working capital is often negative."},
@@ -106,11 +106,11 @@ sections:[
 {name:"List your station’s receivables",x:"Write down the money your station has ‘sold but not yet received’: invoices to travel agencies, card payments for excess baggage and so on."}]}]}],
 voice:"The dangerous station receivables are invoices to travel agencies that were never raised, and amounts held back over complaints. Looking at an ‘invoiced but unpaid’ list at month end protects head office’s working capital.",
 terms:[["Accounts receivable","売掛金","매출채권"],["Inventory","棚卸資産（在庫）","재고자산"],["Accounts payable","買掛金","매입채무"],["Working capital","運転資本","운전자본"],["Turnover period (days)","回転期間","회전기간"],["Unearned revenue","前受金","선수금"]],
-quiz:[{q:"When receivables rise, cash…",opts:["Falls (a sale not yet collected)","Rises","Is unchanged","Becomes a liability"],a:0,exp:"The sale is counted but the cash has not arrived."},
+quiz:[{q:"If credit sales (receivables) replace cash sales, cash on hand…",opts:["Is lower than with cash sales (not in until collected)","Rises","Is unchanged","Becomes a liability"],a:0,exp:"The sale is recorded, but it is not cash until collected."},
 {q:"Why is airline working capital often negative?",opts:["Large unearned revenue received before travel","Large receivables","No inventory","Heavy borrowing"],a:0,exp:"Cash arrives before the revenue is earned."},
 {q:"Inventory days lengthened year on year. A likely cause?",opts:["Unsold goods or excess parts","Faster collection","Higher sales","More cash"],a:0,exp:"Cash is sleeping longer in inventory."}]});
 set("2-5",{title:"Inside Equity: Money Invested and Money Earned and Kept",hl:"Inside Equity",subtitle:"Share capital, capital surplus, retained earnings, treasury shares, other comprehensive income. The equity ratio measures strength",
-lead:["Equity belongs to shareholders as a whole, but inside it is split by origin: money shareholders paid in (share capital and capital surplus), money the company earned and kept (retained earnings), shares bought back (treasury shares, negative), and valuation differences not yet taken through profit (accumulated other comprehensive income).","The most basic measure of an airline’s strength is the equity ratio: equity divided by total assets. JAL 40.3%, ANA 37.7% at 31 March 2026 (using each company’s disclosed definition of equity) ★, both recovering from the pandemic through accumulated profit and capital raising."],
+lead:["Equity belongs to shareholders as a whole, but inside it is split by origin: money shareholders paid in (share capital and capital surplus), money the company earned and kept (retained earnings), shares bought back (treasury shares, negative), and valuation differences not yet taken through profit (accumulated other comprehensive income).","The most basic measure of an airline’s strength is the equity ratio: equity divided by total assets (on a consolidated basis, excluding non-controlling interests and similar items). JAL 40.3%, ANA 37.7% at 31 March 2026 (using each company’s disclosed definition of equity) ★, both recovering from the pandemic through accumulated profit and capital raising."],
 sections:[
 {h:"The parts of equity",blocks:[{t:"fig",id:"fn_eq",cap:"Figure: what equity is made of (Vela Air opening)."},{t:"table",cols:["Part","Content","Taiyaki stall","Vela Air opening"],rows:[
 ["Share capital","Shareholders’ payments designated as capital","300,000","50.0bn yen"],
@@ -122,13 +122,13 @@ sections:[
 {t:"note",x:"* JAL, 31 March 2026: share capital 273.2bn yen, capital surplus 270.5bn, retained earnings 508.3bn, treasury shares −21.2bn, accumulated other comprehensive income 81.2bn (including 31.7bn of cash flow hedges), other equity instruments 177.7bn, non-controlling interests 45.1bn → total equity 1,334.8bn. ★"}]},
 {h:"The equity ratio: a measure of strength",blocks:[{t:"rows",items:[
 {name:"Equity ratio = equity attributable to owners ÷ total assets",x:"Taiyaki stall 364,000 ÷ 580,000 = 62.8%. Vela Air 1,920 ÷ 6,000 = 32.0%. JAL 40.3%, ANA 37.7% (31 March 2026, as disclosed; JAL excludes non-controlling interests) ★."},
-{name:"Higher is safer, but",x:"Less borrowing means more resilience to losses. Yet borrowing lifts the shareholders’ return (ROE) on the same profit (Part 6). There is no industry-wide level that counts as enough; read it with earnings power, cash on hand and loan terms (JAL 40.3%, ANA 37.7% at 31 March 2026). ★"},
+{name:"Higher is safer, but",x:"Less borrowing means more resilience to losses. For the same profit, a smaller equity base means a higher ROE, but borrowing more does not by itself raise it (Part 6). There is no industry-wide level that counts as enough; read it with earnings power, cash on hand and loan terms (JAL 40.3%, ANA 37.7% at 31 March 2026). ★"},
 {name:"The pandemic lesson",x:"ANA’s equity ratio fell to 25.6% at the end of FY2022 and recovered to 37.7% at the end of FY2025 (ANA results presentation). Airline equity shrinks fast when demand stops, so it is built up in good times. ★"},
 {name:"Equity-like funding",x:"In April 2025 JAL issued perpetual subordinated bonds (other equity instruments, 177.7bn) recorded in equity, and resolved to issue 200bn of bond-type preferred shares: funding counted as equity rather than debt, preserving the equity ratio while raising money for aircraft. ★"}]},
-{t:"point",x:"There are only two ways to raise equity: earn and keep profit (retained earnings) or raise new money from shareholders. If equity has risen by neither route, look for valuation differences or hybrid capital."}]},
+{t:"point",x:"Equity rises mainly in two ways: earn and keep profit (retained earnings) or raise new money from shareholders. If equity has risen by neither route, look for valuation differences or hybrid capital."}]},
 {h:"Dividends and treasury shares",blocks:[{t:"table",cols:["Item","What happens","Balance sheet","Cash flow"],rows:[
-["Dividend","Part of profit paid to shareholders","Retained earnings −, cash −","Financing − (JAL, year to March 2026: 40.1bn) ★"],
-["Share buyback","Own shares bought on the market; fewer shares, higher value per share","Treasury shares (negative) rise, cash −","Financing − (JAL: 20.0bn) ★"],
+["Dividend","Part of profit paid to shareholders","Retained earnings −, cash −","Financing − (JAL, year to March 2026: 40.1bn paid to owners of the parent; differs in scope and timing from dividends in the statement of changes in equity) ★"],
+["Share buyback","Own shares bought on the market; fewer shares outstanding, which may raise EPS (issued shares unchanged until cancelled)","Treasury shares (negative) rise, cash −","Financing − (JAL: 20.0bn) ★"],
 ["Share issue","New shares issued to raise money","Share capital and surplus +, cash +","Financing +"],
 ["Payout ratio","Dividends ÷ net profit","—","JAL 31.3%, ANA 18.1% (FY2025) ★"]]}]},
 {h:"Try it",blocks:[{t:"check",items:[
@@ -165,7 +165,7 @@ sections:[
 ["Provisions","336","1.1%","Set aside for future outlays such as maintenance"],
 ["Other","1,790","5.6%","Tax payable, other financial liabilities"],
 ["Total liabilities","18,640","58.3%",""]]},
-{t:"point",x:"The 484.5bn of contract liabilities is not repaid; it disappears as flights are flown. Against 875.9bn of interest-bearing debt, JAL holds 1,010.2bn of cash: effectively net cash. This is the hallmark of JAL’s finances. ★"}]},
+{t:"point",x:"The 484.5bn of contract liabilities is normally settled by providing the service, but cash is still needed for refunds and operating costs. Against 875.9bn of interest-bearing debt, JAL holds 1,010.2bn of cash: effectively net cash. This is the hallmark of JAL’s finances. ★"}]},
 {h:"Points to note when reading",blocks:[{t:"check",items:[
 {name:"Different standards",x:"JAL applies IFRS 16, so aircraft include right-of-use assets. Do not compare the aircraft figure directly with ANA under Japanese GAAP (2-3)."},
 {name:"A point-in-time figure",x:"The balance sheet is a snapshot as at 31 March. Airline cash swings with the season, so take care when comparing with December or September figures."},
@@ -175,6 +175,6 @@ sections:[
 voice:"Pick two numbers to look at first and you will read a balance sheet quickly. We suggest cash and interest-bearing debt. The difference between them, net cash, tells you how well the company can withstand the next downturn.",
 terms:[["Total assets","総資産","총자산"],["Contract liabilities","契約負債","계약부채"],["Interest-bearing debt","有利子負債","유이자부채"],["Net cash","ネット・キャッシュ","순현금"],["Deferred tax assets","繰延税金資産","이연법인세자산"],["Provisions","引当金","충당금"]],
 quiz:[{q:"Aircraft as a share of JAL’s total assets at 31 March 2026?",opts:["About 33%","About 10%","About 50%","About 5%"],a:0,exp:"1,041.7bn ÷ 3,198.8bn = 32.6% ★."},
-{q:"Which describes contract liabilities (unflown tickets and miles)?",opts:["A liability that disappears as flights are flown, with no cash repayment","A loan repaid in cash within a year","Unpaid dividends","Unpaid aircraft purchase prices"],a:0,exp:"The obligation is settled by providing the service."},
+{q:"Which describes contract liabilities (unflown tickets and miles)?",opts:["A liability normally settled by providing the service (refunds remain possible)","A loan repaid in cash within a year","Unpaid dividends","Unpaid aircraft purchase prices"],a:0,exp:"The obligation is normally settled by providing the service, but cash is still needed for refunds and operating costs."},
 {q:"Cash 1,010.2bn, interest-bearing debt 875.9bn. This position is called…",opts:["Net cash (effectively debt-free)","Negative equity","Insolvency while profitable","A falling equity ratio"],a:0,exp:"Cash exceeds interest-bearing debt."}]});
 })(window.ARTS);

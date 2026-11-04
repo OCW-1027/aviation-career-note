@@ -9,7 +9,7 @@ sections:[
 ["Operating margin","Operating profit ÷ sales","30 ÷ 300 = 10.0%","180 ÷ 3,000 = 6.0%"],
 ["EBITDA margin","(Operating profit + depreciation) ÷ sales","42 ÷ 300 = 14.0%","434 ÷ 3,000 = 14.5%"],
 ["Net margin","Net profit ÷ sales","20.3 ÷ 300 = 6.8%","90 ÷ 3,000 = 3.0%"]]},
-{t:"point",x:"A margin means different things depending on which profit is used (1-2). Operating margin shows the strength of the core business; net margin shows what is left for shareholders. EBITDA adds depreciation back to operating profit, and is used to compare airlines that own their aircraft with those that lease them."}]},
+{t:"point",x:"A margin means different things depending on which profit is used (1-2). Operating margin shows the strength of the core business; net margin shows what is left for shareholders. EBITDA adds depreciation back to operating profit, and helps narrow the gap when comparing airlines that own their aircraft with those that lease them. EBITDA alone does not remove the difference in operating lease rentals under older standards, so align the lease accounting basis and EBITDAR too, and avoid counting lease liabilities already on the balance sheet twice."}]},
 {h:"ROE: how much profit the owners’ money produced",blocks:[{t:"fig",id:"fin_roe_tree",cap:"ROE split into three boxes: the small company above, Vela Air year 1 below"},
 {t:"rows",items:[
 {name:"ROE = net profit ÷ equity",x:"Small company: 20.3 ÷ 59.65 (the average of opening 52 and closing 67.3) = 34.0%. Vela Air year 1: 90 ÷ 1,945 (the average of 1,920 and 1,970) = 4.6%."},
@@ -42,8 +42,8 @@ lead:["Safety ratios ask whether the company can keep paying its bills. A profit
 sections:[
 {h:"1. Short term: can it meet payments due within a year?",blocks:[{t:"rows",items:[
 {name:"Current ratio = current assets ÷ current liabilities",x:"Taiyaki stall 159%, Vela Air opening 126% (2-2). Above 100%, assets that turn into cash within a year exceed payments due within a year."},
-{name:"Read it again without unearned revenue",x:"Of Vela Air’s 1,370 of current liabilities, 720 is unearned ticket revenue and miles. It disappears when the passenger flies and no cash goes out. Without it: 1,720 ÷ 650 = 265%. Read an airline’s current ratio both ways."},
-{name:"Liquidity on hand = cash ÷ monthly sales",x:"Vela Air: 1,044 ÷ 250 = 4.2 months at the end of year 1, 4.8 months at the end of year 2, 4.9 months at the end of year 3. A guide to how many months it could keep paying if sales stopped. Since the pandemic some airlines have set out a policy of keeping ample liquidity on hand (5-6). ★"}]},
+{name:"Read it again without unearned revenue",x:"Of Vela Air’s 1,370 of current liabilities, 720 is unearned ticket revenue and miles. It turns into revenue when the passenger flies. Without it: 1,720 ÷ 650 = 265%, but this is only a supplementary view. Check separately the cash needed to operate the flights and pay refunds."},
+{name:"Liquidity on hand = cash ÷ monthly sales",x:"Vela Air: 1,044 ÷ 250 = 4.2 months at the end of year 1, 4.8 months at the end of year 2, 4.9 months at the end of year 3. This shows the size of cash relative to monthly sales. How many months it could keep paying depends on actual outgoings and expected refunds. ★"}]},
 {t:"point",x:"Short-term safety is read from what the liabilities are, not only from the ratio. Liabilities repaid in cash (payables, short-term loans) and liabilities that disappear when the service is delivered (unearned revenue, miles) weigh differently, though both are current liabilities."}]},
 {h:"2. Long term: is debt too heavy relative to equity?",blocks:[{t:"fig",id:"fin_safety",cap:"Vela Air’s total assets split into equity, interest-bearing debt and other liabilities"},
 {t:"table",cols:["(100m yen)","Opening","End of year 1","End of year 2","End of year 3"],rows:[
@@ -65,7 +65,7 @@ sections:[
 {t:"note",x:"* In Korea the interest coverage ratio is usually operating profit ÷ interest expense (3.1× for Vela Air year 1). The interest coverage ratio shown in a Japanese earnings release is operating cash flow ÷ interest paid (6-5). The same name can hide a different formula. ★"}]},
 {h:"Cautions, and try it",blocks:[{t:"rows",items:[
 {name:"Benchmarks differ by industry",x:"Equity ratios vary widely by industry. Asset-heavy industries such as airlines, railways and power tend to run lower than lighter ones, so compare with companies in the same industry and do not judge by the number alone. ★"},
-{name:"Promises written into loan agreements (financial covenants)",x:"Bank loans may carry financial covenants such as ‘keep net assets above a set level’ or ‘no two consecutive years of ordinary loss’. A breach can trigger a demand for immediate repayment, so in a loss-making year this is the first thing to check. The actual terms are in each company’s notes (StarFlyer, for example, discloses covenants requiring net assets of at least 2bn yen and no two consecutive years of ordinary loss). ★"},
+{name:"Promises written into loan agreements (financial covenants)",x:"Bank loans may carry financial covenants such as ‘keep net assets above a set level’ or ‘no two consecutive years of ordinary loss’. A breach can trigger a demand for immediate repayment, so in a loss-making year this is the first thing to check. The actual terms differ by company, so check them in the notes to each company’s annual securities report. ★"},
 {name:"Look at the repayment schedule",x:"Beyond the total of interest-bearing debt, check in the notes how much falls due within a year. At Vela Air’s opening, 300 of its 1,800 of loans were short term."}]},
 {t:"check",items:[
 {name:"If Vela Air borrowed 20bn yen to buy aircraft",x:"Using the end of year 3 (total assets 6,012, equity 1,942, interest-bearing debt 2,070, cash 1,338), calculate how the equity ratio, D/E ratio and net debt change."},
@@ -105,7 +105,7 @@ sections:[
 ["ASK (100m seat-km)","200","205","215","Capacity supplied"],
 ["ASK per aircraft (100m seat-km)","4.00","4.10","4.22","Are the aircraft flying hard?"],
 ["Load factor","82%","80%","83%","Were the seats flown filled?"],
-["Total revenue ÷ ASK (yen)","15.0","15.4","15.4","Earnings per seat-km"]]},
+["Total revenue ÷ ASK (yen)","15.0","15.4","15.3","Earnings per seat-km"]]},
 {t:"point",x:"Airline efficiency has three steps: fly each aircraft longer, fill the seats, and sell each seat for more. Keeping turnarounds on time, cutting days lost to maintenance, cutting delays: front-line work feeds straight into ASK per aircraft (5-5)."},
 {t:"check",items:[
 {name:"If payment stretched to 30 days",x:"The small company’s receivables would be 300 × 30 ÷ 365 = about 25, some 17 more than the present 8, and cash falls by that much. Confirm it in the simulator."},
@@ -144,7 +144,7 @@ sections:[
 {t:"rows",items:[
 {name:"Sales up, profit down",x:"In year 2 sales rose 160 but fuel rose 323, and non-fuel costs also rose from 2,143 to 2,214 (+71). Costs rose more than sales, and operating profit went from 180 to −54."},
 {name:"Read cost growth as ‘fuel’ and ‘everything else’",x:"With year 1 as 100, year 3 is sales 110.0, ASK 107.5, non-fuel costs 106.3, fuel 116.7. If non-fuel costs grow more slowly than capacity (ASK), efficiency has improved."},
-{name:"Sustainable growth rate = ROE × (1 − payout ratio)",x:"Only the profit that is kept, not paid out, lets assets grow without changing the share of borrowing. Vela Air year 3: 6.7% × (1 − 50 ÷ 127) = about 4.0%. Growing faster than this for long requires more borrowing or new equity."}]},
+{name:"Sustainable growth rate = ROE × (1 − payout ratio)",x:"Only the profit that is kept, not paid out, lets assets grow without changing the share of borrowing. Vela Air year 3: 6.7% × (1 − 50 ÷ 127) = about 4.0%. This assumes constant margins, asset turnover, payout ratio and borrowing ratio; if those change, so does the room to grow. With margins, turnover and payout unchanged, growing faster than this for long requires more borrowing or new equity."}]},
 {t:"check",items:[
 {name:"Split passenger revenue from year 1 to year 3",x:"2,460 → 2,690 (+9.3%). RPK 164 → 178.5 (+8.8%), yield 15.0 → 15.1 (+0.5%). Confirm that over two years almost all the growth was volume."},
 {name:"Think about your own route",x:"Find how passenger numbers and average fare on your route changed from last year, and write in one line whether the rise (or fall) in revenue came from volume or price."}]}]}],
@@ -171,7 +171,7 @@ sections:[
 ["Free cash flow","+94","+222","+142","+458"],
 ["Depreciation","254","262","270","786"],
 ["Capital expenditure ÷ depreciation","1.18×","0×","1.11×","0.76×"]]},
-{t:"point",x:"If capital expenditure stays below depreciation for years, the fleet simply ages. In year 2 investment was paused to protect cash, and the book value of aircraft fell from 2,146 to 1,884. Over three years the ratio is 0.76: Vela Air put off renewing its fleet."}]},
+{t:"point",x:"If capital expenditure is below depreciation, less is being invested than is being depreciated. Whether renewal is really delayed must be checked against fleet age, leased-in aircraft, disposals and purchase prices. In year 2 investment was paused to protect cash, and the book value of aircraft fell from 2,146 to 1,884. Over three years the ratio is 0.76: on investment alone, Vela Air appears to have put off renewing its fleet. Check for leased-in aircraft and disposals too."}]},
 {h:"Deduct lease repayments too",blocks:[{t:"fig",id:"fin_cf_quality",cap:"Net profit, operating cash flow, FCF and FCF after lease payments over three years"},
 {t:"table",cols:["(100m yen)","Year 1","Year 2","Year 3","Three years"],rows:[
 ["Free cash flow","+94","+222","+142","+458"],
@@ -180,7 +180,7 @@ sections:[
 ["Dividends","−40","0","−50","−90"],
 ["Change in loans","−150","+50","+50","−50"],
 ["Change in cash","−156","+212","+82","+138"]]},
-{t:"note",x:"* Under IFRS and K-IFRS the principal part of lease payments appears in financing activities, so operating cash flow and FCF look larger. When comparing airlines, the practical standard is FCF after lease repayments (5-2). Under current Japanese GAAP, operating lease payments sit in operating costs, so no adjustment is needed. ★"}]},
+{t:"note",x:"* Under IFRS and K-IFRS the principal part of lease payments appears in financing activities, so operating cash flow and FCF look larger. When comparing airlines, the practical standard is FCF after lease repayments (5-2). For Japanese GAAP companies not yet applying the new lease standard, operating lease payments sit in operating costs and operating cash flow, so do not deduct them twice. ★"}]},
 {h:"How many years to repay the debt?",blocks:[{t:"fig",id:"fin_cash_use",cap:"Where the 105.8bn yen of operating cash flow over three years went"},
 {t:"table",cols:["","Year 1","Year 2","Year 3"],rows:[
 ["Interest-bearing debt ÷ operating cash flow (years)","5.3","9.4","4.7"],
@@ -195,14 +195,14 @@ sections:[
 voice:"When a results briefing says ‘record operating cash flow’, look next at how much went on aircraft and how much on lease repayments. In an airline, most of the cash earned turns into wings.",
 terms:[["Earnings quality","利益の質","이익의 질"],["Operating cash flow margin","営業キャッシュフロー・マージン","영업현금흐름 마진"],["Capital expenditure","設備投資","설비투자(CAPEX)"],["Free cash flow after lease payments","リース返済後のフリーキャッシュフロー","리스 상환 후 잉여현금흐름"],["Debt to operating cash flow","有利子負債・営業CF比率（年）","유이자부채/영업현금흐름 비율(년)"]],
 quiz:[{q:"Why is an airline’s operating cash flow often three to four times its net profit?",opts:["Depreciation is large and unearned revenue brings cash in early","Receivables are large","Inventory is large","It pays no tax"],a:0,exp:"Depreciation is a non-cash cost and unearned revenue is cash received in advance (3-2, 5-3)."},
-{q:"What happens if capital expenditure stays below depreciation for years?",opts:["The fleet and equipment age","Cash must fall","Profit must rise","Debt must rise"],a:0,exp:"Less is being bought than is being used up."},
+{q:"What might it mean if capital expenditure stays below depreciation for years?",opts:["Fleet and equipment renewal may be lagging","Cash must fall","Profit must rise","Debt must rise"],a:0,exp:"Less is being bought than is being used up. Whether renewal is delayed should be checked against fleet age, leased-in aircraft and disposals."},
 {q:"What should be deducted when reading the FCF of an IFRS airline?",opts:["Repayment of lease liabilities","Depreciation","The increase in unearned revenue","Income tax"],a:0,exp:"Lease principal repayments are shown in financing, so FCF looks larger unless they are deducted."}]});
 set("6-6",{title:"Comparing Airlines: Operating Metrics and Financial Ratios on One Page",hl:"on One Page",subtitle:"Put load factor and CASK in the same table as margin, equity ratio and cash flow. You can then read three years of trends and the gap to other airlines, along with the reasons",
 lead:["The last five lessons assembled the ratios for profitability, financial stability, efficiency, growth and cash flow. This lesson puts them on one page alongside the airline operating metrics from 5-5.","Financial ratios are the result; operating metrics are the cause. Did the margin fall because of load factor, price, fuel, or non-fuel costs? With everything on one page, you can read both the three-year story and the difference from other airlines, along with the reasons."],
 sections:[
 {h:"Vela Air on one page",blocks:[{t:"table",cols:["","Year 1","Year 2 (fuel spike)","Year 3"],rows:[
 ["[Operations] ASK (100m seat-km) / load factor","200 / 82%","205 / 80%","215 / 83%"],
-["[Operations] Total revenue ÷ ASK / CASK (yen)","15.0 / 14.1","15.4 / 15.7","15.4 / 14.3"],
+["[Operations] Total revenue ÷ ASK / CASK (yen)","15.0 / 14.1","15.4 / 15.7","15.3 / 14.3"],
 ["[Operations] CASK ex fuel (yen)","10.7","10.8","10.6"],
 ["[Profitability] Operating margin / ROE","6.0% / 4.6%","−1.7% / −5.5%","7.0% / 6.7%"],
 ["[Financial stability] Equity ratio / net debt ÷ EBITDA","33.3% / 2.4×","31.7% / 4.0×","32.3% / 1.5×"],
@@ -219,11 +219,11 @@ sections:[
 {t:"point",x:"An index shows what grew faster than what; a common-size statement shows how each 100 yen of sales was spent. Non-fuel costs fell from 71.4% to 69.1% of sales. It is hidden behind the fuel swing, but Vela Air’s underlying cost base improved over the three years."}]},
 {h:"Comparing with other airlines and other industries",blocks:[{t:"rows",items:[
 {name:"Airline against airline",x:"First align the accounting standard, year end, currency and consolidation scope (5-6). Then the shape of the business (full-service or low-cost, the weight of international and cargo). Then line up CASK ex fuel, load factor, operating margin, equity ratio and net debt to EBITDA, in that order."},
-{name:"Align the leases",x:"An airline with leases on its balance sheet and one without cannot be compared directly on equity ratio or EBITDA. A common shortcut for the one without is to multiply annual lease rentals by a set multiple (before IFRS 16 many analysts used 8, and rating agencies used 5 to 8 by industry; it is an assumption that depends on discount rates and lease terms) and add the result to debt. ★"},
+{name:"Align the leases",x:"An airline with leases on its balance sheet and one without cannot be compared directly on equity ratio or EBITDA. A common shortcut, for off-balance-sheet operating leases only, is to multiply annual lease rentals by an assumed multiple (it depends on discount rates and lease terms, so state the multiple used) and add the result to debt. Add the matching asset and use EBITDAR (profit with lease rentals added back) too, and do not add leases already on the balance sheet a second time."},
 {name:"How other industries differ",x:"Retail has low margins and high turnover. Manufacturing carries heavy inventory and receivables. Airlines turn assets about 0.5 times, run leverage of about 3×, and have negative working capital thanks to unearned revenue. What is ‘normal’ differs by industry, so compare within the industry and understand the reasons behind each industry’s traits."},
 {name:"Do not judge on a single year",x:"Airline profits swing with fuel and exchange rates. On year 2 alone Vela Air is a loss-making company; over three years it grew 4.9% a year and cut interest-bearing debt by 230."}]}]},
 {h:"Try it",blocks:[{t:"check",items:[
-{name:"Build the page for two airlines",x:"Pick two of the six in 5-6 and fill in the rows of this lesson’s table from their earnings releases, annual reports and traffic data. Where a row cannot be filled, write ‘not disclosed’."},
+{name:"Build the page for two airlines",x:"Pick two of the six in 5-6 and fill in the rows of this lesson’s table from their earnings releases, annual reports and traffic data. Where a row cannot be found, tell ‘not yet checked’ apart from ‘not disclosed’, and record the sources searched and the date."},
 {name:"Write one reason for the gap",x:"In one sentence, say which operating row (load factor, unit revenue, CASK ex fuel) explains the difference in the two airlines’ operating margins."},
 {name:"Your own airline’s page",x:"Build the same table for the last three years of your own company (or one you want to join) and mark the row that moved most."}]},
 {t:"link",href:"航空会社経営シミュレーション.html",x:"[Practice page] Airline Finance Simulation: see the operating metrics and the three statements move together with each situation and response"},
