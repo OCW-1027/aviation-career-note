@@ -241,11 +241,11 @@ fin_margin_steps:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" v
 fin_coverage:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 370" role="img">'+Rc(0,0,900,370,'#F7FAFD'),base=250,sc=0.6;
  var Y=[[L(lang,'1年目','1년 차','Year 1'),186,58,L(lang,'3.2倍','3.2배','3.2×')],[L(lang,'2年目（燃油高騰）','2년 차(유가 급등)','Year 2 (fuel spike)'),-49,65,L(lang,'−0.8倍','−0.8배','−0.8×')],[L(lang,'3年目','3년 차','Year 3'),237,68,L(lang,'3.5倍','3.5배','3.5×')]];
  Y.forEach(function(y,i){var x=110+i*270,h=Math.abs(y[1])*sc,ng=y[1]<0;
-  s+=Rc(x,ng?base:base-h,84,h,ng?R:BS,6)+tx(x+42,ng?base+h+16:base-h-8,(ng?'−':'')+Math.abs(y[1]),14,ng?R:D,800);
-  s+=Rc(x+100,base-y[2]*sc,84,y[2]*sc,CF,6)+tx(x+142,base-y[2]*sc-8,y[2],14,D,800);
-  s+=tx(x+92,base+(ng?66:24),y[0],13,D,800)+Rc(x+46,base+(ng?76:34),92,28,ng?'#FDEEF0':'#E8F3F0',14)+tx(x+92,base+(ng?95:53),y[3],14,ng?R:BS,800)});
+  s+=Rc(x,ng?base:base-h,84,h,ng?R:PL,6)+tx(x+42,ng?base+h+16:base-h-8,(ng?'−':'')+Math.abs(y[1]),14,ng?R:D,800);
+  s+=Rc(x+100,base-y[2]*sc,84,y[2]*sc,'#9CC7EF',6)+tx(x+142,base-y[2]*sc-8,y[2],14,D,800);
+  s+=tx(x+92,base+(ng?66:24),y[0],13,D,800)+Rc(x+46,base+(ng?76:34),92,28,ng?'#FDEEF0':'#E6F1FC',14)+tx(x+92,base+(ng?95:53),y[3],14,ng?R:PL,800)});
  s+='<line x1="60" y1="'+base+'" x2="860" y2="'+base+'" stroke="'+D+'" stroke-width="2"/>';
- s+=Rc(190,52,14,14,BS,3)+tx(210,64,L(lang,'営業利益＋金融収益','영업이익+금융수익','Operating profit + financial income'),12,D,600,'start')+Rc(560,52,14,14,CF,3)+tx(580,64,L(lang,'支払利息','이자비용','Interest expense'),12,D,600,'start');
+ s+=Rc(190,52,14,14,PL,3)+tx(210,64,L(lang,'営業利益＋金融収益','영업이익+금융수익','Operating profit + financial income'),12,D,600,'start')+Rc(560,52,14,14,'#9CC7EF',3)+tx(580,64,L(lang,'支払利息','이자비용','Interest expense'),12,D,600,'start');
  s+=tx(450,30,L(lang,'本業の稼ぎは支払利息の何倍か（億円）。1倍を下回ると、利息を稼ぎで払えていない','본업 이익은 이자비용의 몇 배인가(억 엔). 1배 미만이면 이익으로 이자를 내지 못하고 있다','How many times core earnings cover interest (100m yen). Below 1×, interest is not covered'),12.5,D,600);
  return s+'</svg>'},
 fin_asset_turn:function(lang){var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img">'+Rc(0,0,900,330,'#F7FAFD');

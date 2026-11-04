@@ -55,7 +55,7 @@ sections:[
 ["Net D/E ratio","0.57×","0.53×","0.44×","0.38×"]]},
 {t:"point",x:"Japan usually talks in terms of the equity ratio and the D/E ratio; Korea in terms of the debt ratio. If the debt ratio is total liabilities ÷ equity, using the same equity, then equity ratio = 1 ÷ (1 + debt ratio), and a debt ratio of 200% is an equity ratio of 33.3%. The formula does not convert a D/E ratio (interest-bearing debt ÷ equity), or ratios that define equity differently, for example excluding non-controlling interests. ★"},
 {t:"note",x:"* The debt ratio counts all liabilities, including unearned revenue and provisions; the D/E ratio counts only liabilities that bear interest. Whether leases are in liabilities depends on the accounting standard (2-3, 5-2), so align this before comparing companies."}]},
-{h:"3. Do earnings cover interest and debt?",blocks:[{t:"fig",id:"fin_coverage",cap:"Vela Air’s three years: how many times green (earnings) covers orange (interest). In year 2 earnings were negative"},
+{h:"3. Do earnings cover interest and debt?",blocks:[{t:"fig",id:"fin_coverage",cap:"Compare operating profit plus finance income with interest expense over Vela Air’s three years. In year 2 profit was negative"},
 {t:"table",cols:["","Year 1","Year 2 (fuel spike)","Year 3","Reading"],rows:[
 ["Interest coverage ((operating profit + financial income) ÷ interest expense)","3.2×","−0.8×","3.5×","Below 1×, the core business is not covering interest"],
 ["EBITDA (operating profit + depreciation)","434","208","501","Earnings with non-cash depreciation added back"],

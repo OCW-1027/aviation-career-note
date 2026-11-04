@@ -1918,7 +1918,7 @@ fn_curr:function(l){
   ko:{t:'1년 기준으로 나눈다: 유동과 비유동',c:[['유동(1년 이내)','자산: 현금·매출채권·재고 / 부채: 매입채무·단기차입·항공권 선수금'],['비유동(1년 초과)','자산: 항공기·설비·투자 / 부채: 장기차입·사채·리스부채']],n:['유동비율＝유동자산÷유동부채. Vela Air 기초 1,720÷1,370＝126%','항공사의 유동부채에는 운송으로 해소되는 선수금이 많다']},
   en:{t:'Drawing the line at one year: current and non-current',c:[['Current (within a year)','Assets: cash, receivables, inventory / Liabilities: payables, short-term loans, ticket advances'],['Non-current (beyond a year)','Assets: aircraft, facilities, investments / Liabilities: long-term loans, bonds, lease liabilities']],n:['Current ratio = current assets ÷ current liabilities; Vela Air opening 1,720 ÷ 1,370 = 126%','Airline current liabilities include large advances settled by flying, not repayment']}})[l];
  if(!W)return F.fn_curr('ja');setK(1);
- var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
+ var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1F7A6E','#5BAA9C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 fn_wc:function(l){
  var W=({ja:{t:'現金をしばる項目と、助ける項目',r:[['売掛金','回収まで現金にならない（JAL 2,546億円★）','#D64545'],['在庫','増えると現金が減る（予備部品など）','#E08A2E'],['買掛金','支払いまで現金を残せる','#2C8C8C'],['前受金（航空会社）','先に現金が入る（JAL 4,845億円★）','#1769e0']],n:['運転資本（簡略式）＝売掛金＋在庫−買掛金。売上が伸びるとお金が寝る','航空会社は前受金で運転資本がマイナスになりやすい。需要が止まると逆回転（2020年）']},
   ko:{t:'현금을 묶는 항목과 돕는 항목',r:[['매출채권','회수까지 현금이 안 된다(JAL 2,546억 엔★)','#D64545'],['재고','늘면 현금이 줄어든다(예비 부품 등)','#E08A2E'],['매입채무','지급까지 현금을 보유한다','#2C8C8C'],['선수금(항공사)','먼저 현금이 들어온다(JAL 4,845억 엔★)','#1769e0']],n:['운전자본(간이식)＝매출채권＋재고−매입채무. 매출이 늘면 돈이 묶인다','항공사는 선수금 때문에 운전자본이 마이너스가 되기 쉽다. 수요가 멈추면 역회전(2020년)']},
@@ -1957,9 +1957,9 @@ fn_jalcf:function(l){
  if(!W)return F.fn_jalcf('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 fn_link:function(l){
- var W=({ja:{t:'貸借対照表の差から作る（Vela Air 1年目・億円）',c:[['営業 ＋394','純利益90＋減価償却254−売掛金15−在庫5＋買掛金20＋前受金40＋マイル10'],['投資 −300','航空機の購入'],['財務 −250','借入の返済150・リースの返済60・配当40']],n:['期首現金1,200 −156 → 期末1,044。貸借対照表の現金と一致する','資産の増加は利益から引き、負債・純資産の増加は足す（間接法）']},
-  ko:{t:'재무상태표의 차이로 만든다(Vela Air 1년차·억 엔)',c:[['영업 ＋394','순이익 90＋감가상각 254−매출채권 15−재고 5＋매입채무 20＋선수금 40＋마일 10'],['투자 −300','항공기 구입'],['재무 −250','차입 상환 150·리스 상환 60·배당 40']],n:['기초 현금 1,200 −156 → 기말 1,044. 재무상태표의 현금과 일치한다','자산 증가는 이익에서 빼고, 부채·자본 증가는 더한다(간접법)']},
-  en:{t:'Building cash flow from balance sheet changes (Vela Air year 1, ¥100m)',c:[['Operating +394','Profit 90 + depreciation 254 − receivables 15 − inventory 5 + payables 20 + advances 40 + miles 10'],['Investing −300','Aircraft purchase'],['Financing −250','Loan repayment 150, lease payments 60, dividend 40']],n:['Opening cash 1,200 − 156 → closing 1,044, matching the balance sheet','Indirect method: subtract asset rises, add liability/equity rises']}})[l];
+ var W=({ja:{t:'貸借対照表の差から作る（Vela Air 1年目・億円）',c:[['営業 ＋394','純利益90＋減価償却254−売掛金15−在庫5＋買掛金20＋前受金40＋マイル10'],['投資 −300','航空機の購入'],['財務 −250','借入の返済150・リースの返済60・配当40']],n:['期首現金1,200 −156 → 期末1,044。貸借対照表の現金と一致する','営業CF：営業に関する資産・負債の増減を調整。投資・財務は別に分類']},
+  ko:{t:'재무상태표의 차이로 만든다(Vela Air 1년차·억 엔)',c:[['영업 ＋394','순이익 90＋감가상각 254−매출채권 15−재고 5＋매입채무 20＋선수금 40＋마일 10'],['투자 −300','항공기 구입'],['재무 −250','차입 상환 150·리스 상환 60·배당 40']],n:['기초 현금 1,200 −156 → 기말 1,044. 재무상태표의 현금과 일치한다','영업CF는 영업 관련 자산·부채 증감을 조정. 투자·재무는 별도 분류']},
+  en:{t:'Building cash flow from balance sheet changes (Vela Air year 1, ¥100m)',c:[['Operating +394','Profit 90 + depreciation 254 − receivables 15 − inventory 5 + payables 20 + advances 40 + miles 10'],['Investing −300','Aircraft purchase'],['Financing −250','Loan repayment 150, lease payments 60, dividend 40']],n:['Opening cash 1,200 − 156 → closing 1,044, matching the balance sheet','Adjust operating balances for operating CF; classify investing and financing separately']}})[l];
  if(!W)return F.fn_link('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 fn_4pat:function(l){
