@@ -2465,20 +2465,20 @@ MG.T.add('ko', {
   "d_org.org.depts.0.1": "전략기획",
   "d_org.org.hqs.14.3": "사이토 고지",
   "d_org.org.hqs.14.1": "자회사",
-  "d_org.org.hqs.13.3": "고바야시 하나",
+  "d_org.org.hqs.13.3": "고바야시 다쿠",
   "d_org.org.hqs.12.3": "마쓰모토 다케시",
   "d_org.org.hqs.12.1": "화물사업",
   "d_org.org.hqs.11.3": "야마구치 준",
   "d_org.org.hqs.11.1": "인사총무",
-  "d_org.org.hqs.10.3": "다카하시 레이코",
+  "d_org.org.hqs.10.3": "다카하시 쇼",
   "d_org.org.hqs.10.1": "재무",
   "d_org.org.hqs.9.3": "시미즈 히로",
   "d_org.org.hqs.9.1": "IT·디지털",
   "d_org.org.hqs.8.3": "아오키 마사토",
   "d_org.org.hqs.8.1": "안전보안",
-  "d_org.org.hqs.7.3": "사카모토 아이",
+  "d_org.org.hqs.7.3": "사카모토 렌",
   "d_org.org.hqs.7.1": "운송",
-  "d_org.org.hqs.6.3": "후지타 쇼헤이",
+  "d_org.org.hqs.6.3": "후지타 아키",
   "d_org.org.hqs.6.1": "정비",
   "d_org.org.hqs.5.3": "나카무라 유이",
   "d_org.org.hqs.5.1": "객실",
@@ -2486,11 +2486,11 @@ MG.T.add('ko', {
   "d_org.org.hqs.4.1": "운항",
   "d_org.org.hqs.3.3": "모리 다이스케",
   "d_org.org.hqs.3.1": "수익관리",
-  "d_org.org.hqs.2.3": "하야시 사키",
+  "d_org.org.hqs.2.3": "하야시 가이",
   "d_org.org.hqs.2.1": "마케팅·고객",
   "d_org.org.hqs.1.3": "오카다 료",
   "d_org.org.hqs.1.1": "영업",
-  "d_org.org.hqs.0.3": "구로사와 미치코",
+  "d_org.org.hqs.0.3": "구로사와 신",
   "d_org.org.hqs.0.1": "전략기획",
   // ── mg_data_fleet.js (p1_codemod · d_fleet) ──
   "d_fleet.fleet.deal.offers.6.sup": "제조사 + 수출 신용(가상)",
@@ -13057,11 +13057,12 @@ MG.uiMod = (function () {
     h += '<div class="pn" style="margin-top:10px"><h3>월결산 <small>확정본은 덮어쓰지 않음 · (+n) = 다음 달에 운송 완료된 미완료 편</small></h3><div class="tblw"><table><tr><th>월</th><th>매출</th><th>변동비</th><th>고정비·선확보</th><th>감가·이자</th><th>세전</th><th>세금</th><th>월말 현금</th><th>영업 CF</th><th>편</th><th>탑승률</th><th>정시율</th><th></th></tr>' +
       MG.T.s(MG.T.J(ms.map(function (k) { var r = c.fin.rep.m[k], q = r.sum, kp = r.kpi; return '<tr><td>' + MG.T.s(k.slice(1)) + '</td><td>' + MG.T.s(y(q.rev)) + '</td><td>' + MG.T.s(y(q.var)) + '</td><td>' + MG.T.s(y(q.fixed + q.pre)) + '</td><td>' + MG.T.s(y(q.dep + q.int)) + '</td><td class="' + (MG.T.s(q.pretax < 0 ? 'dly' : 'ok')) + '">' + MG.T.s(y(q.pretax)) + '</td><td>' + MG.T.s(y(q.tax)) + '</td><td>' + MG.T.s(y(r.bs.cash)) + '</td><td>' + MG.T.s(y(r.cf.op)) + '</td><td>' + MG.T.s(kp.fl) + (MG.T.s(r.incomplete ? '(+' + MG.T.s(r.incomplete) + ')' : '')) + '</td><td>' + (MG.T.s(kp.seats ? MG.T.s((kp.pax / kp.seats * 100).toFixed(1)) + '%' : '—')) + '</td><td>' + (MG.T.s(kp.fl ? MG.T.s(Math.round(kp.ot / kp.fl * 100)) + '%' : '—')) + '</td><td><button class="btn sm" data-meet="' + MG.T.s(k) + '">회의</button></td></tr>'; }), '')) + '</table></div>' +
       (MG.T.s(Object.keys(c.fin.rep.y).length ? '<div class="yr">' + MG.T.s(MG.T.J(Object.keys(c.fin.rep.y).map(function (fy) { var r = c.fin.rep.y[fy], q = r.sum; return '<div><b>FY' + MG.T.s(fy) + ' 연 결산</b> 매출 ' + MG.T.s(y(q.rev)) + ' · 세전 ' + MG.T.s(y(q.pretax)) + ' · 법인세 ' + MG.T.s(y(q.tax)) + ' · 순이익 ' + MG.T.s(y(q.net)) + ' · 연말 현금 ' + MG.T.s(y(r.bs.cash)) + '</div>'; }), '')) + '</div>' : '')) + '</div>';
-    h += '<div class="pn" style="margin-top:10px"><h3>결정 추적 <small>결정 → 지급 의무 → 실제 지급(같은 결정은 한 번만)</small></h3><div class="tblw"><table><tr><th>결정</th><th class="l">안건</th><th>선택</th><th class="l">연결된 지급 의무</th></tr>' +
+    var dtN = c.decisions.some(function (d) { return d.kind === 'proposal' || d.kind === 'cash' || (d.kind === 'delay' && d.optionId === 'cancel'); });   /* 200차: 비었으면 머리줄만 있는 빈 표 대신 안내 한 줄 */
+    h += '<div class="pn" style="margin-top:10px"><h3>결정 추적 <small>결정 → 지급 의무 → 실제 지급(같은 결정은 한 번만)</small></h3>' + (dtN ? '<div class="tblw"><table><tr><th>결정</th><th class="l">안건</th><th>선택</th><th class="l">연결된 지급 의무</th></tr>' +
       MG.T.s(MG.T.J(c.decisions.filter(function (d) { return d.kind === 'proposal' || d.kind === 'cash' || (d.kind === 'delay' && d.optionId === 'cancel'); }).slice(-20).reverse().map(function (d) {
         var ob = c.fin.oblOrder.map(function (id) { return c.fin.obl[id]; }).filter(function (o) { return o.dec === d.id; });
         return '<tr><td>' + MG.T.s(d.id) + '<br><span class="sub">' + MG.T.s(MG.tz.local(d.t, c.hqTz).date) + '</span></td><td class="l">' + (MG.T.s(d.title || d.target)) + '</td><td>' + (MG.T.s(d.label || d.optionId)) + '</td><td class="l">' + (MG.T.s(ob.length ? MG.T.J(ob.map(function (o) { var paid = 0; for (var k in o.paid) paid += o.paid[k]; return MG.T.s(o.label) + ' <span class="chip ' + MG.T.s((OST[o.state] || ['', ''])[1]) + '">' + MG.T.s((OST[o.state] || [o.state])[0]) + '</span> 지급 ' + MG.T.s(y(paid)); }), '<br>') : '—')) + '</td></tr>';
-      }), '')) + '</table></div></div>';
+      }), '')) + '</table></div>' : '<div class="empty">아직 없음 — 투자 품의·현금 결정이 생기면 여기에 이어집니다</div>') + '</div>';
     $('m_data').innerHTML = h;
     Array.prototype.forEach.call(document.querySelectorAll('#m_data [data-meet]'), function (b) { b.onclick = function () { meeting(null, b.dataset.meet); }; });
     var lab = ms.map(function (k) { return k.slice(6); });
@@ -13075,7 +13076,7 @@ MG.uiMod = (function () {
     cv.width = W * dpr; cv.height = Hh * dpr; cv.style.height = MG.T.s(Hh) + 'px'; var x = cv.getContext('2d'); x.setTransform(dpr, 0, 0, dpr, 0, 0);
     x.fillStyle = '#cfe0f7'; x.font = '700 11px sans-serif'; x.fillText(MG.T.s(title), 6, 13);
     if (!v.length) { x.fillStyle = '#8191b0'; x.font = '11px sans-serif'; x.fillText('첫 월결산 뒤 표시', 6, 40); return; }
-    var all = v.concat(v2 || []), mn = Math.min(0, Math.min.apply(null, all)), mx = Math.max.apply(null, all); if (kind === 'line') { mn = Math.min.apply(null, all); mn -= (mx - mn) * 0.15 + 0.01; }
+    var all = v.concat(v2 || []), mn = Math.min(0, Math.min.apply(null, all)), mx = Math.max(kind === 'line' ? -Infinity : 0, Math.max.apply(null, all));   /* 200차: 막대는 0을 늘 포함(음수 1개뿐이면 눈금이 -10·-9·-9로 겹치던 것) */ if (kind === 'line') { mn = Math.min.apply(null, all); if (mx - mn < 1e-9) { var pd = Math.max(1, Math.abs(mx) * 0.05); mn -= pd; mx += pd; } else mn -= (mx - mn) * 0.15 + 0.01; }   /* 200차: 점 1개(같은 값)면 눈금이 같은 수 3개로 겹치던 것 → 위아래 여유 */
     if (mx === mn) mx = mn + 1; var L = 36, R = W - 6, T = 22, B = Hh - 18, ys = function (q) { return B - (q - mn) / (mx - mn) * (B - T); }, bw = (R - L) / v.length;
     x.strokeStyle = 'rgba(129,145,176,.25)'; x.fillStyle = '#8191b0'; x.font = '9.5px Menlo,monospace';
     [mn, (mn + mx) / 2, mx].forEach(function (q) { x.beginPath(); x.moveTo(L, ys(q)); x.lineTo(R, ys(q)); x.stroke(); x.fillText(q.toFixed(kind === 'line' && mx < 200 ? 1 : 0), 2, ys(q) + 3); });
@@ -13159,7 +13160,7 @@ MG.uiMod = (function () {
     $('mtOk').onclick = function () { $('meet').classList.remove('on'); if (p) H.decide(p.id, 'ok', '결산 확인'); };
   }
   function waterfall(V) {
-    var cv = $('wf'), r = cv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1), W = Math.max(280, r.width), Hh = 210;
+    var cv = $('wf'), r = cv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1), W = Math.max(280, r.width), Hh = !V || V.first ? 60 : 210;   /* 200차: 첫 달은 안내 한 줄만 — 빈 큰 상자 없앰 */
     cv.width = W * dpr; cv.height = Hh * dpr; cv.style.height = MG.T.s(Hh) + 'px'; var x = cv.getContext('2d'); x.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (!V || V.first) { x.fillStyle = '#cfe0f7'; x.font = '13px sans-serif'; x.fillText('첫 달 — 전월이 없어 원인 비교는 다음 달부터 표시합니다.', 10, 40); return; }
     var st = V.steps, acc = 0, bars = [];

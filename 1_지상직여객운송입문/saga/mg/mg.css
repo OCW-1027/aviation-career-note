@@ -234,3 +234,38 @@ table.feas td{font-family:inherit;vertical-align:top}table.feas td.l,table.feas 
  html body .rail em{right:2px;top:1px}
  body{padding-bottom:96px}
 }
+
+/* 안내(#hint): 닫기 단추를 상자 안에(가로 배치) — PC·휴대폰 공통 */
+html body .hint.on{display:flex}html body .hint{align-items:center;gap:10px;padding:6px 6px 6px 12px}
+html body .hint button{position:static;flex:0 0 auto;margin-left:auto;align-self:center}
+/* 패널 제목: 긴 설명(small) 옆에서 제목 낱말이 「보정/표」처럼 끊기지 않게(PC 포함) */
+html body .pn h3{word-break:keep-all}
+@media (max-width:820px){
+ /* 아래 메뉴: 완전 불투명 + 위 그림자 · 본문 아래 여백 = 메뉴 실제 높이(스크립트가 --railh) + 여유 */
+ html body .rail{background:#060c1a;box-shadow:0 -8px 18px rgba(0,0,0,.6);border-top:1px solid var(--line2)}
+ html body{padding-bottom:calc(var(--railh,96px) + 18px)}
+ /* 안내: 누른 자리 위에 뜨지 않고 메뉴 바로 위 고정 띠(본문 글을 덮지 않게 짧게 · 5초 뒤 사라짐) */
+ html body .hint{position:fixed;left:8px!important;right:8px;top:auto!important;bottom:calc(var(--railh,96px) + 8px);max-width:none;z-index:70}
+ /* KPI: 말줄임(…)으로 숫자를 숨기지 않고 줄바꿈 */
+ html body .kpi .kl,html body .kpi .kv,html body .kpi .ks{white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;overflow-wrap:anywhere}
+ /* 본부 띠: 8칸 → 4칸(글자 키움) */
+ html body .hqband{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+ html body .hqband .hb{min-height:34px;padding:3px 2px}
+ html body .hqband .hb span{font-size:10.5px}html body .hqband .hb b{font-size:11px}
+ /* 패널 첫 줄(제목 + 설명 + 선택창): 제목이 좁은 칸에서 세로로 밀리지 않게 각각 한 줄 */
+ html body .pn>.row:first-child{flex-wrap:wrap;row-gap:4px}
+ html body .pn>.row:first-child>h3,html body .pn>.row:first-child>.sub{flex:1 1 100%;min-width:0}
+ html body .pn>.row:first-child>.sp{display:none}
+ /* 기체 카드: 상태 글 말줄임 없이 · 둥근 알약 대신 모서리 둥근 상자 */
+ html body #fleet{grid-auto-rows:auto;align-items:stretch}html body #fleet .ac{height:auto;align-items:flex-start}
+ html body #fleet .ac .st{-webkit-line-clamp:unset;display:block;border-radius:8px}
+ /* 표 안 단추·꼬리표·날짜: 한 글자씩 세로로 끊기지 않게 */
+ html body .chip,html body table.stk td :is(.btn,button){white-space:nowrap;word-break:keep-all}
+ html body table.stk td :is(.btn,button,.chip,input,select){flex:0 0 auto}
+ html body table.stk td:has(> :is(.btn,button,input,select)){flex-wrap:wrap;justify-content:flex-end;row-gap:4px}
+ html body input[type=date]{min-width:9.6em}
+ /* 안쪽 스크롤 상자: 짧으면 모두 펼침(.mgfull) · 길면(.mgscr) 테두리 + 아래 그늘 + 안내 한 줄 */
+ html body .mgfull{max-height:none!important;overflow-y:visible!important}
+ html body .mgscr{max-height:62vh!important;overflow-y:auto!important;border:1px solid var(--line2);border-radius:8px;box-shadow:inset 0 -18px 14px -12px rgba(57,212,255,.45)}
+ html body .mgscrn{font-size:11px;color:var(--cy);margin:6px 0 3px}
+}
