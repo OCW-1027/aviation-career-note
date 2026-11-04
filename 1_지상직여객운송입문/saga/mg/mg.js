@@ -1184,8 +1184,8 @@ MG.T.add('ko', {
   "rp.create.1": "노선 프로젝트 {id} 생성 — {route}({od}) 1단계 시장 조사",
   "rp.create.2": "{route} — 같은 노선 프로젝트 진행 중",
   "rp.create.3": "{route} — 이미 운항 중인 노선·기종(기존 노선 변경은 시간표 기안)",
-  "rp.create.4": "시장 자료에 없는 도시쌍 {od}",
-  "rp.create.5": "시장 도시쌍 없음({from}·{to})",
+  "rp.create.4": "시장 자료에 없는 O&D {od}",
+  "rp.create.5": "시장 O&D 없음({from}·{to})",
   "rp.create.6": "{type} — 좌석 구성 자료 없음",
   "rp.create.7": "{type} — 가정표가 완결된 기종(B737-800·B787-9)만",
   "rp.create.8": "{to} — 공항 자료(시간대) 없음",
@@ -1801,7 +1801,7 @@ MG.T.add('ko', {
   "market.setMix.2": "채널 비율",
   "market.setMix.3": "채널 비율 합 = 1",
   "market.setFares.1": "운임 지수 0.50~1.50",
-  "market.setFares.2": "{od} — 도시쌍 아님",
+  "market.setFares.2": "{od} — O&D 아님",
   "market.setFare.1": "{od} 운임 지수 {label}",
   "market._apply.1": "S {S}→{S2} · S+D {SD}→{SD2}(좌석 비율, 계약 버전 {ver})",
   "market._apply.2": "중첩 한도",
@@ -1859,7 +1859,7 @@ MG.T.add('ko', {
   // ── mg_crisis.js (p1_codemod · crisis) ──
   "crisis.aiOcc.1": " · 사유: {why}",
   "crisis.aiOcc.2": "[경쟁] {name} 운임 공세 예고({yq}) — {ods|join:, } · {d} 발생 · 제시 운임 {v}%{v2}",
-  "crisis.aiOcc.3": "징후: {name} 운임 공세 예고 — {length}개 도시쌍 · {d}부터",
+  "crisis.aiOcc.3": "징후: {name} 운임 공세 예고 — {length}개 O&D · {d}부터",
   "crisis.intOcc.1": " — {g}",
   "crisis.intOcc.2": "{ko}{v} {v2}",
   "crisis.onApplied.1": "{label}(시간표 #{v} 적용)",
@@ -1878,7 +1878,7 @@ MG.T.add('ko', {
   "crisis.knob.3": "{ko} 대책",
   "crisis.knob.4": "이미 가장 낮은 상한({h}시간)",
   "crisis.knob.5": "직군 부서 없음",
-  "crisis.knob.6": "대상 도시쌍 없음",
+  "crisis.knob.6": "대상 O&D 없음",
   "crisis.exec.1": "[위기] 안내 — {label}",
   "crisis.exec.2": "시간표 기안 제출 불가 — {why}",
   "crisis.exec.3": "기안 대상 편 없음",
@@ -2598,13 +2598,13 @@ MG.T.add('ko', {
   "d_crisis.crisis.types.op_farewar.options.1.effects.0.why": "차별화 홍보",
   "d_crisis.crisis.types.op_farewar.options.1.costs.0.label": "차별화 홍보(판매 촉진)",
   "d_crisis.crisis.types.op_farewar.options.1.label": "차별화 유지(운임 그대로 · 서비스 홍보 — 판매 촉진비)",
-  "d_crisis.crisis.types.op_farewar.options.0.label": "맞대응 인하(그 도시쌍 당사 운임 지수 −10% — 수입 단가 ↓·점유 방어)",
+  "d_crisis.crisis.types.op_farewar.options.0.label": "맞대응 인하(그 O&D의 당사 운임 지수 −10% — 수입 단가 ↓·점유 방어)",
   "d_crisis.crisis.types.op_farewar.group": "경쟁사 행동",
   "d_crisis.crisis.types.op_farewar.ko": "경쟁사 운임 공세",
   "d_crisis.crisis.types.soc_groupdemand.options.1.effects.0.why": "판촉",
   "d_crisis.crisis.types.soc_groupdemand.options.1.costs.0.label": "단체 판매 촉진",
   "d_crisis.crisis.types.soc_groupdemand.options.1.label": "단체 판매 촉진(여행사 판촉 — 점유 우선)",
-  "d_crisis.crisis.types.soc_groupdemand.options.0.label": "그 지역 도시쌍 운임 지수 +5%(수익 우선)",
+  "d_crisis.crisis.types.soc_groupdemand.options.0.label": "그 지역 O&D 운임 지수 +5%(수익 우선)",
   "d_crisis.crisis.types.soc_groupdemand.group": "사회·기회",
   "d_crisis.crisis.types.soc_groupdemand.ko": "단체 수요 급증",
   "d_crisis.crisis.types.op_ad.options.1.label": "전기 즉시 일괄 점검(다음 운항 전 — 결항 다수)",
@@ -13318,7 +13318,7 @@ MG.uiOrg = (function () {
     if (o.edu[d.id]) h += kn('교육 과정', '<span class="sub">' + MG.T.s(y(o.edu[d.id])) + '</span>', '다음 달부터 3개월 교육항 +' + MG.T.s(o.edu.v) + '/월(교육 상한 0.5) · 비용 즉시 계약', 'edu');
     if (d.id === 'rm.rm' || d.id === 'rm.fare') {
       var pcr = c.mkt && c.mkt.polHist ? MG.mkt.polCur(c) : null, cm = MG.data.market.rmCapMin;
-      h += '<div class="sub" style="margin:4px 0">' + (MG.T.s(d.id === 'rm.rm' ? '중첩 한도 ' + (MG.T.s(pcr && pcr.nest ? 'S ' + MG.T.s(pcr.nest.S) + ' · S+D ' + MG.T.s(pcr.nest.SD) : '없음(호환 곡선)')) : '운임군 배수 ' + (MG.T.s(pcr ? 'S ' + MG.T.s(pcr.mult.S) + ' · F ' + (MG.T.s(pcr.mult.F || '—')) : '')) + ' · 운임 지수 조정 ' + (MG.T.s(pcr ? Object.keys(pcr.fareIdx).length : 0)) + '개 도시쌍')) +
+      h += '<div class="sub" style="margin:4px 0">' + (MG.T.s(d.id === 'rm.rm' ? '중첩 한도 ' + (MG.T.s(pcr && pcr.nest ? 'S ' + MG.T.s(pcr.nest.S) + ' · S+D ' + MG.T.s(pcr.nest.SD) : '없음(호환 곡선)')) : '운임군 배수 ' + (MG.T.s(pcr ? 'S ' + MG.T.s(pcr.mult.S) + ' · F ' + (MG.T.s(pcr.mult.F || '—')) : '')) + ' · 운임 지수 조정 ' + (MG.T.s(pcr ? Object.keys(pcr.fareIdx).length : 0)) + '개 O&D')) +
         ' — 손잡이는 「시장」 화면(같은 결정 경로 pol:' + MG.T.s(d.id) + ':…) · ' + esc(MG.mkt.rmGuide(c, d.id).msg || '') + ' · <button class="btn sm2" data-gomkt="1">시장 화면</button></div>';
     }
     if (d.id === 'ops.occ') {
@@ -13716,7 +13716,7 @@ MG.uiNet = (function () {
         '<button class="btn sm2" data-fchk="' + MG.T.s(k) + '">검사</button><button class="btn pri sm2" data-fapp="' + MG.T.s(k) + '">증편 적용</button></div>' +
         (MG.T.s(V.freqChk && V.freqChk.tail === k ? '<div class="fchk ' + (MG.T.s(V.freqChk.ok ? 'ok' : 'dly')) + '">' + (MG.T.s(V.freqChk.ok ? '○ 적용 가능 — ' + MG.T.s(V.freqChk.from) + '부터 ' + MG.T.s(MG.T.J(V.freqChk.legs.map(function (L) { return MG.T.s(L.fn) + ' ' + MG.T.s(L.from) + ' ' + MG.T.s(MG.tz.hmStr(L.stdLocal)); }), ' · ')) : '△ ' + esc(V.freqChk.why))) + '</div>' : '')) + '</div>';
     });
-    h += '<div class="sub" style="margin-top:4px">증편 = 기존 노선(도시쌍·기종)에 기체를 넣는 시간표 버전(내일부터). 운용 시간·통금·승무원 세트·레벨 3 보유 슬롯을 검사합니다. 같은 노선 편당 수요는 1C 전 간이 규칙으로 나눔(증편 자극 탄력 0.25, 가정). 신규 노선은 1C 노선 설계대.</div>';
+    h += '<div class="sub" style="margin-top:4px">증편 = 기존 노선(같은 출발·도착 도시·기종)에 기체를 넣는 시간표 버전(내일부터). 운용 시간·통금·승무원 세트·레벨 3 보유 슬롯을 검사합니다. 같은 노선 편당 수요는 1C 전 간이 규칙으로 나눔(증편 자극 탄력 0.25, 가정). 신규 노선은 1C 노선 설계대.</div>';
     el.innerHTML = h;
     function spec(k) { var f = V.freq[k]; return { tail: k, route: f.route, first: f.first, rt: f.rt }; }
     Array.prototype.forEach.call(document.querySelectorAll('[data-fr]'), function (s) { s.onchange = function () { V.freq[s.dataset.fr].route = s.value; V.freqChk = null; }; });
@@ -13765,19 +13765,19 @@ MG.uiMkt = (function () {
   function months(c) { var a = Object.keys(c.mkt.odM).sort(); return a; }
   function render() {
     var el = $('m_mkt'), c = C(); if (!el) return;
-    if (!c.mkt || c.mkt.mode !== 'od') { el.innerHTML = '<div class="pn" style="margin:10px 14px"><h3>시장</h3><div class="empty">' + (MG.T.s(c.cal === '30d' ? '통제 검산(30일 달력)은 모델 v2 노선 수요 그대로입니다 — 도시쌍 시장은 실달력에서 동작합니다.' : '시험용 노선 수요(route) 캠페인입니다.')) + '</div></div>'; return; }
+    if (!c.mkt || c.mkt.mode !== 'od') { el.innerHTML = '<div class="pn" style="margin:10px 14px"><h3>시장</h3><div class="empty">' + (MG.T.s(c.cal === '30d' ? '통제 검산(30일 달력)은 모델 v2 노선 수요 그대로입니다 — O&D 시장은 실달력에서 동작합니다.' : '시험용 노선 수요(route) 캠페인입니다.')) + '</div></div>'; return; }
     var ms = months(c), mk = V.mk && ms.indexOf(V.mk) >= 0 ? V.mk : ms[ms.length - 1];
-    var h = '<div class="pn mktbar"><h3 style="margin:0">시장 — 도시쌍 O&D · 경쟁 3사 · 채널 5축 <small>교육용 Vela 가정 · 실제 시장 자료 아님</small></h3><span class="sp"></span>' +
+    var h = '<div class="pn mktbar"><h3 style="margin:0">시장 — O&D(여객이 실제로 오가는 출발·도착 도시 — 직항·환승 포함) · 경쟁 3사 · 채널 5축 <small>교육용 Vela 가정 · 실제 시장 자료 아님</small></h3><span class="sp"></span>' +
       (MG.T.s(ms.length ? '<select class="btn" id="mkSel">' + MG.T.s(MG.T.J(ms.map(function (m) { return '<option' + (MG.T.s(m === mk ? ' selected' : '')) + ' value="' + MG.T.s(m) + '">' + MG.T.s(m.slice(1)) + (MG.T.s(m === ms[ms.length - 1] ? '(진행 중)' : '')) + '</option>'; }), '')) + '</select>' : '')) + '</div>';
     if (!mk) { el.innerHTML = MG.T.s(h) + '<div class="pn" style="margin:0 14px"><div class="empty">아직 출발일 확정 배분이 없습니다(첫 영업일이 지나면 표시).</div></div>'; bind(); return; }
     var OM = c.mkt.odM[mk] || {}, st = MG.mkt.stat(), cal = MG.mkt.calibrate();
     var rows = Object.keys(OM).sort(function (a, b) { return (OM[b].self || 0) - (OM[a].self || 0) || (OM[b].pool - OM[a].pool); });
-    h += '<div class="mgrid2"><div class="pn"><h3>도시쌍 O&D <small>' + MG.T.s(mk.slice(1)) + ' 실적(출발일 기준) · 당사 = 실제 미환불 예약(결항·보류 환불 차감 → 운송 인원) · 경쟁사 = 배분 결과 · 점유(항공) = 당사 ÷ (당사 + 경쟁사) · 풀 = 고유 수요(경쟁 공급은 풀을 늘리지 않음)</small></h3><div class="tblw"><table class="mini"><tr><th class="l">도시쌍</th><th>거리</th><th>풀</th><th>당사</th><th>점유(항공)</th><th>경쟁사</th><th>바깥</th><th>초과</th><th>환불</th><th>넘침</th><th>운임 지수(그달)</th><th>풀 근거</th></tr>' +
+    h += '<div class="mgrid2"><div class="pn"><h3>O&D 시장 <small>' + MG.T.s(mk.slice(1)) + ' 실적(출발일 기준) · 당사 = 실제 미환불 예약(결항·보류 환불 차감 → 운송 인원) · 경쟁사 = 배분 결과 · 점유(항공) = 당사 ÷ (당사 + 경쟁사) · 풀 = 고유 수요(경쟁 공급은 풀을 늘리지 않음)</small></h3><div class="tblw"><table class="mini"><tr><th class="l">O&D</th><th>거리</th><th>풀</th><th>당사</th><th>점유(항공)</th><th>경쟁사</th><th>바깥</th><th>초과</th><th>환불</th><th>넘침</th><th>운임 지수(그달)</th><th>풀 근거</th></tr>' +
       MG.T.s(MG.T.J(rows.map(function (od) {
         var o = OM[od], air = MG.mkt.airOf(o), comp = MG.T.J(Object.keys(o.comp).map(function (k) { return MG.T.s(k) + ' ' + MG.T.s(n0(o.comp[k])); }), ' · ');
         return '<tr' + (MG.T.s(V.od === od ? ' class="sel"' : '')) + '><td class="l"><button class="lnk" data-od="' + MG.T.s(od) + '">' + esc(odName(od)) + '</button></td><td>' + MG.T.s(st.ods[od].km) + '</td><td>' + MG.T.s(n0(o.pool)) + '</td><td>' + MG.T.s(n0(o.self)) + '</td><td>' + MG.T.s(pc(air ? o.self / air : null)) + '</td><td class="l">' + (MG.T.s(comp || '—')) + '</td><td>' + MG.T.s(n0(o.other)) + '</td><td>' + MG.T.s(n0(o.over || 0)) + '</td><td>' + MG.T.s(n0(o.rf || 0)) + '</td><td>' + MG.T.s(n0(o.spill)) + '</td><td>' + (MG.T.s(o.fare != null ? o.fare.toFixed(2) : '1.00')) + '</td><td>' + MG.T.s(gradeKo(cal.pool[od].g)) + '</td></tr>';
       }), '')) + '</table></div><div class="sub">순서 고정: ① 풀(계절·요일·공휴일·외부 충격·자극) → ② QSI 선택 확률 → ③ 좌석 한도(직항 먼저, 연결은 남은 좌석·두 구간 함께) → 넘침 1회 재배분 → ④ 예약(채널·세그먼트) → ⑤ 구간 운임 비례 배분. 기예약(곡선 점에서 판 코호트 — 표준 7점 D−330~D0, 호환 D−30·D0)은 계약대로 유지 — 출발일 목표가 기예약보다 작으면 「초과」, 당사 + 경쟁사 + 바깥 = 풀 + 초과. 「운임 지수(그달)」은 그달 마지막 기록값(지금 정책은 상세에서).</div></div>';
-    h += '<div class="pn"><h3>도시쌍 상세 <small>선택 확률·편별 배분 — 오늘 기준 다음 출발일 <b>예측(미리보기)</b>, 실적은 왼쪽 표</small></h3><div id="mkOd">' + MG.T.s(odDetail(c, V.od || rows[0])) + '</div></div></div>';
+    h += '<div class="pn"><h3>O&D 상세 <small>선택 확률·편별 배분 — 오늘 기준 다음 출발일 <b>예측(미리보기)</b>, 실적은 왼쪽 표</small></h3><div id="mkOd">' + MG.T.s(odDetail(c, V.od || rows[0])) + '</div></div></div>';
     h += rmPanel(c, mk);
     // 채널 5축
     var CM = c.mkt.chM[mk] || {}, CH = MG.data.market.channels;
@@ -13798,13 +13798,13 @@ MG.uiMkt = (function () {
         var cr = CP[k], R = c.mkt.comp[k].routes, img = H.img(cr.logo) || (MG.data.ux && MG.data.ux.compLogo ? H.img(MG.data.ux.compLogo[k]) : null), lm = (c.mkt.compM[mk] || {})[k] || {};
         return '<div class="cmp"><div class="ch">' + (MG.T.s(img && img.src ? '<img src="' + MG.T.s(img.src) + '" alt="">' : '')) + '<b>' + esc(cr.name) + '</b> <span class="sub">' + MG.T.s(cr.model) + ' · 허브 ' + MG.T.s(cityKo(cr.hub)) + ' · CX ' + MG.T.s(cr.cx) + ' · 브랜드 ' + (MG.T.s(cr.brand >= 0 ? '+' : '')) + MG.T.s(cr.brand) + '</span></div>' +
           '<div class="sub">기재 ' + MG.T.s(MG.T.J(Object.keys(cr.fleet).map(function (g) { return MG.T.s(g) + ' ' + MG.T.s(cr.fleet[g].n) + '대(' + MG.T.s(cr.fleet[g].seats) + '석)'; }), ' · ')) + ' · CASK 가정 ' + MG.T.s(MG.T.J(cr.cask, '~')) + '엔</div>' +
-          '<table class="mini"><tr><th class="l">도시쌍</th><th>하루 편</th><th>운임 지수</th>' + (MG.T.s(c.mkt.compPlan ? '<th>제시</th>' : '')) + '<th>' + MG.T.s(mk.slice(6)) + '월 LF</th></tr>' + MG.T.s(MG.T.J(Object.keys(R).sort().map(function (od) { var x = lm[od], of = c.mkt.compPlan ? MG.comp.offered(c, k, od, R[od]) : null; return '<tr><td class="l">' + esc(odName(od)) + '</td><td>' + MG.T.s(R[od].legs.reduce(function (s, lg) { return s + lg.times.length; }, 0)) + '</td><td>' + MG.T.s(R[od].fareIdx.toFixed(2)) + '</td>' + (MG.T.s(of != null ? '<td' + (MG.T.s(of !== R[od].fareIdx ? ' class="am"' : '')) + '>' + MG.T.s(of.toFixed(2)) + '</td>' : '')) + '<td>' + (MG.T.s(x && x.seats ? pc(x.pax / x.seats) : '—')) + '</td></tr>'; }), '')) + '</table></div>';
+          '<table class="mini"><tr><th class="l">O&D</th><th>하루 편</th><th>운임 지수</th>' + (MG.T.s(c.mkt.compPlan ? '<th>제시</th>' : '')) + '<th>' + MG.T.s(mk.slice(6)) + '월 LF</th></tr>' + MG.T.s(MG.T.J(Object.keys(R).sort().map(function (od) { var x = lm[od], of = c.mkt.compPlan ? MG.comp.offered(c, k, od, R[od]) : null; return '<tr><td class="l">' + esc(odName(od)) + '</td><td>' + MG.T.s(R[od].legs.reduce(function (s, lg) { return s + lg.times.length; }, 0)) + '</td><td>' + MG.T.s(R[od].fareIdx.toFixed(2)) + '</td>' + (MG.T.s(of != null ? '<td' + (MG.T.s(of !== R[od].fareIdx ? ' class="am"' : '')) + '>' + MG.T.s(of.toFixed(2)) + '</td>' : '')) + '<td>' + (MG.T.s(x && x.seats ? pc(x.pax / x.seats) : '—')) + '</td></tr>'; }), '')) + '</table></div>';
       }), '')) + '</div>' +
       '<div class="sub" style="margin-top:6px">예고: ' + (MG.T.s(c.mkt.pend.length ? MG.T.J(c.mkt.pend.map(function (x) { return MG.T.s(CP[x.c].name) + ' ' + MG.T.s(odName(x.od)) + ' ' + (MG.T.s(x.kind === 'fare' ? '운임 ' + MG.T.s(x.v.toFixed(2)) : (MG.T.s(x.v > 0 ? '+1' : '−1')) + '왕복')) + ' — ' + MG.T.s(x.eff) + ' 효력(' + esc(x.why) + ')'; }), ' · ') : '없음')) + '</div>' +
       '<div class="sub">최근 반응: ' + (MG.T.s(MG.T.J(c.mkt.react.slice(-6).reverse().map(function (x) { return MG.T.s(x.d) + ' ' + MG.T.s(CP[x.c].name) + ' ' + MG.T.s(odName(x.od)) + ' ' + (MG.T.s(x.kind === 'fare' ? '운임 ' + MG.T.s(x.v.toFixed(2)) : (MG.T.s(x.v > 0 ? '+1' : '−1')) + '왕복')) + (MG.T.s(x.eff === false ? ' <b class="am">취소</b>' : '')) + '(' + esc(x.why) + ')'; }), ' · ') || '없음')) + '</div>' +
       '<div class="sub">기재 시간(모형 노선 = 전체의 35%): ' + MG.T.s(MG.T.J(Object.keys(CP).map(function (k) { return MG.T.s(CP[k].name) + ' ' + MG.T.s(MG.T.J(Object.keys(CP[k].fleet).map(function (g) { return MG.T.s(g) + ' ' + MG.T.s(MG.mkt.hoursUsed(c, k, g, false).toFixed(0)) + '/' + MG.T.s(MG.mkt.hoursCap(k, g).toFixed(0)) + 'h' + (MG.T.s(MG.mkt.hoursUsed(c, k, g, true) !== MG.mkt.hoursUsed(c, k, g, false) ? '(예고 포함 ' + MG.T.s(MG.mkt.hoursUsed(c, k, g, true).toFixed(0)) + ')' : '')); }), ' · ')); }), ' / ')) + ' — 예고 증편은 자기 노선 블록·기재군으로 예약, 효력 때 한도 재검사</div>' + MG.T.s(seasonBlock(c)) + '</div>';
     // 보정표
-    h += '<div class="pn" style="margin:0 14px 12px"><h3>보정표 <small>취항 도시쌍: 개시 시간표에서 당사 탑승 = 좌석 × 모델 v2 노선 LF, 전체 항공 = 당사 표적 + 경쟁사 좌석 × 0.80이 되게 풀·당사 상수 역산 — <b>모델 v2 기준 보정값(교육용 LF·가상 경쟁 좌석에서 역산, 공개 통계 관측 아님)</b> · 그 밖: 중력식 G = ' + MG.T.s(cal.G.toFixed(1)) + '(가정 C) · 도시 인구·소득 = 공개 통계 수준 정리(B, 기준 2025·출처 미기재 — 조사 전 가정)</small></h3><div class="tblw"><table class="mini"><tr><th class="l">도시쌍</th><th>방향당 하루 풀</th><th>당사 상수</th><th>기준 운임</th><th>풀 근거</th></tr>' +
+    h += '<div class="pn" style="margin:0 14px 12px"><h3>보정표 <small>취항 O&D: 개시 시간표에서 당사 탑승 = 좌석 × 모델 v2 노선 LF, 전체 항공 = 당사 표적 + 경쟁사 좌석 × 0.80이 되게 풀·당사 상수 역산 — <b>모델 v2 기준 보정값(교육용 LF·가상 경쟁 좌석에서 역산, 공개 통계 관측 아님)</b> · 그 밖: 중력식 G = ' + MG.T.s(cal.G.toFixed(1)) + '(가정 C) · 도시 인구·소득 = 공개 통계 수준 정리(B, 기준 2025·출처 미기재 — 조사 전 가정)</small></h3><div class="tblw"><table class="mini"><tr><th class="l">O&D</th><th>방향당 하루 풀</th><th>당사 상수</th><th>기준 운임</th><th>풀 근거</th></tr>' +
       MG.T.s(MG.T.J(Object.keys(cal.asc).filter(function (k) { return cal.asc[k]; }).map(function (od) { return '<tr><td class="l">' + esc(odName(od)) + '</td><td>' + MG.T.s(cal.pool[od].pool) + '</td><td>' + MG.T.s(cal.asc[od].toFixed(3)) + '</td><td>' + MG.T.s(y(st.ods[od].ref)) + '(' + MG.T.s(st.ods[od].refG) + ')</td><td>' + MG.T.s(gradeKo(cal.pool[od].g)) + '</td></tr>'; }), '')) + '</table></div></div>';
     el.innerHTML = h; bind();
   }
@@ -13815,7 +13815,7 @@ MG.uiMkt = (function () {
     var kk = { exit: '철수', realloc: '시즌 재배치', enter: '신규 취항' }, sk = { announced: '예고', applied: '효력', cancelled: '<b class="am">취소</b>' };
     var last = P.log.filter(function (x) { return x.sig; }).slice(-1)[0];
     return '<div class="pn" id="mkSeason" style="margin-top:8px"><h3>시즌 계획 <small>분기 첫날 재평가(1일 공급 판단 뒤) → 예고(뉴스) → 재평가 + 60일 이후 첫 시즌 시작일 00:00 효력 · 같은 날 계획은 회사 → 철수 → 재배치 → 신규 순서로 기재 시간·현금 누적 검사(초과 = 취소)</small></h3>' +
-      (MG.T.s(L.length ? '<div class="tblw"><table class="mini"><tr><th class="l">회사</th><th>계획</th><th class="l">도시쌍</th><th>예고</th><th>효력</th><th>상태</th><th class="l">이유</th></tr>' + MG.T.s(MG.T.J(L.map(function (p) { return '<tr><td class="l">' + esc(CP[p.k].name) + '</td><td>' + MG.T.s(kk[p.kind]) + '</td><td class="l">' + esc(odName(p.od)) + (MG.T.s(p.lo ? ' ← ' + esc(odName(p.lo)) : '')) + '</td><td>' + MG.T.s(p.ann) + '</td><td>' + MG.T.s(p.eff) + '</td><td>' + MG.T.s(sk[p.st]) + '</td><td class="l">' + esc(p.cwhy ? MG.T.s(p.why) + ' · 취소: ' + MG.T.s(p.cwhy) : p.why) + '</td></tr>'; }), '')) + '</table></div>' : '<div class="sub">예고된 시즌 계획 없음</div>')) +
+      (MG.T.s(L.length ? '<div class="tblw"><table class="mini"><tr><th class="l">회사</th><th>계획</th><th class="l">O&D</th><th>예고</th><th>효력</th><th>상태</th><th class="l">이유</th></tr>' + MG.T.s(MG.T.J(L.map(function (p) { return '<tr><td class="l">' + esc(CP[p.k].name) + '</td><td>' + MG.T.s(kk[p.kind]) + '</td><td class="l">' + esc(odName(p.od)) + (MG.T.s(p.lo ? ' ← ' + esc(odName(p.lo)) : '')) + '</td><td>' + MG.T.s(p.ann) + '</td><td>' + MG.T.s(p.eff) + '</td><td>' + MG.T.s(sk[p.st]) + '</td><td class="l">' + esc(p.cwhy ? MG.T.s(p.why) + ' · 취소: ' + MG.T.s(p.cwhy) : p.why) + '</td></tr>'; }), '')) + '</table></div>' : '<div class="sub">예고된 시즌 계획 없음</div>')) +
       '<div class="sub">마지막 재평가: ' + (MG.T.s(last ? MG.T.s(last.d) + '(' + MG.T.s(last.yq) + ' · 계획 ' + MG.T.s(last.n) + '건 · 입력 서명 ' + MG.T.s(last.sig) + ')' : '아직 없음')) + (MG.T.s(MG.T.J(P.log.filter(function (x) { return x.txt; }).slice(-3).map(function (x) { return ' · ' + MG.T.s(x.d) + ' ' + MG.T.s(CP[x.k].name) + ' ' + esc(x.txt); }), ''))) + '</div></div>';
   }
   function gradeKo(g) { return g === 'B' ? '보정(모델 v2)' : '가정 C'; }
@@ -13855,7 +13855,7 @@ MG.uiMkt = (function () {
     return MG.T.s(h) + '</div></div>';
   }
   function odDetail(c, od) {
-    if (!od) return '<div class="empty">도시쌍을 고르세요.</div>';
+    if (!od) return '<div class="empty">O&D를 고르세요.</div>';
     var o = MG.mkt.stat().ods[od], d = MG.tz.addDays(MG.tz.local(c.t, c.hqTz).date, 1), res = MG.mkt.allocate(c, d)[od];
     var h = '<div class="sub">' + esc(odName(od)) + ' · ' + MG.T.s(o.km) + ' km · 기준 운임 ' + MG.T.s(y(o.ref)) + '(' + MG.T.s(o.refG) + ') · ' + MG.T.s(d) + ' 출발 미리보기</div>';
     h += '<div class="row" style="flex-wrap:wrap"><span class="sub">당사 운임 지수(수익관리·운임 부서 손잡이 자리)</span> <input class="btn num" id="fiV" type="number" step="0.01" value="' + MG.T.s(MG.mkt.selfIdx(c, od).toFixed(2)) + '"> <button class="btn sm2" id="fiGo" data-fod="' + MG.T.s(od) + '">적용</button> <span class="sub">다음 판매부터 · 기존 예약 소급 없음 · 0.50~1.50</span></div>';
@@ -14083,7 +14083,7 @@ MG.uiRp = (function () {
     var h = '<div class="pn mktbar"><div style="min-width:0"><h3 style="margin:0">노선 설계 — 노선 프로젝트 7단계</h3><div class="sub" style="margin-top:3px">설계대 변경 = 기안만(결정 전 실제 반영 없음) · 단계 진행·신청·최종 투자 승인·판매 준비 = 결정 · 최종 투자 승인 = 시간표 버전 승인(항상 결재) · 준비 4단: ① 신청 승인 → ② 조건부 투자 승인 → ③ 판매 허용 → ④ 운항 허용 · 신규 노선 수요 = 중력 풀(등급 C)</div></div></div>';
     // 새 프로젝트
     var F0 = V.form || {}, ty = F0.type || 'B789', fr0 = F0.from || hubs[0], tails = regsFor(c, ty, fr0);
-    h += '<div class="mgrid2"><div class="pn"><h3>새 노선 프로젝트 <small>출발 = 허브(노선 키·회전 기지) · 도착 = 시장 도시쌍의 공항(공항 DB)</small></h3>' +
+    h += '<div class="mgrid2"><div class="pn"><h3>새 노선 프로젝트 <small>출발 = 허브(노선 키·회전 기지) · 도착 = 시장 O&D의 도착 도시 공항(공항 DB)</small></h3>' +
       '<div class="row" style="flex-wrap:wrap;gap:6px">출발 <select class="btn" id="rpFrom">' + MG.T.s(MG.T.J(hubs.map(function (k) { return '<option' + (MG.T.s(F0.from === k ? ' selected' : '')) + '>' + MG.T.s(k) + '</option>'; }), '')) + '</select>' +
       ' 도착 <input class="btn" id="rpTo" size="5" value="' + esc(F0.to || 'SIN') + '"> 기종 <select class="btn" id="rpType">' + MG.T.s(MG.T.J(['B789', 'B738'].map(function (t) { return '<option value="' + MG.T.s(t) + '"' + (MG.T.s(t === ty ? ' selected' : '')) + '>' + MG.T.s(MG.rp.tyName(t)) + '</option>'; }), '')) + '</select>' +
       ' 기체 <select class="btn" id="rpReg">' + (MG.T.s(tails.length ? MG.T.J(tails.map(function (k) { var T = c.tails[k]; return '<option value="' + MG.T.s(k) + '"' + (MG.T.s(F0.reg === k ? ' selected' : '')) + '>' + MG.T.s(k) + ' · ' + (MG.T.s(STK[T.status] || T.status)) + (MG.T.s(T.status === 'line' ? '(기존 노선 편 소멸)' : '')) + (MG.T.s(T.base !== fr0 ? ' · 기지 ' + MG.T.s(T.base) + '(출발 ' + MG.T.s(fr0) + '과 다름)' : ' · 기지 ' + MG.T.s(T.base))) + (MG.T.s(T.hold ? ' · 예약' : '')) + '</option>'; }), '') : '<option value="">(이 기종 기체 없음)</option>')) + '</select></div>' +
@@ -14360,7 +14360,7 @@ MG.uiCrisis = (function () {
     var occ = c.crisis.occ, ks = Object.keys(occ).filter(function (k) { var o = occ[k]; return o.phase === 'signaled' || o.phase === 'active' || o.phase === 'recovering'; }).sort(function (a, b) { return occ[a].onset - occ[b].onset; });
     ks.slice(0, 4).forEach(function (k) {
       var o = occ[k], ty = X().types[o.id], d = deptFace(ty.dept);
-      var where = o.comp ? MG.T.s(MG.data.market.competitors[o.comp].name) + '(' + MG.T.s((o.ods || []).length) + '개 도시쌍)' : o.group ? MG.data.org.groups[o.group] : rgKo(o.region);   // 1C-3a-2: 경쟁사 행동 = 회사·대상 도시쌍 수
+      var where = o.comp ? MG.T.s(MG.data.market.competitors[o.comp].name) + '(' + MG.T.s((o.ods || []).length) + '개 O&D)' : o.group ? MG.data.org.groups[o.group] : rgKo(o.region);   // 1C-3a-2: 경쟁사 행동 = 회사·대상 도시쌍 수
       var st = o.phase === 'signaled' ? '징후 — ' + MG.T.s(o.onsetD) + ' 예상' : o.phase === 'active' ? '진행 중' + (MG.T.s(o.end ? ' ~' + MG.T.s(dLab(c, o.end)) : '')) : '회복 중';
       out.push([[d[0], o.phase === 'signaled' ? 'calm' : 'alert', d[1]], '[상황실] ' + MG.T.s(ty.ko) + ' · ' + MG.T.s(where) + (MG.T.s(o.mag ? ' · 규모 ' + MG.T.s(o.mag) : '')) + ' — ' + MG.T.s(st) + (MG.T.s(o.opt ? ' · 대책: ' + (MG.T.s(o.opt === 'none' ? '아무것도 안 함' : (ty.options.filter(function (x) { return x.id === o.opt; })[0] || {}).label || o.opt)) : ''))]);
     });
