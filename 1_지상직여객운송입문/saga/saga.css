@@ -1,4 +1,4 @@
-/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편·탑재관리편·램프편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
+/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편·탑재관리편·램프편·운항관리편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
 /* AIRLINE SAGA — Stage 01 체크인 (Vela Air: 교육용 가상 항공사)
    layout: 위 = 공항 카운터 장면(2.5D) / 아래 = 업무 단말(DCS). 넓은 화면에서는 좌우 배치 */
 :root{
@@ -526,6 +526,8 @@ html.sh-saga .t48 .langrow{display:none}
 .stage.wb .wbradio.hide{display:none}
 .stage.wb .wbradio img{width:34%;aspect-ratio:1;object-fit:cover;object-position:50% 10%;border-radius:10px;background:#dfe6f2}
 .stage.wb .wbradio span{margin-left:auto}
+.stage.wb .wbradio b{white-space:nowrap;word-break:keep-all}   /* 운항관리편 검수: 「운항정보」「탑재관리」가 좁은 폭에서 두 줄로 끊기던 것 */
+@media (max-width:480px){.stage.wb .wbradio{width:auto;max-width:48%}}
 .wbheroac{position:absolute;right:3%;top:19%;background:rgba(20,33,61,.85);color:#ffc04d;font:800 13px/1 "Inter",sans-serif;padding:6px 10px;border-radius:999px}
 .acseg{margin:0 0 10px}
 .wbt{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}
@@ -678,3 +680,19 @@ html.sh-saga .t48 .langrow{display:none}
 .flcard .fllist li.ok{border-color:#9fd3b4;background:#eef9f2}
 .flcard .fllist li b{white-space:nowrap}
 @media (max-width:600px){.flcard .fllist{grid-template-columns:1fr}}
+/* 2026-11-04 STAGE 05 운항관리편(.dp*) — 단말 카드·원문(TAF·NOTAM)·연료 칸(구분 이름 + 계산식) */
+.dpcard{margin:8px 0;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14)}
+.dpcard .dph{margin:0 0 4px;font-size:14px}
+.dpraw{margin:4px 0;padding:6px 8px;border-radius:8px;background:#0b1730;color:#d6e6ff;font:600 12.5px/1.45 "IBM Plex Mono",ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.dptaf{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0}
+.dpseg{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+.dpseg button{border:1.5px solid var(--line,#c9d2e0);background:#fff;color:#1d2b45;border-radius:10px;padding:6px 12px;font-weight:700;min-height:34px}
+.dpseg button.on{border-color:var(--vela,#0f7c78);background:#e6f3f2;color:var(--vela,#0f7c78)}
+.dplv button{text-align:left}
+.wbchk.dpfuel,.wbchk.dpfpl{grid-template-columns:1fr}
+.wbchk.dpfuel label,.wbchk.dpfpl label{grid-template-columns:minmax(0,1fr) 120px 22px}
+.dpf{display:block;font-size:11px;color:#5b6b7d;font-family:"IBM Plex Mono",ui-monospace,monospace;overflow-wrap:anywhere}
+.dpnext{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
+@media (max-width:600px){.wbchk.dpfuel label,.wbchk.dpfpl label{grid-template-columns:minmax(0,1fr) 96px 18px}.dpraw{font-size:11.5px}}
+.dpwhy{margin:6px 0;padding:6px 10px 6px 26px;border-radius:10px;background:#4a1f1f;color:#ffd6d6;font-size:13px;line-height:1.5}
+.dpwhy b{color:#ff8f8f;margin-right:4px}

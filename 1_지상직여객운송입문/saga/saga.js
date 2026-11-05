@@ -1,7 +1,7 @@
-/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편·탑재관리편·램프편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
-window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}, "staff_gate_idle_01": {"src": "saga/img/staff_gate_idle_01.webp", "w": 415, "h": 900, "px": 0.586, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_scan_01": {"src": "saga/img/staff_gate_scan_01.webp", "w": 439, "h": 900, "px": 0.5661, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_announce_01": {"src": "saga/img/staff_gate_announce_01.webp", "w": 487, "h": 900, "px": 0.495, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_explain_01": {"src": "saga/img/staff_gate_explain_01.webp", "w": 542, "h": 900, "px": 0.4482, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_trouble_01": {"src": "saga/img/staff_gate_trouble_01.webp", "w": 420, "h": 900, "px": 0.5856, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "gate_bg_01": {"src": "saga/img/gate_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "gate_bg_02": {"src": "saga/img/gate_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "passenger_male_01_bp_01": {"src": "saga/img/passenger_male_01_bp_01.webp", "w": 515, "h": 900, "px": 0.7226, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_male_01", "hr": 1.0}, "passenger_female_02_bp_01": {"src": "saga/img/passenger_female_02_bp_01.webp", "w": 570, "h": 899, "px": 0.7131, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_female_02", "hr": 0.999332}, "passenger_female_03_infant_bp_01": {"src": "saga/img/passenger_female_03_infant_bp_01.webp", "w": 493, "h": 900, "px": 0.5537, "py": 0.9959, "flip": false, "cat": "passengers", "sameAs": "passenger_female_03_infant_01", "hr": 1.0}, "prop_bgr_01": {"src": "saga/img/prop_bgr_01.webp", "w": 520, "h": 478, "px": 0.4311, "py": 0.9929, "flip": false, "cat": "props"}, "prop_gate_tag_01": {"src": "saga/img/prop_gate_tag_01.webp", "w": 430, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_aisle_chair_01": {"src": "saga/img/prop_aisle_chair_01.webp", "w": 358, "h": 520, "px": 0.5565, "py": 0.994, "flip": false, "cat": "props"}, "prop_stroller_gate_01": {"src": "saga/img/prop_stroller_gate_01.webp", "w": 437, "h": 520, "px": 0.5074, "py": 0.9938, "flip": false, "cat": "props", "sameAs": "prop_stroller_folded_01"}, "prop_um_form_01": {"src": "saga/img/prop_um_form_01.webp", "w": 432, "h": 520, "px": 0.5, "py": 0.9937, "flip": false, "cat": "props"}, "prop_radio_01": {"src": "saga/img/prop_radio_01.webp", "w": 264, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props", "sameAs": "prop_radio_01@v04"}, "prop_mic_01": {"src": "saga/img/prop_mic_01.webp", "w": 420, "h": 520, "px": 0.509, "py": 0.9933, "flip": false, "cat": "props"}, "staff_sv_01": {"src": "saga/img/staff_sv_01.webp", "w": 393, "h": 900, "px": 0.6526, "py": 0.9961, "flip": false, "cat": "staff", "hr": 1.0}, "staff_wb_input_01": {"src": "saga/img/staff_wb_input_01.webp", "w": 442, "h": 900, "px": 0.5383, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_radio_01": {"src": "saga/img/staff_wb_radio_01.webp", "w": 409, "h": 900, "px": 0.5864, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_phone_01": {"src": "saga/img/staff_wb_phone_01.webp", "w": 443, "h": 900, "px": 0.5389, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_trouble_01": {"src": "saga/img/staff_wb_trouble_01.webp", "w": 485, "h": 900, "px": 0.5075, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_loadmaster_bust_01": {"src": "saga/img/people_loadmaster_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_dispatcher_bust_01": {"src": "saga/img/people_dispatcher_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_captain_bust_01": {"src": "saga/img/people_captain_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "wb_bg_01": {"src": "saga/img/wb_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "wb_bg_02": {"src": "saga/img/wb_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "prop_loadsheet_01": {"src": "saga/img/prop_loadsheet_01.webp", "w": 498, "h": 520, "px": 0.5, "py": 0.9924, "flip": true, "cat": "props"}, "prop_lir_board_01": {"src": "saga/img/prop_lir_board_01.webp", "w": 397, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props"}, "prop_notoc_01": {"src": "saga/img/prop_notoc_01.webp", "w": 520, "h": 348, "px": 0.5, "py": 0.9898, "flip": true, "cat": "props"}, "prop_uld_ake_01": {"src": "saga/img/prop_uld_ake_01.webp", "w": 520, "h": 421, "px": 0.5, "py": 0.9915, "flip": true, "cat": "props"}, "prop_uld_pmc_01": {"src": "saga/img/prop_uld_pmc_01.webp", "w": 520, "h": 315, "px": 0.5, "py": 0.9903, "flip": true, "cat": "props"}, "rp_bg_01": {"src": "saga/img/rp_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "staff_rp_radio_01": {"src": "saga/img/staff_rp_radio_01.webp", "w": 488, "h": 900, "px": 0.4963, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_board_01": {"src": "saga/img/staff_rp_board_01.webp", "w": 414, "h": 900, "px": 0.5452, "py": 0.9961, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_point_01": {"src": "saga/img/staff_rp_point_01.webp", "w": 575, "h": 900, "px": 0.4379, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_trouble_01": {"src": "saga/img/staff_rp_trouble_01.webp", "w": 410, "h": 900, "px": 0.5738, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_engineer_bust_01": {"src": "saga/img/people_engineer_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "people_cabinmgr_bust_01": {"src": "saga/img/people_cabinmgr_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "people_deicer_bust_01": {"src": "saga/img/people_deicer_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "rp_bg_02": {"src": "saga/img/rp_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "rp_bg_03": {"src": "saga/img/rp_bg_03.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}};
-window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e06b9":21549,"016e1f97":11661,"017c78d9":11949,"01c72c31":26445,"01ff8447":27693,"02608e8f":22893,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"0360a263":57933,"0372e30c":51213,"04170656":22701,"0441de7c":13197,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05141efe":18573,"05382ef2":8877,"053bb83a":18669,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"07801492":13773,"0804812d":12813,"0815d609":63789,"08911573":24429,"089a08cd":19629,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b042d1a":24717,"0b0fc6ff":23181,"0b15794c":18093,"0b253baa":13389,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0dbf5c26":33549,"0f321d57":11949,"0f3b27e2":14157,"0f6c45bb":21069,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10774ea4":6477,"108a2963":16653,"10b9b398":26925,"10e5aae7":26061,"11353347":46029,"114530e3":18189,"117726b4":20877,"11931141":21453,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"11de62e7":5997,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12947755":27693,"12c66b14":23565,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"134c72c6":19917,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"152ad0c6":51981,"15389b02":18861,"1550e722":20589,"15ad3d3e":15789,"15c47881":32589,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17d69a98":24045,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"19e314d7":57357,"1a352e30":28269,"1a78ecbd":18189,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1e2e03c0":62829,"1ec7ed77":10893,"1eceacdd":14445,"1ef8768a":13293,"1fc06217":13293,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"216ee28d":23853,"2193b357":4557,"22babe7c":22125,"22d5fd4e":27501,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"23772200":15693,"23b16202":20781,"241220dd":30189,"24302b9c":29997,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"258c0750":4845,"2627df20":12813,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"2733bb31":16365,"277016ca":9549,"277a2505":10509,"277be539":16941,"284c92f2":9741,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a50eb82":8589,"2a6ca9be":14637,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2b62b479":10797,"2b92c7bf":10701,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cb6c3e6":17229,"2cc2a6c8":10893,"2ce23f41":17421,"2ce3e287":23949,"2e147517":7917,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"2fcb1fd8":19533,"30062188":25101,"304ce0e8":16365,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"320540c2":55629,"32485a1b":12333,"32832759":20205,"32aff339":24813,"32d33712":61005,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"3317c179":4557,"334df891":13101,"336f3476":12237,"33c5eae1":13197,"347b7fc6":8877,"34b319f3":20397,"34c79320":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"3580ac5f":15213,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38544cc5":17517,"38623a3d":4077,"3875fba6":22317,"387c3cc5":19149,"397b9af6":14253,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39a9d567":37293,"39ba9d3c":19725,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3b6226eb":20685,"3b8e820c":5133,"3bad470e":22605,"3c20ea46":16077,"3cf3a519":18669,"3d7f11fc":30957,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3ee775e9":21549,"3ef98b8f":27021,"3f53f59b":15309,"3fab192f":13581,"3fcbb6d4":9549,"3ffbde00":5709,"401848f6":9837,"405c08a3":25005,"407e7514":14925,"40d1fc1a":21933,"4127a234":16461,"412a2651":17613,"41581a26":32493,"41b2ccac":27117,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"42534135":14829,"428c73ac":14733,"429ee352":14637,"42ade8df":65709,"42da0937":18381,"42eff33e":6669,"42ff6b45":15597,"430ac058":11469,"4339758f":3885,"4361efdc":18765,"4383e84b":24813,"43d9b5ea":11565,"43e49916":8685,"444fea75":14637,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"461a5c60":19917,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"480be90a":16941,"484480b8":39789,"4a0d5067":13389,"4a0e1563":16557,"4a5692fd":9741,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4bbf8b6f":42573,"4be72248":12813,"4bf35055":26541,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4da692cc":34413,"4ddc25ef":26061,"4ddd3de5":12429,"4e2dcaf6":26541,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50647676":13101,"50713d3b":14733,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"525fe908":11469,"5282ac80":13485,"5287681f":13965,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"5525a707":17805,"559a719c":6381,"55ff9e0a":8397,"5606e70e":16173,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"569ce112":24525,"56aeecf7":14925,"56c28fec":22893,"57020ce7":23661,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58aad44e":6669,"58df6bf6":31437,"58f2107a":4557,"5905abe7":52269,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"59fa9f5b":14157,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5b2817a2":19629,"5bc30b0c":6189,"5c05a05c":15597,"5c10b6a5":15405,"5c188a15":10893,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d37d1fd":21357,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e1b02d4":38733,"5e6293a2":27021,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61d2ee03":20397,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"627a8337":19149,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"634abd0c":22701,"637f3778":67245,"6385ded5":18189,"6389c7ce":9933,"6436733d":17229,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64db816c":13965,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"6709bb58":16077,"672ba710":17421,"6755401f":3693,"67f889d3":51213,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"698bdab6":13965,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6aa5e2a6":24525,"6ac63d3c":7053,"6ada06aa":17997,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b5b91c9":19245,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c71b9a7":21453,"6c9bb35d":8445,"6cc2b68b":18381,"6d79cf39":5901,"6df88f98":34701,"6e346345":13965,"6e45b4aa":22701,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f190e00":13773,"6f265640":7053,"6f35b02d":17229,"6f67c145":18765,"6f916efb":24717,"6fe3f2f3":9165,"7009e6e3":18957,"7087f307":21837,"70ace839":5613,"70ceecd7":15789,"70ff76db":7821,"71029f0e":24141,"7166db61":14925,"7167549c":15885,"7224d333":24333,"7244acbc":17997,"7281160f":25869,"72f6bc2d":43821,"7321492e":11373,"7338e543":29613,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"73fec42c":21453,"74282aec":11949,"748a90ce":10509,"749e2919":21357,"74bff1e3":10797,"75a2e533":12333,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"7708b385":22893,"772b8880":14253,"77704f09":7053,"779d7c04":30573,"7814b9a5":8493,"78ada3f2":9357,"79684e06":24141,"79a52fe0":19629,"79cdfe1a":15213,"79eb8cdb":39885,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a40b598":10893,"7a851f8b":7149,"7a878fff":22221,"7b141b8d":15405,"7b663459":22317,"7c2afc84":24237,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7c9443d0":8589,"7cb0657b":4941,"7ce43c38":72813,"7d42f834":11469,"7dd7941a":11277,"7de9831a":4365,"7e268f02":14733,"7e2eb525":13869,"7e39bf64":27501,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7ececb77":40269,"7eec5a27":30477,"7f5d4783":24237,"7fafb60d":25293,"7fd19a44":20013,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"82997383":14061,"829a2da9":15885,"830226f3":7149,"83063c1c":11757,"83865889":7725,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"8491936d":10125,"84f30bb0":6285,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"8585f5ef":13197,"85aba023":14541,"85b0ca94":31629,"86140811":51981,"86c6118e":16461,"86d3ce6a":9549,"86e30629":18573,"86f1d327":13581,"880eee58":21837,"88968b3e":22701,"88a1365d":51597,"88bfc619":30285,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8b8c4dd5":24909,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"900b6db4":14349,"900c3369":20685,"9021330f":43821,"90275d0e":3981,"9060204d":15597,"90c25dff":31917,"9207351d":21453,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"9364ec4b":10701,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9417f53a":24141,"94268ca8":12045,"942ac292":19053,"9452465d":26253,"947800ed":32589,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"95077727":25389,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"95df5fc7":10125,"96040875":8685,"96936059":10029,"9702a48a":18189,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d68799":26349,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99803b70":17037,"99cadd07":7245,"99d5d492":14445,"9abff8c0":18093,"9afd6a23":28941,"9b72a350":83757,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cc2e7b9":53805,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d660988":14925,"9d7aba60":24429,"9dbc39eb":11373,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9ee26691":23277,"9f32d3da":5613,"9f51d948":12717,"9f614f27":27789,"a0374dcf":21741,"a0572083":6861,"a05eaceb":30285,"a0869e8d":9453,"a183b100":11373,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a3e6f657":26637,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aa565f0b":21261,"aab24f6e":23469,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ab69b853":12333,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"add7cd82":9933,"ae98d056":21549,"aee49ca1":4749,"aefc1a16":57549,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a161c8":21549,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b20428ce":38445,"b2764e19":17133,"b2799c78":12045,"b2f0c22c":24717,"b3986566":40557,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b68884c1":58029,"b6bb30f5":58029,"b7a981f3":21645,"b7d63f21":8205,"b7fac4d4":37869,"b821d088":8973,"b9476dfc":51597,"b94b3f9a":9165,"b9ec6657":52557,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"baaa9346":28365,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bc3da75a":8301,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"bdfe3c69":4653,"be9f4413":25581,"befa6ee1":6573,"bf919f0f":4845,"bf96bcc6":21837,"bfe76df4":6861,"c0aeef83":29229,"c0d326e8":29757,"c1b3ae41":8781,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c320d572":27405,"c35e1c20":13773,"c3ae063f":59181,"c44bf753":17325,"c46ac345":22029,"c58ccdc9":11277,"c5ba55fe":20877,"c60a977f":15885,"c67090d0":29037,"c68cb3de":11469,"c6ced84a":3405,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c947e6ce":38925,"c9b7a6d3":15021,"c9b7b386":15021,"ca69c6c0":24525,"ca91beb1":13389,"cabb5ead":11469,"cac77566":17517,"cb4b5a61":40749,"cb73f3d3":8685,"cbebd934":19245,"cc2586e5":10797,"cc2bb383":5997,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"ccc3e5f3":40557,"cdbbb68f":16077,"cf0342c2":41325,"cf4c76f9":29133,"cf903d8a":21933,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d35da704":14061,"d39d8202":24237,"d40d98b3":22029,"d43e0514":4557,"d4a9b5d6":41133,"d4df3b82":24909,"d50c8f82":10221,"d5b39d86":4077,"d5ee6e18":11949,"d62b35bf":14157,"d63a0dcc":15693,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d88fb78a":14733,"d8b5d724":6573,"d8c77303":34989,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d95fcec1":17901,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"deb54a25":7917,"dec33802":12717,"df03c8e4":19149,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e2441148":10317,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2b6ec19":22029,"e2db78be":9453,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e3da97d8":21933,"e3dabe1a":18957,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e52b582d":12717,"e5b55442":20301,"e5eb1dba":31917,"e66f1b0e":25869,"e6bc9592":21069,"e72a410c":22893,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e7c6d95e":15405,"e8246b13":6573,"e833eb1a":21357,"e834502d":4173,"e85a568a":28845,"e8877978":22989,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"ea68d3d6":7725,"eb2077c5":16077,"eb2c67cb":15597,"ebf2d40d":41997,"ec035359":23565,"ec0681c4":6765,"ec42c5a0":22029,"ecc2babd":4845,"ecc37809":23277,"ece1e617":23565,"ed0b9fc4":10797,"ed79d956":4365,"ed9beedc":44781,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"ef55ada2":3405,"f067aa86":12237,"f069fe63":4365,"f09836cc":16365,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f34774be":20205,"f35649a3":12525,"f3dcf5f3":23853,"f3dd5872":82317,"f41df8eb":25197,"f4be769e":17613,"f4de1cd8":15501,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f8f09f54":20109,"f9070c9d":25389,"f9234652":24621,"f9453009":21741,"f98ca4d6":25869,"f9e343fd":53325,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb45adfe":12333,"fb7c792a":24909,"fc109be5":51213,"fc6140c7":13581,"fc8dae10":26253,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fde725f9":30093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe485f9f":25293,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
-window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"passenger/2-1":{"ja":"ja/gnd/2-1/","ko":"ko/gnd/2-1/","en":"en/gnd/2-1/"},"passenger/2-4":{"ja":"ja/gnd/2-4/","ko":"ko/gnd/2-4/","en":"en/gnd/2-4/"},"passenger/2-5":{"ja":"ja/gnd/2-5/","ko":"ko/gnd/2-5/","en":"en/gnd/2-5/"},"passenger/2-7":{"ja":"ja/gnd/2-7/","ko":"ko/gnd/2-7/","en":"en/gnd/2-7/"},"passenger/3-4":{"ja":"ja/gnd/3-4/","ko":"ko/gnd/3-4/","en":"en/gnd/3-4/"},"passenger/3-7":{"ja":"ja/gnd/3-7/","ko":"ko/gnd/3-7/","en":"en/gnd/3-7/"},"passenger/3-8":{"ja":"ja/gnd/3-8/","ko":"ko/gnd/3-8/","en":"en/gnd/3-8/"},"cargo/3-1":{"ja":"ja/cgo/3-1/","ko":"ko/cgo/3-1/","en":"en/cgo/3-1/"},"cargo/3-2":{"ja":"ja/cgo/3-2/","ko":"ko/cgo/3-2/","en":"en/cgo/3-2/"},"cargo/3-4":{"ja":"ja/cgo/3-4/","ko":"ko/cgo/3-4/","en":"en/cgo/3-4/"},"cargo/4-1":{"ja":"ja/cgo/4-1/","ko":"ko/cgo/4-1/","en":"en/cgo/4-1/"},"cargo/7-3":{"ja":"ja/cgo/7-3/","ko":"ko/cgo/7-3/","en":"en/cgo/7-3/"},"passenger/3-1":{"ja":"ja/gnd/3-1/","ko":"ko/gnd/3-1/","en":"en/gnd/3-1/"},"passenger/3-2":{"ja":"ja/gnd/3-2/","ko":"ko/gnd/3-2/","en":"en/gnd/3-2/"},"passenger/3-3":{"ja":"ja/gnd/3-3/","ko":"ko/gnd/3-3/","en":"en/gnd/3-3/"},"passenger/3-5":{"ja":"ja/gnd/3-5/","ko":"ko/gnd/3-5/","en":"en/gnd/3-5/"},"passenger/3-6":{"ja":"ja/gnd/3-6/","ko":"ko/gnd/3-6/","en":"en/gnd/3-6/"},"station/1-2":{"ja":"ja/stn/1-2/","ko":"ko/stn/1-2/","en":"en/stn/1-2/"},"station/1-3":{"ja":"ja/stn/1-3/","ko":"ko/stn/1-3/","en":"en/stn/1-3/"},"station/1-7":{"ja":"ja/stn/1-7/","ko":"ko/stn/1-7/","en":"en/stn/1-7/"},"maintenance/0-3":{"ja":"ja/mnt/0-3/","ko":"ko/mnt/0-3/","en":"en/mnt/0-3/"},"maintenance/1-2":{"ja":"ja/mnt/1-2/","ko":"ko/mnt/1-2/","en":"en/mnt/1-2/"},"maintenance/3-3":{"ja":"ja/mnt/3-3/","ko":"ko/mnt/3-3/","en":"en/mnt/3-3/"},"maintenance/4-4":{"ja":"ja/mnt/4-4/","ko":"ko/mnt/4-4/","en":"en/mnt/4-4/"},"maintenance/5-4":{"ja":"ja/mnt/5-4/","ko":"ko/mnt/5-4/","en":"en/mnt/5-4/"}}};
+/* AIRLINE SAGA — 항공커리어노트 교육용 공항 업무 게임 (체크인편·게이트편·탑재관리편·램프편·운항관리편 Day 1–5, 음성 분할판). 소스: 게임개발\AIRLINE_SAGA_GAME\src */
+window.ASSETS = {"checkin_bg_01": {"src": "saga/img/checkin_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "checkin_bg_02": {"src": "saga/img/checkin_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "koradon_greet_01": {"src": "saga/img/koradon_greet_01.webp", "w": 290, "h": 520, "px": 0.5283, "py": 0.995, "flip": false, "cat": "mascots"}, "koradon_idle_01": {"src": "saga/img/koradon_idle_01.webp", "w": 260, "h": 520, "px": 0.5, "py": 0.995, "flip": false, "cat": "mascots"}, "korarin_greet_01": {"src": "saga/img/korarin_greet_01.webp", "w": 297, "h": 520, "px": 0.5513, "py": 0.9948, "flip": false, "cat": "mascots"}, "korarin_idle_01": {"src": "saga/img/korarin_idle_01.webp", "w": 257, "h": 520, "px": 0.4965, "py": 0.9948, "flip": false, "cat": "mascots"}, "passenger_female_01": {"src": "saga/img/passenger_female_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_02": {"src": "saga/img/passenger_female_02.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_03": {"src": "saga/img/passenger_female_03.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers"}, "passenger_male_01": {"src": "saga/img/passenger_male_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_02": {"src": "saga/img/passenger_male_02.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_03": {"src": "saga/img/passenger_male_03.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers"}, "prop_boarding_pass_01": {"src": "saga/img/prop_boarding_pass_01.webp", "w": 520, "h": 242, "px": 0.5, "py": 0.9914, "flip": true, "cat": "props"}, "prop_counter_01": {"src": "saga/img/prop_counter_01.webp", "w": 520, "h": 210, "px": 0.4869, "py": 0.9898, "flip": true, "cat": "props"}, "prop_luggage_01": {"src": "saga/img/prop_luggage_01.webp", "w": 331, "h": 520, "px": 0.429, "py": 0.9947, "flip": true, "cat": "props"}, "prop_monitor_01": {"src": "saga/img/prop_monitor_01.webp", "w": 520, "h": 491, "px": 0.4915, "py": 0.9936, "flip": true, "cat": "props"}, "prop_passport_01": {"src": "saga/img/prop_passport_01.webp", "w": 488, "h": 520, "px": 0.5, "py": 0.9944, "flip": true, "cat": "props"}, "prop_scale_01": {"src": "saga/img/prop_scale_01.webp", "w": 520, "h": 458, "px": 0.5703, "py": 0.9938, "flip": true, "cat": "props"}, "prop_travel_documents_01": {"src": "saga/img/prop_travel_documents_01.webp", "w": 520, "h": 362, "px": 0.5, "py": 0.9936, "flip": true, "cat": "props"}, "staff_checkin_check_01": {"src": "saga/img/staff_checkin_check_01.webp", "w": 414, "h": 900, "px": 0.5678, "py": 0.9959, "flip": true, "cat": "staff"}, "staff_checkin_explain_01": {"src": "saga/img/staff_checkin_explain_01.webp", "w": 506, "h": 900, "px": 0.4916, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_greet_01": {"src": "saga/img/staff_checkin_greet_01.webp", "w": 421, "h": 900, "px": 0.5799, "py": 0.996, "flip": true, "cat": "staff"}, "staff_checkin_idle_01": {"src": "saga/img/staff_checkin_idle_01.webp", "w": 421, "h": 900, "px": 0.6026, "py": 0.996, "flip": true, "cat": "staff"}, "passport_female_01_front_01": {"src": "saga/img/passport_female_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_01"}, "passport_female_02_front_01": {"src": "saga/img/passport_female_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_02"}, "passport_female_03_front_01": {"src": "saga/img/passport_female_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_female_03"}, "passport_male_01_front_01": {"src": "saga/img/passport_male_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_01"}, "passport_male_02_front_01": {"src": "saga/img/passport_male_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_02"}, "passport_male_03_front_01": {"src": "saga/img/passport_male_03_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits", "for": "passenger_male_03"}, "passenger_female_01_worried_01": {"src": "saga/img/passenger_female_01_worried_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_upset_01": {"src": "saga/img/passenger_female_01_upset_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_01_happy_01": {"src": "saga/img/passenger_female_01_happy_01.webp", "w": 432, "h": 900, "px": 0.5188, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_01"}, "passenger_female_02_worried_01": {"src": "saga/img/passenger_female_02_worried_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_upset_01": {"src": "saga/img/passenger_female_02_upset_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_02_happy_01": {"src": "saga/img/passenger_female_02_happy_01.webp", "w": 409, "h": 900, "px": 0.5897, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_female_02"}, "passenger_female_03_worried_01": {"src": "saga/img/passenger_female_03_worried_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_upset_01": {"src": "saga/img/passenger_female_03_upset_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_female_03_happy_01": {"src": "saga/img/passenger_female_03_happy_01.webp", "w": 382, "h": 900, "px": 0.5057, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03"}, "passenger_male_01_worried_01": {"src": "saga/img/passenger_male_01_worried_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_upset_01": {"src": "saga/img/passenger_male_01_upset_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_01_happy_01": {"src": "saga/img/passenger_male_01_happy_01.webp", "w": 379, "h": 900, "px": 0.5159, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_01"}, "passenger_male_02_worried_01": {"src": "saga/img/passenger_male_02_worried_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_upset_01": {"src": "saga/img/passenger_male_02_upset_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_02_happy_01": {"src": "saga/img/passenger_male_02_happy_01.webp", "w": 353, "h": 900, "px": 0.5334, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_02"}, "passenger_male_03_worried_01": {"src": "saga/img/passenger_male_03_worried_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_upset_01": {"src": "saga/img/passenger_male_03_upset_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_03_happy_01": {"src": "saga/img/passenger_male_03_happy_01.webp", "w": 355, "h": 900, "px": 0.5474, "py": 0.996, "flip": true, "cat": "passengers", "sameAs": "passenger_male_03"}, "passenger_male_04": {"src": "saga/img/passenger_male_04.webp", "w": 378, "h": 900, "px": 0.5339, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_female_04": {"src": "saga/img/passenger_female_04.webp", "w": 383, "h": 900, "px": 0.5447, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_05": {"src": "saga/img/passenger_male_05.webp", "w": 360, "h": 900, "px": 0.5344, "py": 0.996, "flip": true, "cat": "passengers"}, "passenger_male_10": {"src": "saga/img/passenger_male_10.webp", "w": 367, "h": 900, "px": 0.5444, "py": 0.996, "flip": true, "cat": "passengers"}, "passport_male_04_front_01": {"src": "saga/img/passport_male_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_04_front_01": {"src": "saga/img/passport_female_04_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_05_front_01": {"src": "saga/img/passport_male_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_front_01": {"src": "saga/img/passport_male_10_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_02_old_front_01": {"src": "saga/img/passport_male_02_old_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_10_brother_front_01": {"src": "saga/img/passport_male_10_brother_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_golfbag_01": {"src": "saga/img/prop_golfbag_01.webp", "w": 208, "h": 520, "px": 0.4765, "py": 0.996, "flip": false, "cat": "props"}, "prop_cabin_bag_01": {"src": "saga/img/prop_cabin_bag_01.webp", "w": 322, "h": 520, "px": 0.689, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_02": {"src": "saga/img/prop_luggage_02.webp", "w": 316, "h": 520, "px": 0.4346, "py": 0.9958, "flip": false, "cat": "props"}, "prop_luggage_03": {"src": "saga/img/prop_luggage_03.webp", "w": 312, "h": 520, "px": 0.4058, "py": 0.9959, "flip": false, "cat": "props"}, "prop_duffel_01": {"src": "saga/img/prop_duffel_01.webp", "w": 520, "h": 474, "px": 0.5767, "py": 0.9947, "flip": false, "cat": "props"}, "prop_bagtag_01": {"src": "saga/img/prop_bagtag_01.webp", "w": 279, "h": 520, "px": 0.5, "py": 0.9958, "flip": false, "cat": "props"}, "prop_tag_fragile_01": {"src": "saga/img/prop_tag_fragile_01.webp", "w": 356, "h": 520, "px": 0.5, "py": 0.9949, "flip": false, "cat": "props"}, "passenger_male_06_cane": {"src": "saga/img/passenger_male_06_cane.webp", "w": 420, "h": 900, "px": 0.5165, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_06_wheelchair": {"src": "saga/img/passenger_male_06_wheelchair.webp", "w": 480, "h": 702, "px": 0.4848, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_male_06_cane", "hr": 0.78}, "passenger_child_01": {"src": "saga/img/passenger_child_01.webp", "w": 260, "h": 630, "px": 0.5465, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.7}, "passenger_female_07": {"src": "saga/img/passenger_female_07.webp", "w": 325, "h": 900, "px": 0.5582, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_05": {"src": "saga/img/passenger_female_05.webp", "w": 380, "h": 900, "px": 0.5685, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_06": {"src": "saga/img/passenger_female_06.webp", "w": 346, "h": 900, "px": 0.5119, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_male_07": {"src": "saga/img/passenger_male_07.webp", "w": 388, "h": 900, "px": 0.5556, "py": 0.9961, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_08": {"src": "saga/img/passenger_female_08.webp", "w": 337, "h": 900, "px": 0.5177, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_child_02": {"src": "saga/img/passenger_child_02.webp", "w": 270, "h": 540, "px": 0.5656, "py": 0.996, "flip": true, "cat": "passengers", "hr": 0.6}, "passenger_male_08": {"src": "saga/img/passenger_male_08.webp", "w": 377, "h": 900, "px": 0.5, "py": 0.996, "flip": true, "cat": "passengers", "hr": 1.0}, "passenger_female_03_infant_01": {"src": "saga/img/passenger_female_03_infant_01.webp", "w": 414, "h": 900, "px": 0.5596, "py": 0.9959, "flip": true, "cat": "passengers", "sameAs": "passenger_female_03", "hr": 1.0}, "passport_male_06_front_01": {"src": "saga/img/passport_male_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_01_front_01": {"src": "saga/img/passport_child_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_07_front_01": {"src": "saga/img/passport_female_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_05_front_01": {"src": "saga/img/passport_female_05_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_06_front_01": {"src": "saga/img/passport_female_06_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_07_front_01": {"src": "saga/img/passport_male_07_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_female_08_front_01": {"src": "saga/img/passport_female_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_child_02_front_01": {"src": "saga/img/passport_child_02_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_male_08_front_01": {"src": "saga/img/passport_male_08_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "passport_infant_01_front_01": {"src": "saga/img/passport_infant_01_front_01.webp", "w": 312, "h": 416, "px": 0.5, "py": 0.5, "flip": false, "cat": "portraits"}, "prop_pet_carrier_01": {"src": "saga/img/prop_pet_carrier_01.webp", "w": 502, "h": 520, "px": 0.4774, "py": 0.9947, "flip": true, "cat": "props"}, "prop_wheelchair_01": {"src": "saga/img/prop_wheelchair_01.webp", "w": 520, "h": 516, "px": 0.6408, "py": 0.9948, "flip": true, "cat": "props"}, "prop_um_pouch_01": {"src": "saga/img/prop_um_pouch_01.webp", "w": 324, "h": 520, "px": 0.4993, "py": 0.995, "flip": true, "cat": "props"}, "prop_stroller_folded_01": {"src": "saga/img/prop_stroller_folded_01.webp", "w": 323, "h": 520, "px": 0.528, "py": 0.9949, "flip": true, "cat": "props"}, "staff_gate_idle_01": {"src": "saga/img/staff_gate_idle_01.webp", "w": 415, "h": 900, "px": 0.586, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_scan_01": {"src": "saga/img/staff_gate_scan_01.webp", "w": 439, "h": 900, "px": 0.5661, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_announce_01": {"src": "saga/img/staff_gate_announce_01.webp", "w": 487, "h": 900, "px": 0.495, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_explain_01": {"src": "saga/img/staff_gate_explain_01.webp", "w": 542, "h": 900, "px": 0.4482, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_gate_trouble_01": {"src": "saga/img/staff_gate_trouble_01.webp", "w": 420, "h": 900, "px": 0.5856, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "gate_bg_01": {"src": "saga/img/gate_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "gate_bg_02": {"src": "saga/img/gate_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "passenger_male_01_bp_01": {"src": "saga/img/passenger_male_01_bp_01.webp", "w": 515, "h": 900, "px": 0.7226, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_male_01", "hr": 1.0}, "passenger_female_02_bp_01": {"src": "saga/img/passenger_female_02_bp_01.webp", "w": 570, "h": 899, "px": 0.7131, "py": 0.996, "flip": false, "cat": "passengers", "sameAs": "passenger_female_02", "hr": 0.999332}, "passenger_female_03_infant_bp_01": {"src": "saga/img/passenger_female_03_infant_bp_01.webp", "w": 493, "h": 900, "px": 0.5537, "py": 0.9959, "flip": false, "cat": "passengers", "sameAs": "passenger_female_03_infant_01", "hr": 1.0}, "prop_bgr_01": {"src": "saga/img/prop_bgr_01.webp", "w": 520, "h": 478, "px": 0.4311, "py": 0.9929, "flip": false, "cat": "props"}, "prop_gate_tag_01": {"src": "saga/img/prop_gate_tag_01.webp", "w": 430, "h": 520, "px": 0.5, "py": 0.9935, "flip": false, "cat": "props"}, "prop_aisle_chair_01": {"src": "saga/img/prop_aisle_chair_01.webp", "w": 358, "h": 520, "px": 0.5565, "py": 0.994, "flip": false, "cat": "props"}, "prop_stroller_gate_01": {"src": "saga/img/prop_stroller_gate_01.webp", "w": 437, "h": 520, "px": 0.5074, "py": 0.9938, "flip": false, "cat": "props", "sameAs": "prop_stroller_folded_01"}, "prop_um_form_01": {"src": "saga/img/prop_um_form_01.webp", "w": 432, "h": 520, "px": 0.5, "py": 0.9937, "flip": false, "cat": "props"}, "prop_radio_01": {"src": "saga/img/prop_radio_01.webp", "w": 264, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props", "sameAs": "prop_radio_01@v04"}, "prop_mic_01": {"src": "saga/img/prop_mic_01.webp", "w": 420, "h": 520, "px": 0.509, "py": 0.9933, "flip": false, "cat": "props"}, "staff_sv_01": {"src": "saga/img/staff_sv_01.webp", "w": 393, "h": 900, "px": 0.6526, "py": 0.9961, "flip": false, "cat": "staff", "hr": 1.0}, "staff_wb_input_01": {"src": "saga/img/staff_wb_input_01.webp", "w": 442, "h": 900, "px": 0.5383, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_radio_01": {"src": "saga/img/staff_wb_radio_01.webp", "w": 409, "h": 900, "px": 0.5864, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_phone_01": {"src": "saga/img/staff_wb_phone_01.webp", "w": 443, "h": 900, "px": 0.5389, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_wb_trouble_01": {"src": "saga/img/staff_wb_trouble_01.webp", "w": 485, "h": 900, "px": 0.5075, "py": 0.996, "flip": true, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_loadmaster_bust_01": {"src": "saga/img/people_loadmaster_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_dispatcher_bust_01": {"src": "saga/img/people_dispatcher_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "people_captain_bust_01": {"src": "saga/img/people_captain_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}, "wb_bg_01": {"src": "saga/img/wb_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "wb_bg_02": {"src": "saga/img/wb_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "prop_loadsheet_01": {"src": "saga/img/prop_loadsheet_01.webp", "w": 498, "h": 520, "px": 0.5, "py": 0.9924, "flip": true, "cat": "props"}, "prop_lir_board_01": {"src": "saga/img/prop_lir_board_01.webp", "w": 397, "h": 520, "px": 0.5, "py": 0.9935, "flip": true, "cat": "props"}, "prop_notoc_01": {"src": "saga/img/prop_notoc_01.webp", "w": 520, "h": 348, "px": 0.5, "py": 0.9898, "flip": true, "cat": "props"}, "prop_uld_ake_01": {"src": "saga/img/prop_uld_ake_01.webp", "w": 520, "h": 421, "px": 0.5, "py": 0.9915, "flip": true, "cat": "props"}, "prop_uld_pmc_01": {"src": "saga/img/prop_uld_pmc_01.webp", "w": 520, "h": 315, "px": 0.5, "py": 0.9903, "flip": true, "cat": "props"}, "rp_bg_01": {"src": "saga/img/rp_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "staff_rp_radio_01": {"src": "saga/img/staff_rp_radio_01.webp", "w": 488, "h": 900, "px": 0.4963, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_board_01": {"src": "saga/img/staff_rp_board_01.webp", "w": 414, "h": 900, "px": 0.5452, "py": 0.9961, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_point_01": {"src": "saga/img/staff_rp_point_01.webp", "w": 575, "h": 900, "px": 0.4379, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "staff_rp_trouble_01": {"src": "saga/img/staff_rp_trouble_01.webp", "w": 410, "h": 900, "px": 0.5738, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_checkin_idle_01", "hr": 1.0}, "people_engineer_bust_01": {"src": "saga/img/people_engineer_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "people_cabinmgr_bust_01": {"src": "saga/img/people_cabinmgr_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "people_deicer_bust_01": {"src": "saga/img/people_deicer_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": false, "cat": "people"}, "rp_bg_02": {"src": "saga/img/rp_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "rp_bg_03": {"src": "saga/img/rp_bg_03.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": false, "cat": "backgrounds"}, "dp_bg_01": {"src": "saga/img/dp_bg_01.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "dp_bg_02": {"src": "saga/img/dp_bg_02.webp", "w": 1600, "h": 900, "px": 0.5, "py": 0.5, "flip": true, "cat": "backgrounds"}, "staff_dp_headset_01": {"src": "saga/img/staff_dp_headset_01.webp", "w": 433, "h": 900, "px": 0.5556, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_wb_radio_01", "hr": 1.0}, "staff_dp_ofp_01": {"src": "saga/img/staff_dp_ofp_01.webp", "w": 446, "h": 900, "px": 0.5234, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_wb_radio_01", "hr": 1.0}, "staff_dp_point_01": {"src": "saga/img/staff_dp_point_01.webp", "w": 457, "h": 900, "px": 0.5844, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_wb_radio_01", "hr": 1.0}, "staff_dp_trouble_01": {"src": "saga/img/staff_dp_trouble_01.webp", "w": 446, "h": 900, "px": 0.5416, "py": 0.996, "flip": false, "cat": "staff", "sameAs": "staff_wb_radio_01", "hr": 1.0}, "people_flightinfo_bust_01": {"src": "saga/img/people_flightinfo_bust_01.webp", "w": 360, "h": 360, "px": 0.5, "py": 0.5, "flip": true, "cat": "people"}};
+window.VOICE_INDEX = {"v":"234665bb93e7","base":"saga/voices/","keys":{"00200d58":8589,"002147ed":14733,"00de3751":19389,"016e06b9":21549,"016e1f97":11661,"017c78d9":11949,"01c72c31":26445,"01ff8447":27693,"02608e8f":22893,"02f7b8a1":12189,"034cf60b":7245,"035bb78d":13005,"0360a263":57933,"0372e30c":51213,"04170656":22701,"0441de7c":13197,"0491bb89":25965,"04a77e7d":11085,"0513f548":25197,"05141efe":18573,"05382ef2":8877,"053bb83a":18669,"0559b8c0":12621,"055b9e6d":11853,"057991a1":22989,"05ce5004":16269,"05d34cf4":16461,"0654cd46":9453,"0703bfcd":22029,"075b49f7":21933,"07801492":13773,"07e80652":17325,"0804812d":12813,"0815d609":63789,"08911573":24429,"089a08cd":19629,"09213cdf":14445,"0994782f":22413,"09fd5a73":14925,"0a1b12eb":3789,"0a9d4551":13101,"0b042d1a":24717,"0b0fc6ff":23181,"0b15794c":18093,"0b253baa":13389,"0b6efc32":7437,"0c170631":24621,"0c450161":7149,"0cf4be93":8589,"0d12de17":11181,"0d16c99f":6573,"0da22ce4":19437,"0dbf5c26":33549,"0f1359a3":21453,"0f321d57":11949,"0f3b27e2":14157,"0f6ba64c":12141,"0f6c45bb":21069,"0fbfe971":15885,"0fceaabf":29037,"103a57ce":48045,"106816e8":25197,"10774ea4":6477,"108a2963":16653,"10b9b398":26925,"10e5aae7":26061,"11353347":46029,"114530e3":18189,"117726b4":20877,"11931141":21453,"1198aa65":22413,"11ba28b6":25773,"11c80c30":12189,"11de62e7":5997,"1200c53f":35517,"121e1f18":15021,"127cb78c":20493,"1288ed8b":20973,"12947755":27693,"12bd0f6b":17037,"12c66b14":23565,"12efb750":24909,"12fbe339":24621,"1321706f":14061,"134c72c6":19917,"135bb035":6957,"13e304f8":23853,"13ed1490":11373,"149d87cc":3021,"14a7df95":19437,"14ee5ecf":11565,"152ad0c6":51981,"15389b02":18861,"1550e722":20589,"15ad3d3e":15789,"15c47881":32589,"15e8a91c":24525,"1686cbb7":39213,"16e27de9":23373,"17a68350":20397,"17d69a98":24045,"17e64651":15501,"17eafec7":12909,"1966b2f7":23085,"1968c6aa":21837,"19a355fd":23133,"19c2d7db":17997,"19d79678":48237,"19e314d7":57357,"1a352e30":28269,"1a78ecbd":18189,"1b31c3e9":5805,"1b9f24ca":21933,"1ba1b2e5":24813,"1bb5da86":13005,"1bc2ef63":22701,"1c836edc":14253,"1c9a5ae7":13005,"1cb1b2a0":13485,"1ce535a0":15981,"1d5a460f":7725,"1ddee44a":10893,"1e02a91e":17661,"1e2e03c0":62829,"1ec7ed77":10893,"1eceacdd":14445,"1ef8768a":13293,"1fc06217":13293,"2052612d":18189,"2089c24b":21069,"209cdf6e":14349,"2135f036":12429,"216ee28d":23853,"2193b357":4557,"22babe7c":22125,"22d5fd4e":27501,"22fd1b14":22029,"233bb451":9933,"236ac4a9":24621,"23716cce":6189,"23772200":15693,"23b16202":20781,"241220dd":30189,"24302b9c":29997,"2432b1c8":12141,"243d4370":7917,"245673f4":21357,"24692d24":16269,"246c5142":7533,"249c95d8":14253,"24c43587":22413,"252087aa":14349,"255bcf19":6957,"25747aa1":17229,"258b6b74":14445,"258c0750":4845,"2627df20":12813,"2638d377":13869,"267db8df":12045,"26e17dc7":12333,"26f6a8d9":22797,"2733bb31":16365,"277016ca":9549,"277a2505":10509,"277be539":16941,"284c92f2":9741,"288d6c90":18669,"28a27f70":6285,"29283f39":25869,"2a3e993e":7821,"2a50eb82":8589,"2a6ca9be":14637,"2a6cd88e":24045,"2adec78e":20685,"2af5ed58":4845,"2b6254fe":14925,"2b62b479":10797,"2b92c7bf":10701,"2bc9a2cd":23565,"2c501b62":13965,"2cb0c228":13101,"2cb6c3e6":17229,"2cc2a6c8":10893,"2ce23f41":17421,"2ce3e287":23949,"2e147517":7917,"2ec5ed23":12621,"2ef30941":20109,"2f57c405":8301,"2f8e96d1":11661,"2fcb1fd8":19533,"30062188":25101,"304ce0e8":16365,"308a9eca":39501,"315bc936":12909,"31b55c4f":10893,"320540c2":55629,"32485a1b":12333,"32832759":20205,"32aff339":24813,"32d33712":61005,"32f07235":26301,"32f527cd":17805,"32fa0694":20685,"3317c179":4557,"3329c0a6":23565,"334df891":13101,"336f3476":12237,"33c5eae1":13197,"347b7fc6":8877,"34b319f3":20397,"34c79320":20397,"352b5a69":17229,"35746fe5":21837,"357e1fd2":8877,"3580ac5f":15213,"36b763ff":39837,"36cefbb6":8301,"36d55b9c":22893,"36f1d3d9":25677,"379c7461":10893,"38544cc5":17517,"38623a3d":4077,"3875fba6":22317,"387c3cc5":19149,"397b9af6":14253,"397d9720":22893,"398d7dcf":6477,"39a347c0":7533,"39a9d567":37293,"39ba9d3c":19725,"39d97e88":10605,"3a16eb66":22797,"3ad8ef7d":7245,"3b5b98a5":20685,"3b6226eb":20685,"3b8e820c":5133,"3bad470e":22605,"3c20ea46":16077,"3cf3a519":18669,"3d7f11fc":30957,"3dc68700":14541,"3e410ba7":24621,"3ea7fba9":13293,"3ebf60d7":20781,"3ee2e23e":24813,"3ee775e9":21549,"3ef98b8f":27021,"3f53f59b":15309,"3fab192f":13581,"3fcbb6d4":9549,"3ffbde00":5709,"401848f6":9837,"405c08a3":25005,"407e7514":14925,"40d1fc1a":21933,"4127a234":16461,"412a2651":17613,"41581a26":32493,"41b2ccac":27117,"41c3c78a":13773,"41dc235c":6957,"41f855d3":5421,"421ea77a":11901,"422a937b":12525,"4243be08":7821,"42442274":6381,"42493d11":15981,"42534135":14829,"428c73ac":14733,"429ee352":14637,"42ade8df":65709,"42da0937":18381,"42eff33e":6669,"42ff6b45":15597,"430ac058":11469,"4339758f":3885,"4361efdc":18765,"4383e84b":24813,"43d9b5ea":11565,"43e49916":8685,"444fea75":14637,"448a6983":20685,"44e44c7c":13293,"44fc069b":23565,"45286d92":6189,"4578c519":21645,"461a5c60":19917,"46ff1c99":14253,"470726a7":3693,"47e50370":21165,"480be90a":16941,"484480b8":39789,"4897805c":31821,"4a0d5067":13389,"4a0e1563":16557,"4a5692fd":9741,"4a872e2b":22125,"4b3cc3dc":12621,"4b51c4df":25149,"4b552bf5":11277,"4bab9e1d":24141,"4bbf8b6f":42573,"4be72248":12813,"4bf35055":26541,"4c51b092":15021,"4c602488":18525,"4c6299b5":33501,"4c66480a":14253,"4c752970":14493,"4c9b130f":10989,"4c9db2ab":23085,"4cfadaa8":20397,"4da692cc":34413,"4ddc25ef":26061,"4ddd3de5":12429,"4e2dcaf6":26541,"4e3b157c":6573,"4ef36ede":5997,"4f4ed927":20301,"4f8649a3":8109,"4fa85b40":19437,"50647676":13101,"50713d3b":14733,"50f41f20":23085,"51414928":24141,"518cf3fe":11757,"525fe908":11469,"5282ac80":13485,"5287681f":13965,"53b48f3e":38541,"5458a2d8":5805,"54714d58":23661,"55093f98":13677,"5525a707":17805,"559a719c":6381,"55ff9e0a":8397,"5606e70e":16173,"560db1b0":13197,"561777e6":21645,"562d4707":26445,"569ce112":24525,"56aeecf7":14925,"56c28fec":22893,"57020ce7":23661,"57329fe2":6765,"57bfa9e8":12429,"58671f2f":12333,"58aad44e":6669,"58df6bf6":31437,"58f2107a":4557,"5905abe7":52269,"595382e5":24429,"5973664a":22029,"59a3810e":18093,"59b97923":12813,"59f05d59":14349,"59fa9f5b":14157,"5a1f56cb":33549,"5abd3fc5":24333,"5b1f8276":16461,"5b2817a2":19629,"5bc30b0c":6189,"5c05a05c":15597,"5c10b6a5":15405,"5c188a15":10893,"5c601588":17901,"5c87ea42":21261,"5ccb1380":13869,"5d2fa7d2":22893,"5d37d1fd":21357,"5d3e5e2d":21165,"5db4d0ba":21165,"5dc97258":22413,"5ddffd76":22029,"5e1b02d4":38733,"5e6293a2":27021,"5e72601e":20973,"5eafcf1e":25389,"5f770fb2":25005,"5f788f21":22605,"60a691d4":24333,"60dfc890":22509,"60e91965":34605,"60f401a1":24045,"60f46020":25677,"61935de4":6957,"61ce67c2":10989,"61d2ee03":20397,"61de2ad6":39885,"620a5d2f":21261,"621b1fac":22317,"623d8c02":27885,"6268f1fc":26637,"627a8337":19149,"62ab02d6":17133,"6305257d":16653,"63479cb6":7437,"634abd0c":22701,"637f3778":67245,"6385ded5":18189,"6389c7ce":9933,"641d3ee7":22509,"6436733d":17229,"644f87f7":7629,"647b6aa3":16557,"64c24491":24333,"64db816c":13965,"64e54d1b":9069,"651d519c":6573,"6521e423":23949,"652217d9":21741,"652bc3c6":24813,"652f59ac":7293,"6559ffa3":21741,"6565165a":18765,"65ef1189":24429,"664497ff":20973,"66e30871":9645,"66f22923":25485,"6709bb58":16077,"672ba710":17421,"6755401f":3693,"67f889d3":51213,"6832dd9c":11661,"689d17e3":21165,"68a86e7c":24429,"68ccaa3f":7629,"698bdab6":13965,"69aeb09b":12045,"69d120f9":11277,"6a546565":25005,"6a9efea2":18861,"6aa5e2a6":24525,"6ac0d782":44493,"6ac63d3c":7053,"6ada06aa":17997,"6ae27293":26253,"6afb1b97":13485,"6b0fdd78":20397,"6b339193":7149,"6b5b91c9":19245,"6b6295ae":23373,"6b984206":24621,"6b9dc33e":14637,"6bebf722":48333,"6c71b9a7":21453,"6c9bb35d":8445,"6cc2b68b":18381,"6cc5203a":17613,"6d79cf39":5901,"6df88f98":34701,"6e346345":13965,"6e45b4aa":22701,"6e4deb1b":12045,"6e7307e6":13197,"6eba6cc7":24045,"6f190e00":13773,"6f265640":7053,"6f35b02d":17229,"6f67c145":18765,"6f916efb":24717,"6fe3f2f3":9165,"7009e6e3":18957,"7087f307":21837,"70ace839":5613,"70ceecd7":15789,"70ff76db":7821,"71029f0e":24141,"7166db61":14925,"7167549c":15885,"7224d333":24333,"7244acbc":17997,"726a0a43":42093,"7281160f":25869,"72f6bc2d":43821,"7321492e":11373,"7338e543":29613,"737f6f75":15981,"73e26a26":22509,"73e4f63c":12141,"73f26e71":5997,"73fec42c":21453,"74282aec":11949,"748a90ce":10509,"749e2919":21357,"74bff1e3":10797,"75a2e533":12333,"75d006b0":20973,"76cdc568":22029,"76df2347":25485,"7708b385":22893,"772b8880":14253,"77704f09":7053,"779d7c04":30573,"7814b9a5":8493,"78ada3f2":9357,"7954bdf5":24909,"79684e06":24141,"79a52fe0":19629,"79cdfe1a":15213,"79eb8cdb":39885,"7a00b971":17805,"7a2b22c2":9069,"7a347b0a":43437,"7a40b598":10893,"7a851f8b":7149,"7a878fff":22221,"7b141b8d":15405,"7b663459":22317,"7c2afc84":24237,"7c372706":32589,"7c7955b8":21165,"7c82fce5":5901,"7c84d489":25101,"7c9443d0":8589,"7cb0657b":4941,"7ce43c38":72813,"7d42f834":11469,"7da5bb11":35661,"7dd7941a":11277,"7de9831a":4365,"7e268f02":14733,"7e2eb525":13869,"7e39bf64":27501,"7e3ad334":13965,"7e5b34ac":21261,"7ea7463e":48429,"7eadb484":12429,"7ececb77":40269,"7eec5a27":30477,"7f5d4783":24237,"7fafb60d":25293,"7fd19a44":20013,"7fd6de0a":7821,"7fee381d":10317,"8020f4da":24525,"80a2ede8":25293,"80e8f469":12909,"815f3f19":41997,"81919def":9741,"82177157":25485,"823155e8":24621,"8262529f":37101,"82997383":14061,"829a2da9":15885,"830226f3":7149,"83063c1c":11757,"83865889":7725,"83ad36cb":16365,"83f64d47":63885,"84322572":10989,"845c5a41":17229,"845dfc76":22989,"8491936d":10125,"84f30bb0":6285,"850f0b72":5613,"85380953":24141,"85592793":40413,"8579d53d":12909,"8585f5ef":13197,"85aba023":14541,"85b0ca94":31629,"86140811":51981,"86c6118e":16461,"86d3ce6a":9549,"86e30629":18573,"86f1d327":13581,"880eee58":21837,"88968b3e":22701,"88a1365d":51597,"88bfc619":30285,"8952cf1f":18573,"89d8cd0b":23853,"8a2514ec":25965,"8a5643cd":23661,"8a75edce":6765,"8a7a2c5a":25101,"8b611e3c":15981,"8b8c4dd5":24909,"8be5b8c4":24237,"8c48be1d":25581,"8c7f3ae1":22989,"8d115c8d":12525,"8d1de29c":16365,"8d6429eb":14925,"8dd0d333":26637,"8e573872":14925,"8ead3f11":49581,"8ec4e27f":34509,"8fa6fc0d":21741,"900b6db4":14349,"900c3369":20685,"9021330f":43821,"90275d0e":3981,"9060204d":15597,"90c25dff":31917,"91c21613":29133,"9207351d":21453,"921d409f":20781,"92a7ad62":20205,"93169aa2":10989,"9334e74b":14061,"9364ec4b":10701,"93e228a5":6861,"93fccb74":9933,"93ff842a":22509,"9417f53a":24141,"94268ca8":12045,"942ac292":19053,"9452465d":26253,"947800ed":32589,"94a5c4a8":17613,"94ca0cdd":22029,"94d5326f":4365,"94f5dd3c":22509,"94fc099d":21261,"95077727":25389,"954f42b3":25389,"955beac2":20397,"957c04df":15405,"9595f356":11661,"95df5fc7":10125,"96040875":8685,"96936059":10029,"9702a48a":18189,"9754b4e3":24813,"97fb7b66":37533,"9889ffaa":14925,"98999361":22221,"98d68799":26349,"98d78510":15021,"98dda9a1":25293,"9938e08c":20013,"99803b70":17037,"99cadd07":7245,"99d5d492":14445,"9abff8c0":18093,"9afd6a23":28941,"9b72a350":83757,"9b8e3679":20973,"9ba74bed":20205,"9bde3a47":31197,"9c0300a2":11469,"9c5a6d60":11853,"9cc2e7b9":53805,"9cdaa8f0":24237,"9d3ff9a1":8109,"9d41a560":25101,"9d660988":14925,"9d7aba60":24429,"9dbc39eb":11373,"9dcf6e6b":16845,"9de75469":14733,"9e2628ad":9549,"9e3cc9bf":20589,"9e4fe43c":25101,"9ee26691":23277,"9f32d3da":5613,"9f51d948":12717,"9f614f27":27789,"a0374dcf":21741,"a0572083":6861,"a05eaceb":30285,"a0869e8d":9453,"a183b100":11373,"a1b465d8":18477,"a1c2e1d9":11901,"a1f685d4":21261,"a24fa9cc":12429,"a2a7dd74":34797,"a2e1d692":8013,"a2f2a08a":25869,"a358d7aa":25581,"a36b95f9":20973,"a3d575a6":17037,"a3e6f657":26637,"a4600850":19341,"a4d534d5":7053,"a4d5fb3e":17901,"a4fd6554":5997,"a54d83b5":7053,"a657f70e":14925,"a6fe297e":21837,"a7a04298":15357,"a7a9a89a":24909,"a7d9d18d":21357,"a89ef0fe":12237,"a9c2783c":6669,"aa02d8ee":9165,"aa1bbe82":14733,"aa565f0b":21261,"aab24f6e":23469,"aac67f8e":7053,"aada671b":34893,"ab4fc514":22605,"ab658a5a":3693,"ab69b853":12333,"ac776ecf":6669,"accbc6b2":16653,"ad6df964":12765,"add7cd82":9933,"ae98d056":21549,"aee49ca1":4749,"aefc1a16":57549,"af4b75e9":21165,"af9f5c35":22269,"b0231f2a":14829,"b0252779":25581,"b0843d79":21549,"b0894f60":11661,"b0a920e1":25869,"b0c6670d":5805,"b1114325":13197,"b182685b":16557,"b1a161c8":21549,"b1a3d4cd":22125,"b1a5d284":13485,"b1b6de8a":21837,"b20428ce":38445,"b2764e19":17133,"b2799c78":12045,"b2f0c22c":24717,"b3986566":40557,"b39878af":12813,"b3b3e58e":25293,"b3e890da":20973,"b440c7cb":22605,"b45179af":25197,"b471e216":8301,"b4ccbf03":12621,"b4d5355c":25005,"b4fecfe3":24861,"b50896a6":17133,"b5376984":22557,"b5e53bc2":6957,"b60d570b":11901,"b6677a84":12525,"b68884c1":58029,"b6bb30f5":58029,"b7a981f3":21645,"b7d63f21":8205,"b7fac4d4":37869,"b821d088":8973,"b881649c":16173,"b9476dfc":51597,"b94b3f9a":9165,"b9ec6657":52557,"ba162b2a":24717,"ba43fd41":6765,"ba5b3c3b":4845,"ba6fb04d":18765,"baaa9346":28365,"bab8f4b7":8781,"bad91654":3597,"bb15d97d":21069,"bb2f92db":11277,"bc079c77":22125,"bc3da75a":8301,"bcf381cf":17037,"bd027021":3693,"bd847182":22221,"bdfe3c69":4653,"be9f4413":25581,"befa6ee1":6573,"bf919f0f":4845,"bf96bcc6":21837,"bfe76df4":6861,"c0aeef83":29229,"c0d326e8":29757,"c1b3ae41":8781,"c200c6ab":17949,"c2204c05":23181,"c2f16508":22029,"c320d572":27405,"c35e1c20":13773,"c3ae063f":59181,"c44bf753":17325,"c46ac345":22029,"c58ccdc9":11277,"c5ba55fe":20877,"c60a977f":15885,"c67090d0":29037,"c68cb3de":11469,"c6ced84a":3405,"c795d0d8":15309,"c8033aa1":6381,"c8342bc7":21837,"c913c2d2":13869,"c947e6ce":38925,"c9b7a6d3":15021,"c9b7b386":15021,"ca69c6c0":24525,"ca91beb1":13389,"cabb5ead":11469,"cac77566":17517,"cb2f5472":9357,"cb4b5a61":40749,"cb73f3d3":8685,"cbebd934":19245,"cc2586e5":10797,"cc2bb383":5997,"cc5dcaeb":37965,"cc960e00":13965,"ccc2e63a":9021,"ccc3e5f3":40557,"cdbbb68f":16077,"cf0342c2":41325,"cf2349c5":36045,"cf4c76f9":29133,"cf903d8a":21933,"d05af215":18381,"d05af99d":6381,"d06ead4f":25389,"d080ead8":19341,"d0b72dd7":18813,"d1870993":13869,"d27c4afb":11085,"d281d38f":26733,"d2b01c15":23661,"d32f0fa6":21933,"d35da704":14061,"d39d8202":24237,"d40d98b3":22029,"d422f7d0":20493,"d43e0514":4557,"d4a9b5d6":41133,"d4df3b82":24909,"d50c8f82":10221,"d5b39d86":4077,"d5c82a32":27693,"d5ee6e18":11949,"d62b35bf":14157,"d63a0dcc":15693,"d67ddec6":14637,"d70bb09a":23133,"d746f41b":22125,"d79a0692":22413,"d7ef18d9":22605,"d8186546":6285,"d81c0d53":17517,"d85fadc6":12525,"d875725d":5805,"d87a30ca":23949,"d88fb78a":14733,"d8b5d724":6573,"d8c77303":34989,"d8d073a5":11661,"d8d6ffef":8493,"d8f79a20":7437,"d9135e94":6573,"d95fcec1":17901,"d96d2a0b":12141,"d9caa61e":20685,"d9d1446f":17229,"da280a63":6957,"da5cedca":11949,"db8d8d66":30573,"dc1158ef":25581,"dd0e1f3a":7053,"de1a26ef":22893,"de76dab7":22989,"de88d52e":5997,"de95776f":15981,"dea71f73":16557,"deb54a25":7917,"dec33802":12717,"df03c8e4":19149,"df7cc47b":8109,"e06cca33":18237,"e0824f2a":13005,"e0b6da2f":26253,"e0e67217":14541,"e1966460":24429,"e225832b":24621,"e2441148":10317,"e25128cc":13773,"e255b21c":13677,"e26e1085":10509,"e28b5340":20685,"e2ac8ee1":20781,"e2b6ec19":22029,"e2db78be":9453,"e36707da":7725,"e37a3105":13581,"e3871e2c":23277,"e3d6db8d":22221,"e3da97d8":21933,"e3dabe1a":18957,"e423f7fe":20973,"e4ce9bc7":6141,"e4eff165":8205,"e508dcec":21741,"e517e85d":14157,"e52b582d":12717,"e5b55442":20301,"e5eb1dba":31917,"e66f1b0e":25869,"e6bc9592":21069,"e7056757":17709,"e72a410c":22893,"e758ce8e":13101,"e7613e6e":24429,"e771b873":9933,"e7998cbd":3213,"e7c6d95e":15405,"e8246b13":6573,"e833eb1a":21357,"e834502d":4173,"e85a568a":28845,"e8877978":22989,"e8e1943f":12429,"e9af84ce":12045,"e9e53d1c":20397,"ea485f64":5709,"ea68d3d6":7725,"eb2077c5":16077,"eb2c67cb":15597,"ebf2d40d":41997,"ec035359":23565,"ec0681c4":6765,"ec42c5a0":22029,"ecc2babd":4845,"ecc37809":23277,"ece1e617":23565,"ed0b9fc4":10797,"ed79d956":4365,"ed9beedc":44781,"ed9ee034":24813,"eda6d797":6765,"eeb09fd7":9933,"eeccaeca":20589,"ef1019da":21549,"ef55ada2":3405,"f067aa86":12237,"f069fe63":4365,"f09836cc":16365,"f0a56d9a":21933,"f0dd4d74":19725,"f10f4b83":9549,"f181b8fb":22125,"f1e9bd6c":13005,"f2c379c0":11373,"f34774be":20205,"f35649a3":12525,"f3dcf5f3":23853,"f3dd5872":82317,"f41df8eb":25197,"f4be769e":17613,"f4de1cd8":15501,"f4eedd09":53373,"f62e078b":15501,"f6e5ed40":18525,"f7c4aeca":14829,"f7e1d82d":15309,"f8162c7f":19677,"f8235de9":7149,"f83d2578":13293,"f893ca80":24621,"f8df743a":77325,"f8f09f54":20109,"f9070c9d":25389,"f9234652":24621,"f9453009":21741,"f95a730d":13581,"f98ca4d6":25869,"f9e343fd":53325,"f9f1d0a8":17325,"fa6b4e00":6669,"faa96d51":6477,"fabc3dd8":13581,"fae0283c":24285,"fb45adfe":12333,"fb7c792a":24909,"fc109be5":51213,"fc6140c7":13581,"fc8dae10":26253,"fc908c35":10221,"fd29b8c0":21261,"fd3440ec":9165,"fd9dd327":9741,"fdcbb062":6093,"fde725f9":30093,"fdfbf10b":15309,"fe0b9bbd":4269,"fe485f9f":25293,"fe8ee61f":24333,"fee01a22":7725,"fefdd3e0":10221}};
+window.LESSON_URLS = {"base":"../","links":{"ciq/0-4":{"ja":"ja/ciq/0-4/","ko":"ko/ciq/0-4/","en":"en/ciq/0-4/"},"ciq/1-1":{"ja":"ja/ciq/1-1/","ko":"ko/ciq/1-1/","en":"en/ciq/1-1/"},"ciq/1-2":{"ja":"ja/ciq/1-2/","ko":"ko/ciq/1-2/","en":"en/ciq/1-2/"},"ciq/1-4":{"ja":"ja/ciq/1-4/","ko":"ko/ciq/1-4/","en":"en/ciq/1-4/"},"passenger/1-1":{"ja":"ja/gnd/1-1/","ko":"ko/gnd/1-1/","en":"en/gnd/1-1/"},"passenger/1-3":{"ja":"ja/gnd/1-3/","ko":"ko/gnd/1-3/","en":"en/gnd/1-3/"},"passenger/1-4":{"ja":"ja/gnd/1-4/","ko":"ko/gnd/1-4/","en":"en/gnd/1-4/"},"passenger/1-5":{"ja":"ja/gnd/1-5/","ko":"ko/gnd/1-5/","en":"en/gnd/1-5/"},"passenger/1-6":{"ja":"ja/gnd/1-6/","ko":"ko/gnd/1-6/","en":"en/gnd/1-6/"},"passenger/1-7":{"ja":"ja/gnd/1-7/","ko":"ko/gnd/1-7/","en":"en/gnd/1-7/"},"passenger/1-8":{"ja":"ja/gnd/1-8/","ko":"ko/gnd/1-8/","en":"en/gnd/1-8/"},"passenger/1-10":{"ja":"ja/gnd/1-10/","ko":"ko/gnd/1-10/","en":"en/gnd/1-10/"},"passenger/1-12":{"ja":"ja/gnd/1-12/","ko":"ko/gnd/1-12/","en":"en/gnd/1-12/"},"passenger/1-13":{"ja":"ja/gnd/1-13/","ko":"ko/gnd/1-13/","en":"en/gnd/1-13/"},"passenger/2-2":{"ja":"ja/gnd/2-2/","ko":"ko/gnd/2-2/","en":"en/gnd/2-2/"},"passenger/2-3":{"ja":"ja/gnd/2-3/","ko":"ko/gnd/2-3/","en":"en/gnd/2-3/"},"passenger/5-4":{"ja":"ja/gnd/5-4/","ko":"ko/gnd/5-4/","en":"en/gnd/5-4/"},"passenger/5-6":{"ja":"ja/gnd/5-6/","ko":"ko/gnd/5-6/","en":"en/gnd/5-6/"},"passenger/2-1":{"ja":"ja/gnd/2-1/","ko":"ko/gnd/2-1/","en":"en/gnd/2-1/"},"passenger/2-4":{"ja":"ja/gnd/2-4/","ko":"ko/gnd/2-4/","en":"en/gnd/2-4/"},"passenger/2-5":{"ja":"ja/gnd/2-5/","ko":"ko/gnd/2-5/","en":"en/gnd/2-5/"},"passenger/2-7":{"ja":"ja/gnd/2-7/","ko":"ko/gnd/2-7/","en":"en/gnd/2-7/"},"passenger/3-4":{"ja":"ja/gnd/3-4/","ko":"ko/gnd/3-4/","en":"en/gnd/3-4/"},"passenger/3-7":{"ja":"ja/gnd/3-7/","ko":"ko/gnd/3-7/","en":"en/gnd/3-7/"},"passenger/3-8":{"ja":"ja/gnd/3-8/","ko":"ko/gnd/3-8/","en":"en/gnd/3-8/"},"cargo/3-1":{"ja":"ja/cgo/3-1/","ko":"ko/cgo/3-1/","en":"en/cgo/3-1/"},"cargo/3-2":{"ja":"ja/cgo/3-2/","ko":"ko/cgo/3-2/","en":"en/cgo/3-2/"},"cargo/3-4":{"ja":"ja/cgo/3-4/","ko":"ko/cgo/3-4/","en":"en/cgo/3-4/"},"cargo/4-1":{"ja":"ja/cgo/4-1/","ko":"ko/cgo/4-1/","en":"en/cgo/4-1/"},"cargo/7-3":{"ja":"ja/cgo/7-3/","ko":"ko/cgo/7-3/","en":"en/cgo/7-3/"},"passenger/3-1":{"ja":"ja/gnd/3-1/","ko":"ko/gnd/3-1/","en":"en/gnd/3-1/"},"passenger/3-2":{"ja":"ja/gnd/3-2/","ko":"ko/gnd/3-2/","en":"en/gnd/3-2/"},"passenger/3-3":{"ja":"ja/gnd/3-3/","ko":"ko/gnd/3-3/","en":"en/gnd/3-3/"},"passenger/3-5":{"ja":"ja/gnd/3-5/","ko":"ko/gnd/3-5/","en":"en/gnd/3-5/"},"passenger/3-6":{"ja":"ja/gnd/3-6/","ko":"ko/gnd/3-6/","en":"en/gnd/3-6/"},"station/1-2":{"ja":"ja/stn/1-2/","ko":"ko/stn/1-2/","en":"en/stn/1-2/"},"station/1-3":{"ja":"ja/stn/1-3/","ko":"ko/stn/1-3/","en":"en/stn/1-3/"},"station/1-7":{"ja":"ja/stn/1-7/","ko":"ko/stn/1-7/","en":"en/stn/1-7/"},"maintenance/0-3":{"ja":"ja/mnt/0-3/","ko":"ko/mnt/0-3/","en":"en/mnt/0-3/"},"maintenance/1-2":{"ja":"ja/mnt/1-2/","ko":"ko/mnt/1-2/","en":"en/mnt/1-2/"},"maintenance/3-3":{"ja":"ja/mnt/3-3/","ko":"ko/mnt/3-3/","en":"en/mnt/3-3/"},"maintenance/4-4":{"ja":"ja/mnt/4-4/","ko":"ko/mnt/4-4/","en":"en/mnt/4-4/"},"maintenance/5-4":{"ja":"ja/mnt/5-4/","ko":"ko/mnt/5-4/","en":"en/mnt/5-4/"},"dispatch/0-1":{"ja":"ja/dsp/0-1/","ko":"ko/dsp/0-1/","en":"en/dsp/0-1/"},"dispatch/2-1":{"ja":"ja/dsp/2-1/","ko":"ko/dsp/2-1/","en":"en/dsp/2-1/"},"dispatch/2-2":{"ja":"ja/dsp/2-2/","ko":"ko/dsp/2-2/","en":"en/dsp/2-2/"},"dispatch/3-1":{"ja":"ja/dsp/3-1/","ko":"ko/dsp/3-1/","en":"en/dsp/3-1/"},"dispatch/4-1":{"ja":"ja/dsp/4-1/","ko":"ko/dsp/4-1/","en":"en/dsp/4-1/"},"dispatch/4-2":{"ja":"ja/dsp/4-2/","ko":"ko/dsp/4-2/","en":"en/dsp/4-2/"},"dispatch/5-1":{"ja":"ja/dsp/5-1/","ko":"ko/dsp/5-1/","en":"en/dsp/5-1/"},"dispatch/5-2":{"ja":"ja/dsp/5-2/","ko":"ko/dsp/5-2/","en":"en/dsp/5-2/"},"dispatch/5-3":{"ja":"ja/dsp/5-3/","ko":"ko/dsp/5-3/","en":"en/dsp/5-3/"},"dispatch/9-1":{"ja":"ja/dsp/9-1/","ko":"ko/dsp/9-1/","en":"en/dsp/9-1/"},"dispatch/2-3":{"ja":"ja/dsp/2-3/","ko":"ko/dsp/2-3/","en":"en/dsp/2-3/"},"dispatch/3-2":{"ja":"ja/dsp/3-2/","ko":"ko/dsp/3-2/","en":"en/dsp/3-2/"},"dispatch/6-1":{"ja":"ja/dsp/6-1/","ko":"ko/dsp/6-1/","en":"en/dsp/6-1/"},"dispatch/7-1":{"ja":"ja/dsp/7-1/","ko":"ko/dsp/7-1/","en":"en/dsp/7-1/"},"dispatch/7-2":{"ja":"ja/dsp/7-2/","ko":"ko/dsp/7-2/","en":"en/dsp/7-2/"},"dispatch/8-1":{"ja":"ja/dsp/8-1/","ko":"ko/dsp/8-1/","en":"en/dsp/8-1/"},"dispatch/9-2":{"ja":"ja/dsp/9-2/","ko":"ko/dsp/9-2/","en":"en/dsp/9-2/"},"dispatch/14-4":{"ja":"ja/dsp/14-4/","ko":"ko/dsp/14-4/","en":"en/dsp/14-4/"},"dispatch/14-5":{"ja":"ja/dsp/14-5/","ko":"ko/dsp/14-5/","en":"en/dsp/14-5/"},"dispatch/15-1":{"ja":"ja/dsp/15-1/","ko":"ko/dsp/15-1/","en":"en/dsp/15-1/"},"dispatch/15-5":{"ja":"ja/dsp/15-5/","ko":"ko/dsp/15-5/","en":"en/dsp/15-5/"}}};
 /* rules.js */
 /* 규칙 모듈 — core(공통 원리) / country(JP·KR) / airline(Vela Air, 교육용) / airport
    각 항목: basis = lesson(강좌 근거) | edu(교육용 가상값). 화면 언어와 업무 국가는 별개 */
@@ -66,6 +66,724 @@ window.RULES = {
     JP: { KOR: 'free', JPN: 'citizen', LUM: 'visa' }
   }
 };
+
+/* ../src_dp/dp_calc.js */
+/* STAGE 05 운항관리편 — 계산 엔진(합의본 v3 확정 2B·2B-1·2C·2C-1·2D·2E·2F·HOT)
+   ① 사이트 도구 「航空路図の練習.html」 + ops/ops_plan.js · ops_wx.js 의 경로·바람·시간·연료·TAF 최악 조건 계산을 그대로 옮김(원본은 고치지 않음 — 게임용 사본).
+      test/t70_dp_calc.js 가 도구 원본 함수와 무작위 대조함.
+   ② 합의본 보강: 2B-1 프로파일별 요구량 산식(KR ADD / JP max · KR 교체공항 2개 = max(A1,A2)) · 2C-1 교체공항 개수 자격·이륙 교체공항 OEI 60분·
+      프로파일별 출발 기상 관문 · 2E ZFW 상한 · 2D 비행 중 연료 상태 · HOT(램프편 합의본 v2 3E와 같은 값) · S9 승무시간 한계 카드.
+   모든 수치는 교육용 대표값·가상 값 — 실제 운항에 쓸 수 없음. 법정 요구·Vela 회사 기준·교육용 대표값의 구분은 LAYER 표시. */
+(function (root) {
+  'use strict';
+
+  /* ---------- ① 도구 원본 자료(ops_plan.js · 航空路図の練習.html 에서 행 그대로 복사) ---------- */
+  var PT = { RKSI: [37.4691, 126.4505], RKSS: [37.5583, 126.7906], RKPC: [33.5113, 126.493], RJAA: [35.7647, 140.3864],
+    EGOBA: [37.48750, 127.37944], LANAT: [36.37333, 131.42833], SAMON: [36.24278, 134.50333], ESKAS: [37.10972, 140.59694], ENTAK: [36.99361, 140.79500], SWAMP: [36.32056, 140.53806],
+    ENPAR: [35.86806, 139.83167], SAPRA: [35.82389, 130.72361], SEL: [37.41361, 126.92833],
+    BULTI: [36.722778, 126.825], GONAX: [36.386389, 126.837778], BEDES: [36.151389, 126.812222], MANGI: [35.503056, 126.742222], DALSU: [35.125278, 126.701667], DOTOL: [34.254167, 126.610278],
+    KAMIT: [34.253889, 126.771667], SAMUL: [35.126667, 126.865], MAKSA: [35.503056, 126.906111], ATASO: [35.895556, 126.949167], PEBRI: [36.386389, 127.003611], OLMEN: [36.736944, 126.991111],
+    MONSI: [37.213056, 126.8375], MEKIL: [36.556111, 126.831389], ELPOS: [35.902778, 126.785278], NULDI: [34.420556, 126.6275], KIDOS: [33.841111, 126.567222], SOT: [37.094444, 127.031667], GUNKU: [36.570556, 126.996944], GUKSU: [33.880833, 126.7325], LOSNI: [33.554167, 126.698056],
+    RJTT: [35.55333, 139.78111], RJFF: [33.58583, 130.45139], GUSRO: [35.66250, 139.13694], SUGAL: [35.59306, 137.79472], KAMMY: [34.99111, 134.68861], STOUT: [34.19083, 131.01611], KIRIN: [34.12167, 130.82194], IPRIR: [33.47083, 131.73389], OMKAT: [33.55333, 132.31028], FLUTE: [34.53861, 136.96361], ARTIC: [34.71556, 138.80444], XAC: [34.71222, 139.41389] };
+  var AW = { Y711: ['MONSI', 'BULTI', 'MEKIL', 'GONAX', 'BEDES', 'ELPOS', 'MANGI', 'DALSU', 'NULDI', 'DOTOL', 'KIDOS'], Y722: ['LOSNI', 'GUKSU', 'KAMIT', 'SAMUL', 'MAKSA', 'ATASO', 'PEBRI', 'GUNKU', 'OLMEN', 'SOT'],
+    Y697: ['EGOBA', 'LANAT'], Y51: ['LANAT', 'SAMON'], Y517: ['SAMON', 'ESKAS'], Y303: ['ESKAS', 'ENTAK'], Y30: ['ENTAK', 'SWAMP'], Y16: ['ENPAR', 'SAPRA'], Y685: ['SAPRA', 'SEL'],
+    Y20: ['GUSRO', 'KIRIN'], Y231: ['IPRIR', 'OMKAT'], Y235: ['OMKAT', 'FLUTE'], Y23: ['FLUTE', 'ARTIC'], Y71: ['ARTIC', 'XAC'] };
+  var DEPX = { RKSS: ['MONSI'], RKPC: ['LOSNI'], RKSI: ['EGOBA'], RJAA: ['ENPAR'], RJTT: ['GUSRO'], RJFF: ['IPRIR'] }, ARRX = { RKPC: ['KIDOS'], RKSS: ['SOT'], RJAA: ['SWAMP'], RKSI: ['SEL'], RJFF: ['KIRIN'], RJTT: ['XAC'] };
+  var ALT = { RKPC: 'RKPK', RKSS: 'RKSI', RJAA: 'RJTT', RKSI: 'RKSS', RJFF: 'RJFR', RJTT: 'RJAA' }, XP = { RKPK: [35.1795, 128.9382], RJTT: [35.5523, 139.7797], RJFR: [33.8459, 131.0349] };
+  var EX = { gc: 'RKSS MONSI Y711 KIDOS RKPC', cg: 'RKPC LOSNI Y722 SOT RKSS', in: 'RKSI EGOBA Y697 LANAT Y51 SAMON Y517 ESKAS Y303 ENTAK Y30 SWAMP RJAA', ni: 'RJAA ENPAR Y16 SAPRA Y685 SEL RKSI', hf: 'RJTT GUSRO Y20 KIRIN RJFF', fh: 'RJFF IPRIR Y231 OMKAT Y235 FLUTE Y23 ARTIC Y71 XAC RJTT' };
+  /* 게임 추가 공항(교체공항 후보 — 교육용 좌표, 공항 기준점 대표값). 도구 자료를 덮어쓰지 않도록 따로 둠 */
+  var XP_DP = { RJSS: [38.1397, 140.9169], RKTU: [36.7166, 127.4991], RJSN: [37.9559, 139.1207], RKPK: XP.RKPK, RJCC: [42.7752, 141.6923] };   /* RJCC = DAY 2 이륙 교체공항 후보 카드(60분 초과 예) */
+
+  function P(k) { return PT[k] || XP[k] || XP_DP[k]; }
+  /* 도구 hav 그대로: [거리 NM, 진방위°] */
+  function hav(a, b) { var r = Math.PI / 180, la1 = a[0] * r, lo1 = a[1] * r, la2 = b[0] * r, lo2 = b[1] * r, d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((la2 - la1) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin((lo2 - lo1) / 2), 2))); var y = Math.sin(lo2 - lo1) * Math.cos(la2), x = Math.cos(la1) * Math.sin(la2) - Math.sin(la1) * Math.cos(la2) * Math.cos(lo2 - lo1); return [d * 3440.065, (Math.atan2(y, x) / r + 360) % 360]; }
+
+  /* 도구 parse 그대로(오류 문구 대신 코드) */
+  function nextAw(c) { return Object.keys(AW).filter(function (k) { var l = AW[k], x = l.indexOf(c); return x >= 0 && x < l.length - 1; }); }
+  function parse(str, dep, arr) {
+    var t = String(str || '').trim().toUpperCase().split(/\s+/).filter(Boolean), legs = [], cur, i;
+    if (!t.length) return { next: [dep], legs: legs };
+    if (t[0] !== dep) return { err: [0, 'e_dep'], next: [dep], legs: legs };
+    if (t.length === 1) return { next: DEPX[dep], legs: legs };
+    if (DEPX[dep].indexOf(t[1]) < 0) return { err: [1, 'e_sid'], next: DEPX[dep], legs: legs };
+    legs.push({ a: dep, b: t[1], via: 'SID' }); cur = t[1]; i = 2;
+    while (i < t.length) {
+      var tk = t[i];
+      if (tk === arr) { if (ARRX[arr].indexOf(cur) < 0) return { err: [i, 'e_star'], legs: legs, next: nextAw(cur) }; legs.push({ a: cur, b: arr, via: 'STAR' }); if (i !== t.length - 1) return { err: [i + 1, 'e_after'], legs: legs }; return { ok: true, legs: legs }; }
+      var line = AW[tk]; if (!line) return { err: [i, 'e_awy'], legs: legs, next: nextAw(cur).concat(ARRX[arr].indexOf(cur) >= 0 ? [arr] : []) };
+      var ia = line.indexOf(cur); if (ia < 0) return { err: [i, 'e_noton'], legs: legs, next: nextAw(cur) };
+      if (ia === line.length - 1) return { err: [i, 'e_dir'], legs: legs, next: nextAw(cur) };
+      if (i + 1 >= t.length) return { legs: legs, next: line.slice(ia + 1) };
+      var q = t[i + 1], ib = line.indexOf(q); if (ib < 0) return { err: [i + 1, 'e_notonq'], legs: legs, next: line.slice(ia + 1) };
+      if (ib <= ia) return { err: [i + 1, 'e_dir'], legs: legs, next: line.slice(ia + 1) };
+      for (var j = ia; j < ib; j++) legs.push({ a: line[j], b: line[j + 1], via: tk }); cur = q; i += 2;
+    }
+    var nx = nextAw(cur); if (ARRX[arr].indexOf(cur) >= 0) nx.push(arr); return { legs: legs, next: nx };
+  }
+
+  /* ---------- 2F 기재 교육용 값(737 = 도구 AC.B738 · 787 = 기획 대표값 + wb_calc 제한값) ---------- */
+  var AC = {
+    '737': { id: '737', tool: 'B738', icao: 'B738', n: 'B737-800', w: 'M', tas: 450, ff: 2400, taxi: 200, mtow: 79016, mlw: 66361, mzfw: 62732, dow: 42500, apu: 'asu' },
+    '789': { id: '789', tool: null, icao: 'B789', n: 'B787-9', w: 'H', tas: 490, ff: 5400, taxi: 350, mtow: 254011, mlw: 192776, mzfw: 181436, dow: 130000, apu: 'elec' }
+  };
+  Object.keys(AC).forEach(function (k) { AC[k].H = AC[k].ff * 0.8; });   /* 체공 유량 = 유량 × 0.8(도구 단순화) — 737 1,920 · 787 4,320 */
+  function ac(id) { var a = AC[id]; if (!a) throw new Error('dp: unknown aircraft ' + id); return a; }
+
+  /* 도구 calc 그대로: 구간별 거리·자방위·대지속도·분, 합계 + 출발·도착 6분 */
+  function legsCalc(a, legs, wd, ws) {
+    var tot = 0, time = 0, rows = [];
+    legs.forEach(function (l) { var h = hav(P(l.a), P(l.b)), d = h[0], tc = h[1], hw = ws * Math.cos((wd - tc) * Math.PI / 180), gs = Math.max(150, a.tas - hw); if (l.via === 'SID' || l.via === 'STAR') gs = Math.min(gs, 260); var m = d / gs * 60; tot += d; time += m; rows.push({ l: l, d: d, mc: (tc + 8 + 360) % 360, gs: gs, m: m }); });
+    return { rows: rows, tot: tot, time: time + 6 };
+  }
+  function routeCalc(acId, routeStr, wd, ws) {
+    var t = String(routeStr).trim().toUpperCase().split(/\s+/), p = parse(routeStr, t[0], t[t.length - 1]);
+    if (!p.ok) return { ok: false, parse: p };
+    var c = legsCalc(ac(acId), p.legs, wd || 0, ws || 0); c.ok = true; c.parse = p; return c;
+  }
+
+  /* 도구 fuel 그대로(비교용 — rule 'kr'|'jp', noalt) : 도구는 고장 가정 비교·교체공항 2개를 다루지 않음 */
+  function toolFuel(acId, timeMin, dest, o) {
+    o = o || {}; var a = ac(acId), jp = o.rule === 'jp', trip = timeMin / 60 * a.ff * 1.08, hold = a.ff * 0.8, cont = Math.max(trip * 0.05, hold * 5 / 60),
+      alt = o.alt || ALT[dest] || dest, ad = hav(P(dest), P(alt))[0], af = o.noalt ? 0.25 * hold : (ad / a.tas + 0.25) * a.ff, fr = 0.5 * hold, ex = +o.extra || 0, tx0 = a.taxi,
+      blk = trip + cont + af + fr + ex + tx0, zfw = +o.zfw || 0, tow = zfw + blk - tx0, lw = tow - trip;
+    return { jp: jp, trip: trip, cont: cont, alt: alt, af: af, fr: fr, ex: ex, taxi: tx0, blk: blk, zfw: zfw, tow: tow, lw: lw };
+  }
+
+  /* ---------- 2B · 2B-1 프로파일별 요구량(합의본 v3 확정) ---------- */
+  function up(x) { return Math.ceil(x - 1e-9); }   /* kg 정수 올림 — 표시·입력 반올림으로 요구량을 낮추지 않음 */
+  function tripFuel(a, timeMin) { return timeMin / 60 * a.ff * 1.08; }
+  function contFuel(a, trip) { return Math.max(trip * 0.05, a.H * 5 / 60); }
+  function altFuelNM(a, distNM) { return (distNM / a.tas + 0.25) * a.ff; }   /* 거리/TAS + 0.25h 접근(복행 포함 1회) — 도구 */
+  function altDist(dest, alt) { return hav(P(dest), P(alt))[0]; }
+  /* p = { prof:'KR'|'JP', ac:'737'|'789', T (kg, 또는 timeMin), alts:[A1,A2](kg, 지정한 교체공항 필요 연료) — 빈 배열 = 미지정, Fcrit (kg, 없으면 0), X (kg) }
+     반환: rows(구분별 kg 정수, 프로파일별 이름 키) · N · ADD(KR) · takeoff(이륙 후 요구량) · min(TAXI 포함 최소 BLOCK) · block(=min+X) */
+  function required(p) {
+    var a = ac(p.ac), kr = p.prof === 'KR', T = up(p.T != null ? p.T : tripFuel(a, p.timeMin)), C = up(contFuel(a, T)), alts = (p.alts || []).map(up), nAlt = alts.length,
+      H = a.H, X = Math.max(0, up(+p.X || 0)), TAXI = a.taxi, Fc = up(+p.Fcrit || 0), rows = [], N, A = 0, ADD = 0, takeoff, branch;
+    if (nAlt > (kr ? 2 : 1)) throw new Error('dp: too many alternates for profile ' + p.prof);
+    rows.push({ k: 'taxi', kg: TAXI }, { k: 'trip', kg: T }, { k: kr ? 'cont' : 'unf', kg: C });
+    if (nAlt) {
+      A = Math.max.apply(null, alts);  /* KR 2개 = max(A1,A2) — 합산·첫 후보 아님 */
+      var R30 = up(0.5 * H); rows.push({ k: 'alt', kg: A, of: alts.slice() }, { k: 'fr30', kg: R30 }); N = T + C + A + R30; branch = kr ? 'KR-alt' : 'JP-alt';
+    } else if (kr) {
+      var h15 = up(0.25 * H), r30 = up(0.5 * H); rows.push({ k: 'hold15', kg: h15 }, { k: 'fr30d', kg: r30 }); N = T + C + h15 + r30; branch = 'KR-noalt';
+    } else {
+      var h45 = up(0.75 * H); rows.push({ k: 'hold45', kg: h45 }); N = T + C + h45; branch = 'JP-noalt';   /* 0.5H 재가산 없음 */
+    }
+    if (kr) { ADD = Math.max(0, Fc - N); rows.push({ k: 'add', kg: ADD }); takeoff = N + ADD; }
+    else { takeoff = Math.max(N, Fc); rows.push({ k: 'crit', kg: Math.max(0, Fc - N), note: 'max' }); }   /* JP: 비교 결과의 차이분(표시용) — 합산 아님 */
+    rows.push({ k: kr ? 'disc' : 'company', kg: X });
+    var min = TAXI + takeoff;
+    return { prof: p.prof, ac: a.id, branch: branch, T: T, C: C, A: A, H: H, N: N, ADD: ADD, Fcrit: Fc, takeoff: takeoff, min: min, X: X, block: min + X, rows: rows };
+  }
+  /* 2B 판정(합의본 2B-1 판정): S1 = 입력 합계가 기준 산식의 최소 BLOCK 미만(X 제외 합계로도) · D1 = 칸별 ±1% 초과(채점만) · 필요량 0 칸 = 10kg 단위 반올림 일치 */
+  function tolOk(exp, got) { got = +got; if (!isFinite(got)) return false; if (exp === 0) return Math.round(got / 10) === 0; return Math.abs(got - exp) <= exp * 0.01 + 1e-9; }
+  function checkFuel(req, input) {
+    var d1 = [], sumNoX = 0, total = 0, xKey = req.prof === 'KR' ? 'disc' : 'company';
+    /* JP 'crit' 칸 = max(0, Fcrit − N): 통상·고장 중 큰 쪽으로 올리는 차이분(Fcrit 전체를 더하지 않음 — 합계가 TAXI + max(N,Fcrit)) */
+    req.rows.forEach(function (r) {
+      var g = input[r.k] == null ? NaN : +input[r.k]; if (!isFinite(g)) g = 0;
+      if (r.k !== xKey) sumNoX += g; total += g;
+      if (r.k !== xKey && !tolOk(r.kg, g)) d1.push({ k: r.k, exp: r.kg, got: g });
+    });
+    var short = Math.max(0, req.min - sumNoX);
+    return { S1: sumNoX < req.min, short: short, D1: d1, sumNoX: sumNoX, total: total };
+  }
+
+  /* ---------- 2C · TAF 최악 조건(도구 ops_wx.js analyze 그대로 + 분 단위 ETA) ---------- */
+  function dhh(s) { var m = String(s).match(/^(\d{2})(\d{2})$/); return m ? (+m[1]) * 24 + +m[2] : null; }
+  function parseWx(tokens) { var v = null, c = null; tokens.forEach(function (t) { if (t === 'CAVOK') { v = 10000; c = c === null ? 99999 : c; } else if (/^\d{4}$/.test(t)) { v = +t === 9999 ? 10000 : +t; } else { var m = t.match(/^(BKN|OVC)(\d{3})/) || t.match(/^(VV)(\d{3})/); if (m) { var h = +m[2] * 100; c = c === null ? h : Math.min(c, h); } } }); return { v: v, c: c }; }
+  /* eta: 'DDHH'(도구와 같음) 또는 숫자(시간 단위 — 일×24+시+분/60) */
+  function tafWorst(text, eta) {
+    var t = String(text).trim().toUpperCase().replace(/=/g, '').split(/\s+/), i = t.findIndex(function (x) { return /^\d{4}\/\d{4}$/.test(x); }), groups = [], cur = { type: 'BASE', from: null, to: null, tok: [] };
+    if (i < 0) return null;
+    var vp = t[i].split('/'); cur.from = dhh(vp[0]); cur.to = dhh(vp[1]); var end = cur.to, start = cur.from;
+    for (var k = i + 1; k < t.length; k++) { var w = t[k]; if (w === 'BECMG' || w === 'TEMPO' || /^PROB\d{2}$/.test(w)) { groups.push(cur); var ty = w; if (/^PROB/.test(w) && t[k + 1] === 'TEMPO') { ty = w + ' TEMPO'; k++; } var per = t[k + 1] && /^\d{4}\/\d{4}$/.test(t[k + 1]) ? t[k + 1].split('/') : null; cur = { type: ty, from: per ? dhh(per[0]) : null, to: per ? dhh(per[1]) : null, tok: [] }; if (per) k++; } else cur.tok.push(w); }
+    groups.push(cur);
+    var e = typeof eta === 'number' ? eta : dhh(eta), lo = e - 1, hi = e + 1, worst = { v: 99999, c: 99999 }, used = [], base = parseWx(groups[0].tok), st = { v: base.v, c: base.c === null ? 99999 : base.c };
+    groups.slice(1).forEach(function (g) { if (g.type === 'BECMG' && g.to !== null && g.to <= lo) { var w = parseWx(g.tok); if (w.v !== null) st.v = w.v; if (w.c !== null) st.c = w.c; } });
+    worst.v = st.v; worst.c = st.c; used.push(['BASE', st.v, st.c]);
+    groups.slice(1).forEach(function (g) { if (g.from === null) return; var ov = g.from < hi && g.to > lo; if (!ov) return; var w = parseWx(g.tok); if (w.v !== null) worst.v = Math.min(worst.v, w.v); if (w.c !== null) worst.c = Math.min(worst.c, w.c); used.push([g.type, w.v, w.c]); });
+    /* 게임 보강: 시간창이 예보 유효시간 밖이면 「자료 없음」(KR 2개 요건 · 판정 진실값) */
+    var covered = lo >= start && hi <= end;
+    return { worst: worst, used: used, groups: groups, end: end, start: start, covered: covered };
+  }
+  /* UTC 「DDHHMM」·{d,h,m} → 시간 단위 숫자 */
+  function hrs(d, h, m) { return d * 24 + h + (m || 0) / 60; }
+  /* METAR 최소 해석(시정·RVR·운고) — 이륙 최저조건은 RVR로(시정 ≠ RVR) */
+  function metar(text) {
+    var t = String(text).trim().toUpperCase().replace(/=/g, '').split(/\s+/), w = parseWx(t), rvr = null;
+    t.forEach(function (x) { var m = x.match(/^R\d{2}[LRC]?\/[PM]?(\d{4})/); if (m) rvr = rvr === null ? +m[1] : Math.min(rvr, +m[1]); });
+    return { v: w.v, c: w.c === null ? 99999 : w.c, rvr: rvr };
+  }
+
+  /* 접근 선택: 쓸 수 있는(avail) 절차 중 최저치가 가장 낮은 것 — 최저치부터 고르고 계획 여유는 그 뒤(2C) */
+  function bestApproach(apps) {
+    var av = (apps || []).filter(function (x) { return x.avail !== false; });
+    if (!av.length) return null;
+    return av.slice().sort(function (x, y) { return (x.dh - y.dh) || (x.vis - y.vis); })[0];
+  }
+  /* 착륙 최저치 비교(r3) / 계획 최저치(+200ft·+800m · r2) — 도구 ⑤와 같은 등급 */
+  function wxLevel(worst, app) { if (!app) return 'r3'; var pc = app.dh + 200, pv = app.vis + 800; return (worst.c < app.dh || worst.v < app.vis) ? 'r3' : (worst.c < pc || worst.v < pv) ? 'r2' : 'r1'; }
+  /* 공항 하나의 판정(그 공항 자체 ETA) — ap = { icao, taf, apps:[{id,type,dh,vis,avail}], closed:[[fromH,toH]] , hours:[openH, closeH] } */
+  function airportEval(ap, etaH) {
+    var w = tafWorst(ap.taf, etaH), app = bestApproach(ap.apps), closed = (ap.closed || []).some(function (z) { return z[0] < etaH + 1 && z[1] > etaH - 1; });
+    if (!w) return { icao: ap.icao, noWx: true, app: app, closed: closed, level: 'r3', landOK: false, planOK: false };
+    var noWx = !w.covered, lvl = wxLevel(w.worst, app);
+    return { icao: ap.icao, noWx: noWx, worst: w.worst, used: w.used, app: app, closed: closed, level: lvl,
+      landOK: !noWx && !closed && !!app && lvl !== 'r3',     /* 착륙 최저조건 이상 */
+      planOK: !noWx && !closed && !!app && lvl === 'r1' };   /* 교체공항 계획 최저치 이상(후보 적합) */
+  }
+
+  /* ---------- 2C-1 ①② 목적지 교체공항 개수 ---------- */
+  /* d = { prof, flightH, dest: { vmc, sepRwy, iapCount, eval(airportEval 결과) } } → { need:0|1|2, omitOK, why } */
+  function altNeed(d) {
+    var e = d.dest.eval;
+    if (d.prof === 'KR') {
+      var below = e.noWx || !e.landOK;   /* 목적지 사용예정시간 기상이 Vela 비행장 최저치 미만 또는 기상정보 없음 */
+      if (below) return { need: 2, omitOK: false, why: e.noWx ? 'kr-nowx' : 'kr-below' };
+      if (d.dest.vmc && d.dest.sepRwy && (d.dest.iapCount || 0) >= 1) return { need: 0, omitOK: true, why: 'kr-omit' };
+      return { need: 1, omitOK: false, why: 'kr-basic' };
+    }
+    var w = e.worst || { c: 0, v: 0 }, ceilM = w.c >= 99999 ? Infinity : w.c * 0.3048;
+    if (!e.noWx && d.flightH <= 6 && ceilM >= 600 && w.v >= 5000) return { need: 0, omitOK: true, why: 'jp-omit' };
+    return { need: 1, omitOK: false, why: 'jp-basic' };
+  }
+  /* JP 1시간 미만 비행의 시간창(출발 예정 ~ ETA+1h)은 etaWindowJP로 — 현재 두 노선은 1시간 초과 */
+  function jpOmitWindow(etdH, etaH, flightH) { return flightH < 1 ? [etdH, etaH + 1] : [etaH - 1, etaH + 1]; }
+
+  /* ---------- 2C-1 ③ 이륙 교체공항 ---------- */
+  var OEI_MAX = 60;   /* 쌍발·EDTO 비적용 — 법정 요구 층(KR 8.4.4.2 · JP 세칙 2-5(1)a①) */
+  /* t = { depEval(출발지 착륙 최저치 판정 — ETD 기준), returnBlocked, cand: { oeiMin, eval(후보 자체 ETA 판정), viaCard } } */
+  function toAltCheck(t) {
+    var trig = !!t.returnBlocked || !t.depEval.landOK;
+    if (!trig) return { trig: false, ok: true };
+    var c = t.cand; if (!c) return { trig: true, ok: false, why: 'to-alt-missing' };
+    if (c.viaCard) return { trig: true, ok: true, why: 'to-alt-card' };
+    if (!(c.oeiMin <= OEI_MAX)) return { trig: true, ok: false, why: 'to-alt-time' };
+    if (!c.eval.planOK) return { trig: true, ok: false, why: 'to-alt-unsuit' };
+    return { trig: true, ok: true };
+  }
+
+  /* ---------- 2C-1 ④ 출발 기상 관문(프로파일별 · R05-15) — 실패 코드가 하나라도 있으면 S2 ---------- */
+  /* g = { prof, dep:{ rvr, toMin }, toAlt: toAltCheck 결과, need: altNeed 결과, dest: { eval }, filed:[airportEval 결과…](교체공항 각자 ETA) } */
+  function gate(g) {
+    var f = [], need = g.need, nF = g.filed.length;
+    if (!(g.dep.rvr >= g.dep.toMin)) f.push('dep-tomin');                 /* 공통: 출발지 이륙 최저조건(RVR) */
+    if (g.toAlt && g.toAlt.trig && !g.toAlt.ok) f.push(g.toAlt.why);       /* 공통: 이륙 교체공항 */
+    g.filed.forEach(function (e) { if (!e.planOK) f.push('alt-unsuit:' + e.icao); });   /* 공통: 지정 후보 각자 적합 */
+    if (nF < need.need) f.push(nF === 0 && need.need > 0 ? 'alt-none' : 'alt-count');
+    if (g.prof === 'KR') {
+      if (nF === 0 && need.omitOK && !g.dest.eval.landOK) f.push('kr-dest');   /* KR 미지정: 자격 + 목적지 적합(방어 확인) */
+      /* KR 지정: 목적지 미달·정보 없음이면 2개 요건으로 평가 — 목적지 미달 자체로 다시 막지 않음 */
+    } else {
+      if (!g.dest.eval.landOK) f.push('jp-dest');   /* JP: 목적지 ETA 착륙 최저조건 자체 필요 */
+    }
+    return { ok: f.length === 0, fails: f };
+  }
+
+  /* ---------- 2E 중량·넘김(ZFW 상한) ---------- */
+  /* w = { ac, zfw, block, trip, aTOW?(활주로·기상·MEL 교육용 허용), aLW? } */
+  function weights(w) {
+    var a = ac(w.ac), taxi = a.taxi, tof = w.block - taxi, landFuel = tof - w.trip, aTOW = Math.min(a.mtow, w.aTOW || Infinity), aLW = Math.min(a.mlw, w.aLW || Infinity),
+      zfwCap = Math.min(a.mzfw, aTOW - tof, aLW - landFuel), tow = w.zfw + tof, lw = tow - w.trip;
+    return { taxi: taxi, tof: tof, landFuel: landFuel, aTOW: aTOW, aLW: aLW, zfwCap: zfwCap, tow: tow, lw: lw,
+      over: { zfw: w.zfw > a.mzfw, tow: tow > aTOW, lw: lw > aLW }, S3: w.zfw > a.mzfw || tow > aTOW || lw > aLW };
+  }
+  /* 05 → 03 넘김(출발 전 스냅샷) */
+  function handoff03(req, wt, meta) { return { block: req.block, taxi: wt.taxi, tof: wt.tof, trip: req.T, landFuel: wt.landFuel, zfwCap: wt.zfwCap, unit: 'kg', valid: meta && meta.valid, ac: req.ac, ed: meta && meta.ed }; }
+
+  /* ---------- 2D 비행 중 연료 상태(강좌 5-3 · KR 8.1.9.13) ---------- */
+  /* s = { fob, fr(최종예비 kg), airports:[{ id, burn(지금부터 착륙까지 — 대기·잔여 항로·접근 포함), safe }], committed(id|null), changeKg(허가 변경 1회분 교육용 값), unexpectedDelay } */
+  function fuelState(s) {
+    var est = {}; s.airports.forEach(function (x) { est[x.id] = s.fob - x.burn; });
+    var safe = s.airports.filter(function (x) { return x.safe !== false; }), best = safe.length ? Math.max.apply(null, safe.map(function (x) { return est[x.id]; })) : -Infinity;
+    if (best < s.fr) return { state: 'mayday', est: est, best: best };
+    if (s.committed && est[s.committed] - (s.changeKg || 0) < s.fr) return { state: 'minimum', est: est, best: best };
+    if (s.unexpectedDelay) return { state: 'delay', est: est, best: best };
+    return { state: 'normal', est: est, best: best };
+  }
+  /* EFC 표시: 「EFC 0240Z · 현재 0215Z → 예상 추가 대기 25분」 — UTC 자정 경계 보존 */
+  function hhmm(s) { var m = String(s).match(/^(\d{2})(\d{2})$/); return m ? +m[1] * 60 + +m[2] : null; }
+  function efcWait(efc, now) { var a = hhmm(efc), b = hhmm(now); var d = a - b; if (d < -720) d += 1440; if (d > 720) d -= 1440; return d; }
+
+  /* ---------- HOT(램프편 합의본 v2 3E와 같은 값 — test가 mission_rp05·rp_sched와 대조) ---------- */
+  var HOT = { hot: 45, push: 3, taxi: 15, margin: 10, deice1: 6, deice4: 6 };   /* 이 시나리오 한정 가상 값 */
+  /* t4 = Type IV(마지막 단계) 시작 · aobt — 같은 기준(분). 반환 여유(분) — HOT.margin 미만이면 보류·재확인 */
+  function hotMargin(t4, aobt, h) { h = h || HOT; return t4 + h.hot - (aobt + h.push + h.taxi); }
+
+  /* ---------- S9 승무시간 한계 카드(그날의 적용 한계 · 프로파일별 카드 값) ---------- */
+  /* card = { ftMax, ftUsed, fdpMax, fdpUsed, restOK } · add = { ft, fdp } — 연장은 가정하지 않음 */
+  function dutyCheck(card, add) {
+    var ft = card.ftUsed + (add.ft || 0), fdp = card.fdpUsed + (add.fdp || 0), f = [];
+    if (ft > card.ftMax) f.push('ft'); if (fdp > card.fdpMax) f.push('fdp'); if (card.restOK === false) f.push('rest');
+    return { ok: !f.length, fails: f, ft: ft, fdp: fdp };
+  }
+
+  /* ---------- FPL(간략 — 도구 형식 + 게임 직접 입력 7·13·15·16·18) ---------- */
+  var DESIG = 'VLA';   /* 교육용 가상 3글자 지정자(Vela) — 실제 지정자와 겹칠 수 있어 화면에 「가상」 표시 */
+  function eetStr(min) { min = Math.round(min); return ('0' + Math.floor(min / 60)).slice(-2) + ('0' + min % 60).slice(-2); }
+  function fpl(o) {
+    var a = ac(o.ac), t = String(o.route).trim().toUpperCase().split(/\s+/), mid = t.slice(1, -1).join(' ');
+    return '(FPL-' + o.cs + '-IS\n-' + a.icao + '/' + a.w + '-SDFGRY/LB1\n-' + t[0] + o.eobt + '\n-N' + ('000' + a.tas).slice(-4) + 'F' + ('00' + o.fl).slice(-3) + ' ' + mid + '\n-' + t[t.length - 1] + eetStr(o.eetMin) + (o.alts && o.alts.length ? ' ' + o.alts.join(' ') : '') + (o.i18 ? '\n-' + o.i18 : '') + ')';
+  }
+  /* FPL 항목 검증(입력 vs OFP) — S6 안전 관련(편명 식별·경로·교체공항·시각) / 형식 오류(i7)는 정정 */
+  function fplCheck(inp, ofp) {
+    var f = [];
+    if (!new RegExp('^' + DESIG + '\\d{1,4}$').test(inp.i7 || '')) f.push('i7');
+    else if (ofp.cs && inp.i7 !== ofp.cs) f.push('i7id');   /* F05-5-01: 형식이 맞아도 담당 편(OFP의 편명)과 다르면 다른 편의 FPL — 안전 관련(S6) */
+    if (!/^\d{4}$/.test(inp.i13 || '') || inp.i13 !== ofp.eobt) f.push('i13');
+    if (String(inp.i15 || '').trim().toUpperCase().replace(/\s+/g, ' ') !== ofp.i15) f.push('i15');
+    if (inp.i16eet !== eetStr(ofp.eetMin)) f.push('i16eet');
+    if ((inp.i16alt || []).join(' ') !== (ofp.alts || []).join(' ')) f.push('i16alt');
+    return { ok: !f.length, fails: f, safety: f.filter(function (k) { return k !== 'i7'; }) };
+  }
+
+  /* ---------- 자료 시각(DAY 2~5 설계안 v4 · F05-7-01) — 발표·유효·수신 시각을 같은 시간축(일×24 + 시, UTC)으로 ---------- */
+  function issueH(text) { var m = String(text).match(/\b(\d{2})(\d{2})(\d{2})Z\b/); return m ? (+m[1]) * 24 + (+m[2]) + (+m[3]) / 60 : null; }   /* TAF·METAR·SPECI 발표 DDHHMMZ */
+  function tafValid(text) { var m = String(text).match(/\b(\d{4})\/(\d{4})\b/); return m ? [dhh(m[1]), dhh(m[2])] : null; }   /* 첫 유효기간 DDHH/DDHH */
+  function notamWin(text) { var b = String(text).match(/B\)(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/), c = String(text).match(/C\)(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/); var h = function (x) { return (+x[3]) * 24 + (+x[4]) + (+x[5]) / 60; }; return b && c ? [h(b), h(c)] : null; }   /* B)YYMMDDhhmm C)… → [시작, 끝](같은 달) */
+  function overlapH(win, etaH) { return !!win && win[0] < etaH + 1 && win[1] > etaH - 1; }   /* 자체 ETA ±1시간 창과 겹침 */
+
+  /* 규정 표시의 세 층(2G) */
+  var LAYER = { trip: 'edu', cont: 'law', unf: 'law', alt: 'law', fr30: 'law', fr30d: 'law', hold15: 'law', hold45: 'law', add: 'law', crit: 'law', disc: 'company', company: 'company', taxi: 'edu',
+    fplDeadline: 'company', hotMargin: 'company', tafPolicy: 'company', oei60: 'law', planMinima: 'edu', h08: 'edu', climb108: 'edu' };
+
+  var DP = { VER: 'dp_calc 1.0 (합의본 v3 확정)', PT: PT, AW: AW, DEPX: DEPX, ARRX: ARRX, ALT: ALT, XP: XP, XP_DP: XP_DP, EX: EX, AC: AC, ac: ac, P: P, hav: hav,
+    parse: parse, legsCalc: legsCalc, routeCalc: routeCalc, toolFuel: toolFuel,
+    up: up, tripFuel: tripFuel, contFuel: contFuel, altFuelNM: altFuelNM, altDist: altDist, required: required, tolOk: tolOk, checkFuel: checkFuel,
+    tafWorst: tafWorst, parseWx: parseWx, metar: metar, hrs: hrs, bestApproach: bestApproach, wxLevel: wxLevel, airportEval: airportEval,
+    altNeed: altNeed, jpOmitWindow: jpOmitWindow, OEI_MAX: OEI_MAX, toAltCheck: toAltCheck, gate: gate,
+    weights: weights, handoff03: handoff03, fuelState: fuelState, efcWait: efcWait, HOT: HOT, hotMargin: hotMargin, dutyCheck: dutyCheck,
+    DESIG: DESIG, eetStr: eetStr, fpl: fpl, fplCheck: fplCheck, LAYER: LAYER, issueH: issueH, tafValid: tafValid, notamWin: notamWin, overlapH: overlapH };
+  root.DP = DP;
+  if (typeof module !== 'undefined' && module.exports) module.exports = DP;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* ../src_dp/mission_dp01.js */
+/* 운항관리편 Day 1 「はじめてのリリース」 미션 데이터 — 합의본 v3(확정) 3절 DAY 1(사건 없음 · 비행 중 통보 정상)
+   교육용 가상 데이터: 편·등록 기호(VL-xxx)·TAF·METAR·NOTAM·최저치·고장 필요량 카드는 모두 연습용(실제 발출·실제 공항 자료 아님).
+   근무지 = 교육용 운항 프로파일(Q2): 일본 OCC = VELA 301 NRT→ICN · JP / 한국 OCC = VELA 302 ICN→NRT · KR.
+   시각: 현지(JST·KST = UTC+9). STD는 램프편과 같음(301 10:30 · 302 13:30). 날짜 = 4일(TAF의 DDHH).
+   자료 시각(DAY 2~5 설계안 v4 Q9): 첫 확인(−185 · JP 03일 2225Z / KR 04일 0125Z) 전에 발표된 METAR·TAF만 — JP TAF 031700Z(0318/0424) · METAR 032200Z / KR TAF 032300Z · METAR 040100Z
+   계산(경로·바람·연료·TAF 최악 조건·관문)은 window.DP(src_dp/dp_calc.js) — 이 파일은 시나리오만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var AP = {   /* 접근 절차 교육용 최저치: dh = 결심고(ft, 운고와 비교) · vis = 시정/RVR(m) */
+    RKSI: { nm: L('仁川', '인천', 'Incheon'), apps: [{ id: 'ILS 33L', type: 'ILS', dh: 200, vis: 550 }, { id: 'ILS 33R', type: 'ILS', dh: 200, vis: 550 }] },
+    RJAA: { nm: L('成田', '나리타', 'Narita'), apps: [{ id: 'ILS 34L', type: 'ILS', dh: 200, vis: 550 }, { id: 'ILS 34R', type: 'ILS', dh: 200, vis: 550 }] },
+    RKSS: { nm: L('金浦', '김포', 'Gimpo'), apps: [{ id: 'ILS 32L', type: 'ILS', dh: 200, vis: 550 }] },
+    RKTU: { nm: L('清州', '청주', 'Cheongju'), apps: [{ id: 'ILS 24R', type: 'ILS', dh: 200, vis: 550 }] },
+    RJTT: { nm: L('羽田', '하네다', 'Haneda'), apps: [{ id: 'ILS 34R', type: 'ILS', dh: 200, vis: 550 }] },
+    RJSS: { nm: L('仙台', '센다이', 'Sendai'), apps: [{ id: 'ILS 27', type: 'ILS', dh: 200, vis: 550 }] }
+  };
+  /* 근무지별 시나리오 */
+  var P = {
+    JP: { prof: 'JP', flight: 'VELA 301', from: 'NRT', to: 'ICN', dep: 'RJAA', dest: 'RKSI', route: 'ni', fl: 340, wind: [270, 80], std: '10:30', start: '07:25', cs: 'VLA301',
+      occ: L('東京OCC', '도쿄 OCC', 'Tokyo OCC'), cands: ['RKSS', 'RKTU'],
+      metar: 'METAR RJAA 032200Z 33008KT 9999 FEW030 13/08 Q1018',
+      taf: {
+        RJAA: 'TAF RJAA 031700Z 0318/0424 33008KT 9999 FEW030',
+        RKSI: 'TAF RKSI 031700Z 0318/0424 27012KT 9999 SCT025 TEMPO 0402/0406 4000 BR BKN015',
+        RKSS: 'TAF RKSS 031700Z 0318/0424 28010KT 9999 FEW030 BECMG 0406/0408 6000 BKN020',
+        RKTU: 'TAF RKTU 031700Z 0318/0424 VRB03KT 3000 BR OVC006 TEMPO 0403/0407 1200 BR OVC003'
+      },
+      /* NOTAM — aff: 이 편에 영향 있음(정답) · closeApp: 영향이 접근 절차를 막음(판정 진실값에 반영) */
+      notam: [
+        { id: 'A1234/26', ap: 'RKSI', aff: true, closeApp: ['RKSI', 'ILS 33R'], txt: 'A1234/26 NOTAMN\nQ)RKRR/QMRLC/IV/NBO/A/000/999/3728N12627E005\nA)RKSI B)2611040200 C)2611040600\nE)RWY 15L/33R CLSD DUE TO WIP.',
+          why: L('到着予定（ETAの前後）に到着空港の滑走路1本が閉鎖 → 使える滑走路・進入（ILS 33L）で計画し直す。', '도착 예정(ETA 전후)에 도착 공항 활주로 1개가 폐쇄 → 쓸 수 있는 활주로·접근(ILS 33L)으로 다시 계획.', 'One destination runway is closed around the ETA → plan with the runway/approach still available (ILS 33L).') },
+        { id: 'A1240/26', ap: 'RKSI', aff: false, txt: 'A1240/26 NOTAMN\nQ)RKRR/QMXLC/IV/M/A/000/999/3728N12627E005\nA)RKSI B)2611032300 C)2611050900\nE)TWY G BTN G1 AND G3 CLSD.',
+          why: L('誘導路の一部閉鎖。ほかの誘導路で地上走行できるので、この便の計画（燃料・代替空港）は変わらない。', '유도로 일부 폐쇄. 다른 유도로로 지상 이동할 수 있어 이 편의 계획(연료·교체공항)은 바뀌지 않음.', 'Part of a taxiway is closed; other taxiways remain, so this flight’s plan (fuel, alternates) does not change.') },
+        { id: 'B2210/26', ap: 'RJAA', aff: false, txt: 'B2210/26 NOTAMN\nQ)RJJJ/QLAAS/IV/BO/A/000/999/3546N14023E005\nA)RJAA B)2611032200 C)2611041000\nE)APRON FLOOD LIGHT STAND 503 U/S.',
+          why: L('昼間の出発で、別のスポットの照明の故障。この便には影響しない。', '낮 출발이고 다른 주기장의 조명 고장. 이 편에는 영향 없음.', 'A floodlight failure at another stand during a daytime departure — no effect on this flight.') }
+      ] },
+    KR: { prof: 'KR', flight: 'VELA 302', from: 'ICN', to: 'NRT', dep: 'RKSI', dest: 'RJAA', route: 'in', fl: 350, wind: [270, 80], std: '13:30', start: '10:25', cs: 'VLA302',
+      occ: L('ソウルOCC', '서울 OCC', 'Seoul OCC'), cands: ['RJTT', 'RJSS'],
+      metar: 'METAR RKSI 040100Z 29010KT 9999 SCT030 12/06 Q1020',
+      taf: {
+        RKSI: 'TAF RKSI 032300Z 0400/0506 29010KT 9999 SCT030',
+        RJAA: 'TAF RJAA 032300Z 0400/0506 18010KT 9999 FEW020 TEMPO 0405/0409 3000 -RA BKN012',
+        RJTT: 'TAF RJTT 032300Z 0400/0506 18012KT 9999 FEW025 BECMG 0406/0408 5000 BKN018',
+        RJSS: 'TAF RJSS 032300Z 0400/0506 34015KT 1500 BR BKN006 TEMPO 0405/0410 0800 BR OVC003'
+      },
+      notam: [
+        { id: 'B2231/26', ap: 'RJAA', aff: true, closeApp: ['RJAA', 'ILS 34L'], txt: 'B2231/26 NOTAMN\nQ)RJJJ/QICAS/I/NBO/A/000/999/3546N14023E025\nA)RJAA B)2611040400 C)2611040900\nE)ILS RWY 34L NOT AVBL.',
+          why: L('到着予定（ETAの前後）に到着空港のILS 34Lが使えない → ILS 34Rの最低気象条件で判断する。', '도착 예정(ETA 전후)에 도착 공항 ILS 34L을 쓸 수 없음 → ILS 34R의 최저치로 판단.', 'ILS 34L at the destination is out around the ETA → judge with the ILS 34R minima.') },
+        { id: 'B2240/26', ap: 'RJAA', aff: false, txt: 'B2240/26 NOTAMN\nQ)RJJJ/QMXLC/IV/M/A/000/999/3546N14023E005\nA)RJAA B)2611040000 C)2611041200\nE)TWY A5 CLSD.',
+          why: L('誘導路の一部閉鎖。ほかの経路で地上走行できる。', '유도로 일부 폐쇄. 다른 경로로 지상 이동 가능.', 'Part of a taxiway is closed; other routes remain.') },
+        { id: 'A1255/26', ap: 'RKSS', aff: false, txt: 'A1255/26 NOTAMN\nQ)RKRR/QOBCE/IV/M/A/000/003/3734N12647E002\nA)RKSS B)2611032300 C)2611051000\nE)CRANE ERECTED 2.1KM S OF ARP. HGT 45M AMSL. LIGHTED.',
+          why: L('この便が使わない金浦の障害物。影響しない。', '이 편이 쓰지 않는 김포의 장애물. 영향 없음.', 'An obstacle at Gimpo, which this flight does not use — no effect.') }
+      ] }
+  };
+  var AC = {   /* 탑재관리 예상 ZFW(−150 통보) → −25 최종 ZFW(예상 + 소폭) · 고장 필요량 카드 Fcrit = 통상 N보다 작음(DAY 1: 추가 0) */
+    '737': { reg: 'VL-8A1', zfwEst: 58000, zfwFinal: 58240, fcritLess: 900 },
+    '789': { reg: 'VL-9B1', zfwEst: 165000, zfwFinal: 165400, fcritLess: 1800 }
+  };
+  function variant(c) {
+    var p = P[c];
+    return { flight: p.flight, from: p.from, to: p.to, std: p.std, start: p.start, close: p.std, p: p,
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('d-brf', 'brf', 'BRIEF'), u('d-rel', 'rel', 'RELEASE'), u('d-fpl', 'fpl', 'FPL'), u('d-gnd', 'gnd', 'GROUND'), u('d-flt', 'flt', 'FLIGHT')];
+      } };
+  }
+  window.MISSION_DP01 = {
+    id: 'dp01', generated: false, day: 1, date: { y: 2026, m: 11, d: 4 }, ap: AP, data: AC, opt: {}, events: [],
+    cost: { tab: 5, sign: 5, call: 1, chg: 3 },   /* 비실시간(Q6): 탭 확인 5분 · 서명 5분 · 통보 1분 · FPL 변경 3분(교육용 행동 비용) */
+    times: { brf: -185, rel: -180, mel: -160, fpl: -90, gnd: -60, zfw: -25 },   /* 2A 표준 흐름(STD 기준 분) */
+    variants: { JP: variant('JP'), KR: variant('KR') }
+  };
+})();
+
+/* ../src_dp/mission_dp02.js */
+/* 운항관리편 Day 2 「変わる天気」 미션 데이터 — DAY 2~5 설계안 v4(확정 2026-11-04) 1절
+   교육용 가상 데이터: 편·등록 기호·TAF·METAR·NOTAM·최저치·이륙 교체공항 카드(OEI 시간)는 모두 연습용(실제 발출·실제 공항 자료 아님).
+   날짜 = 11월 5일. 시간축(1A-0): JP STD 05 0130Z(첫 확인 −185 = 04 2225Z) · KR STD 05 0430Z(첫 확인 05 0125Z).
+   초기 자료 = 첫 확인 전 발표(TAF 041700Z/042300Z · METAR 042200Z/050100Z) · 새 정보(−70 = JP 05 0020Z / KR 05 0320Z) = TAF AMD + 상층풍 판 2(수신 전 발표)
+   · 지연(−45) 40분 · 출발지 METAR 갱신(−30 = JP 05 0100Z / KR 05 0400Z). 계산은 window.DP(dp_calc.js) — 이 파일은 시나리오만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var I = function (id) { return { id: 'ILS ' + id, type: 'ILS', dh: 200, vis: 550 }; }, R = function (id) { return { id: 'RNP ' + id, type: 'RNP', dh: 400, vis: 1600 }; };   /* 교육용 최저치(설계안 0절): ILS 200 ft·550 m · RNP 400 ft·1,600 m */
+  var AP = {
+    RKSI: { nm: L('仁川', '인천', 'Incheon'), apps: [I('33L'), I('33R'), R('33L')] },
+    RJAA: { nm: L('成田', '나리타', 'Narita'), apps: [I('34L'), I('34R'), R('34R')] },
+    RKSS: { nm: L('金浦', '김포', 'Gimpo'), apps: [I('32L'), R('32L')] },
+    RKTU: { nm: L('清州', '청주', 'Cheongju'), apps: [I('24R'), R('24R')] },
+    RKPK: { nm: L('金海', '김해', 'Gimhae'), apps: [I('36L'), R('36L')] },
+    RJTT: { nm: L('羽田', '하네다', 'Haneda'), apps: [I('34R'), R('34R')] },
+    RJSS: { nm: L('仙台', '센다이', 'Sendai'), apps: [I('27'), R('27')] },
+    RJSN: { nm: L('新潟', '니가타', 'Niigata'), apps: [I('10'), R('10')] },
+    RJCC: { nm: L('新千歳', '신치토세', 'New Chitose'), apps: [I('19R'), R('19R')] },
+    RJFF: { nm: L('福岡', '후쿠오카', 'Fukuoka'), apps: [I('34'), R('34')] }
+  };
+  var P = {
+    JP: { prof: 'JP', flight: 'VELA 301', from: 'NRT', to: 'ICN', dep: 'RJAA', dest: 'RKSI', route: 'ni', fl: 340, wind: [270, 80], wind2: [270, 110], std: '10:30', start: '07:25', cs: 'VLA301',
+      occ: L('東京OCC', '도쿄 OCC', 'Tokyo OCC'), cands: ['RKSS', 'RKTU', 'RKPK'],
+      metar: 'METAR RJAA 042200Z 02003KT 0300 R34L/0500N R34R/0450N FG VV001 08/08 Q1021',
+      metar2: 'METAR RJAA 050100Z 36002KT 0300 R34L/0500N R34R/0450N FG VV001 08/08 Q1021',
+      taf: {
+        RJAA: 'TAF RJAA 041700Z 0418/0524 VRB02KT 0300 FG VV001 BECMG 0503/0505 9999 FEW030',
+        RKSI: 'TAF RKSI 041700Z 0418/0524 27010KT 6000 SCT012 TEMPO 0502/0506 2000 BR BKN004',
+        RKSS: 'TAF RKSS 041700Z 0418/0524 27008KT 5000 BR BKN008 BECMG 0502/0504 1200 BR BKN002',
+        RKTU: 'TAF RKTU 041700Z 0418/0524 29008KT 8000 SCT015',
+        RKPK: 'TAF RKPK 041700Z 0418/0524 30010KT 9999 FEW030',
+        RJTT: 'TAF RJTT 041700Z 0418/0524 VRB02KT 0400 FG VV001 BECMG 0503/0505 9999',
+        RJSS: 'TAF RJSS 041700Z 0418/0524 34010KT 9999 SCT030',
+        RJCC: 'TAF RJCC 041700Z 0418/0524 32012KT 9999 FEW025'
+      },
+      tafAmd: { RKTU: 'TAF AMD RKTU 042320Z 0423/0524 29008KT 8000 SCT015 TEMPO 0503/0507 1500 BR OVC003' },
+      upd: { at: L('05日 0020Z', '05일 0020Z', '05 0020Z'), amd: 'RKTU' },
+      /* 이륙 교체공항 카드(2C-1 ③ · OEI 도달시간 = 교육용 OEI 속도 환산 카드 값 — TAS를 OEI 속도로 쓰지 않음) */
+      toCands: [{ icao: 'RJTT', dist: 32, oei: { '737': 9, '789': 8 } }, { icao: 'RJSS', dist: 145, oei: { '737': 31, '789': 29 } }, { icao: 'RJCC', dist: 425, oei: { '737': 82, '789': 74 } }],
+      /* NOTAM — 이 날은 영향 있는 것 없음(기간 읽기 교훈). win = B)·C) 유효(같은 달 시간축) → 그 공항 자체 ETA ±1h와 겹칠 때만 영향 */
+      notam: [
+        { id: 'A2105/26', ap: 'RKPK', win: [126.5, 128.5], affIfActive: true, closeApp: ['RKPK', 'ILS 36L'], txt: 'A2105/26 NOTAMN\nQ)RKRR/QICAS/I/NBO/A/000/999/3510N12856E025\nA)RKPK B)2611050630 C)2611050830\nE)ILS RWY 36L U/S DUE TO MAINT.',
+          why: L('金海のILSが使えないのは06:30Z〜08:30Z。金海に着く予定（その空港のETA）の前後1時間より後なので、この便には影響しない。', '김해 ILS를 못 쓰는 시간은 06:30Z~08:30Z. 김해 도착 예정(그 공항의 ETA) 전후 1시간보다 뒤라서 이 편에는 영향 없음.', 'Gimhae’s ILS is out 0630–0830Z — after the window of ±1 h around this flight’s ETA there, so no effect.') },
+        { id: 'A2110/26', ap: 'RKSI', aff: false, txt: 'A2110/26 NOTAMN\nQ)RKRR/QMXLC/IV/M/A/000/999/3728N12627E005\nA)RKSI B)2611042300 C)2611051500\nE)TWY B BTN B3 AND B5 CLSD.',
+          why: L('誘導路の一部閉鎖。ほかの誘導路で地上走行できるので、計画（燃料・代替空港）は変わらない。', '유도로 일부 폐쇄. 다른 유도로로 지상 이동할 수 있어 계획(연료·교체공항)은 바뀌지 않음.', 'Part of a taxiway is closed; other taxiways remain, so the plan (fuel, alternates) does not change.') },
+        { id: 'B2120/26', ap: 'RJAA', aff: false, txt: 'B2120/26 NOTAMN\nQ)RJJJ/QLAAS/IV/BO/A/000/999/3546N14023E005\nA)RJAA B)2611042000 C)2611051000\nE)APRON FLOOD LIGHT STAND 21 U/S.',
+          why: L('ほかのスポットの照明の故障。この便には影響しない。', '다른 주기장 조명 고장. 이 편에는 영향 없음.', 'A floodlight failure at another stand — no effect on this flight.') }
+      ] },
+    KR: { prof: 'KR', flight: 'VELA 302', from: 'ICN', to: 'NRT', dep: 'RKSI', dest: 'RJAA', route: 'in', fl: 350, wind: [270, 80], wind2: [270, 50], std: '13:30', start: '10:25', cs: 'VLA302',
+      occ: L('ソウルOCC', '서울 OCC', 'Seoul OCC'), cands: ['RJTT', 'RJSS', 'RJSN'],
+      metar: 'METAR RKSI 050100Z 00000KT 0400 R33L/0550N R33R/0500N FG VV001 12/12 Q1022',
+      metar2: 'METAR RKSI 050400Z 00000KT 0400 R33L/0550N R33R/0500N FG VV001 13/13 Q1021',
+      taf: {
+        RKSI: 'TAF RKSI 042300Z 0500/0606 00000KT 0400 FG VV001 BECMG 0506/0508 9999 SCT030',
+        RJAA: 'TAF RJAA 042300Z 0500/0606 18010KT 6000 -RA BKN010 TEMPO 0505/0509 0800 -RA BR OVC001',
+        RJTT: 'TAF RJTT 042300Z 0500/0606 18012KT 8000 BKN015',
+        RJSS: 'TAF RJSS 042300Z 0500/0606 34010KT 9999 SCT025',
+        RJSN: 'TAF RJSN 042300Z 0500/0606 32008KT 9999 FEW030',
+        RKSS: 'TAF RKSS 042300Z 0500/0606 00000KT 0400 FG VV001 BECMG 0506/0508 9999',
+        RKTU: 'TAF RKTU 042300Z 0500/0606 29006KT 9999 SCT020',
+        RJFF: 'TAF RJFF 042300Z 0500/0606 32008KT 9999 FEW030'
+      },
+      tafAmd: { RJTT: 'TAF AMD RJTT 050320Z 0503/0606 18012KT 8000 BKN015 TEMPO 0505/0509 1000 -RA BKN003' },
+      upd: { at: L('05日 0320Z', '05일 0320Z', '05 0320Z'), amd: 'RJTT' },
+      toCands: [{ icao: 'RKSS', dist: 17, oei: { '737': 6, '789': 6 } }, { icao: 'RKTU', dist: 68, oei: { '737': 16, '789': 14 } }, { icao: 'RJFF', dist: 304, oei: { '737': 61, '789': 55 } }],
+      notam: [
+        { id: 'B2131/26', ap: 'RJSN', win: [133, 140], affIfActive: true, closeAll: true, txt: 'B2131/26 NOTAMN\nQ)RJJJ/QMRLC/IV/NBO/A/000/999/3757N13907E005\nA)RJSN B)2611051300 C)2611052000\nE)RWY 10/28 CLSD.',
+          why: L('新潟の滑走路閉鎖は13:00Z〜20:00Z。新潟に着く予定（その空港のETA）の前後1時間より後なので、この便には影響しない。', '니가타 활주로 폐쇄는 13:00Z~20:00Z. 니가타 도착 예정(그 공항의 ETA) 전후 1시간보다 뒤라서 이 편에는 영향 없음.', 'Niigata’s runway closure is 1300–2000Z — after the ±1 h window around this flight’s ETA there, so no effect.') },
+        { id: 'B2140/26', ap: 'RJAA', aff: false, txt: 'B2140/26 NOTAMN\nQ)RJJJ/QMXLC/IV/M/A/000/999/3546N14023E005\nA)RJAA B)2611050000 C)2611051200\nE)TWY A3 CLSD.',
+          why: L('誘導路の一部閉鎖。ほかの経路で地上走行できる。', '유도로 일부 폐쇄. 다른 경로로 지상 이동 가능.', 'Part of a taxiway is closed; other routes remain.') },
+        { id: 'A1160/26', ap: 'RKSS', aff: false, txt: 'A1160/26 NOTAMN\nQ)RKRR/QOBCE/IV/M/A/000/003/3734N12647E002\nA)RKSS B)2611042300 C)2611061000\nE)CRANE ERECTED 1.8KM N OF ARP. HGT 52M AMSL. LIGHTED.',
+          why: L('金浦の障害物。金浦は使えない離陸の代替空港の候補なので、計画には影響しない。', '김포의 장애물. 김포는 쓰지 않는 이륙 교체공항 후보라 계획에는 영향 없음.', 'An obstacle at Gimpo, which this flight does not use — no effect on the plan.') }
+      ] }
+  };
+  var AC = {   /* 예상 ZFW(−150) → 최종 ZFW(−25 · 지연 뒤 +15 통보 반영) · 고장 필요량 카드 Fcrit = 통상 N보다 작음(추가 0) */
+    '737': { reg: 'VL-8A2', zfwEst: 58200, zfwFinal: 58400, fcritLess: 900 },
+    '789': { reg: 'VL-9B2', zfwEst: 165300, zfwFinal: 165700, fcritLess: 1800 }
+  };
+  function variant(c) {
+    var p = P[c];
+    return { flight: p.flight, from: p.from, to: p.to, std: p.std, start: p.start, close: p.std, p: p,
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('d-brf', 'brf', 'BRIEF'), u('d-rel', 'rel', 'RELEASE'), u('d-fpl', 'fpl', 'FPL'), u('d-gnd', 'gnd', 'GROUND'), u('d-flt', 'flt', 'FLIGHT')];
+      } };
+  }
+  window.MISSION_DP02 = {
+    id: 'dp02', generated: false, day: 2, date: { y: 2026, m: 11, d: 5 }, ap: AP, data: AC, opt: { upd: true, toAlt: true }, events: [
+      { k: 'upd', at: -70 },          /* 새 정보: TAF AMD + 상층풍 판 2 → 재승인 필요(R05-08) */
+      { k: 'dly', at: -45, min: 40 }, /* 선행편 지연으로 기재 도착 늦음 — ETD +40(지상 추가 연료 소비 없음 · 교육용) */
+      { k: 'met2', at: -30 }          /* 출발지 METAR 갱신(이륙 RVR 재확인 — 안개 지속) */
+    ],
+    cost: { tab: 5, sign: 5, call: 1, chg: 3, chk: 2 },
+    times: { brf: -185, rel: -180, mel: -160, fpl: -90, gnd: -70, zfw: -25 },
+    variants: { JP: variant('JP'), KR: variant('KR') }
+  };
+})();
+
+/* ../src_dp/mission_dp03.js */
+/* 운항관리편 Day 3 「NOTAMと機材」 미션 데이터 — DAY 2~5 설계안 v4(확정 2026-11-04) 2절
+   교육용 가상 데이터: 편·등록 기호·TAF·METAR·NOTAM·허용중량 카드·MEL·지원 설비 카드·고장 필요량 카드는 모두 연습용(실제 공항·기재 자료 아님).
+   날짜 = 11월 6일. 시간축(2A-0): JP STD 06 0130Z(첫 확인 −185 = 05 2225Z) · KR STD 06 0430Z(첫 확인 06 0125Z). 초기 자료 = 첫 확인 전 발표.
+   사건: −160 정비 MEL 통보(APU 불능) · 연료 탭 완료 직후(−150 이후) 탑재관리 화물 증가 요청. 계산은 window.DP(dp_calc.js) — 이 파일은 시나리오만 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var I = function (id) { return { id: 'ILS ' + id, type: 'ILS', dh: 200, vis: 550 }; }, R = function (id) { return { id: 'RNP ' + id, type: 'RNP', dh: 400, vis: 1600 }; };   /* 교육용 최저치: ILS 200 ft·550 m · RNP 400 ft·1,600 m */
+  var AP = {
+    RKSI: { nm: L('仁川', '인천', 'Incheon'), apps: [I('33L'), I('33R'), R('33L')] },
+    RJAA: { nm: L('成田', '나리타', 'Narita'), apps: [I('34L'), I('34R'), R('34R')] },
+    RKSS: { nm: L('金浦', '김포', 'Gimpo'), apps: [I('32L'), R('32L')] },
+    RKTU: { nm: L('清州', '청주', 'Cheongju'), apps: [I('24R'), R('24R')] },
+    RJTT: { nm: L('羽田', '하네다', 'Haneda'), apps: [I('34R'), R('34R')] },
+    RJSS: { nm: L('仙台', '센다이', 'Sendai'), apps: [I('27'), R('27')] }
+  };
+  var P = {
+    JP: { prof: 'JP', flight: 'VELA 301', from: 'NRT', to: 'ICN', dep: 'RJAA', dest: 'RKSI', route: 'ni', fl: 340, wind: [270, 80], std: '10:30', start: '07:25', cs: 'VLA301', depRwy: '34L',
+      occ: L('東京OCC', '도쿄 OCC', 'Tokyo OCC'), cands: ['RKSS', 'RKTU'],
+      metar: 'METAR RJAA 052200Z 34010KT 9999 FEW030 RA 11/08 Q1012',
+      taf: {
+        RJAA: 'TAF RJAA 051700Z 0518/0624 34010KT 9999 -RA FEW030 BKN050',
+        RKSI: 'TAF RKSI 051700Z 0518/0624 30010KT 3000 BR BKN008 TEMPO 0602/0606 2000 BR BKN005',
+        RKSS: 'TAF RKSS 051700Z 0518/0624 30008KT 6000 BKN012',
+        RKTU: 'TAF RKTU 051700Z 0518/0624 29008KT 4000 BKN010'
+      },
+      /* 허용중량 카드(교육용 — 활주로·노면 상태별 허용 TOW · 2E에 반영). 출발 활주로 = OFP의 depRwy */
+      rwCards: [{ rwy: '34L', len: 2500, rwycc: 5, aTOW: { '737': 68000, '789': 196000 } }],
+      notam: [
+        { id: 'A2301/26', ap: 'RJAA', win: [142, 177], affIfActive: true, rwyRed: '34L', txt: 'A2301/26 NOTAMN\nQ)RJJJ/QMRLT/IV/NBO/A/000/999/3546N14023E005\nA)RJAA B)2611052200 C)2611070900\nE)RWY 16R/34L TORA REDUCED TO 2500M DUE WIP.',
+          why: L('出発滑走路34Lの離陸に使える長さが2,500mに。離陸重量の上限（許容重量カード）が下がる。', '출발 활주로 34L의 이륙 가용 거리가 2,500m로. 이륙 중량 상한(허용중량 카드)이 내려감.', 'Take-off run available on departure runway 34L is cut to 2,500 m — the allowable take-off weight (card) goes down.') },
+        { id: 'A1310/26', ap: 'RKSI', win: [144, 156], affIfActive: true, closeApp: [['RKSI', 'ILS 33L'], ['RKSI', 'ILS 33R']], txt: 'A1310/26 NOTAMN\nQ)RKRR/QICAS/I/NBO/A/000/999/3728N12627E025\nA)RKSI B)2611060000 C)2611061200\nE)ILS RWY 33L AND ILS RWY 33R NOT AVBL.',
+          why: L('到着予定（ETAの前後）に仁川のILSが2本とも使えない → RNP 33Lの最低条件で判断し直す。', '도착 예정(ETA 전후)에 인천 ILS 2개 모두 쓸 수 없음 → RNP 33L 최저치로 다시 판단.', 'Both Incheon ILSs are out around the ETA → re-judge on the RNP 33L minima.') },
+        { id: 'A1322/26', ap: 'RKSI', aff: false, txt: 'A1322/26 NOTAMN\nQ)RKRR/QMXLC/IV/M/A/000/999/3728N12627E005\nA)RKSI B)2611052300 C)2611061500\nE)TWY D BTN D2 AND D4 CLSD.',
+          why: L('誘導路の一部閉鎖。ほかの誘導路で地上走行できる。', '유도로 일부 폐쇄. 다른 유도로로 지상 이동 가능.', 'Part of a taxiway is closed; other taxiways remain.') },
+        { id: 'B2350/26', ap: 'RJAA', aff: false, txt: 'B2350/26 NOTAMN\nQ)RJJJ/QLAAS/IV/BO/A/000/999/3546N14023E005\nA)RJAA B)2611052000 C)2611061000\nE)APRON FLOOD LIGHT STAND 33 U/S.',
+          why: L('ほかのスポットの照明の故障。この便には影響しない。', '다른 주기장 조명 고장. 이 편에는 영향 없음.', 'A floodlight failure at another stand — no effect on this flight.') }
+      ],
+      /* MEL(−160 정비 통보) · 지원 설비 카드(기재 탭 — 교육용) */
+      mel: { item: '49-11-01', sup: { RJAA: true, RKSI: true, RKTU: true, RKSS: false },
+        supWhy: { RKSS: L('金浦：737の空気始動装置（ASU）は当日整備中・787の始動用外部電源なし（教育用カード）', '김포: 737 공기 시동 장치(ASU) 당일 정비 중 · 787 시동용 외부 전원 없음(교육용 카드)', 'Gimpo: the 737 air start unit (ASU) is under maintenance today; no 787 start power (educational card)') } } },
+    KR: { prof: 'KR', flight: 'VELA 302', from: 'ICN', to: 'NRT', dep: 'RKSI', dest: 'RJAA', route: 'in', fl: 350, wind: [270, 80], std: '13:30', start: '10:25', cs: 'VLA302', depRwy: '33L',
+      occ: L('ソウルOCC', '서울 OCC', 'Seoul OCC'), cands: ['RJTT', 'RJSS'],
+      metar: 'METAR RKSI 060100Z 32012KT 9999 FEW030 RA 10/06 Q1014',
+      taf: {
+        RKSI: 'TAF RKSI 052300Z 0600/0706 32012KT 9999 -RA FEW030 BKN050',
+        RJAA: 'TAF RJAA 052300Z 0600/0706 20012KT 4000 BKN009 TEMPO 0605/0609 2500 -RA BKN006',
+        RJTT: 'TAF RJTT 052300Z 0600/0706 20010KT 8000 BKN015',
+        RJSS: 'TAF RJSS 052300Z 0600/0706 33010KT 9999 SCT030'
+      },
+      rwCards: [{ rwy: '33L', len: 2600, rwycc: 5, aTOW: { '737': 68000, '789': 196000 } }, { rwy: '33R', len: 3750, rwycc: 5, aTOW: null }],
+      notam: [
+        { id: 'A1301/26', ap: 'RKSI', win: [142, 177], affIfActive: true, rwyRed: '33L', txt: 'A1301/26 NOTAMN\nQ)RKRR/QMRLT/IV/NBO/A/000/999/3728N12627E005\nA)RKSI B)2611052200 C)2611070900\nE)RWY 15R/33L TORA REDUCED TO 2600M DUE WIP.',
+          why: L('出発滑走路33Lの離陸に使える長さが2,600mに。33Lの許容重量カードを使う（33Rのカードではない）。', '출발 활주로 33L의 이륙 가용 거리가 2,600m로. 33L 허용중량 카드를 씀(33R 카드가 아님).', 'Take-off run available on departure runway 33L is cut to 2,600 m — use the 33L allowable-weight card, not the 33R one.') },
+        { id: 'B2305/26', ap: 'RJAA', win: [144, 156], affIfActive: true, closeApp: [['RJAA', 'ILS 34L'], ['RJAA', 'ILS 34R']], txt: 'B2305/26 NOTAMN\nQ)RJJJ/QICAS/I/NBO/A/000/999/3546N14023E025\nA)RJAA B)2611060000 C)2611061200\nE)ILS RWY 34L AND ILS RWY 34R NOT AVBL.',
+          why: L('到着予定（ETAの前後）に成田のILSが2本とも使えない → RNP 34Rの最低条件で判断し直す。', '도착 예정(ETA 전후)에 나리타 ILS 2개 모두 쓸 수 없음 → RNP 34R 최저치로 다시 판단.', 'Both Narita ILSs are out around the ETA → re-judge on the RNP 34R minima.') },
+        { id: 'B2311/26', ap: 'RJAA', aff: false, txt: 'B2311/26 NOTAMN\nQ)RJJJ/QMXLC/IV/M/A/000/999/3546N14023E005\nA)RJAA B)2611060000 C)2611061200\nE)TWY A4 CLSD.',
+          why: L('誘導路の一部閉鎖。ほかの経路で地上走行できる。', '유도로 일부 폐쇄. 다른 경로로 지상 이동 가능.', 'Part of a taxiway is closed; other routes remain.') },
+        { id: 'A1330/26', ap: 'RKSS', aff: false, txt: 'A1330/26 NOTAMN\nQ)RKRR/QOBCE/IV/M/A/000/003/3734N12647E002\nA)RKSS B)2611052300 C)2611071000\nE)CRANE ERECTED 2.0KM E OF ARP. HGT 48M AMSL. LIGHTED.',
+          why: L('この便が使わない金浦の障害物。影響しない。', '이 편이 쓰지 않는 김포의 장애물. 영향 없음.', 'An obstacle at Gimpo, which this flight does not use — no effect.') }
+      ],
+      mel: { item: '49-11-01', sup: { RKSI: true, RJAA: true, RJTT: true, RJSS: false },
+        supWhy: { RJSS: L('仙台：737の空気始動装置（ASU）なし・787の始動用外部電源なし（教育用カード）', '센다이: 737 공기 시동 장치(ASU) 없음 · 787 시동용 외부 전원 없음(교육용 카드)', 'Sendai: no 737 air start unit (ASU) and no 787 start power (educational card)') } } }
+  };
+  var AC = {   /* 예상 ZFW(−150) · 최종 ZFW = 예상 + 수락한 화물 − 100(dp.js) · 고장 필요량 카드 Fcrit = 이 날 교체공항(MEL 적합) 기준 N + fcritMore */
+    '737': { reg: 'VL-8A3', zfwEst: 58000, fcritMore: 400, cargoReq: 3500 },
+    '789': { reg: 'VL-9B3', zfwEst: 165000, fcritMore: 900, cargoReq: 17000 }
+  };
+  function variant(c) {
+    var p = P[c];
+    return { flight: p.flight, from: p.from, to: p.to, std: p.std, start: p.start, close: p.std, p: p,
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('d-brf', 'brf', 'BRIEF'), u('d-rel', 'rel', 'RELEASE'), u('d-fpl', 'fpl', 'FPL'), u('d-gnd', 'gnd', 'GROUND'), u('d-flt', 'flt', 'FLIGHT')];
+      } };
+  }
+  window.MISSION_DP03 = {
+    id: 'dp03', generated: false, day: 3, date: { y: 2026, m: 11, d: 6 }, ap: AP, data: AC, opt: { mel: true, rwCard: true, appSel: true, cargo: true }, events: [
+      { k: 'cargo', at: -150, after: 'fuel' }   /* 탑재관리 화물 증가 요청 — 연료 탭 완료 직후(−150 이후) · 서명 전에 판단(설계안 2B 「완료 직후」 규칙) */
+    ],
+    cost: { tab: 5, sign: 5, call: 1, chg: 3, chk: 2 },
+    times: { brf: -185, rel: -180, mel: -160, fpl: -90, gnd: -60, zfw: -25 },
+    variants: { JP: variant('JP'), KR: variant('KR') }
+  };
+})();
+
+/* ../src_dp/mission_dp04.js */
+/* 운항관리편 Day 4 「飛行中の判断」 미션 데이터 — DAY 2~5 설계안 v4(확정) 3절
+   릴리스 = DAY 1 자료 재사용(Q5): 날짜 +3일(11/7) · 발표 시각·TAF 기간·NOTAM B)/C) 날짜를 함께 옮기고 NOTAM 번호만 바꿈(판정 내용은 DAY 1과 같음).
+   비행 중 사건(3C·3D): A = 목적지 활주로 폐쇄 → 대기(2D 연료 상태) · B = 급병 다이버트. 연습 = 근무 시작 화면에서 선택 · 실전 = seed(결정적).
+   승무 시간(3H): 교육용 카드 — 출두 JP 2026-11-06 1930Z / KR 2230Z(= STD −6:00) · 적용 FDP 한계 10:00 · FT 한계 8:00 · FT 사용 2:10. 모든 값은 연습용 */
+(function () {
+  if (!window.MISSION_DP01) return;
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var D1 = window.MISSION_DP01, SH = 3;
+  function dd(s) { return ('0' + (+s + SH)).slice(-2); }
+  function shift(t) {   /* DDHHMMZ · DDHH/DDHH · B)/C) YYMMDDhhmm 의 날짜만 +3 */
+    return String(t).replace(/\b(\d{2})(\d{4})Z\b/g, function (m, a, b) { return dd(a) + b + 'Z'; })
+      .replace(/\b(\d{2})(\d{2})\/(\d{2})(\d{2})\b/g, function (m, a, b, c, e) { return dd(a) + b + '/' + dd(c) + e; })
+      .replace(/([BC])\)2611(\d{2})(\d{4})/g, function (m, k, a, b) { return k + ')2611' + dd(a) + b; });
+  }
+  function renum(id) { return id.replace(/^([AB])(\d{4})/, function (m, a, n) { return a + (+n + 300); }); }
+  function copyP(c) {
+    var p = JSON.parse(JSON.stringify(D1.variants[c].p)), o = {};
+    p.metar = shift(p.metar); Object.keys(p.taf).forEach(function (k) { o[k] = shift(p.taf[k]); }); p.taf = o;
+    p.notam.forEach(function (n) { var id0 = n.id; n.id = renum(id0); n.txt = shift(n.txt).replace(id0, n.id); });
+    return p;
+  }
+  var P = { JP: copyP('JP'), KR: copyP('KR') };
+  /* −30 출발지 METAR 갱신(같은 날씨 · 새 발표) */
+  P.JP.metar2 = 'METAR RJAA 070100Z 33009KT 9999 FEW030 14/08 Q1018';
+  P.KR.metar2 = 'METAR RKSI 070400Z 29011KT 9999 SCT030 13/06 Q1019';
+  /* 사건 A(3C): 대기 진입 지점 · 조기 변경 공항(= 계획 교체공항) · 착륙까지 분(교육용) */
+  P.JP.evA = { f1: 'SAPRA', f2: 'SEL', alt: 'RKSS', la: 13 };
+  P.KR.evA = { f1: 'ENTAK', f2: 'SWAMP', alt: 'RJTT', la: 17 };
+  /* 사건 B(3D): 후보 카드(교육용) · 분 = 지금 지점에서 착륙까지(737 기준 · 787도 같은 값 사용) */
+  var med = { RKPK: L('大学病院まで20分・救急車常駐', '대학병원 20분 · 구급차 상주', 'University hospital 20 min, ambulance on site'), RJFF: L('病院まで15分', '병원 15분', 'Hospital 15 min') };
+  P.JP.evB = { f1: 'SAPRA', cands: [
+    { icao: 'RKPK', nm: 95, min: 16, wx: 'TAF RKPK 061700Z 0618/0724 30010KT 9999 FEW030', med: med.RKPK, ciq: L('国際空港24時間 ― 予定外の入国 → 例外の手配', '국제공항 24시간 — 예정 외 입국 → 예외 수배', '24 h international airport — unscheduled arrival → exception handling'), hand: L('Vela釜山支店 ○', 'Vela 부산 지점 ○', 'Vela Busan station ○'), sta: true, pts: 5 },
+    { icao: 'RJFF', nm: 135, min: 22, wx: 'TAF RJFF 061700Z 0618/0724 29010KT 8000 BKN020', med: med.RJFF, ciq: L('国際空港の運用時間内 ― 出国旅客の再入国 → 例外の手配', '국제공항 운용시간 안 — 출국 승객 재입국 → 예외 수배', 'Within international hours — departed passengers re-entering → exception handling'), hand: L('契約の取扱会社を手配（2時間）・Vela支店なし', '계약 조업사 수배 필요(2시간) · Vela 지점 없음', 'Contract handler needed (2 h) — no Vela station'), sta: false, pts: 3 },
+    { icao: 'RKSI', cont: true, nm: 228, min: 35, pts: 0 } ] };
+  P.KR.evB = { f1: 'LANAT', cands: [
+    { icao: 'RKPK', nm: 141, min: 23, wx: 'TAF RKPK 062300Z 0700/0806 31012KT 9999 FEW030', med: med.RKPK, ciq: L('国際空港24時間 ― 出国旅客の再入国 → 例外の手配', '국제공항 24시간 — 출국 승객 재입국 → 예외 수배', '24 h international airport — departed passengers re-entering → exception handling'), hand: L('Vela釜山支店 ○', 'Vela 부산 지점 ○', 'Vela Busan station ○'), sta: true, pts: 5 },
+    { icao: 'RJFF', nm: 174, min: 28, wx: 'TAF RJFF 062300Z 0700/0806 30010KT 8000 BKN020', med: med.RJFF, ciq: L('国際空港の運用時間内 ― 予定外の入国 → 例外の手配', '국제공항 운용시간 안 — 예정 외 입국 → 예외 수배', 'Within international hours — unscheduled arrival → exception handling'), hand: L('契約の取扱会社を手配（2時間）・Vela支店なし', '계약 조업사 수배 필요(2시간) · Vela 지점 없음', 'Contract handler needed (2 h) — no Vela station'), sta: false, pts: 3 },
+    { icao: 'RJAA', cont: true, nm: 436, min: 60, pts: 0 } ] };
+  /* 재출발(3H 표): 다이버트 공항 → 원래 목적지 거리(NM) · 지점 예비 승무원이 있는 공항 */
+  P.JP.rd = { RKSS: 17, RKPK: 183, RJFF: 304 }; P.KR.rd = { RJTT: 32, RKPK: 561, RJFF: 507 };
+  P.JP.res = ['RKSS', 'RKPK']; P.KR.res = ['RJTT', 'RKPK'];
+  /* F05-11-03: 공항 운용시간(교육용 · UTC [열림, 닫힘] · 없음 = 24시간) — 재출발 출발지·목적지·교체공항의 자체 시각으로 판정 */
+  P.JP.hrs = { RKSS: [21, 14], RJFF: [22, 13] }; P.KR.hrs = { RJAA: [21, 15], RJSS: [21, 14], RJFF: [22, 13] };
+  /* F05-11-03: 「휴식 뒤 다음날」 자료 판(교육용) — 다음날 출두(현지 06:00 = 07 2100Z) 전 발표 07 1700Z · 유효 0718/0824.
+     어제 판(JP 0618/0724 · KR 0700/0806)으로는 다음날 ETA 창을 덮지 못하거나 최신이 아님 → 이 판으로 다시 판정. 교체공항 적합 여부가 어제와 바뀜(JP RKSS → RKTU · KR RJTT → RJSS) */
+  var ndNotam = function (id, ap, q, b, c, e, ko, ja, en) { return { id: id, ap: ap, txt: id + ' NOTAMN\nQ)' + q + '\nA)' + ap + ' B)' + b + ' C)' + c + '\nE)' + e, why: L(ja, ko, en) }; };
+  P.JP.nd = { iss: '071700Z', taf: {
+      RKSI: 'TAF RKSI 071700Z 0718/0824 30010KT 9999 FEW030',
+      RKSS: 'TAF RKSS 071700Z 0718/0824 VRB03KT 6000 BR SCT020 TEMPO 0723/0803 1200 BR OVC003',
+      RKTU: 'TAF RKTU 071700Z 0718/0824 32008KT 9999 SCT030',
+      RKPK: 'TAF RKPK 071700Z 0718/0824 31010KT 9999 FEW030',
+      RJFF: 'TAF RJFF 071700Z 0718/0824 30010KT 9999 FEW025' },
+    notam: [ndNotam('A1702/26', 'RKSI', 'RKRR/QMXLC/IV/M/A/000/999/3728N12627E005', '2611072000', '2611080400', 'TWY G1 CLSD.', '유도로 일부 폐쇄. 다른 경로로 지상 이동 가능 — 영향 없음.', '誘導路の一部閉鎖。ほかの経路で地上走行できる ― 影響なし。', 'Part of a taxiway closed; other routes remain — no effect.')] };
+  P.KR.nd = { iss: '071700Z', taf: {
+      RJAA: 'TAF RJAA 071700Z 0718/0824 34010KT 9999 FEW030',
+      RJTT: 'TAF RJTT 071700Z 0718/0824 VRB03KT 6000 BR SCT020 TEMPO 0723/0803 1200 BR OVC003',
+      RJSS: 'TAF RJSS 071700Z 0718/0824 32012KT 9999 FEW030',
+      RKPK: 'TAF RKPK 071700Z 0718/0824 31010KT 9999 FEW030',
+      RJFF: 'TAF RJFF 071700Z 0718/0824 30010KT 9999 FEW025' },
+    notam: [ndNotam('B1711/26', 'RJAA', 'RJJJ/QMXLC/IV/M/A/000/999/3546N14023E005', '2611072000', '2611080600', 'TWY A3 CLSD.', '유도로 일부 폐쇄. 다른 경로로 지상 이동 가능 — 영향 없음.', '誘導路の一部閉鎖。ほかの経路で地上走行できる ― 影響なし。', 'Part of a taxiway closed; other routes remain — no effect.')] };
+  var AP = JSON.parse(JSON.stringify(D1.ap));
+  AP.RKPK = { nm: L('金海', '김해', 'Gimhae'), apps: [{ id: 'ILS 36L', type: 'ILS', dh: 200, vis: 550 }] };
+  AP.RJFF = { nm: L('福岡', '후쿠오카', 'Fukuoka'), apps: [{ id: 'ILS 34', type: 'ILS', dh: 200, vis: 550 }] };
+  var AC = {   /* DAY 1과 같은 예상/최종 ZFW · 사건 A 교육용 상수(3C): 대기 15분 · 남은 접근 · 지금 교체공항까지 · 허가 변경 1회분 */
+    '737': { reg: 'VL-8A4', zfwEst: 58000, zfwFinal: 58240, fcritLess: 900, ev: { hold: 480, app: 200, alt: 450, chg: 300 } },
+    '789': { reg: 'VL-9B4', zfwEst: 165000, zfwFinal: 165400, fcritLess: 1800, ev: { hold: 1080, app: 450, alt: 1000, chg: 700 } }
+  };
+  function variant(c) {
+    var p = P[c];
+    return { flight: p.flight, from: p.from, to: p.to, std: p.std, start: p.start, close: p.std, p: p,
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('d-brf', 'brf', 'BRIEF'), u('d-rel', 'rel', 'RELEASE'), u('d-fpl', 'fpl', 'FPL'), u('d-gnd', 'gnd', 'GROUND'), u('d-flt', 'flt', 'FLIGHT'), u('d-arr', 'arr', 'ARRIVAL'), u('d-rdp', 'rdp', 'REDEPART')];
+      } };
+  }
+  window.MISSION_DP04 = {
+    id: 'dp04', generated: false, day: 4, date: { y: 2026, m: 11, d: 7 }, ap: AP, data: AC, opt: { inflight: true }, events: [{ k: 'met2', at: -30 }],
+    crew: { report: -360, ftUsed: 130, ftMax: 480, fdpMax: 600 },   /* 출두 = STD −6:00(JP 06 1930Z · KR 06 2230Z) · 분 */
+    cost: { tab: 5, sign: 5, call: 1, chg: 3, chk: 2 },
+    times: { brf: -185, rel: -180, mel: -160, fpl: -90, gnd: -60, zfw: -25 },
+    variants: { JP: variant('JP'), KR: variant('KR') }
+  };
+})();
+
+/* ../src_dp/mission_dp05.js */
+/* 운항관리편 Day 5 「冬の朝」 미션 데이터 — DAY 2~5 설계안 v4(확정) 4절 · 날짜 12월 15일(Q2)
+   교육용 가상 데이터: METAR·SPECI·TAF·SNOWTAM·허용중량 카드·MEL·HOT 표는 모두 연습용(실제 공항·기재 자료 아님).
+   시간축(4A-0): JP STD 15 0130Z(첫 확인 14 2225Z) · KR STD 15 0430Z(첫 확인 15 0125Z).
+   지상 HOT(4B): 램프편 v2 3E 값(HOT 45 · 푸시백 3 · 지상 이동 15 · 여유 10 · Type I 6 · Type IV 6) · 교육용 HOT 표 약한 눈 45 / 보통 눈 25 */
+(function () {
+  var L = function (ja, ko, en) { return { ja: ja, ko: ko, en: en }; };
+  var I = function (id) { return { id: 'ILS ' + id, type: 'ILS', dh: 200, vis: 550 }; };
+  var AP = {
+    RKSI: { nm: L('仁川', '인천', 'Incheon'), apps: [I('33L'), I('33R')] }, RJAA: { nm: L('成田', '나리타', 'Narita'), apps: [I('34L'), I('34R')] },
+    RKSS: { nm: L('金浦', '김포', 'Gimpo'), apps: [I('32L')] }, RKTU: { nm: L('清州', '청주', 'Cheongju'), apps: [I('24R')] },
+    RJTT: { nm: L('羽田', '하네다', 'Haneda'), apps: [I('34R')] }, RJSS: { nm: L('仙台', '센다이', 'Sendai'), apps: [I('27')] }
+  };
+  var mel = { item: '49-11-01', valid: '12-24', sup: {}, supWhy: {} };
+  var P = {
+    JP: { prof: 'JP', flight: 'VELA 301', from: 'NRT', to: 'ICN', dep: 'RJAA', dest: 'RKSI', route: 'ni', fl: 340, wind: [270, 80], std: '10:30', start: '07:25', cs: 'VLA301', depRwy: '34L',
+      occ: L('東京OCC', '도쿄 OCC', 'Tokyo OCC'), cands: ['RKSS', 'RKTU'],
+      metar: 'METAR RJAA 142200Z 36012KT 1200 R34L/1400N R34R/1300N -SN BKN004 M03/M05 Q1012',
+      metar2: 'METAR RJAA 150100Z 36012KT 1200 R34L/1400N R34R/1300N -SN BKN004 M03/M05 Q1012',
+      rvr: { vis: 1200, rvr: [1400, 1300], ans: 1300 },
+      taf: {
+        RJAA: 'TAF RJAA 141700Z 1418/1524 36012KT 1500 -SN BKN005 TEMPO 1500/1504 0800 SN VV002',
+        RKSI: 'TAF RKSI 141700Z 1418/1524 32015KT 3000 -SN BKN010 TEMPO 1502/1506 1500 SN BKN006',
+        RKSS: 'TAF RKSS 141700Z 1418/1524 32012KT 3000 -SN BKN008 TEMPO 1502/1506 0600 +SN VV002',
+        RKTU: 'TAF RKTU 141700Z 1418/1524 31010KT 5000 -SN BKN012'
+      },
+      snowtam: 'SNOWTAM RJAA 12150000 RWY 34L 5/5/3 100/100/100 03/03/06 WET SNOW/WET SNOW/DRY SNOW',
+      rwCards: [{ rwy: '34L', len: 4000, rwycc: '5/5/3', aTOW: { '737': 69000, '789': 196000 } }],
+      notam: [
+        { id: 'A3020/26', ap: 'RKSI', aff: false, txt: 'A3020/26 NOTAMN\nQ)RKRR/QMXLC/IV/M/A/000/999/3728N12627E005\nA)RKSI B)2612142300 C)2612160900\nE)TWY R1 CLSD DUE SNOW REMOVAL.',
+          why: L('除雪のための誘導路の一部閉鎖。ほかの経路で地上走行できる。', '제설을 위한 유도로 일부 폐쇄. 다른 경로로 지상 이동 가능.', 'Part of a taxiway closed for snow removal; other routes remain.') },
+        { id: 'B3110/26', ap: 'RJAA', aff: false, txt: 'B3110/26 NOTAMN\nQ)RJJJ/QLAAS/IV/BO/A/000/999/3546N14023E005\nA)RJAA B)2612142200 C)2612151000\nE)APRON FLOOD LIGHT STAND 210 U/S.',
+          why: L('別のスポットの照明の故障。この便には影響しない。', '다른 주기장 조명 고장. 이 편에는 영향 없음.', 'A floodlight failure at another stand — no effect.') }
+      ],
+      mel: mel, ev5: 'SAPRA',
+      speci: 'SPECI RJAA 150140Z 36015KT 0800 SN VV002 M04/M05 Q1011', speci2: 'SPECI RJAA 150205Z 36010KT 1500 -SN BKN005 M03/M05 Q1011' },
+    KR: { prof: 'KR', flight: 'VELA 302', from: 'ICN', to: 'NRT', dep: 'RKSI', dest: 'RJAA', route: 'in', fl: 350, wind: [270, 80], std: '13:30', start: '10:25', cs: 'VLA302', depRwy: '33L',
+      occ: L('ソウルOCC', '서울 OCC', 'Seoul OCC'), cands: ['RJTT', 'RJSS'],
+      metar: 'METAR RKSI 150100Z 33010KT 1500 R33L/1600N R33R/1500N -SN BKN006 M02/M04 Q1015',
+      metar2: 'METAR RKSI 150400Z 33010KT 1500 R33L/1600N R33R/1500N -SN BKN006 M02/M04 Q1015',
+      rvr: { vis: 1500, rvr: [1600, 1500], ans: 1500 },
+      taf: {
+        RKSI: 'TAF RKSI 142300Z 1500/1606 33010KT 1500 -SN BKN006 TEMPO 1503/1507 0800 SN VV002',
+        RJAA: 'TAF RJAA 142300Z 1500/1606 35010KT 4000 -SN BKN012 TEMPO 1505/1509 2000 SN BKN007',
+        RJTT: 'TAF RJTT 142300Z 1500/1606 35012KT 3000 -SN BKN010 TEMPO 1505/1509 0800 +SN VV002',
+        RJSS: 'TAF RJSS 142300Z 1500/1606 33010KT 6000 -SN BKN015'
+      },
+      snowtam: 'SNOWTAM RKSI 12150000 RWY 33L 5/5/3 100/100/100 03/03/06 WET SNOW/WET SNOW/DRY SNOW',
+      rwCards: [{ rwy: '33L', len: 3750, rwycc: '5/5/3', aTOW: { '737': 69000, '789': 196000 } }],
+      notam: [
+        { id: 'B3125/26', ap: 'RJAA', aff: false, txt: 'B3125/26 NOTAMN\nQ)RJJJ/QMXLC/IV/M/A/000/999/3546N14023E005\nA)RJAA B)2612150000 C)2612151200\nE)TWY S2 CLSD DUE SNOW REMOVAL.',
+          why: L('除雪のための誘導路の一部閉鎖。ほかの経路で地上走行できる。', '제설을 위한 유도로 일부 폐쇄. 다른 경로로 지상 이동 가능.', 'Part of a taxiway closed for snow removal; other routes remain.') },
+        { id: 'A3040/26', ap: 'RKSS', aff: false, txt: 'A3040/26 NOTAMN\nQ)RKRR/QOBCE/IV/M/A/000/003/3734N12647E002\nA)RKSS B)2612142300 C)2612171000\nE)CRANE ERECTED 1.8KM E OF ARP. HGT 46M AMSL. LIGHTED.',
+          why: L('この便が使わない金浦の障害物。影響しない。', '이 편이 쓰지 않는 김포의 장애물. 영향 없음.', 'An obstacle at Gimpo, which this flight does not use — no effect.') }
+      ],
+      mel: mel, ev5: 'ENTAK',
+      speci: 'SPECI RKSI 150440Z 33014KT 0800 SN VV002 M03/M04 Q1014', speci2: 'SPECI RKSI 150505Z 33010KT 1500 -SN BKN006 M02/M04 Q1014' }
+  };
+  var AC = {
+    '737': { reg: 'VL-8A5', zfwEst: 58000, zfwFinal: 58240, fcritLess: 900 },
+    '789': { reg: 'VL-9B5', zfwEst: 165000, zfwFinal: 165400, fcritLess: 1800 }
+  };
+  function variant(c) {
+    var p = P[c];
+    return { flight: p.flight, from: p.from, to: p.to, std: p.std, start: p.start, close: p.std, p: p,
+      pax: function () {
+        var u = function (id, kind, nm) { return { id: id, kind: kind, at: '', art: '', pp: { sur: nm, given: '' }, bags: [], say: {} }; };
+        return [u('d-brf', 'brf', 'BRIEF'), u('d-rel', 'rel', 'RELEASE'), u('d-fpl', 'fpl', 'FPL'), u('d-gnd', 'gnd', 'GROUND'), u('d-flt', 'flt', 'FLIGHT')];
+      } };
+  }
+  window.MISSION_DP05 = {
+    id: 'dp05', generated: false, day: 5, date: { y: 2026, m: 12, d: 15 }, ap: AP, data: AC, opt: { mel: true, rwCard: true, rvr: true, ice: true, ev5: true },
+    events: [{ k: 'met2', at: -30 }, { k: 'ice1', at: -60 }, { k: 'ice2', at: -20 }, { k: 'ice3', at: 10 }, { k: 'ice4', at: 35 }],
+    hot: { light: 45, mod: 25 },
+    cost: { tab: 5, sign: 5, call: 1, chg: 3, chk: 2 },
+    times: { brf: -185, rel: -180, mel: -160, fpl: -90, gnd: -60, zfw: -25 },
+    variants: { JP: variant('JP'), KR: variant('KR') }
+  };
+})();
 
 /* ../src_rp/rp_sched.js */
 /* STAGE 04 램프·턴어라운드편 — 턴어라운드 보드 엔진(합의본 v2 2B·2C·2E·2F·3C). 화면과 무관한 순수 계산(window.RPS, node 시험 가능).
@@ -2295,9 +3013,9 @@ window.RULES = {
 })();
 
 /* lessons.js */
-window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）と電子渡航認証", "ko": "미리 보내는 승객 정보(API·PNR)와 전자여행허가", "en": "Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations"}, "ciq/1-1": {"ja": "旅券と査証 ― カウンターで何を確認するか", "ko": "여권과 비자 — 카운터에서 무엇을 확인하나", "en": "Passports and Visas: What to Check at the Counter"}, "ciq/1-2": {"ja": "TIMATIC ― 渡航条件を確認するためのデータベース", "ko": "TIMATIC — 입국 조건을 찾는 도구", "en": "TIMATIC: The Tool for Looking Up Entry Requirements"}, "ciq/1-4": {"ja": "入国拒否と送還の実際", "ko": "입국 거부와 송환의 실제", "en": "Refusal of Entry and Removal in Practice"}, "passenger/1-1": {"ja": "カウンターオープン前の準備とレイアウト", "ko": "카운터 오픈 전 준비와 레이아웃", "en": "Getting the Counter Ready, and How to Lay It Out"}, "passenger/1-3": {"ja": "チェックインの流れとパスポート・ビザ確認", "ko": "체크인 흐름과 여권·비자 확인", "en": "The Check-in Flow and Checking Passports and Visas"}, "passenger/1-4": {"ja": "以遠区間・乗り継ぎのお客様の手続き", "ko": "이원 구간·환승 승객 수속", "en": "Passengers with Onward and Connecting Flights"}, "passenger/1-5": {"ja": "座席指定・アップグレードと非常口座席", "ko": "좌석 배정·업그레이드와 비상구 열 좌석", "en": "Seat Assignment, Upgrades and Exit Row Seats"}, "passenger/1-6": {"ja": "特別対応① 幼児・小児、妊娠中・医療の配慮が必要なお客様", "ko": "특별 승객 ① 유아·소아, 임산부·의료 배려 승객", "en": "Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs"}, "passenger/1-7": {"ja": "特別対応② 車いす・お身体の不自由なお客様、お一人で旅行するお子様", "ko": "특별 승객 ② 휠체어·장애인 승객, 비동반 소아", "en": "Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors"}, "passenger/1-8": {"ja": "特別対応③ ペットの輸送", "ko": "특별 승객 ③ 반려동물 운송", "en": "Special Assistance 3: Carrying Pets"}, "passenger/1-10": {"ja": "手荷物規定① 受託・機内持ち込み・超過", "ko": "수하물 규정 ① 위탁·기내·초과", "en": "Baggage Rules 1: Checked, Carry-on and Excess"}, "passenger/1-12": {"ja": "危険物の基礎 ― お客様の手荷物で気をつけるもの", "ko": "위험물 기초 — 승객 수하물에서 주의할 것", "en": "Dangerous Goods Basics: What to Watch in Passenger Baggage"}, "passenger/1-13": {"ja": "リチウム電池とモバイルバッテリー ― 日韓の最新ルール", "ko": "리튬 배터리와 보조배터리 — 한일 최신 규정", "en": "Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea"}, "passenger/2-2": {"ja": "ゲートバッグと車いすの取り扱い", "ko": "게이트 백과 휠체어 처리", "en": "Gate-Checked Bags and Wheelchairs"}, "passenger/2-3": {"ja": "開披検査への対応", "ko": "개방 검사 대응", "en": "Handling a Bag Search with the Passenger"}, "passenger/5-4": {"ja": "遅延対応 ― ご案内・食事券・遅延証明", "ko": "지연 처리 — 안내·식사 쿠폰·지연 증명", "en": "Delays: Information, Meal Vouchers and Certificates"}, "passenger/5-6": {"ja": "欠航対応 ― 振替・エンドース・補償案内・苦情対応", "ko": "결항 처리 — 대체편·엔도스·보상 안내·클레임 접수", "en": "Cancellations: Rebooking, Endorsement, Compensation and Claims"}, "passenger/2-1": {"ja": "ゲート業務の準備", "ko": "게이트 업무 준비", "en": "Preparing for Gate Duty"}, "passenger/2-4": {"ja": "搭乗の流れとご案内の順番", "ko": "탑승 절차와 안내 순서", "en": "The Boarding Procedure and Boarding Order"}, "passenger/2-5": {"ja": "搭乗遅れのお客様の捜索とオフロード", "ko": "늦은 승객 수색과 오프로드", "en": "Searching for Late Passengers, and Offloading"}, "passenger/2-7": {"ja": "搭載書類と締め作業、マニュアル搭乗", "ko": "탑재 서류와 마감, 수동 탑승 절차", "en": "Flight Documents, Closing the Flight and Manual Boarding"}, "passenger/3-4": {"ja": "ロードコントロール入門 ― 重量と重心", "ko": "탑재관리 입문 — 무게와 균형", "en": "Load Control: Weight and Balance"}, "passenger/3-7": {"ja": "ロードシートの読み方 ― 1枚の書類で便の重量と重心を確認する", "ko": "로드시트 읽는 법 — 한 장의 종이로 편의 무게와 무게중심을 확인한다", "en": "Reading a Loadsheet: Checking a Flight’s Weight and Balance on One Page"}, "passenger/3-8": {"ja": "LIR（搭載指示書）の読み方と貨物室の配置", "ko": "LIR(탑재 지시서) 읽는 법과 화물칸 배치", "en": "Reading the LIR (Loading Instruction/Report) and the Hold Layout"}, "cargo/3-1": {"ja": "危険物 ― 貨物で運べるもの・運べないもの", "ko": "위험물 — 화물로 보낼 수 있는 것·없는 것", "en": "Dangerous Goods: What Can and Cannot Fly"}, "cargo/3-2": {"ja": "生きた動物", "ko": "생동물", "en": "Live Animals"}, "cargo/3-4": {"ja": "貴重品・重量物・大型貨物", "ko": "귀중품·중량물·대형 화물", "en": "Valuables, Heavy and Outsized Cargo"}, "cargo/4-1": {"ja": "搭載計画と機長への通知", "ko": "탑재 계획과 기장 통보", "en": "The Load Plan and Notification to the Captain"}, "cargo/7-3": {"ja": "危険物とNOTOCの受付実務 ― 止める勇気と3枚の通知書", "ko": "위험물과 NOTOC 접수 실무 — 멈추는 용기와 세 장의 통보서", "en": "Accepting Dangerous Goods and NOTOC in Practice: The Courage to Stop and Three Copies"}, "passenger/3-1": {"ja": "航空機ドア開閉の基礎", "ko": "항공기 도어 개폐의 기초", "en": "Aircraft Doors: The Basics"}, "passenger/3-2": {"ja": "到着業務と出発業務", "ko": "도착 업무와 출발 업무", "en": "Arrival and Departure Duties"}, "passenger/3-3": {"ja": "ターンアラウンド ― 到着から出発まで何が起きるか", "ko": "턴어라운드 — 도착부터 출발까지 무슨 일이 일어나나", "en": "Turnaround: What Happens Between Arrival and Departure"}, "passenger/3-5": {"ja": "ランプ安全の基本", "ko": "램프 안전의 기본", "en": "Ramp Safety Basics"}, "passenger/3-6": {"ja": "ランプの車両と器材（GSE）― 何が、どこで、何をするか", "ko": "램프 차량과 장비(GSE) — 무엇이, 어디서, 무엇을 하나", "en": "Ramp Vehicles and Equipment (GSE): What, Where and Why"}, "station/1-2": {"ja": "定時性を読み解く ― D0・D15と遅延コード", "ko": "정시성 읽는 법 — D0·D15와 지연 코드", "en": "Reading On-Time Performance: D0, D15 and Delay Codes"}, "station/1-3": {"ja": "地上起因の遅延を減らす", "ko": "지상 원인 지연 줄이기", "en": "Cutting Ground-Caused Delays"}, "station/1-7": {"ja": "A-CDMとTSAT ― 空港全体で定時性を上げる新しい決まり", "ko": "A-CDM과 TSAT — 공항 전체로 정시성을 높이는 새 규칙", "en": "A-CDM and TSAT: New Rules That Raise Punctuality Across the Whole Airport"}, "maintenance/0-3": {"ja": "支店と整備が出会う所 ― 折り返しの60分と、不具合が発生したとき", "ko": "지점과 정비가 만나는 곳 — 턴어라운드 60분과 결함이 생긴 아침", "en": "Where the Station Meets Maintenance: The 60-Minute Turnaround and the Morning of a Defect"}, "maintenance/1-2": {"ja": "空気と電気 ― ブリードのB737、電気のB787", "ko": "공기와 전기 — 블리드의 B737, 전기의 B787", "en": "Air and Electricity: the Bleed-Air B737 and the More-Electric B787"}, "maintenance/3-3": {"ja": "CDLと、運送・搭載への影響 ― MELの制限が支店の仕事を変える", "ko": "CDL과 운송·탑재에 미치는 영향 — MEL 제한이 지점의 일을 바꾼다", "en": "The CDL and Effects on Passenger Services and Loading: How MEL Restrictions Change the Station’s Work"}, "maintenance/4-4": {"ja": "防除雪氷と支店の冬の準備 ― 雪・霜・氷を付けたまま飛ばない", "ko": "제빙·방빙과 지점의 겨울 준비 — 눈·서리·얼음을 붙인 채 날지 않는다", "en": "De-icing, Anti-icing and Winter Readiness at the Station: Never Fly with Snow, Frost or Ice"}, "maintenance/5-4": {"ja": "臨時の点検 ― 落雷・鳥衝突・ハードランディングのあとで", "ko": "비정기 점검 — 낙뢰·조류 충돌·하드 랜딩 뒤에", "en": "Unscheduled Inspections: After Lightning, Bird Strikes and Hard Landings"}};
-/* 47차: 첫 화면 「이 날 관련 레슨」 — 스테이지별 레슨 → 나오는 DAY. ci는 tools/lesson_days.json, gt는 게이트 판정·방송의 lesson 참조에서, wb(10-18)는 합의본 v2 3절 레슨 열 */
-window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],"passenger/1-4":[2,5],"passenger/1-5":[1,2,3,4,5],"passenger/1-6":[3],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/1-10":[1,2,4,5],"passenger/1-13":[1,2,4,5],"passenger/5-4":[5],"passenger/5-6":[5],"ciq/0-4":[1,2],"ciq/1-1":[1],"ciq/1-2":[1,2],"ciq/1-4":[1]},"gt":{"passenger/2-1":[1,2,3,4,5],"passenger/2-4":[1,2,3,4,5],"passenger/2-5":[1,2,3,4,5],"passenger/2-7":[1,2,3,4,5],"passenger/2-2":[2,3],"passenger/1-12":[2],"passenger/1-13":[2],"passenger/1-5":[2,3,5],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/5-4":[5]},"wb":{"passenger/3-4":[1,2,4,5],"passenger/3-7":[1,2,3,4,5],"passenger/3-8":[1,2,3,5],"passenger/2-7":[1,5],"passenger/2-5":[4],"passenger/1-12":[3],"passenger/5-4":[5],"cargo/3-1":[3],"cargo/3-2":[3],"cargo/3-4":[3],"cargo/4-1":[2],"cargo/7-3":[3]},"rp":{"passenger/3-1":[1,2,3,4,5],"passenger/3-2":[1,2,3,4,5],"passenger/3-3":[1,2,3,4,5],"passenger/3-5":[1,2,3],"passenger/3-6":[1,3,5],"station/1-2":[1,2,3,4,5],"station/1-3":[1,2],"station/1-7":[1,2,4],"maintenance/0-3":[1,3,4],"maintenance/1-2":[4],"maintenance/3-3":[4],"maintenance/4-4":[5],"maintenance/5-4":[5]}};
+window.LESSONS={"ciq/0-4": {"ja": "事前に送る旅客の情報（API・PNR）と電子渡航認証", "ko": "미리 보내는 승객 정보(API·PNR)와 전자여행허가", "en": "Passenger Data Sent in Advance (API, PNR) and Electronic Travel Authorisations"}, "ciq/1-1": {"ja": "旅券と査証 ― カウンターで何を確認するか", "ko": "여권과 비자 — 카운터에서 무엇을 확인하나", "en": "Passports and Visas: What to Check at the Counter"}, "ciq/1-2": {"ja": "TIMATIC ― 渡航条件を確認するためのデータベース", "ko": "TIMATIC — 입국 조건을 찾는 도구", "en": "TIMATIC: The Tool for Looking Up Entry Requirements"}, "ciq/1-4": {"ja": "入国拒否と送還の実際", "ko": "입국 거부와 송환의 실제", "en": "Refusal of Entry and Removal in Practice"}, "passenger/1-1": {"ja": "カウンターオープン前の準備とレイアウト", "ko": "카운터 오픈 전 준비와 레이아웃", "en": "Getting the Counter Ready, and How to Lay It Out"}, "passenger/1-3": {"ja": "チェックインの流れとパスポート・ビザ確認", "ko": "체크인 흐름과 여권·비자 확인", "en": "The Check-in Flow and Checking Passports and Visas"}, "passenger/1-4": {"ja": "以遠区間・乗り継ぎのお客様の手続き", "ko": "이원 구간·환승 승객 수속", "en": "Passengers with Onward and Connecting Flights"}, "passenger/1-5": {"ja": "座席指定・アップグレードと非常口座席", "ko": "좌석 배정·업그레이드와 비상구 열 좌석", "en": "Seat Assignment, Upgrades and Exit Row Seats"}, "passenger/1-6": {"ja": "特別対応① 幼児・小児、妊娠中・医療の配慮が必要なお客様", "ko": "특별 승객 ① 유아·소아, 임산부·의료 배려 승객", "en": "Special Assistance 1: Infants, Children, Pregnant Passengers and Medical Needs"}, "passenger/1-7": {"ja": "特別対応② 車いす・お身体の不自由なお客様、お一人で旅行するお子様", "ko": "특별 승객 ② 휠체어·장애인 승객, 비동반 소아", "en": "Special Assistance 2: Wheelchair Users, Passengers with Disabilities and Unaccompanied Minors"}, "passenger/1-8": {"ja": "特別対応③ ペットの輸送", "ko": "특별 승객 ③ 반려동물 운송", "en": "Special Assistance 3: Carrying Pets"}, "passenger/1-10": {"ja": "手荷物規定① 受託・機内持ち込み・超過", "ko": "수하물 규정 ① 위탁·기내·초과", "en": "Baggage Rules 1: Checked, Carry-on and Excess"}, "passenger/1-12": {"ja": "危険物の基礎 ― お客様の手荷物で気をつけるもの", "ko": "위험물 기초 — 승객 수하물에서 주의할 것", "en": "Dangerous Goods Basics: What to Watch in Passenger Baggage"}, "passenger/1-13": {"ja": "リチウム電池とモバイルバッテリー ― 日韓の最新ルール", "ko": "리튬 배터리와 보조배터리 — 한일 최신 규정", "en": "Lithium Batteries and Power Banks: the Latest Rules in Japan and Korea"}, "passenger/2-2": {"ja": "ゲートバッグと車いすの取り扱い", "ko": "게이트 백과 휠체어 처리", "en": "Gate-Checked Bags and Wheelchairs"}, "passenger/2-3": {"ja": "開披検査への対応", "ko": "개방 검사 대응", "en": "Handling a Bag Search with the Passenger"}, "passenger/5-4": {"ja": "遅延対応 ― ご案内・食事券・遅延証明", "ko": "지연 처리 — 안내·식사 쿠폰·지연 증명", "en": "Delays: Information, Meal Vouchers and Certificates"}, "passenger/5-6": {"ja": "欠航対応 ― 振替・エンドース・補償案内・苦情対応", "ko": "결항 처리 — 대체편·엔도스·보상 안내·클레임 접수", "en": "Cancellations: Rebooking, Endorsement, Compensation and Claims"}, "passenger/2-1": {"ja": "ゲート業務の準備", "ko": "게이트 업무 준비", "en": "Preparing for Gate Duty"}, "passenger/2-4": {"ja": "搭乗の流れとご案内の順番", "ko": "탑승 절차와 안내 순서", "en": "The Boarding Procedure and Boarding Order"}, "passenger/2-5": {"ja": "搭乗遅れのお客様の捜索とオフロード", "ko": "늦은 승객 수색과 오프로드", "en": "Searching for Late Passengers, and Offloading"}, "passenger/2-7": {"ja": "搭載書類と締め作業、マニュアル搭乗", "ko": "탑재 서류와 마감, 수동 탑승 절차", "en": "Flight Documents, Closing the Flight and Manual Boarding"}, "passenger/3-4": {"ja": "ロードコントロール入門 ― 重量と重心", "ko": "탑재관리 입문 — 무게와 균형", "en": "Load Control: Weight and Balance"}, "passenger/3-7": {"ja": "ロードシートの読み方 ― 1枚の書類で便の重量と重心を確認する", "ko": "로드시트 읽는 법 — 한 장의 종이로 편의 무게와 무게중심을 확인한다", "en": "Reading a Loadsheet: Checking a Flight’s Weight and Balance on One Page"}, "passenger/3-8": {"ja": "LIR（搭載指示書）の読み方と貨物室の配置", "ko": "LIR(탑재 지시서) 읽는 법과 화물칸 배치", "en": "Reading the LIR (Loading Instruction/Report) and the Hold Layout"}, "cargo/3-1": {"ja": "危険物 ― 貨物で運べるもの・運べないもの", "ko": "위험물 — 화물로 보낼 수 있는 것·없는 것", "en": "Dangerous Goods: What Can and Cannot Fly"}, "cargo/3-2": {"ja": "生きた動物", "ko": "생동물", "en": "Live Animals"}, "cargo/3-4": {"ja": "貴重品・重量物・大型貨物", "ko": "귀중품·중량물·대형 화물", "en": "Valuables, Heavy and Outsized Cargo"}, "cargo/4-1": {"ja": "搭載計画と機長への通知", "ko": "탑재 계획과 기장 통보", "en": "The Load Plan and Notification to the Captain"}, "cargo/7-3": {"ja": "危険物とNOTOCの受付実務 ― 止める勇気と3枚の通知書", "ko": "위험물과 NOTOC 접수 실무 — 멈추는 용기와 세 장의 통보서", "en": "Accepting Dangerous Goods and NOTOC in Practice: The Courage to Stop and Three Copies"}, "passenger/3-1": {"ja": "航空機ドア開閉の基礎", "ko": "항공기 도어 개폐의 기초", "en": "Aircraft Doors: The Basics"}, "passenger/3-2": {"ja": "到着業務と出発業務", "ko": "도착 업무와 출발 업무", "en": "Arrival and Departure Duties"}, "passenger/3-3": {"ja": "ターンアラウンド ― 到着から出発まで何が起きるか", "ko": "턴어라운드 — 도착부터 출발까지 무슨 일이 일어나나", "en": "Turnaround: What Happens Between Arrival and Departure"}, "passenger/3-5": {"ja": "ランプ安全の基本", "ko": "램프 안전의 기본", "en": "Ramp Safety Basics"}, "passenger/3-6": {"ja": "ランプの車両と器材（GSE）― 何が、どこで、何をするか", "ko": "램프 차량과 장비(GSE) — 무엇이, 어디서, 무엇을 하나", "en": "Ramp Vehicles and Equipment (GSE): What, Where and Why"}, "station/1-2": {"ja": "定時性を読み解く ― D0・D15と遅延コード", "ko": "정시성 읽는 법 — D0·D15와 지연 코드", "en": "Reading On-Time Performance: D0, D15 and Delay Codes"}, "station/1-3": {"ja": "地上起因の遅延を減らす", "ko": "지상 원인 지연 줄이기", "en": "Cutting Ground-Caused Delays"}, "station/1-7": {"ja": "A-CDMとTSAT ― 空港全体で定時性を上げる新しい決まり", "ko": "A-CDM과 TSAT — 공항 전체로 정시성을 높이는 새 규칙", "en": "A-CDM and TSAT: New Rules That Raise Punctuality Across the Whole Airport"}, "maintenance/0-3": {"ja": "支店と整備が出会う所 ― 折り返しの60分と、不具合が発生したとき", "ko": "지점과 정비가 만나는 곳 — 턴어라운드 60분과 결함이 생긴 아침", "en": "Where the Station Meets Maintenance: The 60-Minute Turnaround and the Morning of a Defect"}, "maintenance/1-2": {"ja": "空気と電気 ― ブリードのB737、電気のB787", "ko": "공기와 전기 — 블리드의 B737, 전기의 B787", "en": "Air and Electricity: the Bleed-Air B737 and the More-Electric B787"}, "maintenance/3-3": {"ja": "CDLと、運送・搭載への影響 ― MELの制限が支店の仕事を変える", "ko": "CDL과 운송·탑재에 미치는 영향 — MEL 제한이 지점의 일을 바꾼다", "en": "The CDL and Effects on Passenger Services and Loading: How MEL Restrictions Change the Station’s Work"}, "maintenance/4-4": {"ja": "防除雪氷と支店の冬の準備 ― 雪・霜・氷を付けたまま飛ばない", "ko": "제빙·방빙과 지점의 겨울 준비 — 눈·서리·얼음을 붙인 채 날지 않는다", "en": "De-icing, Anti-icing and Winter Readiness at the Station: Never Fly with Snow, Frost or Ice"}, "maintenance/5-4": {"ja": "臨時の点検 ― 落雷・鳥衝突・ハードランディングのあとで", "ko": "비정기 점검 — 낙뢰·조류 충돌·하드 랜딩 뒤에", "en": "Unscheduled Inspections: After Lightning, Bird Strikes and Hard Landings"}, "dispatch/0-1": {"ja": "運航管理とは ― 機長と運航管理者の「共同の責任」", "ko": "운항관리란 — 기장과 운항관리사의 ‘공동 책임’", "en": "What Is Operational Control? The Joint Responsibility of Captain and Dispatcher"}, "dispatch/2-1": {"ja": "気象情報を読む ― METAR・TAF・SIGMET・天気図", "ko": "기상 정보 읽기 — METAR·TAF·SIGMET·일기도", "en": "Reading Weather Information: METAR, TAF, SIGMET and Charts"}, "dispatch/2-2": {"ja": "出発の判断と代替空港の基準", "ko": "출발 판단과 교체공항 기준", "en": "Departure Decisions and Alternate Aerodrome Rules"}, "dispatch/3-1": {"ja": "NOTAMのしくみと読み方", "ko": "NOTAM의 구조와 읽는 법", "en": "How NOTAMs Work and How to Read Them"}, "dispatch/4-1": {"ja": "運航飛行計画書（OFP）を読む ― 韓国版と日本版", "ko": "운항비행계획서(OFP) 읽기 — 한국판과 일본판", "en": "Reading the Operational Flight Plan (OFP): Korean and Japanese Versions"}, "dispatch/4-2": {"ja": "ATCに出す飛行計画 ― 項目と提出の決まり", "ko": "ATC에 내는 비행계획 — 항목과 제출 규정", "en": "The Flight Plan Filed with ATC: Items and Filing Rules"}, "dispatch/5-1": {"ja": "燃料の区分 ― 韓国と日本を並べて読む", "ko": "연료의 구분 — 한국과 일본을 나란히 읽기", "en": "Fuel Categories: Korean and Japanese Rules Side by Side"}, "dispatch/5-2": {"ja": "燃料を計算する ― 金浦→済州と羽田→福岡", "ko": "연료 계산하기 — 김포→제주와 하네다→후쿠오카", "en": "Calculating Fuel: Gimpo→Jeju and Haneda→Fukuoka"}, "dispatch/5-3": {"ja": "飛行中の燃料と地上の仕事 ― MINIMUM FUEL・MAYDAY FUEL・給油", "ko": "비행 중 연료와 지상 업무 — MINIMUM FUEL·MAYDAY FUEL·급유", "en": "Fuel in Flight and on the Ground: MINIMUM FUEL, MAYDAY FUEL and Refuelling"}, "dispatch/9-1": {"ja": "運航監視と通信 ― 位置を知り、つながり続ける", "ko": "운항 감시와 통신 — 위치를 파악하고 연결을 유지하기", "en": "Flight Monitoring and Communications: Knowing Where the Aircraft Is and Staying Connected"}, "dispatch/2-3": {"ja": "飛行場運営最低値と危険な気象", "ko": "비행장 운영 최저치와 위험 기상", "en": "Aerodrome Operating Minima and Hazardous Weather"}, "dispatch/3-2": {"ja": "SNOWTAMと滑走路状態の報告（GRF）", "ko": "SNOWTAM과 활주로 상태 보고(GRF)", "en": "SNOWTAM and Runway Condition Reporting (GRF)"}, "dispatch/6-1": {"ja": "乗務時間と飛行勤務時間 ― 韓国と日本の上限", "ko": "비행시간과 비행근무시간 — 한국과 일본의 상한", "en": "Flight Time and Flight Duty Period: Korean and Japanese Limits"}, "dispatch/7-1": {"ja": "地上の着氷と防除雪氷 ― 韓国と日本の決まり", "ko": "지상 결빙과 제빙·방빙 — 한국과 일본의 규정", "en": "Ground Icing and De-/Anti-icing: Korean and Japanese Rules"}, "dispatch/7-2": {"ja": "ホールドオーバータイム（持続時間） ― 防氷液が守れる時間", "ko": "홀드오버 타임(지속시간) — 방빙액이 보호할 수 있는 시간", "en": "Holdover Time: How Long Anti-icing Fluid Protects"}, "dispatch/8-1": {"ja": "ダイバートと出発地への引き返し ― 判断から地上の手配まで", "ko": "다이버트와 출발지 회항 — 판단부터 지상 준비까지", "en": "Diversions and Turn-backs: From the Decision to Ground Arrangements"}, "dispatch/9-2": {"ja": "記録と保存 ― 何を、どれだけの期間", "ko": "기록과 보존 — 무엇을, 얼마 동안", "en": "Records and Retention: What to Keep and for How Long"}, "dispatch/14-4": {"ja": "機体のシステムとMEL ― 与圧・多重化・防除雪氷・最小装備品目録", "ko": "기체 계통과 MEL — 여압, 다중화, 방빙·제빙, 최소장비목록", "en": "Aircraft Systems and the MEL: Pressurisation, Redundancy, De-icing and the Minimum Equipment List"}, "dispatch/14-5": {"ja": "重量と重心 ― 重量区分・重心位置（%MAC）・許容範囲・燃料による移動", "ko": "중량과 무게중심 — 중량 구분·무게중심 위치(%MAC)·허용 범위·연료에 따른 이동", "en": "Weight and Balance: Weight Categories, CG Position (%MAC), the Envelope and How Fuel Moves the CG"}, "dispatch/15-1": {"ja": "総合事例① 冬の朝の国内線 ― 新千歳→羽田便を出発させるまで", "ko": "종합 사례 ① 겨울 아침의 국내선 — 신치토세→하네다 편을 출발시키기까지", "en": "Case Study 1: A Winter Morning Domestic Flight, Getting the New Chitose–Haneda Flight Away"}, "dispatch/15-5": {"ja": "総合事例⑤ 急病人とダイバート ― 空港の選び方と着陸重量", "ko": "종합 사례 ⑤ 응급 환자와 다이버트 — 공항 고르기와 착륙 중량", "en": "Case Study 5: A Medical Emergency and Diversion, Choosing the Airport and Landing Weight"}};
+/* 47차: 첫 화면 「이 날 관련 레슨」 — 스테이지별 레슨 → 나오는 DAY. ci는 tools/lesson_days.json, gt는 게이트 판정·방송의 lesson 참조에서, wb(10-18)는 합의본 v2 3절 레슨 열, dp(11-04)는 운항관리편 DAY 1 판정의 lesson 참조 */
+window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],"passenger/1-4":[2,5],"passenger/1-5":[1,2,3,4,5],"passenger/1-6":[3],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/1-10":[1,2,4,5],"passenger/1-13":[1,2,4,5],"passenger/5-4":[5],"passenger/5-6":[5],"ciq/0-4":[1,2],"ciq/1-1":[1],"ciq/1-2":[1,2],"ciq/1-4":[1]},"gt":{"passenger/2-1":[1,2,3,4,5],"passenger/2-4":[1,2,3,4,5],"passenger/2-5":[1,2,3,4,5],"passenger/2-7":[1,2,3,4,5],"passenger/2-2":[2,3],"passenger/1-12":[2],"passenger/1-13":[2],"passenger/1-5":[2,3,5],"passenger/1-7":[3],"passenger/1-8":[3],"passenger/5-4":[5]},"wb":{"passenger/3-4":[1,2,4,5],"passenger/3-7":[1,2,3,4,5],"passenger/3-8":[1,2,3,5],"passenger/2-7":[1,5],"passenger/2-5":[4],"passenger/1-12":[3],"passenger/5-4":[5],"cargo/3-1":[3],"cargo/3-2":[3],"cargo/3-4":[3],"cargo/4-1":[2],"cargo/7-3":[3]},"rp":{"passenger/3-1":[1,2,3,4,5],"passenger/3-2":[1,2,3,4,5],"passenger/3-3":[1,2,3,4,5],"passenger/3-5":[1,2,3],"passenger/3-6":[1,3,5],"station/1-2":[1,2,3,4,5],"station/1-3":[1,2],"station/1-7":[1,2,4],"maintenance/0-3":[1,3,4],"maintenance/1-2":[4],"maintenance/3-3":[4],"maintenance/4-4":[5],"maintenance/5-4":[5]},"dp":{"dispatch/0-1":[1],"dispatch/2-1":[1,2,5],"dispatch/2-2":[1,2],"dispatch/3-1":[1,3],"dispatch/4-1":[1],"dispatch/4-2":[1,2],"dispatch/5-1":[1],"dispatch/5-2":[1,2],"dispatch/5-3":[1,4,5],"dispatch/9-1":[1],"dispatch/2-3":[2,5],"dispatch/3-2":[3,5],"dispatch/14-4":[3],"dispatch/14-5":[3],"dispatch/15-1":[3,5],"dispatch/6-1":[4],"dispatch/8-1":[4],"dispatch/9-2":[4],"dispatch/15-5":[4],"dispatch/7-1":[5],"dispatch/7-2":[5],"maintenance/1-2":[3]}};
 
 /* scene.js */
 /* 2.5D 카운터 장면 + SD(2.5등신) 인물 — 캐릭터는 교체 가능한 레이어(SPEC: 영상과 공용 규격으로 확장 예정)
@@ -2767,19 +3485,11 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     { n: '03', nm: L('ロードコントロール（W&B）', '탑재관리(W&B)', 'Load control (W&B)'), key: 1, d: 'D03' },
     { n: '04', nm: L('ランプ・ターンアラウンド', '램프·턴어라운드', 'Ramp & turnaround'), d: 'D04' },
     { n: '05', nm: L('運航管理（ディスパッチ）', '운항관리(디스패치)', 'Flight dispatch'), key: 1, d: 'D06' },
-    { n: '06', nm: L('イレギュラー対応', '비정상 운항 대응', 'Irregular operations'), d: 'D02' },
+    /* 2026-11-05 현장편 9칸 재편(사용자 결정 11-03): 06 비정상 = 각 스테이지 DAY 4·5 · 경영편 OCC / 10~18 본사·경영 업무 = 경영편(AIRLINE MANAGEMENT)으로 */
     { n: '07', nm: L('CIQ・出入国', 'CIQ·출입국', 'CIQ & borders'), d: 'D08' },
     { n: '08', nm: L('航空貨物', '항공화물', 'Air cargo'), d: 'D05' },
     { n: '09', nm: L('整備・MEL・AOG', '정비·MEL·AOG', 'Maintenance, MEL, AOG'), d: 'D07' },
-    { n: '10', nm: L('営業・販売', '영업·판매', 'Sales'), d: 'D09' },
-    { n: '11', nm: L('収益管理・運賃', '수익관리·운임', 'Revenue & fares'), d: 'D10' },
-    { n: '12', nm: L('精算・財務', '정산·재무', 'Settlement & finance'), d: 'D11' },
-    { n: '13', nm: L('人事・総務', '인사·총무', 'HR & admin'), d: 'D12' },
-    { n: '14', nm: L('契約・ハンドリング会社管理', '계약·조업사 관리', 'Contracts & handling agents'), d: 'D13' },
-    { n: '15', nm: L('安全・保安・監査', '안전·보안·감사', 'Safety, security, audits'), d: 'D14' },
-    { n: '16', nm: L('当局対応・許認可', '당국 대응·인허가', 'Authorities & permits'), d: 'D16' },
-    { n: '17', nm: L('支店経営（月次・年次）', '지점 경영(월간·연간)', 'Running the station'), d: 'D15' },
-    { n: '18', nm: L('新規就航プロジェクト', '신규 취항 프로젝트', 'Launching a new route'), d: 'D15' }
+    { n: 'EX', nm: L('番外　到着・手荷物', '번외 도착·수하물', 'Extra: arrivals & baggage'), d: 'D08' }
   ];
 
   /* ---------- 미션 상태 ---------- */
@@ -2832,6 +3542,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       if (!G.hintsByDay) G.hintsByDay = { 1: d.hints != null ? !!d.hints : true }; } catch (e) {} }
   function beep(f, d, type) { if (!G.sound) return; try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); var o = AC.createOscillator(), g = AC.createGain(); o.type = type || 'sine'; o.frequency.value = f; g.gain.value = .06; o.connect(g); g.connect(AC.destination); o.start(); g.gain.exponentialRampToValueAtTime(.0001, AC.currentTime + (d || .12)); o.stop(AC.currentTime + (d || .12)); } catch (e) {} }
   function hm(t) { var h = Math.floor(t / 60), m = Math.floor(t % 60); return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m; }
+  function hmDay(t) { return t >= 1440 ? tx(L('翌日', '다음날', 'Next day')) + ' ' + hm(t - 1440) : hm(t); }   /* GPT F05-13 권고: 표시 전용 — 24시 넘은 시각을 「다음날 07:30」으로(계산·저장은 hm 그대로) */
   function pm(s) { var p = s.split(':'); return +p[0] * 60 + +p[1]; }
   /* 승객의 문제: p.issues(여러 개) 또는 p.issue(하나) */
   function has(p, k) { return p.issues ? p.issues.indexOf(k) >= 0 : p.issue === k; }
@@ -3237,7 +3948,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   }
   function updateBar() {
     if (!$('#clk')) return;
-    $('#clk').textContent = hm(S.lateAt || S.clock);
+    $('#clk').textContent = hmDay(S.lateAt || S.clock);
     var left = S.close - S.clock; $('#cls').textContent = (left >= 0 ? left.toFixed(0) : 0) + tx(T.min);
     $('#stclose').classList.toggle('alert', left < 10);
     $('#que').textContent = ST.barQueue ? ST.barQueue() : S.bgQueue + Math.max(0, S.list.length - S.idx - 1);
@@ -3357,7 +4068,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     var unserved = sc.unserved, allR = sc.allR, acc = sc.acc, svc = sc.svc, tim = sc.tim, tot = sc.tot, safe = sc.safe, smiss = sc.smiss, parts = sc.parts, rank = sc.rank, opMiss = sc.opMiss, opsPass = sc.opsPass, opCapped = sc.opCapped, capped = sc.capped;
     /* 28차(GPT 27-F02): 기록 직전 점수 범위 확인 — 구성 점수·총점·승객 만족·시간이 0~100(시간은 0~240분)이 아니면 기록·진행본을 바꾸지 않고 오류 안내(finish의 catch) */
     function in100(x) { return typeof x === 'number' && isFinite(x) && x >= 0 && x <= 100; }
-    if (![tot, acc, svc, tim].every(in100) || (parts && !parts.every(function (x) { return in100(x.v); })) || !allR.every(function (r) { return (r.ev || r.denied || in100(r.mood)) && typeof r.mins === 'number' && r.mins >= 0 && r.mins <= 240; })) throw new Error('score-range');
+    if (![tot, acc, svc, tim].every(in100) || (parts && !parts.every(function (x) { return in100(x.v); })) || !allR.every(function (r) { return (r.ev || r.denied || in100(r.mood)) && typeof r.mins === 'number' && r.mins >= 0 && r.mins <= (ST.unitMaxMins ? ST.unitMaxMins(r) : 240);   /* F05-12-03: 스테이지가 단위별 상한을 정할 수 있음(없으면 240분 그대로) */ })) throw new Error('score-range');
     ST.legacyBest(tot);
     /* 27차(GPT 26-F03): 결과 표시에 필요한 계산을 기록보다 먼저 — 여기서 오류가 나면 기록·진행본을 바꾸지 않음 */
     var rev = ST.revenueLines();
@@ -3376,7 +4087,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     if (window.SAGA_TEST && window.__sagaStop === 'beforeHist' && !S.hrec) { S.hrec = { plays: 0, miss: {} }; S.testStopped = true; }
     if (!S.hrec) {
       /* 기록용 오답 구조: 승객·사례 코드·이유 키·행동·심각도(critical / minor / report / self-corrected). 같은 승객의 같은 코드는 1번만 */
-      var crit = {}; (S.safety || []).forEach(function (x) { if (x.code) crit[x.who + '|' + x.code] = true; });
+      var crit = {}; (S.safety || []).forEach(function (x) { if (x.code) crit[(x.whoL ? tx(x.whoL) : x.who) + '|' + x.code] = true; });
       var mistakes = [], seen = {};
       allR.forEach(function (r) {
         var who = ST.unitName(r);
@@ -3411,8 +4122,8 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       '<p class="small" style="margin:2px 0 0">' + esc(tx(L('✔＝その回が安全合格 · 安全合格したことがある：', '✔ = 그 회차가 안전 합격 · 안전 합격 경험: ', '✔ = that run passed safety · Ever passed safety: '))) + (hr.safeEver ? '✔' : '—') + '</p>' +
       (tm.length ? '<p class="small" style="margin:8px 0 2px">' + esc(tx(L('見落としが多い項目', '자주 놓치는 항목', 'What you miss most'))) + '</p><ul class="tmiss">' + tm.map(function (m) { return '<li>' + esc(missLabel(m.code)) + ' <span class="small">×' + m.count + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
     G.screen = 'result'; playCls();
-    $('#app').innerHTML = '<div class="res"><div class="panel reshead"><div class="twins">' + STG.mascot('koradon', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + STG.mascot('korarin', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + '</div><div class="rank">' + rank + '</div><div><h2 style="margin:0">' + ST.resultTitle() + '</h2><div style="color:var(--sub);font-size:13px">' + hm(S.clock) + ' / ' + tx(L('締切', '마감', 'close')) + ' ' + V.close + ' · ' + tx(L('総合', '종합', 'Total')) + ' ' + tot + '</div></div></div>' +
-      '<div class="gate ' + (safe ? 'ok' : 'ng') + '">' + esc(tx(safe ? L('安全・保安：合格 ― 安全に関わる見落としはありません。', '안전·보안: 합격 — 안전 관련 누락이 없습니다.', 'Safety & security: pass — no safety-related misses.') : L('安全・保安：要再訓練 ― 安全に関わる見落としは、ほかの点数で埋め合わせできません。', '안전·보안: 재훈련 필요 — 안전 관련 누락은 다른 점수로 메울 수 없습니다.', 'Safety & security: retraining needed — safety misses cannot be offset by other scores.'))) + (smiss.length ? '<ul class="smiss">' + smiss.map(function (x) { return '<li>' + esc(typeof x === 'string' ? x : x.who + ' — ' + tx(x.what)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' +
+    $('#app').innerHTML = '<div class="res"><div class="panel reshead"><div class="twins">' + STG.mascot('koradon', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + STG.mascot('korarin', rank === 'S' || rank === 'A' ? 'greet' : 'idle') + '</div><div class="rank">' + rank + '</div><div><h2 style="margin:0">' + ST.resultTitle() + '</h2><div style="color:var(--sub);font-size:13px">' + hmDay(S.clock) + ' / ' + tx(L('締切', '마감', 'close')) + ' ' + V.close + ' · ' + tx(L('総合', '종합', 'Total')) + ' ' + tot + '</div></div></div>' +
+      '<div class="gate ' + (safe ? 'ok' : 'ng') + '">' + esc(tx(safe ? L('安全・保安：合格 ― 安全に関わる見落としはありません。', '안전·보안: 합격 — 안전 관련 누락이 없습니다.', 'Safety & security: pass — no safety-related misses.') : L('安全・保安：要再訓練 ― 安全に関わる見落としは、ほかの点数で埋め合わせできません。', '안전·보안: 재훈련 필요 — 안전 관련 누락은 다른 점수로 메울 수 없습니다.', 'Safety & security: retraining needed — safety misses cannot be offset by other scores.'))) + (smiss.length ? '<ul class="smiss">' + smiss.map(function (x) { return '<li>' + esc(typeof x === 'string' ? x : (x.whoL ? tx(x.whoL) : x.who) + ' — ' + tx(x.what)) + '</li>'; }).join('') + '</ul>' : '') + '</div>' +
       ST.resultGates(sc) +   /* 2a: 업무 합격 띠는 스테이지가(안전 띠는 공통) */
       (parts ? '<div class="score">' + parts.map(function (x) { return '<div class="sc"><div class="v">' + x.v + '</div><div class="l">' + esc(tx(Object.assign({ acc: L('正確さ', '정확성', 'Accuracy'), safe: L('安全', '안전', 'Safety'), svc: L('お客様の満足', '승객 만족', 'Passenger mood'), tim: L('時間', '시간', 'Time'), fee: L('料金の処理', '요금 처리', 'Fees'), rep: L('報告・連絡', '보고·연락', 'Reporting'), evt: L('イベント対応', '이벤트 대응', 'Event handling') }, ST.partLabels)[x.k])) + ' <span class="small">×' + x.w + '</span></div></div>'; }).join('') + '</div>' :
       '<div class="score"><div class="sc"><div class="v">' + acc + '</div><div class="l">' + esc(tx(L('正確さ', '정확성', 'Accuracy'))) + '</div></div><div class="sc"><div class="v">' + svc + '</div><div class="l">' + esc(tx(L('お客様の満足', '승객 만족', 'Passenger mood'))) + '</div></div><div class="sc"><div class="v">' + tim + '</div><div class="l">' + esc(tx(L('時間', '시간', 'Time'))) + '</div></div><div class="sc"><div class="v">' + (rev.length ? rev.length : 0) + '</div><div class="l">' + esc(tx(L('空港での収入（件）', '공항 수입(건)', 'Airport sales (items)'))) + '</div></div></div>') +
@@ -3460,7 +4171,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
     /* 48차(사용자 10-17): 판매 게임 로비형 첫 화면 — 대표 그림(16:9, 로고·⚙) → 근무지·모드 한 줄 → 이어하기 → 코라돈·코라린 카드 → 열린 스테이지 카드(그림·진행 막대) + 준비 중 접기 → 탑승권형 DAY → 출근하기 → 관련 레슨. PC는 2단 */
     if (prevScr && prevScr !== 'title' && !G._fromPop) popPlayState(); G._fromPop = false;   /* 근무·결과 화면에서 버튼으로 돌아오면 넣어 둔 기록 한 칸을 되돌림 */
     var gtDef = !!window.SAGA_STAGES.gt, soon = [], cards = '';
-    var THUMB = { ci: 'checkin_bg_02', gt: 'gate_bg_01', wb: STG.has('wb_bg_01') ? 'wb_bg_01' : 'gate_bg_02', rp: STG.has('rp_bg_01') ? 'rp_bg_01' : 'gate_bg_02' };   /* 61차: STAGE 04 램프편(그림 v06 전에는 게이트 그림) */
+    var THUMB = { ci: 'checkin_bg_02', gt: 'gate_bg_01', wb: STG.has('wb_bg_01') ? 'wb_bg_01' : 'gate_bg_02', rp: STG.has('rp_bg_01') ? 'rp_bg_01' : 'gate_bg_02', dp: STG.has('dp_bg_01') ? 'dp_bg_01' : 'gate_bg_02' };   /* 61차: STAGE 04 램프편(그림 v06 전에는 게이트 그림) */
     STAGES.forEach(function (s) {
       var sid = stageIdOf(s.n), open = !!sid && stageOpen(s.n), cur = sid === ST.id, pv = open && stagePreviewOnly(sid);
       if (!sid) { soon.push(s); return; }
@@ -3470,7 +4181,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       cards += '<button class="stg sc ' + (open ? 'play' : 'lock') + (cur ? ' on' : '') + '" ' + (open ? (cur ? 'data-go="1"' : 'data-stage="' + sid + '"') : 'disabled') + '>' + (th ? '<img src="' + th + '" alt="">' : '') + '<span class="g"></span>' +
         '<span class="t"><span class="n">STAGE ' + s.n + '</span><span class="nm">' + esc(tx(s.nm)) + '</span>' + (open ? '<span class="bar"><i style="width:' + Math.round(k / sd.list.length * 100) + '%"></i></span>' : '') + '<span class="st">' + esc(tx(lab)) + (open ? ' · ' + k + '/' + sd.list.length : '') + '</span></span></button>';
     });
-    var soonH = soon.length ? '<details class="tsoon"><summary>' + esc(tx(L('準備中のステージ ' + soon.length, '준비 중인 스테이지 ' + soon.length + '개', soon.length + ' stages coming'))) + '</summary><ul>' + soon.map(function (s) { return '<li>' + s.n + ' ' + esc(tx(s.nm)) + (s.key ? ' ★' : '') + '</li>'; }).join('') + '</ul><p>' + esc(tx(L('★ は計算の実習ステージ', '★는 계산 실습 스테이지', '★ hands-on calculation stage'))) + '</p></details>' : '';
+    var soonH = soon.length ? '<details class="tsoon"><summary>' + esc(tx(L('準備中のステージ ' + soon.length, '준비 중인 스테이지 ' + soon.length + '개', soon.length + ' stages coming'))) + '</summary><ul>' + soon.map(function (s) { return '<li>' + (s.n === 'EX' ? '' : s.n + ' ') + esc(tx(s.nm)) + (s.key ? ' ★' : '') + '</li>'; }).join('') + '</ul>' + (soon.some(function (s) { return s.key; }) ? '<p>' + esc(tx(L('★ は計算の実習ステージ', '★는 계산 실습 스테이지', '★ hands-on calculation stage'))) + '</p>' : '') + '<p>' + esc(tx(L('本社・経営の仕事（営業・収益管理・財務・人事など）は経営編 AIRLINE MANAGEMENT で扱います。', '본사·경영 업무(영업·수익관리·재무·인사 등)는 경영편 AIRLINE MANAGEMENT에서 다룹니다.', 'Head-office and management work (sales, revenue, finance, HR …) is covered in AIRLINE MANAGEMENT.'))) + '</p></details>' : '';
     var s2o = stageOpen('02'), s2note = !gtDef ? '' : !s2o ? (GATE_PREVIEW ? L('STAGE 02 ゲート編：チェックイン編の本番DAY 5をクリアすると開きます（練習モードなら先に体験できます）', 'STAGE 02 게이트편: 체크인편 실전 DAY 5를 통과하면 열립니다(연습 모드에서는 미리 해 볼 수 있습니다)', 'STAGE 02 Gate: opens after you clear Check-in DAY 5 in Shift mode (try it early in Practice)') : L('STAGE 02 ゲート編：チェックイン編の本番DAY 5をクリアすると開きます', 'STAGE 02 게이트편: 체크인편 실전 DAY 5를 통과하면 열립니다', 'STAGE 02 Gate: opens after you clear Check-in DAY 5 in Shift mode'))
       : gatePreviewOnly() ? L('STAGE 02 ゲート編：練習モードで先行公開中（本番はチェックイン編の本番DAY 5クリア後）', 'STAGE 02 게이트편: 연습 모드 미리 공개 중(실전은 체크인편 실전 DAY 5 통과 후)', 'STAGE 02 Gate: practice preview (Shift mode after Check-in DAY 5)') : '';
     /* 51차~: STAGE 03 탑재관리편 안내(잠김·미리 공개) */
@@ -3502,7 +4213,7 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
       '<div class="qbar"><div class="seg" id="segc"><button data-c="JP" class="' + (G.country === 'JP' ? 'on' : '') + '">' + esc(tx(L('日本', '일본', 'Japan'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button><button data-c="KR" class="' + (G.country === 'KR' ? 'on' : '') + '">' + esc(tx(L('韓国', '한국', 'Korea'))) + '<small>' + esc(tx(L('業務ルール', '업무 규칙', 'work rules'))) + '</small></button></div>' +
       '<div class="seg mode" id="segmode" role="group"><button id="tg-c" aria-pressed="' + !G.practice + '" class="' + (G.practice ? '' : 'on') + '">' + esc(tx(T.modeC)) + '<small>' + esc(tx(L('順番に', '차례대로', 'In order'))) + '</small></button><button id="tg-p" aria-pressed="' + !!G.practice + '" class="' + (G.practice ? 'on' : '') + '">' + esc(tx(T.modeP)) + '<small>' + esc(tx(L('どの日も', '모든 날', 'Any day'))) + '</small></button></div></div>' +
       '<p class="modenote">' + esc(tx(G.practice ? L('練習：どの日もすぐ選べます。記録は別に残り、本番の進み具合は変わりません。', '연습: 어느 날이든 바로 고를 수 있습니다. 기록은 따로 남고, 실전 진행에는 영향이 없습니다.', 'Practice: pick any day. Results are kept separately and do not change your shift progress.') : L('本番：前の日をB以上・安全合格で終えると次の日が開きます。', '실전: 앞의 날을 B 이상·안전 합격으로 마치면 다음 날이 열립니다.', 'Shift: clear a day with B or better and a safety pass to open the next.'))) + '</p>' +
-      (ST.id === 'wb' || ST.id === 'rp' ? '<div class="seg acseg" id="segac">' + [['737', 'B737-800', ST.id === 'rp' ? L('70分', '70분', '70 min') : L('バルク', '벌크', 'bulk')], ['789', 'B787-9', ST.id === 'rp' ? L('90分', '90분', '90 min') : L('ULD', 'ULD', 'ULD')]].map(function (x) { return '<button data-ac="' + x[0] + '" class="' + ((G.wbAc === '789' ? '789' : '737') === x[0] ? 'on' : '') + '">' + x[1] + ' <small>(' + esc(tx(x[2])) + ')</small></button>'; }).join('') + '</div>' : '') +
+      (ST.id === 'wb' || ST.id === 'rp' || ST.id === 'dp' ? '<div class="seg acseg" id="segac">' + [['737', 'B737-800', ST.id === 'dp' ? L('ナローボディ', '협동체', 'narrow-body') : ST.id === 'rp' ? L('70分', '70분', '70 min') : L('バルク', '벌크', 'bulk')], ['789', 'B787-9', ST.id === 'dp' ? L('ワイドボディ', '광동체', 'wide-body') : ST.id === 'rp' ? L('90分', '90분', '90 min') : L('ULD', 'ULD', 'ULD')]].map(function (x) { return '<button data-ac="' + x[0] + '" class="' + ((G.wbAc === '789' ? '789' : '737') === x[0] ? 'on' : '') + '">' + x[1] + ' <small>(' + esc(tx(x[2])) + ')</small></button>'; }).join('') + '</div>' : '') +
       runPanelHtml() +
       '<div class="twins"><div class="tw y"><img src="' + STG.src('koradon_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラドン', '코라돈', 'Koradon'))) + '</b><p>' + esc(tx(L('ヒント担当。迷ったときに声をかけてくれる兄', '힌트 담당. 헷갈릴 때 말을 걸어 주는 형', 'Tips — the elder twin who helps when you are stuck'))) + '</p></div></div>' +
       '<div class="tw g"><img src="' + STG.src('korarin_greet_01') + '" alt=""><div><b>' + esc(tx(L('コラリン', '코라린', 'Korarin'))) + '</b><p>' + esc(tx(L('ルール担当。安全に厳しめの妹', '규칙 담당. 안전에 엄격한 동생', 'Rules — the younger twin, strict about safety'))) + '</p></div></div></div>' +
@@ -8906,6 +9617,1129 @@ window.LESSON_DAYS={"ci":{"passenger/1-1":[1,2,3,4,5],"passenger/1-3":[1,2,4,5],
   }
   /* 시험용 */
   function flTestHooks() { return { flRead: flRead, flight: function () { return G.flight; }, flNew: function (c, p) { var n = flNew(c || G.country, !!p); flWrite(n); G.flight = n; return n; }, flBegin: flBegin, flResult: flResult, flConn: flConn, flCount: flCount, flRedo: flRedo, flGo: flGo }; }
+  /* ================= STAGE 05 운항관리(디스패치)편 — 합의본 v3(확정 2026-11-04) · Day 1 =================
+     계산·판정 진실값은 window.DP(src_dp/dp_calc.js · test/t70 53/53). 시각은 S.clock = 현지(JST·KST) 분, STD 기준 상대값 dpRel().
+     처리 단위 5개: ⓪ 근무 시작(인수인계 · R05-01 규칙 창 첫 줄 — 엔진 이어하기는 첫 단위를 마친 뒤부터라 릴리스 도중 저장이 되게 함) ① 릴리스(단말 6탭: 기상·NOTAM·기재·교체공항·연료·OFP → 서명/승인) ② FPL ③ 지상·시각(넘김·최종 ZFW·출발 가능) ④ 비행 중 감시 → 기록.
+     프로파일 = 근무지(Q2): JP(일본 OCC · VELA 301 NRT→ICN) / KR(한국 OCC · VELA 302 ICN→NRT). 기재 = 탑재관리·램프편과 같은 설정(G.wbAc).
+     판정 = 합의본 3A(유형별 상태 규칙): S 차단형(S1~S6·S9) = C 시도 기록 + 실행 차단 → 고쳐서 재개 · B 업무 · D 감점(정정 가능, 서명·제출 시점 확정).
+     기록 열쇠 dp.dN.{JP|KR}.{737|789}. 음성은 키만(DVO — 합성 전에는 소리 없이 자막만) */
+  function dpAcKey() { return G.wbAc === '789' ? '789' : '737'; }
+  var DP_LIST = [
+    { n: 1, id: 'dp.d1', mission: window.MISSION_DP01 || null, hints: true, nm: L('はじめてのリリース', '첫 릴리스', 'Your first release'), learn: L('気象・NOTAM・代替空港・燃料の区分・OFP・署名・FPL・運航監視', '기상·NOTAM·교체공항·연료 구분·OFP·서명·FPL·운항 감시', 'Weather, NOTAM, alternates, fuel categories, OFP, release, FPL, flight watch') },
+    { n: 2, id: 'dp.d2', mission: window.MISSION_DP02 || null, hints: true, nm: L('変わる天気', '변하는 날씨', 'Changing weather'), learn: L('代替空港の計画・新しいTAF・遅れとFPL', '교체공항 계획·새 TAF·지연과 FPL', 'Alternate planning, a new TAF, delays and the FPL') },
+    { n: 3, id: 'dp.d3', mission: window.MISSION_DP03 || null, hints: true, nm: L('NOTAMと機材', 'NOTAM과 기재', 'NOTAMs and the aircraft'), learn: L('滑走路状態・許容重量・進入・MEL', '활주로 상태·허용 중량·접근·MEL', 'Runway condition, allowable weight, approaches, MEL') },
+    { n: 4, id: 'dp.d4', mission: window.MISSION_DP04 || null, hints: true, nm: L('飛行中の判断', '비행 중의 판단', 'Decisions in flight'), learn: L('燃料の状態・ダイバート支援・再出発', '연료 상태·다이버트 지원·재출발', 'Fuel state, diversion support, re-dispatch') },
+    { n: 5, id: 'dp.d5', mission: window.MISSION_DP05 || null, hints: true, nm: L('冬の朝', '겨울 아침', 'A winter morning'), learn: L('冬のリリース・HOT・飛行中の対応', '겨울 릴리스·HOT·비행 중 대응', 'Winter release, HOT, in-flight response') }
+  ];
+  var DP_BASE = window.SAGA_DAYS.make(DP_LIST);
+  var DP_DAYS = Object.assign({}, DP_BASE, {
+    key: function (d, c) { return DP_BASE.key(d, c) + '.' + dpAcKey(); },
+    rec: function (h, d, c) { return (h || {})[DP_BASE.key(d, c) + '.' + dpAcKey()] || null; },
+    record: function (h, d, c, run) { return DP_BASE.record(h, d, c + '.' + dpAcKey(), run); },
+    status: function (h, n, c, p) { var d = DP_LIST[n - 1]; if (!d || !d.mission) return 'soon'; if (n === 1 || p) return 'open'; return DP_BASE.cleared(DP_DAYS.rec(h, DP_LIST[n - 2], c)) ? 'open' : 'lock'; }
+  });
+  var DP_TEXT = {
+    days: L('運航管理編 ― リリースから着陸までの5日間', '운항관리편 — 릴리스부터 착륙까지 5일', 'Dispatch — five days from release to landing'),
+    next: L('次の業務へ', '다음 업무로', 'Next task'),
+    tabs: { brf: L('勤務の開始', '근무 시작', 'Start of shift'), wx: L('気象', '기상', 'Weather'), notam: L('NOTAM', 'NOTAM', 'NOTAM'), mel: L('機材', '기재', 'Aircraft'), alt: L('代替空港', '교체공항', 'Alternates'), fuel: L('燃料・重量', '연료·중량', 'Fuel & weight'),
+      ofp: L('OFP・署名', 'OFP·서명', 'OFP & release'), fpl: L('FPL', 'FPL', 'FPL'), gnd: L('地上・時刻', '지상·시각', 'Ground & times'), flt: L('運航監視', '운항 감시', 'Flight watch'), arr: L('着陸の後の手配', '착륙 뒤 수배', 'After landing'), ice: L('除氷・HOT', '제빙·HOT', 'De-icing & HOT'), rdp: L('再出発', '재출발', 'Re-departure') },
+    eduData: L('教育用の仮想データ・実際の運航には使用できません', '교육용 가상 데이터 · 실제 운항 사용 금지', 'Educational data — not for operational use'),
+    allDone: L('運航管理編の公開中の日をすべて終えました。', '운항관리편의 공개된 날을 모두 마쳤습니다.', 'You have finished all the dispatch days released so far.'),
+    lastDayHow: L('次の日は準備中です。まず今日を復習しましょう。', '다음 날은 준비 중입니다. 먼저 오늘을 복습해 보세요.', 'The next day is coming soon. Review today first.'),
+    resumeProg: function (c) { return tx(L(c.completedPaxCount + '/' + c.total + ' 段階 完了 · ' + (c.completedPaxCount + 1) + '段階目から続ける', c.completedPaxCount + '/' + c.total + '단계 완료 · ' + (c.completedPaxCount + 1) + '번째 단계부터 이어하기', c.completedPaxCount + '/' + c.total + ' stages done · continue from stage ' + (c.completedPaxCount + 1))); },
+    resumeMsg: function (done) { return L('前回の続き：' + done + '段階目まで終わったところから再開しました。', '이어하기: ' + done + '번째 단계까지 마친 곳에서 다시 시작했습니다.', 'Resumed after stage ' + done + '.'); },
+    resumeNote: L('段階の途中の操作もこの端末に保存されます（同じ画面で続けた場合）', '단계 도중의 조작도 이 기기에 저장됩니다(같은 화면에서 이어할 때)', 'Actions within a stage are also saved on this device'),
+    afterClose: null
+  };
+  var DP_RUNF = ['clock', 'close', 'bgQueue', 'idx', 'results', 'revenue', 'strikes', 'seq', 'safety', 'acKey', 'prof', 'dp', 'struck', 'viol'];
+  var DP_RUNSKIP = ['list', 'cur', 'seed', 'adv', 'day', 'ac', 'runId', 'rev', 'fp', 'startedAt', 'modalRedraw', 'bub', 'guideL', 'leaving', 'leaveGo', 'hrec', 'saveOk', 'mistakes', '_t', 'noSave', 'runWarn', 'resumed', 'dupRun', 'lastSave', 'testStopped', 'resumeAt', 'tabTok', 'takeover', 'writeFail', 'blocked', 'ownerLost', 'badState', 'dlChecked', 'dpMsg', 'dpJTried'];
+  /* 판정 코드(합의본 v3 3A) — S = 안전 C(dp-s1~s6 차단형), B = 업무(최고 A), D·그 밖 = 감점 */
+  var DMISSL = {
+    'dp-s1': L('規則上の必要量に足りない燃料で署名しようとした', '규정상 요구량에 모자라는 연료로 서명하려 함', 'Tried to release with less fuel than required'),
+    'dp-s2': L('代替空港・出発の気象条件がそろわないまま署名しようとした', '교체공항·출발 기상 조건이 갖춰지지 않은 채 서명하려 함', 'Tried to release without the required alternates / departure weather conditions'),
+    'dp-s3': L('重量の上限（ZFW・TOW・LW）を超えたまま署名・出発しようとした', '중량 상한(ZFW·TOW·LW)을 넘긴 채 서명·출발하려 함', 'Tried to release / depart above a weight limit (ZFW, TOW, LW)'),
+    'dp-s4': L('MELの条件（支援設備・乗員への通報）を確かめないまま出発させようとした', 'MEL 조건(지원 설비·승무원 통보)을 확인하지 않은 채 출발시키려 함', 'Tried to clear departure without confirming the MEL conditions (support equipment, crew briefing)'),
+    'dp-s5': L('影響のあるNOTAMを「影響なし」のまま署名しようとした・新しい情報の後に古い版で出発させようとした', '영향 있는 NOTAM을 「영향 없음」으로 둔 채 서명하거나 새 정보 뒤 옛 판으로 출발시키려 함', 'Tried to release with a relevant NOTAM marked “no effect”, or to depart on an old edition after new information'),
+    'dp-s6': L('OFPと違うFPL（経路・代替空港・時刻 ― 遅れのDLAなしを含む）のまま出発させようとした', 'OFP와 다른 FPL(경로·교체공항·시각 — 지연 DLA 없음 포함)로 출발시키려 함', 'Tried to let the flight depart on an FPL that differs from the OFP (route, alternate, times — incl. no DLA after a delay)'),
+    'dp-s7': L('HOTの余裕が足りない・気象が変わったのに、保留・連絡なしで出発時刻を保つよう勧めた', 'HOT 여유 부족·기상 변화 뒤인데 보류·통보 없이 출발 시각 유지를 추천함', 'Recommended keeping the departure time with too little HOT margin / after a weather change, without hold or notice'),
+    'dp-s8': L('飛行中の燃料の状態に合う対応がなかった（状態を軽く判断・宣言の支援なし）', '비행 중 연료 상태에 맞는 대응이 없음(상태를 가볍게 판단·선언 지원 없음)', 'No response matching the in-flight fuel state (state under-called / declaration not supported)'),
+    'dp-s9': L('乗員の勤務時間の上限を超えた・適格を確かめないまま再出発を承認しようとした', '승무 시간 한계 초과·적격 미확인 상태로 재출발을 승인하려 함', 'Tried to approve a re-departure over crew duty limits or with eligibility unconfirmed'),
+    'dp-b2': L('乗員の勤務時間を確かめなかった', '승무 시간을 확인하지 않음', 'Did not check crew duty time'),
+    'dp-b5': L('ダイバートの手配（CIQ・取扱・後の届け出）が足りなかった', '다이버트 수배(CIQ·조업·후속 신고)가 부족함', 'Incomplete diversion arrangements (CIQ, handling, follow-up)'),
+    'dp-b1': L('機長へのブリーフィングが不十分だった', '기장 브리핑이 부족함', 'Incomplete captain briefing'),
+    'dp-b3': L('運航の記録（時刻・判断）を残さなかった', '운항 기록(시각·판단)을 남기지 않음', 'Did not log the flight (times, decisions)'),
+    'dp-b4': L('燃料・ZFW上限・給油・ETDを搭載管理・ランプに伝えなかった', '연료·ZFW 상한·급유·ETD를 탑재관리·램프에 전달하지 않음', 'Did not pass fuel, ZFW limit, fuelling or ETD to load control / ramp'),
+    'dp-d1': L('燃料の区分の計算が違った（±1%超）', '연료 구분 계산 오차(±1% 초과)', 'Fuel category calculation off by more than 1%'),
+    'dp-d2': L('FPLの提出・リリースが会社の締切より遅れた', 'FPL 제출·릴리스가 회사 마감보다 늦음', 'FPL / release later than the company deadline'),
+    'dp-d3': L('気象・条件の読み取りを誤った', '기상·조건 읽기 오류', 'Misread the weather / conditions'),
+    'dp-d4': L('影響のないNOTAMを影響ありにした', '영향 없는 NOTAM을 영향 있음으로 분류', 'Marked an irrelevant NOTAM as relevant'),
+    'dp-fpl': L('FPLの項目（登録記号など）を誤った', 'FPL 항목(등록 기호 등) 오류', 'Wrong FPL item (registration etc.)')
+  };
+  var DACT = { 'dp-s1': 'fuel-at-least-required', 'dp-s2': 'alternates-and-weather-gate', 'dp-s3': 'within-weight-limits', 'dp-s4': 'confirm-mel-conditions', 'dp-s5': 'classify-relevant-notam', 'dp-s6': 'fpl-matches-ofp', 'dp-s7': 'hold-when-hot-short', 'dp-s8': 'respond-to-fuel-state', 'dp-s9': 'crew-duty-gate', 'dp-b2': 'check-crew-duty', 'dp-b5': 'diversion-arrangements',
+    'dp-b1': 'brief-the-captain', 'dp-b3': 'log-the-flight', 'dp-b4': 'pass-fuel-and-limits', 'dp-d1': 'compute-fuel-categories', 'dp-d2': 'meet-company-deadlines', 'dp-d3': 'read-weather-and-conditions', 'dp-d4': 'classify-notam', 'dp-fpl': 'fill-fpl-items' };
+  var DSAFE = ['dp-s1', 'dp-s2', 'dp-s3', 'dp-s4', 'dp-s5', 'dp-s6', 'dp-s7', 'dp-s8', 'dp-s9'];
+  var DOPS = ['dp-b1', 'dp-b2', 'dp-b3', 'dp-b4', 'dp-b5'];
+  /* ---------- 시각·상태 도우미 ---------- */
+  function dpA() { return DP.AC[S.acKey]; }
+  function dpD() { return M.data[S.acKey]; }
+  function dpP() { return V.p; }
+  function dpStd() { return pm(V.std); }
+  function dpRel() { return S.clock - dpStd(); }
+  function dpHm(r) { return hmDay(dpStd() + r); }   /* 표시 전용(다음날 = 「다음날 07:30」) */
+  function dpZm(min) { var m = ((Math.round(min) % 1440) + 1440) % 1440; return ('0' + Math.floor(m / 60)).slice(-2) + ('0' + m % 60).slice(-2); }
+  function dpZ(r) { return dpZm(dpStd() + r - 540) + 'Z'; }   /* 현지 = UTC+9 */
+  function dpDay() { return (M && M.date && M.date.d) || 4; }   /* 미션 날짜(일) — TAF DDHH의 기준 */
+  function dpZh(h) { return dpZm(h * 60 - dpDay() * 1440) + 'Z'; }   /* TAF 시간 단위(일×24+시) → HHMMZ */
+  function dpT2(r) { return dpHm(r) + ' <small>(' + dpZ(r) + ')</small>'; }
+  function dpStdH() { return dpDay() * 24 + (dpStd() - 540) / 60; }
+  /* DAY 2~(설계안 v4): 자료 판 — 새 정보(TAF AMD·상층풍 판 2) · 출발지 METAR 갱신 · 출발 지연 */
+  function dpDly() { return (S && S.dp && S.dp.dly) || 0; }
+  function dpTaf(ic) { var p = dpP(), d = S && S.dp; return (d && d.wxv >= 2 && p.tafAmd && p.tafAmd[ic]) || p.taf[ic]; }
+  function dpWind() { var p = dpP(); return S && S.dp && S.dp.wxv >= 2 && p.wind2 ? p.wind2 : p.wind; }
+  function dpMetar() { var p = dpP(), v = S && S.dp ? S.dp.metv : 1; return v >= 4 && p.speci2 ? p.speci2 : v >= 3 && p.speci ? p.speci : v >= 2 && p.metar2 ? p.metar2 : p.metar; }
+  function dpCargo() { return (S && S.dp && S.dp.cargoAcc) || 0; }   /* DAY 3: 수락한 화물 증가분 */
+  function dpZfwEst() { return dpD().zfwEst + dpCargo(); }
+  function dpZfwFinal() { var dd = dpD(); return dd.zfwFinal != null ? dd.zfwFinal + dpCargo() : dd.zfwEst + dpCargo() - 100; }
+  function dpCardOf(rwy) { return (dpP().rwCards || []).filter(function (x) { return x.rwy === rwy; })[0] || null; }
+  function dpATow(card) { return card && card.aTOW ? card.aTOW[S.acKey] : undefined; }   /* 허용중량 카드(교육용) → 2E 허용 TOW · 제한 없음 = MTOW */
+  function dpATowTrue() { return dpATow(dpCardOf(dpP().depRwy)); }
+  function dpATowSel() { return dpP().rwCards ? dpATow(dpCardOf(S.dp.rwCard)) : undefined; }
+  function dpMelOK(ic) { var m = dpP().mel; return !m || m.sup[ic] !== false; }
+  function dpCk(k) { var d = S.dp; return k + (d.wxv >= 2 && d.sign != null ? '@2' : ''); }   /* 탭 확인 비용 = 판마다 한 번 */
+  function dpLive(c) { return !!c && S.cur === c && G.screen === 'play' && !S.leaving && !c.flags.done; }
+  function dpDone(c) { if (!dpLive(c)) return false; c.flags.done = true; document.querySelectorAll('#scr button,#scr input,#scr select').forEach(function (b) { b.disabled = true; }); return true; }
+  function dpEnd(ms) {
+    if (S.leaving) return; S.leaving = true; document.body.classList.add('busy');
+    var mine = S.cur; S.leaveGo = function () { if (S.cur !== mine || G.screen !== 'play') return; S.leaving = false; S.leaveGo = null; document.body.classList.remove('busy'); say('me', ''); dpCall(null); nextUnit(); };
+    setTimeout(function () { if (S.leaveGo) S.leaveGo(); }, ms || 400);
+  }
+  function dpBad(code, text, lesson) { note('bad', text, lesson || null, code); }
+  function dpStrike(code, text, lesson) {   /* 3A S 차단형: 막힌 시도 = 안전 C(같은 코드는 한 번만 집계) + 실행 차단 */
+    S.struck = S.struck || {}; note('bad', text, lesson || null, code); STG.pose('trouble'); sfx.ng();
+    if (S.struck[code]) return; S.struck[code] = 1; S.strikes++; S.safety.push({ who: dpUnitName(S.cur), whoL: dpUnitL(S.cur), code: code, what: DMISSL[code] });   /* C11-01: 단계 이름은 키(언어 객체)로 보존 → 결과는 현재 언어로 */
+  }
+  function dpUnitL(c) { var k = c && c.p ? c.p.kind : ''; return k === 'rel' ? L('リリース', '릴리스', 'Release') : DP_TEXT.tabs[k] || L('業務', '업무', 'Task'); }
+  function dpUnitName(c) { return tx(dpUnitL(c)); }
+  function dpMsg(t, cls, tab) { S.dpMsg = t ? { t: t, c: cls || 'info', tab: tab || (S.cur ? S.cur.tab : null) } : null; }   /* 안내는 그 탭에서만 보임 */
+  function dpMsgHtml() { var m = S.dpMsg; if (m && m.tab && S.cur && m.tab !== S.cur.tab) m = null; return m ? '<div class="why ' + (m.c === 'bad' ? 'bad' : m.c === 'ok' ? 'good' : '') + '" role="status">' + esc(typeof m.t === 'function' ? m.t() : tx(m.t)) + '</div>' : ''; }
+  function dpEdu() { return '<p class="wbedu">' + esc(tx(DP_TEXT.eduData)) + '</p>'; }
+  function dpKV(rows) { return '<dl class="kv">' + rows.map(function (r) { return '<dt>' + esc(tx(r[0])) + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>'; }
+  function f0(n) { return Math.round(n).toLocaleString('en-US'); }
+  function dpCost(k, m) { var c = S.dp.cost = S.dp.cost || {}; if (c[k]) return; c[k] = 1; addTime(m); }
+  function dpApNm(icao) { var a = M.ap[icao]; return icao + (a ? ' ' + tx(a.nm) : ''); }
+  /* ---------- 통신(음성 키 = 배역|일본어 고정 문장 — 합성 전에는 자막만) ---------- */
+  var DCALL = { crew: L('交代の乗員', '교대 승무원', 'Relief crew'), cap: L('機長', '기장', 'Captain'), mx: L('整備士', '정비사', 'Engineer'), load: L('搭載管理', '탑재관리', 'Load control'), ramp: L('ランプ', '램프', 'Ramp'), info: L('運航情報', '운항정보', 'Flight information') };
+  var DCALLART = { crew: 'people_captain_bust_01', cap: 'people_captain_bust_01', mx: 'people_engineer_bust_01', load: 'people_loadmaster_bust_01', ramp: 'people_loadmaster_bust_01', info: 'people_flightinfo_bust_01' };
+  var DVCAST = { crew: 'dp_crew', cap: 'dp_cap', mx: 'dp_mx', load: 'dp_load', ramp: 'dp_ramp', info: 'dp_info' };
+  /*DVO*/var DVO = {
+    mx_mel: '整備です。今日の機体、MELの適用はありません。出発できます。',
+    cap_brief: '機長です。ブリーフィング、お願いします。',
+    cap_ok: '機長です。内容、確認しました。サインします。',
+    load_get: '搭載管理です。燃料とZFWの上限、受け取りました。',
+    ramp_get: 'ランプです。給油量と出発予定、受け取りました。',
+    load_zfw: '搭載管理です。最終のZFWをお送りします。',
+    info_ack: '運航情報です。飛行計画、受理されました。',
+    ramp_push: 'ランプです。プッシュバック、始めます。',
+    cap_pos: '機長です。位置通報です。',
+    cap_land: '機長です。着陸しました。ありがとうございました。',
+    info_upd: '運航情報です。新しいTAFと上層風の新しい版が入りました。',
+    ramp_dly: 'ランプです。前の便の遅れで機体の到着が遅れます。出発は40分遅れの見込みです。',
+    info_dla: '運航情報です。遅延の通報、受理されました。',
+    info_met: '運航情報です。出発空港の新しいMETARです。',
+    cap_new: '機長です。新しい版、確認しました。サインします。',
+    mx_mel3: '整備です。今日の機体、APUが作動しません。MELを適用します。カテゴリーC、期限内です。地上の始動装置と空調が要ります。',
+    load_cargo: '搭載管理です。貨物を追加で積めますか。積める量を教えてください。',
+    load_cgok: '搭載管理です。了解、その量で貨物を積みます。',
+    info_cls: '運航情報です。目的地の滑走路が閉鎖されました。待機の指示、EFCは到着予定時刻の15分後です。',
+    cap_a2: '機長です。EFCがさらに15分延びました。目的地で待つか、代替空港へ早めに変えるか考えています。資料と推薦をください。',
+    info_efc: '運航情報です。さらに遅れます。EFCはさらに15分延びます。滑走路の再開時刻は不明です。',
+    cap_lddiv: '機長です。代替空港に変更して着陸しました。',
+    cap_ldmin: '機長です。MINIMUM FUELを通報して、代替空港に着陸しました。',
+    cap_ldmay: '機長です。MAYDAY FUELを宣言して、代替空港に着陸しました。',
+    cap_med: '機長です。急病の旅客です。胸の痛みと意識の低下があります。いちばん近い適した空港の資料をください。',
+    cap_div: '機長です。その空港に向かいます。',
+    cap_ldmed: '機長です。着陸しました。救急の引き継ぎをお願いします。',
+    crew_arr: '交代の乗員です。到着しました。ブリーフィングも済みました。',
+    ramp_ice1: 'ランプです。除氷は2番目、Type Iの開始は出発時刻ちょうどの予定です。',
+    ramp_ice2: 'ランプです。前の便のやり直しで除氷の順番が遅れます。Type Iの開始は、出発予定時刻の15分後になります。',
+    info_speci: '運航情報です。SPECIです。雪が強くなりました。',
+    info_speci2: '運航情報です。SPECIです。雪が弱くなりました。',
+    info_snow: '運航情報です。目的地は除雪中です。EFCは到着予定時刻の10分後です。'
+  };/*/DVO*/
+  var dpLast = null, dpQuiet = false;
+  function dpCall(who, text, vk) {
+    var w = $('#wbradio'), el = $('#bpx'); if (!w || !el) return; dpLast = who ? [who, text, vk] : null;
+    if (!who) { w.classList.add('hide'); el.classList.add('hide'); if (S) { S.bub = S.bub || {}; S.bub.pax = null; } return; }
+    var art = DCALLART[who] && STG.has(DCALLART[who]) ? DCALLART[who] : '';
+    w.innerHTML = (art ? '<img src="' + STG.src(art) + '" alt="">' : '') + '<b>' + esc(tx(DCALL[who])) + '</b><span>🎧</span>'; w.classList.remove('hide');
+    STG.pose('announce');
+    if (!text) { el.classList.add('hide'); return; }
+    var vja = vk && DVO[vk];
+    el.innerHTML = '<span class="who">' + esc(tx(DCALL[who])) + '</span>' + esc(tx(text)) + (G.lang !== 'ja' && G.voice && vja ? '<span class="jsub">' + esc(vja) + '</span>' : ''); el.classList.remove('hide');
+    if (G.voice && vja && !dpQuiet && window.VO && VO.say) VO.say(DVCAST[who], vja);
+    S.bub = S.bub || {}; S.bub.pax = null;
+  }
+  function dpRelang() {
+    var et = document.querySelector('#stage .wbedutag'); if (et) et.textContent = tx(DP_TEXT.eduData);
+    dpMonRefresh();
+    var w = $('#wbradio'); if (dpLast && w && !w.classList.contains('hide')) { var bp = $('#bpx'), bv = !!bp && !bp.classList.contains('hide'), keep = dpLast; dpQuiet = true; try { dpCall(keep[0], bv ? keep[1] : null, keep[2]); dpLast = keep; } finally { dpQuiet = false; } }
+  }
+  /* ---------- 단계 도중 저장(램프편 F61-01 방식 · 합의본 v3 5절 — 판 번호·시도 기록 포함) ---------- */
+  var DPJ = 'acn-saga-dpj-v1', DPJF = ['clock', 'strikes', 'safety', 'dp', 'struck', 'viol'];
+  function dpNotes3(ns) { return (ns || []).map(function (n) { var x = n.x; if (typeof x === 'function') { var keep = G.lang, o = {}; try { ['ja', 'ko', 'en'].forEach(function (l) { G.lang = l; try { o[l] = String(x()); } catch (e) { o[l] = ''; } }); } finally { G.lang = keep; } x = o; } return { t: n.t, x: x, l: n.l, c: n.c }; }); }
+  function dpJSave() {
+    if (!S || !S.runId || !S.cur || S.noSave === 'conflict' || G.screen !== 'play') return;
+    try { var o = { v: 1, runId: S.runId, idx: S.idx, done: S.results.length, s: {}, notes: dpNotes3(S.cur.notes), flags: Object.assign({}, S.cur.flags, { done: false }), selfFix: S.cur.selfFix || [], mins: S.cur.mins || 0, tab: S.cur.tab };
+      DPJF.forEach(function (k) { o.s[k] = S[k]; }); localStorage.setItem(DPJ, JSON.stringify(o)); } catch (e) {}
+  }
+  function dpJLoad() {
+    if (!S.resumed || S.dpJTried) return false; S.dpJTried = true;
+    var o = null; try { o = JSON.parse(localStorage.getItem(DPJ) || 'null'); } catch (e) { o = null; }
+    if (!o || o.v !== 1 || o.runId !== S.runId || o.idx !== S.idx || o.done !== S.results.length || !o.s) return false;
+    var ns = {}; Object.keys(S).forEach(function (k) { ns[k] = S[k]; }); DPJF.forEach(function (k) { if (k in o.s) ns[k] = o.s[k]; });
+    var bad = null; try { bad = dpStateWhy(JSON.parse(JSON.stringify(ns))); } catch (e) { bad = 'format'; }
+    if (bad || !(typeof ns.clock === 'number' && ns.clock >= S.clock - 1e-9)) return false;
+    DPJF.forEach(function (k) { if (k in o.s) S[k] = o.s[k]; });
+    S.cur.notes = o.notes || []; S.cur.flags = o.flags || {}; S.cur.flags.done = false; S.cur.selfFix = o.selfFix || []; S.cur.mins = o.mins || 0; if (o.tab) S.cur.tab = o.tab;
+    return true;
+  }
+  /* ---------- 판정 진실값(시나리오 실제 자료 → 프로파일 규칙 · 합의본 2A 「관문의 진실값」) ---------- */
+  function dpApps(icao, etaH) {   /* NOTAM으로 막힌 접근은 쓸 수 없음(유효기간이 있으면 그 공항 자체 ETA ±1h와 겹칠 때만) */
+    var shut = {}; (dpP().notam || []).forEach(function (n) { if (n.closeApp && (!n.win || etaH == null || DP.overlapH(n.win, etaH))) (Array.isArray(n.closeApp[0]) ? n.closeApp : [n.closeApp]).forEach(function (q) { shut[q[0] + '|' + q[1]] = 1; }); });
+    return (M.ap[icao] ? M.ap[icao].apps : []).map(function (a) { return Object.assign({}, a, { avail: !shut[icao + '|' + a.id] }); });
+  }
+  function dpEval(icao, etaH) { return DP.airportEval({ icao: icao, taf: dpTaf(icao), apps: dpApps(icao, etaH), closed: (dpP().notam || []).filter(function (n) { return n.closeAll && n.ap === icao && n.win; }).map(function (n) { return n.win; }) }, etaH); }
+  var dpTc = null;
+  function dpTruth() {
+    var key = S.acKey + '|' + G.country + '|' + V.flight + '|' + M.id + '|' + (S.dp.wxv || 1) + '|' + dpDly() + '|' + (S.dp.metv || 1); if (dpTc && dpTc.key === key) return dpTc;
+    var p = dpP(), a = dpA(), w2 = dpWind(), rt = DP.routeCalc(S.acKey, DP.EX[p.route], w2[0], w2[1]), eet = Math.round(rt.time), stdH = dpStdH(), depH = stdH + dpDly() / 60, etaH = depH + eet / 60;
+    var dest = dpEval(p.dest, etaH), cands = {}, T = DP.up(DP.tripFuel(a, eet));
+    p.cands.forEach(function (c) { var d = Math.round(DP.altDist(p.dest, c)); cands[c] = { dist: d, A: DP.up(DP.altFuelNM(a, d)), etaH: etaH + d / a.tas + 0.25, mel: dpMelOK(c) }; cands[c].ev = dpEval(c, cands[c].etaH); });
+    var w = dest.worst || { c: 0, v: 0 }, iap = dpApps(p.dest, etaH).filter(function (x) { return x.avail; }).length;
+    var need = DP.altNeed({ prof: p.prof, flightH: eet / 60, dest: { vmc: w.c >= 1500 && w.v >= 5000, sepRwy: true, iapCount: iap, eval: dest } });
+    var depEval = dpEval(p.dep, depH), mt = DP.metar(dpMetar()), toAlt = DP.toAltCheck({ depEval: depEval, returnBlocked: false, cand: null });
+    var okC = p.cands.filter(function (c) { return cands[c].ev.planOK && cands[c].mel; }), nBase = DP.required({ prof: p.prof, ac: S.acKey, T: T, alts: okC.length ? [cands[okC[0]].A] : [], Fcrit: 0, X: 0 }).N;
+    var Fcrit = dpD().fcritMore != null ? nBase + dpD().fcritMore : Math.round((nBase - dpD().fcritLess) / 10) * 10;   /* DAY 3 = 이 날 교체공항(MEL 적합) 기준 N + 카드 증가분(설계안 2A) */
+    var legs = [], cum = 0; rt.rows.forEach(function (r) { cum += r.m; legs.push({ fix: r.l.b, via: r.l.via, m: cum }); });
+    dpTc = { key: key, rt: rt, eet: eet, stdH: stdH, depH: depH, etaH: etaH, dest: dest, cands: cands, need: need, depEval: depEval, depRvr: mt.rvr != null ? mt.rvr : mt.v, toMin: 400, toAlt: toAlt, T: T, Fcrit: Fcrit, legs: legs, okC: okC };
+    return dpTc;
+  }
+  /* NOTAM 영향 진실값: 유효기간이 있으면 그 공항의 계획 시각(출발지 = 출발 · 목적지 = ETA · 교체공항 = 자체 ETA) ±1h와 겹칠 때만 */
+  function dpNotAff(n) {
+    if (!n.win) return !!n.aff;
+    var t = dpTruth(), p = dpP(), h = n.ap === p.dep ? t.depH : n.ap === p.dest ? t.etaH : t.cands[n.ap] ? t.cands[n.ap].etaH : null;
+    return h != null && !!n.affIfActive && DP.overlapH(n.win, h);
+  }
+  /* 이륙 교체공항(2C-1 ③): 고른 카드 → 그 공항 자체 이용 시각(출발 + OEI 도달시간) 기상·운용 */
+  function dpToAlt() {
+    var t = dpTruth(), d = S.dp, cs = dpP().toCands || [], sel = cs.filter(function (x) { return x.icao === d.toSel; })[0];
+    return DP.toAltCheck({ depEval: t.depEval, returnBlocked: false, cand: sel ? { oeiMin: sel.oei[S.acKey], eval: dpEval(sel.icao, t.depH + sel.oei[S.acKey] / 60) } : null });
+  }
+  function dpReq() { var t = dpTruth(), d = S.dp; return DP.required({ prof: S.prof, ac: S.acKey, T: t.T, alts: (d.alts || []).map(function (c) { return t.cands[c].A; }), Fcrit: t.Fcrit, X: +d.X || 0 }); }
+  function dpInput() { var o = Object.assign({}, S.dp.fuel || {}); o[S.prof === 'KR' ? 'disc' : 'company'] = +S.dp.X || 0; return o; }
+  function dpInputTotal() { var o = dpInput(), r = dpReq(); return r.rows.reduce(function (s, x) { var v = +o[x.k]; return s + (isFinite(v) ? v : 0); }, 0); }
+  /* ---------- 장면(그림 v09) ---------- */
+  function dpArt() { return STG.has('staff_dp_headset_01'); }
+  var DPOSEU = { brf: 'headset', rel: 'point', fpl: 'ofp', gnd: 'headset', flt: 'headset' };
+  var DPOSE = { announce: 'headset', radio: 'headset', trouble: 'trouble', point: 'point', ofp: 'ofp', check: 'point', idle: '' };
+  var DTABPOSE = { wx: 'point', notam: 'point', mel: 'headset', alt: 'point', fuel: 'ofp', ofp: 'ofp' };
+  function dpStaffId(pose) { var u = (S && S.cur && S.cur.p && (S.cur.p.kind === 'rel' ? DTABPOSE[S.cur.tab] : DPOSEU[S.cur.p.kind])) || 'headset', id = 'staff_dp_' + (DPOSE[pose] || u) + '_01'; return STG.has(id) ? id : 'staff_dp_headset_01'; }
+  function dpAgentImg(id) { return STG.img(id, 'agent', 46, 3, 80, false, ''); }
+  function dpBgId() { if (!dpArt()) return STG.has('wb_bg_01') ? 'wb_bg_01' : 'checkin_bg_02'; return G.country === 'KR' && STG.has('dp_bg_02') ? 'dp_bg_02' : 'dp_bg_01'; }
+  var _dpPrevPose = STG.pose, dpPoseT = null;
+  STG.pose = function (pose, back) {
+    if (!ST || ST.id !== 'dp' || !dpArt()) return _dpPrevPose(pose, back);
+    var el = document.querySelector('#agentwrap img'); if (!el) return;
+    clearTimeout(dpPoseT); var id = dpStaffId(pose || 'idle');
+    if (pose === 'announce' || pose === 'trouble') dpPoseT = setTimeout(function () { STG.pose('idle'); }, 2600);
+    if (id === el.getAttribute('data-asset')) return;
+    el.style.opacity = .35; setTimeout(function () { var n = document.createElement('div'); n.innerHTML = dpAgentImg(id); var ni = n.firstChild; var cur = document.querySelector('#agentwrap img'); if (ni && cur && cur.parentNode) cur.parentNode.replaceChild(ni, cur); }, 90);
+  };
+  /* 빈 모니터 2대(그림에서 잰 화면 안쪽 모서리, assets_dp/DMON.md) — 글자를 화면 안에만(클립) */
+  var DMON = { dp_bg_01: [[[182, 117], [383, 117], [383, 225], [182, 224]], [[408, 117], [608, 117], [608, 224], [408, 224]]],
+               dp_bg_02: [[[180, 115], [385, 115], [385, 227], [180, 227]], [[406, 115], [609, 115], [609, 227], [406, 227]]] };
+  function dpMonLines() { var d = S && S.dp, ed = d && d.ed || 1, k = S && S.acKey === '789' ? 'B787-9' : 'B737-800'; return [[V.flight, V.from + ' → ' + V.to + '  STD ' + V.std], [k, 'EDNO ' + ed + ' · ' + tx(dpP().occ)]]; }
+  function dpMonitors(bg) {
+    var Q = DMON[bg]; if (!Q) return ''; var n = 0, ls = dpMonLines();
+    var mon = function (q, lines) {
+      var tl = q[0], tr = q[1], bl = q[3], W = tr[0] - tl[0], H = bl[1] - tl[1], id = 'dpmc' + (n++);
+      var fit = function (txt, fs) { var w = txt.length * 0.62 * fs; return w > W * 0.86 ? fs * W * 0.86 / w : fs; };
+      var f1 = fit(lines[0], H * 0.3), f2 = fit(lines[1], H * 0.15);
+      return '<clipPath id="' + id + '"><polygon points="' + q.map(function (p) { return p.join(','); }).join(' ') + '"/></clipPath><g clip-path="url(#' + id + ')"><g transform="translate(' + tl[0] + ',' + tl[1] + ')">' +
+        '<text x="' + (W / 2).toFixed(1) + '" y="' + (H * 0.48).toFixed(1) + '" font-size="' + f1.toFixed(1) + '" class="m1">' + esc(lines[0]) + '</text>' +
+        '<text x="' + (W / 2).toFixed(1) + '" y="' + (H * 0.48 + f1 * 0.35 + f2 * 1.3).toFixed(1) + '" font-size="' + f2.toFixed(1) + '" class="m2">' + esc(lines[1]) + '</text></g></g>';
+    };
+    return '<svg class="wbmon" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + mon(Q[0], ls[0]) + mon(Q[1], ls[1]) + '</svg>';
+  }
+  function dpMonRefresh() { var el = document.querySelector('#stage .wbmon'); if (el && dpArt()) el.outerHTML = dpMonitors(dpBgId()); }
+  function dpScene() {
+    var art = dpArt(), bg = dpBgId(), st = art ? dpStaffId('idle') : (STG.has('staff_wb_radio_01') ? 'staff_wb_radio_01' : 'staff_checkin_greet_01');
+    var h = '<div class="stage gate wb dp' + (art ? ' dpv09' : '') + '" id="stage"><img class="bg" src="' + STG.src(bg) + '" alt="" draggable="false">' + (art ? dpMonitors(bg) : '<div class="sign s1"><b id="fids1">' + esc(V.flight) + '</b><span id="fids2">' + esc(V.from + ' → ' + V.to + ' ' + V.std) + '</span></div>');
+    h += '<div id="queue" class="lay"></div><div id="agentwrap" class="lay">' + (art ? dpAgentImg(st) : STG.img(st, 'agent', 20, -14, 80, false, '')) + '</div>';
+    h += '<div id="paxwrap" class="lay"><div id="pax" class="lay"></div></div><div class="wbradio hide" id="wbradio"></div><div class="wbedutag">' + esc(tx(DP_TEXT.eduData)) + '</div>';
+    return h + '</div>';
+  }
+  function dpHero() {
+    var art = dpArt(), bg = art ? 'dp_bg_01' : (STG.has('wb_bg_01') ? 'wb_bg_01' : 'checkin_bg_02'), st = art ? 'staff_dp_point_01' : (STG.has('staff_wb_radio_01') ? 'staff_wb_radio_01' : 'staff_checkin_explain_01');
+    return '<div class="herostage"><img class="bg" src="' + STG.src(bg) + '" alt="">' + STG.img(st, '', 50, 2, 86) + STG.img('koradon_greet_01', 'mas', 15, 3, 44) + STG.img('korarin_greet_01', 'mas', 30, 3, 42) + '<div class="wbheroac">' + (dpAcKey() === '789' ? 'B787-9' : 'B737-800') + ' · OCC</div></div>';
+  }
+  /* ---------- 힌트(코라돈 — DAY 1) ---------- */
+  function dpHint(k) {
+    var H = {
+      brf: L('今日の担当便と、どの規則（教育用プロファイル）で判断するかを確かめよう。', '오늘 담당 편과 어떤 규칙(교육용 프로파일)으로 판단하는지 확인해.', 'Check today’s flight and which rule set (educational profile) you will judge by.'),
+      wx: L('到着予定（ETA）の前後1時間に重なる予報のかたまり（基本・BECMGの後・TEMPO・PROB）の中で、いちばん悪い視程と雲底を使うよ。代替空港は、その空港に着く時刻で見るのがポイント。', '도착 예정(ETA) 전후 1시간에 걸치는 예보 묶음(기본·BECMG 뒤·TEMPO·PROB) 중에서 가장 나쁜 시정과 운고를 써. 교체공항은 그 공항에 도착하는 시각으로 보는 게 핵심이야.', 'Use the worst visibility and ceiling among the forecast groups (base, after BECMG, TEMPO, PROB) that overlap ETA ±1 h. Judge each alternate at its own arrival time.'),
+      notam: L('この便の時間・空港・滑走路・進入に関係するものだけが「影響あり」。関係ないものまで影響ありにすると、判断がぼやけるよ。', '이 편의 시간·공항·활주로·접근에 관계있는 것만 「영향 있음」. 관계없는 것까지 영향 있음으로 하면 판단이 흐려져.', 'Only items that touch this flight’s times, airports, runways or approaches are “relevant”. Marking everything blurs the picture.'),
+      mel: L('機体の状態は整備士が判断する。運航管理者は、その条件がこの便で守れるかを確かめるよ。', '기체 상태는 정비사가 판단해. 운항관리사는 그 조건이 이 편에서 지켜지는지를 확인해.', 'Engineers decide the aircraft’s status; the dispatcher checks that its conditions can be met on this flight.'),
+      alt: L('代替空港がいくつ要るかは、規則の条件で決まる。45分の燃料があるから省略できる、ではないよ。候補は「計画用の最低条件」を満たすものだけ。', '교체공항이 몇 개 필요한지는 규정의 조건으로 정해져. 45분 연료가 있으니 생략할 수 있다, 가 아니야. 후보는 「계획 최저치」를 만족하는 것만.', 'How many alternates you need comes from the rule conditions — not from carrying 45 min of fuel. Only candidates that meet the planning minima count.'),
+      fuel: L('区分ごとに計算して入れよう。±1%は計算練習の採点だけ。合計が必要量より1kgでも少なければ署名できないよ。', '구분별로 계산해서 넣어. ±1%는 계산 연습 채점에만 써. 합계가 요구량보다 1kg이라도 적으면 서명할 수 없어.', 'Compute and enter each category. ±1% only grades the arithmetic — if the total is even 1 kg short of the requirement, you cannot release.'),
+      ofp: L('機長に要点を伝えてから署名。韓国は運航管理士が署名して機長が確認・署名、日本は運航管理者が承認して機長が確認だよ。', '기장에게 요점을 전한 뒤 서명. 한국은 운항관리사가 서명하고 기장이 확인·서명, 일본은 운항관리자가 승인하고 기장이 확인해.', 'Brief the captain, then release. Korea: the dispatcher signs, the captain confirms and signs. Japan: the dispatcher approves, the captain confirms.'),
+      fpl: L('FPLはOFPと同じ経路・高度・代替空港・時刻で。時刻はUTC、EETは飛行時間（ブロック時間ではない）。', 'FPL은 OFP와 같은 경로·고도·교체공항·시각으로. 시각은 UTC, EET는 비행 시간(블록 시간 아님).', 'The FPL must match the OFP: route, level, alternates and times. Times in UTC; EET is flight time, not block time.'),
+      gnd: L('燃料とZFWの上限を搭載管理へ、給油量と出発予定をランプへ。最終のZFWが上限の中か確かめてから出発OK。', '연료와 ZFW 상한은 탑재관리로, 급유량과 출발 예정은 램프로. 최종 ZFW가 상한 안인지 확인한 뒤 출발 OK.', 'Send fuel and the ZFW limit to load control, the fuel order and ETD to the ramp. Check the final ZFW is within the limit before clearing departure.'),
+      flt: L('位置通報ごとに、計画と実際の燃料を比べて「着陸時にどれだけ残るか」を見るよ。今日は特別なことがなければ「正常」。', '위치 통보마다 계획과 실제 연료를 비교해 「착륙할 때 얼마나 남는지」를 봐. 오늘은 특별한 일이 없으면 「정상」.', 'At each position report compare planned and actual fuel and look at what will be left on landing. Today, if nothing unusual happens, it is “normal”.')
+      , arr: L('ダイバート先では、CIQ・取扱・給油・旅客・報告を一つずつ手配。急病なら救急車と医療の引き継ぎも。', '다이버트 공항에서는 CIQ·조업·급유·승객·보고를 하나씩 수배. 급병이면 구급차와 의료 인계도.', 'At the diversion airport arrange CIQ, handling, fuel, passengers and reports one by one — plus the ambulance for a medical case.'),
+      rdp: L('再出発の前に、乗員の勤務時間（出頭からのFDP・FT）を確かめよう。上限を超えるなら交代か休息。これまでの時間は「待つ」ことでは消えないよ。', '재출발 전에 승무 시간(출두부터의 FDP·FT)을 확인하자. 한계를 넘으면 교대나 휴식. 지금까지의 시간은 「기다리기」로 사라지지 않아.', 'Before re-departure check crew duty (FDP from report, FT). Over the limit → relief or rest. Time already on duty does not reset by waiting.')
+    };
+    if (M && M.id === 'dp05') { H.wx = L('視程とRVRは別のもの。離陸はその滑走路のRVRで、2つあれば小さい方で判断しよう。', '시정과 RVR은 다른 것. 이륙은 그 활주로의 RVR로, 2개면 작은 쪽으로 판단하자.', 'Visibility and RVR differ. Take-off uses the runway RVR — the lower if there are two.'); H.ice = L('余裕 = HOTの終わり − 離陸。10分を切るなら出発時刻を保たない。気象が変わったら、作業の前でも計算し直そう。', '여유 = HOT 끝 − 이륙. 10분이 안 되면 출발 시각을 유지하지 않아. 기상이 바뀌면 작업 전이라도 다시 계산하자.', 'Margin = HOT end − take-off. Under 10 min, don’t keep the time. Recompute after any weather change, even before the work starts.'); }
+    if (M && M.id === 'dp04') H.flt = L('判断は機長。状態は「その空港に着陸した時の燃料」で見る ― 閉鎖中の目的地は数えない。軽く見たら記録に残る（S8）、重すぎる判断は減点。', '판단은 기장. 상태는 「그 공항에 착륙할 때의 연료」로 본다 — 폐쇄 중인 목적지는 세지 않아. 가볍게 보면 기록에 남고(S8), 너무 무거운 판단은 감점.', 'The captain decides. Judge the state by fuel at landing at each airport — a closed destination does not count. Under-calling is recorded (S8); over-calling costs points.');
+    if (M && M.id === 'dp02') {
+      H.alt = L('出発空港は霧で、戻って着陸する最低条件に届かない。離陸はできても戻れないなら「離陸の代替空港」が要る ― 片発（OEI）で60分以内、しかもその空港に着く時刻の気象で使えること。', '출발 공항은 안개로 돌아와 착륙할 최저치에 못 미쳐. 이륙은 돼도 돌아올 수 없으면 「이륙 교체공항」이 필요해 — 1발(OEI)로 60분 이내, 그리고 그 공항에 도착하는 시각의 기상으로 쓸 수 있어야 해.', 'The departure airport is fogged below landing minima. If you can take off but cannot return, you need a take-off alternate — within 60 min on one engine, and usable in its weather at your arrival time.');
+      H.gnd = L('新しい情報が来たら、署名した版の確認は無効。確かめ直して新しい版で承認 → FPLはCHG。出発が遅れたら有効時間を確かめ直し、DLAとETDの再送を忘れずに。', '새 정보가 오면 서명한 판의 확인은 무효. 다시 확인해 새 판으로 승인 → FPL은 CHG. 출발이 늦어지면 유효시간을 다시 확인하고 DLA와 ETD 재전달을 잊지 마.', 'New information voids the checks on the signed edition: recheck, approve a new edition, then CHG the FPL. If departure slips, recheck validity, send a DLA and resend the ETD.');
+    }
+    return G.hints ? H[k] : null;
+  }
+  /* ---------- 단위 시작 ---------- */
+  function dpStart(u) {
+    S.cur = { p: u, mood: 100, mins: 0, tab: u.kind === 'rel' ? 'wx' : u.kind, notes: [], chk: {}, bags: [], flags: {}, acts: {}, selfFix: [], needSV: false, svDone: false };
+    var at = M.times[u.kind]; if (at != null && dpRel() < at) S.clock = dpStd() + at;
+    if (u.kind === 'flt') S.close = dpStd() + dpDly() + dpTruth().eet;   /* 비행 중: 위 막대는 착륙 예정까지(지연 포함) */
+    dpMsg(null); if (dpJLoad()) dpMsg(L('この段階の途中（' + dpHm(dpRel()) + '）から続けます。確定した判定もそのままです。', '이 단계의 도중(' + dpHm(dpRel()) + ')부터 이어갑니다. 확정한 판정도 그대로입니다.', 'Continuing this stage from ' + dpHm(dpRel()) + '. Decisions already made are kept.'), 'info');
+    updateBar(); guide(dpHint(S.cur.tab)); renderTabs(); showTab(S.cur.tab); STG.pose('idle');
+  }
+  function dpTab(k) { return function () { guide(dpHint(k)); DTAB[k](); }; }
+  /* ---------- DAY 2~: 시각 사건(설계안 v4 1B — 수신 시각 = STD + 상대분 · 한 번만 · 저장에 남음) ---------- */
+  function dpFplFields() { var f = S.dp.fpl; return { i7: f.i7, i13: f.i13, i15: 'N0' + dpA().tas + 'F' + f.lvl + ' ' + f.rt, i16eet: f.eet, i16alt: (f.alt || '').split(' ').filter(Boolean) }; }
+  function dpFplRe() { var d = S.dp, chk = DP.fplCheck(dpFplFields(), dpOfpFpl()); d.fplBad = chk.safety.slice(); d.fplOk = !d.fplBad.length; return chk; }
+  var DEVT = {
+    upd: function () {
+      var d = S.dp, p = dpP(); d.wxv = 2; ['wx', 'alt', 'fuel'].forEach(function (k) { d.ok[k] = false; }); d.wx = {}; d.brief = {}; d.blockWhy = []; if (d.sign != null) d.reapp = true;
+      dpCall('info', L('新しい情報：' + p.upd.amd + 'のTAF AMDと上層風の新しい版（' + p.upd.at.ja + '受信）。', '새 정보: ' + p.upd.amd + ' TAF AMD와 상층풍 새 판(' + p.upd.at.ko + ' 수신).', 'New information: TAF AMD for ' + p.upd.amd + ' and a new upper-wind edition (received ' + p.upd.at.en + ').'), 'info_upd');
+      dpMsg(d.reapp ? L('新しい情報が入りました。署名した版（EDNO ' + d.ed + '）の確認は無効です ― 気象・代替空港・燃料を確かめ直し、新しい版で承認してください。古い版では出発できません。', '새 정보가 들어왔습니다. 서명한 판(EDNO ' + d.ed + ')의 확인은 무효입니다 — 기상·교체공항·연료를 다시 확인하고 새 판으로 승인하세요. 옛 판으로는 출발할 수 없습니다.', 'New information. The checks on the signed edition (EDNO ' + d.ed + ') are no longer valid — recheck weather, alternates and fuel and approve a new edition. You cannot depart on the old one.')
+        : L('新しい情報が入りました。気象・代替空港・燃料をこの情報で確かめてください。', '새 정보가 들어왔습니다. 기상·교체공항·연료를 이 정보로 확인하세요.', 'New information. Check weather, alternates and fuel against it.'), 'bad', 'wx');
+    },
+    dly: function (e) {
+      var d = S.dp; d.dly = e.min; d.recheck = null; if (d.sent03 != null || d.sent04 != null) { d.sent03 = null; d.sent04 = null; }
+      if (d.fplAt != null) dpFplRe();
+      dpCall('ramp', L('前の便の遅れで機体の到着が遅れます。出発は' + e.min + '分遅れの見込みです（ETD ' + dpHm(e.min) + '）。', '앞 편 지연으로 기재 도착이 늦습니다. 출발은 ' + e.min + '분 늦어질 전망입니다(ETD ' + dpHm(e.min) + ').', 'The inbound aircraft is late; departure expected ' + e.min + ' min late (ETD ' + dpHm(e.min) + ').'), 'ramp_dly');
+      dpMsg(L('出発が' + e.min + '分遅れます（新しいEOBT ' + dpZ(e.min) + '）。気象・代替空港の有効時間を確かめ直し、FPLの遅延（DLA）を送り、搭載管理・ランプに新しいETDを伝えてください。', '출발이 ' + e.min + '분 늦어집니다(새 EOBT ' + dpZ(e.min) + '). 기상·교체공항 유효시간을 다시 확인하고, FPL 지연(DLA)을 보내고, 탑재관리·램프에 새 ETD를 전달하세요.', 'Departure delayed ' + e.min + ' min (new EOBT ' + dpZ(e.min) + '). Recheck the validity of weather and alternates, send a DLA, and pass the new ETD to load control and the ramp.'), 'bad', 'gnd');
+    },
+    cargo: function () {
+      var d = S.dp; d.cargoReq = dpD().cargoReq;
+      dpCall('load', L('貨物を ' + f0(d.cargoReq) + ' kg 追加で積めますか。積める量を教えてください。', '화물을 ' + f0(d.cargoReq) + ' kg 더 실을 수 있습니까? 실을 수 있는 양을 알려 주세요.', 'Can we add ' + f0(d.cargoReq) + ' kg of cargo? Tell us how much we can take.'), 'load_cargo');
+      dpMsg(L('搭載管理から貨物の追加の依頼（' + f0(d.cargoReq) + ' kg）。ZFWの上限まで、いくら積めるかを回答してください。', '탑재관리에서 화물 추가 요청(' + f0(d.cargoReq) + ' kg). ZFW 상한까지 얼마나 실을 수 있는지 회신하세요.', 'Load control asks to add ' + f0(d.cargoReq) + ' kg of cargo. Reply how much fits within the ZFW limit.'), 'bad', 'fuel');
+    },
+    ice1: function () { var d = S.dp; d.ice = { st: 1, s: 0, hot: M.hot.light, rec: {} }; dpCall('ramp', L('除氷は2番目、Type Iの開始は出発時刻ちょうどの予定です。', '제빙은 2번째, Type I 시작은 출발 시각 정각 예정입니다.', 'De-icing: we’re second in line, Type I starts at the scheduled departure time (' + dpHm(0) + ').'), 'ramp_ice1'); dpMsg(L('除氷の計画が来ました。HOTの余裕を計算して推薦してください（除氷タブ）。', '제빙 계획이 왔습니다. HOT 여유를 계산해 추천하세요(제빙 탭).', 'De-icing plan received. Compute the HOT margin and recommend (De-icing tab).'), 'info', 'ice'); },
+    ice2: function () { var d = S.dp; d.ice = d.ice || { rec: {} }; d.ice.st = 2; d.ice.s = 15; d.dly = 27; d.sent03 = null; d.sent04 = null; if (d.fplAt != null) dpFplRe(); dpCall('ramp', L('前の便のやり直しで除氷の順番が遅れます。Type Iの開始は、出発予定時刻の15分後（' + dpHm(15) + '）になります。', '앞 편 재작업으로 제빙 순서가 늦어집니다. Type I 시작은 출발 예정 시각의 15분 뒤(' + dpHm(15) + ')가 됩니다.', 'De-icing slips: the aircraft ahead needs re-work. Type I now starts 15 minutes after the scheduled departure (' + dpHm(15) + ').'), 'ramp_ice2'); dpMsg(L('除氷の順番が遅れました。出発時刻を計算し直して、搭載管理・ランプに新しいETDを伝えてください。', '제빙 순서가 늦어졌습니다. 출발 시각을 다시 계산하고 탑재관리·램프에 새 ETD를 전달하세요.', 'De-icing delayed. Recompute the departure time and pass the new ETD to load control and the ramp.'), 'bad', 'ice'); },
+    ice3: function () { var d = S.dp; d.ice = d.ice || { rec: {} }; d.ice.st = 3; d.ice.hot = M.hot.mod; S.dp.metv = 3; dpCall('info', L('SPECIです。雪が強くなりました。', 'SPECI입니다. 눈이 강해졌습니다.', 'SPECI: snow has become heavier.'), 'info_speci'); dpMsg(L('気象が変わりました（作業の始まる前）。HOTを表で引き直してください。', '기상이 바뀌었습니다(작업 시작 전). HOT를 표에서 다시 찾으세요.', 'The weather changed before the work started. Look up the HOT again.'), 'bad', 'ice'); },
+    ice4: function () { var d = S.dp; d.ice = d.ice || { rec: {} }; d.ice.st = 4; d.ice.hot = M.hot.light; d.ice.s = 40; d.dly = 52; d.sent03 = null; d.sent04 = null; if (d.fplAt != null) dpFplRe(); S.dp.metv = 4; dpCall('info', L('SPECIです。雪が弱くなりました。', 'SPECI입니다. 눈이 약해졌습니다.', 'SPECI: snow has eased.'), 'info_speci2'); dpMsg(L('雪が弱くなりました。計算し直して、再開の時刻を推薦してください。', '눈이 약해졌습니다. 다시 계산해 재개 시각을 추천하세요.', 'Snow has eased. Recompute and recommend the restart time.'), 'info', 'ice'); },
+    met2: function () { S.dp.metv = 2; dpCall('info', L('出発空港の新しいMETARです。', '출발 공항의 새 METAR입니다.', 'New METAR for the departure airport.'), 'info_met'); }
+  };
+  function dpEvt() {
+    var d = S.dp, fired = []; d.evd = d.evd || {};
+    (M.events || []).forEach(function (e) { if (d.evd[e.k] != null || dpRel() < e.at - 1e-9 || (e.after && !d.ok[e.after])) return; d.evd[e.k] = e.after ? Math.max(e.at, Math.round(dpRel())) : e.at; dpTc = null; DEVT[e.k](e);   /* 수신 시각 = 정해진 사건 시각(기다리기로 건너뛰어도 그 시각에 들어온 정보) */ fired.push(e.k); });
+    if (!fired.length) return false;
+    renderTabs(); dpMonRefresh(); showTab(fired.indexOf('cargo') >= 0 ? 'fuel' : fired.some(function (k) { return /^ice/.test(k); }) && S.cur && S.cur.p.kind === 'gnd' ? 'ice' : S.cur && S.cur.p.kind === 'gnd' && d.reapp && fired.indexOf('upd') >= 0 ? 'wx' : S.cur.tab); return true;
+  }
+  function dpBtnOk(id, lab, en) { return '<button class="btn pri" id="' + id + '" data-a="ok"' + (en === false ? ' disabled' : '') + '>' + esc(tx(lab)) + '</button>'; }
+  /* ---------- ① 기상 ---------- */
+  var DLV = [['r1', L('代替空港の計画用の最低条件以上', '교체공항 계획 최저치 이상', 'At or above alternate planning minima')], ['r2', L('着陸の最低条件以上・計画用の最低条件未満', '착륙 최저치 이상 · 계획 최저치 미만', 'Above landing minima, below planning minima')], ['r3', L('着陸の最低条件未満', '착륙 최저치 미만', 'Below landing minima')]];
+  function dpWxGroups(taf) {
+    var w = DP.tafWorst(taf, arguments.length > 1 ? arguments[1] : dpTruth().etaH); if (!w) return '';
+    return '<table class="wbt dptaf"><tr><th>' + esc(tx(L('かたまり', '묶음', 'Group'))) + '</th><th>' + esc(tx(L('期間（日時UTC）', '기간(일시 UTC)', 'Period (day-hour UTC)'))) + '</th><th>' + esc(tx(L('視程', '시정', 'Visibility'))) + '</th><th>' + esc(tx(L('雲底（BKN以上）', '운고(BKN 이상)', 'Ceiling (BKN+)'))) + '</th></tr>' +
+      w.groups.map(function (g, i) { var x = DP.parseWx(g.tok), dd = function (h) { return ('0' + Math.floor(h / 24)).slice(-2) + ('0' + h % 24).slice(-2); }, per = i === 0 ? dd(w.start) + '/' + dd(w.end) : g.from == null ? '' : dd(g.from) + '/' + dd(g.to);
+        return '<tr><td>' + esc(g.type) + '</td><td class="mono">' + per + '</td><td class="n">' + (x.v == null ? '—' : x.v >= 10000 ? '10 km+' : f0(x.v) + ' m') + '</td><td class="n">' + (x.c == null ? (g.tok.indexOf('CAVOK') >= 0 ? esc(tx(L('なし', '없음', 'none'))) : '—') : f0(x.c) + ' ft') + '</td></tr>'; }).join('') + '</table>';
+  }
+  function dpWxCard(icao, role, etaH) {
+    var d = S.dp, app = DP.bestApproach(dpApps(icao)), pick = d.wx[icao];
+    var h = '<div class="dpcard"><div class="dph"><b>' + esc(dpApNm(icao)) + '</b> <span class="small">' + esc(tx(role)) + '</span></div>';
+    h += '<p class="small">ETA ' + dpZh(etaH) + ' → ' + esc(tx(L('見る時間', '볼 시간', 'Window'))) + ' ' + dpZh(etaH - 1) + '–' + dpZh(etaH + 1) + '</p>';
+    h += (dpTaf(icao) !== dpP().taf[icao] ? '<p class="small"><b>' + esc(tx(L('新しい版（TAF AMD）', '새 판(TAF AMD)', 'New edition (TAF AMD)'))) + '</b></p>' : '') + '<pre class="dpraw">' + esc(dpTaf(icao)) + '</pre>' + dpWxGroups(dpTaf(icao));
+    if (M.opt && M.opt.appSel) { var ap0 = dpApps(icao, etaH), sel = d.app[icao], nt0 = function (id) { var n = (dpP().notam || []).filter(function (q) { return q.closeApp && (Array.isArray(q.closeApp[0]) ? q.closeApp : [q.closeApp]).some(function (z) { return z[0] === icao && z[1] === id; }); })[0]; return n ? n.id : 'NOTAM'; }; h += '<p class="small">' + esc(tx(L('使う進入（NOTAMを見て選ぶ）：', '쓸 접근(NOTAM을 보고 고름): ', 'Approach to use (check the NOTAMs): '))) + '</p><div class="seg dpseg">' + ap0.map(function (x) { return '<button data-ap="' + icao + '" data-id="' + x.id + '" class="' + (sel === x.id ? 'on' : '') + '">' + esc(x.id) + ' <small>' + x.dh + ' ft / ' + f0(x.vis) + ' m' + (x.avail ? '' : ' · ✕ ' + esc(nt0(x.id))) + '</small></button>'; }).join('') + '</div>'; }
+    else h += '<p class="small">' + esc(tx(L('使える進入：', '쓸 수 있는 접근: ', 'Approach in use: '))) + (app ? esc(app.id) + ' · ' + esc(tx(L('着陸の最低条件 ', '착륙 최저치 ', 'Landing minima '))) + app.dh + ' ft / ' + f0(app.vis) + ' m · ' + esc(tx(L('計画用 ', '계획용 ', 'Planning '))) + (app.dh + 200) + ' ft / ' + f0(app.vis + 800) + ' m' : '—') + '</p>';
+    h += '<div class="chk dplv">' + DLV.map(function (x) { return '<button data-wx="' + icao + '" data-v="' + x[0] + '" class="' + (pick === x[0] ? 'on' : '') + '"><span>' + esc(tx(x[1])) + '</span><span class="st">' + (pick === x[0] ? '✔' : '') + '</span></button>'; }).join('') + '</div></div>';
+    return h;
+  }
+  function dpTabWx() {
+    if (dpEvt()) return;
+    var c = S.cur, t = dpTruth(), p = dpP(), d = S.dp;
+    var h = '<div class="h3">' + esc(tx(L('気象（到着予定の前後1時間の最悪の条件 ― Velaの計画方針）', '기상(도착 예정 전후 1시간의 최악 조건 — Vela 계획 방침)', 'Weather (worst condition within ETA ±1 h — Vela planning policy)'))) + '</div>';
+    h += dpKV([[T.flight, esc(V.flight + ' ' + V.from + '→' + V.to)], [L('出発', '출발', 'Departure'), dpT2(dpDly())], ['EET', DP.eetStr(t.eet) + ' <small>(' + t.eet + tx(T.min) + (d.wxv >= 2 && p.wind2 ? ' · ' + tx(L('上層風 新しい版', '상층풍 새 판', 'new upper winds')) + ' ' + p.wind2.join('/') + 'KT' : '') + ')</small>'], ['ETA', dpZh(t.etaH)], [L('出発空港の実況', '출발 공항 실황', 'Departure METAR'), '<span class="mono">' + esc(dpMetar()) + '</span>']]);
+    if (M.opt && M.opt.toAlt) h += '<div class="dpcard"><div class="dph"><b>' + esc(dpApNm(p.dep)) + '</b> <span class="small">' + esc(tx(L('出発空港（戻れるか ― 着陸の最低条件）', '출발 공항(돌아올 수 있나 — 착륙 최저치)', 'Departure airport (can you return? — landing minima)'))) + '</span></div><pre class="dpraw">' + esc(dpTaf(p.dep)) + '</pre>' + dpWxGroups(dpTaf(p.dep), t.depH) + '<p class="small">' + esc(tx(L('離陸はRVR（滑走路視距離）で、戻って着陸できるかは着陸の最低条件で見る ― RVRと視程は別のもの。', '이륙은 RVR(활주로 가시거리)로, 돌아와 착륙할 수 있는지는 착륙 최저치로 본다 — RVR과 시정은 다른 값.', 'Take-off is judged on RVR; whether you can come back and land is judged on landing minima — RVR is not visibility.'))) + '</p></div>';
+    if (M.opt && M.opt.rvr) { var rv = p.rvr; h += '<div class="dpcard"><div class="dph"><b>' + esc(dpApNm(p.dep)) + '</b> <span class="small">' + esc(tx(L('出発空港 ― 離陸に使う値（RVRと視程は別のもの）', '출발 공항 — 이륙에 쓰는 값(RVR과 시정은 다른 것)', 'Departure — value used for take-off (RVR and visibility differ)'))) + '</span></div><pre class="dpraw">' + esc(dpMetar()) + '</pre><p class="small">' + esc(tx(L('離陸の最低条件（教育用）RVR 400 m ― 使う値は？', '이륙 최저조건(교육용) RVR 400 m — 쓰는 값은?', 'Take-off minimum (educational) RVR 400 m — which value applies?'))) + '</p><div class="seg dpseg">' +
+      [['vis', L('視程 ', '시정 ', 'Visibility ') , rv.vis], ['max', L('RVR（大きい方）', 'RVR(큰 쪽)', 'RVR (higher)'), Math.max.apply(null, rv.rvr)], ['min', L('RVR（使う滑走路の値 ― 小さい方で判断）', 'RVR(쓸 활주로 값 — 작은 쪽으로 판단)', 'RVR (runway value — judge on the lower)'), Math.min.apply(null, rv.rvr)]].map(function (x) { return '<button data-rv="' + x[0] + '" class="' + (d.rvrSel === x[0] ? 'on' : '') + '">' + esc(tx(x[1])) + ' ' + f0(x[2]) + ' m</button>'; }).join('') + '</div></div>'; }
+    h += dpWxCard(p.dest, L('目的地', '목적지', 'Destination'), t.etaH);
+    p.cands.forEach(function (cc) { h += dpWxCard(cc, L('代替空港の候補（その空港のETA）', '교체공항 후보(그 공항의 ETA)', 'Alternate candidate (its own ETA)'), t.cands[cc].etaH); });
+    var all = [p.dest].concat(p.cands).every(function (x) { return d.wx[x] && (!(M.opt && M.opt.appSel) || d.app[x]); }) && (!(M.opt && M.opt.rvr) || !!d.rvrSel);
+    h += '<div class="wbformula"><b>' + esc(tx(L('Vela 教育用の計画方法（道具⑤と同じ）', 'Vela 교육용 계획 방법(도구 ⑤와 같음)', 'Vela educational method (same as tool ⑤)'))) + '</b><div>' + esc(tx(L('いちばん悪い視程・雲底 ＜ 着陸の最低条件 → 着陸不可 ／ ＜ 着陸の最低条件＋雲底200ft・視程800m → 代替空港には使えない。RVRと視程は別のもの。', '가장 나쁜 시정·운고 < 착륙 최저치 → 착륙 불가 / < 착륙 최저치 + 운고 200ft·시정 800m → 교체공항으로 쓸 수 없음. RVR과 시정은 다른 값.', 'Worst visibility/ceiling < landing minima → cannot land; < landing minima + 200 ft / 800 m → cannot be used as an alternate. RVR is not visibility.'))) + '</div></div>';
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-wxok', L('気象の確認 完了', '기상 확인 완료', 'Weather check done'), all) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-wx]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.wx[b.dataset.wx] = b.dataset.v; dpTabWx(); }; });
+    document.querySelectorAll('#scr button[data-rv]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.rvrSel = b.dataset.rv; d.ok.wx = false; dpTabWx(); }; });
+    document.querySelectorAll('#scr button[data-ap]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.app[b.dataset.ap] = b.dataset.id; d.ok.wx = false; dpTabWx(); }; });
+    $('#d-wxok').onclick = function () { if (!dpLive(c)) return; sfx.ok(); d.ok.wx = true; dpCost(dpCk('wx'), M.cost.tab); dpMsg(L('気象の確認を終えました。次はNOTAMです。', '기상 확인을 마쳤습니다. 다음은 NOTAM입니다.', 'Weather done. Next: NOTAMs.'), 'ok', 'notam'); showTab('notam'); };
+  }
+  /* ---------- ② NOTAM ---------- */
+  function dpTabNotam() {
+    if (dpEvt()) return;
+    var c = S.cur, d = S.dp, ns = dpP().notam;
+    var h = '<div class="h3">' + esc(tx(L('NOTAM（この便に影響があるものだけを「影響あり」）', 'NOTAM(이 편에 영향 있는 것만 「영향 있음」)', 'NOTAMs (mark only those that affect this flight)'))) + '</div>';
+    ns.forEach(function (n) { var v = d.nt[n.id]; h += '<div class="dpcard"><pre class="dpraw">' + esc(n.txt) + '</pre><div class="seg dpseg">' + [[true, L('影響あり', '영향 있음', 'Affects this flight')], [false, L('影響なし', '영향 없음', 'No effect')]].map(function (x) { return '<button data-nt="' + n.id + '" data-v="' + (x[0] ? 1 : 0) + '" class="' + (v === x[0] ? 'on' : '') + '">' + esc(tx(x[1])) + '</button>'; }).join('') + '</div></div>'; });
+    var rc = dpP().rwCards || [];
+    if (dpP().snowtam) h += '<div class="h3">SNOWTAM</div><pre class="dpraw">' + esc(dpP().snowtam) + '</pre><p class="small">' + esc(tx(L('RWYCC（滑走路の状態の区分）5/5/3 → 許容重量カードに反映（教育用）。', 'RWYCC(활주로 상태 구분) 5/5/3 → 허용중량 카드에 반영(교육용).', 'RWYCC 5/5/3 → reflected in the allowable-weight card (educational).'))) + '</p>';
+    if (rc.length) h += '<div class="h3">' + esc(tx(L('許容重量カード（教育用 ― 出発滑走路の離陸重量の上限）', '허용중량 카드(교육용 — 출발 활주로의 이륙 중량 상한)', 'Allowable weight cards (educational — take-off weight limit for the departure runway)'))) + '</div><p class="small">' + esc(tx(L('OFPの出発滑走路：', 'OFP 출발 활주로: ', 'OFP departure runway: '))) + '<b>RWY ' + esc(dpP().depRwy) + '</b></p><div class="chk">' + rc.map(function (x) { var on = d.rwCard === x.rwy, at = dpATow(x); return '<button data-rw="' + x.rwy + '" class="' + (on ? 'on' : '') + '"><span>RWY ' + esc(x.rwy) + ' · ' + f0(x.len) + ' m · RWYCC ' + x.rwycc + ' · ' + esc(tx(L('許容TOW ', '허용 TOW ', 'allowed TOW '))) + (at ? f0(at) + ' kg' : esc(tx(L('制限なし（MTOW）', '제한 없음(MTOW)', 'no limit (MTOW)')))) + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>';
+    var all = ns.every(function (n) { return typeof d.nt[n.id] === 'boolean'; }) && (!rc.length || !!d.rwCard);
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-ntok', L('NOTAMの分類 完了', 'NOTAM 분류 완료', 'NOTAM review done'), all) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-nt]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.nt[b.dataset.nt] = b.dataset.v === '1'; dpTabNotam(); }; });
+    document.querySelectorAll('#scr button[data-rw]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.rwCard = b.dataset.rw; d.ok.notam = false; d.ok.fuel = false; dpTabNotam(); }; });
+    $('#d-ntok').onclick = function () { if (!dpLive(c)) return; sfx.ok(); d.ok.notam = true; dpCost(dpCk('notam'), M.cost.tab); dpMsg(L('NOTAMを分類しました。', 'NOTAM을 분류했습니다.', 'NOTAMs classified.'), 'ok', 'mel'); showTab('mel'); };
+  }
+  /* ---------- ③ 기재(정비 통보 −160) ---------- */
+  var DMEL = [['reg', L('登録記号・機材がOFPと同じ', '등록 기호·기재가 OFP와 같음', 'Registration and type match the OFP')], ['mel', L('MEL・CDLの適用なし（整備の通報）', 'MEL·CDL 적용 없음(정비 통보)', 'No MEL/CDL items (engineering notice)')], ['rel', L('整備の確認（出発できる状態）', '정비 확인(출발 가능 상태)', 'Engineering release (serviceable)')]];
+  var DMEL3 = [['reg', L('登録記号・機材がOFPと同じ', '등록 기호·기재가 OFP와 같음', 'Registration and type match the OFP')], ['mel', L('MEL 49-11-01 の適用（APU不作動）― 整備の通報を受けた', 'MEL 49-11-01 적용(APU 불능) — 정비 통보를 받음', 'MEL 49-11-01 applied (APU inoperative) — engineering notice received')], ['rel', L('整備の確認（MELの(M)の処置を済ませて出発できる状態）', '정비 확인(MEL (M) 조치를 마쳐 출발 가능 상태)', 'Engineering release ((M) procedure done — serviceable)')]];
+  var DMELC = [['valid', null], ['sup', L('出発・目的地・代替空港の支援設備（下の表）を確かめた', '출발·목적지·교체공항의 지원 설비(아래 표)를 확인함', 'Checked the support equipment at departure, destination and alternates (table below)')], ['crew', L('乗員に通報（APUなし ― 地上の設備で始動・空調）', '승무원에게 통보(APU 없음 — 지상 설비로 시동·공조)', 'Crew briefed (no APU — start and air conditioning from ground equipment)')]];
+  function dpMelV() { var v = (dpP().mel && dpP().mel.valid) || '11-15', t = M.date.m + '/' + M.date.d, vv = +v.slice(0, 2) + '/' + +v.slice(3); return { iso: '2026-' + v, md: vv, today: t, ja: +v.slice(0, 2) + '月' + +v.slice(3) + '日', ko: +v.slice(0, 2) + '월 ' + +v.slice(3) + '일' }; }
+  function dpMelLab(x) { if (x[0] !== 'valid') return x[1]; var v = dpMelV(); return L('カテゴリーC・期限 ' + v.md + ' ― 今日（' + v.today + '）は期限の中', '카테고리 C · 기한 ' + v.md + ' — 오늘(' + v.today + ')은 기한 안', 'Category C, valid until ' + v.md + ' — today (' + v.today + ') is within it'); }
+  function dpMelCDone() { var d = S.dp; return !(M.opt && M.opt.mel) || DMELC.every(function (x) { return d.melC && d.melC[x[0]]; }); }
+  function dpMelCard(c, gnd) {   /* DAY 3 MEL 조건 체크리스트(S4 — 「출발 가능」 전 전부) · 지원 설비 카드 */
+    var d = S.dp, p = dpP(), m = p.mel, b7 = S.acKey !== '789', aps = [p.dep, p.dest].concat(p.cands);
+    var h = '<div class="dpcard"><div class="dph"><b>MEL ' + esc(m.item) + ' · APU ' + esc(tx(L('不作動', '불능', 'inoperative'))) + '</b> <span class="small">' + esc(tx(L('教育用', '교육용', 'educational'))) + '</span></div><p class="small">' + esc(tx(L('カテゴリーC・期限 ' + dpMelV().iso + '。(O)：出発・到着・代替空港で ', '카테고리 C · 기한 ' + dpMelV().iso + '. (O): 출발·도착·교체공항에서 ', 'Category C, valid until ' + dpMelV().iso + '. (O): at departure, arrival and alternates confirm '))) + esc(tx(b7 ? L('空気始動装置（ASU）＋地上電源（GPU）・空調を確かめる。', '공기 시동 장치(ASU) + 지상 전원(GPU)·공조를 확인.', 'an air start unit (ASU) + ground power (GPU) and air conditioning.') : L('整備が指定する始動用の外部電源＋空調を確かめる。', '정비가 지정하는 시동용 외부 전원 + 공조를 확인.', 'the start power specified by engineering + air conditioning.'))) + '</p>';
+    if (!gnd) h += '<table class="wbt"><tr><th>' + esc(tx(L('空港', '공항', 'Airport'))) + '</th><th>' + esc(tx(L('支援設備', '지원 설비', 'Support equipment'))) + '</th></tr>' + aps.map(function (ic) { var ok = m.sup[ic] !== false; return '<tr><td>' + esc(dpApNm(ic)) + '</td><td>' + (ok ? '○' : '✕ <small>' + esc(tx(m.supWhy[ic])) + '</small>') + '</td></tr>'; }).join('') + '</table>';
+    h += '<p class="small"><b>' + esc(tx(L('MELの条件（「出発できる」の前に全部）', 'MEL 조건(「출발 가능」 전에 전부)', 'MEL conditions (all, before clearing departure)'))) + '</b></p><div class="chk">' + DMELC.map(function (x) { return '<button data-mc="' + x[0] + '"><span>' + esc(tx(dpMelLab(x))) + '</span><span class="st">' + (d.melC[x[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div></div>';
+    return h;
+  }
+  function dpMelBind(c, again) { document.querySelectorAll('#scr button[data-mc]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); S.dp.melC[b.dataset.mc] = true; if (dpMelCDone() && S.dp.melCAt == null) S.dp.melCAt = dpRel(); again(); }; }); }
+  function dpTabMel() {
+    var c = S.cur, d = S.dp, dd = dpD(), m3 = M.opt && M.opt.mel, LIST = m3 ? DMEL3 : DMEL;
+    if (dpRel() < M.times.mel) { addTime(M.times.mel - dpRel()); }
+    if (m3 && !d.said.mel) { d.said.mel = 1; dpCall('mx', L('今日の機体（' + dd.reg + '）、APUが作動しません。MEL ' + dpP().mel.item + 'を適用します。カテゴリーC、期限は' + dpMelV().ja + '。地上の始動装置と空調が要ります。', '오늘 기체(' + dd.reg + '), APU가 작동하지 않습니다. MEL ' + dpP().mel.item + '를 적용합니다. 카테고리 C, 기한은 ' + dpMelV().ko + '. 지상 시동 장치와 공조가 필요합니다.', 'Today’s aircraft (' + dd.reg + '): the APU is inoperative. MEL ' + dpP().mel.item + ' applied — category C, valid until ' + dpMelV().md + '. Ground start and air conditioning needed.'), 'mx_mel3'); }
+    if (!d.said.mel) { d.said.mel = 1; dpCall('mx', L('今日の機体（' + dd.reg + '）、MELの適用はありません。出発できる状態です。', '오늘 기체(' + dd.reg + '), MEL 적용 없습니다. 출발 가능한 상태입니다.', 'Today’s aircraft (' + dd.reg + '): no MEL items. Serviceable.'), 'mx_mel'); }
+    var h = '<div class="h3">' + esc(tx(L('機材（整備士の判断を受けて、この便の条件を確かめる）', '기재(정비사의 판단을 받아 이 편의 조건 확인)', 'Aircraft (take the engineer’s decision and check this flight’s conditions)'))) + '</div>' +
+      dpKV([[L('機材', '기재', 'Aircraft'), esc((S.acKey === '789' ? 'B787-9' : 'B737-800') + ' · ' + dd.reg)], ['DOW', f0(dpA().dow) + ' kg'], ['MTOW / MLW / MZFW', f0(dpA().mtow) + ' / ' + f0(dpA().mlw) + ' / ' + f0(dpA().mzfw) + ' kg']]) +
+      '<div class="chk">' + LIST.map(function (x) { return '<button data-m="' + x[0] + '"><span>' + esc(tx(x[1])) + '</span><span class="st">' + (d.melChk[x[0]] ? '✔' : '') + '</span></button>'; }).join('') + '</div>' + (m3 ? dpMelCard(c) : '');
+    var all = LIST.every(function (x) { return d.melChk[x[0]]; });
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-melok', L('機材の確認 完了', '기재 확인 완료', 'Aircraft check done'), all) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-m]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.melChk[b.dataset.m] = true; dpTabMel(); }; });
+    dpMelBind(c, dpTabMel);
+    $('#d-melok').onclick = function () { if (!dpLive(c)) return; sfx.ok(); d.ok.mel = true; dpCost(dpCk('mel'), M.cost.tab); showTab('alt'); };
+  }
+  /* ---------- ④ 교체공항(2C-1) ---------- */
+  function dpTabAlt() {
+    if (dpEvt()) return;
+    var c = S.cur, d = S.dp, p = dpP(), t = dpTruth(), kr = S.prof === 'KR', max = kr ? 2 : 1;
+    var rule = kr ? L('韓国プロファイル：①目的地の使用予定時刻にVMCで進入・着陸でき、かつ分離滑走路が使え、かつ計器進入方式が1つ以上 → 省略できる ②目的地がVelaの飛行場最低気象条件未満か気象情報なし → 2つ ③それ以外 → 1つ。（Vela教育用カード：ここでの「VMC」＝時間内の最悪の雲底1,500ft以上・視程5,000m以上 ― 簡略化で、実際のVMCの定義全体ではない）', '한국 프로파일: ① 목적지 사용예정시간에 VMC 접근·착륙 가능 그리고 분리활주로 사용 가능 그리고 계기접근절차 1개 이상 → 생략 가능 ② 목적지가 Vela 비행장 기상최저치 미만 또는 기상정보 없음 → 2개 ③ 그 외 → 1개. (Vela 교육용 카드: 여기서 「VMC」 = 시간창 최악 운고 1,500ft 이상·시정 5,000m 이상 — 단순화이며 실제 VMC 정의 전체가 아님)', 'KR profile: ① VMC approach/landing at the destination at the expected time AND separate runways AND at least one instrument approach → may omit ② destination below Vela aerodrome minima or no weather → 2 ③ otherwise → 1. (Vela educational card: “VMC” here = worst ceiling ≥ 1,500 ft and visibility ≥ 5,000 m in the window — a simplification, not the full VMC definition.)')
+      : L('日本プロファイル：飛行6時間以下、かつETAの前後各1時間以上の範囲で目的地の雲高600m以上かつ地上視程5,000m以上の見込み → 省略できる。それ以外 → 1つ（45分の燃料は省略の条件ではない）', '일본 프로파일: 비행 6시간 이하, 그리고 ETA 전후 각 1시간 이상 범위에서 목적지 운고 600m 이상 그리고 지상시정 5,000m 이상 예상 → 생략 가능. 그 외 → 1개(45분 연료는 생략 조건이 아님)', 'JP profile: flight ≤ 6 h AND ceiling ≥ 600 m and ground visibility ≥ 5,000 m expected at the destination from 1 h before to 1 h after ETA → may omit. Otherwise → 1 (carrying 45 min of fuel is not a condition)');
+    var h = '<div class="h3">' + esc(tx(L('代替空港（いくつ要るか → どこにするか）', '교체공항(몇 개 필요한가 → 어디로 할까)', 'Alternates (how many → which)'))) + '</div><div class="wbformula"><b>' + esc(tx(L('コラリンのルール', '코라린의 규칙', 'Korarin’s rule'))) + '</b><div>' + esc(tx(rule)) + '</div></div>';
+    h += '<p class="small">' + esc(tx(L('目的地の代替空港の数', '목적지 교체공항 개수', 'Number of destination alternates'))) + '</p><div class="seg dpseg">' + [0, 1, 2].slice(0, max + 1).map(function (n) { return '<button data-n="' + n + '" class="' + (d.altN === n ? 'on' : '') + '">' + n + '</button>'; }).join('') + '</div>';
+    h += '<p class="small">' + esc(tx(L('どこを指定するか（気象タブで見た候補）', '어디를 지정할까(기상 탭에서 본 후보)', 'Which to file (the candidates from the Weather tab)'))) + '</p><div class="chk">' + p.cands.map(function (cc) { var on = d.alts.indexOf(cc) >= 0; return '<button data-c="' + cc + '" class="' + (on ? 'on' : '') + '"' + (d.altN ? '' : ' disabled') + '><span>' + esc(dpApNm(cc)) + ' · ' + t.cands[cc].dist + ' NM</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>';
+    h += '<p class="small">' + esc(tx(L('離陸の代替空港（出発空港の天候が着陸の最低条件未満、またはほかの理由で戻れない時）', '이륙 교체공항(출발 공항 날씨가 착륙 최저치 미만이거나 다른 이유로 돌아올 수 없을 때)', 'Take-off alternate (needed if departure weather is below landing minima or you cannot return for another reason)'))) + '</p><div class="seg dpseg">' + [[true, L('必要', '필요', 'Needed')], [false, L('不要', '불필요', 'Not needed')]].map(function (x) { return '<button data-to="' + (x[0] ? 1 : 0) + '" class="' + (d.toAlt === x[0] ? 'on' : '') + '">' + esc(tx(x[1])) + '</button>'; }).join('') + '</div>';
+    var tcs = p.toCands || [];
+    if (d.toAlt === true && tcs.length) h += '<p class="small">' + esc(tx(L('離陸の代替空港のカード（片発不作動 OEI での到達時間は教育用の値・60分以内が条件 ― その空港に着く時刻の気象も見る）', '이륙 교체공항 카드(1발 부작동 OEI 도달시간은 교육용 값 · 60분 이내가 조건 — 그 공항에 도착하는 시각의 기상도 봄)', 'Take-off alternate cards (OEI time is an educational value; must be within 60 min — also check its weather at your arrival time)'))) + '</p><div class="chk">' + tcs.map(function (x) { var on = d.toSel === x.icao, m = x.oei[S.acKey]; return '<button data-tc="' + x.icao + '" class="' + (on ? 'on' : '') + '"><span>' + esc(dpApNm(x.icao)) + ' · ' + x.dist + ' NM · OEI ' + m + tx(T.min) + '<pre class="dpraw">' + esc(dpTaf(x.icao)) + '</pre></span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>';
+    var ready = d.altN != null && d.alts.length === d.altN && typeof d.toAlt === 'boolean' && !(d.toAlt === true && tcs.length && !d.toSel);
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-altok', L('代替空港を決める', '교체공항 결정', 'Set alternates'), ready) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-n]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.altN = +b.dataset.n; d.alts = d.alts.slice(0, d.altN); d.ok.alt = false; d.ok.fuel = false; dpTabAlt(); }; });
+    document.querySelectorAll('#scr button[data-c]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); var i = d.alts.indexOf(b.dataset.c); if (i >= 0) d.alts.splice(i, 1); else if (d.alts.length < d.altN) d.alts.push(b.dataset.c); else d.alts = d.alts.slice(1).concat([b.dataset.c]); d.ok.alt = false; d.ok.fuel = false; dpTabAlt(); }; });
+    document.querySelectorAll('#scr button[data-to]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.toAlt = b.dataset.to === '1'; if (!d.toAlt) d.toSel = null; d.ok.alt = false; dpTabAlt(); }; });
+    document.querySelectorAll('#scr button[data-tc]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.toSel = d.toSel === b.dataset.tc ? null : b.dataset.tc; d.ok.alt = false; dpTabAlt(); }; });
+    $('#d-altok').onclick = function () { if (!dpLive(c)) return; sfx.ok(); d.ok.alt = true; dpCost(dpCk('alt'), M.cost.tab); dpMsg(L('代替空港を決めました。次は燃料です（区分が代替空港の数で変わります）。', '교체공항을 정했습니다. 다음은 연료입니다(구분이 교체공항 개수에 따라 바뀝니다).', 'Alternates set. Next: fuel (the categories depend on the alternates).'), 'ok', 'fuel'); showTab('fuel'); };
+  }
+  /* ---------- ⑤ 연료·중량(2B·2B-1 · 2E) ---------- */
+  var DFL = {
+    taxi: { KR: L('地上走行燃料', '지상활주연료', 'Taxi fuel'), JP: L('離陸前の消費（会社の搭載量に含める）', '이륙 전 소비(회사 탑재량에 포함)', 'Pre-take-off burn (in the company load)') },
+    trip: { KR: L('運航燃料', '운항연료', 'Trip fuel'), JP: L('着陸地までの燃料', '착륙지까지의 연료', 'Fuel to the destination') },
+    cont: { KR: L('補正燃料', '보정연료', 'Contingency fuel') }, unf: { JP: L('不測の事態を考慮した燃料', '예측 불가 사태를 고려한 연료', 'Fuel for unforeseen events') },
+    alt: { KR: L('目的地代替空港燃料', '목적지교체공항연료', 'Destination alternate fuel'), JP: L('代替空港等までの燃料', '교체공항까지의 연료', 'Fuel to the alternate') },
+    fr30: { KR: L('最終予備燃料（30分）', '최종예비연료(30분)', 'Final reserve (30 min)'), JP: L('代替空港上空30分の待機', '교체공항 상공 30분 대기', '30 min holding over the alternate') },
+    hold15: { KR: L('目的地上空15分の待機', '목적지 상공 15분 대기', '15 min holding over the destination') }, fr30d: { KR: L('最終予備燃料（目的地上空30分）', '최종예비연료(목적지 상공 30분)', 'Final reserve (30 min over the destination)') },
+    hold45: { JP: L('着陸地上空45分の待機', '착륙지 상공 45분 대기', '45 min holding over the destination') },
+    add: { KR: L('追加燃料（故障想定の不足分）', '추가연료(고장 가정 부족분)', 'Additional fuel (critical-failure shortfall)') },
+    crit: { JP: L('故障想定との比較で増える分（大きい方まで）', '고장 가정과 비교해 늘어나는 양(큰 쪽까지)', 'Increase from the critical-failure comparison (up to the larger)') }
+  };
+  function dpFlab(k) { return (DFL[k] && (DFL[k][S.prof] || DFL[k].KR || DFL[k].JP)) || L(k, k, k); }
+  function dpFormula(k) {
+    var t = dpTruth(), a = dpA(), d = S.dp;
+    var F = { taxi: L('機材の値 ' + a.taxi + ' kg', '기재 값 ' + a.taxi + ' kg', 'aircraft value ' + a.taxi + ' kg'), trip: 'EET ' + t.eet + ' min ÷ 60 × ' + f0(a.ff) + ' kg/h × 1.08', cont: 'max(trip × 5%, H × 5/60)', unf: 'max(trip × 5%, H × 5/60)',
+      alt: (d.alts || []).map(function (c) { return c + ': (' + t.cands[c].dist + ' NM ÷ ' + a.tas + ' kt + 0.25 h) × ' + f0(a.ff); }).join(' / ') + (d.alts.length > 1 ? ' → max' : ''), fr30: '0.5 h × H', fr30d: '0.5 h × H', hold15: '0.25 h × H', hold45: '0.75 h × H',
+      add: 'max(0, Fcrit − N)', crit: 'max(0, Fcrit − N)' };
+    return F[k] || '';
+  }
+  function dpTabFuel() {
+    if (dpEvt()) return;
+    var c = S.cur, d = S.dp, t = dpTruth(), a = dpA(), kr = S.prof === 'KR';
+    if (!d.ok.alt) { scr('<div class="h3">' + esc(tx(DP_TEXT.tabs.fuel)) + '</div><div class="why">' + esc(tx(L('先に「代替空港」タブで数と空港を決めてください（燃料の区分が変わります）。', '먼저 「교체공항」 탭에서 개수와 공항을 정하세요(연료 구분이 바뀝니다).', 'Set the alternates first (they change the fuel categories).'))) + '</div><div class="btns"><button class="btn" id="d-goalt">' + esc(tx(DP_TEXT.tabs.alt)) + '</button></div>' + dpEdu()); $('#d-goalt').onclick = function () { showTab('alt'); }; return; }
+    var req = dpReq(), inp = d.fuel, xk = kr ? 'disc' : 'company';
+    var h = '<div class="h3">' + esc(tx(L('燃料（区分ごとに計算 ― ' + (kr ? '韓国 運航技術基準 8.1.9.15' : '日本 航空法施行規則 第153条') + '）', '연료(구분별 계산 — ' + (kr ? '한국 운항기술기준 8.1.9.15' : '일본 항공법 시행규칙 제153조') + ')', 'Fuel (by category — ' + (kr ? 'Korea FSR 8.1.9.15' : 'Japan Enforcement Regulations Art. 153') + ')'))) + '</div>';
+    h += dpKV([['EET', t.eet + tx(T.min)], [L('燃料消費（巡航）', '연료 소모(순항)', 'Fuel flow (cruise)'), f0(a.ff) + ' kg/h'], ['TAS', a.tas + ' kt'], [L('待機の燃料消費 H', '체공 연료 소모 H', 'Holding flow H'), f0(a.H) + ' kg/h <small>(' + esc(tx(L('巡航×0.8 ― 教育用の簡略化', '순항×0.8 — 교육용 단순화', 'cruise × 0.8 — simplified'))) + ')</small>'],
+      [L('代替空港', '교체공항', 'Alternate'), d.alts.length ? d.alts.map(function (cc) { return esc(cc) + ' ' + t.cands[cc].dist + ' NM'; }).join(' / ') : esc(tx(L('指定なし', '지정 안 함', 'none filed')))], [L('故障想定の必要量カード Fcrit', '고장 가정 필요량 카드 Fcrit', 'Critical-failure card Fcrit'), f0(t.Fcrit) + ' kg <small>(' + esc(tx(L('教育用の値', '교육용 값', 'educational value'))) + (dpD().fcritMore != null ? ' · ' + esc(tx(L('基準：EDNO ' + (d.ed || 1) + '・代替空港 ' + t.okC[0] + '・機材', '기준: EDNO ' + (d.ed || 1) + ' · 교체공항 ' + t.okC[0] + ' · 기재', 'basis: EDNO ' + (d.ed || 1) + ', alternate ' + t.okC[0] + ', type'))) : '') + ')</small>']]);
+    h += '<div class="wbchk dpfuel">' + req.rows.filter(function (r) { return r.k !== xk; }).map(function (r) {
+      var lab = dpFlab(r.k);
+      return '<label><span>' + esc(tx(lab)) + '<small class="dpf">' + esc(tx(dpFormula(r.k))) + '</small></span><input inputmode="numeric" data-fu="' + r.k + '" value="' + esc(inp[r.k] != null ? inp[r.k] : '') + '"><i></i></label>'; }).join('') +
+      '<label><span>' + esc(tx(kr ? L('裁量燃料（機長の判断・任意）', '재량연료(기장 판단·선택)', 'Discretionary fuel (optional)') : L('会社の追加分（任意）', '회사 추가분(선택)', 'Company extra (optional)'))) + '</span><input inputmode="numeric" data-x="1" value="' + esc(d.X != null ? d.X : 0) + '"><i></i></label></div>';
+    var tot = dpInputTotal(), wt = DP.weights({ ac: S.acKey, zfw: dpZfwEst(), block: tot, trip: t.T, aTOW: dpATowSel() });
+    h += '<table class="wbt"><tr><td>' + esc(tx(L('搭載燃料の合計（BLOCK）', '탑재 연료 합계(BLOCK)', 'Block fuel'))) + '</td><td class="n"><b>' + f0(tot) + ' kg</b></td></tr>' +
+      '<tr><td>' + esc(tx(L('予想ZFW（搭載管理の見込み）', '예상 ZFW(탑재관리 예상)', 'Estimated ZFW (load control)'))) + '</td><td class="n">' + f0(dpZfwEst()) + ' kg' + (dpCargo() ? ' <small>(' + esc(tx(L('貨物 +', '화물 +', 'cargo +'))) + f0(dpCargo()) + ')</small>' : '') + '</td></tr>' + (dpP().rwCards ? '<tr><td>' + esc(tx(L('許容TOW（選んだ許容重量カード）', '허용 TOW(고른 허용중량 카드)', 'Allowed TOW (selected allowable-weight card)'))) + '</td><td class="n">' + (S.dp.rwCard ? 'RWY ' + esc(S.dp.rwCard) + ' · ' + f0(wt.aTOW) + ' kg' : '—') + '</td></tr>' : '') +
+      '<tr><td>TOW / LW</td><td class="n">' + f0(wt.tow) + ' / ' + f0(wt.lw) + ' kg</td></tr>' +
+      '<tr><td>' + esc(tx(L('ZFWの上限 = min(MZFW, 許容TOW − 離陸燃料, 許容LW − 着陸時の燃料)', 'ZFW 상한 = min(MZFW, 허용 TOW − 이륙 연료, 허용 LW − 착륙 시 연료)', 'ZFW limit = min(MZFW, allowed TOW − take-off fuel, allowed LW − landing fuel)'))) + '</td><td class="n">' + f0(wt.zfwCap) + ' kg</td></tr></table>';
+    if (d.cargoReq) h += '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('搭載管理の依頼：貨物 +' + f0(d.cargoReq) + ' kg', '탑재관리 요청: 화물 +' + f0(d.cargoReq) + ' kg', 'Load control request: cargo +' + f0(d.cargoReq) + ' kg'))) + '</b></div><p class="small">' + esc(tx(L('積める量 = ZFWの上限 − 予想ZFW（今の計画の離陸燃料で・10 kg単位で切り捨て）。上限は許容TOW・燃料で決まる。', '실을 수 있는 양 = ZFW 상한 − 예상 ZFW(지금 계획의 이륙 연료로 · 10 kg 단위 내림). 상한은 허용 TOW·연료로 정해진다.', 'Allowable = ZFW limit − estimated ZFW (with the current plan’s take-off fuel; round down to 10 kg). The limit comes from the allowed TOW and the fuel.'))) + '</p>' +
+      (d.cargoAns == null ? '<div class="wbchk dpfuel"><label><span>' + esc(tx(L('積める量（kg）', '실을 수 있는 양(kg)', 'Allowable (kg)'))) + '</span><input inputmode="numeric" id="d-cga" value="' + esc(d.cargoIn != null ? d.cargoIn : '') + '"><i></i></label></div><div class="btns"><button class="btn" id="d-cgo"' + (d.cargoIn === '' || d.cargoIn == null ? ' disabled' : '') + '>' + esc(tx(L('搭載管理に回答する', '탑재관리에 회신', 'Reply to load control'))) + '</button></div>'
+        : '<p class="mono">' + esc(tx(L('回答 ', '회신 ', 'Replied '))) + f0(d.cargoAns) + ' kg' + (d.cargoFix != null ? ' → ' + esc(tx(L('訂正 ', '정정 ', 'corrected '))) + f0(d.cargoFix) + ' kg' : '') + ' → ' + esc(tx(L('搭載 ', '탑재 ', 'loaded '))) + f0(dpCargo()) + ' kg</p>' +
+          (S.dp.sign == null ? '<div class="wbchk dpfuel"><label><span>' + esc(tx(L('回答の訂正（kg）― 最初の回答の採点はそのまま', '회신 정정(kg) — 처음 회신의 채점은 그대로', 'Correct the reply (kg) — the first reply stays scored'))) + '</span><input inputmode="numeric" id="d-cgf" value="' + esc(d.cargoFixIn != null ? d.cargoFixIn : '') + '"><i></i></label></div><div class="btns"><button class="btn" id="d-cgfo"' + (d.cargoFixIn ? '' : ' disabled') + '>' + esc(tx(L('搭載管理に訂正を伝える', '탑재관리에 정정 전달', 'Send the correction to load control'))) + '</button></div>' : '')) + '</div>';
+    var all = req.rows.filter(function (r) { return r.k !== xk; }).every(function (r) { return inp[r.k] !== '' && inp[r.k] != null && isFinite(+inp[r.k]); });
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-fuelok', L('燃料を決める', '연료 확정', 'Set fuel'), all) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr input[data-fu]').forEach(function (el) { el.onchange = function () { if (!dpLive(c)) return; d.fuel[el.dataset.fu] = el.value.replace(/[^0-9.]/g, ''); d.ok.fuel = false; dpTabFuel(); }; });
+    var xi = document.querySelector('#scr input[data-x]'); if (xi) xi.onchange = function () { if (!dpLive(c)) return; d.X = Math.max(0, Math.round(+xi.value.replace(/[^0-9.]/g, '') || 0)); d.ok.fuel = false; dpTabFuel(); };
+    if ($('#d-cga')) $('#d-cga').oninput = function () { d.cargoIn = this.value.replace(/[^0-9]/g, ''); var b = $('#d-cgo'); if (b) b.disabled = !d.cargoIn; };
+    if ($('#d-cgo')) $('#d-cgo').onclick = function () {   /* 화물 회신(설계안 2A): 정답 = floor10(상한 − 예상 ZFW) · 채점 ±50 · 실제 수락량 = min(요청, 회신) */
+      if (!dpLive(c) || d.cargoAns != null || !d.cargoIn) return; sfx.tap(); addTime(M.cost.call);
+      var ans = Math.round(+d.cargoIn), w0 = DP.weights({ ac: S.acKey, zfw: dpD().zfwEst, block: dpInputTotal(), trip: dpTruth().T, aTOW: dpATowTrue() }), truth = Math.max(0, Math.floor((w0.zfwCap - dpD().zfwEst) / 10) * 10);
+      d.cargoAns = ans; d.cargoTruth = truth; d.cargoOk = Math.abs(ans - truth) <= 50; d.cargoAcc = Math.min(d.cargoReq, ans);
+      dpCall('load', L('了解、貨物は ' + f0(d.cargoAcc) + ' kg 積みます。', '알겠습니다. 화물은 ' + f0(d.cargoAcc) + ' kg 싣겠습니다.', 'Copy, we will load ' + f0(d.cargoAcc) + ' kg of cargo.'), 'load_cgok');
+      dpMsg(L('貨物 ' + f0(d.cargoAcc) + ' kg で予想ZFWが ' + f0(dpZfwEst()) + ' kg になりました。上限の中か、OFPの署名で確かめます。', '화물 ' + f0(d.cargoAcc) + ' kg으로 예상 ZFW가 ' + f0(dpZfwEst()) + ' kg이 되었습니다. 상한 안인지 OFP 서명에서 확인합니다.', 'With ' + f0(d.cargoAcc) + ' kg of cargo the estimated ZFW is ' + f0(dpZfwEst()) + ' kg. The release checks it against the limit.'), 'ok'); dpTabFuel(); };
+    if ($('#d-cgf')) $('#d-cgf').oninput = function () { d.cargoFixIn = this.value.replace(/[^0-9]/g, ''); var b = $('#d-cgfo'); if (b) b.disabled = !d.cargoFixIn; };
+    if ($('#d-cgfo')) $('#d-cgfo').onclick = function () {   /* F05-12-02: 차단 → 고쳐서 재개 — 처음 회신(cargoAns·cargoOk)과 S3 기록은 그대로 · 실제 수락량만 min(요청, 정정값) */
+      if (!dpLive(c) || d.cargoAns == null || !d.cargoFixIn || S.dp.sign != null) return; sfx.tap(); addTime(M.cost.call);
+      d.cargoFix = Math.round(+d.cargoFixIn); d.cargoAcc = Math.min(d.cargoReq, d.cargoFix); d.cargoFixIn = '';
+      dpCall('load', L('了解、貨物は ' + f0(d.cargoAcc) + ' kg 積みます。', '알겠습니다. 화물은 ' + f0(d.cargoAcc) + ' kg 싣겠습니다.', 'Copy, we will load ' + f0(d.cargoAcc) + ' kg of cargo.'), 'load_cgok');
+      dpMsg(L('訂正を伝えました。予想ZFWは ' + f0(dpZfwEst()) + ' kg です。もう一度署名で確かめます。', '정정을 전달했습니다. 예상 ZFW는 ' + f0(dpZfwEst()) + ' kg입니다. 다시 서명에서 확인합니다.', 'Correction sent. Estimated ZFW is now ' + f0(dpZfwEst()) + ' kg; the release checks it again.'), 'ok'); dpTabFuel(); };
+    $('#d-fuelok').onclick = function () { if (!dpLive(c)) return; sfx.ok(); d.ok.fuel = true; dpCost(dpCk('fuel'), M.cost.tab); dpMsg(L('燃料を決めました。OFPを確かめて機長にブリーフィングします。', '연료를 정했습니다. OFP를 확인하고 기장에게 브리핑합니다.', 'Fuel set. Check the OFP and brief the captain.'), 'ok', 'ofp'); if (dpEvt()) return; showTab('ofp'); };
+  }
+  /* ---------- ⑥ OFP·브리핑·서명/승인(2A⑤ · 3A) ---------- */
+  function dpBriefQs() {
+    var d = S.dp, kr = S.prof === 'KR', none = L('なし', '없음', 'None');
+    var o1 = [d.alts.length ? d.alts.join(' / ') : '—'].concat(dpP().cands.filter(function (c) { return d.alts.indexOf(c) < 0; })).filter(function (x) { return x !== '—'; }).sort();
+    o1.push(none); var a1 = d.alts.length ? o1.indexOf(d.alts.join(' / ')) : o1.length - 1;   /* 정답이 늘 첫 칸이 아니게 — 공항 이름순 + 「없음」 끝 */
+    var o2 = [L('45分', '45분', '45 min'), L('15分', '15분', '15 min'), L('30分', '30분', '30 min')], a2 = d.alts.length || kr ? 2 : 0;   /* 지정 = 30분 · KR 미지정 = 최종예비 30분(+15분 대기) · JP 미지정 = 45분 한 칸 */
+    return [{ k: 'q1', q: L('機長：「目的地の代替空港は？」', '기장: 「목적지 교체공항은?」', 'Captain: “Destination alternate?”'), o: o1, a: a1 },
+      { k: 'q2', q: L('機長：「最終予備は何分の待機分？」', '기장: 「최종예비는 몇 분 대기분?」', 'Captain: “How many minutes is the final reserve?”'), o: o2, a: a2 }];
+  }
+  function dpTabOfp() {
+    if (dpEvt()) return;
+    var c = S.cur, d = S.dp, t = dpTruth(), kr = S.prof === 'KR', miss = ['wx', 'notam', 'mel', 'alt', 'fuel'].filter(function (k) { return !d.ok[k]; });
+    var h = '<div class="h3">OFP · EDNO ' + d.ed + '</div>';
+    if (d.ok.fuel) {
+      var req = dpReq(), tot = dpInputTotal();
+      h += dpKV([[T.flight, esc(V.flight + ' · ' + (S.acKey === '789' ? 'B787-9' : 'B737-800') + ' · ' + dpD().reg)], [L('経路・高度', '경로·고도', 'Route & level'), '<span class="mono">' + esc(DP.EX[dpP().route]) + ' · FL' + dpP().fl + '</span>'],
+        ['EOBT / EET / ETA', dpZ(dpDly()) + ' / ' + DP.eetStr(t.eet) + ' / ' + dpZh(t.etaH)], [L('代替空港', '교체공항', 'Alternates'), esc(d.alts.join(' / ') || tx(L('なし', '없음', 'none')))], ['BLOCK', f0(tot) + ' kg'], [L('影響のあるNOTAM', '영향 있는 NOTAM', 'Relevant NOTAMs'), esc(dpP().notam.filter(function (n) { return d.nt[n.id]; }).map(function (n) { return n.id; }).join(', ') || '—')]]);
+    } else h += '<div class="why">' + esc(tx(L('まだ確かめていないタブ：', '아직 확인하지 않은 탭: ', 'Tabs not done yet: '))) + esc(miss.map(function (k) { return tx(DP_TEXT.tabs[k]); }).join('・')) + '</div>';
+    var qs = dpBriefQs();
+    h += '<div class="h3">' + esc(tx(L('機長へのブリーフィング', '기장 브리핑', 'Captain briefing'))) + '</div>' + qs.map(function (q) { return '<p class="small">' + esc(tx(q.q)) + '</p><div class="seg dpseg">' + q.o.map(function (o, i) { return '<button data-bq="' + q.k + '" data-i="' + i + '" class="' + (d.brief[q.k] === i ? 'on' : '') + '"' + (d.ok.fuel ? '' : ' disabled') + '>' + esc(tx(o)) + '</button>'; }).join('') + '</div>'; }).join('');
+    var lab = kr ? L('運航管理士として署名する（その後 機長が確認・署名）', '운항관리사 서명(그 뒤 기장 확인·서명)', 'Sign as dispatcher (then the captain confirms and signs)') : L('運航管理者として承認する（その後 機長が確認）', '운항관리자 승인(그 뒤 기장 확인)', 'Approve as dispatcher (then the captain confirms)');
+    if (c.p.kind !== 'rel') lab = L('新しい版（EDNO ' + (d.ed + 1) + '）で' + (kr ? '署名し直す（機長が確認・署名）' : '承認し直す（機長が確認）'), '새 판(EDNO ' + (d.ed + 1) + ')으로 ' + (kr ? '다시 서명(기장 확인·서명)' : '다시 승인(기장 확인)'), 'Re-' + (kr ? 'sign' : 'approve') + ' as a new edition (EDNO ' + (d.ed + 1) + ')');
+    h += dpMsgHtml() + ((d.blockWhy || []).length ? '<ul class="dpwhy">' + d.blockWhy.map(function (w) { return '<li><b>' + w[0] + '</b> ' + esc(tx(w[1])) + '</li>'; }).join('') + '</ul>' : '') + '<div class="btns">' + dpBtnOk('d-sign', lab, !miss.length) + '</div><p class="small">' + esc(tx(L('署名の前に、必要量・代替空港と出発の気象条件・重量・NOTAMを規則どおりに確かめます。足りない時は署名できません。', '서명 전에 요구량·교체공항과 출발 기상 조건·중량·NOTAM을 규정대로 확인합니다. 모자라면 서명할 수 없습니다.', 'Before release the game checks fuel required, alternates and departure weather, weights and NOTAMs against the rules — if anything is short, you cannot release.'))) + '</p>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-bq]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); if (!d.said.brief) { d.said.brief = 1; dpCall('cap', L('ブリーフィング、お願いします。', '브리핑 부탁합니다.', 'Briefing, please.'), 'cap_brief'); } d.brief[b.dataset.bq] = +b.dataset.i; dpTabOfp(); }; });
+    $('#d-sign').onclick = function () { if (!dpLive(c)) return; dpSign(c); };
+  }
+  var DGATEW = { 'dep-tomin': L('出発空港の離陸の最低条件', '출발 공항 이륙 최저조건', 'departure take-off minima'), 'alt-none': L('代替空港が必要なのに指定なし', '교체공항이 필요한데 지정 안 함', 'alternate required but none filed'), 'alt-count': L('代替空港の数が足りない', '교체공항 개수 부족', 'not enough alternates'),
+    'jp-dest': L('目的地のETAで着陸の最低条件を満たさない', '목적지 ETA에 착륙 최저조건 미충족', 'destination below landing minima at ETA'), 'kr-dest': L('目的地の気象が適合しない', '목적지 기상 부적합', 'destination weather not suitable'), 'to-alt-missing': L('離陸の代替空港がない', '이륙 교체공항 없음', 'no take-off alternate'), 'to-alt-time': L('離陸の代替空港が60分を超える', '이륙 교체공항 60분 초과', 'take-off alternate beyond 60 min'), 'to-alt-unsuit': L('離陸の代替空港が適合しない', '이륙 교체공항 부적합', 'take-off alternate not suitable') };
+  function dpGateTxt(f) { if (f.indexOf('alt-mel:') === 0) { var im = f.slice(8); return L(im + 'にはMELの条件の支援設備がない（APUなしで始動・空調できない ― 代替空港に使えない）', im + '에는 MEL 조건의 지원 설비가 없음(APU 없이 시동·공조 불가 — 교체공항으로 쓸 수 없음)', im + ' lacks the support equipment the MEL requires (no start/air conditioning without the APU — cannot be an alternate)'); } if (f.indexOf('alt-unsuit:') === 0) { var ic = f.slice(11); return L(ic + 'はその空港のETAで計画用の最低条件を満たさない（代替空港に使えない）', ic + kj(ic, '은는') + ' 그 공항의 ETA에 계획 최저치 미충족(교체공항으로 쓸 수 없음)', ic + ' is below planning minima at its own ETA (cannot be an alternate)'); } return DGATEW[f] || L(f, f, f); }
+  function dpSign(c) {
+    if (S.dp.cargoReq && S.dp.cargoAns == null) { dpMsg(L('先に搭載管理の貨物の依頼に回答してください（燃料タブ）。', '먼저 탑재관리의 화물 요청에 회신하세요(연료 탭).', 'Reply to load control’s cargo request first (Fuel tab).'), 'info', 'fuel'); showTab('fuel'); return; }
+    var d = S.dp, t = dpTruth(), req = dpReq(), chk = DP.checkFuel(req, dpInput()), fails = 0, why = [], re = c.p.kind !== 'rel', ta = dpToAlt();
+    /* S1 연료(2B-1 기준 산식) */
+    if (chk.S1) { fails++; why.push(['S1', L('燃料：必要量 ' + f0(req.min) + ' kg に ' + f0(chk.short) + ' kg 不足', '연료: 요구량 ' + f0(req.min) + ' kg에 ' + f0(chk.short) + ' kg 부족', 'Fuel: ' + f0(chk.short) + ' kg short of ' + f0(req.min) + ' kg')]); dpStrike('dp-s1', L('必要量 ' + f0(req.min) + ' kg に ' + f0(chk.short) + ' kg 足りません（±1%の採点とは別。署名できません）。', '요구량 ' + f0(req.min) + ' kg에 ' + f0(chk.short) + ' kg 모자랍니다(±1% 채점과 별개 — 서명할 수 없습니다).', 'Short of the required ' + f0(req.min) + ' kg by ' + f0(chk.short) + ' kg (separate from ±1% grading — cannot release).'), 'dispatch/5-1'); }
+    /* S2 교체공항·출발 기상 관문(2C-1 ④ 프로파일별 — 진실값) */
+    var g = DP.gate({ prof: S.prof, dep: { rvr: t.depRvr, toMin: t.toMin }, toAlt: ta, need: t.need, dest: { eval: t.dest }, filed: d.alts.map(function (cc) { return t.cands[cc].ev; }) });
+    d.alts.forEach(function (cc) { if (!dpMelOK(cc)) { g.ok = false; g.fails.push('alt-mel:' + cc); d.melFail = true; } });   /* DAY 3: MEL 지원 설비 없는 교체공항 = S2 */
+    if (!g.ok && g.fails.some(function (f) { return f.indexOf('to-alt') === 0; })) d.toFail = true;
+    if (!g.ok) { fails++; why.push(['S2', L('代替空港・出発の条件：' + g.fails.map(function (f) { return dpGateTxt(f).ja; }).join(' / '), '교체공항·출발 조건: ' + g.fails.map(function (f) { return dpGateTxt(f).ko; }).join(' / '), 'Alternates / departure: ' + g.fails.map(function (f) { return dpGateTxt(f).en; }).join(' / '))]); dpStrike('dp-s2', function () { return tx(L('代替空港・出発の条件を満たしていません：', '교체공항·출발 조건을 충족하지 않습니다: ', 'Alternate / departure conditions not met: ')) + g.fails.map(function (f) { return tx(dpGateTxt(f)); }).join(' / '); }, 'dispatch/2-2'); }
+    /* S3 중량 */
+    var wt = DP.weights({ ac: S.acKey, zfw: dpZfwEst(), block: dpInputTotal(), trip: t.T, aTOW: dpATowTrue() });
+    if (dpP().rwCards && d.rwCard !== dpP().depRwy) { d.cardFail = true; fails++; why.push(['S3', L('許容重量カード：出発滑走路（OFP RWY ' + dpP().depRwy + '）と違うカード（RWY ' + (d.rwCard || '—') + '）で上限を出している', '허용중량 카드: 출발 활주로(OFP RWY ' + dpP().depRwy + ')와 다른 카드(RWY ' + (d.rwCard || '—') + ')로 상한을 냄', 'Allowable-weight card: limit taken from the wrong card (RWY ' + (d.rwCard || '—') + ', OFP runway is ' + dpP().depRwy + ')')]); dpStrike('dp-s3', L('出発滑走路と違う許容重量カードで重量の上限を出しています（OFP RWY ' + dpP().depRwy + '）。', '출발 활주로와 다른 허용중량 카드로 중량 상한을 냈습니다(OFP RWY ' + dpP().depRwy + ').', 'The weight limit comes from a card for a different runway (OFP RWY ' + dpP().depRwy + ').'), 'dispatch/5-2'); }
+    if (wt.S3 && dpCargo()) d.cargoOver = true;
+    if (wt.S3) { fails++; why.push(['S3', L('重量：上限を超えている（ZFW上限 ' + f0(wt.zfwCap) + ' kg・TOW ' + f0(wt.tow) + ' / ' + f0(wt.aTOW) + ' kg）', '중량: 상한 초과(ZFW 상한 ' + f0(wt.zfwCap) + ' kg · TOW ' + f0(wt.tow) + ' / ' + f0(wt.aTOW) + ' kg)', 'Weight: over a limit (ZFW limit ' + f0(wt.zfwCap) + ' kg, TOW ' + f0(wt.tow) + ' / ' + f0(wt.aTOW) + ' kg)')]); dpStrike('dp-s3', L('重量の上限を超えています（ZFW上限 ' + f0(wt.zfwCap) + ' kg）。', '중량 상한을 넘습니다(ZFW 상한 ' + f0(wt.zfwCap) + ' kg).', 'A weight limit is exceeded (ZFW limit ' + f0(wt.zfwCap) + ' kg).'), 'dispatch/5-2'); }
+    /* S5 NOTAM */
+    var nmiss = dpP().notam.filter(function (n) { return dpNotAff(n) && d.nt[n.id] !== true; });
+    if (nmiss.length) { fails++; why.push(['S5', L('NOTAM：' + nmiss.map(function (n) { return n.id; }).join(', ') + ' はこの便に影響がある', 'NOTAM: ' + nmiss.map(function (n) { return n.id; }).join(', ') + kj(nmiss[nmiss.length - 1].id, '은는') + ' 이 편에 영향 있음', 'NOTAM: ' + nmiss.map(function (n) { return n.id; }).join(', ') + ' affects this flight')]); dpStrike('dp-s5', L('この便に影響のあるNOTAM（' + nmiss.map(function (n) { return n.id; }).join(', ') + '）を「影響なし」にしたままです。', '이 편에 영향 있는 NOTAM(' + nmiss.map(function (n) { return n.id; }).join(', ') + ')을 「영향 없음」으로 둔 채입니다.', 'A NOTAM that affects this flight (' + nmiss.map(function (n) { return n.id; }).join(', ') + ') is still marked “no effect”.'), 'dispatch/3-1'); }
+    d.blockWhy = why;
+    if (fails && re) d.reFail = true;
+    if (fails) { dpMsg(L('署名できません。赤い項目を直してから、もう一度署名してください（記録は残ります）。', '서명할 수 없습니다. 빨간 항목을 고친 뒤 다시 서명하세요(기록은 남습니다).', 'Release blocked. Fix the items in red, then sign again (the attempt is recorded).'), 'bad'); dpTabOfp(); return; }
+    if (!re && !dpDone(c)) return;
+    /* 통과 — 감점·업무 판정 확정(3A: D는 서명 시점 확정) */
+    chk.D1.forEach(function (x) { var fl = dpFlab(x.k); dpBad('dp-d1', L('燃料の区分の計算が違いました（' + fl.ja + '：正しくは ' + f0(x.exp) + ' kg、入力 ' + f0(x.got) + ' kg）。', '연료 구분 계산이 틀렸습니다(' + fl.ko + ': 정답 ' + f0(x.exp) + ' kg, 입력 ' + f0(x.got) + ' kg).', 'Fuel category off (' + fl.en + ': correct ' + f0(x.exp) + ' kg, entered ' + f0(x.got) + ' kg).'), 'dispatch/5-2'); });
+    if (!chk.D1.length) note('good', L('燃料を区分ごとに正しく計算しました（必要量 ' + f0(req.min) + ' kg）。', '연료를 구분별로 바르게 계산했습니다(요구량 ' + f0(req.min) + ' kg).', 'Fuel categories computed correctly (required ' + f0(req.min) + ' kg).'), 'dispatch/5-2');
+    var wxBad = [dpP().dest].concat(dpP().cands).filter(function (ic) { var ev = ic === dpP().dest ? t.dest : t.cands[ic].ev; return d.wx[ic] !== ev.level; });
+    wxBad.forEach(function (ic) { var ev = ic === dpP().dest ? t.dest : t.cands[ic].ev, lv = DLV.filter(function (x) { return x[0] === ev.level; })[0]; dpBad('dp-d3', function () { return tx(L(ic + 'の気象の読み取りが違いました（正しくは「', ic + '의 기상 읽기가 틀렸습니다(정답 「', 'Misread the weather at ' + ic + ' (correct: “')) + tx(lv[1]) + tx(L('」― いちばん悪い視程 ', '」 — 가장 나쁜 시정 ', '” — worst visibility ')) + f0(ev.worst.v) + ' m · ' + tx(L('雲底 ', '운고 ', 'ceiling ')) + (ev.worst.c >= 99999 ? '—' : f0(ev.worst.c) + ' ft') + ')'; }, 'dispatch/2-1'); });
+    if (!wxBad.length) note('good', L('ETAの前後1時間の最悪の条件を正しく読みました。', 'ETA 전후 1시간의 최악 조건을 바르게 읽었습니다.', 'Read the worst conditions within ETA ±1 h correctly.'), 'dispatch/2-1');
+    if (d.toAlt !== t.toAlt.trig) dpBad('dp-d3', L('離陸の代替空港の要否を誤りました（' + (t.toAlt.trig ? '必要' : '不要 ― 出発空港は着陸の最低条件以上') + '）。', '이륙 교체공항 필요 여부를 잘못 판단했습니다(' + (t.toAlt.trig ? '필요' : '불필요 — 출발 공항은 착륙 최저치 이상') + ').', 'Wrong call on the take-off alternate (' + (t.toAlt.trig ? 'needed' : 'not needed — the departure airport is above landing minima') + ').'), 'dispatch/2-2');
+    note('good', L('代替空港の条件（' + (S.prof === 'KR' ? '韓国' : '日本') + 'プロファイル：' + t.need.need + 'つ以上）を満たしました。', '교체공항 조건(' + (S.prof === 'KR' ? '한국' : '일본') + ' 프로파일: ' + t.need.need + '개 이상)을 충족했습니다.', 'Met the alternate requirement (' + S.prof + ' profile: at least ' + t.need.need + ').'), 'dispatch/2-2');
+    dpP().notam.forEach(function (n) { if (!dpNotAff(n) && d.nt[n.id] === true) dpBad('dp-d4', L(n.id + 'はこの便に影響しません。' + n.why.ja, n.id + kj(n.id, '은는') + ' 이 편에 영향이 없습니다. ' + n.why.ko, n.id + ' does not affect this flight. ' + n.why.en), 'dispatch/3-1'); });
+    if (M.opt && M.opt.appSel) { var apBad = [dpP().dest].concat(dpP().cands).filter(function (ic) { var et = ic === dpP().dest ? t.etaH : t.cands[ic].etaH, b = DP.bestApproach(dpApps(ic, et)); return b && d.app[ic] !== b.id; }); d.appBad = apBad.slice();
+      apBad.forEach(function (ic) { var et = ic === dpP().dest ? t.etaH : t.cands[ic].etaH; dpBad('dp-d3', L(ic + 'で使う進入を誤りました（' + d.app[ic] + ' はNOTAMで使えない、または最低条件が合わない ― 正しくは ' + DP.bestApproach(dpApps(ic, et)).id + '）。', ic + '에서 쓸 접근을 잘못 골랐습니다(' + d.app[ic] + kj(d.app[ic], '은는') + ' NOTAM으로 쓸 수 없거나 최저치가 맞지 않음 — 정답 ' + DP.bestApproach(dpApps(ic, et)).id + ').', 'Wrong approach at ' + ic + ' (' + d.app[ic] + ' is out by NOTAM or not the right minima — correct: ' + DP.bestApproach(dpApps(ic, et)).id + ').'), 'dispatch/3-1'); }); }
+    if (M.opt && M.opt.rvr && d.rvrSel !== 'min') { d.rvrBad = 1; dpBad('dp-d3', L('離陸に使う値を誤りました（視程とRVRは別 ― 使う滑走路のRVR、2本なら小さい方 ' + f0(dpP().rvr.ans) + ' m）。', '이륙에 쓰는 값을 잘못 골랐습니다(시정과 RVR은 다름 — 쓸 활주로 RVR, 2개면 작은 쪽 ' + f0(dpP().rvr.ans) + ' m).', 'Wrong take-off value (visibility ≠ RVR — use the runway RVR, the lower of two: ' + f0(dpP().rvr.ans) + ' m).'), 'dispatch/2-3'); }
+    var qs = dpBriefQs(), bOk = qs.every(function (q) { return d.brief[q.k] === q.a; });
+    if (!bOk) dpBad('dp-b1', qs.some(function (q) { return d.brief[q.k] == null; }) ? L('機長へのブリーフィングをしないまま署名しました。', '기장 브리핑을 하지 않은 채 서명했습니다.', 'Released without briefing the captain.') : L('ブリーフィングの答えが違いました（代替空港・最終予備）。', '브리핑 답이 틀렸습니다(교체공항·최종예비).', 'Wrong briefing answers (alternate, final reserve).'), 'dispatch/0-1');
+    else note('good', L('機長に要点をブリーフィングしました。', '기장에게 요점을 브리핑했습니다.', 'Briefed the captain on the key points.'), 'dispatch/0-1');
+    d.briefOk = bOk; if (t.toAlt.trig) d.toFinal = ta.ok;
+    if (re) {   /* 재승인(R05-08): 새 판 · 넘김 다시 · FPL은 새 OFP와 비교(CHG) — 첫 서명 시각(시간 평가)은 그대로 */
+      addTime(M.cost.sign); d.ed += 1; d.reapp = false; d.reappDone = (d.reappDone || 0) + 1; d.signBlock = dpInputTotal(); d.sent03 = null; d.sent04 = null; d.zfwIn = false; d.blockWhy = []; if (d.fplAt != null) dpFplRe();
+      sfx.ok(); dpCall('cap', L('新しい版、確認しました。サインします。', '새 판 확인했습니다. 서명하겠습니다.', 'New edition checked. I’ll sign.'), 'cap_new'); dpMonRefresh();
+      dpMsg(L('新しい版（EDNO ' + d.ed + '）で承認しました。FPLが新しいOFPと違えばCHG、搭載管理・ランプにはもう一度送ってください。', '새 판(EDNO ' + d.ed + ')으로 승인했습니다. FPL이 새 OFP와 다르면 CHG, 탑재관리·램프에는 다시 보내세요.', 'Approved the new edition (EDNO ' + d.ed + '). If the FPL differs from the new OFP send a CHG, and send to load control and the ramp again.'), 'ok', 'gnd');
+      renderTabs(); showTab('gnd'); return;
+    }
+    addTime(M.cost.sign); d.sign = dpRel(); d.signBlock = dpInputTotal(); d.ed = d.ed || 1;
+    if (d.sign > -60 + 1e-9) dpBad('dp-d2', L('リリースが出発60分前を過ぎました。', '릴리스가 출발 60분 전을 넘었습니다.', 'Released later than 60 min before departure.'), 'dispatch/4-1');
+    sfx.ok(); dpCall('cap', L('内容、確認しました。サインします。', '내용 확인했습니다. 서명하겠습니다.', 'Checked. I’ll sign.'), 'cap_ok');
+    dpMsg(L('リリースしました（' + dpHm(d.sign) + '）。次はFPLです。', '릴리스했습니다(' + dpHm(d.sign) + '). 다음은 FPL입니다.', 'Released at ' + dpHm(d.sign) + '. Next: the FPL.'), 'ok');
+    dpEnd(700);
+  }
+  /* ---------- FPL(Q7: 7·13·15·16·18 직접 입력) ---------- */
+  function dpOfpFpl() { var t = dpTruth(), p = dpP(), toks = DP.EX[p.route].split(' '); return { cs: p.cs, eobt: dpZ(dpDly()).slice(0, 4), i15: 'N0' + dpA().tas + 'F' + ('00' + p.fl).slice(-3) + ' ' + toks.slice(1, -1).join(' '), eetMin: t.eet, alts: S.dp.alts.slice(), reg: 'REG/' + dpD().reg.replace(/-/g, '') }; }
+  function dpTabFpl() {
+    if (dpEvt()) return;
+    var c = S.cur, d = S.dp, f = d.fpl, p = dpP(), toks = DP.EX[p.route].split(' '), dep = toks[0], dest = toks[toks.length - 1];
+    var ps = DP.parse((dep + ' ' + (f.rt || '') + ' ' + dest).trim(), dep, dest), nx = (DP.parse((dep + ' ' + (f.rt || '')).trim(), dep, dest).next || []).filter(function (x) { return x !== dest; });
+    var h = '<div class="h3">' + esc(tx(L('ATCに出す飛行計画（FPL） ― OFP（EDNO ' + d.ed + '）と同じ内容で', 'ATC에 내는 비행계획(FPL) — OFP(EDNO ' + d.ed + ')와 같은 내용으로', 'ATC flight plan (FPL) — same content as the OFP (EDNO ' + d.ed + ')'))) + '</div>';
+    h += dpKV([[L('OFP', 'OFP', 'OFP'), '<span class="mono">' + esc(DP.EX[p.route]) + ' · FL' + p.fl + ' · EET ' + DP.eetStr(dpTruth().eet) + ' · ALTN ' + esc(d.alts.join(' ') || '—') + ' · ' + esc(dpD().reg) + '</span>'], ['EOBT', dpT2(dpDly())], [L('今', '지금', 'Now'), dpT2(dpRel())]]);
+    var row = function (k, lab, ph, v) { return '<label><span>' + esc(tx(lab)) + '</span><input data-fp="' + k + '" value="' + esc(v || '') + '" placeholder="' + esc(ph) + '" autocomplete="off" spellcheck="false"><i></i></label>'; };
+    h += '<div class="wbchk dpfpl">' + row('i7', L('項目7 便名（呼出符号 ― Velaの仮想の指示記号 ' + DP.DESIG + '）', '항목 7 편명(호출부호 — Vela 가상 지정자 ' + DP.DESIG + ')', 'Item 7 call sign (Vela fictional designator ' + DP.DESIG + ')'), DP.DESIG + '000', f.i7) +
+      row('i13', L('項目13 出発予定（EOBT・UTC、4桁）', '항목 13 출발 예정(EOBT·UTC, 4자리)', 'Item 13 EOBT (UTC, 4 digits)'), 'hhmm', f.i13) +
+      row('lvl', L('項目15 巡航高度（FL、3桁）', '항목 15 순항 고도(FL, 3자리)', 'Item 15 cruise level (FL, 3 digits)'), '350', f.lvl) +
+      row('rt', L('項目15 経路（出発・到着空港を除く）', '항목 15 경로(출발·도착 공항 제외)', 'Item 15 route (without the airports)'), 'FIX AWY FIX …', f.rt) +
+      row('eet', L('項目16 EET（飛行時間、4桁）', '항목 16 EET(비행 시간, 4자리)', 'Item 16 EET (flight time, 4 digits)'), 'hhmm', f.eet) +
+      row('alt', L('項目16 代替空港（ICAO、空白区切り）', '항목 16 교체공항(ICAO, 공백 구분)', 'Item 16 alternate(s) (ICAO, space-separated)'), 'XXXX', f.alt) +
+      row('reg', L('項目18 登録記号（REG/…）', '항목 18 등록 기호(REG/…)', 'Item 18 registration (REG/…)'), 'REG/', f.reg) + '</div>';
+    h += '<div class="dpnext"><span class="small">' + esc(tx(L('経路の次に書けるもの：', '경로 다음에 올 수 있는 것: ', 'Can come next in the route: '))) + '</span>' + nx.map(function (x) { return '<button class="btn sm" data-nx="' + x + '">' + esc(x) + '</button>'; }).join('') + '<button class="btn sm" data-nx="-">⌫</button></div>';
+    h += '<p class="small">' + (ps.ok ? '✔ ' + esc(tx(L('経路はつながっています', '경로가 이어져 있습니다', 'Route connects'))) : esc(tx(L('経路を入れてください', '경로를 넣으세요', 'Enter the route')))) + '</p>';
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-fplsend', L('FPLを提出する', 'FPL 제출', 'File the FPL')) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr input[data-fp]').forEach(function (el) { el.onchange = function () { if (!dpLive(c)) return; f[el.dataset.fp] = el.value.toUpperCase().trim().replace(/\s+/g, ' '); dpTabFpl(); }; });
+    document.querySelectorAll('#scr button[data-nx]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); var r = (f.rt || '').split(' ').filter(Boolean); if (b.dataset.nx === '-') r.pop(); else r.push(b.dataset.nx); f.rt = r.join(' '); dpTabFpl(); }; });
+    $('#d-fplsend').onclick = function () {
+      if (!dpLive(c)) return; var ofp = dpOfpFpl(), warn = [];
+      if (!new RegExp('^' + DP.DESIG + '\\d{1,4}$').test(f.i7 || '')) warn.push(L('項目7（例：' + DP.DESIG + '301）', '항목 7(예: ' + DP.DESIG + '301)', 'item 7 (e.g. ' + DP.DESIG + '301)'));
+      if (!/^\d{4}$/.test(f.i13 || '')) warn.push(L('項目13（4桁のUTC）', '항목 13(4자리 UTC)', 'item 13 (4-digit UTC)'));
+      if (!/^\d{3}$/.test(f.lvl || '')) warn.push(L('巡航高度（3桁）', '순항 고도(3자리)', 'cruise level (3 digits)'));
+      if (!ps.ok) warn.push(L('経路', '경로', 'route'));
+      if (!/^\d{4}$/.test(f.eet || '')) warn.push(L('項目16 EET（4桁）', '항목 16 EET(4자리)', 'item 16 EET (4 digits)'));
+      if (!/^REG\//.test(f.reg || '')) warn.push(L('項目18（REG/…）', '항목 18(REG/…)', 'item 18 (REG/…)'));
+      if (warn.length) { sfx.ng(); dpMsg(function () { return tx(L('形式を直してください：', '형식을 고쳐 주세요: ', 'Fix the format: ')) + warn.map(tx).join('・'); }, 'bad'); dpTabFpl(); return; }   /* 공통 편집: 경고·정정(감점 없음) */
+      var chk = DP.fplCheck({ i7: f.i7, i13: f.i13, i15: 'N0' + dpA().tas + 'F' + f.lvl + ' ' + f.rt, i16eet: f.eet, i16alt: (f.alt || '').split(' ').filter(Boolean) }, ofp);
+      if (!dpDone(c)) return;
+      d.fplAt = dpRel(); d.fplBad = chk.safety.slice(); d.fplOk = chk.safety.length === 0;
+      if (f.reg !== ofp.reg) dpBad('dp-fpl', L('項目18の登録記号が違います（' + ofp.reg + '）。', '항목 18 등록 기호가 틀렸습니다(' + ofp.reg + ').', 'Item 18 registration is wrong (' + ofp.reg + ').'), 'dispatch/4-2');
+      if (d.fplAt > -60 + 1e-9) dpBad('dp-d2', L('FPLの提出がVelaの締切（出発60分前）を過ぎました。', 'FPL 제출이 Vela 마감(출발 60분 전)을 넘었습니다.', 'FPL filed after the Vela deadline (60 min before departure).'), 'dispatch/4-2');
+      else note('good', L('FPLを締切（出発60分前）より前に提出しました。', 'FPL을 마감(출발 60분 전) 전에 제출했습니다.', 'Filed the FPL before the deadline (60 min before departure).'), 'dispatch/4-2');
+      addTime(M.cost.call); sfx.ok(); dpCall('info', L('飛行計画、受理されました（ACK）。', '비행계획 접수되었습니다(ACK).', 'Flight plan accepted (ACK).'), 'info_ack');
+      dpMsg(L('提出 → 受理（ACK）。受理は管制の許可とは別です。', '제출 → 접수(ACK). 접수는 관제 허가와 다릅니다.', 'Filed → accepted (ACK). Acceptance is not an ATC clearance.'), 'ok'); dpEnd(700);
+    };
+  }
+  var DFPLF = { i7id: L('項目7 便名（担当便と違う）', '항목 7 편명(담당 편과 다름)', 'item 7 call sign (not this flight)'), i13: L('項目13 EOBT（遅れならDLA）', '항목 13 EOBT(지연이면 DLA)', 'item 13 EOBT (DLA if delayed)'), i15: L('項目15 高度・経路', '항목 15 고도·경로', 'item 15 level/route'), i16eet: L('項目16 EET', '항목 16 EET', 'item 16 EET'), i16alt: L('項目16 代替空港', '항목 16 교체공항', 'item 16 alternate') };
+  function dpFplBadL() { var b = S.dp.fplBad || []; return L(b.map(function (k) { return (DFPLF[k] || L(k, k, k)).ja; }).join('・'), b.map(function (k) { return (DFPLF[k] || L(k, k, k)).ko; }).join(' · '), b.map(function (k) { return (DFPLF[k] || L(k, k, k)).en; }).join(', ')); }
+  /* 최종 ZFW 판정(F05-5-02): 실제 비교 결과 · 넘은 한계와 초과량 */
+  function dpFinalW(blk) {
+    var t = dpTruth(), z = dpZfwFinal(), w = DP.weights({ ac: S.acKey, zfw: z, block: blk, trip: t.T, aTOW: dpATowTrue() }), a = dpA(), why = null;
+    if (w.over.lw) why = ['LW', w.lw, w.aLW]; else if (w.over.tow) why = ['TOW', w.tow, w.aTOW]; else if (w.over.zfw) why = ['ZFW', z, a.mzfw];
+    return { z: z, w: w, over: w.S3, why: why, by: why ? why[1] - why[2] : 0 };
+  }
+  /* ---------- 지상·시각(2E 넘김 · 최종 ZFW · 출발 가능) ---------- */
+  function dpTabGnd() {
+    if (dpEvt()) return;
+    var c = S.cur, d = S.dp, t = dpTruth(), blk = d.signBlock || dpInputTotal(), wt = DP.weights({ ac: S.acKey, zfw: d.zfwIn ? dpZfwFinal() : dpZfwEst(), block: blk, trip: t.T, aTOW: dpATowTrue() });
+    var h = '<div class="h3">' + esc(tx(L('地上・時刻（出発前のスナップショット ― EDNO ' + d.ed + '）', '지상·시각(출발 전 스냅샷 — EDNO ' + d.ed + ')', 'Ground & times (pre-departure snapshot — EDNO ' + d.ed + ')'))) + '</div>' + dpKV([[L('今', '지금', 'Now'), dpT2(dpRel())], ['EOBT', dpT2(dpDly()) + (dpDly() ? ' <small>(' + esc(tx(L('遅れ +' + dpDly() + '分', '지연 +' + dpDly() + '분', 'delay +' + dpDly() + ' min'))) + ')</small>' : '')]]);
+    if (d.reapp) h += '<div class="why bad">' + esc(tx(L('新しい情報（TAF AMD・上層風）で、署名した版（EDNO ' + d.ed + '）の確認は無効です。気象・代替空港・燃料を確かめ直し、OFPタブで新しい版を承認してください。', '새 정보(TAF AMD·상층풍)로 서명한 판(EDNO ' + d.ed + ')의 확인은 무효입니다. 기상·교체공항·연료를 다시 확인하고 OFP 탭에서 새 판을 승인하세요.', 'The new information (TAF AMD, upper winds) invalidates the checks on the signed edition (EDNO ' + d.ed + '). Recheck weather, alternates and fuel and approve a new edition on the OFP tab.'))) + '</div><div class="btns"><button class="btn" id="d-gowx">' + esc(tx(DP_TEXT.tabs.wx)) + '</button></div>';
+    if (dpDly()) h += '<div class="dpcard"><div class="dph"><b>' + esc(tx((M.opt && M.opt.ice ? L('出発の遅れ +' + dpDly() + '分（除氷の順番・気象の変化）', '출발 지연 +' + dpDly() + '분(제빙 순서·기상 변화)', 'Departure delay +' + dpDly() + ' min (de-icing queue, weather)') : L('出発の遅れ +' + dpDly() + '分（前の便の遅れ・機体の到着待ち）', '출발 지연 +' + dpDly() + '분(앞 편 지연 · 기재 도착 대기)', 'Departure delay +' + dpDly() + ' min (late inbound aircraft)')))) + '</b></div><p class="small">' + esc(tx(L('新しいEOBT ', '새 EOBT ', 'New EOBT '))) + dpZ(dpDly()) + ' · ETD ' + dpHm(dpDly()) + ' · ' + esc(tx(L('ETAが変わると、各空港の「ETAの前後1時間」も動く。', 'ETA가 바뀌면 각 공항의 「ETA 전후 1시간」도 움직인다.', 'When the ETA moves, each airport’s ±1 h window moves too.'))) + '</p><div class="btns"><button class="btn" id="d-rchk"' + (d.recheck != null ? ' disabled' : '') + '>' + (d.recheck != null ? '✔ ' : '') + esc(tx(L('遅れの後の確かめ直し（気象・代替空港・NOTAMの有効時間）', '지연 뒤 재확인(기상·교체공항·NOTAM 유효시간)', 'Recheck after the delay (weather, alternates, NOTAM validity)'))) + '</button><button class="btn" id="d-dla"' + (d.fplAt == null || (d.fplBad || []).indexOf('i13') < 0 ? ' disabled' : '') + '>' + (d.dla != null && (d.fplBad || []).indexOf('i13') < 0 ? '✔ ' : '') + esc(tx(L('遅延（DLA）を送る ― 新しいEOBT', '지연(DLA) 보내기 — 새 EOBT', 'Send DLA (new EOBT)'))) + '</button></div></div>';
+    h += '<div class="dpcard"><div class="dph"><b>05 → 03 ' + esc(tx(L('搭載管理へ', '탑재관리로', 'To load control'))) + '</b></div><table class="wbt"><tr><td>BLOCK / TAXI / TOF</td><td class="n">' + f0(blk) + ' / ' + f0(wt.taxi) + ' / ' + f0(wt.tof) + ' kg</td></tr><tr><td>TRIP / ' + esc(tx(L('着陸時の燃料', '착륙 시 연료', 'Landing fuel'))) + '</td><td class="n">' + f0(t.T) + ' / ' + f0(wt.landFuel) + ' kg</td></tr><tr><td>' + esc(tx(L('ZFWの上限', 'ZFW 상한', 'ZFW limit'))) + '</td><td class="n"><b>' + f0(wt.zfwCap) + ' kg</b></td></tr></table>' +
+      '<div class="btns"><button class="btn" id="d-s03"' + (d.sent03 != null ? ' disabled' : '') + '>' + (d.sent03 != null ? '✔ ' : '') + esc(tx(L('搭載管理に送る', '탑재관리에 전송', 'Send to load control'))) + '</button></div></div>';
+    h += '<div class="dpcard"><div class="dph"><b>05 → 04 ' + esc(tx(L('ランプへ', '램프로', 'To the ramp'))) + '</b></div><table class="wbt"><tr><td>' + esc(tx(L('目標の搭載燃料（総量）', '목표 탑재 연료(총량)', 'Target fuel on board (total)'))) + '</td><td class="n">' + f0(blk) + ' kg</td></tr><tr><td>ETD / EOBT</td><td class="n">' + dpHm(dpDly()) + '</td></tr></table>' +
+      '<div class="btns"><button class="btn" id="d-s04"' + (d.sent04 != null ? ' disabled' : '') + '>' + (d.sent04 != null ? '✔ ' : '') + esc(tx(L('ランプに送る', '램프에 전송', 'Send to the ramp'))) + '</button></div></div>';
+    var zArr = dpRel() >= M.times.zfw - 1e-9, fw = zArr ? dpFinalW(blk) : null;
+    h += '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('最終のZFW（出発25分前ごろ）', '최종 ZFW(출발 25분 전쯤)', 'Final ZFW (around 25 min before departure)'))) + '</b></div>';
+    if (!zArr) h += '<div class="btns"><button class="btn" id="d-wait">⏱ ' + esc(tx(L(dpHm(M.times.zfw) + 'まで待つ', dpHm(M.times.zfw) + '까지 기다리기', 'Wait until ' + dpHm(M.times.zfw)))) + '</button></div>';
+    else {
+      h += '<p class="mono">ZFW ' + f0(fw.z) + ' kg ' + (fw.over ? '&gt;' : '≤') + ' ' + esc(tx(L('上限', '상한', 'limit'))) + ' ' + f0(fw.w.zfwCap) + ' kg</p>';
+      if (!fw.over) h += '<div class="btns"><button class="btn" id="d-zfw"' + (d.zfwIn ? ' disabled' : '') + '>' + (d.zfwIn ? '✔ ' : '') + esc(tx(L('上限の中を確認', '상한 안 확인', 'Confirm within limit'))) + '</button></div>';
+      else {
+        var nx = d.rpX != null ? d.rpX : (+d.X || 0), b2 = blk - (+d.X || 0) + nx, f2 = dpFinalW(b2);
+        h += '<div class="why bad">' + esc(tx(L('上限を ' + f0(fw.by) + ' kg 超えています（' + fw.why[0] + ' ' + f0(fw.why[1]) + ' ＞ 許容 ' + f0(fw.why[2]) + ' kg）。このまま出発はできません。', '상한을 ' + f0(fw.by) + ' kg 넘습니다(' + fw.why[0] + ' ' + f0(fw.why[1]) + ' > 허용 ' + f0(fw.why[2]) + ' kg). 이대로는 출발할 수 없습니다.', 'Over the limit by ' + f0(fw.by) + ' kg (' + fw.why[0] + ' ' + f0(fw.why[1]) + ' > allowed ' + f0(fw.why[2]) + ' kg). Cannot depart like this.'))) + '</div>' +
+          '<div class="wbchk dpfuel"><label><span>' + esc(tx(S.prof === 'KR' ? L('燃料の再計画：裁量燃料（kg）', '연료 재계획: 재량연료(kg)', 'Re-plan fuel: discretionary (kg)') : L('燃料の再計画：会社の追加分（kg）', '연료 재계획: 회사 추가분(kg)', 'Re-plan fuel: company extra (kg)'))) + '<small class="dpf">' + esc(tx(L('必要量（区分の合計）は変えない', '요구량(구분 합계)은 바꾸지 않음', 'mandatory categories unchanged'))) + '</small></span><input inputmode="numeric" id="d-rpx" value="' + nx + '"><i></i></label></div>' +
+          '<p class="small mono">BLOCK ' + f0(b2) + ' kg · ZFW ' + f0(f2.z) + (f2.over ? ' &gt; ' : ' ≤ ') + f0(f2.w.zfwCap) + ' kg</p>' +
+          '<div class="btns"><button class="btn" id="d-replan"' + (f2.over ? ' disabled' : '') + '>' + esc(tx(L('再計画 → 新しい版（EDNO ' + (d.ed + 1) + '）で機長が再確認', '재계획 → 새 판(EDNO ' + (d.ed + 1) + ')으로 기장 재확인', 'Re-plan → captain re-confirms new edition (EDNO ' + (d.ed + 1) + ')'))) + '</button></div>';
+      }
+    }
+    h += '</div>';
+    if (M.opt && M.opt.mel && !dpMelCDone()) h += dpMelCard(c, true);
+    var nonEobt = (d.fplBad || []).filter(function (k) { return k !== 'i13'; });
+    if (d.fplS6 && (d.fplBad || []).length) h += '<div class="why bad">' + esc(tx(L('FPLがOFPと違います：', 'FPL이 OFP와 다릅니다: ', 'The FPL differs from the OFP: '))) + esc(tx(dpFplBadL())) + esc(tx(L('。変更（CHG）・遅延（DLA）を送ってください。', '. 변경(CHG)·지연(DLA)을 보내세요.', '. Send a change (CHG) / delay (DLA).'))) + '</div>';
+    if (d.fplAt != null && (d.fplS6 || nonEobt.length || (M.opt && M.opt.upd))) h += '<div class="btns"><button class="btn" id="d-chg">' + esc(tx(L('FPLの変更（CHG）を送る ― OFPと同じに', 'FPL 변경(CHG) 보내기 — OFP와 같게', 'Send an FPL change (CHG) — match the OFP'))) + '</button></div>';
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-go', L('出発できる（リリースは有効）', '출발 가능(릴리스 유효)', 'Clear for departure (release valid)'), zArr) + '</div>' + dpEdu();
+    scr(h);
+    if ($('#d-s03')) $('#d-s03').onclick = function () { if (!dpLive(c) || d.sent03 != null) return; sfx.tap(); addTime(M.cost.call); d.sent03 = dpRel(); dpCall('load', L('燃料とZFWの上限、受け取りました。', '연료와 ZFW 상한 받았습니다.', 'Fuel and ZFW limit received.'), 'load_get'); dpTabGnd(); };
+    if ($('#d-s04')) $('#d-s04').onclick = function () { if (!dpLive(c) || d.sent04 != null) return; sfx.tap(); addTime(M.cost.call); d.sent04 = dpRel(); dpCall('ramp', L('給油量と出発予定、受け取りました。', '급유량과 출발 예정 받았습니다.', 'Fuel order and ETD received.'), 'ramp_get'); dpTabGnd(); };
+    if ($('#d-wait')) $('#d-wait').onclick = function () { if (!dpLive(c)) return; sfx.tap(); addTime(Math.max(0, M.times.zfw - dpRel())); dpCall('load', L('最終のZFW、' + f0(dpZfwFinal()) + ' kgです。', '최종 ZFW ' + f0(dpZfwFinal()) + ' kg입니다.', 'Final ZFW: ' + f0(dpZfwFinal()) + ' kg.'), 'load_zfw'); dpTabGnd(); };
+    if ($('#d-zfw')) $('#d-zfw').onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.zfwIn = true; dpTabGnd(); };
+    if ($('#d-rpx')) $('#d-rpx').onchange = function () { if (!dpLive(c)) return; d.rpX = Math.max(0, Math.round(+this.value.replace(/[^0-9.]/g, '') || 0)); dpTabGnd(); };
+    if ($('#d-replan')) $('#d-replan').onclick = function () {
+      if (!dpLive(c)) return; var nx = d.rpX != null ? d.rpX : (+d.X || 0), b2 = blk - (+d.X || 0) + nx;
+      if (dpFinalW(b2).over) return;   /* 재량/회사 추가분만 바꿈 — 필수 구분 합계는 그대로라 요구량 이상 유지 */
+      sfx.ok(); addTime(M.cost.sign); d.X = nx; d.rpX = null; d.signBlock = b2; d.ed += 1; d.sent03 = null; d.sent04 = null; d.zfwIn = false; d.replan = (d.replan || 0) + 1; d.gndWhy = null;
+      dpCall('cap', L('新しい版、確認しました。サインします。', '새 판 확인했습니다. 서명하겠습니다.', 'New edition checked. I’ll sign.'), 'cap_ok'); dpMonRefresh();
+      dpMsg(L('燃料を再計画し、EDNO ' + d.ed + ' で機長が再確認しました。搭載管理・ランプにもう一度送ってください。', '연료를 재계획해 EDNO ' + d.ed + '로 기장이 재확인했습니다. 탑재관리·램프에 다시 보내세요.', 'Fuel re-planned; the captain re-confirmed EDNO ' + d.ed + '. Send it to load control and the ramp again.'), 'ok'); dpTabGnd();
+    };
+    if ($('#d-chg')) $('#d-chg').onclick = function () {   /* CHG = 경로·고도·EET·교체공항(·지연이 없을 때 EOBT)을 OFP와 같게 — 지연의 EOBT는 DLA */
+      if (!dpLive(c)) return; sfx.tap(); addTime(M.cost.chg); var o = dpOfpFpl(), f = d.fpl, tk = o.i15.split(' ');
+      f.i7 = o.cs; f.lvl = tk[0].slice(-3); f.rt = tk.slice(1).join(' '); f.eet = DP.eetStr(o.eetMin); f.alt = o.alts.join(' '); if (!dpDly()) f.i13 = o.eobt;
+      dpFplRe(); d.fplS6 = false; d.chg = (d.chg || 0) + 1; dpCall('info', L('変更、受理されました。', '변경 접수되었습니다.', 'Change accepted.'), 'info_ack');
+      dpMsg(d.fplOk ? L('CHGを送り、FPLをOFPと同じにしました。', 'CHG를 보내 FPL을 OFP와 같게 했습니다.', 'Sent a CHG; the FPL now matches the OFP.') : L('CHGを送りました。EOBTの遅れはDLAで送ってください。', 'CHG를 보냈습니다. EOBT 지연은 DLA로 보내세요.', 'CHG sent. Send the EOBT delay as a DLA.'), 'ok'); dpTabGnd(); };
+    if ($('#d-dla')) $('#d-dla').onclick = function () { if (!dpLive(c)) return; sfx.tap(); addTime(M.cost.call); d.fpl.i13 = dpOfpFpl().eobt; d.dla = dpRel(); dpFplRe(); if (d.fplOk) d.fplS6 = false; dpCall('info', L('遅延の通報、受理されました（EOBT ' + dpZ(dpDly()) + '）。', '지연 통보 접수되었습니다(EOBT ' + dpZ(dpDly()) + ').', 'Delay message accepted (EOBT ' + dpZ(dpDly()) + ').'), 'info_dla'); dpMsg(L('DLAを送りました（新しいEOBT ' + dpZ(dpDly()) + '）。', 'DLA를 보냈습니다(새 EOBT ' + dpZ(dpDly()) + ').', 'DLA sent (new EOBT ' + dpZ(dpDly()) + ').'), 'ok'); dpTabGnd(); };
+    if ($('#d-gowx')) $('#d-gowx').onclick = function () { showTab('wx'); };
+    dpMelBind(c, dpTabGnd);
+    if ($('#d-rchk')) $('#d-rchk').onclick = function () {   /* 지연 뒤 재확인: 서명한 계획을 새 ETA(각 공항 자체 ETA)로 다시 관문·NOTAM 판정 — 충족이면 「유효」, 아니면 재승인 필요 */
+      if (!dpLive(c)) return; sfx.tap(); addTime(M.cost.chk || 2); var t2 = dpTruth(), g2 = DP.gate({ prof: S.prof, dep: { rvr: t2.depRvr, toMin: t2.toMin }, toAlt: dpToAlt(), need: t2.need, dest: { eval: t2.dest }, filed: d.alts.map(function (cc) { return t2.cands[cc].ev; }) }), nm2 = dpP().notam.filter(function (n) { return dpNotAff(n) && d.nt[n.id] !== true; });
+      if (g2.ok && !nm2.length) { d.recheck = dpRel(); dpMsg(L('確かめ直しました：新しいETAでも代替空港・出発の条件・NOTAMは有効（変化なし）。', '재확인했습니다: 새 ETA에서도 교체공항·출발 조건·NOTAM은 유효(변화 없음).', 'Rechecked: with the new ETA the alternates, departure conditions and NOTAMs are still valid (no change).'), 'ok'); }
+      else { d.reapp = true; d.ok.alt = false; if (nm2.length) d.ok.notam = false; dpMsg(L('新しいETAでは条件が変わりました。確かめ直して新しい版で承認してください。', '새 ETA에서는 조건이 바뀌었습니다. 다시 확인하고 새 판으로 승인하세요.', 'With the new ETA the conditions changed. Recheck and approve a new edition.'), 'bad', 'alt'); renderTabs(); }
+      dpTabGnd(); };
+    $('#d-go').onclick = function () {
+      if (!dpLive(c)) return;
+      if (M.opt && M.opt.ice && !(d.ice && d.ice.rec && d.ice.rec[4])) { dpMsg(L('先に除氷の計画を最後まで決めてください（除氷タブ）。', '먼저 제빙 계획을 끝까지 정하세요(제빙 탭).', 'Finish the de-icing plan first (De-icing tab).'), 'info'); showTab('ice'); return; }
+      if (d.reapp) { dpStrike('dp-s5', L('新しい情報の後に、古い版（EDNO ' + d.ed + '）のまま出発させようとしました。', '새 정보 뒤에 옛 판(EDNO ' + d.ed + ')인 채로 출발시키려 했습니다.', 'Tried to clear departure on the old edition (EDNO ' + d.ed + ') after new information.'), 'dispatch/4-1'); dpMsg(L('出発させられません。新しい版で承認してください。', '출발시킬 수 없습니다. 새 판으로 승인하세요.', 'Cannot clear departure. Approve a new edition.'), 'bad'); dpTabGnd(); return; }
+      if (!d.fplOk) { d.fplS6 = true; if ((d.fplBad || []).indexOf('i13') >= 0) d.s6t = 1; if ((d.fplBad || []).some(function (k) { return k !== 'i13'; })) d.s6x = 1; var fb = dpFplBadL(); dpStrike('dp-s6', L('OFPと違うFPL（' + fb.ja + '）のまま出発させようとしました。', 'OFP와 다른 FPL(' + fb.ko + ')로 출발시키려 했습니다.', 'Tried to clear departure on an FPL that differs from the OFP (' + fb.en + ').'), 'dispatch/4-2'); dpMsg(L('出発させられません。CHGでFPLを直してください。', '출발시킬 수 없습니다. CHG로 FPL을 고치세요.', 'Cannot clear departure. Fix the FPL with a CHG.'), 'bad'); dpTabGnd(); return; }
+      if (!dpMelCDone()) { d.s4t = 1; dpStrike('dp-s4', L('MELの条件（期限・支援設備・乗員への通報）を確かめないまま出発させようとしました。', 'MEL 조건(기한·지원 설비·승무원 통보)을 확인하지 않은 채 출발시키려 했습니다.', 'Tried to clear departure without confirming the MEL conditions (validity, support equipment, crew briefing).'), 'dispatch/14-4'); dpMsg(L('出発させられません。MELの条件を全部確かめてください。', '출발시킬 수 없습니다. MEL 조건을 전부 확인하세요.', 'Cannot clear departure. Confirm all the MEL conditions.'), 'bad'); dpTabGnd(); return; }
+      var fw2 = dpFinalW(blk); if (fw2.over) { dpStrike('dp-s3', L('最終のZFWで上限を ' + f0(fw2.by) + ' kg 超えたまま出発させようとしました（' + fw2.why[0] + '）。', '최종 ZFW로 상한을 ' + f0(fw2.by) + ' kg 넘은 채 출발시키려 했습니다(' + fw2.why[0] + ').', 'Tried to clear departure ' + f0(fw2.by) + ' kg over a limit with the final ZFW (' + fw2.why[0] + ').'), 'dispatch/5-2'); dpMsg(L('出発させられません。燃料を再計画して新しい版を機長に確認してもらってください。', '출발시킬 수 없습니다. 연료를 재계획해 새 판을 기장에게 확인받으세요.', 'Cannot clear departure. Re-plan the fuel and have the captain confirm the new edition.'), 'bad'); dpTabGnd(); return; }
+      if (!d.zfwIn) { dpMsg(L('先に最終のZFWが上限の中か確かめてください。', '먼저 최종 ZFW가 상한 안인지 확인하세요.', 'First check that the final ZFW is within the limit.'), 'info'); dpTabGnd(); return; }
+      if (!dpDone(c)) return;
+      if (d.sent03 == null || d.sent04 == null) dpBad('dp-b4', L('燃料・ZFWの上限・給油・ETDを' + (d.sent03 == null ? '搭載管理' : '') + (d.sent03 == null && d.sent04 == null ? 'と' : '') + (d.sent04 == null ? 'ランプ' : '') + 'に伝えませんでした。', '연료·ZFW 상한·급유·ETD를 ' + (d.sent03 == null ? '탑재관리' : '') + (d.sent03 == null && d.sent04 == null ? '와 ' : '') + (d.sent04 == null ? '램프' : '') + '에 전달하지 않았습니다.', 'Did not pass fuel / ZFW limit / fuelling / ETD to ' + (d.sent03 == null ? 'load control' : '') + (d.sent03 == null && d.sent04 == null ? ' and ' : '') + (d.sent04 == null ? 'the ramp' : '') + '.'), 'dispatch/9-1');
+      else note('good', L('燃料とZFWの上限を搭載管理へ、給油量と出発予定をランプへ伝えました。', '연료와 ZFW 상한을 탑재관리로, 급유량과 출발 예정을 램프로 전달했습니다.', 'Passed fuel and the ZFW limit to load control, the fuel order and ETD to the ramp.'), 'dispatch/9-1');
+      addTime(Math.max(0, dpDly() - dpRel())); d.aobt = dpRel(); sfx.ok(); dpCall('ramp', L('プッシュバック、始めます。', '푸시백 시작합니다.', 'Starting pushback.'), 'ramp_push'); dpEnd(700);
+    };
+  }
+  /* ---------- DAY 5 제빙·HOT(설계안 4B · 램프편 v2 3E 값) ---------- */
+  function dpIceCalc(s, hot) { var H0 = DP.HOT, t4 = s + H0.deice1, tobt = t4 + H0.deice4; return { s: s, t4: t4, hot: hot, end: t4 + hot, tobt: tobt, to: tobt + H0.push + H0.taxi, m: DP.hotMargin(t4, tobt, Object.assign({}, H0, { hot: hot })) }; }
+  var DICE = { keep: L('今の出発時刻を保つ', '지금 출발 시각 유지', 'Keep the departure time'), retime: L('新しい時刻に合わせ直す・ETDを通報', '새 시각으로 재조정·ETD 통보', 'Retime to the new slot and pass the ETD'), hold: L('保留・延期（作業の開始を待つ・機長と除氷担当に再確認・雪が弱まれば計算し直す）', '보류·연기(작업 시작 보류·기장·디아이싱 담당 재확인·눈이 약해지면 재계산)', 'Hold / postpone (hold the start, reconfirm with captain and de-icing, recompute when snow eases)'), resume: L('再開 ― 新しい時刻で出発・再送', '재개 — 새 시각 출발·재전달', 'Resume — depart at the new time and resend') };
+  var DICEOPT = { 1: ['keep', 'hold'], 2: ['keep', 'retime', 'hold'], 3: ['keep', 'hold'], 4: ['resume', 'hold'] }, DICEANS = { 1: 'keep', 2: 'retime', 3: 'hold', 4: 'resume' }, DICEAT = { 1: -60, 2: -20, 3: 10, 4: 35 };
+  function dpTabIce() {
+    if (dpEvt()) return;
+    var c = S.cur, d = S.dp, ic = d.ice;
+    if (!ic) { scr('<div class="h3">' + esc(tx(DP_TEXT.tabs.ice)) + '</div><div class="why">' + esc(tx(L('除氷の計画はまだ来ていません。', '제빙 계획은 아직 오지 않았습니다.', 'No de-icing plan yet.'))) + '</div>' + dpEdu()); return; }
+    var st = ic.st, q = dpIceCalc(ic.s, ic.hot), planS = st === 3 ? 15 : ic.s, q3 = st === 3 ? dpIceCalc(planS, ic.hot) : q, H0 = DP.HOT, hz = function (r) { return (r >= 0 ? '+' : '') + r; };
+    var h = '<div class="h3">' + esc(tx(L('除氷とHOT（教育用の表 ― 弱い雪 ' + M.hot.light + '分・ふつうの雪 ' + M.hot.mod + '分）', '제빙과 HOT(교육용 표 — 약한 눈 ' + M.hot.light + '분 · 보통 눈 ' + M.hot.mod + '분)', 'De-icing and HOT (educational table — light snow ' + M.hot.light + ' min, moderate ' + M.hot.mod + ' min)'))) + '</div>';
+    h += '<p class="small mono">' + esc(dpMetar()) + '</p>';
+    h += '<table class="wbt"><tr><td>Type I ' + esc(tx(L('開始', '시작', 'start'))) + '</td><td class="n">' + hz(q3.s) + '</td></tr><tr><td>Type IV ' + esc(tx(L('開始（HOTの起点）', '시작(HOT 기점)', 'start (HOT starts)'))) + '</td><td class="n">' + hz(q3.t4) + '</td></tr><tr><td>HOT</td><td class="n">' + q3.hot + tx(T.min) + ' → ' + esc(tx(L('終わり ', '끝 ', 'ends '))) + hz(q3.end) + '</td></tr><tr><td>TOBT / ' + esc(tx(L('離陸', '이륙', 'take-off'))) + ' (' + esc(tx(L('押し出し ', '푸시백 ', 'push '))) + H0.push + ' + ' + esc(tx(L('地上走行 ', '지상 이동 ', 'taxi '))) + H0.taxi + ')</td><td class="n">' + hz(q3.tobt) + ' / ' + hz(q3.to) + '</td></tr><tr><td><b>' + esc(tx(L('余裕 = HOTの終わり − 離陸（10分以上）', '여유 = HOT 끝 − 이륙(10분 이상)', 'Margin = HOT end − take-off (≥ 10 min)'))) + '</b></td><td class="n"><b>' + q3.m + tx(T.min) + (q3.m >= H0.margin ? ' ✔' : ' ✕') + '</b></td></tr></table>';
+    var done = ic.rec[st] != null;
+    h += '<p class="small">' + esc(tx(L('推薦（' + st + '/4）', '추천(' + st + '/4)', 'Recommendation (' + st + '/4)'))) + '</p><div class="chk">' + DICEOPT[st].map(function (k) { var on = ic.rec[st] === k; return '<button data-ice="' + k + '" class="' + (on ? 'on' : '') + '"' + (done ? ' disabled' : '') + '><span>' + esc(tx(DICE[k])) + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>';
+    var nx = DICEAT[st + 1];
+    h += dpMsgHtml() + '<div class="btns">' + (done && nx != null ? '<button class="btn" id="d-icew">⏱ ' + esc(tx(L('次の情報まで待つ（' + dpHm(nx) + '）', '다음 정보까지 기다리기(' + dpHm(nx) + ')', 'Wait for the next update (' + dpHm(nx) + ')'))) + '</button>' : '') + (done && st === 4 ? '<button class="btn pri" id="d-icego">' + esc(tx(DP_TEXT.tabs.gnd)) + '</button>' : '') + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-ice]').forEach(function (b) { b.onclick = function () {
+      if (!dpLive(c) || ic.rec[st] != null) return; var k = b.dataset.ice; ic.rec[st] = k; sfx.tap(); addTime(M.cost.call);
+      if (k !== DICEANS[st]) {
+        if (st === 3 && k === 'keep') { ic.s7 = 1; dpStrike('dp-s7', L('雪が強くなりHOTの余裕が ' + q3.m + '分（10分未満）なのに、出発時刻を保つよう勧めました。', '눈이 강해져 HOT 여유가 ' + q3.m + '분(10분 미만)인데 출발 시각 유지를 추천했습니다.', 'Recommended keeping the time although heavier snow left only ' + q3.m + ' min of HOT margin (< 10).'), 'dispatch/7-2'); dpMsg(L('機長と除氷担当が作業の開始を保留しました（記録は残ります）。', '기장과 디아이싱 담당이 작업 시작을 보류했습니다(기록은 남습니다).', 'The captain and de-icing lead held the start (the call is recorded).'), 'bad'); }
+        else { ic.bad = (ic.bad || 0) + 1; dpBad('dp-d3', L('除氷の推薦を誤りました（' + st + '/4：正しくは「' + DICE[DICEANS[st]].ja + '」）。', '제빙 추천을 잘못했습니다(' + st + '/4: 정답 「' + DICE[DICEANS[st]].ko + '」).', 'Wrong de-icing recommendation (' + st + '/4: correct “' + DICE[DICEANS[st]].en + '”).'), 'dispatch/7-2'); }
+      } else dpMsg(st === 3 ? L('保留にしました。雪が弱まれば計算し直します（保留の間は出発時刻を決めない）。', '보류했습니다. 눈이 약해지면 다시 계산합니다(보류 중에는 출발 시각을 정하지 않음).', 'Held. Recompute when the snow eases (no departure time while on hold).') : L('推薦を伝えました。', '추천을 전달했습니다.', 'Recommendation passed on.'), 'ok');
+      if (st === 4) { d.ok.ice = true; renderTabs(); }
+      dpTabIce(); }; });
+    if ($('#d-icew')) $('#d-icew').onclick = function () { if (!dpLive(c)) return; sfx.tap(); addTime(Math.max(0, nx - dpRel())); dpTabIce(); };
+    if ($('#d-icego')) $('#d-icego').onclick = function () { showTab('gnd'); };
+  }
+  /* ---------- 비행 중 감시(2D · 위치 통보 단위) ---------- */
+  var DREP = { JP: ['ENPAR', 'SAPRA', 'SEL'], KR: ['EGOBA', 'LANAT', 'SAMON', 'ESKAS', 'ENTAK', 'SWAMP'] };
+  var DST = [['normal', L('正常（計画どおり）', '정상(계획대로)', 'Normal (as planned)')], ['delay', L('予想外の遅れ → 再計算・遅延情報を要求', '예상 외 지연 → 재계산·지연 정보 요청', 'Unexpected delay → recompute, request delay info')], ['minimum', L('MINIMUM FUEL を支援', 'MINIMUM FUEL 지원', 'Support MINIMUM FUEL')], ['mayday', L('MAYDAY FUEL を支援', 'MAYDAY FUEL 지원', 'Support MAYDAY FUEL')]];
+  var DDELTA = [40, -30, 20, -10, 30, 10];
+  function dpReports() {
+    var t = dpTruth(), blk = S.dp.signBlock || dpInputTotal(), tof = blk - dpA().taxi;
+    return DREP[S.prof].map(function (fx, i) { var lg = t.legs.filter(function (l) { return l.fix === fx; })[0], m = lg ? lg.m : t.eet * (i + 1) / (DREP[S.prof].length + 1), plan = Math.round(tof - t.T * m / t.eet), act = plan + DDELTA[i % DDELTA.length], land = Math.round(act - t.T * (t.eet - m) / t.eet);
+      return { fix: fx, m: Math.round(m), plan: plan, act: act, land: land, st: DP.fuelState({ fob: act, fr: DP.up(0.5 * dpA().H), airports: [{ id: dpP().dest, burn: Math.round(t.T * (t.eet - m) / t.eet) }], committed: null, unexpectedDelay: false }).state }; });
+  }
+  function dpTabFlt() {
+    if (dpD4()) return dpTabFlt4();
+    var c = S.cur, d = S.dp, t = dpTruth(), R = dpReports(), i = d.rep.length;
+    var h = '<div class="h3">' + esc(tx(L('運航監視（位置通報ごとに計画と実際を比べる）', '운항 감시(위치 통보마다 계획과 실제 비교)', 'Flight watch (compare plan and actual at each report)'))) + '</div>';
+    h += '<table class="wbt"><tr><th>' + esc(tx(L('地点', '지점', 'Fix'))) + '</th><th>UTC</th><th>' + esc(tx(L('計画', '계획', 'Plan'))) + '</th><th>' + esc(tx(L('実際', '실제', 'Actual'))) + '</th><th>' + esc(tx(L('着陸時の見込み', '착륙 시 예상', 'Est. landing'))) + '</th><th></th></tr>' +
+      R.slice(0, Math.min(i + 1, R.length)).map(function (r, j) { var pk = d.rep[j]; return '<tr><td>' + esc(r.fix) + '</td><td class="mono">' + dpZ(r.m + dpDly()) + '</td><td class="n">' + f0(r.plan) + '</td><td class="n">' + f0(r.act) + '</td><td class="n">' + f0(r.land) + '</td><td>' + (pk ? esc(tx(DST.filter(function (x) { return x[0] === pk; })[0][1])) : '…') + '</td></tr>'; }).join('') + '</table>';
+    h += '<p class="small">' + esc(tx(L('最終予備（30分）', '최종예비(30분)', 'Final reserve (30 min)'))) + ' ' + f0(DP.up(0.5 * dpA().H)) + ' kg · ' + esc(tx(L('判断は機長。運航管理者は資料・推薦・通信の支援と記録。', '판단은 기장. 운항관리사는 자료·추천·통신 지원과 기록.', 'The captain decides; the dispatcher supports with data, recommendations, communications and records.'))) + '</p>';
+    var e5 = M.opt && M.opt.ev5 && i < R.length && R[i].fix === dpP().ev5;
+    if (e5 && !d.said.ev5) { d.said.ev5 = 1; var zE = dpZ(t.eet + dpDly()), zF = dpZ(t.eet + dpDly() + 10); dpCall('info', L('目的地は除雪中です。EFCは到着予定時刻（' + zE + '）の10分後 ― ' + zF + 'です。', '목적지는 제설 중입니다. EFC는 도착 예정 시각(' + zE + ')의 10분 뒤 — ' + zF + '입니다.', 'Destination runway snow clearance in progress — EFC is 10 minutes after the ETA (' + zE + '): ' + zF + '.'), 'info_snow'); }
+    if (i < R.length) {
+      h += '<div class="dpcard"><div class="dph"><b>' + esc(R[i].fix) + ' ' + dpZ(R[i].m + dpDly()) + '</b></div>' + (e5 ? '<p class="small"><b>' + esc(tx(L('目的地の除雪 ― EFC ' + dpZ(t.eet + dpDly() + 10) + '（到着予定 ' + dpZ(t.eet + dpDly()) + ' + 10分 ― 進入許可の予定で、再開の保証ではない）', '목적지 제설 — EFC ' + dpZ(t.eet + dpDly() + 10) + '(도착 예정 ' + dpZ(t.eet + dpDly()) + ' + 10분 — 접근 허가 예정, 재개 보장 아님)', 'Destination snow clearance — EFC ' + dpZ(t.eet + dpDly() + 10) + ' (ETA ' + dpZ(t.eet + dpDly()) + ' + 10 min — expected approach, not a guarantee)'))) + '</b> · ' + esc(tx(L('着陸時の見込み（10分の待機を含む）', '착륙 시 예상(10분 대기 포함)', 'Est. landing incl. 10 min hold'))) + ' ' + f0(R[i].land - DP.up(dpA().H / 6)) + ' kg</p><div class="chk"><button data-ck5="efc" class="' + (d.efc5 ? 'on' : '') + '"><span>' + esc(tx(L('EFCを要求し、燃料を計算し直す', 'EFC를 요청하고 연료를 재계산', 'Request the EFC and recompute fuel'))) + '</span><span class="st">' + (d.efc5 ? '✔' : '') + '</span></button></div>' : '') + '<div class="chk">' + DST.map(function (x) { return '<button data-st="' + x[0] + '"><span>' + esc(tx(x[1])) + '</span></button>'; }).join('') + '</div></div>';
+    } else {
+      h += '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('着陸', '착륙', 'Landed'))) + ' ' + dpZ(t.eet + dpDly()) + '</b></div><p class="small">' + esc(tx(L('時刻・燃料・判断を運航の記録に残します。', '시각·연료·판단을 운항 기록에 남깁니다.', 'Log the times, fuel and decisions.'))) + '</p><div class="btns"><button class="btn pri" id="d-log" data-a="ok">' + esc(tx(L('運航の記録を保存', '운항 기록 저장', 'Save the flight log'))) + '</button><button class="btn" id="d-logskip">' + esc(tx(L('省略する', '생략', 'Skip'))) + '</button></div></div>';
+    }
+    h += dpMsgHtml() + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-ck5]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); d.efc5 = !d.efc5; dpTabFlt(); }; });
+    document.querySelectorAll('#scr button[data-st]').forEach(function (b) { b.onclick = function () {
+      if (!dpLive(c)) return; var r = R[d.rep.length]; if (!r) return; addTime(Math.max(0, r.m + dpDly() - dpRel())); d.rep.push(b.dataset.st); sfx.tap();
+      if (M.opt && M.opt.ev5 && r.fix === dpP().ev5) { var pk5 = b.dataset.st; d.ev5 = pk5 === 'delay' ? (d.efc5 ? 2 : 1) : 0;
+        if (pk5 === 'normal') dpStrike('dp-s8', L(r.fix + '：目的地の除雪で待機 ― 「予想外の遅れ」の対応（EFC・計算し直し）がありませんでした。', r.fix + ': 목적지 제설로 대기 — 「예상 외 지연」 대응(EFC·재계산)이 없었습니다.', r.fix + ': holding for snow clearance — no “unexpected delay” response (EFC, recompute).'), 'dispatch/5-3');
+        else if (pk5 !== 'delay') dpBad('dp-d3', L(r.fix + '：状態を重く判断しました（正しくは「予想外の遅れ」）。', r.fix + ': 상태를 무겁게 판단했습니다(정답 「예상 외 지연」).', r.fix + ': state judged too severe (correct: unexpected delay).'), 'dispatch/5-3');
+        dpTabFlt(); return; }
+      if (d.rep.length === 1) dpCall('cap', L(r.fix + '通過、燃料 ' + f0(r.act) + ' kg。', r.fix + ' 통과, 연료 ' + f0(r.act) + ' kg.', 'Passing ' + r.fix + ', fuel ' + f0(r.act) + ' kg.'), 'cap_pos');
+      if (b.dataset.st !== r.st) { if (!d.overRep) { d.overRep = 1; dpBad('dp-d3', L('燃料の状態の判断を誤りました（' + r.fix + '：正しくは「正常」― 着陸時の見込み ' + f0(r.land) + ' kg は最終予備より十分多い）。', '연료 상태 판단을 잘못했습니다(' + r.fix + ': 정답 「정상」 — 착륙 시 예상 ' + f0(r.land) + ' kg은 최종예비보다 충분히 많음).', 'Misjudged the fuel state at ' + r.fix + ' (correct: normal — est. landing ' + f0(r.land) + ' kg is well above final reserve).'), 'dispatch/5-3'); } }
+      dpTabFlt(); }; });
+    if ($('#d-log')) $('#d-log').onclick = function () { if (!dpDone(c)) return; addTime(Math.max(0, t.eet + dpDly() - dpRel())); d.logged = dpRel(); sfx.ok(); dpCall('cap', L('着陸しました。ありがとうございました。', '착륙했습니다. 감사합니다.', 'Landed. Thank you.'), 'cap_land');
+      if (!d.overRep) note('good', L('位置通報ごとに燃料を見て、正常と判断しました。', '위치 통보마다 연료를 보고 정상으로 판단했습니다.', 'Checked fuel at each report and judged it normal.'), 'dispatch/9-1');
+      note('good', L('運航の記録を残しました。', '운항 기록을 남겼습니다.', 'Logged the flight.'), 'dispatch/9-1'); dpEnd(700); };
+    if ($('#d-logskip')) $('#d-logskip').onclick = function () { if (!dpDone(c)) return; addTime(Math.max(0, t.eet + dpDly() - dpRel())); sfx.ng(); dpBad('dp-b3', L('運航の記録（時刻・判断）を残しませんでした。', '운항 기록(시각·판단)을 남기지 않았습니다.', 'Did not log the flight (times, decisions).'), 'dispatch/9-1'); dpEnd(700); };
+  }
+  /* ---------- ⓪ 근무 시작(인수인계 · 교육용 운항 프로파일 · R05-01) ---------- */
+  function dpTabBrf() {
+    var c = S.cur, p = dpP(), kr = S.prof === 'KR', dd = dpD();
+    var h = '<div class="h3">' + esc(tx(L('勤務の開始 ― 引き継ぎと今日の担当', '근무 시작 — 인수인계와 오늘 담당', 'Start of shift — handover and today’s flight'))) + '</div>' +
+      dpKV([[L('勤務地', '근무지', 'Desk'), esc(tx(p.occ))], [L('教育用の運航プロファイル', '교육용 운항 프로파일', 'Educational ops profile'), esc(kr ? tx(L('KR ― 韓国 運航技術基準（2026-154号）', 'KR — 한국 운항기술기준(2026-154호)', 'KR — Korea Flight Safety Regulations (No. 2026-154)')) : tx(L('JP ― 日本 航空法施行規則 第153条・運航規程審査要領細則 2-5', 'JP — 일본 항공법 시행규칙 제153조·운항규정심사요령세칙 2-5', 'JP — Japan Enforcement Regulations Art. 153 / Detailed Rules 2-5')))],
+        [T.flight, esc(V.flight + ' ' + V.from + '→' + V.to)], [L('機材', '기재', 'Aircraft'), esc((S.acKey === '789' ? 'B787-9' : 'B737-800') + ' · ' + dd.reg)], ['STD', dpT2(0)], [L('今', '지금', 'Now'), dpT2(dpRel())]]) +
+      '<div class="wbformula"><b>' + esc(tx(L('コラリンのルール', '코라린의 규칙', 'Korarin’s rule'))) + '</b><div>' + esc(tx(L('実際に適用される規定は、運航国・運航証明・認可された運航規程・現地の手順で決まる。このゲームは、勤務地に教育用のプロファイルを結びつけたもの。到着地・代替空港の情報（NOTAM・施設）は、その空港のものを使う。', '실제 적용 규정은 운영국가·운항증명·승인된 운항규정·현지 절차로 정해진다. 이 게임은 근무지에 교육용 프로파일을 연결한 것. 도착지·교체공항 정보(NOTAM·시설)는 그 공항의 것을 쓴다.', 'The rules that really apply depend on the State of the Operator, the AOC, the approved operations manual and local procedures. This game links each desk to an educational profile. Destination and alternate information (NOTAMs, facilities) is that airport’s own.'))) + '</div></div>' +
+      '<p class="small">' + esc(tx(L('数値の層：教育用の代表値（計算式・1.08・0.8）／法定の要求（区分・要件・数）／Velaの会社基準（FPLの締切・TAFの見方）。', '수치의 세 층: 교육용 대표값(산식·1.08·0.8) / 법정 요구(구분·요건·개수) / Vela 회사 기준(FPL 마감·TAF 보는 법).', 'Three layers: educational values (formulas, 1.08, 0.8) / legal requirements (categories, conditions, counts) / Vela company standards (FPL deadline, TAF policy).'))) + '</p>' +
+      (dpD4() ? (S.dp.evKfix || !G.practice ? '<p class="small">' + esc(tx(L('今日は飛行中に何かが起きる。起きた時は、機長の判断を資料・推薦・通信で支えよう。', '오늘은 비행 중에 무언가 일어난다. 일어나면 기장의 판단을 자료·추천·통신으로 받쳐 주자.', 'Something will happen in flight today. When it does, support the captain with data, recommendations and communications.'))) + '</p>'
+        : '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('練習：今日の飛行中の出来事を選ぶ', '연습: 오늘 비행 중 사건 고르기', 'Practice: choose today’s in-flight event'))) + '</b></div><div class="seg dpseg"><button data-evk="A" class="' + (S.dp.evK === 'A' ? 'on' : '') + '">' + esc(tx(L('A 目的地での待機（燃料の状態）', 'A 목적지 대기(연료 상태)', 'A Holding at the destination (fuel state)'))) + '</button><button data-evk="B" class="' + (S.dp.evK === 'B' ? 'on' : '') + '">' + esc(tx(L('B 急病の旅客（ダイバート）', 'B 급병 승객(다이버트)', 'B Ill passenger (diversion)'))) + '</button></div></div>') : '') +
+      dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-brf', L('勤務を始める（リリースの準備へ）', '근무 시작(릴리스 준비로)', 'Start (go to release preparation)'), !dpD4() || !!S.dp.evK) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-evk]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); S.dp.evK = b.dataset.evk; dpTabBrf(); }; });
+    $('#d-brf').onclick = function () { if (dpD4() && !S.dp.evK) return; if (!dpDone(c)) return; if (dpD4()) S.dp.evKfix = 1; sfx.ok(); dpEnd(300); };
+  }
+  /* ---------- DAY 4 「飛行中の判断」(설계안 v4 3절) — 사건 A(2D 연료 상태) / B(급병 다이버트) · 착륙 뒤 수배(B5) · 재출발(승무 S9 · OFP · FPL) ---------- */
+  function dpD4() { return !!(M && M.opt && M.opt.inflight); }
+  var D4RANK = { normal: 0, delay: 1, minimum: 2, mayday: 3 };
+  function dpEvK() { var d = S.dp; if (d.evK) return d.evK; return null; }
+  function dpFR() { return DP.up(0.5 * dpA().H); }
+  function dpA4() {   /* 사건 A 진실값(3C): 매 단계 = 그 시점 FOB − 공항별 잔여 소비 · 닫힌 목적지 safe=false · 교체공항 commit 뒤에도 허가 변경 여유 적용 */
+    var t = dpTruth(), d = S.dp, k = dpD().ev, blk = d.signBlock || dpInputTotal(), L0 = blk - dpA().taxi - t.T, FR = dpFR(), p = dpP(), alt = p.evA.alt;
+    function st(fob, committed, delay) { return DP.fuelState({ fob: fob, fr: FR, airports: [{ id: p.dest, burn: k.hold + k.app, safe: false }, { id: alt, burn: k.alt }], committed: committed, changeKg: k.chg, unexpectedDelay: delay }); }
+    var f1 = L0 + k.app, f2 = f1 - k.hold, f3 = f2 - k.hold;
+    return { L0: L0, FR: FR, alt: alt, k: k, f1: f1, f2: f2, f3: f3, s1: st(f1, null, true), s2ga: st(f2, alt, false), s2na: st(f2, p.dest, true), s3na: st(f3, p.dest, true) };
+  }
+  var D4TAXI = 6;   /* 사건 시각 = AOBT + 지상 이동 6분(교육용) + 항로 누적 분 — 설계안 3H 시각표(737 SAPRA 0254Z 등)와 같은 기준 */
+  function dpFixM(fx) { var r = dpReports().filter(function (x) { return x.fix === fx; })[0]; return r ? r.m + dpDly() + D4TAXI : 0; }
+  function dpEvTimes() { var p = dpP(), e = S.dp.ev || {}; if (dpEvK() === 'A') { var a1 = dpFixM(p.evA.f1), a2 = dpFixM(p.evA.f2), a3 = a2 + 15; return { a1: a1, a2: a2, a3: a3, land: (e.rec === 'na' ? a3 : a2) + p.evA.la }; }
+    var b1 = dpFixM(p.evB.f1), cd = p.evB.cands.filter(function (x) { return x.icao === e.div; })[0]; return { b1: b1, land: cd ? b1 + cd.min + 10 : null }; }
+  var DSTS = [['normal', L('正常', '정상', 'Normal')], ['delay', L('予想外の遅れ', '예상 외 지연', 'Unexpected delay')], ['minimum', L('MINIMUM FUEL', 'MINIMUM FUEL', 'MINIMUM FUEL')], ['mayday', L('MAYDAY FUEL', 'MAYDAY FUEL', 'MAYDAY FUEL')]];
+  var D4CK = {
+    efc: L('EFC（進入許可の予定時刻）を確かめ、燃料を計算し直す', 'EFC(접근 허가 예상 시각)를 확인하고 연료를 재계산', 'Confirm the EFC and recompute fuel'),
+    altwx: L('代替空港の気象・運用状態を確かめ直す', '교체공항 기상·운용 상태를 다시 확인', 'Recheck the alternate’s weather and status'),
+    log: L('判断と時刻を記録する', '판단과 시각을 기록', 'Log the decision and time'),
+    minfuel: L('機長のMINIMUM FUELの通報を支援（緊急・優先権ではない）', '기장의 MINIMUM FUEL 통보 지원(비상·우선권 아님)', 'Support the captain’s MINIMUM FUEL call (not an emergency or priority)'),
+    delayinfo: L('遅延の情報を要求し、計算し直す', '지연 정보를 요청하고 재계산', 'Request delay information and recompute'),
+    divprep: L('代替空港側の手配を始める（取扱・CIQ）', '교체공항 쪽 수배 시작(조업·CIQ)', 'Start arrangements at the alternate (handling, CIQ)'),
+    mayday: L('機長のMAYDAY FUEL（緊急）を支援', '기장의 MAYDAY FUEL(비상) 지원', 'Support the captain’s MAYDAY FUEL (emergency)'),
+    ground: L('地上の手配（消防・取扱・CIQ）', '지상 수배(소방·조업·CIQ)', 'Ground arrangements (fire services, handling, CIQ)'),
+    divrec: L('代替空港への変更を勧める', '교체공항으로 변경을 권고', 'Recommend diverting to the alternate'),
+    arrange: L('ダイバートの手配（取扱・CIQ確認・旅客案内・会社への報告）', '다이버트 수배(조업·CIQ 확인·승객 안내·회사 보고)', 'Diversion arrangements (handling, CIQ, passengers, company report)'),
+    watch: L('燃料の状態の監視を続ける', '연료 상태 감시 유지', 'Keep monitoring the fuel state'),
+    data: L('候補空港の資料（距離・気象・医療・CIQ・取扱）を機長に伝える', '후보 공항 자료(거리·기상·의료·CIQ·조업)를 기장에게 전달', 'Pass the candidate data (distance, weather, medical, CIQ, handling) to the captain'),
+    ciq: L('緊急の通報・CIQの例外を手配中のまま、着陸の支援を続ける', '긴급 통보·CIQ 예외 수배 중인 상태로 착륙 지원 계속', 'Keep supporting the landing while the emergency notice and CIQ exception are in progress'),
+    amb: L('救急車を手配する', '구급차 수배', 'Arrange an ambulance'),
+    hand: L('取扱（グランドハンドリング）を手配する', '조업 수배', 'Arrange ground handling'),
+    hold: L('CIQが確かめられるまで着陸を待つよう勧める', 'CIQ가 확인될 때까지 착륙을 기다리도록 권고', 'Recommend waiting to land until CIQ is confirmed')
+  };
+  var D4REQ = { delay: ['efc'], minimum: ['minfuel'], mayday: ['mayday', 'ground'], normal: [] };
+  function dpCks(keys, sel, c) { return '<div class="chk">' + keys.map(function (k) { var on = !!sel[k]; return '<button data-ck="' + k + '" class="' + (on ? 'on' : '') + '"><span>' + esc(tx(D4CK[k])) + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>'; }
+  function dpStSel(sel) { return '<div class="seg dpseg">' + DSTS.map(function (x) { return '<button data-s4="' + x[0] + '" class="' + (sel === x[0] ? 'on' : '') + '">' + esc(tx(x[1])) + '</button>'; }).join('') + '</div>'; }
+  function dpEvJudge(stg, truthSt, sel, ck, extra) {   /* 상태 판정: 낮게 고르거나(악화 방치) 선언 지원 누락 = S8(기록형 · 진행은 계속) · 과하게 고름 = D3 · 슬롯 4/2/0 */
+    var d = S.dp, req = (D4REQ[truthSt] || []).concat(extra || []), miss = req.filter(function (k) { return !ck[k]; }), lab = function (s) { return DSTS.filter(function (x) { return x[0] === s; })[0][1]; };
+    var under = sel != null && D4RANK[sel] < D4RANK[truthSt], dec = (truthSt === 'minimum' && !ck.minfuel) || (truthSt === 'mayday' && !ck.mayday);
+    if (sel != null && (under || dec)) { d.ev.s8 = (d.ev.s8 || 0) + 1; dpStrike('dp-s8', function () { return tx(L(stg + '：燃料の状態は「', stg + ': 연료 상태는 「', stg + ': the fuel state was “')) + tx(lab(truthSt)) + tx(L('」 ― 状態に合う対応がありませんでした。', '」 — 상태에 맞는 대응이 없었습니다.', '” — no response matching the state.')); }, 'dispatch/5-3'); }
+    else if (sel != null && D4RANK[sel] > D4RANK[truthSt]) dpBad('dp-d3', function () { return tx(L(stg + '：状態を重く判断しました（正しくは「', stg + ': 상태를 무겁게 판단했습니다(정답 「', stg + ': state judged too severe (correct: “')) + tx(lab(truthSt)) + tx(L('」）。', '」).', '”).')); }, 'dispatch/5-3');
+    var ok = (sel == null || sel === truthSt) && !miss.length && (!!ck.log);
+    return ok ? 4 : (sel == null || sel === truthSt) ? 2 : 0;
+  }
+  function dpEvCard(title, rows) { return '<div class="dpcard"><div class="dph"><b>' + esc(tx(title)) + '</b></div>' + (rows ? '<table class="wbt">' + rows.map(function (r) { return '<tr><td>' + esc(tx(r[0])) + '</td><td class="n">' + r[1] + '</td></tr>'; }).join('') + '</table>' : ''); }
+  function dpTabFlt4() {
+    var c = S.cur, d = S.dp, t = dpTruth(), R = dpReports(), e = d.ev = d.ev || {}, K = dpEvK(), p = dpP(), i = d.rep.length, FR = dpFR();
+    e.ck = e.ck || {};
+    var f1 = K === 'A' ? p.evA.f1 : p.evB.f1, fi = DREP[S.prof].indexOf(f1);
+    var h = '<div class="h3">' + esc(tx(L('運航監視 ― 飛行中の判断は機長、運航管理者は資料・推薦・通信の支援と記録', '운항 감시 — 비행 중 판단은 기장, 운항관리사는 자료·추천·통신 지원과 기록', 'Flight watch — the captain decides in flight; the dispatcher supports with data, recommendations, communications and records'))) + '</div>';
+    h += '<p class="small">' + esc(tx(L('最終予備（30分）', '최종예비(30분)', 'Final reserve (30 min)'))) + ' <b>' + f0(FR) + ' kg</b></p>';
+    var bindStd = function () {
+      document.querySelectorAll('#scr button[data-st]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; var r = R[d.rep.length]; addTime(Math.max(0, r.m + dpDly() - dpRel())); d.rep.push(b.dataset.st); sfx.tap(); if (b.dataset.st !== r.st && !d.overRep) { d.overRep = 1; dpBad('dp-d3', L('燃料の状態の判断を誤りました（' + r.fix + '：正しくは「正常」）。', '연료 상태 판단을 잘못했습니다(' + r.fix + ': 정답 「정상」).', 'Misjudged the fuel state at ' + r.fix + ' (correct: normal).'), 'dispatch/5-3'); } dpTabFlt(); }; });
+    };
+    if (i < fi) {   /* 사건 전 정규 위치 통보 */
+      h += '<table class="wbt"><tr><th>' + esc(tx(L('地点', '지점', 'Fix'))) + '</th><th>UTC</th><th>' + esc(tx(L('実際', '실제', 'Actual'))) + '</th><th>' + esc(tx(L('着陸時の見込み', '착륙 시 예상', 'Est. landing'))) + '</th></tr>' + R.slice(0, i + 1).map(function (r) { return '<tr><td>' + esc(r.fix) + '</td><td class="mono">' + dpZ(r.m + dpDly()) + '</td><td class="n">' + f0(r.act) + '</td><td class="n">' + f0(r.land) + '</td></tr>'; }).join('') + '</table>';
+      h += '<div class="dpcard"><div class="dph"><b>' + esc(R[i].fix) + ' ' + dpZ(R[i].m + dpDly()) + '</b></div><div class="chk">' + DST.map(function (x) { return '<button data-st="' + x[0] + '"><span>' + esc(tx(x[1])) + '</span></button>'; }).join('') + '</div></div>';
+      scr(h + dpMsgHtml() + dpEdu()); bindStd(); return;
+    }
+    var T4 = dpEvTimes(), stage = e.stage || 1, ckKeys = [], btn = null, body = '', canGo = false;
+    if (K === 'A') {
+      var A = dpA4(), altN = dpApNm(A.alt);
+      if (stage === 1) {
+        if (dpRel() < T4.a1) addTime(T4.a1 - dpRel());
+        if (!e.said1) { e.said1 = 1; var z1 = dpZ(t.eet + dpDly() + D4TAXI), z2 = dpZ(t.eet + dpDly() + D4TAXI + 15); dpCall('info', L('目的地の滑走路が閉鎖（動けない航空機）。待機の指示、EFCは到着予定時刻（' + z1 + '）の15分後 ― ' + z2 + 'です。', '목적지 활주로 폐쇄(기동 불능 항공기). 대기 지시, EFC는 도착 예정 시각(' + z1 + ')의 15분 뒤 — ' + z2 + '입니다.', 'Destination runway closed (disabled aircraft). Holding — EFC is 15 minutes after the ETA (' + z1 + '): ' + z2 + '.'), 'info_cls'); }
+        body = dpEvCard(L('① ' + f1 + ' ― 目的地の滑走路閉鎖・待機', '① ' + f1 + ' — 목적지 활주로 폐쇄·대기', '① ' + f1 + ' — destination runway closed, holding'), [[L('EFC（進入許可の予定時刻）', 'EFC(접근 허가 예상 시각)', 'EFC'), dpZ(t.eet + dpDly() + D4TAXI + 15) + ' <small>(' + esc(tx(L('到着予定 ', '도착 예정 ', 'ETA '))) + dpZ(t.eet + dpDly() + D4TAXI) + ' + 15 · ' + esc(tx(L('今 ', '지금 ', 'now '))) + dpZ(dpRel()) + ')</small>'], [L('目的地 着陸時の見込み（待機15分を含む）', '목적지 착륙 시 예상(대기 15분 포함)', 'Destination est. landing (incl. 15 min hold)'), f0(A.L0 - A.k.hold) + ' kg'], [altN, f0(A.f1 - A.k.alt) + ' kg'], [L('最終予備', '최종예비', 'Final reserve'), f0(FR) + ' kg']]) + '<p class="small">' + esc(tx(L('EFCは「進入許可の予定」で、再開の保証ではない。閉鎖中の目的地は安全に着陸できる空港に数えない。', 'EFC는 「접근 허가 예정」이지 재개 보장이 아니다. 폐쇄 중인 목적지는 안전하게 착륙할 수 있는 공항으로 세지 않는다.', 'An EFC is an expected approach time, not a promise the runway reopens. A closed destination does not count as a safe landing airport.'))) + '</p>' + dpStSel(e.s1) + '</div>';
+        ckKeys = ['efc', 'altwx', 'log']; canGo = !!e.s1; btn = 'd-ev1';
+      } else if (stage === 2) {
+        if (dpRel() < T4.a2) addTime(T4.a2 - dpRel());
+        if (!e.said2) { e.said2 = 1; dpCall('cap', L('EFCがさらに15分延びました。' + p.dest + 'で待つか、' + A.alt + 'へ早めに変えるか考えています。資料と推薦をください。', 'EFC가 15분 더 늘었습니다. ' + p.dest + '에서 기다릴지, ' + A.alt + '로 일찍 바꿀지 생각 중입니다. 자료와 권고를 주세요.', 'The EFC has slipped another 15 minutes. I’m weighing holding for ' + p.dest + ' against an early change to ' + A.alt + '. Data and a recommendation, please.'), 'cap_a2'); }
+        body = dpEvCard(L('② ' + p.evA.f2 + ' ― EFC 延長・機長の相談', '② ' + p.evA.f2 + ' — EFC 연장·기장 상의', '② ' + p.evA.f2 + ' — EFC extended, captain asks'), [['EFC', dpZ(t.eet + dpDly() + D4TAXI + 30) + ' <small>(' + esc(tx(L('前のEFC ', '앞 EFC ', 'previous EFC '))) + dpZ(t.eet + dpDly() + D4TAXI + 15) + ' + 15)</small>'], [L('今の燃料（FOB）', '지금 연료(FOB)', 'Fuel on board'), f0(A.f2) + ' kg'], [L('目的地 着陸時の見込み（さらに待機15分＋進入）', '목적지 착륙 시 예상(대기 15분 더 + 접근)', 'Destination est. landing (15 more min + approach)'), f0(A.f2 - A.k.hold - A.k.app) + ' kg'], [altN + ' ' + esc(tx(L('着陸時の見込み', '착륙 시 예상', 'est. landing'))), f0(A.f2 - A.k.alt) + ' kg'], [L('許可の変更1回分の余裕（教育用）', '허가 변경 1회분 여유(교육용)', 'Allowance for one clearance change (educational)'), f0(A.k.chg) + ' kg'], [L('最終予備', '최종예비', 'Final reserve'), f0(FR) + ' kg']]);
+        body += '<p class="small">' + esc(tx(L('推薦（どちらも機長の判断を支える選択 ― 正解は一つではない）', '권고(둘 다 기장 판단을 돕는 선택 — 정답이 하나가 아님)', 'Recommendation (both support the captain — there is no single right answer)'))) + '</p><div class="seg dpseg"><button data-rec="ga" class="' + (e.rec === 'ga' ? 'on' : '') + '">' + esc(tx(L('(ア) ' + A.alt + 'へ早めに変更', '(가) ' + A.alt + '로 조기 변경', '(a) Early change to ' + A.alt))) + '</button><button data-rec="na" class="' + (e.rec === 'na' ? 'on' : '') + '">' + esc(tx(L('(イ) 目的地で待つ', '(나) 목적지에서 대기', '(b) Keep holding for the destination'))) + '</button></div>';
+        if (e.rec) { body += '<p class="small"><b>' + esc(tx(e.rec === 'ga' ? L('機長：「' + A.alt + 'へ向かいます」― ' + A.alt + 'に着陸すると決めた', '기장: 「' + A.alt + '로 갑니다」 — ' + A.alt + ' 착륙으로 정함', 'Captain: “Heading for ' + A.alt + '” — committed to land at ' + A.alt) : L('機長：「' + p.dest + 'で待ちます」― 目的地に着陸すると決めた', '기장: 「' + p.dest + '에서 기다립니다」 — 목적지 착륙으로 정함', 'Captain: “We’ll hold for ' + p.dest + '” — committed to the destination'))) + '</b></p><p class="small">' + esc(tx(L('今の燃料の状態は？', '지금 연료 상태는?', 'Fuel state now?'))) + '</p>' + dpStSel(e.s2); }
+        body += '</div>'; ckKeys = e.rec ? ['minfuel', 'delayinfo', 'divprep', 'log'] : []; canGo = !!(e.rec && e.s2); btn = 'd-ev2';
+      } else if (stage === 3) {
+        if (e.rec === 'na') {
+          if (dpRel() < T4.a3) addTime(T4.a3 - dpRel());
+          if (!e.said3) { e.said3 = 1; var z3 = dpZ(t.eet + dpDly() + D4TAXI + 45); dpCall('info', L('さらに遅れます。EFCはさらに15分延びて' + z3 + '、滑走路の再開時刻は不明です。', '더 늦어집니다. EFC는 15분 더 늘어 ' + z3 + ', 활주로 재개 시각은 불명입니다.', 'Further delay: the EFC slips another 15 minutes to ' + z3 + '; runway reopening time unknown.'), 'info_efc'); }
+          body = dpEvCard(L('③ 待機中 ― 追加の遅れ・再開時刻不明', '③ 대기 중 — 추가 지연·재개 시각 불명', '③ Holding — further delay, reopening unknown'), [['EFC', dpZ(t.eet + dpDly() + D4TAXI + 45) + ' <small>(' + esc(tx(L('前のEFC ', '앞 EFC ', 'previous EFC '))) + dpZ(t.eet + dpDly() + D4TAXI + 30) + ' + 15)</small>'], [L('今の燃料（FOB）', '지금 연료(FOB)', 'Fuel on board'), f0(A.f3) + ' kg'], [L('目的地 着陸時の見込み', '목적지 착륙 시 예상', 'Destination est. landing'), f0(A.f3 - A.k.hold - A.k.app) + ' kg <small>(' + esc(tx(L('閉鎖中 ― 数えない', '폐쇄 중 — 세지 않음', 'closed — not counted'))) + ')</small>'], [altN, f0(A.f3 - A.k.alt) + ' kg'], [L('最終予備', '최종예비', 'Final reserve'), f0(FR) + ' kg']]) + dpStSel(e.s3) + '</div>';
+          ckKeys = ['mayday', 'ground', 'minfuel', 'divrec', 'log']; canGo = !!e.s3;
+        } else {
+          if (dpRel() < T4.a2 + 5) addTime(T4.a2 + 5 - dpRel());
+          body = dpEvCard(L('③ ' + A.alt + 'へ進入中 ― 状態はそのまま続く（同じ判定を重ねない）', '③ ' + A.alt + ' 접근 중 — 상태는 그대로 이어짐(같은 판정을 거듭하지 않음)', '③ Approaching ' + A.alt + ' — the state continues (no duplicate call)'), [[L('今の状態', '지금 상태', 'Current state'), esc(tx(DSTS.filter(function (x) { return x[0] === A.s2ga.state; })[0][1]))], [altN + ' ' + esc(tx(L('着陸時の見込み', '착륙 시 예상', 'est. landing'))), f0(A.f2 - A.k.alt) + ' kg']]) + '</div>';
+          ckKeys = ['arrange', 'watch', 'log']; canGo = true;
+        }
+        btn = 'd-ev3';
+      } else {   /* 착륙 */
+        if (dpRel() < T4.land) addTime(T4.land - dpRel());
+        var lf = e.rec === 'na' ? A.f3 - A.k.alt : A.f2 - A.k.alt;
+        if (!e.saidL) { e.saidL = 1; var st = e.rec === 'na' ? A.s3na.state : A.s2ga.state; dpCall('cap', st === 'mayday' ? L('MAYDAY FUELを宣言、' + A.alt + 'に着陸しました。', 'MAYDAY FUEL 선언, ' + A.alt + '에 착륙했습니다.', 'MAYDAY FUEL declared — landed at ' + A.alt + '.') : st === 'minimum' ? L('MINIMUM FUELを通報、' + A.alt + 'に着陸しました。', 'MINIMUM FUEL 통보, ' + A.alt + '에 착륙했습니다.', 'MINIMUM FUEL advised — landed at ' + A.alt + '.') : L(A.alt + 'に変更して着陸しました。', A.alt + '로 변경해 착륙했습니다.', 'Diverted and landed at ' + A.alt + '.'), st === 'mayday' ? 'cap_ldmay' : st === 'minimum' ? 'cap_ldmin' : 'cap_lddiv'); }
+        e.div = A.alt; e.land = T4.land;
+        body = dpEvCard(L('④ ' + A.alt + ' 着陸 ' + dpZ(T4.land), '④ ' + A.alt + ' 착륙 ' + dpZ(T4.land), '④ Landed at ' + A.alt + ' ' + dpZ(T4.land)), [[L('着陸時の燃料', '착륙 시 연료', 'Fuel at landing'), f0(lf) + ' kg'], [L('最終予備', '최종예비', 'Final reserve'), f0(FR) + ' kg']]) + '<p class="small">' + esc(tx(e.rec === 'na' ? L('（イ）は非常時の対応を体験する道。通常の業務で予備を使い切れという意味ではない。', '(나)는 비상 대응을 체험하는 길. 정상 업무에서 예비를 다 쓰라는 뜻이 아니다.', '(b) lets you experience an emergency response — it does not mean using up reserves in normal operations.') : L('（ア）は悪くなる前の保守的な選択（その時に必要な状態の通報も合わせて）。', '(가)는 더 나빠지기 전의 보수적 선택(그때 필요한 상태 통보도 함께).', '(a) is the conservative choice before things get worse (with the state call needed at the time).'))) + '</p></div>';
+      }
+    } else {   /* 사건 B */
+      var cands = p.evB.cands;
+      if (stage === 1) {
+        if (dpRel() < T4.b1) addTime(T4.b1 - dpRel());
+        if (!e.said1) { e.said1 = 1; dpCall('cap', L('急病の旅客です（胸の痛み・意識が低下）。いちばん近い適した空港の資料をください。', '급병 승객입니다(흉통·의식 저하). 가장 가까운 적합 공항 자료를 주세요.', 'A passenger is seriously ill (chest pain, reduced consciousness). Data on the nearest suitable airport, please.'), 'cap_med'); }
+        body = '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('① ' + f1 + ' ― 急病の旅客・候補空港', '① ' + f1 + ' — 급병 승객·후보 공항', '① ' + f1 + ' — ill passenger, candidate airports'))) + '</b></div><div class="chk">' + cands.map(function (x) { var on = e.rec === x.icao; return '<button data-rec="' + x.icao + '" class="' + (on ? 'on' : '') + '"><span><b>' + esc(x.cont ? tx(L('目的地へ続ける ', '목적지로 계속 ', 'Continue to ')) + x.icao : dpApNm(x.icao)) + '</b> · ' + x.nm + ' NM · ' + x.min + tx(T.min) + (x.cont ? '' : '<br><small class="mono">' + esc(x.wx) + '</small><br><small>' + esc(tx(x.med)) + ' · ' + esc(tx(x.ciq)) + ' · ' + esc(tx(x.hand)) + '</small>') + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div></div>';
+        ckKeys = ['data', 'log']; canGo = !!e.rec; btn = 'd-ev1';
+      } else if (stage === 2) {
+        var dv = e.div;
+        body = dpEvCard(L('② ' + dv + 'へ進入 ― CIQ・取扱はまだ確かめられていない', '② ' + dv + ' 접근 — CIQ·조업은 아직 확인 안 됨', '② Approaching ' + dv + ' — CIQ and handling not yet confirmed'), [[L('機長の決定', '기장 결정', 'Captain’s decision'), esc(dpApNm(dv)) + (e.rec !== dv ? ' <small>(' + esc(tx(L('いちばん近い適した空港を機長が選んだ', '가장 가까운 적합 공항을 기장이 고름', 'captain chose the nearest suitable airport'))) + ')</small>' : '')]]) + '</div>';
+        ckKeys = ['ciq', 'amb', 'hand', 'hold', 'log']; canGo = true; btn = 'd-ev2';
+      } else {
+        if (dpRel() < T4.land) addTime(T4.land - dpRel());
+        var cd = cands.filter(function (x) { return x.icao === e.div; })[0], r1 = R[DREP[S.prof].indexOf(f1)], lfB = r1.act - DP.up(dpA().ff * (cd.min + 10) / 60), lw = dpZfwFinal() + lfB;
+        e.land = T4.land;
+        if (!e.saidL) { e.saidL = 1; dpCall('cap', L(e.div + 'に着陸しました。救急の引き継ぎをお願いします。', e.div + '에 착륙했습니다. 구급 인계를 부탁합니다.', 'Landed at ' + e.div + '. Please arrange the medical handover.'), 'cap_ldmed'); }
+        body = dpEvCard(L('③ ' + e.div + ' 着陸 ' + dpZ(T4.land) + ' ― 着陸重量', '③ ' + e.div + ' 착륙 ' + dpZ(T4.land) + ' — 착륙 중량', '③ Landed at ' + e.div + ' ' + dpZ(T4.land) + ' — landing weight'), [[L('着陸時の燃料（概算）', '착륙 시 연료(개산)', 'Fuel at landing (approx.)'), f0(lfB) + ' kg'], ['LW / MLW', f0(lw) + ' / ' + f0(dpA().mlw) + ' kg ' + (lw <= dpA().mlw ? '✔' : '✕')]]) + '</div>';
+      }
+    }
+    var land = (K === 'A' && stage >= 4) || (K === 'B' && stage >= 3);
+    h += body + (ckKeys.length ? dpCks(ckKeys, e.ck) : '') + dpMsgHtml();
+    if (land) h += '<div class="btns"><button class="btn pri" id="d-log" data-a="ok">' + esc(tx(L('運航の記録を保存', '운항 기록 저장', 'Save the flight log'))) + '</button><button class="btn" id="d-logskip">' + esc(tx(L('省略する', '생략', 'Skip'))) + '</button></div>';
+    else h += '<div class="btns">' + dpBtnOk(btn, L('判断を伝える・記録', '판단 전달·기록', 'Pass on the decision and log it'), canGo) + '</div>';
+    scr(h + dpEdu());
+    document.querySelectorAll('#scr button[data-s4]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); e['s' + stage] = b.dataset.s4; dpTabFlt(); }; });
+    document.querySelectorAll('#scr button[data-rec]').forEach(function (b) { b.onclick = function () { if (!dpLive(c) || (K === 'A' && e.s2)) return; sfx.tap(); e.rec = b.dataset.rec; dpTabFlt(); }; });
+    document.querySelectorAll('#scr button[data-ck]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); e.ck[b.dataset.ck] = !e.ck[b.dataset.ck]; dpTabFlt(); }; });
+    var go = btn && $('#' + btn); if (go) go.onclick = function () {
+      if (!dpLive(c)) return; sfx.ok(); addTime(M.cost.call); var ck = e.ck; e.ck = {};
+      e.sl = e.sl || {};
+      if (K === 'A') {
+        var A2 = dpA4();
+        if (stage === 1) e.sl.a1 = dpEvJudge('①', A2.s1.state, e.s1, ck, ['altwx']);
+        else if (stage === 2) { var ts = e.rec === 'ga' ? A2.s2ga.state : A2.s2na.state; e.t2 = ts; e.sl.a2 = dpEvJudge('②', ts, e.s2, ck, ts === 'delay' ? ['delayinfo'] : []); if (ts === 'delay' && !ck.delayinfo) e.sl.a2 = Math.min(e.sl.a2, 2); }
+        else if (stage === 3) { if (e.rec === 'na') { var t3 = A2.s3na.state; e.t3 = t3; e.sl.a3 = dpEvJudge('③', t3, e.s3, ck, t3 === 'delay' ? ['divrec'] : t3 === 'minimum' ? ['ground'] : []); }
+          else { var ms = ['arrange', 'watch'].filter(function (k) { return !ck[k]; }); e.sl.a3 = !ms.length && ck.log ? 4 : ck.arrange ? 2 : 0; } }
+        if (ck.log) e.logs = (e.logs || 0) + 1;
+        e.stage = stage + 1;
+      } else {
+        if (stage === 1) { var cd1 = p.evB.cands.filter(function (x) { return x.icao === e.rec; })[0]; e.sl.b1 = ck.data ? cd1.pts : Math.min(cd1.pts, 2); e.div = cd1.cont ? p.evB.cands[0].icao : cd1.icao;
+          dpCall('cap', cd1.cont ? L('いちばん近い' + e.div + 'に降ります。', '가장 가까운 ' + e.div + '에 내리겠습니다.', 'We’ll land at the nearest airport, ' + e.div + '.') : L(e.div + 'に向かいます。', e.div + '로 갑니다.', 'Heading for ' + e.div + '.'), 'cap_div'); }
+        else if (stage === 2) { e.sl.b2 = ck.hold ? 0 : ck.ciq && ck.amb && ck.hand ? 4 : ck.ciq && ck.amb ? 3 : ck.ciq || ck.amb ? 2 : 0; if (ck.hold) { e.holdRec = 1; dpBad('dp-b5', L('急病の旅客がいるのに、CIQの確認まで着陸を待つよう勧めました（緊急の着陸支援は続ける）。', '급병 승객이 있는데 CIQ 확인까지 착륙을 기다리도록 권했습니다(긴급 착륙 지원은 계속).', 'Recommended waiting for CIQ despite a medical emergency (emergency landing support continues).'), 'dispatch/15-5'); } }
+        if (ck.log) e.logs = (e.logs || 0) + 1;
+        e.stage = stage + 1;
+      }
+      dpTabFlt();
+    };
+    if ($('#d-log')) $('#d-log').onclick = function () { if (!dpDone(c)) return; d.logged = dpRel(); sfx.ok(); note('good', L('運航の記録を残しました。', '운항 기록을 남겼습니다.', 'Logged the flight.'), 'dispatch/9-1'); dpEnd(700); };
+    if ($('#d-logskip')) $('#d-logskip').onclick = function () { if (!dpDone(c)) return; sfx.ng(); dpBad('dp-b3', L('運航の記録（時刻・判断）を残しませんでした。', '운항 기록(시각·판단)을 남기지 않았습니다.', 'Did not log the flight (times, decisions).'), 'dispatch/9-1'); dpEnd(700); };
+  }
+  /* ---------- 착륙 뒤 수배(B5 · 기록형 — 긴급 착륙 지원은 막지 않음) ---------- */
+  function dpB5Keys() { return dpEvK() === 'B' ? ['ciqx', 'hand2', 'amb2', 'pax', 'rep'] : ['ciq2', 'hand2', 'fuel2', 'pax', 'safe']; }
+  var DB5 = { ciqx: L('CIQの例外の手配（入国・再入国）', 'CIQ 예외 수배(입국·재입국)', 'CIQ exception (entry / re-entry)'), ciq2: L('CIQの確認（通常の入国）', 'CIQ 확인(통상 입국)', 'CIQ confirmation (normal entry)'), hand2: L('取扱（グランドハンドリング）', '조업', 'Ground handling'), amb2: L('救急車・医療の引き継ぎ', '구급차·의료 인계', 'Ambulance and medical handover'), fuel2: L('給油の手配', '급유 수배', 'Fuelling'), pax: L('旅客・手荷物の案内', '승객·수하물 안내', 'Passengers and baggage'), rep: L('会社への報告・後の届け出', '회사 보고·후속 신고', 'Company report and follow-up notifications'), safe: L('安全の報告（燃料の状態）', '안전 보고(연료 상태)', 'Safety report (fuel state)') };
+  function dpTabArr() {
+    var c = S.cur, d = S.dp, e = d.ev || {}, ks = dpB5Keys(); e.b5 = e.b5 || {};
+    var h = '<div class="h3">' + esc(tx(L('着陸の後の手配 ― ' + e.div, '착륙 뒤 수배 — ' + e.div, 'After landing — ' + e.div))) + '</div><div class="chk">' + ks.map(function (k) { var on = !!e.b5[k]; return '<button data-b5="' + k + '" class="' + (on ? 'on' : '') + '"><span>' + esc(tx(DB5[k])) + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>';
+    h += dpMsgHtml() + '<div class="btns">' + dpBtnOk('d-arrok', L('手配を確定', '수배 확정', 'Confirm arrangements')) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-b5]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); e.b5[b.dataset.b5] = !e.b5[b.dataset.b5]; dpTabArr(); }; });
+    $('#d-arrok').onclick = function () { if (!dpDone(c)) return; sfx.ok(); addTime(M.cost.call * 2); var miss = ks.filter(function (k) { return !e.b5[k]; }); e.sl = e.sl || {}; e.sl.b5 = miss.length ? (miss.length === 1 ? 1 : 0) : 3;
+      if (miss.length) dpBad('dp-b5', function () { return tx(L('ダイバートの手配が足りません：', '다이버트 수배가 부족합니다: ', 'Diversion arrangements missing: ')) + miss.map(function (k) { return tx(DB5[k]); }).join(' / '); }, 'dispatch/8-1');
+      else note('good', L('着陸の後の手配（CIQ・取扱・旅客・報告）を済ませました。', '착륙 뒤 수배(CIQ·조업·승객·보고)를 마쳤습니다.', 'Completed the after-landing arrangements.'), 'dispatch/8-1');
+      dpEnd(600); };
+  }
+  /* ---------- 재출발(3H 승무 카드 · S9 차단 · 재출발 OFP 카드 · FPL) ---------- */
+  /* ---------- 재출발 진실값(F05-11-01·03) ----------
+     EET = 교육용 단순식(거리/TAS + 16분 → 분 반올림) · 연료 = 2B-1 공통 산식(DP.required: TRIP ×1.08 · 보정/예측 불가 = max(5%, 5분 체공) · 교체공항 · 최종예비 · kg 올림)
+     교체공항 = 재출발 시각의 자체 ETA로 다시 평가(같은 날 = 그날 자료 · 다음날 = 다음날 자료 판) · 운용시간 포함 · M4: 다이버트 공항이 첫 적합 후보면 다음 적합 후보 */
+  function dpRdEet() { var p = dpP(), nm = p.rd[S.dp.ev.div]; return { nm: nm, eet: Math.round(nm / dpA().tas * 60 + 16) }; }
+  function dpRdNd() { var e = S.dp.ev, p = dpP(); return e && e.crew === 'rest' && p.nd ? p.nd : null; }
+  function dpRdH(rel) { return dpStdH() + rel / 60; }
+  function dpHrsClosed(ic) {   /* 운용시간(UTC [열림, 닫힘]) → 닫힌 구간 목록(TAF 시간 단위) */
+    var oh = (dpP().hrs || {})[ic], out = []; if (!oh) return out;
+    for (var dd = dpDay() - 1; dd <= dpDay() + 2; dd++) out.push(oh[0] > oh[1] ? [dd * 24 + oh[1], dd * 24 + oh[0]] : [dd * 24 + oh[1], dd * 24 + 24 + oh[0]]);
+    return out;
+  }
+  function dpRdEval(ic, h, nd, dep) {   /* dep = 출발지: 운용시간은 EOBT 그 시각(도착 쪽은 자체 ETA ±1h) */
+    var p = dpP(), nts = nd ? nd.notam : (p.notam || []), shut = {};
+    nts.forEach(function (n) { if (n.closeApp && (!n.win || DP.overlapH(n.win, h))) (Array.isArray(n.closeApp[0]) ? n.closeApp : [n.closeApp]).forEach(function (q) { shut[q[0] + '|' + q[1]] = 1; }); });
+    var apps = (M.ap[ic] ? M.ap[ic].apps : []).map(function (a) { return Object.assign({}, a, { avail: !shut[ic + '|' + a.id] }); });
+    var cl = dpHrsClosed(ic); if (dep) cl = cl.map(function (z) { return [z[0] + 1, z[1] - 1]; });
+    return DP.airportEval({ icao: ic, taf: nd ? nd.taf[ic] : (dpTaf(ic) || dpOldTaf(ic)), apps: apps, closed: cl }, h);
+  }
+  function dpRd() {
+    var e = S.dp.ev, p = dpP(), a = dpA(), t = dpTruth(), ee = dpRdEet(), nd = dpRdNd(), o = dpCrew(), etaR = o.eobt + ee.eet, etaH = dpRdH(etaR), cv = {};
+    p.cands.forEach(function (c) { var h = etaH + t.cands[c].dist / a.tas + 0.25; cv[c] = { etaR: etaR + Math.round((h - etaH) * 60), etaH: h, A: t.cands[c].A, ev: dpRdEval(c, h, nd) }; });
+    var ok = p.cands.filter(function (c) { return cv[c].ev.planOK; }), alt = ok[0] === e.div ? (ok[1] || ok[0]) : ok[0], pick = nd && e.rdp && e.rdp.ndAlt;
+    if (pick && cv[pick] && cv[pick].ev.planOK) alt = pick;   /* 다음날: 플레이어가 고른 적합 교체공항 */
+    var req = DP.required({ prof: p.prof, ac: S.acKey, timeMin: ee.eet, alts: alt ? [cv[alt].A] : [], Fcrit: 0, X: 0 }), FR = req.min - a.taxi - req.T - req.C - req.A;
+    return { from: e.div, to: p.dest, nm: ee.nm, eet: ee.eet, T: req.T, C: req.C, alt: alt || '', A: req.A, FR: FR, block: req.min, req: req, nd: !!nd,
+      eobt: o.eobt, etaR: etaR, cv: cv, okC: ok, dest: dpRdEval(p.dest, etaH, nd), dep: dpRdEval(e.div, dpRdH(o.eobt), nd, true) };
+  }
+  function dpCrew() {   /* 3H: 모든 시각 = STD 기준 분(날짜 포함 UTC로 표시) · FDP = EOBT − 출두 + EET */
+    var e = S.dp.ev, cw = M.crew, rd = dpRdEet(), land = e.land, opt = e.crew || 'cur', o = {};
+    var hd = land + 120 + (+e.hdly || 0);   /* 조업·급유 완료 = 착륙 +2:00(+ 추가 조업 지연 e.hdly — 3H 「조업 지연 +30 등은 EOBT를 뒤로」) */
+    if (opt === 'cur') o = { report: cw.report, eobt: hd, ready: hd };
+    else if (opt === 'res') o = { report: land + 60, eobt: Math.max(hd, land + 90), ready: land + 90 };
+    else if (opt === 'pos') o = { report: land + 30, eobt: Math.max(hd, land + 180), ready: land + 180 };
+    else { var nd = 1440 + 360 - dpStd(); o = { report: nd, eobt: nd + 90, ready: nd + 90 }; }
+    o.fdpEobt = o.eobt - o.report; o.fdp = o.fdpEobt + rd.eet; o.ft = opt === 'cur' ? cw.ftUsed + (land - dpDly()) + rd.eet : rd.eet;
+    o.fails = []; if (o.fdp > cw.fdpMax) o.fails.push('fdp'); if (o.ft > cw.ftMax) o.fails.push('ft');
+    o.landFdp = land - cw.report; return o;
+  }
+  function dpUtcFull(r) { var m = dpStd() - 540 + r, dd = (M.date.d + Math.floor(m / 1440)), mm = ((m % 1440) + 1440) % 1440; return '2026-11-' + ('0' + dd).slice(-2) + ' ' + ('0' + Math.floor(mm / 60)).slice(-2) + ('0' + mm % 60).slice(-2) + 'Z'; }
+  function dpHM(min) { return Math.floor(min / 60) + ':' + ('0' + (min % 60)).slice(-2); }
+  var DCREW = { cur: L('今の乗員のまま', '지금 승무원 그대로', 'Current crew'), res: L('支店の予備乗員と交代', '지점 예비 승무원으로 교대', 'Relieve with the station’s reserve crew'), pos: L('移動の交代乗員（他の基地から）', '이동 교대 승무원(다른 기지에서)', 'Positioning relief crew (from another base)'), rest: L('休んで翌日（今の乗員）', '휴식 뒤 다음날(지금 승무원)', 'Rest and go the next day (current crew)') };
+  var DNDAY = { taf: L('翌日のTAF・NOTAMの有効時間', '다음날 TAF·NOTAM 유효시간', 'Next-day TAF and NOTAM validity'), hrs: L('空港の運用時間', '공항 운용시간', 'Airport operating hours'), ofp: L('OFP・FPLを作り直す', 'OFP·FPL 다시 만들기', 'Rebuild the OFP and FPL'), hotel: L('旅客の宿泊の手配', '승객 숙박 수배', 'Passenger hotel arrangements') };
+  function dpDH(h) { var d = Math.floor(h / 24 + 1e-9), m = Math.round((h - d * 24) * 60); return ('0' + d).slice(-2) + ' ' + ('0' + Math.floor(m / 60)).slice(-2) + ('0' + m % 60).slice(-2) + 'Z'; }
+  function dpOldTaf(ic) { var p = dpP(); if (p.taf[ic]) return p.taf[ic]; var b = ((p.evB && p.evB.cands) || []).filter(function (x) { return x.icao === ic; })[0]; return (b && b.wx) || ''; }
+  function dpHrsTxt(ic) { var oh = (dpP().hrs || {})[ic]; return oh ? ('0' + oh[0]).slice(-2) + '00Z–' + ('0' + oh[1]).slice(-2) + '00Z' : tx(L('24時間', '24시간', '24 h')); }
+  function dpNdCard(rd, r) {   /* F05-11-03: 다음날 자료 판 — 발표·유효·기상·운용시간 · 새 EOBT·ETA·후보 자체 ETA로 다시 판정(정답 표시 없음 — 플레이어가 고름) */
+    var p = dpP(), nd = p.nd; if (!nd) return '';
+    var row = function (ic, role, rel) { var ov = DP.tafValid(dpOldTaf(ic)); return '<div class="dpnd"><p class="small"><b>' + esc(dpApNm(ic)) + '</b> · ' + esc(tx(role)) + ' · ' + esc(tx(L('その空港の予定時刻 ', '자체 시각 ', 'own time '))) + '<b class="mono">' + dpZ(rel) + '</b> ±1h · ' + esc(tx(L('昨日の版の有効 ', '어제 판 유효 ', 'yesterday’s validity '))) + '<span class="mono">' + (ov ? dpDH(ov[0]) + '–' + dpDH(ov[1]) : '—') + '</span> · ' + esc(tx(L('運用時間 ', '운용시간 ', 'hours '))) + '<span class="mono">' + esc(dpHrsTxt(ic)) + '</span></p><pre class="dpraw">' + esc(nd.taf[ic] || '—') + '</pre></div>'; };
+    var h = '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('翌日の資料の版（教育用）', '다음날 자료 판(교육용)', 'Next-day data edition (educational)'))) + '</b></div><p class="small">' + esc(tx(L('発表 ', '발표 ', 'Issued '))) + '<span class="mono">' + dpDH(DP.issueH(nd.iss)) + '</span> · ' + esc(tx(L('翌日の出頭で受け取り ', '다음날 출두 때 수신 ', 'received at the next-day report '))) + '<span class="mono">' + dpUtcFull(dpCrew().report) + '</span></p>';
+    h += '<p class="small">' + esc(tx(L('新しいEOBT ', '새 EOBT ', 'New EOBT '))) + '<b class="mono">' + dpUtcFull(rd.eobt) + '</b> · ' + esc(tx(L('目的地ETA ', '목적지 ETA ', 'Destination ETA '))) + '<b class="mono">' + dpUtcFull(rd.etaR) + '</b></p><p class="small">' + esc(tx(L('昨日の版がその空港の予定時刻の前後1時間を覆っているか、最新か、運用時間内かを確かめて選ぶ。', '어제 판이 그 공항 자체 시각 앞뒤 1시간을 덮는지, 최신인지, 운용시간 안인지 확인하고 고르기.', 'Check whether yesterday’s edition covers each airport’s own time ±1 h, whether it is the latest, and the operating hours.'))) + '</p>';
+    h += row(rd.from, L('出発', '출발', 'departure'), rd.eobt) + row(p.dest, L('目的地', '목적지', 'destination'), rd.etaR) + p.cands.map(function (c) { return row(c, L('代替の候補', '교체공항 후보', 'alternate candidate'), rd.cv[c].etaR); }).join('');
+    h += '<p class="small">NOTAM</p>' + nd.notam.map(function (n) { return '<pre class="dpraw">' + esc(n.txt) + '</pre>'; }).join('');
+    h += '<p class="small"><b>' + esc(tx(L('代替空港（翌日の版・その空港の予定時刻で選び直す）', '교체공항(다음날 판 · 그 공항 자체 시각으로 다시 고르기)', 'Alternate (re-choose on the next-day edition at its own time)'))) + '</b></p><div class="chk">' + p.cands.map(function (c) { var on = r.ndAlt === c; return '<button data-ndalt="' + c + '" class="' + (on ? 'on' : '') + '"' + (r.ok ? ' disabled' : '') + '><span>' + esc(dpApNm(c)) + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div></div>';
+    return h;
+  }
+  function dpTabRdp() {
+    var c = S.cur, d = S.dp, e = d.ev, p = dpP(), rd = dpRd(), cw = M.crew, o = dpCrew(), opts = ['cur'].concat(p.res.indexOf(e.div) >= 0 ? ['res'] : []).concat(e.div === 'RJFF' ? ['pos'] : []).concat(['rest']);
+    e.rdp = e.rdp || {}; var r = e.rdp; r.nd = r.nd || {};
+    var h = '<div class="h3">' + esc(tx(L('再出発 ― ' + rd.from + ' → ' + rd.to + '（勤務時間 → OFP → FPL）', '재출발 — ' + rd.from + ' → ' + rd.to + '(승무 시간 → OFP → FPL)', 'Re-departure — ' + rd.from + ' → ' + rd.to + ' (duty → OFP → FPL)'))) + '</div>';
+    h += '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('乗員の勤務時間カード（教育用 ― 条文の数値ではない）', '승무 시간 카드(교육용 — 조문 수치 아님)', 'Crew duty card (educational — not regulatory figures)'))) + '</b></div><table class="wbt">' +
+      '<tr><td>' + esc(tx(L('今の乗員の出頭', '지금 승무원 출두', 'Current crew report'))) + '</td><td class="n mono">' + dpUtcFull(cw.report) + '</td></tr>' +
+      '<tr><td>' + esc(tx(L('着陸', '착륙', 'Landing'))) + '</td><td class="n mono">' + dpUtcFull(e.land) + ' · FDP ' + dpHM(o.landFdp) + '</td></tr>' +
+      '<tr><td>' + esc(tx(L('今日の適用の上限', '오늘 적용 한계', 'Today’s limits'))) + '</td><td class="n">FDP ' + dpHM(cw.fdpMax) + ' · FT ' + dpHM(cw.ftMax) + ' · FT ' + esc(tx(L('使用', '사용', 'used'))) + ' ' + dpHM(cw.ftUsed) + '</td></tr></table>';
+    h += '<p class="small">' + esc(tx(L('乗員の選び方', '승무원 선택', 'Crew option'))) + '</p><div class="chk">' + opts.map(function (k) { var on = (e.crew || 'cur') === k; return '<button data-cw="' + k + '" class="' + (on ? 'on' : '') + '"' + (r.ok ? ' disabled' : '') + '><span>' + esc(tx(DCREW[k])) + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>';
+    h += '<table class="wbt"><tr><td>' + esc(tx(L('出頭', '출두', 'Report'))) + '</td><td class="n mono">' + dpUtcFull(o.report) + '</td></tr><tr><td>' + esc(tx(L('出発できる時刻（取扱完了・交代の到着の遅い方）', '출발 가능 시각(조업 완료·교대 도착 중 늦은 쪽)', 'Earliest departure (later of handling done / relief ready)'))) + '</td><td class="n mono">' + dpUtcFull(o.eobt) + '</td></tr><tr><td>' + esc(tx(L('到着時のFDP（出頭から）', '도착 시 FDP(출두부터)', 'FDP at arrival (from report)'))) + '</td><td class="n">' + dpHM(o.fdp) + (o.fails.indexOf('fdp') >= 0 ? ' ✕' : ' ✔') + '</td></tr><tr><td>FT</td><td class="n">' + dpHM(o.ft) + (o.fails.indexOf('ft') >= 0 ? ' ✕' : ' ✔') + '</td></tr></table>';
+    h += '<div class="btns"><button class="btn" id="d-cwchk"' + (r.chk ? ' disabled' : '') + '>' + (r.chk ? '✔ ' : '') + esc(tx(L('勤務時間を確かめた', '승무 시간 확인', 'Duty time checked'))) + '</button>' + (e.crew === 'pos' && dpRel() < o.ready - 1e-9 ? '<button class="btn" id="d-cwwait">⏱ ' + esc(tx(L('交代乗員の到着まで待つ（' + dpZ(o.ready) + '）', '교대 승무원 도착까지 기다리기(' + dpZ(o.ready) + ')', 'Wait for the relief crew (' + dpZ(o.ready) + ')'))) + '</button>' : '') + '</div>';
+    if (e.crew === 'rest') h += dpNdCard(rd, r) + '<p class="small">' + esc(tx(L('翌日の確認', '다음날 확인', 'Next-day checks'))) + '</p><div class="chk">' + Object.keys(DNDAY).map(function (k) { var on = !!r.nd[k]; return '<button data-nd="' + k + '" class="' + (on ? 'on' : '') + '"><span>' + esc(tx(DNDAY[k])) + '</span><span class="st">' + (on ? '✔' : '') + '</span></button>'; }).join('') + '</div>';
+    h += '</div>';
+    if (r.ok) {
+      h += '<div class="dpcard"><div class="dph"><b>' + esc(tx(L('再出発のOFPカード（EETは教育用の単純式・燃料は通常の計算式）', '재출발 OFP 카드(EET는 교육용 단순식 · 연료는 통상 산식)', 'Re-departure OFP card (EET: educational formula · fuel: the normal formula)'))) + '</b></div><table class="wbt"><tr><td>' + esc(rd.from + ' → ' + rd.to) + '</td><td class="n">' + rd.nm + ' NM</td></tr><tr><td>EET = round(' + rd.nm + ' NM ÷ ' + dpA().tas + ' kt × 60 + 16)' + tx(T.min) + '</td><td class="n">' + rd.eet + tx(T.min) + ' (' + DP.eetStr(rd.eet) + ')</td></tr><tr><td>TRIP = ceil(' + rd.eet + tx(T.min) + ' ÷ 60 × ' + f0(dpA().ff) + ' kg/h × 1.08)</td><td class="n">' + f0(rd.T) + '</td></tr><tr><td>' + esc(tx(S.prof === 'KR' ? L('補正燃料', '보정연료', 'Contingency') : L('予測できない事態の燃料', '예측 불가 사태 연료', 'Unforeseen-factor fuel'))) + ' = max(TRIP × 5%, H × 5/60)</td><td class="n">' + f0(rd.C) + '</td></tr><tr><td>ALT(' + esc(rd.alt) + ') / FR 30' + tx(T.min) + ' / TAXI</td><td class="n">' + [rd.A, rd.FR, dpA().taxi].map(f0).join(' / ') + '</td></tr><tr><td>BLOCK</td><td class="n"><b>' + f0(rd.block) + ' kg</b></td></tr></table>';
+      var fp = r.fpl || {};
+      h += '<div class="wbchk dpfuel"><label><span>EOBT (UTC HHMM)</span><input data-rf="eobt" value="' + esc(fp.eobt || '') + '"><i></i></label><label><span>EET (HHMM)</span><input data-rf="eet" value="' + esc(fp.eet || '') + '"><i></i></label><label><span>' + esc(tx(L('代替空港', '교체공항', 'Alternate'))) + '</span><input data-rf="alt" value="' + esc(fp.alt || '') + '"><i></i></label></div></div>';
+    }
+    h += dpMsgHtml() + '<div class="btns">' + (r.ok ? dpBtnOk('d-rdgo', L('FPLを出して再出発を承認', 'FPL 제출·재출발 승인', 'File the FPL and approve the re-departure')) : dpBtnOk('d-rdok', L('この乗員で再出発を承認する', '이 승무원으로 재출발 승인', 'Approve the re-departure with this crew'), !(e.crew === 'rest' && (Object.keys(DNDAY).some(function (k) { return !r.nd[k]; }) || (dpP().nd && !r.ndAlt))))) + '</div>' + dpEdu();
+    scr(h);
+    document.querySelectorAll('#scr button[data-cw]').forEach(function (b) { b.onclick = function () { if (!dpLive(c) || r.ok) return; sfx.tap(); e.crew = b.dataset.cw; if (e.crew !== 'cur') { r.relief = r.relief || dpRel(); } dpTabRdp(); }; });
+    document.querySelectorAll('#scr button[data-ndalt]').forEach(function (b) { b.onclick = function () { if (!dpLive(c) || r.ok) return; sfx.tap(); r.ndAlt = b.dataset.ndalt; dpTabRdp(); }; });
+    document.querySelectorAll('#scr button[data-nd]').forEach(function (b) { b.onclick = function () { if (!dpLive(c)) return; sfx.tap(); r.nd[b.dataset.nd] = !r.nd[b.dataset.nd]; dpTabRdp(); }; });
+    if ($('#d-cwchk')) $('#d-cwchk').onclick = function () { if (!dpLive(c)) return; sfx.tap(); addTime(M.cost.chk || 2); r.chk = dpRel(); dpTabRdp(); };
+    if ($('#d-cwwait')) $('#d-cwwait').onclick = function () { if (!dpLive(c)) return; sfx.tap(); addTime(Math.max(0, o.ready - dpRel())); dpCall('crew', L('交代の乗員、到着しました。ブリーフィングも済みました。', '교대 승무원 도착했습니다. 브리핑도 마쳤습니다.', 'The relief crew has arrived and been briefed.'), 'crew_arr'); dpTabRdp(); };
+    if ($('#d-rdok')) $('#d-rdok').onclick = function () {
+      if (!dpLive(c)) return; var o2 = dpCrew();
+      var tApp = e.crew === 'rest' ? o2.eobt : Math.max(dpRel(), e.land + 120 + (+e.hdly || 0));   /* 승인 시각 = 조업·급유 완료(착륙 +2:00 + 추가 조업 지연) 이후 */
+      if (o2.fails.length) { r.s9 = (r.s9 || 0) + 1; dpStrike('dp-s9', L('乗員の勤務時間の上限を超えたまま再出発を承認しようとしました（到着時FDP ' + dpHM(o2.fdp) + ' ＞ ' + dpHM(cw.fdpMax) + ' ― 超えたのは ' + o2.fails.join('・').toUpperCase() + '）。', '승무 시간 한계를 넘긴 채 재출발을 승인하려 했습니다(도착 시 FDP ' + dpHM(o2.fdp) + ' > ' + dpHM(cw.fdpMax) + ' — 넘은 한계 ' + o2.fails.join('·').toUpperCase() + ').', 'Tried to approve the re-departure over the crew duty limit (FDP at arrival ' + dpHM(o2.fdp) + ' > ' + dpHM(cw.fdpMax) + ' — exceeded: ' + o2.fails.join(', ').toUpperCase() + ').'), 'dispatch/6-1'); dpMsg(L('承認できません。交代か休息を手配してください（これまでの勤務時間は消えません）。', '승인할 수 없습니다. 교대나 휴식을 수배하세요(지금까지의 승무 시간은 지워지지 않습니다).', 'Cannot approve. Arrange relief or rest (time already on duty does not reset).'), 'bad'); dpTabRdp(); return; }
+      if (o2.ready > tApp + 1e-9 && e.crew !== 'rest') { r.s9 = (r.s9 || 0) + 1; dpStrike('dp-s9', L('交代の乗員がまだ着いていない（適格を確かめていない）のに再出発を承認しようとしました。', '교대 승무원이 아직 도착하지 않았는데(적격 미확인) 재출발을 승인하려 했습니다.', 'Tried to approve the re-departure before the relief crew arrived (eligibility not confirmed).'), 'dispatch/6-1'); dpMsg(L('交代の乗員が着いてから承認してください。', '교대 승무원이 도착한 뒤 승인하세요.', 'Approve after the relief crew has arrived.'), 'bad'); dpTabRdp(); return; }
+      if (e.crew === 'rest' && dpP().nd) { var rd2 = dpRd(), cA = rd2.cv[r.ndAlt]; if (!cA || !cA.ev.planOK) { dpStrike('dp-s2', L('翌日の資料で見ると、' + r.ndAlt + 'はその空港の予定時刻（' + dpZ(cA ? cA.etaR : 0) + ' 前後1時間）に気象・運用の条件がそろいません（昨日の版ではなく翌日の版で判断）。', '다음날 자료로 보면 ' + r.ndAlt + '는 그 공항 자체 시각(' + dpZ(cA ? cA.etaR : 0) + ' 앞뒤 1시간)에 기상·운용 조건이 맞지 않습니다(어제 판이 아니라 다음날 판으로 판단).', 'On the next-day data, ' + r.ndAlt + ' does not meet weather / operating conditions at its own time (' + dpZ(cA ? cA.etaR : 0) + ' ±1 h) — judge on the next-day edition, not yesterday’s.'), 'dispatch/2-2'); dpMsg(L('翌日の版で、代替空港を選び直してください。', '다음날 판으로 교체공항을 다시 고르세요.', 'Choose the alternate again from the next-day edition.'), 'bad'); dpTabRdp(); return; } }
+      if (!r.chk) dpBad('dp-b2', L('乗員の勤務時間を確かめないまま再出発を承認しました。', '승무 시간을 확인하지 않은 채 재출발을 승인했습니다.', 'Approved the re-departure without checking crew duty time.'), 'dispatch/6-1');
+      addTime(Math.max(0, tApp - dpRel())); sfx.ok(); r.ok = dpRel(); dpMsg(L('乗員が決まりました。再出発のOFPを確かめ、FPLを出してください。', '승무원이 정해졌습니다. 재출발 OFP를 확인하고 FPL을 내세요.', 'Crew settled. Check the re-departure OFP and file the FPL.'), 'ok'); dpTabRdp();
+    };
+    document.querySelectorAll('#scr input[data-rf]').forEach(function (el) { el.onchange = function () { r.fpl = r.fpl || {}; r.fpl[el.dataset.rf] = el.value.trim().toUpperCase(); }; });
+    if ($('#d-rdgo')) $('#d-rdgo').onclick = function () {
+      if (!dpLive(c)) return; var o3 = dpCrew(), fp2 = r.fpl || {}, want = { eobt: dpZ(o3.eobt).slice(0, 4), eet: DP.eetStr(rd.eet), alt: rd.alt }, bad = Object.keys(want).filter(function (k) { return fp2[k] !== want[k]; });
+      if (bad.length) { dpStrike('dp-s6', L('再出発のOFPと違うFPL（' + bad.join('・') + '）で出発させようとしました。', '재출발 OFP와 다른 FPL(' + bad.join('·') + ')로 출발시키려 했습니다.', 'Tried to depart on an FPL that differs from the re-departure OFP (' + bad.join(', ') + ').'), 'dispatch/4-2'); dpMsg(L('FPLを再出発のOFPに合わせてください（EOBT ' + want.eobt + ' · EET ' + want.eet + ' · ' + want.alt + '）。', 'FPL을 재출발 OFP에 맞추세요(EOBT ' + want.eobt + ' · EET ' + want.eet + ' · ' + want.alt + ').', 'Match the FPL to the re-departure OFP (EOBT ' + want.eobt + ', EET ' + want.eet + ', ' + want.alt + ').'), 'bad'); dpTabRdp(); return; }
+      if (!dpDone(c)) return; addTime(Math.max(0, o3.eobt - dpRel())); r.aobt = dpRel(); e.sl = e.sl || {}; e.sl.b4 = r.chk && !r.s9 ? 3 : r.chk || !r.s9 ? 1 : 0;
+      sfx.ok(); dpCall('ramp', L('プッシュバック、始めます。', '푸시백 시작합니다.', 'Starting pushback.'), 'ramp_push'); note('good', L('乗員の勤務時間を確かめ、再出発のOFP・FPLで出発させました。', '승무 시간을 확인하고 재출발 OFP·FPL로 출발시켰습니다.', 'Checked crew duty and dispatched on the re-departure OFP and FPL.'), 'dispatch/6-1'); dpEnd(700);
+    };
+  }
+  var DTAB = { brf: dpTabBrf, wx: dpTabWx, notam: dpTabNotam, mel: dpTabMel, alt: dpTabAlt, fuel: dpTabFuel, ofp: dpTabOfp, fpl: dpTabFpl, gnd: dpTabGnd, ice: dpTabIce, flt: dpTabFlt, arr: dpTabArr, rdp: dpTabRdp };
+  /* ---------- 채점(합의본 3B · DAY 1 = 사건 없음 → 4항목, 램프편 DAY 1과 같은 틀) ---------- */
+  function dpTimeParts() { var d = S.dp || {}, rel = d.sign == null ? null : d.sign, fp = d.fplAt == null ? null : d.fplAt; var pr = rel == null ? 0 : rel <= -90 + 1e-9 ? 50 : rel <= -60 + 1e-9 ? 25 : 0, pf = fp == null ? 0 : fp <= -60 + 1e-9 ? 50 : 0; return { rel: rel, fpl: fp, pr: pr, pf: pf, total: pr + pf }; }
+  /* DAY 2 사건 15점(설계안 v4 1D — 슬롯 고정): ① 이륙 교체공항 5 ② 재승인(EDNO 2·바른 교체공항) 4 ③ CHG 2 ④ DLA 2 ⑤ 지연 뒤 재확인·재전달 2 */
+  function dpEvtPts() {
+    var d = S.dp || {}; if (!M || ['dp02', 'dp03', 'dp04', 'dp05'].indexOf(M.id) < 0) return null;
+    if (M.id === 'dp05') { var ic5 = d.ice || { rec: {} }, rc5 = ic5.rec || {};
+      var sl5 = [['rv', d.sign != null && !d.rvrBad ? 2 : 0, 2], ['sn', d.rwCard === dpP().depRwy && d.sent03 != null ? 3 : 0, 3], ['dl', rc5[2] === 'retime' ? (d.sent03 != null && d.sent04 != null ? 3 : 1) : 0, 3], ['hd', rc5[3] === 'hold' ? 5 : 0, 5], ['efc', d.ev5 || 0, 2]];
+      return { slots: sl5, pts: sl5.reduce(function (a, x) { return a + x[1]; }, 0), max: 15 }; }
+    if (M.id === 'dp04') { var e4 = d.ev || {}, s4 = e4.sl || {}; var sl4 = d.evK === 'B' ? [['b1', s4.b1 || 0, 5], ['b2', s4.b2 || 0, 4], ['b5', s4.b5 || 0, 3], ['b4', s4.b4 || 0, 3]] : [['a1', s4.a1 || 0, 4], ['a2', s4.a2 || 0, 4], ['a3', s4.a3 || 0, 4], ['b5', s4.b5 || 0, 3]];
+      return { slots: sl4, pts: sl4.reduce(function (a, x) { return a + x[1]; }, 0), max: 15 }; }
+    if (M.id === 'dp03') { var s3 = [['mel', (dpMelCDone() && !d.s4t ? 3 : 0) + (d.sign != null && !d.melFail ? 2 : 0), 5], ['cg', d.cargoAns != null ? (d.cargoOk && !d.cargoOver ? 5 : d.cargoOk || !d.cargoOver ? 2 : 0) : 0, 5], ['card', d.rwCard === dpP().depRwy && !d.cardFail && d.sent03 != null ? 3 : d.rwCard === dpP().depRwy && d.sent03 != null ? 1 : 0, 3], ['rnp', d.sign != null && !(d.appBad || []).length ? 2 : 0, 2]];
+      return { slots: s3, pts: s3.reduce(function (a, x) { return a + x[1]; }, 0), max: 15 }; }
+    var sl = [['to', d.toFinal ? (d.toFail ? 2 : 5) : 0, 5], ['re', d.reappDone ? (d.reFail ? 2 : 4) : 0, 4], ['chg', d.chg > 0 && !d.s6x ? 2 : 0, 2], ['dla', d.dla != null && !d.s6t ? 2 : 0, 2],
+      ['rc', (d.recheck != null ? 1 : 0) + (d.dly && d.aobt != null && d.sent03 != null && d.sent04 != null ? 1 : 0), 2]];
+    return { slots: sl, pts: sl.reduce(function (a, x) { return a + x[1]; }, 0), max: 15 };
+  }
+  function dpScore() {
+    var unserved = S.list.length - S.results.length, allR = S.results.slice(), bad = 0, d = S.dp || {};
+    allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && DSAFE.indexOf(n.c) < 0) bad++; }); });
+    var acc = Math.max(0, 100 - bad * 10 - unserved * 15), tp = dpTimeParts(), tim = unserved ? 0 : tp.total, safe = S.strikes === 0;
+    var rp4 = [d.briefOk ? 1 : 0, d.sent03 != null && d.sent04 != null ? 1 : 0, d.logged != null ? 1 : 0], rep = Math.round(100 * rp4.reduce(function (a, x) { return a + x; }, 0) / rp4.length);
+    var ev = dpEvtPts(), parts = ev ? [{ k: 'acc', v: acc, w: 30 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 10 }, { k: 'rep', v: rep, w: 15 }, { k: 'evt', v: unserved ? 0 : Math.round(100 * ev.pts / ev.max), w: 15 }]   /* 3B 5항목(DAY 2~) */
+      : [{ k: 'acc', v: acc, w: 35 }, { k: 'safe', v: safe ? 100 : 0, w: 30 }, { k: 'tim', v: tim, w: 15 }, { k: 'rep', v: rep, w: 20 }];
+    var tot = Math.round(parts.reduce(function (a, x) { return a + x.v * x.w; }, 0) / 100);
+    var rank = !safe ? 'C' : tot >= 90 ? 'S' : tot >= 80 ? 'A' : tot >= 65 ? 'B' : 'C';
+    var opMiss = []; allR.forEach(function (r) { r.notes.forEach(function (n) { if (n.t === 'bad' && DOPS.indexOf(n.c) >= 0 && opMiss.indexOf(n.c) < 0) opMiss.push(n.c); }); });
+    var opsPass = !opMiss.length, opCapped = safe && !opsPass && rank === 'S'; if (opCapped) rank = 'A';
+    var capped = S.day.n >= 2 && G.hints && !G.practice && rank === 'S'; if (capped) rank = 'A';
+    return { unserved: unserved, allR: allR, acc: acc, svc: 100, tim: tim, tot: tot, safe: safe, smiss: S.safety || [], parts: parts, rank: rank, opMiss: opMiss, opsPass: opsPass, opCapped: opCapped, capped: capped, opsCodes: DOPS, people: 0, tp: tp, ev: ev };
+  }
+  function dpStateWhy(st) {
+    function num(x) { return typeof x === 'number' && isFinite(x); }
+    function obj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+    if (['737', '789'].indexOf(st.acKey) < 0) return 'acKey';
+    if (['JP', 'KR'].indexOf(st.prof) < 0) return 'prof';
+    var d = st.dp; if (!obj(d) || !obj(d.ok) || !obj(d.wx) || !obj(d.nt) || !obj(d.fuel) || !obj(d.fpl) || !Array.isArray(d.alts) || !Array.isArray(d.rep) || !num(d.ed)) return 'dp';
+    if (d.alts.length > 2 || d.alts.some(function (x) { return typeof x !== 'string'; })) return 'alts';
+    if (!num(st.strikes) || !Array.isArray(st.results) || !num(st.clock)) return 'core';
+    return null;
+  }
+  function dpInit(dd, M0, V0, seed) {
+    var k = dpAcKey(); dpTc = null;
+    return { clock: pm(V0.start), close: pm(V0.close), bgQueue: 0, list: V0.pax(), seed: seed, adv: true, idx: -1, cur: null, results: [], revenue: [], strikes: 0, seq: 1, day: dd, safety: [], struck: {}, viol: 0,
+      acKey: k, prof: V0.p.prof,
+      dp: { ok: {}, wx: {}, nt: {}, melChk: {}, altN: null, alts: [], toAlt: null, fuel: {}, X: 0, brief: {}, briefOk: false, sign: null, signBlock: null, ed: 1, fpl: {}, fplAt: null, fplOk: false, fplBad: [], fplS6: false, chg: 0, sent03: null, sent04: null, zfwIn: false, aobt: null, rep: [], overRep: 0, logged: null, said: {}, cost: {},
+        wxv: 1, metv: 1, dly: 0, evd: {}, reapp: false, reappDone: 0, reFail: false, toSel: null, toFinal: false, toFail: false, recheck: null, dla: null, s6t: 0, s6x: 0, app: {}, rwCard: null, melC: {}, cargoReq: null, cargoIn: null, cargoAns: null, cargoAcc: null, ev: {}, evK: M0 && M0.opt && M0.opt.inflight && !G.practice ? (function (x) { var h = 0; x = String(x); for (var i = 0; i < x.length; i++) h = (h * 31 + x.charCodeAt(i)) | 0; return Math.abs(h) % 2 ? 'B' : 'A'; })(seed) : null } };
+  }
+  var DEVTL = { rv: L('① RVRと視程の区別', '① RVR·시정 구분', '① RVR vs visibility'), sn: L('② SNOWTAM → 許容重量 → 上限の通報', '② SNOWTAM → 허용중량 → 상한 통보', '② SNOWTAM → allowable weight → limit passed on'), dl: L('③ 除氷の遅れ → 時刻の合わせ直し・通報', '③ 제빙 지연 → 재조정·통보', '③ De-icing delay → retime and notify'), hd: L('④ 気象の変化の後の保留・延期', '④ 기상 변화 뒤 보류·연기', '④ Hold / postpone after the weather change'), efc: L('⑤ EFCへの対応', '⑤ EFC 대응', '⑤ EFC response'), a1: L('① 遅れへの対応（EFC・計算し直し）', '① 지연 대응(EFC·재계산)', '① Delay response (EFC, recompute)'), a2: L('② 推薦と、その時の状態に合う通報の支援', '② 권고와 그 시점 상태에 맞는 통보 지원', '② Recommendation and support matching the state'), a3: L('③ 経路に合う対応', '③ 경로에 맞는 대응', '③ Response for the chosen path'), b5: L('着陸の後の手配（B5）', '착륙 뒤 수배(B5)', 'After-landing arrangements (B5)'), b1: L('① 候補空港の推薦', '① 후보 공항 추천', '① Candidate recommendation'), b2: L('② CIQ例外のまま着陸支援・救急車', '② CIQ 예외 상태로 착륙 지원·구급차', '② Landing support under CIQ exception, ambulance'), b4: L('④ 乗員の勤務時間・交代／休息', '④ 승무 시간·교대/휴식', '④ Crew duty, relief / rest'), mel: L('MELの条件・代替空港への反映', 'MEL 조건·교체공항 반영', 'MEL conditions and alternate choice'), cg: L('貨物の積める量（回答）', '화물 허용량(회신)', 'Cargo allowable (reply)'), card: L('出発滑走路の許容重量カード → ZFWの上限を通報', '출발 활주로 허용중량 카드 → ZFW 상한 통보', 'Departure-runway weight card → ZFW limit passed on'), rnp: L('進入の選び直し（ILS使えず → RNP）', '접근 다시 고르기(ILS 불가 → RNP)', 'Approach re-selection (ILS out → RNP)'), to: L('離陸の代替空港（片発60分・気象）', '이륙 교체공항(1발 60분·기상)', 'Take-off alternate (OEI 60 min, weather)'), re: L('新しい情報の後の承認し直し（新しい版）', '새 정보 뒤 재승인(새 판)', 'Re-approval after new information (new edition)'), chg: L('FPLの変更（CHG）', 'FPL 변경(CHG)', 'FPL change (CHG)'), dla: L('遅延（DLA）', '지연(DLA)', 'Delay (DLA)'), rc: L('遅れの後の確かめ直し・再送', '지연 뒤 재확인·재전달', 'Recheck and resend after the delay') };
+  window.SAGA_STAGES = window.SAGA_STAGES || {};
+  if (window.DP && window.MISSION_DP01) window.SAGA_STAGES.dp = {
+    id: 'dp', stageNo: '05', name: L('運航管理（ディスパッチ）', '운항관리(디스패치)', 'Flight dispatch'), days: DP_DAYS, rules: window.RULES, rulesVer: 'D2.0', text: DP_TEXT,
+    lockLabel: L('🔒 準備中', '🔒 준비 중', '🔒 Coming soon'),
+    hero: dpHero, scene: function () { return dpScene(); }, relang: function () { dpRelang(); },
+    toolsHtml: function () { return ''; }, bindTools: function () {},
+    initState: dpInit,
+    runFields: DP_RUNF, runSkip: DP_RUNSKIP, freshList: function (mi, va) { return va.pax(); }, allUnits: function (l) { return l; },
+    acCode: function (s) { return (s || S).acKey === '789' ? 'B' : 'A'; }, acOf: function (c) { var k = c === 'B' ? '789' : '737'; G.wbAc = k; return k; },
+    phase: function () { return (S.idx + 1 >= S.list.length) ? 'finish' : 'pax'; }, runEvent: function () {},
+    startUnit: dpStart, stateWhy: dpStateWhy,
+    patchWhy: function (pp) { return pp == null || (typeof pp === 'object' && !Array.isArray(pp) && !Object.keys(pp).length) ? null : 'patch'; },
+    rangeWhy: function (s, o, va) { function num(x, lo, hi) { return typeof x === 'number' && isFinite(x) && x >= lo && x <= hi; } if (!num(s.clock, pm(va.start), pm(va.start) + (M && M.opt && M.opt.inflight ? 2400 : 420)) || !num(s.strikes, 0, 99)) return 'range'; return null; },
+    tabs: function (c) { if (c.p.kind === 'rel') return ['wx', 'notam', 'mel', 'alt', 'fuel', 'ofp']; if (c.p.kind === 'gnd' && S.dp.reapp) return ['wx', 'notam', 'alt', 'fuel', 'ofp', 'gnd']; if (c.p.kind === 'gnd' && M.opt && M.opt.ice) return ['gnd', 'ice']; return [c.p.kind]; },   /* DAY 2: 새 정보 뒤 재승인 탭이 지상 단계에 열림 */
+    tabState: function (k) { var c = S.cur; if (c && (c.p.kind === 'rel' || (c.p.kind === 'gnd' && k !== 'gnd'))) return S.dp.ok[k] ? 'ok' : ''; return c && c.flags.done ? 'ok' : ''; },
+    tab: { brf: dpTab('brf'), wx: dpTab('wx'), notam: dpTab('notam'), mel: dpTab('mel'), alt: dpTab('alt'), fuel: dpTab('fuel'), ofp: dpTab('ofp'), fpl: dpTab('fpl'), gnd: dpTab('gnd'), flt: dpTab('flt'), arr: dpTab('arr'), rdp: dpTab('rdp'), ice: dpTab('ice') },
+    tabPose: { brf: 'idle', wx: 'point', notam: 'point', mel: 'idle', alt: 'point', fuel: 'idle', ofp: 'idle', fpl: 'idle', gnd: 'idle', flt: 'idle', arr: 'idle', rdp: 'idle', ice: 'point' },
+    banners: function () { return ''; }, afterScr: function () { dpJSave(); dpMonRefresh(); },
+    barQueue: function () { return Math.max(0, S.list.length - S.results.length - (S.cur ? 1 : 0)); },
+    barDone: function () { return S.results.length + '/' + S.list.length; },
+    voiceCast: function () { return 'staff'; },
+    score: dpScore, revenueLines: function () { return []; }, legacyBest: function () {},
+    actions: DACT, reportCodes: [], missLabels: DMISSL, unitName: dpUnitName,
+    unitMaxMins: function (r) { return r && r.p && r.p.kind === 'rdp' && M && M.opt && M.opt.inflight ? 2400 : 240; },   /* F05-12-03: DAY 4 재출발 단위만 다음날까지(저장 범위 +2,400분과 같음) */
+    replayHead: function (r) { return esc(dpUnitName(r)); },
+    resultTitle: function () { return esc(tx(L('運航管理', '운항관리', 'Dispatch'))) + ' · ' + V.flight + ' · ' + (S.acKey === '789' ? 'B787-9' : 'B737-800') + ' · ' + S.prof; },
+    resultGates: function (sc) { return sc.opMiss.length || !sc.opsPass ? '<div class="gate ' + (sc.opsPass ? 'ok' : 'ng') + '">' + esc(tx(sc.opsPass ? L('業務：合格', '업무: 합격', 'Operations: pass') : L('業務：要確認（最高A）', '업무: 확인 필요(최고 A)', 'Operations: needs review (max A)'))) + '</div>' : ''; },
+    resultExtra: function (sc) {
+      var tp = (sc && sc.tp) || dpTimeParts(), d = S.dp || {};
+      return '<div class="panel"><h2>' + esc(tx(L('時刻の記録', '시각 기록', 'Times'))) + '</h2><table class="wbt"><tr><td>' + esc(tx(L('リリース（目標 −90・限度 −60）', '릴리스(목표 −90 · 한도 −60)', 'Release (target −90, limit −60)'))) + '</td><td class="n">' + (tp.rel == null ? '—' : dpHm(tp.rel) + ' (' + Math.round(tp.rel) + ')') + '</td><td class="n">' + tp.pr + ' / 50</td></tr>' +
+        '<tr><td>' + esc(tx(L('FPLの提出（Velaの締切 −60）', 'FPL 제출(Vela 마감 −60)', 'FPL filed (Vela deadline −60)'))) + '</td><td class="n">' + (tp.fpl == null ? '—' : dpHm(tp.fpl) + ' (' + Math.round(tp.fpl) + ')') + '</td><td class="n">' + tp.pf + ' / 50</td></tr>' +
+        '<tr><td>AOBT · EDNO</td><td class="n">' + (d.aobt == null ? '—' : dpHm(d.aobt)) + ' · ' + (d.ed || 1) + '</td><td></td></tr>' + (d.dly ? '<tr><td>' + esc(tx(L('出発の遅れ · DLA', '출발 지연 · DLA', 'Departure delay · DLA'))) + '</td><td class="n">+' + d.dly + ' · ' + (d.dla == null ? '—' : dpHm(d.dla)) + '</td><td></td></tr>' : '') + '</table>' + (sc && sc.ev ? '<table class="wbt">' + sc.ev.slots.map(function (x) { return '<tr><td>' + esc(tx(DEVTL[x[0]])) + '</td><td class="n">' + x[1] + ' / ' + x[2] + '</td></tr>'; }).join('') + '</table><p class="small">' + esc(tx(L('時間の評価は最初の署名・最初のFPLで行う（新しい情報による承認し直し・CHG・DLAは含めない ― Vela教育用の採点方針）。', '시간 평가는 첫 서명·첫 FPL로 한다(새 정보로 인한 재승인·CHG·DLA는 넣지 않음 — Vela 교육용 채점 방침).', 'Timing is scored on the first release and first FPL (re-approval, CHG and DLA after new information are excluded — Vela educational scoring policy).'))) + '</p>' : '') + '<p class="small">' + esc(tx(L('ゲームの安全C ≠ 実際の規定の法的な重さ。数値・規定の当てはめは教育用です。', '게임의 안전 C ≠ 실제 규정의 법적 심각도. 수치·규정 적용은 교육용입니다.', 'A game safety C is not the legal severity in real rules. Figures and rule application are educational.'))) + '</p></div>';
+    },
+    partLabels: { rep: L('ブリーフィング・伝達・記録', '브리핑·전달·기록', 'Briefing, hand-offs, records'), evt: L('その日の出来事への対応', '그날의 사건 대응', 'Handling the day’s events') },
+    scoreVer: 'dp1', ruleDate: '2026-11-04', layoutVer: 'A',
+    testHooks: function () { return { dpScore: dpScore, dpStateWhy: dpStateWhy, truth: dpTruth, req: dpReq, rel: dpRel, total: dpInputTotal, reports: dpReports, ofpFpl: dpOfpFpl, scen: function () { return dpP(); }, timeParts: dpTimeParts, notAff: dpNotAff, toAlt: dpToAlt, evtPts: dpEvtPts, taf: dpTaf, metar: dpMetar, mission: function () { return M; }, toCands: function () { var t = dpTruth(); return (dpP().toCands || []).map(function (x) { var m = x.oei[S.acKey], ev = dpEval(x.icao, t.depH + m / 60); return { icao: x.icao, oei: m, ok: m <= DP.OEI_MAX && ev.planOK }; }); }, a4: dpA4, rd: function () { return dpRd(); }, rdFor: function (div, land, crew, ndAlt, hdly) { var e = S.dp.ev = S.dp.ev || {}, b = { div: e.div, land: e.land, crew: e.crew, rdp: e.rdp, hdly: e.hdly }; e.div = div; e.land = land; e.crew = crew; e.rdp = { ndAlt: ndAlt }; e.hdly = hdly || 0; try { var r = dpRd(); r.crew = dpCrew(); return r; } finally { e.div = b.div; e.land = b.land; e.crew = b.crew; e.rdp = b.rdp; e.hdly = b.hdly; } }, rdEval: dpRdEval, hrsClosed: dpHrsClosed, crew: function () { return dpCrew(); }, evTimes: dpEvTimes, utc: dpUtcFull, z: dpZ, zfwEst: dpZfwEst, zfwFinal: dpZfwFinal, aTowTrue: dpATowTrue, melOK: dpMelOK, melDone: dpMelCDone, bestApp: function (ic) { var t = dpTruth(), et = ic === dpP().dest ? t.etaH : t.cands[ic].etaH; return DP.bestApproach(dpApps(ic, et)).id; }, wt: function () { return DP.weights({ ac: S.acKey, zfw: dpZfwEst(), block: dpInputTotal(), trip: dpTruth().T, aTOW: dpATowTrue() }); } }; }
+  };
   window.SAGA = window.AS = { boot: boot, _S: function () { return S; }, _G: G, _setLang: function (l) { setLang(l); } };
   if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextUnit, showTab: showTab, renderTabs: renderTabs, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); }, setStage: function (id) { setStage(id); save(); renderTitle(); }, stage: function () { return ST.id; }, stageAllowed: stageAllowed };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();
