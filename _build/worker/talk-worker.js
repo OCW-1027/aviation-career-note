@@ -38,7 +38,9 @@
 //   クレジット切れ（400 credit・402）・支出の上限・401/403・429・5xx/529・15秒で答えなし・空の返事 → そのまま次（Workers AI）へ。ページには失敗を見せない
 //   ページが送る model（Cloudflare のモデル名）は Claude では使わず、次に回したときだけ使う
 //   ログは「claude を使った／失敗の種類（credit・quota・busy・auth・timeout・bad・empty）」だけ。中身とキーは書かない
-//   プロンプトのキャッシュは使わない（system は 3,000字まで＝キャッシュできる最小の長さに届かないため）
+//   プロンプトのキャッシュ（2026.11.07）：本文の一番上に cache_control {type:'ephemeral'}（自動キャッシュ）を付ける。
+//     しるしは最後のメッセージに自動で付き、会話がのびるたびに前へ進む＝前の回までの system＋会話は 0.1倍の値段で読まれる。
+//     キャッシュできる最小の長さに届かない短い会話は、エラーにならずそのまま（キャッシュなし）で動く。5分あかなければ消える
 
 const DEFAULT_ORIGINS = ['https://ocw-1027.github.io'];
 const DEFAULT_MODEL = '@cf/qwen/qwen3-30b-a3b-fp8';
@@ -295,7 +297,7 @@ function claudeInput(messages) {
 function claudeBody(env, model, messages) {
   const cm = claudeModel(env), ci = claudeInput(messages);
   const ef = String((env && env.CLAUDE_EFFORT) || 'low').trim().toLowerCase();
-  const body = { model: cm, max_tokens: maxTokensFor(model), messages: ci.messages, output_config: { effort: EFFORTS.includes(ef) ? ef : 'low' } };
+  const body = { model: cm, max_tokens: maxTokensFor(model), cache_control: { type: 'ephemeral' }, messages: ci.messages, output_config: { effort: EFFORTS.includes(ef) ? ef : 'low' } };
   if (ci.system) body.system = ci.system;
   const th = String((env && env.CLAUDE_THINKING) || '').trim().toLowerCase();   // off＝考えない / on＝モデルにまかせる / なし＝Haiku だけ off
   if (th === 'off' || (th !== 'on' && /haiku/i.test(cm))) body.thinking = { type: 'disabled' };

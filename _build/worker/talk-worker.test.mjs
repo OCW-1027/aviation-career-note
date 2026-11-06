@@ -213,6 +213,7 @@ const ossBody = { messages: [sys, u('こんにちは')], model: OSS };
   const b3 = W.claudeBody({ CLAUDE_THINKING: 'on' }, OSS, [sys, u('x')]); ok(!b3.thinking && b3.max_tokens === 1000, 'CLAUDE_THINKING=on: haiku thinks');
   const b4 = W.claudeBody({ CLAUDE_MODEL: 'claude-sonnet-5-5', CLAUDE_THINKING: 'off', CLAUDE_EFFORT: 'Medium' }, OSS, [sys, u('x')]); ok(b4.thinking.type === 'disabled' && b4.output_config.effort === 'medium', 'CLAUDE_THINKING=off / CLAUDE_EFFORT');
   ok(W.claudeBody({ CLAUDE_EFFORT: 'max' }, OSS, [sys, u('x')]).output_config.effort === 'low', 'unknown effort -> low');
+  ok(W.claudeBody({}, OSS, [sys, u('x')]).cache_control.type === 'ephemeral', 'claude: automatic prompt caching on');
   // 10) 状態確認（GET）
   { const W2 = load(); const j2 = await (await W2.worker.fetch(req('GET'), mk())).json(); ok(j2.claude === true && j2.claude_model === 'claude-haiku-5-5' && !JSON.stringify(j2).includes('sk-test'), 'health shows claude, never the key'); }
   fetchImpl = async () => { throw new Error('no fetch in test'); };
