@@ -1816,11 +1816,11 @@ adm_hire:function(l){
   en:{t:'Hiring: the order of steps',st:['Choose the employment type (permanent, fixed-term, part-time, agency)','Give working conditions in writing (term, place and duties, hours and leave, pay, leaving)','For foreign nationals, check residence status and permitted work','Share probation criteria and review dates','Check with a specialist, then sign'],who:['Type','Terms','Status','Probation','Sign'],n:['“Contract staff can be let go freely” and “annual salary means no overtime pay” are misconceptions','Translating the head-office contract is not enough; follow local law']}})[l];
  if(!W)return F.adm_hire('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#5B6B7D'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
-adm_pay:function(l){
+adm_paycycle:function(l){
  var W=({ja:{t:'毎月の給与の流れ',st:['勤怠の締め：残業・休暇の確認','変動の反映：入退社・昇給・手当','計算：専門家またはシステム','確認：前月との差の理由','支払い：給与日・明細'],who:['締め','変動','計算','確認','支払い'],n:['料率が変わる月に、計算に反映されたか確かめる','支払承認の記録を残し、賃金台帳を保存する']},
   ko:{t:'매월 급여 흐름',st:['근태 마감: 연장근로·휴가 확인','변동 반영: 입퇴사·승급·수당','계산: 전문가 또는 시스템','확인: 전월 대비 차이 사유','지급: 급여일·명세서'],who:['마감','변동','계산','확인','지급'],n:['요율이 바뀌는 달에 계산에 반영됐는지 확인한다','지급 승인 기록을 남기고 임금 대장을 보존한다']},
   en:{t:'The monthly payroll cycle',st:['Close attendance: overtime and leave','Apply changes: joiners, leavers, raises, allowances','Calculate: specialist or system','Check: reasons for changes from last month','Pay: payday and payslips'],who:['Close','Changes','Calculate','Check','Pay'],n:['In months when rates change, confirm the calculation reflects them','Keep a record of payment approval and keep the wage ledger']}})[l];
- if(!W)return F.adm_pay('ja');setK(1);
+ if(!W)return F.adm_paycycle('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 adm_parttime:function(l){
  var W=({ja:{t:'パート・契約社員の保険を判定する順番',st:['契約時間：週の所定労働時間','雇用の見込み：期間','会社の条件：規模・適用状況','実際に働いた時間で見直す','専門家と確かめて判定し、届け出る'],who:['時間','期間','会社','実績','判定'],n:['本人が望まなくても、条件を満たせば加入させる義務がある','加入漏れはさかのぼって求められる。契約変更のたびに判定し直す']},
@@ -1840,11 +1840,11 @@ adm_direct:function(l){
   en:{t:'From agent to direct operation: a transition plan (example)',st:['Decide policy: scope, timing, budget','Legal set-up: registration, accounts, tax','People: hiring, taking on agent staff','Hand over work: contracts, customers, documents','Run in parallel for a set period','Switch over: end the agency contract'],who:['Policy','Legal','People','Handover','Parallel','Switch'],n:['Compare costs over several years (e.g. agent ¥30m a year; direct ¥40m in year 1, ¥30m from year 2)','Airport ID passes, system access and partner notices take time']}})[l];
  if(!W)return F.adm_direct('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
-adm_cash:function(l){
+adm_payproc:function(l){
  var W=({ja:{t:'支払いの手順と職務の分離',st:['請求書を受け取り、内容と金額を確かめる','決裁の規程に沿って承認する','振込・電子納付で支払う','日計表に記録し、証拠を保存する','月末に本社へ精算する'],who:['受領','承認','支払い','記録','精算'],n:['作成者と承認者を分ける（ネットバンキングの二重承認・本社承認）','日計表の残高を毎日通帳と合わせ、来月の不足は早めに送金を依頼']},
   ko:{t:'지급 절차와 업무 분리',st:['청구서를 받고 내용과 금액을 확인한다','결재 규정에 따라 승인한다','이체·전자 납부로 지급한다','일계표에 기록하고 증빙을 보존한다','월말에 본사에 정산한다'],who:['수령','승인','지급','기록','정산'],n:['작성자와 승인자를 분리한다(인터넷뱅킹 이중 승인·본사 승인)','일계표 잔액을 매일 통장과 맞추고, 다음 달 부족분은 일찍 송금을 의뢰']},
   en:{t:'The payment process and segregation of duties',st:['Receive the invoice; check content and amount','Approve under the approval rules','Pay by transfer or e-payment','Record in the daily cash sheet; keep evidence','Settle with head office at month end'],who:['Receive','Approve','Pay','Record','Settle'],n:['Separate who prepares and who approves (dual approval in online banking, head-office approval)','Match the cash-sheet balance to the bank daily; request funds early for next month’s shortfall']}})[l];
- if(!W)return F.adm_cash('ja');setK(1);
+ if(!W)return F.adm_payproc('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 adm_remit:function(l){
  var W=({ja:{t:'本社からの海外送金の流れ',st:['支店が本社に書面で送金を依頼する','本社の銀行が送金手続きをする','中継の銀行を通る（手数料が引かれることも）','日本の銀行に着金。金額と内容を確かめる','日計表に記録し、為替差額も処理する'],who:['依頼','本社の銀行','中継','着金','記録'],n:['両国の連休（旧正月・秋夕・日本の大型連休・年末年始）は2週間前までに依頼','日本で1回3,000万円相当額を超える支払い・受け取りは、外為法の報告が必要★']},
@@ -1926,9 +1926,9 @@ fn_wc:function(l){
  if(!W)return F.fn_wc('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 fn_eq:function(l){
- var W=({ja:{t:'純資産の中身（Vela Air 期首）',r:[['資本金','500億円（株主が払い込んだ）','#1769e0'],['資本剰余金','400億円（資本金にしなかった分）','#2C8C8C'],['利益剰余金','1,020億円（稼いで残した）','#E08A2E'],['自己資本比率','1,920÷6,000＝32.0%','#7A5CC7']],n:['JAL 40.3%、ANA 37.7%（2026年3月末）★','純資産が増える主な理由は「利益を残す」と「増資」']},
-  ko:{t:'자본의 구성(Vela Air 기초)',r:[['자본금','500억 엔(주주가 납입)','#1769e0'],['자본잉여금','400억 엔(자본금에 넣지 않은 부분)','#2C8C8C'],['이익잉여금','1,020억 엔(벌어서 남긴 것)','#E08A2E'],['자기자본비율','1,920÷6,000＝32.0%','#7A5CC7']],n:['JAL 40.3%, ANA 37.7%(2026년 3월 말)★','자본이 느는 주된 이유는 「이익 축적」과 「증자」']},
-  en:{t:'What equity is made of (Vela Air opening)',r:[['Share capital','¥50bn paid in by shareholders','#1769e0'],['Capital surplus','¥40bn not booked as capital','#2C8C8C'],['Retained earnings','¥102bn earned and kept','#E08A2E'],['Equity ratio','1,920 ÷ 6,000 = 32.0%','#7A5CC7']],n:['JAL 40.3%, ANA 37.7% (end of March 2026) ★','Equity grows mainly by keeping profits or raising capital']}})[l];
+ var W=({ja:{t:'純資産の中身（Vela Air 期首）',r:[['資本金','500億円（株主が払い込んだ）','#1B6B5E'],['資本剰余金','400億円（資本金にしなかった分）','#2C8C8C'],['利益剰余金','1,020億円（稼いで残した）','#4FA394'],['自己資本比率','1,920÷6,000＝32.0%','#7A5CC7']],n:['JAL 40.3%、ANA 37.7%（2026年3月末）★','純資産が増える主な理由は「利益を残す」と「増資」']},
+  ko:{t:'자본의 구성(Vela Air 기초)',r:[['자본금','500억 엔(주주가 납입)','#1B6B5E'],['자본잉여금','400억 엔(자본금에 넣지 않은 부분)','#2C8C8C'],['이익잉여금','1,020억 엔(벌어서 남긴 것)','#4FA394'],['자기자본비율','1,920÷6,000＝32.0%','#7A5CC7']],n:['JAL 40.3%, ANA 37.7%(2026년 3월 말)★','자본이 느는 주된 이유는 「이익 축적」과 「증자」']},
+  en:{t:'What equity is made of (Vela Air opening)',r:[['Share capital','¥50bn paid in by shareholders','#1B6B5E'],['Capital surplus','¥40bn not booked as capital','#2C8C8C'],['Retained earnings','¥102bn earned and kept','#4FA394'],['Equity ratio','1,920 ÷ 6,000 = 32.0%','#7A5CC7']],n:['JAL 40.3%, ANA 37.7% (end of March 2026) ★','Equity grows mainly by keeping profits or raising capital']}})[l];
  if(!W)return F.fn_eq('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 fn_jalbs:function(l){
@@ -1975,8 +1975,8 @@ fn_bkrpt:function(l){
  if(!W)return F.fn_bkrpt('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 fn_vela3:function(l){
- var W=({ja:{t:'Vela Airの3年間（億円）',c:[['1年目','営業利益180・純利益90・営業CF＋394・期末現金1,044'],['2年目','燃油高で営業利益−54・純利益−105・営業CF＋222・期末現金1,256'],['3年目','営業利益231・純利益127・営業CF＋442・期末現金1,338']],n:['赤字の2年目に現金が最も増えた（減価償却・前受金・投資の停止）','3年で有利子負債は230減り、自己資本比率は32.0%→32.3%']},
-  ko:{t:'Vela Air의 3년(억 엔)',c:[['1년차','영업이익 180·순이익 90·영업활동 ＋394·기말 현금 1,044'],['2년차','연료비 급등으로 영업이익 −54·순이익 −105·영업활동 ＋222·기말 현금 1,256'],['3년차','영업이익 231·순이익 127·영업활동 ＋442·기말 현금 1,338']],n:['적자인 2년차에 현금이 가장 많이 늘었다(감가상각·선수금·투자 중단)','3년 동안 유이자부채는 230 줄고, 자기자본비율은 32.0%→32.3%']},
+ var W=({ja:{t:'Vela Airの3年間（億円）',c:[['1年目','営業利益180・純利益90・営業CF+394・期末現金1,044'],['2年目','燃油高で営業利益−54・純利益−105・営業CF+222・期末現金1,256'],['3年目','営業利益231・純利益127・営業CF+442・期末現金1,338']],n:['赤字の2年目に現金が最も増えた（減価償却・前受金・投資の停止）','3年で有利子負債は230減り、自己資本比率は32.0%→32.3%']},
+  ko:{t:'Vela Air의 3년(억 엔)',c:[['1년차','영업이익 180·순이익 90·영업활동 +394·기말 현금 1,044'],['2년차','연료비 급등으로 영업이익 −54·순이익 −105·영업활동 +222·기말 현금 1,256'],['3년차','영업이익 231·순이익 127·영업활동 +442·기말 현금 1,338']],n:['적자인 2년차에 현금이 가장 많이 늘었다(감가상각·선수금·투자 중단)','3년 동안 유이자부채는 230 줄고, 자기자본비율은 32.0%→32.3%']},
   en:{t:'Vela Air over three years (¥100m)',c:[['Year 1','Operating profit 180, net 90, operating CF +394, closing cash 1,044'],['Year 2','Fuel spike: operating profit −54, net −105, operating CF +222, closing cash 1,256'],['Year 3','Operating profit 231, net 127, operating CF +442, closing cash 1,338']],n:['Cash rose most in the loss year 2 (depreciation, advances, investment paused)','Over three years interest-bearing debt fell 230; equity ratio 32.0% → 32.3%']}})[l];
  if(!W)return F.fn_vela3('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#2C8C8C','#D64545','#1769e0']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
@@ -1993,9 +1993,9 @@ fn_fleet:function(l){
  if(!W)return F.fn_fleet('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#5B6B7D','#1769e0','#2C8C8C','#E08A2E'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 fn_cl:function(l){
- var W=({ja:{t:'2つの契約負債',c:[['航空券の前受金','代金を受け取ったときに負債 → 運送したときに売上'],['マイル','付与したときに負債 → 使われたとき（期限切れも）に売上']],n:['JALの契約負債 4,845億円＝売上収益の24.1%、約3か月分★','契約負債の増減は需要の先行指標。払い戻しは損益より先に現金に響く']},
-  ko:{t:'두 가지 계약부채',c:[['항공권 선수금','대금을 받았을 때 부채 → 운송했을 때 매출'],['마일','적립했을 때 부채 → 사용됐을 때(기한 만료도) 매출']],n:['JAL의 계약부채 4,845억 엔＝매출수익의 24.1%, 약 3개월분★','계약부채의 증감은 수요의 선행지표. 환불은 손익보다 먼저 현금에 타격을 준다']},
-  en:{t:'Two kinds of contract liability',c:[['Ticket advances','A liability when cash is received → revenue when carriage is provided'],['Miles','A liability when awarded → revenue when used (or when they expire)']],n:['JAL contract liabilities ¥484.5bn = 24.1% of revenue, about three months ★','Changes are a leading demand indicator; refunds hurt cash before profit']}})[l];
+ var W=({ja:{t:'2つの契約負債',c:[['航空券の前受金','代金を受け取ったときに負債 → 運送したときに売上'],['マイル','付与時に配分額を負債 → 特典の提供に応じて売上（失効見込みも反映）']],n:['JALの契約負債 4,845億円＝売上収益の24.1%、約3か月分★','契約負債の増減は需要の先行指標。払い戻しは損益より先に現金に響く']},
+  ko:{t:'두 가지 계약부채',c:[['항공권 선수금','대금을 받았을 때 부채 → 운송했을 때 매출'],['마일','적립 시 배분액을 부채 → 특전 제공에 따라 매출(실효 추정도 반영)']],n:['JAL의 계약부채 4,845억 엔＝매출수익의 24.1%, 약 3개월분★','계약부채의 증감은 수요의 선행지표. 환불은 손익보다 먼저 현금에 타격을 준다']},
+  en:{t:'Two kinds of contract liability',c:[['Ticket advances','A liability when cash is received → revenue when carriage is provided'],['Miles','Allocated amount is a liability when awarded → revenue as awards are provided (expected breakage reflected)']],n:['JAL contract liabilities ¥484.5bn = 24.1% of revenue, about three months ★','Changes are a leading demand indicator; refunds hurt cash before profit']}})[l];
  if(!W)return F.fn_cl('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#7A5CC7']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 fn_mro:function(l){
@@ -2005,7 +2005,7 @@ fn_mro:function(l){
  if(!W)return F.fn_mro('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 fn_six:function(l){
- var W=({ja:{t:'6社を並べる（公表年度★）',r:[['JAL','営業利益率10.3%・燃油21.6%・自己資本40.3%','#D64545'],['ANA HD','営業利益率8.6%・燃油22.6%・自己資本37.7%','#1769e0'],['大韓航空','営業利益率4.4%・燃油約28%・航空貨物収入 約4.4兆ウォン','#2C8C8C'],['済州航空','営業損失・付帯収入は出典を確認','#E08A2E'],['スカイマーク','営業利益率1.6%・燃油28.6%・国内線専業','#7A5CC7'],['ライアンエアー','燃油42.1%・付帯収入33.8%・大半を自社所有','#5B6B7D']],n:['会計基準・決算期・通貨・連結の範囲をそろえて比べる','比率の高さ＝非効率ではない（燃油以外の費用が低いと燃油の割合は大きくなる）','燃油は費用に対する比率（スカイマークは燃油税を含む）']},
+ var W=({ja:{t:'6社を並べる（公表年度★）',r:[['JAL','営業利益率10.3%・燃油21.6%・自己資本40.3%','#D64545'],['ANA HD','営業利益率8.6%・燃油22.6%・自己資本37.7%','#1769e0'],['大韓航空','営業利益率4.4%・燃油約28%・貨物収入 約4.4兆ウォン','#2C8C8C'],['済州航空','営業損失・付帯収入は出典を確認','#E08A2E'],['スカイマーク','営業利益率1.6%・燃油28.6%・国内線専業','#7A5CC7'],['ライアンエアー','燃油42.1%・付帯収入33.8%・大半を自社所有','#5B6B7D']],n:['会計基準・決算期・通貨・連結の範囲をそろえて比べる','比率の高さ＝非効率ではない（燃油以外の費用が低いと燃油の割合は大きくなる）','燃油は費用に対する比率（スカイマークは燃油税を含む）']},
   ko:{t:'6개사 비교(공표 연도★)',r:[['JAL','영업이익률 10.3%·연료비 21.6%·자기자본 40.3%','#D64545'],['ANA HD','영업이익률 8.6%·연료비 22.6%·자기자본 37.7%','#1769e0'],['대한항공','영업이익률 4.4%·연료비 약 28%·항공 화물 수입 약 4.4조 원','#2C8C8C'],['제주항공','영업손실·부대수입은 출처 확인','#E08A2E'],['스카이마크','영업이익률 1.6%·연료비 28.6%·국내선 전업','#7A5CC7'],['라이언에어','연료비 42.1%·부대수입 33.8%·대부분 자사 소유','#5B6B7D']],n:['회계 기준·결산기·통화·연결 범위를 맞춰 비교한다','비율이 높다＝비효율이 아니다(연료 외 비용이 낮으면 연료의 몫이 커진다)','연료비는 비용 대비 비율(스카이마크는 연료세 포함)']},
   en:{t:'Six airlines side by side (reported year ★)',r:[['JAL','Operating margin 10.3%, fuel 21.6%, equity ratio 40.3%','#D64545'],['ANA HD','Operating margin 8.6%, fuel 22.6%, equity ratio 37.7%','#1769e0'],['Korean Air','Operating margin 4.4%, fuel about 28%, air cargo about KRW 4.4tn','#2C8C8C'],['Jeju Air','Operating loss; check ancillary source','#E08A2E'],['Skymark','Operating margin 1.6%, fuel 28.6%, domestic only','#7A5CC7'],['Ryanair','Fuel 42.1%, ancillaries 33.8%, mostly owned fleet','#5B6B7D']],n:['Align accounting standards, year ends, currencies and consolidation before comparing','A high ratio is not inefficiency (low non-fuel costs make fuel’s share larger)','Fuel is a share of costs (Skymark includes fuel tax)']}})[l];
  if(!W)return F.fn_six('ja');setK(1);

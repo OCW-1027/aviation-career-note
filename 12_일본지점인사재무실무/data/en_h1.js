@@ -110,7 +110,7 @@ set("2-1",{title:"The Annual Cycle of Payroll and Insurance",hl:"payroll and ins
 lead:["Payroll is monthly work, but social insurance, labour insurance and tax each have annual procedures, and missing the timing leads to problems such as late charges. In a small branch, the efficient approach is to put the monthly and annual procedures on one calendar and share them with your tax accountant and labour and social security attorney.",
 "This article sets out the monthly payroll flow and the annual procedures. See also Launching Flights to Japan 2-4."],
 sections:[
-{h:"The monthly flow",blocks:[{t:"fig",id:"adm_pay",cap:"Figure: the monthly payroll cycle."},{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Confirm overtime and leave"},{name:"Apply changes",sub:"Joiners, leavers, raises, allowances"},{name:"Calculate",sub:"Adviser or system"},{name:"Check",sub:"Against last month"},{name:"Pay",sub:"Pay day and payslips"}]}]},
+{h:"The monthly flow",blocks:[{t:"fig",id:"adm_paycycle",cap:"Figure: the monthly payroll cycle."},{t:"ladder",rise:10,steps:[{name:"Close attendance",sub:"Confirm overtime and leave"},{name:"Apply changes",sub:"Joiners, leavers, raises, allowances"},{name:"Calculate",sub:"Adviser or system"},{name:"Check",sub:"Against last month"},{name:"Pay",sub:"Pay day and payslips"}]}]},
 {h:"Main annual procedures",blocks:[{t:"region",jp:[{t:"table",cols:["When","Procedure"],rows:[
 ["January","Withholding tax under the special terms, the depreciable assets return (5-1), salary payment reports"],
 ["March to April","Changes in health insurance, long-term care insurance and employment insurance rates (the pension rate is fixed at 18.3%)"],
@@ -268,7 +268,7 @@ set("4-1",{title:"Accounts, the Daily Cash Report and Payments",hl:"cash managem
 lead:["In a small branch, it is important to protect cash through a system. Split accounts by purpose, record each day’s (or week’s) receipts and payments in a daily cash report, and make payments through a set procedure with approval. That alone prevents most errors and fraud.",
 "This article covers how to split accounts, building daily and monthly cash reports, and the payment procedure."],
 sections:[
-{h:"Splitting the accounts",blocks:[{t:"fig",id:"adm_cash",cap:"Figure: the payment process and segregation of duties."},{t:"table",cols:["Account","Use"],rows:[
+{h:"Splitting the accounts",blocks:[{t:"fig",id:"adm_payproc",cap:"Figure: the payment process and segregation of duties."},{t:"table",cols:["Account","Use"],rows:[
 ["Operating (imprest) account","Day-to-day payments: salaries, rent, communications, advisory fees"],
 ["Revenue account","Sales receipts. Not moved without head office approval"],
 ["Tax and insurance payments","From the operating account, by electronic payment or similar"]]}]},
@@ -505,7 +505,7 @@ quiz:[{q:"How are costs not yet invoiced handled?",opts:["Accrued on an estimate
 {q:"What belongs in the report to head office?",opts:["Variance against budget and the reasons","The weather","Staff hobbies","Airport shops"],a:0,exp:"Next month’s outlook and issues too."}],
 next:"6-2 Budgeting and Cutting Costs"});
 
-set("6-2",{title:"Budgeting and Cutting Costs",hl:"budgeting",subtitle:"List the fixed costs, and put the once-a-year costs in the right month",
+set("6-2",{title:"Budgeting and Cutting Costs",hl:"budgeting",subtitle:"List the fixed costs; put expenses in the period they cover and payments in the month they are paid",
 lead:["A branch budget is usually built for the following year during head office’s budgeting season (autumn to winter, for example) and reviewed every six months. The key to an accurate budget is listing the monthly fixed costs and spreading once-a-year costs over the period they cover in the cost budget, while placing them in the actual payment month in the cash plan.",
 "This lesson covers how to build the budget, costs that are easily missed, and what to consider when cutting costs."],
 sections:[

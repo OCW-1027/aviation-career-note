@@ -207,7 +207,7 @@ sections:[
 ["[Profitability] Operating margin / ROE","6.0% / 4.6%","−1.7% / −5.5%","7.0% / 6.7%"],
 ["[Financial stability] Equity ratio / net debt ÷ EBITDA","33.3% / 2.4×","31.7% / 4.0×","32.3% / 1.5×"],
 ["[Efficiency] Asset turnover / ASK per aircraft","0.50× / 4.00","0.54× / 4.10","0.55× / 4.22"],
-["[Growth] Passenger revenue year-on-year (volume / price)","—","+5.3% (±0% / +5.3%)","+3.9% (+8.8% / −4.5%)"],
+["[Growth] Passenger revenue year-on-year (volume / price)","—","+5.3% (±0% / +5.3%)","+3.9% (+8.8% / −4.6%)"],
 ["[Cash] Operating cash flow margin / FCF after lease payments","13.1% / +34","7.0% / +162","13.4% / +82"]]},
 {t:"point",x:"Year 2 in one sentence: ‘fuel pushed CASK up 1.6 yen; fares were raised to recover it but load factor fell and the result was an operating loss; yet CASK ex fuel was unchanged and cash was protected.’ Joining the operating rows to the financial rows produces a sentence like this."}]},
 {h:"Reading over time: index and common size",blocks:[{t:"fig",id:"fin_trend_index",cap:"Vela Air’s three years as an index with year 1 = 100"},

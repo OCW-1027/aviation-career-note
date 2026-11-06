@@ -71,19 +71,19 @@ var FS3={
   ['貸借対照表（B/S）','決算日に何を持ち、何を借りているか','資産 ＝ 負債 ＋ 純資産','#1F8A5B'],
   ['キャッシュ・フロー計算書（C/F）','現金が実際にいくら出入りしたか','営業・投資・財務の3つに分けて見る','#E08A2F']],
   ['1年の利益は、純資産（利益剰余金）に積み上がる','期末の現金・現金同等物は、貸借対照表の対応額とつながる'],
-  '利益が出ていても、売掛金が回収できていなければ現金は増えません（0-4）。'],
+  '利益が出ていても、売掛金が回収できていなければ現金は増えません。'],
  ko:['재무제표의 세 가지 표는 서로 이어져 있다',[
   ['손익계산서(P/L)','1년 동안 얼마를 벌었나','매출 − 비용 = 이익','#2F8FE0'],
   ['재무상태표(B/S)','결산일에 무엇을 가졌고 무엇을 빌렸나','자산 = 부채 + 순자산','#1F8A5B'],
   ['현금흐름표(C/F)','현금이 실제로 얼마나 들어오고 나갔나','영업·투자·재무 세 가지로 나눠 봄','#E08A2F']],
   ['1년의 이익은 순자산(이익잉여금)에 쌓인다','기말 현금·현금성자산은 재무상태표의 해당 금액과 연결된다'],
-  '이익이 나도 매출채권을 회수하지 못하면 현금은 늘지 않습니다(0-4).'],
+  '이익이 나도 매출채권을 회수하지 못하면 현금은 늘지 않습니다.'],
  en:['The three financial statements are linked',[
   ['Profit and loss (P/L)','How much was earned over the year','Sales − expenses = profit','#2F8FE0'],
   ['Balance sheet (B/S)','What the company owns and owes on the closing date','Assets = liabilities + net assets','#1F8A5B'],
   ['Cash flow statement (C/F)','How much cash actually came in and went out','Seen in three parts: operating, investing, financing','#E08A2F']],
   ['The year’s profit builds up in net assets (retained earnings)','Year-end cash and equivalents link to the matching B/S figure'],
-  'A profit does not raise cash until receivables are actually collected (0-4).']};
+  'A profit does not raise cash until receivables are actually collected.']};
 function fs3Fig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s=TTL(320,30,d[0],15,'#0f3558',600),dur=9,bx=[];
  function box(r){var c=r[3],h1=hgt(r[0],13,520),h2=hgt(r[1],11.5,520),h3=hgt(r[2],13,480),h=h1+h2+h3+40,o='';
   o+=R(20,y,600,h,'#fff',12,' stroke="'+c+'" stroke-width="2"')+R(20,y,600,h1+16,c,12)+TW2(320,y+8,r[0],13,'#fff',900,560);
@@ -243,7 +243,7 @@ function limFig(D2){return function(l){setK(1);var d=D2[l]||D2.ja,y=ttlH(d[0]),s
 /* 9. 出産と育児の休み（日本・韓国）：時間の帯 */
 var LVJP={
  ja:['日本：出産と育児の休み（例）',[['産前休業（6週）',6,'#E08A2F'],['産後休業（8週）',8,'#D0453E'],['育児休業（子が1歳まで）',44,'#2F8FE0'],['延長（保育所に入れないなど。最長2歳まで）',52,'#9DB4C8']],6,'出産','父親は、子の出生から8週間以内に4週間までの「出生時の育児休業」も取れます。★'],
- ko:['일본: 출산·육아 휴업(예)',[['산전휴업(6주)',6,'#E08A2F'],['산후휴업(8주)',8,'#D0453E'],['육아휴업(자녀가 1세까지)',44,'#2F8FE0'],['연장(어린이집에 들어가지 못하는 경우 등. 최장 2세까지)',52,'#9DB4C8']],6,'출산','아버지는 자녀 출생 후 8주 이내에 4주까지 「출생 시 육아휴업」도 쓸 수 있습니다. ★'],
+ ko:['일본: 출산·육아 휴업(예)',[['산전휴업(6주)',6,'#E08A2F'],['산후휴업(8주)',8,'#D0453E'],['육아휴직(자녀가 1세까지)',44,'#2F8FE0'],['연장(어린이집에 들어가지 못하는 경우 등. 최장 2세까지)',52,'#9DB4C8']],6,'출산','아버지는 자녀 출생 후 8주 이내에 4주까지 「출생 시 육아휴직」도 쓸 수 있습니다. ★'],
  en:['Japan: leave for birth and childcare (example)',[['Pre-birth leave (6 weeks)',6,'#E08A2F'],['Post-birth leave (8 weeks)',8,'#D0453E'],['Childcare leave (until the child turns 1)',44,'#2F8FE0'],['Extension (e.g. no nursery place; up to age 2)',52,'#9DB4C8']],6,'Birth','Fathers can also take up to four weeks of birth-time childcare leave within eight weeks of the birth. ★']};
 var LVKR={
  ja:['韓国：出産と育児の休み（例）',[['出産前後休暇（90日。出産後45日以上）',13,'#E08A2F'],['育児休職（原則1年）',52,'#2F8FE0'],['追加の6か月（父母各3か月以上など条件あり）',26,'#9DB4C8']],6.4,'出産','配偶者の出産休暇は20日（出産から120日以内、4回まで分けて使える）。★'],
