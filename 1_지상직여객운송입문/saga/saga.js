@@ -13006,11 +13006,11 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
      DAY 2~5(설계안 v4 확정 2026-11-07 · GPT F08-10차 필수 0건): 삽입·회신 카드 큐(0절 ①~⑧) · exec:'accept'(S7→S1) · exec:'deliver'(B3 보류 → 수령인 → 서명) · 대기 구간 · lateAbs */
   function cgAcKey() { return G.wbAc === '789' ? '789' : '737'; }
   var CG_LIST = [
-    { n: 1, id: 'cg.d1', mission: window.MISSION_CG01 || null, hints: true, nm: L('はじめての受付', '첫 접수', 'Your first acceptance'), learn: L('予約・容積重量・受付の判断・UWSの1%・運航管理への通報・書類パウチ', '예약·용적 중량·접수 판단·UWS 1%·운항관리 통보·서류 파우치', 'Bookings, volume weight, acceptance decisions, the 1% UWS check, dispatch figures, the document pouch') },
-    { n: 2, id: 'cg.d2', mission: window.MISSION_CG02 || null, hints: true, nm: L('止める勇気', '멈추는 용기', 'The courage to stop'), learn: L('危険物の受付・資格者の回答・NOTOC', '위험물 접수·자격자 회신·NOTOC', 'Dangerous goods, qualified staff, NOTOC') },
-    { n: 3, id: 'cg.d3', mission: window.MISSION_CG03 || null, hints: true, nm: L('特殊貨物と締め切り', '특수 화물과 마감 역산', 'Special cargo and deadlines'), learn: L('生鮮・動物・精密機械・床面荷重', '신선·동물·정밀기계·바닥 하중', 'Perishables, animals, precision equipment, floor limits') },
-    { n: 4, id: 'cg.d4', mission: window.MISSION_CG04 || null, hints: true, nm: L('輸入と積み替え', '수입과 환적', 'Import and transfer'), learn: L('到着・NFD・引き渡し・環積・保安の記録', '도착·NFD·인도·환적·보안 기록', 'Arrival, NFD, delivery, transfer, security record') },
-    { n: 5, id: 'cg.d5', mission: window.MISSION_CG05 || null, hints: true, nm: L('事故とクレーム', '사고와 클레임', 'Damage and claims'), learn: L('発見時の記録・クレームの期限と限度・KPI', '발견 시점 기록·클레임 기한과 한도·KPI', 'Recording damage, claim deadlines and limits, KPIs') }
+    { n: 1, id: 'cg.d1', mission: window.MISSION_CG01 || null, hints: true, nm: L('はじめての貨物受付', '첫 화물 접수', 'Your first shipments'), learn: L('予約の確認・容積重量・受け付けるかの判断・UWSの1%確認・運航管理への重量通報・書類パウチ', '예약 확인·용적 중량·접수 여부 판단·UWS 1% 확인·운항관리 무게 통보·서류 파우치', 'Checking bookings, volume weight, whether to accept, the 1% UWS check, weights to dispatch, the document pouch') },
+    { n: 2, id: 'cg.d2', mission: window.MISSION_CG02 || null, hints: true, nm: L('危険物とNOTOC', '위험물과 NOTOC', 'Dangerous goods and NOTOC'), learn: L('危険物の受付・有資格者への確認・NOTOC・迷ったら止める', '위험물 접수·자격 담당자 확인·NOTOC·애매하면 멈추기', 'Accepting dangerous goods, checking with qualified staff, NOTOC, stopping when in doubt') },
+    { n: 3, id: 'cg.d3', mission: window.MISSION_CG03 || null, hints: true, nm: L('特殊貨物と締め切り', '특수 화물과 마감 시간', 'Special cargo and cut-off times'), learn: L('生鮮貨物・生きた動物・精密機械・床面荷重・締め切りからの逆算', '신선 화물·생동물·정밀기계·바닥 하중·마감 시간 거꾸로 세기', 'Perishables, live animals, precision equipment, floor loading, working back from cut-off') },
+    { n: 4, id: 'cg.d4', mission: window.MISSION_CG04 || null, hints: true, nm: L('輸入貨物と積み替え', '수입 화물과 환적', 'Import and transfer cargo'), learn: L('到着の確認・荷受人への到着通知（NFD）・引き渡し・積み替え・保安の記録', '도착 확인·수하인 도착 통지(NFD)·인도·환적·보안 기록', 'Arrival checks, notifying consignees (NFD), delivery, transfers, security records') },
+    { n: 5, id: 'cg.d5', mission: window.MISSION_CG05 || null, hints: true, nm: L('貨物事故とクレーム', '화물 사고와 클레임', 'Cargo damage and claims'), learn: L('破損を見つけたときの記録・クレームの期限と責任限度・KPI', '파손을 발견했을 때의 기록·클레임 기한과 배상 한도·KPI', 'Recording damage when it is found, claim deadlines and liability limits, KPIs') }
   ];
   var CG_BASE = window.SAGA_DAYS.make(CG_LIST);
   var CG_DAYS = Object.assign({}, CG_BASE, {
@@ -13020,7 +13020,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     status: function (h, n, c, p) { var d = CG_LIST[n - 1]; if (!d || !d.mission) return 'soon'; if (n === 1 || p) return 'open'; return CG_BASE.cleared(CG_DAYS.rec(h, CG_LIST[n - 2], c)) ? 'open' : 'lock'; }
   });
   var CG_TEXT = {
-    days: L('航空貨物編 ― 貨物の受付の5日間', '항공화물편 — 화물 접수 5일', 'Air cargo — five days at the cargo counter'),
+    days: L('航空貨物編 ― 貨物カウンターの5日間', '항공화물편 — 화물 카운터의 5일', 'Air cargo — five days at the cargo counter'),
     next: L('次の業務へ', '다음 업무로', 'Next task'),
     tabs: { awb: L('AWBの一覧', 'AWB 목록', 'AWB list') },
     eduData: L('教育用の仮想データ・実際の貨物業務には使用できません', '교육용 가상 데이터 · 실제 화물 업무 사용 금지', 'Educational data — not for real cargo work'),
