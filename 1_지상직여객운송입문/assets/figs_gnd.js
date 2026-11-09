@@ -1488,7 +1488,7 @@ int_types:function(l){
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 int_cv:function(l){
  var W=({ja:{t:'履歴書と職務経歴書の違い',c:[['履歴書','決まった様式。氏名・学歴・職歴・資格・志望動機。年月の書き方を統一'],['職務経歴書','A4で1〜2枚。仕事の内容・実績・身につけた力を数字で']],n:['職務経歴書の順番：要約→職歴→業務内容→実績→資格・語学','会社ごとに志望動機と強調点を変える。直訳の表現は見直す']},
-  ko:{t:'이력서(履歴書)와 경력기술서(職務経歴書)의 차이',c:[['이력서','정해진 양식. 이름·학력·경력·자격·지원 동기. 연월 표기를 통일'],['경력기술서','A4 1~2장. 업무 내용·실적·역량을 숫자로']],n:['경력기술서 순서: 요약→경력→업무 내용→실적→자격·어학','회사마다 지원 동기와 강조점을 바꾼다. 직역 표현은 재검토한다']},
+  ko:{t:'이력서(履歴書)와 직무경력서(職務経歴書)의 차이',c:[['이력서','정해진 양식. 이름·학력·경력·자격·지원 동기. 연월 표기를 통일'],['직무경력서','A4 1~2장. 업무 내용·실적·역량을 숫자로']],n:['직무경력서 순서: 요약→경력→업무 내용→실적→자격·어학','회사마다 지원 동기와 강조점을 바꾼다. 직역 표현은 재검토한다']},
   en:{t:'Japanese résumé (rirekisho) versus career summary (shokumu keirekisho)',c:[['Rirekisho','A fixed form: name, education, jobs, qualifications, motivation. Keep date styles consistent'],['Shokumu keirekisho','One or two A4 pages on duties, results and skills, with numbers']],n:['Career summary order: summary, employers, duties, results, qualifications and languages','Tailor motivation and emphasis to each company; rewrite literal translations']}})[l];
  if(!W)return F.int_cv('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},

@@ -45,7 +45,7 @@ lead:["Self-audits and quality audits of the handling company do not last if the
 sections:[
 {h:"The annual audit plan (example)",blocks:[{t:"table",cols:["When","Checks and audits"],rows:[
 ["April","Finalise the year’s plan; summarise the trends in last year’s findings"],
-["May to June","Counter and security self-audits; quality audit of the handling company"],
+["May to June","In-depth counter and security self-audits (wider than the monthly checks); quality audit of the handling company"],
 ["July to August","Pre-peak checks (temporary staff, baggage flow)"],
 ["September","Dangerous goods, weight and balance"],
 ["October to November","Pre-winter check (de-icing); joint security training"],

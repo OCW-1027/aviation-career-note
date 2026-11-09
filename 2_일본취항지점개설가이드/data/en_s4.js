@@ -62,11 +62,11 @@ sections:[
 {name:"Cargo items",x:"Arranging clearance where goods need it, for example urgent maintenance parts."}]},
 {t:"point",x:"Even when the handling company does the input, the responsibility is the airline’s. Write who inputs what and when into the SOP, and review it at the monthly meeting."}]}],
 voice:"Before launch, confirm with customs when the entry and departure declarations and passenger manifest are to be filed electronically. One test transmission in advance saves panic on the day of the first flight.",
-terms:[["NACCS","輸出入・港湾関連情報処理システム","일본 통관·항만 정보 시스템"],["Arrival / Departure Report","入出港届","입출항 신고"],["Passenger List (P/L)","旅客氏名表","승객 명단"],["Cargo Manifest","積荷目録","적하목록"],["General Declaration (G/D)","一般申告書","일반 신고서"],["Tax Agent","納税管理人","납세 관리인"]],
+terms:[["NACCS","輸出入・港湾関連情報処理システム","수출입·항만 관련 정보 처리 시스템"],["Arrival / Departure Report","入出港届","입출항 신고"],["Passenger List (P/L)","旅客氏名表","승객 명단"],["Cargo Manifest","積荷目録","적하목록"],["General Declaration (G/D)","一般申告書","일반 신고서"],["Tax Agent","納税管理人","납세 관리인"]],
 quiz:[{q:"Which is filed through NACCS?",opts:["Passenger lists and cargo manifests","Staff salaries","Travel agency contracts","The catering menu"],a:0,exp:"Arrival and departure formalities are filed electronically."},
 {q:"Where does responsibility lie when the handler does the input?",opts:["With the handler alone","With the airline","With customs","With nobody"],a:1,exp:"Write who inputs what into the SOP."},
 {q:"Which is NOT settled with customs before launch?",opts:["Aircraft type and flight numbers","Who files the arrival and departure reports","The handling companies","Where staff are from"],a:3,exp:"The checks cover operational details, responsibilities and handling arrangements."}],
-next:"4-3 Advance passenger information (API/iAPI) and transmission testing"});
+next:"4-3 Advance passenger information (API/iAPI) and Japan–Korea transmission testing"});
 
 set("4-3",{title:"Advance Passenger Information (API/iAPI) and Japan–Korea Transmission Testing",hl:"advance passenger information",subtitle:"Send the passenger’s details before they fly — and in some countries get a board or no-board answer back ★",
 lead:["On international flights to and from Japan, airlines must send passport details (advance passenger information, API) and booking details (PNR) to immigration and customs. Beyond that, interactive systems that return a board or no-board answer to each transmission (iAPI) are spreading.",
@@ -99,10 +99,10 @@ quiz:[{q:"What makes an interactive API system different?",opts:["It only sends 
 next:"4-4 Customs, quarantine and the changing tax-free scheme"});
 
 set("4-4",{title:"Customs, Quarantine and the Changing Tax-free Scheme",hl:"customs and quarantine",subtitle:"Quarantine announcements, digital entry procedures, and the tax-free change from November 2026 ★",
-lead:["Supporting the customs and quarantine process is part of an airline’s job: playing the quarantine announcement before arrival, explaining the entry procedure, and checking what is subject to animal and plant quarantine. On top of that, Japan’s consumption tax exemption for visitors changes to a refund method from November 2026.",
+lead:["Supporting the customs and quarantine process is part of an airline’s job: playing the quarantine announcement before arrival, explaining the entry procedure, and checking what is subject to animal and plant quarantine. On top of that, Japan’s consumption tax exemption for visitors changed to a refund method on 1 November 2026.",
 "This article covers cooperation with quarantine, digital entry procedures, animal and plant quarantine, the tax-free change and its effect at airports, and what to settle with customs and quarantine before launch."],
 sections:[
-{h:"Cooperation with quarantine",blocks:[{t:"fig",id:"opn_quar",cap:"Animated figure: what to confirm with customs and quarantine before launch (example)."},{t:"check",items:[
+{h:"Cooperation with quarantine",blocks:[{t:"check",items:[
 {name:"The in-flight announcement",x:"The quarantine service provides scripts and recordings for the announcement before arrival, in several languages and in full and short versions. Share them with the cabin crew."},
 {name:"During an outbreak",x:"You may be asked to distribute questionnaires, collect health declarations and report symptomatic passengers."},
 {name:"Illness on board",x:"Where an infectious disease is suspected, contact quarantine before arrival and follow their instructions (Ground Staff 5-3)."}]}]},
@@ -123,7 +123,7 @@ sections:[
 {name:"Effect at the airport",x:"Travellers must present their passport at a terminal on departure, within 90 days of purchase, for customs confirmation. Work is under way to keep queues down, and the departure flow and the time it takes may change."},
 {name:"For the airline",x:"Tell passengers that departure formalities may take longer, and confirm how duty-free goods are handled when a departure is cancelled (Ground Staff 2-6)."}]},
 {t:"note",x:"* From the government’s explanatory material on the FY2025 tax reform outline. Check the latest guidance from the National Tax Agency and customs for details. ★"}]},
-{h:"What to settle before launch",blocks:[{t:"check",items:[
+{h:"What to settle before launch",blocks:[{t:"fig",id:"opn_quar",cap:"Animated figure: what to confirm with customs and quarantine before launch (example)."},{t:"check",items:[
 {name:"Customs",x:"The confirmations for a new service (4-2), the corporate application, and access procedures for staff areas."},
 {name:"Quarantine",x:"The announcement material and the contact structure during an outbreak."},
 {name:"Animal and plant quarantine",x:"The flow when a pet arrives, and the contacts."},

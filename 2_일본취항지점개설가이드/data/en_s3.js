@@ -159,7 +159,7 @@ sections:[
 {name:"When you change handler",x:"Radios, bonded arrangements and systems tied to the handler all need reviewing too."}]},
 {t:"point",x:"Irregular operations can happen soon after launch. Settle hotels, meal vouchers and endorsement arrangements before the first flight."}]}],
 voice:"If the fuel contract is not settled until just before launch, you end up scrambling to arrange fuel for the first flight. Talk to head office’s fuel team early and progress the fuel supplier contract alongside the airport contracts.",
-terms:[["Fuelling","給油","급유"],["Catering","機内食","기내식"],["Aircraft Guarding","機体警備","주기 경비"],["INAD Escort / Guarding","上陸防止","입국불허자(INAD) 경비"],["Radio","無線機","무전기"],["GSA","販売総代理店","판매 총대리점"]],
+terms:[["Fuelling","給油","급유"],["Catering","機内食","기내식"],["Aircraft Guarding","機体警備","주기 경비"],["INAD Escort / Guarding","上陸防止の警備（INAD）","입국불허자(INAD) 경비"],["Radio","無線機","무전기"],["GSA","販売総代理店","판매 총대리점"]],
 quiz:[{q:"Which is true of fuelling?",opts:["A contract is easy to get anywhere","Some airports have no spare capacity and contracts are hard to get","The handling company always arranges it","It is not needed"],a:1,exp:"Confirm it early as a precondition for launching."},
 {q:"Who bears the cost of guarding an inadmissible passenger when it cannot be recovered?",opts:["The airport company","The airline","The state","The security company"],a:1,exp:"If the passenger cannot be charged, the airline bears it."},
 {q:"What must be settled before the first flight?",opts:["Hotels, meal vouchers and endorsement arrangements","The staff outing","New Year cards","Poster colours"],a:0,exp:"Disruption can happen soon after launch."}],

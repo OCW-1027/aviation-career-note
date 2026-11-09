@@ -127,7 +127,7 @@ terms:[["Online Interview","オンライン面接","온라인 면접"],["Connect
 quiz:[{q:"Where do you look when speaking on screen?",opts:["At the interviewer’s face on screen","At the camera","At your notes","At the ceiling"],a:1,exp:"Looking at the camera reads as eye contact."},
 {q:"What do you do if the connection drops?",opts:["Give up","Rejoin at once, or use the contact you were given","Get in touch the next day","Nothing"],a:1,exp:"Note the contact in advance."},
 {q:"What do you wear for an online interview?",opts:["Only the top half matters","The full outfit, as in person","Everyday clothes","Pyjamas"],a:1,exp:"You may be asked to stand."}],
-next:"3-1 Presenting airport experience gained abroad"});
+next:"3-1 Changing jobs with experience: presenting airport experience gained abroad"});
 
 set("3-1",{title:"Changing Jobs with Experience: Presenting Airport Experience Gained Abroad",hl:"experienced hires",subtitle:"Not “this is how we did it back home” but “this is how my experience will work here”",
 lead:["Experience at an airport or airline in another country is a real strength at a Japanese airport: you know what passengers on routes to your country expect, you know that country’s systems and rules, and you can serve in its language. Presented the wrong way, though, it can make you look like someone who clings to how your last employer did things.",

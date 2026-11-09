@@ -14,7 +14,7 @@ sections:[
 ["GDS","The systems agencies use to book and ticket. Contract with the main ones used in the market and load your flights and fares; post rules and notices on the GDS boards"],
 ["BSP","IATA’s settlement plan for agency sales. Joining is normally led by head office sales"],
 ["Fare distribution","Produce the fare sheets and rule notices for agencies, and confirm with head office how the fares appear in the GDS"],
-["Ticketing audit and ADMs","Agree and publish the rules for debiting agencies for ticketing errors such as the wrong fare (ADM and ACM)"]]},
+["Ticketing audit and ADMs","Agree and publish the rules for debiting and crediting agencies for ticketing errors such as the wrong fare (ADM and ACM)"]]},
 {t:"point",x:"The fastest way to reduce agency errors is to keep your booking classes and rules simple, and to publish a clear notice in the local language."}]},
 {h:"Direct sales and enquiries",blocks:[{t:"rows",items:[
 {name:"Your own website",x:"Decide whether to run a local-language site or to start with company information and an enquiry form. Checking the quality of the local language is an important station job."},

@@ -29,7 +29,7 @@ quiz:[{q:"Which answer is dangerous in an airport interview?",opts:["Holding the
 next:"1-2 How the jobs differ: airlines, handling companies and foreign airline stations"});
 
 set("1-2",{title:"How the Jobs Differ: Airlines, Handling Companies and Foreign Airline Stations",hl:"how the jobs differ",subtitle:"All “airport work”, yet each type of company looks for a different person",
-lead:["The companies working at an airport include airlines themselves, airline group companies, independent handling companies and the Japan stations of foreign airlines. The scope of the work differs, and so do the points interviewers stress.",
+lead:["The companies working at an airport include airline group companies, independent handling companies, the Japan stations of foreign airlines, and airport companies and their affiliates. The scope of the work differs, and so do the points interviewers stress.",
 "This article compares, for each type of company, the character of the work, what the interview stresses and how to prepare (for the types of company, see also Ground Staff 0-2)."],
 sections:[
 {h:"Types of company and what the interview stresses",blocks:[{t:"fig",id:"int_types",cap:"Figure: types of employer and interview focus (example)."},{t:"table",cols:["Company","Character of the work","What the interview stresses"],rows:[
@@ -74,7 +74,7 @@ sections:[
 {name:"Qualifications",x:"Use the official names, with scores, levels and dates, such as JLPT N1 or TOEIC 850."}]},
 {t:"point",x:"What employers look for in the documents is less the quantity of your experience than your ability to explain it clearly. Airport work demands the same ability in reports and in explaining to passengers."}]}],
 voice:"A career summary stands out when it shows, in numbers, what changed as a result rather than just what you did. Put the action and the result in the same line.",
-terms:[["CV (Rirekisho)","履歴書","이력서"],["Career Summary (Shokumu Keirekisho)","職務経歴書","경력기술서"],["Career Gap","空白期間","공백 기간"],["Official Name","正式名称","정식 명칭"],["Achievements","実績","실적"]],
+terms:[["CV (Rirekisho)","履歴書","이력서"],["Career Summary (Shokumu Keirekisho)","職務経歴書","직무경력서"],["Career Gap","空白期間","공백 기간"],["Official Name","正式名称","정식 명칭"],["Achievements","実績","실적"]],
 quiz:[{q:"Which conveys achievement best in a career summary?",opts:["Served many customers","Handled check-in for about 300 passengers a day","Worked hard","Did various things"],a:1,exp:"Be specific, with numbers."},
 {q:"What should you pay attention to on the rirekisho?",opts:["Consistent dates and no typos","Free format","Any photo will do","Abbreviated names"],a:0,exp:"It is a fixed-format document."},
 {q:"What do you do if there is a gap?",opts:["Hide it","State briefly what you were doing","Make something up","Write nothing"],a:1,exp:"A short explanation eases concerns."}],

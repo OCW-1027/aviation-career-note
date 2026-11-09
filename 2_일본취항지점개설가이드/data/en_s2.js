@@ -107,14 +107,14 @@ terms:[["Serviced Office","レンタルオフィス","공유 오피스"],["Lease
 quiz:[{q:"What suits a small station for its city office?",opts:["A large owned building","A serviced office","Only the airport office","No office"],a:1,exp:"Low set-up cost and usable as the registered address."},
 {q:"What must you watch out for in an automatically renewing contract?",opts:["Nothing","The deadline for giving notice","The wall colour","The number of desks"],a:1,exp:"Miss it and the contract renews."},
 {q:"What is needed before signing a new contract?",opts:["Head office legal review and approval","A travel agency’s consent","Only the airport company’s permission","Nothing"],a:0,exp:"Follow head office rules."}],
-next:"2-4 Work rules, social insurance and labour insurance"});
+next:"2-4 Work rules, social insurance, labour insurance and tax"});
 
 set("2-4",{title:"Work Rules, Social Insurance, Labour Insurance and Tax",hl:"employment and tax",subtitle:"Payroll monthly, insurance and tax annually. Combine professional advice with head office sign-off ★",
 lead:["Once the station employs staff, Japanese employment and tax obligations arrive every month and every year: payroll, social and labour insurance, withholding and inhabitant tax, the year-end adjustment, paid leave and health checks. A small station usually leaves the work to a tax accountant and a labour and social security attorney, with the station manager overseeing it all.","This article covers the monthly payroll cycle, the annual insurance procedures, withholding and inhabitant tax, the year-end adjustment, and the points on work rules, paid leave and health checks. Rates and deadlines change every year, so always work from current information."],
 sections:[
 {h:"The monthly payroll cycle (example)",blocks:[{t:"fig",id:"opn_pay",cap:"Animated figure: the monthly payroll cycle and annual steps (example)."},{t:"ladder",rise:10,steps:[{name:"Collect the changes",sub:"What is different this month"},{name:"Send to the adviser",sub:"Payroll data"},{name:"Receive the output",sub:"Payslips, summary, insurance totals"},{name:"Head office check",sub:"Reconciled with head office HR"},{name:"Payment",sub:"On the agreed pay day"}]}]},
 {h:"Annual social and labour insurance procedures",blocks:[{t:"table",cols:["Procedure","When","What it is"],rows:[
-["Health insurance and pension rate change","Around March","The rates are revised; health insurance rates differ by prefecture"],
+["Health insurance (and long-term care insurance) rate change","Around March","The rates are revised and differ by prefecture; the pension rate is fixed at 18.3%"],
 ["Employment insurance rate change","Around April","The rate is revised"],
 ["Base remuneration report","By early July","Report the contribution base from September, based on average pay for April to June"],
 ["Mid-year revision","As it arises","File a revision where pay changes by two grades or more and stays there for three months"],

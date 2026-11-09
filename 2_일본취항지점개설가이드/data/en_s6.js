@@ -27,7 +27,7 @@ sections:[
 {name:"Record revisions",x:"Log the revision number, date and content, and make sure only the current version is on the floor."},
 {name:"Storage",x:"Keep documents auditors ask for locked but within reach of staff."},
 {name:"Annual review",x:"Review the whole thing at least once a year."}]},
-{t:"point",x:"An SOP means nothing until it is used. Tie it to new staff training and to the quality audit items (6-2, 6-3)."}]}],
+{t:"point",x:"An SOP means nothing until it is used. Tie it to new staff training (6-2) and to the quality audit items (8-1, 8-2)."}]}],
 voice:"The chapter that takes longest in a station SOP is the one on disruptions. Lay head-office rules alongside airport rules and settle, one by one, who decides what and when.",
 terms:[["Standard Operating Procedures (SOP)","標準作業手順書","표준 운영 절차서"],["Station Emergency Response Plan (SERP)","空港支店緊急時対応計画（SERP）","공항 지점 비상대응계획(SERP)"],["Conditions of Carriage","運送約款","운송약관"],["Revision","改訂","개정"],["Briefing Sheet","ブリーフィングシート","브리핑 시트"],["Document Control","文書管理","문서 관리"]],
 quiz:[{q:"Where does the station SOP sit?",opts:["It can ignore the head office manual","Within the head office manual, reflecting local conditions","The handling company writes its own","It is not needed"],a:1,exp:"It makes the common rules specific."},
