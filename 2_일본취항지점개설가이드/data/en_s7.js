@@ -95,7 +95,7 @@ sections:[
 {name:"Check yourselves",x:"From year two, build self-audits and corrective action into the annual plan (8-1, 8-2)."}]},
 {t:"point",x:"The checklist you built for the launch keeps working afterwards as the operating checklist. At the end of year one, tidy it so it can be used for the next new station as well."}]}],
 voice:"Build a list of annual procedures from your first year of operation. From the second year you can use it to start preparing a month before each procedure.",
-terms:[["Operations Calendar","運営カレンダー","운영 캘린더"],["Seasonal Initial Filing","期首申請","기수 신청"],["Monthly Meeting","月例会議","월례 회의"],["Annual Renewal (Labour Insurance)","年度更新","연도 갱신"],["Handover","引き継ぎ","인계"],["Template","ひな形","서식"]],
+terms:[["Operations Calendar","運営カレンダー","운영 캘린더"],["Seasonal Initial Filing","シーズン初期申請","시즌 최초 신청"],["Monthly Meeting","月例会議","월례 회의"],["Annual Renewal (Labour Insurance)","年度更新","연도 갱신"],["Handover","引き継ぎ","인계"],["Template","ひな形","서식"]],
 quiz:[{q:"What is the point of the first year?",opts:["Record nothing","Go through every annual procedure once and get the records and procedures right","Record it all in year two","Leave it to head office"],a:1,exp:"From year two it repeats."},
 {q:"What do you do for the first time at the first season change?",opts:["File the next season’s schedule, slots and fares","The inaugural ceremony","The staff outing","Change the uniform"],a:0,exp:"The Part 1 procedures, on your own."},
 {q:"What makes the operation stick?",opts:["Only the station manager knows it","Procedures and records organised in a shared folder","Keep no records","Start from scratch each year"],a:1,exp:"Make it possible to hand over."}],

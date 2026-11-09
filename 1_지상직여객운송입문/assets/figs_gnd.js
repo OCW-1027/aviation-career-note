@@ -876,7 +876,7 @@ opn_admin:function(l){
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 /* 1-2 事業計画の変更の締め切り */
 opn_plan:function(l){
- var W=({ja:{t:'運航計画を変えるときの締め切り（例）',st:['運航回数の変更、積載量が大きく違う型式への機材変更','使用空港の変更、発着日時の変更（臨時を除く）','その他の変更'],who:['実施の45日前まで','実施の30日前まで','実施の10日前まで'],n:['シーズンごとの申請（期首申請）とは別。日数は最新の規則で確かめる（★）','やむを得ない事由の当日の変更は、事後の届出になる']},
+ var W=({ja:{t:'運航計画を変えるときの締め切り（例）',st:['運航回数の変更、積載量が大きく違う型式への機材変更','使用空港の変更、発着日時の変更（臨時を除く）','その他の変更'],who:['実施の45日前まで','実施の30日前まで','実施の10日前まで'],n:['シーズンごとの申請（シーズン初期申請）とは別。日数は最新の規則で確かめる（★）','やむを得ない事由の当日の変更は、事後の届出になる']},
   ko:{t:'운항계획 변경 마감(예)',st:['운항 횟수 변경, 적재량이 크게 다른 기종으로 기재 변경','사용 공항 변경, 발착 일시 변경(임시 제외)','그 밖의 변경'],who:['실시 45일 전까지','실시 30일 전까지','실시 10일 전까지'],n:['시즌별 신청(기초 신청)과는 별도. 일수는 최신 규칙으로 확인한다(★)','부득이한 사유로 당일 변경하면 사후 신고한다']},
   en:{t:'Deadlines for changing the schedule (example)',st:['Changing frequencies, or switching to a type with very different capacity','Changing the airport used, or departure and arrival times (not one-off changes)','Other changes'],who:['45 days before','30 days before','10 days before'],n:['Separate from the seasonal filing. Check the number of days in the current rules (★)','Same-day changes for unavoidable reasons are notified afterwards']}})[l];
  if(!W)return F.opn_plan('ja');setK(1);
@@ -1076,7 +1076,7 @@ opn_aoc:function(l){
  if(!W)return F.opn_aoc('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#7A5CC7','#E08A2E','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+16,600,11);return SVG(L.y+8,s+L.s)},
 opn_year:function(l){
- var W=({ja:{t:'就航後1年の節目（例）',r:[['就航〜1か月','毎便に立ち会い、問題を早く見つけてSOPを直す','#D64545'],['〜3か月','月例会議・品質監査・請求の照合を定着させる','#E08A2E'],['最初のシーズンの切り替え','期首申請・発着枠・運賃を初めて自力で','#7A5CC7'],['最初の監査','教育の記録と計画の整合を確かめる','#1769e0'],['最初の年末年始','年末調整・源泉所得税・翌年度の予算','#2C8C8C'],['1年後','実績を振り返り、手順書・カレンダー・予算を見直す','#0f3558']],n:['時期は例（★）。毎月のリズムと年間の手続きをカレンダーにして引き継ぐ']},
+ var W=({ja:{t:'就航後1年の節目（例）',r:[['就航〜1か月','毎便に立ち会い、問題を早く見つけてSOPを直す','#D64545'],['〜3か月','月例会議・品質監査・請求の照合を定着させる','#E08A2E'],['最初のシーズンの切り替え','シーズン初期申請・発着枠・運賃を初めて自力で','#7A5CC7'],['最初の監査','教育の記録と計画の整合を確かめる','#1769e0'],['最初の年末年始','年末調整・源泉所得税・翌年度の予算','#2C8C8C'],['1年後','実績を振り返り、手順書・カレンダー・予算を見直す','#0f3558']],n:['時期は例（★）。毎月のリズムと年間の手続きをカレンダーにして引き継ぐ']},
   ko:{t:'취항 후 1년 이정표(예)',r:[['취항~1개월','매 편 입회해 문제를 빨리 찾아 SOP를 고친다','#D64545'],['~3개월','월간 회의·품질 감사·청구 대조를 정착시킨다','#E08A2E'],['첫 시즌 전환','기초 신청·슬롯·운임을 처음으로 스스로','#7A5CC7'],['첫 감사','교육 기록이 계획과 맞는지 확인한다','#1769e0'],['첫 연말연시','연말정산·원천세·다음 연도 예산','#2C8C8C'],['1년 후','실적을 되돌아보고 절차서·달력·예산을 재검토','#0f3558']],n:['시기는 예시(★). 매달의 리듬과 연간 절차를 달력으로 만들어 인계한다']},
   en:{t:'Milestones in the first year after launch (example)',r:[['Launch to one month','Attend every flight, catch problems early, fix the SOP','#D64545'],['Up to three months','Embed monthly meetings, quality audits and invoice checks','#E08A2E'],['First season change','File the season, slots and fares on your own for the first time','#7A5CC7'],['First audit','Check training records match the plan','#1769e0'],['First year end','Year-end adjustment, withholding tax, next year’s budget','#2C8C8C'],['After one year','Review results; update procedures, calendar and budget','#0f3558']],n:['Timings are examples (★). Hand over the monthly rhythm and annual steps as a calendar']}})[l];
  if(!W)return F.opn_year('ja');setK(1);
