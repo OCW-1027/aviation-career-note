@@ -5,7 +5,7 @@ lead:["A foreign airline serving Japan must produce its own aviation security pr
 "This article covers what these documents are, the annual revision cycle, when a revision is needed immediately, and how to respond when the authorities change their standards. The content of a security programme is sensitive security information, so only the procedure and the approach are described here."],
 sections:[
 {h:"The documents filed",blocks:[{t:"fig",id:"opn_avsec",cap:"Animated figure: security documents filed with the authority (example)."},{t:"table",cols:["Document","What it is","Frequency (example)"],rows:[
-["Your own aviation security programme","The security structure and measures for your operations in Japan, showing where they differ from the authorities’ model programme","Reviewed at least once a year (April to March)"],
+["Your own aviation security programme","The security structure and measures for your operations in Japan, showing where they differ from the authorities’ model programme","Reviewed regularly (check the timing in the authority’s guidance)"],
 ["Security training plan","The annual training plan for your own staff and the handling company","Filed once a year"],
 ["Security training procedures","How the training is actually delivered","Reviewed annually; advise if unchanged"],
 ["Self-audit results","The report on your security self-audit","Once a year"]]},
