@@ -55,14 +55,14 @@ sections:[
 {name:"Local requirements",x:"The security instructor course, the airport pass course, GDS training (5-2)."}]}]},
 {h:"Keeping the records",blocks:[{t:"rows",items:[
 {name:"What to record",x:"Attendee, company, date, course, assessment result and the expiry of the qualification."},
-{name:"Retention",x:"For the authorities’ audits, both the airline and the handling company keep them for a set period; three years or more is generally recommended (5-3)★."},
+{name:"Retention",x:"For the authorities’ audits, both the airline and the handling company keep them for a set period; the period is set for each type of training by the authority’s requirements and company rules (5-3)★."},
 {name:"The handling company’s records",x:"Require them to manage their training records to your standard, and check periodically."},
 {name:"Developing trainers",x:"Develop people inside the handling company who can teach, so new staff keep being trained."}]}]}],
 voice:"In handler training, rules that differ from other airlines, such as your baggage weight limits and special-passenger handling, take time to sink in. Hand out one sheet listing only the differences, and mistakes on the floor drop.",
 terms:[["Initial Training","初期教育","초기 교육"],["Test Flight (in System)","テスト便","테스트 편"],["Training Certificate","修了証","수료증"],["Weight and Balance","重量・重心管理","중량·평형 관리"],["Passengers with Reduced Mobility","移動に制約のある旅客（PRM）","이동에 제약이 있는 승객(PRM)"],["Instructor","講師","강사"]],
 quiz:[{q:"Who is trained?",opts:["Passenger staff only","Passenger, weight and balance, ramp, cargo, maintenance and fuelling","Travel agencies only","Nobody"],a:1,exp:"Every contractor learns your way of working."},
 {q:"How do handling staff practise on the real screens?",opts:["Build a test flight and bookings in the system","Practise on a live flight","Teach on paper only","Do not practise"],a:0,exp:"Arrange it early with head office IT."},
-{q:"What is correct about training records?",opts:["Throw them away","Keep them for a set period, generally three years or more","Remember them","The handling company’s are not needed"],a:1,exp:"They are the documents auditors look at most."}],
+{q:"What is correct about training records?",opts:["Throw them away","Keep them for the period set by the authority’s requirements and company rules","Remember them","The handling company’s are not needed"],a:1,exp:"They are the documents auditors look at most."}],
 next:"6-3 The test flight and trial operation"});
 
 set("6-3",{title:"The Test Flight and Trial Operation",hl:"Trial Operation",subtitle:"Before the first flight, run it exactly as it will be, against a checklist",

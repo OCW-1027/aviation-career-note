@@ -1,6 +1,6 @@
 /* 外国航空会社の日本就航・支店開設ガイド — English version (Part 5: 保安) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
-set("5-1",{title:"The Security Programme and Training Plan: The Annual Revision",hl:"the security programme",subtitle:"A foreign airline operating in Japan files its own security programme and reviews it every year ★",
+set("5-1",{title:"The Security Programme and Training Plan: Regular Review",hl:"the security programme",subtitle:"A foreign airline operating in Japan files its own security programme and reviews it regularly (check the timing in the authority’s guidance) ★",
 lead:["A foreign airline serving Japan must produce its own aviation security programme for its operations there and file it with the transport ministry, together with an annual plan for security training for its own staff and the handling company’s.",
 "This article covers what these documents are, the annual revision cycle, when a revision is needed immediately, and how to respond when the authorities change their standards. The content of a security programme is sensitive security information, so only the procedure and the approach are described here."],
 sections:[
@@ -31,13 +31,13 @@ quiz:[{q:"How often is the security programme reviewed, in this example?",opts:[
 next:"5-2 Security instructors and airport passes"});
 
 set("5-2",{title:"Security Instructors and Airport Passes",hl:"security instructors",subtitle:"In Japan, security training is the responsibility of a qualified instructor ★",
-lead:["Japan requires airlines to appoint an aviation security instructor. A foreign carrier must have at least one in Japan, responsible for security training of its own staff and of the handling company.",
+lead:["Japan requires airlines to appoint an aviation security instructor. A foreign carrier also appoints instructors in line with the authority’s guidance, responsible for security training of its own staff and of the handling company.",
 "This article covers qualifying and renewing as an instructor, the role, the security course required for an airport pass, handling restricted areas, and keeping the training records."],
 sections:[
 {h:"Qualifying and renewing (example)",blocks:[{t:"fig",id:"opn_instr",cap:"Animated figure: security instructors and airport passes (example)."},{t:"table",cols:["Course","What it involves"],rows:[
-["Initial course","About two days. Dates are announced annually, so apply early to fit your launch plan"],
+["Initial course","Check the length and dates in the authority’s guidance, and apply early to fit your launch plan"],
 ["Recurrent course","About a day a year, sometimes online. Without it the qualification lapses"],
-["How many","At least one in Japan. Having a manager qualified as well as the station manager covers leave and transfers"]]},
+["How many","Check the number required in the authority’s guidance. Having a manager qualified as well as the station manager covers leave and transfers"]]},
 {t:"note",x:"* An example based on several airlines’ practice. Confirm the course names, length and format with current official guidance. ★"}]},
 {h:"The instructor’s role",blocks:[{t:"check",items:[
 {name:"Planning training",x:"Planning the training for your own staff and the handling company under the training plan (5-1)."},
@@ -56,24 +56,24 @@ sections:[
 {t:"point",warn:true,x:"Do not share security material or door codes casually by email or chat. Write the rules for storing and sharing them into the station SOP."}]}],
 voice:"For a security instructor, what matters is keeping a record of what was taught. Always record the date, content and attendees of each session; it pays off in audits.",
 terms:[["Aviation Security Instructor","航空保安インストラクター","항공보안 인스트럭터"],["Initial Instructor Course","養成講習","양성 과정"],["Recurrent Course","定期講習","정기 교육"],["Restricted Area","制限区域","보호구역"],["Temporary Pass","一時パス","임시 출입증"],["Undertaking / Pledge","誓約書","서약서"]],
-quiz:[{q:"How many security instructors must be in Japan?",opts:["None","At least one","Every member of staff","One at head office is enough"],a:1,exp:"At least one in Japan."},
+quiz:[{q:"What is right about security instructors?",opts:["None are needed","Appoint them per the authority’s guidance; having more than the station manager qualified helps","Every member of staff qualifies","One at head office is enough"],a:1,exp:"Check the number and conditions in the authority’s guidance; more than one qualified person covers leave and transfers."},
 {q:"How is the qualification maintained?",opts:["Nothing is needed","An annual recurrent course","Once every ten years","An exam only"],a:1,exp:"Without the recurrent course it lapses."},
 {q:"How is security material handled?",opts:["Shared on chat","Kept where outsiders cannot see it","Posted on social media","Left on the desk"],a:1,exp:"It is treated as sensitive security information."}],
 next:"5-3 Preparing for the authorities’ audits"});
 
-set("5-3",{title:"Preparing for the Authorities’ Audits",hl:"audits",subtitle:"An annual audit, plus unannounced inspections. What gets looked at most is the training record ★",
+set("5-3",{title:"Preparing for the Authorities’ Audits",hl:"audits",subtitle:"Scheduled audits notified in advance, plus unannounced inspections. What gets looked at most is the training record ★",
 lead:["A foreign airline serving Japan is audited by the transport ministry on security, dangerous goods, safety and cabin matters, alongside head office audits and inspections by its own authority. Preparation is not something done on the day; it comes from the daily records.",
 "This article covers the types of audit and when they come, what is looked at most closely, what to have ready, and how to respond to findings. It draws on several airlines’ experience, and methods change from year to year."],
 sections:[
 {h:"Types of audit (example)",blocks:[{t:"fig",id:"opn_audit",cap:"Animated figure: audits and inspections a station faces (example)."},{t:"table",cols:["Audit","When and what"],rows:[
-["Ministry audit (security, dangerous goods)","Once a year. Dates are announced early in the year and differ by airport; airlines are notified one to two months ahead"],
-["Unannounced inspection","Added from around the second half of 2024. It looks at the operation as it really runs"],
+["Ministry audit (security, dangerous goods)","Scheduled audits, notified in advance by the authority (timing and frequency vary by year and airport)"],
+["Unannounced inspection","Carried out without notice; it looks at the operation as it really runs"],
 ["Dangerous goods audit","On the handling of dangerous goods, when the authorities make contact"],
 ["Head office safety and security audit","Stations inspected on a cycle the company sets, e.g. every one to three years"],
 ["Home authority inspection","An inspection of overseas stations under your own country’s operating standards"]]},
 {t:"note",x:"* Based on several airlines’ experience. ★"}]},
 {h:"What is looked at most closely",blocks:[{t:"rows",items:[
-{name:"Training records",x:"Training is what ministry audits look at most. For the airline and the handling company, keeping training records for three years or more is generally recommended (check company and authority rules)★."},
+{name:"Training records",x:"Training is what ministry audits look at most. For the airline and the handling company, keep training records for the period set by the authority’s requirements for each course and company rules ★."},
 {name:"Plan versus practice",x:"Whether what the security and training plans say is actually being done (5-1)."},
 {name:"Amendments applied",x:"Whether amended standards have reached the procedures, and whether staff know them."},
 {name:"The year’s focus areas",x:"The authorities usually signal what they will focus on. Find out and prepare."}]}]},
@@ -89,8 +89,8 @@ deepLabel:"In depth: the audit shelf and the mock audit",
 deep:[{h:"The evidence shelf (index) — example",blocks:[{t:"table",cols:["Section","What goes there","Keep for"],rows:[["Plans","Current security programme and training plan; copies of revision filings","Current and past versions ★"],["Training","Attendee lists, completion certificates, materials (own staff and handler)","Three years or more as a guide ★"],["Daily checks","Daily and monthly check sheets; aircraft guarding records","Company rules ★"],["Self-audit","Checklists, corrective action requests, the action log (8-1, 8-2)","Company rules ★"],["Dangerous goods","Training records, NOTOC copies, reports","As required ★"],["Authority correspondence","Past findings and replies; notices","Until after the next audit"]]},{t:"point",x:"Put a one-page index (what is where) at the front of the shelf. Even when the responsible person is off, anyone can show the inspector the right file at once."}]},{h:"Questions that often come up in a mock audit (example)",blocks:[{t:"table",cols:["Question","What to show"],rows:[["When did this person last take security training?","Attendance record and certificate"],["Did you deliver all the training in the plan?","Plan-versus-actual table"],["How did you reflect the rule change in the manual?","Revision history and briefing record"],["How did you fix last time’s finding?","Corrective action request and effectiveness check"],["How do you check the handler’s training?","Quality audit report and copies of training records"]]}]},{h:"Running a mock audit",blocks:[{t:"check",items:[{name:"Timing",x:"One to two months before the authority’s audit, leaving time to fix things."},{name:"The auditor",x:"Ask someone from head office or another station; their questions will be closer to the real thing."},{name:"Go to the floor",x:"Ask staff real questions at the counter, the gate and on the ramp."},{name:"Turn results into CARs",x:"Write every finding up as a corrective action request and close it before the real audit (8-2)."}]}]},{h:"After a finding",blocks:[{t:"rows",items:[{name:"Check the facts on the spot",x:"If there is a misunderstanding, explain with documents. Answer with facts, not excuses."},{name:"Category and deadline",x:"The weight of the finding may set the reply deadline and what the reply must contain ★."},{name:"The reply",x:"State the cause, the corrective action, the due date and how effectiveness will be checked. Don’t stop at the immediate fix."},{name:"Share",x:"Share with head office and the handling company, and feed it into next year’s plan and training."}]},{t:"link",href:"view.html?no=8-1",x:"8-1 The self-audit checklist"}]}],
 voice:"In an unannounced inspection, inspectors may check the counter’s baggage questioning procedure and training records on the spot. Keeping records in one place day to day lets you show them without scrambling.",
 terms:[["Audit / Inspection","監査","감사"],["Unannounced Inspection","抜き打ち点検","불시 점검"],["Training Records","教育記録","교육 기록"],["Corrective Action Plan","是正計画","시정 계획"],["Focus Areas","重点事項","중점 사항"],["NOTOC","機長通知書 (NOTOC)","기장 통보서 (NOTOC)"]],
-quiz:[{q:"What do ministry audits look at most closely, in this example?",opts:["The size of the office","Training records","Revenue","Uniforms"],a:1,exp:"Airline and handling company training records; keeping them for three years or more is generally recommended."},
-{q:"What was added from around the second half of 2024?",opts:["Unannounced inspections","Document-only checks","Online inspections","Travel agency inspections"],a:0,exp:"Inspections that look at the operation as it runs."},
+quiz:[{q:"What do ministry audits look at most closely, in this example?",opts:["The size of the office","Training records","Revenue","Uniforms"],a:1,exp:"Airline and handling company training records, kept for the period set by the authority’s requirements and company rules."},
+{q:"Which inspection looks at the operation without notice?",opts:["Unannounced inspections","Document-only checks","Online inspections","Travel agency inspections"],a:0,exp:"Inspections that look at the operation as it runs."},
 {q:"What do you do with a finding?",opts:["Hide it","Write a corrective plan with cause, measures and a deadline","Nothing","Blame the handling company"],a:1,exp:"Share the prevention measures."}],
 next:"5-4 Emergency response planning and joint airport exercises"});
 
