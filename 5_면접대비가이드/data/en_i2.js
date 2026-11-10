@@ -57,7 +57,7 @@ sections:[
 {h:"Typical situations and how to think about them",blocks:[{t:"table",cols:["Situation","How to think about it"],rows:[
 ["A passenger arrives after the cut-off and insists on boarding","Explain the rule kindly, look together for the next flight or another option, and tell your supervisor"],
 ["A bag is over the weight limit and the passenger refuses to pay","Explain the rule and the charge, and offer options such as repacking"],
-["A passenger is angry and shouting","Move somewhere quieter, hear them out, establish the facts, and hand over to a supervisor if needed"],
+["A passenger is angry and shouting","Check safety first and call a supervisor for support if needed; offer a quieter place to talk, hear them out and establish the facts"],
 ["An expired passport is noticed just before departure","Explain that they cannot board, explain how to sort it out, and keep a record"],
 ["A pregnant passenger has no medical certificate","Confirm how many weeks pregnant the passenger is and decide by the rules; if unsure, check (Ground Staff 1-6)"],
 ["A colleague is giving a passenger wrong information","Correct it gently on the spot and talk to the colleague later; the passenger comes first"],
@@ -71,7 +71,7 @@ voice:"A good answer to a situational question shows the order: safety and rules
 terms:[["Situational Question","状況設定型の質問","상황 질문"],["Priority","優先順位","우선순위"],["Supervisor","上席","상급자"],["Options","選択肢","선택지"],["Record","記録","기록"]],
 quiz:[{q:"What does the interviewer watch in a situational question?",opts:["A memorised right answer","The order of thinking and priorities","Length of answer","Loudness"],a:1,exp:"Safety, rules, passenger, report."},
 {q:"Which answer scores well at an airport?",opts:["I would sort it out myself","I would report to my supervisor and confirm the rule first","I would ignore the rules","I would do what the passenger says"],a:1,exp:"Do not decide alone."},
-{q:"What is the first step with an angry passenger?",opts:["Argue back","Move somewhere quieter and hear them out","Ignore them","Read out the rules at once"],a:1,exp:"Acknowledge feelings before facts."}],
+{q:"What is the first step with an angry passenger?",opts:["Argue back","Check safety and hear them out","Ignore them","Read out the rules at once"],a:1,exp:"Check safety, call for support if needed, and acknowledge feelings before facts."}],
 next:"2-4 Language interviews"});
 
 set("2-4",{title:"Language Interviews",hl:"language interviews",subtitle:"Not your test score but whether you can use it on the spot. Short, accurate announcements",
@@ -185,7 +185,7 @@ set("3-3",{title:"After the Offer: Procedures and Status of Residence",hl:"after
 lead:["Once you have an offer, the employment contract, joining documents, status of residence procedures for foreign nationals, housing and preparation for training all begin. Status of residence in particular takes time, so agree the steps with the company early.",
 "This article covers the path from offer to start, the working conditions to confirm, the status of residence procedure and what to do before you join (for detail on statuses of residence, see Ground Staff 7-1 and 7-2)."],
 sections:[
-{h:"From offer to start",blocks:[{t:"fig",id:"int_offer",cap:"Figure: from job offer to first day."},{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Terms presented"},{name:"Confirm the terms",sub:"The employment contract"},{name:"Status of residence",sub:"For foreign nationals, filed by the company"},{name:"Joining documents",sub:"Withholding slip, bank details and so on"},{name:"Start",sub:"Initial training and ID pass application"}]}]},
+{h:"From offer to start",blocks:[{t:"fig",id:"int_offer",cap:"Figure: from job offer to first day."},{t:"ladder",rise:10,steps:[{name:"Offer",sub:"Terms presented"},{name:"Confirm the terms",sub:"The employment contract"},{name:"Status of residence",sub:"For foreign nationals, filed with the company’s help"},{name:"Joining documents",sub:"Withholding slip, bank details and so on"},{name:"Start",sub:"Initial training and ID pass application"}]}]},
 {h:"Working conditions to confirm",blocks:[{t:"table",cols:["Item","What to confirm"],rows:[
 ["Employment type","Permanent, fixed-term or part-time, the contract period and renewal"],
 ["Working pattern","Shifts, early and late work, how days off are set"],
@@ -194,9 +194,9 @@ sections:[
 ["Workplace","Airport and terminal, and the possibility of transfer"],
 ["Social insurance","Health insurance, pension, employment insurance (Launching Flights to Japan 2-4)"]]}]},
 {h:"Status of residence (foreign nationals)",blocks:[{t:"check",items:[
-{name:"Certificate of Eligibility",x:"If you are joining from abroad, the company applies to Japan’s Immigration Services Agency. Screening takes time."},
+{name:"Certificate of Eligibility",x:"You are the applicant, but when joining from abroad a company representative usually files with Japan’s Immigration Services Agency on your behalf; agree who does what. Screening takes time."},
 {name:"Visa application",x:"Once you have the certificate, apply for the visa at a Japanese embassy or consulate in your country."},
-{name:"Entry",x:"You receive a residence card on entry and register your address."},
+{name:"Entry",x:"You receive the residence card at the airport or later, and register your address within 14 days of settling."},
 {name:"If you are already in Japan",x:"You may need to apply to change your status. Confirm that the job matches the status. ★"}]}]},
 {h:"Worth doing before you join",blocks:[{t:"rows",items:[
 {name:"Background reading",x:"The company’s routes and aircraft, and airport basics (the Ground Staff series)."},
@@ -205,7 +205,7 @@ sections:[
 {name:"Documents",x:"The withholding slip from your previous employer, employment insurance papers, copies of your certificates."}]}]}],
 voice:"After an offer, align your start date with the residence-status procedure together with the company. Late paperwork can push back your start date.",
 terms:[["Job Offer","内定","내정"],["Employment Contract","雇用契約","고용 계약"],["Certificate of Eligibility (COE)","在留資格認定証明書","재류자격인정증명서"],["Probation Period","試用期間","수습 기간"],["Residence Card","在留カード","재류카드"]],
-quiz:[{q:"Who applies for the Certificate of Eligibility when you join from abroad?",opts:["You, at home","The company, in Japan","The embassy","A travel agency"],a:1,exp:"The company usually applies to Japanese immigration."},
+quiz:[{q:"When you join from abroad, who usually handles the Certificate of Eligibility in Japan?",opts:["You, at a home office","A company representative, on your behalf","The embassy","A travel agency"],a:1,exp:"You are the applicant, but a company representative usually files with Japanese immigration on your behalf."},
 {q:"Which working conditions should be confirmed after an offer?",opts:["Working pattern, pay and probation","The company logo","The president’s hobbies","The airport shops"],a:0,exp:"Employment type, pattern, pay and social insurance."},
 {q:"What is worth doing before you join?",opts:["Nothing","Learn the company’s routes and airport basics, and sort out your commute","Keep job hunting","Just travel"],a:1,exp:"Housing that allows early starts matters too."}],
 next:"3-4 From the interviewer’s side: what hiring tends to overlook"});

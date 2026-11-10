@@ -42,7 +42,7 @@ sections:[
 {name:"Breadth of work",x:"Not just the counter: reporting, documents, coordinating the handler and training, all in a small team."},
 {name:"A supervisory view",x:"Less “I do the work” and more “I make sure the work is done right”."},
 {name:"Responsibility in disruption",x:"In cancellations and delays you make decisions as the station and report to head office."},
-{name:"Applying to be station rep",x:"Many ground handling staff apply, but the role is not speed at check-in or arrivals; it is checking the handler’s work, making decisions and reporting to head office. Recast task experience in the language of supervision, judgement and reporting (4-2)."}]}]},
+{name:"Applying to be station rep",x:"Many ground handling staff apply, but the role is not speed at check-in or arrivals; it is checking the handler’s work, making decisions and reporting to head office. Separate the tasks, checks and reports you actually did, and explain how they carry over to supervision, judgement and reporting (4-2)."}]}]},
 {h:"How to prepare",blocks:[{t:"rows",items:[
 {name:"Research the company",x:"Routes, frequencies, aircraft, handling arrangements and the profile described on the recruitment page."},
 {name:"Translate your experience",x:"Re-describe your experience in the language of this company’s work: sales experience becomes explaining to passengers and handling complaints."},
@@ -60,7 +60,7 @@ lead:["Japanese employers often ask for two documents: the rirekisho, a CV in a 
 "This article covers the difference between the two, how to write them, how to present achievements for airport work, and the common mistakes."],
 sections:[
 {h:"The two documents",blocks:[{t:"fig",id:"int_cv",cap:"Figure: rirekisho versus career summary."},{t:"table",cols:["Document","Content","Points"],rows:[
-["Rirekisho (CV)","Name, contact details, education, employment, qualifications, motivation. A fixed format","Use either the Japanese era or Western years consistently. Follow the photo rules. Typos are fatal"],
+["Rirekisho (CV)","Name, contact details, education, employment, qualifications, motivation. A fixed format","Use either the Japanese era or Western years consistently. Follow the photo rules. Check for typos and gaps before sending"],
 ["Shokumu keirekisho (career summary)","What you did, what you achieved and what you learned. Typically one or two A4 pages","Chronological or by function. Specific, with numbers"]]}]},
 {h:"Writing the career summary",blocks:[{t:"ladder",rise:10,steps:[{name:"Summary",sub:"Three or four lines on your whole career"},{name:"Employment",sub:"Company, dates, department, role"},{name:"Duties",sub:"What you did, specifically"},{name:"Achievements",sub:"Numbers and what you changed"},{name:"Qualifications and languages",sub:"Test scores and completed training"}]},
 {t:"rows",items:[
@@ -93,13 +93,13 @@ sections:[
 {h:"Common mistakes",blocks:[{t:"check",items:[
 {name:"Only the dream",x:"Ending at “I have loved aeroplanes since I was a child”. Use the love as the way in, and connect it to understanding the job."},
 {name:"Only praise for the company",x:"Not “your company is wonderful” but what attracts you and how you fit."},
-{name:"Talking about conditions",x:"Do not make days off, pay or location your motivation; ask about them when invited to ask questions."},
+{name:"Talking about conditions",x:"Do not stop at days off, pay or location; link the work to your own experience, and check conditions at a suitable moment."},
 {name:"Reciting",x:"A memorised text read aloud tends not to land. Remember the points and say them in your own words."}]},
 {t:"point",x:"Motivation for applying joins three points with a line: your experience, the company’s character and the content of the job. Miss one and it loses its force."}]}],
 voice:"A good motivation links why this company and what you can do for it. Talking only about the company, or only about yourself, falls flat.",
 terms:[["Self-introduction","自己紹介","자기소개"],["Motivation for Applying","志望動機","지원 동기"],["Strength","強み","강점"],["Contribution","貢献","공헌"],["Monotone Delivery","棒読み","단조로운 낭독"]],
 quiz:[{q:"How many strengths should the self-introduction focus on?",opts:["One","Three","Five","None"],a:0,exp:"One told through a situation stays longer."},
-{q:"Which is NOT an element of motivation?",opts:["Why airport work","Why this company","What you want to do","Because there are many days off"],a:3,exp:"Ask about conditions when invited to ask questions."},
+{q:"Which is NOT an element of motivation?",opts:["Why airport work","Why this company","What you want to do","Because there are many days off"],a:3,exp:"Do not stop at conditions; link the work to your experience, and check conditions at a suitable moment."},
 {q:"How should you deliver a prepared answer?",opts:["Word for word","Remember the points and use your own words","Speak quickly","Close your eyes"],a:1,exp:"Recitation tends not to land."}],
 next:"2-2 Thirty common questions"});
 })(window.ARTS);
