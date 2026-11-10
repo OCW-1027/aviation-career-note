@@ -23,7 +23,7 @@ sections:[
 ["Messages","Sending and receiving movement and load messages"],
 ["Test flight","Create a test flight and bookings in the system and run check-in through to boarding"]]}]},
 {h:"Being ready for failures",blocks:[{t:"rows",items:[
-{name:"Manual fallback",x:"Keep the materials needed for manual working — a passenger list, a seat map, handwritten boarding passes and tags — and practise regularly (many airlines do so at least once a year; Ground Staff 2-7)."},
+{name:"Manual fallback",x:"Keep the materials needed for manual working — a passenger list, a seat map, handwritten boarding passes and tags — and practise regularly (how often is set in the company training plan; Ground Staff 2-7)."},
 {name:"Contacts",x:"Keep a contact list for the shared system provider, head office IT and the handling company."},
 {name:"Account management",x:"Tidy the accounts whenever staff change. Never write passwords in a shared document."}]},
 {t:"point",warn:true,x:"System connections take far longer from application to service than people expect. Once a launch is decided, make the application a top priority, alongside the airport formalities."}]}],
@@ -109,9 +109,9 @@ sections:[
 {h:"Digital entry procedures",blocks:[{t:"rows",items:[
 {name:"Online pre-registration",x:"Immigration and customs declaration details can be registered online in advance (Visit Japan Web and similar). Agree how it is explained on board and at the counter."},
 {name:"Paper forms",x:"How paper arrival cards and customs declarations are prepared and handed out when needed."},
-{name:"Electronic travel authorization (JESTA)",x:"An amendment to the immigration law passed in May 2026 (promulgated 5 June) provides for it. Visa-exempt short-term visitors will need authorization online before departure, and airlines will be required not to board anyone without it. Introduction is targeted for fiscal 2028 (the law takes effect on a date set by cabinet order no later than 31 March 2029). Check-in procedures and systems will have to be prepared. ★"}]}]},
+{name:"Electronic travel authorization (JESTA)",x:"An amendment to the immigration law passed in May 2026 (promulgated 5 June) provides for it. Once it starts, visa-exempt short-term visitors will need authorization online before departure, and airlines will be required not to board anyone without it (not yet in operation as of November 2026). Introduction is targeted for fiscal 2028 (the law takes effect on a date set by cabinet order no later than 31 March 2029). Check-in procedures and systems will have to be prepared. ★"}]}]},
 {h:"Animal and plant quarantine",blocks:[{t:"check",items:[
-{name:"Pets",x:"The import conditions for dogs and cats: microchip, rabies vaccination, antibody test, waiting period and advance notification (Ground Staff 1-8)."},
+{name:"Pets",x:"The import conditions for dogs and cats, such as microchip, rabies vaccination, antibody test, waiting period and advance notification. They differ by origin and the animal’s history, so check in advance (Ground Staff 1-8)."},
 {name:"Plants and food",x:"Explaining which meat products and fruit cannot be brought in. Breaches carry penalties."},
 {name:"In-flight announcements",x:"Animal and plant quarantine information is also sometimes announced before arrival."}]}]},
 {h:"The tax-free change (refund method)",blocks:[{t:"table",cols:["","Until now","From 1 November 2026"],rows:[
@@ -120,14 +120,14 @@ sections:[
 ["Refund","—","After confirmation, the shop refunds the tax"],
 ["Categories","General goods and consumables, purchase limits, sealed packaging","Categories, consumable limits and sealed packaging abolished"]]},
 {t:"rows",items:[
-{name:"Effect at the airport",x:"Travellers must present their passport at a terminal on departure, within 90 days of purchase, for customs confirmation. Work is under way to keep queues down, and the departure flow and the time it takes may change."},
+{name:"Effect at the airport",x:"Travellers leaving within 90 days of purchase must have the goods confirmed by customs before checking them in (the method differs by airport). Work is under way to keep queues down, and the departure flow and the time it takes may change."},
 {name:"For the airline",x:"Tell passengers that departure formalities may take longer, and confirm how duty-free goods are handled when a departure is cancelled (Ground Staff 2-6)."}]},
 {t:"note",x:"* From the government’s explanatory material on the FY2025 tax reform outline. Check the latest guidance from the National Tax Agency and customs for details. ★"}]},
 {h:"What to settle before launch",blocks:[{t:"fig",id:"opn_quar",cap:"Animated figure: what to confirm with customs and quarantine before launch (example)."},{t:"check",items:[
 {name:"Customs",x:"The confirmations for a new service (4-2), the corporate application, and access procedures for staff areas."},
 {name:"Quarantine",x:"The announcement material and the contact structure during an outbreak."},
 {name:"Animal and plant quarantine",x:"The flow when a pet arrives, and the contacts."},
-{name:"Immigration",x:"The procedure for escorting and guarding passengers refused entry, and undertakings on managing gate door codes, among other things (Part 5)."}]}]}],
+{name:"Immigration",x:"The procedure for escorting and guarding passengers refused entry, and the contact and management arrangements among those involved (Part 5)."}]}]}],
 voice:"When quarantine is tightened, align the in-flight announcements in Japanese, Korean and English and check them with cabin crew before arrival. At the airport, add staff to help passengers fill in the forms.",
 terms:[["Quarantine Station","検疫所","검역소"],["Animal Quarantine","動物検疫","동물 검역"],["Plant Protection","植物防疫","식물 검역"],["Tax-free Scheme","免税制度","면세 제도"],["Refund Method","リファンド方式","환급 방식"],["Electronic Travel Authorisation","電子渡航認証","전자여행허가"]],
 quiz:[{q:"When does Japan’s visitor tax-free scheme move to a refund method?",opts:["April 2025","1 November 2026","April 2027","It is not changing"],a:1,exp:"It applies from 1 November 2026."},

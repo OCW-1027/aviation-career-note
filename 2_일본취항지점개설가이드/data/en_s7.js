@@ -1,7 +1,7 @@
 /* 外国航空会社の日本就航・支店開設ガイド — English version (Part 7: 営業と関係機関) */
 (function(A){function set(no,en){if(A[no])A[no].en=en}
 set("7-1",{title:"Travel Agencies, Global Distribution System (GDS) and BSP: Starting Sales",hl:"starting sales",subtitle:"Prepare to sell while you prepare to fly. In Japan the trade carries much of the selling ★",
-lead:["However well the operation is prepared, a route does not survive unless the seats sell. In the Japanese market travel agencies carry a great deal of the selling, especially for packages and groups, and being in the Global Distribution System (GDS) and the BSP is the precondition for that.",
+lead:["However well the operation is prepared, a route does not survive unless the seats sell. In the Japanese market travel agencies carry a great deal of the selling, especially for packages and groups, so selling through them means agreeing with head office on the distribution and settlement methods to use, such as a Global Distribution System (GDS) and the BSP.",
 "This article covers the steps to start selling, building relationships with the trade, preparing the GDS and BSP, distributing fares and auditing ticketing, direct sales, and the bodies worth knowing."],
 sections:[
 {h:"The steps (example)",blocks:[{t:"fig",id:"opn_sales",cap:"Animated figure: launching sales (example)."},{t:"ladder",rise:10,steps:[{name:"Understand the market",sub:"Competitors’ schedules and fares, demand"},{name:"Set the sales policy",sub:"The group and individual mix, the main channels"},{name:"GDS and BSP",sub:"Contracts and participation"},{name:"Brief the trade",sub:"Announce the service, distribute fares"},{name:"Start selling",sub:"Share the booking position and support the channels"}]}]},
@@ -47,7 +47,7 @@ sections:[
 {name:"Charges and schemes",x:"Revisions to airport charges and changes to incentive schemes."},
 {name:"Security",x:"Changes to screening and joint security training (5-2)."},
 {name:"Emergencies",x:"The airport emergency plan, joint exercises (5-4) and how large-scale disruption is handled."}]},
-{t:"point",x:"When a major disaster closes an airport, the order in which operations resume and how flights are allocated are coordinated through the committee. It is important to attend meetings regularly and become a familiar face."}]},
+{t:"point",x:"When a major disaster closes an airport, airlines’ flight plans may be coordinated through the committee, following the airport’s and the authorities’ decisions. It is important to attend meetings regularly and become a familiar face."}]},
 {h:"The bodies around it",blocks:[{t:"table",cols:["Who","Typical relationship"],rows:[
 ["The ministry, airport office and FAIB","Approvals, slots and reporting (Part 1)"],
 ["The airport company","Facilities, charges, incentives, ID passes"],

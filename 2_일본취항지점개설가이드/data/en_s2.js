@@ -62,7 +62,7 @@ sections:[
 ["Payment deadlines","For costs paid by head office, request payment about a week before the deadline, allowing for holidays in both countries and transfer times"],
 ["Annual costs","Airline Operators Committee (AOC) annual fees, radio contracts and the like. Check the imprest fund covers them that month"]]}]},
 {h:"Money specific to airlines",blocks:[{t:"rows",items:[
-{name:"International tourist tax",x:"A tax the airline collects from departing passengers and pays to the state (¥3,000 per person from July 2026), declared and paid by the end of the second month after the month of departure. It is self-assessed, so keep the supporting records. ★"},
+{name:"International tourist tax",x:"A tax the airline collects from departing passengers and pays to the state (in principle ¥3,000 per person for departures from July 2026, with exemptions and transitional measures at the old rate), declared and paid by the end of the second month after the month of departure. It is self-assessed, so keep the supporting records. ★"},
 {name:"Passenger service facility charges (PSFC, etc.)",x:"Charges the airline collects from passengers on behalf of the airport company. At some airports a collection fee is deducted from the settlement, and that fee is treated as revenue."},
 {name:"Handling fees",x:"Extra charges vary with how early a delay or cancellation was advised. Match the invoice detail against the work records (Ground Staff 6-2)."},
 {name:"Subsidised costs",x:"Where the airport company subsidises a cost, account for the invoice and the subsidy correctly."}]},
@@ -83,7 +83,7 @@ sections:[
 ["Airport office","Operations, storing documents and supplies, staff standby","The airport company (sometimes the terminal operator)"],
 ["Staff housing","Homes for expatriates and the station manager","A real estate agency, on a corporate lease"]]}]},
 {h:"Choosing the city office",blocks:[{t:"check",items:[
-{name:"Serviced offices",x:"Low set-up cost, usable as the registered address, with reception and post handling. They suit a small station."},
+{name:"Serviced offices",x:"Usually a low set-up cost; check in the contract whether it can be used as the registered address. Reception and post handling. They suit a small station."},
 {name:"Term and termination",x:"Some contracts cannot be terminated early, or require the rent for the remaining term."},
 {name:"Renewal and increases",x:"Conditions for rent increases after a period, automatic renewal, and the deadline for giving notice (for example, three months before expiry)."},
 {name:"Post",x:"Tax, social insurance and telecom invoices often arrive by post at the city office. Decide how post is collected and forwarded."}]}]},
@@ -104,7 +104,7 @@ sections:[
 {t:"point",x:"Automatically renewing contracts tend to renew before anyone notices. Put the notice deadline in the contract register and on the annual calendar."}]}],
 voice:"Airport office space may not be free, and the location may not be settled until a few months before launch. In the meantime, rent temporary space through the airport company and split the work with the city office.",
 terms:[["Serviced Office","レンタルオフィス","공유 오피스"],["Lease Agreement","賃貸借契約","임대차 계약"],["Automatic Renewal","自動更新","자동 갱신"],["Deposit / Key Money","敷金・礼金","보증금·사례금"],["Corporate Lease","法人契約","법인 계약"],["Contract Register","契約台帳","계약 대장"]],
-quiz:[{q:"What suits a small station for its city office?",opts:["A large owned building","A serviced office","Only the airport office","No office"],a:1,exp:"Low set-up cost and usable as the registered address."},
+quiz:[{q:"What suits a small station for its city office?",opts:["A large owned building","A serviced office","Only the airport office","No office"],a:1,exp:"Usually a low set-up cost, and depending on the contract it can serve as the registered address."},
 {q:"What must you watch out for in an automatically renewing contract?",opts:["Nothing","The deadline for giving notice","The wall colour","The number of desks"],a:1,exp:"Miss it and the contract renews."},
 {q:"What is needed before signing a new contract?",opts:["Head office legal review and approval","A travel agency’s consent","Only the airport company’s permission","Nothing"],a:0,exp:"Follow head office rules."}],
 next:"2-4 Work rules, social insurance, labour insurance and tax"});
@@ -117,12 +117,12 @@ sections:[
 ["Health insurance (and long-term care insurance) rate change","Around March","The rates are revised and differ by prefecture; the pension rate is fixed at 18.3%"],
 ["Employment insurance rate change","Around April","The rate is revised"],
 ["Base remuneration report","By early July","Report the contribution base from September, based on average pay for April to June"],
-["Mid-year revision","As it arises","File a revision where pay changes by two grades or more and stays there for three months"],
+["Mid-year revision","As it arises","File a revision where fixed pay changes and the three-month average differs by two grades or more (conditions such as paid days apply)"],
 ["Annual labour insurance renewal","June to 10 July","Declare and pay the final figure for last year and the estimate for this year"],
 ["Joiners and leavers","Each time","Notification of acquiring or losing insured status"]]},
 {t:"note",x:"* A general outline. Watch for changes to the schemes and the deadlines. ★"}]},
 {h:"Withholding and inhabitant tax",blocks:[{t:"rows",items:[
-{name:"Special payment terms for withholding tax",x:"Employers with fewer than ten staff can pay twice a year rather than monthly: January to June by 10 July, and July to December by 20 January. It also covers withholding on professional fees."},
+{name:"Special payment terms for withholding tax",x:"Employers that regularly pay fewer than ten people can, once their application is approved by the tax office, pay twice a year rather than monthly: January to June by 10 July, and July to December by 20 January. It also covers withholding on professional fees."},
 {name:"Inhabitant tax by payroll deduction",x:"Inhabitant tax based on last year’s income is deducted from pay and remitted to the municipality in twelve instalments from June to May. The notice arrives around May."},
 {name:"Joiners and leavers",x:"File the change notification for payroll deduction with the employee’s municipality."},
 {name:"If you miss a payment",x:"Inhabitant tax deducted from pay is remitted by the company, as the special collection agent, by the set deadline. Responsibility for payment lies with the company, not the employee. Keep the deadlines."}]}]},
@@ -133,9 +133,9 @@ sections:[
 {name:"Refunds",x:"The company refunds the employee and adjusts it against the withholding tax it pays."}]}]},
 {h:"Work rules, paid leave and health checks",blocks:[{t:"table",cols:["Item","The point"],rows:[
 ["Work rules","An establishment with ten or more staff must draw up work rules and file them with the labour standards office. Even with fewer, set out hours, days off and holiday periods clearly in the employment contract"],
-["Employment contracts","In one arrangement, the station manager contracts with head office and local staff with the representative in Japan. Salaries are reviewed once a year"],
+["Employment contracts","In one arrangement, the station manager contracts with head office and local staff with the representative in Japan. Check the employment contract and company rules for when salaries are reviewed"],
 ["Paid leave","10 days after six months, rising each year to a maximum of 20. Anyone granted 10 days or more must take at least 5 a year"],
-["Health checks","Required once a year. Book early, as the end of the fiscal year is busy. Share the results with head office’s health staff and keep them on file"],
+["Health checks","Required once a year in principle (every six months for night work and similar). Book early, as the end of the fiscal year is busy. Share the results with head office’s health staff and keep them on file"],
 ["Rosters","Airport work is shift work. Build the roster so absences do not overlap and there is cover for irregular days"]]},
 {t:"point",x:"Japanese employment law changes almost every year. Follow the ministry’s announcements, ask your advisers about anything unclear, and agree the timing of any change with head office."}]}],
 voice:"Japan’s year-end adjustment resembles Korea’s year-end tax settlement, but inhabitant tax being deducted from pay from the following June is hard for head office to grasp. Laying out the monthly flow on one sheet beside the Korean system speeds up understanding.",

@@ -6,7 +6,7 @@ lead:["A head office passenger handling manual is the rule for every station. Bu
 sections:[
 {h:"Where the SOP sits",blocks:[{t:"fig",id:"opn_sop",cap:"Animated figure: writing the station SOP (example)."},{t:"table",cols:["Document","What it is"],rows:[
 ["Head office manuals","Conditions of carriage, passenger handling, loading and dangerous goods, flight operations. Common to every station"],
-["Station SOP","The specific procedures at the Japanese airport, within the head office manual, reflecting local rules and the airport"],
+["Station SOP","The specific procedures at the Japanese airport, built on the head office manual so as to meet Japanese law and airport requirements (any conflict is adjusted with head office approval)"],
 ["Emergency procedures","What the station does in a security threat, an accident or an irregular operation"],
 ["Procedures by area","Counter, gate, arrivals and weight and balance procedures agreed with the handling company"]]}]},
 {h:"Contents of a station SOP (example)",blocks:[{t:"check",items:[

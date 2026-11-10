@@ -96,7 +96,7 @@ sections:[
 {name:"e-Gov",x:"The government’s electronic filing portal, used for some approvals."},
 {name:"Slot systems",x:"Systems used in slot coordination."},
 {name:"NACCS",x:"The electronic system for arrival and departure declarations to customs and others (4-2)."}]},
-{t:"point",x:"IDs and passwords for these systems have to be handed over every time someone moves on. Manage them on a shared station register rather than in one person’s mailbox, keeping the passwords themselves somewhere secure."}]},
+{t:"point",x:"Each time someone moves on, update the user details and permissions for these system accounts. Keep track of who uses which account on a shared station register rather than in one person’s mailbox; never pass passwords from person to person, and manage any shared accounts securely under company rules."}]},
 {h:"Your home country’s procedures too",blocks:[{t:"check",items:[
 {name:"Your own authority",x:"Approval for the route, the operating plan and safety oversight at home."},
 {name:"Traffic rights",x:"The rights under the air services agreement between the two countries. Many markets are now liberalised, but always confirm the procedure."},

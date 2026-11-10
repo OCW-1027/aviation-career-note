@@ -28,7 +28,7 @@ sections:[
 {t:"point",x:"Write each item as a statement that can be answered yes or no, and fix how it is checked (look, ask, read the records). Then the result is the same whoever does the audit."}]},
 {h:"Recording the results",blocks:[{t:"fig",id:"opn_selfaudit",cap:"Moving diagram: how one checklist item becomes a record, through a set check method and one of three results."},{t:"check",items:[
 {name:"Basic details",x:"Date, auditor, flights or time band covered, and who was present."},
-{name:"Three results",x:"Record Pass, Fail or N/A. If in doubt, record Fail and say why."},
+{name:"Three results",x:"Record Pass, Fail or N/A. If you cannot judge an item, record it as Unconfirmed with the reason, and set who will confirm it and by when."},
 {name:"Evidence",x:"Attach a photo or a copy of the document to every Fail, with the corrective action request number (8-2)."},
 {name:"Sign-off and filing",x:"The station manager reviews and signs, and the sheet is kept for the set period (check company and authority rules) ★."},
 {name:"Version control",x:"When rules or the manual change, update the checklist too, with a revision number and date."}]}]}],
@@ -51,13 +51,13 @@ sections:[
 ["October to November","Pre-winter check (de-icing); joint security training"],
 ["December","Mock audit ahead of the authority’s audit (5-3)"],
 ["January to March","The authority’s audit (dates as notified); year-end review and next year’s plan"]]},
-{t:"note",x:"* Example only. The authority often announces audit dates early in the year, and there are also unannounced inspections (5-3). ★"}]},
+{t:"note",x:"* Example only. Check actual audit dates against the authority’s notice; there are also unannounced inspections (5-3). ★"}]},
 {h:"The corrective action flow",blocks:[{t:"fig",id:"opn_capa",cap:"Moving diagram: immediate action (the bucket) and corrective action (fixing the pipe). Close only after checking that it worked."},{t:"ladder",rise:10,steps:[{name:"Finding",sub:"Check, audit or incident report"},{name:"Immediate action",sub:"Stop or patch it the same day"},{name:"Root cause",sub:"Keep asking why"},{name:"Corrective action",sub:"Change procedure, training or tools"},{name:"Effectiveness",sub:"Look again at the next check"},{name:"Closure",sub:"The station manager closes it"}]},
 {t:"point",x:"Immediate action (stopping what is happening now) and corrective action (making sure it cannot happen again) are different things. Close a finding on immediate action alone and the same finding comes back."}]},
 {h:"Filling in a corrective action request (fictional example)",blocks:[{t:"table",cols:["Field","Example"],rows:[
 ["Number","CAR-2026-07"],
 ["Finding","October self-audit: no record of gate passport checks for three flights"],
-["Immediate action","Checked with the staff on duty, completed the records, reminded everyone"],
+["Immediate action","Recorded what was confirmed and what could not be, noted the date and basis of the addition, reminded everyone"],
 ["Root cause","No one was assigned to keep the record at shift change; each assumed the other would write it"],
 ["Corrective action","Added a ‘record owner’ box to the handover sheet, revised the manual, held a briefing"],
 ["Due date and owner","15 November; passenger services duty manager"],
@@ -86,7 +86,7 @@ lead:["Japanese visas are gradually moving from the paper sticker in the passpor
 "In 2026 Japan also passed a law creating JESTA, an electronic travel authorisation that visa-exempt foreign nationals will have to obtain online before travelling. This article explains how JAPAN eVISA works and how to check it, what has been officially announced about JESTA, and how both compare with Korea’s K-ETA."],
 sections:[
 {h:"What JAPAN eVISA is",blocks:[{t:"rows",items:[
-{name:"An electronic visa",x:"A visa issued by Japan’s Ministry of Foreign Affairs in electronic form. Nothing is stuck in the passport. It is a visa, not a travel authorisation."},
+{name:"An electronic visa",x:"A visa issued by Japan’s Ministry of Foreign Affairs in electronic form. Nothing is stuck in the passport. It is a separate system from travel authorisation and does not guarantee entry."},
 {name:"Which visa",x:"Mainly a single-entry short-stay visa for tourism, up to 90 days ★. Stays are shorter for some nationalities, such as China, Vietnam and the Philippines (for Vietnam and the Philippines, only designated-agency tour groups) ★."},
 {name:"Applying",x:"Residents of eligible countries and regions apply online themselves or through a designated agent."},
 {name:"How to enter",x:"Entry by air (by sea only on certain ferry routes) ★."},
