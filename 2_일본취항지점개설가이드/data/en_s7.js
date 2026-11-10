@@ -58,7 +58,7 @@ voice:"AOC meetings let you learn early about changes such as new airport counte
 terms:[["Airline Operators Committee (AOC)","航空会社運営委員会","항공사운영위원회"],["Constitution","規約","규약"],["Annual Fee","年会費","연회비"],["Terminal lead airline","ターミナル幹事航空会社","터미널 대표 항공사"],["Common-use Facilities","共用施設","공용 시설"],["Resumption of Operations","運用再開","운영 재개"]],
 quiz:[{q:"When should you join the committee?",opts:["A year after launch","Before launch","Never","After the audit"],a:1,exp:"You need it for shared facilities and more."},
 {q:"What should you watch for when budgeting the annual fee?",opts:["No budget needed","Put it in the right quarter for when it is invoiced","Pay monthly","The airport company pays it"],a:1,exp:"The invoicing timing can move."},
-{q:"Who coordinates the resumption of operations after a major closure?",opts:["The committee","A travel agency","The shops","Passengers"],a:0,exp:"The order of resumption and flight allocation are coordinated through the committee."}],
+{q:"When a disaster closes the airport, where are airlines’ flight plans coordinated?",opts:["The committee","A travel agency","The shops","Passengers"],a:0,exp:"The order of resumption and flight allocation are coordinated through the committee."}],
 next:"7-3 The first year’s operating calendar"});
 
 set("7-3",{title:"The First Year’s Operating Calendar",hl:"the operating calendar",subtitle:"In year one you go through the main annual procedures once. From year two they become routine",
@@ -85,7 +85,7 @@ sections:[
 ["June to July","Base remuneration report, annual labour insurance renewal, withholding tax"],
 ["August to September","Winter seasonal filing"],
 ["October to December","Joint security training, next year’s budget, year-end tax adjustment"],
-["Once a year","Security self-audit, the authorities’ audits, the AOC (Airline Operators Committee) annual fee"]]},
+["Yearly (example)","Security self-audit, the authorities’ audits (timing as notified), the AOC (Airline Operators Committee) annual fee"]]},
 {t:"note",x:"* An example based on Japanese requirements and several airlines’ practice. Confirm the dates each year. ★"}]},
 {h:"Making it stick",blocks:[{t:"rows",items:[
 {name:"Record the first year",x:"For every procedure, keep when, what, to whom and with which documents, in a folder. Next year it becomes the template."},

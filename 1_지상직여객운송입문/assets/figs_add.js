@@ -119,9 +119,9 @@ irr_log:function(l){
 
 /* 現場事例 8-2 同じ欠航を3つの相手に */
 irr_3way:function(l){
- var W=({ja:{t:'同じ欠航でも、相手ごとに伝えることが違う',r:[['旅客','欠航の事実・代わりの便・いますること・次の案内の時刻','#1769e0'],['本社','決定の時刻と理由・人数・手配の状況・お願いしたい判断','#7A5CC7'],['ハンドリング会社','すること・人数・時刻・担当者・完了報告の時刻','#E08A2E']],n:['外すもの：旅客には決まっていない補償の約束、本社には確かめていない数字、ハンドリング会社には社内の事情']},
-  ko:{t:'같은 결항이라도 상대마다 전할 내용이 다르다',r:[['승객','결항 사실·대체편·지금 할 일·다음 안내 시각','#1769e0'],['본사','결정 시각과 이유·인원·수배 상황·요청할 판단','#7A5CC7'],['조업사','할 일·인원·시각·담당자·완료 보고 시각','#E08A2E']],n:['뺄 것: 승객에게는 정해지지 않은 보상 약속, 본사에는 확인되지 않은 숫자, 조업사에는 회사 내부 사정']},
-  en:{t:'One cancellation, three audiences, three messages',r:[['Passengers','The cancellation, the replacement flight, what to do now, the next update time','#1769e0'],['Head office','Decision time and reason, numbers, arrangements so far, decisions needed','#7A5CC7'],['Handling company','Tasks, numbers, times, the person in charge, when to report completion','#E08A2E']],n:['Leave out: unconfirmed compensation promises for passengers, unchecked numbers for head office, internal matters for the handling company']}})[l];
+ var W=({ja:{t:'同じ欠航でも、相手ごとに伝えることが違う',r:[['旅客','欠航の事実・代わりの便・いますること・次の案内の時刻','#1769e0'],['本社','決定の時刻と理由・人数・手配の状況・お願いしたい判断','#7A5CC7'],['ハンドリング会社','すること・人数・時刻・担当者・完了報告の時刻','#E08A2E']],n:['外すもの：旅客には決まっていない補償の約束、本社には事実と分けていない確認中の数字、ハンドリング会社には社内の事情']},
+  ko:{t:'같은 결항이라도 상대마다 전할 내용이 다르다',r:[['승객','결항 사실·대체편·지금 할 일·다음 안내 시각','#1769e0'],['본사','결정 시각과 이유·인원·수배 상황·요청할 판단','#7A5CC7'],['조업사','할 일·인원·시각·담당자·완료 보고 시각','#E08A2E']],n:['뺄 것: 승객에게는 정해지지 않은 보상 약속, 본사에는 사실과 구분하지 않은 확인 중 숫자, 조업사에는 회사 내부 사정']},
+  en:{t:'One cancellation, three audiences, three messages',r:[['Passengers','The cancellation, the replacement flight, what to do now, the next update time','#1769e0'],['Head office','Decision time and reason, numbers, arrangements so far, decisions needed','#7A5CC7'],['Handling company','Tasks, numbers, times, the person in charge, when to report completion','#E08A2E']],n:['Leave out: unconfirmed compensation promises for passengers, unconfirmed numbers not separated from facts for head office, internal matters for the handling company']}})[l];
  if(!W)return F.irr_3way('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'9s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 

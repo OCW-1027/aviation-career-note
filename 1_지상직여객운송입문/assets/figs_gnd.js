@@ -1536,9 +1536,9 @@ int_mgr:function(l){
  if(!W)return F.int_mgr('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#D64545','#1769e0','#2C8C8C','#E08A2E','#7A5CC7'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 int_offer:function(l){
- var W=({ja:{t:'内定から入社まで',st:['内定の通知と条件の提示','雇用契約の内容を確かめる','外国籍の場合、在留資格の手続き（会社が支援）','源泉徴収票・口座などを提出','初期教育と空港のIDパスの申請'],who:['内定','確認','在留資格','書類','入社'],n:['確かめる条件：雇用形態・勤務の形・給与・試用期間・勤務地・社会保険','韓国から入社：在留資格認定証明書→ビザ→入国時に在留カード★']},
-  ko:{t:'내정부터 입사까지',st:['내정 통지와 조건 제시','고용 계약 내용을 확인한다','외국 국적이면 재류 자격 절차(회사가 지원)','원천징수표·계좌 등을 제출','초기 교육과 공항 ID 패스 신청'],who:['내정','확인','재류 자격','서류','입사'],n:['확인할 조건: 고용 형태·근무 형태·급여·수습 기간·근무지·사회보험','한국에서 입사: 재류 자격 인정 증명서→비자→입국 시 재류 카드★']},
-  en:{t:'From job offer to first day',st:['Offer and conditions presented','Check the employment contract','For foreign nationals, residence status procedures, supported by the company','Submit tax slip, bank account and other papers','Initial training and airport ID pass application'],who:['Offer','Check','Status','Papers','Start'],n:['Check: employment type, shift pattern, pay, probation, workplace, social insurance','Joining from Korea: certificate of eligibility → visa → residence card on entry ★']}})[l];
+ var W=({ja:{t:'内定から入社まで',st:['内定の通知と条件の提示','雇用契約の内容を確かめる','外国籍の場合、在留資格の手続き（会社が支援）','源泉徴収票・口座などを提出','初期教育と空港のIDパスの申請'],who:['内定','確認','在留資格','書類','入社'],n:['確かめる条件：雇用形態・勤務の形・給与・試用期間・勤務地・社会保険','韓国から入社：在留資格認定証明書→ビザ→在留カード（空港で、または後日）★']},
+  ko:{t:'내정부터 입사까지',st:['내정 통지와 조건 제시','고용 계약 내용을 확인한다','외국 국적이면 재류 자격 절차(회사가 지원)','원천징수표·계좌 등을 제출','초기 교육과 공항 ID 패스 신청'],who:['내정','확인','재류 자격','서류','입사'],n:['확인할 조건: 고용 형태·근무 형태·급여·수습 기간·근무지·사회보험','한국에서 입사: 재류 자격 인정 증명서→비자→재류 카드(공항에서 또는 나중에)★']},
+  en:{t:'From job offer to first day',st:['Offer and conditions presented','Check the employment contract','For foreign nationals, residence status procedures, supported by the company','Submit tax slip, bank account and other papers','Initial training and airport ID pass application'],who:['Offer','Check','Status','Papers','Start'],n:['Check: employment type, shift pattern, pay, probation, workplace, social insurance','Joining from Korea: certificate of eligibility → visa → residence card (at the airport or later) ★']}})[l];
  if(!W)return F.int_offer('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=STEPS2(T.y,W.st,W.who,['#1769e0','#2C8C8C','#E08A2E','#7A5CC7','#D64545'],'12s');s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 int_see:function(l){
@@ -2018,9 +2018,9 @@ lf_family:function(l){
  if(!W)return F.lf_family('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 lf_mynum:function(l){
- var W=({ja:{t:'マイナンバー（番号とカード）・保険証',c:[['マイナンバー（番号）','住民登録の後に通知。会社・銀行・税金で使う。むやみに教えない'],['マイナンバーカード','申請して受け取る（無料・約1か月）。期限は在留期間の満了日まで'],['健康保険証','従来の保険証は2025年12月1日に期限満了。マイナ保険証か資格確認書で']],n:['在留期間を更新したら、市区町村でカードの期限の変更もする','特定在留カード（2026年6月〜）で在留カードと1枚にできる（任意）★']},
-  ko:{t:'마이넘버·카드·보험증',c:[['마이넘버(번호)','주민 등록 후에 통지. 회사·은행·세금에 쓴다. 함부로 알려주지 않는다'],['마이넘버 카드','신청해서 받는다(무료·약 1개월). 기한은 재류기간 만료일까지'],['건강보험증','기존 보험증은 2025년 12월 1일에 기한 만료. 마이나 보험증이나 자격확인서로']],n:['재류기간을 갱신하면 시구정촌에서 카드 기한 변경도 한다','특정재류카드(2026년 6월~)로 재류카드와 한 장으로 할 수 있다(임의)★']},
-  en:{t:'My Number, the card and health insurance',c:[['My Number (the number)','Notified after resident registration; used by employers, banks and tax; keep it private'],['My Number Card','Apply to receive it (free, about a month); valid until your period of stay ends'],['Health insurance card','Old cards expired on 1 Dec 2025; use My Number Card or an eligibility certificate']],n:['When your stay is extended, update the card’s expiry at the municipal office','From June 2026 the residence card and My Number Card can be combined (optional) ★']}})[l];
+ var W=({ja:{t:'マイナンバー（番号とカード）・保険証',c:[['マイナンバー（番号）','住民登録の後に通知。会社・銀行・税金で使う。むやみに教えない'],['マイナンバーカード','申請して受け取る（無料・約1か月）。在留期間の定めがある人は、期限も原則として在留期間の満了日まで'],['健康保険証','従来の保険証は2025年12月1日に期限満了。マイナ保険証か資格確認書で']],n:['在留期間を更新したら、市区町村でカードの期限の変更もする','特定在留カード（2026年6月〜）で在留カードと1枚にできる（任意）★']},
+  ko:{t:'마이넘버·카드·보험증',c:[['마이넘버(번호)','주민 등록 후에 통지. 회사·은행·세금에 쓴다. 함부로 알려주지 않는다'],['마이넘버 카드','신청해서 받는다(무료·약 1개월). 재류기간이 정해진 사람은 기한도 원칙적으로 재류기간 만료일까지'],['건강보험증','기존 보험증은 2025년 12월 1일에 기한 만료. 마이나 보험증이나 자격확인서로']],n:['재류기간을 갱신하면 시구정촌에서 카드 기한 변경도 한다','특정재류카드(2026년 6월~)로 재류카드와 한 장으로 할 수 있다(임의)★']},
+  en:{t:'My Number, the card and health insurance',c:[['My Number (the number)','Notified after resident registration; used by employers, banks and tax; keep it private'],['My Number Card','Apply to receive it (free, about a month); if your stay has a fixed period, it generally expires with it'],['Health insurance card','Old cards expired on 1 Dec 2025; use My Number Card or an eligibility certificate']],n:['When your stay is extended, update the card’s expiry at the municipal office','From June 2026 the residence card and My Number Card can be combined (optional) ★']}})[l];
  if(!W)return F.lf_mynum('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_ins:function(l){
@@ -2036,9 +2036,9 @@ lf_setup:function(l){
  if(!W)return F.lf_setup('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'12s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 lf_lease:function(l){
- var W=({ja:{t:'普通借家と定期借家',c:[['普通借家','ふつう2年で更新できる。貸主が出てほしいときは正当な理由が要る。更新料を確かめる'],['定期借家','決まった期間で終わる。再契約は協議。家賃が安いことも']],n:['内見：通勤時間を確かめ、夜に周りを歩く。日当たり・結露・水圧・電波・新耐震（1981年6月以降）','特約：クリーニング代・早期解約の違約金・解約予告（1〜2か月前）・禁止事項']},
-  ko:{t:'보통 차가와 정기 차가',c:[['보통 차가','보통 2년 단위로 갱신 가능. 집주인이 나가라고 할 때는 정당한 이유가 필요. 갱신료를 확인'],['정기 차가','정해진 기간으로 끝난다. 재계약은 협의. 집세가 싼 경우도']],n:['내견: 출퇴근 시간과 밤에 주변을 걸어 본다. 햇빛·결로·수압·전파·신내진(1981년 6월 이후)','특약: 클리닝 비용·조기 해지 위약금·해지 통지(1~2개월 전)·금지 사항']},
-  en:{t:'Ordinary and fixed-term leases',c:[['Ordinary lease','Usually two years, renewable; the landlord needs just cause to end it; check the renewal fee'],['Fixed-term lease','Ends at a set date; re-signing is by agreement; rent can be lower']],n:['Viewing: walk the area at commute time and at night; check light, condensation, water pressure, signal, post-1981 quake code','Special clauses: cleaning fee, early-exit penalty, notice period (1–2 months), prohibitions']}})[l];
+ var W=({ja:{t:'普通借家と定期借家',c:[['普通借家','更新がある契約（2年が多い）。貸主が出てほしいときは正当な理由が要る。更新料を確かめる'],['定期借家','決まった期間で終わる。再契約は協議。家賃が安いことも']],n:['内見：通勤時間を確かめ、夜に周りを歩く。日当たり・結露・水圧・電波・新耐震（1981年6月以降）','特約：クリーニング代・早期解約の違約金・解約予告（1〜2か月前）・禁止事項']},
+  ko:{t:'보통 차가와 정기 차가',c:[['보통 차가','갱신이 있는 계약(2년이 많음). 집주인이 나가라고 할 때는 정당한 이유가 필요. 갱신료를 확인'],['정기 차가','정해진 기간으로 끝난다. 재계약은 협의. 집세가 싼 경우도']],n:['내견: 출퇴근 시간과 밤에 주변을 걸어 본다. 햇빛·결로·수압·전파·신내진(1981년 6월 이후)','특약: 클리닝 비용·조기 해지 위약금·해지 통지(1~2개월 전)·금지 사항']},
+  en:{t:'Ordinary and fixed-term leases',c:[['Ordinary lease','Renewable (often two years); the landlord needs just cause to end it; check the renewal fee'],['Fixed-term lease','Ends at a set date; re-signing is by agreement; rent can be lower']],n:['Viewing: walk the area at commute time and at night; check light, condensation, water pressure, signal, post-1981 quake code','Special clauses: cleaning fee, early-exit penalty, notice period (1–2 months), prohibitions']}})[l];
  if(!W)return F.lf_lease('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#E08A2E']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 lf_move:function(l){

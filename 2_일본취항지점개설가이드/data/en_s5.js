@@ -25,7 +25,7 @@ sections:[
 {name:"Briefings",x:"The authorities sometimes hold briefings for foreign airlines. Store the material with the care sensitive security information requires."}]}]}],
 voice:"When revising the security programme, regulators may say it is hard to see how head-office rules map to Japanese airport procedures. Attach a cross-reference table every time you submit a revision.",
 terms:[["Air Carrier Security Programme","航空保安計画","항공보안계획"],["Aviation Security Training","航空保安教育訓練","항공보안 교육훈련"],["Training Plan","教育訓練実施計画","교육훈련 계획"],["Self-audit","自主監査","자체 감사"],["Notification of Change","変更届出","변경 신고"],["Sensitive Security Information (SSI)","保安上の機微情報","보안 민감 정보"]],
-quiz:[{q:"How often is the security programme reviewed, in this example?",opts:["Every five years","At least once a year","Only at launch","Not at all"],a:1,exp:"At least annually, April to March."},
+quiz:[{q:"What happens after the security programme is filed?",opts:["It stands for five years","It is reviewed regularly","Only at launch","Nothing"],a:1,exp:"It is reviewed regularly in line with the authority’s guidance (check the timing there)."},
 {q:"Which calls for an immediate revision?",opts:["A staff birthday","A change of security contractor","New uniforms","Higher revenue"],a:1,exp:"Contractors, contacts and new routes."},
 {q:"What do you do when the security standards are amended?",opts:["Nothing","Review them and work them into the SOP","Think about it next year","Tell a travel agency"],a:1,exp:"They go into the procedures and the emergency plans."}],
 next:"5-2 Security instructors and airport passes"});

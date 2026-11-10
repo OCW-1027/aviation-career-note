@@ -121,7 +121,7 @@ sections:[
 {h:"Other notifications and procedures",blocks:[{t:"table",cols:["Procedure","What it covers"],rows:[
 ["Adding an aircraft or changing seat counts","Update the aircraft information in J-MAT and notify the change to the business plan (1-6)"],
 ["Registering the aircraft with the airport company","For landing fee calculation and noise categories, register the aircraft with the airport company"],
-["Security programme and training plan","Revised and notified once a year (Part 5)"],
+["Security programme and training plan","Reviewed regularly and notified (Part 5)"],
 ["Dangerous goods and radioactive material","The prescribed reports where such traffic is carried"],
 ["Landing fee waiver on diversion","A waiver can sometimes be applied for after an emergency diversion"]]}]},
 {h:"Not missing the deadline",blocks:[{t:"rows",items:[

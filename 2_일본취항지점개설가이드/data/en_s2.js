@@ -140,7 +140,7 @@ sections:[
 {t:"point",x:"Japanese employment law changes almost every year. Follow the ministry’s announcements, ask your advisers about anything unclear, and agree the timing of any change with head office."}]}],
 voice:"Japan’s year-end adjustment resembles Korea’s year-end tax settlement, but inhabitant tax being deducted from pay from the following June is hard for head office to grasp. Laying out the monthly flow on one sheet beside the Korean system speeds up understanding.",
 terms:[["Social Insurance (Health / Pension)","社会保険","사회보험"],["Labour Insurance","労働保険","노동보험"],["Base Remuneration Report","算定基礎届","산정 기초 신고"],["Withholding Income Tax","源泉所得税","원천 소득세"],["Special Collection (Payroll Deduction)","特別徴収","특별징수"],["Year-end Tax Adjustment","年末調整","연말정산"]],
-quiz:[{q:"Under the special terms for employers with fewer than ten staff, when is January to June withholding tax due?",opts:["30 June","10 July","31 December","20 January"],a:1,exp:"January to June by 10 July; July to December by 20 January."},
+quiz:[{q:"Once the special payment schedule is approved, when is January to June withholding tax due?",opts:["30 June","10 July","31 December","20 January"],a:1,exp:"January to June by 10 July; July to December by 20 January."},
 {q:"Over what period is inhabitant tax deducted?",opts:["January to December","April to March","June to the following May","Once a year"],a:2,exp:"Twelve instalments from June to May."},
 {q:"Who must take at least five days of paid leave a year?",opts:["Everyone","Anyone granted 10 days or more","Managers only","Part-timers only"],a:1,exp:"Those granted 10 days or more."}],
 next:"2-5 Hiring local staff"});
