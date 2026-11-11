@@ -46,3 +46,5 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          timeout: 1800000   # 公開の待ち時間（既定10分→30分）・ゲーム音声などファイルが多く、10分で打ち切られることがあるため
