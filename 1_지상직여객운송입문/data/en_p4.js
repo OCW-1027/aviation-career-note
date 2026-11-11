@@ -17,6 +17,7 @@ sections:[
 ["Delay","In writing within 21 days of receiving the bag"],
 ["Loss","If it has not arrived 21 days after the date on which it should have arrived, the passenger can claim it as lost under the convention"]]},
 {t:"rows",items:[
+{name:"When a Delayed Bag Can Be Treated as Lost",x:"The “21 days” in the deadline table means two different things, counted from different days. (1) Complaint about delay: within 21 days from the day the bag was received (placed at the passenger’s disposal), in writing (Montreal Convention, Article 31(2)). (2) When it can be treated as lost: if the bag has not arrived 21 days after the day it ought to have arrived, the passenger may claim against the carrier as for a lost bag (Article 17(3)). Neither is counted from the day the PIR was filed. Example: a bag due on 1 November that has still not arrived by 22 November can be treated as lost from 23 November. These rules apply to international carriage covered by the Convention; actual handling and compensation are set by each airline’s conditions of carriage and head office."},
 {name:"Liability cap",x:"For international carriage under the Montreal Convention, the liability limit for lost, damaged or delayed baggage is 1,519 SDR per passenger from 28 December 2024. Actual compensation is decided on the damage, the proof provided, the applicable law, the conditions of carriage and so on."},
 {name:"Declared value",x:"Passengers checking valuable items can declare a higher value and pay a charge to raise the limit, up to whatever maximum the airline allows."}]},
 {t:"note",x:"* Handling depends on the applicable international convention, national law and conditions of carriage. SDR-based liability limits are reviewed periodically, so check the latest official information. ★"}]},
@@ -58,7 +59,8 @@ sections:[
 ["Arrival","Takes the report, contacts the passenger, arranges delivery and interim necessities"],
 ["Departure","Checks for bags left behind or misloaded, and forwards them on the earliest flight"],
 ["Transit","Checks bags that could not be transferred and forwards them"],
-["Every station","Registers bags with no owner in the tracing system as on-hand"]]}]},
+["Every station","Registers bags with no owner in the tracing system as on-hand"]]},{t:"rows",items:[
+{name:"Security for Unaccompanied Baggage",x:"A bag sent on a different flight from its passenger (a short-shipped or delayed bag with a rush tag) is unaccompanied baggage. ICAO Annex 17, Standard 4.5.6, says hold baggage may be carried only if each item has been identified as accompanied or unaccompanied, screened to the appropriate standard and accepted for carriage on that flight. So the station (1) marks it as unaccompanied (rush tag), (2) gets security staff to confirm it has been screened to the standard and (3) enters it in that flight’s baggage reconciliation record before confirming the dispatch. Screening methods and detailed standards are set by each State’s authority and the airport security programme, so the station does not decide on its own to send a bag."}]}]},
 {h:"Bags taken by mistake",blocks:[{t:"p",x:"Passengers do sometimes walk off with a bag of a similar colour and shape. When one bag is left on the belt and a passenger reports theirs missing at the same time, suspect a swap."},
 {t:"point",x:"Checking tags at the belt, and encouraging name labels or a ribbon, helps prevent baggage mix-ups. The passenger who took the wrong bag almost never meant to, so ask for their help politely."},
 {t:"table",cols:["Prevention","How"],rows:[
