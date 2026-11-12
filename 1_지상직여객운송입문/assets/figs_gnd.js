@@ -1089,15 +1089,15 @@ apt_view:function(l){
  if(!W)return F.apt_view('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ROWMAP(T.y,W.r,'14s');s+=A.s;var L=LIST(W.n,A.y+4,600,11);return SVG(L.y+8,s+L.s)},
 apt_nrt:function(l){
- var W=({ja:{t:'成田国際空港（NRT）の要点（2026年9月時点）',c:[['運営','成田国際空港株式会社（NAA）'],['滑走路','A 4,000m・B 2,500m'],['運用時間','6:00〜24:00（夜間は制限）★']],n:['運用時間の終わりが近い遅延は、欠航・出発の判断を早めに','地上走行が長い。ドアクローズからの時間を見込んで締め切りを決める','駐機中のAPUの使用に制限がある（★）']},
-  ko:{t:'나리타국제공항(NRT)의 요점(2026년 9월 기준)',c:[['운영','나리타국제공항주식회사(NAA)'],['활주로','A 4,000m·B 2,500m'],['운용 시간','6:00~24:00(야간 제한)★']],n:['운용 시간 종료가 가까운 지연은 결항·출발 판단을 일찍','지상 활주가 길다. 도어 클로즈 이후 시간을 감안해 마감을 정한다','주기 중 APU 사용에 제한이 있다(★)']},
-  en:{t:'Narita International (NRT) at a glance (September 2026)',c:[['Operator','Narita International Airport Corporation (NAA)'],['Runways','A 4,000 m, B 2,500 m'],['Hours','06:00–24:00 (night restrictions) ★']],n:['Decide early on delays that approach the end of operating hours','Long taxi times: set deadlines allowing time after door close','APU use on stand is restricted (★)']}})[l];
+ var W=({ja:{t:'成田国際空港（NRT）の要点（2026年11月時点）',c:[['運営','成田国際空港株式会社（NAA）'],['滑走路','A 4,000m・B 2,500m'],['運用時間','6:00〜24:00（23時台はA滑走路のみ）']],n:['運用時間の終わりが近い遅延は、欠航・出発の判断を早めに','地上走行が長い。ドアクローズからの時間を見込んで締め切りを決める','駐機中のAPUは出発予定の15分前から（固定電源のあるスポット）']},
+  ko:{t:'나리타국제공항(NRT)의 요점(2026년 11월 기준)',c:[['운영','나리타국제공항주식회사(NAA)'],['활주로','A 4,000m·B 2,500m'],['운용 시간','6:00~24:00(23시대는 A활주로만)']],n:['운용 시간 종료가 가까운 지연은 결항·출발 판단을 일찍','지상 활주가 길다. 도어 클로즈 이후 시간을 감안해 마감을 정한다','주기 중 APU는 출발 예정 15분 전부터(고정 전원 스폿)']},
+  en:{t:'Narita International (NRT) at a glance (November 2026)',c:[['Operator','Narita International Airport Corporation (NAA)'],['Runways','A 4,000 m, B 2,500 m'],['Hours','06:00–24:00 (Runway A only after 23:00)']],n:['Decide early on delays that approach the end of operating hours','Long taxi times: set deadlines allowing time after door close','APU on stand only from 15 minutes before departure (stands with fixed power)']}})[l];
  if(!W)return F.apt_nrt('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_hnd:function(l){
- var W=({ja:{t:'東京国際空港・羽田（HND）の要点（2026年9月時点）',c:[['運営','滑走路・管制は国。ターミナルはビル会社'],['滑走路','4本（A・B・C・D）'],['運用時間','24時間']],n:['国際線は第3、国内線は第1・第2（第2には一部の国際線も）。乗り継ぎの移動時間を確かめる','枠は特に貴重。定時性と使用の実績が将来の扱いに響くことがある','工事が多い。スポット・動線の変更通知を毎回確かめる']},
-  ko:{t:'도쿄국제공항·하네다(HND)의 요점(2026년 9월 기준)',c:[['운영','활주로·관제는 국가. 터미널은 빌딩 회사'],['활주로','4개(A·B·C·D)'],['운용 시간','24시간']],n:['국제선은 제3, 국내선은 제1·제2(제2에는 일부 국제선도). 환승 이동 시간을 확인한다','슬롯이 특히 귀하다. 정시성과 사용 실적이 향후 배분에 영향을 줄 수 있다','공사가 많다. 스폿·동선 변경 통지를 매번 확인한다']},
-  en:{t:'Tokyo International, Haneda (HND) at a glance (September 2026)',c:[['Operator','The state runs runways and ATC; terminal companies run the terminals'],['Runways','Four (A, B, C, D)'],['Hours','24 hours']],n:['International at T3, domestic at T1 and T2 (some international at T2 too): check connection times','Slots are especially precious; punctuality and usage can affect future allocation','Frequent works: check every stand and route change notice']}})[l];
+ var W=({ja:{t:'東京国際空港・羽田（HND）の要点（2026年11月時点）',c:[['運営','滑走路・管制は国。ターミナルはビル会社'],['滑走路','4本（A 3,000・B 2,500・C 3,360・D 2,500m）'],['運用時間','24時間']],n:['国際線は第3、国内線は第1・第2（第2には一部の国際線も）。乗り継ぎの移動時間を確かめる','枠は特に貴重。定時性と使用の実績が将来の扱いに響くことがある','工事が多い。スポット・動線の変更通知を毎回確かめる']},
+  ko:{t:'도쿄국제공항·하네다(HND)의 요점(2026년 11월 기준)',c:[['운영','활주로·관제는 국가. 터미널은 빌딩 회사'],['활주로','4개(A 3,000·B 2,500·C 3,360·D 2,500m)'],['운용 시간','24시간']],n:['국제선은 제3, 국내선은 제1·제2(제2에는 일부 국제선도). 환승 이동 시간을 확인한다','슬롯이 특히 귀하다. 정시성과 사용 실적이 향후 배분에 영향을 줄 수 있다','공사가 많다. 스폿·동선 변경 통지를 매번 확인한다']},
+  en:{t:'Tokyo International, Haneda (HND) at a glance (November 2026)',c:[['Operator','The state runs runways and ATC; terminal companies run the terminals'],['Runways','Four (A 3,000, B 2,500, C 3,360, D 2,500 m)'],['Hours','24 hours']],n:['International at T3, domestic at T1 and T2 (some international at T2 too): check connection times','Slots are especially precious; punctuality and usage can affect future allocation','Frequent works: check every stand and route change notice']}})[l];
  if(!W)return F.apt_hnd('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_kix:function(l){
@@ -1107,9 +1107,9 @@ apt_kix:function(l){
  if(!W)return F.apt_kix('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_itm:function(l){
- var W=({ja:{t:'大阪国際空港・伊丹（ITM）の要点（2026年9月時点）',c:[['運営','関西エアポート（関西・神戸と一体運営）'],['滑走路','A 1,828m・B 3,000m'],['運用時間','7:00〜21:00']],n:['発着は1日370回まで（うちジェット機200回）★','国内線のみ。国際線は関西空港、神戸は国内線が中心（★）','21時の運用終了に遅れそうな便は早めに判断する']},
-  ko:{t:'오사카국제공항·이타미(ITM)의 요점(2026년 9월 기준)',c:[['운영','간사이 에어포트(간사이·고베와 일체 운영)'],['활주로','A 1,828m·B 3,000m'],['운용 시간','7:00~21:00']],n:['발착은 1일 370회까지(그중 제트기 200회)★','국내선만. 국제선은 간사이공항, 고베는 국내선 중심(★)','21시 운용 종료에 늦을 것 같은 편은 일찍 판단한다']},
-  en:{t:'Osaka International, Itami (ITM) at a glance (September 2026)',c:[['Operator','Kansai Airports (runs Kansai and Kobe together)'],['Runways','A 1,828 m, B 3,000 m'],['Hours','07:00–21:00']],n:['Up to 370 movements a day, of which 200 jets ★','Domestic only; international goes to Kansai, and Kobe is mainly domestic (★)','Decide early on flights at risk of missing the 21:00 close']}})[l];
+ var W=({ja:{t:'大阪国際空港・伊丹（ITM）の要点（2026年11月時点）',c:[['運営','関西エアポート（関西・神戸と一体運営）'],['滑走路','A 1,828m・B 3,000m'],['運用時間','7:00〜21:00']],n:['発着は1日370回まで（うちジェット機200回★）、1時間36回まで','国内線のみ。国際線は関西空港、神戸は国内線が中心（★）','21時の運用終了に遅れそうな便は早めに判断する']},
+  ko:{t:'오사카국제공항·이타미(ITM)의 요점(2026년 11월 기준)',c:[['운영','간사이 에어포트(간사이·고베와 일체 운영)'],['활주로','A 1,828m·B 3,000m'],['운용 시간','7:00~21:00']],n:['발착은 1일 370회까지(그중 제트기 200회★), 1시간 36회까지','국내선만. 국제선은 간사이공항, 고베는 국내선 중심(★)','21시 운용 종료에 늦을 것 같은 편은 일찍 판단한다']},
+  en:{t:'Osaka International, Itami (ITM) at a glance (November 2026)',c:[['Operator','Kansai Airports (runs Kansai and Kobe together)'],['Runways','A 1,828 m, B 3,000 m'],['Hours','07:00–21:00']],n:['Up to 370 movements a day (200 jets ★), 36 an hour','Domestic only; international goes to Kansai, and Kobe is mainly domestic (★)','Decide early on flights at risk of missing the 21:00 close']}})[l];
  if(!W)return F.apt_itm('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_ngo:function(l){
@@ -1119,15 +1119,15 @@ apt_ngo:function(l){
  if(!W)return F.apt_ngo('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_fuk:function(l){
- var W=({ja:{t:'福岡空港（FUK）の要点（2026年9月時点）',c:[['運営','福岡国際空港株式会社（2019年に民営化）'],['滑走路','2本（2025年3月に1本増設）'],['運用時間','7:00〜22:00 ★']],n:['22時に間に合わない便は欠航・ダイバートの判断が必要。夕方以降の遅延は早めに','ピークは離陸の順番待ちが長い。ドアクローズと離陸の時刻を分けて考える','国内線と国際線のターミナルは離れていてバスで結ばれる']},
-  ko:{t:'후쿠오카공항(FUK)의 요점(2026년 9월 기준)',c:[['운영','후쿠오카국제공항주식회사(2019년 민영화)'],['활주로','2개(2025년 3월 1개 증설)'],['운용 시간','7:00~22:00 ★']],n:['22시를 넘기는 편은 결항·다이버트 판단이 필요. 저녁 이후 지연은 일찍 판단','피크에는 이륙 대기가 길다. 도어 클로즈와 이륙 시각을 나눠 생각한다','국내선과 국제선 터미널은 떨어져 있고 버스로 이어진다']},
-  en:{t:'Fukuoka (FUK) at a glance (September 2026)',c:[['Operator','Fukuoka International Airport Co. (privatised 2019)'],['Runways','Two (extra runway from March 2025)'],['Hours','07:00–22:00 ★']],n:['Flights that cannot make 22:00 need a cancel or divert decision: act early on evening delays','Long take-off queues at peaks: treat door close and take-off as separate times','Domestic and international terminals are apart, linked by bus']}})[l];
+ var W=({ja:{t:'福岡空港（FUK）の要点（2026年11月時点）',c:[['運営','福岡国際空港株式会社（2019年に民営化）'],['滑走路','2本（2,800m・2025年3月増設の2,500m）'],['運用時間','7:00〜22:00']],n:['22時に間に合わない便は欠航・ダイバートの判断が必要。夕方以降の遅延は早めに','ピークは離陸の順番待ちが長い。ドアクローズと離陸の時刻を分けて考える','国内線と国際線のターミナルは離れていてバスで結ばれる']},
+  ko:{t:'후쿠오카공항(FUK)의 요점(2026년 11월 기준)',c:[['운영','후쿠오카국제공항주식회사(2019년 민영화)'],['활주로','2개(2,800m·2025년 3월 증설 2,500m)'],['운용 시간','7:00~22:00']],n:['22시를 넘기는 편은 결항·다이버트 판단이 필요. 저녁 이후 지연은 일찍 판단','피크에는 이륙 대기가 길다. 도어 클로즈와 이륙 시각을 나눠 생각한다','국내선과 국제선 터미널은 떨어져 있고 버스로 이어진다']},
+  en:{t:'Fukuoka (FUK) at a glance (November 2026)',c:[['Operator','Fukuoka International Airport Co. (privatised 2019)'],['Runways','Two (2,800 m; 2,500 m added March 2025)'],['Hours','07:00–22:00']],n:['Flights that cannot make 22:00 need a cancel or divert decision: act early on evening delays','Long take-off queues at peaks: treat door close and take-off as separate times','Domestic and international terminals are apart, linked by bus']}})[l];
  if(!W)return F.apt_fuk('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_cts:function(l){
- var W=({ja:{t:'新千歳空港（CTS）の要点（2026年9月時点）',c:[['運営','北海道エアポート（道内7空港を一括運営）'],['滑走路','2本（隣に航空自衛隊の千歳基地）'],['運用時間','24時間（深夜・早朝は枠の制限）★']],n:['冬は除雪で滑走路が一時閉鎖される。閉鎖の見込みを早めに把握する','防除氷は専用エプロンで行う。待ち時間を出発の見込みに入れる','大雪で鉄道が止まると空港に多くの人が残る。滞留への備えを']},
-  ko:{t:'신치토세공항(CTS)의 요점(2026년 9월 기준)',c:[['운영','홋카이도 에어포트(도내 7개 공항 일괄 운영)'],['활주로','2개(옆에 항공자위대 치토세 기지)'],['운용 시간','24시간(심야·이른 아침은 슬롯 제한)★']],n:['겨울에는 제설로 활주로가 일시 폐쇄된다. 폐쇄 예상을 일찍 파악한다','방제빙은 전용 에이프런에서 한다. 대기 시간을 출발 예상에 넣는다','폭설로 철도가 멈추면 공항에 많은 사람이 남는다. 체류에 대비한다']},
-  en:{t:'New Chitose (CTS) at a glance (September 2026)',c:[['Operator','Hokkaido Airports (runs seven airports in Hokkaido)'],['Runways','Two (next to JASDF Chitose Air Base)'],['Hours','24 hours (slot limits late night and early morning) ★']],n:['In winter runways close for snow clearance: get the closure outlook early','De-icing is done on a dedicated apron: build the wait into departure estimates','When heavy snow stops the trains, many people are stranded: prepare for it']}})[l];
+ var W=({ja:{t:'新千歳空港（CTS）の要点（2026年11月時点）',c:[['運営','北海道エアポート（道内7空港を一括運営）'],['滑走路','2本（隣に航空自衛隊の千歳基地）'],['運用時間','24時間（22〜7時は30回まで）']],n:['冬は除雪で滑走路が一時閉鎖される。閉鎖の見込みを早めに把握する','防除氷は専用エプロンで行う。待ち時間を出発の見込みに入れる','大雪で鉄道が止まると空港に多くの人が残る。滞留への備えを']},
+  ko:{t:'신치토세공항(CTS)의 요점(2026년 11월 기준)',c:[['운영','홋카이도 에어포트(도내 7개 공항 일괄 운영)'],['활주로','2개(옆에 항공자위대 치토세 기지)'],['운용 시간','24시간(22~7시는 30회까지)']],n:['겨울에는 제설로 활주로가 일시 폐쇄된다. 폐쇄 예상을 일찍 파악한다','방제빙은 전용 에이프런에서 한다. 대기 시간을 출발 예상에 넣는다','폭설로 철도가 멈추면 공항에 많은 사람이 남는다. 체류에 대비한다']},
+  en:{t:'New Chitose (CTS) at a glance (November 2026)',c:[['Operator','Hokkaido Airports (runs seven airports in Hokkaido)'],['Runways','Two (next to JASDF Chitose Air Base)'],['Hours','24 hours (max 30 movements 22:00–07:00)']],n:['In winter runways close for snow clearance: get the closure outlook early','De-icing is done on a dedicated apron: build the wait into departure estimates','When heavy snow stops the trains, many people are stranded: prepare for it']}})[l];
  if(!W)return F.apt_cts('ja');setK(1);
  var T=TOP(W.t),s=T.s,A=ZCARDS(T.y,W.c,['#1769e0','#2C8C8C','#D64545']);s+=A.s;var L=LIST(W.n,A.y+2,600,11);return SVG(L.y+8,s+L.s)},
 apt_oka:function(l){

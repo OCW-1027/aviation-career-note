@@ -19,6 +19,21 @@ sections:[
 {name:"Authorities and the airport",x:"Points of contact and filings with the airport office, CIQ, the airport company and terminal committees."},
 {name:"Revision control",x:"Update the SOP whenever works, terminal changes or rule changes happen, and record the revision date."}]},
 {t:"note",x:"* Airport rules change often through operator notices and committee decisions. Review your SOP at least once a year. ★"}]},
+{h:"Check the official source: the AIP",blocks:[{t:"rows",items:[
+{name:"AD 2.3 Operational hours",x:"Hours for the airport administration, customs, immigration and quarantine, fuel, handling and security. Times are given in UTC: add nine hours for Japan time."},
+{name:"AD 2.20 Local traffic regulations",x:"Rules specific to that airport: night restrictions, movement caps, APU limits, how to get ATC clearance and so on."},
+{name:"How changes are announced",x:"AIP amendments take effect on fixed dates every 28 days (AIRAC). Temporary changes come by NOTAM or AIP Supplement (SUP), and advance notices by Aeronautical Information Circular (AIC)."},
+{name:"Linking it to your SOP",x:"Note in the SOP which AIP edition (effective date) it is based on. When an amendment comes out, check what changed and update the SOP if the airport's rules have changed."}]},
+{t:"table",cols:["Airport","Usual CIQ hours (Japan time)","APU use"],rows:[
+["Narita","Customs 24 hours; immigration 5:30–24:00; quarantine (people) 6:00–0:30","From 15 minutes before scheduled departure"],
+["Haneda","24 hours","From 15 minutes before (designated stands)"],
+["Kansai","24 hours","From 15 minutes before"],
+["Itami","Domestic airport; on request","From 30 minutes before"],
+["Chubu","24 hours","From 15 minutes before"],
+["Fukuoka","Customs 7:00–22:00; immigration 6:30–22:00","From 30 minutes before"],
+["New Chitose","Customs 4:00–23:15; immigration 6:00–24:00","From 30 minutes before"],
+["Naha","Customs 24 hours; immigration 6:30–22:00","From 30 minutes before"]]},
+{t:"note",x:"* Based on AIP Japan (checked against the 26 November 2026 edition; effective dates differ by page). APU times apply at stands with fixed power; after arrival, the APU may run only for the minimum time needed to switch to fixed power. For flights arriving outside the usual hours (diversions, extra flights), arrange with CIQ and the airport in advance. Check the AIP and NOTAMs for the latest. ★"}]},
 {h:"De-icing and anti-icing: the basics",blocks:[{t:"table",cols:["Item","Content"],rows:[
 ["What it is","Heated de-icing fluid removes snow and ice from the wings and airframe (de-icing); anti-icing fluid prevents new ice forming (anti-icing)"],
 ["Where","At most airports, on stand before departure. Some, such as New Chitose, have dedicated pads near the runway"],
@@ -50,19 +65,20 @@ next:"1-1 Narita International Airport (NRT)"});
 set("1-1",{title:"Narita International Airport (NRT)",hl:"Narita",subtitle:"Tokyo’s international gateway: the operating-hours wall and the runway expansion",
 lead:["Narita handles much of the Tokyo region’s international traffic, cargo and LCCs. It is an inland airport more than 60 km from central Tokyo, and its long history with the surrounding communities means strict commitments on operating hours and flight paths.","This lesson covers Narita’s basics, what to watch in passenger and handling work, and the ongoing capacity expansion."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_nrt",cap:"Figure: Narita at a glance: operator, runways, hours and handling notes."},{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of November 2026)",blocks:[{t:"fig",id:"apt_nrt",cap:"Figure: Narita at a glance: operator, runways, hours and handling notes."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Narita International Airport Corporation (NAA)"],
 ["Runways","Runway A 4,000 m, Runway B 2,500 m"],
-["Hours","6:00–24:00, with night restrictions ★"],
+["Hours","6:00–24:00 (Runway A only from 23:00)"],
 ["Terminals","T1 and T2 (major and foreign airlines), T3 (LCCs)"],
 ["Role","The Tokyo region’s hub for international flights and cargo; domestic services are mainly LCC and connecting routes"]]}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
 {name:"The end of operating hours",x:"If a delay threatens to run past closing time, you are pushed to decide early whether to cancel or depart. On delays from the evening onward, consult head office and operations control especially early."},
+{name:"The 23:00 rules",x:"From 23:00 to 24:00 only Runway A (16R/34L) is used, and only aircraft that meet the noise standard may operate. The same standard applies to delayed flights that slip into that hour. From 0:00 to 6:00 no take-offs or landings are allowed except in emergencies and similar cases, and flight plans that fall in those hours are not accepted (AIP)."},
 {name:"Long taxi times",x:"Taxiing from terminal to runway takes a while. Set your cut-offs allowing for the time after door close."},
 {name:"Counter allocation",x:"Terminal counters are allocated each season under the airport’s guidelines. File changes to frequencies or times early."},
 {name:"The BHS",x:"Know the rules for the in-line screening baggage system and the fallback procedure when it fails; take part in the drills."},
 {name:"Committees",x:"Facility and rule changes are shared through the airport-wide AOC and the terminal operating committees."},
-{name:"APU restrictions",x:"APU use on stand is restricted for environmental reasons. Have a procedure for ground power and pre-conditioned air. ★"},
+{name:"APU restrictions",x:"At stands with fixed power, the APU may be used only from 15 minutes before scheduled departure (after arrival, only until power is switched over). Have a procedure for ground power and pre-conditioned air (AIP)."},
 {name:"De-icing and snow clearance",x:"De-icing is normally done on stand before departure. In heavy snow the runways may be closed alternately for clearance, and there have been past cases of chaos when stands ran out. Before winter, confirm how many units your contractor has and how the order is decided. ★"}]}]},
 {h:"The capacity expansion",blocks:[{t:"table",cols:["Plan","Status (September 2026)"],rows:[
 ["Runway B extension","From 2,500 m to 3,500 m. The land is secured, and the extension is to open first, within FY2029"],
@@ -82,9 +98,9 @@ next:"1-2 Tokyo International Airport, Haneda (HND)"});
 set("1-2",{title:"Tokyo International Airport, Haneda (HND)",hl:"Haneda",subtitle:"Japan’s biggest airport: 24 hours, four runways, and terminals being reshaped",
 lead:["Haneda is Japan’s largest domestic hub and an international airport close to central Tokyo. It has four runways and operates 24 hours, yet its slots are extremely valuable and its terminals are split into three.","This article covers Haneda’s basics, what to watch in passenger and handling work, and the terminal reshaping planned into the 2030s."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_hnd",cap:"Figure: Haneda at a glance."},{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of November 2026)",blocks:[{t:"fig",id:"apt_hnd",cap:"Figure: Haneda at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","The state runs the runways and air traffic control; Japan Airport Terminal runs T1 and T2; Tokyo International Air Terminal runs T3"],
-["Runways","Four (A, B, C, D)"],
+["Runways","Four (A 3,000 m, B 2,500 m, C 3,360 m, D 2,500 m)"],
 ["Hours","24 hours"],
 ["Terminals","T1 (domestic, JAL group and others), T2 (domestic, ANA group and others, plus some international), T3 (international)"],
 ["Role","Largest domestic hub; international flights use daytime and late-night/early-morning slots. Routes over central Tokyo are limited to set hours ★"]]}]},

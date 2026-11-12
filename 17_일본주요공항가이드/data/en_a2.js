@@ -30,11 +30,11 @@ next:"2-2 Osaka International Airport, Itami (ITM)"});
 set("2-2",{title:"Osaka International Airport, Itami (ITM)",hl:"Itami",subtitle:"A domestic-only city airport: 7:00–21:00 hours and a daily movement cap",
 lead:["Despite its name, Itami is today a domestic-only airport. It is close to central Osaka and popular with business travellers, but it is surrounded by housing, so its hours and daily movements are tightly capped.","This article covers Itami’s basics, its role among Kansai’s three airports, and what to watch in passenger and handling work."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_itm",cap:"Figure: Itami at a glance."},{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of November 2026)",blocks:[{t:"fig",id:"apt_itm",cap:"Figure: Itami at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Kansai Airports (run together with Kansai and Kobe)"],
 ["Runways","Runway A 1,828 m, Runway B 3,000 m"],
 ["Hours","7:00–21:00"],
-["Movements","Up to 370 a day, including up to 200 jet movements ★"],
+["Movements","Up to 370 a day, including up to 200 jet movements ★. IFR flights: up to 36 an hour (20 arrivals) and 93 in any three hours in a row"],
 ["Routes","Domestic only (international flights use Kansai)"]]}]},
 {h:"The division of roles among Kansai’s three airports",blocks:[{t:"table",cols:["Airport","Main role"],rows:[
 ["Kansai","International, LCC and cargo hub, 24 hours"],
@@ -87,10 +87,10 @@ next:"Part 3 Kyushu, Hokkaido and Okinawa — 3-1 Fukuoka Airport (FUK)"});
 set("3-1",{title:"Fukuoka Airport (FUK)",hl:"Fukuoka",subtitle:"Minutes from downtown by subway: one of Japan’s most congested airports, now with a second runway",
 lead:["Fukuoka is unusually close to its city — a few minutes by subway from downtown. That convenience comes with fixed operating hours because of nearby housing, and it is known as one of Japan’s most congested airports. A second runway opened in March 2025.","This article covers Fukuoka’s basics, what a congested airport demands, and recent changes."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_fuk",cap:"Figure: Fukuoka at a glance."},{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of November 2026)",blocks:[{t:"fig",id:"apt_fuk",cap:"Figure: Fukuoka at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Fukuoka International Airport Co. (privatised in 2019)"],
-["Runways","Two: the existing runway, and a 2,500 m additional runway opened in March 2025"],
-["Hours","7:00–22:00 ★"],
+["Runways","Two: the existing 2,800 m runway, and a 2,500 m additional runway opened in March 2025"],
+["Hours","7:00–22:00"],
 ["Terminals","Domestic, and international (expansion completed in 2025)"],
 ["Capacity","The hourly movement limit rose from 38 to 40 (the runways are close together, which limits simultaneous use)"]]}]},
 {h:"What to watch in passenger and handling work",blocks:[{t:"check",items:[
@@ -98,6 +98,7 @@ sections:[
 {name:"Queues for departure",x:"At peak times the take-off queue is long. Treat door-close time and actual take-off time separately."},
 {name:"Domestic–international transfers",x:"The terminals are apart and linked by bus (on a dedicated road on the international side). Allow for connection times."},
 {name:"New international facilities",x:"The expansion added boarding bridges, self bag drop and smart security lanes. Decide how your operation will use them. ★"},
+{name:"Runway status lights (RWSL)",x:"Since September 2026, runway status lights for take-offs and crossings have been on operational trial on the additional runway (16R/34L). While they are lit red, do not enter the runway even with a clearance. Ramp staff should know what they mean too (AIC)."},
 {name:"De-icing",x:"Snow is rare, but de-icing is needed in cold snaps. De-icing at peak times easily carries delays toward the 22:00 close. Dyed fluids since the 2024 winter schedule. ★"}]},
 {t:"point",x:"At Fukuoka, it is important to keep delays to a minimum within limited operating hours. Get the first flight out on time and do not let evening delays run up to 22:00."}]}],
 voice:"Fukuoka closes at 10 pm. On days of long delays, work back from closing time from the evening and be ready to bring forward check-in cut-off and boarding.",
@@ -110,10 +111,10 @@ next:"3-2 New Chitose Airport (CTS)"});
 set("3-2",{title:"New Chitose Airport (CTS)",hl:"New Chitose",subtitle:"Hokkaido’s gateway: winter snow, and preparing for the day transport stops",
 lead:["New Chitose is Hokkaido’s air gateway, with domestic and international traffic at record levels. The key to understanding it is winter snow: runway clearance and de-icing delay flights, and when the railway stops, the terminals fill with people.","This lesson covers New Chitose’s basics, winter operations, and what to watch in passenger and handling work."],
 sections:[
-{h:"Basics (as of September 2026)",blocks:[{t:"fig",id:"apt_cts",cap:"Figure: New Chitose at a glance."},{t:"table",cols:["Item","Detail"],rows:[
+{h:"Basics (as of November 2026)",blocks:[{t:"fig",id:"apt_cts",cap:"Figure: New Chitose at a glance."},{t:"table",cols:["Item","Detail"],rows:[
 ["Operator","Hokkaido Airports (running seven Hokkaido airports together)"],
 ["Runways","Two (next to the Japan Air Self-Defense Force’s Chitose Air Base)"],
-["Hours","24 hours, with limits on late-night and early-morning slots ★"],
+["Hours","24 hours (up to 30 movements between 22:00 and 7:00, of which up to 6 between 0:00 and 6:00)"],
 ["Terminals","Domestic and international, linked by a connecting facility"],
 ["Scale","FY2026 forecast: about 21.5 million domestic and 4.8 million international passengers, about 26.4 million in total"]]}]},
 {h:"Winter operations",blocks:[{t:"check",items:[

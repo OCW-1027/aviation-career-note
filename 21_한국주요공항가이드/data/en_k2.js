@@ -6,7 +6,7 @@ sections:[
 {h:"Key facts (as of September 2026)",blocks:[{t:"fig",id:"kor_pus",cap:"Figure: Gimhae at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: PUS / ICAO: RKPK"],
 ["Operator","Korea Airports Corporation (airfield shared with the Air Force’s 5th Air Mobility Wing)"],
-["Runways","Two, parallel"],
+["Runways","Two, parallel (3,200 m and 2,743 m)"],
 ["Terminals","Domestic terminal and international terminal"],
 ["Hours","06:00–23:00 (curfew: no take-offs or landings from 23:00 to 06:00)"],
 ["2025 international","10.44 million (Japan 3.98 million, Vietnam 2.09 million, Taiwan 1.33 million, China 1.07 million, the Philippines 0.65 million)"],
@@ -40,7 +40,7 @@ sections:[
 {h:"Key facts (September 2026)",blocks:[{t:"fig",id:"kor_cju",cap:"Figure: Jeju at a glance."},{t:"table",cols:["Item","Details"],rows:[
 ["Codes","IATA: CJU / ICAO: RKPC"],
 ["Operator","Korea Airports Corporation"],
-["Runways","Two, intersecting (07/25: 3,180 m; 13/31: 1,910 m). They cannot be used at the same time, so in practice almost everything uses 07/25"],
+["Runways","Two, intersecting (07/25: 3,180 m; 13/31: 1,900 m). They cannot be used at the same time, so in practice almost everything uses 07/25"],
 ["Hours","No legal curfew, but the airport normally operates from about 06:00 to 23:00; after mass cancellations, extra flights may run late into the night (as after the February 2026 snowstorm)"],
 ["2025 results","Jeju routes (domestic) 26.51 million; international 3.01 million"],
 ["Main international routes","China, Japan, Taiwan, Southeast Asia and others ★"],

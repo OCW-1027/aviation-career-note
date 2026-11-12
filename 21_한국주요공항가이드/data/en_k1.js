@@ -41,7 +41,7 @@ sections:[
 ["Codes","IATA: GMP / ICAO: RKSS"],
 ["Operator","Korea Airports Corporation"],
 ["History","Most international flights moved to Incheon in 2001; Haneda flights began on 30 November 2003"],
-["Runways","Two (parallel) ★"],
+["Runways","Two, parallel (3,600 m and 3,200 m)"],
 ["Terminals","Domestic terminal and international terminal"],
 ["Hours","06:00–23:00 (flights restricted 23:00–06:00)"],
 ["2025 international","4.42 million (Japan routes 2.98 million, China routes 1.02 million)"],
