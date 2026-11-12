@@ -107,6 +107,30 @@ MG.ledger = {
 
 /* ---------- 원자적 커밋(11.5) — 메모리에서 계산 후 한 번에 교체 ---------- */
 MG.clone = function (o) { return JSON.parse(JSON.stringify(o)); };
+/* 2026-11-12 기종 이름 표기 점검: 화면에 보이는 기체 등록 기호를 가상 형식(VL-)으로 — 내부 열쇠·저장본은 그대로(JA81VA = 화면 VL-81A).
+   JA81V·JA81W·JA81S → VL-81·VL-82·VL-83 / JA89V·JA89W·JA89S → VL-91·VL-92·VL-93 (실제 국적 기호 「JA」를 화면에 쓰지 않음) */
+MG.regRaw = (function () { try { return new URLSearchParams(location.search).get('regview') === '0' || /_trial[^\/]*\.html$/.test(location.pathname); } catch (e) { return false; } })();   // 개발용 시험판(dev/*_trial*.html)·?regview=0 = 내부 열쇠 그대로(기존 화면 시험 기대값 유지) · 사이트판 = VL- 표기
+MG.regIn = function (s) { return String(s).replace(/VL-([89])([123])/g, function (m, a, b) { return 'JA8' + (a === '8' ? '1' : '9') + { 1: 'V', 2: 'W', 3: 'S' }[b]; }); };   // 화면에 친 VL- 표기 → 내부 열쇠
+MG.regView = function (s) { if (MG.regRaw) return String(s); return String(s).replace(/JA8([19])([VWS])/g, function (m, a, b) { return 'VL-' + (a === '1' ? '8' : '9') + { V: '1', W: '2', S: '3' }[b]; }); };
+MG.regViewDom = function (root) {   // 글자 노드·title·aria-label만 바꿈(value·data-* 속성 = 내부 열쇠 그대로)
+  if (!root || typeof document === 'undefined') return;
+  var re = /JA8[19][VWS]/, w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n;
+  while ((n = w.nextNode())) { if (re.test(n.nodeValue)) n.nodeValue = MG.regView(n.nodeValue); }
+  if (root.querySelectorAll) [].forEach.call(root.querySelectorAll('[title],[aria-label]'), function (e) {
+    ['title', 'aria-label'].forEach(function (k) { var v = e.getAttribute(k); if (v && re.test(v)) e.setAttribute(k, MG.regView(v)); }); });
+};
+MG.regViewWatch = function () {
+  if (MG.regRaw || typeof MutationObserver === 'undefined' || MG._regObs || typeof document === 'undefined' || !document.body) return;
+  MG.regViewDom(document.body);
+  MG._regObs = new MutationObserver(function (ms) {
+    ms.forEach(function (m) {
+      if (m.type === 'characterData') { var t = m.target; if (/JA8[19][VWS]/.test(t.nodeValue)) t.nodeValue = MG.regView(t.nodeValue); }
+      else if (m.type === 'attributes') { var v = m.target.getAttribute(m.attributeName); if (v && /JA8[19][VWS]/.test(v)) m.target.setAttribute(m.attributeName, MG.regView(v)); }
+      else [].forEach.call(m.addedNodes, function (x) { if (x.nodeType === 3) { if (/JA8[19][VWS]/.test(x.nodeValue)) x.nodeValue = MG.regView(x.nodeValue); } else if (x.nodeType === 1) MG.regViewDom(x); });
+    });
+  });
+  MG._regObs.observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['title', 'aria-label'] });
+};
 // 1C-1b: 예약 묶음(C.fin.bk)·좌석 색인(bkFk)은 수십만 건 — 결정마다 전체 복제(1~2초) 대신 「읽을 때 복제」 지도(copy-on-read Proxy)로 초안에 붙이고,
 //   성공하면 바뀐 항목만 원본 지도에 반영(순서 보존: 기존 키는 제자리, 새 키는 뒤), 실패(예외·커밋 거절)면 원본 지도 불변 — 원자성(11.5) 동일
 function cowMap(orig) {
@@ -12537,8 +12561,8 @@ MG.ui = (function () {
     regs.forEach(function (reg, i) {
       var y = head + i * rowH, T = c.tails[reg], sel = S.sel === reg;
       if (sel) { ctx.fillStyle = 'rgba(255,226,138,.08)'; ctx.fillRect(0, y, W, rowH); }
-      ctx.fillStyle = sel ? '#ffe28a' : '#dbe6f7'; ctx.font = '700 11px Menlo,Consolas,monospace'; ctx.fillText(reg, 8, y + rowH / 2 - 5);
-      ctx.fillStyle = '#8191b0'; ctx.font = '9.5px Menlo,Consolas,monospace'; ctx.fillText(T.type === 'B789' ? 'B787-9' : 'B737-800', 8, y + rowH / 2 + 8);
+      ctx.fillStyle = sel ? '#ffe28a' : '#dbe6f7'; ctx.font = '700 11px Menlo,Consolas,monospace'; ctx.fillText(MG.regView(reg), 8, y + rowH / 2 - 5);
+      ctx.fillStyle = '#8191b0'; ctx.font = '9.5px Menlo,Consolas,monospace'; ctx.fillText((T.type === 'B789' ? 'B787-9' : 'B737-800') + ({ ja: '型', en: '' }[MG.T.lang] != null ? { ja: '型', en: '' }[MG.T.lang] : '형'), 8, y + rowH / 2 + 8);
       c.mxWindows.filter(function (w) { return w.tail === reg && w.end > ds && w.start < ds + 1440; }).forEach(function (w) {
         var a = Math.max(x0, xs(w.start)), b = Math.min(x1, xs(w.end)); ctx.fillStyle = 'rgba(139,124,255,.28)'; ctx.fillRect(a, y + 4, b - a, rowH - 8); ctx.fillStyle = '#c8bfff'; ctx.font = '9.5px sans-serif'; ctx.fillText(MG.T.s(w.what) + ' 체크', a + 4, y + rowH / 2);
       });
@@ -12862,6 +12886,7 @@ MG.ui = (function () {
   }
   function boot() {
     trackClicks();
+    try { MG.regViewWatch(); } catch (e) { }   // 2026-11-12: 화면 등록 기호 VL- 표기
     B = MG.data.base; F = MG.data.fin; JST = B.hqTz;
     try { if (MG.crisis && new URLSearchParams(location.search).get('profile') === 'K0') MG.crisis.defaultProfile = 'K0'; } catch (e) { }
     try { if (MG.board) MG.board.ui = new URLSearchParams(location.search).get('b') !== '0'; } catch (e) { }   // 1C-3b: 화면 새 캠페인 기본 (b) 켬 · 엔진 기본(newCampaign)은 끔(시험은 명시)   // 1C-3a E13: ?profile=K0 = 호환 프로필(기존 화면 회귀) · 기본 K1(새 캠페인)
@@ -14123,7 +14148,7 @@ MG.uiRp = (function () {
     if (p.salesStart) h += '<div class="sub">판매 개시 ' + MG.T.s(p.salesStart) + (MG.T.s(p.opened ? '(개시됨)' : ' 00:00 예정')) + ' · 운임 지수 ' + MG.T.s(MG.mkt.selfIdx(c, p.od)) + '</div>';
     // 설계대
     h += '<div class="pn" style="margin-top:8px"><h3>설계대 <small>기안만 바뀜(상태 변화 0) · 지난 단계에 닿는 변경 = 재심사(그 단계로 · 지급·계약 유지)</small></h3>' +
-      '<div class="row" style="flex-wrap:wrap;gap:6px">기체 <input class="btn" id="rdReg" size="7" value="' + esc(d.reg || '') + '"' + (MG.T.s(mm ? ' style="border-color:var(--rd,#ff5c6c)" title="' + esc(mm) + '"' : '')) + '> 첫 출발 <input class="btn" id="rdFirst" size="5" value="' + esc(d.first) + '"> 턴 여유 <input class="btn num" id="rdSlack" type="number" value="' + MG.T.s(d.slack) + '"> 효력일 <input class="btn" id="rdFrom" type="date" value="' + MG.T.s(d.from) + '"' + (MG.T.s(effPast ? ' style="border-color:var(--rd,#ff5c6c)"' : '')) + '>' + (MG.T.s(effPast ? ' <button class="btn sm2" id="rdTomorrow">효력일 칸에 내일(' + MG.T.s(MG.tz.addDays(td, 1)) + ') 넣기</button>' : '')) + '</div>' +
+      '<div class="row" style="flex-wrap:wrap;gap:6px">기체 <input class="btn" id="rdReg" size="7" value="' + esc(MG.regView(d.reg || '')) + '"' + (MG.T.s(mm ? ' style="border-color:var(--rd,#ff5c6c)" title="' + esc(mm) + '"' : '')) + '> 첫 출발 <input class="btn" id="rdFirst" size="5" value="' + esc(d.first) + '"> 턴 여유 <input class="btn num" id="rdSlack" type="number" value="' + MG.T.s(d.slack) + '"> 효력일 <input class="btn" id="rdFrom" type="date" value="' + MG.T.s(d.from) + '"' + (MG.T.s(effPast ? ' style="border-color:var(--rd,#ff5c6c)"' : '')) + '>' + (MG.T.s(effPast ? ' <button class="btn sm2" id="rdTomorrow">효력일 칸에 내일(' + MG.T.s(MG.tz.addDays(td, 1)) + ') 넣기</button>' : '')) + '</div>' +
       (MG.T.s(mm ? '<div class="sub ng">' + esc(mm) + ' — 기체 칸을 ' + MG.T.s(MG.rp.tyName(p.type)) + ' 기체(' + (MG.T.s(MG.T.J(regsFor(c, p.type), '·') || '없음 — 기단 화면')) + ')로 고치고 기안 저장</div>' : '')) + (MG.T.s(effPast ? '<div class="sub ng">효력일(' + MG.T.s(d.from) + ')이 오늘 이전입니다 — 내일 이후로 바꾸고 기안 저장(조사·인도·승무원 준비 기간을 고려)</div>' : '')) +
       '<div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px"><span class="sub">운항 요일(회전일 — 첫 편 출발일)</span>' + MG.T.s(dowBox('data-rddow', d.dow)) + '<span class="sub" id="rdDowLbl">' + esc(dowLbl(d, (d.legs || []).length)) + (MG.T.s((d.legs || []).some(function (l, i) { return i > 0; }) && d.dow && d.dow.length < 7 ? ' · 편별 현지 출발 요일은 시간표에서(귀국편 = 다음 날이면 +1일)' : '')) + '</span></div>' +
       '<div style="margin-top:6px"><span class="sub">구간(도착지 블록분, …)</span><textarea class="btn" id="rdLegs" rows="1" style="width:100%;box-sizing:border-box">' + esc(legsTxt(d.legs)) + '</textarea></div>' +
@@ -14162,7 +14187,7 @@ MG.uiRp = (function () {
     on('rpGround', function () { act(function (c) { return MG.rp.raiseApp(c, id, 'ground'); }, MG.T.s(id) + ' 지상 계약 품의(결재함)'); });
     on('rpFinal', function () { act(function (c) { return MG.rp.requestFinal(c, id, 'player'); }, MG.T.s(id) + ' 최종 투자 승인 품의(결재함)'); });
     on('rpSales', function () { act(function (c) { return MG.rp.approveSales(c, id, 'player'); }, MG.T.s(id) + ' 판매 준비 승인'); });
-    on('rdSave', function () { var patch = { reg: $('rdReg').value.trim() || null, first: $('rdFirst').value.trim(), slack: +$('rdSlack').value || 0, from: $('rdFrom').value, legs: parseLegs($('rdLegs').value), fare: +$('rdFare').value || 1, dow: dowRead('data-rddow') }; if ($('rdSales').value) patch.salesStart = $('rdSales').value; act(function (c) { return MG.rp.setDraft(c, id, patch); }, MG.T.s(id) + ' 기안 저장'); });
+    on('rdSave', function () { var patch = { reg: MG.regIn($('rdReg').value.trim().toUpperCase()) || null, first: $('rdFirst').value.trim(), slack: +$('rdSlack').value || 0, from: $('rdFrom').value, legs: parseLegs($('rdLegs').value), fare: +$('rdFare').value || 1, dow: dowRead('data-rddow') }; if ($('rdSales').value) patch.salesStart = $('rdSales').value; act(function (c) { return MG.rp.setDraft(c, id, patch); }, MG.T.s(id) + ' 기안 저장'); });
     on('abRun', function () {
       var c0 = C(), p = MG.rp.get(c0, id), A = MG.clone(p.legsDraft), B = MG.clone(p.legsDraft), bd = dowRead('data-abdow'); B.first = $('abFirst').value.trim(); if (bd.length && bd.length < 7) B.dow = bd; else delete B.dow; V.ab = { first: B.first, dow: bd };
       var ext = { id: $('abId').value.trim() || 'base', seed: +$('abSeed').value || 0 }, full = $('abFull').checked; H.note('A/B 실행 중(두 기안 × 3개월 실측) …');
