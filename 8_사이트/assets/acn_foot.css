@@ -39,6 +39,8 @@
 .acn-ft .acn-ct a.acn-ctall{color:#9fb0bf!important}
 .acn-ft .acn-ct a:hover{color:#fff!important}
 .acn-copy .acn-url{white-space:nowrap}
+/* 機種名の商標表示を足しても、狭い画面で行数を増やさない（URL は問い合わせ欄のメールでも分かる） */
+@media(max-width:480px){.acn-copy .acn-url{display:none}}
 @media(max-width:600px){.acn-ct{display:grid;grid-template-columns:1fr;gap:5px}.acn-ct span{flex-wrap:wrap;gap:0 8px;white-space:normal}}
 
 /* 縦・横の線をそろえる（2026.10.17 ユーザー指示）

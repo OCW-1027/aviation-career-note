@@ -36,7 +36,7 @@ function draw(){var c=C[lang],page=document.body.getAttribute('data-page');
  if($('mem'))$('mem').textContent=c.mem;
  if($('foot'))$('foot').innerHTML='<div>'+(window.ACN_LOGO?'<a class="acn-ftb" href="index.html" aria-label="Aviation Career Note">'+ACN_LOGO.lockup({dark:true})+'</a>'+(lang==='en'?'':'<p>'+E(c.brand)+'</p>'):'<b>'+E(c.brand)+'</b>')+c.foot.map(function(p){return '<p>'+E(p)+'</p>'}).join('')+'</div>'+FOOT.map(function(f){return '<div><b>'+E(FL(f[0],lang))+'</b>'+f[1].map(function(a){return '<a href="'+a[0]+'">'+E(FL(a[1],lang))+'</a>'}).join('')+'</div>'}).join('');
  if($('copy')){var cp=$('copy'),ct=document.getElementById('acnCt');if(!ct){ct=document.createElement('div');ct.id='acnCt';ct.className='acn-ct';cp.parentNode.insertBefore(ct,cp)}ct.innerHTML=ACN_CT(lang,function(u){return u})}
- if($('copy'))$('copy').innerHTML=E(c.copy)+'<span class="acn-url">www.ac-note.com</span><a href="terms.html">'+E(c.terms)+'</a><a href="privacy.html">'+E(c.privacy)+'</a><a href="notice.html">'+E(c.notice||({ja:'内容の扱いと免責',ko:'콘텐츠 이용 안내·면책',en:'Content notice'})[lang])+'</a>';
+ if($('copy'))$('copy').innerHTML=E(c.copy)+'<span class="acn-url">www.ac-note.com</span><a href="terms.html">'+E(c.terms)+'</a><a href="privacy.html">'+E(c.privacy)+'</a><a href="notice.html">'+E(c.notice||({ja:'内容の扱いと免責',ko:'콘텐츠 이용 안내·면책',en:'Content notice'})[lang])+'</a><span class="acn-tm">'+({ja:'機種名は各社の商標です',ko:'기종명은 각 사의 상표입니다',en:'Aircraft names are trademarks'})[lang]+'</span>';
  if(typeof window.PAGE_RENDER==='function')window.PAGE_RENDER(lang);
  localLabels();fitAll();}
 /* カードの題名を1行に収める（2026.10 改訂。前の fitL2 の代わり）
