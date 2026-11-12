@@ -1,0 +1,18 @@
+{
+  "about": "定期点検の予定（T-23）。cycle: weekly=毎週 / monthly=毎月 / quarterly=1・4・7・10月 / yearly=months の月 / airac=AIRAC（28日ごと）の有効日がある月。due.mjs が今月の分を出し、ビルドのときにも表示する。料率（rates_jp.js）の月はビルドが別に知らせるのでここには入れない。手順の説明は _build/docs/정기점검표.md。",
+  "items": [
+    {"id":"W1","cycle":"weekly","title":"サイト検査（check.mjs：ページ・リンク）と公開ページの表示を1回見る","where":"ビルドの結果 / GitHub Actions"},
+    {"id":"W2","cycle":"weekly","title":"誤りの連絡・問い合わせの確認（公開後）","where":"info@・support@（メール管理台帳）"},
+    {"id":"M1","cycle":"airac","title":"日本AIPの改訂を照合：Japan Key Changes を見て aip_refs.mjs --match で当たる文を確かめる","where":"参考資料\\AIP File Download Service / _build/aip_refs.json"},
+    {"id":"M2","cycle":"monthly","title":"★印・「○年○月時点」の表示で6か月以上たったものを見直す","where":"空港ガイド（17・20・21）・各講座の★"},
+    {"id":"M3","cycle":"monthly","title":"「最近の更新」（updates.js）を整理し、公開日（lesson_dates.js の SITE_OPEN）との関係を確かめる","where":"1_지상직여객운송입문/assets/updates.js"},
+    {"id":"M4","cycle":"monthly","title":"制度の変更の発表を確かめる（K-ETA・JESTA・ETIAS・入管の手数料・航空法の改正など）","where":"T-15・T-16、CIQ・日本生活ガイド"},
+    {"id":"Q1","cycle":"quarterly","title":"外部リンク・参考動画（YouTube）が生きているか確かめる","where":"동영상소스목록.md・各レッスンの参考リンク"},
+    {"id":"Q2","cycle":"quarterly","title":"空港の基本情報（運用時間・滑走路・ターミナル）を公式サイトとAIPで確かめる","where":"17・20・21 と figs_gnd.js の空港カード"},
+    {"id":"Y1","cycle":"yearly","months":[3,10],"title":"IATAの夏・冬スケジュールの切り替え前に、時刻表・スロットの説明を確かめる","where":"航空営業・スケジュール関連のレッスン"},
+    {"id":"Y2","cycle":"yearly","months":[11],"title":"経路の練習のデータ（route_net.js）を最新のAIP（ENR 3）で作り直す","where":"18_항공기초지식/ops/route_net.js"},
+    {"id":"Y3","cycle":"yearly","months":[12],"title":"翌年の祝日・年末年始の運用と、K-ETAなど年末に発表されるものを確かめる","where":"T-15、空港ガイド"},
+    {"id":"Y4","cycle":"yearly","months":[6],"title":"学科試験の過去問の新しい回が公表されたか確かめる","where":"22_学科試験過去問"},
+    {"id":"Y5","cycle":"yearly","months":[1],"title":"利用規約・プライバシーポリシー・内容の扱い（notice.html）を読み直す","where":"8_사이트"}
+  ]
+}

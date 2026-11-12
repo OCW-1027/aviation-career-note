@@ -247,6 +247,14 @@ try {
   })(rc.window.RATES, 'RATES');
   console.log(late.length ? `⚠ 料率の確認の月を過ぎた項目 ${late.length}件（公式の資料で確かめて rates_jp.js を直す）:\n  ` + late.join('\n  ') : `rates: 確認の月を過ぎた項目なし（${now}）`);
 } catch (e) { console.log('rates check skipped: ' + e.message); }
+// 定期点検（T-23）と AIP に頼っている文（T-36）を知らせる（2026.11）。警告だけで、ビルドは止めない。
+try {
+  const { dueText } = await import('./due.mjs');
+  const { checkRefs } = await import('./aip_refs.mjs');
+  console.log(dueText(process.env.RATES_MONTH || new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 7)));
+  const ar = checkRefs();
+  if (ar.missing.length) console.log(`⚠ AIP に頼っている文で、原稿から見つからないもの ${ar.missing.length}件（_build/aip_refs.json の anchor を直す）: ` + ar.missing.map(x => x.id).join(', '));
+} catch (e) { console.log('due check skipped: ' + e.message); }
 // 公開サイトの住所を英語にする（2026.10）：元のフォルダはそのまま、出力の中だけ名前を変え、古い住所には移動のページを置く（_build/english_urls.mjs）
 if (!process.env.KEEP_OLD_URLS) { const r = englishUrls(OUT); console.log(`english urls: ${r.renamedDirs} folders, ${r.renamedFiles} files renamed, ${r.rewritten} files rewritten, ${r.redirects} redirects`); }
 console.log(`pages: ${pages}, sitemap urls: ${urls.length}, errors: ${errors.length}`);
