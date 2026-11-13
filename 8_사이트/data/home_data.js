@@ -67,7 +67,7 @@ window.HERO_SLIDES=[
 /* 23차：AIRLINE SAGA（ゲーム）。2枚目に出る（1枚目はいつもの見出し） */
 {tag:{ja:'ゲーム',ko:'게임',en:'GAME'},
  h:{ja:'AIRLINE SAGA<br>航空会社の仕事体験ゲーム',ko:'AIRLINE SAGA<br>항공사 업무 체험 게임',en:'AIRLINE SAGA<br>Airline Experience Game'},
- p:{ja:'架空の航空会社 Vela Air で、1便を飛ばす仕事をステージごとに体験する教育用ゲームです。AIRPORT OPERATIONS（チェックイン・ゲート・搭載・ランプ）と AIRLINE MANAGEMENT（航空会社経営シミュレーション・韓国語版）を遊べます。',ko:'가상 항공사 Vela Air에서 항공편 하나를 띄우는 일을 스테이지별로 체험하는 교육용 게임입니다. AIRPORT OPERATIONS(체크인·게이트·탑재·램프)와 AIRLINE MANAGEMENT(항공사 경영 시뮬레이션 · 한국어판)를 플레이할 수 있습니다.',en:'An educational game: work the jobs behind one flight at the fictional Vela Air, stage by stage. Play AIRPORT OPERATIONS (check-in, gate, loading, ramp) and AIRLINE MANAGEMENT (airline management simulation, Korean edition).'},
+ p:{ja:'架空の航空会社 Vela Air で、1便を飛ばす仕事をステージごとに体験する教育用ゲームです。空港の現場を体験する「現場編」、航空会社を経営する「経営編」、空と滑走路を指揮する「管制編」を遊べます。',ko:'가상 항공사 Vela Air에서 항공편 하나를 띄우는 일을 스테이지별로 체험하는 교육용 게임입니다. 공항 현장을 체험하는 「현장편」, 항공사를 경영하는 「경영편」, 하늘과 활주로를 지휘하는 「관제편」을 플레이할 수 있습니다.',en:'An educational game: work the jobs behind one flight at the fictional Vela Air, stage by stage. Play Field (work the airport floor), Management (run an airline) and Air Traffic Control (direct the runways and the sky).'},
  cta:{ja:'ゲームを開く',ko:'게임 열기',en:'Open the game'},href:'../1_지상직여객운송입문/AIRLINE_SAGA_SELECT.html'},
 {tag:{ja:'新着・講座更新',ko:'새 소식 · 강좌 업데이트',en:'NEW · Course update'},
  h:{ja:'航空機と整備が<br>24本に',ko:'항공기와 정비<br>24편으로 확장',en:'Aircraft and Maintenance<br>now 24 lessons'},
