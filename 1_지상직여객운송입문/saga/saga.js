@@ -12707,13 +12707,13 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     var c = S.cur;
     document.querySelectorAll('#scr button[data-qk]').forEach(function (b) { b.onclick = function () { if (!rpLive(c)) return; var k = b.dataset.qk; if (S.rp.tasks[k === 'fullClean' ? 'clean' : 'cater']) return; S.rp.opt[k] = b.dataset.qv === '1'; sfx.tap(); rpSync(); redraw(); }; });
   }
-  /* ================= 종합편 「한 편을 띄우다」(합의본 v2.1, GPT 69차 확정) — rp_d25.js 뒤·99_tail.js 앞(같은 엔진 IIFE) =================
+  /* ================= 종합편 「출발편 업무」(합의본 v2.1, GPT 69차 확정) — rp_d25.js 뒤·99_tail.js 앞(같은 엔진 IIFE) =================
      원칙: 네 스테이지의 규칙·채점은 그대로. 이 파일은 ① 압축 근무(미션 = src_fl/fl_data.js)의 초기 상태(preset)·넘김, ② 편 상태 G.flight(저장 acn-saga-flight-v1),
      ③ 자리 전환·종합 결과·기록(fl.{JP|KR}), ④ 연결 판정 C1~C6과 파급 사건 2개만 더함. 새 판정 코드는 없음(연결 판정만).
      편 시계: 각 자리의 실제 끝 시각(체크인 마감·게이트 최종 통보·탑재관리의 램프 통보·램프 AOBT)이 다음 자리의 시작 시각. */
   var FLKEY = 'acn-saga-flight-v1', FLSTEP = ['ci', 'gt', 'wb', 'rp'], FLDAY = { n: 0, id: 'fl' }, FLX = window.SAGA_FLX || {};
   var FLNAME = { ci: L('チェックインカウンター', '체크인 카운터', 'Check-in counter'), gt: L('搭乗ゲート', '탑승 게이트', 'Boarding gate'), wb: L('ロードコントロール', '탑재관리 사무실', 'Load control office'), rp: L('ランプ', '램프', 'Ramp') };
-  var FLTITLE = L('一便を飛ばす', '한 편을 띄우다', 'Get one flight out');
+  var FLTITLE = L('出発便の業務', '출발편 업무', 'Departure Handling');
   function flRead() { try { var o = JSON.parse(localStorage.getItem(FLKEY) || 'null'); return o && o.schemaVersion === 1 && FLSTEP.concat(['done']).indexOf(o.step) >= 0 && o.legs && o.roster ? o : null; } catch (e) { return null; } }
   function flWrite(f) { try { if (window.SAGA_TEST && window.__flFailWrite) throw new Error('test'); localStorage.setItem(FLKEY, JSON.stringify(f)); return true; } catch (e) { return false; } }
   function flCopy(o) { return o == null ? o : JSON.parse(JSON.stringify(o)); }
@@ -12777,7 +12777,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     }
     go();
   }
-  function flWarn() { askConfirm(L('保存できませんでした', '저장하지 못했습니다', 'Could not save'), L('この端末に便の進み具合を保存できないため、一便を飛ばすを始められません。', '이 기기에 편의 진행을 저장할 수 없어 「한 편을 띄우다」를 시작할 수 없습니다.', 'Flight progress cannot be saved on this device, so the flight cannot start.'), L('閉じる', '닫기', 'Close'), function () {}); }
+  function flWarn() { askConfirm(L('保存できませんでした', '저장하지 못했습니다', 'Could not save'), L('この端末に便の進み具合を保存できないため、「出発便の業務」を始められません。', '이 기기에 편의 진행을 저장할 수 없어 「출발편 업무」를 시작할 수 없습니다.', 'Flight progress cannot be saved on this device, so the flight cannot start.'), L('閉じる', '닫기', 'Close'), function () {}); }
   /* 이어하기 저장본의 편 확인(엔진 checkRunIn에서) — 다른 편·다른 자리·바뀐 입력이면 이어하기 불가 */
   function flRunWhy(o) {
     var f = flRead(); if (!f || f.flightRunId !== o.fl || f.step !== ST.id || f.country !== o.country || !!f.practice !== !!o.practice || !f.legs[ST.id] || !f.legs[ST.id].input) return 'scenario';
@@ -13192,7 +13192,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     if (step === 'wb') { var w = f.wb || {}; h = flKV([[L('最初の承認', '최초 승인', 'First acceptance'), 'EDNO ' + ((w.first || {}).ed || 1) + ' · ' + flT(f, w.approvedAt)], [L('締め切り後のお客様（名簿 v2）', '마감 뒤 승객(명단 v2)', 'Late passenger (manifest v2)'), flT(f, (f.gt.late || {}).boardedAt)], [L('有効な版', '유효한 판', 'Valid edition'), esc(flRpDocTxt(w.valid || { edno: w.edno, lmcIds: [], cap: true }))], [L('ランプへの通知', '램프 통보', 'Sent to the ramp'), w.sent ? esc(flRpDocTxt(w.sent)) + ' · ' + flT(f, w.rampAt) : '<b class="hl">' + esc(tx(L('なし', '없음', 'not sent'))) + '</b>']]); }
     if (step === 'rp') { var r = f.rp || {}; h = flKV([['AOBT', r.aobt == null ? '—' : flT(f, f.std + r.aobt)], ['D0 / D15', (r.d0 ? '○' : '×') + ' / ' + (r.d15 ? '○' : '×')], [L('遅延コード', '지연 코드', 'Delay code'), esc((r.code || '—') + (r.code2 ? ' / ' + r.code2 : ''))]]); }
     return '<div class="panel flhand"><h2>' + esc(tx(nx === 'done' ? L('この便の記録', '이 편의 기록', 'This flight\'s record') : L('次の持ち場への引き継ぎ ― ' + FLNAME[nx].ja, '다음 자리로 인계 — ' + FLNAME[nx].ko, 'Handover to the next position — ' + FLNAME[nx].en))) + '</h2>' + h +
-      '<p class="small">' + esc(tx(L('この持ち場の結果は「一便を飛ばす」の記録に入ります（各ステージのDAYの記録には入りません）。', '이 자리의 결과는 「한 편을 띄우다」 기록에 들어갑니다(각 스테이지 DAY 기록에는 들어가지 않습니다).', 'This position counts toward "Get one flight out" only (not the stages\' DAY records).'))) + (S.flSaveFail ? ' <b class="hl">' + esc(tx(L('便の進み具合を保存できませんでした。', '편 진행을 저장하지 못했습니다.', 'Could not save the flight progress.'))) + '</b>' : '') + '</p></div>';
+      '<p class="small">' + esc(tx(L('この持ち場の結果は「出発便の業務」の記録に入ります（各ステージのDAYの記録には入りません）。', '이 자리의 결과는 「출발편 업무」 기록에 들어갑니다(각 스테이지 DAY 기록에는 들어가지 않습니다).', 'This position counts toward "Departure Handling" only (not the stages\' DAY records).'))) + (S.flSaveFail ? ' <b class="hl">' + esc(tx(L('便の進み具合を保存できませんでした。', '편 진행을 저장하지 못했습니다.', 'Could not save the flight progress.'))) + '</b>' : '') + '</p></div>';
   }
   function flNavHtml(top) {
     var f = G.flight, done = !f || f.step === 'done', nx = f && !done ? f.step : null, lost = !!S.flLost;
@@ -13280,7 +13280,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
   function flLockHtml() {
     var NM = { ci: L('チェックイン', '체크인', 'Check-in'), gt: L('ゲート', '게이트', 'Gate'), wb: L('ロードコントロール', '탑재관리', 'Load control'), rp: L('ランプ', '램프', 'Ramp') };
     var rows = FLNEED.map(function (sid, i) { var p = flStageProg(sid), ok = p.k >= p.n; return '<li class="' + (ok ? 'ok' : '') + '"><span>STAGE 0' + (i + 1) + ' ' + esc(tx(NM[sid])) + '</span><b>' + (ok ? '✔' : '🔒') + ' ' + p.k + '/' + p.n + '</b></li>'; }).join('');
-    return '<section class="panel flcard fllock" id="flcard"><div class="flhd"><span class="n">FINAL</span><b>' + esc(tx(FLTITLE)) + '</b><small>🔒 ' + esc(tx(L('運航の4つのステージをすべて終えると開きます', '운항 관련 네 스테이지를 모두 마치면 열립니다', 'Opens when all four operations stages are complete'))) + '</small></div>' +
+    return '<section class="panel flcard fllock" id="flcard"><div class="flhd"><span class="n">FINAL 1</span><b>' + esc(tx(FLTITLE)) + '</b><small>🔒 ' + esc(tx(L('運航の4つのステージをすべて終えると開きます', '운항 관련 네 스테이지를 모두 마치면 열립니다', 'Opens when all four operations stages are complete'))) + '</small></div>' +
       '<p class="small">' + esc(tx(L('各ステージの DAY 1〜5 を B以上・安全合格で終えること（本番・練習のどちらの記録でも可、今の勤務地の記録）。', '각 스테이지의 DAY 1~5를 B 이상·안전 합격으로 마칠 것(실전·연습 어느 기록이든 인정, 지금 근무지 기록).', 'Finish DAY 1–5 of each stage with B or better and a safety pass (shift or practice records both count; for the current base).'))) + '</p><ul class="fllist">' + rows + '</ul></section>';
   }
   function flCardHtml() {
@@ -13291,7 +13291,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     var st = !f ? '' : f.step === 'done' ? L('前の便：総合 ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'), '지난 편: 종합 ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'), 'Last flight: ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'))
       : L('進行中：次の持ち場は ' + FLNAME[f.step].ja + '（' + hm(f.clock) + '〜）', '진행 중: 다음 자리는 ' + FLNAME[f.step].ko + '(' + hm(f.clock) + '~)', 'In progress: next is the ' + FLNAME[f.step].en + ' (from ' + hm(f.clock) + ')');
     var other = f && f.step !== 'done' && (f.country !== G.country || !!f.practice !== !!G.practice) ? L('この便：' + (f.country === 'JP' ? '日本' : '韓国') + '・' + (f.practice ? '練習' : '本番') + '（その設定で続けます）', '이 편: ' + (f.country === 'JP' ? '일본' : '한국') + '·' + (f.practice ? '연습' : '실전') + '(그 설정으로 이어 갑니다)', 'This flight: ' + (f.country === 'JP' ? 'Japan' : 'Korea') + ', ' + (f.practice ? 'practice' : 'shift') + ' (continues with those settings)') : null;
-    return '<section class="panel flcard" id="flcard"><div class="flhd"><span class="n">FINAL</span><b>' + esc(tx(FLTITLE)) + '</b><small>' + esc(tx(L('チェックイン → ゲート → ロードコントロール → ランプ ・ B737-800 ・ 約20〜25分', '체크인 → 게이트 → 탑재관리 → 램프 · B737-800 · 약 20~25분', 'Check-in → gate → load control → ramp · B737-800 · about 20–25 min'))) + '</small></div>' +
+    return '<section class="panel flcard" id="flcard"><div class="flhd"><span class="n">FINAL 1</span><b>' + esc(tx(FLTITLE)) + '</b><small>' + esc(tx(L('チェックイン → ゲート → ロードコントロール → ランプ ・ B737-800 ・ 約20〜25分', '체크인 → 게이트 → 탑재관리 → 램프 · B737-800 · 약 20~25분', 'Check-in → gate → load control → ramp · B737-800 · about 20–25 min'))) + '</small></div>' +
       '<p class="small">' + esc(tx(L('同じ一便の出発準備を、4つの持ち場で時間の順に担当します。前の持ち場の結果（名簿・荷物・書類・時刻）が次に引き継がれ、つながりも採点します（役割60%＋つながり40%）。', '같은 한 편의 출발 준비를 네 자리에서 시간 순서대로 맡습니다. 앞 자리의 결과(명단·짐·서류·시각)가 다음으로 이어지고 연결도 채점합니다(역할 60% + 연결 40%).', 'Prepare one flight for departure across four positions, in time order. Each position\'s results (manifest, bags, documents, times) carry on to the next, and the links are scored too (roles 60% + links 40%).'))) + '</p>' +
       (st ? '<p class="flst">' + esc(tx(st)) + '</p>' : '') + (other ? '<p class="small">' + esc(tx(other)) + '</p>' : '') +
       '<p class="small">' + esc(tx(G.practice ? L('練習の最高 ', '연습 최고 ', 'Best (practice) ') : L('本番の最高 ', '실전 최고 ', 'Best (shift) '))) + esc(tp ? tp.rank + ' · ' + tp.tot + (tp.safe ? ' · ✔' : '') : '—') + '</p>' +
@@ -17015,14 +17015,14 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     }
     return { build: function (step, I) { return { prep: prep, gate: gate, ll: ll, office: office }[step](I); }, STN: STN, TAGS: TAGS, T: T, tg: tg, rsnL: rsnL, EDU: EDU };
   })();
-  /* ================= FINAL 2부 「한 편을 맞이하다」(합의본 v4 확정 2026-11-13 · GPT FF2-5차 필수 0건) — ex.js 뒤(같은 엔진 IIFE) =================
+  /* ================= FINAL 2부 「도착편 업무」(합의본 v4 확정 2026-11-13 · GPT FF2-5차 필수 0건) — ex.js 뒤(같은 엔진 IIFE) =================
      원칙: 도착·수하물편·CIQ편의 규칙·판정 코드는 그대로(새 코드 없음 — 연결 판정 A1~A6만 더함). 이 파일은
      ① 2부 run(저장 acn-saga-arrival-v1)과 자리 4개(①준비 ②게이트·수취대 ③LL ④송환)의 넘김·입력 스냅샷,
      ② 도착·수하물편 카드 엔진의 숨은 날(n = 9 · ST.flDay = 지금 자리의 미션)에 끼우는 작은 감싸개(실행 검사·보류·마감·행동 기록),
      ③ 연결 판정·반사실 재생(A3 → A5 원인 연결)·종합 결과·기록(fl2.{homeCountry})·첫 화면 FINAL 2부 칸만 더함.
      1부(fl.js)의 저장·기록은 읽기만 — 예외: 1부 실전 완료 때 사본 한 줄(acn-saga-fl2seed-v1 · 합의본 2-1). */
   var A2KEY = 'acn-saga-arrival-v1', A2SEED = 'acn-saga-fl2seed-v1', A2STEP = ['prep', 'gate', 'll', 'office'], A2DAY = { n: 0, id: 'fl2' };
-  var A2TITLE = L('一便を迎える', '한 편을 맞이하다', 'Meet one flight');
+  var A2TITLE = L('到着便の業務', '도착편 업무', 'Arrival Handling');
   var A2NAME = { prep: L('支店の事務所（到着の前）', '지점 사무실(도착 전)', 'Station office (before arrival)'), gate: L('到着ゲート・ターンテーブル', '도착 게이트·수취대', 'Arrival gate & belt'), ll: L('手荷物サービスカウンター', '수하물 서비스 창구', 'Baggage services desk'), office: L('支店の事務所（送還）', '지점 사무실(송환)', 'Station office (removal)') };
   var A2NEED = L('前の手順がまだです ― 上のカードから進めてください。', '앞 단계가 아직입니다 — 위 카드부터 진행하세요.', 'An earlier step is not done yet — work down the cards first.');
   function a2Read() { try { var o = JSON.parse(localStorage.getItem(A2KEY) || 'null'); return o && o.schemaVersion === 1 && A2STEP.concat(['done']).indexOf(o.step) >= 0 && o.legs && o.roster && o.inad ? o : null; } catch (e) { return null; } }
@@ -17106,7 +17106,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
   /* ---------- 자리 시작·이어하기 ---------- */
   function a2Env(A) { if (G.a2PrevAc == null) G.a2PrevAc = G.wbAc || '737'; G.wbAc = '737'; if (A) { G.country = A.homeCountry; G.practice = !!A.practice; } G.a2Nav = true; }
   function a2EnvResume() { var A = a2Read(); G.arrival = A; a2Env(A); }
-  function a2Warn() { askConfirm(L('保存できませんでした', '저장하지 못했습니다', 'Could not save'), L('この端末に進み具合を保存できないため、「一便を迎える」を始められません。', '이 기기에 진행을 저장할 수 없어 「한 편을 맞이하다」를 시작할 수 없습니다.', 'Progress cannot be saved on this device, so the shift cannot start.'), L('閉じる', '닫기', 'Close'), function () {}); }
+  function a2Warn() { askConfirm(L('保存できませんでした', '저장하지 못했습니다', 'Could not save'), L('この端末に進み具合を保存できないため、「到着便の業務」を始められません。', '이 기기에 진행을 저장할 수 없어 「도착편 업무」를 시작할 수 없습니다.', 'Progress cannot be saved on this device, so the shift cannot start.'), L('閉じる', '닫기', 'Close'), function () {}); }
   function a2Begin(step) {
     if (!a2Unlocked() || !window.SAGA_STAGES.ex) { renderTitle(); return; }
     var A = a2Read(); G.arrival = A;
@@ -17390,7 +17390,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     if (step === 'll') h = a2KV([[L('税関の回答', '세관 회신', 'Customs reply'), a2T((A.customs || {}).read)], [L('保管', '보관', 'Stored'), a2T(A.bags.P.storeAt)], [L('未解決の件', '미결 건', 'Open cases'), esc((A.cases || []).map(function (c) { return c.kind; }).join(' · ') || '—')]]);
     if (step === 'office') h = a2KV([[L('送還の便', '송환편', 'Removal flight'), esc(SN.rem.flight + ' ' + SN.rem.std)], [L('搭乗', '탑승', 'Boarding'), A.inad.boarded ? a2T(A.inad.boarded.at) : '<b class="hl">' + esc(tx(L('締め切り ― 次の便に手配し直す', '마감 — 다음 편으로 재수배', 'closed — rebook'))) + '</b>']]);
     return '<div class="panel flhand"><h2>' + esc(tx(nx === 'done' ? L('この便の記録', '이 편의 기록', 'This flight’s record') : L('次の持ち場への引き継ぎ ― ' + A2NAME[nx].ja, '다음 자리로 인계 — ' + A2NAME[nx].ko, 'Handover to the next position — ' + A2NAME[nx].en))) + '</h2>' + h +
-      '<p class="small">' + esc(tx(L('この持ち場の結果は「一便を迎える」の記録に入ります（各ステージのDAYの記録には入りません）。', '이 자리의 결과는 「한 편을 맞이하다」 기록에 들어갑니다(각 스테이지 DAY 기록에는 들어가지 않습니다).', 'This position counts toward “Meet one flight” only (not the stages’ DAY records).'))) + (S.flSaveFail ? ' <b class="hl">' + esc(tx(L('進み具合を保存できませんでした。', '진행을 저장하지 못했습니다.', 'Could not save the progress.'))) + '</b>' : '') + '</p></div>';
+      '<p class="small">' + esc(tx(L('この持ち場の結果は「到着便の業務」の記録に入ります（各ステージのDAYの記録には入りません）。', '이 자리의 결과는 「도착편 업무」 기록에 들어갑니다(각 스테이지 DAY 기록에는 들어가지 않습니다).', 'This position counts toward “Arrival Handling” only (not the stages’ DAY records).'))) + (S.flSaveFail ? ' <b class="hl">' + esc(tx(L('進み具合を保存できませんでした。', '진행을 저장하지 못했습니다.', 'Could not save the progress.'))) + '</b>' : '') + '</p></div>';
   }
   function a2NavHtml(top) {
     var A = G.arrival, done = !A || A.step === 'done', nx = A && !done ? A.step : null, lost = !!S.flLost; G.a2Nav = true;
@@ -17438,7 +17438,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
       a2Follow(A) +
       (miss.length ? '<div class="panel"><h2>' + esc(tx(L('見落とした項目 → レッスン', '놓친 항목 → 레슨', 'Missed items → lessons'))) + '</h2><ul class="tmiss">' + miss.map(function (m) { var ls = ELES[m]; return '<li>' + esc(a2MissLabel(m)) + (ls && LS[ls] ? ' ' + lessonA(ls, '📘 ' + ls, 'lessonref') : '') + '</li>'; }).join('') + '</ul></div>' : '') +
       '<div class="panel"><p style="margin:0;font-size:14px">' + esc(tx(A.practice ? L('練習の最高 ', '연습 최고 ', 'Best (practice) ') : L('本番の最高 ', '실전 최고 ', 'Best (shift) '))) + esc(top ? top.rank + ' · ' + top.tot + (top.safe ? ' · ✔' : '') : '—') + ' · ' + esc(tx(L('プレイ ', '플레이 ', 'Plays '))) + (rec.plays || 0) + '</p></div>' +
-      a2RedoHtml(A) + '<div class="btns"><button class="start" id="a2new" style="width:auto">' + esc(tx(L('新しい便を迎える', '새 편 맞이하기', 'Meet a new flight'))) + '</button><button class="start" id="home" style="width:auto;background:#5d7480">' + esc(tx(L('最初の画面へ', '첫 화면으로', 'Back to the start screen'))) + '</button></div>' +
+      a2RedoHtml(A) + '<div class="btns"><button class="start" id="a2new" style="width:auto">' + esc(tx(L('新しい到着便を始める', '새 도착편 시작', 'Start a new arrival'))) + '</button><button class="start" id="home" style="width:auto;background:#5d7480">' + esc(tx(L('最初の画面へ', '첫 화면으로', 'Back to the start screen'))) + '</button></div>' +
       '<p class="fine">' + esc(tx(L('Vela Air の教育用の仮想データです。時間の数値はこの課題の仮定値で、実際の所要時間の一般値ではありません。実際の業務には使えません。', 'Vela Air 교육용 가상 데이터입니다. 시간 값은 이 과제의 가정값이며 실제 소요 시간의 보편값이 아닙니다. 실제 업무에는 쓸 수 없습니다.', 'Vela Air training data. Times are assumptions for this exercise, not general real-world durations. Not for operational use.'))) + '</p></div>';
     $('#home').onclick = renderTitle; $('#a2new').onclick = function () { a2NewRun(); }; a2BindRedo(); topOfGame();
   }
