@@ -13,7 +13,7 @@ try{var q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='ko'
 if({krdsp:1,kako:1}[page]){try{var ul=localStorage.getItem('art-lang');if(ul)document.documentElement.setAttribute('data-ui',ul)}catch(e){}}
 var SITE={ja:'\u822a\u7a7a\u30ad\u30e3\u30ea\u30a2\u30ce\u30fc\u30c8',ko:'\ud56d\uacf5 \ucee4\ub9ac\uc5b4 \ub178\ud2b8',en:'Aviation Career Note'};
 var LIB={ja:'実務練習',ko:'실무 연습',en:'Practice'};/* 2026.10.17 上のメニュー「実務練習」と同じ名前に（旧：資料・ツール／자료실／Resources） */
-var NAME={saga:{ja:'AIRLINE SAGA ― 航空会社の仕事体験ゲーム',ko:'AIRLINE SAGA — 항공사 업무 체험 게임',en:'AIRLINE SAGA: Airline Experience Game'},
+var NAME={saga:{ja:'AIRLINE SAGA ― 航空の仕事体験ゲーム',ko:'AIRLINE SAGA — 항공 업무 체험 게임',en:'AIRLINE SAGA: Aviation Experience Game'},
 sagahome:{ja:'AIRLINE SAGA',ko:'AIRLINE SAGA',en:'AIRLINE SAGA'},
 talk:{ja:'会話練習 ― 日本語・韓国語・英語',ko:'회화 연습 — 일본어·한국어·영어',en:'Conversation Practice: Japanese, Korean, English'},
 load:{ja:'搭載管理（Weight & Balance）の練習',ko:'탑재관리(Weight & Balance) 연습',en:'Load Control (Weight & Balance) Practice'},
@@ -47,7 +47,7 @@ p18:['18_항공기초지식/00_シリーズ全体_航空の基礎知識.html','�
 p19:['19_운항관리실무/00_シリーズ全体_運航管理の実務.html','運航管理実務','운항관리 실무','Flight Dispatch Operations'],
 p23:['23_재무3표실무/00_シリーズ全体_財務3表.html','数字で読む会社','숫자로 읽는 회사','Reading a Company Through Its Numbers'],
 p12:['12_일본지점인사재무실무/00_シリーズ全体_人事財務実務.html','会社の人事・総務・財務実務','회사의 인사·총무·재무 실무','HR, Admin and Finance in Practice']};
-var CMAP={saga:'p1',sagahome:'p1',load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p19',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23',finmemo:'p23',finclose:'p12'};
+var CMAP={saga:'p1',load:'p1',fsc:'p2',story:'p5',rm:'p13',route:'p19',kako:'p19',krdsp:'p19',fincard:'p23',finlink:'p23',fincost:'p23',finsim:'p23',finratio:'p23',finval:'p23',finmemo:'p23',finclose:'p12'};
 var FT={ja:['← 講座の目次','実務練習','ほかのツールを見る →'],ko:['← 강좌 목차','실무 연습','다른 도구 보기 →'],en:['\u2190 Course contents','Practice','See other tools \u2192']};
 document.documentElement.classList.add('sh');if(page)document.documentElement.classList.add('sh-'+page);
 var css=
@@ -106,7 +106,9 @@ function init(){var wrap=document.querySelector('.wrap')||document.body;if(docum
 var GL={ja:'ゲーム',ko:'게임',en:'Game'};
 function label(){var l=lg(),b=document.querySelector('.shbar');if(!b)return;b.querySelector('.shsite').textContent=SITE[l];b.querySelector('.shlib').textContent=LIB[l];b.querySelector('.shcur').textContent=(NAME[page]||{})[l]||document.title;b.querySelector('.shbrand').href=HOME+'?lang='+l;b.querySelector('.shlib').href=HOME+'?lang='+l+'#practice';
  var f=document.querySelector('.shfoot');if(f){var x=FT[l],c=f.querySelector('.shc'),s=f.querySelector('.shl');if(c){c.querySelector('small').textContent=x[0];c.querySelector('b').textContent=CR[CMAP[page]][{ja:1,ko:2,en:3}[l]]}s.querySelector('small').textContent=x[1];s.querySelector('b').textContent=x[2];s.href=HOME+'?lang='+l+'#practice';
-  if(page==='saga'){s.style.display='none'}}
+  if(page==='saga'){s.style.display='none'}
+  /* 2026.11.14：ゲームを選ぶページの下は「講座の目次・実務練習」ではなく、サイトのホームへ戻るボタンだけ */
+  if(page==='sagahome'){s.querySelector('small').textContent=SITE[l];s.querySelector('b').textContent={ja:'← メインページへ',ko:'← 메인 페이지로',en:'\u2190 Back to the home page'}[l];s.href=HOME+'?lang='+l}}
  if(page==='saga'||page==='sagahome'){var lb=b.querySelector('.shlib');lb.textContent=GL[l];lb.href=HOME+'?lang='+l+'#practice'}}
 /* 表の見出しと中身の位置をそろえる：中身が短い列・入力欄の列は、見出しと中身を中央ぞろえにする（表が描き直されるたびに適用） */
 function alignTables(){Array.prototype.forEach.call(document.querySelectorAll('table'),function(tb){if(tb.closest&&tb.closest('[data-noalign]'))return;var rows=Array.prototype.slice.call(tb.rows);if(rows.length<2)return;var hr=null;for(var i=0;i<rows.length;i++){if(rows[i].querySelector('th')&&!rows[i].querySelector('td')){hr=rows[i];break}}if(!hr)return;var n=hr.cells.length;for(var c=0;c<n;c++){var ok=true,cnt=0;for(var r=0;r<rows.length;r++){var row=rows[r];if(row===hr||row.cells.length!==n)continue;var td=row.cells[c];if(!td||td.tagName!=='TD')continue;cnt++;if(td.querySelector('input,select,button'))continue;var s=(td.textContent||'').trim(),w=0;for(var k=0;k<s.length;k++){w+=s.charCodeAt(k)>255?1:0.55}if(w>18){ok=false;break}}if(ok&&cnt){hr.cells[c].style.textAlign='center';for(var r2=0;r2<rows.length;r2++){var rw=rows[r2];if(rw!==hr&&rw.cells.length===n&&rw.cells[c].tagName==='TD')rw.cells[c].style.textAlign='center'}}}})}

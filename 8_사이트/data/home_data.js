@@ -25,7 +25,7 @@ var SERIES=[
   a.ja=['空港で働く方・赴任や出張をする方','主要空港ガイド','日本・韓国・世界の主要空港：運用・乗り継ぎ・入国・今後の計画'];a.ko=['공항에서 일하는 사람·부임이나 출장 가는 사람','주요 공항 가이드','일본·한국·세계의 주요 공항: 운영·환승·입국·향후 계획'];a.en=['Airport staff and people relocating or travelling','Guide to Major Airports','Japan, Korea and the world: operations, transfers, entry and future plans']}
  var out=O.map(function(c){return by[c]}).filter(Boolean);SERIES.length=0;out.forEach(function(s){SERIES.push(s)})})();
 var TOOLS=[
-{id:'saga',p:'../1_지상직여객운송입문/AIRLINE_SAGA_SELECT.html',ja:['AIRLINE SAGA\n航空会社の仕事体験ゲーム','AIRLINE SAGA — 空港の現場を体験する「現場編」、航空会社を経営する「経営編」、空と滑走路を指揮する「管制編」'],ko:['AIRLINE SAGA\n항공사 업무 체험 게임','AIRLINE SAGA — 공항 현장을 체험하는 「현장편」, 항공사를 경영하는 「경영편」, 하늘과 활주로를 지휘하는 「관제편」'],en:['AIRLINE SAGA\nAirline Experience Game','AIRLINE SAGA — Field (work the airport floor), Management (run an airline) and Air Traffic Control (direct the runways and the sky)']},
+{id:'saga',p:'../1_지상직여객운송입문/AIRLINE_SAGA_SELECT.html',ja:['AIRLINE SAGA\n航空の仕事体験ゲーム','AIRLINE SAGA — 空港の現場を体験する「現場編」、航空会社を経営する「経営編」、空と滑走路を指揮する「管制編」'],ko:['AIRLINE SAGA\n항공 업무 체험 게임','AIRLINE SAGA — 공항 현장을 체험하는 「현장편」, 항공사를 경영하는 「경영편」, 하늘과 활주로를 지휘하는 「관제편」'],en:['AIRLINE SAGA\nAviation Experience Game','AIRLINE SAGA — Field (work the airport floor), Management (run an airline) and Air Traffic Control (direct the runways and the sky)']},
 {id:'rm',p:'../13_항공영업입문/収益管理の練習.html',ja:['Revenue Managementの練習','座席の配分・予約の受けすぎ（オーバーブッキング）・1席あたりの収入を計算'],ko:['Revenue Management 연습','좌석 배분·초과 예약(오버부킹)·좌석당 수입 계산'],en:['Revenue Management Practice','Seat allocation, overbooking and revenue per seat']},
 {id:'fsc',p:'../2_일본취항지점개설가이드/燃油サーチャージ計算.html',ja:['日本発 燃油サーチャージの計算','ケロシン価格の平均と為替から旅客・貨物の額を決め、回収率を確かめて申請書の下書きまで'],ko:['일본발 유류할증료 계산','케로신 가격 평균과 환율로 여객·화물 금액을 정하고 회수율을 확인해 신청서 초안까지'],en:['Japan-Origin Fuel Surcharge Calculator','From kerosene and FX averages to passenger and cargo amounts, the recovery ratio and a filing draft']},
 {id:'dsp',p:'../18_항공기초지식/航空路図の練習.html',ja:['運航管理実務の練習','航空路・飛行計画・燃料・管制・スロットを練習'],ko:['운항관리 실무 연습','항공로·비행계획·연료·관제·슬롯 연습'],en:['Flight Dispatch Practice','Airways, flight plans, fuel, ATC and slots']},
@@ -66,7 +66,7 @@ var TOOLS=[
 window.HERO_SLIDES=[
 /* 23차：AIRLINE SAGA（ゲーム）。2枚目に出る（1枚目はいつもの見出し） */
 {tag:{ja:'ゲーム',ko:'게임',en:'GAME'},
- h:{ja:'AIRLINE SAGA<br>航空会社の仕事体験ゲーム',ko:'AIRLINE SAGA<br>항공사 업무 체험 게임',en:'AIRLINE SAGA<br>Airline Experience Game'},
+ h:{ja:'AIRLINE SAGA<br>航空の仕事体験ゲーム',ko:'AIRLINE SAGA<br>항공 업무 체험 게임',en:'AIRLINE SAGA<br>Aviation Experience Game'},
  p:{ja:'架空の航空会社 Vela Air で、1便を飛ばす仕事をステージごとに体験する教育用ゲームです。空港の現場を体験する「現場編」、航空会社を経営する「経営編」、空と滑走路を指揮する「管制編」を遊べます。',ko:'가상 항공사 Vela Air에서 항공편 하나를 띄우는 일을 스테이지별로 체험하는 교육용 게임입니다. 공항 현장을 체험하는 「현장편」, 항공사를 경영하는 「경영편」, 하늘과 활주로를 지휘하는 「관제편」을 플레이할 수 있습니다.',en:'An educational game: work the jobs behind one flight at the fictional Vela Air, stage by stage. Play Field (work the airport floor), Management (run an airline) and Air Traffic Control (direct the runways and the sky).'},
  cta:{ja:'ゲームを開く',ko:'게임 열기',en:'Open the game'},href:'../1_지상직여객운송입문/AIRLINE_SAGA_SELECT.html'},
 {tag:{ja:'新着・講座更新',ko:'새 소식 · 강좌 업데이트',en:'NEW · Course update'},
