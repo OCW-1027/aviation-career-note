@@ -32,8 +32,11 @@
   function leader(ctx, it, col) { var tx = U.clamp(it.px, it.x, it.x + it.w), ty = U.clamp(it.py, it.y, it.y + it.h), d = Math.hypot(tx - it.px, ty - it.py) || 1, r0 = Math.min(it.r * 0.6, d); ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(it.px + (tx - it.px) / d * r0, it.py + (ty - it.py) / d * r0); ctx.lineTo(tx, ty); ctx.stroke(); }
 
   /* ================= 레이더 ================= */
-  R.radarView = function (mode) { return mode === 'ACC' ? { cx: 0, cy: 0, scale: 3.1, min: 1.6, max: 14 } : { cx: 0, cy: 0, scale: 8.2, min: 4, max: 40 }; };
-  R.fitRadar = function (v, W, H, mode) { var ext = mode === 'ACC' ? [286, 216] : [98, 98]; v.scale = Math.min(W / ext[0], H / ext[1]); v.cx = 0; v.cy = 0; };
+  /* 공항 묶음이 처음 보일 범위(D.appView · D.accView = 가운데와 폭 · 높이, NM)를 정했으면 그것에 맞춤 */
+  R.radarView = function (mode) { var pv = mode === 'ACC' ? D.accView : D.appView, c = pv || { cx: 0, cy: 0 }; return mode === 'ACC' ? { cx: c.cx, cy: c.cy, scale: 3.1, min: pv ? 1 : 1.6, max: 14 } : { cx: c.cx, cy: c.cy, scale: 8.2, min: pv ? 2.2 : 4, max: 40 }; };
+  R.fitRadar = function (v, W, H, mode) { var pv = mode === 'ACC' ? D.accView : D.appView, ext = pv ? [pv.w, pv.h] : mode === 'ACC' ? [286, 216] : [98, 98]; v.scale = Math.min(W / ext[0], H / ext[1]); v.cx = pv ? pv.cx : 0; v.cy = pv ? pv.cy : 0; };
+  function poly(ctx, v, W, H, pts) { ctx.beginPath(); pts.forEach(function (pt, ix) { var pp = rs(v, W, H, pt); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.closePath(); }
+  function path(ctx, v, W, H, names) { ctx.beginPath(); names.forEach(function (n, ix) { var pp = rs(v, W, H, D.fix[n]); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.stroke(); }
   function rs(v, W, H, p) { return [W / 2 + (p.x - v.cx) * v.scale, H / 2 - (p.y - v.cy) * v.scale]; }
   R.radarToWorld = function (v, W, H, sx, sy) { return { x: (sx - W / 2) / v.scale + v.cx, y: -(sy - H / 2) / v.scale + v.cy }; };
   R.rs = rs;
@@ -50,31 +53,32 @@
       /* 구역 경계 · 항로 · TMA */
       var B = D.acc, a = rs(v, W, H, { x: B.x1, y: B.y2 }), b = rs(v, W, H, { x: B.x2, y: B.y1 });
       ctx.strokeStyle = '#2c5a7c'; ctx.setLineDash([10, 5]); ctx.lineWidth = 1.4; ctx.strokeRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); ctx.setLineDash([]);
-      ctx.fillStyle = '#2c5a7c'; ctx.font = '11px ' + MONO; ctx.fillText('SEIRA FIR / ACC', a[0] + 8, a[1] + 12);
+      ctx.fillStyle = '#2c5a7c'; ctx.font = '11px ' + MONO; if (D.accLabel) ctx.fillText(D.accLabel, a[0] + 8, b[1] - 10); else ctx.fillText('SEIRA FIR / ACC', a[0] + 8, a[1] + 12);
       [['W', B.x1 - 2, 0, 'right'], ['E', B.x2 + 2, 0, 'left'], ['N', 0, B.y2 + 5, 'center'], ['S', 0, B.y1 - 5, 'center']].forEach(function (s) { var pp = rs(v, W, H, { x: s[1], y: s[2] }); ctx.textAlign = s[3]; ctx.fillStyle = '#35556f'; ctx.fillText(D.neighbor[s[0]].n.toUpperCase(), pp[0], pp[1]); }); ctx.textAlign = 'left';
       ctx.strokeStyle = C.map; ctx.lineWidth = 1;
       D.airways.forEach(function (aw) { ctx.beginPath(); aw.f.forEach(function (n, ix) { var pp = rs(v, W, H, D.fix[n]); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.stroke(); var m0 = D.fix[aw.f[0]], m1 = D.fix[aw.f[1]], mm = rs(v, W, H, { x: (m0.x * 2 + m1.x) / 3, y: (m0.y * 2 + m1.y) / 3 }); ctx.fillStyle = '#2b4860'; ctx.fillText(aw.n, mm[0] + 4, mm[1] - 6); });
-      Object.keys(D.accArr).forEach(function (g) { D.accArr[g].forEach(function (bf) { line(ctx, rs(v, W, H, D.fix[bf]), rs(v, W, H, D.fix[g]), '#172a3a', [3, 5]); }); });
-      Object.keys(D.accDep).forEach(function (g) { D.accDep[g].forEach(function (bf) { line(ctx, rs(v, W, H, D.fix[g]), rs(v, W, H, D.fix[bf]), '#172a3a', [3, 5]); }); });
-      ctx.strokeStyle = '#27506e'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(o[0], o[1], D.tmaR * v.scale, 0, 7); ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = '#27506e'; ctx.fillText(D.airport.call.toUpperCase() + ' TMA  SFC-' + ATC.fmt.alt(D.tmaTop), o[0] - 58, o[1] + D.tmaR * v.scale - 9);
+      Object.keys(D.accArr).forEach(function (g) { D.accArr[g].forEach(function (bf) { if (bf.join) return; line(ctx, rs(v, W, H, D.fix[bf]), rs(v, W, H, D.fix[g]), '#172a3a', [3, 5]); }); });      /* 경로 전체를 적은 묶음은 항로 선으로 이미 그려짐 */
+      Object.keys(D.accDep).forEach(function (g) { D.accDep[g].forEach(function (bf) { if (bf.join) return; line(ctx, rs(v, W, H, D.fix[g]), rs(v, W, H, D.fix[bf]), '#172a3a', [3, 5]); }); });
+      ctx.strokeStyle = '#27506e'; ctx.setLineDash([4, 4]); if (D.tmaPoly) poly(ctx, v, W, H, D.tmaPoly); else { ctx.beginPath(); ctx.arc(o[0], o[1], D.tmaR * v.scale, 0, 7); } ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#27506e'; if (D.tmaPoly) { ctx.textAlign = 'center'; ctx.fillText(D.airport.call.toUpperCase() + ' TMA', o[0], o[1] + 16); ctx.fillText('SFC-' + ATC.fmt.alt(D.tmaTop), o[0], o[1] + 29); ctx.textAlign = 'left'; } else ctx.fillText(D.airport.call.toUpperCase() + ' TMA  SFC-' + ATC.fmt.alt(D.tmaTop), o[0] - 58, o[1] + D.tmaR * v.scale - 9);
       var rp = D.restricted.pts; ctx.beginPath(); rp.forEach(function (pt, ix) { var pp = rs(v, W, H, pt); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.closePath();
       if (sim.rActive) { ctx.fillStyle = 'rgba(255,70,70,.13)'; ctx.fill(); ctx.strokeStyle = '#ff5b5b'; } else ctx.strokeStyle = '#3a3140';
-      ctx.setLineDash([5, 3]); ctx.stroke(); ctx.setLineDash([]); p = rs(v, W, H, rp[3]); ctx.fillStyle = sim.rActive ? '#ff7b7b' : '#4b4152'; ctx.fillText(D.restricted.n + (sim.rActive ? ' ACTIVE SFC-FL350' : ''), p[0] + 4, p[1] + 10);
+      ctx.setLineDash([5, 3]); ctx.stroke(); ctx.setLineDash([]); p = rs(v, W, H, rp[3]); ctx.fillStyle = sim.rActive ? '#ff7b7b' : '#4b4152'; ctx.fillText(D.restricted.n + (sim.rActive ? ' ACTIVE SFC-' + ATC.fmt.alt(D.restricted.top) : ''), p[0] + 4, p[1] + 10);
     } else {
-      ctx.strokeStyle = '#27506e'; ctx.setLineDash([8, 5]); ctx.lineWidth = 1.3; ctx.beginPath(); ctx.arc(o[0], o[1], D.tmaR * v.scale, 0, 7); ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth = 1;
+      ctx.strokeStyle = '#27506e'; ctx.setLineDash([8, 5]); ctx.lineWidth = 1.3; if (D.tmaPoly) poly(ctx, v, W, H, D.tmaPoly); else { ctx.beginPath(); ctx.arc(o[0], o[1], D.tmaR * v.scale, 0, 7); } ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth = 1;
       /* STAR · SID */
       var st = D.star[sim.flow.id];
-      Object.keys(st).forEach(function (g) { ctx.strokeStyle = '#1b3348'; ctx.beginPath(); st[g].forEach(function (n, ix) { var pp = rs(v, W, H, D.fix[n]); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.stroke(); });
+      (sim.gates || Object.keys(st)).forEach(function (g) { ctx.strokeStyle = '#1b3348'; ctx.beginPath(); st[g].forEach(function (n, ix) { var pp = rs(v, W, H, D.fix[n]); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.stroke(); });
       var de = D.ends[sim.flow.dep], d3 = D.off(de.end, de.crs, 3);
-      Object.keys(D.gateDest).forEach(function (g) { line(ctx, rs(v, W, H, d3), rs(v, W, H, D.fix[g]), '#15283a', [2, 5]); });
+      if (D.sidRoute) { ctx.strokeStyle = '#17304a'; ctx.setLineDash([2, 5]); Object.keys(D.gateDest).forEach(function (g) { var rw = D.depRwyFor(sim.flow, g), e2 = D.ends[rw], sr = D.sidRoute(rw, g), q0 = rs(v, W, H, D.off(e2.end, e2.crs, 1.2)); ctx.beginPath(); ctx.moveTo(q0[0], q0[1]); sr.forEach(function (n) { var pp = rs(v, W, H, D.fix[n]); ctx.lineTo(pp[0], pp[1]); }); ctx.stroke(); }); ctx.setLineDash([]); }
+      else Object.keys(D.gateDest).forEach(function (g) { line(ctx, rs(v, W, H, d3), rs(v, W, H, D.fix[g]), '#15283a', [2, 5]); });
       /* MVA */
       D.mva.forEach(function (m) { var c = rs(v, W, H, m.c); ctx.strokeStyle = '#5a4a2a'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.arc(c[0], c[1], m.r * v.scale, 0, 7); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = '#8a7340'; ctx.fillText('MVA ' + (m.alt / 100), c[0] - 18, c[1]); ctx.fillStyle = '#5a4a2a'; ctx.fillText('▲' + m.peak, c[0] - 16, c[1] + 12); });
       /* 로컬라이저(연장 중심선 15NM, 1NM 눈금) */
       Object.keys(D.ends).forEach(function (id) {
-        var e = D.ends[id], act = (sim.rwys || []).indexOf(id) >= 0, t0 = rs(v, W, H, e.thr), t1 = rs(v, W, H, D.off(e.thr, e.crs + 180, 16));
+        var e = D.ends[id], act = (sim.rwys || []).indexOf(id) >= 0, LL = e.locLen || 16, t0 = rs(v, W, H, e.thr), t1 = rs(v, W, H, D.off(e.thr, e.crs + 180, LL));
         if (!act && id !== sim.flow.dep) return;
-        if (act) { line(ctx, t0, t1, C.loc, [9, 4]); for (k = 2; k <= 16; k += 2) { var tp = D.off(e.thr, e.crs + 180, k), l1 = rs(v, W, H, D.off(tp, e.crs + 90, k % 10 === 0 ? 0.7 : 0.35)), l2 = rs(v, W, H, D.off(tp, e.crs - 90, k % 10 === 0 ? 0.7 : 0.35)); line(ctx, l1, l2, C.loc); } }
+        if (act) { line(ctx, t0, t1, C.loc, [9, 4]); for (k = 2; k <= LL; k += 2) { var tp = D.off(e.thr, e.crs + 180, k), l1 = rs(v, W, H, D.off(tp, e.crs + 90, k % 10 === 0 ? 0.7 : 0.35)), l2 = rs(v, W, H, D.off(tp, e.crs - 90, k % 10 === 0 ? 0.7 : 0.35)); line(ctx, l1, l2, C.loc); } }
       });
     }
     /* 활주로 */
@@ -83,16 +87,21 @@
     ctx.lineWidth = 1;
     /* 지점 */
     ctx.font = '10px ' + MONO;
-    Object.keys(D.fix).forEach(function (n) {
-      var f = D.fix[n]; f._on = false; if (acc ? (f.k === 'if' || f.k === 'faf' || f.k === 'base' || f.k === 'dw') : (f.k === 'bd' || f.k === 'en')) return;
+    var fnames = Object.keys(D.fix), fdone = [];
+    if (D.flyBy) { var rank = function (n) { var f = D.fix[n]; return f.k === 'in' || f.k === 'out' ? 0 : f.k === 'if' || f.k === 'faf' || f.k === 'bd' ? 1 : D.starAlt && D.starAlt[n] ? 2 : 3; }; fnames.sort(function (a, b) { return rank(a) - rank(b); }); }
+    fnames.forEach(function (n) {
+      var f = D.fix[n]; f._on = false; f._sx = undefined; if (acc ? (f.k === 'if' || f.k === 'faf' || f.k === 'base' || f.k === 'dw' || f.k === 'wp' || f.k === 'tt') : (f.k === 'bd' || f.k === 'en')) return;
+      if (!acc && sim.fixUse && (f.k === 'wp' || f.k === 'tt') && !sim.fixUse[n]) return;      /* 이번 근무의 경로에 없는 지점은 그리지 않음 */
       if (!acc && (f.k === 'if' || f.k === 'faf')) { var own = Object.keys(D.ends).filter(function (id) { return D.ends[id].IF === n || D.ends[id].FAF === n; })[0]; if ((sim.rwys || []).indexOf(own) < 0) return; }
       if (!acc && (f.k === 'base' || f.k === 'dw')) { var used = false; var ss = D.star[sim.flow.id]; Object.keys(ss).forEach(function (g) { if (ss[g].indexOf(n) >= 0) used = true; }); if (!used) return; }
       var pp = rs(v, W, H, f); if (pp[0] < -40 || pp[0] > W + 40 || pp[1] < -20 || pp[1] > H + 20) return;
       var col = f.k === 'in' ? '#7d8f4e' : f.k === 'out' ? '#4e7f8f' : C.fix; ctx.strokeStyle = col; ctx.fillStyle = col;
+      if (f.k === 'tt') { ctx.beginPath(); ctx.arc(pp[0], pp[1], 1.6, 0, 7); ctx.fill(); f._sx = pp[0]; f._sy = pp[1]; if (app.hoverFix === n) { ctx.fillStyle = C.sel; ctx.fillText(n, pp[0] + 7, pp[1] - 6); } return; }      /* 이름 없는 경유점(TT…): 점만, 가리키면 이름 */
       ctx.beginPath(); if (f.k === 'vor') { ctx.arc(pp[0], pp[1], 4, 0, 7); } else { ctx.moveTo(pp[0], pp[1] - 4); ctx.lineTo(pp[0] + 4, pp[1] + 3); ctx.lineTo(pp[0] - 4, pp[1] + 3); ctx.closePath(); } ctx.stroke();
       var fy = pp[1] + (f.k === 'faf' ? 9 : -6), fw = n.length * 6.2 + 2, hid = false, li;
       if (app.hoverFix !== n && R._lab) for (li = 0; li < R._lab.length; li++) if (ov(pp[0] + 6, fy - 6, fw, 12, R._lab[li].x - 2, R._lab[li].y - 2, R._lab[li].w + 4, R._lab[li].h + 4) > 0) { hid = true; break; }
-      if (!hid) { ctx.fillStyle = app.hoverFix === n ? C.sel : (f.k === 'in' ? '#9bb062' : f.k === 'out' ? '#62a0b4' : C.fixT); ctx.fillText(n, pp[0] + 7, fy); }
+      if (D.flyBy) { if (app.hoverFix !== n && !hid) for (li = 0; li < fdone.length; li++) if (ov(pp[0] + 2, fy - 7, fw + 6, 14, fdone[li][0], fdone[li][1], fdone[li][2], 14) > 0) { hid = true; break; } if (!hid) fdone.push([pp[0] + 2, fy - 7, fw + 6 + (!acc && D.starAlt && D.starAlt[n] ? 22 : 0)]); }
+      if (!hid) { ctx.fillStyle = app.hoverFix === n ? C.sel : (f.k === 'in' ? '#9bb062' : f.k === 'out' ? '#62a0b4' : C.fixT); ctx.fillText(n, pp[0] + 7, fy); if (!acc && D.starAlt && D.starAlt[n] && v.scale > 4.5) { ctx.fillStyle = '#3f6a54'; ctx.fillText(String(D.starAlt[n] / 100), pp[0] + 9 + fw, fy); } }      /* STAR의 고도 제한(백 ft) */
       f._sx = pp[0]; f._sy = pp[1]; f._on = !hid;
     });
     /* 악기상 */
@@ -167,9 +176,17 @@
   /* ================= 지상 ================= */
   /* 지상 화면을 처음 열 때의 범위: 공항 묶음의 D.view = { cu, cv, w, h }(m)가 있으면 그것으로 */
   R.groundView = function () { return { cu: 0, cv: 60, scale: 0.2, min: D.view ? 0.05 : 0.1, max: 1.6 }; };
-  R.fitBox = function (W, H, b) { var w = b[2] - b[0], h = b[3] - b[1]; return { cu: (b[0] + b[2]) / 2, cv: (b[1] + b[3]) / 2, scale: Math.min(W / w, H / h) }; };   /* [u1, v1, u2, v2]가 화면에 꽉 차게 */
-  R.fitScale = function (W, H) { var V = D.view || { w: 4300, h: 2440 }; return Math.min(W / V.w, H / V.h); };
-  R.fitGround = function (v, W, H) { var V = D.view || { cu: 0, cv: 250, w: 4300, h: 2440 }; v.scale = Math.min(W / V.w, H / V.h); v.cu = V.cu; v.cv = V.cv; };
+  /* 좁은 화면(휴대폰)의 위쪽 띠: 이동 단추 · 도착 표 · 작은 레이더를 띠 안에 모으고 지도는 그 아래에 맞춤 — 지도와 겹치지 않게.
+     side = 단추 옆에 도착 표를 둘 자리가 있음(가로 화면) / 없으면 단추 아래 줄에 */
+  R.hud = function (W, H) {
+    if (!(W < 700 || H < 400)) return null;
+    var g = G.document && G.document.getElementById('gnav'), gw = g && !g.hidden && g.offsetWidth ? g.offsetWidth + 18 : 12, low = H < 300, r = low ? 27 : 30, rw = 2 * r + 20, side = W - gw - rw >= 150, n = side ? 4 : low ? 2 : 3;   /* low = 가로로 든 휴대폰(높이가 낮음) → 띠를 더 낮게 */
+    return { r: r, fx: side ? gw : 8, fy: side ? 5 : 39, fw: (side ? W - gw : W - 8) - rw, h: side ? 2 * r + 12 : 39 + n * 14.5 + 3, lines: n };
+  };
+  R.hudTop = function (W, H) { var hd = R.hud(W, H); return hd ? hd.h : 0; };
+  R.fitBox = function (W, H, b) { var w = b[2] - b[0], h = b[3] - b[1], top = R.hudTop(W, H), sc = Math.min(W / w, (H - top) / h); return { cu: (b[0] + b[2]) / 2, cv: (b[1] + b[3]) / 2 + top / 2 / sc, scale: sc }; };   /* [u1, v1, u2, v2]가 화면에 꽉 차게 */
+  R.fitScale = function (W, H) { var V = D.view || { w: 4300, h: 2440 }; return Math.min(W / V.w, (H - R.hudTop(W, H)) / V.h); };
+  R.fitGround = function (v, W, H) { var V = D.view || { cu: 0, cv: 250, w: 4300, h: 2440 }, top = R.hudTop(W, H); v.scale = Math.min(W / V.w, (H - top) / V.h); v.cu = V.cu; v.cv = V.cv + top / 2 / v.scale; };
   function gs(v, W, H, u, w) { return [W / 2 + (u - v.cu) * v.scale, H / 2 - (w - v.cv) * v.scale]; }
   R.gs = gs;
   R.groundToUV = function (v, W, H, sx, sy) { return { u: (sx - W / 2) / v.scale + v.cu, v: -(sy - H / 2) / v.scale + v.cv }; };
@@ -239,12 +256,17 @@
     if (app.guide) return;
     R._tags = [];
     var ss = Math.max(9, Math.min(15, 46 * s));
-    (D.gLabels || []).forEach(function (t) { var p = gs(v, W, H, t[1], t[2]); sign(ctx, p[0], p[1], t[0], ss); });
-    Object.keys(D.holds).forEach(function (h) { var o = D.holds[h], p = gs(v, W, H, o.lu, o.lv); sign(ctx, p[0], p[1], h, ss * 0.92); });
+    /* 작게 볼 때(휴대폰 · 넓은 공항의 전체 보기): 이름표끼리 겹치면 뒤의 것은 그리지 않음 — 확대하면 다 보임 */
+    var thin = s < 0.12, used = [];
+    function free(x, y, w, h) { if (!thin) return true; for (var i = 0; i < used.length; i++) { var q = used[i]; if (x < q[0] + q[2] && q[0] < x + w && y < q[1] + q[3] && q[1] < y + h) return false; } used.push([x, y, w, h]); return true; }
+    function sg(p, t, z) { var w = t.length * z * 0.64 + 6; if (free(p[0] - w / 2, p[1] - z / 2 - 2, w, z + 4)) sign(ctx, p[0], p[1], t, z); }
+    (D.gLabels || []).forEach(function (t) { sg(gs(v, W, H, t[1], t[2]), t[0], ss); });
+    Object.keys(D.holds).forEach(function (h) { var o = D.holds[h]; sg(gs(v, W, H, o.lu, o.lv), h, ss * 0.92); });
     var pe = gs(v, W, H, -438, 652); sign(ctx, pe[0], pe[1], 'E', ss * 0.92);
     /* 주기장 번호 */
     ctx.font = 'bold ' + Math.max(8, Math.min(13, 40 * s)) + 'px ' + MONO; ctx.textAlign = 'center';
-    Object.keys(D.stands).forEach(function (n) { var st = D.stands[n], p = gs(v, W, H, st.u + st.lab[0], st.v + st.lab[1]); ctx.fillStyle = app.hoverStand === n ? C.sel : '#d9dfe5'; ctx.fillText(n, p[0], p[1]); R._tags.push({ x: p[0] - 13, y: p[1] - 7, w: 26, h: 14, wt: 1.2 }); });
+    var sf = Math.max(8, Math.min(13, 40 * s));
+    Object.keys(D.stands).forEach(function (n) { var st = D.stands[n], p = gs(v, W, H, st.u + st.lab[0], st.v + st.lab[1]); if (!free(p[0] - n.length * sf * 0.32 - 1, p[1] - sf / 2, n.length * sf * 0.64 + 2, sf)) return; ctx.fillStyle = app.hoverStand === n ? C.sel : '#d9dfe5'; ctx.fillText(n, p[0], p[1]); R._tags.push({ x: p[0] - 13, y: p[1] - 7, w: 26, h: 14, wt: 1.2 }); });
     ctx.textAlign = 'left';
     /* 관제탑 */
     var tp = gs(v, W, H, 0, 0); ctx.fillStyle = '#2c3238'; ctx.beginPath(); ctx.arc(tp[0], tp[1], Math.max(4, 16 * s), 0, 7); ctx.fill(); ctx.strokeStyle = '#9fd0ff'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.fillStyle = '#9fd0ff'; ctx.font = '9px ' + MONO; ctx.fillText('TWR', tp[0] - 9, tp[1] + Math.max(4, 16 * s) + 8);
@@ -255,7 +277,7 @@
     if (app.routePrev) path(app.routePrev.nodes, 'rgba(79,216,255,.9)', Math.max(2.5, 11 * s), [8, 6]);
     /* 항공기 */
     app.hit = [];
-    var list = sim.acs.slice().sort(function (x, y) { return (x.alt || 0) - (y.alt || 0); }), items = [], obs = R.finalLayout(app, W, H);
+    var list = sim.acs.slice().sort(function (x, y) { return (x.alt || 0) - (y.alt || 0); }), items = [], obs = R.finalLayout(app, W, H); if (obs[0] && obs[0].compact) obs = [{ x: 0, y: 0, w: W, h: R.hudTop(W, H), wt: 3 }];   /* 좁은 화면: 위쪽 띠 전체를 이름표가 피함 */
     if (sim.mode === 'TWR' || sim.mode === 'GND') { var mr = Math.min(78, W * 0.11); obs.push({ x: (sim.flow.mini !== 'L' ? W - mr * 2 - 20 : 4), y: 4, w: mr * 2 + 16, h: mr * 2 + 16, wt: 3 }); }
     list.forEach(function (ac) {
       if (ac.st === 'final' && ac.d > 2600) return;
@@ -289,6 +311,8 @@
     /* 북쪽 화살표 */
     ctx.save(); ctx.translate(W - 34, H - 38); ctx.rotate((90 - D.gridHdg) * D2R); ctx.strokeStyle = '#9fb3c8'; ctx.fillStyle = '#9fb3c8'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(0, 16); ctx.lineTo(0, -14); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, -20); ctx.lineTo(5, -10); ctx.lineTo(-5, -10); ctx.closePath(); ctx.fill(); ctx.font = 'bold 10px ' + MONO; ctx.fillText('N', -3.5, -28); ctx.restore();
     /* 최종 접근 표시(화면 밖 항공기) + 타워 레이더 */
+    var hd = R.hud(W, H);
+    if (hd) { ctx.fillStyle = 'rgba(6,10,15,.93)'; ctx.fillRect(0, 0, W, hd.h); ctx.fillStyle = '#22384d'; ctx.fillRect(0, hd.h, W, 1); }
     R.finalBars(ctx, W, H, app);
     if (sim.mode === 'TWR' || sim.mode === 'GND') R.miniRadar(ctx, W, H, app);
     R.miniMap(ctx, W, H, app);
@@ -307,7 +331,12 @@
   };
   /* 활주로 접근 끝 쪽의 도착 목록(자리 계산 → 그리기) */
   R.finalLayout = function (app, W, H) {
-    var sim = app.sim, v = app.view, out = [];
+    var sim = app.sim, v = app.view, out = [], hd = R.hud(W, H);
+    if (hd) {   /* 좁은 화면: 위쪽 띠 안에 가까운 순서로 한 줄씩 */
+      var all = []; Object.keys(D.ends).forEach(function (id) { (sim.finals ? sim.finals(id) : []).forEach(function (a) { all.push(a); }); });
+      all.sort(function (a, b) { return a.d - b.d; });
+      return [{ compact: true, x: hd.fx, y: hd.fy, w: hd.fw, h: hd.h - hd.fy, list: all.slice(0, hd.lines), more: Math.max(0, all.length - hd.lines), wt: 0 }];
+    }
     Object.keys(D.ends).forEach(function (id) {
       var fl = sim.finals ? sim.finals(id) : []; if (!fl.length) return; var e = D.ends[id], p = gs(v, W, H, e.thrU - e.du * 330, e.thrV - e.dv * 330), hh = fl.length * 17 + 20, x = e.du > 0 ? Math.max(8, p[0] - 196) : Math.min(W - 196, p[0] + 10), y = p[1] + (e.thrV > 0 ? -18 - hh : 20);
       y = Math.max(6, Math.min(y, H - hh - 6)); out.push({ id: id, x: x, y: y - 3, w: 188, h: hh, list: fl, wt: 3 });
@@ -318,6 +347,19 @@
     var sim = app.sim; ctx.font = '11px ' + MONO;
     R.finalLayout(app, W, H).forEach(function (b) {
       var x = b.x, y = b.y + 3;
+      if (b.compact) {
+        ctx.font = '10.5px ' + MONO; ctx.textBaseline = 'middle';
+        if (!b.list.length) { ctx.fillStyle = '#4d6377'; ctx.fillText('FINAL —', x, b.y + 8); }
+        b.list.forEach(function (a, ix) {
+          var yy = b.y + 8 + ix * 14.5, own = a.owner === 'me', nar = b.w < 185;
+          ctx.fillStyle = '#6c8aa6'; ctx.fillText(a.rwy, x, yy);
+          ctx.fillStyle = a.emg ? C.emg : a.id === app.sel ? C.sel : own ? C.arr : '#8496a6'; ctx.fillText(a.cs + (a.wake === 'H' ? ' H' : ''), x + 26, yy); ctx.fillText((a.d / NM).toFixed(1) + (nar ? '' : 'NM'), x + 92, yy);
+          ctx.fillStyle = a.clr ? '#6fe08d' : '#ffb347'; ctx.fillText(a.clr ? 'CLRD' : (sim.mode === 'TWR' ? (nar ? 'NO' : 'NO CLR') : ''), x + (nar ? 120 : 140), yy);
+          app.hit.push({ id: a.id, x0: x - 2, y0: yy - 7, x1: x + b.w, y1: yy + 7, px: -99, py: -99, r: 0 });
+        });
+        if (b.more) { ctx.fillStyle = '#6c8aa6'; ctx.fillText('+' + b.more, x + b.w - 18, b.y + 8); }
+        ctx.font = '11px ' + MONO; return;
+      }
       ctx.fillStyle = 'rgba(6,10,15,.88)'; ctx.fillRect(x, b.y, b.w, b.h); ctx.strokeStyle = '#2b4a66'; ctx.strokeRect(x + 0.5, b.y + 0.5, b.w - 1, b.h - 1);
       ctx.fillStyle = '#6c8aa6'; ctx.fillText('FINAL ' + b.id + '  ILS', x + 6, y + 6);
       b.list.forEach(function (a, ix) { var yy = y + 23 + ix * 17, own = a.owner === 'me'; ctx.fillStyle = a.emg ? C.emg : a.id === app.sel ? C.sel : own ? C.arr : '#8496a6'; ctx.fillText(a.cs + (a.wake === 'H' ? ' H' : ''), x + 6, yy); ctx.fillText((a.d / NM).toFixed(1) + 'NM', x + 82, yy); ctx.fillStyle = a.clr ? '#6fe08d' : '#ffb347'; ctx.fillText(a.clr ? 'CLRD' : (sim.mode === 'TWR' ? 'NO CLR' : ''), x + 136, yy); app.hit.push({ id: a.id, x0: x, y0: yy - 8, x1: x + 186, y1: yy + 8, px: -99, py: -99, r: 0 }); });
@@ -350,7 +392,7 @@
     R.miniBox = { x: x, y: y, w: mw, h: mh, toUV: function (sx, sy) { return { u: B.u1 + (sx - x) / k, v: B.v2 - (sy - y) / k }; } };
   };
   R.miniRadar = function (ctx, W, H, app) {
-    var sim = app.sim, r = Math.min(78, W * 0.11), cx = sim.flow.mini !== 'L' ? W - r - 12 : r + 12, cy = r + 12, sc = r / 13, i;
+    var sim = app.sim, hd = R.hud(W, H), r = hd ? hd.r : Math.min(78, W * 0.11), cx = hd ? W - r - 8 : sim.flow.mini !== 'L' ? W - r - 12 : r + 12, cy = hd ? r + 6 : r + 12, sc = r / 13, i;
     ctx.fillStyle = 'rgba(4,8,12,.9)'; ctx.beginPath(); ctx.arc(cx, cy, r + 4, 0, 7); ctx.fill(); ctx.strokeStyle = '#2b4a66'; ctx.lineWidth = 1; ctx.stroke();
     ctx.strokeStyle = '#132030'; [5, 10].forEach(function (d) { ctx.beginPath(); ctx.arc(cx, cy, d * sc, 0, 7); ctx.stroke(); });
     ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r + 3, 0, 7); ctx.clip();
@@ -365,6 +407,6 @@
       mb.push({ x: cs[bi][0], y: cs[bi][1], w: tw, h: 10 }); mb.push({ x: p[0] - 4, y: p[1] - 4, w: 8, h: 8 });
       ctx.fillStyle = col; ctx.fillText(a.cs, cs[bi][0], cs[bi][1] + 5);
     });
-    ctx.restore(); ctx.fillStyle = '#6c8aa6'; ctx.font = '9px ' + MONO; ctx.fillText('TWR RADAR 13NM', cx - 40, cy + r - 6);
+    ctx.restore(); ctx.fillStyle = '#6c8aa6'; ctx.font = '9px ' + MONO; if (hd) ctx.fillText('13NM', cx - 11, cy + r - 3); else ctx.fillText('TWR RADAR 13NM', cx - 40, cy + r - 6);
   };
 })(typeof globalThis !== 'undefined' ? globalThis : this);

@@ -89,7 +89,7 @@
 
     });
     $('cli').hidden = app.pos.view !== 'radar';
-    app.follow = false; app.viewTo = null; renderGnav();
+    app.follow = false; app.viewTo = null; renderGnav(); if (app.view && app.pos.view === 'ground') fitView();   /* 단추 너비가 정해진 뒤 한 번 더(좁은 화면의 위쪽 띠 높이) */
     renderTop(true); last = 0;
   }
   function resize() {
@@ -123,6 +123,7 @@
     var cv = $('cv'), ctx = cv.getContext('2d'), dpr = window.devicePixelRatio || 1; resize();
     var W = cv.clientWidth, H = cv.clientHeight; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (app.pos.view === 'radar') R.drawRadar(ctx, W, H, app); else R.drawGround(ctx, W, H, app);
+    var ht = app.pos.view === 'ground' ? R.hudTop(W, H) : 0; if (ht !== app.hudPx) { app.hudPx = ht; $('scope').style.setProperty('--hud', ht + 'px'); $('banner').style.top = ht ? (ht + 8) + 'px' : ''; }   /* 좁은 화면의 위쪽 띠 높이(알림 띠가 그 아래에 뜨게) */
     if (app.paused && app.instOn) { ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(0, 0, W, H); }
     else if (app.paused) { ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.fillRect(0, 0, W, H); ctx.fillStyle = '#fff'; ctx.font = 'bold 22px sans-serif'; ctx.textAlign = 'center'; ctx.fillText(ATC.T('일시 정지'), W / 2, H - 22); ctx.textAlign = 'left'; }
   }
@@ -132,7 +133,7 @@
     var sim = app.sim, p = app.pos, sc = sim.score();
     $('tPos').innerHTML = '<b>' + p.call.toUpperCase() + '</b><span>' + p.fq + '</span><em>' + p.ko + ' · ' + sim.level.ko + '</em>';
     $('tClock').textContent = U.hhmm(sim.utc()) + ':' + U.pad(Math.floor(sim.utc()) % 60, 2) + ' UTC';
-    var rw = sim.mode === 'APP' ? 'ARR ' + sim.rwys.join('/') + ' · DEP ' + sim.flow.dep : sim.mode === 'TWR' ? 'LDG ' + sim.arrRw.join('/') + ' · T/O ' + sim.depRw.join('/') : sim.mode === 'ACC' ? 'FIR SEIRA' : sim.multi ? 'ARR ' + sim.flow.arrs.join('/') + ' · DEP ' + sim.flow.deps.join('/') : 'ARR ' + sim.flow.arr + ' · DEP ' + sim.flow.dep;
+    var rw = sim.mode === 'APP' ? 'ARR ' + sim.rwys.join('/') + ' · DEP ' + (D.depRwyFor && sim.flow.deps ? sim.flow.deps.join('/') : sim.flow.dep) : sim.mode === 'TWR' ? 'LDG ' + sim.arrRw.join('/') + ' · T/O ' + sim.depRw.join('/') : sim.mode === 'ACC' ? (D.accLabel ? D.airport.call.toUpperCase() + ' CONTROL' : 'FIR SEIRA') : sim.multi ? 'ARR ' + sim.flow.arrs.join('/') + ' · DEP ' + sim.flow.deps.join('/') : 'ARR ' + sim.flow.arr + ' · DEP ' + sim.flow.dep;
     $('tAtis').innerHTML = '<i>ATIS ' + sim.atis + '</i><span>' + rw + '</span><span>WIND ' + fmt.wind(sim.wind).replace(' at ', '/') + 'KT</span><span>QNH ' + sim.qnh + '</span>';
     $('tScore').innerHTML = ATC.T('<span class="sc">{0}<small>점</small></span><span class="k s" title="안전">안전 {1}</span><span class="k e" title="효율">효율 {2}</span><span class="k p" title="절차·교신">절차 {3}</span><span class="k">처리 {4}/{5}</span>', sc.total, sc.S, sc.E, sc.P, sc.handled, (sim.total + sim.sched.length));
     Array.prototype.forEach.call(document.querySelectorAll('#tSpeed button'), function (b) { var s = b.dataset.s; b.classList.toggle('on', s === 'p' ? app.paused : (!app.paused && +s === app.speed)); });
@@ -167,7 +168,7 @@
     var sim = app.sim, m = sim.mode, l2 = '', tag = '', cls = (a.kind || 'ovf') + (a.id === app.sel ? ' sel' : '') + (a.emg ? ' emg' : '') + (a.owner === 'in' ? ' inn' : '') + ((a.owner === 'out' || a.owner === 'twr' || a.owner === 'gnd') ? ' dim' : '') + (a.waiting && a.owner === 'me' ? ' wait' : '') + (sim.hasWrong(a.id) ? ' wrong' : '');
     if (m === 'APP' || m === 'ACC') {
       l2 = fmt.alt(a.alt) + (Math.abs(a.alt - a.tAlt) > 150 ? (a.tAlt > a.alt ? '↑' : '↓') + fmt.alt(a.tAlt) : '') + ' · ' + Math.round(a.ias) + 'kt · ' + (a.nav.mode === 'route' ? '→' + a.nav.route[a.nav.i] : a.nav.mode === 'hold' ? 'HOLD ' + a.nav.fix : a.nav.mode === 'loc' ? 'ILS' : 'H' + fmt.hdg(a.tHdg));
-      tag = m === 'APP' ? (a.kind === 'arr' ? (a.appr ? (a.appr.loc ? 'ILS ' + a.appr.rwy + ' ' + a.appr.d.toFixed(0) + 'NM' : 'APP ' + a.appr.rwy) : a.gate + ' ' + a.rwy) : a.sid + ' → ' + a.dest) : (a.kind === 'arr' || a.divert ? ATC.T('도착 {0}', a.gate) : a.kind === 'dep' ? ATC.T('출발 → {0} RFL{1}', a.exitFix, fmt.fl(a.rfl)) : a.fpRoute[0] + '→' + a.exitFix);
+      tag = m === 'APP' ? (a.kind === 'arr' ? (a.appr ? (a.appr.loc ? 'ILS ' + a.appr.rwy + ' ' + a.appr.d.toFixed(0) + 'NM' : 'APP ' + a.appr.rwy) : (a.star || a.gate) + ' ' + a.rwy) : a.sid + ' → ' + a.dest) : (a.kind === 'arr' || a.divert ? ATC.T('도착 {0}', a.gate) : a.kind === 'dep' ? ATC.T('출발 → {0} RFL{1}', a.exitFix, fmt.fl(a.rfl)) : a.fpRoute[0] + '→' + a.exitFix);
     } else if (m === 'TWR' || m === 'GND') {
       var stt = { final: (a.d / NM).toFixed(1) + 'NM ' + (a.clr ? ATC.T('착륙 허가됨') : ATC.T('허가 전')), land: ATC.T('착륙 활주'), vacate: ATC.T('활주로 이탈 중'), reqtaxi: a.kind === 'arr' ? ATC.T('활주로 이탈 · {0}', (m === 'TWR' ? ATC.T('Ground 이양 필요') : ATC.T('경로 요청'))) : (a.tech ? ATC.T('기체 이상 · 복귀 요청') : ATC.T('지상 이동 요청')), taxi: (a.halt ? ATC.T('정지 지시 중') : a.spd < 0.3 && a.blk ? ATC.T('앞 막힘') : ATC.T('이동 중')) + (a.hp ? ' → ' + a.hp : a.kind === 'arr' ? ' → ' + a.stand : ''), athold: a.holdKind === 'cross' ? ATC.T('활주로 앞 정지 · 횡단 대기') : ATC.T('대기 지점 {0}{1}', a.hp, (m === 'GND' && a.owner === 'me' ? ATC.T(' · Tower 이양 필요') : ATC.T(' · 준비 완료'))), lineup: ATC.T('활주로 진입'), linedup: a.cto ? ATC.T('이륙 활주 시작') : ATC.T('활주로 정렬 · 이륙 허가 대기'), roll: ATC.T('이륙 활주'), air: a.goAround ? ATC.T('복행') : ATC.T('이륙 {0}ft', fmt.alt(a.alt)), gate: a.parked ? ATC.T('주기 완료') : ATC.T('주기장 {0}', a.stand), reqpush: ATC.T('푸시백 요청'), push: ATC.T('푸시백 중'), start: ATC.T('엔진 시동 중') }[a.st] || a.st;
       l2 = stt; tag = (a.kind === 'dep' ? 'DEP ' + (a.rwy || '') + ' · ' + (a.dest || '') : ATC.T('ARR {0} · 주기장 {1}', a.rwy, a.stand));
@@ -219,14 +220,16 @@
     h += Gp(ATC.T('기수 <small>눈금판을 누르거나 H + 화면</small>'), '<canvas id="dial" width="104" height="104"></canvas><div class="col">' + B(ATC.T('좌선회'), function () { setDir('L'); }, { cls: pendDir() === 'L' ? 'on' : '' }) + B(ATC.T('우선회'), function () { setDir('R'); }, { cls: pendDir() === 'R' ? 'on' : '' }) + B('−10°', function () { nudge(-10); }) + B('+10°', function () { nudge(10); }) + '</div>', 172);
     /* 고도 */
     var alts = [];
-    if (!acc) { if (ac.kind === 'arr') for (i = 3; i <= 12; i++) alts.push(i * 1000); else alts = [5000, 6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000, 19000]; }
-    else { if (ac.kind === 'arr' || ac.divert) alts = [13000, 15000, 17000, 19000, 21000, 23000, 25000, 27000, 29000]; else { var base = Math.round(ac.alt / 1000) * 1000; for (i = -5; i <= 5; i++) { var v = base + i * 1000; if (v >= 20000 && v <= Math.min(41000, ac.perf.ceil)) alts.push(v); } if (ac.rfl && alts.indexOf(ac.rfl) < 0) alts.push(ac.rfl); alts.sort(function (a, b) { return a - b; }); } }
+    if (!acc) { if (ac.kind === 'arr') for (i = 3; i <= (D.tmaTop > 19000 ? 13 : 12); i++) alts.push(i * 1000); else alts = D.tmaTop > 19000 ? [7000, 8000, 9000, 10000, 11000, 12000, 13000, 15000, 17000, 19000, 21000, D.tmaTop] : [5000, 6000, 7000, 8000, 9000, 10000, 12000, 14000, 16000, 19000]; }
+    else { if (ac.kind === 'arr' || ac.divert) { alts = [13000, 15000, 17000, 19000, 21000, 23000, 25000, 27000, 29000]; var ga = ATC.accAlt(ac); if (alts.indexOf(ga) < 0) { alts.unshift(ga); alts.sort(function (a, b) { return a - b; }); } } else { var base = Math.round(ac.alt / 1000) * 1000; for (i = -5; i <= 5; i++) { var v = base + i * 1000; if (v >= 20000 && v <= Math.min(41000, ac.perf.ceil)) alts.push(v); } if (ac.rfl && alts.indexOf(ac.rfl) < 0) alts.push(ac.rfl); alts.sort(function (a, b) { return a - b; }); } }
     h += Gp(ATC.T('고도'), alts.map(function (v) { var par = acc && v >= 20000 && ac.east !== undefined ? ((Math.round(v / 1000) % 2 === 1) === ac.east ? ' par' : ' npar') : ''; return B(fmt.alt(v), function () { addPend({ k: 'alt', v: v }); }, { cls: (pendHas('alt', v) ? 'on' : '') + (Math.abs(ac.tAlt - v) < 50 ? ' cur' : '') + par + (v === ac.rfl ? ' rfl' : '') }); }).join('') + B(ATC.T('신속히'), function () { for (var j = 0; j < app.pend.length; j++) if (app.pend[j].k === 'alt') { app.pend[j].exp = !app.pend[j].exp; app.cmdSig = ''; } }, { cls: 'ghost', tip: ATC.T('고른 고도 변경을 신속히(expedite)') }), 252);
     /* 속도 */
     var sp = acc ? [250, 270, 290] : [160, 170, 180, 190, 200, 210, 220, 230, 250];
     h += Gp(ATC.T('속도'), sp.map(function (v) { return B(v, function () { addPend({ k: 'spd', v: v }); }, { cls: (pendHas('spd', v) ? 'on' : '') + (ac.spdAsg === v ? ' cur' : '') }); }).join('') + B(ATC.T('정상'), function () { addPend({ k: 'spd', v: 0 }); }, { cls: 'ghost' }), 132);
     /* 직행 */
-    lst = (ac.nav.mode === 'route' ? ac.nav.route.slice(ac.nav.i) : (ac.fpRoute || []).slice(-2)).slice(0, 4);
+    lst = (ac.nav.mode === 'route' ? ac.nav.route.slice(ac.nav.i) : (ac.fpRoute || []).slice(-2));
+    if (D.flyBy) { var named = lst.filter(function (f) { return D.fix[f].k !== 'tt'; }); lst = named.slice(0, 3); named.slice(-2).forEach(function (f) { if (lst.indexOf(f) < 0) lst.push(f); }); }      /* 긴 경로: 이름 있는 지점 가운데 앞의 셋 + 끝의 둘(흐름이 만나는 곳 · 경로 끝) */
+    else lst = lst.slice(0, 4);
     if (!acc && ac.kind === 'arr') sim.rwys.forEach(function (r) { var f = D.ends[r].IF; if (lst.indexOf(f) < 0) lst.push(f); });
     if (acc && (ac.kind === 'arr' || ac.divert) && lst.indexOf(ac.gate) < 0) lst.push(ac.gate);
     if (acc && ac.exitFix && lst.indexOf(ac.exitFix) < 0) lst.push(ac.exitFix);
@@ -235,7 +238,7 @@
     var x = '';
     if (!acc && ac.kind === 'arr') { sim.rwys.forEach(function (r) { x += B(ATC.T('ILS {0} 접근 허가', r), function () { addPend({ k: 'ils', rwy: r }); }, { cls: 'wide' + (pendHas('ils', r) ? ' on' : '') }); }); var hf = (ac.fpRoute || [])[ac.fpRoute.length - 1]; if (hf && D.fix[hf].k !== 'if') x += B(ATC.T('체공 {0}', hf), function () { addPend({ k: 'hold', fix: hf }); }, { cls: 'ghost' }); }
     if (!acc) x += ac.kind === 'arr' ? B(ATC.T('Tower 이양'), function () { addPend({ k: 'ho', to: 'TWR' }); }, { cls: 'ho' + (pendHas('ho') ? ' on' : '') }) : B(ATC.T('Control 이양'), function () { addPend({ k: 'ho', to: 'ACC' }); }, { cls: 'ho' + (pendHas('ho') ? ' on' : '') });
-    else { var ns = sim.nextSector(ac); if (ac.kind === 'arr' || ac.divert) x += B(ATC.T('{0} + {1} 직행', fmt.alt(D.accArrAlt), ac.gate), function () { addPend({ k: 'alt', v: D.accArrAlt }); addPend({ k: 'dct', fix: ac.gate }); }, { cls: 'wide' }); x += B(ATC.T('{0} 이양', ns.n.replace(D.airport.call + ' ', '')), function () { addPend({ k: 'ho', to: ns }); }, { cls: 'ho' + (pendHas('ho') ? ' on' : '') }); if (ac.waiting === 'lvl') x += B(ATC.T('요청 고도 {0} 승인', fmt.alt(ac.reqLvl)), function () { addPend({ k: 'alt', v: ac.reqLvl }); }, { cls: 'wide' }); if (ac.waiting === 'dev') x += B(ATC.T('회피 기수 승인({0} 25°)', (ac.devSide === 'L' ? ATC.T('좌') : ATC.T('우'))), function () { addPend({ k: 'hdg', v: U.r5(ac.hdg + (ac.devSide === 'L' ? -25 : 25)), dir: ac.devSide }); }, { cls: 'wide' }); }
+    else { var ns = sim.nextSector(ac); if (ac.kind === 'arr' || ac.divert) x += B(ATC.T('{0} + {1} 직행', fmt.alt(ATC.accAlt(ac)), ac.gate), function () { addPend({ k: 'alt', v: ATC.accAlt(ac) }); addPend({ k: 'dct', fix: ac.gate }); }, { cls: 'wide' }); x += B(ATC.T('{0} 이양', ns.n.replace(D.airport.call + ' ', '')), function () { addPend({ k: 'ho', to: ns }); }, { cls: 'ho' + (pendHas('ho') ? ' on' : '') }); if (ac.waiting === 'lvl') x += B(ATC.T('요청 고도 {0} 승인', fmt.alt(ac.reqLvl)), function () { addPend({ k: 'alt', v: ac.reqLvl }); }, { cls: 'wide' }); if (ac.waiting === 'dev') x += B(ATC.T('회피 기수 승인({0} 25°)', (ac.devSide === 'L' ? ATC.T('좌') : ATC.T('우'))), function () { addPend({ k: 'hdg', v: U.r5(ac.hdg + (ac.devSide === 'L' ? -25 : 25)), dir: ac.devSide }); }, { cls: 'wide' }); }
     h += Gp(acc ? ATC.T('이양 · 요청 처리') : ATC.T('접근 · 이양'), x, 236) + '</div>';
     return h;
   }
@@ -386,7 +389,7 @@
   }
   function renderGnav() {
     var el = $('gnav'); if (!el) return; var g = app.pos && app.pos.view === 'ground', r = app.pos && app.pos.view === 'radar'; el.hidden = !(g || r); if (el.hidden) return;
-    var h = '<button class="zm" data-z="in" title="' + ATC.T('확대 (+)') + '">+</button><button class="zm" data-z="out" title="' + ATC.T('축소 (-)') + '">−</button>';
+    var h = '<button class="zm" data-z="in" title="' + ATC.T('확대 (+)') + '">+</button><button class="zm" data-z="out" title="' + ATC.T('축소 (-)') + '">−</button><button class="zm fitb" data-z="fit" title="' + ATC.T('전체 보기 (F)') + '">⤢</button>';
     if (g) {
       if (D.areas && $('cv').clientWidth < 760) h += '<select data-areas="1" aria-label="' + ATC.T('구역') + '"><option value="">' + ATC.T('구역 ▾') + '</option>' + D.areas.map(function (a, i) { return '<option value="' + i + '">' + esc(a.label) + '</option>'; }).join('') + '</select>';   /* 좁은 화면은 고르기 칸 하나로 */
       else (D.areas || []).forEach(function (a, i) { h += '<button data-area="' + i + '">' + esc(a.label) + '</button>'; });
@@ -397,7 +400,7 @@
   function bindGnav() {
     $('gnav').addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b || !app.sim) return;
-      if (b.dataset.z) zoomBtn(b.dataset.z === 'in' ? 1.4 : 1 / 1.4);
+      if (b.dataset.z === 'fit') fit(); else if (b.dataset.z) zoomBtn(b.dataset.z === 'in' ? 1.4 : 1 / 1.4);
       else if (b.dataset.area) goArea(D.areas[+b.dataset.area].box);
       else if (b.dataset.g === 'follow') setFollow(!app.follow);
     });
@@ -515,7 +518,7 @@
     $('bFit').addEventListener('click', fit); bindGnav();
     $('bQuit').addEventListener('click', function () { app.wasPaused = app.paused; app.paused = true; openModal(ATC.T('<div class="mhead"><h2>근무를 마칠까요?</h2></div><div class="mbody"><p>지금까지의 결과로 평가를 봅니다.</p></div><div class="mfoot"><span class="sp"></span><button class="btn" data-m="close">계속 근무</button><button class="btn" data-m="lobby">평가 없이 나가기</button><button class="btn pri" data-m="quit">마치고 평가 보기</button></div>')); });
     $('cli').addEventListener('keydown', function (e) { e.stopPropagation(); if (e.key === 'Enter') { cli(this.value); this.value = ''; } if (e.key === 'Escape') this.blur(); });
-    window.addEventListener('resize', function () { resize(); if (app.sim && !$('game').hidden) renderGnav(); });
+    window.addEventListener('resize', function () { resize(); if (app.sim && !$('game').hidden) { renderGnav(); if (app.viewFit && app.view && app.pos.view === 'ground') fitView(); } });
     window.addEventListener('keydown', function (e) {
       if (!app.sim || $('game').hidden || !$('modal').hidden) { if (e.key === 'Escape' && !$('modal').hidden && !app.over) { closeModal(); if (app.sim) app.paused = app.wasPaused || false; } return; }
       var k = e.key.toLowerCase();
@@ -634,7 +637,7 @@
     if (ATC.VPARTS && D.voice && D.voice.parts) ATC.VPARTS = D.voice.parts;
     if (D.lobby) { var hero = document.querySelector('.hero'); if (hero) hero.style.backgroundImage = 'linear-gradient(90deg,rgba(7,11,16,.96) 0,rgba(7,11,16,.72) 55%,rgba(7,11,16,.35) 100%),url("' + (ATC.base || '') + D.lobby + '"),repeating-radial-gradient(circle at 84% 40%,transparent 0 58px,rgba(79,216,255,.07) 58px 59px)'; }   /* 공항마다 첫 화면 배경 */   /* 이 공항만의 음성 묶음(음성 파일을 올리지 않은 사이트판에서는 ATC.VPARTS가 없어 그대로 브라우저 음성) */
     bind(); if (!(D.sat && D.sat.img === null)) R.loadSat((ATC.base || '') + ((D.sat && D.sat.img) || 'assets/img/ground_sat.webp')); showLobby(); requestAnimationFrame(frame);
-    var q = /[?&]auto=([A-Z]{3})(\d)?(?:&seed=(\d+))?/.exec(location.search); if (q) { app.level = +(q[2] || 1); start(q[1], q[3] ? +q[3] : 0); }
+    var q = /[?&]auto=([A-Z]{3})(\d)?(?:&seed=(\d+))?/.exec(location.search), qf = /[?&]flow=([A-Z])\b/.exec(location.search); if (q && qf && D.flows[qf[1]]) app.flow = qf[1]; if (q) { app.level = +(q[2] || 1); start(q[1], q[3] ? +q[3] : 0); }
   });
   ATC.ui = { start: start, select: select, showLobby: showLobby, showResult: showResult, openLearn: openLearn, briefing: briefing, addPend: addPend, sendPend: sendPend, openModal: openModal, closeModal: closeModal, tts: tts };
 })();

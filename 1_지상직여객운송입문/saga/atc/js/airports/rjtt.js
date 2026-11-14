@@ -1,4 +1,4 @@
-/* AIRLINE SAGA — ATC(관제편) 공항 묶음: 도쿄국제공항(하네다, RJTT) — 지상 · 관제탑용 초안
+/* AIRLINE SAGA — ATC(관제편) 공항 묶음: 도쿄국제공항(하네다, RJTT) — 다섯 자리(비행허가 · 지상 · 관제탑 · 접근 · 지역)
  * 자료: AIP Japan RJTT AD 2(기준일 2026-11-26) — 활주로 시단 좌표 · 주기장 좌표 · 유도로 이름 · 주파수 · 출발 활주로 배정표.
  * 교육용으로 단순화한 값이며 실제 운항 · 관제에 쓸 수 없음. 항공사와 편명은 전부 가상.
  *  - 유도로: 실제 이름을 쓰되 줄기만 골라 곧은 선으로 폄(고속 탈출 유도로도 직각으로 그림). 좌표는 AIP 비행장 차트에서 읽은 근삿값(±30m).
@@ -30,8 +30,8 @@
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사는 일본어 목소리 */
     D.voice = { dir: 'assets/voice/rjtt/', parts: { ctl: 2, ctlf: 2, p1: 3, p2: 2, p3: 2, p4: 2 },
-      note: ATC.T('하네다의 관제사 목소리는 일본인 관제사처럼 일본어 억양의 영어로 녹음했습니다.') };
-    D.modes = ['DEL', 'GND', 'TWR'];     /* 이 공항에서 여는 자리(접근관제 · 지역관제는 다음 단계) */
+      note: ATC.T('하네다의 관제사 목소리는 일본인 관제사처럼 일본어 억양의 영어로 녹음했습니다. 접근관제 · 지역관제의 교신은 아직 녹음한 조각이 없어 브라우저의 영어 음성으로 나옵니다.') };
+    D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
 
@@ -71,13 +71,13 @@
        (남풍 오후 일부 시간의 16L · 16R 착륙 운용은 넣지 않음) */
     D.flows = {
       N: { id: 'N', label: T('북풍 운용'), arr: '34L', dep: '05', arrs: ['34L', '34R'], deps: ['05', '34R'], sfx: 'A',
-        depBy: { ROVER: '34R', BEKLA: '34R', GUSRO: '05', NINOX: '05', LAXAS: '05' }, arrBy: { POLIX: '34R', AKSEL: '34L', AROSA: '34L' },
+        depBy: { ROVER: '34R', BEKLA: '34R', GUSRO: '05', NINOX: '05', LAXAS: '05' }, arrBy: { GODIN: '34R', POLIX: '34R', XAC: '34L', AKSEL: '34L', AROSA: '34L' }, appArr: '34L', vecFix: ['WEDGE', 'COACH', 'EDDIE'],
         twr: { 1: { arr: ['34L'], dep: ['34R'] }, 2: { arr: ['34R'], dep: ['05'] } },      /* 관제탑 초급 = 서로 독립인 평행 활주로 / 중급 = 05 이륙과 34R 접근이 서로 걸리는 조합 */
         w: 0.6, wind: { dir: 350, spd: 6, spdN: 10 }, push: 'south', pushDu: 1, mini: 'R',
         taxiNote: T('유도로 W · E · L은 남쪽 방향, A는 북쪽 방향, H는 동쪽 · G는 서쪽 방향이 표준'),
         closures: [['W', 450, -285, 800, -285], ['E', 300, 830, 550, 830, 800, 830], ['H', 1100, -285, 1100, 555]] },
       S: { id: 'S', label: T('남풍 운용'), arr: '22', dep: '16R', arrs: ['23', '22'], deps: ['16R', '16L'], sfx: 'A', simul: [['22', '23']],
-        depBy: { ROVER: '16L', BEKLA: '16L', GUSRO: '16R', NINOX: '16R', LAXAS: '16R' }, arrBy: { POLIX: '22', AKSEL: '23', AROSA: '23' },
+        depBy: { ROVER: '16L', BEKLA: '16L', GUSRO: '16R', NINOX: '16R', LAXAS: '16R' }, arrBy: { GODIN: '22', POLIX: '22', XAC: '23', AKSEL: '23', AROSA: '23' }, appArr: '23', vecFix: ['SHAFT', 'SCREW', 'STOCK'],
         twr: { 1: { arr: ['23'], dep: ['16R'] }, 2: { arr: ['22'], dep: ['16R'] } },       /* 초급 = 서로 걸리지 않는 23 착륙 · 16R 이륙 / 중급 = 교차 활주로(22 착륙 · 16R 이륙) */
         w: 0.4, wind: { dir: 170, spd: 7, spdN: 11 }, push: 'north', pushDu: -1, mini: 'L',
         taxiNote: T('유도로 W · A · E · L은 북쪽 방향, K는 동쪽 · J는 서쪽 방향이 표준'),
@@ -113,6 +113,7 @@
     fx('TTE', ll(35 + 33 / 60 + 36.15 / 3600, 139 + 45 / 60 + 22 / 3600), 'vor');
     fx('ROVER', ll(35.9884, 139.8498), 'out'); fx('BEKLA', ll(35.832961, 139.169306), 'out'); fx('GUSRO', ll(35.662439, 139.136975), 'out'); fx('NINOX', ll(35.498178, 139.164739), 'out'); fx('LAXAS', ll(35.031408, 139.242439), 'out');
     fx('POLIX', ll(36.210294, 140.439592), 'in'); fx('AKSEL', ll(34.677644, 139.857475), 'in'); fx('AROSA', ll(34.700478, 140.699247), 'in');
+    fx('XAC', ll(34.712250, 139.414028), 'in'); fx('GODIN', ll(36.407028, 140.282194), 'in');
     D.isIntl = function (icao) { return !/^R[JO]/.test(icao); };
     D.gateDest = {
       ROVER: [['RJCC', 'Sapporo New Chitose'], ['RJCH', 'Hakodate'], ['RJSA', 'Aomori'], ['PHNL', 'Honolulu'], ['KLAX', 'Los Angeles']],
@@ -121,10 +122,13 @@
       NINOX: [['ZSPD', 'Shanghai Pudong']],
       LAXAS: [['RJOO', 'Osaka Itami'], ['RJBB', 'Osaka Kansai'], ['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCTP', 'Taipei Taoyuan'], ['VHHH', 'Hong Kong'], ['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi']]
     };
+    /* 도착 방면 ↔ 진입 지점: 국내선과 서울 · 타이베이 · 북미 쪽은 AIC 020/26의 표준 경로(Y10 → GODIN · Y807 → POLIX · Y824/Y875 → AROSA · Y21 → AKSEL · Y71 → XAC)대로. 나머지 국제선은 방면만 맞춘 게임값 */
     D.gateOrig = {
-      POLIX: [['RJCC', 'Sapporo New Chitose'], ['RJCH', 'Hakodate'], ['RJSA', 'Aomori'], ['RJNK', 'Komatsu'], ['RKSS', 'Seoul Gimpo'], ['KLAX', 'Los Angeles']],
-      AKSEL: [['RJOO', 'Osaka Itami'], ['RJFF', 'Fukuoka'], ['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCTP', 'Taipei Taoyuan'], ['VHHH', 'Hong Kong'], ['ZSPD', 'Shanghai Pudong']],
-      AROSA: [['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi'], ['PHNL', 'Honolulu'], ['YSSY', 'Sydney']]
+      GODIN: [['RJCC', 'Sapporo New Chitose'], ['RJCH', 'Hakodate'], ['RJSA', 'Aomori']],
+      POLIX: [['KLAX', 'Los Angeles'], ['KSFO', 'San Francisco'], ['CYVR', 'Vancouver']],
+      AROSA: [['PHNL', 'Honolulu']],
+      AKSEL: [['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCTP', 'Taipei Taoyuan'], ['VHHH', 'Hong Kong'], ['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi'], ['YSSY', 'Sydney']],
+      XAC: [['RJOO', 'Osaka Itami'], ['RJBB', 'Osaka Kansai'], ['RJFF', 'Fukuoka'], ['RJNK', 'Komatsu'], ['RKSS', 'Seoul Gimpo'], ['ZSPD', 'Shanghai Pudong']]
     };
     D.gateEast = { ROVER: true, BEKLA: false, GUSRO: false, NINOX: false, LAXAS: false };
     /* SID: 하네다는 활주로가 달라도 이름이 같음(낮 시간대의 것만 — B · C는 시간대별 소음 대책용) */
@@ -134,7 +138,141 @@
     D.depRwyFor = function (flow, gate) { return flow.depBy[gate] || flow.dep; };
     D.sidInit = 9000;      /* 게임값(실제는 SID · 허가마다 다름) */
     D.sidInitGame = true;  /* 화면에 「이 게임에서 정한 값」이라고 밝힘 */
-    D.tmaTop = 19000; D.tmaR = 45; D.entryAlt = {}; D.star = { N: {}, S: {} }; D.mvaBase = 2500; D.mva = [];
+    /* ---------- 접근관제(레이더) ----------
+       자료: AIP RJTT AD 2.24의 RNAV STAR · SID · ILS 접근 차트(기준일 2026-11-26) — 지점 좌표, 지점 순서, 최종 접근 지점의 고도.
+       넣은 것: 낮 시간대의 STAR(북풍 1A · 1C / 남풍 1N · 1S)와 ILS 접근(34L · 34R · 22 · 23), SID 다섯 개.
+       뺀 것: 남풍 때 날씨가 좋으면 쓰는 LDA 접근, 야간 절차, K · H · B · D로 끝나는 도착, 지점마다의 고도 · 속도 제한(관제사인 플레이어가 직접 지시).
+       게임값: 접근관제구의 모양(진입 · 출구 지점을 이은 선 — 실제 구역은 훨씬 복잡한 다각형) · XAC/GODIN/AROSA 진입 고도 · 초기 상승 고도 9,000ft · 최저 유도 고도 · 복행 뒤 고도 */
+    function fxs(list, kind) { list.forEach(function (a) { fx(a[0], ll(a[1], a[2]), kind || (/^T[T6]/.test(a[0]) ? 'tt' : 'wp')); }); }
+    fxs([
+      ['XAC', 34.712250, 139.414028], ['GODIN', 36.407028, 140.282194], ['ANZAC', 34.841333, 139.696306], ['TT450', 34.881667, 139.785000],
+      ['TT451', 34.838000, 139.959528], ['TT452', 34.853667, 140.100028], ['TT453', 34.910694, 140.223861], ['WANDA', 35.032028, 140.331694],
+      ['WEDGE', 35.150111, 139.979583], ['ARLON', 35.257028, 139.983278], ['TT454', 34.812444, 139.957028], ['TT455', 34.829500, 140.109806],
+      ['TT456', 34.891472, 140.244500], ['WALLY', 35.022250, 140.360722], ['AVEEY', 34.698861, 140.366111], ['TT457', 34.787306, 140.267417],
+      ['TT458', 34.805306, 140.119583], ['TT459', 34.786889, 139.954528], ['WALTZ', 34.837333, 139.752972], ['CHIPS', 36.213250, 140.243583],
+      ['COLOR', 36.021194, 140.205500], ['COPSE', 35.783000, 140.201500], ['COACH', 35.626667, 140.208750], ['TT465', 35.494222, 140.209833],
+      ['TT466', 35.427500, 140.311139], ['TT467', 35.352833, 140.356778], ['EDDIE', 35.246500, 140.361361], ['CREAM', 35.295389, 140.103444],
+      ['CLOAK', 35.263333, 140.035611], ['CAMEL', 35.288389, 139.982722], ['SOLAR', 34.985889, 139.755139], ['SCOUT', 35.106694, 139.899111],
+      ['TT250', 35.024917, 140.052361], ['TT251', 34.999361, 140.193333], ['TT252', 35.011083, 140.336944], ['STOCK', 35.077417, 140.500806],
+      ['SHAFT', 35.374278, 140.220361], ['NYLON', 35.671806, 140.155528], ['SALLY', 34.892750, 139.927806], ['TT253', 35.000389, 140.040167],
+      ['TT254', 34.974028, 140.191500], ['TT255', 34.986361, 140.344833], ['STOWE', 35.057194, 140.519833], ['ALDEN', 34.861417, 140.251472],
+      ['TT256', 34.948722, 140.189694], ['TT257', 34.977361, 140.029611], ['SLICK', 35.070194, 139.855556], ['NOVEL', 36.351917, 140.001361],
+      ['SCREW', 36.050333, 139.900111], ['STEAM', 35.931472, 139.952333], ['CACAO', 35.370222, 139.925028], ['TT501', 35.557972, 139.841639],
+      ['TT502', 35.540111, 139.955750], ['LOCUP', 35.455222, 139.935694], ['TAURA', 35.312806, 139.746472], ['IMOLA', 35.073889, 139.497500],
+      ['BAYGE', 35.426500, 139.724278], ['SEIKO', 35.484583, 139.501389], ['TT503', 35.474444, 139.811222], ['KAMAT', 35.564889, 139.696917],
+      ['LAYER', 35.657056, 139.474861], ['TIARA', 35.659444, 139.331722], ['TORAM', 35.610222, 139.836389], ['PLUTO', 35.608917, 139.960222],
+      ['KAIJI', 35.736000, 139.968500], ['SPOON', 35.907861, 139.887778], ['INTEL', 35.764722, 139.727833], ['RAGOS', 35.828389, 139.472556],
+      ['T6R11', 35.431250, 139.860333], ['T6R12', 35.403778, 139.879750], ['T6R13', 35.466889, 139.835111], ['TT631', 35.356500, 139.780167],
+      ['HATBA', 35.439833, 139.721083], ['T6L23', 35.441000, 139.927528], ['WELDA', 35.494833, 139.999083], ['APOLO', 35.322033, 139.937439]
+    ]);
+    /* 최종 접근: 중간 접근 지점(IF) · 최종 접근 지점(FAF) · 그 고도. 좌표가 없는 지점은 활주로 중심선 위의 거리(NM)로 놓음 */
+    function finAt(end, ifn, faf, apAlt, ifD, fafD) {
+      var e = D.ends[end]; if (!F[ifn]) fx(ifn, h.off(e.thr, e.crs + 180, ifD)); if (!F[faf]) fx(faf, h.off(e.thr, e.crs + 180, fafD));
+      F[ifn].k = 'if'; F[faf].k = 'faf'; e.IF = ifn; e.FAF = faf; e.apAlt = apAlt; e.ifD = Math.hypot(F[ifn].x - e.thr.x, F[ifn].y - e.thr.y); e.locLen = Math.ceil(e.ifD) + 2;
+    }
+    finAt('34L', 'ARLON', 'APOLO', 5000); finAt('34R', 'CAMEL', 'CACAO', 4000);
+    finAt('22', 'NEXUS', 'NITRO', 5000, 16.8, 14.8); finAt('23', 'SMILE', 'SAROB', 4000, 17.06, 11.83);      /* ILS Z RWY23의 로컬라이저는 활주로 방향과 2° 어긋나 있음 — 게임의 ILS는 활주로 중심선이라 SMILE · SAROB를 그 위(실제 자리에서 0.3~0.5NM)로 옮김. NEXUS · NITRO는 좌표를 읽지 못해 거리로 놓음 */
+    D.flyBy = true;        /* 지점을 지나기 전에 미리 돌기 시작(다음 구간과 이루는 각만큼) — RNAV 경로의 꺾이는 곳을 매끄럽게 */
+    var toL = ['WEDGE', 'ARLON'], toR = ['CHIPS', 'COLOR', 'COPSE', 'COACH', 'TT465', 'TT466', 'TT467', 'EDDIE', 'CREAM', 'CLOAK', 'CAMEL'], to23 = ['SHAFT', 'NYLON', 'SMILE'], to22 = ['NOVEL', 'SCREW', 'STEAM', 'NEXUS'];
+    D.star = {
+      N: { XAC: ['XAC', 'ANZAC', 'TT450', 'TT451', 'TT452', 'TT453', 'WANDA'].concat(toL), AKSEL: ['AKSEL', 'TT454', 'TT455', 'TT456', 'WALLY'].concat(toL), AROSA: ['AROSA', 'AVEEY', 'TT457', 'TT458', 'TT459', 'WALTZ'].concat(toL),
+        GODIN: ['GODIN'].concat(toR), POLIX: ['POLIX'].concat(toR) },
+      S: { XAC: ['XAC', 'ANZAC', 'SOLAR', 'SCOUT', 'TT250', 'TT251', 'TT252', 'STOCK'].concat(to23), AKSEL: ['AKSEL', 'SALLY', 'TT253', 'TT254', 'TT255', 'STOWE'].concat(to23), AROSA: ['AROSA', 'AVEEY', 'ALDEN', 'TT256', 'TT257', 'SLICK'].concat(to23),
+        GODIN: ['GODIN'].concat(to22), POLIX: ['POLIX', 'GODIN'].concat(to22) }
+    };
+    D.starName = { N: { XAC: 'OSHIMA 1A', AKSEL: 'AKSEL 1A', AROSA: 'AROSA 1A', GODIN: 'GODIN 1C', POLIX: 'POLIX 1C' }, S: { XAC: 'OSHIMA 1N', AKSEL: 'AKSEL 1N', AROSA: 'AROSA 1N', GODIN: 'GODIN 1S', POLIX: 'POLIX 1S' } };
+    /* 경로를 줄여 줄 때 직행시키는 지점(여러 흐름이 만나는 곳) */
+    D.starCut = { N: { XAC: 'WEDGE', AKSEL: 'WEDGE', AROSA: 'WEDGE', GODIN: 'CREAM', POLIX: 'CREAM' }, S: { XAC: 'SHAFT', AKSEL: 'SHAFT', AROSA: 'SHAFT', GODIN: 'STEAM', POLIX: 'STEAM' } };
+    /* STAR의 지점별 고도(AIP — 「at」 · 「at or below」 · 「at or above」를 가리지 않고 그 지점에서 맞출 고도로 씀). 흐름끼리 엇갈리는 곳에서 1,000ft씩 떨어지게 짜여 있음 */
+    D.starAlt = { ANZAC: 13000, WANDA: 13000, WALLY: 12000, AVEEY: 11000, WALTZ: 11000, WEDGE: 8000, CHIPS: 13000, COLOR: 11000, COACH: 8000, EDDIE: 8000,
+      SOLAR: 13000, STOCK: 13000, SALLY: 12000, STOWE: 12000, ALDEN: 11000, SLICK: 11000, SHAFT: 8000, NOVEL: 8000 };
+    D.entryAlt = { XAC: 15000, AKSEL: 12000, AROSA: 13000, GODIN: 14000, POLIX: 15000 };      /* AKSEL 12,000 · POLIX FL150 = AIP, 나머지는 게임값 */
+    /* SID 경로(활주로별). 활주로 바로 앞의 첫 지점(TT501 등)은 빼고 그다음 지점부터 */
+    var SIDR = {
+      '05': { LAXAS: ['TT502', 'LOCUP', 'TAURA', 'IMOLA', 'LAXAS'], NINOX: ['TT502', 'LOCUP', 'BAYGE', 'SEIKO', 'NINOX'], GUSRO: ['TT502', 'LOCUP', 'TT503', 'KAMAT', 'LAYER', 'TIARA', 'GUSRO'] },
+      '34R': { ROVER: ['TORAM', 'PLUTO', 'KAIJI', 'SPOON', 'ROVER'], BEKLA: ['TORAM', 'PLUTO', 'KAIJI', 'INTEL', 'RAGOS', 'BEKLA'] },
+      '16R': { LAXAS: ['T6R11', 'TAURA', 'IMOLA', 'LAXAS'], NINOX: ['T6R12', 'TT631', 'BAYGE', 'SEIKO', 'NINOX'], GUSRO: ['T6R13', 'HATBA', 'KAMAT', 'LAYER', 'TIARA', 'GUSRO'] },
+      '16L': { ROVER: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'SPOON', 'ROVER'], BEKLA: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'INTEL', 'RAGOS', 'BEKLA'] }
+    };
+    D.sidRoute = function (rwy, gate) { var r = SIDR[rwy] && SIDR[rwy][gate]; return r ? r.slice() : [gate]; };
+    D.sidAt = 0.6;         /* 이륙 뒤 활주로 끝에서 이만큼(NM) 지나면 SID 경로로 */
+    D.tmaTop = 24000;      /* 도쿄 접근관제구의 상한 FL240(AIP ENR 2.1 — 구역 대부분) */
+    D.tmaR = 75;
+    /* 게임의 접근관제구: 진입 · 출구 지점을 이은 선에서 3NM 바깥 */
+    D.tmaPoly = ['ROVER', 'NOVEL', 'GODIN', 'POLIX', 'AROSA', 'AKSEL', 'XAC', 'LAXAS', 'NINOX', 'GUSRO', 'BEKLA'].map(function (n) { var f = F[n], d = Math.hypot(f.x, f.y); return { x: f.x * (d + 3) / d, y: f.y * (d + 3) / d }; });
+    D.appView = { cx: 4, cy: -4, w: 96, h: 132 };      /* 레이더 화면을 처음 열 때 보이는 범위(NM) */
+    D.appDelay = { perNM: 0.24, plus: 9 };             /* 「공역 안에 너무 오래 있음」 기준(분) = 계획 경로 길이 × perNM + plus */
+    D.mvaBase = 2500;
+    D.mva = [{ n: 'TANZAWA', c: ll(35.4864, 139.1389), r: 7, alt: 7000, peak: 5489 }];      /* 단자와 산지(히루가타케 1,673m). 반지름 · 고도는 게임값 */
+
+    /* ---------- 지역관제 ----------
+       자료: AIP의 KML(RNAV 경로 · 지점 좌표 · 관제 섹터 · 훈련 공역, 기준일 2026-11-26)과 AIC 020/26의 표준 비행계획 경로.
+       게임값: 구역의 모양 — 하네다 주변의 Tokyo Control 여러 섹터를 하나로 묶고 네모로 단순화. 서쪽 경계는 실제 도쿄 · 고베 관제의 경계 가까이에 둠.
+       이웃 관제의 이름과 주파수는 그 방향에 있는 실제 섹터의 값(서 = Kobe Control N44 · 북 = Tokyo Control T33 · 동 = T36 · 남 = T42). 경로는 곧은 구간의 가운데 지점을 덜어 냄 */
+    fxs([
+      ['SASAP', 37.181992, 140.473447], ['DANDY', 37.173756, 139.511633], ['GUSGI', 36.927103, 140.401275], ['DAIGO', 36.744367, 140.349850],
+      ['SYOEN', 37.038489, 140.003919], ['AGRIS', 36.420750, 139.942536], ['LIBNO', 37.531517, 140.131783], ['NOGIX', 36.181111, 142.420833],
+      ['LALID', 35.944097, 141.764464], ['MILIT', 35.946331, 141.219136], ['ESKEN', 36.083636, 140.689656], ['OLVEK', 34.686389, 142.227500],
+      ['DOLBA', 34.700828, 141.435300], ['PONEM', 34.630739, 142.923769], ['FITTO', 33.985731, 140.022428], ['LUTNA', 34.298222, 140.159439],
+      ['RURER', 34.490200, 140.700319], ['MENUR', 33.911353, 138.278989], ['SELNO', 34.284339, 139.124633], ['RUNSO', 34.487978, 139.718031],
+      ['GAKKI', 34.747869, 137.680658], ['ARTIC', 34.715558, 138.804569], ['BOGON', 34.542500, 137.595503], ['BOKJO', 34.542331, 138.384939],
+      ['BOPNO', 34.943236, 138.167636], ['TOHME', 34.853169, 137.473836], ['LEBOS', 35.641225, 138.669739], ['SUGAL', 35.593114, 137.794692],
+      ['ENDAG', 35.512961, 137.253181], ['ISPOR', 35.446539, 138.169489], ['IPLES', 35.407683, 137.562714], ['MBE', 36.155975, 137.919817],
+      ['YARII', 36.270439, 137.214583], ['PIGAP', 35.789211, 138.316942], ['BIDIK', 36.012811, 137.485994], ['AZUMI', 36.480597, 137.909133],
+      ['URUSI', 36.819208, 137.131533], ['SWING', 35.389428, 137.258186], ['TEPEX', 36.004103, 138.882750], ['AKAGI', 36.391203, 139.698967],
+      ['DAKEX', 36.794317, 140.942894], ['BEKPO', 36.909872, 142.481892], ['NAKTU', 35.467097, 137.463078], ['POTEB', 35.144719, 137.248114],
+      ['FINGA', 37.125961, 138.555294], ['KIBOM', 36.451414, 138.111319], ['MATPI', 35.877942, 137.732386], ['TASOT', 33.736722, 138.504989],
+      ['LAKOS', 34.125069, 139.278106], ['LIGNI', 34.697017, 140.447853], ['INUBO', 35.726469, 140.799428], ['TOKIS', 35.179703, 139.504872],
+      ['ELNIS', 35.123756, 138.381247], ['NOKUG', 36.247575, 137.560411], ['OLTAX', 36.236531, 138.324631], ['SANEP', 36.081908, 139.639039],
+      ['LARIX', 35.936569, 140.312658], ['GULBO', 35.442461, 141.752653], ['TASID', 35.435203, 142.542908], ['ADKAK', 33.903500, 142.163306],
+      ['MERED', 34.238167, 141.441406], ['UTIBO', 34.946394, 139.895528]
+    ], 'en');
+    D.acc = { x1: -126, x2: 150, y1: -116, y2: 112 };
+    D.accLabel = 'TOKYO CONTROL  (GAME SECTOR)';
+    D.accView = { cx: 12, cy: -2, w: 304, h: 252 };
+    D.bdSide = { TOHME: 'W', ENDAG: 'W', IPLES: 'W', YARII: 'W', BIDIK: 'W', URUSI: 'W', POTEB: 'W', LIBNO: 'N', BEKPO: 'E', TASID: 'E', PONEM: 'E' };
+    ['SASAP', 'DANDY', 'NOGIX', 'OLVEK', 'FITTO', 'MENUR', 'GAKKI', 'BOGON', 'SWING', 'FINGA', 'TASOT', 'NOKUG', 'ADKAK'].concat(Object.keys(D.bdSide)).forEach(function (n) { F[n].k = 'bd'; });
+    D.neighbor = {
+      W: { n: 'Kobe Control', fq: '123.90' }, E: { n: 'Tokyo Control', fq: '134.00' },
+      N: { n: 'Tokyo Control', fq: '132.30' }, S: { n: 'Tokyo Control', fq: '125.90' }
+    };
+    function od(r, a, b) { r.od = [a, b]; return r; }
+    /* 도착: 경계 → 진입 지점 / 출발: 출구 지점 → 경계 (AIC 020/26의 RJTT 표준 경로) */
+    D.accArr = {
+      GODIN: [['SASAP', 'GUSGI', 'DAIGO', 'GODIN'], ['DANDY', 'SYOEN', 'GUSGI', 'DAIGO', 'GODIN']],
+      POLIX: [['NOGIX', 'LALID', 'MILIT', 'ESKEN', 'POLIX']],
+      AROSA: [['PONEM', 'OLVEK', 'DOLBA', 'AROSA'], ['FITTO', 'LUTNA', 'RURER', 'AROSA']],
+      AKSEL: [['MENUR', 'SELNO', 'RUNSO', 'AKSEL']],
+      XAC: [['GAKKI', 'ARTIC', 'XAC'], ['BOGON', 'BOKJO', 'ARTIC', 'XAC']]
+    };
+    D.accDep = {
+      ROVER: [['ROVER', 'AGRIS', 'SYOEN', 'LIBNO']],
+      BEKLA: [['BEKLA', 'MBE', 'YARII'], ['BEKLA', 'AZUMI', 'URUSI'], ['BEKLA', 'PIGAP', 'BIDIK']],
+      GUSRO: [['GUSRO', 'LEBOS', 'SUGAL', 'ENDAG']],
+      NINOX: [['NINOX', 'ISPOR', 'IPLES']],
+      LAXAS: [['LAXAS', 'BOPNO', 'TOHME']]
+    };
+    D.accArrAlt = 11000; D.accArrAltBy = D.entryAlt;      /* 진입 지점마다 넘겨주는 고도 */
+    D.accArrLv = [200, 210, 220, 230, 240];
+    D.airways = [
+      { n: 'Y10', f: ['SASAP', 'GUSGI', 'DAIGO', 'GODIN'] }, { n: 'Y31', f: ['DANDY', 'SYOEN', 'GUSGI'] }, { n: 'Y807', f: ['NOGIX', 'LALID', 'MILIT', 'ESKEN', 'POLIX'] },
+      { n: 'Y824', f: ['PONEM', 'OLVEK', 'DOLBA', 'AROSA'] }, { n: 'Y875', f: ['FITTO', 'LUTNA', 'RURER', 'AROSA'] }, { n: 'Y21', f: ['MENUR', 'SELNO', 'RUNSO', 'AKSEL'] },
+      { n: 'Y71', f: ['GAKKI', 'ARTIC', 'XAC'] }, { n: 'Y23', f: ['BOGON', 'BOKJO', 'ARTIC'] }, { n: 'Y56', f: ['LAXAS', 'BOPNO', 'TOHME'] }, { n: 'Y20', f: ['GUSRO', 'LEBOS', 'SUGAL', 'ENDAG'] },
+      { n: 'Y28', f: ['NINOX', 'ISPOR', 'IPLES'] }, { n: 'Y884', f: ['BEKLA', 'MBE', 'YARII'] }, { n: 'Y885', f: ['BEKLA', 'AZUMI', 'URUSI'] }, { n: 'Y18', f: ['BEKLA', 'PIGAP', 'BIDIK'] }, { n: 'Y11', f: ['AGRIS', 'SYOEN', 'LIBNO'] },
+      { n: 'Y88', f: ['SWING', 'NAKTU', 'SUGAL', 'PIGAP', 'TEPEX', 'AKAGI', 'DAIGO'] }, { n: 'Y886', f: ['DAIGO', 'DAKEX', 'BEKPO'] }, { n: 'Y12', f: ['FINGA', 'KIBOM', 'MBE', 'MATPI', 'NAKTU', 'POTEB'] },
+      { n: 'Y57', f: ['TASOT', 'LAKOS', 'LIGNI'] }, { n: 'Y818', f: ['LIGNI', 'DOLBA'] }, { n: 'Y804', f: ['LALID', 'INUBO'] }, { n: 'Y50', f: ['INUBO', 'TOKIS', 'ELNIS', 'TOHME'] },
+      { n: 'Y51', f: ['NOKUG', 'OLTAX', 'SANEP', 'LARIX', 'INUBO'] }, { n: 'Y808', f: ['INUBO', 'GULBO', 'TASID'] }, { n: 'Y821', f: ['ADKAK', 'MERED', 'LIGNI', 'UTIBO'] }, { n: 'Y502', f: ['UTIBO', 'TOKIS'] }
+    ];
+    /* 통과기: AIC 020/26의 통과 · 다른 공항 경로에서 이 구역을 지나는 것(양 끝 공항은 그 경로를 쓰는 예) */
+    D.ovfRoutes = [
+      od(['SWING', 'NAKTU', 'SUGAL', 'PIGAP', 'TEPEX', 'AKAGI', 'DAIGO', 'DAKEX', 'BEKPO'], 'RJBB', 'PANC'), od(['BEKPO', 'DAKEX', 'DAIGO', 'AKAGI', 'TEPEX', 'PIGAP', 'SUGAL', 'NAKTU', 'POTEB'], 'PANC', 'RJBB'),
+      od(['FINGA', 'KIBOM', 'MBE', 'MATPI', 'NAKTU', 'POTEB'], 'RJCC', 'RJOO'),
+      od(['TASOT', 'LAKOS', 'LIGNI', 'DOLBA', 'OLVEK', 'PONEM'], 'RCTP', 'KLAX'),
+      od(['NOGIX', 'LALID', 'INUBO', 'TOKIS', 'ELNIS', 'TOHME'], 'KSFO', 'RJBB'), od(['ADKAK', 'MERED', 'LIGNI', 'UTIBO', 'TOKIS', 'ELNIS', 'TOHME'], 'PHNL', 'RJBB'),
+      od(['NOKUG', 'OLTAX', 'SANEP', 'LARIX', 'INUBO', 'GULBO', 'TASID'], 'RKSI', 'KSEA')
+    ];
+    /* 자위대 훈련 공역 Area H(지표 ~ FL230) — 사용 중일 때는 그 높이 아래로 지나지 못함(BEKLA → AZUMI 출발 경로가 이 구역의 남서쪽을 지남) */
+    D.restricted = { n: 'AREA H', pts: [[37.5531, 139.0467], [37.0639, 138.6333], [36.555, 138.2969], [36.0364, 138.2969], [36.1531, 138.7636], [36.4864, 139.43]].map(function (q) { return ll(q[0], q[1]); }), top: 23000 };
     /* 항공사(가상)별 국내선 터미널 · 노선 범위(I = 국제선만, D = 국내선만) */
     D.domTerm = { VLA: 'T1', HNB: 'T1', CKY: 'T1', KCM: 'T1', AOP: 'T2', NCE: 'T2', LMN: 'T2' };
     var SCOPE = { SOG: 'I', TSB: 'I', KCM: 'D', SVJ: 'D', SNX: 'D' };
@@ -149,10 +287,16 @@
       return { gate: o[0], ap: o[1], intl: intl, rwy: by[o[0]], grp: f.al.cargo ? [intl ? 'KI' : 'KD'] : f.al.ga ? ['NA'] : intl ? ['T3'] : [D.domTerm[f.al.code] || 'T1'] };
     };
 
+    /* 근무 순서(접근관제 · 지역관제) — 세이라와 다른 점: 도착기는 STAR를 따라 중간 접근 지점(IF)까지 스스로 오고, 관제사는 고도 · 속도 · 경로 줄이기로 순서를 만듦 */
+    D.posBrief = {
+      APP: [T('깜박이는 표지 = 핸드오프 요청 → 「수락」'), T('STAR의 지점 옆 숫자(백 ft)에 맞춰 강하 — 흐름이 엇갈리는 곳은 그 고도로 1,000ft씩 떨어짐'), T('만나는 지점(WEDGE · CREAM · SHAFT · STEAM)에 같이 닿지 않게 속도를 조절하거나, 비어 있으면 직행으로 경로를 줄임'), T('IF(ARLON · CAMEL · SMILE · NEXUS)에 닿기 전에 「ILS 접근 허가」, 확립하면 Tower로 이양'), T('출발기는 9,000ft에서 위가 비면 FL240으로 올려 Tokyo Control로 이양')],
+      ACC: [T('핸드오프 수락 → 경로와 고도를 훑어 만나는 지점을 찾음'), T('같은 고도로 만나면 한쪽 고도를 바꿈(동쪽행은 천 단위 홀수 · 서쪽행은 짝수)'), T('도착기는 진입 지점마다 정해진 고도(XAC FL150 · AKSEL 12,000 · AROSA 13,000 · GODIN FL140 · POLIX FL150)로'), T('출발기는 요청 고도까지 올리고, 경계 전 다음 구역(서쪽 = Kobe Control)으로 이양'), T('5NM/1,000ft 분리 · 기본 배속 4배')]
+    };
+
     /* ---------- 주파수(AIP AD 2.18 — 자리마다 대표 하나) ---------- */
     D.freq = {
       DEL: { n: 'Tokyo Delivery', fq: '121.825' }, GND: { n: 'Tokyo Ground', fq: '121.70' }, TWR: { n: 'Tokyo Tower', fq: '118.10' },
-      APP: { n: 'Tokyo Approach', fq: '119.10' }, DEP: { n: 'Tokyo Departure', fq: '126.00' }, ACC: { n: 'Tokyo Control', fq: '133.50' }, ATIS: { n: 'ATIS', fq: '128.80' }
+      APP: { n: 'Tokyo Approach', fq: '119.10' }, DEP: { n: 'Tokyo Departure', fq: '126.00' }, ACC: { n: 'Tokyo Control', fq: '120.50' }, ATIS: { n: 'ATIS', fq: '128.80' }
     };
 
     /* ---------- 지상 그물 ---------- */

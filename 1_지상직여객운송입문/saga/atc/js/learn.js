@@ -128,5 +128,6 @@
       sum: ATC.T('넓은 하늘의 교통정리. 10분 앞을 내다보고 고도로 풉니다.'),
       brief: [ATC.T('핸드오프 수락 → 경로와 고도를 훑어 만나는 지점을 찾음'), ATC.T('같은 고도로 만나면 한쪽 고도를 바꿈(동쪽행은 천 단위 홀수 · 서쪽행은 짝수)'), ATC.T('도착기는 진입 지점 13,000ft, 출발기는 요청 고도까지'), ATC.T('경계 전 다음 구역으로 이양'), ATC.T('5NM/1,000ft 분리 · 기본 배속 4배')] }
   };
+  if (D.posBrief) Object.keys(D.posBrief).forEach(function (k) { ATC.POS[k].brief = D.posBrief[k]; });      /* 공항마다 다른 근무 순서 */
   ATC.POS_ORDER = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
 })(typeof globalThis !== 'undefined' ? globalThis : this);

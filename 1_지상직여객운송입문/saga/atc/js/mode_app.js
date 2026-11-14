@@ -11,12 +11,13 @@
       { arr: 8, dep: 0, gap: 165, both: false },
       { arr: 13, dep: 7, gap: 115, both: false },
       { arr: 20, dep: 11, gap: 82, both: true }][L];
-    this.rwys = this.cfg.both ? this.flow.arrs.slice() : [this.flow.arr];
+    this.rwys = this.cfg.both ? this.flow.arrs.slice() : [this.flow.appArr || this.flow.arr];
     this.lastLand = {}; this.wx = []; this.sched = [];
-    var t = 4, i, gates = Object.keys(D.star[this.flow.id]), lastGate = {}, g;
+    var by = this.flow.arrBy, rw = this.rwys, t = 4, i, gates = Object.keys(D.star[this.flow.id]).filter(function (x) { return !by || rw.indexOf(by[x]) >= 0; }), lastGate = {}, g;   /* 방면마다 활주로가 정해진 공항은 쓰는 활주로로 오는 방면만 */
+    this.gates = gates;
     for (i = 0; i < this.cfg.arr; i++) {
       var tries = 0; do { g = rng.pick(gates); } while (lastGate[g] !== undefined && t - lastGate[g] < 150 && tries++ < 8);
-      lastGate[g] = t; this.sched.push({ t: t, kind: 'arr', gate: g, warm: i < 2 });
+      lastGate[g] = t; this.sched.push({ t: t, kind: 'arr', gate: g, warm: i < 2, wi: i });
       t += this.cfg.gap * (0.75 + rng() * 0.5);
     }
     t = 40;
@@ -28,38 +29,61 @@
     var n = this.level.events, used = {};
     while (n-- > 0 && pool.length) { var k = pool.splice(rng.int(0, pool.length - 1), 1)[0]; this.events.push({ k: k, t: this.endT * (0.2 + 0.5 * rng()), done: false }); }
     this.events.sort(function (a, b) { return a.t - b.t; });
-    this.sys(ATC.T('{apt} 접근관제({0}) 근무 시작. 사용 활주로: 도착 {1} / 출발 {2}. 바람 {3}, QNH {4}.', D.freq.APP.fq, this.rwys.join('·'), this.flow.dep, fmt.wind(this.wind), this.qnh));
+    /* 화면에 그릴 지점: 이번 근무에 쓰는 도착 · 출발 경로의 것만 */
+    if (D.sidRoute) { var use = this.fixUse = {}, fl = this.flow; gates.forEach(function (x) { D.star[fl.id][x].forEach(function (n) { use[n] = 1; }); }); Object.keys(D.gateDest).forEach(function (x) { D.sidRoute(D.depRwyFor(fl, x), x).forEach(function (n) { use[n] = 1; }); }); }
+    this.sys(ATC.T('{apt} 접근관제({0}) 근무 시작. 사용 활주로: 도착 {1} / 출발 {2}. 바람 {3}, QNH {4}.', D.freq.APP.fq, this.rwys.join('·'), (D.depRwyFor && this.flow.deps ? this.flow.deps.join('·') : this.flow.dep), fmt.wind(this.wind), this.qnh));
   }
   ATC.extend(AppSim, ATC.RadarSim);
 
+  /* 출발기가 공역을 벗어나기까지 남은 거리(NM). 원형 공역 = 반지름까지, 다각형 공역 = 출구 지점까지(밖이면 음수) */
+  function polyDist(p, P) { var m = 1e9, i, a, b, t, dx, dy; for (i = 0; i < P.length; i++) { a = P[i]; b = P[(i + 1) % P.length]; dx = b.x - a.x; dy = b.y - a.y; t = U.clamp(((p.x - a.x) * dx + (p.y - a.y) * dy) / (dx * dx + dy * dy), 0, 1); m = Math.min(m, Math.hypot(p.x - a.x - dx * t, p.y - a.y - dy * t)); } return m; }
+  function tmaOut(a) { return D.tmaPoly ? (U.inPoly(a, D.tmaPoly) ? -polyDist(a, D.tmaPoly) : polyDist(a, D.tmaPoly)) : U.dist(a, D.center) - D.tmaR; }   /* 공역 밖으로 나간 거리(안이면 음수) */
+  function depRem(a) { if (!D.tmaPoly) return D.tmaR - U.dist(a, D.center); var o = tmaOut(a); return o > 0 ? -o : U.dist(a, D.fix[a.gate]) + 3; }
+  AppSim.depRem = depRem;
+  /* 지금 경로대로 갈 때 그 지점까지 걸리는 시간(초). 경로에 없으면 null */
+  function etaFix(a, fix) { if (a.nav.mode !== 'route') return null; var r = a.nav.route, k = r.indexOf(fix, a.nav.i), d, i; if (k < 0) return null; d = U.dist(a, D.fix[r[a.nav.i]]); for (i = a.nav.i; i < k; i++) d += U.dist(D.fix[r[i]], D.fix[r[i + 1]]); return d / Math.max(120, a.gs) * 3600; }
+  function routeLen(r) { var n = 0, i; for (i = 1; i < r.length; i++) n += U.dist(D.fix[r[i - 1]], D.fix[r[i]]); return n; }
+  /* STAR의 다음 고도 제한(공항 묶음에 D.starAlt가 있을 때): 지금 경로에서 앞으로 처음 만나는 제한 지점이 지금 배정 고도보다 낮으면 그 지점 · 고도 · 남은 거리 */
+  AppSim.prototype.starWant = function (a) {
+    if (!D.starAlt || a.nav.mode !== 'route') return null;
+    var r = a.nav.route, d = 0, p = a, i, f, alt, e = D.ends[a.rwy];
+    for (i = a.nav.i; i < r.length; i++) { f = D.fix[r[i]]; d += U.dist(p, f); p = f; alt = D.starAlt[r[i]] || (e && e.IF === r[i] ? e.apAlt : 0); if (alt) return alt < a.tAlt - 400 ? { fix: r[i], alt: alt, d: d } : null; }
+    return null;
+  };
   AppSim.prototype.mvaAt = function (a) { for (var i = 0; i < D.mva.length; i++) if (U.dist(a, D.mva[i].c) < D.mva[i].r) return D.mva[i].alt; return D.mvaBase; };
 
   AppSim.prototype.spawnArr = function (s) {
     var f = this.mkFlight(function (a) { return !a.ga || true; }), route = D.star[this.flow.id][s.gate], f0 = D.fix[route[0]], f1 = D.fix[route[1]];
-    var hd = U.brg(f0, f1), p = D.off(f0, hd + 180, 7), alt = D.entryAlt[s.gate], og = this.rng.pick(D.gateOrig[s.gate]);
-    if (s.warm) { var fr = 0.35 + 0.3 * this.rng(); p = { x: f0.x + (f1.x - f0.x) * fr, y: f0.y + (f1.y - f0.y) * fr }; alt = 10000; }
+    var hd = U.brg(f0, f1), p = D.off(f0, hd + 180, 7), alt = D.entryAlt[s.gate], og = this.rng.pick(D.gateOrig[s.gate]), from = 1;
+    var by = this.flow.arrBy, rwy = by && this.rwys.indexOf(by[s.gate]) >= 0 ? by[s.gate] : (this.rwys.indexOf(this.flow.arr) >= 0 ? this.flow.arr : this.rwys[0]);
+    if (s.warm && D.flyBy && route.length > 5) {      /* 긴 경로: 근무를 시작할 때 이미 경로 가운데쯤에 있는 항공기 */
+      from = 1 + this.rng.int(0, route.length - 6); f0 = D.fix[route[from]]; f1 = D.fix[route[from + 1]]; hd = U.brg(f0, f1); var fq = 0.2 + 0.6 * this.rng();
+      p = { x: f0.x + (f1.x - f0.x) * fq, y: f0.y + (f1.y - f0.y) * fq }; alt = Math.min(alt, 10000 + 1000 * (s.wi || 0)); from++;
+    } else if (s.warm) { var fr = 0.35 + 0.3 * this.rng(); p = { x: f0.x + (f1.x - f0.x) * fr, y: f0.y + (f1.y - f0.y) * fr }; alt = 10000; }
     var perf = f.perf, ias = perf.k === 'tp' ? 220 : 250;
     var ac = this.spawnAc({
       cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: perf,
       x: p.x, y: p.y, alt: alt, hdg: hd, ias: ias, normIas: ias, kind: 'arr', gate: s.gate, orig: og[0], origName: og[1], dest: D.airport.icao,
-      fpRoute: route, squawk: this.squawk(), rwy: this.flow.arr, owner: (this.level.id === 1 || s.warm) ? 'me' : 'in', entT: this.t
+      fpRoute: route, squawk: this.squawk(), rwy: rwy, owner: (this.level.id === 1 || s.warm) ? 'me' : 'in', entT: this.t
     });
-    ac.setRoute(s.warm ? route.slice(1) : route);
+    ac.setRoute(s.warm ? route.slice(from) : route);
+    if (D.appDelay) ac.planMin = (routeLen(route) + (D.ends[rwy].ifD || 12)) * D.appDelay.perNM + D.appDelay.plus;
+    if (D.starName) ac.star = D.starName[this.flow.id][s.gate];
     if (ac.owner === 'me') this.checkIn(ac); else ac.hoT = this.t;
     return ac;
   };
   AppSim.prototype.spawnDep = function (s) {
-    var dRw = D.ends[this.flow.dep].rw;
+    var drw = D.depRwyFor ? D.depRwyFor(this.flow, s.gate) : this.flow.dep, dRw = D.ends[drw].rw;
     if (!s.held || s.held < 6) { if (this.acs.some(function (a) { return a.missed && a.alt < 3000 && D.ends[a.rwy] && D.ends[a.rwy].rw === dRw; })) { s.held = (s.held || 0) + 1; s.t = this.t + 30; this.sched.unshift(s); this.sched.sort(function (x, y) { return x.t - y.t; }); return; } }
-    var f = this.mkFlight(), end = D.ends[this.flow.dep], p = D.off(end.end, end.crs, 1.2), dg = this.rng.pick(D.gateDest[s.gate]);
+    var f = this.mkFlight(), end = D.ends[drw], p = D.off(end.end, end.crs, 1.2), dg = this.rng.pick(D.gateDest[s.gate]);
     var east = D.gateEast[s.gate], rfl = (east ? this.rng.pick([330, 350, 370, 390]) : this.rng.pick([320, 340, 360, 380])) * 100;
     if (f.perf.ceil < rfl) rfl = east ? 23000 : 24000;
     var ac = this.spawnAc({
       cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: f.perf,
       x: p.x, y: p.y, alt: 1300, hdg: end.crs, ias: 180, tIas: 250, normIas: 250, tAlt: D.sidInit, kind: 'dep', gate: s.gate, dest: dg[0], destName: dg[1], orig: D.airport.icao,
-      fpRoute: [s.gate], squawk: this.squawk(), rwy: this.flow.dep, owner: 'me', justDep: true, rfl: rfl, entT: this.t, sidT: this.t
+      fpRoute: D.sidRoute ? D.sidRoute(drw, s.gate) : [s.gate], squawk: this.squawk(), rwy: drw, owner: 'me', justDep: true, rfl: rfl, entT: this.t, sidT: this.t
     });
-    ac.sid = s.gate + ' 1' + this.flow.sfx;
+    ac.sid = D.sidName ? D.sidName(s.gate) : s.gate + ' 1' + this.flow.sfx;
     this.say(ac, D.freq.DEP.n + ', ' + ac.csWord + ' ' + ac.num + ', passing ' + fmt.alt(Math.max(500, Math.round(ac.alt / 100) * 100)) + ', climbing ' + fmt.alt(D.sidInit) + ', ' + ac.sid + ' departure.');
     return ac;
   };
@@ -94,7 +118,7 @@
     if (this.applyAir(ac, c)) {
       if (c.k === 'alt' && ac.kind === 'dep') ac.sidT = null;
       if (c.k === 'hdg' || c.k === 'dct' || c.k === 'ils') ac.holdWarn = false;
-      if (c.k === 'ils') { ac.rwy = c.rwy; ac.missed = false; }
+      if (c.k === 'ils') { ac.rwy = c.rwy; ac.missed = false; if (D.flyBy && ac.nav.mode === 'hdg') { var eg = D.ends[c.rwy], gg = ATC.ilsGeom(ac, eg); if (Math.abs(gg.xtk) < 1.5 && Math.abs(U.adiff(ac.hdg, eg.crs)) < 15) ac.appr.steer = true; } }   /* 이미 최종 접근로 가까이에서 나란히 가고 있으면 조종사가 알아서 맞춰 들어감 */
       return;
     }
     if (c.k === 'ho') {
@@ -103,13 +127,14 @@
         ac.owner = 'out'; ac.hoOk = true;
       } else {
         var ok = ac.tAlt >= D.tmaTop - 100 && ac.nav.mode === 'route' && ac.nav.route[ac.nav.route.length - 1] === ac.gate;
-        if (!ok) this.inc('exitbad', [ac], ATC.T('{0}: 지역관제 이양 조건(FL190 상승 지시 + 출구 지점 {1} 직행)이 갖춰지지 않았습니다.', ac.cs, ac.gate));
+        if (!ok) this.inc('exitbad', [ac], ATC.T('{0}: 지역관제 이양 조건({2} 상승 지시 + 출구 지점 {1}(으)로 가는 경로)이 갖춰지지 않았습니다.', ac.cs, ac.gate, fmt.alt(D.tmaTop)));
         ac.owner = 'out'; ac.hoOk = true;
       }
     }
   };
   AppSim.prototype.onRouteEnd = function (ac, fn) {
-    if (ac.kind !== 'arr' || ac.appr) return;
+    if (ac.kind !== 'arr') return;
+    if (ac.appr) { if (D.flyBy && !ac.appr.loc && D.fix[fn].k === 'if' && D.ends[ac.appr.rwy].IF === fn) { ac.tHdg = D.ends[ac.appr.rwy].crs; ac.appr.steer = true; } return; }   /* 접근 허가를 받은 채 IF에 닿으면 최종 접근 방향으로 돌며 로컬라이저를 잡음 */
     if (ac.nordo) { ac.nordoPh = 1; ac.tAlt = 3000; ac.tIas = 200; return; }
     if (D.fix[fn].k === 'if') { ac.nav = { mode: 'hdg' }; ac.tHdg = D.ends[ac.rwy].crs; this.say(ac, ATC.csSay(ac) + ', passing ' + fn + ', request approach clearance.', { kind: 'warn' }); ac.waiting = 'appr'; return; }
     ac.nav = { mode: 'hold', fix: fn, ph: 1, tm: 0, inb: ac.hdg }; ac.tHdg = U.n360(ac.hdg + 180); ac.turnDir = 1; ac.holdT = this.t;
@@ -140,7 +165,7 @@
     var dur = this.t - ac.entT;
     if (ac.emg) {
       if (this.t <= ac.emgDue) this.inc('emg_ok', [ac], ATC.T('{0} ({1}) 을 우선 착륙시켰습니다.', ac.cs, ac.emgName)); else this.inc('emg_late', [ac], ATC.T('{0} ({1}) 착륙이 {2}분 늦었습니다.', ac.cs, ac.emgName, Math.round((this.t - ac.emgDue) / 60)));
-    } else if (dur > 23 * 60) this.inc('delay', [ac], ATC.T('{0}: 공역 안 비행 시간 {1}분.', ac.cs, Math.round(dur / 60)));
+    } else if (dur > (ac.planMin || 23) * 60) this.inc('delay', [ac], ATC.T('{0}: 공역 안 비행 시간 {1}분.', ac.cs, Math.round(dur / 60)));
     this.sys(ATC.T('{0} 착륙 ({1})', ac.cs, r), 'good');
     this.remove(ac, true);
   };
@@ -152,7 +177,7 @@
     var ac;
     if (ev.k === 'medical' || ev.k === 'mayday' || ev.k === 'minfuel') {
       if (!far.length) return false; ac = this.rng.pick(far);
-      var dtg = U.dist(ac, D.fix[D.ends[ac.rwy].IF]) + 12;
+      var dtg = U.dist(ac, D.fix[D.ends[ac.rwy].IF]) + (D.ends[ac.rwy].ifD || 12);
       ac.emg = ev.k; ac.emgT = this.t;
       if (ev.k === 'medical') { ac.emgName = ATC.T('응급 환자'); ac.emgDue = this.t + dtg / 3.4 * 60 + 300; this.say(ac, 'PAN-PAN, PAN-PAN, PAN-PAN, ' + ATC.csSay(ac) + ', medical emergency on board, request priority landing and ambulance on arrival.', { kind: 'emg', front: true }); }
       if (ev.k === 'mayday') { ac.emgName = ATC.T('엔진 고장'); ac.emgDue = this.t + dtg / 3.2 * 60 + 240; ac.squawk = '7700'; ac.tIas = Math.min(ac.tIas, 220); ac.normIas = 220; this.say(ac, 'MAYDAY, MAYDAY, MAYDAY, ' + ATC.csSay(ac) + ', engine failure, request vectors for immediate landing, ' + this.rng.pick(D.pobList) + ' persons on board.', { kind: 'emg', front: true }); }
@@ -193,15 +218,17 @@
       if (a.missed && a.alt >= 2900) a.missedLvl = true;
       if (a.kind === 'dep') {
         /* SID: 활주로 방위 3NM 뒤 출구 지점으로 */
-        if (a.nav.mode === 'hdg' && !a.vec && !a.sidOn && U.dist(a, D.ends[a.rwy].end) > 3) { a.sidOn = true; a.setRoute([a.gate]); }
+        if (a.nav.mode === 'hdg' && !a.vec && !a.sidOn && U.dist(a, D.ends[a.rwy].end) > (D.sidAt || 3)) { a.sidOn = true; a.setRoute(a.fpRoute); }
         if (a.sidT && this.t - a.sidT > 150 && a.owner === 'me' && Math.abs(a.alt - D.sidInit) < 100) { a.sidT = this.t; this.say(a, ATC.csSay(a) + ', level ' + fmt.alt(D.sidInit) + ', request higher.'); a.waiting = 'climb'; if (!a.lowHit) { a.lowHit = true; this.inc('delay', [a], ATC.T('{0}: 초기 고도 {1}에서 오래 수평 비행(상승 지시 지연).', a.cs, fmt.alt(D.sidInit))); } }
-        if (a.owner === 'out' && (dc > D.tmaR - 2 || a.alt > D.tmaTop - 500 && dc > 30)) { this.remove(a, true); continue; }
-        if (a.owner === 'me' && dc > D.tmaR - 9 && !a.hoAsk) { a.hoAsk = true; this.say(a, ATC.csSay(a) + ', approaching ' + a.gate + ', request frequency change.', { kind: 'warn' }); a.waiting = 'ho'; }
-        if (a.owner === 'me' && dc > D.tmaR + 1) { this.inc('airspace', [a], ATC.T('{0}: 지역관제로 이양하지 않은 채 접근관제구를 벗어났습니다.', a.cs)); this.remove(a, false); continue; }
+        var rem = depRem(a);
+        if (a.owner === 'out' && (rem < 2 || a.alt > D.tmaTop - 500 && rem < 15)) { this.remove(a, true); continue; }
+        if (a.owner === 'me' && rem < 9 && !a.hoAsk) { a.hoAsk = true; this.say(a, ATC.csSay(a) + ', approaching ' + a.gate + ', request frequency change.', { kind: 'warn' }); a.waiting = 'ho'; }
+        if (a.owner === 'me' && rem < -1) { this.inc('airspace', [a], ATC.T('{0}: 지역관제로 이양하지 않은 채 접근관제구를 벗어났습니다.', a.cs)); this.remove(a, false); continue; }
       } else {
         if (a.owner === 'in' && this.t - a.hoT > 75 && !a.hoLate) { a.hoLate = true; this.inc('noho', [a], ATC.T('{0}: 핸드오프 수락이 늦었습니다.', a.cs)); this.accept(a); }
-        if (a.entered === undefined && dc < D.tmaR - 1) a.entered = true;
-        if (a.entered && dc > D.tmaR + 2 && !(a.appr && a.appr.loc)) { this.inc('airspace', [a], ATC.T('{0}: 도착기가 접근관제구 밖으로 나갔습니다.', a.cs)); this.remove(a, false); continue; }
+        var to = tmaOut(a);
+        if (a.entered === undefined && to < -1) a.entered = true;
+        if (a.entered && to > 2 && !(a.appr && a.appr.loc)) { this.inc('airspace', [a], ATC.T('{0}: 도착기가 접근관제구 밖으로 나갔습니다.', a.cs)); this.remove(a, false); continue; }
         if (a.appr && a.appr.loc && a.owner === 'me') {
           if (a.appr.d < 5.5 && !a.twrAsk) { a.twrAsk = true; this.say(a, ATC.csSay(a) + ', ' + Math.round(a.appr.d) + ' miles final runway ' + a.appr.rwy + '.', { kind: 'warn' }); a.waiting = 'tower'; }
         }
@@ -230,8 +257,8 @@
       if (a.owner !== 'me') return;
       var dc = U.dist(a, D.center);
       if (a.kind === 'dep') {
-        if (a.tAlt < D.tmaTop - 100) out.push({ p: 5, ac: a.id, t: ATC.T('{0} 출발기 — 위에 도착기가 없으면 FL190까지 상승시키세요.', a.cs) });
-        else if (dc > 22) out.push({ p: 6, ac: a.id, t: ATC.T('{0} — {aptEn} Control로 이양(FL190 상승 중 · {1} 직행).', a.cs, a.gate) });
+        if (a.tAlt < D.tmaTop - 100) out.push({ p: 5, ac: a.id, t: ATC.T('{0} 출발기 — 위에 도착기가 없으면 {1}까지 상승시키세요.', a.cs, fmt.alt(D.tmaTop)) });
+        else if (depRem(a) < 23) out.push({ p: 6, ac: a.id, t: ATC.T('{0} — {aptEn} Control로 이양({2} 상승 중 · {1}(으)로 가는 경로).', a.cs, a.gate, fmt.alt(D.tmaTop)) });
         return;
       }
       var e = D.ends[a.rwy], g = ATC.ilsGeom(a, e);
@@ -239,15 +266,28 @@
       if (a.appr && a.appr.loc) { if (g.d < 10) out.push({ p: 7, ac: a.id, t: ATC.T('{0} 로컬라이저 확립 — {aptEn} Tower로 이양.', a.cs), c: [{ k: 'ho', to: 'TWR' }] }); return; }
       if (a.appr) return;
       if (a.nav.mode === 'hold') { out.push({ p: 7, ac: a.id, t: ATC.T('{0} 체공 중 — 기수를 주어 최종 접근로로 유도하세요.', a.cs) }); return; }
-      var wantAlt = dc > 28 ? 8000 : dc > 18 ? 5000 : 3000;
-      if (g.d > 6 && g.d < 20 && Math.abs(g.xtk) < 4.5 && Math.abs(U.adiff(a.hdg, e.crs)) > 20 && a.tAlt <= 4000) {
+      var apA = e.apAlt || 3000, ifD = e.ifD || 12, wantAlt = dc > 28 ? 8000 : dc > 18 ? Math.max(5000, apA) : apA;
+      var lastF = a.nav.mode === 'route' ? a.nav.route[a.nav.route.length - 1] : null, cut = D.starCut && a.nav.mode === 'route' ? D.starCut[self.flow.id][a.gate] : null, ci = cut ? a.nav.route.indexOf(cut, a.nav.i) : -1, cl = null;
+      /* 여러 흐름이 만나는 지점에 다른 도착기와 거의 같이 닿는지 · 앞뒤가 비어 직행으로 줄여도 되는지 */
+      if (ci >= 0) {
+        var mine = etaFix(a, cut), dir = U.dist(a, D.fix[cut]) / a.gs * 3600, tight = null, free = ci > a.nav.i && mine - dir > 100;
+        self.acs.forEach(function (b) { if (b === a || b.kind !== 'arr' || b.owner === 'out' || b.rwy !== a.rwy) return; var eb = etaFix(b, cut); if (eb === null) { if (!(b.appr && b.appr.loc) && U.dist(b, D.fix[cut]) < 12) free = false; return; } if (Math.abs(eb - mine) < 75 && Math.abs(a.alt - b.alt) < 1500 && b.id > a.id) tight = b; if (Math.abs(eb - dir) < 150) free = false; });
+        if (tight) cl = { p: 6, ac: a.id, t: ATC.T('{0} · {1} — {2}에 거의 같이 닿습니다. 한쪽 속도를 줄이거나 고도를 1,000ft 다르게 해 간격을 만드세요.', a.cs, tight.cs, cut) };
+        else if (free && mine > 240) cl = { p: 2, ac: a.id, t: ATC.T('{0} 앞뒤가 비어 있습니다 — {1} 직행으로 경로를 줄여도 됩니다(다른 흐름을 가로지르니 고도 차이를 확인).', a.cs, cut), c: [{ k: 'dct', fix: cut }] };
+      }
+      var sw = self.starWant(a);
+      if (lastF && D.fix[lastF].k === 'if' && lastF === e.IF && D.flyBy && a.nav.i >= a.nav.route.length - 2 && U.dist(a, D.fix[lastF]) < 9 && a.tAlt <= apA + 1000) {
+        out.push({ p: 8, ac: a.id, t: ATC.T('{0} 곧 {1} — 「ILS {2} 접근 허가」. {1}에서 최종 접근로로 들어섭니다.', a.cs, lastF, a.rwy), c: [{ k: 'ils', rwy: a.rwy }] });
+      } else if (g.d > 6 && g.d < ifD + 8 && Math.abs(g.xtk) < 4.5 && Math.abs(U.adiff(a.hdg, e.crs)) > 20 && a.tAlt <= apA + 1000 && !(D.flyBy && lastF === e.IF)) {
         var ih = U.n360(e.crs + (g.xtk > 0 ? -30 : 30));
         out.push({ p: 8, ac: a.id, t: ATC.T('{0} 최종 접근로 {1}NM 옆 — 기수 {2}(30° 요격) + 「ILS {3} 접근 허가」.', a.cs, Math.abs(g.xtk).toFixed(1), fmt.hdg(ih), a.rwy), c: [{ k: 'hdg', v: ih }, { k: 'ils', rwy: a.rwy }] });
-      } else if (a.tAlt > wantAlt + 500) out.push({ p: 4, ac: a.id, t: ATC.T('{0} 공항까지 {1}NM — {2}{3}로 강하시키세요.', a.cs, Math.round(dc), fmt.alt(wantAlt), (wantAlt >= 14000 ? '' : 'ft')) });
+      } else if (sw) { if (sw.d < (a.tAlt - sw.alt) / 1000 * 3.2 + 6) out.push({ p: 5, ac: a.id, t: (sw.fix === e.IF ? ATC.T('{0} — 최종 접근이 시작되는 {1}까지 {3}NM. {2}ft로 강하시키세요.', a.cs, sw.fix, fmt.alt(sw.alt), Math.round(sw.d)) : ATC.T('{0} — {1}의 고도 제한 {2}ft까지 {3}NM. {2}ft로 강하시키세요.', a.cs, sw.fix, fmt.alt(sw.alt), Math.round(sw.d))), c: [{ k: 'alt', v: sw.alt }] }); }
+      else if (!(D.starAlt && a.nav.mode === 'route') && a.tAlt > wantAlt + 500) out.push({ p: 4, ac: a.id, t: ATC.T('{0} 공항까지 {1}NM — {2}{3}로 강하시키세요.', a.cs, Math.round(dc), fmt.alt(wantAlt), (wantAlt >= 14000 ? '' : 'ft')) });
       else if (a.nav.mode === 'route' && a.nav.i >= a.nav.route.length - 1 && U.dist(a, D.fix[a.nav.route[a.nav.route.length - 1]]) < 6 && D.fix[a.nav.route[a.nav.route.length - 1]].k === 'base') {
         var bh = U.n360(e.crs + (g.xtk > 0 ? -90 : 90));
         out.push({ p: 6, ac: a.id, t: ATC.T('{0} 곧 STAR 끝 — 기수 {1}(베이스 구간)로 최종 접근로 쪽으로 돌리세요. 속도 210 이하 권장.', a.cs, fmt.hdg(bh)) });
-      } else if (a.ias > 215 && g.d < 16 && dc < 20) out.push({ p: 3, ac: a.id, t: ATC.T('{0} 속도 {1} — 최종 접근 전 210 → 180으로 줄이세요.', a.cs, Math.round(a.ias)) });
+      } else if (a.ias > 215 && g.d < ifD + 4 && dc < ifD + 8) out.push({ p: 3, ac: a.id, t: ATC.T('{0} 속도 {1} — 최종 접근 전 210 → 180으로 줄이세요.', a.cs, Math.round(a.ias)) });
+      if (cl) out.push(cl);
     });
     out.sort(function (x, y) { return y.p - x.p; });
     return out.slice(0, 4);

@@ -75,11 +75,13 @@ a.tog{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 #gnav button.on{background:var(--acc);color:#04202b;font-weight:700;border-color:var(--acc)}
 #gnav .zm{min-width:34px;font:700 16px/1 var(--mono);padding:5px 8px}
 #gnav .sep{width:4px}
-@media (max-width:900px){#gnav{max-width:calc(100% - 120px)}#gnav button{padding:6px 9px;font-size:12px}}
+#gnav .fitb{display:none;font-size:14px}
+/* 좁은 화면: 지도 단추는 한 줄(위쪽 띠 안) · 오른쪽 작은 레이더 자리를 비움 · 「전체」는 여기로 */
+@media (max-width:900px),(max-height:560px){#gnav{left:6px;top:5px;flex-wrap:nowrap;max-width:calc(100% - 84px);gap:5px}#gnav button,#gnav select{padding:5px 8px;font-size:12px;height:29px}#gnav .zm{min-width:30px;padding:5px 6px}#gnav .fitb{display:block}.v-radar #gnav{top:46px}#bFit{display:none}#scope #banner{top:calc(var(--hud,0px) + 8px);font-size:13px;padding:6px 14px;white-space:nowrap}#gnav button{white-space:nowrap;flex:none}#gnav select{max-width:84px;flex:0 1 auto;min-width:0}}
 #cli::placeholder{color:#476074;text-transform:none}
 #cli:focus{border-color:var(--acc)}
-#banner{position:absolute;left:50%;top:14px;transform:translate(-50%,-80px);padding:8px 22px;border-radius:8px;font-weight:800;font-size:15px;transition:transform .25s;pointer-events:none;z-index:3}
-#banner.show{transform:translate(-50%,0)}
+#banner{position:absolute;left:50%;top:14px;transform:translate(-50%,-80px);padding:8px 22px;border-radius:8px;font-weight:800;font-size:15px;transition:transform .25s,opacity .2s,visibility 0s .25s;pointer-events:none;z-index:3;opacity:0;visibility:hidden}
+#banner.show{transform:translate(-50%,0);opacity:1;visibility:visible;transition:transform .25s,opacity .2s}
 #banner.bad{background:#b32222;color:#fff;box-shadow:0 0 0 2px #ff6b6b}
 #banner.warn{background:#7a5200;color:#ffe2a8;box-shadow:0 0 0 2px #ffb347}
 
@@ -165,7 +167,7 @@ a.tog{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 .co{font-size:12.5px;padding:4px 7px;margin-bottom:4px;border-left:3px solid var(--acc);background:var(--pan2);border-radius:0 4px 4px 0;cursor:pointer}
 .co:hover{background:#16232f}.co.none{border-color:#30465a;color:var(--mut);cursor:default}
 
-/* 허가중계 화면 */
+/* 비행허가 화면 */
 .dcol{display:flex;flex-direction:column;gap:14px;min-width:0}
 .fpl,.dref{background:var(--pan);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
 .fpl h4,.dref h4{margin:0 0 8px;font:700 12px var(--mono);letter-spacing:.1em;color:var(--acc)}
@@ -236,21 +238,27 @@ b.y{color:var(--yel)}
 @media (max-width:560px){#pcards{grid-template-columns:1fr}.pcard{min-height:0;padding-top:70px}}
 /* 휴대폰 세로: 스트립(항공기 목록)을 지도 아래 가로 띠로 — 숨기면 지도 위 표지로만 고를 수 있었음 */
 @media (max-width:900px) and (orientation:portrait){
-  #game{grid-template-rows:auto minmax(0,1fr) 250px}
+  #game{grid-template-rows:auto minmax(0,1fr) 230px}
   #main{grid-template-rows:minmax(0,1fr) auto}
   #strips{display:flex!important;gap:6px;overflow-x:auto;overflow-y:hidden;border-left:0;border-top:1px solid var(--line);padding:5px 6px;max-height:92px;align-items:flex-start}
   .bay{display:flex;gap:5px;margin:0;flex:none;align-items:flex-start}.bay.empty{display:none}
   .bay h5{margin:4px 2px 0;white-space:nowrap}
   .strip{flex:none;width:186px;margin:0}.strip .s3{display:none}
-  #top .tb{padding:4px 8px}#tSpeed button{padding:4px 7px}
+  /* 위 막대: 1줄 = 자리 · 시각 · 점수 / 2줄 = 단추(넘치면 옆으로 밀어 봄) */
+  #top{flex-wrap:wrap;gap:4px 6px;padding:4px 6px}
+  #top>.sp{flex:0 0 100%;height:0;min-width:0}
+  #tPos{gap:6px}#tPos b{font-size:12.5px;letter-spacing:.03em}#tPos span{font-size:11.5px}#tClock{font-size:13px;padding:1px 7px}#tScore .sc{font-size:15px}
+  #top .tb{padding:4px 7px;font-size:11.5px}#tSpeed button{padding:4px 6px;font-size:11.5px}
+  #tSpeed button[data-s="8"]{display:none}
+  #bQuit{margin-left:auto}
 }
 /* 휴대폰 가로(높이가 낮은 화면): 지도는 왼쪽 전체, 오른쪽에 스트립 · 지시판 · 교신 기록 — 아래 칸 고정 높이 때문에 지도가 0이 되던 문제 */
 @media (max-height:560px) and (orientation:landscape){
-  #game{grid-template-columns:minmax(0,1fr) min(340px,44vw);grid-template-rows:auto auto minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"top top" "scope strips" "scope cmd" "scope log"}
+  #game{grid-template-columns:minmax(0,1fr) min(300px,42vw);grid-template-rows:auto auto minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"top top" "scope strips" "scope cmd" "scope log"}
   #main,#bot{display:contents}
   #top{grid-area:top;flex-wrap:nowrap;overflow-x:auto;height:auto;padding:3px 6px;gap:6px;scrollbar-width:none}
   #top>.sp{display:none}#tAtis,#tScore .k,#tPos em{display:none}
-  #tPos b{font-size:12px}#tPos span{font-size:11.5px}#tClock{font-size:13px;padding:1px 6px}#tScore .sc{font-size:15px}#top .tb{padding:3px 7px}#tSpeed button{padding:3px 6px}
+  #tPos b{font-size:12px}#tPos span{font-size:11.5px}#tClock{font-size:13px;padding:1px 6px}#tScore .sc{font-size:15px}#top .tb{padding:3px 7px}#tSpeed button{padding:3px 6px}#tSpeed button[data-s="8"]{display:none}#top{gap:5px}#bQuit{margin-left:auto}
   #scope{grid-area:scope}
   #strips{grid-area:strips;display:block!important;max-height:30vh;border-left:1px solid var(--line);border-bottom:1px solid var(--line);padding:4px}
   .bay.empty{display:none}.strip .s3{display:none}

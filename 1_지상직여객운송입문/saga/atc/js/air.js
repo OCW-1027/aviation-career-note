@@ -35,8 +35,12 @@
     if (nav.mode === 'route') {
       var fn = this.nextFix();
       if (fn) {
-        var f = D.fix[fn]; d = U.dist(this, f);
-        if (d < Math.max(0.7, this.gs / 3600 * 12)) {
+        var f = D.fix[fn]; d = U.dist(this, f); var pass = Math.max(0.7, this.gs / 3600 * 12);
+        if (D.flyBy) {      /* 다음 구간(마지막 지점이 내 활주로의 IF면 최종 접근 방향)과 이루는 각만큼 미리 돌기 시작 */
+          var nx = nav.route[nav.i + 1], e0 = D.ends[this.appr ? this.appr.rwy : this.rwy], nc = nx ? U.brg(f, D.fix[nx]) : (this.kind === 'arr' && e0 && e0.IF === fn ? e0.crs : null);
+          if (nc !== null) { var dv = Math.abs(U.adiff(U.brg(this, f), nc)); if (dv > 8) pass = Math.max(pass, Math.min(4, this.gs / 188.5 * Math.tan(Math.min(dv, 120) / 2 * D2R))); }
+        }
+        if (d < pass) {
           nav.i++; if (sim.onFix) sim.onFix(this, fn);
           if (nav.i >= nav.route.length) { nav.mode = 'hdg'; if (sim.onRouteEnd) sim.onRouteEnd(this, fn); }
         } else this.tHdg = U.brg(this, f);
@@ -55,7 +59,8 @@
         var closing = (g.xtk > 0 && ang > 2) || (g.xtk < 0 && ang < -2) || Math.abs(g.xtk) < 0.15;
         var win = Math.max(lead, Math.abs(ang) < 12 ? 0.3 : 0);
         ap.minX = Math.min(ap.minX === undefined ? 99 : ap.minX, Math.abs(g.xtk));
-        if (g.d > 1.5 && g.d < 25 && Math.abs(g.xtk) < win && Math.abs(ang) <= 60 && (closing || Math.abs(ang) < 12)) {
+        if (ap.steer && nav.mode === 'hdg') this.tHdg = U.n360(end.crs - U.clamp(g.xtk * 30, -30, 30));
+        if (g.d > 1.5 && g.d < 25 && Math.abs(g.xtk) < win && Math.abs(ang) <= (ap.steer ? 30 : 60) && (closing || Math.abs(ang) < 12)) {
           ap.loc = true; nav.mode = 'loc'; ap.capAng = Math.abs(ang); ap.capD = g.d;
           if (sim.onLoc) sim.onLoc(this);
         } else if (!ap.fail && ((g.d < 1.2 && Math.abs(g.xtk) < 6) || (ap.minX < 0.6 && Math.abs(g.xtk) > ap.minX + 1.5))) {
