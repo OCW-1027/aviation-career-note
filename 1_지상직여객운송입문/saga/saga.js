@@ -7147,7 +7147,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
 
   /* ---------- 공통 문구 ---------- */
   var T0 = {   /* 공통 문구. 스테이지 문구(ST.text)와 합쳐 T가 됨 */
-    brandSub: L('航空の仕事体験ゲーム ― 1便を飛ばす仕事を、現場から経営まで', '항공 업무 체험 게임 — 한 편을 띄우는 일을, 현장부터 경영까지', 'Aviation Experience Game — every job behind a flight, from the front line to management'),   /* 47차(사용자 10-17): 공항 한정이 아닌 항공사 종합 업무 게임 */
+    brandSub: L('航空の仕事体験ゲーム ― 出発から到着まで、空港現場の仕事', '항공 업무 체험 게임 — 출발부터 도착까지, 공항 현장의 일', 'Aviation Experience Game — ground work from departure to arrival'),   /* 47차(사용자 10-17): 공항 한정이 아닌 항공사 종합 업무 게임 */
     lang: L('表示言語', '표시 언어', 'Language'), station: L('勤務地（業務ルール）', '근무지(업무 규칙)', 'Station (rules applied)'),
     jp: L('日本・成田（NRT）', '일본·나리타(NRT)', 'Japan · Narita (NRT)'), kr: L('韓国・仁川（ICN）', '한국·인천(ICN)', 'Korea · Incheon (ICN)'),
     stationNote: L('画面の言語と、適用する国の業務ルールは別々に選べます。', '화면 언어와 적용할 나라의 업무 규칙은 따로 고를 수 있습니다.', 'The screen language and the country whose rules apply are chosen separately.'),
