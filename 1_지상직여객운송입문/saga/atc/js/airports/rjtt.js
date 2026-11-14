@@ -28,7 +28,9 @@
       transAlt: 14000, tower: { u: 290, v: 125 },
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
-    D.voice = false;                     /* 녹음한 음성 조각이 아직 없음 → 브라우저 음성으로 읽음(6단계에서 조각을 만들면 지움) */
+    /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사는 일본어 목소리 */
+    D.voice = { dir: 'assets/voice/rjtt/', parts: { ctl: 2, ctlf: 2, p1: 3, p2: 2, p3: 2, p4: 2 },
+      note: ATC.T('하네다의 관제사 목소리는 일본인 관제사처럼 일본어 억양의 영어로 녹음했습니다.') };
     D.modes = ['DEL', 'GND', 'TWR'];     /* 이 공항에서 여는 자리(접근관제 · 지역관제는 다음 단계) */
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -272,9 +274,17 @@
       ['K', -1000, 250], ['J', -870, 100], ['H', 1100, 300], ['G', 1360, 150], ['M', -440, -1150], ['V', 320, -1230], ['N', -1010, -1580],
       ['B', Math.round(onB(500, 190)[0]), Math.round(onB(500, 190)[1])], ['B', Math.round(onB(2150, 190)[0]), Math.round(onB(2150, 190)[1])], ['T', Math.round(onB(880, -190)[0]), Math.round(onB(880, -190)[1])],
       ['D', Math.round(onD(1300, 190)[0]), Math.round(onD(1300, 190)[1])]];
-    D.guide = { u1: -2300, u2: 4300, v1: -2500, v2: 2900 };
-    D.sat = { img: null, u1: -2300, u2: 4300, v1: -2500, v2: 2900, edge: '#3c5a70' };
+    D.guide = { u1: -2575, u2: 4625, v1: -2470, v2: 2930 };
+    D.sat = { img: 'assets/img/ground_sat_rjtt.webp', u1: -2575, u2: 4625, v1: -2470, v2: 2930, edge: '#47565c' };   /* Gemini v15 그림 — 배치도에 맞춰 위치를 보정해 둠 */
     D.view = { cu: 950, cv: 250, w: 6900, h: 5300 };     /* 지상 화면을 처음 열 때 보이는 범위(m) */
+    /* 지상 화면의 구역 바로가기 단추 — 공항이 넓어 한 화면에 다 보면 작으므로 [u1, v1, u2, v2](m) */
+    D.areas = [
+      { label: ATC.T('1터미널 · A활주로'), box: [-1300, -700, 1900, 260] },
+      { label: ATC.T('2터미널 · C활주로'), box: [-1150, 380, 2550, 1260] },
+      { label: ATC.T('3터미널(국제선)'), box: [-700, -1700, 1050, -650] },
+      { label: ATC.T('B활주로 · N구역'), box: [-1800, -2050, -150, 650] },
+      { label: ATC.T('D활주로'), box: [2300, -250, 4300, 2700] }
+    ];
     /* 바탕 그림이 없을 때 그리는 계류장 · 건물 */
     D.decor = function (rect, C) {
       rect(-900, -330, 1150, 110, C.apron); rect(-950, 440, 1150, 880, C.apron); rect(-330, -1620, 800, -850, C.apron); rect(1300, -330, 2400, 780, C.apron);

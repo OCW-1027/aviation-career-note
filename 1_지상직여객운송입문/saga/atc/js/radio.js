@@ -53,7 +53,7 @@
     var name = RD.queue[RD.qi = (RD.qi || 0)]; if (!name) { RD.running = false; return; } RD.qi++;
     if (take(name)) { setTimeout(next, 0); return; }
     RD.state[name] = 'loading';
-    var s = document.createElement('script'); s.src = (ATC.base || '') + 'assets/voice/' + name + '.js';
+    var s = document.createElement('script'); s.src = (ATC.base || '') + (ATC.D.voice && ATC.D.voice.dir || 'assets/voice/') + name + '.js';   /* 공항마다 따로 녹음한 묶음이 있으면 그 폴더에서 */
     s.onload = function () { if (!take(name)) RD.state[name] = 'none'; setTimeout(next, 30); }; s.onerror = function () { RD.state[name] = 'none'; setTimeout(next, 30); }; document.head.appendChild(s);
   }
   RD.ready = function () { return RD.total > 0 && RD.loaded === RD.total; };

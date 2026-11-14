@@ -31,7 +31,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('#vrates button'), function (b) { b.classList.toggle('on', b.dataset.vr === app.vrate); });
     Array.prototype.forEach.call(document.querySelectorAll('#vatcs button'), function (b) { b.classList.toggle('on', b.dataset.va === app.vatc); });
     $('vmodes').hidden = !app.voice || !ATC.VPARTS; $('vfxs').hidden = !app.voice || app.vmode !== 'radio'; $('vrates').hidden = !app.voice || !packOn(); $('vatcs').hidden = !app.voice || !packOn() || !(ATC.VPARTS && ATC.VPARTS.ctlf);
-    var vn = $('vnote'); if (vn) { vn.hidden = !(app.voice && app.vmode === 'radio' && D.voice === false); vn.textContent = ATC.T('이 공항은 아직 녹음한 음성 조각이 없어 브라우저의 영어 음성으로 읽습니다(무선 잡음은 「무선 음질」 설정을 따릅니다).'); }
+    var vn = $('vnote'); if (vn) { vn.hidden = !(app.voice && app.vmode === 'radio' && (D.voice === false || D.voice && D.voice.note && packOn())); vn.textContent = D.voice === false ? ATC.T('이 공항은 아직 녹음한 음성 조각이 없어 브라우저의 영어 음성으로 읽습니다(무선 잡음은 「무선 음질」 설정을 따릅니다).') : D.voice ? D.voice.note : ''; }
     $('optVoice').classList.toggle('on', app.voice); $('optVoice').textContent = ATC.T('교신 음성 {0}', (app.voice ? ATC.T('켬') : ATC.T('끔')));
     $('optInst').classList.toggle('on', app.inst); $('optInst').textContent = ATC.T('교관 동행 {0}', (app.inst ? ATC.T('켬') : ATC.T('끔')));
   }
@@ -44,7 +44,7 @@
     var p = POS[k], L = D.levels[app.level], les = ATC.LEARN_BY[p.les];
     var lvTxt = ['', ATC.T('교통량 적음 · 코치가 다음 할 일을 알려 줌 · 비정상 상황 없음 · 복창 오류 없음'), ATC.T('교통량 보통 · 코치 없음 · 비정상 상황 1건 · 가끔 복창 오류'), ATC.T('교통량 많음 · 비정상 상황 여러 건 · 복창 오류 잦음 · 두 활주로 동시 운용')][app.level];
     openModal(ATC.T('<div class="mhead"><span class="pen">{0}</span><h2>{1} <small>{2} {3}</small></h2></div><div class="mbody"><p class="bsum">{4}</p><h4>근무 순서</h4><ol class="bl">{5}</ol><h4>오늘의 난이도 — {6}</h4><p>{7}</p>{11}<details class="bles"><summary>학습 노트: {8} (펼치기)</summary>{9}</details></div><div class="mfoot"><button class="btn" data-m="learn">학습 노트 전체</button><span class="sp"></span><button class="btn" data-m="close">돌아가기</button>{12}<button class="btn pri" data-m="start" data-pos="{10}">근무 시작</button></div>', p.en, p.ko, p.call, p.fq, p.sum, p.brief.map(function (b) { return '<li>' + b + '</li>'; }).join(''), L.ko, lvTxt, les.t, les.h, k,
-      app.level === 1 ? ATC.T('<div class="bfirst"><b>처음이라면 이 순서만 기억하세요</b><ol><li>항공기를 누른다(화면의 표지 또는 오른쪽 스트립)</li><li>아래 지시판에서 지시를 고른다</li><li>「송신」을 누른다(Enter)</li><li>조종사의 복창이 내 지시와 같은지 듣는다</li></ol><p>「교관 동행」으로 시작하면, 할 일이 생길 때마다 시간을 멈추고 무엇을 어떻게 말할지 알려 줍니다.</p></div>') : '',
+      app.level === 1 ? ATC.T('<div class="bfirst"><b>처음이라면 이 순서만 기억하세요</b><ol><li>항공기를 누른다(화면의 표지 또는 스트립(항공기 목록))</li><li>아래 지시판에서 지시를 고른다</li><li>「송신」을 누른다(Enter)</li><li>조종사의 복창이 내 지시와 같은지 듣는다</li></ol><p>「교관 동행」으로 시작하면, 할 일이 생길 때마다 시간을 멈추고 무엇을 어떻게 말할지 알려 줍니다.</p></div>') : '',
       app.level === 1 && !app.inst ? ATC.T('<button class="btn hi" data-m="startinst" data-pos="{0}">교관 동행으로 시작</button>', k) : ''));
   }
 
@@ -61,8 +61,8 @@
     $('lobby').hidden = true; $('game').hidden = false; closeModal();
     $('game').className = 'v-' + app.pos.view + (app.gloss ? '' : ' nogloss'); $('logList').innerHTML = ''; $('banner').className = '';
     var cv = $('cv'); resize();
-    if (app.pos.view === 'radar') { app.view = R.radarView(k); R.fitRadar(app.view, cv.clientWidth, cv.clientHeight, k); }
-    else if (app.pos.view === 'ground') { app.view = R.groundView(); R.fitGround(app.view, cv.clientWidth, cv.clientHeight); }
+    if (app.pos.view === 'radar') app.view = R.radarView(k); else if (app.pos.view === 'ground') app.view = R.groundView();
+    if (app.view && app.pos.view !== 'del') fitView();
     sim.log.forEach(addLog);
     if (app.voice) { ATC.Radio.init(); if (packOn()) ATC.Radio.loadAll(); }
     /* 송신이 시작될 때 음성을 틀고, 그 실제 길이만큼 주파수를 점유(글자·소리·항공기 움직임을 맞춤) */
@@ -89,12 +89,18 @@
 
     });
     $('cli').hidden = app.pos.view !== 'radar';
+    app.follow = false; app.viewTo = null; renderGnav();
     renderTop(true); last = 0;
   }
   function resize() {
     var cv = $('cv'), dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return;
-    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      /* 화면 크기가 바뀜(휴대폰 돌리기 · 주소창): 아직 전체 보기 그대로이거나 처음에 크기 0으로 맞춰졌으면 다시 맞춤 */
+      if (app.sim && app.view && app.pos && app.pos.view !== 'del' && (app.viewFit || !(app.view.scale > 0))) fitView();
+    }
   }
+  function fitView() { var cv = $('cv'), W = cv.clientWidth, H = cv.clientHeight; app.viewFit = true; if (!W || !H) return; if (app.pos.view === 'radar') R.fitRadar(app.view, W, H, app.sim.mode); else if (app.pos.view === 'ground') R.fitGround(app.view, W, H); }
 
   /* ================= 주 반복 ================= */
   var last = 0, accT = 0, uiT = 0;
@@ -107,6 +113,7 @@
       while (accT >= step && n++ < 60) { sim.tick(step); accT -= step; }
       if (n >= 60) accT = 0;
     }
+    moveView(dt);
     draw();
     if (app.inst && !app.paused && !sim.over && sim.coach && ts - app.instT > 5000) instCheck(ts);
     uiT += dt; if (uiT > 0.3) { uiT = 0; renderTop(); renderStrips(); renderCmd(); renderCoach(); if (app.pos.view === 'del') renderDel(); }
@@ -171,7 +178,7 @@
   }
   function renderStrips() {
     var bays = stripBays(), h = '';
-    bays.forEach(function (b) { h += '<div class="bay"><h5>' + b[0] + ' <small>' + b[1].length + '</small></h5>' + b[1].map(stripHtml).join('') + '</div>'; });
+    bays.forEach(function (b) { h += '<div class="bay' + (b[1].length ? '' : ' empty') + '"><h5>' + b[0] + ' <small>' + b[1].length + '</small></h5>' + b[1].map(stripHtml).join('') + '</div>'; });
     if (h !== app.stripSig) { app.stripSig = h; $('strips').innerHTML = h; }
   }
 
@@ -194,7 +201,7 @@
     var sim = app.sim, ac = sim.byId(app.sel), m = sim.mode, sig, h = '';
     sig = [app.sel, ac ? [ac.owner, ac.st, ac.waiting, ac.kind, ac.appr ? (ac.appr.loc ? 2 : 1) : 0, sim.hasWrong(ac.id), Math.round((ac.alt || 0) / 1000), ac.halt, ac.clr, ac.cto, ac.holdKind, ac.nav ? ac.nav.mode + (ac.nav.i || 0) : '', ac.tech, ac.noFpl, ac.reclear].join() : '', JSON.stringify(app.pend), JSON.stringify(app.gt), app.routes ? app.routes.length : 0, JSON.stringify(app.del), sim.atis, sim.flow.id, m === 'TWR' || m === 'GND' ? Math.floor(sim.t / 3) : 0].join('|');
     if (sig === app.cmdSig) return; app.cmdSig = sig; app.btns = [];
-    if (!ac) { $('cmd').innerHTML = ATC.T('<div class="cnone">항공기를 선택하세요 — 화면의 표지나 오른쪽 스트립을 누릅니다.<br><small>노란 점·깜박임 = 조종사가 답을 기다리는 중</small></div>'); return; }
+    if (!ac) { $('cmd').innerHTML = ATC.T('<div class="cnone">항공기를 선택하세요 — 화면의 표지나 스트립(항공기 목록)을 누릅니다.<br><small>노란 점·깜박임 = 조종사가 답을 기다리는 중</small></div>'); return; }
     var head = '<div class="chead"><b style="border-color:' + ac.al.col + '">' + ac.cs + '</b><span>' + ac.csWord + ' ' + ac.num + ' · ' + ac.perf.n + ' · ' + D.wakeName[ac.wake] + ' · ' + ac.al.name + '</span></div>';
     var body = '';
     if (sim.hasWrong(ac.id)) body += ATC.T('<div class="cwrong">복창이 지시와 다릅니다. {0}</div>', B(ATC.T('정정 (Negative)'), function () { sim.correct(ac.id); app.cmdSig = ''; }, { cls: 'red' }));
@@ -312,7 +319,7 @@
         pc.push({ k: 'clr', destName: ac.destName, sid: d.sid || '＿＿＿', alt: d.alt || 0, sq: ac.squawk });
         h += ATC.T('<div class="dref"><h4>송신 문구 미리보기</h4><p class="prev">{0}</p></div>', esc(ATC.phrase(sim, ac, pc).atc).replace('maintain 0,', 'maintain ＿＿＿,'));
       } else if (ac.clr) h += ATC.T('<div class="dref"><h4>내준 허가</h4><p class="prev">{0} departure · maintain {1} · squawk {2}</p></div>', ac.clr.sid, fmt.alt(ac.clr.alt), ac.clr.sq);
-    } else h += ATC.T('<div class="fpl empty">오른쪽 스트립에서 항공기를 선택하면 비행계획이 표시됩니다.</div>');
+    } else h += ATC.T('<div class="fpl empty">스트립(항공기 목록)에서 항공기를 선택하면 비행계획이 표시됩니다.</div>');
     h += ATC.T('<div class="dref"><h4>현재 조건</h4><p>ATIS <b>{0}</b> · 출발 활주로 <b>{1}</b> · 바람 {2} · QNH {3} · 지금 {4} UTC</p></div></div><div class="dcol">', sim.atis, sim.multi ? sim.flow.deps.join(' · ') : sim.depRwy, fmt.wind(sim.wind), sim.qnh, U.hhmm(sim.utc()));
     var fk = Object.keys(D.flows), gk = Object.keys(D.gateDest), CMP = [ATC.T('북'), ATC.T('북동'), ATC.T('동'), ATC.T('남동'), ATC.T('남'), ATC.T('남서'), ATC.T('서'), ATC.T('북서')];
     if (D.sidName) {      /* SID 이름이 활주로와 상관없는 공항: 출구 지점 → SID 하나, 활주로는 방면에 따라 배정 */
@@ -360,15 +367,64 @@
   function select(id) { if (app.sel !== id) { app.sel = id; app.pend = []; app.gt = null; app.routePrev = null; app.del = {}; } app.cmdSig = ''; app.stripSig = ''; renderCmd(); renderStrips(); if (app.pos.view === 'del') renderDel(); }
   function hitTest(x, y) { var i, hbest = 0, bd = 1e9; for (i = app.hit.length - 1; i >= 0; i--) { var h = app.hit[i]; if (x >= h.x0 && x <= h.x1 && y >= h.y0 && y <= h.y1) return h.id; var d = Math.hypot(x - h.px, y - h.py); if (d < (h.r || 11) && d < bd) { bd = d; hbest = h.id; } } return hbest; }
   function fixAt(x, y) { var best = null, bd = 16; Object.keys(D.fix).forEach(function (n) { var f = D.fix[n]; if (f._sx === undefined) return; var d = Math.hypot(x - (f._sx + 20), y - (f._sy - 4)); if (Math.hypot(x - f._sx, y - f._sy) < 9) d = 0; if (d < bd) { bd = d; best = n; } }); return best; }
+  /* ---- 화면 이동 · 확대(단추 · 휠 · 두 손가락 · 작은 지도 · 따라가기 공용) ---- */
+  function toWorld(sx, sy) { var cv = $('cv'), v = app.view; if (app.pos.view === 'radar') { var w = R.radarToWorld(v, cv.clientWidth, cv.clientHeight, sx, sy); return { a: w.x, b: w.y }; } var g = R.groundToUV(v, cv.clientWidth, cv.clientHeight, sx, sy); return { a: g.u, b: g.v }; }
+  function shiftView(da, db) { var v = app.view; if (app.pos.view === 'radar') { v.cx += da; v.cy += db; } else { v.cu += da; v.cv += db; } }
+  function zoomAt(ns, sx, sy) { app.viewFit = false; var v = app.view, w0 = toWorld(sx, sy); v.scale = U.clamp(ns, v.min, v.max); var w1 = toWorld(sx, sy); shiftView(w0.a - w1.a, w0.b - w1.b); }
+  function stopAuto() { app.viewTo = null; app.viewFit = false; if (app.follow) { app.follow = false; renderGnav(); } }
+  function moveView(dt) {
+    var v = app.view; if (!v || app.pos.view !== 'ground') return; var f = 1 - Math.exp(-dt * 6), t = app.viewTo;
+    if (t) { v.cu += (t.cu - v.cu) * f; v.cv += (t.cv - v.cv) * f; v.scale *= Math.pow(t.scale / v.scale, f); if (Math.abs(t.cu - v.cu) * v.scale < 0.6 && Math.abs(t.cv - v.cv) * v.scale < 0.6 && Math.abs(t.scale / v.scale - 1) < 0.004) { v.cu = t.cu; v.cv = t.cv; v.scale = t.scale; app.viewTo = null; } }
+    if (app.follow) { var ac = app.sim.byId(app.sel), B = D.sat && D.sat.img ? D.sat : null; if (ac && ac.u !== undefined && ac.st !== 'air' && (!B || ac.u > B.u1 - 800 && ac.u < B.u2 + 800 && ac.v > B.v1 - 800 && ac.v < B.v2 + 800)) { var g = 1 - Math.exp(-dt * 3); v.cu += (ac.u - v.cu) * g; v.cv += (ac.v - v.cv) * g; if (t) { t.cu = v.cu; t.cv = v.cv; } } }
+  }
+  function goArea(b) { var cv = $('cv'), W = cv.clientWidth, H = cv.clientHeight; app.follow = false; app.viewFit = false; app.viewTo = R.fitBox(W, H, [b[0] - 60, b[1] - 60, b[2] + 60, b[3] + 60]); app.viewTo.scale = U.clamp(app.viewTo.scale, app.view.min, app.view.max); renderGnav(); }
+  function zoomBtn(k) { var cv = $('cv'); app.viewTo = null; zoomAt(app.view.scale * k, cv.clientWidth / 2, cv.clientHeight / 2); }   /* 화면 가운데 기준(따라가기는 그대로) */
+  function setFollow(on) {
+    app.follow = on; app.viewTo = null; if (on) app.viewFit = false; var cv = $('cv'), W = cv.clientWidth, H = cv.clientHeight;
+    if (on && app.view.scale < R.fitScale(W, H) * 2.2) app.viewTo = { cu: app.view.cu, cv: app.view.cv, scale: U.clamp(Math.min(W, H) / 1300, app.view.min, app.view.max) };   /* 전체 보기 상태면 1.3km 범위로 다가감 */
+    renderGnav();
+  }
+  function renderGnav() {
+    var el = $('gnav'); if (!el) return; var g = app.pos && app.pos.view === 'ground', r = app.pos && app.pos.view === 'radar'; el.hidden = !(g || r); if (el.hidden) return;
+    var h = '<button class="zm" data-z="in" title="' + ATC.T('확대 (+)') + '">+</button><button class="zm" data-z="out" title="' + ATC.T('축소 (-)') + '">−</button>';
+    if (g) {
+      if (D.areas && $('cv').clientWidth < 760) h += '<select data-areas="1" aria-label="' + ATC.T('구역') + '"><option value="">' + ATC.T('구역 ▾') + '</option>' + D.areas.map(function (a, i) { return '<option value="' + i + '">' + esc(a.label) + '</option>'; }).join('') + '</select>';   /* 좁은 화면은 고르기 칸 하나로 */
+      else (D.areas || []).forEach(function (a, i) { h += '<button data-area="' + i + '">' + esc(a.label) + '</button>'; });
+      h += '<button data-g="follow" class="' + (app.follow ? 'on' : '') + '" title="' + ATC.T('고른 항공기를 화면 가운데에 두고 따라갑니다 (G)') + '">' + ATC.T('따라가기') + '</button>';
+    }
+    el.innerHTML = h;
+  }
+  function bindGnav() {
+    $('gnav').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b || !app.sim) return;
+      if (b.dataset.z) zoomBtn(b.dataset.z === 'in' ? 1.4 : 1 / 1.4);
+      else if (b.dataset.area) goArea(D.areas[+b.dataset.area].box);
+      else if (b.dataset.g === 'follow') setFollow(!app.follow);
+    });
+    $('gnav').addEventListener('change', function (e) { var s = e.target; if (!s.dataset.areas || s.value === '' || !app.sim) return; goArea(D.areas[+s.value].box); s.value = ''; });
+  }
   function bindCanvas() {
-    var cv = $('cv'), down = null, moved = false;
-    cv.addEventListener('pointerdown', function (e) { down = { x: e.offsetX, y: e.offsetY, cx: app.view.cx, cy: app.view.cy, cu: app.view.cu, cv: app.view.cv }; moved = false; cv.setPointerCapture(e.pointerId); });
+    var cv = $('cv'), down = null, moved = false, pts = {}, pinch = null, mini = false;
+    function npts() { return Object.keys(pts).length; }
+    function miniGo(x, y) { var m = R.miniBox, g = m.toUV(x, y); stopAuto(); app.view.cu = g.u; app.view.cv = g.v; }
+    cv.addEventListener('pointerdown', function (e) {
+      pts[e.pointerId] = { x: e.offsetX, y: e.offsetY }; cv.setPointerCapture(e.pointerId);
+      if (npts() === 2) { var P = Object.keys(pts).map(function (k) { return pts[k]; }), mx = (P[0].x + P[1].x) / 2, my = (P[0].y + P[1].y) / 2; pinch = { d: Math.hypot(P[0].x - P[1].x, P[0].y - P[1].y) || 1, s: app.view.scale, w: toWorld(mx, my) }; down = null; mini = false; stopAuto(); return; }
+      if (npts() > 2) return;
+      var m = R.miniBox; if (app.pos.view === 'ground' && m && e.offsetX >= m.x && e.offsetX <= m.x + m.w && e.offsetY >= m.y && e.offsetY <= m.y + m.h) { mini = true; miniGo(e.offsetX, e.offsetY); return; }
+      down = { x: e.offsetX, y: e.offsetY, cx: app.view.cx, cy: app.view.cy, cu: app.view.cu, cv: app.view.cv }; moved = false;
+    });
     cv.addEventListener('pointermove', function (e) {
-      app.mx = e.offsetX; app.my = e.offsetY; if (!app.sim) return;
-      if (down) { var dx = e.offsetX - down.x, dy = e.offsetY - down.y; if (Math.abs(dx) + Math.abs(dy) > 5) moved = true; if (moved) { if (app.pos.view === 'radar') { app.view.cx = down.cx - dx / app.view.scale; app.view.cy = down.cy + dy / app.view.scale; } else { app.view.cu = down.cu - dx / app.view.scale; app.view.cv = down.cv + dy / app.view.scale; } } }
+      app.mx = e.offsetX; app.my = e.offsetY; if (pts[e.pointerId]) pts[e.pointerId] = { x: e.offsetX, y: e.offsetY }; if (!app.sim) return;
+      if (pinch && npts() >= 2) { var P = Object.keys(pts).map(function (k) { return pts[k]; }), mx = (P[0].x + P[1].x) / 2, my = (P[0].y + P[1].y) / 2, d = Math.hypot(P[0].x - P[1].x, P[0].y - P[1].y) || 1; app.view.scale = U.clamp(pinch.s * d / pinch.d, app.view.min, app.view.max); var w1 = toWorld(mx, my); shiftView(pinch.w.a - w1.a, pinch.w.b - w1.b); return; }
+      if (mini) { if (R.miniBox) miniGo(U.clamp(e.offsetX, R.miniBox.x, R.miniBox.x + R.miniBox.w), U.clamp(e.offsetY, R.miniBox.y, R.miniBox.y + R.miniBox.h)); return; }
+      if (down) { var dx = e.offsetX - down.x, dy = e.offsetY - down.y; if (Math.abs(dx) + Math.abs(dy) > 5) { if (!moved) stopAuto(); moved = true; } if (moved) { if (app.pos.view === 'radar') { app.view.cx = down.cx - dx / app.view.scale; app.view.cy = down.cy + dy / app.view.scale; } else { app.view.cu = down.cu - dx / app.view.scale; app.view.cv = down.cv + dy / app.view.scale; } } }
       else if (app.pos.view === 'radar') app.hoverFix = fixAt(e.offsetX, e.offsetY);
     });
+    function lift(e) { delete pts[e.pointerId]; if (npts() < 2 && pinch) { pinch = null; down = null; moved = true; } if (!npts()) mini = false; }
+    cv.addEventListener('pointercancel', function (e) { lift(e); down = null; });
     cv.addEventListener('pointerup', function (e) {
+      var wasMini = mini; lift(e); if (wasMini) return;
       if (!down) return; var wasMoved = moved; down = null; if (wasMoved || !app.sim) return;
       var x = e.offsetX, y = e.offsetY, sim = app.sim, id = hitTest(x, y), ac = sim.byId(app.sel);
       if (app.pos.view === 'radar' && ac && ac.owner === 'me' && (app.hdgAim || e.shiftKey) && !id) { var w = R.radarToWorld(app.view, cv.clientWidth, cv.clientHeight, x, y); addPend({ k: 'hdg', v: U.r5(U.brg({ x: ac.rx, y: ac.ry }, w)) }); app.hdgAim = false; $('bAim') && $('bAim').classList.remove('on'); return; }
@@ -376,12 +432,11 @@
       if (app.pos.view === 'radar' && ac && ac.owner === 'me') { var f = fixAt(x, y); if (f) { addPend({ k: 'dct', fix: f }); return; } }
     });
     cv.addEventListener('wheel', function (e) {
-      e.preventDefault(); if (!app.sim) return; var v = app.view, k = e.deltaY < 0 ? 1.15 : 1 / 1.15, W = cv.clientWidth, H = cv.clientHeight, ns = U.clamp(v.scale * k, v.min, v.max);
-      if (app.pos.view === 'radar') { var w0 = R.radarToWorld(v, W, H, e.offsetX, e.offsetY); v.scale = ns; var w1 = R.radarToWorld(v, W, H, e.offsetX, e.offsetY); v.cx += w0.x - w1.x; v.cy += w0.y - w1.y; }
-      else { var g0 = R.groundToUV(v, W, H, e.offsetX, e.offsetY); v.scale = ns; var g1 = R.groundToUV(v, W, H, e.offsetX, e.offsetY); v.cu += g0.u - g1.u; v.cv += g0.v - g1.v; }
+      e.preventDefault(); if (!app.sim) return; var k = e.deltaY < 0 ? 1.15 : 1 / 1.15; app.viewTo = null;
+      if (app.follow) { var cvw = $('cv'); zoomAt(app.view.scale * k, cvw.clientWidth / 2, cvw.clientHeight / 2); } else zoomAt(app.view.scale * k, e.offsetX, e.offsetY);   /* 따라가는 중에는 화면 가운데를 기준으로 */
     }, { passive: false });
   }
-  function fit() { var cv = $('cv'); if (app.pos.view === 'radar') R.fitRadar(app.view, cv.clientWidth, cv.clientHeight, app.sim.mode); else if (app.pos.view === 'ground') R.fitGround(app.view, cv.clientWidth, cv.clientHeight); }
+  function fit() { app.viewTo = null; if (app.follow) { app.follow = false; renderGnav(); } fitView(); }
   /* 명령 줄: VLA301 H100 A30 S180 ILS */
   function cli(text) {
     var sim = app.sim, tk = text.trim().toUpperCase().split(/\s+/), ac = sim.byId(app.sel), i, m, cmds = [];
@@ -457,10 +512,10 @@
     $('bCoach').addEventListener('click', function () { app.coach = !app.coach; app.coachSig = ''; });
     $('bVoice').addEventListener('click', function () { app.voice = !app.voice; if (!app.voice) { if (window.speechSynthesis) speechSynthesis.cancel(); ATC.Radio.stop(); } else if (packOn()) ATC.Radio.loadAll(); saveOpt(); });
     $('bLearn').addEventListener('click', function () { app.wasPaused = app.paused; app.paused = true; openLearn(app.pos.les); });
-    $('bFit').addEventListener('click', fit);
+    $('bFit').addEventListener('click', fit); bindGnav();
     $('bQuit').addEventListener('click', function () { app.wasPaused = app.paused; app.paused = true; openModal(ATC.T('<div class="mhead"><h2>근무를 마칠까요?</h2></div><div class="mbody"><p>지금까지의 결과로 평가를 봅니다.</p></div><div class="mfoot"><span class="sp"></span><button class="btn" data-m="close">계속 근무</button><button class="btn" data-m="lobby">평가 없이 나가기</button><button class="btn pri" data-m="quit">마치고 평가 보기</button></div>')); });
     $('cli').addEventListener('keydown', function (e) { e.stopPropagation(); if (e.key === 'Enter') { cli(this.value); this.value = ''; } if (e.key === 'Escape') this.blur(); });
-    window.addEventListener('resize', function () { resize(); });
+    window.addEventListener('resize', function () { resize(); if (app.sim && !$('game').hidden) renderGnav(); });
     window.addEventListener('keydown', function (e) {
       if (!app.sim || $('game').hidden || !$('modal').hidden) { if (e.key === 'Escape' && !$('modal').hidden && !app.over) { closeModal(); if (app.sim) app.paused = app.wasPaused || false; } return; }
       var k = e.key.toLowerCase();
@@ -470,6 +525,9 @@
       else if (k === 'a') { var ac = app.sim.byId(app.sel); if (ac && app.sim.accept) { if (!app.sim.accept(ac)) { var w = app.sim.acs.filter(function (x) { return x.owner === 'in'; })[0]; if (w) { app.sim.accept(w); select(w.id); } } app.cmdSig = ''; } else if (app.sim.accept) { var w2 = app.sim.acs.filter(function (x) { return x.owner === 'in'; })[0]; if (w2) { app.sim.accept(w2); select(w2.id); } } if (app.instOn) resumeInst(); }
       else if (k === 'h') app.hdgAim = true;
       else if (k === 'f') fit();
+      else if (k === '+' || k === '=') zoomBtn(1.4);
+      else if (k === '-' || k === '_') zoomBtn(1 / 1.4);
+      else if (k === 'g' && app.pos.view === 'ground') setFollow(!app.follow);
       else if (k === '1' || k === '2' || k === '3' || k === '4') { app.speed = [1, 2, 4, 8][+k - 1]; app.paused = false; }
       else if (k === 'tab') { e.preventDefault(); var ws = app.sim.acs.filter(function (x) { return x.waiting && x.owner !== 'out'; }); if (ws.length) { var ix = ws.map(function (x) { return x.id; }).indexOf(app.sel); select(ws[(ix + 1) % ws.length].id); } }
       else if (k === '/') { $('cli').focus(); e.preventDefault(); }
@@ -573,6 +631,7 @@
       R.drawGround(gc, 3200, 2000, { guide: true, sel: 0, hit: [], view: { cu: (SAT.u1 + SAT.u2) / 2, cv: (SAT.v1 + SAT.v2) / 2, scale: 3200 / (SAT.u2 - SAT.u1) }, sim: { acs: [], t: 0, mode: 'GUIDE', flow: D.flows[Object.keys(D.flows)[0]], rwClosed: {}, net: { closed: {} }, byId: function () { return null; }, finals: function () { return []; } } });
       return;
     }
+    if (ATC.VPARTS && D.voice && D.voice.parts) ATC.VPARTS = D.voice.parts;   /* 이 공항만의 음성 묶음(음성 파일을 올리지 않은 사이트판에서는 ATC.VPARTS가 없어 그대로 브라우저 음성) */
     bind(); if (!(D.sat && D.sat.img === null)) R.loadSat((ATC.base || '') + ((D.sat && D.sat.img) || 'assets/img/ground_sat.webp')); showLobby(); requestAnimationFrame(frame);
     var q = /[?&]auto=([A-Z]{3})(\d)?(?:&seed=(\d+))?/.exec(location.search); if (q) { app.level = +(q[2] || 1); start(q[1], q[3] ? +q[3] : 0); }
   });

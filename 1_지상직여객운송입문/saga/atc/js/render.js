@@ -167,6 +167,8 @@
   /* ================= 지상 ================= */
   /* 지상 화면을 처음 열 때의 범위: 공항 묶음의 D.view = { cu, cv, w, h }(m)가 있으면 그것으로 */
   R.groundView = function () { return { cu: 0, cv: 60, scale: 0.2, min: D.view ? 0.05 : 0.1, max: 1.6 }; };
+  R.fitBox = function (W, H, b) { var w = b[2] - b[0], h = b[3] - b[1]; return { cu: (b[0] + b[2]) / 2, cv: (b[1] + b[3]) / 2, scale: Math.min(W / w, H / h) }; };   /* [u1, v1, u2, v2]가 화면에 꽉 차게 */
+  R.fitScale = function (W, H) { var V = D.view || { w: 4300, h: 2440 }; return Math.min(W / V.w, H / V.h); };
   R.fitGround = function (v, W, H) { var V = D.view || { cu: 0, cv: 250, w: 4300, h: 2440 }; v.scale = Math.min(W / V.w, H / V.h); v.cu = V.cu; v.cv = V.cv; };
   function gs(v, W, H, u, w) { return [W / 2 + (u - v.cu) * v.scale, H / 2 - (w - v.cv) * v.scale]; }
   R.gs = gs;
@@ -289,6 +291,7 @@
     /* 최종 접근 표시(화면 밖 항공기) + 타워 레이더 */
     R.finalBars(ctx, W, H, app);
     if (sim.mode === 'TWR' || sim.mode === 'GND') R.miniRadar(ctx, W, H, app);
+    R.miniMap(ctx, W, H, app);
   };
   /* 위에서 본 항공기(코가 위쪽) */
   R.plane = function (ctx, perf, col, k, shadow) {
@@ -319,6 +322,32 @@
       ctx.fillStyle = '#6c8aa6'; ctx.fillText('FINAL ' + b.id + '  ILS', x + 6, y + 6);
       b.list.forEach(function (a, ix) { var yy = y + 23 + ix * 17, own = a.owner === 'me'; ctx.fillStyle = a.emg ? C.emg : a.id === app.sel ? C.sel : own ? C.arr : '#8496a6'; ctx.fillText(a.cs + (a.wake === 'H' ? ' H' : ''), x + 6, yy); ctx.fillText((a.d / NM).toFixed(1) + 'NM', x + 82, yy); ctx.fillStyle = a.clr ? '#6fe08d' : '#ffb347'; ctx.fillText(a.clr ? 'CLRD' : (sim.mode === 'TWR' ? 'NO CLR' : ''), x + 136, yy); app.hit.push({ id: a.id, x0: x, y0: yy - 8, x1: x + 186, y1: yy + 8, px: -99, py: -99, r: 0 }); });
     });
+  };
+  /* 작은 전체 지도: 확대해 있을 때 왼쪽 아래에 공항 전체와 지금 보는 범위를 보여 줌(눌러서 이동) */
+  R.miniBox = null;
+  R.miniMap = function (ctx, W, H, app) {
+    var v = app.view, sim = app.sim; R.miniBox = null;
+    if (v.scale < R.fitScale(W, H) * 1.3 || W < 360) return;
+    var B = D.sat && D.sat.img ? D.sat : (function (V) { V = D.view || { cu: 0, cv: 250, w: 4300, h: 2440 }; return { u1: V.cu - V.w / 2, u2: V.cu + V.w / 2, v1: V.cv - V.h / 2, v2: V.cv + V.h / 2 }; })();
+    var mw = Math.round(U.clamp(W * 0.22, 130, 230)), mh = Math.round(mw * (B.v2 - B.v1) / (B.u2 - B.u1));
+    if (mh > H * 0.42) { mh = Math.round(H * 0.42); mw = Math.round(mh * (B.u2 - B.u1) / (B.v2 - B.v1)); }
+    var x = 10, y = H - mh - 10, k = mw / (B.u2 - B.u1);
+    function mp(u, w) { return [x + (u - B.u1) * k, y + (B.v2 - w) * k]; }
+    ctx.save(); ctx.fillStyle = 'rgba(4,8,12,.92)'; ctx.fillRect(x - 3, y - 3, mw + 6, mh + 6);
+    ctx.beginPath(); ctx.rect(x, y, mw, mh); ctx.clip();
+    if (satOk) { ctx.globalAlpha = 0.85; ctx.drawImage(satImg, x, y, mw, mh); ctx.globalAlpha = 1; }
+    else { ctx.fillStyle = C.grass; ctx.fillRect(x, y, mw, mh); ctx.strokeStyle = C.pave; ctx.lineWidth = 1; D.gE.forEach(function (e) { if (e.kind === 'rwy' || e.kind === 'stand') return; var a = mp(D.gN[e.a].u, D.gN[e.a].v), b = mp(D.gN[e.b].u, D.gN[e.b].v); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); }); }
+    ctx.strokeStyle = '#e8edf2'; ctx.lineWidth = 2; Object.keys(D.rw).forEach(function (id) { var r = D.rw[id], a = mp(r.ua, r.va), b = mp(r.ub, r.vb); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); });
+    sim.acs.forEach(function (a) {
+      if (a.u === undefined || a.st === 'air' || a.st === 'gone') return; var p = mp(a.u, a.v); if (p[0] < x - 4 || p[0] > x + mw + 4 || p[1] < y - 4 || p[1] > y + mh + 4) return;
+      ctx.fillStyle = a.id === app.sel ? C.sel : a.emg ? C.emg : a.st === 'final' || a.kind === 'arr' ? C.arr : C.dep; ctx.fillRect(p[0] - 2, p[1] - 2, 4, 4);
+      if (a.id === app.sel) { ctx.strokeStyle = C.sel; ctx.lineWidth = 1; ctx.strokeRect(p[0] - 4.5, p[1] - 4.5, 9, 9); }
+    });
+    var t0 = R.groundToUV(v, W, H, 0, 0), t1 = R.groundToUV(v, W, H, W, H), q0 = mp(t0.u, t0.v), q1 = mp(t1.u, t1.v);
+    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.5; ctx.strokeRect(q0[0], q0[1], q1[0] - q0[0], q1[1] - q0[1]);
+    ctx.fillStyle = 'rgba(255,255,255,.08)'; ctx.fillRect(q0[0], q0[1], q1[0] - q0[0], q1[1] - q0[1]);
+    ctx.restore(); ctx.strokeStyle = '#2b4a66'; ctx.lineWidth = 1; ctx.strokeRect(x - 2.5, y - 2.5, mw + 5, mh + 5);
+    R.miniBox = { x: x, y: y, w: mw, h: mh, toUV: function (sx, sy) { return { u: B.u1 + (sx - x) / k, v: B.v2 - (sy - y) / k }; } };
   };
   R.miniRadar = function (ctx, W, H, app) {
     var sim = app.sim, r = Math.min(78, W * 0.11), cx = sim.flow.mini !== 'L' ? W - r - 12 : r + 12, cy = r + 12, sc = r / 13, i;

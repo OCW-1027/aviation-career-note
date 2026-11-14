@@ -50,7 +50,7 @@
     var s = {}, add = function (x) { String(x).toLowerCase().replace(/[^a-z ]+/g, ' ').split(' ').forEach(function (w) { if (w.length > 1) s[w] = 1; }); };
     D.airlines.forEach(function (a) { add(a.cs); }); Object.keys(D.fix).forEach(add); Object.keys(ATC.PH).forEach(function (k) { add(ATC.PH[k]); });
     [D.gateDest, D.gateOrig].forEach(function (g) { Object.keys(g).forEach(function (k) { g[k].forEach(function (d) { add(d[1]); }); }); });
-    Object.keys(D.freq).forEach(function (k) { add(D.freq[k].n.split(' ')[0]); }); Object.keys(D.neighbor).forEach(function (k) { add(D.neighbor[k].n.split(' ')[0]); });
+    Object.keys(D.freq).forEach(function (k) { add(D.freq[k].n.split(' ')[0]); }); Object.keys(D.neighbor || {}).forEach(function (k) { add(D.neighbor[k].n.split(' ')[0]); });
     add('mayday'); delete s.atis; delete s.ray;
     return s;
   }
