@@ -73,6 +73,7 @@
   ];
   /* 교신 풀이는 언어별 내용 묶음: ATC.GLOSS.<언어> = function (영어 교신) → 그 언어 풀이. 풀이가 필요 없는 언어(영어)는 빈 글을 돌려주면 됨 */
   ATC.GLOSS = ATC.GLOSS || {};
+  ATC.GLOSS_RULES = T;      /* 다른 언어 풀이(js/lang/<언어>_content.js)가 같은 규칙 순서로 번역을 붙임 */
   ATC.GLOSS.ko = function (text) { var s = text, i; for (i = 0; i < T.length; i++) s = s.replace(T[i][0], T[i][1]); return s; };
   ATC.gloss = function (text) { return ATC.pick(ATC.GLOSS)(text); };
 })(typeof globalThis !== 'undefined' ? globalThis : this);

@@ -146,19 +146,19 @@
   ATC.learnInit();
 
   ATC.POS = {
-    DEL: { id: 'DEL', ko: ATC.T('비행허가'), en: 'CLEARANCE DELIVERY', call: D.freq.DEL.n, fq: D.freq.DEL.fq, les: 'del', view: 'del', spd: 1,
+    DEL: { id: 'DEL', ko: ATC.T('비행허가'), en: 'CLEARANCE DELIVERY', nm: 'Delivery', call: D.freq.DEL.n, fq: D.freq.DEL.fq, les: 'del', view: 'del', spd: 1,
       sum: ATC.T('비행계획을 확인하고 비행 허가를 발부합니다. 숫자 하나까지 정확히 전달하고, 복창을 끝까지 확인합니다.'),
       brief: [ATC.T('조종사의 요청을 듣고 스트립을 선택'), ATC.T('ATIS 식별 문자 · 순항 고도의 방향 적합성 · CTOT를 확인해 필요한 항목을 선택'), ATC.T('SID와 초기 고도를 선택해 「허가 송신」'), ATC.T('복창이 일치하면 「Readback correct」, 다르면 「정정」'), ATC.T('준비 완료 보고 후 Ground로 이양(CTOT가 있으면 시각 확인)')] },
-    GND: { id: 'GND', ko: ATC.T('지상관제 · 램프'), en: 'GROUND / RAMP', call: D.freq.GND.n, fq: D.freq.GND.fq, les: 'gnd', view: 'ground', spd: 2,
+    GND: { id: 'GND', ko: ATC.T('지상관제 · 램프'), en: 'GROUND / RAMP', nm: 'Ground', call: D.freq.GND.n, fq: D.freq.GND.fq, les: 'gnd', view: 'ground', spd: 2,
       sum: ATC.T('푸시백부터 활주로 대기 지점까지, 착륙 후 주기장까지. 유도로상의 교통 흐름을 설계합니다.'),
       brief: [ATC.T('푸시백 요청 → 후방 유도로 확인 후 허가'), ATC.T('지상 이동 요청 → 목적지와 경로를 선택해 송신'), ATC.T('경로가 교차하면 한쪽에 「정지」, 통과 후 「계속 이동」'), ATC.T('화물 계류장(K)은 북쪽 활주로를 횡단 — 착륙기 위치를 확인하고 「횡단 허가」'), ATC.T('대기 지점에 도착하면 Tower로 이양')] },
-    TWR: { id: 'TWR', ko: ATC.T('관제탑'), en: 'TOWER', call: D.freq.TWR.n, fq: D.freq.TWR.fq, les: 'twr', view: 'ground', spd: 2,
+    TWR: { id: 'TWR', ko: ATC.T('관제탑'), en: 'TOWER', nm: 'Tower', call: D.freq.TWR.n, fq: D.freq.TWR.fq, les: 'twr', view: 'ground', spd: 2,
       sum: ATC.T('활주로의 책임자. 이륙 · 착륙 · 횡단을 한 번에 한 대씩, 끊김 없이 처리합니다.'),
       brief: [ATC.T('착륙기: 활주로가 비는 것을 확인하고 「착륙 허가」(0.5NM 전까지)'), ATC.T('출발기: 착륙기와의 거리 · 항적난기류 분리를 확인하고 「이륙 허가」'), ATC.T('간격이 부족하면 「복행」'), ATC.T('이륙 후 Departure로, 활주로 이탈 후 Ground로 이양'), ATC.T('우측 상단의 타워 레이더와 활주로 옆 FINAL 목록을 수시로 확인')] },
-    APP: { id: 'APP', ko: ATC.T('접근관제'), en: 'APPROACH / DEPARTURE', call: D.freq.APP.n, fq: D.freq.APP.fq, les: 'app', view: 'radar', spd: 2,
+    APP: { id: 'APP', ko: ATC.T('접근관제'), en: 'APPROACH / DEPARTURE', nm: 'Departure / Approach', call: D.freq.APP.n, fq: D.freq.APP.fq, les: 'app', view: 'radar', spd: 2,
       sum: ATC.T('레이더 유도의 핵심. 여러 방면에서 진입하는 도착기의 순서와 간격을 만들어 ILS 접근으로 유도합니다.'),
       brief: [ATC.T('깜박이는 표적 = 핸드오프 요청 → 「수락」'), ATC.T('거리에 맞춰 강하 · 감속(250 → 210 → 180kt)'), ATC.T('최종 접근로 쪽으로 선회시킨 뒤 30° 이내로 교차하는 기수 + 「ILS 접근 허가」'), ATC.T('로컬라이저에 확립하면 Tower로 이양'), ATC.T('출발기는 FL190으로 상승시켜 Control로 이양 · 3NM/1,000ft 분리 유지')] },
-    ACC: { id: 'ACC', ko: ATC.T('지역관제(ACC)'), en: 'AREA CONTROL', call: D.freq.ACC.n, fq: D.freq.ACC.fq, les: 'acc', view: 'radar', spd: 4,
+    ACC: { id: 'ACC', ko: ATC.T('지역관제(ACC)'), en: 'AREA CONTROL', nm: 'Control (ACC)', call: D.freq.ACC.n, fq: D.freq.ACC.fq, les: 'acc', view: 'radar', spd: 4,
       sum: ATC.T('넓은 공역의 교통 관리. 10분 앞을 내다보고 고도 분리로 해소합니다.'),
       brief: [ATC.T('핸드오프 수락 → 경로와 고도를 확인해 교차 지점의 상대 항공기를 탐지'), ATC.T('같은 고도로 교차하면 한쪽 고도를 변경(동쪽행은 1,000ft 단위 홀수 · 서쪽행은 짝수)'), ATC.T('도착기는 진입 지점 13,000ft, 출발기는 요청 고도까지'), ATC.T('경계 도달 전에 다음 관제구역으로 이양'), ATC.T('5NM/1,000ft 분리 · 기본 배속 4배')] }
   };

@@ -9,9 +9,9 @@
   var DIG = { zero: 1, one: 1, two: 1, three: 1, four: 1, five: 1, six: 1, seven: 1, eight: 1, niner: 1 };
   V.hash = function (s) { var h = 7, i; for (i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 9973; return h; };
   /* 조종사 목소리 정하기: 편명마다 늘 같은 목소리(호출부호 조각은 그 목소리로만 녹음해 둠).
-     p1 · p2 = 기준 목소리(남 · 여), p3 · p4 = 일본어 목소리(남 · 여) — 항공사 자료에 jp 표시가 있는 회사의 편만 */
-  V.PILOTS = ['p1', 'p2', 'p3', 'p4'];
-  V.voiceOf = function (cs) { var h = V.hash(cs || ''), al = D.alBy && D.alBy[String(cs || '').slice(0, 3)]; return 'p' + ((al && al.jp ? 3 : 1) + h % 2); };
+     p1 · p2 = 조종사 목소리(남 · 여). 일본어 목소리(예전 p3 · p4)는 무선답지 않아 뺌(2026-11-15 사용자 결정) — 일본 항공사 편도 p1 · p2 */
+  V.PILOTS = ['p1', 'p2'];
+  V.voiceOf = function (cs) { return 'p' + (1 + V.hash(cs || '') % 2); };
   /* 문구 → 구절(쉼표·마침표 단위, 소리 나는 대로 풀어 쓴 소문자) */
   V.clauses = function (text) {
     var t = ATC.tts(text).toLowerCase().replace(/-/g, ' ');
