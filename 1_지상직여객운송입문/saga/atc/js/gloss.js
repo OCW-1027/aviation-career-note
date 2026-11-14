@@ -2,7 +2,7 @@
 (function (G) {
   'use strict';
   var ATC = G.ATC, AP = ATC.D.airport;
-  var FAC = { Delivery: '허가중계', Ground: '지상관제', Tower: '관제탑', Approach: '접근관제', Departure: '출발관제', Control: '지역관제' };
+  var FAC = { Delivery: '비행허가', Ground: '지상관제', Tower: '관제탑', Approach: '접근관제', Departure: '출발관제', Control: '지역관제' };
   var DIR = { west: '서', east: '동', north: '북', south: '남', left: '좌', right: '우' };
   var A = '(FL\\d+|\\d{1,2},\\d{3}|\\d{3,5})';
   function AK(x) { return /^FL/i.test(x) ? x.toUpperCase() : x + '피트'; }   /* 고도 풀이: FL은 그대로, 그 밖은 피트를 붙임 */

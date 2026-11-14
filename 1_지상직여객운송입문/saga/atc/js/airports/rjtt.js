@@ -275,6 +275,7 @@
       ['B', Math.round(onB(500, 190)[0]), Math.round(onB(500, 190)[1])], ['B', Math.round(onB(2150, 190)[0]), Math.round(onB(2150, 190)[1])], ['T', Math.round(onB(880, -190)[0]), Math.round(onB(880, -190)[1])],
       ['D', Math.round(onD(1300, 190)[0]), Math.round(onD(1300, 190)[1])]];
     D.guide = { u1: -2575, u2: 4625, v1: -2470, v2: 2930 };
+    D.lobby = 'assets/img/lobby_rjtt.webp';   /* 첫 화면 배경(Gemini v15 — 하네다 관제탑에서 본 황혼) */
     D.sat = { img: 'assets/img/ground_sat_rjtt.webp', u1: -2575, u2: 4625, v1: -2470, v2: 2930, edge: '#47565c' };   /* Gemini v15 그림 — 배치도에 맞춰 위치를 보정해 둠 */
     D.view = { cu: 950, cv: 250, w: 6900, h: 5300 };     /* 지상 화면을 처음 열 때 보이는 범위(m) */
     /* 지상 화면의 구역 바로가기 단추 — 공항이 넓어 한 화면에 다 보면 작으므로 [u1, v1, u2, v2](m) */

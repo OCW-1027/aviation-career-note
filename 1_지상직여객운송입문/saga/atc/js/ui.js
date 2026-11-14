@@ -306,7 +306,7 @@
     if (ac.st === 'ready') return (ac.ctot ? ATC.T('<p class="cinfo">CTOT {0} · TSAT {1} · 이양 가능 {2}부터 (지금 {3})</p>', U.hhmm(ac.ctot), U.hhmm(ac.tsat), U.hhmm(ac.tsat - 300), U.hhmm(sim.utc())) : '') + Gp(ATC.T('출발 준비 완료'), B(ATC.T('Ground 이양'), function () { now1({ k: 'ho', to: 'GND' }); }, { cls: 'ho pri wide' }) + (ac.ctot ? B(ATC.T('시동 시각 안내'), function () { now1({ k: 'slot', v: U.hhmm(ac.ctot), tsat: U.hhmm(ac.tsat) }); }, { cls: 'ghost' }) : ''));
     return '';
   }
-  /* 허가중계 가운데 화면: 비행계획 + 참조표 */
+  /* 비행허가 가운데 화면: 비행계획 + 참조표 */
   function renderDel() {
     var sim = app.sim, ac = sim.byId(app.sel), h = '<div class="dcol">';
     if (ac) {
@@ -631,7 +631,8 @@
       R.drawGround(gc, 3200, 2000, { guide: true, sel: 0, hit: [], view: { cu: (SAT.u1 + SAT.u2) / 2, cv: (SAT.v1 + SAT.v2) / 2, scale: 3200 / (SAT.u2 - SAT.u1) }, sim: { acs: [], t: 0, mode: 'GUIDE', flow: D.flows[Object.keys(D.flows)[0]], rwClosed: {}, net: { closed: {} }, byId: function () { return null; }, finals: function () { return []; } } });
       return;
     }
-    if (ATC.VPARTS && D.voice && D.voice.parts) ATC.VPARTS = D.voice.parts;   /* 이 공항만의 음성 묶음(음성 파일을 올리지 않은 사이트판에서는 ATC.VPARTS가 없어 그대로 브라우저 음성) */
+    if (ATC.VPARTS && D.voice && D.voice.parts) ATC.VPARTS = D.voice.parts;
+    if (D.lobby) { var hero = document.querySelector('.hero'); if (hero) hero.style.backgroundImage = 'linear-gradient(90deg,rgba(7,11,16,.96) 0,rgba(7,11,16,.72) 55%,rgba(7,11,16,.35) 100%),url("' + (ATC.base || '') + D.lobby + '"),repeating-radial-gradient(circle at 84% 40%,transparent 0 58px,rgba(79,216,255,.07) 58px 59px)'; }   /* 공항마다 첫 화면 배경 */   /* 이 공항만의 음성 묶음(음성 파일을 올리지 않은 사이트판에서는 ATC.VPARTS가 없어 그대로 브라우저 음성) */
     bind(); if (!(D.sat && D.sat.img === null)) R.loadSat((ATC.base || '') + ((D.sat && D.sat.img) || 'assets/img/ground_sat.webp')); showLobby(); requestAnimationFrame(frame);
     var q = /[?&]auto=([A-Z]{3})(\d)?(?:&seed=(\d+))?/.exec(location.search); if (q) { app.level = +(q[2] || 1); start(q[1], q[3] ? +q[3] : 0); }
   });

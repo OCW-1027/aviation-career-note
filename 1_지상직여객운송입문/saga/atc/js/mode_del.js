@@ -1,4 +1,4 @@
-/* AIRLINE SAGA — ATC 허가중계(DEL): 비행계획 확인 → 관제 허가 → 복창 확인 → 지상관제 이양 */
+/* AIRLINE SAGA — ATC 비행허가(DEL): 비행계획 확인 → 관제 허가 → 복창 확인 → 지상관제 이양 */
 (function (G) {
   'use strict';
   var ATC = G.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt;
@@ -16,7 +16,7 @@
     this.endT = t;
     if (L >= 2) this.events.push({ k: 'atis', t: this.endT * 0.3, done: false });
     if (L === 3) this.events.push({ k: 'rwychg', t: this.endT * 0.55, done: false });
-    this.sys(ATC.T(D.sidInitGame ? '{apt} 허가중계(Delivery {0}) 근무 시작. 출발 활주로 {1} · 현재 ATIS {2} · QNH {3} · 초기 허가 고도 {4}ft(이 게임의 값).' : '{apt} 허가중계(Delivery {0}) 근무 시작. 출발 활주로 {1} · 현재 ATIS {2} · QNH {3} · SID 초기 고도 {4}ft.', D.freq.DEL.fq, this.multi ? this.flow.deps.join(' · ') : this.depRwy, this.atis, this.qnh, fmt.alt(D.sidInit)));
+    this.sys(ATC.T(D.sidInitGame ? '{apt} 비행허가(Delivery {0}) 근무 시작. 출발 활주로 {1} · 현재 ATIS {2} · QNH {3} · 초기 허가 고도 {4}ft(이 게임의 값).' : '{apt} 비행허가(Delivery {0}) 근무 시작. 출발 활주로 {1} · 현재 ATIS {2} · QNH {3} · SID 초기 고도 {4}ft.', D.freq.DEL.fq, this.multi ? this.flow.deps.join(' · ') : this.depRwy, this.atis, this.qnh, fmt.alt(D.sidInit)));
   }
   ATC.extend(DelSim, ATC.Sim);
   /* SID 이름: 세이라는 「출구 지점 + 1 + 활주로 방향 글자」, 다른 공항은 묶음이 정함(D.sidName · D.sidNames) */

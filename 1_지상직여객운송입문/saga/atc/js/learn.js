@@ -10,7 +10,7 @@
     { id: 'flow', t: '관제의 큰 흐름', h:
       '<p>항공기 한 편은 출발부터 도착까지 여러 관제석을 차례로 거칩니다. 각 관제석은 자기 구역 안에서만 지시하고, 구역 끝에서 다음 관제석으로 <b>이양(hand-off)</b>합니다.</p>' +
       '<table class="lt"><tr><th>관제석</th><th>호출 이름</th><th>맡는 일</th></tr>' +
-      '<tr><td>허가중계</td><td>Delivery</td><td>비행계획을 확인하고 출발 전 관제 허가(목적지·SID·초기 고도·스쿼크)를 전달</td></tr>' +
+      '<tr><td>비행허가</td><td>Delivery</td><td>비행계획을 확인하고 출발 전 관제 허가(목적지·SID·초기 고도·스쿼크)를 전달</td></tr>' +
       '<tr><td>지상관제</td><td>Ground<br>(공항에 따라 Ramp)</td><td>푸시백, 유도로 이동 경로, 활주로 앞 정지. 계류장만 따로 맡는 램프 컨트롤이 있는 공항도 있음</td></tr>' +
       '<tr><td>관제탑</td><td>Tower</td><td>활주로 사용 — 이륙·착륙·횡단 허가, 복행 지시</td></tr>' +
       '<tr><td>접근관제</td><td>Approach / Departure</td><td>공항 주변(터미널 공역)에서 도착기를 순서대로 최종 접근로에 올리고 출발기를 상승시킴</td></tr>' +
@@ -53,7 +53,7 @@
       '<table class="lt"><tr><th>등급</th><th>최대 이륙 중량</th><th>게임 속 기종</th></tr><tr><td>LIGHT (L)</td><td>7,000kg 이하</td><td>PC-12</td></tr><tr><td>MEDIUM (M)</td><td>7,000kg 초과 ~ 136,000kg 미만</td><td>B737-800, A320, A321, DHC-8-400, ATR 72</td></tr><tr><td>HEAVY (H)</td><td>136,000kg 이상</td><td>B787-9, B777, A350, A330, B767</td></tr><tr><td>SUPER (J)</td><td>A380-800</td><td>(게임에 없음)</td></tr></table>' +
       '<table class="lt"><tr><th>앞</th><th>뒤</th><th>접근 중 거리</th></tr><tr><td>HEAVY</td><td>HEAVY</td><td>4NM</td></tr><tr><td>HEAVY</td><td>MEDIUM</td><td>5NM</td></tr><tr><td>HEAVY</td><td>LIGHT</td><td>6NM</td></tr><tr><td>MEDIUM</td><td>LIGHT</td><td>5NM</td></tr><tr><td>SUPER</td><td>HEAVY / MEDIUM / LIGHT</td><td>5 / 7 / 8NM</td></tr></table>' +
       '<p><b>이륙</b>: 같은 활주로에서 HEAVY 뒤의 MEDIUM·LIGHT, MEDIUM 뒤의 LIGHT는 <b>2분</b>(뒤 항공기가 활주로 중간에서 출발하면 <b>3분</b>). 호출부호 뒤의 "heavy"는 이 등급을 알리는 말입니다.</p>' + NOTE },
-    { id: 'del', t: '허가중계(Delivery)', h:
+    { id: 'del', t: '비행허가(Clearance Delivery)', h:
       '<p>출발 약 20~30분 전, 조종사가 주기장과 ATIS 정보 문자를 말하며 허가를 요청합니다. 확인 순서:</p>' +
       '<ol><li><b>비행계획이 있는가</b> — 없으면 허가하지 않고 운항관리에 확인하도록 안내</li><li><b>ATIS가 최신인가</b> — 지난 문자를 말하면 현재 문자와 QNH를 알려 줌</li><li><b>순항 고도가 방향에 맞는가</b> — 동쪽행(000°~179°)은 천 단위가 홀수(FL330 · 350 · 370), 서쪽행(180°~359°)은 짝수(FL340 · 360 · 380) — FL410까지의 수직 분리 축소(RVSM) 공역 기준</li><li><b>SID</b> — 목적지 방향의 출구 지점 + 사용 활주로에 맞는 것</li><li><b>흐름 관리 시각(CTOT)</b>이 있으면 알려 주고, 시동 예정 시각 전에는 지상관제로 넘기지 않음</li></ol>' +
       ex('VELA 301, cleared to Tokyo Haneda airport via NEVIS 1A departure, flight planned route, maintain 6,000, squawk 4521.', '도쿄 하네다 공항까지, NEVIS 1A 출발 절차, 계획한 경로, 6,000피트 유지, 스쿼크 4521') +
@@ -112,7 +112,7 @@
   ATC.learnInit();
 
   ATC.POS = {
-    DEL: { id: 'DEL', ko: ATC.T('허가중계'), en: 'CLEARANCE DELIVERY', call: D.freq.DEL.n, fq: D.freq.DEL.fq, les: 'del', view: 'del', spd: 1,
+    DEL: { id: 'DEL', ko: ATC.T('비행허가'), en: 'CLEARANCE DELIVERY', call: D.freq.DEL.n, fq: D.freq.DEL.fq, les: 'del', view: 'del', spd: 1,
       sum: ATC.T('비행계획을 확인하고 출발 허가를 내 줍니다. 숫자 하나까지 맞게 주고, 복창을 끝까지 듣습니다.'),
       brief: [ATC.T('조종사의 요청을 듣고 스트립을 선택'), ATC.T('ATIS 문자 · 순항 고도 방향 · CTOT를 확인해 필요한 항목을 켬'), ATC.T('SID와 초기 고도를 골라 「허가 송신」'), ATC.T('복창이 맞으면 「Readback correct」, 다르면 「정정」'), ATC.T('준비 완료 보고 뒤 Ground로 이양(CTOT가 있으면 시각 확인)')] },
     GND: { id: 'GND', ko: ATC.T('지상관제 · 램프'), en: 'GROUND / RAMP', call: D.freq.GND.n, fq: D.freq.GND.fq, les: 'gnd', view: 'ground', spd: 2,
