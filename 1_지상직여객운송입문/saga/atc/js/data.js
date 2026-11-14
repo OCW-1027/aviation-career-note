@@ -124,7 +124,7 @@
     C56X: { n: 'Citation Excel', wake: 'M', len: 16, span: 17, vapp: 115, vr: 58, acc: 2.6, climb: 3000, desc: 2500, crz: 430, ceil: 45000, k: 'jet' },
     PC12: { n: 'PC-12', wake: 'L', len: 14, span: 16, vapp: 90, vr: 44, acc: 1.8, climb: 1500, desc: 1500, crz: 270, ceil: 30000, k: 'tp' }
   };
-  /* 후방난기류 거리 분리(NM) — ICAO PANS-ATM(Doc 4444) 4분류 기준: [선행][후속] */
+  /* 항적난기류 거리 분리(NM) — ICAO PANS-ATM(Doc 4444) 4분류 기준: [선행][후속] */
   D.wakeNM = { H: { H: 4, M: 5, L: 6 }, M: { L: 5 }, L: {} };
   D.wakeName = { L: 'LIGHT', M: 'MEDIUM', H: 'HEAVY' };
 

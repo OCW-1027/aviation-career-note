@@ -28,9 +28,8 @@
       transAlt: 14000, tower: { u: 290, v: 125 },
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
-    /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사는 일본어 목소리 */
-    D.voice = { dir: 'assets/voice/rjtt/', parts: { ctl: 2, ctlf: 2, p1: 3, p2: 2, p3: 2, p4: 2 },
-      note: ATC.T('하네다의 관제사 목소리는 일본인 관제사처럼 일본어 억양의 영어로 녹음했습니다. 접근관제 · 지역관제의 교신은 아직 녹음한 조각이 없어 브라우저의 영어 음성으로 나옵니다.') };
+    /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 6, ctlf: 6, p1: 7, p2: 6, p3: 6, p4: 6 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -74,13 +73,13 @@
         depBy: { ROVER: '34R', BEKLA: '34R', GUSRO: '05', NINOX: '05', LAXAS: '05' }, arrBy: { GODIN: '34R', POLIX: '34R', XAC: '34L', AKSEL: '34L', AROSA: '34L' }, appArr: '34L', vecFix: ['WEDGE', 'COACH', 'EDDIE'],
         twr: { 1: { arr: ['34L'], dep: ['34R'] }, 2: { arr: ['34R'], dep: ['05'] } },      /* 관제탑 초급 = 서로 독립인 평행 활주로 / 중급 = 05 이륙과 34R 접근이 서로 걸리는 조합 */
         w: 0.6, wind: { dir: 350, spd: 6, spdN: 10 }, push: 'south', pushDu: 1, mini: 'R',
-        taxiNote: T('유도로 W · E · L은 남쪽 방향, A는 북쪽 방향, H는 동쪽 · G는 서쪽 방향이 표준'),
+        taxiNote: T('유도로 W · E · L은 남쪽 방향, A는 북쪽 방향, H는 동쪽 · G는 서쪽 방향이 표준 흐름'),
         closures: [['W', 450, -285, 800, -285], ['E', 300, 830, 550, 830, 800, 830], ['H', 1100, -285, 1100, 555]] },
       S: { id: 'S', label: T('남풍 운용'), arr: '22', dep: '16R', arrs: ['23', '22'], deps: ['16R', '16L'], sfx: 'A', simul: [['22', '23']],
         depBy: { ROVER: '16L', BEKLA: '16L', GUSRO: '16R', NINOX: '16R', LAXAS: '16R' }, arrBy: { GODIN: '22', POLIX: '22', XAC: '23', AKSEL: '23', AROSA: '23' }, appArr: '23', vecFix: ['SHAFT', 'SCREW', 'STOCK'],
         twr: { 1: { arr: ['23'], dep: ['16R'] }, 2: { arr: ['22'], dep: ['16R'] } },       /* 초급 = 서로 걸리지 않는 23 착륙 · 16R 이륙 / 중급 = 교차 활주로(22 착륙 · 16R 이륙) */
         w: 0.4, wind: { dir: 170, spd: 7, spdN: 11 }, push: 'north', pushDu: -1, mini: 'L',
-        taxiNote: T('유도로 W · A · E · L은 북쪽 방향, K는 동쪽 · J는 서쪽 방향이 표준'),
+        taxiNote: T('유도로 W · A · E · L은 북쪽 방향, K는 동쪽 · J는 서쪽 방향이 표준 흐름'),
         closures: [['W', 450, -285, 800, -285], ['E', 300, 830, 550, 830, 800, 830], ['J', -870, -285, -870, 630]] }
     };
     /* 표준 유도 흐름(게임값 — 마주 보고 멈추는 일을 줄이려는 일방통행 권장. 실제 표준 경로는 AIP AD 2.20 참조)
@@ -289,8 +288,8 @@
 
     /* 근무 순서(접근관제 · 지역관제) — 세이라와 다른 점: 도착기는 STAR를 따라 중간 접근 지점(IF)까지 스스로 오고, 관제사는 고도 · 속도 · 경로 줄이기로 순서를 만듦 */
     D.posBrief = {
-      APP: [T('깜박이는 표지 = 핸드오프 요청 → 「수락」'), T('STAR의 지점 옆 숫자(백 ft)에 맞춰 강하 — 흐름이 엇갈리는 곳은 그 고도로 1,000ft씩 떨어짐'), T('만나는 지점(WEDGE · CREAM · SHAFT · STEAM)에 같이 닿지 않게 속도를 조절하거나, 비어 있으면 직행으로 경로를 줄임'), T('IF(ARLON · CAMEL · SMILE · NEXUS)에 닿기 전에 「ILS 접근 허가」, 확립하면 Tower로 이양'), T('출발기는 9,000ft에서 위가 비면 FL240으로 올려 Tokyo Control로 이양')],
-      ACC: [T('핸드오프 수락 → 경로와 고도를 훑어 만나는 지점을 찾음'), T('같은 고도로 만나면 한쪽 고도를 바꿈(동쪽행은 천 단위 홀수 · 서쪽행은 짝수)'), T('도착기는 진입 지점마다 정해진 고도(XAC FL150 · AKSEL 12,000 · AROSA 13,000 · GODIN FL140 · POLIX FL150)로'), T('출발기는 요청 고도까지 올리고, 경계 전 다음 구역(서쪽 = Kobe Control)으로 이양'), T('5NM/1,000ft 분리 · 기본 배속 4배')]
+      APP: [T('깜박이는 표적 = 핸드오프 요청 → 「수락」'), T('STAR 각 지점 옆의 숫자(100ft 단위)에 맞춰 강하 — 도착 흐름이 교차하는 곳은 그 고도로 1,000ft씩 분리됨'), T('합류 지점(WEDGE · CREAM · SHAFT · STEAM)에 동시에 도달하지 않도록 속도를 조절하거나, 여유가 있으면 직행으로 경로를 단축'), T('IF(ARLON · CAMEL · SMILE · NEXUS) 도달 전에 「ILS 접근 허가」, 로컬라이저 확립 후 Tower로 이양'), T('출발기는 9,000ft에서 상공이 비면 FL240으로 상승시켜 Tokyo Control로 이양')],
+      ACC: [T('핸드오프 수락 → 경로와 고도를 확인해 교차 지점의 상대 항공기를 탐지'), T('같은 고도로 교차하면 한쪽 고도를 변경(동쪽행은 1,000ft 단위 홀수 · 서쪽행은 짝수)'), T('도착기는 진입 지점별 협정 고도(XAC FL150 · AKSEL 12,000 · AROSA 13,000 · GODIN FL140 · POLIX FL150)로 강하'), T('출발기는 요청 고도까지 상승시키고, 경계 도달 전에 다음 관제구역(서쪽 = Kobe Control)으로 이양'), T('5NM/1,000ft 분리 · 기본 배속 4배')]
     };
 
     /* ---------- 주파수(AIP AD 2.18 — 자리마다 대표 하나) ---------- */
@@ -441,6 +440,5 @@
     };
     return h;
   };
-  ATC.AIRPORT_DEFS.RJTT.preview = true;      /* 시험판: 사이트판(window.ATC_SITE)에서는 공항 목록에 내놓지 않음 */
-  ATC.AIRPORT_DEFS.RJTT.title = ATC.pick({ ko: '도쿄국제공항 · 하네다(시험판)', ja: '東京国際空港・羽田(試作)', en: 'Tokyo Intl · Haneda (preview)' });
+  ATC.AIRPORT_DEFS.RJTT.title = ATC.pick({ ko: '도쿄국제공항 · 하네다(AIP 바탕 · 학습용)', ja: '東京国際空港・羽田(AIPに基づく学習用)', en: 'Tokyo Intl · Haneda (AIP-based, for study)' });
 })(typeof globalThis !== 'undefined' ? globalThis : this);

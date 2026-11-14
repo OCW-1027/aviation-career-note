@@ -67,8 +67,8 @@
     } else {
       ctx.strokeStyle = '#27506e'; ctx.setLineDash([8, 5]); ctx.lineWidth = 1.3; if (D.tmaPoly) poly(ctx, v, W, H, D.tmaPoly); else { ctx.beginPath(); ctx.arc(o[0], o[1], D.tmaR * v.scale, 0, 7); } ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth = 1;
       /* STAR · SID */
-      var st = D.star[sim.flow.id];
-      (sim.gates || Object.keys(st)).forEach(function (g) { ctx.strokeStyle = '#1b3348'; ctx.beginPath(); st[g].forEach(function (n, ix) { var pp = rs(v, W, H, D.fix[n]); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.stroke(); });
+      var sts = [D.star[sim.flow.id]]; if (sim.rwChg) sts = [D.star[sim.rwChg.from.id], D.star[sim.rwChg.to.id]];      /* 활주로 전환 중에는 두 방향의 STAR를 모두 그림 */
+      sts.forEach(function (st) { (sim.gates || Object.keys(st)).forEach(function (g) { if (!st[g]) return; ctx.strokeStyle = '#1b3348'; ctx.beginPath(); st[g].forEach(function (n, ix) { var pp = rs(v, W, H, D.fix[n]); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.stroke(); }); });
       var de = D.ends[sim.flow.dep], d3 = D.off(de.end, de.crs, 3);
       if (D.sidRoute) { ctx.strokeStyle = '#17304a'; ctx.setLineDash([2, 5]); Object.keys(D.gateDest).forEach(function (g) { var rw = D.depRwyFor(sim.flow, g), e2 = D.ends[rw], sr = D.sidRoute(rw, g), q0 = rs(v, W, H, D.off(e2.end, e2.crs, 1.2)); ctx.beginPath(); ctx.moveTo(q0[0], q0[1]); sr.forEach(function (n) { var pp = rs(v, W, H, D.fix[n]); ctx.lineTo(pp[0], pp[1]); }); ctx.stroke(); }); ctx.setLineDash([]); }
       else Object.keys(D.gateDest).forEach(function (g) { line(ctx, rs(v, W, H, d3), rs(v, W, H, D.fix[g]), '#15283a', [2, 5]); });
@@ -93,7 +93,7 @@
       var f = D.fix[n]; f._on = false; f._sx = undefined; if (acc ? (f.k === 'if' || f.k === 'faf' || f.k === 'base' || f.k === 'dw' || f.k === 'wp' || f.k === 'tt') : (f.k === 'bd' || f.k === 'en')) return;
       if (!acc && sim.fixUse && (f.k === 'wp' || f.k === 'tt') && !sim.fixUse[n]) return;      /* 이번 근무의 경로에 없는 지점은 그리지 않음 */
       if (!acc && (f.k === 'if' || f.k === 'faf')) { var own = Object.keys(D.ends).filter(function (id) { return D.ends[id].IF === n || D.ends[id].FAF === n; })[0]; if ((sim.rwys || []).indexOf(own) < 0) return; }
-      if (!acc && (f.k === 'base' || f.k === 'dw')) { var used = false; var ss = D.star[sim.flow.id]; Object.keys(ss).forEach(function (g) { if (ss[g].indexOf(n) >= 0) used = true; }); if (!used) return; }
+      if (!acc && (f.k === 'base' || f.k === 'dw')) { var used = false; (sim.rwChg ? [D.star[sim.rwChg.from.id], D.star[sim.rwChg.to.id]] : [D.star[sim.flow.id]]).forEach(function (ss) { Object.keys(ss).forEach(function (g) { if (ss[g].indexOf(n) >= 0) used = true; }); }); if (!used) return; }
       var pp = rs(v, W, H, f); if (pp[0] < -40 || pp[0] > W + 40 || pp[1] < -20 || pp[1] > H + 20) return;
       var col = f.k === 'in' ? '#7d8f4e' : f.k === 'out' ? '#4e7f8f' : C.fix; ctx.strokeStyle = col; ctx.fillStyle = col;
       if (f.k === 'tt') { ctx.beginPath(); ctx.arc(pp[0], pp[1], 1.6, 0, 7); ctx.fill(); f._sx = pp[0]; f._sy = pp[1]; if (app.hoverFix === n) { ctx.fillStyle = C.sel; ctx.fillText(n, pp[0] + 7, pp[1] - 6); } return; }      /* 이름 없는 경유점(TT…): 점만, 가리키면 이름 */
@@ -260,6 +260,8 @@
     var thin = s < 0.12, used = [];
     function free(x, y, w, h) { if (!thin) return true; for (var i = 0; i < used.length; i++) { var q = used[i]; if (x < q[0] + q[2] && q[0] < x + w && y < q[1] + q[3] && q[1] < y + h) return false; } used.push([x, y, w, h]); return true; }
     function sg(p, t, z) { var w = t.length * z * 0.64 + 6; if (free(p[0] - w / 2, p[1] - z / 2 - 2, w, z + 4)) sign(ctx, p[0], p[1], t, z); }
+    /* 터미널 · 구역 이름(공항 묶음의 D.gText): 건물 위에 옅은 글자로 */
+    if (D.gText) { ctx.save(); ctx.font = '700 ' + Math.max(10, Math.min(26, 150 * s)) + 'px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(226,236,244,.62)'; D.gText.forEach(function (t) { var q = gs(v, W, H, t[1], t[2]); ctx.fillText(t[0], q[0], q[1]); }); ctx.restore(); }
     (D.gLabels || []).forEach(function (t) { sg(gs(v, W, H, t[1], t[2]), t[0], ss); });
     Object.keys(D.holds).forEach(function (h) { var o = D.holds[h]; sg(gs(v, W, H, o.lu, o.lv), h, ss * 0.92); });
     var pe = gs(v, W, H, -438, 652); sign(ctx, pe[0], pe[1], 'E', ss * 0.92);
@@ -311,6 +313,7 @@
     /* 북쪽 화살표 */
     ctx.save(); ctx.translate(W - 34, H - 38); ctx.rotate((90 - D.gridHdg) * D2R); ctx.strokeStyle = '#9fb3c8'; ctx.fillStyle = '#9fb3c8'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(0, 16); ctx.lineTo(0, -14); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, -20); ctx.lineTo(5, -10); ctx.lineTo(-5, -10); ctx.closePath(); ctx.fill(); ctx.font = 'bold 10px ' + MONO; ctx.fillText('N', -3.5, -28); ctx.restore();
     /* 최종 접근 표시(화면 밖 항공기) + 타워 레이더 */
+    if (sim.lvp) { ctx.fillStyle = 'rgba(176,188,198,.34)'; ctx.fillRect(0, 0, W, H); }      /* 저시정: 지도 전체에 안개 */
     var hd = R.hud(W, H);
     if (hd) { ctx.fillStyle = 'rgba(6,10,15,.93)'; ctx.fillRect(0, 0, W, hd.h); ctx.fillStyle = '#22384d'; ctx.fillRect(0, hd.h, W, 1); }
     R.finalBars(ctx, W, H, app);

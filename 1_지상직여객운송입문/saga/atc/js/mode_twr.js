@@ -7,10 +7,11 @@
     o = o || {}; o.mode = 'TWR'; ATC.GroundSim.call(this, o);
     var L = this.level.id, rng = this.rng, F = this.flow, i, t, self = this;
     /* 초급: 북쪽 활주로 하나로 이착륙 / 중급: 도착 북·출발 남 분리 / 고급: 두 활주로 혼합 */
-    this.cfg = [null, { arr: 6, dep: 6, gap: 230, k: 0 }, { arr: 9, dep: 10, gap: 150, k: 2 }, { arr: 14, dep: 14, gap: 120, k: 3 }][L];
+    this.cfg = ATC.scnCfg(o, [null, { arr: 6, dep: 6, gap: 230, k: 0 }, { arr: 9, dep: 10, gap: 150, k: 2 }, { arr: 14, dep: 14, gap: 120, k: 3 }][L]);
     this.arrRw = L === 3 ? F.arrs.slice() : [F.arr];
     this.depRw = L === 1 ? [F.arr] : L === 2 ? [F.dep] : F.deps.slice();
     if (F.twr && F.twr[L]) { this.arrRw = F.twr[L].arr.slice(); this.depRw = F.twr[L].dep.slice(); }   /* 공항 묶음이 난이도별 활주로 조합을 따로 정한 경우 */
+    if (o.scn && o.scn.arrRw) this.arrRw = o.scn.arrRw.slice(); if (o.scn && o.scn.depRw) this.depRw = o.scn.depRw.slice();   /* 시나리오가 활주로를 정한 경우 */
     var arr0 = this.arrRw[0];
     /* 고급: 첫 활주로를 64%, 나머지를 고르게 */
     function pickRw(list) { var r = rng(); return r < 0.64 || list.length < 2 ? list[0] : list[1 + Math.min(list.length - 2, Math.floor((r - 0.64) / 0.36 * (list.length - 1)))]; }
@@ -30,11 +31,18 @@
     this.endT = this.sched[this.sched.length - 1].t;
     var pool = L === 2 ? ['ga_pilot', 'bird', 'rto'] : L === 3 ? ['ga_pilot', 'rto', 'bird', 'emg'] : [], n = this.level.events;
     while (n-- > 0 && pool.length) { var k = pool.splice(rng.int(0, pool.length - 1), 1)[0]; this.events.push({ k: k, t: this.endT * (0.2 + 0.55 * rng()), done: false }); }
+    this.scnEvents();
     this.sys(ATC.T('{apt} 관제탑({0}) 근무 시작. 착륙 {1} / 이륙 {2}. 바람 {3}, QNH {4}.', D.freq.TWR.fq, this.arrRw.join('·'), this.depRw.join('·'), fmt.wind(this.wind), this.qnh));
   }
   ATC.extend(TwrSim, ATC.GroundSim);
 
   TwrSim.prototype.spawn = function (s) {
+    /* 도착 활주로가 닫혀 있으면: 접근관제가 다른 활주로로 돌리거나(shutAlt), 열릴 때까지 보내지 않음 */
+    if (s.kind === 'arr' && this.insp && this.insp.hold && this.insp.rw === D.ends[s.rwy].rw && this.rwClosed[D.ends[s.rwy].rw] > this.t && !s.emg) {
+      var alt = this.shutAlt;
+      if (alt && alt !== s.rwy && !(this.rwClosed[D.ends[alt].rw] > this.t)) { s.rwy = alt; this.active[alt] = 1; if (this.arrRw.indexOf(alt) < 0) this.arrRw.push(alt); if (!this.shutSaid) { this.shutSaid = true; this.sys(ATC.T('접근관제 통보: 도착기를 활주로 {0}(으)로 배정합니다 — 해당 활주로에서 이착륙을 교대로 처리하세요.', alt), 'alert'); } }
+      else { s.t = this.rwClosed[D.ends[s.rwy].rw] + 10 + (this.shutN = (this.shutN || 0) + 1) * 5; this.sched.push(s); this.sched.sort(function (a, b) { return a.t - b.t; }); return; }
+    }
     var self = this, f = s.f || this.mkFlight(s.cargo ? function (a) { return a.cargo; } : function (a) { return !a.cargo; }), ac, e = D.ends[s.rwy];
     if (s.kind === 'arr') {
       var prev = this.finals(s.rwy), last = prev[prev.length - 1];
@@ -43,10 +51,11 @@
       var side = this.level.id === 3 ? e.rw : null, st = s.stand || (P ? P.stand : this.pickStand(f, side)) || D.spareStand;
       ac = this.spawnFinal(s.rwy, { f: f, dNM: s.warm ? 5 : 10, stand: st, emg: s.emg, emgName: s.emgName });
       if (P) ac.orig = P.ap[0];
+      if (s.back) ac.back = true;
       if (s.re) this.total--;
-      this.say(ac, (s.emg ? 'MAYDAY, MAYDAY, MAYDAY, ' : '') + D.freq.TWR.n + ', ' + ATC.csSay(ac) + ', ILS runway ' + s.rwy + (s.emg ? ', hydraulic failure, request emergency services on standby.' : '.'), { kind: s.emg ? 'emg' : '' });
+      this.say(ac, (s.emg ? 'MAYDAY, MAYDAY, MAYDAY, ' : '') + D.freq.TWR.n + ', ' + ATC.csSay(ac) + ', ILS runway ' + s.rwy + (s.emg ? (s.back ? ', returning with engine failure, request emergency services on standby.' : ', hydraulic failure, request emergency services on standby.') : '.'), { kind: s.emg ? 'emg' : '' });
       ac.waiting = 'land';
-      if (s.emg) this.sys(ATC.T('{0} — 유압 계통 고장(비상). 복행시키지 말고 활주로를 비워 착륙시키세요. 착륙 뒤 활주로 위에 잠시 멈춥니다.', ac.cs), 'alert');
+      if (s.emg) this.sys(s.back ? ATC.T('{0} — 엔진 고장으로 회항합니다(비상). 복행시키지 말고 활주로를 확보해 착륙시키세요. 착륙 후 활주로상에 잠시 정지합니다.', ac.cs) : ATC.T('{0} — 유압 계통 고장(비상). 복행시키지 말고 활주로를 확보해 착륙시키세요. 착륙 후 활주로상에 잠시 정지합니다.', ac.cs), 'alert');
     } else {
       var PD = D.planFlight ? this.plan(f, 'dep', s.rwy) : null;
       var stand = PD ? PD.stand : this.pickStand(f, this.level.id === 3 ? e.rw : null); if (!stand) stand = D.spareStand;
@@ -83,28 +92,35 @@
   TwrSim.prototype.onFinalEvt = function (a, r) {
     var e = D.ends[a.rwy], busy;
     if (r === 'short') {
-      if (this.rwClosed[e.rw] > this.t) { this.inc('ga_forced', [a], ATC.T('{0}: 폐쇄 중인 활주로로 접근해 복행했습니다(미리 복행을 지시해야 합니다).', a.cs)); this.goAround(a, 'runway closed'); return; }
-      if (!a.clr) { this.inc('ga_noclr', [a], ATC.T('{0}: 0.5NM까지 착륙 허가가 없어 스스로 복행했습니다.', a.cs)); this.goAround(a, 'no landing clearance'); return; }
+      if (this.rwClosed[e.rw] > this.t) { this.inc('ga_forced', [a], ATC.T('{0}: 폐쇄 중인 활주로로 접근하다 복행했습니다(사전에 복행을 지시해야 합니다).', a.cs)); this.goAround(a, 'runway closed'); return; }
+      if (!a.clr) { this.inc('ga_noclr', [a], ATC.T('{0}: 0.5NM까지 착륙 허가가 없어 자체 복행했습니다.', a.cs)); this.goAround(a, 'no landing clearance'); return; }
       busy = this.rwyBusy(e.rw, a) || this.crossTraffic(e.rw, a);
-      if (busy) { if (a.emg) { this.inc('emg_late', [a], ATC.T('{0} (비상기): 활주로에 {1}가 있어 복행했습니다.', a.cs, busy.cs)); } else this.inc('ga_forced', [a], ATC.T('{0}: 활주로에 {1}가 있어 복행했습니다.', a.cs, busy.cs)); this.goAround(a, 'runway occupied'); }
+      if (busy) { if (a.emg) { this.inc('emg_late', [a], ATC.T('{0}(비상 항공기): 활주로에 {1}이(가) 있어 복행했습니다.', a.cs, busy.cs)); } else this.inc('ga_forced', [a], ATC.T('{0}: 활주로에 {1}이(가) 있어 복행했습니다.', a.cs, busy.cs)); this.goAround(a, 'runway occupied'); }
       return;
     }
     if (r === 'td') {
       busy = this.rwyBusy(e.rw, a) || this.crossTraffic(e.rw, a);
-      if (busy) this.inc('rwysep', [a, busy], ATC.T('{0} 착륙 순간 활주로에 {1}가 있었습니다.', a.cs, busy.cs));
+      if (busy) this.inc('rwysep', [a, busy], ATC.T('{0} 착륙 시점에 활주로에 {1}이(가) 있었습니다.', a.cs, busy.cs));
       this.touchdown(a); a.waiting = null;
-      if (a.emg) { a.stopHold = this.t + 85; this.inc('emg_ok', [a], ATC.T('{0} 비상기를 지체 없이 착륙시켰습니다.', a.cs)); this.say(a, ATC.csSay(a) + ', stopping on the runway, request fire service inspection.', { kind: 'emg' }); }
+      if (a.emg) { a.stopHold = this.t + 85; this.inc('emg_ok', [a], ATC.T('{0}(비상 항공기)을(를) 지체 없이 착륙시켰습니다.', a.cs)); this.say(a, ATC.csSay(a) + ', stopping on the runway, request fire service inspection.', { kind: 'emg' }); }
     }
   };
   TwrSim.prototype.onLift = function (a) { a.waiting = null; };
+  /* 이륙 직후 엔진 고장기: 접근관제를 거쳐 비상 도착기로 돌아옴 */
+  TwrSim.prototype.efatoBack = function (a) {
+    if (a.owner === 'me') this.inc('noho', [a], ATC.T('{0}: 엔진 고장 항공기를 접근관제로 이양하지 않았습니다.', a.cs));
+    this.sched.push({ t: this.t + 60, kind: 'arr', rwy: this.arrRw[0], f: { cs: a.cs, csWord: a.csWord, num: a.num, al: a.al, type: a.type, wake: a.wake, perf: a.perf }, re: true, emg: 'mayday', emgName: ATC.T('이륙 직후 엔진 고장 · 회항'), back: true });
+    this.sched.sort(function (x, y) { return x.t - y.t; }); this.remove(a, false);
+  };
   TwrSim.prototype.onAirOut = function (a) {
-    if (a.goAround) { if (a.owner === 'me') this.inc('noho', [a], ATC.T('{0}: 복행기를 접근관제로 넘기지 않았습니다.', a.cs)); this.sched.push({ t: this.t + 150, kind: 'arr', rwy: a.rwy, f: { cs: a.cs, csWord: a.csWord, num: a.num, al: a.al, type: a.type, wake: a.wake, perf: a.perf }, stand: a.stand, re: true, emg: a.emg, emgName: a.emgName }); this.sched.sort(function (x, y) { return x.t - y.t; }); this.remove(a, false); return; }
-    if (a.owner === 'me') this.inc('noho', [a], ATC.T('{0}: 이륙기를 출발관제(Departure)로 넘기지 않았습니다.', a.cs));
+    if (a.efato) { this.efatoBack(a); return; }
+    if (a.goAround) { if (a.owner === 'me') this.inc('noho', [a], ATC.T('{0}: 복행한 항공기를 접근관제로 이양하지 않았습니다.', a.cs)); this.sched.push({ t: this.t + 150, kind: 'arr', rwy: a.rwy, f: { cs: a.cs, csWord: a.csWord, num: a.num, al: a.al, type: a.type, wake: a.wake, perf: a.perf }, stand: a.stand, re: true, emg: a.emg, emgName: a.emgName, back: a.back }); this.sched.sort(function (x, y) { return x.t - y.t; }); this.remove(a, false); return; }
+    if (a.owner === 'me') this.inc('noho', [a], ATC.T('{0}: 이륙한 항공기를 출발관제(Departure)로 이양하지 않았습니다.', a.cs));
     this.remove(a, true);
   };
   TwrSim.prototype.command = function (ac, cmds, o) {
     if (!ac || ac.gone) return false;
-    if (ac.owner !== 'me') { this.sys(ATC.T('{0}: 지금은 {1} 주파수에 있습니다.', ac.cs, (ac.owner === 'gnd' ? ATC.T('지상관제') : ATC.T('다른 관제석'))), 'warn'); return false; }
+    if (ac.owner !== 'me') { this.sys(ATC.T('{0}: 현재 {1} 주파수에 있습니다.', ac.cs, (ac.owner === 'gnd' ? ATC.T('지상관제') : ATC.T('다른 관제석'))), 'warn'); return false; }
     return ATC.Sim.prototype.command.call(this, ac, cmds, o);
   };
   TwrSim.prototype.validate = function (ac, cmds) {
@@ -112,25 +128,29 @@
       var c = cmds[i], e, rw, arr, busy;
       if (c.k === 'luaw' || c.k === 'cto' || c.k === 'cross' || c.k === 'ctl') {
         rw = c.k === 'cross' ? ac.holdRw : D.ends[c.rwy || ac.rwy].rw;
-        if (this.rwClosed[rw] > this.t) { this.inc('rwyclosed', [ac], ATC.T('{0}: 점검으로 폐쇄 중인 활주로를 쓰라고 지시했습니다.', ac.cs)); return { refuse: 'runway is closed for inspection' }; }
+        if (this.rwClosed[rw] > this.t) { this.inc('rwyclosed', [ac], ATC.T('{0}: 폐쇄 중인 활주로의 사용을 지시했습니다.', ac.cs)); return { refuse: 'runway is closed for inspection' }; }
       }
       if (c.k === 'luaw' || c.k === 'cto' && ac.st === 'athold') {
         rw = D.ends[ac.rwy].rw; arr = this.nextArr(rw);
-        if (arr && arr.d < 1.3 * NM) { this.inc('incursion', [ac, arr], ATC.T('{0}에게 활주로 진입을 지시했지만 {1}가 {2}NM 최종 접근 중입니다.', ac.cs, arr.cs, (arr.d / NM).toFixed(1))); return { refuse: 'traffic on short final' }; }
-        busy = this.rwyBusy(rw, ac); if (busy && busy.st === 'land' && D.rwAlong(D.ends[busy.rwy], ac) > D.rwAlong(D.ends[busy.rwy], busy)) { this.inc('incursion', [ac, busy], ATC.T('{0}에게 활주로 진입을 지시했지만 {1}가 착륙 활주 중입니다.', ac.cs, busy.cs)); return { refuse: 'landing traffic on the runway' }; }
+        if (arr && arr.d < 1.3 * NM) { this.inc('incursion', [ac, arr], ATC.T('{0}에 활주로 진입을 지시했으나 {1}이(가) 최종 접근 {2}NM에 있습니다.', ac.cs, arr.cs, (arr.d / NM).toFixed(1))); return { refuse: 'traffic on short final' }; }
+        busy = this.rwyBusy(rw, ac); if (busy && busy.st === 'land' && D.rwAlong(D.ends[busy.rwy], ac) > D.rwAlong(D.ends[busy.rwy], busy)) { this.inc('incursion', [ac, busy], ATC.T('{0}에 활주로 진입을 지시했으나 {1}이(가) 착륙 활주 중입니다.', ac.cs, busy.cs)); return { refuse: 'landing traffic on the runway' }; }
+      }
+      if (this.lvp && (c.k === 'luaw' || c.k === 'cto' && ac.st === 'athold')) {      /* 저시정: 착륙기가 5NM 안이면 활주로 진입 · 이륙이 ILS 전파(보호구역)를 흩뜨림 */
+        arr = this.nextArr(D.ends[ac.rwy].rw);
+        if (arr && arr.d < 5 * NM && arr.d >= 1.3 * NM) this.inc('lvpbust', [ac, arr], ATC.T('{0}: 착륙기 {1}이(가) {2}NM에 있는데 활주로 진입을 지시했습니다. 저시정 절차 중에는 착륙기 5NM 이내에서 ILS 보호구역(활주로)에 항공기를 넣지 않습니다.', ac.cs, arr.cs, (arr.d / NM).toFixed(1)));
       }
       if (c.k === 'cto') {
         rw = D.ends[ac.rwy].rw; busy = this.rwyBusy(rw, ac);
-        if (busy) { this.inc('rwysep', [ac, busy], ATC.T('{0} 이륙 허가 시점에 활주로에 {1}가 있습니다.', ac.cs, busy.cs)); return { refuse: 'runway is occupied' }; }
+        if (busy) { this.inc('rwysep', [ac, busy], ATC.T('{0} 이륙 허가 시점에 활주로에 {1}이(가) 있습니다.', ac.cs, busy.cs)); return { refuse: 'runway is occupied' }; }
         busy = this.crossTraffic(rw, ac);
-        if (busy) { this.inc('rwysep', [ac, busy], ATC.T('{0} 이륙 허가 시점에 교차하는 활주로 {1}의 {2}가 아직 교차 지점을 지나지 않았습니다.', ac.cs, busy.rwy, busy.cs)); return { refuse: 'traffic on crossing runway' }; }
+        if (busy) { this.inc('rwysep', [ac, busy], ATC.T('{0} 이륙 허가 시점에 교차 활주로 {1}의 {2}이(가) 아직 교차 지점을 통과하지 않았습니다.', ac.cs, busy.rwy, busy.cs)); return { refuse: 'traffic on crossing runway' }; }
         var gap = this.wakeGap(ac, rw);
-        if (gap > 5) this.inc('wake', [ac], ATC.T('{0}: 앞선 {1} 출발기({2}) 뒤 후방난기류 간격이 {3}초 모자랍니다.', ac.cs, D.wakeName[this.lastDep[rw].wake], this.lastDep[rw].cs, Math.round(gap)));
+        if (gap > 5) this.inc('wake', [ac], ATC.T('{0}: 선행 {1} 출발기({2}) 뒤의 항적난기류 분리가 {3}초 부족합니다.', ac.cs, D.wakeName[this.lastDep[rw].wake], this.lastDep[rw].cs, Math.round(gap)));
       }
       if (c.k === 'cross') {
         rw = ac.holdRw; arr = this.nextArr(rw); busy = this.rwyBusy(rw, ac);
         var roll = busy && (busy.st === 'roll' || busy.st === 'land' || busy.st === 'linedup' && busy.cto);
-        if ((arr && arr.d < 1.6 * NM) || roll) { this.inc('incursion', [ac].concat(arr && arr.d < 1.6 * NM ? [arr] : [busy]), ATC.T('{0}에게 활주로 횡단을 지시했지만 {1} 있습니다.', ac.cs, (roll ? ATC.T('{0}가 활주로에서 움직이고', busy.cs) : ATC.T('{0}가 {1}NM 최종 접근 중이고', arr.cs, (arr.d / NM).toFixed(1))))); return { refuse: roll ? 'traffic on the runway' : 'traffic on short final' }; }
+        if ((arr && arr.d < 1.6 * NM) || roll) { this.inc('incursion', [ac].concat(arr && arr.d < 1.6 * NM ? [arr] : [busy]), ATC.T('{0}에 활주로 횡단을 지시했으나 {1} 있습니다.', ac.cs, (roll ? ATC.T('{0}이(가) 활주로에서 이동 중이고', busy.cs) : ATC.T('{0}이(가) 최종 접근 {1}NM에 있고', arr.cs, (arr.d / NM).toFixed(1))))); return { refuse: roll ? 'traffic on the runway' : 'traffic on short final' }; }
       }
       if (c.k === 'ga' && ac.emg) return { refuse: 'unable to go around, hydraulic failure' };
     }
@@ -142,7 +162,7 @@
       case 'luaw': if (ac.st === 'athold') { h = D.holds[ac.hp]; ac.st = 'lineup'; this.setPath(ac, [h.node, h.rnode], {}); ac.waiting = null; } break;
       case 'cto':
         ac.cto = true; ac.ctoT = this.t; ac.waiting = null;
-        if (ac.readyT && this.t - ac.readyT > 330 && !ac.delayHit) { ac.delayHit = true; this.inc('delay', [ac], ATC.T('{0}: 대기 지점에서 {1}분 기다렸습니다.', ac.cs, Math.round((this.t - ac.readyT) / 60))); }
+        if (ac.readyT && this.t - ac.readyT > 330 && !ac.delayHit) { ac.delayHit = true; this.inc('delay', [ac], ATC.T('{0}: 대기 지점에서 {1}분간 대기했습니다.', ac.cs, Math.round((this.t - ac.readyT) / 60))); }
         if (ac.st === 'athold') { h = D.holds[ac.hp]; ac.st = 'lineup'; this.setPath(ac, [h.node, h.rnode], {}); }
         break;
       case 'cancelto': if (ac.st === 'linedup' || ac.st === 'lineup') { ac.cto = false; ac.waiting = 'cto'; } break;
@@ -162,21 +182,37 @@
     var sd = D.stands[ac.stand], r = this.aiRoute(ac.node, sd.node, true);
     ac.owner = 'gnd'; ac.st = 'taxi'; ac.waiting = null; ac.taxiT = this.t; this.setPath(ac, r.nodes, this.autoHolds(r.nodes));
   };
+  function F0(sim) { return sim.flow; }
   TwrSim.prototype.fire = function (ev) {
     var self = this, a, c;
-    if (ev.k === 'ga_pilot') { c = this.acs.filter(function (x) { return x.st === 'final' && x.d < 3 * NM && x.d > 1.6 * NM && !x.emg; }); if (!c.length) return false; a = c[0]; this.goAround(a, this.rng.pick(['unstable approach', 'wind shear'])); a.waiting = 'gaho'; this.sys(ATC.T('{0} 스스로 복행 — 접근관제(Approach)로 넘기세요.', a.cs), 'alert'); return true; }
+    if (ev.k === 'ga_pilot') { c = this.acs.filter(function (x) { return x.st === 'final' && x.d < 3 * NM && x.d > 1.6 * NM && !x.emg; }); if (!c.length) return false; a = c[0]; this.goAround(a, this.lvp ? 'runway not in sight' : this.rng.pick(['unstable approach', 'wind shear'])); a.waiting = 'gaho'; this.sys(ATC.T('{0} 자체 복행 — 접근관제(Approach)로 이양하세요.', a.cs), 'alert'); return true; }
     if (ev.k === 'rto') {
       c = this.acs.filter(function (x) { return x.st === 'roll' && x.alt <= 0 && x.spd > 28 && x.spd < 45; }); if (!c.length) return false; a = c[0];
       var e = D.ends[a.rwy], need = a.spd * a.spd / (2 * 2.3) + 120, ex = null;
       var xs = this.exitsFor(a); xs.forEach(function (n) { var h = D.holds[n]; if (!ex && D.rwAlong(e, D.gN[h.rnode]) - D.rwAlong(e, a) >= need) ex = h; }); if (!ex) ex = D.holds[xs[xs.length - 1]];
       a.st = 'land'; a.rto = true; a.exit = ex.name; a.exitS = D.rwAlong(e, D.gN[ex.rnode]); a.tdT = this.t - 10; a.dec = 2.3; a.cto = false; a.owner = 'me';
-      this.say(a, ATC.csSay(a) + ', rejecting takeoff, engine warning.', { kind: 'emg', front: true }); this.sys(ATC.T('{0} 이륙 중단 — 활주로를 벗어날 때까지 그 활주로의 이착륙을 멈추세요.', a.cs), 'alert'); return true;
+      this.say(a, ATC.csSay(a) + ', rejecting takeoff, engine warning.', { kind: 'emg', front: true }); this.sys(ATC.T('{0} 이륙 중단(RTO) — 활주로를 이탈할 때까지 해당 활주로의 이착륙을 중지하세요.', a.cs), 'alert'); return true;
     }
     if (ev.k === 'bird') {
       c = this.acs.filter(function (x) { return x.st === 'air' && !x.goAround && x.alt < 1500 && x.alt > 200; }); if (!c.length) return false; a = c[0];
       var rw = D.ends[a.rwy].rw; this.rwClosed[rw] = this.t + 170; this.insp = { rw: rw, t0: this.t, t1: this.t + 170 };
       this.say(a, ATC.csSay(a) + ', bird strike on departure, continuing, suggest runway inspection.', { kind: 'emg', front: true });
-      this.sys(ATC.T('활주로 {0} 점검 차량 진입 — 약 3분간 폐쇄. 이 활주로의 이륙·착륙·횡단을 멈추고 접근 중인 항공기는 복행시키세요.', this.endOf(rw)), 'alert'); return true;
+      this.sys(ATC.T('활주로 {0} 점검 차량 진입 — 약 3분간 폐쇄. 해당 활주로의 이륙 · 착륙 · 횡단을 중지하고, 접근 중인 항공기는 복행시키세요.', this.endOf(rw)), 'alert'); return true;
+    }
+    if (ev.k === 'fod' || ev.k === 'shut') {
+      /* 활주로 폐쇄(dur초): fod = 착륙기가 이물질을 보고한 뒤, shut = 정해진 시각에 바로. redirect면 도착기를 다른 활주로로 돌림 */
+      var sE = this.arrRw[0], sRw = D.ends[sE].rw, dur = ev.dur || 300;
+      if (ev.k === 'fod') { c = this.acs.filter(function (x) { return x.st === 'land' && D.ends[x.rwy].rw === sRw && !x.emg && !x.rto; }); if (!c.length) return false; a = c[0]; this.say(a, ATC.csSay(a) + ', be advised, debris on the runway near the touchdown zone.', { kind: 'emg', front: true }); }
+      this.rwClosed[sRw] = this.t + dur; this.insp = { rw: sRw, t0: this.t, t1: this.t + dur, hold: true };
+      this.shutAlt = ev.redirect ? (F0(this).arrs || []).concat(this.depRw).filter(function (r) { return D.ends[r].rw !== sRw; })[0] || null : null;      /* 돌릴 곳: 그 운용의 다른 착륙 활주로 → 없으면 이륙 활주로 */ this.shutSaid = false;
+      this.sys(ev.k === 'fod' ? ATC.T('활주로 {0} 이물질(FOD) 보고 — 점검 · 제거 작업으로 약 {1}분간 폐쇄. 해당 활주로의 이륙 · 착륙 · 횡단을 중지하고, 접근 중인 항공기는 복행시키세요.', this.endOf(sRw), Math.round(dur / 60)) : ATC.T('활주로 {0} 폐쇄 중 — 약 {1}분 뒤 운영을 재개합니다. 그동안 해당 활주로의 이륙 · 착륙 · 횡단을 중지하세요.', this.endOf(sRw), Math.round(dur / 60)), 'alert');
+      return true;
+    }
+    if (ev.k === 'efato') {
+      c = this.acs.filter(function (x) { return x.st === 'air' && x.kind === 'dep' && !x.goAround && !x.emg && x.alt < 1500 && x.alt > 200; }); if (!c.length) return false; a = c[0];
+      a.emg = 'mayday'; a.emgName = ATC.T('이륙 직후 엔진 고장'); a.efato = this.t;
+      this.say(a, 'MAYDAY, MAYDAY, MAYDAY, ' + ATC.csSay(a) + ', engine failure after takeoff, request immediate return.', { kind: 'emg', front: true }); a.waiting = 'efato';
+      this.sys(ATC.T('{0} 이륙 직후 엔진 고장 — 접근관제(Approach)로 이양하세요. 약 5분 뒤 활주로 {1}(으)로 회항합니다. 그 시점에 활주로를 비워 두세요.', a.cs, this.arrRw[0]), 'alert'); return true;
     }
     if (ev.k === 'emg') {
       var rwy = this.arrRw[0]; if (this.finals(rwy).some(function (x) { return x.d > 6 * NM; })) return false;
@@ -194,12 +230,14 @@
     for (i = 0; i < acs.length; i++) {
       a = acs[i]; if (a.gone) continue;
       if (a.st === 'gate' && a.parked && this.t - a.parkT > 6) { this.standBusy[a.stand] = 0; this.remove(a, true); continue; }
+      if (a.efato && a.st === 'air' && this.t - a.efato > 100) { this.efatoBack(a); continue; }
       if (a.st === 'linedup' && a.cto && this.t - Math.max(a.linedT, a.ctoT) > 3) { a.st = 'roll'; a.rollT = this.t; }
-      if (a.st === 'land' && a.stopHold) { if (this.t < a.stopHold) { a.spd = Math.max(0, a.spd - 3 * dt); if (a.spd <= 0) a.u -= 0; } else { a.stopHold = 0; a.spd = Math.max(a.spd, 12); this.sys(ATC.T('{0} 점검 완료 — 활주로를 벗어납니다.', a.cs), 'info'); } }
+      if (a.st === 'land' && a.stopHold) { if (this.t < a.stopHold) { a.spd = Math.max(0, a.spd - 3 * dt); if (a.spd <= 0) a.u -= 0; } else { a.stopHold = 0; a.spd = Math.max(a.spd, 12); this.sys(ATC.T('{0} 점검 완료 — 활주로를 이탈합니다.', a.cs), 'info'); } }
       if (a.crossing && !this.onRwy(a, a.holdRw) && this.t - a.crossT > 8) { a.crossing = false; a.owner = 'gnd'; }
+      if (this.lvp && a.st === 'final' && !a.clr && a.d < 2 * NM && a.d > 900 && !a.emg) { this.inc('ga_noclr', [a], ATC.T('{0}: 2NM까지 착륙 허가가 없어 복행했습니다. 저시정 절차 중에는 착륙 허가를 2NM 전까지 발부합니다.', a.cs)); this.goAround(a, 'no landing clearance'); continue; }
       if (a.st === 'final' && !a.clr && !a.callFinal && a.d < 4 * NM) { a.callFinal = true; this.say(a, ATC.csSay(a) + ', 4 miles final runway ' + a.rwy + '.', { kind: 'warn' }); a.waiting = 'land'; }
       if (a.st === 'air' && a.owner === 'me' && !a.hoAsk && a.alt > 2200) { a.hoAsk = true; this.say(a, ATC.csSay(a) + (a.goAround ? ', runway heading, 3,000, request further instructions.' : ', passing ' + fmt.alt(Math.max(500, Math.round(a.alt / 100) * 100)) + ', request frequency change.'), { kind: 'warn' }); a.waiting = a.goAround ? 'gaho' : 'dep2'; }
-      if (a.st === 'reqtaxi' && a.owner === 'me' && this.t - a.vacT > 35) { this.inc('noho', [a], ATC.T('{0}: 활주로를 벗어난 항공기를 지상관제로 넘기지 않아 유도로 입구를 막았습니다.', a.cs)); this.toGround(a); }
+      if (a.st === 'reqtaxi' && a.owner === 'me' && this.t - a.vacT > 35) { this.inc('noho', [a], ATC.T('{0}: 활주로를 이탈한 항공기를 지상관제로 이양하지 않아 탈출 유도로가 막혔습니다.', a.cs)); this.toGround(a); }
       if (a.st === 'athold' && a.holdKind === 'cross' && a.reqT && this.t - a.reqT > 300 && !a.crossLate) { a.crossLate = true; this.inc('delay', [a], ATC.T('{0}: 활주로 횡단 대기 5분 초과.', a.cs)); }
     }
   };
@@ -215,23 +253,23 @@
       if (a.st === 'final') {
         if (closed) { out.push({ p: 9, ac: a.id, t: ATC.T('{0} — 활주로 폐쇄 중. 「복행(Go around)」을 지시하세요.', a.cs), c: [{ k: 'ga' }] }); return; }
         if (!a.clr) {
-          if (busy && a.d < 2.2 * NM && busy.st !== 'roll') out.push({ p: 9, ac: a.id, t: ATC.T('{0} {1}NM — 활주로에 {2}. 비워지지 않으면 복행을 지시하세요.', a.cs, (a.d / NM).toFixed(1), busy.cs) });
+          if (busy && a.d < 2.2 * NM && busy.st !== 'roll') out.push({ p: 9, ac: a.id, t: ATC.T('{0} {1}NM — 활주로에 {2}. 활주로가 비지 않으면 복행을 지시하세요.', a.cs, (a.d / NM).toFixed(1), busy.cs) });
           else if (a.d < 7 * NM) out.push({ p: a.d < 3 * NM ? 8 : 5, ac: a.id, t: ATC.T('{0} {1}NM — 활주로가 비면 「착륙 허가」(바람 정보 포함).', a.cs, (a.d / NM).toFixed(1)), c: [{ k: 'ctl', rwy: a.rwy }] });
         }
       } else if (a.st === 'athold' && a.holdKind === 'dep') {
         var gap = self.wakeGap(a, rw);
         if (closed) out.push({ p: 4, ac: a.id, t: ATC.T('{0} — 활주로 폐쇄 중, 대기.', a.cs) });
-        else if (busy) out.push({ p: 4, ac: a.id, t: ATC.T('{0} — 활주로에 {1}, 벗어난 뒤 진입시키세요.', a.cs, busy.cs) });
-        else if (self.crossTraffic(rw, a)) out.push({ p: 4, ac: a.id, t: ATC.T('{0} — 교차하는 활주로의 {1}가 교차 지점을 지난 뒤 이륙 허가.', a.cs, self.crossTraffic(rw, a).cs) });
-        else if (arr && arr.d < 3.5 * NM) out.push({ p: 4, ac: a.id, t: ATC.T('{0} — 착륙기 {1} {2}NM. 착륙 뒤에 진입.', a.cs, arr.cs, (arr.d / NM).toFixed(1)) });
-        else if (gap > 0) out.push({ p: 5, ac: a.id, t: ATC.T('{0} — 앞 출발기가 더 무거운 등급. 후방난기류 간격 {1}초 더 기다린 뒤 이륙 허가(먼저 line up은 가능).', a.cs, Math.ceil(gap)) });
-        else out.push({ p: 7, ac: a.id, t: ATC.T('{0} — 활주로 비었음{1}. 「이륙 허가」.', a.cs, (arr ? ATC.T('(착륙기 {0}NM)', (arr.d / NM).toFixed(1)) : '')), c: [{ k: 'cto', rwy: a.rwy }] });
-      } else if (a.st === 'linedup' && !a.cto) out.push({ p: 8, ac: a.id, t: ATC.T('{0} 활주로에 정렬해 대기 중 — 앞 항공기가 떠났으면 「이륙 허가」.', a.cs), c: [{ k: 'cto', rwy: a.rwy }] });
+        else if (busy) out.push({ p: 4, ac: a.id, t: ATC.T('{0} — 활주로에 {1}, 이탈한 뒤 진입시키세요.', a.cs, busy.cs) });
+        else if (self.crossTraffic(rw, a)) out.push({ p: 4, ac: a.id, t: ATC.T('{0} — 교차 활주로의 {1}이(가) 교차 지점을 통과한 뒤 이륙 허가.', a.cs, self.crossTraffic(rw, a).cs) });
+        else if (arr && arr.d < 3.5 * NM) out.push({ p: 4, ac: a.id, t: ATC.T('{0} — 착륙기 {1} {2}NM. 착륙 후 진입.', a.cs, arr.cs, (arr.d / NM).toFixed(1)) });
+        else if (gap > 0) out.push({ p: 5, ac: a.id, t: ATC.T('{0} — 선행 출발기가 상위 중량 등급. 항적난기류 분리 {1}초 경과 후 이륙 허가(활주로 진입 대기(Line up)는 먼저 가능).', a.cs, Math.ceil(gap)) });
+        else out.push({ p: 7, ac: a.id, t: ATC.T('{0} — 활주로 사용 가능{1}. 「이륙 허가」.', a.cs, (arr ? ATC.T('(착륙기 {0}NM)', (arr.d / NM).toFixed(1)) : '')), c: [{ k: 'cto', rwy: a.rwy }] });
+      } else if (a.st === 'linedup' && !a.cto) out.push({ p: 8, ac: a.id, t: ATC.T('{0} 활주로 진입 후 대기 중 — 선행기가 이륙했으면 「이륙 허가」.', a.cs), c: [{ k: 'cto', rwy: a.rwy }] });
       else if (a.st === 'air') out.push({ p: 6, ac: a.id, t: a.cs + (a.goAround ? ATC.T(' 복행 — Approach로 이양.') : ATC.T(' 이륙 — Departure로 이양.')), c: [{ k: 'ho', to: a.goAround ? 'APP' : 'DEP' }] });
       else if (a.st === 'reqtaxi') out.push({ p: 7, ac: a.id, t: ATC.T('{0} 활주로 이탈 — Ground로 이양.', a.cs), c: [{ k: 'ho', to: 'GND' }] });
       else if (a.st === 'athold' && a.holdKind === 'cross') {
         var ar = self.nextArr(a.holdRw), bz = self.rwyBusy(a.holdRw, a);
-        out.push({ p: 6, ac: a.id, t: ATC.T('{0} 횡단 요청 — {1}', a.cs, (bz ? ATC.T('활주로에 {0}, 대기.', bz.cs) : ar && ar.d < 3 * NM ? ATC.T('착륙기 {0}NM, 착륙 뒤 허가.', (ar.d / NM).toFixed(1)) : ATC.T('지금 「횡단 허가」 가능.'))) });
+        out.push({ p: 6, ac: a.id, t: ATC.T('{0} 횡단 요청 — {1}', a.cs, (bz ? ATC.T('활주로에 {0}, 대기.', bz.cs) : ar && ar.d < 3 * NM ? ATC.T('착륙기 {0}NM, 착륙 후 허가.', (ar.d / NM).toFixed(1)) : ATC.T('지금 「횡단 허가」 가능.'))) });
       }
     });
     out.sort(function (x, y) { return y.p - x.p; }); return out.slice(0, 4);

@@ -20,7 +20,24 @@
     if (want !== 'ko' && (d = LANGS[want])) { s = d.s[k]; if (s === undefined) { miss[k] = 1; s = k; } }
     if (s.indexOf('{a') >= 0 || s.indexOf('{icao}') >= 0) { var ap = (ATC.D && ATC.D.airport) || {}; s = s.split('{aptName}').join(ap.ko || '').split('{apt}').join(ap.short || '').split('{aptEn}').join(ap.call || '').split('{icao}').join(ap.icao || ''); }   /* 공항 이름은 공항 자료에서 */
     if (arguments.length > 1) { var a = arguments; s = s.replace(/\{(\d+)\}/g, function (_, i) { return a[+i + 1]; }); }
+    if (!(want !== 'ko' && LANGS[want]) && s.indexOf('(') >= 0) s = ATC.josa(s);
     return s;
+  };
+  /* 한국어 조사 고르기: 「VLA301이(가)」 → 「VLA301이」, 「07R(으)로」 → 「07R로」. 앞말의 끝소리(받침)로 정함 —
+     한글은 글자에서, 숫자는 읽는 소리(0 영 · 1 일 · 3 삼 · 6 육 · 7 칠 · 8 팔에 받침), 로마자는 글자 이름(L · M · N · R에 받침)으로. 닫는 괄호 · 낫표는 건너뜀 */
+  var JOSA = { '이(가)': ['이', '가'], '을(를)': ['을', '를'], '은(는)': ['은', '는'], '과(와)': ['과', '와'], '와(과)': ['과', '와'], '(으)로': ['으로', '로'] };
+  function batchim(ch) {      /* 0 = 받침 없음, 1 = 받침 있음, 2 = ㄹ 받침 */
+    var c = ch.charCodeAt(0);
+    if (c >= 0xAC00 && c <= 0xD7A3) { var j = (c - 0xAC00) % 28; return j === 0 ? 0 : j === 8 ? 2 : 1; }
+    if (ch >= '0' && ch <= '9') return '178'.indexOf(ch) >= 0 ? 2 : '036'.indexOf(ch) >= 0 ? 1 : 0;
+    ch = ch.toUpperCase(); if (ch === 'L' || ch === 'R') return 2; if (ch === 'M' || ch === 'N') return 1; return 0;
+  }
+  ATC.josa = function (s) {
+    return s.replace(/(이\(가\)|을\(를\)|은\(는\)|과\(와\)|와\(과\)|\(으\)로)/g, function (m, _g, at) {
+      var i = at - 1; while (i >= 0 && /[\s)\]」』"'’”>]/.test(s[i])) i--;
+      if (i < 0) return m; var b = batchim(s[i]), f = JOSA[m];
+      return m === '(으)로' ? (b === 1 ? f[0] : f[1]) : (b ? f[0] : f[1]);
+    });
   };
   /* 언어별 내용 묶음에서 지금 언어 것을 고름(없으면 한국어) */
   ATC.pick = function (o) { var l = ATC.lang(); return o[l] !== undefined ? o[l] : o.ko; };

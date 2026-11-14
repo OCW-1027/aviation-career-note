@@ -116,6 +116,7 @@
     if (prevNode) { var ad = prevNode.adj; for (i = 0; i < ad.length; i++) if (ad[i].to === tn.id) ek = ad[i].e.kind; }
     var vmax = ac.st === 'push' ? 1.9 : (ek === 'lane' || ek === 'stand') ? 6 : ek === 'entry' ? 7 : 11;
     if (ac.st === 'vacate') vmax = 9;
+    if (this.lvp && ac.st !== 'push') vmax = Math.min(vmax, ac.st === 'vacate' ? 6 : 7.5);      /* 저시정: 지상 이동 속도를 낮춤 */
     /* 굽은 길 앞에서 감속 */
     if (ac.pi + 1 < ac.path.length && dist < 60) { var n2 = N[ac.path[ac.pi + 1]], c = ((tn.u - ac.u) * (n2.u - tn.u) + (tn.v - ac.v) * (n2.v - tn.v)) / ((dist || 1) * (Math.hypot(n2.u - tn.u, n2.v - tn.v) || 1)); if (c < 0.7) vmax = Math.min(vmax, 5); }
     /* 활주로 위를 지나는 중(정지선 → 활주로 → 건너편 정지선): 멀리 있는 항공기 때문에 활주로 위에 서지 않고 건너편 정지선까지는 감 */
@@ -226,7 +227,7 @@
         case 'final': r = this.finalStep(a, dt); if (r) this.onFinalEvt(a, r); break;
         case 'land': r = this.landStep(a, dt); break;
         case 'roll': r = this.rollStep(a, dt); if (r === 'lift' && this.onLift) this.onLift(a); break;
-        case 'air': this.airStep(a, dt); if (Math.abs(a.u) > 24000) this.onAirOut(a); break;
+        case 'air': this.airStep(a, dt); if (Math.abs(a.u) > 24000 || Math.abs(a.v) > 24000) this.onAirOut(a); break;      /* 남북으로 놓인 활주로에서 뜬 항공기는 v쪽으로 멀어짐 */
         case 'push': case 'taxi': case 'vacate': case 'lineup': case 'cross':
           r = this.taxiStep(a, dt);
           if (r === 'end' || r === 'hs') this.onPathEvt(a, r);
@@ -251,7 +252,7 @@
     if (!a.stopSeen[key] && a.st === 'taxi') { a.stopClock = a.stopClock || this.t; if (this.t - a.stopClock > 6) { a.stopSeen[key] = 1; a.stopClock = 0; if (this.onStop) this.onStop(a, o); } }
   };
   GroundSim.prototype.gridlock = function (a, o) {
-    this.inc('gridlock', [a, o], ATC.T('{0} · {1} 유도로에서 마주 보고 멈췄습니다. 견인차로 한 대를 빼냅니다.', a.cs, o.cs));
+    this.inc('gridlock', [a, o], ATC.T('{0} · {1} 유도로에서 마주 보고 정지했습니다(교착). 견인차로 한 대를 이동시킵니다.', a.cs, o.cs));
     var late = (a.taxiT || 0) > (o.taxiT || 0) ? a : o; this.sys(ATC.T('{0} 견인 조치 — 운항 지연.', late.cs), 'warn'); this.remove(late, false);
   };
   /* ---------- 공통 도우미: 주기장 배정 · 표준 경로 · 주기 ---------- */

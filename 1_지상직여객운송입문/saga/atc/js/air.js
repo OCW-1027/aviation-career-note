@@ -132,7 +132,7 @@
     this.sweepT += dt;
     if (this.sweepT >= this.sweep) { this.sweepT = 0; for (i = 0; i < this.acs.length; i++) this.acs[i].blip(); this.sepCheck(); this.emit('sweep'); }
   };
-  /* 분리 예외: 같은 ILS에 확립한 앞뒤 기체(후방난기류 기준 적용) · 평행 ILS 확립 · 이륙 직후 */
+  /* 분리 예외: 같은 ILS에 확립한 앞뒤 기체(항적난기류 기준 적용) · 평행 ILS 확립 · 이륙 직후 */
   /* 두 항공기에 적용할 분리 기준. null = 레이더 분리 판정에서 뺌(이 공항에 정한 절차상 분리가 있는 쌍만)
    *  ① 독립 평행 접근(D.indepParallel): 「서로 다른 물리 활주로 · 같은 운용 방향」의 로컬라이저에 둘 다 확립
    *  ② 관제탑 구역(D.twrZoneNM) 안의 활주로 분리 구간:
@@ -151,6 +151,7 @@
           return (sm ? sm.some(function (p) { return p.indexOf(ra) >= 0 && p.indexOf(rb) >= 0; }) : D.indepParallel && D.rwRel(ra, rb) === 'parallel') ? null : std; }
       var lead = a.appr.d < b.appr.d ? a : b, fol = lead === a ? b : a;
       var w = (D.wakeNM[lead.wake] || {})[fol.wake] || 0, near = lead.appr.d < 10 && fol.appr.d < 10;
+      if (this.lvp) return { h: Math.max(this.lvp.sep || 6, w), v: 1000, wake: false, lead: lead, fol: fol, trail: true, lvp: true };      /* 저시정: 같은 ILS의 앞뒤 간격을 넓힘(선행기가 활주로를 벗어나 ILS 보호구역이 빌 때까지) */
       return { h: Math.max(near ? 2.5 : this.minH, w), v: 1000, wake: w > 0, lead: lead, fol: fol, trail: true };
     }
     var da = a.justDep && a.alt < 3000 && inTwrZone(a), db = b.justDep && b.alt < 3000 && inTwrZone(b), ma = a.missed && a.alt < 2500 && inTwrZone(a), mb = b.missed && b.alt < 2500 && inTwrZone(b);
@@ -172,10 +173,11 @@
         ca.push([a, b]); st.min = Math.min(st.min, dh);
         if (!st.los) {
           st.los = true;
-          if (rule.wake && dh >= 2.5) this.inc('wake', [rule.lead, rule.fol], ATC.T('{0}가 {1} {2} 뒤 {3}NM (기준 {4}NM)', rule.fol.cs, D.wakeName[rule.lead.wake], rule.lead.cs, dh.toFixed(1), rule.h));
+          if (rule.lvp && dh >= 3) this.inc('lvpsep', [rule.lead, rule.fol], ATC.T('{0}이(가) {1} 뒤 {2}NM — 저시정 절차 중 같은 ILS의 간격 기준은 {3}NM입니다.', rule.fol.cs, rule.lead.cs, dh.toFixed(1), rule.h));
+          else if (rule.wake && dh >= 2.5) this.inc('wake', [rule.lead, rule.fol], ATC.T('{0}이(가) {1} {2} 뒤 {3}NM(기준 {4}NM)', rule.fol.cs, D.wakeName[rule.lead.wake], rule.lead.cs, dh.toFixed(1), rule.h));
           else this.inc('los', [a, b], ATC.T('{0} · {1} — {2}NM / {3}ft (기준 {4}NM 또는 {5}ft)', a.cs, b.cs, dh.toFixed(1), Math.round(dv / 100) * 100, rule.h, rule.v));
         }
-        if (!st.nmac && dh < 0.6 && dv < 400) { st.nmac = true; this.inc('nmac', [a, b], ATC.T('{0} · {1} 충돌 직전까지 접근했습니다.', a.cs, b.cs)); }
+        if (!st.nmac && dh < 0.6 && dv < 400) { st.nmac = true; this.inc('nmac', [a, b], ATC.T('{0} · {1} 충돌 직전까지 근접했습니다.', a.cs, b.cs)); }
       } else {
         if (st.los && (dh > rule.h + 0.3 || dv > rule.v)) st.los = false;
         if (!rule.trail && this.predict(a, b, rule, look)) stca.push([a, b]);
@@ -187,7 +189,7 @@
     for (i = 0; i < acs.length; i++) {
       a = acs[i]; if (a.onGround || (a.appr && a.appr.loc) || a.justDep && a.alt < 4000 || a.missed && a.alt < 3000 || a.owner !== 'me') continue;
       var need = this.mvaAt ? this.mvaAt(a) : 0;
-      if (need && a.alt < need - 150) { ms.push(a); if (!a.msawHit) { a.msawHit = true; this.inc('terrain', [a], ATC.T('{0} {1}ft — 이 구역의 최저 고도는 {2}ft', a.cs, Math.round(a.alt / 100) * 100, need)); } }
+      if (need && a.alt < need - 150) { ms.push(a); if (!a.msawHit) { a.msawHit = true; this.inc('terrain', [a], ATC.T('{0} {1}ft — 이 구역의 최저 레이더 유도 고도는 {2}ft', a.cs, Math.round(a.alt / 100) * 100, need)); } }
       else if (need && a.alt >= need) a.msawHit = false;
     }
     this.alerts.msaw = ms;

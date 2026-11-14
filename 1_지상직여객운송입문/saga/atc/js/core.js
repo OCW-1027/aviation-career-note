@@ -74,7 +74,8 @@
         return [d + ' speed ' + (d === 'maintain' ? '' : 'to ') + c.v + ' knots', 'speed ' + c.v];
       case 'dct': return ['proceed direct ' + c.fix, 'direct ' + c.fix];
       case 'ils': return ['cleared for ILS runway ' + c.rwy + ' approach', 'cleared for ILS runway ' + c.rwy + ' approach'];
-      case 'hold': return ['hold at ' + c.fix + ' as published, expect further clearance at ' + U.hhmm(sim.utc() + 600), 'hold at ' + c.fix];
+      case 'hold': return ['hold at ' + c.fix + ' as published, expect further clearance at ' + U.hhmm(sim.efc ? sim.efc(ac) : sim.utc() + 600), 'hold at ' + c.fix];
+      case 'divert': return ['cleared to ' + c.destName + ' airport via ' + (c.gate || c.fix) + ', climb and maintain ' + fmt.alt(c.alt), 'cleared to ' + c.destName + ' via ' + (c.gate || c.fix) + ', climbing ' + fmt.alt(c.alt)];
       case 'xalt': return ['cross ' + c.fix + ' at ' + fmt.alt(c.v), 'cross ' + c.fix + ' at ' + fmt.alt(c.v)];
       case 'ho':
         var to = c.to, o = to.fq ? to : f[to];
@@ -132,34 +133,39 @@
   ATC.INC = {
     los: { cat: 'S', pts: -15, t: ATC.T('레이더 분리 상실'), les: 'sep' },
     nmac: { cat: 'S', pts: -40, t: ATC.T('공중 근접(충돌 위험)'), les: 'sep', fatal: true },
-    wake: { cat: 'S', pts: -10, t: ATC.T('후방난기류 분리 미달'), les: 'wake' },
+    wake: { cat: 'S', pts: -10, t: ATC.T('항적난기류 분리 미달'), les: 'wake' },
     terrain: { cat: 'S', pts: -15, t: ATC.T('최저 레이더 유도 고도(MVA) 미만'), les: 'mva' },
     rwysep: { cat: 'S', pts: -25, t: ATC.T('활주로 분리 상실'), les: 'rwy' },
-    incursion: { cat: 'S', pts: -25, t: ATC.T('활주로 침범 위험 지시'), les: 'rwy' },
-    rwyclosed: { cat: 'S', pts: -15, t: ATC.T('폐쇄 중인 활주로 사용 지시'), les: 'rwy' },
+    incursion: { cat: 'S', pts: -25, t: ATC.T('활주로 침범 유발 지시'), les: 'rwy' },
+    rwyclosed: { cat: 'S', pts: -15, t: ATC.T('폐쇄 활주로 사용 지시'), les: 'rwy' },
     collision: { cat: 'S', pts: -50, t: ATC.T('지상 충돌'), les: 'gnd', fatal: true },
     restricted: { cat: 'S', pts: -10, t: ATC.T('제한 구역 진입'), les: 'acc' },
-    wx: { cat: 'S', pts: -6, t: ATC.T('악기상 구역으로 유도'), les: 'app' },
-    ga_forced: { cat: 'E', pts: -8, t: ATC.T('복행 유발(활주로 미개방·간격 부족)'), les: 'rwy' },
-    ga_noclr: { cat: 'P', pts: -6, t: ATC.T('착륙 허가 누락으로 복행'), les: 'twr' },
-    hearback: { cat: 'P', pts: -6, t: ATC.T('틀린 복창을 바로잡지 않음'), les: 'rb' },
-    rbfix: { cat: 'P', pts: 2, t: ATC.T('틀린 복창 정정'), les: 'rb' },
+    wx: { cat: 'S', pts: -6, t: ATC.T('악기상 구역 진입 유도'), les: 'app' },
+    ga_forced: { cat: 'E', pts: -8, t: ATC.T('복행 유발(활주로 점유 · 간격 부족)'), les: 'rwy' },
+    ga_noclr: { cat: 'P', pts: -6, t: ATC.T('착륙 허가 누락에 따른 복행'), les: 'twr' },
+    hearback: { cat: 'P', pts: -6, t: ATC.T('복창 오류 미정정'), les: 'rb' },
+    rbfix: { cat: 'P', pts: 2, t: ATC.T('복창 오류 정정'), les: 'rb' },
     exitbad: { cat: 'P', pts: -6, t: ATC.T('이양 조건 미충족'), les: 'ho' },
-    wronglvl: { cat: 'P', pts: -4, t: ATC.T('비행 방향에 맞지 않는 순항 고도'), les: 'acc' },
-    reqlate: { cat: 'E', pts: -2, t: ATC.T('조종사 요청 미응답'), les: 'eff' },
-    noho: { cat: 'P', pts: -4, t: ATC.T('이양(주파수 변경) 지연·누락'), les: 'ho' },
+    wronglvl: { cat: 'P', pts: -4, t: ATC.T('비행 방향에 맞지 않는 순항 고도 배정'), les: 'acc' },
+    reqlate: { cat: 'E', pts: -2, t: ATC.T('조종사 요청 응답 지연'), les: 'eff' },
+    noho: { cat: 'P', pts: -4, t: ATC.T('관제 이양(주파수 변경) 지연 · 누락'), les: 'ho' },
     airspace: { cat: 'S', pts: -10, t: ATC.T('이양 없이 관할 공역 이탈'), les: 'ho' },
-    unstable: { cat: 'E', pts: -5, t: ATC.T('불안정 접근 유도(너무 높거나 요격 각도 과대)'), les: 'app' },
+    unstable: { cat: 'E', pts: -5, t: ATC.T('불안정 접근 유도(고도 과다 · 진입각 과대)'), les: 'app' },
     holdlong: { cat: 'E', pts: -3, t: ATC.T('불필요한 체공'), les: 'app' },
     delay: { cat: 'E', pts: -2, t: ATC.T('지연 누적'), les: 'eff' },
-    stop: { cat: 'E', pts: -2, t: ATC.T('지상 흐름 막힘(조종사 자체 정지)'), les: 'gnd' },
-    gridlock: { cat: 'S', pts: -12, t: ATC.T('유도로 정면 대치(교착)'), les: 'gnd' },
+    stop: { cat: 'E', pts: -2, t: ATC.T('지상 흐름 정체(조종사 자체 정지)'), les: 'gnd' },
+    gridlock: { cat: 'S', pts: -12, t: ATC.T('유도로 교착(정면 대치)'), les: 'gnd' },
     wrongrwy: { cat: 'P', pts: -6, t: ATC.T('사용 활주로·대기 지점 오류'), les: 'gnd' },
     clrerr: { cat: 'P', pts: -6, t: ATC.T('허가 내용 오류'), les: 'del' },
-    slotbust: { cat: 'P', pts: -5, t: ATC.T('흐름 관리 시각(CTOT) 미준수'), les: 'del' },
-    atismiss: { cat: 'P', pts: -2, t: ATC.T('ATIS 최신 여부 미확인'), les: 'del' },
+    slotbust: { cat: 'P', pts: -5, t: ATC.T('조정이륙시간(CTOT) 미준수'), les: 'del' },
+    atismiss: { cat: 'P', pts: -2, t: ATC.T('ATIS 최신 정보 미확인'), les: 'del' },
     emg_ok: { cat: 'P', pts: 5, t: ATC.T('비정상 상황 우선 처리'), les: 'emg' },
-    emg_late: { cat: 'S', pts: -10, t: ATC.T('비상기 우선 처리 지연'), les: 'emg' },
+    emg_late: { cat: 'S', pts: -10, t: ATC.T('비상 항공기 우선 처리 지연'), les: 'emg' },
+    divert_ok: { cat: 'P', pts: 3, t: ATC.T('회항 요청 처리'), les: 'hold' },
+    lvpbust: { cat: 'S', pts: -8, t: ATC.T('저시정 절차(LVP) 위반 — ILS 보호구역'), les: 'lvp' },
+    rwchg_late: { cat: 'E', pts: -4, t: ATC.T('활주로 전환 시각 초과'), les: 'rwchg' },
+    lvpsep: { cat: 'P', pts: -5, t: ATC.T('저시정 절차(LVP) 접근 간격 미달'), les: 'lvp' },
+    mitbust: { cat: 'P', pts: -5, t: ATC.T('진입 간격 제한(MIT) 미준수'), les: 'hold' },
     good: { cat: 'E', pts: 0, t: ATC.T('정상 처리'), les: '' },
     expedite: { cat: 'E', pts: 1, t: ATC.T('효율적 처리'), les: 'eff' }
   };
@@ -179,6 +185,9 @@
     this.events = [];           /* 예정된 비정상 상황 */
     this.notes = [];            /* 코치·알림 */
     this.pendWrong = [];
+    this.lvp = o.scn && o.scn.lvp || null;      /* 저시정 절차(LVP): { rvr(m), sep(NM) } */
+    this.scn = o.scn || null;   /* 시나리오(정해진 판)로 시작했으면 그 대본 */
+    if (this.scn && this.scn.lv) { var lv = {}, k; for (k in this.level) lv[k] = this.level[k]; for (k in this.scn.lv) lv[k] = this.scn.lv[k]; this.level = lv; }   /* 판이 난이도 값 일부(복창 오류 비율 등)를 따로 정한 경우 */
   }
   /* 바람에 맞는 운용 방향: 정풍 성분이 가장 큰 쪽. 차이가 작으면(0.1 이하) 목록에서 앞선 쪽을 유지 */
   Sim.prototype.flowForWind = function () { var w = this.wind.dir, best = null, bh = 0; Object.keys(D.flows).forEach(function (k) { var h = Math.cos((w - D.flows[k].hdg) * D2R); if (!best || h > bh + 0.1) { best = k; bh = h; } }); return best; };
@@ -266,7 +275,7 @@
         this.enq({ who: 'atc', ac: p.ac, text: p.ac.csWord + ' ' + p.ac.num + ', negative, ' + ph.atc.split(', ').slice(1).join(', '), onDone: function () {
           self.enq({ who: 'pilot', ac: p.ac, text: 'Correction, ' + ph.rb, onStart: function () { self.applyAll(p.ac, p.right); if (self.onCorrect) self.onCorrect(p.ac); } }, true);
         } }, true);
-        if (!p.flagged) this.inc('rbfix', [p.ac], ATC.T('{0} 복창 오류를 바로잡았습니다.', p.ac.cs));
+        if (!p.flagged) this.inc('rbfix', [p.ac], ATC.T('{0}의 복창 오류를 정정했습니다.', p.ac.cs));
         return true;
       }
     }
@@ -276,7 +285,7 @@
     for (var i = this.pendWrong.length - 1; i >= 0; i--) {
       var p = this.pendWrong[i];
       if (p.ac.gone) { this.pendWrong.splice(i, 1); continue; }
-      if (!p.flagged && this.t - p.t > 25) { p.flagged = true; this.inc('hearback', [p.ac], ATC.T('{0}: 조종사가 지시와 다르게 복창했는데 정정하지 않았습니다.', p.ac.cs)); }
+      if (!p.flagged && this.t - p.t > 25) { p.flagged = true; this.inc('hearback', [p.ac], ATC.T('{0}: 조종사의 복창이 지시와 달랐으나 정정하지 않았습니다.', p.ac.cs)); }
       if (this.t - p.t > 120) this.pendWrong.splice(i, 1);
     }
   };
@@ -310,6 +319,13 @@
     this.radioTick(); this.wrongTick();
     if (this.fatal && !this.over) { this.over = true; this.emit('over', this.score()); }
     else if (this.isFinished && this.isFinished() && !this.over) { this.over = true; this.emit('over', this.score()); }
+  };
+  /* 시나리오: 교통량 설정을 대본 값으로 덮어쓰고(cfg), 무작위로 뽑은 사건 대신 대본의 사건을 씀(events: [{ k, t(초) … }]) */
+  ATC.scnCfg = function (o, base) { var c = {}, k, s = o && o.scn && o.scn.cfg; for (k in base) c[k] = base[k]; if (s) for (k in s) c[k] = s[k]; return c; };
+  Sim.prototype.scnEvents = function () { var s = this.scn; if (s && s.events) this.events = s.events.map(function (e) { var x = {}, k; for (k in e) x[k] = e[k]; x.done = false; return x; });
+    if (this.lvp) this.sys({ TWR: ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m. 관제탑에서 활주로가 보이지 않습니다. ① 착륙 허가는 2NM 전까지 ② 착륙기가 5NM 안이면 같은 활주로에 진입 · 이륙시키지 않음(ILS 보호구역) ③ 지상 이동이 느려 활주로 이탈에 시간이 더 걸립니다.', this.lvp.rvr),
+      GND: ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m. 지상 이동 속도가 느립니다. 경로가 겹치지 않도록 푸시백과 이동 순서에 여유를 두세요.', this.lvp.rvr),
+      APP: ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m. 같은 ILS의 앞뒤 간격을 {1}NM 이상으로 유지하세요. 활주로를 보지 못한 항공기는 복행합니다.', this.lvp.rvr, this.lvp.sep || 6) }[this.mode] || ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m.', this.lvp.rvr), 'alert');
   };
   ATC.Sim = Sim;
   ATC.extend = function (Child, Parent) { Child.prototype = Object.create(Parent.prototype); Child.prototype.constructor = Child; };
