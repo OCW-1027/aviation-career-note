@@ -157,7 +157,7 @@
       ['SHAFT', 35.374278, 140.220361], ['NYLON', 35.671806, 140.155528], ['SALLY', 34.892750, 139.927806], ['TT253', 35.000389, 140.040167],
       ['TT254', 34.974028, 140.191500], ['TT255', 34.986361, 140.344833], ['STOWE', 35.057194, 140.519833], ['ALDEN', 34.861417, 140.251472],
       ['TT256', 34.948722, 140.189694], ['TT257', 34.977361, 140.029611], ['SLICK', 35.070194, 139.855556], ['NOVEL', 36.351917, 140.001361],
-      ['SCREW', 36.050333, 139.900111], ['STEAM', 35.931472, 139.952333], ['CACAO', 35.370222, 139.925028], ['TT501', 35.557972, 139.841639],
+      ['SCREW', 36.050333, 139.900111], ['STEAM', 35.931472, 139.952333], ['NINJA', 35.863389, 139.982194], ['CACAO', 35.370222, 139.925028], ['TT501', 35.557972, 139.841639],
       ['TT502', 35.540111, 139.955750], ['LOCUP', 35.455222, 139.935694], ['TAURA', 35.312806, 139.746472], ['IMOLA', 35.073889, 139.497500],
       ['BAYGE', 35.426500, 139.724278], ['SEIKO', 35.484583, 139.501389], ['TT503', 35.474444, 139.811222], ['KAMAT', 35.564889, 139.696917],
       ['LAYER', 35.657056, 139.474861], ['TIARA', 35.659444, 139.331722], ['TORAM', 35.610222, 139.836389], ['PLUTO', 35.608917, 139.960222],
@@ -171,9 +171,9 @@
       F[ifn].k = 'if'; F[faf].k = 'faf'; e.IF = ifn; e.FAF = faf; e.apAlt = apAlt; e.ifD = Math.hypot(F[ifn].x - e.thr.x, F[ifn].y - e.thr.y); e.locLen = Math.ceil(e.ifD) + 2;
     }
     finAt('34L', 'ARLON', 'APOLO', 5000); finAt('34R', 'CAMEL', 'CACAO', 4000);
-    finAt('22', 'NEXUS', 'NITRO', 5000, 16.8, 14.8); finAt('23', 'SMILE', 'SAROB', 4000, 17.06, 11.83);      /* ILS Z RWY23의 로컬라이저는 활주로 방향과 2° 어긋나 있음 — 게임의 ILS는 활주로 중심선이라 SMILE · SAROB를 그 위(실제 자리에서 0.3~0.5NM)로 옮김. NEXUS · NITRO는 좌표를 읽지 못해 거리로 놓음 */
+    finAt('22', 'NEXUS', 'NITRO', 5000, 16.8, 14.8); finAt('23', 'SMILE', 'SAROB', 4000, 17.06, 11.83);      /* ILS Z RWY23의 로컬라이저는 활주로 방향과 2° 어긋나 있음 — 게임의 ILS는 활주로 중심선이라 SMILE · SAROB를 그 위(실제 자리에서 0.3~0.5NM)로 옮김. NEXUS · NITRO도 중심선 위에 거리(16.8 · 14.8NM)로 놓음 — 차트 좌표와 0.1NM 안쪽으로 맞음 */
     D.flyBy = true;        /* 지점을 지나기 전에 미리 돌기 시작(다음 구간과 이루는 각만큼) — RNAV 경로의 꺾이는 곳을 매끄럽게 */
-    var toL = ['WEDGE', 'ARLON'], toR = ['CHIPS', 'COLOR', 'COPSE', 'COACH', 'TT465', 'TT466', 'TT467', 'EDDIE', 'CREAM', 'CLOAK', 'CAMEL'], to23 = ['SHAFT', 'NYLON', 'SMILE'], to22 = ['NOVEL', 'SCREW', 'STEAM', 'NEXUS'];
+    var toL = ['WEDGE', 'ARLON'], toR = ['CHIPS', 'COLOR', 'COPSE', 'COACH', 'TT465', 'TT466', 'TT467', 'EDDIE', 'CREAM', 'CLOAK', 'CAMEL'], to23 = ['SHAFT', 'NYLON', 'SMILE'], to22 = ['NOVEL', 'SCREW', 'STEAM', 'NINJA', 'NEXUS'];
     D.star = {
       N: { XAC: ['XAC', 'ANZAC', 'TT450', 'TT451', 'TT452', 'TT453', 'WANDA'].concat(toL), AKSEL: ['AKSEL', 'TT454', 'TT455', 'TT456', 'WALLY'].concat(toL), AROSA: ['AROSA', 'AVEEY', 'TT457', 'TT458', 'TT459', 'WALTZ'].concat(toL),
         GODIN: ['GODIN'].concat(toR), POLIX: ['POLIX'].concat(toR) },
@@ -213,7 +213,7 @@
       ['SASAP', 37.181992, 140.473447], ['DANDY', 37.173756, 139.511633], ['GUSGI', 36.927103, 140.401275], ['DAIGO', 36.744367, 140.349850],
       ['SYOEN', 37.038489, 140.003919], ['AGRIS', 36.420750, 139.942536], ['LIBNO', 37.531517, 140.131783], ['NOGIX', 36.181111, 142.420833],
       ['LALID', 35.944097, 141.764464], ['MILIT', 35.946331, 141.219136], ['ESKEN', 36.083636, 140.689656], ['OLVEK', 34.686389, 142.227500],
-      ['DOLBA', 34.700828, 141.435300], ['PONEM', 34.630739, 142.923769], ['FITTO', 33.985731, 140.022428], ['LUTNA', 34.298222, 140.159439],
+      ['DOLBA', 34.700828, 141.435300], ['PONEM', 34.630739, 142.923769], ['FITTO', 33.985731, 140.022428], ['TOPIT', 34.194847, 139.995056], ['LUTNA', 34.298222, 140.159439],
       ['RURER', 34.490200, 140.700319], ['MENUR', 33.911353, 138.278989], ['SELNO', 34.284339, 139.124633], ['RUNSO', 34.487978, 139.718031],
       ['GAKKI', 34.747869, 137.680658], ['ARTIC', 34.715558, 138.804569], ['BOGON', 34.542500, 137.595503], ['BOKJO', 34.542331, 138.384939],
       ['BOPNO', 34.943236, 138.167636], ['TOHME', 34.853169, 137.473836], ['LEBOS', 35.641225, 138.669739], ['SUGAL', 35.593114, 137.794692],
@@ -223,7 +223,7 @@
       ['DAKEX', 36.794317, 140.942894], ['BEKPO', 36.909872, 142.481892], ['NAKTU', 35.467097, 137.463078], ['POTEB', 35.144719, 137.248114],
       ['FINGA', 37.125961, 138.555294], ['KIBOM', 36.451414, 138.111319], ['MATPI', 35.877942, 137.732386], ['TASOT', 33.736722, 138.504989],
       ['LAKOS', 34.125069, 139.278106], ['LIGNI', 34.697017, 140.447853], ['INUBO', 35.726469, 140.799428], ['TOKIS', 35.179703, 139.504872],
-      ['ELNIS', 35.123756, 138.381247], ['NOKUG', 36.247575, 137.560411], ['OLTAX', 36.236531, 138.324631], ['SANEP', 36.081908, 139.639039],
+      ['ELNIS', 35.123756, 138.381247], ['IBENO', 34.913697, 137.675778], ['NOKUG', 36.247575, 137.560411], ['OLTAX', 36.236531, 138.324631], ['SANEP', 36.081908, 139.639039],
       ['LARIX', 35.936569, 140.312658], ['GULBO', 35.442461, 141.752653], ['TASID', 35.435203, 142.542908], ['ADKAK', 33.903500, 142.163306],
       ['MERED', 34.238167, 141.441406], ['UTIBO', 34.946394, 139.895528]
     ], 'en');
@@ -241,7 +241,7 @@
     D.accArr = {
       GODIN: [['SASAP', 'GUSGI', 'DAIGO', 'GODIN'], ['DANDY', 'SYOEN', 'GUSGI', 'DAIGO', 'GODIN']],
       POLIX: [['NOGIX', 'LALID', 'MILIT', 'ESKEN', 'POLIX']],
-      AROSA: [['PONEM', 'OLVEK', 'DOLBA', 'AROSA'], ['FITTO', 'LUTNA', 'RURER', 'AROSA']],
+      AROSA: [['PONEM', 'OLVEK', 'DOLBA', 'AROSA'], ['FITTO', 'TOPIT', 'LUTNA', 'RURER', 'AROSA']],
       AKSEL: [['MENUR', 'SELNO', 'RUNSO', 'AKSEL']],
       XAC: [['GAKKI', 'ARTIC', 'XAC'], ['BOGON', 'BOKJO', 'ARTIC', 'XAC']]
     };
@@ -250,17 +250,17 @@
       BEKLA: [['BEKLA', 'MBE', 'YARII'], ['BEKLA', 'AZUMI', 'URUSI'], ['BEKLA', 'PIGAP', 'BIDIK']],
       GUSRO: [['GUSRO', 'LEBOS', 'SUGAL', 'ENDAG']],
       NINOX: [['NINOX', 'ISPOR', 'IPLES']],
-      LAXAS: [['LAXAS', 'BOPNO', 'TOHME']]
+      LAXAS: [['LAXAS', 'BOPNO', 'IBENO', 'TOHME']]
     };
     D.accArrAlt = 11000; D.accArrAltBy = D.entryAlt;      /* 진입 지점마다 넘겨주는 고도 */
     D.accArrLv = [200, 210, 220, 230, 240];
     D.airways = [
       { n: 'Y10', f: ['SASAP', 'GUSGI', 'DAIGO', 'GODIN'] }, { n: 'Y31', f: ['DANDY', 'SYOEN', 'GUSGI'] }, { n: 'Y807', f: ['NOGIX', 'LALID', 'MILIT', 'ESKEN', 'POLIX'] },
-      { n: 'Y824', f: ['PONEM', 'OLVEK', 'DOLBA', 'AROSA'] }, { n: 'Y875', f: ['FITTO', 'LUTNA', 'RURER', 'AROSA'] }, { n: 'Y21', f: ['MENUR', 'SELNO', 'RUNSO', 'AKSEL'] },
-      { n: 'Y71', f: ['GAKKI', 'ARTIC', 'XAC'] }, { n: 'Y23', f: ['BOGON', 'BOKJO', 'ARTIC'] }, { n: 'Y56', f: ['LAXAS', 'BOPNO', 'TOHME'] }, { n: 'Y20', f: ['GUSRO', 'LEBOS', 'SUGAL', 'ENDAG'] },
-      { n: 'Y28', f: ['NINOX', 'ISPOR', 'IPLES'] }, { n: 'Y884', f: ['BEKLA', 'MBE', 'YARII'] }, { n: 'Y885', f: ['BEKLA', 'AZUMI', 'URUSI'] }, { n: 'Y18', f: ['BEKLA', 'PIGAP', 'BIDIK'] }, { n: 'Y11', f: ['AGRIS', 'SYOEN', 'LIBNO'] },
+      { n: 'Y824', f: ['PONEM', 'OLVEK', 'DOLBA', 'AROSA'] }, { n: 'Y87', f: ['FITTO', 'TOPIT'] }, { n: 'Y875', f: ['TOPIT', 'LUTNA', 'RURER', 'AROSA'] }, { n: 'Y21', f: ['MENUR', 'SELNO', 'RUNSO', 'AKSEL'] },
+      { n: 'Y71', f: ['GAKKI', 'ARTIC', 'XAC'] }, { n: 'Y23', f: ['BOGON', 'BOKJO', 'ARTIC'] }, { n: 'Y56', f: ['LAXAS', 'BOPNO', 'IBENO', 'TOHME'] }, { n: 'Y20', f: ['GUSRO', 'LEBOS', 'SUGAL', 'ENDAG'] },
+      { n: 'Y28', f: ['NINOX', 'ISPOR', 'IPLES'] }, { n: 'Y884', f: ['BEKLA', 'MBE', 'YARII'] }, { n: 'Y885', f: ['BEKLA', 'AZUMI', 'URUSI'] }, { n: 'Y18', f: ['BEKLA', 'PIGAP'] }, { n: 'Y182', f: ['PIGAP', 'BIDIK'] }, { n: 'Y11', f: ['AGRIS', 'SYOEN', 'LIBNO'] },
       { n: 'Y88', f: ['SWING', 'NAKTU', 'SUGAL', 'PIGAP', 'TEPEX', 'AKAGI', 'DAIGO'] }, { n: 'Y886', f: ['DAIGO', 'DAKEX', 'BEKPO'] }, { n: 'Y12', f: ['FINGA', 'KIBOM', 'MBE', 'MATPI', 'NAKTU', 'POTEB'] },
-      { n: 'Y57', f: ['TASOT', 'LAKOS', 'LIGNI'] }, { n: 'Y818', f: ['LIGNI', 'DOLBA'] }, { n: 'Y804', f: ['LALID', 'INUBO'] }, { n: 'Y50', f: ['INUBO', 'TOKIS', 'ELNIS', 'TOHME'] },
+      { n: 'Y57', f: ['TASOT', 'LAKOS', 'LIGNI'] }, { n: 'Y818', f: ['LIGNI', 'DOLBA'] }, { n: 'Y804', f: ['LALID', 'INUBO'] }, { n: 'Y50', f: ['INUBO', 'TOKIS', 'ELNIS'] }, { n: 'Y564', f: ['ELNIS', 'IBENO'] },
       { n: 'Y51', f: ['NOKUG', 'OLTAX', 'SANEP', 'LARIX', 'INUBO'] }, { n: 'Y808', f: ['INUBO', 'GULBO', 'TASID'] }, { n: 'Y821', f: ['ADKAK', 'MERED', 'LIGNI', 'UTIBO'] }, { n: 'Y502', f: ['UTIBO', 'TOKIS'] }
     ];
     /* 통과기: AIC 020/26의 통과 · 다른 공항 경로에서 이 구역을 지나는 것(양 끝 공항은 그 경로를 쓰는 예) */
@@ -268,7 +268,7 @@
       od(['SWING', 'NAKTU', 'SUGAL', 'PIGAP', 'TEPEX', 'AKAGI', 'DAIGO', 'DAKEX', 'BEKPO'], 'RJBB', 'PANC'), od(['BEKPO', 'DAKEX', 'DAIGO', 'AKAGI', 'TEPEX', 'PIGAP', 'SUGAL', 'NAKTU', 'POTEB'], 'PANC', 'RJBB'),
       od(['FINGA', 'KIBOM', 'MBE', 'MATPI', 'NAKTU', 'POTEB'], 'RJCC', 'RJOO'),
       od(['TASOT', 'LAKOS', 'LIGNI', 'DOLBA', 'OLVEK', 'PONEM'], 'RCTP', 'KLAX'),
-      od(['NOGIX', 'LALID', 'INUBO', 'TOKIS', 'ELNIS', 'TOHME'], 'KSFO', 'RJBB'), od(['ADKAK', 'MERED', 'LIGNI', 'UTIBO', 'TOKIS', 'ELNIS', 'TOHME'], 'PHNL', 'RJBB'),
+      od(['NOGIX', 'LALID', 'INUBO', 'TOKIS', 'ELNIS', 'IBENO', 'TOHME'], 'KSFO', 'RJBB'), od(['ADKAK', 'MERED', 'LIGNI', 'UTIBO', 'TOKIS', 'ELNIS', 'IBENO', 'TOHME'], 'PHNL', 'RJBB'),
       od(['NOKUG', 'OLTAX', 'SANEP', 'LARIX', 'INUBO', 'GULBO', 'TASID'], 'RKSI', 'KSEA')
     ];
     /* 자위대 훈련 공역 Area H(지표 ~ FL230) — 사용 중일 때는 그 높이 아래로 지나지 못함(BEKLA → AZUMI 출발 경로가 이 구역의 남서쪽을 지남) */

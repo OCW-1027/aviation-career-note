@@ -135,6 +135,7 @@
     $('tClock').textContent = U.hhmm(sim.utc()) + ':' + U.pad(Math.floor(sim.utc()) % 60, 2) + ' UTC';
     var rw = sim.mode === 'APP' ? 'ARR ' + sim.rwys.join('/') + ' · DEP ' + (D.depRwyFor && sim.flow.deps ? sim.flow.deps.join('/') : sim.flow.dep) : sim.mode === 'TWR' ? 'LDG ' + sim.arrRw.join('/') + ' · T/O ' + sim.depRw.join('/') : sim.mode === 'ACC' ? (D.accLabel ? D.airport.call.toUpperCase() + ' CONTROL' : 'FIR SEIRA') : sim.multi ? 'ARR ' + sim.flow.arrs.join('/') + ' · DEP ' + sim.flow.deps.join('/') : 'ARR ' + sim.flow.arr + ' · DEP ' + sim.flow.dep;
     $('tAtis').innerHTML = '<i>ATIS ' + sim.atis + '</i><span>' + rw + '</span><span>WIND ' + fmt.wind(sim.wind).replace(' at ', '/') + 'KT</span><span>QNH ' + sim.qnh + '</span>';
+    var op = $('ops'); if (op) { op.hidden = sim.mode === 'ACC'; if (op.dataset.sig !== $('tAtis').innerHTML) { op.dataset.sig = $('tAtis').innerHTML; op.innerHTML = op.dataset.sig; } }   /* 휴대폰 가로: 위 막대에 자리가 없어 지도 왼쪽 아래에 같은 요약을 둠 */
     $('tScore').innerHTML = ATC.T('<span class="sc">{0}<small>점</small></span><span class="k s" title="안전">안전 {1}</span><span class="k e" title="효율">효율 {2}</span><span class="k p" title="절차·교신">절차 {3}</span><span class="k">처리 {4}/{5}</span>', sc.total, sc.S, sc.E, sc.P, sc.handled, (sim.total + sim.sched.length));
     Array.prototype.forEach.call(document.querySelectorAll('#tSpeed button'), function (b) { var s = b.dataset.s; b.classList.toggle('on', s === 'p' ? app.paused : (!app.paused && +s === app.speed)); });
     $('bCoach').classList.toggle('on', app.coach); $('bVoice').classList.toggle('on', app.voice); $('bGloss').classList.toggle('on', app.gloss);
@@ -180,7 +181,29 @@
   function renderStrips() {
     var bays = stripBays(), h = '';
     bays.forEach(function (b) { h += '<div class="bay' + (b[1].length ? '' : ' empty') + '"><h5>' + b[0] + ' <small>' + b[1].length + '</small></h5>' + b[1].map(stripHtml).join('') + '</div>'; });
-    if (h !== app.stripSig) { app.stripSig = h; $('strips').innerHTML = h; }
+    if (h !== app.stripSig) { app.stripSig = h; $('strips').innerHTML = '<button class="smore" id="smA" hidden></button>' + h + '<button class="smore" id="smB" hidden></button>'; stripMore(); }
+  }
+  /* 목록이 넘칠 때: 고른 스트립을 보이는 자리로 옮기고, 화면 밖에서 기다리는 요청 수를 가장자리에 알림 */
+  function stripOut(c) {
+    var q = c.getBoundingClientRect(), hz = c.scrollWidth > c.clientWidth + 2, o = { a: [], b: [], hz: hz };
+    if (hz || c.scrollHeight > c.clientHeight + 2) Array.prototype.forEach.call(c.querySelectorAll('.strip.wait,.strip.inn'), function (s) {
+      var r = s.getBoundingClientRect();
+      if (hz ? r.right < q.left + 24 : r.bottom < q.top + 14) o.a.push(s); else if (hz ? r.left > q.right - 24 : r.top > q.bottom - 14) o.b.push(s);
+    });
+    return o;
+  }
+  function stripMore() {
+    var c = $('strips'), A = $('smA'), B = $('smB'); if (!A || !B) return;
+    var o = stripOut(c);
+    A.hidden = !o.a.length; B.hidden = !o.b.length; c.classList.toggle('hz', o.hz);
+    A.textContent = (o.hz ? '◀ ' : '▲ ') + ATC.T('요청 {0}', o.a.length); B.textContent = ATC.T('요청 {0}', o.b.length) + (o.hz ? ' ▶' : ' ▼');
+  }
+  function stripShow(s) {
+    var c = $('strips'); if (!s) return;
+    var r = s.getBoundingClientRect(), q = c.getBoundingClientRect(), hz = c.scrollWidth > c.clientWidth + 2, pad = hz ? (q.width > 340 ? 70 : 10) : 10, pv = !hz && c.scrollHeight > c.clientHeight + 2 && q.height > 90 ? 22 : 8;   /* 가장자리 알림 단추에 가리지 않을 만큼 안쪽으로 */
+    if (r.left < q.left + pad) c.scrollLeft -= q.left + pad - r.left; else if (r.right > q.right - pad) c.scrollLeft += r.right - q.right + pad;
+    if (r.top < q.top + pv) c.scrollTop -= q.top + pv - r.top; else if (r.bottom > q.bottom - pv) c.scrollTop += r.bottom - q.bottom + pv;
+    stripMore();
   }
 
   /* ================= 지시판 ================= */
@@ -367,7 +390,7 @@
   }
 
   /* ================= 입력 ================= */
-  function select(id) { if (app.sel !== id) { app.sel = id; app.pend = []; app.gt = null; app.routePrev = null; app.del = {}; } app.cmdSig = ''; app.stripSig = ''; renderCmd(); renderStrips(); if (app.pos.view === 'del') renderDel(); }
+  function select(id) { if (app.sel !== id) { app.sel = id; app.pend = []; app.gt = null; app.routePrev = null; app.del = {}; } app.cmdSig = ''; app.stripSig = ''; renderCmd(); renderStrips(); stripShow($('strips').querySelector('.strip.sel')); if (app.pos.view === 'del') renderDel(); }
   function hitTest(x, y) { var i, hbest = 0, bd = 1e9; for (i = app.hit.length - 1; i >= 0; i--) { var h = app.hit[i]; if (x >= h.x0 && x <= h.x1 && y >= h.y0 && y <= h.y1) return h.id; var d = Math.hypot(x - h.px, y - h.py); if (d < (h.r || 11) && d < bd) { bd = d; hbest = h.id; } } return hbest; }
   function fixAt(x, y) { var best = null, bd = 16; Object.keys(D.fix).forEach(function (n) { var f = D.fix[n]; if (f._sx === undefined) return; var d = Math.hypot(x - (f._sx + 20), y - (f._sy - 4)); if (Math.hypot(x - f._sx, y - f._sy) < 9) d = 0; if (d < bd) { bd = d; best = n; } }); return best; }
   /* ---- 화면 이동 · 확대(단추 · 휠 · 두 손가락 · 작은 지도 · 따라가기 공용) ---- */
@@ -502,7 +525,8 @@
       else if (m === 'same') start(app.pos.id, app.seed);
       else if (m === 'quit') { app.sim.over = true; app.over = true; showResult(); }
     });
-    $('strips').addEventListener('click', function (e) { var s = e.target.closest('.strip'); if (s) select(+s.dataset.id); });
+    $('strips').addEventListener('click', function (e) { var s = e.target.closest('.strip'), m = e.target.closest('.smore'), o; if (m) { o = stripOut($('strips')); stripShow(m.id === 'smA' ? o.a[o.a.length - 1] : o.b[0]); } else if (s) select(+s.dataset.id); });
+    $('strips').addEventListener('scroll', stripMore);
     $('coach').addEventListener('click', function (e) { var s = e.target.closest('[data-id]'); if (s) select(+s.dataset.id); });
     $('logList').addEventListener('click', function (e) { var f = e.target.closest('.fixb'); if (f) { app.sim.correct(+f.dataset.fix); f.remove(); app.cmdSig = ''; return; } var l = e.target.closest('.lg'); if (l && l.dataset.ac && app.sim.byId(+l.dataset.ac)) select(+l.dataset.ac); });
     $('cmd').addEventListener('click', function (e) {

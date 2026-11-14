@@ -268,6 +268,35 @@ b.y{color:var(--yel)}
   #inst{bottom:6px}
 }
 
+/* 스트립 목록 가장자리: 화면 밖에서 기다리는 요청 수 */
+.smore{position:sticky;top:0;bottom:0;z-index:2;display:block;width:100%;margin:0 0 -20px;height:20px;padding:0;-webkit-appearance:none;appearance:none;border:0;border-radius:4px;background:#d97a00;color:#1b1000;font:700 12px var(--sans);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.smore#smB{margin:-20px 0 0}.smore[hidden]{display:none}
+#strips.hz .smore{left:0;right:0;flex:none;width:62px;height:auto;align-self:stretch;min-height:44px;margin:0 -68px 0 0}#strips.hz .smore#smB{margin:0 0 0 -68px}
+#ops{display:none}
+/* 손가락으로 누르는 화면(휴대폰 세로 · 가로): 단추를 키우고, 활주로 · 바람 요약을 늘 보이게 */
+@media (max-width:900px) and (orientation:portrait),(max-height:560px) and (orientation:landscape){
+  .cb{min-height:32px;min-width:40px;padding:5px 9px;font-size:12.5px}
+  .cb.wide,.cb.ho,.cb.send,.cb.pri,.cb.red{min-height:38px;padding:7px 12px}
+  .cb.x{min-height:0;min-width:0;padding:0 4px 0 8px}
+  #top .tb{min-height:32px;padding:5px 7px}#tSpeed button{min-height:32px;min-width:30px;padding:5px 5px}
+  #gnav button,#gnav select{height:34px}#gnav .zm{min-width:36px}
+  #tAtis,#ops{font-size:10.5px;gap:6px;white-space:nowrap}
+  #tAtis span,#ops span,#top>#tAtis .fh{display:inline!important}
+}
+@media (max-width:900px) and (orientation:portrait){#top>#tAtis{display:flex;order:5;flex:0 0 100%;overflow:hidden}
+  #game{grid-template-rows:auto minmax(0,1fr) 246px}
+  /* 레이더 자리는 지시 단추가 많아 아래 칸을 넓힘 */
+  #game.v-radar{grid-template-rows:auto minmax(0,1fr) 304px}.v-radar #bot{grid-template-rows:2.3fr 1fr}}
+@media (max-width:380px) and (orientation:portrait){#top{gap:4px}#top .tb{padding:5px 5px}#tSpeed button{min-width:28px;padding:5px 4px}#tAtis span:nth-child(4){display:none!important}}
+@media (max-height:560px) and (orientation:landscape){
+  #ops{display:flex;position:absolute;left:6px;bottom:6px;z-index:2;max-width:calc(100% - 12px);overflow:hidden;font-family:var(--mono);color:#b7c7d5;background:rgba(8,14,20,.84);border:1px solid var(--line);border-radius:6px;padding:3px 7px;pointer-events:none}
+  #game{grid-template-rows:auto auto minmax(0,1.8fr) minmax(0,.8fr)}#strips{max-height:25vh}
+  .cb.wide,.cb.ho,.cb.send,.cb.pri,.cb.red{padding:7px 9px}
+  .v-radar #ops{left:auto;right:6px}
+  #ops[hidden]{display:none}#ops i{font-style:normal;color:#04202b;background:var(--yel);border-radius:4px;padding:0 5px;font-weight:700}
+}
+@media (max-height:560px) and (orientation:landscape) and (max-width:720px){#tPos span{display:none}}
+
 .prev{font:13.5px/1.6 var(--mono)!important;color:#c8f3d4!important;margin:0!important}
 .chk{margin:0;padding-left:20px;font-size:13px;color:#c3d2df}.chk li{margin:3px 0}
 
