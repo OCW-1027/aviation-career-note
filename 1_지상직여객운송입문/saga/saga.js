@@ -6402,7 +6402,7 @@ window.RULES = {
 })();
 
 /* ../src_fl/fl_data.js */
-/* 종합편 「한 편을 띄우다」 — 압축 근무 4개의 미션 데이터(합의본 v2.1 2·3절). 모든 승객·편·서류는 교육용 가상 데이터.
+/* FINAL 1 「출발편 업무」(옛 이름 종합편) — 압축 근무 4개의 미션 데이터(합의본 v2.1 2·3절). 모든 승객·편·서류는 교육용 가상 데이터.
    - 같은 편(VELA 301 NRT→ICN / VELA 302 ICN→NRT, B737-800 고정)을 체크인 → 게이트 → 탑재관리 → 램프 순서로 이어서 처리
    - 각 자리의 처리 단위는 그 자리가 시작될 때 저장한 「입력 스냅샷」(window.SAGA_FL.input(자리))에서만 만듦 → 이어하기 지문이 바뀌지 않음
    - 기준 명단(체크인 마감 뒤 확정): 성인 116·소아 3·유아 2, 구역 A10·B54·C55(탑재관리편 Day 1과 같은 숫자). 배경 승객 = 이 숫자 − 플레이 승객
@@ -7207,7 +7207,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
   /* ---------- 시작 ---------- */
   /* 사이트(항공커리어노트) 안에서: 사이트 공통 언어 설정(art-lang)과 맞춤. 상단 언어 버튼(#lang)으로 바꾸면 화면을 다시 그림 */
   var SITE = !!window.__SHELL;
-  /* 70차: 종합편 「한 편을 띄우다」의 압축 근무는 각 스테이지의 숨은 날(n = 9, DAY 탭에는 없음 — ST.flDay). 진행본·이어하기의 날 찾기는 dayIn으로 */
+  /* 70차: FINAL 1 「출발편 업무」(옛 이름 종합편)의 압축 근무는 각 스테이지의 숨은 날(n = 9, DAY 탭에는 없음 — ST.flDay). 진행본·이어하기의 날 찾기는 dayIn으로 */
   var FLN = 9;
   function dayIn(sid, n) { var sd = window.SAGA_STAGES[sid || 'ci']; return !sd ? null : n === FLN ? sd.flDay || null : sd.days.list[n - 1]; }
   /* 기재 이름 표기(2026-11-12 기종 이름 표기 점검): 일 「B737-800型」·한 「B737-800형」·영 「B737-800」 */
@@ -9770,7 +9770,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
   }
   function gHint(u) {
     if (!G.hints) return '';
-    return ({ prep: L('まず<b>準備</b>です。編・特別なお客様・引き継ぎ・機材・客室との打ち合わせを確認してから搭乗を始めます。', '먼저 <b>준비</b>입니다. 편·특별 승객·인계·장비·객실 협의를 확인한 뒤 탑승을 시작합니다.', 'First, <b>prep</b>: flight, special passengers, handover, equipment and the cabin briefing, before boarding starts.'),
+    return ({ prep: L('まず<b>準備</b>です。便・特別なお客様・引き継ぎ・機材・客室との打ち合わせを確認してから搭乗を始めます。', '먼저 <b>준비</b>입니다. 편·특별 승객·인계·장비·객실 협의를 확인한 뒤 탑승을 시작합니다.', 'First, <b>prep</b>: flight, special passengers, handover, equipment and the cabin briefing, before boarding starts.'),
       bcast: L('場面に合う<b>放送文</b>を選びます。便名・行き先・搭乗口・お客様がすることが入っているかを見ます。', '장면에 맞는 <b>방송문</b>을 고릅니다. 편명·행선지·탑승구·승객이 할 일이 들어 있는지 봅니다.', 'Pick the <b>announcement</b> that fits: flight, destination, gate and what passengers should do.'),
       sign: L('時刻になっても、<b>客室の準備サイン</b>を受けてから搭乗を始めます。', '시각이 됐어도 <b>객실 준비 사인</b>을 받은 뒤 탑승을 시작합니다.', 'Even at the scheduled time, wait for the <b>cabin ready sign</b> before boarding.'),
       pax: L('搭乗券は<b>一人一枚ずつ</b>スキャンし、国際線は<b>一人ずつ旅券の写真と本人・名前</b>を照合します（ご家族・お子様・幼児も）。', '탑승권은 <b>한 명에 한 장씩</b> 스캔하고, 국제선은 <b>한 명씩 여권 사진과 본인·이름</b>을 대조합니다(가족·어린이·유아도).', 'Scan <b>one boarding pass per person</b> and, on international flights, compare <b>each person\'s passport photo and name</b> (families, children and infants too).'),
@@ -13226,7 +13226,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     var miss = []; FLSTEP.forEach(function (k) { ((f.legs[k] || {}).miss || []).forEach(function (m) { if (miss.indexOf(m) < 0) miss.push(m); }); });
     var g = f.gt || {}, w = f.wb || {}, r = f.rp || {}, v2 = (g.reports || []).length ? g.reports[g.reports.length - 1].final : null;
     var tl = [[L('チェックイン終了', '체크인 종료', 'Check-in done'), flT(f, (f.ci || {}).endAt)], [L('ゲート最終通知（名簿 v1）', '게이트 최종 통보(명단 v1)', 'Gate final figures (v1)'), flT(f, g.finalAt)], [L('機長の承認（EDNO ' + ((w.first || {}).ed || 1) + '）', '기장 승인(EDNO ' + ((w.first || {}).ed || 1) + ')', 'Captain acceptance (EDNO ' + ((w.first || {}).ed || 1) + ')'), flT(f, w.approvedAt)], [L('締め切り後のお客様 搭乗（名簿 v2）', '마감 뒤 승객 탑승(명단 v2)', 'Late passenger boarded (v2)'), flT(f, (g.late || {}).boardedAt)], [L('ランプへの最新の書類', '램프로 최신 문서', 'Latest documents to the ramp'), w.sent ? flT(f, w.rampAt) : esc(tx(L('通知なし', '통보 없음', 'not sent')))], ['Ready', r.readyAt == null ? '—' : flT(f, f.std + r.readyAt)], ['AOBT', r.aobt == null ? '—' : flT(f, f.std + r.aobt)]];
-    $('#app').innerHTML = '<div class="res flres"><div class="panel reshead"><div class="twins">' + STG.mascot('koradon', t.rank === 'S' || t.rank === 'A' ? 'greet' : 'idle') + STG.mascot('korarin', t.rank === 'S' || t.rank === 'A' ? 'greet' : 'idle') + '</div><div class="rank">' + t.rank + '</div><div><h2 style="margin:0">' + esc(tx(FLTITLE)) + ' · ' + esc(tx(L('総合結果', '종합 결과', 'Overall result'))) + '</h2><div style="color:var(--sub);font-size:13px">' + esc((f.country === 'JP' ? 'VELA 301 NRT→ICN' : 'VELA 302 ICN→NRT') + ' · B737-800 · STD ' + X.std) + (f.practice ? ' · ' + esc(tx(L('練習', '연습', 'Practice'))) : '') + ' · ' + esc(tx(L('総合', '종합', 'Total'))) + ' ' + t.tot + '</div></div></div>' +
+    $('#app').innerHTML = '<div class="res flres"><div class="panel reshead"><div class="twins">' + STG.mascot('koradon', t.rank === 'S' || t.rank === 'A' ? 'greet' : 'idle') + STG.mascot('korarin', t.rank === 'S' || t.rank === 'A' ? 'greet' : 'idle') + '</div><div class="rank">' + t.rank + '</div><div><h2 style="margin:0">' + esc(tx(FLTITLE)) + ' · ' + esc(tx(L('総合結果', '종합 결과', 'Overall result'))) + '</h2><div style="color:var(--sub);font-size:13px">' + esc((f.country === 'JP' ? 'VELA 301 NRT→ICN' : 'VELA 302 ICN→NRT') + ' · ' + acNmS('737') + ' · STD ' + X.std) + (f.practice ? ' · ' + esc(tx(L('練習', '연습', 'Practice'))) : '') + ' · ' + esc(tx(L('総合', '종합', 'Total'))) + ' ' + t.tot + '</div></div></div>' +
       '<div class="gate ' + (t.safe ? 'ok' : 'ng') + '">' + esc(tx(t.safe ? L('安全・保安：合格 ― 4つの持ち場で安全に関わる見落としはありません。', '안전·보안: 합격 — 네 자리 모두 안전 관련 누락이 없습니다.', 'Safety & security: pass — no safety misses in any of the four positions.') : L('安全・保安：要再訓練 ― どれか1つの持ち場で安全C があると、総合はCです（つながりの点では埋め合わせできません）。', '안전·보안: 재훈련 필요 — 한 자리라도 안전 C가 있으면 종합은 C입니다(연결 점수로 메울 수 없음).', 'Safety & security: retraining needed — a safety C in any one position makes the overall C (links cannot offset it).'))) + '</div>' +
       (t.capW ? '<div class="gate ng">' + esc(tx(L('業務の確認が必要な項目が残ったため、総合はAまでです。', '업무 확인이 필요한 항목이 남아 종합은 A까지입니다.', 'Work items needing review remained, so the overall is capped at A.'))) + '</div>' : '') + (t.capH ? '<div class="gate ng">' + esc(tx(L('ヒントONの持ち場があったため、総合はAまでです。', '힌트를 켠 자리가 있어 종합은 A까지입니다.', 'Tips were on in a position, so the overall is capped at A.'))) + '</div>' : '') +
       '<div class="score"><div class="sc"><div class="v">' + t.avg + '</div><div class="l">' + esc(tx(L('役割の平均', '역할 평균', 'Role average'))) + ' <span class="small">×0.6</span></div></div><div class="sc"><div class="v">' + t.nOk + '/6</div><div class="l">' + esc(tx(L('つながり', '연결', 'Links'))) + ' ' + t.conn + ' <span class="small">×0.4</span></div></div><div class="sc"><div class="v">' + (r.d0 ? 'D0' : r.d15 ? 'D15' : '×') + '</div><div class="l">' + esc(tx(L('定時性', '정시성', 'On time'))) + '</div></div></div>' +
@@ -13274,7 +13274,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     return { k: best, n: n || 5 };
   }
   function flUnlocked() {
-    if (window.SAGA_TEST && window.__flOpen) return true;   /* 시험용 */
+    if ((window.SAGA_TEST && window.__flOpen) || window.SAGA_TRIAL_FL) return true;   /* 시험용 · 검수 시험판(SAGA_TRIAL_FL — 사이트판에는 없음) */
     return FLNEED.every(function (sid) { var p = flStageProg(sid); return p.k >= p.n; });
   }
   function flLockHtml() {
@@ -13291,7 +13291,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     var st = !f ? '' : f.step === 'done' ? L('前の便：総合 ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'), '지난 편: 종합 ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'), 'Last flight: ' + (f.total ? f.total.rank + ' · ' + f.total.tot : '—'))
       : L('進行中：次の持ち場は ' + FLNAME[f.step].ja + '（' + hm(f.clock) + '〜）', '진행 중: 다음 자리는 ' + FLNAME[f.step].ko + '(' + hm(f.clock) + '~)', 'In progress: next is the ' + FLNAME[f.step].en + ' (from ' + hm(f.clock) + ')');
     var other = f && f.step !== 'done' && (f.country !== G.country || !!f.practice !== !!G.practice) ? L('この便：' + (f.country === 'JP' ? '日本' : '韓国') + '・' + (f.practice ? '練習' : '本番') + '（その設定で続けます）', '이 편: ' + (f.country === 'JP' ? '일본' : '한국') + '·' + (f.practice ? '연습' : '실전') + '(그 설정으로 이어 갑니다)', 'This flight: ' + (f.country === 'JP' ? 'Japan' : 'Korea') + ', ' + (f.practice ? 'practice' : 'shift') + ' (continues with those settings)') : null;
-    return '<section class="panel flcard" id="flcard"><div class="flhd"><span class="n">FINAL 1</span><b>' + esc(tx(FLTITLE)) + '</b><small>' + esc(tx(L('チェックイン → ゲート → ロードコントロール → ランプ ・ B737-800 ・ 約20〜25分', '체크인 → 게이트 → 탑재관리 → 램프 · B737-800 · 약 20~25분', 'Check-in → gate → load control → ramp · B737-800 · about 20–25 min'))) + '</small></div>' +
+    return '<section class="panel flcard" id="flcard"><div class="flhd"><span class="n">FINAL 1</span><b>' + esc(tx(FLTITLE)) + '</b><small>' + esc(tx(L('チェックイン → ゲート → ロードコントロール → ランプ ・ B737-800型 ・ 約20〜25分', '체크인 → 게이트 → 탑재관리 → 램프 · B737-800형 · 약 20~25분', 'Check-in → gate → load control → ramp · B737-800 · about 20–25 min'))) + '</small></div>' +
       '<p class="small">' + esc(tx(L('同じ一便の出発準備を、4つの持ち場で時間の順に担当します。前の持ち場の結果（名簿・荷物・書類・時刻）が次に引き継がれ、つながりも採点します（役割60%＋つながり40%）。', '같은 한 편의 출발 준비를 네 자리에서 시간 순서대로 맡습니다. 앞 자리의 결과(명단·짐·서류·시각)가 다음으로 이어지고 연결도 채점합니다(역할 60% + 연결 40%).', 'Prepare one flight for departure across four positions, in time order. Each position\'s results (manifest, bags, documents, times) carry on to the next, and the links are scored too (roles 60% + links 40%).'))) + '</p>' +
       (st ? '<p class="flst">' + esc(tx(st)) + '</p>' : '') + (other ? '<p class="small">' + esc(tx(other)) + '</p>' : '') +
       '<p class="small">' + esc(tx(G.practice ? L('練習の最高 ', '연습 최고 ', 'Best (practice) ') : L('本番の最高 ', '실전 최고 ', 'Best (shift) '))) + esc(tp ? tp.rank + ' · ' + tp.tot + (tp.safe ? ' · ✔' : '') : '—') + '</p>' +
@@ -16681,7 +16681,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     scoreVer: 'ex1', ruleDate: '2026-11-10', layoutVer: 'A',
     testHooks: function () { return { score: exScore, stateWhy: exStateWhy, timeParts: exTimeParts, repParts: exRepParts, evtPts: exEvtPts, scen: function () { return exP(); }, sta: exSta, mission: function () { return M; }, def: function () { var d = exDef(); return d ? d.id : null; }, ctx: exCtx, addTime: function (m) { addTime(m); }, insNext: exInsNext, insQ: function (l) { return exInsQ(l == null ? S.clock : l).map(function (o) { return [o.i.id, o.t]; }); }, bgId: exBgId, codes: function () { return { missl: EMISSL, les: ELES, safe: ESAFE, ops: EOPS }; } }; }
   };
-  /* ================= FINAL 2부 「한 편을 맞이하다」 — 자리 4개의 미션(합의본 v4 확정 2026-11-13 · GPT FF2-5차 필수 0건) =================
+  /* ================= FINAL 2 「도착편 업무」 — 자리 4개의 미션(합의본 v4 확정 2026-11-13 · GPT FF2-5차 필수 0건) =================
      엔진 = 도착·수하물편 카드 엔진(src_ex/ex.js — 숨은 날 n = 9) · 규칙 진실값 = window.EX(수하물 실행 검사) · window.CQ(좌석·서류·확정 순서)
      미션은 2부 run의 「자리 입력 스냅샷」(I)에서 만든다 — 같은 입력이면 같은 미션(이어하기·장면 지문이 같음).
      시각 = 현지 분 · 한 축(STA 기준 · 되감기 없음). 「+n」 = 실제 도착 tArr 기준 · 「−n」 = STA 기준(① 준비만) · ④는 송환편 STD 기준 기한.
