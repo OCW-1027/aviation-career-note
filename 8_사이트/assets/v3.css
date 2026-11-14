@@ -269,6 +269,14 @@ footer{background:#081828;color:#fff;padding:58px 24px}
 @media(max-width:600px){
   .topbar{font-size:10px}
 }
+/* 2026.11 スマホを横にしたとき（高さが低い画面）：上の見出しは画面に固定せずスクロールで消える・メニュー8つを1行に */
+@media (orientation:landscape) and (max-height:500px){
+  header{position:static}
+  .topbar{display:none}
+  .nav{padding:8px 18px;gap:8px 14px}
+  .navlinks{grid-template-columns:repeat(8,1fr);gap:5px;font-size:12px}
+  .navlinks a{padding:6px 2px}
+}
 /* スマホでは上の細い帯は出さない（すぐ下のメニューと同じ内容で、2行になるため。2026.10） */
 @media(max-width:600px){
   .topbar{display:none}
