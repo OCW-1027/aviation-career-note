@@ -106,7 +106,7 @@
         return ['cleared to ' + c.destName + ' airport via ' + c.sid + ' departure, flight planned route, maintain ' + fmt.alt(c.alt) + ', squawk ' + c.sq,
           'cleared to ' + c.destName + ' via ' + c.sid + ' departure, flight planned route, maintain ' + fmt.alt(c.alt) + ', squawk ' + c.sq];
       case 'rbok': return ['readback correct' + (c.then ? ', ' + c.then : ''), null];
-      case 'atis': return ['information ' + ATC.phon(c.v) + ' is now current, QNH ' + sim.qnh, 'information ' + ATC.phon(c.v) + ', QNH ' + sim.qnh];
+      case 'atis': return ['information ' + ATC.phon(c.v) + ' is now current' + (c.wind ? ', wind ' + w : '') + ', QNH ' + sim.qnh, 'information ' + ATC.phon(c.v) + ', QNH ' + sim.qnh];      /* 바람이 바뀌어 나온 새 ATIS는 바람도 함께(GPT 10차 R10-04) */
       case 'stby': return [c.text || 'stand by', null];
       case 'slot': return ['your calculated takeoff time is ' + c.v + ', expect start-up at ' + c.tsat, 'takeoff time ' + c.v + ', expect start-up at ' + c.tsat];      /* 예상 시각임을 복창에도(R9-05) */
       case 'amendfl': return ['flight level ' + fmt.fl(c.old) + ' not available for your direction of flight, expect ' + fmt.alt(c.v) + ' as final level', 'expect ' + fmt.alt(c.v)];
@@ -306,7 +306,7 @@
       if (a.owner !== 'me') return;
       if (a.waiting === 'dctreq') out.push({ p: 7, ac: a.id, t: ATC.T('{0} {1} 직행 요청 — 교통에 문제가 없으면 「직행 승인」, 아니면 「불가 — 현 경로 유지」.', a.cs, a.reqFix), c: [{ k: 'dct', fix: a.reqFix }] });
       if (a.waiting === 'pirep') out.push({ p: 6, ac: a.id, t: ATC.T('{0} 난기류 보고 — 「Roger」로 수신을 확인합니다(다른 항공기에 참고 정보가 됩니다).', a.cs), c: [{ k: 'ack' }] });
-      if (a.atisOld && !a.waiting) out.push({ p: 4, ac: a.id, t: ATC.T('{0}에 새 ATIS {1}을(를) 알립니다.', a.cs, a.atisOld), c: [{ k: 'atis', v: a.atisOld }] });
+      if (a.atisOld && !a.waiting) out.push({ p: 4, ac: a.id, t: ATC.T('{0}에 새 ATIS {1}을(를) 알립니다.', a.cs, a.atisOld), c: [{ k: 'atis', v: a.atisOld, wind: true }] });
       if (a.waiting === 'laser') out.push({ p: 9, ac: a.id, t: ATC.T('{0} 레이저 조사 보고 — 확인하고 계속 접근할 수 있는지 묻습니다(「레이저 보고 확인」).', a.cs), c: [{ k: 'laserack' }] });
     });
   };

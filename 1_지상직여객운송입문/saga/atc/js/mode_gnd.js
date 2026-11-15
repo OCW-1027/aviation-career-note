@@ -188,8 +188,8 @@
   GndSim.prototype.crossOk = function (ac) { return !this.coordOn() || (ac.xco && ac.xco.t1 >= this.t); };
   GndSim.prototype.reqCross = function (ac) {
     if (!this.coordOn() || ac.xco === 'req' || !(ac.st === 'athold' && ac.holdKind === 'cross')) return false; ac.xco = 'req'; ac.xcoWait = false;
-    var rw = ac.holdRw, nm = (D.rw[rw] ? D.rw[rw].a + '/' + D.rw[rw].b : rw);
-    this.phone('GND', ATC.T('Tower에 {0} 활주로 {1} 횡단 협조 요청', ac.cs, nm));
+    var rw = ac.holdRw, nm = (D.rw[rw] ? D.rw[rw].a + '/' + D.rw[rw].b : rw), nd = D.gN[ac.node], at = nd && nd.hold ? nd.hold : '';
+    this.phone('GND', at ? ATC.T('Tower에 {0} 활주로 {1} 횡단 협조 요청({2}에서)', ac.cs, nm, at) : ATC.T('Tower에 {0} 활주로 {1} 횡단 협조 요청', ac.cs, nm));      /* 횡단 위치도 알림(GPT 10차 R10-03) */
     var chk = function () {
       if (ac.gone || ac.xco !== 'req' || ac.st !== 'athold') return;
       var arr = this.nextArr(rw), busy = this.rwyBusy(rw, ac);
@@ -215,7 +215,7 @@
         if (a.tech) { this.say(a, ATC.csSay(a) + ', we have a technical problem, request return to stand ' + a.stand + '.', { kind: 'emg' }); this.sys(ATC.T('{0} 기체 이상 — 주기장 {1}(으)로 복귀하는 경로를 지정하세요.', a.cs, a.stand), 'alert'); this.standBusy[a.stand] = 1; }
         else this.say(a, ATC.csSay(a) + ', request taxi.');
       }
-      if (a.crossing && !this.onRwy(a, a.holdRw) && this.t - a.crossT > 8) a.crossing = false;
+      if (a.crossing && !this.onRwy(a, a.holdRw) && this.t - a.crossT > 8) { a.crossing = false; if (this.coordOn() && a.xco && a.xco.t1) { var xr = a.holdRw; this.phone('GND', ATC.T('Tower에 {0} 활주로 {1} 횡단 완료 통보', a.cs, D.rw[xr] ? D.rw[xr].a + '/' + D.rw[xr].b : xr)); a.xco = null; } }      /* 횡단을 마치면 관제탑에 완료를 알림(R10-03) */
       if (a.st === 'reqtaxi' && a.kind === 'arr' && a.emg && !a.emgDue) { a.emgDue = this.t + 0; var r = this.net.route(a.node, D.stands[a.stand].node, { rwyOk: true }); a.emgDue = this.t + (r ? r.len / 8.5 : 200) + 75; this.say(a, ATC.csSay(a) + ', medical emergency on board, request priority taxi.', { kind: 'emg' }); }
       if (a.reqT && (a.waiting === 'taxi' || a.waiting === 'push') && this.t - a.reqT > 200 && !a.reqLate) { a.reqLate = true; this.inc('reqlate', [a], ATC.T('{0}: 요청에 3분 이상 응답하지 않았습니다.', a.cs)); }
       if (a.st === 'athold' && a.holdKind === 'dep' && a.owner === 'me' && this.t - a.readyT > 150 && !a.twrLate) { a.twrLate = true; this.inc('noho', [a], ATC.T('{0}: 대기 지점에서 관제탑으로 이양되지 않아 대기했습니다.', a.cs)); }

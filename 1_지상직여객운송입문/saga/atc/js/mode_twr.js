@@ -217,8 +217,9 @@
     }
     if (ev.k === 'drone' || ev.k === 'animal') {      /* 드론 목격 · 활주로 위 동물: 활주로 일시 중단 */
       var dE = this.arrRw[0], dRw = D.ends[dE].rw, dd = ev.dur || 240, rep = null;
-      if (ev.k === 'drone') { c = this.acs.filter(function (x) { return x.st === 'final' && x.d < 7 * NM && !x.emg && ATC.irreg(x); }); rep = c[0] || null; if (rep) this.say(rep, ATC.csSay(rep) + ', drone sighted, ' + Math.max(2, Math.round(rep.d / NM)) + ' miles final, at about 1,000 feet.', { kind: 'emg', front: true }); }
-      else { c = this.acs.filter(function (x) { return (x.st === 'land' || x.st === 'linedup') && D.ends[x.rwy].rw === dRw && !x.emg && ATC.irreg(x); }); if (!c.length) return false; rep = c[0]; this.say(rep, ATC.csSay(rep) + ', be advised, animal on the runway.', { kind: 'emg', front: true }); }
+      /* 드론: 본 항공기의 최종 접근 활주로를 닫음(보고 위치와 폐쇄 대상을 맞춤 — GPT 10차 F10-01). 보고 문구는 드론의 위치 · 추정 높이로(R10-01) */
+      if (ev.k === 'drone') { c = this.acs.filter(function (x) { return x.st === 'final' && x.d < 7 * NM && x.d > 1.5 * NM && !x.emg && ATC.irreg(x); }); if (!c.length) return false; rep = c[0]; dE = rep.rwy; dRw = D.ends[dE].rw; this.say(rep, ATC.csSay(rep) + ', drone sighted near runway ' + dE + ' final, about ' + Math.max(2, Math.min(7, Math.round(rep.d / NM))) + ' miles from touchdown, estimated altitude 1,000 feet.', { kind: 'emg', front: true }); }
+      else { c = this.acs.filter(function (x) { return (x.st === 'land' || x.st === 'linedup') && D.ends[x.rwy].rw === dRw && !x.emg && ATC.irreg(x); }); if (!c.length) return false; rep = c[0]; this.say(rep, ATC.csSay(rep) + ', be advised, animal on runway ' + rep.rwy + '.', { kind: 'emg', front: true }); }
       this.rwClosed[dRw] = this.t + dd; this.insp = { rw: dRw, t0: this.t, t1: this.t + dd, hold: true, why: ev.k }; this.shutAlt = null; this.shutSaid = false;
       this.sys(ev.k === 'drone' ? ATC.T('드론 목격 보고 — 활주로 {0} 이착륙을 약 {1}분 중단합니다. 접근 중인 항공기는 복행시키고, 출발기는 대기시키세요.', this.endOf(dRw), Math.round(dd / 60)) : ATC.T('활주로 {0} 동물 침입 보고 — 퇴치 · 점검으로 약 {1}분 폐쇄합니다. 접근 중인 항공기는 복행시키고, 출발기는 대기시키세요.', this.endOf(dRw), Math.round(dd / 60)), 'alert');
       return true;

@@ -348,7 +348,7 @@
     if (ac.owner === 'out') return ATC.T('<p class="cinfo">다음 관제석으로 이양한 항공기입니다.</p>');
     /* 조종사 요청 · 보고 응답 */
     if (ac.waiting === 'dctreq') h += Gp(ATC.T('직행 요청 {0}', ac.reqFix), B(ATC.T('직행 승인'), function () { now1({ k: 'dct', fix: ac.reqFix }); }, { cls: 'pri' }) + B(ATC.T('불가 — 현 경로 유지'), function () { now1({ k: 'unable' }); }), 236);
-    if (ac.atisOld) h += Gp(ATC.T('새 ATIS'), B(ATC.T('ATIS {0} 통보', ac.atisOld), function () { now1({ k: 'atis', v: ac.atisOld }); }), 236);
+    if (ac.atisOld) h += Gp(ATC.T('새 ATIS'), B(ATC.T('ATIS {0} 통보', ac.atisOld), function () { now1({ k: 'atis', v: ac.atisOld, wind: true }); }), 236);
     if (ac.waiting === 'pirep') h += Gp(ATC.T('난기류 보고'), B(ATC.T('Roger(수신 확인)'), function () { now1({ k: 'ack' }); }, { cls: 'pri' }), 236);
     /* 기수 */
     h += Gp(ATC.T('기수 <small>방위 눈금판을 누르거나 H + 화면</small>'), '<canvas id="dial" width="104" height="104"></canvas><div class="col">' + B(ATC.T('좌선회'), function () { setDir('L'); }, { cls: pendDir() === 'L' ? 'on' : '' }) + B(ATC.T('우선회'), function () { setDir('R'); }, { cls: pendDir() === 'R' ? 'on' : '' }) + B('−10°', function () { nudge(-10); }) + B('+10°', function () { nudge(10); }) + '</div>', 172);
@@ -393,7 +393,7 @@
     var sim = app.sim, h = '', e = D.ends[ac.rwy], rw = e.rw, arr = sim.nextArr(rw), info = '';
     if (ac.owner !== 'me') return '<p class="cinfo">' + (ac.owner === 'gnd' ? ATC.T('지상관제(자동)가 이동시키는 중입니다.') : ATC.T('다른 관제석으로 이양했습니다.')) + '</p>' + (ac.owner === 'gnd' && ac.kind === 'dep' && sim.coordOn && sim.coordOn() && !sim.relOk(ac) ? Gp(ATC.T('출발 승인(Approach) — 미리 요청'), B(ac.rel === 'req' ? ATC.T('☎ 요청함 — 응답 대기') : ATC.T('☎ 출발 승인 요청'), function () { sim.reqRelease(ac); app.cmdSig = ''; }, { cls: 'wide', dis: ac.rel === 'req' })) : '');
     var busy = sim.rwyBusy(rw, ac), gap = sim.wakeGap(ac, rw);
-    if (ac.atisOld) h += Gp(ATC.T('새 ATIS'), B(ATC.T('ATIS {0} 통보', ac.atisOld), function () { now1({ k: 'atis', v: ac.atisOld }); }));
+    if (ac.atisOld) h += Gp(ATC.T('새 ATIS'), B(ATC.T('ATIS {0} 통보', ac.atisOld), function () { now1({ k: 'atis', v: ac.atisOld, wind: true }); }));
     if (ac.kind === 'dep' && sim.coordOn && sim.coordOn() && (ac.st === 'athold' && ac.holdKind === 'dep' || ac.st === 'lineup' || ac.st === 'linedup') && !sim.relOk(ac)) h += Gp(ATC.T('출발 승인(Approach)'), B(ac.rel === 'req' ? ATC.T('☎ 요청함 — 응답 대기') : ATC.T('☎ 출발 승인 요청'), function () { sim.reqRelease(ac); app.cmdSig = ''; }, { cls: 'pri wide', dis: ac.rel === 'req' }));
     else if (ac.kind === 'dep' && ac.rel && ac.rel.t1 && !ac.cto && (ac.st === 'athold' || ac.st === 'lineup' || ac.st === 'linedup')) info += ATC.T('<p class="cinfo">출발 승인 받음 — {0}초 안에 이륙</p>', Math.max(0, Math.round(ac.rel.t1 - sim.t)));
     if (ac.waiting === 'laser') h += Gp(ATC.T('레이저 조사 보고'), B(ATC.T('레이저 보고 확인'), function () { now1({ k: 'laserack' }); }, { cls: 'pri wide' }));
@@ -693,11 +693,13 @@
     var f = sim.flow || {}, mine = sim.acs.filter(function (a) { return a.owner === 'me'; }), soon = (sim.sched || []).filter(function (s) { return s.t < sim.t + 600; }).length, L = sim.level.id, notes = [];
     if (sim.lvp) notes.push(ATC.T('저시정 절차(LVP) 운용 중'));
     if (L >= 2) notes.push(ATC.T('주파수가 붐비면 두 송신이 겹칠 수 있습니다(혼신 → 「Say again」)'));
-    if (sim.coordOn && sim.coordOn()) notes.push({ TWR: ATC.T('이륙 전에 Approach의 출발 승인(release)을 받습니다'), GND: ATC.T('활주로 횡단은 Tower와 협조한 뒤 허가합니다'), APP: ATC.T('Tower에서 착륙 간격 요청이 올 수 있습니다') }[sim.mode] || '');
+    if (sim.coordOn && sim.coordOn()) notes.push({ TWR: ATC.T('이륙 전에 Approach의 출발 승인(release)을 받습니다 — 이 게임은 편마다 받는 운용을 연습합니다(실제 적용 조건은 기관 간 협정)'), GND: ATC.T('활주로 횡단은 Tower와 협조한 뒤 허가합니다'), APP: ATC.T('Tower에서 착륙 간격 요청이 올 수 있습니다') }[sim.mode] || '');
     if (L >= 2 && (sim.mode === 'TWR' || sim.mode === 'APP')) notes.push(ATC.T('바람이 바뀌면 새 ATIS가 나옵니다 — 주파수의 항공기에 알립니다'));
     var rws = (sim.rwys || f.arrs || []).join(' · ') || sim.arrRwy || '';
-    var rows = [[ATC.T('운용'), (f.label || '') + (rws ? ' — ' + rws : '')], [ATC.T('바람 · QNH'), fmt.wind(sim.wind) + ' · QNH ' + sim.qnh + ' · ATIS ' + sim.atis], [ATC.T('관할 중'), ATC.T('{0}대', mine.length)], [ATC.T('10분 안에 들어올 교통'), ATC.T('{0}대', soon)]];
-    var h = ATC.T('<div class="mhead"><span class="pen">HANDOVER · {0}</span><h2>근무 인수인계</h2></div>', app.pos.id) + '<div class="mbody"><table class="sbrief hov">' + rows.map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1]) + '</td></tr>'; }).join('') + '</table>' + (notes.filter(Boolean).length ? ATC.T('<h4>주의 사항</h4>') + '<ul class="bl">' + notes.filter(Boolean).map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>' : '') + '</div>' + ATC.T('<div class="mfoot"><span class="sp"></span><button class="btn pri" id="hovOk">인수 확인 — 근무 시작</button></div>');
+    var rows = [[ATC.T('운용'), (f.label || '') + (rws ? ' — ' + rws : '')], [ATC.T('바람 · QNH'), fmt.wind(sim.wind) + ' · QNH ' + sim.qnh + ' · ATIS ' + sim.atis], [ATC.T('관할 중'), ATC.T('{0}대', mine.length) + (mine.filter(function (a) { return a.waiting; }).length ? ATC.T(' · 응답 기다리는 항공기 {0}대', mine.filter(function (a) { return a.waiting; }).length) : '')], [ATC.T('10분 안에 들어올 교통'), ATC.T('{0}대', soon)]];
+    var shut = Object.keys(sim.rwClosed || {}).filter(function (k) { return sim.rwClosed[k] > sim.t; }).map(function (k) { return D.rw && D.rw[k] ? D.rw[k].a + '/' + D.rw[k].b : k; });      /* 지금 닫힌 활주로도 넘겨줌(GPT 10차 R10-05) */
+    rows.push([ATC.T('폐쇄 · 설비'), shut.length ? ATC.T('활주로 {0} 폐쇄 중', shut.join(' · ')) : ATC.T('이상 없음')]);
+    var h = ATC.T('<div class="mhead"><span class="pen">HANDOVER · {0}</span><h2>근무 인수인계</h2></div>', app.pos.id) + '<div class="mbody"><table class="sbrief hov">' + rows.map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + esc(r[1]) + '</td></tr>'; }).join('') + '</table>' + (notes.filter(Boolean).length ? ATC.T('<h4>주의 사항</h4>') + '<ul class="bl">' + notes.filter(Boolean).map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>' : '') + ATC.T('<p class="snote">실제 인수인계에서는 교통 하나하나의 상태 · 진행 중인 조정 · 설비 이상까지 넘겨줍니다. 이 창은 그 가운데 핵심만 간추린 것입니다.</p>') + '</div>' + ATC.T('<div class="mfoot"><span class="sp"></span><button class="btn pri" id="hovOk">인수 확인 — 근무 시작</button></div>');
     app.paused = true; openModal(h);
     var b = $('hovOk'); if (b) b.onclick = function () { closeModal(); if (!app.packHold) app.paused = false; };
   }
