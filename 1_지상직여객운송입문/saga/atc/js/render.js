@@ -139,6 +139,7 @@
       f._sx = pp[0]; f._sy = pp[1]; f._on = !hid;
     });
     /* 악기상 */
+    (sim.wx || []).forEach(function (w) { var c0 = rs(v, W, H, w), r2 = w.r * v.scale * 2.2, g2 = ctx.createRadialGradient(c0[0], c0[1], r2 * 0.3, c0[0], c0[1], r2); g2.addColorStop(0, 'rgba(60,200,90,.20)'); g2.addColorStop(1, 'rgba(60,200,90,0)'); ctx.fillStyle = g2; ctx.beginPath(); ctx.arc(c0[0], c0[1], r2, 0, 7); ctx.fill(); });      /* 비구름 가장자리(약한 강수 — 녹색) */
     (sim.wx || []).forEach(function (w) { var c = rs(v, W, H, w), rr = w.r * v.scale, g = ctx.createRadialGradient(c[0], c[1], rr * 0.15, c[0], c[1], rr); g.addColorStop(0, 'rgba(255,60,60,.55)'); g.addColorStop(0.55, 'rgba(255,170,40,.32)'); g.addColorStop(1, 'rgba(240,220,60,.05)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c[0], c[1], rr, 0, 7); ctx.fill(); ctx.fillStyle = '#ffb347'; ctx.fillText('CB', c[0] - 6, c[1]); });
     /* 선택 항공기의 예정 경로 · 분리 원 */
     var sel = sim.byId(app.sel);
@@ -238,6 +239,41 @@
   function rectUV(ctx, v, W, H, u1, v1, u2, v2, col) { var a = gs(v, W, H, u1, v2), b = gs(v, W, H, u2, v1); ctx.fillStyle = col; ctx.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); }
   function sign(ctx, x, y, t, s) { ctx.font = 'bold ' + s + 'px ' + MONO; var w = ctx.measureText(t).width + 5; if (R._tags) R._tags.push({ x: x - w / 2 - 1, y: y - s * 0.62 - 1, w: w + 2, h: s * 1.24 + 2, wt: 1.6 }); ctx.fillStyle = '#0c0c0c'; ctx.fillRect(x - w / 2, y - s * 0.62, w, s * 1.24); ctx.fillStyle = '#f2c230'; ctx.textAlign = 'center'; ctx.fillText(t, x, y + 0.5); ctx.textAlign = 'left'; }
 
+  /* ================= 밤 · 날씨(지상 화면) =================
+     밤: 공항 현지 시각(D.tz, 기본 UTC+9)으로 어둡게 하고 활주로 가장자리등 · 진입등 · 유도로 중심선등을 켬
+     안개: 저시정(LVP)이면 흰 안개 · 비: sim.rain이면 빗줄기 */
+  R.nightK = function (sim) { var h = ((sim.utc() / 3600 + (D.tz !== undefined ? D.tz : 9)) % 24 + 24) % 24; return h < 5 || h >= 19.5 ? 1 : h < 6.5 ? (6.5 - h) / 1.5 : h >= 17.5 ? (h - 17.5) / 2 : 0; };
+  R.groundWx = function (ctx, W, H, app) {
+    var sim = app.sim, v = app.view, s = v.scale, k = R.nightK(sim), N = D.gN, now = performance.now();
+    if (k > 0.02) {
+      ctx.fillStyle = 'rgba(2,6,18,' + (0.55 * k).toFixed(3) + ')'; ctx.fillRect(0, 0, W, H);
+      if (k > 0.25 && s > 0.02) {
+        var dot = function (u, w, col, r) { var p = gs(v, W, H, u, w); if (p[0] < -4 || p[0] > W + 4 || p[1] < -4 || p[1] > H + 4) return; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, 7); ctx.fill(); };
+        var a = Math.min(1, k * 1.2), rr = Math.max(1, Math.min(2.6, 3 * s));
+        ctx.save(); ctx.globalAlpha = a;
+        Object.keys(D.ends).forEach(function (id) {      /* 활주로: 가장자리등(흰색 · 60m) · 시단등(녹색) · 진입등(흰색 · 900m) */
+          var e = D.ends[id], r0 = D.rw[e.rw], hw = (r0 && r0.width || 45) / 2 + 3, nu = -e.dv, nv = e.du, i, L = e.len || 3000;
+          for (i = 0; i <= L / 2; i += 60) { dot(e.thrU + e.du * i + nu * hw, e.thrV + e.dv * i + nv * hw, '#fff7e0', rr); dot(e.thrU + e.du * i - nu * hw, e.thrV + e.dv * i - nv * hw, '#fff7e0', rr); }
+          for (i = -hw; i <= hw; i += 9) dot(e.thrU + nu * i, e.thrV + nv * i, '#52ff8a', rr);
+          for (i = 30; i <= 900; i += 30) dot(e.thrU - e.du * i, e.thrV - e.dv * i, i % 300 === 0 ? '#fffbe8' : 'rgba(255,250,230,.75)', i % 300 === 0 ? rr * 1.3 : rr * 0.9);
+          [-1, 1].forEach(function (sd) { for (var j = 6; j <= 30; j += 6) dot(e.thrU - e.du * 300 + nu * j * sd, e.thrV - e.dv * 300 + nv * j * sd, '#fffbe8', rr * 0.9); });
+        });
+        if (s > 0.06) D.gE.forEach(function (ed) {      /* 유도로 중심선등(녹색 · 30m) */
+          if (ed.kind === 'rwy' || ed.kind === 'stand') return; var A = N[ed.a], B = N[ed.b], L = Math.hypot(B.u - A.u, B.v - A.v), n = Math.floor(L / 30), j;
+          for (j = 0; j <= n; j++) dot(A.u + (B.u - A.u) * j / Math.max(1, n), A.v + (B.v - A.v) * j / Math.max(1, n), '#3dff86', rr * 0.7);
+        });
+        ctx.restore();
+      }
+    }
+    if (sim.lvp) { var fg = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.15, W / 2, H / 2, Math.max(W, H) * 0.7); fg.addColorStop(0, 'rgba(205,212,220,' + (0.18 + 0.1 * (1 - k)) + ')'); fg.addColorStop(1, 'rgba(205,212,220,' + (0.42 + 0.12 * (1 - k)) + ')'); ctx.fillStyle = fg; ctx.fillRect(0, 0, W, H); }
+    if (sim.rain) {
+      ctx.fillStyle = 'rgba(10,18,30,' + (0.12 * sim.rain) + ')'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(190,210,235,' + (0.18 + 0.14 * sim.rain) + ')'; ctx.lineWidth = 1; ctx.beginPath();
+      var n2 = Math.round(90 * sim.rain * (W * H) / 900000), off = (now / 4) % 40, q;
+      for (q = 0; q < n2; q++) { var x0 = ((q * 7919) % W + off * 3) % W, y0 = ((q * 104729) % H + off * 9) % H; ctx.moveTo(x0, y0); ctx.lineTo(x0 - 3, y0 + 11); }
+      ctx.stroke();
+    }
+  };
   R.drawGround = function (ctx, W, H, app) {
     var sim = app.sim, v = app.view, s = v.scale, i, a, b, N = D.gN, now = performance.now();
     ctx.fillStyle = C.grass; ctx.fillRect(0, 0, W, H); ctx.textBaseline = 'middle';
@@ -274,7 +310,7 @@
       var fs = Math.max(9, 34 * s), rnum = s >= 0.045; ctx.font = 'bold ' + fs + 'px ' + MONO; ctx.fillStyle = satOk ? '#ffffff' : C.white; ctx.textAlign = 'center';
       if (rnum) { ctx.save(); ctx.translate(p[0] + 135 * s, cy); ctx.rotate(Math.PI / 2); ctx.fillText(r.a, 0, 0); ctx.restore();
       ctx.save(); ctx.translate(q[0] - 135 * s, cy); ctx.rotate(-Math.PI / 2); ctx.fillText(r.b, 0, 0); ctx.restore(); } ctx.textAlign = 'left';   /* 아주 작게 볼 때는 활주로 번호 생략 */
-      if (closed) { ctx.fillStyle = 'rgba(255,60,60,' + (0.16 + 0.1 * Math.sin(now / 250)) + ')'; ctx.fillRect(p[0], p[1], q[0] - p[0], q[1] - p[1]); ctx.fillStyle = '#ff8a8a'; ctx.font = 'bold 13px ' + MONO; ctx.fillText('RWY CLOSED — INSPECTION ' + U.mmss(sim.rwClosed[id] - sim.t), (p[0] + q[0]) / 2 - 110, cy - 26 * s - 10);
+      if (closed) { ctx.fillStyle = 'rgba(255,60,60,' + (0.16 + 0.1 * Math.sin(now / 250)) + ')'; ctx.fillRect(p[0], p[1], q[0] - p[0], q[1] - p[1]); ctx.fillStyle = '#ff8a8a'; ctx.font = 'bold 13px ' + MONO; ctx.fillText((sim.insp && sim.insp.why === 'drone' ? 'RWY CLOSED — DRONE ' : 'RWY CLOSED — INSPECTION ') + U.mmss(sim.rwClosed[id] - sim.t), (p[0] + q[0]) / 2 - 110, cy - 26 * s - 10);
         var fr = (sim.t - sim.insp.t0) / (sim.insp.t1 - sim.insp.t0), cp = [Lr * fr, 0]; ctx.fillStyle = '#ffd24a'; ctx.fillRect(cp[0] - 5, cp[1] - 3, 10, 6); ctx.fillStyle = Math.floor(now / 300) % 2 ? '#ff9a1f' : '#fff'; ctx.fillRect(cp[0] - 2, cp[1] - 5, 4, 2); }
       ctx.restore();
     });
@@ -293,6 +329,7 @@
       ctx.strokeStyle = '#f2c230'; ctx.lineWidth = Math.max(1.5, 3 * s); ctx.beginPath(); ctx.moveTo(p[0] - hx, p[1] - hy); ctx.lineTo(p[0] + hx, p[1] + hy); ctx.stroke();
       ctx.setLineDash([4 * s + 1, 3 * s + 1]); ctx.beginPath(); ctx.moveTo(p[0] - hx + ox, p[1] - hy + oy); ctx.lineTo(p[0] + hx + ox, p[1] + hy + oy); ctx.stroke(); ctx.setLineDash([]);
     });
+    R.groundWx(ctx, W, H, app);      /* 밤 · 안개 · 비 */
     if (app.guide) return;
     R._tags = []; var tiny = s < 0.045;                                                          /* 아주 작게 볼 때는 표지 · 주기장 번호를 생략 */
     var ss = Math.max(9, Math.min(15, 46 * s));

@@ -158,8 +158,8 @@
 
   /* ---------- 난이도 ---------- */
   D.levels = {
-    1: { id: 1, ko: ATC.T('초급'), en: 'STUDENT', hint: true, rbErr: 0, events: 0, stca: 150 },
-    2: { id: 2, ko: ATC.T('중급'), en: 'CONTROLLER', hint: false, rbErr: 0.03, events: 1, stca: 120 },
-    3: { id: 3, ko: ATC.T('고급'), en: 'SENIOR', hint: false, rbErr: 0.07, events: 3, stca: 90 }
+    1: { id: 1, ko: ATC.T('초급'), en: 'STUDENT', hint: true, rbErr: 0, events: 0, stca: 150, block: 0 },
+    2: { id: 2, ko: ATC.T('중급'), en: 'CONTROLLER', hint: false, rbErr: 0.03, events: 1, stca: 120, block: 0.15 },
+    3: { id: 3, ko: ATC.T('고급'), en: 'SENIOR', hint: false, rbErr: 0.07, events: 3, stca: 90, block: 0.25 }
   };
 })(typeof globalThis !== 'undefined' ? globalThis : this);

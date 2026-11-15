@@ -265,11 +265,24 @@
   };
 
   AppSim.prototype.update = function (dt) {
+    this.wxTick();      /* 날씨 변화 · 새 ATIS */
+    /* 관제탑의 착륙 간격 요청(자유 근무 · 중급 이상, 한 번): 출발이 밀려 다음 10분 동안 같은 활주로 착륙 간격 6NM 이상 */
+    if (this.coordOn() && !this.spDone && this.t > this.endT * 0.35) { this.spDone = true; this.spaceReq = { nm: 6, t1: this.t + 600 }; this.coordAsk = { t: this.t, from: 'Tower', reply: ATC.T('알겠습니다 — 다음 10분 동안 착륙 간격 6NM 이상.') }; this.phone('TWR', ATC.T('출발 대기열이 길어 다음 10분 동안 같은 활주로 착륙 간격을 6NM 이상으로 벌려 주십시오(「수락」).')); this.emit('notice', ATC.T('Tower 요청 — 착륙 간격 6NM')); }
+    if (this.spaceReq) {
+      var sr = this.spaceReq, sfa = this;
+      if (this.t >= sr.t1) { this.spaceReq = null; this.phone('TWR', ATC.T('착륙 간격 요청 해제 — 평소 간격으로 돌아갑니다.')); }
+      else this.acs.forEach(function (x) {
+        if (x.kind !== 'arr' || !x.appr || !x.appr.loc || x.spChk || x.appr.d > 7 || x.owner === 'out' && x.spT) return; x.spChk = true;
+        var ahead = sfa.acs.filter(function (y) { return y !== x && y.kind === 'arr' && y.appr && y.appr.loc && y.appr.rwy === x.appr.rwy && y.appr.d < x.appr.d; }).sort(function (p, q) { return q.appr.d - p.appr.d; })[0];
+        if (ahead && x.appr.d - ahead.appr.d < sr.nm - 0.3) sfa.inc('spacing', [x, ahead], ATC.T('{0}: 관제탑이 요청한 착륙 간격 {1}NM보다 좁게(앞 항공기 {2}와 {3}NM) 최종 접근에 넣었습니다.', x.cs, sr.nm, ahead.cs, (x.appr.d - ahead.appr.d).toFixed(1)));
+      });
+    }
     var i, a, self = this;
     while (this.sched.length && this.sched[0].t <= this.t) { var s = this.sched.shift(); if (s.kind === 'arr') this.spawnArr(s); else this.spawnDep(s); }
     for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else { ev.t = this.t + 30; if (this.sched.length === 0 && ev.t > this.endT + 600) ev.done = true; } } }
     for (i = 0; i < this.wx.length; i++) { var w = this.wx[i]; w.x += w.vx / 3600 * dt; w.y += w.vy / 3600 * dt; }
     this.moveAll(dt);
+    var sfr = this; this.reqTick(this.acs.filter(function (a) { return a.kind === 'arr' && !a.appr && !a.divert; })); this.acs.forEach(function (a) { sfr.reqLateTick(a, 120); });      /* 직행 요청 · 난기류 보고 */
     var cg = this.rwChg;
     if (cg) {
       if (!cg.done && this.t < cg.t1) { var kk = (this.t - cg.t0) / (cg.t1 - cg.t0); this.wind = { dir: Math.round(U.n360(cg.w0.dir + U.adiff(cg.w0.dir, cg.w1.dir) * kk) / 10) * 10 || 360, spd: Math.round(cg.w0.spd + (cg.w1.spd - cg.w0.spd) * kk) }; }
@@ -343,11 +356,22 @@
       for (var k = 0; k < this.wx.length; k++) { var w2 = this.wx[k]; if (a.alt < 26000 && U.dist(a, w2) < w2.r && !w2.hit[a.id] && a.owner === 'me') { w2.hit[a.id] = 1; this.inc('wx', [a], ATC.T('{0}: 적란운 구역을 통과했습니다(심한 난기류).', a.cs)); this.say(a, ATC.csSay(a) + ', severe turbulence, request heading to avoid weather.', { kind: 'warn' }); } }
     }
   };
+  /* 끝없는 근무: 도착기를 계속 더하고(시간이 갈수록 간격이 좁아짐, 최소 55초) 가끔 출발기 */
+  AppSim.prototype.moreTraffic = function () {
+    if (this.sched.length >= 2) return;
+    var r = this.rng, self = this, la = this.sched.reduce(function (m, x) { return x.kind === 'arr' ? Math.max(m, x.t) : m; }, Math.max(this.t, this.eLastA || 0));
+    var gap = Math.max(55, this.cfg.gap * (1 - Math.min(0.55, this.t / 3600 * 0.55))), t = la + gap * (0.75 + r() * 0.5), g, n = 0;
+    do { g = r.pick(this.gates); } while (g === this.eLastG && n++ < 6);      /* 같은 방면이 잇달아 오지 않게 */
+    this.eLastA = t; this.eLastG = g; this.sched.push({ t: t, kind: 'arr', gate: g });
+    if (this.cfg.dep && r() < 0.5) this.sched.push({ t: la + gap * (0.3 + r() * 0.6), kind: 'dep', gate: r.pick(Object.keys(D.gateDest)) });
+    this.sched.sort(function (a, b) { return a.t - b.t; }); this.endT = Math.max(this.endT, t + gap);
+    if (this.level.id >= 2 && this.t - (this.evAdd || 0) > 600) { this.evAdd = this.t; this.events.push({ k: r.pick(this.level.id === 3 ? ['mayday', 'wx', 'missed', 'minfuel', 'nordo'] : ['medical', 'missed']), t: this.t + 120 + r() * 240, done: false }); }
+  };
   AppSim.prototype.isFinished = function () { return this.sched.length === 0 && this.acs.length === 0 && this.t > 30; };
 
   /* 초급용 코치: 지금 할 일을 우선순위대로 */
   AppSim.prototype.coach = function () {
-    var out = [], self = this;
+    var out = [], self = this; self.reqHints(out);
     this.alerts.stca.forEach(function (p) { out.push({ p: 9, ac: p[0].id, t: ATC.T('{0} · {1} 근접 예상 — 한쪽 고도를 1,000ft 이상 분리하거나 기수를 변경하세요.', p[0].cs, p[1].cs) }); });
     this.acs.forEach(function (a) {
       if (a.owner === 'in') { out.push({ p: 8, ac: a.id, t: ATC.T('{0} 핸드오프 수락(깜박이는 표적을 선택하고 「수락」).', a.cs) }); return; }

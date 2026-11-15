@@ -111,6 +111,9 @@
       case 'slot': return ['your calculated takeoff time is ' + c.v + ', expect start-up at ' + c.tsat, 'takeoff time ' + c.v + ', expect start-up at ' + c.tsat];      /* 예상 시각임을 복창에도(R9-05) */
       case 'amendfl': return ['flight level ' + fmt.fl(c.old) + ' not available for your direction of flight, expect ' + fmt.alt(c.v) + ' as final level', 'expect ' + fmt.alt(c.v)];
       case 'rmk': return [c.text, c.rb || 'roger'];
+      case 'ack': return ['roger', null];      /* 보고(난기류 등)에 대한 수신 확인 */
+      case 'unable': return ['unable direct due traffic, maintain present route', 'maintain present route'];      /* 직행 요청 거절 */
+      case 'laserack': return ['roger, are you able to continue?', 'affirm, continuing'];      /* 레이저 조사 보고 */
       default: return [c.k, 'roger'];
     }
   }
@@ -150,6 +153,15 @@
     exitbad: { cat: 'P', pts: -6, t: ATC.T('이양 조건 미충족'), les: 'ho' },
     wronglvl: { cat: 'P', pts: -4, t: ATC.T('비행 방향에 맞지 않는 순항 고도 배정'), les: 'acc' },
     reqlate: { cat: 'E', pts: -2, t: ATC.T('조종사 요청 응답 지연'), les: 'eff' },
+    blocked_ok: { cat: 'E', pts: 1, t: ATC.T('혼신 — 재송신 요청'), les: 'rt' },
+    blocked_nr: { cat: 'E', pts: -2, t: ATC.T('혼신을 듣고도 재송신을 요청하지 않음'), les: 'rt' },
+    laser_ok: { cat: 'E', pts: 1, t: ATC.T('레이저 조사 보고 처리'), les: 'twr' },
+    atis_ok: { cat: 'E', pts: 1, t: ATC.T('새 ATIS 통보'), les: 'rt' },
+    norel: { cat: 'P', pts: -3, t: ATC.T('출발 승인 없이 이륙 허가'), les: 'twr' },
+    nocoord: { cat: 'P', pts: -3, t: ATC.T('관제탑과 협조 없이 활주로 횡단'), les: 'gnd' },
+    spacing: { cat: 'E', pts: -2, t: ATC.T('요청받은 착륙 간격 미달'), les: 'app' },
+    coord_ok: { cat: 'E', pts: 1, t: ATC.T('인접 관제석 요청 수락'), les: 'ho' },
+    coord_late: { cat: 'E', pts: -1, t: ATC.T('인접 관제석 요청에 늦게 응답'), les: 'ho' },
     noho: { cat: 'P', pts: -4, t: ATC.T('관제 이양(주파수 변경) 지연 · 누락'), les: 'ho' },
     airspace: { cat: 'S', pts: -10, t: ATC.T('이양 없이 관할 공역 이탈'), les: 'ho' },
     unstable: { cat: 'E', pts: -5, t: ATC.T('불안정 접근 유도(고도 과다 · 진입각 과대)'), les: 'app' },
@@ -179,7 +191,7 @@
     this.seed = o.seed || 12345; this.rng = ATC.rng(this.seed);
     this.t = 0; this.t0 = (o.startHour !== undefined ? o.startHour : 9) * 3600;   /* 근무 시작 UTC */
     this.acs = []; this.log = []; this.incs = []; this.q = []; this.cur = null;
-    this.done = 0; this.total = 0; this.over = false; this.fatal = null;
+    this.done = 0; this.total = 0; this.over = false; this.fatal = null; this.endless = !!o.endless; this.smp = [];      /* endless = 끝없는 근무 · smp = 1분마다 관할 대수(결과 그래프) */
     this.wind = o.wind || { dir: 60, spd: 8 }; this.qnh = o.qnh || 1013; this.atis = 'C';
     this.flow = D.flows[o.flow || this.flowForWind()];
     this.nextId = 1; this.usedCs = {}; this.sq = 0o4500 + this.rng.int(0, 60);
@@ -219,14 +231,87 @@
     if (!this.cur && this.q.length) {
       var m = this.q.shift();
       if (m.ac && m.ac.gone && m.who === 'pilot') return;
+      /* 혼신: 두 항공기가 거의 동시에 먼저 송신하면 겹쳐서 알아들을 수 없음 → 관제사가 「say again」을 요청해야 함 */
+      if (m.call && !this.rxBlock && this.level.block && this.q.length && this.q[0].call && this.q[0].ac !== m.ac && !m.onDone && !this.q[0].onDone && this.rng() < this.level.block) {
+        var m2 = this.q.shift(); this.rxBlock = { msgs: [m, m2], t: this.t };
+        m = { who: 'pilot', blocked: true, text: ATC.T('[혼신 — 두 송신이 겹쳐 알아들을 수 없음]'), kind: 'warn', dur: Math.max(m.dur, m2.dur) * 0.7 };
+        this.emit('notice', ATC.T('혼신 — 「Say again」으로 다시 송신하게 하세요'));
+      }
       if (this.onTx) { var rd = this.onTx(m); if (rd > 0) m.dur = rd; }
       m.end = this.t + m.dur; this.cur = m;
+      /* 교신 통계(결과 화면): 송신 수 · 혼신 · 주파수 점유 · 조종사가 먼저 부른 뒤 관제사가 답하기까지 걸린 시간 */
+      var rs = this.rs || (this.rs = { atc: 0, plt: 0, blk: 0, air: 0, rt: [], at: {} }); rs.air += m.dur || 0;
+      if (m.blocked) rs.blk++;
+      else if (m.who === 'atc') { rs.atc++; if (m.ac && rs.at[m.ac.id] !== undefined) { rs.rt.push(Math.max(0, this.t - rs.at[m.ac.id])); delete rs.at[m.ac.id]; } }
+      else if (m.who === 'pilot') { rs.plt++; if (m.call && m.ac && rs.at[m.ac.id] === undefined) rs.at[m.ac.id] = this.t + (m.dur || 0); }
       m.entry = this.addLog({ who: m.who, cs: m.ac ? m.ac.cs : '', ac: m.ac ? m.ac.id : 0, text: m.text, kind: m.kind || '', dur: m.dur, noVoice: !!this.onTx });
       if (m.onStart) m.onStart(m.entry);
     }
   };
   /* 조종사 송신 */
-  Sim.prototype.say = function (ac, text, o) { o = o || {}; this.enq({ who: 'pilot', ac: ac, text: text, kind: o.kind || '', onDone: o.onDone, dur: o.dur }, o.front); };
+  Sim.prototype.say = function (ac, text, o) { o = o || {}; this.enq({ who: 'pilot', ac: ac, text: text, kind: o.kind || '', onDone: o.onDone, dur: o.dur, call: !o.front && o.kind !== 'emg' }, o.front); };      /* call = 조종사가 먼저 거는 송신(혼신이 날 수 있음) */
+  /* 혼신 뒤 재송신 요청: 관제사 「Blocked, say again」 → 두 항공기가 차례로 다시 송신 */
+  Sim.prototype.sayAgain = function () {
+    var b = this.rxBlock, self = this; if (!b) return false; this.rxBlock = null;
+    this.enq({ who: 'atc', text: 'Blocked, say again.', onDone: function () { b.msgs.forEach(function (m) { m.call = false; self.enq(m, true); }); } }, true);
+    this.inc('blocked_ok', []); return true;
+  };
+  Sim.prototype.blockTick = function () {
+    var b = this.rxBlock, self = this; if (!b || this.t - b.t < 15) return; this.rxBlock = null;
+    this.inc('blocked_nr', b.msgs.map(function (m) { return m.ac; }).filter(Boolean), ATC.T('혼신이 난 뒤 15초 동안 재송신을 요청하지 않아, 조종사들이 스스로 다시 불렀습니다.'));
+    b.msgs.forEach(function (m) { m.call = false; self.enq(m, true); });
+  };
+  /* 조종사 요청(직항 · 난기류 보고): 접근 · 지역관제에서 가끔 — 응답하지 않으면 요청 응답 지연 */
+  Sim.prototype.reqTick = function (cands) {
+    var gap = { 1: 0, 2: 300, 3: 210 }[this.level.id] || 0; if (!gap || this.level.req === 0) return;
+    if (this.t - (this.reqLast || 0) < gap || this.t - (this.reqChk || 0) < 30) return; this.reqChk = this.t;
+    if (this.rng() > 0.5) return;
+    var self = this, pool = cands.filter(function (a) { return a.owner === 'me' && !a.waiting && !a.emg && !a.gone && a.alt > 2500; }); if (!pool.length) return;
+    var a = this.rng.pick(pool), rt = a.nav && a.nav.mode === 'route' ? a.nav.route.slice(a.nav.i) : [], fx = rt.length >= 3 ? rt[Math.min(rt.length - 1, 2 + this.rng.int(0, 1))] : null;
+    if (fx && D.fix[fx] && D.fix[fx].k !== 'tt' && this.rng() < 0.6) { a.waiting = 'dctreq'; a.reqFix = fx; this.say(a, ATC.csSay(a) + ', request direct ' + fx + '.'); }
+    else { a.waiting = 'pirep'; this.say(a, ATC.csSay(a) + ', ' + this.rng.pick(['light chop', 'moderate chop', 'light turbulence']) + ' at ' + fmt.alt(Math.round(a.alt / 1000) * 1000) + '.'); }
+    a.reqT = this.t; a.reqLate = false; this.reqLast = this.t;
+  };
+  Sim.prototype.reqLateTick = function (a, lim) { if (a.reqT && (a.waiting === 'dctreq' || a.waiting === 'pirep' || a.waiting === 'laser') && this.t - a.reqT > (lim || 120) && !a.reqLate) { a.reqLate = true; this.inc('reqlate', [a], ATC.T('{0}: 조종사 요청 · 보고에 2분 넘게 응답하지 않았습니다.', a.cs)); } };
+  /* 관제석 간 조정(인터폰): 자유 근무 · 중급 이상. 무선이 아니라 글로 주고받음 */
+  Sim.prototype.coordOn = function () { return !this.scn && this.level.id >= 2 && this.level.coord !== 0; };
+  Sim.prototype.phone = function (from, text) { this.addLog({ who: 'phone', cs: from, text: text, kind: 'phone' }); };
+  Sim.prototype.later = function (dt, fn) { (this.coordQ = this.coordQ || []).push({ t: this.t + dt, fn: fn }); };
+  Sim.prototype.coordTick = function () {
+    var q = this.coordQ, i; if (q) for (i = q.length - 1; i >= 0; i--) if (this.t >= q[i].t) { var f = q[i].fn; q.splice(i, 1); f.call(this); }
+    var p = this.coordAsk; if (p && !p.done && this.t - p.t > 45) { p.done = true; this.inc('coord_late', [], ATC.T('{0}의 요청에 45초 동안 응답하지 않았습니다.', p.from)); }
+  };
+  /* 인접 관제석의 요청에 「수락」 */
+  Sim.prototype.coordAck = function () {
+    var p = this.coordAsk; if (!p || p.done) return false; p.done = true; this.coordAsk = null;
+    if (this.t - p.t <= 45) this.inc('coord_ok', [], ATC.T('{0}의 요청을 수락했습니다.', p.from));
+    this.phone(this.mode, p.reply); return true;
+  };
+  /* 날씨 변화(자유 근무 · 중급 이상): 처음에 비가 올 수 있고, 10 ~ 20분마다 바람이 조금 바뀌면 새 ATIS 발행 → 주파수의 항공기에 알림 */
+  Sim.prototype.wxTick = function (visOnly) {
+    if (this.scn || this.level.id < 2 || (typeof process !== 'undefined' && process.env && process.env.NO_WX)) return;
+    if (this.wxNext === undefined) { this.wxNext = 600 + this.rng() * 400; if (this.rng() < 0.3) this.rain = 0.4 + this.rng() * 0.6; return; }
+    if (visOnly || this.t < this.wxNext || this.rwChg || this.apClosed) return;
+    this.wxNext = this.t + 700 + this.rng() * 500;
+    var dd = (this.rng() < 0.5 ? -1 : 1) * (10 + this.rng.int(0, 1) * 10), w = { dir: ((Math.round((this.wind.dir + dd) / 10) * 10) % 360 + 360) % 360 || 360, spd: U.clamp(this.wind.spd + this.rng.int(-4, 4), 3, 24) };
+    this.wind = w; if (this.rng() < 0.3) this.rain = this.rain ? 0 : 0.4 + this.rng() * 0.5;
+    var L = this.atis = String.fromCharCode(this.atis.charCodeAt(0) >= 90 ? 65 : this.atis.charCodeAt(0) + 1), self = this; this.atisBonus = 0;
+    this.acs.forEach(function (a) { if (a.owner === 'me' && !a.onGround) a.atisOld = L; });
+    this.sys(ATC.T('새 ATIS {0} 발행 — 바람 {1}{2}. 이 주파수의 항공기에 새 ATIS를 알리세요(「ATIS {0} 통보」).', L, fmt.wind(w), this.rain ? ATC.T(' · 비') : ''), 'info');
+    this.emit('notice', ATC.T('새 ATIS {0} — 바람 {1}', L, fmt.wind(w)));
+  };
+  /* 요청 · 보고 응답 안내(코치) — 접근 · 지역 · 관제탑 공통 */
+  Sim.prototype.reqHints = function (out) {
+    this.acs.forEach(function (a) {
+      if (a.owner !== 'me') return;
+      if (a.waiting === 'dctreq') out.push({ p: 7, ac: a.id, t: ATC.T('{0} {1} 직행 요청 — 교통에 문제가 없으면 「직행 승인」, 아니면 「불가 — 현 경로 유지」.', a.cs, a.reqFix), c: [{ k: 'dct', fix: a.reqFix }] });
+      if (a.waiting === 'pirep') out.push({ p: 6, ac: a.id, t: ATC.T('{0} 난기류 보고 — 「Roger」로 수신을 확인합니다(다른 항공기에 참고 정보가 됩니다).', a.cs), c: [{ k: 'ack' }] });
+      if (a.atisOld && !a.waiting) out.push({ p: 4, ac: a.id, t: ATC.T('{0}에 새 ATIS {1}을(를) 알립니다.', a.cs, a.atisOld), c: [{ k: 'atis', v: a.atisOld }] });
+      if (a.waiting === 'laser') out.push({ p: 9, ac: a.id, t: ATC.T('{0} 레이저 조사 보고 — 확인하고 계속 접근할 수 있는지 묻습니다(「레이저 보고 확인」).', a.cs), c: [{ k: 'laserack' }] });
+    });
+  };
+  /* 비정상 상황(비상 · 복행 · 레이저 · 드론 등)은 가상 항공사에만 — 실제 항공사(al.real)는 고르지 않음 */
+  ATC.irreg = function (a) { return !(a && a.al && a.al.real); };
   Sim.prototype.sys = function (text, kind) { this.addLog({ who: 'sys', cs: '', text: text, kind: kind || 'info' }); };
   /* 관제 지시: 문구 송신 → 복창 → 적용 */
   Sim.prototype.command = function (ac, cmds, o) {
@@ -234,6 +319,8 @@
     if (!ac || ac.gone) return false;
     var chk = this.validate ? this.validate(ac, cmds) : null;
     var ph = ATC.phrase(this, ac, cmds);
+    if (ac.waiting === 'dctreq' || ac.waiting === 'pirep' || ac.waiting === 'laser') { ac.reqT = null; if (ac.waiting === 'laser' && cmds.some(function (x) { return x.k === 'laserack'; })) this.inc('laser_ok', [ac], ATC.T('{0}: 레이저 조사 보고를 확인하고 계속 가능한지 물었습니다.', ac.cs)); }
+    if (ac.atisOld && cmds.some(function (x) { return x.k === 'atis'; })) { ac.atisOld = null; if ((this.atisBonus || 0) < 2) { this.atisBonus = (this.atisBonus || 0) + 1; this.inc('atis_ok', [ac], ATC.T('{0}에 새 ATIS를 알렸습니다.', ac.cs)); } }
     ac.lastCmdT = this.t; ac.waiting = null;
     if (chk && chk.refuse) {
       this.enq({ who: 'atc', ac: ac, text: ph.atc }, true);
@@ -300,6 +387,7 @@
     if (e.pts < 0 || def.fatal) this.addLog({ who: 'sys', cs: '', text: '⚠ ' + def.t + ' — ' + e.text, kind: def.cat === 'S' ? 'alert' : 'warn' });
     else if (e.pts > 0) this.addLog({ who: 'sys', cs: '', text: '✔ ' + e.text, kind: 'good' });
     if (def.fatal && !this.fatal && !this.noFatal) { this.fatal = e; }
+    if (this.endless && e.cat === 'S' && e.pts < 0) this.emit('notice', ATC.T('끝없는 근무 — 안전 감점 {0} / 3', this.strikes()));
     this.emit('inc', e);
     return e;
   };
@@ -311,6 +399,8 @@
     var g = this.fatal ? 'F' : total >= 95 && !crit ? 'S' : total >= 85 ? 'A' : total >= 70 ? 'B' : total >= 55 ? 'C' : 'D';
     return { total: Math.round(total), S: s.S, E: s.E, P: s.P, bonus: Math.min(s.bonus, 10), grade: g, handled: this.done, of: this.total, fatal: this.fatal };
   };
+  /* 끝없는 근무: 안전 감점(S) 3번이면 끝 */
+  Sim.prototype.strikes = function () { return this.incs.filter(function (e) { return e.cat === 'S' && e.pts < 0; }).length; };
   Sim.prototype.remove = function (ac, ok) { ac.gone = true; var i = this.acs.indexOf(ac); if (i >= 0) this.acs.splice(i, 1); if (ok) this.done++; this.emit('gone', ac); };
   Sim.prototype.byId = function (id) { for (var i = 0; i < this.acs.length; i++) if (this.acs[i].id === id) return this.acs[i]; return null; };
   Sim.prototype.byCs = function (cs) { cs = cs.toUpperCase(); for (var i = 0; i < this.acs.length; i++) if (this.acs[i].cs === cs || this.acs[i].cs.indexOf(cs) === 0 || this.acs[i].num === cs) return this.acs[i]; return null; };
@@ -318,9 +408,11 @@
     if (this.over) return;
     this.t += dt;
     this.update(dt);
-    this.radioTick(); this.wrongTick();
+    this.radioTick(); this.wrongTick(); this.blockTick(); this.coordTick();
+    if (this.t - (this.smpT === undefined ? -99 : this.smpT) >= 60) { this.smpT = this.t; this.smp.push([Math.round(this.t), this.acs.filter(function (a) { return a.owner === 'me'; }).length]); }
+    if (this.endless && this.moreTraffic) this.moreTraffic();
     if (this.fatal && !this.over) { this.over = true; this.emit('over', this.score()); }
-    else if (this.isFinished && this.isFinished() && !this.over) { this.over = true; this.emit('over', this.score()); }
+    else if (this.endless ? this.strikes() >= 3 : this.isFinished && this.isFinished() && !this.over) { this.over = true; this.emit('over', this.score()); }
   };
   /* 시나리오: 교통량 설정을 대본 값으로 덮어쓰고(cfg), 무작위로 뽑은 사건 대신 대본의 사건을 씀(events: [{ k, t(초) … }]) */
   ATC.scnCfg = function (o, base) { var c = {}, k, s = o && o.scn && o.scn.cfg; for (k in base) c[k] = base[k]; if (s) for (k in s) c[k] = s[k]; return c; };

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>window.ATC_SITE = { back: 'AIRLINE_SAGA_SELECT.html', base: 'saga/atc/', voice: true };</script>
 <title>AIRLINE SAGA — AIR TRAFFIC CONTROL (관제편)</title>
-<link rel="stylesheet" href="saga/atc/css/atc.css?v=20261115q">
+<link rel="stylesheet" href="saga/atc/css/atc.css?v=20261115r">
 </head>
 <body>
 
@@ -37,6 +37,7 @@
   </div>
   <div class="seg" id="tabs" hidden><button data-tab="free">자유 근무</button><button data-tab="scn">시나리오</button></div>
   <div id="pcards"></div>
+  <div id="xmodes" class="xmodes"></div>
   <div id="scns" hidden></div>
   <p class="foot">공항 · 공역 · 항공사 · 호출부호 · 3자리 부호 · 주파수 · 절차 수치는 모두 가상이며 교육용입니다(실존 항공사와 부호가 같더라도 관련이 없습니다). 실제 항공교통관제에는 사용할 수 없습니다. · 교신 음성은 합성 음성(Kokoro)에 무선 음질 효과를 적용한 것입니다.</p>
 </div>
@@ -79,32 +80,32 @@
 
 <div id="modal" hidden><div id="modalBox"></div></div>
 
-<script src="saga/atc/js/i18n.js?v=20261115q"></script>
-<script src="saga/atc/js/lang/ja.js?v=20261115q"></script>
-<script src="saga/atc/js/data.js?v=20261115q"></script>
-<script src="saga/atc/js/airports/xsra.js?v=20261115q"></script>
-<script src="saga/atc/js/airports/rjtt.js?v=20261115q"></script>
-<script src="saga/atc/js/airports/xast.js?v=20261115q"></script>
+<script src="saga/atc/js/i18n.js?v=20261115r"></script>
+<script src="saga/atc/js/lang/ja.js?v=20261115r"></script>
+<script src="saga/atc/js/data.js?v=20261115r"></script>
+<script src="saga/atc/js/airports/xsra.js?v=20261115r"></script>
+<script src="saga/atc/js/airports/rjtt.js?v=20261115r"></script>
+<script src="saga/atc/js/airports/xast.js?v=20261115r"></script>
 <!-- 다른 공항 묶음은 여기: <script src="saga/atc/js/airports/….js"></script> -->
-<script src="saga/atc/js/airport.js?v=20261115q"></script>
-<script src="saga/atc/js/core.js?v=20261115q"></script>
-<script src="saga/atc/js/air.js?v=20261115q"></script>
-<script src="saga/atc/js/ground.js?v=20261115q"></script>
-<script src="saga/atc/js/mode_app.js?v=20261115q"></script>
-<script src="saga/atc/js/mode_acc.js?v=20261115q"></script>
-<script src="saga/atc/js/mode_twr.js?v=20261115q"></script>
-<script src="saga/atc/js/mode_gnd.js?v=20261115q"></script>
-<script src="saga/atc/js/mode_del.js?v=20261115q"></script>
-<script src="saga/atc/js/scenario.js?v=20261115q"></script>
-<script src="saga/atc/js/learn.js?v=20261115q"></script>
-<script src="saga/atc/js/voice.js?v=20261115q"></script>
-<script src="saga/atc/js/gloss.js?v=20261115q"></script>
-<script src="saga/atc/js/lang/ja_content.js?v=20261115q"></script>
+<script src="saga/atc/js/airport.js?v=20261115r"></script>
+<script src="saga/atc/js/core.js?v=20261115r"></script>
+<script src="saga/atc/js/air.js?v=20261115r"></script>
+<script src="saga/atc/js/ground.js?v=20261115r"></script>
+<script src="saga/atc/js/mode_app.js?v=20261115r"></script>
+<script src="saga/atc/js/mode_acc.js?v=20261115r"></script>
+<script src="saga/atc/js/mode_twr.js?v=20261115r"></script>
+<script src="saga/atc/js/mode_gnd.js?v=20261115r"></script>
+<script src="saga/atc/js/mode_del.js?v=20261115r"></script>
+<script src="saga/atc/js/scenario.js?v=20261115r"></script>
+<script src="saga/atc/js/learn.js?v=20261115r"></script>
+<script src="saga/atc/js/voice.js?v=20261115r"></script>
+<script src="saga/atc/js/gloss.js?v=20261115r"></script>
+<script src="saga/atc/js/lang/ja_content.js?v=20261115r"></script>
 <!-- 음성 묶음 목록: 사이트판(window.ATC_SITE)에서는 읽지 않음(음성 폴더를 올리지 않으므로 실패한 요청이 생기지 않게). ATC_SITE.voice = true 이면 읽음 -->
 <script>(function () { var S = window.ATC_SITE; if (!S || S.voice) document.write('<script src="' + ((S && S.base) || '') + 'assets/voice/index.js"><\/script>'); })();</script>
-<script src="saga/atc/js/radio.js?v=20261115q"></script>
-<script src="saga/atc/js/render.js?v=20261115q"></script>
-<script src="saga/atc/js/ui.js?v=20261115q"></script>
-<script src="saga/atc/js/drill.js?v=20261115q"></script>
+<script src="saga/atc/js/radio.js?v=20261115r"></script>
+<script src="saga/atc/js/render.js?v=20261115r"></script>
+<script src="saga/atc/js/ui.js?v=20261115r"></script>
+<script src="saga/atc/js/drill.js?v=20261115r"></script>
 </body>
 </html>

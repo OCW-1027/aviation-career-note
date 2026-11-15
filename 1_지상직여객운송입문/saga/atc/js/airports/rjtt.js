@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 9, ctlf: 9, p1: 12, p2: 11 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 10, ctlf: 10, p1: 13, p2: 12 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;

@@ -19,7 +19,7 @@
       ko: ATC.pick({ ko: '아스테라 국제공항', ja: 'アステラ国際空港', en: 'Astera International Airport' }),
       transAlt: 14000, tower: { u: 0, v: 0 }
     };
-    D.voice = { dir: 'assets/voice/xast/', parts: { ctl: 6, ctlf: 6, p1: 8, p2: 9 } };      /* 녹음 묶음(관제사 남 · 여, 조종사 남 · 여) */
+    D.voice = { dir: 'assets/voice/xast/', parts: { ctl: 7, ctlf: 7, p1: 9, p2: 10 } };      /* 녹음 묶음(관제사 남 · 여, 조종사 남 · 여) */
     D.twrZoneNM = 7; D.indepParallel = true;
 
     /* ---------- 활주로 ----------

@@ -19,7 +19,7 @@
     { id: 6, t: T('지연 · 흐름 관리') }
   ];
 
-  var NOERR = { rbErr: 0 };      /* 복창 오류 없음 — 그 판에서 배우려는 것에만 집중 */
+  var NOERR = { rbErr: 0, block: 0 };      /* 복창 오류 없음 — 그 판에서 배우려는 것에만 집중 */
   ATC.SCN = [
     { id: 'del-first', ch: 1, apt: 'XSRA', pos: 'DEL', level: 1, flow: 'E', wind: { dir: 60, spd: 6 }, qnh: 1016, hour: 8, seed: 30102, coach: true,
       cfg: { n: 5, gap: 60 }, events: [], min: 8,

@@ -408,3 +408,31 @@ html[lang=ja]{--sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI","
 /* 일본어: 관제석 카드 제목은 낱말 사이(빈칸 · 가운뎃점)에서만 줄을 바꿈 */
 html[lang=ja] .pcard .pko{word-break:keep-all;overflow-wrap:break-word}
 html[lang=ja] .pcard .psum,html[lang=ja] .scard b,html[lang=ja] .scard .ssum,html[lang=ja] .bsum{word-break:auto-phrase}      /* 문절 단위로 줄바꿈(지원하는 브라우저에서만) */
+
+/* 혼신 → 재송신 요청 단추(교신 기록 머리) */
+.sayag{margin-left:8px;border:1px solid #ff6b5a;background:#3a1512;color:#ffd2cc;border-radius:4px;padding:1px 8px;font:12px var(--sans);cursor:pointer;animation:sayag 1s ease-in-out infinite}
+@keyframes sayag{50%{background:#5a1f19}}
+.lg.phone b{color:#ffd27a}.lg.phone span{color:#f3dfb5}
+.sayag.phoneb{border-color:#e0b04a;background:#3a2c10;color:#ffe7b0;animation:none}
+table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{text-align:left;color:var(--mut);font-weight:400;padding:3px 10px 3px 0;white-space:nowrap}table.hov td{padding:3px 0}
+/* ===== 자격 등급 · 오늘의 과제 · 끝없는 근무 · 결과 보강 ===== */
+.prate{margin-top:8px;font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+.prate.r1{color:#7fd6a6;border-color:#2f7a55}.prate.r2{color:#ffd479;border-color:#a5822f;background:rgba(255,212,121,.08)}
+.xmodes{max-width:1280px;width:100%;margin:14px auto 0;padding:0 4vw;display:grid;grid-template-columns:repeat(3,1fr) 1.6fr;gap:12px;align-items:stretch}
+.xbtn{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--pan);color:var(--txt);cursor:pointer;transition:border-color .15s}
+.xbtn:hover{border-color:var(--acc)}.xbtn i{font-style:normal;font-size:10.5px;letter-spacing:.06em;color:var(--acc)}.xbtn b{font-size:14px}.xbtn small{font-size:11.5px;color:var(--mut)}
+.xbtn.daily i{color:#ffd479}
+.rates{border:1px solid var(--line);border-radius:10px;background:var(--pan);padding:10px 14px}
+.rates h4{margin:0 0 6px;font-size:12.5px}.rates h4 small{font-weight:400;color:var(--mut);margin-left:6px}
+.rates ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:5px;font-size:11.5px}.rates p{margin:7px 0 0;font-size:10.5px;color:var(--mut)}
+.rates li{display:flex;gap:5px;align-items:baseline;padding:3px 8px;border:1px solid var(--line);border-radius:6px}.rates li span{font-weight:700;color:var(--mut)}.rates li.r1 span{color:#7fd6a6}.rates li.r2 span{color:#ffd479}
+@media (max-width:1180px){.xmodes{grid-template-columns:1fr 1fr 1fr}.rates{grid-column:1/-1}}
+@media (max-width:560px){.xmodes{grid-template-columns:1fr}}
+.rup{margin:0 0 12px;padding:9px 12px;border-radius:8px;border:1px solid #2f7a55;background:rgba(127,214,166,.08);font-size:13px}.rup.r2{border-color:#a5822f;background:rgba(255,212,121,.08)}.rup.daily{border-color:#a5822f}
+.rgraph svg{width:100%;height:96px;display:block;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:6px}
+.rgraph .ln{fill:none;stroke:var(--acc);stroke-width:2;vector-effect:non-scaling-stroke}.rgraph .ar{fill:var(--acc);opacity:.12}.rgraph .pk{fill:#ffd479}
+.rgraph line{stroke-width:2;vector-effect:non-scaling-stroke}.rgraph line.cS{stroke:#ff6b6b}.rgraph line.cE{stroke:#ffb35c}.rgraph line.cP{stroke:#6fb3ff}
+.rgcap{margin:4px 0 10px;font-size:11px;color:var(--mut)}
+.rtop3{margin:0 0 10px;padding-left:20px;font-size:12.5px}.rtop3 li{margin-bottom:6px}.rtop3 time{display:block;font-size:10.5px;color:var(--mut)}.rtop3 b span{color:#ff8a8a;font-weight:700;margin-left:4px}.rtop3 p{margin:2px 0 0;color:var(--mut)}
+.rstat{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.rstat span{display:flex;flex-direction:column;align-items:center;padding:8px 4px;border:1px solid var(--line);border-radius:8px;font-size:10.5px;color:var(--mut);text-align:center}.rstat b{font-size:17px;color:var(--txt)}
+@media (max-width:560px){.rstat{grid-template-columns:repeat(3,1fr)}}

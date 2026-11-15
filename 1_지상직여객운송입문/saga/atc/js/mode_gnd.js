@@ -107,6 +107,7 @@
         if (c.hp !== hl[0] && ac.wake === 'H') return { refuse: 'require full length for departure' };
       }
       if (c.k === 'taxi' && c.stand && c.stand !== ac.stand && !ac.tech) return { refuse: 'our assigned stand is ' + ac.stand };
+      if (c.k === 'cross' && !this.crossOk(ac)) { this.inc('nocoord', [ac], ATC.T('{0}: 관제탑과 협조(횡단 승인) 없이 활주로 횡단을 지시했습니다. 「횡단 협조 요청」을 먼저 합니다.', ac.cs)); ac.xco = { t1: this.t + 60 }; }
       if (c.k === 'cross') {
         var rw = ac.holdRw, arr = this.nextArr(rw), busy = this.rwyBusy(rw, ac);
         if ((arr && arr.d < 1.8 * NM) || (busy && busy.st !== 'vacate')) { this.inc('incursion', [ac].concat(arr && arr.d < 1.8 * NM ? [arr] : [busy]), ATC.T('{0}에 활주로 횡단을 지시했으나 {1}', ac.cs, (busy && busy.st !== 'vacate' ? ATC.T('{0}이(가) 활주로에 있습니다.', busy.cs) : ATC.T('{0}이(가) 최종 접근 {1}NM에 있습니다.', arr.cs, (arr.d / NM).toFixed(1))))); return { refuse: 'traffic on the runway' }; }
@@ -183,7 +184,22 @@
     }
     return false;
   };
+  /* 활주로 횡단 협조: 지상관제는 활주로를 관할하지 않으므로 관제탑에 먼저 요청 → 착륙기 · 활주로 사용이 없으면 승인(1분 유효) */
+  GndSim.prototype.crossOk = function (ac) { return !this.coordOn() || (ac.xco && ac.xco.t1 >= this.t); };
+  GndSim.prototype.reqCross = function (ac) {
+    if (!this.coordOn() || ac.xco === 'req' || !(ac.st === 'athold' && ac.holdKind === 'cross')) return false; ac.xco = 'req'; ac.xcoWait = false;
+    var rw = ac.holdRw, nm = (D.rw[rw] ? D.rw[rw].a + '/' + D.rw[rw].b : rw);
+    this.phone('GND', ATC.T('Tower에 {0} 활주로 {1} 횡단 협조 요청', ac.cs, nm));
+    var chk = function () {
+      if (ac.gone || ac.xco !== 'req' || ac.st !== 'athold') return;
+      var arr = this.nextArr(rw), busy = this.rwyBusy(rw, ac);
+      if ((arr && arr.d < 4 * NM) || busy) { if (!ac.xcoWait) { ac.xcoWait = true; this.phone('TWR', ATC.T('{0} 횡단 잠시 대기 — 착륙기 · 활주로 사용이 끝나면 알리겠습니다.', ac.cs)); } this.later(8, chk); return; }
+      ac.xco = { t1: this.t + 60 }; this.phone('TWR', ATC.T('{0} 활주로 {1} 횡단 승인 — 1분 안에 건너가게 하세요.', ac.cs, nm)); this.emit('notice', ATC.T('{0} 횡단 승인', ac.cs));
+    };
+    this.later(5 + this.rng() * 7, chk); return true;
+  };
   GndSim.prototype.update = function (dt) {
+    this.wxTick(true);      /* 비(화면만) — 새 ATIS는 관제탑 · 접근관제에서만 */
     var i, a, self = this;
     while (this.sched.length && this.sched[0].t <= this.t) this.spawn(this.sched.shift());
     for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else if (!this.sched.length && this.acs.length < 2) ev.done = true; } }

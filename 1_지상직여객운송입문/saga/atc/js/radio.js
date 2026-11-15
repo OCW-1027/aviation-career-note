@@ -119,6 +119,18 @@
       return hd;
     } catch (e) { RD.err = String(e && e.message || e); return none; }
   };
+  /* 혼신음: 두 반송파가 겹친 삑— 소리(맥놀이) + 잡음. 돌려주는 값 = 길이(초) */
+  RD.squeal = function (sec) {
+    var c = RD.init(); if (!c || c.state !== 'running') return 0;
+    try {
+      var t = c.currentTime + 0.02, d = Math.max(0.8, Math.min(3, sec || 1.6)), g = c.createGain(), o1 = c.createOscillator(), o2 = c.createOscillator(), nz = c.createBufferSource(), ng = c.createGain();
+      o1.type = 'sawtooth'; o2.type = 'sawtooth'; o1.frequency.value = 1010; o2.frequency.value = 1180; nz.buffer = RD.noise; nz.loop = true; ng.gain.value = 0.5;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.09, t + 0.05); g.gain.setValueAtTime(0.09, t + d - 0.08); g.gain.linearRampToValueAtTime(0, t + d);
+      o1.connect(g); o2.connect(g); nz.connect(ng); ng.connect(g); g.connect(RD.ch.strong);
+      o1.start(t); o2.start(t); nz.start(t); o1.stop(t + d + 0.05); o2.stop(t + d + 0.05); nz.stop(t + d + 0.05);
+      return d;
+    } catch (e) { return 0; }
+  };
   /* 문구 하나를 무선 음성으로 재생. 돌려주는 값 = 실제 길이(초), 재생할 수 없으면 0 */
   RD.speak = function (text, who, cs, fast) {
     var c = RD.init(); if (!c) return 0;

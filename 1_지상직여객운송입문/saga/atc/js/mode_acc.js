@@ -223,6 +223,7 @@
     for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else { ev.t = this.t + 40; if (!this.sched.length && this.acs.length < 2) ev.done = true; } } }
     for (i = 0; i < this.wx.length; i++) { var w = this.wx[i]; w.x += w.vx / 3600 * dt; w.y += w.vy / 3600 * dt; }
     this.moveAll(dt);
+    var sfr = this; this.reqTick(this.acs.filter(function (a) { return !a.divert && Math.abs(a.alt - a.tAlt) < 300; })); this.acs.forEach(function (a) { sfr.reqLateTick(a, 150); });      /* 직행 요청 · 난기류 보고 */
     var cl = this.apClosed, shut = cl && this.t < cl.t1, self = this;
     if (cl) {
       if (!cl.soon && this.t >= cl.t1 - 240) { cl.soon = true; this.sys(ATC.T('{apt} 접근관제 통보: 약 4분 뒤 공항 운영 재개 — 지금부터 도착기를 다시 인수합니다. 추가 허가 예상 시각 순서대로 이양하세요.'), 'info'); }
@@ -273,7 +274,7 @@
   };
   AccSim.prototype.isFinished = function () { return this.sched.length === 0 && this.acs.length === 0 && this.t > 30; };
   AccSim.prototype.coach = function () {
-    var out = [], self = this;
+    var out = [], self = this; self.reqHints(out);
     this.alerts.stca.forEach(function (p) { out.push({ p: 9, ac: p[0].id, t: ATC.T('{0} · {1} 같은 고도에서 곧 5NM 이내로 근접 — 한쪽 고도를 변경하거나(비행 방향에 맞는 홀수 · 짝수 고도) 기수를 변경하세요.', p[0].cs, p[1].cs) }); });
     this.acs.forEach(function (a) {
       if (a.owner === 'in') { out.push({ p: 8, ac: a.id, t: ATC.T('{0} 핸드오프 수락.', a.cs) }); return; }

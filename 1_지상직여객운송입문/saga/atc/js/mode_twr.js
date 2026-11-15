@@ -29,7 +29,7 @@
     for (i = 0; i < this.cfg.k; i++) this.sched.push({ t: 120 + rng() * (t - 200), kind: i % 2 ? 'arr' : 'dep', rwy: i % 2 ? arr0 : this.depRw[0], cargo: true });
     this.sched.sort(function (a, b) { return a.t - b.t; });
     this.endT = this.sched[this.sched.length - 1].t;
-    var pool = L === 2 ? ['ga_pilot', 'bird', 'rto'] : L === 3 ? ['ga_pilot', 'rto', 'bird', 'emg'] : [], n = this.level.events;
+    var pool = L === 2 ? ['ga_pilot', 'bird', 'rto', 'laser'] : L === 3 ? ['ga_pilot', 'rto', 'bird', 'emg', 'laser', 'drone', 'animal'] : [], n = this.level.events;
     while (n-- > 0 && pool.length) { var k = pool.splice(rng.int(0, pool.length - 1), 1)[0]; this.events.push({ k: k, t: this.endT * (0.2 + 0.55 * rng()), done: false }); }
     this.scnEvents();
     this.sys(ATC.T('{apt} 관제탑({0}) 근무 시작. 착륙 {1} / 이륙 {2}. 바람 {3}, QNH {4}.', D.freq.TWR.fq, this.arrRw.join('·'), this.depRw.join('·'), fmt.wind(this.wind), this.qnh));
@@ -89,6 +89,15 @@
     }
   };
   TwrSim.prototype.endOf = function (rwId) { return this.flow.use[rwId]; };
+  /* 출발 승인(release): 이륙시키기 전에 접근관제에 요청 → 몇 초 뒤 승인(3분 유효). 도착기가 많으면 조금 늦게 */
+  TwrSim.prototype.relOk = function (ac) { return !this.coordOn() || (ac.rel && ac.rel.t1 >= this.t); };
+  TwrSim.prototype.reqRelease = function (ac) {
+    if (!this.coordOn() || ac.kind !== 'dep' || !(ac.st === 'athold' && ac.holdKind === 'dep' || ac.st === 'lineup' || ac.st === 'linedup' || ac.st === 'taxi') || ac.rel === 'req' || this.relOk(ac) && ac.rel) return false; ac.rel = 'req';
+    this.phone('TWR', ATC.T('Approach에 {0} 출발 승인 요청(활주로 {1})', ac.cs, ac.rwy));
+    var busy = this.acs.filter(function (a) { return a.st === 'final' && a.d < 8 * NM; }).length;
+    this.later(6 + this.rng() * 8 + busy * 5, function () { if (ac.gone || ac.rel !== 'req') return; ac.rel = { t1: this.t + 180 }; this.phone('APP', ATC.T('{0} 출발 승인(released) — 3분 안에 이륙시키세요.', ac.cs)); this.emit('notice', ATC.T('{0} 출발 승인', ac.cs)); });
+    return true;
+  };
   TwrSim.prototype.onFinalEvt = function (a, r) {
     var e = D.ends[a.rwy], busy;
     if (r === 'short') {
@@ -130,6 +139,7 @@
         rw = c.k === 'cross' ? ac.holdRw : D.ends[c.rwy || ac.rwy].rw;
         if (this.rwClosed[rw] > this.t) { this.inc('rwyclosed', [ac], ATC.T('{0}: 폐쇄 중인 활주로의 사용을 지시했습니다.', ac.cs)); return { refuse: 'runway is closed for inspection' }; }
       }
+      if (c.k === 'cto' && !this.relOk(ac)) { this.inc('norel', [ac], ATC.T('{0}: 접근관제의 출발 승인(release) 없이 이륙 허가를 냈습니다. 대기 지점에서 「출발 승인 요청」을 먼저 합니다.', ac.cs)); ac.rel = { t1: this.t + 180 }; }
       if (c.k === 'luaw' || c.k === 'cto' && ac.st === 'athold') {
         rw = D.ends[ac.rwy].rw; arr = this.nextArr(rw);
         if (arr && arr.d < 1.3 * NM) { this.inc('incursion', [ac, arr], ATC.T('{0}에 활주로 진입을 지시했으나 {1}이(가) 최종 접근 {2}NM에 있습니다.', ac.cs, arr.cs, (arr.d / NM).toFixed(1))); return { refuse: 'traffic on short final' }; }
@@ -199,6 +209,20 @@
       this.say(a, ATC.csSay(a) + ', bird strike on departure, continuing, suggest runway inspection.', { kind: 'emg', front: true });
       this.sys(ATC.T('활주로 {0} 점검 차량 진입 — 약 3분간 폐쇄. 해당 활주로의 이륙 · 착륙 · 횡단을 중지하고, 접근 중인 항공기는 복행시키세요.', this.endOf(rw)), 'alert'); return true;
     }
+    if (ev.k === 'laser') {      /* 레이저 조사: 최종 접근 중인 항공기가 보고 → 확인하고 계속 가능한지 물음 */
+      c = this.acs.filter(function (x) { return x.st === 'final' && x.d < 6 * NM && x.d > 2.2 * NM && !x.emg && x.owner === 'me' && !x.waiting && ATC.irreg(x); }); if (!c.length) return false; a = c[0];
+      a.waiting = 'laser'; a.reqT = this.t; a.reqLate = false;
+      this.say(a, D.freq.TWR.n + ', ' + ATC.csSay(a) + ', laser illumination on final, from the ' + (this.rng() < 0.5 ? 'left' : 'right') + '.', { kind: 'warn' });
+      this.sys(ATC.T('{0} 레이저 조사 보고 — 확인하고 계속 접근할 수 있는지 물으세요. 실제로는 관계 기관에 통보하고 뒤따르는 항공기에도 주의 정보를 줍니다.', a.cs), 'alert'); return true;
+    }
+    if (ev.k === 'drone' || ev.k === 'animal') {      /* 드론 목격 · 활주로 위 동물: 활주로 일시 중단 */
+      var dE = this.arrRw[0], dRw = D.ends[dE].rw, dd = ev.dur || 240, rep = null;
+      if (ev.k === 'drone') { c = this.acs.filter(function (x) { return x.st === 'final' && x.d < 7 * NM && !x.emg && ATC.irreg(x); }); rep = c[0] || null; if (rep) this.say(rep, ATC.csSay(rep) + ', drone sighted, ' + Math.max(2, Math.round(rep.d / NM)) + ' miles final, at about 1,000 feet.', { kind: 'emg', front: true }); }
+      else { c = this.acs.filter(function (x) { return (x.st === 'land' || x.st === 'linedup') && D.ends[x.rwy].rw === dRw && !x.emg && ATC.irreg(x); }); if (!c.length) return false; rep = c[0]; this.say(rep, ATC.csSay(rep) + ', be advised, animal on the runway.', { kind: 'emg', front: true }); }
+      this.rwClosed[dRw] = this.t + dd; this.insp = { rw: dRw, t0: this.t, t1: this.t + dd, hold: true, why: ev.k }; this.shutAlt = null; this.shutSaid = false;
+      this.sys(ev.k === 'drone' ? ATC.T('드론 목격 보고 — 활주로 {0} 이착륙을 약 {1}분 중단합니다. 접근 중인 항공기는 복행시키고, 출발기는 대기시키세요.', this.endOf(dRw), Math.round(dd / 60)) : ATC.T('활주로 {0} 동물 침입 보고 — 퇴치 · 점검으로 약 {1}분 폐쇄합니다. 접근 중인 항공기는 복행시키고, 출발기는 대기시키세요.', this.endOf(dRw), Math.round(dd / 60)), 'alert');
+      return true;
+    }
     if (ev.k === 'fod' || ev.k === 'shut') {
       /* 활주로 폐쇄(dur초): fod = 착륙기가 이물질을 보고한 뒤, shut = 정해진 시각에 바로. redirect면 도착기를 다른 활주로로 돌림 */
       var sE = this.arrRw[0], sRw = D.ends[sE].rw, dur = ev.dur || 300;
@@ -221,6 +245,8 @@
     return false;
   };
   TwrSim.prototype.update = function (dt) {
+    this.wxTick();      /* 날씨 변화 · 새 ATIS */
+    var sfr = this; this.acs.forEach(function (a) { sfr.reqLateTick(a, 60); });
     var i, a, self = this;
     while (this.sched.length && this.sched[0].t <= this.t) this.spawn(this.sched.shift());
     for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else if (!this.sched.length && this.acs.length < 2) ev.done = true; } }
@@ -241,12 +267,22 @@
       if (a.st === 'athold' && a.holdKind === 'cross' && a.reqT && this.t - a.reqT > 300 && !a.crossLate) { a.crossLate = true; this.inc('delay', [a], ATC.T('{0}: 활주로 횡단 대기 5분 초과.', a.cs)); }
     }
   };
+  /* 끝없는 근무: 예정 교통이 바닥나면 도착 · 출발을 한 쌍씩 더함 — 시간이 갈수록 간격이 좁아짐(최소 40초) */
+  TwrSim.prototype.moreTraffic = function () {
+    if (this.sched.length >= 2) return;
+    var r = this.rng, last = function (sch, k, t0) { return sch.reduce(function (m, x) { return x.kind === k ? Math.max(m, x.t) : m; }, t0); };
+    var gap = Math.max(40, this.cfg.gap * (1 - Math.min(0.6, this.t / 3600 * 0.6))), ta = last(this.sched, 'arr', Math.max(this.t, this.eLastA || 0)) + gap * (0.7 + r() * 0.6), td = last(this.sched, 'dep', Math.max(this.t, this.eLastD || 0)) + gap * (0.7 + r() * 0.6);
+    this.eLastA = ta; this.eLastD = td;
+    this.sched.push({ t: ta, kind: 'arr', rwy: r.pick(this.arrRw) }, { t: td, kind: 'dep', rwy: r.pick(this.depRw), inter: this.level.id === 3 && r() < 0.3 });
+    this.sched.sort(function (a, b) { return a.t - b.t; }); this.endT = Math.max(this.endT, ta, td);
+    if (this.level.id >= 2 && this.t - (this.evAdd || 0) > 600) { this.evAdd = this.t; this.events.push({ k: r.pick(this.level.id === 3 ? ['ga_pilot', 'rto', 'bird', 'emg', 'laser', 'drone', 'animal'] : ['ga_pilot', 'bird', 'rto', 'laser']), t: this.t + 120 + r() * 240, done: false }); }   /* 10분마다 비정상 1건 */
+  };
   TwrSim.prototype.isFinished = function () { return this.sched.length === 0 && this.acs.length === 0 && this.t > 30; };
   TwrSim.prototype.onStop = function () { };
   /* 지상 이동은 지상관제(자동) 책임 — 관제탑 채점에 넣지 않음 */
   TwrSim.prototype.gridlock = function (a, o) { var late = (a.taxiT || 0) > (o.taxiT || 0) ? a : o; this.sys(ATC.T('지상관제: {0} 견인 조치(유도로 정체).', late.cs), 'info'); this.total--; this.remove(late, false); };
   TwrSim.prototype.coach = function () {
-    var out = [], self = this;
+    var out = [], self = this; self.reqHints(out);
     this.acs.forEach(function (a) {
       if (a.owner !== 'me') return;
       var e = D.ends[a.rwy], rw = e.rw, arr = self.nextArr(rw), busy = self.rwyBusy(rw, a), closed = self.rwClosed[rw] > self.t;
