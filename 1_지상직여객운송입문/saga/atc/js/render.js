@@ -31,9 +31,40 @@
   };
   function leader(ctx, it, col) { var tx = U.clamp(it.px, it.x, it.x + it.w), ty = U.clamp(it.py, it.y, it.y + it.h), d = Math.hypot(tx - it.px, ty - it.py) || 1, r0 = Math.min(it.r * 0.6, d); ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(it.px + (tx - it.px) / d * r0, it.py + (ty - it.py) / d * r0); ctx.lineTo(tx, ty); ctx.stroke(); }
 
+  /* ================= 주변 지리(js/geo/<공항>.js — tools/gen_geo.py가 만듦) =================
+     육지 다각형 · 해안선을 레이더 좌표(NM)로 Path2D에 한 번 담아 두고, 레이더 · 지상 화면에서 변환만 바꿔 그림 */
+  var geoP = null, geoC = null, GEO = null;
+  R.loadGeo = function (url) { if (typeof document === 'undefined' || !url) return; var el = document.createElement('script'); el.src = url; el.onload = geoSet; document.head.appendChild(el); };
+  function geoSet() {
+    var g = ATC.GEO && ATC.GEO[ATC.aptId]; if (!g || typeof Path2D === 'undefined') return;
+    var pp = new Path2D(), cc = new Path2D();
+    g.land.forEach(function (pg) { pg.forEach(function (r) { pp.moveTo(r[0], r[1]); for (var i = 2; i < r.length; i += 2) pp.lineTo(r[i], r[i + 1]); pp.closePath(); }); });
+    g.coast.forEach(function (l) { cc.moveTo(l[0], l[1]); for (var i = 2; i < l.length; i += 2) cc.lineTo(l[i], l[i + 1]); });
+    geoP = pp; geoC = cc; GEO = g;
+  }
+  R.geoReady = function () { return !!geoP; };
+  /* m = [a, b, c, d, e, f]: 레이더 좌표(NM) → 화면 · k = NM 하나가 화면에서 몇 px인지(선 굵기 맞춤) */
+  function geoFill(ctx, m, k, land, coast, cw) { ctx.save(); ctx.transform(m[0], m[1], m[2], m[3], m[4], m[5]); ctx.fillStyle = land; ctx.fill(geoP, 'nonzero'); if (coast) { ctx.strokeStyle = coast; ctx.lineWidth = cw / k; ctx.lineJoin = 'round'; ctx.stroke(geoC); } ctx.restore(); }
+  /* 지명: 겹치면 덜 중요한 것을 뺌 · toS = 레이더 좌표 → 화면 */
+  function geoLabels(ctx, toS, W, H, k, col) {
+    if (!GEO || !GEO.lab) return; var used = [], rank = { city: 0, apt: 1, peak: 1, sea: 2, town: 3 };
+    ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    GEO.lab.slice().sort(function (a, b) { return rank[a[3]] - rank[b[3]]; }).forEach(function (t) {
+      if (t[3] === 'town' && k < 1.6) return;
+      var p = toS(t[1], t[2]); if (p[0] < -80 || p[0] > W + 80 || p[1] < -20 || p[1] > H + 20) return;
+      var tx = t[3] === 'peak' ? '▲ ' + t[0] : t[3] === 'apt' ? '✈ ' + t[0] : t[0], sz = t[3] === 'city' ? 11 : t[3] === 'sea' ? 11 : 10;
+      ctx.font = (t[3] === 'sea' ? 'italic ' : t[3] === 'city' ? '600 ' : '') + sz + 'px ' + MONO; var w = ctx.measureText(tx).width + 8;
+      for (var i = 0; i < used.length; i++) { var q = used[i]; if (Math.abs(q[0] - p[0]) * 2 < q[2] + w && Math.abs(q[1] - p[1]) < sz + 4) return; }
+      used.push([p[0], p[1], w]); ctx.fillStyle = t[3] === 'sea' ? col[1] : col[0]; ctx.fillText(tx, p[0], p[1]);
+    });
+    ctx.restore();
+  }
+  R.geoRadar = function (ctx, v, W, H) { if (!geoP) return; var k = v.scale; geoFill(ctx, [k, 0, 0, -k, W / 2 - v.cx * k, H / 2 + v.cy * k], k, '#0a1513', '#1a3530', 1); };
+  R.geoRadarLabels = function (ctx, v, W, H) { if (!geoP) return; geoLabels(ctx, function (x, y) { return rs(v, W, H, { x: x, y: y }); }, W, H, v.scale, ['#26433c', '#1d3848']); };
+
   /* ================= 레이더 ================= */
   /* 공항 묶음이 처음 보일 범위(D.appView · D.accView = 가운데와 폭 · 높이, NM)를 정했으면 그것에 맞춤 */
-  R.radarView = function (mode) { var pv = mode === 'ACC' ? D.accView : D.appView, c = pv || { cx: 0, cy: 0 }; return mode === 'ACC' ? { cx: c.cx, cy: c.cy, scale: 3.1, min: pv ? 1 : 1.6, max: 14 } : { cx: c.cx, cy: c.cy, scale: 8.2, min: pv ? 2.2 : 4, max: 40 }; };
+  R.radarView = function (mode) { var pv = mode === 'ACC' ? D.accView : D.appView, c = pv || { cx: 0, cy: 0 }; return mode === 'ACC' ? { cx: c.cx, cy: c.cy, scale: 3.1, min: 0.6, max: 14 } : { cx: c.cx, cy: c.cy, scale: 8.2, min: 1, max: 40 }; };
   R.fitRadar = function (v, W, H, mode) { var pv = mode === 'ACC' ? D.accView : D.appView, ext = pv ? [pv.w, pv.h] : mode === 'ACC' ? [286, 216] : [98, 98]; v.scale = Math.min(W / ext[0], H / ext[1]); v.cx = pv ? pv.cx : 0; v.cy = pv ? pv.cy : 0; };
   function poly(ctx, v, W, H, pts) { ctx.beginPath(); pts.forEach(function (pt, ix) { var pp = rs(v, W, H, pt); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.closePath(); }
   function path(ctx, v, W, H, names) { ctx.beginPath(); names.forEach(function (n, ix) { var pp = rs(v, W, H, D.fix[n]); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.stroke(); }
@@ -44,6 +75,7 @@
   R.drawRadar = function (ctx, W, H, app) {
     var sim = app.sim, v = app.view, acc = sim.mode === 'ACC', i, p, q, k, now = performance.now();
     ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+    R.geoRadar(ctx, v, W, H); R.geoRadarLabels(ctx, v, W, H);                                  /* 주변 육지 · 해안선 · 지명(맨 아래 층) */
     ctx.lineWidth = 1; ctx.font = '10px ' + MONO; ctx.textBaseline = 'middle';
     var o = rs(v, W, H, { x: 0, y: 0 });
     /* 거리 원 */
@@ -175,7 +207,7 @@
 
   /* ================= 지상 ================= */
   /* 지상 화면을 처음 열 때의 범위: 공항 묶음의 D.view = { cu, cv, w, h }(m)가 있으면 그것으로 */
-  R.groundView = function () { return { cu: 0, cv: 60, scale: 0.2, min: D.view ? 0.05 : 0.1, max: 1.6 }; };
+  R.groundView = function () { return { cu: 0, cv: 60, scale: 0.2, min: 0.004, max: 1.6 }; };   /* 아주 작게 줄이면 주변 지리까지(약 150NM) */
   /* 좁은 화면(휴대폰)의 위쪽 띠: 이동 단추 · 도착 표 · 작은 레이더를 띠 안에 모으고 지도는 그 아래에 맞춤 — 지도와 겹치지 않게.
      side = 단추 옆에 도착 표를 둘 자리가 있음(가로 화면) / 없으면 단추 아래 줄에 */
   R.hud = function (W, H) {
@@ -191,7 +223,14 @@
   R.gs = gs;
   R.groundToUV = function (v, W, H, sx, sy) { return { u: (sx - W / 2) / v.scale + v.cu, v: -(sy - H / 2) / v.scale + v.cv }; };
   var satImg = null, satOk = false;
-  R.loadSat = function (url) { if (typeof Image === 'undefined') return; satImg = new Image(); satImg.onload = function () { satOk = true; }; satImg.onerror = function () { satOk = false; }; satImg.src = url; };
+  /* 바탕 사진은 가장자리를 투명하게 흐려 둠 → 그 바깥의 주변 지리(육지 · 바다)와 이어져 보이게 */
+  function feather(im) {
+    try { var cv = document.createElement('canvas'), w = cv.width = im.naturalWidth, h = cv.height = im.naturalHeight, x = cv.getContext('2d'), f = Math.round(Math.min(w, h) * 0.05), g;
+      x.drawImage(im, 0, 0); x.globalCompositeOperation = 'destination-out';
+      [[0, 0, f, 0, 0, 0, f, h], [w, 0, w - f, 0, w - f, 0, f, h], [0, 0, 0, f, 0, 0, w, f], [0, h, 0, h - f, 0, h - f, w, f]].forEach(function (e) { g = x.createLinearGradient(e[0], e[1], e[2], e[3]); g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(e[4], e[5], e[6], e[7]); });
+      return cv; } catch (e) { return im; }
+  }
+  R.loadSat = function (url) { if (typeof Image === 'undefined') return; var im = new Image(); im.onload = function () { satImg = feather(im); satOk = true; }; im.onerror = function () { satOk = false; }; im.src = url; };
   R.SAT = D.sat || { u1: -2400, u2: 2400, v1: -1500, v2: 1500 };   /* 바탕 그림이 덮는 범위(m) — 공항 자료에서 옴 */
 
   function rectUV(ctx, v, W, H, u1, v1, u2, v2, col) { var a = gs(v, W, H, u1, v2), b = gs(v, W, H, u2, v1); ctx.fillStyle = col; ctx.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); }
@@ -202,14 +241,12 @@
     ctx.fillStyle = C.grass; ctx.fillRect(0, 0, W, H); ctx.textBaseline = 'middle';
     if (satOk) {
       a = gs(v, W, H, R.SAT.u1, R.SAT.v2); b = gs(v, W, H, R.SAT.u2, R.SAT.v1);
-      ctx.fillStyle = R.SAT.edge || '#60634a'; ctx.fillRect(0, 0, W, H);                       /* 그림 바깥은 가장자리 색으로 */
-      ctx.drawImage(satImg, a[0], a[1], b[0] - a[0], b[1] - a[1]);
-      var fw = Math.min(60, (b[0] - a[0]) * 0.03), gr, ec = R.SAT.edge || '#60634a';          /* 이음매를 흐리게 */
-      [[a[0], a[1], fw, 0], [b[0], a[1], -fw, 0], [a[0], a[1], 0, fw], [a[0], b[1], 0, -fw]].forEach(function (e) {
-        gr = ctx.createLinearGradient(e[0], e[1], e[0] + e[2], e[1] + e[3]); gr.addColorStop(0, ec); gr.addColorStop(1, 'rgba(96,99,74,0)'); ctx.fillStyle = gr;
-        if (e[2]) ctx.fillRect(Math.min(e[0], e[0] + e[2]), a[1], Math.abs(e[2]), b[1] - a[1]); else ctx.fillRect(a[0], Math.min(e[1], e[1] + e[3]), b[0] - a[0], Math.abs(e[3]));
-      });
+      var gc = D.geoCol || {}, px = D.xy2uv(1, 0), py = D.xy2uv(0, 1), kk = s * 1852;
+      if (geoP) { ctx.fillStyle = gc.sea || '#3e5261'; ctx.fillRect(0, 0, W, H); geoFill(ctx, [s * px.u, -s * px.v, s * py.u, -s * py.v, W / 2 - v.cu * s, H / 2 + v.cv * s], kk, gc.land || R.SAT.edge || '#60634a', s < 0.05 ? 'rgba(214,220,196,.35)' : null, 1.2); }   /* 사진 바깥: 실제(하네다) · 가상(세이라 · 아스테라) 주변 지리 */
+      else { ctx.fillStyle = R.SAT.edge || '#60634a'; ctx.fillRect(0, 0, W, H); }
+      ctx.drawImage(satImg, a[0], a[1], b[0] - a[0], b[1] - a[1]);                              /* 가장자리는 흐려 둔 사진(feather) */
       ctx.fillStyle = 'rgba(5,9,14,.30)'; ctx.fillRect(0, 0, W, H);
+      if (geoP && s < 0.03) geoLabels(ctx, function (x, y) { var q = D.xy2uv(x, y); return gs(v, W, H, q.u, q.v); }, W, H, kk, ['rgba(236,240,226,.72)', 'rgba(190,214,236,.6)']);
     }
     else {
       /* 잔디 무늬 · 계류장 · 건물 */
@@ -231,9 +268,9 @@
       if (!satOk) { ctx.strokeRect(p[0] + 60 * s, p[1] + 1, q[0] - p[0] - 120 * s, q[1] - p[1] - 2); ctx.setLineDash([30 * s, 22 * s]); ctx.lineWidth = Math.max(0.7, 1 * s); ctx.beginPath(); ctx.moveTo(p[0] + 150 * s, cy); ctx.lineTo(q[0] - 150 * s, cy); ctx.stroke(); ctx.setLineDash([]);
         ctx.fillStyle = C.white; for (var k = 0; k < 8; k++) { var yy = p[1] + (4 + k * 6.8) * s; ctx.fillRect(p[0] + 66 * s, yy, 34 * s, 3.4 * s); ctx.fillRect(q[0] - 100 * s, yy, 34 * s, 3.4 * s); }
         [300, 450, 600].forEach(function (dd) { ctx.fillRect(p[0] + (60 + dd) * s, cy - 14 * s, 22 * s, 6 * s); ctx.fillRect(p[0] + (60 + dd) * s, cy + 8 * s, 22 * s, 6 * s); ctx.fillRect(q[0] - (82 + dd) * s, cy - 14 * s, 22 * s, 6 * s); ctx.fillRect(q[0] - (82 + dd) * s, cy + 8 * s, 22 * s, 6 * s); }); }
-      var fs = Math.max(9, 34 * s); ctx.font = 'bold ' + fs + 'px ' + MONO; ctx.fillStyle = satOk ? '#ffffff' : C.white; ctx.textAlign = 'center';
-      ctx.save(); ctx.translate(p[0] + 135 * s, cy); ctx.rotate(Math.PI / 2); ctx.fillText(r.a, 0, 0); ctx.restore();
-      ctx.save(); ctx.translate(q[0] - 135 * s, cy); ctx.rotate(-Math.PI / 2); ctx.fillText(r.b, 0, 0); ctx.restore(); ctx.textAlign = 'left';
+      var fs = Math.max(9, 34 * s), rnum = s >= 0.045; ctx.font = 'bold ' + fs + 'px ' + MONO; ctx.fillStyle = satOk ? '#ffffff' : C.white; ctx.textAlign = 'center';
+      if (rnum) { ctx.save(); ctx.translate(p[0] + 135 * s, cy); ctx.rotate(Math.PI / 2); ctx.fillText(r.a, 0, 0); ctx.restore();
+      ctx.save(); ctx.translate(q[0] - 135 * s, cy); ctx.rotate(-Math.PI / 2); ctx.fillText(r.b, 0, 0); ctx.restore(); } ctx.textAlign = 'left';   /* 아주 작게 볼 때는 활주로 번호 생략 */
       if (closed) { ctx.fillStyle = 'rgba(255,60,60,' + (0.16 + 0.1 * Math.sin(now / 250)) + ')'; ctx.fillRect(p[0], p[1], q[0] - p[0], q[1] - p[1]); ctx.fillStyle = '#ff8a8a'; ctx.font = 'bold 13px ' + MONO; ctx.fillText('RWY CLOSED — INSPECTION ' + U.mmss(sim.rwClosed[id] - sim.t), (p[0] + q[0]) / 2 - 110, cy - 26 * s - 10);
         var fr = (sim.t - sim.insp.t0) / (sim.insp.t1 - sim.insp.t0), cp = [Lr * fr, 0]; ctx.fillStyle = '#ffd24a'; ctx.fillRect(cp[0] - 5, cp[1] - 3, 10, 6); ctx.fillStyle = Math.floor(now / 300) % 2 ? '#ff9a1f' : '#fff'; ctx.fillRect(cp[0] - 2, cp[1] - 5, 4, 2); }
       ctx.restore();
@@ -254,21 +291,23 @@
       ctx.setLineDash([4 * s + 1, 3 * s + 1]); ctx.beginPath(); ctx.moveTo(p[0] - hx + ox, p[1] - hy + oy); ctx.lineTo(p[0] + hx + ox, p[1] + hy + oy); ctx.stroke(); ctx.setLineDash([]);
     });
     if (app.guide) return;
-    R._tags = [];
+    R._tags = []; var tiny = s < 0.045;                                                          /* 아주 작게 볼 때는 표지 · 주기장 번호를 생략 */
     var ss = Math.max(9, Math.min(15, 46 * s));
     /* 작게 볼 때(휴대폰 · 넓은 공항의 전체 보기): 이름표끼리 겹치면 뒤의 것은 그리지 않음 — 확대하면 다 보임 */
     var thin = s < 0.12, used = [];
     function free(x, y, w, h) { if (!thin) return true; for (var i = 0; i < used.length; i++) { var q = used[i]; if (x < q[0] + q[2] && q[0] < x + w && y < q[1] + q[3] && q[1] < y + h) return false; } used.push([x, y, w, h]); return true; }
     function sg(p, t, z) { var w = t.length * z * 0.64 + 6; if (free(p[0] - w / 2, p[1] - z / 2 - 2, w, z + 4)) sign(ctx, p[0], p[1], t, z); }
     /* 터미널 · 구역 이름(공항 묶음의 D.gText): 건물 위에 옅은 글자로 */
-    if (D.gText) { ctx.save(); ctx.font = '700 ' + Math.max(10, Math.min(26, 150 * s)) + 'px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(226,236,244,.62)'; D.gText.forEach(function (t) { var q = gs(v, W, H, t[1], t[2]); ctx.fillText(t[0], q[0], q[1]); }); ctx.restore(); }
+    if (D.gText && !tiny) { ctx.save(); ctx.font = '700 ' + Math.max(10, Math.min(26, 150 * s)) + 'px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(226,236,244,.62)'; D.gText.forEach(function (t) { var q = gs(v, W, H, t[1], t[2]); ctx.fillText(t[0], q[0], q[1]); }); ctx.restore(); }
+    if (!tiny) {
     (D.gLabels || []).forEach(function (t) { sg(gs(v, W, H, t[1], t[2]), t[0], ss); });
     Object.keys(D.holds).forEach(function (h) { var o = D.holds[h]; sg(gs(v, W, H, o.lu, o.lv), h, ss * 0.92); });
     var pe = gs(v, W, H, -438, 652); sign(ctx, pe[0], pe[1], 'E', ss * 0.92);
+    }
     /* 주기장 번호 */
     ctx.font = 'bold ' + Math.max(8, Math.min(13, 40 * s)) + 'px ' + MONO; ctx.textAlign = 'center';
     var sf = Math.max(8, Math.min(13, 40 * s));
-    Object.keys(D.stands).forEach(function (n) { var st = D.stands[n], p = gs(v, W, H, st.u + st.lab[0], st.v + st.lab[1]); if (!free(p[0] - n.length * sf * 0.32 - 1, p[1] - sf / 2, n.length * sf * 0.64 + 2, sf)) return; ctx.fillStyle = app.hoverStand === n ? C.sel : '#d9dfe5'; ctx.fillText(n, p[0], p[1]); R._tags.push({ x: p[0] - 13, y: p[1] - 7, w: 26, h: 14, wt: 1.2 }); });
+    if (!tiny) Object.keys(D.stands).forEach(function (n) { var st = D.stands[n], p = gs(v, W, H, st.u + st.lab[0], st.v + st.lab[1]); if (!free(p[0] - n.length * sf * 0.32 - 1, p[1] - sf / 2, n.length * sf * 0.64 + 2, sf)) return; ctx.fillStyle = app.hoverStand === n ? C.sel : '#d9dfe5'; ctx.fillText(n, p[0], p[1]); R._tags.push({ x: p[0] - 13, y: p[1] - 7, w: 26, h: 14, wt: 1.2 }); });
     ctx.textAlign = 'left';
     /* 관제탑 */
     var tp = gs(v, W, H, 0, 0); ctx.fillStyle = '#2c3238'; ctx.beginPath(); ctx.arc(tp[0], tp[1], Math.max(4, 16 * s), 0, 7); ctx.fill(); ctx.strokeStyle = '#9fd0ff'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.fillStyle = '#9fd0ff'; ctx.font = '9px ' + MONO; ctx.fillText('TWR', tp[0] - 9, tp[1] + Math.max(4, 16 * s) + 8);
@@ -282,10 +321,9 @@
     var list = sim.acs.slice().sort(function (x, y) { return (x.alt || 0) - (y.alt || 0); }), items = [], obs = R.finalLayout(app, W, H); if (obs[0] && obs[0].compact) obs = [{ x: 0, y: 0, w: W, h: R.hudTop(W, H), wt: 3 }];   /* 좁은 화면: 위쪽 띠 전체를 이름표가 피함 */
     if (sim.mode === 'TWR' || sim.mode === 'GND') { var mr = Math.min(78, W * 0.11); obs.push({ x: (sim.flow.mini !== 'L' ? W - mr * 2 - 20 : 4), y: 4, w: mr * 2 + 16, h: mr * 2 + 16, wt: 3 }); }
     list.forEach(function (ac) {
-      if (ac.st === 'final' && ac.d > 2600) return;
-      var p = gs(v, W, H, ac.u, ac.v); if (p[0] < -60 || p[0] > W + 60) return;
+      var p = gs(v, W, H, ac.u, ac.v); if (p[0] < -60 || p[0] > W + 60 || p[1] < -60 || p[1] > H + 60) return;   /* 화면 안이면 먼 최종 접근 · 이륙 항공기도 그림(줄여 보면 10NM 밖까지) */
       var k = Math.max(s * 1.3, 21 / ac.perf.len) * (1 + Math.min(0.35, (ac.alt || 0) / 6000));
-      var own = ac.owner === 'me', col = ac.emg ? C.emg : own ? (ac.kind === 'dep' ? C.dep : C.arr) : '#8496a6', l1 = ac.cs + (ac.st === 'taxi' && ac.spd < 0.3 && ac.blk ? ' STOP' : ac.halt ? ' HOLD' : ''), l2 = ac.type + (ac.wake === 'H' ? '/H' : ac.wake === 'L' ? '/L' : '') + ' ' + (ac.kind === 'dep' ? (ac.hp || ac.rwy || '') : (ac.st === 'final' || ac.st === 'land' ? ac.rwy : ac.stand || ''));
+      var own = ac.owner === 'me', col = ac.emg ? C.emg : own ? (ac.kind === 'dep' ? C.dep : C.arr) : '#8496a6', l1 = ac.cs + (ac.st === 'taxi' && ac.spd < 0.3 && ac.blk ? ' STOP' : ac.halt ? ' HOLD' : ''), l2 = (ac.st === 'final' || ac.st === 'air') ? R.dblk(ac) + (ac.st === 'final' ? ' ' + ac.rwy : '') : ac.type + (ac.wake === 'H' ? '/H' : ac.wake === 'L' ? '/L' : '') + ' ' + (ac.kind === 'dep' ? (ac.hp || ac.rwy || '') : (ac.st === 'land' ? ac.rwy : ac.stand || ''));      /* 공중의 항공기: 고도(100ft) · 상승/강하 · 속도(kt) — 출발기 이양 · 착륙기 확인용 */
       ctx.font = (ac.id === app.sel ? 'bold ' : '') + '11px ' + MONO; var tw = Math.max(ctx.measureText(l1).width, ctx.measureText(l2).width) + 9;
       var rr = Math.max(11, Math.max(ac.perf.len, ac.perf.span) * k * 0.5);
       items.push({ id: ac.id, ac: ac, px: p[0], py: p[1], w: tw, h: 29, r: rr, g: rr * 0.72 + 3, prev: ac._lp, col: col, own: own, k: k, l: [l1, l2] });
@@ -394,6 +432,8 @@
     ctx.restore(); ctx.strokeStyle = '#2b4a66'; ctx.lineWidth = 1; ctx.strokeRect(x - 2.5, y - 2.5, mw + 5, mh + 5);
     R.miniBox = { x: x, y: y, w: mw, h: mh, toUV: function (sx, sy) { return { u: B.u1 + (sx - x) / k, v: B.v2 - (sy - y) / k }; } };
   };
+  /* 데이터 블록 둘째 줄: 042↑ 180 = 4,200ft 상승 중 · 180kt */
+  R.dblk = function (ac) { var al = Math.max(0, ac.alt || 0), vs = ac.st === 'final' ? -1 : ac.goAround || ac.kind === 'dep' ? 1 : 0, kt = Math.round((ac.spd || 0) / 0.514444); return U.pad(Math.round(al / 100), 3) + (vs > 0 ? '↑' : vs < 0 ? '↓' : ' ') + ' ' + kt; };
   R.miniRadar = function (ctx, W, H, app) {
     var sim = app.sim, hd = R.hud(W, H), r = hd ? hd.r : Math.min(78, W * 0.11), cx = hd ? W - r - 8 : sim.flow.mini !== 'L' ? W - r - 12 : r + 12, cy = hd ? r + 6 : r + 12, sc = r / 13, i;
     ctx.fillStyle = 'rgba(4,8,12,.9)'; ctx.beginPath(); ctx.arc(cx, cy, r + 4, 0, 7); ctx.fill(); ctx.strokeStyle = '#2b4a66'; ctx.lineWidth = 1; ctx.stroke();
@@ -405,10 +445,10 @@
     var mb = [];
     sim.acs.forEach(function (a) {
       if (a.st !== 'final' && a.st !== 'air') return; var p = mp(a.u, a.v), col = a.emg ? C.emg : a.st === 'air' ? C.dep : C.arr; ctx.strokeStyle = col; ctx.strokeRect(p[0] - 2.5, p[1] - 2.5, 5, 5);
-      var tw = a.cs.length * 5.5, cs = [[p[0] - tw / 2, p[1] - 14], [p[0] - tw / 2, p[1] + 5], [p[0] - tw / 2, p[1] - 25], [p[0] - tw / 2, p[1] + 16], [p[0] + 6, p[1] - 5], [p[0] - tw - 6, p[1] - 5]], bi = 0, bc = 1e9, i, j, c;
-      for (i = 0; i < cs.length; i++) { c = i * 2; for (j = 0; j < mb.length; j++) c += ov(cs[i][0], cs[i][1], tw, 10, mb[j].x - 1, mb[j].y - 1, mb[j].w + 2, mb[j].h + 2); if (c < bc) { bc = c; bi = i; } }
-      mb.push({ x: cs[bi][0], y: cs[bi][1], w: tw, h: 10 }); mb.push({ x: p[0] - 4, y: p[1] - 4, w: 8, h: 8 });
-      ctx.fillStyle = col; ctx.fillText(a.cs, cs[bi][0], cs[bi][1] + 5);
+      var l2 = R.dblk(a), tw = Math.max(a.cs.length, l2.length) * 5.5, cs = [[p[0] - tw / 2, p[1] - 24], [p[0] - tw / 2, p[1] + 5], [p[0] - tw / 2, p[1] - 35], [p[0] - tw / 2, p[1] + 16], [p[0] + 6, p[1] - 10], [p[0] - tw - 6, p[1] - 10]], bi = 0, bc = 1e9, i, j, c;
+      for (i = 0; i < cs.length; i++) { c = i * 2; for (j = 0; j < mb.length; j++) c += ov(cs[i][0], cs[i][1], tw, 20, mb[j].x - 1, mb[j].y - 1, mb[j].w + 2, mb[j].h + 2); if (c < bc) { bc = c; bi = i; } }
+      mb.push({ x: cs[bi][0], y: cs[bi][1], w: tw, h: 20 }); mb.push({ x: p[0] - 4, y: p[1] - 4, w: 8, h: 8 });
+      ctx.fillStyle = col; ctx.fillText(a.cs, cs[bi][0], cs[bi][1] + 5); ctx.fillStyle = '#9fb3c8'; ctx.fillText(l2, cs[bi][0], cs[bi][1] + 15);
     });
     ctx.restore(); ctx.fillStyle = '#6c8aa6'; ctx.font = '9px ' + MONO; if (hd) ctx.fillText('13NM', cx - 11, cy + r - 3); else ctx.fillText('TWR RADAR 13NM', cx - 40, cy + r - 6);
   };

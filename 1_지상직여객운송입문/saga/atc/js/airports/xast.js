@@ -19,7 +19,7 @@
       ko: ATC.pick({ ko: '아스테라 국제공항', ja: 'アステラ国際空港', en: 'Astera International Airport' }),
       transAlt: 14000, tower: { u: 0, v: 0 }
     };
-    D.voice = { dir: 'assets/voice/xast/', parts: { ctl: 4, ctlf: 4, p1: 5, p2: 5 } };      /* 녹음 묶음(관제사 남 · 여, 조종사 남 · 여) */
+    D.voice = { dir: 'assets/voice/xast/', parts: { ctl: 5, ctlf: 5, p1: 6, p2: 6 } };      /* 녹음 묶음(관제사 남 · 여, 조종사 남 · 여) */
     D.twrZoneNM = 7; D.indepParallel = true;
 
     /* ---------- 활주로 ----------
@@ -276,6 +276,7 @@
     D.guide = { u1: -3200, u2: 3200, v1: -3150, v2: 1650 };
     D.lobby = 'assets/img/lobby_xast.webp';   /* 첫 화면 배경(Gemini v16 — 아스테라 관제탑에서 본 황혼) */
     D.sat = { img: 'assets/img/ground_sat_xast.webp', u1: -3200, u2: 3200, v1: -3150, v2: 1650, edge: '#495753' };   /* Gemini v16 항공사진 — tools/xast_sat_fit.py로 배치도에 맞추고 화물 · 소형기 계류장을 고쳐 그림 */
+    D.geoCol = { land: '#625d47', sea: '#3e5261' };   /* 사진 바깥 주변 지리(js/geo)의 육지 · 바다 색 — 사진 가장자리 색에 맞춤 */
     D.view = { cu: 0, cv: -700, w: 5400, h: 4500 };                                         /* 공항 전체가 처음부터 보임 */
     D.areas = [
       { label: T('북쪽'), box: [-2050, 620, 2050, 1420] },

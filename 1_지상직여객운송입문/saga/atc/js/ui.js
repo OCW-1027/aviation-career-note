@@ -106,7 +106,7 @@
     if (app.pos.view === 'radar') app.view = R.radarView(k); else if (app.pos.view === 'ground') app.view = R.groundView();
     if (app.view && app.pos.view !== 'del') fitView();
     sim.log.forEach(addLog);
-    if (app.voice) { ATC.Radio.init(); if (packOn()) { ATC.Radio.loadAll(); packWait(); } }
+    if (app.voice) { ATC.Radio.init(); if (packOn()) { ATC.Radio.loadAll(); if (!ATC.Radio.ready()) { app.paused = true; app.packHold = Date.now(); } packWait(); } }      /* 무선 음성이 다 내려받아질 때까지(최대 25초) 시작을 멈춤 — 첫 호출이 브라우저 기계음으로 나가지 않게 */
     /* 송신이 시작될 때 음성을 틀고, 그 실제 길이만큼 주파수를 점유(글자·소리·항공기 움직임을 맞춤) */
     sim.onTx = function (m) {
       if (m.who === 'sys' || !app.voice || app.paused) return 0;
@@ -116,6 +116,7 @@
         return 0;
       }
       if (packOn()) { var real = ATC.Radio.speak(m.text, m.who, cs, app.speed > 1); if (real) return real * app.speed; }
+      if (packOn() && !ATC.Radio.diag().err) return ((m.text.split(/\s+/).length * 0.37 + 0.5) / 1.2) * app.speed;      /* 무선 음성 방식: 아직 내려받는 중이거나 녹음에 없는 문장은 기계음 대신 소리 없이 글자만(내려받기에 실패했을 때만 브라우저 음성) */
       /* 표준 음성: 길이를 미리 알 수 없어 넉넉히 잡아 두고, 말이 실제로 끝나는 순간 송신을 닫음 */
       var est = tts(e, function () { if (app.sim === sim && sim.cur === m) m.end = Math.min(m.end, sim.t); });
       if (est < 0) return -est * 1.05 * app.speed;      /* 소리 없이 넘긴 문장 */
@@ -148,7 +149,7 @@
   /* ================= 주 반복 ================= */
   var last = 0, accT = 0, uiT = 0;
   /* ×4·×8 음성 줄: 앞의 말이 끝나면 다음 말을 틀고, 8초 넘게 기다린 말은 버림(화면과 너무 어긋나지 않게) */
-  function fastPlay(e) { if (!packOn() || !ATC.Radio.speak(e.text, e.who, e.cs, true)) tts(e); }
+  function fastPlay(e) { if (!packOn()) return tts(e); if (!ATC.Radio.speak(e.text, e.who, e.cs, true) && ATC.Radio.diag().err) tts(e); }
   function aqPump() {
     if (!app.aq.length) return;
     if (!app.voice || app.paused || app.speed <= 2) { app.aq = []; return; }
@@ -210,12 +211,13 @@
     clearInterval(pwT); var RD = ATC.Radio, n = 0;
     function tick() {
       var b = $('banner'), d = RD.diag(), busy = b.className.indexOf('show') >= 0 && !b.dataset.pw;
+      if (app.packHold && (RD.ready() || d.err || !app.sim || Date.now() - app.packHold > 25000)) { app.packHold = 0; if (app.sim && !app.over && $('modal').hidden && !app.instOn) app.paused = false; }
       if (!app.sim || !app.voice || !packOn() || RD.ready() || d.err || n++ > 600) {
         clearInterval(pwT); if (b.dataset.pw) { delete b.dataset.pw; if (RD.ready() && app.sim) { b.textContent = ATC.T('무선 음성 준비 완료'); b.className = 'show'; setTimeout(function () { if (!b.dataset.pw && b.textContent === ATC.T('무선 음성 준비 완료')) b.className = ''; }, 1500); } else b.className = ''; }
         return;
       }
       if (busy) return;                                   /* 경고가 떠 있는 동안은 그대로 둠 */
-      b.dataset.pw = '1'; b.textContent = ATC.T('무선 음성 내려받는 중 {0} · 관제사 음성부터 준비', d.packs); b.className = 'show';
+      b.dataset.pw = '1'; b.textContent = app.packHold ? ATC.T('무선 음성 내려받는 중 {0} — 준비되면 근무를 시작합니다', d.packs) : ATC.T('무선 음성 내려받는 중 {0} · 관제사 음성부터 준비', d.packs); b.className = 'show';
     }
     if (!RD.ready()) { tick(); pwT = setInterval(tick, 500); }
   }
@@ -748,7 +750,8 @@
     }
     if (ATC.VPARTS && D.voice && D.voice.parts) ATC.VPARTS = D.voice.parts;
     if (D.lobby) { var hero = document.querySelector('.hero'); if (hero) hero.style.backgroundImage = 'linear-gradient(90deg,rgba(7,11,16,.96) 0,rgba(7,11,16,.72) 55%,rgba(7,11,16,.35) 100%),url("' + (ATC.base || '') + D.lobby + '"),repeating-radial-gradient(circle at 84% 40%,transparent 0 58px,rgba(79,216,255,.07) 58px 59px)'; }   /* 공항마다 첫 화면 배경 */   /* 이 공항만의 음성 묶음(음성 파일을 올리지 않은 사이트판에서는 ATC.VPARTS가 없어 그대로 브라우저 음성) */
-    bind(); if (!(D.sat && D.sat.img === null)) R.loadSat((ATC.base || '') + ((D.sat && D.sat.img) || 'assets/img/ground_sat.webp')); showLobby(); requestAnimationFrame(frame);
+    bind(); if (!(D.sat && D.sat.img === null)) R.loadSat((ATC.base || '') + ((D.sat && D.sat.img) || 'assets/img/ground_sat.webp'));
+    (function () { var t = document.querySelector('script[src*="js/render.js"]'), m = t && /[?&]v=([^&]+)/.exec(t.getAttribute('src')); R.loadGeo((ATC.base || '') + 'js/geo/' + String(ATC.aptId || 'XSRA').toLowerCase() + '.js' + (m ? '?v=' + m[1] : '')); })();   /* 주변 지리는 고른 공항 것만 내려받음 */ showLobby(); requestAnimationFrame(frame);
     var q = /[?&]auto=([A-Z]{3})(\d)?(?:&seed=(\d+))?/.exec(location.search), qf = /[?&]flow=([A-Z])\b/.exec(location.search); if (q && qf && D.flows[qf[1]]) app.flow = qf[1]; if (q) { app.level = +(q[2] || 1); start(q[1], q[3] ? +q[3] : 0); }
     /* 시나리오: 공항을 바꿔 다시 읽은 뒤 고른 판의 안내를 엶. 주소의 ?scn=판이름(&go=1이면 바로 시작)은 시험용 */
     var qs = /[?&]scn=([a-z0-9-]+)/.exec(location.search), qx = qs && ATC.SCN_BY[qs[1]]; if (qx && qx.wip && window.ATC_SITE) qx = null;

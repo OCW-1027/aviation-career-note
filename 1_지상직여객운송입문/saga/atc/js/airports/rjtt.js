@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 6, ctlf: 6, p1: 8, p2: 7 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 7, ctlf: 7, p1: 9, p2: 8 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -420,6 +420,7 @@
     D.guide = { u1: -2575, u2: 4625, v1: -2470, v2: 2930 };
     D.lobby = 'assets/img/lobby_rjtt.webp';   /* 첫 화면 배경(Gemini v15 — 하네다 관제탑에서 본 황혼) */
     D.sat = { img: 'assets/img/ground_sat_rjtt.webp', u1: -2575, u2: 4625, v1: -2470, v2: 2930, edge: '#47565c' };   /* Gemini v15 그림 — 배치도에 맞춰 위치를 보정해 둠 */
+    D.geoCol = { land: '#585c56', sea: '#48575b' };   /* 사진 바깥 주변 지리(js/geo)의 육지 · 바다 색 — 사진 가장자리 색에 맞춤 */
     D.view = { cu: 950, cv: 250, w: 6900, h: 5300 };     /* 지상 화면을 처음 열 때 보이는 범위(m) */
     /* 지상 화면의 구역 바로가기 단추 — 공항이 넓어 한 화면에 다 보면 작으므로 [u1, v1, u2, v2](m) */
     D.areas = [
