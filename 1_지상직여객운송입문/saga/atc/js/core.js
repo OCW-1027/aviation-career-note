@@ -55,7 +55,7 @@
   };
 
   /* ---------- 교신 문구(일본·한국에서 쓰는 형식 기준, 교육용) ---------- */
-  function twy(names) { return names.map(function (n) { return n.length <= 2 ? ATC.phon(n.replace(/\d/g, '')) + (n.replace(/\D/g, '') ? ' ' + n.replace(/\D/g, '') : '') : n; }).join(', '); }
+  function twy(names) { return names.map(function (n) { return /^[A-Z]\d*$/.test(n) ? ATC.phon(n.replace(/\d/g, '')) + (n.replace(/\D/g, '') ? ' ' + n.replace(/\D/g, '') : '') : n; }).join(', '); }      /* A14 → Alfa 14(글자 하나 + 숫자면 몇 자리든 음성 문자로) */
   ATC.twySay = twy;
   /* 지시 하나 → [관제 문구, 복창 문구] */
   function one(sim, ac, c) {
@@ -66,8 +66,10 @@
         if (Math.abs(U.adiff(ac.hdg, c.v)) < 3 && !c.dir) return ['fly heading ' + fmt.hdg(c.v), 'heading ' + fmt.hdg(c.v)];
         s = (d === 'L' ? 'left' : 'right') + ' heading ' + fmt.hdg(c.v); return ['turn ' + s, s];
       case 'alt':
-        d = c.v > ac.alt + 50 ? 'climb' : 'descend'; s = d + ' and maintain ' + fmt.alt(c.v);
-        return [(c.exp ? 'expedite, ' : '') + s, s + (c.exp ? ', expediting' : '')];
+        if (Math.abs(c.v - ac.alt) <= 50) return ['maintain ' + fmt.alt(c.v), 'maintain ' + fmt.alt(c.v)];      /* 지금 고도와 같으면 「maintain」(GPT 9차 R9-06) */
+        d = c.v > ac.alt + 50 ? 'climb' : 'descend';
+        if (c.exp) return ['expedite ' + (d === 'climb' ? 'climb' : 'descent') + ' to ' + fmt.alt(c.v), 'expediting ' + (d === 'climb' ? 'climb' : 'descent') + ' to ' + fmt.alt(c.v)];   /* Doc 9432 3.3.3.3 꼴(R9-02) */
+        s = d + ' and maintain ' + fmt.alt(c.v); return [s, s];
       case 'spd':
         if (!c.v) return ['resume normal speed', 'normal speed'];
         d = c.v < ac.ias - 2 ? 'reduce' : c.v > ac.ias + 2 ? 'increase' : 'maintain';
@@ -81,7 +83,7 @@
         var to = c.to, o = to.fq ? to : f[to];
         return ['contact ' + o.n + ' ' + o.fq, o.fq];
       case 'radar': return ['radar contact', null];
-      case 'luaw': return ['runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '') + ', line up and wait', 'runway ' + c.rwy + ', line up and wait'];
+      case 'luaw': return ['runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '') + ', line up and wait', 'runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '') + ', line up and wait'];      /* 교차점 진입 위치도 복창(F9-01) */
       case 'cto': return ['wind ' + w + ', runway ' + c.rwy + ', cleared for takeoff', 'runway ' + c.rwy + ', cleared for takeoff'];
       case 'cancelto': return ['hold position, cancel takeoff clearance', 'holding position'];
       case 'ctl': return ['runway ' + c.rwy + ', cleared to land, wind ' + w, 'runway ' + c.rwy + ', cleared to land'];
@@ -90,7 +92,7 @@
       case 'minspd': return ['reduce to minimum approach speed', 'minimum approach speed'];
       case 'hs': return ['hold short of runway ' + c.rwy, 'holding short runway ' + c.rwy];
       case 'cross': return ['cross runway ' + c.rwy, 'crossing runway ' + c.rwy];
-      case 'vacate': return ['turn ' + (c.side || 'right') + ' at ' + twy([c.exit]) + ', when vacated contact ground ' + f.GND.fq, twy([c.exit]) + ', when vacated ground ' + f.GND.fq];
+      case 'vacate': return ['turn ' + (c.side || 'right') + ' at ' + twy([c.exit]) + ', when vacated contact ground ' + f.GND.fq, (c.side || 'right') + ' at ' + twy([c.exit]) + ', when vacated ground ' + f.GND.fq];      /* 복창에 선회 방향(R9-04) */
       case 'push': return ['pushback approved' + (c.face ? ', face ' + c.face : ''), 'pushback approved' + (c.face ? ', face ' + c.face : '')];
       case 'pushhold': return ['hold position, expect pushback shortly', 'holding position'];
       case 'taxi':
@@ -98,7 +100,7 @@
         return ['taxi to holding point ' + twy([c.hp]) + ', runway ' + c.rwy + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + (c.hs ? ', hold short of runway ' + c.hs : ''),
           'holding point ' + twy([c.hp]) + ', runway ' + c.rwy + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + (c.hs ? ', hold short runway ' + c.hs : '')];
       case 'holdpos': return ['hold position', 'holding position'];
-      case 'conttaxi': return ['continue taxi', 'continue taxi'];
+      case 'conttaxi': return ['continue taxiing', 'continue taxiing'];      /* 管制方式基準 Ⅲ-4-1(R9-03) */
       case 'giveway': return ['give way to ' + c.to, 'giving way to ' + c.to];
       case 'clr':
         return ['cleared to ' + c.destName + ' airport via ' + c.sid + ' departure, flight planned route, maintain ' + fmt.alt(c.alt) + ', squawk ' + c.sq,
@@ -106,7 +108,7 @@
       case 'rbok': return ['readback correct' + (c.then ? ', ' + c.then : ''), null];
       case 'atis': return ['information ' + ATC.phon(c.v) + ' is now current, QNH ' + sim.qnh, 'information ' + ATC.phon(c.v) + ', QNH ' + sim.qnh];
       case 'stby': return [c.text || 'stand by', null];
-      case 'slot': return ['your calculated takeoff time is ' + c.v + ', expect start-up at ' + c.tsat, 'takeoff time ' + c.v + ', start-up at ' + c.tsat];
+      case 'slot': return ['your calculated takeoff time is ' + c.v + ', expect start-up at ' + c.tsat, 'takeoff time ' + c.v + ', expect start-up at ' + c.tsat];      /* 예상 시각임을 복창에도(R9-05) */
       case 'amendfl': return ['flight level ' + fmt.fl(c.old) + ' not available for your direction of flight, expect ' + fmt.alt(c.v) + ' as final level', 'expect ' + fmt.alt(c.v)];
       case 'rmk': return [c.text, c.rb || 'roger'];
       default: return [c.k, 'roger'];
@@ -272,8 +274,8 @@
       if (p.ac.id === acId) {
         this.pendWrong.splice(i, 1); p.entry.fixed = true;
         var ph = ATC.phrase(this, p.ac, p.right), self = this;
-        this.enq({ who: 'atc', ac: p.ac, text: p.ac.csWord + ' ' + p.ac.num + ', negative, ' + ph.atc.split(', ').slice(1).join(', '), onDone: function () {
-          self.enq({ who: 'pilot', ac: p.ac, text: 'Correction, ' + ph.rb, onStart: function () { self.applyAll(p.ac, p.right); if (self.onCorrect) self.onCorrect(p.ac); } }, true);
+        this.enq({ who: 'atc', ac: p.ac, text: p.ac.csWord + ' ' + p.ac.num + ', negative, I say again, ' + ph.atc.split(', ').slice(1).join(', '), onDone: function () {
+          self.enq({ who: 'pilot', ac: p.ac, text: ph.rb, onStart: function () { self.applyAll(p.ac, p.right); if (self.onCorrect) self.onCorrect(p.ac); } }, true);
         } }, true);
         if (!p.flagged) this.inc('rbfix', [p.ac], ATC.T('{0}의 복창 오류를 정정했습니다.', p.ac.cs));
         return true;

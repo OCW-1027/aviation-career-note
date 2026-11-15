@@ -177,7 +177,7 @@
     if (ac.nordo) { if (why === 'high') this.goAround(ac); else { ac.appr = null; ac.nordoPh = 3; ac.nordoT = this.t - 60; } return; }      /* 통신 두절기가 스스로 한 접근의 실패는 관제사 감점이 아님 — 한 바퀴 돌아 다시 */
     if (why === 'high') { this.inc('unstable', [ac], ATC.T('{0}: 활공각보다 지나치게 높은 고도로 최종 접근에 진입해 복행했습니다.', ac.cs)); this.goAround(ac, 'too high'); }
     else {
-      this.inc('unstable', [ac], ac.cs + (why === 'angle' ? ATC.T(': 진입각이 60°를 초과해 로컬라이저를 지나쳤습니다.') : ATC.T(': 로컬라이저를 포착하지 못하고 지나쳤습니다(진입 기수 · 위치 확인).')));
+      this.inc('unstable', [ac], ac.cs + (why === 'angle' ? ATC.T(': 진입각이 60°를 초과해 로컬라이저를 지나쳤습니다.') : why === 'past' ? ATC.T(': 활주로 반대편(시단을 지난 쪽)에서 접근을 허가해 로컬라이저를 포착하지 못했습니다. 다운윈드로 돌려 최종 접근로 바깥쪽에서 다시 허가하세요.') : ATC.T(': 로컬라이저를 포착하지 못하고 지나쳤습니다(진입 기수 · 위치 확인).')));
       ac.appr = null; this.say(ac, ATC.csSay(ac) + ', unable to establish on the localizer, request vectors.', { kind: 'warn' }); ac.waiting = 'vector';
     }
   };
@@ -317,6 +317,7 @@
         if (a.owner === 'in' && this.t - a.hoT > 75 && !a.hoLate) { a.hoLate = true; this.inc('noho', [a], ATC.T('{0}: 핸드오프 수락이 지연됐습니다.', a.cs)); this.accept(a); }
         var to = tmaOut(a);
         if (a.entered === undefined && to < -1) a.entered = true;
+        if (a.appr && !a.appr.loc && a.appr.d < -2 && !a.nordo) { this.onApprFail(a, 'past'); continue; }      /* 활주로를 지난 쪽(반대편)에서 받은 접근 허가는 포착할 수 없음 */
         if (a.entered && to > 2 && !(a.appr && a.appr.loc)) { this.inc('airspace', [a], ATC.T('{0}: 도착기가 접근관제구역을 이탈했습니다.', a.cs)); this.remove(a, false); continue; }
         if (a.appr && a.appr.loc && a.owner === 'me') {
           if (a.appr.d < 5.5 && !a.twrAsk) { a.twrAsk = true; this.say(a, ATC.csSay(a) + ', ' + Math.round(a.appr.d) + ' miles final runway ' + a.appr.rwy + '.', { kind: 'warn' }); a.waiting = 'tower'; }

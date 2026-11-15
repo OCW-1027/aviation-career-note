@@ -60,6 +60,8 @@
     ctx.restore();
   }
   R.geoRadar = function (ctx, v, W, H) { if (!geoP) return; var k = v.scale; geoFill(ctx, [k, 0, 0, -k, W / 2 - v.cx * k, H / 2 + v.cy * k], k, '#0a1513', '#1a3530', 1); };
+  /* 지도 자료 출처(실제 지형을 쓴 공항만) — 화면 오른쪽 아래에 작게 */
+  R.geoCredit = function (ctx, W, H, col) { if (!geoP || !GEO.src) return; ctx.save(); ctx.font = '9px ' + MONO; ctx.textAlign = 'right'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = col; ctx.fillText(GEO.src, W - 8, H - 5); ctx.restore(); };
   R.geoRadarLabels = function (ctx, v, W, H) { if (!geoP) return; geoLabels(ctx, function (x, y) { return rs(v, W, H, { x: x, y: y }); }, W, H, v.scale, ['#26433c', '#1d3848']); };
 
   /* ================= 레이더 ================= */
@@ -75,7 +77,7 @@
   R.drawRadar = function (ctx, W, H, app) {
     var sim = app.sim, v = app.view, acc = sim.mode === 'ACC', i, p, q, k, now = performance.now();
     ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
-    R.geoRadar(ctx, v, W, H); R.geoRadarLabels(ctx, v, W, H);                                  /* 주변 육지 · 해안선 · 지명(맨 아래 층) */
+    R.geoRadar(ctx, v, W, H); R.geoRadarLabels(ctx, v, W, H); R.geoCredit(ctx, W, H, 'rgba(120,150,160,.55)');                                  /* 주변 육지 · 해안선 · 지명(맨 아래 층) */
     ctx.lineWidth = 1; ctx.font = '10px ' + MONO; ctx.textBaseline = 'middle';
     var o = rs(v, W, H, { x: 0, y: 0 });
     /* 거리 원 */
@@ -246,6 +248,7 @@
       else { ctx.fillStyle = R.SAT.edge || '#60634a'; ctx.fillRect(0, 0, W, H); }
       ctx.drawImage(satImg, a[0], a[1], b[0] - a[0], b[1] - a[1]);                              /* 가장자리는 흐려 둔 사진(feather) */
       ctx.fillStyle = 'rgba(5,9,14,.30)'; ctx.fillRect(0, 0, W, H);
+      if (geoP) R.geoCredit(ctx, W, H, 'rgba(230,236,240,.6)');
       if (geoP && s < 0.03) geoLabels(ctx, function (x, y) { var q = D.xy2uv(x, y); return gs(v, W, H, q.u, q.v); }, W, H, kk, ['rgba(236,240,226,.72)', 'rgba(190,214,236,.6)']);
     }
     else {
@@ -433,7 +436,7 @@
     R.miniBox = { x: x, y: y, w: mw, h: mh, toUV: function (sx, sy) { return { u: B.u1 + (sx - x) / k, v: B.v2 - (sy - y) / k }; } };
   };
   /* 데이터 블록 둘째 줄: 042↑ 180 = 4,200ft 상승 중 · 180kt */
-  R.dblk = function (ac) { var al = Math.max(0, ac.alt || 0), vs = ac.st === 'final' ? -1 : ac.goAround || ac.kind === 'dep' ? 1 : 0, kt = Math.round((ac.spd || 0) / 0.514444); return U.pad(Math.round(al / 100), 3) + (vs > 0 ? '↑' : vs < 0 ? '↓' : ' ') + ' ' + kt; };
+  R.dblk = function (ac) { var al = Math.max(0, ac.alt || 0), vs = ac.st === 'final' && al > 30 ? -1 : ac.st === 'air' && al < (ac.maxAlt || 6000) - 10 ? 1 : 0,   /* 화살표는 실제 고도 변화로(수평 비행이면 없음 — GPT 9차 F9-02) */ kt = Math.round((ac.spd || 0) / 0.514444); return U.pad(Math.round(al / 100), 3) + (vs > 0 ? '↑' : vs < 0 ? '↓' : ' ') + ' ' + kt; };
   R.miniRadar = function (ctx, W, H, app) {
     var sim = app.sim, hd = R.hud(W, H), r = hd ? hd.r : Math.min(78, W * 0.11), cx = hd ? W - r - 8 : sim.flow.mini !== 'L' ? W - r - 12 : r + 12, cy = hd ? r + 6 : r + 12, sc = r / 13, i;
     ctx.fillStyle = 'rgba(4,8,12,.9)'; ctx.beginPath(); ctx.arc(cx, cy, r + 4, 0, 7); ctx.fill(); ctx.strokeStyle = '#2b4a66'; ctx.lineWidth = 1; ctx.stroke();
