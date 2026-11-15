@@ -36,7 +36,7 @@
     [/no further clearance, entering hold at (\w+)/gi, '후속 허가가 없어 $1에서 체공 진입'], [/holding, request expected approach time/gi, '체공 중, 예상접근시간 요청'],
     [/hold at (\w+) as published, expect further clearance at (\d{4})/gi, '$1에서 공시된 절차대로 체공, 추가 허가 예상 시각 $2'], [/hold at (\w+)/gi, '$1에서 체공'],
     [new RegExp('cross (\\w+) at ' + A, 'gi'), '$1 지점을 $2로 통과'], [/radar contact/gi, '레이더 식별'],
-    [/runway (\w+)(?: at [\w ]+?)?, line up and wait/gi, '활주로 $1 진입 후 대기'], [/wind calm/gi, '무풍'], [/wind (\d+) at (\d+)/gi, '바람 $1도 $2노트'],
+    [/runway (\w+) at ([\w ]+?), line up and wait/gi, '$2에서 활주로 $1 진입 후 대기'], [/runway (\w+), line up and wait/gi, '활주로 $1 진입 후 대기'], [/wind calm/gi, '무풍'], [/wind (\d+) at (\d+)/gi, '바람 $1도 $2노트'],
     [/runway (\w+), cleared for takeoff/gi, '활주로 $1 이륙 허가'], [/runway (\w+), cleared to land/gi, '활주로 $1 착륙 허가'],
     [/hold position, cancel takeoff clearance/gi, '정지, 이륙 허가 취소'], [/hold position, expect pushback shortly/gi, '대기, 곧 푸시백 예정'], [/holding position/gi, '정지함'], [/hold position/gi, '그 자리에 정지'],
     [/continue approach, number (\d)/gi, '접근 계속, 착륙 순서 $1번'], [/continue approach/gi, '접근 계속'], [/continue taxi/gi, '계속 이동'],

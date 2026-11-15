@@ -325,7 +325,7 @@
   Sim.prototype.scnEvents = function () { var s = this.scn; if (s && s.events) this.events = s.events.map(function (e) { var x = {}, k; for (k in e) x[k] = e[k]; x.done = false; return x; });
     if (this.lvp) this.sys({ TWR: ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m. 관제탑에서 활주로가 보이지 않습니다. ① 착륙 허가는 2NM 전까지 ② 착륙기가 5NM 안이면 같은 활주로에 진입 · 이륙시키지 않음(ILS 보호구역) ③ 지상 이동이 느려 활주로 이탈에 시간이 더 걸립니다.', this.lvp.rvr),
       GND: ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m. 지상 이동 속도가 느립니다. 경로가 겹치지 않도록 푸시백과 이동 순서에 여유를 두세요.', this.lvp.rvr),
-      APP: ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m. 같은 ILS의 앞뒤 간격을 {1}NM 이상으로 유지하세요. 활주로를 보지 못한 항공기는 복행합니다.', this.lvp.rvr, this.lvp.sep || 6) }[this.mode] || ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m.', this.lvp.rvr), 'alert');
+      APP: ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m. 같은 ILS의 앞뒤 간격을 {1}NM 이상으로 유지하세요. 결심 고도에서 필요한 시각 참조를 얻지 못한 항공기는 복행합니다.', this.lvp.rvr, this.lvp.sep || 6) }[this.mode] || ATC.T('저시정 절차(LVP) 운용 중 — RVR {0}m.', this.lvp.rvr), 'alert');
   };
   ATC.Sim = Sim;
   ATC.extend = function (Child, Parent) { Child.prototype = Object.create(Parent.prototype); Child.prototype.constructor = Child; };
