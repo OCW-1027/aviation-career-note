@@ -442,3 +442,30 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .rtop3{margin:0 0 10px;padding-left:20px;font-size:12.5px}.rtop3 li{margin-bottom:6px}.rtop3 time{display:block;font-size:10.5px;color:var(--mut)}.rtop3 b span{color:#ff8a8a;font-weight:700;margin-left:4px}.rtop3 p{margin:2px 0 0;color:var(--mut)}
 .rstat{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.rstat span{display:flex;flex-direction:column;align-items:center;padding:8px 4px;border:1px solid var(--line);border-radius:8px;font-size:10.5px;color:var(--mut);text-align:center}.rstat b{font-size:17px;color:var(--txt)}
 @media (max-width:560px){.rstat{grid-template-columns:repeat(3,1fr)}}
+
+/* 조종사 체험 */
+.pilotm #strips,.pilotm #cli{display:none}
+.pilotm #micBtn:not(.solo){left:12px}
+.chead.pil b{color:#ffd27a}
+.cbody.pilotp{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.pilotp .prx{flex:1 1 300px;min-width:0}.pilotp .pmcp{flex:1 1 300px;min-width:0}
+.pilotp h6{margin:6px 0 4px;font-size:11px;color:#8fb3cc;letter-spacing:.04em;font-weight:600}
+.pilotp .patc{background:rgba(70,140,220,.12);border-left:3px solid #4a90d9;padding:6px 8px;font:13px/1.45 var(--mono);color:#e4eef7;border-radius:4px}
+.pilotp .patc small{display:block;color:#9fb4c6;font-family:inherit;margin-top:3px}
+.pilotp .popts{display:flex;flex-direction:column;gap:5px}
+.pilotp .cb.popt{text-align:left;white-space:normal;font:12.5px/1.4 var(--mono);padding:7px 9px;height:auto}
+.pilotp .pwait{color:#9fb4c6;padding:10px 4px;font-size:13px}
+.pilotp .pmic{display:block;color:#7f98ad;margin-top:5px}
+.pilotp .pins{display:flex;gap:10px;flex-wrap:wrap;font:12px var(--mono);color:#9fb4c6;margin-bottom:4px}.pilotp .pins b{color:var(--ok)}
+.pilotp .prow{display:flex;align-items:center;gap:4px;margin:4px 0;flex-wrap:wrap}
+.pilotp .prow>b{width:34px;font:12px var(--mono);color:#cfe0ee}
+.pilotp .prow.due>b{color:#ffd27a}
+.pilotp .pval{min-width:58px;text-align:center;font:14px var(--mono);color:#e8f2fa;background:rgba(5,9,14,.6);border:1px solid var(--line);border-radius:4px;padding:3px 6px}
+.pilotp .prow.due .pval{border-color:#c9a23e}
+.pilotp .cb.pstep{min-width:34px;padding:4px 5px}
+.pilotp .cb.pset.due{border-color:#c9a23e;color:#ffd27a}
+.pilotp .cb.pset.on{background:rgba(63,143,95,.25)}
+.pilotp .pdue{font-weight:400;color:#c9a23e}
+.pilotp .ptodo{display:inline-block;margin-left:4px;padding:0 5px;border:1px solid #c9a23e;border-radius:3px;color:#ffd27a;font:11px var(--mono)}
+.xbtn.pilot i{color:#ffd27a}
+.pguide{margin:6px 0 0 18px;padding:0;font-size:12.5px;line-height:1.55;color:#cfe0ee}.pguide li{margin-bottom:5px}

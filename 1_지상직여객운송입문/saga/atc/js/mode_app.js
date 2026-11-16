@@ -54,7 +54,7 @@
   AppSim.prototype.mvaAt = function (a) { for (var i = 0; i < D.mva.length; i++) if (U.dist(a, D.mva[i].c) < D.mva[i].r) return D.mva[i].alt; return D.mvaBase; };
 
   AppSim.prototype.spawnArr = function (s) {
-    var AF = this.arrFlow, cg = this.rwChg, RW = cg ? cg.newR : this.rwys, f = this.mkFlight(ATC.odFit(D.gateOrig[s.gate]), 'arr'), route = D.star[AF.id][s.gate], f0 = D.fix[route[0]], f1 = D.fix[route[1]];
+    var AF = this.arrFlow, cg = this.rwChg, RW = cg ? cg.newR : this.rwys, f = this.mkFlight(s.pilot ? function (a) { return a.code === 'VLA'; } : ATC.odFit(D.gateOrig[s.gate]), 'arr'), route = D.star[AF.id][s.gate], f0 = D.fix[route[0]], f1 = D.fix[route[1]];
     var hd = U.brg(f0, f1), p = D.off(f0, hd + 180, 7), alt = D.entryAlt[s.gate], og = ATC.odPick(this.rng, f.al, D.gateOrig[s.gate]), from = 1;
     var by = AF.arrBy, rwy = by && RW.indexOf(by[s.gate]) >= 0 ? by[s.gate] : (RW.indexOf(AF.arr) >= 0 ? AF.arr : RW[0]);
     if (s.warm && D.flyBy && route.length > 5) {      /* 긴 경로: 근무를 시작할 때 이미 경로 가운데쯤에 있는 항공기 */
@@ -65,12 +65,13 @@
     var ac = this.spawnAc({
       cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: perf,
       x: p.x, y: p.y, alt: alt, hdg: hd, ias: ias, normIas: ias, kind: 'arr', gate: s.gate, orig: og[0], origName: og[1], dest: D.airport.icao,
-      fpRoute: route, squawk: this.squawk(), rwy: rwy, owner: (this.level.id === 1 || s.warm) ? 'me' : 'in', entT: this.t
+      fpRoute: route, squawk: this.squawk(), rwy: rwy, owner: s.pilot ? 'in' : (this.level.id === 1 || s.warm) ? 'me' : 'in', entT: this.t
     });
     ac.setRoute(s.warm ? route.slice(from) : route);
     if (D.appDelay) ac.planMin = (routeLen(route) + (D.ends[rwy].ifD || 12)) * D.appDelay.perNM + D.appDelay.plus;
     if (D.starName) ac.star = D.starName[AF.id][s.gate];
     if (ac.owner === 'me') this.checkIn(ac); else ac.hoT = this.t;
+    if (s.pilot && this.pilot) this.pilot.attach(ac);      /* 조종사 체험: 이 항공기가 플레이어의 것 */
     return ac;
   };
   AppSim.prototype.spawnDep = function (s) {

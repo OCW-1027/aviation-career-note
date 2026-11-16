@@ -254,7 +254,8 @@
     }
   };
   /* 조종사 송신 */
-  Sim.prototype.say = function (ac, text, o) { o = o || {}; this.enq({ who: 'pilot', ac: ac, text: text, kind: o.kind || '', onDone: o.onDone, dur: o.dur, call: !o.front && o.kind !== 'emg' }, o.front); };      /* call = 조종사가 먼저 거는 송신(혼신이 날 수 있음) */
+  Sim.prototype.say = function (ac, text, o) { o = o || {}; if (this.pilot && !o.force && this.pilot.mine(ac)) { this.pilot.onSay(text, o); return; }      /* 조종사 체험: 내 항공기의 송신은 플레이어가 고름 */
+    this.enq({ who: 'pilot', ac: ac, text: text, kind: o.kind || '', onDone: o.onDone, dur: o.dur, call: !o.front && o.kind !== 'emg' }, o.front); };      /* call = 조종사가 먼저 거는 송신(혼신이 날 수 있음) */
   /* 혼신 뒤 재송신 요청: 관제사 「Blocked, say again」 → 두 항공기가 차례로 다시 송신 */
   Sim.prototype.sayAgain = function () {
     var b = this.rxBlock, self = this; if (!b) return false; this.rxBlock = null;
@@ -316,7 +317,7 @@
     });
   };
   /* 비정상 상황(비상 · 복행 · 레이저 · 드론 등)은 가상 항공사에만 — 실제 항공사(al.real)는 고르지 않음 */
-  ATC.irreg = function (a) { return !(a && a.al && a.al.real); };      /* 비정상 상황(비상 · 복행 · 규정 위반 · 복창 오류 · 회항 등)은 가상 항공사에만 */
+  ATC.irreg = function (a) { return !(a && a.al && a.al.real) && !(a && a.pilotMe); };      /* 조종사 체험의 내 항공기에도 돌발 상황을 만들지 않음(1단계) */      /* 비정상 상황(비상 · 복행 · 규정 위반 · 복창 오류 · 회항 등)은 가상 항공사에만 */
   Sim.prototype.irrAcs = function () { return this.acs.filter(ATC.irreg); };
   /* 그 항공사가 그 공항을 오갈 만한지(노선 범위 scope · 주로 다니는 곳 dest — 하네다의 실제 항공사) */
   ATC.odOk = function (a, icao) { var i = D.isIntl ? D.isIntl(icao) : true; if (a.scope === 'D' && i || a.scope === 'I' && !i) return false; return !a.dest || a.dest.indexOf(icao) >= 0; };
@@ -329,6 +330,7 @@
   Sim.prototype.command = function (ac, cmds, o) {
     var self = this; o = o || {};
     if (!ac || ac.gone) return false;
+    if (this.pilot && this.pilot.mine(ac)) return this.pilot.onClr(cmds, o);      /* 조종사 체험: AI 관제사의 지시 → 플레이어가 복창 · 설정 */
     var chk = this.validate ? this.validate(ac, cmds) : null;
     var ph = ATC.phrase(this, ac, cmds);
     if (ac.waiting === 'dctreq' || ac.waiting === 'pirep' || ac.waiting === 'laser') { ac.reqT = null; if (ac.waiting === 'laser' && cmds.some(function (x) { return x.k === 'laserack'; })) this.inc('laser_ok', [ac], ATC.T('{0}: 레이저 조사 보고를 확인하고 계속 가능한지 물었습니다.', ac.cs)); }
@@ -393,6 +395,7 @@
   Sim.prototype.hasWrong = function (acId) { for (var i = 0; i < this.pendWrong.length; i++) if (this.pendWrong[i].ac.id === acId) return true; return false; };
   /* 채점 기록 */
   Sim.prototype.inc = function (code, acs, text, o) {
+    if (this.pilot && code.indexOf('p_') !== 0) return;      /* 조종사 체험: AI 관제사 쪽 감점 · 가점은 세지 않음 */
     var def = ATC.INC[code] || { cat: 'E', pts: 0, t: code };
     var e = { code: code, cat: def.cat, pts: (o && o.pts !== undefined) ? o.pts : def.pts, title: def.t, les: def.les, text: text || def.t, t: this.t, utc: this.utc(), acs: (acs || []).map(function (a) { return a.cs; }) };
     this.incs.push(e);
@@ -406,6 +409,7 @@
   Sim.prototype.score = function () {
     var s = { S: 0, E: 0, P: 0, bonus: 0 }, i;
     for (i = 0; i < this.incs.length; i++) { var e = this.incs[i]; if (e.pts < 0) s[e.cat] += e.pts; else s.bonus += e.pts; }
+    if (this.pilot) s.bonus = 0;      /* 조종사 체험: 잘한 일(✔)은 기록만, 감점을 메우지 않음 */
     var total = U.clamp(100 + s.S + s.E + s.P + Math.min(s.bonus, 10), 0, 100);
     var crit = this.incs.some(function (e) { return e.cat === 'S' && e.pts <= -15; });
     var g = this.fatal ? 'F' : total >= 95 && !crit ? 'S' : total >= 85 ? 'A' : total >= 70 ? 'B' : total >= 55 ? 'C' : 'D';
@@ -420,7 +424,7 @@
     if (this.over) return;
     this.t += dt;
     this.update(dt);
-    this.radioTick(); this.wrongTick(); this.blockTick(); this.coordTick();
+    this.radioTick(); this.wrongTick(); this.blockTick(); this.coordTick(); if (this.pilot) this.pilot.tick();
     if (this.t - (this.smpT === undefined ? -99 : this.smpT) >= 60) { this.smpT = this.t; this.smp.push([Math.round(this.t), this.acs.filter(function (a) { return a.owner === 'me'; }).length]); }
     if (this.endless && this.moreTraffic) this.moreTraffic();
     if (this.fatal && !this.over) { this.over = true; this.emit('over', this.score()); }
