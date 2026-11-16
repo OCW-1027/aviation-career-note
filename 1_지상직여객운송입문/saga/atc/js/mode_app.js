@@ -357,7 +357,7 @@
       for (var k = 0; k < this.wx.length; k++) { var w2 = this.wx[k]; if (a.alt < 26000 && U.dist(a, w2) < w2.r && !w2.hit[a.id] && a.owner === 'me') { w2.hit[a.id] = 1; this.inc('wx', [a], ATC.T('{0}: 적란운 구역을 통과했습니다(심한 난기류).', a.cs)); this.say(a, ATC.csSay(a) + ', severe turbulence, request heading to avoid weather.', { kind: 'warn' }); } }
     }
   };
-  /* 끝없는 근무: 도착기를 계속 더하고(시간이 갈수록 간격이 좁아짐, 최소 55초) 가끔 출발기 */
+  /* 무한 근무: 도착기를 계속 더하고(시간이 갈수록 간격이 좁아짐, 최소 55초) 가끔 출발기 */
   AppSim.prototype.moreTraffic = function () {
     if (this.sched.length >= 2) return;
     var r = this.rng, self = this, la = this.sched.reduce(function (m, x) { return x.kind === 'arr' ? Math.max(m, x.t) : m; }, Math.max(this.t, this.eLastA || 0));

@@ -268,7 +268,7 @@
       if (a.st === 'athold' && a.holdKind === 'cross' && a.reqT && this.t - a.reqT > 300 && !a.crossLate) { a.crossLate = true; this.inc('delay', [a], ATC.T('{0}: 활주로 횡단 대기 5분 초과.', a.cs)); }
     }
   };
-  /* 끝없는 근무: 예정 교통이 바닥나면 도착 · 출발을 한 쌍씩 더함 — 시간이 갈수록 간격이 좁아짐(최소 40초) */
+  /* 무한 근무: 예정 교통이 바닥나면 도착 · 출발을 한 쌍씩 더함 — 시간이 갈수록 간격이 좁아짐(최소 40초) */
   TwrSim.prototype.moreTraffic = function () {
     if (this.sched.length >= 2) return;
     var r = this.rng, last = function (sch, k, t0) { return sch.reduce(function (m, x) { return x.kind === k ? Math.max(m, x.t) : m; }, t0); };

@@ -191,7 +191,7 @@
     this.seed = o.seed || 12345; this.rng = ATC.rng(this.seed);
     this.t = 0; this.t0 = (o.startHour !== undefined ? o.startHour : 9) * 3600;   /* 근무 시작 UTC */
     this.acs = []; this.log = []; this.incs = []; this.q = []; this.cur = null;
-    this.done = 0; this.total = 0; this.over = false; this.fatal = null; this.endless = !!o.endless; this.smp = []; this.wantFx = o.scn && o.scn.events && o.scn.events.length ? 4 : 0; this.wantFxKind = o.scn && o.scn.events && o.scn.events.length ? ATC.fxKind(o.scn.events[0].k) : null;      /* endless = 끝없는 근무 · smp = 1분마다 관할 대수(결과 그래프) */
+    this.done = 0; this.total = 0; this.over = false; this.fatal = null; this.endless = !!o.endless; this.smp = []; this.wantFx = o.scn && o.scn.events && o.scn.events.length ? 4 : 0; this.wantFxKind = o.scn && o.scn.events && o.scn.events.length ? ATC.fxKind(o.scn.events[0].k) : null;      /* endless = 무한 근무 · smp = 1분마다 관할 대수(결과 그래프) */
     this.wind = o.wind || { dir: 60, spd: 8 }; this.qnh = o.qnh || 1013; this.atis = 'C';
     this.flow = D.flows[o.flow || this.flowForWind()];
     this.nextId = 1; this.usedCs = {}; this.sq = 0o4500 + this.rng.int(0, 60);
@@ -402,7 +402,7 @@
     if (e.pts < 0 || def.fatal) this.addLog({ who: 'sys', cs: '', text: '⚠ ' + def.t + ' — ' + e.text, kind: def.cat === 'S' ? 'alert' : 'warn' });
     else if (e.pts > 0) this.addLog({ who: 'sys', cs: '', text: '✔ ' + e.text, kind: 'good' });
     if (def.fatal && !this.fatal && !this.noFatal) { this.fatal = e; }
-    if (this.endless && e.cat === 'S' && e.pts < 0) this.emit('notice', ATC.T('끝없는 근무 — 안전 감점 {0} / 3', this.strikes()));
+    if (this.endless && e.cat === 'S' && e.pts < 0) this.emit('notice', ATC.T('무한 근무 — 안전 감점 {0} / 3', this.strikes()));
     this.emit('inc', e);
     return e;
   };
@@ -415,7 +415,7 @@
     var g = this.fatal ? 'F' : total >= 95 && !crit ? 'S' : total >= 85 ? 'A' : total >= 70 ? 'B' : total >= 55 ? 'C' : 'D';
     return { total: Math.round(total), S: s.S, E: s.E, P: s.P, bonus: Math.min(s.bonus, 10), grade: g, handled: this.done, of: this.total, fatal: this.fatal };
   };
-  /* 끝없는 근무: 안전 감점(S) 3번이면 끝 */
+  /* 무한 근무: 안전 감점(S) 3번이면 끝 */
   Sim.prototype.strikes = function () { return this.incs.filter(function (e) { return e.cat === 'S' && e.pts < 0; }).length; };
   Sim.prototype.remove = function (ac, ok) { ac.gone = true; var i = this.acs.indexOf(ac); if (i >= 0) this.acs.splice(i, 1); if (ok) this.done++; this.emit('gone', ac); };
   Sim.prototype.byId = function (id) { for (var i = 0; i < this.acs.length; i++) if (this.acs[i].id === id) return this.acs[i]; return null; };
