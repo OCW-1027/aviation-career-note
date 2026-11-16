@@ -1,4 +1,4 @@
-/* AIRLINE SAGA — ATC 교신 훈련소: 말하기 · 듣기 · 복창 대조 · 숫자 읽기(각 10문제) */
+/* AIRLINE SAGA — ATC 교신 훈련소: 말하기 · 듣기 · 복창 대조 · 복창 오류 찾기 · 숫자 읽기(각 10문제) */
 (function () {
   'use strict';
   var ATC = window.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt, st = null;
@@ -7,11 +7,12 @@
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = ri(0, i), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
   var fsim = { wind: { dir: 60, spd: 8 }, qnh: 1013 };
-  function fakeAc() { var al = rnd(D.airlines.filter(function (a) { return !a.ga; })), type = rnd(al.types), num = String(ri(101, 899)); return { id: 1, cs: al.code + num, csWord: al.cs, num: num, type: type, hdg: ri(1, 36) * 10, alt: 8000, ias: 220, perf: D.types[type], al: al, wake: D.types[type].wake }; }
+  function fakeAc(fx) { var al = rnd(D.airlines.filter(function (a) { return !a.ga && !(fx && a.real); })), type = rnd(al.types), num = String(ri(101, 899)); return { id: 1, cs: al.code + num, csWord: al.cs, num: num, type: type, hdg: ri(1, 36) * 10, alt: 8000, ias: 220, perf: D.types[type], al: al, wake: D.types[type].wake }; }
   var TYPES = {
     say: { t: ATC.T('말하기'), d: ATC.T('한국어 지시에 맞는 영어 관제 용어를 선택합니다.'), les: 'rt' },
     listen: { t: ATC.T('듣기'), d: ATC.T('무선 교신을 듣고 그 의미를 선택합니다. (음성이 켜져 있어야 합니다)'), les: 'rt' },
     rb: { t: ATC.T('복창 대조'), d: ATC.T('관제 지시와 조종사의 복창이 일치하는지 판별합니다.'), les: 'rb' },
+    rbx: { t: ATC.T('복창 오류 찾기'), d: ATC.T('조종사의 복창에서 틀린 곳(기수 · 선회 방향 · 고도 · 속도 · 활주로 · SID · 스쿼크 · 호출부호)을 골라냅니다.'), les: 'rb' },
     num: { t: ATC.T('숫자·문자 읽기'), d: ATC.T('고도 · 기수 · 주파수 · 활주로를 교신에서 읽는 방법을 선택합니다.'), les: 'rt' }
   };
   /* 지시 하나와 헷갈리는 지시 3개 */
@@ -41,9 +42,52 @@
     else { a = rnd(['C', 'D', 'F', 'K', 'M', 'Q', 'S', 'W']); q = ATC.T('ATIS 정보 {0}', a); ok = 'information ' + ATC.PH[a]; var others = shuffle(Object.keys(ATC.PH).filter(function (x) { return x !== a; })).slice(0, 2); bad = ['information ' + ATC.PH[others[0]], 'information ' + ATC.PH[others[1]], 'information ' + a.toLowerCase() + 'ee']; why = ATC.T('알파벳은 ICAO 음성 알파벳(Alfa, Bravo, Charlie …)으로 읽습니다.'); }
     return { q: ATC.T('{0} — 교신에서는 어떻게 읽을까요?', q), opts: shuffle([ok].concat(bad.slice(0, 3))), ok: ok, why: why };
   }
+
+  /* 복창 오류 찾기: 지시 하나에 틀린 곳이 하나(가끔 없음). 보기 = 그 지시에 들어 있는 항목 + 「틀린 곳 없음」 */
+  var RBL = { hdg: ATC.T('기수(각도)'), dir: ATC.T('선회 방향(좌 · 우)'), alt: ATC.T('고도'), spd: ATC.T('속도'), rwy: ATC.T('활주로'), sid: ATC.T('출발 절차(SID)'), sq: ATC.T('스쿼크'), cs: ATC.T('호출부호'), none: ATC.T('틀린 곳 없음') };
+  var RBW = {
+    hdg: ATC.T('기수를 잘못 들으면 다른 방향으로 날아가 다른 항공기나 지형과 가까워질 수 있습니다.'),
+    dir: ATC.T('각도가 맞아도 좌 · 우가 반대면 반대쪽으로 크게 돌아가고, 옆 항공기 쪽으로 선회할 수도 있습니다.'),
+    alt: ATC.T('고도 복창 오류는 가장 위험한 오류 중 하나입니다. 1,000ft 차이는 다른 항공기와의 수직 간격 그 자체입니다.'),
+    spd: ATC.T('속도가 다르면 앞뒤 항공기와의 간격이 줄거나 벌어집니다.'),
+    rwy: ATC.T('활주로를 틀리면 다른 활주로에 들어가거나 착륙할 수 있습니다(활주로 침입). L · R 하나도 그냥 넘기지 않습니다.'),
+    sid: ATC.T('SID 이름 · 번호가 다르면 다른 출발 경로를 날게 됩니다.'),
+    sq: ATC.T('스쿼크가 다르면 레이더에서 다른 항공기로 보이거나 식별이 늦어집니다.'),
+    cs: ATC.T('호출부호가 다르면 다른 항공기가 지시를 받았다고 생각하거나, 이 항공기가 남의 지시를 따를 수 있습니다.')
+  };
+  function sibRwy(r, all) { var m = { L: 'R', R: 'L', C: 'L' }, t = r.slice(0, 2) + (m[r[2]] || ''); if (r[2] && all.indexOf(t) >= 0) return t; var o = all.filter(function (x) { return x !== r; }); return o.length ? rnd(o) : (r.slice(0, 2) === '34' ? '16' : '34') + (r[2] || ''); }
+  function genRbx(ac) {
+    var rws = D.ends ? Object.keys(D.ends) : ['34R', '34L', '16L', '16R'], r = rnd(rws), sids = (ATC.DelSim && ATC.DelSim.prototype.sidList) ? ATC.DelSim.prototype.sidList.call({ flow: { sfx: 'A' } }) : ['NEVIS 1A'];
+    var dl = []; if (D.gateDest) Object.keys(D.gateDest).forEach(function (g) { D.gateDest[g].forEach(function (d) { dl.push(d[1]); }); });
+    var sets = [
+      { c: [{ k: 'hdg', v: ri(1, 36) * 10, dir: rnd(['L', 'R']) }, { k: 'alt', v: ri(3, 7) * 1000 }], e: ['hdg', 'dir', 'alt', 'cs'] },
+      { c: [{ k: 'alt', v: ri(3, 7) * 1000 }, { k: 'spd', v: rnd([180, 200, 210, 220]) }], e: ['alt', 'spd', 'cs'] },
+      { c: [{ k: 'clr', destName: dl.length ? rnd(dl) : 'Tokyo Haneda', sid: rnd(sids), alt: rnd([5000, 6000, 7000, 9000]), sq: '' + ri(1, 6) + ri(1, 7) + ri(0, 7) + ri(1, 7) }], e: ['sid', 'alt', 'sq'] },
+      { c: [{ k: 'hs', rwy: r }], e: ['rwy', 'cs'] },
+      { c: [{ k: 'cross', rwy: r }], e: ['rwy', 'cs'] },
+      { c: [{ k: 'ctl', rwy: r }], e: ['rwy', 'cs'] },
+      { c: [{ k: 'luaw', rwy: r }], e: ['rwy', 'cs'] }
+    ], set = rnd([0, 0, 0, 1, 1, 2, 2, 3, 4, 5, 6].map(function (i) { return sets[i]; })), err = Math.random() < 0.2 ? 'none' : rnd(set.e), w = set.c.map(function (x) { var o = {}; for (var k in x) o[k] = x[k]; return o; }), wac = ac;
+    if (err === 'cs' && Math.random() < 0.5) err = rnd(set.e.filter(function (x) { return x !== 'cs'; }));      /* 호출부호는 거의 모든 지시에 있어 반만 */
+    var c0 = w[0], ia = w.filter(function (x) { return x.k === 'alt'; })[0];
+    if (err === 'hdg') { var h = w.filter(function (x) { return x.k === 'hdg'; })[0]; h.v = ((h.v + rnd([20, 30, 40, -20, -30, -40]) + 360 - 10) % 360) + 10; }
+    else if (err === 'dir') { var h2 = w.filter(function (x) { return x.k === 'hdg'; })[0]; h2.dir = h2.dir === 'L' ? 'R' : 'L'; }
+    else if (err === 'alt') { if (ia) ia.v += rnd([1000, -1000]); else c0.alt += rnd([1000, -1000]); }
+    else if (err === 'spd') { var sp = w.filter(function (x) { return x.k === 'spd'; })[0]; sp.v += rnd([20, -20, 10]); }
+    else if (err === 'rwy') c0.rwy = sibRwy(c0.rwy, rws);
+    else if (err === 'sid') { var m = c0.sid.match(/^(.*?)(\d)(\D*)$/), alt2 = sids.filter(function (x) { return x !== c0.sid; }); c0.sid = m && Math.random() < 0.5 ? m[1] + ((+m[2] % 9) + 1) + m[3] : (alt2.length ? rnd(alt2) : c0.sid + 'X'); }
+    else if (err === 'sq') { var q = c0.sq; c0.sq = q[0] === q[1] ? q.slice(0, 2) + q[3] + q[2] : q[1] + q[0] + q.slice(2); if (c0.sq === q) c0.sq = q.slice(0, 3) + ((+q[3] % 7) + 1); }
+    else if (err === 'cs') { var n = ac.num, nn = n.length > 2 && n[1] !== n[2] ? n[0] + n[2] + n[1] : String((+n % 800) + 101); wac = {}; for (var k in ac) wac[k] = ac[k]; wac.num = nn; wac.cs = ac.al.code + nn; }
+    var p = ATC.phrase(fsim, ac, set.c), rb = ATC.phrase(fsim, wac, err === 'none' ? set.c : w).rb;
+    var opts = set.e.map(function (x) { return RBL[x]; }).concat([RBL.none]);
+    var why = err === 'none' ? ATC.T('지시와 복창이 모두 일치합니다. 그대로 진행합니다(필요하면 「readback correct」).')
+      : ATC.T('틀린 곳: {0} — {1} 올바른 복창: 「{2}」 정정: 「{3}, negative, I say again, {4}」', RBL[err], RBW[err], p.rb[0].toUpperCase() + p.rb.slice(1), ac.csWord + ' ' + ac.num, p.atc.split(', ').slice(1).join(', '));
+    return { q: ATC.T('조종사의 복창에서 틀린 곳은?'), body: ATC.T('<div class="dq atc"><b>관제</b>{0}</div><div class="dq plt"><b>조종사</b>{1}</div>', esc(p.atc), esc(rb[0].toUpperCase() + rb.slice(1))), opts: opts, ok: RBL[err], why: why, nodiff: true };
+  }
   function nextQ() {
-    var ty = st.type, ac = fakeAc(), g, p, opts, q = {};
+    var ty = st.type, ac = fakeAc(ty === 'rb'), g, p, opts, q = {};
     if (ty === 'num') q = genNum();
+    else if (ty === 'rbx') q = genRbx(fakeAc(true));
     else if (ty === 'rb') {
       var kinds = rnd([[{ k: 'hdg', v: ri(1, 36) * 10, dir: rnd(['L', 'R']) }, { k: 'alt', v: ri(3, 6) * 1000 }], [{ k: 'alt', v: ri(3, 7) * 1000 }, { k: 'spd', v: rnd([180, 200, 210, 220]) }], [{ k: 'clr', destName: 'Tokyo Haneda', sid: 'NEVIS 1A', alt: 6000, sq: '' + ri(41, 46) + ri(1, 7) + ri(0, 7) }]]);
       var sim = new ATC.Sim({ seed: ri(1, 999999) }), wrong = Math.random() < 0.55 ? sim.mutate(ac, kinds) : null; p = ATC.phrase(fsim, ac, kinds);
@@ -72,7 +116,7 @@
     return ATC.T('<div class="ddiff">차이 — 선택한 답: <s>{0}</s> → 정답: <u>{1}</u></div>', esc(da || ATC.T('(없음)')), esc(db || ATC.T('(없음)')));
   }
   function render() {
-    var q = st.cur, done = st.ans !== null, h = ATC.T('<div class="mhead"><span class="pen">교신 훈련 · {0}</span><h2>{1} / 10 <small>정답 {2}</small></h2></div><div class="mbody drill"><p class="dqt">{3}</p>{4}<div class="dopts">{5}</div>{6}</div><div class="mfoot"><button class="btn" data-d="menu">훈련 목록</button><span class="sp"></span>{7}</div>', TYPES[st.type].t, (st.n + 1), st.score, q.q, (q.body || ''), q.opts.map(function (o, i) { var cls = done ? (o === q.ok ? ' ok' : i === st.ans ? ' no' : '') : ''; return '<button class="dopt' + cls + '" data-d="ans" data-i="' + i + '"' + (done ? ' disabled' : '') + '>' + esc(o) + '</button>'; }).join(''), (done ? '<div class="dwhy ' + (q.opts[st.ans] === q.ok ? 'ok' : 'no') + '"><b>' + (q.opts[st.ans] === q.ok ? ATC.T('정답입니다.') : ATC.T('오답입니다.')) + '</b> ' + esc(q.why) + (q.opts[st.ans] === q.ok ? '' : diff(q.opts[st.ans], q.ok)) + '</div>' : ''), (done ? '<button class="btn pri" data-d="next">' + (st.n >= 9 ? ATC.T('결과 보기') : ATC.T('다음 문제')) + '</button>' : ''));
+    var q = st.cur, done = st.ans !== null, h = ATC.T('<div class="mhead"><span class="pen">교신 훈련 · {0}</span><h2>{1} / 10 <small>정답 {2}</small></h2></div><div class="mbody drill"><p class="dqt">{3}</p>{4}<div class="dopts">{5}</div>{6}</div><div class="mfoot"><button class="btn" data-d="menu">훈련 목록</button><span class="sp"></span>{7}</div>', TYPES[st.type].t, (st.n + 1), st.score, q.q, (q.body || ''), q.opts.map(function (o, i) { var cls = done ? (o === q.ok ? ' ok' : i === st.ans ? ' no' : '') : ''; return '<button class="dopt' + cls + '" data-d="ans" data-i="' + i + '"' + (done ? ' disabled' : '') + '>' + esc(o) + '</button>'; }).join(''), (done ? '<div class="dwhy ' + (q.opts[st.ans] === q.ok ? 'ok' : 'no') + '"><b>' + (q.opts[st.ans] === q.ok ? ATC.T('정답입니다.') : ATC.T('오답입니다.')) + '</b> ' + esc(q.why) + (q.opts[st.ans] === q.ok || q.nodiff ? '' : diff(q.opts[st.ans], q.ok)) + '</div>' : ''), (done ? '<button class="btn pri" data-d="next">' + (st.n >= 9 ? ATC.T('결과 보기') : ATC.T('다음 문제')) + '</button>' : ''));
     ATC.ui.openModal(h);
   }
   function result() {
