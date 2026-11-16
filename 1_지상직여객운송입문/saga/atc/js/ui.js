@@ -137,6 +137,7 @@
     if (app.voice) { ATC.Radio.init(); if (packOn()) { ATC.Radio.loadAll(); if (!ATC.Radio.ready()) { app.paused = true; app.packHold = Date.now(); } packWait(); } }      /* 무선 음성이 다 내려받아질 때까지(최대 25초) 시작을 멈춤 — 첫 호출이 브라우저 기계음으로 나가지 않게 */
     /* 송신이 시작될 때 음성을 틀고, 그 실제 길이만큼 주파수를 점유(글자·소리·항공기 움직임을 맞춤) */
     sim.onTx = function (m) {
+      if (m.spoken) return 0.6 * app.speed;      /* 마이크로 이미 말한 관제 송신: 소리 없이 짧게 */
       if (m.who === 'sys' || !app.voice || app.paused) return 0;
       if (m.blocked) { var sq = packOn() && app.speed <= 2 ? ATC.Radio.squeal(m.dur / app.speed) : 0; return sq ? sq * app.speed : 0; }      /* 혼신: 말 대신 삑— 소리 */
       var cs = m.ac ? m.ac.cs : '', e = { who: m.who, text: m.text, cs: cs }, busy = ATC.Radio.playing() || (window.speechSynthesis && speechSynthesis.speaking);
@@ -161,7 +162,7 @@
       else if (type === 'gone') { if (d.id === app.sel) { app.sel = 0; app.pend = []; app.gt = null; app.routePrev = null; } }
 
     });
-    $('cli').hidden = app.pos.view !== 'radar';
+    $('cli').hidden = app.pos.view !== 'radar'; $('micBtn').classList.toggle('solo', app.pos.view !== 'radar');
     app.follow = false; app.viewTo = null; renderGnav(); if (app.view && app.pos.view === 'ground') fitView();   /* 단추 너비가 정해진 뒤 한 번 더(좁은 화면의 위쪽 띠 높이) */
     renderTop(true); last = 0;
   }
@@ -309,12 +310,12 @@
 
   /* ================= 지시판 ================= */
   function addPend(c) { var i; for (i = 0; i < app.pend.length; i++) if (app.pend[i].k === c.k) { app.pend[i] = c; app.cmdSig = ''; renderCmd(); return; } app.pend.push(c); app.cmdSig = ''; renderCmd(); }
-  function sendPend(extra) {
+  function sendPend(extra, o) {
     var sim = app.sim, ac = sim.byId(app.sel), cmds = app.pend.concat(extra || []); if (!ac || !cmds.length) return;
     /* 문구 순서: 기수 → 고도 → 속도 → 그 밖 */
     var ord = { atis: 0, amendfl: 1, slot: 2, clr: 3, hdg: 1, dct: 1, alt: 2, xalt: 2, spd: 3, ils: 4, hold: 4, ho: 9 };
     cmds.sort(function (a, b) { return (ord[a.k] === undefined ? 5 : ord[a.k]) - (ord[b.k] === undefined ? 5 : ord[b.k]); });
-    sim.command(ac, cmds); app.pend = []; app.gt = null; app.routePrev = null; app.cmdSig = ''; resumeInst();
+    sim.command(ac, cmds, o); app.pend = []; app.gt = null; app.routePrev = null; app.cmdSig = ''; resumeInst();
   }
   function now1(c) { var sim = app.sim, ac = sim.byId(app.sel); if (ac) { sim.command(ac, [c]); app.pend = []; app.gt = null; app.routePrev = null; app.cmdSig = ''; resumeInst(); } }
   function B(label, fn, o) { o = o || {}; app.btns.push(fn); return '<button class="cb' + (o.cls ? ' ' + o.cls : '') + '" data-i="' + (app.btns.length - 1) + '"' + (o.dis ? ' disabled' : '') + (o.tip ? ' title="' + esc(o.tip) + '"' : '') + (o.prev !== undefined ? ' data-prev="' + o.prev + '"' : '') + '>' + label + '</button>'; }
@@ -604,6 +605,39 @@
     }
     if (cmds.length) { app.pend = []; sendPend(cmds); }
   }
+
+  /* ================= 마이크 관제(1단계) ================= */
+  /* 누르고 있는 동안 듣기(🎤 단추 또는 M 키) → 영어 음성 인식(브라우저) → ATC.mic.parse → 지시 송신 · 표준 문구 비교 */
+  var MIC = { rec: null, on: false, alts: [], tmr: null };
+  function micFb(html, cls) { var b = $('micfb'); if (!b) return; b.innerHTML = html; b.className = cls || ''; b.hidden = false; clearTimeout(MIC.tmr); MIC.tmr = setTimeout(function () { b.hidden = true; }, 9000); }
+  function micStart() {
+    if (!app.sim || MIC.on) return;
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { micFb(ATC.T('이 브라우저는 음성 인식을 지원하지 않습니다 — 크롬 · 엣지(PC)에서 써 보세요.'), 'no'); return; }
+    var r = MIC.rec = new SR(); r.lang = 'en-US'; r.interimResults = true; r.maxAlternatives = 5; r.continuous = false;
+    MIC.alts = []; MIC.on = true; $('micBtn').classList.add('on');
+    r.onresult = function (e) {
+      var last = e.results[e.results.length - 1], t = last[0].transcript;
+      if (last.isFinal) { MIC.alts = []; for (var i = 0; i < last.length; i++) MIC.alts.push(last[i].transcript); }
+      else micFb('<span class="mh">' + ATC.T('듣는 중') + '</span> ' + esc(t), 'live');
+    };
+    r.onerror = function (e) { var m = { 'not-allowed': ATC.T('마이크 사용을 허용해 주세요(주소창의 마이크 표시).'), 'service-not-allowed': ATC.T('마이크 사용을 허용해 주세요(주소창의 마이크 표시).'), network: ATC.T('음성 인식 서버에 연결할 수 없습니다(인터넷 연결이 필요합니다).'), 'no-speech': ATC.T('말소리가 들리지 않았습니다 — 단추를 누른 채로 말하세요.'), 'audio-capture': ATC.T('마이크를 찾을 수 없습니다.') }[e.error]; if (m) micFb(m, 'no'); };
+    r.onend = function () { MIC.on = false; $('micBtn').classList.remove('on'); if (MIC.alts.length) micHandle(MIC.alts); };
+    try { r.start(); } catch (err) { MIC.on = false; $('micBtn').classList.remove('on'); }
+  }
+  function micStop() { if (MIC.rec && MIC.on) try { MIC.rec.stop(); } catch (e) { } }
+  function micHandle(alts) {
+    var sim = app.sim; if (!sim || app.over) return;
+    var sel = sim.byId(app.sel), rs = alts.map(function (t) { return ATC.mic.parse(t, sim, sel); }), r = rs.filter(function (x) { return x.sp || x.cmds.length && !x.err; })[0] || rs[0];
+    if (r.sp === 'sayagain') { if (!sim.sayAgain()) micFb(ATC.T('지금은 혼신이 없습니다.'), 'no'); else micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard), 'ok'); return; }
+    if (r.sp === 'correct') { select(r.ac.id); sim.correct(r.ac.id); micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard) + '<br>' + ATC.T('복창 정정을 송신했습니다.'), 'ok'); return; }
+    if (r.err || !r.cmds.length) { micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard) + '<br><span class="me">' + esc(r.err || '') + '</span>', 'no'); return; }
+    var ac = r.ac; select(ac.id); app.pend = [];
+    var std = ATC.phrase(sim, ac, r.cmds).atc, sc = ATC.mic.score(r.heard, std);
+    sim.mic = sim.mic || { n: 0, sum: 0 }; sim.mic.n++; sim.mic.sum += sc.pct;
+    sendPend(r.cmds, { spoken: true });
+    micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard) + '<br><b>' + ATC.T('표준 문구') + '</b> ' + esc(std) + '<br><span class="mp">' + ATC.T('일치 {0}%', sc.pct) + '</span>' + (sc.miss.length ? ' · ' + ATC.T('빠진 말: {0}', esc(sc.miss.slice(0, 6).join(' '))) : '') + (r.csSaid ? '' : '<br><span class="me">' + ATC.T('호출부호 없이 말해 고른 항공기로 보냈습니다 — 실제 교신은 호출부호부터 말합니다.') + '</span>'), sc.pct >= 80 ? 'ok' : 'mid');
+  }
   function bind() {
     /* 운용 방향 단추와 공항 단추는 공항 묶음에서 만듦 */
     Object.keys(D.flows).forEach(function (k) { var b = document.createElement('button'); b.dataset.fl = k; b.textContent = D.flows[k].label || k; $('flows').appendChild(b); });
@@ -683,8 +717,10 @@
       else if (k === '1' || k === '2' || k === '3' || k === '4') { app.speed = [1, 2, 4, 8][+k - 1]; app.paused = false; }
       else if (k === 'tab') { e.preventDefault(); var ws = app.sim.acs.filter(function (x) { return x.waiting && x.owner !== 'out'; }); if (ws.length) { var ix = ws.map(function (x) { return x.id; }).indexOf(app.sel); select(ws[(ix + 1) % ws.length].id); } }
       else if (k === '/') { $('cli').focus(); e.preventDefault(); }
+      else if (k === 'm' && !e.repeat) micStart();
     });
-    window.addEventListener('keyup', function (e) { if (e.key.toLowerCase() === 'h') app.hdgAim = false; });
+    window.addEventListener('keyup', function (e) { if (e.key.toLowerCase() === 'h') app.hdgAim = false; if (e.key.toLowerCase() === 'm') micStop(); });
+    var mb = $('micBtn'); if (mb) { mb.addEventListener('pointerdown', function (e) { e.preventDefault(); micStart(); }); ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (ev) { mb.addEventListener(ev, micStop); }); }
   }
 
   /* ================= 모달 · 학습 · 결과 ================= */
@@ -757,7 +793,7 @@
     var rs = sim.rs;
     if (rs && (rs.atc + rs.plt) > 0) {
       var avg = rs.rt.length ? rs.rt.reduce(function (s, x) { return s + x; }, 0) / rs.rt.length : 0, slow = rs.rt.filter(function (x) { return x > 20; }).length;
-      h += ATC.T('<h4>교신 통계</h4>') + '<div class="rstat">' + [[rs.atc, ATC.T('관제 송신')], [rs.plt, ATC.T('조종사 송신')], [Math.round(Math.min(100, rs.air / Math.max(1, sim.t) * 100)) + '%', ATC.T('주파수 점유')], [rs.rt.length ? avg.toFixed(1) + ATC.T('초') : '–', ATC.T('평균 응답 시간')], [slow, ATC.T('20초 넘긴 응답')], [rs.blk, ATC.T('혼신')]].map(function (x) { return '<span><b>' + x[0] + '</b>' + x[1] + '</span>'; }).join('') + '</div>' +
+      h += ATC.T('<h4>교신 통계</h4>') + '<div class="rstat">' + [[rs.atc, ATC.T('관제 송신')], [rs.plt, ATC.T('조종사 송신')], [Math.round(Math.min(100, rs.air / Math.max(1, sim.t) * 100)) + '%', ATC.T('주파수 점유')], [rs.rt.length ? avg.toFixed(1) + ATC.T('초') : '–', ATC.T('평균 응답 시간')], [slow, ATC.T('20초 넘긴 응답')], [rs.blk, ATC.T('혼신')]].concat(sim.mic && sim.mic.n ? [[sim.mic.n, ATC.T('마이크 송신')], [Math.round(sim.mic.sum / sim.mic.n) + '%', ATC.T('표준 문구 일치')]] : []).map(function (x) { return '<span><b>' + x[0] + '</b>' + x[1] + '</span>'; }).join('') + '</div>' +
         '<p class="rgcap">' + ATC.T('응답 시간 = 조종사가 먼저 부른 뒤 관제사가 그 항공기에 처음 답하기까지 걸린 시간') + '</p>';
     }
     return h;
@@ -852,5 +888,5 @@
     var qs = /[?&]scn=([a-z0-9-]+)/.exec(location.search), qx = qs && ATC.SCN_BY[qs[1]]; if (qx && qx.wip && window.ATC_SITE) qx = null;
     if (qx && qx.apt === ATC.aptId) { app.tab = 'scn'; app.tabSet = true; showLobby(); if (/[?&]go=1/.test(location.search)) start(qx.pos, qx.seed, qx); else scnBrief(qx.id); } else if (!q) scnPending();
   });
-  ATC.ui = { sim: function () { return app.sim; }, start: start, select: select, showLobby: showLobby, showResult: showResult, openLearn: openLearn, briefing: briefing, addPend: addPend, sendPend: sendPend, openModal: openModal, closeModal: closeModal, tts: tts };
+  ATC.ui = { sim: function () { return app.sim; }, start: start, select: select, showLobby: showLobby, showResult: showResult, openLearn: openLearn, briefing: briefing, addPend: addPend, sendPend: sendPend, openModal: openModal, closeModal: closeModal, tts: tts, micHandle: micHandle };
 })();

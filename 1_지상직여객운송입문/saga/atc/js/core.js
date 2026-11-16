@@ -335,7 +335,7 @@
     if (ac.atisOld && cmds.some(function (x) { return x.k === 'atis'; })) { ac.atisOld = null; if ((this.atisBonus || 0) < 2) { this.atisBonus = (this.atisBonus || 0) + 1; this.inc('atis_ok', [ac], ATC.T('{0}에 새 ATIS를 알렸습니다.', ac.cs)); } }
     ac.lastCmdT = this.t; ac.waiting = null;
     if (chk && chk.refuse) {
-      this.enq({ who: 'atc', ac: ac, text: ph.atc }, true);
+      this.enq({ who: 'atc', ac: ac, text: ph.atc, spoken: !!o.spoken }, true);
       this.enq({ who: 'pilot', ac: ac, text: 'unable, ' + chk.refuse + ', ' + ac.csWord + ' ' + ac.num + '.', kind: 'warn' }, true);
       return false;
     }
@@ -344,7 +344,7 @@
     var rbText = ph.rb;
     if (wrong) rbText = ATC.phrase(this, ac, wrong).rb;
     this.enq({
-      who: 'atc', ac: ac, text: ph.atc, onDone: function () {
+      who: 'atc', ac: ac, text: ph.atc, spoken: !!o.spoken, onDone: function () {      /* spoken = 플레이어가 마이크로 말한 송신(관제사 음성을 다시 틀지 않음) */
         if (!rbText) { self.applyAll(ac, cmds); return; }
         self.enq({
           who: 'pilot', ac: ac, text: rbText[0].toUpperCase() + rbText.slice(1), kind: wrong ? 'rb' : '',
