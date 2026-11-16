@@ -55,6 +55,10 @@
 
   AppSim.prototype.spawnArr = function (s) {
     var AF = this.arrFlow, cg = this.rwChg, RW = cg ? cg.newR : this.rwys, f = this.mkFlight(s.pilot ? function (a) { return a.code === 'VLA'; } : ATC.odFit(D.gateOrig[s.gate]), 'arr'), route = D.star[AF.id][s.gate], f0 = D.fix[route[0]], f1 = D.fix[route[1]];
+    if (s.pilot && f.type !== 'B789') {      /* 조종사 체험: 조종석이 787식이라 B787-9로 정해 둔 편명을 씀(편명별 음성 조각은 그대로) */
+      var self = this, b9 = f.al.flights.filter(function (x) { return x.type === 'B789' && !self.usedCs[f.al.code + x.num]; })[0] || f.al.flights.filter(function (x) { return x.type === 'B789'; })[0];
+      if (b9) { this.usedCs[f.al.code + b9.num] = 1; f.num = String(b9.num); f.cs = f.al.code + b9.num; f.type = 'B789'; f.wake = 'H'; f.perf = D.types.B789; }
+    }
     var hd = U.brg(f0, f1), p = D.off(f0, hd + 180, 7), alt = D.entryAlt[s.gate], og = ATC.odPick(this.rng, f.al, D.gateOrig[s.gate]), from = 1;
     var by = AF.arrBy, rwy = by && RW.indexOf(by[s.gate]) >= 0 ? by[s.gate] : (RW.indexOf(AF.arr) >= 0 ? AF.arr : RW[0]);
     if (s.warm && D.flyBy && route.length > 5) {      /* 긴 경로: 근무를 시작할 때 이미 경로 가운데쯤에 있는 항공기 */
@@ -183,6 +187,7 @@
     }
   };
   AppSim.prototype.onTouchdown = function (ac) {
+    if (this.pilot && this.pilot.mine(ac)) { this.pilot.touchdown(); return; }      /* 조종사 체험: 착륙 · 활주는 조종사 체험이 맡음 */
     var r = ac.appr.rwy, last = this.lastLand[r];
     if (this.apClosed && this.t < this.apClosed.t1 && !ac.closeOk) { this.inc('ga_forced', [ac], ATC.T('{0}: 공항이 아직 폐쇄 중이어서 관제탑이 복행을 지시했습니다(접근 허가가 너무 빨랐습니다).', ac.cs)); this.goAround(ac, 'airport closed'); return; }
     var cg = this.rwChg;

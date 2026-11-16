@@ -469,3 +469,8 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .pilotp .ptodo{display:inline-block;margin-left:4px;padding:0 5px;border:1px solid #c9a23e;border-radius:3px;color:#ffd27a;font:11px var(--mono)}
 .xbtn.pilot i{color:#ffd27a}
 .pguide{margin:6px 0 0 18px;padding:0;font-size:12.5px;line-height:1.55;color:#cfe0ee}.pguide li{margin-bottom:5px}
+#ck3d{position:absolute;inset:0;z-index:3;background:#000}#ck3d canvas{display:block;width:100%;height:100%;cursor:grab}#ck3d .ckerr{color:#ffb21e;padding:20px}
+.pilotm #micBtn{z-index:5}.pilotm #micfb{z-index:6}
+.pilotp .prow.pview .cb{font-size:11.5px}
+.pilotm #banner{z-index:6}
+.pilotm #main{grid-template-columns:minmax(0,1fr)}
