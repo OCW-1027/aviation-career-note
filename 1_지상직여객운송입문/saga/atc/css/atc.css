@@ -444,7 +444,7 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 @media (max-width:560px){.rstat{grid-template-columns:repeat(3,1fr)}}
 
 /* 조종사 체험 */
-.pilotm #strips,.pilotm #cli{display:none}
+.pilotm #strips,.pilotm #cli{display:none!important}
 .pilotm #micBtn:not(.solo){left:12px}
 .chead.pil b{color:#ffd27a}
 .cbody.pilotp{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}

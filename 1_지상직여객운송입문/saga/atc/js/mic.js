@@ -90,7 +90,8 @@
     if ((m = / (?:turn )?(left|right) (?:heading )?(\d{1,3}) /.exec(s)) && !/ knots/.test(s.slice(m.index + m[0].length - 1, m.index + m[0].length + 7))) add({ k: 'hdg', v: Math.round(+m[2] / 5) * 5 || 360, dir: SIDE[m[1]] });
     else if ((m = / heading (\d{1,3}) /.exec(s))) add({ k: 'hdg', v: Math.round(+m[1] / 5) * 5 || 360, dir: null });
     if ((m = / expedite (climb|descent) (?:to )?(fl\d+|\d{3,5}) /.exec(s))) add({ k: 'alt', v: m[2][0] === 'f' ? +m[2].slice(2) * 100 : +m[2], exp: true });
-    else if ((m = / (?:climb|descend)(?: and maintain| to)? (fl\d+|\d{3,5}) /.exec(s)) || (m = / maintain (fl\d+|\d{4,5}) (?!knots)/.exec(s))) add({ k: 'alt', v: m[1][0] === 'f' ? +m[1].slice(2) * 100 : +m[1] });
+    else if ((m = / (climb|descend)(?: and maintain| to)? (fl\d+|\d{3,5}) /.exec(s))) { r.verb = m[1]; add({ k: 'alt', v: m[2][0] === 'f' ? +m[2].slice(2) * 100 : +m[2] }); }
+    else if ((m = / maintain (fl\d+|\d{4,5}) (?!knots)/.exec(s))) add({ k: 'alt', v: m[1][0] === 'f' ? +m[1].slice(2) * 100 : +m[1] });
     if (/ resume normal speed /.test(s)) add({ k: 'spd', v: 0 });
     else if (/ minimum approach speed /.test(s)) add({ k: 'minspd' });
     else if ((m = / speed (?:to )?(\d{3}) /.exec(s)) || (m = / (\d{3}) knots /.exec(s))) add({ k: 'spd', v: +m[1] });

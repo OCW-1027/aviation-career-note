@@ -149,7 +149,7 @@
     if (ac.gone && !this.done) { this.done = true; return; }
     var c = this.clr;
     if (c && c.t0 !== null && !c.late && sim.t - c.t0 > RB_T) { c.late = true; sim.inc('p_rb_late', [ac], ATC.T('{0}: 복창이 늦습니다 — 관제 지시에는 바로 복창합니다.', ac.cs)); }
-    if (c && c.t0 !== null && sim.t - c.t0 > RB_T + 20 && !c.rep) { c.rep = true; c.opts = null; c.t0 = null; sim.enq({ who: 'atc', ac: ac, text: ac.csWord + ' ' + ac.num + ', how do you read? I say again, ' + c.ph.atc.split(', ').slice(1).join(', '), onDone: function () { if (self.clr === c) { c.t0 = sim.t; c.opts = self.rbOpts(c.cmds, c.ph); self.bump(); } } }); this.bump(); }
+    if (c && c.t0 !== null && sim.t - c.t0 > RB_T + 20 && !c.rep) { c.rep = true; c.opts = null; c.t0 = null; sim.enq({ who: 'atc', ac: ac, text: ac.csWord + ' ' + ac.num + ', I say again, ' + c.ph.atc.split(', ').slice(1).join(', '), onDone: function () { if (self.clr === c) { c.t0 = sim.t; c.opts = self.rbOpts(c.cmds, c.ph); self.bump(); } } }); this.bump(); }
     for (k in this.asg) { var a = this.asg[k]; if (sim.t - a.t > AUTO_T) { sim.inc('p_set_late', [ac], ATC.T('{0}: 지시를 {1}초 안에 설정하지 않아 부기장이 대신 설정했습니다.', ac.cs, AUTO_T)); a.auto = true; if (a.c.v !== undefined) this.mcp[k] = a.c.v; this.set(k); } }
     if (this.prompt && !this.prompt.late && sim.t - this.prompt.t0 > 30) { this.prompt.late = true; sim.inc('p_ci_late', [ac], ATC.T('{0}: 교신이 늦었습니다 — 주파수에 들어오면 바로 첫 호출을 합니다.', ac.cs)); }
     if (this.freqTo && !this.freqTo.sent && !this.freqTo.late && sim.t - this.freqTo.t > 30) { this.freqTo.late = true; sim.inc('p_freq_late', [ac], ATC.T('{0}: 주파수 바꾸기가 늦었습니다.', ac.cs)); }

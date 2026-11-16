@@ -664,9 +664,10 @@
     if (r.err || !r.cmds.length) { micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard) + '<br><span class="me">' + esc(r.err || '') + '</span>', 'no'); return; }
     var ac = r.ac; select(ac.id); app.pend = [];
     var std = ATC.phrase(sim, ac, r.cmds).atc, sc = ATC.mic.score(r.heard, std);
+    var ca = r.cmds.filter(function (c) { return c.k === 'alt'; })[0], vw = ca && r.verb && (r.verb === 'climb' ? ca.v < ac.alt - 150 : ca.v > ac.alt + 150) ? ATC.T('「{0}」이라고 말했지만 {1}은(는) 지금 고도({2})보다 {3} — 「{4}」입니다.', r.verb, ATC.fmt.alt(ca.v), ATC.fmt.alt(Math.round(ac.alt / 100) * 100), r.verb === 'climb' ? ATC.T('낮습니다') : ATC.T('높습니다'), r.verb === 'climb' ? 'descend' : 'climb') : '';      /* climb · descend를 거꾸로 말함 */
     sim.mic = sim.mic || { n: 0, sum: 0 }; sim.mic.n++; sim.mic.sum += sc.pct;
     sendPend(r.cmds, { spoken: true });
-    micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard) + '<br><b>' + ATC.T('표준 문구') + '</b> ' + esc(std) + '<br><span class="mp">' + ATC.T('일치 {0}%', sc.pct) + '</span>' + (sc.miss.length ? ' · ' + ATC.T('빠진 말: {0}', esc(sc.miss.slice(0, 6).join(' '))) : '') + (r.csSaid ? '' : '<br><span class="me">' + ATC.T('호출부호 없이 말해 고른 항공기로 보냈습니다 — 실제 교신은 호출부호부터 말합니다.') + '</span>'), sc.pct >= 80 ? 'ok' : 'mid');
+    micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard) + '<br><b>' + ATC.T('표준 문구') + '</b> ' + esc(std) + '<br><span class="mp">' + ATC.T('일치 {0}%', sc.pct) + '</span>' + (sc.miss.length ? ' · ' + ATC.T('빠진 말: {0}', esc(sc.miss.slice(0, 6).join(' '))) : '') + (r.csSaid ? '' : '<br><span class="me">' + ATC.T('호출부호 없이 말해 고른 항공기로 보냈습니다 — 실제 교신은 호출부호부터 말합니다.') + '</span>') + (vw ? '<br><span class="me">' + esc(vw) + '</span>' : ''), sc.pct >= 80 && !vw ? 'ok' : 'mid');
   }
   function bind() {
     /* 운용 방향 단추와 공항 단추는 공항 묶음에서 만듦 */
