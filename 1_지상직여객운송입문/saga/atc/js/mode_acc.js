@@ -38,7 +38,7 @@
         var X = rem[k]; if (eta < 380 || eta > 1500) continue;
         var routes = D.ovfRoutes.filter(function (r) { var ix = r.indexOf(X); return ix > 0 && ix < r.length - 1 && r.join() !== b.fpRoute.join() && r.slice().reverse().join() !== b.fpRoute.join() && trackEast(D.fix[r[0]], D.fix[r[r.length - 1]]) === b.east; });
         if (!routes.length) continue;
-        var route = rng.pick(routes), f = this.mkFlight(function (a) { return !a.ga && a.code !== 'KCM'; });
+        var route = rng.pick(routes), f = this.mkFlight(ATC.ovfOk(route));
         if (f.perf.ceil < b.alt) continue;
         var ias = this.iasFor(f.perf, b.alt), gs = ias * (1 + b.alt / 1000 * 0.0165), need = eta * gs / 3600 + (rng() - 0.5) * 3, ix = route.indexOf(X), p = D.fix[X], seg = ix, hd;
         while (need > 0 && seg > 0) { var q = D.fix[route[seg - 1]], dl = U.dist(p, q); hd = U.brg(q, p); if (dl >= need) { p = D.off(p, hd + 180, need); need = 0; } else { need -= dl; p = q; seg--; } }
@@ -64,7 +64,8 @@
       key = route[0];
     } while (this.lastAt[key] !== undefined && this.t - this.lastAt[key] < 200 && guard++ < 12);
     this.lastAt[key] = this.t;
-    f = this.mkFlight(kind === 'ovf' || (kind === 'dep' && D.tmaTop > 22000) ? function (a) { return !a.ga && a.code !== 'KCM'; } : function (a) { return a.code !== 'SVJ' || true; });      /* 접근관제구 상한이 높은 공항(FL240)은 그 위로 못 올라가는 터보프롭 출발편을 넣지 않음 */
+    var base = kind === 'ovf' ? ATC.ovfOk(route) : kind === 'dep' && D.tmaTop > 22000 ? function (a) { return !a.ga && a.code !== 'KCM'; } : function () { return true; };
+    f = this.mkFlight(kind === 'ovf' ? base : ATC.odFit(kind === 'arr' ? D.gateOrig[route[route.length - 1]] : D.gateDest[route[0]], base), kind === 'ovf' ? null : kind);      /* 항공사가 실제로 다니는 공항 · 구간만(GPT ATC-12차 F12-05 · 사이트 17차 시험) */      /* 접근관제구 상한이 높은 공항(FL240)은 그 위로 못 올라가는 터보프롭 출발편을 넣지 않음 */
     var f0 = D.fix[route[0]], f1 = D.fix[route[1]], last = D.fix[route[route.length - 1]], hd = U.brg(f0, f1), p;
     east = trackEast(f0, last);
     o = { cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: f.perf, hdg: hd, kind: kind, fpRoute: route, squawk: this.squawk(), entT: this.t };
@@ -76,9 +77,9 @@
       if (s.warm) { var fr = 0.15 + 0.3 * rng(); p = { x: f0.x + (f1.x - f0.x) * fr, y: f0.y + (f1.y - f0.y) * fr }; }
     } else if (kind === 'arr') {
       alt = jet ? rng.pick(D.accArrLv || [250, 260, 270, 280, 290]) * 100 : rng.pick([200, 210, 220]) * 100;
-      p = D.off(f0, hd + 180, 14); o.rfl = alt; o.gate = route[route.length - 1]; o.dest = D.airport.icao; var og = rng.pick(D.gateOrig[o.gate]); o.orig = og[0];
+      p = D.off(f0, hd + 180, 14); o.rfl = alt; o.gate = route[route.length - 1]; o.dest = D.airport.icao; var og = ATC.odPick(rng, f.al, D.gateOrig[o.gate]); o.orig = og[0];
     } else {
-      alt = 17000 + rng.int(0, 10) * 100; p = { x: f0.x, y: f0.y }; o.tAlt = D.tmaTop; o.gate = route[0]; o.orig = D.airport.icao; var dg = rng.pick(D.gateDest[route[0]]); o.dest = dg[0];
+      alt = 17000 + rng.int(0, 10) * 100; p = { x: f0.x, y: f0.y }; o.tAlt = D.tmaTop; o.gate = route[0]; o.orig = D.airport.icao; var dg = ATC.odPick(rng, f.al, D.gateDest[route[0]]); o.dest = dg[0];
       o.rfl = jet ? lvlFor(rng, east, this.level.id === 1 ? 330 : 350, Math.min(top, 380)) : lvlFor(rng, east, 220, 250); o.exitFix = route[route.length - 1];
     }
     o.x = p.x; o.y = p.y; o.alt = alt; o.east = east;
@@ -179,7 +180,7 @@
   };
   AccSim.prototype.fire = function (ev) {
     var self = this, rng = this.rng, cand, ac;
-    var Bx = D.acc, mine = this.acs.filter(function (a) { return a.owner === 'me' && !a.emg && a.x > Bx.x1 + 25 && a.x < Bx.x2 - 25 && a.y > Bx.y1 + 17 && a.y < Bx.y2 - 17; });
+    var Bx = D.acc, mine = this.irrAcs().filter(function (a) { return a.owner === 'me' && !a.emg && a.x > Bx.x1 + 25 && a.x < Bx.x2 - 25 && a.y > Bx.y1 + 17 && a.y < Bx.y2 - 17; });
     if (ev.k === 'apclose') {
       /* 목적 공항 폐쇄(dur초): 접근관제가 도착기를 인수하지 않음 → 진입 지점에서 체공. divert = 회항을 요청할 항공기 수 */
       var dur = ev.dur || 600, cl = this.apClosed = { t0: this.t, t1: this.t + dur, asks: [] }, k;
@@ -220,7 +221,7 @@
   AccSim.prototype.update = function (dt) {
     var i, a, k;
     while (this.sched.length && this.sched[0].t <= this.t) this.spawn(this.sched.shift());
-    for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else { ev.t = this.t + 40; if (!this.sched.length && this.acs.length < 2) ev.done = true; } } }
+    for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else { ev.t = this.t + 40; this.needFx(ev); if (!this.sched.length && this.acs.length < 2) ev.done = true; } } }
     for (i = 0; i < this.wx.length; i++) { var w = this.wx[i]; w.x += w.vx / 3600 * dt; w.y += w.vy / 3600 * dt; }
     this.moveAll(dt);
     var sfr = this; this.reqTick(this.acs.filter(function (a) { return !a.divert && Math.abs(a.alt - a.tAlt) < 300; })); this.acs.forEach(function (a) { sfr.reqLateTick(a, 150); });      /* 직행 요청 · 난기류 보고 */
@@ -229,7 +230,7 @@
       if (!cl.soon && this.t >= cl.t1 - 240) { cl.soon = true; this.sys(ATC.T('{apt} 접근관제 통보: 약 4분 뒤 공항 운영 재개 — 지금부터 도착기를 다시 인수합니다. 추가 허가 예상 시각 순서대로 이양하세요.'), 'info'); }
       if (!cl.open && this.t >= cl.t1) { cl.open = true; this.sys(ATC.T('{apt} 공항 운영 재개.'), 'good'); }
       while (shut && cl.asks.length && this.t >= cl.asks[0].t) {
-        var cand = this.acs.filter(function (x) { return x.kind === 'arr' && x.owner === 'me' && !x.emg && !x.divAsk && x.nav.mode === 'hold' && self.t - x.holdT > 150; }).sort(function (x, y) { return x.holdT - y.holdT; });      /* 가장 오래 체공한 항공기부터 */
+        var cand = this.irrAcs().filter(function (x) { return x.kind === 'arr' && x.owner === 'me' && !x.emg && !x.divAsk && x.nav.mode === 'hold' && self.t - x.holdT > 150; }).sort(function (x, y) { return x.holdT - y.holdT; });      /* 가장 오래 체공한 항공기부터 */
         if (!cand.length) { cl.asks[0].t = this.t + 40; break; }
         cl.asks.shift(); var q = cand[0], dv = this.divertTo(q); q.divAsk = this.t; q.waiting = 'divert'; q.reqT = null;
         this.say(q, ATC.csSay(q) + ', unable to hold any longer, request diversion to ' + dv.destName + '.', { kind: 'emg', front: true });

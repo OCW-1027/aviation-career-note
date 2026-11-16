@@ -110,6 +110,7 @@
 
   /* ---------- 기종(교육용 대표값) ---------- */
   D.types = {
+    B737: { n: 'B737-700', wake: 'M', len: 33.6, span: 35.8, vapp: 132, vr: 70, acc: 2.4, climb: 2700, desc: 2200, crz: 450, ceil: 41000, k: 'jet' },
     B738: { n: 'B737-800', wake: 'M', len: 39.5, span: 35.8, vapp: 140, vr: 74, acc: 2.3, climb: 2600, desc: 2200, crz: 450, ceil: 41000, k: 'jet' },
     A320: { n: 'A320', wake: 'M', len: 37.6, span: 35.8, vapp: 136, vr: 72, acc: 2.3, climb: 2600, desc: 2200, crz: 447, ceil: 39000, k: 'jet' },
     A321: { n: 'A321', wake: 'M', len: 44.5, span: 35.8, vapp: 142, vr: 76, acc: 2.2, climb: 2400, desc: 2200, crz: 447, ceil: 39000, k: 'jet' },
@@ -143,10 +144,11 @@
     { code: 'SNX', cs: 'SNOWFOX', name: 'Snowfox Cargo', col: '#7f95ad', col2: '#eef3f8', types: ['B763'], cargo: true, w: 1 },
     { code: 'SVJ', cs: 'SILVERBELL', name: 'Silverline Jet', col: '#8d949b', col2: '#f2f2f2', types: ['C56X', 'PC12'], ga: true, w: 1 }
   ];
-  D.alBy = {}; D.airlines.forEach(function (a) { D.alBy[a.code] = a; });
   /* 편명 목록: 항공사마다 정해 둔 편명만 쓰고, 편명마다 기종도 정해 둠(이 게임의 설정 — 실제로는 같은 편명이라도 기종이 바뀔 수 있음).
-     호출부호를 통째로 녹음한 음성 조각을 쓰기 위한 것 — 편명을 바꾸면 tools/voice_bank.js 부터 다시 돌려야 함 */
-  (function () {
+     호출부호를 통째로 녹음한 음성 조각을 쓰기 위한 것 — 편명을 바꾸면 tools/voice_bank.js 부터 다시 돌려야 함.
+     공항 묶음이 항공사 목록을 바꾸면(하네다 = 실제 항공사 + 가상 항공사) D.mkFlights()를 다시 부름 */
+  D.mkFlights = function () {
+    D.alBy = {}; D.airlines.forEach(function (a) { D.alBy[a.code] = a; });
     var cnt = { 5: 22, 3: 14, 2: 10, 1: 8 };
     D.airlines.forEach(function (a, ai) {
       var n = cnt[a.w] || 8, lo = a.ga ? 11 : a.cargo ? 801 : 101, hi = a.ga ? 98 : a.cargo ? 899 : 799, seen = {}, s = 7 + ai * 131, out = ai ? [] : [301];
@@ -154,7 +156,8 @@
       while (out.length < n) { s = (s * 48271) % 2147483647; var v = lo + s % (hi - lo + 1); if (!seen[v] && v % 100 !== 0) { seen[v] = 1; out.push(v); } }
       a.flights = out.map(function (num, i) { return { num: num, type: a.types[i % a.types.length] }; });
     });
-  })();
+  };
+  D.mkFlights();
 
   /* ---------- 난이도 ---------- */
   D.levels = {

@@ -26,7 +26,7 @@
   DelSim.prototype.rwyOf = function (ac) { return D.depRwyFor ? D.depRwyFor(this.flow, ac.gate) : this.depRwy; };
   DelSim.prototype.parityOk = function (ac, fl) { return ((Math.round(fl / 1000) % 2) === 1) === D.gateEast[ac.gate]; };
   DelSim.prototype.spawn = function (s) {
-    var rng = this.rng, f = this.mkFlight(), PF = D.planFlight ? D.planFlight(this, f, 'dep') : null;
+    var rng = this.rng, f = this.mkFlight(s.anom === 'atis' || s.anom === 'fl' || s.anom === 'nofpl' ? function (a) { return !a.real; } : null), PF = D.planFlight ? D.planFlight(this, f, 'dep') : null;      /* 옛 ATIS · 맞지 않는 순항 고도 · 비행계획 없음은 가상 항공사만 */
     var gate = PF ? PF.gate : rng.pick(Object.keys(D.gateDest)), dg = PF ? PF.ap : rng.pick(D.gateDest[gate]), east = D.gateEast[gate], jet = f.perf.k === 'jet';
     var rfl = (jet ? rng.pick(east ? [330, 350, 370, 390] : [320, 340, 360, 380]) : rng.pick(east ? [210, 230] : [220, 240])) * 100;
     if (rfl > f.perf.ceil) rfl -= 2000;

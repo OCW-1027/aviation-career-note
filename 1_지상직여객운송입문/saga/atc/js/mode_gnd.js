@@ -22,7 +22,7 @@
   ATC.extend(GndSim, ATC.GroundSim);
 
   GndSim.prototype.spawn = function (s) {
-    var self = this, f = s.f || this.mkFlight(s.cargo ? function (a) { return a.cargo; } : function (a) { return !a.cargo; }), ac;
+    var self = this, f = s.f || this.mkFlight(s.cargo ? function (a) { return a.cargo; } : function (a) { return !a.cargo; }, s.kind), ac;
     var P = s.P || (this.multi ? this.plan(f, s.kind, s.rwy) : null);
     function later(dt) { s.t = self.t + dt; s.f = f; s.P = P; self.sched.push(s); self.sched.sort(function (a, b) { return a.t - b.t; }); }
     if (s.kind === 'arr') {
@@ -177,9 +177,9 @@
       ids.forEach(function (id) { self.net.closed[id] = 1; }); this.closure = { name: seg[0], ids: ids, t1: this.t + 330 };
       this.sys(ATC.T('유도로 {0} 일부 구간 폐쇄(이물질 제거 작업 · 약 5분). 폐쇄 구간(붉은 표시)을 우회하는 경로를 지정하세요.', seg[0]), 'alert'); return true;
     }
-    if (ev.k === 'tech') { c = this.acs.filter(function (x) { return x.kind === 'dep' && x.st === 'start'; }); if (!c.length) return false; a = c[0]; a.tech = true; return true; }
+    if (ev.k === 'tech') { c = this.irrAcs().filter(function (x) { return x.kind === 'dep' && x.st === 'start'; }); if (!c.length) return false; a = c[0]; a.tech = true; return true; }
     if (ev.k === 'medical') {
-      c = this.acs.filter(function (x) { return x.kind === 'arr' && (x.st === 'final' && x.d < 4 * NM || x.st === 'land'); }); if (!c.length) return false; a = c[0]; a.emg = 'medical'; a.emgName = ATC.T('응급환자');
+      c = this.irrAcs().filter(function (x) { return x.kind === 'arr' && (x.st === 'final' && x.d < 4 * NM || x.st === 'land'); }); if (!c.length) return false; a = c[0]; a.emg = 'medical'; a.emgName = ATC.T('응급환자');
       this.sys(ATC.T('관제탑 통보: {0} 기내 응급환자 발생 — 착륙 후 주기장 {1}까지 최우선으로 이동시키세요(구급차 대기 중).', a.cs, a.stand), 'alert'); return true;
     }
     return false;
@@ -202,7 +202,7 @@
     this.wxTick(true);      /* 비(화면만) — 새 ATIS는 관제탑 · 접근관제에서만 */
     var i, a, self = this;
     while (this.sched.length && this.sched[0].t <= this.t) this.spawn(this.sched.shift());
-    for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else if (!this.sched.length && this.acs.length < 2) ev.done = true; } }
+    for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else if ((this.needFx(ev), true) && !this.sched.length && this.acs.length < 2) ev.done = true; } }
     if (this.closure && this.t >= this.closure.t1) { this.closure.ids.forEach(function (id) { delete self.net.closed[id]; }); this.sys(ATC.T('유도로 {0} 폐쇄 해제.', this.closure.name), 'good'); this.closure = null; }
     this.moveGround(dt); this.aiTower();
     var acs = this.acs.slice();

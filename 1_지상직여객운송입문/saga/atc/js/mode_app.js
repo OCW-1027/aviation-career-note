@@ -54,8 +54,8 @@
   AppSim.prototype.mvaAt = function (a) { for (var i = 0; i < D.mva.length; i++) if (U.dist(a, D.mva[i].c) < D.mva[i].r) return D.mva[i].alt; return D.mvaBase; };
 
   AppSim.prototype.spawnArr = function (s) {
-    var AF = this.arrFlow, cg = this.rwChg, RW = cg ? cg.newR : this.rwys, f = this.mkFlight(function (a) { return !a.ga || true; }), route = D.star[AF.id][s.gate], f0 = D.fix[route[0]], f1 = D.fix[route[1]];
-    var hd = U.brg(f0, f1), p = D.off(f0, hd + 180, 7), alt = D.entryAlt[s.gate], og = this.rng.pick(D.gateOrig[s.gate]), from = 1;
+    var AF = this.arrFlow, cg = this.rwChg, RW = cg ? cg.newR : this.rwys, f = this.mkFlight(ATC.odFit(D.gateOrig[s.gate]), 'arr'), route = D.star[AF.id][s.gate], f0 = D.fix[route[0]], f1 = D.fix[route[1]];
+    var hd = U.brg(f0, f1), p = D.off(f0, hd + 180, 7), alt = D.entryAlt[s.gate], og = ATC.odPick(this.rng, f.al, D.gateOrig[s.gate]), from = 1;
     var by = AF.arrBy, rwy = by && RW.indexOf(by[s.gate]) >= 0 ? by[s.gate] : (RW.indexOf(AF.arr) >= 0 ? AF.arr : RW[0]);
     if (s.warm && D.flyBy && route.length > 5) {      /* 긴 경로: 근무를 시작할 때 이미 경로 가운데쯤에 있는 항공기 */
       from = 1 + this.rng.int(0, route.length - 6); f0 = D.fix[route[from]]; f1 = D.fix[route[from + 1]]; hd = U.brg(f0, f1); var fq = 0.2 + 0.6 * this.rng();
@@ -78,7 +78,7 @@
     var cg = this.rwChg; if (cg && this.t > cg.t1 - 90 && (this.t < cg.t1 + 120 || this.acs.some(function (a) { return a.chgKeep; }))) { s.t = this.t + 30; this.sched.push(s); this.sched.sort(function (x, y) { return x.t - y.t; }); return; }      /* 활주로 전환 앞뒤로는 출발을 잠시 멈춤 */
     var drw = D.depRwyFor ? D.depRwyFor(this.flow, s.gate) : this.flow.dep, dRw = D.ends[drw].rw;
     if (!s.held || s.held < 6) { if (this.acs.some(function (a) { return a.missed && a.alt < 3000 && D.ends[a.rwy] && D.ends[a.rwy].rw === dRw; })) { s.held = (s.held || 0) + 1; s.t = this.t + 30; this.sched.unshift(s); this.sched.sort(function (x, y) { return x.t - y.t; }); return; } }
-    var f = this.mkFlight(), end = D.ends[drw], p = D.off(end.end, end.crs, 1.2), dg = this.rng.pick(D.gateDest[s.gate]);
+    var f = this.mkFlight(ATC.odFit(D.gateDest[s.gate]), 'dep'), end = D.ends[drw], p = D.off(end.end, end.crs, 1.2), dg = ATC.odPick(this.rng, f.al, D.gateDest[s.gate]);
     var east = D.gateEast[s.gate], rfl = (east ? this.rng.pick([330, 350, 370, 390]) : this.rng.pick([320, 340, 360, 380])) * 100;
     if (f.perf.ceil < rfl) rfl = east ? 23000 : 24000;
     var ac = this.spawnAc({
@@ -208,7 +208,7 @@
   AppSim.prototype.newRwyFor = function (a) { var cg = this.rwChg, by = cg.to.arrBy; return by && cg.newR.indexOf(by[a.gate]) >= 0 ? by[a.gate] : (cg.newR.indexOf(cg.to.arr) >= 0 ? cg.to.arr : cg.newR[0]); };
   /* 비정상 상황 */
   AppSim.prototype.fire = function (ev) {
-    var self = this, mine = this.acs.filter(function (a) { return a.kind === 'arr' && a.owner === 'me' && !a.emg && !a.nordo; });
+    var self = this, mine = this.irrAcs().filter(function (a) { return a.kind === 'arr' && a.owner === 'me' && !a.emg && !a.nordo; });
     var far = mine.filter(function (a) { return !(a.appr && a.appr.loc) && U.dist(a, D.center) > 14; });
     var ac;
     if (ev.k === 'medical' || ev.k === 'mayday' || ev.k === 'minfuel') {
@@ -247,7 +247,7 @@
       return true;
     }
     if (ev.k === 'missed') {
-      var fin = this.acs.filter(function (a) { return a.kind === 'arr' && a.appr && a.appr.loc && a.appr.d < 4 && a.appr.d > 1.5 && !a.emg; });
+      var fin = this.irrAcs().filter(function (a) { return a.kind === 'arr' && a.appr && a.appr.loc && a.appr.d < 4 && a.appr.d > 1.5 && !a.emg; });
       if (!fin.length) return false; ac = fin[0]; this.goAround(ac, this.lvp ? 'runway not in sight' : this.rng.pick(['wind shear', 'unstable approach'])); this.sys(ATC.T('{0} 복행 — 착륙 순서에 다시 넣어 유도하세요.', ac.cs), 'alert'); return true;
     }
     if (ev.k === 'wx') {
@@ -279,7 +279,7 @@
     }
     var i, a, self = this;
     while (this.sched.length && this.sched[0].t <= this.t) { var s = this.sched.shift(); if (s.kind === 'arr') this.spawnArr(s); else this.spawnDep(s); }
-    for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else { ev.t = this.t + 30; if (this.sched.length === 0 && ev.t > this.endT + 600) ev.done = true; } } }
+    for (i = 0; i < this.events.length; i++) { var ev = this.events[i]; if (!ev.done && this.t >= ev.t) { if (this.fire(ev)) ev.done = true; else { ev.t = this.t + 30; this.needFx(ev); if (this.sched.length === 0 && ev.t > this.endT + 600) ev.done = true; } } }
     for (i = 0; i < this.wx.length; i++) { var w = this.wx[i]; w.x += w.vx / 3600 * dt; w.y += w.vy / 3600 * dt; }
     this.moveAll(dt);
     var sfr = this; this.reqTick(this.acs.filter(function (a) { return a.kind === 'arr' && !a.appr && !a.divert; })); this.acs.forEach(function (a) { sfr.reqLateTick(a, 120); });      /* 직행 요청 · 난기류 보고 */
@@ -305,7 +305,7 @@
       if (!cl.soon && this.t >= cl.t1 - 150) { cl.soon = true; this.sys(ATC.T('공항 재개 2분 30초 전 — 지금부터 접근을 허가할 수 있습니다. 예상접근시간 순서대로, 최소 연료 통보기는 우선 접근시키세요.'), 'info'); }
       if (!cl.open && this.t >= cl.t1) { cl.open = true; this.atis = String.fromCharCode(this.atis.charCodeAt(0) + 1); this.acs.forEach(function (x) { if (x.nav.mode === 'hold') x.holdT = self.t; }); this.sys(ATC.T('공항 운영 재개 — 이착륙을 다시 시작합니다.'), 'good'); }
       while (shut && cl.asks.length && this.t >= cl.asks[0].t) {
-        var ask = cl.asks[0], cand = this.acs.filter(function (x) { return x.kind === 'arr' && x.owner === 'me' && !x.emg && !x.nordo && !x.divAsk && !x.appr; }).sort(function (x, y) { return y.entT - x.entT; });
+        var ask = cl.asks[0], cand = this.irrAcs().filter(function (x) { return x.kind === 'arr' && x.owner === 'me' && !x.emg && !x.nordo && !x.divAsk && !x.appr; }).sort(function (x, y) { return y.entT - x.entT; });
         if (!cand.length) { ask.t = this.t + 30; break; }
         cl.asks.shift(); var q = cand[ask.k === 'fuel' ? 0 : cand.length - 1];      /* 최소 연료 = 가장 늦게 들어온 항공기(순서를 바꿔야 함) / 회항 = 가장 오래 기다린 항공기 */
         if (ask.k === 'fuel') { q.emg = 'minfuel'; q.emgT = this.t; q.emgName = ATC.T('최소 연료'); q.emgDue = cl.t1 + 600; q.waiting = 'emg'; this.say(q, ATC.csSay(q) + ', minimum fuel.', { kind: 'emg', front: true }); this.sys(ATC.T('{0} 최소 연료(Minimum fuel) 통보 — 재개 후 가장 먼저 접근시키세요. 지연되면 연료 비상(MAYDAY fuel)을 선언합니다.', q.cs), 'alert'); }

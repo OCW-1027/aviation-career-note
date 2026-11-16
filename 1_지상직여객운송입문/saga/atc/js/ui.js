@@ -27,7 +27,7 @@
     $('pcards').hidden = scnOn; $('xmodes').hidden = scnOn; $('scns').hidden = !scnOn; $('lvls').hidden = scnOn; $('flows').hidden = scnOn;
     if (scnOn) renderScns();
     /* 실제 공항을 바탕으로 한 묶음은 바닥 글을 그 공항의 안내로 바꿈 */
-    if (D.airport.note) { var ft = document.querySelector('.foot'); if (ft && !ft.dataset.base) { ft.dataset.base = '1'; ft.textContent = ATC.T('{0} — 활주로 · 유도로 이름 · 주기장 · 주파수는 공개된 항공정보간행물(AIP)을 바탕으로 간략화해 옮긴 것이며, 항공사 · 편명 · 교통량 · 관제 절차의 세부 수치는 가상입니다. 교신 음성은 합성 음성(Kokoro)에 무선 음질 효과를 적용한 것입니다.', D.airport.note); } }
+    if (D.airport.note) { var ft = document.querySelector('.foot'); if (ft && !ft.dataset.base) { ft.dataset.base = '1'; ft.textContent = (D.airlines.some(function (a) { return a.real; }) ? ATC.T('{0} — 활주로 · 유도로 이름 · 주기장 · 주파수는 공개된 항공정보간행물(AIP)을 바탕으로 간략화해 옮긴 것입니다. 실제 항공사의 이름 · 호출부호는 교육용으로만 씁니다. 이 게임은 항공사의 공식 제품이 아니며 제휴 · 후원 · 승인 관계가 없습니다(로고 · 도장 없음). 항공사 명칭 · 상표에 관한 권리는 각 권리자에게 있습니다. 항공사 · 노선은 2026년 11월 공개 자료 기준이고, 편명 · 기종 배정 · 교통량 · 출발 · 도착 방면 · 관제 절차의 세부 수치는 가상입니다. 게임이 훈련용으로 일으키는 돌발 상황(비상 · 조종사 스스로의 복행 · 규정 위반 등)은 가상 항공사에만 배정합니다. 실제 항공사도 관제 지시나 활주로 폐쇄 같은 공항 운용의 결과로는 복행할 수 있습니다. 교신 음성은 합성 음성(Kokoro)에 무선 음질 효과를 적용한 것입니다.', D.airport.note) : ATC.T('{0} — 활주로 · 유도로 이름 · 주기장 · 주파수는 공개된 항공정보간행물(AIP)을 바탕으로 간략화해 옮긴 것이며, 항공사 · 편명 · 교통량 · 관제 절차의 세부 수치는 가상입니다. 교신 음성은 합성 음성(Kokoro)에 무선 음질 효과를 적용한 것입니다.', D.airport.note)); } }
     Array.prototype.forEach.call(document.querySelectorAll('#lvls button'), function (b) { b.classList.toggle('on', +b.dataset.lv === app.level); });
     if (app.flow !== 'auto' && !D.flows[app.flow]) app.flow = 'auto';
     Array.prototype.forEach.call(document.querySelectorAll('#flows button'), function (b) { b.classList.toggle('on', b.dataset.fl === app.flow); });

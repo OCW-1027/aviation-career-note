@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 10, ctlf: 10, p1: 14, p2: 13 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 12, ctlf: 12, p1: 16, p2: 15 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -115,19 +115,19 @@
     fx('XAC', ll(34.712250, 139.414028), 'in'); fx('GODIN', ll(36.407028, 140.282194), 'in');
     D.isIntl = function (icao) { return !/^R[JO]/.test(icao); };
     D.gateDest = {
-      ROVER: [['RJCC', 'Sapporo New Chitose'], ['RJCH', 'Hakodate'], ['RJSA', 'Aomori'], ['PHNL', 'Honolulu'], ['KLAX', 'Los Angeles']],
-      BEKLA: [['RJNK', 'Komatsu'], ['RJNT', 'Toyama'], ['RKSS', 'Seoul Gimpo'], ['ZBAA', 'Beijing Capital']],
+      ROVER: [['RJCC', 'Sapporo New Chitose'], ['RJCH', 'Hakodate'], ['RJSA', 'Aomori'], ['PHNL', 'Honolulu'], ['KLAX', 'Los Angeles'], ['KSFO', 'San Francisco'], ['CYVR', 'Vancouver'], ['CYYZ', 'Toronto']],
+      BEKLA: [['RJNK', 'Komatsu'], ['RJNT', 'Toyama'], ['RKSS', 'Seoul Gimpo'], ['ZBAA', 'Beijing Capital'], ['EGLL', 'London Heathrow'], ['EDDF', 'Frankfurt'], ['LFPG', 'Paris Charles de Gaulle'], ['OMDB', 'Dubai'], ['OTHH', 'Doha']],
       GUSRO: [['RJFF', 'Fukuoka'], ['RJOA', 'Hiroshima']],
       NINOX: [['ZSPD', 'Shanghai Pudong']],
-      LAXAS: [['RJOO', 'Osaka Itami'], ['RJBB', 'Osaka Kansai'], ['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCTP', 'Taipei Taoyuan'], ['VHHH', 'Hong Kong'], ['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi']]
+      LAXAS: [['RJOO', 'Osaka Itami'], ['RJBB', 'Osaka Kansai'], ['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCSS', 'Taipei Songshan'], ['VHHH', 'Hong Kong'], ['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi'], ['VVNB', 'Hanoi'], ['YSSY', 'Sydney']]
     };
     /* 도착 방면 ↔ 진입 지점: 국내선과 서울 · 타이베이 · 북미 쪽은 AIC 020/26의 표준 경로(Y10 → GODIN · Y807 → POLIX · Y824/Y875 → AROSA · Y21 → AKSEL · Y71 → XAC)대로. 나머지 국제선은 방면만 맞춘 게임값 */
     D.gateOrig = {
       GODIN: [['RJCC', 'Sapporo New Chitose'], ['RJCH', 'Hakodate'], ['RJSA', 'Aomori']],
-      POLIX: [['KLAX', 'Los Angeles'], ['KSFO', 'San Francisco'], ['CYVR', 'Vancouver']],
+      POLIX: [['KLAX', 'Los Angeles'], ['KSFO', 'San Francisco'], ['CYVR', 'Vancouver'], ['CYYZ', 'Toronto']],
       AROSA: [['PHNL', 'Honolulu']],
-      AKSEL: [['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCTP', 'Taipei Taoyuan'], ['VHHH', 'Hong Kong'], ['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi'], ['YSSY', 'Sydney']],
-      XAC: [['RJOO', 'Osaka Itami'], ['RJBB', 'Osaka Kansai'], ['RJFF', 'Fukuoka'], ['RJNK', 'Komatsu'], ['RKSS', 'Seoul Gimpo'], ['ZSPD', 'Shanghai Pudong']]
+      AKSEL: [['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCSS', 'Taipei Songshan'], ['VHHH', 'Hong Kong'], ['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi'], ['YSSY', 'Sydney'], ['VVNB', 'Hanoi']],
+      XAC: [['RJOO', 'Osaka Itami'], ['RJBB', 'Osaka Kansai'], ['RJFF', 'Fukuoka'], ['RJNK', 'Komatsu'], ['RKSS', 'Seoul Gimpo'], ['ZSPD', 'Shanghai Pudong'], ['EGLL', 'London Heathrow'], ['EDDF', 'Frankfurt'], ['LFPG', 'Paris Charles de Gaulle'], ['OMDB', 'Dubai'], ['OTHH', 'Doha']]
     };
     D.gateEast = { ROVER: true, BEKLA: false, GUSRO: false, NINOX: false, LAXAS: false };
     /* SID: 하네다는 활주로가 달라도 이름이 같음(낮 시간대의 것만 — B · C는 시간대별 소음 대책용) */
@@ -272,18 +272,58 @@
     ];
     /* 자위대 훈련 공역 Area H(지표 ~ FL230) — 사용 중일 때는 그 높이 아래로 지나지 못함(BEKLA → AZUMI 출발 경로가 이 구역의 남서쪽을 지남) */
     D.restricted = { n: 'AREA H', pts: [[37.5531, 139.0467], [37.0639, 138.6333], [36.555, 138.2969], [36.0364, 138.2969], [36.1531, 138.7636], [36.4864, 139.43]].map(function (q) { return ll(q[0], q[1]); }), top: 23000 };
-    /* 항공사(가상)별 국내선 터미널 · 노선 범위(I = 국제선만, D = 국내선만) */
-    D.domTerm = { VLA: 'T1', HNB: 'T1', CKY: 'T1', KCM: 'T1', AOP: 'T2', NCE: 'T2', LMN: 'T2' };
-    var SCOPE = { SOG: 'I', TSB: 'I', KCM: 'D', SVJ: 'D', SNX: 'D' };
+    /* 항공사: 실제 항공사 20곳(이름 · 3자 부호 · 호출부호만 교육용으로 씀 — 로고 · 도장 없음, 항공사와 관계없음) + 가상 항공사.
+       편명 · 기종 배정 · 교통은 가상. 비상 · 복행 · 규정 위반 같은 비정상 상황은 가상 항공사(real 없음)에만 일어남(ATC.irreg) — 사용자 결정 2026-11-15
+       dest = 그 항공사가 주로 다니는 곳(국제선) · ovf: false = 지역관제의 통과 항공기로는 쓰지 않음 */
+    var RC = '#5b6b7f', RC2 = '#eef1f5', FX = D.airlines.filter(function (a) { return ['VLA', 'AOP', 'HNB', 'CKY', 'OSG', 'SNX', 'SVJ'].indexOf(a.code) >= 0; });
+    FX.forEach(function (a) { a.w = { VLA: 3, AOP: 2 }[a.code] || 1; });
+    function R(code, cs, name, types, w, o) { var a = { code: code, cs: cs, name: name, col: RC, col2: RC2, types: types, w: w, real: true }; for (var k in o || {}) a[k] = o[k]; return a; }
+    /* dest = 그 항공사가 하네다에서 실제로 다니는 곳(2026년 11월 공개 자료 · 게임 표에 있는 공항만) — 이 밖의 공항은 고르지 않음(GPT ATC-12차 F12-05)
+       ovr = 지역관제 통과 항공기로 쓸 수 있는 구간(그 항공사가 실제로 다니는 구간만). 없으면 통과 항공기로 쓰지 않음 */
+    var JD = ['RJCC', 'RJCH', 'RJSA', 'RJNK', 'RJFF', 'RJOA', 'RJOO', 'RJBB', 'RJFK', 'ROAH'], ND = ['RJCC', 'RJCH', 'RJNK', 'RJNT', 'RJFF', 'RJOA', 'RJOO', 'RJBB', 'RJFK', 'ROAH'];
+    D.airlines = [FX[0]].concat([
+      R('JAL', 'JAPAN AIR', 'Japan Airlines', ['B738', 'B789', 'A359', 'B763'], 5, { dest: JD.concat(['PHNL', 'KLAX', 'KSFO', 'RKSS', 'ZBAA', 'EGLL', 'LFPG', 'ZSPD', 'RCSS', 'VHHH', 'WSSS', 'VTBS', 'YSSY']), ovr: ['RJCC-RJOO', 'RJOO-RJCC', 'PHNL-RJBB'] }),
+      R('ANA', 'ALL NIPPON', 'All Nippon Airways', ['B789', 'B77W', 'B738', 'A321'], 5, { dest: ND.concat(['PHNL', 'KLAX', 'KSFO', 'CYVR', 'RKSS', 'ZBAA', 'EGLL', 'EDDF', 'LFPG', 'ZSPD', 'RCSS', 'VHHH', 'WSSS', 'VTBS', 'VVNB', 'YSSY']), ovr: ['RJCC-RJOO', 'RJOO-RJCC'] }),
+      R('SKY', 'SKYMARK', 'Skymark Airlines', ['B738'], 3, { scope: 'D', ovf: false, dest: ['RJCC', 'RJFF', 'RJFK', 'ROAH'] }),
+      R('ADO', 'AIR DO', 'AIRDO', ['B737', 'B763'], 2, { scope: 'D', ovf: false, dest: ['RJCC', 'RJCH'] }),
+      R('KAL', 'KOREAN AIR', 'Korean Air', ['B77W', 'A333'], 1, { scope: 'I', dest: ['RKSS'], ovr: ['RKSI-KSEA'] }),
+      R('AAR', 'ASIANA', 'Asiana Airlines', ['A321', 'A359'], 1, { scope: 'I', dest: ['RKSS'], ovr: ['RKSI-KSEA'] }),
+      R('CPA', 'CATHAY', 'Cathay Pacific', ['A359', 'A333'], 1, { scope: 'I', dest: ['VHHH'] }),
+      R('SIA', 'SINGAPORE', 'Singapore Airlines', ['A359', 'B77W'], 1, { scope: 'I', dest: ['WSSS'] }),
+      R('THA', 'THAI', 'Thai Airways', ['B789', 'A359'], 1, { scope: 'I', dest: ['VTBS'] }),
+      R('EVA', 'EVA', 'EVA Air', ['B77W', 'B789'], 1, { scope: 'I', dest: ['RCSS'], ovr: ['RCTP-KLAX'] }),
+      R('HVN', 'VIET NAM AIRLINES', 'Vietnam Airlines', ['A321', 'B789'], 1, { scope: 'I', ovf: false, dest: ['VVNB'] }),
+      R('UAL', 'UNITED', 'United Airlines', ['B789', 'B77W'], 1, { scope: 'I', dest: ['KSFO', 'KLAX'] }),
+      R('DAL', 'DELTA', 'Delta Air Lines', ['A359', 'A333'], 1, { scope: 'I', dest: ['KLAX', 'PHNL'] }),
+      R('ACA', 'AIR CANADA', 'Air Canada', ['B789'], 1, { scope: 'I', ovf: false, dest: ['CYYZ'] }),
+      R('BAW', 'SPEEDBIRD', 'British Airways', ['B77W'], 1, { scope: 'I', ovf: false, dest: ['EGLL'] }),
+      R('DLH', 'LUFTHANSA', 'Lufthansa', ['A359'], 1, { scope: 'I', ovf: false, dest: ['EDDF'] }),
+      R('AFR', 'AIRFRANS', 'Air France', ['B77W', 'A359'], 1, { scope: 'I', ovf: false, dest: ['LFPG'] }),
+      R('UAE', 'EMIRATES', 'Emirates', ['B77W'], 1, { scope: 'I', ovf: false, dest: ['OMDB'] }),
+      R('QTR', 'QATARI', 'Qatar Airways', ['A359', 'B77W'], 1, { scope: 'I', ovf: false, dest: ['OTHH'] }),
+      R('QFA', 'QANTAS', 'Qantas', ['A333', 'B789'], 1, { scope: 'I', ovf: false, dest: ['YSSY'] })
+    ], FX.slice(1));
+    D.mkFlights();
+    /* 국내선 터미널(실제 배정을 간추림: 일본항공 · 스카이마크 = 1, 전일본공수 · 에어두 = 2) · 노선 범위(I = 국제선만, D = 국내선만) */
+    D.domTerm = { JAL: 'T1', SKY: 'T1', ANA: 'T2', ADO: 'T2', VLA: 'T1', HNB: 'T1', CKY: 'T1', AOP: 'T2' };
+    var SCOPE = { SVJ: 'D', SNX: 'D' }; D.airlines.forEach(function (a) { if (a.scope) SCOPE[a.code] = a.scope; });
     /* 편마다 방면(출구 · 입구 지점) · 공항 · 주기장 묶음을 함께 정함. rwy를 주면 그 활주로를 쓰는 방면에서만 고름
-       국내선 = 터미널 1 · 2(항공사별), 국제선 = 터미널 3, 화물 = 국제 화물 지구 · 국내 화물 주기장, 소형기 = N 구역 */
+       국내선 = 터미널 1 · 2(항공사별), 국제선 = 터미널 3(전일본공수 국제선은 2 · 3), 화물 = 국제 화물 지구 · 국내 화물 주기장, 소형기 = N 구역 */
     D.planFlight = function (sim, f, kind, rwy) {
       var by = kind === 'dep' ? sim.flow.depBy : sim.flow.arrBy, tbl = kind === 'dep' ? D.gateDest : D.gateOrig, sc = SCOPE[f.al.code];
       var gates = Object.keys(tbl).filter(function (g) { return !rwy || by[g] === rwy; }); if (!gates.length) gates = Object.keys(tbl);
       var opts = []; gates.forEach(function (g) { tbl[g].forEach(function (d) { var i = D.isIntl(d[0]); if (!sc || (sc === 'I') === i) opts.push([g, d]); }); });
-      if (!opts.length) gates.forEach(function (g) { tbl[g].forEach(function (d) { opts.push([g, d]); }); });
+      opts = opts.filter(function (o) { return ATC.odOk(f.al, o[1][0]); });      /* 그 항공사가 다니는 곳만 */
+      if (!opts.length) {           /* 이 활주로 방면에 그 항공사가 다니는 곳이 없으면 → 같은 종류(여객 · 화물 · 소형기)의 다른 항공사로 바꿈(목적지 제한은 풀지 않음) */
+        var all = [], al0 = f.al; gates.forEach(function (g) { tbl[g].forEach(function (d) { all.push([g, d]); }); });
+        var nf = sim.mkFlight(function (a) { return !!a.cargo === !!al0.cargo && !!a.ga === !!al0.ga && all.some(function (o) { var i = D.isIntl(o[1][0]), s2 = SCOPE[a.code]; return (!s2 || (s2 === 'I') === i) && ATC.odOk(a, o[1][0]); }); }, kind);
+        for (var k in nf) f[k] = nf[k];
+        sc = SCOPE[f.al.code];
+        all.forEach(function (o) { var i = D.isIntl(o[1][0]); if ((!sc || (sc === 'I') === i) && ATC.odOk(f.al, o[1][0])) opts.push(o); });
+        if (!opts.length) opts = all;
+      }
       var o = sim.rng.pick(opts), intl = D.isIntl(o[1][0]);
-      return { gate: o[0], ap: o[1], intl: intl, rwy: by[o[0]], grp: f.al.cargo ? [intl ? 'KI' : 'KD'] : f.al.ga ? ['NA'] : intl ? ['T3'] : [D.domTerm[f.al.code] || 'T1'] };
+      return { gate: o[0], ap: o[1], intl: intl, rwy: by[o[0]], grp: f.al.cargo ? [intl ? 'KI' : 'KD'] : f.al.ga ? ['NA'] : intl ? (f.al.code === 'ANA' ? ['T2', 'T3'] : ['T3']) : [D.domTerm[f.al.code] || 'T1'] };
     };
 
     /* 근무 순서(접근관제 · 지역관제) — 세이라와 다른 점: 도착기는 STAR를 따라 중간 접근 지점(IF)까지 스스로 오고, 관제사는 고도 · 속도 · 경로 줄이기로 순서를 만듦 */

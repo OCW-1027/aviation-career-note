@@ -56,7 +56,8 @@
   }
   /* 합성기가 엉뚱하게 읽는 이름은 소리 나는 대로 고쳐 적음 */
   var RESPELL = { atis: 'A-tis', aozora: 'Ah-ozora', seira: 'Sayra', sra: 'Sayra', chitose: 'Chitoseh', gimhae: 'Gimhay', fukuoka: 'Fookoo-oka', suvarnabhumi: 'Soowannapoom', haneda: 'Hahnedda', pudong: 'Poodong',
-    busan: 'Boosan', kumoi: 'Koomoy', fumin: 'Foomin', miran: 'Meeran', basor: 'Baysor', iruno: 'Eeroono', haneul: 'Hahnool' };
+    busan: 'Boosan', kumoi: 'Koomoy', fumin: 'Foomin', miran: 'Meeran', basor: 'Baysor', iruno: 'Eeroono', haneul: 'Hahnool',
+    airfrans: 'Air Frans', do: 'Doo', nippon: 'Neeppon', qatari: 'Kataree', gaulle: 'Goal', songshan: 'Song Shahn' };      /* 실제 항공사 호출부호 · 목적지(하네다) */
   V.say = function (key) {
     names = names || nameSet();
     return key.split('|')[0].split(' ').map(function (w) { return RESPELL[w] || (w.length === 1 ? w.toUpperCase() : names[w] ? w[0].toUpperCase() + w.slice(1) : w); }).join(' ')

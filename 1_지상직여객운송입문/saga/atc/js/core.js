@@ -191,7 +191,7 @@
     this.seed = o.seed || 12345; this.rng = ATC.rng(this.seed);
     this.t = 0; this.t0 = (o.startHour !== undefined ? o.startHour : 9) * 3600;   /* 근무 시작 UTC */
     this.acs = []; this.log = []; this.incs = []; this.q = []; this.cur = null;
-    this.done = 0; this.total = 0; this.over = false; this.fatal = null; this.endless = !!o.endless; this.smp = [];      /* endless = 끝없는 근무 · smp = 1분마다 관할 대수(결과 그래프) */
+    this.done = 0; this.total = 0; this.over = false; this.fatal = null; this.endless = !!o.endless; this.smp = []; this.wantFx = o.scn && o.scn.events && o.scn.events.length ? 4 : 0; this.wantFxKind = o.scn && o.scn.events && o.scn.events.length ? ATC.fxKind(o.scn.events[0].k) : null;      /* endless = 끝없는 근무 · smp = 1분마다 관할 대수(결과 그래프) */
     this.wind = o.wind || { dir: 60, spd: 8 }; this.qnh = o.qnh || 1013; this.atis = 'C';
     this.flow = D.flows[o.flow || this.flowForWind()];
     this.nextId = 1; this.usedCs = {}; this.sq = 0o4500 + this.rng.int(0, 60);
@@ -209,8 +209,13 @@
   Sim.prototype.emit = function (type, data) { for (var i = 0; i < this.listeners.length; i++) this.listeners[i](type, data); };
   Sim.prototype.squawk = function () { this.sq += 1 + this.rng.int(0, 2); var s = this.sq.toString(8); if (/[89]/.test(s) || s === '7500' || s === '7600' || s === '7700') return this.squawk(); return U.pad(+s, 4); };
   /* 가상 편명 만들기 */
-  Sim.prototype.mkFlight = function (filter) {
+  /* 사건이 어느 쪽 항공기를 쓰는지(출발 · 도착) — 가상 항공사를 그쪽에 먼저 배정 */
+  ATC.fxKind = function (k) { return { efato: 'dep', rto: 'dep', bird: 'dep', tech: 'dep', ga_pilot: 'arr', laser: 'arr', drone: 'arr', fod: 'arr', emg: 'arr', mayday: 'arr', medical: 'arr', missed: 'arr', nordo: 'arr' }[k] || null; };
+  Sim.prototype.needFx = function (ev) { this.wantFx = Math.max(this.wantFx || 0, 2); this.wantFxKind = ATC.fxKind(ev.k); };
+  Sim.prototype.mkFlight = function (filter, kind) {
     var rng = this.rng, self = this, pool = D.airlines.filter(filter || function () { return true; }), al, free, guard = 0;
+    /* 비정상 상황을 일으킬 가상 항공사가 모자라면(하네다 — 실제 항공사가 많음) 다음 몇 편은 가상 항공사로 */
+    if (this.wantFx > 0 && (!this.wantFxKind || !kind || kind === this.wantFxKind)) { var fx = pool.filter(function (a) { return !a.real; }); if (fx.length && fx.length < pool.length) { pool = fx; this.wantFx--; } }
     function unused(x) { return !self.usedCs[al.code + x.num]; }
     do { al = rng.wpick(pool, function (a) { return a.w; }); free = al.flights.filter(unused); } while (!free.length && guard++ < 40);
     if (!free.length) {           /* 편명을 다 썼으면 지금 화면에 없는 편명부터 다시 씀 */
@@ -311,7 +316,14 @@
     });
   };
   /* 비정상 상황(비상 · 복행 · 레이저 · 드론 등)은 가상 항공사에만 — 실제 항공사(al.real)는 고르지 않음 */
-  ATC.irreg = function (a) { return !(a && a.al && a.al.real); };
+  ATC.irreg = function (a) { return !(a && a.al && a.al.real); };      /* 비정상 상황(비상 · 복행 · 규정 위반 · 복창 오류 · 회항 등)은 가상 항공사에만 */
+  Sim.prototype.irrAcs = function () { return this.acs.filter(ATC.irreg); };
+  /* 그 항공사가 그 공항을 오갈 만한지(노선 범위 scope · 주로 다니는 곳 dest — 하네다의 실제 항공사) */
+  ATC.odOk = function (a, icao) { var i = D.isIntl ? D.isIntl(icao) : true; if (a.scope === 'D' && i || a.scope === 'I' && !i) return false; return !a.dest || a.dest.indexOf(icao) >= 0; };
+  ATC.odFit = function (list, also) { return function (a) { return (!also || also(a)) && list.some(function (d) { return ATC.odOk(a, d[0]); }); }; };
+  /* 통과 항공기: 가상 항공사는 그대로, 실제 항공사는 그 구간(출발지-목적지)을 실제로 다니는 곳만(ovr). 구간을 모르는 경로는 가상 항공사만 */
+  ATC.ovfOk = function (route) { var k = route && route.od ? route.od[0] + '-' + route.od[1] : null; return function (a) { if (a.ga || a.code === 'KCM' || a.ovf === false) return false; return !a.real || !!(k && a.ovr && a.ovr.indexOf(k) >= 0); }; };
+  ATC.odPick = function (rng, al, list) { var ok = list.filter(function (d) { return ATC.odOk(al, d[0]); }); return rng.pick(ok.length ? ok : list); };
   Sim.prototype.sys = function (text, kind) { this.addLog({ who: 'sys', cs: '', text: text, kind: kind || 'info' }); };
   /* 관제 지시: 문구 송신 → 복창 → 적용 */
   Sim.prototype.command = function (ac, cmds, o) {
@@ -328,7 +340,7 @@
       return false;
     }
     var wrong = null;
-    if (!o.noErr && this.level.rbErr > 0 && this.rng() < this.level.rbErr * (this.rbErrMul || 1)) wrong = this.mutate(ac, cmds);
+    if (!o.noErr && ATC.irreg(ac) && this.level.rbErr > 0 && this.rng() < this.level.rbErr * (this.rbErrMul || 1)) wrong = this.mutate(ac, cmds);      /* 복창 오류도 가상 항공사만 */
     var rbText = ph.rb;
     if (wrong) rbText = ATC.phrase(this, ac, wrong).rb;
     this.enq({
