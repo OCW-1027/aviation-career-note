@@ -2453,7 +2453,7 @@ MG.T.add('ko', {
   "d_org.org.groups.fin": "재무 직원",
   "d_org.org.groups.mech": "정비사",
   "d_org.org.groups.pilot": "운항승무원(조)",
-  "d_org.org.groups.occ": "운항통제사",
+  "d_org.org.groups.occ": "운항관리사",
   "d_org.org.groups.mgmt": "경영관리 직원",
   "d_org.org.depts.62.4": "그룹 경영",
   "d_org.org.depts.62.3": "설립·기단 이전·브랜드",
