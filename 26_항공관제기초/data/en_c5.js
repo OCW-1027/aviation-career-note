@@ -79,7 +79,8 @@ sections:[
 {name:"Recruiting controllers",x:"With traffic growing and experienced staff retiring, recruiting and training controllers is a major challenge everywhere"},
 {name:"Training",x:"It takes years to become fully qualified, and every new system needs training"},
 {name:"Working patterns",x:"Rosters that reduce the burden of night and shift work and help maintain concentration are needed"}]},
-{t:"note",x:"Routes into ATC and other aviation jobs, country by country, will be covered in a separate course, the “Aviation Careers Guide”."}]},
+{t:"note",x:"Routes into ATC and other aviation jobs, country by country, are covered in the Aviation Careers Guide."},
+{t:"link",href:"../27_항공직업가이드/00_シリーズ全体_航空の仕事ガイド.html",x:"Aviation Careers Guide"}]},
 {h:"Links to your work",blocks:[{t:"check",items:[
 {name:"Following developments",x:"Revisions to plans and roadmaps affect airport and airline investment and how flights operate"},
 {name:"Differences between countries",x:"Flights between Korea and Japan are affected by both countries’ plans (data link, airspace design)"},

@@ -30,7 +30,8 @@ sections:[
 {name:"Japan",x:"National civil servants: after the recruitment exam, trained at the Aeronautical Safety College and then qualified through on-the-job training"},
 {name:"USA",x:"FAA employees: trained at the FAA Academy in Oklahoma City, then continue training at their facility"},
 {name:"Europe",x:"Staff of national ANSPs (many are companies); there is a common EU controller licence"}]},
-{t:"note",x:"In every country, training for each position and regular checks continue after licensing. Detailed routes into the job will be covered in another course."}]},
+{t:"note",x:"In every country, training for each position and regular checks continue after licensing. Routes into the job, country by country, are in the Aviation Careers Guide."},
+{t:"link",href:"../27_항공직업가이드/00_シリーズ全体_航空の仕事ガイド.html",x:"Aviation Careers Guide (licences and routes for controllers, pilots, engineers and more)"}]},
 {h:"Links to ground work",blocks:[{t:"check",items:[
 {name:"Departure delays",x:"“Waiting for ATC” usually means the take-off time is being adjusted for congestion or weather; use this when informing passengers"},
 {name:"Pushback",x:"Know whether approval comes from ATC or ramp control at your airport"},

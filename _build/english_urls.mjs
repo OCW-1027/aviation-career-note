@@ -16,6 +16,7 @@ export const DIRS = {
   '19_운항관리실무': 'dispatch',
   '25_항공기와정비': 'maintenance',
   '26_항공관제기초': 'atc-basics',
+  '27_항공직업가이드': 'careers',
   '13_항공영업입문': 'sales',
   '16_스테이션운영실무': 'station-management',
   '2_일본취항지점개설가이드': 'station-launch',
