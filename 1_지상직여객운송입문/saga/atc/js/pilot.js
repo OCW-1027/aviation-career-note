@@ -59,12 +59,43 @@
     var sim = this.sim, ac = this.ac, self = this;
     if (!this.ci) return false;      /* 첫 호출 전에는 지시하지 않음(AI가 나중에 다시) */
     if (this.clr) return false;      /* 앞의 복창이 끝나지 않음 */
+    if (this.known(cmds)) return false;      /* 이미 복창한 지시와 같음(아직 설정하지 않았을 뿐) → 다시 말하지 않음 */
     var ph = ATC.phrase(sim, ac, cmds);
     if (!ph.rb) { sim.enq({ who: 'atc', ac: ac, text: ph.atc, onDone: function () { self.take(cmds); } }, true); return true; }      /* 「radar contact」처럼 복창이 필요 없는 송신 */
     this.clr = { cmds: cmds, ph: ph, t0: null, tries: 0 };
     sim.enq({ who: 'atc', ac: ac, text: ph.atc, onDone: function () { if (self.clr && self.clr.cmds === cmds) { self.clr.t0 = sim.t; self.clr.opts = self.rbOpts(cmds, ph); self.bump(); } } }, true);
     this.bump();
     return true;
+  };
+  /* 로컬라이저 포착 실패(설정이 늦어 지나침 등) → AI 관제사가 다시 유도: 최종 접근 15NM · 옆 3NM 지점으로 기수 → 가까워지면 30° 진입 + ILS 허가.
+     자동 관제 봇은 지시가 바로 따라지는 항공기를 전제로 해서, 늦게 설정하는 조종사에게는 같은 허가만 되풀이했음 */
+  Pilot.prototype.revector = function () {
+    var sim = this.sim, ac = this.ac, rv = this.rv, D2 = ATC.D, U2 = ATC.U;
+    if (ac.waiting === 'vector' && !rv) { rv = this.rv = { st: 1, t: -99, h: null }; sim.sys(ATC.T('{0}: 로컬라이저를 포착하지 못했습니다(기수 · APP 설정이 늦으면 지나칩니다) — 관제사가 다시 유도합니다.', ac.cs), 'alert'); }
+    if (!rv) return;
+    if (ac.appr && ac.appr.loc) { this.rv = null; return; }      /* 포착 — 이후는 보통 흐름(관제탑 이양) */
+    ac.botT = sim.t;      /* 다시 유도하는 동안 자동 관제 봇은 이 항공기에 지시하지 않음 */
+    if (this.clr || this.prompt) return;
+    var e = D2.ends[ac.rwy], g = ATC.ilsGeom(ac, e), sd = g.xtk >= 0 ? 1 : -1, cx = Math.sin(e.crs * Math.PI / 180), cy = Math.cos(e.crs * Math.PI / 180);
+    var q = { x: e.thr.x - cx * 15 + cy * 3 * sd, y: e.thr.y - cy * 15 - cx * 3 * sd }, dq = Math.hypot(q.x - ac.x, q.y - ac.y), alt = e.apAlt || 3000;
+    if (rv.st === 1) {
+      var h = Math.round(U2.n360(Math.atan2(q.x - ac.x, q.y - ac.y) * 180 / Math.PI) / 5) * 5 || 360;
+      if (dq < 3) { if (sim.command(ac, [{ k: 'hdg', v: U2.n360(e.crs - 30 * sd) || 360 }, { k: 'ils', rwy: ac.rwy }], { noErr: true })) { rv.st = 2; rv.t = sim.t; ac.waiting = null; } return; }
+      var off = rv.h === null ? 999 : Math.abs(((h - rv.h + 540) % 360) - 180);
+      if ((off > 25 && sim.t - rv.t > 40) || rv.h === null) { var cm = [{ k: 'hdg', v: h }]; if (Math.abs(ac.tAlt - alt) > 50 && rv.h === null) cm.push({ k: 'alt', v: alt }); if (sim.command(ac, cm, { noErr: true })) { rv.h = h; rv.t = sim.t; } }
+    } else if (ac.waiting === 'vector') { rv.st = 1; rv.h = null; rv.t = -99; }      /* 또 지나침 → 처음부터 */
+  };
+  /* 같은 지시를 이미 받았는지: 설정 대기(asg) 중인 값 또는 지금 허가(cur)와 같으면 true */
+  Pilot.prototype.known = function (cmds) {
+    var A = this.asg, cur = this.cur, self = this;
+    return cmds.length > 0 && cmds.every(function (c) {
+      if (c.k === 'hdg' || c.k === 'alt' || c.k === 'spd') return A[c.k] ? A[c.k].c.v === c.v : (cur[c.k] || 0) === (c.v || 0);
+      if (c.k === 'ils') return self.ilsOk === c.rwy;
+      if (c.k === 'ctl') return !!self.landOk;
+      if (c.k === 'dct') return !!(A.dct && A.dct.c.fix === c.fix);
+      if (c.k === 'ho') return !!(self.freqTo && self.freqTo.to === c.to);
+      return false;
+    });
   };
   Pilot.prototype.rbOpts = function (cmds, ph) {
     var sim = this.sim, ac = this.ac, ok = cap(ph.rb || 'roger, ' + ac.csWord + ' ' + ac.num), o = [{ t: ok, ok: true }], seen = {}, w, k;
@@ -187,6 +218,7 @@
   Pilot.prototype.tick = function () {
     var sim = this.sim, ac = this.ac, k, self = this;
     if (!ac) { var f = sim.acs.filter(function (a) { return a.cs === self.cs; })[0]; if (f) this.attach(f); }
+    if (ac && !this.done) this.revector();
     if (ATC.AI && !this.done) ATC.AI.run(sim.mode, sim);
     if (!ac || this.done) return;
     var cf = this.cfg;

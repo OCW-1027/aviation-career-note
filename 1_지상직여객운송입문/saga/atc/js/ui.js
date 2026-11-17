@@ -111,8 +111,9 @@
     if (op.indexOf('APP') >= 0 && ATC.Pilot) { var pb = load(PILOT_KEY, {})[app.level]; h += '<button class="xbtn pilot" data-x="pilot"><i>' + ATC.T('조종사 체험') + '</i><b>' + ATC.T('Vela Air 도착 · {0}', LVNM()[app.level]) + '</b><small>' + (pb ? ATC.T('최고 {0}점 · {1}회', pb.best, pb.n) : ATC.T('AI 관제사의 지시를 듣고 복창 · 자동조종 설정')) + '</small></button>'; }
     var cnt = [0, 0, 0]; op.forEach(function (k) { cnt[rating(rec, k)]++; });
     var nx = op.map(function (k) { var r = rating(rec, k); return '<li class="r' + r + '"><b>' + k + '</b><span>' + RATE_NM()[r] + '</span></li>'; }).join('');
-    h += '<div class="rates"><h4>' + ATC.T('관제 자격') + ' <small>' + ATC.T('교관 {0} · 자격 {1} · 훈련생 {2}', cnt[2], cnt[1], cnt[0]) + '</small></h4><ul>' + nx + '</ul><p>' + ATC.T('자격 = 중급 이상 85점 · 안전 감점 0 / 교관 = 고급 95점 · 안전 감점 0 (자리마다 따로)') + '</p></div>';
     el.innerHTML = h;
+    /* 관제 자격은 자유 근무 / 시나리오 단추 옆의 긴 칸에 한 줄로 */
+    var lr = $('lrates'); if (lr) lr.innerHTML = '<h4>' + ATC.T('관제 자격') + ' <small>' + ATC.T('교관 {0} · 자격 {1} · 훈련생 {2}', cnt[2], cnt[1], cnt[0]) + '</small></h4><ul>' + nx + '</ul><p>' + ATC.T('자격 = 중급 이상 85점 · 안전 감점 0 / 교관 = 고급 95점 · 안전 감점 0 (자리마다 따로)') + '</p>';
   }
   function LVNM() { return [null, ATC.T('초급'), ATC.T('중급'), ATC.T('고급')]; }
   function start(k, seed, scn, xo) {
@@ -617,8 +618,10 @@
 
   /* ================= 조종사 체험 패널 ================= */
   function renderPilot(sim) {
-    var p = sim.pilot, ac = p.ac, mc = p.mcp || {}, sig = 'P' + p.ver + (ATC.Cockpit && ATC.Cockpit.on ? 'C' : '') + '|' + (ac ? [Math.round(ac.alt / 100), Math.round(ac.hdg), Math.round(ac.ias), ac.nav && ac.nav.mode, ac.appr ? (ac.appr.loc ? 2 : 1) : 0, mc.hdg, mc.alt, mc.spd].join() : '') + (sim.cur && sim.cur.ac === ac ? sim.cur.who : '');
-    if (sig === app.cmdSig) return; app.cmdSig = sig; app.btns = [];
+    var p = sim.pilot, ac = p.ac, mc = p.mcp || {}, sig = 'P' + p.ver + (ATC.Cockpit && ATC.Cockpit.on ? 'C' : '') + '|' + (ac ? [ac.nav && ac.nav.mode, ac.appr ? (ac.appr.loc ? 2 : 1) : 0, mc.hdg, mc.alt, mc.spd, p.cfg.gear, p.cfg.flap].join() : '') + (sim.cur && sim.cur.ac === ac ? sim.cur.who : '');
+    /* 계기 숫자(기수 · 고도 · 속도)는 글자만 바꿈 — 패널 전체를 다시 그리면 누르는 도중의 단추가 사라져 선택이 먹지 않음 */
+    if (sig === app.cmdSig) { var pe = document.querySelector('#cmd .pins'); if (pe && ac) { var bb = pe.querySelectorAll('b'); if (bb.length > 2) { bb[0].textContent = fmt.hdg(Math.round(ac.hdg)); bb[1].textContent = Math.round(ac.alt / 10) * 10; bb[2].textContent = Math.round(ac.ias); } } return; }
+    app.cmdSig = sig; app.btns = [];
     if (ac && app.sel !== ac.id) app.sel = ac.id;
     if (!ac) { $('cmd').innerHTML = '<div class="cnone">' + ATC.T('내 항공기(Vela Air)가 관할 구역에 들어오기를 기다리는 중…') + '</div>'; return; }
     var head = '<div class="chead pil"><b style="border-color:' + ac.al.col + '">✈ ' + ac.cs + '</b><span>' + ac.csWord + ' ' + ac.num + ' · ' + ac.perf.n + ' · ' + ATC.T('조종사 체험') + ' · ' + esc(D.freq[p.freqTo && p.freqTo.sent ? p.freqTo.to : 'APP'].n + ' ' + D.freq[p.freqTo && p.freqTo.sent ? p.freqTo.to : 'APP'].fq) + '</span></div>';
@@ -627,6 +630,12 @@
     else if (c && c.opts) rx = '<h6>' + ATC.T('관제 지시') + '</h6><div class="patc">' + esc(c.ph.atc) + (app.gloss ? '<small>' + esc(ATC.gloss(c.ph.atc)) + '</small>' : '') + '</div><h6>' + ATC.T('복창을 고르세요') + '</h6><div class="popts">' + c.opts.map(function (o, i) { return B(o.t, function () { p.readback(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>' + mic;
     else if (c) rx = '<div class="pwait">' + ATC.T('관제사가 말하는 중 — 잘 들으세요') + '</div>';
     else if (p.freqTo && !p.freqTo.sent) rx = '<h6>' + ATC.T('주파수를 바꾸세요') + '</h6><div class="popts">' + p.freqOpts().map(function (f) { return B(f.n + ' ' + f.fq, function () { p.tune(f.to); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
+    else if (Object.keys(p.asg).length) {      /* 복창 다음 단계: 받은 지시를 자동조종에 넣어야 항공기가 움직임 */
+      rx = '<h6>' + ATC.T('복창한 지시를 자동조종(MCP)에 설정하세요') + '</h6><div class="popts">' + Object.keys(p.asg).map(function (k) {
+        var x = p.asg[k].c, lab = k === 'dct' ? ATC.T('DCT {0} 설정', x.fix) : k === 'ils' ? ATC.T('APP 켜기 (ILS {0})', x.rwy) : k === 'hdg' ? ATC.T('HDG {0} 설정', fmt.hdg(x.v)) : k === 'alt' ? ATC.T('ALT {0} 설정', fmt.alt(x.v)) : x.v ? ATC.T('SPD {0}kt 설정', x.v) : ATC.T('속도 제한 풀기(NORMAL SPEED)');
+        return B(lab, function () { if (x.v) mc[k] = x.v; p.set(k); app.cmdSig = ''; }, { cls: 'popt pdo' });
+      }).join('') + '</div><small class="pmic">' + ATC.T('복창만으로는 항공기가 움직이지 않습니다 — 조종사가 MCP에 넣어야 따라갑니다(오른쪽 노란 칸에서 직접 돌려도 됨)') + '</small>';
+    }
     else rx = '<div class="pwait">' + ATC.T('다음 지시를 기다립니다 — 지금 허가: {0}', esc(p.curText())) + '</div>';
     var A = p.asg, todo = Object.keys(A).map(function (k) { var x = A[k].c; return '<span class="ptodo">' + esc(k === 'dct' ? 'DCT ' + x.fix : k === 'ils' ? 'ILS ' + x.rwy : k === 'hdg' ? 'HDG ' + fmt.hdg(x.v) + (x.dir ? ' ' + x.dir : '') : k === 'alt' ? fmt.alt(x.v) : x.v ? x.v + 'kt' : 'NORMAL SPEED') + '</span>'; }).join('');
     function row(k, lab, val, steps) { return '<div class="prow' + (A[k] ? ' due' : '') + '"><b>' + lab + '</b>' + steps.map(function (d) { return B((d > 0 ? '+' : '−') + Math.abs(d), function () { var v = mc[k] + d; if (k === 'hdg') v = U.n360(v) || 360; if (k === 'alt') v = U.clamp(v, 1000, 41000); if (k === 'spd') v = U.clamp(v, 140, 320); mc[k] = v; app.cmdSig = ''; }, { cls: 'pstep' }); }).slice(0, steps.length / 2).join('') + '<span class="pval">' + val + '</span>' + steps.map(function (d) { return B((d > 0 ? '+' : '−') + Math.abs(d), function () { var v = mc[k] + d; if (k === 'hdg') v = U.n360(v) || 360; if (k === 'alt') v = U.clamp(v, 1000, 41000); if (k === 'spd') v = U.clamp(v, 140, 320); mc[k] = v; app.cmdSig = ''; }, { cls: 'pstep' }); }).slice(steps.length / 2).join('') + B(ATC.T('설정'), function () { p.set(k); app.cmdSig = ''; }, { cls: 'pset' }) + '</div>'; }
@@ -636,7 +645,7 @@
     var md = ac.appr ? (ac.appr.loc ? 'LOC' + (ac.appr.gs ? ' · G/S' : '') : 'APP ARM') : ac.nav ? { route: 'LNAV', hdg: 'HDG SEL', hold: 'HOLD' }[ac.nav.mode] || ac.nav.mode : '';
     var ins = '<div class="pins"><span>HDG <b>' + fmt.hdg(Math.round(ac.hdg)) + '</b></span><span>ALT <b>' + Math.round(ac.alt / 10) * 10 + '</b></span><span>IAS <b>' + Math.round(ac.ias) + '</b></span><span>' + esc(md) + '</span></div>';
     var cf = p.cfg, ck = ATC.Cockpit, cfgRow = '<div class="prow pcfg">' + B(cf.gear === 'down' ? ATC.T('기어 ▲ 올림') : cf.gear === 'transit' ? ATC.T('기어 움직이는 중') : ATC.T('기어 ▼ 내림'), function () { p.gear(); app.cmdSig = ''; }, { cls: 'pset' + (cf.gear === 'down' ? ' on' : '') }) + B('FLAP ▲', function () { p.flap(-1); app.cmdSig = ''; }, { cls: 'pstep' }) + '<span class="pval">' + (cf.flap || 'UP') + '</span>' + B('FLAP ▼', function () { p.flap(1); app.cmdSig = ''; }, { cls: 'pstep' }) + '</div>';
-    var vrow = ck && ck.ok ? '<div class="prow pview">' + B(ck.on ? ATC.T('레이더 화면') : ATC.T('3D 조종석'), function () { if (ck.on) { ck.close(); app.ck3d = false; } else { app.ck3d = true; ck.open(sim, $('ck3d')); } app.cmdSig = ''; }, { cls: 'pset' }) + (ck.on ? B(ATC.T('조종석 · 바깥'), function () { ck.view(); app.cmdSig = ''; }, { cls: 'pset' }) + B(ATC.T('계기 크게'), function () { ck.zoomPanel(); }, { cls: 'pset' }) + B(ATC.T('앞 보기'), function () { ck.resetLook(); }, { cls: 'pset' }) : '') + '</div>' : '';
+    var vrow = ck && ck.ok ? '<div class="prow pview">' + B(ck.on ? ATC.T('레이더 화면') : ATC.T('3D 조종석'), function () { if (ck.on) { ck.close(); app.ck3d = false; } else { app.ck3d = true; ck.open(sim, $('ck3d')); } app.cmdSig = ''; }, { cls: 'pset' }) + (ck.on ? B(ATC.T('조종석 · 바깥'), function () { ck.view(); app.cmdSig = ''; }, { cls: 'pset' }) + B(ATC.T('계기 크게'), function () { ck.zoomPanel(); }, { cls: 'pset' }) + B(ATC.T('앞 보기'), function () { ck.resetLook(); }, { cls: 'pset' }) + (ATC.CkSnd ? B(ATC.CkSnd.mute ? ATC.T('🔇 소리 켜기') : ATC.T('🔊 소리 끄기'), function () { ATC.CkSnd.toggle(); app.cmdSig = ''; }, { cls: 'pset' }) : '') : '') + '</div>' : '';
     $('cmd').innerHTML = head + '<div class="cbody pilotp"><div class="prx">' + rx + '</div><div class="pmcp">' + ins + mcp + cfgRow + vrow + '</div></div>';
   }
   /* ================= 마이크 관제(1단계) ================= */

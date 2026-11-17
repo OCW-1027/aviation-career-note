@@ -372,7 +372,7 @@ html[lang=ja]{--sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI","
 
 .bfirst{margin:10px 0;padding:10px 14px;border:1px solid #2b4a63;border-radius:8px;background:rgba(69,208,255,.06)}.bfirst b{color:var(--acc)}.bfirst ol{margin:6px 0 6px 18px;padding:0}.bfirst p{margin:4px 0 0;font-size:13px;color:#b7c7d5}.btn.hi{border-color:var(--acc);color:var(--acc)}
 /* ---------- 시나리오 ---------- */
-#tabs{max-width:1280px;width:max-content;margin:22px auto 0;align-self:center}
+#tabs{width:max-content;margin:0;flex:none}
 #tabs button{padding:10px 26px;font-size:15px}#tabs button:first-child{border-left:0}
 #scns{max-width:1280px;width:100%;margin:6px auto 0;padding:0 4vw;flex:1}
 .scnintro{margin:14px 0 4px;color:#a9bccb;font-size:13.5px;line-height:1.6}.scnintro b{color:var(--yel);white-space:nowrap;margin-left:6px}
@@ -391,7 +391,7 @@ html[lang=ja]{--sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI","
 .sres ul{list-style:none;margin:0;padding:0}.sres li{display:flex;align-items:baseline;gap:8px;padding:3px 0;font-size:14px;color:#8496a6}.sres li i{font-style:normal;color:#33475a;font-size:17px}.sres li b{min-width:34px;text-align:center}
 .sres li.on{color:#e3edf5}.sres li.on i{color:var(--yel)}
 .stips{margin:0;padding:6px 12px 6px 28px;font-size:13.5px;color:#c3d2df;line-height:1.6}.stips li{margin:4px 0}
-@media (max-width:560px){.mhead h2 small{display:block;margin:4px 0 0}.mfoot .btn{white-space:nowrap}#tabs{width:auto;margin:16px 4vw 0;align-self:stretch}#tabs button{flex:1;padding:11px 8px}.scg{grid-template-columns:1fr}.sbrief th{width:52px}}
+@media (max-width:560px){.mhead h2 small{display:block;margin:4px 0 0}.mfoot .btn{white-space:nowrap}#tabs{width:auto;margin:0;align-self:stretch}#tabs button{flex:1;padding:11px 8px}.scg{grid-template-columns:1fr}.sbrief th{width:52px}}
 .scnf{width:max-content;max-width:100%;margin:10px 0 0;flex-wrap:wrap}.scnf button{padding:8px 13px}
 @media (max-width:560px){.scnf{width:auto}.scnf span{display:none}.scnf button{flex:1;padding:9px 6px;white-space:nowrap}.scnf button:first-of-type{border-left:0}}
 /* 휴대폰 세로: 교신 기록을 지시판 아래로 내림 — 첫 화면은 지도 · 스트립 · 지시판, 화면을 아래로 밀면 교신 기록(첫 화면 맨 아래에 머리말이 살짝 보임). 위 막대는 내려가도 따라옴 */
@@ -424,7 +424,7 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 /* ===== 자격 등급 · 오늘의 과제 · 끝없는 근무 · 결과 보강 ===== */
 .prate{margin-top:8px;font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
 .prate.r1{color:#7fd6a6;border-color:#2f7a55}.prate.r2{color:#ffd479;border-color:#a5822f;background:rgba(255,212,121,.08)}
-.xmodes{max-width:1280px;width:100%;margin:14px auto 0;padding:0 4vw;display:grid;grid-template-columns:repeat(3,1fr) 1.6fr;gap:12px;align-items:stretch}
+.xmodes{max-width:1280px;width:100%;margin:14px auto 0;padding:0 4vw;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:stretch}
 .xbtn{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--pan);color:var(--txt);cursor:pointer;transition:border-color .15s}
 .xbtn:hover{border-color:var(--acc)}.xbtn i{font-style:normal;font-size:10.5px;letter-spacing:.06em;color:var(--acc)}.xbtn b{font-size:14px}.xbtn small{font-size:11.5px;color:var(--mut)}
 .xbtn.daily i{color:#ffd479}
@@ -432,7 +432,7 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .rates h4{margin:0 0 6px;font-size:12.5px}.rates h4 small{font-weight:400;color:var(--mut);margin-left:6px}
 .rates ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:5px;font-size:11.5px}.rates p{margin:7px 0 0;font-size:10.5px;color:var(--mut)}
 .rates li{display:flex;gap:5px;align-items:baseline;padding:3px 8px;border:1px solid var(--line);border-radius:6px}.rates li span{font-weight:700;color:var(--mut)}.rates li.r1 span{color:#7fd6a6}.rates li.r2 span{color:#ffd479}
-@media (max-width:1180px){.xmodes{grid-template-columns:1fr 1fr 1fr}.rates{grid-column:1/-1}}
+@media (max-width:1180px){.xmodes{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.xmodes{grid-template-columns:1fr}}
 .rup{margin:0 0 12px;padding:9px 12px;border-radius:8px;border:1px solid #2f7a55;background:rgba(127,214,166,.08);font-size:13px}.rup.r2{border-color:#a5822f;background:rgba(255,212,121,.08)}.rup.daily{border-color:#a5822f}
 .rgraph svg{width:100%;height:96px;display:block;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:6px}
@@ -474,3 +474,19 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .pilotp .prow.pview .cb{font-size:11.5px}
 .pilotm #banner{z-index:6}
 .pilotm #main{grid-template-columns:minmax(0,1fr)}
+
+/* 로비: 자유 근무 / 시나리오 단추 + 관제 자격 긴 칸(한 줄) — 카드 줄과 같은 폭 */
+#lrow{max-width:1280px;width:100%;margin:22px auto 0;padding:0 4vw;display:flex;gap:14px;align-items:stretch}
+#lrow .rates{flex:1;min-width:0;display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;padding:8px 14px}
+#lrow .rates h4{margin:0;white-space:nowrap}#lrow .rates ul{flex:0 1 auto;min-width:0}#lrow .rates p{margin:0;flex:1;min-width:220px;text-align:right}
+#lrow .rates:empty{display:none}
+@media (max-width:900px){#lrow{flex-direction:column}#lrow .rates p{text-align:left}#tabs{width:auto}#tabs button{flex:1}}
+/* 그림 조종석: 3D 캔버스 위에 조종석 그림(창 · 화면 투명) · 화면 5개(그림 아래) · MCP 숫자 · 기어 표시 */
+#ck3d .ckimg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+#ck3d .ckimg canvas,#ck3d .ckimg img,#ck3d .ckimg div{position:absolute;display:block}
+#ck3d .ckimg canvas{background:#000;cursor:inherit}
+#ck3d .ckimg img{user-select:none;-webkit-user-drag:none}
+#ck3d .ckwin{background:#05070a;color:#ffb43c;font:700 10px/1 ui-monospace,Menlo,Consolas,monospace;display:flex!important;align-items:center;justify-content:center;letter-spacing:.04em;text-shadow:0 0 4px rgba(255,180,60,.55)}
+#ck3d .ckgear{font:700 10px/1 ui-monospace,Menlo,Consolas,monospace;display:flex!important;align-items:center;justify-content:center;border-radius:2px;background:#0b0d10}
+#ck3d .ckgear.dn{color:#3ee07a;text-shadow:0 0 5px rgba(62,224,122,.7)}#ck3d .ckgear.up{color:#d8dde3}#ck3d .ckgear.tr{color:#ffb43c}
+.pilotp .cb.popt.pdo{border-color:#ffd479;color:#ffe3a3;background:rgba(255,212,121,.08)}
