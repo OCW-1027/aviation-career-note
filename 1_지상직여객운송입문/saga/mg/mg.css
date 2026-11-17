@@ -44,6 +44,7 @@ select.btn{padding:5px 6px}#m_rp select{max-width:100%;min-width:0;text-overflow
 @keyframes pulse{50%{box-shadow:0 0 0 3px rgba(255,181,71,.18)}}
 .face{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:50% 14%;flex:none;background:#14284c;border:2px solid #28406b;display:inline-block}
 .who{font-size:10.5px;color:var(--am);font-weight:700}.who span{color:var(--sub);font-weight:500;margin-left:4px}.pend b{font-size:12px}
+.ob .ob-r{display:flex;gap:8px;padding:4px 0;border-bottom:1px solid var(--line);font-size:12px}.ob .ob-l{flex:0 0 8.2em;color:var(--sub)}.ob .ob-v{flex:1;min-width:0;overflow-wrap:anywhere;color:var(--ink)}.ob .sub{margin-top:5px;font-size:12px}
 .bf{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--line);font-size:11.5px;color:#cfe0f7}.bf .face{width:34px;height:34px}.bf .who{color:var(--cy)}
 #brief{max-height:330px;overflow:auto}.empty{font-size:11px;color:var(--sub);padding:6px 2px}
 .gtwrap{overflow-x:auto}#gt{display:block}.gthead{font-size:10.5px;color:var(--sub);margin:-4px 0 6px}
@@ -267,7 +268,7 @@ html body .pn h3{word-break:keep-all}
  /* 안쪽 스크롤 상자: 짧으면 모두 펼침(.mgfull) · 길면(.mgscr) 테두리 + 아래 그늘 + 안내 한 줄 */
  html body .mgfull{max-height:none!important;overflow-y:visible!important}
  html body .mgscr{max-height:62vh!important;overflow-y:auto!important;border:1px solid var(--line2);border-radius:8px;box-shadow:inset 0 -18px 14px -12px rgba(57,212,255,.45)}
- html body .mgscrn{font-size:11px;color:var(--cy);margin:6px 0 3px}
+ html body .mgscrn{font-size:12px;color:var(--cy);margin:6px 0 3px}
 }
 
 @media (max-width:820px) and (orientation:landscape) and (max-height:500px){
