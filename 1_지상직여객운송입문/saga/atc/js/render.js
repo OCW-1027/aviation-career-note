@@ -44,6 +44,7 @@
   }
   R.geoReady = function () { return !!geoP; };
   /* m = [a, b, c, d, e, f]: 레이더 좌표(NM) → 화면 · k = NM 하나가 화면에서 몇 px인지(선 굵기 맞춤) */
+  function seaVeil(ctx, m, col) { ctx.save(); ctx.transform(m[0], m[1], m[2], m[3], m[4], m[5]); var p = new Path2D(); p.rect(-600, -600, 1200, 1200); p.addPath(geoP); ctx.fillStyle = col; ctx.fill(p, 'evenodd'); ctx.restore(); }
   function geoFill(ctx, m, k, land, coast, cw) { ctx.save(); ctx.transform(m[0], m[1], m[2], m[3], m[4], m[5]); ctx.fillStyle = land; ctx.fill(geoP, 'nonzero'); if (coast) { ctx.strokeStyle = coast; ctx.lineWidth = cw / k; ctx.lineJoin = 'round'; ctx.stroke(geoC); } ctx.restore(); }
   /* 지명: 겹치면 덜 중요한 것을 뺌 · toS = 레이더 좌표 → 화면 */
   function geoLabels(ctx, toS, W, H, k, col) {
@@ -284,6 +285,7 @@
       if (geoP) { ctx.fillStyle = gc.sea || '#3e5261'; ctx.fillRect(0, 0, W, H); geoFill(ctx, [s * px.u, -s * px.v, s * py.u, -s * py.v, W / 2 - v.cu * s, H / 2 + v.cv * s], kk, gc.land || R.SAT.edge || '#60634a', s < 0.05 ? 'rgba(214,220,196,.35)' : null, 1.2); }   /* 사진 바깥: 실제(하네다) · 가상(세이라 · 아스테라) 주변 지리 */
       else { ctx.fillStyle = R.SAT.edge || '#60634a'; ctx.fillRect(0, 0, W, H); }
       R.tOk = false; var tOk = !app.guide && ATC.Tiles && ATC.Tiles.draw2D(ctx, W, H, function (x, y) { var q = D.xy2uv(x, y); return gs(v, W, H, q.u, q.v); }, function (sx, sy) { var q = R.groundToUV(v, W, H, sx, sy); return D.uv2xy(q.u, q.v); }, s);      /* 공항 둘레 실제 항공사진(실시간 · 확대할수록 선명한 단계) */
+      if (tOk && geoP && ATC.aptId === 'RJTT') seaVeil(ctx, [s * px.u, -s * px.v, s * py.u, -s * py.v, W / 2 - v.cu * s, H / 2 + v.cv * s], 'rgba(28,47,60,.74)');      /* 바다는 한 색으로 고르게(항공사진의 바다 무늬 · 조각 차이를 덮음) — 하네다만(해안선이 실제와 맞음) */
       ctx.drawImage(satImg, a[0], a[1], b[0] - a[0], b[1] - a[1]);                              /* 가장자리는 흐려 둔 사진(feather) */
       ctx.fillStyle = tOk ? 'rgba(5,9,14,.20)' : 'rgba(5,9,14,.30)'; ctx.fillRect(0, 0, W, H);
       R.tOk = tOk;      /* 사진 출처는 작은 지도까지 그린 뒤 R.tileCredit에서(가려지지 않게) */

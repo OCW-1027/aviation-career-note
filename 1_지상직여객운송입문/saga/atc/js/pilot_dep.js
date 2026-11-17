@@ -4,7 +4,9 @@
 (function () {
   'use strict';
   var ATC = window.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt;
-  var SQ_T = 40;      /* 트랜스폰더를 이 시간(초) 안에 넣지 않으면 부기장이 넣음 */
+  var SQ_T = 40;
+  var GZ = { T1: { n: 'Tokyo Ground', fq: '118.225' }, T3: { n: 'Tokyo Ground', fq: '121.625' } };      /* 주기장 구역별 Ground(AIP RJTT AD2-29 · AD2-39) */
+  var GX = ['118.225', '121.625', '121.70', '121.975', '122.075'];      /* 트랜스폰더를 이 시간(초) 안에 넣지 않으면 부기장이 넣음 */
 
   function DepPilot(sim) {
     D = ATC.D; this.sim = sim; sim.pilot = this; this.dep = true; this.phase = 'fpl'; this.ver = 0;
@@ -51,7 +53,7 @@
   };
   /* 주기장에 선 내 항공기(비행계획에 맞는 터미널) */
   DepPilot.prototype.standFor = function () {
-    var fp = this.fp, intl = D.isIntl ? D.isIntl(fp.dest) : false, pax = (D.standGroups && D.standGroups.pax) || [], want = fp.grp ? [].concat(fp.grp) : intl ? ['T3'] : pax.filter(function (g) { return g !== 'T3'; });
+    var fp = this.fp, intl = D.isIntl ? D.isIntl(fp.dest) : false, pax = (D.standGroups && D.standGroups.pax) || [], want = intl ? ['T3'] : ['T1'];      /* 지원 주기장: T1(국내) · T3(국제) — AIP AD2-39 Ground 구역(118.225 · 121.625)이 분명한 곳만(GPT 14차 F14-01) */
     var ks = Object.keys(D.stands).filter(function (k) { return want.indexOf(D.stands[k].grp) >= 0; }); if (!ks.length) ks = Object.keys(D.stands).filter(function (k) { return pax.indexOf(D.stands[k].grp) >= 0; });
     if (!this.standK || ks.indexOf(this.standK) < 0) this.standK = ks[Math.floor(ks.length / 2)];
     return this.standK;
@@ -62,6 +64,7 @@
     if (!ac) { ac = this.ac = { id: sim.nextId++, sim: sim, cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: f.perf, kind: 'dep', st: 'pre', owner: 'me', pilotMe: true, born: sim.t, ias: 0, gs: 0, vs: 0, alt: D.airport.elev || 0 }; this.cs = ac.cs; }
     ac.x = p.x; ac.y = p.y; ac.hdg = hdg; ac.stand = sk; ac.gate = fp.gate; ac.dest = fp.dest; ac.destName = fp.destName; ac.rfl = ac.rflFiled = fp.rfl; ac.rwy = this.rwyFor(fp.gate);
     ac.route = fp.gate + ' ' + fp.dest; ac.atisRep = sim.atis;
+    this.gnd = GZ[D.stands[sk].grp] || { n: 'Tokyo Ground', fq: (D.freq.GND || {}).fq };
     this.mcp = { hdg: hdg, alt: D.sidInit || 9000, spd: 250 };
   };
   DepPilot.prototype.confirm = function () {      /* 비행계획 확정 → 허가 요청 차례 */
@@ -79,13 +82,27 @@
   DepPilot.prototype.take = function (cmds) {
     var sim = this.sim, ac = this.ac, self = this;
     cmds.forEach(function (c) {
-      if (c.k === 'ho') { self.freqTo = { to: c.to, fq: (D.freq[c.to] || {}).fq, t: sim.t }; return; }
+      if (c.k === 'ho') { var to = c.to.fq ? c.to : D.freq[c.to] || {}; self.freqTo = { to: c.key || c.to, n: to.n, fq: to.fq, t: sim.t }; return; }
       if (c.k === 'clr') { self.xpdr.want = c.sq; self.xpdr.t = sim.t; self.cur.alt = c.alt; self.mcp.alt = c.alt; self.sid = c.sid; }
       sim.applyAll(ac, [c]);
     });
     this.bump();
   };
   DepPilot.prototype.known = function () { return false; };
+  DepPilot.prototype.onClr = function (cmds, o) {
+    var self = this; if (this.prompt) return false;      /* 내 교신(준비 완료 보고 등)을 아직 보내지 않음 → 관제사는 기다림 */
+    cmds = cmds.map(function (c) {
+      if (c.k === 'ho' && c.to === 'GND') return { k: 'ho', to: self.gnd, key: 'GND' };
+      if (c.k === 'rbok' && !self.depSaid && D.freq.DEP) { self.depSaid = true; self.depFq = D.freq.DEP.fq; return { k: 'rbok', then: 'departure frequency ' + D.freq.DEP.fq }; }      /* 출발 주파수는 미리 알려 줌(GPT 14차 R14-03) */
+      return c;
+    });
+    return ATC.Pilot.prototype.onClr.call(this, cmds, o);
+  };
+  DepPilot.prototype.freqOpts = function () {
+    var f = this.freqTo, o = [{ to: 'OK', n: f.n, fq: f.fq }], other = GX.filter(function (x) { return x !== f.fq; });
+    o.push({ to: 'X1', n: f.n, fq: other[0] }); if (D.freq.TWR) o.push({ to: 'X2', n: D.freq.TWR.n, fq: D.freq.TWR.fq });
+    return o.sort(function (a, b) { return a.fq < b.fq ? -1 : 1; });
+  };
   DepPilot.prototype.revector = function () { };
   /* 트랜스폰더: 숫자 0 ~ 7 네 자리 */
   DepPilot.prototype.key = function (d) {
@@ -101,10 +118,11 @@
   };
   DepPilot.prototype.tune = function (to) {
     var sim = this.sim, ac = this.ac, f = this.freqTo; if (!f || f.sent) return;
-    if (to !== f.to) { sim.inc('p_freq_bad', [ac], ATC.T('{0}: 주파수를 잘못 맞췄습니다({1}) — 지시는 {2} {3}', ac.cs, D.freq[to].fq, D.freq[f.to].n, D.freq[f.to].fq)); this.bump(); return; }
-    f.sent = true; this.freqNow = f.to;
+    var pick = this.freqOpts().filter(function (q) { return q.to === to; })[0] || {};
+    if (to !== 'OK' && to !== f.to) { sim.inc('p_freq_bad', [ac], ATC.T('{0}: 주파수를 잘못 맞췄습니다({1}) — 지시는 {2} {3}', ac.cs, pick.fq || '?', f.n, f.fq)); this.bump(); return; }
+    f.sent = true; this.freqNow = f.to; this.freqNowFq = f.fq;
     if (this.xpdr.want && !this.xpdr.set) { this.xpdr.set = this.xpdr.code = this.xpdr.want; sim.inc('p_set_late', [ac], ATC.T('{0}: 트랜스폰더를 넣지 않아 부기장이 {1}을(를) 넣었습니다.', ac.cs, this.xpdr.want)); }
-    sim.applyAll(ac, [{ k: 'ho', to: f.to }]);
+    sim.applyAll(ac, [{ k: 'ho', to: 'GND' }]);
     this.finish();
   };
   DepPilot.prototype.finish = function () {
