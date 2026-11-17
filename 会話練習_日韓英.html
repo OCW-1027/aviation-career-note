@@ -1018,7 +1018,9 @@ function aiFail(code){var c=C;if(!c)return;c.busy=false;c.req=null;var last=c.hi
  c.retry=last||null;c.log.push({w:'err',tx:code==='rate'?t.eRate:code==='empty'?t.eEmpty:code==='slow'?t.eSlow:t.eNet,retry:!!last});paintLog()}
 function aiMicStop(soft){var x=crec;crec=null;if(x)x.stop(!!soft);var b=$('aiMic');if(b){b.classList.remove('rec');b.setAttribute('aria-pressed','false');b.textContent='🎤'}}
 function aiMic(btn){if(!micOk()||!C)return;if(crec){var x=crec;x.stop(true);return}if(C.busy)return;stopTts();
- var ta=$('aiTx'),sep=C.T==='ja'?'':' ',base=ta.value?ta.value.replace(/\s*$/,sep):'',tm=null,c0=C,lastW=ta.value;
+ var ta=$('aiTx'),sep=C.T==='ja'?'':' ',base='',tm=null,c0=C,lastW;
+ /* 新しく録音するときは、入力欄の前の内容（前の録音・入力）を消してから受け取る（2026.11） */
+ ta.value='';grow(ta);lastW=ta.value;
  /* 聞き取り中に入力欄を直したら（消す・打つ）、聞き取りを止めて、直した内容をそのまま残す（2026.10） */
  function put(v){if(C!==c0||ta.value!==lastW)return false;ta.value=v.slice(0,1100);lastW=ta.value;grow(ta);return true}
  function edited(){if(crec===me)aiMicStop(false)}
