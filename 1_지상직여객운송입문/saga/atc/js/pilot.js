@@ -234,8 +234,8 @@
       else if (F.mode === 'last' && loc && ra < 1000) ATC.Manual.engage(this, 'last');
     }
     if (ATC.Manual && F.on) ATC.Manual.check(this);
-    if (loc && ra < 1500 && cf.gear === 'up' && !cf.gearT && !this.foGear) { this.foGear = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 1,500ft까지 기어를 내리지 않아 부기장이 내렸습니다(GPWS 「TOO LOW GEAR」 직전).', ac.cs)); this.gear(); }
-    if (loc && ra < 1000 && cf.flap < 25 && !this.foFlap) { this.foFlap = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 1,000ft까지 착륙 플랩을 내리지 않아 부기장이 플랩 30을 내렸습니다(안정 접근 기준).', ac.cs)); cf.flap = 30; this.bump(); }
+    if (loc && ra < 1500 && cf.gear === 'up' && !cf.gearT && !this.foGear) { this.foGear = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 게임의 기어 전개 확인 높이(1,500ft)에 이르러 부기장이 기어를 내렸습니다.', ac.cs)); this.gear(); }
+    if (loc && ra < 1000 && cf.flap < 25 && !this.foFlap) { this.foFlap = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 1,000ft까지 착륙 플랩을 내리지 않아 게임 부기장 도움으로 플랩 30을 내렸습니다(안정 접근 준비).', ac.cs)); cf.flap = 30; this.bump(); }
     if (this.knobK && sim.t - this.knobT > 1.2) { var kk = this.knobK; this.knobK = null; if (kk === 'spd' || (kk === 'hdg' && ac.nav && ac.nav.mode === 'hdg')) this.set(kk); }      /* 속도 · 방위(HDG SEL 중)는 손잡이를 돌리면 바로 따름 */
     if (this.twrT && !this.twrSaid && sim.t >= this.twrT && !this.clr) { this.twrSaid = true; this.ci = true; this.onClr([{ k: 'ctl', rwy: ac.appr ? ac.appr.rwy : ac.rwy }], {}); }
     var c = this.clr;

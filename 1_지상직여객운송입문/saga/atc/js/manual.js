@@ -1,7 +1,7 @@
 /* AIRLINE SAGA — ATC 조종사 체험 2-B: 직접 조종(수동 비행) · 착륙 평가
    - 조종 방식: auto(자동조종 · 자동 착륙) / last(1,000ft에서 자동조종이 풀림 → 직접 착륙) / full(처음부터 직접)
    - 비행 움직임: 787-9 착륙 무게(190t) 기준 질점 모델 — 양력 · 항력(플랩 · 기어) · 추력(엔진 반응 지연) · 바람.
-     787 비행 제어처럼 조종간을 놓으면 기수 각 · 경사(30° 이하)를 그대로 유지
+     게임 단순화: 조종간을 놓으면 기수 각 · 경사를 그대로 유지(실제 787은 속도 안정 · 비행경로 보상 — GPT ATC-13차 F13-01)
    - 비행 지시기(FD): 지정 기수/경로 · 고도, ILS(로컬라이저 · 활공각), 50ft 아래 플레어 안내
    - 착륙 평가: 접지 충격(ft/min) · 중심선 · 접지 거리 · 속도 · 기수 각 · 경사 · 옆 미끄러짐, 활주로 밖 접지는 사고
    조작: 키보드(방향키 · W/S 추력 · Z 자동조종 · T 자동추력), 게임패드, 화면 조종간(3D 조종석) */
@@ -37,6 +37,7 @@
     if (why === 'last' || ac.appr && ac.appr.loc) { p.mcp.spd = ac.perf.vapp; F.at = true; }
     ac.man = F; p.apOff = (p.apOff || 0) + 1;
     sim.sys(why === 'last' ? ATC.T('{0}: 1,000ft — 자동조종 해제. 직접 착륙하세요(방향키 · 화면 조종간). 자동추력이 접근 속도 {1}kt를 지킵니다.', ac.cs, ac.perf.vapp) : ATC.T('{0}: 자동조종 해제 — 직접 조종합니다(방향키 · 화면 조종간 · 게임패드).', ac.cs), 'alert');
+    if (!p.flyTip) { p.flyTip = true; sim.sys(ATC.T('게임에서는 조종간을 놓으면 지금 자세를 유지합니다(실제 787은 속도 안정과 비행경로 보상을 함께 합니다). 자홍색 막대는 게임 조종 도움 표시로, 실제 FD와 다릅니다.'), 'info'); }
     if (ATC.CkSnd && ATC.CkSnd.wail) ATC.CkSnd.wail();
     p.bump();
   };
@@ -47,7 +48,7 @@
     p.sim.sys(ATC.T('{0}: 자동조종 연결 — MCP 설정대로 비행합니다.', ac.cs), 'info'); p.bump();
   };
   M.toggleAP = function (p) { if (p.fly.on) M.release(p); else M.engage(p, 'btn'); };
-  M.toggleAT = function (p) { var F = p.fly; F.at = !F.at; p.sim.sys(F.at ? ATC.T('자동추력(A/T) 연결 — MCP 속도 {0}kt', p.mcp.spd) : ATC.T('자동추력(A/T) 해제 — 추력을 직접 조절하세요(W/S · 추력 레버)'), 'info'); p.bump(); };
+  M.toggleAT = function (p) { var F = p.fly; F.at = !F.at; if (!F.at) F.atOffT = p.sim.t; p.sim.sys(F.at ? ATC.T('자동추력(A/T) 연결 — MCP 속도 {0}kt', p.mcp.spd) : ATC.T('자동추력(A/T) 해제 — 추력을 직접 조절하세요(W/S · 추력 레버)'), 'info'); p.bump(); };
 
   /* 게임패드: 왼쪽 스틱 = 조종간(당기면 기수 올림), RT/LT = 추력, A = 자동조종, Y = 기어, LB/RB = 플랩 */
   function pad(F, p) {
@@ -78,15 +79,17 @@
     /* 자세: 조종간 → 기수 각 · 경사 변화율(놓으면 유지) */
     F.pitch = U.clamp(F.pitch + ip * 3 * dt, -12, 22);
     if (Math.abs(ir) > 0.02) F.bank = U.clamp(F.bank + ir * 12 * dt, -60, 60);
-    else if (Math.abs(F.bank) > 30) F.bank -= Math.sign(F.bank) * 4 * dt;      /* 787: 30°를 넘으면 조종간을 놓을 때 30°로 돌아옴 */
+    else if (Math.abs(F.bank) > 35) F.bank -= Math.sign(F.bank) * 4 * dt;      /* 경사 보호(게임 단순화): 35°를 넘긴 채 놓으면 30°대로 돌아옴 */
+    else if (Math.abs(F.bank) > 30 && F.bankBack) F.bank -= Math.sign(F.bank) * 4 * dt;
     else if (Math.abs(F.bank) < 1) F.bank *= Math.max(0, 1 - dt * 0.4);
+    F.bankBack = Math.abs(ir) <= 0.02 && (Math.abs(F.bank) > 35 || F.bankBack && Math.abs(F.bank) > 30);
     /* 추력 */
     var thIn = U.clamp(F.k.thr + gp.thr, -1, 1);
-    if (thIn) { if (F.at) { F.at = false; sim.sys(ATC.T('자동추력(A/T) 해제 — 추력을 직접 조절합니다.'), 'info'); p.bump(); } F.th = U.clamp(F.th + thIn * 0.35 * dt, 0, 1); }
+    if (thIn) { if (F.at) { F.at = false; F.atOffT = sim.t; sim.sys(ATC.T('자동추력(A/T) 해제 — 추력을 직접 조절합니다.'), 'info'); p.bump(); } F.th = U.clamp(F.th + thIn * 0.35 * dt, 0, 1); }
     var gam = F.gam, alpha = F.pitch - gam / D2R, ae = aero(cf, ac.ias, alpha, ra), W = MASS * G;
     if (F.at) {
       if (ra < 25 && ac.appr) F.th = 0;      /* 플레어: 자동추력이 25ft에서 아이들로(RETARD) */
-      else { var ades = U.clamp(((p.mcp.spd || ac.perf.vapp) - ac.ias) * 0.12, -0.8, 0.8) * KT; F.th = Math.pow(U.clamp((ae.Dr + W * Math.sin(gam) + MASS * ades) / thrust(1, ac.alt), 0, 1), 1 / 1.5); }
+      else { var vt0 = p.mcp.spd || ac.perf.vapp; if (ac.appr && ac.appr.loc && ac.appr.d !== undefined) vt0 = Math.min(vt0, Math.max(ac.perf.vapp, ac.appr.d < 4.6 ? ac.perf.vapp : ac.appr.d < 9 ? 180 : 210)); var ades = U.clamp((vt0 - ac.ias) * 0.12, -1.5, 0.8) * KT;      /* 최종 접근에서는 자동조종 때와 같은 속도 계획(9NM 180 · 4.6NM 접근 속도) */ F.th = Math.pow(U.clamp((ae.Dr + W * Math.sin(gam) + MASS * ades) / thrust(1, ac.alt), 0, 1), 1 / 1.5); }
     }
     F.thr += (F.th - F.thr) * Math.min(1, dt * (F.th > F.thr ? 0.45 : 0.8));      /* 엔진 반응 지연 */
     var T = thrust(F.thr, ac.alt), vt = Math.max(30, ac.ias * (1 + ac.alt / 1000 * 0.0165)) * KT, nz = ae.L / W;
@@ -99,7 +102,7 @@
     ac.x += vx / 3600 * dt; ac.y += vy / 3600 * dt; ac.gs = Math.hypot(vx, vy); F.trk = U.n360(Math.atan2(vx, vy) / D2R);
     ac.tHdg = ac.tHdg || ac.hdg;
     /* 경로(LNAV): 지점을 지나면 다음 지점(FD 안내용) */
-    var nav = ac.nav; if (nav && nav.mode === 'route') { var fn = ac.nextFix(); if (fn && U.dist(ac, D.fix[fn]) < 1.2) { nav.i++; if (sim.onFix) sim.onFix(ac, fn); if (nav.i >= nav.route.length) { nav.mode = 'hdg'; if (sim.onRouteEnd) sim.onRouteEnd(ac, fn); } } }
+    var nav = ac.nav; if (nav && nav.mode === 'route') { var fn = ac.nextFix(); if (fn && U.dist(ac, D.fix[fn]) < 1.2) { nav.i++; if (sim.onFix) sim.onFix(ac, fn); if (nav.i >= nav.route.length) { nav.mode = 'hdg'; p.mcp.hdg = Math.round(ac.hdg / 5) * 5 || 360; if (sim.onRouteEnd) sim.onRouteEnd(ac, fn); } } }      /* 경로 끝: 지금 기수를 MCP에(시작 때 기수로 되돌아가지 않게) */
     /* ILS 포착 표시(관제탑 이양 흐름용) — 자동조종처럼 끌어가지는 않음 */
     var ap = ac.appr; ra = ac.alt - elev;
     if (ap) { var e = D.ends[ap.rwy], g = ATC.ilsGeom(ac, e); ap.d = g.d; ap.xtk = g.xtk; if (!ap.loc && g.d > 0.5 && g.d < 25 && Math.abs(g.xtk) < 0.4 && Math.abs(U.adiff(ac.hdg, e.crs)) < 35) { ap.loc = true; nav.mode = 'loc'; if (sim.onLoc) sim.onLoc(ac); } if (ap.loc) { var ga = ATC.gsAlt(g.d); ap.gs = Math.abs(ac.alt - ga) < 150; } }
@@ -127,19 +130,19 @@
     if (s <= 240) { w = ATC.T('아주 부드러운 착륙'); sim.inc('p_ld_soft', [ac], ATC.T('{0}: 아주 부드러운 접지 — {1}ft/min.', cs, s)); }
     else if (s <= 420) { w = ATC.T('좋은 착륙'); sim.inc('p_ld_ok', [ac], ATC.T('{0}: 좋은 접지 — {1}ft/min.', cs, s)); }
     else if (s <= 600) { w = ATC.T('단단한 착륙'); sim.inc('p_ld_firm', [ac], ATC.T('{0}: 단단한 접지 — {1}ft/min(승객이 느낄 정도).', cs, s)); }
-    else if (s <= 900) { w = ATC.T('거친 착륙'); sim.inc('p_ld_hard', [ac], ATC.T('{0}: 거친 착륙 — {1}ft/min. 600ft/min을 넘으면 기체 점검 대상입니다.', cs, s)); }
-    else { w = ATC.T('매우 거친 착륙'); sim.inc('p_ld_hard2', [ac], ATC.T('{0}: 매우 거친 착륙 — {1}ft/min. 기체 구조 점검이 필요합니다.', cs, s)); }
-    if (td.pitch > 9.5) sim.inc('p_ld_tail', [ac], ATC.T('{0}: 기수를 {1}° 들고 접지 — 꼬리가 활주로에 닿았습니다(테일 스트라이크).', cs, td.pitch));
-    else if (td.pitch < 0) sim.inc('p_ld_nose', [ac], ATC.T('{0}: 앞바퀴부터 접지했습니다(기수 {1}°) — 플레어가 부족합니다.', cs, td.pitch));
+    else if (s <= 900) { w = ATC.T('거친 착륙'); sim.inc('p_ld_hard', [ac], ATC.T('{0}: 거친 착륙 — {1}ft/min. 게임의 거친 착륙 등급입니다(실제 점검 여부는 조종사 보고와 기종별 정비 절차로 판단).', cs, s)); }
+    else { w = ATC.T('매우 거친 착륙'); sim.inc('p_ld_hard2', [ac], ATC.T('{0}: 매우 거친 착륙 — {1}ft/min. 게임의 가장 낮은 착륙 등급입니다(실제 점검 여부는 조종사 보고와 기종별 정비 절차로 판단).', cs, s)); }
+    if (td.pitch > 9.5) sim.inc('p_ld_tail', [ac], ATC.T('{0}: 기수 {1}°로 접지 — 게임의 테일 스트라이크 위험 기준(9.5°)을 넘었습니다.', cs, td.pitch));
+    else if (td.pitch < 0) sim.inc('p_ld_nose', [ac], ATC.T('{0}: 기수를 낮춘 위험한 접지 자세(기수 {1}°) — 플레어가 부족합니다.', cs, td.pitch));
     if (Math.abs(td.bank) > 7) sim.inc('p_ld_wing', [ac], ATC.T('{0}: 경사 {1}°로 접지 — 날개 끝 · 엔진이 활주로에 닿을 위험.', cs, Math.abs(td.bank)));
     if (Math.abs(td.cl) > 35) sim.inc('p_ld_cl', [ac], ATC.T('{0}: 중심선에서 {1}ft 벗어나 접지했습니다.', cs, Math.abs(td.cl)));
     else if (Math.abs(td.cl) > 15) sim.inc('p_ld_cl2', [ac], ATC.T('{0}: 중심선에서 {1}ft 벗어나 접지했습니다.', cs, Math.abs(td.cl)));
-    if (td.dist < 500) sim.inc('p_ld_short', [ac], ATC.T('{0}: 활주로 시단에서 {1}ft — 접지 구역보다 짧게 접지했습니다.', cs, td.dist));
-    else if (td.dist > 3500) sim.inc('p_ld_long', [ac], ATC.T('{0}: 시단에서 {1}ft — 접지 구역을 지나 늦게 접지했습니다(남은 활주로가 줄어듦).', cs, td.dist));
-    else if (td.dist > 2500) sim.inc('p_ld_long2', [ac], ATC.T('{0}: 시단에서 {1}ft — 조금 늦게 접지했습니다.', cs, td.dist));
+    if (td.dist < 500) sim.inc('p_ld_short', [ac], ATC.T('{0}: 활주로 시단에서 {1}ft — 게임의 목표 접지 위치(1,000 ~ 2,500ft)보다 일찍 접지했습니다.', cs, td.dist));
+    else if (td.dist > 3500) sim.inc('p_ld_long', [ac], ATC.T('{0}: 시단에서 {1}ft — 접지 구역(시단부터 3,000ft)을 지나 접지했습니다(남은 활주로가 줄어듦).', cs, td.dist));
+    else if (td.dist > 2500) sim.inc('p_ld_long2', [ac], ATC.T('{0}: 시단에서 {1}ft — 게임의 목표 접지 위치보다 조금 늦게 접지했습니다.', cs, td.dist));
     if (td.ias < td.vref - 5) sim.inc('p_ld_slow', [ac], ATC.T('{0}: 접지 속도 {1}kt — 기준 속도(Vref {2}kt)보다 느립니다.', cs, td.ias, td.vref));
     else if (td.ias > td.vref + 20) sim.inc('p_ld_fast', [ac], ATC.T('{0}: 접지 속도 {1}kt — 기준 속도(Vref {2}kt)보다 많이 빠릅니다.', cs, td.ias, td.vref));
-    if (Math.abs(td.crab) > 8) sim.inc('p_ld_crab', [ac], ATC.T('{0}: 기수가 활주로와 {1}° 어긋난 채 접지 — 옆바람 수정각을 접지 직전에 풀어야 합니다(디크랩).', cs, Math.abs(td.crab)));
+    if (Math.abs(td.crab) > 8) sim.inc('p_ld_crab', [ac], ATC.T('{0}: 접지 때 기수와 활주로 방향 차이 {1}° — 이 게임에서는 접지 전에 기수를 활주로 방향에 맞추는 기법(디크랩)을 연습합니다.', cs, Math.abs(td.crab)));
     td.word = w; p.bump();
   };
   /* 직접 조종 중 확인: 지정 고도 · 기수 벗어남, 500ft 안정 접근 */
@@ -155,15 +158,21 @@
       if (dh < 10) { dv.hdgIn = true; dv.hdgT = null; } else if (dv.hdgIn && dh > 25) { if (dv.hdgT === null) dv.hdgT = sim.t; else if (sim.t - dv.hdgT > 20) { sim.inc('p_dev', [ac], ATC.T('{0}: 지정 기수 {1}에서 {2}° 벗어났습니다.', ac.cs, ATC.fmt.hdg(c.hdg), Math.round(dh))); dv.hdgIn = false; dv.hdgT = null; } }
     }
     if (onApp && ra < 2500 && !dv.spdTip && (p.mcp.spd || 0) > ac.perf.vapp + 25) { dv.spdTip = true; sim.sys(ATC.T('{0}: 최종 접근 — 착륙 플랩을 내리고 MCP 속도를 접근 속도 {1}kt로 줄이세요(자동추력이 따라감).', ac.cs, ac.perf.vapp), 'info'); }
-    if (onApp && ra < 500 && !dv.st500) {
-      dv.st500 = true; var e = D.ends[ap.rwy], g = ATC.ilsGeom(ac, e), gsd = (ac.alt - ATC.gsAlt(g.d)) / Math.max(40, g.d * 50), lcd = g.xtk / (0.6 * Math.max(0.15, g.d) / 10 + 0.02), vref = ac.perf.vapp - 5, why = [];
-      if (ac.ias < vref - 5 || ac.ias > vref + 20) why.push(ATC.T('속도 {0}kt', Math.round(ac.ias)));
+    var gate = sim.lvp ? 1000 : 500;      /* 안정 접근 기준 높이: 계기 기상(저시정) 1,000ft · 시계 기상 500ft(FSF ALAR) */
+    if (onApp && ra < gate && ra > 50) {
+      var e = D.ends[ap.rwy], g = ATC.ilsGeom(ac, e), gsd = (ac.alt - ATC.gsAlt(g.d)) / Math.max(40, g.d * 50), lcd = g.xtk / (0.6 * Math.max(0.15, g.d) / 10 + 0.02), vref = ac.perf.vapp - 5, why = [];
+      if (ac.ias < vref || ac.ias > vref + 20) why.push(ATC.T('속도 {0}kt', Math.round(ac.ias)));
       if (Math.abs(gsd) > 1) why.push(ATC.T('활공각 {0}', gsd > 0 ? ATC.T('높음') : ATC.T('낮음')));
       if (Math.abs(lcd) > 1) why.push(ATC.T('로컬라이저 벗어남'));
-      if (ac.vs < -1200) why.push(ATC.T('강하율 {0}ft/min', Math.round(-ac.vs)));
-      if (p.cfg.gear !== 'down' || p.cfg.flap < 25) why.push(ATC.T('착륙 형태 미완'));
-      if (why.length) { dv.unst = true; sim.inc('p_ld_unst', [ac], ATC.T('{0}: 500ft에서 불안정 접근({1}) — 실제로는 복행(TO/GA)해야 합니다.', ac.cs, why.join(' · '))); }
-      else sim.inc('p_ld_stab', [ac], ATC.T('{0}: 500ft 안정 접근 — 속도 · 활공각 · 로컬라이저 · 착륙 형태 모두 기준 안.', ac.cs));
+      if (ac.vs < -1000) why.push(ATC.T('강하율 {0}ft/min', Math.round(-ac.vs)));
+      if (p.cfg.gear !== 'down' || p.cfg.flapPos < 24.5) why.push(ATC.T('착륙 형태 미완'));
+      if (!dv.st500) {      /* 기준 높이에서 처음 판정 */
+        dv.st500 = true;
+        if (why.length) { dv.unst = true; sim.inc('p_ld_unst', [ac], ATC.T('{0}: {1}ft에서 불안정 접근({2}) — 실제로는 복행(TO/GA)해야 합니다.', ac.cs, gate, why.join(' · '))); }
+        else sim.inc('p_ld_stab', [ac], ATC.T('{0}: {1}ft 게임 안정 접근 검사 통과 — 실제 운항 기준 전체를 검사한 것은 아닙니다.', ac.cs, gate));
+      } else if (why.length && !dv.unst) {      /* 기준 높이 아래에서 다시 불안정해짐 — 실제 권고는 바로 복행 */
+        dv.unst = true; sim.inc('p_ld_unst', [ac], ATC.T('{0}: 기준 높이 아래에서 불안정해졌습니다({1}) — 실제로는 바로 복행(TO/GA)해야 합니다.', ac.cs, why.join(' · ')));
+      }
     }
   };
   /* 복행(TO/GA): 이번 단계에서는 체험을 끝냄 */
@@ -180,10 +189,15 @@
     var g = e ? ATC.ilsGeom(ac, e) : null, nav = ac.nav || {};
     if (ap && g && g.d > -0.5 && (ap.loc || Math.abs(g.xtk) < 1.6 && Math.abs(U.adiff(ac.hdg, e.crs)) < 70)) { tT = U.n360(e.crs - U.clamp(g.xtk * 60, -35, 35)); mode = 'LOC'; }
     else if (nav.mode === 'route' && ac.nextFix()) { tT = U.brg(ac, D.fix[ac.nextFix()]); mode = 'LNAV'; }
+    else if (ap && g && !ap.loc && nav.mode !== 'route' && !p.asg.hdg && (!p.cur.hdg || Math.abs(g.xtk) < 6)) {      /* 접근 허가 뒤 경로가 끝났는데 아직 로컬라이저 밖: 최종 접근로로 들어가는 길 안내 */
+      var cx = Math.sin(e.crs * D2R), cy = Math.cos(e.crs * D2R), dq = Math.max(6, g.d - 3), q = { x: e.thr.x - cx * dq, y: e.thr.y - cy * dq };
+      tT = U.brg(ac, q); if (Math.abs(g.xtk) < 4 && g.d > 3) { var lim = 45, a = U.adiff(e.crs, tT); if (Math.abs(a) > lim) tT = U.n360(e.crs + Math.sign(a) * lim); }
+      mode = 'LOC';
+    }
     else tT = p.mcp.hdg || ac.hdg;
     tb = U.clamp(U.adiff(trk, tT) * 1.6, -25, 25);
     var vt = Math.max(60, ac.ias * (1 + ac.alt / 1000 * 0.0165)) * KT, gam = man ? F.gam / D2R : Math.atan2((ac.vs || 0) * FT / 60, vt) / D2R, vmode = 'ALT';
-    if (ap && g && (ap.gs || (ap.loc && ac.alt - ATC.gsAlt(g.d) < 1500 && ac.alt - ATC.gsAlt(g.d) > -400))) { gt = -3 + U.clamp((ATC.gsAlt(g.d) - ac.alt) * 0.02, -3, 3); vmode = 'G/S'; if (ra < 45) { gt = -3 + (45 - Math.max(0, ra)) / 45 * 2.6; vmode = 'FLARE'; } }
+    if (ap && g && (ap.gs || (ap.loc && ac.alt - ATC.gsAlt(g.d) < 1500 && ac.alt - ATC.gsAlt(g.d) > -400))) { gt = -3 + U.clamp((ATC.gsAlt(g.d) - ac.alt) * 0.02, -1.5, 3); vmode = 'G/S';      /* 위에서 잡을 때도 최대 4.5° — 더 가파르면 속도가 붙음 */ if (ra < 45) { gt = -3 + (45 - Math.max(0, ra)) / 45 * 2.6; vmode = 'FLARE'; } }
     else { var err = (p.mcp.alt || ac.alt) - ac.alt, vs = U.clamp(err * 2.5, -2500, 2000); gt = Math.asin(U.clamp(vs * FT / 60 / vt, -0.3, 0.3)) / D2R; }
     return { roll: U.clamp(tb - bank, -25, 25), pitch: U.clamp((gt - gam) * 1.6, -8, 8), lat: mode, ver: vmode };
   };
@@ -225,31 +239,31 @@
       th.addEventListener('pointerup', function () { td = null; });
     }
     el.hidden = !F.on;
-    if (F.on) { var lv = el.querySelector('.ckthr i'); lv.style.bottom = (F.th * 100).toFixed(0) + '%'; el.querySelector('.ckthr b').style.height = (F.thr * 100).toFixed(0) + '%'; el.querySelector('.ckthr').classList.toggle('at', !!F.at); var h = el.querySelector('.ckhint'), ht = F.gp ? ATC.T('게임패드 · 스틱 조종 · RT/LT 추력 · A 자동조종') : window.matchMedia && matchMedia('(pointer: coarse)').matches ? ATC.T('왼쪽 조종간을 끌어 조종 · 오른쪽 레버로 추력 · 자홍색 FD 막대를 따라가세요') : ATC.T('방향키 조종간 · W/S 추력 · Z 자동조종 · T 자동추력 · G 기어 · [ ] 플랩'); if (h.textContent !== ht) h.textContent = ht; }
+    if (F.on) { var lv = el.querySelector('.ckthr i'); lv.style.bottom = (F.th * 100).toFixed(0) + '%'; el.querySelector('.ckthr b').style.height = (F.thr * 100).toFixed(0) + '%'; el.querySelector('.ckthr').classList.toggle('at', !!F.at); var h = el.querySelector('.ckhint'), ht = F.gp ? ATC.T('게임패드 · 스틱 조종 · RT/LT 추력 · A 자동조종') : window.matchMedia && matchMedia('(pointer: coarse)').matches ? ATC.T('왼쪽 조종간을 끌어 조종 · 오른쪽 레버로 추력 · 자홍색 게임 조종 도움 막대를 따라가세요(실제 FD와 다름)') : ATC.T('방향키 조종간 · W/S 추력 · Z 자동조종 · T 자동추력 · G 기어 · [ ] 플랩'); if (h.textContent !== ht) h.textContent = ht; }
   };
 
-  ATC.INC.p_ld_soft = { cat: 'P', pts: 3, t: ATC.T('아주 부드러운 착륙'), les: 'app' };
+  ATC.INC.p_ld_soft = { cat: 'P', pts: 2, t: ATC.T('아주 부드러운 착륙'), les: 'app' };
   ATC.INC.p_ld_ok = { cat: 'P', pts: 2, t: ATC.T('좋은 착륙'), les: 'app' };
   ATC.INC.p_ld_firm = { cat: 'S', pts: -2, t: ATC.T('단단한 착륙'), les: 'app' };
   ATC.INC.p_ld_hard = { cat: 'S', pts: -10, t: ATC.T('거친 착륙'), les: 'app' };
   ATC.INC.p_ld_hard2 = { cat: 'S', pts: -25, t: ATC.T('매우 거친 착륙'), les: 'app' };
-  ATC.INC.p_ld_tail = { cat: 'S', pts: -15, t: ATC.T('테일 스트라이크'), les: 'app' };
-  ATC.INC.p_ld_nose = { cat: 'S', pts: -8, t: ATC.T('앞바퀴부터 접지'), les: 'app' };
+  ATC.INC.p_ld_tail = { cat: 'S', pts: -15, t: ATC.T('테일 스트라이크 위험'), les: 'app' };
+  ATC.INC.p_ld_nose = { cat: 'S', pts: -8, t: ATC.T('기수 낮은 접지'), les: 'app' };
   ATC.INC.p_ld_wing = { cat: 'S', pts: -12, t: ATC.T('큰 경사로 접지'), les: 'app' };
   ATC.INC.p_ld_cl = { cat: 'S', pts: -5, t: ATC.T('중심선에서 크게 벗어난 접지'), les: 'app' };
   ATC.INC.p_ld_cl2 = { cat: 'E', pts: -2, t: ATC.T('중심선에서 벗어난 접지'), les: 'app' };
-  ATC.INC.p_ld_short = { cat: 'S', pts: -6, t: ATC.T('짧은 접지'), les: 'app' };
+  ATC.INC.p_ld_short = { cat: 'S', pts: -6, t: ATC.T('목표보다 이른 접지'), les: 'app' };
   ATC.INC.p_ld_long = { cat: 'S', pts: -6, t: ATC.T('긴 접지'), les: 'app' };
   ATC.INC.p_ld_long2 = { cat: 'E', pts: -2, t: ATC.T('조금 긴 접지'), les: 'app' };
   ATC.INC.p_ld_slow = { cat: 'S', pts: -4, t: ATC.T('접지 속도 부족'), les: 'app' };
   ATC.INC.p_ld_fast = { cat: 'E', pts: -3, t: ATC.T('접지 속도 과다'), les: 'app' };
-  ATC.INC.p_ld_crab = { cat: 'E', pts: -3, t: ATC.T('옆으로 어긋난 접지(디크랩 부족)'), les: 'app' };
+  ATC.INC.p_ld_crab = { cat: 'E', pts: -3, t: ATC.T('접지 시 기수 정렬각 큼'), les: 'app' };
   ATC.INC.p_ld_unst = { cat: 'S', pts: -5, t: ATC.T('불안정 접근'), les: 'app' };
-  ATC.INC.p_ld_stab = { cat: 'P', pts: 2, t: ATC.T('500ft 안정 접근'), les: 'app' };
+  ATC.INC.p_ld_stab = { cat: 'P', pts: 2, t: ATC.T('게임 안정 접근 검사 통과'), les: 'app' };
   ATC.INC.p_ld_wrong = { cat: 'S', pts: -30, t: ATC.T('다른 활주로에 착륙'), les: 'app' };
   ATC.INC.p_ld_miss = { cat: 'S', pts: -20, t: ATC.T('착륙 실패(활주로 지나침)'), les: 'app' };
   ATC.INC.p_ld_crash = { cat: 'S', pts: -60, t: ATC.T('활주로 밖 접지(사고)'), les: 'app' };
-  ATC.INC.p_ga = { cat: 'E', pts: -3, t: ATC.T('복행'), les: 'app' };
+  ATC.INC.p_ga = { cat: 'P', pts: 0, t: ATC.T('복행 선택'), les: 'app' };
   ATC.INC.p_ga_ok = { cat: 'P', pts: 2, t: ATC.T('불안정 접근에서 복행'), les: 'app' };
   ATC.Manual = M;
 })();

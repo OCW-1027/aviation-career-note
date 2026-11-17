@@ -55,7 +55,8 @@
     gg.gain.setValueAtTime(0.0001, t + 1.7); o.start(t); o.stop(t + 1.75);
   };
   var lastSay = 0, lastG = 0;
-  function say(k) { var b = buf[k]; if (!b || !A) return; var s = A.createBufferSource(); s.buffer = b; var gg = A.createGain(); gg.gain.value = 0.9; s.connect(gg); gg.connect(A.destination); s.start(); lastSay = A.currentTime + b.duration; }
+  var curSrc = null;
+  function say(k, cut) { var b = buf[k]; if (!b || !A) return; if (cut && curSrc) { try { curSrc.stop(); } catch (e) { } } var s = A.createBufferSource(); s.buffer = b; var gg = A.createGain(); gg.gain.value = 0.9; s.connect(gg); gg.connect(A.destination); s.start(); curSrc = s; lastSay = A.currentTime + b.duration; }      /* cut: PULL UP은 낮은 순위 음성(고도 호출)을 끊고 바로 울림(GPT ATC-13차 F13-03) */
 
   K.start = function () {
     if (K.on) return; A = ctx(); if (!A) return;
@@ -88,7 +89,8 @@
       var marks = [[1000, '1000'], [500, '500'], [mins + 100, 'appmin'], [mins, 'min'], [100, '100'], [50, '50'], [40, '40'], [30, '30'], [20, '20'], [10, '10']];
       for (var i = 0; i < marks.length; i++) if (pr > marks[i][0] && ra <= marks[i][0]) { say(marks[i][1]); break; }
     }
-    if (st.gpws && (st.gpws !== st0.gpws || st.man && A.currentTime - lastG > 2.6) && A.currentTime > lastSay - 0.1) { lastG = A.currentTime; say(/GEAR/.test(st.gpws) ? 'gear' : /FLAP/.test(st.gpws) ? 'flaps' : /SINK/.test(st.gpws) ? 'sink' : /GLIDE/.test(st.gpws) ? 'gs' : /PULL/.test(st.gpws) ? 'pullup' : /BANK/.test(st.gpws) ? 'bank' : ''); }      /* 직접 조종 중에는 조건이 이어지는 동안 되풀이 */
+    var pu = /PULL/.test(st.gpws || '');
+    if (st.gpws && (st.gpws !== st0.gpws || st.man && A.currentTime - lastG > 2.6) && (pu || A.currentTime > lastSay - 0.1)) { lastG = A.currentTime; if (pu) { say('pullup', true); } else say(/GEAR/.test(st.gpws) ? 'gear' : /FLAP/.test(st.gpws) ? 'flaps' : /SINK/.test(st.gpws) ? 'sink' : /GLIDE/.test(st.gpws) ? 'gs' : /PULL/.test(st.gpws) ? 'pullup' : /BANK/.test(st.gpws) ? 'bank' : ''); }      /* 직접 조종 중에는 조건이 이어지는 동안 되풀이 */
     if (st.man && st.alpha > 13 && !ro) { if (!g.shk) { g.shk = gain(A, 0, g.master); loop(A, g.bn).connect(filt(A, 'bandpass', 32, 2, g.shk)); } set(g.shk.gain, 0.5, 0.05); } else if (g.shk) set(g.shk.gain, 0, 0.1);      /* 실속 경고: 조종간 떨림(스틱 셰이커) */
     st0 = { ra: ra, ro: !!ro, gear: cf.gear, gpws: st.gpws };
   };
