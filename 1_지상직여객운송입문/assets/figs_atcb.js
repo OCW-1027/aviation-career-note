@@ -169,7 +169,187 @@ atcb_recat:function(l){
   return g}
  s+=lane(y,96,W.old,G);y+=52;s+=lane(y,68,W.neu,'#2F6FD6');y+=56;
  var nb=NOTEBOX(20,y,600,W.src,10.5,G);s+=nb.s;y+=nb.h+10;
- return svg(640,y,s)}
+ return svg(640,y,s)},
+/* 7 監視のしくみ：一次レーダー・二次レーダー・ADS-B・衛星のADS-B */
+atcb_surv:function(l){
+ var W=({ja:{t:'飛行機の位置をどう知るか（監視の4つの方法）',p:[['一次レーダー（PSR）','電波の反射で位置を知る。機体の協力がいらないが、高度や便名は分からない'],['二次レーダー（SSR・モードS）','地上から質問し、機体のトランスポンダーが答える。高度・コード・便名が分かる'],['ADS-B','機体がGPSで知った自分の位置を、自分から放送する。地上局の設備が小さく、更新が速い'],['衛星のADS-B','人工衛星がADS-Bを受け取る。地上局を置けない洋上・極地でも位置が分かる']]},
+  ko:{t:'항공기의 위치를 어떻게 아는가(감시의 네 가지 방법)',p:[['1차 레이더(PSR)','전파의 반사로 위치를 안다. 기체의 협력이 필요 없지만 고도와 편명은 모른다'],['2차 레이더(SSR·모드 S)','지상에서 질문하고 기체의 트랜스폰더가 답한다. 고도·코드·편명을 안다'],['ADS-B','기체가 GPS로 안 자기 위치를 스스로 방송한다. 지상국 설비가 작고 갱신이 빠르다'],['위성 ADS-B','인공위성이 ADS-B를 받는다. 지상국을 둘 수 없는 해양·극지에서도 위치를 안다']]},
+  en:{t:'How ATC knows where aircraft are (four surveillance methods)',p:[['Primary radar (PSR)','Finds aircraft by reflected radio waves; needs nothing from the aircraft, but gives no altitude or callsign'],['Secondary radar (SSR, Mode S)','The ground station interrogates and the aircraft’s transponder replies with altitude, code and identity'],['ADS-B','The aircraft broadcasts its own GPS position; small ground stations and fast updates'],['Space-based ADS-B','Satellites receive ADS-B, so aircraft can be tracked over oceans and polar regions with no ground stations']]}})[l];
+ if(!W)return F.atcb_surv('ja');
+ setK(1);var nar=NARROW();
+ function ant(x,y){return '<rect x="'+(x-3)+'" y="'+(y-30)+'" width="6" height="30" fill="#243447"/><path d="M'+(x-14)+' '+(y-34)+' Q'+x+' '+(y-48)+' '+(x+14)+' '+(y-34)+'" fill="none" stroke="#243447" stroke-width="4"/>'}
+ function ring(x,y,r0,r1,col,dur,beg){return '<circle cx="'+x+'" cy="'+y+'" r="'+r0+'" fill="none" stroke="'+col+'" stroke-width="2"><animate attributeName="r" values="'+r0+';'+r1+'" dur="'+dur+'" begin="'+(beg||0)+'s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="'+dur+'" begin="'+(beg||0)+'s" repeatCount="indefinite"/></circle>'}
+ function panel(x0,y0,w,k){var P=W.p[k],g=R(x0,y0,w,150,'#0E2238',14)+tx(x0+14,y0+24,P[0],12.5,'#fff',900,'start'),gy=y0+138,px=x0+w*0.62,py=y0+62;
+  g+=R(x0+8,gy-6,w-16,8,'#2E6B5E',3);
+  g+='<g transform="translate('+px+' '+py+')">'+plane('#fff')+'</g>';
+  if(k===0){g+=ant(x0+50,gy-6);g+=ring(x0+50,gy-40,6,120,'#7FD3FF','2.4s');g+='<g opacity="0"><circle cx="'+px+'" cy="'+py+'" r="22" fill="none" stroke="#FFD23F" stroke-width="2"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.5;.6;1" dur="2.4s" repeatCount="indefinite"/></g>'}
+  if(k===1){g+=ant(x0+50,gy-6);g+='<path d="M'+(x0+66)+' '+(gy-44)+' L'+(px-24)+' '+(py+8)+'" stroke="#7FD3FF" stroke-width="2.5" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" values="24;0" dur="1s" repeatCount="indefinite"/></path><path d="M'+(px-22)+' '+(py+16)+' L'+(x0+70)+' '+(gy-36)+'" stroke="#FFD23F" stroke-width="2.5" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" values="0;24" dur="1s" repeatCount="indefinite"/></path>'+LB(px,py+36,'VELA301 · FL120',10.5,'#0E2238','middle','#FFD23F')}
+  if(k===2){g+=ring(px,py,14,90,'#FFD23F','2s')+ring(px,py,14,90,'#FFD23F','2s',1)+'<rect x="'+(x0+40)+'" y="'+(gy-22)+'" width="16" height="16" fill="#243447"/>'+LB(px,py+36,'GPS → ADS-B',10.5,'#0E2238','middle','#FFD23F')}
+  if(k===3){var sx=x0+w*0.25,sy=y0+50;g+='<g><rect x="'+(sx-14)+'" y="'+(sy-5)+'" width="28" height="10" fill="#C9D3DD"/><rect x="'+(sx-40)+'" y="'+(sy-4)+'" width="22" height="8" fill="#2F6FD6"/><rect x="'+(sx+18)+'" y="'+(sy-4)+'" width="22" height="8" fill="#2F6FD6"/><animateTransform attributeName="transform" type="translate" values="-20 0;20 0;-20 0" dur="8s" repeatCount="indefinite"/></g>';
+   g+='<path d="M'+(px-14)+' '+(py-8)+' L'+(sx+6)+' '+(sy+10)+'" stroke="#FFD23F" stroke-width="2.5" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" values="24;0" dur="1s" repeatCount="indefinite"/></path>';for(var i=0;i<4;i++)g+='<path d="M'+(x0+16+i*40)+' '+(gy-14)+' q10 -6 20 0 t20 0" fill="none" stroke="#5FA3D9" stroke-width="2"/>'}
+  var nb=NOTEBOX(x0,y0+158,w,P[1],11);g+=nb.s;return {s:g,h:158+nb.h}}
+ var s='',HH,vw;
+ if(nar){vw=580;var y=56;for(var k=0;k<4;k++){var p=panel(20,y,540,k);s+=p.s;y+=p.h+12}HH=y+4}
+ else{vw=900;var y=56;for(var row=0;row<2;row++){var a=panel(20,y,420,row*2),b=panel(460,y,420,row*2+1);s+=a.s+b.s;y+=Math.max(a.h,b.h)+14}HH=y+2}
+ return svg(vw,HH,TTL(vw/2,30,W.t,15,'#0f3558',vw-40)+s)},
+
+/* 8 ILSのまっすぐな進入と、RNP ARの曲がる進入 */
+atcb_pbn:function(l){
+ var W=({ja:{t:'まっすぐ入るILSと、曲がって入るRNP AR',ils:'ILS：地上の電波でまっすぐ（約10NM以上の直線）',rnp:'RNP AR：衛星の航法で、山や騒音の多い地区をよけて曲がりながら入る',mt:'山',city:'市街地',rw:'滑走路',u:['ILSは滑走路の延長線上に長い直線が要る。山や海、まちがあると置きにくい','RNP ARは機体の航法の性能と乗員の訓練の承認が要る（AR＝特別な承認）','曲がる部分（RF）で、短く静かな経路にできる。悪天候でも降りられる空港が増える']},
+  ko:{t:'곧게 들어오는 ILS와 휘어 들어오는 RNP AR',ils:'ILS: 지상 전파로 곧게(약 10NM 이상의 직선)',rnp:'RNP AR: 위성 항법으로 산이나 소음이 많은 지역을 피해 휘면서 들어온다',mt:'산',city:'시가지',rw:'활주로',u:['ILS는 활주로 연장선 위에 긴 직선이 필요하다. 산·바다·도시가 있으면 두기 어렵다','RNP AR은 기체의 항법 성능과 승무원 훈련 승인이 필요하다(AR=특별 승인)','휘는 구간(RF)으로 짧고 조용한 경로를 만들 수 있다. 악천후에도 내릴 수 있는 공항이 늘어난다']},
+  en:{t:'Straight-in ILS and curved RNP AR approaches',ils:'ILS: ground radio beams, straight in (a long straight of about 10 NM or more)',rnp:'RNP AR: satellite navigation, curving around terrain and noise-sensitive areas',mt:'Mountain',city:'City',rw:'Runway',u:['An ILS needs a long straight on the extended centreline; terrain, sea or towns can make that hard','RNP AR needs approval for both aircraft navigation performance and crew training (AR = authorisation required)','Curved segments (RF legs) allow short, quieter paths, so more airports can be used in bad weather']}})[l];
+ if(!W)return F.atcb_pbn('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,250,'#E8F2FB',14);
+ s+='<rect x="480" y="160" width="110" height="10" rx="3" fill="#243447"/>'+tx(535,190,W.rw,11,'#243447',900);
+ s+='<path d="M120 300 L170 210 L210 260 L250 190 L300 300 Z" fill="#9C8466" opacity=".8"/>'+tx(210,288,W.mt,11,'#fff',900);
+ s+='<rect x="330" y="70" width="90" height="56" rx="6" fill="#C9B79C" opacity=".8"/>'+tx(375,103,W.city,11,'#5a4a34',900);
+ var PI='M40 165 L480 165',PR='M90 70 C170 60 260 140 300 150 C330 158 380 165 480 165';
+ s+='<path d="'+PI+'" fill="none" stroke="#9FB0C2" stroke-width="3" stroke-dasharray="8 6"/><path d="'+PR+'" fill="none" stroke="#2F6FD6" stroke-width="3.5"/>';
+ s+='<g>'+plane('#E8EDF2')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="'+PI+'"/></g><g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="'+PR+'"/></g>';
+ s+=LBW(150,230-90,W.ils,10.5,G,'middle','#fff',200)+LBW(470,240,W.rnp,10.5,'#2F6FD6','middle','#fff',260);
+ var L=LIST(W.u,312,600,11);
+ return svg(640,L.y+8,s+L.s)},
+
+/* 9 GBAS（地上型）とSBAS（静止衛星型）の補強 */
+atcb_gbas:function(l){
+ var W=({ja:{t:'GPSの誤差を直す2つのしくみ',g:'GBAS（地上型）',sb:'SBAS（衛星型）',dg:'空港の地上局が誤差を直し、1式で複数の滑走路・進入方式にILSなみの精度。進入の経路はデータで送る',ds:'静止衛星から国全体に補正を流す。ILSのない地方空港でも、垂直の誘導つきの進入ができる',gps:'GPS衛星',sta:'GBAS地上局'},
+  ko:{t:'GPS 오차를 고치는 두 가지 방식',g:'GBAS(지상형)',sb:'SBAS(위성형)',dg:'공항 지상국이 오차를 고쳐, 한 세트로 여러 활주로·접근 방식에 ILS 수준의 정밀도. 접근 경로는 데이터로 보낸다',ds:'정지위성에서 나라 전체로 보정을 보낸다. ILS가 없는 지방 공항에서도 수직 유도가 있는 접근이 가능하다',gps:'GPS 위성',sta:'GBAS 지상국'},
+  en:{t:'Two ways to correct GPS errors',g:'GBAS (ground-based)',sb:'SBAS (satellite-based)',dg:'An airport ground station corrects errors; one installation serves several runways and approaches with ILS-like precision, sending the approach path as data',ds:'Geostationary satellites broadcast corrections over a whole country, allowing approaches with vertical guidance at regional airports without ILS',gps:'GPS satellites',sta:'GBAS ground station'}})[l];
+ if(!W)return F.atcb_gbas('ja');
+ setK(1);var nar=NARROW();
+ function sat(x,y,c){return '<g transform="translate('+x+' '+y+')"><rect x="-8" y="-5" width="16" height="10" fill="#C9D3DD"/><rect x="-26" y="-4" width="16" height="8" fill="'+(c||'#2F6FD6')+'"/><rect x="10" y="-4" width="16" height="8" fill="'+(c||'#2F6FD6')+'"/></g>'}
+ function panel(x0,y0,w,k){var g=R(x0,y0,w,190,'#0E2238',14)+tx(x0+14,y0+24,k?W.sb:W.g,13,'#fff',900,'start'),gy=y0+176;
+  g+=R(x0+8,gy-8,w-16,10,'#2E6B5E',3);
+  [0.25,0.55,0.85].forEach(function(f,i){g+=sat(x0+w*f,y0+46+(i%2)*10)});g+=tx(x0+w*0.55,y0+78,W.gps,10.5,'#A9C7E8',800);
+  if(!k){var rx=[x0+w*0.25,x0+w*0.62];rx.forEach(function(x){g+='<rect x="'+(x-40)+'" y="'+(gy-14)+'" width="80" height="6" fill="#243447"/>'});
+   var st=x0+w*0.44;g+='<rect x="'+(st-6)+'" y="'+(gy-36)+'" width="12" height="26" fill="#FFD23F"/>'+tx(st,gy-42,W.sta,10.5,'#FFD23F',800);
+   [0,1,2].forEach(function(j){g+='<circle cx="'+st+'" cy="'+(gy-30)+'" r="8" fill="none" stroke="#FFD23F" stroke-width="2"><animate attributeName="r" values="8;'+(w*0.45).toFixed(0)+'" dur="3s" begin="'+j+'s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="3s" begin="'+j+'s" repeatCount="indefinite"/></circle>'});
+   g+='<g>'+plane('#fff')+'<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="M'+(x0+20)+' '+(y0+100)+' L'+(rx[0]-30)+' '+(gy-14)+'"/></g><g>'+plane('#fff')+'<animateMotion dur="7s" begin="-3s" repeatCount="indefinite" rotate="auto" path="M'+(x0+w-20)+' '+(y0+96)+' L'+(rx[1]+30)+' '+(gy-14)+'"/></g>'}
+  else{var gx=x0+w*0.5,gyy=y0+108;g+=sat(gx,gyy,'#FFD23F')+'<path d="M'+(gx-120)+' '+(gy-10)+' L'+gx+' '+(gyy+8)+' L'+(gx+120)+' '+(gy-10)+' Z" fill="#FFD23F" opacity=".12"><animate attributeName="opacity" values=".06;.22;.06" dur="2.5s" repeatCount="indefinite"/></path>';
+   [0.18,0.5,0.82].forEach(function(f){g+='<rect x="'+(x0+w*f-22)+'" y="'+(gy-14)+'" width="44" height="5" fill="#243447"/>'})}
+  var nb=NOTEBOX(x0,y0+198,w,k?W.ds:W.dg,11);g+=nb.s;return {s:g,h:198+nb.h}}
+ var s='',HH,vw;
+ if(nar){vw=580;var y=56;for(var k=0;k<2;k++){var p=panel(20,y,540,k);s+=p.s;y+=p.h+12}HH=y+4}
+ else{vw=860;var a=panel(20,56,400,0),b=panel(440,56,400,1);s=a.s+b.s;HH=56+Math.max(a.h,b.h)+12}
+ return svg(vw,HH,TTL(vw/2,30,W.t,15,'#0f3558',vw-40)+s)},
+
+/* 10 声の交信とデータ通信（CPDLC） */
+atcb_cpdlc:function(l){
+ var W=({ja:{t:'声の交信と、文字で送るデータ通信（CPDLC）',v:'声（無線）',d:'データ通信（CPDLC）',vu:['周波数が混むと、言いたいことを言うまで待つ','聞き違い・言い間違いが起きうる','英語の発音・雑音の影響を受ける'],du:['決まった文を画面で送り、ボタンで答える（WILCOなど）','記録が残り、FMSに経路を入れられるものもある','洋上・航空路・空港の出発の許可（DCL）で広がる'],up:'CLIMB TO FL350',ans:'WILCO'},
+  ko:{t:'목소리 교신과 문자로 보내는 데이터 통신(CPDLC)',v:'목소리(무선)',d:'데이터 통신(CPDLC)',vu:['주파수가 붐비면 말할 차례까지 기다린다','잘못 듣기·잘못 말하기가 생길 수 있다','영어 발음·잡음의 영향을 받는다'],du:['정해진 문장을 화면으로 보내고 버튼으로 답한다(WILCO 등)','기록이 남고 FMS에 경로를 넣을 수 있는 것도 있다','해양·항로·공항 출발 허가(DCL)에서 확대되고 있다'],up:'CLIMB TO FL350',ans:'WILCO'},
+  en:{t:'Voice and text data link (CPDLC)',v:'Voice (radio)',d:'Data link (CPDLC)',vu:['When the frequency is busy, you wait your turn to speak','Mishearing and misspeaking can happen','Affected by accents and noise'],du:['Set messages sent on screen and answered with a button (WILCO and so on)','A record is kept; some routes can be loaded straight into the FMS','Spreading in oceanic and en-route airspace and for departure clearances (DCL)'],up:'CLIMB TO FL350',ans:'WILCO'}})[l];
+ if(!W)return F.atcb_cpdlc('ja');
+ setK(1);var nar=NARROW();
+ function panel(x0,y0,w,k){var g=R(x0,y0,w,150,k?'#123A2E':'#0E2238',14)+tx(x0+14,y0+24,k?W.d:W.v,13,'#fff',900,'start');
+  if(!k){for(var i=0;i<3;i++){var yy=y0+50+i*30,lft=i%2===0;g+='<g opacity="0"><rect x="'+(lft?x0+20:x0+w-170)+'" y="'+yy+'" width="150" height="22" rx="11" fill="'+(lft?'#7FD3FF':'#FFD23F')+'"/>'+'<path d="M'+(lft?x0+36:x0+w-150)+' '+(yy+11)+' q6 -6 12 0 t12 0 t12 0 t12 0" fill="none" stroke="#0E2238" stroke-width="2"/><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;'+(i*0.22).toFixed(2)+';'+(i*0.22+0.05).toFixed(2)+';.9;1" dur="6s" repeatCount="indefinite"/></g>'}}
+  else{var sx=x0+w/2-90,sy=y0+40;g+=R(sx,sy,180,96,'#0B1C2C',8,' stroke="#3DDC97" stroke-width="2"')+tx(sx+90,sy+28,W.up,12,'#3DDC97',900);
+   g+='<g opacity="0">'+R(sx+20,sy+52,64,28,'#3DDC97',6)+tx(sx+52,sy+71,W.ans,11,'#0B1C2C',900)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.4;.45;.9;1" dur="6s" repeatCount="indefinite"/></g>'+R(sx+96,sy+52,64,28,'#24506B',6)+tx(sx+128,sy+71,'UNABLE',11,'#9FB0C2',800)}
+  var y=y0+158;(k?W.du:W.vu).forEach(function(t){var nb=NOTEBOX(x0,y,w,(k?'✔ ':'△ ')+t,10.5);g+=nb.s;y+=nb.h+4});return {s:g,h:y-y0}}
+ var s='',HH,vw;
+ if(nar){vw=580;var y=56;for(var k=0;k<2;k++){var p=panel(20,y,540,k);s+=p.s;y+=p.h+12}HH=y+4}
+ else{vw=860;var a=panel(20,56,400,0),b=panel(440,56,400,1);s=a.s+b.s;HH=56+Math.max(a.h,b.h)+12}
+ return svg(vw,HH,TTL(vw/2,30,W.t,15,'#0f3558',vw-40)+s)}
+,
+/* 11 交通流管理：需要が容量を超える時間の便を、出発前に地上で待たせて平らにする */
+atcb_atfm:function(l){
+ var W=({ja:{t:'空で待たせず、地上で待たせる（交通流管理）',cap:'容量（1時間に着陸できる数）',h:'時刻',b4:'調整前：容量を超える時間は空で待機（燃料・遅れが増える）',af:'調整後：出発の時刻（EDCT・CTOT）を指定して、超えた分を後の時間へ',dep:'出発空港',arr:'到着空港'},
+  ko:{t:'하늘에서 기다리지 않고 지상에서 기다리게(교통흐름관리)',cap:'수용량(1시간에 착륙할 수 있는 수)',h:'시각',b4:'조정 전: 수용량을 넘는 시간은 하늘에서 대기(연료·지연 증가)',af:'조정 후: 출발 시각(EDCT·CTOT)을 지정해 넘친 만큼을 뒤 시간으로',dep:'출발 공항',arr:'도착 공항'},
+  en:{t:'Wait on the ground, not in the air (traffic flow management)',cap:'Capacity (landings per hour)',h:'Hour',b4:'Before: in hours over capacity, aircraft hold in the air (more fuel and delay)',af:'After: departure times (EDCT, CTOT) are assigned so the excess moves to later hours',dep:'Departure airport',arr:'Arrival airport'}})[l];
+ if(!W)return F.atcb_atfm('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,230,'#E8F2FB',14),x0=70,bw=52,gap=18,base=250,sc=5.2,cap=30,d=[24,32,40,36,22,18,14],a=[24,30,30,30,30,30,24];
+ s+='<line x1="50" y1="'+(base-cap*sc)+'" x2="600" y2="'+(base-cap*sc)+'" stroke="#D64545" stroke-width="2" stroke-dasharray="8 5"/>'+LB(590,base-cap*sc-10,W.cap,10.5,'#D64545','end','#fff');
+ for(var i=0;i<7;i++){var x=x0+i*(bw+gap);s+='<rect x="'+x+'" y="'+(base-d[i]*sc)+'" width="'+bw+'" height="'+(d[i]*sc)+'" rx="4" fill="#2F6FD6"><animate attributeName="height" values="'+(d[i]*sc)+';'+(d[i]*sc)+';'+(a[i]*sc)+';'+(a[i]*sc)+';'+(d[i]*sc)+'" keyTimes="0;.3;.5;.9;1" dur="8s" repeatCount="indefinite"/><animate attributeName="y" values="'+(base-d[i]*sc)+';'+(base-d[i]*sc)+';'+(base-a[i]*sc)+';'+(base-a[i]*sc)+';'+(base-d[i]*sc)+'" keyTimes="0;.3;.5;.9;1" dur="8s" repeatCount="indefinite"/></rect>';
+  if(d[i]>cap)s+='<rect x="'+x+'" y="'+(base-d[i]*sc)+'" width="'+bw+'" height="'+((d[i]-cap)*sc)+'" rx="4" fill="#E08A2F"><animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.3;.45;.9;1" dur="8s" repeatCount="indefinite"/></rect>';
+  s+=tx(x+bw/2,base+18,(9+i)+':00',10.5,G,800)}
+ s+='<g>'+LBW(320,76,W.b4,10.5,'#B4532A','middle','#fff',520)+'<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.3;.4;.9;1" dur="8s" repeatCount="indefinite"/></g><g opacity="0">'+LBW(320,76,W.af,10.5,'#1d4d8a','middle','#fff',520)+'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.4;.5;.9;1" dur="8s" repeatCount="indefinite"/></g>';
+ return svg(640,296,s)},
+
+/* 12 到着の順番づけ（AMAN）と、段々に降りる／続けて降りる（CDO） */
+atcb_cdo:function(l){
+ var W=({ja:{t:'到着の順番づけと、続けて降りる降下（CDO）',st:'従来：段々に降りる（水平飛行が多い）',cd:'CDO：エンジンを絞ったまま続けて降りる（燃料・騒音を減らす）',am:'AMAN：遠くから到着の時刻を計算し、速度の調整で順番をつくる',rw:'滑走路'},
+  ko:{t:'도착 순서 정하기와 연속 강하(CDO)',st:'기존: 계단식으로 내려온다(수평 비행이 많다)',cd:'CDO: 엔진을 줄인 채 이어서 내려온다(연료·소음 감소)',am:'AMAN: 멀리서부터 도착 시각을 계산해 속도 조정으로 순서를 만든다',rw:'활주로'},
+  en:{t:'Arrival sequencing and continuous descent (CDO)',st:'Traditional: step-down descent (lots of level flight)',cd:'CDO: continuous descent at low thrust (less fuel and noise)',am:'AMAN: calculates arrival times far out and builds the sequence with speed adjustments',rw:'Runway'}})[l];
+ if(!W)return F.atcb_cdo('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,190,'#E8F2FB',14)+R(20,230,600,12,'#9CC98B',0)+'<rect x="560" y="226" width="50" height="5" fill="#243447"/>'+tx(585,220,W.rw,10.5,'#243447',900);
+ var P1='M40 80 L150 80 L190 120 L300 120 L340 160 L450 160 L480 190 L520 205 L560 228',P2='M40 80 C200 90 380 150 560 228';
+ s+='<path d="'+P1+'" fill="none" stroke="#9FB0C2" stroke-width="3" stroke-dasharray="8 6"/><path d="'+P2+'" fill="none" stroke="#2F6FD6" stroke-width="3.5"/>';
+ s+='<g>'+planeS('#E8EDF2')+'<animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="'+P1+'"/></g><g>'+planeS('#fff')+'<animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="'+P2+'"/></g>';
+ s+=LBW(220,150,W.st,10.5,G,'middle','#fff',230)+LBW(400,100,W.cd,10.5,'#2F6FD6','middle','#fff',260);
+ var y=252;s+=R(20,y,600,120,'#0E2238',12)+tx(36,y+24,'AMAN',13,'#FFD23F',900,'start');
+ var lane=y+70;s+='<line x1="40" y1="'+lane+'" x2="600" y2="'+lane+'" stroke="#3A5878" stroke-width="2"/>';
+ [[70,'#7FD3FF',-30],[130,'#FFD23F',22],[210,'#9BE7A5',-18],[300,'#FFB0B0',26]].forEach(function(q,i){s+='<g><g transform="translate(0 '+q[2]+')">'+plane(q[1])+'</g><animateTransform attributeName="transform" type="translate" values="'+q[0]+' '+lane+';'+(q[0]+180)+' '+lane+';'+(q[0]+180)+' '+lane+'" keyTimes="0;.6;1" dur="8s" repeatCount="indefinite"/></g>'});
+ var nb=NOTEBOX(40,y+86,560,W.am,10.5);s+=nb.s;y+=86+nb.h+8;
+ return svg(640,Math.max(y,y),s)},
+
+/* 13 軌道ベース運用（TBO）とSWIM：飛ぶ前に4次元の軌道をみんなで共有する */
+atcb_tbo:function(l){
+ var W=({ja:{t:'軌道ベース運用（TBO）と、情報を共有するSWIM',tube:'4次元の軌道（位置＋高度＋時刻）',n:['航空会社','管制','空港','気象','国の外の管制'],u:['出発前から到着まで、4次元の軌道をみんなで決めて共有する（FF-ICEの新しい飛行計画）','情報はSWIMという共通の仕組みで機械どうしがやり取りする','決められた時刻に地点を通る（時間の管理）ことで、待ちと燃料を減らす']},
+  ko:{t:'궤적 기반 운항(TBO)과 정보를 공유하는 SWIM',tube:'4차원 궤적(위치+고도+시각)',n:['항공사','관제','공항','기상','다른 나라 관제'],u:['출발 전부터 도착까지 4차원 궤적을 함께 정하고 공유한다(FF-ICE의 새 비행계획)','정보는 SWIM이라는 공통 구조로 기계끼리 주고받는다','정해진 시각에 지점을 지나게(시간 관리) 해서 대기와 연료를 줄인다']},
+  en:{t:'Trajectory-based operations (TBO) and SWIM information sharing',tube:'4D trajectory (position + altitude + time)',n:['Airline','ATC','Airport','Weather','Other ATC'],u:['From before departure to arrival, the 4D trajectory is agreed and shared by all (FF-ICE, the new flight planning)','Information is exchanged machine to machine through a common framework, SWIM','Crossing points at agreed times (time management) cuts holding and fuel']}})[l];
+ if(!W)return F.atcb_tbo('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,200,'#0E2238',14);
+ var P='M50 210 C160 200 200 110 320 100 C440 90 480 180 590 200';
+ s+='<path d="'+P+'" fill="none" stroke="#2F6FD6" stroke-width="22" stroke-linecap="round" opacity=".35"/><path d="'+P+'" fill="none" stroke="#7FD3FF" stroke-width="2" stroke-dasharray="6 6"/>';
+ [[110,'10:05'],[320,'10:52'],[530,'11:38']].forEach(function(q){s+=LB(q[0],q[0]===320?84:170,q[1],10.5,'#0E2238','middle','#FFD23F')});
+ s+='<g>'+plane('#fff')+'<animateMotion dur="9s" repeatCount="indefinite" rotate="auto" path="'+P+'"/></g>'+LB(320,236,W.tube,10.5,'#fff','middle','#2F6FD6');
+ var y=264,cx=320,cy=y+64;s+=R(20,y,600,128,'#E8F2FB',12)+'<circle cx="'+cx+'" cy="'+cy+'" r="26" fill="#1F7A6E"/>'+tx(cx,cy+5,'SWIM',11.5,'#fff',900);
+ W.n.forEach(function(nm,i){var ang=-Math.PI/2+i*2*Math.PI/5,nx=cx+Math.cos(ang)*200,ny=cy+Math.sin(ang)*44;s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+nx.toFixed(0)+'" y2="'+ny.toFixed(0)+'" stroke="#1F7A6E" stroke-width="2" stroke-dasharray="5 5"><animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite"/></line>'+LB(nx,ny+4,nm,10.5,'#fff','middle','#0f3558')});
+ var L=LIST(W.u,y+140,600,11);
+ return svg(640,L.y+8,s+L.s)},
+
+/* 14 リモート（デジタル）タワー：空港のカメラの映像を、離れた管制室で見る */
+atcb_rtwr:function(l){
+ var W=({ja:{t:'リモートタワー：空港に塔がなくても管制する',ap:'空港（カメラ・センサー）',rc:'離れた管制室',u:['空港のカメラの映像を、離れた管制室の大きな画面に映す','夜や霧でも見やすく映像を処理し、機影に名札を重ねられる','1つの管制室から、交通の少ない複数の空港を受け持つこともできる']},
+  ko:{t:'원격 관제탑: 공항에 탑이 없어도 관제한다',ap:'공항(카메라·센서)',rc:'떨어진 관제실',u:['공항 카메라 영상을 떨어진 관제실의 큰 화면에 비춘다','밤이나 안개에도 보기 쉽게 영상을 처리하고 항적에 이름표를 겹칠 수 있다','한 관제실에서 교통이 적은 여러 공항을 맡을 수도 있다']},
+  en:{t:'Remote towers: controlling without a tower at the airport',ap:'Airport (cameras, sensors)',rc:'Remote control room',u:['Camera images from the airport are shown on large screens in a distant control room','Images are enhanced for night and fog, and aircraft can be tagged with labels','One centre can control several low-traffic airports']}})[l];
+ if(!W)return F.atcb_rtwr('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,280,180,'#DCEEFB',14)+R(340,52,280,180,'#0E2238',14);
+ s+=R(30,190,260,8,'#9CC98B',0)+'<rect x="60" y="182" width="200" height="6" fill="#243447"/>';
+ [[80,150],[240,150]].forEach(function(c){s+='<rect x="'+(c[0]-3)+'" y="'+c[1]+'" width="6" height="32" fill="#243447"/><rect x="'+(c[0]-10)+'" y="'+(c[1]-10)+'" width="20" height="12" rx="3" fill="#243447"/>'});
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M40 120 L150 172 L280 172"/></g>'+tx(160,76,W.ap,11.5,'#0f3558',900);
+ s+='<path d="M300 140 L340 140" stroke="#FFD23F" stroke-width="3" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" values="24;0" dur="1s" repeatCount="indefinite"/></path>';
+ for(var i=0;i<3;i++)s+=R(356+i*86,96,80,52,'#24506B',4)+'<g>'+'<rect x="'+(360+i*86)+'" y="132" width="72" height="3" fill="#9CC98B"/>'+'</g>';
+ s+='<g>'+planeS('#fff')+'<animateMotion dur="6s" repeatCount="indefinite" path="M360 112 L440 128 L610 128"/></g>'+LB(480,90,'VLA301',10,'#0E2238','middle','#FFD23F');
+ s+='<rect x="440" y="170" width="80" height="20" rx="4" fill="#3A5878"/><circle cx="480" cy="210" r="10" fill="#C9D3DD"/>'+tx(480,76,W.rc,11.5,'#fff',900);
+ var L=LIST(W.u,244,600,11);
+ return svg(640,L.y+8,s+L.s)},
+
+/* 15 空の層：ドローン（UTM）、空飛ぶクルマ（AAM）、旅客機 */
+atcb_uam:function(l){
+ var W=({ja:{t:'空の新しい利用者：ドローンと空飛ぶクルマ',a:'旅客機（従来の管制）',b:'空飛ぶクルマ（AAM）：決められた空の道（回廊）',c:'ドローン（UTM）：低い空をデジタルで管理',vp:'離着陸場'},
+  ko:{t:'하늘의 새 이용자: 드론과 도심항공교통',a:'여객기(기존 관제)',b:'도심항공교통(AAM): 정해진 하늘길(회랑)',c:'드론(UTM): 낮은 하늘을 디지털로 관리',vp:'이착륙장'},
+  en:{t:'New users of the sky: drones and air taxis',a:'Airliners (conventional ATC)',b:'Air taxis (AAM): set corridors',c:'Drones (UTM): low airspace managed digitally',vp:'Vertiport'}})[l];
+ if(!W)return F.atcb_uam('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,250,'#DCEEFB',14)+R(20,290,600,12,'#9CC98B',0);
+ s+=R(20,52,600,70,'#BFD9F2',14)+tx(34,74,W.a,11,'#0f3558',900,'start')+'<g>'+plane('#fff')+'<animateMotion dur="8s" repeatCount="indefinite" path="M40 98 L600 98"/></g>';
+ s+='<rect x="20" y="150" width="600" height="46" fill="#F0D9A8" opacity=".6"/>'+tx(34,145,W.b,11,'#7A5A2E',900,'start');
+ s+='<g><g fill="#7A5A2E"><rect x="-14" y="-4" width="28" height="8" rx="4"/><rect x="-20" y="-9" width="10" height="2"/><rect x="10" y="-9" width="10" height="2"/></g><animateMotion dur="7s" repeatCount="indefinite" path="M80 285 L80 172 L540 172 L540 285"/></g>';
+ [80,540].forEach(function(x){s+='<rect x="'+(x-22)+'" y="284" width="44" height="6" fill="#7A5A2E"/>'});s+=tx(80,282-8,W.vp,10.5,'#7A5A2E',800);
+ s+=tx(34,226,W.c,11,'#1F7A6E',900,'start');
+ for(var i=0;i<4;i++){var x0=180+i*90;s+='<g><g fill="#1F7A6E"><rect x="-5" y="-2" width="10" height="4"/><circle cx="-7" cy="-4" r="3"/><circle cx="7" cy="-4" r="3"/></g><animateMotion dur="'+(4+i)+'s" repeatCount="indefinite" path="M'+x0+' 262 l40 -8 l30 10 l-70 -2 z"/></g>'}
+ return svg(640,316,s)},
+
+/* 16 各地域のこれからの計画 */
+atcb_road:function(l){
+ var W=({ja:{t:'各地域の、これからの航空交通の計画',rows:[['ICAO','世界航空航法計画（GANP）：TBO・SWIM・FF-ICEへ'],['日本','CARATS2040：2025年に工程表を定め、2040年に向けてTBO・自動化・新しい空の利用者へ'],['韓国','第4次航空政策基本計画（2025〜2029）：航空交通データの総合管理、UAMに備えた空域の構造の見直し'],['米国','新しい管制システム（BNATCS）：125億ドルで無線・レーダー・通信・施設を2028年までに入れ替え'],['欧州','SESARとATMマスタープラン：デジタルな欧州の空、国境をまたぐ空域の運用']],y0:'2025',y1:'2040'},
+  ko:{t:'각 지역의 앞으로의 항공교통 계획',rows:[['ICAO','세계항행계획(GANP): TBO·SWIM·FF-ICE로'],['일본','CARATS2040: 2025년 로드맵을 정하고 2040년을 향해 TBO·자동화·새 하늘 이용자로'],['한국','제4차 항공정책 기본계획(2025~2029): 항공교통 데이터 종합 관리, UAM에 대비한 공역 구조 조정'],['미국','새 관제 시스템(BNATCS): 125억 달러로 무선·레이더·통신·시설을 2028년까지 교체'],['유럽','SESAR와 ATM 마스터플랜: 디지털 유럽 하늘, 국경을 넘는 공역 운용']],y0:'2025',y1:'2040'},
+  en:{t:'Future air traffic plans by region',rows:[['ICAO','Global Air Navigation Plan (GANP): towards TBO, SWIM and FF-ICE'],['Japan','CARATS2040: roadmap set in 2025, heading for TBO, automation and new airspace users by 2040'],['Korea','4th Aviation Policy Master Plan (2025–2029): integrated air traffic data management and airspace restructuring for UAM'],['USA','Brand New Air Traffic Control System (BNATCS): $12.5 billion to replace radios, radars, telecoms and facilities by 2028'],['Europe','SESAR and the ATM Master Plan: a Digital European Sky and cross-border airspace operations']],y0:'2025',y1:'2040'}})[l];
+ if(!W)return F.atcb_road('ja');
+ setK(1);
+ var s=TTL(320,30,W.t,15,'#0f3558',600),y=56;
+ s+=R(20,y,600,24,'#243447',6)+tx(160,y+17,W.y0,11,'#fff',900)+tx(590,y+17,W.y1,11,'#fff',900,'end')+ARW(190,y+12,560,y+12,'#9FB0C2',2);y+=30;
+ var col=['#5A3D6B','#2F6FD6','#1F7A6E','#B4532A','#2B4F7A'];
+ W.rows.forEach(function(r,i){var n=LI(r[1],11,440).length,h=Math.max(40,n*FS(11)*1.3+14);
+  s+=R(20,y,600,h,i%2?'#fff':'#F4F7FB',8)+R(20,y,90,h,col[i],8)+tx(65,y+h/2+5,r[0],12,'#fff',900)+WR(126,y+h/2+FS(11)*0.3,r[1],11,D,800,480,'start');
+  s+='<rect x="120" y="'+(y+h-4)+'" width="0" height="3" fill="'+col[i]+'"><animate attributeName="width" values="0;490;490" keyTimes="0;.7;1" dur="6s" begin="'+(i*0.4)+'s" repeatCount="indefinite"/></rect>';y+=h+4});
+ return svg(640,y+8,s)}
+
 };
 for(var k in F)window.FIGS[k]=H.FIX2(F[k]);
 })();

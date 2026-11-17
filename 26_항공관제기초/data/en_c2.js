@@ -1,0 +1,97 @@
+/* 航空管制の基礎 2-1・2-2 — English version */
+(function(A){function set(no,en){if(A[no])A[no].en=en}
+set("2-1",{title:"Standard Phraseology, Numbers and Readback: Short, Precise, Unmistakable",hl:"Phraseology",subtitle:"The communication loop, how to say letters and numbers, set words, and what must always be read back. Plus the “number conventions” that differ by country, such as transition altitude and altimeter units",
+lead:["ATC radio is a short, precise conversation shared by many aircraft on one frequency. That is why the way things are said (standard phraseology) and how letters and numbers are pronounced are set worldwide.","This lesson covers the communication loop and readback, letters and numbers, and set words, then compares the number conventions that differ between Korea, Japan, the US and Europe, such as altimeter units and transition altitude."],
+sections:[
+{h:"The communication loop",blocks:[{t:"fig",id:"comm_loop",cap:"Animated figure: the controller speaks, the pilot reads back, and the controller checks the readback (hearback). Only when the loop closes has the message got through."},
+{t:"p",x:"What matters is confirming not that the message was heard, but that it was understood the same way. So the key parts of an instruction are always read back, and the controller listens to check them. If the readback is wrong, the controller corrects it immediately."}]},
+{h:"Saying letters and numbers",blocks:[{t:"fig",id:"atc_phon",cap:"Animated figure: the ICAO phonetic alphabet (A = ALFA, B = BRAVO …), which prevents similar-sounding letters being confused."},
+{t:"table",cols:["Item","Example","Note"],rows:[
+["Numbers","3 = TREE, 5 = FIFE, 9 = NINER","Slightly altered so they are not confused with other words"],
+["Levels","FL350 = flight level three five zero / 5,000 ft = five thousand","Above the transition altitude, flight levels use a standard pressure setting"],
+["Headings","270 = heading two seven zero","Three digits, said one by one"],
+["Frequencies","118.1 = one one eight decimal one","Some countries say “point”"],
+["Codes","2341 = squawk two three four one","Four transponder digits (0–7)"]]}]},
+{h:"Callsigns",blocks:[{t:"fig",id:"atc_call",cap:"Animated figure: how callsigns are said. When similar callsigns share a frequency, the controller warns pilots and may change how they are said."}]},
+{h:"Set words",blocks:[{t:"fig",id:"atc_roger",cap:"Animated figure: the difference between ROGER (received) and WILCO (will comply). Each word has a precise meaning."},
+{t:"table",cols:["Word","Meaning"],rows:[
+["ROGER","Received (not necessarily agreeing to comply)"],
+["WILCO","Understood and will comply"],
+["AFFIRM / NEGATIVE","Yes / no (YES and NO are not used)"],
+["SAY AGAIN","Please repeat"],
+["STANDBY","Wait (I will call you back)"],
+["UNABLE","Cannot comply with that instruction"]]}]},
+{h:"Always read back",blocks:[{t:"check",items:[
+{name:"Runway",x:"Clearances to enter, cross, hold short of, take off from or land on a runway"},
+{name:"Level, heading, speed",x:"Climb and descent levels, headings and speed instructions"},
+{name:"ATC clearance",x:"Clearances including route, level and departure procedure"},
+{name:"Codes and frequencies",x:"Transponder codes and frequency changes"}]},
+{t:"point",warn:true,x:"Never mistake sequence information such as “number one” for a take-off or runway-entry clearance. After the January 2024 accident at Haneda, Japan revised how departure sequence information is given (course “Aviation Fundamentals” 2-4)."}]},
+{h:"Number conventions that differ by country",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+["Altimeter setting unit","Inches (inHg)","Inches (inHg)","Inches (inHg)","Hectopascals (hPa)"],
+["Transition altitude","14,000 ft","14,000 ft","18,000 ft","Varies by country and airport (often a few thousand feet)"],
+["Radio language","English","English as a rule","English","English; some countries also use their own language domestically (France, for example)"],
+["Phraseology guides","National air traffic services standards","ATC procedures standards, ATC Communication Handbook","FAA JO 7110.65, the AIM glossary","ICAO Doc 9432, UK CAP 413 and others"]]},
+{t:"note",x:"The same “QNH” can be given in different units depending on the country. On flights abroad, pilots always check the unit and the transition altitude. These are typical values; check each country’s AIP (GEN 2.1 and ENR 1.7) for exact figures."}]},
+{h:"English language proficiency",blocks:[{t:"rows",items:[
+{name:"ICAO standard",x:"Pilots and controllers on international operations need at least Level 4 of the six-level English proficiency scale"},
+{name:"Re-testing",x:"As a guide, Level 4 is re-tested every three years and Level 5 every six; Level 6 is not re-tested"},
+{name:"What matters",x:"When standard phraseology doesn’t fit (sudden changes, problems), plain, slow English is essential"}]}]},
+{h:"Links to your work",blocks:[{t:"check",items:[
+{name:"Ramp radio",x:"Vehicle and towing radio use the same “say, read back, confirm” loop"},
+{name:"Passing on numbers",x:"Say stand numbers and flight numbers digit by digit on the phone or radio too"},
+{name:"Foreign airports",x:"Knowing that units and transition altitudes differ makes operational documents easier to read"}]}]},
+{h:"References",blocks:[{t:"note",x:"This lesson is this site’s own summary of public sources and others. Check the originals for accurate details."},
+{t:"link",href:"https://www.mlit.go.jp/koku/koku_tk1_000028.html",x:"MLIT: ATC Communication Handbook (Japanese and English editions)"},
+{t:"link",href:"https://www.faa.gov/air_traffic/publications/atpubs/aim_html/",x:"FAA: Aeronautical Information Manual (AIM)"}]}],
+voice:"The most dangerous thing on the radio is “I think that’s what they said”. If you are at all unsure, say “SAY AGAIN”. On ground radio too, asking again is not embarrassing; it is a normal safety step.",
+terms:[["Standard Phraseology","標準用語","표준 용어"],["Readback","復唱","복창"],["Hearback","ヒアバック","히어백"],["Phonetic Alphabet","フォネティックコード","포네틱 코드"],["Transition Altitude","転移高度","전이고도"],["QNH","高度計規正値","고도계 수정치"]],
+quiz:[{q:"What does “WILCO” mean?",opts:["Received","Understood and will comply","Say again","Wait"],a:1,exp:"WILCO means understood and will comply; ROGER only means received."},
+{q:"How is the number 9 said?",opts:["NINE","NINER","NAIN","NOVEMBER"],a:1,exp:"“NINER”, so it is not confused with other words."},
+{q:"What is the US transition altitude?",opts:["5,000 ft","14,000 ft","18,000 ft","29,000 ft"],a:2,exp:"18,000 ft in the US; 14,000 ft in Japan and Korea."}],
+next:"2-2 Emergencies and abnormal situations: 7700, distress calls and lost communications"});
+set("2-2",{title:"Emergencies and Abnormal Situations: 7700, Distress Calls and Lost Communications",hl:"Emergencies",subtitle:"MAYDAY and PAN PAN, three special codes, what to do when radio fails and the tower’s light signals, plus how four regions work to prevent runway incursions",
+lead:["Almost every flight departs and arrives without incident. Still, “something different” happens somewhere every day: a sick passenger, a technical fault, a sudden change in weather, a radio failure.","This lesson covers the words and codes for emergencies, what the controller does then, procedures and tower light signals when communication fails, and the measures used to prevent runway incursions."],
+sections:[
+{h:"Emergency words and codes",blocks:[{t:"fig",id:"atc_emerg",cap:"Animated figure: MAYDAY (distress), PAN PAN (urgency) and the special transponder codes. The controller clears the frequency and gives priority."},
+{t:"table",cols:["Item","Meaning","Examples"],rows:[
+["MAYDAY (three times)","Distress: grave and imminent danger, immediate help needed","Engine fire, a seriously ill passenger, fuel critically low (MAYDAY FUEL)"],
+["PAN PAN (three times)","Urgency: no immediate danger but needs prompt action","A technical problem, transporting a sick passenger"],
+["7700","Emergency","Often used together with MAYDAY"],
+["7600","Communication failure","Unable to talk or hear on the radio"],
+["7500","Unlawful interference (hijacking)","Signalled by code when it cannot be said aloud"],
+["MINIMUM FUEL","No more delay can be accepted (not an emergency)","ATC advises expected delays and monitors the situation"]]}]},
+{h:"What the controller does",blocks:[{t:"rows",items:[
+{name:"Give priority",x:"Hold other traffic, give the shortest route and levels, and keep the frequency quiet"},
+{name:"Ask only what is needed",x:"Ask only the essentials (people on board, fuel, dangerous goods, intentions) without adding to the pilots’ workload"},
+{name:"Notify",x:"Alert airport fire and rescue, the airline and neighbouring ATC units"},
+{name:"Protect the flow",x:"Rebuild the flow in the air and at the airport, including holding or diverting other aircraft"}]}]},
+{h:"When communication fails",blocks:[{t:"fig",id:"atc_lost",cap:"Animated figure: when the radio cannot be used, squawk 7600 and fly according to the last clearance and the flight plan."},
+{t:"table",cols:["Tower light","Aircraft on the ground","Aircraft in flight"],rows:[
+["Steady green","Cleared for take-off","Cleared to land"],
+["Flashing green","Cleared to taxi","Return for landing"],
+["Steady red","Stop","Give way to other aircraft and continue circling"],
+["Flashing red","Taxi clear of the landing area in use","Aerodrome unsafe, do not land"],
+["Flashing white","Return to starting point on the aerodrome","—"]]},
+{t:"note",x:"These are the basic ICAO light signals. Some countries add details, so check each country’s AIP."}]},
+{h:"Preventing runway incursions",blocks:[{t:"fig",id:"rwy_hold",cap:"Animated figure: the holding point before a runway. Read back “hold short” and do not cross the line until cleared."},
+{t:"table",cols:["Region","Examples of measures"],rows:[
+["Japan","After the January 2024 collision at Haneda: revising how departure sequence information is given, expanding runway status lights and alerting systems, and strengthening controller staffing"],
+["Korea","Through runway safety committees and teams, publicising each airport’s hotspots and managing vehicle and pedestrian access to runways"],
+["USA","A runway safety summit in 2023, and expanding surface surveillance displays (Surface Awareness) and runway status lights (RWSL)"],
+["Europe","The European Action Plan for the Prevention of Runway Incursions (EAPPRI), including “never cross a lit stop bar”"]]},
+{t:"note",x:"Names and details of measures are typical examples. Check announcements by each country’s aviation authority for the latest."}]},
+{h:"Links to your work",blocks:[{t:"check",items:[
+{name:"Sick passengers",x:"A medical emergency can lead to a diversion; on the ground, ambulances and connections must be arranged"},
+{name:"Fire crews on standby",x:"For an emergency landing, fire engines may line the runway, delaying later flights"},
+{name:"Driving airside",x:"Near runways and taxiways, always follow clearances, holding points and lights"}]}]},
+{h:"References",blocks:[{t:"note",x:"This lesson is this site’s own summary of public sources and others. Check the originals for accurate details."},
+{t:"link",href:"https://www.mlit.go.jp/report/press/content/001970249.pdf",x:"MLIT: Guidelines on Ensuring Runway Safety (November 2025, Japanese)"},
+{t:"link",href:"https://www.eurocontrol.int/publication/european-action-plan-prevention-runway-incursions-eappri",x:"EUROCONTROL: European Action Plan for the Prevention of Runway Incursions (EAPPRI)"}]}],
+voice:"In an emergency, controllers sound calmer and shorter than usual. The same applies on the ground: the more urgent things are, the more set phrases help information get through accurately.",
+terms:[["Distress (MAYDAY)","遭難","조난"],["Urgency (PAN PAN)","緊急","긴급"],["Communication Failure","通信途絶","통신 두절"],["Unlawful Interference","不法な干渉","불법 방해"],["Minimum Fuel","最低燃料","최저 연료"],["Runway Incursion","滑走路誤進入","활주로 오진입"]],
+quiz:[{q:"Which transponder code means communication failure?",opts:["7500","7600","7700","2000"],a:1,exp:"7600 means communication failure."},
+{q:"What does “MINIMUM FUEL” mean?",opts:["Out of fuel, in distress","No more delay can be accepted","Requesting fuel","Dumping fuel"],a:1,exp:"It is not an emergency, but ATC advises expected delays. If fuel becomes critical, it is MAYDAY FUEL."},
+{q:"A steady green light from the tower to an aircraft in flight means…",opts:["Cleared to land","Return and wait","Do not land","Continue circling"],a:0,exp:"Steady green to an aircraft in flight means cleared to land."}],
+next:"Part 3 Systems and Navigation — 3-1 Radar and ADS-B"});
+})(window.ARTS);
