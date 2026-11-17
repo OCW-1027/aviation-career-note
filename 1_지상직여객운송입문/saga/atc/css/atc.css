@@ -512,3 +512,9 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .pland li{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:3px 0;border-bottom:1px dashed #2a3542;color:#b8c4d0}.pland li b{font-weight:500}
 .pland li.g span{color:#4cd387;font-weight:600}.pland li.m span{color:#ffc04d;font-weight:600}.pland li.b span{color:#ff6b5e;font-weight:600}
 .pland p{margin:6px 0 0;font-size:12px;color:#8a9aab}
+/* 조종사 체험 출발편(D1): 비행계획 · 트랜스폰더 */
+.pfpl .prow{flex-wrap:wrap;gap:4px}.pfpl .prow b{min-width:58px}.pfpl .cb small{opacity:.7;margin-left:3px;font-size:10px}
+.proute{font-family:ui-monospace,monospace;font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:6px;padding:6px 8px;margin:6px 0;word-break:break-all}
+.pchk{list-style:none;margin:4px 0 8px;padding:0;font-size:12px}.pchk li.ok{color:#7fe0a2}.pchk li.ng{color:#ff9b8a}
+.pxpdr{flex-wrap:wrap;gap:4px}.pxpdr .pval{font-family:ui-monospace,monospace;font-size:18px;letter-spacing:.12em;min-width:64px;color:#ffd27a}
+.pxpdr.due{outline:1px solid #ffd27a;border-radius:6px}

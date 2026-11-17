@@ -572,7 +572,7 @@
       /* 주변 항공기 */
       var seen = {};
       sim.acs.forEach(function (a) {
-        if (a === p.ac || a.gone) return; seen[a.id] = 1; var o = otherAc(a), pp = P(a.x, a.y, Math.max(S.elev + (o.userData.cm ? 0 : 3), (a.alt || 0) * FT));
+        if (a === p.ac || a.gone || !isFinite(a.x) || !isFinite(a.y)) return; seen[a.id] = 1;      /* 위치가 없는 항공기(비행허가 화면의 대기편)는 그리지 않음 */ var o = otherAc(a), pp = P(a.x, a.y, Math.max(S.elev + (o.userData.cm ? 0 : 3), (a.alt || 0) * FT));
         o.position.copy(pp); o.rotation.set((a.vs || 0) / 6000 * 0.12, -a.hdg * D2R, 0, 'YXZ');
         if (o.userData.cm) { var agl = (a.alt || 0) * FT - S.elev, dd = pp.distanceTo(cw); ATC.CkModel.lod(o, dd); o.userData.gear.visible = dd < 5000 && (agl < 900 || !a.alt); ATC.CkModel.lights(o, now, st.night, agl < 3000 && (a.arr || agl < 600)); o.visible = pp.distanceTo(cw) < 90000; return; }
         var bl = (now / 1000) % 1.2 < 0.08; o.userData.nl.material.size = bl ? 12 : 6; o.userData.nl.material.opacity = bl ? 0.35 + st.night * 0.65 : 0.08 + st.night * 0.92;      /* 낮에는 항법등이 작게 */ o.visible = pp.distanceTo(cw) < 90000;
