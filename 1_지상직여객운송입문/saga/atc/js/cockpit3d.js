@@ -147,7 +147,7 @@
         sr /= n; sg /= n; sb /= n;
         /* 네 귀퉁이가 고른 물빛일 때만 바다를 오림(하네다). 귀퉁이가 땅이면(가상 공항) 오리지 않고 가장자리만 흐림 */
         var water = sb >= sr && cs.every(function (q) { return Math.abs(q[0] - sr) + Math.abs(q[1] - sg) + Math.abs(q[2] - sb) < 30; });
-        if (water) S.satSea = [sr / 255, sg / 255, sb / 255];
+        if (water && sr + sg + sb > 30) S.satSea = [sr / 255, sg / 255, sb / 255];      /* 바다를 이미 투명하게 뺀 그림(하네다 2026-11-18)은 귀퉁이가 비어 있음 → 바다색으로 쓰지 않음 */
         var f = Math.round(Math.min(w, h) * (water ? 0.04 : 0.05));
         for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
           var o = (y * w + x) * 4, dd = Math.abs(px[o] - sr) + Math.abs(px[o + 1] - sg) + Math.abs(px[o + 2] - sb), a = water ? Math.min(1, Math.max(0, (dd - 18) / 30)) : 1;
@@ -244,6 +244,36 @@
     });
     var at = document.createElement('a'); at.className = 'ckattr'; at.href = 'https://maps.gsi.go.jp/development/ichiran.html'; at.target = '_blank'; at.rel = 'noopener';
     at.textContent = cf.attr(); at.href = cf.href; at.style.display = 'none'; S.attr = at;      /* 사진이 한 장이라도 보이면 출처 표시 */
+  }
+  /* 땅 가까이(지상 · 이착륙)에서는 내 항공기 둘레를 가장 선명한 사진으로(하네다 z18 · 가상 공항 각 사진의 최대) — 멀어지면 다시 만듦 */
+  function nearGSI(x, y, elev) {
+    var cf = TCF(); if (!cf || !cf.inv || !S.scene) return; var MOB = (window.innerWidth || 1200) < 900, z = Math.min(cf.maxZ || 17, MOB ? 17 : 18), half = MOB ? 520 : 700;
+    var ll = cf.inv(x, y), dla = half / 111000, dlo = half / (111000 * Math.cos(ll.lat * D2R)), N = Math.pow(2, z), pr = cf.pr;
+    var x0 = Math.floor((ll.lon - dlo + 180) / 360 * N), x1 = Math.floor((ll.lon + dlo + 180) / 360 * N);
+    function ty(la) { var r = la * D2R; return Math.floor((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * N); }
+    var y0 = ty(ll.lat + dla), y1 = ty(ll.lat - dla), W = (x1 - x0 + 1) * 256, H = (y1 - y0 + 1) * 256;
+    var c00 = pr(tlon(x0, z), tlat(y0, z)), c10 = pr(tlon(x1 + 1, z), tlat(y0, z)), c01 = pr(tlon(x0, z), tlat(y1 + 1, z)), c11 = pr(tlon(x1 + 1, z), tlat(y1 + 1, z));
+    var ax = c10.x - c00.x, ay = c10.y - c00.y, bx = c01.x - c00.x, by = c01.y - c00.y, det = ax * by - ay * bx;
+    function toPx(px, py) { var dx = px - c00.x, dy = py - c00.y; return [(dx * by - dy * bx) / det * W, (ax * dy - ay * dx) / det * H]; }
+    var ph = document.createElement('canvas'); ph.width = W; ph.height = H; var pc = ph.getContext('2d');
+    var mk = document.createElement('canvas'); mk.width = W; mk.height = H; var mc = mk.getContext('2d'); mc.fillStyle = '#fff';
+    if (!cf.mask) mc.fillRect(0, 0, W, H); else (S.landRings || []).forEach(function (poly) { mc.beginPath(); poly.forEach(function (r) { for (var i = 0; i < r.length; i += 2) { var q = toPx(r[i], r[i + 1]); if (i) mc.lineTo(q[0], q[1]); else mc.moveTo(q[0], q[1]); } mc.closePath(); }); mc.fill('evenodd'); });
+    if (S.satK && cf.mask) { var sat = S.satK, a = toPx(sat.p1.x, sat.p1.y), b = toPx(sat.p2.x, sat.p2.y), c = toPx(sat.p3.x, sat.p3.y); mc.setTransform((b[0] - a[0]) / sat.cv.width, (b[1] - a[1]) / sat.cv.width, (c[0] - a[0]) / sat.cv.height, (c[1] - a[1]) / sat.cv.height, a[0], a[1]); mc.drawImage(sat.cv, 0, 0); mc.setTransform(1, 0, 0, 1, 0, 0); }
+    mc.globalCompositeOperation = 'destination-in'; var cx = W / 2, cy = H / 2, gr = mc.createRadialGradient(cx, cy, Math.min(W, H) * 0.3, cx, cy, Math.min(W, H) * 0.5); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); mc.fillStyle = gr; mc.fillRect(0, 0, W, H); mc.globalCompositeOperation = 'source-over';
+    var out = document.createElement('canvas'); out.width = W; out.height = H; var oc = out.getContext('2d'), tex = new T.CanvasTexture(out); tex.colorSpace = T.SRGBColorSpace; tex.anisotropy = 8;
+    var Y = elev - 0.18, g = new T.BufferGeometry();
+    g.setAttribute('position', new T.Float32BufferAttribute([c00.x * NM, Y, -c00.y * NM, c10.x * NM, Y, -c10.y * NM, c01.x * NM, Y, -c01.y * NM, c11.x * NM, Y, -c11.y * NM], 3));
+    g.setAttribute('uv', new T.Float32BufferAttribute([0, 1, 1, 1, 0, 0, 1, 0], 2)); g.setIndex([0, 2, 1, 1, 2, 3]); g.computeVertexNormals();
+    var mat = new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }), m = new T.Mesh(g, mat); m.renderOrder = 6; m.visible = false;
+    if (S.near) { S.scene.remove(S.near.m); S.near.m.geometry.dispose(); S.near.m.material.map.dispose(); S.near.m.material.dispose(); }
+    S.near = { x: x, y: y, m: m }; S.scene.add(m); var tok = S.near, pend = 0, dirty = false;
+    function flush() { if (S.near !== tok) return; oc.clearRect(0, 0, W, H); oc.drawImage(mk, 0, 0); oc.globalCompositeOperation = 'source-in'; oc.drawImage(ph, 0, 0); oc.globalCompositeOperation = 'source-over'; tex.needsUpdate = true; m.visible = true; dirty = false; }
+    for (var tx = x0; tx <= x1; tx++) for (var tyy = y0; tyy <= y1; tyy++) (function (tx, tyy) {
+      var im = new Image(); im.crossOrigin = 'anonymous'; pend++;
+      im.onload = function () { if (S.near !== tok) return; if (!ATC.Tiles.blank(im)) pc.drawImage(cf.key ? ATC.Tiles.keyed(im) : im, (tx - x0) * 256, (tyy - y0) * 256); pend--; if (!dirty) { dirty = true; setTimeout(flush, pend ? 500 : 0); } };
+      im.onerror = function () { pend--; };
+      im.src = ATC.Tiles.url(cf, z, tx, tyy);
+    })(tx, tyy);
   }
   /* 건물: 육지 위에 상자(인스턴스). 실제 공항(하네다)은 고층 지구를 실제 자리에 */
   var ZONES = { RJTT: [[-3.17, 8.65, 1.3, 230], [0.27, 7.69, 1.0, 200], [-0.2, 6.74, 0.7, 210], [-1.44, 4.72, 0.8, 150], [0.34, 4.34, 0.8, 110], [1.48, 5.95, 0.7, 150], [-7.96, -4.82, 1.0, 290], [-4.15, -0.83, 0.8, 120], [-5.72, 2.08, 0.6, 180], [13.04, 4.09, 0.9, 150], [-2.09, 4.29, 0.6, 140], [-1.73, 6.69, 0.7, 238], [-3.09, 6.7, 0.6, 180], [-1.71, 10.85, 0.6, 240]] };
@@ -413,7 +443,7 @@
     var ctex = canvasTex(256, 128, function (c, w, h) { for (var k = 0; k < 40; k++) { var x = w * (0.15 + Math.random() * 0.7), y = h * (0.35 + Math.random() * 0.35), rr = 18 + Math.random() * 30, g = c.createRadialGradient(x, y, 0, x, y, rr); g.addColorStop(0, 'rgba(255,255,255,.55)'); g.addColorStop(1, 'rgba(255,255,255,0)'); c.fillStyle = g; c.fillRect(0, 0, w, h); } });
     for (i = 0; i < 70; i++) { var sp = new T.Sprite(new T.SpriteMaterial({ map: ctex, transparent: true, depthWrite: false, opacity: 0.85, fog: true })); var ang = Math.random() * Math.PI * 2, dist = 6000 + Math.random() * 90000; sp.position.set(Math.cos(ang) * dist, (3500 + Math.random() * 5000) * FT, Math.sin(ang) * dist); var s2 = 2500 + Math.random() * 4000; sp.scale.set(s2, s2 * 0.45, 1); S.clouds.add(sp); }
     /* 주변 항공기 */
-    S.others = {}; S.acGeo = CM ? null : mkAcGeo(); if (S.own) { S.scene.remove(S.own); } S.own = null;
+    S.near = null; S.nearT = 0; S.others = {}; S.acGeo = CM ? null : mkAcGeo(); if (S.own) { S.scene.remove(S.own); } S.own = null;
     /* 조종석 */
     S.rig = new T.Group(); sc.add(S.rig); S.ck = new T.Group(); S.rig.add(S.ck); S.rig.add(S.cam); buildCockpit();      /* rig = 항공기에 붙은 틀(조종석 모형 + 카메라), 둘러보기는 카메라만 돌림 */
     /* 입력 */
@@ -572,14 +602,15 @@
       /* 주변 항공기 */
       var seen = {};
       sim.acs.forEach(function (a) {
-        if (a === p.ac || a.gone) return; seen[a.id] = 1; var o = otherAc(a), pp = P(a.x, a.y, Math.max(S.elev + (o.userData.cm ? 0 : 3), (a.alt || 0) * FT));
+        if (a === p.ac || a.gone || !isFinite(a.x) || !isFinite(a.y)) return; seen[a.id] = 1;      /* 위치가 없는 항공기(비행허가 화면의 대기편)는 그리지 않음 */ var o = otherAc(a), pp = P(a.x, a.y, Math.max(S.elev + (o.userData.cm ? 0 : 3), (a.alt || 0) * FT));
         o.position.copy(pp); o.rotation.set((a.vs || 0) / 6000 * 0.12, -a.hdg * D2R, 0, 'YXZ');
         if (o.userData.cm) { var agl = (a.alt || 0) * FT - S.elev, dd = pp.distanceTo(cw); ATC.CkModel.lod(o, dd); o.userData.gear.visible = dd < 5000 && (agl < 900 || !a.alt); ATC.CkModel.lights(o, now, st.night, agl < 3000 && (a.arr || agl < 600)); o.visible = pp.distanceTo(cw) < 90000; return; }
         var bl = (now / 1000) % 1.2 < 0.08; o.userData.nl.material.size = bl ? 12 : 6; o.userData.nl.material.opacity = bl ? 0.35 + st.night * 0.65 : 0.08 + st.night * 0.92;      /* 낮에는 항법등이 작게 */ o.visible = pp.distanceTo(cw) < 90000;
       });
       Object.keys(S.others).forEach(function (id) { if (!seen[id]) { S.scene.remove(S.others[id]); delete S.others[id]; } });
       if (S.sea.material.userData.nm) { var nmo = S.sea.material.userData.nm.offset; nmo.x = (now / 1000 * 0.004) % 1; nmo.y = (now / 1000 * 0.0027) % 1; }      /* 물결이 천천히 흐름 */
-      if (S.park && (!S.parkT || now - S.parkT > 1000)) { S.parkT = now; ATC.CkModel.parkedHide(S.park, function (it) { return sim.acs.some(function (a) { return !a.gone && Math.hypot(a.x - it.x, a.y - it.y) < 0.04 && (a.alt || 0) * FT - S.elev < 30; }); }); }
+      if (S.park && (!S.parkT || now - S.parkT > 1000)) { S.parkT = now; var pa = p.ac; ATC.CkModel.parkedHide(S.park, function (it) { if (pa && isFinite(pa.x) && Math.hypot(pa.x - it.x, pa.y - it.y) < 0.045) return true; return sim.acs.some(function (a) { return !a.gone && Math.hypot(a.x - it.x, a.y - it.y) < 0.04 && (a.alt || 0) * FT - S.elev < 30; }); }); }      /* 내 항공기 자리(비행계획 단계 포함)의 주기장 항공기도 숨김 */
+      if (p.ac && isFinite(p.ac.x) && TCF() && (!S.nearT || now - S.nearT > 1500)) { S.nearT = now; var agl = (p.ac.alt || 0) * FT - S.elev; if (agl < 450 && (!S.near || Math.hypot(p.ac.x - S.near.x, p.ac.y - S.near.y) > 0.17)) nearGSI(p.ac.x, p.ac.y, S.elev); else if (S.near && agl >= 450) S.near.m.visible = false; }
       /* 화면 */
       if (!S.dispT || now - S.dispT > 66) { S.dispT = now; drawDisp(st); }
     }
