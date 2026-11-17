@@ -1,7 +1,7 @@
 /* AIRLINE SAGA — 조종사 체험: 조종석 소리(Web Audio로 그 자리에서 만듦, 소리 파일 없음 — 음성 안내만 assets/sfx/ck_callouts.js)
    - 엔진: 낮은 울림 + 넓은 소음 + 팬 고음(N1에 따라)   - 바람 소리: 속도²에 따라, 기어를 내리면 덜컹거림이 더해짐
    - 기어: 움직이는 동안 유압 소리, 끝에 쿵   - 플랩: 모터 소리   - 접지: 쿵 + 타이어 끽, 활주 중 역추력 굉음 · 바퀴 울림
-   - 음성 안내(GPWS): 1000 · 500 · approaching minimums · minimums · 100 · 50 · 40 · 30 · 20 · 10, TOO LOW GEAR/FLAPS */
+   - 음성 안내(GPWS): 1000 · 500 · approaching minimums · minimums · 100 · 50 · 40 · 30 · 20 · 10, TOO LOW GEAR/FLAPS, 직접 조종 중 SINK RATE · GLIDE SLOPE · PULL UP · BANK ANGLE · 자동조종 해제음 · 스틱 셰이커 */
 (function () {
   'use strict';
   var ATC = window.ATC;
@@ -47,7 +47,14 @@
     if (ATC.CK_CALLOUTS) return dec();
     var sc = document.createElement('script'); sc.src = BASE + 'assets/sfx/ck_callouts.js'; sc.onload = dec; document.head.appendChild(sc);
   }
-  var lastSay = 0;
+  /* 자동조종 해제 경고음(울림 3번) */
+  K.wail = function () {
+    if (!A || !K.on || K.mute) return; var t = A.currentTime, gg = A.createGain(); gg.gain.value = 0.0001; gg.connect(A.destination);
+    var o = A.createOscillator(); o.type = 'square'; o.connect(filt(A, 'lowpass', 2400, 0.7, gg));
+    for (var i = 0; i < 6; i++) { var tt = t + i * 0.28; o.frequency.setValueAtTime(i % 2 ? 640 : 860, tt); gg.gain.setValueAtTime(0.12, tt); gg.gain.setValueAtTime(0.02, tt + 0.25); }
+    gg.gain.setValueAtTime(0.0001, t + 1.7); o.start(t); o.stop(t + 1.75);
+  };
+  var lastSay = 0, lastG = 0;
   function say(k) { var b = buf[k]; if (!b || !A) return; var s = A.createBufferSource(); s.buffer = b; var gg = A.createGain(); gg.gain.value = 0.9; s.connect(gg); gg.connect(A.destination); s.start(); lastSay = A.currentTime + b.duration; }
 
   K.start = function () {
@@ -74,14 +81,15 @@
     set(g.hyd.gain, cf.gear === 'transit' ? 0.025 : 0, 0.15); set(g.flp.gain, Math.abs((cf.flapPos || 0) - (cf.flap || 0)) > 0.05 ? 0.012 : 0, 0.15);
     /* 한 번 울리는 소리 */
     if (st0.gear === 'transit' && cf.gear !== 'transit') thump(0.35, 160);
-    if (ro && !st0.ro) { thump(0.9, 140); chirp(); setTimeout(function () { if (K.on) chirp(); }, 140); }
+    if (ro && !st0.ro) { var hv = p.land ? Math.min(1.6, 0.5 + Math.max(0, -p.land.vs) / 600) : 0.9; thump(hv, 140); chirp(); setTimeout(function () { if (K.on) chirp(); }, 140); }      /* 직접 착륙이면 접지 충격만큼 크게 */
     /* 음성 안내: 내려가는 중에 고도를 지날 때 */
     var ra = st.ra, pr = st0.ra, mins = st.mins || 200;
     if (pr !== undefined && ra < pr && !ro && A.currentTime > lastSay - 0.15) {
       var marks = [[1000, '1000'], [500, '500'], [mins + 100, 'appmin'], [mins, 'min'], [100, '100'], [50, '50'], [40, '40'], [30, '30'], [20, '20'], [10, '10']];
       for (var i = 0; i < marks.length; i++) if (pr > marks[i][0] && ra <= marks[i][0]) { say(marks[i][1]); break; }
     }
-    if (st.gpws && st.gpws !== st0.gpws) say(/GEAR/.test(st.gpws) ? 'gear' : /FLAP/.test(st.gpws) ? 'flaps' : /SINK/.test(st.gpws) ? 'sink' : /GLIDE/.test(st.gpws) ? 'gs' : '');
+    if (st.gpws && (st.gpws !== st0.gpws || st.man && A.currentTime - lastG > 2.6) && A.currentTime > lastSay - 0.1) { lastG = A.currentTime; say(/GEAR/.test(st.gpws) ? 'gear' : /FLAP/.test(st.gpws) ? 'flaps' : /SINK/.test(st.gpws) ? 'sink' : /GLIDE/.test(st.gpws) ? 'gs' : /PULL/.test(st.gpws) ? 'pullup' : /BANK/.test(st.gpws) ? 'bank' : ''); }      /* 직접 조종 중에는 조건이 이어지는 동안 되풀이 */
+    if (st.man && st.alpha > 13 && !ro) { if (!g.shk) { g.shk = gain(A, 0, g.master); loop(A, g.bn).connect(filt(A, 'bandpass', 32, 2, g.shk)); } set(g.shk.gain, 0.5, 0.05); } else if (g.shk) set(g.shk.gain, 0, 0.1);      /* 실속 경고: 조종간 떨림(스틱 셰이커) */
     st0 = { ra: ra, ro: !!ro, gear: cf.gear, gpws: st.gpws };
   };
 })();

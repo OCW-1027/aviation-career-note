@@ -30,6 +30,7 @@
   ATC.gsAlt = function (d) { return D.airport.elev + 50 + d * GS_FT_NM; };
 
   Ac.prototype.update = function (dt) {
+    if (this.man && ATC.Manual) { ATC.Manual.step(this, dt); return; }      /* 조종사 체험 직접 조종(2-B) */
     var sim = this.sim, p = this.perf, nav = this.nav, want, d, self = this;
     /* --- 항법 --- */
     if (nav.mode === 'route') {

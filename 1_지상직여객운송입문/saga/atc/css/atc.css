@@ -492,3 +492,23 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .pilotp .cb.popt.pdo{border-color:#ffd479;color:#ffe3a3;background:rgba(255,212,121,.08)}
 #ck3d .ckattr{position:absolute;right:6px;bottom:4px;z-index:3;font:10px/1.3 system-ui,sans-serif;color:rgba(255,255,255,.85);background:rgba(0,0,0,.38);padding:2px 6px;border-radius:3px;text-decoration:none;max-width:70%;pointer-events:auto}
 @media (max-width:700px){#ck3d .ckattr{top:4px;bottom:auto;right:4px;font-size:9px;max-width:62%}}
+@media (max-height:500px){#ck3d .ckattr{top:4px;bottom:auto;right:4px;font-size:9px;max-width:62%}}
+/* 2-B 직접 조종: 화면 조종간 · 추력 레버 · 조종 방식 · 착륙 평가 */
+.ckman{position:absolute;inset:0;pointer-events:none;z-index:6}
+.ckstick{position:absolute;left:2.5%;bottom:5%;width:min(26vmin,150px);height:min(26vmin,150px);border-radius:50%;background:rgba(10,14,20,.38);border:2px solid rgba(255,255,255,.55);pointer-events:auto;touch-action:none;display:flex;align-items:center;justify-content:center}
+.ckstick i{width:40%;height:40%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f1f3f5,#8a929b);box-shadow:0 2px 6px rgba(0,0,0,.5);transition:transform .08s}
+.ckstick small{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;color:#fff;text-shadow:0 1px 2px #000}
+.ckthr{position:absolute;right:2.5%;bottom:5%;width:44px;height:min(34vmin,170px);border-radius:10px;background:rgba(10,14,20,.42);border:2px solid rgba(255,255,255,.55);pointer-events:auto;touch-action:none;overflow:visible}
+.ckthr b{position:absolute;left:0;right:0;bottom:0;background:rgba(80,200,120,.35);border-radius:0 0 8px 8px}
+.ckthr i{position:absolute;left:-6px;right:-6px;height:14px;margin-bottom:-7px;border-radius:4px;background:linear-gradient(#e9ecef,#9aa1a8);box-shadow:0 1px 4px rgba(0,0,0,.6)}
+.ckthr.at i{background:linear-gradient(#bfe9c9,#5fae76)}
+.ckthr small{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:10px;color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap}
+.ckhint{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-size:11px;color:#fff;background:rgba(0,0,0,.45);padding:2px 8px;border-radius:6px;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis}
+.pilotp .pfly .cb.pstep.on{background:#1f6f3f;color:#fff;border-color:#2e9b58}
+.pilotp .pfly2 .cb.pga{border-color:#c0392b;color:#c0392b}
+.pland{margin:12px 0;padding:10px 12px;border:1px solid #2a3542;border-radius:10px;background:rgba(80,160,220,.06)}
+.pland h4{margin:0 0 6px;font-size:15px;color:#5fd0ff}
+.pland ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 14px}
+.pland li{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:3px 0;border-bottom:1px dashed #2a3542;color:#b8c4d0}.pland li b{font-weight:500}
+.pland li.g span{color:#4cd387;font-weight:600}.pland li.m span{color:#ffc04d;font-weight:600}.pland li.b span{color:#ff6b5e;font-weight:600}
+.pland p{margin:6px 0 0;font-size:12px;color:#8a9aab}

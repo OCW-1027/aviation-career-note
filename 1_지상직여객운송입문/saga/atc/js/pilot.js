@@ -16,6 +16,8 @@
     this.cur = { hdg: null, alt: null, spd: null };      /* 지금 유효한 허가(기수 · 고도 · 속도) */
     this.ilsOk = false; this.freq = null; this.done = false; this.nRb = 0; this.nRbOk = 0; this.rt = [];
     this.cfg = { gear: 'up', gearT: 0, flap: 0, flapPos: 0 };      /* 2단계: 기어 · 플랩(조종사가 조작) */
+    this.fly = ATC.Manual ? ATC.Manual.newFly() : { mode: 'auto', on: false };      /* 2-B: 조종 방식(자동 · 1,000ft부터 직접 · 처음부터 직접) */
+    if (ATC.Manual) this.fly.mode = ATC.Manual.pref();
     var s = sim.sched.filter(function (x) { return x.kind === 'arr' && !x.warm; }).sort(function (a, b) { return a.t - b.t; })[0];
     if (s) { s.pilot = true; s.warm = true; s.wi = 1; s.t = Math.min(s.t, sim.t + 2); sim.sched.sort(function (a, b) { return a.t - b.t; }); }      /* 경로 가운데쯤에서 시작(첫 지시까지 오래 기다리지 않게) */
     sim.isFinished = function () { return this.pilot.done; };
@@ -226,7 +228,12 @@
     if (cf.flapPos !== cf.flap) { var fs = 2.5 * 0.25; cf.flapPos = cf.flapPos < cf.flap ? Math.min(cf.flap, cf.flapPos + fs) : Math.max(cf.flap, cf.flapPos - fs); }
     if (this.roll) { if (sim.t - this.roll.t0 > 28) this.finish(); return; }
     if (ac.gone) { this.done = true; return; }
-    var ra = ac.alt - D.airport.elev, loc = ac.appr && ac.appr.loc;
+    var ra = ac.alt - D.airport.elev, loc = ac.appr && ac.appr.loc, F = this.fly;
+    if (ATC.Manual && !F.on && !F.used) {      /* 직접 조종 시작: 처음부터 / 최종 접근 1,000ft */
+      if (F.mode === 'full') ATC.Manual.engage(this, 'full');
+      else if (F.mode === 'last' && loc && ra < 1000) ATC.Manual.engage(this, 'last');
+    }
+    if (ATC.Manual && F.on) ATC.Manual.check(this);
     if (loc && ra < 1500 && cf.gear === 'up' && !cf.gearT && !this.foGear) { this.foGear = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 1,500ft까지 기어를 내리지 않아 부기장이 내렸습니다(GPWS 「TOO LOW GEAR」 직전).', ac.cs)); this.gear(); }
     if (loc && ra < 1000 && cf.flap < 25 && !this.foFlap) { this.foFlap = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 1,000ft까지 착륙 플랩을 내리지 않아 부기장이 플랩 30을 내렸습니다(안정 접근 기준).', ac.cs)); cf.flap = 30; this.bump(); }
     if (this.knobK && sim.t - this.knobT > 1.2) { var kk = this.knobK; this.knobK = null; if (kk === 'spd' || (kk === 'hdg' && ac.nav && ac.nav.mode === 'hdg')) this.set(kk); }      /* 속도 · 방위(HDG SEL 중)는 손잡이를 돌리면 바로 따름 */
@@ -269,5 +276,7 @@
   ATC.INC.p_noland = { cat: 'S', pts: -15, t: ATC.T('착륙 허가 없는 착륙'), les: 'app' };
   ATC.INC.p_gearup = { cat: 'S', pts: -40, t: ATC.T('동체 착륙'), les: 'app' };
   ATC.INC.p_land_ok = { cat: 'P', pts: 1, t: ATC.T('착륙'), les: 'app' };
+  /* 조종 방식 고르기(착륙 전까지 언제든) */
+  Pilot.prototype.setFly = function (m) { var F = this.fly; if (!F || this.roll) return; F.mode = m; if (ATC.Manual) ATC.Manual.pref(m); if (m === 'auto' && F.on) ATC.Manual.release(this); if (m !== 'auto') F.used = false; this.bump(); };
   ATC.Pilot = Pilot;
 })();

@@ -520,6 +520,7 @@
     if (S.host.clientWidth && Math.abs(S.host.clientWidth / S.host.clientHeight - S.cam.aspect) > 0.01) resize();
     var st = state(dt), now = performance.now();
     if (ATC.CkSnd) { if (p.done || ATC.app && ATC.app.paused) ATC.CkSnd.stop(); else { ATC.CkSnd.start(); ATC.CkSnd.update(st, p); } }      /* 조종석 소리 */
+    if (ATC.Manual) ATC.Manual.ui(S.host, p);      /* 직접 조종: 화면 조종간 · 추력 레버 */
     if (st) {
       /* 내 항공기 자리 · 자세 */
       var pos = P(st.pos.x, st.pos.y, st.altM), q = new T.Euler(st.pitch * D2R, -st.hdg * D2R, -st.bank * D2R, 'YXZ');
@@ -603,7 +604,9 @@
     var tp = ro ? (sim.t - ro.t0 < 3 ? 4 * (1 - (sim.t - ro.t0) / 3) : 0) : gam + aoa + (ap && ap.gs && ra < 60 ? (60 - ra) / 60 * 3 : 0);
     var sdt = sim.t - (v.tPrev === undefined ? sim.t : v.tPrev), rate = sdt > 0 ? (((hdg - v.hdgPrev + 540) % 360) - 180) / sdt : (v.rate || 0); if (sdt > 0) { v.tPrev = sim.t; v.hdgPrev = hdg; v.rate = rate; }
     var tb = ro ? 0 : Math.max(-25, Math.min(25, Math.atan(gs * 0.5144 * rate * D2R / 9.81) / D2R));
-    var kk = Math.min(1, dt * 2); v.pitch += (tp - v.pitch) * kk; v.bank += (tb - v.bank) * Math.min(1, dt * 1.5);
+    var F = p.fly && p.fly.on && ac.man ? p.fly : null;      /* 직접 조종: 실제 자세 그대로 */
+    if (F) { tp = F.pitch; tb = F.bank; }
+    var kk = F ? Math.min(1, dt * 12) : Math.min(1, dt * 2); v.pitch += (tp - v.pitch) * kk; v.bank += (tb - v.bank) * (F ? kk : Math.min(1, dt * 1.5));
     if (sdt > 0) { v.trend += ((ias - v.ias) / sdt * 10 - v.trend) * Math.min(1, dt * 2); v.ias = ias; }
     var e = ap ? D.ends[ap.rwy] : D.ends[ac.rwy], gsDev = null, locDev = null;
     if (e && ap) { var g = ATC.ilsGeom({ x: x, y: y }, e); locDev = Math.max(-2.5, Math.min(2.5, g.xtk / (0.6 * Math.max(0.15, g.d) / 10 + 0.02))); gsDev = Math.max(-2.5, Math.min(2.5, (alt - ATC.gsAlt(g.d)) / Math.max(40, g.d * 50))); }
@@ -621,14 +624,19 @@
     var fmaNew = S.fmaChg && performance.now() - S.fmaChg.t < 10000 ? S.fmaChg : null;
     var mins = (D.airport.elev || 0) + 200, mc = p.mcp || {};
     var msgs = []; if (p.cfg.gear !== 'down' && ra < 1600 && ap && ap.loc) msgs.push(['CONFIG GEAR', ra < 1000 ? 'warn' : 'caut']); if (ap && ap.gs && p.cfg.flap < 25 && ra < 2000) msgs.push(['CONFIG FLAPS', 'caut']); if (!p.landOk && ra < 1200 && ap && ap.loc && !ro) msgs.push(['NO LAND CLEARANCE', 'caut']); if (ro) msgs.push(['AUTOBRAKE 2', 'memo']); else if (ap && ap.loc) msgs.push(['AUTOBRAKE 2', 'memo']);
-    var n1 = ro ? Math.max(22, 30 - (sim.t - ro.t0) * 0.5) : Math.max(24, Math.min(95, 52 + vs / 100 + (mc.spd - ias) * 0.8 + p.cfg.flapPos * 0.4 + (p.cfg.gear === 'down' ? 6 : 0)));
+    var n1 = ro ? Math.max(22, 30 - (sim.t - ro.t0) * 0.5) : F ? 21 + F.thr * 76 : Math.max(24, Math.min(95, 52 + vs / 100 + (mc.spd - ias) * 0.8 + p.cfg.flapPos * 0.4 + (p.cfg.gear === 'down' ? 6 : 0)));
     var gpws = !ro && ap && ap.gs && p.cfg.gear !== 'down' && ra < 500 ? 'TOO LOW GEAR' : !ro && ra < 1000 && !(ap && ap.loc) && vs < -1500 ? 'SINK RATE' : '';
+    var fd = ATC.Manual && !ro && p.ac ? ATC.Manual.fd(ac, p) : null;
+    if (F && !ro) {      /* 직접 조종 경고: 강하율 · 활공각 아래 · 경사 · 실속 */
+      if (ra < 2500 && vs < -1800 && ra < -vs * 0.4) gpws = 'PULL UP'; else if (ra < 1000 && vs < -1100) gpws = 'SINK RATE'; else if (ap && ap.loc && gsDev !== null && gsDev < -1.3 && ra < 1000 && ra > 50) gpws = 'GLIDESLOPE'; else if (Math.abs(F.bank) > 35) gpws = 'BANK ANGLE';
+      if (F.alpha > 13) msgs.unshift(['STALL', 'warn']); if (ias > (plc[p.cfg.flap] || 340) + 3) msgs.unshift(['OVERSPEED', 'warn']); if (!F.at) msgs.push(['A/T OFF', 'caut']); if (sim.t - F.t0 < 10) msgs.unshift(['AUTOPILOT DISC', 'warn']);
+    }
     return {
       pos: { x: x, y: y }, altM: alt * FT, alt: alt, ias: ias, tas: ias * (1 + alt / 1000 * 0.0165), gs: gs, vs: ro ? 0 : vs, hdg: hdg, pitch: v.pitch, bank: v.bank, slip: 0, trend: v.trend,
       sel: { spd: Math.round(mc.spd || ias), hdg: Math.round(mc.hdg || hdg), alt: mc.alt || Math.round(alt) }, ra: ra, mins: 200, minAlert: ra < 300 && ra > 30 && !ro && ap && ap.gs, elev: D.airport.elev, baro: sim.qnh ? (sim.qnh + ' HPA') : 'STD',
       vmax: plc[p.cfg.flap] || 340, vmin: minS[p.cfg.flap] || 150, vref: ac.perf.vapp - 5, flapSpd: flapSpd,
-      fd: true, fdRoll: ((mc.hdg || hdg) - hdg + 540) % 360 - 180, fdPitch: 0, ap: true, at: true,
-      fma: { at: at, roll: roll, pitch: pitch, rollArm: ap && !ap.loc ? 'LOC' : nav.mode === 'hdg' && p.asg.dct ? 'LNAV' : '', pitchArm: ap && !ap.gs ? 'G/S' : '', ap: ro ? '' : ap && ap.gs && ra < 1500 ? 'LAND 3' : 'A/P' }, fmaNew: fmaNew,
+      fd: !ro, fdRoll: fd ? fd.roll : 0, fdPitch: fd ? fd.pitch : 0, ap: !F, at: F ? !!F.at : true, man: !!F, alpha: F ? F.alpha : 0,
+      fma: { at: F && !F.at ? '' : F && ra < 25 && ap ? 'IDLE' : at, roll: F ? (fd ? fd.lat : roll) : roll, pitch: F ? (fd ? fd.ver : pitch) : pitch, rollArm: ap && !ap.loc ? 'LOC' : nav.mode === 'hdg' && p.asg.dct ? 'LNAV' : '', pitchArm: ap && !ap.gs ? 'G/S' : '', ap: ro ? '' : F ? 'FLT DIR' : ap && ap.gs && ra < 1500 ? 'LAND 3' : 'A/P' }, fmaNew: fmaNew,
       ils: { tuned: !!(e && (ap || p.ilsOk)), ident: e && e.ilsId || 'ILS', freq: e && e.ilsFq || '', crs: e ? Math.round(e.crs) : 0, rwy: e ? e.id : '', loc: locDev, gs: gsDev, dme: e ? Math.hypot(e.thr.x - x, e.thr.y - y) : null, thr: e ? e.thr : null },
       gpws: gpws, route: route, next: nf, fixes: fixes, traffic: traffic, rwys: rwys, range: ra < 3000 ? 10 : ra < 9000 ? 20 : 40, wind: sim.wind || { dir: 0, spd: 0 },
       n1: [n1, n1 + 0.4], egt: [380 + n1 * 5, 384 + n1 * 5], tat: Math.round(15 - alt / 1000 * 2), msgs: msgs, gear: p.cfg.gear, flap: p.cfg.flap, flapPos: p.cfg.flapPos, fuel: 14.2 - sim.t / 3600 * 5.4, gw: 196 - sim.t / 3600 * 5.4,
