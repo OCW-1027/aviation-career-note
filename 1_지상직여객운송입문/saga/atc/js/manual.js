@@ -109,7 +109,8 @@
     /* 접지 · 지나침 */
     if (ra <= 0) { touch(ac, F, p); return; }
     if (ap && ap.loc && ap.d < -0.3 && ra >= 400) { end(p, 'p_ld_miss', ATC.T('{0}: 활주로 위를 {1}ft 높이로 지나쳤습니다 — 착륙 실패(활공각을 따라 내려와야 합니다).', ac.cs, Math.round(ra / 10) * 10)); return; }
-    if (sim.t - F.t0 > 600 && Math.hypot(ac.x, ac.y) > 35) { end(p, 'p_ld_miss', ATC.T('{0}: 공항에서 35NM 넘게 멀어졌습니다 — 착륙 실패.', ac.cs)); return; }
+    var dA = Math.hypot(ac.x, ac.y); F.minD = Math.min(F.minD === undefined ? dA : F.minD, dA);
+    if (ap && dA > 35 && dA > F.minD + 15) { end(p, 'p_ld_miss', ATC.T('{0}: 공항에서 35NM 넘게 멀어졌습니다 — 착륙 실패.', ac.cs)); return; }      /* 접근 허가 뒤 가장 가까웠던 곳에서 15NM 넘게 멀어진 경우만(먼 곳에서 시작해 들어오는 중은 아님 — 29차 결과) */
     var er = D.ends[ap ? ap.rwy : ac.rwy];
     if (er && ra < 400) { var rr = runwayAt(ac.x, ac.y, ac.hdg); if (rr && rr.e === er && rr.along > rr.len - 0.05) { end(p, 'p_ld_miss', ATC.T('{0}: 활주로 끝까지 접지하지 못하고 지나쳤습니다 — 착륙 실패.', ac.cs)); return; } }
   }

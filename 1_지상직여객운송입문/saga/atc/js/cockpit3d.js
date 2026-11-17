@@ -98,6 +98,9 @@
   /* ---------- 땅 · 도시 · 공항 사진 · 랜드마크 ---------- */
   function rnd(seed) { var s = seed >>> 0 || 1; return function () { s ^= s << 13; s >>>= 0; s ^= s >> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
   /* 위에서 본 도시: 큰 길 · 골목 · 지붕(회색 · 흰색 · 갈색 · 청회색) · 공원 녹지 — 1024px = 900m */
+  function fieldTex() {      /* 논밭 · 숲 조각 무늬(가상 공항의 사진 바깥) */
+    return canvasTex(512, 512, function (c, w, h) { var R = rnd(7), cols = ['#6f7d55', '#7c8a5c', '#8b8a62', '#5f6f48', '#9a9467', '#71805a', '#566544']; c.fillStyle = '#6e7b54'; c.fillRect(0, 0, w, h); for (var i = 0; i < 260; i++) { c.fillStyle = cols[Math.floor(R() * cols.length)]; c.globalAlpha = 0.55 + R() * 0.4; c.fillRect(Math.floor(R() * w), Math.floor(R() * h), 8 + R() * 46, 8 + R() * 46); } c.globalAlpha = 1; });
+  }
   function cityTex() {
     return canvasTex(1024, 1024, function (c, w, h) {
       var R = rnd(7); c.fillStyle = '#7d7f7c'; c.fillRect(0, 0, w, h);
@@ -169,8 +172,8 @@
   /* ---------- 실제 항공사진(하네다): 국토지리원 지리원 타일(항공사진)을 실시간으로 불러와 바닥에 깖 ----------
      지리원 서버에서 바로 읽어 표시(출처 표기만으로 신청 불필요 — 지리원 「승인 신청 Q&A」). 화면에 출처를 늘 표시.
      바다 쪽은 해안선(GEO) + 공항 섬(게임 항공사진의 바다를 뺀 모양)으로 가려서 3D 바다가 보이게 함(타일마다 다른 물빛 자국을 감춤) */
-  var GSI = { RJTT: { lat: 35 + 33 / 60 + 12 / 3600, lon: 139 + 46 / 60 + 52 / 3600, th: 149.88, ctr: [35.553, 139.785] } };
-  var GSIURL = 'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/';
+  /* 타일 설정은 js/tiles.js(ATC.Tiles) — 하네다(국토지리원) · 세이라(USGS, 미국 아이오와) · 아스테라(PDOK, 네덜란드 제일란트) */
+  function TCF() { return ATC.Tiles ? ATC.Tiles.cfg() : null; }
   function gsiProj(cf) {
     var p = cf.lat * D2R, mla = 111132.92 - 559.82 * Math.cos(2 * p) + 1.175 * Math.cos(4 * p), mlo = 111412.84 * Math.cos(p) - 93.5 * Math.cos(3 * p), g = cf.th * D2R;
     var ux = Math.sin(157 * D2R), uy = Math.cos(157 * D2R), vx = Math.sin(67 * D2R), vy = Math.cos(67 * D2R);
@@ -198,8 +201,9 @@
   }
   function inRegion(x, y) { var R = REGION[ATC.aptId]; if (!R) return false; var b = R.box, mx = (b[2] - b[0]) * 0.07; return x > b[0] + mx && x < b[2] - mx && y < b[1] - mx && y > b[3] + mx; }
   function buildGSI(sc, ap, elev) {
-    var cf = GSI[ATC.aptId], pr = gsiProj(cf), MOB = (window.innerWidth || 1200) < 900, st = { n: 0, ok: 0, bad: 0 };
-    var lv = MOB ? [[12, 17000, 1.4], [13, 7000, 2.8], [15, 2600, elev - 0.25]] : [[12, 24000, 1.4], [13, 10000, 2.8], [15, 3600, elev - 0.25]];
+    var cf = TCF(), pr = cf.pr, MOB = (window.innerWidth || 1200) < 900, st = { n: 0, ok: 0, bad: 0 };
+    var lv = MOB ? [[10, 45000, 0.9], [12, 17000, 1.4], [13, 7000, 2.8], [15, 2600, elev - 0.25]] : [[10, 70000, 0.9], [12, 24000, 1.4], [13, 10000, 2.8], [15, 3600, elev - 0.25]], LN = lv.length - 1;      /* 맨 앞 = 먼 곳(수평선까지 실제 사진 — 같은 무늬 되풀이 없앰) */
+    if (!cf.mask) { lv[0][2] = 3.0; lv[1][2] = 3.6; lv[2][2] = 4.2; }      /* 가상 공항: 땅(0.5m) 전체를 덮으므로 로그 깊이에서 겹쳐 깜빡이지 않게 더 높이(공항 그림 elev+0.12보다는 아래) */
     S.gsi = st; S.rwyHide = false; S.gsiM = [];
     satKeyed(function (sat) {      /* 공항 섬 모양(게임 항공사진에서 바다를 뺀 것) — 마스크에 씀. 사진을 못 불러오면 이것을 바닥에 깖 */
       S.satK = sat;
@@ -216,8 +220,9 @@
         function toPx(x, y) { var dx = x - c00.x, dy = y - c00.y; return [(dx * by - dy * bx) / det * W, (ax * dy - ay * dx) / det * H]; }
         /* 마스크: 육지 다각형 + 공항 섬 */
         var mk = document.createElement('canvas'); mk.width = W; mk.height = H; var mc = mk.getContext('2d'); mc.fillStyle = '#fff';
-        (S.landRings || []).forEach(function (poly) { mc.beginPath(); poly.forEach(function (r) { for (var i = 0; i < r.length; i += 2) { var q = toPx(r[i], r[i + 1]); if (i) mc.lineTo(q[0], q[1]); else mc.moveTo(q[0], q[1]); } mc.closePath(); }); mc.fill('evenodd'); });
-        if (sat) { var a = toPx(sat.p1.x, sat.p1.y), b = toPx(sat.p2.x, sat.p2.y), c = toPx(sat.p3.x, sat.p3.y); mc.setTransform((b[0] - a[0]) / sat.cv.width, (b[1] - a[1]) / sat.cv.width, (c[0] - a[0]) / sat.cv.height, (c[1] - a[1]) / sat.cv.height, a[0], a[1]); mc.drawImage(sat.cv, 0, 0); mc.setTransform(1, 0, 0, 1, 0, 0); }
+        if (!cf.mask) mc.fillRect(0, 0, W, H);      /* 가상 공항: 사진 전체(바다 포함) — 게임 공항 그림이 위에 덮임 */
+        else (S.landRings || []).forEach(function (poly) { mc.beginPath(); poly.forEach(function (r) { for (var i = 0; i < r.length; i += 2) { var q = toPx(r[i], r[i + 1]); if (i) mc.lineTo(q[0], q[1]); else mc.moveTo(q[0], q[1]); } mc.closePath(); }); mc.fill('evenodd'); });
+        if (sat && cf.mask) { var a = toPx(sat.p1.x, sat.p1.y), b = toPx(sat.p2.x, sat.p2.y), c = toPx(sat.p3.x, sat.p3.y); mc.setTransform((b[0] - a[0]) / sat.cv.width, (b[1] - a[1]) / sat.cv.width, (c[0] - a[0]) / sat.cv.height, (c[1] - a[1]) / sat.cv.height, a[0], a[1]); mc.drawImage(sat.cv, 0, 0); mc.setTransform(1, 0, 0, 1, 0, 0); }
         /* 바깥 가장자리 흐림 */
         mc.globalCompositeOperation = 'destination-in'; var fe = Math.round(Math.min(W, H) * 0.06);
         [[0, 0, fe, 0, W, H], [W, 0, W - fe, 0, W, H], [0, 0, 0, fe, W, H], [0, H, 0, H - fe, W, H]].forEach(function (q) { var gr = mc.createLinearGradient(q[0], q[1], q[2], q[3]); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(1, 'rgba(255,255,255,1)'); mc.fillStyle = gr; mc.fillRect(0, 0, W, H); });
@@ -226,19 +231,19 @@
         var Y = L[2], g = new T.BufferGeometry();
         g.setAttribute('position', new T.Float32BufferAttribute([c00.x * NM, Y, -c00.y * NM, c10.x * NM, Y, -c10.y * NM, c01.x * NM, Y, -c01.y * NM, c11.x * NM, Y, -c11.y * NM], 3));
         g.setAttribute('uv', new T.Float32BufferAttribute([0, 1, 1, 1, 0, 0, 1, 0], 2)); g.setIndex([0, 2, 1, 1, 2, 3]); g.computeVertexNormals();
-        var mat = new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }), m = new T.Mesh(g, mat); m.renderOrder = 1 + li; m.visible = false; (li === 2 ? ap : sc).add(m); (S.gsiM = S.gsiM || []).push(mat);      /* 사진은 이미 햇빛이 담겨 있어 조명 없이(낮밤 밝기만 곱함) */
+        var mat = new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }), m = new T.Mesh(g, mat); m.renderOrder = cf.mask ? 1 + li : 0.5 + li * 0.4; m.visible = false; (li === LN ? ap : sc).add(m); (S.gsiM = S.gsiM || []).push(mat);      /* 사진은 이미 햇빛이 담겨 있어 조명 없이(낮밤 밝기만 곱함) */
         var pend = 0, dirty = false, total = (x1 - x0 + 1) * (y1 - y0 + 1), got = 0;
         function flush() { oc.clearRect(0, 0, W, H); oc.drawImage(mk, 0, 0); oc.globalCompositeOperation = 'source-in'; oc.drawImage(ph, 0, 0); oc.globalCompositeOperation = 'source-over'; tex.needsUpdate = true; m.visible = true; dirty = false; }
         for (var x = x0; x <= x1; x++) for (var y = y0; y <= y1; y++) (function (x, y) {
           var im = new Image(); im.crossOrigin = 'anonymous'; st.n++; pend++;
-          im.onload = function () { pc.drawImage(im, (x - x0) * 256, (y - y0) * 256); st.ok++; if (S.attr) S.attr.style.display = ''; got++; pend--; if (!dirty) { dirty = true; setTimeout(flush, pend ? 400 : 0); } if (li === 2 && got > total * 0.8) S.rwyHide = true; };
-          im.onerror = function () { st.bad++; pend--; if (st.bad > 8 && st.bad > st.ok && !S.satOn && S.satK) { S.satOn = true; satPlane(ap, elev, S.satK); } };
-          im.src = GSIURL + z + '/' + x + '/' + y + '.jpg';
+          im.onload = function () { if (!ATC.Tiles.blank(im)) pc.drawImage(cf.key ? ATC.Tiles.keyed(im) : im, (x - x0) * 256, (y - y0) * 256); st.ok++; if (S.attr) S.attr.style.display = ''; got++; pend--; if (!dirty) { dirty = true; setTimeout(flush, pend ? 400 : 0); } if (cf.mask && li === LN && got > total * 0.8) S.rwyHide = true; };      /* 사진이 없는 칸(흰 · 검은 한 빛)은 비워 둠 */
+          im.onerror = function () { st.bad++; pend--; if (st.bad > 8 && st.bad > st.ok && !S.satOn && S.satK) { S.satOn = true; if (cf.mask) satPlane(ap, elev, S.satK); else buildRegion(sc); } };      /* 못 불러오면: 하네다 = 게임 항공사진, 가상 공항 = 제미니 지역 그림 */
+          im.src = ATC.Tiles.url(cf, z, x, y);
         })(x, y);
       });
     });
     var at = document.createElement('a'); at.className = 'ckattr'; at.href = 'https://maps.gsi.go.jp/development/ichiran.html'; at.target = '_blank'; at.rel = 'noopener';
-    at.textContent = ATC.T('출처: 일본 국토지리원 「지리원 타일」(항공사진)을 가공해 표시'); at.style.display = 'none'; S.attr = at;      /* 사진이 한 장이라도 보이면 출처 표시 */
+    at.textContent = cf.attr(); at.href = cf.href; at.style.display = 'none'; S.attr = at;      /* 사진이 한 장이라도 보이면 출처 표시 */
   }
   /* 건물: 육지 위에 상자(인스턴스). 실제 공항(하네다)은 고층 지구를 실제 자리에 */
   var ZONES = { RJTT: [[-3.17, 8.65, 1.3, 230], [0.27, 7.69, 1.0, 200], [-0.2, 6.74, 0.7, 210], [-1.44, 4.72, 0.8, 150], [0.34, 4.34, 0.8, 110], [1.48, 5.95, 0.7, 150], [-7.96, -4.82, 1.0, 290], [-4.15, -0.83, 0.8, 120], [-5.72, 2.08, 0.6, 180], [13.04, 4.09, 0.9, 150], [-2.09, 4.29, 0.6, 140], [-1.73, 6.69, 0.7, 238], [-3.09, 6.7, 0.6, 180], [-1.71, 10.85, 0.6, 240]] };
@@ -246,8 +251,9 @@
     return canvasTex(64, 128, function (c, w, h) { var R = rnd(lit ? 5 : 3); c.fillStyle = lit ? '#000' : '#d9dbdc'; c.fillRect(0, 0, w, h); for (var y = 6; y < h; y += 10) for (var x = 4; x < w; x += 8) { if (lit) { if (R() < 0.45) { c.fillStyle = ['#ffd99a', '#fff0c8', '#cfe6ff'][Math.floor(R() * 3)]; c.fillRect(x, y, 5, 6); } } else { c.fillStyle = R() < 0.5 ? '#6f8494' : '#596b79'; c.fillRect(x, y, 5, 6); } } });
   }
   function buildCity(sc) {
+    var tc0 = TCF(); if (tc0 && !tc0.mask) return;      /* 가상 공항(해외 실제 사진): 사진 속 건물이 있으니 상자 건물은 세우지 않음 */
     var D = ATC.D, R = rnd(ATC.aptId.charCodeAt(0) * 97 + 3), zones = ZONES[ATC.aptId] || [], st = D.sat, lo = [], hi = [];
-    function onApt(x, y) { if (GSI[ATC.aptId] && Math.hypot(x, y) < 5.4 || inRegion(x, y)) return true;      /* 실제 사진이 깔리는 곳은 낮은 건물 상자 안 세움 */
+    function onApt(x, y) { if (TCF() && Math.hypot(x, y) < 5.4 || inRegion(x, y)) return true;      /* 실제 사진이 깔리는 곳은 낮은 건물 상자 안 세움 */
       if (!st) return Math.hypot(x, y) < 2.2; var q = D.xy2uv(x, y); return q.u > st.u1 - 400 && q.u < st.u2 + 400 && q.v > st.v1 - 400 && q.v < st.v2 + 400; }
     var MOB = (window.innerWidth || 1200) < 900, NLO = MOB ? 4500 : 9000;      /* 휴대폰은 건물 반만 */
     for (var k = 0; k < 26000 && lo.length < NLO; k++) {
@@ -320,7 +326,7 @@
     var sea = new T.Mesh(new T.PlaneGeometry(500000, 500000), new T.MeshPhongMaterial({ color: 0x1d3f5c, specular: 0x8aa2b8, shininess: 90, bumpMap: wave, bumpScale: 0.6 }));
     sea.rotation.x = -Math.PI / 2; sea.position.y = -1; sc.add(sea); S.sea = sea;
     /* 육지(해안선) */
-    var geo = ATC.GEO && ATC.GEO[ATC.aptId], landTex = cityTex();
+    var geo = ATC.GEO && ATC.GEO[ATC.aptId], tc1 = TCF(), landTex = tc1 && !tc1.mask ? fieldTex() : cityTex();      /* 가상 공항: 사진 바깥 먼 땅은 도시 무늬 대신 논밭 빛 */
     landTex.wrapS = landTex.wrapT = T.RepeatWrapping;
     var landMat = new T.MeshLambertMaterial({ map: landTex }), cityLights = [], bigN = noiseTex(256);
     landMat.onBeforeCompile = function (sh) { sh.uniforms.map2 = { value: bigN }; sh.fragmentShader = 'uniform sampler2D map2;\n' + sh.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n  diffuseColor.rgb *= mix(0.7, 1.2, texture2D(map2, vMapUv * 0.037).r);'); };      /* 큰 얼룩(동네마다 색이 조금씩 다름) */
@@ -339,7 +345,9 @@
     var elev = (D.airport.elev || 0) * FT; S.elev = elev;
     var twyMat = new T.MeshLambertMaterial({ color: 0x55585c }), apronMat = new T.MeshLambertMaterial({ color: 0x6b6e70 }), SAT = !!D.sat;
     S.rwyM = []; S.gsi = null; S.gsiM = []; S.satOn = false; if (S.attr && S.attr.parentNode) S.attr.parentNode.removeChild(S.attr); S.attr = null;
-    if (GSI[ATC.aptId]) buildGSI(sc, ap, elev);      /* 실제 공항: 국토지리원 항공사진(실시간). 못 불러오면 게임 항공사진 */
+    var tcf = TCF();
+    if (tcf && tcf.mask) buildGSI(sc, ap, elev);      /* 실제 공항: 국토지리원 항공사진(실시간). 못 불러오면 게임 항공사진 */
+    else if (tcf && SAT) { buildSat(ap, elev); buildGSI(sc, ap, elev); }      /* 가상 공항: 실제 항공사진(해외) 위에 게임 공항 그림. 못 불러오면 제미니 지역 그림 */
     else if (SAT) { buildSat(ap, elev); buildRegion(sc); }      /* 둘레 위성사진(제미니) 위에 공항 항공사진(지상 관제 화면과 같은 그림)을 바닥에 깖 — 유도로 · 계류장 · 터미널 모형은 그리지 않음 */
     var twyLights = [];
     (D.gE || []).forEach(function (e) {
