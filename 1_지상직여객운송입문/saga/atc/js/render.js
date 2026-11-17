@@ -275,6 +275,7 @@
     }
   };
   R.drawGround = function (ctx, W, H, app) {
+    R.tOk = false;
     var sim = app.sim, v = app.view, s = v.scale, i, a, b, N = D.gN, now = performance.now();
     ctx.fillStyle = C.grass; ctx.fillRect(0, 0, W, H); ctx.textBaseline = 'middle';
     if (satOk) {
@@ -282,10 +283,10 @@
       var gc = D.geoCol || {}, px = D.xy2uv(1, 0), py = D.xy2uv(0, 1), kk = s * 1852;
       if (geoP) { ctx.fillStyle = gc.sea || '#3e5261'; ctx.fillRect(0, 0, W, H); geoFill(ctx, [s * px.u, -s * px.v, s * py.u, -s * py.v, W / 2 - v.cu * s, H / 2 + v.cv * s], kk, gc.land || R.SAT.edge || '#60634a', s < 0.05 ? 'rgba(214,220,196,.35)' : null, 1.2); }   /* 사진 바깥: 실제(하네다) · 가상(세이라 · 아스테라) 주변 지리 */
       else { ctx.fillStyle = R.SAT.edge || '#60634a'; ctx.fillRect(0, 0, W, H); }
-      var tOk = !app.guide && ATC.Tiles && ATC.Tiles.draw2D(ctx, W, H, function (x, y) { var q = D.xy2uv(x, y); return gs(v, W, H, q.u, q.v); }, function (sx, sy) { var q = R.groundToUV(v, W, H, sx, sy); return D.uv2xy(q.u, q.v); }, s);      /* 공항 둘레 실제 항공사진(실시간 · 확대할수록 선명한 단계) */
+      R.tOk = false; var tOk = !app.guide && ATC.Tiles && ATC.Tiles.draw2D(ctx, W, H, function (x, y) { var q = D.xy2uv(x, y); return gs(v, W, H, q.u, q.v); }, function (sx, sy) { var q = R.groundToUV(v, W, H, sx, sy); return D.uv2xy(q.u, q.v); }, s);      /* 공항 둘레 실제 항공사진(실시간 · 확대할수록 선명한 단계) */
       ctx.drawImage(satImg, a[0], a[1], b[0] - a[0], b[1] - a[1]);                              /* 가장자리는 흐려 둔 사진(feather) */
       ctx.fillStyle = tOk ? 'rgba(5,9,14,.20)' : 'rgba(5,9,14,.30)'; ctx.fillRect(0, 0, W, H);
-      if (tOk) { var tc = ATC.Tiles.cfg(); ctx.save(); ctx.font = '9px ' + MONO; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = 'rgba(236,240,244,.8)'; ctx.fillText(tc.attr(), 8, H - 6); ctx.restore(); }      /* 사진 출처(늘 표시) */
+      R.tOk = tOk;      /* 사진 출처는 작은 지도까지 그린 뒤 R.tileCredit에서(가려지지 않게) */
       if (geoP) R.geoCredit(ctx, W, H, 'rgba(230,236,240,.6)');
       if (geoP && s < 0.03) geoLabels(ctx, function (x, y) { var q = D.xy2uv(x, y); return gs(v, W, H, q.u, q.v); }, W, H, kk, ['rgba(236,240,226,.72)', 'rgba(190,214,236,.6)']);
     }
@@ -399,6 +400,7 @@
     R.finalBars(ctx, W, H, app);
     if (sim.mode === 'TWR' || sim.mode === 'GND') R.miniRadar(ctx, W, H, app);
     R.miniMap(ctx, W, H, app);
+    R.tileCredit(ctx, W, H);
   };
   /* 위에서 본 항공기(코가 위쪽) */
   R.plane = function (ctx, perf, col, k, shadow) {
@@ -449,6 +451,15 @@
     });
   };
   /* 작은 전체 지도: 확대해 있을 때 왼쪽 아래에 공항 전체와 지금 보는 범위를 보여 줌(눌러서 이동) */
+  /* 실제 항공사진 출처 — 작은 지도 오른쪽(없으면 왼쪽 아래), 좁으면 두 줄 · 작은 글씨. CC BY 4.0(아스테라)은 늘 보여야 함(30차 결과) */
+  R.tileCredit = function (ctx, W, H) {
+    if (!R.tOk || !ATC.Tiles) return; var tc = ATC.Tiles.cfg(); if (!tc) return; var t = tc.attr(), mb = R.miniBox, x = mb ? mb.x + mb.w + 10 : 8, avail = W - x - 64, fs = 10, lines = [t];
+    ctx.save(); ctx.font = fs + 'px ' + MONO;
+    if (ctx.measureText(t).width > avail) { var i = t.indexOf('('), a = i > 0 ? t.slice(0, i) : t, b = i > 0 ? t.slice(i) : ''; lines = b ? [a, b] : [t]; while (fs > 8 && Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })) > avail) { fs--; ctx.font = fs + 'px ' + MONO; } if (Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })) > avail && mb) x = 8; }
+    var lh = fs + 3, wmax = Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })), y0 = H - 6 - (lines.length - 1) * lh, by = mb && x === 8 ? mb.y - 6 - (lines.length - 1) * lh : y0;
+    ctx.fillStyle = 'rgba(4,8,12,.55)'; ctx.fillRect(x - 4, by - fs - 2, wmax + 8, lines.length * lh + 3);
+    ctx.fillStyle = 'rgba(236,240,244,.9)'; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; lines.forEach(function (l, k) { ctx.fillText(l, x, by + k * lh); }); ctx.restore();
+  };
   R.miniBox = null;
   R.miniMap = function (ctx, W, H, app) {
     var v = app.view, sim = app.sim; R.miniBox = null;
