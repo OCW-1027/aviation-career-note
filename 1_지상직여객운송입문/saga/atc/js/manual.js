@@ -212,6 +212,7 @@
     window.addEventListener('keydown', function (e) {
       var t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
       var p = cur(); if (!p) return; var k = e.key.toLowerCase();
+      if (p.manKey) { if (p.manKey(k)) { e.preventDefault(); return; } if (k === 'z' || k === 't') return; }      /* 출발편 지상: Z = 지상 이동 직접 조종 */
       if (k === 'z') { M.toggleAP(p); e.preventDefault(); return; }
       if (k === 't' && p.fly.on) { M.toggleAT(p); return; }
       if (KMAP[k] && p.fly.on) { keys[k] = true; sync(p); e.preventDefault(); }
@@ -240,7 +241,8 @@
       th.addEventListener('pointerup', function () { td = null; });
     }
     el.hidden = !F.on;
-    if (F.on) { var lv = el.querySelector('.ckthr i'); lv.style.bottom = (F.th * 100).toFixed(0) + '%'; el.querySelector('.ckthr b').style.height = (F.thr * 100).toFixed(0) + '%'; el.querySelector('.ckthr').classList.toggle('at', !!F.at); var h = el.querySelector('.ckhint'), ht = F.gp ? ATC.T('게임패드 · 스틱 조종 · RT/LT 추력 · A 자동조종') : window.matchMedia && matchMedia('(pointer: coarse)').matches ? ATC.T('왼쪽 조종간을 끌어 조종 · 오른쪽 레버로 추력 · 자홍색 게임 조종 도움 막대를 따라가세요(실제 FD와 다름)') : ATC.T('방향키 조종간 · W/S 추력 · Z 자동조종 · T 자동추력 · G 기어 · [ ] 플랩'); if (h.textContent !== ht) h.textContent = ht; }
+    var sl = el.querySelector('.ckstick small'), slt = p.taxiHint ? ATC.T('좌우 방향 · ↓ 브레이크') : ATC.T('↓ 당기면 기수 올림'); if (sl.textContent !== slt) sl.textContent = slt;
+    if (F.on) { var lv = el.querySelector('.ckthr i'); lv.style.bottom = (F.th * 100).toFixed(0) + '%'; el.querySelector('.ckthr b').style.height = (F.thr * 100).toFixed(0) + '%'; el.querySelector('.ckthr').classList.toggle('at', !!F.at); var h = el.querySelector('.ckhint'), ht = F.gp ? ATC.T('게임패드 · 스틱 조종 · RT/LT 추력 · A 자동조종') : window.matchMedia && matchMedia('(pointer: coarse)').matches ? ATC.T('왼쪽 조종간을 끌어 조종 · 오른쪽 레버로 추력 · 자홍색 게임 조종 도움 막대를 따라가세요(실제 FD와 다름)') : ATC.T('방향키 조종간 · W/S 추력 · Z 자동조종 · T 자동추력 · G 기어 · [ ] 플랩'); if (p.taxiHint) ht = p.taxiHint(); if (h.textContent !== ht) h.textContent = ht; }
   };
 
   ATC.INC.p_ld_soft = { cat: 'P', pts: 2, t: ATC.T('아주 부드러운 착륙'), les: 'app' };

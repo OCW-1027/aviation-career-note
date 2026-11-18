@@ -286,7 +286,7 @@
       else { ctx.fillStyle = R.SAT.edge || '#60634a'; ctx.fillRect(0, 0, W, H); }
       R.tOk = false; var tOk = !app.guide && ATC.Tiles && ATC.Tiles.draw2D(ctx, W, H, function (x, y) { var q = D.xy2uv(x, y); return gs(v, W, H, q.u, q.v); }, function (sx, sy) { var q = R.groundToUV(v, W, H, sx, sy); return D.uv2xy(q.u, q.v); }, s);      /* 공항 둘레 실제 항공사진(실시간 · 확대할수록 선명한 단계) */
       if (tOk && geoP && ATC.aptId === 'RJTT') seaVeil(ctx, [s * px.u, -s * px.v, s * py.u, -s * py.v, W / 2 - v.cu * s, H / 2 + v.cv * s], 'rgba(28,47,60,.74)');      /* 바다는 한 색으로 고르게(항공사진의 바다 무늬 · 조각 차이를 덮음) — 하네다만(해안선이 실제와 맞음) */
-      ctx.drawImage(satImg, a[0], a[1], b[0] - a[0], b[1] - a[1]);                              /* 가장자리는 흐려 둔 사진(feather) */
+      if (!ATC.dbgNoSat) ctx.drawImage(satImg, a[0], a[1], b[0] - a[0], b[1] - a[1]);                              /* 가장자리는 흐려 둔 사진(feather) */
       ctx.fillStyle = tOk ? 'rgba(5,9,14,.20)' : 'rgba(5,9,14,.30)'; ctx.fillRect(0, 0, W, H);
       R.tOk = tOk;      /* 사진 출처는 작은 지도까지 그린 뒤 R.tileCredit에서(가려지지 않게) */
       if (geoP) R.geoCredit(ctx, W, H, 'rgba(230,236,240,.6)');

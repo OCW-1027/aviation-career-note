@@ -60,7 +60,7 @@
       this.say(a, ATC.csSay(a) + ', holding short runway ' + this.flow.use[a.holdRw] + ' at ' + ATC.twySay([node.hold]) + '.'); return;
     }
     if (a.st === 'taxi' && r === 'end') {
-      if (node.hold) { a.st = 'athold'; a.holdKind = 'dep'; a.readyT = this.t; a.waiting = 'twr'; this.say(a, ATC.csSay(a) + ', approaching holding point ' + ATC.twySay([node.hold]) + '.'); this.taxiScore(a); }
+      if (node.hold) { a.st = 'athold'; a.holdKind = 'dep'; a.readyT = this.t; a.waiting = 'twr'; this.say(a, ATC.csSay(a) + (a.pilotMe ? ', at holding point ' + ATC.twySay([node.hold]) + ', runway ' + a.rwy + '.' : ', approaching holding point ' + ATC.twySay([node.hold]) + '.')); this.taxiScore(a); }      /* 내 편(조종사 체험)은 이미 멈춘 상태에 맞는 보고(GPT 15차 R15-03) */
       else if (node.stand) { this.park(a); this.taxiScore(a); if (a.emg) { if (this.t <= a.emgDue) this.inc('emg_ok', [a], ATC.T('{0}(응급환자 탑승기)을(를) 주기장까지 우선 이동시켰습니다.', a.cs)); else this.inc('emg_late', [a], ATC.T('{0}(응급환자 탑승기)의 주기장 도착이 {1}분 지연됐습니다.', a.cs, Math.round((this.t - a.emgDue) / 60 + 0.5))); } }
       return;
     }
@@ -186,6 +186,13 @@
   };
   /* 활주로 횡단 협조: 지상관제는 활주로를 관할하지 않으므로 관제탑에 먼저 요청 → 착륙기 · 활주로 사용이 없으면 승인(1분 유효) */
   GndSim.prototype.crossOk = function (ac) { return !this.coordOn() || (ac.xco && ac.xco.t1 >= this.t); };
+  /* 조종사 체험 출발편(내 편): 활주로를 쓰는 항공기가 내 앞을 이미 지나갔고, 뒤따르는 착륙기가 m NM 밖이면 건널 수 있음
+     — 착륙이 줄지어 들어오는 활주로에서도 「착륙기 뒤로 횡단」 틈이 나게(관제 근무 쪽 기준 4NM · 활주로 비움은 그대로) */
+  GndSim.prototype.crossClear = function (ac, m) {
+    var rw = ac.holdRw, arr = this.nextArr(rw), self = this;
+    if (arr && arr.d < m * NM) return false;
+    return !this.acs.some(function (b) { return b !== ac && self.onRwy(b, rw) && !((b.spd > 3 || b.st === 'vacate') && (b.u - ac.u) * b.du + (b.v - ac.v) * b.dv > 150); });
+  };
   GndSim.prototype.reqCross = function (ac) {
     if (!this.coordOn() || ac.xco === 'req' || !(ac.st === 'athold' && ac.holdKind === 'cross')) return false; ac.xco = 'req'; ac.xcoWait = false;
     var rw = ac.holdRw, nm = (D.rw[rw] ? D.rw[rw].a + '/' + D.rw[rw].b : rw), nd = D.gN[ac.node], at = nd && nd.hold ? nd.hold : '';
@@ -193,7 +200,7 @@
     var chk = function () {
       if (ac.gone || ac.xco !== 'req' || ac.st !== 'athold') return;
       var arr = this.nextArr(rw), busy = this.rwyBusy(rw, ac);
-      if ((arr && arr.d < 4 * NM) || busy) { if (!ac.xcoWait) { ac.xcoWait = true; this.phone('TWR', ATC.T('{0} 횡단 잠시 대기 — 착륙기 · 활주로 사용이 끝나면 알리겠습니다.', ac.cs)); } this.later(8, chk); return; }
+      if (ac.pilotMe ? !this.crossClear(ac, 3.2) : ((arr && arr.d < 4 * NM) || busy)) { if (!ac.xcoWait) { ac.xcoWait = true; this.phone('TWR', ATC.T('{0} 횡단 잠시 대기 — 착륙기 · 활주로 사용이 끝나면 알리겠습니다.', ac.cs)); } this.later(8, chk); return; }
       ac.xco = { t1: this.t + 60 }; this.phone('TWR', ATC.T('{0} 활주로 {1} 횡단 승인 — 1분 안에 건너가게 하세요.', ac.cs, nm)); this.emit('notice', ATC.T('{0} 횡단 승인', ac.cs));
     };
     this.later(5 + this.rng() * 7, chk); return true;

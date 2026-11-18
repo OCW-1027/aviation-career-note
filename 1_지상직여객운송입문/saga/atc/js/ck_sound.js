@@ -71,7 +71,7 @@
   K.update = function (st, p) {
     if (!K.on || !A || !st) return;
     if (A.state !== 'running' && A.resume) { try { A.resume(); } catch (e) { } }
-    var n1 = (st.n1 && st.n1[0]) || 25, ias = st.ias || 0, ro = p.roll, cf = p.cfg, rt = ro ? (p.sim.t - ro.t0) : -1;
+    var n1 = st.n1 && (st.n1[0] || p.eng) ? st.n1[0] : 25, ias = st.ias || 0, ro = p.roll, cf = p.cfg, rt = ro ? (p.sim.t - ro.t0) : -1;
     var rev = ro && rt < 14 && st.ias > 60 ? Math.max(0, 1 - Math.abs(rt - 5) / 9) : 0;      /* 역추력: 접지 2초 뒤부터 커졌다가 줄어듦 */
     var e = Math.max(0, Math.min(1, (n1 - 20) / 75)) + rev * 0.8;
     set(g.rum.gain, 0.06 + e * 0.16); set(g.roar.gain, 0.012 + e * 0.07); set(g.roarF.frequency, 380 + e * 520);

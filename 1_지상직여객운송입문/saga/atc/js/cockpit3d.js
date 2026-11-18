@@ -8,6 +8,7 @@
 (function () {
   'use strict';
   var ATC = window.ATC, NM = 1852, FT = 0.3048, D2R = Math.PI / 180;
+  function AF(a) { return a.agl ? (a.alt || 0) + (ATC.D.airport.elev || 0) : (a.alt || 0); }      /* 지상 시뮬레이션의 항공기는 높이를 지면 기준으로 가짐(a.agl) → 해발로 */
   var BASE = (function () { var s = document.currentScript && document.currentScript.src || ''; return s.replace(/js\/cockpit3d\.js.*$/, ''); })();
   var T = null, C = ATC.Cockpit = { on: false, ok: !!window.WebGLRenderingContext };
   var S = {};      /* 장면 상태 */
@@ -334,7 +335,7 @@
     if (S.r) { S.r.dispose(); }
     var r = S.r = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', logarithmicDepthBuffer: true });
     r.setPixelRatio(Math.min(window.devicePixelRatio || 1, (window.innerWidth || 1200) < 900 ? 1.25 : 1.6)); r.outputColorSpace = T.SRGBColorSpace; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
-    var sc = S.scene = new T.Scene();
+    var sc = S.scene = new T.Scene(); S.route = null;
     S.cam = new T.PerspectiveCamera(70, 1, 0.05, 260000); S.cam.rotation.order = 'YXZ';
     S.glow = glowTex(); var CM = ATC.CkModel; if (CM) CM.init(T, { canvasTex: canvasTex, lightPoints: lightPoints }); if (CM) try { CM.env(r); } catch (e) {}
     S.fog = sc.fog = new T.FogExp2(0xb9cde0, 0.000045);
@@ -566,6 +567,20 @@
   function resize() { if (!S.r || !S.host) return; var w = S.host.clientWidth || 800, h = S.host.clientHeight || 500; S.r.setSize(w, h, false); S.r.domElement.style.width = '100%'; S.r.domElement.style.height = '100%'; if (S.ci) S.ci.key = ''; if (!S.cam.view) { S.cam.aspect = w / h; S.cam.updateProjectionMatrix(); } }
 
   /* ---------- 매 프레임 ---------- */
+  /* 출발편 지상: 허가받은 경로를 지면에 초록 띠로, 다음 정지 지점을 붉은 가로 띠로(0.5초마다 다시 만듦) */
+  function routeLine(p, now) {
+    var rp = p.routePts ? p.routePts() : null;
+    if (!rp) { if (S.route) { S.scene.remove(S.route.g); S.route.g.traverse(function (o) { if (o.geometry) o.geometry.dispose(); }); S.route = null; } return; }
+    if (S.route && S.route.key === rp.key && now - S.route.t < 500) return;
+    if (!S.route) { S.route = { g: new T.Group(), mg: new T.MeshBasicMaterial({ color: 0x35e07a, transparent: true, opacity: 0.72, depthWrite: false, side: T.DoubleSide }), mr: new T.MeshBasicMaterial({ color: 0xff4a3d, transparent: true, opacity: 0.85, depthWrite: false, side: T.DoubleSide }) }; S.scene.add(S.route.g); }
+    var R = S.route, Y = S.elev + 0.3, pts = rp.pts.map(function (q) { return [q.x * NM, -q.y * NM]; }), pos = [], idx = [], i, n = pts.length, hw = 1.1;
+    while (R.g.children.length) { var c = R.g.children[0]; R.g.remove(c); c.geometry.dispose(); }
+    for (i = 0; i < n; i++) { var a = pts[Math.max(0, i - 1)], b = pts[Math.min(n - 1, i + 1)], dx = b[0] - a[0], dz = b[1] - a[1], L = Math.hypot(dx, dz) || 1, nx = -dz / L * hw, nz = dx / L * hw; pos.push(pts[i][0] + nx, Y, pts[i][1] + nz, pts[i][0] - nx, Y, pts[i][1] - nz); if (i) idx.push(2 * i - 2, 2 * i - 1, 2 * i, 2 * i - 1, 2 * i + 1, 2 * i); }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); g.setIndex(idx); var m = new T.Mesh(g, R.mg); m.renderOrder = 7; m.frustumCulled = false; R.g.add(m);
+    if (rp.stop > 0) { var s1 = pts[rp.stop], s0 = pts[rp.stop - 1], ex = s1[0] - s0[0], ez = s1[1] - s0[1], EL = Math.hypot(ex, ez) || 1, ux = ex / EL, uz = ez / EL, wx = -uz * 22, wz = ux * 22, tx = ux * 1.2, tz = uz * 1.2, g2 = new T.BufferGeometry();
+      g2.setAttribute('position', new T.Float32BufferAttribute([s1[0] + wx - tx, Y, s1[1] + wz - tz, s1[0] - wx - tx, Y, s1[1] - wz - tz, s1[0] + wx + tx, Y, s1[1] + wz + tz, s1[0] - wx + tx, Y, s1[1] - wz + tz], 3)); g2.setIndex([0, 1, 2, 1, 3, 2]); var m2 = new T.Mesh(g2, R.mr); m2.renderOrder = 8; m2.frustumCulled = false; R.g.add(m2); }
+    R.key = rp.key; R.t = now;
+  }
   C.frame = function (dt) {
     if (!C.on || !S.r || !T) return;
     var sim = S.sim, p = sim.pilot, D = ATC.D; if (!p) return;
@@ -573,6 +588,7 @@
     var st = state(dt), now = performance.now(); S.lastSt = st;
     if (ATC.CkSnd) { if (p.done || ATC.app && ATC.app.paused) ATC.CkSnd.stop(); else { ATC.CkSnd.start(); ATC.CkSnd.update(st, p); } }      /* 조종석 소리 */
     if (ATC.Manual) ATC.Manual.ui(S.host, p);      /* 직접 조종: 화면 조종간 · 추력 레버 */
+    if (p.routePts || S.route) routeLine(p, now);
     if (st) {
       /* 내 항공기 자리 · 자세 */
       var pos = P(st.pos.x, st.pos.y, st.altM), q = new T.Euler(st.pitch * D2R, -st.hdg * D2R, -st.bank * D2R, 'YXZ');
@@ -602,15 +618,15 @@
       /* 주변 항공기 */
       var seen = {};
       sim.acs.forEach(function (a) {
-        if (a === p.ac || a.gone || !isFinite(a.x) || !isFinite(a.y)) return; seen[a.id] = 1;      /* 위치가 없는 항공기(비행허가 화면의 대기편)는 그리지 않음 */ var o = otherAc(a), pp = P(a.x, a.y, Math.max(S.elev + (o.userData.cm ? 0 : 3), (a.alt || 0) * FT));
+        if (a === p.ac || a.gone || !isFinite(a.x) || !isFinite(a.y)) return; seen[a.id] = 1;      /* 위치가 없는 항공기(비행허가 화면의 대기편)는 그리지 않음 */ var o = otherAc(a), pp = P(a.x, a.y, Math.max(S.elev + (o.userData.cm ? 0 : 3), AF(a) * FT));
         o.position.copy(pp); o.rotation.set((a.vs || 0) / 6000 * 0.12, -a.hdg * D2R, 0, 'YXZ');
-        if (o.userData.cm) { var agl = (a.alt || 0) * FT - S.elev, dd = pp.distanceTo(cw); ATC.CkModel.lod(o, dd); o.userData.gear.visible = dd < 5000 && (agl < 900 || !a.alt); ATC.CkModel.lights(o, now, st.night, agl < 3000 && (a.arr || agl < 600)); o.visible = pp.distanceTo(cw) < 90000; return; }
+        if (o.userData.cm) { var agl = AF(a) * FT - S.elev, dd = pp.distanceTo(cw); ATC.CkModel.lod(o, dd); o.userData.gear.visible = dd < 5000 && (agl < 900 || !a.alt || a.agl && a.alt < 2500); ATC.CkModel.lights(o, now, st.night, agl < 3000 && (a.arr || agl < 600)); o.visible = pp.distanceTo(cw) < 90000; return; }
         var bl = (now / 1000) % 1.2 < 0.08; o.userData.nl.material.size = bl ? 12 : 6; o.userData.nl.material.opacity = bl ? 0.35 + st.night * 0.65 : 0.08 + st.night * 0.92;      /* 낮에는 항법등이 작게 */ o.visible = pp.distanceTo(cw) < 90000;
       });
       Object.keys(S.others).forEach(function (id) { if (!seen[id]) { S.scene.remove(S.others[id]); delete S.others[id]; } });
       if (S.sea.material.userData.nm) { var nmo = S.sea.material.userData.nm.offset; nmo.x = (now / 1000 * 0.004) % 1; nmo.y = (now / 1000 * 0.0027) % 1; }      /* 물결이 천천히 흐름 */
-      if (S.park && (!S.parkT || now - S.parkT > 1000)) { S.parkT = now; var pa = p.ac; ATC.CkModel.parkedHide(S.park, function (it) { if (pa && isFinite(pa.x) && Math.hypot(pa.x - it.x, pa.y - it.y) < 0.045) return true; return sim.acs.some(function (a) { return !a.gone && Math.hypot(a.x - it.x, a.y - it.y) < 0.04 && (a.alt || 0) * FT - S.elev < 30; }); }); }      /* 내 항공기 자리(비행계획 단계 포함)의 주기장 항공기도 숨김 */
-      if (p.ac && isFinite(p.ac.x) && TCF() && (!S.nearT || now - S.nearT > 1500)) { S.nearT = now; var agl = (p.ac.alt || 0) * FT - S.elev; if (agl < 450 && (!S.near || Math.hypot(p.ac.x - S.near.x, p.ac.y - S.near.y) > 0.17)) nearGSI(p.ac.x, p.ac.y, S.elev); else if (S.near && agl >= 450) S.near.m.visible = false; }
+      if (S.park && (!S.parkT || now - S.parkT > 1000)) { S.parkT = now; var pa = p.ac; ATC.CkModel.parkedHide(S.park, function (it) { if (pa && isFinite(pa.x) && Math.hypot(pa.x - it.x, pa.y - it.y) < 0.045) return true; return sim.acs.some(function (a) { return !a.gone && isFinite(a.x) && Math.hypot(a.x - it.x, a.y - it.y) < 0.04 && AF(a) * FT - S.elev < 30; }); }); }      /* 내 항공기 자리(비행계획 단계 포함)의 주기장 항공기도 숨김 */
+      if (p.ac && isFinite(p.ac.x) && TCF() && (!S.nearT || now - S.nearT > 1500)) { S.nearT = now; var agl = AF(p.ac) * FT - S.elev; if (agl < 450 && (!S.near || Math.hypot(p.ac.x - S.near.x, p.ac.y - S.near.y) > 0.17)) nearGSI(p.ac.x, p.ac.y, S.elev); else if (S.near && agl >= 450) S.near.m.visible = false; }
       /* 화면 */
       if (!S.dispT || now - S.dispT > 66) { S.dispT = now; drawDisp(st); }
     }
@@ -653,10 +669,12 @@
       var tt = (sim.t - ro.t0), sdt = sim.t - (ro.lt === undefined ? sim.t : ro.lt); ro.lt = sim.t; ro.v = Math.max(0, ro.v0 - Math.max(0, tt - 1.5) * 2.6); ro.s = (ro.s || 0) + ro.v * 0.5144 * sdt / NM;
       x = ro.x + Math.sin(ro.hdg * D2R) * ro.s; y = ro.y + Math.cos(ro.hdg * D2R) * ro.s; hdg = ro.hdg; ias = ro.v; gs = ro.v; vs = 0;
       alt = D.airport.elev + Math.max(0, ro.h0 * (1 - tt / 3));
-    } else { x = ac.x; y = ac.y; alt = ac.alt; hdg = ac.hdg; ias = ac.ias; vs = ac.vs || 0; gs = ac.gs; }
+    } else { x = ac.x; y = ac.y; alt = AF(ac); hdg = ac.hdg; ias = ac.ias; vs = ac.vs || 0; gs = ac.gs; }
     var ra = alt - D.airport.elev, ap = ac.appr;
     /* 자세: 기수 각 = 비행 경로각 + 받음각, 경사 = 선회율에서 */
     var gam = Math.atan2(vs * FT / 60, Math.max(30, gs) * 0.5144) / D2R, aoa = Math.max(1, Math.min(7, 2 + (250 - ias) / 30)) + p.cfg.flapPos / 30 * -1.5;
+    var gnd = !!(p.dep && ra < 5 && !F);      /* 출발편 지상: 기수는 수평, 엔진 · 표시도 지상 값 */
+    if (gnd) aoa = 0;
     var tp = ro ? (sim.t - ro.t0 < 3 ? 4 * (1 - (sim.t - ro.t0) / 3) : 0) : gam + aoa + (ap && ap.gs && ra < 60 ? (60 - ra) / 60 * 3 : 0);
     var sdt = sim.t - (v.tPrev === undefined ? sim.t : v.tPrev), rate = sdt > 0 ? (((hdg - v.hdgPrev + 540) % 360) - 180) / sdt : (v.rate || 0); if (sdt > 0) { v.tPrev = sim.t; v.hdgPrev = hdg; v.rate = rate; }
     var tb = ro ? 0 : Math.max(-25, Math.min(25, Math.atan(gs * 0.5144 * rate * D2R / 9.81) / D2R));
@@ -671,16 +689,19 @@
     var cur = route[0], nf = cur ? { id: cur.id, d: Math.hypot(cur.x - x, cur.y - y), eta: '' } : null;
     if (nf) { var secs = nf.d / Math.max(60, gs) * 3600, ut = sim.utc() + secs, h = Math.floor(ut / 3600) % 24, mi = (ut / 60) % 60; nf.eta = (h < 10 ? '0' : '') + h + (mi < 10 ? '0' : '') + mi.toFixed(1) + 'z'; }
     var fixes = []; Object.keys(D.fix).forEach(function (k) { var f = D.fix[k]; if (/^[A-Z]{5}$/.test(k) && Math.hypot(f.x - x, f.y - y) < 40 && !route.some(function (r) { return r.id === k; })) fixes.push({ id: k, x: f.x, y: f.y }); });
-    var traffic = sim.acs.filter(function (a) { return a !== ac && !a.gone && !a.onGround; }).map(function (a) { return { x: a.x, y: a.y, alt: a.alt, vs: a.vs || 0 }; });
+    var traffic = sim.acs.filter(function (a) { return a !== ac && !a.gone && !a.onGround && isFinite(a.x) && !(a.agl && (a.alt || 0) < 100); }).map(function (a) { return { x: a.x, y: a.y, alt: AF(a), vs: a.vs || 0 }; });
     var rwys = Object.keys(D.rw || {}).map(function (k) { var r = D.rw[k], a = D.ends[r.a], b = D.ends[r.b]; return a && b ? { a: a.thr, b: b.thr } : null; }).filter(Boolean);
     var flapSpd = [['UP', 230], ['1', 210], ['5', 190], ['15', 170], ['20', 160]].filter(function (f) { return f[1] > ac.perf.vapp + 15; });
     var plc = { 0: 340, 1: 255, 5: 235, 15: 205, 20: 195, 25: 185, 30: 180 }, minS = { 0: 210, 1: 190, 5: 170, 15: 155, 20: 150, 25: 145, 30: ac.perf.vapp - 8 };
     var at = 'SPD', roll = ro ? 'ROLLOUT' : nav.mode === 'route' ? 'LNAV' : ap && ap.loc ? 'LOC' : 'HDG SEL', pitch = ro ? 'ROLLOUT' : ap && ap.gs ? (ra < 60 ? 'FLARE' : 'G/S') : Math.abs(vs) > 50 ? 'FLCH SPD' : 'ALT';
+    if (gnd) { at = ''; roll = 'TO/GA'; pitch = 'TO/GA'; }
     var fmaNow = at + roll + pitch; if (S.fmaPrev !== fmaNow) { S.fmaChg = { t: performance.now(), roll: S.fmaRoll !== roll, pitch: S.fmaPitch !== pitch }; S.fmaPrev = fmaNow; S.fmaRoll = roll; S.fmaPitch = pitch; }
     var fmaNew = S.fmaChg && performance.now() - S.fmaChg.t < 10000 ? S.fmaChg : null;
     var mins = (D.airport.elev || 0) + 200, mc = p.mcp || {};
     var msgs = []; if (p.cfg.gear !== 'down' && ra < 1600 && ap && ap.loc) msgs.push(['CONFIG GEAR', ra < 1000 ? 'warn' : 'caut']); if (ap && ap.gs && p.cfg.flap < 25 && ra < 2000) msgs.push(['CONFIG FLAPS', 'caut']); if (!p.landOk && ra < 1200 && ap && ap.loc && !ro) msgs.push(['NO LAND CLEARANCE', 'caut']); if (ro) msgs.push(['AUTOBRAKE 2', 'memo']); else if (ap && ap.loc) msgs.push(['AUTOBRAKE 2', 'memo']);
     var n1 = ro ? Math.max(22, 30 - (sim.t - ro.t0) * 0.5) : F ? 21 + F.thr * 76 : Math.max(24, Math.min(95, 52 + vs / 100 + (mc.spd - ias) * 0.8 + p.cfg.flapPos * 0.4 + (p.cfg.gear === 'down' ? 6 : 0)));
+    if (p.eng) { if (gnd || p.eng.st !== 'on') n1 = p.eng.n1; if (p.pbrake) msgs.push(['PARKING BRAKE SET', 'memo']); if (p.eng.st === 'off') msgs.push(['APU RUNNING', 'memo']); }
+    var egt0 = p.eng && n1 < 1 ? 18 : p.eng && gnd ? 250 + n1 * 9 : 380 + n1 * 5;
     var gpws = !ro && ap && ap.gs && p.cfg.gear !== 'down' && ra < 500 ? 'TOO LOW GEAR' : !ro && ra < 1000 && !(ap && ap.loc) && vs < -1500 ? 'SINK RATE' : '';
     var fd = ATC.Manual && !ro && p.ac ? ATC.Manual.fd(ac, p) : null;
     if (F && !ro) {      /* 직접 조종 경고: 강하율 · 활공각 아래 · 경사 · 실속 */
@@ -691,11 +712,11 @@
       pos: { x: x, y: y }, altM: alt * FT, alt: alt, ias: ias, tas: ias * (1 + alt / 1000 * 0.0165), gs: gs, vs: ro ? 0 : vs, hdg: hdg, pitch: v.pitch, bank: v.bank, slip: 0, trend: v.trend,
       sel: { spd: Math.round(mc.spd || ias), hdg: Math.round(mc.hdg || hdg), alt: mc.alt || Math.round(alt) }, ra: ra, mins: 200, minAlert: ra < 300 && ra > 30 && !ro && ap && ap.gs, elev: D.airport.elev, baro: sim.qnh ? (sim.qnh + ' HPA') : 'STD',
       vmax: plc[p.cfg.flap] || 340, vmin: minS[p.cfg.flap] || 150, vref: ac.perf.vapp - 5, flapSpd: flapSpd,
-      fd: !ro, fdRoll: fd ? fd.roll : 0, fdPitch: fd ? fd.pitch : 0, ap: !F, at: F ? !!F.at : true, man: !!F, alpha: F ? F.alpha : 0,
-      fma: { at: F && !F.at ? '' : F && ra < 25 && ap ? 'IDLE' : at, roll: F ? (fd ? fd.lat : roll) : roll, pitch: F ? (fd ? (fd.ver === 'FLARE' ? 'G/S' : fd.ver) : pitch) : pitch, rollArm: ap && !ap.loc ? 'LOC' : nav.mode === 'hdg' && p.asg.dct ? 'LNAV' : '', pitchArm: ap && !ap.gs ? 'G/S' : '', ap: ro ? '' : F ? 'FLT DIR' : ap && ap.gs && ra < 1500 ? 'LAND 3' : 'A/P' }, fmaNew: fmaNew,
+      fd: !ro, fdRoll: fd ? fd.roll : 0, fdPitch: fd ? fd.pitch : 0, ap: !F && !gnd, at: F ? !!F.at : true, man: !!F, alpha: F ? F.alpha : 0,
+      fma: { at: F && !F.at ? '' : F && ra < 25 && ap ? 'IDLE' : at, roll: F ? (fd ? fd.lat : roll) : roll, pitch: F ? (fd ? (fd.ver === 'FLARE' ? 'G/S' : fd.ver) : pitch) : pitch, rollArm: ap && !ap.loc ? 'LOC' : nav.mode === 'hdg' && p.asg.dct ? 'LNAV' : '', pitchArm: ap && !ap.gs ? 'G/S' : '', ap: ro ? '' : F || gnd ? 'FLT DIR' : ap && ap.gs && ra < 1500 ? 'LAND 3' : 'A/P' }, fmaNew: fmaNew,
       ils: { tuned: !!(e && (ap || p.ilsOk)), ident: e && e.ilsId || 'ILS', freq: e && e.ilsFq || '', crs: e ? Math.round(e.crs) : 0, rwy: e ? e.id : '', loc: locDev, gs: gsDev, dme: e ? Math.hypot(e.thr.x - x, e.thr.y - y) : null, thr: e ? e.thr : null },
       gpws: gpws, route: route, next: nf, fixes: fixes, traffic: traffic, rwys: rwys, range: ra < 3000 ? 10 : ra < 9000 ? 20 : 40, wind: sim.wind || { dir: 0, spd: 0 },
-      n1: [n1, n1 + 0.4], egt: [380 + n1 * 5, 384 + n1 * 5], tat: Math.round(15 - alt / 1000 * 2), msgs: msgs, gear: p.cfg.gear, flap: p.cfg.flap, flapPos: p.cfg.flapPos, fuel: 14.2 - sim.t / 3600 * 5.4, gw: 196 - sim.t / 3600 * 5.4,
+      n1: [n1, n1 ? n1 + 0.4 : 0], egt: [egt0, egt0 + (n1 < 1 ? 0 : 4)], tat: Math.round(15 - alt / 1000 * 2), msgs: msgs, gear: p.cfg.gear, flap: p.cfg.flap, flapPos: p.cfg.flapPos, fuel: 14.2 - sim.t / 3600 * 5.4, gw: 196 - sim.t / 3600 * 5.4,
       night: ATC.R && ATC.R.nightK ? ATC.R.nightK(sim) : 0
     };
   }

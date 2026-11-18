@@ -229,7 +229,7 @@
         case 'roll': r = this.rollStep(a, dt); if (r === 'lift' && this.onLift) this.onLift(a); break;
         case 'air': this.airStep(a, dt); if (Math.abs(a.u) > 24000 || Math.abs(a.v) > 24000) this.onAirOut(a); break;      /* 남북으로 놓인 활주로에서 뜬 항공기는 v쪽으로 멀어짐 */
         case 'push': case 'taxi': case 'vacate': case 'lineup': case 'cross':
-          r = this.taxiStep(a, dt);
+          r = a.manTaxi && a.st === 'taxi' && this.pilot && this.pilot.manStep ? this.pilot.manStep(a, dt) : this.taxiStep(a, dt);      /* 조종사 체험 출발편: 지상 이동 직접 조종 */
           if (r === 'end' || r === 'hs') this.onPathEvt(a, r);
           else if (r === 'node' && this.onNode) this.onNode(a);
           else if (r === 'blk') this.onBlocked(a);

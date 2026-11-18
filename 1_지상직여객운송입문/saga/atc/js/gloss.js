@@ -46,6 +46,7 @@
     [/unable to go around, hydraulic failure/gi, '복행 불가(유압 고장)'], [/going around/gi, '복행함'], [/go around/gi, '복행하라'],
     [/runway not in sight/gi, '활주로 육안 확인 불가'], [/wind shear/gi, '윈드시어'], [/unstable approach/gi, '불안정 접근'], [/too high/gi, '고도 과다'], [/runway occupied|runway is occupied/gi, '활주로 사용 중'], [/runway closed|runway is closed for inspection/gi, '활주로 폐쇄'], [/no landing clearance/gi, '착륙 허가 없음'],
     [/holding short runway (\w+) at ([\w ]+?), request crossing/gi, '활주로 $1 앞($2) 정지, 횡단 요청'], [/hold short of runway (\w+)/gi, '활주로 $1 앞에서 정지'], [/holding short runway (\w+)(?: at ([\w ]+))?/gi, '활주로 $1 앞 정지'],
+    [/cross runway (\w+) at ([A-Z][a-z]+(?: \d+)?)/g, '활주로 $1 횡단 허가($2에서)'], [/crossing runway (\w+) at ([A-Z][a-z]+(?: \d+)?)/gi, '활주로 $1 횡단함($2에서)'], [/at holding point ([A-Z][a-z]+(?: \d+)?), runway (\w+)/g, '대기 지점 $1(활주로 $2)에 도착'],
     [/cross runway (\w+)/gi, '활주로 $1 횡단 허가'], [/crossing runway (\w+)/gi, '활주로 $1 횡단함'],
     [/pushback approved/gi, '푸시백 허가'], [/face (west|east|north|south)/gi, function (m, a) { return '기수는 ' + DIR[a.toLowerCase()] + '쪽'; }], [/request pushback/gi, '푸시백 요청'],
     [/taxi to holding point ([\w ]+?), runway (\w+) via/gi, '대기 지점 $1(활주로 $2)까지 이동, 경로:'], [/holding point ([\w ]+?), runway (\w+) via/gi, '대기 지점 $1(활주로 $2), 경로:'],

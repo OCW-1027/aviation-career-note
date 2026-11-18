@@ -91,7 +91,7 @@
       case 'ga': return ['go around', 'going around'];
       case 'minspd': return ['reduce to minimum approach speed', 'minimum approach speed'];
       case 'hs': return ['hold short of runway ' + c.rwy, 'holding short runway ' + c.rwy];
-      case 'cross': return ['cross runway ' + c.rwy, 'crossing runway ' + c.rwy];
+      case 'cross': return ['cross runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : ''), 'crossing runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '')];      /* at = 횡단 지점(여러 교차점에 항공기가 있을 때) */
       case 'vacate': return ['turn ' + (c.side || 'right') + ' at ' + twy([c.exit]) + ', when vacated contact ground ' + f.GND.fq, (c.side || 'right') + ' at ' + twy([c.exit]) + ', when vacated ground ' + f.GND.fq];      /* 복창에 선회 방향(R9-04) */
       case 'push': return ['pushback approved' + (c.face ? ', face ' + c.face : ''), 'pushback approved' + (c.face ? ', face ' + c.face : '')];
       case 'pushhold': return ['hold position, expect pushback shortly', 'holding position'];

@@ -109,7 +109,7 @@
     h += '<button class="xbtn daily" data-x="daily"><i>' + ATC.T('오늘의 과제') + '</i><b>' + POS[dy.pos].nm + ' · ' + ATC.T('중급') + '</b><small>' + (today ? ATC.T('오늘 최고 {0}점 · {1}회 · 연속 {2}일', today.best, today.n, streak(dr, dy.day)) : ATC.T('모두 같은 교통 · 같은 날씨 — 날마다 자리가 바뀝니다')) + '</small></button>';
     ['TWR', 'APP'].forEach(function (k) { if (op.indexOf(k) < 0) return; var b = er[k + app.level]; h += '<button class="xbtn endless" data-x="endless" data-pos="' + k + '"><i>' + ATC.T('무한 근무') + '</i><b>' + POS[k].nm + ' · ' + LVNM()[app.level] + '</b><small>' + (b ? ATC.T('최고 {0}대 처리', b.best) : ATC.T('교통이 점점 늘어남 — 안전 감점 3번이면 끝')) + '</small></button>'; });
     if (op.indexOf('APP') >= 0 && ATC.Pilot) { var pb = load(PILOT_KEY, {})[app.level]; h += '<button class="xbtn pilot" data-x="pilot"><i>' + ATC.T('조종사 체험') + '</i><b>' + ATC.T('Vela Air 도착 · {0}', LVNM()[app.level]) + '</b><small>' + (pb ? ATC.T('최고 {0}점 · {1}회', pb.best, pb.n) : ATC.T('AI 관제사의 지시를 듣고 복창 · 자동조종 설정')) + '</small></button>'; }
-    if (ATC.DepPilot && ATC.aptId === 'RJTT' && op.indexOf('DEL') >= 0) h += '<button class="xbtn pilot" data-x="pilotdep"><i>' + ATC.T('조종사 체험 · 출발') + '</i><b>' + ATC.T('Vela Air 하네다 출발(1단계)') + '</b><small>' + ATC.T('비행계획 → Delivery 허가 · 복창 · 트랜스폰더 · 주기장 T1(국내) · T3(국제)') + '</small></button>';
+    if (ATC.DepPilot && ATC.aptId === 'RJTT' && op.indexOf('DEL') >= 0) h += '<button class="xbtn pilot" data-x="pilotdep"><i>' + ATC.T('조종사 체험 · 출발') + '</i><b>' + ATC.T('Vela Air 하네다 출발(1 ~ 2단계)') + '</b><small>' + ATC.T('비행계획 → Delivery 허가 → 푸시백 · 엔진 시동 → 지상 이동 → Tower 주파수까지') + '</small></button>' + (op.indexOf('GND') >= 0 ? '<button class="xbtn pilot" data-x="pilotdep2"><i>' + ATC.T('조종사 체험 · 출발') + '</i><b>' + ATC.T('푸시백부터 시작(2단계)') + '</b><small>' + ATC.T('허가는 받은 상태 — 푸시백 요청 · 엔진 시동 · 지상 이동 경로 복창 · 활주로 앞 정지') + '</small></button>' : '');
     var cnt = [0, 0, 0]; op.forEach(function (k) { cnt[rating(rec, k)]++; });
     var nx = op.map(function (k) { var r = rating(rec, k); return '<li class="r' + r + '"><b>' + k + '</b><span>' + RATE_NM()[r] + '</span></li>'; }).join('');
     el.innerHTML = h;
@@ -123,13 +123,15 @@
     seed = seed || (Date.now() % 1000000);
     var rng = ATC.rng(seed + 7), flow = app.flow === 'auto' || !D.flows[app.flow] ? pickFlow(rng()) : app.flow;
     var fw = D.flows[flow].wind, wind = { dir: U.n360(fw.dir + rng.int(0, 6) * 10) || 360, spd: fw.spd + rng.int(0, fw.spdN) };
-    xo = scn ? null : xo || null; app.xo = xo; app.pxr = '';      /* xo = 오늘의 과제(daily) · 무한 근무(endless) */
+    xo = scn ? null : xo || null; app.xo = xo; app.pxr = '';
+    var cr = xo && xo.carry || null; if (cr) { flow = cr.sim.flow.id; wind = cr.sim.wind; }      /* 조종사 체험 출발편: 앞 단계(비행허가)의 날씨 · 시각 · 기록을 이어받음 */      /* xo = 오늘의 과제(daily) · 무한 근무(endless) */
     if (xo && xo.daily) flow = pickFlow(rng());      /* 오늘의 과제는 운용 방향도 모두 같게 */
     var lv = scn ? scn.level : xo && xo.level || app.level; app.scn = scn || null;
-    var sim = app.sim = scn ? new Cls({ level: lv, seed: scn.seed, flow: scn.flow, wind: scn.wind, qnh: scn.qnh, startHour: scn.hour, scn: scn }) : new Cls({ level: lv, seed: seed, flow: flow, wind: wind, qnh: 1005 + rng.int(0, 18), startHour: xo && xo.pilotDep ? 3 + rng.int(0, 2) : xo && xo.pilot ? ((8 + rng.int(0, 7) - (D.tz !== undefined ? D.tz : 9)) % 24 + 24) % 24 : 6 + rng.int(0, 9), endless: !!(xo && xo.endless) });      /* 조종사 체험은 현지 낮(8 ~ 15시) */
+    var sim = app.sim = scn ? new Cls({ level: lv, seed: scn.seed, flow: scn.flow, wind: scn.wind, qnh: scn.qnh, startHour: scn.hour, scn: scn }) : new Cls({ level: lv, seed: seed, flow: flow, wind: wind, qnh: cr ? cr.sim.qnh : 1005 + rng.int(0, 18), startHour: cr ? cr.sim.utc() / 3600 : xo && xo.pilotDep ? 3 + rng.int(0, 2) : xo && xo.pilot ? ((8 + rng.int(0, 7) - (D.tz !== undefined ? D.tz : 9)) % 24 + 24) % 24 : 6 + rng.int(0, 9), endless: !!(xo && xo.endless) });      /* 조종사 체험은 현지 낮(8 ~ 15시) */
     if (xo && xo.daily) sim.sys(ATC.T('오늘의 과제 — 오늘은 누구나 같은 교통 · 같은 날씨로 근무합니다.'), 'info');
     if (xo && xo.endless) sim.sys(ATC.T('무한 근무 — 교통이 계속 들어오고 점점 늘어납니다. 안전 감점 3번이면 근무가 끝납니다.'), 'info');
-    if (xo && xo.pilotDep && ATC.DepPilot) new ATC.DepPilot(sim); else if (xo && xo.pilot) new ATC.Pilot(sim);      /* 조종사 체험: 관제는 AI, 플레이어는 Vela Air 조종사 */
+    if (cr) { sim.log = cr.sim.log.slice(); sim.incs = cr.sim.incs.slice(); sim.atis = cr.sim.atis; }
+    if (xo && xo.pilotDep && ATC.DepPilot) new ATC.DepPilot(sim, { carry: cr, from: xo.from }); else if (xo && xo.pilot) new ATC.Pilot(sim);      /* 조종사 체험: 관제는 AI, 플레이어는 Vela Air 조종사 */
     if (ATC.Cockpit) { if (sim.pilot && ATC.Cockpit.ok && app.ck3d !== false) ATC.Cockpit.open(sim, $('ck3d')); else ATC.Cockpit.close(); }      /* 2단계: 3D 조종석(WebGL이 되면 기본) */
     if (scn) sim.sys(ATC.T('시나리오 {0} 「{1}」 — 목표: {2} · {3}점 이상.', scn.no, scn.title, scn.goal.t, scn.eff), 'info');
     app.pos = POS[k]; app.sel = 0; app.pend = []; app.aq = []; app.paused = false; app.speed = lv === 1 ? Math.min(app.pos.spd, 2) : app.pos.spd; app.coach = scn ? !!scn.coach : lv === 1;   /* 초급은 ×2까지만으로 시작 */ app.gt = null; app.routePrev = null; app.del = {}; app.cmdSig = ''; app.stripSig = ''; app.logN = 0; app.seed = seed; app.over = false; app.recSaved = false;
@@ -225,7 +227,8 @@
   /* ================= 상단 ================= */
   function renderTop(force) {
     var sim = app.sim, p = app.pos, sc = sim.score();
-    $('tPos').innerHTML = '<b>' + p.call.toUpperCase() + '</b><span>' + p.fq + '</span><em>' + p.ko + ' · ' + (app.scn ? ATC.T('시나리오 {0}', app.scn.no) : sim.level.ko) + '</em>';
+    var dq = sim.pilot && sim.pilot.dep && sim.pilot.freqNowFq ? sim.pilot : null;      /* 출발편: 지금 맞춘 주파수(구역별 Ground 등) */
+    $('tPos').innerHTML = '<b>' + (dq && dq.freqNowN ? dq.freqNowN : p.call).toUpperCase() + '</b><span>' + (dq ? dq.freqNowFq : p.fq) + '</span><em>' + p.ko + ' · ' + (app.scn ? ATC.T('시나리오 {0}', app.scn.no) : sim.level.ko) + '</em>';
     $('tClock').textContent = U.hhmm(sim.utc()) + ':' + U.pad(Math.floor(sim.utc()) % 60, 2) + ' UTC';
     var rw = sim.mode === 'APP' ? 'ARR ' + sim.rwys.join('/') + ' · DEP ' + (D.depRwyFor && sim.flow.deps ? sim.flow.deps.join('/') : sim.flow.dep) : sim.mode === 'TWR' ? 'LDG ' + sim.arrRw.join('/') + ' · T/O ' + sim.depRw.join('/') : sim.mode === 'ACC' ? (D.accLabel ? D.airport.call.toUpperCase() + ' CONTROL' : 'FIR SEIRA') : sim.multi ? 'ARR ' + sim.flow.arrs.join('/') + ' · DEP ' + sim.flow.deps.join('/') : 'ARR ' + sim.flow.arr + ' · DEP ' + sim.flow.dep;
     if (sim.mode === 'APP' && sim.rwChg && !sim.rwChg.done) rw = 'ARR ' + sim.rwChg.oldR.join('/') + ' → ' + sim.rwChg.newR.join('/') + ' ' + U.hhmm(sim.t0 + sim.rwChg.t1) + 'Z';      /* 활주로 전환 예고 중: 전환 시각을 함께 */
@@ -503,7 +506,7 @@
     var box = $('logList'); box.appendChild(el); while (box.children.length > 160) box.removeChild(box.firstChild); box.scrollTop = box.scrollHeight;
   }
   function renderCoach() {
-    if (app.sim.pilot && app.sim.pilot.dep) { var pgd = '<div class="cgrp"><h5>' + ATC.T('조종사 체험 출발 — 하는 일') + '</h5><ol class="pguide"><li>' + ATC.T('비행계획 확인(SID · 목적지 · 순항 고도) → 「비행계획 확정」') + '</li><li>' + ATC.T('Delivery에 허가 요청(주기장 · ATIS · 목적지)') + '</li><li>' + ATC.T('허가 복창 — 목적지 · SID · 고도(9,000ft는 게임값) · 스쿼크') + '</li><li>' + ATC.T('트랜스폰더에 스쿼크 네 자리 넣기') + '</li><li>' + ATC.T('준비 완료 보고 → 「contact Ground」 복창 → 주파수 바꾸기') + '</li></ol></div>'; if (pgd !== app.coachSig) { app.coachSig = pgd; $('coach').innerHTML = pgd; } return; }
+    if (app.sim.pilot && app.sim.pilot.dep) { var pgd = app.sim.mode === 'GND' ? '<div class="cgrp"><h5>' + ATC.T('조종사 체험 출발 — 지상에서 하는 일') + '</h5><ol class="pguide"><li>' + ATC.T('Ground에 푸시백 요청(주기장 · ATIS)') + '</li><li>' + ATC.T('「pushback approved」 복창 — 기수 방향까지. 엔진 시동 · 지상 이동 허가는 아님') + '</li><li>' + ATC.T('주차 브레이크 풀기 → 푸시백 중 엔진 시동 → 플랩 5') + '</li><li>' + ATC.T('지상 이동 요청 → 경로 · 대기 지점 · 활주로 복창') + '</li><li>' + ATC.T('「hold short of runway」가 붙으면 그 활주로 앞에서 정지 — 「cross runway」를 받아야 건넘. 허가 시점은 관제가 활주로 사용 상황을 보고 정함') + '</li><li>' + ATC.T('대기 지점 도착 보고 → 「contact Tower」 복창 → 불러 준 주파수로 바꾸기(Tower 주파수는 여럿 — 늘 지시받은 값)') + '</li></ol></div>' : '<div class="cgrp"><h5>' + ATC.T('조종사 체험 출발 — 하는 일') + '</h5><ol class="pguide"><li>' + ATC.T('비행계획 확인(SID · 목적지 · 순항 고도) → 「비행계획 확정」') + '</li><li>' + ATC.T('Delivery에 허가 요청(주기장 · ATIS · 목적지)') + '</li><li>' + ATC.T('허가 복창 — 목적지 · SID · 고도(9,000ft는 게임값) · 스쿼크') + '</li><li>' + ATC.T('트랜스폰더에 스쿼크 네 자리 넣기') + '</li><li>' + ATC.T('준비 완료 보고 → 「contact Ground」 복창 → 주파수 바꾸기') + '</li></ol></div>'; if (pgd !== app.coachSig) { app.coachSig = pgd; $('coach').innerHTML = pgd; } return; }
     if (app.sim.pilot) { var pg = '<div class="cgrp"><h5>' + ATC.T('조종사 체험 — 하는 일') + '</h5><ol class="pguide"><li>' + ATC.T('주파수에 들어오면 첫 호출(호출부호 · 고도 · ATIS)') + '</li><li>' + ATC.T('관제 지시를 끝까지 듣고 바로 복창') + '</li><li>' + ATC.T('복창한 대로 자동조종(MCP)에 설정 — 노란 칸이 설정할 지시') + '</li><li>' + ATC.T('허가 없이 기수 · 고도를 바꾸지 않기, ILS는 접근 허가를 받은 뒤') + '</li><li>' + ATC.T('「contact Tower」 → 복창 → 주파수 바꾸기 → 관제탑 첫 호출') + '</li></ol></div>'; if (pg !== app.coachSig) { app.coachSig = pg; $('coach').innerHTML = pg; } return; }
     var sim = app.sim, h = '', list = [];
     sim.acs.forEach(function (a) { if (a.waiting && (a.owner === 'me' || a.owner === 'in' || sim.mode === 'DEL')) list.push(a); });
@@ -618,6 +621,7 @@
   }
 
 
+  if (ATC.DepPilot) ATC.DepPilot.relay = function (p, k) { var x0 = app.xo || {}; start(k, app.seed, null, { pilotDep: true, level: x0.level || app.level, k0: x0.k0 || 'DEL', from: x0.from, carry: p }); };      /* 출발편: 다음 관제석의 시뮬레이션으로 이어 감 */
   /* ================= 조종사 체험 패널 ================= */
   function renderPilot(sim) {
     if (sim.pilot.dep) return renderDep(sim);
@@ -656,9 +660,10 @@
   }
   /* 조종사 체험 출발편(D1): 비행계획 · 허가 · 트랜스폰더 */
   function renderDep(sim) {
+    if (sim.mode === 'GND' && sim.pilot.ac) app.sel = sim.pilot.ac.id;      /* 지상 지도에서 내 편 · 남은 경로가 늘 보이게 */
     var p = sim.pilot, ac = p.ac, fp = p.fp, x = p.xpdr, sig = 'D' + p.ver + (ATC.Cockpit && ATC.Cockpit.on ? 'C' : '') + (sim.cur && sim.cur.ac === ac ? sim.cur.who : '');
     if (sig === app.cmdSig) return; app.cmdSig = sig; app.btns = [];
-    var fq = p.freqNowFq ? { n: p.gnd.n, fq: p.freqNowFq } : D.freq[p.freqNow] || D.freq.DEL, mic = window.SpeechRecognition || window.webkitSpeechRecognition ? '<small class="pmic">' + ATC.T('🎤(M 키)를 누른 채 영어로 말해도 됩니다') + '</small>' : '';
+    var G = p.phase === 'gnd' || p.stage === 2, fq = p.freqNowFq ? { n: p.freqNowN || p.gnd.n, fq: p.freqNowFq } : D.freq[p.freqNow] || D.freq.DEL, mic = window.SpeechRecognition || window.webkitSpeechRecognition ? '<small class="pmic">' + ATC.T('🎤(M 키)를 누른 채 영어로 말해도 됩니다') + '</small>' : '';
     var head = '<div class="chead pil"><b style="border-color:' + ac.al.col + '">✈ ' + ac.cs + '</b><span>' + ac.csWord + ' ' + ac.num + ' · B787-9 · ' + ATC.T('조종사 체험 출발') + ' · ' + esc(fq.n + ' ' + fq.fq) + ' · STAND ' + esc(ac.stand) + '</span></div>';
     var rx = '', c = p.clr;
     if (p.phase === 'fpl') {
@@ -677,13 +682,17 @@
     else if (c) rx = '<div class="pwait">' + ATC.T('관제사가 말하는 중 — 잘 들으세요') + '</div>';
     else if (x.want && !x.set) rx = '<h6>' + ATC.T('허가받은 스쿼크를 트랜스폰더에 넣으세요') + '</h6><div class="pwait">' + ATC.T('복창한 허가의 「squawk」 네 자리(숫자 0 ~ 7)') + '</div>';
     else if (p.freqTo && !p.freqTo.sent) rx = '<h6>' + ATC.T('주파수를 바꾸세요') + '</h6><div class="popts">' + p.freqOpts().map(function (f) { return B(f.n + ' ' + f.fq, function () { p.tune(f.to); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
-    else if (p.done) rx = '<div class="pwait">' + ATC.T('출발편 1단계 끝 — 푸시백 · 지상 이동 · 이륙은 다음 판에서 이어집니다.') + '</div>';
+    else if (p.todo && p.todo()) { var td = p.todo(); rx = '<h6>' + ATC.T('조종석에서 할 일') + '</h6><div class="pwait">' + esc(td.why) + '</div><div class="popts">' + B(td.t, function () { p.act(td.k); app.cmdSig = ''; }, { cls: 'popt pdo' }) + '</div>'; }
+    else if (p.done) rx = '<div class="pwait">' + (p.stage === 2 ? ATC.T('출발편 2단계 끝 — 이륙 · 출발 관제는 다음 판에서 이어집니다.') : ATC.T('출발편 1단계 끝 — 푸시백 · 지상 이동 · 이륙은 다음 판에서 이어집니다.')) + '</div>';
+    else if (p.phase === 'relay') rx = '<div class="pwait">' + ATC.T('Ground 주파수로 넘어가는 중…') + '</div>';
     else rx = '<div class="pwait">' + ATC.T('다음 교신을 기다립니다 — 지금 허가: {0}', esc(p.curText())) + '</div>';
     var keys = [1, 2, 3, 4, 5, 6, 7, 0].map(function (d) { return B(String(d), function () { p.key(d); app.cmdSig = ''; }, { cls: 'pstep' }); }).join('') + B('CLR', function () { p.key('clr'); app.cmdSig = ''; }, { cls: 'pstep' });
     var shown = x.entry ? (x.entry + '····').slice(0, 4) : x.code;
     var side = '<h6>' + ATC.T('비행계획') + '</h6><div class="pins"><span>' + esc(fp.dest) + '</span><span>' + esc(D.sidName ? D.sidName(fp.gate) : fp.gate) + '</span><span>RWY <b>' + esc(ac.rwy) + '</b></span><span>FL<b>' + (fp.rfl / 100) + '</b></span>' + (p.depFq ? '<span>DEP <b>' + esc(p.depFq) + '</b></span>' : '') + '</div>' +
+      (G ? '<h6>' + ATC.T('항공기 상태') + '</h6><div class="pins pgst"><span>' + ATC.T('주차 브레이크') + ' <b class="' + (p.pbrake ? 'on' : '') + '">' + (p.pbrake ? 'SET' : 'OFF') + '</b></span><span>ENG <b class="' + (p.eng.st === 'on' ? 'on' : '') + '">' + (p.eng.st === 'on' ? 'RUN' : p.eng.st === 'start' ? 'START' : 'OFF') + '</b></span><span>FLAP <b>' + p.cfg.flap + '</b></span></div>' + (p.taxi ? '<div class="proute">' + esc(p.taxi.via.join(' → ') + ' → ' + p.taxi.hp + ' (RWY ' + p.taxi.rwy + ')' + (p.taxi.hs ? ' · HOLD SHORT RWY ' + p.taxi.hs : '')) + '</div>' : '') : '') +
       '<h6>' + ATC.T('트랜스폰더') + (x.want && !x.set ? ' <span class="pdue">' + ATC.T('설정할 것') + '</span>' : '') + '</h6><div class="prow pxpdr' + (x.want && !x.set ? ' due' : '') + '"><span class="pval">' + shown + '</span>' + keys + '</div>';
-    var ck3 = ATC.Cockpit, vrow = ck3 && ck3.ok ? '<div class="prow pview">' + B(ck3.on ? ATC.T('조종석 · 바깥') : ATC.T('3D 조종석'), function () { if (ck3.on) ck3.view(); else { app.ck3d = true; ck3.open(sim, $('ck3d')); } app.cmdSig = ''; }, { cls: 'pset' }) + (ck3.on ? B(ATC.T('앞 보기'), function () { ck3.resetLook(); }, { cls: 'pset' }) : '') + '</div>' : '';
+    var ck3 = ATC.Cockpit, vrow = ck3 && ck3.ok ? '<div class="prow pview">' + B(ck3.on ? ATC.T('조종석 · 바깥') : ATC.T('3D 조종석'), function () { if (ck3.on) ck3.view(); else { app.ck3d = true; ck3.open(sim, $('ck3d')); } app.cmdSig = ''; }, { cls: 'pset' }) + (ck3.on ? B(ATC.T('앞 보기'), function () { ck3.resetLook(); }, { cls: 'pset' }) : '') + (G && ck3.on ? B(ATC.T('지상 지도'), function () { ck3.close(); app.ck3d = false; app.cmdSig = ''; }, { cls: 'pset' }) : '') + '</div>' : '';
+    if (p.phase === 'gnd' && p.manOk && p.manOk() && ck3 && ck3.on) vrow += '<div class="prow pview">' + B(p.fly.on ? ATC.T('지상 이동 자동으로(Z)') : ATC.T('지상 이동 직접 조종(Z)'), function () { p.manTaxi(); app.cmdSig = ''; }, { cls: 'pset' + (p.fly.on ? ' on' : '') }) + '</div>';
     $('cmd').innerHTML = head + '<div class="cbody pilotp"><div class="prx">' + rx + '</div><div class="pmcp">' + side + vrow + '</div></div>';
   }
   /* ================= 마이크 관제(1단계) ================= */
@@ -730,7 +739,7 @@
     if (aps.length > 1) { $('apts').hidden = false; aps.forEach(function (a) { var b = document.createElement('button'); b.dataset.ap = a.id; b.textContent = a.name; if (a.id === ATC.aptId) b.className = 'on'; $('apts').appendChild(b); }); $('apts').addEventListener('click', function (e) { var b = e.target.closest('[data-ap]'); if (b) ATC.setAirport(b.dataset.ap); }); }
     bindCanvas();
     $('pcards').addEventListener('click', function (e) { var b = e.target.closest('.pcard'); if (b) briefing(b.dataset.pos); });
-    $('xmodes').addEventListener('click', function (e) { var b = e.target.closest('.xbtn'); if (!b) return; if (b.dataset.x === 'daily') { var dy = daily(); start(dy.pos, dy.seed, null, dy); } else if (b.dataset.x === 'pilot') start('APP', null, null, { pilot: true, level: app.level }); else if (b.dataset.x === 'pilotdep') start('DEL', null, null, { pilotDep: true, level: app.level }); else start(b.dataset.pos, null, null, { endless: true, level: app.level }); });
+    $('xmodes').addEventListener('click', function (e) { var b = e.target.closest('.xbtn'); if (!b) return; if (b.dataset.x === 'daily') { var dy = daily(); start(dy.pos, dy.seed, null, dy); } else if (b.dataset.x === 'pilot') start('APP', null, null, { pilot: true, level: app.level }); else if (b.dataset.x === 'pilotdep') start('DEL', null, null, { pilotDep: true, level: app.level, k0: 'DEL' }); else if (b.dataset.x === 'pilotdep2') start('GND', null, null, { pilotDep: true, level: app.level, k0: 'GND', from: 'gnd' }); else start(b.dataset.pos, null, null, { endless: true, level: app.level }); });
     $('scns').addEventListener('click', function (e) { var f = e.target.closest('[data-sapt]'); if (f) { app.scnApt = f.dataset.sapt; renderScns(); return; } var b = e.target.closest('.scard'); if (b) scnBrief(b.dataset.scn); });
     $('tabs').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { app.tab = b.dataset.tab; app.tabSet = true; saveOpt(); showLobby(); } });
     $('lvls').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { app.level = +b.dataset.lv; saveOpt(); showLobby(); } });
@@ -759,6 +768,7 @@
       else if (m === 'tab') openLearn(b.dataset.les);
       else if (m === 'lobby') showLobby();
       else if (m === 'result') showResult();
+      else if ((m === 'again' || m === 'same') && app.xo && app.xo.pilotDep) start(app.xo.k0 || 'DEL', m === 'same' ? app.seed : null, null, { pilotDep: true, level: app.xo.level, k0: app.xo.k0, from: app.xo.from });      /* 출발편은 처음 단계부터 다시 */
       else if (m === 'again') start(app.pos.id, app.xo && app.xo.daily ? app.xo.seed : null, null, app.xo);
       else if (m === 'same') start(app.pos.id, app.seed, null, app.xo);
       else if (m === 'scnstart') scnGo(b.dataset.scn);
@@ -836,7 +846,7 @@
     if (early) { sc.grade = '–'; } else if (!app.recSaved) {
       app.recSaved = true;
       if (scn) { sr.n++; sr.best = Math.max(sr.best, sc.total); sr.st = [0, 1, 2].map(function (i) { return sr.st[i] || st[i] ? 1 : 0; }); srec[scn.id] = sr; save(SCN_KEY, srec); }      /* 시나리오 기록은 자유 근무 기록과 따로, 별은 한 번 딴 것을 유지 */
-      else if (sim.pilot) { var pr = load(PILOT_KEY, {}), pb = pr[sim.level.id] || { best: 0, n: 0 }; pb.n++; app.pxr = sc.total > pb.best ? ATC.T(' · 새 최고 기록') : ''; pb.best = Math.max(pb.best, sc.total); pr[sim.level.id] = pb; save(PILOT_KEY, pr); }      /* 조종사 체험 기록은 관제 자격과 따로 */
+      else if (sim.pilot) { var pk = (sim.pilot.dep ? 'dep' : '') + sim.level.id, pr = load(PILOT_KEY, {}), pb = pr[pk] || { best: 0, n: 0 }; pb.n++; app.pxr = sc.total > pb.best ? ATC.T(' · 새 최고 기록') : ''; pb.best = Math.max(pb.best, sc.total); pr[pk] = pb; save(PILOT_KEY, pr); }      /* 조종사 체험 기록은 관제 자격과 따로 */
       else if (sim.endless) { var er = load(ENDLESS_KEY, {}), eb = er[key] || { best: 0, n: 0 }; eb.n++; xr = sc.handled > eb.best ? ATC.T(' · 새 최고 기록') : ''; eb.best = Math.max(eb.best, sc.handled); er[key] = eb; save(ENDLESS_KEY, er); }      /* 무한 근무는 처리 대수로만 기록 */
       else {
         var r0 = rating(rec, app.pos.id);
@@ -861,7 +871,7 @@
     openModal(ATC.T('<div class="mhead"><span class="pen">{0} · {1}</span><h2>근무 평가</h2></div><div class="mbody result">{17}<div class="rtop"><div class="grade g{2}">{3}</div><div class="rsum"><div class="rscore">{4}<small> / 100</small></div><p>{5}</p><div class="rk"><span class="k s">안전 {6}</span><span class="k e">효율 {7}</span><span class="k p">절차·교신 {8}</span><span class="k b">가점 +{9}</span></div><p class="rmeta">처리 {10}대 · 근무 시간 {11}분 · 최고 기록 {12}점{13}</p></div></div>{14}{15}</div><div class="mfoot"><button class="btn" data-m="learn" data-les="{16}">학습 노트</button><span class="sp"></span><button class="btn" data-m="lobby">로비로</button><button class="btn" data-m="same">같은 조건으로 재도전</button><button class="btn pri" data-m="again">새 근무</button></div>', app.pos.en, sim.level.ko, sc.grade, sc.grade, sc.total, msg, sc.S, sc.E, sc.P, sc.bonus, sc.handled, Math.round(sim.t / 60), r.best, (app.coach ? ATC.T(' · 코치 사용') : ''), (rows ? ATC.T('<h4>감점 항목</h4>{0}', rows) : ATC.T('<p class="clean">감점 없이 마쳤습니다.</p>')), (pos.length ? ATC.T('<h4>잘한 점</h4><ul class="good">{0}</ul>', pos.map(function (x) { return '<li>' + esc(x.text) + ' (+' + x.pts + ')</li>'; }).join('')) + resultExtra(sim) : resultExtra(sim)), app.pos.les, (sim.endless ? '' : xr) + (xo && xo.daily ? ATC.T('<div class="rup daily">오늘의 과제 {0} — 오늘 최고 {1}점 · 연속 {2}일</div>', String(xo.ds).replace(/(\d{4})(\d\d)(\d\d)/, '$1.$2.$3'), (load(DAILY_KEY, {}).best || sc.total), streak(load(DAILY_KEY, {}), xo.day)) : '')));
     if (pl && pl.land) { var rt0 = document.querySelector('.mbody.result .rtop'), L = pl.land; if (rt0) rt0.insertAdjacentHTML('afterend', '<div class="pland"><h4>' + ATC.T('착륙 평가 — {0}', esc(L.word || '')) + '</h4><ul>' +
       [[ATC.T('접지 순간 강하율'), -L.vs + ' ft/min', -L.vs <= 420 ? 'g' : -L.vs <= 600 ? 'm' : 'b'], [ATC.T('중심선'), Math.abs(L.cl) + ' ft ' + (L.cl > 0 ? ATC.T('오른쪽') : L.cl < 0 ? ATC.T('왼쪽') : ''), Math.abs(L.cl) <= 15 ? 'g' : Math.abs(L.cl) <= 35 ? 'm' : 'b'], [ATC.T('접지 거리(시단부터)'), L.dist + ' ft', L.dist >= 500 && L.dist <= 2500 ? 'g' : L.dist <= 3500 ? 'm' : 'b'], [ATC.T('접지 속도'), L.ias + ' kt (Vref ' + L.vref + ')', L.ias >= L.vref - 5 && L.ias <= L.vref + 20 ? 'g' : 'b'], [ATC.T('기수 각 · 경사'), L.pitch + '° · ' + Math.abs(L.bank) + '°', L.pitch >= 0 && L.pitch <= 9.5 && Math.abs(L.bank) <= 7 ? 'g' : 'b'], [ATC.T('접지 시 기수 정렬각'), Math.abs(L.crab) + '°', Math.abs(L.crab) <= 8 ? 'g' : 'm']].map(function (r) { return '<li class="' + r[2] + '"><b>' + r[0] + '</b><span>' + r[1] + '</span></li>'; }).join('') + '</ul><p>' + ATC.T('이 게임의 착륙 평가 목표: 접지 순간 강하율 100 ~ 400ft/min · 중심선 15ft 안 · 시단에서 1,000 ~ 2,500ft · Vref ~ Vref+10kt · 기수 2 ~ 6°. 등급 숫자는 게임 기준이며 실제 운항 · 정비 기준이 아닙니다.') + '</p></div>'); }      /* 직접 착륙 평가 */
-    if (pl) { var mh = document.querySelector('#modal .mhead'), rm = document.querySelector('.mbody.result .rmeta'), pr0 = load(PILOT_KEY, {})[sim.level.id]; if (mh) mh.innerHTML = '<span class="pen">PILOT · ' + esc(D.freq.APP.n) + ' · ' + sim.level.ko + '</span><h2>' + ATC.T('조종사 체험 평가') + '</h2>'; if (rm) rm.textContent = ATC.T('체험 시간 {0}분 · 최고 기록 {1}점', Math.round(sim.t / 60), pr0 ? pr0.best : sc.total); }      /* 조종사 체험: 제목 · 기록 줄 */
+    if (pl) { var mh = document.querySelector('#modal .mhead'), rm = document.querySelector('.mbody.result .rmeta'), pr0 = load(PILOT_KEY, {})[(pl.dep ? 'dep' : '') + sim.level.id]; if (mh) mh.innerHTML = '<span class="pen">PILOT · ' + (pl.dep ? ATC.T('하네다 출발편 {0}단계까지', pl.stage || 1) : esc(D.freq.APP.n)) + ' · ' + sim.level.ko + '</span><h2>' + ATC.T('조종사 체험 평가') + '</h2>'; if (rm) rm.textContent = ATC.T('체험 시간 {0}분 · 최고 기록 {1}점', Math.round((sim.t + (pl.tAcc || 0)) / 60), pr0 ? pr0.best : sc.total); }      /* 조종사 체험: 제목 · 기록 줄 */
     if (sim.endless) { var gb = document.querySelector('.mbody.result .grade'), rsc = document.querySelector('.mbody.result .rscore'); if (gb) { gb.textContent = '∞'; gb.className = 'grade gA'; } if (rsc) rsc.innerHTML = sc.handled + '<small> ' + ATC.T('대 처리') + '</small>'; }      /* 무한 근무는 처리 대수가 기록 */
   }
   /* 결과 화면 보강: 교통량 흐름 그래프 · 아까웠던 순간 3가지 · 교신 통계 */

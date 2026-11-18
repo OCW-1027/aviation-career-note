@@ -8,7 +8,7 @@ function gbot(sim) {
     else if (a.st === 'reqtaxi') { const tg = (a.kind === 'dep' && !a.tech) ? { hp: sim.holdsFor(a)[0] } : { stand: a.stand }; const r = sim.routeOptions(a, tg)[0]; if (!r) continue; a.botT = sim.t;
       sim.command(a, [Object.assign({ k: 'taxi', via: r.via, nodes: r.nodes, len: r.len, rwy: a.rwy }, tg)], { noErr: true }); }
     else if (a.st === 'athold' && a.holdKind === 'dep') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: 'TWR' }], { noErr: true }); }
-    else if (a.st === 'athold' && a.holdKind === 'cross') { const arr = sim.nextArr(a.holdRw); if (sim.reqCross && !sim.crossOk(a)) { sim.reqCross(a); continue; } if (!sim.rwyBusy(a.holdRw, a) && (!arr || arr.d > 2.6 * NM)) { a.botT = sim.t; sim.command(a, [{ k: 'cross', rwy: sim.flow.use[a.holdRw] }], { noErr: true }); } }
+    else if (a.st === 'athold' && a.holdKind === 'cross') { const arr = sim.nextArr(a.holdRw); if (sim.reqCross && !sim.crossOk(a)) { sim.reqCross(a); continue; } if (a.pilotMe ? sim.crossClear(a, 3) : (!sim.rwyBusy(a.holdRw, a) && (!arr || arr.d > 2.6 * NM))) { a.botT = sim.t; sim.command(a, [{ k: 'cross', rwy: sim.flow.use[a.holdRw] }], { noErr: true }); } }
   }
 }
 function tbot(sim) {
