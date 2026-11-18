@@ -37,6 +37,7 @@
       this.f = f; this.fp = this.autoPlan();
     }
     sim.isFinished = function () { return this.pilot.done; };
+    if (!c && ATC.wxSay) ATC.wxSay(sim);      /* 날씨 · 시간 안내(첫 단계에서만) */
     if (sim.mode === 'GND') { this.initGnd(!c); return; }
     if (sim.mode === 'TWR') { this.initTwr(!c); return; }
     if (sim.mode === 'APP' || sim.mode === 'ACC') { this.initAir(c); return; }

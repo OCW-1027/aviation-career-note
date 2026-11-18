@@ -541,3 +541,7 @@ html.ingame,html.ingame body{overscroll-behavior:none}
   #bLogBig{display:inline-block;margin-left:auto;background:#12263a;border:1px solid #2d4a63;color:var(--acc);border-radius:5px;font:600 11.5px var(--sans);padding:3px 9px;min-height:26px;cursor:pointer;text-transform:none;letter-spacing:0}
   #game.logbig #cmd{display:none!important}#game.logbig #log{grid-row:3/5}
 }
+
+/* 조종사 체험 날씨 · 시간 고르기(로비) */
+.xgrp .xwx{margin:0 0 2px;align-self:flex-start;flex-wrap:wrap}.xgrp .xwx button{padding:5px 11px;font-size:12px}
+.ckrud{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);display:flex;gap:10px;pointer-events:auto}.ckrud[hidden]{display:none}.ckrud button{min-width:76px;padding:9px 10px;border-radius:10px;border:2px solid rgba(255,255,255,.55);background:rgba(10,14,20,.42);color:#fff;font-size:12px;touch-action:none;user-select:none}.ckrud button.on{background:rgba(80,200,120,.45)}

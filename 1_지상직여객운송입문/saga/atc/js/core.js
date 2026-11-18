@@ -201,6 +201,7 @@
     this.events = [];           /* 예정된 비정상 상황 */
     this.notes = [];            /* 코치·알림 */
     this.pendWrong = [];
+    this.pwx = o.wx || null;      /* 조종사 체험 날씨: { k: day|night|xwind|lowvis, rvr, ceil, vis[] } */
     this.lvp = o.scn && o.scn.lvp || null;      /* 저시정 절차(LVP): { rvr(m), sep(NM) } */
     this.scn = o.scn || null;   /* 시나리오(정해진 판)로 시작했으면 그 대본 */
     if (this.scn && this.scn.lv) { var lv = {}, k; for (k in this.level) lv[k] = this.level[k]; for (k in this.scn.lv) lv[k] = this.scn.lv[k]; this.level = lv; }   /* 판이 난이도 값 일부(복창 오류 비율 등)를 따로 정한 경우 */

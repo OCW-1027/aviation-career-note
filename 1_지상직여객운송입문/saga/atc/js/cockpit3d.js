@@ -622,7 +622,7 @@
       S.sky.position.copy(S.rig.position); S.stars.position.copy(S.rig.position);
       var cw = new T.Vector3(); S.cam.getWorldPosition(cw);
       /* 낮 · 밤 */
-      env(st.night, pos);
+      env(st.night, pos); if (sim.pwx && sim.pwx.k === 'lowvis') lowFog(sim, st);
       /* PAPI 색 · 연속 섬광등 */
       var col = S.papiPts.geometry.attributes.color;
       S.papi.forEach(function (q2, i) { var dx = q2.p.distanceTo(new T.Vector3(cw.x, q2.p.y, cw.z)), ang = Math.atan2(cw.y - q2.p.y, dx) / D2R, white = ang > q2.ang; col.setXYZ(i, 1, white ? 1 : 0.12, white ? 1 : 0.1); });
@@ -664,7 +664,19 @@
     if (S.markL) S.markL.material.opacity = 0.35 + k * 0.65;
     S.stars.material.opacity = k; S.city.material.opacity = k; S.stars.visible = k > 0.05; S.city.visible = k > 0.05;
     var li = 0.05 + k * 0.95; [S.edgeL, S.clL, S.tdzL, S.twyL].forEach(function (o) { if (o) o.material.opacity = li; }); if (S.alsL) S.alsL.material.opacity = 0.3 + k * 0.7;      /* 낮에는 활주로 등이 거의 안 보임(진입등은 조금) */
-    S.clouds.children.forEach(function (c) { c.material.color.setRGB(0.35 + day * 0.65, 0.37 + day * 0.63, 0.42 + day * 0.58); });
+    if (S.alsL && S.alsL.material.userData.s0 !== undefined) S.alsL.material.size = S.alsL.material.userData.s0;
+    S.sky.visible = true;
+    S.clouds.visible = true; S.clouds.children.forEach(function (c) { c.material.color.setRGB(0.35 + day * 0.65, 0.37 + day * 0.63, 0.42 + day * 0.58); });
+  }
+  /* 저시정(조종사 체험 날씨): 구름 밑(게임 300ft) 위는 구름 속(시정 약 110m), 밑은 RVR 약 950m — 결심 고도에서 이번 접근이 「보이지 않음」이면 약 260m(진입등이 안 보임). 게임 연출값 */
+  function lowFog(sim, st) {
+    var w = sim.pwx, p = sim.pilot, agl = st.altM - S.elev, cm = (w.ceil || 300) * FT, vis = !p || !p.visNow || p.visNow(), lo = vis ? 950 : 260, k = st.night;
+    var V = agl > cm + 60 ? 110 : agl > cm ? 110 + (cm + 60 - agl) / 60 * (lo - 110) : lo;
+    S.lvV = S.lvV ? S.lvV + (V - S.lvV) * 0.12 : V;
+    var g = (agl > cm ? 0.66 : 0.5) * (1 - k) + 0.05; S.fog.color.setRGB(g, g * 1.02, g * 1.07); S.fog.density = 1.75 / S.lvV;
+    S.skyU.top.value.copy(S.fog.color); S.skyU.hor.value.copy(S.fog.color); S.sun.intensity *= 0.35; S.sky.visible = false; S.r.setClearColor(S.fog.color, 1);
+    S.stars.visible = false; S.city.visible = false; if (S.fuji) S.fuji.visible = false; S.clouds.visible = false;
+    [S.edgeL, S.clL, S.tdzL, S.twyL].forEach(function (o) { if (o) o.material.opacity = 0.9; }); if (S.alsL) { var am = S.alsL.material; if (am.userData.s0 === undefined) am.userData.s0 = am.size; am.size = am.userData.s0 * 1.8; am.opacity = 1; }      /* 저시정에서는 낮에도 등화를 켜 둠 */
   }
   /* 상태값(시뮬레이션 → 계기 · 3D) */
   /* 내 항공기가 나타나기 전(무선 음성 내려받는 중 등): 도착 활주로 최종 접근 14NM · 4,000ft에서 본 모습을 미리 보여 줌 */
@@ -716,6 +728,7 @@
     var msgs = []; if (p.cfg.gear !== 'down' && ra < 1600 && ap && ap.loc) msgs.push(['CONFIG GEAR', ra < 1000 ? 'warn' : 'caut']); if (ap && ap.gs && p.cfg.flap < 25 && ra < 2000) msgs.push(['CONFIG FLAPS', 'caut']); if (!p.landOk && ra < 1200 && ap && ap.loc && !ro) msgs.push(['NO LAND CLEARANCE', 'caut']); if (ro) msgs.push(['AUTOBRAKE 2', 'memo']); else if (ap && ap.loc) msgs.push(['AUTOBRAKE 2', 'memo']);
     var n1 = ro ? Math.max(22, 30 - (sim.t - ro.t0) * 0.5) : F ? 21 + F.thr * 76 : Math.max(24, Math.min(95, 52 + vs / 100 + ((p.dep && p.phase === 'air' && ac.tIas ? ac.tIas : mc.spd) - ias) * 0.8 + p.cfg.flapPos * 0.4 + (p.cfg.gear === 'down' ? 6 : 0)));
     if (p.eng) { if (gnd || p.eng.st !== 'on' || p.phase === 'twr') n1 = p.eng.n1; if (p.call && sim.t - p.call.at < 3.5) msgs.push([p.call.t, 'memo']); if (p.pbrake) msgs.push(['PARKING BRAKE SET', 'memo']); if (p.eng.st === 'off') msgs.push(['APU RUNNING', 'memo']); }
+    if (!p.eng && p.call && sim.t - p.call.at < 4) msgs.unshift([p.call.t, 'memo']);      /* 도착편 자동 호출(MINIMUMS · POSITIVE RATE 등) */
     var egt0 = p.eng && n1 < 1 ? 18 : p.eng && (gnd || p.phase === 'twr') ? 300 + n1 * 5.5 : 380 + n1 * 5;
     var gpws = !ro && ap && ap.gs && p.cfg.gear !== 'down' && ra < 500 ? 'TOO LOW GEAR' : !ro && ra < 1000 && !(ap && ap.loc) && vs < -1500 ? 'SINK RATE' : '';
     var fd = ATC.Manual && !ro && p.ac ? ATC.Manual.fd(ac, p) : null;

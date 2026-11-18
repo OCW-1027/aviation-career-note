@@ -24,8 +24,33 @@
     if (s) { s.pilot = true; s.warm = true; s.wi = 1; s.t = Math.min(s.t, sim.t + 2); sim.sched.sort(function (a, b) { return a.t - b.t; }); }      /* 경로 가운데쯤에서 시작(첫 지시까지 오래 기다리지 않게) */
     sim.isFinished = function () { return this.pilot.done; };
     sim.sys(ATC.T('조종사 체험 — 곧 나타나는 Vela Air 도착기의 조종사입니다. 관제는 AI가 합니다. 관제 지시를 듣고 복창한 뒤 자동조종(MCP)에 설정하세요.'), 'info');
+    this.dh = null; this.dh100 = false; wxSay(sim);
   }
   Pilot.prototype.bump = function () { this.ver++; };
+  /* 날씨 · 시간(로비에서 고름): 처음 안내 — 출발편(pilot_dep.js)도 씀 */
+  function wxSay(sim) {
+    var w = sim.pwx, wd = sim.wind || {}; if (!w || w.k === 'day') return;
+    if (w.k === 'night') sim.sys(ATC.T('밤 비행 — 활주로 등화와 진입등이 길잡이입니다(3D 조종석에서 보면 낮과 크게 다릅니다).'), 'info');
+    else if (w.k === 'xwind' && sim.pilot && sim.pilot.dep) sim.sys(ATC.T('옆바람 — 바람 {0}°/{1}kt, 활주로 {2}와 약 70° 차이(게임 설정). 떠오르면 기수를 바람 쪽으로 틀어(크랩) 정해진 경로 위를 날아갑니다.', U.pad(wd.dir, 3), wd.spd, w.rwy || ''), 'info');
+    else if (w.k === 'xwind') sim.sys(ATC.T('옆바람 — 바람 {0}°/{1}kt, 활주로 {2}와 약 70° 차이(게임 설정). 자동조종은 기수를 바람 쪽으로 틀어(크랩) 활주로 중심선 위를 날아갑니다. 직접 착륙할 때는 접지 직전에 러더(Q · E 키 · 화면 러더 버튼)로 기수를 활주로 방향에 맞춥니다(디크랩).', U.pad(wd.dir, 3), wd.spd, w.rwy || ''), 'info');
+    else if (w.k === 'lowvis') sim.sys(sim.pilot && sim.pilot.dep ? ATC.T('저시정 — RVR {0}m · 구름 밑 {1}ft(게임 설정). 이륙하면 곧 구름 속으로 들어갑니다.', w.rvr, w.ceil) : ATC.T('저시정 — RVR {0}m · 구름 밑 {1}ft(게임 설정). 결심 고도(DA — 게임은 활주로 높이 +200ft)에서 진입등이나 활주로가 보이면 「LANDING」, 보이지 않으면 「GO AROUND」를 고릅니다(D 키 · G 키). 4초 안에 고르지 않으면 보이지 않을 때 부기장이 복행합니다.', w.rvr, w.ceil), 'info');
+  }
+  ATC.wxSay = wxSay;
+  /* 저시정: 이번 접근에서 결심 고도에 활주로가 보이는지(로비에서 정한 순서 — 첫 접근은 보이지 않을 때가 있음) */
+  Pilot.prototype.visNow = function () { var w = this.sim.pwx; if (!w || w.k !== 'lowvis') return true; var v = w.vis || [true]; return v[Math.min(this.gaN, v.length - 1)] !== false; };
+  Pilot.prototype.dhAsk = function () { var d = this.dh; return !!(d && !d.done && !this.gaPh && !this.roll && !this.done); };
+  Pilot.prototype.dhDecide = function (k) {
+    var d = this.dh, sim = this.sim, ac = this.ac; if (!this.dhAsk()) return false; d.done = true; d.pick = k; d.at = sim.t;
+    if (k === 'land') {
+      if (d.vis) sim.inc('p_dh_ok', [ac], ATC.T('{0}: 결심 고도에서 진입등을 보고 착륙을 계속했습니다 — 올바른 판단입니다.', ac.cs));
+      else { sim.inc('p_dh_bad', [ac], ATC.T('{0}: 결심 고도에서 아무것도 보이지 않는데 착륙을 고르려 했습니다 — 필요한 시각 참조가 없으면 DA 아래로 내려가지 않습니다. 부기장이 「Go around」를 외쳤습니다(게임).', ac.cs)); this.goAround('dhbad'); }
+    } else {
+      if (!d.vis) sim.inc('p_dh_ok', [ac], ATC.T('{0}: 결심 고도에서 활주로가 보이지 않아 복행했습니다 — 올바른 판단입니다.', ac.cs));
+      else sim.inc('p_dh_ga', [ac], ATC.T('{0}: 진입등이 보였지만 복행을 골랐습니다 — 확신이 없으면 복행이 안전한 선택입니다.', ac.cs));
+      this.goAround('dh');
+    }
+    this.bump(); return true;
+  };
   /* 내 항공기가 처음 나타날 때 */
   Pilot.prototype.attach = function (ac) {
     this.ac = ac; this.cs = ac.cs; ac.pilotMe = true;
@@ -232,7 +257,8 @@
   };
   Pilot.prototype.canGa = function () { var ac = this.ac; return !!(ac && !ac.gone && !this.roll && !this.done && !this.dep && ac.appr && ac.appr.loc && !this.gaPh); };
   Pilot.prototype.goAround = function (src, why) {
-    var sim = this.sim, ac = this.ac, F = this.fly; if (src === 'sys' ? !(ac && !ac.gone && ac.appr && !this.gaPh && !this.roll && !this.done) : !this.canGa()) return false;      /* sys = 접근관제 시뮬레이션이 정한 복행(활공각보다 너무 높음 · 활주로 운용 전환) */
+    var sim = this.sim, ac = this.ac, F = this.fly; if (src === 'pilot' && this.dhAsk()) return this.dhDecide('ga');      /* 결심 고도에서 TO/GA = 「Go around」 판단 */
+    if (src === 'sys' ? !(ac && !ac.gone && ac.appr && !this.gaPh && !this.roll && !this.done) : !this.canGa()) return false;      /* sys = 접근관제 시뮬레이션이 정한 복행(활공각보다 너무 높음 · 활주로 운용 전환) */
     var rwy = ac.appr.rwy, ra = ac.alt - D.airport.elev, un = !!(F && F.dev && F.dev.unst), m = this.maP(rwy), twrAsk = this.clr && this.clr.cmds.some(function (c) { return c.k === 'ga'; });
     if (src === 'pilot' && twrAsk) src = 'twr';      /* 관제탑 지시를 듣고 복창 전에 먼저 TO/GA를 누름 */
     var onTwr = !!(this.freqTo && this.freqTo.sent && this.freqTo.to === 'TWR');
@@ -240,17 +266,33 @@
     if (src === 'twr') sim.inc('p_ga_twr', [ac], ATC.T('{0}: 관제탑의 복행 지시에 따라 바로 복행했습니다({1}ft).', ac.cs, lg.ra));
     else if (src === 'fo') sim.inc('p_ga_late', [ac], ATC.T('{0}: 관제탑의 복행 지시에 응하지 않아 부기장이 복행했습니다({1}ft). 「go around」는 곧바로 복창하고 TO/GA를 누릅니다.', ac.cs, lg.ra));
     else if (src === 'sys') sim.inc('p_ga', [ac], why === 'too high' ? ATC.T('{0}: 활공각보다 지나치게 높게 최종 접근에 들어가 접근을 이어갈 수 없어 복행했습니다 — 강하 · 접근 지시를 늦게 설정하면 생깁니다.', ac.cs) : ATC.T('{0}: 관제 사정(활주로 운용 전환 등)으로 복행했습니다.', ac.cs));
+    else if (src === 'dh' || src === 'dhfo' || src === 'dhbad') { }      /* 결심 고도 판단은 dhDecide · tick에서 점수 */
     else sim.inc(un ? 'p_ga_ok' : 'p_ga', [ac], un ? ATC.T('{0}: 불안정 접근에서 복행을 선택했습니다 — 올바른 판단입니다.', ac.cs) : ATC.T('{0}: 복행(TO/GA)을 선택했습니다.', ac.cs));
     if (this.gaN > 2) { if (F) F.on = false; ac.man = null; this.ga = true; sim.remove(ac, true); this.done = true; sim.sys(ATC.T('세 번째 복행 — 게임에서는 여기서 체험을 끝냅니다(실제로는 남은 연료 · 날씨를 보고 다시 접근하거나 교체 공항으로 갑니다).'), 'alert'); this.bump(); return true; }
     ac.appr = null; ac.nav = { mode: 'hdg' }; ac.tHdg = m.hdg; ac.turnDir = 0; ac.tAlt = m.alt; ac.tIas = ac.perf.vapp + 15; ac.spdAsg = 0; ac.missed = true; ac.gaAlt = m.alt; ac.botM = 0; ac.botMiss = 0; ac.botSeq = 0; ac.twrAsk = false; ac.waiting = null; ac.exp = false; ac.owner = 'out';      /* Approach에 첫 호출할 때까지 AI 관제사는 지시하지 않음 */
     this.mcp.hdg = m.hdg; this.mcp.alt = m.alt; this.mcp.spd = ac.perf.vapp + 15;      /* MCP 고도는 접근 중에 공시 복행 고도로 맞춰 둔 것(게임 단순화) */
-    this.cur = { hdg: null, alt: m.alt, spd: null }; this.asg = {}; this.ilsOk = false; this.landOk = false; this.twrT = null; this.twrSaid = false; this.foGear = false; this.foFlap = false; this.rv = null; this.freqTo = null; this.knobK = null;
+    this.cur = { hdg: null, alt: m.alt, spd: null }; this.asg = {}; this.ilsOk = false; this.landOk = false; this.twrT = null; this.twrSaid = false; this.foGear = false; this.foFlap = false; this.rv = null; this.freqTo = null; this.knobK = null; this.dh = null; this.dh100 = false;
     if (this.clr && !twrAsk) this.clr = null;      /* 아직 복창하지 않은 착륙 허가 등은 무효 */
     this.gaPh = { t: sim.t, rwy: rwy, ra0: ra, posT: null, turned: false, vec: false, ci: src === 'twr' || src === 'fo', foF: false, foG: false, cfgDone: false, ovT: null, ovInc: false, to: onTwr ? 'TWR' : 'APP' };
     if (F) { F.dev = {}; if (F.mode === 'last' && !F.on) F.used = false; if (F.on) F.at = true; }      /* 1,000ft부터 직접: 자동조종으로 복행했으면 재접근 때 다시 1,000ft에서 넘겨받음(직접 조종 중이면 A/P를 연결할 때) */
     sim.sys(ATC.T('TO/GA — 복행. 추력을 올리고 기수를 들어 상승합니다: 「플랩 20」 → 상승 확인(Positive rate) → 「기어 올림」 → 관제에 「going around」 보고.'), 'alert');
     sim.sys(m.pub ? ATC.T('공시 복행 절차(활주로 {0}): 기수 {1}°로 {2}ft까지 → {3}선회, {4}(게임은 방위 {5}°로 근사) · {6}까지 상승 · {7} 체공 지점 방향 — Approach가 레이더 유도할 때까지 따라갑니다.', rwy, U.pad(m.hdg, 3), m.at, m.turn === 'L' ? ATC.T('좌') : ATC.T('우'), m.rad, U.pad(m.trk, 3), fmt.alt(m.alt), m.fix) : ATC.T('복행 절차(활주로 {0}, 게임 설정): 활주로 방위 {1}°로 {2}까지 상승 — Approach가 레이더 유도할 때까지 따라갑니다.', rwy, U.pad(m.hdg, 3), fmt.alt(m.alt)), 'info');
     this.bump(); return true;
+  };
+  /* 저시정 결심 고도(DA): 100ft 전 「Approaching minimums」 → DA 「Minimums」 → 조종사 판단(LANDING · GO AROUND) */
+  Pilot.prototype.dhTick = function (ra) {
+    var sim = this.sim, ac = this.ac, d = this.dh;
+    if (!this.dh100 && !d && ra <= 300 && ra > 200) { this.dh100 = true; this.call = { t: 'APPROACHING MINIMUMS', at: sim.t }; sim.sys(ATC.T('Approaching minimums — 결심 고도까지 100ft.'), 'info'); this.bump(); }
+    if (!d && ra <= 200) {
+      var v = this.visNow(); d = this.dh = { t: sim.t, vis: v, ra: Math.round(ra), n: this.gaN + 1 }; this.call = { t: 'MINIMUMS', at: sim.t };
+      sim.sys(v ? ATC.T('Minimums — 결심 고도. 진입등이 보입니다.') : ATC.T('Minimums — 결심 고도. 구름 속 — 진입등도 활주로도 보이지 않습니다.'), 'alert'); this.bump();
+    }
+    if (d && !d.done && sim.t - d.t > 4) {
+      d.done = true; d.pick = null;
+      if (!d.vis) { sim.inc('p_dh_late', [ac], ATC.T('{0}: 결심 고도에서 판단하지 않아 부기장이 복행했습니다 — DA에서는 바로 「Landing」 또는 「Go around」를 말합니다.', ac.cs)); this.goAround('dhfo'); }
+      else sim.inc('p_dh_silent', [ac], ATC.T('{0}: 결심 고도에서 판단을 말하지 않았습니다 — 진입등이 보이면 「Landing」이라고 말하고 계속합니다.', ac.cs));
+      this.bump();
+    }
   };
   /* 공시 복행 경로의 지금 목표 기수(레이더 유도가 시작되면 null) */
   Pilot.prototype.gaHdg = function (ra) { var g = this.gaPh; if (!g || g.vec) return null; var m = this.maP(g.rwy); if (!g.turned && m.trk !== m.hdg && ra >= m.at) g.turned = true; return g.turned ? m.trk : m.hdg; };
@@ -301,6 +343,7 @@
     if (this.twrGa && !this.twrGaT && !this.gaN && this.landOk && loc && ac.appr.d < 3 && ac.appr.d > 1.5 && !this.clr) { this.twrGaT = sim.t; sim.sys(ATC.T('관제탑: 앞에 내린 항공기가 아직 활주로를 비우지 못했습니다(게임 설정) — 복행 지시가 옵니다.'), 'alert'); this.onClr([{ k: 'ga' }], {}); }
     if (this.twrGaT && !this.gaPh && !this.gaN && ac.appr && (ra < 250 || ac.appr.d < 0.9)) { this.clr = null; this.goAround('fo'); this.gaTwrT = sim.t + 4; }      /* 복행 지시에 응하지 않음 → 부기장이 TO/GA(게임값 250ft · 0.9NM) */
     if (this.gaPh) { this.gaTick(ra); if (this.done) return; }
+    if (sim.pwx && sim.pwx.k === 'lowvis' && loc && !this.gaPh) this.dhTick(ra);
     if (ATC.Manual && !F.on && !F.used) {      /* 직접 조종 시작: 처음부터 / 최종 접근 1,000ft */
       if (F.mode === 'full') ATC.Manual.engage(this, 'full');
       else if (F.mode === 'last' && loc && ra < 1000) ATC.Manual.engage(this, 'last');
@@ -349,6 +392,11 @@
   ATC.INC.p_gearup = { cat: 'S', pts: -40, t: ATC.T('동체 착륙'), les: 'app' };
   ATC.INC.p_land_ok = { cat: 'P', pts: 1, t: ATC.T('착륙'), les: 'app' };
   ATC.INC.p_ga = { cat: 'P', pts: 0, t: ATC.T('복행 선택'), les: 'app' };
+  ATC.INC.p_dh_ok = { cat: 'P', pts: 2, t: ATC.T('결심 고도 판단'), les: 'app' };
+  ATC.INC.p_dh_ga = { cat: 'P', pts: 0, t: ATC.T('결심 고도에서 복행(보였음)'), les: 'app' };
+  ATC.INC.p_dh_bad = { cat: 'S', pts: -20, t: ATC.T('시각 참조 없이 착륙 선택'), les: 'app' };
+  ATC.INC.p_dh_late = { cat: 'S', pts: -8, t: ATC.T('결심 고도 판단 없음(보이지 않음)'), les: 'app' };
+  ATC.INC.p_dh_silent = { cat: 'P', pts: -2, t: ATC.T('결심 고도 판단을 말하지 않음'), les: 'app' };
   ATC.INC.p_ga_ok = { cat: 'P', pts: 2, t: ATC.T('불안정 접근에서 복행'), les: 'app' };
   ATC.INC.p_ga_twr = { cat: 'P', pts: 2, t: ATC.T('관제탑 복행 지시에 따른 복행'), les: 'app' };
   ATC.INC.p_ga_late = { cat: 'S', pts: -8, t: ATC.T('복행 지시에 늦은 대응'), les: 'app' };

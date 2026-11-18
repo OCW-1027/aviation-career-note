@@ -26,14 +26,14 @@
     return { alpha: a, thr: Math.pow(U.clamp(T / thrust(1, alt), 0, 1), 1 / 1.5) };
   }
   M.pref = function (m) { var K = 'acn_atc_fly_v1'; try { if (m) localStorage.setItem(K, m); else m = localStorage.getItem(K); } catch (e) { } return M.MODES.indexOf(m) >= 0 ? m : 'auto'; };
-  M.newFly = function () { return { mode: 'auto', on: false, used: false, at: true, k: { pitch: 0, roll: 0, thr: 0 }, t: { pitch: 0, roll: 0 }, in: { pitch: 0, roll: 0 }, th: 0.3, thr: 0.3, pitch: 0, bank: 0, gam: 0, alpha: 3, dev: {} }; };
+  M.newFly = function () { return { mode: 'auto', on: false, used: false, at: true, k: { pitch: 0, roll: 0, thr: 0, rud: 0 }, t: { pitch: 0, roll: 0, rud: 0 }, in: { pitch: 0, roll: 0 }, th: 0.3, thr: 0.3, pitch: 0, bank: 0, gam: 0, alpha: 3, dev: {} }; };
 
   /* 자동조종 해제 → 직접 조종: 지금 비행 상태 그대로(받음각 · 추력 균형) 넘겨받음 */
   M.engage = function (p, why) {
     var ac = p.ac, F = p.fly, sim = p.sim; if (!ac || ac.gone || F.on || p.roll || p.done) return;
     var vt = Math.max(60, ac.ias * (1 + ac.alt / 1000 * 0.0165)) * KT, gam = Math.asin(U.clamp((ac.vs || 0) * FT / 60 / vt, -0.3, 0.3)), tr = trim(ac.ias, ac.alt, p.cfg, gam);
     var vis = ATC.Cockpit && ATC.Cockpit.dbg && ATC.Cockpit.on ? ATC.Cockpit.dbg().vis : null;
-    F.on = true; F.used = true; F.gam = gam; F.alpha = tr.alpha; F.pitch = gam / D2R + tr.alpha; F.bank = vis ? U.clamp(vis.bank, -25, 25) : 0; F.th = F.thr = tr.thr; F.trk = ac.hdg; F.t0 = sim.t; F.dev = {};
+    F.on = true; F.used = true; F.gam = gam; F.alpha = tr.alpha; F.pitch = gam / D2R + tr.alpha; F.bank = vis ? U.clamp(vis.bank, -25, 25) : 0; F.th = F.thr = tr.thr; F.trk = ac.hdg; F.beta = 0; F.t0 = sim.t; F.dev = {};
     if (why === 'last' || ac.appr && ac.appr.loc) { p.mcp.spd = ac.perf.vapp; F.at = true; }
     ac.man = F; p.apOff = (p.apOff || 0) + 1;
     sim.sys(why === 'last' ? ATC.T('{0}: 1,000ft — 자동조종 해제. 직접 착륙하세요(방향키 · 화면 조종간). 자동추력이 접근 속도 {1}kt를 지킵니다.', ac.cs, ac.perf.vapp) : ATC.T('{0}: 자동조종 해제 — 직접 조종합니다(방향키 · 화면 조종간 · 게임패드).', ac.cs), 'alert');
@@ -52,10 +52,10 @@
 
   /* 게임패드: 왼쪽 스틱 = 조종간(당기면 기수 올림), RT/LT = 추력, A = 자동조종, Y = 기어, LB/RB = 플랩 */
   function pad(F, p) {
-    var o = { pitch: 0, roll: 0, thr: 0 }; if (typeof navigator === 'undefined' || !navigator.getGamepads) return o;
+    var o = { pitch: 0, roll: 0, thr: 0, rud: 0 }; if (typeof navigator === 'undefined' || !navigator.getGamepads) return o;
     var gs = navigator.getGamepads(), g = null; for (var i = 0; gs && i < gs.length; i++) if (gs[i] && gs[i].connected) { g = gs[i]; break; }
     if (!g) return o; var dz = function (v) { return Math.abs(v) < 0.12 ? 0 : (v - Math.sign(v) * 0.12) / 0.88; };
-    o.roll = dz(g.axes[0] || 0); o.pitch = dz(g.axes[1] || 0);
+    o.roll = dz(g.axes[0] || 0); o.pitch = dz(g.axes[1] || 0); o.rud = dz(g.axes[2] || 0);      /* 오른쪽 스틱 좌우 = 러더 */
     var b = g.buttons, bv = function (i) { return b[i] ? (b[i].value !== undefined ? b[i].value : b[i].pressed ? 1 : 0) : 0; };
     o.thr = bv(7) - bv(6);
     var pr = F.gpPrev || {}, now = { a: bv(0) > 0.5, y: bv(3) > 0.5, lb: bv(4) > 0.5, rb: bv(5) > 0.5 };
@@ -94,11 +94,14 @@
     F.thr += (F.th - F.thr) * Math.min(1, dt * (F.th > F.thr ? 0.45 : 0.8));      /* 엔진 반응 지연 */
     var T = thrust(F.thr, ac.alt), vt = Math.max(30, ac.ias * (1 + ac.alt / 1000 * 0.0165)) * KT, nz = ae.L / W;
     gam = U.clamp(gam + G / vt * (nz * Math.cos(F.bank * D2R) - Math.cos(gam)) * dt, -0.45, 0.45);
-    ac.hdg = U.n360(ac.hdg + G / vt * nz * Math.sin(F.bank * D2R) / Math.cos(gam) * dt / D2R);
+    /* 러더(게임 단순화): 옆미끄럼각 β만큼 기수만 돌림 — 비행 방향(공기에 대한 진행 방향 ψ)은 경사로만 바뀜. 옆바람 접지 직전 디크랩용 */
+    var ru = U.clamp((F.k.rud || 0) + (F.t.rud || 0) + (gp.rud || 0), -1, 1), b0 = F.beta || 0, psi = U.n360(ac.hdg - b0), bt = ra < 2500 ? ru * 12 : ru * 4;
+    F.beta = b0 + U.clamp(bt - b0, -8 * dt, 8 * dt); F.ru = ru;
+    psi = U.n360(psi + G / vt * nz * Math.sin(F.bank * D2R) / Math.cos(gam) * dt / D2R); ac.hdg = U.n360(psi + F.beta);
     ac.ias = Math.max(70, ac.ias + ((T - ae.Dr) / MASS - G * Math.sin(gam)) / KT * dt);
     F.gam = gam; F.alpha = alpha; F.nz = nz;
     var vsm = vt * Math.sin(gam); ac.vs = vsm / FT * 60; ac.alt += vsm / FT * dt;
-    var w = sim.wind || { dir: 0, spd: 0 }, hv = vt / KT * Math.cos(gam), vx = Math.sin(ac.hdg * D2R) * hv - Math.sin(w.dir * D2R) * w.spd, vy = Math.cos(ac.hdg * D2R) * hv - Math.cos(w.dir * D2R) * w.spd;
+    var w = sim.wind || { dir: 0, spd: 0 }, hv = vt / KT * Math.cos(gam) * Math.cos(F.beta * D2R), vx = Math.sin(psi * D2R) * hv - Math.sin(w.dir * D2R) * w.spd, vy = Math.cos(psi * D2R) * hv - Math.cos(w.dir * D2R) * w.spd;
     ac.x += vx / 3600 * dt; ac.y += vy / 3600 * dt; ac.gs = Math.hypot(vx, vy); F.trk = U.n360(Math.atan2(vx, vy) / D2R);
     ac.tHdg = ac.tHdg || ac.hdg;
     /* 경로(LNAV): 지점을 지나면 다음 지점(FD 안내용) */
@@ -114,12 +117,13 @@
     var er = D.ends[ap ? ap.rwy : ac.rwy];
     if (er && ra < 400) { var rr = runwayAt(ac.x, ac.y, ac.hdg); if (rr && rr.e === er && rr.along > rr.len - 0.05) { end(p, 'p_ld_miss', ATC.T('{0}: 활주로 끝까지 접지하지 못하고 지나쳤습니다 — 착륙 실패.', ac.cs)); return; } }
   }
+  function xwind(sim, e) { var w = sim.wind || { dir: 0, spd: 0 }; return w.spd * Math.sin(U.adiff(w.dir, e.crs) * D2R); }
   function end(p, code, text) { var ac = p.ac, sim = p.sim; sim.inc(code, [ac], text); p.fly.on = false; ac.man = null; p.crash = code === 'p_ld_crash'; sim.remove(ac, true); p.done = true; sim.sys(text, 'alert'); p.bump(); }
   function touch(ac, F, p) {
     var sim = p.sim, r = runwayAt(ac.x, ac.y, ac.hdg), want = D.ends[ac.appr ? ac.appr.rwy : ac.rwy];
     ac.alt = D.airport.elev;
     if (!r) { end(p, 'p_ld_crash', ATC.T('{0}: 활주로 밖에 접지했습니다 — 사고(기체 손상).', ac.cs)); return; }
-    var td = { vs: Math.round(ac.vs), cl: Math.round(r.xtk * NM / FT), dist: Math.round(r.along * NM / FT), ias: Math.round(ac.ias), vref: ac.perf.vapp - 5, pitch: Math.round(F.pitch * 10) / 10, bank: Math.round(F.bank * 10) / 10, crab: Math.round(U.adiff(ac.hdg, r.e.crs)), rwy: r.e.id, wrong: want && r.e.id !== want.id, gp: !!F.gp };
+    var td = { vs: Math.round(ac.vs), cl: Math.round(r.xtk * NM / FT), dist: Math.round(r.along * NM / FT), ias: Math.round(ac.ias), vref: ac.perf.vapp - 5, pitch: Math.round(F.pitch * 10) / 10, bank: Math.round(F.bank * 10) / 10, crab: Math.round(U.adiff(ac.hdg, r.e.crs)), xw: Math.round(xwind(sim, r.e)), rwy: r.e.id, wrong: want && r.e.id !== want.id, gp: !!F.gp };
     p.land = td; F.on = false; ac.man = null;
     if (ac.appr) ac.appr.rwy = r.e.id; else ac.rwy = r.e.id;
     p.touchdown(); M.grade(p, td);
@@ -143,7 +147,8 @@
     else if (td.dist > 2500) sim.inc('p_ld_long2', [ac], ATC.T('{0}: 시단에서 {1}ft — 게임의 목표 접지 위치보다 조금 늦게 접지했습니다.', cs, td.dist));
     if (td.ias < td.vref - 5) sim.inc('p_ld_slow', [ac], ATC.T('{0}: 접지 속도 {1}kt — 기준 속도(Vref {2}kt)보다 느립니다.', cs, td.ias, td.vref));
     else if (td.ias > td.vref + 20) sim.inc('p_ld_fast', [ac], ATC.T('{0}: 접지 속도 {1}kt — 기준 속도(Vref {2}kt)보다 많이 빠릅니다.', cs, td.ias, td.vref));
-    if (Math.abs(td.crab) > 8) sim.inc('p_ld_crab', [ac], ATC.T('{0}: 접지 때 기수와 활주로 방향 차이 {1}° — 이 게임에서는 접지 전에 기수를 활주로 방향에 맞추는 기법(디크랩)을 연습합니다.', cs, Math.abs(td.crab)));
+    if (Math.abs(td.crab) > 6) sim.inc('p_ld_crab', [ac], ATC.T('{0}: 접지 때 기수와 활주로 방향 차이 {1}° — 옆바람에서는 접지 직전에 러더(Q · E 키 · 화면 러더 버튼)로 기수를 활주로 방향에 맞춥니다(디크랩). 그대로 접지하면 바퀴 · 착륙장치에 옆으로 힘이 걸립니다.', cs, Math.abs(td.crab)));
+    else if (Math.abs(td.xw) >= 15 && Math.abs(td.crab) <= 4) sim.inc('p_ld_decrab', [ac], ATC.T('{0}: 옆바람 {1}kt에서 기수를 활주로 방향에 맞춰 접지했습니다(디크랩).', cs, Math.abs(td.xw)));
     td.word = w; p.bump();
   };
   /* 직접 조종 중 확인: 지정 고도 · 기수 벗어남, 500ft 안정 접근 */
@@ -159,7 +164,7 @@
       if (dh < 10) { dv.hdgIn = true; dv.hdgT = null; } else if (dv.hdgIn && dh > 25) { if (dv.hdgT === null) dv.hdgT = sim.t; else if (sim.t - dv.hdgT > 20) { sim.inc('p_dev', [ac], ATC.T('{0}: 지정 기수 {1}에서 {2}° 벗어났습니다.', ac.cs, ATC.fmt.hdg(c.hdg), Math.round(dh))); dv.hdgIn = false; dv.hdgT = null; } }
     }
     if (onApp && ra < 2500 && !dv.spdTip && (p.mcp.spd || 0) > ac.perf.vapp + 25) { dv.spdTip = true; sim.sys(ATC.T('{0}: 최종 접근 — 착륙 플랩을 내리고 MCP 속도를 접근 속도 {1}kt로 줄이세요(자동추력이 따라감).', ac.cs, ac.perf.vapp), 'info'); }
-    var gate = sim.lvp ? 1000 : 500;      /* 안정 접근 기준 높이: 계기 기상(저시정) 1,000ft · 시계 기상 500ft(FSF ALAR) */
+    var gate = sim.lvp || sim.pwx && sim.pwx.k === 'lowvis' ? 1000 : 500;      /* 안정 접근 기준 높이: 계기 기상(저시정) 1,000ft · 시계 기상 500ft(FSF ALAR) */
     if (onApp && ra < gate && ra > 50) {
       var e = D.ends[ap.rwy], g = ATC.ilsGeom(ac, e), gsd = (ac.alt - ATC.gsAlt(g.d)) / Math.max(40, g.d * 50), lcd = g.xtk / (0.6 * Math.max(0.15, g.d) / 10 + 0.02), vref = ac.perf.vapp - 5, why = [];
       if (ac.ias < vref || ac.ias > vref + 20) why.push(ATC.T('속도 {0}kt', Math.round(ac.ias)));
@@ -205,14 +210,15 @@
   function cur() { var s = ATC.ui && ATC.ui.sim ? ATC.ui.sim() : null; return s && s.pilot && s.pilot.ac && !s.pilot.done ? s.pilot : null; }
   if (typeof window !== 'undefined' && window.addEventListener && typeof document !== 'undefined') {
     var keys = {};
-    var KMAP = { arrowup: 1, arrowdown: 1, arrowleft: 1, arrowright: 1, w: 1, s: 1 };
-    function sync(p) { var F = p.fly; F.k.pitch = (keys.arrowdown ? 1 : 0) - (keys.arrowup ? 1 : 0); F.k.roll = (keys.arrowright ? 1 : 0) - (keys.arrowleft ? 1 : 0); F.k.thr = (keys.w ? 1 : 0) - (keys.s ? 1 : 0); }
+    var KMAP = { arrowup: 1, arrowdown: 1, arrowleft: 1, arrowright: 1, w: 1, s: 1, q: 1, e: 1 };
+    function sync(p) { var F = p.fly; F.k.pitch = (keys.arrowdown ? 1 : 0) - (keys.arrowup ? 1 : 0); F.k.roll = (keys.arrowright ? 1 : 0) - (keys.arrowleft ? 1 : 0); F.k.thr = (keys.w ? 1 : 0) - (keys.s ? 1 : 0); F.k.rud = (keys.e ? 1 : 0) - (keys.q ? 1 : 0); }
     window.addEventListener('keydown', function (e) {
       var t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
       var p = cur(); if (!p) return; var k = e.key.toLowerCase();
       if (p.manKey) { if (p.manKey(k)) { e.preventDefault(); return; } if (k === 'z' || k === 't') return; }      /* 출발편 지상: Z = 지상 이동 직접 조종 */
       if (k === 'z') { M.toggleAP(p); e.preventDefault(); return; }
-      if (k === 'g' && p.canGa && p.canGa()) { p.goAround('pilot'); e.preventDefault(); return; }      /* G = TO/GA 복행(최종 접근 중) */
+      if (k === 'd' && p.dhAsk && p.dhAsk()) { p.dhDecide('land'); e.preventDefault(); return; }      /* D = 결심 고도 「Landing」 */
+      if (k === 'g' && (p.canGa && p.canGa() || p.dhAsk && p.dhAsk())) { p.goAround('pilot'); e.preventDefault(); return; }      /* G = TO/GA 복행(최종 접근 중) */
       if (k === 't' && p.fly.on) { M.toggleAT(p); return; }
       if (KMAP[k] && p.fly.on) { keys[k] = true; sync(p); e.preventDefault(); }
     }, true);
@@ -225,7 +231,7 @@
     var F = p.fly, el = host.querySelector('.ckman');
     if (!el) {
       el = document.createElement('div'); el.className = 'ckman';
-      el.innerHTML = '<div class="ckstick"><i></i><small>' + ATC.T('↓ 당기면 기수 올림') + '</small></div><div class="ckthr"><b></b><i></i><small>' + ATC.T('추력') + '</small></div><div class="ckhint"></div>';
+      el.innerHTML = '<div class="ckstick"><i></i><small>' + ATC.T('↓ 당기면 기수 올림') + '</small></div><div class="ckthr"><b></b><i></i><small>' + ATC.T('추력') + '</small></div><div class="ckhint"></div><div class="ckrud"><button type="button" data-r="-1">◀ ' + ATC.T('러더') + '</button><button type="button" data-r="1">' + ATC.T('러더') + ' ▶</button></div>';
       host.appendChild(el);
       var st = el.querySelector('.ckstick'), kn = st.querySelector('i'), drag = null;
       st.addEventListener('pointerdown', function (e) { e.stopPropagation(); e.preventDefault(); st.setPointerCapture(e.pointerId); drag = st.getBoundingClientRect(); mv(e); });
@@ -238,10 +244,19 @@
       th.addEventListener('pointerdown', function (e) { e.stopPropagation(); e.preventDefault(); th.setPointerCapture(e.pointerId); td = 1; tv(e); });
       th.addEventListener('pointermove', function (e) { e.stopPropagation(); if (td) tv(e); });
       th.addEventListener('pointerup', function () { td = null; });
+      [].forEach.call(el.querySelectorAll('.ckrud button'), function (b) {      /* 화면 러더: 누르고 있는 동안만 */
+        function on(e) { e.stopPropagation(); e.preventDefault(); try { b.setPointerCapture(e.pointerId); } catch (x) { } var q = cur(); if (q) q.fly.t.rud = +b.dataset.r; b.classList.add('on'); }
+        function off(e) { var q = cur(); if (q) q.fly.t.rud = 0; b.classList.remove('on'); }
+        b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointercancel', off); b.addEventListener('lostpointercapture', off);
+      });
     }
     el.hidden = !F.on;
     var sl = el.querySelector('.ckstick small'), slt = p.stickLbl ? p.stickLbl() : p.taxiHint ? ATC.T('좌우 방향 · ↓ 브레이크') : ATC.T('↓ 당기면 기수 올림'); if (sl.textContent !== slt) sl.textContent = slt;
-    if (F.on) { var lv = el.querySelector('.ckthr i'); lv.style.bottom = (F.th * 100).toFixed(0) + '%'; el.querySelector('.ckthr b').style.height = (F.thr * 100).toFixed(0) + '%'; el.querySelector('.ckthr').classList.toggle('at', !!F.at); var h = el.querySelector('.ckhint'), ht = F.gp ? ATC.T('게임패드 · 스틱 조종 · RT/LT 추력 · A 자동조종') : window.matchMedia && matchMedia('(pointer: coarse)').matches ? ATC.T('왼쪽 조종간을 끌어 조종 · 오른쪽 레버로 추력 · 자홍색 게임 조종 도움 막대를 따라가세요(실제 FD와 다름)') : ATC.T('방향키 조종간 · W/S 추력 · Z 자동조종 · T 자동추력 · G 기어 · [ ] 플랩'); if (p.taxiHint) ht = p.taxiHint(); if (h.textContent !== ht) h.textContent = ht; }
+    if (F.on) { var lv = el.querySelector('.ckthr i'); lv.style.bottom = (F.th * 100).toFixed(0) + '%'; el.querySelector('.ckthr b').style.height = (F.thr * 100).toFixed(0) + '%'; el.querySelector('.ckthr').classList.toggle('at', !!F.at); var h = el.querySelector('.ckhint'), ht = F.gp ? ATC.T('게임패드 · 스틱 조종 · RT/LT 추력 · A 자동조종') : window.matchMedia && matchMedia('(pointer: coarse)').matches ? ATC.T('왼쪽 조종간을 끌어 조종 · 오른쪽 레버로 추력 · 자홍색 게임 조종 도움 막대를 따라가세요(실제 FD와 다름)') : ATC.T('방향키 조종간 · W/S 추력 · Z 자동조종 · T 자동추력 · G 기어 · [ ] 플랩'); if (p.taxiHint) ht = p.taxiHint();
+      var ac = p.ac, ap = ac && ac.appr, er = ap && D.ends[ap.rwy], cr = er ? U.adiff(ac.hdg, er.crs) : 0, rra = ac ? ac.alt - D.airport.elev : 9999;
+      if (ap && ap.loc && rra < 200 && Math.abs(cr) > 4) ht = cr < 0 ? ATC.T('디크랩 — 왼쪽 러더(Q · ◀ 러더)로 기수를 활주로 방향에') : ATC.T('디크랩 — 오른쪽 러더(E · 러더 ▶)로 기수를 활주로 방향에');
+      if (h.textContent !== ht) h.textContent = ht;
+      var rd = el.querySelector('.ckrud'), rs = !p.dep && !!(ap || (p.sim.wind || {}).spd >= 10); if (rd.hidden === rs) rd.hidden = !rs; }
   };
 
   ATC.INC.p_ld_soft = { cat: 'P', pts: 2, t: ATC.T('아주 부드러운 착륙'), les: 'app' };
@@ -259,6 +274,7 @@
   ATC.INC.p_ld_long2 = { cat: 'E', pts: -2, t: ATC.T('조금 긴 접지'), les: 'app' };
   ATC.INC.p_ld_slow = { cat: 'S', pts: -4, t: ATC.T('접지 속도 부족'), les: 'app' };
   ATC.INC.p_ld_fast = { cat: 'E', pts: -3, t: ATC.T('접지 속도 과다'), les: 'app' };
+  ATC.INC.p_ld_decrab = { cat: 'P', pts: 2, t: ATC.T('옆바람 디크랩 접지'), les: 'app' };
   ATC.INC.p_ld_crab = { cat: 'E', pts: -3, t: ATC.T('접지 시 기수 정렬각 큼'), les: 'app' };
   ATC.INC.p_ld_unst = { cat: 'S', pts: -5, t: ATC.T('불안정 접근'), les: 'app' };
   ATC.INC.p_ld_stab = { cat: 'P', pts: 2, t: ATC.T('게임 안정 접근 검사 통과'), les: 'app' };
