@@ -890,6 +890,8 @@ MG.T.add('ko', {
   "org.slack.6": "턴어라운드 여유",
   "org.slack.7": "{bw} — 턴어라운드 여유 개정의 재발권 비용",
   "org.slack.8": "턴어라운드 여유 0·5·10·15분",
+  "org.slack.slot": "턴어라운드 여유를 바꾸면 슬롯 공항의 출발·도착 시각이 바뀌는데, 바뀐 시각의 슬롯이 없습니다 — {why}",
+  "org.slack.tag": "턴어라운드 여유 변경",
   "org.edu.1": "{amt|yen} · {v}부터 {months}개월간 교육 효과 +{v2}/월(교육 효과 상한 0.5)",
   "org.edu.2": "교육 과정",
   "org.edu.3": "{name} 교육 과정 {n}",
@@ -6645,7 +6647,10 @@ MG.org = (function () {
       if ([0, 5, 10, 15].indexOf(v) < 0) return { ok: false, why: MG.M('org.slack.8') };
       var from = MG.tz.addDays(today(C), F().sales.pDays + 1), xd = O().varDept.xDist;
       if (by !== 'test' && MG.rea && budgetLim(C, per(C, today(C)).fy, xd) != null) { var e = MG.rea.estimate(C, v), bw = e.reissue ? budgetWhy(C, xd, e.reissue) : null; if (bw) return { ok: false, why: MG.M('org.slack.7', { bw: bw }) }; }   // 120차 N120-01: 재발권 지출도 판매비 예산 관문
+      var sw = slackSlotWhy(C, v, from); if (sw) return { ok: false, why: sw };   // 레벨 3 슬롯 공항 — 바뀐 시각의 슬롯이 없으면 적용 0회(시간표 개정과 같은 검사 · AI 제안도 같은 길)
+      var legs0 = C.slot && MG.slot && MG.slot.on(C) ? MG.clone(C.legs) : null;
       var r = MG.ops._reschedule(C, v, from, { by: by });
+      if (legs0) { MG.slot.reconcile(C, from, { tag: MG.M('org.slack.tag'), srcTag: 'slack', base: { C: C, legs: legs0 } }); MG.slot.reserveAll(C); }   // 추가 여유 → 새 시각 시리즈 전환·편 예약
       return { ok: true, title: MG.M('org.slack.6'), label: MG.M('org.slack.5', { v: v, from: from, schedVer: C.schedVer, v2: r.rea ? MG.M('org.slack.2', { moved: r.rea.moved, failed: r.rea.failed }) : MG.M('org.slack.1'), v3: r.cut ? MG.M('org.slack.4', { cut: r.cut }) : MG.M('org.slack.3') }) };
     },
     spare: function (C, d, v, mi, cur) {
@@ -6964,6 +6969,12 @@ MG.org = (function () {
     return { ok: !!r.ok, why: r.why, cost: r.cost || 0, short: !r.ok && D.org.lastShort ? D.org.lastShort.short : 0, shortDept: !r.ok && D.org.lastShort ? D.org.lastShort.dept : null };
   }
   // N88-02: 후보를 사본에서 끝까지 돌려 부족한 부서 전부의 증액안(bumps)을 구한다. 돌아오는 값: { ok, bumps:[{dept, lim, add}], total, cost, why }
+  function slackSlotWhy(C, v, from) {   // 턴 여유 변경의 슬롯 검사: 초안에서 같은 개정 → 레벨 3 이착륙 시각별 수요 vs 보유 시리즈 + 추가 여유
+    if (!C.slot || !MG.slot || !MG.slot.on(C)) return null;
+    var D = MG.draft(C).C, legs0 = MG.clone(D.legs); MG.ops._reschedule(D, v, from, { noPend: true, by: 'estimate' });
+    var sr = MG.slot.reconcile(D, from, { dry: true, base: { C: D, legs: legs0 } });
+    return sr.short.length ? MG.M('org.slack.slot', { why: MG.slot.shortWhy(sr.short[0]) }) : null;
+  }
   function planBumps(C, id, cd) {
     var D = MG.draft(C).C, bumps = [], guard = 0, r;
     while (guard++ < 8) {
