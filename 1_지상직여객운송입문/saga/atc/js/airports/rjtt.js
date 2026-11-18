@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 16, ctlf: 16, p1: 20, p2: 19 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 17, ctlf: 17, p1: 21, p2: 20 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -132,8 +132,22 @@
     D.gateEast = { ROVER: true, BEKLA: false, GUSRO: false, NINOX: false, LAXAS: false };
     /* SID: 하네다는 활주로가 달라도 이름이 같음(낮 시간대의 것만 — B · C는 시간대별 소음 대책용) */
     var SID = { ROVER: 'ROVER 3A', BEKLA: 'BEKLA 3A', GUSRO: 'TIARA 2A', NINOX: 'NINOX 4', LAXAS: 'LAXAS 4' };      /* GUSRO로 나가는 SID가 TIARA(TIARA → GUSRO) */
-    D.sidName = function (gate) { return SID[gate]; };
-    D.sidNames = function () { return Object.keys(SID).map(function (g) { return SID[g]; }); };
+    /* 이륙 시각에 따른 SID(AIP RJTT AD2.20 1.3(2)): AGRIS · AKAGI · INUBO(= ROVER) · BEKLA · TIARA로 나가는 편만 —
+       A = 2100 ~ 1400UTC(B · C 시간 빼고) · B = 2200 ~ 0230UTC · C = 「0600 ~ 1000UTC 가운데 약 3시간」(게임은 0600 ~ 0900UTC로 둠).
+       B · C는 소음 대책 SID(34R은 오른쪽으로 바로 돌아 ARAKA · GUGVA · OHEDO, 16L의 C는 T6L31 · DAMBO · LESMO로 동쪽 바다를 돌아감).
+       1400 ~ 2100UTC(심야)는 따로 정한 활주로 · 절차가 있으나 게임은 A로 둠 */
+    var SIDBC = { ROVER: { B: 'ROVER 4B', C: 'ROVER 4C' }, BEKLA: { B: 'BEKLA 4B', C: 'BEKLA 5C' }, GUSRO: { B: 'TIARA 3B', C: 'TIARA 3C' } };
+    D.sidC = [6, 9];      /* C 시간대(UTC 시) — 게임값 */
+    /* x: 관제 시뮬레이션(그 시각 — 비행허가는 허가 뒤 이륙까지 10분, 지상관제는 5분을 더해 봄) · UTC 초 · 'A' | 'B' | 'C' */
+    D.sidSet = function (x) {
+      if (typeof x === 'string') return x;
+      var u = typeof x === 'number' ? x : x && x.utc ? x.utc() + (x.mode === 'DEL' ? 600 : x.mode === 'GND' ? 300 : 0) : null; if (u === null) return 'A';
+      var h = ((u / 3600) % 24 + 24) % 24; return h >= 22 || h < 2.5 ? 'B' : h >= D.sidC[0] && h < D.sidC[1] ? 'C' : 'A';
+    };
+    D.sidName = function (gate, x) { var k = D.sidSet(x); return k !== 'A' && SIDBC[gate] ? SIDBC[gate][k] : SID[gate]; };
+    D.sidNames = function (x) { return Object.keys(SID).map(function (g) { return D.sidName(g, x); }); };
+    D.sidAll = function () { var o = []; Object.keys(SID).forEach(function (g) { o.push(SID[g]); if (SIDBC[g]) o.push(SIDBC[g].B, SIDBC[g].C); }); return o; };      /* 음성 · 마이크용 전체 이름 */
+    D.sidLetter = function (name) { var m = /\d([ABC])$/.exec(name || ''); return m ? m[1] : 'A'; };
     D.depRwyFor = function (flow, gate) { return flow.depBy[gate] || flow.dep; };
     D.sidInit = 9000;      /* 게임값(실제는 SID · 허가마다 다름) */
     D.sidInitGame = true;  /* 화면에 「이 게임에서 정한 값」이라고 밝힘 */
@@ -162,7 +176,8 @@
       ['LAYER', 35.657056, 139.474861], ['TIARA', 35.659444, 139.331722], ['TORAM', 35.610222, 139.836389], ['PLUTO', 35.608917, 139.960222],
       ['KAIJI', 35.736000, 139.968500], ['SPOON', 35.907861, 139.887778], ['INTEL', 35.764722, 139.727833], ['RAGOS', 35.828389, 139.472556],
       ['T6R11', 35.431250, 139.860333], ['T6R12', 35.403778, 139.879750], ['T6R13', 35.466889, 139.835111], ['TT631', 35.356500, 139.780167],
-      ['HATBA', 35.439833, 139.721083], ['T6L23', 35.441000, 139.927528], ['WELDA', 35.494833, 139.999083], ['APOLO', 35.322033, 139.937439]
+      ['HATBA', 35.439833, 139.721083], ['T6L23', 35.441000, 139.927528], ['WELDA', 35.494833, 139.999083], ['APOLO', 35.322033, 139.937439],
+      ['ARAKA', 35.646889, 139.844972], ['GUGVA', 35.703889, 139.858306], ['OHEDO', 35.756500, 139.810722], ['T6L31', 35.473000, 139.946667], ['DAMBO', 35.571250, 140.078722], ['T6L32', 35.636361, 139.981167], ['LESMO', 35.686194, 139.974833]      /* B · C SID 지점(AIP AD2.24 SID-55 ~ 66) */
     ]);
     /* 최종 접근: 중간 접근 지점(IF) · 최종 접근 지점(FAF) · 그 고도. 좌표가 없는 지점은 활주로 중심선 위의 거리(NM)로 놓음 */
     function finAt(end, ifn, faf, apAlt, ifD, fafD) {
@@ -193,15 +208,22 @@
       '16R': { LAXAS: ['T6R11', 'TAURA', 'IMOLA', 'LAXAS'], NINOX: ['T6R12', 'TT631', 'BAYGE', 'SEIKO', 'NINOX'], GUSRO: ['T6R13', 'HATBA', 'KAMAT', 'LAYER', 'TIARA', 'GUSRO'] },
       '16L': { ROVER: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'SPOON', 'ROVER'], BEKLA: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'INTEL', 'RAGOS', 'BEKLA'] }
     };
-    D.sidRoute = function (rwy, gate) { var r = SIDR[rwy] && SIDR[rwy][gate]; return r ? r.slice() : [gate]; };
+    /* B · C SID의 경로가 A와 다른 활주로만(AIP AD2.24 ROVER 4B · 4C, BEKLA 4B · 5C, TIARA 3B · 3C 본문 · coding table). 05는 셋 다 A와 같음 */
+    var BC34 = ['ARAKA', 'GUGVA', 'OHEDO'], C16L = ['T6L31', 'DAMBO', 'T6L32', 'LESMO', 'KAIJI'], C16R = ['T6R11', 'WELDA', 'PLUTO', 'KAIJI', 'INTEL'];
+    var R34 = { ROVER: BC34.concat(['SPOON', 'ROVER']), BEKLA: BC34.concat(['INTEL', 'RAGOS', 'BEKLA']), GUSRO: BC34.concat(['INTEL', 'LAYER', 'TIARA', 'GUSRO']) };
+    var SIDRX = {
+      B: { '34R': R34 },
+      C: { '34R': R34, '16L': { ROVER: C16L.concat(['SPOON', 'ROVER']), BEKLA: C16L.concat(['INTEL', 'RAGOS', 'BEKLA']) }, '16R': { BEKLA: C16R.concat(['RAGOS', 'BEKLA']), GUSRO: C16R.concat(['LAYER', 'TIARA', 'GUSRO']) } }
+    };
+    D.sidRoute = function (rwy, gate, x) { var k = D.sidSet(x), r = k !== 'A' && SIDBC[gate] && SIDRX[k][rwy] && SIDRX[k][rwy][gate] || SIDR[rwy] && SIDR[rwy][gate]; return r ? r.slice() : [gate]; };
     /* SID 지점별 고도 제한(AIP RJTT AD2.24 SID 본문 · coding table, 2026-11-26판 — GPT 14차 3.1과 대조). min = 그 고도 이상(at or above) · max = 이하(at or below) · 둘이 같으면 그 고도(at). ft — 14,000ft부터는 FL
        이 다섯 SID의 coding table에는 지점별 속도(KIAS)가 없음. 조종사 체험 출발편에서만 씀(관제 근무 쪽은 고도를 관제사가 정함) */
     var SIDALT = {
       LAXAS: { LOCUP: { min: 5000 }, TAURA: { min: 9000 }, IMOLA: { min: 15000 }, LAXAS: { min: 17000 } },
       NINOX: { LOCUP: { min: 5000 }, BAYGE: { min: 9000 }, SEIKO: { min: 13000 }, NINOX: { min: 17000 } },
-      GUSRO: { LOCUP: { min: 5000 }, KAMAT: { min: 9000 }, LAYER: { min: 13000 }, GUSRO: { min: 17000 } },
-      BEKLA: { WELDA: { min: 6000 }, INTEL: { min: 9000 }, RAGOS: { min: 13000 }, BEKLA: { min: 17000 } },
-      ROVER: { WELDA: { min: 6000 }, SPOON: { max: 15000 }, ROVER: { min: 12000 } }
+      GUSRO: { LOCUP: { min: 5000 }, WELDA: { min: 6000 }, KAMAT: { min: 9000 }, INTEL: { min: 9000 }, LAYER: { min: 13000 }, GUSRO: { min: 17000 } },      /* WELDA · INTEL = TIARA 3C(16R) · 3B(34R) */
+      BEKLA: { WELDA: { min: 6000 }, LESMO: { min: 8000 }, INTEL: { min: 9000 }, KAMAT: { min: 9000 }, LAYER: { min: 13000 }, RAGOS: { min: 13000 }, BEKLA: { min: 17000 } },
+      ROVER: { WELDA: { min: 6000 }, LESMO: { min: 8000 }, SPOON: { max: 15000 }, ROVER: { min: 12000 } }
     };
     /* 이륙 직후 구간: 「Climb on HDG ○○○° at or above ○○○FT, (turn left/right) direct to 첫 지점」. grad = 그 높이까지 상승경사 5.0% 필요(AIP Note — 16R · 16L에는 없음) */
     D.sidLeg = { '05': { hdg: 50, alt: 500, grad: 5 }, '34R': { hdg: 338, alt: 700, turn: 'R', grad: 5 }, '16R': { hdg: 158, alt: 500 }, '16L': { hdg: 158, alt: 500, turn: 'L' } };
@@ -223,9 +245,9 @@
     /* 지역관제 구간 경로(조종사 체험 출발편 · 지역관제 근무의 출발기): 출구 지점 → (transition) → 경계 */
     D.depRouteFor = function (gate, dest) { var t = TRANS[gate] && TRANS[gate][D.transFor(gate, dest)]; if (t) return [gate].concat(t.route, t.then); var r = D.accDep[gate][0]; return r.join ? r.slice() : [gate, r]; };
     /* 이 활주로 · SID · 목적지의 고도 제한을 경로 차례대로: [{ fix, min, max, tr(transition 구간이면 이름) }] */
-    D.sidAltFor = function (rwy, gate, dest) {
+    D.sidAltFor = function (rwy, gate, dest, x) {
       var o = [], a = SIDALT[gate] || {}, tn = D.transFor(gate, dest), t = tn && TRANS[gate][tn];
-      D.sidRoute(rwy, gate).forEach(function (n) { if (a[n]) o.push({ fix: n, min: a[n].min, max: a[n].max }); });
+      D.sidRoute(rwy, gate, x).forEach(function (n) { if (a[n]) o.push({ fix: n, min: a[n].min, max: a[n].max }); });
       if (t) t.route.forEach(function (n) { if (t.alt[n]) o.push({ fix: n, min: t.alt[n].min, max: t.alt[n].max, tr: tn }); });
       return o;
     };

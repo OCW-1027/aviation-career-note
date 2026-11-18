@@ -30,12 +30,13 @@
     this.eng = { st: 'off', t0: 0, n1: 0 }; this.pbrake = true;
     var c = o.carry, f;
     if (c) { f = this.f = c.f; this.fp = c.fp; this.standK = c.standK; this.xpdr = c.xpdr; this.sid = c.sid; this.cur = c.cur; this.mcp = c.mcp; this.depFq = c.depFq; this.nRb = c.nRb; this.nRbOk = c.nRbOk; this.rt = c.rt; this.sq = c.ac.squawk; this.tAcc = (c.tAcc || 0) + c.sim.t; sim.usedCs[f.cs] = 1;
-      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; this.to = c.to || null; this.sidR = c.sidR || null; this.capKey = c.capKey || '';      /* 같은 제한 지점의 VNAV 안내는 관제석이 바뀌어도 한 번만(사이트 42차 결과) */ this.sidOn = c.sidOn !== false; this.sidVia = c.sidVia !== false; this.sidPlain = c.sidPlain; this.trn = c.trn; }
+      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; this.to = c.to || null; this.sidR = c.sidR || null; this.capKey = c.capKey || ''; this.sidK = c.sidK || 'A';      /* 같은 제한 지점의 VNAV 안내는 관제석이 바뀌어도 한 번만(사이트 42차 결과) */ this.sidOn = c.sidOn !== false; this.sidVia = c.sidVia !== false; this.sidPlain = c.sidPlain; this.trn = c.trn; }
     else {
       f = sim.mkFlight(function (a) { return a.code === 'VLA'; }, 'dep');
       f.type = 'B789'; if (D.types && D.types.B789) f.perf = D.types.B789; f.wake = 'H';
       this.f = f; this.fp = this.autoPlan();
     }
+    if (!c) this.sidK = D.sidSet ? D.sidSet(sim) : 'A';      /* 이륙 시각에 따른 SID(A · B · C) — 첫 단계에서 정해 끝까지 같음 */
     sim.isFinished = function () { return this.pilot.done; };
     if (!c && ATC.wxSay) ATC.wxSay(sim);      /* 날씨 · 시간 안내(첫 단계에서만) */
     if (sim.mode === 'GND') { this.initGnd(!c); return; }
@@ -57,7 +58,7 @@
     var dl = D.gateDest[g], dst = PF && PF.gate === g ? PF.ap : dl[sim.rng.int(0, dl.length - 1)];
     return { gate: g, dest: dst[0], destName: dst[1], rfl: this.flFor(g), grp: PF && PF.grp };
   };
-  DepPilot.prototype.route = function (fp) { fp = fp || this.fp; var sid = D.sidName ? D.sidName(fp.gate) : fp.gate, tn = this.transName(fp), t = tn && D.sidTrans[fp.gate][tn]; return 'RJTT ' + this.rwyFor(fp.gate) + ' ' + sid + ' ' + fp.gate + (t ? ' ' + tn + ' TRANSITION ' + t.route[t.route.length - 1] : '') + ' … ' + fp.dest; };
+  DepPilot.prototype.route = function (fp) { fp = fp || this.fp; var sid = D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate, tn = this.transName(fp), t = tn && D.sidTrans[fp.gate][tn]; return 'RJTT ' + this.rwyFor(fp.gate) + ' ' + sid + ' ' + fp.gate + (t ? ' ' + tn + ' TRANSITION ' + t.route[t.route.length - 1] : '') + ' … ' + fp.dest; };
   DepPilot.prototype.check = function (fp) {      /* 비행계획 검사: [{ok, t}] */
     fp = fp || this.fp; var o = [], east = !!D.gateEast[fp.gate], odd = (fp.rfl / 1000) % 2 === 1;
     o.push({ ok: D.gateDest[fp.gate].some(function (d) { return d[0] === fp.dest; }), t: ATC.T('목적지 {0}은(는) 출구 지점 {1} 쪽', fp.dest, fp.gate) });
@@ -130,6 +131,7 @@
     cmds = cmds.map(function (c) {
       if (c.k === 'ho' && c.to === 'GND') return { k: 'ho', to: self.gnd, key: 'GND' };
       if (c.k === 'rbok' && !self.depSaid && D.freq.DEP) { self.depSaid = true; self.depFq = D.freq.DEP.fq; return { k: 'rbok', then: 'departure frequency ' + D.freq.DEP.fq }; }      /* 출발 주파수는 미리 알려 줌(GPT 14차 R14-03) */
+      if (c.k === 'clr' && self.sid && D.sidLetter && c.sid !== self.sid && D.sidLetter(c.sid) !== D.sidLetter(self.sid)) { var qs = {}, ks; for (ks in c) qs[ks] = c[ks]; qs.sid = self.sid; c = qs; }      /* 이 편의 SID 시간대(A · B · C)는 비행계획 단계에서 정한 것 — 시간대 경계에서 관제가 다른 글자를 고르지 않게 */
       if (c.k === 'clr' && !c.trans && self.transName()) { var q0 = {}, k0; for (k0 in c) q0[k0] = c[k0]; q0.trans = self.transName(); return q0; }      /* SID 뒤 transition을 허가에 넣음(GPT 14차 R14-04) */
       if (c.k === 'push' && !c.face) { var q = {}, k; for (k in c) q[k] = c[k]; q.face = (sim.multi && D.stands[ac.stand].faceRec) || sim.flow.push; return q; }      /* 기수 방향을 말로도 */
       if (c.k === 'cross' && !c.at && D.gN[ac.node] && D.gN[ac.node].hold) { var q3 = {}, k3; for (k3 in c) q3[k3] = c[k3]; q3.at = D.gN[ac.node].hold; return q3; }      /* 횡단 지점을 함께 말함(管制業務処理規程 Ⅲ2(14)b, GPT 15차 R15-02) */
@@ -209,7 +211,7 @@
   /* ================= D2: 지상(푸시백 · 엔진 시동 · 지상 이동) ================= */
   DepPilot.prototype.initGnd = function (fresh) {
     var sim = this.sim, f = this.f, fp = this.fp, sk, sd, ac, d;
-    if (fresh) { sk = this.standFor(); this.sid = D.sidName ? D.sidName(fp.gate, sim.flow) : fp.gate; this.sq = sim.squawk(); this.xpdr = { code: this.sq, set: this.sq, entry: '', want: this.sq }; this.cur.alt = D.sidInit || 9000; this.mcp = { hdg: 0, alt: D.sidInit || 9000, spd: 250 }; this.depFq = D.freq.DEP ? D.freq.DEP.fq : ''; }
+    if (fresh) { sk = this.standFor(); this.sid = D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate; this.sq = sim.squawk(); this.xpdr = { code: this.sq, set: this.sq, entry: '', want: this.sq }; this.cur.alt = D.sidInit || 9000; this.mcp = { hdg: 0, alt: D.sidInit || 9000, spd: 250 }; this.depFq = D.freq.DEP ? D.freq.DEP.fq : ''; }
     sk = this.standK; sd = D.stands[sk]; this.setGnd(); this.phase = 'gnd'; this.freqNow = 'GND'; this.freqNowFq = this.gnd.fq; this.freqNowN = this.gnd.n;
     if (fresh) sim.log.length = 0;
     var sys0 = sim.sys, me = this; sim.sys = function (t, k) { if (me.own) sys0.call(this, t, k); }; sim.phone = function () { };      /* 지상관제 근무용 알림(관제탑 협조 · 다른 편 처리)은 조종사에게 보이지 않게 */
@@ -408,7 +410,7 @@
   /* ================= D3: 관제탑(진입 대기 · 이륙 · Departure 이양) ================= */
   DepPilot.prototype.initTwr = function (fresh) {
     var sim = this.sim, f = this.f, fp = this.fp, sk, ac, rwy, hp, h, N = D.gN, me = this;
-    if (fresh) { sk = this.standFor(); this.sid = D.sidName ? D.sidName(fp.gate, sim.flow) : fp.gate; this.sq = sim.squawk(); this.xpdr = { code: this.sq, set: this.sq, entry: '', want: this.sq }; this.cur.alt = D.sidInit || 9000; this.mcp = { hdg: 0, alt: D.sidInit || 9000, spd: 250 }; this.depFq = D.freq.DEP ? D.freq.DEP.fq : ''; sim.log.length = 0; }
+    if (fresh) { sk = this.standFor(); this.sid = D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate; this.sq = sim.squawk(); this.xpdr = { code: this.sq, set: this.sq, entry: '', want: this.sq }; this.cur.alt = D.sidInit || 9000; this.mcp = { hdg: 0, alt: D.sidInit || 9000, spd: 250 }; this.depFq = D.freq.DEP ? D.freq.DEP.fq : ''; sim.log.length = 0; }
     sk = this.standK; this.setGnd(); this.phase = 'twr'; this.freqNow = 'TWR'; this.freqNowFq = D.freq.TWR.fq; this.freqNowN = D.freq.TWR.n;
     this.eng = { st: 'on', t0: 0, n1: 21.5 }; this.pbrake = false; this.cfg.flap = this.cfg.flapPos = 5; this.cfg.gear = 'down'; this.cfg.gearT = 0; this.fly.on = false;
     var sys0 = sim.sys; sim.sys = function (t, k) { if (me.own) sys0.call(this, t, k); }; sim.phone = function () { }; sim.events = [];
@@ -456,7 +458,7 @@
   /* 이륙 뒤 방향(LNAV): 공시된 높이까지는 활주로 방위, 그 뒤 SID 첫 지점으로 직행 — 상공 통과 지점(TT501)은 그 위를 지난 뒤에 다음 지점으로.
      AIP SID 본문 「Climb on HDG ○○○° at or above ○○○FT, (turn left/right) direct to …」. 돌아간 각도만큼 3D 화면의 경사도 따라감 */
   DepPilot.prototype.lnav = function (ac, dt) {
-    var e = D.ends[ac.rwy], leg = (D.sidLeg || {})[ac.rwy], rt = this.sidRt || (this.sidRt = D.sidRoute ? D.sidRoute(ac.rwy, this.fp.gate) : []), rate = 0;
+    var e = D.ends[ac.rwy], leg = (D.sidLeg || {})[ac.rwy], rt = this.sidRt || (this.sidRt = D.sidRoute ? D.sidRoute(ac.rwy, this.fp.gate, this.sidK) : []), rate = 0;
     if (ac.trk === undefined) { var p0 = D.uv2xy(0, 0), p1 = D.uv2xy(e.du * 100, e.dv * 100); ac.trk = U.n360(Math.atan2(p1.x - p0.x, p1.y - p0.y) * 180 / Math.PI); ac.sidI = 0; }
     if (leg && ac.alt >= leg.alt && ac.sidI < rt.length && D.fix[rt[ac.sidI]]) {
       var p = D.uv2xy(ac.u, ac.v), n = rt[ac.sidI], f = D.fix[n], d = U.dist(p, f), df = U.adiff(ac.trk, U.brg(p, f));
@@ -522,7 +524,7 @@
   var SID_T = 200, SID_ASK = 45;      /* 통과 고도 허용 오차(ft) · 제한 처리 선택 제한 시간(초) — 게임값 */
   DepPilot.prototype.transName = function (fp) { fp = fp || this.fp; return D.transFor ? D.transFor(fp.gate, fp.dest) : ''; };
   DepPilot.prototype.sidList = function () {
-    if (!this.sidR) { var fp = this.fp; this.sidR = D.sidAltFor ? D.sidAltFor(this.rwyFor(fp.gate), fp.gate, fp.dest).map(function (r) { return { fix: r.fix, min: r.min, max: r.max, tr: r.tr || '', st: '', dMin: 99 }; }) : []; this.sidOn = true; this.sidVia = true; }
+    if (!this.sidR) { var fp = this.fp; this.sidR = D.sidAltFor ? D.sidAltFor(this.rwyFor(fp.gate), fp.gate, fp.dest, this.sidK).map(function (r) { return { fix: r.fix, min: r.min, max: r.max, tr: r.tr || '', st: '', dMin: 99 }; }) : []; this.sidOn = true; this.sidVia = true; }
     return this.sidR;
   };
   DepPilot.prototype.sidPend = function () { return this.sidList().filter(function (r) { return !r.st; }); };
@@ -588,17 +590,17 @@
   };
   /* 화면용: SID(+ transition) 지점 차례와 제한 · 통과 결과 */
   DepPilot.prototype.sidView = function () {
-    var fp = this.fp, rwy = this.rwyFor(fp.gate), rt = D.sidRoute ? D.sidRoute(rwy, fp.gate) : [fp.gate], tn = this.transName(), t = tn && D.sidTrans[fp.gate][tn], by = {}, ac = this.ac, air = this.phase === 'air' && ac && ac.nextFix, nx = air ? ac.nextFix() : '', leg = (D.sidLeg || {})[rwy], me = this, pend = null;
+    var fp = this.fp, rwy = this.rwyFor(fp.gate), rt = D.sidRoute ? D.sidRoute(rwy, fp.gate, this.sidK) : [fp.gate], tn = this.transName(), t = tn && D.sidTrans[fp.gate][tn], by = {}, ac = this.ac, air = this.phase === 'air' && ac && ac.nextFix, nx = air ? ac.nextFix() : '', leg = (D.sidLeg || {})[rwy], me = this, pend = null;
     this.sidList().forEach(function (r) { by[r.fix] = r; if (!r.st && !pend) pend = r; });
     var fx = rt.map(function (n) { return { n: n, r: by[n] || null }; }).concat(t ? t.route.map(function (n) { return { n: n, r: by[n] || null, tr: true }; }) : []), pred = null;
     if (air && pend && D.fix[pend.fix] && ac.gs > 60) { var cl = Math.min(ac.tAlt, ac.vcap !== undefined ? ac.vcap : 1e9), z = Math.min(cl, ac.alt + (ac.vs > 0 ? ac.vs : 0) * U.dist(ac, D.fix[pend.fix]) / ac.gs * 60); pred = { fix: pend.fix, alt: Math.round(z / 100) * 100, low: me.sidVia && pend.min !== undefined && z < pend.min - SID_T }; }
-    return { sid: D.sidName ? D.sidName(fp.gate) : fp.gate, rwy: rwy, trans: tn, leg: leg, first: rt[0], fixes: fx, next: nx, via: this.sidVia !== false, on: this.sidOn !== false, cap: ac && ac.vcap !== undefined ? { v: ac.vcap, fix: this.capFix } : null, pred: pred, any: this.sidList().length > 0 };
+    return { sid: D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate, sidK: this.sidK || 'A', rwy: rwy, trans: tn, leg: leg, first: rt[0], fixes: fx, next: nx, via: this.sidVia !== false, on: this.sidOn !== false, cap: ac && ac.vcap !== undefined ? { v: ac.vcap, fix: this.capFix } : null, pred: pred, any: this.sidList().length > 0 };
   };
 
   /* ================= D4: 하늘(Departure → Tokyo Control → 순항 고도) ================= */
   DepPilot.prototype.initAir = function (c) {
     var sim = this.sim, f = this.f, fp = this.fp, rwy = this.rwyFor(fp.gate), end = D.ends[rwy], ac, me = this, acc = sim.mode === 'ACC', KT = ATC.KT || 0.5144, first, o;
-    if (!c) { this.standK = this.standFor(); this.sid = D.sidName ? D.sidName(fp.gate, sim.flow) : fp.gate; this.sq = sim.squawk(); this.xpdr = { code: this.sq, set: this.sq, entry: '', want: this.sq }; this.cur.alt = D.sidInit || 9000; this.mcp = { hdg: 0, alt: D.sidInit || 9000, spd: 250 }; this.depFq = D.freq.DEP ? D.freq.DEP.fq : ''; this.cfg.flap = this.cfg.flapPos = 0; sim.log.length = 0; }
+    if (!c) { this.standK = this.standFor(); this.sid = D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate; this.sq = sim.squawk(); this.xpdr = { code: this.sq, set: this.sq, entry: '', want: this.sq }; this.cur.alt = D.sidInit || 9000; this.mcp = { hdg: 0, alt: D.sidInit || 9000, spd: 250 }; this.depFq = D.freq.DEP ? D.freq.DEP.fq : ''; this.cfg.flap = this.cfg.flapPos = 0; sim.log.length = 0; }
     this.setGnd(); this.phase = 'air'; this.eng = { st: 'on', t0: 0, n1: 90 }; this.apOn = true; this.pbrake = false; this.cfg.gear = 'up'; this.cfg.gearT = 0; this.fly.on = false; this.asg = {}; this.ci = false; this.clr = null; this.prompt = null; this.freqTo = null;
     if (!this.vs) this.vs = { v1: Math.round(f.perf.vr / KT) - 5, vr: Math.round(f.perf.vr / KT), v2: Math.round(f.perf.vr / KT) + 5 };
     var sys0 = sim.sys; sim.sys = function (t, k) { if (me.own) sys0.call(this, t, k); }; sim.phone = function () { }; sim.events = [];
@@ -606,7 +608,7 @@
     o = { cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: pf, kind: 'dep', gate: fp.gate, dest: fp.dest, destName: fp.destName, orig: D.airport.icao, squawk: this.sq, rwy: rwy, owner: 'me', rfl: fp.rfl, entT: sim.t };
     if (!acc) {
       var p0 = c ? { x: c.ac.x, y: c.ac.y } : D.off(end.end, end.crs, 1.2);
-      o.x = p0.x; o.y = p0.y; o.alt = c ? c.ac.alt + (c.ac.agl ? D.airport.elev : 0) : 1300; o.hdg = c && c.ac.hdg !== undefined ? c.ac.hdg : end.crs; o.ias = c ? Math.max(160, c.ac.ias) : 180; o.tIas = this.cfg.flap > 0 ? this.flapSpd(o.alt - D.airport.elev) : 250; o.normIas = 250; o.tAlt = this.cur.alt || D.sidInit; o.fpRoute = D.sidRoute ? D.sidRoute(rwy, fp.gate) : [fp.gate]; o.justDep = true; o.sidT = sim.t;
+      o.x = p0.x; o.y = p0.y; o.alt = c ? c.ac.alt + (c.ac.agl ? D.airport.elev : 0) : 1300; o.hdg = c && c.ac.hdg !== undefined ? c.ac.hdg : end.crs; o.ias = c ? Math.max(160, c.ac.ias) : 180; o.tIas = this.cfg.flap > 0 ? this.flapSpd(o.alt - D.airport.elev) : 250; o.normIas = 250; o.tAlt = this.cur.alt || D.sidInit; o.fpRoute = D.sidRoute ? D.sidRoute(rwy, fp.gate, this.sidK) : [fp.gate]; o.justDep = true; o.sidT = sim.t;
       var f0 = D.flyOver && D.flyOver[o.fpRoute[0]] && D.fix[o.fpRoute[0]], hr = end.crs * Math.PI / 180;      /* 05 출발의 TT501(상공 통과 지점): 활주로 방위로 그 위를 이미 지났을 때만 뺌 — 지난 거리와 옆으로 벗어난 거리를 함께 봄(GPT 16차 F16-02) */
       if (c && c.ac.sidI) o.fpRoute = o.fpRoute.slice(Math.min(c.ac.sidI, o.fpRoute.length - 1));      /* 관제탑 주파수에 있는 동안 LNAV가 이미 지난 지점 */
       else if (f0 && (f0.x - o.x) * Math.sin(hr) + (f0.y - o.y) * Math.cos(hr) <= 0 && Math.abs((f0.x - o.x) * Math.cos(hr) - (f0.y - o.y) * Math.sin(hr)) < 0.3) o.fpRoute.shift();

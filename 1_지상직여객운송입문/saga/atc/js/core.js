@@ -209,6 +209,12 @@
   /* 바람에 맞는 운용 방향: 정풍 성분이 가장 큰 쪽. 차이가 작으면(0.1 이하) 목록에서 앞선 쪽을 유지 */
   Sim.prototype.flowForWind = function () { var w = this.wind.dir, best = null, bh = 0; Object.keys(D.flows).forEach(function (k) { var h = Math.cos((w - D.flows[k].hdg) * D2R); if (!best || h > bh + 0.1) { best = k; bh = h; } }); return best; };
   Sim.prototype.utc = function () { return this.t0 + this.t; };
+  /* 하네다 이륙 시각별 SID 안내(AIP RJTT AD2.20 1.3(2)) — 비행허가 · 접근관제 근무 시작 */
+  ATC.sidSetMsg = function (sim) {
+    var k = D.sidSet(sim), nm = ['ROVER', 'BEKLA', 'GUSRO'].map(function (g) { return D.sidName(g, k); }).join(' · ');
+    return k === 'B' ? ATC.T('지금은 B 시간대(2200 ~ 0230UTC) — ROVER · BEKLA · TIARA로 나가는 출발기는 소음 대책 SID {0}. 34R은 이륙 뒤 오른쪽으로 바로 돌아 ARAKA · GUGVA · OHEDO로 갑니다.', nm)
+      : ATC.T('지금은 C 시간대(0600 ~ 1000UTC 가운데 약 3시간 — 게임은 0600 ~ 0900UTC) — ROVER · BEKLA · TIARA로 나가는 출발기는 소음 대책 SID {0}. 34R은 ARAKA · GUGVA · OHEDO, 16L은 T6L31 · DAMBO · LESMO로 동쪽 바다를 돌아가고, 16R(TIARA)은 T6R11 · WELDA로 갑니다.', nm);
+  };
   Sim.prototype.emit = function (type, data) { for (var i = 0; i < this.listeners.length; i++) this.listeners[i](type, data); };
   Sim.prototype.squawk = function () { this.sq += 1 + this.rng.int(0, 2); var s = this.sq.toString(8); if (/[89]/.test(s) || s === '7500' || s === '7600' || s === '7700') return this.squawk(); return U.pad(+s, 4); };
   /* 가상 편명 만들기 */

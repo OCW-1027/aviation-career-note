@@ -31,8 +31,9 @@
     this.events.sort(function (a, b) { return a.t - b.t; });
     this.scnEvents();
     /* 화면에 그릴 지점: 이번 근무에 쓰는 도착 · 출발 경로의 것만 */
-    if (D.sidRoute) { var use = this.fixUse = {}, fl = this.flow; gates.forEach(function (x) { D.star[fl.id][x].forEach(function (n) { use[n] = 1; }); }); Object.keys(D.gateDest).forEach(function (x) { D.sidRoute(D.depRwyFor(fl, x), x).forEach(function (n) { use[n] = 1; }); }); }
+    if (D.sidRoute) { var use = this.fixUse = {}, fl = this.flow; gates.forEach(function (x) { D.star[fl.id][x].forEach(function (n) { use[n] = 1; }); }); Object.keys(D.gateDest).forEach(function (x) { ['A', 'B', 'C'].forEach(function (k) { D.sidRoute(D.depRwyFor(fl, x), x, k).forEach(function (n) { use[n] = 1; }); }); }); }      /* B · C SID 지점도(시간대가 근무 중에 바뀜) */
     this.sys(ATC.T('{apt} 접근관제({0}) 근무 시작. 사용 활주로: 도착 {1} / 출발 {2}. 바람 {3}, QNH {4}.', D.freq.APP.fq, this.rwys.join('·'), (D.depRwyFor && this.flow.deps ? this.flow.deps.join('·') : this.flow.dep), fmt.wind(this.wind), this.qnh));
+    if (D.sidSet && D.sidSet(this) !== 'A') this.sys(ATC.sidSetMsg(this), 'info');      /* 하네다: 지금 시간대의 SID(B · C — 소음 대책) */
   }
   ATC.extend(AppSim, ATC.RadarSim);
 
@@ -89,10 +90,10 @@
     var ac = this.spawnAc({
       cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: f.perf,
       x: p.x, y: p.y, alt: 1300, hdg: end.crs, ias: 180, tIas: 250, normIas: 250, tAlt: D.sidInit, kind: 'dep', gate: s.gate, dest: dg[0], destName: dg[1], orig: D.airport.icao,
-      fpRoute: D.sidRoute ? D.sidRoute(drw, s.gate) : [s.gate], squawk: this.squawk(), rwy: drw, owner: 'me', justDep: true, rfl: rfl, entT: this.t, sidT: this.t
+      fpRoute: D.sidRoute ? D.sidRoute(drw, s.gate, this) : [s.gate], squawk: this.squawk(), rwy: drw, owner: 'me', justDep: true, rfl: rfl, entT: this.t, sidT: this.t
     });
-    ac.sid = D.sidName ? D.sidName(s.gate) : s.gate + ' 1' + this.flow.sfx;
-    if (D.sidAltFor) ATC.sidInit(ac, D.sidAltFor(drw, s.gate, dg[0]).filter(function (r) { return !r.tr; }));      /* SID 공시 고도 제한(transition 구간은 지역관제 쪽) — 비행허가의 초기 허가부터 살아 있음 */
+    ac.sid = D.sidName ? D.sidName(s.gate, this) : s.gate + ' 1' + this.flow.sfx;
+    if (D.sidAltFor) ATC.sidInit(ac, D.sidAltFor(drw, s.gate, dg[0], this).filter(function (r) { return !r.tr; }));      /* SID 공시 고도 제한(transition 구간은 지역관제 쪽) — 비행허가의 초기 허가부터 살아 있음 */
     this.say(ac, D.freq.DEP.n + ', ' + ac.csWord + ' ' + ac.num + ', passing ' + fmt.alt(Math.max(500, Math.round(ac.alt / 100) * 100)) + ', climbing ' + fmt.alt(D.sidInit) + ', ' + ac.sid + ' departure.');
     return ac;
   };

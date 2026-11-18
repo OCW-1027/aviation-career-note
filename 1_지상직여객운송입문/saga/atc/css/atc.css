@@ -548,3 +548,5 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 /* 관제 근무: 출발기 SID 고도 제한 */
 .cgb .csid{flex-basis:100%;font-size:11px;color:#ffd166;line-height:1.35;margin-top:2px}.cgb .csid.off{color:var(--mut,#8b98a8)}
 .strip .s4{font-family:var(--sans);font-size:10.5px;color:#8a5200;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.strip .s4.off{color:#6d7780;font-weight:400}
+.dref tr.on td{background:rgba(79,216,255,.12)}
+.psh .psk{font-style:normal;font-size:11px;color:#ffd166;margin-left:6px}

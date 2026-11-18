@@ -183,7 +183,7 @@
         if (wk === 'lowvis') { wind = { dir: wind.dir, spd: Math.min(wind.spd, 8) }; wxo.rvr = 550; wxo.ceil = 300; wxo.vis = [rng() < 0.6, true, true]; }      /* RVR 550m · 구름 밑 300ft(게임 설정) — 첫 접근의 결심 고도에서 보일지는 판마다 */
       }
     }
-    var sim = app.sim = scn ? new Cls({ level: lv, seed: scn.seed, flow: scn.flow, wind: scn.wind, qnh: scn.qnh, startHour: scn.hour, scn: scn }) : new Cls({ level: lv, seed: seed, flow: flow, wind: wind, qnh: cr ? cr.sim.qnh : 1005 + rng.int(0, 18), startHour: cr ? cr.sim.utc() / 3600 : nightH !== null ? nightH : xo && xo.pilotDep ? 3 + rng.int(0, 2) : xo && xo.pilot ? ((8 + rng.int(0, 7) - (D.tz !== undefined ? D.tz : 9)) % 24 + 24) % 24 : 6 + rng.int(0, 9), endless: !!(xo && xo.endless), wx: wxo });      /* 조종사 체험은 현지 낮(8 ~ 15시) */
+    var sim = app.sim = scn ? new Cls({ level: lv, seed: scn.seed, flow: scn.flow, wind: scn.wind, qnh: scn.qnh, startHour: scn.hour, scn: scn }) : new Cls({ level: lv, seed: seed, flow: flow, wind: wind, qnh: cr ? cr.sim.qnh : 1005 + rng.int(0, 18), startHour: cr ? cr.sim.utc() / 3600 : nightH !== null ? nightH : xo && xo.pilotDep ? [23, 3, 6.5][rng.int(0, 2)] :      /* 조종사 체험 출발편: 이륙 시각대를 B(08시) · A(12시) · C(15시 반, 현지) 가운데 — 하네다 시간대별 SID */ xo && xo.pilot ? ((8 + rng.int(0, 7) - (D.tz !== undefined ? D.tz : 9)) % 24 + 24) % 24 : 6 + rng.int(0, 9), endless: !!(xo && xo.endless), wx: wxo });      /* 조종사 체험은 현지 낮(8 ~ 15시) */
     if (xo && xo.daily) sim.sys(ATC.T('오늘의 과제 — 오늘은 누구나 같은 교통 · 같은 날씨로 근무합니다.'), 'info');
     if (xo && xo.endless) sim.sys(ATC.T('무한 근무 — 교통이 계속 들어오고 점점 늘어납니다. 안전 감점 3번이면 근무가 끝납니다.'), 'info');
     if (cr) { sim.log = cr.sim.log.slice(); sim.incs = cr.sim.incs.slice(); sim.atis = cr.sim.atis; }
@@ -513,7 +513,7 @@
   }
   function pendRoute(r) { for (var i = 0; i < app.pend.length; i++) if (app.pend[i].k === 'taxi' && app.pend[i].nodes === r.nodes) return true; return false; }
   /* 고른 SID에 딸린 transition 이름들(하네다 ROVER 3A → BRUCE · INUBO) */
-  function delTrans(sid) { var o = []; if (sid && D.sidTrans && D.sidName) Object.keys(D.sidTrans).forEach(function (g) { if (D.sidName(g) === sid) o = Object.keys(D.sidTrans[g]); }); return o; }
+  function delTrans(sid) { var o = []; if (sid && D.sidTrans && D.sidName) Object.keys(D.sidTrans).forEach(function (g) { if (['A', 'B', 'C'].some(function (k) { return D.sidName(g, k) === sid; })) o = Object.keys(D.sidTrans[g]); }); return o; }      /* ROVER 3A · 4B · 4C 모두 같은 transition */
   function clrCmd(ac, d) { var c = { k: 'clr', destName: ac.destName, sid: d.sid, alt: d.alt, sq: ac.squawk }; if (d.trans) c.trans = d.trans; return c; }
   function cmdDel(ac) {
     var sim = app.sim, d = app.del, h = '';
@@ -552,7 +552,7 @@
     if (D.sidName) {      /* SID 이름이 활주로와 상관없는 공항: 출구 지점 → SID 하나, 활주로는 방면에 따라 배정 */
       h += ATC.T('<div class="dref"><h4>SID 참조표</h4><table><tr><th>출구 지점</th><th>방향 · 목적지</th><th>SID</th>{0}<th>순항 고도</th></tr>{1}</table><p>SID는 출구 지점마다 하나이며 활주로가 달라도 명칭이 같습니다. 출발 활주로는 방면에 따라 배정합니다. {2}.</p><p>초기 허가 고도 <b>{3}ft</b>(이 게임에서 정한 값 — 실제로는 편마다 관제가 정합니다) · 출발 주파수 {4} · 지상관제 {5}</p><p>CTOT가 있으면 TSAT = CTOT − 15분, 그 5분 전부터 지상관제로 이양.</p></div></div>',
         fk.map(function (k) { return '<th>' + D.flows[k].label + '</th>'; }).join(''),
-        gk.map(function (g) { return '<tr><td><b>' + g + '</b></td><td>' + CMP[Math.round(U.brg(D.center, D.fix[g]) / 45) % 8] + ' — ' + D.gateDest[g].map(function (d) { return d[0]; }).join(' ') + '</td><td>' + D.sidName(g) + '</td>' + fk.map(function (k) { return '<td>' + D.depRwyFor(D.flows[k], g) + '</td>'; }).join('') + '<td>' + (D.gateEast[g] ? ATC.T('홀수 FL') : ATC.T('짝수 FL')) + '</td></tr>'; }).join(''),
+        gk.map(function (g) { return '<tr><td><b>' + g + '</b></td><td>' + CMP[Math.round(U.brg(D.center, D.fix[g]) / 45) % 8] + ' — ' + D.gateDest[g].map(function (d) { return d[0]; }).join(' ') + '</td><td>' + D.sidName(g, sim) + '</td>' + fk.map(function (k) { return '<td>' + D.depRwyFor(D.flows[k], g) + '</td>'; }).join('') + '<td>' + (D.gateEast[g] ? ATC.T('홀수 FL') : ATC.T('짝수 FL')) + '</td></tr>'; }).join(''),
         ATC.T('동쪽행({0})은 홀수, 서쪽행({1})은 짝수 순항 고도', gk.filter(function (g) { return D.gateEast[g]; }).join('·'), gk.filter(function (g) { return !D.gateEast[g]; }).join('·')),
         fmt.alt(D.sidInit), D.freq.DEP.fq, D.freq.GND.fq);
       h += ATC.T('<div class="dref"><h4>확인 절차</h4><ol class="chk"><li>비행계획이 접수됐는가(NO FPL이면 허가 금지)</li><li>조종사가 보고한 ATIS 식별 문자가 현재 문자와 같은가</li><li>순항 고도(RFL)가 비행 방향에 맞는가</li><li>SID가 비행계획의 출구 지점과 맞는가</li><li>CTOT가 있으면 통보, 이양 시각 확인</li><li>복창을 허가 내용과 대조</li></ol></div></div>');
@@ -566,9 +566,13 @@
       h += ATC.T('<div class="dref"><h4>확인 절차</h4><ol class="chk"><li>비행계획이 접수됐는가(NO FPL이면 허가 금지)</li><li>조종사가 보고한 ATIS 식별 문자가 현재 문자와 같은가</li><li>순항 고도(RFL)가 비행 방향에 맞는가</li><li>SID가 출구 지점 · 사용 활주로와 맞는가</li><li>CTOT가 있으면 통보, 이양 시각 확인</li><li>복창을 허가 내용과 대조</li></ol></div></div>');
     }
     h = h.replace(ATC.T('</div></div><div class="dref"><h4>확인 절차'), ATC.T('</div><div class="dref"><h4>확인 절차'));
+    if (D.sidSet) {      /* 하네다: 이륙 시각에 따른 SID(A · B · C) */
+      var sk0 = D.sidSet(sim), rowsK = [['A', ATC.T('2100 ~ 1400UTC(B · C 시간 빼고)')], ['B', '2200 ~ 0230UTC'], ['C', ATC.T('0600 ~ 0900UTC(AIP: 0600 ~ 1000UTC 가운데 약 3시간 — 게임값)')]];
+      h = h.replace(/<\/div><\/div>$/, '</div><div class="dref"><h4>' + ATC.T('시간대별 SID') + '</h4><table><tr><th>' + ATC.T('시간대') + '</th><th>' + ATC.T('이륙 시각') + '</th><th>ROVER</th><th>BEKLA</th><th>GUSRO</th></tr>' + rowsK.map(function (r) { return '<tr' + (r[0] === sk0 ? ' class="on"' : '') + '><td><b>' + r[0] + '</b>' + (r[0] === sk0 ? ' ◀' : '') + '</td><td>' + r[1] + '</td><td>' + D.sidName('ROVER', r[0]) + '</td><td>' + D.sidName('BEKLA', r[0]) + '</td><td>' + D.sidName('GUSRO', r[0]) + '</td></tr>'; }).join('') + '</table><p>' + ATC.T('ROVER · BEKLA · TIARA(GUSRO)로 나가는 편은 이륙 시각에 따라 SID가 바뀝니다(AIP RJTT AD2.20 1.3(2)). B · C는 소음 대책 SID — 경로가 A와 다릅니다. 이 게임은 지금 시각 + 10분(이륙 예정)으로 고릅니다. NINOX · LAXAS는 늘 같음.') + '</p></div></div>');
+    }
     if (D.sidTrans && D.sidName) Object.keys(D.sidTrans).forEach(function (g) {      /* transition이 딸린 SID: 비행계획 경로를 보고 고름 */
       var ts = Object.keys(D.sidTrans[g]); if (!ts.length) return;
-      h = h.replace(/<\/div><\/div>$/, '</div><div class="dref"><h4>transition</h4><p>' + ATC.T('{0}에는 transition이 붙습니다 — 비행계획의 ROUTE를 보고 고릅니다: {1}. 허가에서는 SID 바로 뒤에 말합니다(「{0} departure, {2} transition, flight planned route」).', D.sidName(g), ts.map(function (t) { return '「' + g + ' ' + (D.sidTrans[g][t].fpl || t) + '」 → <b>' + t + '</b>'; }).join(' · '), ts[0]) + '</p></div></div>');
+      h = h.replace(/<\/div><\/div>$/, '</div><div class="dref"><h4>transition</h4><p>' + ATC.T('{0}에는 transition이 붙습니다 — 비행계획의 ROUTE를 보고 고릅니다: {1}. 허가에서는 SID 바로 뒤에 말합니다(「{0} departure, {2} transition, flight planned route」).', D.sidName(g, sim), ts.map(function (t) { return '「' + g + ' ' + (D.sidTrans[g][t].fpl || t) + '」 → <b>' + t + '</b>'; }).join(' · '), ts[0]) + '</p></div></div>');
     });
     if (h !== app.delSig) { app.delSig = h; $('delview').innerHTML = h; }
   }
@@ -617,7 +621,7 @@
     }).join('');
     var stat = '';
     if (live && p.sidPend().length) stat = '<div class="pss"><span class="' + (v.via ? 'on' : 'off') + '">' + (v.via ? ATC.T('고도 제한: 유지') : ATC.T('고도 제한: 취소됨')) + '</span>' + (v.cap ? '<span class="cap">' + ATC.T('VNAV {0} — {1}까지', fmt.alt(v.cap.v), v.cap.fix) + '</span>' : '') + (v.pred && v.via ? '<span class="' + (v.pred.low ? 'ng' : '') + '">' + ATC.T('{0} 예상 {1}', v.pred.fix, fmt.alt(v.pred.alt)) + '</span>' : '') + '</div>';
-    return '<div class="psid"><div class="psh"><b>' + esc(v.sid) + '</b> RWY ' + esc(v.rwy) + (legT ? ' <small>' + esc(legT) + '</small>' : '') + '</div><div class="psf">' + chips + '</div>' + stat + (live ? '' : '<small class="psl">' + ATC.T('≥ 이상 · ≤ 이하 · 숫자만 = 그 고도(AIP SID 고도 제한). 허가 고도(지금 {0})보다 위의 제한은 상승 허가를 받아야 지킬 수 있습니다.', fmt.alt(p.cur && p.cur.alt || D.sidInit)) + '</small>') + '</div>';
+    return '<div class="psid"><div class="psh"><b>' + esc(v.sid) + '</b> RWY ' + esc(v.rwy) + (v.sidK && v.sidK !== 'A' && /[BC]$/.test(v.sid) ? ' <em class="psk">' + esc(v.sidK === 'B' ? ATC.T('B 시간대 · 소음 대책 SID') : ATC.T('C 시간대 · 소음 대책 SID')) + '</em>' : '') + (legT ? ' <small>' + esc(legT) + '</small>' : '') + '</div><div class="psf">' + chips + '</div>' + stat + (live ? '' : '<small class="psl">' + ATC.T('≥ 이상 · ≤ 이하 · 숫자만 = 그 고도(AIP SID 고도 제한). 허가 고도(지금 {0})보다 위의 제한은 상승 허가를 받아야 지킬 수 있습니다.', fmt.alt(p.cur && p.cur.alt || D.sidInit)) + '</small>') + '</div>';
   }
   function toWorld(sx, sy) { var cv = $('cv'), v = app.view; if (app.pos.view === 'radar') { var w = R.radarToWorld(v, cv.clientWidth, cv.clientHeight, sx, sy); return { a: w.x, b: w.y }; } var g = R.groundToUV(v, cv.clientWidth, cv.clientHeight, sx, sy); return { a: g.u, b: g.v }; }
   function shiftView(da, db) { var v = app.view; if (app.pos.view === 'radar') { v.cx += da; v.cy += db; } else { v.cu += da; v.cv += db; } }
@@ -773,7 +777,7 @@
     if (p.phase === 'fpl') {
       var gs = p.gates(), dl = D.gateDest[fp.gate], fls = p.flOpts(), ck = p.check();
       rx = '<h6>' + ATC.T('비행계획(자동으로 만든 계획 — 그대로 확인하거나 바꾸세요)') + '</h6>' +
-        '<div class="pfpl"><div class="prow"><b>SID</b>' + gs.map(function (g) { return B(esc((D.sidName ? D.sidName(g) : g)) + ' <small>RWY ' + p.rwyFor(g) + '</small>', function () { p.setFp('gate', g); app.cmdSig = ''; }, { cls: 'pstep' + (fp.gate === g ? ' on' : '') }); }).join('') + '</div>' +
+        '<div class="pfpl"><div class="prow"><b>SID</b>' + gs.map(function (g) { return B(esc((D.sidName ? D.sidName(g, p.sidK) : g)) + ' <small>RWY ' + p.rwyFor(g) + '</small>', function () { p.setFp('gate', g); app.cmdSig = ''; }, { cls: 'pstep' + (fp.gate === g ? ' on' : '') }); }).join('') + '</div>' +
         '<div class="prow"><b>' + ATC.T('목적지') + '</b>' + dl.map(function (d) { return B(d[0] + ' <small>' + esc(d[1]) + '</small>', function () { p.setFp('dest', d[0]); app.cmdSig = ''; }, { cls: 'pstep' + (fp.dest === d[0] ? ' on' : '') }); }).join('') + '</div>' +
         '<div class="prow"><b>' + ATC.T('순항 고도') + '</b>' + B('−', function () { var i = fls.indexOf(fp.rfl); p.setFp('rfl', fls[Math.max(0, i - 1)]); app.cmdSig = ''; }, { cls: 'pstep' }) + '<span class="pval">FL' + (fp.rfl / 100) + '</span>' + B('+', function () { var i = fls.indexOf(fp.rfl); p.setFp('rfl', fls[Math.min(fls.length - 1, i + 1)]); app.cmdSig = ''; }, { cls: 'pstep' }) + '</div>' +
         '<div class="proute">' + esc(p.route()) + '</div>' +
@@ -792,7 +796,7 @@
     else rx = '<div class="pwait">' + ATC.T('다음 교신을 기다립니다 — 지금 허가: {0}', esc(p.curText())) + '</div>';
     var keys = [1, 2, 3, 4, 5, 6, 7, 0].map(function (d) { return B(String(d), function () { p.key(d); app.cmdSig = ''; }, { cls: 'pstep' }); }).join('') + B('CLR', function () { p.key('clr'); app.cmdSig = ''; }, { cls: 'pstep' });
     var shown = x.entry ? (x.entry + '····').slice(0, 4) : x.code;
-    var side = '<h6>' + ATC.T('비행계획') + '</h6><div class="pins"><span>' + esc(fp.dest) + '</span><span>' + esc(D.sidName ? D.sidName(fp.gate) : fp.gate) + '</span><span>RWY <b>' + esc(ac.rwy) + '</b></span><span>FL<b>' + (fp.rfl / 100) + '</b></span>' + (p.depFq ? '<span>DEP <b>' + esc(p.depFq) + '</b></span>' : '') + (p.transName && p.transName() ? '<span>' + esc(p.transName()) + ' TRANS</span>' : '') + '</div>' + sidCard(p, false) +
+    var side = '<h6>' + ATC.T('비행계획') + '</h6><div class="pins"><span>' + esc(fp.dest) + '</span><span>' + esc(D.sidName ? D.sidName(fp.gate, p.sidK) : fp.gate) + '</span><span>RWY <b>' + esc(ac.rwy) + '</b></span><span>FL<b>' + (fp.rfl / 100) + '</b></span>' + (p.depFq ? '<span>DEP <b>' + esc(p.depFq) + '</b></span>' : '') + (p.transName && p.transName() ? '<span>' + esc(p.transName()) + ' TRANS</span>' : '') + '</div>' + sidCard(p, false) +
       (G ? '<h6>' + ATC.T('항공기 상태') + '</h6><div class="pins pgst"><span>' + (W3 ? 'GEAR <b class="' + (p.cfg.gear === 'up' ? 'on' : '') + '">' + (p.cfg.gear === 'up' ? 'UP' : p.cfg.gear === 'down' ? 'DOWN' : '···') + '</b></span><span>A/P <b class="' + (p.apOn ? 'on' : '') + '">' + (p.apOn ? 'ON' : 'OFF') + '</b>' : ATC.T('주차 브레이크') + ' <b class="' + (p.pbrake ? 'on' : '') + '">' + (p.pbrake ? 'SET' : 'OFF') + '</b>') + '</span><span>ENG <b class="' + (p.eng.st === 'on' ? 'on' : '') + '">' + (p.eng.st === 'on' ? 'RUN' : p.eng.st === 'start' ? 'START' : 'OFF') + '</b></span><span>FLAP <b>' + p.cfg.flap + '</b></span></div>' + (p.taxi && !W3 ? '<div class="proute">' + esc(p.taxi.via.join(' → ') + ' → ' + p.taxi.hp + ' (RWY ' + p.taxi.rwy + ')' + (p.taxi.hs ? ' · HOLD SHORT RWY ' + p.taxi.hs : '')) + '</div>' : '') : '') +
       '<h6>' + ATC.T('트랜스폰더') + (x.want && !x.set ? ' <span class="pdue">' + ATC.T('설정할 것') + '</span>' : '') + '</h6><div class="prow pxpdr' + (x.want && !x.set ? ' due' : '') + '"><span class="pval">' + shown + '</span>' + keys + '</div>';
     var ck3 = ATC.Cockpit, vrow = ck3 && ck3.ok ? '<div class="prow pview">' + B(ck3.on ? ATC.T('조종석 · 바깥') : ATC.T('3D 조종석'), function () { if (ck3.on) ck3.view(); else { app.ck3d = true; ck3.open(sim, $('ck3d')); } app.cmdSig = ''; }, { cls: 'pset' }) + (ck3.on ? B(ATC.T('앞 보기'), function () { ck3.resetLook(); }, { cls: 'pset' }) : '') + (G && !p.done && ck3.on && !(p.ac && p.ac.st === 'air') ? B(ATC.T('지상 지도'), function () { ck3.close(); app.ck3d = false; app.cmdSig = ''; }, { cls: 'pset' }) : '') + '</div>' : '';

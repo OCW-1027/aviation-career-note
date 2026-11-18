@@ -17,12 +17,13 @@
     if (L >= 2) this.events.push({ k: 'atis', t: this.endT * 0.3, done: false });
     if (L === 3) this.events.push({ k: 'rwychg', t: this.endT * 0.55, done: false });
     this.scnEvents();
+    if (D.sidSet && D.sidSet(this) !== 'A') this.sys(ATC.sidSetMsg(this), 'info');
     this.sys(ATC.T(D.sidInitGame ? '{apt} 비행허가(Delivery {0}) 근무 시작. 출발 활주로 {1} · 현재 ATIS {2} · QNH {3} · 초기 허가 고도 {4}ft(이 게임의 값).' : '{apt} 비행허가(Delivery {0}) 근무 시작. 출발 활주로 {1} · 현재 ATIS {2} · QNH {3} · SID 초기 고도 {4}ft.', D.freq.DEL.fq, this.multi ? this.flow.deps.join(' · ') : this.depRwy, this.atis, this.qnh, fmt.alt(D.sidInit)));
   }
   ATC.extend(DelSim, ATC.Sim);
   /* SID 이름: 세이라는 「출구 지점 + 1 + 활주로 방향 글자」, 다른 공항은 묶음이 정함(D.sidName · D.sidNames) */
-  DelSim.prototype.sidFor = function (gate) { return D.sidName ? D.sidName(gate, this.flow) : gate + ' 1' + this.flow.sfx; };
-  DelSim.prototype.sidList = function () { if (D.sidNames) return D.sidNames(); var o = []; Object.keys(D.gateDest).forEach(function (g) { o.push(g + ' 1A'); o.push(g + ' 1B'); }); return o; };
+  DelSim.prototype.sidFor = function (gate) { return D.sidName ? D.sidName(gate, this) : gate + ' 1' + this.flow.sfx; };      /* 하네다: 이륙 예정 시각(지금 + 10분)의 SID 시간대 A · B · C(D.sidSet) */
+  DelSim.prototype.sidList = function () { if (D.sidAll && this.utc) { var cur = D.sidNames(this), o2 = cur.slice(); D.sidAll().forEach(function (n) { if (o2.indexOf(n) < 0) o2.push(n); }); return o2; } if (D.sidNames) return D.sidNames(); var o = []; Object.keys(D.gateDest).forEach(function (g) { o.push(g + ' 1A'); o.push(g + ' 1B'); }); return o; };
   DelSim.prototype.transOf = function (ac) { return D.transFor ? D.transFor(ac.gate, ac.dest) : ''; };
   DelSim.prototype.rwyOf = function (ac) { return D.depRwyFor ? D.depRwyFor(this.flow, ac.gate) : this.depRwy; };
   DelSim.prototype.parityOk = function (ac, fl) { return ((Math.round(fl / 1000) % 2) === 1) === D.gateEast[ac.gate]; };
@@ -61,9 +62,10 @@
     if (clr) {
       /* 허가 내용 점검(송신 시점) */
       if (ac.noFpl) this.inc('clrerr', [ac], ATC.T('{0}: 비행계획이 접수되지 않은 상태에서 허가를 발부했습니다(먼저 운항관리 확인 요청).', ac.cs));
-      if (clr.sid !== this.sidFor(ac.gate)) this.inc('clrerr', [ac], ATC.T('{0}: SID {1} — 목적지 {2}의 출구 지점은 {3}, 사용 활주로 {4}의 SID는 {5}입니다.', ac.cs, clr.sid, ac.dest, ac.gate, this.rwyOf(ac), this.sidFor(ac.gate)));
+      var sidOk = clr.sid === this.sidFor(ac.gate) || D.sidSet && clr.sid === D.sidName(ac.gate, this.utc() + 300);      /* 시간대 경계: 5분 앞의 시간대도 받아 줌 */
+      if (!sidOk) this.inc('clrerr', [ac], D.sidSet && D.sidLetter(clr.sid) !== D.sidSet(this) && clr.sid.split(' ')[0] === this.sidFor(ac.gate).split(' ')[0] ? ATC.T('{0}: SID {1} — 이륙 예정 {2}UTC는 {3} 시간대라 {4}입니다(AIP AD2.20: A 2100 ~ 1400UTC · B 2200 ~ 0230UTC · C 0600 ~ 1000UTC 가운데 약 3시간 — 게임은 0600 ~ 0900UTC).', ac.cs, clr.sid, U.hhmm(this.utc() + 600), D.sidSet(this), this.sidFor(ac.gate)) : ATC.T('{0}: SID {1} — 목적지 {2}의 출구 지점은 {3}, 사용 활주로 {4}의 SID는 {5}입니다.', ac.cs, clr.sid, ac.dest, ac.gate, this.rwyOf(ac), this.sidFor(ac.gate)));
       var wt = this.transOf(ac);      /* SID 뒤 transition(하네다 ROVER 3A → BRUCE · INUBO): 비행계획 경로에 맞는 것을 SID 바로 뒤에 */
-      if ((clr.trans || '') !== wt && clr.sid === this.sidFor(ac.gate)) this.inc('clrerr', [ac], !wt ? ATC.T('{0}: {1} transition — {2}에는 transition이 없습니다.', ac.cs, clr.trans, clr.sid) : clr.trans ? ATC.T('{0}: {1} transition — 비행계획 경로({2})는 {3} transition입니다.', ac.cs, clr.trans, ac.route, wt) : ATC.T('{0}: transition을 빼고 허가했습니다 — 비행계획 경로({1})는 「{2} departure, {3} transition」입니다.', ac.cs, ac.route, clr.sid, wt));
+      if ((clr.trans || '') !== wt && sidOk) this.inc('clrerr', [ac], !wt ? ATC.T('{0}: {1} transition — {2}에는 transition이 없습니다.', ac.cs, clr.trans, clr.sid) : clr.trans ? ATC.T('{0}: {1} transition — 비행계획 경로({2})는 {3} transition입니다.', ac.cs, clr.trans, ac.route, wt) : ATC.T('{0}: transition을 빼고 허가했습니다 — 비행계획 경로({1})는 「{2} departure, {3} transition」입니다.', ac.cs, ac.route, clr.sid, wt));
       if (clr.alt !== D.sidInit) this.inc('clrerr', [ac], D.sidInitGame ? ATC.T('{0}: 초기 고도 {1} — 이 게임의 초기 허가 고도는 {2}ft입니다.', ac.cs, fmt.alt(clr.alt), fmt.alt(D.sidInit)) : ATC.T('{0}: 초기 고도 {1} — SID 초기 상승 고도는 {2}ft입니다.', ac.cs, fmt.alt(clr.alt), fmt.alt(D.sidInit)));
       var fl = hasAmend ? cmds.filter(function (c) { return c.k === 'amendfl'; })[0].v : ac.rfl;
       if (!this.parityOk(ac, fl)) this.inc('wronglvl', [ac], ATC.T('{0}: 순항 고도 {1} — {2} 고도여야 합니다(허가 전 정정).', ac.cs, fmt.alt(fl), (D.gateEast[ac.gate] ? ATC.T('동쪽행은 홀수') : ATC.T('서쪽행은 짝수'))));
