@@ -28,7 +28,7 @@ atc_flow:function(l){
 
 /* 2 空域のクラス A〜G：IFR・VFRが飛べるか、管制がどこまで間隔を付けるか */
 atc_classes:function(l){
- var W=({ja:{t:'空域のクラス（ICAO）',h:['クラス','飛べる','管制の間隔'],rows:[['A','IFRだけ','すべての機の間'],['B','IFR・VFR','すべての機の間'],['C','IFR・VFR','IFRとIFR、IFRとVFR'],['D','IFR・VFR','IFRとIFRだけ（ほかは交通情報）'],['E','IFR・VFR','IFRとIFRだけ（VFRは管制外）'],['F','IFR・VFR','助言（できる範囲で）'],['G','IFR・VFR','なし（飛行情報だけ）']],note:'A〜Eが管制空域、F・Gが非管制空域。国によって使うクラスが違う（各国AIP ENR 1.4）'},
+ var W=({ja:{t:'空域のクラス（ICAO）',h:['クラス','飛行できる方式','管制間隔の設定'],rows:[['A','IFR機のみ','すべての航空機の間'],['B','IFR・VFR','すべての航空機の間'],['C','IFR・VFR','IFR機相互間、IFR機とVFR機の間'],['D','IFR・VFR','IFR機相互間のみ（その他は交通情報）'],['E','IFR・VFR','IFR機相互間のみ（VFR機は管制対象外）'],['F','IFR・VFR','航空交通助言（可能な範囲で）'],['G','IFR・VFR','なし（飛行情報業務のみ）']],note:'A〜Eが管制空域、F・Gが非管制空域。どのクラスを使うかは国ごとに異なる（各国AIP ENR 1.4）'},
   ko:{t:'공역 등급(ICAO)',h:['등급','비행 가능','관제 분리'],rows:[['A','IFR만','모든 항공기 사이'],['B','IFR·VFR','모든 항공기 사이'],['C','IFR·VFR','IFR과 IFR, IFR과 VFR'],['D','IFR·VFR','IFR과 IFR만(나머지는 교통정보)'],['E','IFR·VFR','IFR과 IFR만(VFR은 관제 밖)'],['F','IFR·VFR','조언(가능한 범위)'],['G','IFR·VFR','없음(비행정보만)']],note:'A~E는 관제공역, F·G는 비관제공역. 나라마다 쓰는 등급이 다르다(각국 AIP ENR 1.4)'},
   en:{t:'Airspace classes (ICAO)',h:['Class','Allowed','ATC separation'],rows:[['A','IFR only','Between all flights'],['B','IFR, VFR','Between all flights'],['C','IFR, VFR','IFR from IFR and from VFR'],['D','IFR, VFR','IFR from IFR only (traffic information for others)'],['E','IFR, VFR','IFR from IFR only (VFR not controlled)'],['F','IFR, VFR','Advisory (as far as practicable)'],['G','IFR, VFR','None (flight information only)']],note:'Classes A–E are controlled and F–G uncontrolled; each country uses its own selection (see AIP ENR 1.4)'}})[l];
  if(!W)return F.atc_classes('ja');

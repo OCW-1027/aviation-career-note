@@ -16,9 +16,9 @@ function TGT(cs,l2,col){return '<rect x="-4" y="-4" width="8" height="8" fill="n
 var F={
 /* 1 レーダー画面：データブロック、近づく2機にレーダー誘導、出発機 */
 atcb_scope:function(l){
- var W=({ja:{t:'レーダー画面で管制官が見ているもの',ap:'空港',bub:'「VELA 301、右旋回 方位180」',sep:'間隔を確保',u:['機影の横に、便名・高度（百ft単位）・速度が出る（データブロック）','近づきすぎる前に、方位・高度・速度を指示して間隔を保つ（レーダー誘導）','到着の順番を決め、出発機は上昇の経路へ送り出す']},
+ var W=({ja:{t:'レーダー画面で管制官が見ているもの',ap:'空港',bub:'「VELA 301、右旋回 機首方位180」',sep:'間隔を確保',u:['機影の横に便名・高度（100ft単位）・速度が表示される（データブロック）','航空機同士が接近する前に、機首方位・高度・速度を指示して間隔を維持する（レーダー誘導）','到着機は着陸の順番を決めて進入させ、出発機は上昇経路へ誘導する']},
   ko:{t:'관제사가 레이더 화면에서 보는 것',ap:'공항',bub:'“VELA 301, 우선회 기수 방위 180”',sep:'분리 확보',u:['항적 옆에 편명·고도(100ft 단위)·속도가 표시된다(데이터 블록)','항공기끼리 가까워지기 전에 기수 방위·고도·속도를 지시해 분리를 유지한다(레이더 유도)','도착기는 착륙 순서를 정해 접근시키고, 출발기는 상승 경로로 유도한다']},
-  en:{t:'What a controller sees on the radar screen',ap:'Airport',bub:'“VELA 301, turn right heading 180”',sep:'Spacing kept',u:['Next to each target: callsign, altitude (in hundreds of feet) and speed (the data block)','Before two aircraft get too close, the controller gives headings, altitudes or speeds to keep them apart (radar vectoring)','Arrivals are put in order; departures are sent on to their climb route']}})[l];
+  en:{t:'What a controller sees on the radar screen',ap:'Airport',bub:'“VELA 301, turn right heading 180”',sep:'Separation maintained',u:['Next to each target: callsign, altitude (in hundreds of feet) and speed (the data block)','Before two aircraft get too close, the controller issues headings, altitudes or speeds to keep them separated (radar vectoring)','Arrivals are sequenced for landing; departures are vectored onto their climb route']}})[l];
  if(!W)return F.atcb_scope('ja');
  setK(1);
  var cx=320,cy=215,r=160,s=TTL(320,30,W.t,15,'#0f3558',600),a=0.55;
@@ -40,17 +40,17 @@ atcb_scope:function(l){
 
 /* 2 航空路の管制はどう分けられているか：日本（上下）・韓国（東西）・米国（センター）・欧州（国ごと＋上層） */
 atcb_acc:function(l){
- var W=({ja:{t:'航空路の管制の分け方（4つの地域）',p:[['日本','高い空と低い空で分ける','福岡（高高度・洋上など）','神戸（西）','東京（東）','33,500ft','2025年3月に、高い空（33,500ft以上）と洋上を福岡航空交通管制部、低い空を主に東京（東）・神戸（西）が受け持つ形がそろった'],
-   ['韓国','東と西で分ける','仁川（西）','大邱（東）','','','2017年に大邱に2つ目の航空交通管制所ができ、仁川と東西で空を分けた。交通の流れの調整は航空交通統制センターなど'],
-   ['米国','20あまりのセンター','ARTCC','','','','航空路の管制は20あまりの航空路管制センター（ARTCC）。空港の周りはTRACON、空港は管制塔'],
-   ['欧州','国ごと＋国境をまたぐ上層','MUAC','','','24,500ft','管制は国ごとの機関。ベルギー・オランダ・ルクセンブルク・ドイツ北西部の高い空はEUROCONTROLのMUACがまとめて受け持つ']]},
+ var W=({ja:{t:'各国・地域の航空路管制の体制（4地域）',p:[['日本','高高度・低高度で分割','福岡（高高度・洋上など）','神戸（西）','東京（東）','33,500ft','2025年3月、高高度（33,500ft以上）と洋上空域を福岡航空交通管制部が、低高度を主に東京（東）・神戸（西）航空交通管制部が担当する体制への再編が完了した'],
+   ['韓国','東西で分割','仁川（西）','大邱（東）','','','2017年に大邱航空交通管制所が開設され、仁川航空交通管制所と管轄空域を東西に分けた。交通流管理は航空交通統制センターなどが担う'],
+   ['米国','20あまりのセンター','ARTCC','','','','航空路管制は20余りの航空路管制センター（ARTCC）が、空港周辺の進入管制はTRACONが、空港は管制塔が担当する'],
+   ['欧州','国ごとの管制＋国境を越える上層空域','MUAC','','','24,500ft','管制は各国の機関が担当する。ベルギー・オランダ・ルクセンブルク・ドイツ北西部の上層空域は、EUROCONTROLのMUACが一元的に管制する']]},
   ko:{t:'국가·지역별 항로 관제 체계(4개 지역)',p:[['일본','고고도·저고도로 분할','후쿠오카(고고도·해양 등)','고베(서)','도쿄(동)','33,500ft','2025년 3월, 고고도(33,500ft 이상)와 해양 공역은 후쿠오카 항공교통관제부가, 저고도는 주로 도쿄(동)·고베(서) 항공교통관제부가 맡는 체계로 개편을 마쳤다'],
    ['한국','동·서로 분할','인천(서)','대구(동)','','','2017년 대구 항공교통관제소가 문을 열면서 인천 항공교통관제소와 관할 공역을 동·서로 나눴다. 교통흐름관리는 항공교통통제센터 등이 맡는다'],
    ['미국','20여 개 센터','ARTCC','','','','항로 관제는 20여 곳의 항로교통관제센터(ARTCC)가, 공항 주변 접근관제는 TRACON이, 공항은 관제탑이 맡는다'],
    ['유럽','국가별 관제 + 국경 초월 상층 공역','MUAC','','','24,500ft','관제는 국가별 기관이 맡는다. 벨기에·네덜란드·룩셈부르크·독일 북서부의 상층 공역은 EUROCONTROL의 MUAC가 통합 관제한다']]},
-  en:{t:'How en-route control is divided (four regions)',p:[['Japan','Split by height','Fukuoka (upper and oceanic)','Kobe (west)','Tokyo (east)','33,500 ft','Since March 2025, Fukuoka ACC handles the upper (33,500 ft and above) and oceanic airspace, and mainly Tokyo (east) and Kobe (west) the lower airspace'],
+  en:{t:'En-route control by country and region (four examples)',p:[['Japan','Split by altitude','Fukuoka (upper and oceanic)','Kobe (west)','Tokyo (east)','33,500 ft','Since March 2025, Fukuoka ACC handles the upper (33,500 ft and above) and oceanic airspace, while Tokyo ACC (east) and Kobe ACC (west) mainly handle the lower airspace'],
    ['Korea','Split east and west','Incheon (west)','Daegu (east)','','','A second area control centre opened in Daegu in 2017, dividing the sky east and west with Incheon; traffic flow is managed by the national flow centre'],
-   ['USA','About 20 centres','ARTCC','','','','En-route control by about 20 Air Route Traffic Control Centers (ARTCCs); TRACONs around airports; towers at airports'],
+   ['USA','About 20 centres','ARTCC','','','','En-route control by about 20 Air Route Traffic Control Centers (ARTCCs); approach control by TRACONs around airports; towers at the airports themselves'],
    ['Europe','National ANSPs plus a cross-border upper area','MUAC','','','24,500 ft','Each country has its own provider; EUROCONTROL’s MUAC controls the upper airspace of Belgium, the Netherlands, Luxembourg and north-west Germany']]}})[l];
  if(!W)return F.atcb_acc('ja');
  setK(1);var nar=NARROW();
@@ -76,9 +76,9 @@ atcb_acc:function(l){
 
 /* 3 1便を上から見る：空港の管制圏 → 進入管制区 → 航空路（FIR境界）→ 到着側 */
 atcb_plan:function(l){
- var W=({ja:{t:'上から見た1便の管制（金浦→羽田の例）',dep:'出発空港',arr:'到着空港',z1:'管制圏',z2:'進入管制区',z3:'航空路',fir:'FIR境界',u:['デリバリー：管制承認（経路・高度・出発方式・コード）','グランド：スポットから滑走路まで','タワー：離陸の許可','ディパーチャー：決まった出発方式（SID）で上昇','コントロール（仁川）：航空路を巡航','FIR境界の前で次のコントロール（福岡FIRの担当）へ引き継ぎ','アプローチ：到着方式（STAR）で降下し、最終進入へ','タワー：着陸の許可 → グランド：スポットへ']},
+ var W=({ja:{t:'1便の管制の流れ（例：金浦→羽田）',dep:'出発空港',arr:'到着空港',z1:'管制圏',z2:'進入管制区',z3:'航空路',fir:'FIR境界',u:['デリバリー：管制承認の発出（経路・高度・出発方式・トランスポンダーコード）','グランド：スポットから滑走路までの地上走行','タワー：離陸許可','ディパーチャー：標準計器出発方式（SID）に従って上昇','コントロール（仁川）：航空路の巡航区間を管制','FIR境界の手前で次の管制機関（福岡FIR）へ管制を移管','アプローチ：標準到着経路（STAR）で降下させ、最終進入まで誘導','タワー：着陸許可 → グランド：スポットまで地上走行']},
   ko:{t:'한 비행편의 관제 흐름(예: 김포→하네다)',dep:'출발 공항',arr:'도착 공항',z1:'관제권',z2:'접근관제구역',z3:'항로',fir:'FIR 경계',u:['딜리버리: 관제 허가 발부(경로·고도·출발 절차·트랜스폰더 코드)','그라운드: 주기장에서 활주로까지 지상 이동','타워: 이륙 허가','디파처: 표준계기출발절차(SID)에 따라 상승','컨트롤(인천): 항로 순항 구간 관제','FIR 경계에 이르기 전 다음 관제기관(후쿠오카 FIR)으로 관제 이양','어프로치: 표준계기도착절차(STAR)로 강하시킨 뒤 최종 접근까지 유도','타워: 착륙 허가 → 그라운드: 주기장까지 지상 이동']},
-  en:{t:'One flight seen from above (Gimpo to Haneda as an example)',dep:'Departure airport',arr:'Arrival airport',z1:'Control zone',z2:'Terminal area',z3:'Airway',fir:'FIR boundary',u:['Delivery: the ATC clearance (route, level, departure procedure, squawk)','Ground: from the stand to the runway','Tower: take-off clearance','Departure: climb on the standard instrument departure (SID)','Control (Incheon): cruise on the airway','Before the FIR boundary, handed to the next Control (the Fukuoka FIR unit)','Approach: descend on the arrival (STAR) to final approach','Tower: landing clearance, then Ground to the stand']}})[l];
+  en:{t:'ATC phases of one flight (e.g. Gimpo to Haneda)',dep:'Departure airport',arr:'Arrival airport',z1:'Control zone',z2:'Terminal control area',z3:'Airway',fir:'FIR boundary',u:['Delivery: ATC clearance issued (route, level, departure procedure, squawk)','Ground: taxi from the stand to the runway','Tower: take-off clearance','Departure: climb via the standard instrument departure (SID)','Control (Incheon): en-route control during cruise','Before the FIR boundary: transfer of control to the next unit (Fukuoka FIR)','Approach: descent via the STAR, then guidance to final approach','Tower: landing clearance, then Ground: taxi to the stand']}})[l];
  if(!W)return F.atcb_plan('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,262,'#DCEEFB',14),A=[104,222],B=[536,212];
@@ -96,15 +96,15 @@ atcb_plan:function(l){
 
 /* 4 空域の断面：韓国（仁川の例）・日本（一般の管制圏の例）・米国（クラスBの例） */
 atcb_class3:function(l){
- var W=({ja:{t:'空港のまわりの空域を横から見る（3か国の例）',p:[['韓国（仁川・金浦・済州のクラスB）',[['B','10,000ft','地表〜10,000ft（5〜20NMは段々に）'],['E','','その外側の管制空域'],['A','FL200超','航空路はFL200超〜FL600がクラスA']]],
-   ['日本（一般的な空港）',[['D','3,000ft','管制圏（クラスD）：半径約5NM・高さ約3,000ftが多い'],['E','','進入管制区はクラスE'],['','','羽田・成田などの周りには、有視界飛行も許可が要る特別管制空域がある']]],
-   ['米国（いちばん混む空港のクラスB）',[['B','10,000ft','地表〜10,000ft MSL（逆さのウェディングケーキ形）'],['E','','A〜D以外の管制空域（米国の大部分）'],['A','18,000ft〜','18,000ft〜FL600はクラスA（計器飛行のみ）']]]],note:'空域のクラス・形・高さは国や空港ごとに違う。必ず各国のAIP（ENR 1.4）と航空図で確かめる'},
+ var W=({ja:{t:'空港周辺の空域の断面図（3か国の例）',p:[['韓国（仁川・金浦・済州のクラスB）',[['B','10,000ft','地表〜10,000ft（5〜20NMの範囲は階段状）'],['E','','それ以外の管制空域'],['A','FL200超','FL200超〜FL600の航空路はクラスA']]],
+   ['日本（一般的な空港）',[['D','3,000ft','管制圏（クラスD）：一般に半径約5NM・高さ約3,000ft'],['E','','進入管制区はクラスE'],['','','羽田・成田などの周辺には、有視界飛行（VFR）でも管制許可が必要な特別管制空域がある']]],
+   ['米国（混雑空港のクラスB）',[['B','10,000ft','地表〜10,000ft MSL（ウェディングケーキを逆さにした形）'],['E','','クラスA〜D以外の管制空域（米国の空域の大部分）'],['A','18,000ft〜','18,000ft〜FL600はクラスA（計器飛行のみ）']]]],note:'空域のクラス・形状・高さは国や空港ごとに異なる。必ず各国のAIP（ENR 1.4）と航空図で確認すること'},
   ko:{t:'공항 주변 공역 단면도(3개국 예)',p:[['한국(인천·김포·제주의 B등급)',[['B','10,000ft','지표~10,000ft(5~20NM 구간은 계단형)'],['E','','그 밖의 관제 공역'],['A','FL200 초과','FL200 초과~FL600 항로는 A등급']]],
    ['일본(일반적인 공항)',[['D','3,000ft','관제권(D등급): 보통 반경 약 5NM·높이 약 3,000ft'],['E','','접근관제구역은 E등급'],['','','하네다·나리타 등의 주변에는 시계비행(VFR)도 관제 허가가 필요한 특별관제공역이 있다']]],
    ['미국(혼잡 공항의 B등급)',[['B','10,000ft','지표~10,000ft MSL(웨딩케이크를 뒤집은 모양)'],['E','','A~D등급 외의 관제 공역(미국 공역 대부분)'],['A','18,000ft~','18,000ft~FL600은 A등급(계기비행만 가능)']]]],note:'공역의 등급·모양·높이는 나라와 공항마다 다르다. 반드시 각국 AIP(ENR 1.4)와 항공차트로 확인해야 한다'},
-  en:{t:'Airspace around an airport, side view (three examples)',p:[['Korea (Class B at Incheon, Gimpo, Jeju)',[['B','10,000 ft','Surface to 10,000 ft, stepped out to 20 NM'],['E','','Other controlled airspace outside it'],['A','Above FL200','Airways above FL200 up to FL600 are Class A']]],
-   ['Japan (a typical airport)',[['D','3,000 ft','Control zone (Class D): often about 5 NM radius and 3,000 ft high'],['E','','Approach control areas are Class E'],['','','Around Haneda, Narita and others, special control airspace needs clearance even for VFR']]],
-   ['USA (Class B at the busiest airports)',[['B','10,000 ft','Surface to 10,000 ft MSL (an upside-down wedding cake)'],['E','','Controlled airspace other than A to D (most of the US)'],['A','18,000 ft+','18,000 ft to FL600 is Class A (IFR only)']]]],note:'Airspace classes, shapes and heights differ by country and airport. Always check each country’s AIP (ENR 1.4) and charts'}})[l];
+  en:{t:'Airspace around an airport, side view (three examples)',p:[['Korea (Class B at Incheon, Gimpo, Jeju)',[['B','10,000 ft','Surface to 10,000 ft, stepped between 5 and 20 NM'],['E','','Other controlled airspace'],['A','Above FL200','Airways above FL200 up to FL600 are Class A']]],
+   ['Japan (a typical airport)',[['D','3,000 ft','Control zone (Class D): typically about 5 NM radius, about 3,000 ft high'],['E','','Approach control areas are Class E'],['','','Around Haneda, Narita and other airports, special control airspace requires a clearance even for VFR flights']]],
+   ['USA (Class B at the busiest airports)',[['B','10,000 ft','Surface to 10,000 ft MSL (an upside-down wedding cake)'],['E','','Controlled airspace other than Classes A to D (most of the US)'],['A','18,000 ft+','18,000 ft to FL600 is Class A (IFR only)']]]],note:'Airspace classes, shapes and heights differ by country and airport. Always check each country’s AIP (ENR 1.4) and charts'}})[l];
  if(!W)return F.atcb_class3('ja');
  setK(1);var nar=NARROW(),cl={A:'#5A3D6B',B:'#2F6FD6',C:'#1F7A6E',D:'#2E8B57',E:'#7FA8D6'};
  function panel(x0,y0,w,k){var P=W.p[k],g=R(x0,y0,w,30,'#0f3558',10)+tx(x0+w/2,y0+20,P[0],11.5,'#fff',900),by=y0+38,bh=130,gx=x0+8,gw=w-16,cx=gx+gw/2;
@@ -126,9 +126,9 @@ atcb_class3:function(l){
 
 /* 5 有視界飛行（VFR）と計器飛行（IFR）：見て避ける／管制が間隔を付ける */
 atcb_ifrvfr:function(l){
- var W=({ja:{t:'有視界飛行（VFR）と計器飛行（IFR）',v:'有視界飛行（VFR）',i:'計器飛行（IFR）',dv:'雲から離れ、外を見てほかの機を避ける。気象の条件（視程・雲からの距離）を満たすときだけ',di:'雲の中でも計器と管制の指示で飛ぶ。管制空域では管制官が間隔を付ける。旅客機は原則IFR',eye:'見て避ける',atc:'管制が間隔'},
+ var W=({ja:{t:'有視界飛行（VFR）と計器飛行（IFR）',v:'有視界飛行（VFR）',i:'計器飛行（IFR）',dv:'雲から距離を保ち、操縦士が外を目視して他機を避ける。視程・雲からの距離などの気象条件を満たす場合に限る',di:'雲中でも計器と管制指示に従って飛行する。管制空域では管制官が航空機間の間隔を設定する。旅客機は原則としてIFRで運航',eye:'目視で回避',atc:'管制官が間隔設定'},
   ko:{t:'시계비행(VFR)과 계기비행(IFR)',v:'시계비행(VFR)',i:'계기비행(IFR)',dv:'구름과 거리를 두고 조종사가 바깥을 직접 보며 다른 항공기를 피한다. 시정·구름과의 거리 등 기상 조건을 충족할 때만 가능',di:'구름 속에서도 계기와 관제 지시에 따라 비행한다. 관제 공역에서는 관제사가 항공기 간 분리를 제공한다. 여객기는 원칙적으로 IFR로 운항',eye:'직접 보고 회피',atc:'관제사가 분리'},
-  en:{t:'Visual flight (VFR) and instrument flight (IFR)',v:'Visual flight rules (VFR)',i:'Instrument flight rules (IFR)',dv:'Stay clear of cloud and avoid other traffic by looking out; only allowed when visibility and cloud clearance minima are met',di:'Fly in cloud by instruments and ATC instructions; in controlled airspace the controller separates traffic. Airliners fly IFR as a rule',eye:'See and avoid',atc:'ATC separation'}})[l];
+  en:{t:'Visual (VFR) and instrument (IFR) flight',v:'Visual flight rules (VFR)',i:'Instrument flight rules (IFR)',dv:'The pilot keeps clear of cloud and avoids other traffic by looking out; permitted only when visibility and distance-from-cloud minima are met',di:'Flight in cloud is possible using instruments and ATC instructions; in controlled airspace the controller separates traffic. Airliners normally fly IFR',eye:'See and avoid',atc:'ATC separation'}})[l];
  if(!W)return F.atcb_ifrvfr('ja');
  setK(1);var nar=NARROW();
  function cloud(x,y,sc,c){return '<g transform="translate('+x+' '+y+') scale('+sc+')" fill="'+(c||'#fff')+'"><ellipse cx="0" cy="0" rx="26" ry="12"/><ellipse cx="18" cy="-8" rx="18" ry="14"/><ellipse cx="38" cy="0" rx="22" ry="11"/></g>'}
@@ -150,9 +150,9 @@ atcb_ifrvfr:function(l){
 
 /* 6 RECAT：区分を細かくして、必要以上の間隔を詰める（韓国の例の数字） */
 atcb_recat:function(l){
- var W=({ja:{t:'区分を細かくすると、間隔を詰められる（RECAT）',old:'従来',neu:'RECAT',pairs:[['A380の後ろの大型機','6','4'],['大型機の後ろの大型機','4','3'],['大型機の後ろの中型機','5','4'],['中大型機の後ろの中型機','5','3']],fin:'最終進入の列（同じ長さ）',src:'数字（NM）は韓国の発表（ICAO APAC、2023年）の例。区分の名前・間隔は国と空港で違う'},
+ var W=({ja:{t:'後方乱気流区分の細分化で間隔を短縮（RECAT）',old:'従来',neu:'RECAT',pairs:[['A380の後ろの大型機','6','4'],['大型機の後ろの大型機','4','3'],['大型機の後ろの中型機','5','4'],['中大型機の後ろの中型機','5','3']],fin:'最終進入経路（同じ距離）',src:'数値（NM）は韓国がICAO APACで発表した資料（2023年）の例。区分の名称・最小間隔は国や空港によって異なる'},
   ko:{t:'후방 난기류 등급 세분화로 분리 최저치 단축(RECAT)',old:'기존',neu:'RECAT',pairs:[['A380 뒤의 대형기','6','4'],['대형기 뒤의 대형기','4','3'],['대형기 뒤의 중형기','5','4'],['중대형기 뒤의 중형기','5','3']],fin:'최종 접근 경로(같은 거리)',src:'수치(NM)는 한국이 ICAO APAC에 발표한 자료(2023년)의 사례. 등급 명칭과 분리 최저치는 국가·공항마다 다르다'},
-  en:{t:'Finer categories allow tighter spacing (RECAT)',old:'Legacy',neu:'RECAT',pairs:[['Large jet behind an A380','6','4'],['Large jet behind a large jet','4','3'],['Medium jet behind a large jet','5','4'],['Medium jet behind a lower-heavy jet','5','3']],fin:'Aircraft on final (same length of approach)',src:'Figures (NM) are examples from Korea’s presentation to ICAO APAC (2023). Category names and minima differ by country and airport'}})[l];
+  en:{t:'Finer wake categories reduce separation (RECAT)',old:'Legacy',neu:'RECAT',pairs:[['Large jet behind an A380','6','4'],['Large jet behind a large jet','4','3'],['Medium jet behind a large jet','5','4'],['Medium jet behind a lower-heavy jet','5','3']],fin:'Final approach path (same distance)',src:'Figures (NM) are examples from Korea’s presentation to ICAO APAC (2023). Category names and separation minima differ by country and airport'}})[l];
  if(!W)return F.atcb_recat('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=56,sc=48,x0=250;
@@ -172,9 +172,9 @@ atcb_recat:function(l){
  return svg(640,y,s)},
 /* 7 監視のしくみ：一次レーダー・二次レーダー・ADS-B・衛星のADS-B */
 atcb_surv:function(l){
- var W=({ja:{t:'飛行機の位置をどう知るか（監視の4つの方法）',p:[['一次レーダー（PSR）','電波の反射で位置を知る。機体の協力がいらないが、高度や便名は分からない'],['二次レーダー（SSR・モードS）','地上から質問し、機体のトランスポンダーが答える。高度・コード・便名が分かる'],['ADS-B','機体がGPSで知った自分の位置を、自分から放送する。地上局の設備が小さく、更新が速い'],['衛星のADS-B','人工衛星がADS-Bを受け取る。地上局を置けない洋上・極地でも位置が分かる']]},
+ var W=({ja:{t:'航空機の位置を把握する4つの監視手段',p:[['一次レーダー（PSR）','電波の反射で位置を探知する。機体側に装置がなくても探知できるが、高度や便名は分からない'],['二次レーダー（SSR・モードS）','地上から質問信号を送り、機体のトランスポンダーが応答する。高度・コード・便名が分かる'],['ADS-B','機体がGPSで得た自機の位置を自ら送信する。地上局の設備が簡易で、更新周期が短い'],['衛星ADS-B','人工衛星がADS-B信号を受信する。地上局を設置できない洋上・極地でも位置を把握できる']]},
   ko:{t:'항공기 위치 파악: 감시 수단 4가지',p:[['1차 레이더(PSR)','전파 반사로 위치를 탐지한다. 항공기에 별도 장비가 없어도 탐지할 수 있지만 고도와 편명은 알 수 없다'],['2차 레이더(SSR·모드 S)','지상에서 질문 신호를 보내면 항공기 트랜스폰더가 응답한다. 고도·코드·편명을 알 수 있다'],['ADS-B','항공기가 GPS로 파악한 자신의 위치를 직접 송신한다. 지상국 설비가 간단하고 갱신 주기가 짧다'],['위성 ADS-B','인공위성이 ADS-B 신호를 수신한다. 지상국을 설치할 수 없는 해양·극지에서도 위치를 파악할 수 있다']]},
-  en:{t:'How ATC knows where aircraft are (four surveillance methods)',p:[['Primary radar (PSR)','Finds aircraft by reflected radio waves; needs nothing from the aircraft, but gives no altitude or callsign'],['Secondary radar (SSR, Mode S)','The ground station interrogates and the aircraft’s transponder replies with altitude, code and identity'],['ADS-B','The aircraft broadcasts its own GPS position; small ground stations and fast updates'],['Space-based ADS-B','Satellites receive ADS-B, so aircraft can be tracked over oceans and polar regions with no ground stations']]}})[l];
+  en:{t:'How ATC locates aircraft: four surveillance methods',p:[['Primary radar (PSR)','Detects aircraft by reflected radio waves; needs no aircraft equipment but gives no altitude or callsign'],['Secondary radar (SSR, Mode S)','The ground station interrogates and the aircraft’s transponder replies with altitude, code and identity'],['ADS-B','The aircraft broadcasts its own GPS position; simple ground stations and frequent updates'],['Space-based ADS-B','Satellites receive ADS-B, so aircraft can be tracked over oceans and polar regions where ground stations cannot be installed']]}})[l];
  if(!W)return F.atcb_surv('ja');
  setK(1);var nar=NARROW();
  function ant(x,y){return '<rect x="'+(x-3)+'" y="'+(y-30)+'" width="6" height="30" fill="#243447"/><path d="M'+(x-14)+' '+(y-34)+' Q'+x+' '+(y-48)+' '+(x+14)+' '+(y-34)+'" fill="none" stroke="#243447" stroke-width="4"/>'}
@@ -195,9 +195,9 @@ atcb_surv:function(l){
 
 /* 8 ILSのまっすぐな進入と、RNP ARの曲がる進入 */
 atcb_pbn:function(l){
- var W=({ja:{t:'まっすぐ入るILSと、曲がって入るRNP AR',ils:'ILS：地上の電波でまっすぐ（約10NM以上の直線）',rnp:'RNP AR：衛星の航法で、山や騒音の多い地区をよけて曲がりながら入る',mt:'山',city:'市街地',rw:'滑走路',u:['ILSは滑走路の延長線上に長い直線が要る。山や海、まちがあると置きにくい','RNP ARは機体の航法の性能と乗員の訓練の承認が要る（AR＝特別な承認）','曲がる部分（RF）で、短く静かな経路にできる。悪天候でも降りられる空港が増える']},
+ var W=({ja:{t:'直線進入のILSと曲線進入のRNP AR',ils:'ILS：地上からの電波で直線進入（約10NM以上）',rnp:'RNP AR：衛星航法で山地や騒音に配慮が必要な地域を避け、曲線で進入',mt:'山',city:'市街地',rw:'滑走路',u:['ILSは滑走路延長線上に長い直線区間が必要なため、山・海・市街地があると設置しにくい','RNP ARは機体の航法性能と乗員訓練について個別の承認が必要（AR＝承認が必要）','曲線区間（RF）により短く騒音の少ない経路を設定でき、悪天候でも着陸できる空港が増える']},
   ko:{t:'직선 접근 ILS와 곡선 접근 RNP AR',ils:'ILS: 지상 전파로 직선 접근(약 10NM 이상)',rnp:'RNP AR: 위성항법으로 산지·소음 민감 지역을 피해 곡선 접근',mt:'산',city:'시가지',rw:'활주로',u:['ILS는 활주로 연장선상에 긴 직선 구간이 필요해 산·바다·도시가 있으면 설치하기 어렵다','RNP AR은 항공기 항법 성능과 승무원 훈련에 대해 별도 승인을 받아야 한다(AR=승인 필요)','곡선 구간(RF)으로 짧고 소음이 적은 경로를 설계할 수 있어, 악천후에도 착륙 가능한 공항이 늘어난다']},
-  en:{t:'Straight-in ILS and curved RNP AR approaches',ils:'ILS: ground radio beams, straight in (a long straight of about 10 NM or more)',rnp:'RNP AR: satellite navigation, curving around terrain and noise-sensitive areas',mt:'Mountain',city:'City',rw:'Runway',u:['An ILS needs a long straight on the extended centreline; terrain, sea or towns can make that hard','RNP AR needs approval for both aircraft navigation performance and crew training (AR = authorisation required)','Curved segments (RF legs) allow short, quieter paths, so more airports can be used in bad weather']}})[l];
+  en:{t:'Straight-in ILS and curved RNP AR approaches',ils:'ILS: ground-based radio beams, straight-in approach (about 10 NM or more)',rnp:'RNP AR: satellite navigation, curving around terrain and noise-sensitive areas',mt:'Mountain',city:'City',rw:'Runway',u:['An ILS needs a long straight segment on the extended runway centreline, so it is hard to install near terrain, sea or towns','RNP AR requires specific approval for both aircraft navigation performance and crew training (AR = authorisation required)','Curved segments (RF legs) allow shorter, quieter paths, so more airports remain usable in bad weather']}})[l];
  if(!W)return F.atcb_pbn('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,250,'#E8F2FB',14);
@@ -213,9 +213,9 @@ atcb_pbn:function(l){
 
 /* 9 GBAS（地上型）とSBAS（静止衛星型）の補強 */
 atcb_gbas:function(l){
- var W=({ja:{t:'GPSの誤差を直す2つのしくみ',g:'GBAS（地上型）',sb:'SBAS（衛星型）',dg:'空港の地上局が誤差を直し、1式で複数の滑走路・進入方式にILSなみの精度。進入の経路はデータで送る',ds:'静止衛星から国全体に補正を流す。ILSのない地方空港でも、垂直の誘導つきの進入ができる',gps:'GPS衛星',sta:'GBAS地上局'},
+ var W=({ja:{t:'GPSの誤差を補正する2つの方式',g:'GBAS（地上型）',sb:'SBAS（衛星型）',dg:'空港の地上局が補正情報を送信する。1式で複数の滑走路・進入方式にILS並みの精度を提供し、進入経路はデータで送信する',ds:'静止衛星から全国に補正情報を送信する。ILSのない地方空港でも垂直誘導付きの進入が可能になる',gps:'GPS衛星',sta:'GBAS地上局'},
   ko:{t:'GPS 오차 보정의 두 가지 방식',g:'GBAS(지상형)',sb:'SBAS(위성형)',dg:'공항 지상국이 보정 정보를 보낸다. 장비 한 세트로 여러 활주로·접근 절차에 ILS급 정밀도를 제공하며, 접근 경로는 데이터로 송신한다',ds:'정지위성이 국토 전역에 보정 정보를 송신한다. ILS가 없는 지방 공항에서도 수직 유도 접근이 가능하다',gps:'GPS 위성',sta:'GBAS 지상국'},
-  en:{t:'Two ways to correct GPS errors',g:'GBAS (ground-based)',sb:'SBAS (satellite-based)',dg:'An airport ground station corrects errors; one installation serves several runways and approaches with ILS-like precision, sending the approach path as data',ds:'Geostationary satellites broadcast corrections over a whole country, allowing approaches with vertical guidance at regional airports without ILS',gps:'GPS satellites',sta:'GBAS ground station'}})[l];
+  en:{t:'Two ways to correct GPS errors',g:'GBAS (ground-based)',sb:'SBAS (satellite-based)',dg:'An airport ground station broadcasts corrections; one installation serves several runways and approaches with ILS-like precision, and the approach path is sent as data',ds:'Geostationary satellites broadcast corrections over a whole country, allowing approaches with vertical guidance at regional airports without an ILS',gps:'GPS satellites',sta:'GBAS ground station'}})[l];
  if(!W)return F.atcb_gbas('ja');
  setK(1);var nar=NARROW();
  function sat(x,y,c){return '<g transform="translate('+x+' '+y+')"><rect x="-8" y="-5" width="16" height="10" fill="#C9D3DD"/><rect x="-26" y="-4" width="16" height="8" fill="'+(c||'#2F6FD6')+'"/><rect x="10" y="-4" width="16" height="8" fill="'+(c||'#2F6FD6')+'"/></g>'}
@@ -236,9 +236,9 @@ atcb_gbas:function(l){
 
 /* 10 声の交信とデータ通信（CPDLC） */
 atcb_cpdlc:function(l){
- var W=({ja:{t:'声の交信と、文字で送るデータ通信（CPDLC）',v:'声（無線）',d:'データ通信（CPDLC）',vu:['周波数が混むと、言いたいことを言うまで待つ','聞き違い・言い間違いが起きうる','英語の発音・雑音の影響を受ける'],du:['決まった文を画面で送り、ボタンで答える（WILCOなど）','記録が残り、FMSに経路を入れられるものもある','洋上・航空路・空港の出発の許可（DCL）で広がる'],up:'CLIMB TO FL350',ans:'WILCO'},
+ var W=({ja:{t:'音声交信とデータリンク通信（CPDLC）',v:'音声（無線）',d:'データリンク（CPDLC）',vu:['周波数が混雑すると、送信の順番を待つ必要がある','聞き間違い・言い間違いが起こり得る','英語の発音・雑音の影響を受ける'],du:['定型メッセージを画面で送り、ボタンで応答する（WILCOなど）','記録が残り、FMSに経路を直接入力できるものもある','洋上・航空路管制と出発時の管制承認（DCL）を中心に拡大している'],up:'CLIMB TO FL350',ans:'WILCO'},
   ko:{t:'음성 교신과 데이터링크 통신(CPDLC)',v:'음성(무선)',d:'데이터링크(CPDLC)',vu:['주파수가 혼잡하면 송신 순서를 기다려야 한다','잘못 듣거나 잘못 말할 수 있다','영어 발음·잡음의 영향을 받는다'],du:['정형화된 메시지를 화면으로 보내고 버튼으로 응답한다(WILCO 등)','기록이 남고, FMS에 경로를 바로 입력할 수 있는 경우도 있다','해양·항로 관제와 출발 관제 허가(DCL)를 중심으로 확대되고 있다'],up:'CLIMB TO FL350',ans:'WILCO'},
-  en:{t:'Voice and text data link (CPDLC)',v:'Voice (radio)',d:'Data link (CPDLC)',vu:['When the frequency is busy, you wait your turn to speak','Mishearing and misspeaking can happen','Affected by accents and noise'],du:['Set messages sent on screen and answered with a button (WILCO and so on)','A record is kept; some routes can be loaded straight into the FMS','Spreading in oceanic and en-route airspace and for departure clearances (DCL)'],up:'CLIMB TO FL350',ans:'WILCO'}})[l];
+  en:{t:'Voice and data link communications (CPDLC)',v:'Voice (radio)',d:'Data link (CPDLC)',vu:['When the frequency is busy, pilots must wait their turn to transmit','Messages can be misheard or misspoken','Affected by accents and noise'],du:['Standard messages are shown on screen and answered at the press of a button (e.g. WILCO)','A record is kept; routes can sometimes be loaded directly into the FMS','Increasingly used in oceanic and en-route airspace and for departure clearances (DCL)'],up:'CLIMB TO FL350',ans:'WILCO'}})[l];
  if(!W)return F.atcb_cpdlc('ja');
  setK(1);var nar=NARROW();
  function panel(x0,y0,w,k){var g=R(x0,y0,w,150,k?'#123A2E':'#0E2238',14)+tx(x0+14,y0+24,k?W.d:W.v,13,'#fff',900,'start');
@@ -253,9 +253,9 @@ atcb_cpdlc:function(l){
 ,
 /* 11 交通流管理：需要が容量を超える時間の便を、出発前に地上で待たせて平らにする */
 atcb_atfm:function(l){
- var W=({ja:{t:'空で待たせず、地上で待たせる（交通流管理）',cap:'容量（1時間に着陸できる数）',h:'時刻',b4:'調整前：超えた分は空で待機（燃料・遅れが増える）',af:'調整後：出発の時刻（EDCT・CTOT）を指定して、超えた分を後の時間へ',dep:'出発空港',arr:'到着空港'},
+ var W=({ja:{t:'空中待機の代わりに地上待機（交通流管理）',cap:'容量（1時間あたりの着陸可能機数）',h:'時刻',b4:'調整前：超過分は空中待機（燃料消費・遅延が増加）',af:'調整後：出発時刻（EDCT・CTOT）を指定し、超過分を後の時間帯へ分散',dep:'出発空港',arr:'到着空港'},
   ko:{t:'공중 대기 대신 지상 대기(교통흐름관리)',cap:'수용량(시간당 착륙 대수)',h:'시간대',b4:'조정 전: 초과분은 공중 대기(연료·지연 증가)',af:'조정 후: 출발 시각(EDCT·CTOT)을 지정해 초과분을 다음 시간대로 분산',dep:'출발 공항',arr:'도착 공항'},
-  en:{t:'Wait on the ground, not in the air (traffic flow management)',cap:'Capacity (landings per hour)',h:'Hour',b4:'Before: the excess holds in the air (more fuel, more delay)',af:'After: departure times (EDCT, CTOT) are assigned so the excess moves to later hours',dep:'Departure airport',arr:'Arrival airport'}})[l];
+  en:{t:'Waiting on the ground, not in the air (air traffic flow management)',cap:'Capacity (landings per hour)',h:'Hour',b4:'Before: excess traffic holds in the air (more fuel burn and delay)',af:'After: assigned departure times (EDCT, CTOT) spread the excess into later hours',dep:'Departure airport',arr:'Arrival airport'}})[l];
  if(!W)return F.atcb_atfm('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,230,'#E8F2FB',14),x0=70,bw=52,gap=18,base=250,sc=5.2,cap=30,d=[24,32,40,36,22,18,14],a=[24,30,30,30,30,30,24];
@@ -269,9 +269,9 @@ atcb_atfm:function(l){
 
 /* 12 到着の順番づけ（AMAN）と、段々に降りる／続けて降りる（CDO） */
 atcb_cdo:function(l){
- var W=({ja:{t:'到着の順番づけと、続けて降りる降下（CDO）',st:'従来：段々に降りる（水平飛行が多い）',cd:'CDO：エンジンを絞ったまま続けて降りる（燃料・騒音を減らす）',am:'AMAN：遠くから到着の時刻を計算し、速度の調整で順番をつくる',rw:'滑走路'},
+ var W=({ja:{t:'到着順位付けと継続降下運航（CDO）',st:'従来：階段状に降下（水平飛行区間が多い）',cd:'CDO：推力を絞ったまま継続して降下（燃料・騒音を低減）',am:'AMAN：遠方から到着時刻を計算し、速度調整で順番を決める',rw:'滑走路'},
   ko:{t:'도착 순서 관리와 연속강하운항(CDO)',st:'기존: 계단식 강하(수평 비행 구간이 많음)',cd:'CDO: 추력을 줄인 채 연속 강하(연료·소음 감소)',am:'AMAN: 멀리서부터 도착 시각을 계산하고 속도를 조절해 순서를 정한다',rw:'활주로'},
-  en:{t:'Arrival sequencing and continuous descent (CDO)',st:'Traditional: step-down descent (lots of level flight)',cd:'CDO: continuous descent at low thrust (less fuel and noise)',am:'AMAN: calculates arrival times far out and builds the sequence with speed adjustments',rw:'Runway'}})[l];
+  en:{t:'Arrival sequencing and continuous descent operations (CDO)',st:'Conventional: stepped descent (many level segments)',cd:'CDO: continuous descent at low thrust (less fuel and noise)',am:'AMAN: calculates arrival times from far out and sets the sequence through speed control',rw:'Runway'}})[l];
  if(!W)return F.atcb_cdo('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,190,'#E8F2FB',14)+R(20,230,600,12,'#9CC98B',0)+'<rect x="560" y="226" width="50" height="5" fill="#243447"/>'+tx(585,220,W.rw,10.5,'#243447',900);
@@ -287,9 +287,9 @@ atcb_cdo:function(l){
 
 /* 13 軌道ベース運用（TBO）とSWIM：飛ぶ前に4次元の軌道をみんなで共有する */
 atcb_tbo:function(l){
- var W=({ja:{t:'軌道ベース運用（TBO）と、情報を共有するSWIM',tube:'4次元の軌道（位置＋高度＋時刻）',n:['航空会社','管制','空港','気象','国の外の管制'],u:['出発前から到着まで、4次元の軌道をみんなで決めて共有する（FF-ICEの新しい飛行計画）','情報はSWIMという共通の仕組みで機械どうしがやり取りする','決められた時刻に地点を通る（時間の管理）ことで、待ちと燃料を減らす']},
+ var W=({ja:{t:'軌道ベース運用（TBO）と情報共有基盤（SWIM）',tube:'4次元軌道（位置＋高度＋時刻）',n:['航空会社','管制','空港','気象','他国の管制機関'],u:['出発前から到着まで、4次元軌道を関係者で調整・共有する（FF-ICEに基づく新しい飛行計画）','システム間の情報は共通基盤のSWIMでやり取りする','指定時刻に特定地点を通過させる（時間管理）ことで、空中待機と燃料消費を減らす']},
   ko:{t:'궤적기반운영(TBO)과 정보 공유 체계(SWIM)',tube:'4차원 궤적(위치+고도+시각)',n:['항공사','관제','공항','기상','타국 관제기관'],u:['출발 전부터 도착까지 4차원 궤적을 함께 결정·공유한다(FF-ICE 기반 새 비행계획)','시스템 간 정보는 공통 기반인 SWIM으로 주고받는다','특정 지점을 지정된 시각에 통과하게 해(시간 관리) 공중 대기와 연료 소모를 줄인다']},
-  en:{t:'Trajectory-based operations (TBO) and SWIM information sharing',tube:'4D trajectory (position + altitude + time)',n:['Airline','ATC','Airport','Weather','Other ATC'],u:['From before departure to arrival, the 4D trajectory is agreed and shared by all (FF-ICE, the new flight planning)','Information is exchanged machine to machine through a common framework, SWIM','Crossing points at agreed times (time management) cuts holding and fuel']}})[l];
+  en:{t:'Trajectory-based operations (TBO) and SWIM information sharing',tube:'4D trajectory (position + altitude + time)',n:['Airline','ATC','Airport','Weather','Other ANSPs'],u:['From before departure to arrival, the 4D trajectory is agreed and shared by all parties (new flight planning based on FF-ICE)','Systems exchange information through a common framework, SWIM','Crossing set points at assigned times (time management) reduces holding and fuel burn']}})[l];
  if(!W)return F.atcb_tbo('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,200,'#0E2238',14);
@@ -304,9 +304,9 @@ atcb_tbo:function(l){
 
 /* 14 リモート（デジタル）タワー：空港のカメラの映像を、離れた管制室で見る */
 atcb_rtwr:function(l){
- var W=({ja:{t:'リモートタワー：空港に塔がなくても管制する',ap:'空港（カメラ・センサー）',rc:'離れた管制室',u:['空港のカメラの映像を、離れた管制室の大きな画面に映す','夜や霧でも見やすく映像を処理し、機影に名札を重ねられる','1つの管制室から、交通の少ない複数の空港を受け持つこともできる']},
+ var W=({ja:{t:'リモートタワー：現地に管制塔がなくても管制',ap:'空港（カメラ・センサー）',rc:'遠隔管制室',u:['空港のカメラ映像を遠隔管制室の大型画面に映し出す','夜間や霧でも見やすいよう映像を補正し、映像内の航空機に識別情報を重ねて表示できる','1つの管制室から、交通量の少ない複数の空港を管制することもできる']},
   ko:{t:'원격 관제탑: 현장 관제탑 없이 관제',ap:'공항(카메라·센서)',rc:'원격 관제실',u:['공항 카메라 영상을 원격 관제실의 대형 화면에 띄운다','야간이나 안개 속에서도 잘 보이도록 영상을 보정하고, 영상 속 항공기에 식별 정보를 겹쳐 표시할 수 있다','한 관제실에서 교통량이 적은 여러 공항을 함께 관제할 수도 있다']},
-  en:{t:'Remote towers: controlling without a tower at the airport',ap:'Airport (cameras, sensors)',rc:'Remote control room',u:['Camera images from the airport are shown on large screens in a distant control room','Images are enhanced for night and fog, and aircraft can be tagged with labels','One centre can control several low-traffic airports']}})[l];
+  en:{t:'Remote towers: control without an on-site tower',ap:'Airport (cameras, sensors)',rc:'Remote control room',u:['Camera images from the airport are shown on large screens in a distant control room','Images are enhanced for night and fog, and aircraft can be overlaid with identification labels','One remote centre can control several low-traffic airports']}})[l];
  if(!W)return F.atcb_rtwr('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,280,180,'#DCEEFB',14)+R(340,52,280,180,'#0E2238',14);
@@ -322,9 +322,9 @@ atcb_rtwr:function(l){
 
 /* 15 空の層：ドローン（UTM）、空飛ぶクルマ（AAM）、旅客機 */
 atcb_uam:function(l){
- var W=({ja:{t:'空の新しい利用者：ドローンと空飛ぶクルマ',a:'旅客機（従来の管制）',b:'空飛ぶクルマ（AAM）：決められた空の道（回廊）',c:'ドローン（UTM）：低い空をデジタルで管理',vp:'離着陸場'},
+ var W=({ja:{t:'空域の新たな利用者：ドローンと空飛ぶクルマ',a:'旅客機（従来の管制）',b:'空飛ぶクルマ（AAM）：指定された回廊を飛行',c:'ドローン（UTM）：低高度空域をデジタルで管理',vp:'離着陸場'},
   ko:{t:'새로운 공역 이용자: 드론과 미래항공모빌리티',a:'여객기(기존 관제)',b:'미래항공모빌리티(AAM): 지정 회랑 비행',c:'드론(UTM): 저고도 공역 디지털 관리',vp:'이착륙장'},
-  en:{t:'New users of the sky: drones and air taxis',a:'Airliners (conventional ATC)',b:'Air taxis (AAM): set corridors',c:'Drones (UTM): low airspace managed digitally',vp:'Vertiport'}})[l];
+  en:{t:'New users of the sky: drones and air taxis',a:'Airliners (conventional ATC)',b:'Air taxis (AAM): fixed corridors',c:'Drones (UTM): low-level airspace managed digitally',vp:'Vertiport'}})[l];
  if(!W)return F.atcb_uam('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600)+R(20,52,600,250,'#DCEEFB',14)+R(20,290,600,12,'#9CC98B',0);
@@ -338,9 +338,9 @@ atcb_uam:function(l){
 
 /* 16 各地域のこれからの計画 */
 atcb_road:function(l){
- var W=({ja:{t:'各地域の、これからの航空交通の計画',rows:[['ICAO','世界航空航法計画（GANP）：TBO・SWIM・FF-ICEへ'],['日本','CARATS2040：2025年に工程表を定め、2040年に向けてTBO・自動化・新しい空の利用者へ'],['韓国','第4次航空政策基本計画（2025〜2029）：航空交通データの総合管理、UAMに備えた空域の構造の見直し'],['米国','新しい管制システム（BNATCS）：125億ドルで無線・レーダー・通信・施設を2028年までに入れ替え'],['欧州','SESARとATMマスタープラン：デジタルな欧州の空、国境をまたぐ空域の運用']],y0:'2025',y1:'2040'},
+ var W=({ja:{t:'各国・地域の将来の航空交通計画',rows:[['ICAO','世界航空航法計画（GANP）：TBO・SWIM・FF-ICEを中心に移行'],['日本','CARATS2040：2025年に工程表を策定し、2040年に向けてTBO・自動化・新たな空域利用者の受け入れを推進'],['韓国','第4次航空政策基本計画（2025〜2029）：航空交通データの総合管理、UAMに備えた空域構造の見直し'],['米国','新管制システム（BNATCS）：125億ドルを投じ、無線・レーダー・通信・施設を2028年までに更新'],['欧州','SESAR・ATMマスタープラン：デジタル化した欧州の空の実現、国境を越えた空域運用']],y0:'2025',y1:'2040'},
   ko:{t:'국가·지역별 미래 항공교통 계획',rows:[['ICAO','세계항행계획(GANP): TBO·SWIM·FF-ICE 중심으로 전환'],['일본','CARATS2040: 2025년 로드맵 수립, 2040년까지 TBO·자동화·신규 공역 이용자 수용 추진'],['한국','제4차 항공정책 기본계획(2025~2029): 항공교통 데이터 종합 관리, UAM에 대비한 공역 구조 조정'],['미국','신규 관제 시스템(BNATCS): 125억 달러를 들여 무선·레이더·통신·시설을 2028년까지 교체'],['유럽','SESAR·ATM 마스터플랜: 디지털 유럽 하늘 구현, 국경을 넘는 공역 운용']],y0:'2025',y1:'2040'},
-  en:{t:'Future air traffic plans by region',rows:[['ICAO','Global Air Navigation Plan (GANP): towards TBO, SWIM and FF-ICE'],['Japan','CARATS2040: roadmap set in 2025, heading for TBO, automation and new airspace users by 2040'],['Korea','4th Aviation Policy Master Plan (2025–2029): integrated air traffic data management and airspace restructuring for UAM'],['USA','Brand New Air Traffic Control System (BNATCS): $12.5 billion to replace radios, radars, telecoms and facilities by 2028'],['Europe','SESAR and the ATM Master Plan: a Digital European Sky and cross-border airspace operations']],y0:'2025',y1:'2040'}})[l];
+  en:{t:'Future air traffic plans by region',rows:[['ICAO','Global Air Navigation Plan (GANP): towards TBO, SWIM and FF-ICE'],['Japan','CARATS2040: roadmap drawn up in 2025, aiming for TBO, automation and new airspace users by 2040'],['Korea','4th Aviation Policy Master Plan (2025–2029): integrated air traffic data management and airspace restructuring for UAM'],['USA','Brand New Air Traffic Control System (BNATCS): $12.5 billion to replace radios, radars, telecoms and facilities by 2028'],['Europe','SESAR and the ATM Master Plan: a Digital European Sky and cross-border airspace operations']],y0:'2025',y1:'2040'}})[l];
  if(!W)return F.atcb_road('ja');
  setK(1);
  var s=TTL(320,30,W.t,15,'#0f3558',600),y=56;

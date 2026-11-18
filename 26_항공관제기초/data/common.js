@@ -1,6 +1,6 @@
 /* 共通設定（article.js より前に読み込む）— 航空管制の基礎 */
 (function(){
-var PARTS={ja:['Part 0 管制とは','Part 1 空域と飛行のルール','Part 2 交信','Part 3 設備と航法','Part 4 交通の流れ','Part 5 最新の動き','Part 6 体験'],ko:['Part 0 관제 개요','Part 1 공역과 비행 규칙','Part 2 교신','Part 3 장비와 항법','Part 4 교통 흐름 관리','Part 5 최신 동향','Part 6 관제 체험'],en:['Part 0 What Is ATC?','Part 1 Airspace and Flight Rules','Part 2 Communication','Part 3 Systems and Navigation','Part 4 Traffic Flow','Part 5 What’s New','Part 6 Try It Yourself']};
+var PARTS={ja:['Part 0 管制とは','Part 1 空域と飛行のルール','Part 2 交信','Part 3 設備と航法','Part 4 航空交通流管理','Part 5 最新動向','Part 6 管制体験'],ko:['Part 0 관제 개요','Part 1 공역과 비행 규칙','Part 2 교신','Part 3 장비와 항법','Part 4 교통 흐름 관리','Part 5 최신 동향','Part 6 관제 체험'],en:['Part 0 What Is ATC?','Part 1 Airspace and Flight Rules','Part 2 Communication','Part 3 Systems and Navigation','Part 4 Traffic Flow Management','Part 5 Latest Developments','Part 6 Try It Yourself']};
 var S={ja:'航空管制の基礎',ko:'항공 관제 기초',en:'Air Traffic Control Basics'};
 var DEF={ja:{voice:'現場のひと言'},ko:{voice:'현장 한마디'},en:{voice:'Voice from the Field'}};
 for(var k in window.ARTS){var a=window.ARTS[k],pn=+String(k).split('-')[0];
