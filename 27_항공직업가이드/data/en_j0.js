@@ -33,14 +33,14 @@ sections:[
 {h:"Routes in four regions",blocks:[{t:"fig",id:"car_atc",cap:"Animated figure: the stages to becoming a controller; everywhere the flow is recruitment, basic training, on-the-job training and position ratings."}]},
 {h:"Comparing conditions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
 ["Employer","Transport ministry (air traffic headquarters, regional aviation administrations) and others; the air force also has controllers","MLIT (national civil servants)","FAA (federal employees)","National providers (ANSPs); NATS and others in the UK"],
-["Age","Licence applications from 18 (Aviation Safety Act)","2026 exam: born 2 April 1996 – 1 April 2005 (about 21–30)","Apply before 31","Student licence from 18; upper limits vary"],
-["Education","Meet licence requirements (education rules vary by recruitment)","University, junior college or technical college graduate (or expected) and others","One year of work, a bachelor’s degree or a combination","Varies (from secondary school level)"],
+["Age","Licence applications from 18 (21 for the senior ATC licence; Aviation Safety Act)","2026 exam: born 2 April 1996 – 1 April 2005 (21 to under 30); younger applicants can qualify through education","Apply before 31","Student licence from 18; upper limits vary"],
+["Education","Meet licence requirements (education rules vary by recruitment)","No education requirement within that age range; those born on or after 2 April 2005 need a university, junior college or technical college degree (or expected) and similar","One year of work, a bachelor’s degree or a combination","Varies (from secondary school level)"],
 ["Nationality","Korean nationality for public employees","Japanese nationality (civil servants)","US citizen","Many require EU nationality or the right to work"],
 ["English","ICAO English Level 4 or above","Regular ICAO English proficiency tests","English clear enough over radio","ICAO Level 4 or above"],
 ["Training","Licence at a training institution, then hiring and on-the-job training","Basic training at the Aeronautical Safety College (Izumisano, Osaka), posting, then on-the-job training and internal checks","Several months at the FAA Academy (Oklahoma City), then 2–3 years at a facility","Initial training at the provider’s academy, then unit training; many use the common European selection test (FEAST)"]]},
 {t:"note",x:"The table is a guide based on public sources as of November 2026. Always check medical standards (vision, hearing, colour vision) and exam content in each year’s notice."}]},
 {h:"Recent trend: not enough controllers",blocks:[{t:"rows",items:[
-{name:"Korea",x:"Against an establishment of 457 at 15 ATC facilities, 385 were in post in August 2026 (15.8% vacant). Another 39 were being hired in late 2026, and a bill would set appropriate staffing levels by regulation"},
+{name:"Korea",x:"According to press reports (September 2026), against an establishment of 457 at 15 ATC facilities, 385 were in post in August 2026 (15.8% vacant). Another 39 were being hired in late 2026, and a bill would set appropriate staffing levels by regulation"},
 {name:"USA",x:"With a continuing shortage, the FAA is hiring more and reaching out to new audiences such as young gamers"},
 {name:"Japan and Europe",x:"Strengthening recruitment and training as traffic grows and staff retire"}]},
 {t:"point",x:"A shortage also means more chances to be hired. Training is long, though, and not everyone completes it. Attend information sessions or ATC visits early if you can."}]},
@@ -61,12 +61,12 @@ quiz:[{q:"What is the age limit for applying to be an FAA controller?",opts:["Un
 {q:"Where do Japanese controllers receive basic training after hiring?",opts:["National Defense Academy","Aeronautical Safety College","Civil Aviation College","Meteorological College"],a:1,exp:"The Aeronautical Safety College in Izumisano, Osaka."},
 {q:"What was the vacancy rate at Korea’s ATC facilities in August 2026?",opts:["About 5%","About 10%","About 16%","About 30%"],a:2,exp:"385 in post against 457, a 15.8% vacancy rate."}],
 next:"Part 2 Flight Dispatcher — 2-1 Becoming a dispatcher"});
-set("2-1",{title:"Becoming a Flight Dispatcher: National Licences and Company Approval",hl:"Dispatcher",subtitle:"Dispatchers review flight plans, fuel, weather and NOTAMs and decide with the captain whether a flight can go. Korea, Japan and the US have national licences; Europe relies mainly on company approval. Comparing routes in four regions",
-lead:["Flight dispatchers support the safety of every flight from the ground. They read weather and NOTAMs, plan routes and fuel, and decide with the captain whether a flight can depart.","The system differs greatly between countries. Korea, Japan and the US have national licences or exams; in Europe there is no national licence and airlines mainly train and approve their own staff."],
+set("2-1",{title:"Becoming a Flight Dispatcher: National Licences and Company Approval",hl:"Dispatcher",subtitle:"Dispatchers review flight plans, fuel, weather and NOTAMs and decide with the captain whether a flight can go. Korea, Japan and the US have national licences; in Europe it varies by country. Comparing routes in four regions",
+lead:["Flight dispatchers support the safety of every flight from the ground. They read weather and NOTAMs, plan routes and fuel, and decide with the captain whether a flight can depart.","The system differs greatly between countries. Korea, Japan and the US have national licences or exams; in Europe the system varies by country, and some countries issue no national licence and let airlines train and approve their own staff."],
 sections:[
 {h:"Routes in four regions",blocks:[{t:"fig",id:"car_dsp",cap:"Animated figure: the stages to becoming a dispatcher. National exams in Korea, Japan and the US; company training and approval in Europe."}]},
 {h:"Comparing conditions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
-["Licence","Flight dispatcher licence (transport ministry)","National dispatcher skill test (Minister of Land, Infrastructure, Transport and Tourism)","Aircraft dispatcher certificate (FAA)","No national licence in many countries (company approval)"],
+["Licence","Flight dispatcher licence (transport ministry)","National dispatcher skill test (Minister of Land, Infrastructure, Transport and Tourism)","Aircraft dispatcher certificate (FAA)","Varies by country; some, such as Ireland, issue no national licence and manage it through the airline’s AOC approval"],
 ["Age","Applications from 21 (Aviation Safety Act)","Age and experience conditions set by ministerial ordinance","Knowledge test from 21; certificate from 23","Set by company"],
 ["Experience and study","Experience as crew or dispatch assistant, or a course at a training institution","Experience as a dispatch assistant at an airline before testing","Usually an FAA-approved training course","Company training (with reference to ICAO guidance)"],
 ["Workplace","Airline dispatch offices and operations control centres","Airline dispatch and operations departments","Airline operations centres","Airline OCCs and dispatch"]]},
@@ -83,7 +83,7 @@ sections:[
 voice:"Dispatchers don’t fly, but they share responsibility for whether a flight goes. Ground experience is a real strength here.",
 terms:[["Flight Dispatcher","運航管理者","운항관리사"],["Dispatcher Skill Test","運航管理者技能検定","운항관리자 기능검정"],["Aircraft Dispatcher Certificate","運航管理者の証明（米国）","운항관리사 증명(미국)"],["Operations Control Centre (OCC)","運航統制センター","운항통제센터"],["Flight Plan","飛行計画","비행계획"],["Joint Responsibility","共同の責任","공동 책임"]],
 quiz:[{q:"At what age can you hold an FAA aircraft dispatcher certificate?",opts:["18","21","23","30"],a:2,exp:"The knowledge test from 21; the certificate from 23."},
-{q:"What is true of dispatch in Europe?",opts:["There is a common national licence","Many countries have no national licence; airlines train and approve","There are no dispatchers","Controllers do it"],a:1,exp:"Company approval is the main model in Europe."},
+{q:"What is true of dispatch in Europe?",opts:["There is a common national licence","It varies by country; some issue no national licence and let airlines train and approve","There are no dispatchers","Controllers do it"],a:1,exp:"Europe’s systems differ by country; some, such as Ireland, issue no national licence."},
 {q:"From what age can you apply for Korea’s dispatcher licence?",opts:["17","18","21","25"],a:2,exp:"From 21 under the Aviation Safety Act."}],
 next:"Part 3 Pilot — 3-1 Becoming a pilot"});
 set("3-1",{title:"Becoming a Pilot: Four Entry Routes, Licences and Flight Hours",hl:"Pilot",subtitle:"From four entry routes (airline cadet schemes, universities and national schools, self-funded schools, the military) to commercial licence and instrument rating, first officer and captain. Comparing ages, hours and medicals in four regions",
@@ -93,10 +93,10 @@ sections:[
 {h:"Licences and flight hours",blocks:[{t:"fig",id:"car_hours",cap:"Animated figure: ICAO minimums as a guide. Private 40 hours, commercial 200 hours (150 on an approved course), MPL 240 hours of training, airline transport 1,500 hours."}]},
 {h:"Comparing conditions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
 ["Licence ages","Private 17, commercial 18, airline transport 21","Private 17, commercial 18, airline transport 21","Private 17, commercial 18, ATP 23 (21 under conditions)","Private 17, commercial 18, airline transport 21"],
-["Hours for captain’s licence","From 1,500","From 1,500","From 1,500 (reduced to 750–1,250 for military or aviation degrees)","From 1,500"],
+["Hours for captain’s licence","From 1,500","From 1,500","ATP from 1,500; a restricted ATP (R-ATP, for first officers) at 750, 1,000 or 1,250 with military or aviation degrees; captains need an unrestricted ATP plus company experience and checks","From 1,500"],
 ["Main training routes","University flight programmes, the air force, airline schemes, schools at home and abroad","Civil Aviation College (national), private university programmes, airline cadet schemes, the Self-Defense Forces","Universities and schools (Part 61 and 141), the military","Airline cadet schemes, training organisations (integrated or modular)"],
 ["Medical","Class 1 aviation medical","Class 1 aviation medical","First-class medical (ATP)","Class 1 medical"],
-["MPL","Yes (used in airline schemes)","Yes (multi-crew pilot licence)","Not common","Yes (used in airline cadet schemes)"]]},
+["MPL","Yes (used in airline schemes)","Yes (multi-crew pilot licence)","The FAA does not issue an MPL (CPL and ATP system)","Yes (used in airline cadet schemes)"]]},
 {t:"note",x:"A guide as of November 2026. Airline hiring requirements (age, eyesight, English, hours) are often higher than national minimums; check each airline’s notice."}]},
 {h:"Choosing a route",blocks:[{t:"table",cols:["Route","Advantages","Watch out for"],rows:[
 ["Airline cadet","Hiring and training combined; often less cost to you","Highly competitive; some years have no intake"],
@@ -179,7 +179,7 @@ sections:[
 ["Taiwan","Civil Aeronautics Administration (CAA)","Air Navigation and Weather Services","Controllers are civil servants"],
 ["Hong Kong","Civil Aviation Department (CAD)","Civil Aviation Department (CAD)","One department handles both licensing and ATC"],
 ["Singapore","Civil Aviation Authority of Singapore (CAAS)","CAAS","Has a training academy (Singapore Aviation Academy)"],
-["United Arab Emirates","General Civil Aviation Authority (GCAA)","Air navigation providers in each emirate","Many airlines and airports employ international staff"],
+["United Arab Emirates","General Civil Aviation Authority (GCAA)","En route: GCAA’s Sheikh Zayed Air Navigation Centre; approach and aerodrome: certified providers at each airport","Many airlines and airports employ international staff"],
 ["Australia","Civil Aviation Safety Authority (CASA)","Airservices Australia","Many flight schools, with many international students"],
 ["Canada","Transport Canada","NAV CANADA (private, not-for-profit)","NAV CANADA recruits and trains its own controllers"]]},
 {t:"note",x:"Typical information only. Nationality, work authorisation and licence conversion rules vary widely; always check official websites."}]},
@@ -208,7 +208,7 @@ sections:[
 {h:"Checklist",blocks:[{t:"check",items:[
 {name:"Nationality and work authorisation",x:"Public posts such as ATC often require that country’s nationality; private companies also need you to have residence status or a visa to work"},
 {name:"English",x:"Pilots and controllers need ICAO English Level 4 or above; airlines may also ask for language test scores"},
-{name:"Medical",x:"As a guide, Class 1 for pilots and Class 3 for controllers (national standards); check eyesight, colour vision, hearing and conditions early"},
+{name:"Medical",x:"As a guide, Class 1 for pilots; controller standards vary by country and employer (Class 3 in Korea and Europe, an FAA employee medical review in the US); check eyesight, colour vision, hearing and conditions early"},
 {name:"Cost and time",x:"Self-funded flight training is expensive; look into cadet schemes, national schools, the military and scholarships"},
 {name:"Licence conversion",x:"Foreign licences often cannot be used as they are; check conversion and extra exam requirements with the authority where you want to work"},
 {name:"Checking information",x:"Read official notices, rules and update dates; attend information sessions and visits to hear from people in the job"}]}]},

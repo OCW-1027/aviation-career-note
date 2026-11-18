@@ -28,7 +28,7 @@ sections:[
 {name:"Codes and frequencies",x:"Transponder codes and frequency changes"}]},
 {t:"point",warn:true,x:"Never mistake sequence information such as “number one” for a take-off or runway-entry clearance. After the January 2024 accident at Haneda, Japan revised how departure sequence information is given (course “Aviation Fundamentals” 2-4)."}]},
 {h:"Number conventions that differ by country",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
-["Altimeter setting unit","Inches (inHg)","Inches (inHg)","Inches (inHg)","Hectopascals (hPa)"],
+["Altimeter setting unit","Hectopascals (hPa); military facilities may use inches (inHg)","Inches (inHg)","Inches (inHg)","Hectopascals (hPa)"],
 ["Transition altitude","14,000 ft","14,000 ft","18,000 ft","Varies by country and airport (often a few thousand feet)"],
 ["Radio language","English","English as a rule","English","English; some countries also use their own language domestically (France, for example)"],
 ["Phraseology guides","National air traffic services standards","ATC procedures standards, ATC Communication Handbook","FAA JO 7110.65, the AIM glossary","ICAO Doc 9432, UK CAP 413 and others"]]},

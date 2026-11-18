@@ -73,7 +73,7 @@ sections:[
 ["Typical precision","CAT I to III","CAT I (research on extending to CAT II/III)","Vertical guidance close to CAT I (LPV)"],
 ["Best suited to","Main runways at large airports","Large airports with many runways","The whole country, including regional airports without ILS"]]}]},
 {h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
-["SBAS","KASS: operational from 28 December 2023 (the world’s fifth); used at Muan and Ulsan from January 2024","MSAS: provided via the Michibiki (QZSS) satellites since 2020","WAAS: available for aviation since 2003","EGNOS: safety-of-life service for aviation since 2011"],
+["SBAS","KASS: operational from 28 December 2023 (the world’s fifth); first used at Muan and Ulsan airports","MSAS: provided via the Michibiki (QZSS) satellites since 2020","WAAS: available for aviation since 2003","EGNOS: safety-of-life service for aviation since 2011"],
 ["GBAS","Research and testing","Full operation at Haneda in 2025 (Asia’s first)","In use at Newark, Houston and others","In use at Frankfurt, Bremen, Zurich and others"]]},
 {t:"note",x:"Airports and dates are typical examples. Check announcements by each aviation authority and the AIP for the current situation."}]},
 {h:"Preparing for interference",blocks:[{t:"rows",items:[
