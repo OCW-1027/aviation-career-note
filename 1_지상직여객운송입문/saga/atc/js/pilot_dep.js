@@ -9,6 +9,7 @@
   'use strict';
   var ATC = window.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt;
   var HO_ALT = 1000, ACC_ALT = 1500;      /* Tower → Departure 이양 높이 · 가속을 시작하는 높이 — 둘 다 지면 기준 ft, 게임값 */
+  var TAIL = 10, ROT_OK = [1.5, 3.6];      /* 직접 이륙: 땅에 바퀴가 닿은 채 기수가 이 각도(°)를 넘으면 꼬리 닿음 · 알맞은 회전율(°/s) — 게임값(실제 꼬리가 닿는 각도와 회전 목표는 기종 · 무게 · 회사 절차에 따름) */
   var F_OVER = 15;      /* 플랩을 제때 안 올리면 그 단계 속도 +15kt에서 가속을 멈춤 */
   /* 플랩을 올리는 속도(kt): 5 → 1은 V2+35 언저리(5kt 단위), 1 → UP은 거기서 +20 — 게임값. 실제는 그날 중량으로 계산한 플랩 단계별 기동 속도(지금 단계의 기동 속도에 이르러 가속 중일 때 다음 단계로) */
   function fSpd(v2, flap) { var f1 = Math.round((v2 + 36) / 5) * 5; return flap > 1 ? f1 : f1 + 20; }
@@ -29,7 +30,7 @@
     this.eng = { st: 'off', t0: 0, n1: 0 }; this.pbrake = true;
     var c = o.carry, f;
     if (c) { f = this.f = c.f; this.fp = c.fp; this.standK = c.standK; this.xpdr = c.xpdr; this.sid = c.sid; this.cur = c.cur; this.mcp = c.mcp; this.depFq = c.depFq; this.nRb = c.nRb; this.nRbOk = c.nRbOk; this.rt = c.rt; this.sq = c.ac.squawk; this.tAcc = (c.tAcc || 0) + c.sim.t; sim.usedCs[f.cs] = 1;
-      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; }
+      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; this.to = c.to || null; }
     else {
       f = sim.mkFlight(function (a) { return a.code === 'VLA'; }, 'dep');
       f.type = 'B789'; if (D.types && D.types.B789) f.perf = D.types.B789; f.wake = 'H';
@@ -278,7 +279,11 @@
     F.on = !!on; ac.manTaxi = F.on; F.th = F.thr = 0; F.k.pitch = F.k.roll = F.k.thr = 0; F.t.pitch = F.t.roll = 0; this.mt = { off: 0, fast: 0, fastT: -99, closeT: -99 }; if (on) this.manUsed = true;
     this.note(on ? ATC.T('지상 이동 직접 조종 — 초록 선(허가받은 경로)을 따라가세요. 추력 레버를 조금 올리면 움직이고, 정지 지점에서는 스스로 멈춥니다.') : ATC.T('지상 이동을 자동으로 되돌렸습니다.'), 'info'); this.bump();
   };
-  DepPilot.prototype.manKey = function (k) { if (k === 'z' && this.phase === 'gnd') { this.manTaxi(); return true; } return false; };
+  DepPilot.prototype.manKey = function (k) {
+    if (k === 'z' && this.phase === 'gnd') { this.manTaxi(); return true; }
+    if (k === 'z' && this.phase === 'twr') { var td = this.todo(); if (this.fly.on && this.ac.st === 'air') { if (td && td.k === 'ap') this.act('ap'); } else this.manTO(); return true; }      /* 관제탑 단계: Z = 직접 이륙 켜고 끄기, 떠오른 뒤에는 자동조종 */
+    return false;
+  };
   function segD(u, v, a, b) { var dx = b.u - a.u, dy = b.v - a.v, L2 = dx * dx + dy * dy || 1, t = Math.max(0, Math.min(1, ((u - a.u) * dx + (v - a.v) * dy) / L2)); return { d: Math.hypot(u - a.u - dx * t, v - a.v - dy * t), t: t, u: a.u + dx * t, v: a.v + dy * t, du: dx / Math.sqrt(L2), dv: dy / Math.sqrt(L2) }; }
   DepPilot.prototype.manStep = function (ac, dt) {
     var N = D.gN, F = this.fly, sim = this.sim, M = this.mt, gp = gpad(), KT = ATC.KT || 0.5144;
@@ -306,6 +311,7 @@
   /* 화면 아래 안내 한 줄 */
   DepPilot.prototype.taxiHint = function () {
     var ac = this.ac, M = this.mt || {}, N = D.gN, KT = ATC.KT || 0.5144; if (!this.fly.on) return '';
+    if (this.phase === 'twr') { var ia = Math.round(ac.spd / KT), vr = this.vs.vr, pp = Math.round(this.fly.pitch); return ac.st === 'air' ? ATC.T('기수 {0}° · {1}kt — V2+15 {2}kt를 지키세요(기수 약 15°) · 400ft 지나 Z = 자동조종', pp, ia, this.vs.v2 + 15) : ac.st === 'roll' && ia >= vr - 3 ? ATC.T('VR — ↓로 기수 올림(초당 약 3°) · 지금 {0}° · {1}°를 넘기지 마세요', pp, TAIL) : ac.st === 'roll' ? ATC.T('이륙 활주 {0}kt — VR {1}kt까지 기다림', ia, vr) : ATC.T('직접 이륙 준비 — 이륙 허가 · 이륙 추력 뒤 활주'); }
     if (ac.st !== 'taxi') return ac.st === 'athold' ? ATC.T('정지 중 — 다음 허가를 기다립니다') : ATC.T('지상 이동 허가를 받으면 움직일 수 있습니다');
     var tn = N[ac.path[ac.pi]], prev = ac.pi > 0 ? N[ac.path[ac.pi - 1]] : N[ac.node], nx = ac.pi + 1 < ac.path.length ? N[ac.path[ac.pi + 1]] : null, t = Math.round(ac.spd / KT) + 'kt';
     var sd = 0, i, a, b, tw = ''; for (i = ac.pi; i < ac.path.length; i++) { a = i === ac.pi ? ac : N[ac.path[i - 1]]; b = N[ac.path[i]]; sd += Math.hypot(a.u - b.u, a.v - b.v); if (ac.hs[ac.path[i]] !== undefined || i === ac.path.length - 1) break; }
@@ -315,6 +321,76 @@
     return t;
   };
   /* 3D에 그릴 남은 경로(해리 좌표) */
+  /* ---- 직접 이륙(선택, 3D 조종석): 이륙 추력은 자동(THR REF). 조종간으로 VR에서 기수를 들고, 떠오른 뒤 V2+15kt를 지키며 자동조종을 켤 때까지 ---- */
+  DepPilot.prototype.manToOk = function () { var ac = this.ac; return this.phase === 'twr' && !this.done && !!ac && (ac.st === 'athold' || ac.st === 'lineup' || ac.st === 'linedup' || ac.st === 'roll'); };
+  DepPilot.prototype.manTO = function (on) {
+    var ac = this.ac, F = this.fly, sim = this.sim; if (on === undefined) on = !F.on; if (on && !this.manToOk()) return; if (!on && ac && ac.st === 'air') return;
+    F.on = !!on; ac.man = F.on ? F : null; F.k.pitch = F.k.roll = F.k.thr = 0; F.t.pitch = F.t.roll = 0; F.at = true; F.t0 = -99; F.bank = 0;
+    if (on) { F.pitch = this.pitch || 0; F.alpha = F.pitch; this.mto = this.mto || {}; this.mtoUsed = true; this.note(ATC.T('직접 이륙 — 이륙 추력은 자동입니다. VR {0}kt에서 ↓(화면 조종간 · 게임패드 스틱 뒤로)로 기수를 들어 올리세요(초당 약 3°). 바퀴가 땅에 닿은 채 기수가 {1}°를 넘으면 꼬리가 닿습니다(게임값). 떠오르면 기수 15° 안팎으로 V2+15({2}kt)를 지키고, 400ft를 지나 자동조종을 켭니다.', this.vs.vr, TAIL, this.vs.v2 + 15), 'info'); }
+    else { if (ac.st === 'roll' && (this.pitch || 0) > 0) this.rotT = sim.t - this.pitch / 3; this.note(ATC.T('이륙 자동으로 — 부기장 조종(자동 회전)'), 'info'); }
+    this.bump();
+  };
+  DepPilot.prototype.noThr = function () { return this.phase === 'twr' && this.fly.on; };
+  DepPilot.prototype.stickLbl = function () { return this.phase === 'twr' ? ATC.T('↓ 당기면 기수 올림') : ATC.T('좌우 방향 · ↓ 브레이크'); };
+  function stickIn(F) { var g = typeof navigator !== 'undefined' && navigator.getGamepads ? navigator.getGamepads() : null, y = 0, i; for (i = 0; g && i < g.length; i++) if (g[i] && g[i].connected) { y = g[i].axes[1] || 0; y = Math.abs(y) < 0.12 ? 0 : (y - (y > 0 ? 0.12 : -0.12)) / 0.88; F.gp = true; break; } return Math.max(-1, Math.min(1, F.k.pitch * 0.75 + F.t.pitch + y)); }      /* 키보드는 꽉 눌러도 초당 3°(알맞은 회전율) */
+  /* 땅 위: VR 20kt 전부터 승강타가 들고, 떠오르는 기수 각은 속도가 붙을수록 낮아짐 */
+  DepPilot.prototype.manRoll = function (ac, dt, thr) {
+    var F = this.fly, sim = this.sim, M = this.mto, KT = ATC.KT || 0.5144, ias = ac.spd / KT, vr = this.vs.vr, ip = stickIn(F), e = D.ends[ac.rwy];
+    F.th = F.thr = thr;
+    if (ias >= vr - 20) F.pitch = Math.max(0, Math.min(TAIL + 0.5, F.pitch + ip * 4 * dt)); else F.pitch = Math.max(0, F.pitch - 2 * dt);
+    if (F.pitch > 1 && M.rs === undefined) { M.rs = Math.round(ias); M.r0 = sim.t; }
+    if (M.rs !== undefined && M.rs < vr - 3 && !M.early) { M.early = true; sim.inc('p_to_early', [ac], ATC.T('{0}: VR({1}kt) 전 {2}kt에서 기수를 들기 시작했습니다 — 떠오르기 전에 기수가 높아져 꼬리가 닿기 쉽습니다.', ac.cs, vr, M.rs)); }
+    M.maxG = Math.max(M.maxG || 0, F.pitch);
+    if (F.pitch > TAIL && !M.tail) { M.tail = true; sim.inc('p_to_tail', [ac], ATC.T('{0}: 바퀴가 땅에 닿은 채 기수가 {1}°를 넘었습니다 — 테일 스트라이크(게임 기준).', ac.cs, TAIL)); this.note(ATC.T('TAIL STRIKE — 기수를 더 들지 마세요'), 'alert'); }
+    if (M.rs === undefined && ias >= vr + 25) {      /* 회전을 하지 않으면 부기장이 대신(감점) */
+      M.help = true; M.rs = Math.round(ias); sim.inc('p_to_late', [ac], ATC.T('{0}: VR({1}kt)을 25kt 넘도록 기수를 들지 않아 부기장이 회전했습니다.', ac.cs, vr)); this.note(ATC.T('부기장: 「Rotate!」 — 부기장이 기수를 듭니다'), 'alert');
+      F.on = false; ac.man = null; this.rotT = sim.t; this.pitch = 0; this.bump(); return '';
+    }
+    var lp = Math.max(7.5, Math.min(13, 10 + (vr + 8 - ias) * 0.35)), r = '';      /* 초당 3°로 들면 VR+10kt 남짓 · 기수 8 ~ 9°에서 떠오름(게임 모형) */
+    if (F.pitch >= lp && ias >= vr - 6) {
+      ac.alt = 1; ac.liftT = sim.t; ac.st = 'air'; sim.lastDep[e.rw] = { t: sim.t, wake: ac.wake, full: !ac.inter, cs: ac.cs }; this.vsNow = 300; this.gam = 1.5; r = 'lift';
+      var rate = (F.pitch - 1) / Math.max(0.3, sim.t - M.r0), T = this.to = { rs: M.rs, vr: vr, rate: Math.round(rate * 10) / 10, lofP: Math.round(F.pitch * 10) / 10, lofIas: Math.round(ias), maxG: Math.round(M.maxG * 10) / 10, v2: this.vs.v2, tail: !!M.tail, early: !!M.early };
+      if (M.rs > vr + 8 && !M.help) sim.inc('p_to_late', [ac], ATC.T('{0}: VR({1}kt)보다 늦은 {2}kt에서 기수를 들기 시작했습니다.', ac.cs, vr, M.rs));
+      if (rate > ROT_OK[1]) sim.inc('p_to_fast', [ac], ATC.T('{0}: 초당 {1}°로 기수를 들었습니다 — 너무 빨라 꼬리가 닿기 쉽습니다(게임 목표 초당 약 3°).', ac.cs, T.rate));
+      else if (rate < ROT_OK[0]) sim.inc('p_to_slowrot', [ac], ATC.T('{0}: 초당 {1}°로 천천히 기수를 들어 활주 거리가 길어졌습니다(게임 목표 초당 약 3°).', ac.cs, T.rate));
+      if (!M.early && !M.tail && M.rs <= vr + 8 && rate >= ROT_OK[0] && rate <= ROT_OK[1]) sim.inc('p_to_ok', [ac], ATC.T('{0}: 회전 시작 {1}kt(VR {2}) · 초당 {3}° · {4}°에서 떠오름', ac.cs, M.rs, vr, T.rate, T.lofP));
+      M.lofT = sim.t; M.badT = 0; M.slowT = 0; M.minIas = ias; this.bump();
+    }
+    this.pitch = F.pitch; F.alpha = F.pitch;
+    ac.u += e.du * ac.spd * dt; ac.v += e.dv * ac.spd * dt; return r;
+  };
+  /* 떠오른 뒤: 기수 각 − 받음각 = 상승각. 상승각이 크면 속도가 줄고, 작으면 늚(이륙 추력 · 플랩 5) */
+  DepPilot.prototype.manAir = function (ac, dt) {
+    var F = this.fly, sim = this.sim, M = this.mto, KT = ATC.KT || 0.5144, D2R = Math.PI / 180, ias = ac.spd / KT, vr = this.vs.vr, v2 = this.vs.v2, ip = stickIn(F), e = D.ends[ac.rwy];
+    F.pitch = Math.max(-5, Math.min(25, F.pitch + ip * 3 * dt));
+    var a = Math.max(2, Math.min(16, 7.5 * Math.pow((vr + 8) / Math.max(100, ias), 2))); F.alpha = a;
+    this.gam += ((F.pitch - a) - this.gam) * Math.min(1, dt * 1.5);
+    var ex = 2.9 + (this.cfg.gear === 'up' ? 0.5 : 0);
+    ias = Math.max(100, ias + (ex - 19.07 * Math.sin(this.gam * D2R)) * dt); ac.spd = ias * KT;
+    this.vsNow = ias * 101.27 * (1 + ac.alt / 1000 * 0.0165) * Math.sin(this.gam * D2R); ac.alt += this.vsNow / 60 * dt;
+    if (ac.alt < 1) { ac.alt = 1; if (this.gam < 0) this.gam = 0; this.vsNow = Math.max(0, this.vsNow); if (!M.sink && sim.t - M.lofT > 2) { M.sink = true; sim.inc('p_to_sink', [ac], ATC.T('{0}: 떠오른 뒤 기수를 낮춰 다시 활주로에 닿았습니다.', ac.cs)); } }
+    if (!this.cPos && ac.alt > 35) { this.cPos = true; this.call = { t: 'POSITIVE RATE', at: sim.t }; }
+    if (ac.alt > 35) { M.minIas = Math.min(M.minIas, ias); if (ias < v2 + 5 || ias > v2 + 35) M.badT += dt; if (ias < v2) M.slowT += dt; }
+    if (M.slowT > 3 && !M.slow) { M.slow = true; sim.inc('p_to_slow', [ac], ATC.T('{0}: 떠오른 뒤 V2({1}kt)보다 느린 채 3초 넘게 날았습니다 — 기수를 조금 낮추세요.', ac.cs, v2)); }
+    if (a > 14) { M.stT = (M.stT || 0) + dt; if (M.stT > 1 && !M.stall) { M.stall = true; sim.inc('p_to_stall', [ac], ATC.T('{0}: 받음각이 커져 실속 경고가 울렸습니다.', ac.cs)); } }
+    if (!M.help && (ias > fSpd(v2, 5) + 25 || ac.alt < 400 && sim.t - M.lofT > 45)) {      /* 플랩 5 속도를 크게 넘거나 45초가 지나도 400ft 아래면 부기장이 넘겨받음 */
+      M.help = true; sim.inc('p_to_help', [ac], ATC.T('{0}: 초기 상승을 유지하지 못해 부기장이 조종을 넘겨받았습니다.', ac.cs)); this.note(ATC.T('부기장: 「I have control」 — 부기장이 조종합니다'), 'alert'); this.manEnd(true); this.vsNow = Math.max(this.vsNow, 800); return;
+    }
+    this.pitch = F.pitch; ac.u += e.du * ac.spd * dt; ac.v += e.dv * ac.spd * dt;
+  };
+  DepPilot.prototype.manEnd = function (help) {      /* 자동조종을 켜면 직접 조종 끝 — 초기 상승 속도 평가 */
+    var F = this.fly, ac = this.ac, M = this.mto || {}; if (!F.on) return; F.on = false; ac.man = null; if (help) M.help = true;
+    if (this.to) { this.to.minIas = Math.round(M.minIas || 0); this.to.badT = Math.round(M.badT || 0); }
+    if (M.lofT !== undefined && !M.slow && !M.help && (M.badT || 0) < 5) this.sim.inc('p_to_climb', [ac], ATC.T('{0}: 자동조종을 켤 때까지 V2+5 ~ V2+35kt를 지켰습니다(가장 느린 속도 {1}kt).', ac.cs, Math.round(M.minIas)));
+    this.bump();
+  };
+  /* 직접 이륙 중 FD(게임 조종 도움 막대): 땅에서는 VR부터 초당 3°로 9°까지, 떠오른 뒤에는 V2+15kt가 되는 기수 각 */
+  DepPilot.prototype.toFd = function (ac) {
+    if (this.phase !== 'twr' || !this.fly.on) return null;
+    var F = this.fly, KT = ATC.KT || 0.5144, ias = ac.spd / KT, v2 = this.vs.v2, t;
+    if (ac.st !== 'air') t = this.rotT ? Math.min(9, (this.sim.t - this.rotT) * 3) : 0; else t = Math.max(8, Math.min(20, 15 + (ias - (v2 + 15)) * 0.6));
+    return { roll: 0, pitch: Math.max(-8, Math.min(8, t - F.pitch)), lat: 'TO/GA', ver: 'TO/GA' };
+  };
   DepPilot.prototype.routePts = function () {
     var ac = this.ac, N = D.gN; if (this.phase !== 'gnd' || !ac || !ac.path || ac.pi >= ac.path.length || !(ac.st === 'taxi' || ac.st === 'athold')) return null;
     var pts = [D.uv2xy(ac.u, ac.v)], i, n, stopI = -1; for (i = ac.pi; i < ac.path.length; i++) { n = N[ac.path[i]]; pts.push(D.uv2xy(n.u, n.v)); if (stopI < 0 && (ac.hs[ac.path[i]] !== undefined || i === ac.path.length - 1)) stopI = pts.length - 1; }
@@ -362,7 +438,7 @@
     var sim = this.sim, ac = this.ac, cf = this.cfg;
     if (k === 'toga') { this.toga = true; this.togaT = sim.t; this.note(ATC.T('{0}: 이륙 추력 — V1 {1} · VR {2} · V2 {3}kt', ac.cs, this.vs.v1, this.vs.vr, this.vs.v2), 'info'); }
     else if (k === 'gear') { cf.gear = 'transit'; cf.gearT = sim.t + 8; cf.gearTo = 'up'; this.note(ATC.T('기어 업'), 'info'); }
-    else if (k === 'ap') this.apOn = true;
+    else if (k === 'ap') { this.apOn = true; this.manEnd(); }
     else if (k === 'flap1') { cf.flap = 1; this.note(ATC.T('플랩 1 — {0}kt에서 플랩 UP', fSpd(this.vs.v2, 1)), 'info'); }
     else if (k === 'flapup') { cf.flap = 0; this.mcp.spd = 250; if (ac.tIas !== undefined) ac.tIas = ac.normIas || 250; this.note(ATC.T('플랩 UP — 250kt까지 가속'), 'info'); }
     if (fo) sim.inc('p_set_late', [ac], ATC.T('{0}: 「{1}」을(를) {2}초 안에 하지 않아 부기장이 했습니다.', ac.cs, td.t, td.lim || TODO_T));
@@ -372,17 +448,20 @@
   DepPilot.prototype.rollStep = function (ac, dt) {
     var e = D.ends[ac.rwy], p = ac.perf, sim = this.sim, thr = Math.min(1, Math.max(0.15, (sim.t - (this.togaT || sim.t)) / 4)), KT = ATC.KT || 0.5144, r = '';
     ac.spd += p.acc * thr * dt;
+    var man = this.fly.on && ac.man;
     if (!this.c80 && ac.spd >= 80 * KT) { this.c80 = true; this.call = { t: '80 KNOTS', at: sim.t }; }
     if (!this.cV1 && ac.spd >= this.vs.v1 * KT) { this.cV1 = true; this.call = { t: 'V1', at: sim.t }; }
     if (!this.rotT && ac.spd >= p.vr) { this.rotT = sim.t; this.call = { t: 'ROTATE', at: sim.t }; }
+    if (man) return this.manRoll(ac, dt, thr);
     if (this.rotT) { this.pitch = Math.min(12, (sim.t - this.rotT) * 3); if (this.pitch >= 8.5) { ac.alt = 1; ac.liftT = sim.t; ac.st = 'air'; sim.lastDep[e.rw] = { t: sim.t, wake: ac.wake, full: !ac.inter, cs: ac.cs }; this.vsNow = 700; r = 'lift'; } }
     ac.u += e.du * ac.spd * dt; ac.v += e.dv * ac.spd * dt; return r;
   };
   DepPilot.prototype.airStep = function (ac, dt) {
+    if (this.fly.on && ac.man) return this.manAir(ac, dt);
     var e = D.ends[ac.rwy], p = ac.perf, KT = ATC.KT || 0.5144, clean = this.cfg.flap === 0, vt = (clean ? 250 : this.flapSpd(ac.alt)) * KT, acc = ac.spd < vt - 1;
     this.vsNow += (((clean || this.accel) && acc ? 1700 : p.climb + 300) - this.vsNow) * Math.min(1, dt * 0.45);
     ac.alt = Math.min(ac.maxAlt || 6000, ac.alt + this.vsNow / 60 * dt); if (ac.alt >= (ac.maxAlt || 6000)) this.vsNow = 0;
-    ac.spd = Math.min(vt, ac.spd + (clean ? 1.0 : this.accel ? 0.8 : 0.7) * dt); this.pitch = 0;
+    ac.spd = ac.spd > vt ? Math.max(vt, ac.spd - 0.8 * dt) : Math.min(vt, ac.spd + (clean ? 1.0 : this.accel ? 0.8 : 0.7) * dt); this.pitch = 0;      /* 직접 조종에서 넘겨받을 때 목표보다 빠르면 천천히 줄임 */
     if (!this.cPos && ac.alt > 35) { this.cPos = true; this.call = { t: 'POSITIVE RATE', at: this.sim.t }; }
     ac.u += e.du * ac.spd * dt; ac.v += e.dv * ac.spd * dt;
   };
@@ -479,6 +558,17 @@
   ATC.INC.p_taxi_fast = { cat: 'S', pts: -3, t: ATC.T('지상 이동 과속'), les: 'gnd' };
   ATC.INC.p_taxi_close = { cat: 'S', pts: -8, t: ATC.T('지상에서 다른 항공기에 접근'), les: 'gnd' };
   ATC.INC.p_hold_bust = { cat: 'S', pts: -15, t: ATC.T('정지선 통과'), les: 'gnd' };
+  ATC.INC.p_to_ok = { cat: 'P', pts: 2, t: ATC.T('좋은 이륙 회전'), les: 'app' };
+  ATC.INC.p_to_climb = { cat: 'P', pts: 2, t: ATC.T('초기 상승 속도 유지'), les: 'app' };
+  ATC.INC.p_to_early = { cat: 'S', pts: -5, t: ATC.T('이른 회전(VR 전)'), les: 'app' };
+  ATC.INC.p_to_late = { cat: 'E', pts: -3, t: ATC.T('늦은 회전'), les: 'app' };
+  ATC.INC.p_to_fast = { cat: 'S', pts: -3, t: ATC.T('너무 빠른 회전'), les: 'app' };
+  ATC.INC.p_to_slowrot = { cat: 'E', pts: -2, t: ATC.T('느린 회전'), les: 'app' };
+  ATC.INC.p_to_tail = { cat: 'S', pts: -15, t: ATC.T('테일 스트라이크'), les: 'app' };
+  ATC.INC.p_to_slow = { cat: 'S', pts: -6, t: ATC.T('초기 상승 속도 부족(V2 아래)'), les: 'app' };
+  ATC.INC.p_to_stall = { cat: 'S', pts: -10, t: ATC.T('실속 경고'), les: 'app' };
+  ATC.INC.p_to_help = { cat: 'S', pts: -5, t: ATC.T('부기장이 조종을 넘겨받음'), les: 'app' };
+  ATC.INC.p_to_sink = { cat: 'S', pts: -8, t: ATC.T('떠오른 뒤 다시 활주로에 닿음'), les: 'app' };
   ATC.INC.p_taxi_ok = { cat: 'P', pts: 2, t: ATC.T('직접 지상 이동'), les: 'gnd' };
   ATC.INC.p_fpl_bad = { cat: 'P', pts: -3, t: ATC.T('맞지 않는 비행계획'), les: 'del' };
   ATC.INC.p_sq_ok = { cat: 'P', pts: 1, t: ATC.T('트랜스폰더 설정'), les: 'del' };

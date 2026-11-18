@@ -185,6 +185,7 @@
 
   /* 비행 지시기: 목표 경사 · 기수 각과 지금의 차이(°) */
   M.fd = function (ac, p) {
+    if (p.toFd) { var tf = p.toFd(ac); if (tf) return tf; }      /* 출발편 직접 이륙 */
     var F = p.fly, man = F.on, bank = man ? F.bank : (ATC.Cockpit && ATC.Cockpit.on && ATC.Cockpit.dbg().vis ? ATC.Cockpit.dbg().vis.bank : 0), trk = man ? F.trk : ac.hdg;
     var ap = ac.appr, e = D.ends[ap ? ap.rwy : ac.rwy], ra = ac.alt - D.airport.elev, tT, tb, gt, mode = 'HDG';
     var g = e ? ATC.ilsGeom(ac, e) : null, nav = ac.nav || {};
@@ -235,13 +236,13 @@
       function up(e) { drag = null; kn.style.transform = ''; var q = cur(); if (q) { q.fly.t.roll = 0; q.fly.t.pitch = 0; } }
       st.addEventListener('pointerup', up); st.addEventListener('pointercancel', up);
       var th = el.querySelector('.ckthr'), td = null;
-      function tv(e) { var r = th.getBoundingClientRect(), v = U.clamp(1 - (e.clientY - r.top) / r.height, 0, 1), q = cur(); if (q) { if (q.fly.at) M.toggleAT(q); q.fly.th = v; } }
+      function tv(e) { var r = th.getBoundingClientRect(), v = U.clamp(1 - (e.clientY - r.top) / r.height, 0, 1), q = cur(); if (q) { if (q.noThr && q.noThr()) return; if (q.fly.at) M.toggleAT(q); q.fly.th = v; } }
       th.addEventListener('pointerdown', function (e) { e.stopPropagation(); e.preventDefault(); th.setPointerCapture(e.pointerId); td = 1; tv(e); });
       th.addEventListener('pointermove', function (e) { e.stopPropagation(); if (td) tv(e); });
       th.addEventListener('pointerup', function () { td = null; });
     }
     el.hidden = !F.on;
-    var sl = el.querySelector('.ckstick small'), slt = p.taxiHint ? ATC.T('좌우 방향 · ↓ 브레이크') : ATC.T('↓ 당기면 기수 올림'); if (sl.textContent !== slt) sl.textContent = slt;
+    var sl = el.querySelector('.ckstick small'), slt = p.stickLbl ? p.stickLbl() : p.taxiHint ? ATC.T('좌우 방향 · ↓ 브레이크') : ATC.T('↓ 당기면 기수 올림'); if (sl.textContent !== slt) sl.textContent = slt;
     if (F.on) { var lv = el.querySelector('.ckthr i'); lv.style.bottom = (F.th * 100).toFixed(0) + '%'; el.querySelector('.ckthr b').style.height = (F.thr * 100).toFixed(0) + '%'; el.querySelector('.ckthr').classList.toggle('at', !!F.at); var h = el.querySelector('.ckhint'), ht = F.gp ? ATC.T('게임패드 · 스틱 조종 · RT/LT 추력 · A 자동조종') : window.matchMedia && matchMedia('(pointer: coarse)').matches ? ATC.T('왼쪽 조종간을 끌어 조종 · 오른쪽 레버로 추력 · 자홍색 게임 조종 도움 막대를 따라가세요(실제 FD와 다름)') : ATC.T('방향키 조종간 · W/S 추력 · Z 자동조종 · T 자동추력 · G 기어 · [ ] 플랩'); if (p.taxiHint) ht = p.taxiHint(); if (h.textContent !== ht) h.textContent = ht; }
   };
 
