@@ -45,7 +45,8 @@
     if (loading) return; loading = true;
     function dec() { var L = ATC.CK_CALLOUTS || {}; Object.keys(L).forEach(function (k) { fetch(L[k]).then(function (r) { return r.arrayBuffer(); }).then(function (ab) { return A.decodeAudioData(ab); }).then(function (b) { buf[k] = b; }).catch(function () { }); }); }
     if (ATC.CK_CALLOUTS) return dec();
-    var sc = document.createElement('script'); sc.src = BASE + 'assets/sfx/ck_callouts.js'; sc.onload = dec; document.head.appendChild(sc);
+    var t = document.querySelector('script[src*="js/ck_sound.js"]'), vm = t && /[?&]v=([^&]+)/.exec(t.getAttribute('src'));      /* 판 번호를 붙여 불러옴 — 배포 직후 옛 파일이 캐시에 남지 않게(사이트 39차 결과) */
+    var sc = document.createElement('script'); sc.src = BASE + 'assets/sfx/ck_callouts.js' + (vm ? '?v=' + vm[1] : ''); sc.onload = dec; document.head.appendChild(sc);
   }
   var lastCall = null;
   /* 자동조종 해제 경고음(울림 3번) */

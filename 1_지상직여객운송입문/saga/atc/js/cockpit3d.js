@@ -201,6 +201,16 @@
     im.src = BASE + 'assets/img/' + R.img + ((window.innerWidth || 1200) < 900 ? '_s' : '') + '.webp';
   }
   function inRegion(x, y) { var R = REGION[ATC.aptId]; if (!R) return false; var b = R.box, mx = (b[2] - b[0]) * 0.07; return x > b[0] + mx && x < b[2] - mx && y < b[1] - mx && y > b[3] + mx; }
+  /* 마스크(육지 + 공항 섬)가 한 점도 닿지 않는 사진 칸은 받지 않음 — 하네다 동쪽 도쿄만처럼 국토지리원 사진이 없는 바다 칸에서 요청 실패(404)가 나던 것(사이트 38차 시험). 칸마다 32×32로 줄여 보고, 둘레 한 줄까지 보면 해안 칸은 그대로 받음 */
+  function landCells(mk, nx, ny) {
+    var s = 32;
+    try { var cv = document.createElement('canvas'); cv.width = nx * s; cv.height = ny * s; var c = cv.getContext('2d'); c.drawImage(mk, 0, 0, nx * s, ny * s); var d = c.getImageData(0, 0, nx * s, ny * s).data, w = nx * s, h = ny * s; } catch (e) { return function () { return true; }; }
+    return function (i, j) {
+      var xa = Math.max(0, i * s - 1), xb = Math.min(w - 1, (i + 1) * s), ya = Math.max(0, j * s - 1), yb = Math.min(h - 1, (j + 1) * s);
+      for (var y = ya; y <= yb; y++) for (var x = xa; x <= xb; x++) if (d[(y * w + x) * 4 + 3] > 0) return true;
+      return false;
+    };
+  }
   function buildGSI(sc, ap, elev) {
     var cf = TCF(), pr = cf.pr, MOB = (window.innerWidth || 1200) < 900, st = { n: 0, ok: 0, bad: 0 };
     var lv = MOB ? [[10, 45000, 0.9], [12, 17000, 1.4], [13, 7000, 2.8], [15, 2600, elev - 0.25]] : [[10, 70000, 0.9], [12, 24000, 1.4], [13, 10000, 2.8], [15, 3600, elev - 0.25]], LN = lv.length - 1;      /* 맨 앞 = 먼 곳(수평선까지 실제 사진 — 같은 무늬 되풀이 없앰) */
@@ -233,9 +243,11 @@
         g.setAttribute('position', new T.Float32BufferAttribute([c00.x * NM, Y, -c00.y * NM, c10.x * NM, Y, -c10.y * NM, c01.x * NM, Y, -c01.y * NM, c11.x * NM, Y, -c11.y * NM], 3));
         g.setAttribute('uv', new T.Float32BufferAttribute([0, 1, 1, 1, 0, 0, 1, 0], 2)); g.setIndex([0, 2, 1, 1, 2, 3]); g.computeVertexNormals();
         var mat = new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }), m = new T.Mesh(g, mat); m.renderOrder = cf.mask ? 1 + li : 0.5 + li * 0.4; m.visible = false; (li === LN ? ap : sc).add(m); (S.gsiM = S.gsiM || []).push(mat);      /* 사진은 이미 햇빛이 담겨 있어 조명 없이(낮밤 밝기만 곱함) */
-        var pend = 0, dirty = false, total = (x1 - x0 + 1) * (y1 - y0 + 1), got = 0;
+        var has = cf.mask ? landCells(mk, x1 - x0 + 1, y1 - y0 + 1) : null, pend = 0, dirty = false, total = 0, got = 0;
+        for (var x = x0; x <= x1; x++) for (var y = y0; y <= y1; y++) if (!has || has(x - x0, y - y0)) total++;
         function flush() { oc.clearRect(0, 0, W, H); oc.drawImage(mk, 0, 0); oc.globalCompositeOperation = 'source-in'; oc.drawImage(ph, 0, 0); oc.globalCompositeOperation = 'source-over'; tex.needsUpdate = true; m.visible = true; dirty = false; }
         for (var x = x0; x <= x1; x++) for (var y = y0; y <= y1; y++) (function (x, y) {
+          if (has && !has(x - x0, y - y0)) return;
           var im = new Image(); im.crossOrigin = 'anonymous'; st.n++; pend++;
           im.onload = function () { if (!ATC.Tiles.blank(im)) pc.drawImage(cf.key ? ATC.Tiles.keyed(im) : im, (x - x0) * 256, (y - y0) * 256); st.ok++; if (S.attr) S.attr.style.display = ''; got++; pend--; if (!dirty) { dirty = true; setTimeout(flush, pend ? 400 : 0); } if (cf.mask && li === LN && got > total * 0.8) S.rwyHide = true; };      /* 사진이 없는 칸(흰 · 검은 한 빛)은 비워 둠 */
           im.onerror = function () { st.bad++; pend--; if (st.bad > 8 && st.bad > st.ok && !S.satOn && S.satK) { S.satOn = true; if (cf.mask) satPlane(ap, elev, S.satK); else buildRegion(sc); } };      /* 못 불러오면: 하네다 = 게임 항공사진, 가상 공항 = 제미니 지역 그림 */
@@ -267,9 +279,10 @@
     g.setAttribute('uv', new T.Float32BufferAttribute([0, 1, 1, 1, 0, 0, 1, 0], 2)); g.setIndex([0, 2, 1, 1, 2, 3]); g.computeVertexNormals();
     var mat = new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }), m = new T.Mesh(g, mat); m.renderOrder = 6; m.visible = false;
     if (S.near) { S.scene.remove(S.near.m); S.near.m.geometry.dispose(); S.near.m.material.map.dispose(); S.near.m.material.dispose(); }
-    S.near = { x: x, y: y, m: m }; S.scene.add(m); var tok = S.near, pend = 0, dirty = false;
+    S.near = { x: x, y: y, m: m }; S.scene.add(m); var tok = S.near, pend = 0, dirty = false, has = cf.mask ? landCells(mk, x1 - x0 + 1, y1 - y0 + 1) : null;
     function flush() { if (S.near !== tok) return; oc.clearRect(0, 0, W, H); oc.drawImage(mk, 0, 0); oc.globalCompositeOperation = 'source-in'; oc.drawImage(ph, 0, 0); oc.globalCompositeOperation = 'source-over'; tex.needsUpdate = true; m.visible = true; dirty = false; }
     for (var tx = x0; tx <= x1; tx++) for (var tyy = y0; tyy <= y1; tyy++) (function (tx, tyy) {
+      if (has && !has(tx - x0, tyy - y0)) return;
       var im = new Image(); im.crossOrigin = 'anonymous'; pend++;
       im.onload = function () { if (S.near !== tok) return; if (!ATC.Tiles.blank(im)) pc.drawImage(cf.key ? ATC.Tiles.keyed(im) : im, (tx - x0) * 256, (tyy - y0) * 256); pend--; if (!dirty) { dirty = true; setTimeout(flush, pend ? 500 : 0); } };
       im.onerror = function () { pend--; };
