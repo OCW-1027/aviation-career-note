@@ -424,7 +424,9 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 /* ===== 자격 등급 · 오늘의 과제 · 끝없는 근무 · 결과 보강 ===== */
 .prate{margin-top:8px;font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
 .prate.r1{color:#7fd6a6;border-color:#2f7a55}.prate.r2{color:#ffd479;border-color:#a5822f;background:rgba(255,212,121,.08)}
-.xmodes{max-width:1280px;width:100%;margin:14px auto 0;padding:0 4vw;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:stretch}
+.xmodes{max-width:1280px;width:100%;margin:14px auto 0;padding:0 4vw;display:flex;flex-wrap:wrap;gap:14px 12px;align-items:stretch}
+.xgrp{flex:var(--n) 1 calc(var(--n)*230px);min-width:0;display:flex;flex-direction:column;gap:7px}.xgrp h5{margin:0;font-size:12px;letter-spacing:.04em;color:var(--txt);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.xgrp h5 small{font-weight:400;color:var(--mut);margin-left:6px;font-size:11.5px}
+.xrow{flex:1;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:12px;align-items:stretch}
 .xbtn{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--pan);color:var(--txt);cursor:pointer;transition:border-color .15s}
 .xbtn:hover{border-color:var(--acc)}.xbtn i{font-style:normal;font-size:10.5px;letter-spacing:.06em;color:var(--acc)}.xbtn b{font-size:14px}.xbtn small{font-size:11.5px;color:var(--mut)}
 .xbtn.daily i{color:#ffd479}
@@ -432,8 +434,9 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .rates h4{margin:0 0 6px;font-size:12.5px}.rates h4 small{font-weight:400;color:var(--mut);margin-left:6px}
 .rates ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:5px;font-size:11.5px}.rates p{margin:7px 0 0;font-size:10.5px;color:var(--mut)}
 .rates li{display:flex;gap:5px;align-items:baseline;padding:3px 8px;border:1px solid var(--line);border-radius:6px}.rates li span{font-weight:700;color:var(--mut)}.rates li.r1 span{color:#7fd6a6}.rates li.r2 span{color:#ffd479}
-@media (max-width:1180px){.xmodes{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.xmodes{grid-template-columns:1fr}}
+@media (max-width:1180px){.xgrp{flex-basis:100%}.xgrp h5{white-space:normal}.xrow{grid-template-columns:1fr 1fr}}
+@media (max-width:1180px) and (min-width:761px){.xgrp.chal .xrow{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.xrow{grid-template-columns:1fr}}
 .rup{margin:0 0 12px;padding:9px 12px;border-radius:8px;border:1px solid #2f7a55;background:rgba(127,214,166,.08);font-size:13px}.rup.r2{border-color:#a5822f;background:rgba(255,212,121,.08)}.rup.daily{border-color:#a5822f}
 .rgraph svg{width:100%;height:96px;display:block;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:6px}
 .rgraph .ln{fill:none;stroke:var(--acc);stroke-width:2;vector-effect:non-scaling-stroke}.rgraph .ar{fill:var(--acc);opacity:.12}.rgraph .pk{fill:#ffd479}
