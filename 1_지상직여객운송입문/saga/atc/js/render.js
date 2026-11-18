@@ -126,6 +126,7 @@
     if (D.flyBy) { var rank = function (n) { var f = D.fix[n]; return f.k === 'in' || f.k === 'out' ? 0 : f.k === 'if' || f.k === 'faf' || f.k === 'bd' ? 1 : D.starAlt && D.starAlt[n] ? 2 : 3; }; fnames.sort(function (a, b) { return rank(a) - rank(b); }); }
     fnames.forEach(function (n) {
       var f = D.fix[n]; f._on = false; f._sx = undefined; if (acc ? (f.k === 'if' || f.k === 'faf' || f.k === 'base' || f.k === 'dw' || f.k === 'wp' || f.k === 'tt') : (f.k === 'bd' || f.k === 'en')) return;
+      if (f.k === 'trn' && !(acc && sim.pilot && sim.pilot.ac && sim.pilot.ac.fpRoute && sim.pilot.ac.fpRoute.indexOf(n) >= 0)) return;      /* transition 지점: 조종사 체험에서 내 경로에 있을 때만(지역관제 화면) */
       if (!acc && sim.fixUse && (f.k === 'wp' || f.k === 'tt') && !sim.fixUse[n]) return;      /* 이번 근무의 경로에 없는 지점은 그리지 않음 */
       if (!acc && (f.k === 'if' || f.k === 'faf')) { var own = Object.keys(D.ends).filter(function (id) { return D.ends[id].IF === n || D.ends[id].FAF === n; })[0]; if ((sim.rwys || []).indexOf(own) < 0) return; }
       if (!acc && (f.k === 'base' || f.k === 'dw')) { var used = false; (sim.rwChg ? [D.star[sim.rwChg.from.id], D.star[sim.rwChg.to.id]] : [D.star[sim.flow.id]]).forEach(function (ss) { Object.keys(ss).forEach(function (g) { if (ss[g].indexOf(n) >= 0) used = true; }); }); if (!used) return; }

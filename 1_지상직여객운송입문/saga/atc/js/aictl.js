@@ -200,9 +200,10 @@ function rabot(sim) {
     if (a.kind === 'dep') {
       const above = arrs.some(b => U.dist(a, b) < 12 && b.alt > a.alt - 300 && b.alt < a.alt + 6000);
       const rc = () => a.rcSaid ? [] : (a.rcSaid = 1, [{ k: 'radar' }]);      /* 이륙기를 처음 레이더로 식별했을 때 한 번 「radar contact」(管制方式基準 — 이미 식별된 채 넘겨받는 도착기 · 지역관제는 다시 말하지 않음, GPT 16차 R16-02) */
-      if (a.tAlt < D.tmaTop && a.alt > 2500 && !above) say(rc().concat([{ k: 'alt', v: D.tmaTop }]));
+      const up = () => a.pilotMe && sim.pilot && sim.pilot.viaFor && sim.pilot.viaFor() ? { k: 'alt', v: D.tmaTop, via: true } : { k: 'alt', v: D.tmaTop };      /* 조종사 체험 출발편: SID 고도 제한이 남아 있으면 대개 「climb via SID to」(AIP ENR 1.5 3.1.2) */
+      if (a.tAlt < D.tmaTop && a.alt > 2500 && !above) say(rc().concat([up()]));
       else if (a.tAlt >= D.tmaTop && (a.waiting === 'ho' || ATC.AppSim.depRem(a) < 12)) say([{ k: 'ho', to: 'ACC' }]);
-      else if (a.waiting === 'climb' && !above) say(rc().concat([{ k: 'alt', v: D.tmaTop }]));
+      else if (a.waiting === 'climb' && !above) say(rc().concat([up()]));
       continue;
     }
     const e = D.ends[a.rwy], g = ATC.ilsGeom(a, e);
@@ -268,7 +269,7 @@ function rcbot(sim) {
       else if (a.tAlt === al && d < 40) { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: sim.nextSector(a) }], { noErr: true }); }
     } else {
       const d = U.dist(a, D.fix[a.exitFix]);
-      if (a.kind === 'dep' && a.tAlt < D.tmaTop + 1000) { a.botT = sim.t; sim.command(a, [{ k: 'alt', v: a.rfl }], { noErr: true }); }
+      if (a.kind === 'dep' && a.tAlt < D.tmaTop + 1000) { a.botT = sim.t; sim.command(a, [a.pilotMe && sim.pilot && sim.pilot.viaFor && sim.pilot.viaFor() ? { k: 'alt', v: a.rfl, via: true } : { k: 'alt', v: a.rfl }], { noErr: true }); }      /* transition의 고도 제한이 남아 있으면 「climb via SID to」 */
       else if (a.waiting === 'lvl') { a.botT = sim.t; sim.command(a, [{ k: 'alt', v: a.reqLvl }], { noErr: true }); }
       else if (d < 45 && a.nav.mode === 'route') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: sim.nextSector(a) }], { noErr: true }); }
     }

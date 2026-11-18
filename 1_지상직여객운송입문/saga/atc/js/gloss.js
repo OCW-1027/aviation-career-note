@@ -8,8 +8,8 @@
   function AK(x) { return /^FL/i.test(x) ? x.toUpperCase() : x + '피트'; }   /* 고도 풀이: FL은 그대로, 그 밖은 피트를 붙임 */
   var T = [
     [/MAYDAY, MAYDAY, MAYDAY/g, '메이데이(조난)'], [/PAN-PAN, PAN-PAN, PAN-PAN/g, '팬팬(긴급)'],
-    [/cleared to (.+?) airport via (\w+ \w+) departure, flight planned route, maintain (FL\d+|\d{1,2},\d{3}), squawk (\d+)/gi, '$1 공항까지 허가 — $2 출발 절차, 계획한 경로, $3 유지, 스쿼크 $4'],
-    [/cleared to (.+?) via (\w+ \w+) departure, flight planned route, maintain (FL\d+|\d{1,2},\d{3}), squawk (\d+)/gi, '$1까지 허가 — $2 출발 절차, 계획한 경로, $3 유지, 스쿼크 $4'],
+    [/cleared to (.+?) airport via (\w+ \w+) departure(?:, (\w+) transition)?, flight planned route, maintain (FL\d+|\d{1,2},\d{3}), squawk (\d+)/gi, function (m, a, b, t, c, d) { return a + ' 공항까지 허가 — ' + b + ' 출발 절차' + (t ? ', 이어서 ' + t + ' transition(SID 끝에서 항공로까지 잇는 경로)' : '') + ', 계획한 경로, ' + c + ' 유지, 스쿼크 ' + d; }],
+    [/cleared to (.+?) via (\w+ \w+) departure(?:, (\w+) transition)?, flight planned route, maintain (FL\d+|\d{1,2},\d{3}), squawk (\d+)/gi, function (m, a, b, t, c, d) { return a + '까지 허가 — ' + b + ' 출발 절차' + (t ? ', 이어서 ' + t + ' transition' : '') + ', 계획한 경로, ' + c + ' 유지, 스쿼크 ' + d; }],
     [/cleared to (.+?) airport via (\w+), climb and maintain (FL\d+|[\d,]+)/gi, function (m, a, b, c) { return a + ' 공항으로 회항 허가 — ' + b + ' 경유, ' + AK(c) + '까지 상승 후 유지'; }], [/cleared to (.+?) via (\w+), climbing (FL\d+|[\d,]+)/gi, function (m, a, b, c) { return a + ' 회항 — ' + b + ' 경유, ' + AK(c) + '까지 상승'; }],
     [/request IFR clearance to ([^.,]+)/gi, '$1까지 계기비행 허가 요청'], [/flight plan has been filed, request clearance to ([^.,]+)/gi, '비행계획 접수됨, $1까지 허가 요청'],
     [/we copy runway change, request revised clearance/gi, '활주로 변경 확인, 재허가 요청'],
@@ -73,7 +73,8 @@
     [/confirm runway, ATIS says departures runway (\w+)/gi, '활주로 확인 바람 — ATIS는 출발 활주로 $1'], [/require full length for departure/gi, '활주로 전체 길이가 필요함'], [/our assigned stand is (\w+)/gi, '배정 주기장은 $1'], [/runway (\w+) is not in use/gi, '활주로 $1은 사용하지 않음'],
     [/is above our maximum altitude/gi, '은 최대 운용 고도보다 높음'], [/\b(I )?say again/gi, function (m, i) { return i ? '다시 말함' : '다시 말해 달라'; }], [/stand ?by/gi, '잠시 대기'], [/\bstand ([A-Z]?\d\w*)/gi, '주기장 $1'],
     [/give way to (\w[\w ]*? \d+)/gi, '$1에게 양보'], [/giving way to (\w[\w ]*? \d+)/gi, '$1에게 양보함'], [/hold short runway (\w+)/gi, '활주로 $1 앞 정지'], [/ground (\d{3}\.\d+)/gi, '지상관제 $1'], [/expect (FL\d+)/gi, '최종 고도 $1 예정'],
-    [/\bnegative\b/gi, '아님(정정)'], [/\bCorrection\b/g, '정정'], [/\bunable\b/gi, '불가'], [/\broger\b/gi, '수신 확인'], [/\bheavy\b/g, '(대형기)'], [/(\d{3}\.\d+)/g, '$1']
+    [/\bnegative\b/gi, '아님(정정)'], [/\bCorrection\b/g, '정정'], [/\bunable\b/gi, '불가'], [/\broger\b/gi, '수신 확인'], [/\bheavy\b/g, '(대형기)'], [/(\d{3}\.\d+)/g, '$1'],
+    [new RegExp('climb via SID to ' + A, 'gi'), function (m, a) { return 'SID의 공시 고도 제한을 지키며 ' + AK(a) + '까지 상승'; }]      /* AIP ENR 1.5 3.1.2 — 맨 끝에 둠(다른 언어 풀이와 같은 차례) */
   ];
   /* 교신 풀이는 언어별 내용 묶음: ATC.GLOSS.<언어> = function (영어 교신) → 그 언어 풀이. 풀이가 필요 없는 언어(영어)는 빈 글을 돌려주면 됨 */
   ATC.GLOSS = ATC.GLOSS || {};

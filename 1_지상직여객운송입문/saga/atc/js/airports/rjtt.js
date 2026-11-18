@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 14, ctlf: 14, p1: 18, p2: 17 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 15, ctlf: 15, p1: 19, p2: 18 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -186,7 +186,7 @@
     D.starAlt = { ANZAC: 13000, WANDA: 13000, WALLY: 12000, AVEEY: 11000, WALTZ: 11000, WEDGE: 8000, CHIPS: 13000, COLOR: 11000, COACH: 8000, EDDIE: 8000,
       SOLAR: 13000, STOCK: 13000, SALLY: 12000, STOWE: 12000, ALDEN: 11000, SLICK: 11000, SHAFT: 8000, NOVEL: 8000 };
     D.entryAlt = { XAC: 15000, AKSEL: 12000, AROSA: 13000, GODIN: 14000, POLIX: 15000 };      /* AKSEL 12,000 · POLIX FL150 = AIP, 나머지는 게임값 */
-    /* SID 경로(활주로별). 05는 TT501(상공 통과 지점 — 활주로 방위로 지난 뒤 우선회)부터, 나머지는 활주로 바로 앞의 첫 선회 지점부터. 이륙 직후 기수 방위 구간(○ft 이상까지 직진)의 고도 조건은 재현하지 않음 */
+    /* SID 경로(활주로별). 05는 TT501(상공 통과 지점 — 활주로 방위로 지난 뒤 우선회)부터, 나머지는 활주로 바로 앞의 첫 선회 지점부터. 이륙 직후 기수 방위 구간은 아래 D.sidLeg(조종사 체험 출발편에서 씀) */
     var SIDR = {
       '05': { LAXAS: ['TT501', 'TT502', 'LOCUP', 'TAURA', 'IMOLA', 'LAXAS'], NINOX: ['TT501', 'TT502', 'LOCUP', 'BAYGE', 'SEIKO', 'NINOX'], GUSRO: ['TT501', 'TT502', 'LOCUP', 'TT503', 'KAMAT', 'LAYER', 'TIARA', 'GUSRO'] },
       '34R': { ROVER: ['TORAM', 'PLUTO', 'KAIJI', 'SPOON', 'ROVER'], BEKLA: ['TORAM', 'PLUTO', 'KAIJI', 'INTEL', 'RAGOS', 'BEKLA'] },
@@ -194,6 +194,35 @@
       '16L': { ROVER: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'SPOON', 'ROVER'], BEKLA: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'INTEL', 'RAGOS', 'BEKLA'] }
     };
     D.sidRoute = function (rwy, gate) { var r = SIDR[rwy] && SIDR[rwy][gate]; return r ? r.slice() : [gate]; };
+    /* SID 지점별 고도 제한(AIP RJTT AD2.24 SID 본문 · coding table, 2026-11-26판 — GPT 14차 3.1과 대조). min = 그 고도 이상(at or above) · max = 이하(at or below) · 둘이 같으면 그 고도(at). ft — 14,000ft부터는 FL
+       이 다섯 SID의 coding table에는 지점별 속도(KIAS)가 없음. 조종사 체험 출발편에서만 씀(관제 근무 쪽은 고도를 관제사가 정함) */
+    var SIDALT = {
+      LAXAS: { LOCUP: { min: 5000 }, TAURA: { min: 9000 }, IMOLA: { min: 15000 }, LAXAS: { min: 17000 } },
+      NINOX: { LOCUP: { min: 5000 }, BAYGE: { min: 9000 }, SEIKO: { min: 13000 }, NINOX: { min: 17000 } },
+      GUSRO: { LOCUP: { min: 5000 }, KAMAT: { min: 9000 }, LAYER: { min: 13000 }, GUSRO: { min: 17000 } },
+      BEKLA: { WELDA: { min: 6000 }, INTEL: { min: 9000 }, RAGOS: { min: 13000 }, BEKLA: { min: 17000 } },
+      ROVER: { WELDA: { min: 6000 }, SPOON: { max: 15000 }, ROVER: { min: 12000 } }
+    };
+    /* 이륙 직후 구간: 「Climb on HDG ○○○° at or above ○○○FT, (turn left/right) direct to 첫 지점」. grad = 그 높이까지 상승경사 5.0% 필요(AIP Note — 16R · 16L에는 없음) */
+    D.sidLeg = { '05': { hdg: 50, alt: 500, grad: 5 }, '34R': { hdg: 338, alt: 700, turn: 'R', grad: 5 }, '16R': { hdg: 158, alt: 500 }, '16L': { hdg: 158, alt: 500, turn: 'L' } };
+    /* transition(AIP RJTT AD2.24-SID-69 · 70 — 이 다섯 SID 가운데 ROVER에만 있음). 어느 목적지가 어느 transition을 쓰는지는 AIC 020/26의 표준 비행계획 경로:
+       국내 북쪽(신치토세 · 하코다테 · 아오모리 …) = 「BRUCE AGRIS Y11 …」, 북미 · 태평양 = 「INUBO Y808 TASID …」 · 「INUBO Y820 …」. AKAGI transition(ROVER → CLARK → AKAGI)은 이 게임의 목적지에 없어 넣지 않음 */
+    fxs([['BRUCE', 36.200111, 139.948861], ['LEWIS', 36.231444, 140.142972], ['SILVA', 36.255000, 140.290556]], 'trn');
+    var TRANS = { ROVER: {
+      BRUCE: { route: ['BRUCE', 'AGRIS'], alt: { BRUCE: { min: 15000 } }, then: ['SYOEN', 'LIBNO'] },
+      INUBO: { route: ['BRUCE', 'LEWIS', 'SILVA', 'INUBO'], alt: { BRUCE: { min: 15000 }, LEWIS: { min: 17000, max: 17000 }, SILVA: { min: 17000, max: 17000 }, INUBO: { min: 25000 } }, then: ['GULBO', 'TASID'] }
+    } };
+    D.sidTrans = TRANS;
+    D.transFor = function (gate, dest) { return !TRANS[gate] ? '' : /^R[JO]/.test(dest) ? 'BRUCE' : 'INUBO'; };
+    /* 조종사 체험 출발편의 지역관제 구간 경로: 출구 지점 → (transition) → 경계 */
+    D.depRouteFor = function (gate, dest) { var t = TRANS[gate] && TRANS[gate][D.transFor(gate, dest)]; if (t) return [gate].concat(t.route, t.then); var r = D.accDep[gate][0]; return r.join ? r.slice() : [gate, r]; };
+    /* 이 활주로 · SID · 목적지의 고도 제한을 경로 차례대로: [{ fix, min, max, tr(transition 구간이면 이름) }] */
+    D.sidAltFor = function (rwy, gate, dest) {
+      var o = [], a = SIDALT[gate] || {}, tn = D.transFor(gate, dest), t = tn && TRANS[gate][tn];
+      D.sidRoute(rwy, gate).forEach(function (n) { if (a[n]) o.push({ fix: n, min: a[n].min, max: a[n].max }); });
+      if (t) t.route.forEach(function (n) { if (t.alt[n]) o.push({ fix: n, min: t.alt[n].min, max: t.alt[n].max, tr: tn }); });
+      return o;
+    };
     D.flyOver = { TT501: 1 };      /* AIP SID coding table: TT501 Fly Over = Y(GPT 16차 F16-02) */
     D.sidAt = 0.6;         /* 이륙 뒤 활주로 끝에서 이만큼(NM) 지나면 SID 경로로 */
     D.tmaTop = 24000;      /* 도쿄 접근관제구의 상한 FL240(AIP ENR 2.1 — 구역 대부분) */

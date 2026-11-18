@@ -145,8 +145,8 @@
   function AK(x) { return /^FL/i.test(x) ? x.toUpperCase() : x + 'ft'; }
   var R = [
     'MAYDAY ×3 (distress)', 'PAN-PAN ×3 (urgency)',
-    function (m, a, b, c, d) { return 'cleared to ' + a + ' airport — ' + b + ' departure (SID), then the filed route, climb to and stay at ' + AK(c) + ', transponder code ' + d; },
-    function (m, a, b, c, d) { return 'cleared to ' + a + ' — ' + b + ' departure (SID), then the filed route, climb to and stay at ' + AK(c) + ', transponder code ' + d; },
+    function (m, a, b, t, c, d) { return 'cleared to ' + a + ' airport — ' + b + ' departure (SID)' + (t ? ', then the ' + t + ' transition (the published link from the end of the SID to the airway)' : '') + ', then the filed route, climb to and stay at ' + AK(c) + ', transponder code ' + d; },
+    function (m, a, b, t, c, d) { return 'cleared to ' + a + ' — ' + b + ' departure (SID)' + (t ? ', then the ' + t + ' transition' : '') + ', then the filed route, climb to and stay at ' + AK(c) + ', transponder code ' + d; },
     function (m, a, b, c) { return 'diversion to ' + a + ' airport approved — via ' + b + ', climb to ' + AK(c) + ' and stay there'; }, function (m, a, b, c) { return 'diverting to ' + a + ' — via ' + b + ', climbing to ' + AK(c); },
     'asks for the IFR clearance to $1', 'the flight plan is filed; asks for the clearance to $1',
     'runway change noted; asks for a new clearance',
@@ -183,6 +183,7 @@
     'cannot go around (hydraulic failure)', 'abandoning the approach and climbing away', 'abandon the approach and climb away',
     'runway not in sight', 'wind shear', 'unstable approach', 'too high', 'the runway is occupied', 'the runway is closed', 'no landing clearance',
     'stopped before runway $1 at $2; asks to cross', 'stop before runway $1', 'stopping before runway $1',
+    'cross runway $1 (at $2)', 'crossing runway $1 (at $2)', 'at holding point $1 for runway $2',
     'cross runway $1', 'crossing runway $1',
     'pushback approved', function (m, a) { return 'nose to the ' + a.toLowerCase(); }, 'asks for pushback',
     'taxi to holding point $1 for runway $2 by taxiways', 'holding point $1 for runway $2 by taxiways',
@@ -209,7 +210,8 @@
     'please confirm the runway — the ATIS says departures use runway $1', 'we need the full runway length', 'our assigned stand is $1', 'runway $1 is not in use',
     'is above our maximum altitude', function (m, i) { return i ? 'I repeat' : 'please repeat'; }, 'wait', 'stand $1',
     'let $1 pass first', 'letting $1 pass first', 'stop before runway $1', 'Ground on $1', 'expect $1 as the final level',
-    'no — correction', 'correction', 'cannot comply', 'your message was received (not "yes" or "will comply")', '(heavy wake category)', '$1'
+    'no — correction', 'correction', 'cannot comply', 'your message was received (not "yes" or "will comply")', '(heavy wake category)', '$1',
+    function (m, a) { return 'climb to ' + AK(a) + ' while meeting the altitude restrictions published on the SID'; }
   ];
   ATC.GLOSS.en = function (text) {
     var T = ATC.GLOSS_RULES, s = text, keep = [], i, n = Math.min(T.length, R.length);

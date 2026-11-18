@@ -95,14 +95,14 @@
       this.hdg = U.n360(this.hdg + dir * rate);
     }
     /* --- 고도 --- */
-    var da = this.tAlt - this.alt;
+    var tA = this.vcap !== undefined && this.vcap < this.tAlt ? this.vcap : this.tAlt, da = tA - this.alt;      /* vcap = SID의 「이하」 · 「그 고도」 제한 때문에 VNAV가 잠깐 멈추는 고도(조종사 체험 출발편) — 허가 고도(tAlt)는 그대로 */
     if (!(ap && ap.gs)) {
       if (Math.abs(da) > 1) {
         var vr = da > 0 ? p.climb * (this.alt > 28000 ? 0.45 : this.alt > 18000 ? 0.65 : this.alt > 10000 ? 0.85 : 1) : -p.desc * (this.alt < 10000 ? 0.8 : 1);
         if (this.exp || this.descFast) vr *= 1.5;
         var st = vr / 60 * dt; if (Math.abs(st) > Math.abs(da)) st = da;
         this.alt += st; this.vs = vr;
-      } else { this.alt = this.tAlt; this.vs = 0; this.exp = false; }
+      } else { this.alt = tA; this.vs = 0; if (tA === this.tAlt) this.exp = false; }
     } else this.vs = -700;
     this.descFast = false;
     /* --- 속도 --- */

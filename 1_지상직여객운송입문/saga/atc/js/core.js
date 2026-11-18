@@ -69,6 +69,7 @@
         if (Math.abs(c.v - ac.alt) <= 50) return ['maintain ' + fmt.alt(c.v), 'maintain ' + fmt.alt(c.v)];      /* 지금 고도와 같으면 「maintain」(GPT 9차 R9-06) */
         d = c.v > ac.alt + 50 ? 'climb' : 'descend';
         if (c.exp) return ['expedite ' + (d === 'climb' ? 'climb' : 'descent') + ' to ' + fmt.alt(c.v), 'expediting ' + (d === 'climb' ? 'climb' : 'descent') + ' to ' + fmt.alt(c.v)];   /* Doc 9432 3.3.3.3 꼴(R9-02) */
+        if (c.via && d === 'climb') { s = 'climb via SID to ' + fmt.alt(c.v); return [s, s]; }      /* SID · transition의 공시 고도 제한을 지키며 상승(AIP ENR 1.5 3.1.2). 「via」가 없는 새 고도 지시는 그 제한을 모두 취소(3.1.3) */
         s = d + ' and maintain ' + fmt.alt(c.v); return [s, s];
       case 'spd':
         if (!c.v) return ['resume normal speed', 'normal speed'];
@@ -103,8 +104,9 @@
       case 'conttaxi': return ['continue taxiing', 'continue taxiing'];      /* 管制方式基準 Ⅲ-4-1(R9-03) */
       case 'giveway': return ['give way to ' + c.to, 'giving way to ' + c.to];
       case 'clr':
-        return ['cleared to ' + c.destName + ' airport via ' + c.sid + ' departure, flight planned route, maintain ' + fmt.alt(c.alt) + ', squawk ' + c.sq,
-          'cleared to ' + c.destName + ' via ' + c.sid + ' departure, flight planned route, maintain ' + fmt.alt(c.alt) + ', squawk ' + c.sq];
+        var tr = c.trans ? ', ' + c.trans + ' transition' : '';      /* SID 뒤 transition(管制方式基準 (Ⅱ)1(1) — SID/transition을 경로 앞에) */
+        return ['cleared to ' + c.destName + ' airport via ' + c.sid + ' departure' + tr + ', flight planned route, maintain ' + fmt.alt(c.alt) + ', squawk ' + c.sq,
+          'cleared to ' + c.destName + ' via ' + c.sid + ' departure' + tr + ', flight planned route, maintain ' + fmt.alt(c.alt) + ', squawk ' + c.sq];
       case 'rbok': return ['readback correct' + (c.then ? ', ' + c.then : ''), null];
       case 'atis': return ['information ' + ATC.phon(c.v) + ' is now current' + (c.wind ? ', wind ' + w : '') + ', QNH ' + sim.qnh, 'information ' + ATC.phon(c.v) + ', QNH ' + sim.qnh];      /* 바람이 바뀌어 나온 새 ATIS는 바람도 함께(GPT 10차 R10-04) */
       case 'stby': return [c.text || 'stand by', null];
