@@ -210,9 +210,10 @@ function rabot(sim) {
     if (a.appr && a.appr.loc) { say([{ k: 'ho', to: 'TWR' }]); continue; }
     if (a.missed || a.waiting === 'vector') {      /* 복행 · 포착 실패: 장주로 돌려 다시 */
       const side = g.xtk > 0 ? 1 : -1;
-      if (!a.botM) { a.botM = 1; a.botDw = sim.t; say([{ k: 'hdg', v: U.n360(e.crs + (a.rwy.endsWith('L') || a.rwy === '22' ? -90 : 90)) }, { k: 'alt', v: e.apAlt }, { k: 'spd', v: 210 }]); }
+      const ma = a.gaAlt && D.missed && D.missed[a.rwy], gaS = ma ? (ma.turn === 'L' ? -90 : 90) : (a.rwy.endsWith('L') || a.rwy === '22' ? -90 : 90);      /* 조종사 체험 복행기: 공시 복행 절차의 선회 쪽으로 유도하고, 복행 고도를 유지시킨 뒤 기초 선회 때 접근 고도로 */
+      if (!a.botM) { a.botM = 1; a.botDw = sim.t; say([{ k: 'hdg', v: U.n360(e.crs + gaS) }].concat(a.gaAlt ? [] : [{ k: 'alt', v: e.apAlt }], [{ k: 'spd', v: 210 }])); }
       else if (a.botM === 1 && sim.t - a.botDw > 55) { a.botM = 2; say([{ k: 'hdg', v: U.n360(e.crs + 180) }]); }
-      else if (a.botM === 2 && g.d > e.ifD - 4) { a.botM = 3; say([{ k: 'hdg', v: U.n360(e.crs + (g.xtk > 0 ? -90 : 90)) }]); }
+      else if (a.botM === 2 && g.d > e.ifD - 4) { a.botM = 3; const ap = Math.min(e.apAlt, a.gaAlt || e.apAlt); say([{ k: 'hdg', v: U.n360(e.crs + (g.xtk > 0 ? -90 : 90)) }].concat(a.gaAlt && Math.abs(a.tAlt - ap) > 50 ? [{ k: 'alt', v: ap }] : [])); }
       else if (a.botM === 3 && Math.abs(g.xtk) < 2.8) { a.botM = 0; a.missed = false; a.waiting = null; say([{ k: 'hdg', v: U.n360(e.crs + (g.xtk > 0 ? -30 : 30)) }, { k: 'ils', rwy: a.rwy }]); }
       continue;
     }

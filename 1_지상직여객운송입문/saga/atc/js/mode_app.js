@@ -172,6 +172,7 @@
     if (ac.owner === 'me') { this.say(ac, ATC.csSay(ac) + ', established localizer runway ' + ac.appr.rwy + '.'); ac.waiting = 'tower'; }
   };
   AppSim.prototype.goAround = function (ac, why) {
+    if (this.pilot && this.pilot.mine(ac) && this.pilot.goAround) { this.pilot.goAround('sys', why); return; }      /* 조종사 체험의 내 항공기: 복행 처리(보고 · 형태 · 재접근)는 조종사 체험이 맡음 */
     var e = D.ends[ac.appr ? ac.appr.rwy : ac.rwy];
     ac.appr = null; ac.nav = { mode: 'hdg' }; ac.tHdg = e.crs; ac.tAlt = 3000; ac.tIas = 210; ac.spdAsg = 0; ac.missed = true; ac.owner = 'me'; ac.exp = false; ac.gaN = (ac.gaN || 0) + 1;
     /* 통신 두절기는 말이 없음: 스스로 한 바퀴 돌아 다시 접근(3단계) */

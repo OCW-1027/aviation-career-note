@@ -205,6 +205,10 @@
     };
     /* 이륙 직후 구간: 「Climb on HDG ○○○° at or above ○○○FT, (turn left/right) direct to 첫 지점」. grad = 그 높이까지 상승경사 5.0% 필요(AIP Note — 16R · 16L에는 없음) */
     D.sidLeg = { '05': { hdg: 50, alt: 500, grad: 5 }, '34R': { hdg: 338, alt: 700, turn: 'R', grad: 5 }, '16R': { hdg: 158, alt: 500 }, '16L': { hdg: 158, alt: 500, turn: 'L' } };
+    /* 공시 복행 절차(AIP RJTT AD2.24 IAC — ILS Z RWY34L · ILS Z RWY34R · ILS RWY22 · ILS Z RWY23): 정해진 기수로 올라가 at(ft)에서 turn 쪽으로 선회, VOR(TTE) 방사선을 따라 fix 체공 지점으로, alt까지 상승 · 「Contact TOKYO APP」.
+       게임은 방사선 대신 그 방위(trk)로 비행(근사). 22 · 23은 차트 글자가 깨져 기수 · 선회 높이를 읽지 못함 → 활주로 방위 · 500ft(게임값), 22의 고도는 같은 KASGA 경로를 쓰는 LDA Z RWY22의 4,000ft(추정 — GPT 확인 항목) */
+    D.missed = { '34L': { hdg: 337, at: 500, turn: 'L', trk: 178, alt: 5000, fix: 'UTIBO', rad: 'TTE R178' }, '34R': { hdg: 337, at: 800, turn: 'R', trk: 15, alt: 4000, fix: 'KASGA', rad: 'TTE R015' },
+      '22': { at: 500, turn: 'R', trk: 15, alt: 4000, fix: 'KASGA', rad: 'TTE R015', guess: true }, '23': { at: 500, turn: 'L', trk: 178, alt: 5000, fix: 'UTIBO', rad: 'TTE R178', guess: true } };
     /* transition(AIP RJTT AD2.24-SID-69 · 70 — 이 다섯 SID 가운데 ROVER에만 있음). 어느 목적지가 어느 transition을 쓰는지는 AIC 020/26의 표준 비행계획 경로:
        국내 북쪽(신치토세 · 하코다테 · 아오모리 …) = 「BRUCE AGRIS Y11 …」, 북미 · 태평양 = 「INUBO Y808 TASID …」 · 「INUBO Y820 …」. AKAGI transition(ROVER → CLARK → AKAGI)은 이 게임의 목적지에 없어 넣지 않음 */
     fxs([['BRUCE', 36.200111, 139.948861], ['LEWIS', 36.231444, 140.142972], ['SILVA', 36.255000, 140.290556]], 'trn');

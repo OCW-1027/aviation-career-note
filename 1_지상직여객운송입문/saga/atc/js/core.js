@@ -274,7 +274,7 @@
     var gap = { 1: 0, 2: 300, 3: 210 }[this.level.id] || 0; if (!gap || this.level.req === 0) return;
     if (this.t - (this.reqLast || 0) < gap || this.t - (this.reqChk || 0) < 30) return; this.reqChk = this.t;
     if (this.rng() > 0.5) return;
-    var self = this, pool = cands.filter(function (a) { return a.owner === 'me' && !a.waiting && !a.emg && !a.gone && a.alt > 2500; }); if (!pool.length) return;
+    var self = this, pool = cands.filter(function (a) { return a.owner === 'me' && !a.waiting && !a.emg && !a.gone && !a.pilotMe && a.alt > 2500; });      /* 조종사 체험의 내 항공기는 제외(AI 관제사가 응답해도 요청 상태가 풀리지 않아 「roger」를 되풀이했음) */ if (!pool.length) return;
     var a = this.rng.pick(pool), rt = a.nav && a.nav.mode === 'route' ? a.nav.route.slice(a.nav.i) : [], fx = rt.length >= 3 ? rt[Math.min(rt.length - 1, 2 + this.rng.int(0, 1))] : null;
     if (fx && D.fix[fx] && D.fix[fx].k !== 'tt' && this.rng() < 0.6) { a.waiting = 'dctreq'; a.reqFix = fx; this.say(a, ATC.csSay(a) + ', request direct ' + fx + '.'); }
     else { a.waiting = 'pirep'; this.say(a, ATC.csSay(a) + ', ' + this.rng.pick(['light chop', 'moderate chop', 'light turbulence']) + ' at ' + fmt.alt(Math.round(a.alt / 1000) * 1000) + '.'); }

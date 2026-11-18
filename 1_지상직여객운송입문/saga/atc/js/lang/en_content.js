@@ -211,7 +211,8 @@
     'is above our maximum altitude', function (m, i) { return i ? 'I repeat' : 'please repeat'; }, 'wait', 'stand $1',
     'let $1 pass first', 'letting $1 pass first', 'stop before runway $1', 'Ground on $1', 'expect $1 as the final level',
     'no — correction', 'correction', 'cannot comply', 'your message was received (not "yes" or "will comply")', '(heavy wake category)', '$1',
-    function (m, a) { return 'climb to ' + AK(a) + ' while meeting the altitude restrictions published on the SID'; }
+    function (m, a) { return 'climb to ' + AK(a) + ' while meeting the altitude restrictions published on the SID'; },
+    'climbing to $1'
   ];
   ATC.GLOSS.en = function (text) {
     var T = ATC.GLOSS_RULES, s = text, keep = [], i, n = Math.min(T.length, R.length);

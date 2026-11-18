@@ -708,6 +708,7 @@
     var plc = { 0: 340, 1: 255, 5: 235, 15: 205, 20: 195, 25: 185, 30: 180 }, minS = { 0: 210, 1: 190, 5: 170, 15: 155, 20: 150, 25: 145, 30: ac.perf.vapp - 8 };
     var at = 'SPD', roll = ro ? 'ROLLOUT' : nav.mode === 'route' ? 'LNAV' : ap && ap.loc ? 'LOC' : 'HDG SEL', pitch = ro ? 'ROLLOUT' : ap && ap.gs ? (ra < 60 ? 'FLARE' : 'G/S') : Math.abs(vs) > 50 ? 'FLCH SPD' : 'ALT';
     if (gnd) { at = p.toga ? (ias > 80 ? 'HOLD' : 'THR REF') : ''; roll = 'TO/GA'; pitch = 'TO/GA'; }
+    else if (p.gaPh && !ro) { at = 'THR'; roll = p.gaPh.vec ? 'HDG SEL' : p.gaPh.turned ? 'LNAV' : 'TO/GA'; pitch = Math.abs(alt - ((p.mcp || {}).alt || alt)) < 300 ? 'ALT' : 'TO/GA'; }      /* 복행: TO/GA → (선회 높이) LNAV · (복행 고도) ALT */
     else if (p.dep && p.phase === 'twr') { at = 'THR REF'; roll = ra < 50 ? 'TO/GA' : 'LNAV'; pitch = ra < 400 ? 'TO/GA' : 'VNAV SPD'; }      /* 이륙 뒤: 이륙 전에 걸어 둔 LNAV는 50ft, VNAV는 400ft에서 들어옴 — 자동조종(A/P)을 켰는지와는 따로(GPT 16차 R16-01) */
     var fmaNow = at + roll + pitch; if (S.fmaPrev !== fmaNow) { S.fmaChg = { t: performance.now(), roll: S.fmaRoll !== roll, pitch: S.fmaPitch !== pitch }; S.fmaPrev = fmaNow; S.fmaRoll = roll; S.fmaPitch = pitch; }
     var fmaNew = S.fmaChg && performance.now() - S.fmaChg.t < 10000 ? S.fmaChg : null;

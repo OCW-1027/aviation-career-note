@@ -195,7 +195,8 @@
     'は最大運用高度を超えている', function (m, i) { return i ? 'もう一度言う' : 'もう一度言ってほしい'; }, 'しばらく待て', 'スポット$1',
     '$1に進路を譲る', '$1に進路を譲る', '滑走路$1の手前で待機', 'Ground $1', '最終高度は$1の予定',
     '違う(訂正)', '訂正', '不可', '了解', '(大型機)', '$1',
-    function (m, a) { return 'SIDの公示高度制限を守って' + AK(a) + 'まで上昇'; }
+    function (m, a) { return 'SIDの公示高度制限を守って' + AK(a) + 'まで上昇'; },
+    '$1へ上昇中'
   ];
   ATC.GLOSS.ja = function (text) { var T = ATC.GLOSS_RULES, s = text, i, n = Math.min(T.length, R.length); if (T.length !== R.length && G.console) G.console.warn('[ATC] 交信の和訳: 規則の数が合いません', T.length, R.length); for (i = 0; i < n; i++) s = s.replace(T[i][0], R[i]); return s; };
 })(typeof globalThis !== 'undefined' ? globalThis : this);

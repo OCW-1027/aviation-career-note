@@ -44,7 +44,7 @@
   /* 자동조종 다시 연결: MCP에 넣어 둔 기수 · 고도 · 속도(ILS가 잡혀 있으면 접근)를 따라감 */
   M.release = function (p) {
     var ac = p.ac, F = p.fly; if (!F.on || !ac || p.roll) return;
-    F.on = false; ac.man = null; ac.tIas = p.mcp.spd || ac.ias; if (ac.nav && ac.nav.mode === 'hdg' && !(ac.appr && ac.appr.loc)) ac.tHdg = p.mcp.hdg;
+    F.on = false; ac.man = null; ac.tIas = p.mcp.spd || ac.ias; if (p.gaPh && F.mode === 'last') F.used = false;      /* 복행 중에 A/P 연결 → 재접근 때 다시 1,000ft부터 직접 */ if (ac.nav && ac.nav.mode === 'hdg' && !(ac.appr && ac.appr.loc)) ac.tHdg = p.mcp.hdg;
     p.sim.sys(ATC.T('{0}: 자동조종 연결 — MCP 설정대로 비행합니다.', ac.cs), 'info'); p.bump();
   };
   M.toggleAP = function (p) { if (p.fly.on) M.release(p); else M.engage(p, 'btn'); };
@@ -176,12 +176,8 @@
       }
     }
   };
-  /* 복행(TO/GA): 이번 단계에서는 체험을 끝냄 */
-  M.goAround = function (p) {
-    var ac = p.ac, sim = p.sim; if (!ac || p.roll || p.done) return;
-    var dv = p.fly.dev; sim.inc(dv.unst ? 'p_ga_ok' : 'p_ga', [ac], dv.unst ? ATC.T('{0}: 불안정 접근에서 복행을 선택했습니다 — 올바른 판단입니다.', ac.cs) : ATC.T('{0}: 복행(TO/GA)을 선택했습니다.', ac.cs));
-    p.fly.on = false; ac.man = null; p.ga = true; sim.remove(ac, true); p.done = true; sim.sys(ATC.T('복행 — TO/GA 추력, 기수 15°. (복행 뒤 다시 접근은 다음 단계에서) 조종사 체험 끝.'), 'alert'); p.bump();
-  };
+  /* 복행(TO/GA): 조종사 체험(pilot.js goAround)이 맡음 — 공시 복행 절차 · 관제 보고 · 재접근 */
+  M.goAround = function (p) { return p.goAround ? p.goAround('pilot') : false; };
 
   /* 비행 지시기: 목표 경사 · 기수 각과 지금의 차이(°) */
   M.fd = function (ac, p) {
@@ -190,6 +186,7 @@
     var ap = ac.appr, e = D.ends[ap ? ap.rwy : ac.rwy], ra = ac.alt - D.airport.elev, tT, tb, gt, mode = 'HDG';
     var g = e ? ATC.ilsGeom(ac, e) : null, nav = ac.nav || {};
     if (ap && g && g.d > -0.5 && (ap.loc || Math.abs(g.xtk) < 1.6 && Math.abs(U.adiff(ac.hdg, e.crs)) < 70)) { tT = U.n360(e.crs - U.clamp(g.xtk * 60, -35, 35)); mode = 'LOC'; }
+    else if (p.gaPh && !p.gaPh.vec && !ap) { tT = p.gaHdg(ra); mode = p.gaPh.turned ? 'LNAV' : 'TO/GA'; }      /* 복행: 공시 복행 경로(Approach가 기수를 줄 때까지) */
     else if (nav.mode === 'route' && ac.nextFix()) { tT = U.brg(ac, D.fix[ac.nextFix()]); mode = 'LNAV'; }
     else if (ap && g && !ap.loc && nav.mode !== 'route' && !p.asg.hdg && (!p.cur.hdg || Math.abs(g.xtk) < 6)) {      /* 접근 허가 뒤 경로가 끝났는데 아직 로컬라이저 밖: 최종 접근로로 들어가는 길 안내 */
       var cx = Math.sin(e.crs * D2R), cy = Math.cos(e.crs * D2R), dq = Math.max(6, g.d - 3), q = { x: e.thr.x - cx * dq, y: e.thr.y - cy * dq };
@@ -200,7 +197,7 @@
     tb = U.clamp(U.adiff(trk, tT) * 1.6, -25, 25);
     var vt = Math.max(60, ac.ias * (1 + ac.alt / 1000 * 0.0165)) * KT, gam = man ? F.gam / D2R : Math.atan2((ac.vs || 0) * FT / 60, vt) / D2R, vmode = 'ALT';
     if (ap && g && (ap.gs || (ap.loc && ac.alt - ATC.gsAlt(g.d) < 1500 && ac.alt - ATC.gsAlt(g.d) > -400))) { gt = -3 + U.clamp((ATC.gsAlt(g.d) - ac.alt) * 0.02, -1.5, 3); vmode = 'G/S';      /* 위에서 잡을 때도 최대 4.5° — 더 가파르면 속도가 붙음 */ if (ra < 45) { gt = -3 + (45 - Math.max(0, ra)) / 45 * 2.6; vmode = 'FLARE'; } }
-    else { var err = (p.mcp.alt || ac.alt) - ac.alt, vs = U.clamp(err * 2.5, -2500, 2000); gt = Math.asin(U.clamp(vs * FT / 60 / vt, -0.3, 0.3)) / D2R; }
+    else { var err = (p.mcp.alt || ac.alt) - ac.alt, vs = U.clamp(err * 2.5, -2500, 2000); gt = Math.asin(U.clamp(vs * FT / 60 / vt, -0.3, 0.3)) / D2R; if (p.gaPh && err > 300) vmode = 'TO/GA'; }
     return { roll: U.clamp(tb - bank, -25, 25), pitch: U.clamp((gt - gam) * 1.6, -8, 8), lat: mode, ver: vmode };
   };
 
@@ -215,6 +212,7 @@
       var p = cur(); if (!p) return; var k = e.key.toLowerCase();
       if (p.manKey) { if (p.manKey(k)) { e.preventDefault(); return; } if (k === 'z' || k === 't') return; }      /* 출발편 지상: Z = 지상 이동 직접 조종 */
       if (k === 'z') { M.toggleAP(p); e.preventDefault(); return; }
+      if (k === 'g' && p.canGa && p.canGa()) { p.goAround('pilot'); e.preventDefault(); return; }      /* G = TO/GA 복행(최종 접근 중) */
       if (k === 't' && p.fly.on) { M.toggleAT(p); return; }
       if (KMAP[k] && p.fly.on) { keys[k] = true; sync(p); e.preventDefault(); }
     }, true);
@@ -267,7 +265,5 @@
   ATC.INC.p_ld_wrong = { cat: 'S', pts: -30, t: ATC.T('다른 활주로에 착륙'), les: 'app' };
   ATC.INC.p_ld_miss = { cat: 'S', pts: -20, t: ATC.T('착륙 실패(활주로 지나침)'), les: 'app' };
   ATC.INC.p_ld_crash = { cat: 'S', pts: -60, t: ATC.T('활주로 밖 접지(사고)'), les: 'app' };
-  ATC.INC.p_ga = { cat: 'P', pts: 0, t: ATC.T('복행 선택'), les: 'app' };
-  ATC.INC.p_ga_ok = { cat: 'P', pts: 2, t: ATC.T('불안정 접근에서 복행'), les: 'app' };
   ATC.Manual = M;
 })();
