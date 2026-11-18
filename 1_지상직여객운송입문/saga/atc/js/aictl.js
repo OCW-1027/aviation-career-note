@@ -138,7 +138,7 @@ function dbot(sim) { const good = true;
       const c = []; if (good && a.atisRep !== sim.atis) c.push({k:'atis', v:sim.atis});
       if (good && !sim.parityOk(a, a.rfl)) c.push({k:'amendfl', old:a.rfl, v:a.rfl-1000});
       if (good && a.ctot) c.push({k:'slot', v:U.hhmm(a.ctot), tsat:U.hhmm(a.tsat)});
-      c.push({k:'clr', destName:a.destName, sid: good ? sim.sidFor(a.gate) : a.gate+' 1A', alt: D.sidInit, sq:a.squawk}); sim.command(a, c); }
+      { const q = {k:'clr', destName:a.destName, sid: good ? sim.sidFor(a.gate) : a.gate+' 1A', alt: D.sidInit, sq:a.squawk}, tn = good && sim.transOf ? sim.transOf(a) : ''; if (tn) q.trans = tn; c.push(q); } sim.command(a, c); }
     else if (a.st === 'rb' && sim.cur === null && sim.q.length === 0) { a.botT = sim.t; if (good && sim.hasWrong(a.id)) sim.correct(a.id); else sim.command(a, [{k:'rbok'}]); }
     else if (a.st === 'ready') { if (!good || !a.tsat || sim.utc() >= a.tsat - 300) { a.botT = sim.t; sim.command(a, [{k:'ho', to:'GND'}]); } }
   }

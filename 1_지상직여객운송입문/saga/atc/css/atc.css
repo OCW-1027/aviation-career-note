@@ -252,7 +252,7 @@ b.y{color:var(--yel)}
   #strips{display:flex!important;gap:6px;overflow-x:auto;overflow-y:hidden;border-left:0;border-top:1px solid var(--line);padding:5px 6px;max-height:92px;align-items:flex-start}
   .bay{display:flex;gap:5px;margin:0;flex:none;align-items:flex-start}.bay.empty{display:none}
   .bay h5{margin:4px 2px 0;white-space:nowrap}
-  .strip{flex:none;width:186px;margin:0}.strip .s3{display:none}
+  .strip{flex:none;width:186px;margin:0}.strip .s3,.strip .s4{display:none}
   /* 위 막대: 1줄 = 자리 · 시각 · 점수 / 2줄 = 단추(넘치면 옆으로 밀어 봄) */
   #top{flex-wrap:wrap;gap:4px 6px;padding:4px 6px}
   #top>.sp{flex:0 0 100%;height:0;min-width:0}
@@ -270,7 +270,7 @@ b.y{color:var(--yel)}
   #tPos b{font-size:12px}#tPos span{font-size:11.5px}#tClock{font-size:13px;padding:1px 6px}#tScore .sc{font-size:15px}#top .tb{padding:3px 7px}#tSpeed button{padding:3px 6px}#tSpeed button[data-s="8"]{display:none}#top{gap:5px}#bQuit{margin-left:auto}
   #scope{grid-area:scope}
   #strips{grid-area:strips;display:block!important;max-height:30vh;border-left:1px solid var(--line);border-bottom:1px solid var(--line);padding:4px}
-  .bay.empty{display:none}.strip .s3{display:none}
+  .bay.empty{display:none}.strip .s3,.strip .s4{display:none}
   #cmd{grid-area:cmd;border-left:1px solid var(--line)!important}
   #log{grid-area:log;border-left:1px solid var(--line)!important;border-top:1px solid var(--line)}
   #coach{display:none!important}
@@ -545,3 +545,6 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 /* 조종사 체험 날씨 · 시간 고르기(로비) */
 .xgrp .xwx{margin:0 0 2px;align-self:flex-start;flex-wrap:wrap}.xgrp .xwx button{padding:5px 11px;font-size:12px}
 .ckrud{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);display:flex;gap:10px;pointer-events:auto}.ckrud[hidden]{display:none}.ckrud button{min-width:76px;padding:9px 10px;border-radius:10px;border:2px solid rgba(255,255,255,.55);background:rgba(10,14,20,.42);color:#fff;font-size:12px;touch-action:none;user-select:none}.ckrud button.on{background:rgba(80,200,120,.45)}
+/* 관제 근무: 출발기 SID 고도 제한 */
+.cgb .csid{flex-basis:100%;font-size:11px;color:#ffd166;line-height:1.35;margin-top:2px}.cgb .csid.off{color:var(--mut,#8b98a8)}
+.strip .s4{font-family:var(--sans);font-size:10.5px;color:#8a5200;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.strip .s4.off{color:#6d7780;font-weight:400}

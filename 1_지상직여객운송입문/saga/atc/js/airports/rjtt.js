@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 15, ctlf: 15, p1: 19, p2: 18 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 16, ctlf: 16, p1: 20, p2: 19 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -213,12 +213,14 @@
        국내 북쪽(신치토세 · 하코다테 · 아오모리 …) = 「BRUCE AGRIS Y11 …」, 북미 · 태평양 = 「INUBO Y808 TASID …」 · 「INUBO Y820 …」. AKAGI transition(ROVER → CLARK → AKAGI)은 이 게임의 목적지에 없어 넣지 않음 */
     fxs([['BRUCE', 36.200111, 139.948861], ['LEWIS', 36.231444, 140.142972], ['SILVA', 36.255000, 140.290556]], 'trn');
     var TRANS = { ROVER: {
-      BRUCE: { route: ['BRUCE', 'AGRIS'], alt: { BRUCE: { min: 15000 } }, then: ['SYOEN', 'LIBNO'] },
-      INUBO: { route: ['BRUCE', 'LEWIS', 'SILVA', 'INUBO'], alt: { BRUCE: { min: 15000 }, LEWIS: { min: 17000, max: 17000 }, SILVA: { min: 17000, max: 17000 }, INUBO: { min: 25000 } }, then: ['GULBO', 'TASID'] }
+      BRUCE: { route: ['BRUCE', 'AGRIS'], alt: { BRUCE: { min: 15000 } }, then: ['SYOEN', 'LIBNO'], fpl: 'BRUCE AGRIS Y11' },
+      INUBO: { route: ['BRUCE', 'LEWIS', 'SILVA', 'INUBO'], alt: { BRUCE: { min: 15000 }, LEWIS: { min: 17000, max: 17000 }, SILVA: { min: 17000, max: 17000 }, INUBO: { min: 25000 } }, then: ['GULBO', 'TASID'], fpl: 'INUBO Y808 TASID' }
     } };
     D.sidTrans = TRANS;
     D.transFor = function (gate, dest) { return !TRANS[gate] ? '' : /^R[JO]/.test(dest) ? 'BRUCE' : 'INUBO'; };
-    /* 조종사 체험 출발편의 지역관제 구간 경로: 출구 지점 → (transition) → 경계 */
+    /* 비행계획의 경로 칸(비행허가 화면): 출구 지점 + transition 끝 지점 · 항공로(AIC 020/26의 표준 경로 앞부분) + 목적지. transition은 이 경로를 보고 고름 */
+    D.fplRoute = function (gate, dest) { var tn = D.transFor(gate, dest); return gate + (tn ? ' ' + TRANS[gate][tn].fpl : '') + ' ' + dest; };
+    /* 지역관제 구간 경로(조종사 체험 출발편 · 지역관제 근무의 출발기): 출구 지점 → (transition) → 경계 */
     D.depRouteFor = function (gate, dest) { var t = TRANS[gate] && TRANS[gate][D.transFor(gate, dest)]; if (t) return [gate].concat(t.route, t.then); var r = D.accDep[gate][0]; return r.join ? r.slice() : [gate, r]; };
     /* 이 활주로 · SID · 목적지의 고도 제한을 경로 차례대로: [{ fix, min, max, tr(transition 구간이면 이름) }] */
     D.sidAltFor = function (rwy, gate, dest) {

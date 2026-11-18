@@ -368,7 +368,12 @@
     if (c.k === 'hdg') { c.v = U.r5(c.v + this.rng.pick([-30, -20, 20, 30, 100, -100])); c.dir = cmds[j].dir || (U.adiff(ac.hdg, cmds[j].v) < 0 ? 'L' : 'R'); }
     else if (c.k === 'alt') { var up = c.v > ac.alt; c.v = c.v + (this.rng() < 0.5 ? 1000 : -1000) * (c.v > 14000 ? 1 : 1); if (c.v < 2000) c.v = cmds[j].v + 1000; if ((c.v > ac.alt) !== up) c.v = cmds[j].v + (up ? 1000 : -1000); }
     else if (c.k === 'spd') c.v = c.v + this.rng.pick([-20, 20, 30]);
-    else if (c.k === 'clr') { if (this.rng() < 0.5) c.sq = c.sq.slice(0, 2) + c.sq[3] + c.sq[2]; else c.alt = c.alt + 1000; if (c.sq === cmds[j].sq && c.alt === cmds[j].alt) c.alt += 1000; }
+    else if (c.k === 'clr') {
+      var rr = this.rng(), ot = c.trans ? Object.keys((D.sidTrans || {})[ac.gate] || {}).filter(function (t) { return t !== c.trans; }) : [];
+      if (ot.length && rr >= 0.66) c.trans = ot[0];      /* 다른 transition을 복창(transition이 있는 허가만 — 세 가지 가운데 하나) */
+      else if (rr < (ot.length ? 0.33 : 0.5)) c.sq = c.sq.slice(0, 2) + c.sq[3] + c.sq[2]; else c.alt = c.alt + 1000;
+      if (c.sq === cmds[j].sq && c.alt === cmds[j].alt && c.trans === cmds[j].trans) c.alt += 1000;
+    }
     var out = cmds.slice(); out[j] = c; return out;
   };
   /* 틀린 복창 정정 */

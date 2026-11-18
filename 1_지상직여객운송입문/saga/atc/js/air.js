@@ -1,7 +1,7 @@
 /* AIRLINE SAGA — ATC 공중 항공기 모델·레이더 분리 감시(접근관제·지역관제 공용) */
 (function (G) {
   'use strict';
-  var ATC = G.ATC, D = ATC.D, U = ATC.U, D2R = Math.PI / 180;
+  var ATC = G.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt, D2R = Math.PI / 180;
   var GS_FT_NM = 318.4;   /* 3° 강하각: 1NM당 약 318ft */
 
   function Ac(sim, o) {
@@ -131,7 +131,7 @@
   RadarSim.prototype.spawnAc = function (o) { var ac = new Ac(this, o); ac.blip(); this.acs.push(ac); this.total++; this.emit('spawn', ac); return ac; };
   RadarSim.prototype.moveAll = function (dt) {
     var i, acs = this.acs.slice();
-    for (i = 0; i < acs.length; i++) if (!acs[i].gone) acs[i].update(dt);
+    for (i = 0; i < acs.length; i++) if (!acs[i].gone) { acs[i].update(dt); if (acs[i].sidR && !acs[i].gone) this.sidStep(acs[i]); }
     this.sweepT += dt;
     if (this.sweepT >= this.sweep) { this.sweepT = 0; for (i = 0; i < this.acs.length; i++) this.acs[i].blip(); this.sepCheck(); this.emit('sweep'); }
   };
@@ -206,9 +206,52 @@
     }
     return false;
   };
-  function proj(a, t) { var z = a.alt + a.vs / 60 * t; if (a.vs > 0) z = Math.min(z, a.tAlt); else if (a.vs < 0) z = Math.max(z, a.tAlt); return z; }
+  function proj(a, t) { var z = a.alt + a.vs / 60 * t; if (a.vs > 0) z = Math.min(z, a.vcap !== undefined && a.vcap < a.tAlt ? a.vcap : a.tAlt); else if (a.vs < 0) z = Math.max(z, a.tAlt); return z; }
   /* 공통 지시 적용 */
+  /* ---- 관제 근무: 출발기의 SID(· transition) 공시 고도 제한 ----
+     ac.sidR = [{ fix, min, max, tr, st, dMin, alt }] · ac.sidVia = 그 제한이 지금 살아 있는지
+     「climb via SID to」(c.via) = 제한을 지키며 상승 / via 없는 새 고도 지시 · 기수 · 직행 지시 = 남은 제한 모두 취소(AIP ENR 1.5 3.1.2 · 3.1.3 — 조종사 체험 출발편과 같은 규칙)
+     「이하」 · 「그 고도」 제한은 그 지점을 지날 때까지 상승을 멈춤(ac.vcap — 허가 고도 tAlt는 그대로). 조종사 체험의 내 항공기는 pilot_dep.js가 따로 맡음(sidR 없음) */
+  ATC.sidInit = function (ac, list) { ac.sidR = (list || []).map(function (r) { return { fix: r.fix, min: r.min, max: r.max, tr: r.tr || '', st: '', dMin: 99 }; }); ac.sidVia = true; if (!ac.sidR.length) ac.sidR = null; };
+  ATC.sidPend = function (ac) { return (ac && ac.sidR || []).filter(function (r) { return !r.st; }); };
+  ATC.sidTxt = function (r) { return r.fix + ' ' + (r.min !== undefined && r.min === r.max ? '' : r.min !== undefined ? '≥' : '≤') + fmt.alt(r.min !== undefined ? r.min : r.max); };
+  /* 「climb via SID to」를 쓸 수 있는 출발기인지(남은 제한이 있고, 올라가는 지시) */
+  ATC.sidCan = function (ac, v) { return !!(ac && ac.kind === 'dep' && ATC.sidPend(ac).length && (v === undefined || v > ac.alt + 50)); };
+  RadarSim.prototype.sidCmd = function (ac, c) {
+    if (!ac.sidR || !ATC.sidPend(ac).length) return;
+    if (c.k === 'alt' && c.via && c.v > ac.alt + 50 && ac.sidOffT !== this.t) {      /* 같은 송신에 기수 · 직행이 있으면 경로가 바뀐 것 — 제한 취소가 먼저 */
+      ac.sidR.forEach(function (r) { if (!r.st && r.max !== undefined && ac.alt > r.max + 300) r.st = 'x'; });      /* 이미 그 위에 있는 「이하」 제한은 지킬 수 없음 */
+      if (!ac.sidVia && !this.pilot) this.sys(ATC.T('{0}: 「climb via SID to」 — 남은 SID 고도 제한을 다시 지킵니다({1}).', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')), 'info');
+      ac.sidVia = true; return;
+    }
+    if (c.k === 'hdg' || c.k === 'dct') ac.sidOffT = this.t;
+    if (ac.sidVia) {
+      ac.sidVia = false;
+      if (!this.pilot) this.sys(c.k === 'alt' ? ATC.T('{0}: 새 고도 지시 — 남은 SID 고도 제한({1})은 모두 취소됩니다. 지키게 하려면 「climb via SID to」.', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')) : ATC.T('{0}: 경로를 바꿨습니다(기수 · 직행) — 남은 SID 고도 제한({1})은 모두 취소됩니다.', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')), 'info');
+    }
+  };
+  RadarSim.prototype.sidStep = function (ac) {
+    var L = ac.sidR, i, r = null, nav = ac.nav, cap, sim = this;
+    for (i = 0; i < L.length; i++) if (!L[i].st) { r = L[i]; break; }
+    if (r && D.fix[r.fix] && nav.mode === 'route') {
+      var d = U.dist(ac, D.fix[r.fix]), on = nav.route.indexOf(r.fix, nav.i) >= 0;
+      if ((on || r.near) && d < r.dMin) { r.dMin = d; r.alt = ac.alt; if (d < 6) r.near = true; }      /* 선회를 미리 시작해 다음 지점으로 넘어가도 가장 가까운 곳까지는 그 지점의 제한을 지킴 */
+      else if (r.near && d > r.dMin + 0.25) {      /* 지점을 지남 */
+        var a = r.alt; r.at = Math.round(a / 100) * 100;
+        if (!ac.sidVia) r.st = 'x';
+        else if (r.max !== undefined && a > r.max + 200) r.st = 'high';
+        else if (r.min !== undefined && a < r.min - 200) { r.st = 'low'; if (ac.tAlt < r.min - 200 && !this.pilot) this.sys(ATC.T('{0}: {1}을(를) {2}로 지났습니다 — SID 제한 {3}. 허가 고도({4})가 제한보다 낮아 지킬 수 없었습니다.', ac.cs, r.fix, fmt.alt(r.at), ATC.sidTxt(r).replace(r.fix + ' ', ''), fmt.alt(ac.tAlt)), 'info'); }
+        else r.st = 'ok';
+      }
+      else if (!on && !r.near) r.st = ac.sidVia ? 'skip' : 'x';      /* 경로에서 빠진 지점(직행으로 건너뜀) — 그 지점의 제한은 없음(ENR 1.5 1.3.7.2) */
+    }
+    cap = undefined;
+    if (ac.sidVia && nav.mode === 'route') L.forEach(function (q) { if (!q.st && q.max !== undefined && (q.near || nav.route.indexOf(q.fix, nav.i) >= 0) && (cap === undefined || q.max <= cap)) { cap = q.max; ac.capFix = q.fix; } });
+    if (cap !== undefined && ac.alt > cap + 300) cap = undefined;
+    if (ac.vcap !== cap) ac.vcap = cap;
+  };
   RadarSim.prototype.applyAir = function (ac, c) {
+    if (ac.sidR && (c.k === 'alt' || c.k === 'hdg' || c.k === 'dct')) this.sidCmd(ac, c);
     switch (c.k) {
       case 'hdg': ac.nav = { mode: 'hdg' }; ac.tHdg = U.n360(c.v); ac.turnDir = c.dir === 'L' ? -1 : c.dir === 'R' ? 1 : 0; if (ac.appr && !c.keepAppr) ac.appr = ac.appr.loc ? null : ac.appr; ac.vec = true; return true;
       case 'alt': ac.tAlt = c.v; ac.exp = !!c.exp; ac.altAsgT = this.t; return true;

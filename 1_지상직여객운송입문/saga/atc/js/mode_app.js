@@ -92,6 +92,7 @@
       fpRoute: D.sidRoute ? D.sidRoute(drw, s.gate) : [s.gate], squawk: this.squawk(), rwy: drw, owner: 'me', justDep: true, rfl: rfl, entT: this.t, sidT: this.t
     });
     ac.sid = D.sidName ? D.sidName(s.gate) : s.gate + ' 1' + this.flow.sfx;
+    if (D.sidAltFor) ATC.sidInit(ac, D.sidAltFor(drw, s.gate, dg[0]).filter(function (r) { return !r.tr; }));      /* SID 공시 고도 제한(transition 구간은 지역관제 쪽) — 비행허가의 초기 허가부터 살아 있음 */
     this.say(ac, D.freq.DEP.n + ', ' + ac.csWord + ' ' + ac.num + ', passing ' + fmt.alt(Math.max(500, Math.round(ac.alt / 100) * 100)) + ', climbing ' + fmt.alt(D.sidInit) + ', ' + ac.sid + ' departure.');
     return ac;
   };
@@ -385,7 +386,7 @@
       if (a.owner !== 'me') return;
       var dc = U.dist(a, D.center);
       if (a.kind === 'dep') {
-        if (a.tAlt < D.tmaTop - 100) out.push({ p: 5, ac: a.id, t: ATC.T('{0} 출발기 — 상공에 도착기가 없으면 {1}까지 상승시키세요.', a.cs, fmt.alt(D.tmaTop)) });
+        if (a.tAlt < D.tmaTop - 100) out.push({ p: 5, ac: a.id, t: ATC.T('{0} 출발기 — 상공에 도착기가 없으면 {1}까지 상승시키세요.', a.cs, fmt.alt(D.tmaTop)) + (a.sidVia && ATC.sidPend(a).length ? ' ' + ATC.T('SID 고도 제한({0}): 「climb via SID to」는 제한을 지키며 상승, 고도만 지시하면 남은 제한이 모두 취소됩니다.', ATC.sidPend(a).map(ATC.sidTxt).join(' · ')) : '') });
         else if (depRem(a) < 23) out.push({ p: 6, ac: a.id, t: ATC.T('{0} — {aptEn} Control로 이양({2} 상승 중 · {1} 경로).', a.cs, a.gate, fmt.alt(D.tmaTop)) });
         return;
       }

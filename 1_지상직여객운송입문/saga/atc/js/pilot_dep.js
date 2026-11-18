@@ -30,7 +30,7 @@
     this.eng = { st: 'off', t0: 0, n1: 0 }; this.pbrake = true;
     var c = o.carry, f;
     if (c) { f = this.f = c.f; this.fp = c.fp; this.standK = c.standK; this.xpdr = c.xpdr; this.sid = c.sid; this.cur = c.cur; this.mcp = c.mcp; this.depFq = c.depFq; this.nRb = c.nRb; this.nRbOk = c.nRbOk; this.rt = c.rt; this.sq = c.ac.squawk; this.tAcc = (c.tAcc || 0) + c.sim.t; sim.usedCs[f.cs] = 1;
-      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; this.to = c.to || null; this.sidR = c.sidR || null; this.sidOn = c.sidOn !== false; this.sidVia = c.sidVia !== false; this.sidPlain = c.sidPlain; this.trn = c.trn; }
+      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; this.to = c.to || null; this.sidR = c.sidR || null; this.capKey = c.capKey || '';      /* 같은 제한 지점의 VNAV 안내는 관제석이 바뀌어도 한 번만(사이트 42차 결과) */ this.sidOn = c.sidOn !== false; this.sidVia = c.sidVia !== false; this.sidPlain = c.sidPlain; this.trn = c.trn; }
     else {
       f = sim.mkFlight(function (a) { return a.code === 'VLA'; }, 'dep');
       f.type = 'B789'; if (D.types && D.types.B789) f.perf = D.types.B789; f.wake = 'H';
@@ -571,8 +571,8 @@
     cap = undefined;
     if (this.sidOn) L.forEach(function (q) { if (!q.st && q.max !== undefined && (cap === undefined || q.max <= cap)) { cap = q.max; me.capFix = q.fix; } });      /* 같은 고도가 이어지면(LEWIS · SILVA FL170) 마지막 지점까지 */
     if (cap !== undefined && ac.alt > cap + 300) cap = undefined;
-    if (ac.vcap !== cap) { ac.vcap = cap; this.capSaid = false; this.bump(); }
-    if (cap !== undefined && !this.capSaid && ac.tAlt > cap && Math.abs(ac.alt - cap) < 60) { this.capSaid = true; this.note(ATC.T('VNAV: {0}까지 {1} 유지 — SID 고도 제한. 지나면 허가 고도 {2}까지 다시 오릅니다.', this.capFix, fmt.alt(cap), fmt.alt(ac.tAlt)), 'info'); }
+    if (ac.vcap !== cap) { ac.vcap = cap; this.bump(); }
+    if (cap !== undefined && this.capKey !== this.capFix + cap && ac.tAlt > cap && Math.abs(ac.alt - cap) < 60) { this.capKey = this.capFix + cap; this.note(ATC.T('VNAV: {0}까지 {1} 유지 — SID 고도 제한. 지나면 허가 고도 {2}까지 다시 오릅니다.', this.capFix, fmt.alt(cap), fmt.alt(ac.tAlt)), 'info'); }
     if (this.sidAsk && sim.t - this.sidAsk.t > SID_ASK) this.sidAnswer(this.sidAsk.via, true);
   };
   DepPilot.prototype.sidCross = function (r) {

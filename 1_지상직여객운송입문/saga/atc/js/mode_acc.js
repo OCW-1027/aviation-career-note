@@ -56,7 +56,7 @@
   AccSim.prototype.spawn = function (s) {
     if (s.kind === 'dep' && this.apClosed && this.t < this.apClosed.t1) { s.t = this.apClosed.t1 + 60 + (this.apClosed.dn = (this.apClosed.dn || 0) + 1) * 90; this.sched.push(s); this.sched.sort(function (a, b) { return a.t - b.t; }); return; }      /* 공항 폐쇄 중에는 출발기가 올라오지 않음 */
     if (s.conf && this.spawnConflict()) return;
-    var rng = this.rng, f, route, alt, east, o, kind = s.kind, guard = 0, key;
+    var rng = this.rng, f, route, alt, east, o, kind = s.kind, guard = 0, key, sidL = null;
     do {
       if (kind === 'ovf') route = rng.pick(D.ovfRoutes);
       else if (kind === 'arr') { var g = rng.pick(this.cfg.arrGates || Object.keys(D.accArr)), ra = rng.pick(D.accArr[g]); route = ra.join ? ra : [ra, g]; }      /* 경계 지점 하나만 적었으면 그 지점 → 진입 지점, 배열이면 그 경로 전체 */
@@ -80,12 +80,15 @@
       p = D.off(f0, hd + 180, 14); o.rfl = alt; o.gate = route[route.length - 1]; o.dest = D.airport.icao; var og = ATC.odPick(rng, f.al, D.gateOrig[o.gate]); o.orig = og[0];
     } else {
       alt = 17000 + rng.int(0, 10) * 100; p = { x: f0.x, y: f0.y }; o.tAlt = D.tmaTop; o.gate = route[0]; o.orig = D.airport.icao; var dg = ATC.odPick(rng, f.al, D.gateDest[route[0]]); o.dest = dg[0];
+      var tn = D.transFor && D.depRouteFor ? D.transFor(o.gate, o.dest) : '';      /* SID 뒤 transition이 있는 방면(하네다 ROVER → BRUCE · INUBO): 목적지에 맞는 transition 경로로 */
+      if (tn) { route = D.depRouteFor(o.gate, o.dest); o.fpRoute = route; o.trans = tn; last = D.fix[route[route.length - 1]]; o.hdg = U.brg(f0, D.fix[route[1]]); east = trackEast(f0, last); sidL = D.sidAltFor(null, o.gate, o.dest).filter(function (r) { return r.tr; }); var cap0 = Math.min.apply(null, sidL.filter(function (r) { return r.max !== undefined; }).map(function (r) { return r.max; }).concat([1e9])); if (alt > cap0) alt = 2 * cap0 - alt; }      /* 「그 고도」 제한(LEWIS · SILVA FL170)이 있으면 그 아래에서 넘겨받음 */
       o.rfl = jet ? lvlFor(rng, east, this.level.id === 1 ? 330 : 350, Math.min(top, 380)) : lvlFor(rng, east, 220, 250); o.exitFix = route[route.length - 1];
     }
     o.x = p.x; o.y = p.y; o.alt = alt; o.east = east;
     o.ias = kind === 'dep' ? 290 : this.iasFor(f.perf, alt); o.normIas = this.iasFor(f.perf, o.rfl); o.fast = true;
     o.owner = (this.level.id === 1 || s.warm) ? 'me' : 'in';
     var ac = this.spawnAc(o); ac.setRoute(s.warm ? route.slice(1) : (kind === 'dep' ? route.slice(1) : route));
+    if (sidL && sidL.length) ATC.sidInit(ac, sidL);      /* Departure가 「climb via SID to」로 올려 보낸 것으로 봄 — transition의 고도 제한이 살아 있음 */
     if (ac.owner === 'me') { if (!s.warm) this.checkIn(ac); } else ac.hoT = this.t;
     return ac;
   };
@@ -287,7 +290,7 @@
       if (a.emg) { out.push({ p: 9, ac: a.id, t: ATC.T('{0} {1} — {2} 직행 · {3}ft 강하 지시 후 접근관제로 이양.', a.cs, a.emgName, a.gate, fmt.alt(accAlt(a))) }); return; }
       if (a.waiting === 'lvl') out.push({ p: 6, ac: a.id, t: ATC.T('{0} 고도 변경 요청({1}) — 해당 고도에 다른 항공기가 없는지 확인 후 승인.', a.cs, fmt.alt(a.reqLvl)) });
       if (a.waiting === 'dev') out.push({ p: 7, ac: a.id, t: ATC.T('{0} 악기상 회피 요청 — 요청 방향으로 기수 25° 변경 승인, 통과 후 직행 복귀.', a.cs) });
-      if (a.kind === 'dep' && a.tAlt < D.tmaTop + 1000) out.push({ p: 5, ac: a.id, t: ATC.T('{0} 출발기 — 요청 고도 {1}까지 상승(중간 고도를 통과하는 항공기 확인).', a.cs, fmt.alt(a.rfl)) });
+      if (a.kind === 'dep' && a.tAlt < D.tmaTop + 1000) out.push({ p: 5, ac: a.id, t: ATC.T('{0} 출발기 — 요청 고도 {1}까지 상승(중간 고도를 통과하는 항공기 확인).', a.cs, fmt.alt(a.rfl)) + (a.sidVia && ATC.sidPend(a).length ? ' ' + ATC.T('{0} transition의 고도 제한({1}): 「climb via SID to」는 제한을 지키며 상승, 고도만 지시하면 남은 제한이 모두 취소됩니다.', a.trans || '', ATC.sidPend(a).map(ATC.sidTxt).join(' · ')) : '') });
       if (a.kind === 'arr' && a.tAlt > accAlt(a) && U.dist(a, D.fix[a.gate]) < 75) out.push({ p: 6, ac: a.id, t: ATC.T('{0} 도착기 — {1}ft 강하 지시({2} 통과 고도).', a.cs, fmt.alt(accAlt(a)), a.gate) });
       var tgt = a.kind === 'arr' ? a.gate : a.exitFix, d = tgt ? U.dist(a, D.fix[tgt]) : 99;
       if (d < 30 && (a.kind !== 'arr' || a.tAlt === accAlt(a))) out.push({ p: 7, ac: a.id, t: ATC.T('{0} — {1}(으)로 이양.', a.cs, self.nextSector(a).n) });

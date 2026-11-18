@@ -126,7 +126,7 @@
     if (D.flyBy) { var rank = function (n) { var f = D.fix[n]; return f.k === 'in' || f.k === 'out' ? 0 : f.k === 'if' || f.k === 'faf' || f.k === 'bd' ? 1 : D.starAlt && D.starAlt[n] ? 2 : 3; }; fnames.sort(function (a, b) { return rank(a) - rank(b); }); }
     fnames.forEach(function (n) {
       var f = D.fix[n]; f._on = false; f._sx = undefined; if (acc ? (f.k === 'if' || f.k === 'faf' || f.k === 'base' || f.k === 'dw' || f.k === 'wp' || f.k === 'tt') : (f.k === 'bd' || f.k === 'en')) return;
-      if (f.k === 'trn' && !(acc && sim.pilot && sim.pilot.ac && sim.pilot.ac.fpRoute && sim.pilot.ac.fpRoute.indexOf(n) >= 0)) return;      /* transition 지점: 조종사 체험에서 내 경로에 있을 때만(지역관제 화면) */
+      if (f.k === 'trn' && !(acc && (sim.pilot ? sim.pilot.ac && sim.pilot.ac.fpRoute && sim.pilot.ac.fpRoute.indexOf(n) >= 0 : true))) return;      /* transition 지점(BRUCE · LEWIS · SILVA): 지역관제 화면에만 — 조종사 체험에서는 내 경로에 있을 때만 */
       if (!acc && sim.fixUse && (f.k === 'wp' || f.k === 'tt') && !sim.fixUse[n]) return;      /* 이번 근무의 경로에 없는 지점은 그리지 않음 */
       if (!acc && (f.k === 'if' || f.k === 'faf')) { var own = Object.keys(D.ends).filter(function (id) { return D.ends[id].IF === n || D.ends[id].FAF === n; })[0]; if ((sim.rwys || []).indexOf(own) < 0) return; }
       if (!acc && (f.k === 'base' || f.k === 'dw')) { var used = false; (sim.rwChg ? [D.star[sim.rwChg.from.id], D.star[sim.rwChg.to.id]] : [D.star[sim.flow.id]]).forEach(function (ss) { Object.keys(ss).forEach(function (g) { if (ss[g].indexOf(n) >= 0) used = true; }); }); if (!used) return; }
@@ -149,6 +149,7 @@
       p = rs(v, W, H, { x: sel.rx, y: sel.ry });
       if (sel.nav.mode === 'route') { ctx.strokeStyle = 'rgba(79,216,255,.55)'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(p[0], p[1]); for (i = sel.nav.i; i < sel.nav.route.length; i++) { q = rs(v, W, H, D.fix[sel.nav.route[i]]); ctx.lineTo(q[0], q[1]); } ctx.stroke(); ctx.setLineDash([]); }
       else { q = rs(v, W, H, D.off({ x: sel.rx, y: sel.ry }, sel.tHdg, sel.gs / 60 * 3)); line(ctx, p, q, 'rgba(79,216,255,.5)', [4, 4]); }
+      if (sel.sidR && sel.sidVia && sel.nav.mode === 'route') { ctx.font = '10px ' + MONO; ctx.fillStyle = '#ffd166'; sel.sidR.forEach(function (r) { if (r.st || !D.fix[r.fix] || sel.nav.route.indexOf(r.fix, sel.nav.i) < 0) return; var fq = rs(v, W, H, D.fix[r.fix]); ctx.fillText((r.min !== undefined && r.min === r.max ? '' : r.min !== undefined ? '≥' : '≤') + U.pad(Math.round((r.min !== undefined ? r.min : r.max) / 100), 3), fq[0] + 7, fq[1] + 11); }); }      /* 고른 출발기의 남은 SID 고도 제한(백 ft) */
       ctx.strokeStyle = 'rgba(79,216,255,.35)'; ctx.beginPath(); ctx.arc(p[0], p[1], sim.minH * v.scale, 0, 7); ctx.stroke();
       if (app.hdgAim) { q = [app.mx, app.my]; line(ctx, p, q, C.sel); var wq = R.radarToWorld(v, W, H, app.mx, app.my), hh = U.r5(U.brg({ x: sel.rx, y: sel.ry }, wq)); ctx.fillStyle = C.sel; ctx.font = 'bold 12px ' + MONO; ctx.fillText('HDG ' + fmt.hdg(hh), q[0] + 10, q[1] - 10); ctx.font = '10px ' + MONO; }
     }
@@ -168,6 +169,7 @@
       if (a.owner === 'in' && !blink) col = '#8a7430';
       var tr = a.rvs > 200 ? '↑' : a.rvs < -200 ? '↓' : '=', l1 = a.cs + (a.wake === 'H' ? ' H' : a.wake === 'L' ? ' L' : '') + (a.squawk === '7700' ? ' 7700' : a.squawk === '7600' ? ' 7600' : ''), l2, l3;
       var asg = a.appr && a.appr.gs ? 'ILS' : U.pad(Math.round(a.tAlt / 100), 3);
+      if (a.sidR && a.vcap !== undefined && a.vcap < a.tAlt) asg = U.pad(Math.round(a.vcap / 100), 3) + '›' + asg;      /* SID 「이하」 · 「그 고도」 제한에서 잠깐 멈춤: 제한 고도 › 허가 고도 */
       l2 = U.pad(Math.round(a.ralt / 100), 3) + tr + asg + (a.appr && !a.appr.gs ? (a.appr.loc ? ' LOC' : ' APP') : '');
       l3 = U.pad(Math.round(a.rgs / 10), 2) + ' ' + a.type + ' ' + (acc ? (a.kind === 'arr' || a.divert ? a.gate : a.exitFix || '') : (a.kind === 'arr' ? a.rwy : a.gate));
       ctx.font = (a.id === app.sel ? 'bold ' : '') + '11px ' + MONO;

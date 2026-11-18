@@ -82,7 +82,9 @@
       var sid = sidOf(m[2].split(' '), sim), rest = m[3], ma = / maintain (fl\d+|\d{4,5}) /.exec(rest + ' '), sq = / squawk (\d{4}) /.exec(rest + ' ');
       if (!sid) { r.err = ATC.T('SID 이름을 알아듣지 못했습니다: 「{0}」', m[2]); return r; }
       if (sq && ac.squawk && sq[1] !== String(ac.squawk)) { r.err = ATC.T('말한 스쿼크 {0} ≠ 배정 스쿼크 {1}', sq[1], ac.squawk); return r; }
-      add({ k: 'clr', destName: ac.destName, sid: sid, alt: ma ? (ma[1][0] === 'f' ? +ma[1].slice(2) * 100 : +ma[1]) : 0, sq: ac.squawk });
+      var cq = { k: 'clr', destName: ac.destName, sid: sid, alt: ma ? (ma[1][0] === 'f' ? +ma[1].slice(2) * 100 : +ma[1]) : 0, sq: ac.squawk };
+      if (/ transition /.test(rest + ' ')) { var flat = rest.replace(/\s+/g, ''), tl = Object.keys((D.sidTrans || {})[ac.gate] || {}), tf = tl.filter(function (t) { return flat.indexOf(t.toLowerCase()) >= 0; })[0] || tl.filter(function (t) { return new RegExp(' ' + t[0].toLowerCase() + '[a-z ]* transition ').test(rest + ' '); })[0]; if (tf) cq.trans = tf; }      /* SID 뒤 transition */
+      add(cq);
       return r;
     }
     if (/ readback correct /.test(s)) add({ k: 'rbok' });
@@ -90,6 +92,7 @@
     if ((m = / (?:turn )?(left|right) (?:heading )?(\d{1,3}) /.exec(s)) && !/ knots/.test(s.slice(m.index + m[0].length - 1, m.index + m[0].length + 7))) add({ k: 'hdg', v: Math.round(+m[2] / 5) * 5 || 360, dir: SIDE[m[1]] });
     else if ((m = / heading (\d{1,3}) /.exec(s))) add({ k: 'hdg', v: Math.round(+m[1] / 5) * 5 || 360, dir: null });
     if ((m = / expedite (climb|descent) (?:to )?(fl\d+|\d{3,5}) /.exec(s))) add({ k: 'alt', v: m[2][0] === 'f' ? +m[2].slice(2) * 100 : +m[2], exp: true });
+    else if ((m = / climb via (?:the )?(?:sid|s i d|said|cid|seed|sit|sids) (?:to )?(fl\d+|\d{3,5}) /.exec(s))) { r.verb = 'climb'; add({ k: 'alt', v: m[1][0] === 'f' ? +m[1].slice(2) * 100 : +m[1], via: true }); }      /* SID 고도 제한을 지키며 상승 */
     else if ((m = / (climb|descend)(?: and maintain| to)? (fl\d+|\d{3,5}) /.exec(s))) { r.verb = m[1]; add({ k: 'alt', v: m[2][0] === 'f' ? +m[2].slice(2) * 100 : +m[2] }); }
     else if ((m = / maintain (fl\d+|\d{4,5}) (?!knots)/.exec(s))) add({ k: 'alt', v: m[1][0] === 'f' ? +m[1].slice(2) * 100 : +m[1] });
     if (/ resume normal speed /.test(s)) add({ k: 'spd', v: 0 });
