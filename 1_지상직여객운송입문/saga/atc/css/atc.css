@@ -263,7 +263,7 @@ b.y{color:var(--yel)}
 }
 /* 휴대폰 가로(높이가 낮은 화면): 지도는 왼쪽 전체, 오른쪽에 스트립 · 지시판 · 교신 기록 — 아래 칸 고정 높이 때문에 지도가 0이 되던 문제 */
 @media (max-height:560px) and (orientation:landscape){
-  #game{grid-template-columns:minmax(0,1fr) min(300px,42vw);grid-template-rows:auto auto minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"top top" "scope strips" "scope cmd" "scope log"}
+  #game{grid-template-columns:minmax(0,1fr) min(380px,45vw);grid-template-rows:auto auto minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"top top" "scope strips" "scope cmd" "scope log"}
   #main,#bot{display:contents}
   #top{grid-area:top;flex-wrap:nowrap;overflow-x:auto;height:auto;padding:3px 6px;gap:6px;scrollbar-width:none}
   #top>.sp{display:none}#tAtis,#tScore .k,#tPos em{display:none}
@@ -311,7 +311,7 @@ b.y{color:var(--yel)}
 @media (max-width:380px) and (orientation:portrait){#top{gap:4px}#top .tb{padding:5px 5px}#tSpeed button{min-width:28px;padding:5px 4px}#tAtis span:nth-child(4){display:none!important}}
 @media (max-height:560px) and (orientation:landscape){
   #ops{display:flex;position:absolute;left:6px;bottom:6px;z-index:2;max-width:calc(100% - 12px);overflow:hidden;font-family:var(--mono);color:#b7c7d5;background:rgba(8,14,20,.84);border:1px solid var(--line);border-radius:6px;padding:3px 7px;pointer-events:none}
-  #game{grid-template-rows:auto auto minmax(0,1.8fr) minmax(0,.8fr)}#strips{max-height:25vh}
+  #game{grid-template-rows:auto auto minmax(0,1.5fr) minmax(0,1fr)}#strips{max-height:25vh}
   .cb.wide,.cb.ho,.cb.send,.cb.pri,.cb.red{padding:7px 9px}
   .v-radar #ops{left:auto;right:6px}
   #ops[hidden]{display:none}#ops i{font-style:normal;color:#04202b;background:var(--yel);border-radius:4px;padding:0 5px;font-weight:700}
@@ -522,3 +522,22 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .pxpdr{flex-wrap:wrap;gap:4px}.pxpdr .pval{font-family:ui-monospace,monospace;font-size:18px;letter-spacing:.12em;min-width:64px;color:#ffd27a}
 .pxpdr.due{outline:1px solid #ffd27a;border-radius:6px}
 .pilotp .pgst b{color:#c9d6e2}.pilotp .pgst b.on{color:var(--ok)}
+
+/* 새로고침 대비(근무 중): 당겨서 새로고침 · 튕김 막기 — 안쪽 스크롤 칸 끝에서 화면 전체로 번지지 않게 */
+html.ingame,html.ingame body{overscroll-behavior:none}
+#cmd,#logList,#strips,#coach,#modalBox .mbody{overscroll-behavior:contain}
+#resume{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;width:min(560px,calc(100% - 24px));box-sizing:border-box;background:#10202e;border:1px solid var(--acc);border-radius:10px;padding:12px 14px;box-shadow:0 10px 30px rgba(0,0,0,.55);color:var(--txt);font-size:13.5px}
+#resume p{margin:0 0 10px;line-height:1.55}#resume div{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+/* 휴대폰: 조종사 체험의 조종석 위 자막(최근 교신 2개, 14초 뒤 사라짐 — 관제 근무는 지도를 가리지 않게 자막 없음) · 가로 화면의 교신 기록 크게 보기(세로는 아래로 내리면 큰 교신 기록) */
+#cap{display:none}#bLogBig{display:none}
+@media (max-width:900px) and (orientation:portrait),(max-height:560px) and (orientation:landscape){
+  .pilotm #cap:not([hidden]){display:flex;flex-direction:column;gap:3px;position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:7;width:max-content;max-width:min(94%,560px);pointer-events:none}
+  #cap div{background:rgba(6,11,17,.86);border:1px solid #23394c;border-radius:6px;padding:3px 8px;font:12.5px/1.4 var(--mono);color:#dce7f0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  #cap div b{color:var(--acc);font-weight:700;margin-right:4px}#cap div.p b{color:#ffd27a}
+  #scope:has(.ckman:not([hidden])) #cap,.v-radar #cap{bottom:auto;top:46px}      /* 직접 조종 중(조종간 · 추력 레버) · 접근 단계(아래 계기)에서는 위쪽 하늘 자리에 */
+}
+@media (max-height:560px) and (orientation:landscape){
+  #log h5{display:flex;align-items:center;gap:6px}
+  #bLogBig{display:inline-block;margin-left:auto;background:#12263a;border:1px solid #2d4a63;color:var(--acc);border-radius:5px;font:600 11.5px var(--sans);padding:3px 9px;min-height:26px;cursor:pointer;text-transform:none;letter-spacing:0}
+  #game.logbig #cmd{display:none!important}#game.logbig #log{grid-row:3/5}
+}

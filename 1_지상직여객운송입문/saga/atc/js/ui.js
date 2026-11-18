@@ -11,7 +11,31 @@
   function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
 
   /* ================= 로비 ================= */
+  /* ---- 새로고침 대비: 근무 중에는 당겨서 새로고침을 막고(CSS), 새로고침 전에 묻고, 끊기면 같은 조건으로 다시 시작 ---- */
+  var RESUME_K = 'acn_atc_resume_v1';
+  function endPlay() { try { sessionStorage.removeItem(RESUME_K); } catch (e) { } document.documentElement.classList.remove('ingame'); }
+  function resumeOffer() {
+    var r = app.resume0; app.resume0 = null;      /* 처음 읽을 때 받아 둔 것(로비를 그리며 지워지므로) */
+    if (!r || r.apt !== ATC.aptId || Date.now() - r.t > 12 * 3600 * 1000) return;
+    var el = document.createElement('div'); el.id = 'resume';
+    el.innerHTML = '<p>' + ATC.T('새로고침으로 하던 근무가 끊겼습니다. 진행 상황은 이어 갈 수 없지만, 같은 조건(같은 교통 · 날씨)으로 처음부터 다시 시작할 수 있습니다.') + '</p><div><button class="btn pri" data-r="go">' + ATC.T('같은 조건으로 다시 시작') + '</button><button class="btn" data-r="no">' + ATC.T('닫기') + '</button></div>';
+    document.body.appendChild(el);
+    el.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; el.remove(); if (b.dataset.r !== 'go') { endPlay(); return; }
+      var x = r.xo; if (r.scn && ATC.SCN_BY[r.scn]) { var sc = ATC.SCN_BY[r.scn]; start(sc.pos, sc.seed, sc); }
+      else if (x && x.pilotDep) start(x.k0 || 'DEL', r.seed, null, x);
+      else start(r.k, x && x.daily ? x.seed : r.seed, null, x); });
+  }
+  /* 휴대폰: 지도 · 조종석 위 자막(최근 교신 2개) · 교신 기록 크게 보기 */
+  var caps = [];
+  function capPush(e) {
+    if (!(e.who === 'atc' || e.who === 'pilot') || e.blocked) return;
+    var c = $('cap'); if (!c) return; var who = e.who === 'atc' ? (app.sim && app.sim.pilot ? ATC.T('관제') : app.pos.id) : e.cs;
+    caps.push({ who: who, t: e.text, at: Date.now(), atc: e.who === 'atc' }); if (caps.length > 2) caps.shift(); capDraw();
+  }
+  function capDraw() { var c = $('cap'); if (!c) return; var now = Date.now(); caps = caps.filter(function (x) { return now - x.at < 14000; }); c.innerHTML = caps.map(function (x) { return '<div class="' + (x.atc ? 'a' : 'p') + '"><b>' + esc(x.who) + '</b> ' + esc(x.t) + '</div>'; }).join(''); c.hidden = !caps.length; }
+  function setLogBig(on) { app.logBig = !!on; $('game').classList.toggle('logbig', app.logBig); var b = $('bLogBig'); if (b) b.textContent = app.logBig ? ATC.T('↩ 지시판') : ATC.T('⤢ 크게'); }
   function showLobby() {
+    endPlay();
     if (ATC.Cockpit) ATC.Cockpit.close();
     app.sim = null; $('game').hidden = true; $('lobby').hidden = false; closeModal();
     app.aq = []; if (window.speechSynthesis) speechSynthesis.cancel(); if (ATC.Radio.ctx) ATC.Radio.stop();      /* 로비로 나오면 남은 소리를 모두 끊음 */
@@ -127,6 +151,8 @@
     var rng = ATC.rng(seed + 7), flow = app.flow === 'auto' || !D.flows[app.flow] ? pickFlow(rng()) : app.flow;
     var fw = D.flows[flow].wind, wind = { dir: U.n360(fw.dir + rng.int(0, 6) * 10) || 360, spd: fw.spd + rng.int(0, fw.spdN) };
     xo = scn ? null : xo || null; app.xo = xo; app.pxr = '';
+    if (!(xo && xo.carry)) { var xs = null, xk; if (xo) { xs = {}; for (xk in xo) if (xk !== 'carry') xs[xk] = xo[xk]; } try { sessionStorage.setItem(RESUME_K, JSON.stringify({ apt: ATC.aptId, k: k, seed: seed, scn: scn ? scn.id : null, xo: xs, t: Date.now() })); } catch (e) { } }      /* 새로고침(휴대폰에서 화면을 아래로 당김)으로 끊겼을 때 같은 조건으로 다시 시작하게 */
+    document.documentElement.classList.add('ingame');
     var cr = xo && xo.carry || null; if (cr) { flow = cr.sim.flow.id; wind = cr.sim.wind; }      /* 조종사 체험 출발편: 앞 단계(비행허가)의 날씨 · 시각 · 기록을 이어받음 */      /* xo = 오늘의 과제(daily) · 무한 근무(endless) */
     if (xo && xo.daily) flow = pickFlow(rng());      /* 오늘의 과제는 운용 방향도 모두 같게 */
     var lv = scn ? scn.level : xo && xo.level || app.level; app.scn = scn || null;
@@ -167,7 +193,7 @@
     };
     app.instSeen = {}; app.instT = 0; hideInst();
     sim.listeners.push(function (type, d) {
-      if (type === 'log') { addLog(d); }
+      if (type === 'log') { addLog(d); capPush(d); }
       else if (type === 'inc') { if (d.pts < 0) banner(d.title, d.cat === 'S' ? 'bad' : 'warn'); }
       else if (type === 'notice') { banner(d, 'warn'); }      /* 감점은 아니지만 꼭 봐야 하는 알림(활주로 전환 등) */
       else if (type === 'over') { app.over = true; setTimeout(showResult, 900); }
@@ -645,6 +671,7 @@
   if (ATC.DepPilot) ATC.DepPilot.relay = function (p, k) { var x0 = app.xo || {}; start(k, app.seed, null, { pilotDep: true, level: x0.level || app.level, k0: x0.k0 || 'DEL', from: x0.from, carry: p }); };      /* 출발편: 다음 관제석의 시뮬레이션으로 이어 감 */
   /* ================= 조종사 체험 패널 ================= */
   function renderPilot(sim) {
+    var pq = sim.pilot; if (app.logBig && (pq.prompt || pq.clr && pq.clr.opts || pq.freqTo && !pq.freqTo.sent || Object.keys(pq.asg || {}).length || pq.gaTodo && pq.gaTodo() || pq.todo && pq.todo() || pq.sidAsk)) setLogBig(false);      /* 교신 기록을 크게 보던 중 할 일이 생기면 지시판으로 */
     if (sim.pilot.dep && sim.pilot.phase !== 'air') return renderDep(sim);      /* 출발편: 하늘 단계는 도착편과 같은 MCP 패널 */
     var p = sim.pilot, ac = p.ac, mc = p.mcp || {}, sig = 'P' + p.ver + (ATC.Cockpit && ATC.Cockpit.on ? 'C' : '') + '|' + (ac ? [ac.nav && ac.nav.mode, ac.appr ? (ac.appr.loc ? 2 : 1) : 0, mc.hdg, mc.alt, mc.spd, p.cfg.gear, p.cfg.flap, p.fly && p.fly.mode, p.fly && p.fly.on, p.fly && p.fly.at, p.dep && ac.nextFix ? ac.nextFix() : '', p.dep && p.sidView ? Math.round(((p.sidView().pred || {}).alt || 0) / 500) : '', p.gaTodo && p.gaTodo() ? p.gaTodo().k : '', p.canGa && p.canGa() ? 'G' : ''].join() : '') + (sim.cur && sim.cur.ac === ac ? sim.cur.who : '');
     /* 계기 숫자(기수 · 고도 · 속도)는 글자만 바꿈 — 패널 전체를 다시 그리면 누르는 도중의 단추가 사라져 선택이 먹지 않음 */
@@ -868,6 +895,7 @@
     openModal(ATC.T('<div class="mhead"><h2>학습 노트</h2></div><div class="mbody learn"><nav>{0}</nav><article><h3>{1}</h3>{2}</article></div><div class="mfoot"><span class="sp"></span>{3}</div>', ATC.LEARN.map(function (x) { return '<button data-m="tab" data-les="' + x.id + '" class="' + (x.id === s.id ? 'on' : '') + '">' + x.t + '</button>'; }).join(''), s.t, s.h, (app.over ? ATC.T('<button class="btn" data-m="lobby">로비로</button><button class="btn pri" data-m="result">평가로 돌아가기</button>') : ATC.T('<button class="btn pri" data-m="close">닫기</button>'))));
   }
   function showResult() {
+    endPlay();
     var sim = app.sim, sc = sim.score(), rec = load(REC_KEY, {}), key = app.pos.id + sim.level.id, r = rec[key] || { best: 0, grade: '-', n: 0 };
     var xo = app.xo, early = !sim.endless && !sim.fatal && !(sim.isFinished && sim.isFinished()), xr = '';
     var scn = app.scn, st = scn ? ATC.scnStars(scn, sim, early) : null, srec = scn ? load(SCN_KEY, {}) : null, sr = scn ? srec[scn.id] || { st: [0, 0, 0], best: 0, n: 0 } : null;
@@ -1006,6 +1034,7 @@
     if (el && ls.length > 1) { el.hidden = false; el.innerHTML = '<span>Language</span>' + ls.map(function (l) { return '<button data-lang="' + l.id + '" class="' + (l.id === ATC.lang() ? 'on' : '') + '">' + esc(l.name) + '</button>'; }).join(''); el.addEventListener('click', function (e) { var b = e.target.closest('[data-lang]'); if (b && b.dataset.lang !== ATC.lang()) ATC.setLang(b.dataset.lang); }); }
   }
   window.addEventListener('DOMContentLoaded', function () {
+    try { app.resume0 = JSON.parse(sessionStorage.getItem(RESUME_K) || 'null'); } catch (e) { }      /* 새로고침 전에 하던 근무(로비를 그리면 지워짐) */
     applyStatic(); if (ATC.learnInit) ATC.learnInit();
     if (/[?&]guide=1/.test(location.search)) {   /* 그림 의뢰용 배치도: 글자 없이 지형만 */
       document.body.innerHTML = '<canvas id="g" width="3200" height="2000" style="display:block"></canvas>'; document.body.style.overflow = 'auto';
@@ -1021,6 +1050,11 @@
     /* 시나리오: 공항을 바꿔 다시 읽은 뒤 고른 판의 안내를 엶. 주소의 ?scn=판이름(&go=1이면 바로 시작)은 시험용 */
     var qs = /[?&]scn=([a-z0-9-]+)/.exec(location.search), qx = qs && ATC.SCN_BY[qs[1]]; if (qx && qx.wip && window.ATC_SITE) qx = null;
     if (qx && qx.apt === ATC.aptId) { app.tab = 'scn'; app.tabSet = true; showLobby(); if (/[?&]go=1/.test(location.search)) start(qx.pos, qx.seed, qx); else scnBrief(qx.id); } else if (!q) scnPending();
+    /* 휴대폰: 자막 칸 · 교신 기록 크게 단추 · 새로고침 대비 */
+    var cp = document.createElement('div'); cp.id = 'cap'; cp.hidden = true; $('scope').appendChild(cp); setInterval(function () { if (caps.length) capDraw(); }, 1000);
+    var lb = document.createElement('button'); lb.id = 'bLogBig'; lb.type = 'button'; lb.textContent = ATC.T('⤢ 크게'); lb.addEventListener('click', function () { setLogBig(!app.logBig); app.cmdSig = ''; }); $('log').querySelector('h5').appendChild(lb);
+    window.addEventListener('beforeunload', function (e) { if (app.sim && !app.over && !app.sim.over && !$('game').hidden) { e.preventDefault(); e.returnValue = ''; return ''; } });      /* 근무 중 새로고침 · 닫기: 브라우저가 한 번 물음(휴대폰은 브라우저에 따라 안 물을 수 있음) */
+    if (!q && !(qx && qx.apt === ATC.aptId)) resumeOffer();
   });
   ATC.ui = { redraw: function () { app.cmdSig = ''; }, sim: function () { return app.sim; }, start: start, select: select, showLobby: showLobby, showResult: showResult, openLearn: openLearn, briefing: briefing, addPend: addPend, sendPend: sendPend, openModal: openModal, closeModal: closeModal, tts: tts, micHandle: micHandle };
 })();
