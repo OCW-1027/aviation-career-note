@@ -15,8 +15,9 @@ function tbot(sim) {
   for (const a of sim.acs) { if (a.owner !== 'me' || sim.t - (a.botT || -99) < 25) continue;
     const e = D.ends[a.rwy], rw = e.rw, arr = sim.nextArr(rw), busy = sim.rwyBusy(rw, a), closed = sim.rwClosed[rw] > sim.t;
     if (a.st === 'final') { if (closed && a.d < 2.5 * NM && !a.emg) { a.botT = sim.t; sim.command(a, [{ k: 'ga' }], { noErr: true }); } else if (!a.clr && a.d < 5 * NM && !closed && (!busy || busy.st === 'roll')) { a.botT = sim.t; sim.command(a, [{ k: 'ctl', rwy: a.rwy }], { noErr: true }); } }
-    else if (a.st === 'athold' && a.holdKind === 'dep') { if (!closed && !busy && (!arr || arr.d > (sim.lvp ? 5.8 : 4.6) * NM) && sim.wakeGap(a, rw) <= 0 && !sim.crossTraffic(rw, a)) { a.botT = sim.t; if (!sim.relOk || sim.relOk(a)) sim.command(a, [{ k: 'cto', rwy: a.rwy }], { noErr: true }); } }
-    else if (a.st === 'linedup' && !a.cto) { if (!sim.crossTraffic(rw, a)) { a.botT = sim.t; if (!sim.relOk || sim.relOk(a)) sim.command(a, [{ k: 'cto', rwy: a.rwy }], { noErr: true }); } }
+    else if (a.st === 'athold' && a.holdKind === 'dep') { if (!closed && !busy && (!arr || arr.d > (sim.lvp ? 5.8 : 4.6) * NM) && sim.wakeGap(a, rw) <= 0 && !sim.crossTraffic(rw, a)) { a.botT = sim.t; if (!sim.relOk || sim.relOk(a)) sim.command(a, [{ k: 'cto', rwy: a.rwy }], { noErr: true }); }
+      else if (a.pilotMe && !closed && (!busy || (busy.kind === 'dep' && (busy.st === 'roll' || busy.st === 'air'))) && (!arr || arr.d > 6 * NM) && !sim.crossTraffic(rw, a)) { a.botT = sim.t; sim.command(a, [{ k: 'luaw', rwy: a.rwy }], { noErr: true }); } }      /* 조종사 체험 출발편: 앞 출발기가 뜨는 동안 「line up and wait」 */
+    else if (a.st === 'linedup' && !a.cto) { if (!sim.crossTraffic(rw, a) && (!a.pilotMe || (!busy && sim.wakeGap(a, rw) <= 0 && (!arr || arr.d > 3.5 * NM)))) { a.botT = sim.t; if (!sim.relOk || sim.relOk(a)) sim.command(a, [{ k: 'cto', rwy: a.rwy }], { noErr: true }); } }
     else if (a.st === 'air') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: a.goAround ? 'APP' : 'DEP' }], { noErr: true }); }
     else if (a.st === 'reqtaxi') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: 'GND' }], { noErr: true }); }
     else if (a.st === 'athold' && a.holdKind === 'cross') { const ar = sim.nextArr(a.holdRw); if (!(sim.rwClosed[a.holdRw] > sim.t) && !sim.rwyBusy(a.holdRw, a) && (!ar || ar.d > 2.6 * NM)) { a.botT = sim.t; sim.command(a, [{ k: 'cross', rwy: sim.endOf(a.holdRw) }], { noErr: true }); } }
@@ -228,7 +229,7 @@ function rabot(sim) {
 }
 // 지역관제 공통: 공항 폐쇄(체공 · 회항 · 재개 후 순서대로 이양)와 진입 간격 제한(MIT). true면 이번 차례는 여기서 끝
 function accCl(sim, a) {
-  if (process.env.NO_ACCCL) return false;
+  if (typeof process !== 'undefined' && process.env && process.env.NO_ACCCL) return false;
   const cl = sim.apClosed, mt = sim.mit && sim.t < sim.mit.t1 ? sim.mit : null;
   if (a.waiting === 'divert') { const dv = sim.divertTo(a); a.botT = sim.t; sim.command(a, [{ k: 'divert', fix: dv.fix, dest: dv.dest, destName: dv.destName, alt: dv.alt }], { noErr: true }); return true; }
   if (a.kind !== 'arr' || a.emg) return false;

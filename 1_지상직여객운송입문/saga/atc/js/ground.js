@@ -226,8 +226,8 @@
       switch (a.st) {
         case 'final': r = this.finalStep(a, dt); if (r) this.onFinalEvt(a, r); break;
         case 'land': r = this.landStep(a, dt); break;
-        case 'roll': r = this.rollStep(a, dt); if (r === 'lift' && this.onLift) this.onLift(a); break;
-        case 'air': this.airStep(a, dt); if (Math.abs(a.u) > 24000 || Math.abs(a.v) > 24000) this.onAirOut(a); break;      /* 남북으로 놓인 활주로에서 뜬 항공기는 v쪽으로 멀어짐 */
+        case 'roll': r = a.pilotMe && this.pilot && this.pilot.rollStep ? this.pilot.rollStep(a, dt) : this.rollStep(a, dt); if (r === 'lift' && this.onLift) this.onLift(a); break;      /* 조종사 체험 출발편: 내 편의 이륙 활주 · 상승 */
+        case 'air': if (a.pilotMe && this.pilot && this.pilot.airStep) this.pilot.airStep(a, dt); else this.airStep(a, dt); if (Math.abs(a.u) > 24000 || Math.abs(a.v) > 24000) this.onAirOut(a); break;      /* 남북으로 놓인 활주로에서 뜬 항공기는 v쪽으로 멀어짐 */
         case 'push': case 'taxi': case 'vacate': case 'lineup': case 'cross':
           r = a.manTaxi && a.st === 'taxi' && this.pilot && this.pilot.manStep ? this.pilot.manStep(a, dt) : this.taxiStep(a, dt);      /* 조종사 체험 출발편: 지상 이동 직접 조종 */
           if (r === 'end' || r === 'hs') this.onPathEvt(a, r);
