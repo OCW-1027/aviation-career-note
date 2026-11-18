@@ -11,6 +11,7 @@
   RD.init = function () {
     if (RD.ctx) { RD.unlock(); return RD.ctx; }
     var AC = window.AudioContext || window.webkitAudioContext; if (!AC) { RD.err = 'no-audiocontext'; return null; }
+    if (window.matchMedia && matchMedia('(pointer: coarse)').matches) FX.strong = { lo: 400, hi: 2600, drive: 2.3, noise: 0.055, out: 0.62 };      /* 휴대폰 스피커: 「실제에 가깝게」의 찌그러짐 · 지지직 잡음이 PC보다 거칠게 들림(사용자 보고) → 찌그러짐 · 잡음을 줄임 */
     var c, i; try { c = RD.ctx = RD.mkctx ? RD.mkctx() : new AC(); } catch (e) { RD.err = String(e && e.message || e); return null; }
     /* 잡음 원본(2초) */
     var nb = c.createBuffer(1, c.sampleRate * 2, c.sampleRate), d = nb.getChannelData(0); for (i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; RD.noise = nb;

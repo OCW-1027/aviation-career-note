@@ -13,6 +13,19 @@
   /* ================= 로비 ================= */
   /* ---- 새로고침 대비: 근무 중에는 당겨서 새로고침을 막고(CSS), 새로고침 전에 묻고, 끊기면 같은 조건으로 다시 시작 ---- */
   var RESUME_K = 'acn_atc_resume_v1';
+  /* 휴대폰: 근무 중 화면을 위에서 아래로 당겨도 새로고침되지 않게 — CSS(overscroll-behavior)를 따르지 않는 브라우저(삼성 인터넷 등)용.
+     페이지가 맨 위이고, 손가락 아래의 칸도 더 올릴 것이 없을 때 아래로 끄는 움직임만 막음(가로 끌기 · 안쪽 칸 스크롤은 그대로) */
+  (function () {
+    var x0 = 0, y0 = 0, el0 = null;
+    document.addEventListener('touchstart', function (e) { if (e.touches.length !== 1) return; x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; el0 = e.target; }, { passive: true });
+    document.addEventListener('touchmove', function (e) {
+      if (!document.documentElement.classList.contains('ingame') || e.touches.length !== 1 || !e.cancelable) return;
+      var dx = e.touches[0].clientX - x0, dy = e.touches[0].clientY - y0; if (dy <= 0 || dy < Math.abs(dx)) return;
+      if ((window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0) > 0) return;
+      for (var n = el0; n && n.nodeType === 1 && n !== document.body; n = n.parentNode) if (n.scrollTop > 0) return;
+      e.preventDefault();
+    }, { passive: false });
+  })();
   function endPlay() { try { sessionStorage.removeItem(RESUME_K); } catch (e) { } document.documentElement.classList.remove('ingame'); }
   function resumeOffer() {
     var r = app.resume0; app.resume0 = null;      /* 처음 읽을 때 받아 둔 것(로비를 그리며 지워지므로) */

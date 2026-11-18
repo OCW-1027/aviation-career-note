@@ -197,7 +197,7 @@ b.y{color:var(--yel)}
 .mhead h2{margin:0;font-size:22px}.mhead h2 small{font:13px var(--mono);color:var(--ok);margin-left:8px}
 .mbody{padding:14px 22px;overflow-y:auto}
 .mbody h4{margin:14px 0 6px;color:var(--acc);font-size:13.5px}
-.mfoot{display:flex;gap:8px;padding:12px 22px;border-top:1px solid var(--line);align-items:center}
+.mfoot{display:flex;flex-wrap:wrap;gap:8px;padding:12px 22px;border-top:1px solid var(--line);align-items:center}
 .btn{border:1px solid var(--line);background:var(--pan2);border-radius:7px;padding:8px 16px}
 .btn.pri{background:var(--acc);border-color:var(--acc);color:#04202b;font-weight:800}
 .bsum{font-size:15px;color:#cfe0ee;margin:0}
@@ -391,7 +391,7 @@ html[lang=ja]{--sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI","
 .sres ul{list-style:none;margin:0;padding:0}.sres li{display:flex;align-items:baseline;gap:8px;padding:3px 0;font-size:14px;color:#8496a6}.sres li i{font-style:normal;color:#33475a;font-size:17px}.sres li b{min-width:34px;text-align:center}
 .sres li.on{color:#e3edf5}.sres li.on i{color:var(--yel)}
 .stips{margin:0;padding:6px 12px 6px 28px;font-size:13.5px;color:#c3d2df;line-height:1.6}.stips li{margin:4px 0}
-@media (max-width:560px){.mhead h2 small{display:block;margin:4px 0 0}.mfoot .btn{white-space:nowrap}#tabs{width:auto;margin:0;align-self:stretch}#tabs button{flex:1;padding:11px 8px}.scg{grid-template-columns:1fr}.sbrief th{width:52px}}
+@media (max-width:560px){.mhead h2 small{display:block;margin:4px 0 0}.mfoot{padding:12px 14px}.mfoot .sp{display:none}.mfoot .btn{white-space:nowrap;flex:1 1 auto}#tabs{width:auto;margin:0;align-self:stretch}#tabs button{flex:1;padding:11px 8px}.scg{grid-template-columns:1fr}.sbrief th{width:52px}}
 .scnf{width:max-content;max-width:100%;margin:10px 0 0;flex-wrap:wrap}.scnf button{padding:8px 13px}
 @media (max-width:560px){.scnf{width:auto}.scnf span{display:none}.scnf button{flex:1;padding:9px 6px;white-space:nowrap}.scnf button:first-of-type{border-left:0}}
 /* 휴대폰 세로: 교신 기록을 지시판 아래로 내림 — 첫 화면은 지도 · 스트립 · 지시판, 화면을 아래로 밀면 교신 기록(첫 화면 맨 아래에 머리말이 살짝 보임). 위 막대는 내려가도 따라옴 */
