@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 14, ctlf: 14, p1: 17, p2: 16 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 14, ctlf: 14, p1: 18, p2: 17 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -186,14 +186,15 @@
     D.starAlt = { ANZAC: 13000, WANDA: 13000, WALLY: 12000, AVEEY: 11000, WALTZ: 11000, WEDGE: 8000, CHIPS: 13000, COLOR: 11000, COACH: 8000, EDDIE: 8000,
       SOLAR: 13000, STOCK: 13000, SALLY: 12000, STOWE: 12000, ALDEN: 11000, SLICK: 11000, SHAFT: 8000, NOVEL: 8000 };
     D.entryAlt = { XAC: 15000, AKSEL: 12000, AROSA: 13000, GODIN: 14000, POLIX: 15000 };      /* AKSEL 12,000 · POLIX FL150 = AIP, 나머지는 게임값 */
-    /* SID 경로(활주로별). 활주로 바로 앞의 첫 지점(TT501 등)은 빼고 그다음 지점부터 */
+    /* SID 경로(활주로별). 05는 TT501(상공 통과 지점 — 활주로 방위로 지난 뒤 우선회)부터, 나머지는 활주로 바로 앞의 첫 선회 지점부터. 이륙 직후 기수 방위 구간(○ft 이상까지 직진)의 고도 조건은 재현하지 않음 */
     var SIDR = {
-      '05': { LAXAS: ['TT502', 'LOCUP', 'TAURA', 'IMOLA', 'LAXAS'], NINOX: ['TT502', 'LOCUP', 'BAYGE', 'SEIKO', 'NINOX'], GUSRO: ['TT502', 'LOCUP', 'TT503', 'KAMAT', 'LAYER', 'TIARA', 'GUSRO'] },
+      '05': { LAXAS: ['TT501', 'TT502', 'LOCUP', 'TAURA', 'IMOLA', 'LAXAS'], NINOX: ['TT501', 'TT502', 'LOCUP', 'BAYGE', 'SEIKO', 'NINOX'], GUSRO: ['TT501', 'TT502', 'LOCUP', 'TT503', 'KAMAT', 'LAYER', 'TIARA', 'GUSRO'] },
       '34R': { ROVER: ['TORAM', 'PLUTO', 'KAIJI', 'SPOON', 'ROVER'], BEKLA: ['TORAM', 'PLUTO', 'KAIJI', 'INTEL', 'RAGOS', 'BEKLA'] },
       '16R': { LAXAS: ['T6R11', 'TAURA', 'IMOLA', 'LAXAS'], NINOX: ['T6R12', 'TT631', 'BAYGE', 'SEIKO', 'NINOX'], GUSRO: ['T6R13', 'HATBA', 'KAMAT', 'LAYER', 'TIARA', 'GUSRO'] },
       '16L': { ROVER: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'SPOON', 'ROVER'], BEKLA: ['T6L23', 'WELDA', 'PLUTO', 'KAIJI', 'INTEL', 'RAGOS', 'BEKLA'] }
     };
     D.sidRoute = function (rwy, gate) { var r = SIDR[rwy] && SIDR[rwy][gate]; return r ? r.slice() : [gate]; };
+    D.flyOver = { TT501: 1 };      /* AIP SID coding table: TT501 Fly Over = Y(GPT 16차 F16-02) */
     D.sidAt = 0.6;         /* 이륙 뒤 활주로 끝에서 이만큼(NM) 지나면 SID 경로로 */
     D.tmaTop = 24000;      /* 도쿄 접근관제구의 상한 FL240(AIP ENR 2.1 — 구역 대부분) */
     D.tmaR = 75;

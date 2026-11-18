@@ -199,9 +199,10 @@ function rabot(sim) {
     const dc = U.dist(a, D.center), say = c => { a.botT = sim.t; sim.command(a, c, { noErr: true }); };
     if (a.kind === 'dep') {
       const above = arrs.some(b => U.dist(a, b) < 12 && b.alt > a.alt - 300 && b.alt < a.alt + 6000);
-      if (a.tAlt < D.tmaTop && a.alt > 2500 && !above) say([{ k: 'alt', v: D.tmaTop }]);
+      const rc = () => a.rcSaid ? [] : (a.rcSaid = 1, [{ k: 'radar' }]);      /* 이륙기를 처음 레이더로 식별했을 때 한 번 「radar contact」(管制方式基準 — 이미 식별된 채 넘겨받는 도착기 · 지역관제는 다시 말하지 않음, GPT 16차 R16-02) */
+      if (a.tAlt < D.tmaTop && a.alt > 2500 && !above) say(rc().concat([{ k: 'alt', v: D.tmaTop }]));
       else if (a.tAlt >= D.tmaTop && (a.waiting === 'ho' || ATC.AppSim.depRem(a) < 12)) say([{ k: 'ho', to: 'ACC' }]);
-      else if (a.waiting === 'climb' && !above) say([{ k: 'alt', v: D.tmaTop }]);
+      else if (a.waiting === 'climb' && !above) say(rc().concat([{ k: 'alt', v: D.tmaTop }]));
       continue;
     }
     const e = D.ends[a.rwy], g = ATC.ilsGeom(a, e);

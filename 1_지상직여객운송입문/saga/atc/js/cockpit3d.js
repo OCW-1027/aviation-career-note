@@ -695,12 +695,12 @@
     var plc = { 0: 340, 1: 255, 5: 235, 15: 205, 20: 195, 25: 185, 30: 180 }, minS = { 0: 210, 1: 190, 5: 170, 15: 155, 20: 150, 25: 145, 30: ac.perf.vapp - 8 };
     var at = 'SPD', roll = ro ? 'ROLLOUT' : nav.mode === 'route' ? 'LNAV' : ap && ap.loc ? 'LOC' : 'HDG SEL', pitch = ro ? 'ROLLOUT' : ap && ap.gs ? (ra < 60 ? 'FLARE' : 'G/S') : Math.abs(vs) > 50 ? 'FLCH SPD' : 'ALT';
     if (gnd) { at = p.toga ? (ias > 80 ? 'HOLD' : 'THR REF') : ''; roll = 'TO/GA'; pitch = 'TO/GA'; }
-    else if (p.dep && p.phase === 'twr') { at = 'THR REF'; roll = ra < 400 || !p.apOn ? 'TO/GA' : 'LNAV'; pitch = ra < 400 || !p.apOn ? 'TO/GA' : 'VNAV SPD'; }      /* 이륙 뒤: 400ft · 자동조종부터 경로 · 상승 모드 */
+    else if (p.dep && p.phase === 'twr') { at = 'THR REF'; roll = ra < 50 ? 'TO/GA' : 'LNAV'; pitch = ra < 400 ? 'TO/GA' : 'VNAV SPD'; }      /* 이륙 뒤: 이륙 전에 걸어 둔 LNAV는 50ft, VNAV는 400ft에서 들어옴 — 자동조종(A/P)을 켰는지와는 따로(GPT 16차 R16-01) */
     var fmaNow = at + roll + pitch; if (S.fmaPrev !== fmaNow) { S.fmaChg = { t: performance.now(), roll: S.fmaRoll !== roll, pitch: S.fmaPitch !== pitch }; S.fmaPrev = fmaNow; S.fmaRoll = roll; S.fmaPitch = pitch; }
     var fmaNew = S.fmaChg && performance.now() - S.fmaChg.t < 10000 ? S.fmaChg : null;
     var mins = (D.airport.elev || 0) + 200, mc = p.mcp || {};
     var msgs = []; if (p.cfg.gear !== 'down' && ra < 1600 && ap && ap.loc) msgs.push(['CONFIG GEAR', ra < 1000 ? 'warn' : 'caut']); if (ap && ap.gs && p.cfg.flap < 25 && ra < 2000) msgs.push(['CONFIG FLAPS', 'caut']); if (!p.landOk && ra < 1200 && ap && ap.loc && !ro) msgs.push(['NO LAND CLEARANCE', 'caut']); if (ro) msgs.push(['AUTOBRAKE 2', 'memo']); else if (ap && ap.loc) msgs.push(['AUTOBRAKE 2', 'memo']);
-    var n1 = ro ? Math.max(22, 30 - (sim.t - ro.t0) * 0.5) : F ? 21 + F.thr * 76 : Math.max(24, Math.min(95, 52 + vs / 100 + (mc.spd - ias) * 0.8 + p.cfg.flapPos * 0.4 + (p.cfg.gear === 'down' ? 6 : 0)));
+    var n1 = ro ? Math.max(22, 30 - (sim.t - ro.t0) * 0.5) : F ? 21 + F.thr * 76 : Math.max(24, Math.min(95, 52 + vs / 100 + ((p.dep && p.phase === 'air' && ac.tIas ? ac.tIas : mc.spd) - ias) * 0.8 + p.cfg.flapPos * 0.4 + (p.cfg.gear === 'down' ? 6 : 0)));
     if (p.eng) { if (gnd || p.eng.st !== 'on' || p.phase === 'twr') n1 = p.eng.n1; if (p.call && sim.t - p.call.at < 3.5) msgs.push([p.call.t, 'memo']); if (p.pbrake) msgs.push(['PARKING BRAKE SET', 'memo']); if (p.eng.st === 'off') msgs.push(['APU RUNNING', 'memo']); }
     var egt0 = p.eng && n1 < 1 ? 18 : p.eng && (gnd || p.phase === 'twr') ? 300 + n1 * 5.5 : 380 + n1 * 5;
     var gpws = !ro && ap && ap.gs && p.cfg.gear !== 'down' && ra < 500 ? 'TOO LOW GEAR' : !ro && ra < 1000 && !(ap && ap.loc) && vs < -1500 ? 'SINK RATE' : '';

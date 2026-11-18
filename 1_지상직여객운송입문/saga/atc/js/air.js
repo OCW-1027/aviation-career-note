@@ -37,11 +37,13 @@
       var fn = this.nextFix();
       if (fn) {
         var f = D.fix[fn]; d = U.dist(this, f); var pass = Math.max(0.7, this.gs / 3600 * 12);
-        if (D.flyBy) {      /* 다음 구간(마지막 지점이 내 활주로의 IF면 최종 접근 방향)과 이루는 각만큼 미리 돌기 시작 */
+        var fo = D.flyOver && D.flyOver[fn];      /* 상공 통과(fly-over) 지점: 미리 돌지 않고 지점 위를 지난 뒤 다음 지점으로(AIP coding table의 Fly Over = Y) */
+        if (fo) pass = 0.03;      /* 지점 바로 위에 오거나, 지나쳐서 지점이 뒤로 갔을 때(아래 조건) 넘어감 */
+        else if (D.flyBy) {      /* 다음 구간(마지막 지점이 내 활주로의 IF면 최종 접근 방향)과 이루는 각만큼 미리 돌기 시작 */
           var nx = nav.route[nav.i + 1], e0 = D.ends[this.appr ? this.appr.rwy : this.rwy], nc = nx ? U.brg(f, D.fix[nx]) : (this.kind === 'arr' && e0 && e0.IF === fn ? e0.crs : null);
           if (nc !== null) { var dv = Math.abs(U.adiff(U.brg(this, f), nc)); if (dv > 8) pass = Math.max(pass, Math.min(4, this.gs / 188.5 * Math.tan(Math.min(dv, 120) / 2 * D2R))); }
         }
-        if (d < pass) {
+        if (d < pass || (fo && d < 2 && Math.abs(U.adiff(this.hdg, U.brg(this, f))) > 90)) {      /* fly-over: 지점을 지난 뒤(지점이 뒤쪽으로 감)에야 다음 지점으로 돌기 시작 */
           nav.i++; if (sim.onFix) sim.onFix(this, fn);
           if (nav.i >= nav.route.length) { nav.mode = 'hdg'; if (sim.onRouteEnd) sim.onRouteEnd(this, fn); }
         } else this.tHdg = U.brg(this, f);

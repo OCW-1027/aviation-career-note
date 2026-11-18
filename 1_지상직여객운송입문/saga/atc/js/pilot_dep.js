@@ -8,7 +8,10 @@
 (function () {
   'use strict';
   var ATC = window.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt;
-  var HO_ALT = 1000, ACC_ALT = 1500;      /* Tower → Departure 이양 높이 · 가속(플랩 올림) 높이 — 둘 다 지면 기준 ft, 게임값 */
+  var HO_ALT = 1000, ACC_ALT = 1500;      /* Tower → Departure 이양 높이 · 가속을 시작하는 높이 — 둘 다 지면 기준 ft, 게임값 */
+  var F_OVER = 15;      /* 플랩을 제때 안 올리면 그 단계 속도 +15kt에서 가속을 멈춤 */
+  /* 플랩을 올리는 속도(kt): 5 → 1은 V2+35 언저리(5kt 단위), 1 → UP은 거기서 +20 — 게임값. 실제는 그날 중량으로 계산한 플랩 단계별 기동 속도(지금 단계의 기동 속도에 이르러 가속 중일 때 다음 단계로) */
+  function fSpd(v2, flap) { var f1 = Math.round((v2 + 36) / 5) * 5; return flap > 1 ? f1 : f1 + 20; }
   var TODO_T = 25;      /* 조종석 조작(주차 브레이크 · 엔진 시동 · 플랩)을 이 시간(초) 안에 하지 않으면 부기장이 함 */
   function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : s; }
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
@@ -26,7 +29,7 @@
     this.eng = { st: 'off', t0: 0, n1: 0 }; this.pbrake = true;
     var c = o.carry, f;
     if (c) { f = this.f = c.f; this.fp = c.fp; this.standK = c.standK; this.xpdr = c.xpdr; this.sid = c.sid; this.cur = c.cur; this.mcp = c.mcp; this.depFq = c.depFq; this.nRb = c.nRb; this.nRbOk = c.nRbOk; this.rt = c.rt; this.sq = c.ac.squawk; this.tAcc = (c.tAcc || 0) + c.sim.t; sim.usedCs[f.cs] = 1;
-      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; }
+      if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; }
     else {
       f = sim.mkFlight(function (a) { return a.code === 'VLA'; }, 'dep');
       f.type = 'B789'; if (D.types && D.types.B789) f.perf = D.types.B789; f.wake = 'H';
@@ -183,7 +186,7 @@
     if (to !== 'OK' && to !== f.to) { sim.inc('p_freq_bad', [ac], ATC.T('{0}: 지시받은 주파수가 아닙니다({1}) — 지시는 {2} {3}', ac.cs, pick.fq || '?', f.n, f.fq)); this.bump(); return; }
     f.sent = true; this.freqNow = f.to; this.freqNowFq = f.fq; this.freqNowN = f.n;
     if (this.phase === 'gnd') { if (this.manUsed && !sim.incs.some(function (e) { return /^p_(taxi_off|taxi_fast|taxi_close|hold_bust)$/.test(e.code); })) sim.inc('p_taxi_ok', [ac], ATC.T('{0}: 직접 지상 이동 — 경로 · 정지 지점을 지켰습니다.', ac.cs)); if (this.fly.on) { this.fly.on = false; ac.manTaxi = false; } sim.applyAll(ac, [{ k: 'ho', to: 'TWR' }]); if (DepPilot.relay) { this.phase = 'relay'; this.bump(); DepPilot.relay(this, 'TWR'); } else this.finish(2); return; }
-    if (this.phase === 'twr') { var td, n = 0; while ((td = this.todo()) && td.k !== 'flapup' && n++ < 3) this.act(td.k, true);      /* 기어 · 자동조종을 미뤘으면 부기장이 */
+    if (this.phase === 'twr') { var td, n = 0; while ((td = this.todo()) && td.k !== 'flap1' && td.k !== 'flapup' && n++ < 3) this.act(td.k, true);      /* 기어 · 자동조종을 미뤘으면 부기장이 */
       if (DepPilot.relay) { this.phase = 'relay'; this.bump(); DepPilot.relay(this, 'APP'); } else this.finish(3); return; }
     if (this.phase === 'air') { sim.applyAll(ac, [{ k: 'ho', to: f.to }]); if (sim.mode === 'APP' && DepPilot.relay) { this.phase = 'relay'; this.bump(); DepPilot.relay(this, 'ACC'); } else { this.endHow = sim.mode === 'ACC' ? 'ho' : ''; this.finish(4); } return; }
     if (this.xpdr.want && !this.xpdr.set) { this.xpdr.set = this.xpdr.code = this.xpdr.want; sim.inc('p_set_late', [ac], ATC.T('{0}: 트랜스폰더를 넣지 않아 부기장이 {1}을(를) 넣었습니다.', ac.cs, this.xpdr.want)); }
@@ -224,7 +227,7 @@
   DepPilot.prototype.todo = function () {
     var ac = this.ac, e = this.eng;
     if (this.phase === 'twr' && ac) return this.todoTwr();
-    if (this.phase === 'air' && ac) return this.cfg.flap > 0 && ac.alt - D.airport.elev >= ACC_ALT ? { k: 'flapup', t: ATC.T('플랩 올림(5 → 1 → UP)'), why: ATC.T('가속 높이를 지났습니다. 속도가 붙는 대로 플랩을 올립니다.'), lim: TODO_T } : null;
+    if (this.phase === 'air' && ac) return this.flapTodo(ac.alt - D.airport.elev, ac.ias);
     if (this.phase !== 'gnd' || !ac) return null;
     if (this.pushCmd) return { k: 'brake', t: ATC.T('주차 브레이크 풀기 — 푸시백 시작'), why: ATC.T('푸시백 승인을 복창했습니다. 지상 요원에게 알리고 주차 브레이크를 풉니다.') };
     if ((ac.st === 'push' || ac.st === 'start') && e.st === 'off') return { k: 'eng', t: ATC.T('엔진 시동(양쪽)'), why: ATC.T('푸시백 중에 엔진을 겁니다. 787은 두 엔진을 함께 걸 수 있습니다.') };
@@ -331,7 +334,7 @@
     var a = N[h.node], b = N[h.rnode], L = Math.hypot(b.u - a.u, b.v - a.v) || 1; sim.place(ac, h.node, (b.u - a.u) / L, (b.v - a.v) / L);
     ac.holdKind = 'dep'; ac.readyT = sim.t; ac.waiting = 'dep'; ac.pilotMe = true; ac.dest = fp.dest; ac.destName = fp.destName; ac.gate = fp.gate; ac.squawk = this.sq; ac.rfl = fp.rfl;
     this.ac = ac; this.cs = ac.cs; this.sync(0); this.mcp.hdg = Math.round(D.ends[rwy].crs || ac.hdg); this.callT = sim.t + 2; this.vs = { v1: Math.round(ac.perf.vr / (ATC.KT || 0.5144)) - 5, vr: Math.round(ac.perf.vr / (ATC.KT || 0.5144)), v2: Math.round(ac.perf.vr / (ATC.KT || 0.5144)) + 5 };
-    this.mcp.spd = this.vs.v2 + 15;
+    this.mcp.spd = this.vs.v2;      /* MCP 속도창은 V2 — 실제 초기 상승은 V2+15 ~ 25kt(GPT 16차 R16-01) */
     this.note(fresh ? ATC.T('조종사 체험 출발편(이륙부터) — Vela Air 787의 조종사입니다. 대기 지점 {0}, 활주로 {1}. {2} {3}에 이륙 준비 완료를 보고하세요.', hp, rwy, D.freq.TWR.n, D.freq.TWR.fq) : ATC.T('{0} {1} — 대기 지점 {2}, 활주로 {3}. 이륙 준비 완료를 보고하세요.', D.freq.TWR.n, D.freq.TWR.fq, hp, rwy), 'info');
   };
   DepPilot.prototype.todoTwr = function () {
@@ -339,20 +342,33 @@
     if (ac.st === 'linedup' && ac.cto && !this.toga) return { k: 'toga', t: ATC.T('이륙 추력(TO/GA)'), why: ATC.T('이륙 허가를 복창했습니다. 활주로 중심선에 섰는지 확인하고 이륙 추력을 넣습니다.'), lim: 20 };
     if (ac.st !== 'air') return null;
     if (cf.gear === 'down' && ac.alt > 35) return { k: 'gear', t: ATC.T('기어 올림'), why: ATC.T('「Positive rate」 — 상승을 확인했으면 기어를 올립니다.'), lim: 12 };
-    if (!this.apOn && ac.alt >= 400) return { k: 'ap', t: ATC.T('자동조종 켜기(LNAV · VNAV)'), why: ATC.T('400ft를 지났습니다. 경로 · 상승 모드를 확인하고 자동조종을 겁니다.'), lim: TODO_T };
-    if (this.apOn && cf.flap > 0 && ac.alt >= ACC_ALT) return { k: 'flapup', t: ATC.T('플랩 올림(5 → 1 → UP)'), why: ATC.T('가속 높이를 지났습니다. 속도가 붙는 대로 플랩을 올립니다.'), lim: TODO_T };
-    return null;
+    if (!this.apOn && ac.alt >= 400) return { k: 'ap', t: ATC.T('자동조종 켜기(A/P)'), why: ATC.T('400ft를 지났습니다(게임에서 정한 높이 — 실제 하한은 기종 · 회사 절차마다 다름). LNAV · VNAV는 이륙 전에 걸어 둔 모드이고, 자동조종은 그 모드를 따라 조종하게 하는 것입니다.'), lim: TODO_T };
+    return this.apOn ? this.flapTodo(ac.alt, ac.ias) : null;
+  };
+  /* 플랩 올림: 가속 높이를 지나 가속을 시작한 뒤, 속도가 붙는 대로 한 단계씩(5 → 1 → UP). agl = 지면 위 높이(ft), ias = 지금 속도(kt) */
+  DepPilot.prototype.flapTodo = function (agl, ias) {
+    var cf = this.cfg, v2 = this.vs.v2, need;
+    if (!cf.flap || !this.accel || agl < ACC_ALT) return null;
+    need = fSpd(v2, cf.flap); if (ias < need - 0.5) return null;
+    return cf.flap > 1 ? { k: 'flap1', t: ATC.T('플랩 1'), why: ATC.T('가속 중 — {0}kt를 넘었습니다. 플랩을 5에서 1로 올립니다.', need), lim: TODO_T } : { k: 'flapup', t: ATC.T('플랩 UP'), why: ATC.T('가속 중 — {0}kt를 넘었습니다. 플랩을 1에서 UP으로 올립니다.', need), lim: TODO_T };
+  };
+  /* 플랩이 나와 있는 동안의 목표 속도(kt): 가속 높이 전 V2+15, 그 뒤에는 다음 플랩 단계 속도를 조금 넘는 데까지 */
+  DepPilot.prototype.flapSpd = function (agl) {
+    var cf = this.cfg, v2 = this.vs.v2;
+    if (!this.accel && agl >= ACC_ALT) { this.accel = true; if (cf.flap > 0) this.note(ATC.T('가속 높이 {0}ft — 기수를 낮춰 가속합니다. {1}kt에서 플랩 1, {2}kt에서 플랩 UP(높이 · 속도는 게임값).', ACC_ALT.toLocaleString('en-US'), fSpd(v2, 5), fSpd(v2, 1)), 'info'); this.bump(); }
+    return !this.accel ? v2 + 15 : fSpd(v2, cf.flap) + F_OVER;
   };
   DepPilot.prototype.actTwr = function (k, fo, td) {
     var sim = this.sim, ac = this.ac, cf = this.cfg;
     if (k === 'toga') { this.toga = true; this.togaT = sim.t; this.note(ATC.T('{0}: 이륙 추력 — V1 {1} · VR {2} · V2 {3}kt', ac.cs, this.vs.v1, this.vs.vr, this.vs.v2), 'info'); }
     else if (k === 'gear') { cf.gear = 'transit'; cf.gearT = sim.t + 8; cf.gearTo = 'up'; this.note(ATC.T('기어 업'), 'info'); }
     else if (k === 'ap') this.apOn = true;
-    else if (k === 'flapup') { cf.flap = 0; this.mcp.spd = 250; if (ac.tIas !== undefined) ac.tIas = ac.normIas || 250; this.note(ATC.T('플랩 업 — 250kt까지 가속'), 'info'); }
+    else if (k === 'flap1') { cf.flap = 1; this.note(ATC.T('플랩 1 — {0}kt에서 플랩 UP', fSpd(this.vs.v2, 1)), 'info'); }
+    else if (k === 'flapup') { cf.flap = 0; this.mcp.spd = 250; if (ac.tIas !== undefined) ac.tIas = ac.normIas || 250; this.note(ATC.T('플랩 UP — 250kt까지 가속'), 'info'); }
     if (fo) sim.inc('p_set_late', [ac], ATC.T('{0}: 「{1}」을(를) {2}초 안에 하지 않아 부기장이 했습니다.', ac.cs, td.t, td.lim || TODO_T));
     this.todoT = sim.t; this.bump();
   };
-  /* 이륙 활주 · 상승(내 편): 추력이 4초에 걸쳐 오르고, VR에서 기수를 들어 약 3초 뒤 떠오름. 떠오른 뒤 V2+15kt로 상승, 플랩을 올리면 250kt까지 가속 */
+  /* 이륙 활주 · 상승(내 편): 추력이 4초에 걸쳐 오르고, VR에서 기수를 들어 약 3초 뒤 떠오름. 떠오른 뒤 V2+15kt로 상승, 가속 높이부터 가속하며 플랩을 한 단계씩 올리고 250kt까지 */
   DepPilot.prototype.rollStep = function (ac, dt) {
     var e = D.ends[ac.rwy], p = ac.perf, sim = this.sim, thr = Math.min(1, Math.max(0.15, (sim.t - (this.togaT || sim.t)) / 4)), KT = ATC.KT || 0.5144, r = '';
     ac.spd += p.acc * thr * dt;
@@ -363,10 +379,10 @@
     ac.u += e.du * ac.spd * dt; ac.v += e.dv * ac.spd * dt; return r;
   };
   DepPilot.prototype.airStep = function (ac, dt) {
-    var e = D.ends[ac.rwy], p = ac.perf, KT = ATC.KT || 0.5144, clean = this.cfg.flap === 0, vt = (clean ? 250 : this.vs.v2 + 15) * KT, acc = ac.spd < vt - 1;
-    this.vsNow += ((clean && acc ? 1700 : p.climb + 300) - this.vsNow) * Math.min(1, dt * 0.45);
+    var e = D.ends[ac.rwy], p = ac.perf, KT = ATC.KT || 0.5144, clean = this.cfg.flap === 0, vt = (clean ? 250 : this.flapSpd(ac.alt)) * KT, acc = ac.spd < vt - 1;
+    this.vsNow += (((clean || this.accel) && acc ? 1700 : p.climb + 300) - this.vsNow) * Math.min(1, dt * 0.45);
     ac.alt = Math.min(ac.maxAlt || 6000, ac.alt + this.vsNow / 60 * dt); if (ac.alt >= (ac.maxAlt || 6000)) this.vsNow = 0;
-    ac.spd = Math.min(vt, ac.spd + (clean ? 1.0 : 0.7) * dt); this.pitch = 0;
+    ac.spd = Math.min(vt, ac.spd + (clean ? 1.0 : this.accel ? 0.8 : 0.7) * dt); this.pitch = 0;
     if (!this.cPos && ac.alt > 35) { this.cPos = true; this.call = { t: 'POSITIVE RATE', at: this.sim.t }; }
     ac.u += e.du * ac.spd * dt; ac.v += e.dv * ac.spd * dt;
   };
@@ -404,8 +420,9 @@
     o = { cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: f.perf, kind: 'dep', gate: fp.gate, dest: fp.dest, destName: fp.destName, orig: D.airport.icao, squawk: this.sq, rwy: rwy, owner: 'me', rfl: fp.rfl, entT: sim.t };
     if (!acc) {
       var p0 = c ? { x: c.ac.x, y: c.ac.y } : D.off(end.end, end.crs, 1.2);
-      o.x = p0.x; o.y = p0.y; o.alt = c ? c.ac.alt + (c.ac.agl ? D.airport.elev : 0) : 1300; o.hdg = end.crs; o.ias = c ? Math.max(160, c.ac.ias) : 180; o.tIas = this.cfg.flap > 0 ? this.vs.v2 + 15 : 250; o.normIas = 250; o.tAlt = this.cur.alt || D.sidInit; o.fpRoute = D.sidRoute ? D.sidRoute(rwy, fp.gate) : [fp.gate]; o.justDep = true; o.sidT = sim.t;
-      var t1 = D.fix.TT501, hr = end.crs * Math.PI / 180; if (rwy === '05' && t1 && o.fpRoute[0] === 'TT502' && (t1.x - o.x) * Math.sin(hr) + (t1.y - o.y) * Math.cos(hr) > 0.3) o.fpRoute.unshift('TT501');      /* 05 출발: 활주로 방위로 TT501을 지난 뒤 우선회해 TT502로(AIP SID 초기 구간, GPT 14차 F14-02) — 아직 앞에 있을 때만 */
+      o.x = p0.x; o.y = p0.y; o.alt = c ? c.ac.alt + (c.ac.agl ? D.airport.elev : 0) : 1300; o.hdg = end.crs; o.ias = c ? Math.max(160, c.ac.ias) : 180; o.tIas = this.cfg.flap > 0 ? this.flapSpd(o.alt - D.airport.elev) : 250; o.normIas = 250; o.tAlt = this.cur.alt || D.sidInit; o.fpRoute = D.sidRoute ? D.sidRoute(rwy, fp.gate) : [fp.gate]; o.justDep = true; o.sidT = sim.t;
+      var f0 = D.flyOver && D.flyOver[o.fpRoute[0]] && D.fix[o.fpRoute[0]], hr = end.crs * Math.PI / 180;      /* 05 출발의 TT501(상공 통과 지점): 활주로 방위로 그 위를 이미 지났을 때만 뺌 — 지난 거리와 옆으로 벗어난 거리를 함께 봄(GPT 16차 F16-02) */
+      if (f0 && (f0.x - o.x) * Math.sin(hr) + (f0.y - o.y) * Math.cos(hr) <= 0 && Math.abs((f0.x - o.x) * Math.cos(hr) - (f0.y - o.y) * Math.sin(hr)) < 0.3) o.fpRoute.shift();
       ac = sim.spawnAc(o); ac.sid = this.sid; this.freqNow = 'DEP'; this.freqNowFq = D.freq.DEP.fq; this.freqNowN = D.freq.DEP.n;
       first = D.freq.DEP.n + ', ' + ATC.csSay(ac) + ', passing ' + fmt.alt(Math.max(500, Math.round(ac.alt / 100) * 100)) + ', climbing ' + fmt.alt(ac.tAlt) + ', ' + ac.sid + ' departure.';
       this.note(c ? ATC.T('{0} {1} — 이륙 뒤 첫 호출을 하세요(지나는 고도 · 허가 고도 · SID).', D.freq.DEP.n, D.freq.DEP.fq) : ATC.T('조종사 체험 출발편(이륙 뒤부터) — {0} {1}에 첫 호출을 하세요.', D.freq.DEP.n, D.freq.DEP.fq), 'info');
@@ -413,22 +430,23 @@
       var rt = D.accDep[fp.gate][0]; rt = rt.join ? rt : [fp.gate, rt];
       o.x = c.ac.x; o.y = c.ac.y; o.alt = c.ac.alt; o.hdg = c.ac.hdg; o.ias = c.ac.ias; o.tAlt = c.ac.tAlt; o.fpRoute = rt; o.exitFix = rt[rt.length - 1]; o.normIas = sim.iasFor ? sim.iasFor(f.perf, fp.rfl) : 290; o.fast = true; o.east = !!D.gateEast[fp.gate];
       ac = sim.spawnAc(o); ac.setRoute(U.dist(ac, D.fix[rt[0]]) < 4 ? rt.slice(1) : rt); ac.waiting = 'climb'; ac.reqT = sim.t; this.freqNow = 'ACC'; this.freqNowFq = D.freq.ACC.fq; this.freqNowN = D.freq.ACC.n;
-      first = D.freq.ACC.n + ', ' + ATC.csSay(ac) + ', ' + (Math.abs(ac.alt - ac.tAlt) < 200 ? 'maintaining ' + fmt.alt(ac.tAlt) : 'climbing ' + fmt.alt(ac.tAlt)) + ', request ' + fmt.alt(fp.rfl) + '.';
-      this.note(ATC.T('{0} {1} — 첫 호출을 하세요(지금 고도 · 요청 순항 고도).', D.freq.ACC.n, D.freq.ACC.fq), 'info');
+      first = D.freq.ACC.n + ', ' + ATC.csSay(ac) + ', ' + (Math.abs(ac.alt - ac.tAlt) < 100 ? 'maintaining ' + fmt.alt(ac.tAlt) : 'passing ' + fmt.alt(ac.alt >= 9950 && ac.alt < 23950 ? Math.round(ac.alt / 100) * 100 : Math.round(ac.alt / 1000) * 1000) + ', climbing ' + fmt.alt(ac.tAlt)) + ', request ' + fmt.alt(fp.rfl) + '.';
+      this.note(ATC.T('{0} {1} — 첫 호출을 하세요(지나는 고도 · 허가 고도 · 요청 순항 고도).', D.freq.ACC.n, D.freq.ACC.fq), 'info');
     }
     ac.pilotMe = true; this.ac = ac; this.cs = ac.cs; this.callT = sim.t + 2; this.called = false; this.firstText = first; this.cur = { hdg: null, alt: ac.tAlt, spd: null };
-    this.mcp = { hdg: Math.round(ac.hdg / 5) * 5 || 360, alt: ac.tAlt, spd: Math.round((ac.tIas || ac.ias) / 10) * 10 };
+    this.mcp = { hdg: Math.round(ac.hdg / 5) * 5 || 360, alt: ac.tAlt, spd: this.cfg.flap > 0 ? this.vs.v2 : Math.round((ac.tIas || ac.ias) / 10) * 10 };
   };
   DepPilot.prototype.tickAir = function (dt) {
     var sim = this.sim, ac = this.ac, cf = this.cfg, k;
     if (ac.gone) { this.done = true; this.phase = 'end'; this.stage = sim.mode === 'ACC' ? 4 : 3; this.note(ATC.T('관할 구역을 벗어났습니다 — 조종사 체험 출발편 끝.'), 'info'); this.bump(); return; }
     if (!this.called && sim.t >= this.callT) { this.called = true; sim.say(ac, this.firstText); }
     if (cf.flapPos !== cf.flap) { cf.flapPos += Math.max(-dt * 0.5, Math.min(dt * 0.5, cf.flap - cf.flapPos)); if (Math.abs(cf.flapPos - cf.flap) < 0.02) { cf.flapPos = cf.flap; this.bump(); } }
+    if (cf.flap > 0 && !this.cur.spd && !this.asg.spd) { var fs = this.flapSpd(ac.alt - D.airport.elev); if (ac.tIas !== fs) ac.tIas = fs; }      /* 플랩이 나와 있는 동안: 가속 높이부터 단계별 속도까지 가속 */
     var td = this.todo(), tk = td ? td.k : '';
     if (tk !== this.tdK) { this.tdK = tk; this.todoT = sim.t; this.bump(); } else if (td && sim.t - this.todoT > (td.lim || TODO_T)) this.act(td.k, true);
     if (this.knobK && sim.t - this.knobT > 1.2) { var kk = this.knobK; this.knobK = null; if (kk === 'spd' || (kk === 'hdg' && ac.nav && ac.nav.mode === 'hdg')) this.set(kk); }
     for (k in this.asg) { var a = this.asg[k]; if (sim.t - a.t > 45) { sim.inc('p_set_late', [ac], ATC.T('{0}: 지시를 {1}초 안에 설정하지 않아 부기장이 대신 설정했습니다.', ac.cs, 45)); a.auto = true; if (a.c.v !== undefined) this.mcp[k] = a.c.v; this.set(k); } }
-    if (cf.flap === 0 && !this.cur.spd && !this.asg.spd) { var want = ac.alt < 10300 ? 250 : ac.alt < 28000 ? 290 : Math.round(290 - (ac.alt - 28000) / 1000 * 3.3);      /* 높은 고도에서는 마하 일정 — 지시 속도가 줄어듦(FL340에서 약 270kt) */ if (ac.tIas !== want) { ac.tIas = want; this.mcp.spd = want; this.bump(); } }      /* 관제 속도 지시가 없으면: 10,000ft 아래 250kt, 그 위 상승 속도(게임값) */
+    if (cf.flap === 0 && !this.cur.spd && !this.asg.spd) { var want = ac.alt < 10300 ? 250 : ac.alt < 28000 ? 290 : Math.round(290 - (ac.alt - 28000) / 1000 * 3.3);      /* 높은 고도에서는 지시 속도를 낮추는 게임용 상승 속도표(1,000ft마다 3.3kt — 마하를 계산한 값이 아님, FL340에서 약 270kt) */ if (ac.tIas !== want) { ac.tIas = want; this.mcp.spd = want; this.bump(); } }      /* 관제 속도 지시가 없으면: 10,000ft 아래 250kt, 그 위 상승 속도(게임값) */
     if (sim.mode === 'ACC' && ac.tAlt >= this.fp.rfl && ac.alt >= this.fp.rfl - 150) this.finish(4);      /* 순항 고도 도달 = 출발편 끝 */
   };
   /* 지금 받은 지상 허가 한 줄 */
