@@ -4,13 +4,13 @@ set("0-1",{title:"A Map of Aviation Jobs: Licensed Jobs and Jobs You Grow Into",
 lead:["Some aviation jobs require a national licence; in others, you develop through company training after you are hired. Even for the same job, licence names, age requirements, exams and entry routes vary from country to country.","This guide compares the routes into the main aviation jobs in Korea, Japan, the US and Europe (including the UK), with other countries and regions in a quick-reference table. Rules change almost every year, so treat the figures in each lesson as a guide as of November 2026 and always check official recruitment notices and regulations."],
 sections:[
 {h:"A map of aviation jobs",blocks:[{t:"fig",id:"car_map",cap:"Animated figure: left, jobs that need a national licence; right, jobs entered through company selection and training, where language, dangerous goods and other qualifications are still an advantage."}]},
-{h:"International licence types (ICAO)",blocks:[{t:"table",cols:["Licence","Main job","Note"],rows:[
+{h:"International licence types (ICAO)",blocks:[{t:"table",nobreak:true,cols:["Licence","Main job","Note"],rows:[
 ["Pilot (private, commercial, multi-crew, airline transport)","Pilot","Airline captains hold an airline transport pilot licence; first officers hold a commercial pilot licence with an instrument rating, or an MPL"],
 ["Aircraft maintenance","Maintenance engineer","Maintains airframes, engines and systems, and certifies aircraft as fit to fly (release to service)"],
 ["Air traffic controller","Controller","In many countries, a civil servant or an employee of the national air navigation service provider"],
 ["Flight operations officer / dispatcher","Dispatcher","Optional under ICAO; some countries have no national licence"],
 ["Cabin crew","Cabin crew","Not an ICAO licence, but some countries require a national certificate (e.g. the US and Europe)"]]}]},
-{h:"Licensing authorities (four regions)",blocks:[{t:"table",cols:["Region","Who issues licences","Main official information"],rows:[
+{h:"Licensing authorities (four regions)",blocks:[{t:"table",nobreak:true,cols:["Region","Who issues licences","Main official information"],rows:[
 ["Korea","Ministry of Land, Infrastructure and Transport (exams by the Korea Transportation Safety Authority)","Aviation personnel licensing exam website; Ministry website"],
 ["Japan","Japan Civil Aviation Bureau (aviation personnel licences)","MLIT aviation personnel page"],
 ["USA","Federal Aviation Administration (FAA)","FAA Airmen Certification pages"],
@@ -31,7 +31,7 @@ set("1-1",{title:"Becoming an Air Traffic Controller: Pathways in Korea, Japan, 
 lead:["In every country, controllers are recruited first and trained afterwards. After passing the selection process, they complete basic training at a college or academy, followed by lengthy on-the-job training, gaining a rating for each position in turn.","This lesson compares who hires controllers in Korea, Japan, the US and Europe (including the UK), the eligibility requirements, and how much training it takes before they can work independently."],
 sections:[
 {h:"Training pathways in four regions",blocks:[{t:"fig",id:"car_atc",cap:"Animated figure: the stages of becoming a controller. In every region, the sequence is recruitment, basic training, on-the-job training and position ratings."}]},
-{h:"Eligibility compared",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
+{h:"Eligibility compared",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
 ["Employer","Ministry of Land, Infrastructure and Transport (Air Traffic Headquarters, regional aviation administrations) and others; the Air Force also employs controllers","MLIT (national civil servants)","FAA (federal employees)","National air navigation service providers (ANSPs); in the UK, NATS and others"],
 ["Age","Licence examination from age 18 (21 for the senior ATC licence, under the Aviation Safety Act)","2026 exam: born 2 April 1996 – 1 April 2005 (aged 21 to 29); younger applicants are eligible if they meet the education requirements","Must be under 31 to apply","Student ATCO licence from 18; upper age limits vary by provider"],
 ["Education","Licence requirements only (education requirements vary by recruitment notice)","No education requirement within that age range; those born on or after 2 April 2005 need a degree or diploma from a university, junior college or college of technology (or expected graduation), or equivalent","One year of work experience, a bachelor’s degree, or a combination of education and experience","Varies by provider (generally secondary school level or above)"],
@@ -65,7 +65,7 @@ set("2-1",{title:"Becoming a Flight Dispatcher: National Licences and Airline Ap
 lead:["Flight dispatchers support the safety of every flight from the ground. They analyse weather and NOTAMs, plan routes and fuel, and decide with the captain whether a flight can depart.","The way dispatchers are qualified differs greatly between countries. Korea, Japan and the US have national licences or exams; in Europe it varies by country, and some countries issue no national licence, leaving airlines to train and approve their own staff."],
 sections:[
 {h:"Paths into the job by region",blocks:[{t:"fig",id:"car_dsp",cap:"Animated figure: the stages to becoming a dispatcher. Korea, Japan and the US use national exams; in Europe it varies by country, and some rely on airline training and approval."}]},
-{h:"Comparing requirements",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
+{h:"Comparing requirements",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
 ["Licence","Flight dispatcher licence (Ministry of Land, Infrastructure and Transport)","Dispatcher skill test (Minister of Land, Infrastructure, Transport and Tourism)","Aircraft dispatcher certificate (FAA)","Varies by country; some, such as Ireland, issue no national licence and rely instead on approval under the airline’s AOC"],
 ["Age","May apply from age 21 (Aviation Safety Act)","Age and experience requirements set by ministerial ordinance","Knowledge test from 21; certificate from 23","Set by each airline"],
 ["Experience and study","Experience as crew or a dispatch assistant, or completion of a course at a specialist training institution","Experience as an airline dispatch assistant before taking the test","Usually completion of an FAA-approved training course","Airline training (with reference to ICAO guidance)"],
@@ -91,14 +91,14 @@ lead:["There is more than one way to become an airline pilot: airline cadet prog
 sections:[
 {h:"Four entry routes",blocks:[{t:"fig",id:"car_pilot",cap:"Animated figure: four routes (airline cadet programmes, universities or national schools, self-funded schools, the military) → CPL + instrument rating (or MPL) → first officer → captain."}]},
 {h:"Licences and flight hours",blocks:[{t:"fig",id:"car_hours",cap:"Animated figure: ICAO minimum flight experience (a guide). Private 40 hours, commercial 200 hours (150 on an approved course), MPL 240 hours of training, airline transport 1,500 hours."}]},
-{h:"Requirements by region",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
+{h:"Requirements by region",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
 ["Minimum age","Private 17, commercial 18, airline transport 21","Private 17, commercial 18, airline transport 21","Private 17, commercial 18, ATP 23 (21 under certain conditions)","Private 17, commercial 18, airline transport 21"],
 ["Flight hours for airline transport licence","From 1,500","From 1,500","ATP from 1,500; a restricted ATP (R-ATP, first officer only) from 750, 1,000 or 1,250 hours for military pilots or aviation degree holders; captains need an unrestricted ATP plus company experience and checks","From 1,500"],
 ["Main training routes","University flight operations programmes, the Air Force, airline cadet programmes, flight schools in Korea and abroad","Civil Aviation College (national), private university programmes, airline cadet programmes, the Japan Self-Defense Forces","Universities and schools (Part 61 and 141), the military","Airline cadet programmes, training organisations (integrated or modular courses)"],
 ["Medical","Class 1 aviation medical","Class 1 aviation medical","First-class medical certificate (required for ATP)","Class 1 medical"],
 ["MPL","Yes (used in airline cadet programmes)","Yes (multi-crew pilot licence)","Not issued by the FAA (commercial and ATP certificates only)","Yes (used in airline cadet programmes)"]]},
 {t:"note",x:"This table is a guide as of November 2026. Airline hiring requirements (age, eyesight, English, flight hours, etc.) are often stricter than the legal minimums, so check each airline’s recruitment notice."}]},
-{h:"Choosing a route",blocks:[{t:"table",cols:["Route","Advantages","Points to note"],rows:[
+{h:"Choosing a route",blocks:[{t:"table",nobreak:true,cols:["Route","Advantages","Points to note"],rows:[
 ["Airline cadet","Hiring and training are linked; usually lower cost to you","Highly competitive; some years have no intake"],
 ["University or national school","A degree and structured training; national schools are relatively inexpensive","Entrance exams and medicals to pass; airline selection is a separate step after graduation"],
 ["Self-funded school","Flexible timing; many train abroad","High cost; no guarantee of a job after training"],
@@ -122,7 +122,7 @@ set("4-1",{title:"Becoming an Aircraft Maintenance Engineer: Approved Training o
 lead:["Aircraft maintenance engineers inspect airliners and certify that they are in a safe condition to fly. To obtain a national licence, you either complete a course at an approved school or gain a specified period of practical maintenance experience.","Once licensed, you complete type training to add a type rating for each aircraft type, and build experience towards certification authority: the authority to make the final check and sign that an aircraft may be released to service. This lesson outlines that path and compares the licences in four regions."],
 sections:[
 {h:"Routes to a licence",blocks:[{t:"fig",id:"car_mx",cap:"Animated figure: approved school or practical experience → national licence → joining a company → type training → certification authority"}]},
-{h:"Licence comparison",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
+{h:"Licence comparison",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
 ["Main licences","Aircraft maintenance engineer licence","First- and second-class aircraft maintenance engineer, first- and second-class line maintenance engineer, aircraft workshop engineer","A&P (airframe and powerplant) mechanic certificate, Inspection Authorization (IA)","Part-66 licence (A, B1, B2, B2L, B3, C)"],
 ["Age","18 or over (Aviation Safety Act)","Age and experience requirements vary by licence (MLIT ordinance)","18 or over","Varies by licence"],
 ["Route","MOLIT-designated training institution or practical experience","Government-designated training school (vocational college or university) or practical experience","FAA-approved school (Part 147) or practical experience: 18 months (one rating) / 30 months (both ratings)","Part-147 approved training organisation or practical experience"],
@@ -147,11 +147,11 @@ set("5-1",{title:"Cabin Crew and Ground Jobs: Aviation Work Without a National L
 lead:["Most aviation jobs do not require a national licence: you can start work once you pass an employer’s selection process and complete its training. Cabin crew work is one of these, although the US and Europe do have national cabin crew certification.","This lesson compares the routes to becoming cabin crew in four regions and summarises the main ground jobs and the qualifications and courses that help in each."],
 sections:[
 {h:"Becoming cabin crew",blocks:[{t:"fig",id:"car_cabin",cap:"Animated figure: in every region, the path is airline recruitment → initial training → checks → line flying. In the US and Europe, crew also receive national certification (FAA certificate, CCA)."},
-{t:"table",cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
+{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe and UK"],rows:[
 ["National licence or certificate","None (training and checks under national rules)","None (training and checks under national rules)","FAA flight attendant certificate (issued after company training)","Cabin crew attestation (CCA, minimum age 18)"],
 ["Selection criteria (examples)","Languages, interviews; height, swimming and other requirements vary by airline","Languages, interviews; employment type varies by airline","Varies by airline","Varies by airline"]]},
 {t:"note",x:"Hiring conditions vary widely between airlines and can change from year to year. Always check each airline’s recruitment notice (see the course “Aviation Industry Interview Prep”)."}]},
-{h:"Main ground jobs",blocks:[{t:"table",cols:["Job","What it involves","Useful qualifications and courses (examples)"],rows:[
+{h:"Main ground jobs",blocks:[{t:"table",nobreak:true,cols:["Job","What it involves","Useful qualifications and courses (examples)"],rows:[
 ["Passenger ground staff","Check-in, boarding, connections, delay information","Languages, airline systems, basic dangerous goods training"],
 ["Ramp and ground handling","Marshalling, loading and unloading, towing, cabin cleaning","Airside special vehicle driving, dangerous goods training"],
 ["Air cargo","Cargo acceptance, load planning, customs clearance","Dangerous goods training (IATA/ICAO), trade knowledge"],
@@ -174,7 +174,7 @@ next:"Part 6 World Quick Reference and Preparation — 6-1 Other countries and r
 set("6-1",{title:"Other Countries and Regions at a Glance: Licensing Authorities and ATC Providers",hl:"Quick reference",subtitle:"China, Taiwan, Hong Kong, Singapore, the UAE, Australia and Canada: who issues licences, who provides ATC, notes for foreign nationals seeking work there, and official websites",
 lead:["Beyond Korea, Japan, the US and Europe, there are many other large aviation job markets: Asia’s major airports, Middle Eastern airlines, and the well-established training sectors of Australia and Canada.","This quick reference lists, for each country or region, the licensing authority and the ATC provider, with official websites. Always confirm the detailed requirements on each organisation’s official website."],
 sections:[
-{h:"Comparison by country and region",blocks:[{t:"table",cols:["Country/region","Licensing authority","ATC provider","Notes"],rows:[
+{h:"Comparison by country and region",blocks:[{t:"table",nobreak:true,cols:["Country/region","Licensing authority","ATC provider","Notes"],rows:[
 ["China","Civil Aviation Administration of China (CAAC)","CAAC Air Traffic Management Bureau","Some foreign pilots are hired by airlines and fly after licence validation"],
 ["Taiwan","Civil Aeronautics Administration (CAA)","Air Navigation and Weather Services","Controllers are civil servants"],
 ["Hong Kong","Civil Aviation Department (CAD)","Civil Aviation Department (CAD)","One department handles both licensing and ATC"],
@@ -217,7 +217,7 @@ sections:[
 {name:"Licences",x:"Pilot and engineer licences need conversion or validation in the other country; controllers, as public employees, need the nationality of the country where they work"},
 {name:"Languages",x:"Being able to use Japanese, Korean and English is a major asset in station and airport work"}]},
 {t:"point",x:"This site’s “Living in Japan”, “Launching Flights to Japan” and “Aviation Industry Interview Prep” courses also help."}]},
-{h:"Summary by job",blocks:[{t:"table",cols:["Job","National licence","Main entry routes"],rows:[
+{h:"Summary by job",blocks:[{t:"table",nobreak:true,cols:["Job","National licence","Main entry routes"],rows:[
 ["Pilot","Required (pilot licence)","Cadet schemes, universities and national schools, self-funded schools, the military"],
 ["Air traffic controller","Required (mostly public employees)","National recruitment exam, then training at a national school or training institution"],
 ["Maintenance engineer","Required (engineer’s licence)","Approved schools or practical experience"],

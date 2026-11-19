@@ -4,7 +4,7 @@ set("3-1",{title:"Radar and ADS-B: How ATC Knows Where Aircraft Are",hl:"Radar",
 lead:["The aircraft positions shown on a controller’s screen come from several sources. Alongside traditional radar, ADS-B, in which aircraft broadcast their own GPS-derived position, is now used worldwide, and because satellites can now receive these signals, even aircraft over the oceans can be monitored.","This lesson covers the four surveillance methods, surface surveillance and on-screen alerts, and compares how they have been introduced in Korea, Japan, the US and Europe."],
 sections:[
 {h:"Four surveillance methods",blocks:[{t:"fig",id:"atcb_surv",cap:"Animated figure: primary radar (reflection), secondary radar (interrogation and reply), ADS-B (self-broadcast) and space-based ADS-B (oceans and polar regions)."},
-{t:"table",cols:["Method","Information provided","Strengths","Weaknesses"],rows:[
+{t:"table",nobreak:true,cols:["Method","Information provided","Strengths","Weaknesses"],rows:[
 ["Primary radar (PSR)","Position","Detects aircraft without on-board equipment","No altitude or identity; large installation"],
 ["Secondary radar (SSR, Mode S)","Position, altitude, code, identity","The main ATC surveillance tool; Mode S allows selective interrogation of individual aircraft","Aircraft must carry a transponder"],
 ["ADS-B","GPS position, altitude, speed, identity","Fast updates, small ground stations; other aircraft can receive it","Unusable if GPS is disrupted"],
@@ -15,7 +15,7 @@ sections:[
 {name:"Conflict alert",x:"The display alerts the controller when two aircraft are predicted to come too close to each other (short-term conflict alert, STCA)"},
 {name:"Low-altitude alert",x:"Alerts the controller when an aircraft is flying dangerously low relative to terrain or obstacles (minimum safe altitude warning, MSAW)"},
 {name:"Airborne systems",x:"The last line of defence is the aircraft’s own airborne collision avoidance system (TCAS; see lesson 1-2)"}]}]},
-{h:"Korea, Japan, the US and Europe compared",blocks:[{t:"table",cols:["Item","Korea","Japan","US","Europe"],rows:[
+{h:"Korea, Japan, the US and Europe compared",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","US","Europe"],rows:[
 ["ADS-B","Ground stations used alongside radar","Ground stations, plus multilateration at Haneda, Narita and elsewhere","ADS-B Out required in most controlled airspace since January 2020","Mode S and ADS-B Out required for aircraft above a certain size"],
 ["Oceanic surveillance","—","Pacific oceanic airspace relies mainly on ADS-C and data link communications","Oceanic airspace relies mainly on ADS-C and data link communications; space-based ADS-B also used","Space-based ADS-B over the North Atlantic since 2019, allowing reduced separation minima"],
 ["Airport surface","A-SMGCS at Incheon and elsewhere","Surface surveillance and runway incursion alerts being expanded at major airports","ASDE-X and Surface Awareness displays being expanded","A-SMGCS at major airports"]]},
@@ -39,14 +39,14 @@ sections:[
 {t:"fig",id:"aid_cat",cap:"Animated figure: ILS categories. As decision height and runway visual range (RVR) minima become lower from CAT I to CAT II and CAT III, aircraft can land in thicker fog."}]},
 {h:"RNAV and RNP",blocks:[{t:"fig",id:"nav_rnav",cap:"Animated figure: RNAV. Aircraft can fly direct between waypoints without having to overfly ground aids."},
 {t:"fig",id:"nav_rnp",cap:"Animated figure: RNP. The aircraft monitors whether it is staying within a defined width (e.g. 1 NM) and alerts the flight crew if it may not be."},
-{t:"table",cols:["Navigation specification","Typical use"],rows:[
+{t:"table",nobreak:true,cols:["Navigation specification","Typical use"],rows:[
 ["RNAV 10, RNP 4","Oceanic routes (allowing reduced separation minima)"],
 ["RNAV 5, RNAV 1","Continental routes, departures and arrivals (SIDs, STARs)"],
 ["RNP 1, RNP 2","Departures, arrivals and routes, with on-board performance monitoring"],
 ["RNP APCH","GNSS approaches (LNAV, LNAV/VNAV, LPV)"],
 ["RNP AR APCH","Approaches requiring special authorisation; narrow lateral limits and possible curved (RF) segments"]]}]},
 {h:"Curved RNP AR approaches",blocks:[{t:"fig",id:"atcb_pbn",cap:"Animated figure: an ILS needs a long straight-in final approach; an RNP AR approach can follow a curved path around terrain and built-up areas to the runway."}]},
-{h:"Korea, Japan, the USA and Europe compared",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Korea, Japan, the USA and Europe compared",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Policy","Routes, departures, arrivals and approaches moving to PBN under a PBN implementation plan","Expanding PBN under CARATS, including RNP AR approaches","GPS approaches (RNAV (GPS)) widely used; VORs reduced to a minimum operational network (VOR MON)","EU rules require PBN approaches and a move to PBN departures and arrivals"],
 ["Global target","ICAO Assembly (2010): PBN approaches at every instrument runway end","Same","Same","Same"]]},
 {t:"note",x:"Check the instrument approach charts in each country’s AIP (AD 2) for the procedures available at each airport and runway. The table shows only the broad policy direction."}]},
@@ -67,12 +67,12 @@ lead:["On their own, signals from satellite systems such as GPS contain errors t
 sections:[
 {h:"How satellite navigation works",blocks:[{t:"fig",id:"nav_gnss",cap:"Animated figure: GNSS (GPS and other systems) determines position from ranges to four or more satellites. Without augmentation, accuracy and integrity are insufficient for landing approaches."}]},
 {h:"GBAS and SBAS",blocks:[{t:"fig",id:"atcb_gbas",cap:"Animated figure: a single GBAS ground station supports approaches to several runways; SBAS broadcasts corrections over a whole country from geostationary satellites."},
-{t:"table",cols:["Item","ILS","GBAS (GLS)","SBAS (LPV etc.)"],rows:[
+{t:"table",nobreak:true,cols:["Item","ILS","GBAS (GLS)","SBAS (LPV etc.)"],rows:[
 ["How it works","Ground radio beams for each runway","An airport ground station transmits GPS error corrections","Geostationary satellites broadcast corrections over a wide area"],
 ["Equipment","One set per runway end","One set per airport serves several approaches","Nationwide ground reference stations and geostationary satellites"],
 ["Typical precision","CAT I to III","CAT I (CAT II/III under research)","Vertical guidance comparable to CAT I (LPV)"],
 ["Best suited to","Main runways at large airports","Large airports with many runways","The whole country, including regional airports without ILS"]]}]},
-{h:"Deployment in four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Deployment in four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["SBAS","KASS: operational from 28 December 2023 (the world’s fifth SBAS); first applied at Muan and Ulsan airports","MSAS: provided via the Michibiki (QZSS) satellites since 2020","WAAS: available for aviation since 2003","EGNOS: safety-of-life service for aviation since 2011"],
 ["GBAS","Under research and testing","Entered full operation at Haneda in 2025 (a first in Asia)","In use at Newark, Houston and others","In use at Frankfurt, Bremen, Zurich and others"]]},
 {t:"note",x:"The airports and dates shown are representative examples only. For the latest status, check announcements by national aviation authorities and the AIP."}]},
@@ -98,7 +98,7 @@ set("3-4",{title:"Data Link and Electronic Strips: From Voice to Text, From Pape
 lead:["Voice radio remains the foundation of ATC, but text-based data link is spreading to reduce mishearing on congested frequencies and to overcome the limitations of oceanic communication.","At controller working positions, too, the paper flight progress strips that hold each flight’s details are being replaced by on-screen electronic flight strips. This lesson covers the types of data link and what digitalisation changes."],
 sections:[
 {h:"Voice and data link",blocks:[{t:"fig",id:"atcb_cpdlc",cap:"Animated figure: with voice, pilots must wait when the frequency is busy, and messages can be misheard. With CPDLC, standard messages are sent on screen and answered at the press of a button."}]},
-{h:"Types of data link",blocks:[{t:"table",cols:["System","What it does","Main use"],rows:[
+{h:"Types of data link",blocks:[{t:"table",nobreak:true,cols:["System","What it does","Main use"],rows:[
 ["DCL / PDC (departure clearance)","The departure clearance is received as text and acknowledged","Departures at busy airports"],
 ["CPDLC","Controllers and pilots exchange standard messages (level changes, frequency changes and so on)","Oceanic and en-route airspace"],
 ["ADS-C","The aircraft automatically reports its position and intent at predetermined times or points","Oceanic airspace beyond radar coverage"],
@@ -107,7 +107,7 @@ sections:[
 {name:"Flight progress strips",x:"Long paper strips showing each flight’s callsign, aircraft type, route, level and so on. Controllers have traditionally arranged them in order and annotated them with instructions to manage the traffic flow"},
 {name:"Electronic flight strips",x:"Perform the same role on screen, are handed over automatically to the next position and share data with radar and data link systems"},
 {name:"Expanding support tools",x:"Link with arrival manager (AMAN) sequencing, taxi route suggestions and speech-recognition input support (Parts 4 and 5)"}]}]},
-{h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Comparing four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Text-based departure clearances","Data link departure clearances at major airports","Data link departure clearances at major airports","Data Comm: towers at more than 60 airports issue departure clearances by text","Data link departure clearances at many airports"],
 ["En-route CPDLC","Oceanic and some en-route airspace","Used in oceanic airspace, with plans to extend it to domestic routes","CPDLC introduced progressively at en-route centres from 2019","Data link carriage and use mandatory above FL285"]]},
 {t:"note",x:"These are typical examples. Check each country’s AIP and aviation authority announcements for the exact scope and dates."}]},

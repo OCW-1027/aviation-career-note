@@ -8,7 +8,7 @@ sections:[
 {name:"Today",x:"A flight plan is filed once before departure, and everything after that is adjusted tactically through ATC instructions; congestion at the destination often becomes apparent only as the aircraft nears it"},
 {name:"In future",x:"From before departure to arrival, all parties look at the same trajectory and agree the optimum times and route, and the aircraft flies so as to cross each point at the agreed time"},
 {name:"Benefits",x:"Less holding and fewer detours, reducing fuel burn and CO2 emissions; more accurate estimated arrival times make ground handling easier to prepare"}]}]},
-{h:"The new flight plan (FF-ICE) and SWIM",blocks:[{t:"table",cols:["Item","Today’s flight plan","FF-ICE (new flight plan)"],rows:[
+{h:"The new flight plan (FF-ICE) and SWIM",blocks:[{t:"table",nobreak:true,cols:["Item","Today’s flight plan","FF-ICE (new flight plan)"],rows:[
 ["Format","Text in fixed fields (the format in use since 2012)","Machine-readable data that can carry trajectory and aircraft performance data"],
 ["Exchange","Mainly one-way: the plan is filed and accepted","Negotiated before filing, with updates shared afterwards"],
 ["Connections","Separate links between organisations","Through SWIM, a common information framework, each party receives the information it needs"]]},
@@ -17,7 +17,7 @@ sections:[
 {name:"Support tools",x:"Conflict prediction, arrival sequencing, taxi route suggestions, speech-recognition-assisted input and more"},
 {name:"The human role",x:"Final decisions and responsibility rest with the controller; the ability to recover the situation safely when systems do not work properly is vital"},
 {name:"Training",x:"Every new system requires controller training and a review of procedures"}]}]},
-{h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Comparing four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Path to TBO","4th Aviation Policy Master Plan (2025–2029): building a system to manage air traffic data in one place","CARATS2040: time-based trajectory management from departure to arrival, enabling optimal trajectories to be chosen","NextGen and the Brand New Air Traffic Control System (BNATCS): expanding time-based management and data link","SESAR and the ATM Master Plan: trajectory-based operations and a Digital European Sky"],
 ["Information sharing","Integrated air traffic data management","Introducing SWIM","A wide range of information distributed through FAA SWIM","States and the Network Manager share information under common SWIM rules"]]},
 {t:"note",x:"The table shows the broad direction of each plan. Check the original plans for exact content and timing."}]},
@@ -38,7 +38,7 @@ set("5-2",{title:"Remote Towers, Drones and Air Taxis: A Changing Sky",hl:"Remot
 lead:["The way ATC is provided is itself starting to change. Remote towers, where controllers work from camera images in a control room far from the airport instead of in a tower on site, began in Europe and are now spreading.","Meanwhile, drones and air taxis (AAM) are joining the sky as new airspace users. Unlike airliners, each of which is handled individually by a controller, they need systems that can manage large numbers of aircraft digitally. This lesson looks at how the sky is changing."],
 sections:[
 {h:"Remote towers",blocks:[{t:"fig",id:"atcb_rtwr",cap:"Animated figure: images from airport cameras and sensors are displayed on screens in a control room far from the airport, from which traffic is controlled."},
-{t:"table",cols:["Region","Main examples"],rows:[
+{t:"table",nobreak:true,cols:["Region","Main examples"],rows:[
 ["Europe","Sweden started the world’s first remote tower operations in 2015; London City Airport has been controlled entirely from a remote centre since 2021"],
 ["USA","The FAA is testing and evaluating remote towers"],
 ["Japan","Aerodrome flight information services at regional airports are provided remotely from a central location (known in Japan as remote aerodrome advisory)"],
@@ -49,7 +49,7 @@ sections:[
 {name:"UTM (drone traffic management)",x:"Drone flight plans and positions are shared digitally so that flights can be deconflicted, rather than each aircraft being handled individually by a controller"},
 {name:"AAM (air taxis)",x:"Electric vertical take-off and landing (eVTOL) aircraft and similar types, used for trips in and around cities along designated corridors and from dedicated vertiports"},
 {name:"Relationship with ATC",x:"Near airports and where they share airspace with airliners, operating rules need to be agreed with ATC"}]}]},
-{h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Comparing four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Drones","Government-led trials of a drone traffic management system","“Level 4” flights beyond visual line of sight over people allowed since December 2022","Remote ID required; rules for beyond-visual-line-of-sight flights being developed","EU U-space rules applicable since January 2023"],
 ["Air taxis","K-UAM trials under way; rules being prepared for commercial service","Demonstration flights at Expo 2025 Osaka, Kansai","Rules for powered-lift (e.g. eVTOL) pilots and operations issued in 2024","EASA developing aircraft and operations rules"]]},
 {t:"note",x:"The table shows typical examples. Rules change almost every year, so check the latest announcements from each country’s aviation authority."}]},
@@ -69,7 +69,7 @@ set("5-3",{title:"Future ATM Plans: Japan (CARATS2040), Korea, the US and Europe
 lead:["Growing traffic, environmental pressure, ageing equipment, new airspace users: every country faces similar challenges and is drawing up plans that look 10 to 20 years ahead.","This lesson sets the plans of Japan, Korea, the US and Europe side by side to compare what each aims for and by when. Figures and dates are often revised, so check the publication dates of the original documents too."],
 sections:[
 {h:"Overview: plans in four regions",blocks:[{t:"fig",id:"atcb_road",cap:"Animated figure: ICAO’s Global Air Navigation Plan and the direction of the plans in Japan, Korea, the US and Europe."}]},
-{h:"A closer comparison",blocks:[{t:"table",cols:["Item","Japan","Korea","US","Europe"],rows:[
+{h:"A closer comparison",blocks:[{t:"table",nobreak:true,cols:["Item","Japan","Korea","US","Europe"],rows:[
 ["Plan","CARATS2040 (long-term vision for future air traffic systems)","4th Aviation Policy Master Plan","Brand New Air Traffic Control System (BNATCS), NextGen","SESAR, European ATM Master Plan"],
 ["Timing","Roadmap drawn up in June 2025; horizon 2040","2025–2029 (announced December 2025)","Announced in May 2025; completion targeted for end-2028","Aiming for a “Digital European Sky” in the 2040s"],
 ["Main content","TBO; automation and digitalisation (surface movement guidance, runway incursion detection, speech recognition); CDO; accommodating new airspace users; redundancy in surveillance, satellite navigation and communications","Integrated air traffic data management; airspace restructuring for UAM; preventive safety management using AI and other technologies","Replacing radios, radars, telecommunications networks and facilities; introducing electronic flight strips; a common automation system","Trajectory-based operations; cross-border airspace management; decoupling of data and services; automation"],
@@ -102,7 +102,7 @@ sections:[
 {ic:"🗼",name:"Five controller positions",tag:"Controller",x:"Issue clearances and instructions at Delivery, Ground, Tower, Approach and Area control"},
 {ic:"✈",name:"Pilot experience",tag:"Pilot",x:"From the cockpit of a VELA AIR 787, listen to ATC instructions, read them back and work through arrival and departure procedures"},
 {ic:"🗺",name:"Three airports",tag:"Airports",x:"Two fictional practice airports, plus Haneda recreated from real data"}]}]},
-{h:"Where each lesson fits in the game",blocks:[{t:"table",cols:["Course lesson","Where to try it in the game"],rows:[
+{h:"Where each lesson fits in the game",blocks:[{t:"table",nobreak:true,cols:["Course lesson","Where to try it in the game"],rows:[
 ["0-1 What ATC does, 0-2 One flight","Work through the five positions in turn to see how a single flight is handed off from one position to the next"],
 ["1-2 IFR, VFR and separation","At Approach and Area control, maintain separation using level, heading and speed instructions"],
 ["1-3 Wake turbulence and RECAT","At Tower, judge wake turbulence separation for aircraft taking off and landing behind heavy aircraft"],

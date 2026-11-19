@@ -5,7 +5,7 @@ lead:["When thunderstorms develop around an airport during the busy evening peak
 sections:[
 {h:"Wait on the ground, not in the air",blocks:[{t:"fig",id:"atcb_atfm",cap:"Animated figure: flights scheduled in hours when demand exceeds capacity are given departure times that move the excess into later hours, reducing airborne holding, fuel burn and delay."},
 {t:"p",x:"ATFM balances demand against capacity. Demand is the number of flights wanting to operate, known from flight plans; capacity is the number a runway or airspace can safely accept. When weather, equipment status or controller staffing reduces capacity, departure times are adjusted to spread demand."}]},
-{h:"Key terms",blocks:[{t:"table",cols:["Term","Meaning"],rows:[
+{h:"Key terms",blocks:[{t:"table",nobreak:true,cols:["Term","Meaning"],rows:[
 ["Capacity","The number of aircraft that can safely be accepted per hour (per runway or airspace)"],
 ["EDCT","Expect departure clearance time (Japan, the US and others): the assigned time on which a flight’s departure is based"],
 ["CTOT","Calculated take-off time (Europe and others): the aircraft must take off within a set tolerance window (e.g. −5 to +10 minutes)"],
@@ -17,7 +17,7 @@ sections:[
 {name:"TSAT",x:"Target start-up approval time, set by ATC and others: the time at which start-up and pushback are expected to be approved, reducing taxiway queues"},
 {name:"Benefits",x:"Shorter taxiway queues, less fuel and emissions, and earlier awareness of destination congestion"}]},
 {t:"point",x:"Meeting the TOBT depends on teamwork on the ground. If boarding, cargo loading or fuelling runs late, the TOBT changes, and so do the TSAT and the departure sequence."}]},
-{h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","US","Europe"],rows:[
+{h:"Comparing four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","US","Europe"],rows:[
 ["Flow management unit","Air Traffic Flow Management Center","Air Traffic Management Center (Fukuoka)","FAA Air Traffic Control System Command Center (ATCSCC)","EUROCONTROL Network Manager"],
 ["Term for assigned departure times","Assigned departure times","EDCT","EDCT (GDP and others)","CTOT (slot)"],
 ["Airport collaboration","A-CDM at Incheon and elsewhere","A-CDM being introduced at major airports","Surface traffic flow management (e.g. TFDM)","A-CDM at more than 30 airports"],
@@ -45,13 +45,13 @@ sections:[
 {h:"Arrival sequencing and continuous descent",blocks:[{t:"fig",id:"atcb_cdo",cap:"Animated figure: Top: a traditional step-down descent (grey) and a continuous descent at reduced thrust (blue). Bottom: AMAN calculating arrival times to build the sequence."}]},
 {h:"Holding",blocks:[{t:"fig",id:"atc_hold",cap:"Animated figure: a holding pattern (racetrack). During congestion or bad weather, aircraft fly the pattern over a set point while waiting their turn."},
 {t:"note",x:"Holding is safe but burns fuel and adds noise, so the aim is to reduce it by adjusting speed as far out as possible or by holding aircraft on the ground (ATFM, lesson 4-1)."}]},
-{h:"Sequencing tools and techniques",blocks:[{t:"table",cols:["Tool or technique","What it does"],rows:[
+{h:"Sequencing tools and techniques",blocks:[{t:"table",nobreak:true,cols:["Tool or technique","What it does"],rows:[
 ["AMAN (arrival manager)","Calculates arrival times from far out and shows controllers how many minutes each flight should gain or lose; an extended form (XMAN) works across borders, starting further out"],
 ["DMAN (departure manager)","Sets the departure order and take-off times based on wake turbulence separation, departure routes and A-CDM times"],
 ["Point Merge","Arrivals fly along arc-shaped legs and are turned one by one towards a single merge point, reducing radar vectoring"],
 ["CDO (continuous descent)","Descent from cruising level to final approach with as little level flight as possible, cutting fuel burn, CO2 and noise"],
 ["CCO (continuous climb)","Climb from take-off to cruising level with as little level flight as possible"]]}]},
-{h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Comparing four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Arrival time management","Arrival management systems at busy airports; coordination from further out being developed","Under CARATS, data-link-based time management and CDO being promoted","Time-Based Flow Management (TBFM) sets arrival times from far out","AMAN and cross-border XMAN"],
 ["CDO","At some airports and times","At some airports and times, with plans to expand","Optimised profile descents (OPD) at many airports","Being expanded by individual states under the CCO/CDO Action Plan"]]},
 {t:"note",x:"These are typical examples. Check each country’s AIP and aviation authority announcements for the exact scope."}]},

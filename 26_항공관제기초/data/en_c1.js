@@ -11,13 +11,13 @@ sections:[
 {name:"Europe",x:"One or more FIRs per country; some countries have a separate upper flight information region (UIR) for upper airspace"}]},
 {t:"note",x:"A flight crossing an FIR boundary is transferred to the ATC unit of the next FIR before it reaches the boundary. The flight plan includes the estimated elapsed time (EET) to each FIR boundary."}]},
 {h:"Airspace structure",blocks:[{t:"fig",id:"atc_struct",cap:"Animated figure: the control zone around the airport (from the surface), the terminal area above it, airways linking airports, uncontrolled airspace and the FIR boundary."},
-{t:"table",cols:["Type","Typical extent","Main service"],rows:[
+{t:"table",nobreak:true,cols:["Type","Typical extent","Main service"],rows:[
 ["Control zone (CTR)","From the surface, centred on the airport; typically about 5 NM (about 9 km) in radius and about 3,000 ft high (varies by country and airport)","Aerodrome control (tower)"],
 ["Terminal control area (TMA)","Several tens of NM around the airport, from just above the surface to about 10,000 ft","Approach and departure control"],
 ["Control area (airways)","Airways and wide areas of airspace above a specified level","Area control"],
 ["Uncontrolled airspace","For example, low-level airspace outside control areas and control zones","Flight information service only"]]}]},
 {h:"Airspace classes A to G",blocks:[{t:"fig",id:"atc_classes",cap:"Animated figure: ICAO classes A to G. Class A is IFR only; Class G has no ATC, only flight information service."},
-{t:"table",cols:["Class","Flight rules","Separation provided","ATC clearance"],rows:[
+{t:"table",nobreak:true,cols:["Class","Flight rules","Separation provided","ATC clearance"],rows:[
 ["A","IFR only","All aircraft","Required"],
 ["B","IFR and VFR","All aircraft","Required"],
 ["C","IFR and VFR","IFR from IFR; IFR from VFR (VFR receive traffic information on other VFR)","Required"],
@@ -27,7 +27,7 @@ sections:[
 ["G","IFR and VFR","None (flight information service only)","Not required"]]},
 {t:"note",x:"The table shows the basic ICAO scheme. Each state decides which classes to apply and the detailed requirements (radio communication, speed limits and so on)."}]},
 {h:"Airspace around airports in cross-section: three countries compared",blocks:[{t:"fig",id:"atcb_class3",cap:"Animated figure: Korea (Class B at Incheon, Gimpo and Jeju), Japan (control zones Class D, terminal control areas Class E) and the US (Class B shaped like an upside-down wedding cake)."}]},
-{h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Comparing four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Classes used","A, B, C, D, E, G","Control zones D, terminal control areas E, etc. (see the AIP for details)","A, B, C, D, E, G (no F)","Varies by country; many have standardised upper airspace as Class C"],
 ["Upper airspace","Airways above FL200 up to FL600 are Class A","Airway control areas designated under national rules","18,000 ft to FL600 is Class A (IFR only)","Designated by each state under the EU’s common rules (SERA)"],
 ["Around busy airports","Class B at Incheon, Gimpo and Jeju","Special control airspace at Haneda, Narita and others (VFR flights also need clearance)","Class B around the busiest airports","Class A and D airspace around London, for example"]]},
@@ -51,19 +51,19 @@ set("1-2",{title:"IFR, VFR and Separation: How ATC Keeps Aircraft Apart",hl:"Sep
 lead:["Aircraft fly in one of two ways: under visual flight rules (VFR), looking out and avoiding other traffic, or under instrument flight rules (IFR), flying by instruments and ATC instructions. Airliners fly IFR as a rule.","Controllers ensure that IFR aircraft do not come closer to each other than the prescribed separation minima. This lesson covers the difference between IFR and VFR, vertical, lateral and longitudinal separation, radar separation minima and the last safety net, comparing Korea, Japan, the USA and Europe."],
 sections:[
 {h:"VFR and IFR",blocks:[{t:"fig",id:"atcb_ifrvfr",cap:"Animated figure: left, VFR: stay clear of cloud and avoid other traffic by looking out. Right, IFR: fly in cloud by instruments and ATC instructions, with ATC providing separation."},
-{t:"table",cols:["Item","Visual flight rules (VFR)","Instrument flight rules (IFR)"],rows:[
+{t:"table",nobreak:true,cols:["Item","Visual flight rules (VFR)","Instrument flight rules (IFR)"],rows:[
 ["Separation from other aircraft","The pilot sees and avoids","Provided by ATC in controlled airspace"],
 ["Weather","Only when visibility and cloud clearance minima are met","Flight possible in cloud and at night (weather minima apply to approaches)"],
 ["Flight plan and clearance","May be required, depending on airspace and conditions","File a flight plan and receive an ATC clearance"],
 ["Typical use","Training, sightseeing, light aircraft and helicopters","Airliners and freighters; almost all scheduled flights"]]}]},
 {h:"Three kinds of separation",blocks:[{t:"fig",id:"atc_sep",cap:"Animated figure: vertical, lateral and longitudinal. If separation is maintained in any one of these, the aircraft may be closer in the other two."},
-{t:"table",cols:["Separation","Typical minima","Notes"],rows:[
+{t:"table",nobreak:true,cols:["Separation","Typical minima","Notes"],rows:[
 ["Vertical","1,000 ft","Applies between RVSM-approved aircraft from FL290 to FL410; 2,000 ft above FL410"],
 ["Longitudinal (radar)","5 NM en route, 3 NM near airports","Some airports apply 2.5 NM on final approach when specified conditions are met"],
 ["Longitudinal (time)","e.g. 10 minutes","Used, for example, in oceanic airspace without radar; can be reduced depending on navigation performance and means of communication"],
 ["Lateral (oceanic)","e.g. 50 NM or 30 NM","Depends on navigation performance (e.g. RNP 10, RNP 4) and on data link communication and surveillance capability"]]},
 {t:"note",x:"These are typical examples. Actual minima are set in each country’s rules according to the airspace, surveillance performance and aircraft navigation performance."}]},
-{h:"Comparing four regions",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Comparing four regions",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Basic regulations","ICAO standards incorporated in the national air traffic services standards","ICAO standards incorporated in the ATC procedures standards and other rules","FAA Order JO 7110.65","ICAO standards, the EU’s common rules (SERA) and national rules"],
 ["Radar separation (examples)","3 NM near airports, 5 NM en route","3 NM near airports, 5 NM en route","3 NM near airports, 5 NM en route (centres)","3 NM near airports, 5 NM en route (varies by country and airspace)"],
 ["Reduced separation on final approach","—","—","2.5 NM under conditions","2.5 NM under conditions (some airports)"]]},
@@ -91,7 +91,7 @@ sections:[
 {t:"rows",items:[{name:"Strongest when",x:"The aircraft is heavy, slow and in a clean configuration (flaps and similar devices retracted), so vortices are strongest just after take-off and just before landing"},
 {name:"Lasts longest when",x:"The wind is light. Vortices can persist for several minutes and tend to linger over the runway when the crosswind is light"},
 {name:"Avoiding it",x:"Fly above the leader’s flight path and touch down beyond its touchdown point (basic pilot technique)"}]}]},
-{h:"Traditional categories (the four ICAO categories)",blocks:[{t:"table",cols:["Category","Maximum take-off mass","Typical aircraft"],rows:[
+{h:"Traditional categories (the four ICAO categories)",blocks:[{t:"table",nobreak:true,cols:["Category","Maximum take-off mass","Typical aircraft"],rows:[
 ["Super (J)","(designated by type)","A380"],
 ["Heavy (H)","136 t or more","B777, B787, A350, A330, B747"],
 ["Medium (M)","More than 7 t, less than 136 t","B737, A320 family, ATR 72, DHC-8"],
@@ -99,13 +99,13 @@ sections:[
 {t:"note",x:"Pilots of Heavy-category aircraft add “Heavy” to the callsign on the radio (“Super” for the A380) to alert controllers and other aircraft to the wake turbulence hazard."}]},
 {h:"RECAT: finer categories, reduced separation",blocks:[{t:"fig",id:"atcb_recat",cap:"Animated figure: dividing aircraft that previously shared a category reduces the required separation (example from Korea’s presentation), so more aircraft can be fitted onto the same length of final approach."},
 {t:"p",x:"Under the four traditional categories, aircraft as different in weight and wing size as the B747 and the A330 were both simply “Heavy”. RECAT (wake turbulence re-categorisation) adds categories based on weight and wingspan, and redefines the separation minima for each leader–follower pair using data on vortex strength and persistence. ICAO has adopted a seven-group scheme (A to G) as its standard."},
-{t:"table",cols:["Group (ICAO seven-group scheme)","Typical aircraft (approximate)"],rows:[
+{t:"table",nobreak:true,cols:["Group (ICAO seven-group scheme)","Typical aircraft (approximate)"],rows:[
 ["A","Very large aircraft such as the A380"],
 ["B, C","Large aircraft split in two by wingspan and other factors (for example the B777, and the B787 and A330)"],
 ["D, E","Medium aircraft split in two (for example the B737 and A320, and smaller jets)"],
 ["F, G","Small aircraft"]]},
 {t:"note",x:"The group each aircraft type falls into is set by each State or scheme. The table is only a rough guide."}]},
-{h:"Implementation in four regions",blocks:[{t:"table",cols:["Region","Main implementation","Notes"],rows:[
+{h:"Implementation in four regions",blocks:[{t:"table",nobreak:true,cols:["Region","Main implementation","Notes"],rows:[
 ["Korea","Seven groups (A to G) in use at Incheon and Gimpo","Reductions in separation minima and operational results presented at an ICAO Asia-Pacific webinar (2023)"],
 ["Japan","“RECAT-Japan” (seven groups) at Haneda and Narita","Trial from March 2020; full operation from 5 November 2020"],
 ["USA","RECAT introduced in phases, starting at Memphis in 2012","Categories and pairwise separation revised over several phases"],

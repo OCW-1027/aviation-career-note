@@ -6,7 +6,7 @@ sections:[
 {h:"The communication loop",blocks:[{t:"fig",id:"comm_loop",cap:"Animated figure: the controller issues an instruction, the pilot reads it back, and the controller checks the readback (hearback). Only when the loop is closed has the message got through."},
 {t:"p",x:"The point is to confirm not just that the message was heard, but that both sides understood it the same way. So the pilot always reads back the key parts of an instruction, and the controller listens to check the readback. If the readback is wrong, the controller corrects it immediately."}]},
 {h:"Saying letters and numbers",blocks:[{t:"fig",id:"atc_phon",cap:"Animated figure: the ICAO phonetic alphabet (A = ALFA, B = BRAVO …), which prevents confusion between similar-sounding letters."},
-{t:"table",cols:["Item","Example","Note"],rows:[
+{t:"table",nobreak:true,cols:["Item","Example","Note"],rows:[
 ["Numbers","3 = TREE, 5 = FIFE, 9 = NINER","Pronunciation slightly altered to avoid confusion with other words"],
 ["Levels","FL350 = flight level three five zero / 5,000 ft = five thousand","Above the transition altitude, flight levels based on standard pressure are used"],
 ["Headings","270 = heading two seven zero","Three digits, said digit by digit"],
@@ -14,7 +14,7 @@ sections:[
 ["Codes","2341 = squawk two three four one","Four-digit transponder code (each digit 0–7)"]]}]},
 {h:"Callsigns",blocks:[{t:"fig",id:"atc_call",cap:"Animated figure: how callsigns are said. When aircraft with similar callsigns are on the same frequency, the controller alerts pilots and may change how the callsigns are said."}]},
 {h:"Key standard words",blocks:[{t:"fig",id:"atc_roger",cap:"Animated figure: the difference between ROGER (message received) and WILCO (will comply), among others. Each word must be used with its exact meaning."},
-{t:"table",cols:["Word","Meaning"],rows:[
+{t:"table",nobreak:true,cols:["Word","Meaning"],rows:[
 ["ROGER","Message received (does not mean you will comply)"],
 ["WILCO","Understood and will comply"],
 ["AFFIRM / NEGATIVE","Yes / no (YES and NO are not used)"],
@@ -27,7 +27,7 @@ sections:[
 {name:"ATC clearance",x:"Clearances including route, level and departure procedure"},
 {name:"Codes and frequencies",x:"Transponder codes and frequency change instructions"}]},
 {t:"point",warn:true,x:"Sequence information such as “number one” must never be mistaken for a take-off clearance or a clearance to enter the runway. After the January 2024 accident at Haneda, Japan revised the phraseology used to give departure sequence information (see course “Aviation Fundamentals” 2-4)."}]},
-{h:"Comparison by country",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Comparison by country",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Altimeter setting unit","Hectopascals (hPa); military ATC facilities may use inches of mercury (inHg)","Inches (inHg)","Inches (inHg)","Hectopascals (hPa)"],
 ["Transition altitude","14,000 ft","14,000 ft","18,000 ft","Varies by country and airport (often a few thousand feet)"],
 ["Radio language","English","English as a rule","English","English; some countries (e.g. France) also use the national language for domestic communications"],
@@ -54,7 +54,7 @@ set("2-2",{title:"Emergencies and Abnormal Situations: 7700, Distress Calls and 
 lead:["Almost every flight departs and arrives without incident. Even so, something out of the ordinary happens somewhere every day: a medical emergency on board, a technical fault, a sudden change in the weather or a radio failure.","This lesson covers the words and codes used to declare an emergency, how controllers respond, radio failure procedures and tower light signals, and the measures used to prevent runway incursions."],
 sections:[
 {h:"Emergency calls and codes",blocks:[{t:"fig",id:"atc_emerg",cap:"Animated figure: MAYDAY (distress), PAN PAN (urgency) and the special transponder codes. The controller clears the frequency and gives the aircraft priority."},
-{t:"table",cols:["Call or code","Meaning","Examples"],rows:[
+{t:"table",nobreak:true,cols:["Call or code","Meaning","Examples"],rows:[
 ["MAYDAY (three times)","Distress: grave and imminent danger requiring immediate assistance","Engine fire, a seriously ill passenger, fuel critically low (MAYDAY FUEL)"],
 ["PAN PAN (three times)","Urgency: no immediate danger, but prompt action is needed","A technical problem, a passenger needing urgent medical care"],
 ["7700","Emergency","Often used together with MAYDAY"],
@@ -67,7 +67,7 @@ sections:[
 {name:"Notify",x:"Alert the airport fire and medical services, the airline and adjacent ATC units"},
 {name:"Manage the traffic flow",x:"Reorganise traffic in the air and at the airport, including holding or diverting other aircraft"}]}]},
 {h:"Radio communication failure",blocks:[{t:"fig",id:"atc_lost",cap:"Animated figure: when two-way radio contact is lost, squawk 7600 and follow the last clearance received and the flight plan."},
-{t:"table",cols:["Tower light signal","Aircraft on the ground","Aircraft in flight"],rows:[
+{t:"table",nobreak:true,cols:["Tower light signal","Aircraft on the ground","Aircraft in flight"],rows:[
 ["Steady green","Cleared for take-off","Cleared to land"],
 ["Flashing green","Cleared to taxi","Return for landing"],
 ["Steady red","Stop","Give way to other aircraft and continue circling"],
@@ -75,7 +75,7 @@ sections:[
 ["Flashing white","Return to starting point on the aerodrome","—"]]},
 {t:"note",x:"These are the basic ICAO light signals. Local procedures may vary, so check the relevant country’s AIP."}]},
 {h:"Preventing runway incursions",blocks:[{t:"fig",id:"rwy_hold",cap:"Animated figure: the runway-holding position. Read back “hold short” and do not cross the line until cleared."},
-{t:"table",cols:["Region","Examples of measures"],rows:[
+{t:"table",nobreak:true,cols:["Region","Examples of measures"],rows:[
 ["Japan","After the January 2024 collision at Haneda: revising the phraseology used to give the departure sequence, expanding runway status lights and alerting systems, and strengthening controller staffing"],
 ["Korea","Runway safety committees and similar bodies publicise each airport’s hotspots and tighten control of vehicle and pedestrian access to runways"],
 ["USA","Held a runway safety summit in 2023 and is expanding surface surveillance displays (Surface Awareness) and runway status lights (RWSL)"],

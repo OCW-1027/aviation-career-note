@@ -89,6 +89,10 @@ td.c{text-align:center}
 @media (min-width:601px){.tbl td.la{overflow-wrap:normal}}
 /* 表の指定（nobreak）があるときは、スマートフォンでも語の途中で切らない（画面に入らない分は article.js の FZ が表全体を縮める） */
 @media (max-width:600px){.tbl.nbk td.nw{white-space:nowrap}.tbl.nbk td.lb,.tbl.nbk thead th,.tbl.nbk.fit thead th.w{overflow-wrap:normal}}
+/* nobreak の表は、本文セルも語の途中で切らない（PC・スマートフォンとも）（「·」「/」の後ろでは折り返せる。入りきらない分は FZ が表全体を縮める）。日本語はスペースがないので keep-all を外して通常の禁則で折り返す（2026.11） */
+.tbl.nbk td{overflow-wrap:normal}html:lang(ja) .tbl.nbk td{word-break:normal;line-break:strict}
+/* 「今日の用語」の表も、語の途中で切らない（PC・スマートフォンとも）。列ごとの言語（lang）に合わせ、日本語の列は通常の禁則、韓国語の列は語単位で折り返す（2026.11） */
+.terms td{overflow-wrap:normal}.terms td[lang=ko]{word-break:keep-all}.terms td[lang=ja]{word-break:normal;line-break:strict}
 /* ladder */
 .ladder{display:flex;align-items:flex-end;gap:8px;margin:14px 0 6px;overflow-x:auto;padding-bottom:6px}
 .step{flex:1 0 110px;border-radius:14px 14px 6px 6px;background:var(--sky-t);display:flex;flex-direction:column;justify-content:flex-start;align-items:center;text-align:center;padding:10px 8px 12px;gap:4px}

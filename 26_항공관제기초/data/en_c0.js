@@ -10,7 +10,7 @@ sections:[
 {ic:"ℹ",name:"Flight information service",tag:"FIS",x:"Passes on information useful for safety: weather, the status of facilities, nearby traffic"},
 {ic:"⚠",name:"Alerting service",tag:"Alerting",x:"Notifies search and rescue organisations about aircraft that may be in distress, and assists them"}]},
 {t:"note",x:"Together these make up “air traffic services” (ATS), defined in ICAO Annex 11. National regulations are based on it."}]},
-{h:"Controller positions",blocks:[{t:"table",cols:["Position","Radio name","Responsibility","Where"],rows:[
+{h:"Controller positions",blocks:[{t:"table",nobreak:true,cols:["Position","Radio name","Responsibility","Where"],rows:[
 ["Clearance delivery","Delivery","Passes the departure clearance (route, level, departure procedure, transponder code)","Tower"],
 ["Ground control","Ground","Movement on taxiways and other ground areas, excluding runways","Tower"],
 ["Aerodrome control","Tower","Use of the runway, take-off and landing clearances, the airspace immediately around the airport","Tower"],
@@ -19,7 +19,7 @@ sections:[
 ["Flight information","Information, Radio","Provides information only (no control instructions)","Flight information units; small airports"]]},
 {t:"point",x:"At some airports, movement on the apron (ramp) is handled by the airport operator or an airline (ramp control). Who gives pushback approval varies by airport, so check in advance."}]},
 {h:"How en-route control is divided",blocks:[{t:"fig",id:"atcb_acc",cap:"Animated figure: Japan divides its airspace into upper and lower airspace, Korea into east and west, the US among about 20 centres, and Europe between national providers and cross-border upper-area control (MUAC)."}]},
-{h:"Korea, Japan, the US and Europe compared",blocks:[{t:"table",cols:["Item","Korea","Japan","USA","Europe"],rows:[
+{h:"Korea, Japan, the US and Europe compared",blocks:[{t:"table",nobreak:true,cols:["Item","Korea","Japan","USA","Europe"],rows:[
 ["Provider","Ministry of Land, Infrastructure and Transport (its air traffic headquarters and regional aviation administrations); some airfields are controlled by the air force","Japan Civil Aviation Bureau (MLIT); some airfields are controlled by the Self-Defense Forces or US forces","Federal Aviation Administration (FAA); some smaller airports have contract towers","National air navigation service providers (ANSPs), e.g. DFS (Germany), DSNA (France), NATS (UK)"],
 ["En-route control","Incheon and Daegu area control centres","Tokyo, Kobe and Fukuoka ACCs (Sapporo merged in October 2024)","About 20 Air Route Traffic Control Centers (ARTCCs)","National centres; some upper airspace controlled by EUROCONTROL’s MUAC"],
 ["Traffic flow management","Air Traffic Flow Management Center","Air Traffic Management Center (Fukuoka)","Air Traffic Control System Command Center (ATCSCC)","EUROCONTROL Network Manager"],
@@ -64,7 +64,7 @@ sections:[
 {time:"Landing",a:"Tokyo Tower: cleared to land, then Tokyo Ground: taxi route to the stand",b:"Reads back “cleared to land”, then taxis to the stand"}]},
 {t:"note",x:"Real radio communication is in English (some countries also use their national language on domestic flights) and follows standard phraseology. The example above only illustrates the flow and does not represent real flights, procedure names or frequencies."},
 {t:"point",x:"At every position, pilots read back the key parts of an instruction and the controller listens to check the readback (hearback). This “instruct, read back, confirm” loop is the foundation of ATC safety (see the “Aviation Fundamentals” course, lesson 2-4)."}]},
-{h:"ATC callsigns compared: Korea, Japan, USA and UK",blocks:[{t:"table",cols:["Position","Korea (Incheon)","Japan (Haneda)","USA (JFK)","UK (Heathrow)"],rows:[
+{h:"ATC callsigns compared: Korea, Japan, USA and UK",blocks:[{t:"table",nobreak:true,cols:["Position","Korea (Incheon)","Japan (Haneda)","USA (JFK)","UK (Heathrow)"],rows:[
 ["Clearance","Incheon Delivery","Tokyo Clearance Delivery","Kennedy Clearance","Heathrow Delivery"],
 ["Ground","Incheon Ground","Tokyo Ground","Kennedy Ground","Heathrow Ground"],
 ["Aerodrome","Incheon Tower","Tokyo Tower","Kennedy Tower","Heathrow Tower"],
