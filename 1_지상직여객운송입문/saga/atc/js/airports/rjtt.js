@@ -330,7 +330,7 @@
     ];
     /* 자위대 훈련 공역 Area H(지표 ~ FL230) — 사용 중일 때는 그 높이 아래로 지나지 못함(BEKLA → AZUMI 출발 경로가 이 구역의 남서쪽을 지남) */
     D.restricted = { n: 'AREA H', pts: [[37.5531, 139.0467], [37.0639, 138.6333], [36.555, 138.2969], [36.0364, 138.2969], [36.1531, 138.7636], [36.4864, 139.43]].map(function (q) { return ll(q[0], q[1]); }), top: 23000 };
-    /* 항공사: 실제 항공사 20곳(이름 · 3자 부호 · 호출부호만 교육용으로 씀 — 로고 · 도장 없음, 항공사와 관계없음) + 가상 항공사.
+    /* 항공사: 실제 항공사 19곳(이름 · 3자 부호 · 호출부호만 교육용으로 씀 — 로고 · 도장 없음, 항공사와 관계없음) + 가상 항공사.
        편명 · 기종 배정 · 교통은 가상. 비상 · 복행 · 규정 위반 같은 비정상 상황은 가상 항공사(real 없음)에만 일어남(ATC.irreg) — 사용자 결정 2026-11-15
        dest = 그 항공사가 주로 다니는 곳(국제선) · ovf: false = 지역관제의 통과 항공기로는 쓰지 않음 */
     var RC = '#5b6b7f', RC2 = '#eef1f5', FX = D.airlines.filter(function (a) { return ['VLA', 'AOP', 'HNB', 'CKY', 'OSG', 'SNX', 'SVJ'].indexOf(a.code) >= 0; });
@@ -345,7 +345,7 @@
       R('SKY', 'SKYMARK', 'Skymark Airlines', ['B738'], 3, { scope: 'D', ovf: false, dest: ['RJCC', 'RJFF', 'RJFK', 'ROAH'] }),
       R('ADO', 'AIR DO', 'AIRDO', ['B737', 'B763'], 2, { scope: 'D', ovf: false, dest: ['RJCC', 'RJCH'] }),
       R('KAL', 'KOREAN AIR', 'Korean Air', ['B77W', 'A333'], 1, { scope: 'I', dest: ['RKSS'], ovr: ['RKSI-KSEA'] }),
-      R('AAR', 'ASIANA', 'Asiana Airlines', ['A321', 'A359'], 1, { scope: 'I', dest: ['RKSS'], ovr: ['RKSI-KSEA'] }),
+      R('AAR', 'ASIANA', 'Asiana Airlines', ['A321', 'A359'], 1, { scope: 'I', dest: ['RKSS'], ovr: ['RKSI-KSEA'], gone: true }),      /* 편명 번호 자리만 지킴 — 아래에서 목록에서 뺌 */
       R('CPA', 'CATHAY', 'Cathay Pacific', ['A359', 'A333'], 1, { scope: 'I', dest: ['VHHH'] }),
       R('SIA', 'SINGAPORE', 'Singapore Airlines', ['A359', 'B77W'], 1, { scope: 'I', dest: ['WSSS'] }),
       R('THA', 'THAI', 'Thai Airways', ['B789', 'A359'], 1, { scope: 'I', dest: ['VTBS'] }),
@@ -362,6 +362,9 @@
       R('QFA', 'QANTAS', 'Qantas', ['A333', 'B789'], 1, { scope: 'I', ovf: false, dest: ['YSSY'] })
     ], FX.slice(1));
     D.mkFlights();
+    /* 아시아나항공은 2026-12-17 대한항공으로 통합 → 게임에서 뺌. 편명 번호는 항공사 차례로 정해지고 음성도 그 번호로 녹음돼 있어,
+       번호를 매긴 뒤에 목록에서 빼야 다른 항공사의 편명(= 녹음된 음성)이 바뀌지 않음. 김포 노선 몫은 대한항공 비중을 늘려 채움(편명 수는 그대로) */
+    D.airlines = D.airlines.filter(function (a) { return !a.gone; }); delete D.alBy.AAR; D.alBy.KAL.w = 2;
     /* 국내선 터미널(실제 배정을 간추림: 일본항공 · 스카이마크 = 1, 전일본공수 · 에어두 = 2) · 노선 범위(I = 국제선만, D = 국내선만) */
     D.domTerm = { JAL: 'T1', SKY: 'T1', ANA: 'T2', ADO: 'T2', VLA: 'T1', HNB: 'T1', CKY: 'T1', AOP: 'T2' };
     var SCOPE = { SVJ: 'D', SNX: 'D' }; D.airlines.forEach(function (a) { if (a.scope) SCOPE[a.code] = a.scope; });

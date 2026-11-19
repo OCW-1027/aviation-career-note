@@ -207,6 +207,8 @@
   Pilot.prototype.finish = function () { this.done = true; this.sim.sys(ATC.T('활주로를 벗어났습니다 — 조종사 체험 끝.'), 'good'); this.bump(); };
   /* ---- 2단계: 기어 · 플랩 · MCP 손잡이 ---- */
   var PLAC = { 1: 255, 5: 235, 15: 205, 20: 195, 25: 185, 30: 180 }, DETS = [0, 1, 5, 15, 20, 25, 30];
+  /* G 키가 TO/GA로 쓰이는 때: 최종 접근(또는 결심 고도 판단) 중이고 기어가 내려가 있을 때만. 기어가 올라가 있으면 G는 기어 내림 — 한 번 눌러 복행과 기어 올림이 같이 되는 일을 막음 */
+  Pilot.prototype.gKeyGa = function () { var c = this.cfg; return !!((this.canGa() || this.dhAsk && this.dhAsk()) && c && (c.gear === 'down' || c.gear === 'transit' && c.gearTo === 'down')); };
   Pilot.prototype.gear = function () {
     var cf = this.cfg, sim = this.sim, ac = this.ac; if (cf.gearT) return;
     var down = cf.gear !== 'down'; cf.gear = 'transit'; cf.gearT = sim.t + 8; cf.gearTo = down ? 'down' : 'up';

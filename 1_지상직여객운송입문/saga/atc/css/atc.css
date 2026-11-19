@@ -525,7 +525,10 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 
 /* 새로고침 대비(근무 중): 당겨서 새로고침 · 튕김 막기 — 안쪽 스크롤 칸 끝에서 화면 전체로 번지지 않게 */
 html.ingame,html.ingame body{overscroll-behavior:none}
-#cmd,#logList,#strips,#coach,#modalBox .mbody{overscroll-behavior:contain}
+#modalBox .mbody{overscroll-behavior:contain}
+/* 안쪽 칸 끝에서 화면 전체로 번지지 않게 — 화면 전체가 위아래로 움직이지 않는 PC · 휴대폰 가로에서만.
+   휴대폰 세로는 화면 전체를 내려 큰 교신 기록을 보므로 막지 않음(막으면 지시판 위에서 끌어도 화면이 안 움직였음 — 당겨서 새로고침은 html · body 쪽과 ui.js가 막음) */
+@media not all and (max-width:900px) and (orientation:portrait){#logList,#strips,#coach{overscroll-behavior:contain}}
 #resume{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;width:min(560px,calc(100% - 24px));box-sizing:border-box;background:#10202e;border:1px solid var(--acc);border-radius:10px;padding:12px 14px;box-shadow:0 10px 30px rgba(0,0,0,.55);color:var(--txt);font-size:13.5px}
 #resume p{margin:0 0 10px;line-height:1.55}#resume div{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 /* 휴대폰: 조종사 체험의 조종석 위 자막(최근 교신 2개, 14초 뒤 사라짐 — 관제 근무는 지도를 가리지 않게 자막 없음) · 가로 화면의 교신 기록 크게 보기(세로는 아래로 내리면 큰 교신 기록) */

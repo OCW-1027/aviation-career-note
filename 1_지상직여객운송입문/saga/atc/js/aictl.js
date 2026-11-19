@@ -15,12 +15,14 @@ function tbot(sim) {
   for (const a of sim.acs) { if (a.owner !== 'me' || sim.t - (a.botT || -99) < 25) continue;
     const e = D.ends[a.rwy], rw = e.rw, arr = sim.nextArr(rw), busy = sim.rwyBusy(rw, a), closed = sim.rwClosed[rw] > sim.t;
     if (a.st === 'final') { if (closed && a.d < 2.5 * NM && !a.emg) { a.botT = sim.t; sim.command(a, [{ k: 'ga' }], { noErr: true }); } else if (!a.clr && a.d < 5 * NM && !closed && (!busy || busy.st === 'roll')) { a.botT = sim.t; sim.command(a, [{ k: 'ctl', rwy: a.rwy }], { noErr: true }); } }
-    else if (a.st === 'athold' && a.holdKind === 'dep') { if (!closed && !busy && (!arr || arr.d > (sim.lvp ? 5.8 : 4.6) * NM) && sim.wakeGap(a, rw) <= 0 && !sim.crossTraffic(rw, a)) { a.botT = sim.t; if (!sim.relOk || sim.relOk(a)) sim.command(a, [{ k: 'cto', rwy: a.rwy }], { noErr: true }); }
+    else if (a.st === 'athold' && a.holdKind === 'dep') { const xw = D.xingFirst && (sim.botLX || {})[rw] !== 'x' && sim.acs.some(x => x.st === 'athold' && x.holdKind === 'cross' && x.holdRw === rw && sim.t - (x.botXw || sim.t) > 20);      /* 인천: 착륙기가 이륙 활주로를 건너야 계류장에 가므로, 20초 넘게 기다린 횡단기를 이륙 한 대와 번갈아 먼저 보냄 */
+      if (!xw && !closed && !busy && (!arr || arr.d > (sim.lvp ? 5.8 : 4.6) * NM) && sim.wakeGap(a, rw) <= 0 && !sim.crossTraffic(rw, a)) { (sim.botLX = sim.botLX || {})[rw] = 'd'; a.botT = sim.t; if (!sim.relOk || sim.relOk(a)) sim.command(a, [{ k: 'cto', rwy: a.rwy }], { noErr: true }); }
       else if (a.pilotMe && !closed && (!busy || (busy.kind === 'dep' && (busy.st === 'roll' || busy.st === 'air'))) && (!arr || arr.d > 6 * NM) && !sim.crossTraffic(rw, a)) { a.botT = sim.t; sim.command(a, [{ k: 'luaw', rwy: a.rwy }], { noErr: true }); } }      /* 조종사 체험 출발편: 앞 출발기가 뜨는 동안 「line up and wait」 */
     else if (a.st === 'linedup' && !a.cto) { if (!sim.crossTraffic(rw, a) && (!a.pilotMe || (!busy && sim.wakeGap(a, rw) <= 0 && (!arr || arr.d > 3.5 * NM)))) { a.botT = sim.t; if (!sim.relOk || sim.relOk(a)) sim.command(a, [{ k: 'cto', rwy: a.rwy }], { noErr: true }); } }
     else if (a.st === 'air') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: a.goAround ? 'APP' : 'DEP' }], { noErr: true }); }
     else if (a.st === 'reqtaxi') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: 'GND' }], { noErr: true }); }
-    else if (a.st === 'athold' && a.holdKind === 'cross') { const ar = sim.nextArr(a.holdRw); if (!(sim.rwClosed[a.holdRw] > sim.t) && !sim.rwyBusy(a.holdRw, a) && (!ar || ar.d > 2.6 * NM)) { a.botT = sim.t; sim.command(a, [{ k: 'cross', rwy: sim.endOf(a.holdRw) }], { noErr: true }); } }
+    else if (a.st === 'athold' && a.holdKind === 'cross') { a.botXw = a.botXw || sim.t; const ar = sim.nextArr(a.holdRw); const beyond = D.xingFirst ? (a.path || []).slice(a.pi + 1, a.pi + 4).map(id => D.gN[id]).filter(Boolean) : [], jam = beyond.some(q => sim.acs.some(x => x !== a && sim.onGround(x) && x.st !== 'gate' && (x.spd || 0) < 2 && Math.hypot(x.u - q.u, x.v - q.v) < 130));      /* 건너간 자리가 막혀 있으면(다음 활주로 앞에 서 있는 항공기) 활주로 위에 서게 되므로 보내지 않음 */
+      if (!jam && !(sim.rwClosed[a.holdRw] > sim.t) && !sim.rwyBusy(a.holdRw, a) && (!ar || ar.d > 2.6 * NM)) { a.botT = sim.t; a.botXw = 0; (sim.botLX = sim.botLX || {})[a.holdRw] = 'x'; sim.command(a, [{ k: 'cross', rwy: sim.endOf(a.holdRw) }], { noErr: true }); } }
   }
 }
 // 저시정(LVP): 같은 ILS에 6NM 간격 — 이미 보낸 항공기들과 남은 거리 차가 충분해야 다음을 보냄. 못 보내는 동안은 STAR 위 지점에서 고도를 달리해 체공, 복행기가 우선
@@ -99,10 +101,12 @@ function abot(sim) {
     const e = D.ends[a.rwy], g = ATC.ilsGeom(a, e);
     if (a.appr && a.appr.loc) { a.botT = sim.t; sim.command(a, [{k:'ho', to:'TWR'}], {noErr:true}); continue; }
     if (a.appr) continue;
-    if (a.missed) { if (!a.botMiss) { a.botMiss = 1; a.botSeq = 0; a.botT = sim.t; sim.command(a, [{k:'hdg', v:U.n360(e.crs+ (a.rwy.endsWith('L')? -90: 90))},{k:'alt', v:4000}], {noErr:true}); a.botDw = sim.t; }
-      else if (a.botMiss===1 && sim.t - a.botDw > 50) { a.botMiss=2; a.botT=sim.t; sim.command(a,[{k:'hdg', v:U.n360(e.crs+180)}],{noErr:true}); }
-      else if (a.botMiss===2 && g.d > 11 && lvpMiss(sim, a, g)) { a.botMiss=3; a.botT=sim.t; sim.command(a,[{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-90:90))},{k:'alt',v:3000},{k:'spd',v:200}],{noErr:true}); }
-      else if (a.botMiss===3 && Math.abs(g.xtk) < 2.6) { a.botT=sim.t; a.missed=false; a.botMiss=0; sim.command(a,[{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-30:30))},{k:'ils',rwy:a.rwy}],{noErr:true}); }
+    if (a.missed) {      /* 복행기 장주 유도. 지시가 받아들여졌을 때만 다음 단계로(조종사 체험의 내 편은 앞 지시를 복창하기 전에는 새 지시를 받지 않음 — 전에는 단계만 넘어가 유도가 끊겼음) */
+      const mc = (cm) => { a.botT = sim.t; return sim.command(a, cm, {noErr:true}) !== false || !!(sim.pilot && sim.pilot.mine(a) && sim.pilot.known(cm)); };
+      if (!a.botMiss) { a.botSeq = 0; if (mc([{k:'hdg', v:U.n360(e.crs+ (a.rwy.endsWith('L')? -90: 90))},{k:'alt', v:4000}])) { a.botMiss = 1; a.botDw = sim.t; } }
+      else if (a.botMiss===1 && sim.t - a.botDw > 50) { if (mc([{k:'hdg', v:U.n360(e.crs+180)}])) a.botMiss=2; }
+      else if (a.botMiss===2 && g.d > 11 && lvpMiss(sim, a, g)) { if (mc([{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-90:90))},{k:'alt',v:3000},{k:'spd',v:200}])) a.botMiss=3; }
+      else if (a.botMiss===3 && Math.abs(g.xtk) < 2.6) { if (mc([{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-30:30))},{k:'ils',rwy:a.rwy}])) { a.missed=false; a.botMiss=0; } }
       continue; }
     if (rvBot(sim, a)) continue;
     const last = a.fpRoute[a.fpRoute.length-1], lf = D.fix[last];
@@ -157,10 +161,12 @@ function xabot(sim) {
     const e = D.ends[a.rwy], g = ATC.ilsGeom(a, e);
     if (a.appr && a.appr.loc) { a.botT = sim.t; sim.command(a, [{k:'ho', to:'TWR'}], {noErr:true}); continue; }
     if (a.appr) continue;
-    if (a.missed) { if (!a.botMiss) { a.botMiss = 1; a.botSeq = 0; a.botT = sim.t; sim.command(a, [{k:'hdg', v:U.n360(e.crs+ (a.rwy.endsWith('L')? -90: 90))},{k:'alt', v:4000}], {noErr:true}); a.botDw = sim.t; }
-      else if (a.botMiss===1 && sim.t - a.botDw > 50) { a.botMiss=2; a.botT=sim.t; sim.command(a,[{k:'hdg', v:U.n360(e.crs+180)}],{noErr:true}); }
-      else if (a.botMiss===2 && g.d > 11 && lvpMiss(sim, a, g)) { a.botMiss=3; a.botT=sim.t; sim.command(a,[{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-90:90))},{k:'alt',v:3000},{k:'spd',v:200}],{noErr:true}); }
-      else if (a.botMiss===3 && Math.abs(g.xtk) < 2.6) { a.botT=sim.t; a.missed=false; a.botMiss=0; sim.command(a,[{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-30:30))},{k:'ils',rwy:a.rwy}],{noErr:true}); }
+    if (a.missed) {      /* 복행기 장주 유도. 지시가 받아들여졌을 때만 다음 단계로(조종사 체험의 내 편은 앞 지시를 복창하기 전에는 새 지시를 받지 않음 — 전에는 단계만 넘어가 유도가 끊겼음) */
+      const mc = (cm) => { a.botT = sim.t; return sim.command(a, cm, {noErr:true}) !== false || !!(sim.pilot && sim.pilot.mine(a) && sim.pilot.known(cm)); };
+      if (!a.botMiss) { a.botSeq = 0; if (mc([{k:'hdg', v:U.n360(e.crs+ (a.rwy.endsWith('L')? -90: 90))},{k:'alt', v:4000}])) { a.botMiss = 1; a.botDw = sim.t; } }
+      else if (a.botMiss===1 && sim.t - a.botDw > 50) { if (mc([{k:'hdg', v:U.n360(e.crs+180)}])) a.botMiss=2; }
+      else if (a.botMiss===2 && g.d > 11 && lvpMiss(sim, a, g)) { if (mc([{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-90:90))},{k:'alt',v:3000},{k:'spd',v:200}])) a.botMiss=3; }
+      else if (a.botMiss===3 && Math.abs(g.xtk) < 2.6) { if (mc([{k:'hdg', v:U.n360(e.crs+(g.xtk>0?-30:30))},{k:'ils',rwy:a.rwy}])) { a.missed=false; a.botMiss=0; } }
       continue; }
     if (rvBot(sim, a)) continue;
     const last = a.fpRoute[a.fpRoute.length-1], lf = D.fix[last];
@@ -200,8 +206,8 @@ function rabot(sim) {
     if (a.kind === 'dep') {
       const above = arrs.some(b => U.dist(a, b) < 12 && b.alt > a.alt - 300 && b.alt < a.alt + 6000);
       const rc = () => a.rcSaid ? [] : (a.rcSaid = 1, [{ k: 'radar' }]);      /* 이륙기를 처음 레이더로 식별했을 때 한 번 「radar contact」(管制方式基準 — 이미 식별된 채 넘겨받는 도착기 · 지역관제는 다시 말하지 않음, GPT 16차 R16-02) */
-      const up = () => a.pilotMe && sim.pilot && sim.pilot.viaFor && sim.pilot.viaFor() ? { k: 'alt', v: D.tmaTop, via: true } : { k: 'alt', v: D.tmaTop };      /* 조종사 체험 출발편: SID 고도 제한이 남아 있으면 대개 「climb via SID to」(AIP ENR 1.5 3.1.2) */
-      if (a.tAlt < D.tmaTop && a.alt > 2500 && !above) say(rc().concat([up()]));
+      const up = () => { a.botUp = sim.t; return a.pilotMe && sim.pilot && sim.pilot.viaFor && sim.pilot.viaFor() || D.sidKeep && a.sidR && ATC.sidPend(a).length ? { k: 'alt', v: D.tmaTop, via: true } : { k: 'alt', v: D.tmaTop }; };      /* 조종사 체험 출발편: SID 고도 제한이 남아 있으면 대개 「climb via SID to」(AIP ENR 1.5 3.1.2) */      /* D.sidKeep(인천): SID의 「이하」 제한이 도착 흐름과의 분리라 제한을 지키며 올림 */
+      if (a.tAlt < D.tmaTop && a.alt > 2500 && !above && sim.t - (a.botUp || -99) > 45) say(rc().concat([up()]));
       else if (a.tAlt >= D.tmaTop && (a.waiting === 'ho' || ATC.AppSim.depRem(a) < 12)) say([{ k: 'ho', to: 'ACC' }]);
       else if (a.waiting === 'climb' && !above) say(rc().concat([up()]));
       continue;
@@ -213,7 +219,7 @@ function rabot(sim) {
       const ma = a.gaAlt && D.missed && D.missed[a.rwy], gaS = ma ? (ma.turn === 'L' ? -90 : 90) : (a.rwy.endsWith('L') || a.rwy === '22' ? -90 : 90);      /* 조종사 체험 복행기: 공시 복행 절차의 선회 쪽으로 유도하고, 복행 고도를 유지시킨 뒤 기초 선회 때 접근 고도로 */
       if (!a.botM) { a.botM = 1; a.botDw = sim.t; say([{ k: 'hdg', v: U.n360(e.crs + gaS) }].concat(a.gaAlt ? [] : [{ k: 'alt', v: e.apAlt }], [{ k: 'spd', v: 210 }])); }
       else if (a.botM === 1 && sim.t - a.botDw > 55) { a.botM = 2; say([{ k: 'hdg', v: U.n360(e.crs + 180) }]); }
-      else if (a.botM === 2 && g.d > e.ifD - 4) { a.botM = 3; const ap = Math.min(e.apAlt, a.gaAlt || e.apAlt); say([{ k: 'hdg', v: U.n360(e.crs + (g.xtk > 0 ? -90 : 90)) }].concat(a.gaAlt && Math.abs(a.tAlt - ap) > 50 ? [{ k: 'alt', v: ap }] : [])); }
+      else if (a.botM === 2 && g.d > e.ifD - 4 && (g.d > e.ifD + 9 || !sim.acs.some(b => { if (b === a || b.kind !== 'arr' || b.gone || b.rwy !== a.rwy || b.missed) return false; const tj = Math.abs(g.xtk) / 3.5, db = reta(b, e) * (b.appr && b.appr.loc ? 3 : 4.2) - 3.5 * tj; return Math.abs(db - g.d) < 5.5; }))) { a.botM = 3;      /* 최종 접근로에 들어설 자리에 같은 활주로 도착기가 있으면 장주를 더 끌고 감(최대 IF 9NM 바깥까지) */ const ap = Math.min(e.apAlt, a.gaAlt || e.apAlt); say([{ k: 'hdg', v: U.n360(e.crs + (g.xtk > 0 ? -90 : 90)) }].concat(a.gaAlt && Math.abs(a.tAlt - ap) > 50 ? [{ k: 'alt', v: ap }] : [])); }
       else if (a.botM === 3 && Math.abs(g.xtk) < 2.8) { a.botM = 0; a.missed = false; a.waiting = null; say([{ k: 'hdg', v: U.n360(e.crs + (g.xtk > 0 ? -30 : 30)) }, { k: 'ils', rwy: a.rwy }]); }
       continue;
     }
@@ -224,9 +230,9 @@ function rabot(sim) {
     /* 같은 활주로의 앞 항공기와 간격(도착 예정 시각 차) */
     const mine = reta(a, e), ahead = arrs.filter(b => b !== a && b.rwy === a.rwy && reta(b, D.ends[b.rwy]) < mine).map(b => mine - reta(b, D.ends[b.rwy])), gap = ahead.length ? Math.min(...ahead) : 99;
     const sw = sim.starWant(a), spd = gap < 1.6 ? 190 : gap < 2.3 ? 210 : dIF < 14 ? 220 : 250;
-    if (sw && sw.d < (a.tAlt - sw.alt) / 1000 * 3.2 + 6) cmds.push({ k: 'alt', v: sw.alt });
+    if (sw && sw.d < (a.tAlt - sw.alt) / 1000 * 3.2 + 6 && !(a.botAv === sw.alt && sim.t - a.botAt < 45)) { a.botAv = sw.alt; a.botAt = sim.t; cmds.push({ k: 'alt', v: sw.alt }); }      /* 같은 고도 지시를 송신이 끝나기 전에 되풀이하지 않음(주파수가 밀림) */
     if ((a.spdAsg || 250) !== spd && spd >= a.perf.vapp + 20 && sim.t - (a.botS || -999) > 90) { a.botS = sim.t; cmds.push({ k: 'spd', v: spd }); }
-    if (dIF < 9 && a.nav.mode === 'route' && a.nav.i >= a.nav.route.length - 2 && a.tAlt <= e.apAlt + 1000) cmds.push({ k: 'ils', rwy: a.rwy });
+    if (dIF < 9 && a.nav.mode === 'route' && a.nav.i >= a.nav.route.length - 2 && a.tAlt <= e.apAlt + 1000 && sim.t - (a.botIls || -99) > 45) { a.botIls = sim.t; cmds.push({ k: 'ils', rwy: a.rwy }); }
     if (cmds.length) say(cmds);
   }
 }
@@ -276,7 +282,7 @@ function rcbot(sim) {
     }
   }
 }
-var APS = { XSRA: [abot, cbot], XAST: [xabot, xcbot], RJTT: [rabot, rcbot] }, APD = [abot, cbot];
+var APS = { XSRA: [abot, cbot], XAST: [xabot, xcbot], RJTT: [rabot, rcbot], RKSI: [rabot, rcbot] }, APD = [abot, cbot];
 // 공통: 혼신이 나면 바로 재송신 요청, 직행 요청 · 난기류 보고 · 레이저 보고에 응답
 function withReq(fn) { return function (sim) {
   if (sim.rxBlock) sim.sayAgain();

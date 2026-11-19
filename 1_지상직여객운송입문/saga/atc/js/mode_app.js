@@ -17,11 +17,16 @@
     this.gates = gates;
     for (i = 0; i < this.cfg.arr; i++) {
       var tries = 0; do { g = rng.pick(gates); } while (lastGate[g] !== undefined && t - lastGate[g] < 150 && tries++ < 8);
+      if (D.arrSlot && by) {      /* 인천: 활주로별 도착 예정 시각(진입 시각 + 경로 길이 ÷ 4NM/분)이 겹치지 않게 진입을 늦춤 */
+        var sl = this.slotT || (this.slotT = {}), rwG = by[g], len = 0, rt = D.star[this.flow.id][g], q; for (q = 1; q < rt.length; q++) len += U.dist(D.fix[rt[q - 1]], D.fix[rt[q]]);
+        var eta = t + len / 4 * 60, guard = 0; while (guard++ < 40 && (sl[rwG] || []).some(function (x) { return Math.abs(x - eta) < D.arrSlot; })) { t += 20; eta += 20; }
+        (sl[rwG] = sl[rwG] || []).push(eta);
+      }
       lastGate[g] = t; this.sched.push({ t: t, kind: 'arr', gate: g, warm: i < 2, wi: i });
       t += this.cfg.gap * (0.75 + rng() * 0.5);
     }
     t = 40;
-    for (i = 0; i < this.cfg.dep; i++) { this.sched.push({ t: t, kind: 'dep', gate: rng.pick(Object.keys(D.gateDest)) }); t += this.cfg.gap * 1.55 * (0.75 + rng() * 0.5); }
+    for (i = 0; i < this.cfg.dep; i++) { this.sched.push({ t: t, kind: 'dep', gate: rng.pick(ATC.depGates(this.flow)) }); t += this.cfg.gap * 1.55 * (0.75 + rng() * 0.5); }
     this.sched.sort(function (a, b) { return a.t - b.t; });
     this.endT = this.sched[this.sched.length - 1].t;
     /* 비정상 상황 예약 */
@@ -31,7 +36,7 @@
     this.events.sort(function (a, b) { return a.t - b.t; });
     this.scnEvents();
     /* 화면에 그릴 지점: 이번 근무에 쓰는 도착 · 출발 경로의 것만 */
-    if (D.sidRoute) { var use = this.fixUse = {}, fl = this.flow; gates.forEach(function (x) { D.star[fl.id][x].forEach(function (n) { use[n] = 1; }); }); Object.keys(D.gateDest).forEach(function (x) { ['A', 'B', 'C'].forEach(function (k) { D.sidRoute(D.depRwyFor(fl, x), x, k).forEach(function (n) { use[n] = 1; }); }); }); }      /* B · C SID 지점도(시간대가 근무 중에 바뀜) */
+    if (D.sidRoute) { var use = this.fixUse = {}, fl = this.flow; gates.forEach(function (x) { D.star[fl.id][x].forEach(function (n) { use[n] = 1; }); }); ATC.depGates(fl).forEach(function (x) { ['A', 'B', 'C'].forEach(function (k) { D.sidRoute(D.depRwyFor(fl, x), x, k).forEach(function (n) { use[n] = 1; }); }); }); }      /* B · C SID 지점도(시간대가 근무 중에 바뀜) */
     this.sys(ATC.T('{apt} 접근관제({0}) 근무 시작. 사용 활주로: 도착 {1} / 출발 {2}. 바람 {3}, QNH {4}.', D.freq.APP.fq, this.rwys.join('·'), (D.depRwyFor && this.flow.deps ? this.flow.deps.join('·') : this.flow.dep), fmt.wind(this.wind), this.qnh));
     if (D.sidSet && D.sidSet(this) !== 'A') this.sys(ATC.sidSetMsg(this), 'info');      /* 하네다: 지금 시간대의 SID(B · C — 소음 대책) */
   }
@@ -159,7 +164,7 @@
     return Math.ceil((this.t0 + c.t1 - 120 + 180 * n) / 60) * 60;
   };
   /* 회항지: 지금 위치에서 가장 가까운 출구 지점과 그 방면의 공항 */
-  AppSim.prototype.divertTo = function (ac) { var best = null, bd = 1e9; Object.keys(D.gateDest).forEach(function (g) { var d = U.dist(ac, D.fix[g]); if (d < bd) { bd = d; best = g; } }); var dg = D.gateDest[best][0]; return { gate: best, dest: dg[0], destName: dg[1], alt: D.tmaTop }; };
+  AppSim.prototype.divertTo = function (ac) { var best = null, bd = 1e9; ATC.depGates(this.flow).forEach(function (g) { var d = U.dist(ac, D.fix[g]); if (d < bd) { bd = d; best = g; } }); var dg = D.gateDest[best][0]; return { gate: best, dest: dg[0], destName: dg[1], alt: D.tmaTop }; };
   AppSim.prototype.onRouteEnd = function (ac, fn) {
     if (ac.kind !== 'arr') return;
     if (ac.appr) { if (D.flyBy && !ac.appr.loc && D.fix[fn].k === 'if' && D.ends[ac.appr.rwy].IF === fn) { ac.tHdg = D.ends[ac.appr.rwy].crs; ac.appr.steer = true; } return; }   /* 접근 허가를 받은 채 IF에 닿으면 최종 접근 방향으로 돌며 로컬라이저를 잡음 */

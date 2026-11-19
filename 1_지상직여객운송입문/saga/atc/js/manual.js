@@ -218,7 +218,7 @@
       if (p.manKey) { if (p.manKey(k)) { e.preventDefault(); return; } if (k === 'z' || k === 't') return; }      /* 출발편 지상: Z = 지상 이동 직접 조종 */
       if (k === 'z') { M.toggleAP(p); e.preventDefault(); return; }
       if (k === 'd' && p.dhAsk && p.dhAsk()) { p.dhDecide('land'); e.preventDefault(); return; }      /* D = 결심 고도 「Landing」 */
-      if (k === 'g' && (p.canGa && p.canGa() || p.dhAsk && p.dhAsk())) { p.goAround('pilot'); e.preventDefault(); return; }      /* G = TO/GA 복행(최종 접근 중) */
+      if (k === 'g' && p.gKeyGa && p.gKeyGa()) { p.goAround('pilot'); e.preventDefault(); return; }      /* G = TO/GA 복행(최종 접근 중 · 기어가 내려가 있을 때). 그 밖에는 ui.js가 기어로 처리 */
       if (k === 't' && p.fly.on) { M.toggleAT(p); return; }
       if (KMAP[k] && p.fly.on) { keys[k] = true; sync(p); e.preventDefault(); }
     }, true);

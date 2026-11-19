@@ -330,6 +330,8 @@
   Sim.prototype.irrAcs = function () { return this.acs.filter(ATC.irreg); };
   /* 그 항공사가 그 공항을 오갈 만한지(노선 범위 scope · 주로 다니는 곳 dest — 하네다의 실제 항공사) */
   ATC.odOk = function (a, icao) { var i = D.isIntl ? D.isIntl(icao) : true; if (a.scope === 'D' && i || a.scope === 'I' && !i) return false; return !a.dest || a.dest.indexOf(icao) >= 0; };
+  /* 이 운용 방식에서 쓰는 출구 지점: flow.depBy가 있으면 거기에 적힌 것만(인천 — 33/34 방향은 NOPIK, 15/16 방향은 BINIL) */
+  ATC.depGates = function (flow) { var D = ATC.D, ks = Object.keys(D.gateDest), by = flow && flow.depBy; if (!by) return ks; var o = ks.filter(function (g) { return by[g]; }); return o.length ? o : ks; };
   ATC.odFit = function (list, also) { return function (a) { return (!also || also(a)) && list.some(function (d) { return ATC.odOk(a, d[0]); }); }; };
   /* 통과 항공기: 가상 항공사는 그대로, 실제 항공사는 그 구간(출발지-목적지)을 실제로 다니는 곳만(ovr). 구간을 모르는 경로는 가상 항공사만 */
   ATC.ovfOk = function (route) { var k = route && route.od ? route.od[0] + '-' + route.od[1] : null; return function (a) { if (a.ga || a.code === 'KCM' || a.ovf === false) return false; return !a.real || !!(k && a.ovr && a.ovr.indexOf(k) >= 0); }; };
