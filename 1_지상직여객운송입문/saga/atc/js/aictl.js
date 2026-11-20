@@ -2,12 +2,15 @@
    test/bots.js(시험용 자동 관제 봇)를 브라우저용으로 옮긴 것 — test/bots.js를 고치면 python3 tools/aictl_build.py로 다시 만듦 */
 (function () {
   var ATC = window.ATC, D = ATC.D, U = ATC.U; const NM = 1852;
+/* 계류장 관제: 다른 항공기가 갈 길을 거꾸로 지나는 경로(마주 오는 길)는 고르지 않음 */
+function headOn(sim, me, nodes) { const rev = {}; for (const o of sim.acs) { if (o === me || !o.path || !(o.st === 'taxi' || o.st === 'push')) continue; for (let i = Math.max(0, o.pi - 1); i < o.path.length - 1; i++) rev[o.path[i + 1] + '>' + o.path[i]] = 1; }
+  for (let i = 0; i < nodes.length - 1; i++) if (rev[nodes[i] + '>' + nodes[i + 1]]) return true; return false; }
 function gbot(sim) {
   for (const a of sim.acs) { if (a.owner !== 'me' || sim.t - (a.botT || -99) < 40) continue;
     if (a.st === 'reqpush') { a.botT = sim.t; sim.command(a, [{ k: 'push' }], { noErr: true }); }
-    else if (a.st === 'reqtaxi') { const tg = (a.kind === 'dep' && !a.tech) ? { hp: sim.holdsFor(a)[0] } : { stand: a.stand }; const r = sim.routeOptions(a, tg)[0]; if (!r) continue; a.botT = sim.t;
+    else if (a.st === 'reqtaxi') { const tg = (a.kind === 'dep' && !a.tech) ? { hp: sim.holdsFor(a)[0] } : { stand: a.stand }; const rs0 = sim.routeOptions(a, tg), r = sim.apron && sim.t - (a.reqT || sim.t) < 45 ? rs0.filter(x => !headOn(sim, a, x.nodes))[0] : rs0[0]; if (!r) continue; a.botT = sim.t;
       sim.command(a, [Object.assign({ k: 'taxi', via: r.via, nodes: r.nodes, len: r.len, rwy: a.rwy }, tg)], { noErr: true }); }
-    else if (a.st === 'athold' && a.holdKind === 'dep') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: 'TWR' }], { noErr: true }); }
+    else if (a.st === 'athold' && a.holdKind === 'dep') { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: sim.apron ? 'GND' : 'TWR' }], { noErr: true }); }
     else if (a.st === 'athold' && a.holdKind === 'cross') { const arr = sim.nextArr(a.holdRw); if (sim.reqCross && !sim.crossOk(a)) { sim.reqCross(a); continue; } if (a.pilotMe ? sim.crossClear(a, 3) : (!sim.rwyBusy(a.holdRw, a) && (!arr || arr.d > 2.6 * NM))) { a.botT = sim.t; sim.command(a, [{ k: 'cross', rwy: sim.flow.use[a.holdRw] }], { noErr: true }); } }
   }
 }
@@ -271,7 +274,7 @@ function rcbot(sim) {
     if (accCl(sim, a)) continue;
     if (a.kind === 'arr' || a.divert) {
       const d = U.dist(a, D.fix[a.gate]), al = ATC.accAlt(a);
-      if (a.divert && !(a.nav.mode === 'route' && a.nav.route[a.nav.route.length - 1] === a.gate)) { a.botT = sim.t; sim.command(a, [{ k: 'dct', fix: a.gate }, { k: 'alt', v: al }], { noErr: true }); }
+      if (a.divert && !(a.nav.mode === 'route' && a.nav.route.indexOf(a.gate, a.nav.i) >= 0)) { a.botT = sim.t; sim.command(a, [{ k: 'dct', fix: a.gate }, { k: 'alt', v: al }], { noErr: true }); }
       else if (a.tAlt !== al && d < 80) { a.botT = sim.t; sim.command(a, [{ k: 'alt', v: al }], { noErr: true }); }
       else if (a.tAlt === al && d < 40) { a.botT = sim.t; sim.command(a, [{ k: 'ho', to: sim.nextSector(a) }], { noErr: true }); }
     } else {

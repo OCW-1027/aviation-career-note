@@ -183,7 +183,7 @@
   function tlon(x, z) { return x / Math.pow(2, z) * 360 - 180; }
   function tlat(y, z) { var n = Math.PI - 2 * Math.PI * y / Math.pow(2, z); return Math.atan(Math.sinh(n)) / D2R; }
   /* 가상 공항 둘레 위성사진(제미니로 만든 그림, 사용자 제작). 레이더 좌표(NM)의 네 귀퉁이: [왼쪽 위 x, y, 오른쪽 아래 x, y] — 그림 속 활주로를 게임 활주로에 맞춰 잼 */
-  var REGION = { XSRA: { img: 'region_xsra', box: [-4.525, 4.561, 4.376, -4.339] }, XAST: { img: 'region_xast', box: [-4.5, 4.5, 4.5, -4.5] } };
+  var REGION = { XSRA: { img: 'region_xsra', box: [-4.525, 4.561, 4.376, -4.339] }, XAST: { img: 'region_xast', box: [-4.5, 4.5, 4.5, -4.5] }, RKSI: { img: 'region_rksi', box: [-8, 8, 8, -8] } };      /* 인천: 제미니 그림이 아니라 Sentinel-2 위성사진(tools/rksi_region.py, 약 30km) */
   function buildRegion(sc) {
     var R = REGION[ATC.aptId]; if (!R) return;
     var im = new Image(); im.onload = function () {
@@ -392,7 +392,8 @@
     var tcf = TCF();
     if (tcf && tcf.mask) buildGSI(sc, ap, elev);      /* 실제 공항: 국토지리원 항공사진(실시간). 못 불러오면 게임 항공사진 */
     else if (tcf && SAT) { buildSat(ap, elev); buildGSI(sc, ap, elev); }      /* 가상 공항: 실제 항공사진(해외) 위에 게임 공항 그림. 못 불러오면 제미니 지역 그림 */
-    else if (SAT) { buildSat(ap, elev); buildRegion(sc); }      /* 둘레 위성사진(제미니) 위에 공항 항공사진(지상 관제 화면과 같은 그림)을 바닥에 깖 — 유도로 · 계류장 · 터미널 모형은 그리지 않음 */
+    else if (SAT) { buildSat(ap, elev); buildRegion(sc);
+      if (D.sat.credit) { var at2 = document.createElement('a'); at2.className = 'ckattr'; at2.href = 'https://dataspace.copernicus.eu/'; at2.target = '_blank'; at2.rel = 'noopener'; at2.textContent = D.sat.credit; S.attr = at2; } }      /* 인천: 위성사진 출처(코페르니쿠스) */      /* 둘레 위성사진(제미니) 위에 공항 항공사진(지상 관제 화면과 같은 그림)을 바닥에 깖 — 유도로 · 계류장 · 터미널 모형은 그리지 않음 */
     var twyLights = [];
     (D.gE || []).forEach(function (e) {
       var a = D.gN[e.a], b = D.gN[e.b]; if (!a || !b) return;

@@ -17,6 +17,7 @@
     var nc = [0, 2, 3, 5][L], ov = this.sched.filter(function (s, ix) { return s.kind === 'ovf' && ix >= 3; });
     while (nc-- > 0 && ov.length) ov.splice(rng.int(0, ov.length - 1), 1)[0].conf = true;
     var pool = L === 2 ? ['turb', 'medical', 'wx'] : L === 3 ? ['decomp', 'restricted', 'wx', 'medical', 'turb'] : [];
+    if (!D.restricted) pool = pool.filter(function (k) { return k !== 'restricted'; });      /* 군 훈련 공역 자료가 없는 공항(인천) */
     var n = this.level.events + (L === 3 ? 1 : 0);
     while (n-- > 0 && pool.length) { var k = pool.splice(rng.int(0, pool.length - 1), 1)[0]; this.events.push({ k: k, t: this.endT * (0.15 + 0.55 * rng()), done: false }); }
     this.scnEvents();

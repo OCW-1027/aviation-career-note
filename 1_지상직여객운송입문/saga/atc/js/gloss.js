@@ -75,7 +75,9 @@
     [/give way to (\w[\w ]*? \d+)/gi, '$1에게 양보'], [/giving way to (\w[\w ]*? \d+)/gi, '$1에게 양보함'], [/hold short runway (\w+)/gi, '활주로 $1 앞 정지'], [/ground (\d{3}\.\d+)/gi, '지상관제 $1'], [/expect (FL\d+)/gi, '최종 고도 $1 예정'],
     [/\bnegative\b/gi, '아님(정정)'], [/\bCorrection\b/g, '정정'], [/\bunable\b/gi, '불가'], [/\broger\b/gi, '수신 확인'], [/\bheavy\b/g, '(대형기)'], [/(\d{3}\.\d+)/g, '$1'],
     [new RegExp('climb via SID to ' + A, 'gi'), function (m, a) { return 'SID의 공시 고도 제한을 지키며 ' + AK(a) + '까지 상승'; }],      /* AIP ENR 1.5 3.1.2 — 맨 끝에 둠(다른 언어 풀이와 같은 차례) */
-    [new RegExp('climbing ' + A, 'gi'), '$1로 상승 중']      /* 복행 뒤 Approach 첫 호출 「going around, climbing 5,000」 — 「passing … climbing …」 등이 먼저 바뀐 뒤 남은 것 */
+    [new RegExp('climbing ' + A, 'gi'), '$1로 상승 중'],      /* 복행 뒤 Approach 첫 호출 「going around, climbing 5,000」 — 「passing … climbing …」 등이 먼저 바뀐 뒤 남은 것 */
+    /* 인천 계류장 관제(Incheon Apron) — TCP = 관제 이양 지점(AD 2.20 3.4) */
+    [/taxi to TCP (\w+) via/gi, 'TCP $1(관제 이양 지점)까지 이동, 경로:'], [/(?:^|, )TCP (\w+) via/gi, function (m, a) { return (m.charAt(0) === ',' ? ', ' : '') + 'TCP ' + a + '까지, 경로:'; }], [/holding short TCP (\w+)/gi, 'TCP $1 앞에서 정지함'], [/, hold short\b/gi, ', 그 앞에서 정지'], [/on (Alpha|Mike) at (Romeo \d+)/gi, '$1 유도로 $2 입구에 있음']
   ];
   /* 교신 풀이는 언어별 내용 묶음: ATC.GLOSS.<언어> = function (영어 교신) → 그 언어 풀이. 풀이가 필요 없는 언어(영어)는 빈 글을 돌려주면 됨 */
   ATC.GLOSS = ATC.GLOSS || {};

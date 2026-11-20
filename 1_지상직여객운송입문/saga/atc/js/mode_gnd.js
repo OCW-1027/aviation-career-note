@@ -7,6 +7,9 @@
     o = o || {}; o.mode = 'GND'; ATC.GroundSim.call(this, o);
     var L = this.level.id, rng = this.rng, F = this.flow, i, t;
     this.cfg = ATC.scnCfg(o, [null, { arr: 5, dep: 6, gap: 150, k: 0 }, { arr: 8, dep: 10, gap: 105, k: 2 }, { arr: 12, dep: 15, gap: 78, k: 4 }][L]);
+    /* 계류장 관제(인천 Incheon Apron): 푸시백부터 TCP(관제 이양 지점)까지, 도착기는 TCP에서 넘겨받아 주기장까지. 활주로 · 관제탑은 없음, 화물 계류장(주파수가 다름)은 넣지 않음 */
+    this.apron = !!((o.apron || o.scn && o.scn.apron) && D.tcp);
+    if (this.apron) { this.cfg = Object.assign({}, this.cfg, { k: 0 }); this.tcpN = {}; var self0 = this; Object.keys(D.tcp).forEach(function (n) { var c = D.tcp[n], best = null, bd = 1e9; Object.keys(D.gN).forEach(function (id) { var g = D.gN[id], d = Math.hypot(g.u - c.u, g.v - c.v); if (d < bd) { bd = d; best = id; } }); self0.tcpN[n] = best; }); this.inN = {}; Object.keys(D.apnIn || {}).forEach(function (n) { var c = D.apnIn[n], best = null, bd = 1e9; Object.keys(D.gN).forEach(function (id) { var g = D.gN[id], d = Math.hypot(g.u - c.u, g.v - c.v); if (d < bd) { bd = d; best = id; } }); self0.inN[n] = best; }); }
     this.arrRwy = F.arr; this.depRwy = F.dep; this.sched = [];
     t = 25; for (i = 0; i < this.cfg.arr; i++) { this.sched.push({ t: t, kind: 'arr' }); t += Math.max(125, this.cfg.gap * 1.25 * (0.75 + rng() * 0.5)); }
     t = 6; for (i = 0; i < this.cfg.dep; i++) { this.sched.push({ t: t, kind: 'dep' }); t += this.cfg.gap * (0.7 + rng() * 0.6); }
@@ -17,14 +20,35 @@
     while (n-- > 0 && pool.length) { var k = pool.splice(rng.int(0, pool.length - 1), 1)[0]; this.events.push({ k: k, t: this.endT * (0.2 + 0.5 * rng()), done: false }); }
     this.scnEvents();
     this.multi = !!D.planFlight;     /* 편마다 방면에 따라 활주로가 달라지는 공항 */
-    this.sys(ATC.T('{apt} 지상관제({0}) 근무 시작. 출발 활주로 {1}, 도착 활주로 {2}. 표준 흐름: {3}.', D.freq.GND.fq, this.multi ? F.deps.join(' · ') : F.dep, this.multi ? F.arrs.join(' · ') : F.arr, F.taxiNote));
+    if (this.apron) this.sys(ATC.T('{apt} 계류장 관제({0}) 근무 시작. 출발기는 푸시백부터 TCP까지 보내고 Ground로 이양, 도착기는 TCP에서 넘겨받아 주기장까지. 출발 활주로 {1}(동쪽 TCP = E · 서쪽 TCP = W).', D.freq.APN.fq, F.deps.join(' · ')));
+    else this.sys(ATC.T('{apt} 지상관제({0}) 근무 시작. 출발 활주로 {1}, 도착 활주로 {2}. 표준 흐름: {3}.', D.freq.GND.fq, this.multi ? F.deps.join(' · ') : F.dep, this.multi ? F.arrs.join(' · ') : F.arr, F.taxiNote));
   }
   ATC.extend(GndSim, ATC.GroundSim);
+  /* 계류장 관제: 「대기 지점」 자리에 TCP — 활주로 방향(동 · 서) 쪽 TCP를 주기장에서 가까운 차례로 */
+  GndSim.prototype.holdsFor = function (ac, rwy) {
+    if (!this.apron) return ATC.GroundSim.prototype.holdsFor.call(this, ac, rwy);
+    var e = D.ends[rwy || ac.rwy || this.depRwy], side = e && e.thrV > 0 ? 'E' : 'W', sd = D.stands[ac.stand] || { u: 0, v: 0 };
+    return Object.keys(D.tcp).filter(function (n) { return D.tcp[n].side === side; }).sort(function (a, b) { var A = D.tcp[a], B = D.tcp[b]; return Math.hypot(A.u - sd.u, A.v - sd.v) - Math.hypot(B.u - sd.u, B.v - sd.v); });
+  };
 
   GndSim.prototype.spawn = function (s) {
     var self = this, f = s.f || this.mkFlight(s.cargo ? function (a) { return a.cargo; } : function (a) { return !a.cargo; }, s.kind), ac;
     var P = s.P || (this.multi ? this.plan(f, s.kind, s.rwy) : null);
     function later(dt) { s.t = self.t + dt; s.f = f; s.P = P; self.sched.push(s); self.sched.sort(function (a, b) { return a.t - b.t; }); }
+    if (s.kind === 'arr' && this.apron) {      /* 계류장: Ground가 TCP까지 데려온 도착기를 넘겨받음 */
+      var ast = P ? P.stand : this.pickStand(f); if (!ast) { s.P = P = null; return later(40); }
+      var arwy = P ? P.rwy : this.arrRwy, side = D.ends[arwy] && D.ends[arwy].thrV > 0 ? 'E' : 'W', sd0 = D.stands[ast];
+      var tcp = Object.keys(D.apnIn).filter(function (n) { return D.apnIn[n].side === side; }).sort(function (a, b) { var A = D.apnIn[a], B = D.apnIn[b]; return Math.hypot(A.u - sd0.u, A.v - sd0.v) - Math.hypot(B.u - sd0.u, B.v - sd0.v); })[0], node = this.inN[tcp], gn = D.gN[node], tn = { rwy: arwy };
+      if (this.acs.some(function (x) { return Math.hypot(x.u - gn.u, x.v - gn.v) < 120; })) { s.P = P; s.f = f; return later(20); }
+      this.standBusy[ast] = 1;
+      ac = this.mk({ f: f, kind: 'arr', st: 'reqtaxi', rwy: tn.rwy, stand: ast, owner: 'me' });
+      var ln = gn.adj.filter(function (x) { return x.e.kind === 'lane'; })[0] || gn.adj[0], to = D.gN[ln.to], dl = Math.hypot(to.u - gn.u, to.v - gn.v) || 1;
+      this.place(ac, node, (to.u - gn.u) / dl, (to.v - gn.v) / dl);
+      if (P) ac.orig = P.ap[0];
+      ac.tcp = tcp; ac.vacT = this.t; ac.reqT = this.t; ac.waiting = 'taxi';
+      this.say(ac, D.freq.APN.n + ', ' + ATC.csSay(ac) + ', on ' + (side === 'E' ? 'Alpha' : 'Mike') + ' at ' + ATC.twySay([tcp]) + ', stand ' + ast + '.');
+      return ac;
+    }
     if (s.kind === 'arr') {
       var arw = P ? P.rwy : this.arrRwy, prev = this.finals(arw), last = prev[prev.length - 1];
       if (last && last.d > 6.2 * NM) return later(20);
@@ -41,7 +65,7 @@
     return ac;
   };
   GndSim.prototype.callGround = function (a) {
-    if (a.kind === 'dep') { this.say(a, D.freq.GND.n + ', ' + ATC.csSay(a) + ', stand ' + a.stand + ', information ' + ATC.phon(this.atis) + ', request pushback.'); a.waiting = 'push'; a.reqT = this.t; a.st = 'reqpush'; }
+    if (a.kind === 'dep') { this.say(a, (this.apron ? D.freq.APN.n : D.freq.GND.n) + ', ' + ATC.csSay(a) + ', stand ' + a.stand + ', information ' + ATC.phon(this.atis) + ', request pushback.'); a.waiting = 'push'; a.reqT = this.t; a.st = 'reqpush'; }
   };
   GndSim.prototype.onNode = function (a) {
     /* 다음 구간이 폐쇄됐으면 멈추고 새 경로 요청 */
@@ -60,6 +84,7 @@
       this.say(a, ATC.csSay(a) + ', holding short runway ' + this.flow.use[a.holdRw] + ' at ' + ATC.twySay([node.hold]) + '.'); return;
     }
     if (a.st === 'taxi' && r === 'end') {
+      if (this.apron && a.kind === 'dep' && !a.tech && a.hp && this.tcpN[a.hp] === a.node) { a.st = 'athold'; a.holdKind = 'dep'; a.readyT = this.t; a.waiting = 'gnd'; this.say(a, ATC.csSay(a) + ', holding short TCP ' + a.hp + '.'); this.taxiScore(a); return; }
       if (node.hold) { a.st = 'athold'; a.holdKind = 'dep'; a.readyT = this.t; a.waiting = 'twr'; this.say(a, ATC.csSay(a) + (a.pilotMe ? ', at holding point ' + ATC.twySay([node.hold]) + ', runway ' + a.rwy + '.' : ', approaching holding point ' + ATC.twySay([node.hold]) + '.')); this.taxiScore(a); }      /* 내 편(조종사 체험)은 이미 멈춘 상태에 맞는 보고(GPT 15차 R15-03) */
       else if (node.stand) { this.park(a); this.taxiScore(a); if (a.emg) { if (this.t <= a.emgDue) this.inc('emg_ok', [a], ATC.T('{0}(응급환자 탑승기)을(를) 주기장까지 우선 이동시켰습니다.', a.cs)); else this.inc('emg_late', [a], ATC.T('{0}(응급환자 탑승기)의 주기장 도착이 {1}분 지연됐습니다.', a.cs, Math.round((this.t - a.emgDue) / 60 + 0.5))); } }
       return;
@@ -87,9 +112,11 @@
   GndSim.prototype.onStop = function (a, o) { this.inc('stop', [a, o], ATC.T('{0}이(가) {1} 때문에 자체 정지했습니다({2}).', a.cs, o.cs, (o.st === 'push' || o.st === 'start' ? ATC.T('푸시백 구역 통과') : o.st === 'gate' ? ATC.T('주기장 미개방') : ATC.T('경로 교차')))); };
   /* 경로 후보: 표준 흐름을 우선으로 최대 3개 */
   GndSim.prototype.routeOptions = function (ac, target) {
-    var to = target.stand ? D.stands[target.stand].node : D.holds[target.hp].node, from = ac.node, self = this;
+    var to = target.stand ? D.stands[target.stand].node : this.apron ? this.tcpN[target.hp] : D.holds[target.hp].node, from = ac.node, self = this;
     if (ac.st === 'gate' || ac.st === 'reqpush') from = D.stands[ac.stand].lane;
-    var rs = this.net.routes(from, to, { pen: ATC.flowPen(this.flow.id, false), rwyOk: true }, 3);
+    var pen = ATC.flowPen(this.flow.id, false);
+    if (this.apron) { var p0 = pen, OW = D.apnOneWay || {}; pen = function (e, a, b) { if (e.kind !== 'lane' && e.kind !== 'stand') return 1e9; var k = p0 ? p0(e, a, b) : 1, w = OW[e.name]; if (w && (b.v - a.v) * w < 0) k *= 8; return k; }; }      /* 방향이 정해진 유도선을 거꾸로 가면 크게 돌아감 */      /* 계류장 관제는 유도로(Ground 구역)로 나가지 않음 */
+    var rs = this.net.routes(from, to, { pen: pen, rwyOk: !this.apron }, 3);
     rs.forEach(function (r) { r.cross = self.needsCross(r.nodes); r.time = r.len / 8.5 + 20; });
     return rs;
   };
@@ -104,7 +131,7 @@
       if (c.k === 'taxi' && c.hp) {
         var drw = ac.rwy || this.depRwy, hl = this.holdsFor(ac, drw), ok = hl.indexOf(c.hp) >= 0;
         if (!ok) { this.inc('wrongrwy', [ac], ATC.T('{0}: 출발 활주로는 {1}인데 대기 지점 {2}(으)로 유도했습니다.', ac.cs, drw, c.hp)); return { refuse: this.multi ? 'confirm runway, our departure runway is ' + drw : 'confirm runway, ATIS says departures runway ' + drw }; }
-        if (c.hp !== hl[0] && ac.wake === 'H') return { refuse: 'require full length for departure' };
+        if (!this.apron && c.hp !== hl[0] && ac.wake === 'H') return { refuse: 'require full length for departure' };
       }
       if (c.k === 'taxi' && c.stand && c.stand !== ac.stand && !ac.tech) return { refuse: 'our assigned stand is ' + ac.stand };
       if (c.k === 'cross' && !this.crossOk(ac)) { this.inc('nocoord', [ac], ATC.T('{0}: 관제탑과 협조(횡단 승인) 없이 활주로 횡단을 지시했습니다. 「횡단 협조 요청」을 먼저 합니다.', ac.cs)); ac.xco = { t1: this.t + 60 }; }
@@ -112,6 +139,7 @@
         var rw = ac.holdRw, arr = this.nextArr(rw), busy = this.rwyBusy(rw, ac);
         if ((arr && arr.d < 1.8 * NM) || (busy && busy.st !== 'vacate')) { this.inc('incursion', [ac].concat(arr && arr.d < 1.8 * NM ? [arr] : [busy]), ATC.T('{0}에 활주로 횡단을 지시했으나 {1}', ac.cs, (busy && busy.st !== 'vacate' ? ATC.T('{0}이(가) 활주로에 있습니다.', busy.cs) : ATC.T('{0}이(가) 최종 접근 {1}NM에 있습니다.', arr.cs, (arr.d / NM).toFixed(1))))); return { refuse: 'traffic on the runway' }; }
       }
+      if (c.k === 'ho' && c.to === 'GND' && this.apron && !(ac.st === 'athold' && ac.holdKind === 'dep')) return { refuse: 'not yet at the TCP' };
       if (c.k === 'ho' && c.to === 'TWR' && !(ac.st === 'athold' && ac.holdKind === 'dep') && !(ac.st === 'taxi' && ac.kind === 'dep')) return { refuse: 'not yet at the holding point' };
     }
     return null;
@@ -135,7 +163,7 @@
       case 'holdpos': ac.halt = true; break;
       case 'conttaxi': ac.halt = false; break;
       case 'cross': if (ac.st === 'athold' && ac.holdKind === 'cross') { delete ac.hs[ac.node]; ac.st = 'taxi'; ac.crossing = true; ac.crossT = this.t; ac.waiting = null; } break;
-      case 'ho': if (c.to === 'TWR') { ac.owner = 'twr'; ac.waiting = null; ac.hoT = this.t; if (ac.readyT && this.t - ac.readyT > 90) this.inc('noho', [ac], ATC.T('{0}: 대기 지점 도착 후 관제탑 이양이 지연됐습니다.', ac.cs)); } break;
+      case 'ho': if (c.to === 'GND' && this.apron) { if (ac.readyT && this.t - ac.readyT > 90) this.inc('noho', [ac], ATC.T('{0}: TCP 도착 후 Ground 이양이 지연됐습니다.', ac.cs)); this.remove(ac, true); } else if (c.to === 'TWR') { ac.owner = 'twr'; ac.waiting = null; ac.hoT = this.t; if (ac.readyT && this.t - ac.readyT > 90) this.inc('noho', [ac], ATC.T('{0}: 대기 지점 도착 후 관제탑 이양이 지연됐습니다.', ac.cs)); } break;
     }
   };
   /* 타워(자동): 출발 활주로에서 순서대로 이륙시킴 */
@@ -238,8 +266,8 @@
         out.push({ p: near.length ? 4 : 6, ac: a.id, t: ATC.T('{0} 푸시백 요청(주기장 {1}) — {2}', a.cs, a.stand, (near.length ? ATC.T('{0}이(가) 후방 유도로를 통과 중. 통과 후 허가.', near[0].cs) : ATC.T('후방 유도로가 비어 있으면 「푸시백 허가」.'))) });
       } else if (a.st === 'reqtaxi') {
         var tg = a.kind === 'dep' && !a.tech ? { hp: self.holdsFor(a, a.rwy || self.depRwy)[0] } : { stand: a.stand }, rs = self.routeOptions(a, tg);
-        out.push({ p: a.emg ? 9 : 7, ac: a.id, t: a.cs + (a.kind === 'dep' && !a.tech ? ATC.T(' 지상 이동 요청 — 대기 지점 {0} (추천 경로: ', tg.hp) : ATC.T(' → 주기장 {0} (추천 경로: ', a.stand)) + (rs[0] ? rs[0].via.join(' → ') : '-') + ')' + (rs[0] && rs[0].cross ? ATC.T(' · 활주로 횡단 전 정지') : '') + '.' });
-      } else if (a.st === 'athold' && a.holdKind === 'dep') out.push({ p: 8, ac: a.id, t: ATC.T('{0} 대기 지점 도착 — Tower({1})로 이양.', a.cs, D.freq.TWR.fq), c: [{ k: 'ho', to: 'TWR' }] });
+        out.push({ p: a.emg ? 9 : 7, ac: a.id, t: a.cs + (a.kind === 'dep' && !a.tech ? (self.apron ? ATC.T(' 지상 이동 요청 — TCP {0} (추천 경로: ', tg.hp) : ATC.T(' 지상 이동 요청 — 대기 지점 {0} (추천 경로: ', tg.hp)) : ATC.T(' → 주기장 {0} (추천 경로: ', a.stand)) + (rs[0] ? rs[0].via.join(' → ') : '-') + ')' + (rs[0] && rs[0].cross ? ATC.T(' · 활주로 횡단 전 정지') : '') + '.' });
+      } else if (a.st === 'athold' && a.holdKind === 'dep') out.push({ p: 8, ac: a.id, t: ATC.T('{0} 대기 지점 도착 — Tower({1})로 이양.', a.cs, ATC.fqOf('TWR', a).fq), c: [{ k: 'ho', to: 'TWR' }] });
       else if (a.st === 'athold' && a.holdKind === 'cross') {
         var ar = self.nextArr(a.holdRw), bz = self.rwyBusy(a.holdRw, a);
         out.push({ p: 6, ac: a.id, t: ATC.T('{0} 활주로 앞 정지 — {1}', a.cs, (bz ? ATC.T('활주로에 {0}, 대기.', bz.cs) : ar && ar.d < 3.2 * NM ? ATC.T('착륙기 {0} {1}NM, 착륙 후 횡단.', ar.cs, (ar.d / NM).toFixed(1)) : ATC.T('착륙기와 간격 충분 — 「횡단 허가」.'))) });

@@ -27,8 +27,8 @@
       transAlt: 14000, tower: { u: 0, v: 0 },
       note: ATC.pick({ ko: '한국 AIP AMDT 12/26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: '韓国AIP AMDT 12/26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Republic of Korea AMDT 12/26 · simplified for training · not for real-world use' })
     };
-    D.voice = false;                 /* 인천 음성 묶음은 아직 없음(4단계) — 무선은 브라우저 음성 */
-    D.modes = ['DEL', 'GND', 'TWR', 'APP'];      /* 지역관제(Incheon Control)는 다음 단계 */
+    D.voice = { dir: 'assets/voice/rksi/', parts: { ctl: 7, ctlf: 7, p1: 8, p2: 8 } };      /* 인천 음성 조각(assets/voice/rksi/ — VC_APT=RKSI voice_corpus_apt.js → VBANK_APT=RKSI voice_bank.js → VAPT=RKSI voice_synth.py). 목소리는 다른 공항과 같음(관제사 미국 영어). ※ 항공사 표 · 편명 순서를 바꾸면 음성 조각을 다시 만들어야 함 */
+    D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };
     D.twrZoneNM = 6; D.indepParallel = true;      /* AD 2.22 1.11: ILS 34L ↔ 33R · ILS 16R ↔ 15L 독립 평행 접근 */
     D.tmaName = 'SEOUL TMA';
@@ -71,9 +71,10 @@
         closures: [['B', 37, 832, 647, 832], ['M', 37, -742, 647, -742], ['C', -653, 1248, 2, 1248]] }
     };
     /* 표준 유도 흐름(게임값 — 마주 보고 멈추는 일을 줄이려는 일방통행 권장):
-       평행 유도로 A · C · M · P는 쓰는 활주로 방향의 반대로(= 이륙 시작 쪽으로), 계류장을 가로지르는 두 줄 묶음은 R8 · R10 · R12 = 북동쪽(A 쪽), R7 · R9 · R11 = 남서쪽(M 쪽) */
+       평행 유도로 A · C · M · P는 쓰는 활주로 방향의 반대로(= 이륙 시작 쪽으로), 계류장을 가로지르는 두 줄 묶음은 AIP AD 2.20 3.4의 TCP 이름(7E · 9E · 11E / 8W · 10W · 12W)에 맞춰 R7 · R9 · R11 = 동쪽 활주로 쪽(A, v 커지는 쪽), R8 · R10 · R12 = 서쪽 활주로 쪽(M).
+       ※ 처음(41차)에는 반대로 넣었음 → 46차에서 AIP에 맞춤 */
     D.taxiFlow = function (flowId, hard) {
-      var bad = hard ? 1e9 : 3.2, w = flowId === 'N' ? 1 : -1, UP = { R8: 1, R10: 1, R12: 1, A8: 1, A10: 1, A12: 1, M8: 1, M10: 1, M12: 1 }, DN = { R7: 1, R9: 1, R11: 1, A7: 1, A9: 1, A11: 1, M7: 1, M9: 1, M11: 1 };
+      var bad = hard ? 1e9 : 3.2, w = flowId === 'N' ? 1 : -1, UP = { R7: 1, R9: 1, R11: 1, A7: 1, A9: 1, A11: 1, M7: 1, M9: 1, M11: 1 }, DN = { R8: 1, R10: 1, R12: 1, A8: 1, A10: 1, A12: 1, M8: 1, M10: 1, M12: 1 };
       return function (e, a, b) {
         if (e.name === 'A' || e.name === 'C' || e.name === 'M' || e.name === 'P') return (b.u - a.u) * w < 0 ? bad : 1;
         if (UP[e.name]) return b.v < a.v ? bad : 1;
@@ -81,6 +82,8 @@
         return 1;
       };
     };
+    /* 화물기(화물 계류장 = 15L/33R 동쪽)는 착륙 뒤 동쪽 D 쪽 고속 탈출 유도로로 빠짐 — C 쪽으로 빠지면 활주로를 다시 건너야 해 E에서 마주 서는 일이 생김(게임 배정) */
+    D.exitList = function (e, ac) { var st = D.stands[ac.stand]; return st && st.grp === 'KC' && e.rw === '2' ? (e.thrU > 0 ? ['D3', 'D4'] : ['D2', 'D1']) : null; };
     D.standGroups = { cargo: ['KC'], ga: [], pax: ['T1', 'CC', 'T2', 'RM'] }; D.rwStands = {}; D.spareStand = '301';
     D.center = { x: 0, y: 0 };
     h.finishFlows();
@@ -143,6 +146,49 @@
       ELGUK: 13000, PH037: 9000, UDIDA: 15000, SANLA: 12000, POMIM: 3000, MUNAN: 1600 };
     D.entryAlt = { KARBU: 18000, GUKDO: 18000, REBIT: 16000, OLMEN: 18000 };      /* KARBU · GUKDO +FL180 = AIP. REBIT은 2H −FL170(이하) → FL160, OLMEN은 2E +FL160 · 2H의 다음 지점 BOPKI +FL180 → FL180(게임값) */
 
+    /* ---------- 지역관제(Incheon Control) — 게임 구역 ----------
+       항공로 · 지점: 한국 AIP ENR 3.1(G597 · G585 · B467 · A582) · ENR 3.2(Y697 · Y685 · Y644 · Y722 · Y782 · Y711 · Z51) — work/enr_routes.py로 뽑음.
+       실제 인천 비행정보구역은 인천 ACC · 대구 ACC가 여러 섹터로 나눠 맡음 → 게임은 서울 둘레를 한 구역으로 묶음(경계 · 이웃 주파수는 게임값) */
+    fxs([['OLBIM', 37.236389, 124.130833], ['NOGON', 37.380556, 124.418056], ['ANSIM', 37.389722, 124.835833], ['GOGET', 37.411667, 126.510000], ['TORUS', 37.606944, 128.135278], ['BIKSI', 37.675556, 128.584444], ['KAE', 37.700833, 128.753889], ['GONAV', 37.180000, 124.414722], ['DANTI', 37.301667, 124.658056], ['KALMA', 37.312500, 127.112500], ['KAKSO', 37.129167, 127.443611], ['ENSAL', 36.931667, 127.796389], ['BASEM', 36.843611, 127.952778], ['BIGOB', 36.723611, 128.164444], ['CUN', 36.631944, 128.325278], ['ELAPI', 36.337222, 128.847500], ['KPO', 35.977222, 129.474444], ['RILRO', 37.175833, 124.245000], ['BODOL', 37.189444, 124.831667], ['BOGAN', 37.211389, 126.470000], ['MONSI', 37.213056, 126.837500], ['POLEG', 37.213611, 126.993056], ['GUNKU', 36.570556, 126.996944], ['PEBRI', 36.386389, 127.003611], ['ATASO', 35.895556, 126.949167], ['MAKSA', 35.503056, 126.906111], ['MOXID', 36.386389, 126.733056], ['BEDES', 36.151389, 126.812222], ['BULTI', 36.722778, 126.825000], ['MEKIL', 36.556111, 126.831389], ['GONAX', 36.386389, 126.837778], ['ELPOS', 35.902778, 126.785278], ['MANGI', 35.503056, 126.742222], ['VASLI', 36.714444, 127.500833], ['MAKDU', 36.453333, 127.819167], ['BITUX', 36.279167, 128.030000], ['TGU', 35.809722, 128.590833], ['SAMUL', 35.126667, 126.865000], ['KAMIT', 34.253889, 126.771667]], 'en');
+    ['KAE', 'TGU', 'MANGI', 'OLBIM', 'GONAV', 'RILRO', 'KPO', 'MAKSA', 'SAMUL'].forEach(function (n) { if (F[n]) F[n].k = 'bd'; });
+    D.acc = { x1: -112, x2: 136, y1: -124, y2: 28 };
+    D.accLabel = 'INCHEON CONTROL  (GAME SECTOR)';
+    D.accView = { cx: 12, cy: -48, w: 262, h: 178 };
+    D.bdSide = { KAE: 'E', KPO: 'E', TGU: 'S', MANGI: 'S', MAKSA: 'S', SAMUL: 'S', OLBIM: 'W', GONAV: 'W', RILRO: 'W' };
+    D.neighbor = {      /* 다음 섹터(게임값 — 주파수는 ENR 3.1 · 3.2 항공로 표에 적힌 것 중에서): 동 · 남동 = 대구 ACC, 남 · 서 = 인천 ACC 다른 섹터 */
+      E: { n: 'Daegu Control', fq: '134.175' }, S: { n: 'Incheon Control', fq: '124.525' }, W: { n: 'Incheon Control', fq: '132.80' }, N: { n: 'Incheon Control', fq: '120.725' }
+    };
+    function od(r, a, b) { r.od = [a, b]; return r; }
+    /* 도착: 경계 → 진입 지점 / 출발: 출구 지점 → 경계 */
+    D.accArr = {
+      KARBU: [['KAE', 'BIKSI', 'TORUS', 'KARBU']],      /* Y697(동해 쪽 · 일본 · 미주) */
+      GUKDO: [['KPO', 'ELAPI', 'CUN', 'BIGOB', 'BASEM', 'ENSAL', 'GUKDO']],      /* Y685(남동 — 일본 남부 · 괌) */
+      REBIT: [['RILRO', 'GONAV', 'BODOL', 'REBIT']],      /* Y644(서 — 중국 · 유럽) */
+      OLMEN: [['MAKSA', 'ATASO', 'PEBRI', 'GUNKU', 'OLMEN']]      /* Y722(남 — 동남아 · 대만 · 홍콩) */
+    };
+    D.accDep = {
+      EGOBA: [['EGOBA', 'KARBU', 'TORUS', 'BIKSI', 'KAE']],      /* Y697 동쪽 */
+      OSPOT: [['OSPOT', 'VASLI', 'MAKDU', 'BITUX', 'TGU']],      /* Y782 */
+      BOPTA: [['BOPTA', 'MOXID', 'BEDES', 'ELPOS', 'MANGI']],      /* Z51 → Y711 */
+      NOPIK: [['NOPIK', 'BINIL', 'ANSIM', 'NOGON', 'OLBIM']],      /* Y697 서쪽 */
+      BINIL: [['BINIL', 'ANSIM', 'DANTI', 'GONAV']]      /* G597 서쪽 */
+    };
+    D.accArrAlt = 16000; D.accArrAltBy = D.entryAlt;      /* 진입 지점마다 넘겨주는 고도(접근관제와 같은 값) */
+    D.accArrLv = [210, 230, 250, 270];
+    D.airways = [
+      { n: 'Y697', f: ['OLBIM', 'NOGON', 'ANSIM', 'BINIL', 'NOPIK', 'GOGET', 'SEL', 'EGOBA', 'KARBU', 'TORUS', 'BIKSI', 'KAE'] }, { n: 'G597', f: ['GONAV', 'DANTI', 'ANSIM'] },
+      { n: 'Y644', f: ['RILRO', 'GONAV', 'BODOL', 'REBIT', 'BELTU', 'BOGAN', 'MONSI', 'POLEG', 'EGOBA'] }, { n: 'Y685', f: ['SEL', 'KALMA', 'KAKSO', 'GUKDO', 'ENSAL', 'BASEM', 'BIGOB', 'CUN', 'ELAPI', 'KPO'] },
+      { n: 'Y722', f: ['SOT', 'OLMEN', 'GUNKU', 'PEBRI', 'ATASO', 'MAKSA', 'SAMUL'] }, { n: 'Z52', f: ['OLMEN', 'POSAN', 'KAKSO'] }, { n: 'Y782', f: ['SOT', 'OSPOT', 'VASLI', 'MAKDU', 'BITUX', 'TGU'] },
+      { n: 'Z51', f: ['BOPTA', 'MOXID', 'BEDES'] }, { n: 'Y711', f: ['MONSI', 'BULTI', 'MEKIL', 'GONAX', 'BEDES', 'ELPOS', 'MANGI'] }
+    ].filter(function (a) { return a.f.every(function (n) { return F[n]; }); });
+    /* 통과기: 중국 ↔ 일본(서행 Y697 · 동행 Y644 — G597 서쪽 구간 동행은 사전 허가 필요, ENR 3.1), 제주 ↔ 일본(Y722 · Z52 · Y685 — OLMEN · GUKDO 도착 흐름과 엇갈림). 경로 선택은 게임값 */
+    D.ovfRoutes = [
+      od(['KAE', 'BIKSI', 'TORUS', 'KARBU', 'EGOBA', 'SEL', 'GOGET', 'NOPIK', 'BINIL', 'ANSIM', 'NOGON', 'OLBIM'], 'RJBB', 'ZBAA'),
+      od(['RILRO', 'GONAV', 'BODOL', 'REBIT', 'BELTU', 'BOGAN', 'MONSI', 'POLEG', 'EGOBA', 'KARBU', 'TORUS', 'BIKSI', 'KAE'], 'ZBAA', 'RJAA'),
+      od(['SAMUL', 'MAKSA', 'ATASO', 'PEBRI', 'GUNKU', 'OLMEN', 'POSAN', 'KAKSO', 'GUKDO', 'ENSAL', 'BASEM', 'BIGOB', 'CUN', 'ELAPI', 'KPO'], 'RKPC', 'RJBB'),
+      od(['KPO', 'ELAPI', 'CUN', 'BIGOB', 'BASEM', 'ENSAL', 'GUKDO', 'KAKSO', 'POSAN', 'OLMEN', 'GUNKU', 'PEBRI', 'ATASO', 'MAKSA', 'SAMUL'], 'RJBB', 'RKPC')
+    ].filter(function (r) { return r.every(function (n) { return F[n]; }); });
+
     /* ---------- SID 경로(AD 2.24 SID 본문) · 지점별 고도 제한(coding table) ---------- */
     var SIDR = { '33L': { EGOBA: ['EG020', 'EG040', 'EKITO', 'EG070', 'EG140', 'SEL', 'EGOBA'], OSPOT: ['EG020', 'EG040', 'EKITO', 'EG070', 'EG140', 'EG160', 'OSPOT'], NOPIK: ['AD020', 'AD050', 'AP140', 'NOPIK'], BOPTA: ['AD020', 'AD050', 'YD070', 'YD100', 'YD130', 'YD160', 'YD190', 'BOPTA'] }, '34R': { EGOBA: ['YD020', 'YD040', 'YD070', 'YD100', 'YK130', 'YK170', 'YK210', 'EGOBA'], OSPOT: ['YD020', 'YD040', 'YD070', 'YD100', 'YD130', 'YG160', 'OSPOT'], NOPIK: ['YD020', 'YD040', 'YP080', 'NOPIK'], BOPTA: ['YD020', 'YD040', 'YD070', 'YD100', 'YD130', 'YD160', 'YD190', 'BOPTA'] }, '15R': { EGOBA: ['CG050', 'CG100', 'CG101', 'CK100', 'CK099', 'EGOBA'], OSPOT: ['CG050', 'CG100', 'CG101', 'CG130', 'SOT', 'CG200', 'OSPOT'], BINIL: ['CG050', 'CG100', 'CP101', 'ATNER', 'HP121', 'BELTU', 'BINIL'], BOPTA: ['CG050', 'CG100', 'CD120', 'VIMER', 'EXUTO', 'BOPTA'] }, '16L': { EGOBA: ['HD050', 'HD100', 'CG100', 'CG101', 'CK100', 'CK099', 'EGOBA'], OSPOT: ['HD050', 'HD100', 'CG100', 'CG101', 'CG130', 'SOT', 'CG200', 'OSPOT'], BINIL: ['HD050', 'HD100', 'ATNER', 'HP121', 'BELTU', 'BINIL'], BOPTA: ['HD050', 'HD100', 'CD120', 'VIMER', 'EXUTO', 'BOPTA'] } };
     D.sidRoute = function (rwy, gate) { var r = SIDR[rwy] && SIDR[rwy][gate]; return r ? r.slice() : [gate]; };
@@ -195,18 +241,49 @@
     D.mva = [{ n: 'SEOUL', c: ll(37.42, 126.98), r: 8, alt: 3300, peak: 2000 }, { n: 'NE HILLS', c: ll(37.95, 127.10), r: 14, alt: 6000, peak: 4800 }, { n: 'ICHEON', c: ll(37.22, 127.45), r: 7, alt: 4900, peak: 3800 }, { n: 'SEOSAN', c: ll(36.83, 126.60), r: 9, alt: 3300, peak: 2200 }];
 
     /* ---------- 항공사 ----------
-       지금은 가상 항공사만(벨라 에어 포함 · 제트 여객기). 실제 항공사는 지상 단계에서 공개 자료로 노선을 확인한 뒤 넣음 — 아시아나항공은 넣지 않음(2026-12-17 대한항공으로 통합) */
-    D.airlines = D.airlines.filter(function (a) { return !a.ga && a.code !== 'KCM'; });
+       실제 항공사(인천에 실제로 다니는 곳 · 게임 목적지 표 안의 노선만 — 공개된 운항 정보로 고른 게임 표, GPT 검수 대상) + 가상 항공사(비정상 상황은 가상 항공사에만).
+       아시아나항공은 넣지 않음(2026-12-17 대한항공으로 통합). 화물은 가상 항공사만. 편명 번호는 항공사 차례로 정해지고 음성도 그 번호로 녹음했으므로, 항공사를 빼거나 순서를 바꾸면 하네다처럼 번호를 매긴 뒤에 빼거나 음성을 다시 만들 것 */
+    var RC = '#5b6b7f', RC2 = '#eef1f5', FX = D.airlines.filter(function (a) { return !a.ga && a.code !== 'KCM'; });
+    function R(code, cs, name, types, w, dest) { return { code: code, cs: cs, name: name, col: RC, col2: RC2, types: types, w: w, real: true, scope: 'I', ovf: false, dest: dest }; }
+    var ALL = [].concat(EAST, SE, SOUTH, WEST).map(function (d) { return d[0]; });
+    D.airlines = [FX[0]].concat([
+      R('KAL', 'KOREAN AIR', 'Korean Air', ['B77W', 'B789', 'A333', 'A321'], 5, ALL),
+      R('JJA', 'JEJU AIR', 'Jeju Air', ['B738'], 3, ['RJAA', 'RJBB', 'RJFF', 'RJGG', 'RJCC', 'PGUM', 'RCTP', 'RPLL', 'VTBS', 'VVNB']),
+      R('JNA', 'JIN AIR', 'Jin Air', ['B738'], 2, ['RJAA', 'RJBB', 'RJFF', 'RJGG', 'RJCC', 'PGUM', 'RCTP', 'RPLL', 'VTBS', 'VVNB']),
+      R('TWB', 'TWAYAIR', "T'way Air", ['B738', 'A333'], 2, ['RJAA', 'RJBB', 'RJFF', 'RCTP', 'VTBS', 'VVNB', 'YSSY', 'LFPG', 'EDDF']),
+      R('APZ', 'AIR PREMIA', 'Air Premia', ['B789'], 1, ['KLAX', 'KSFO', 'RJAA', 'VTBS']),
+      R('JAL', 'JAPAN AIR', 'Japan Airlines', ['B789', 'B738'], 1, ['RJAA']),
+      R('ANA', 'ALL NIPPON', 'All Nippon Airways', ['B789', 'A321'], 1, ['RJAA']),
+      R('DAL', 'DELTA', 'Delta Air Lines', ['A359', 'A333'], 1, ['KSEA', 'KLAX']),
+      R('UAL', 'UNITED', 'United Airlines', ['B789', 'B77W'], 1, ['KSFO', 'PGUM']),
+      R('ACA', 'AIR CANADA', 'Air Canada', ['B789'], 1, ['CYVR']),
+      R('CPA', 'CATHAY', 'Cathay Pacific', ['A359', 'A333'], 1, ['VHHH']),
+      R('SIA', 'SINGAPORE', 'Singapore Airlines', ['A359', 'B77W'], 1, ['WSSS']),
+      R('THA', 'THAI', 'Thai Airways', ['B789', 'A359'], 1, ['VTBS']),
+      R('HVN', 'VIET NAM AIRLINES', 'Vietnam Airlines', ['A321', 'B789'], 1, ['VVNB']),
+      R('EVA', 'EVA', 'EVA Air', ['B77W', 'A333'], 1, ['RCTP']),
+      R('PAL', 'PHILIPPINE', 'Philippine Airlines', ['A321', 'A333'], 1, ['RPLL']),
+      R('CCA', 'AIR CHINA', 'Air China', ['A333', 'B789'], 1, ['ZBAA']),
+      R('MGL', 'MONGOL AIR', 'MIAT Mongolian Airlines', ['B789', 'B738'], 1, ['ZMCK']),
+      R('DLH', 'LUFTHANSA', 'Lufthansa', ['A359'], 1, ['EDDF']),
+      R('AFR', 'AIRFRANS', 'Air France', ['B77W', 'A359'], 1, ['LFPG']),
+      R('UAE', 'EMIRATES', 'Emirates', ['B77W'], 1, ['OMDB']),
+      R('QFA', 'QANTAS', 'Qantas', ['A333'], 1, ['YSSY'])
+    ], FX.slice(1));
     D.mkFlights();
-    var TERM = { VLA: 'T2', SOG: 'T2', AOP: 'T1', HNB: 'T1', LMN: 'T1', NCE: 'CC', CKY: 'CC', TSB: 'CC' };      /* 터미널 배정(게임값 — 가상 항공사) */
+    /* 터미널 배정: 실제 항공사는 실제 배정을 간추림(제2여객터미널 = 대한항공 · 진에어 · 델타 · 에어프랑스 · 베트남항공 등, 나머지 제1여객터미널), 가상 항공사는 게임값 */
+    var TERM = { VLA: 'T2', SOG: 'T2', AOP: 'T1', HNB: 'T1', LMN: 'T1', NCE: 'CC', CKY: 'CC', TSB: 'CC', KAL: 'T2', JNA: 'T2', DAL: 'T2', AFR: 'T2', HVN: 'T2' };
     D.planFlight = function (sim, f, kind, rwy) {
       var fl = sim.flow, by = kind === 'dep' ? fl.depBy : fl.arrBy, tbl = kind === 'dep' ? D.gateDest : D.gateOrig;
       var gates = Object.keys(tbl).filter(function (g) { return by[g] && (!rwy || by[g] === rwy); }); if (!gates.length) gates = Object.keys(tbl).filter(function (g) { return by[g]; });
+      /* 화물기는 화물 계류장(15L/33R 동쪽)과 가까운 동쪽 활주로만 — 서쪽 활주로를 쓰면 여객 계류장과 활주로 둘을 가로질러 E에서 마주 서는 일이 생김(게임 배정, GPT 19차 17번) */
+      if (f.al.cargo && !rwy) { var eg = gates.filter(function (x) { var r = D.ends[by[x]].rw; return r === '1' || r === '2'; }); if (eg.length) gates = eg; }
       var g = sim.rng.pick(gates), ap = sim.rng.pick(tbl[g]);
       return { gate: g, ap: ap, intl: true, rwy: by[g], grp: f.al.cargo ? ['KC'] : [TERM[f.al.code] || 'T1'] };
     };
 
     D.posBrief = {
+      ACC: [T('핸드오프 수락 → 경로와 고도를 확인해 교차 지점의 상대 항공기를 탐지'), T('같은 고도로 교차하면 한쪽 고도를 변경(동쪽행은 1,000ft 단위 홀수 · 서쪽행은 짝수)'), T('도착기는 진입 지점별 협정 고도(KARBU FL180 · GUKDO FL180 · REBIT FL160 · OLMEN FL180)로 강하'), T('출발기는 요청 고도까지 상승시키고, 경계 도달 전에 다음 관제구역(동쪽 = Daegu Control)으로 이양'), T('5NM/1,000ft 분리 · 기본 배속 4배')],
       APP: [T('깜박이는 표적 = 핸드오프 요청 → 「수락」'), T('STAR 각 지점 옆의 숫자(100ft 단위)에 맞춰 강하 — 인천 STAR는 접근 전에 길게 접힌 구간이 있어, 간격이 넉넉하면 최초 접근 지점(ENPIL · PAMBI · BITIM · MUNAN)으로 직행시켜 줄임'),
         T('동쪽에서 오는 흐름은 동쪽 활주로, 서쪽 · 남쪽에서 오는 흐름은 서쪽 활주로 — 두 활주로에 동시에 접근(높은 쪽 5,000 · 3,000ft, 낮은 쪽 1,600ft)'), T('중간 접근 지점(IF) 앞에서 「ILS 접근 허가」 → 로컬라이저 확립 뒤 Incheon Tower로 이양'),
         T('출발기는 SID 고도 제한을 지키게 「climb via SID」로 FL170까지 올린 뒤 Incheon Control로 이양 — 동 · 남쪽에서는 도착기가 위(FL180), 서쪽에서는 아래(FL160)')]
@@ -217,6 +294,18 @@
       DEL: { n: 'Incheon Delivery', fq: '121.60' }, GND: { n: 'Incheon Ground', fq: '121.75' }, TWR: { n: 'Incheon Tower', fq: '118.20' },
       APP: { n: 'Seoul Approach', fq: '119.75' }, DEP: { n: 'Seoul Departure', fq: '125.15' }, ACC: { n: 'Incheon Control', fq: '126.175' }, ATIS: { n: 'ATIS', fq: '128.40' }
     };
+    /* 계류장 관제(지상관제를 「계류장 관제로 시작」) — AD 2.18: Incheon Apron 121.65(Apron 1, 1 ~ 50 · 101 ~ 132) · 121.8(Apron 2) · 122.175 / 129.725(Apron 3) · 123.675(Apron 4). 게임은 한 자리로 묶어 121.65.
+       TCP(Transfer of Control Point, AD 2.20 3.4): 이름 = 유도선 · 유도로 번호 + 방향(E = 동쪽 활주로 쪽 A, W = 서쪽 활주로 쪽 M). 게임 그물에 있는 10곳만(실제는 5W · 15E · 15W · 19W · 30E · 30W · 50E · 화물 7Y ~ 10Y도 있음) */
+    D.freq.APN = { n: 'Incheon Apron', fq: '121.65' };
+    /* 서쪽 활주로(16L/34R · 16R/34L)를 쓰는 항공기의 Ground · Tower 주파수(AD 2.18) — ATC.fqOf가 씀. 게임의 관제석은 동 · 서를 한 자리로 묶지만 교신에서 부르는 주파수는 쪽에 맞춤 */
+    D.freqSide = { W: { GND: { n: 'Incheon Ground', fq: '121.70' }, TWR: { n: 'Incheon Tower', fq: '118.80' } } };
+    D.rwSide = function (rwy) { var e = D.ends[rwy]; return e && (e.rw === '3' || e.rw === '4') ? 'W' : 'E'; };
+    D.pilotDep = true; D.pilotStands = ['T2']; D.twrAltFq = '118.80';      /* 조종사 체험 출발편: Vela Air = 제2여객터미널(게임 배정), 주파수 고르기의 틀린 보기 = 서쪽 Tower */
+    D.tcp = { '4E': { u: 1852, v: 550, side: 'E' }, '7E': { u: 1253, v: 724, side: 'E' }, '9E': { u: 738, v: 724, side: 'E' }, '11E': { u: 37, v: 724, side: 'E' }, '13E': { u: -556, v: 550, side: 'E' },
+      '8W': { u: 1152, v: -742, side: 'W' }, '10W': { u: 647, v: -742, side: 'W' }, '12W': { u: -40, v: -742, side: 'W' }, '13W': { u: -554, v: -570, side: 'W' }, '17W': { u: -1510, v: -742, side: 'W' } };
+    /* 계류장 유도선의 방향(TCP 짝에서 읽음 — R7 · R9 · R11은 동쪽 A 쪽으로, R8 · R10 · R12는 서쪽 M 쪽으로). 도착기는 반대 방향 유도선으로 들어옴(게임값 — AIP에는 출발 경로만 있음) */
+    D.apnOneWay = { R7: 1, R9: 1, R11: 1, R8: -1, R10: -1, R12: -1 };
+    D.apnIn = { R8: { u: 1152, v: 724, side: 'E' }, R10: { u: 647, v: 724, side: 'E' }, R12: { u: -40, v: 724, side: 'E' }, R7: { u: 1253, v: -742, side: 'W' }, R9: { u: 738, v: -742, side: 'W' }, R11: { u: 37, v: -742, side: 'W' } };
 
     /* ---------- 지상 그물 ----------
        자료: AD 2.24 Aircraft Parking / Docking Chart(RKSI AD CHART 2-3)의 유도로 이름 자리 · 주기장 좌표(INS coordinates 표 331곳)와 AD Chart 2-1.
@@ -319,6 +408,8 @@
     D.guide = { u1: -2600, u2: 2400, v1: -1700, v2: 3100 };
     D.geoCol = { land: '#585c56', sea: '#48575b' };
     D.view = { cu: -50, cv: 100, w: 5200, h: 3900 };
+    /* 지상 바탕 사진: Sentinel-2 L2A(2026-10-08, 타일 52SBG) — AWS 공개 COG의 B04 · B03 · B02(10m)를 지상 좌표 격자(7m, 영종도 전체 약 17 × 16km)로 다시 뽑음(tools/rksi_sat.py). 코페르니쿠스 자료는 무료 공개(상업 이용 가능, 출처 표시) */
+    D.sat = { img: 'assets/img/ground_sat_rksi.webp', u1: -8600, u2: 8600, v1: -8000, v2: 8000, edge: '#35504f', credit: 'Contains modified Copernicus Sentinel data 2026 (Sentinel-2, 8 Oct 2026)' };
     D.areas = [
       { label: ATC.T('동쪽 활주로(15 · 33)'), box: [-2000, 620, 2000, 1760] }, { label: ATC.T('서쪽 활주로(16 · 34)'), box: [-2250, -1560, 2000, -640] },
       { label: ATC.T('1터미널 · 탑승동'), box: [550, -700, 2150, 700] }, { label: ATC.T('2터미널'), box: [-1650, -700, 450, 700] }, { label: ATC.T('화물 계류장'), box: [-400, 1560, 1400, 3050] }
@@ -334,6 +425,6 @@
     };
     return h;
   };
-  ATC.AIRPORT_DEFS.RKSI.title = ATC.pick({ ko: '인천국제공항(AIP 바탕 · 만드는 중)', ja: '仁川国際空港(AIPに基づく・製作中)', en: 'Incheon Intl (AIP-based, in progress)' });
-  ATC.AIRPORT_DEFS.RKSI.preview = true;      /* 사이트판에는 아직 내지 않음 */
+  ATC.AIRPORT_DEFS.RKSI.title = ATC.pick({ ko: '인천국제공항(AIP 바탕 · 학습용)', ja: '仁川国際空港(AIPに基づく学習用)', en: 'Incheon Intl (AIP-based, for study)' });
+  ATC.AIRPORT_DEFS.RKSI.beta = true;      /* 52차부터 사이트판에 공개 — GPT ATC-19차 검수 전이라 로비에 「시험판」 표시(검수 반영 뒤 이 줄을 지움) */
 })(typeof globalThis !== 'undefined' ? globalThis : this);

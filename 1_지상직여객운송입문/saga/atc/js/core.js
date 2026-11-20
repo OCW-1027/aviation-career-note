@@ -81,7 +81,7 @@
       case 'divert': return ['cleared to ' + c.destName + ' airport via ' + (c.gate || c.fix) + ', climb and maintain ' + fmt.alt(c.alt), 'cleared to ' + c.destName + ' via ' + (c.gate || c.fix) + ', climbing ' + fmt.alt(c.alt)];
       case 'xalt': return ['cross ' + c.fix + ' at ' + fmt.alt(c.v), 'cross ' + c.fix + ' at ' + fmt.alt(c.v)];
       case 'ho':
-        var to = c.to, o = to.fq ? to : f[to];
+        var to = c.to, o = to.fq ? to : ATC.fqOf(to, ac);      /* 활주로 쪽에 따라 주파수가 다른 공항(인천 동 · 서 Ground · Tower) */
         return ['contact ' + o.n + ' ' + o.fq, o.fq];
       case 'radar': return ['radar contact', null];
       case 'luaw': return ['runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '') + ', line up and wait', 'runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '') + ', line up and wait'];      /* 교차점 진입 위치도 복창(F9-01) */
@@ -98,6 +98,7 @@
       case 'pushhold': return ['hold position, expect pushback shortly', 'holding position'];
       case 'taxi':
         if (c.stand) { s = c.via && c.via.length ? ' via ' + twy(c.via) : ''; return ['taxi to stand ' + c.stand + s, 'stand ' + c.stand + s]; }
+        if (sim && sim.apron && c.hp) return ['taxi to TCP ' + c.hp + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + ', hold short', 'TCP ' + c.hp + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + ', hold short'];      /* 인천 계류장 관제(AD 2.20 3.4 — TCP) */
         return ['taxi to holding point ' + twy([c.hp]) + ', runway ' + c.rwy + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + (c.hs ? ', hold short of runway ' + c.hs : ''),
           'holding point ' + twy([c.hp]) + ', runway ' + c.rwy + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + (c.hs ? ', hold short runway ' + c.hs : '')];
       case 'holdpos': return ['hold position', 'holding position'];
@@ -120,6 +121,8 @@
     }
   }
   ATC.csSay = function (ac) { return ac.csWord + ' ' + ac.num + (ac.type && D.types[ac.type].wake === 'H' ? ' heavy' : ''); };
+  /* 관제 기관의 이름 · 주파수 — 공항에 D.freqSide가 있으면 항공기가 쓰는 활주로 쪽 것(인천: 서쪽 활주로 = Ground 121.7 · Tower 118.8, AD 2.18) */
+  ATC.fqOf = function (to, ac) { var o = D.freq[to], sd = D.freqSide && ac && ac.rwy && D.rwSide ? D.freqSide[D.rwSide(ac.rwy)] : null; return sd && sd[to] ? sd[to] : o; };
   ATC.phrase = function (sim, ac, cmds) {
     var a = [], b = [], i, ilsI = -1, altI = -1, hdgI = -1, pos = '';
     for (i = 0; i < cmds.length; i++) { var p = one(sim, ac, cmds[i]); a.push(p[0]); b.push(p[1] || ''); if (cmds[i].k === 'ils') ilsI = i; if (cmds[i].k === 'alt') altI = i; if (cmds[i].k === 'hdg') hdgI = i; }

@@ -78,7 +78,8 @@
   DepPilot.prototype.standFor = function () {
     var fp = this.fp, intl = D.isIntl ? D.isIntl(fp.dest) : false, pax = (D.standGroups && D.standGroups.pax) || [], want = intl ? ['T3'] : ['T1'];      /* 지원 주기장: T1(국내) · T3(국제) — AIP AD2-39 Ground 구역(118.225 · 121.625)이 분명한 곳만(GPT 14차 F14-01) */
     var ks = Object.keys(D.stands).filter(function (k) { return want.indexOf(D.stands[k].grp) >= 0; }); if (!ks.length) ks = Object.keys(D.stands).filter(function (k) { return pax.indexOf(D.stands[k].grp) >= 0; });
-    if (!this.standK || ks.indexOf(this.standK) < 0) this.standK = ks[Math.floor(ks.length / 2)];
+    if (D.pilotStands) { var ps = Object.keys(D.stands).filter(function (k) { return D.pilotStands.indexOf(D.stands[k].grp) >= 0; }).sort(function (a, b) { return a - b; }); if (ps.length) ks = ps; }      /* 인천: Vela Air = 제2여객터미널(게임 배정) */
+    if (!this.standK || ks.indexOf(this.standK) < 0) this.standK = D.pilotStands ? ks[((this.sim.seed | 0) * 7 + 3) % ks.length] : ks[Math.floor(ks.length / 2)];
     return this.standK;
   };
   DepPilot.prototype.mkAc = function () {
@@ -91,7 +92,7 @@
     this.mcp = { hdg: hdg, alt: D.sidInit || 9000, spd: 250 };
   };
   DepPilot.prototype.note = function (t, k) { this.own = 1; this.sim.sys(t, k); this.own = 0; };
-  DepPilot.prototype.setGnd = function () { this.gnd = GZ[D.stands[this.standK].grp] || { n: 'Tokyo Ground', fq: (D.freq.GND || {}).fq }; };
+  DepPilot.prototype.setGnd = function () { this.gnd = (ATC.aptId === 'RJTT' && GZ[D.stands[this.standK].grp]) || (function (q) { return { n: (q || {}).n, fq: (q || {}).fq }; })(ATC.fqOf('GND', this.ac)); };      /* 주기장 구역별 Ground는 하네다만(인천은 게임에서 지상관제 한 자리) */
   DepPilot.prototype.confirm = function () {      /* 비행계획 확정 → 허가 요청 차례 */
     if (this.phase !== 'fpl') return; var sim = this.sim, ac = this.ac, bad = this.check().filter(function (c) { return !c.ok; });
     if (bad.length) { sim.inc('p_fpl_bad', [ac], ATC.T('{0}: 비행계획에 맞지 않는 곳이 있습니다 — {1}', ac.cs, bad.map(function (c) { return c.t; }).join(' · '))); this.bump(); return false; }
@@ -108,7 +109,7 @@
     var sim = this.sim, ac = this.ac, self = this;
     if (this.phase === 'air') { this.sidHeard(cmds); var rest = cmds.filter(function (c) { return c.k !== 'ho'; }); if (rest.length) ATC.Pilot.prototype.take.call(this, rest); cmds = cmds.filter(function (c) { return c.k === 'ho'; }); }      /* 기수 · 고도 · 속도는 도착편처럼 MCP에 설정해야 따라감 */
     cmds.forEach(function (c) {
-      if (c.k === 'ho') { var to = c.to.fq ? c.to : D.freq[c.to] || {}; self.freqTo = { to: c.key || c.to, n: to.n, fq: to.fq, t: sim.t }; return; }
+      if (c.k === 'ho') { var to = c.to.fq ? c.to : ATC.fqOf(c.to, self.ac) || {}; self.freqTo = { to: c.key || c.to, n: to.n, fq: to.fq, t: sim.t }; return; }
       if (c.k === 'clr') { self.xpdr.want = c.sq; self.xpdr.t = sim.t; self.cur.alt = c.alt; self.mcp.alt = c.alt; self.sid = c.sid; self.trn = c.trans || ''; self.sidR = null; self.sidList(); }
       if (c.k === 'push') { self.pushCmd = c; self.todoT = sim.t; return; }      /* 푸시백 승인 — 주차 브레이크를 풀어야 움직임 */
       if (c.k === 'taxi') { var vv = (c.via || []).slice(); if (vv[vv.length - 1] === c.hp) vv.pop(); self.taxi = { via: vv, hp: c.hp, rwy: c.rwy, hs: c.hs || '' }; }      /* 화면 표시용: 마지막 유도로 이름 = 대기 지점이면 한 번만 */
@@ -129,7 +130,7 @@
     if (this.phase === 'twr' && cmds[0] && cmds[0].k === 'ho' && (ac.st !== 'air' || ac.alt < HO_ALT)) { ac.botT = sim.t - 21; return false; }
     if (this.phase === 'air' && sim.mode === 'ACC' && cmds[0] && cmds[0].k === 'ho' && ac.alt < this.fp.rfl - 150 && ac.exitFix && D.fix[ac.exitFix] && U.dist(ac, D.fix[ac.exitFix]) > 12) { ac.botT = sim.t - 5; return false; }      /* 다음 구역 이양은 순항 고도에 오르거나 구역 끝이 가까울 때만 받음 */
     cmds = cmds.map(function (c) {
-      if (c.k === 'ho' && c.to === 'GND') return { k: 'ho', to: self.gnd, key: 'GND' };
+      if (c.k === 'ho' && c.to === 'GND') { self.setGnd(); return { k: 'ho', to: self.gnd, key: 'GND' }; }
       if (c.k === 'rbok' && !self.depSaid && D.freq.DEP) { self.depSaid = true; self.depFq = D.freq.DEP.fq; return { k: 'rbok', then: 'departure frequency ' + D.freq.DEP.fq }; }      /* 출발 주파수는 미리 알려 줌(GPT 14차 R14-03) */
       if (c.k === 'clr' && self.sid && D.sidLetter && c.sid !== self.sid && D.sidLetter(c.sid) !== D.sidLetter(self.sid)) { var qs = {}, ks; for (ks in c) qs[ks] = c[ks]; qs.sid = self.sid; c = qs; }      /* 이 편의 SID 시간대(A · B · C)는 비행계획 단계에서 정한 것 — 시간대 경계에서 관제가 다른 글자를 고르지 않게 */
       if (c.k === 'clr' && !c.trans && self.transName()) { var q0 = {}, k0; for (k0 in c) q0[k0] = c[k0]; q0.trans = self.transName(); return q0; }      /* SID 뒤 transition을 허가에 넣음(GPT 14차 R14-04) */
@@ -173,7 +174,7 @@
     if (this.phase === 'air' && this.sim.mode === 'ACC') { o.push({ to: 'X1', n: D.freq.ACC.n, fq: D.freq.ACC.fq }); o.push({ to: 'X2', n: D.freq.DEP.n, fq: D.freq.DEP.fq }); }      /* 다음 구역으로 이양 */
     else if (f.to === 'ACC') { o.push({ to: 'X1', n: D.freq.DEP.n, fq: D.freq.DEP.fq }); o.push({ to: 'X2', n: D.freq.APP.n, fq: D.freq.APP.fq }); }
     else if (f.to === 'DEP') { if (D.freq.APP) o.push({ to: 'X1', n: D.freq.APP.n, fq: D.freq.APP.fq }); o.push({ to: 'X2', n: D.freq.TWR.n, fq: D.freq.TWR.fq }); }
-    else if (f.to === 'TWR') { o.push({ to: 'X1', n: f.n, fq: '124.35' }); o.push({ to: 'X2', n: this.gnd.n, fq: this.gnd.fq }); }      /* 124.35도 실제 Tokyo Tower 주파수 — 이번에 지시받은 값이 아니라서 오답(GPT 15차 F15-02) */
+    else if (f.to === 'TWR') { o.push({ to: 'X1', n: f.n, fq: D.twrAltFq && f.fq === D.twrAltFq ? D.freq.TWR.fq : D.twrAltFq || '124.35' }); o.push({ to: 'X2', n: this.gnd.n, fq: this.gnd.fq }); }      /* 124.35도 실제 Tokyo Tower 주파수 — 이번에 지시받은 값이 아니라서 오답(GPT 15차 F15-02) */
     else { o.push({ to: 'X1', n: f.n, fq: other[0] }); if (D.freq.TWR) o.push({ to: 'X2', n: D.freq.TWR.n, fq: D.freq.TWR.fq }); }
     return o.sort(function (a, b) { return a.fq < b.fq ? -1 : 1; });
   };
@@ -205,7 +206,7 @@
   };
   DepPilot.prototype.finish = function (stage) {
     this.done = true; this.phase = 'end'; this.stage = stage || 1;
-    this.note(stage === 4 && this.endHow === 'ho' ? ATC.T('{0} 주파수로 바꿨습니다 — 다음 구역에서 순항 고도 {1}까지 계속 올라갑니다. 조종사 체험 출발편 끝.', this.freqNowN, fmt.alt(this.fp.rfl)) : stage === 4 ? ATC.T('순항 고도 {0}에 올랐습니다 — 조종사 체험 출발편 끝. 주기장에서 순항까지 한 편을 마쳤습니다.', fmt.alt(this.fp.rfl)) : stage === 3 ? ATC.T('Departure 주파수로 바꿨습니다 — 출발편 3단계(이륙) 끝.') : stage === 2 ? ATC.T('지정받은 Tower 주파수로 바꿨습니다 — 출발편 2단계(푸시백 · 지상 이동) 끝. 하네다 Tower는 활주로 · 시간대에 따라 주파수가 여럿이라, 늘 관제가 불러 준 값으로 맞춥니다(118.10은 이 게임의 이번 비행 값).') : ATC.T('Ground 주파수로 바꿨습니다 — 출발편 1단계(비행계획 · 허가) 끝. 푸시백 · 지상 이동 · 이륙은 다음 판에서 이어집니다.'), 'good'); this.bump();
+    this.note(stage === 4 && this.endHow === 'ho' ? ATC.T('{0} 주파수로 바꿨습니다 — 다음 구역에서 순항 고도 {1}까지 계속 올라갑니다. 조종사 체험 출발편 끝.', this.freqNowN, fmt.alt(this.fp.rfl)) : stage === 4 ? ATC.T('순항 고도 {0}에 올랐습니다 — 조종사 체험 출발편 끝. 주기장에서 순항까지 한 편을 마쳤습니다.', fmt.alt(this.fp.rfl)) : stage === 3 ? ATC.T('Departure 주파수로 바꿨습니다 — 출발편 3단계(이륙) 끝.') : stage === 2 ? (ATC.aptId === 'RJTT' ? ATC.T('지정받은 Tower 주파수로 바꿨습니다 — 출발편 2단계(푸시백 · 지상 이동) 끝. 하네다 Tower는 활주로 · 시간대에 따라 주파수가 여럿이라, 늘 관제가 불러 준 값으로 맞춥니다(118.10은 이 게임의 이번 비행 값).') : ATC.T('지정받은 Tower 주파수로 바꿨습니다 — 출발편 2단계(푸시백 · 지상 이동) 끝. {apt}은 동 · 서 활주로마다 Tower 주파수가 달라, 늘 관제가 불러 준 값으로 맞춥니다.')) : ATC.T('Ground 주파수로 바꿨습니다 — 출발편 1단계(비행계획 · 허가) 끝. 푸시백 · 지상 이동 · 이륙은 다음 판에서 이어집니다.'), 'good'); this.bump();
   };
 
   /* ================= D2: 지상(푸시백 · 엔진 시동 · 지상 이동) ================= */
@@ -411,7 +412,7 @@
   DepPilot.prototype.initTwr = function (fresh) {
     var sim = this.sim, f = this.f, fp = this.fp, sk, ac, rwy, hp, h, N = D.gN, me = this;
     if (fresh) { sk = this.standFor(); this.sid = D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate; this.sq = sim.squawk(); this.xpdr = { code: this.sq, set: this.sq, entry: '', want: this.sq }; this.cur.alt = D.sidInit || 9000; this.mcp = { hdg: 0, alt: D.sidInit || 9000, spd: 250 }; this.depFq = D.freq.DEP ? D.freq.DEP.fq : ''; sim.log.length = 0; }
-    sk = this.standK; this.setGnd(); this.phase = 'twr'; this.freqNow = 'TWR'; this.freqNowFq = D.freq.TWR.fq; this.freqNowN = D.freq.TWR.n;
+    sk = this.standK; this.setGnd(); this.phase = 'twr'; this.freqNow = 'TWR'; this.freqNowFq = ATC.fqOf('TWR', this.ac).fq; this.freqNowN = D.freq.TWR.n;
     this.eng = { st: 'on', t0: 0, n1: 21.5 }; this.pbrake = false; this.cfg.flap = this.cfg.flapPos = 5; this.cfg.gear = 'down'; this.cfg.gearT = 0; this.fly.on = false;
     var sys0 = sim.sys; sim.sys = function (t, k) { if (me.own) sys0.call(this, t, k); }; sim.phone = function () { }; sim.events = [];
     rwy = this.rwyFor(fp.gate); if (sim.depRw.indexOf(rwy) < 0) sim.depRw.push(rwy); sim.active[rwy] = 1;

@@ -8,6 +8,6 @@
   if (!defs[want] || G.ATC_SITE && defs[want].preview) want = ids[0];      /* 사이트판에서는 시험판 공항을 주소나 저장값으로도 열지 않음 */
   defs[want](ATC.D, ATC.aptHelpers);
   ATC.aptId = want; ATC.AIRPORTS[want] = ATC.D;
-  ATC.airports = function () { return ids.map(function (id) { return { id: id, name: defs[id].title || id, hidden: !!defs[id].hidden, preview: !!defs[id].preview }; }); };
+  ATC.airports = function () { return ids.map(function (id) { return { id: id, name: defs[id].title || id, hidden: !!defs[id].hidden, preview: !!defs[id].preview, beta: !!defs[id].beta }; }); };
   ATC.setAirport = function (id) { if (!defs[id] || id === want) return; try { G.localStorage.setItem(KEY, id); } catch (e) { } var u = G.location.href.replace(/([?&])apt=[A-Za-z]{4}&?/, '$1').replace(/[?&]$/, ''); G.location.href = u; };
 })(typeof globalThis !== 'undefined' ? globalThis : this);

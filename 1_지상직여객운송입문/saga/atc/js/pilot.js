@@ -164,7 +164,7 @@
   Pilot.prototype.take = function (cmds) {
     var sim = this.sim, ac = this.ac, self = this;
     cmds.forEach(function (c) {
-      if (c.k === 'ho') { self.freqTo = { to: c.to, fq: (D.freq[c.to] || {}).fq, t: sim.t }; return; }
+      if (c.k === 'ho') { self.freqTo = { to: c.to, fq: (ATC.fqOf(c.to, self.ac) || {}).fq, t: sim.t }; return; }
       if (c.k === 'ctl') { self.landOk = true; return; }
       if (c.k === 'ga') { self.landOk = false; if (!self.gaPh) self.goAround('twr'); self.gaTwrT = sim.t + 4; return; }      /* 「go around」 복창 → 복행 → 4초 뒤 관제탑이 Approach로 이양 */
       if (MCPK[c.k]) { self.asg[c.k] = { c: c, t: sim.t }; if (c.k === 'hdg' || c.k === 'dct') { delete self.asg[c.k === 'hdg' ? 'dct' : 'hdg']; } if (c.k === 'ils') self.ilsOk = c.rwy; }
@@ -196,10 +196,10 @@
   };
   Pilot.prototype.curText = function () { var c = this.cur, o = []; if (c.hdg) o.push('HDG ' + fmt.hdg(c.hdg)); if (c.alt) o.push(fmt.alt(c.alt)); if (c.spd) o.push(c.spd + 'kt'); return o.join(' · ') || ATC.T('경로대로'); };
   /* ---- 주파수 바꾸기 → 관제탑 첫 호출 ---- */
-  Pilot.prototype.freqOpts = function () { var to = this.freqTo.to, o = [to].concat(['TWR', 'GND', 'APP', 'DEP', 'ACC'].filter(function (x) { return x !== to && D.freq[x]; }).slice(0, 2)); return o.sort().map(function (x) { return { to: x, n: D.freq[x].n, fq: D.freq[x].fq }; }); };
+  Pilot.prototype.freqOpts = function () { var to = this.freqTo.to, o = [to].concat(['TWR', 'GND', 'APP', 'DEP', 'ACC'].filter(function (x) { return x !== to && D.freq[x]; }).slice(0, 2)); var ac0 = this.ac; return o.sort().map(function (x) { var q = ATC.fqOf(x, ac0); return { to: x, n: q.n, fq: q.fq }; }); };
   Pilot.prototype.tune = function (to) {
     var sim = this.sim, ac = this.ac, f = this.freqTo; if (!f || f.sent) return;
-    if (to !== f.to) { sim.inc('p_freq_bad', [ac], ATC.T('{0}: 주파수를 잘못 맞췄습니다({1}) — 지시는 {2} {3}', ac.cs, D.freq[to].fq, D.freq[f.to].n, D.freq[f.to].fq)); this.bump(); return; }
+    if (to !== f.to) { sim.inc('p_freq_bad', [ac], ATC.T('{0}: 주파수를 잘못 맞췄습니다({1}) — 지시는 {2} {3}', ac.cs, ATC.fqOf(to, ac).fq, ATC.fqOf(f.to, ac).n, ATC.fqOf(f.to, ac).fq)); this.bump(); return; }
     if (f.to === 'APP' && this.gaPh) { f.sent = true; this.onSay(D.freq.APP.n + ', ' + ATC.csSay(ac) + ', going around, ' + (Math.abs(ac.alt - ac.tAlt) < 100 ? 'level ' : 'climbing ') + fmt.alt(ac.tAlt) + '.', { ga: 'app' }); this.bump(); return; }      /* 복행 뒤 Approach 첫 호출 */
     f.sent = true; sim.applyAll(ac, [{ k: 'ho', to: f.to }]);
         this.onSay(D.freq[f.to].n + ', ' + ATC.csSay(ac) + ', ILS runway ' + ac.rwy + '.', {});      /* 관제탑 근무 화면의 첫 호출과 같은 문장(녹음 있음) */

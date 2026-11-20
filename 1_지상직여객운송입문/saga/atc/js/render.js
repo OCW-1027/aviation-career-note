@@ -96,9 +96,9 @@
       Object.keys(D.accDep).forEach(function (g) { D.accDep[g].forEach(function (bf) { if (bf.join) return; line(ctx, rs(v, W, H, D.fix[g]), rs(v, W, H, D.fix[bf]), '#172a3a', [3, 5]); }); });
       ctx.strokeStyle = '#27506e'; ctx.setLineDash([4, 4]); if (D.tmaPoly) poly(ctx, v, W, H, D.tmaPoly); else { ctx.beginPath(); ctx.arc(o[0], o[1], D.tmaR * v.scale, 0, 7); } ctx.stroke(); ctx.setLineDash([]);
       ctx.fillStyle = '#27506e'; if (D.tmaPoly) { ctx.textAlign = 'center'; ctx.fillText(D.tmaName || D.airport.call.toUpperCase() + ' TMA', o[0], o[1] + 16); ctx.fillText(D.tmaLabel || 'SFC-' + ATC.fmt.alt(D.tmaTop), o[0], o[1] + 29); ctx.textAlign = 'left'; } else ctx.fillText(D.airport.call.toUpperCase() + ' TMA  SFC-' + ATC.fmt.alt(D.tmaTop), o[0] - 58, o[1] + D.tmaR * v.scale - 9);
-      var rp = D.restricted.pts; ctx.beginPath(); rp.forEach(function (pt, ix) { var pp = rs(v, W, H, pt); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.closePath();
+      if (D.restricted) { var rp = D.restricted.pts; ctx.beginPath(); rp.forEach(function (pt, ix) { var pp = rs(v, W, H, pt); if (ix) ctx.lineTo(pp[0], pp[1]); else ctx.moveTo(pp[0], pp[1]); }); ctx.closePath();
       if (sim.rActive) { ctx.fillStyle = 'rgba(255,70,70,.13)'; ctx.fill(); ctx.strokeStyle = '#ff5b5b'; } else ctx.strokeStyle = '#3a3140';
-      ctx.setLineDash([5, 3]); ctx.stroke(); ctx.setLineDash([]); p = rs(v, W, H, rp[3]); ctx.fillStyle = sim.rActive ? '#ff7b7b' : '#4b4152'; ctx.fillText(D.restricted.n + (sim.rActive ? ' ACTIVE SFC-' + ATC.fmt.alt(D.restricted.top) : ''), p[0] + 4, p[1] + 10);
+      ctx.setLineDash([5, 3]); ctx.stroke(); ctx.setLineDash([]); p = rs(v, W, H, rp[3]); ctx.fillStyle = sim.rActive ? '#ff7b7b' : '#4b4152'; ctx.fillText(D.restricted.n + (sim.rActive ? ' ACTIVE SFC-' + ATC.fmt.alt(D.restricted.top) : ''), p[0] + 4, p[1] + 10); }      /* 군 훈련 공역 자료가 없는 공항(인천)은 그리지 않음 */
     } else {
       ctx.strokeStyle = '#27506e'; ctx.setLineDash([8, 5]); ctx.lineWidth = 1.3; if (D.tmaPoly) poly(ctx, v, W, H, D.tmaPoly); else { ctx.beginPath(); ctx.arc(o[0], o[1], D.tmaR * v.scale, 0, 7); } ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth = 1;
       /* STAR · SID */
@@ -343,7 +343,7 @@
     var ss = Math.max(9, Math.min(15, 46 * s));
     /* 작게 볼 때(휴대폰 · 넓은 공항의 전체 보기): 이름표끼리 겹치면 뒤의 것은 그리지 않음 — 확대하면 다 보임 */
     var thin = s < 0.12, used = [];
-    function free(x, y, w, h) { if (!thin) return true; for (var i = 0; i < used.length; i++) { var q = used[i]; if (x < q[0] + q[2] && q[0] < x + w && y < q[1] + q[3] && q[1] < y + h) return false; } used.push([x, y, w, h]); return true; }
+    function free(x, y, w, h, all) { if (!thin && !all) return true; for (var i = 0; i < used.length; i++) { var q = used[i]; if (x < q[0] + q[2] && q[0] < x + w && y < q[1] + q[3] && q[1] < y + h) return false; } used.push([x, y, w, h]); return true; }
     function sg(p, t, z) { var w = t.length * z * 0.64 + 6; if (free(p[0] - w / 2, p[1] - z / 2 - 2, w, z + 4)) sign(ctx, p[0], p[1], t, z); }
     /* 터미널 · 구역 이름(공항 묶음의 D.gText): 건물 위에 옅은 글자로 */
     if (D.gText && !tiny) { ctx.save(); ctx.font = '700 ' + Math.max(10, Math.min(26, 150 * s)) + 'px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(226,236,244,.62)'; D.gText.forEach(function (t) { var q = gs(v, W, H, t[1], t[2]); ctx.fillText(t[0], q[0], q[1]); }); ctx.restore(); }
@@ -352,10 +352,13 @@
     Object.keys(D.holds).forEach(function (h) { var o = D.holds[h]; sg(gs(v, W, H, o.lu, o.lv), h, ss * 0.92); });
     var pe = gs(v, W, H, -438, 652); sign(ctx, pe[0], pe[1], 'E', ss * 0.92);
     }
+    /* 계류장 관제: TCP(관제 이양 지점) 이름 — 주기장 번호보다 먼저 자리를 잡음 */
+    if (sim.apron && D.tcp) Object.keys(D.tcp).forEach(function (n) { var c = D.tcp[n], p = gs(v, W, H, c.u, c.v), z = Math.max(9, Math.min(13, 34 * s)), t = 'TCP ' + n; ctx.font = 'bold ' + z + 'px ' + MONO; var w = ctx.measureText(t).width + 8, y = p[1] + (c.side === 'E' ? -1 : 1) * (z * 0.5 + 9) * (gs(v, W, H, 0, 100)[1] < gs(v, W, H, 0, 0)[1] ? 1 : -1);
+      free(p[0] - w / 2, y - z / 2 - 2, w, z + 4, 1); ctx.fillStyle = '#35d6ff'; ctx.beginPath(); ctx.arc(p[0], p[1], Math.max(3, 9 * s), 0, 7); ctx.fill(); ctx.fillStyle = '#06222b'; ctx.fillRect(p[0] - w / 2, y - z / 2 - 2, w, z + 4); ctx.strokeStyle = '#35d6ff'; ctx.lineWidth = 1; ctx.strokeRect(p[0] - w / 2, y - z / 2 - 2, w, z + 4); ctx.fillStyle = '#9fe9ff'; ctx.textAlign = 'center'; ctx.fillText(t, p[0], y + z * 0.36); });
     /* 주기장 번호 */
     ctx.font = 'bold ' + Math.max(8, Math.min(13, 40 * s)) + 'px ' + MONO; ctx.textAlign = 'center';
     var sf = Math.max(8, Math.min(13, 40 * s));
-    if (!tiny) Object.keys(D.stands).forEach(function (n) { var st = D.stands[n], p = gs(v, W, H, st.u + st.lab[0], st.v + st.lab[1]); if (!free(p[0] - n.length * sf * 0.32 - 1, p[1] - sf / 2, n.length * sf * 0.64 + 2, sf)) return; ctx.fillStyle = app.hoverStand === n ? C.sel : '#d9dfe5'; ctx.fillText(n, p[0], p[1]); R._tags.push({ x: p[0] - 13, y: p[1] - 7, w: 26, h: 14, wt: 1.2 }); });
+    if (!tiny) Object.keys(D.stands).forEach(function (n) { var st = D.stands[n], p = gs(v, W, H, st.u + st.lab[0], st.v + st.lab[1]); if (!free(p[0] - n.length * sf * 0.32 - 1, p[1] - sf / 2, n.length * sf * 0.64 + 2, sf, 1)) return;      /* 주기장 번호는 어느 배율에서나 서로 겹치면 건너뜀(인천처럼 주기장이 빽빽한 곳) */ ctx.fillStyle = app.hoverStand === n ? C.sel : '#d9dfe5'; ctx.fillText(n, p[0], p[1]); R._tags.push({ x: p[0] - 13, y: p[1] - 7, w: 26, h: 14, wt: 1.2 }); });
     ctx.textAlign = 'left';
     /* 관제탑 */
     var tp = gs(v, W, H, 0, 0); ctx.fillStyle = '#2c3238'; ctx.beginPath(); ctx.arc(tp[0], tp[1], Math.max(4, 16 * s), 0, 7); ctx.fill(); ctx.strokeStyle = '#9fd0ff'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.fillStyle = '#9fd0ff'; ctx.font = '9px ' + MONO; ctx.fillText('TWR', tp[0] - 9, tp[1] + Math.max(4, 16 * s) + 8);
@@ -458,7 +461,7 @@
   /* 작은 전체 지도: 확대해 있을 때 왼쪽 아래에 공항 전체와 지금 보는 범위를 보여 줌(눌러서 이동) */
   /* 실제 항공사진 출처 — 작은 지도 오른쪽(없으면 왼쪽 아래), 좁으면 두 줄 · 작은 글씨. CC BY 4.0(아스테라)은 늘 보여야 함(30차 결과) */
   R.tileCredit = function (ctx, W, H) {
-    if (!R.tOk || !ATC.Tiles) return; var tc = ATC.Tiles.cfg(); if (!tc) return; var t = tc.attr(), mb = R.miniBox, x = mb ? mb.x + mb.w + 10 : 8, avail = W - x - 64, fs = 10, lines = [t];
+    var tc = R.tOk && ATC.Tiles ? ATC.Tiles.cfg() : null, t = tc ? tc.attr() : satOk && D.sat && D.sat.credit && !ATC.dbgNoSat ? D.sat.credit : null; if (!t) return; var mb = R.miniBox, x = mb ? mb.x + mb.w + 10 : 8, avail = W - x - 64, fs = 10, lines = [t];
     ctx.save(); ctx.font = fs + 'px ' + MONO;
     if (ctx.measureText(t).width > avail) { var i = t.indexOf('('), a = i > 0 ? t.slice(0, i) : t, b = i > 0 ? t.slice(i) : ''; lines = b ? [a, b] : [t]; while (fs > 8 && Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })) > avail) { fs--; ctx.font = fs + 'px ' + MONO; } if (Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })) > avail && mb) x = 8; }
     var lh = fs + 3, wmax = Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })), y0 = H - 6 - (lines.length - 1) * lh, by = mb && x === 8 ? mb.y - 6 - (lines.length - 1) * lh : y0;
