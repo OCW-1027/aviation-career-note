@@ -99,9 +99,11 @@
       if (ev.k === 'atis') { this.atis = String.fromCharCode(this.atis.charCodeAt(0) + 1); this.qnh += this.rng.pick([-2, -1, 1, 2]); this.sys(ATC.T('ATIS 갱신: 정보 {0} · QNH {1}. 이전 정보를 보고하는 조종사에게는 최신 정보를 통보하세요.', this.atis, this.qnh), 'alert'); }
       if (ev.k === 'rwychg') {
         this.wind = { dir: U.n360(this.wind.dir + 180), spd: this.wind.spd + 3 }; this.flow = D.flows[this.flowForWind()]; this.depRwy = this.flow.dep; this.atis = String.fromCharCode(this.atis.charCodeAt(0) + 1);
-        if (D.sidNames) this.sys(ATC.T('풍향이 {0}(으)로 바뀌어 사용 활주로 변경: 출발 {1} · ATIS {2}. 이 공항의 SID는 활주로가 바뀌어도 명칭이 같습니다 — 새로 요청하는 출발기의 ATIS만 확인하세요.', fmt.wind(this.wind), this.flow.deps.join(' · '), this.atis), 'alert');
+        if (D.gateSwap) this.acs.forEach(function (x) { var g = (D.gateSwap[self.flow.id] || {})[x.gate]; if (g) { if (x.route) x.route = x.route.replace(x.gate, g); x.gate = g; } });      /* 방향마다 출구 지점이 다른 공항(인천 북서쪽: 북풍 NOPIK ↔ 남풍 BINIL) */
+        if (D.sidNames && !D.sidByRwy) this.sys(ATC.T('풍향이 {0}(으)로 바뀌어 사용 활주로 변경: 출발 {1} · ATIS {2}. 이 공항의 SID는 활주로가 바뀌어도 명칭이 같습니다 — 새로 요청하는 출발기의 ATIS만 확인하세요.', fmt.wind(this.wind), this.flow.deps.join(' · '), this.atis), 'alert');
         else {
-          this.sys(ATC.T('풍향이 {0}(으)로 바뀌어 사용 활주로 변경: 출발 {1} · ATIS {2}. 이미 허가한 출발기도 새 SID(1{3})로 재허가해야 합니다.', fmt.wind(this.wind), this.depRwy, this.atis, this.flow.sfx), 'alert');
+          if (D.sidByRwy) this.sys(ATC.T('풍향이 {0}(으)로 바뀌어 사용 활주로 변경: 출발 {1} · ATIS {2}. 이 공항은 활주로 방향마다 SID가 달라, 이미 허가한 출발기도 새 SID로 재허가해야 합니다(SID 참조표).', fmt.wind(this.wind), (this.flow.deps || [this.depRwy]).join(' · '), this.atis), 'alert');      /* 인천: EGOBA 2E(33L) ↔ 2C(15R) … */
+          else this.sys(ATC.T('풍향이 {0}(으)로 바뀌어 사용 활주로 변경: 출발 {1} · ATIS {2}. 이미 허가한 출발기도 새 SID(1{3})로 재허가해야 합니다.', fmt.wind(this.wind), this.depRwy, this.atis, this.flow.sfx), 'alert');
           this.acs.forEach(function (x) { if ((x.st === 'cleared' || x.st === 'ready' || x.st === 'rb') && x.clrFlow !== self.flow.id) { x.st = 'req'; x.reclear = true; x.waiting = 'clr'; x.reqT = self.t; x.atisRep = String.fromCharCode(self.atis.charCodeAt(0) - 1); self.say(x, ATC.csSay(x) + ', we copy runway change, request revised clearance.', { kind: 'warn' }); } });
         }
       }

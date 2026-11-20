@@ -47,6 +47,7 @@
     s = s.replace(/FL(\d{3})/g, function (m, a) { return 'flight level ' + digs(a); });
     s = s.replace(/(\d{1,2}),(\d)00\b/g, function (m, a, b) { return digs(a) + ' thousand' + (b !== '0' ? ' ' + DW[+b] + ' hundred' : ''); });
     s = s.replace(/\b(\d{2})([LRC])\b/g, function (m, a, b) { return digs(a) + ' ' + ({ L: 'left', R: 'right', C: 'center' })[b]; });
+    s = s.replace(/\b(\d{2})([A-Z])\b/g, function (m, a, b) { return digs(a) + ' ' + (PH[b] || b); });      /* 11E → one one Echo(인천 TCP — 두 자리 + 글자) */
     s = s.replace(/(\d+)\.(\d+)/g, function (m, a, b) { return digs(a) + ' decimal ' + digs(b.replace(/0+$/, '') || '0'); });
     s = s.replace(/\b([A-Z])(\d)\b/g, function (m, a, b) { return (PH[a] || a) + ' ' + b; });
     s = s.replace(/\b(\d)([A-Z])\b/g, function (m, a, b) { return a + ' ' + (PH[b] || b); });
@@ -55,7 +56,7 @@
   };
 
   /* ---------- 교신 문구(일본·한국에서 쓰는 형식 기준, 교육용) ---------- */
-  function twy(names) { return names.map(function (n) { return /^[A-Z]\d*$/.test(n) ? ATC.phon(n.replace(/\d/g, '')) + (n.replace(/\D/g, '') ? ' ' + n.replace(/\D/g, '') : '') : n; }).join(', '); }      /* A14 → Alfa 14(글자 하나 + 숫자면 몇 자리든 음성 문자로) */
+  function twy(names) { return names.map(function (n) { return /^[A-Z]{1,2}\d*$/.test(n) ? ATC.phon(n.replace(/\d/g, '')) + (n.replace(/\D/g, '') ? ' ' + n.replace(/\D/g, '') : '') : n; }).join(', '); }      /* A14 → Alfa 14(글자 하나 + 숫자면 몇 자리든 음성 문자로) · RG → Romeo Golf(글자 둘 — 인천) */
   ATC.twySay = twy;
   /* 지시 하나 → [관제 문구, 복창 문구] */
   function one(sim, ac, c) {
