@@ -65,7 +65,7 @@
     [/stopping on the runway, request fire service inspection/gi, '활주로상 정지, 소방 점검 요청'], [/rejecting takeoff, engine warning/gi, '이륙 중단(엔진 경고)'], [/bird strike on departure, continuing, suggest runway inspection/gi, '이륙 중 조류 충돌, 비행 계속 — 활주로 점검 권고'],
     [/approaching (\w+), request frequency change/gi, '$1 접근 중, 주파수 변경 요청'], [/request frequency change/gi, '주파수 변경 요청'], [/request approach clearance/gi, '접근 허가 요청'], [/request higher/gi, '더 높은 고도 요청'], [/request descent/gi, '강하 요청'],
     [new RegExp('passing ' + A + ', climbing ' + A, 'gi'), '$1 통과, $2로 상승 중'], [new RegExp('climbing ' + A + ', request ' + A, 'gi'), '$1로 상승 중, $2 요청'], [new RegExp('passing ' + A, 'gi'), '$1 통과 중'], [/passing (\w+)/gi, '$1 통과'],
-    [new RegExp('descending ' + A, 'gi'), '$1로 강하 중'], [new RegExp('maintaining ' + A, 'gi'), '$1 유지 중'], [new RegExp('level ' + A, 'gi'), '$1 수평 비행'], [/inbound (\w+)/gi, '$1 향해 비행'],
+    [new RegExp('descending ' + A, 'gi'), '$1로 강하 중'], [new RegExp('maintaining ' + A, 'gi'), '$1 유지 중'], [new RegExp('level ' + A, 'gi'), '$1 수평 비행'], [new RegExp(', cleared ' + A, 'gi'), ', 허가 고도 $1'], [/inbound (\w+)/gi, '$1 향해 비행'],
     [/(\d+) miles final runway (\w+)/gi, '최종 접근 $1마일(활주로 $2)'], [/ILS runway (\w+)/gi, 'ILS $1 접근 중'], [/(\w+ 1[AB]) departure/gi, '$1 출발 절차'],
     [/ready for departure/gi, '이륙 준비 완료'], [/request crossing/gi, '횡단 요청'],
     [/traffic on short final/gi, '최종 접근 중인 항공기가 있음'], [/landing traffic on the runway|traffic on the runway/gi, '활주로에 항공기가 있음'], [/that is (above|below) your airspace/gi, '관할 공역 밖 고도'], [/we are a departure/gi, '우리는 출발기임'],

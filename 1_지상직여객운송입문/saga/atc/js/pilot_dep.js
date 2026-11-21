@@ -243,15 +243,53 @@
   }
   function taxiShow(a, dt) {
     var raw = { u: a.u, v: a.v, du: a.du, dv: a.dv }, N = D.gN, out = raw;
-    if (N && a.path && a.pi !== undefined && a.pi < a.path.length && !a.manTaxi && (a.st === 'taxi' || a.st === 'vacate' || a.st === 'cross' || a.st === 'lineup')) {
-      var len = a.path.length, T = N[a.path[a.pi]], P = a.pi > 0 ? N[a.path[a.pi - 1]] : N[a.node], hs = a.hs || {};
+    if (N && a.path && a.pi !== undefined && a.pi < a.path.length && !a.manTaxi && (a.st === 'taxi' || a.st === 'vacate' || a.st === 'cross' || a.st === 'lineup' || a.st === 'push')) {
+      var hs = a.hs || {}, tp = a.tPath;
+      if (!tp || tp.p !== a.path) {      /* 경로가 바뀔 때 한 번: 노드 목록(출발점 포함) · 누적 거리 */
+        var Lp = a.path.slice(), off = 0; if (a.path[0] !== a.node && N[a.node]) { Lp.unshift(a.node); off = 1; }
+        var cum = [0]; for (var q = 1; q < Lp.length; q++) cum.push(cum[q - 1] + Math.hypot(N[Lp[q]].u - N[Lp[q - 1]].u, N[Lp[q]].v - N[Lp[q - 1]].v));
+        var n0 = N[Lp[0]], fl = Math.hypot(a.du || 0, a.dv || 0);
+        tp = a.tPath = { p: a.path, L: Lp, off: off, cum: cum, f0: (a.spd || 0) < 0.3 && n0 && fl > 0.1 && Math.hypot(a.u - n0.u, a.v - n0.v) < 1 ? { u: a.du / fl, v: a.dv / fl } : null };
+      }
       if ((a.spd || 0) < 0.05 && N[a.node] && Math.hypot(a.u - N[a.node].u, a.v - N[a.node].v) < 0.5) a.tStop = a.node;
-      function ok(n, i) { return n && i > 0 && i < len - 1 && hs[n.id] === undefined && a.tStop !== n.id; }
-      if (T && P && P !== T) {
-        var dP = Math.hypot(a.u - P.u, a.v - P.v), dT = Math.hypot(a.u - T.u, a.v - T.v), segL = Math.hypot(T.u - P.u, T.v - P.v), c;
-        if (segL > 0.01) out = { u: a.u, v: a.v, du: (T.u - P.u) / segL, dv: (T.v - P.v) / segL };
-        if (ok(T, a.pi) && (c = taxiCorner(P, T, N[a.path[a.pi + 1]])) && dT < c.t) out = onArc(c, c.t - dT);
-        else if (a.pi >= 2 && ok(P, a.pi - 1) && (c = taxiCorner(N[a.path[a.pi - 2]], P, T)) && dP < c.t) out = onArc(c, c.t + dP);
+      var L = tp.L, cm = tp.cum, n = L.length, ci = a.pi + tp.off;
+      var nd = function (i) { return N[L[i]]; };
+      var dir = function (i) { var A = nd(i), B = nd(i + 1), l = cm[i + 1] - cm[i] || 1; return { u: (B.u - A.u) / l, v: (B.v - A.v) / l }; };
+      var ang = function (i) { if (i <= 0 || i >= n - 1) return 0; var x = dir(i - 1), y = dir(i); return Math.acos(Math.max(-1, Math.min(1, x.u * y.u + x.v * y.v))); };
+      var stop = function (i) { return i <= 0 || i >= n - 1 || hs[L[i]] !== undefined || a.tStop === L[i]; };
+      var brk = function (i) { return stop(i) || ang(i) >= 0.05; };      /* 곧은 줄이 끝나는 점(거의 일직선으로 이어진 점은 건너뜀) */
+      var isC = function (i) { var t = ang(i); return !stop(i) && t >= 0.05 && t <= 2.6; };
+      var lim = function (j, step) { var k = j + step; while (k > 0 && k < n - 1 && !brk(k)) k += step; var run = Math.abs(cm[j] - cm[Math.max(0, Math.min(n - 1, k))]); return (isC(k) ? 0.45 : 0.95) * run; };
+      if (ci >= 1 && ci < n && nd(ci) && nd(ci - 1)) {
+        var sc = cm[ci - 1] + Math.hypot(a.u - nd(ci - 1).u, a.v - nd(ci - 1).v), sd = dir(ci - 1);
+        out = { u: a.u, v: a.v, du: sd.u, dv: sd.v };
+        for (var j = Math.max(1, ci - 10); j <= Math.min(n - 2, ci + 10); j++) {
+          if (!isC(j) || Math.abs(sc - cm[j]) > 60) continue;
+          var th = ang(j), tn = Math.tan(th / 2), t = Math.min(T_R * tn, 60, lim(j, -1), lim(j, 1));
+          if (t < 0.3 || Math.abs(sc - cm[j]) >= t) continue;
+          var x = dir(j - 1), y = dir(j), C = nd(j), R = t / tn, sg = x.u * y.v - x.v * y.u > 0 ? 1 : -1, su = C.u - x.u * t, sv = C.v - x.v * t;
+          out = onArc({ t: t, th: th, sg: sg, au: x.u, av: x.v, su: su, sv: sv, ou: su - sg * x.v * R, ov: sv + sg * x.u * R }, sc - (cm[j] - t));
+          break;
+        }
+        /* 첫 구간: 푸시백(기수를 돌리며 뒤로) · 활주로 진입(활주로 방향으로 돌며) · 멈춰 있다가 다른 방향으로 출발 — 시작 방향에서 끝 방향으로 이어지는 곡선(3차 베지에). 예전에는 곧게 간 뒤 제자리에서 돌았음 */
+        if (ci === 1) {
+          var s0 = dir(0), t0 = null, t1 = null, endS = cm[1], push = a.st === 'push';
+          if (push) { var fv = (D.faceVec || { east: [1, 0], west: [-1, 0], north: [0, 1], south: [0, -1] })[a.face]; if (fv) { t0 = s0; t1 = { u: -fv[0], v: -fv[1] }; } }
+          else if (a.st === 'lineup') { var re = D.ends[a.rwy]; if (re && re.du !== undefined) { t0 = tp.f0 || s0; t1 = { u: re.du, v: re.dv }; } }
+          else if (tp.f0 && Math.acos(Math.max(-1, Math.min(1, tp.f0.u * s0.u + tp.f0.v * s0.v))) > 0.26) {
+            t0 = tp.f0; t1 = s0;
+            if (isC(1)) { var th1 = ang(1), tn1 = Math.tan(th1 / 2); endS = cm[1] - Math.min(T_R * tn1, 60, lim(1, -1), lim(1, 1)); }
+          }
+          var ca = t0 && t1 ? t0.u * t1.u + t0.v * t1.v : 1;
+          if (t0 && t1 && ca < 0.995 && ca > -0.86 && endS > 8 && sc < endS) {
+            var P0 = nd(0), P3 = { u: P0.u + s0.u * endS, v: P0.v + s0.v * endS }, kk = endS * 0.42, tau = Math.max(0, Math.min(1, sc / endS)), m1 = 1 - tau;
+            var P1 = { u: P0.u + t0.u * kk, v: P0.v + t0.v * kk }, P2 = { u: P3.u - t1.u * kk, v: P3.v - t1.v * kk };
+            var bu = m1 * m1 * m1 * P0.u + 3 * m1 * m1 * tau * P1.u + 3 * m1 * tau * tau * P2.u + tau * tau * tau * P3.u, bv = m1 * m1 * m1 * P0.v + 3 * m1 * m1 * tau * P1.v + 3 * m1 * tau * tau * P2.v + tau * tau * tau * P3.v;
+            var gu = 3 * m1 * m1 * (P1.u - P0.u) + 6 * m1 * tau * (P2.u - P1.u) + 3 * tau * tau * (P3.u - P2.u), gv = 3 * m1 * m1 * (P1.v - P0.v) + 6 * m1 * tau * (P2.v - P1.v) + 3 * tau * tau * (P3.v - P2.v), gl = Math.hypot(gu, gv) || 1;
+            out = { u: bu, v: bv, du: gu / gl, dv: gv / gl };
+          }
+        }
+        if (a.st === 'push') { out.du = -out.du; out.dv = -out.dv; }      /* 푸시백: 기수는 움직이는 방향의 반대 */
       }
     }
     /* 정지선이 풀리는 등으로 보이는 자리가 갑자기 바뀌면 1초쯤에 걸쳐 따라감 */
@@ -658,8 +696,8 @@
       var rt = D.depRouteFor ? D.depRouteFor(fp.gate, fp.dest) : D.accDep[fp.gate][0]; rt = rt.join ? rt : [fp.gate, rt];      /* 출구 지점 → (transition) → 경계 */
       o.x = c.ac.x; o.y = c.ac.y; o.alt = c.ac.alt; o.hdg = c.ac.hdg; o.ias = c.ac.ias; o.tAlt = c.ac.tAlt; o.fpRoute = rt; o.exitFix = rt[rt.length - 1]; o.normIas = sim.iasFor ? sim.iasFor(f.perf, fp.rfl) : 290; o.fast = true; o.east = !!D.gateEast[fp.gate];
       ac = sim.spawnAc(o); ac.setRoute(U.dist(ac, D.fix[rt[0]]) < 4 ? rt.slice(1) : rt); ac.waiting = 'climb'; ac.reqT = sim.t; this.freqNow = 'ACC'; this.freqNowFq = D.freq.ACC.fq; this.freqNowN = D.freq.ACC.n;
-      var lv = c.ac.vcap !== undefined && c.ac.vcap < ac.tAlt && Math.abs(ac.alt - c.ac.vcap) < 100 ? c.ac.vcap : 0;      /* SID 제한 고도에서 잠깐 수평 비행 중 */
-      first = D.freq.ACC.n + ', ' + ATC.csSay(ac) + ', ' + (Math.abs(ac.alt - ac.tAlt) < 100 ? 'maintaining ' + fmt.alt(ac.tAlt) : lv ? 'maintaining ' + fmt.alt(lv) + ', climbing ' + fmt.alt(ac.tAlt) : 'passing ' + fmt.alt(ac.alt >= 9950 && ac.alt < 23950 ? Math.round(ac.alt / 100) * 100 : Math.round(ac.alt / 1000) * 1000) + ', climbing ' + fmt.alt(ac.tAlt)) + ', request ' + fmt.alt(fp.rfl) + '.';
+      var lv = c.ac.vcap !== undefined && c.ac.vcap < ac.tAlt && Math.abs(ac.alt - c.ac.vcap) < 100 ? c.ac.vcap : 0;      /* SID 제한 고도에서 잠깐 수평 비행 중 — 「level 지금 고도, cleared 허가 고도」(GPT R18-01: 「maintaining …, climbing …」은 상승 중으로 들릴 수 있음) */
+      first = D.freq.ACC.n + ', ' + ATC.csSay(ac) + ', ' + (Math.abs(ac.alt - ac.tAlt) < 100 ? 'maintaining ' + fmt.alt(ac.tAlt) : lv ? 'level ' + fmt.alt(lv) + ', cleared ' + fmt.alt(ac.tAlt) : 'passing ' + fmt.alt(ac.alt >= 9950 && ac.alt < 23950 ? Math.round(ac.alt / 100) * 100 : Math.round(ac.alt / 1000) * 1000) + ', climbing ' + fmt.alt(ac.tAlt)) + ', request ' + fmt.alt(fp.rfl) + '.';
       this.note(ATC.T('{0} {1} — 첫 호출을 하세요(지나는 고도 · 허가 고도 · 요청 순항 고도).', D.freq.ACC.n, D.freq.ACC.fq), 'info');
     }
     ac.pilotMe = true; this.ac = ac; this.cs = ac.cs; this.callT = sim.t + 2; this.called = false; this.firstText = first; this.cur = { hdg: null, alt: ac.tAlt, spd: null };

@@ -216,7 +216,7 @@
     'stopping on the runway; asks for a fire-service inspection', 'rejecting the takeoff (engine warning)', 'bird strike on departure, continuing; suggests a runway inspection',
     'approaching $1; asks for the frequency change', 'asks for the frequency change', 'asks for the approach clearance', 'asks for a higher level', 'asks for descent',
     'passing $1, climbing to $2', 'climbing to $1; asks for $2', 'passing $1', 'passing $1',
-    'descending to $1', 'level at $1', 'level at $1', 'heading for $1',
+    'descending to $1', 'level at $1', 'level at $1', '; cleared to $1', 'heading for $1',
     '$1 miles out on final for runway $2', 'on the ILS for runway $1', '$1 departure (SID)',
     'ready to depart', 'asks to cross',
     'there is traffic on short final', 'there is traffic on the runway', 'that level is outside your airspace', 'we are a departure',
