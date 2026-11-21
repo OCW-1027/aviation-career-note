@@ -225,14 +225,49 @@
     this.note(fresh ? ATC.T('조종사 체험 출발편(푸시백부터) — Vela Air 787의 조종사입니다. 허가는 받았습니다({0} · {1} · 스쿼크 {2}). {3} {4}에 푸시백을 요청하세요.', this.sid, fmt.alt(this.cur.alt), this.sq, this.gnd.n, this.gnd.fq) : ATC.T('{0} {1} — 주기장 {2}. 푸시백을 요청하세요.', this.gnd.n, this.gnd.fq, sk), 'info');
     if (D.tcp) this.note(ATC.T('실제 인천에서는 푸시백과 계류장 이동을 Incheon Apron(구역별 주파수)이 맡고, TCP에서 Ground로 넘어갑니다 — 이 체험은 Apron을 Ground 한 자리에 합쳤습니다.'), 'info');      /* GPT 19차 25번 · R19-06 */
   };
+  /* 지상 이동을 보여 줄 때 유도로 꺾이는 곳을 둥글게(보이는 자리 · 방향만 — 관제 · 충돌 판단은 원래 꺾은선 그대로).
+     예전에는 꺾이는 점에서 진행 방향이 한 번에 바뀌고 기수만 뒤따라 돌아, 옆으로 미끄러지듯 보였음. 꺾이는 점 앞뒤 t만큼을 반지름 R(최대 45m)의 원호로 바꿔 그 위를 같은 속도로 지나감.
+     멈출 점(정지선 · 경로 끝 · 지금 서 있는 점)은 둥글게 하지 않음 — 정지선에 정확히 섬 */
+  var T_R = 45;
+  function taxiCorner(A, C, B) {
+    var au = C.u - A.u, av = C.v - A.v, la = Math.hypot(au, av), bu = B.u - C.u, bv = B.v - C.v, lb = Math.hypot(bu, bv); if (la < 0.5 || lb < 0.5) return null;
+    au /= la; av /= la; bu /= lb; bv /= lb;
+    var th = Math.acos(Math.max(-1, Math.min(1, au * bu + av * bv))); if (th < 0.05 || th > 2.6) return null;
+    var tn = Math.tan(th / 2), t = Math.min(T_R * tn, 0.45 * Math.min(la, lb)), R = t / tn, sg = au * bv - av * bu > 0 ? 1 : -1;
+    var su = C.u - au * t, sv = C.v - av * t;
+    return { t: t, R: R, th: th, sg: sg, au: au, av: av, ou: su - sg * av * R, ov: sv + sg * au * R, su: su, sv: sv };
+  }
+  function onArc(c, s) {      /* s = 원호 시작점(S)에서 꺾은선을 따라 간 거리(0 ~ 2t) */
+    var f = c.sg * Math.max(0, Math.min(1, s / (2 * c.t))) * c.th, cs = Math.cos(f), sn = Math.sin(f), ru = c.su - c.ou, rv = c.sv - c.ov;
+    return { u: c.ou + ru * cs - rv * sn, v: c.ov + ru * sn + rv * cs, du: c.au * cs - c.av * sn, dv: c.au * sn + c.av * cs };
+  }
+  function taxiShow(a, dt) {
+    var raw = { u: a.u, v: a.v, du: a.du, dv: a.dv }, N = D.gN, out = raw;
+    if (N && a.path && a.pi !== undefined && a.pi < a.path.length && !a.manTaxi && (a.st === 'taxi' || a.st === 'vacate' || a.st === 'cross' || a.st === 'lineup')) {
+      var len = a.path.length, T = N[a.path[a.pi]], P = a.pi > 0 ? N[a.path[a.pi - 1]] : N[a.node], hs = a.hs || {};
+      if ((a.spd || 0) < 0.05 && N[a.node] && Math.hypot(a.u - N[a.node].u, a.v - N[a.node].v) < 0.5) a.tStop = a.node;
+      function ok(n, i) { return n && i > 0 && i < len - 1 && hs[n.id] === undefined && a.tStop !== n.id; }
+      if (T && P && P !== T) {
+        var dP = Math.hypot(a.u - P.u, a.v - P.v), dT = Math.hypot(a.u - T.u, a.v - T.v), segL = Math.hypot(T.u - P.u, T.v - P.v), c;
+        if (segL > 0.01) out = { u: a.u, v: a.v, du: (T.u - P.u) / segL, dv: (T.v - P.v) / segL };
+        if (ok(T, a.pi) && (c = taxiCorner(P, T, N[a.path[a.pi + 1]])) && dT < c.t) out = onArc(c, c.t - dT);
+        else if (a.pi >= 2 && ok(P, a.pi - 1) && (c = taxiCorner(N[a.path[a.pi - 2]], P, T)) && dP < c.t) out = onArc(c, c.t + dP);
+      }
+    }
+    /* 정지선이 풀리는 등으로 보이는 자리가 갑자기 바뀌면 1초쯤에 걸쳐 따라감 */
+    var o = a.tOff || (a.tOff = { u: 0, v: 0 }), lp = a.tLast;
+    if (lp && dt > 0) { var ju = lp.u - (out.u + o.u), jv = lp.v - (out.v + o.v), mv = (a.spd || 0) * dt * 1.6 + 0.3; if (Math.hypot(ju, jv) > mv) { o.u += ju; o.v += jv; } }
+    var k = dt > 0 ? Math.exp(-dt * 2.5) : 1; o.u *= k; o.v *= k; if (Math.hypot(o.u, o.v) < 0.05) o.u = o.v = 0;
+    var r = { u: out.u + o.u, v: out.v + o.v, du: out.du, dv: out.dv }; a.tLast = { u: r.u, v: r.v }; return r;
+  }
   /* 지상 좌표(u, v · 방향) → 3D · 계기가 쓰는 값(x, y, 기수, 속도). 기수는 부드럽게 돌림(푸시백 끝의 방향 전환 등) */
   DepPilot.prototype.sync = function (dt) {
     var sim = this.sim, KT = ATC.KT || 0.5144, R2D = 180 / Math.PI, me = this;
     sim.acs.forEach(function (a) {
       if (a.u === undefined) return;
-      var p = D.uv2xy(a.u, a.v), q = D.uv2xy(a.u + a.du * 100, a.v + a.dv * 100), h = U.n360(Math.atan2(q.x - p.x, q.y - p.y) * R2D);
+      var rd = taxiShow(a, dt), p = D.uv2xy(rd.u, rd.v), q = D.uv2xy(rd.u + rd.du * 100, rd.v + rd.dv * 100), h = U.n360(Math.atan2(q.x - p.x, q.y - p.y) * R2D);
       if (a.hdg === undefined || !dt || a.manTaxi || a.st === 'final' || a.st === 'roll' || a.st === 'air' || a.st === 'land') a.hdg = h;
-      else { var df = ((h - a.hdg + 540) % 360) - 180, mx = (a.st === 'push' || a.st === 'start' ? 7 : 16) * dt; a.hdg = U.n360(a.hdg + Math.max(-mx, Math.min(mx, df))); }
+      else { var df = ((h - a.hdg + 540) % 360) - 180, mx = (a.st === 'push' || a.st === 'start' ? 7 : 24) * dt; a.hdg = U.n360(a.hdg + Math.max(-mx, Math.min(mx, df))); }
       a.x = p.x; a.y = p.y; a.agl = true; a.gs = a.ias = (a.spd || 0) / KT; a.vs = a.pilotMe && me.vsNow !== undefined && a.st === 'air' ? me.vsNow : a.st === 'air' ? (a.perf.climb || 2000) : a.st === 'final' ? -700 : 0;
     });
   };
@@ -467,7 +502,7 @@
       var p = D.uv2xy(ac.u, ac.v), n = rt[ac.sidI], f = D.fix[n], d = U.dist(p, f), df = U.adiff(ac.trk, U.brg(p, f));
       if (!this.lnavOn) { this.lnavOn = true; this.note(ATC.T('LNAV — {0}ft를 지났습니다. {1}(으)로 향합니다(SID: HDG {2}° · {0}ft 이상 → {1}).', leg.alt, n, U.pad(leg.hdg, 3)), 'info'); }
       if ((D.flyOver || {})[n] ? (d < 0.05 || d < 2 && Math.abs(df) > 90) : d < 0.7) { ac.sidI++; this.bump(); }
-      else { var st = Math.max(-3 * dt, Math.min(3 * dt, df)); ac.trk = U.n360(ac.trk + st); rate = dt > 0 ? st / dt : 0; }
+      else { var r0 = this.lnR || 0, want = (df > 0 ? 1 : -1) * Math.min(3, Math.sqrt(2 * 1.2 * Math.abs(df))), st; r0 = want > r0 ? Math.min(want, r0 + 1.2 * dt) : Math.max(want, r0 - 1.2 * dt); st = r0 * dt; if (Math.abs(st) >= Math.abs(df) && st * df > 0) { st = df; r0 = 0; } this.lnR = r0; ac.trk = U.n360(ac.trk + st); rate = dt > 0 ? st / dt : 0; }      /* 경사를 넣으며 서서히 돌고 서서히 멈춤(초당 1.2°씩 선회율 변화, 최대 3°/s) */
     }
     this.turnRate = rate;
     var h = ac.trk * Math.PI / 180, q = D.xy2uv(Math.sin(h), Math.cos(h)), L = Math.hypot(q.u, q.v) || 1; ac.du = q.u / L; ac.dv = q.v / L;

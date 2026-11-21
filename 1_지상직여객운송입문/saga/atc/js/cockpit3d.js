@@ -702,8 +702,8 @@
     var gnd = !!(p.dep && ra < 5 && !F);      /* 출발편 지상: 기수는 수평, 엔진 · 표시도 지상 값 */
     if (gnd) aoa = p.pitch || 0;      /* 지상: 수평. 이륙 때 기수를 드는 동안은 그 각도 */
     var tp = ro ? (sim.t - ro.t0 < 3 ? 4 * (1 - (sim.t - ro.t0) / 3) : 0) : gam + aoa + (ap && ap.gs && ra < 60 ? (60 - ra) / 60 * 3 : 0);
-    var sdt = sim.t - (v.tPrev === undefined ? sim.t : v.tPrev), rate = sdt > 0 ? (((hdg - v.hdgPrev + 540) % 360) - 180) / sdt : (v.rate || 0); if (sdt > 0) { v.tPrev = sim.t; v.hdgPrev = hdg; v.rate = rate; }
-    var tb = ro ? 0 : Math.max(-25, Math.min(25, Math.atan(gs * 0.5144 * rate * D2R / 9.81) / D2R));
+    var sdt = v.tPrev === undefined ? 0 : sim.t - v.tPrev, rate = sdt > 0 ? (((hdg - v.hdgPrev + 540) % 360) - 180) / sdt : (v.rate || 0); if (v.tPrev === undefined || sdt < 0) { v.tPrev = sim.t; v.hdgPrev = hdg; v.rate = 0; v.ias = ias; sdt = 0; } else if (sdt > 0) { v.tPrev = sim.t; v.hdgPrev = hdg; v.rate = rate; }      /* 처음 한 번 시각을 잡아 둠(예전에는 잡지 않아 선회율이 늘 0 — 자동 선회 때 기울지 않던 원인) */
+    var tb = ro || gnd || ra < 15 ? 0 : Math.max(-25, Math.min(25, Math.atan(gs * 0.5144 * rate * D2R / 9.81) / D2R));
     var F = p.fly && p.fly.on && ac.man ? p.fly : null;      /* 직접 조종: 실제 자세 그대로 */
     if (F) { tp = F.pitch; tb = F.bank; }
     var kk = F ? Math.min(1, dt * 12) : Math.min(1, dt * 2); v.pitch += (tp - v.pitch) * kk; v.bank += (tb - v.bank) * (F ? kk : Math.min(1, dt * 1.5));

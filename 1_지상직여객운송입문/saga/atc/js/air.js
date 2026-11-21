@@ -2,6 +2,18 @@
 (function (G) {
   'use strict';
   var ATC = G.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt, D2R = Math.PI / 180;
+  /* 부드러운 선회(조종사 체험의 내 항공기): 선회율을 초당 ACC°씩 늘리고(경사 넣기), 남은 각도에 맞춰 미리 줄여(경사 풀기) 목표 기수에 멈춤. 최대 선회율은 관제 근무 항공기와 같음 */
+  var T_ACC = 1.2;
+  ATC.turnSmooth = function (a, df, rmax, dt) {
+    var dir = a.turnDir || (df > 0 ? 1 : df < 0 ? -1 : 0), rem = dir > 0 ? U.n360(a.tHdg - a.hdg) : dir < 0 ? U.n360(a.hdg - a.tHdg) : 0, r = a.trN || 0;
+    if (rem > 359.9) rem = 0;
+    var want = dir * Math.min(rmax, Math.sqrt(2 * T_ACC * rem)), dv = T_ACC * dt;
+    r = want > r ? Math.min(want, r + dv) : Math.max(want, r - dv);
+    var st = r * dt;
+    if (dir !== 0 && (rem < 0.05 || st * dir >= rem && r * dir > 0)) { a.hdg = a.tHdg; a.turnDir = 0; a.trN = 0; return; }
+    if (dir === 0) { a.trN = 0; return; }
+    a.hdg = U.n360(a.hdg + st); a.trN = r;
+  };
   var GS_FT_NM = 318.4;   /* 3° 강하각: 1NM당 약 318ft */
 
   function Ac(sim, o) {
@@ -89,7 +101,8 @@
     }
     /* --- 선회 --- */
     var rate = (this.alt > 20000 ? 1.6 : 3) * dt, df = U.adiff(this.hdg, this.tHdg);
-    if (Math.abs(df) <= rate) { this.hdg = this.tHdg; this.turnDir = 0; }
+    if (this.pilotMe) ATC.turnSmooth(this, df, rate / (dt || 1), dt);      /* 조종사 체험의 내 항공기: 경사를 넣으며 서서히 돌기 시작하고 서서히 멈춤 */
+    else if (Math.abs(df) <= rate) { this.hdg = this.tHdg; this.turnDir = 0; }
     else {
       var dir = this.turnDir || (df > 0 ? 1 : -1);
       this.hdg = U.n360(this.hdg + dir * rate);

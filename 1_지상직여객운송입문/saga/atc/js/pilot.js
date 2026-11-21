@@ -301,7 +301,9 @@
     }
   };
   /* 공시 복행 경로의 지금 목표 기수(레이더 유도가 시작되면 null) */
-  Pilot.prototype.gaHdg = function (ra) { var g = this.gaPh; if (!g || g.vec) return null; var m = this.maP(g.rwy); if (!g.turned && m.trk !== m.hdg && ra >= m.at && (!m.dme || !D.ends[g.rwy] || !D.ends[g.rwy].thr || U.dist(this.ac, D.ends[g.rwy].thr) >= m.dme)) g.turned = true; return g.turned ? m.trk : m.hdg; };
+  Pilot.prototype.gaHdg = function (ra) { var g = this.gaPh; if (!g || g.vec) return null; var m = this.maP(g.rwy); if (!g.turned && m.trk !== m.hdg && ra >= m.at && (!m.dme || this.dmeOk(g, m))) g.turned = true; return g.turned ? m.trk : m.hdg; };
+  /* 「ITD 1.1DME 전에는 선회하지 않음」: 시단 앞에서 일찍 복행하면 DME가 처음부터 1.1보다 큼(줄어드는 중) — 시단을 지난 뒤(DME가 다시 늘어나는 쪽)에서만 거리를 봄. DME 자리는 시단으로 근사 */
+  Pilot.prototype.dmeOk = function (g, m) { var e = D.ends[g.rwy], ac = this.ac; if (!e || !e.thr || !e.end) return true; if (!g.pastThr) g.pastThr = (ac.x - e.thr.x) * (e.end.x - e.thr.x) + (ac.y - e.thr.y) * (e.end.y - e.thr.y) > 0; return g.pastThr && U.dist(ac, e.thr) >= m.dme; };
   /* 복행 뒤 조종석에서 할 일(형태 · 가속) */
   Pilot.prototype.gaTodo = function () {
     var g = this.gaPh, cf = this.cfg, ac = this.ac; if (!g || !ac || this.roll) return null;
