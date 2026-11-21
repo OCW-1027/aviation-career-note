@@ -99,7 +99,7 @@
       case 'pushhold': return ['hold position, expect pushback shortly', 'holding position'];
       case 'taxi':
         if (c.stand) { s = c.via && c.via.length ? ' via ' + twy(c.via) : ''; return ['taxi to stand ' + c.stand + s, 'stand ' + c.stand + s]; }
-        if (sim && sim.apron && c.hp) return ['taxi to TCP ' + c.hp + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + ', hold short', 'TCP ' + c.hp + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + ', hold short'];      /* 인천 계류장 관제(AD 2.20 3.4 — TCP) */
+        if (sim && sim.apron && c.hp) return ['taxi to TCP ' + c.hp + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + ', hold short of TCP ' + c.hp, 'TCP ' + c.hp + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + ', hold short of TCP ' + c.hp];      /* 인천 계류장 관제(AD 2.20 3.4 — TCP). 「hold short」은 대상을 밝힘(GPT 19차 보충) */
         return ['taxi to holding point ' + twy([c.hp]) + ', runway ' + c.rwy + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + (c.hs ? ', hold short of runway ' + c.hs : ''),
           'holding point ' + twy([c.hp]) + ', runway ' + c.rwy + (c.via && c.via.length ? ' via ' + twy(c.via) : '') + (c.hs ? ', hold short runway ' + c.hs : '')];
       case 'holdpos': return ['hold position', 'holding position'];
@@ -371,7 +371,7 @@
     }, true);
     return true;
   };
-  Sim.prototype.applyAll = function (ac, cmds) { if (ac.gone) return; for (var i = 0; i < cmds.length; i++) this.apply(ac, cmds[i]); this.emit('applied', ac); };
+  Sim.prototype.applyAll = function (ac, cmds) { if (ac.gone) return; this.curCmds = cmds; for (var i = 0; i < cmds.length; i++) this.apply(ac, cmds[i]); this.curCmds = null; this.emit('applied', ac); };      /* curCmds = 지금 적용하는 한 송신(직행 + climb via SID를 함께 받았는지 볼 때) */
   /* 복창 오류 만들기: 숫자 하나가 바뀜 */
   Sim.prototype.mutate = function (ac, cmds) {
     var idx = [], i; for (i = 0; i < cmds.length; i++) if (cmds[i].k === 'hdg' || cmds[i].k === 'alt' || cmds[i].k === 'spd' && cmds[i].v || cmds[i].k === 'clr') idx.push(i);

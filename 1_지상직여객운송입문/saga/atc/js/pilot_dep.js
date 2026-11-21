@@ -223,6 +223,7 @@
     ac.dest = fp.dest; ac.destName = fp.destName; ac.gate = fp.gate; ac.squawk = this.sq; ac.pilotMe = true; ac.callT = sim.t + 2; ac.rfl = fp.rfl;
     this.ac = ac; this.cs = ac.cs; this.sync(0); this.mcp.hdg = Math.round(ac.hdg) || 360;
     this.note(fresh ? ATC.T('조종사 체험 출발편(푸시백부터) — Vela Air 787의 조종사입니다. 허가는 받았습니다({0} · {1} · 스쿼크 {2}). {3} {4}에 푸시백을 요청하세요.', this.sid, fmt.alt(this.cur.alt), this.sq, this.gnd.n, this.gnd.fq) : ATC.T('{0} {1} — 주기장 {2}. 푸시백을 요청하세요.', this.gnd.n, this.gnd.fq, sk), 'info');
+    if (D.tcp) this.note(ATC.T('실제 인천에서는 푸시백과 계류장 이동을 Incheon Apron(구역별 주파수)이 맡고, TCP에서 Ground로 넘어갑니다 — 이 체험은 Apron을 Ground 한 자리에 합쳤습니다.'), 'info');      /* GPT 19차 25번 · R19-06 */
   };
   /* 지상 좌표(u, v · 방향) → 3D · 계기가 쓰는 값(x, y, 기수, 속도). 기수는 부드럽게 돌림(푸시백 끝의 방향 전환 등) */
   DepPilot.prototype.sync = function (dt) {
@@ -520,7 +521,8 @@
   /* ================= SID 고도 제한 · transition =================
      자료: AIP RJTT AD2.24(지점별 제한 · 이륙 직후 구간 · transition), AIP ENR 1.5 3.1(SID/transition의 고도 제한) · 1.3.7.1, AIC 020/26(목적지별 표준 경로).
      · 「CLIMB VIA SID TO [고도]」 = 공시 고도 제한을 지키며 상승(3.1.2).
-     · 비행 중 새 고도를 지시받거나(지금 고도 유지 지시 포함) 경로가 바뀌면(직행 포함) 공시 고도 제한은 모두 취소 — 관제가 다시 말한 것만 유효(3.1.3 · 1.3.7.1).
+     · 비행 중 새 고도를 지시받거나(지금 고도 유지 지시 포함) 경로가 바뀌면(직행 포함) 공시 고도 제한은 취소 — 관제가 다시 말한 것만 유효(3.1.3 · 1.3.7.1).
+       직행과 함께 「climb via SID to」를 받으면 직행 지점 뒤의 제한은 유효(管制方式基準 (Ⅱ)1(10) 예문 — GPT 18차 F18-04).
      · 허가 고도가 위쪽 제한보다 낮으면 허가 없이 그 위로 올라가지 않음(GPT 14차 R14-01).
      게임: 관제 지시를 복창한 뒤 「제한 유지 / 제한 취소」를 조종사가 골라 VNAV에 반영. 「이하」 · 「그 고도」 제한은 VNAV가 그 고도에서 잠깐 멈춤(ac.vcap) */
   var SID_T = 200, SID_ASK = 45;      /* 통과 고도 허용 오차(ft) · 제한 처리 선택 제한 시간(초) — 게임값 */
@@ -550,13 +552,13 @@
     var sim = this.sim, ac = this.ac, c = null, via;
     cmds.forEach(function (x) { if (x.k === 'alt' || x.k === 'hdg' || x.k === 'dct') c = c && c.k === 'alt' ? c : x; });
     if (!c || !this.sidPend().length) return;
-    via = c.k === 'alt' && !!c.via && !cmds.some(function (x) { return x.k === 'hdg' || x.k === 'dct'; });
+    via = c.k === 'alt' && !!c.via && !cmds.some(function (x) { return x.k === 'hdg'; });
     if (via) this.sidList().forEach(function (r) { if (!r.st && r.max !== undefined && ac.alt > r.max + 300) r.st = 'x'; });      /* 이미 그 위에 있는 「이하」 제한은 지킬 수 없음 */
     var ph = ATC.phrase(sim, ac, cmds.filter(function (x) { return x.k !== 'ho' && x.k !== 'radar'; })); this.sidVia = via; this.sidAsk = { via: via, t: sim.t, k: c.k, said: cap(ph.rb || ph.atc || '').replace(/, [A-Za-z ]+ \d+\.?$/, '') };
   };
   DepPilot.prototype.sidAnswer = function (keep, fo) {
     var sim = this.sim, ac = this.ac, q = this.sidAsk; if (!q) return; this.sidAsk = null;
-    var why = q.via ? ATC.T('「climb via SID to」 = 공시된 SID 고도 제한을 지키며 상승') : q.k === 'alt' ? ATC.T('비행 중 새 고도 지시(climb and maintain)는 SID 고도 제한을 모두 취소') : ATC.T('경로가 바뀌면(기수 · 직행 지시) SID 고도 제한은 모두 취소');
+    var why = q.via ? ATC.T('「climb via SID to」 = 공시된 SID 고도 제한을 지키며 상승(직행과 함께 받으면 직행 지점 뒤의 제한)') : q.k === 'alt' ? ATC.T('비행 중 새 고도 지시(climb and maintain)는 남은 SID 고도 제한을 취소(일본 AIP ENR 1.5 — 고도 제한만, 속도 · 경로와는 별개)') : ATC.T('기수 지시나 직행만 받으면 남은 SID 고도 제한은 취소');
     if (fo) sim.inc('p_set_late', [ac], ATC.T('{0}: SID 고도 제한 처리를 {1}초 안에 고르지 않아 부기장이 했습니다 — {2}.', ac.cs, SID_ASK, why));
     else if (!!keep === q.via) sim.inc('p_sid_set', [ac], ATC.T('{0}: SID 고도 제한 — {1}. {2}.', ac.cs, q.via ? ATC.T('유지') : ATC.T('취소'), why));
     else sim.inc('p_sid_mode', [ac], ATC.T('{0}: SID 고도 제한을 반대로 처리했습니다 — 정답은 「{1}」. {2}(AIP ENR 1.5). 부기장이 바로잡았습니다.', ac.cs, q.via ? ATC.T('유지') : ATC.T('취소'), why));
@@ -585,7 +587,7 @@
     if (!this.sidVia) r.st = 'x';
     else if (r.max !== undefined && a > r.max + SID_T) { r.st = 'high'; sim.inc('p_sid_high', [ac], ATC.T('{0}: {1}을(를) {2}로 지났습니다 — 제한 {3}.', ac.cs, r.fix, fmt.alt(r.at), t)); }
     else if (r.min !== undefined && a < r.min - SID_T) {
-      if (cl < r.min - SID_T) { r.st = 'clr'; this.note(ATC.T('{0}을(를) {1}로 지났습니다(제한 {2}) — 허가 고도가 {3}라 더 오를 수 없었습니다. 허가 없이 제한 고도로 올라가지 않습니다. 실제로는 지점에 닿기 전에 관제에 알려 더 높은 고도를 받습니다.', r.fix, fmt.alt(r.at), t, fmt.alt(cl)), 'info'); }
+      if (cl < r.min - SID_T) { r.st = 'clr'; this.note(ATC.T('{0}을(를) {1}로 지났습니다(제한 {2}) — 허가 고도가 {3}라 더 오를 수 없었습니다. 허가 없이 제한 고도로 올라가지 않습니다. 실제로는 지점에 닿기 전에 관제에 알려 고도나 경로 · 제한을 조정받습니다.', r.fix, fmt.alt(r.at), t, fmt.alt(cl)), 'info'); }
       else { r.st = 'low'; sim.inc('p_sid_low', [ac], ATC.T('{0}: {1}을(를) {2}로 지났습니다 — 제한 {3}. 허가 고도는 {4}였습니다(복창 · 설정이 늦으면 상승이 늦어집니다).', ac.cs, r.fix, fmt.alt(r.at), t, fmt.alt(cl))); }
     } else { r.st = 'ok'; sim.inc('p_sid_ok', [ac], ATC.T('{0}: {1} 통과 {2} — 제한 {3} 지킴.', ac.cs, r.fix, fmt.alt(r.at), t)); }
     this.bump();

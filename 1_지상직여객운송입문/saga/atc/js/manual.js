@@ -147,7 +147,7 @@
     else if (td.dist > 2500) sim.inc('p_ld_long2', [ac], ATC.T('{0}: 시단에서 {1}ft — 게임의 목표 접지 위치보다 조금 늦게 접지했습니다.', cs, td.dist));
     if (td.ias < td.vref - 5) sim.inc('p_ld_slow', [ac], ATC.T('{0}: 접지 속도 {1}kt — 기준 속도(Vref {2}kt)보다 느립니다.', cs, td.ias, td.vref));
     else if (td.ias > td.vref + 20) sim.inc('p_ld_fast', [ac], ATC.T('{0}: 접지 속도 {1}kt — 기준 속도(Vref {2}kt)보다 많이 빠릅니다.', cs, td.ias, td.vref));
-    if (Math.abs(td.crab) > 6) sim.inc('p_ld_crab', [ac], ATC.T('{0}: 접지 때 기수와 활주로 방향 차이 {1}° — 옆바람에서는 접지 직전에 러더(Q · E 키 · 화면 러더 버튼)로 기수를 활주로 방향에 맞춥니다(디크랩). 그대로 접지하면 바퀴 · 착륙장치에 옆으로 힘이 걸립니다.', cs, Math.abs(td.crab)));
+    if (Math.abs(td.crab) > 6) sim.inc('p_ld_crab', [ac], ATC.T('{0}: 접지 때 기수와 활주로 방향 차이 {1}° — 옆바람에서는 접지 직전에 러더(Q · E 키 · 화면 러더 버튼)로 기수를 활주로 방향에 맞춥니다(디크랩). 이 게임은 접지 때 6°를 넘으면 감점합니다(게임 평가 기준 — 실제 기체 한계가 아님).', cs, Math.abs(td.crab)));
     else if (Math.abs(td.xw) >= 15 && Math.abs(td.crab) <= 4) sim.inc('p_ld_decrab', [ac], ATC.T('{0}: 옆바람 {1}kt에서 기수를 활주로 방향에 맞춰 접지했습니다(디크랩).', cs, Math.abs(td.xw)));
     td.word = w; p.bump();
   };

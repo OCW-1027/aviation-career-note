@@ -1,2 +1,2 @@
 /* 음성 묶음 목록(tools/voice_synth.py pack 이 만듦) */
-(function(G){var A=G.ATC=G.ATC||{};A.VPARTS={"ctl": 17, "ctlf": 17, "p1": 21, "p2": 20};})(typeof globalThis!=="undefined"?globalThis:this);
+(function(G){var A=G.ATC=G.ATC||{};A.VPARTS={"ctl": 17, "ctlf": 17, "p1": 22, "p2": 21};})(typeof globalThis!=="undefined"?globalThis:this);

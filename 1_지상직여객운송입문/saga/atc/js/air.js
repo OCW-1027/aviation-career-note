@@ -210,7 +210,8 @@
   /* 공통 지시 적용 */
   /* ---- 관제 근무: 출발기의 SID(· transition) 공시 고도 제한 ----
      ac.sidR = [{ fix, min, max, tr, st, dMin, alt }] · ac.sidVia = 그 제한이 지금 살아 있는지
-     「climb via SID to」(c.via) = 제한을 지키며 상승 / via 없는 새 고도 지시 · 기수 · 직행 지시 = 남은 제한 모두 취소(AIP ENR 1.5 3.1.2 · 3.1.3 — 조종사 체험 출발편과 같은 규칙)
+     「climb via SID to」(c.via) = 제한을 지키며 상승 / via 없는 새 고도 지시 · 기수 · 직행 지시 = 남은 SID 고도 제한 취소(AIP ENR 1.5 3.1.2 · 3.1.3 — 조종사 체험 출발편과 같은 규칙).
+     직행과 「climb via SID to」를 한 송신에 받으면(「Recleared direct TAURA, climb via SID to 13,000」 — 管制方式基準 (Ⅱ)1(10)) 직행 지점 뒤의 제한은 그대로, 건너뛴 지점의 제한만 없어짐(GPT 18차 F18-04)
      「이하」 · 「그 고도」 제한은 그 지점을 지날 때까지 상승을 멈춤(ac.vcap — 허가 고도 tAlt는 그대로). 조종사 체험의 내 항공기는 pilot_dep.js가 따로 맡음(sidR 없음) */
   ATC.sidInit = function (ac, list) { ac.sidR = (list || []).map(function (r) { return { fix: r.fix, min: r.min, max: r.max, tr: r.tr || '', st: '', dMin: 99 }; }); ac.sidVia = true; if (!ac.sidR.length) ac.sidR = null; };
   ATC.sidPend = function (ac) { return (ac && ac.sidR || []).filter(function (r) { return !r.st; }); };
@@ -219,7 +220,11 @@
   ATC.sidCan = function (ac, v) { return !!(ac && ac.kind === 'dep' && ATC.sidPend(ac).length && (v === undefined || v > ac.alt + 50)); };
   RadarSim.prototype.sidCmd = function (ac, c) {
     if (!ac.sidR || !ATC.sidPend(ac).length) return;
-    if (c.k === 'alt' && c.via && c.v > ac.alt + 50 && ac.sidOffT !== this.t) {      /* 같은 송신에 기수 · 직행이 있으면 경로가 바뀐 것 — 제한 취소가 먼저 */
+    if (c.k === 'dct' && (this.curCmds || []).some(function (x) { return x.k === 'alt' && x.via; }) && !(this.curCmds || []).some(function (x) { return x.k === 'hdg'; })) {      /* 직행 + climb via SID: 건너뛴 지점만 빠지고(sidStep의 skip) 나머지 제한은 유지 */
+      if (ac.sidVia && !this.pilot) this.sys(ATC.T('{0}: 직행 + 「climb via SID to」 — 건너뛴 지점의 제한은 없어지고, {1} 뒤의 SID 고도 제한은 그대로 지킵니다.', ac.cs, c.fix), 'info');
+      ac.sidDctT = this.t; return;
+    }
+    if (c.k === 'alt' && c.via && c.v > ac.alt + 50 && ac.sidOffT !== this.t) {      /* 같은 송신에 기수가 있으면 경로가 바뀐 것 — 제한 취소가 먼저 */
       ac.sidR.forEach(function (r) { if (!r.st && r.max !== undefined && ac.alt > r.max + 300) r.st = 'x'; });      /* 이미 그 위에 있는 「이하」 제한은 지킬 수 없음 */
       if (!ac.sidVia && !this.pilot) this.sys(ATC.T('{0}: 「climb via SID to」 — 남은 SID 고도 제한을 다시 지킵니다({1}).', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')), 'info');
       ac.sidVia = true; return;
@@ -227,7 +232,7 @@
     if (c.k === 'hdg' || c.k === 'dct') ac.sidOffT = this.t;
     if (ac.sidVia) {
       ac.sidVia = false;
-      if (!this.pilot) this.sys(c.k === 'alt' ? ATC.T('{0}: 새 고도 지시 — 남은 SID 고도 제한({1})은 모두 취소됩니다. 지키게 하려면 「climb via SID to」.', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')) : ATC.T('{0}: 경로를 바꿨습니다(기수 · 직행) — 남은 SID 고도 제한({1})은 모두 취소됩니다.', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')), 'info');
+      if (!this.pilot) this.sys(c.k === 'alt' ? ATC.T('{0}: 새 고도 지시 — 남은 SID 고도 제한({1})은 취소됩니다(일본 AIP ENR 1.5 — 고도 제한만, 속도 · 경로와는 별개). 지키게 하려면 「climb via SID to」.', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')) : ATC.T('{0}: 경로를 바꿨습니다(기수 · 직행) — 남은 SID 고도 제한({1})은 취소됩니다. 직행과 함께 「climb via SID to」를 주면 직행 지점 뒤의 제한은 유지됩니다.', ac.cs, ATC.sidPend(ac).map(ATC.sidTxt).join(' · ')), 'info');
     }
   };
   RadarSim.prototype.sidStep = function (ac) {

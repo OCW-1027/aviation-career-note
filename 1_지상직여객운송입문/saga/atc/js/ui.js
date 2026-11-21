@@ -378,9 +378,10 @@
   }
 
   /* ================= 지시판 ================= */
-  /* 출발기의 상승 지시: SID 고도 제한이 살아 있으면 기본은 「climb via SID to」(제한 유지) — 「via SID」 단추로 끔. 기수 · 직행과 함께 보내면 경로가 바뀌므로 via를 붙이지 않음 */
+  /* 출발기의 상승 지시: SID 고도 제한이 살아 있으면 기본은 「climb via SID to」(제한 유지) — 「via SID」 단추로 끔. 기수와 함께 보내면 경로가 바뀌므로 via를 붙이지 않음.
+     직행과 함께는 via를 붙일 수 있음(직행 지점 뒤의 제한 유지 — GPT 18차 F18-04). 직행을 고르면 via는 꺼 두고, 「via SID」 단추로 켬 */
   function altCmd(ac, v, cmds) { var c = { k: 'alt', v: v }, pd = cmds || app.pend; if (ATC.sidCan && ATC.sidCan(ac, v) && ac.sidVia && !pd.some(function (x) { return x.k === 'hdg' || x.k === 'dct'; })) c.via = true; return c; }
-  function viaOff(list) { if (list.some(function (x) { return x.k === 'hdg' || x.k === 'dct'; })) list.forEach(function (x) { if (x.k === 'alt') delete x.via; }); }
+  function viaOff(list) { if (list.some(function (x) { return x.k === 'hdg'; })) list.forEach(function (x) { if (x.k === 'alt') delete x.via; }); }
   function addPend(c) { var i; if (c.k === 'hdg' || c.k === 'dct') app.pend.forEach(function (x) { if (x.k === 'alt') delete x.via; }); for (i = 0; i < app.pend.length; i++) if (app.pend[i].k === c.k) { app.pend[i] = c; app.cmdSig = ''; renderCmd(); return; } app.pend.push(c); app.cmdSig = ''; renderCmd(); }
   function sendPend(extra, o) {
     var sim = app.sim, ac = sim.byId(app.sel), cmds = app.pend.concat(extra || []); if (!ac || !cmds.length) return; viaOff(cmds);
@@ -420,8 +421,8 @@
   function sidRow(ac) {
     if (!ATC.sidPend || ac.kind !== 'dep' || !ac.sidR) return '';
     var pend = ATC.sidPend(ac); if (!pend.length) return '';
-    var pa = app.pend.filter(function (x) { return x.k === 'alt'; })[0], on = !!(pa && pa.via), vec = app.pend.some(function (x) { return x.k === 'hdg' || x.k === 'dct'; }), list = pend.map(ATC.sidTxt).join(' · ');
-    return B('via SID', function () { var q = app.pend.filter(function (x) { return x.k === 'alt'; })[0]; if (!q) return; if (q.via) delete q.via; else if (ATC.sidCan(ac, q.v) && !vec) q.via = true; app.cmdSig = ''; }, { cls: 'ghost' + (on ? ' on' : ''), dis: !pa || vec || !ATC.sidCan(ac, pa.v), tip: ATC.T('켜면 「climb via SID to」(SID 고도 제한을 지키며 상승), 끄면 「climb and maintain」(남은 제한 모두 취소)') }) +
+    var pa = app.pend.filter(function (x) { return x.k === 'alt'; })[0], on = !!(pa && pa.via), vec = app.pend.some(function (x) { return x.k === 'hdg'; }), list = pend.map(ATC.sidTxt).join(' · ');
+    return B('via SID', function () { var q = app.pend.filter(function (x) { return x.k === 'alt'; })[0]; if (!q) return; if (q.via) delete q.via; else if (ATC.sidCan(ac, q.v) && !vec) q.via = true; app.cmdSig = ''; }, { cls: 'ghost' + (on ? ' on' : ''), dis: !pa || vec || !ATC.sidCan(ac, pa.v), tip: ATC.T('켜면 「climb via SID to」(SID 고도 제한을 지키며 상승 — 직행과 함께면 직행 지점 뒤의 제한), 끄면 「climb and maintain」(남은 SID 고도 제한 취소)') }) +
       '<small class="csid' + (ac.sidVia ? '' : ' off') + '">' + esc(ac.sidVia ? ATC.T('SID 제한 유지 중: {0}', list) : ATC.T('SID 제한 취소됨({0}) — 「via SID」로 다시 지키게 할 수 있음', list)) + '</small>';
   }
   function cmdRadar(ac) {
@@ -577,7 +578,7 @@
     }
     if (D.sidTrans && D.sidName) Object.keys(D.sidTrans).forEach(function (g) {      /* transition이 딸린 SID: 비행계획 경로를 보고 고름 */
       var ts = Object.keys(D.sidTrans[g]); if (!ts.length) return;
-      h = h.replace(/<\/div><\/div>$/, '</div><div class="dref"><h4>transition</h4><p>' + ATC.T('{0}에는 transition이 붙습니다 — 비행계획의 ROUTE를 보고 고릅니다: {1}. 허가에서는 SID 바로 뒤에 말합니다(「{0} departure, {2} transition, flight planned route」).', D.sidName(g, sim), ts.map(function (t) { return '「' + g + ' ' + (D.sidTrans[g][t].fpl || t) + '」 → <b>' + t + '</b>'; }).join(' · '), ts[0]) + '</p></div></div>');
+      h = h.replace(/<\/div><\/div>$/, '</div><div class="dref"><h4>transition</h4><p>' + ATC.T('{0}에는 transition이 붙습니다 — 비행계획의 ROUTE를 보고 고릅니다: {1}. 허가에서는 SID 바로 뒤에 말합니다(「{0} departure, {2} transition, flight planned route」).', D.sidName(g, sim), ts.map(function (t) { return '「' + g + ' ' + (D.sidTrans[g][t].fpl || t) + '」 → <b>' + t + '</b>'; }).join(' · '), ts[0]) + ' ' + ATC.T('ROUTE 칸은 게임용 경로 요약입니다 — 정식 비행계획(ICAO FPL)의 경로 표기와 같지 않습니다.') + '</p></div></div>');
     });
     if (h !== app.delSig) { app.delSig = h; $('delview').innerHTML = h; }
   }
@@ -616,7 +617,7 @@
   function sidCard(p, live) {
     if (!p.sidView) return ''; var v = p.sidView(); if (!v.any && !v.leg) return '';
     var RT = ATC.DepPilot.rTxt, lg = v.leg, tw = { R: ATC.T('우선회 '), L: ATC.T('좌선회 ') }, sec = v.fixes[1] && !v.fixes[1].tr ? v.fixes[1].n : '';
-    var legT = lg ? 'HDG ' + U.pad(lg.hdg, 3) + '° · ' + ATC.T('{0}ft 이상', lg.alt) + ' → ' + (tw[lg.turn] || '') + v.first + (D.flyOver && D.flyOver[v.first] && sec ? ATC.T('(상공 통과) → 우선회 {0}', sec) : '') + (lg.grad ? ' · ' + ATC.T('{0}ft까지 상승경사 {1}%', lg.alt, lg.grad.toFixed(1)) : '') : '';
+    var legT = lg ? ATC.T('HDG {0}° 유지 · {1}ft 이상 도달 후', U.pad(lg.hdg, 3), lg.alt) + ' → ' + (tw[lg.turn] || '') + v.first + (D.flyOver && D.flyOver[v.first] && sec ? ATC.T('(상공 통과) → 우선회 {0}', sec) : '') + (lg.grad ? ' · ' + ATC.T('{0}ft까지 최소 상승경사 {1}%(고도는 해수면 기준)', lg.alt, lg.grad.toFixed(1)) : '') : '';      /* GPT 18차 R18-04 */
     var ST = { ok: ['ok', '✔'], x: ['x', ATC.T('취소')], clr: ['m', ATC.T('허가 고도')], low: ['ng', '✖'], high: ['ng', '✖'], skip: ['x', '—'] }, trd = false;
     var chips = v.fixes.map(function (f) {
       var r = f.r, h = '';

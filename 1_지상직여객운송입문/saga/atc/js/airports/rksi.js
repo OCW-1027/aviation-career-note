@@ -28,7 +28,7 @@
       note: ATC.pick({ ko: '한국 AIP AMDT 12/26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: '韓国AIP AMDT 12/26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Republic of Korea AMDT 12/26 · simplified for training · not for real-world use' })
     };
     D.sidByRwy = true; D.gateSwap = { S: { NOPIK: 'BINIL' }, N: { BINIL: 'NOPIK' } };      /* SID 이름이 활주로 방향마다 다름(EGOBA 2E ↔ 2C) · 북서쪽 출구는 북풍 NOPIK ↔ 남풍 BINIL — 비행허가 활주로 변경 때 씀 */
-    D.voice = { dir: 'assets/voice/rksi/', parts: { ctl: 8, ctlf: 8, p1: 9, p2: 9 } };      /* 인천 음성 조각(assets/voice/rksi/ — VC_APT=RKSI voice_corpus_apt.js → VBANK_APT=RKSI voice_bank.js → VAPT=RKSI voice_synth.py). 목소리는 다른 공항과 같음(관제사 미국 영어). ※ 항공사 표 · 편명 순서를 바꾸면 음성 조각을 다시 만들어야 함 */
+    D.voice = { dir: 'assets/voice/rksi/', parts: { ctl: 9, ctlf: 9, p1: 10, p2: 10 } };      /* 인천 음성 조각(assets/voice/rksi/ — VC_APT=RKSI voice_corpus_apt.js → VBANK_APT=RKSI voice_bank.js → VAPT=RKSI voice_synth.py). 목소리는 다른 공항과 같음(관제사 미국 영어). ※ 항공사 표 · 편명 순서를 바꾸면 음성 조각을 다시 만들어야 함 */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };
     D.twrZoneNM = 6; D.indepParallel = true;      /* AD 2.22 1.11: ILS 34L ↔ 33R · ILS 16R ↔ 15L 독립 평행 접근 */
@@ -156,8 +156,8 @@
     D.accLabel = 'INCHEON CONTROL  (GAME SECTOR)';
     D.accView = { cx: 12, cy: -48, w: 262, h: 178 };
     D.bdSide = { KAE: 'E', KPO: 'E', TGU: 'S', MANGI: 'S', MAKSA: 'S', SAMUL: 'S', OLBIM: 'W', GONAV: 'W', RILRO: 'W' };
-    D.neighbor = {      /* 다음 섹터(게임값 — 주파수는 ENR 3.1 · 3.2 항공로 표에 적힌 것 중에서): 동 · 남동 = 대구 ACC, 남 · 서 = 인천 ACC 다른 섹터 */
-      E: { n: 'Daegu Control', fq: '134.175' }, S: { n: 'Incheon Control', fq: '124.525' }, W: { n: 'Incheon Control', fq: '132.80' }, N: { n: 'Incheon Control', fq: '120.725' }
+    D.neighbor = {      /* 다음 섹터(게임값 — 주파수는 ENR 3.1 · 3.2 항공로 표에 적힌 것 중에서): 동 = 대구 ACC 동해 저고도 134.175, 남 = 인천 ACC 제주 북부 124.525, 서 = 대구 ACC 서해 고고도 132.80(GPT 19차 F19-06). 실제 바로 이웃 섹터인지는 게임값 */
+      E: { n: 'Daegu Control', fq: '134.175' }, S: { n: 'Incheon Control', fq: '124.525' }, W: { n: 'Daegu Control', fq: '132.80' }, N: { n: 'Incheon Control', fq: '120.725' }
     };
     function od(r, a, b) { r.od = [a, b]; return r; }
     /* 도착: 경계 → 진입 지점 / 출발: 출구 지점 → 경계 */
@@ -243,7 +243,9 @@
 
     /* ---------- 항공사 ----------
        실제 항공사(인천에 실제로 다니는 곳 · 게임 목적지 표 안의 노선만 — 공개된 운항 정보로 고른 게임 표, GPT 검수 대상) + 가상 항공사(비정상 상황은 가상 항공사에만).
-       아시아나항공은 넣지 않음(2026-12-17 대한항공으로 통합). 화물은 가상 항공사만. 편명 번호는 항공사 차례로 정해지고 음성도 그 번호로 녹음했으므로, 항공사를 빼거나 순서를 바꾸면 하네다처럼 번호를 매긴 뒤에 빼거나 음성을 다시 만들 것 */
+       실제 취항사 가운데 일부만 고름 — 아시아나항공은 넣지 않음(사용자 결정 · 2026-12-17 대한항공과 통합 예정), Peach 등도 없음. GPT 19차(F19-02 · 03 · R19-05 · U19-06)로
+       델타 LAX · 유나이티드 괌(자사 직항 없음)을 빼고, 티웨이(호출부호 TWAYAIR가 근거와 다르고 새 호출부호도 확정 자료 없음) · 일본항공 · 전일본공수(나리타–인천 자사 여객편 확인 안 됨)는 편명 번호 자리만 지키고 목록에서 뺌.
+       진에어 · 에어부산 · 에어서울 통합 LCC는 2027-03-17 예정(F19-04). 화물은 가상 항공사만. 편명 번호는 항공사 차례로 정해지고 음성도 그 번호로 녹음했으므로, 항공사를 빼거나 순서를 바꾸면 하네다처럼 번호를 매긴 뒤에 빼거나 음성을 다시 만들 것 */
     var RC = '#5b6b7f', RC2 = '#eef1f5', FX = D.airlines.filter(function (a) { return !a.ga && a.code !== 'KCM'; });
     function R(code, cs, name, types, w, dest) { return { code: code, cs: cs, name: name, col: RC, col2: RC2, types: types, w: w, real: true, scope: 'I', ovf: false, dest: dest }; }
     var ALL = [].concat(EAST, SE, SOUTH, WEST).map(function (d) { return d[0]; });
@@ -251,12 +253,12 @@
       R('KAL', 'KOREAN AIR', 'Korean Air', ['B77W', 'B789', 'A333', 'A321'], 5, ALL),
       R('JJA', 'JEJU AIR', 'Jeju Air', ['B738'], 3, ['RJAA', 'RJBB', 'RJFF', 'RJGG', 'RJCC', 'PGUM', 'RCTP', 'RPLL', 'VTBS', 'VVNB']),
       R('JNA', 'JIN AIR', 'Jin Air', ['B738'], 2, ['RJAA', 'RJBB', 'RJFF', 'RJGG', 'RJCC', 'PGUM', 'RCTP', 'RPLL', 'VTBS', 'VVNB']),
-      R('TWB', 'TWAYAIR', "T'way Air", ['B738', 'A333'], 2, ['RJAA', 'RJBB', 'RJFF', 'RCTP', 'VTBS', 'VVNB', 'YSSY', 'LFPG', 'EDDF']),
+      Object.assign(R('TWB', 'TWAYAIR', "T'way Air", ['B738', 'A333'], 2, ['RJAA']), { gone: true }),      /* 편명 번호 자리만 — 아래에서 뺌 */
       R('APZ', 'AIR PREMIA', 'Air Premia', ['B789'], 1, ['KLAX', 'KSFO', 'RJAA', 'VTBS']),
-      R('JAL', 'JAPAN AIR', 'Japan Airlines', ['B789', 'B738'], 1, ['RJAA']),
-      R('ANA', 'ALL NIPPON', 'All Nippon Airways', ['B789', 'A321'], 1, ['RJAA']),
-      R('DAL', 'DELTA', 'Delta Air Lines', ['A359', 'A333'], 1, ['KSEA', 'KLAX']),
-      R('UAL', 'UNITED', 'United Airlines', ['B789', 'B77W'], 1, ['KSFO', 'PGUM']),
+      Object.assign(R('JAL', 'JAPAN AIR', 'Japan Airlines', ['B789', 'B738'], 1, ['RJAA']), { gone: true }),
+      Object.assign(R('ANA', 'ALL NIPPON', 'All Nippon Airways', ['B789', 'A321'], 1, ['RJAA']), { gone: true }),
+      R('DAL', 'DELTA', 'Delta Air Lines', ['A359', 'A333'], 1, ['KSEA']),
+      R('UAL', 'UNITED', 'United Airlines', ['B789', 'B77W'], 1, ['KSFO']),
       R('ACA', 'AIR CANADA', 'Air Canada', ['B789'], 1, ['CYVR']),
       R('CPA', 'CATHAY', 'Cathay Pacific', ['A359', 'A333'], 1, ['VHHH']),
       R('SIA', 'SINGAPORE', 'Singapore Airlines', ['A359', 'B77W'], 1, ['WSSS']),
@@ -272,8 +274,9 @@
       R('QFA', 'QANTAS', 'Qantas', ['A333'], 1, ['YSSY'])
     ], FX.slice(1));
     D.mkFlights();
-    /* 터미널 배정: 실제 항공사는 실제 배정을 간추림(제2여객터미널 = 대한항공 · 진에어 · 델타 · 에어프랑스 · 베트남항공 등, 나머지 제1여객터미널), 가상 항공사는 게임값 */
-    var TERM = { VLA: 'T2', SOG: 'T2', AOP: 'T1', HNB: 'T1', LMN: 'T1', NCE: 'CC', CKY: 'CC', TSB: 'CC', KAL: 'T2', JNA: 'T2', DAL: 'T2', AFR: 'T2', HVN: 'T2' };
+    D.airlines = D.airlines.filter(function (a) { if (a.gone) delete D.alBy[a.code]; return !a.gone; });      /* 번호를 매긴 뒤에 뺌 — 남은 항공사의 편명 · 녹음이 그대로 */
+    /* 터미널 배정: 실제 항공사는 공항 공식 안내를 간추림(제2여객터미널 = 대한항공 · 진에어 · 델타 · 에어프랑스, 베트남항공은 제1 — GPT 19차 F19-05), 가상 항공사는 게임값 */
+    var TERM = { VLA: 'T2', SOG: 'T2', AOP: 'T1', HNB: 'T1', LMN: 'T1', NCE: 'CC', CKY: 'CC', TSB: 'CC', KAL: 'T2', JNA: 'T2', DAL: 'T2', AFR: 'T2' };
     D.planFlight = function (sim, f, kind, rwy) {
       var fl = sim.flow, by = kind === 'dep' ? fl.depBy : fl.arrBy, tbl = kind === 'dep' ? D.gateDest : D.gateOrig;
       var gates = Object.keys(tbl).filter(function (g) { return by[g] && (!rwy || by[g] === rwy); }); if (!gates.length) gates = Object.keys(tbl).filter(function (g) { return by[g]; });
@@ -427,5 +430,5 @@
     return h;
   };
   ATC.AIRPORT_DEFS.RKSI.title = ATC.pick({ ko: '인천국제공항(AIP 바탕 · 학습용)', ja: '仁川国際空港(AIPに基づく学習用)', en: 'Incheon Intl (AIP-based, for study)' });
-  ATC.AIRPORT_DEFS.RKSI.beta = true;      /* 52차부터 사이트판에 공개 — GPT ATC-19차 검수 전이라 로비에 「시험판」 표시(검수 반영 뒤 이 줄을 지움) */
+  /* 시험판 표시는 GPT 19차 반영(56차)으로 뗌 */      /* 52차부터 사이트판에 공개 — GPT ATC-19차 검수 전이라 로비에 「시험판」 표시(검수 반영 뒤 이 줄을 지움) */
 })(typeof globalThis !== 'undefined' ? globalThis : this);

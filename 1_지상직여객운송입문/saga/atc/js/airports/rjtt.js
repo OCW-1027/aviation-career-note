@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: 'AIP Japan 2026-11-26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: 'AIP Japan 2026-11-26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Japan 26 NOV 2026 · simplified for training · not for real-world use' })
     };
     /* 하네다만의 음성 조각(assets/voice/rjtt/ — tools/voice_corpus_rjtt.js → VBANK_APT=RJTT voice_bank.js → VAPT=RJTT voice_synth.py). 관제사 목소리는 세이라와 같은 미국 영어(2026-11-14 사용자 결정) */
-    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 17, ctlf: 17, p1: 21, p2: 20 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
+    D.voice = { dir: 'assets/voice/rjtt/', ver: { ctl: '2', ctlf: '2' }, parts: { ctl: 17, ctlf: 17, p1: 22, p2: 21 } };      /* 전 관제석 녹음(접근 · 지역은 묶음 3번 이후) */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };   /* 푸시백 기수 방향 → 지상 좌표(여기서는 u축이 남남동) */
     D.twrZoneNM = 6; D.indepParallel = true;
@@ -230,7 +230,8 @@
     /* 공시 복행 절차(AIP RJTT AD2.24 IAC — ILS Z RWY34L · ILS Z RWY34R · ILS RWY22 · ILS Z RWY23): 정해진 기수로 올라가 at(ft)에서 turn 쪽으로 선회, VOR(TTE) 방사선을 따라 fix 체공 지점으로, alt까지 상승 · 「Contact TOKYO APP」.
        게임은 방사선 대신 그 방위(trk)로 비행(근사). 22 · 23은 차트 글자가 깨져 기수 · 선회 높이를 읽지 못함 → 활주로 방위 · 500ft(게임값), 22의 고도는 같은 KASGA 경로를 쓰는 LDA Z RWY22의 4,000ft(추정 — GPT 확인 항목) */
     D.missed = { '34L': { hdg: 337, at: 500, turn: 'L', trk: 178, alt: 5000, fix: 'UTIBO', rad: 'TTE R178' }, '34R': { hdg: 337, at: 800, turn: 'R', trk: 15, alt: 4000, fix: 'KASGA', rad: 'TTE R015' },
-      '22': { at: 500, turn: 'R', trk: 15, alt: 4000, fix: 'KASGA', rad: 'TTE R015', guess: true }, '23': { at: 500, turn: 'L', trk: 178, alt: 5000, fix: 'UTIBO', rad: 'TTE R178', guess: true } };
+      '22': { hdg: 222, at: 500, turn: 'R', trk: 15, alt: 4000, fix: 'KASGA', rad: 'TTE R015' }, '23': { hdg: 232, at: 500, dme: 1.1, dmeId: 'ITD', turn: 'L', trk: 178, alt: 5000, fix: 'UTIBO', rad: 'TTE R178' } };      /* 22 · 23 = AIP IAC-14 · IAC-24(GPT 18차 F18-02 — 23은 HDG 232° · 500ft, ITD 1.1DME 전 선회 금지). ITD DME는 23 시단 자리로 근사(게임) */
+    D.dhBy = { '23': 333 }; D.rvrBy = { '23': 800 }; D.minTxt = 'ILS Z RWY23 DA 388ft(DH 333) · RVR 800m';      /* 저시정 결심 높이: 게임은 대개 +200ft(CAT I 범주의 하한). 23은 차트 최저치를 씀(GPT 18차 F18-03) */
     /* transition(AIP RJTT AD2.24-SID-69 · 70 — 이 다섯 SID 가운데 ROVER에만 있음). 어느 목적지가 어느 transition을 쓰는지는 AIC 020/26의 표준 비행계획 경로:
        국내 북쪽(신치토세 · 하코다테 · 아오모리 …) = 「BRUCE AGRIS Y11 …」, 북미 · 태평양 = 「INUBO Y808 TASID …」 · 「INUBO Y820 …」. AKAGI transition(ROVER → CLARK → AKAGI)은 이 게임의 목적지에 없어 넣지 않음 */
     fxs([['BRUCE', 36.200111, 139.948861], ['LEWIS', 36.231444, 140.142972], ['SILVA', 36.255000, 140.290556]], 'trn');
