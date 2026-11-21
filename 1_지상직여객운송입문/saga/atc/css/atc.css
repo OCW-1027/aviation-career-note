@@ -21,6 +21,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .seg button{border:0;border-left:1px solid var(--line);background:transparent;padding:8px 15px}
 .seg button.on{background:var(--acc);color:#04202b;font-weight:700}
 @media (max-width:600px){#apts{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;width:100%}#apts span{grid-column:1/-1;padding:7px 12px;border-bottom:1px solid var(--line)}#apts button{border-left:0;border-top:1px solid var(--line);padding:10px 8px;line-height:1.35}#apts span+button,#apts span+button+button{border-top:0}#apts button:nth-of-type(even){border-left:1px solid var(--line)}}      /* 휴대폰: 공항이 4곳이 되어 한 줄에 다 안 들어감(인천이 잘림) → 두 칸씩 */
+@media (max-width:600px){#flows.many{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;width:100%}#flows.many span{grid-column:1/-1;padding:7px 12px;border-bottom:1px solid var(--line)}#flows.many button{border-left:0;border-top:1px solid var(--line);padding:10px 8px;line-height:1.35}#flows.many span+button{grid-column:1/-1;border-top:0}#flows.many button:nth-of-type(odd):not(:first-of-type){border-left:1px solid var(--line)}}      /* 운용 방향 5단추(아스테라): 「풍향 기준」 한 줄 + 방향 2 × 2 */
 @media (max-width:400px){.seg span{padding:0 8px}.seg button{padding:8px 9px}}      /* 작은 휴대폰(360px): 영어 난이도 · 운용 방향 줄이 몇 px 넘침 */
 .tog{border:1px solid var(--line);background:var(--pan);border-radius:8px;padding:8px 15px}
 .tog.on{border-color:var(--ok);color:var(--ok)}

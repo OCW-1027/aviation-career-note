@@ -847,6 +847,7 @@
   function bind() {
     /* 운용 방향 단추와 공항 단추는 공항 묶음에서 만듦 */
     Object.keys(D.flows).forEach(function (k) { var b = document.createElement('button'); b.dataset.fl = k; b.textContent = D.flows[k].label || k; $('flows').appendChild(b); });
+    if ($('flows').querySelectorAll('button').length > 3) $('flows').classList.add('many');      /* 운용 방향이 넷 이상(아스테라 4방향): 휴대폰에서 두 칸씩 접음(css) */
     /* 사이트판(window.ATC_SITE = { back: '게임 고르기 페이지 주소' }): 시험판 공항은 목록에 내놓지 않고, 로비에 「게임 고르기」로 돌아가는 단추를 둠 */
     var SITE = window.ATC_SITE;
     if (SITE && SITE.back) { var bk = document.createElement('a'); bk.className = 'tog'; bk.id = 'optBack'; try { bk.href = new URL(SITE.back, location.href).href; } catch (e) { bk.href = SITE.back; }      /* 문서 주소 기준(<base>가 있어도 같음) */ bk.textContent = ATC.T('← 게임 선택'); var op = document.querySelector('.opts'); if (op) op.appendChild(bk); }
