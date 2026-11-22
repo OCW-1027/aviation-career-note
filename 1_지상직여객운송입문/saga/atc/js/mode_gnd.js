@@ -111,9 +111,65 @@
   };
   GndSim.prototype.onStop = function (a, o) { this.inc('stop', [a, o], ATC.T('{0}이(가) {1} 때문에 자체 정지했습니다({2}).', a.cs, o.cs, (o.st === 'push' || o.st === 'start' ? ATC.T('푸시백 구역 통과') : o.st === 'gate' ? ATC.T('주기장 미개방') : ATC.T('경로 교차')))); };
   /* 경로 후보: 표준 흐름을 우선으로 최대 3개 */
-  GndSim.prototype.routeOptions = function (ac, target) {
-    var to = target.stand ? D.stands[target.stand].node : this.apron ? this.tcpN[target.hp] : D.holds[target.hp].node, from = ac.node, self = this;
+  /* 대기 지점이 속한 활주로(문구의 「runway ○○」): 이 항공기 출발 활주로 → 운용 중 출발 활주로 차례로, 그 활주로의 대기 지점 목록에 있는 것.
+     예전 식(「출발 활주로와 같은 활주로면 출발, 아니면 도착 활주로」)은 하네다처럼 출발 활주로가 둘이면 34R 대기 지점을 「runway 34L」로 말했음 */
+  GndSim.prototype.rwyOfHold = function (ac, hp) {
+    if (this.apron) return ac.rwy || this.depRwy;
+    var c = [ac.rwy].concat((this.flow && this.flow.deps) || [], [this.depRwy, this.arrRwy]), i;
+    for (i = 0; i < c.length; i++) if (c[i] && D.ends[c[i]] && (this.holdsFor(ac, c[i]) || []).indexOf(hp) >= 0) return c[i];
+    var e = D.ends[this.depRwy]; return D.holds[hp] && D.gN[D.holds[hp].node].rw === e.rw ? this.depRwy : this.arrRwy;
+  };
+  GndSim.prototype.routeEnds = function (ac, target) {
+    var to = target.stand ? D.stands[target.stand].node : this.apron ? this.tcpN[target.hp] : D.holds[target.hp].node, from = ac.node;
     if (ac.st === 'gate' || ac.st === 'reqpush') from = D.stands[ac.stand].lane;
+    var pen = ATC.flowPen(this.flow.id, false);
+    if (this.apron) { var p0 = pen, OW = D.apnOneWay || {}; pen = function (e, a, b) { if (e.kind !== 'lane' && e.kind !== 'stand') return 1e9; var k = p0 ? p0(e, a, b) : 1, w = OW[e.name]; if (w && (b.v - a.v) * w < 0) k *= 8; return k; }; }
+    return { from: from, to: to, pen: pen };
+  };
+  /* 말로 받은 경로(「via C, B」): 말한 유도로를 크게 우선해 찾고, 말한 순서대로 다 지나면 그 경로 — 마이크 관제 2단계 */
+  GndSim.prototype.routeVia = function (ac, target, via) {
+    var q = this.routeEnds(ac, target), self = this, N = D.gN, net = this.net, rwyOk = !this.apron, L = via.length;
+    /* 상태 = (노드, 말한 유도로 중 몇 번째까지 왔나). 말한 이름은 순서대로만 넘어가고, 말하지 않은 유도로는 벌점 mul(1e9면 금지) */
+    function search(mul) {
+      var dist = {}, prev = {}, pe = {}, open = [], seen = {}, k0 = q.from + '|-1', goal = null, cur, i;
+      dist[k0] = 0; open.push(k0);
+      while (open.length) {
+        var bi = 0; for (i = 1; i < open.length; i++) if (dist[open[i]] < dist[open[bi]]) bi = i;
+        cur = open.splice(bi, 1)[0]; if (seen[cur]) continue; seen[cur] = 1;
+        var sp = cur.lastIndexOf('|'), n = cur.slice(0, sp), j = +cur.slice(sp + 1);
+        if (n === q.to && j === L - 1) { goal = cur; break; }
+        var adj = N[n].adj;
+        for (i = 0; i < adj.length; i++) {
+          var e = adj[i].e, nx = adj[i].to;
+          if (e.kind === 'rwy' || net.closed[e.i]) continue;
+          if (e.kind === 'stand' && nx !== q.to && n !== q.from) continue;
+          if (N[nx].stand && nx !== q.to) continue;
+          if (e.kind === 'entry' && !rwyOk && !(N[nx].rwy && nx === q.to) && !(N[n].rwy && n === q.from)) continue;
+          var base = q.pen ? q.pen(e, N[n], N[nx]) : 1; if (!(base < 1e8)) { if (e.kind !== 'twy' && e.kind !== 'lane') continue; base = 3; }
+          var nj = j, w;
+          if (e.kind === 'twy' || e.kind === 'lane') {
+            if (j >= 0 && e.name === via[j]) w = 1;
+            else if (e.name === via[j + 1]) { nj = j + 1; w = 1; }
+            else { if (!(mul < 1e8)) continue; w = mul; }
+            w *= Math.min(base, 3);
+          } else w = base;
+          var nk = nx + '|' + nj, d = dist[cur] + e.len * w;
+          if (dist[nk] === undefined || d < dist[nk]) { dist[nk] = d; prev[nk] = cur; pe[nk] = e; open.push(nk); }
+        }
+      }
+      if (!goal) return null;
+      var nodes = [], edges = [], len = 0, k = goal;
+      while (k !== k0) { nodes.unshift(k.slice(0, k.lastIndexOf('|'))); edges.unshift(pe[k]); len += pe[k].len; k = prev[k]; }
+      nodes.unshift(q.from);
+      var vv = []; edges.forEach(function (e) { if (e.kind !== 'stand' && vv[vv.length - 1] !== e.name) vv.push(e.name); });
+      return { nodes: nodes, edges: edges, len: len, via: vv, key: vv.join(' ') };
+    }
+    var r = search(1e9) || search(30);      /* ① 말한 유도로만 ② 말하지 않은 짧은 연결은 벌점을 주고 허용(주요 유도로만 말한 경우) */
+    if (!r) return null;
+    r.cross = self.needsCross(r.nodes); r.time = r.len / 8.5 + 20; return r;
+  };
+  GndSim.prototype.routeOptions = function (ac, target) {
+    var q0 = this.routeEnds(ac, target), to = q0.to, from = q0.from, self = this;
     var pen = ATC.flowPen(this.flow.id, false);
     if (this.apron) { var p0 = pen, OW = D.apnOneWay || {}; pen = function (e, a, b) { if (e.kind !== 'lane' && e.kind !== 'stand') return 1e9; var k = p0 ? p0(e, a, b) : 1, w = OW[e.name]; if (w && (b.v - a.v) * w < 0) k *= 8; return k; }; }      /* 방향이 정해진 유도선을 거꾸로 가면 크게 돌아감 */      /* 계류장 관제는 유도로(Ground 구역)로 나가지 않음 */
     var rs = this.net.routes(from, to, { pen: pen, rwyOk: !this.apron }, 3);

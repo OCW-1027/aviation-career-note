@@ -52,7 +52,7 @@
     if (ATC.Cockpit) ATC.Cockpit.close();
     app.sim = null; $('game').hidden = true; $('lobby').hidden = false; closeModal();
     app.aq = []; if (window.speechSynthesis) speechSynthesis.cancel(); if (ATC.Radio.ctx) ATC.Radio.stop();      /* 로비로 나오면 남은 소리를 모두 끊음 */
-    var opt = load(OPT_KEY, {}), rec = load(REC_KEY, {}); if (opt.level) app.level = opt.level; if (opt.voice !== undefined) app.voice = opt.voice; if (opt.vm2) app.vmode = opt.vm2; if (opt.vfx) app.vfx = opt.vfx; if (opt.vrate) app.vrate = opt.vrate; if (opt.vatc) app.vatc = opt.vatc; voiceSet(); if (opt.flow) app.flow = opt.flow; if (opt.gloss !== undefined) app.gloss = opt.gloss; if (opt.inst !== undefined) app.inst = opt.inst; if (opt.wx) app.wx = opt.wx; if (opt.tab && !app.tabSet) app.tab = opt.tab; app.scn = null;
+    var opt = load(OPT_KEY, {}), rec = load(REC_KEY, {}); if (opt.level) app.level = opt.level; if (opt.voice !== undefined) app.voice = opt.voice; if (opt.micEx !== undefined) app.micEx = opt.micEx; if (opt.vm2) app.vmode = opt.vm2; if (opt.vfx) app.vfx = opt.vfx; if (opt.vrate) app.vrate = opt.vrate; if (opt.vatc) app.vatc = opt.vatc; voiceSet(); if (opt.flow) app.flow = opt.flow; if (opt.gloss !== undefined) app.gloss = opt.gloss; if (opt.inst !== undefined) app.inst = opt.inst; if (opt.wx) app.wx = opt.wx; if (opt.tab && !app.tabSet) app.tab = opt.tab; app.scn = null;
     var h = '';
     ATC.POS_ORDER.forEach(function (k, ix) {
       var p = POS[k], r = rec[k + app.level], shut = D.modes && D.modes.indexOf(k) < 0;      /* 이 공항에서 아직 열지 않은 자리 */
@@ -82,7 +82,7 @@
   function voiceSet() { var RD = ATC.Radio; RD.fx = app.vfx === 'weak' ? 'weak' : 'strong'; RD.rate = app.vrate === 's' ? 0.9 : app.vrate === 'f' ? 1.12 : 1; RD.atc = app.vatc === 'f' ? 'ctlf' : 'ctl'; if (RD.ctx && app.voice && packOn()) RD.loadAll(); }
   /* 녹음 조각(무선 음성)을 쓰는가: 음성 방식이 「무선 음성」이고, 이 공항의 조각이 있을 때. 조각이 없는 공항(D.voice === false)은 브라우저 음성으로 */
   function packOn() { return app.vmode === 'radio' && D.voice !== false && !!ATC.VPARTS; }      /* 음성 묶음 파일이 아예 없는 판(사이트판)도 브라우저 음성으로 */
-  function saveOpt() { save(OPT_KEY, { tab: app.tab, level: app.level, voice: app.voice, vm2: app.vmode, vfx: app.vfx, vrate: app.vrate, vatc: app.vatc, flow: app.flow, gloss: app.gloss, inst: app.inst, wx: app.wx }); }
+  function saveOpt() { save(OPT_KEY, { micEx: !!app.micEx, tab: app.tab, level: app.level, voice: app.voice, vm2: app.vmode, vfx: app.vfx, vrate: app.vrate, vatc: app.vatc, flow: app.flow, gloss: app.gloss, inst: app.inst, wx: app.wx }); }
   function briefing(k) {
     var p = POS[k], L = D.levels[app.level], les = ATC.LEARN_BY[p.les];
     var lvTxt = ['', ATC.T('교통량 적음 · 코치가 다음 조치를 안내 · 비정상 상황 없음 · 복창 오류 없음'), ATC.T('교통량 보통 · 코치 없음 · 비정상 상황 1건 · 간헐적 복창 오류'), ATC.T('교통량 많음 · 비정상 상황 다수 · 복창 오류 빈번 · 복수 활주로 동시 운용')][app.level];
@@ -228,7 +228,7 @@
       else if (type === 'gone') { if (d.id === app.sel) { app.sel = 0; app.pend = []; app.gt = null; app.routePrev = null; } }
 
     });
-    $('cli').hidden = app.pos.view !== 'radar'; $('micBtn').classList.toggle('solo', app.pos.view !== 'radar'); $('micBtn').hidden = app.pos.view === 'ground' || !!(app.sim && app.sim.pilot);      /* 지상 · 관제탑은 위쪽 단추 줄, 조종사 체험은 아래 교신 칸에 마이크 단추 */
+    $('cli').hidden = app.pos.view !== 'radar'; $('micBtn').classList.toggle('solo', app.pos.view !== 'radar'); $('micBtn').hidden = app.pos.view === 'ground' || !!(app.sim && app.sim.pilot); $('exBtn').hidden = $('micBtn').hidden; $('exBtn').classList.toggle('solo', app.pos.view !== 'radar');      /* 지상 · 관제탑은 위쪽 단추 줄, 조종사 체험은 아래 교신 칸에 마이크 단추 */
     app.follow = false; app.viewTo = null; renderGnav(); if (app.view && app.pos.view === 'ground') fitView();   /* 단추 너비가 정해진 뒤 한 번 더(좁은 화면의 위쪽 띠 높이) */
     renderTop(true); last = 0;
   }
@@ -268,7 +268,7 @@
     moveView(dt);
     if (sim.pilot && ATC.Cockpit && ATC.Cockpit.on) ATC.Cockpit.frame(app.paused ? 0 : dt); else draw();      /* 조종사 체험 3D: 레이더 그리기 대신 3D */
     if (app.inst && !app.paused && !sim.over && sim.coach && ts - app.instT > 5000) instCheck(ts);
-    uiT += dt; if (uiT > 0.3) { uiT = 0; renderTop(); renderStrips(); renderCmd(); renderCoach(); if (app.pos.view === 'del') renderDel(); }
+    uiT += dt; if (uiT > 0.3) { uiT = 0; renderTop(); renderStrips(); renderCmd(); renderCoach(); renderMicEx(); if (app.pos.view === 'del') renderDel(); }
   }
   function draw() {
     if (app.pos.view === 'del') return;
@@ -505,7 +505,7 @@
       else if (!tg) { app.gt = tg = { stand: ac.stand }; }
       if (tg) {
         var rs = sim.routeOptions(ac, tg); app.routes = rs;
-        h += Gp(ATC.T('{0} <small>고르면 지도에 표시</small>', (dep ? ATC.T('경로') : ATC.T('주기장 {0}까지 경로', ac.stand))), rs.map(function (r, ix) { return B(ATC.T('{0} <small>{1}m · 약 {2}분{3}</small>', ((ix === 0 ? ATC.T('표준 ') : '') + r.via.join(' → ')), Math.round(r.len / 10) * 10, Math.max(1, Math.round(r.time / 60)), (r.cross ? ATC.T(' · 활주로 횡단') : '')), function () { var e = D.ends[sim.depRwy]; app.routePrev = r; var c = { k: 'taxi', via: r.via, nodes: r.nodes, len: r.len }; if (tg.hp) { c.hp = tg.hp; c.rwy = sim.apron ? ac.rwy || sim.depRwy : D.gN[D.holds[tg.hp].node].rw === e.rw ? sim.depRwy : sim.arrRwy; } else c.stand = tg.stand; if (r.cross) c.hs = sim.arrRwy; app.pend = []; addPend(c); }, { cls: 'route' + (app.routePrev === r || pendRoute(r) ? ' on' : ''), prev: ix }); }).join('') || ATC.T('<span class="hintt">가능한 경로가 없습니다(폐쇄 구간 확인)</span>'));
+        h += Gp(ATC.T('{0} <small>고르면 지도에 표시</small>', (dep ? ATC.T('경로') : ATC.T('주기장 {0}까지 경로', ac.stand))), rs.map(function (r, ix) { return B(ATC.T('{0} <small>{1}m · 약 {2}분{3}</small>', ((ix === 0 ? ATC.T('표준 ') : '') + r.via.join(' → ')), Math.round(r.len / 10) * 10, Math.max(1, Math.round(r.time / 60)), (r.cross ? ATC.T(' · 활주로 횡단') : '')), function () { var e = D.ends[sim.depRwy]; app.routePrev = r; var c = { k: 'taxi', via: r.via, nodes: r.nodes, len: r.len }; if (tg.hp) { c.hp = tg.hp; c.rwy = sim.rwyOfHold ? sim.rwyOfHold(ac, tg.hp) : sim.apron ? ac.rwy || sim.depRwy : D.gN[D.holds[tg.hp].node].rw === e.rw ? sim.depRwy : sim.arrRwy; } else c.stand = tg.stand; if (r.cross) c.hs = sim.arrRwy; app.pend = []; addPend(c); }, { cls: 'route' + (app.routePrev === r || pendRoute(r) ? ' on' : ''), prev: ix }); }).join('') || ATC.T('<span class="hintt">가능한 경로가 없습니다(폐쇄 구간 확인)</span>'));
       }
       return h;
     }
@@ -639,8 +639,9 @@
     if (app.follow) { var ac = app.sim.byId(app.sel), B = D.sat && D.sat.img ? D.sat : null; if (ac && ac.u !== undefined && ac.st !== 'air' && (!B || ac.u > B.u1 - 800 && ac.u < B.u2 + 800 && ac.v > B.v1 - 800 && ac.v < B.v2 + 800)) { var g = 1 - Math.exp(-dt * 3); v.cu += (ac.u - v.cu) * g; v.cv += (ac.v - v.cv) * g; if (t) { t.cu = v.cu; t.cv = v.cv; } } }
   }
   function goArea(b) { var cv = $('cv'), W = cv.clientWidth, H = cv.clientHeight; app.follow = false; app.viewFit = false; app.viewTo = R.fitBox(W, H, [b[0] - 60, b[1] - 60, b[2] + 60, b[3] + 60]); app.viewTo.scale = U.clamp(app.viewTo.scale, app.view.min, app.view.max); renderGnav(); }
-  function zoomBtn(k) { var cv = $('cv'); app.viewTo = null; zoomAt(app.view.scale * k, cv.clientWidth / 2, cv.clientHeight / 2); }   /* 화면 가운데 기준(따라가기는 그대로) */
+  function zoomBtn(k) { if (!app.view) return; var cv = $('cv');      /* 비행허가처럼 지도가 없는 화면에서는 아무 일 없음(예전: 오류) */ app.viewTo = null; zoomAt(app.view.scale * k, cv.clientWidth / 2, cv.clientHeight / 2); }   /* 화면 가운데 기준(따라가기는 그대로) */
   function setFollow(on) {
+    if (!app.view) return;
     app.follow = on; app.viewTo = null; if (on) app.viewFit = false; var cv = $('cv'), W = cv.clientWidth, H = cv.clientHeight;
     if (on && app.view.scale < R.fitScale(W, H) * 2.2) app.viewTo = { cu: app.view.cu, cv: app.view.cv, scale: U.clamp(Math.min(W, H) / 1300, app.view.min, app.view.max) };   /* 전체 보기 상태면 1.3km 범위로 다가감 */
     renderGnav();
@@ -651,7 +652,7 @@
     if (g) {
       if (D.areas && $('cv').clientWidth < 760) h += '<select data-areas="1" aria-label="' + ATC.T('구역') + '"><option value="">' + ATC.T('구역 ▾') + '</option>' + D.areas.map(function (a, i) { return '<option value="' + i + '">' + esc(a.label) + '</option>'; }).join('') + '</select>';   /* 좁은 화면은 고르기 칸 하나로 */
       else (D.areas || []).forEach(function (a, i) { h += '<button data-area="' + i + '">' + esc(a.label) + '</button>'; });
-      h += '<button data-g="follow" class="' + (app.follow ? 'on' : '') + '" title="' + ATC.T('선택한 항공기를 화면 중앙에 두고 추적합니다 (G)') + '">' + ATC.T('추적') + '</button>' + micB('gmic');
+      h += '<button data-g="follow" class="' + (app.follow ? 'on' : '') + '" title="' + ATC.T('선택한 항공기를 화면 중앙에 두고 추적합니다 (G)') + '">' + ATC.T('추적') + '</button>' + micB('gmic') + exB('gmicex');
     }
     el.innerHTML = h;
   }
@@ -697,7 +698,7 @@
       if (app.follow) { var cvw = $('cv'); zoomAt(app.view.scale * k, cvw.clientWidth / 2, cvw.clientHeight / 2); } else zoomAt(app.view.scale * k, e.offsetX, e.offsetY);   /* 따라가는 중에는 화면 가운데를 기준으로 */
     }, { passive: false });
   }
-  function fit() { app.viewTo = null; if (app.follow) { app.follow = false; renderGnav(); } fitView(); }
+  function fit() { if (!app.view) return; app.viewTo = null; if (app.follow) { app.follow = false; renderGnav(); } fitView(); }
   /* 명령 줄: VLA301 H100 A30 S180 ILS */
   function cli(text) {
     var sim = app.sim, tk = text.trim().toUpperCase().split(/\s+/), ac = sim.byId(app.sel), i, m, cmds = [];
@@ -740,9 +741,9 @@
     if (ac && app.sel !== ac.id) app.sel = ac.id;
     if (!ac) { $('cmd').innerHTML = '<div class="cnone">' + ATC.T('내 항공기(Vela Air)가 관할 구역에 들어오기를 기다리는 중…') + '</div>'; return; }
     var head = '<div class="chead pil"><b style="border-color:' + ac.al.col + '">✈ ' + ac.cs + '</b><span>' + ac.csWord + ' ' + ac.num + ' · ' + ac.perf.n + ' · ' + ATC.T('조종사 체험') + ' · ' + esc(p.dep ? p.freqNowN + ' ' + p.freqNowFq : D.freq[p.freqTo && p.freqTo.sent ? p.freqTo.to : 'APP'].n + ' ' + D.freq[p.freqTo && p.freqTo.sent ? p.freqTo.to : 'APP'].fq) + '</span></div>';
-    var rx = '', c = p.clr, mic = micB('pmicb');
-    if (p.prompt) rx = '<h6 class="hmic">' + ATC.T('보낼 교신을 고르세요') + mic + '</h6><div class="popts">' + p.prompt.opts.map(function (o, i) { return B(o.t, function () { p.sendPrompt(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
-    else if (c && c.opts) rx = '<h6>' + ATC.T('관제 지시') + '</h6><div class="patc">' + esc(c.ph.atc) + (app.gloss ? '<small>' + esc(ATC.gloss(c.ph.atc)) + '</small>' : '') + '</div><h6 class="hmic">' + ATC.T('복창을 고르세요') + mic + '</h6><div class="popts">' + c.opts.map(function (o, i) { return B(o.t, function () { p.readback(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
+    var rx = '', c = p.clr, mic = '<span class="pmicw">' + exB('pexb') + micB('pmicb') + '</span>';
+    if (p.prompt) rx = '<h6 class="hmic">' + ATC.T('보낼 교신을 고르세요') + mic + '</h6>' + pEx(p.prompt.opts) + '<div class="popts">' + p.prompt.opts.map(function (o, i) { return B(o.t, function () { p.sendPrompt(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
+    else if (c && c.opts) rx = '<h6>' + ATC.T('관제 지시') + '</h6><div class="patc">' + esc(c.ph.atc) + (app.gloss ? '<small>' + esc(ATC.gloss(c.ph.atc)) + '</small>' : '') + '</div><h6 class="hmic">' + ATC.T('복창을 고르세요') + mic + '</h6>' + pEx(c.opts) + '<div class="popts">' + c.opts.map(function (o, i) { return B(o.t, function () { p.readback(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
     else if (c) rx = '<div class="pwait">' + ATC.T('관제사가 말하는 중 — 잘 들으세요') + '</div>';
     else if (p.freqTo && !p.freqTo.sent) rx = '<h6>' + ATC.T('주파수를 바꾸세요') + '</h6><div class="popts">' + p.freqOpts().map(function (f) { return B(f.n + ' ' + f.fq, function () { p.tune(f.to); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
     else if (p.dep && p.sidAsk) rx = '<h6>' + ATC.T('SID 고도 제한을 어떻게 할까요?') + '</h6><div class="pwait">' + ATC.T('방금 복창: 「{0}」 — 이 지시가 SID의 공시 고도 제한을 그대로 두는지, 취소하는지 골라 VNAV에 반영합니다.', esc(p.sidAsk.said || '')) + '</div><div class="popts">' + B(ATC.T('제한 유지 — 공시 제한을 지키며 상승'), function () { p.sidAnswer(true); app.cmdSig = ''; }, { cls: 'popt pdo' }) + B(ATC.T('제한 취소 — 제한 없이 허가 고도까지'), function () { p.sidAnswer(false); app.cmdSig = ''; }, { cls: 'popt pdo' }) + '</div>';
@@ -777,7 +778,7 @@
     if ((sim.mode === 'GND' || sim.mode === 'TWR') && sim.pilot.ac) app.sel = sim.pilot.ac.id;      /* 지상 지도에서 내 편 · 남은 경로가 늘 보이게 */
     var p = sim.pilot, ac = p.ac, fp = p.fp, x = p.xpdr, sig = 'D' + p.ver + (ATC.Cockpit && ATC.Cockpit.on ? 'C' : '') + (sim.cur && sim.cur.ac === ac ? sim.cur.who : '');
     if (sig === app.cmdSig) return; app.cmdSig = sig; app.btns = [];
-    var G = p.phase === 'gnd' || p.phase === 'twr' || p.stage >= 2, W3 = p.phase === 'twr' || p.stage === 3, fq = p.freqNowFq ? { n: p.freqNowN || p.gnd.n, fq: p.freqNowFq } : D.freq[p.freqNow] || D.freq.DEL, mic = micB('pmicb');
+    var G = p.phase === 'gnd' || p.phase === 'twr' || p.stage >= 2, W3 = p.phase === 'twr' || p.stage === 3, fq = p.freqNowFq ? { n: p.freqNowN || p.gnd.n, fq: p.freqNowFq } : D.freq[p.freqNow] || D.freq.DEL, mic = '<span class="pmicw">' + exB('pexb') + micB('pmicb') + '</span>';
     var head = '<div class="chead pil"><b style="border-color:' + ac.al.col + '">✈ ' + ac.cs + '</b><span>' + ac.csWord + ' ' + ac.num + ' · B787-9 · ' + ATC.T('조종사 체험 출발') + ' · ' + esc(fq.n + ' ' + fq.fq) + ' · STAND ' + esc(ac.stand) + '</span></div>';
     var rx = '', c = p.clr;
     if (p.phase === 'fpl') {
@@ -791,8 +792,8 @@
         '<div class="prow">' + B(ATC.T('자동 계획으로 되돌리기'), function () { p.setFp('auto'); app.cmdSig = ''; }, { cls: 'pset' }) + B(ATC.T('비행계획 확정 → 허가 요청'), function () { p.confirm(); app.cmdSig = ''; }, { cls: 'pset pdo' }) + '</div></div>' +
         '<small class="pmic">' + ATC.T('SID와 출발 활주로는 오늘의 운용({0})에 맞춰 정해집니다. 순항 고도는 비행 방향에 따라 홀수 · 짝수.', esc(sim.flow.label)) + '</small><small class="pmic">' + depScope() + '</small>';
     }
-    else if (p.prompt) rx = '<h6 class="hmic">' + ATC.T('보낼 교신을 고르세요') + mic + '</h6><div class="popts">' + p.prompt.opts.map(function (o, i) { return B(o.t, function () { p.sendPrompt(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
-    else if (c && c.opts) rx = '<h6>' + ATC.T('관제 지시') + '</h6><div class="patc">' + esc(c.ph.atc) + (app.gloss ? '<small>' + esc(ATC.gloss(c.ph.atc)) + '</small>' : '') + '</div><h6 class="hmic">' + ATC.T('복창을 고르세요') + mic + '</h6><div class="popts">' + c.opts.map(function (o, i) { return B(o.t, function () { p.readback(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
+    else if (p.prompt) rx = '<h6 class="hmic">' + ATC.T('보낼 교신을 고르세요') + mic + '</h6>' + pEx(p.prompt.opts) + '<div class="popts">' + p.prompt.opts.map(function (o, i) { return B(o.t, function () { p.sendPrompt(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
+    else if (c && c.opts) rx = '<h6>' + ATC.T('관제 지시') + '</h6><div class="patc">' + esc(c.ph.atc) + (app.gloss ? '<small>' + esc(ATC.gloss(c.ph.atc)) + '</small>' : '') + '</div><h6 class="hmic">' + ATC.T('복창을 고르세요') + mic + '</h6>' + pEx(c.opts) + '<div class="popts">' + c.opts.map(function (o, i) { return B(o.t, function () { p.readback(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
     else if (c) rx = '<div class="pwait">' + ATC.T('관제사가 말하는 중 — 잘 들으세요') + '</div>';
     else if (x.want && !x.set) rx = '<h6>' + ATC.T('허가받은 스쿼크를 트랜스폰더에 넣으세요') + '</h6><div class="pwait">' + ATC.T('복창한 허가의 「squawk」 네 자리(숫자 0 ~ 7)') + '</div>';
     else if (p.freqTo && !p.freqTo.sent) rx = '<h6>' + ATC.T('주파수를 바꾸세요') + '</h6><div class="popts">' + p.freqOpts().map(function (f) { return B(f.n + ' ' + f.fq, function () { p.tune(f.to); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
@@ -815,6 +816,44 @@
   /* 누르고 있는 동안 듣기(🎤 단추 또는 M 키) → 영어 음성 인식(브라우저) → ATC.mic.parse → 지시 송신 · 표준 문구 비교 */
   var MIC = { rec: null, on: false, want: false, again: false, fin: [], tmr: null, err: '' };
   var SRC = typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition);
+  /* 말하기 예시(연습용 · 켜고 끄기): 마이크로 무엇을 말하면 되는지 표준 문구를 보여 줌
+     ① 단추로 고른 지시가 있으면 그 문구 ② 고른 항공기(없으면 응답을 기다리는 첫 항공기)의 지금 상태에 맞는 대표 지시 — 숫자는 예시 */
+  function micExample() {
+    var sim = app.sim; if (!sim || sim.pilot || app.over) return null;
+    var ac = sim.byId(app.sel), mine = function (a) { return a && !a.gone && a.owner !== 'out'; };
+    if (!mine(ac)) ac = sim.acs.filter(function (a) { return mine(a) && a.waiting && (a.owner === 'me' || sim.mode === 'DEL'); })[0] || null;
+    if (!ac) return { t: '', n: ATC.T('항공기를 고르면 그 항공기에 말할 예시가 나옵니다.') };
+    if (app.pend.length && ac.id === app.sel) return { t: ATC.phrase(sim, ac, app.pend).atc, n: ATC.T('고른 지시 — 이대로 말해 보세요') };
+    var c = [], st = ac.st, rw = ac.rwy, r10 = function (h) { return U.n360(Math.round(h / 10) * 10) || 360; };
+    try {
+      if (sim.mode === 'DEL') { if (st === 'req' && !ac.noFpl) { var g = ac.gate; c = [{ k: 'clr', destName: ac.destName, sid: D.sidName ? D.sidName(g, sim) : (sim.sidFor ? sim.sidFor(g) : ''), alt: D.sidInit || 9000, sq: ac.squawk }]; } }
+      else if (st === 'reqpush') c = [{ k: 'push' }];
+      else if (st === 'reqtaxi' && sim.routeOptions) { var tg = ac.kind === 'dep' && !ac.tech ? { hp: (sim.holdsFor(ac) || [])[0] } : { stand: ac.stand }, ro = sim.routeOptions(ac, tg)[0]; if (ro) { var tc = Object.assign({ k: 'taxi', via: ro.via, nodes: ro.nodes, len: ro.len }, tg); if (tg.hp) tc.rwy = sim.rwyOfHold ? sim.rwyOfHold(ac, tg.hp) : ac.rwy; if (ro.cross) tc.hs = sim.arrRwy; c = [tc]; } }
+      else if (st === 'athold' && ac.holdKind === 'cross') c = [{ k: 'cross', rwy: ac.holdRw }];
+      else if (st === 'athold' && ac.holdKind === 'dep') c = sim.mode === 'TWR' ? [{ k: 'luaw', rwy: rw }] : [{ k: 'ho', to: sim.apron ? 'GND' : 'TWR' }];
+      else if (st === 'linedup') c = [{ k: 'cto', rwy: rw }];
+      else if (st === 'final' && sim.mode === 'TWR') c = [{ k: 'ctl', rwy: rw }];
+      else if (st === 'air' && sim.mode === 'TWR') c = [{ k: 'ho', to: ac.goAround ? 'APP' : 'DEP' }];
+      else if (sim.mode === 'APP' || sim.mode === 'ACC') {
+        var arr = ac.kind === 'arr', alt = Math.round(ac.alt / 1000) * 1000;
+        if (arr && sim.mode === 'APP' && ac.d !== undefined && ac.d < 16 * 1852 && !ac.appr) c = [{ k: 'hdg', v: r10(ac.hdg), dir: null }, { k: 'ils', rwy: rw }];
+        else c = [{ k: 'hdg', v: r10(ac.hdg - 20), dir: 'L' }, { k: 'alt', v: arr ? Math.max(3000, alt - 2000) : alt + 2000 }];
+      }
+    } catch (e) { c = []; }
+    if (!c.length) return { t: '', n: ATC.T('{0}: 지금은 줄 지시가 없습니다.', ac.cs) };
+    return { t: ATC.phrase(sim, ac, c).atc, n: ATC.T('예시 — 숫자 · 지점은 상황에 맞게 바꿔 말하세요') };
+  }
+  function renderMicEx() {
+    var b = $('micex'); if (!b) return;
+    var on = app.micEx && app.sim && !app.sim.pilot && !app.over && !app.instOn, x = on ? micExample() : null;
+    b.hidden = !x;
+    document.querySelectorAll('[data-micex]').forEach(function (e) { e.classList.toggle('on', !!app.micEx); });
+    if (!x) return;
+    var h = '<b>🎤 ' + ATC.T('말하기 예시') + '</b> <small>' + esc(x.n) + '</small>' + (x.t ? '<p>' + esc(x.t) + '</p>' : '');
+    if (h !== app.micExSig) { app.micExSig = h; b.innerHTML = h; }
+  }
+  function pEx(opts) { if (!app.micEx) return ''; var g = (opts || []).filter(function (o) { return o.ok; })[0]; return g ? '<div class="pex"><b>🎤 ' + ATC.T('말하기 예시') + '</b> ' + esc(g.t) + '</div>' : ''; }
+  function exB(cls) { return '<button type="button" data-micex="1" class="' + cls + (app.micEx ? ' on' : '') + '" title="' + esc(ATC.T('말하기 예시 켜기 · 끄기 — 마이크로 무엇을 말하면 되는지 표준 문구를 보여 줍니다(연습용)')) + '">' + ATC.T('예시') + '</button>'; }
   /* 마이크 단추(누르고 있는 동안 듣기) — 레이더 · 지상 · 조종사 체험 모두 data-mic 하나로 처리 */
   function micB(cls) { return '<button type="button" data-mic="1" class="' + cls + (MIC.on && MIC.want ? ' on' : '') + '" title="' + esc(ATC.T('누르고 있는 동안 영어로 말하고, 다 말한 뒤 떼면 보냅니다 (M 키) — 크롬 · 엣지')) + '">🎤' + (cls === 'pmicb' ? ' <span>' + ATC.T('누른 채 영어로 말하기 (M)') + '</span>' : '') + '</button>'; }
   function micMark() { document.querySelectorAll('[data-mic]').forEach(function (b) { b.classList.toggle('on', MIC.on && MIC.want); b.classList.toggle('busy', MIC.on && !MIC.want); }); }
@@ -966,7 +1005,8 @@
     window.addEventListener('blur', function () { app.hdgAim = false; if (MIC.want) micStop(); });      /* 다른 창으로 가면 듣기 끝 */
     var mb = $('micBtn'); if (mb) mb.setAttribute('data-mic', '1');
     document.addEventListener('pointerdown', function (e) { var b = e.target.closest && e.target.closest('[data-mic]'); if (b && app.sim && !app.over) micHold(e); }, true);
-    document.addEventListener('contextmenu', function (e) { if (e.target.closest && e.target.closest('[data-mic]')) e.preventDefault(); });      /* 휴대폰 길게 누르기 메뉴 막기 */
+    document.addEventListener('contextmenu', function (e) { if (e.target.closest && e.target.closest('[data-mic]')) e.preventDefault(); });
+    document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-micex]'); if (!b) return; e.preventDefault(); app.micEx = !app.micEx; app.micExSig = ''; app.cmdSig = ''; saveOpt(); renderMicEx(); if (app.sim && app.sim.pilot) renderCmd(); });      /* 휴대폰 길게 누르기 메뉴 막기 */
   }
 
   /* ================= 모달 · 학습 · 결과 ================= */

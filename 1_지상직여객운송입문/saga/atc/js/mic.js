@@ -69,6 +69,50 @@
     list.forEach(function (x) { var s = sim01(said, x.toLowerCase()); if (s >= 0.6 && (!best || s > best.s)) best = { sid: x, s: s }; });
     return best && best.sid;
   }
+  /* ---- 지상 이동 경로(마이크 2단계): 「taxi to holding point C1, runway 34R via C, B」 · 「taxi to stand 105 via …」 · 「taxi to TCP 4E via …」 ---- */
+  var PHON = { alfa: 'A', alpha: 'A', bravo: 'B', charlie: 'C', delta: 'D', echo: 'E', foxtrot: 'F', fox: 'F', golf: 'G', hotel: 'H', india: 'I', juliett: 'J', juliet: 'J', kilo: 'K', lima: 'L', mike: 'M', november: 'N', oscar: 'O', papa: 'P', quebec: 'Q', romeo: 'R', sierra: 'S', tango: 'T', uniform: 'U', victor: 'V', whiskey: 'W', whisky: 'W', xray: 'X', yankee: 'Y', zulu: 'Z' };
+  var TWN = null;
+  function twyNames() { if (TWN && TWN.g === D.gN) return TWN.s; var s = {}; Object.keys(D.gN || {}).forEach(function (k) { (D.gN[k].adj || []).forEach(function (a) { if (a.e.kind !== 'stand' && a.e.name) s[a.e.name] = 1; }); }); Object.keys(D.holds || {}).forEach(function (h) { s[h] = 1; }); Object.keys(D.tcp || {}).forEach(function (h) { s[h] = 1; }); TWN = { g: D.gN, s: s }; return s; }
+  /* 낱말 → 유도로 이름 목록: charlie 1 → C1, c1 → C1, romeo golf → RG(있는 이름일 때만), 4 echo → 4E */
+  function twyList(W, comb) {
+    var K = twyNames(), out = [], i, L = function (w) { return PHON[w] || (/^[a-z]$/.test(w) ? w.toUpperCase() : null); };
+    W = W.join(' ').replace(/\bx ray\b/g, 'xray').split(' ').filter(function (w) { return w && !/^(and|then|taxiway|taxiways|via|on|the|to)$/.test(w); });
+    for (i = 0; i < W.length; i++) {
+      var w = W[i], l = L(w), m;
+      if ((m = /^([a-z]{1,2})(\d{1,2})$/.exec(w))) { out.push(m[1].toUpperCase() + m[2]); continue; }
+      if (/^\d{1,2}$/.test(w) && L(W[i + 1] || '') && K[w + L(W[i + 1])]) { out.push(w + L(W[i + 1])); i++; continue; }      /* TCP 4E */
+      if (/^\d{1,2}[a-z]$/.test(w) && K[w.toUpperCase()]) { out.push(w.toUpperCase()); continue; }
+      if (!l) continue;
+      var l2 = L(W[i + 1] || '');
+      if (l2 && K[l + l2] && (comb || !(K[l] && K[l2] && !/^\d/.test(W[i + 2] || '')))) { l = l + l2; i++; }      /* 두 글자 이름(인천 RG · DA)은 실제로 있을 때만 */
+      else if (l2 && K[l + l2] && K[l] && K[l2] && /^\d/.test(W[i + 2] || '')) { /* 「delta alfa 1」처럼 숫자가 뒤따르면 두 글자 이름 */ l = l + l2; i++; }
+      if (/^\d{1,2}$/.test(W[i + 1] || '') && K[l + W[i + 1]]) { l += W[i + 1]; i++; }
+      out.push(l);
+    }
+    return out;
+  }
+  function taxiParse(s, sim, ac) {
+    if (!sim.routeOptions) return { err: ATC.T('지상 이동 경로는 지상관제 자리에서 지시합니다.') };
+    if (!(ac.st === 'reqtaxi' || ac.st === 'taxi' || ac.st === 'athold' || ac.st === 'gate' || ac.st === 'reqpush')) return { err: ATC.T('{0}: 지금은 지상 이동을 지시할 때가 아닙니다.', ac.cs) };
+    var T = s.trim().split(' '), it = T.indexOf('taxi'), rest = T.slice(it + 1), iv = rest.indexOf('via'), head = iv >= 0 ? rest.slice(0, iv) : rest, tail = iv >= 0 ? rest.slice(iv + 1) : [];
+    var ih = tail.indexOf('hold'); if (ih >= 0) tail = tail.slice(0, ih);
+    var ihh = head.indexOf('hold'); if (ihh >= 0) head = head.slice(0, ihh);
+    var hsm = / hold short (?:of )?(?:runway )?(\d{2}[LRC]?) /.exec(s), hs = hsm ? hsm[1] : '';
+    var tg = null, hj = head.join(' '), m, dep = ac.kind === 'dep' && !ac.tech;
+    if ((m = /\b(?:stand|spot|gate) (\d{1,4}[a-z]?)\b/.exec(hj))) { var sn = m[1].toUpperCase(); if (!D.stands[sn]) return { err: ATC.T('주기장 {0}을(를) 찾지 못했습니다.', sn) }; tg = { stand: sn }; }
+    else if ((m = /\b(?:tcp|t c p|tc p|t cp)\b(.*)$/.exec(hj))) { var tn = twyList(m[1].trim().split(' '))[0]; if (!tn || !(D.tcp || {})[tn]) return { err: ATC.T('TCP 이름을 알아듣지 못했습니다: 「{0}」', m[1].trim()) }; tg = { hp: tn }; }
+    else if ((m = /\bholding (?:point|position)\b(.*)$/.exec(hj))) { var pn = twyList(m[1].replace(/\brunway .*$/, '').trim().split(' '))[0]; if (!pn) return { err: ATC.T('대기 지점 이름을 알아듣지 못했습니다: 「{0}」', m[1].trim()) }; tg = { hp: pn }; }
+    else if (dep) { var rw = /\brunway (\d{2}[LRC]?)\b/.exec(hj); tg = { hp: (sim.holdsFor(ac, rw ? rw[1] : undefined) || [])[0] }; if (!tg.hp) return { err: ATC.T('대기 지점을 정하지 못했습니다.') }; }
+    else tg = { stand: ac.stand };
+    if (tg.hp && !sim.apron && !D.holds[tg.hp]) return { err: ATC.T('대기 지점 {0}을(를) 찾지 못했습니다.', tg.hp) };
+    var via = twyList(tail), r = via.length ? sim.routeVia(ac, tg, via) : sim.routeOptions(ac, tg)[0];
+    if (!r && via.length) { var v2 = twyList(tail, true); if (v2.join() !== via.join()) { r = sim.routeVia(ac, tg, v2); if (r) via = v2; } }      /* 「delta alfa」 = DA(인천)일 수도, D · A일 수도 — 둘 다 해 봄 */
+    if (!r) { var ops = sim.routeOptions(ac, tg).map(function (o) { return o.via.join(' '); }); return { err: ATC.T('말한 경로(via {0})로 갈 수 없습니다 — 후보: {1}', via.join(' '), ops.join(' / ') || '—') }; }
+    var c = { k: 'taxi', via: r.via, nodes: r.nodes, len: r.len };
+    if (tg.hp) { c.hp = tg.hp; c.rwy = sim.rwyOfHold(ac, tg.hp); } else c.stand = tg.stand;
+    if (r.cross) c.hs = hs || sim.arrRwy;
+    return { c: c, viaSaid: via };
+  }
   var HO = { tower: 'TWR', ground: 'GND', approach: 'APP', departure: 'DEP', control: 'ACC', center: 'ACC', centre: 'ACC', radar: 'APP', delivery: 'DEL' };
 
   function parse(text, sim, selAc) {
@@ -80,6 +124,7 @@
     if (!ac) { r.err = ATC.T('호출부호를 알아듣지 못했습니다 — 「호출부호 + 편명 숫자」로 시작하거나 항공기를 먼저 고르세요.'); return r; }
     if (/ negative /.test(s) && sim.pendWrong && sim.pendWrong.some(function (p) { return p.ac.id === ac.id; })) { r.sp = 'correct'; return r; }
     var C = r.cmds, used = {};
+    if (/ taxi /.test(s) && !/ continue taxi/.test(s)) { var tx = taxiParse(s, sim, ac); if (tx.err) { r.err = tx.err; return r; } C.push(tx.c); r.taxi = tx; return r; }
     function add(c) { if (!used[c.k]) { used[c.k] = 1; C.push(c); } }
     function rwyChk(said) { if (said && ac.rwy && said !== ac.rwy) r.err = ATC.T('말한 활주로 {0} ≠ 이 항공기의 활주로 {1} — 다시 말하세요.', said, ac.rwy); return ac.rwy || said; }
     /* 출발 허가(허가중계) */
@@ -125,7 +170,7 @@
     else if (/ hold position /.test(s) && !used.cancelto) add({ k: 'holdpos' });
     if (/ continue taxi/.test(s)) add({ k: 'conttaxi' });
     if (!C.length && / roger /.test(s)) add({ k: 'ack' });
-    if (!C.length && !r.err) r.err = ATC.T('지시를 알아듣지 못했습니다 — 표준 문구로 다시 말해 보세요(지상 이동 경로 지시는 단추로).');
+    if (!C.length && !r.err) r.err = ATC.T('지시를 알아듣지 못했습니다 — 표준 문구로 다시 말해 보세요.');
     return r;
   }
 

@@ -20,7 +20,7 @@
   }
   C.open = function (sim, host) {
     S.sim = sim; S.host = host; C.on = true; host.hidden = false;
-    load(function (e) { if (e) { host.innerHTML = '<div class="ckerr">' + ATC.T('3D를 불러오지 못했습니다') + '</div>'; return; } if (!S.r || S.apt !== ATC.aptId) build(); else resize(); S.host.appendChild(S.r.domElement); buildImg(); S.host.appendChild(S.ci.wrap); if (S.attr) S.host.appendChild(S.attr); if (ATC.CkSnd) ATC.CkSnd.start(); });
+    load(function (e) { if (e) { host.innerHTML = '<div class="ckerr">' + ATC.T('3D를 불러오지 못했습니다') + '</div>'; return; } if (!S.r || S.apt !== ATC.aptId) build(); else resize(); S.host.appendChild(S.r.domElement); buildImg(); S.host.appendChild(S.ci.wrap); bldAttr(); if (S.attr) S.host.appendChild(S.attr); if (ATC.CkSnd) ATC.CkSnd.start(); });
   };
   C.close = function () { C.on = false; if (S.host) S.host.hidden = true; if (ATC.CkSnd) ATC.CkSnd.stop(); };
 
@@ -294,29 +294,50 @@
   function facadeTex(lit) {
     return canvasTex(64, 128, function (c, w, h) { var R = rnd(lit ? 5 : 3); c.fillStyle = lit ? '#000' : '#d9dbdc'; c.fillRect(0, 0, w, h); for (var y = 6; y < h; y += 10) for (var x = 4; x < w; x += 8) { if (lit) { if (R() < 0.45) { c.fillStyle = ['#ffd99a', '#fff0c8', '#cfe6ff'][Math.floor(R() * 3)]; c.fillRect(x, y, 5, 6); } } else { c.fillStyle = R() < 0.5 ? '#6f8494' : '#596b79'; c.fillRect(x, y, 5, 6); } } });
   }
+  /* 실제 건물(하네다: 국토교통성 PLATEAU LOD1을 가공한 js/geo/bldg_rjtt.js) — 3D를 처음 열 때만 내려받음 */
+  var BLDF = { RJTT: 'js/geo/bldg_rjtt.js' };
+  function realBld() {
+    var B = ATC.BLDG && ATC.BLDG[ATC.aptId]; if (B) return B;
+    var f = BLDF[ATC.aptId]; if (!f || S.bldReq === ATC.aptId || typeof document === 'undefined') return null; S.bldReq = ATC.aptId;
+    var t = document.querySelector('script[src*="js/cockpit3d.js"]'), m = t && /[?&]v=([^&]+)/.exec(t.getAttribute('src')), el = document.createElement('script');
+    el.src = (ATC.base || '') + f + (m ? '?v=' + m[1] : ''); el.onload = function () { if (S.scene && S.apt === ATC.aptId && ATC.BLDG && ATC.BLDG[ATC.aptId]) { buildCity(S.scene); bldAttr(); } };
+    document.head.appendChild(el); return null;
+  }
+  function bldAttr() { var B = ATC.BLDG && ATC.BLDG[ATC.aptId]; if (!B || !S.attr || S.attr.getAttribute('data-bld')) return; S.attr.setAttribute('data-bld', '1'); S.attr.textContent += ' · ' + ATC.T('건물: 국토교통성 PLATEAU(CC BY 4.0)를 가공'); }
+  function bldList(B, skip, cap) {
+    if (!B.arr) { var bin = atob(B.d), u8 = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); B.arr = new Int16Array(u8.buffer); }
+    var a = B.arr, out = [], cells = {};
+    for (var j = 0; j < B.n; j++) { var o = j * 6, x = a[o] / 1000, y = a[o + 1] / 1000; cells[Math.floor(x / 0.3) + ',' + Math.floor(y / 0.3)] = 1; if (out.length >= cap || skip(x, y)) continue; out.push([x, y, a[o + 4] / 10, a[o + 2], a[o + 3], a[o + 5] / 10000]); }
+    return { list: out, cov: function (x, y) { return !!cells[Math.floor(x / 0.3) + ',' + Math.floor(y / 0.3)]; } };
+  }
   function buildCity(sc) {
     var tc0 = TCF(); if (tc0 && !tc0.mask) return;      /* 가상 공항(해외 실제 사진): 사진 속 건물이 있으니 상자 건물은 세우지 않음 */
-    var D = ATC.D, R = rnd(ATC.aptId.charCodeAt(0) * 97 + 3), zones = ZONES[ATC.aptId] || [], st = D.sat, lo = [], hi = [];
+    (S.cityM || []).forEach(function (m) { sc.remove(m); m.geometry.dispose(); }); S.cityM = [];
+    var D = ATC.D, R = rnd(ATC.aptId.charCodeAt(0) * 97 + 3), zones = ZONES[ATC.aptId] || [], st = D.sat, lo = [], hi = [], sets;
+    function inBox(x, y) { if (!st) return Math.hypot(x, y) < 2.2; var q = D.xy2uv(x, y); return q.u > st.u1 - 400 && q.u < st.u2 + 400 && q.v > st.v1 - 400 && q.v < st.v2 + 400; }
     function onApt(x, y) { if (TCF() && Math.hypot(x, y) < 5.4 || inRegion(x, y)) return true;      /* 실제 사진이 깔리는 곳은 낮은 건물 상자 안 세움 */
-      if (!st) return Math.hypot(x, y) < 2.2; var q = D.xy2uv(x, y); return q.u > st.u1 - 400 && q.u < st.u2 + 400 && q.v > st.v1 - 400 && q.v < st.v2 + 400; }
+      return inBox(x, y); }
     var MOB = (window.innerWidth || 1200) < 900, NLO = MOB ? 4500 : 9000;      /* 휴대폰은 건물 반만 */
+    var RB = realBld(), real = RB ? bldList(RB, inBox, MOB ? 22000 : 60000) : null, cov = real ? real.cov : function () { return false; };      /* 실제 건물이 있는 곳(0.3NM 칸)은 지어낸 상자를 세우지 않음 */
     for (var k = 0; k < 26000 && lo.length < NLO; k++) {
       var r = 2 + Math.pow(R(), 1.6) * 20, a = R() * Math.PI * 2, x = Math.sin(a) * r, y = Math.cos(a) * r;
-      if (onApt(x, y) || !inLand(x, y)) continue;
+      if (onApt(x, y) || !inLand(x, y) || cov(x, y)) continue;
       lo.push([x, y, 8 + Math.pow(R(), 2.2) * 40, 18 + R() * 40, 14 + R() * 30, R() * Math.PI]);
     }
-    zones.forEach(function (z) { var n = Math.round(z[2] * 140); for (var k2 = 0; k2 < n * 3 && n > 0; k2++) { var rr = Math.sqrt(R()) * z[2], aa = R() * Math.PI * 2, x2 = z[0] + Math.sin(aa) * rr, y2 = z[1] + Math.cos(aa) * rr; if (!inLand(x2, y2)) continue; n--; hi.push([x2, y2, 50 + Math.pow(R(), 1.5) * (z[3] - 50) * (1 - rr / z[2] * 0.6), 30 + R() * 35, 30 + R() * 35, R() * Math.PI]); } });
+    zones.forEach(function (z) { var n = Math.round(z[2] * 140); for (var k2 = 0; k2 < n * 3 && n > 0; k2++) { var rr = Math.sqrt(R()) * z[2], aa = R() * Math.PI * 2, x2 = z[0] + Math.sin(aa) * rr, y2 = z[1] + Math.cos(aa) * rr; if (!inLand(x2, y2)) continue; n--; if (cov(x2, y2)) continue; hi.push([x2, y2, 50 + Math.pow(R(), 1.5) * (z[3] - 50) * (1 - rr / z[2] * 0.6), 30 + R() * 35, 30 + R() * 35, R() * Math.PI]); } });
     if (!zones.length) for (k = 0; k < 4000 && hi.length < 160; k++) { var r3 = 3 + R() * 9, a3 = R() * Math.PI * 2, x3 = Math.sin(a3) * r3, y3 = Math.cos(a3) * r3; if (!onApt(x3, y3) && inLand(x3, y3)) hi.push([x3, y3, 50 + R() * 120, 30 + R() * 30, 30 + R() * 30, R() * Math.PI]); }
+    sets = [[lo, 1.5], [hi, 7]];
+    if (real) { var b1 = [], b2 = [], b3 = [], b4 = []; real.list.forEach(function (b) { (b[2] < 25 ? b1 : b[2] < 60 ? b2 : b[2] < 120 ? b3 : b4).push(b); }); sets.push([b1, 1.6], [b2, 4], [b3, 8], [b4, 15]); }      /* 높이 무리마다 창 줄 수를 맞춤 */
     var wallD = facadeTex(false), wallN = facadeTex(true); wallD.wrapS = wallD.wrapT = wallN.wrapS = wallN.wrapT = T.RepeatWrapping;
     var roof = new T.MeshLambertMaterial({ color: 0x8d9092 });
-    S.bldMats = [];
-    [[lo, 1.5], [hi, 7]].forEach(function (set) {
+    S.cityMats = [];
+    sets.forEach(function (set) {
       var list = set[0]; if (!list.length) return;
       var geo = new T.BoxGeometry(1, 1, 1); geo.translate(0, 0.5, 0); var uv = geo.attributes.uv; for (var i = 0; i < uv.count; i++) uv.setY(i, uv.getY(i) * set[1]);
-      var wall = new T.MeshLambertMaterial({ map: wallD, emissive: 0xffffff, emissiveMap: wallN, emissiveIntensity: 0 }); S.bldMats.push(wall);
+      var wall = new T.MeshLambertMaterial({ map: wallD, emissive: 0xffffff, emissiveMap: wallN, emissiveIntensity: 0 }); S.cityMats.push(wall);
       var im = new T.InstancedMesh(geo, [wall, wall, roof, roof, wall, wall], list.length), mt = new T.Matrix4(), q = new T.Quaternion(), sc2 = new T.Vector3(), ps = new T.Vector3(), col = new T.Color();
       list.forEach(function (b, i) { ps.set(b[0] * NM, 0.5, -b[1] * NM); q.setFromAxisAngle(new T.Vector3(0, 1, 0), b[5]); sc2.set(b[3], b[2], b[4]); mt.compose(ps, q, sc2); im.setMatrixAt(i, mt); var t = 0.78 + R() * 0.3; col.setRGB(t, t * (0.97 + R() * 0.05), t * (0.95 + R() * 0.08)); im.setColorAt(i, col); });
-      im.frustumCulled = false; sc.add(im);
+      im.frustumCulled = false; sc.add(im); S.cityM.push(im);
     });
   }
   /* 랜드마크(하네다): 도쿄 스카이트리 · 도쿄 타워 · 가와사키 굴뚝 · 바다 위 환기탑(가제노토) · 후지산 */
@@ -657,7 +678,7 @@
     S.skyU.top.value.setRGB(0.16 * day + 0.01, 0.40 * day + 0.02, 0.72 * day + 0.06); S.skyU.hor.value.setRGB(0.80 * day + 0.06 + k * 0.05, 0.86 * day + 0.07, 0.92 * day + 0.12);
     S.sun.intensity = 1.6 * day; S.hemi.intensity = 0.25 + 0.75 * day;
     S.fog.color.setRGB(0.72 * day + 0.04, 0.80 * day + 0.05, 0.88 * day + 0.08); S.fog.density = 0.000024 + k * 0.00002;      /* 맑은 낮 시정 약 50km */ S.skyU.hor.value.copy(S.fog.color); var sw = S.satSea || (ATC.aptId === 'RJTT' ? [0.21, 0.31, 0.33] : [0.13, 0.27, 0.38]); S.sea.material.color.setRGB(sw[0] * 0.92 * day + 0.02, sw[1] * 0.92 * day + 0.03, sw[2] * 0.92 * day + 0.05);      /* 바다색 = 공항 사진의 바다색에 맞춤 */
-    (S.bldMats || []).forEach(function (m) { m.emissiveIntensity = k * 0.95; });
+    (S.bldMats || []).concat(S.cityMats || []).forEach(function (m) { m.emissiveIntensity = k * 0.95; });
     (S.gsiM || []).forEach(function (m) { var b = 0.12 + 0.88 * day; m.color.setRGB(b, b, b * (0.92 + 0.08 * day)); });
     if (S.rwyHide && S.rwyM && S.rwyM.length && S.rwyM[0].visible && day > 0.4) S.rwyM.forEach(function (m) { m.visible = false; });      /* 실제 사진의 활주로(표시 포함)를 그대로 보여 줌 */
     else if (S.rwyM && S.rwyM.length && !S.rwyM[0].visible && day <= 0.4) S.rwyM.forEach(function (m) { m.visible = true; });
