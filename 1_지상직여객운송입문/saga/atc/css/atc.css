@@ -582,3 +582,4 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 .pex{margin:2px 0 6px;padding:6px 9px;border:1px solid #3f9f6f;border-radius:7px;background:rgba(18,58,42,.35);font:13px/1.45 var(--mono);color:#eaf6ef}
 .pex b{font-family:inherit;color:#9fe0bb;font-weight:600;margin-right:4px}
 .pex.dex{margin:6px 0 10px}.pex.dex small{font-family:var(--sans,inherit);color:#8aa2b4;font-size:11px}
+.v-del #delview{top:52px;padding-top:4px}      /* 비행허가: 오른쪽 위 「예시」 · 🎤 단추 밑 띠를 비워 내용이 단추 아래로 지나가지 않게 */

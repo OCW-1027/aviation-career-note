@@ -326,19 +326,27 @@
     }
     zones.forEach(function (z) { var n = Math.round(z[2] * 140); for (var k2 = 0; k2 < n * 3 && n > 0; k2++) { var rr = Math.sqrt(R()) * z[2], aa = R() * Math.PI * 2, x2 = z[0] + Math.sin(aa) * rr, y2 = z[1] + Math.cos(aa) * rr; if (!inLand(x2, y2)) continue; n--; if (cov(x2, y2)) continue; hi.push([x2, y2, 50 + Math.pow(R(), 1.5) * (z[3] - 50) * (1 - rr / z[2] * 0.6), 30 + R() * 35, 30 + R() * 35, R() * Math.PI]); } });
     if (!zones.length) for (k = 0; k < 4000 && hi.length < 160; k++) { var r3 = 3 + R() * 9, a3 = R() * Math.PI * 2, x3 = Math.sin(a3) * r3, y3 = Math.cos(a3) * r3; if (!onApt(x3, y3) && inLand(x3, y3)) hi.push([x3, y3, 50 + R() * 120, 30 + R() * 30, 30 + R() * 30, R() * Math.PI]); }
-    sets = [[lo, 1.5], [hi, 7]];
-    if (real) { var b1 = [], b2 = [], b3 = [], b4 = []; real.list.forEach(function (b) { (b[2] < 25 ? b1 : b[2] < 60 ? b2 : b[2] < 120 ? b3 : b4).push(b); }); sets.push([b1, 1.6], [b2, 4], [b3, 8], [b4, 15]); }      /* 높이 무리마다 창 줄 수를 맞춤 */
+    sets = [[lo, 1.5, MOB ? 9 : 13], [hi, 7, 0]];      /* [목록, 창 줄 수, 이 거리(NM) 넘으면 안 그림(0 = 늘)] */
+    if (real) { var b1 = [], b2 = [], b3 = [], b4 = []; real.list.forEach(function (b) { (b[2] < 25 ? b1 : b[2] < 60 ? b2 : b[2] < 120 ? b3 : b4).push(b); }); sets.push([b1, 1.6, MOB ? 5 : 7], [b2, 4, MOB ? 9 : 13], [b3, 8, 0], [b4, 15, 0]); }      /* 높이 무리마다 창 줄 수를 맞춤, 낮은 건물은 가까운 것만 */
     var wallD = facadeTex(false), wallN = facadeTex(true); wallD.wrapS = wallD.wrapT = wallN.wrapS = wallN.wrapT = T.RepeatWrapping;
     var roof = new T.MeshLambertMaterial({ color: 0x8d9092 });
     S.cityMats = [];
     sets.forEach(function (set) {
-      var list = set[0]; if (!list.length) return;
+      if (!set[0].length) return;
       var geo = new T.BoxGeometry(1, 1, 1); geo.translate(0, 0.5, 0); var uv = geo.attributes.uv; for (var i = 0; i < uv.count; i++) uv.setY(i, uv.getY(i) * set[1]);
       var wall = new T.MeshLambertMaterial({ map: wallD, emissive: 0xffffff, emissiveMap: wallN, emissiveIntensity: 0 }); S.cityMats.push(wall);
+      var cells = {}; set[0].forEach(function (b) { var k = Math.floor(b[0] / 3.5) + "," + Math.floor(b[1] / 3.5); (cells[k] = cells[k] || []).push(b); });      /* 3.5NM 칸마다 따로 — 화면 밖 칸은 그리지 않음 */
+      Object.keys(cells).forEach(function (ck) { var list = cells[ck];
       var im = new T.InstancedMesh(geo, [wall, wall, roof, roof, wall, wall], list.length), mt = new T.Matrix4(), q = new T.Quaternion(), sc2 = new T.Vector3(), ps = new T.Vector3(), col = new T.Color();
       list.forEach(function (b, i) { ps.set(b[0] * NM, 0.5, -b[1] * NM); q.setFromAxisAngle(new T.Vector3(0, 1, 0), b[5]); sc2.set(b[3], b[2], b[4]); mt.compose(ps, q, sc2); im.setMatrixAt(i, mt); var t = 0.78 + R() * 0.3; col.setRGB(t, t * (0.97 + R() * 0.05), t * (0.95 + R() * 0.08)); im.setColorAt(i, col); });
-      im.frustumCulled = false; sc.add(im); S.cityM.push(im);
+      im.computeBoundingSphere(); im.frustumCulled = true; im.userData.far = set[2] * NM; im.userData.c = im.boundingSphere.center.clone(); sc.add(im); S.cityM.push(im);
+      });
     });
+  }
+  function cityLod(now) {      /* 낮은 건물은 먼 칸을 숨김(0.4초마다) */
+    if (!S.cityM || !S.cityM.length || S.lodT && now - S.lodT < 400) return; S.lodT = now;
+    var c = S.cam.getWorldPosition(S.lodV || (S.lodV = new T.Vector3()));
+    S.cityM.forEach(function (m) { var f = m.userData.far; m.visible = !f || Math.hypot(m.userData.c.x - c.x, m.userData.c.z - c.z) < f + m.boundingSphere.radius; });
   }
   /* 랜드마크(하네다): 도쿄 스카이트리 · 도쿄 타워 · 가와사키 굴뚝 · 바다 위 환기탑(가제노토) · 후지산 */
   function buildMarks(sc) {
@@ -665,7 +673,7 @@
       /* 화면 */
       if (!S.dispT || now - S.dispT > 66) { S.dispT = now; drawDisp(st); }
     }
-    S.r.render(S.scene, S.cam);
+    cityLod(now); S.r.render(S.scene, S.cam);
   };
   function ownMesh(pos, qa, show) {
     if (!S.own) { if (ATC.CkModel) { S.own = ATC.CkModel.plane({ vela: true }); S.own.userData.cm = 1; } else { S.own = S.acGeo.clone(true); S.own.traverse(function (m) { if (m.name === 'tail') m.material = new T.MeshLambertMaterial({ color: 0x1f6fd1 }); }); } S.scene.add(S.own); }
