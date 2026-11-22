@@ -21,6 +21,8 @@
     hhmm: function (sec) { sec = Math.floor(sec); var h = Math.floor(sec / 3600) % 24, m = Math.floor(sec / 60) % 60; return U.pad(h, 2) + U.pad(m, 2); },
     mmss: function (sec) { sec = Math.max(0, Math.floor(sec)); return U.pad(Math.floor(sec / 60), 2) + ':' + U.pad(sec % 60, 2); }
   };
+  /* 단축키 글자: 한글 · 일본어 입력기가 켜져 있으면 e.key가 「ㅡ」 · 「Process」로 와서 M · G · W 같은 키가 안 먹음 → 글자가 아니면 물리 키 위치(e.code)로 */
+  ATC.keyOf = function (e) { var k = (e.key || '').toLowerCase(), c = e.code || ''; if (/^[a-z0-9]$/.test(k)) return k; if (/^Key[A-Z]$/.test(c)) return c.slice(3).toLowerCase(); if (/^Digit[0-9]$/.test(c) && k === 'process') return c.slice(5); return k; };
   ATC.rng = function (seed) {
     var a = seed >>> 0;
     var f = function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };

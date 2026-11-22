@@ -7,6 +7,7 @@
   'use strict';
   var G = typeof window !== 'undefined' ? window : globalThis, ATC = G.ATC, D = ATC.D;
   var NUM = { zero: '0', oh: '0', one: '1', won: '1', two: '2', too: '2', three: '3', tree: '3', four: '4', five: '5', fife: '5', six: '6', seven: '7', eight: '8', nine: '9', niner: '9' };
+  var TENS = { ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fourty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };      /* 「ten thousand」 · 「twenty one」처럼 인식될 때 */
   var SIDE = { left: 'L', right: 'R', center: 'C', centre: 'C', l: 'L', r: 'R', c: 'C' };
 
   function lev(a, b) {
@@ -21,8 +22,11 @@
     var s = String(text || '').toLowerCase()
       .replace(/(\d),(\d{3})/g, '$1$2').replace(/(\d)\.(\d)/g, '$1 decimal $2')
       .replace(/take[\s-]*off/g, 'takeoff').replace(/push[\s-]*back/g, 'pushback').replace(/go[\s-]+around/g, 'go around').replace(/read[\s-]*back/g, 'readback')
-      .replace(/\bi\.?\s*l\.?\s*s\.?\b/g, 'ils').replace(/[^a-z0-9 ]+/g, ' ');
+      .replace(/\bi\.?\s*l\.?\s*s\.?\b/g, 'ils').replace(/\bline[\s-]*up\b/g, 'line up').replace(/\bf\.?\s*l\.?\s*(\d)/g, 'fl$1').replace(/\bfower\b/g, 'four').replace(/[^a-z0-9 ]+/g, ' ');
     var t = s.split(/\s+/).filter(Boolean).map(function (w) { return NUM[w] || w; }), o = [], i;
+    /* 「twenty one」 → 21, 「ten」 → 10 */
+    for (i = 0; i < t.length; i++) { var tv = TENS[t[i]]; if (tv === undefined) { o.push(t[i]); continue; } if (tv >= 20 && /^[1-9]$/.test(t[i + 1] || '')) { tv += +t[i + 1]; i++; } o.push(String(tv)); }
+    t = o; o = [];
     /* 붙어 있는 숫자 → 하나로(「2 7 0」 → 270, 「04」 그대로) */
     for (i = 0; i < t.length; i++) { if (/^\d$/.test(t[i]) && o.length && /^\d{1,4}$/.test(o[o.length - 1])) o[o.length - 1] += t[i]; else o.push(t[i]); }
     t = o; o = [];
@@ -47,7 +51,8 @@
       var W = String(ac.csWord || '').toLowerCase().split(/\s+/), code = ac.al && ac.al.code ? ac.al.code.toLowerCase() : '', j;
       for (j = 0; j < Math.min(T.length, 8); j++) {
         if (T[j] !== String(ac.num)) continue;
-        var k = Math.max(0, j - W.length), said = T.slice(k, j).join(' '), sc = sim01(said, W.join(' '));
+        var k = Math.max(0, j - W.length), sc = sim01(T.slice(k, j).join(' '), W.join(' ')), wj = W.join(''), n;
+        for (n = 1; n <= 3 && j - n >= 0; n++) { var s2 = sim01(T.slice(j - n, j).join(''), wj); if (s2 > sc) { sc = s2; k = j - n; } }      /* 「air france」 ↔ AIRFRANS · 「speed bird」 ↔ SPEEDBIRD — 띄어쓰기를 빼고 비교 */
         if (T[j - 1] === code) { sc = 1; k = j - 1; }
         if (sc >= 0.55 && (!best || sc > best.sc)) best = { ac: ac, sc: sc, from: k, to: j + 1 + (T[j + 1] === 'heavy' ? 1 : 0) };
       }

@@ -214,7 +214,7 @@
     function sync(p) { var F = p.fly; F.k.pitch = (keys.arrowdown ? 1 : 0) - (keys.arrowup ? 1 : 0); F.k.roll = (keys.arrowright ? 1 : 0) - (keys.arrowleft ? 1 : 0); F.k.thr = (keys.w ? 1 : 0) - (keys.s ? 1 : 0); F.k.rud = (keys.e ? 1 : 0) - (keys.q ? 1 : 0); }
     window.addEventListener('keydown', function (e) {
       var t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
-      var p = cur(); if (!p) return; var k = e.key.toLowerCase();
+      var p = cur(); if (!p) return; var k = ATC.keyOf(e);
       if (p.manKey) { if (p.manKey(k)) { e.preventDefault(); return; } if (k === 'z' || k === 't') return; }      /* 출발편 지상: Z = 지상 이동 직접 조종 */
       if (k === 'z') { M.toggleAP(p); e.preventDefault(); return; }
       if (k === 'd' && p.dhAsk && p.dhAsk()) { p.dhDecide('land'); e.preventDefault(); return; }      /* D = 결심 고도 「Landing」 */
@@ -222,7 +222,7 @@
       if (k === 't' && p.fly.on) { M.toggleAT(p); return; }
       if (KMAP[k] && p.fly.on) { keys[k] = true; sync(p); e.preventDefault(); }
     }, true);
-    window.addEventListener('keyup', function (e) { var k = e.key.toLowerCase(); if (!KMAP[k]) return; keys[k] = false; var p = cur(); if (p) sync(p); }, true);
+    window.addEventListener('keyup', function (e) { var k = ATC.keyOf(e); if (!KMAP[k]) return; keys[k] = false; var p = cur(); if (p) sync(p); }, true);
     window.addEventListener('blur', function () { keys = {}; var p = cur(); if (p) sync(p); });
   }
   /* 3D 조종석 위 조종간 · 추력 레버(직접 조종 중에만 보임) */
