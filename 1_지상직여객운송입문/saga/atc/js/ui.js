@@ -550,6 +550,7 @@
         if (d.atis) pc.push({ k: 'atis', v: sim.atis }); if (d.fl) pc.push({ k: 'amendfl', old: ac.rfl, v: ac.rfl + d.fl }); if (d.slot && ac.ctot) pc.push({ k: 'slot', v: U.hhmm(ac.ctot), tsat: U.hhmm(ac.tsat) });
         var pq = { k: 'clr', destName: ac.destName, sid: d.sid || '＿＿＿', alt: d.alt || 0, sq: ac.squawk }; if (d.trans) pq.trans = d.trans; pc.push(pq);
         h += ATC.T('<div class="dref"><h4>송신 문구 미리보기</h4><p class="prev">{0}</p></div>', esc(ATC.phrase(sim, ac, pc).atc).replace('maintain 0,', 'maintain ＿＿＿,'));
+        if (app.micEx) { var mx = micExample(); if (mx && mx.t) h += '<div class="pex dex"><b>🎤 ' + ATC.T('말하기 예시') + '</b> <small>' + esc(mx.n) + '</small><br>' + esc(mx.t) + '</div>'; }
       } else if (ac.clr) h += ATC.T('<div class="dref"><h4>발부한 허가</h4><p class="prev">{0} departure · maintain {1} · squawk {2}</p></div>', ac.clr.sid, fmt.alt(ac.clr.alt), ac.clr.sq).replace(' departure · ', ' departure' + (ac.clr.trans ? ', ' + ac.clr.trans + ' transition' : '') + ' · ');
     } else h += ATC.T('<div class="fpl empty">스트립(항공기 목록)에서 항공기를 선택하면 비행계획이 표시됩니다.</div>');
     h += ATC.T('<div class="dref"><h4>현재 조건</h4><p>ATIS <b>{0}</b> · 출발 활주로 <b>{1}</b> · 바람 {2} · QNH {3} · 지금 {4} UTC</p></div></div><div class="dcol">', sim.atis, sim.multi ? sim.flow.deps.join(' · ') : sim.depRwy, fmt.wind(sim.wind), sim.qnh, U.hhmm(sim.utc()));
@@ -845,7 +846,7 @@
   }
   function renderMicEx() {
     var b = $('micex'); if (!b) return;
-    var on = app.micEx && app.sim && !app.sim.pilot && !app.over && !app.instOn, x = on ? micExample() : null;
+    var on = app.micEx && app.sim && !app.sim.pilot && !app.over && !app.instOn && app.pos.view !== 'del', x = on ? micExample() : null;      /* 비행허가는 떠 있는 상자 대신 미리보기 칸 아래(renderDel) */
     b.hidden = !x;
     document.querySelectorAll('[data-micex]').forEach(function (e) { e.classList.toggle('on', !!app.micEx); });
     if (!x) return;
