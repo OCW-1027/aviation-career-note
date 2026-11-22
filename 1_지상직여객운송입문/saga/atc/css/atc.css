@@ -85,9 +85,9 @@ a.tog{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 @media (max-width:900px),(max-height:560px){#gnav{left:6px;top:5px;flex-wrap:nowrap;max-width:calc(100% - 84px);gap:5px}#gnav button,#gnav select{padding:5px 8px;font-size:12px;height:29px}#gnav .zm{min-width:30px;padding:5px 6px}#gnav .fitb{display:block}.v-radar #gnav{top:46px}#bFit{display:none}#scope #banner{top:calc(var(--hud,0px) + 8px);font-size:13px;padding:6px 14px;white-space:nowrap}#gnav button{white-space:nowrap;flex:none}#gnav select{max-width:84px;flex:0 1 auto;min-width:0}}
 #cli::placeholder{color:#476074;text-transform:none}
 #cli:focus{border-color:var(--acc)}
-#micBtn{position:absolute;left:352px;top:10px;height:31px;min-width:38px;background:rgba(5,9,14,.85);border:1px solid var(--line);border-radius:6px;color:var(--ok);font-size:15px;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
-#micBtn.solo{left:auto;right:12px;top:8px;bottom:auto;height:40px;min-width:48px;font-size:19px;z-index:3}      /* 비행허가 화면: 오른쪽 위(카드 위 빈자리) — 예전 오른쪽 아래는 SID 표 · 지도 출처 글을 가림 */
-#micBtn.on{background:#5a1a1a;border-color:#e05050;box-shadow:0 0 0 3px rgba(224,80,80,.35)}
+#vBtn{position:absolute;left:352px;top:10px;height:31px;padding:0 10px;background:rgba(5,9,14,.85);border:1px solid var(--line);border-radius:6px;color:var(--ok);font-size:13px;cursor:pointer;z-index:3;white-space:nowrap}
+#vBtn.solo{left:auto;right:12px;top:8px;height:40px;font-size:14px}      /* 비행허가 화면: 오른쪽 위 */
+#vBtn.on,#gnav button.gvd.on{background:#123a2a;border-color:#3f9f6f;color:#bff0d0}
 #micfb{position:absolute;left:12px;top:48px;max-width:min(560px,calc(100% - 24px));background:rgba(5,9,14,.92);border:1px solid var(--line);border-radius:6px;color:#d8e4ee;font:12px/1.5 var(--mono);padding:7px 10px;z-index:6;word-break:break-word}
 #micfb b{color:#8fb3cc;font-weight:600;margin-right:4px}#micfb.ok{border-color:#3f8f5f}#micfb.mid{border-color:#b08a2a}#micfb.no{border-color:#a84444}#micfb .mp{color:var(--ok)}#micfb .me{color:#f0b060}#micfb .mh{color:#e07070}
 #banner{position:absolute;left:50%;top:14px;transform:translate(-50%,-80px);padding:8px 22px;border-radius:8px;font-weight:800;font-size:15px;max-width:calc(100% - 20px);box-sizing:border-box;text-align:center;line-height:1.35;white-space:normal;word-break:keep-all;background:rgba(9,15,23,.94);color:#dce9f7;box-shadow:0 0 0 1px #3a5168,0 4px 14px rgba(0,0,0,.45);transition:transform .25s,opacity .2s,visibility 0s .25s;pointer-events:none;z-index:3;opacity:0;visibility:hidden}
@@ -243,8 +243,8 @@ b.y{color:var(--yel)}
   #main{grid-template-columns:1fr}#strips{display:none}
   #bot{grid-template-columns:1fr;grid-template-rows:1.4fr 1fr}#coach{display:none!important}
   #cli{width:60%}
-  #micBtn{left:calc(60% + 20px)}
-  #exBtn:not(.solo){left:calc(60% + 62px)}
+  #vBtn{left:calc(60% + 20px)}
+
   .learn{grid-template-columns:1fr}.learn nav{flex-direction:row;flex-wrap:wrap;position:static}
   .v-del #delview{grid-template-columns:1fr}
 }
@@ -452,7 +452,7 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 
 /* 조종사 체험 */
 .pilotm #strips,.pilotm #cli{display:none!important}
-.pilotm #micBtn:not(.solo){left:12px}
+
 .chead.pil b{color:#ffd27a}
 .cbody.pilotp{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
 .pilotp .prx{flex:1 1 300px;min-width:0}.pilotp .pmcp{flex:1 1 300px;min-width:0}
@@ -477,7 +477,7 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .xbtn.pilot i{color:#ffd27a}
 .psid{margin:6px 0;padding:6px 8px;border:1px solid #2a4254;border-radius:8px;background:#0e1a24;font-size:12px;line-height:1.5}.psid .psh b{color:#dfeaf2}.psid .psh small{display:block;color:#9fb4c4;font-size:11px}.psf{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;align-items:center}.psf .f{padding:1px 6px;border-radius:5px;background:#16283a;color:#b9cad6;white-space:nowrap}.psf .f.r{background:#1d3550;color:#e6f0f7}.psf .f i{font-style:normal;color:#ffd479;margin-left:2px}.psf .f u{text-decoration:none;margin-left:3px;font-size:11px;color:#9fb4c4}.psf .f.ok u{color:#7fd69a}.psf .f.ng{background:#4a2026}.psf .f.ng u{color:#ff9aa5}.psf .f.x i{text-decoration:line-through;color:#8a96a0}.psf .f.nx{outline:1px solid #6fb8ff}.psf em{font-style:normal;font-size:11px;color:#8fd0c0;margin:0 2px}.pss{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:5px;font-size:11.5px;color:#b9cad6}.pss .on{color:#7fd69a}.pss .off{color:#ffb86b}.pss .cap{color:#ffd479}.pss .ng{color:#ff9aa5}.psl{display:block;margin-top:4px;color:#8fa3b3;font-size:11px}.pscope{margin:6px 0 0;font-size:12px;line-height:1.55;color:#a9bccb}.pguide{margin:6px 0 0 18px;padding:0;font-size:12.5px;line-height:1.55;color:#cfe0ee}.pguide li{margin-bottom:5px}
 #ck3d{position:absolute;inset:0;z-index:3;background:#000}#ck3d canvas{display:block;width:100%;height:100%;cursor:grab}#ck3d .ckerr{color:#ffb21e;padding:20px}
-.pilotm #micBtn{z-index:5}.pilotm #micfb{z-index:6}
+.pilotm #micfb{z-index:6}
 .pilotp .prow.pview .cb{font-size:11.5px}
 .pilotm #banner{z-index:6}
 .pilotm #main{grid-template-columns:minmax(0,1fr)}
@@ -559,7 +559,7 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 .psh .psk{font-style:normal;font-size:11px;color:#ffd166;margin-left:6px}
 /* 마이크 단추(누르고 있는 동안 듣기) — 지상 · 관제탑 위쪽 줄 · 조종사 체험 교신 칸 */
 [data-mic]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
-#micBtn.busy,#gnav button.gmic.busy,.pmicb.busy{background:#4a3a10;border-color:#d0a030}
+#gnav button.gmic.busy,.pmicb.busy,.vptt.busy{background:#4a3a10;border-color:#d0a030}
 #gnav button.gmic{color:var(--ok);min-width:40px}
 #gnav button.gmic.on{background:#5a1a1a;border-color:#e05050;color:#fff;box-shadow:0 0 0 3px rgba(224,80,80,.35)}
 .pmicb{display:flex;align-items:center;gap:8px;width:100%;margin-top:8px;padding:9px 12px;border:1px dashed #3d6a8a;border-radius:8px;background:rgba(8,16,24,.6);color:var(--ok);font-size:15px;cursor:pointer;text-align:left}
@@ -568,18 +568,22 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 .pmicb.on{background:#5a1a1a;border:1px solid #e05050;box-shadow:0 0 0 3px rgba(224,80,80,.35)}.pmicb.on span{color:#fff}
 .pilotm #micfb{top:auto;bottom:30px;left:12px}
 .pilotp h6.hmic{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.pilotp h6.hmic .pmicb{width:auto;margin:0;padding:5px 12px;font-size:14px;border-style:solid;flex:0 0 auto}
+.pilotp h6.hmic .pmicb{width:auto;margin:0;padding:8px 16px;font-size:17px;min-height:40px;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;border-style:solid;flex:0 0 auto}
 .pilotp h6.hmic .pmicb span{font-size:12px;font-weight:400}
 /* 말하기 예시(연습용) */
-#exBtn{position:absolute;left:394px;top:10px;height:31px;padding:0 9px;background:rgba(5,9,14,.85);border:1px solid var(--line);border-radius:6px;color:#9fb6c8;font-size:12px;cursor:pointer;z-index:3}
-#exBtn.solo{left:auto;right:66px;top:8px;height:40px}
-#exBtn.on,#gnav button.gmicex.on,.pexb.on{background:#123a2a;border-color:#3f9f6f;color:#bff0d0}
-#micex{position:absolute;left:10px;bottom:30px;max-width:min(640px,calc(100% - 20px));background:rgba(4,10,16,.9);border:1px solid #3f9f6f;border-radius:7px;padding:6px 10px;z-index:4;color:#dbe8f2;font-size:12px;pointer-events:none}
-#micex b{color:#9fe0bb;font-weight:600}#micex small{color:#8aa2b4;margin-left:4px}
-#micex p{margin:3px 0 0;font:13px/1.45 var(--mono);color:#fff}
+
+
+.pexb.on{background:#123a2a;border-color:#3f9f6f;color:#bff0d0}
+#scope{--vdh:92px}.vd #cv{bottom:var(--vdh);height:auto}.vd #delview{bottom:var(--vdh)}.vd #ops{bottom:calc(var(--vdh) + 6px)}.vd #inst{bottom:calc(var(--vdh) + 10px)}.vd #cap:not([hidden]){bottom:calc(var(--vdh) + 8px)}
+#vdock{position:absolute;left:0;right:0;bottom:0;height:var(--vdh);box-sizing:border-box;z-index:5;display:flex;gap:10px;align-items:stretch;padding:8px 10px;background:#0a141d;border-top:1px solid #2b4a66}#vdock[hidden]{display:none}
+.vptt{flex:0 0 auto;min-width:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border:2px solid #3f8f5f;border-radius:12px;background:#0f2a1c;color:#d8f5e3;font-size:24px;line-height:1.1;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.vptt span{font-size:13px;font-weight:700}.vptt small{font-size:10.5px;color:#8fb3cc}.vptt.on{background:#5a1a1a;border-color:#e05050;color:#fff;box-shadow:0 0 0 3px rgba(224,80,80,.35)}
+.vb{flex:1;min-width:0;overflow-y:auto;display:flex;flex-direction:column;gap:3px;color:#cfe0ee;font-size:12px}.vh{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.vh small{color:#8aa2b4;font-size:11px}.vexb{padding:3px 9px;border:1px solid #3d6a8a;border-radius:7px;background:rgba(8,16,24,.6);color:#9fb6c8;font-size:12px;cursor:pointer}.vexb.on{background:#123a2a;border-color:#3f9f6f;color:#bff0d0}.vx{margin:0;font:13px/1.4 var(--mono);color:#fff}
+#vfb{font:12px/1.45 var(--mono);color:#b7c7d5;word-break:break-word}#vfb:empty{display:none}#vdock.fb .vex{display:none}#vdock:not(.fb) #vfb:not(.live){display:none}#vfb b{color:#8fb3cc;font-weight:600;margin-right:4px}#vfb.ok{color:#cfeedd}#vfb.no{color:#f0b0b0}#vfb .mp{color:var(--ok)}#vfb .me{color:#f0b060}#vfb .mh{color:#e07070}
+.vcl{flex:0 0 auto;align-self:flex-start;width:28px;height:28px;border:1px solid #2b4a66;border-radius:6px;background:transparent;color:#8aa2b4;cursor:pointer}
+@media (max-width:900px),(max-height:560px){#scope{--vdh:104px}.vptt{min-width:92px;font-size:22px}.vptt span{font-size:12px}.vx{font-size:12.5px;line-height:1.35}.vh small{display:none}#vdock{gap:8px;padding:7px 8px}}
+@media (max-height:560px){#scope{--vdh:82px}.vptt{min-width:120px;flex-direction:row;gap:6px;font-size:20px}#vdock{padding:6px 8px}}      /* 휴대폰 가로: 지도가 너무 작아지지 않게 낮게 */
 .pmicw{display:inline-flex;gap:6px;align-items:center}
 .pexb{padding:5px 10px;border:1px solid #3d6a8a;border-radius:8px;background:rgba(8,16,24,.6);color:#9fb6c8;font-size:12px;cursor:pointer}
 .pex{margin:2px 0 6px;padding:6px 9px;border:1px solid #3f9f6f;border-radius:7px;background:rgba(18,58,42,.35);font:13px/1.45 var(--mono);color:#eaf6ef}
 .pex b{font-family:inherit;color:#9fe0bb;font-weight:600;margin-right:4px}
-.pex.dex{margin:6px 0 10px}.pex.dex small{font-family:var(--sans,inherit);color:#8aa2b4;font-size:11px}
-.v-del #delview{top:52px;padding-top:4px}      /* 비행허가: 오른쪽 위 「예시」 · 🎤 단추 밑 띠를 비워 내용이 단추 아래로 지나가지 않게 */
+.v-del #delview{top:52px;padding-top:4px}      /* 비행허가: 오른쪽 위 「🎤 음성」 단추 밑 띠를 비워 내용이 단추 아래로 지나가지 않게 */

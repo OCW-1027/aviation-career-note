@@ -52,7 +52,7 @@
     if (ATC.Cockpit) ATC.Cockpit.close();
     app.sim = null; $('game').hidden = true; $('lobby').hidden = false; closeModal();
     app.aq = []; if (window.speechSynthesis) speechSynthesis.cancel(); if (ATC.Radio.ctx) ATC.Radio.stop();      /* 로비로 나오면 남은 소리를 모두 끊음 */
-    var opt = load(OPT_KEY, {}), rec = load(REC_KEY, {}); if (opt.level) app.level = opt.level; if (opt.voice !== undefined) app.voice = opt.voice; if (opt.micEx !== undefined) app.micEx = opt.micEx; if (opt.vm2) app.vmode = opt.vm2; if (opt.vfx) app.vfx = opt.vfx; if (opt.vrate) app.vrate = opt.vrate; if (opt.vatc) app.vatc = opt.vatc; voiceSet(); if (opt.flow) app.flow = opt.flow; if (opt.gloss !== undefined) app.gloss = opt.gloss; if (opt.inst !== undefined) app.inst = opt.inst; if (opt.wx) app.wx = opt.wx; if (opt.tab && !app.tabSet) app.tab = opt.tab; app.scn = null;
+    var opt = load(OPT_KEY, {}), rec = load(REC_KEY, {}); if (opt.level) app.level = opt.level; if (opt.voice !== undefined) app.voice = opt.voice; if (opt.micEx !== undefined) app.micEx = opt.micEx; if (opt.vdock !== undefined) app.vdock = opt.vdock; app.vdockSeen = !!opt.vdockSeen; if (opt.vm2) app.vmode = opt.vm2; if (opt.vfx) app.vfx = opt.vfx; if (opt.vrate) app.vrate = opt.vrate; if (opt.vatc) app.vatc = opt.vatc; voiceSet(); if (opt.flow) app.flow = opt.flow; if (opt.gloss !== undefined) app.gloss = opt.gloss; if (opt.inst !== undefined) app.inst = opt.inst; if (opt.wx) app.wx = opt.wx; if (opt.tab && !app.tabSet) app.tab = opt.tab; app.scn = null;
     var h = '';
     ATC.POS_ORDER.forEach(function (k, ix) {
       var p = POS[k], r = rec[k + app.level], shut = D.modes && D.modes.indexOf(k) < 0;      /* 이 공항에서 아직 열지 않은 자리 */
@@ -82,7 +82,7 @@
   function voiceSet() { var RD = ATC.Radio; RD.fx = app.vfx === 'weak' ? 'weak' : 'strong'; RD.rate = app.vrate === 's' ? 0.9 : app.vrate === 'f' ? 1.12 : 1; RD.atc = app.vatc === 'f' ? 'ctlf' : 'ctl'; if (RD.ctx && app.voice && packOn()) RD.loadAll(); }
   /* 녹음 조각(무선 음성)을 쓰는가: 음성 방식이 「무선 음성」이고, 이 공항의 조각이 있을 때. 조각이 없는 공항(D.voice === false)은 브라우저 음성으로 */
   function packOn() { return app.vmode === 'radio' && D.voice !== false && !!ATC.VPARTS; }      /* 음성 묶음 파일이 아예 없는 판(사이트판)도 브라우저 음성으로 */
-  function saveOpt() { save(OPT_KEY, { micEx: !!app.micEx, tab: app.tab, level: app.level, voice: app.voice, vm2: app.vmode, vfx: app.vfx, vrate: app.vrate, vatc: app.vatc, flow: app.flow, gloss: app.gloss, inst: app.inst, wx: app.wx }); }
+  function saveOpt() { save(OPT_KEY, { micEx: !!app.micEx, vdock: !!app.vdock, vdockSeen: !!app.vdockSeen, tab: app.tab, level: app.level, voice: app.voice, vm2: app.vmode, vfx: app.vfx, vrate: app.vrate, vatc: app.vatc, flow: app.flow, gloss: app.gloss, inst: app.inst, wx: app.wx }); }
   function briefing(k) {
     var p = POS[k], L = D.levels[app.level], les = ATC.LEARN_BY[p.les];
     var lvTxt = ['', ATC.T('교통량 적음 · 코치가 다음 조치를 안내 · 비정상 상황 없음 · 복창 오류 없음'), ATC.T('교통량 보통 · 코치 없음 · 비정상 상황 1건 · 간헐적 복창 오류'), ATC.T('교통량 많음 · 비정상 상황 다수 · 복창 오류 빈번 · 복수 활주로 동시 운용')][app.level];
@@ -228,7 +228,7 @@
       else if (type === 'gone') { if (d.id === app.sel) { app.sel = 0; app.pend = []; app.gt = null; app.routePrev = null; } }
 
     });
-    $('cli').hidden = app.pos.view !== 'radar'; $('micBtn').classList.toggle('solo', app.pos.view !== 'radar'); $('micBtn').hidden = app.pos.view === 'ground' || !!(app.sim && app.sim.pilot); $('exBtn').hidden = $('micBtn').hidden; $('exBtn').classList.toggle('solo', app.pos.view !== 'radar');      /* 지상 · 관제탑은 위쪽 단추 줄, 조종사 체험은 아래 교신 칸에 마이크 단추 */
+    $('cli').hidden = app.pos.view !== 'radar'; $('vBtn').classList.toggle('solo', app.pos.view !== 'radar'); $('vBtn').hidden = app.pos.view === 'ground' || !!(app.sim && app.sim.pilot); app.dockSig = ''; renderDock();      /* 지상 · 관제탑은 위쪽 단추 줄, 조종사 체험은 아래 교신 칸에 마이크 단추 */
     app.follow = false; app.viewTo = null; renderGnav(); if (app.view && app.pos.view === 'ground') fitView();   /* 단추 너비가 정해진 뒤 한 번 더(좁은 화면의 위쪽 띠 높이) */
     renderTop(true); last = 0;
   }
@@ -268,7 +268,7 @@
     moveView(dt);
     if (sim.pilot && ATC.Cockpit && ATC.Cockpit.on) ATC.Cockpit.frame(app.paused ? 0 : dt); else draw();      /* 조종사 체험 3D: 레이더 그리기 대신 3D */
     if (app.inst && !app.paused && !sim.over && sim.coach && ts - app.instT > 5000) instCheck(ts);
-    uiT += dt; if (uiT > 0.3) { uiT = 0; renderTop(); renderStrips(); renderCmd(); renderCoach(); renderMicEx(); if (app.pos.view === 'del') renderDel(); }
+    uiT += dt; if (uiT > 0.3) { uiT = 0; renderTop(); renderStrips(); renderCmd(); renderCoach(); renderDock(); if (app.pos.view === 'del') renderDel(); }
   }
   function draw() {
     if (app.pos.view === 'del') return;
@@ -550,7 +550,6 @@
         if (d.atis) pc.push({ k: 'atis', v: sim.atis }); if (d.fl) pc.push({ k: 'amendfl', old: ac.rfl, v: ac.rfl + d.fl }); if (d.slot && ac.ctot) pc.push({ k: 'slot', v: U.hhmm(ac.ctot), tsat: U.hhmm(ac.tsat) });
         var pq = { k: 'clr', destName: ac.destName, sid: d.sid || '＿＿＿', alt: d.alt || 0, sq: ac.squawk }; if (d.trans) pq.trans = d.trans; pc.push(pq);
         h += ATC.T('<div class="dref"><h4>송신 문구 미리보기</h4><p class="prev">{0}</p></div>', esc(ATC.phrase(sim, ac, pc).atc).replace('maintain 0,', 'maintain ＿＿＿,'));
-        if (app.micEx) { var mx = micExample(); if (mx && mx.t) h += '<div class="pex dex"><b>🎤 ' + ATC.T('말하기 예시') + '</b> <small>' + esc(mx.n) + '</small><br>' + esc(mx.t) + '</div>'; }
       } else if (ac.clr) h += ATC.T('<div class="dref"><h4>발부한 허가</h4><p class="prev">{0} departure · maintain {1} · squawk {2}</p></div>', ac.clr.sid, fmt.alt(ac.clr.alt), ac.clr.sq).replace(' departure · ', ' departure' + (ac.clr.trans ? ', ' + ac.clr.trans + ' transition' : '') + ' · ');
     } else h += ATC.T('<div class="fpl empty">스트립(항공기 목록)에서 항공기를 선택하면 비행계획이 표시됩니다.</div>');
     h += ATC.T('<div class="dref"><h4>현재 조건</h4><p>ATIS <b>{0}</b> · 출발 활주로 <b>{1}</b> · 바람 {2} · QNH {3} · 지금 {4} UTC</p></div></div><div class="dcol">', sim.atis, sim.multi ? sim.flow.deps.join(' · ') : sim.depRwy, fmt.wind(sim.wind), sim.qnh, U.hhmm(sim.utc()));
@@ -653,7 +652,7 @@
     if (g) {
       if (D.areas && $('cv').clientWidth < 760) h += '<select data-areas="1" aria-label="' + ATC.T('구역') + '"><option value="">' + ATC.T('구역 ▾') + '</option>' + D.areas.map(function (a, i) { return '<option value="' + i + '">' + esc(a.label) + '</option>'; }).join('') + '</select>';   /* 좁은 화면은 고르기 칸 하나로 */
       else (D.areas || []).forEach(function (a, i) { h += '<button data-area="' + i + '">' + esc(a.label) + '</button>'; });
-      h += '<button data-g="follow" class="' + (app.follow ? 'on' : '') + '" title="' + ATC.T('선택한 항공기를 화면 중앙에 두고 추적합니다 (G)') + '">' + ATC.T('추적') + '</button>' + micB('gmic') + exB('gmicex');
+      h += '<button data-g="follow" class="' + (app.follow ? 'on' : '') + '" title="' + ATC.T('선택한 항공기를 화면 중앙에 두고 추적합니다 (G)') + '">' + ATC.T('추적') + '</button>' + vdB('gvd');
     }
     el.innerHTML = h;
   }
@@ -844,21 +843,30 @@
     if (!c.length) return { t: '', n: ATC.T('{0}: 지금은 줄 지시가 없습니다.', ac.cs) };
     return { t: ATC.phrase(sim, ac, c).atc, n: ATC.T('예시 — 숫자 · 지점은 상황에 맞게 바꿔 말하세요') };
   }
-  function renderMicEx() {
-    var b = $('micex'); if (!b) return;
-    var on = app.micEx && app.sim && !app.sim.pilot && !app.over && !app.instOn && app.pos.view !== 'del', x = on ? micExample() : null;      /* 비행허가는 떠 있는 상자 대신 미리보기 칸 아래(renderDel) */
-    b.hidden = !x;
-    document.querySelectorAll('[data-micex]').forEach(function (e) { e.classList.toggle('on', !!app.micEx); });
-    if (!x) return;
-    var h = '<b>🎤 ' + ATC.T('말하기 예시') + '</b> <small>' + esc(x.n) + '</small>' + (x.t ? '<p>' + esc(x.t) + '</p>' : '');
-    if (h !== app.micExSig) { app.micExSig = h; b.innerHTML = h; }
+  /* 음성 관제 줄(지도 아래 고정) — 큰 「누르고 말하기」 단추 · 말하기 예시 · 알아들은 말. 지도 위에 얹지 않음 */
+  var TOUCH = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;      /* 휴대폰 · 태블릿: M 키 안내를 빼고 단추만 */
+  function vdB(cls) { return '<button type="button" data-vdock="1" class="' + cls + (app.vdock ? ' on' : '') + '" title="' + esc(ATC.T('음성 관제 줄 열기 · 닫기 — 누르고 영어로 말하기 · 말하기 예시')) + '">🎤 ' + ATC.T('음성') + '</button>'; }
+  function renderDock() {
+    var d = $('vdock'), sc = $('scope'); if (!d || !sc) return;
+    var on = !!(app.vdock && app.sim && !app.sim.pilot && !app.over);
+    document.querySelectorAll('[data-vdock]').forEach(function (e) { e.classList.toggle('on', !!app.vdock); });
+    if (sc.classList.contains('vd') !== on) { sc.classList.toggle('vd', on); d.hidden = !on; requestAnimationFrame(function () { resize(); if (app.pos && app.pos.view !== 'del') fitView(); }); }
+    if (!on) return;
+    if (!d.firstChild) d.innerHTML = '<button type="button" data-mic="1" class="vptt">🎤<span>' + ATC.T('누르고 말하기') + '</span><small>' + (TOUCH ? ATC.T('떼면 송신') : ATC.T('떼면 송신 · M 키')) + '</small></button><div class="vb"><div class="vex"></div><div id="vfb"></div></div><button type="button" data-vdock="1" class="vcl" title="' + esc(ATC.T('음성 관제 줄 닫기')) + '">✕</button>';
+    var x = app.micEx ? micExample() : null, sw = '<button type="button" data-micex="1" class="vexb' + (app.micEx ? ' on' : '') + '">' + ATC.T('말하기 예시') + ' ' + (app.micEx ? ATC.T('켬') : ATC.T('끔')) + '</button>';
+    var h = '<div class="vh">' + sw + (x ? ' <small>' + esc(x.n) + '</small>' : ' <small>' + ATC.T('켜면 고른 항공기에 맞는 표준 문구가 여기 나옵니다') + '</small>') + '</div>' + (x && x.t ? '<p class="vx">' + esc(x.t) + '</p>' : '');
+    if (h !== app.dockSig) { app.dockSig = h; d.querySelector('.vex').innerHTML = h; }
   }
   function pEx(opts) { if (!app.micEx) return ''; var g = (opts || []).filter(function (o) { return o.ok; })[0]; return g ? '<div class="pex"><b>🎤 ' + ATC.T('말하기 예시') + '</b> ' + esc(g.t) + '</div>' : ''; }
   function exB(cls) { return '<button type="button" data-micex="1" class="' + cls + (app.micEx ? ' on' : '') + '" title="' + esc(ATC.T('말하기 예시 켜기 · 끄기 — 마이크로 무엇을 말하면 되는지 표준 문구를 보여 줍니다(연습용)')) + '">' + ATC.T('예시') + '</button>'; }
   /* 마이크 단추(누르고 있는 동안 듣기) — 레이더 · 지상 · 조종사 체험 모두 data-mic 하나로 처리 */
-  function micB(cls) { return '<button type="button" data-mic="1" class="' + cls + (MIC.on && MIC.want ? ' on' : '') + '" title="' + esc(ATC.T('누르고 있는 동안 영어로 말하고, 다 말한 뒤 떼면 보냅니다 (M 키) — 크롬 · 엣지')) + '">🎤' + (cls === 'pmicb' ? ' <span>' + ATC.T('누른 채 영어로 말하기 (M)') + '</span>' : '') + '</button>'; }
+  function micB(cls) { return '<button type="button" data-mic="1" class="' + cls + (MIC.on && MIC.want ? ' on' : '') + '" title="' + esc(TOUCH ? ATC.T('누르고 있는 동안 영어로 말하고, 다 말한 뒤 떼면 보냅니다') : ATC.T('누르고 있는 동안 영어로 말하고, 다 말한 뒤 떼면 보냅니다 (M 키) — 크롬 · 엣지')) + '">🎤' + (cls === 'pmicb' ? ' <span>' + (TOUCH ? ATC.T('누르고 영어로 말하기') : ATC.T('누르고 영어로 말하기 (M)')) + '</span>' : '') + '</button>'; }
   function micMark() { document.querySelectorAll('[data-mic]').forEach(function (b) { b.classList.toggle('on', MIC.on && MIC.want); b.classList.toggle('busy', MIC.on && !MIC.want); }); }
-  function micFb(html, cls) { var b = $('micfb'); if (!b) return; b.innerHTML = html; b.className = cls || ''; b.hidden = false; clearTimeout(MIC.tmr); MIC.tmr = setTimeout(function () { b.hidden = true; }, cls === 'live' ? 15000 : 9000); }
+  function micFb(html, cls) { var vf = $('vfb'), dk = $('vdock'); if (vf && $('scope').classList.contains('vd')) {      /* 음성 관제 줄이 열려 있으면 줄 안에: 듣는 동안은 예시 아래 한 줄, 결과는 8초 동안 예시 자리에 */
+      var ln = String(html).split('<br>'), ix = ln.findIndex(function (l) { return l.indexOf('class="mp"') >= 0; }); if (ix > 0) ln.unshift(ln.splice(ix, 1)[0]);      /* 좁은 줄: 일치 %를 맨 위로 */
+      vf.innerHTML = ln.join('<br>'); vf.className = cls || ''; clearTimeout(MIC.dtmr); dk.classList.toggle('fb', cls !== 'live');
+      if (cls !== 'live') MIC.dtmr = setTimeout(function () { dk.classList.remove('fb'); }, 8000); return; }
+    var b = $('micfb'); if (!b) return; b.innerHTML = html; b.className = cls || ''; b.hidden = false; clearTimeout(MIC.tmr); MIC.tmr = setTimeout(function () { b.hidden = true; }, cls === 'live' ? 15000 : 9000); }
   function micStart() {
     if (!app.sim) return;
     MIC.want = true;
@@ -883,7 +891,7 @@
       MIC.on = false; MIC.rec = null;
       var alts = []; if (MIC.fin.length) for (var i = 0; i < 5; i++) { var t = MIC.fin.map(function (a) { return a[i] || a[0]; }).join(' ').trim(); if (t && alts.indexOf(t) < 0) alts.push(t); }
       if (alts.length) micHandle(alts);
-      else if (!MIC.err || MIC.err === 'aborted') micFb(ATC.T('알아들은 말이 없습니다 — 🎤(M 키)를 누른 채 말하고, 다 말한 뒤 떼세요.'), 'no');
+      else if (!MIC.err || MIC.err === 'aborted') micFb(TOUCH ? ATC.T('알아들은 말이 없습니다 — 🎤를 누르고 말한 뒤, 다 말하면 떼세요.') : ATC.T('알아들은 말이 없습니다 — 🎤(M 키)를 누른 채 말하고, 다 말한 뒤 떼세요.'), 'no');
       var ag = MIC.again && MIC.want; MIC.again = false; micMark();
       if (ag) micStart();      /* 알아듣는 사이 다시 눌러 둔 경우 */
     };
@@ -1004,10 +1012,10 @@
     });
     window.addEventListener('keyup', function (e) { var k = ATC.keyOf(e); if (k === 'h') app.hdgAim = false; if (k === 'm') micStop(); });
     window.addEventListener('blur', function () { app.hdgAim = false; if (MIC.want) micStop(); });      /* 다른 창으로 가면 듣기 끝 */
-    var mb = $('micBtn'); if (mb) mb.setAttribute('data-mic', '1');
     document.addEventListener('pointerdown', function (e) { var b = e.target.closest && e.target.closest('[data-mic]'); if (b && app.sim && !app.over) micHold(e); }, true);
     document.addEventListener('contextmenu', function (e) { if (e.target.closest && e.target.closest('[data-mic]')) e.preventDefault(); });
-    document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-micex]'); if (!b) return; e.preventDefault(); app.micEx = !app.micEx; app.micExSig = ''; app.cmdSig = ''; saveOpt(); renderMicEx(); if (app.sim && app.sim.pilot) renderCmd(); });      /* 휴대폰 길게 누르기 메뉴 막기 */
+    document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-vdock]'); if (!b) return; e.preventDefault(); app.vdock = !app.vdock; if (app.vdock && !app.vdockSeen) { app.vdockSeen = true; app.micEx = true; } app.dockSig = ''; saveOpt(); renderDock(); });      /* 처음 열 때는 말하기 예시도 켬 */
+    document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-micex]'); if (!b) return; e.preventDefault(); app.micEx = !app.micEx; app.dockSig = ''; app.cmdSig = ''; saveOpt(); renderDock(); if (app.sim && app.sim.pilot) renderCmd(); });      /* 휴대폰 길게 누르기 메뉴 막기 */
   }
 
   /* ================= 모달 · 학습 · 결과 ================= */
