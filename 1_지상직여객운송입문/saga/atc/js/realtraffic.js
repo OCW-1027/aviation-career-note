@@ -149,9 +149,26 @@
   /* 관제탑 · 지상 근무: 실제 기체를 게임의 예정 편에 끼워 넣음.
      도착 = 공항으로 내려오는 실제 기체(거리 · 속도로 결승 진입 시각을 계산) · 출발 = 지상의 실제 기체(지상 이동 중인 기체 먼저, 그다음 주기장에 선 기체).
      지상 그림은 실제 축척이 아니라 주기장은 실제 자리가 아니라 그 항공사의 터미널에서 고름(게임 배정) */
+  /* 하네다 실제 편의 국내선 · 국제선(주기장 터미널을 정함) — 실제 자료에는 목적지가 없어 편명으로 정함.
+     일본 밖 항공사 · ZIPAIR · 일본화물항공 = 국제선 / JAL = 1 ~ 99 국제선(하네다 국제선 JL1 ~ 99), 100 이상 국내선 /
+     ANA = 101 ~ 239 · 800 ~ 899 국제선(미주 · 유럽 · 아시아), 그 밖 국내선 / 그 밖의 일본 항공사 = 국내선. 하네다가 아니면 정하지 않음 */
+  /* 일본 밖 항공사의 본국(목적지 · 출발지를 그 나라 공항에서 먼저 고름 — ICAO 지역 부호 앞글자) */
+  RT.HOME = { KAL: 'RK', JJA: 'RK', JNA: 'RK', TWB: 'RK', ESR: 'RK', APZ: 'RK', AIH: 'RK', EOK: 'RK', CAL: 'RC', EVA: 'RC', SJX: 'RC', TTW: 'RC', CPA: 'VH', HKE: 'VH', CRK: 'VH', AHK: 'VH', AMU: 'VM',
+    CCA: 'Z', CES: 'Z', CSN: 'Z', CXA: 'Z', CHH: 'Z', CSZ: 'Z', CDG: 'Z', CQH: 'Z', CSH: 'Z', CKK: 'Z', MGL: 'ZM', HVN: 'VV', VJC: 'VV', PAL: 'RP', CEB: 'RP', THA: 'VT', MAS: 'WM', XAX: 'WM', AXM: 'WM', SIA: 'WS', TGW: 'WS', GIA: 'WI',
+    AIC: 'VA VE VI VO', UZB: 'UT', QFA: 'Y', JST: 'Y', ANZ: 'NZ', UAE: 'OM', QTR: 'OT', ETD: 'OM', THY: 'LT', ETH: 'HA', DLH: 'ED', AFR: 'LF', KLM: 'EH', BAW: 'EG', VIR: 'EG', FIN: 'EF', SWR: 'LS', AUA: 'LO', SAS: 'EK ES EN', ITY: 'LI', CLX: 'EL',
+    UAL: 'K PH', DAL: 'K PH', AAL: 'K PH', ASA: 'K PH', FDX: 'K PH', UPS: 'K PH', GTI: 'K PH', PAC: 'K PH', CKS: 'K PH', ABX: 'K PH', ACA: 'C' };
+  RT.homeOk = function (code, icao) { var h = RT.HOME[code]; return !h || h.split(' ').some(function (p) { return icao.indexOf(p) === 0; }); };
+  RT.scopeOf = function (code, num) {
+    if (ATC.aptId !== 'RJTT') return undefined;
+    if (!RT.JPN[code]) return 'I';
+    if (code === 'TZP' || code === 'NCA') return 'I';
+    if (code === 'JAL') return num < 100 ? 'I' : 'D';
+    if (code === 'ANA') return (num >= 101 && num <= 239) || (num >= 800 && num <= 899) ? 'I' : 'D';
+    return 'D';
+  };
   RT.applyGround = function (sim, d) {
     var D = ATC.D, P = RT.parse(d), spawnD = sim.mode === 'TWR' ? 10 : 9, arrs = [], deps = [], other = 0;
-    function flightOf(a) { var type = typeOf(a.t, a.al); return { cs: a.cs, csWord: a.al.cs, num: String(a.num), al: a.al, type: type, wake: D.types[type].wake, perf: D.types[type], rt: true }; }
+    function flightOf(a) { var type = typeOf(a.t, a.al); return { cs: a.cs, csWord: a.al.cs, num: String(a.num), al: a.al, type: type, wake: D.types[type].wake, perf: D.types[type], rt: true, scope: RT.scopeOf(a.al.code, +a.num), home: RT.HOME[a.al.code] ? a.al.code : undefined }; }
     P.list.forEach(function (a) {
       var dc = U.dist(a, D.center), toC = U.brg(a, D.center);
       if (a.hdg !== null && dc > 2 && dc < 45 && a.alt < 16000 && a.vr <= 300 && Math.abs(U.adiff(a.hdg, toC)) < 70) arrs.push({ a: a, t: Math.max(4, Math.min(1500, (dc - spawnD) * 3600 / Math.max(150, a.gs))) });
