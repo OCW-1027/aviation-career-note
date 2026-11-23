@@ -23,6 +23,7 @@
       '<h4>숫자 읽기</h4><p>한 자리씩 읽습니다. 3 = tree, 5 = fife, 9 = niner, 소수점 = decimal. 고도 12,000 = "one two thousand", FL240 = "flight level two four zero", 기수 070 = "heading zero seven zero", 활주로 07L = "runway zero seven left".</p>' +
       '<h4>전이 고도</h4><p>낮은 곳에서는 그 지역 기압(QNH)에 맞춘 고도("feet")를, 높은 곳에서는 표준 기압에 맞춘 비행고도(FL)를 씁니다. <b>이 게임은 14,000ft 미만을 고도, 14,000ft 이상을 FL</b>로 부릅니다. 일본 · 한국의 AIP가 14,000ft를 경계로 쓰지만, 바꾸는 높이(전이 고도 · 전이 레벨)와 쓸 수 있는 가장 낮은 FL은 나라 · 공항 · 그날 기압에 따라 다르므로 실제로는 해당 AIP를 따릅니다.</p>' +
       '<h4>나라별 표현 차이</h4><p>국제 표준(ICAO)은 "descend to altitude 5,000 feet", 일본·한국·미국식은 "descend and maintain 5,000". 게임은 일본·한국에서 듣게 되는 형식을 씁니다.</p>' +
+      '<h4>호출부호와 무선 호출 이름</h4><p>항공사 호출부호는 ICAO 3자 부호(JAL · ANA · KAL)와 편명 숫자로 이루어지고, 무선으로는 부호 대신 정해진 <b>무선 호출 이름(telephony designator)</b>을 말합니다. JAL123 = "Japan Air one two three", KAL85 = "Korean Air eight five". 회사 이름과 다른 곳이 많습니다 — 중화항공 = DYNASTY, 에어프랑스 = AIRFRANS, 에어로로직(화물) = GERMAN CARGO, 솔라시드에어 = NEW SKY. 공식 철자는 <b>JAPANAIR · KOREANAIR · NEWSKY</b>처럼 붙여 쓰지만(ICAO Doc 8585 · FAA JO 7340.2) 읽는 소리는 같아서, 게임 화면에는 읽기 쉽게 JAPAN AIR처럼 띄어 적습니다. 대형기는 첫 교신 때 호출부호 뒤에 HEAVY를 붙입니다.</p>' +
       '<h4>음성 알파벳(ICAO)</h4><p class="lph">' + Object.keys(ATC.PH).map(function (k) { return '<i>' + k + '</i> ' + ATC.PH[k]; }).join(' · ') + '</p>' },
     { id: 'rb', t: '복창 오류 정정', h:
       '<p>조종사가 지시와 다른 숫자를 복창하면 즉시 <b>"Negative"</b>로 정정하고 올바른 지시를 다시 송신합니다. 정정하지 않으면 항공기는 <b>잘못 복창한 수치대로</b> 비행합니다. 고도 · 기수 · 스쿼크 · 활주로 번호에서 오류가 가장 잦습니다.</p>' +

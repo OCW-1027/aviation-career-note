@@ -22,6 +22,7 @@
       '<h4>数字の読み方</h4><p>1桁ずつ読みます。3 = tree、5 = fife、9 = niner、小数点 = decimal。高度12,000 = "one two thousand"、FL240 = "flight level two four zero"、針路070 = "heading zero seven zero"、滑走路07L = "runway zero seven left"。</p>' +
       '<h4>転移高度</h4><p>低いところではその地域の気圧(QNH)に合わせた高度("feet")を、高いところでは標準気圧に合わせたフライトレベル(FL)を使います。<b>このゲームでは14,000ft未満を高度、14,000ft以上をFL</b>で呼びます。日本・韓国のAIPは14,000ftを境にしていますが、切り替える高さ(転移高度・転移レベル)や使える最も低いFLは国・空港・その日の気圧によって違うので、実際にはそれぞれのAIPに従います。</p>' +
       '<h4>国による言い方の違い</h4><p>国際標準(ICAO)は "descend to altitude 5,000 feet"、日本・韓国・米国式は "descend and maintain 5,000"。このゲームでは、日本・韓国で耳にする形を使っています。</p>' +
+      '<h4>コールサインと無線呼出符号</h4><p>航空会社のコールサインは ICAO 3レターコード(JAL・ANA・KAL)と便名の数字でできていて、無線ではコードの代わりに決められた<b>無線呼出符号(テレフォニー)</b>を言います。JAL123 = "Japan Air one two three"、KAL85 = "Korean Air eight five"。会社名と違うものも多くあります — チャイナエアライン = DYNASTY、エールフランス = AIRFRANS、エアロロジック(貨物) = GERMAN CARGO、ソラシドエア = NEW SKY。正式な綴りは <b>JAPANAIR・KOREANAIR・NEWSKY</b> のように続けて書きますが(ICAO Doc 8585・FAA JO 7340.2)、読み方は同じなので、ゲーム画面では読みやすく JAPAN AIR のように離して表示しています。大型機は最初の交信でコールサインの後に HEAVY を付けます。</p>' +
       '<h4>フォネティックコード(ICAO)</h4><p class="lph">' + Object.keys(ATC.PH).map(function (k) { return '<i>' + k + '</i> ' + ATC.PH[k]; }).join(' · ') + '</p>' },
     { id: 'rb', t: '復唱の誤りの訂正', h:
       '<p>パイロットが指示と違う数字を復唱したら、すぐに<b>"Negative"</b>で訂正し、正しい指示を送信し直します。訂正しなければ、航空機は<b>誤って復唱した数値のまま</b>飛行します。誤りが特に多いのは、高度・針路・スコーク・滑走路番号です。</p>' +
