@@ -29,7 +29,7 @@
       note: ATC.pick({ ko: '한국 AIP AMDT 12/26 기준 · 교육용으로 단순화 · 실제 운항과 관제에 쓸 수 없음', ja: '韓国AIP AMDT 12/26基準・教育用に簡略化・実際の運航や管制には使えません', en: 'Based on AIP Republic of Korea AMDT 12/26 · simplified for training · not for real-world use' })
     };
     D.sidByRwy = true; D.gateSwap = { S: { NOPIK: 'BINIL' }, N: { BINIL: 'NOPIK' } };      /* SID 이름이 활주로 방향마다 다름(EGOBA 2E ↔ 2C) · 북서쪽 출구는 북풍 NOPIK ↔ 남풍 BINIL — 비행허가 활주로 변경 때 씀 */
-    D.voice = { dir: 'assets/voice/rksi/', parts: { ctl: 12, ctlf: 12, p1: 14, p2: 14 } };      /* 인천 음성 조각(assets/voice/rksi/ — VC_APT=RKSI voice_corpus_apt.js → VBANK_APT=RKSI voice_bank.js → VAPT=RKSI voice_synth.py). 목소리는 다른 공항과 같음(관제사 미국 영어). ※ 항공사 표 · 편명 순서를 바꾸면 음성 조각을 다시 만들어야 함 */
+    D.voice = { dir: 'assets/voice/rksi/', parts: { ctl: 13, ctlf: 13, p1: 15, p2: 15 } };      /* 인천 음성 조각(assets/voice/rksi/ — VC_APT=RKSI voice_corpus_apt.js → VBANK_APT=RKSI voice_bank.js → VAPT=RKSI voice_synth.py). 목소리는 다른 공항과 같음(관제사 미국 영어). ※ 항공사 표 · 편명 순서를 바꾸면 음성 조각을 다시 만들어야 함 */
     D.modes = ['DEL', 'GND', 'TWR', 'APP', 'ACC'];
     D.faceVec = { north: [-1, 0], south: [1, 0], east: [0, 1], west: [0, -1] };
     D.twrZoneNM = 6; D.indepParallel = true;      /* AD 2.22 1.11: ILS 34L ↔ 33R · ILS 16R ↔ 15L 독립 평행 접근 */

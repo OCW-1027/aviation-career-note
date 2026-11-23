@@ -32,7 +32,7 @@
   function hdgOf(la, lo, trk) { var D = ATC.D, a = D.ll2xy(la, lo), r = trk * Math.PI / 180, b = D.ll2xy(la + Math.cos(r) * 0.02, lo + Math.sin(r) * 0.02 / Math.cos(la * Math.PI / 180)); return U.n360(Math.round(U.brg(a, b))) || 360; }
   /* 자료 → 쓸 수 있는 항공기(편명이 항공사 3자 + 숫자 · 공중 · 게임 항공사 표에 있는 것). 반환: {list, skip: {why: 수}} */
   /* 실제 교통 근무 전용 항공사(게임 항공사 표에 없는 곳) — ICAO 3자 부호 : [무선 호출 이름, 이름]. 게임 표에 있는 부호가 먼저.
-     아시아나(AAR) · 에어부산(ABL) · 에어서울(ASV)은 실제로 다니는 동안 실제 교통 근무에서 씀(사용자 결정 11/23 — 평소 근무의 게임 항공사 표에는 넣지 않음). 호출 이름은 FAA JO 7340.2R(2026-10-29) · N JO 7340.942로 GPT ATC-20차 확인(필수 6 반영: TWB SONOROUS · AIH QUANTUM SKY · ESR EASTARJET · VJC VIETJETAIR · CEB CEBU AIR · HAL → ASA ALASKA, 추가 8).
+     아시아나(AAR) · 에어부산(ABL) · 에어서울(ASV)은 실제로 다니는 동안 실제 교통 근무에서 씀(사용자 결정 11/23 — 평소 근무의 게임 항공사 표에는 넣지 않음). 호출 이름은 FAA JO 7340.2R(2026-10-29) · N JO 7340.942로 GPT ATC-20차 확인(필수 6 반영: TWB SONOROUS · AIH QUANTUM SKY · ESR EASTARJET · VJC VIETJETAIR · CEB CEBU AIR · HAL → ASA ALASKA, 추가 8). GPT ATC-21차(반영표 A21): AMX · BOX · GEC · MAA · NCR · SJO · AAE · PTA · QDA 추가, AAR · ABL · ASV 호출 이름 맞음.
      HAL/HAWAIIAN은 2025-10-30부터 쓰지 않아 넣지 않음(실제 자료의 HAL 부호를 ASA로 바꿔 읽지도 않음 — 뺌). JAPAN AIR · NEW SKY · KOREAN AIR는 공식 철자에 공백이 없지만(JAPANAIR 등) 읽는 소리는 같아 게임 표와 같은 표기 유지 */
   RT.EXTRA = {
     ANA: ['ALL NIPPON', 'All Nippon Airways'], JAL: ['JAPAN AIR', 'Japan Airlines'], APJ: ['AIR PEACH', 'Peach Aviation'], JJP: ['ORANGE LINER', 'Jetstar Japan'], SKY: ['SKYMARK', 'Skymark Airlines'],
@@ -51,10 +51,12 @@
     ASA: ['ALASKA', 'Alaska Airlines'], ACA: ['AIR CANADA', 'Air Canada'], FDX: ['FEDEX', 'FedEx Express'], UPS: ['UPS', 'UPS Airlines'], GTI: ['GIANT', 'Atlas Air'], PAC: ['POLAR', 'Polar Air Cargo'],
     CKS: ['CONNIE', 'Kalitta Air'], ABX: ['ABEX', 'ABX Air'], CLX: ['CARGOLUX', 'Cargolux'],
     EOK: ['AEROHANGUK', 'Aero K'], CSH: ['SHANGHAI AIR', 'Shanghai Airlines'], AXM: ['RED CAP', 'AirAsia'], CKK: ['CARGO KING', 'China Cargo Airlines'], AHK: ['AIR HONG KONG', 'Air Hong Kong'],
-    VIR: ['VIRGIN', 'Virgin Atlantic'], ITY: ['ITARROW', 'ITA Airways']
+    VIR: ['VIRGIN', 'Virgin Atlantic'], ITY: ['ITARROW', 'ITA Airways'],
+    AMX: ['AEROMEXICO', 'Aeromexico'], BOX: ['GERMAN CARGO', 'AeroLogic'], GEC: ['LUFTHANSA CARGO', 'Lufthansa Cargo'], MAA: ['MAS CARGA', 'MasAir'], NCR: ['NATIONAL CARGO', 'National Airlines'],
+    SJO: ['JEY SPRING', 'Spring Japan'], AAE: ['EUROVIKING', 'Air Atlanta Europe'], PTA: ['PARATA AIR', 'Parata Air'], QDA: ['SKY LEGEND', 'Qingdao Airlines']
   };
-  RT.CARGO = { CKK: 1, AHK: 1, NCA: 1, AIH: 1, FDX: 1, UPS: 1, GTI: 1, PAC: 1, CKS: 1, ABX: 1, CLX: 1 };
-  RT.JPN = { ANA: 1, JAL: 1, APJ: 1, JJP: 1, SKY: 1, ADO: 1, SNJ: 1, SFJ: 1, JTA: 1, IBX: 1, FDA: 1, JAC: 1, TZP: 1, NCA: 1 };
+  RT.CARGO = { BOX: 1, GEC: 1, MAA: 1, CKK: 1, AHK: 1, NCA: 1, AIH: 1, FDX: 1, UPS: 1, GTI: 1, PAC: 1, CKS: 1, ABX: 1, CLX: 1 };
+  RT.JPN = { SJO: 1, ANA: 1, JAL: 1, APJ: 1, JJP: 1, SKY: 1, ADO: 1, SNJ: 1, SFJ: 1, JTA: 1, IBX: 1, FDA: 1, JAC: 1, TZP: 1, NCA: 1 };
   var XAL = {};
   /* 게임 표에 없는 실제 항공사 → 근무 동안만 쓰는 항공사 정보(가상 항공사처럼 돌발 상황이 걸리지 않게 real 표시, 노선 제한 없음) */
   RT.extraAl = function (code) {
@@ -153,7 +155,7 @@
      일본 밖 항공사 · ZIPAIR · 일본화물항공 = 국제선 / JAL = 1 ~ 99 국제선(하네다 국제선 JL1 ~ 99), 100 이상 국내선 /
      ANA = 101 ~ 239 · 800 ~ 899 국제선(미주 · 유럽 · 아시아), 그 밖 국내선 / 그 밖의 일본 항공사 = 국내선. 하네다가 아니면 정하지 않음 */
   /* 일본 밖 항공사의 본국(목적지 · 출발지를 그 나라 공항에서 먼저 고름 — ICAO 지역 부호 앞글자) */
-  RT.HOME = { KAL: 'RK', AAR: 'RK', ABL: 'RK', ASV: 'RK', JJA: 'RK', JNA: 'RK', TWB: 'RK', ESR: 'RK', APZ: 'RK', AIH: 'RK', EOK: 'RK', CAL: 'RC', EVA: 'RC', SJX: 'RC', TTW: 'RC', CPA: 'VH', HKE: 'VH', CRK: 'VH', AHK: 'VH', AMU: 'VM',
+  RT.HOME = { KAL: 'RK', AAR: 'RK', ABL: 'RK', ASV: 'RK', PTA: 'RK', QDA: 'Z', AMX: 'MM', MAA: 'MM', BOX: 'ED', GEC: 'ED', NCR: 'K PH', JJA: 'RK', JNA: 'RK', TWB: 'RK', ESR: 'RK', APZ: 'RK', AIH: 'RK', EOK: 'RK', CAL: 'RC', EVA: 'RC', SJX: 'RC', TTW: 'RC', CPA: 'VH', HKE: 'VH', CRK: 'VH', AHK: 'VH', AMU: 'VM',
     CCA: 'Z', CES: 'Z', CSN: 'Z', CXA: 'Z', CHH: 'Z', CSZ: 'Z', CDG: 'Z', CQH: 'Z', CSH: 'Z', CKK: 'Z', MGL: 'ZM', HVN: 'VV', VJC: 'VV', PAL: 'RP', CEB: 'RP', THA: 'VT', MAS: 'WM', XAX: 'WM', AXM: 'WM', SIA: 'WS', TGW: 'WS', GIA: 'WI',
     AIC: 'VA VE VI VO', UZB: 'UT', QFA: 'Y', JST: 'Y', ANZ: 'NZ', UAE: 'OM', QTR: 'OT', ETD: 'OM', THY: 'LT', ETH: 'HA', DLH: 'ED', AFR: 'LF', KLM: 'EH', BAW: 'EG', VIR: 'EG', FIN: 'EF', SWR: 'LS', AUA: 'LO', SAS: 'EK ES EN', ITY: 'LI', CLX: 'EL',
     UAL: 'K PH', DAL: 'K PH', AAL: 'K PH', ASA: 'K PH', FDX: 'K PH', UPS: 'K PH', GTI: 'K PH', PAC: 'K PH', CKS: 'K PH', ABX: 'K PH', ACA: 'C' };
@@ -162,6 +164,7 @@
     if (ATC.aptId !== 'RJTT') return undefined;
     if (!RT.JPN[code]) return 'I';
     if (code === 'TZP' || code === 'NCA') return 'I';
+    if (code === 'SJO') return undefined;      /* 스프링재팬: 국내 · 국제 · 화물이 섞여 편명으로 정하지 않음 */
     if (code === 'JAL') return num < 100 ? 'I' : 'D';
     if (code === 'ANA') return (num >= 101 && num <= 239) || (num >= 800 && num <= 899) ? 'I' : 'D';
     return 'D';
