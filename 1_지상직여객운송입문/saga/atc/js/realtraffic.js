@@ -32,13 +32,13 @@
   function hdgOf(la, lo, trk) { var D = ATC.D, a = D.ll2xy(la, lo), r = trk * Math.PI / 180, b = D.ll2xy(la + Math.cos(r) * 0.02, lo + Math.sin(r) * 0.02 / Math.cos(la * Math.PI / 180)); return U.n360(Math.round(U.brg(a, b))) || 360; }
   /* 자료 → 쓸 수 있는 항공기(편명이 항공사 3자 + 숫자 · 공중 · 게임 항공사 표에 있는 것). 반환: {list, skip: {why: 수}} */
   /* 실제 교통 근무 전용 항공사(게임 항공사 표에 없는 곳) — ICAO 3자 부호 : [무선 호출 이름, 이름]. 게임 표에 있는 부호가 먼저.
-     아시아나(AAR)와 자회사(ABL · ASV)는 사용자 결정(11/19)으로 넣지 않음. 호출 이름은 FAA JO 7340.2R(2026-10-29) · N JO 7340.942로 GPT ATC-20차 확인(필수 6 반영: TWB SONOROUS · AIH QUANTUM SKY · ESR EASTARJET · VJC VIETJETAIR · CEB CEBU AIR · HAL → ASA ALASKA, 추가 8).
+     아시아나(AAR) · 에어부산(ABL) · 에어서울(ASV)은 실제로 다니는 동안 실제 교통 근무에서 씀(사용자 결정 11/23 — 평소 근무의 게임 항공사 표에는 넣지 않음). 호출 이름은 FAA JO 7340.2R(2026-10-29) · N JO 7340.942로 GPT ATC-20차 확인(필수 6 반영: TWB SONOROUS · AIH QUANTUM SKY · ESR EASTARJET · VJC VIETJETAIR · CEB CEBU AIR · HAL → ASA ALASKA, 추가 8).
      HAL/HAWAIIAN은 2025-10-30부터 쓰지 않아 넣지 않음(실제 자료의 HAL 부호를 ASA로 바꿔 읽지도 않음 — 뺌). JAPAN AIR · NEW SKY · KOREAN AIR는 공식 철자에 공백이 없지만(JAPANAIR 등) 읽는 소리는 같아 게임 표와 같은 표기 유지 */
   RT.EXTRA = {
     ANA: ['ALL NIPPON', 'All Nippon Airways'], JAL: ['JAPAN AIR', 'Japan Airlines'], APJ: ['AIR PEACH', 'Peach Aviation'], JJP: ['ORANGE LINER', 'Jetstar Japan'], SKY: ['SKYMARK', 'Skymark Airlines'],
     ADO: ['AIR DO', 'AIRDO'], SNJ: ['NEW SKY', 'Solaseed Air'], SFJ: ['STARFLYER', 'StarFlyer'], JTA: ['JAI OCEAN', 'Japan Transocean Air'], IBX: ['IBEX', 'IBEX Airlines'], FDA: ['FUJI DREAM', 'Fuji Dream Airlines'],
     JAC: ['COMMUTER', 'Japan Air Commuter'], TZP: ['ZIPPY', 'ZIPAIR Tokyo'], NCA: ['NIPPON CARGO', 'Nippon Cargo Airlines'],
-    KAL: ['KOREAN AIR', 'Korean Air'], JJA: ['JEJU AIR', 'Jeju Air'], JNA: ['JIN AIR', 'Jin Air'], TWB: ['SONOROUS', 'Trinity Airways'], ESR: ['EASTARJET', 'Eastar Jet'], APZ: ['AIR PREMIA', 'Air Premia'], AIH: ['QUANTUM SKY', 'AirZeta'],
+    KAL: ['KOREAN AIR', 'Korean Air'], AAR: ['ASIANA', 'Asiana Airlines'], ABL: ['AIR BUSAN', 'Air Busan'], ASV: ['AIR SEOUL', 'Air Seoul'], JJA: ['JEJU AIR', 'Jeju Air'], JNA: ['JIN AIR', 'Jin Air'], TWB: ['SONOROUS', 'Trinity Airways'], ESR: ['EASTARJET', 'Eastar Jet'], APZ: ['AIR PREMIA', 'Air Premia'], AIH: ['QUANTUM SKY', 'AirZeta'],
     CAL: ['DYNASTY', 'China Airlines'], EVA: ['EVA', 'EVA Air'], SJX: ['STARWALKER', 'STARLUX Airlines'], TTW: ['SMART CAT', 'Tigerair Taiwan'], CPA: ['CATHAY', 'Cathay Pacific'], HKE: ['HONGKONG SHUTTLE', 'HK Express'],
     CRK: ['BAUHINIA', 'Hong Kong Airlines'], AMU: ['AIR MACAU', 'Air Macau'], CCA: ['AIR CHINA', 'Air China'], CES: ['CHINA EASTERN', 'China Eastern Airlines'], CSN: ['CHINA SOUTHERN', 'China Southern Airlines'],
     CXA: ['XIAMEN AIR', 'XiamenAir'], CHH: ['HAINAN', 'Hainan Airlines'], CSZ: ['SHENZHEN AIR', 'Shenzhen Airlines'], CDG: ['SHANDONG', 'Shandong Airlines'], CQH: ['AIR SPRING', 'Spring Airlines'],
@@ -153,7 +153,7 @@
      일본 밖 항공사 · ZIPAIR · 일본화물항공 = 국제선 / JAL = 1 ~ 99 국제선(하네다 국제선 JL1 ~ 99), 100 이상 국내선 /
      ANA = 101 ~ 239 · 800 ~ 899 국제선(미주 · 유럽 · 아시아), 그 밖 국내선 / 그 밖의 일본 항공사 = 국내선. 하네다가 아니면 정하지 않음 */
   /* 일본 밖 항공사의 본국(목적지 · 출발지를 그 나라 공항에서 먼저 고름 — ICAO 지역 부호 앞글자) */
-  RT.HOME = { KAL: 'RK', JJA: 'RK', JNA: 'RK', TWB: 'RK', ESR: 'RK', APZ: 'RK', AIH: 'RK', EOK: 'RK', CAL: 'RC', EVA: 'RC', SJX: 'RC', TTW: 'RC', CPA: 'VH', HKE: 'VH', CRK: 'VH', AHK: 'VH', AMU: 'VM',
+  RT.HOME = { KAL: 'RK', AAR: 'RK', ABL: 'RK', ASV: 'RK', JJA: 'RK', JNA: 'RK', TWB: 'RK', ESR: 'RK', APZ: 'RK', AIH: 'RK', EOK: 'RK', CAL: 'RC', EVA: 'RC', SJX: 'RC', TTW: 'RC', CPA: 'VH', HKE: 'VH', CRK: 'VH', AHK: 'VH', AMU: 'VM',
     CCA: 'Z', CES: 'Z', CSN: 'Z', CXA: 'Z', CHH: 'Z', CSZ: 'Z', CDG: 'Z', CQH: 'Z', CSH: 'Z', CKK: 'Z', MGL: 'ZM', HVN: 'VV', VJC: 'VV', PAL: 'RP', CEB: 'RP', THA: 'VT', MAS: 'WM', XAX: 'WM', AXM: 'WM', SIA: 'WS', TGW: 'WS', GIA: 'WI',
     AIC: 'VA VE VI VO', UZB: 'UT', QFA: 'Y', JST: 'Y', ANZ: 'NZ', UAE: 'OM', QTR: 'OT', ETD: 'OM', THY: 'LT', ETH: 'HA', DLH: 'ED', AFR: 'LF', KLM: 'EH', BAW: 'EG', VIR: 'EG', FIN: 'EF', SWR: 'LS', AUA: 'LO', SAS: 'EK ES EN', ITY: 'LI', CLX: 'EL',
     UAL: 'K PH', DAL: 'K PH', AAL: 'K PH', ASA: 'K PH', FDX: 'K PH', UPS: 'K PH', GTI: 'K PH', PAC: 'K PH', CKS: 'K PH', ABX: 'K PH', ACA: 'C' };
