@@ -284,6 +284,7 @@
       /* 화물기는 화물 계류장(15L/33R 동쪽)과 가까운 동쪽 활주로만 — 서쪽 활주로를 쓰면 여객 계류장과 활주로 둘을 가로질러 E에서 마주 서는 일이 생김(게임 배정, GPT 19차 17번) */
       if (f.al.cargo && !rwy) { var eg = gates.filter(function (x) { var r = D.ends[by[x]].rw; return r === '1' || r === '2'; }); if (eg.length) gates = eg; }
       var g = sim.rng.pick(gates), ap = sim.rng.pick(tbl[g]);
+      if (f.rt && ATC.RT) { var ro = []; gates.forEach(function (x) { tbl[x].forEach(function (d) { if (ATC.RT.destOk(f.al.code, d[0])) ro.push([x, d]); }); }); if (ro.length) { var pk = sim.rng.pick(ro); g = pk[0]; ap = pk[1]; } }      /* 실제 교통: 외국 항공사는 그 나라 공항 · 저비용항공은 근거리를 먼저 */
       return { gate: g, ap: ap, intl: true, rwy: by[g], grp: f.al.cargo ? ['KC'] : [TERM[f.al.code] || 'T1'] };
     };
 

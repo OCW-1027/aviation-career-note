@@ -107,7 +107,8 @@
   RT.apply = function (sim, d) {
     var D = ATC.D, P = RT.parse(d), arr = 0, dep = 0, other = 0, self = sim, AF = sim.arrFlow || sim.flow;
     var nCall = 0;      /* 첫 호출은 8초씩 나눠서 — 한꺼번에 부르면 혼신이 나 시작하자마자 감점 */
-    function firstCall(ac, fn) { var k = nCall++; if (!k) return fn(); sim.later(k * 8, function () { if (sim.acs.indexOf(ac) >= 0) fn(); }); }
+    var calls = [];
+    function firstCall(ac, fn) { calls.push([ac, fn]); }      /* 간격 정리(아래)가 끝난 뒤 차례로 부름 */
     P.list.forEach(function (a) {
       if (a.hdg === null) { other++; return; }
       var dc = U.dist(a, D.center), tow = Math.abs(U.adiff(U.brg(a, D.center), a.hdg)) < 70, out = D.tmaPoly ? !U.inPoly(a, D.tmaPoly) : dc > D.tmaR;
@@ -139,6 +140,17 @@
       } else { other++; return; }
       sim.usedCs[ac.cs] = 1;
     });
+    /* 간격 정리: 고도를 1,000ft 단위로 맞추면서 가까운 두 기체가 같은 고도가 될 수 있음(실제로는 관제사가 벡터로 떼어 놓던 기체) →
+       8NM 안 · 1,000ft 미만이면 나중 기체를 1,000ft씩 올려 보고(최대 3,000ft), 안 되면 뺌. 출발기는 오를 고도 구간이 겹치면 목표 고도를 낮추고, 안 되면 뺌 */
+    var mine = sim.acs.filter(function (a) { return a.real; }).sort(function (x, y) { return U.dist(x, D.center) - U.dist(y, D.center); }), kept = [];
+    function clash(a, lo, hi) { return sim.acs.some(function (b) { return b !== a && (kept.indexOf(b) >= 0 || !b.real) && U.dist(a, b) < 8 && b.alt > lo - 1000 && b.alt < hi + 1000; }); }
+    mine.forEach(function (a) {
+      var ok = false, k;
+      if (a.kind === 'arr') { for (k = 0; k <= 3 && !ok; k++) { var al = a.alt + k * 1000; if (!clash(a, al, al) && !(sim.mvaAt && al < sim.mvaAt(a) - 150)) { a.alt = a.tAlt = al; ok = true; } } }
+      else { if (!clash(a, a.alt, a.alt)) { var top = a.tAlt; while (top > a.alt && clash(a, a.alt, top)) top -= 1000; if (!clash(a, a.alt, top)) { a.tAlt = Math.max(top, a.alt); ok = true; } } }
+      if (ok) kept.push(a); else { sim.acs.splice(sim.acs.indexOf(a), 1); delete sim.usedCs[a.cs]; if (a.kind === 'arr') arr--; else dep--; other++; }
+    });
+    calls.filter(function (c) { return sim.acs.indexOf(c[0]) >= 0; }).forEach(function (c, k) { if (!k) c[1](); else sim.later(k * 8, function () { if (sim.acs.indexOf(c[0]) >= 0) c[1](); }); });
     /* 게임이 만들 교통은 그만큼 줄이고 조금 뒤로 — 처음 몇 분은 실제 교통이 중심 */
     var na = arr, nd = dep;
     sim.sched = sim.sched.filter(function (s) { if (s.kind === 'arr' && na > 0) { na--; return false; } if (s.kind === 'dep' && nd > 0) { nd--; return false; } return true; });
@@ -159,6 +171,15 @@
     CCA: 'Z', CES: 'Z', CSN: 'Z', CXA: 'Z', CHH: 'Z', CSZ: 'Z', CDG: 'Z', CQH: 'Z', CSH: 'Z', CKK: 'Z', MGL: 'ZM', HVN: 'VV', VJC: 'VV', PAL: 'RP', CEB: 'RP', THA: 'VT', MAS: 'WM', XAX: 'WM', AXM: 'WM', SIA: 'WS', TGW: 'WS', GIA: 'WI',
     AIC: 'VA VE VI VO', UZB: 'UT', QFA: 'Y', JST: 'Y', ANZ: 'NZ', UAE: 'OM', QTR: 'OT', ETD: 'OM', THY: 'LT', ETH: 'HA', DLH: 'ED', AFR: 'LF', KLM: 'EH', BAW: 'EG', VIR: 'EG', FIN: 'EF', SWR: 'LS', AUA: 'LO', SAS: 'EK ES EN', ITY: 'LI', CLX: 'EL',
     UAL: 'K PH', DAL: 'K PH', AAL: 'K PH', ASA: 'K PH', FDX: 'K PH', UPS: 'K PH', GTI: 'K PH', PAC: 'K PH', CKS: 'K PH', ABX: 'K PH', ACA: 'C' };
+  /* 실제 편의 목적지 · 출발지 고르기: 외국 공항에서는 본국 공항 먼저 · 한국 · 일본 저비용항공은 근거리(일본 · 중국 · 대만 · 동남아 · 괌)만 */
+  RT.SHORT = { JJA: 1, JNA: 1, TWB: 1, ESR: 1, ABL: 1, ASV: 1, PTA: 1, EOK: 1, APJ: 1, JJP: 1, SJO: 1, HKE: 1, TTW: 1, CQH: 1, VJC: 1, CEB: 1, TGW: 1, AXM: 1 };
+  RT.SHORTP = 'RJ RO RK RC RP VH VM Z VV VT VD VL VY WM WS WI WB PG UH UA';
+  RT.destOk = function (code, icao) {
+    var h = RT.HOME[code], here = ATC.aptId === 'RJTT' ? 'RJ' : ATC.aptId === 'RKSI' ? 'RK' : '';
+    if (h && h.split(' ').indexOf(here) < 0) return RT.homeOk(code, icao);
+    if (RT.SHORT[code]) return RT.SHORTP.split(' ').some(function (p) { return icao.indexOf(p) === 0 && p !== here; });
+    return true;
+  };
   RT.homeOk = function (code, icao) { var h = RT.HOME[code]; return !h || h.split(' ').some(function (p) { return icao.indexOf(p) === 0; }); };
   RT.scopeOf = function (code, num) {
     if (ATC.aptId !== 'RJTT') return undefined;
