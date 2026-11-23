@@ -106,7 +106,6 @@
   /* 근무에 넣기: AppSim이 만들어진 뒤 부름. 들어간 수 · 사정 문구를 돌려줌 */
   RT.apply = function (sim, d) {
     var D = ATC.D, P = RT.parse(d), arr = 0, dep = 0, other = 0, self = sim, AF = sim.arrFlow || sim.flow;
-    var nCall = 0;      /* 첫 호출은 8초씩 나눠서 — 한꺼번에 부르면 혼신이 나 시작하자마자 감점 */
     var calls = [];
     function firstCall(ac, fn) { calls.push([ac, fn]); }      /* 간격 정리(아래)가 끝난 뒤 차례로 부름 */
     P.list.forEach(function (a) {
@@ -118,13 +117,15 @@
         var gb = null; (sim.gates || Object.keys(D.star[AF.id])).forEach(function (g) { var j = joinRoute(a, D.star[AF.id][g]); if (j && (!gb || j.d < gb.d)) gb = { g: g, i: j.i, d: j.d }; });
         if (!gb || gb.d > 25) { other++; return; }
         if ((dc < 14 && a.alt < 4500) || (sim.mvaAt && ralt < sim.mvaAt(a) - 150)) { other++; return; }      /* 이미 낮게 최종 접근 중 · MVA 밑 — 관제탑 쪽 기체(시작하자마자 피할 수 없는 감점 막기) */
+        var rr = D.star[AF.id][gb.g], rem = 0, ri; if (D.fix[rr[gb.i]]) { rem = U.dist(a, D.fix[rr[gb.i]]); for (ri = gb.i; ri < rr.length - 1; ri++) if (D.fix[rr[ri]] && D.fix[rr[ri + 1]]) rem += U.dist(D.fix[rr[ri]], D.fix[rr[ri + 1]]); }
+        if (rem < 6) { other++; return; }      /* STAR 끝(IF · 체공 지점)까지 6NM 안 — 첫 호출 전에 「접근 허가 요청」을 먼저 하게 되므로 뺌(74차 인천 22:15 KAL852) */
         var RW = sim.rwys, by = AF.arrBy, rwy = by && RW.indexOf(by[gb.g]) >= 0 ? by[gb.g] : (RW.indexOf(AF.arr) >= 0 ? AF.arr : RW[0]), route = D.star[AF.id][gb.g], og = ATC.odPick(sim.rng, a.al, D.gateOrig[gb.g]);
         var ias = U.clamp(Math.round((a.alt < 10000 ? Math.min(a.gs, 250) : Math.min(a.gs * 0.8, 300)) / 10) * 10, perf.vapp + 30, 300);
         ac = sim.spawnAc({ cs: a.cs, csWord: a.al.cs, num: a.num, al: a.al, type: type, wake: perf.wake, perf: perf, x: a.x, y: a.y, alt: ralt, hdg: a.hdg, ias: ias, normIas: Math.min(ias, 250),
           kind: 'arr', gate: gb.g, orig: og[0], origName: og[1], dest: D.airport.icao, fpRoute: route, squawk: RT.sqOk(a.sq) ? a.sq : sim.squawk(), rwy: rwy, owner: 'me', entT: sim.t, real: a.hex, realT: a.t });
         ac.setRoute(route.slice(gb.i));
         if (D.starName) ac.star = D.starName[AF.id][gb.g];
-        firstCall(ac, function () { sim.checkIn(ac); }); arr++;
+        ac.rtRem = rem; firstCall(ac, function () { sim.checkIn(ac); }); arr++;
       } else if (!tow && a.vr > 300 && dc < 45 && a.alt < 20000) {      /* 출발: 공항에서 멀어지며 올라가는 기체 */
         var gs = ATC.depGates(sim.flow), bg = null; gs.forEach(function (g) { var f = D.fix[g]; if (!f) return; var e = Math.abs(U.adiff(U.brg(D.center, f), U.brg(D.center, a))); if (!bg || e < bg.e) bg = { g: g, e: e }; });
         if (!bg || bg.e > 60 || a.alt > 13000 || (sim.mvaAt && ralt < sim.mvaAt(a) - 150) || (ATC.AppSim.depRem && ATC.AppSim.depRem({ x: a.x, y: a.y, gate: bg.g }) < 8)) { other++; return; }      /* 곧 지역관제로 넘어갈 기체는 뺌 */
@@ -150,7 +151,14 @@
       else { if (!clash(a, a.alt, a.alt)) { var top = a.tAlt; while (top > a.alt && clash(a, a.alt, top)) top -= 1000; if (!clash(a, a.alt, top)) { a.tAlt = Math.max(top, a.alt); ok = true; } } }
       if (ok) kept.push(a); else { sim.acs.splice(sim.acs.indexOf(a), 1); delete sim.usedCs[a.cs]; if (a.kind === 'arr') arr--; else dep--; other++; }
     });
-    calls.filter(function (c) { return sim.acs.indexOf(c[0]) >= 0; }).forEach(function (c, k) { if (!k) c[1](); else sim.later(k * 8, function () { if (sim.acs.indexOf(c[0]) >= 0) c[1](); }); });
+    /* 첫 호출(도착 · 출발 함께)은 한 줄로: 주파수가 비었을 때만 하나 부르고, 다음은 6초 뒤부터 다시 빈 때를 기다림 — 실제 음성 길이가 길어도 겹치지 않게(74차 인천 22:15 혼신) */
+    var cq = calls.filter(function (c) { return sim.acs.indexOf(c[0]) >= 0; }).sort(function (x, y) { return (x[0].rtRem || 0) - (y[0].rtRem || 0); });      /* STAR 끝이 가까운 도착기 · 출발기부터 */
+    (function next() {
+      while (cq.length && sim.acs.indexOf(cq[0][0]) < 0) cq.shift();
+      if (!cq.length) return;
+      if (sim.cur || (sim.q && sim.q.length)) { sim.later(1, next); return; }
+      cq.shift()[1](); sim.later(6, next);
+    })();
     /* 게임이 만들 교통은 그만큼 줄이고 조금 뒤로 — 처음 몇 분은 실제 교통이 중심 */
     var na = arr, nd = dep;
     sim.sched = sim.sched.filter(function (s) { if (s.kind === 'arr' && na > 0) { na--; return false; } if (s.kind === 'dep' && nd > 0) { nd--; return false; } return true; });
