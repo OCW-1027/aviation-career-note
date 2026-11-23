@@ -43,9 +43,16 @@ def main():
         rec = {'apt': apt.upper(), 't': int(now.timestamp()), 'src': 'ADSB.lol (ODbL 1.0)', 'ac': pack(d)}
         s = json.dumps(rec, separators=(',', ':'), ensure_ascii=False)
         open(os.path.join(OUT, apt + '.json'), 'w').write(s)
-        for k, (h, m) in REC.items():      # 정해진 시각 ±7분 안이면 기록 판으로도 남김
-            if abs((loc.hour * 60 + loc.minute) - (h * 60 + m)) <= 7: open(os.path.join(OUT, '%s_%s.json' % (apt, k)), 'w').write(s)
+        for k, (h, m) in REC.items():      # 정해진 시각 ±25분 안이면 기록 판으로도 남김 — 같은 날 더 가까운 기록이 이미 있으면 그대로 둠(Actions 실행이 늦어져도 하나는 남게)
+            diff = abs((loc.hour * 60 + loc.minute) - (h * 60 + m))
+            if diff > 25: continue
+            fp = os.path.join(OUT, '%s_%s.json' % (apt, k))
+            try:
+                ot = datetime.fromtimestamp(json.load(open(fp))['t'], timezone.utc) + timedelta(hours=9)
+                if ot.date() == loc.date() and abs((ot.hour * 60 + ot.minute) - (h * 60 + m)) <= diff: continue
+            except Exception: pass
+            open(fp, 'w').write(s)
         print(apt, len(rec['ac']), 'aircraft'); time.sleep(2)
-    open(os.path.join(OUT, 'README.md'), 'w').write('AIRLINE SAGA 관제편 「실제 교통 근무」 데이터 — GitHub Actions(atc-traffic)가 15분마다 덮어씀. 출처: ADSB.lol, ODbL 1.0 (https://www.adsb.lol)\n')
+    open(os.path.join(OUT, 'README.md'), 'w').write('AIRLINE SAGA 관제편 「실제 교통 근무」 데이터 — GitHub Actions(atc-traffic)가 15분마다(매시 7·22·37·52분) 덮어씀. 출처: ADSB.lol, ODbL 1.0 (https://www.adsb.lol)\n')
 
 if __name__ == '__main__': main()

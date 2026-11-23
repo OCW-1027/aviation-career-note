@@ -16,6 +16,7 @@
       return [X * Math.sin(g) + Y * Math.cos(g), -X * Math.cos(g) + Y * Math.sin(g)];
     }
     function ll(la, lo) { var p = ll2uv(la, lo); return h.uv2xy(p[0], p[1]); }
+    D.ll2xy = ll;      /* 실제 교통 근무(realtraffic.js): 위경도 → 레이더 좌표 */
     function dms(d, m, s) { return d + m / 60 + s / 3600; }
     function thr(la, lo) { var p = ll2uv(la, lo); return [Math.round(p[0]), Math.round(p[1])]; }
 

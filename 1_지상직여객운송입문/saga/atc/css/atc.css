@@ -439,7 +439,7 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .rates ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:5px;font-size:11.5px}.rates p{margin:7px 0 0;font-size:10.5px;color:var(--mut)}
 .rates li{display:flex;gap:5px;align-items:baseline;padding:3px 8px;border:1px solid var(--line);border-radius:6px}.rates li span{font-weight:700;color:var(--mut)}.rates li.r1 span{color:#7fd6a6}.rates li.r2 span{color:#ffd479}
 @media (max-width:1180px){.xgrp{flex-basis:100%}.xgrp h5{white-space:normal}.xrow{grid-template-columns:1fr 1fr}}
-@media (max-width:1180px) and (min-width:761px){.xgrp.chal .xrow{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:1180px) and (min-width:761px){.xgrp.chal .xrow{grid-template-columns:repeat(var(--n),1fr)}}
 @media (max-width:560px){.xrow{grid-template-columns:1fr}}
 .rup{margin:0 0 12px;padding:9px 12px;border-radius:8px;border:1px solid #2f7a55;background:rgba(127,214,166,.08);font-size:13px}.rup.r2{border-color:#a5822f;background:rgba(255,212,121,.08)}.rup.daily{border-color:#a5822f}
 .rgraph svg{width:100%;height:96px;display:block;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:6px}
@@ -587,3 +587,6 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 .pex{margin:2px 0 6px;padding:6px 9px;border:1px solid #3f9f6f;border-radius:7px;background:rgba(18,58,42,.35);font:13px/1.45 var(--mono);color:#eaf6ef}
 .pex b{font-family:inherit;color:#9fe0bb;font-weight:600;margin-right:4px}
 .v-del #delview{top:52px;padding-top:4px}      /* 비행허가: 오른쪽 위 「🎤 음성」 단추 밑 띠를 비워 내용이 단추 아래로 지나가지 않게 */
+.xbtn.real i{color:#7fe0ff}
+.rtk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 6px}.rtk .btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px;text-align:left;height:auto}.rtk .btn small{font-size:11px;color:var(--mut);font-weight:400}.rtk .btn:disabled{opacity:.5}
+.rtmsg{min-height:1.3em;margin:4px 0;color:var(--ok)}.rtsrc{font-size:11px;color:var(--mut);margin:6px 0 0}

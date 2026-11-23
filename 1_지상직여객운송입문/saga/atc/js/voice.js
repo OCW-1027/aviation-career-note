@@ -26,7 +26,7 @@
       if (has(p) && has(r + v)) return [p, r + v];
       if (has(p) && !strict && has(r + o)) return [p, r + o];
     }
-    if (depth < 3) for (i = w.length - 1; i >= 1; i--) {
+    if (depth < 6) for (i = w.length - 1; i >= 1; i--) {      /* 실제 교통 근무: 녹음해 둔 편명이 아니면 항공사 이름 · 숫자 · 구절을 이어 붙임(최대 7토막) */
       p = w.slice(0, i).join(' ') + '|m';
       if (has(p)) { r = V.res(w.slice(i), v, has, depth + 1, strict); if (r) return [p].concat(r); }
     }
