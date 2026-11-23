@@ -8,9 +8,9 @@ var me=document.currentScript&&document.currentScript.src||'';
 var HOME=me?new URL('../../8_\uc0ac\uc774\ud2b8/index.html',me).href:'#';
 /* 新しいデザインの共通の頭とフッター（2026.10）：8_사이트/assets/acn_shell.js を読み込む。ホームのボタンは新しいトップページへ */
 if(me){var acs=document.createElement('script');acs.src=new URL('../../8_\uc0ac\uc774\ud2b8/assets/acn_shell.js',me).href;document.head.appendChild(acs)}
-var TX={ja:{top:'\u4e0a\u3078',back:'\u623b\u308b',home:'\u30db\u30fc\u30e0',prev:'\u524d\u306e\u56de',next:'\u6b21\u306e\u56de',toc:'\u76ee\u6b21',swipe:'\u2190 \u6a2a\u306b\u30b9\u30af\u30ed\u30fc\u30eb\u3067\u304d\u307e\u3059 \u2192'},
-ko:{top:'\ub9e8 \uc704\ub85c',back:'\ub4a4\ub85c',home:'\ud648',prev:'\uc774\uc804 \ud3b8',next:'\ub2e4\uc74c \ud3b8',toc:'\ubaa9\ucc28',swipe:'\u2190 \uc606\uc73c\ub85c \ubc00\uc5b4\uc11c \ubcf4\uae30 \u2192'},
-en:{top:'Top',back:'Back',home:'Home',prev:'Previous',next:'Next',toc:'Contents',swipe:'\u2190 Scroll sideways \u2192'}};
+var TX={ja:{top:'\u4e0a\u3078',back:'\u623b\u308b',home:'\u30db\u30fc\u30e0',prev:'\u524d\u306e\u56de',next:'\u6b21\u306e\u56de',toc:'\u76ee\u6b21',fs:'\u5168\u753b\u9762',fsx:'\u5168\u753b\u9762\u3092\u7d42\u4e86',swipe:'\u2190 \u6a2a\u306b\u30b9\u30af\u30ed\u30fc\u30eb\u3067\u304d\u307e\u3059 \u2192'},
+ko:{top:'\ub9e8 \uc704\ub85c',back:'\ub4a4\ub85c',home:'\ud648',prev:'\uc774\uc804 \ud3b8',next:'\ub2e4\uc74c \ud3b8',toc:'\ubaa9\ucc28',fs:'\uc804\uccb4\ud654\uba74',fsx:'\uc804\uccb4\ud654\uba74 \ub05d\ub0b4\uae30',swipe:'\u2190 \uc606\uc73c\ub85c \ubc00\uc5b4\uc11c \ubcf4\uae30 \u2192'},
+en:{top:'Top',back:'Back',home:'Home',prev:'Previous',next:'Next',toc:'Contents',fs:'Full screen',fsx:'Exit full screen',swipe:'\u2190 Scroll sideways \u2192'}};
 function lang(){var l=(document.documentElement.getAttribute('data-ui')||document.documentElement.lang||'ja').slice(0,2);return TX[l]?l:'ja'}
 var css='.nv-hint{display:none;font-size:12px;color:#5b6b7d;text-align:right;margin:8px 4px -4px}.nv-hint.on{display:block}.nv-fab{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;z-index:9999}'+
 '.nv-fab button{display:flex;align-items:center;gap:6px;border:1px solid #d6dee8;background:#fff;color:#1d2a3a;border-radius:999px;padding:9px 13px;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:pointer;font-family:inherit}'+
@@ -27,13 +27,18 @@ var css='.nv-hint{display:none;font-size:12px;color:#5b6b7d;text-align:right;mar
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 if(!document.querySelector('meta[name="robots"]')){var rb=document.createElement('meta');rb.name='robots';rb.content='noindex, nofollow';document.head.appendChild(rb)}
 var fab=document.createElement('div');fab.className='nv-fab';
-fab.innerHTML='<button type="button" class="nv-top">\u2191 <span></span></button><button type="button" class="nv-back">\u2190 <span></span></button><button type="button" class="nv-home">\u2302 <span></span></button>';
+/* 게임 화면 전체화면 단추(2026.11): 게임 페이지에서, 브라우저가 전체화면을 지원할 때만(아이폰 Safari는 지원하지 않아 숨김) */
+var DE=document.documentElement,FSOK=!!((DE.requestFullscreen||DE.webkitRequestFullscreen)&&(document.fullscreenEnabled||document.webkitFullscreenEnabled))&&(window.ACN_FS||/AIRLINE_SAGA|airline-saga/i.test(location.pathname));
+function fsEl(){return document.fullscreenElement||document.webkitFullscreenElement}
+fab.innerHTML=(FSOK?'<button type="button" class="nv-fs">\u2922 <span></span></button>':'')+'<button type="button" class="nv-top">\u2191 <span></span></button><button type="button" class="nv-back">\u2190 <span></span></button><button type="button" class="nv-home">\u2302 <span></span></button>';
 /* 横スクロールの案内：クラス名に関係なく、横にはみ出してスクロールできる箱（表など）すべてに付ける。メニュー・タブ・目次は除く */
 function hints(){var t=TX[lang()];Array.prototype.forEach.call(document.querySelectorAll('body div,body section,body figure,body pre,body table,body ul'),function(w){if(w.closest('nav,header,.shbar,.menu,.langs,.nv-fab,[role=tablist],.tabs,.tabbar'))return;var o=getComputedStyle(w).overflowX;if(o!=='auto'&&o!=='scroll')return;if(w.clientHeight<60&&!(w.previousElementSibling&&w.previousElementSibling.classList&&w.previousElementSibling.classList.contains('nv-hint')))return;var h=w.previousElementSibling;if(!h||!h.classList||!h.classList.contains('nv-hint')){h=document.createElement('div');h.className='nv-hint';w.parentNode.insertBefore(h,w)}if(h.textContent!==t.swipe)h.textContent=t.swipe;var on=w.scrollWidth>w.clientWidth+4;if(h.classList.contains('on')!==on)h.classList.toggle('on',on)})}
 function init(){document.body.appendChild(fab);
  fab.querySelector('.nv-top').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
  fab.querySelector('.nv-back').onclick=function(){var r=document.referrer,same=false;try{same=!!r&&(new URL(r).origin===location.origin)&&new URL(r).href!==location.href}catch(e){}if(history.length>1&&same)history.back();else location.href=tocUrl()||(window.__SHELL?HOME+'#tools':HOME)};
  fab.querySelector('.nv-home').onclick=function(){location.href=window.ACN_HOME||HOME};
+ if(FSOK){fab.querySelector('.nv-fs').onclick=function(){try{if(fsEl()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{var r=(DE.requestFullscreen||DE.webkitRequestFullscreen).call(DE);if(r&&r.catch)r.catch(function(){})}}catch(e){}};
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){document.addEventListener(ev,label)})}
  window.addEventListener('scroll',function(){fab.classList.toggle('show',window.scrollY>300)},{passive:true});
  label();
  new MutationObserver(function(){label();setTimeout(hints,300)}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
@@ -45,7 +50,8 @@ function init(){document.body.appendChild(fab);
 var LS={'\u65e5\u672c\u8a9e':'JA','\ud55c\uad6d\uc5b4':'KO','English':'EN'};
 function langBtns(){Array.prototype.forEach.call(document.querySelectorAll('button,a'),function(b){if(b.classList.contains('nv-lb'))return;var s=LS[(b.textContent||'').trim()];if(s&&b.children.length===0){b.classList.add('nv-lb');b.setAttribute('data-s',s)}})}
 function tocUrl(){var a=document.querySelector('a[href*="00_\u30b7\u30ea\u30fc\u30ba\u5168\u4f53"]');return a?a.href:''}
-function label(){var t=TX[lang()];var b=fab.querySelectorAll('span');b[0].textContent=t.top;b[1].textContent=t.back;b[2].textContent=t.home;var bt=fab.querySelectorAll('button');[t.top,t.back,t.home].forEach(function(x,i){bt[i].title=x;bt[i].setAttribute('aria-label',x)})}
+function label(){var t=TX[lang()];var k=FSOK?1:0,b=fab.querySelectorAll('span');b[k].textContent=t.top;b[k+1].textContent=t.back;b[k+2].textContent=t.home;var bt=fab.querySelectorAll('button');[t.top,t.back,t.home].forEach(function(x,i){bt[i+k].title=x;bt[i+k].setAttribute('aria-label',x)});
+ if(FSOK){var f=fab.querySelector('.nv-fs'),x=fsEl()?t.fsx:t.fs;f.firstChild.nodeValue=(fsEl()?'\u2921':'\u2922')+' ';f.querySelector('span').textContent=x;f.title=x;f.setAttribute('aria-label',x);f.setAttribute('aria-pressed',fsEl()?'true':'false')}}
 function key(k){return k.split('-').map(function(x){return ('000'+x).slice(-3)}).join('-')}
 function prevNext(){var m=location.search.match(/[?&]no=([^&]+)/);if(!m||!window.ARTS)return;var no=decodeURIComponent(m[1]);
  var ks=Object.keys(window.ARTS).filter(function(k){return /^\d+-\d+$/.test(k)}).sort(function(a,b){return key(a)<key(b)?-1:1});
