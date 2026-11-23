@@ -187,7 +187,7 @@
     document.documentElement.classList.add('ingame');
     var cr = xo && xo.carry || null; if (cr) { flow = cr.sim.flow.id; wind = cr.sim.wind; }      /* 조종사 체험 출발편: 앞 단계(비행허가)의 날씨 · 시각 · 기록을 이어받음 */      /* xo = 오늘의 과제(daily) · 무한 근무(endless) */
     if (xo && xo.daily) flow = pickFlow(rng());      /* 오늘의 과제는 운용 방향도 모두 같게 */
-    if (xo && xo.real) { var rfl = ATC.RT.flowOf(ATC.RT.parse(xo.real).list); if (rfl && D.flows[rfl]) { flow = rfl; fw = D.flows[flow].wind; wind = { dir: U.n360(fw.dir + rng.int(0, 6) * 10) || 360, spd: fw.spd + rng.int(0, fw.spdN) }; } }      /* 실제 교통: 그때 실제로 쓰던 방향(가까운 기체로 짐작) */
+    if (xo && xo.real) { var rfl = ATC.RT.flowOf(ATC.RT.parse(xo.real).list) || (D.flows.N ? 'N' : Object.keys(D.flows)[0]); if (rfl && D.flows[rfl]) {      /* 기체로 운용 방향을 못 짐작하면 무작위 대신 북풍 운용(겨울철 주 운용) */  flow = rfl; fw = D.flows[flow].wind; wind = { dir: U.n360(fw.dir + rng.int(0, 6) * 10) || 360, spd: fw.spd + rng.int(0, fw.spdN) }; } }      /* 실제 교통: 그때 실제로 쓰던 방향(가까운 기체로 짐작) */
     var lv = scn ? scn.level : xo && xo.level || app.level; app.scn = scn || null;
     /* 조종사 체험 날씨 · 시간(로비에서 고름): 맑은 낮 · 밤 · 옆바람 · 저시정 · 무작위 — 출발편 다음 단계는 앞 단계의 것을 이어받음 */
     var wxo = null, nightH = null;
