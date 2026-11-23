@@ -377,6 +377,7 @@
       var gates = Object.keys(tbl).filter(function (g) { return !rwy || by[g] === rwy; }); if (!gates.length) gates = Object.keys(tbl);
       var opts = []; gates.forEach(function (g) { tbl[g].forEach(function (d) { var i = D.isIntl(d[0]); if (!sc || (sc === 'I') === i) opts.push([g, d]); }); });
       opts = opts.filter(function (o) { return ATC.odOk(f.al, o[1][0]); });      /* 그 항공사가 다니는 곳만 */
+      if (!opts.length && f.rt) { gates.forEach(function (g) { tbl[g].forEach(function (d) { var i = D.isIntl(d[0]); if (!sc || (sc === 'I') === i) opts.push([g, d]); }); }); if (!opts.length) gates.forEach(function (g) { tbl[g].forEach(function (d) { opts.push([g, d]); }); }); }      /* 실제 교통의 실제 편은 항공사를 바꾸지 않음(목적지 제한만 풂) */
       if (!opts.length) {           /* 이 활주로 방면에 그 항공사가 다니는 곳이 없으면 → 같은 종류(여객 · 화물 · 소형기)의 다른 항공사로 바꿈(목적지 제한은 풀지 않음) */
         var all = [], al0 = f.al; gates.forEach(function (g) { tbl[g].forEach(function (d) { all.push([g, d]); }); });
         var nf = sim.mkFlight(function (a) { return !!a.cargo === !!al0.cargo && !!a.ga === !!al0.ga && all.some(function (o) { var i = D.isIntl(o[1][0]), s2 = SCOPE[a.code]; return (!s2 || (s2 === 'I') === i) && ATC.odOk(a, o[1][0]); }); }, kind);

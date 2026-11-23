@@ -54,27 +54,29 @@
     VIR: ['VIRGIN', 'Virgin Atlantic'], ITY: ['ITARROW', 'ITA Airways']
   };
   RT.CARGO = { CKK: 1, AHK: 1, NCA: 1, AIH: 1, FDX: 1, UPS: 1, GTI: 1, PAC: 1, CKS: 1, ABX: 1, CLX: 1 };
+  RT.JPN = { ANA: 1, JAL: 1, APJ: 1, JJP: 1, SKY: 1, ADO: 1, SNJ: 1, SFJ: 1, JTA: 1, IBX: 1, FDA: 1, JAC: 1, TZP: 1, NCA: 1 };
   var XAL = {};
   /* 게임 표에 없는 실제 항공사 → 근무 동안만 쓰는 항공사 정보(가상 항공사처럼 돌발 상황이 걸리지 않게 real 표시, 노선 제한 없음) */
   RT.extraAl = function (code) {
     if (!RT.EXTRA[code]) return null;
-    if (!XAL[code]) { var e = RT.EXTRA[code]; XAL[code] = { code: code, cs: e[0], name: e[1], col: '#8a96a8', col2: '#d8dde5', types: RT.CARGO[code] ? ['B77W'] : ['A320'], w: 0, real: true, extra: true, cargo: !!RT.CARGO[code], flights: [] }; }
+    if (!XAL[code]) { var e = RT.EXTRA[code]; XAL[code] = { code: code, cs: e[0], name: e[1], col: '#8a96a8', col2: '#d8dde5', types: RT.CARGO[code] ? ['B77W'] : ['A320'], w: 0, real: true, extra: true, cargo: !!RT.CARGO[code], flights: [], scope: RT.JPN[code] ? (code === 'TZP' ? 'I' : undefined) : 'I' }; }      /* 일본 밖 항공사는 국제선만(하네다 국내선 목적지로 배정되지 않게) */
     return XAL[code];
   };
   /* 음성 녹음 대상(이 공항의 게임 표에 없는 것만) */
   RT.extraCs = function () { var D = ATC.D; return Object.keys(RT.EXTRA).filter(function (k) { return !D.alBy[k]; }).map(function (k) { return RT.EXTRA[k][0]; }); };
   RT.parse = function (d) {
-    var D = ATC.D, out = [], skip = { noCs: 0, ground: 0, unknownAl: 0 }, seen = {};
+    var D = ATC.D, out = [], gnd = [], skip = { noCs: 0, ground: 0, unknownAl: 0 }, seen = {};
     (d.ac || []).forEach(function (r) {
       var cs = String(r[1] || '').toUpperCase().replace(/\s+/g, ''), m = /^([A-Z]{3})0*(\d{1,4}[A-Z]?)$/.exec(cs);
       if (!m || !r[2] || /^TEST/.test(cs)) { skip.noCs++; return; }      /* 편명 없음 · TEST · 지상 차량(기종 없음) */
-      if (r[6] === 'g' || r[6] === null || r[6] === undefined) { skip.ground++; return; }
+      var onG = r[6] === 'g' || r[6] === null || r[6] === undefined;
       var al = D.alBy[m[1]]; if (al && !al.real) al = null; al = al || RT.extraAl(m[1]);      /* 부호가 게임의 가상 항공사와 같으면 그 이름을 쓰지 않음(실제로는 다른 회사) */ if (!al || !/^\d+$/.test(m[2])) { skip.unknownAl++; return; }      /* 게임 항공사 표 → 실제 교통 전용 표(RT.EXTRA) 순. 둘 다 없으면 뺌 */
       if (seen[al.code + m[2]]) return; seen[al.code + m[2]] = 1;
+      if (onG) { skip.ground++; gnd.push({ hex: r[0], al: al, code: al.code, num: m[2], cs: al.code + m[2], t: r[2], gs: r[7] || 0 }); return; }      /* 지상 기체: 접근관제에서는 빼고, 관제탑 · 지상 근무에서 출발편으로 씀 */
       var p = D.ll2xy(r[4], r[5]);
       out.push({ hex: r[0], al: al, code: al.code, num: m[2], cs: al.code + m[2], t: r[2], reg: r[3], x: p.x, y: p.y, alt: +r[6], gs: r[7] || 250, hdg: r[8] === null || r[8] === undefined ? null : hdgOf(r[4], r[5], r[8]), vr: r[9] || 0, sq: r[10] || '' });
     });
-    return { list: out, skip: skip };
+    return { list: out, gnd: gnd, skip: skip };
   };
   /* 운용 방향: 공항 가까이 낮게 나는 기체가 어느 활주로 쪽으로 가는지로 */
   RT.flowOf = function (list) {
@@ -144,5 +146,31 @@
     return sim.real;
   };
   /* 자료 시각(현지) 글: 「11월 23일 08:15(현지)」 */
+  /* 관제탑 · 지상 근무: 실제 기체를 게임의 예정 편에 끼워 넣음.
+     도착 = 공항으로 내려오는 실제 기체(거리 · 속도로 결승 진입 시각을 계산) · 출발 = 지상의 실제 기체(지상 이동 중인 기체 먼저, 그다음 주기장에 선 기체).
+     지상 그림은 실제 축척이 아니라 주기장은 실제 자리가 아니라 그 항공사의 터미널에서 고름(게임 배정) */
+  RT.applyGround = function (sim, d) {
+    var D = ATC.D, P = RT.parse(d), spawnD = sim.mode === 'TWR' ? 10 : 9, arrs = [], deps = [], other = 0;
+    function flightOf(a) { var type = typeOf(a.t, a.al); return { cs: a.cs, csWord: a.al.cs, num: String(a.num), al: a.al, type: type, wake: D.types[type].wake, perf: D.types[type], rt: true }; }
+    P.list.forEach(function (a) {
+      var dc = U.dist(a, D.center), toC = U.brg(a, D.center);
+      if (a.hdg !== null && dc > 2 && dc < 45 && a.alt < 16000 && a.vr <= 300 && Math.abs(U.adiff(a.hdg, toC)) < 70) arrs.push({ a: a, t: Math.max(4, Math.min(1500, (dc - spawnD) * 3600 / Math.max(150, a.gs))) });
+      else other++;
+    });
+    P.gnd.forEach(function (g) { if (g.gs <= 35 && !g.al.ga) deps.push(g); else other++; });      /* 활주 중(35kt 넘음)은 이륙 · 착륙 굴림 — 뺌 */
+    arrs.sort(function (x, y) { return x.t - y.t; });
+    deps.sort(function (x, y) { return (y.gs >= 3) - (x.gs >= 3); });
+    var sa = sim.sched.filter(function (s) { return s.kind === 'arr' && !s.f && !s.emg; }).sort(function (x, y) { return x.t - y.t; });
+    var sd = sim.sched.filter(function (s) { return s.kind === 'dep' && !s.f; }).sort(function (x, y) { return x.t - y.t; });
+    var na = Math.min(arrs.length, sa.length), nd = Math.min(deps.length, sd.length), i, gap = sim.mode === 'TWR' ? 80 : 50, last = -999;
+    for (i = 0; i < na; i++) { last = Math.max(arrs[i].t, last + 110); sa[i].f = flightOf(arrs[i].a); sa[i].t = last; sa[i].rt = 1; sa[i].cargo = false; sim.usedCs[sa[i].f.cs] = 1; }      /* 결승 진입 간격은 2분 가까이 벌림(실제 자료는 몇 대가 한꺼번에 몰려 있을 수 있음) */
+    for (i = 0; i < nd; i++) { sd[i].f = flightOf(deps[i]); sd[i].t = 6 + i * gap; sd[i].rt = 1; sd[i].cargo = false; sim.usedCs[sd[i].f.cs] = 1; }
+    other += (arrs.length - na) + (deps.length - nd);
+    sim.sched.sort(function (x, y) { return x.t - y.t; });
+    sim.endT = Math.max(sim.endT || 0, sim.sched.length ? sim.sched[sim.sched.length - 1].t : 0);
+    if (!sim.rtWrap) { sim.rtWrap = true; var sp = sim.spawn; sim.spawn = function (s) { var ac = sp.call(this, s); if (ac && s.rt) ac.real = true; return ac; }; }
+    sim.real = { t: d.t, arr: na, dep: nd };
+    return { arr: na, dep: nd, other: other, skip: P.skip, t: d.t };
+  };
   RT.when = function (t) { var D = ATC.D, z = new Date((t + (D.tz !== undefined ? D.tz : 9) * 3600) * 1000); return ATC.T('{0}월 {1}일 {2}:{3}(현지)', z.getUTCMonth() + 1, z.getUTCDate(), U.pad(z.getUTCHours(), 2), U.pad(z.getUTCMinutes(), 2)); };
 })(typeof window !== 'undefined' ? window : globalThis);
