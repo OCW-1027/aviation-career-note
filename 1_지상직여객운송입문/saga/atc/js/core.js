@@ -87,6 +87,8 @@
         var to = c.to, o = to.fq ? to : ATC.fqOf(to, ac);      /* 활주로 쪽에 따라 주파수가 다른 공항(인천 동 · 서 Ground · Tower) */
         return ['contact ' + o.n + ' ' + o.fq, o.fq];
       case 'radar': return ['radar contact', null];
+      case 'roger': return ['roger', null];
+      case 'star': return ['cleared ' + c.name + ' arrival', c.name + ' arrival'];      /* 한 편 비행: 인천 STAR 허가(xc.js) */
       case 'luaw': return ['runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '') + ', line up and wait', 'runway ' + c.rwy + (c.at ? ' at ' + twy([c.at]) : '') + ', line up and wait'];      /* 교차점 진입 위치도 복창(F9-01) */
       case 'cto': return ['wind ' + w + ', runway ' + c.rwy + ', cleared for takeoff', 'runway ' + c.rwy + ', cleared for takeoff'];
       case 'cancelto': return ['hold position, cancel takeoff clearance', 'holding position'];

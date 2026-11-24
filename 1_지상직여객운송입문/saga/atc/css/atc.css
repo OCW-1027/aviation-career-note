@@ -575,7 +575,7 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 .pmicb:hover{border-color:var(--acc)}
 .pmicb.on{background:#5a1a1a;border:1px solid #e05050;box-shadow:0 0 0 3px rgba(224,80,80,.35)}.pmicb.on span{color:#fff}
 .pilotm #micfb{top:auto;bottom:30px;left:12px}
-.pilotp h6.hmic{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pilotp h6.hmic{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .pilotp h6.hmic .pmicb{width:auto;margin:0;padding:8px 16px;font-size:17px;min-height:40px;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;border-style:solid;flex:0 0 auto}
 .pilotp h6.hmic .pmicb span{font-size:12px;font-weight:400}
 /* 말하기 예시(연습용) */
@@ -590,7 +590,7 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 .vcl{flex:0 0 auto;align-self:flex-start;width:28px;height:28px;border:1px solid #2b4a66;border-radius:6px;background:transparent;color:#8aa2b4;cursor:pointer}
 @media (max-width:900px),(max-height:560px){#scope{--vdh:104px}.vptt{min-width:92px;font-size:22px}.vptt span{font-size:12px}.vx{font-size:12.5px;line-height:1.35}.vh small{display:none}#vdock{gap:8px;padding:7px 8px}}
 @media (max-height:560px){#scope{--vdh:82px}.vptt{min-width:120px;flex-direction:row;gap:6px;font-size:20px}#vdock{padding:6px 8px}}      /* 휴대폰 가로: 지도가 너무 작아지지 않게 낮게 */
-.pmicw{display:inline-flex;gap:6px;align-items:center}
+.pmicw{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
 .pexb{padding:5px 10px;border:1px solid #3d6a8a;border-radius:8px;background:rgba(8,16,24,.6);color:#9fb6c8;font-size:12px;cursor:pointer}
 .pex{margin:2px 0 6px;padding:6px 9px;border:1px solid #3f9f6f;border-radius:7px;background:rgba(18,58,42,.35);font:13px/1.45 var(--mono);color:#eaf6ef}
 .pex b{font-family:inherit;color:#9fe0bb;font-weight:600;margin-right:4px}
@@ -631,3 +631,9 @@ ul.book{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:re
 ul.book li{display:flex;flex-direction:column;gap:1px;padding:7px 9px;border:1px dashed var(--line);border-radius:8px;color:var(--mut);min-width:0}
 ul.book li.on{border-style:solid;border-color:#3a5168;background:rgba(79,216,255,.05);color:var(--txt)}
 ul.book li em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--acc)}ul.book li b{font-size:13px;font-family:var(--mono);letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}ul.book li span{font-size:11px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}ul.book li small{font-size:10.5px;color:var(--ok)}
+/* ===== 한 편 비행(구현메모 73차): FMC 경로 · 진행 ===== */
+ul.xlegs{list-style:none;margin:0 0 6px;padding:0;font:12px/1.5 var(--mono)}
+ul.xlegs li{display:grid;grid-template-columns:62px 48px 1fr 46px;gap:6px;padding:2px 6px;border-radius:4px;color:#9fb4c4}
+ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-weight:700}ul.xlegs li span:nth-child(2){color:#6f8fa6}ul.xlegs li span:nth-child(3),ul.xlegs li span:nth-child(4){text-align:right}
+.xprog span{white-space:nowrap}
+.xbtn.xcb i{color:#ff9cf5}

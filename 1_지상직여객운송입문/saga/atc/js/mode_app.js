@@ -61,7 +61,9 @@
 
   AppSim.prototype.spawnArr = function (s) {
     var AF = this.arrFlow, cg = this.rwChg, RW = cg ? cg.newR : this.rwys, f = this.mkFlight(s.pilot ? function (a) { return a.code === 'VLA'; } : ATC.odFit(D.gateOrig[s.gate]), 'arr'), route = D.star[AF.id][s.gate], f0 = D.fix[route[0]], f1 = D.fix[route[1]];
-    if (s.pilot && f.type !== 'B789') {      /* 조종사 체험: 조종석이 787식이라 B787-9로 정해 둔 편명을 씀(편명별 음성 조각은 그대로) */
+    var xi = s.pilot && this.pilot && this.pilot.xcIn;      /* 한 편 비행: 하네다에서 온 내 편(편명 · 위치 · 고도를 이어받음, xc.js) */
+    if (xi) { f = { cs: xi.f.cs, csWord: xi.f.csWord, num: xi.f.num, al: D.alBy && D.alBy[xi.f.al.code] || xi.f.al, type: 'B789', wake: 'H', perf: D.types.B789 }; this.usedCs[f.cs] = 1; }
+    if (s.pilot && !xi && f.type !== 'B789') {      /* 조종사 체험: 조종석이 787식이라 B787-9로 정해 둔 편명을 씀(편명별 음성 조각은 그대로) */
       var self = this, b9 = f.al.flights.filter(function (x) { return x.type === 'B789' && !self.usedCs[f.al.code + x.num]; })[0] || f.al.flights.filter(function (x) { return x.type === 'B789'; })[0];
       if (b9) { this.usedCs[f.al.code + b9.num] = 1; f.num = String(b9.num); f.cs = f.al.code + b9.num; f.type = 'B789'; f.wake = 'H'; f.perf = D.types.B789; }
     }
@@ -71,13 +73,15 @@
       from = 1 + this.rng.int(0, route.length - 6); f0 = D.fix[route[from]]; f1 = D.fix[route[from + 1]]; hd = U.brg(f0, f1); var fq = 0.2 + 0.6 * this.rng();
       p = { x: f0.x + (f1.x - f0.x) * fq, y: f0.y + (f1.y - f0.y) * fq }; alt = Math.min(alt, 10000 + 1000 * (s.wi || 0)); from++;
     } else if (s.warm) { var fr = 0.35 + 0.3 * this.rng(); p = { x: f0.x + (f1.x - f0.x) * fr, y: f0.y + (f1.y - f0.y) * fr }; alt = 10000; }
-    var perf = f.perf, ias = perf.k === 'tp' ? 220 : 250;
+    if (xi && D.ll2xy) { p = D.ll2xy(xi.ac.lat, xi.ac.lon); alt = xi.ac.alt; hd = xi.ac.hdg; og = ['RJTT', 'Tokyo Haneda']; }
+    var perf = f.perf, ias = xi ? Math.round(xi.ac.ias) : perf.k === 'tp' ? 220 : 250;
     var ac = this.spawnAc({
       cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: perf,
-      x: p.x, y: p.y, alt: alt, hdg: hd, ias: ias, normIas: ias, kind: 'arr', gate: s.gate, orig: og[0], origName: og[1], dest: D.airport.icao,
+      x: p.x, y: p.y, alt: alt, hdg: hd, ias: ias, normIas: xi ? 250 : ias, kind: 'arr', gate: s.gate, orig: og[0], origName: og[1], dest: D.airport.icao,
       fpRoute: route, squawk: this.squawk(), rwy: rwy, owner: s.pilot ? 'in' : (this.level.id === 1 || s.warm) ? 'me' : 'in', entT: this.t
     });
     ac.setRoute(s.warm ? route.slice(from) : route);
+    if (xi) ac.tAlt = xi.ac.tAlt || alt;      /* 한 편 비행: 대구 관제가 준 강하 고도(FL180) 그대로 */
     if (D.appDelay) ac.planMin = (routeLen(route) + (D.ends[rwy].ifD || 12)) * D.appDelay.perNM + D.appDelay.plus;
     if (D.starName) ac.star = D.starName[AF.id][s.gate];
     if (ac.owner === 'me') this.checkIn(ac); else ac.hoT = this.t;

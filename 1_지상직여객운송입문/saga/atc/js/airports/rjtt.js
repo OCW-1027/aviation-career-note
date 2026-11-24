@@ -117,7 +117,7 @@
     D.isIntl = function (icao) { return !/^R[JO]/.test(icao); };
     D.gateDest = {
       ROVER: [['RJCC', 'Sapporo New Chitose'], ['RJCH', 'Hakodate'], ['RJSA', 'Aomori'], ['PHNL', 'Honolulu'], ['KLAX', 'Los Angeles'], ['KSFO', 'San Francisco'], ['CYVR', 'Vancouver'], ['CYYZ', 'Toronto']],
-      BEKLA: [['RJNK', 'Komatsu'], ['RJNT', 'Toyama'], ['RKSS', 'Seoul Gimpo'], ['ZBAA', 'Beijing Capital'], ['EGLL', 'London Heathrow'], ['EDDF', 'Frankfurt'], ['LFPG', 'Paris Charles de Gaulle'], ['OMDB', 'Dubai'], ['OTHH', 'Doha']],
+      BEKLA: [['RJNK', 'Komatsu'], ['RJNT', 'Toyama'], ['RKSS', 'Seoul Gimpo'], ['RKSI', 'Seoul Incheon'], ['ZBAA', 'Beijing Capital'], ['EGLL', 'London Heathrow'], ['EDDF', 'Frankfurt'], ['LFPG', 'Paris Charles de Gaulle'], ['OMDB', 'Dubai'], ['OTHH', 'Doha']],
       GUSRO: [['RJFF', 'Fukuoka'], ['RJOA', 'Hiroshima']],
       NINOX: [['ZSPD', 'Shanghai Pudong']],
       LAXAS: [['RJOO', 'Osaka Itami'], ['RJBB', 'Osaka Kansai'], ['RJFK', 'Kagoshima'], ['ROAH', 'Naha'], ['RCSS', 'Taipei Songshan'], ['VHHH', 'Hong Kong'], ['WSSS', 'Singapore Changi'], ['VTBS', 'Bangkok Suvarnabhumi'], ['VVNB', 'Hanoi'], ['YSSY', 'Sydney']]
